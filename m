@@ -2,29 +2,91 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4C1CB4224D
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Sep 2025 15:45:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A68BB42252
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Sep 2025 15:45:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2125D10E897;
-	Wed,  3 Sep 2025 13:45:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DC5B10E89A;
+	Wed,  3 Sep 2025 13:45:31 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="EtV1vxk9";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D77E410E897;
- Wed,  3 Sep 2025 13:45:01 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8631767158574397771=="
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C50010E898;
+ Wed,  3 Sep 2025 13:45:30 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id C6C1743A3F;
+ Wed,  3 Sep 2025 13:45:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2F58C4CEF0;
+ Wed,  3 Sep 2025 13:45:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1756907129;
+ bh=6Bp49XvIiL/gpcZUSJHbjfPDkjkxFuVv8aVM1mwkppM=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=EtV1vxk9Knh7vuhM8x4HkCnMMQg77LBHWAZjfHt0hykdAtk0J7zkljpn1dRo8ALRy
+ nJBjQbGoGlt335lc6Yejbwt37hjTv6p8SfDTunaRiW2oQzHQJq0rlhZtQ1LRmN6+mL
+ IGnwxZAwUAyqQhCdqcZjg6unlXq+oHZaIHgAwNaLEtGxgemHO0ZOaXw9RabH2oRHjO
+ 1NAsUX1pvy8xvLLbjRFOhcQ7OcGTcv3rYRTxHcZtSDX9/AS365g+6AYkmZe7Gug6n+
+ egQHkiSWI1KySu6kre/fm/A9KyjZ9fyn2Wecsk4AkYcdc4XAKirge13OlUIx7BdFSr
+ JLHu0DYRXsxWw==
+Received: by mail-ot1-f53.google.com with SMTP id
+ 46e09a7af769-7459de59821so282488a34.1; 
+ Wed, 03 Sep 2025 06:45:29 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWqV+38amf1vKXcMXEyYom7xNRldB86uHcGQhneH2TqzozI63ugagsS0pQvmQNAdilbDkbgYHcujpwZ@lists.freedesktop.org,
+ AJvYcCXQuOwJ/bHaLSGhS5krEPvnexjTogNWwPkUQueGkFWyFskESxaGyMpd6oOf8jIW5LOjBGSuNviFdDk=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwBnjCCwuYd+c3QYSRASKSIKDaBrogBouItl5mcA9nIoQVc8dY1
+ FJd2DnQec0g3e+obGIYFvvNLyM5hrDtVHiHsTtg0QE5muMMveLI/D/VlG0xV9xzKtiA/gk8VJzu
+ avXKm09SK4JS252eSHCN0d0S+E+n6XOI=
+X-Google-Smtp-Source: AGHT+IFj7tJ0lfFEWygwFa+BeDrtHlIidd3MSLvzw4pQoHyU3fN8psDlEaELWcEJ9+cmnisQYq8U5lt0bInRpr2lJAs=
+X-Received: by 2002:a05:6830:6682:b0:745:9ba6:d32c with SMTP id
+ 46e09a7af769-7459ba6d61bmr1062886a34.2.1756907128976; Wed, 03 Sep 2025
+ 06:45:28 -0700 (PDT)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Remov?=
- =?utf-8?q?e_FBC_modulo_4_restriction_for?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shankar, Uma" <uma.shankar@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 03 Sep 2025 13:45:01 -0000
-Message-ID: <175690710187.298800.3047769554252995301@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250903082323.283632-1-uma.shankar@intel.com>
-In-Reply-To: <20250903082323.283632-1-uma.shankar@intel.com>
+References: <20250903131733.57637-1-zhangzihuan@kylinos.cn>
+ <20250903131733.57637-8-zhangzihuan@kylinos.cn>
+In-Reply-To: <20250903131733.57637-8-zhangzihuan@kylinos.cn>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Wed, 3 Sep 2025 15:45:17 +0200
+X-Gmail-Original-Message-ID: <CAJZ5v0hirWzWZiLbAXPWB58SQv3CAW95iHLnsqs=i2twVCcmwg@mail.gmail.com>
+X-Gm-Features: Ac12FXwBQmIxy8zPXuaWqJJ1Bp0qaxbUEME_ozpvMpdmoYPanY06xkhRVAoy8ys
+Message-ID: <CAJZ5v0hirWzWZiLbAXPWB58SQv3CAW95iHLnsqs=i2twVCcmwg@mail.gmail.com>
+Subject: Re: [PATCH v4 07/10] powercap: dtpm_cpu: Use scope-based cleanup
+ helper
+To: Zihuan Zhang <zhangzihuan@kylinos.cn>
+Cc: "Rafael J . wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+ Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>, 
+ Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Thierry Reding <thierry.reding@gmail.com>,
+ MyungJoo Ham <myungjoo.ham@samsung.com>, 
+ Kyungmin Park <kyungmin.park@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Daniel Lezcano <daniel.lezcano@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
+ Eduardo Valentin <edubezval@gmail.com>, Keerthy <j-keerthy@ti.com>,
+ Ben Horgan <ben.horgan@arm.com>, 
+ zhenglifeng <zhenglifeng1@huawei.com>, Zhang Rui <rui.zhang@intel.com>, 
+ Len Brown <lenb@kernel.org>, Lukasz Luba <lukasz.luba@arm.com>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Beata Michalska <beata.michalska@arm.com>, 
+ Fabio Estevam <festevam@gmail.com>, Pavel Machek <pavel@kernel.org>,
+ Sumit Gupta <sumitg@nvidia.com>, 
+ Prasanna Kumar T S M <ptsm@linux.microsoft.com>,
+ Sudeep Holla <sudeep.holla@arm.com>, 
+ Yicong Yang <yangyicong@hisilicon.com>, linux-pm@vger.kernel.org, 
+ linux-acpi@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+ linux-arm-kernel@lists.infradead.org, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, imx@lists.linux.dev, 
+ linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,187 +99,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8631767158574397771==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Sep 3, 2025 at 3:18=E2=80=AFPM Zihuan Zhang <zhangzihuan@kylinos.cn=
+> wrote:
+>
+> Replace the manual cpufreq_cpu_put() with __free(put_cpufreq_policy)
+> annotation for policy references. This reduces the risk of reference
+> counting mistakes and aligns the code with the latest kernel style.
+>
+> No functional change intended.
+>
+> Signed-off-by: Zihuan Zhang <zhangzihuan@kylinos.cn>
+> ---
+>  drivers/powercap/dtpm_cpu.c | 30 +++++++++++-------------------
+>  1 file changed, 11 insertions(+), 19 deletions(-)
+>
+> diff --git a/drivers/powercap/dtpm_cpu.c b/drivers/powercap/dtpm_cpu.c
+> index 99390ec1481f..f76594185fa2 100644
+> --- a/drivers/powercap/dtpm_cpu.c
+> +++ b/drivers/powercap/dtpm_cpu.c
+> @@ -144,19 +144,17 @@ static int update_pd_power_uw(struct dtpm *dtpm)
+>  static void pd_release(struct dtpm *dtpm)
+>  {
+>         struct dtpm_cpu *dtpm_cpu =3D to_dtpm_cpu(dtpm);
+> -       struct cpufreq_policy *policy;
+>
+>         if (freq_qos_request_active(&dtpm_cpu->qos_req))
+>                 freq_qos_remove_request(&dtpm_cpu->qos_req);
+>
+> -       policy =3D cpufreq_cpu_get(dtpm_cpu->cpu);
+> -       if (policy) {
+> +       struct cpufreq_policy *policy __free(put_cpufreq_policy) =3D
+> +               cpufreq_cpu_get(dtpm_cpu->cpu);
+> +
+> +       if (policy)
+>                 for_each_cpu(dtpm_cpu->cpu, policy->related_cpus)
+>                         per_cpu(dtpm_per_cpu, dtpm_cpu->cpu) =3D NULL;
+>
+> -               cpufreq_cpu_put(policy);
+> -       }
+> -
+>         kfree(dtpm_cpu);
+>  }
+>
+> @@ -192,7 +190,6 @@ static int cpuhp_dtpm_cpu_online(unsigned int cpu)
+>  static int __dtpm_cpu_setup(int cpu, struct dtpm *parent)
+>  {
+>         struct dtpm_cpu *dtpm_cpu;
+> -       struct cpufreq_policy *policy;
+>         struct em_perf_state *table;
+>         struct em_perf_domain *pd;
+>         char name[CPUFREQ_NAME_LEN];
+> @@ -202,21 +199,19 @@ static int __dtpm_cpu_setup(int cpu, struct dtpm *p=
+arent)
+>         if (dtpm_cpu)
+>                 return 0;
+>
+> -       policy =3D cpufreq_cpu_get(cpu);
+> +       struct cpufreq_policy *policy __free(put_cpufreq_policy) =3D
+> +               cpufreq_cpu_get(cpu);
+> +
+>         if (!policy)
+>                 return 0;
+>
+>         pd =3D em_cpu_get(cpu);
+> -       if (!pd || em_is_artificial(pd)) {
+> -               ret =3D -EINVAL;
+> -               goto release_policy;
+> -       }
+> +       if (!pd || em_is_artificial(pd))
+> +               return -EINVAL;
+>
+>         dtpm_cpu =3D kzalloc(sizeof(*dtpm_cpu), GFP_KERNEL);
+> -       if (!dtpm_cpu) {
+> -               ret =3D -ENOMEM;
+> -               goto release_policy;
+> -       }
+> +       if (!dtpm_cpu)
+> +               return -ENOMEM;
+>
+>         dtpm_init(&dtpm_cpu->dtpm, &dtpm_ops);
+>         dtpm_cpu->cpu =3D cpu;
+> @@ -239,7 +234,6 @@ static int __dtpm_cpu_setup(int cpu, struct dtpm *par=
+ent)
+>         if (ret < 0)
+>                 goto out_dtpm_unregister;
 
-== Series Details ==
+So this change kind of goes against another recommendation given in cleanup=
+.h:
 
-Series: drm/i915/display: Remove FBC modulo 4 restriction for
-URL   : https://patchwork.freedesktop.org/series/153927/
-State : success
+ * Lastly, given that the benefit of cleanup helpers is removal of
+ * "goto", and that the "goto" statement can jump between scopes, the
+ * expectation is that usage of "goto" and cleanup helpers is never
+ * mixed in the same function. I.e. for a given routine, convert all
+ * resources that need a "goto" cleanup to scope-based cleanup, or
+ * convert none of them.
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_17123 -> Patchwork_153927v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153927v1/index.html
-
-Participating hosts (44 -> 43)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_153927v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@reset:
-    - bat-atsm-1:         [PASS][1] -> [ABORT][2] ([i915#14201])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17123/bat-atsm-1/igt@i915_selftest@live@reset.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153927v1/bat-atsm-1/igt@i915_selftest@live@reset.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-9:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17123/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153927v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-
-  
-#### Possible fixes ####
-
-  * igt@dmabuf@all-tests:
-    - bat-apl-1:          [ABORT][5] ([i915#12904]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17123/bat-apl-1/igt@dmabuf@all-tests.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153927v1/bat-apl-1/igt@dmabuf@all-tests.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-6:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17123/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153927v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live:
-    - bat-atsm-1:         [DMESG-FAIL][9] ([i915#12061] / [i915#13929]) -> [ABORT][10] ([i915#14201])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17123/bat-atsm-1/igt@i915_selftest@live.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153927v1/bat-atsm-1/igt@i915_selftest@live.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-  [i915#13929]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929
-  [i915#14201]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14201
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_17123 -> Patchwork_153927v1
-
-  CI-20190529: 20190529
-  CI_DRM_17123: 09933716bb37eda75f5b3562a76e58a17c447647 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8520: 8520
-  Patchwork_153927v1: 09933716bb37eda75f5b3562a76e58a17c447647 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153927v1/index.html
-
---===============8631767158574397771==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Remove FBC modulo 4 restriction for</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153927/">https://patchwork.freedesktop.org/series/153927/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153927v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153927v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17123 -&gt; Patchwork_153927v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153927v1/index.html</p>
-<h2>Participating hosts (44 -&gt; 43)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_153927v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@reset:</p>
-<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17123/bat-atsm-1/igt@i915_selftest@live@reset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153927v1/bat-atsm-1/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14201">i915#14201</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17123/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153927v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests:</p>
-<ul>
-<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17123/bat-apl-1/igt@dmabuf@all-tests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153927v1/bat-apl-1/igt@dmabuf@all-tests.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17123/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153927v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_selftest@live:<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17123/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153927v1/bat-atsm-1/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14201">i915#14201</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17123 -&gt; Patchwork_153927v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17123: 09933716bb37eda75f5b3562a76e58a17c447647 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8520: 8520<br />
-  Patchwork_153927v1: 09933716bb37eda75f5b3562a76e58a17c447647 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============8631767158574397771==--
+>
+> -       cpufreq_cpu_put(policy);
+>         return 0;
+>
+>  out_dtpm_unregister:
+> @@ -251,8 +245,6 @@ static int __dtpm_cpu_setup(int cpu, struct dtpm *par=
+ent)
+>                 per_cpu(dtpm_per_cpu, cpu) =3D NULL;
+>         kfree(dtpm_cpu);
+>
+> -release_policy:
+> -       cpufreq_cpu_put(policy);
+>         return ret;
+>  }
+>
+> --
