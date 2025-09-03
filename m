@@ -2,64 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73647B41C97
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Sep 2025 13:04:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F203B41CB0
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Sep 2025 13:07:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8D6610E765;
-	Wed,  3 Sep 2025 11:04:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CCB910E780;
+	Wed,  3 Sep 2025 11:07:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="psxDQFNq";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="fqEv+pAy";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22F3710E765;
- Wed,  3 Sep 2025 11:04:34 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 172F410E780;
+ Wed,  3 Sep 2025 11:07:42 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id D929360244;
- Wed,  3 Sep 2025 11:04:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 848E4C4AF0E;
- Wed,  3 Sep 2025 11:04:32 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id B10AC44C04;
+ Wed,  3 Sep 2025 11:07:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94FCBC4CEF7;
+ Wed,  3 Sep 2025 11:07:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1756897472;
- bh=cR6pggU98t/+Ukijic5qu6ZCN/k9GzBjkSxa8gGSKqE=;
+ s=k20201202; t=1756897661;
+ bh=I5jJC5YsqDheZourzIns4HynVHdhk9fmj1JJIPP/qj8=;
  h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=psxDQFNqUA0AxnW1agDCBjM86eBgZ74JT2Cd1rJz0r6c6YIg9L5yDWVB/dyKfbNqY
- 7ZLsa748GOiB7mhjhAd7ZfA8Kf0yz16s0PmWze8zgCN+oiV63DSrvCAm5l4CmHbQDL
- oSTTmG5f6r+rVGC89dPywgVkBtO5/2saXzd0zWbC+lwxN43IbLc/N2JIFlZvmatvZL
- wbA8HXmaSHcOjOr4RYxkDguj3NEv01VtIYQp0kZf52jVOP92S6DDJ4Ekq7SVZovP5I
- yLR8QJOzVUwT5t4hf2flXG4hKNUFCxAwpJ3IHOkAiFFWl4mOkwRLbpmr6WQ2TSehUN
- mmSq/SUEn6fUA==
-Received: by mail-ot1-f50.google.com with SMTP id
- 46e09a7af769-7452b1964f3so5125351a34.1; 
- Wed, 03 Sep 2025 04:04:32 -0700 (PDT)
+ b=fqEv+pAyAzyDrwpa5ycGv/vldrUVHpTuiDwGvEU2O6hGAiipiQXkldusw4kvuf6Ta
+ cyV691K7HV2CSSp8RoFgEXQf84IwuC16kmYKwmqprM4hACuabw/Z49bNoigh1mbEVi
+ lfVSk0I2yERql792+nQOshGycv64BeF9PB3eQ5nWjt+fGlrVe/cR9xNBoxCPamJrks
+ yVsq4p2oAGuZ5xkOC8mK0WErUxsBMrB2HOYx2elO7r0rSGI9RKr76w6rqsVHTkCBqv
+ Yq7iI8uXw1FkSRxTENbSKEf2moleyaF/1d2WgigF4GfkMeRbER5SxoiWsyCxL1V2R/
+ ofS+YYpOUUEJQ==
+Received: by mail-ot1-f45.google.com with SMTP id
+ 46e09a7af769-74381e207a0so4580578a34.0; 
+ Wed, 03 Sep 2025 04:07:41 -0700 (PDT)
 X-Forwarded-Encrypted: i=1;
- AJvYcCV0n9ryHU6MKiibr8SrjpsP3CxXGp4DclnJFjJx7KhmkCO0dFBrkgy9G9wASOvcmaz6r9hNBZ2RCG8=@lists.freedesktop.org,
- AJvYcCXrUVL60M++K5eRIngLwYEVc6QoYSphXnuAEl7zjvZMC1+Y2PFxErNXreYZL+wslGwRzdclAHuvjHI5@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwxRQUqnMEytE7V/SxGzPSDadNHqPcL75OWahCm3dlpwZP6D8UR
- s4xqh03RmS6CyqjNvRKqeY7d+vi+3gv0TNZgI3/zFUoCoSGLSbFzyHmqY/MEMzPpcphWhjjGcau
- LFIi3y5ighDs+pjbcyOW58hkNrGb3sVE=
-X-Google-Smtp-Source: AGHT+IGt8cths8yMLXGw+ylAbBkNMXTKhbmkwbSixaLVjPRLTHE/ydd0R+Ek9LJwycoLKhw9INB3N/62z1RFfHnhrtQ=
-X-Received: by 2002:a05:6830:6d0e:b0:731:cac7:3636 with SMTP id
- 46e09a7af769-74569d7940cmr8468523a34.6.1756897471467; Wed, 03 Sep 2025
- 04:04:31 -0700 (PDT)
+ AJvYcCVUWq9bjPfko0q5rymJKHsLu9FfPYp18/pK1r2wbXPJgYXmSyQP3zqpUNQbAvTaJX2CxI/lVXC48fw2@lists.freedesktop.org,
+ AJvYcCXmyiHg174CD879TVuUMarEABTZKvzY8p8xN1OQHpbetph0D13k5hzN5isa5kLCapIHo+Ynup7JVgY=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzPo0Qabpavn/Qn7hGZEJz+0iF8i1E7CRnjFukBtkw40MFco5h+
+ pYd8ORzDoIIWnOiU0R9ZnWlmjwxZ3odY7I6ZMjrkijMCjB+7v4QeBhmFW8d/2j5JE6FJN7sGh7t
+ /m+2I7vA8qbFyBvQC+aYTQ1UIbztwd5E=
+X-Google-Smtp-Source: AGHT+IFm2i7E3heNFR05VvLVwsYMlRgIplk+0JGJpDoA3hxcK7mnkmts5Dorpw2CJryu3vWJY1lQqzZJZSMnb+GSebY=
+X-Received: by 2002:a05:6830:2642:b0:745:508c:455c with SMTP id
+ 46e09a7af769-74569dc34b9mr7242918a34.8.1756897660735; Wed, 03 Sep 2025
+ 04:07:40 -0700 (PDT)
 MIME-Version: 1.0
 References: <20250901085748.36795-1-zhangzihuan@kylinos.cn>
- <20250901085748.36795-4-zhangzihuan@kylinos.cn>
- <CAJZ5v0hu48NrMr6Vkjn_UyHywJMx7F5N6yWf2LiXxykZF79EKA@mail.gmail.com>
- <29890791-4ddf-49c7-a4f2-0ac83e6d53c6@kylinos.cn>
- <CAJZ5v0jvOKeLRkjWoKR5eVKZ-hib7c8D-VOBvtCvs1+HGfPUiQ@mail.gmail.com>
- <40706b1f-e23c-417b-b3e1-2dc839828588@kylinos.cn>
-In-Reply-To: <40706b1f-e23c-417b-b3e1-2dc839828588@kylinos.cn>
+ <20250901085748.36795-3-zhangzihuan@kylinos.cn>
+In-Reply-To: <20250901085748.36795-3-zhangzihuan@kylinos.cn>
 From: "Rafael J. Wysocki" <rafael@kernel.org>
-Date: Wed, 3 Sep 2025 13:04:18 +0200
-X-Gmail-Original-Message-ID: <CAJZ5v0g=riWtqaB=pGcxormmnaeFyRaeG1LZyEDBzpUGrH4kEA@mail.gmail.com>
-X-Gm-Features: Ac12FXznI_bHraDGh_P16Ypv18F94Duvp6HYWc01eg81rI5FCsWpKSsYAvb2qr0
-Message-ID: <CAJZ5v0g=riWtqaB=pGcxormmnaeFyRaeG1LZyEDBzpUGrH4kEA@mail.gmail.com>
-Subject: Re: [PATCH v3 03/12] cpufreq: intel_pstate: Use scope-based cleanup
- helper
+Date: Wed, 3 Sep 2025 13:07:27 +0200
+X-Gmail-Original-Message-ID: <CAJZ5v0jxHQ3fBk_fSwg7QYsePvUyh=FDteyO+8F8oGfUwX2E9A@mail.gmail.com>
+X-Gm-Features: Ac12FXxXhqpwDXjodHxvBBGUiHE126LWfl3UmWuK-7WK82DNR_r2zpKQkeauJig
+Message-ID: <CAJZ5v0jxHQ3fBk_fSwg7QYsePvUyh=FDteyO+8F8oGfUwX2E9A@mail.gmail.com>
+Subject: Re: [PATCH v3 02/12] ACPI: processor: thermal: Use scope-based
+ cleanup helper
 To: Zihuan Zhang <zhangzihuan@kylinos.cn>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+Cc: "Rafael J . wysocki" <rafael@kernel.org>,
  Viresh Kumar <viresh.kumar@linaro.org>, 
  Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
  Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>, 
@@ -106,65 +102,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 3, 2025 at 2:51=E2=80=AFAM Zihuan Zhang <zhangzihuan@kylinos.cn=
-> wrote:
+On Mon, Sep 1, 2025 at 10:58=E2=80=AFAM Zihuan Zhang <zhangzihuan@kylinos.c=
+n> wrote:
 >
+> Replace the manual cpufreq_cpu_put() with __free(put_cpufreq_policy)
+> annotation for policy references. This reduces the risk of reference
+> counting mistakes and aligns the code with the latest kernel style.
 >
-> =E5=9C=A8 2025/9/2 19:47, Rafael J. Wysocki =E5=86=99=E9=81=93:
-> > On Tue, Sep 2, 2025 at 12:33=E2=80=AFPM Zihuan Zhang <zhangzihuan@kylin=
-os.cn> wrote:
-> >>
-> >> =E5=9C=A8 2025/9/1 23:17, Rafael J. Wysocki =E5=86=99=E9=81=93:
-> >>> On Mon, Sep 1, 2025 at 10:58=E2=80=AFAM Zihuan Zhang <zhangzihuan@kyl=
-inos.cn> wrote:
-> >>>> Replace the manual cpufreq_cpu_put() with __free(put_cpufreq_policy)
-> >>>> annotation for policy references. This reduces the risk of reference
-> >>>> counting mistakes and aligns the code with the latest kernel style.
-> >>>>
-> >>>> No functional change intended.
-> >>>>
-> >>>> Signed-off-by: Zihuan Zhang <zhangzihuan@kylinos.cn>
-> >>>> ---
-> >>>>    drivers/cpufreq/intel_pstate.c | 8 +++-----
-> >>>>    1 file changed, 3 insertions(+), 5 deletions(-)
-> >>>>
-> >>>> diff --git a/drivers/cpufreq/intel_pstate.c b/drivers/cpufreq/intel_=
-pstate.c
-> >>>> index f366d35c5840..4abc1ef2d2b0 100644
-> >>>> --- a/drivers/cpufreq/intel_pstate.c
-> >>>> +++ b/drivers/cpufreq/intel_pstate.c
-> >>>> @@ -1502,9 +1502,8 @@ static void __intel_pstate_update_max_freq(str=
-uct cpufreq_policy *policy,
-> >>>>
-> >>>>    static bool intel_pstate_update_max_freq(struct cpudata *cpudata)
-> >>>>    {
-> >>>> -       struct cpufreq_policy *policy __free(put_cpufreq_policy);
-> >>>> +       struct cpufreq_policy *policy __free(put_cpufreq_policy) =3D=
- cpufreq_cpu_get(cpudata->cpu);
-> >>>>
-> >>>> -       policy =3D cpufreq_cpu_get(cpudata->cpu);
-> >>>>           if (!policy)
-> >>>>                   return false;
-> >>> The structure of the code is intentional here and there's no reason t=
-o
-> >>> change it.
-> >>
-> >> Got it. Thanks for clarifying.
-> >>
-> >> So for this case the current structure is intentional -
-> > Note that I'm talking about this particular change only.  The other
-> > change in the $subject patch is fine.
-> >
-> >> should I also avoid similar changes in other drivers?
-> > That depends on who maintains them, which is why I wanted you to split
-> > the patch into smaller changes in the first place.
-> >
-> > My personal view is that code formatting changes, which effectively is
-> > what this particular one is, are pointless unless they make the code
-> > much easier to follow.
+> No functional change intended.
 >
+> Signed-off-by: Zihuan Zhang <zhangzihuan@kylinos.cn>
+> ---
+>  drivers/acpi/processor_thermal.c | 18 ++++++------------
+>  1 file changed, 6 insertions(+), 12 deletions(-)
 >
-> UnderStood, Thanks!
+> diff --git a/drivers/acpi/processor_thermal.c b/drivers/acpi/processor_th=
+ermal.c
+> index 1219adb11ab9..3c8b57df9619 100644
+> --- a/drivers/acpi/processor_thermal.c
+> +++ b/drivers/acpi/processor_thermal.c
+> @@ -62,19 +62,14 @@ static int phys_package_first_cpu(int cpu)
+>         return 0;
+>  }
+>
+> -static int cpu_has_cpufreq(unsigned int cpu)
+> +static bool cpu_has_cpufreq(unsigned int cpu)
+>  {
+> -       struct cpufreq_policy *policy;
+> +       struct cpufreq_policy *policy __free(put_cpufreq_policy) =3D cpuf=
+req_cpu_get(cpu);
+>
+>         if (!acpi_processor_cpufreq_init)
+>                 return 0;
+>
+> -       policy =3D cpufreq_cpu_get(cpu);
+> -       if (policy) {
+> -               cpufreq_cpu_put(policy);
+> -               return 1;
+> -       }
+> -       return 0;
+> +       return !!policy;
+>  }
+>
+>  static int cpufreq_get_max_state(unsigned int cpu)
+> @@ -95,7 +90,6 @@ static int cpufreq_get_cur_state(unsigned int cpu)
+>
+>  static int cpufreq_set_cur_state(unsigned int cpu, int state)
+>  {
+> -       struct cpufreq_policy *policy;
+>         struct acpi_processor *pr;
+>         unsigned long max_freq;
+>         int i, ret;
+> @@ -111,6 +105,9 @@ static int cpufreq_set_cur_state(unsigned int cpu, in=
+t state)
+>          * frequency.
+>          */
+>         for_each_online_cpu(i) {
 
-Although I think that it would be cleaner to move the code executed in
-each step of the for_each_possible_cpu() loop to a separate function.
+I would still prefer the code below to be moved to a separate function
+that would be called in each step of the for_each_online_cpu() loop.
+
+> +               struct cpufreq_policy *policy __free(put_cpufreq_policy) =
+=3D
+> +                       cpufreq_cpu_get(i);
+> +
+>                 if (topology_physical_package_id(i) !=3D
+>                     topology_physical_package_id(cpu))
+>                         continue;
+> @@ -120,15 +117,12 @@ static int cpufreq_set_cur_state(unsigned int cpu, =
+int state)
+>                 if (unlikely(!freq_qos_request_active(&pr->thermal_req)))
+>                         continue;
+>
+> -               policy =3D cpufreq_cpu_get(i);
+>                 if (!policy)
+>                         return -EINVAL;
+>
+>                 max_freq =3D (policy->cpuinfo.max_freq *
+>                             (100 - reduction_step(i) * cpufreq_thermal_re=
+duction_pctg)) / 100;
+>
+> -               cpufreq_cpu_put(policy);
+> -
+>                 ret =3D freq_qos_update_request(&pr->thermal_req, max_fre=
+q);
+>                 if (ret < 0) {
+>                         pr_warn("Failed to update thermal freq constraint=
+: CPU%d (%d)\n",
+> --
+> 2.25.1
+>
+>
