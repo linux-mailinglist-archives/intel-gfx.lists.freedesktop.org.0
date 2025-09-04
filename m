@@ -2,64 +2,93 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ED87B43A03
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Sep 2025 13:26:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6F5EB43A9D
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Sep 2025 13:47:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC3F410E9FB;
-	Thu,  4 Sep 2025 11:26:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27FFC10EA21;
+	Thu,  4 Sep 2025 11:47:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rtt+9D2F";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="eXVISr9F";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2CDC10E9BD;
- Thu,  4 Sep 2025 11:26:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756985215; x=1788521215;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=lko9DjtPkR5Rmvg4oFapl/YcLraNe3xvrZ5M8mwcvtI=;
- b=Rtt+9D2FNydy5x3lqRAbstNfnyhhPzdBq17qwLweueyh28w34MV00QvF
- 0y84kgEHgdl1Pfaau4BD3T2yRAE+oBgM0KnM8dZ2tsc56gGT86RCyThcZ
- 214GdUatAwXfUquWM6xYoEW0ej3rgpt/n1tvOR2crEmkMVnAjOXwJp6xf
- XBECWHYGpqIBp3sU+rk4F731w0PjrHOBFxTOceymWKQ3M9VQGlblR/kdT
- /R7Rvs8M0AQThRo6cAzhHzIhC0jUagl0aZblMnrNS334uUxgAnUnHCCTE
- ZM9x+20ZaBGaSFYnlt48Le+MU644dhCIqIrYMJaEb4pJ+gZ+jkmzoFqU8 A==;
-X-CSE-ConnectionGUID: Kovp68AmRkOx6hAEK16I+w==
-X-CSE-MsgGUID: KKZE/eq0QdGhbxrcMNRKng==
-X-IronPort-AV: E=McAfee;i="6800,10657,11542"; a="76769901"
-X-IronPort-AV: E=Sophos;i="6.18,238,1751266800"; d="scan'208";a="76769901"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2025 04:26:54 -0700
-X-CSE-ConnectionGUID: QjtXqxOdTdqlWZEOEqdEow==
-X-CSE-MsgGUID: i0Da72AFRy2Ouex5IbCGdA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,238,1751266800"; d="scan'208";a="176204769"
-Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.79])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2025 04:26:52 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Cc: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>, "Kandpal, 
- Suraj" <suraj.kandpal@intel.com>
-Subject: Re: [PATCH 01/20] drm/i915/hdmi: use generic poll_timeout_us()
- instead of __wait_for()
-In-Reply-To: <ccdc9ebcff65a1a46305fb014ec78a35ee4c5b7f.camel@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1756383233.git.jani.nikula@intel.com>
- <fc3a67f9de0049f415a276bba1c11a4df97e01d6.1756383233.git.jani.nikula@intel.com>
- <ccdc9ebcff65a1a46305fb014ec78a35ee4c5b7f.camel@intel.com>
-Date: Thu, 04 Sep 2025 14:26:49 +0300
-Message-ID: <bf70d39d8626ef5a428e237ee6bcc6dd5accff52@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0F5B10EA10
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Sep 2025 11:47:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1756986419;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=RHTlOa6UNeDwG2J7Ek8NZzySxxKAaE1NmJG0gyaITeQ=;
+ b=eXVISr9FxU9fTXaVy4gcXqXCLcvlNpEjTVFDS3kt6W3sqGVTz5NM3y9U1k8Sa4K+G0EPsO
+ 7cSRB8r6kXD8+h2fv3J4MSKf1dSf7QuGe3EFnV9kP/o6Cnk/6BzbGI/dtKUmlD4md447yP
+ ss39ZarRM0ltA0znPVCMC7WU4Dw5Tz0=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-693-gD0kSowJNW2Tf57Ee7oK2w-1; Thu, 04 Sep 2025 07:46:58 -0400
+X-MC-Unique: gD0kSowJNW2Tf57Ee7oK2w-1
+X-Mimecast-MFC-AGG-ID: gD0kSowJNW2Tf57Ee7oK2w_1756986417
+Received: by mail-wm1-f70.google.com with SMTP id
+ 5b1f17b1804b1-45b990eb77cso5749955e9.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 04 Sep 2025 04:46:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1756986417; x=1757591217;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=RHTlOa6UNeDwG2J7Ek8NZzySxxKAaE1NmJG0gyaITeQ=;
+ b=AvczlByA1WDz07ZqTIPCg46L3RG8ycnWYJa+8MHEzZP9fmSQcyHlME3SD692Mi4iag
+ az0fXhElEzQso4Tni2L/Yym5l4dEPPwKqiE+RtcyYpFcENb7Ota65yKpOqLRvzkchm7U
+ 5Xhmyj4l6QyHmue18Z93Jd1h6eDuxnIr2fhLHaMVtELfQzGHP8LrXDDxqfIZhxS8+Plz
+ /gejppowURIOh8MUpDkKRpVRI9bgu6mDYzgZGsqckp1pgZjAhNqSllbjtgqpVWJol3rv
+ wJV59odARafeBeBOMLKC0BtEEOj58NzuGxuMF8rY2gfPeoZnrUJautDOazk4aGWDRsAE
+ MU1A==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVdEaqPxQoCADaYz67ITp4LshCdWur/k5YcttWxLY+/DODuIc0yHxn69Vrtbnkd11Ux11IJG9+4Et0=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz7QVBJTPz5D2P/ajw3BG6t0htgs7SPHWsC5KXupLu36hcytd65
+ HYHrySPgFCzRPn1aYRnyKBqJzS88GW2Q3SN9jpxonwfhUFSKICpX02W2OKhgSDJ9Jyyo9Fxt2Nq
+ pce7k3dKhCTF9itihfQ8j/hid2vQFJYknPEPp6attC9nbWrRU2TiEKdB2m1T9Z6GlTleJmQ==
+X-Gm-Gg: ASbGncucDfjUZdHOe8IB5k39/HTqqd/l5w2SbQNHFp6rdqgeQnBhvZ2MZjW9nhnkQLs
+ ymdzN7Edc90kA1bmsqblsGwfUNrMILr2peZw0gmtiR4lew/sPaVUx7uXWmr1ZojeGbZQNF7kfd0
+ VQQvxOqWgd3aX1A3NAQGFTqV7OIM/e+WubOZhgLW+REW6ak0KsEQdc0xUAGKGHwcUIeazTpfrEm
+ Tx0QbeYNizskozlCf/fuy5uptlP2Czg4nmZNP66VzOwwyQ684chi//rq3+Y3BZpexK3H8X+cs/s
+ SFz6hYcwB0MLzeimTRoeLf1PPEWHDoxfZZ9HE/8vUAP3cVioC3+FvVnfT8sQoPPbpEPFJI6uIv3
+ GrTI=
+X-Received: by 2002:a05:600d:1c:b0:45b:8b95:7119 with SMTP id
+ 5b1f17b1804b1-45b8b957228mr126583925e9.8.1756986417274; 
+ Thu, 04 Sep 2025 04:46:57 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFcBESs0bnQlj7e2HoDXLZr6A8Ni5vaw0eir5JaOdkoa5mA4hedJQiZYq7hmJjzO/2MD8VZGg==
+X-Received: by 2002:a05:600d:1c:b0:45b:8b95:7119 with SMTP id
+ 5b1f17b1804b1-45b8b957228mr126583715e9.8.1756986416822; 
+ Thu, 04 Sep 2025 04:46:56 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:c:37e0:8998:e0cf:68cc:1b62?
+ ([2a01:e0a:c:37e0:8998:e0cf:68cc:1b62])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-3e177488999sm1842730f8f.36.2025.09.04.04.46.56
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 04 Sep 2025 04:46:56 -0700 (PDT)
+Message-ID: <d34b0f39-2cea-4153-b019-163520f4e486@redhat.com>
+Date: Thu, 4 Sep 2025 13:46:55 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/8] drm/{i915, xe}/panic: refactor framebuffer allocation
+ etc.
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: Maarten Lankhorst <dev@lankhorst.se>
+References: <cover.1756835342.git.jani.nikula@intel.com>
+From: Jocelyn Falempe <jfalempe@redhat.com>
+In-Reply-To: <cover.1756835342.git.jani.nikula@intel.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: uurauo9-BFq_nB1LudRlhx8SVfe94SRt2q-ojNfJvfw_1756986417
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US, fr
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,26 +104,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 03 Sep 2025, "Hogander, Jouni" <jouni.hogander@intel.com> wrote:
-> On Thu, 2025-08-28 at 15:20 +0300, Jani Nikula wrote:
->> Prefer generic poll helpers over i915 custom helpers.
->>=20
->> The functional change is losing the exponentially growing sleep of
->> __wait_for(), which used to be 1, 2, 4, and 8 ms in this particular
->> case.
->>=20
->> Use an arbitrary constant 4 ms sleep instead. The timeout remains,
->> varying between 20 ms and 3000 ms.
->>=20
->> Cc: Suraj Kandpal <suraj.kandpal@intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Reviewed-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+On 02/09/2025 19:51, Jani Nikula wrote:
+> Split out intel_panic functionality separate from intel_bo abstraction,
+> and lift the framebuffer allocation back to where it belongs in
+> intel_fb.c.
+> 
+> There's more that should be improved, ideally making struct
+> intel_framebuffer opaque towards i915 and xe, but this already goes
+> along way in adjusting where the abstractions should happen.
 
-Thanks a lot for the review, series pushed to din.
+Thanks for this series, this makes sense, and moving the panic part to 
+intel_panic.c is a good idea.
 
-BR,
-Jani.
+I think this may conflict with 
+https://patchwork.freedesktop.org/series/150887/ but that should be 
+trivial to resolve.
 
---=20
-Jani Nikula, Intel
+For the whole series:
+Reviewed-by: Jocelyn Falempe <jfalempe@redhat.com>
+
+Best regards,
+
+-- 
+
+Jocelyn
+
+> 
+> BR,
+> Jani.
+> 
+> Cc: Jocelyn Falempe <jfalempe@redhat.com>
+> Cc: Maarten Lankhorst <dev@lankhorst.se>
+> 
+> 
+> Jani Nikula (8):
+>    drm/i915/fb: add intel_framebuffer_alloc()
+>    drm/{i915,xe}/panic: split out intel_panic.[ch]
+>    drm/{i915,xe}/panic: rename intel_bo_panic_*() to intel_panic_*()
+>    drm/{i915,xe}/fb: add panic pointer member to struct intel_framebuffer
+>    drm/{i915,xe}/panic: rename struct {i915,xe}_panic_data to struct
+>      intel_panic
+>    drm/{i915,xe}/panic: move framebuffer allocation where it belongs
+>    drm/{i915,xe}/panic: convert intel_panic_finish() to struct
+>      intel_panic
+>    drm/{i915,xe}/panic: pass struct intel_panic to intel_panic_setup()
+> 
+>   drivers/gpu/drm/i915/Makefile                 |  1 +
+>   drivers/gpu/drm/i915/display/i9xx_plane.c     |  4 +-
+>   drivers/gpu/drm/i915/display/intel_bo.c       | 15 ---
+>   drivers/gpu/drm/i915/display/intel_bo.h       |  3 -
+>   .../drm/i915/display/intel_display_types.h    |  2 +
+>   drivers/gpu/drm/i915/display/intel_fb.c       | 23 ++++-
+>   drivers/gpu/drm/i915/display/intel_fb.h       |  3 +
+>   drivers/gpu/drm/i915/display/intel_panic.c    | 27 ++++++
+>   drivers/gpu/drm/i915/display/intel_panic.h    | 14 +++
+>   drivers/gpu/drm/i915/display/intel_plane.c    |  6 +-
+>   .../drm/i915/display/skl_universal_plane.c    |  3 +-
+>   drivers/gpu/drm/i915/gem/i915_gem_object.h    | 11 ++-
+>   drivers/gpu/drm/i915/gem/i915_gem_pages.c     | 40 +++-----
+>   drivers/gpu/drm/xe/Makefile                   |  1 +
+>   drivers/gpu/drm/xe/display/intel_bo.c         | 91 -------------------
+>   drivers/gpu/drm/xe/display/xe_panic.c         | 80 ++++++++++++++++
+>   16 files changed, 176 insertions(+), 148 deletions(-)
+>   create mode 100644 drivers/gpu/drm/i915/display/intel_panic.c
+>   create mode 100644 drivers/gpu/drm/i915/display/intel_panic.h
+>   create mode 100644 drivers/gpu/drm/xe/display/xe_panic.c
+> 
+
