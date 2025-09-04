@@ -2,62 +2,86 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01AE1B4341A
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Sep 2025 09:34:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC864B4FC46
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Sep 2025 15:21:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5381E10E9A2;
-	Thu,  4 Sep 2025 07:34:12 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T6LTMTvn";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27E9210E712;
+	Tue,  9 Sep 2025 13:21:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D177210E9A1;
- Thu,  4 Sep 2025 07:34:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756971251; x=1788507251;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=L/bWGeB8kTEOn+PN/IeMrwA0U0cVwwjEnV+25ziMZ9E=;
- b=T6LTMTvn0X+vSEvRy7YrG5CBVYg38xEicz0nTveAho9CZy2ieu9Ojf27
- 2TRveF9FofdOh/qfJvuvh002LJvx7maOiVYKk7S7EiN9J+8Wv1RXipDYR
- CDf6KkwTXxZ8MHEbqb3Q0FBBYI2HM4DWGrZugl5e2QLUsOpm5NZySj0oS
- z1Y7/k8WL2xBe0sU4ZngfHFsakTx3hfnp/PxOerrWhS+ozclpU98XKeBW
- xsTRY+eFZvp4hza1MZJxA1s3Dovw7K3TrvEcbHqDxrmFet/SSgAuMXvs3
- Ke1izfpl4e1C8E7nbkUwxhQ1S9MPEtqWb9s49t0vZYDgrW5SxbJC3G3fc A==;
-X-CSE-ConnectionGUID: ji9Y/at5RISk5ikkf3X4KQ==
-X-CSE-MsgGUID: bikM2Pe9TWi5JXc2t2vRJg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11542"; a="59369855"
-X-IronPort-AV: E=Sophos;i="6.18,237,1751266800"; d="scan'208";a="59369855"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2025 00:34:11 -0700
-X-CSE-ConnectionGUID: jcYrLhqzS1qmJh6Hprb+UQ==
-X-CSE-MsgGUID: okMTWexWT5yQoiSVO9wCaA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,237,1751266800"; d="scan'208";a="176157061"
-Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.79])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2025 00:34:08 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Kees Cook <kees@kernel.org>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, "Gustavo A. R. Silva"
- <gustavoars@kernel.org>, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH 3/3] overflow: add range_overflows() and
- range_end_overflows()
-In-Reply-To: <202509031942.A1669D10F@keescook>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250829174601.2163064-1-jani.nikula@intel.com>
- <20250829174601.2163064-3-jani.nikula@intel.com>
- <202509031942.A1669D10F@keescook>
-Date: Thu, 04 Sep 2025 10:34:04 +0300
-Message-ID: <eb4a61f86330afe95e232cc515f117ed602e108d@intel.com>
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADBBB10E236;
+ Thu,  4 Sep 2025 07:56:24 +0000 (UTC)
+X-UUID: a2cd01a4896411f0b29709d653e92f7d-20250904
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.45, REQID:b7ccec76-f4fe-45e8-bab3-dc73c52616ae, IP:0,
+ U
+ RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+ release,TS:0
+X-CID-META: VersionHash:6493067, CLOUDID:0d8ddf5d75b8f48b58bb293ff09316f9,
+ BulkI
+ D:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102,TC:nil,Content:0|52,EDM:
+ -3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,
+ AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: a2cd01a4896411f0b29709d653e92f7d-20250904
+Received: from mail.kylinos.cn [(10.44.16.175)] by mailgw.kylinos.cn
+ (envelope-from <zhangzihuan@kylinos.cn>) (Generic MTA)
+ with ESMTP id 582611713; Thu, 04 Sep 2025 15:56:16 +0800
+Received: from mail.kylinos.cn (localhost [127.0.0.1])
+ by mail.kylinos.cn (NSMail) with SMTP id 86A2BE008FA5;
+ Thu,  4 Sep 2025 15:56:16 +0800 (CST)
+X-ns-mid: postfix-68B94620-384750805
+Received: from [172.25.120.24] (unknown [172.25.120.24])
+ by mail.kylinos.cn (NSMail) with ESMTPA id 1766FE008FA2;
+ Thu,  4 Sep 2025 15:56:08 +0800 (CST)
+Message-ID: <861a6077-a7da-4899-b971-a003d6e2290e@kylinos.cn>
+Date: Thu, 4 Sep 2025 15:56:08 +0800
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 10/10] PM: EM: Use scope-based cleanup helper
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>
+Cc: Viresh Kumar <viresh.kumar@linaro.org>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>,
+ Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, Alim Akhtar
+ <alim.akhtar@samsung.com>, Thierry Reding <thierry.reding@gmail.com>,
+ MyungJoo Ham <myungjoo.ham@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Daniel Lezcano <daniel.lezcano@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
+ Eduardo Valentin <edubezval@gmail.com>, Keerthy <j-keerthy@ti.com>,
+ Ben Horgan <ben.horgan@arm.com>, zhenglifeng <zhenglifeng1@huawei.com>,
+ Zhang Rui <rui.zhang@intel.com>, Len Brown <lenb@kernel.org>,
+ Lukasz Luba <lukasz.luba@arm.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Beata Michalska <beata.michalska@arm.com>, Fabio Estevam
+ <festevam@gmail.com>, Pavel Machek <pavel@kernel.org>,
+ Sumit Gupta <sumitg@nvidia.com>,
+ Prasanna Kumar T S M <ptsm@linux.microsoft.com>,
+ Sudeep Holla <sudeep.holla@arm.com>, Yicong Yang <yangyicong@hisilicon.com>,
+ linux-pm@vger.kernel.org, linux-acpi@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ imx@lists.linux.dev, linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250903131733.57637-1-zhangzihuan@kylinos.cn>
+ <20250903131733.57637-11-zhangzihuan@kylinos.cn>
+ <34b5e01e-2f4a-4d57-93ca-ab4549681b17@kernel.org>
+ <CAJZ5v0hisM6vfdNXaY7qCGtcMb1FENGxiBb=E=tkqDbRyjs=bA@mail.gmail.com>
+ <037855bf-c878-4794-b145-266a36302fc3@kernel.org>
+From: Zihuan Zhang <zhangzihuan@kylinos.cn>
+In-Reply-To: <037855bf-c878-4794-b145-266a36302fc3@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Tue, 09 Sep 2025 13:21:25 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,25 +97,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 03 Sep 2025, Kees Cook <kees@kernel.org> wrote:
-> On Fri, Aug 29, 2025 at 08:46:01PM +0300, Jani Nikula wrote:
->> Move the range_overflows() and range_end_overflows() along with the _t
->> variants over from drm/i915 and drm/buddy to overflow.h.
->> 
->> Cc: Kees Cook <kees@kernel.org>
->> Cc: Gustavo A. R. Silva <gustavoars@kernel.org>
->> Cc: linux-hardening@vger.kernel.org
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+
+=E5=9C=A8 2025/9/3 21:43, Krzysztof Kozlowski =E5=86=99=E9=81=93:
+> On 03/09/2025 15:41, Rafael J. Wysocki wrote:
+>>>>   em_cpufreq_update_efficiencies(struct device *dev, struct em_perf_=
+state *table)
+>>>>   {
+>>>>        struct em_perf_domain *pd =3D dev->em_pd;
+>>>> -     struct cpufreq_policy *policy;
+>>>> +     struct cpufreq_policy *policy __free(put_cpufreq_policy) =3D N=
+ULL;
+>>> This is not really correct coding style. Please read how to use
+>>> cleanup.h expressed in that header. You should have here proper
+>>> constructor or this should be moved. Or this should not be __free()..=
+.
+>> I gather that this is what you mean (quoted verbatim from cleanup.h)
+>>
+>>   * Given that the "__free(...) =3D NULL" pattern for variables define=
+d at
+>>   * the top of the function poses this potential interdependency probl=
+em
+>>   * the recommendation is to always define and assign variables in one
+>>   * statement and not group variable definitions at the top of the
+>>   * function when __free() is used.
+>>
+>> and thanks for pointing this out!
 >
-> Looks good to me! :)
+> ... and the only exception would be if there is no single constructor,
+> but multiple (in if() block). That's not the case here, I think.
 >
-> Reviewed-by: Kees Cook <kees@kernel.org>
-
-Cool, thanks! How do you want to handle merging this?
-
-BR,
-Jani.
+> Best regards,
+> Krzysztof
 
 
--- 
-Jani Nikula, Intel
+Sorry, I didn=E2=80=99t fully understand this earlier. In v3 I split the
+definition and assignment mainly because the CPU value was obtained
+later, so I thought I couldn=E2=80=99t initialize it in one go at the top=
+ of
+the function. Honestly, it was also for =E2=80=9Cprettier=E2=80=9D style.
+
+After looking at the code Rafael just committed, I realized I can
+simply define and assign the variable later in one line, without
+needing to separate them. I=E2=80=99ll fix this in the next version.
+
+Thanks for pointing it out!
+
+
