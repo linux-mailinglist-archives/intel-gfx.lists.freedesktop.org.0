@@ -2,85 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 795C8B4FC54
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Sep 2025 15:21:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4AF4B43926
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Sep 2025 12:47:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9AD610E721;
-	Tue,  9 Sep 2025 13:21:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2A6F10E9DD;
+	Thu,  4 Sep 2025 10:47:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CED610E244;
- Thu,  4 Sep 2025 10:38:11 +0000 (UTC)
-X-UUID: 3d5fbc1e897b11f0b29709d653e92f7d-20250904
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.45, REQID:300f2fa7-17a5-4d38-96a3-11fd4189ac0a, IP:0,
- U
- RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
- release,TS:0
-X-CID-META: VersionHash:6493067, CLOUDID:8818228a5c537eaf9504e99b0c50a8d8,
- BulkI
- D:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102,TC:nil,Content:0|52,EDM:
- -3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,
- AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 3d5fbc1e897b11f0b29709d653e92f7d-20250904
-Received: from mail.kylinos.cn [(10.44.16.175)] by mailgw.kylinos.cn
- (envelope-from <zhangzihuan@kylinos.cn>) (Generic MTA)
- with ESMTP id 1160067433; Thu, 04 Sep 2025 18:38:05 +0800
-Received: from mail.kylinos.cn (localhost [127.0.0.1])
- by mail.kylinos.cn (NSMail) with SMTP id 93A19E008FA5;
- Thu,  4 Sep 2025 18:38:04 +0800 (CST)
-X-ns-mid: postfix-68B96C0C-3265371312
-Received: from [172.25.120.24] (unknown [172.25.120.24])
- by mail.kylinos.cn (NSMail) with ESMTPA id 0174FE008FA2;
- Thu,  4 Sep 2025 18:37:54 +0800 (CST)
-Message-ID: <52e322e5-2dd4-488c-a98e-3a4018f0c323@kylinos.cn>
-Date: Thu, 4 Sep 2025 18:37:54 +0800
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE57210E9DD;
+ Thu,  4 Sep 2025 10:47:18 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0176270244209488264=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 07/10] powercap: dtpm_cpu: Use scope-based cleanup
- helper
-To: "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: Viresh Kumar <viresh.kumar@linaro.org>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>,
- Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
- Michael Ellerman <mpe@ellerman.id.au>, Krzysztof Kozlowski
- <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- MyungJoo Ham <myungjoo.ham@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Daniel Lezcano <daniel.lezcano@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
- Eduardo Valentin <edubezval@gmail.com>, Keerthy <j-keerthy@ti.com>,
- Ben Horgan <ben.horgan@arm.com>, zhenglifeng <zhenglifeng1@huawei.com>,
- Zhang Rui <rui.zhang@intel.com>, Len Brown <lenb@kernel.org>,
- Lukasz Luba <lukasz.luba@arm.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Beata Michalska <beata.michalska@arm.com>, Fabio Estevam
- <festevam@gmail.com>, Pavel Machek <pavel@kernel.org>,
- Sumit Gupta <sumitg@nvidia.com>,
- Prasanna Kumar T S M <ptsm@linux.microsoft.com>,
- Sudeep Holla <sudeep.holla@arm.com>, Yicong Yang <yangyicong@hisilicon.com>,
- linux-pm@vger.kernel.org, linux-acpi@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- imx@lists.linux.dev, linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250903131733.57637-1-zhangzihuan@kylinos.cn>
- <20250903131733.57637-8-zhangzihuan@kylinos.cn>
- <CAJZ5v0hirWzWZiLbAXPWB58SQv3CAW95iHLnsqs=i2twVCcmwg@mail.gmail.com>
-From: Zihuan Zhang <zhangzihuan@kylinos.cn>
-In-Reply-To: <CAJZ5v0hirWzWZiLbAXPWB58SQv3CAW95iHLnsqs=i2twVCcmwg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Tue, 09 Sep 2025 13:21:25 +0000
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/ddi=3A_Guard_reg?=
+ =?utf-8?q?=5Fval_against_a_INVALID=5FTRANSCODER?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 04 Sep 2025 10:47:18 -0000
+Message-ID: <175698283871.303281.12175223462497194459@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250904084510.951150-1-suraj.kandpal@intel.com>
+In-Reply-To: <20250904084510.951150-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,126 +37,181 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============0176270244209488264==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-=E5=9C=A8 2025/9/3 21:45, Rafael J. Wysocki =E5=86=99=E9=81=93:
-> On Wed, Sep 3, 2025 at 3:18=E2=80=AFPM Zihuan Zhang <zhangzihuan@kylino=
-s.cn> wrote:
->> Replace the manual cpufreq_cpu_put() with __free(put_cpufreq_policy)
->> annotation for policy references. This reduces the risk of reference
->> counting mistakes and aligns the code with the latest kernel style.
->>
->> No functional change intended.
->>
->> Signed-off-by: Zihuan Zhang <zhangzihuan@kylinos.cn>
->> ---
->>   drivers/powercap/dtpm_cpu.c | 30 +++++++++++-------------------
->>   1 file changed, 11 insertions(+), 19 deletions(-)
->>
->> diff --git a/drivers/powercap/dtpm_cpu.c b/drivers/powercap/dtpm_cpu.c
->> index 99390ec1481f..f76594185fa2 100644
->> --- a/drivers/powercap/dtpm_cpu.c
->> +++ b/drivers/powercap/dtpm_cpu.c
->> @@ -144,19 +144,17 @@ static int update_pd_power_uw(struct dtpm *dtpm)
->>   static void pd_release(struct dtpm *dtpm)
->>   {
->>          struct dtpm_cpu *dtpm_cpu =3D to_dtpm_cpu(dtpm);
->> -       struct cpufreq_policy *policy;
->>
->>          if (freq_qos_request_active(&dtpm_cpu->qos_req))
->>                  freq_qos_remove_request(&dtpm_cpu->qos_req);
->>
->> -       policy =3D cpufreq_cpu_get(dtpm_cpu->cpu);
->> -       if (policy) {
->> +       struct cpufreq_policy *policy __free(put_cpufreq_policy) =3D
->> +               cpufreq_cpu_get(dtpm_cpu->cpu);
->> +
->> +       if (policy)
->>                  for_each_cpu(dtpm_cpu->cpu, policy->related_cpus)
->>                          per_cpu(dtpm_per_cpu, dtpm_cpu->cpu) =3D NULL=
-;
->>
->> -               cpufreq_cpu_put(policy);
->> -       }
->> -
->>          kfree(dtpm_cpu);
->>   }
->>
->> @@ -192,7 +190,6 @@ static int cpuhp_dtpm_cpu_online(unsigned int cpu)
->>   static int __dtpm_cpu_setup(int cpu, struct dtpm *parent)
->>   {
->>          struct dtpm_cpu *dtpm_cpu;
->> -       struct cpufreq_policy *policy;
->>          struct em_perf_state *table;
->>          struct em_perf_domain *pd;
->>          char name[CPUFREQ_NAME_LEN];
->> @@ -202,21 +199,19 @@ static int __dtpm_cpu_setup(int cpu, struct dtpm=
- *parent)
->>          if (dtpm_cpu)
->>                  return 0;
->>
->> -       policy =3D cpufreq_cpu_get(cpu);
->> +       struct cpufreq_policy *policy __free(put_cpufreq_policy) =3D
->> +               cpufreq_cpu_get(cpu);
->> +
->>          if (!policy)
->>                  return 0;
->>
->>          pd =3D em_cpu_get(cpu);
->> -       if (!pd || em_is_artificial(pd)) {
->> -               ret =3D -EINVAL;
->> -               goto release_policy;
->> -       }
->> +       if (!pd || em_is_artificial(pd))
->> +               return -EINVAL;
->>
->>          dtpm_cpu =3D kzalloc(sizeof(*dtpm_cpu), GFP_KERNEL);
->> -       if (!dtpm_cpu) {
->> -               ret =3D -ENOMEM;
->> -               goto release_policy;
->> -       }
->> +       if (!dtpm_cpu)
->> +               return -ENOMEM;
->>
->>          dtpm_init(&dtpm_cpu->dtpm, &dtpm_ops);
->>          dtpm_cpu->cpu =3D cpu;
->> @@ -239,7 +234,6 @@ static int __dtpm_cpu_setup(int cpu, struct dtpm *=
-parent)
->>          if (ret < 0)
->>                  goto out_dtpm_unregister;
-> So this change kind of goes against another recommendation given in cle=
-anup.h:
->
->   * Lastly, given that the benefit of cleanup helpers is removal of
->   * "goto", and that the "goto" statement can jump between scopes, the
->   * expectation is that usage of "goto" and cleanup helpers is never
->   * mixed in the same function. I.e. for a given routine, convert all
->   * resources that need a "goto" cleanup to scope-based cleanup, or
->   * convert none of them.
+== Series Details ==
+
+Series: drm/i915/ddi: Guard reg_val against a INVALID_TRANSCODER
+URL   : https://patchwork.freedesktop.org/series/154014/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_17127 -> Patchwork_154014v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v1/index.html
+
+Participating hosts (44 -> 42)
+------------------------------
+
+  Missing    (2): fi-snb-2520m bat-adls-6 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_154014v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@dmabuf@all-tests:
+    - bat-apl-1:          [PASS][1] -> [ABORT][2] ([i915#12904]) +1 other test abort
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17127/bat-apl-1/igt@dmabuf@all-tests.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v1/bat-apl-1/igt@dmabuf@all-tests.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-mtlp-6:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17127/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+    - bat-dg2-11:         [PASS][5] -> [DMESG-FAIL][6] ([i915#12061]) +1 other test dmesg-fail
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17127/bat-dg2-11/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html
+    - bat-arls-6:         [PASS][7] -> [DMESG-FAIL][8] ([i915#12061]) +1 other test dmesg-fail
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17127/bat-arls-6/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v1/bat-arls-6/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_hdmi_inject@inject-audio:
+    - fi-tgl-1115g4:      [PASS][9] -> [FAIL][10] ([i915#14867])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17127/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v1/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-9:          [DMESG-FAIL][11] ([i915#12061]) -> [PASS][12] +1 other test pass
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17127/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+    - bat-mtlp-9:         [DMESG-FAIL][13] ([i915#12061]) -> [PASS][14] +1 other test pass
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17127/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+  [i915#14867]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14867
 
 
-Should I replace all the memory allocation cleanups here with `__free`?
-That would allow us to drop all the `goto`s, but since this function has
-quite a few of them, I=E2=80=99m concerned it might introduce new issues.=
- What=E2=80=99s
-your recommendation?
+Build changes
+-------------
 
-Thanks!
+  * Linux: CI_DRM_17127 -> Patchwork_154014v1
 
->> -       cpufreq_cpu_put(policy);
->>          return 0;
->>
->>   out_dtpm_unregister:
->> @@ -251,8 +245,6 @@ static int __dtpm_cpu_setup(int cpu, struct dtpm *=
-parent)
->>                  per_cpu(dtpm_per_cpu, cpu) =3D NULL;
->>          kfree(dtpm_cpu);
->>
->> -release_policy:
->> -       cpufreq_cpu_put(policy);
->>          return ret;
->>   }
->>
->> --
+  CI-20190529: 20190529
+  CI_DRM_17127: 76dbb37ec196e36c129b63b102b4884c90506bd7 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8522: 8522
+  Patchwork_154014v1: 76dbb37ec196e36c129b63b102b4884c90506bd7 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v1/index.html
+
+--===============0176270244209488264==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/ddi: Guard reg_val against a INVALID_TRANSCODER</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154014/">https://patchwork.freedesktop.org/series/154014/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17127 -&gt; Patchwork_154014v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v1/index.html</p>
+<h2>Participating hosts (44 -&gt; 42)</h2>
+<p>Missing    (2): fi-snb-2520m bat-adls-6 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_154014v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@dmabuf@all-tests:</p>
+<ul>
+<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17127/bat-apl-1/igt@dmabuf@all-tests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v1/bat-apl-1/igt@dmabuf@all-tests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) +1 other test abort</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17127/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17127/bat-dg2-11/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17127/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v1/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdmi_inject@inject-audio:</p>
+<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17127/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v1/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14867">i915#14867</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17127/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17127/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17127 -&gt; Patchwork_154014v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17127: 76dbb37ec196e36c129b63b102b4884c90506bd7 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8522: 8522<br />
+  Patchwork_154014v1: 76dbb37ec196e36c129b63b102b4884c90506bd7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============0176270244209488264==--
