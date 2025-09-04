@@ -2,161 +2,172 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08499B43CEB
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Sep 2025 15:20:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28F89B43D59
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Sep 2025 15:35:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91C4D10E254;
-	Thu,  4 Sep 2025 13:20:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E26B10EA3B;
+	Thu,  4 Sep 2025 13:35:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="09hOIOX2";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="seVV7Dk8";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="wR5w0oX6";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="MdYArPsl";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cYOiNtbU";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D663910E252
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Sep 2025 13:20:25 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 8AB963501D;
- Thu,  4 Sep 2025 13:20:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1756992024; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=DDTjsV6n7RK+KAW3ImlmTnmL6rU8xihZpBDmnfyG9vw=;
- b=09hOIOX2YArXbJ4noJa7LCVuK0V5IsN/xT6u4EVOi1awg1ARzXPqnVP5Xx+a2/5cEKGoX1
- URBSx1sOH/DKvQ7THJvfeYzc1SxubP25z11X4YSwBKpXfsl6306m1lPXQCcdOOYrdxqJ8n
- /PxIc1fQbms0E+4nSnL4h8jtXfAktxQ=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1756992024;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=DDTjsV6n7RK+KAW3ImlmTnmL6rU8xihZpBDmnfyG9vw=;
- b=seVV7Dk86VKE92TMlzMvWtzESGghKUMDLoS+vX4Pt30eBCPiqD+wvAB5YCEo+jY1LpOq6Z
- Sn6Nsrya/SQTDiBg==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1756992023; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=DDTjsV6n7RK+KAW3ImlmTnmL6rU8xihZpBDmnfyG9vw=;
- b=wR5w0oX66cPYsHQi01jv/MZ389nHs/3eMkNssE0kuR39l2PrKx+F6+FdWxXM2X3ZbH9OBF
- 8NIeGv40ovrfxs0U/zCAbSeNiwOWY7HwbAi3UHQxV/rzlEi5owi9XY/6QvDdqGeYK4rEHY
- Zd5R3y+bhWuvO4v04YcP2bcy8QylXUs=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1756992023;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=DDTjsV6n7RK+KAW3ImlmTnmL6rU8xihZpBDmnfyG9vw=;
- b=MdYArPsleN6s4f/Umcny/pSe0NGJBeY3BJaPzyP4i8BpajeCcoP0slwWm1p39J9YAdNJKb
- jBk3m6oKktueW7Dw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 7C21613AA0;
- Thu,  4 Sep 2025 13:20:23 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id b03LHReSuWiqZAAAD6G6ig
- (envelope-from <wfrisch@suse.de>); Thu, 04 Sep 2025 13:20:23 +0000
-Message-ID: <01426301-990d-4cd2-a6a4-330f1bd20291@suse.de>
-Date: Thu, 4 Sep 2025 15:20:23 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6.16.y] Revert "drm/dp: Change AUX DPCD probe address from
- DPCD_REV to LANE0_1_STATUS"
-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99DD810EA37;
+ Thu,  4 Sep 2025 13:35:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1756992921; x=1788528921;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=kk/Fjv62mJMU/HGl9ob9uLi0XxmAd3TCLe3ZiGl3pPI=;
+ b=cYOiNtbUBhdxqY3DUwjlqxaeJCsxNT81xxoRiWaOEGwRmOjsdcF/I7rD
+ hzQ41rAOCOfiZ3PtAbJMgP0LGQ6TD3CsuhjBI9Hr/Eqgb4SoDi+iAINt3
+ KI7T+om8o3QLFtT5lwotzwKHgLrgxEmDRuuEnoySD/Bb4cW0bHYSllU6X
+ WEkKvs7CFrLjZ08QyU3FwtJFOJUQhOWpjjdGHNQrbMHqsQHJR9MUEfuVE
+ rhlZQS3uE7RNHkQV/z0QbJMZQC75cTPSXZd/yGFGiJiIczGuDqKNsM8XL
+ TxCrNeinYTKfl9a44lOJSV5e45MSoG837sfG1dAQRD/RDO4UA8qMNcdm9 g==;
+X-CSE-ConnectionGUID: bgv/CJpYTRe+FDkDVmeH9w==
+X-CSE-MsgGUID: 7MA68faAQgCp4OSCyK+8vw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11542"; a="59441032"
+X-IronPort-AV: E=Sophos;i="6.18,238,1751266800"; d="scan'208";a="59441032"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2025 06:35:21 -0700
+X-CSE-ConnectionGUID: nNtICQDwTzCaLNDqsy0Jhw==
+X-CSE-MsgGUID: 0ygurhWxQ5uibEKqDbfKTQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,238,1751266800"; d="scan'208";a="172001164"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2025 06:35:21 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Thu, 4 Sep 2025 06:35:20 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17 via Frontend Transport; Thu, 4 Sep 2025 06:35:20 -0700
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (40.107.95.57) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Thu, 4 Sep 2025 06:35:19 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=JaZGvgSoVq0ft6EMXiydlYq4MzPKFaYpOyZD22jWmRglU/EO/YzFpmwBNtnARRiAsVosSgGYzUo64X0ZuFE+BIvLJ8Y29qdZ9lTLX4nDX8EUgLqze/SVPAcQKwQRWQiECbl84p/h9Z5YmBPa655PtLcUz5UswyfAR+9sqf8Psnph4yQB7cWk34F9nmEKw/I3yRfIUIrJKNB1E4777KT7eClxaTezAdlVn4XKkGby1ehbN/UiRz3nvddKNVFfFC5GJkfwA/E3ocVhdWNh9O4epxbuelDbnGADmXGQItT/c20OtuXocVxP0RiOSjPe1+CFQI/QWKqVdXz6SgGL6QblLA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zI+6CCoWRijxz85pPd/gNRwpI8umfe0lUMPjZoOmiL8=;
+ b=sauR3xUfZb8g5Jemoo8rXqWAIN0NuF+q7O8nQKs7FfNvuCgbCMvaeVdWfvqrCUcGANiXe+CeKaa2nElh2/lDHsnQvzRN9GB89HVxLeS0RsbqR53Yc39Low8EWNs1P/V1W9DWWbzlepE309CoEd4fj3Yjzb1tl+ifasNOgTwGFfWF3iTn28M4JSKnQitI5vf5mBLf3LpSVzAbnK2gP3K5F7iQhJPmwkqUM58AevqtwUFOAJwG/noKyW6Us5shZSm8eVSsKAceiEQ5K+GZAGifn7ktmAmHuVPOvZt87eiRuf649fpy7+70GybiFQFMwcaC/On0S7CYyFLCF01UrqldYw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
+ by MW4PR11MB5870.namprd11.prod.outlook.com (2603:10b6:303:187::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.18; Thu, 4 Sep
+ 2025 13:35:18 +0000
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::8900:d137:e757:ac9f%3]) with mapi id 15.20.9073.026; Thu, 4 Sep 2025
+ 13:35:18 +0000
+Date: Thu, 4 Sep 2025 16:35:12 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Wolfgang Frisch <wfrisch@suse.de>
+CC: <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
  Sasha Levin <sashal@kernel.org>
+Subject: Re: [PATCH 6.16.y] Revert "drm/dp: Change AUX DPCD probe address
+ from DPCD_REV to LANE0_1_STATUS"
+Message-ID: <aLmVkGAtcQ91jne9@ideak-desk>
 References: <20250828174932.414566-1-imre.deak@intel.com>
  <20250828174932.414566-7-imre.deak@intel.com>
- <c9355591-0664-4c28-83c6-97eb2aa32982@suse.de> <aLcXufMj5C9FPqmC@ideak-desk>
-Content-Language: en-US
-From: Wolfgang Frisch <wfrisch@suse.de>
-Autocrypt: addr=wfrisch@suse.de; keydata=
- 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
- yaSeuQSO99ZZudEjkOCl72o0IbwtpYI=
-In-Reply-To: <aLcXufMj5C9FPqmC@ideak-desk>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------MrG1NkAGtz0CkUnsuzbHFa5u"
-X-Spamd-Result: default: False [-6.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- SIGNED_PGP(-2.00)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
- MIME_GOOD(-0.20)[multipart/signed,multipart/mixed,text/plain];
- NEURAL_HAM_SHORT(-0.20)[-0.997]; MIME_BASE64_TEXT(0.10)[];
- RCVD_VIA_SMTP_AUTH(0.00)[];
- FUZZY_RATELIMITED(0.00)[rspamd.com];
- MID_RHS_MATCH_FROM(0.00)[]; TO_DN_SOME(0.00)[];
- MIME_TRACE(0.00)[0:+,1:+,2:+,3:~]; ARC_NA(0.00)[];
- RCVD_TLS_ALL(0.00)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- RCPT_COUNT_THREE(0.00)[4]; RCVD_COUNT_TWO(0.00)[2];
- TO_MATCH_ENVRCPT_ALL(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,imap1.dmz-prg2.suse.org:helo];
- HAS_ATTACHMENT(0.00)[]
-X-Spam-Flag: NO
-X-Spam-Level: 
-X-Spam-Score: -6.30
+ <c9355591-0664-4c28-83c6-97eb2aa32982@suse.de>
+ <aLcXufMj5C9FPqmC@ideak-desk>
+ <01426301-990d-4cd2-a6a4-330f1bd20291@suse.de>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <01426301-990d-4cd2-a6a4-330f1bd20291@suse.de>
+X-ClientProxiedBy: DB8P191CA0017.EURP191.PROD.OUTLOOK.COM
+ (2603:10a6:10:130::27) To SJ0PR11MB4845.namprd11.prod.outlook.com
+ (2603:10b6:a03:2d1::10)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|MW4PR11MB5870:EE_
+X-MS-Office365-Filtering-Correlation-Id: bc2b7ff5-5ba1-4528-99f6-08ddebb7e314
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0; ARA:13230040|376014|10070799003|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?Fj2+xXeve6Z4KugxE1s0J1E1mdN5T6PEOvP8bgXxcCizV0pSQ2vnE27LM2?=
+ =?iso-8859-1?Q?WQiMHMTi+QSvJLYrUIjOqM5yN8ygBdmiz+Rr+K6lvfjDah6q53nahiVO30?=
+ =?iso-8859-1?Q?eg5VBx+mFXtWevb9H+/as7lJmXsBkMWW+N0vEedMmniH+K525WOO6YenHV?=
+ =?iso-8859-1?Q?ybYOiPCldfSpXnGrBBNvVQcKsoiEdyjzNIz0Rse0LRVlvAPrgWLkXZ7jMj?=
+ =?iso-8859-1?Q?ZdnccCLt0d+zS3YSlYOEMLY4de6H7k24Ez4GDEWpROsi0g96Ff5Hq7n4fl?=
+ =?iso-8859-1?Q?Iv2Th41xuZrzeSw6u6csc+jFFU5CVNo3ogfNF0jDEpWITj2VwhP05Al/s/?=
+ =?iso-8859-1?Q?bgKeND/ziTO8iDOHCQ6+3MuzIE7y0SUnj/qkZ2NyYRvMwX5pzMH7VMHQ7t?=
+ =?iso-8859-1?Q?vOGECZhnsd1GBaDjW4Q4x7oRAKJl07Yn5zvN+/J1ar1rJoZ7wbBVHYzjUj?=
+ =?iso-8859-1?Q?KyWV+MThRq9w03zGkYTyB11kJL5all2rPByB3nrLzBrBpXR/33QWZHJOT6?=
+ =?iso-8859-1?Q?Va/oA7s8vMVbnvHw5BdHwsZO4Pesjfmt7Py0AeGR6URcFGg43TP3HShzIP?=
+ =?iso-8859-1?Q?CtpZqGwOncRw4YIObEumkT/v7MEHEU/B04uv8gIPv4QJEqUsuPH/N4TSZW?=
+ =?iso-8859-1?Q?CbA9qD1EkFHuPy3tNYzN0niQx4m/m/gJxlUF5wXPbhW+HJbMIvK10DSBIt?=
+ =?iso-8859-1?Q?NYSg1efhtjagNH/upP9tx8wPWz3+71ySkab6SZSC3tz4WcYPpXf0u26vc0?=
+ =?iso-8859-1?Q?jjFgZr6FZhzO+6NRUFHxsLhtAxYV1nLz9w18gyO9ktxPTOV/CrzfIbalHk?=
+ =?iso-8859-1?Q?kwebf1wwVa0JexrtNsxQJRXabz3vAf478EdvmMVJ6yuByahXzi5LNkiCqn?=
+ =?iso-8859-1?Q?uRKd/p9SWjED3dLQ5RSvXsoIyTfKBFoV5tkRyB8Tf27itcildSHa5/XK5u?=
+ =?iso-8859-1?Q?gMng6DHcnPEdUlHK1kuLTGWCZpz5qrtcPaSX5gkwyNIzi9tBtcSER/LjAt?=
+ =?iso-8859-1?Q?DDlRcHn7DiC0vC5HPfAO7ZVS93P8ifaU83pX1mfjf2jxLttzwHtpXWH1p0?=
+ =?iso-8859-1?Q?DM+1YJHBhMf7I/2dHSropHgN4hroTKMxNywx+D8LWbmL6t+aKcOV3B1hAq?=
+ =?iso-8859-1?Q?/hWVEGUFLb+skkihUeU8yurGgrbtk5qw/RzfySfPs+vKhNYtQbKfUMsBng?=
+ =?iso-8859-1?Q?SGXA4qXi+mA0QRhnE3RhLo/eCYriT0xvP70ZZn6c6l8pOXOT/EzKJKiBpt?=
+ =?iso-8859-1?Q?Ifsc8m/df5NRuv1Wz3I/2ju1cVJlf/p6A68yVy3NtMYEaBzDledVfumSOM?=
+ =?iso-8859-1?Q?aaUsTo9kEgLc5QXAWb/WO6vV+xqJMnKFh5AoX/gjodxs7LoYp5vmtL8ens?=
+ =?iso-8859-1?Q?MPSmzEfixxJy4MTy128MfwdjLw24DassvI9vDsTN5ZpotdlaTceMQ=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(10070799003)(366016)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?YTFprSaxCxAHtfclOGT4i1MaD1p5GTSOiRwEdF6Z0QQSTgCC7qvwt4yJOS?=
+ =?iso-8859-1?Q?mcOW4+/eXdUuHfDguN/lObvpPEdD+5jQ+egb/rnenqq8n5Y7V3gX+LWAjd?=
+ =?iso-8859-1?Q?kPJb12nu5x3phnI7tO+AccdQn/cmMKVtJL6LSAI/80gn6g3PqJR4v8uFzL?=
+ =?iso-8859-1?Q?JxmqYBJAqlNGwUAy/bdmLR2xA0MrJHwW/h2RU7dn6vnEVUAANLFv02MVNb?=
+ =?iso-8859-1?Q?/z2z2OPrlHXXVOHDrLLBMqaG37g9LlLnyNJSrW7tNMwIeul+DDg8k9e5kB?=
+ =?iso-8859-1?Q?wcWDCnY9p6xu4zA3cLZkHvg2kAQMnkeWArjJvW2auNbmzBXg1mspxl7gIf?=
+ =?iso-8859-1?Q?zH/ibd+3+Agl7ym3r+JYtO33FongjVJlr125A92R5IFhXYE7TNt/g7vlob?=
+ =?iso-8859-1?Q?pDa8n2rCbd8GGx9/u/m5JsajRJC5eZwPfHIhVbDOeB/CdxFW790TtcFeHW?=
+ =?iso-8859-1?Q?YgTSI2J0PPXFFXfp4GEN98Qs73teQyS/4QTwRwyKnRMMw+YZ53a1ZDCQer?=
+ =?iso-8859-1?Q?MwXmJCqhueEQsYPcmc4oCXDQCIT8Wn4FdZgPbI0rjG3AG1XM4nJQsPvTM+?=
+ =?iso-8859-1?Q?nPKBkDUgSIykhbY8VX06Wv0AYLsFK9fW8n5ZUN/yKwyU0eqXujAjyIv9MR?=
+ =?iso-8859-1?Q?+sefbqf5LYcY5t/i/C4kFx7B2gRuVvfqlpLCPYM63TFwcrYPOh97oADn//?=
+ =?iso-8859-1?Q?949ns3/t5K6mSrORK7goHvoe92gfIoMym1mIhT2Rr8/MB7IuCfXCsHu9oA?=
+ =?iso-8859-1?Q?ll5Lge+yEVay+J21BY3EyL5+ezATz+vGYZgYxsGNNz5y01J4zxeqyQ29MX?=
+ =?iso-8859-1?Q?oblNWrnrM7prsoQ/eqei9w+mpLBxqSiCKQpwaH6sHUhGc7Gds0jU59X78L?=
+ =?iso-8859-1?Q?dhYc4G4cdel0lmhrcWDohLE+LLgs8XUEpTaoD3bltHLL58xId4a5uhfBgc?=
+ =?iso-8859-1?Q?jg9KbuR1Tj1bv6dPGqWuTjx7H+8q5SJhoRJueq50ZE57/YeYAGszFikvKg?=
+ =?iso-8859-1?Q?lbiHM9eBJE4NHkU5L6xGIA06XmYS+63vYEiBS1LBXhlLMaGmTqnCL6xIQx?=
+ =?iso-8859-1?Q?9Wpz9w4O3NbGjNQf9Nddw4WFFIr51ZE31SlCzEht4WxHBPtu3/PFqfNkQ4?=
+ =?iso-8859-1?Q?iYNmzJjlP2xXYUgqWLHP5fakff1QvmG4PxLUakfps69dx4pbbn8HcjiVpJ?=
+ =?iso-8859-1?Q?97UkTIu/4Wgkw940eaZN1vLLOqgDLDaorwu7dMDol5HVi99uHw0yVu3d7O?=
+ =?iso-8859-1?Q?zLIs5WfEHci7fZoMmzl8k1U6mc8GOOfKQmLarz+NNknDHjUPWEZC8byqXZ?=
+ =?iso-8859-1?Q?bejEMwhRr32OfOebN5QWhtvpV8GwfRO7l8lODZaTSUCCErbuNJRrgmDKou?=
+ =?iso-8859-1?Q?4ISzamsmoI1OrHvG/lLjwrwHrjzZXi4fZkv8G3qXtYgxYUt/yMDTBBI71d?=
+ =?iso-8859-1?Q?0uUmaIPdVTUV9aJOf5xYNrlckuDpaB5y8hh7DjMVNAAh8SsPXj1xk/yaqt?=
+ =?iso-8859-1?Q?NKThafjh35cx55vA5wAlX2rDlkLnWZdk8VZH82iDYV6Uvxz9UtW2EyLGDX?=
+ =?iso-8859-1?Q?AQwJMi+IoPBtrbH0sLxZzLEJJmR3EOzeGhE2MqHmY1sLNc7DB/KNTSnpSB?=
+ =?iso-8859-1?Q?qUGLmJ35SrstGeabMKSQPRXAmT5hib5GpOpzS7iBd0qRX9muXG1TmhvNBP?=
+ =?iso-8859-1?Q?ePh8LTj/HrK9oZiRSudasv+EVWR2kaiiZlPrGqKa?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: bc2b7ff5-5ba1-4528-99f6-08ddebb7e314
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Sep 2025 13:35:17.9844 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0If9qTavDps9VMlmEsCrHHcmX78VeQH1MT1am6OyKCA1WTQeEEPsq+JO7PGAyjSuTAeKd4o7yLrkcp1QBEI+eA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB5870
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -169,76 +180,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------MrG1NkAGtz0CkUnsuzbHFa5u
-Content-Type: multipart/mixed; boundary="------------GfkCxEeJPopA1FkGARzBlZrS";
- protected-headers="v1"
-From: Wolfgang Frisch <wfrisch@suse.de>
-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Sasha Levin <sashal@kernel.org>
-Message-ID: <01426301-990d-4cd2-a6a4-330f1bd20291@suse.de>
-Subject: Re: [PATCH 6.16.y] Revert "drm/dp: Change AUX DPCD probe address from
- DPCD_REV to LANE0_1_STATUS"
-References: <20250828174932.414566-1-imre.deak@intel.com>
- <20250828174932.414566-7-imre.deak@intel.com>
- <c9355591-0664-4c28-83c6-97eb2aa32982@suse.de> <aLcXufMj5C9FPqmC@ideak-desk>
-In-Reply-To: <aLcXufMj5C9FPqmC@ideak-desk>
+On Thu, Sep 04, 2025 at 03:20:23PM +0200, Wolfgang Frisch wrote:
+> Hi Imre,
+> 
+> 
+> On 9/2/25 6:13 PM, Imre Deak wrote:
+> > This looks like the issue tracked at
+> > https://gitlab.freedesktop.org/drm/amd/-/issues/4500
+> Thanks! I wasn't aware of that issue being tracked already.
+> 
+> > The correct solution there is to disable the DPCD probing, which AMD
+> > folks are working on atm. Until that, could you give a go to patch [1]
+> > on the above ticket equivalent to this solution, applying on v6.17, or
+> > the attached patch achieving the same on v6.16.4?
+> I can confirm your patch fixes the issue on v6.16.4.
+> > Also it would help if you could add a dmesg log on the ticket taken
+> > after booting with drm.debug=0x100 and reproducing the problem (vs. two
+> > other drm.debug=0x100 logs, one with the above DP_TRAINING_PATTERN_SET
+> > -> DP_LANE0_1_STATUS change and another one with DPCD probing disabled
+> > as I requested above, taken after booting up and connecting the
+> > dock/monitor).
+> Done. I attached 3 dmesg logs to the ticket:
 
---------------GfkCxEeJPopA1FkGARzBlZrS
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+Thanks for the testing.
 
-SGkgSW1yZSwNCg0KDQpPbiA5LzIvMjUgNjoxMyBQTSwgSW1yZSBEZWFrIHdyb3RlOg0KPiBU
-aGlzIGxvb2tzIGxpa2UgdGhlIGlzc3VlIHRyYWNrZWQgYXQNCj4gaHR0cHM6Ly9naXRsYWIu
-ZnJlZWRlc2t0b3Aub3JnL2RybS9hbWQvLS9pc3N1ZXMvNDUwMA0KVGhhbmtzISBJIHdhc24n
-dCBhd2FyZSBvZiB0aGF0IGlzc3VlIGJlaW5nIHRyYWNrZWQgYWxyZWFkeS4NCg0KPiBUaGUg
-Y29ycmVjdCBzb2x1dGlvbiB0aGVyZSBpcyB0byBkaXNhYmxlIHRoZSBEUENEIHByb2Jpbmcs
-IHdoaWNoIEFNRA0KPiBmb2xrcyBhcmUgd29ya2luZyBvbiBhdG0uIFVudGlsIHRoYXQsIGNv
-dWxkIHlvdSBnaXZlIGEgZ28gdG8gcGF0Y2ggWzFdDQo+IG9uIHRoZSBhYm92ZSB0aWNrZXQg
-ZXF1aXZhbGVudCB0byB0aGlzIHNvbHV0aW9uLCBhcHBseWluZyBvbiB2Ni4xNywgb3INCj4g
-dGhlIGF0dGFjaGVkIHBhdGNoIGFjaGlldmluZyB0aGUgc2FtZSBvbiB2Ni4xNi40Pw0KSSBj
-YW4gY29uZmlybSB5b3VyIHBhdGNoIGZpeGVzIHRoZSBpc3N1ZSBvbiB2Ni4xNi40Lg0KPiBB
-bHNvIGl0IHdvdWxkIGhlbHAgaWYgeW91IGNvdWxkIGFkZCBhIGRtZXNnIGxvZyBvbiB0aGUg
-dGlja2V0IHRha2VuDQo+IGFmdGVyIGJvb3Rpbmcgd2l0aCBkcm0uZGVidWc9MHgxMDAgYW5k
-IHJlcHJvZHVjaW5nIHRoZSBwcm9ibGVtICh2cy4gdHdvDQo+IG90aGVyIGRybS5kZWJ1Zz0w
-eDEwMCBsb2dzLCBvbmUgd2l0aCB0aGUgYWJvdmUgRFBfVFJBSU5JTkdfUEFUVEVSTl9TRVQN
-Cj4gLT4gRFBfTEFORTBfMV9TVEFUVVMgY2hhbmdlIGFuZCBhbm90aGVyIG9uZSB3aXRoIERQ
-Q0QgcHJvYmluZyBkaXNhYmxlZA0KPiBhcyBJIHJlcXVlc3RlZCBhYm92ZSwgdGFrZW4gYWZ0
-ZXIgYm9vdGluZyB1cCBhbmQgY29ubmVjdGluZyB0aGUNCj4gZG9jay9tb25pdG9yKS4NCkRv
-bmUuIEkgYXR0YWNoZWQgMyBkbWVzZyBsb2dzIHRvIHRoZSB0aWNrZXQ6DQoNCi0gR09PRDog
-TGludXggNi4xNi40IHdpdGggRFBDRCBwcm9iaW5nIGRpc2FibGVkDQotIEJBRDogTGludXgg
-Ni4xNy4wLXJjNA0KLSBHT09EOiBMaW51eCA2LjE3LjAtcmM0IHdpdGggdGhlIHByb2JlIGFk
-ZHJlc3Mgc2V0IHRvIERQX0xBTkUwXzFfU1RBVFVTDQoNCg0KUmVnYXJkcywNCg0KLS0gDQpX
-b2xmZ2FuZyBGcmlzY2ggPHdvbGZnYW5nLmZyaXNjaEBzdXNlLmNvbT4NClNlY3VyaXR5IEVu
-Z2luZWVyDQpPcGVuUEdQIGZpbmdlcnByaW50OiBBMkU2IEI3RDQgNTNFOSA1NDRGIEJDMTMg
-IEQyNkIgRDlCMyA1NkJEIDRENEEgMkQxNQ0KU1VTRSBTb2Z0d2FyZSBTb2x1dGlvbnMgR2Vy
-bWFueSBHbWJILCBGcmFua2Vuc3RyYcOfZSAxNDYsIDkwNDYxIE7DvHJuYmVyZw0KDQo=
+> - GOOD: Linux 6.16.4 with DPCD probing disabled
+> - BAD: Linux 6.17.0-rc4
 
---------------GfkCxEeJPopA1FkGARzBlZrS--
+This is expected, as it still does DPCD probing leading to the original
+TBT firmware issue tracked on the above ticket.
 
---------------MrG1NkAGtz0CkUnsuzbHFa5u
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature.asc"
+> - GOOD: Linux 6.17.0-rc4 with the probe address set to DP_LANE0_1_STATUS
 
------BEGIN PGP SIGNATURE-----
+Switching the DPCD probing address to DP_LANE0_1_STATUS is not a viable
+solution, as it causes an issue for at least one other (eDP) panel. The
+probing should be disabled according to the following AMD patch:
 
-wsF5BAABCAAjFiEEYqBDpiSp/H/7pxro7t22gcnlyyMFAmi5khcFAwAAAAAACgkQ7t22gcnlyyOZ
-BA/+NRWp+YBuQnG0vPzZET+uAnJ1mnb0XxvzKr9q1vQH7kWzggaeLMD5IHuR+GQ8XnieA7iwnWA3
-iXsRiFdhWBnFoMFH+tq5qGSP7WpMK0hOuSWoLyGPqCAE1tfHMMoWW09cG+6J1qGDAxdwvnOLuWxA
-/ajsxBT+tCjjMZ3cCvP7P1IpHZviu/wrn/ed2GgQwli2w6FSVDBfcedEgT+9AVEvs+E3fYlbk+eI
-aSaJEbcVSRanENCrJhiV+lSJFizjZ7pvlu4LVXKrXMOAqHu4B1o+gIQ58Bi3yp6SXho4JG7nScF6
-swE+HKGTX3nZlfp2Ag7ekZohGVLeKpsMAeNGWm/px7Fh9hgDgzkDCdDM4ws1xpzfh005n4RQjd2N
-7A/bGQEnakTAdmMhuSUA7FpHgB/TA3RWGF2vZVP7J5r9SDYRz/cYB2/3zFdP1JD1mDRKOYi27452
-yyq04gPgYvmxcByj9An4rCi6kM/YKFfLlY1nbiNqeDzEKwk+seSU/mIpr0Udb7JAvi7cYVF64PDt
-YR5e/P4zXdVJ82rXRcnfB+RpON/c+GXVY1adk/apOnOt+JVPSsOlL6XWug/rx3nPPMAI0bY24u5X
-1XDHHoHwPEYFFWa37TZ6EBNWFq7mGPJ0f+6n6Y4e+yelJ1Plv4bSQGZQ1PFf1eVPkvq5bw2tFrZQ
-qxk=
-=hy7Z
------END PGP SIGNATURE-----
+https://gitlab.freedesktop.org/-/project/4522/uploads/5205fd4e2bdc396088836bafcac176b6/0004-drm-amd-display-Disable-DPCD-Probe-Quirk.patch
 
---------------MrG1NkAGtz0CkUnsuzbHFa5u--
+--Imre
+
+> Regards,
+> 
+> -- 
+> Wolfgang Frisch <wolfgang.frisch@suse.com>
+> Security Engineer
+> OpenPGP fingerprint: A2E6 B7D4 53E9 544F BC13  D26B D9B3 56BD 4D4A 2D15
+> SUSE Software Solutions Germany GmbH, Frankenstraße 146, 90461 Nürnberg
+> 
+
+
+
