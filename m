@@ -2,75 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69D57B4FC44
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Sep 2025 15:21:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20588B4FC45
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Sep 2025 15:21:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5B0010E70E;
-	Tue,  9 Sep 2025 13:21:26 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="jxZb3aPz";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14FB910E711;
+	Tue,  9 Sep 2025 13:21:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-f73.google.com (mail-wr1-f73.google.com
- [209.85.221.73])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 830FB10EB4E
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Sep 2025 09:32:42 +0000 (UTC)
-Received: by mail-wr1-f73.google.com with SMTP id
- ffacd0b85a97d-3e1e7752208so765011f8f.3
- for <intel-gfx@lists.freedesktop.org>; Fri, 05 Sep 2025 02:32:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1757064761; x=1757669561;
- darn=lists.freedesktop.org; 
- h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
- :date:message-id:reply-to;
- bh=WUQQxacMUqRahxycdA3h1y3Z0OF1IgYvOPyUtwNUMm8=;
- b=jxZb3aPzz7zncvaJhdbXuB+lCt+I6STZcdZjYuNN+/oCMsRdH50Yvjzg0qujMM3Qsz
- d4jIgeb+zaj9t8GtbxGqjvnVkydXdFNe6mBZOm7GwTVzjsWEB3t/RAZeLwcHE68HpsrK
- wfkpHm2O2ed1jFdtDdeGPgZZQD4Q63W3HFBNspChcdglprD2in1UAe4heZisa8/Nhn9/
- TRRbIQMCrjaIsBpK9xm98Y9PE4vKrpv/fRToVHS67FIIJJTu8h0YnTy+oFNyCQhGbmSu
- ZcmKYMhFxny1P/pJk3c+JBss9E3p3c4sBIOyZbB1CTmo9MgAknbjUVT7MFBe6OdRW4Pa
- shaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1757064761; x=1757669561;
- h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=WUQQxacMUqRahxycdA3h1y3Z0OF1IgYvOPyUtwNUMm8=;
- b=Xv2yJMXVstov+DEjLFrWYxyNGegL0idLqBiLcpjv6WZQKrD7fJlNmtEpbVc+2UNw9c
- hA5FDUqbj3B4U5Y/Leyk8GbsxUre+eIdM11VEXKu1KtlSY9lze/G59BLY5jJhiSsgcyw
- BKpBaWpOcFd9bOE0N6nvTv3VP64Qg1uFus4S+oKD52FQtYsxmHao8zrvcDIpKh+RHTel
- 4Xy6jSQ4ucQd2ZYU0kd4UcYcZQb9ZnAThwaGiowTL1lblykFN3IYHpYj5uyRfUJKGN6g
- 1KBMQ35lfY7Ms51BUzrLMCDf5xBHAO96rWuVXI8oLtyCA5DZIxyt/D12M/stCuM32+7q
- hwPA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVayNioiZBlyehiRgHiCDaANGmyKetYpyqsGOiPOxPJTCpzGUpeF+42xuI4kykkH8++/5WR6vy4Kto=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz1+juYb5MuCZK1afu2CZjkAK7P3xWwzmsXtX2+WXxro5AMulkD
- DSygMDyeiUA2hQoufuKTGcs6QnblcQeLzPtl0RG9RHPrMXgWOBIgaRo1jDXpmXGKtJf8A/YSK9F
- 9d+5sXM7Fwcxg0qKV/Q==
-X-Google-Smtp-Source: AGHT+IHZDkHcj/6VcYiM7mL8WwChssJZFLeAxiSE8KdBYC7hKhBpbzlSoeURD7a3i2UI42tf17qNH1ABChvUeQQ=
-X-Received: from wrbm16.prod.google.com ([2002:adf:a3d0:0:b0:3db:bfe0:7582])
- (user=aliceryhl job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:6000:40d9:b0:3e0:43f0:b7ad with SMTP id
- ffacd0b85a97d-3e043f0bd75mr4771289f8f.18.1757064761059; 
- Fri, 05 Sep 2025 02:32:41 -0700 (PDT)
-Date: Fri, 5 Sep 2025 09:32:39 +0000
-Mime-Version: 1.0
-Message-ID: <aLquN1YvdyI_6PJS@google.com>
-Subject: [PULL] drm-rust-fixes 2025-09-05
-From: Alice Ryhl <aliceryhl@google.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- "Thomas =?utf-8?Q?Hellstr=C3=B6m?=" <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- dim-tools@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com
+ [185.176.79.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA8B210EB5A;
+ Fri,  5 Sep 2025 09:54:57 +0000 (UTC)
+Received: from mail.maildlp.com (unknown [172.18.186.231])
+ by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4cJB5B08w6z6L5Vh;
+ Fri,  5 Sep 2025 17:34:38 +0800 (CST)
+Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
+ by mail.maildlp.com (Postfix) with ESMTPS id CEA161402CB;
+ Fri,  5 Sep 2025 17:38:31 +0800 (CST)
+Received: from localhost (10.203.177.15) by frapeml500008.china.huawei.com
+ (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 5 Sep
+ 2025 11:38:29 +0200
+Date: Fri, 5 Sep 2025 10:38:28 +0100
+From: Jonathan Cameron <jonathan.cameron@huawei.com>
+To: Zihuan Zhang <zhangzihuan@kylinos.cn>
+CC: "Rafael J . wysocki" <rafael@kernel.org>, Viresh Kumar
+ <viresh.kumar@linaro.org>, Catalin Marinas <catalin.marinas@arm.com>, "Will
+ Deacon" <will@kernel.org>, Borislav Petkov <bp@alien8.de>, Dave Hansen
+ <dave.hansen@linux.intel.com>, Srinivas Pandruvada
+ <srinivas.pandruvada@linux.intel.com>, Michael Ellerman <mpe@ellerman.id.au>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Thierry Reding <thierry.reding@gmail.com>, MyungJoo Ham
+ <myungjoo.ham@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, "Jani Nikula"
+ <jani.nikula@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko
+ Ursulin <tursulin@ursulin.net>, "David Airlie" <airlied@gmail.com>, Simona
+ Vetter <simona@ffwll.ch>, Daniel Lezcano <daniel.lezcano@kernel.org>, Sascha
+ Hauer <s.hauer@pengutronix.de>, "Shawn Guo" <shawnguo@kernel.org>, Eduardo
+ Valentin <edubezval@gmail.com>, Keerthy <j-keerthy@ti.com>, Ben Horgan
+ <ben.horgan@arm.com>, zhenglifeng <zhenglifeng1@huawei.com>, Zhang Rui
+ <rui.zhang@intel.com>, Len Brown <lenb@kernel.org>, Lukasz Luba
+ <lukasz.luba@arm.com>, "Pengutronix Kernel Team" <kernel@pengutronix.de>,
+ Beata Michalska <beata.michalska@arm.com>, Fabio Estevam
+ <festevam@gmail.com>, Pavel Machek <pavel@kernel.org>, "Sumit Gupta"
+ <sumitg@nvidia.com>, Prasanna Kumar T S M <ptsm@linux.microsoft.com>, Sudeep
+ Holla <sudeep.holla@arm.com>, Yicong Yang <yangyicong@hisilicon.com>,
+ <linux-pm@vger.kernel.org>, <linux-acpi@vger.kernel.org>,
+ <linuxppc-dev@lists.ozlabs.org>, <linux-arm-kernel@lists.infradead.org>,
+ <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <imx@lists.linux.dev>, <linux-omap@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 01/10] arm64: topology: Use scope-based cleanup helper
+Message-ID: <20250905103828.0000726c@huawei.com>
+In-Reply-To: <20250903131733.57637-2-zhangzihuan@kylinos.cn>
+References: <20250903131733.57637-1-zhangzihuan@kylinos.cn>
+ <20250903131733.57637-2-zhangzihuan@kylinos.cn>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+MIME-Version: 1.0
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.203.177.15]
+X-ClientProxiedBy: lhrpeml100002.china.huawei.com (7.191.160.241) To
+ frapeml500008.china.huawei.com (7.182.85.71)
 X-Mailman-Approved-At: Tue, 09 Sep 2025 13:21:25 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -87,35 +80,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Sima,
+On Wed,  3 Sep 2025 21:17:24 +0800
+Zihuan Zhang <zhangzihuan@kylinos.cn> wrote:
 
-Here's the first PR for the drm-rust-fixes branch. It includes the
-commit to add the drm-rust repository to MAINTAINERS.
+> Replace the manual cpufreq_cpu_put() with __free(put_cpufreq_policy)
+> annotation for policy references. This reduces the risk of reference
+> counting mistakes and aligns the code with the latest kernel style.
+> 
+> No functional change intended.
+> 
+> Signed-off-by: Zihuan Zhang <zhangzihuan@kylinos.cn>
+Diff is being slightly annoying in not quite showing enough context
+to see that it is fine to release this at the end of scope.
+What you have done looks correct to me but there is a further
+potential cleanup
 
-The following changes since commit b320789d6883cc00ac78ce83bccbfe7ed58afcf0:
+	for_each_cpu_wrap(ref_cpu, policy->cpus, cpu + 1) {
+		if (ref_cpu == start_cpu) {
+			/* Prevent verifying same CPU twice */
+			ref_cpu = nr_cpu_ids;
+			break;
+//here, might as well return -EAGAIN as only thing in this block
+//and now no advantage in sharing the exit path with the one that
+//says we never matched the next condition.
+		}
+		if (!idle_cpu(ref_cpu))
+			break;
+		}
 
-  Linux 6.17-rc4 (2025-08-31 15:33:07 -0700)
+Either way I'm fine with this.
+Reviewed-by: Jonathan Cameron <jonathan.cameron@huawei.com>
 
-are available in the Git repository at:
+> ---
+>  arch/arm64/kernel/topology.c | 9 +++------
+>  1 file changed, 3 insertions(+), 6 deletions(-)
+> 
+> diff --git a/arch/arm64/kernel/topology.c b/arch/arm64/kernel/topology.c
+> index 5d07ee85bdae..0eebd3492669 100644
+> --- a/arch/arm64/kernel/topology.c
+> +++ b/arch/arm64/kernel/topology.c
+> @@ -307,17 +307,16 @@ int arch_freq_get_on_cpu(int cpu)
+>  		 */
+>  		if (!housekeeping_cpu(cpu, HK_TYPE_TICK) ||
+>  		    time_is_before_jiffies(last_update + msecs_to_jiffies(AMU_SAMPLE_EXP_MS))) {
+> -			struct cpufreq_policy *policy = cpufreq_cpu_get(cpu);
+> +			struct cpufreq_policy *policy __free(put_cpufreq_policy) =
+> +				cpufreq_cpu_get(cpu);
+>  			int ref_cpu;
+>  
+>  			if (!policy)
+>  				return -EINVAL;
+>  
+>  			if (!cpumask_intersects(policy->related_cpus,
+> -						housekeeping_cpumask(HK_TYPE_TICK))) {
+> -				cpufreq_cpu_put(policy);
+> +						housekeeping_cpumask(HK_TYPE_TICK)))
+>  				return -EOPNOTSUPP;
+> -			}
+>  
+>  			for_each_cpu_wrap(ref_cpu, policy->cpus, cpu + 1) {
+>  				if (ref_cpu == start_cpu) {
+> @@ -329,8 +328,6 @@ int arch_freq_get_on_cpu(int cpu)
+>  					break;
+>  			}
+>  
+> -			cpufreq_cpu_put(policy);
+> -
+>  			if (ref_cpu >= nr_cpu_ids)
+>  				/* No alternative to pull info from */
+>  				return -EAGAIN;
 
-  https://gitlab.freedesktop.org/drm/rust/kernel.git tags/drm-rust-fixes-2025-09-05
-
-for you to fetch changes up to 349510052f765b6eb9c2a21d0ffe08ba61fa683c:
-
-  MAINTAINERS: Add drm-rust tree for Rust DRM drivers and infrastructure (2025-09-05 07:07:08 +0000)
-
-----------------------------------------------------------------
-- Add drm-rust tree to MAINTAINERS
-- Require CONFIG_64BIT for Nova
-
-----------------------------------------------------------------
-Danilo Krummrich (2):
-      gpu: nova-core: depend on CONFIG_64BIT
-      MAINTAINERS: Add drm-rust tree for Rust DRM drivers and infrastructure
-
- MAINTAINERS                   | 11 ++++++++++-
- drivers/gpu/nova-core/Kconfig |  1 +
- 2 files changed, 11 insertions(+), 1 deletion(-)
-
--- 
-Alice
