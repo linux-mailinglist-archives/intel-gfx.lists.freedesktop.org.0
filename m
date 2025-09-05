@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E247B45B48
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Sep 2025 16:59:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE40CB45B4A
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Sep 2025 16:59:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0DE610EBD9;
-	Fri,  5 Sep 2025 14:59:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5420110EBD3;
+	Fri,  5 Sep 2025 14:59:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NmDUg1E2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RlqpSzvu";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D00410EBD8;
- Fri,  5 Sep 2025 14:59:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24D9E10EBC7;
+ Fri,  5 Sep 2025 14:59:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757084342; x=1788620342;
+ t=1757084346; x=1788620346;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dI2axuwS7X4lFz8cVCVtAeVGZ+Vf3LpkHClQI3FYRu8=;
- b=NmDUg1E2YerDJoI3is+aN4COr4hZk5JeJxCK0FoLOFOnKfto6fSXtGk7
- hwtI6pBdt7x8YGTm2+7YJbM/nYSbCjCGbe97RkqhmSzGN2Mb8WT/yddVZ
- yvPqZg9i0msHfmZrwDVd3EKs/lTdEv8+qneq5KwuUON/vkpVTXTdmvB5Q
- dKEoRYJhInTQ0HoGkZUbw867KDo8zru1zDTyJfupFpfBSuUN4iCxeaZcI
- lLxVEgrTjfepr8cLDSY4VtfrS7Iy4yQJ/iat0PhqLSx6jAxudiaiPjvQ4
- f3zJZKxY6CeMo4hvH6D4OyS3DSPMcqGMataPvTiKnoUp8V/gGFoeb6BvX Q==;
-X-CSE-ConnectionGUID: lD9Nf2JpRBuPlF5IwwwNiw==
-X-CSE-MsgGUID: vrBYISDVTP+LCnQ9JHng+Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11544"; a="58469684"
-X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; d="scan'208";a="58469684"
+ bh=M21ph57MMijh8PVjizcExLClJQCrn6I3RhUnTXuiFC4=;
+ b=RlqpSzvu1OGhRyiHJBPHKy7qJgSO771u42RSiHPKkm6XT9l6SNkTlF2q
+ kURq7gPmW3tvZsi5Treql0b22yEzqPfdI/h/WwmBdrAeaSk7Z0AZ8Xqmg
+ +46mKfKgvHHOl2GkwvNfGsTzAwqG4Lidv8EybtiIaujFXTcVHV8NDDOYg
+ swVpAG1dDbBzuTMH9s/A9Cw/2wFJcI2pTaJfl2J8B9Ywkh/OxCrUkDdib
+ MsXE4G84OCtOhUZ7rVBMt1zYAS5evwjr842yUC284IYlgS0N5y0hInfo6
+ YiGjngqKj9LkWRXCMtmtebNgN4BPcyZEBc9Lfz+Tj+SdOu8m10YECKokv Q==;
+X-CSE-ConnectionGUID: qkHkum+6Rb6r+q2QRcoNBw==
+X-CSE-MsgGUID: aMy3Bv3jQNSrzLKvqf/a8w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11544"; a="58469694"
+X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; d="scan'208";a="58469694"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 07:59:02 -0700
-X-CSE-ConnectionGUID: ocKNP5/5TcelHjOvFNM7Kg==
-X-CSE-MsgGUID: 2HxHUWqqQiqgKk7fb9y7LQ==
+ 05 Sep 2025 07:59:06 -0700
+X-CSE-ConnectionGUID: N6j22nlVSAOLTbHd+I/uKg==
+X-CSE-MsgGUID: Al+xUpcFQgmKgjHoERhU9w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; d="scan'208";a="172105343"
+X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; d="scan'208";a="172105354"
 Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.33])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 07:59:01 -0700
+ 05 Sep 2025 07:59:04 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 07/13] drm/i915: Extract increase_wm_latency()
-Date: Fri,  5 Sep 2025 17:58:26 +0300
-Message-ID: <20250905145832.12097-8-ville.syrjala@linux.intel.com>
+Subject: [PATCH 08/13] drm/i915: Use increase_wm_latency() for the 16Gb DIMM
+ w/a
+Date: Fri,  5 Sep 2025 17:58:27 +0300
+Message-ID: <20250905145832.12097-9-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20250905145832.12097-1-ville.syrjala@linux.intel.com>
 References: <20250905145832.12097-1-ville.syrjala@linux.intel.com>
@@ -72,67 +73,34 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Extract the "increase wm latencies by some amount" code into
-a helper that can be reused.
+Bump the latency for all watermark levels in the
+16Gb+ DIMM w/a. The spec does ask us to do it only for level
+0, but it seems more sane to bump all the levels. If the actual
+memory access is slower then the wakeup (WM1+) should also
+potentially happen earlier.
+
+This also avoids the theoretical case that WM0 would get bumped
+higher than WM1+. Not that it is likely to happen because the WM0
+latency is always significantly lower than the WM1 latency.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_watermark.c | 28 ++++++++++++--------
- 1 file changed, 17 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 8a98c3e52dc5..9eebb908beb8 100644
+index 9eebb908beb8..98a397772678 100644
 --- a/drivers/gpu/drm/i915/display/skl_watermark.c
 +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -3183,6 +3183,21 @@ static void multiply_wm_latency(struct intel_display *display, int mult)
- 		wm[level] *= mult;
+@@ -3256,7 +3256,7 @@ adjust_wm_latency(struct intel_display *display)
+ 	 * to avoid any underrun.
+ 	 */
+ 	if (need_16gb_dimm_wa(display))
+-		wm[0] += 1;
++		increase_wm_latency(display, 1);
  }
  
-+static void increase_wm_latency(struct intel_display *display, int inc)
-+{
-+	u16 *wm = display->wm.skl_latency;
-+	int level, num_levels = display->wm.num_levels;
-+
-+	wm[0] += inc;
-+
-+	for (level = 1; level < num_levels; level++) {
-+		if (wm[level] == 0)
-+			break;
-+
-+		wm[level] += inc;
-+	}
-+}
-+
- static bool need_16gb_dimm_wa(struct intel_display *display)
- {
- 	const struct dram_info *dram_info = intel_dram_info(display->drm);
-@@ -3207,7 +3222,6 @@ adjust_wm_latency(struct intel_display *display)
- {
- 	u16 *wm = display->wm.skl_latency;
- 	int i, level, num_levels = display->wm.num_levels;
--	int read_latency = wm_read_latency(display);
- 
- 	if (display->platform.dg2)
- 		multiply_wm_latency(display, 2);
-@@ -3232,16 +3246,8 @@ adjust_wm_latency(struct intel_display *display)
- 	 * to add proper adjustment to each valid level we retrieve
- 	 * from the punit when level 0 response data is 0us.
- 	 */
--	if (wm[0] == 0) {
--		wm[0] += read_latency;
--
--		for (level = 1; level < num_levels; level++) {
--			if (wm[level] == 0)
--				break;
--
--			wm[level] += read_latency;
--		}
--	}
-+	if (wm[0] == 0)
-+		increase_wm_latency(display, wm_read_latency(display));
- 
- 	/*
- 	 * WA Level-0 adjustment for 16Gb+ DIMMs: SKL+
+ static void mtl_read_wm_latency(struct intel_display *display)
 -- 
 2.49.1
 
