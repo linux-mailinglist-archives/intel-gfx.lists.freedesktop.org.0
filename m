@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A940B463C7
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Sep 2025 21:40:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3050AB463E3
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Sep 2025 21:47:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F18D510E059;
-	Fri,  5 Sep 2025 19:40:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6985D10E369;
+	Fri,  5 Sep 2025 19:46:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ZqXRFlbg";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="G9qmJFw1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68EEC10E059;
- Fri,  5 Sep 2025 19:40:05 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C22B10E369;
+ Fri,  5 Sep 2025 19:46:57 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 82FE1602A5;
- Fri,  5 Sep 2025 19:40:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 225FBC4CEF8;
- Fri,  5 Sep 2025 19:40:04 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id A0F5444F54;
+ Fri,  5 Sep 2025 19:46:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67850C19422;
+ Fri,  5 Sep 2025 19:46:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1757101204;
- bh=EW5E1DsoS/eP0Xpaway7kFwsFpD+pL719m9UghXWG4E=;
+ s=k20201202; t=1757101616;
+ bh=H8MVjkz4o17difHvr2cD8D+8FZU1fUcKjhpmn4rwijw=;
  h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=ZqXRFlbgP5QwPcBxU6eNLL/08iwuclbpMhHj5f112VJ0D0CRs+uAOZZt9/eSU+oYH
- FOKxLZNfYfeCUuY691CYi9oaDczKB9oJxUx3sRU+YTC0hMmU7aj7i6icx+GswFUP2R
- IFwTEwP7LFbGxUg/I7SAjo0DENXd43ZHbeobRhQywFakWAs9/enQGWBOfoAuIelFBb
- wogoGak56kUdv1oV5wP9PLMDQRhAVNRB8Qk4NYGffSXcIWD99Y+pR+l0VNOqodu/Yf
- 429lN+Si30NngrGAeTbmA/uuc+3zujKhmh+809qGxXm2EsqsYlM68fd6X/hgvyGAM6
- l4P6r3BqgQXRw==
-Received: by mail-ot1-f49.google.com with SMTP id
- 46e09a7af769-74526ca79c2so1127781a34.3; 
- Fri, 05 Sep 2025 12:40:04 -0700 (PDT)
+ b=G9qmJFw1HIMkEhpfwD6F7o3JbvpRO1V95WZ/oUz3+r2CZmbDws6CbBgur6Wekx+qi
+ ldlGPU37Uj/fIsJfq8C0T5mwgtAEI7Vqo36+np24YoWw6Q+UqAD0c8vsYKdD1WmilJ
+ I5H7EyGxJaGj6hrAng2kuUlTjEtq88UjwDYdjemQkTgF2roSvOtH1g1Vers9Vmn/8H
+ hFTpK0+yBM6BJf93iSTpneRiwZTgqB03L5VCqcDIKq1c7x0wnA4m2OtzWFieeGFXd2
+ UYnynJnuCo/OhHIYLgJZetquSD940EGwlIBAqodji7zBapVVl2I0pI39J7QYdGVk0c
+ YFNdRZkp+5nBw==
+Received: by mail-oo1-f45.google.com with SMTP id
+ 006d021491bc7-61e4c824615so1088341eaf.2; 
+ Fri, 05 Sep 2025 12:46:56 -0700 (PDT)
 X-Forwarded-Encrypted: i=1;
- AJvYcCUUksI33Wr+SbC1xtOhcr2uh8B94ZGG/UBhJw/nudcvUUHTxbGrkyu9CZLBxbxXmjsQbLMjfsBSsjc=@lists.freedesktop.org,
- AJvYcCXddkJUrZPAqPhcgzt5Y9recQ9khv5YuApdyR/WB6Vm1EZZS70wwmSOocK5Zm+IpCD7U8/nv1/yRA4B@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwPEgMFZxtShw6LOwJRp+FADOtWCKpdz6drvK9nP1ffLMrMtzaG
- 0uV9O1mhsJXiIkL06ArLYDvgpLsd8c6jr4z+c0H3LF42i9O8nEmgtyzvaOHFcqjpzpPIIer9Hhg
- 7K0fb4gvONSPAO9VZsTvO1FUGHmLNk8E=
-X-Google-Smtp-Source: AGHT+IEWhcvcPUmMTXw08ZtZH4mqK1uKC0R7GjcFC8PVlsyyD61c2ek06n5Ch8ecLJvX8w2zR6AjPrAE5CMEF+OJ57Q=
-X-Received: by 2002:a05:6830:700a:b0:74b:f9de:34dd with SMTP id
- 46e09a7af769-74bf9de3edfmr235939a34.15.1757101203180; Fri, 05 Sep 2025
- 12:40:03 -0700 (PDT)
+ AJvYcCVTKL6QKHMcbB+/waX4VJeGtZyxqG5HIJwxyPGLUomtXUf66JzzgqknYL8AgELD2N5H+EyZBboeEko=@lists.freedesktop.org,
+ AJvYcCWO/7LqXpxd+vDZR+KETYTFafCIsrYtKl9a5WG5oP/hNYbJHJG95rZccpMSJOUIQwV117mi9OYy8Oxq@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxESobZl3195q3FU32RHGKAV0HoSAWbAhiRFl894aU8aMD7JwqK
+ 7b31JjAuehsl5sGs3YCEJYMqQ35GDWS6Tsq3wb+zk/XXmmDDv2tpJOjkIA2BLjp75nyBS2vaZR+
+ pQ5STgNg53jAsWz60Krd0u3eejB0sGCU=
+X-Google-Smtp-Source: AGHT+IEKuvslbgpS+jFT9kCZO9ZHrI6mBjYptsMiCaePE1pyVsHfodMLw3nmAqVy7Bw/fuUlRNZZYUO91WEjIayPMsY=
+X-Received: by 2002:a05:6820:548:b0:621:71c3:eab8 with SMTP id
+ 006d021491bc7-62171c3ecffmr1197889eaf.3.1757101615563; Fri, 05 Sep 2025
+ 12:46:55 -0700 (PDT)
 MIME-Version: 1.0
 References: <20250905132413.1376220-1-zhangzihuan@kylinos.cn>
- <20250905132413.1376220-5-zhangzihuan@kylinos.cn>
-In-Reply-To: <20250905132413.1376220-5-zhangzihuan@kylinos.cn>
+ <20250905132413.1376220-7-zhangzihuan@kylinos.cn>
+In-Reply-To: <20250905132413.1376220-7-zhangzihuan@kylinos.cn>
 From: "Rafael J. Wysocki" <rafael@kernel.org>
-Date: Fri, 5 Sep 2025 21:39:52 +0200
-X-Gmail-Original-Message-ID: <CAJZ5v0jvskvxgUhxKJLN89A+s7Mruz1_tewHZfKgC7sUGLi9cw@mail.gmail.com>
-X-Gm-Features: Ac12FXws29Av_URAHgjbe1keBVsNp0-87UjpP4EeoBVUVvSgtWfWbkUI32D7vRk
-Message-ID: <CAJZ5v0jvskvxgUhxKJLN89A+s7Mruz1_tewHZfKgC7sUGLi9cw@mail.gmail.com>
-Subject: Re: [PATCH v5 4/6] PM / devfreq: Use scope-based cleanup helper
+Date: Fri, 5 Sep 2025 21:46:43 +0200
+X-Gmail-Original-Message-ID: <CAJZ5v0izu1_xVe_pGeJiXZqEXLxg_o30NkEjMiwzDgeU4mOGmA@mail.gmail.com>
+X-Gm-Features: Ac12FXylOWQRbtZy4tXGis9fcvrx9xAWhEYFwKXiKvA-TbpGOjwSaXBXEfvwt6M
+Message-ID: <CAJZ5v0izu1_xVe_pGeJiXZqEXLxg_o30NkEjMiwzDgeU4mOGmA@mail.gmail.com>
+Subject: Re: [PATCH v5 6/6] PM: EM: Use scope-based cleanup helper
 To: Zihuan Zhang <zhangzihuan@kylinos.cn>
 Cc: "Rafael J . wysocki" <rafael@kernel.org>,
  Viresh Kumar <viresh.kumar@linaro.org>, 
@@ -114,168 +114,73 @@ On Fri, Sep 5, 2025 at 3:25=E2=80=AFPM Zihuan Zhang <zhangzihuan@kylinos.cn=
 >
 > Signed-off-by: Zihuan Zhang <zhangzihuan@kylinos.cn>
 > ---
->  drivers/devfreq/governor_passive.c | 60 +++++++++++-------------------
->  1 file changed, 22 insertions(+), 38 deletions(-)
+>  kernel/power/energy_model.c | 9 ++-------
+>  1 file changed, 2 insertions(+), 7 deletions(-)
 >
-> diff --git a/drivers/devfreq/governor_passive.c b/drivers/devfreq/governo=
-r_passive.c
-> index 953cf9a1e9f7..5afaea39377e 100644
-> --- a/drivers/devfreq/governor_passive.c
-> +++ b/drivers/devfreq/governor_passive.c
-> @@ -80,24 +80,23 @@ static int get_target_freq_with_cpufreq(struct devfre=
-q *devfreq,
->         struct devfreq_passive_data *p_data =3D
->                                 (struct devfreq_passive_data *)devfreq->d=
-ata;
->         struct devfreq_cpu_data *parent_cpu_data;
+> diff --git a/kernel/power/energy_model.c b/kernel/power/energy_model.c
+> index ea7995a25780..5ec63b3e7d85 100644
+> --- a/kernel/power/energy_model.c
+> +++ b/kernel/power/energy_model.c
+> @@ -451,7 +451,6 @@ static void
+>  em_cpufreq_update_efficiencies(struct device *dev, struct em_perf_state =
+*table)
+>  {
+>         struct em_perf_domain *pd =3D dev->em_pd;
 > -       struct cpufreq_policy *policy;
->         unsigned long cpu, cpu_cur, cpu_min, cpu_max, cpu_percent;
->         unsigned long dev_min, dev_max;
->         unsigned long freq =3D 0;
->         int ret =3D 0;
+>         int found =3D 0;
+>         int i, cpu;
 >
->         for_each_online_cpu(cpu) {
-
-I'd rather move the code in this loop to a separate function in the
-first place and then do a __free()-based simplification of it.  I'd
-suggest doing each step in a separate patch to avoid mistakes.
-
-> -               policy =3D cpufreq_cpu_get(cpu);
-> +               struct cpufreq_policy *policy __free(put_cpufreq_policy) =
-=3D
-> +                       cpufreq_cpu_get(cpu);
-> +
->                 if (!policy) {
->                         ret =3D -EINVAL;
->                         continue;
->                 }
->
->                 parent_cpu_data =3D get_parent_cpu_data(p_data, policy);
-> -               if (!parent_cpu_data) {
-> -                       cpufreq_cpu_put(policy);
-> +               if (!parent_cpu_data)
->                         continue;
-> -               }
->
->                 /* Get target freq via required opps */
->                 cpu_cur =3D parent_cpu_data->cur_freq * HZ_PER_KHZ;
-> @@ -106,7 +105,6 @@ static int get_target_freq_with_cpufreq(struct devfre=
-q *devfreq,
->                                         devfreq->opp_table, &cpu_cur);
->                 if (freq) {
->                         *target_freq =3D max(freq, *target_freq);
-> -                       cpufreq_cpu_put(policy);
->                         continue;
->                 }
->
-> @@ -121,7 +119,6 @@ static int get_target_freq_with_cpufreq(struct devfre=
-q *devfreq,
->                 freq =3D dev_min + mult_frac(dev_max - dev_min, cpu_perce=
-nt, 100);
->
->                 *target_freq =3D max(freq, *target_freq);
-> -               cpufreq_cpu_put(policy);
+> @@ -465,7 +464,7 @@ em_cpufreq_update_efficiencies(struct device *dev, st=
+ruct em_perf_state *table)
+>                 return;
 >         }
 >
->         return ret;
-> @@ -255,8 +252,6 @@ static int cpufreq_passive_register_notifier(struct d=
-evfreq *devfreq)
->                         =3D (struct devfreq_passive_data *)devfreq->data;
->         struct device *dev =3D devfreq->dev.parent;
->         struct opp_table *opp_table =3D NULL;
-> -       struct devfreq_cpu_data *parent_cpu_data;
-> -       struct cpufreq_policy *policy;
->         struct device *cpu_dev;
->         unsigned int cpu;
->         int ret;
-> @@ -273,37 +268,34 @@ static int cpufreq_passive_register_notifier(struct=
- devfreq *devfreq)
+> -       policy =3D cpufreq_cpu_get(cpu);
+> +       struct cpufreq_policy *policy __free(put_cpufreq_policy) =3D cpuf=
+req_cpu_get(cpu);
+>         if (!policy) {
+>                 dev_warn(dev, "EM: Access to CPUFreq policy failed\n");
+>                 return;
+> @@ -479,8 +478,6 @@ em_cpufreq_update_efficiencies(struct device *dev, st=
+ruct em_perf_state *table)
+>                         found++;
 >         }
 >
+> -       cpufreq_cpu_put(policy);
+> -
+>         if (!found)
+>                 return;
+>
+
+The above changes are fine now and can be a separate patch.
+
+> @@ -787,21 +784,19 @@ static void em_check_capacity_update(void)
+>
+>         /* Check if CPUs capacity has changed than update EM */
 >         for_each_possible_cpu(cpu) {
 
-And analogously here.  I'd use separate two patches for updating this code.
+But I'd prefer the code in this loop to be moved into a separate
+function, in a separate patch, before the __free()-based
+simplification of it.
 
-> -               policy =3D cpufreq_cpu_get(cpu);
-> -               if (!policy) {
-> -                       ret =3D -EPROBE_DEFER;
-> -                       goto err;
-> -               }
-> +               struct cpufreq_policy *policy __free(put_cpufreq_policy) =
-=3D
-> +                       cpufreq_cpu_get(cpu);
+> -               struct cpufreq_policy *policy;
+>                 struct em_perf_domain *pd;
+>                 struct device *dev;
 >
-> -               parent_cpu_data =3D get_parent_cpu_data(p_data, policy);
-> -               if (parent_cpu_data) {
-> -                       cpufreq_cpu_put(policy);
-> +               if (!policy)
-> +                       return -EPROBE_DEFER;
-> +
-> +               struct devfreq_cpu_data *initial_parent_cpu_data =3D
-> +                       get_parent_cpu_data(p_data, policy);
-> +
-> +               if (initial_parent_cpu_data)
+>                 if (cpumask_test_cpu(cpu, cpu_done_mask))
 >                         continue;
-> -               }
 >
-> -               parent_cpu_data =3D kzalloc(sizeof(*parent_cpu_data),
-> -                                               GFP_KERNEL);
-> -               if (!parent_cpu_data) {
-> -                       ret =3D -ENOMEM;
-> -                       goto err_put_policy;
-> -               }
-> +               struct devfreq_cpu_data *parent_cpu_data __free(kfree) =
-=3D
-> +                       kzalloc(sizeof(*parent_cpu_data), GFP_KERNEL);
-> +
-> +               if (!parent_cpu_data)
-> +                       return -ENOMEM;
->
->                 cpu_dev =3D get_cpu_device(cpu);
->                 if (!cpu_dev) {
->                         dev_err(dev, "failed to get cpu device\n");
-> -                       ret =3D -ENODEV;
-> -                       goto err_free_cpu_data;
-> +                       return -ENODEV;
+> -               policy =3D cpufreq_cpu_get(cpu);
+> +               struct cpufreq_policy *policy __free(put_cpufreq_policy) =
+=3D cpufreq_cpu_get(cpu);
+>                 if (!policy) {
+>                         pr_debug("Accessing cpu%d policy failed\n", cpu);
+>                         schedule_delayed_work(&em_update_work,
+>                                               msecs_to_jiffies(1000));
+>                         break;
 >                 }
->
->                 opp_table =3D dev_pm_opp_get_opp_table(cpu_dev);
->                 if (IS_ERR(opp_table)) {
->                         dev_err(dev, "failed to get opp_table of cpu%d\n"=
-, cpu);
-> -                       ret =3D PTR_ERR(opp_table);
-> -                       goto err_free_cpu_data;
-> +                       return PTR_ERR(opp_table);
->                 }
->
->                 parent_cpu_data->dev =3D cpu_dev;
-> @@ -313,8 +305,8 @@ static int cpufreq_passive_register_notifier(struct d=
-evfreq *devfreq)
->                 parent_cpu_data->min_freq =3D policy->cpuinfo.min_freq;
->                 parent_cpu_data->max_freq =3D policy->cpuinfo.max_freq;
->
-> -               list_add_tail(&parent_cpu_data->node, &p_data->cpu_data_l=
-ist);
 > -               cpufreq_cpu_put(policy);
-> +               list_add_tail(&(no_free_ptr(parent_cpu_data)->node,
-> +                       &p_data->cpu_data_list);
->         }
 >
->         mutex_lock(&devfreq->lock);
-> @@ -324,14 +316,6 @@ static int cpufreq_passive_register_notifier(struct =
-devfreq *devfreq)
->                 dev_err(dev, "failed to update the frequency\n");
->
->         return ret;
-> -
-> -err_free_cpu_data:
-> -       kfree(parent_cpu_data);
-> -err_put_policy:
-> -       cpufreq_cpu_put(policy);
-> -err:
-> -
-> -       return ret;
->  }
->
->  static int devfreq_passive_notifier_call(struct notifier_block *nb,
+>                 dev =3D get_cpu_device(cpu);
+>                 pd =3D em_pd_get(dev);
 > --
