@@ -2,59 +2,122 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2155EB44E8C
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Sep 2025 09:01:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40D55B44E93
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Sep 2025 09:02:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 112A010EB27;
-	Fri,  5 Sep 2025 07:01:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9C3510EB28;
+	Fri,  5 Sep 2025 07:02:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ECeR/wSv";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="TtM6XFxq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3704810EB26;
- Fri,  5 Sep 2025 07:01:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757055689; x=1788591689;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=9LYBsBGFOu+Gjj3Ya9uz+p72Msg3n4s+Gixm/mrZVb0=;
- b=ECeR/wSv7w0+945unSb2lqVb25E7LuIZHF12PxuIGlK8IRD/izDmxNHu
- Ei0STbvY+9vuSuugLezIWA8Tz3g9B4kGSIhMfeVYpWAlwZDGF+X2Omy+D
- lYnrI9bfPXnOjmjWzan6w6NXubHoUITzMb6WVi0zVR7LzH1P7HJ5ZJaaO
- GX6sgdl4nDHLq9gDn9HfXuxEdmqqUqSgaHousHaNKBqDzOiOK2I+EZ7q9
- 0OuBYJYJV2+0IzGD/5rsm0cr7xyMDEWYxPquZk1wGz9jySKawOno9xkUQ
- LiAEBshXt6/V2S79oef+OjDwzPpYOwgqwfVjryXMd1OgmIG3asp92fWX9 w==;
-X-CSE-ConnectionGUID: lRMXUQ7TROKZqV4pTYtvHw==
-X-CSE-MsgGUID: QU7qJ1ZNR9Cdr3ZGsJXr7w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11543"; a="70781483"
-X-IronPort-AV: E=Sophos;i="6.18,240,1751266800"; d="scan'208";a="70781483"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 00:01:29 -0700
-X-CSE-ConnectionGUID: keiyj2xOQjWpZpNcNhN9XA==
-X-CSE-MsgGUID: PnIy9P42R4a8Rm+ZXippYQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,240,1751266800"; d="scan'208";a="171666298"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO jhogande-mobl1..)
- ([10.245.244.225])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 00:01:28 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH] drm/i915/alpm: Compute ALPM parameters into
- crtc_state->alpm_parameters
-Date: Fri,  5 Sep 2025 10:01:14 +0300
-Message-ID: <20250905070114.2635531-1-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.43.0
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B26CA10EB26;
+ Fri,  5 Sep 2025 07:02:22 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 7328B60278;
+ Fri,  5 Sep 2025 07:02:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61182C4CEF1;
+ Fri,  5 Sep 2025 07:02:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1757055741;
+ bh=fTBkavZ91ssgIY3s9ptez3AviwpoecTcBhXYPHGbbbM=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=TtM6XFxqtN3QeBsuHZlpZfezN9qmURrZfJfI5CCDT5eGvBRGhyX9PdD9MGup8yjnn
+ 0p9KCIiNdorRgLjz3L3MYT1Z5S78sCbEjPaYAd5TxYTGTYxlzNpe7dyP6ctX6eXSTt
+ wmEFEgieMnkUhnyQscTQ323sCBTvrUj+AFt1Az5eyDJQY3Y7/v1/1MNoRdo0djg0Cg
+ BGN7Js2b+GPfHh7BDZdtkTHST45y2B/DgwyGbWoz80F94Z0WMwrnI3fpho1XctpIDt
+ 7jr1TSxMsWIG+Ru4C3Lhao5f3LzrMHUw1awATjvXu0RsNrOievNIEjJhefvmsZ/tIM
+ btioibLovSD7A==
+Message-ID: <a04f3aa8-e7e3-4d20-bc86-5496c7abe272@kernel.org>
+Date: Fri, 5 Sep 2025 09:02:09 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 09/10] thermal/drivers/ti-soc-thermal: Use scope-based
+ cleanup helper
+To: Andreas Kemnade <andreas@kemnade.info>,
+ Zihuan Zhang <zhangzihuan@kylinos.cn>
+Cc: "Rafael J . wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>,
+ Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, Alim Akhtar
+ <alim.akhtar@samsung.com>, Thierry Reding <thierry.reding@gmail.com>,
+ MyungJoo Ham <myungjoo.ham@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Daniel Lezcano <daniel.lezcano@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
+ Eduardo Valentin <edubezval@gmail.com>, Keerthy <j-keerthy@ti.com>,
+ Ben Horgan <ben.horgan@arm.com>, zhenglifeng <zhenglifeng1@huawei.com>,
+ Zhang Rui <rui.zhang@intel.com>, Len Brown <lenb@kernel.org>,
+ Lukasz Luba <lukasz.luba@arm.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Beata Michalska <beata.michalska@arm.com>, Fabio Estevam
+ <festevam@gmail.com>, Pavel Machek <pavel@kernel.org>,
+ Sumit Gupta <sumitg@nvidia.com>,
+ Prasanna Kumar T S M <ptsm@linux.microsoft.com>,
+ Sudeep Holla <sudeep.holla@arm.com>, Yicong Yang <yangyicong@hisilicon.com>,
+ linux-pm@vger.kernel.org, linux-acpi@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ imx@lists.linux.dev, linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250903131733.57637-1-zhangzihuan@kylinos.cn>
+ <20250903131733.57637-10-zhangzihuan@kylinos.cn>
+ <20250905085726.2bc6fcb4@akair>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250905085726.2bc6fcb4@akair>
 Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,258 +133,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently ALPM parameters are computed directly into
-intel_dp->alpm_parameters. This is a problem when compute config ends up to
-not using the computed state.
+On 05/09/2025 08:57, Andreas Kemnade wrote:
+> Am Wed,  3 Sep 2025 21:17:32 +0800
+> schrieb Zihuan Zhang <zhangzihuan@kylinos.cn>:
+> 
+>> Replace the manual cpufreq_cpu_put() with __free(put_cpufreq_policy)
+>> annotation for policy references. This reduces the risk of reference
+>> counting mistakes and aligns the code with the latest kernel style.
+>>
+>> No functional change intended.
+>>
+>> Signed-off-by: Zihuan Zhang <zhangzihuan@kylinos.cn>
+>> ---
+>>  drivers/thermal/ti-soc-thermal/ti-thermal-common.c | 13 ++++---------
+>>  1 file changed, 4 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/drivers/thermal/ti-soc-thermal/ti-thermal-common.c b/drivers/thermal/ti-soc-thermal/ti-thermal-common.c
+>> index 0cf0826b805a..37d06468913a 100644
+>> --- a/drivers/thermal/ti-soc-thermal/ti-thermal-common.c
+>> +++ b/drivers/thermal/ti-soc-thermal/ti-thermal-common.c
+>> @@ -27,7 +27,6 @@
+>>  
+>>  /* common data structures */
+>>  struct ti_thermal_data {
+>> -	struct cpufreq_policy *policy;
+>>  	struct thermal_zone_device *ti_thermal;
+>>  	struct thermal_zone_device *pcb_tz;
+>>  	struct thermal_cooling_device *cool_dev;
+>> @@ -218,6 +217,7 @@ int ti_thermal_register_cpu_cooling(struct ti_bandgap *bgp, int id)
+>>  {
+>>  	struct ti_thermal_data *data;
+>>  	struct device_node *np = bgp->dev->of_node;
+>> +	struct cpufreq_policy *policy __free(put_cpufreq_policy) = cpufreq_cpu_get(0);
+>>  
+> this looks as it changes the lifecycle from the device lifetime to just
+> this function...
+> 
+>>  	/*
+>>  	 * We are assuming here that if one deploys the zone
+>> @@ -234,19 +234,17 @@ int ti_thermal_register_cpu_cooling(struct ti_bandgap *bgp, int id)
+>>  	if (!data)
+>>  		return -EINVAL;
+>>  
+>> -	data->policy = cpufreq_cpu_get(0);
+>> -	if (!data->policy) {
+>> +	if (!policy) {
+>>  		pr_debug("%s: CPUFreq policy not found\n", __func__);
+>>  		return -EPROBE_DEFER;
+>>  	}
+>>  
+>>  	/* Register cooling device */
+>> -	data->cool_dev = cpufreq_cooling_register(data->policy);
+>> +	data->cool_dev = cpufreq_cooling_register(policy);
+> 
+> and it is passed on to something living beyond this function. I see no
+> _get(policy) in cpufreq_cooling_register().
+> Am I missing something?
+Yeah, " No functional change intended." is clearly incorrect.
 
-Fix this by adding ALPM parameters into intel_crtc_state and compute into
-there. Copy needed parts of crtc_state->alpm_parameters into
-intel_dp->alpm.alpm_parameters (io_wake_lines and fast_wake_lines) when
-they are configured into HW.
+I already commented on this series that it is very bad and author should
+does not understand how cleanup.h works, and here is another example.
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_alpm.c     | 38 ++++++++++---------
- drivers/gpu/drm/i915/display/intel_alpm.h     |  2 +-
- .../drm/i915/display/intel_display_types.h    | 16 +++++---
- drivers/gpu/drm/i915/display/intel_psr.c      | 20 +++++-----
- 4 files changed, 43 insertions(+), 33 deletions(-)
+IMO, entire patchset should be dropped.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index ed7a7ed486b5..bbc4fa2e084e 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -133,7 +133,7 @@ static int _lnl_compute_aux_less_wake_time(const struct intel_crtc_state *crtc_s
- 
- static int
- _lnl_compute_aux_less_alpm_params(struct intel_dp *intel_dp,
--				  const struct intel_crtc_state *crtc_state)
-+				  struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	int aux_less_wake_time, aux_less_wake_lines, silence_period,
-@@ -157,15 +157,15 @@ _lnl_compute_aux_less_alpm_params(struct intel_dp *intel_dp,
- 	if (display->params.psr_safest_params)
- 		aux_less_wake_lines = ALPM_CTL_AUX_LESS_WAKE_TIME_MASK;
- 
--	intel_dp->alpm_parameters.aux_less_wake_lines = aux_less_wake_lines;
--	intel_dp->alpm_parameters.silence_period_sym_clocks = silence_period;
--	intel_dp->alpm_parameters.lfps_half_cycle_num_of_syms = lfps_half_cycle;
-+	crtc_state->alpm_parameters.aux_less_wake_lines = aux_less_wake_lines;
-+	crtc_state->alpm_parameters.silence_period_sym_clocks = silence_period;
-+	crtc_state->alpm_parameters.lfps_half_cycle_num_of_syms = lfps_half_cycle;
- 
- 	return true;
- }
- 
- static bool _lnl_compute_alpm_params(struct intel_dp *intel_dp,
--				     const struct intel_crtc_state *crtc_state)
-+				     struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	int check_entry_lines;
-@@ -186,7 +186,7 @@ static bool _lnl_compute_alpm_params(struct intel_dp *intel_dp,
- 	if (display->params.psr_safest_params)
- 		check_entry_lines = 15;
- 
--	intel_dp->alpm_parameters.check_entry_lines = check_entry_lines;
-+	crtc_state->alpm_parameters.check_entry_lines = check_entry_lines;
- 
- 	return true;
- }
-@@ -217,7 +217,7 @@ static int io_buffer_wake_time(const struct intel_crtc_state *crtc_state)
- }
- 
- bool intel_alpm_compute_params(struct intel_dp *intel_dp,
--			       const struct intel_crtc_state *crtc_state)
-+			       struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	int io_wake_lines, io_wake_time, fast_wake_lines, fast_wake_time;
-@@ -255,8 +255,8 @@ bool intel_alpm_compute_params(struct intel_dp *intel_dp,
- 		io_wake_lines = fast_wake_lines = max_wake_lines;
- 
- 	/* According to Bspec lower limit should be set as 7 lines. */
--	intel_dp->alpm_parameters.io_wake_lines = max(io_wake_lines, 7);
--	intel_dp->alpm_parameters.fast_wake_lines = max(fast_wake_lines, 7);
-+	crtc_state->alpm_parameters.io_wake_lines = max(io_wake_lines, 7);
-+	crtc_state->alpm_parameters.fast_wake_lines = max(fast_wake_lines, 7);
- 
- 	return true;
- }
-@@ -306,9 +306,9 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
- 		    adjusted_mode->crtc_vdisplay - context_latency;
- 	first_sdp_position = adjusted_mode->crtc_vtotal - adjusted_mode->crtc_vsync_start;
- 	if (intel_alpm_aux_less_wake_supported(intel_dp))
--		waketime_in_lines = intel_dp->alpm_parameters.io_wake_lines;
-+		waketime_in_lines = crtc_state->alpm_parameters.io_wake_lines;
- 	else
--		waketime_in_lines = intel_dp->alpm_parameters.aux_less_wake_lines;
-+		waketime_in_lines = crtc_state->alpm_parameters.aux_less_wake_lines;
- 
- 	crtc_state->has_lobf = (context_latency + guardband) >
- 		(first_sdp_position + waketime_in_lines);
-@@ -334,7 +334,7 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
- 		alpm_ctl = ALPM_CTL_ALPM_ENABLE |
- 			ALPM_CTL_ALPM_AUX_LESS_ENABLE |
- 			ALPM_CTL_AUX_LESS_SLEEP_HOLD_TIME_50_SYMBOLS |
--			ALPM_CTL_AUX_LESS_WAKE_TIME(intel_dp->alpm_parameters.aux_less_wake_lines);
-+			ALPM_CTL_AUX_LESS_WAKE_TIME(crtc_state->alpm_parameters.aux_less_wake_lines);
- 
- 		if (intel_dp->as_sdp_supported) {
- 			u32 pr_alpm_ctl = PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_T1;
-@@ -352,7 +352,7 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
- 
- 	} else {
- 		alpm_ctl = ALPM_CTL_EXTENDED_FAST_WAKE_ENABLE |
--			ALPM_CTL_EXTENDED_FAST_WAKE_TIME(intel_dp->alpm_parameters.fast_wake_lines);
-+			ALPM_CTL_EXTENDED_FAST_WAKE_TIME(crtc_state->alpm_parameters.fast_wake_lines);
- 	}
- 
- 	if (crtc_state->has_lobf) {
-@@ -360,7 +360,7 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
- 		drm_dbg_kms(display->drm, "Link off between frames (LOBF) enabled\n");
- 	}
- 
--	alpm_ctl |= ALPM_CTL_ALPM_ENTRY_CHECK(intel_dp->alpm_parameters.check_entry_lines);
-+	alpm_ctl |= ALPM_CTL_ALPM_ENTRY_CHECK(crtc_state->alpm_parameters.check_entry_lines);
- 
- 	intel_de_write(display, ALPM_CTL(display, cpu_transcoder), alpm_ctl);
- 	mutex_unlock(&intel_dp->alpm_parameters.lock);
-@@ -371,6 +371,8 @@ void intel_alpm_configure(struct intel_dp *intel_dp,
- {
- 	lnl_alpm_configure(intel_dp, crtc_state);
- 	intel_dp->alpm_parameters.transcoder = crtc_state->cpu_transcoder;
-+	intel_dp->alpm_parameters.io_wake_lines = crtc_state->alpm_parameters.io_wake_lines;
-+	intel_dp->alpm_parameters.fast_wake_lines = crtc_state->alpm_parameters.fast_wake_lines;
- }
- 
- void intel_alpm_port_configure(struct intel_dp *intel_dp,
-@@ -388,14 +390,14 @@ void intel_alpm_port_configure(struct intel_dp *intel_dp,
- 			PORT_ALPM_CTL_MAX_PHY_SWING_SETUP(15) |
- 			PORT_ALPM_CTL_MAX_PHY_SWING_HOLD(0) |
- 			PORT_ALPM_CTL_SILENCE_PERIOD(
--				intel_dp->alpm_parameters.silence_period_sym_clocks);
-+				crtc_state->alpm_parameters.silence_period_sym_clocks);
- 		lfps_ctl_val = PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT(LFPS_CYCLE_COUNT) |
- 			PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION(
--				intel_dp->alpm_parameters.lfps_half_cycle_num_of_syms) |
-+				crtc_state->alpm_parameters.lfps_half_cycle_num_of_syms) |
- 			PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION(
--				intel_dp->alpm_parameters.lfps_half_cycle_num_of_syms) |
-+				crtc_state->alpm_parameters.lfps_half_cycle_num_of_syms) |
- 			PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION(
--				intel_dp->alpm_parameters.lfps_half_cycle_num_of_syms);
-+				crtc_state->alpm_parameters.lfps_half_cycle_num_of_syms);
- 	}
- 
- 	intel_de_write(display, PORT_ALPM_CTL(port), alpm_ctl_val);
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
-index a861c20b5d79..53599b464dea 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.h
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.h
-@@ -17,7 +17,7 @@ struct intel_crtc;
- 
- void intel_alpm_init(struct intel_dp *intel_dp);
- bool intel_alpm_compute_params(struct intel_dp *intel_dp,
--			       const struct intel_crtc_state *crtc_state);
-+			       struct intel_crtc_state *crtc_state);
- void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
- 				    struct intel_crtc_state *crtc_state,
- 				    struct drm_connector_state *conn_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index fd9d2527889b..1fc778067397 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1339,6 +1339,17 @@ struct intel_crtc_state {
- 
- 	/* LOBF flag */
- 	bool has_lobf;
-+
-+	struct {
-+		u8 io_wake_lines;
-+		u8 fast_wake_lines;
-+
-+		/* LNL and beyond */
-+		u8 check_entry_lines;
-+		u8 aux_less_wake_lines;
-+		u8 silence_period_sym_clocks;
-+		u8 lfps_half_cycle_num_of_syms;
-+	} alpm_parameters;
- };
- 
- enum intel_pipe_crc_source {
-@@ -1847,11 +1858,6 @@ struct intel_dp {
- 		enum transcoder transcoder;
- 		struct mutex lock;
- 
--		/* LNL and beyond */
--		u8 check_entry_lines;
--		u8 aux_less_wake_lines;
--		u8 silence_period_sym_clocks;
--		u8 lfps_half_cycle_num_of_syms;
- 		bool lobf_disable_debug;
- 		bool sink_alpm_error;
- 	} alpm_parameters;
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 22433fe2ee14..dd6df3154508 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -953,15 +953,16 @@ static u32 intel_psr2_get_tp_time(struct intel_dp *intel_dp)
- 	return val;
- }
- 
--static int psr2_block_count_lines(struct intel_dp *intel_dp)
-+static int
-+psr2_block_count_lines(u8 io_wake_lines, u8 fast_wake_lines)
- {
--	return intel_dp->alpm_parameters.io_wake_lines < 9 &&
--		intel_dp->alpm_parameters.fast_wake_lines < 9 ? 8 : 12;
-+	return io_wake_lines < 9 && fast_wake_lines < 9 ? 8 : 12;
- }
- 
- static int psr2_block_count(struct intel_dp *intel_dp)
- {
--	return psr2_block_count_lines(intel_dp) / 4;
-+	return psr2_block_count_lines(intel_dp->alpm_parameters.io_wake_lines,
-+				      intel_dp->alpm_parameters.fast_wake_lines) / 4;
- }
- 
- static u8 frames_before_su_entry(struct intel_dp *intel_dp)
-@@ -1367,11 +1368,12 @@ static bool wake_lines_fit_into_vblank(struct intel_dp *intel_dp,
- 	int wake_lines;
- 
- 	if (aux_less)
--		wake_lines = intel_dp->alpm_parameters.aux_less_wake_lines;
-+		wake_lines = crtc_state->alpm_parameters.aux_less_wake_lines;
- 	else
- 		wake_lines = DISPLAY_VER(display) < 20 ?
--			psr2_block_count_lines(intel_dp) :
--			intel_dp->alpm_parameters.io_wake_lines;
-+			psr2_block_count_lines(crtc_state->alpm_parameters.io_wake_lines,
-+					       crtc_state->alpm_parameters.fast_wake_lines) :
-+			crtc_state->alpm_parameters.io_wake_lines;
- 
- 	if (crtc_state->req_psr2_sdp_prior_scanline)
- 		vblank -= 1;
-@@ -1384,7 +1386,7 @@ static bool wake_lines_fit_into_vblank(struct intel_dp *intel_dp,
- }
- 
- static bool alpm_config_valid(struct intel_dp *intel_dp,
--			      const struct intel_crtc_state *crtc_state,
-+			      struct intel_crtc_state *crtc_state,
- 			      bool aux_less)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
-@@ -1589,7 +1591,7 @@ static bool _psr_compute_config(struct intel_dp *intel_dp,
- 
- static bool
- _panel_replay_compute_config(struct intel_dp *intel_dp,
--			     const struct intel_crtc_state *crtc_state,
-+			     struct intel_crtc_state *crtc_state,
- 			     const struct drm_connector_state *conn_state)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
--- 
-2.43.0
-
+Best regards,
+Krzysztof
