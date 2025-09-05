@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39019B45B40
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Sep 2025 16:58:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1427B45B45
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Sep 2025 16:58:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C90CE10EBCE;
-	Fri,  5 Sep 2025 14:58:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86A6610EBD1;
+	Fri,  5 Sep 2025 14:58:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PMjAzCOM";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZGlwW5J0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C954010EBD1;
- Fri,  5 Sep 2025 14:58:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D769F10EBD1;
+ Fri,  5 Sep 2025 14:58:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757084327; x=1788620327;
+ t=1757084331; x=1788620331;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rrXUBahVdDk6PD65PXIv2VcMCclUP+46zS4RuNZCMtc=;
- b=PMjAzCOMo+nH1jFxhb8rYY7GCYHls2Q4vzWf4WYws1AwnhoeE7+r8ZfD
- iit00x3aB6L8iERtLQbc/f6xckE4YmAX1KOBG3YH3byHcsIMPqt7ZfUma
- AK51mYe8PSaSYBRTmGGzo5B4lQsLjFNJCOsQ/C1BkkRmkK73oTLg86OEd
- lRj7WkQZaACunhcUyudjrjzWcKpdlQbWnUJKcEiyzUUX4CCiE0AvCkeZN
- ep6MACC/Euqkv5q1V4M0/J5eFCvMqIkiFaTByBhkA/RbaYRP1RLZDj6fW
- D8dgVTkczKjK3ScRpfu016seXJYiwLLoA19tDVTr9++1obNAUYeYJ5+Ta A==;
-X-CSE-ConnectionGUID: t0zHZsSdQkGc0w1eh4vWPw==
-X-CSE-MsgGUID: ez4r4ZebQ+K8L9b6GVWIiQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11544"; a="58469650"
-X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; d="scan'208";a="58469650"
+ bh=GnMBR703Abokn2c0d9aBdC5/2008MmNi/K7cxdnnxcU=;
+ b=ZGlwW5J0N31UBGITxr96MwemIhWlPQAbplmavaOG4z1BaRt82MjEaCvh
+ KzZ+/rsJTtrJRPNfm4kXgaBn1uWuWi/GL1JcEb5njUNTkYaICYhk8tmxX
+ XPMxr+5hq7Olx/Er+6/dJXie0zk1ur5i25rqE/0lEniaofq9xEEE5P5ym
+ 9blMZ1yL5NQ/YNP75yV5qyablvoVHYaTmmWcQJAhRXOK8Q9ACImHXWXWo
+ ezq87fYlB8OtvqCxPqPyZeq7WvLmZPUsK7CsciCIry6J6NUWnLebe1yfA
+ qhAO9WNgTTlNlaBiO3GOKiHszSv4n9WPxT7d+Jd+2nvil9TL4+eUH3aYd Q==;
+X-CSE-ConnectionGUID: jCFfsl5KQyO4gnih8RDIkQ==
+X-CSE-MsgGUID: i7dqAzDBQySRIDJisyTxmw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11544"; a="58469665"
+X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; d="scan'208";a="58469665"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 07:58:47 -0700
-X-CSE-ConnectionGUID: ou1tI1heRLOnRLVbCSd8jw==
-X-CSE-MsgGUID: a3LfckoOQySpxZKxWc96xA==
+ 05 Sep 2025 07:58:51 -0700
+X-CSE-ConnectionGUID: mHprwdTPTF+pjXmDr1v2Ow==
+X-CSE-MsgGUID: C/FZsZuqR+yWJZnUH3C1cA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; d="scan'208";a="172105294"
+X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; d="scan'208";a="172105307"
 Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.33])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 07:58:46 -0700
+ 05 Sep 2025 07:58:50 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 03/13] drm/i915: Tweak the read latency fixup code
-Date: Fri,  5 Sep 2025 17:58:22 +0300
-Message-ID: <20250905145832.12097-4-ville.syrjala@linux.intel.com>
+Subject: [PATCH 04/13] drm/i915: Don't pass the latency array to {skl,
+ mtl}_read_wm_latency()
+Date: Fri,  5 Sep 2025 17:58:23 +0300
+Message-ID: <20250905145832.12097-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20250905145832.12097-1-ville.syrjala@linux.intel.com>
 References: <20250905145832.12097-1-ville.syrjala@linux.intel.com>
@@ -72,51 +73,81 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-If WM0 latency is zero we need to bump it (and the WM1+ latencies)
-but a fixed amount. But any WM1+ level with zero latency must
-not be touched since that indicates that corresponding WM level
-isn't supported.
-
-Currently the loop doing that adjustment does work, but only because
-the previous loop modified the num_levels used as the loop boundary.
-This all seems a bit too fragile. Remove the num_levels adjustment
-and instead adjust the read latency loop to abort when it encounters
-a zero latency value.
+We always operate on i915->display.wm.skl_latency in
+{skl,mtl}_read_wm_latency(). No real need for the caller
+to have to pass that in explicitly.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_watermark.c | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 21 ++++++++++----------
+ 1 file changed, 11 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 8c434bc96971..805481c92154 100644
+index 805481c92154..9797c2131334 100644
 --- a/drivers/gpu/drm/i915/display/skl_watermark.c
 +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -3198,8 +3198,6 @@ adjust_wm_latency(struct intel_display *display,
- 		if (wm[level] == 0) {
- 			for (i = level + 1; i < num_levels; i++)
- 				wm[i] = 0;
--
--			num_levels = level;
- 			break;
- 		}
- 	}
-@@ -3212,8 +3210,14 @@ adjust_wm_latency(struct intel_display *display,
- 	 * from the punit when level 0 response data is 0us.
- 	 */
- 	if (wm[0] == 0) {
--		for (level = 0; level < num_levels; level++)
-+		wm[0] += read_latency;
-+
-+		for (level = 1; level < num_levels; level++) {
-+			if (wm[level] == 0)
-+				break;
-+
- 			wm[level] += read_latency;
-+		}
- 	}
+@@ -3184,9 +3184,10 @@ static bool need_16gb_dimm_wa(struct intel_display *display)
+ }
+ 
+ static void
+-adjust_wm_latency(struct intel_display *display,
+-		  u16 wm[], int num_levels, int read_latency)
++adjust_wm_latency(struct intel_display *display, int read_latency)
+ {
++	u16 *wm = display->wm.skl_latency;
++	int num_levels = display->wm.num_levels;
+ 	int i, level;
  
  	/*
+@@ -3230,9 +3231,9 @@ adjust_wm_latency(struct intel_display *display,
+ 		wm[0] += 1;
+ }
+ 
+-static void mtl_read_wm_latency(struct intel_display *display, u16 wm[])
++static void mtl_read_wm_latency(struct intel_display *display)
+ {
+-	int num_levels = display->wm.num_levels;
++	u16 *wm = display->wm.skl_latency;
+ 	u32 val;
+ 
+ 	val = intel_de_read(display, MTL_LATENCY_LP0_LP1);
+@@ -3247,12 +3248,12 @@ static void mtl_read_wm_latency(struct intel_display *display, u16 wm[])
+ 	wm[4] = REG_FIELD_GET(MTL_LATENCY_LEVEL_EVEN_MASK, val);
+ 	wm[5] = REG_FIELD_GET(MTL_LATENCY_LEVEL_ODD_MASK, val);
+ 
+-	adjust_wm_latency(display, wm, num_levels, 6);
++	adjust_wm_latency(display, 6);
+ }
+ 
+-static void skl_read_wm_latency(struct intel_display *display, u16 wm[])
++static void skl_read_wm_latency(struct intel_display *display)
+ {
+-	int num_levels = display->wm.num_levels;
++	u16 *wm = display->wm.skl_latency;
+ 	int read_latency = DISPLAY_VER(display) >= 12 ? 3 : 2;
+ 	int mult = display->platform.dg2 ? 2 : 1;
+ 	u32 val;
+@@ -3284,7 +3285,7 @@ static void skl_read_wm_latency(struct intel_display *display, u16 wm[])
+ 	wm[6] = REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_2_6_MASK, val) * mult;
+ 	wm[7] = REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_3_7_MASK, val) * mult;
+ 
+-	adjust_wm_latency(display, wm, num_levels, read_latency);
++	adjust_wm_latency(display, read_latency);
+ }
+ 
+ static void skl_setup_wm_latency(struct intel_display *display)
+@@ -3295,9 +3296,9 @@ static void skl_setup_wm_latency(struct intel_display *display)
+ 		display->wm.num_levels = 8;
+ 
+ 	if (DISPLAY_VER(display) >= 14)
+-		mtl_read_wm_latency(display, display->wm.skl_latency);
++		mtl_read_wm_latency(display);
+ 	else
+-		skl_read_wm_latency(display, display->wm.skl_latency);
++		skl_read_wm_latency(display);
+ 
+ 	intel_print_wm_latency(display, "Gen9 Plane", display->wm.skl_latency);
+ }
 -- 
 2.49.1
 
