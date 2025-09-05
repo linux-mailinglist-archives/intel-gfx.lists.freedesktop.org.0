@@ -2,28 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DA28B4FC5C
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Sep 2025 15:21:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 907B5B4FC52
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Sep 2025 15:21:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A370310E71B;
-	Tue,  9 Sep 2025 13:21:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CF0F10E709;
+	Tue,  9 Sep 2025 13:21:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from frasgout.his.huawei.com (frasgout.his.huawei.com
  [185.176.79.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80B7F10E2CF;
- Fri,  5 Sep 2025 10:01:38 +0000 (UTC)
-Received: from mail.maildlp.com (unknown [172.18.186.231])
- by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4cJBg91Jm0z6JBRj;
- Fri,  5 Sep 2025 18:00:37 +0800 (CST)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A336A10EB65;
+ Fri,  5 Sep 2025 10:03:16 +0000 (UTC)
+Received: from mail.maildlp.com (unknown [172.18.186.31])
+ by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4cJBdh2c9dz6L5kC;
+ Fri,  5 Sep 2025 17:59:20 +0800 (CST)
 Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
- by mail.maildlp.com (Postfix) with ESMTPS id 8815E140145;
- Fri,  5 Sep 2025 18:01:35 +0800 (CST)
+ by mail.maildlp.com (Postfix) with ESMTPS id 37EE21402F1;
+ Fri,  5 Sep 2025 18:03:14 +0800 (CST)
 Received: from localhost (10.203.177.15) by frapeml500008.china.huawei.com
  (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 5 Sep
- 2025 12:01:33 +0200
-Date: Fri, 5 Sep 2025 11:01:32 +0100
+ 2025 12:02:49 +0200
+Date: Fri, 5 Sep 2025 11:02:48 +0100
 From: Jonathan Cameron <jonathan.cameron@huawei.com>
 To: Zihuan Zhang <zhangzihuan@kylinos.cn>
 CC: "Rafael J . wysocki" <rafael@kernel.org>, Viresh Kumar
@@ -52,11 +52,11 @@ CC: "Rafael J . wysocki" <rafael@kernel.org>, Viresh Kumar
  <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
  <imx@lists.linux.dev>, <linux-omap@vger.kernel.org>,
  <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 05/10] PM / devfreq: Use scope-based cleanup helper
-Message-ID: <20250905110132.00003987@huawei.com>
-In-Reply-To: <20250903131733.57637-6-zhangzihuan@kylinos.cn>
+Subject: Re: [PATCH v4 06/10] drm/i915: Use scope-based cleanup helper
+Message-ID: <20250905110248.000058e9@huawei.com>
+In-Reply-To: <20250903131733.57637-7-zhangzihuan@kylinos.cn>
 References: <20250903131733.57637-1-zhangzihuan@kylinos.cn>
- <20250903131733.57637-6-zhangzihuan@kylinos.cn>
+ <20250903131733.57637-7-zhangzihuan@kylinos.cn>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 MIME-Version: 1.0
 Content-Type: text/plain; charset="US-ASCII"
@@ -80,7 +80,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed,  3 Sep 2025 21:17:28 +0800
+On Wed,  3 Sep 2025 21:17:29 +0800
 Zihuan Zhang <zhangzihuan@kylinos.cn> wrote:
 
 > Replace the manual cpufreq_cpu_put() with __free(put_cpufreq_policy)
@@ -90,99 +90,29 @@ Zihuan Zhang <zhangzihuan@kylinos.cn> wrote:
 > No functional change intended.
 > 
 > Signed-off-by: Zihuan Zhang <zhangzihuan@kylinos.cn>
-
-This falls into the mess of mixing gotos with cleanup.h usage.
-
-The guidance in cleanup.h IIRC say don't do this.  It isn't (I think) buggy here
-but it does make things harder to reason about and generally removes
-the point of doing __free.  So I think if you are going to do this one
-you need to do it fully which is a little more complex.
-Need to deal with parent_cpu_data which isn't that hard.
-
-If you mix the two, Linus may get grumpy!
-
+FWIW this one is fine if low impact.
+Reviewed-by: Jonathan Cameron <jonathan.cameron@huawei.com>
 > ---
->  drivers/devfreq/governor_passive.c | 25 +++++++++----------------
->  1 file changed, 9 insertions(+), 16 deletions(-)
+>  drivers/gpu/drm/i915/gt/intel_llc.c | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
 > 
-> diff --git a/drivers/devfreq/governor_passive.c b/drivers/devfreq/governor_passive.c
-> index 953cf9a1e9f7..a035cf44bdb8 100644
-> --- a/drivers/devfreq/governor_passive.c
-> +++ b/drivers/devfreq/governor_passive.c
-
-> @@ -256,7 +253,6 @@ static int cpufreq_passive_register_notifier(struct devfreq *devfreq)
->  	struct device *dev = devfreq->dev.parent;
->  	struct opp_table *opp_table = NULL;
->  	struct devfreq_cpu_data *parent_cpu_data;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_llc.c b/drivers/gpu/drm/i915/gt/intel_llc.c
+> index 1d19c073ba2e..f15e4c0fa54b 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_llc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_llc.c
+> @@ -29,13 +29,11 @@ static struct intel_gt *llc_to_gt(struct intel_llc *llc)
+>  
+>  static unsigned int cpu_max_MHz(void)
+>  {
 > -	struct cpufreq_policy *policy;
->  	struct device *cpu_dev;
->  	unsigned int cpu;
->  	int ret;
-> @@ -273,23 +269,23 @@ static int cpufreq_passive_register_notifier(struct devfreq *devfreq)
->  	}
+> +	struct cpufreq_policy *policy __free(put_cpufreq_policy) = cpufreq_cpu_get(0);
+>  	unsigned int max_khz;
 >  
->  	for_each_possible_cpu(cpu) {
-> -		policy = cpufreq_cpu_get(cpu);
-> +		struct cpufreq_policy *policy __free(put_cpufreq_policy) =
-> +			cpufreq_cpu_get(cpu);
-> +
->  		if (!policy) {
->  			ret = -EPROBE_DEFER;
->  			goto err;
-Return directly here (and after changes below, in all error paths.
->  		}
->  
->  		parent_cpu_data = get_parent_cpu_data(p_data, policy);
-> -		if (parent_cpu_data) {
-> -			cpufreq_cpu_put(policy);
-> +		if (parent_cpu_data)
->  			continue;
-This is the first use of parent_cpu_data. If it's set at this point
-we don't use it at all.  So step 1. Rename this to split this
-use from the one that follows.
-
-
-> -		}
->  
->  		parent_cpu_data = kzalloc(sizeof(*parent_cpu_data),
->  						GFP_KERNEL);
-This one needs to be
-		struct devfreq_cpu_data *parent_cpu_data __free(kfree) =
-			kzalloc(sizeof(*parent_cpu_data), GFP_KERNEL);
-
-		
->  		if (!parent_cpu_data) {
->  			ret = -ENOMEM;
-> -			goto err_put_policy;
-> +			goto err;
->  		}
->  
->  		cpu_dev = get_cpu_device(cpu);
-> @@ -314,7 +310,6 @@ static int cpufreq_passive_register_notifier(struct devfreq *devfreq)
->  		parent_cpu_data->max_freq = policy->cpuinfo.max_freq;
->  
->  		list_add_tail(&parent_cpu_data->node, &p_data->cpu_data_list);
-
-then here we need to ensure we don't free parent_cpu_data. Hence
-
-		list_add_tail(&(no_free_ptr(parent_cpu_data)->node,
-			      &p_data->cpu_data_list);
-
-That that point we have passed ownership of the data to the list.
-
+> -	policy = cpufreq_cpu_get(0);
+>  	if (policy) {
+>  		max_khz = policy->cpuinfo.max_freq;
 > -		cpufreq_cpu_put(policy);
->  	}
->  
->  	mutex_lock(&devfreq->lock);
-> @@ -327,8 +322,6 @@ static int cpufreq_passive_register_notifier(struct devfreq *devfreq)
->  
->  err_free_cpu_data:
->  	kfree(parent_cpu_data);
-And all this error block goes away.
-
-> -err_put_policy:
-> -	cpufreq_cpu_put(policy);
->  err:
->  
->  	return ret;
+>  	} else {
+>  		/*
+>  		 * Default to measured freq if none found, PCU will ensure we
 
