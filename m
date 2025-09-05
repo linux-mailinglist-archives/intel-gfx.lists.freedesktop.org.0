@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3F20B45B3E
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Sep 2025 16:58:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39019B45B40
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Sep 2025 16:58:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F34210EBD0;
-	Fri,  5 Sep 2025 14:58:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C90CE10EBCE;
+	Fri,  5 Sep 2025 14:58:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E1nhS5A8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PMjAzCOM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C09F310EBD0;
- Fri,  5 Sep 2025 14:58:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C954010EBD1;
+ Fri,  5 Sep 2025 14:58:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757084323; x=1788620323;
+ t=1757084327; x=1788620327;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=kQlSJPbitX+sQtQNvDDYnoIJoGcn6+Bo7O6FvuMyIgo=;
- b=E1nhS5A84cxja6Nq1l3vjP/MfSSop0kp4HqTzUVmJw44EZ9G3FXDUr5N
- Vav0twoWqhxv6QdZ/EYWzF6+LDSbvzEOQCJWthGAs+RtGqA6Is2o4XSMQ
- 73QCxU5Qab98Wl/KL5oQtu6TsFCnUaC6D1aOUqDCf4W/iCmtj3U6MVVNp
- aupjcnv88iyw2sgA1Js9OIYVJKe16UK6XKW9cXcA2IbcajMyXG+v56Dz/
- jld2gXtDZ7y8sYDCsWhqBlonO86KZFdbOf0huxWKOmqA1wQFvmgcP98UQ
- 85/m0CuIh9AAUPbpckf6hZpasbUht9TD5o8RR7N6S2SycTU8PrYiu44lq Q==;
-X-CSE-ConnectionGUID: uJ6P1DNFT6yiD1sMUXXPxw==
-X-CSE-MsgGUID: C2qm4lN9Tiioq+kw6iJ3qA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11544"; a="58469642"
-X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; d="scan'208";a="58469642"
+ bh=rrXUBahVdDk6PD65PXIv2VcMCclUP+46zS4RuNZCMtc=;
+ b=PMjAzCOMo+nH1jFxhb8rYY7GCYHls2Q4vzWf4WYws1AwnhoeE7+r8ZfD
+ iit00x3aB6L8iERtLQbc/f6xckE4YmAX1KOBG3YH3byHcsIMPqt7ZfUma
+ AK51mYe8PSaSYBRTmGGzo5B4lQsLjFNJCOsQ/C1BkkRmkK73oTLg86OEd
+ lRj7WkQZaACunhcUyudjrjzWcKpdlQbWnUJKcEiyzUUX4CCiE0AvCkeZN
+ ep6MACC/Euqkv5q1V4M0/J5eFCvMqIkiFaTByBhkA/RbaYRP1RLZDj6fW
+ D8dgVTkczKjK3ScRpfu016seXJYiwLLoA19tDVTr9++1obNAUYeYJ5+Ta A==;
+X-CSE-ConnectionGUID: t0zHZsSdQkGc0w1eh4vWPw==
+X-CSE-MsgGUID: ez4r4ZebQ+K8L9b6GVWIiQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11544"; a="58469650"
+X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; d="scan'208";a="58469650"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 07:58:43 -0700
-X-CSE-ConnectionGUID: BlZ0PXoJQMS0F3Bcw3cekw==
-X-CSE-MsgGUID: Rd0c7eI/TnOfb8f54EhQmA==
+ 05 Sep 2025 07:58:47 -0700
+X-CSE-ConnectionGUID: ou1tI1heRLOnRLVbCSd8jw==
+X-CSE-MsgGUID: a3LfckoOQySpxZKxWc96xA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; d="scan'208";a="172105284"
+X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; d="scan'208";a="172105294"
 Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.33])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 07:58:42 -0700
+ 05 Sep 2025 07:58:46 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 02/13] drm/i915: Apply the 16Gb DIMM w/a only for the
- platforms that need it
-Date: Fri,  5 Sep 2025 17:58:21 +0300
-Message-ID: <20250905145832.12097-3-ville.syrjala@linux.intel.com>
+Subject: [PATCH 03/13] drm/i915: Tweak the read latency fixup code
+Date: Fri,  5 Sep 2025 17:58:22 +0300
+Message-ID: <20250905145832.12097-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20250905145832.12097-1-ville.syrjala@linux.intel.com>
 References: <20250905145832.12097-1-ville.syrjala@linux.intel.com>
@@ -73,49 +72,51 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Currently the code assumes that every platform except dg2 need the
-16Gb DIMM w/a, while in reality it's only needed by skl and icl (and
-derivatives). Switch to a more specific platform check.
+If WM0 latency is zero we need to bump it (and the WM1+ latencies)
+but a fixed amount. But any WM1+ level with zero latency must
+not be touched since that indicates that corresponding WM level
+isn't supported.
+
+Currently the loop doing that adjustment does work, but only because
+the previous loop modified the num_levels used as the loop boundary.
+This all seems a bit too fragile. Remove the num_levels adjustment
+and instead adjust the read latency loop to abort when it encounters
+a zero latency value.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_watermark.c | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index b7482d428868..8c434bc96971 100644
+index 8c434bc96971..805481c92154 100644
 --- a/drivers/gpu/drm/i915/display/skl_watermark.c
 +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -3174,11 +3174,19 @@ void skl_watermark_ipc_init(struct intel_display *display)
- 	skl_watermark_ipc_update(display);
- }
- 
-+static bool need_16gb_dimm_wa(struct intel_display *display)
-+{
-+	const struct dram_info *dram_info = intel_dram_info(display->drm);
+@@ -3198,8 +3198,6 @@ adjust_wm_latency(struct intel_display *display,
+ 		if (wm[level] == 0) {
+ 			for (i = level + 1; i < num_levels; i++)
+ 				wm[i] = 0;
+-
+-			num_levels = level;
+ 			break;
+ 		}
+ 	}
+@@ -3212,8 +3210,14 @@ adjust_wm_latency(struct intel_display *display,
+ 	 * from the punit when level 0 response data is 0us.
+ 	 */
+ 	if (wm[0] == 0) {
+-		for (level = 0; level < num_levels; level++)
++		wm[0] += read_latency;
 +
-+	return (display->platform.skylake || display->platform.kabylake ||
-+		display->platform.coffeelake || display->platform.cometlake ||
-+		DISPLAY_VER(display) == 11) && dram_info->has_16gb_dimms;
-+}
++		for (level = 1; level < num_levels; level++) {
++			if (wm[level] == 0)
++				break;
 +
- static void
- adjust_wm_latency(struct intel_display *display,
- 		  u16 wm[], int num_levels, int read_latency)
- {
--	const struct dram_info *dram_info = intel_dram_info(display->drm);
- 	int i, level;
+ 			wm[level] += read_latency;
++		}
+ 	}
  
  	/*
-@@ -3214,7 +3222,7 @@ adjust_wm_latency(struct intel_display *display,
- 	 * any underrun. If not able to get DIMM info assume 16Gb+ DIMM
- 	 * to avoid any underrun.
- 	 */
--	if (!display->platform.dg2 && dram_info->has_16gb_dimms)
-+	if (need_16gb_dimm_wa(display))
- 		wm[0] += 1;
- }
- 
 -- 
 2.49.1
 
