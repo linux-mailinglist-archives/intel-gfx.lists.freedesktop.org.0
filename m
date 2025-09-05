@@ -2,73 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADE0FB45530
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Sep 2025 12:46:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3F7CB45531
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Sep 2025 12:46:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C29D10E2D5;
-	Fri,  5 Sep 2025 10:46:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30F2310EB80;
+	Fri,  5 Sep 2025 10:46:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RA1mrOiR";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="KZ5/y5ec";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com
- [209.85.215.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2C9110E2D5;
- Fri,  5 Sep 2025 10:46:46 +0000 (UTC)
-Received: by mail-pg1-f175.google.com with SMTP id
- 41be03b00d2f7-b4d118e13a1so1338119a12.3; 
- Fri, 05 Sep 2025 03:46:46 -0700 (PDT)
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com
+ [209.85.216.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C018A10EB80;
+ Fri,  5 Sep 2025 10:46:51 +0000 (UTC)
+Received: by mail-pj1-f47.google.com with SMTP id
+ 98e67ed59e1d1-327ae052173so1252048a91.0; 
+ Fri, 05 Sep 2025 03:46:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1757069206; x=1757674006; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=hv/yPgLnKJ+YORbqBtkb58KTGYE/7RDyge96QtFF/tM=;
- b=RA1mrOiRQ0a/pQoM6rcBJhVAE9NBulShF/etyrYyCb5sMYBWIm9SK/pP7fBfqEhHPm
- jkVGLxTtDekj6zFm5fwIwR04f7rzTc+ipZhZ9ZNqRPc1wmnJ1/zx9USrprxsuBlSjhcx
- CCqutLWE/xR/4caKWM+CtuqUYzeIQ2Zz8o3cVsD+ApXEuhH4qyrjU923CIRecjTRNT+W
- l0uIhMvOykcY0ZljqQPT2V/rOeSvgF/GKL5u92+llh28A7bwPXBf0fJxV+qMkSKebwRI
- xTGG9LcywHrPxoiYaLXsTAhN/sTfEICBpzTcI9SzHLckIelvJNSixVZsHu/Ri94PoBH3
- BWHQ==
+ d=gmail.com; s=20230601; t=1757069211; x=1757674011; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=N75ssSm8Um/3uGsHvwaswAdcEWrC1+q1BqxSLPoiKOo=;
+ b=KZ5/y5ecHyXIBkHVzh5L7ILhWKR50mP4SXxs/4qaLAttTcqEq9nMZ+XrfCjF2NCUXN
+ Hg+DKeQYc2ntF1tSscjV9GjbZItUHr21w5uujasc5N5dqccTJv0RDzZYF5Vc0NLKTFZU
+ 65J6s3iH46+Nwov8PdZ5OovYze8BF77b9ayTMJ97/nfKDbp03E5/rXwajQywRf2VPG/7
+ xE+OiUlqzzwzCYv/chUPCXgM83TwiX3q4tiWwHFDhD2Dl8YTJV7bGztWmYlEQAVUL2wn
+ lo6qELKLqet196l3zB6+NviaHTvz6FWVQYqBpMBnlCt2Jn6SLuVRFQZ3j0kpPNnRTuod
+ TkRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1757069206; x=1757674006;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=hv/yPgLnKJ+YORbqBtkb58KTGYE/7RDyge96QtFF/tM=;
- b=avl69cljo6Rs251+/uDU/0szZ6cZNV0ghxoRfRhuL73zqlEC/f1RTHyToNB+QVWfWK
- 6t6zE3t8RwIJQK2XZW6rxpfyERyQ+boWOHd7snnzTtEnHdtuF0BDqZRjtZJ8kFrkxxdK
- ZsRTXSRd9L/6wPCpkiPKjnKqN6godICAhdloNf+ZP4ApEk25Xzf6SLWr5HXRwfCXYlLH
- Fe7+FtN9y+HU+AtANfoAJuV/8U4O3ksKGFtJeTDdo/r64vert3JhjAnRoRXZS55+wDDb
- asrI0dzfwcMjH6jwl145xgdf4F+8n4vbSkdnkhMeqPgsr9MyaHA6pY6mV9Aa5Jfp9sP/
- vSlQ==
+ d=1e100.net; s=20230601; t=1757069211; x=1757674011;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=N75ssSm8Um/3uGsHvwaswAdcEWrC1+q1BqxSLPoiKOo=;
+ b=YhbMvzFJADnZMm0BOWjMoEDeTifvUJwHVur+0KUpYZs3K6SskwbbJq94Vjo2XrFbLS
+ bbOc89xA2gdZN8oNzK3XtlmPSDbb6xopuLAEGZZug7j6CLW5V+rTSxaWwL1JCke548BZ
+ QSI4NMMGo5WgmxoRG9/UrGxaZxH7ffeIe5yQPFlE/iq83VS0IjVfmgOfk8sKdK+06Vh+
+ uy9JtWPZuqt3hgJPFYwKvGimJy3z2EDOfCPB7JzHCcw4MzPVkXd+rVu532dswVQnwI5D
+ jQ6KUFahLoS6y0dq7hPAzN+bTqqPsi68Ipr3jr92SJdnhJNrzkH4bDwXWe9CNiXI0Qxv
+ 4TCw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVWvO976fL6n2Poirim4M6wMk9KF0IiPPoVsYQQ7RiMfU9sB94hfNwfmaHifFivf0HA6qQ2GnwoRw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwdSs4DAkY3RjeXbDvOg/jayu71ZjrDEKvxR/sA1tbz/ovCt13q
- 608lEYMZsVm3rwXNltQDfIOokci/fecRMEpncy+frLywSOv7wBDeA0QNykDvZqRl
-X-Gm-Gg: ASbGncsYY6VcGR5qRgKVb5sX6lCiifechKmyez4yMAmI7HjVzERc2m8iSeVe5FDDknT
- APvqaWwqf1zYdu1e6oYPynaUM6Y6JORwIKOeukH1Dp5qq7D/bZS+9d+s+GF4kyCr+tzUmADB6lp
- UpUh2kLvfiK3EEwtC8Gz39LvFP+Lk6Md0X1tyyZzcxmVpmVgHsc1TmxyQts6kXLCNosiT4MvDsT
- EJ3qcpmKtOo2alr/wFhaak8EpP7pgtD1esWpP8O0bo5NmReSKh7a+i42MRIWQDnMpkg4S/7MX9f
- VNsRWqPY5/xf787PtpGMFJtlq38d0UMhwghERZd4JpvlQCOM3Wre9XRiiFU4tD9d2Hl8ywqbhDK
- 8SvWMU6lgLFg6r4WTqZhzjzwR7xA=
-X-Google-Smtp-Source: AGHT+IH7bLUyGGXy0pqvPt7ii/T/Yxy2ef1srOt+c6lnVWD+elBXuSDQzJsy9c1lbXulq10+nnCNEw==
-X-Received: by 2002:a17:902:ecc2:b0:24f:b709:b672 with SMTP id
- d9443c01a7336-24fb7df5a6amr558715ad.19.1757069205968; 
- Fri, 05 Sep 2025 03:46:45 -0700 (PDT)
-Received: from localhost ([192.55.54.45]) by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-7727bce1b58sm8101659b3a.9.2025.09.05.03.46.44
+ AJvYcCWKm8ai3fqrxn6w3ozTSC4uYmWrurEE280cDuyIVLCNUZh+uiucJNxxs2l9qKCNKHwSMiCeo8o0xw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzUNgxGeZeqrD7E1WO9hENaPUyu7dfejReRYpSG7ta+f7s1fAjM
+ WlsDFqit2cfij9wEvPWzOost6k8QD3M9GhHwDJabT9BKvNNetJv7HfJrxwJCUep7
+X-Gm-Gg: ASbGncueQ1Ij85S5tvg74RKH2A+fuUEfQsN2kPt+EoIaNriLPDesfZjva5WKRNtN7NQ
+ qkIJZQf1g9Be3ZEv6QMPxK3F6AlvL9/0eTE4msWj6NuVAmThqkGdZRDWVQ5jhaYVA9VTn5g6BAH
+ q2cuAN8R/sE2IG+CirZiaCURhw9L0bXvq9bokiRH5uGb3QaX3beJjE7SUNZhWh2M/wO/iIEc1uM
+ OQ0JYWsbmV8oq4D3wnWNwl9hro2SyOH8KoBFaNwC/WV8IJotoMVN7bhRni2F8MvX0GiHDvtjF5Y
+ tYl/9SDHEE9E6rdm0uO2RkvRUT5Pd3ds3ny83/J55xTUxA6rehIXxCcy7pXa/BRQWIU1Qnh3sBw
+ PhUwiVnRSyeNiRfXc3xs+b2GOIw1TCq5PysDNIwwv
+X-Google-Smtp-Source: AGHT+IGG2BrplzuiqTRlxJRUhW0eusqEtbw3mNpvRdMaQj3DMEDi0JZmoBjP+nmeKEwZQwj61RcxuA==
+X-Received: by 2002:a17:90b:2fc5:b0:32b:355a:9de with SMTP id
+ 98e67ed59e1d1-32b355a0c1emr14791408a91.32.1757069210960; 
+ Fri, 05 Sep 2025 03:46:50 -0700 (PDT)
+Received: from localhost ([134.134.137.72]) by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-77235e27440sm20316166b3a.66.2025.09.05.03.46.49
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 05 Sep 2025 03:46:45 -0700 (PDT)
+ Fri, 05 Sep 2025 03:46:50 -0700 (PDT)
 From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH 1/3] drm/i915/display: take out dead code
-Date: Fri,  5 Sep 2025 13:46:24 +0300
-Message-ID: <20250905104626.1274147-1-juhapekka.heikkila@gmail.com>
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH 2/3] drm/i915/display: log fail from intel_sdvo_enable_hotplug
+Date: Fri,  5 Sep 2025 13:46:25 +0300
+Message-ID: <20250905104626.1274147-2-juhapekka.heikkila@gmail.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250905104626.1274147-1-juhapekka.heikkila@gmail.com>
+References: <20250905104626.1274147-1-juhapekka.heikkila@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -86,29 +89,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-if __waitfor timeout, ret will have -ETIMEDOUT. Then if condition
-was met, and read_ret will have error that's handled.
-Then if ret was zero, read_ret was zero ksv_ready must have value.
+Report in log if intel_sdvo_enable_hotplug failed
 
 Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdcp.c | 2 --
- 1 file changed, 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_sdvo.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 42202c8bb066..2e34b625c80b 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -334,8 +334,6 @@ static int intel_hdcp_poll_ksv_fifo(struct intel_digital_port *dig_port,
- 		return ret;
- 	if (read_ret)
- 		return read_ret;
--	if (!ksv_ready)
--		return -ETIMEDOUT;
+diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
+index 87aff2754f69..99a5ef1401a8 100644
+--- a/drivers/gpu/drm/i915/display/intel_sdvo.c
++++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+@@ -2052,8 +2052,10 @@ static void intel_sdvo_enable_hotplug(struct intel_encoder *encoder)
+ {
+ 	struct intel_sdvo *intel_sdvo = to_sdvo(encoder);
  
- 	return 0;
+-	intel_sdvo_write_cmd(intel_sdvo, SDVO_CMD_SET_ACTIVE_HOT_PLUG,
+-			     &intel_sdvo->hotplug_active, 2);
++	if (!intel_sdvo_write_cmd(intel_sdvo, SDVO_CMD_SET_ACTIVE_HOT_PLUG,
++				  &intel_sdvo->hotplug_active, 2))
++		drm_warn(intel_sdvo->base.base.dev,
++			 "Failed to enable hotplug on SDVO encoder\n");
  }
+ 
+ static enum intel_hotplug_state
 -- 
 2.43.0
 
