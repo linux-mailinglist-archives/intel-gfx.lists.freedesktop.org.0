@@ -2,61 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B6F8B45311
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Sep 2025 11:23:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69D57B4FC44
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Sep 2025 15:21:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4ABC710EB49;
-	Fri,  5 Sep 2025 09:23:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5B0010E70E;
+	Tue,  9 Sep 2025 13:21:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lH/MFhLM";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="jxZb3aPz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44DB210EB47;
- Fri,  5 Sep 2025 09:23:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757064208; x=1788600208;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=LW4GdXDjqgIsBmErnBuLzrecGYXb+QKUQL1sCZTTddA=;
- b=lH/MFhLMM2yWRNQJ7YV3lZdnPzhle2tA8F7ccvnwvExl2TlR83wPLw1r
- ruEZOeDN23FngsLcrdYFbyb4OAbzTcdFXx8UhQzDoquY3EmmdVh+lAOiA
- /FD6c86Mdf/1ddGIzgaWdQGv9GzvAnZ7tfE23LpVWDdpnMVg4/TwaNH5Y
- s2eSRAxkrC8jGAz9aLoyNGfdDHrjLugE9liJh4LDy4DpKK2VupIJN9LzQ
- SyuD/MUsuBJp36vweceGuPBY5jdcMdhWOcawJgePmTf5N+do0rCZ6MuCv
- Ed+ZQ26Wuzz9ykU7AFuE2SjjQURs6F5N9kl2JkwRfaVw1erAVFt/c+JKb g==;
-X-CSE-ConnectionGUID: FEcYyi9iRPG9g9467/yVcA==
-X-CSE-MsgGUID: uD0rD+hQRa2zi57iFs6k3g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="59333354"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="59333354"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 02:23:28 -0700
-X-CSE-ConnectionGUID: qdnjiA7sRqS1BRTSRidgtA==
-X-CSE-MsgGUID: fuXbXBM5SZ+AWPXGhAJz8w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,240,1751266800"; d="scan'208";a="172006543"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.33])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 02:23:27 -0700
-Date: Fri, 5 Sep 2025 12:23:23 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 2/9] drm/{i915, xe}/fbdev: add intel_fbdev_fb_pitch_align()
-Message-ID: <aLqsC87Ol_zCXOkN@intel.com>
-References: <cover.1756931441.git.jani.nikula@intel.com>
- <ae51d1e224048bdc87bf7a56d8f5ebd0fbb6a383.1756931441.git.jani.nikula@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ae51d1e224048bdc87bf7a56d8f5ebd0fbb6a383.1756931441.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Received: from mail-wr1-f73.google.com (mail-wr1-f73.google.com
+ [209.85.221.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 830FB10EB4E
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Sep 2025 09:32:42 +0000 (UTC)
+Received: by mail-wr1-f73.google.com with SMTP id
+ ffacd0b85a97d-3e1e7752208so765011f8f.3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 05 Sep 2025 02:32:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20230601; t=1757064761; x=1757669561;
+ darn=lists.freedesktop.org; 
+ h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=WUQQxacMUqRahxycdA3h1y3Z0OF1IgYvOPyUtwNUMm8=;
+ b=jxZb3aPzz7zncvaJhdbXuB+lCt+I6STZcdZjYuNN+/oCMsRdH50Yvjzg0qujMM3Qsz
+ d4jIgeb+zaj9t8GtbxGqjvnVkydXdFNe6mBZOm7GwTVzjsWEB3t/RAZeLwcHE68HpsrK
+ wfkpHm2O2ed1jFdtDdeGPgZZQD4Q63W3HFBNspChcdglprD2in1UAe4heZisa8/Nhn9/
+ TRRbIQMCrjaIsBpK9xm98Y9PE4vKrpv/fRToVHS67FIIJJTu8h0YnTy+oFNyCQhGbmSu
+ ZcmKYMhFxny1P/pJk3c+JBss9E3p3c4sBIOyZbB1CTmo9MgAknbjUVT7MFBe6OdRW4Pa
+ shaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1757064761; x=1757669561;
+ h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=WUQQxacMUqRahxycdA3h1y3Z0OF1IgYvOPyUtwNUMm8=;
+ b=Xv2yJMXVstov+DEjLFrWYxyNGegL0idLqBiLcpjv6WZQKrD7fJlNmtEpbVc+2UNw9c
+ hA5FDUqbj3B4U5Y/Leyk8GbsxUre+eIdM11VEXKu1KtlSY9lze/G59BLY5jJhiSsgcyw
+ BKpBaWpOcFd9bOE0N6nvTv3VP64Qg1uFus4S+oKD52FQtYsxmHao8zrvcDIpKh+RHTel
+ 4Xy6jSQ4ucQd2ZYU0kd4UcYcZQb9ZnAThwaGiowTL1lblykFN3IYHpYj5uyRfUJKGN6g
+ 1KBMQ35lfY7Ms51BUzrLMCDf5xBHAO96rWuVXI8oLtyCA5DZIxyt/D12M/stCuM32+7q
+ hwPA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVayNioiZBlyehiRgHiCDaANGmyKetYpyqsGOiPOxPJTCpzGUpeF+42xuI4kykkH8++/5WR6vy4Kto=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz1+juYb5MuCZK1afu2CZjkAK7P3xWwzmsXtX2+WXxro5AMulkD
+ DSygMDyeiUA2hQoufuKTGcs6QnblcQeLzPtl0RG9RHPrMXgWOBIgaRo1jDXpmXGKtJf8A/YSK9F
+ 9d+5sXM7Fwcxg0qKV/Q==
+X-Google-Smtp-Source: AGHT+IHZDkHcj/6VcYiM7mL8WwChssJZFLeAxiSE8KdBYC7hKhBpbzlSoeURD7a3i2UI42tf17qNH1ABChvUeQQ=
+X-Received: from wrbm16.prod.google.com ([2002:adf:a3d0:0:b0:3db:bfe0:7582])
+ (user=aliceryhl job=prod-delivery.src-stubby-dispatcher) by
+ 2002:a05:6000:40d9:b0:3e0:43f0:b7ad with SMTP id
+ ffacd0b85a97d-3e043f0bd75mr4771289f8f.18.1757064761059; 
+ Fri, 05 Sep 2025 02:32:41 -0700 (PDT)
+Date: Fri, 5 Sep 2025 09:32:39 +0000
+Mime-Version: 1.0
+Message-ID: <aLquN1YvdyI_6PJS@google.com>
+Subject: [PULL] drm-rust-fixes 2025-09-05
+From: Alice Ryhl <aliceryhl@google.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ "Thomas =?utf-8?Q?Hellstr=C3=B6m?=" <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ dim-tools@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+X-Mailman-Approved-At: Tue, 09 Sep 2025 13:21:25 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,97 +87,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 03, 2025 at 11:31:59PM +0300, Jani Nikula wrote:
-> Add new helper intel_fbdev_fb_pitch_align() in preparation for further
-> refactoring. The alignment is different for i915 and xe.
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_fbdev_fb.c | 8 ++++++--
->  drivers/gpu/drm/i915/display/intel_fbdev_fb.h | 3 +++
->  drivers/gpu/drm/xe/display/intel_fbdev_fb.c   | 8 ++++++--
->  3 files changed, 15 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
-> index 9c557917d781..d1c03d7b9bdc 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
-> @@ -13,6 +13,11 @@
->  #include "intel_fb.h"
->  #include "intel_fbdev_fb.h"
->  
-> +u32 intel_fbdev_fb_pitch_align(u32 stride)
-> +{
-> +	return ALIGN(stride, 64);
-> +}
-> +
->  struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
->  					       struct drm_fb_helper_surface_size *sizes)
->  {
-> @@ -30,8 +35,7 @@ struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
->  	mode_cmd.width = sizes->surface_width;
->  	mode_cmd.height = sizes->surface_height;
->  
-> -	mode_cmd.pitches[0] = ALIGN(mode_cmd.width *
-> -				    DIV_ROUND_UP(sizes->surface_bpp, 8), 64);
-> +	mode_cmd.pitches[0] = intel_fbdev_fb_pitch_align(mode_cmd.width * DIV_ROUND_UP(sizes->surface_bpp, 8));
->  	mode_cmd.pixel_format = drm_mode_legacy_fb_format(sizes->surface_bpp,
->  							  sizes->surface_depth);
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
-> index 668ae355f5e5..caeb543d5efc 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
-> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
-> @@ -6,6 +6,8 @@
->  #ifndef __INTEL_FBDEV_FB_H__
->  #define __INTEL_FBDEV_FB_H__
->  
-> +#include <linux/types.h>
-> +
->  struct drm_device;
->  struct drm_fb_helper_surface_size;
->  struct drm_gem_object;
-> @@ -13,6 +15,7 @@ struct fb_info;
->  struct i915_vma;
->  struct intel_display;
->  
-> +u32 intel_fbdev_fb_pitch_align(u32 stride);
->  struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
->  					       struct drm_fb_helper_surface_size *sizes);
->  int intel_fbdev_fb_fill_info(struct intel_display *display, struct fb_info *info,
-> diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
-> index bafca1059a40..fd2c40020eea 100644
-> --- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
-> +++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
-> @@ -15,6 +15,11 @@
->  
->  #include <generated/xe_wa_oob.h>
->  
-> +u32 intel_fbdev_fb_pitch_align(u32 stride)
-> +{
-> +	return ALIGN(stride, XE_PAGE_SIZE);
+Hi Dave and Sima,
 
-I think someone needs to explain what the heck this extra alignment
-is trying to achieve? I suspect it just needs to get nuked.
+Here's the first PR for the drm-rust-fixes branch. It includes the
+commit to add the drm-rust repository to MAINTAINERS.
 
-> +}
-> +
->  struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
->  					       struct drm_fb_helper_surface_size *sizes)
->  {
-> @@ -31,8 +36,7 @@ struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
->  	mode_cmd.width = sizes->surface_width;
->  	mode_cmd.height = sizes->surface_height;
->  
-> -	mode_cmd.pitches[0] = ALIGN(mode_cmd.width *
-> -				    DIV_ROUND_UP(sizes->surface_bpp, 8), XE_PAGE_SIZE);
-> +	mode_cmd.pitches[0] = intel_fbdev_fb_pitch_align(mode_cmd.width * DIV_ROUND_UP(sizes->surface_bpp, 8));
->  	mode_cmd.pixel_format = drm_mode_legacy_fb_format(sizes->surface_bpp,
->  							  sizes->surface_depth);
->  
-> -- 
-> 2.47.2
+The following changes since commit b320789d6883cc00ac78ce83bccbfe7ed58afcf0:
+
+  Linux 6.17-rc4 (2025-08-31 15:33:07 -0700)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/rust/kernel.git tags/drm-rust-fixes-2025-09-05
+
+for you to fetch changes up to 349510052f765b6eb9c2a21d0ffe08ba61fa683c:
+
+  MAINTAINERS: Add drm-rust tree for Rust DRM drivers and infrastructure (2025-09-05 07:07:08 +0000)
+
+----------------------------------------------------------------
+- Add drm-rust tree to MAINTAINERS
+- Require CONFIG_64BIT for Nova
+
+----------------------------------------------------------------
+Danilo Krummrich (2):
+      gpu: nova-core: depend on CONFIG_64BIT
+      MAINTAINERS: Add drm-rust tree for Rust DRM drivers and infrastructure
+
+ MAINTAINERS                   | 11 ++++++++++-
+ drivers/gpu/nova-core/Kconfig |  1 +
+ 2 files changed, 11 insertions(+), 1 deletion(-)
 
 -- 
-Ville Syrjälä
-Intel
+Alice
