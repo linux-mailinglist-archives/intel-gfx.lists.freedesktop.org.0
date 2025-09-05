@@ -2,60 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EB57B454EA
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Sep 2025 12:42:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADE0FB45530
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Sep 2025 12:46:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AC1110EB7C;
-	Fri,  5 Sep 2025 10:41:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C29D10E2D5;
+	Fri,  5 Sep 2025 10:46:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AiWYY7EU";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RA1mrOiR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06DDB10EB7B;
- Fri,  5 Sep 2025 10:41:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757068917; x=1788604917;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=IoiYsvwp+n5saJuhGWWB0NI1sBGBy5zXDS1pu1r878c=;
- b=AiWYY7EUrinkd3cYzEf754uGHL+Ni1T9x0dgcK5PwhTiW65IehhNY5Fo
- 2eKZrbQFd4MMF9rXGz1SoMs/Twml7EhFFeYzfxsUMgF4RKOHKhx5jm4Ib
- AJdzgqFbWmecSnIEWMUFpNm4hP90G6VI058kD5Qa3Kz3gE1ZVX9ToKfbr
- 1f4qR2vg4srdfM1j7A24QRUMkxsJHDJfgwOkuBIXiO/iZSo5JtstSiltN
- uoiFGHVyi1aXarw7c7iAM60pljr2bpJOR2WkgciHW101iO42L+4Bs9lTi
- u+ijUz4LhPpc3XSuwxcrXkgM2faONh1sQ39zoUv08TgSkVzZRRY12SftU w==;
-X-CSE-ConnectionGUID: NgL5+SPzTFq82B4d/mzB9g==
-X-CSE-MsgGUID: 46YHHbZ1Sau1/V8npDPNWg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11543"; a="58629837"
-X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; d="scan'208";a="58629837"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 03:41:57 -0700
-X-CSE-ConnectionGUID: Zd/HiO9QSAmynFucjeVVoA==
-X-CSE-MsgGUID: FeOS1KwORcqphGJDkaAltw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; d="scan'208";a="171339491"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.159])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 03:41:54 -0700
-From: Jani Nikula <jani.nikula@intel.com>
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com
+ [209.85.215.175])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2C9110E2D5;
+ Fri,  5 Sep 2025 10:46:46 +0000 (UTC)
+Received: by mail-pg1-f175.google.com with SMTP id
+ 41be03b00d2f7-b4d118e13a1so1338119a12.3; 
+ Fri, 05 Sep 2025 03:46:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1757069206; x=1757674006; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=hv/yPgLnKJ+YORbqBtkb58KTGYE/7RDyge96QtFF/tM=;
+ b=RA1mrOiRQ0a/pQoM6rcBJhVAE9NBulShF/etyrYyCb5sMYBWIm9SK/pP7fBfqEhHPm
+ jkVGLxTtDekj6zFm5fwIwR04f7rzTc+ipZhZ9ZNqRPc1wmnJ1/zx9USrprxsuBlSjhcx
+ CCqutLWE/xR/4caKWM+CtuqUYzeIQ2Zz8o3cVsD+ApXEuhH4qyrjU923CIRecjTRNT+W
+ l0uIhMvOykcY0ZljqQPT2V/rOeSvgF/GKL5u92+llh28A7bwPXBf0fJxV+qMkSKebwRI
+ xTGG9LcywHrPxoiYaLXsTAhN/sTfEICBpzTcI9SzHLckIelvJNSixVZsHu/Ri94PoBH3
+ BWHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1757069206; x=1757674006;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=hv/yPgLnKJ+YORbqBtkb58KTGYE/7RDyge96QtFF/tM=;
+ b=avl69cljo6Rs251+/uDU/0szZ6cZNV0ghxoRfRhuL73zqlEC/f1RTHyToNB+QVWfWK
+ 6t6zE3t8RwIJQK2XZW6rxpfyERyQ+boWOHd7snnzTtEnHdtuF0BDqZRjtZJ8kFrkxxdK
+ ZsRTXSRd9L/6wPCpkiPKjnKqN6godICAhdloNf+ZP4ApEk25Xzf6SLWr5HXRwfCXYlLH
+ Fe7+FtN9y+HU+AtANfoAJuV/8U4O3ksKGFtJeTDdo/r64vert3JhjAnRoRXZS55+wDDb
+ asrI0dzfwcMjH6jwl145xgdf4F+8n4vbSkdnkhMeqPgsr9MyaHA6pY6mV9Aa5Jfp9sP/
+ vSlQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVWvO976fL6n2Poirim4M6wMk9KF0IiPPoVsYQQ7RiMfU9sB94hfNwfmaHifFivf0HA6qQ2GnwoRw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwdSs4DAkY3RjeXbDvOg/jayu71ZjrDEKvxR/sA1tbz/ovCt13q
+ 608lEYMZsVm3rwXNltQDfIOokci/fecRMEpncy+frLywSOv7wBDeA0QNykDvZqRl
+X-Gm-Gg: ASbGncsYY6VcGR5qRgKVb5sX6lCiifechKmyez4yMAmI7HjVzERc2m8iSeVe5FDDknT
+ APvqaWwqf1zYdu1e6oYPynaUM6Y6JORwIKOeukH1Dp5qq7D/bZS+9d+s+GF4kyCr+tzUmADB6lp
+ UpUh2kLvfiK3EEwtC8Gz39LvFP+Lk6Md0X1tyyZzcxmVpmVgHsc1TmxyQts6kXLCNosiT4MvDsT
+ EJ3qcpmKtOo2alr/wFhaak8EpP7pgtD1esWpP8O0bo5NmReSKh7a+i42MRIWQDnMpkg4S/7MX9f
+ VNsRWqPY5/xf787PtpGMFJtlq38d0UMhwghERZd4JpvlQCOM3Wre9XRiiFU4tD9d2Hl8ywqbhDK
+ 8SvWMU6lgLFg6r4WTqZhzjzwR7xA=
+X-Google-Smtp-Source: AGHT+IH7bLUyGGXy0pqvPt7ii/T/Yxy2ef1srOt+c6lnVWD+elBXuSDQzJsy9c1lbXulq10+nnCNEw==
+X-Received: by 2002:a17:902:ecc2:b0:24f:b709:b672 with SMTP id
+ d9443c01a7336-24fb7df5a6amr558715ad.19.1757069205968; 
+ Fri, 05 Sep 2025 03:46:45 -0700 (PDT)
+Received: from localhost ([192.55.54.45]) by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-7727bce1b58sm8101659b3a.9.2025.09.05.03.46.44
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 05 Sep 2025 03:46:45 -0700 (PDT)
+From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Matt Roper <matthew.d.roper@intel.com>, stable@vger.kernel.org
-Subject: [PATCH] drm/i915/power: fix size for for_each_set_bit() in abox
- iteration
-Date: Fri,  5 Sep 2025 13:41:49 +0300
-Message-ID: <20250905104149.1144751-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.2
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
+ Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH 1/3] drm/i915/display: take out dead code
+Date: Fri,  5 Sep 2025 13:46:24 +0300
+Message-ID: <20250905104626.1274147-1-juhapekka.heikkila@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,48 +86,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-for_each_set_bit() expects size to be in bits, not bytes. The abox mask
-iteration uses bytes, but it works by coincidence, because the local
-variable holding the mask is unsigned long, and the mask only ever has
-bit 2 as the highest bit. Using a smaller type could lead to subtle and
-very hard to track bugs.
+if __waitfor timeout, ret will have -ETIMEDOUT. Then if condition
+was met, and read_ret will have error that's handled.
+Then if ret was zero, read_ret was zero ksv_ready must have value.
 
-Fixes: 62afef2811e4 ("drm/i915/rkl: RKL uses ABOX0 for pixel transfers")
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: <stable@vger.kernel.org> # v5.9+
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_power.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 7340d5a71673..6f56ce939f00 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -1174,7 +1174,7 @@ static void icl_mbus_init(struct intel_display *display)
- 	if (DISPLAY_VER(display) == 12)
- 		abox_regs |= BIT(0);
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index 42202c8bb066..2e34b625c80b 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -334,8 +334,6 @@ static int intel_hdcp_poll_ksv_fifo(struct intel_digital_port *dig_port,
+ 		return ret;
+ 	if (read_ret)
+ 		return read_ret;
+-	if (!ksv_ready)
+-		return -ETIMEDOUT;
  
--	for_each_set_bit(i, &abox_regs, sizeof(abox_regs))
-+	for_each_set_bit(i, &abox_regs, BITS_PER_TYPE(abox_regs))
- 		intel_de_rmw(display, MBUS_ABOX_CTL(i), mask, val);
+ 	return 0;
  }
- 
-@@ -1639,11 +1639,11 @@ static void tgl_bw_buddy_init(struct intel_display *display)
- 	if (table[config].page_mask == 0) {
- 		drm_dbg_kms(display->drm,
- 			    "Unknown memory configuration; disabling address buddy logic.\n");
--		for_each_set_bit(i, &abox_mask, sizeof(abox_mask))
-+		for_each_set_bit(i, &abox_mask, BITS_PER_TYPE(abox_mask))
- 			intel_de_write(display, BW_BUDDY_CTL(i),
- 				       BW_BUDDY_DISABLE);
- 	} else {
--		for_each_set_bit(i, &abox_mask, sizeof(abox_mask)) {
-+		for_each_set_bit(i, &abox_mask, BITS_PER_TYPE(abox_mask)) {
- 			intel_de_write(display, BW_BUDDY_PAGE_MASK(i),
- 				       table[config].page_mask);
- 
 -- 
-2.47.2
+2.43.0
 
