@@ -2,85 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C2FBB4FC5A
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Sep 2025 15:21:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EB57B454EA
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Sep 2025 12:42:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64DD510E728;
-	Tue,  9 Sep 2025 13:21:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4AC1110EB7C;
+	Fri,  5 Sep 2025 10:41:58 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AiWYY7EU";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6AE210E281;
- Fri,  5 Sep 2025 10:21:20 +0000 (UTC)
-X-UUID: 0e7797928a4211f0b29709d653e92f7d-20250905
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.45, REQID:14f482f1-1678-4861-8721-a3d21e06eb8e, IP:0,
- U
- RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
- :release,TS:-5
-X-CID-META: VersionHash:6493067, CLOUDID:91ab872eaa9ae72f0b505e024ab096ae,
- BulkI
- D:nil,BulkQuantity:0,Recheck:0,SF:81|82|83|102,TC:nil,Content:0|52,EDM:-3,
- IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:
- 0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 0e7797928a4211f0b29709d653e92f7d-20250905
-Received: from mail.kylinos.cn [(10.44.16.175)] by mailgw.kylinos.cn
- (envelope-from <zhangzihuan@kylinos.cn>) (Generic MTA)
- with ESMTP id 829448159; Fri, 05 Sep 2025 18:21:16 +0800
-Received: from mail.kylinos.cn (localhost [127.0.0.1])
- by mail.kylinos.cn (NSMail) with SMTP id E4DD9E008FA4;
- Fri,  5 Sep 2025 18:21:15 +0800 (CST)
-X-ns-mid: postfix-68BAB99B-76698910
-Received: from [172.25.120.24] (unknown [172.25.120.24])
- by mail.kylinos.cn (NSMail) with ESMTPA id 96DA5E008FA3;
- Fri,  5 Sep 2025 18:21:07 +0800 (CST)
-Message-ID: <59305500-9ecf-4eeb-b4dc-9c9eed02454f@kylinos.cn>
-Date: Fri, 5 Sep 2025 18:21:06 +0800
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06DDB10EB7B;
+ Fri,  5 Sep 2025 10:41:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1757068917; x=1788604917;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=IoiYsvwp+n5saJuhGWWB0NI1sBGBy5zXDS1pu1r878c=;
+ b=AiWYY7EUrinkd3cYzEf754uGHL+Ni1T9x0dgcK5PwhTiW65IehhNY5Fo
+ 2eKZrbQFd4MMF9rXGz1SoMs/Twml7EhFFeYzfxsUMgF4RKOHKhx5jm4Ib
+ AJdzgqFbWmecSnIEWMUFpNm4hP90G6VI058kD5Qa3Kz3gE1ZVX9ToKfbr
+ 1f4qR2vg4srdfM1j7A24QRUMkxsJHDJfgwOkuBIXiO/iZSo5JtstSiltN
+ uoiFGHVyi1aXarw7c7iAM60pljr2bpJOR2WkgciHW101iO42L+4Bs9lTi
+ u+ijUz4LhPpc3XSuwxcrXkgM2faONh1sQ39zoUv08TgSkVzZRRY12SftU w==;
+X-CSE-ConnectionGUID: NgL5+SPzTFq82B4d/mzB9g==
+X-CSE-MsgGUID: 46YHHbZ1Sau1/V8npDPNWg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11543"; a="58629837"
+X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; d="scan'208";a="58629837"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2025 03:41:57 -0700
+X-CSE-ConnectionGUID: Zd/HiO9QSAmynFucjeVVoA==
+X-CSE-MsgGUID: FeOS1KwORcqphGJDkaAltw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; d="scan'208";a="171339491"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.159])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2025 03:41:54 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>, stable@vger.kernel.org
+Subject: [PATCH] drm/i915/power: fix size for for_each_set_bit() in abox
+ iteration
+Date: Fri,  5 Sep 2025 13:41:49 +0300
+Message-ID: <20250905104149.1144751-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.2
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 08/10] thermal: imx: Use scope-based cleanup helper
-To: Jonathan Cameron <jonathan.cameron@huawei.com>
-Cc: "Rafael J . wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>,
- Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
- Michael Ellerman <mpe@ellerman.id.au>, Krzysztof Kozlowski
- <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- MyungJoo Ham <myungjoo.ham@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Daniel Lezcano <daniel.lezcano@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
- Eduardo Valentin <edubezval@gmail.com>, Keerthy <j-keerthy@ti.com>,
- Ben Horgan <ben.horgan@arm.com>, zhenglifeng <zhenglifeng1@huawei.com>,
- Zhang Rui <rui.zhang@intel.com>, Len Brown <lenb@kernel.org>,
- Lukasz Luba <lukasz.luba@arm.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Beata Michalska <beata.michalska@arm.com>, Fabio Estevam
- <festevam@gmail.com>, Pavel Machek <pavel@kernel.org>,
- Sumit Gupta <sumitg@nvidia.com>,
- Prasanna Kumar T S M <ptsm@linux.microsoft.com>,
- Sudeep Holla <sudeep.holla@arm.com>, Yicong Yang <yangyicong@hisilicon.com>,
- linux-pm@vger.kernel.org, linux-acpi@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- imx@lists.linux.dev, linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250903131733.57637-1-zhangzihuan@kylinos.cn>
- <20250903131733.57637-9-zhangzihuan@kylinos.cn>
- <20250905110551.00006588@huawei.com>
-From: Zihuan Zhang <zhangzihuan@kylinos.cn>
-In-Reply-To: <20250905110551.00006588@huawei.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Tue, 09 Sep 2025 13:21:25 +0000
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,18 +72,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+for_each_set_bit() expects size to be in bits, not bytes. The abox mask
+iteration uses bytes, but it works by coincidence, because the local
+variable holding the mask is unsigned long, and the mask only ever has
+bit 2 as the highest bit. Using a smaller type could lead to subtle and
+very hard to track bugs.
 
-=E5=9C=A8 2025/9/5 18:05, Jonathan Cameron =E5=86=99=E9=81=93:
-> This radically changes the lifetime of the reference to policy.
-> If that is valid, then I'd expect a lot more description of why!
+Fixes: 62afef2811e4 ("drm/i915/rkl: RKL uses ABOX0 for pixel transfers")
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: <stable@vger.kernel.org> # v5.9+
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_power.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-
-Thanks for your comment.
-
-Initially I thought policy was only used within this function, so I=20
-moved it here.
-After your feedback, I realize that this change might affect the=20
-reference lifetime in ways I didn=E2=80=99t fully consider. I need to rev=
-iew it=20
-further to ensure it=E2=80=99s safe.
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 7340d5a71673..6f56ce939f00 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -1174,7 +1174,7 @@ static void icl_mbus_init(struct intel_display *display)
+ 	if (DISPLAY_VER(display) == 12)
+ 		abox_regs |= BIT(0);
+ 
+-	for_each_set_bit(i, &abox_regs, sizeof(abox_regs))
++	for_each_set_bit(i, &abox_regs, BITS_PER_TYPE(abox_regs))
+ 		intel_de_rmw(display, MBUS_ABOX_CTL(i), mask, val);
+ }
+ 
+@@ -1639,11 +1639,11 @@ static void tgl_bw_buddy_init(struct intel_display *display)
+ 	if (table[config].page_mask == 0) {
+ 		drm_dbg_kms(display->drm,
+ 			    "Unknown memory configuration; disabling address buddy logic.\n");
+-		for_each_set_bit(i, &abox_mask, sizeof(abox_mask))
++		for_each_set_bit(i, &abox_mask, BITS_PER_TYPE(abox_mask))
+ 			intel_de_write(display, BW_BUDDY_CTL(i),
+ 				       BW_BUDDY_DISABLE);
+ 	} else {
+-		for_each_set_bit(i, &abox_mask, sizeof(abox_mask)) {
++		for_each_set_bit(i, &abox_mask, BITS_PER_TYPE(abox_mask)) {
+ 			intel_de_write(display, BW_BUDDY_PAGE_MASK(i),
+ 				       table[config].page_mask);
+ 
+-- 
+2.47.2
 
