@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3813B45B4C
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Sep 2025 16:59:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E528B45B4E
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Sep 2025 16:59:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 493C010EBC8;
-	Fri,  5 Sep 2025 14:59:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C33AD10EBDB;
+	Fri,  5 Sep 2025 14:59:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IQ/nnS4Q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WzY4VVHy";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14D5110EBC8;
- Fri,  5 Sep 2025 14:59:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CCD110EBDC;
+ Fri,  5 Sep 2025 14:59:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757084350; x=1788620350;
+ t=1757084353; x=1788620353;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2O+u2fzqS/wt4ZLbwbWvr7M6ZRlUD/vt6Pgtr9ahWHs=;
- b=IQ/nnS4QyZjg5jvdiW+z/8HABQpEIvMNgolvCxLJ7T7kVLsGLUHLgZEA
- LANeE4G8084hYZ2Uhl/Hj/dLpjBUoJTdGSO43BoZdHTfvMfd7MCXy1eeG
- wJ5Oc6vVaUmG57GVmxUGmGS1uKQcflZf7CNt04CIPm+aMWAtXHLx81nKD
- Rn72gVKdmEdqtLFpEm0GnRk5pbIM/gHQZTHlGbPcrlgC2Pm4EkQpYJ1iD
- JHowoklOK/SyvHIhLafrZJEiL5BYtSCa+5sldHuw0KuWkvp43usNQ9eh9
- BU0okyyRT0kl2k9Q/m4uFW3zfbfroii2A/JIcxm6sEgEt9eiLRtq+KNnI w==;
-X-CSE-ConnectionGUID: R6NT+vgVTUSfEFhFtvFcRw==
-X-CSE-MsgGUID: +2Z8ZIaETd2pbxF0EeiNnw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11544"; a="70054398"
-X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; d="scan'208";a="70054398"
+ bh=03g3KneuXcYeqcrujvbgCN65qcFiFLAK4TJlnG99ZDM=;
+ b=WzY4VVHyzkY+Qq10Fohaa9ruEw1QorM0J6GZfxL9ZBzhrlojsEgoO0ko
+ pbSDfMiixyJVtjty5By0qcgdxkk3p5vv1re2q0BktR99ILSAbqCEaa6vB
+ NvO2h+1riJlBkiqtQHK3ylaMFspRvFIiGaZ7b7WnbojpzvZM61jMhYACS
+ OwKAIjVzah84d7oZJF2uISc06NGYqnaElzjQE9PF1wSzl00FMSF2SxeP4
+ x1ud9ooXrInlYdwJQPTWEgSk+ab5Wr8h7VTwIi7Zy3LzXhXHOdbyRfaSb
+ /q5xxjnH4753W4Xhg0977JikPc6XW7187EE18aE6tT15imej3Ax+4LQBP g==;
+X-CSE-ConnectionGUID: cphm6yhLQGqfGDf6J/lOLg==
+X-CSE-MsgGUID: awuBW/SjQRqrvVjfiCcn8A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11544"; a="70054400"
+X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; d="scan'208";a="70054400"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 07:59:10 -0700
-X-CSE-ConnectionGUID: PI6V6O/5TCSDqNtSG3xDMA==
-X-CSE-MsgGUID: EVdx1uyYSMaBEvJ2IRCfQw==
+ 05 Sep 2025 07:59:13 -0700
+X-CSE-ConnectionGUID: Y/UnQnjGTviHPtS4jMRjuA==
+X-CSE-MsgGUID: 93dv8IBSSY22eSZyTfun7Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; d="scan'208";a="172987816"
+X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; d="scan'208";a="172987817"
 Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.33])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 07:59:08 -0700
+ 05 Sep 2025 07:59:12 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 09/13] drm/i915: Extract sanitize_wm_latency()
-Date: Fri,  5 Sep 2025 17:58:28 +0300
-Message-ID: <20250905145832.12097-10-ville.syrjala@linux.intel.com>
+Subject: [PATCH 10/13] drm/i915: Flatten sanitize_wm_latency() a bit
+Date: Fri,  5 Sep 2025 17:58:29 +0300
+Message-ID: <20250905145832.12097-11-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20250905145832.12097-1-ville.syrjala@linux.intel.com>
 References: <20250905145832.12097-1-ville.syrjala@linux.intel.com>
@@ -72,62 +72,38 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Pull the "zero out invalid WM latencies" stuff into a helper.
-Mainly to avoid mixing higher level and lower level stuff in
-the same adjust_wm_latency() function.
+Flatten the loop inside sanitize_wm_latency() a bit
+by using 'continue'.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_watermark.c | 23 ++++++++++++++------
- 1 file changed, 16 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 98a397772678..e3305a399ddf 100644
+index e3305a399ddf..e11ba1a822f4 100644
 --- a/drivers/gpu/drm/i915/display/skl_watermark.c
 +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -3217,14 +3217,10 @@ static int wm_read_latency(struct intel_display *display)
- 		return 2;
- }
- 
--static void
--adjust_wm_latency(struct intel_display *display)
-+static void sanitize_wm_latency(struct intel_display *display)
- {
- 	u16 *wm = display->wm.skl_latency;
--	int i, level, num_levels = display->wm.num_levels;
--
--	if (display->platform.dg2)
--		multiply_wm_latency(display, 2);
-+	int level, num_levels = display->wm.num_levels;
- 
- 	/*
- 	 * If a level n (n > 1) has a 0us latency, all levels m (m >= n)
-@@ -3233,11 +3229,24 @@ adjust_wm_latency(struct intel_display *display)
+@@ -3228,13 +3228,13 @@ static void sanitize_wm_latency(struct intel_display *display)
+ 	 * of the punit to satisfy this requirement.
  	 */
  	for (level = 1; level < num_levels; level++) {
- 		if (wm[level] == 0) {
-+			int i;
-+
- 			for (i = level + 1; i < num_levels; i++)
- 				wm[i] = 0;
--			break;
-+			return;
- 		}
- 	}
-+}
-+
-+static void
-+adjust_wm_latency(struct intel_display *display)
-+{
-+	u16 *wm = display->wm.skl_latency;
-+
-+	if (display->platform.dg2)
-+		multiply_wm_latency(display, 2);
-+
-+	sanitize_wm_latency(display);
+-		if (wm[level] == 0) {
+-			int i;
++		if (wm[level] != 0)
++			continue;
  
- 	/*
- 	 * WaWmMemoryReadLatency
+-			for (i = level + 1; i < num_levels; i++)
+-				wm[i] = 0;
+-			return;
+-		}
++		for (level = level + 1; level < num_levels; level++)
++			wm[level] = 0;
++
++		return;
+ 	}
+ }
+ 
 -- 
 2.49.1
 
