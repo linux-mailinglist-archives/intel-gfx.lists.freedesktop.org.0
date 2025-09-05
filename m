@@ -2,69 +2,85 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 695AFB4FC53
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Sep 2025 15:21:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C2FBB4FC5A
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Sep 2025 15:21:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B60E610E720;
-	Tue,  9 Sep 2025 13:21:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64DD510E728;
+	Tue,  9 Sep 2025 13:21:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com
- [185.176.79.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5BF610EB65;
- Fri,  5 Sep 2025 10:05:56 +0000 (UTC)
-Received: from mail.maildlp.com (unknown [172.18.186.231])
- by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4cJBhn0xyXz6L5ly;
- Fri,  5 Sep 2025 18:02:01 +0800 (CST)
-Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
- by mail.maildlp.com (Postfix) with ESMTPS id 03F6A1402CB;
- Fri,  5 Sep 2025 18:05:55 +0800 (CST)
-Received: from localhost (10.203.177.15) by frapeml500008.china.huawei.com
- (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 5 Sep
- 2025 12:05:53 +0200
-Date: Fri, 5 Sep 2025 11:05:51 +0100
-From: Jonathan Cameron <jonathan.cameron@huawei.com>
-To: Zihuan Zhang <zhangzihuan@kylinos.cn>
-CC: "Rafael J . wysocki" <rafael@kernel.org>, Viresh Kumar
- <viresh.kumar@linaro.org>, Catalin Marinas <catalin.marinas@arm.com>, "Will
- Deacon" <will@kernel.org>, Borislav Petkov <bp@alien8.de>, Dave Hansen
- <dave.hansen@linux.intel.com>, Srinivas Pandruvada
- <srinivas.pandruvada@linux.intel.com>, Michael Ellerman <mpe@ellerman.id.au>, 
- Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Thierry Reding <thierry.reding@gmail.com>, MyungJoo Ham
- <myungjoo.ham@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>, "Jani Nikula"
- <jani.nikula@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko
- Ursulin <tursulin@ursulin.net>, "David Airlie" <airlied@gmail.com>, Simona
- Vetter <simona@ffwll.ch>, Daniel Lezcano <daniel.lezcano@kernel.org>, Sascha
- Hauer <s.hauer@pengutronix.de>, "Shawn Guo" <shawnguo@kernel.org>, Eduardo
- Valentin <edubezval@gmail.com>, Keerthy <j-keerthy@ti.com>, Ben Horgan
- <ben.horgan@arm.com>, zhenglifeng <zhenglifeng1@huawei.com>, Zhang Rui
- <rui.zhang@intel.com>, Len Brown <lenb@kernel.org>, Lukasz Luba
- <lukasz.luba@arm.com>, "Pengutronix Kernel Team" <kernel@pengutronix.de>,
- Beata Michalska <beata.michalska@arm.com>, Fabio Estevam
- <festevam@gmail.com>, Pavel Machek <pavel@kernel.org>, "Sumit Gupta"
- <sumitg@nvidia.com>, Prasanna Kumar T S M <ptsm@linux.microsoft.com>, Sudeep
- Holla <sudeep.holla@arm.com>, Yicong Yang <yangyicong@hisilicon.com>,
- <linux-pm@vger.kernel.org>, <linux-acpi@vger.kernel.org>,
- <linuxppc-dev@lists.ozlabs.org>, <linux-arm-kernel@lists.infradead.org>,
- <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <imx@lists.linux.dev>, <linux-omap@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6AE210E281;
+ Fri,  5 Sep 2025 10:21:20 +0000 (UTC)
+X-UUID: 0e7797928a4211f0b29709d653e92f7d-20250905
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.45, REQID:14f482f1-1678-4861-8721-a3d21e06eb8e, IP:0,
+ U
+ RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+ :release,TS:-5
+X-CID-META: VersionHash:6493067, CLOUDID:91ab872eaa9ae72f0b505e024ab096ae,
+ BulkI
+ D:nil,BulkQuantity:0,Recheck:0,SF:81|82|83|102,TC:nil,Content:0|52,EDM:-3,
+ IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:
+ 0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 0e7797928a4211f0b29709d653e92f7d-20250905
+Received: from mail.kylinos.cn [(10.44.16.175)] by mailgw.kylinos.cn
+ (envelope-from <zhangzihuan@kylinos.cn>) (Generic MTA)
+ with ESMTP id 829448159; Fri, 05 Sep 2025 18:21:16 +0800
+Received: from mail.kylinos.cn (localhost [127.0.0.1])
+ by mail.kylinos.cn (NSMail) with SMTP id E4DD9E008FA4;
+ Fri,  5 Sep 2025 18:21:15 +0800 (CST)
+X-ns-mid: postfix-68BAB99B-76698910
+Received: from [172.25.120.24] (unknown [172.25.120.24])
+ by mail.kylinos.cn (NSMail) with ESMTPA id 96DA5E008FA3;
+ Fri,  5 Sep 2025 18:21:07 +0800 (CST)
+Message-ID: <59305500-9ecf-4eeb-b4dc-9c9eed02454f@kylinos.cn>
+Date: Fri, 5 Sep 2025 18:21:06 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v4 08/10] thermal: imx: Use scope-based cleanup helper
-Message-ID: <20250905110551.00006588@huawei.com>
-In-Reply-To: <20250903131733.57637-9-zhangzihuan@kylinos.cn>
+To: Jonathan Cameron <jonathan.cameron@huawei.com>
+Cc: "Rafael J . wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>,
+ Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, Krzysztof Kozlowski
+ <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ MyungJoo Ham <myungjoo.ham@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Daniel Lezcano <daniel.lezcano@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
+ Eduardo Valentin <edubezval@gmail.com>, Keerthy <j-keerthy@ti.com>,
+ Ben Horgan <ben.horgan@arm.com>, zhenglifeng <zhenglifeng1@huawei.com>,
+ Zhang Rui <rui.zhang@intel.com>, Len Brown <lenb@kernel.org>,
+ Lukasz Luba <lukasz.luba@arm.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Beata Michalska <beata.michalska@arm.com>, Fabio Estevam
+ <festevam@gmail.com>, Pavel Machek <pavel@kernel.org>,
+ Sumit Gupta <sumitg@nvidia.com>,
+ Prasanna Kumar T S M <ptsm@linux.microsoft.com>,
+ Sudeep Holla <sudeep.holla@arm.com>, Yicong Yang <yangyicong@hisilicon.com>,
+ linux-pm@vger.kernel.org, linux-acpi@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ imx@lists.linux.dev, linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20250903131733.57637-1-zhangzihuan@kylinos.cn>
  <20250903131733.57637-9-zhangzihuan@kylinos.cn>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
-MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.203.177.15]
-X-ClientProxiedBy: lhrpeml500004.china.huawei.com (7.191.163.9) To
- frapeml500008.china.huawei.com (7.182.85.71)
-X-Mailman-Approved-At: Tue, 09 Sep 2025 13:21:26 +0000
+ <20250905110551.00006588@huawei.com>
+From: Zihuan Zhang <zhangzihuan@kylinos.cn>
+In-Reply-To: <20250905110551.00006588@huawei.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Tue, 09 Sep 2025 13:21:25 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,70 +96,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed,  3 Sep 2025 21:17:31 +0800
-Zihuan Zhang <zhangzihuan@kylinos.cn> wrote:
 
-> Replace the manual cpufreq_cpu_put() with __free(put_cpufreq_policy)
-> annotation for policy references. This reduces the risk of reference
-> counting mistakes and aligns the code with the latest kernel style.
-> 
-> No functional change intended.
-> 
-> Signed-off-by: Zihuan Zhang <zhangzihuan@kylinos.cn>
+=E5=9C=A8 2025/9/5 18:05, Jonathan Cameron =E5=86=99=E9=81=93:
+> This radically changes the lifetime of the reference to policy.
+> If that is valid, then I'd expect a lot more description of why!
 
-This radically changes the lifetime of the reference to policy.
-If that is valid, then I'd expect a lot more description of why!
 
-> ---
->  drivers/thermal/imx_thermal.c | 14 +++++---------
->  1 file changed, 5 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/thermal/imx_thermal.c b/drivers/thermal/imx_thermal.c
-> index 38c993d1bcb3..cd1d9d419275 100644
-> --- a/drivers/thermal/imx_thermal.c
-> +++ b/drivers/thermal/imx_thermal.c
-> @@ -201,7 +201,6 @@ static struct thermal_soc_data thermal_imx7d_data = {
->  
->  struct imx_thermal_data {
->  	struct device *dev;
-> -	struct cpufreq_policy *policy;
->  	struct thermal_zone_device *tz;
->  	struct thermal_cooling_device *cdev;
->  	struct regmap *tempmon;
-> @@ -541,22 +540,20 @@ MODULE_DEVICE_TABLE(of, of_imx_thermal_match);
->  static int imx_thermal_register_legacy_cooling(struct imx_thermal_data *data)
->  {
->  	struct device_node *np;
-> +	struct cpufreq_policy *policy __free(put_cpufreq_policy) = cpufreq_cpu_get(0);
->  	int ret = 0;
->  
-> -	data->policy = cpufreq_cpu_get(0);
-> -	if (!data->policy) {
-> +	if (!policy) {
->  		pr_debug("%s: CPUFreq policy not found\n", __func__);
->  		return -EPROBE_DEFER;
->  	}
->  
-> -	np = of_get_cpu_node(data->policy->cpu, NULL);
-> +	np = of_get_cpu_node(policy->cpu, NULL);
->  
->  	if (!np || !of_property_present(np, "#cooling-cells")) {
-> -		data->cdev = cpufreq_cooling_register(data->policy);
-> -		if (IS_ERR(data->cdev)) {
-> +		data->cdev = cpufreq_cooling_register(policy);
-> +		if (IS_ERR(data->cdev))
->  			ret = PTR_ERR(data->cdev);
-> -			cpufreq_cpu_put(data->policy);
-> -		}
->  	}
->  
->  	of_node_put(np);
-> @@ -567,7 +564,6 @@ static int imx_thermal_register_legacy_cooling(struct imx_thermal_data *data)
->  static void imx_thermal_unregister_legacy_cooling(struct imx_thermal_data *data)
->  {
->  	cpufreq_cooling_unregister(data->cdev);
-> -	cpufreq_cpu_put(data->policy);
->  }
->  
->  #else
+Thanks for your comment.
+
+Initially I thought policy was only used within this function, so I=20
+moved it here.
+After your feedback, I realize that this change might affect the=20
+reference lifetime in ways I didn=E2=80=99t fully consider. I need to rev=
+iew it=20
+further to ensure it=E2=80=99s safe.
 
