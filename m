@@ -2,93 +2,93 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83118B4699B
-	for <lists+intel-gfx@lfdr.de>; Sat,  6 Sep 2025 08:57:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69720B469AF
+	for <lists+intel-gfx@lfdr.de>; Sat,  6 Sep 2025 09:01:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 241A010E309;
-	Sat,  6 Sep 2025 06:57:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEECD10E30B;
+	Sat,  6 Sep 2025 07:01:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="IFSh2Efd";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="KGpHYhHx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9D8F10E309
- for <intel-gfx@lists.freedesktop.org>; Sat,  6 Sep 2025 06:57:45 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16FC410E2AC
+ for <intel-gfx@lists.freedesktop.org>; Sat,  6 Sep 2025 07:01:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1757141864;
+ s=mimecast20190719; t=1757142061;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=CCJs31gS3SmY6gT03ZW9SqmlSjC26seB+xyCx6US3Ag=;
- b=IFSh2EfdGppfeq4GeY0J0xB4q5d+wOrOayF6sliBVxyG0sBcnqW4rqxOEex1cj20LfDUE8
- MrcNNxqEG3zmXnDH272aQRj88zOViWoHuQiSxnLVY509ZoAVY3K1KNoLpyvjrSojHXkq/f
- utwStpE1CxZm84wkN2m4Qd2kzU1WU7s=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=T2JJG+ZfsCIb5mNyWFksWhvinuGju8fueKzmBULEe5U=;
+ b=KGpHYhHxiD+7YN+3JLfySWCD7JyAQN3s8PfW4RiZZ9qT9dRIHfry+6iURcKqBrBPRxXdWb
+ rXSxYNYPeWOMiXtxXanJGit9pBd2MNdqtU4X89wcEcOUuSM+qI+s3tcka3S09glBbgvt0y
+ QDjNdBfQd+6hmiwdej2bcPn8MaAjUPI=
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
+ [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-553-pOutAxV4PCKSOjgHBbyI8A-1; Sat, 06 Sep 2025 02:57:43 -0400
-X-MC-Unique: pOutAxV4PCKSOjgHBbyI8A-1
-X-Mimecast-MFC-AGG-ID: pOutAxV4PCKSOjgHBbyI8A_1757141862
-Received: by mail-wm1-f70.google.com with SMTP id
- 5b1f17b1804b1-45cb5dbda9cso17913985e9.2
- for <intel-gfx@lists.freedesktop.org>; Fri, 05 Sep 2025 23:57:43 -0700 (PDT)
+ us-mta-558-mqWsus3BMfOktNC80jRPwg-1; Sat, 06 Sep 2025 03:00:59 -0400
+X-MC-Unique: mqWsus3BMfOktNC80jRPwg-1
+X-Mimecast-MFC-AGG-ID: mqWsus3BMfOktNC80jRPwg_1757142058
+Received: by mail-wr1-f70.google.com with SMTP id
+ ffacd0b85a97d-3e5190bcba1so797304f8f.2
+ for <intel-gfx@lists.freedesktop.org>; Sat, 06 Sep 2025 00:00:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1757141862; x=1757746662;
+ d=1e100.net; s=20230601; t=1757142058; x=1757746858;
  h=content-transfer-encoding:in-reply-to:autocrypt:content-language
- :from:references:cc:to:subject:user-agent:mime-version:date
+ :references:cc:to:from:subject:user-agent:mime-version:date
  :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=CCJs31gS3SmY6gT03ZW9SqmlSjC26seB+xyCx6US3Ag=;
- b=moIcoGyymo7SkMqs0rvlnvdgnTBiphhzOFEp3UtYH89e3z1skLTkhEzlUh2xKqneZ5
- hwOUTC4LlUeRsAfWJc0tRDR9lC8icLZ6gs7Yiu3VTLaKt2vemlz1qrEnSjods5+5bhog
- 8IJlTbZPGaXQBDWHQDwKTATYipg1vKMEN9zTLc4ohz0ugY+4Ra3c25RSRjFLtrCz9OWl
- 8MNz4Xz3cMv9MbvgUic33QHXtPLUHh+WwRj/XgoxisNlmSZ5Mra32jLcffAKP5eHfUGD
- t905KHMmwPWI2Nb/KPa6f2hKN1NcPl+jQi5uLq1FOFiMd3cbR/I14HxmHqvAVPuWzjEL
- RG9A==
+ bh=T2JJG+ZfsCIb5mNyWFksWhvinuGju8fueKzmBULEe5U=;
+ b=ogxZ0E9W/QIcZdbOgZFyIGcLgeFMp/0UBLZ5xouBuUF0fVlUCfSQnWBFUAdP//hlqz
+ p2TkUxHZI5BIuJ7eewFviVeTOvegPTLVJx+oxdWVV0+yZDFtAmlmUtnsoax5pWKcUdaj
+ QbzX8HA2qc6IpY0PMqupwFsOg0AvEHUc55Ow82GtuygbCG5i+8UmHVH9lBFmt7abrROO
+ kjiQhiuXwNWMuK1aGmUVbAeXiEYa/Cn0SVlcB2RobuADlOgcCSCy9URMBx7ZKwpssAhv
+ 8b/41CUGdO0iBsEqgHWPYqrgvsPQbrqOySBK01ngUU6Dq+1gVoZS2Cu/WWe5t5x9Yepz
+ 0Uvw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXJJ0Pks+VgEpg1XXgDiXzpnDTgGEcWyp3reEXx4BdXd0MTDTro/3aAI+FgGg/hmo6fnMCX6gm2n7Y=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyuq/jlQDxRs0Douc9E4O6RNr/7AxI7T4iTANha2JIsnI0Ryqu3
- 615Wfaz+2H8xOxAG0pbCS6LQ8lhzxPs/lb1krGoha3SQOdl996yiBP8U5DUYAteMYupJvdIYqlj
- AIppER73P8NM2Si/f/3wz13eGArtd6fX3BsbeidAaoGBZLdTBRfZ/cifhjNLUZOLc3Sc0pw==
-X-Gm-Gg: ASbGncvZ2N9gmqZYasSZClrWmdxKx6JlkrvmDj3GtLa9/clGTOe2UoCAm8SjVh7UiAQ
- hYHxN0hXkqYJ9F8hMczqjIfpKFyoU0Yz/JJvMQKbNGs9jpAOnkcqRC0dl5xsZTnl/RvCEGhw+PJ
- MbstEbHqtRcnGXwzIK2ZN7ltrewZRrln2EPdT6bdsP3pM2/VkNakF7gVnciu2vvKx85z7cEk5xd
- K4s7Y0y/R/1SUJgSXvuE6TVD9P/HScts5ixs6/7M9Scw0cUb8FeFEYwopLJOnCj6BwBN1NKVxJC
- bLwcpDwcyQKzs1At0kYVcVM/jh2+CtIJVTcyuihi2R4IXt8e/vbUVZLbPVv5mTFcoTdSvyzzDK/
- NFuKB+utqNpK9HQetVRho54PyTbGQT77itseW2WJ2T5CKvjLFCVs6w60YTILldvYSmMA=
-X-Received: by 2002:a05:600c:a43:b0:45d:d944:e763 with SMTP id
- 5b1f17b1804b1-45dddef8abemr11582675e9.33.1757141861929; 
- Fri, 05 Sep 2025 23:57:41 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG9de71akgKQMTH3Yad6UmnskyHOcTJBFrvjc1jDcnRZYiXZrAsp4/fGMOazHSvHvTFxb0cMA==
-X-Received: by 2002:a05:600c:a43:b0:45d:d944:e763 with SMTP id
- 5b1f17b1804b1-45dddef8abemr11582145e9.33.1757141861401; 
- Fri, 05 Sep 2025 23:57:41 -0700 (PDT)
+ AJvYcCX4u68QOdrieaHh2py3K4Ffdd+TciAuGF1kmFnAGv85gGslPOaW6XuE0mfWC5SwcSDuqC9ePHOGn70=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyoctPn74cXV2B4/1touc8HbRxTF3/d4HNEFwzlnij3aKp/X+c4
+ B9T1/1qSSf2TZZH2/QyROMUsRWpVXN6t4DBJZPWmojgvMTmxvpCE+V1m//GPy0CpN2Yn+000bWL
+ FBJFACbjKed3NjWscuN9uy++3pIMexht8xsC4IiRC48wecUVQIrlXYAqA12K62EoZGUmlbw==
+X-Gm-Gg: ASbGncshFSk3j94sc9vrcoMbYU7RMFmuzF2KK/G3FSvAZfi7qIjVTwJlAxVU1i5DqMc
+ e+PDKrNLKger55JUTiUQYpG2cHGGnuuBcSVCcyCeQGvKD/KFHrLRyGDlstG7RapC6kKcCC9ScHq
+ vz8r2TcStMwsE6H44OQ3ZRLmO9OG2Fs8llV6nrdqHv58aaHmUof4i9/fQxdVPcf3OFYSd8d1CJz
+ 6Gl2D6ejvKNAUMnfp7oA7/c+wRPYQ3z20AFePXekgInbphecMG6j8tcNJ9npb3foWPzd+bRUwsV
+ l3QFgbL6n2ioTgnUiX/otZtHepFbmWVGFlaWtL/K6LL21o5aEhE7uCbQl0x6BvWj2qw7uW6yw8e
+ T4Bi7ydXGFSyhI+T1jC5il0KUhZQWUap2Ee8soLeD/iJxKYYg2h9w8o8RBjiU4NdRvqY=
+X-Received: by 2002:a5d:5f87:0:b0:3e2:804b:bfed with SMTP id
+ ffacd0b85a97d-3e64c1c2183mr835260f8f.42.1757142058270; 
+ Sat, 06 Sep 2025 00:00:58 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGdr4VmZX14HWt6vWJrgVQl61309Yoz3EBz+B4BvfuTuYDfgHO59nfbR4v+s7YipRZZX7VN6g==
+X-Received: by 2002:a5d:5f87:0:b0:3e2:804b:bfed with SMTP id
+ ffacd0b85a97d-3e64c1c2183mr835230f8f.42.1757142057809; 
+ Sat, 06 Sep 2025 00:00:57 -0700 (PDT)
 Received: from ?IPV6:2003:d8:2f30:de00:8132:f6dc:cba2:9134?
  (p200300d82f30de008132f6dccba29134.dip0.t-ipconnect.de.
  [2003:d8:2f30:de00:8132:f6dc:cba2:9134])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3e740369f1esm87090f8f.11.2025.09.05.23.57.37
+ ffacd0b85a97d-3cf3458a67fsm6794555f8f.62.2025.09.06.00.00.54
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 05 Sep 2025 23:57:40 -0700 (PDT)
-Message-ID: <64fe4c61-f9cc-4a5a-9c33-07bd0f089e94@redhat.com>
-Date: Sat, 6 Sep 2025 08:57:37 +0200
+ Sat, 06 Sep 2025 00:00:56 -0700 (PDT)
+Message-ID: <815cbde4-a56d-446d-b517-c63e12e473de@redhat.com>
+Date: Sat, 6 Sep 2025 09:00:54 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v2 19/37] mm/gup: remove record_subpages()
-To: Eric Biggers <ebiggers@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Alexander Potapenko <glider@google.com>,
+From: David Hildenbrand <david@redhat.com>
+To: John Hubbard <jhubbard@nvidia.com>, linux-kernel@vger.kernel.org
+Cc: Alexander Potapenko <glider@google.com>,
  Andrew Morton <akpm@linux-foundation.org>,
  Brendan Jackman <jackmanb@google.com>, Christoph Lameter <cl@gentwo.org>,
  Dennis Zhou <dennis@kernel.org>, Dmitry Vyukov <dvyukov@google.com>,
  dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  iommu@lists.linux.dev, io-uring@vger.kernel.org,
  Jason Gunthorpe <jgg@nvidia.com>, Jens Axboe <axboe@kernel.dk>,
- Johannes Weiner <hannes@cmpxchg.org>, John Hubbard <jhubbard@nvidia.com>,
- kasan-dev@googlegroups.com, kvm@vger.kernel.org,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Johannes Weiner <hannes@cmpxchg.org>, kasan-dev@googlegroups.com,
+ kvm@vger.kernel.org, "Liam R. Howlett" <Liam.Howlett@oracle.com>,
  Linus Torvalds <torvalds@linux-foundation.org>, linux-arm-kernel@axis.com,
  linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
  linux-ide@vger.kernel.org, linux-kselftest@vger.kernel.org,
@@ -105,8 +105,8 @@ Cc: linux-kernel@vger.kernel.org, Alexander Potapenko <glider@google.com>,
  Zi Yan <ziy@nvidia.com>
 References: <20250901150359.867252-1-david@redhat.com>
  <20250901150359.867252-20-david@redhat.com>
- <5090355d-546a-4d06-99e1-064354d156b5@redhat.com> <20250905230006.GA1776@sol>
-From: David Hildenbrand <david@redhat.com>
+ <016307ba-427d-4646-8e4d-1ffefd2c1968@nvidia.com>
+ <85e760cf-b994-40db-8d13-221feee55c60@redhat.com>
 Autocrypt: addr=david@redhat.com; keydata=
  xsFNBFXLn5EBEAC+zYvAFJxCBY9Tr1xZgcESmxVNI/0ffzE/ZQOiHJl6mGkmA1R7/uUpiCjJ
  dBrn+lhhOYjjNefFQou6478faXE6o2AhmebqT4KiQoUQFV4R7y1KMEKoSyy8hQaK1umALTdL
@@ -151,9 +151,9 @@ Autocrypt: addr=david@redhat.com; keydata=
  3iyY2Nsd7JxfKu1PRhCGwXzRw5TlfEsoRI7V9A8isUCoqE2Dzh3FvYHVeX4Us+bRL/oqareJ
  CIFqgYMyvHj7Q06kTKmauOe4Nf0l0qEkIuIzfoLJ3qr5UyXc2hLtWyT9Ir+lYlX9efqh7mOY
  qIws/H2t
-In-Reply-To: <20250905230006.GA1776@sol>
+In-Reply-To: <85e760cf-b994-40db-8d13-221feee55c60@redhat.com>
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: 8m78JVKDyGNK_ey_cCtzWgtnbyENaSpn25tjSv7bmA0_1757141862
+X-Mimecast-MFC-PROC-ID: NohK967b_5I0w7_ifT_vboJIoTojFtD58w-l1ug_SOI_1757142058
 X-Mimecast-Originator: redhat.com
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
@@ -173,114 +173,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 06.09.25 01:00, Eric Biggers wrote:
-> On Fri, Sep 05, 2025 at 08:41:23AM +0200, David Hildenbrand wrote:
->> On 01.09.25 17:03, David Hildenbrand wrote:
->>> We can just cleanup the code by calculating the #refs earlier,
->>> so we can just inline what remains of record_subpages().
->>>
->>> Calculate the number of references/pages ahead of times, and record them
->>> only once all our tests passed.
->>>
->>> Signed-off-by: David Hildenbrand <david@redhat.com>
->>> ---
->>>    mm/gup.c | 25 ++++++++-----------------
->>>    1 file changed, 8 insertions(+), 17 deletions(-)
->>>
->>> diff --git a/mm/gup.c b/mm/gup.c
->>> index c10cd969c1a3b..f0f4d1a68e094 100644
->>> --- a/mm/gup.c
->>> +++ b/mm/gup.c
->>> @@ -484,19 +484,6 @@ static inline void mm_set_has_pinned_flag(struct mm_struct *mm)
->>>    #ifdef CONFIG_MMU
->>>    #ifdef CONFIG_HAVE_GUP_FAST
->>> -static int record_subpages(struct page *page, unsigned long sz,
->>> -			   unsigned long addr, unsigned long end,
->>> -			   struct page **pages)
->>> -{
->>> -	int nr;
->>> -
->>> -	page += (addr & (sz - 1)) >> PAGE_SHIFT;
->>> -	for (nr = 0; addr != end; nr++, addr += PAGE_SIZE)
->>> -		pages[nr] = page++;
->>> -
->>> -	return nr;
->>> -}
->>> -
->>>    /**
->>>     * try_grab_folio_fast() - Attempt to get or pin a folio in fast path.
->>>     * @page:  pointer to page to be grabbed
->>> @@ -2967,8 +2954,8 @@ static int gup_fast_pmd_leaf(pmd_t orig, pmd_t *pmdp, unsigned long addr,
->>>    	if (pmd_special(orig))
->>>    		return 0;
->>> -	page = pmd_page(orig);
->>> -	refs = record_subpages(page, PMD_SIZE, addr, end, pages + *nr);
->>> +	refs = (end - addr) >> PAGE_SHIFT;
->>> +	page = pmd_page(orig) + ((addr & ~PMD_MASK) >> PAGE_SHIFT);
->>>    	folio = try_grab_folio_fast(page, refs, flags);
->>>    	if (!folio)
->>> @@ -2989,6 +2976,8 @@ static int gup_fast_pmd_leaf(pmd_t orig, pmd_t *pmdp, unsigned long addr,
->>>    	}
->>>    	*nr += refs;
->>> +	for (; refs; refs--)
->>> +		*(pages++) = page++;
->>>    	folio_set_referenced(folio);
->>>    	return 1;
->>>    }
->>> @@ -3007,8 +2996,8 @@ static int gup_fast_pud_leaf(pud_t orig, pud_t *pudp, unsigned long addr,
->>>    	if (pud_special(orig))
->>>    		return 0;
->>> -	page = pud_page(orig);
->>> -	refs = record_subpages(page, PUD_SIZE, addr, end, pages + *nr);
->>> +	refs = (end - addr) >> PAGE_SHIFT;
->>> +	page = pud_page(orig) + ((addr & ~PUD_MASK) >> PAGE_SHIFT);
->>>    	folio = try_grab_folio_fast(page, refs, flags);
->>>    	if (!folio)
->>> @@ -3030,6 +3019,8 @@ static int gup_fast_pud_leaf(pud_t orig, pud_t *pudp, unsigned long addr,
->>>    	}
->>>    	*nr += refs;
->>> +	for (; refs; refs--)
->>> +		*(pages++) = page++;
->>>    	folio_set_referenced(folio);
->>>    	return 1;
->>>    }
->>
->> Okay, this code is nasty. We should rework this code to just return the nr and receive a the proper
->> pages pointer, getting rid of the "*nr" parameter.
->>
->> For the time being, the following should do the trick:
->>
->> commit bfd07c995814354f6b66c5b6a72e96a7aa9fb73b (HEAD -> nth_page)
->> Author: David Hildenbrand <david@redhat.com>
->> Date:   Fri Sep 5 08:38:43 2025 +0200
->>
->>      fixup: mm/gup: remove record_subpages()
->>      pages is not adjusted by the caller, but idnexed by existing *nr.
->>      Signed-off-by: David Hildenbrand <david@redhat.com>
->>
->> diff --git a/mm/gup.c b/mm/gup.c
->> index 010fe56f6e132..22420f2069ee1 100644
->> --- a/mm/gup.c
->> +++ b/mm/gup.c
->> @@ -2981,6 +2981,7 @@ static int gup_fast_pmd_leaf(pmd_t orig, pmd_t *pmdp, unsigned long addr,
->>                  return 0;
->>          }
->> +       pages += *nr;
->>          *nr += refs;
->>          for (; refs; refs--)
->>                  *(pages++) = page++;
->> @@ -3024,6 +3025,7 @@ static int gup_fast_pud_leaf(pud_t orig, pud_t *pudp, unsigned long addr,
->>                  return 0;
->>          }
->> +       pages += *nr;
->>          *nr += refs;
->>          for (; refs; refs--)
->>                  *(pages++) = page++;
-> 
-> Can this get folded in soon?  This bug is causing crashes in AF_ALG too.
 
-Andrew immediately dropped the original patch, so it's gone from 
-mm-unstable and should be gone from next soon (today?).
+>    	pmdp = pmd_offset_lockless(pudp, pud, addr);
+> @@ -3046,23 +3041,21 @@ static int gup_fast_pmd_range(pud_t *pudp, pud_t pud, unsigned long addr,
+>    
+>    		next = pmd_addr_end(addr, end);
+>    		if (!pmd_present(pmd))
+> -			return 0;
+> +			break;
+>    
+> -		if (unlikely(pmd_leaf(pmd))) {
+> -			/* See gup_fast_pte_range() */
+> -			if (pmd_protnone(pmd))
+> -				return 0;
+> +		if (unlikely(pmd_leaf(pmd)))
+> +			cur_nr_pages = gup_fast_pmd_leaf(pmd, pmdp, addr, next, flags, pages);
+> +		else
+> +			cur_nr_pages = gup_fast_pte_range(pmd, pmdp, addr, next, flags, pages);
+>    
+> -			if (!gup_fast_pmd_leaf(pmd, pmdp, addr, next, flags,
+> -				pages, nr))
+> -				return 0;
+> +		nr_pages += cur_nr_pages;
+> +		pages += cur_nr_pages;
+>    
+> -		} else if (!gup_fast_pte_range(pmd, pmdp, addr, next, flags,
+> -					       pages, nr))
+> -			return 0;
+> +		if (nr_pages != (next - addr) >> PAGE_SIZE)
+> +			break;
+
+^ cur_nr_pages. Open for suggestions on how to make that thing here even 
+better.
 
 -- 
 Cheers
