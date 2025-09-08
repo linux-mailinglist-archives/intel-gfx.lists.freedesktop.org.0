@@ -2,57 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92C72B489E6
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 12:18:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EDD3B48A31
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 12:29:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19FD210E4BA;
-	Mon,  8 Sep 2025 10:18:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E0B510E0D7;
+	Mon,  8 Sep 2025 10:29:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LzT6/7yL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E9wQkjrF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3082D10E4B8;
- Mon,  8 Sep 2025 10:18:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76C6810E4B9;
+ Mon,  8 Sep 2025 10:29:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757326733; x=1788862733;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=5l0+g7DqWEN9Ys77QDzZqNYEoRZe0vGWjPe1pr+WWrM=;
- b=LzT6/7yLJ9aE6LIPRiKUYsbNGydR05M/WcV8HYg6U+jUYbkQwF1U0lIj
- HBuauVQ0OVz0QvG5MN+kB7OapFLhgAFFlMYPjh9dv4ayLLvlWdOGkJzhn
- nqxU13To0BjFn/pbJfDd8YHGc0T/QM18rn/JFqdxoF/mpTQ3v87aqy0Lf
- z6q4Q3HmlEiCbyH3zO8VpMrmlQmtVpVOktz1D1ZXft/GpY56fFW06Qj+T
- c1x4zauTXe/FOXaWXz4OnIpXGev6RpqmNs0cENDBnuywXVk4JEDXN/9Mo
- m1YrMtJkK6qMlx5sx36YEZ09ZgIdnbNyOUVWzDe3wjGxW3zTczbVDcEmJ Q==;
-X-CSE-ConnectionGUID: V2SCHBzrReGA4DQrMSVXhA==
-X-CSE-MsgGUID: GgXq8UHCR0CreB0+HzZFSA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="82171717"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="82171717"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2025 03:18:52 -0700
-X-CSE-ConnectionGUID: /C8B8EgSSDupEz0PUz9NmA==
-X-CSE-MsgGUID: i1uTxAoDTCi2uNwe8FC1Tg==
+ t=1757327397; x=1788863397;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=I10NCmGluFjEIszAjgIQ1el85nJaKVdhsBTJLm6LR5U=;
+ b=E9wQkjrFDZMXaxKlkq2V196IwBXwp9kQaSRI/tX1NwYZe4bYSGCB2+1X
+ AhVaDERjSXZYSAIW95P3CsjZP5/kvnocsocHs5UQcNWFk9zgilpJRQIzF
+ 6iQ5pdcGSe99quDGaONi3zR7SII/IHhQ9Gx+CxkzJOIG8kw+JdK2Wp23/
+ JJPE+6/RtUAWxcySuzFo/0rHbi6BeKzYr8a7Y+zpYQRhnQpmN7Z9gvu/I
+ nQwejl/QwqzamRmi3wp6aex7hSXce4kcBoCbkacaAvZg6FxYp1g8zb1mc
+ kqmD+5OW/a4SxR0wykTwQapWukhx30DQ4hWdEqVCb5tt0VTqwcgpmY+rg Q==;
+X-CSE-ConnectionGUID: wlk9AsdqQG6arWRn1QI9fQ==
+X-CSE-MsgGUID: o/oqJg3OR4+SwRlMcUv1sg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11546"; a="70678727"
+X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="70678727"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2025 03:29:56 -0700
+X-CSE-ConnectionGUID: wRhDrExUTY2hCPKhyboX8A==
+X-CSE-MsgGUID: X4caZJpaTzGhQcTVsp64Qg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="172340455"
+X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="196401342"
 Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.204])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2025 03:18:51 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2025 03:29:53 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Juha-Pekka =?utf-8?Q?Heikkil=C3=A4?= <juhapekka.heikkila@gmail.com>,
+ Matt Atwood <matthew.s.atwood@intel.com>
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/ddi: abstract figuring out encoder name
-In-Reply-To: <25b36d6f-6e63-4804-8f1c-c5f857f9a8bd@intel.com>
+Subject: Re: [PATCH] drm/i915/display: Use DISPLAY_VER over GRAPHICS_VER
+In-Reply-To: <CAJ=qYWRSXQAUaYsJb1h+JADkKmcNuhZmgxwCBJAqdxRZviWUXg@mail.gmail.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250903101050.3671305-1-jani.nikula@intel.com>
- <25b36d6f-6e63-4804-8f1c-c5f857f9a8bd@intel.com>
-Date: Mon, 08 Sep 2025 13:18:48 +0300
-Message-ID: <c5d1b333b80763c23510a4b19e1733f695f37240@intel.com>
+References: <20250903170821.310143-1-matthew.s.atwood@intel.com>
+ <175700478100.122246.8257747418250302965@intel.com>
+ <aLnEtkH2axNnG3td@msatwood-mobl>
+ <CAJ=qYWRSXQAUaYsJb1h+JADkKmcNuhZmgxwCBJAqdxRZviWUXg@mail.gmail.com>
+Date: Mon, 08 Sep 2025 13:29:50 +0300
+Message-ID: <44f40d56b53c2aa4be7aa605247373c693b1ce4f@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,129 +74,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 03 Sep 2025, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com> wrote:
-> On 9/3/2025 3:40 PM, Jani Nikula wrote:
->> The encoder name deduction has become a bit cumbersome within
->> intel_ddi_init(). Split it out to a separate function to declutter
->> intel_ddi_init(), even if that means having to use a temp seq buffer for
->> the name.
+On Sun, 07 Sep 2025, Juha-Pekka Heikkil=C3=A4 <juhapekka.heikkila@gmail.com=
+> wrote:
+> On Thu, Sep 4, 2025 at 7:56=E2=80=AFPM Matt Atwood <matthew.s.atwood@inte=
+l.com> wrote:
 >>
->> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> On Thu, Sep 04, 2025 at 01:53:01PM -0300, Gustavo Sousa wrote:
+>> > Quoting Matt Atwood (2025-09-03 14:08:21-03:00)
+>> > >The checks in plane_has_modifier() should check against display versi=
+on
+>> > >instead of graphics version.
+>> > >
+>> > >Bspec: 67165, 70815
+>> > >
+>> > >Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+>> > >---
+>> > > drivers/gpu/drm/i915/display/intel_fb.c | 4 ++--
+>> > > 1 file changed, 2 insertions(+), 2 deletions(-)
+>> > >
+>> > >diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/dr=
+m/i915/display/intel_fb.c
+>> > >index b210c3250501..1e4cee857d7b 100644
+>> > >--- a/drivers/gpu/drm/i915/display/intel_fb.c
+>> > >+++ b/drivers/gpu/drm/i915/display/intel_fb.c
+>> > >@@ -563,11 +563,11 @@ static bool plane_has_modifier(struct intel_dis=
+play *display,
+>> > >                 return false;
+>> > >
+>> > >         if (md->modifier =3D=3D I915_FORMAT_MOD_4_TILED_BMG_CCS &&
+>> > >-            (GRAPHICS_VER(i915) < 20 || !display->platform.dgfx))
+>> > >+            (DISPLAY_VER(display) < 14 || !display->platform.dgfx))
+>> > >                 return false;
+>> > >
+>> > >         if (md->modifier =3D=3D I915_FORMAT_MOD_4_TILED_LNL_CCS &&
+>> > >-            (GRAPHICS_VER(i915) < 20 || display->platform.dgfx))
+>> > >+            (DISPLAY_VER(display) < 20 || display->platform.dgfx))
+>> > >                 return false;
+>> >
+>> > Hm... Maybe using GRAPHICS_VER() here was intentional? The checks on
+>> > display version are already covered by the entries in intel_modifiers.
+>> >
+>> > If we look at commit fca0abb23447 ("drm/i915/display: allow creation of
+>> > Xe2 ccs framebuffers"), we'll see that the respective entries were add=
+ed
+>> > to intel_modifiers *and* the checks on GRAPHICS_VER() were added as
+>> > well. Perhaps there are indeed restrictions on the graphics side to be
+>> > able to use the format?
+>> >
+>> > --
+>> > Gustavo Sousa
+>> Honestly, I tried looking for reasons. I couldn't find anything in the
+>> documentation to support. I decided to send upstream to see if it broke
+>> stuff to not do the checks that way. CI seems very clean. Hoping Jani or
+>> Juha-Pekka will chime in if it is indeed an issue.
 >
-> LGTM.
+> Using GRAPHICS_VER here was intentional. Jani didn't like it but these
+> xe2 ccs don't follow display versioning but gt versioning.
 >
-> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Proposed change look ok but I'll need to dig in to documentation
+> before I can say for sure. I remember we had discussion about this
+> with Jani but can't remember what convinced Jani I needed to use
+> GRAPHICS_VER at that time.
 
-Thanks, pushed to din.
+I think I just took your word for it.
+
+In the long run, we can't have GRAPHICS_VER() checks in display
+code. Either this needs to be converted to DISPLAY_VER(), or, if that's
+not right, we need to add a way to ask for the *feature* support from
+i915/xe core. That means higher level semantics than just checking for
+graphics version.
 
 BR,
 Jani.
 
->
->> ---
->>   drivers/gpu/drm/i915/display/intel_ddi.c | 69 +++++++++++++-----------
->>   1 file changed, 38 insertions(+), 31 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
->> index 4e4ea3a0ff83..68e049ad042b 100644
->> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
->> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
->> @@ -26,6 +26,7 @@
->>    */
->>   
->>   #include <linux/iopoll.h>
->> +#include <linux/seq_buf.h>
->>   #include <linux/string_helpers.h>
->>   
->>   #include <drm/display/drm_dp_helper.h>
->> @@ -5077,11 +5078,45 @@ static bool port_in_use(struct intel_display *display, enum port port)
->>   	return false;
->>   }
->>   
->> +static const char *intel_ddi_encoder_name(struct intel_display *display,
->> +					  enum port port, enum phy phy,
->> +					  struct seq_buf *s)
->> +{
->> +	if (DISPLAY_VER(display) >= 13 && port >= PORT_D_XELPD) {
->> +		seq_buf_printf(s, "DDI %c/PHY %c",
->> +			       port_name(port - PORT_D_XELPD + PORT_D),
->> +			       phy_name(phy));
->> +	} else if (DISPLAY_VER(display) >= 12) {
->> +		enum tc_port tc_port = intel_port_to_tc(display, port);
->> +
->> +		seq_buf_printf(s, "DDI %s%c/PHY %s%c",
->> +			       port >= PORT_TC1 ? "TC" : "",
->> +			       port >= PORT_TC1 ? port_tc_name(port) : port_name(port),
->> +			       tc_port != TC_PORT_NONE ? "TC" : "",
->> +			       tc_port != TC_PORT_NONE ? tc_port_name(tc_port) : phy_name(phy));
->> +	} else if (DISPLAY_VER(display) >= 11) {
->> +		enum tc_port tc_port = intel_port_to_tc(display, port);
->> +
->> +		seq_buf_printf(s, "DDI %c%s/PHY %s%c",
->> +			       port_name(port),
->> +			       port >= PORT_C ? " (TC)" : "",
->> +			       tc_port != TC_PORT_NONE ? "TC" : "",
->> +			       tc_port != TC_PORT_NONE ? tc_port_name(tc_port) : phy_name(phy));
->> +	} else {
->> +		seq_buf_printf(s, "DDI %c/PHY %c", port_name(port),  phy_name(phy));
->> +	}
->> +
->> +	drm_WARN_ON(display->drm, seq_buf_has_overflowed(s));
->> +
->> +	return seq_buf_str(s);
->> +}
->> +
->>   void intel_ddi_init(struct intel_display *display,
->>   		    const struct intel_bios_encoder_data *devdata)
->>   {
->>   	struct intel_digital_port *dig_port;
->>   	struct intel_encoder *encoder;
->> +	DECLARE_SEQ_BUF(encoder_name, 20);
->>   	bool init_hdmi, init_dp;
->>   	enum port port;
->>   	enum phy phy;
->> @@ -5166,37 +5201,9 @@ void intel_ddi_init(struct intel_display *display,
->>   	encoder = &dig_port->base;
->>   	encoder->devdata = devdata;
->>   
->> -	if (DISPLAY_VER(display) >= 13 && port >= PORT_D_XELPD) {
->> -		drm_encoder_init(display->drm, &encoder->base, &intel_ddi_funcs,
->> -				 DRM_MODE_ENCODER_TMDS,
->> -				 "DDI %c/PHY %c",
->> -				 port_name(port - PORT_D_XELPD + PORT_D),
->> -				 phy_name(phy));
->> -	} else if (DISPLAY_VER(display) >= 12) {
->> -		enum tc_port tc_port = intel_port_to_tc(display, port);
->> -
->> -		drm_encoder_init(display->drm, &encoder->base, &intel_ddi_funcs,
->> -				 DRM_MODE_ENCODER_TMDS,
->> -				 "DDI %s%c/PHY %s%c",
->> -				 port >= PORT_TC1 ? "TC" : "",
->> -				 port >= PORT_TC1 ? port_tc_name(port) : port_name(port),
->> -				 tc_port != TC_PORT_NONE ? "TC" : "",
->> -				 tc_port != TC_PORT_NONE ? tc_port_name(tc_port) : phy_name(phy));
->> -	} else if (DISPLAY_VER(display) >= 11) {
->> -		enum tc_port tc_port = intel_port_to_tc(display, port);
->> -
->> -		drm_encoder_init(display->drm, &encoder->base, &intel_ddi_funcs,
->> -				 DRM_MODE_ENCODER_TMDS,
->> -				 "DDI %c%s/PHY %s%c",
->> -				 port_name(port),
->> -				 port >= PORT_C ? " (TC)" : "",
->> -				 tc_port != TC_PORT_NONE ? "TC" : "",
->> -				 tc_port != TC_PORT_NONE ? tc_port_name(tc_port) : phy_name(phy));
->> -	} else {
->> -		drm_encoder_init(display->drm, &encoder->base, &intel_ddi_funcs,
->> -				 DRM_MODE_ENCODER_TMDS,
->> -				 "DDI %c/PHY %c", port_name(port), phy_name(phy));
->> -	}
->> +	drm_encoder_init(display->drm, &encoder->base, &intel_ddi_funcs,
->> +			 DRM_MODE_ENCODER_TMDS, "%s",
->> +			 intel_ddi_encoder_name(display, port, phy, &encoder_name));
->>   
->>   	intel_encoder_link_check_init(encoder, intel_ddi_link_check);
->>   
 
--- 
+
+
+
+>
+> /Juha-Pekka
+>
+>> >
+>> > >
+>> > >         return true;
+>> > >--
+>> > >2.50.1
+>> > >
+
+--=20
 Jani Nikula, Intel
