@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB89FB490E3
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 16:12:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2DEAB490E4
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 16:12:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A8F610E532;
-	Mon,  8 Sep 2025 14:12:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 727D410E536;
+	Mon,  8 Sep 2025 14:12:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cNNpHyvC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T9bNW6hK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E56010E532
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Sep 2025 14:12:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADDF910E538
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Sep 2025 14:12:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757340725; x=1788876725;
+ t=1757340730; x=1788876730;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dswR1wdYP8ZAd6JB7ZytMcDYI5pILuZmpn6VtySNbEo=;
- b=cNNpHyvCKKIh0XfjWH6z0iWQIkCQFHWCe3hrRYOB90DezsogF598wULt
- Gd4lK52u7Fr6F3I+aji8LE96KnEGOWQkvH0dHgWWujIG5H0LIXGCq27WM
- 6IEWh3xsniA1Im37Ogz5LDQKYtjEiOGfTG4/XUkYj5UJEo3CaLD0vlfLJ
- ATM57ampa7sbHwr6BKMg6jtrwxCsV51DOClBV3pw/4KCqojw7eQOaoZQW
- TOeg4BYyHhP5BQJNmuleH7MMu3lRuOnDitwDFX4Jk2vLpjfe2F0dvf2Ih
- UjiC5sWD4NcXqia1UrBE4Ez9h+F6IySO77uZ3PQcVCyG2In82qYMC9xVc w==;
-X-CSE-ConnectionGUID: g2XO76XeTiOaG2ChZWkUgA==
-X-CSE-MsgGUID: 9dMkYMaUSxyu+ZXB4GyVsw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11547"; a="63237489"
-X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="63237489"
+ bh=rKshRheBHlvUjxV1C1tSsiRj9GNw/0zliFKDK8MLqic=;
+ b=T9bNW6hK1FWRd52GT6lz5QdfTR1ObKCcxlVKH/CD/W8iGi6phx3yi2kt
+ r8sXqhMFzNGJBLhYaKbbzlh5x12qkHCoS4KaKdJar4mB66CtLe5zwFxqz
+ RmuthfRQ+KfjHG24m9VepmT53cTz4fYHJVOKA/IMzkn75Xk1miDTsQbfy
+ Q9CmJSFQafqxAC+kr8MK732a6n2PPjQy2sQmexkY9bleQhDenQ+qre2V5
+ UlE0h3a3ksf5rg0OjECTA7Sbiy23hqrmJJYu75cIOk7rVsFozuv6EXiuD
+ hOMydCAGU5yVbEDwp7hZM8mKPH+eQ1WFbyi6r54r3cvv/CSVukJA5fkjt w==;
+X-CSE-ConnectionGUID: UWcjhkxOSEGfp3ZBOER6oQ==
+X-CSE-MsgGUID: a/nrryCqQGm+E2qnjqsUgQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11547"; a="63237492"
+X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="63237492"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2025 07:12:05 -0700
-X-CSE-ConnectionGUID: KJUOVTQUQvGuvoMKXoJ19A==
-X-CSE-MsgGUID: qLxUeB+2Tsi3KIBMyogHbA==
+ 08 Sep 2025 07:12:10 -0700
+X-CSE-ConnectionGUID: Oe4tDxVtQ+W6YuSPoBMklQ==
+X-CSE-MsgGUID: jqIXyQgVRlKiO2z1/EUeag==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="209952203"
+X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="209952209"
 Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.204])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2025 07:12:04 -0700
+ 08 Sep 2025 07:12:08 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 2/5] drm/i915: split out i915_ptr_util.h
-Date: Mon,  8 Sep 2025 17:11:46 +0300
-Message-ID: <ed8f3ef14844bdb1fecb528608f61093a16128cf.1757340520.git.jani.nikula@intel.com>
+Subject: [PATCH 3/5] drm/i915: split out i915_timer_util.[ch]
+Date: Mon,  8 Sep 2025 17:11:47 +0300
+Message-ID: <863f74f4fa30338dc34151b75c28b6841e50c7ee.1757340520.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1757340520.git.jani.nikula@intel.com>
 References: <cover.1757340520.git.jani.nikula@intel.com>
@@ -70,244 +70,215 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Move pointer related utilities from i915_utils.h to a separate new
-i915_ptr_util.h header. Clean up related includes.
+Move timer related utilities from i915_utils.[ch] to separate new files
+i915_timer_util.[ch]. Clean up related includes.
+
+Note: Arguably none of this should exist in i915 in the first place. At
+least isolate it better.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_context_types.h |  1 -
- drivers/gpu/drm/i915/gt/intel_timeline.h      |  1 +
- drivers/gpu/drm/i915/i915_ptr_util.h          | 66 +++++++++++++++++++
- drivers/gpu/drm/i915/i915_request.h           |  5 +-
- drivers/gpu/drm/i915/i915_utils.h             | 57 ----------------
- drivers/gpu/drm/i915/i915_vma.h               |  6 +-
- 6 files changed, 73 insertions(+), 63 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/i915_ptr_util.h
+ drivers/gpu/drm/i915/Makefile                 |  1 +
+ .../drm/i915/gt/intel_execlists_submission.c  |  4 ++-
+ drivers/gpu/drm/i915/gt/sysfs_engines.c       |  1 +
+ drivers/gpu/drm/i915/i915_timer_util.c        | 36 +++++++++++++++++++
+ drivers/gpu/drm/i915/i915_timer_util.h        | 23 ++++++++++++
+ drivers/gpu/drm/i915/i915_utils.c             | 30 ----------------
+ drivers/gpu/drm/i915/i915_utils.h             | 14 --------
+ 7 files changed, 64 insertions(+), 45 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/i915_timer_util.c
+ create mode 100644 drivers/gpu/drm/i915/i915_timer_util.h
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-index 98c7f6052069..10070ee4d74c 100644
---- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-@@ -14,7 +14,6 @@
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index db150a0c33ce..e58c0c158b3a 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -32,6 +32,7 @@ i915-y += \
+ 	i915_scatterlist.o \
+ 	i915_switcheroo.o \
+ 	i915_sysfs.o \
++	i915_timer_util.o \
+ 	i915_utils.o \
+ 	intel_clock_gating.o \
+ 	intel_cpu_info.o \
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index 03baa7fa0a27..52c8fddedfce 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -106,14 +106,16 @@
+  * preemption, but just sampling the new tail pointer).
+  *
+  */
++
+ #include <linux/interrupt.h>
+ #include <linux/string_helpers.h>
  
- #include "i915_active_types.h"
- #include "i915_sw_fence.h"
--#include "i915_utils.h"
- #include "intel_engine_types.h"
- #include "intel_sseu.h"
- #include "intel_wakeref.h"
-diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.h b/drivers/gpu/drm/i915/gt/intel_timeline.h
-index 57308c4d664a..5f8c8f79714e 100644
---- a/drivers/gpu/drm/i915/gt/intel_timeline.h
-+++ b/drivers/gpu/drm/i915/gt/intel_timeline.h
-@@ -10,6 +10,7 @@
++#include "gen8_engine_cs.h"
+ #include "i915_drv.h"
+ #include "i915_reg.h"
++#include "i915_timer_util.h"
+ #include "i915_trace.h"
+ #include "i915_vgpu.h"
+-#include "gen8_engine_cs.h"
+ #include "intel_breadcrumbs.h"
+ #include "intel_context.h"
+ #include "intel_engine_heartbeat.h"
+diff --git a/drivers/gpu/drm/i915/gt/sysfs_engines.c b/drivers/gpu/drm/i915/gt/sysfs_engines.c
+index aab2759067d2..4a81bc396b21 100644
+--- a/drivers/gpu/drm/i915/gt/sysfs_engines.c
++++ b/drivers/gpu/drm/i915/gt/sysfs_engines.c
+@@ -7,6 +7,7 @@
+ #include <linux/sysfs.h>
  
- #include "i915_active.h"
- #include "i915_syncmap.h"
-+#include "i915_utils.h"
- #include "intel_timeline_types.h"
- 
- struct drm_printer;
-diff --git a/drivers/gpu/drm/i915/i915_ptr_util.h b/drivers/gpu/drm/i915/i915_ptr_util.h
+ #include "i915_drv.h"
++#include "i915_timer_util.h"
+ #include "intel_engine.h"
+ #include "intel_engine_heartbeat.h"
+ #include "sysfs_engines.h"
+diff --git a/drivers/gpu/drm/i915/i915_timer_util.c b/drivers/gpu/drm/i915/i915_timer_util.c
 new file mode 100644
-index 000000000000..9f8931d7d99b
+index 000000000000..ee4cfd8b3c07
 --- /dev/null
-+++ b/drivers/gpu/drm/i915/i915_ptr_util.h
-@@ -0,0 +1,66 @@
++++ b/drivers/gpu/drm/i915/i915_timer_util.c
+@@ -0,0 +1,36 @@
++// SPDX-License-Identifier: MIT
++/* Copyright © 2025 Intel Corporation */
++
++#include <linux/jiffies.h>
++
++#include "i915_timer_util.h"
++
++void cancel_timer(struct timer_list *t)
++{
++	if (!timer_active(t))
++		return;
++
++	timer_delete(t);
++	WRITE_ONCE(t->expires, 0);
++}
++
++void set_timer_ms(struct timer_list *t, unsigned long timeout)
++{
++	if (!timeout) {
++		cancel_timer(t);
++		return;
++	}
++
++	timeout = msecs_to_jiffies(timeout);
++
++	/*
++	 * Paranoia to make sure the compiler computes the timeout before
++	 * loading 'jiffies' as jiffies is volatile and may be updated in
++	 * the background by a timer tick. All to reduce the complexity
++	 * of the addition and reduce the risk of losing a jiffy.
++	 */
++	barrier();
++
++	/* Keep t->expires = 0 reserved to indicate a canceled timer. */
++	mod_timer(t, jiffies + timeout ?: 1);
++}
+diff --git a/drivers/gpu/drm/i915/i915_timer_util.h b/drivers/gpu/drm/i915/i915_timer_util.h
+new file mode 100644
+index 000000000000..f35ad730820c
+--- /dev/null
++++ b/drivers/gpu/drm/i915/i915_timer_util.h
+@@ -0,0 +1,23 @@
 +/* SPDX-License-Identifier: MIT */
 +/* Copyright © 2025 Intel Corporation */
 +
-+#ifndef __I915_PTR_UTIL_H__
-+#define __I915_PTR_UTIL_H__
++#ifndef __I915_TIMER_UTIL_H__
++#define __I915_TIMER_UTIL_H__
 +
-+#include <linux/types.h>
++#include <linux/timer.h>
++#include <asm/rwonce.h>
 +
-+#define ptr_mask_bits(ptr, n) ({					\
-+	unsigned long __v = (unsigned long)(ptr);			\
-+	(typeof(ptr))(__v & -BIT(n));					\
-+})
++void cancel_timer(struct timer_list *t);
++void set_timer_ms(struct timer_list *t, unsigned long timeout);
 +
-+#define ptr_unmask_bits(ptr, n) ((unsigned long)(ptr) & (BIT(n) - 1))
-+
-+#define ptr_unpack_bits(ptr, bits, n) ({				\
-+	unsigned long __v = (unsigned long)(ptr);			\
-+	*(bits) = __v & (BIT(n) - 1);					\
-+	(typeof(ptr))(__v & -BIT(n));					\
-+})
-+
-+#define ptr_pack_bits(ptr, bits, n) ({					\
-+	unsigned long __bits = (bits);					\
-+	GEM_BUG_ON(__bits & -BIT(n));					\
-+	((typeof(ptr))((unsigned long)(ptr) | __bits));			\
-+})
-+
-+#define ptr_dec(ptr) ({							\
-+	unsigned long __v = (unsigned long)(ptr);			\
-+	(typeof(ptr))(__v - 1);						\
-+})
-+
-+#define ptr_inc(ptr) ({							\
-+	unsigned long __v = (unsigned long)(ptr);			\
-+	(typeof(ptr))(__v + 1);						\
-+})
-+
-+#define page_mask_bits(ptr) ptr_mask_bits(ptr, PAGE_SHIFT)
-+#define page_unmask_bits(ptr) ptr_unmask_bits(ptr, PAGE_SHIFT)
-+#define page_pack_bits(ptr, bits) ptr_pack_bits(ptr, bits, PAGE_SHIFT)
-+#define page_unpack_bits(ptr, bits) ptr_unpack_bits(ptr, bits, PAGE_SHIFT)
-+
-+static __always_inline ptrdiff_t ptrdiff(const void *a, const void *b)
++static inline bool timer_active(const struct timer_list *t)
 +{
-+	return a - b;
++	return READ_ONCE(t->expires);
 +}
 +
-+#define u64_to_ptr(T, x) ({						\
-+	typecheck(u64, x);						\
-+	(T *)(uintptr_t)(x);						\
-+})
++static inline bool timer_expired(const struct timer_list *t)
++{
++	return timer_active(t) && !timer_pending(t);
++}
 +
-+/*
-+ * container_of_user: Extract the superclass from a pointer to a member.
-+ *
-+ * Exactly like container_of() with the exception that it plays nicely
-+ * with sparse for __user @ptr.
-+ */
-+#define container_of_user(ptr, type, member) ({				\
-+	void __user *__mptr = (void __user *)(ptr);			\
-+	BUILD_BUG_ON_MSG(!__same_type(*(ptr), typeof_member(type, member)) && \
-+			 !__same_type(*(ptr), void),			\
-+			 "pointer type mismatch in container_of()");	\
-+	((type __user *)(__mptr - offsetof(type, member))); })
-+
-+#endif /* __I915_PTR_UTIL_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
-index 5f7e8138ec14..b09135301f39 100644
---- a/drivers/gpu/drm/i915/i915_request.h
-+++ b/drivers/gpu/drm/i915/i915_request.h
-@@ -31,19 +31,20 @@
- #include <linux/llist.h>
- #include <linux/lockdep.h>
++#endif /* __I915_TIMER_UTIL_H__ */
+diff --git a/drivers/gpu/drm/i915/i915_utils.c b/drivers/gpu/drm/i915/i915_utils.c
+index b60c28fbd207..49f7ed413132 100644
+--- a/drivers/gpu/drm/i915/i915_utils.c
++++ b/drivers/gpu/drm/i915/i915_utils.c
+@@ -47,36 +47,6 @@ bool i915_error_injected(void)
  
-+#include <uapi/drm/i915_drm.h>
-+
- #include "gem/i915_gem_context_types.h"
- #include "gt/intel_context_types.h"
- #include "gt/intel_engine_types.h"
- #include "gt/intel_timeline_types.h"
+ #endif
  
- #include "i915_gem.h"
-+#include "i915_ptr_util.h"
- #include "i915_scheduler.h"
- #include "i915_selftest.h"
- #include "i915_sw_fence.h"
- #include "i915_vma_resource.h"
- 
--#include <uapi/drm/i915_drm.h>
--
- struct drm_file;
- struct drm_i915_gem_object;
- struct drm_printer;
-diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
-index eb4d43c40009..dff02a944a57 100644
---- a/drivers/gpu/drm/i915/i915_utils.h
-+++ b/drivers/gpu/drm/i915/i915_utils.h
-@@ -67,64 +67,12 @@ bool i915_error_injected(void);
- 		drm_err(&(i915)->drm, fmt, ##__VA_ARGS__); \
- })
- 
--#define ptr_mask_bits(ptr, n) ({					\
--	unsigned long __v = (unsigned long)(ptr);			\
--	(typeof(ptr))(__v & -BIT(n));					\
--})
--
--#define ptr_unmask_bits(ptr, n) ((unsigned long)(ptr) & (BIT(n) - 1))
--
--#define ptr_unpack_bits(ptr, bits, n) ({				\
--	unsigned long __v = (unsigned long)(ptr);			\
--	*(bits) = __v & (BIT(n) - 1);					\
--	(typeof(ptr))(__v & -BIT(n));					\
--})
--
--#define ptr_pack_bits(ptr, bits, n) ({					\
--	unsigned long __bits = (bits);					\
--	GEM_BUG_ON(__bits & -BIT(n));					\
--	((typeof(ptr))((unsigned long)(ptr) | __bits));			\
--})
--
--#define ptr_dec(ptr) ({							\
--	unsigned long __v = (unsigned long)(ptr);			\
--	(typeof(ptr))(__v - 1);						\
--})
--
--#define ptr_inc(ptr) ({							\
--	unsigned long __v = (unsigned long)(ptr);			\
--	(typeof(ptr))(__v + 1);						\
--})
--
--#define page_mask_bits(ptr) ptr_mask_bits(ptr, PAGE_SHIFT)
--#define page_unmask_bits(ptr) ptr_unmask_bits(ptr, PAGE_SHIFT)
--#define page_pack_bits(ptr, bits) ptr_pack_bits(ptr, bits, PAGE_SHIFT)
--#define page_unpack_bits(ptr, bits) ptr_unpack_bits(ptr, bits, PAGE_SHIFT)
--
- #define fetch_and_zero(ptr) ({						\
- 	typeof(*ptr) __T = *(ptr);					\
- 	*(ptr) = (typeof(*ptr))0;					\
- 	__T;								\
- })
- 
--static __always_inline ptrdiff_t ptrdiff(const void *a, const void *b)
+-void cancel_timer(struct timer_list *t)
 -{
--	return a - b;
+-	if (!timer_active(t))
+-		return;
+-
+-	timer_delete(t);
+-	WRITE_ONCE(t->expires, 0);
 -}
 -
--/*
-- * container_of_user: Extract the superclass from a pointer to a member.
-- *
-- * Exactly like container_of() with the exception that it plays nicely
-- * with sparse for __user @ptr.
-- */
--#define container_of_user(ptr, type, member) ({				\
--	void __user *__mptr = (void __user *)(ptr);			\
--	BUILD_BUG_ON_MSG(!__same_type(*(ptr), typeof_member(type, member)) && \
--			 !__same_type(*(ptr), void),			\
--			 "pointer type mismatch in container_of()");	\
--	((type __user *)(__mptr - offsetof(type, member))); })
+-void set_timer_ms(struct timer_list *t, unsigned long timeout)
+-{
+-	if (!timeout) {
+-		cancel_timer(t);
+-		return;
+-	}
 -
- /*
-  * check_user_mbz: Check that a user value exists and is zero
-  *
-@@ -143,11 +91,6 @@ static __always_inline ptrdiff_t ptrdiff(const void *a, const void *b)
- 	get_user(mbz__, (U)) ? -EFAULT : mbz__ ? -EINVAL : 0;		\
- })
- 
--#define u64_to_ptr(T, x) ({						\
--	typecheck(u64, x);						\
--	(T *)(uintptr_t)(x);						\
--})
+-	timeout = msecs_to_jiffies(timeout);
 -
- #define __mask_next_bit(mask) ({					\
- 	int __idx = ffs(mask) - 1;					\
- 	mask &= ~BIT(__idx);						\
-diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
-index 0f9eee6d18d2..8054047840aa 100644
---- a/drivers/gpu/drm/i915/i915_vma.h
-+++ b/drivers/gpu/drm/i915/i915_vma.h
-@@ -30,12 +30,12 @@
- 
- #include <drm/drm_mm.h>
- 
--#include "gt/intel_ggtt_fencing.h"
- #include "gem/i915_gem_object.h"
+-	/*
+-	 * Paranoia to make sure the compiler computes the timeout before
+-	 * loading 'jiffies' as jiffies is volatile and may be updated in
+-	 * the background by a timer tick. All to reduce the complexity
+-	 * of the addition and reduce the risk of losing a jiffy.
+-	 */
+-	barrier();
 -
--#include "i915_gem_gtt.h"
-+#include "gt/intel_ggtt_fencing.h"
+-	/* Keep t->expires = 0 reserved to indicate a canceled timer. */
+-	mod_timer(t, jiffies + timeout ?: 1);
+-}
+-
+ bool i915_vtd_active(struct drm_i915_private *i915)
+ {
+ 	if (device_iommu_mapped(i915->drm.dev))
+diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
+index dff02a944a57..6278a74d08c2 100644
+--- a/drivers/gpu/drm/i915/i915_utils.h
++++ b/drivers/gpu/drm/i915/i915_utils.h
+@@ -38,7 +38,6 @@
+ #endif
  
- #include "i915_active.h"
-+#include "i915_gem_gtt.h"
-+#include "i915_ptr_util.h"
- #include "i915_request.h"
- #include "i915_vma_resource.h"
- #include "i915_vma_types.h"
+ struct drm_i915_private;
+-struct timer_list;
+ 
+ #define MISSING_CASE(x) WARN(1, "Missing case (%s == %ld)\n", \
+ 			     __stringify(x), (long)(x))
+@@ -270,19 +269,6 @@ static inline void __add_taint_for_CI(unsigned int taint)
+ 	add_taint(taint, LOCKDEP_STILL_OK);
+ }
+ 
+-void cancel_timer(struct timer_list *t);
+-void set_timer_ms(struct timer_list *t, unsigned long timeout);
+-
+-static inline bool timer_active(const struct timer_list *t)
+-{
+-	return READ_ONCE(t->expires);
+-}
+-
+-static inline bool timer_expired(const struct timer_list *t)
+-{
+-	return timer_active(t) && !timer_pending(t);
+-}
+-
+ static inline bool i915_run_as_guest(void)
+ {
+ #if IS_ENABLED(CONFIG_X86)
 -- 
 2.47.3
 
