@@ -2,57 +2,160 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7539B4858A
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 09:38:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABBEAB48633
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 10:00:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D9E710E486;
-	Mon,  8 Sep 2025 07:38:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F39410E3F1;
+	Mon,  8 Sep 2025 08:00:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="chROQJwI";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="WPpUnar5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3655810E482
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Sep 2025 07:37:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757317077; x=1788853077;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=TTDASxs7juqPMkK8/B3XTsJkGpOi7dHqNZYwaMKcyGQ=;
- b=chROQJwI7DFl45Hy+8AMekM/J6zTeq/9j8LtgtzxYGw9CZX5rVf2aor5
- +OypdPxhgZp0dxilik1Z4TDyyW83AwHmpsngpdA5qUFXsmIChUGUTvBsB
- 1BzuBSnk3zrUE2ML6QZ0LyalIDQoip8LbVZf3gYYAV9f1Pa/rkLHrZAdw
- LLSPx91f4oU//nD6q0Ya7iCfSpIb5r3tAD1cr1fRx/rZF3isOYU11rlgV
- TrH+JMsk3zi4rD+owb5dBUl/Xi3IM8HH/UYUb0LP+ELALEc41/aZkbWVW
- zhwhymzpGKUwUBxfPYEfC0BhwknILD4+CIkXPbiGMINha7empIl3OB+JF A==;
-X-CSE-ConnectionGUID: UKqxgm1XQi2AolBe/FRlcg==
-X-CSE-MsgGUID: cJ7cYyuBStqtdFEY8dvu9Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11546"; a="59506310"
-X-IronPort-AV: E=Sophos;i="6.18,247,1751266800"; d="scan'208";a="59506310"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2025 00:37:57 -0700
-X-CSE-ConnectionGUID: tAIREUYSTlyeb49bENoicg==
-X-CSE-MsgGUID: s8AIUDxfSdqN1bEBHd/39Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,247,1751266800"; d="scan'208";a="171987008"
-Received: from ncintean-mobl1.ger.corp.intel.com (HELO hazy.intel.com)
- ([10.245.245.210])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2025 00:37:56 -0700
-From: Luca Coelho <luciano.coelho@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 6/6] drm/i915/wm: move method selection and calculation to a
- separate function
-Date: Mon,  8 Sep 2025 10:35:35 +0300
-Message-ID: <20250908073734.1180687-7-luciano.coelho@intel.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250908073734.1180687-1-luciano.coelho@intel.com>
-References: <20250908073734.1180687-1-luciano.coelho@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA4CC10E3F4
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Sep 2025 08:00:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1757318418;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=6ZtGxzPBBhWZb8TdeGEHePc9lnXNDI+6sWWhJSedy84=;
+ b=WPpUnar5ihBCwPM2Et+B5+ElxUd6nS4rMjSJfCvxhKPrvqHKEMn/KosSvxdu9XSlh1/m7F
+ UocT7QMKwCmU/TdZ6+IM0QZ9ucyWFn5sCJdfothB7ysG4dj2GF92bt7SPrUi0nM5FvcsJc
+ V+pY3Le4G8q4PPbodY0xAQVtXJZMU24=
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
+ [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-687-4MiZocpUPiq0KPeXBs-Uyg-1; Mon, 08 Sep 2025 04:00:15 -0400
+X-MC-Unique: 4MiZocpUPiq0KPeXBs-Uyg-1
+X-Mimecast-MFC-AGG-ID: 4MiZocpUPiq0KPeXBs-Uyg_1757318409
+Received: by mail-wr1-f70.google.com with SMTP id
+ ffacd0b85a97d-3e3b77972cbso1376609f8f.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 08 Sep 2025 01:00:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1757318409; x=1757923209;
+ h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+ :from:references:cc:to:subject:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=6ZtGxzPBBhWZb8TdeGEHePc9lnXNDI+6sWWhJSedy84=;
+ b=vysSVa2bSR2i5wPpwXB/OlSuhvw/U/pVWqMmX+/MwDSWYaROUaAy7E598vkRwlN6cX
+ mIh1pwv83gAzZUrYVEykbYdA2afkAKwS9qOXEuP3IfJestwdQZhvL9IYQBtcsKzBvWHl
+ WCWsfRNBytbiQyxWmslP3y4aY5+LJ97Z97fbCTRt95aO/4b//E5JxP+4a6AQSK/h8tQd
+ CLx+I+2e02WiUmEcgR9xoUfbzV7ZgCPbdogsxJhN1kLiAu9C7D4c5sPZu54Hw1MN+6an
+ dq0BOuahvllpW1qs2I6yzgdUFGwjc7d7ptLUTJSAmjOBmyKe5pum51n4hFrRZTcnXz1j
+ vztA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU6apfyJEq9181T0G4qwSXjDH63InPjMQ6ea455tlFfZ+mcY+sNAMzURGKenGoNGUCAZ45MxAbNWR0=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxK7wEY2pDf70bw7gFyiDnROPGcawizLnPJflZ+Zf1MQOQVfeD2
+ 543KzLeRGocUzwiDdbt8RSNjSBliVHULJ/+khtGwevjqQd2Tyhasc3TGC0ZAXJdAQ+8W1Q0REv+
+ S+LoesXVfx1zDlwTyHNftLFRh9ApSa8cTQwpchq4pZM24C8nzApqp4FGJrBkJG27ipVIjqQ==
+X-Gm-Gg: ASbGncumC3opORKcfFzqVUKdU4V5KWwWzHyaP4GRJe3G7c3NS2rNh9IlpCNo4P43tav
+ LzP+igc1PeAkDV7a/zqsqPuCdzwg13YGkp6Rf6/hm67bEVXve3L+jlqMXs8/V+6TcKeKaHN6MrG
+ 05uJOMklcNA99jyUyA3WPWIpb9xX/phxfQmTcFgGgUPlUal1TXKAvHkmlrATUsJcsha8e+EZjDm
+ wFOQur2HGRFOR5uLzV9cHUnl9hcHM9l8vkCJJvnEk2tcstFkS1KHkMOEVG3G36rpf+TbjRElkP+
+ uc9hnjzlAuc/EGvmgS7enQ+0G648p7zDzruyMwYg2oQB/hbRMTtpMWK/fe2gn0BRAzjMMVU=
+X-Received: by 2002:a05:6000:26cd:b0:3e0:2a95:dc9e with SMTP id
+ ffacd0b85a97d-3e64ce50347mr4840557f8f.57.1757318409197; 
+ Mon, 08 Sep 2025 01:00:09 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF+e2xgTQYe5kT3rV+uD8LRSVafVXIklNJL7Am05EAxkn8s4rPl3yNNJ7oQs/EOmF2miaT83w==
+X-Received: by 2002:a05:6000:26cd:b0:3e0:2a95:dc9e with SMTP id
+ ffacd0b85a97d-3e64ce50347mr4840495f8f.57.1757318408663; 
+ Mon, 08 Sep 2025 01:00:08 -0700 (PDT)
+Received: from [192.168.3.141] (p57a1ae98.dip0.t-ipconnect.de.
+ [87.161.174.152]) by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-3e740369f1esm6798834f8f.11.2025.09.08.01.00.06
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 08 Sep 2025 01:00:08 -0700 (PDT)
+Message-ID: <28fc8fb3-f16b-4efb-b8e3-24081f035c73@redhat.com>
+Date: Mon, 8 Sep 2025 10:00:05 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 19/37] mm/gup: remove record_subpages()
+To: John Hubbard <jhubbard@nvidia.com>, linux-kernel@vger.kernel.org
+Cc: Alexander Potapenko <glider@google.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Brendan Jackman <jackmanb@google.com>, Christoph Lameter <cl@gentwo.org>,
+ Dennis Zhou <dennis@kernel.org>, Dmitry Vyukov <dvyukov@google.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ iommu@lists.linux.dev, io-uring@vger.kernel.org,
+ Jason Gunthorpe <jgg@nvidia.com>, Jens Axboe <axboe@kernel.dk>,
+ Johannes Weiner <hannes@cmpxchg.org>, kasan-dev@googlegroups.com,
+ kvm@vger.kernel.org, "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>, linux-arm-kernel@axis.com,
+ linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+ linux-ide@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ linux-mips@vger.kernel.org, linux-mmc@vger.kernel.org, linux-mm@kvack.org,
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+ linux-scsi@vger.kernel.org, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Marco Elver <elver@google.com>, Marek Szyprowski <m.szyprowski@samsung.com>,
+ Michal Hocko <mhocko@suse.com>, Mike Rapoport <rppt@kernel.org>,
+ Muchun Song <muchun.song@linux.dev>, netdev@vger.kernel.org,
+ Oscar Salvador <osalvador@suse.de>, Peter Xu <peterx@redhat.com>,
+ Robin Murphy <robin.murphy@arm.com>, Suren Baghdasaryan <surenb@google.com>,
+ Tejun Heo <tj@kernel.org>, virtualization@lists.linux.dev,
+ Vlastimil Babka <vbabka@suse.cz>, wireguard@lists.zx2c4.com, x86@kernel.org,
+ Zi Yan <ziy@nvidia.com>, Aristeu Rozanski <aris@redhat.com>
+References: <20250901150359.867252-1-david@redhat.com>
+ <20250901150359.867252-20-david@redhat.com>
+ <016307ba-427d-4646-8e4d-1ffefd2c1968@nvidia.com>
+ <85e760cf-b994-40db-8d13-221feee55c60@redhat.com>
+ <0a28adde-acaf-4d55-96ba-c32d6113285f@nvidia.com>
+From: David Hildenbrand <david@redhat.com>
+Autocrypt: addr=david@redhat.com; keydata=
+ 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
+ qIws/H2t
+In-Reply-To: <0a28adde-acaf-4d55-96ba-c32d6113285f@nvidia.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: J0FOer8yErJCFsyqaMaZr1ia-JTF8Ik-Xa4BSiH6CPY_1757318409
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,96 +171,15 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Isolate the code that handles method selection and calculation, so
-skl_compute_plane_wm() doesn't get too long.
+>> Roughly, what I am thinking (limiting it to pte+pmd case) about is the
+>> following:
+> 
+> The code below looks much cleaner, that's great!
 
-Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
----
- drivers/gpu/drm/i915/display/skl_watermark.c | 51 ++++++++++++--------
- 1 file changed, 31 insertions(+), 20 deletions(-)
+Great, I (or Aristeu if he has capacity) will clean this all up soon.
 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 21f8d52ec1d2..33853a18ee9c 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -1806,25 +1806,14 @@ static bool xe3_auto_min_alloc_capable(struct intel_plane *plane, int level)
- 	return DISPLAY_VER(display) >= 30 && level == 0 && plane->id != PLANE_CURSOR;
- }
- 
--static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
--				 struct intel_plane *plane,
--				 int level,
--				 unsigned int latency,
--				 const struct skl_wm_params *wp,
--				 const struct skl_wm_level *result_prev,
--				 struct skl_wm_level *result /* out */)
-+static uint_fixed_16_16_t
-+skl_wm_run_method(struct intel_display *display,
-+		  const struct intel_crtc_state *crtc_state,
-+		  const struct skl_wm_params *wp,
-+		  unsigned int latency)
- {
--	struct intel_display *display = to_intel_display(crtc_state);
- 	uint_fixed_16_16_t method1, method2;
- 	uint_fixed_16_16_t selected_result;
--	u32 blocks, lines, min_ddb_alloc = 0;
--
--	if (latency == 0 ||
--	    (use_minimal_wm0_only(crtc_state, plane) && level > 0)) {
--		/* reject it */
--		result->min_ddb_alloc = U16_MAX;
--		return;
--	}
- 
- 	method1 = skl_wm_method1(display, wp->plane_pixel_rate,
- 				 wp->cpp, latency, wp->dbuf_block_size);
-@@ -1837,7 +1826,9 @@ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
- 	case WM_TILING_Y_FAMILY:
- 		selected_result = max_fixed16(method2, wp->y_tile_minimum);
- 		break;
--
-+	default:
-+		MISSING_CASE(wp->tiling);
-+		fallthrough;
- 	case WM_TILING_LINEAR:
- 	case WM_TILING_X_TILED:
- 		/*
-@@ -1862,12 +1853,32 @@ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
- 			selected_result = method1;
- 		}
- 		break;
-+	}
- 
--	default:
--		drm_err(display->drm, "Invalid tiling mode\n", wp->tiling);
--		break;
-+	return selected_result;
-+}
-+
-+static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
-+				 struct intel_plane *plane,
-+				 int level,
-+				 unsigned int latency,
-+				 const struct skl_wm_params *wp,
-+				 const struct skl_wm_level *result_prev,
-+				 struct skl_wm_level *result /* out */)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	uint_fixed_16_16_t selected_result;
-+	u32 blocks, lines, min_ddb_alloc = 0;
-+
-+	if (latency == 0 ||
-+	    (use_minimal_wm0_only(crtc_state, plane) && level > 0)) {
-+		/* reject it */
-+		result->min_ddb_alloc = U16_MAX;
-+		return;
- 	}
- 
-+	selected_result = skl_wm_run_method(display, crtc_state, wp, latency);
-+
- 	blocks = fixed16_to_u32_round_up(selected_result);
- 	if (DISPLAY_VER(display) < 30)
- 		blocks++;
 -- 
-2.50.1
+Cheers
+
+David / dhildenb
 
