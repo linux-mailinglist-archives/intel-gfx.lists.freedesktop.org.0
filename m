@@ -2,71 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98366B48D22
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 14:16:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25D12B48D25
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 14:16:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A64D10E4ED;
-	Mon,  8 Sep 2025 12:16:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF35610E4F1;
+	Mon,  8 Sep 2025 12:16:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=estudante.ufscar.br header.i=@estudante.ufscar.br header.b="j5o0QX3R";
+	dkim=pass (1024-bit key; secure) header.d=estudante.ufscar.br header.i=@estudante.ufscar.br header.b="FfzWx1WS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com
- [209.85.210.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 540E810E4ED
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Sep 2025 12:16:00 +0000 (UTC)
-Received: by mail-pf1-f178.google.com with SMTP id
- d2e1a72fcca58-77264a94031so2977814b3a.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 08 Sep 2025 05:16:00 -0700 (PDT)
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com
+ [209.85.216.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E9E010E4F2
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Sep 2025 12:16:04 +0000 (UTC)
+Received: by mail-pj1-f42.google.com with SMTP id
+ 98e67ed59e1d1-32b959b4895so2805234a91.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 08 Sep 2025 05:16:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=estudante.ufscar.br; s=google; t=1757333760; x=1757938560;
+ d=estudante.ufscar.br; s=google; t=1757333764; x=1757938564;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=B2c4SClBLaEcuuZYVj5SwZ6daEI8HGZlE+9CzkOMlMk=;
- b=j5o0QX3RaXZRELtat0R4Z7eyoLFVCdFvOin5EVnYcgczbGVLBALVMV0Q1XGcCHR75H
- o8x6prqPB3MQ5F17uW3FVAD7X5Y8NDeQ4CF/vmkVk8BxLQFsfyGQUegOGuFuS3/PQrwd
- rxXvCbLi7AEShSRUQJXKNiM0VBOqhehfIzeSk=
+ bh=ov+c/bZFtSWdE4f2Ei/73+xpZsgPZAaXCwBdXm2Me7E=;
+ b=FfzWx1WSMEe5AEFyI7HZ/OzFmm70QhBLDgF+2Nk9sGJtFYtE3aCw2fcXzAoq0F5V9D
+ uAdwz9zUAC1v7bAm1Gl2sPcXmnxOKYzSKEEAIO9x5ei6Q/Liz87ownJ/bLCcmgO25/M1
+ Fe5DxLoDxmUR+Vc5Efko7gHbwjnTgSZlLNwtc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1757333760; x=1757938560;
+ d=1e100.net; s=20230601; t=1757333764; x=1757938564;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=B2c4SClBLaEcuuZYVj5SwZ6daEI8HGZlE+9CzkOMlMk=;
- b=bSL/fmQFLn3lsRQF9S5pFh0QZOQ/idjqyYvVuO6Vms0kDkpK3dSC6as2mIUwc+x9V6
- 6Pz8F/LNU+pLjMXisPoJqOLTdmIff8VTiFMLK5gh1UH5euyErtTOpPil5KoXIEOD9xdU
- qxd42mxuLURfFYbUMnaNLlx3FXgNdfcNeoo0/RuZZ+kkKxFcrOA2HW4OOqdm9dlUf6y9
- Ij/gFhrha3hs/9MUIQ9b6AJZKxVuBebHZypjIS9ZqYnBbJAdYCSru14JtrrZJPGjxTDc
- zGwwAyChL78gbh3+ic4h9ojqvoTzYcZAcnEANvHItAi7f8msbpPBazEP2oBDpjRfd9g0
- oWZQ==
-X-Gm-Message-State: AOJu0YzWoUMqUxDdevNEmVzG1RApmmG1h+LcWaJjGGp3XjiKGRmVFZtL
- qtJymFhMFXNiBFWmNAkREF0P8Qhn9Eyb9V6cHeRRxLBwWblX3siEpTWzUlxFC25m294=
-X-Gm-Gg: ASbGncuVy7Kgw+29W5BQgrGyjNY9HtLLps8uiD9Tn660uTTM9L/kBjfNjD/IjO8QCyE
- pvSizf5YxgIUJ6S7KPrHhTVoxSw0tDLTKdipQrRL2OupdsQuKWQmsf0Lg90Rsf84invkDf8pkbQ
- zihZZpBz3pWYsY/eo736pQGFMauiFpSgwGtQZrPGklv+j34TGogROdSHTkM6g+htw+EFNI3QE50
- 7GD5+UlxvCctIIBJkI+xrrhbrg3LZtmveh3yhxZaf5uBzeAXT7KrXDsC03y5lNSgOG1d4ZzALXx
- meNmCgFRIJZMP1B30Vhij47kma1TnSyklarVDBenw4Td8noG0d1A2U23sZ1xtjwmounYKIhVY1x
- ZEaJMNPltBZ53O4jtg9a6Pk9MevlA/vFqbmMaCX8XyZE=
-X-Google-Smtp-Source: AGHT+IFR27ciPZayRWeKYcIz1tk2ww01LtnkwYAYHdQ7M3fImOs3JWjnycxOnV1IKCa27ToLJGUWng==
-X-Received: by 2002:a05:6a00:c8c:b0:772:5487:c35a with SMTP id
- d2e1a72fcca58-7742dcd7050mr10340386b3a.14.1757333759684; 
- Mon, 08 Sep 2025 05:15:59 -0700 (PDT)
+ bh=ov+c/bZFtSWdE4f2Ei/73+xpZsgPZAaXCwBdXm2Me7E=;
+ b=qX+py/oAYjwhAA+M/k7aT/y5OiUzcZVm1fHV0SNPNPD1PD3YtNqoghPjv1lQgQNz+/
+ qArbWUW+BCB4/HQt6MnZBErtsciBEN9cu3Zc/wbeKoD/15dRjLbwQ1yKeoyYySdNLbKy
+ PKCsvcOaUKw64XQOJk/22jH0k3ox3wAYCJk2VUKSg4RAcxx0FX8Uy8tBQxtn92abxvxj
+ i+tQ5qra2T3XFiKlLeNQw046ZYDFtKOLK4/erUyDA9ZeBERVaoJFWz1bpQzxng/maxVV
+ hSs+9Un1GsdyjLiclqKouKj0FhF7oDZDgTbCDcI+0plmm4++ADsp8B5jfsk92RHueM5x
+ y2KQ==
+X-Gm-Message-State: AOJu0Ywq2H4kKTOXP57v4cCFFnm4tpDnrV9N731KS6sObZQJJ4DcWgJd
+ mh5dzMXWYRPCR0sCTZx4O8zNjw2LlkeawqGMwIY420EEE6XUW3+STwDSzeMmN2PNQvc=
+X-Gm-Gg: ASbGnctoByxplJzISYYj3TIkHNfLqek5h5Dxi3u/pG9vCX47faKORbugAZ2Z4oNIYM3
+ 4BQ/JnD+RcHdDGb3KUllUrexA2c3S2vl/KDu2udv37EF9FSjl85Q5Aepz+pofv2ZYX3FpZiRyIb
+ C7AMAay98vYWEd9w3onJtUVMzTBi+/LEyVDieFMdl4BH4jizoOFZabK2HStG39kOjdRwKti17Do
+ oRJ3Dq/UCBk0fGkehC1P2juM3xm4WPEOo6vVmrw6oO21e9uD24Z4pzewIa5W7gP0p4S7OdyXTwk
+ FUzWUiXRowzpXSaqBZ/jFmMe2tAvNAW9U38qVGz47h5y+SmpFPRRGoUK2+Ci9M6lqr7YX7Dfc8d
+ IPhcr+fXL/KgvwOE64sieD1kmByLRgiROrzsgV4qQOxA=
+X-Google-Smtp-Source: AGHT+IECIzR4ZfYmrcsRs/Xg5Pm8jsds7+MrH4rmMyqItGZC1N6J7iX1AH3m2roiEmXjJVRfiuHdrw==
+X-Received: by 2002:a17:90b:3d43:b0:327:be5f:8014 with SMTP id
+ 98e67ed59e1d1-32d43f9546emr8653538a91.34.1757333763977; 
+ Mon, 08 Sep 2025 05:16:03 -0700 (PDT)
 Received: from localhost.localdomain ([2804:14c:4a5:943d::1709])
  by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-772306a1870sm28345188b3a.75.2025.09.08.05.15.56
+ d2e1a72fcca58-772306a1870sm28345188b3a.75.2025.09.08.05.16.00
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 08 Sep 2025 05:15:59 -0700 (PDT)
+ Mon, 08 Sep 2025 05:16:03 -0700 (PDT)
 From: Luiz Otavio Mello <luiz.mello@estudante.ufscar.br>
 To: rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
  joonas.lahtinen@linux.intel.com, simona@ffwll.ch, airlied@gmail.com,
  tursulin@ursulin.net
 Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  mairacanal@riseup.net, Luiz Otavio Mello <luiz.mello@estudante.ufscar.br>
-Subject: [PATCH 6/9 v4] drm/i915/display: Remove outdated struct_mutex comments
-Date: Mon,  8 Sep 2025 09:15:14 -0400
-Message-ID: <20250908131518.36625-7-luiz.mello@estudante.ufscar.br>
+Subject: [PATCH 7/9 v4] drm/i915: Clean-up outdated struct_mutex comments
+Date: Mon,  8 Sep 2025 09:15:15 -0400
+Message-ID: <20250908131518.36625-8-luiz.mello@estudante.ufscar.br>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250908131518.36625-1-luiz.mello@estudante.ufscar.br>
 References: <20250908131518.36625-1-luiz.mello@estudante.ufscar.br>
@@ -91,36 +91,51 @@ The struct_mutex will be removed from the DRM subsystem, as it was a
 legacy BKL that was only used by i915 driver. After review, it was
 concluded that its usage was no longer necessary
 
-This patch update a comment about struct_mutex in i915/display, in order
-to prevent future misunderstandings.
+This patch updates various comments in the i915 codebase to
+either remove or clarify references to struct_mutex, in order to
+prevent future misunderstandings.
 
-* intel_fbc.c: Removed the statement that intel_fbc->lock is the inner
-  lock when overlapping with struct_mutex, since struct_mutex is no
-  longer used anywhere in the driver.
+* i915_drv.h: Removed the statement that stolen_lock is the inner lock
+  when overlaps with struct_mutex, since struct_mutex is no longer used
+  in the driver.
+* i915_gem.c: Removed parentheses suggesting usage of struct_mutex, which
+  which is no longer used.
 
 Signed-off-by: Luiz Otavio Mello <luiz.mello@estudante.ufscar.br>
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbc.c | 6 +-----
- 1 file changed, 1 insertion(+), 5 deletions(-)
+ drivers/gpu/drm/i915/i915_drv.h | 3 +--
+ drivers/gpu/drm/i915/i915_gem.c | 3 +--
+ 2 files changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index d4c5deff9cbe..aaaabba77b88 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -98,11 +98,7 @@ struct intel_fbc {
- 	struct intel_display *display;
- 	const struct intel_fbc_funcs *funcs;
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 15f66a7d496d..63fef3873a38 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -114,8 +114,7 @@ struct i915_gem_mm {
+ 	struct intel_memory_region *stolen_region;
+ 	/** Memory allocator for GTT stolen memory */
+ 	struct drm_mm stolen;
+-	/** Protects the usage of the GTT stolen memory allocator. This is
+-	 * always the inner lock when overlapping with struct_mutex. */
++	/** Protects the usage of the GTT stolen memory allocator */
+ 	struct mutex stolen_lock;
  
--	/*
--	 * This is always the inner lock when overlapping with
--	 * struct_mutex and it's the outer lock when overlapping
--	 * with stolen_lock.
--	 */
-+	/* This is always the outer lock when overlapping with stolen_lock */
- 	struct mutex lock;
- 	unsigned int busy_bits;
+ 	/* Protects bound_list/unbound_list and #drm_i915_gem_object.mm.link */
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index 8c8d43451f35..e14a0c3db999 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -847,8 +847,7 @@ void i915_gem_runtime_suspend(struct drm_i915_private *i915)
+ 	/*
+ 	 * Only called during RPM suspend. All users of the userfault_list
+ 	 * must be holding an RPM wakeref to ensure that this can not
+-	 * run concurrently with themselves (and use the struct_mutex for
+-	 * protection between themselves).
++	 * run concurrently with themselves.
+ 	 */
  
+ 	list_for_each_entry_safe(obj, on,
 -- 
 2.50.1
 
