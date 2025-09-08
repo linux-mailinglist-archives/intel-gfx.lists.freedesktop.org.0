@@ -2,60 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DCAAB48E7E
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 15:02:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9803CB48D15
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 14:15:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D2CD10E51F;
-	Mon,  8 Sep 2025 13:02:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD9C810E084;
+	Mon,  8 Sep 2025 12:15:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jkt+XeVw";
+	dkim=pass (1024-bit key; secure) header.d=estudante.ufscar.br header.i=@estudante.ufscar.br header.b="ksu2QDhs";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0412110E27B;
- Mon,  8 Sep 2025 13:02:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757336525; x=1788872525;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=0zi+HiRIChbyieYytV+g19YDpjHsw63Zan+Fra7WB78=;
- b=Jkt+XeVwJdvK+YZPVJ2p8oJ5iIi9AfP+x1CrNRF1QSYUIzraXiQZzGUV
- egK98AHKajjVozjxYTx0VtZ+lV4qr4XsmTslHNpFASJkNJIJaCmFbIcPI
- v8bjaKl4NQrdhlLlJcItYcUW3mPkiR0TUDHQUOpO5fd1N9Y/rucT1ORfY
- 7ZNbnyFBEuhUXV9mpmvqhr+5Hq9P9bGBjTcHAQHV1LHwGNnZP2uCUkU3p
- JlLfn9/UHss30oQ53tlExDI+fEtZ1vXmjAj1lzE3uweWZQITmK7HVtoX2
- B17ryFwDdMppgGmXP+dPT/ywhlRty8BTm+FlIu4ahbICNG9cH0kspG/4j w==;
-X-CSE-ConnectionGUID: rw/oOHVoSGCly1JZ44265g==
-X-CSE-MsgGUID: T5cwZDoDSTeJekLAxVC9dw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11547"; a="70689166"
-X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="70689166"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2025 06:02:05 -0700
-X-CSE-ConnectionGUID: RJLfz/1mR0aAeUn26h4kGQ==
-X-CSE-MsgGUID: s9H2fOxXQ4ip1dXwyiNjEA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="177103024"
-Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.204])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2025 06:02:04 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 6/9] drm/{i915,xe}/fbdev: add intel_fbdev_fb_bo_destroy()
-In-Reply-To: <aLmkNu6AJ6LGVt6q@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1756931441.git.jani.nikula@intel.com>
- <52acac7760e8bc440ad9539aaa89b8cb3b5c23dc.1756931441.git.jani.nikula@intel.com>
- <aLmkNu6AJ6LGVt6q@intel.com>
-Date: Mon, 08 Sep 2025 16:01:59 +0300
-Message-ID: <b3a4d96d9ceed68a321cd7b04a1bfe60455ee5cf@intel.com>
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com
+ [209.85.215.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 634CD10E084
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Sep 2025 12:15:32 +0000 (UTC)
+Received: by mail-pg1-f177.google.com with SMTP id
+ 41be03b00d2f7-b4ee87cc81eso3940075a12.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 08 Sep 2025 05:15:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=estudante.ufscar.br; s=google; t=1757333732; x=1757938532;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=Ia+hUZJmf8zZI+6M/t/ltEWDdM46PEHluVyll3CzdAc=;
+ b=ksu2QDhsVh7TBWPE4QF5+FZ26mPLSdm/lFv+WDD+pfWC0wayibkZROrWo1nVq85hAU
+ uVQQNynwwJLoBwIfyJSh8PC83TMGjrCas90UekWEmSdfF6avaLHH/puxj9ncDydNXAE4
+ 9dW3FjM83moOnvCD9Vtbp9U2OlSjQB+cNHbGQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1757333732; x=1757938532;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=Ia+hUZJmf8zZI+6M/t/ltEWDdM46PEHluVyll3CzdAc=;
+ b=vKsMDqE3b6w8uQou/gsyBk/ub7v7WjJ/I4u05HSVtO99Hbo3HZGRz40NnQb63su/Vo
+ wnKgWCTnTOVKME8Fir6pkJwtlXYX7O7qrxIVxJRqdScf9G5hOGXvdOTVUJ6Ym+fMEQ8i
+ zIjQUAXMlXadkaD1Gpkm02NngvSlHot1AWfNK0R16b8xZTIVuHT/Kbf1A7+RjI5hVDmI
+ LPcXSw6Gtnzl3BaJkOJ8qbuPHH3fLyWLcQzUU9IDh9sDvZsmV9XQG96EYr40rGOy/0bD
+ 17rKO8whdTqsanTKacxVwc/IfYLYB6BUFBgJXLyn1hKt8KAxdP6nzsYPPCaXoCv7jYvR
+ /txw==
+X-Gm-Message-State: AOJu0Yy0iLl2eXFILt0p1NqGvtUracIfjXVFfqLPjdpqgXGyNREFIQUV
+ sLTRzaFnKruRUTKnKLvgcK6VqesMN2dSC2nCBTDa1cPY6wDCf/CuicSOG3f4aOveo4M=
+X-Gm-Gg: ASbGncvzjQzDKFfVP7e7fNAgaG9NGXYxxc7Ac5vhQJBIeFZTygQzxV5l2sRG5BpvIsT
+ nH1nt0pSsCUhMJ+53qQAa9XrMQpFM+EsFRC/mBarGD5/vWRdRI1lQ8KslQUA9Xcqx0p39PDlUlj
+ bBlro5J4pMwat+D9WIA9AwskaFzkBvadgs2Vpx5JHorZaCavcFp6BOmFm7doGQxcO7GiYMaQq25
+ 5LMAbIoJ7r0LCNS3QpJBsmneY/SnY6gddhqnw1pPkM4DqIiP3ytH9fu47tbwuX/EdF18kQbQUWf
+ YLPPmqiewZdPPZB55OJODFVwrHrcmP1rMrIwiP5qHCGQKo4A/1GglX7TfSGo4WJ9rbndlt6NBCf
+ 5DtOD1+E2yYJjiiJb4Z1l0Ys20QAw3q7HQNaArGo76M4=
+X-Google-Smtp-Source: AGHT+IHWQhozhXLN2meL9w+JEoU34rofGsCii6kWqAWU/UOMV2gqycJDmTFFq6m+MamT1Bm7R0YdaQ==
+X-Received: by 2002:a17:90b:3812:b0:329:87b8:9fc6 with SMTP id
+ 98e67ed59e1d1-32d43f2b307mr11492435a91.16.1757333731665; 
+ Mon, 08 Sep 2025 05:15:31 -0700 (PDT)
+Received: from localhost.localdomain ([2804:14c:4a5:943d::1709])
+ by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-772306a1870sm28345188b3a.75.2025.09.08.05.15.28
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 08 Sep 2025 05:15:31 -0700 (PDT)
+From: Luiz Otavio Mello <luiz.mello@estudante.ufscar.br>
+To: rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, simona@ffwll.ch, airlied@gmail.com,
+ tursulin@ursulin.net
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ mairacanal@riseup.net, Luiz Otavio Mello <luiz.mello@estudante.ufscar.br>
+Subject: [PATCH 0/9 v4] drm/i915: Remove legacy struct_mutex usage
+Date: Mon,  8 Sep 2025 09:15:08 -0400
+Message-ID: <20250908131518.36625-1-luiz.mello@estudante.ufscar.br>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,109 +85,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 04 Sep 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Wed, Sep 03, 2025 at 11:32:03PM +0300, Jani Nikula wrote:
->> xe does xe_bo_unpin_map_no_vm() on the failure path. Add a common helper
->> to enable further refactoring.
->>=20
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_fbdev_fb.c | 5 +++++
->>  drivers/gpu/drm/i915/display/intel_fbdev_fb.h | 1 +
->>  drivers/gpu/drm/xe/display/intel_fbdev_fb.c   | 7 ++++++-
->>  3 files changed, 12 insertions(+), 1 deletion(-)
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c b/drivers/gpu=
-/drm/i915/display/intel_fbdev_fb.c
->> index 3837973b0d25..6b70823ce5ef 100644
->> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
->> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
->> @@ -51,6 +51,11 @@ struct drm_gem_object *intel_fbdev_fb_bo_create(struc=
-t drm_device *drm, int size
->>  	return &obj->base;
->>  }
->>=20=20
->> +void intel_fbdev_fb_bo_destroy(struct drm_gem_object *obj)
->> +{
->> +	/* nop? */
->
-> gem_object_put() is what destroys the bo on i915, so I think you're
-> introducing a leak in the next patch with this nop implementation.
->
-> xe seems to be riddled with footguns here since it conflates
-> creation+pinning+whatever in the same thing (and I guess it
-> doesn't know how to clean all that up when the last reference
-> to the object disappears?) and you have to use that horribly
-> misnamed function instead...
+This patch series completes the long-standing effort to eliminate usage
+of the legacy struct_mutex from i915 driver.
 
-*sigh*
+Historically, struct_mutex was used to serialize access to global driver
+state across the DRM subsystem. Over time, it has been gradually
+replaced by more fine-grained and localized locking mechanism. The i915
+driver was the last remaining user of this lock, and even there, its
+usage had become redundant or outdated.
 
-I really wish we had someone actually well versed in i915/gem and xe/ttm
-and all that figuring out the necessary building blocks of the common
-API. I think as it is these are too high level, necessarily putting too
-much display code in i915 and xe cores. We desperately need better
-abstractions between the two drivers.
+Specifically, the mutex was only still used in two places: i915_irq.c
+and intel_guc_log.c. In both cases, the lock could either be removed or
+replaced with a more appropriate lock.
 
-Yeah, I'm not that person, but here I am doing it anyway.
+This series performs the following steps:
 
+* Moves struct_mutex from drm_device to drm_i915_private, since i915 was
+  its only remaining user.
+* Removes or replaces all remaining uses of struct_mutex in i915 driver.
+* Updates or removes comments referring to struct_mutex to prevent
+  future confusion.
+* Deletes the lock entirely from the i915 driver once no longer in use.
+* Cleans up the corresponding TODO entry in Documentation/gpu/todo.rst
+  and comments about struct_mutex in Documentation/gpu/i915.rst.
 
-BR,
-Jani.
+Some additional notes:
 
+* In intel_guc_log.c, a missing destructor for a lock was identified.
+  Since the series introduces a new lock in that area, this issue was
+  addressed first, to the two locks do not lack memory in kernel.
 
+* Comments referencing struct_mutex were spread across various parts of
+  i915 codebase. To improve clarity, they were cleaned up across three
+  separate patches.
 
->
->> +}
->> +
->>  struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
->>  					       struct drm_mode_fb_cmd2 *mode_cmd)
->>  {
->> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h b/drivers/gpu=
-/drm/i915/display/intel_fbdev_fb.h
->> index b10c4635bf46..6d6f316834df 100644
->> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
->> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
->> @@ -17,6 +17,7 @@ struct intel_display;
->>=20=20
->>  u32 intel_fbdev_fb_pitch_align(u32 stride);
->>  struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm,=
- int size);
->> +void intel_fbdev_fb_bo_destroy(struct drm_gem_object *obj);
->>  struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
->>  					       struct drm_mode_fb_cmd2 *mode_cmd);
->>  int intel_fbdev_fb_fill_info(struct intel_display *display, struct fb_i=
-nfo *info,
->> diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c b/drivers/gpu/d=
-rm/xe/display/intel_fbdev_fb.c
->> index 9a5d14d5781a..9a5cf50ea7de 100644
->> --- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
->> +++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
->> @@ -54,6 +54,11 @@ struct drm_gem_object *intel_fbdev_fb_bo_create(struc=
-t drm_device *drm, int size
->>  	return &obj->ttm.base;
->>  }
->>=20=20
->> +void intel_fbdev_fb_bo_destroy(struct drm_gem_object *obj)
->> +{
->> +	xe_bo_unpin_map_no_vm(gem_to_xe_bo(obj));
->> +}
->> +
->>  struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
->>  					       struct drm_mode_fb_cmd2 *mode_cmd)
->>  {
->> @@ -76,7 +81,7 @@ struct intel_framebuffer *intel_fbdev_fb_alloc(struct =
-drm_device *drm,
->>  							  mode_cmd->modifier[0]),
->>  				      mode_cmd);
->>  	if (IS_ERR(fb)) {
->> -		xe_bo_unpin_map_no_vm(gem_to_xe_bo(obj));
->> +		intel_fbdev_fb_bo_destroy(obj);
->>  		goto err;
->>  	}
->>=20=20
->> --=20
->> 2.47.2
+The only remianig reference to struct_mutex is in a comment in
+i915_gem_execbuffer.c, inside the eb_relocate_vma() function. It was
+kept because the intended locking mechanism for that case is unclear.
 
---=20
-Jani Nikula, Intel
+Changes since v1:
+* Rebased onto latest drm-tip as requested for CI compatibility
+* No changes to code/content
+
+Changes since v2:
+* Rebased onto tip/drm-tip
+* Correct code formatting
+
+Changes since v3:
+* In patch 8, the previous version only removed the mutex_init and 
+mutex_destroy calls, but left the struct_mutex variable itself behind.
+This revision fixes that by fully removing struct_mutex.
+
+Luiz Otavio Mello (9):
+  drm/i915: Move struct_mutex to drm_i915_private
+  drm/i915: Remove struct_mutex in i915_irq.c
+  drm/i915: Change mutex initialization in intel_guc_log
+  drm/i915: Replace struct_mutex in intel_guc_log
+  drm/i915/gem: Clean-up outdated struct_mutex comments
+  drm/i915/display: Remove outdated struct_mutex comments
+  drm/i915: Clean-up outdated struct_mutex comments
+  drm/i915: Drop unused struct_mutex from drm_i915_private
+  drm/i915: Remove todo and comments about struct_mutex
+
+ Documentation/gpu/i915.rst                    |  7 ------
+ Documentation/gpu/todo.rst                    | 25 -------------------
+ drivers/gpu/drm/drm_drv.c                     |  2 --
+ drivers/gpu/drm/i915/display/intel_fbc.c      |  6 +----
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object.c    |  4 +--
+ drivers/gpu/drm/i915/gem/i915_gem_shrinker.c  |  4 +--
+ drivers/gpu/drm/i915/gem/i915_gem_wait.c      |  8 +++---
+ drivers/gpu/drm/i915/gt/intel_reset_types.h   |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log.c    | 12 ++++++---
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log.h    |  8 ++++++
+ drivers/gpu/drm/i915/i915_drv.h               | 14 +++++++++--
+ drivers/gpu/drm/i915/i915_gem.c               |  3 +--
+ drivers/gpu/drm/i915/i915_irq.c               |  6 -----
+ include/drm/drm_device.h                      | 10 --------
+ 15 files changed, 41 insertions(+), 72 deletions(-)
+
+-- 
+2.50.1
+
