@@ -2,75 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E224B48D1C
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 14:15:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0331B48D1D
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 14:15:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64D0D10E4DF;
-	Mon,  8 Sep 2025 12:15:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBE1010E4E3;
+	Mon,  8 Sep 2025 12:15:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=estudante.ufscar.br header.i=@estudante.ufscar.br header.b="pvxi/lIR";
+	dkim=pass (1024-bit key; secure) header.d=estudante.ufscar.br header.i=@estudante.ufscar.br header.b="ittK+z15";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com
- [209.85.210.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34DEF10E4EA
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Sep 2025 12:15:46 +0000 (UTC)
-Received: by mail-pf1-f173.google.com with SMTP id
- d2e1a72fcca58-772301f8a4cso5978772b3a.3
- for <intel-gfx@lists.freedesktop.org>; Mon, 08 Sep 2025 05:15:46 -0700 (PDT)
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com
+ [209.85.210.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9963E10E4EC
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Sep 2025 12:15:50 +0000 (UTC)
+Received: by mail-pf1-f176.google.com with SMTP id
+ d2e1a72fcca58-77287fb79d3so3458928b3a.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 08 Sep 2025 05:15:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=estudante.ufscar.br; s=google; t=1757333746; x=1757938546;
+ d=estudante.ufscar.br; s=google; t=1757333750; x=1757938550;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=EZvt23jTC//L1s+xy2OqHG+OBbKd/63f2P5APIJAICo=;
- b=pvxi/lIRjsbPycetspSxanpPcWxWbIoBOpm+0Vp01Y6tP1BzM+PRdFxVJ5IYf7u8m4
- Q1Ui6LoybpmpKD9UpuUQs4BRWv8y+vlM9PtUJb9zC9/UK/p+r5YcRWclZZZZfWNj9Yg+
- 3fKYMqPmKtQARbE5agbkj9Se1kbiEV7Jn0Vik=
+ bh=f3/Sq+vNgg4m+drlyeS3ftFb9OT2eAyB9c/v9D5qIQ0=;
+ b=ittK+z152Y1/zmhYv22AD6EsOq1kqrePQSm9DOTWlUj3gLndLcl+uvFFXP74iY2vyE
+ kua8JJeo7XRMPxhjXAIh8Z7Tsp0ejB9Q31IQmzBzZUlcnXl1k8ceocfAbpJlSlWPS+hw
+ c8Dvh8LY3msJIJstBLhXAaBqw8cMuA5XWy1JQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1757333746; x=1757938546;
+ d=1e100.net; s=20230601; t=1757333750; x=1757938550;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=EZvt23jTC//L1s+xy2OqHG+OBbKd/63f2P5APIJAICo=;
- b=a/sdSADq9bh5vv7x3kgSaIpvYpUsorWh0QjSHTvGBYaMlz07Lf3W+uGyBMi1PYDxGg
- EpwzW8K5pTsXCKn5nD8LyUum/LWCWZynJvDSWCC8xzJdQaINTkydODMZkslvrOvKQcDk
- JckRDEeuNHQToqZIHuSs+pSUiwc0rkxnzx9WXeAdRLGWYibEN2jW6+I1P3AGPuYVOdLZ
- FMxgoZlhili9MKtis/EHktERxbqmw19Tpu95tjce8CojjjHWDoEZwPXixCsDlWV6uWpm
- /t0PJhu5fNdIZmosNLAhT/XTyR3sr4dp2Rb5MDR9UK7CizQ8msn2FRefs3qtJkED0New
- OTTA==
-X-Gm-Message-State: AOJu0Ywf/82iH6aB0/ziT4/sTqkP1MShR1pfqESJp75knjHBCS5ZFuqh
- ZPFBhl4uz0ErFvSnl6bPDXpOd0QPp1wfdHttKMikrLnj4vU/3UkHYycs+M9P1R4SVjk=
-X-Gm-Gg: ASbGncuhvOlLT76LvUJFMrzrSQDTSPHX41n50HDW9WMMAxziuTxF6Ndk+KzYy08f+wR
- /zCDaDs8Czx5nhenXq+pvWzZgCft1XS9MfKeuTO44mOaCsq0tzn+RhJQDP6mzWkRJMryZMCdgvc
- lH1XmO6+IRPRtxRkp91AhRLaUgSZ0wATTaLt1Rq+BiYt9efEA8dMquOU9e2lchd8K8J0JqhAkXC
- NbV+jb7wLlthSKceGa9oEMB08MLNptT3auvHOBm0WdkW8UEJdwIGWSlwDsrViCouLx0sxODJdTa
- zUcI5yvdl8PfWQdKfVXPf6utjU4R9DwJUgsQtJ5xTSzJ9H/NAYxrUJtbRZEutdG1MXM4qhToj74
- 2oH8S8nx77nZZ15CG5TuEsKS0w35nlRre
-X-Google-Smtp-Source: AGHT+IEUtoeih6zFpWNvve92FAkDQEbsUiuW9CjOjdxgTWiM8Mao09T7b173nfeETmP93uwnjNZSgQ==
-X-Received: by 2002:a05:6a20:3943:b0:246:458:854f with SMTP id
- adf61e73a8af0-2533e5766a6mr12050892637.6.1757333745712; 
- Mon, 08 Sep 2025 05:15:45 -0700 (PDT)
+ bh=f3/Sq+vNgg4m+drlyeS3ftFb9OT2eAyB9c/v9D5qIQ0=;
+ b=BElF709H/CQUTx09+nW/satENUC7n147byMdqr5vjp/70YEtE3wDfM8Qgk6qGrrE9f
+ /VXLaaNih+RbVCRO+QU/hAkmYtmcEIjcTqIW3aKHp91Oxnn5Pjo8iUS0R/1LuRLE6O6z
+ NcDcx71h9Ie9bfKghRyexNlXeEShTQTvpHelH7Efc2HlRV4BAGmcTslkibGsnM3H6PP2
+ 4P2XJQq//SQObR4/ZtnrQWmMzrA8ICaZsregbM2zgWz6II+UCGsoowlTuvCx1TzNNufX
+ 54ykymciCIFRQvvst/lX0gtw3ZONePbwMU2/9l7dTTefi9LOWE291gcYB2OXjqqMrKDG
+ PeAQ==
+X-Gm-Message-State: AOJu0Ywpoxu8V/yqVpTqZlvRZDfEe8Q9jxwwlAe20U1kJKc/6MH+JBu5
+ Tym5IS54MY5F6leZODQupBI6lQuu4mjJ5aOCWqkBrWjHoPNVlDsxfi75S2NW/N2PaQo=
+X-Gm-Gg: ASbGncuaLylY9Z5SYqOKD1suQAfxCXtR/APOq2eHKxztbxnG0KGMUZNn+B81wXNaxsK
+ b1LfoHAuNUxGwrjr9agVjtRfkjEWf1Z1EUwDpSDe8Ijuc7z/Bj19A7XdViDec/ZccROPfL4LRgS
+ 6OeTdMJC/KkdjR9Y3aDiB3CpY/4qI8dqbYxlthofna8vPM2505GcbQnE5laaYQXW/i4StiaQVGN
+ r5SBwhYgzU+CUTCQZJ3oHOCXgHw3p/aYgq1wtL0tLAVEk2DmPXxjDRl/qo5ffk58PAdcZxItxfi
+ vJhBk0d/wCTlG6IEkfJUM8SOUwDXoCp/b4GUt0X8NSrZ1sy18aKj19MoNLIY2qRXZ7/QRIZBUTH
+ dgLUfBSVH19nvTp9r7DL6EO91oTcKDXE6rY6Z+d1vgTs=
+X-Google-Smtp-Source: AGHT+IF6VOuSVeyrb5NhQEAvWBO8/spLKmsABNvmUJGsSnK4sSB4famjs3m8g6bKGN1xPQVz8+Jw5Q==
+X-Received: by 2002:a05:6a20:3d05:b0:251:2a11:e61 with SMTP id
+ adf61e73a8af0-2533d226181mr10991779637.17.1757333750093; 
+ Mon, 08 Sep 2025 05:15:50 -0700 (PDT)
 Received: from localhost.localdomain ([2804:14c:4a5:943d::1709])
  by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-772306a1870sm28345188b3a.75.2025.09.08.05.15.42
+ d2e1a72fcca58-772306a1870sm28345188b3a.75.2025.09.08.05.15.46
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 08 Sep 2025 05:15:45 -0700 (PDT)
+ Mon, 08 Sep 2025 05:15:49 -0700 (PDT)
 From: Luiz Otavio Mello <luiz.mello@estudante.ufscar.br>
 To: rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
  joonas.lahtinen@linux.intel.com, simona@ffwll.ch, airlied@gmail.com,
  tursulin@ursulin.net
 Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  mairacanal@riseup.net, Luiz Otavio Mello <luiz.mello@estudante.ufscar.br>
-Subject: [PATCH 3/9 v4] drm/i915: Change mutex initialization in intel_guc_log
-Date: Mon,  8 Sep 2025 09:15:11 -0400
-Message-ID: <20250908131518.36625-4-luiz.mello@estudante.ufscar.br>
+Subject: [PATCH 4/9 v4] drm/i915: Replace struct_mutex in intel_guc_log
+Date: Mon,  8 Sep 2025 09:15:12 -0400
+Message-ID: <20250908131518.36625-5-luiz.mello@estudante.ufscar.br>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250908131518.36625-1-luiz.mello@estudante.ufscar.br>
 References: <20250908131518.36625-1-luiz.mello@estudante.ufscar.br>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -87,45 +88,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The intel_guc_log->relay.lock is currently initialized in
-intel_guc_log_init_early(), but it lacks a corresponding destructor,
-which can lead to a memory leak.
-
-This patch replaces the use of mutex_init() with drmm_mutex_init(),
-which ensures the lock is properly destroyed when the driver is
-unloaded.
+Remove the use of struct_mutex from intel_guc_log.c and replace it with
+a dedicated lock, guc_lock, defined within the intel_guc_log struct.
+    
+The struct_mutex was previously used to protect concurrent access and
+modification of intel_guc_log->level in intel_guc_log_set_level().
+However, it was suggested that the lock should reside within the
+intel_guc_log struct itself.
+    
+Initialize the new guc_lock in intel_guc_log_init_early(), alongside the
+existing relay.lock. The lock is initialized using drmm_mutex_init(),
+which also ensures it is properly destroyed when the driver is unloaded.
 
 Signed-off-by: Luiz Otavio Mello <luiz.mello@estudante.ufscar.br>
+Suggested-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/i915/gt/uc/intel_guc_log.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log.c | 5 +++--
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log.h | 8 ++++++++
+ 2 files changed, 11 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
-index 65ffcaeee4b9..bfa02a17038f 100644
+index bfa02a17038f..cdff48920ee6 100644
 --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
 +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
-@@ -6,6 +6,8 @@
- #include <linux/debugfs.h>
- #include <linux/string_helpers.h>
+@@ -517,6 +517,7 @@ void intel_guc_log_init_early(struct intel_guc_log *log)
+ 	struct drm_i915_private *i915 = guc_to_i915(guc);
  
-+#include <drm/drm_managed.h>
-+
- #include "gt/intel_gt.h"
- #include "i915_drv.h"
- #include "i915_irq.h"
-@@ -511,7 +513,10 @@ static void guc_log_relay_unmap(struct intel_guc_log *log)
- 
- void intel_guc_log_init_early(struct intel_guc_log *log)
- {
--	mutex_init(&log->relay.lock);
-+	struct intel_guc *guc = log_to_guc(log);
-+	struct drm_i915_private *i915 = guc_to_i915(guc);
-+
-+	drmm_mutex_init(&i915->drm, &log->relay.lock);
+ 	drmm_mutex_init(&i915->drm, &log->relay.lock);
++	drmm_mutex_init(&i915->drm, &log->guc_lock);
  	INIT_WORK(&log->relay.flush_work, copy_debug_logs_work);
  	log->relay.started = false;
  }
+@@ -682,7 +683,7 @@ int intel_guc_log_set_level(struct intel_guc_log *log, u32 level)
+ 	if (level < GUC_LOG_LEVEL_DISABLED || level > GUC_LOG_LEVEL_MAX)
+ 		return -EINVAL;
+ 
+-	mutex_lock(&i915->struct_mutex);
++	mutex_lock(&log->guc_lock);
+ 
+ 	if (log->level == level)
+ 		goto out_unlock;
+@@ -700,7 +701,7 @@ int intel_guc_log_set_level(struct intel_guc_log *log, u32 level)
+ 	log->level = level;
+ 
+ out_unlock:
+-	mutex_unlock(&i915->struct_mutex);
++	mutex_unlock(&log->guc_lock);
+ 
+ 	return ret;
+ }
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h
+index 02127703be80..13cb93ad0710 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h
+@@ -42,6 +42,14 @@ enum {
+ struct intel_guc_log {
+ 	u32 level;
+ 
++	/*
++	 * Protects concurrent access and modification of intel_guc_log->level.
++	 *
++	 * This lock replaces the legacy struct_mutex usage in
++	 * intel_guc_log system.
++	 */
++	struct mutex guc_lock;
++
+ 	/* Allocation settings */
+ 	struct {
+ 		s32 bytes;	/* Size in bytes */
 -- 
 2.50.1
 
