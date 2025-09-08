@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2DEAB490E4
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 16:12:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73D5DB490E6
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 16:12:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 727D410E536;
-	Mon,  8 Sep 2025 14:12:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BFC210E533;
+	Mon,  8 Sep 2025 14:12:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T9bNW6hK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FXCPYcGD";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADDF910E538
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Sep 2025 14:12:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D88F10E533
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Sep 2025 14:12:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757340730; x=1788876730;
+ t=1757340735; x=1788876735;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rKshRheBHlvUjxV1C1tSsiRj9GNw/0zliFKDK8MLqic=;
- b=T9bNW6hK1FWRd52GT6lz5QdfTR1ObKCcxlVKH/CD/W8iGi6phx3yi2kt
- r8sXqhMFzNGJBLhYaKbbzlh5x12qkHCoS4KaKdJar4mB66CtLe5zwFxqz
- RmuthfRQ+KfjHG24m9VepmT53cTz4fYHJVOKA/IMzkn75Xk1miDTsQbfy
- Q9CmJSFQafqxAC+kr8MK732a6n2PPjQy2sQmexkY9bleQhDenQ+qre2V5
- UlE0h3a3ksf5rg0OjECTA7Sbiy23hqrmJJYu75cIOk7rVsFozuv6EXiuD
- hOMydCAGU5yVbEDwp7hZM8mKPH+eQ1WFbyi6r54r3cvv/CSVukJA5fkjt w==;
-X-CSE-ConnectionGUID: UWcjhkxOSEGfp3ZBOER6oQ==
-X-CSE-MsgGUID: a/nrryCqQGm+E2qnjqsUgQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11547"; a="63237492"
-X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="63237492"
+ bh=rwsXqsPOXEr+mYHYBV67grLeQCyCyJOBKtoFMgCEIPA=;
+ b=FXCPYcGD55CbndD9L0NzwkkGyFBnFgWZNBlq1OsItXdqJTylTMl8sq37
+ oLy8MZgXVdbDe6VHSEQ61PZ7liMn8/HbZF0FPEBK2oEPnHNT7NCm+37FE
+ J8MbuB9NsRDN7o0VJqI1uG/SQiWDqSkmlyI8IHR2bWlKyGP2PSZvQrmUw
+ Qhv6PKpuK5irNFGpDtuWAFQQhoYRRL+JJ00ezyqM4t90p+Mi8VT88eCdE
+ EtHQLNbf+RGNqe7r1VWfBxKLZvVSaIPg+bz08BqmhGzw45yvCTgjbNgi4
+ F5dtyEQfLKyl1mrYqGxLKoULUu2rt/AZMldaeLMRAjmM1BU0SGLTHDQNP Q==;
+X-CSE-ConnectionGUID: kSTbnkKmS/W0OYuSy2OMiA==
+X-CSE-MsgGUID: Wvo7taMbQqq33FuGsTQZdA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11547"; a="63237497"
+X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="63237497"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2025 07:12:10 -0700
-X-CSE-ConnectionGUID: Oe4tDxVtQ+W6YuSPoBMklQ==
-X-CSE-MsgGUID: jqIXyQgVRlKiO2z1/EUeag==
+ 08 Sep 2025 07:12:15 -0700
+X-CSE-ConnectionGUID: V9oPxMNnTjW2I38sZkThyA==
+X-CSE-MsgGUID: SHW8a1rqSNKSOrcBTJZ+zw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="209952209"
+X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="209952215"
 Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.204])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2025 07:12:08 -0700
+ 08 Sep 2025 07:12:13 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 3/5] drm/i915: split out i915_timer_util.[ch]
-Date: Mon,  8 Sep 2025 17:11:47 +0300
-Message-ID: <863f74f4fa30338dc34151b75c28b6841e50c7ee.1757340520.git.jani.nikula@intel.com>
+Subject: [PATCH 4/5] drm/i915: split out i915_list_util.h
+Date: Mon,  8 Sep 2025 17:11:48 +0300
+Message-ID: <73279e53f57d803f0d4b9a1572613ea0be87c5b8.1757340521.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1757340520.git.jani.nikula@intel.com>
 References: <cover.1757340520.git.jani.nikula@intel.com>
@@ -70,215 +70,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Move timer related utilities from i915_utils.[ch] to separate new files
-i915_timer_util.[ch]. Clean up related includes.
+Move list related utilities from i915_utils.h to separate new file
+i915_list_util.h. Clean up related includes.
 
 Note: Arguably none of this should exist in i915 in the first place. At
 least isolate it better.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/Makefile                 |  1 +
- .../drm/i915/gt/intel_execlists_submission.c  |  4 ++-
- drivers/gpu/drm/i915/gt/sysfs_engines.c       |  1 +
- drivers/gpu/drm/i915/i915_timer_util.c        | 36 +++++++++++++++++++
- drivers/gpu/drm/i915/i915_timer_util.h        | 23 ++++++++++++
- drivers/gpu/drm/i915/i915_utils.c             | 30 ----------------
- drivers/gpu/drm/i915/i915_utils.h             | 14 --------
- 7 files changed, 64 insertions(+), 45 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/i915_timer_util.c
- create mode 100644 drivers/gpu/drm/i915/i915_timer_util.h
+ .../drm/i915/gt/intel_execlists_submission.c  |  1 +
+ .../gpu/drm/i915/gt/intel_gt_buffer_pool.c    |  1 +
+ drivers/gpu/drm/i915/gt/intel_timeline.h      |  2 +-
+ drivers/gpu/drm/i915/i915_list_util.h         | 23 +++++++++++++++++++
+ drivers/gpu/drm/i915/i915_utils.h             | 14 -----------
+ 5 files changed, 26 insertions(+), 15 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/i915_list_util.h
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index db150a0c33ce..e58c0c158b3a 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -32,6 +32,7 @@ i915-y += \
- 	i915_scatterlist.o \
- 	i915_switcheroo.o \
- 	i915_sysfs.o \
-+	i915_timer_util.o \
- 	i915_utils.o \
- 	intel_clock_gating.o \
- 	intel_cpu_info.o \
 diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-index 03baa7fa0a27..52c8fddedfce 100644
+index 52c8fddedfce..0c1b2df02d26 100644
 --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
 +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-@@ -106,14 +106,16 @@
-  * preemption, but just sampling the new tail pointer).
-  *
-  */
-+
- #include <linux/interrupt.h>
- #include <linux/string_helpers.h>
+@@ -112,6 +112,7 @@
  
-+#include "gen8_engine_cs.h"
+ #include "gen8_engine_cs.h"
  #include "i915_drv.h"
++#include "i915_list_util.h"
  #include "i915_reg.h"
-+#include "i915_timer_util.h"
+ #include "i915_timer_util.h"
  #include "i915_trace.h"
- #include "i915_vgpu.h"
--#include "gen8_engine_cs.h"
- #include "intel_breadcrumbs.h"
- #include "intel_context.h"
- #include "intel_engine_heartbeat.h"
-diff --git a/drivers/gpu/drm/i915/gt/sysfs_engines.c b/drivers/gpu/drm/i915/gt/sysfs_engines.c
-index aab2759067d2..4a81bc396b21 100644
---- a/drivers/gpu/drm/i915/gt/sysfs_engines.c
-+++ b/drivers/gpu/drm/i915/gt/sysfs_engines.c
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
+index 86b5a9ba323d..c7befc5c20d0 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
 @@ -7,6 +7,7 @@
- #include <linux/sysfs.h>
+ #include "gem/i915_gem_object.h"
  
  #include "i915_drv.h"
-+#include "i915_timer_util.h"
- #include "intel_engine.h"
- #include "intel_engine_heartbeat.h"
- #include "sysfs_engines.h"
-diff --git a/drivers/gpu/drm/i915/i915_timer_util.c b/drivers/gpu/drm/i915/i915_timer_util.c
++#include "i915_list_util.h"
+ #include "intel_engine_pm.h"
+ #include "intel_gt_buffer_pool.h"
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.h b/drivers/gpu/drm/i915/gt/intel_timeline.h
+index 5f8c8f79714e..85b43f9b9d95 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline.h
++++ b/drivers/gpu/drm/i915/gt/intel_timeline.h
+@@ -9,8 +9,8 @@
+ #include <linux/lockdep.h>
+ 
+ #include "i915_active.h"
++#include "i915_list_util.h"
+ #include "i915_syncmap.h"
+-#include "i915_utils.h"
+ #include "intel_timeline_types.h"
+ 
+ struct drm_printer;
+diff --git a/drivers/gpu/drm/i915/i915_list_util.h b/drivers/gpu/drm/i915/i915_list_util.h
 new file mode 100644
-index 000000000000..ee4cfd8b3c07
+index 000000000000..4e515dc8a3e0
 --- /dev/null
-+++ b/drivers/gpu/drm/i915/i915_timer_util.c
-@@ -0,0 +1,36 @@
-+// SPDX-License-Identifier: MIT
-+/* Copyright © 2025 Intel Corporation */
-+
-+#include <linux/jiffies.h>
-+
-+#include "i915_timer_util.h"
-+
-+void cancel_timer(struct timer_list *t)
-+{
-+	if (!timer_active(t))
-+		return;
-+
-+	timer_delete(t);
-+	WRITE_ONCE(t->expires, 0);
-+}
-+
-+void set_timer_ms(struct timer_list *t, unsigned long timeout)
-+{
-+	if (!timeout) {
-+		cancel_timer(t);
-+		return;
-+	}
-+
-+	timeout = msecs_to_jiffies(timeout);
-+
-+	/*
-+	 * Paranoia to make sure the compiler computes the timeout before
-+	 * loading 'jiffies' as jiffies is volatile and may be updated in
-+	 * the background by a timer tick. All to reduce the complexity
-+	 * of the addition and reduce the risk of losing a jiffy.
-+	 */
-+	barrier();
-+
-+	/* Keep t->expires = 0 reserved to indicate a canceled timer. */
-+	mod_timer(t, jiffies + timeout ?: 1);
-+}
-diff --git a/drivers/gpu/drm/i915/i915_timer_util.h b/drivers/gpu/drm/i915/i915_timer_util.h
-new file mode 100644
-index 000000000000..f35ad730820c
---- /dev/null
-+++ b/drivers/gpu/drm/i915/i915_timer_util.h
++++ b/drivers/gpu/drm/i915/i915_list_util.h
 @@ -0,0 +1,23 @@
 +/* SPDX-License-Identifier: MIT */
 +/* Copyright © 2025 Intel Corporation */
 +
-+#ifndef __I915_TIMER_UTIL_H__
-+#define __I915_TIMER_UTIL_H__
++#ifndef __I915_LIST_UTIL_H__
++#define __I915_LIST_UTIL_H__
 +
-+#include <linux/timer.h>
++#include <linux/list.h>
 +#include <asm/rwonce.h>
 +
-+void cancel_timer(struct timer_list *t);
-+void set_timer_ms(struct timer_list *t, unsigned long timeout);
-+
-+static inline bool timer_active(const struct timer_list *t)
++static inline void __list_del_many(struct list_head *head,
++				   struct list_head *first)
 +{
-+	return READ_ONCE(t->expires);
++	first->prev = head;
++	WRITE_ONCE(head->next, first);
 +}
 +
-+static inline bool timer_expired(const struct timer_list *t)
++static inline int list_is_last_rcu(const struct list_head *list,
++				   const struct list_head *head)
 +{
-+	return timer_active(t) && !timer_pending(t);
++	return READ_ONCE(list->next) == head;
 +}
 +
-+#endif /* __I915_TIMER_UTIL_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_utils.c b/drivers/gpu/drm/i915/i915_utils.c
-index b60c28fbd207..49f7ed413132 100644
---- a/drivers/gpu/drm/i915/i915_utils.c
-+++ b/drivers/gpu/drm/i915/i915_utils.c
-@@ -47,36 +47,6 @@ bool i915_error_injected(void)
- 
- #endif
- 
--void cancel_timer(struct timer_list *t)
--{
--	if (!timer_active(t))
--		return;
--
--	timer_delete(t);
--	WRITE_ONCE(t->expires, 0);
--}
--
--void set_timer_ms(struct timer_list *t, unsigned long timeout)
--{
--	if (!timeout) {
--		cancel_timer(t);
--		return;
--	}
--
--	timeout = msecs_to_jiffies(timeout);
--
--	/*
--	 * Paranoia to make sure the compiler computes the timeout before
--	 * loading 'jiffies' as jiffies is volatile and may be updated in
--	 * the background by a timer tick. All to reduce the complexity
--	 * of the addition and reduce the risk of losing a jiffy.
--	 */
--	barrier();
--
--	/* Keep t->expires = 0 reserved to indicate a canceled timer. */
--	mod_timer(t, jiffies + timeout ?: 1);
--}
--
- bool i915_vtd_active(struct drm_i915_private *i915)
- {
- 	if (device_iommu_mapped(i915->drm.dev))
++#endif /* __I915_LIST_UTIL_H__ */
 diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
-index dff02a944a57..6278a74d08c2 100644
+index 6278a74d08c2..4a6437d6e00e 100644
 --- a/drivers/gpu/drm/i915/i915_utils.h
 +++ b/drivers/gpu/drm/i915/i915_utils.h
-@@ -38,7 +38,6 @@
- #endif
+@@ -25,7 +25,6 @@
+ #ifndef __I915_UTILS_H
+ #define __I915_UTILS_H
  
- struct drm_i915_private;
--struct timer_list;
- 
- #define MISSING_CASE(x) WARN(1, "Missing case (%s == %ld)\n", \
- 			     __stringify(x), (long)(x))
-@@ -270,19 +269,6 @@ static inline void __add_taint_for_CI(unsigned int taint)
- 	add_taint(taint, LOCKDEP_STILL_OK);
+-#include <linux/list.h>
+ #include <linux/overflow.h>
+ #include <linux/sched.h>
+ #include <linux/string_helpers.h>
+@@ -101,19 +100,6 @@ static inline bool is_power_of_2_u64(u64 n)
+ 	return (n != 0 && ((n & (n - 1)) == 0));
  }
  
--void cancel_timer(struct timer_list *t);
--void set_timer_ms(struct timer_list *t, unsigned long timeout);
--
--static inline bool timer_active(const struct timer_list *t)
+-static inline void __list_del_many(struct list_head *head,
+-				   struct list_head *first)
 -{
--	return READ_ONCE(t->expires);
+-	first->prev = head;
+-	WRITE_ONCE(head->next, first);
 -}
 -
--static inline bool timer_expired(const struct timer_list *t)
+-static inline int list_is_last_rcu(const struct list_head *list,
+-				   const struct list_head *head)
 -{
--	return timer_active(t) && !timer_pending(t);
+-	return READ_ONCE(list->next) == head;
 -}
 -
- static inline bool i915_run_as_guest(void)
+ static inline unsigned long msecs_to_jiffies_timeout(const unsigned int m)
  {
- #if IS_ENABLED(CONFIG_X86)
+ 	unsigned long j = msecs_to_jiffies(m);
 -- 
 2.47.3
 
