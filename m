@@ -2,58 +2,86 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4EB6B49A18
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 21:38:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13D7CB4FC4E
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Sep 2025 15:21:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B21FE10E5B9;
-	Mon,  8 Sep 2025 19:38:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0727A10E71C;
+	Tue,  9 Sep 2025 13:21:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=adrian.larumbe@collabora.com header.b="CfZAHCKL";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UaYg/ztb";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2572810E5BE;
- Mon,  8 Sep 2025 19:38:30 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1757360306; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=TK1ARdU/O8zZ/od9ERmzxUih/8+fS2OW/r30IbqLmETLt+3PUBO4jrKjHBYrbggy904CfHumuu0QmyvXrxtRlGNzAsiNWfbUIZvxdhmGYiN/M3d6SF9aKH/P/GpbI1WPgJnbqcb+qzILnSTeHEGfTBinVVlHkO2uvxH71W+vh9g=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1757360306;
- h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=Riiv++sokUzJgtQPmPANtfE3CeQuEqQ4efLflKqdGZU=; 
- b=PQaIoLGa+ZGEIY6no+Oomfx7WNxporBOxSg/xAnMY7bG+cEBHQBHRsm1OquSrGu4Fq+XRRgUDjV/TzDq7b41RAI9MXhVVAvhQHmKcwRsOtYLbUL44kMOipiN+OBWw1y0IEN4TurAx2IOIZqWLDVLoh3qFrJDY38Zx4S3oveqvXQ=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=adrian.larumbe@collabora.com;
- dmarc=pass header.from=<adrian.larumbe@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1757360306; 
- s=zohomail; d=collabora.com; i=adrian.larumbe@collabora.com;
- h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
- bh=Riiv++sokUzJgtQPmPANtfE3CeQuEqQ4efLflKqdGZU=;
- b=CfZAHCKLFISo49aQbI6y97jQckZlARRdhk2bgPYS04jdlUacIOy8bCJ/91LJoSfu
- LPPTSVhTO6eYboQitfbpB8fojtEUvRPHSsrT95apT+93fzKg9ZUiDrP6q9bgi3MvqaM
- /DC2ZVMT1dTkGyEXkWZjX+NKfIYW3a/9uoHEoxw4=
-Received: by mx.zohomail.com with SMTPS id 175736030444194.01486203688194;
- Mon, 8 Sep 2025 12:38:24 -0700 (PDT)
-Date: Mon, 8 Sep 2025 20:38:19 +0100
-From: Adrian Larumbe <adrian.larumbe@collabora.com>
-To: Daniel Almeida <daniel.almeida@collabora.com>
-Cc: adrinael@adrinael.net, arek@hiler.eu, kamil.konieczny@linux.intel.com, 
- juhapekka.heikkila@gmail.com, bhanuprakash.modem@gmail.com,
- ashutosh.dixit@intel.com, 
- karthik.b.s@intel.com, boris.brezillon@collabora.com, liviu.dudau@arm.com, 
- steven.price@arm.com, intel-gfx@lists.freedesktop.org,
- igt-dev@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH i-g-t 4/4] tests/panthor: add panthor tests
-Message-ID: <ppcouqscuel2uf24oecolvddzmjvgjq7zglvb3s2eoowkj4gzd@4qm2nhkgu6gb>
-References: <20250828130402.2549948-1-daniel.almeida@collabora.com>
- <20250828130402.2549948-5-daniel.almeida@collabora.com>
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com
+ [209.85.160.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B63BF10E5CE;
+ Mon,  8 Sep 2025 20:32:13 +0000 (UTC)
+Received: by mail-qt1-f174.google.com with SMTP id
+ d75a77b69052e-4b61161c32eso15549881cf.3; 
+ Mon, 08 Sep 2025 13:32:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1757363533; x=1757968333; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=TEXn0VonFGZjiOSBUC+NQ1DPAGBZB46LrclAaBj+qTI=;
+ b=UaYg/ztbDQarPr7bIiVkURvVNyspm60mHRrDL6qNagk3BJAITpnwI+dWsbnjpvmfNZ
+ gR6abba7m5x3P4+jaJIdlFnqtK45+Bx2cj9XVjpogPtLdT1wwlmhzSvhlYPAPi//Sjrk
+ KSRiQLAe1AvDfBr3euoMmgPULy0hEduL5jFfWqKxPjYpG8FoJYHioRFtk41KN9EUDv82
+ UPUQmjsX0f+mzHJTlA2Fp5+4EUn6AHy7D4gZs1dUJTL6xJsbGcdyfLacUMYmJRDyEFME
+ mgWsuVytCWj60nr25Q7Zo1YfRLbMazv1I6lkfo1cndVIVudaDfE1yC94rN3QVB5T5vT6
+ NFVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1757363533; x=1757968333;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=TEXn0VonFGZjiOSBUC+NQ1DPAGBZB46LrclAaBj+qTI=;
+ b=Ay0HtTv0WDY1TihMxZQgWwjHxeqEGydfO62h93WolG+NmS8yr8WV7bGvAhnzEFYVvg
+ uQs9B8SMxtdJP4JbRxKNHol9pB0XcUXINNHYi0CBogndZStE9+YBSlbeeM7cLR+NhvMH
+ 8VY/fK5Ug15cf2GWNLjhl52iWNRjkvFxS6hZYmx+c8VKDew2rf1n4jcNvAVdEKVjspG3
+ /D0pNpCqtrH4iFtZsrqDQMyNOiOPAb6438voCaG1Xd0SOBLnCjs4dAMOoMO9TEKDKSLz
+ 1Rb1zjCZY/ziT/C0gw25Igfa/H/HSoyyaCSZyMKtPs1FdIqlxSwCZnRsWgatRSqdP1wc
+ QEQg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVFqHN/7Ofpdu/AImn+ezM5vLseqDGj0KQVZw7Zt0CkDd949CV16I2EQsonptZGWSHfrCbjk5MKg+CSgL6Lyg==@lists.freedesktop.org,
+ AJvYcCVw//yWvrKNWswqhu17knvIYVNMFRk3DTDUmkTUh0jRonNTAYLA1314ZidxqrrHkteBWj8MAeVb@lists.freedesktop.org,
+ AJvYcCWTqOCzQFmIqQDS1atvN2jPro9eqGxDLRVe4HWZIJxWiHCUOJK6ojB/ejfY65G4BTRm2Gcu7zCTF0An@lists.freedesktop.org,
+ AJvYcCXDZwQr5dQ5rn5lvCsQAG1vHYUw4apAbfs9FDfuFLtIYGPHDb9kLIAAHAYq/USUZHeztbBAoyuNHmy2@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzIFSOq+tV+7U8YL3dGXYYbWFVufW5zz86IedfopaNnb0gV6f9N
+ +hePMI4qD+lDwmjGZhBiAxZeL3So2xOhOrhWhnmuQ/omqpjVHZZ79JwPMeCecW1I3dgV4TfAxxb
+ wignAm5nt0sx5DV4WlMLQOXF6oY8ad/MgGmZ2
+X-Gm-Gg: ASbGnctnnGtLADLudRUR/f5lAoYEJpJJ34D0oFf4zC3GYBiGpP306XwJZDL6j0obwKP
+ q55n/7zmjnMEkNSLtUVekyZ4sQOxRWyyz/5NDWTeQO1Ya8xdmJ8KXx+rjJ+r/2VE7wIUd8SrKJ/
+ 06BrIuBT97r4RC+JIb/mApcFEWKLcOUtxVABCYy3M/hNRPoW/RdK3Pjv7OoLuJdH8bABTamrROR
+ 6le
+X-Google-Smtp-Source: AGHT+IGSJp2aXhTyk6sqQ/R1QHPbQ2mSNSQXfFUGY0QCJAQA3tiPeM4vv3TdnTCZ0xv7U3r0VWMOh7PZlVp37vbdAj4=
+X-Received: by 2002:a05:690e:251a:10b0:601:62f5:5755 with SMTP id
+ 956f58d0204a3-61022a5bb93mr6550017d50.7.1757363108960; Mon, 08 Sep 2025
+ 13:25:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250828130402.2549948-5-daniel.almeida@collabora.com>
+References: <20250803035816.603405-1-jim.cromie@gmail.com>
+ <20250803035816.603405-30-jim.cromie@gmail.com>
+ <ea069c8f-b724-409c-9dc6-345b3f9d6d85@bootlin.com>
+In-Reply-To: <ea069c8f-b724-409c-9dc6-345b3f9d6d85@bootlin.com>
+From: jim.cromie@gmail.com
+Date: Mon, 8 Sep 2025 14:24:42 -0600
+X-Gm-Features: Ac12FXwyXU2IBiFoYQeMREDq9_yqq9WDvsDYmK5y_tiNBMm3U6hYdXRJfXTlhPs
+Message-ID: <CAJfuBxwR8xhz3EWvcdk1_JcQRkq7uq4AKqrqxZLMyuPZU8Wh6g@mail.gmail.com>
+Subject: Re: [PATCH v4 29/58] docs/dyndbg: add classmap info to howto
+To: Louis Chauvet <louis.chauvet@bootlin.com>
+Cc: linux-kernel@vger.kernel.org, jbaron@akamai.com, 
+ gregkh@linuxfoundation.org, ukaszb@chromium.org, 
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
+ intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ daniel.vetter@ffwll.ch, tvrtko.ursulin@linux.intel.com, jani.nikula@intel.com, 
+ ville.syrjala@linux.intel.com, seanpaul@chromium.org, robdclark@gmail.com, 
+ groeck@google.com, yanivt@google.com, bleung@google.com, 
+ quic_saipraka@quicinc.com, will@kernel.org, catalin.marinas@arm.com, 
+ quic_psodagud@quicinc.com, maz@kernel.org, arnd@arndb.de, 
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
+ mingo@redhat.com, linux-doc@vger.kernel.org
+Content-Type: multipart/alternative; boundary="000000000000d9df49063e4ffb70"
+X-Mailman-Approved-At: Tue, 09 Sep 2025 13:21:26 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,675 +97,539 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Daniel,
+--000000000000d9df49063e4ffb70
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 28.08.2025 10:04, Daniel Almeida wrote:
-> Add an initial test suit covering query device properties, allocating
-> memory, binding and unbinding VA ranges through VM_BIND and submitting a
-> simple piece of work through GROUP_SUBMIT.
-> ---
->  lib/igt_panthor.c             | 136 ++++++++++++++++++
->  lib/igt_panthor.h             |  20 +++
->  tests/panthor/meson.build     |   4 +
->  tests/panthor/panthor_gem.c   |  59 ++++++++
->  tests/panthor/panthor_group.c | 264 ++++++++++++++++++++++++++++++++++
->  tests/panthor/panthor_query.c |  25 ++++
->  tests/panthor/panthor_vm.c    |  73 ++++++++++
->  7 files changed, 581 insertions(+)
->  create mode 100644 tests/panthor/panthor_gem.c
->  create mode 100644 tests/panthor/panthor_group.c
->  create mode 100644 tests/panthor/panthor_query.c
->  create mode 100644 tests/panthor/panthor_vm.c
->
-> diff --git a/lib/igt_panthor.c b/lib/igt_panthor.c
-> index 3e2c29b17..c422320c5 100644
-> --- a/lib/igt_panthor.c
-> +++ b/lib/igt_panthor.c
-> @@ -2,6 +2,9 @@
->  // SPDX-FileCopyrightText: Copyright (C) 2025 Collabora Ltd.
->
->  #include "igt_panthor.h"
-> +#include "drmtest.h"
-> +#include "ioctl_wrappers.h"
-> +#include "panthor_drm.h"
->
->  /**
->   * SECTION:igt_panthor
-> @@ -12,3 +15,136 @@
->   * This library provides various auxiliary helper functions for writing Panthor
->   * tests.
->   */
-> +
-> +void igt_panthor_query(int fd, int32_t type, void* data, size_t size, int err)
-> +{
-> +    struct drm_panthor_dev_query query = {
-> +        .type = type,
-> +        .pointer = (uintptr_t)data,
-> +        .size = size,
-> +    };
-> +
-> +    if (err) {
-> +        do_ioctl_err(fd, DRM_IOCTL_PANTHOR_DEV_QUERY, &query, err);
-> +    } else {
-> +        do_ioctl(fd, DRM_IOCTL_PANTHOR_DEV_QUERY, &query);
-> +    }
-> +}
-> +
-> +void igt_panthor_vm_create(int fd, uint32_t *vm_id, int err)
-> +{
-> +    struct drm_panthor_vm_create vm_create = {};
-> +
-> +    if (err) {
-> +        do_ioctl_err(fd, DRM_IOCTL_PANTHOR_VM_CREATE, &vm_create, err);
-> +    } else {
-> +        do_ioctl(fd, DRM_IOCTL_PANTHOR_VM_CREATE, &vm_create);
-> +        *vm_id = vm_create.id;
-> +    }
-> +}
-> +
-> +void igt_panthor_vm_destroy(int fd, uint32_t vm_id, int err)
-> +{
-> +    struct drm_panthor_vm_destroy vm_destroy = {
-> +        .id = vm_id,
-> +    };
-> +
-> +    if (err) {
-> +        do_ioctl_err(fd, DRM_IOCTL_PANTHOR_VM_DESTROY, &vm_destroy, err);
-> +    } else {
-> +        do_ioctl(fd, DRM_IOCTL_PANTHOR_VM_DESTROY, &vm_destroy);
-> +    }
-> +}
-> +
-> +void igt_panthor_vm_bind(int fd, uint32_t vm_id, uint32_t bo_handle,
-> +                         uint64_t va, uint64_t size, uint32_t flags, int err)
-> +{
-> +    struct drm_panthor_vm_bind_op bind_op = {
-> +        .flags = flags,
-> +        .bo_handle = bo_handle,
-> +        .va = va,
-> +        .size = size,
-> +    };
-> +
-> +    struct drm_panthor_vm_bind vm_bind = {
-> +        .vm_id = vm_id,
-> +        .flags = 0,
-> +        .ops = DRM_PANTHOR_OBJ_ARRAY(1, &bind_op),
-> +    };
-> +
-> +    if (err) {
-> +        do_ioctl_err(fd, DRM_IOCTL_PANTHOR_VM_BIND, &vm_bind, err);
-> +    } else {
-> +        do_ioctl(fd, DRM_IOCTL_PANTHOR_VM_BIND, &vm_bind);
-> +    }
-> +}
-> +
-> +void igt_panthor_bo_create(int fd, struct panthor_bo *bo,
-> +                           uint64_t size, uint32_t flags, int err)
-> +{
-> +    struct drm_panthor_bo_create bo_create = {
-> +        .size = size,
-> +        .flags = flags,
-> +    };
-> +
-> +    if (err) {
-> +        do_ioctl_err(fd, DRM_IOCTL_PANTHOR_BO_CREATE, &bo_create, err);
-> +    } else {
-> +        do_ioctl(fd, DRM_IOCTL_PANTHOR_BO_CREATE, &bo_create);
-> +    }
-> +
-> +    bo->handle = bo_create.handle;
-> +    bo->size = bo_create.size;
-> +    bo->offset = 0;
-> +    bo->map = NULL;
-> +}
-> +
-> +uint64_t igt_panthor_bo_mmap_offset(int fd, uint32_t handle, int err)
-> +{
-> +    struct drm_panthor_bo_mmap_offset bo_mmap_offset = {
-> +        .handle = handle,
-> +    };
-> +
-> +    if (err) {
-> +        do_ioctl_err(fd, DRM_IOCTL_PANTHOR_BO_MMAP_OFFSET, &bo_mmap_offset, err);
-> +    } else {
-> +        do_ioctl(fd, DRM_IOCTL_PANTHOR_BO_MMAP_OFFSET, &bo_mmap_offset);
-> +    }
-> +    return bo_mmap_offset.offset;
-> +}
-> +
-> +void *igt_panthor_mmap_bo(int fd, uint32_t handle, uint64_t size, unsigned prot)
-> +{
-> +    struct drm_panthor_bo_mmap_offset mmap_bo = {
-> +        .handle = handle,
-> +    };
-> +    void *ptr;
-> +
-> +    do_ioctl(fd, DRM_IOCTL_PANTHOR_BO_MMAP_OFFSET, &mmap_bo);
-> +
-> +    ptr = mmap(0, size, prot, MAP_SHARED, fd, mmap_bo.offset);
-> +    if (ptr == MAP_FAILED)
-> +        return NULL;
-> +    else
-> +        return ptr;
-> +}
-> +
-> +void igt_panthor_bo_create_mapped(int fd, struct panthor_bo *bo, uint64_t size,
-> +                                  uint32_t flags, int err) {
-> +  igt_panthor_bo_create(fd, bo, size, flags, err);
-> +  bo->offset = igt_panthor_bo_mmap_offset(fd, bo->handle, err);
-> +  bo->map = igt_panthor_mmap_bo(fd, bo->handle, bo->size,
-> +                           PROT_READ | PROT_WRITE);
-> +}
+hi Louis, thx for the nudge.
 
-Here, you'd be invoking the BO_MMAP_OFFSET IOCTL twice in a row, both in igt_panthor_bo_mmap_offset
-and igt_panthor_mmap_bo. Given that the mmap offset is cached somewhere in the kernel BO upon the first
-call, maybe it would make sense for us to do the same here and rewire the interface a bit so that
-no two consecutive identical ioctl's are needed.
+On Mon, Sep 8, 2025 at 8:38=E2=80=AFAM Louis Chauvet <louis.chauvet@bootlin=
+.com>
+wrote:
 
-> +void igt_panthor_free_bo(int fd, struct panthor_bo *bo)
-> +{
-> +    if (!bo)
-> +        return;
-> +
-> +    if (bo->map) {
-> +        munmap(bo->map, bo->size);
-> +    }
-> +
-> +    gem_close(fd, bo->handle);
-> +}
-> \ No newline at end of file
-> diff --git a/lib/igt_panthor.h b/lib/igt_panthor.h
-> index c4bee1838..421f44a33 100644
-> --- a/lib/igt_panthor.h
-> +++ b/lib/igt_panthor.h
-> @@ -4,5 +4,25 @@
->  #ifndef IGT_PANTHOR_H
->  #define IGT_PANTHOR_H
+> \
 >
-> +#include <stdint.h>
-> +#include <stddef.h>
-> +
-> +struct panthor_bo {
-> +    int handle;
-> +    uint64_t offset;
-> +    uint64_t size;
-> +    void *map;
-> +};
-> +
-> +void igt_panthor_query(int fd, int32_t type, void* data, size_t size, int err);
-> +void igt_panthor_vm_create(int fd, uint32_t *vm_id, int err);
-> +void igt_panthor_vm_destroy(int fd, uint32_t vm_id, int err);
-> +void igt_panthor_vm_bind(int fd, uint32_t vm_id, uint32_t bo_handle, uint64_t va, uint64_t size, uint32_t flags, int err);
-> +void igt_panthor_bo_create(int fd, struct panthor_bo *bo, uint64_t size, uint32_t flags, int err);
-> +uint64_t igt_panthor_bo_mmap_offset(int fd, uint32_t handle, int err);
-> +void igt_panthor_free_bo(int fd, struct panthor_bo *bo);
-> +void igt_panthor_bo_create_mapped(int fd, struct panthor_bo *bo, uint64_t size,
-> +                                  uint32_t flags, int err);
-> +void *igt_panthor_mmap_bo(int fd, uint32_t handle, uint64_t size, unsigned prot);
->
->  #endif /* IGT_PANTHOR_H */
-> diff --git a/tests/panthor/meson.build b/tests/panthor/meson.build
-> index 979ae91e0..89edcc844 100644
-> --- a/tests/panthor/meson.build
-> +++ b/tests/panthor/meson.build
-> @@ -1,4 +1,8 @@
->  panthor_progs = [
-> +	'panthor_gem',
-> +	'panthor_query',
-> +	'panthor_vm',
-> +	'panthor_group',
->  ]
->
->  foreach prog : panthor_progs
-> diff --git a/tests/panthor/panthor_gem.c b/tests/panthor/panthor_gem.c
-> new file mode 100644
-> index 000000000..0bdaa3495
-> --- /dev/null
-> +++ b/tests/panthor/panthor_gem.c
-> @@ -0,0 +1,59 @@
-> +// SPDX-License-Identifier: MIT
-> +// SPDX-FileCopyrightText: Copyright (C) 2025 Collabora Ltd.
-> +
-> +#include "igt.h"
-> +#include "igt_core.h"
-> +#include "igt_panthor.h"
-> +
-> +igt_main {
-> +  int fd;
-> +
-> +  igt_fixture { fd = drm_open_driver(DRIVER_PANTHOR); }
-> +
-> +  igt_subtest("bo_create") {
-> +    struct panthor_bo bo;
-> +    igt_panthor_bo_create(fd, &bo, 4096, 0, 0);
-> +    igt_assert(bo.handle != 0);
-> +
-> +    igt_panthor_free_bo(fd, &bo);
-> +  }
-> +
-> +  igt_subtest("bo_mmap_offset") {
-> +    struct panthor_bo bo;
-> +    uint64_t mmap_offset;
-> +
-> +    igt_panthor_bo_create(fd, &bo, 4096, 0, 0);
-> +    igt_assert(bo.handle != 0);
-> +
-> +    mmap_offset = igt_panthor_bo_mmap_offset(fd, bo.handle, 0);
-> +    igt_assert(mmap_offset != 0);
-> +
-> +    igt_panthor_free_bo(fd, &bo);
-> +  }
-> +
-> +  igt_subtest("bo_mmap_offset_invalid_handle") {
-> +    struct panthor_bo bo;
-> +    uint64_t mmap_offset;
-> +
-> +    igt_panthor_bo_create(fd, &bo, 4096, 0, 0);
-> +    igt_assert(bo.handle != 0);
-> +
-> +    mmap_offset = igt_panthor_bo_mmap_offset(fd, 0xdeadbeef, ENOENT);
-> +    igt_assert(mmap_offset == 0);
-> +
-> +    igt_panthor_free_bo(fd, &bo);
-> +  }
-> +
-> +  igt_subtest("bo_create_round_size") {
-> +    struct panthor_bo bo;
-> +    uint64_t expected_size = 8192;
-> +
-> +    igt_panthor_bo_create(fd, &bo, 5000, 0, 0);
-> +    igt_assert(bo.handle != 0);
-> +    igt_assert(bo.size == expected_size);
-> +
-> +    igt_panthor_free_bo(fd, &bo);
-> +  }
-> +
-> +  igt_fixture { drm_close_driver(fd); }
-> +}
-> diff --git a/tests/panthor/panthor_group.c b/tests/panthor/panthor_group.c
-> new file mode 100644
-> index 000000000..b7e3cf9c3
-> --- /dev/null
-> +++ b/tests/panthor/panthor_group.c
-> @@ -0,0 +1,264 @@
-> +// SPDX-License-Identifier: MIT
-> +// SPDX-FileCopyrightText: Copyright (C) 2025 Collabora Ltd.
-> +
-> +#include <stdint.h>
-> +#include <sys/mman.h>
-> +#include <endian.h> // For htole64
-> +#include <unistd.h>
-> +
-> +#include "drm.h"
-> +#include "igt.h"
-> +#include "igt_core.h"
-> +#include "igt_panthor.h"
-> +#include "panthor_drm.h"
-> +
-> +static void
-> +issue_store_multiple(u8 *command_stream, uint64_t kernel_va, uint32_t constant)
-> +{
-> +    uint64_t opcode, reg_num, mov48, store_multiple, flush;
-> +    uint64_t sr, src0, register_bitmap, offset;
-> +
-> +    // MOV48: Load the source register ([r68; r69]) with the kernel address
-> +    opcode = 0x1;
-> +    reg_num = 68;
-> +    mov48 = (opcode << 56) | (reg_num << 48) | kernel_va;
-> +    mov48 = htole64(mov48);
-> +    memcpy(&command_stream[0], &mov48, sizeof(mov48));
-> +
-> +    // MOV48: Load a known constant into r70
-> +    opcode = 0x1;
-> +    reg_num = 70;
-> +    mov48 = (opcode << 56) | (reg_num << 48) | constant;
-> +    mov48 = htole64(mov48);
-> +    memcpy(&command_stream[8], &mov48, sizeof(mov48));
-> +
-> +    // STORE_MULTIPLE: Store the first register to the address pointed to by [r68; r69]
-> +    opcode = 0x15; // STORE_MULTIPLE
-> +    sr = 70; // Starting from register r70
-> +    src0 = 68; // Address pointed to by [r68; r69]
-> +    register_bitmap = 1; // Store the first register
-> +    offset = 0; // Offset
-> +    store_multiple = (opcode << 56) | (sr << 48) | (src0 << 40) | (register_bitmap << 16) | offset;
-> +    store_multiple = htole64(store_multiple);
-> +    memcpy(&command_stream[16], &store_multiple, sizeof(store_multiple));
-> +
-> +    opcode = 0x1;
-> +    reg_num = 68;
-> +    mov48 = (opcode << 56) | (reg_num << 48) | 0;
-> +    mov48 = htole64(mov48);
-> +    memcpy(&command_stream[24], &mov48, sizeof(mov48));
-> +
-> +    opcode = 36;
-> +    flush = opcode << 56 | 0ull << 48 | reg_num << 40 | 0ull << 16 | 0x233;
-> +    flush = htole64(flush);
-> +    memcpy(&command_stream[32], &flush, sizeof(flush));
-> +}
-> +
-> +igt_main {
-> +  int fd;
-> +
-> +  igt_fixture { fd = drm_open_driver(DRIVER_PANTHOR); }
-> +
-> +  igt_subtest("group_create") {
-> +    struct drm_panthor_gpu_info gpu_info = {};
-> +    struct drm_panthor_vm_create vm_create = {};
-> +    struct drm_panthor_group_create group_create = {};
-> +    struct drm_panthor_queue_create queue = {};
-> +    struct drm_panthor_obj_array queues;
-> +    struct drm_panthor_group_destroy group_destroy;
-> +    struct drm_panthor_vm_destroy vm_destroy;
-> +
-> +    igt_panthor_query(fd, DRM_PANTHOR_DEV_QUERY_GPU_INFO, &gpu_info, sizeof(gpu_info), 0);
-> +    igt_assert(gpu_info.gpu_id != 0);
-> +
-> +    vm_create.flags = 0;
-> +    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_PANTHOR_VM_CREATE, &vm_create), 0);
-> +    igt_assert(vm_create.id != 0);
-> +
-> +    queue.priority = 0; // Low priority
-> +    queue.ringbuf_size = 4096; // Example size
-> +    queues = (struct drm_panthor_obj_array)DRM_PANTHOR_OBJ_ARRAY(1, &queue);
-> +
-> +    group_create.queues = queues;
-> +    group_create.max_compute_cores = 1;
-> +    group_create.max_fragment_cores = 1;
-> +    group_create.max_tiler_cores = 1;
-> +    group_create.priority = PANTHOR_GROUP_PRIORITY_MEDIUM;
-> +    group_create.compute_core_mask = gpu_info.shader_present & 0x1; // Use first core
-> +    group_create.fragment_core_mask = gpu_info.shader_present & 0x1; // Use first core
-> +    group_create.tiler_core_mask = gpu_info.tiler_present & 0x1; // Use first tiler
-> +    group_create.vm_id = vm_create.id;
-> +
-> +    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_PANTHOR_GROUP_CREATE, &group_create), 0);
-> +    igt_assert(group_create.group_handle != 0);
-> +
-> +    // Cleanup: Destroy the group and VM
-> +    group_destroy = (struct drm_panthor_group_destroy){ .group_handle = group_create.group_handle };
-> +    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_PANTHOR_GROUP_DESTROY, &group_destroy), 0);
-> +
-> +    vm_destroy = (struct drm_panthor_vm_destroy) { .id = vm_create.id };
-> +    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_PANTHOR_VM_DESTROY, &vm_destroy), 0);
-> +  }
-> +
-> +  igt_subtest("group_submit") {
-> +    struct drm_panthor_gpu_info gpu_info = {};
-> +    struct drm_panthor_vm_create vm_create = {};
-> +    struct drm_panthor_group_create group_create = {};
-> +    struct drm_panthor_queue_create queue = {};
-> +    struct drm_panthor_obj_array queues;
-> +    struct drm_panthor_group_submit group_submit = {};
-> +    struct drm_panthor_queue_submit queue_submit = {};
-> +    struct drm_panthor_group_destroy group_destroy;
-> +    struct drm_panthor_obj_array queue_submits;
-> +    struct drm_panthor_vm_destroy vm_destroy;
-> +    struct drm_panthor_bo_create bo_create = {};
-> +    struct drm_panthor_vm_bind vm_bind = {};
-> +    struct drm_panthor_vm_bind_op vm_bind_op = {};
-> +    struct drm_syncobj_wait wait = {};
-> +    struct drm_syncobj_create syncobj_create = {};
-> +    struct drm_panthor_sync_op sync_op = {};
-> +    struct drm_gem_close gem_close = {};
-> +    struct drm_syncobj_destroy syncobj_destroy = {};
-> +    uint64_t command_stream_gpu_addr;
-> +    uint32_t command_stream_size;
-> +    uint64_t result_gpu_addr;
-> +    uint32_t cmd_buf_bo_handle;
-> +    uint32_t result_bo_handle;
-> +    uint32_t syncobj_handle;
-> +    uint8_t command_stream[64] = {0};
-> +    uint8_t *bo_cpu_addr;
-> +    uint8_t *result_cpu_addr;
-> +    const int INITIAL_VA = 0x1000000;
-> +
-> +
-> +    igt_panthor_query(fd, DRM_PANTHOR_DEV_QUERY_GPU_INFO, &gpu_info, sizeof(gpu_info), 0);
-> +    igt_assert(gpu_info.gpu_id != 0);
-> +
-> +    vm_create.flags = 0;
-> +    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_PANTHOR_VM_CREATE, &vm_create), 0);
-> +    igt_assert(vm_create.id != 0);
-> +
-> +    bo_create.size = 4096;
-> +    bo_create.flags = 0;
-> +    bo_create.exclusive_vm_id = vm_create.id;
-> +    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_PANTHOR_BO_CREATE, &bo_create), 0);
-> +    igt_assert(bo_create.handle != 0);
-> +    cmd_buf_bo_handle = bo_create.handle;
-> +
-> +    vm_bind_op.flags = DRM_PANTHOR_VM_BIND_OP_TYPE_MAP;
-> +    vm_bind_op.bo_handle = cmd_buf_bo_handle;
-> +    vm_bind_op.bo_offset = 0;
-> +    vm_bind_op.va = INITIAL_VA;
-> +    vm_bind_op.size = bo_create.size;
-> +    vm_bind.ops = (struct drm_panthor_obj_array)DRM_PANTHOR_OBJ_ARRAY(1, &vm_bind_op);
-> +    vm_bind.vm_id = vm_create.id;
-> +    vm_bind.flags = 0;
-> +    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_PANTHOR_VM_BIND, &vm_bind), 0);
-> +
-> +    command_stream_gpu_addr = vm_bind_op.va;
-> +    command_stream_size = sizeof(command_stream);
-> +
-> +    bo_cpu_addr = igt_panthor_mmap_bo(fd, bo_create.handle, bo_create.size, PROT_READ | PROT_WRITE);
+> Le 03/08/2025 =C3=A0 05:57, Jim Cromie a =C3=A9crit :
+> > Describe the 3 API macros providing dynamic_debug's classmaps
+> >
+> > DYNDBG_CLASSMAP_DEFINE - create & export a classmap
+> > DYNDBG_CLASSMAP_USE    - refer to exported map
+> > DYNDBG_CLASSMAP_PARAM  - bind control param to the classmap
+> > DYNDBG_CLASSMAP_PARAM_REF + use module's storage - __drm_debug
+> >
 
-Nit: You could use 'cmd_buf_bo_handle' instead of 'bo_create.handle' here for greater clarity.
 
-> +    igt_assert(bo_cpu_addr != MAP_FAILED);
-> +
-> +    // Create the BO to receive the result of the store.
-> +    memset(&bo_create, 0, sizeof(bo_create));
-> +    bo_create.size = 4096;
-> +    bo_create.flags = 0;
-> +    bo_create.exclusive_vm_id = vm_create.id;
-> +    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_PANTHOR_BO_CREATE, &bo_create), 0);
-> +    igt_assert(bo_create.handle != 0);
-> +    result_bo_handle = bo_create.handle;
-> +
-> +    // Also bind the result BO.
-> +    vm_bind_op.flags = DRM_PANTHOR_VM_BIND_OP_TYPE_MAP;
-> +    vm_bind_op.bo_handle = result_bo_handle;
-> +    vm_bind_op.bo_offset = 0;
-> +    vm_bind_op.va = INITIAL_VA + 4096;
-> +    vm_bind_op.size = bo_create.size;
-> +    vm_bind.ops = (struct drm_panthor_obj_array)DRM_PANTHOR_OBJ_ARRAY(1, &vm_bind_op);
-> +    vm_bind.vm_id = vm_create.id;
-> +    vm_bind.flags = 0;
-> +    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_PANTHOR_VM_BIND, &vm_bind), 0);
-> +    result_gpu_addr = vm_bind_op.va;
-> +
-> +    issue_store_multiple(command_stream, result_gpu_addr, 0xdeadbeef);
-> +    memcpy(bo_cpu_addr, command_stream, command_stream_size);
-> +    munmap(bo_cpu_addr, bo_create.size);
-> +
-> +    queue.priority = 0;
-> +    queue.ringbuf_size = 4096;
-> +    queues = (struct drm_panthor_obj_array)DRM_PANTHOR_OBJ_ARRAY(1, &queue);
-> +
-> +    group_create.queues = queues;
-> +    group_create.max_compute_cores = 1;
-> +    group_create.max_fragment_cores = 1;
-> +    group_create.max_tiler_cores = 1;
-> +    group_create.priority = PANTHOR_GROUP_PRIORITY_MEDIUM;
-> +    group_create.compute_core_mask = gpu_info.shader_present & 0x1;
-> +    group_create.fragment_core_mask = gpu_info.shader_present & 0x1;
-> +    group_create.tiler_core_mask = gpu_info.tiler_present & 0x1;
-> +    group_create.vm_id = vm_create.id;
-> +
-> +    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_PANTHOR_GROUP_CREATE, &group_create), 0);
-> +    igt_assert(group_create.group_handle != 0);
-> +
-> +    syncobj_create = (struct drm_syncobj_create){
-> +        .flags = 0,
-> +    };
-> +
-> +    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_SYNCOBJ_CREATE, &syncobj_create), 0);
-> +    syncobj_handle = syncobj_create.handle;
-> +
-> +    sync_op = (struct drm_panthor_sync_op) {
-> +        .handle = syncobj_handle,
-> +        .flags = DRM_PANTHOR_SYNC_OP_SIGNAL,
-> +    };
-> +
-> +    queue_submit.syncs = (struct drm_panthor_obj_array)DRM_PANTHOR_OBJ_ARRAY(1, &sync_op);
-> +
-> +    queue_submit.queue_index = 0;
-> +    queue_submit.stream_size = command_stream_size;
-> +    queue_submit.stream_addr = command_stream_gpu_addr;
-> +    queue_submit.latest_flush = 0;
-> +    queue_submits = (struct drm_panthor_obj_array)DRM_PANTHOR_OBJ_ARRAY(1, &queue_submit);
-> +
-> +    group_submit.group_handle = group_create.group_handle;
-> +    group_submit.queue_submits = queue_submits;
-> +
-> +    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_PANTHOR_GROUP_SUBMIT, &group_submit), 0);
-> +
-> +    wait = (struct drm_syncobj_wait) {
-> +      .handles = (uint64_t)&syncobj_handle,
-> +      .count_handles = 1,
-> +      .timeout_nsec = INT64_MAX,
-> +      .flags = 0,
-> +    };
-> +
-> +    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_SYNCOBJ_WAIT, &wait), 0);
-> +
-> +    result_cpu_addr = igt_panthor_mmap_bo(fd, bo_create.handle, bo_create.size, PROT_READ | PROT_WRITE);
-> +
-> +    igt_assert(*(uint32_t *)result_cpu_addr == 0xdeadbeef);
-> +    munmap(result_cpu_addr, bo_create.size);
-> +
-> +    syncobj_destroy.handle = syncobj_handle;
-> +    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_SYNCOBJ_DESTROY, &syncobj_destroy), 0);
-> +
-> +
-> +    group_destroy.group_handle = group_create.group_handle;
-> +    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_PANTHOR_GROUP_DESTROY, &group_destroy), 0);
-> +
-> +    vm_destroy.id = vm_create.id;
-> +    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_PANTHOR_VM_DESTROY, &vm_destroy), 0);
-> +
-> +    gem_close.handle = cmd_buf_bo_handle;
-> +    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_GEM_CLOSE, &gem_close), 0);
-> +
-> +    gem_close.handle = result_bo_handle;
-> +    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_GEM_CLOSE, &gem_close), 0);
-> +
-> +}
-> +
-> +  igt_fixture { drm_close_driver(fd); }
-> +}
-> diff --git a/tests/panthor/panthor_query.c b/tests/panthor/panthor_query.c
-> new file mode 100644
-> index 000000000..3bbecf3a6
-> --- /dev/null
-> +++ b/tests/panthor/panthor_query.c
-> @@ -0,0 +1,25 @@
-> +// SPDX-License-Identifier: MIT
-> +// SPDX-FileCopyrightText: Copyright (C) 2025 Collabora Ltd.
-> +
-> +#include "igt.h"
-> +#include "igt_core.h"
-> +#include "igt_panthor.h"
-> +#include "panthor_drm.h"
-> +#include <stdint.h>
-> +
-> +igt_main {
-> +  int fd;
-> +
-> +  igt_fixture { fd = drm_open_driver(DRIVER_PANTHOR); }
-> +
-> +  igt_subtest("query") {
-> +    struct drm_panthor_gpu_info gpu = {};
-> +
-> +    igt_panthor_query(fd, DRM_PANTHOR_DEV_QUERY_GPU_INFO, &gpu, sizeof(gpu), 0);
-> +
-> +    igt_assert(gpu.gpu_id != 0);
-> +    igt_assert(gpu.gpu_rev != 0);
-> +  }
-> +
-> +  igt_fixture { drm_close_driver(fd); }
-> +}
-> diff --git a/tests/panthor/panthor_vm.c b/tests/panthor/panthor_vm.c
-> new file mode 100644
-> index 000000000..484602de3
-> --- /dev/null
-> +++ b/tests/panthor/panthor_vm.c
-> @@ -0,0 +1,73 @@
-> +// SPDX-License-Identifier: MIT
-> +// SPDX-FileCopyrightText: Copyright (C) 2025 Collabora Ltd.
-> +
-> +#include "igt.h"
-> +#include "igt_core.h"
-> +#include "igt_panthor.h"
-> +#include "panthor_drm.h"
-> +
-> +igt_main {
-> +  int fd;
-> +
-> +  igt_fixture { fd = drm_open_driver(DRIVER_PANTHOR); }
-> +
-> +  igt_subtest("vm_create_destroy") {
-> +    uint32_t vm_id;
-> +
-> +    igt_panthor_vm_create(fd, &vm_id, 0);
-> +    igt_assert(vm_id != 0);
-> +
-> +    igt_panthor_vm_destroy(fd, vm_id, 0);
-> +  }
-> +
-> +  igt_subtest("vm_destroy_invalid") {
-> +    igt_panthor_vm_destroy(fd, 0xdeadbeef, EINVAL);
-> +  }
-> +
-> +  igt_subtest("vm_bind") {
-> +    uint32_t vm_id;
-> +    struct panthor_bo bo;
-> +    uint64_t bo_size = 0x1000;
-> +
-> +    igt_panthor_vm_create(fd, &vm_id, 0);
-> +    igt_assert(vm_id != 0);
-> +
-> +    igt_panthor_bo_create(fd, &bo, bo_size, 0, 0);
-> +    igt_panthor_vm_bind(fd, vm_id, bo.handle, 0x1000, 0x1000, DRM_PANTHOR_VM_BIND_OP_TYPE_MAP, 0);
-> +
-> +    igt_panthor_vm_destroy(fd, vm_id, 0);
-> +  }
-> +
-> +  igt_subtest("vm_unbind") {
-> +    uint32_t vm_id;
-> +    struct panthor_bo bo;
-> +    uint64_t bo_size = 0x1000;
-> +
-> +    igt_panthor_vm_create(fd, &vm_id, 0);
-> +    igt_assert(vm_id != 0);
-> +
-> +    igt_panthor_bo_create(fd, &bo, bo_size, 0, 0);
-> +    igt_panthor_vm_bind(fd, vm_id, bo.handle, 0x1000, 0x1000, DRM_PANTHOR_VM_BIND_OP_TYPE_MAP, 0);
-> +    igt_panthor_vm_bind(fd, vm_id, 0, 0x1000, 0x1000, DRM_PANTHOR_VM_BIND_OP_TYPE_UNMAP, 0);
-> +
-> +    igt_panthor_vm_destroy(fd, vm_id, 0);
-> +  }
-> +
-> +  igt_subtest("vm_unbind_invalid_address") {
-> +    uint32_t vm_id;
-> +    struct panthor_bo bo;
-> +    uint64_t bo_size = 0x1000;
-> +
-> +    igt_panthor_vm_create(fd, &vm_id, 0);
-> +    igt_assert(vm_id != 0);
-> +
-> +    igt_panthor_bo_create(fd, &bo, bo_size, 0, 0);
-> +
-> +    /* This was not bound previously*/
-> +    igt_panthor_vm_bind(fd, vm_id, bo.handle, 0x1000, 0x1000, DRM_PANTHOR_VM_BIND_OP_TYPE_UNMAP, EINVAL);
-> +    igt_panthor_vm_destroy(fd, vm_id, 0);
-> +  }
-> +
-> +
-> +  igt_fixture { drm_close_driver(fd); }
-> +}
+I should note:
+
+classmaps-v1 made some bad-taste naming choices,
+1st was the shortening: DYNDBG_
+These are invoked once per module, so we can afford full names.
+
+So series drops DYNDBG_ prefix, replaces it with DYNAMIC_DEBUG_,
+and this commit-msg is now corrected
+
+
+> > TBD: some of this might be over-specification, or just over-talked.
+> >
+> > NB: The _DEFINE & _USE model makes the user dependent on the definer,
+> > just like EXPORT_SYMBOL(__drm_debug) already does.
+> >
+> > cc: linux-doc@vger.kernel.org
+> > Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
+>
+> Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
+>
+> > ---
+> > v3- rework protection around PARAM
+> >
+> > v0.5 adjustments per Randy Dunlap
+> > v0.7 checkpatch fixes
+> > v0.8 more
+> > v0.9 rewords
+> >
+> > fixup-howto
+> > ---
+> >   .../admin-guide/dynamic-debug-howto.rst       | 137 ++++++++++++++++-=
+-
+> >   1 file changed, 126 insertions(+), 11 deletions(-)
+> >
+> > diff --git a/Documentation/admin-guide/dynamic-debug-howto.rst
+> b/Documentation/admin-guide/dynamic-debug-howto.rst
+> > index 1ceadf4f28f9f..556e00299ed35 100644
+> > --- a/Documentation/admin-guide/dynamic-debug-howto.rst
+> > +++ b/Documentation/admin-guide/dynamic-debug-howto.rst
+> > @@ -146,7 +146,9 @@ keywords are:::
+> >     "1-30" is valid range but "1 - 30" is not.
+> >
+> >
+> > -The meanings of each keyword are:
+> > +Keywords:::
+> > +
+> > +The meanings of each keyword are::
+> >
+> >   func
+> >       The given string is compared against the function name
+> > @@ -194,16 +196,6 @@ format
+> >       format "nfsd: SETATTR"  // a neater way to match a format with
+> whitespace
+> >       format 'nfsd: SETATTR'  // yet another way to match a format with
+> whitespace
+> >
+> > -class
+> > -    The given class_name is validated against each module, which may
+> > -    have declared a list of known class_names.  If the class_name is
+> > -    found for a module, callsite & class matching and adjustment
+> > -    proceeds.  Examples::
+> > -
+> > -     class DRM_UT_KMS        # a DRM.debug category
+> > -     class JUNK              # silent non-match
+> > -     // class TLD_*          # NOTICE: no wildcard in class names
+> > -
+> >   line
+> >       The given line number or range of line numbers is compared
+> >       against the line number of each ``pr_debug()`` callsite.  A singl=
+e
+> > @@ -218,6 +210,24 @@ line
+> >       line -1605          // the 1605 lines from line 1 to line 1605
+> >       line 1600-          // all lines from line 1600 to the end of the
+> file
+> >
+> > +class
+> > +
+> > +    The given class_name is validated against each module, which may
+> > +    have declared a list of class_names it accepts.  If the class_name
+> > +    accepted by a module, callsite & class matching and adjustment
+> > +    proceeds.  Examples::
+> > +
+> > +     class DRM_UT_KMS        # a DRM.debug category
+> > +     class JUNK              # silent non-match
+> > +     // class TLD_*          # NOTICE: no wildcard in class names
+> > +
+> > +.. note ::
+> > +
+> > +    Unlike other keywords, classes are "name-to-change", not
+> > +    "omitting-constraint-allows-change".  See Dynamic Debug Classmaps
+> > +
+> > +Flags:::
+> > +
+> >   The flags specification comprises a change operation followed
+> >   by one or more flag characters.  The change operation is one
+> >   of the characters::
+> > @@ -394,3 +404,108 @@ just a shortcut for ``print_hex_dump(KERN_DEBUG)`=
+`.
+> >   For ``print_hex_dump_debug()``/``print_hex_dump_bytes()``, format
+> string is
+> >   its ``prefix_str`` argument, if it is constant string; or ``hexdump``
+> >   in case ``prefix_str`` is built dynamically.
+> > +
+> > +Dynamic Debug Classmaps
+> > +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > +
+> > +The "class" keyword selects prdbgs based on author supplied,
+> > +domain-oriented names.  This complements the nested-scope keywords:
+> > +module, file, function, line.
+> > +
+> > +The main difference from the others: classes must be named to be
+> > +changed.  This protects them from generic overwrite:
+> > +
+> > +  # IOW this cannot undo any DRM.debug settings
+> > +  :#> ddcmd -p
+> > +
+> > +This protection is needed; /sys/module/drm/parameters/debug is ABI.
+> > +DRM.debug is authoritative when dyndbg is not used, dyndbg's PARAM
+> > +cannot undermine that guarantee just because its optional for DRM to
+> > +use it.
+> > +
+> > +  :#> echo 0x1ff > /sys/module/drm/parameters/debug
+> > +
+> > +So each class must be enabled individually (no wildcards):
+> > +
+> > +  :#> ddcmd class DRM_UT_CORE +p
+> > +  :#> ddcmd class DRM_UT_KMS +p
+> > +  # or more selectively
+> > +  :#> ddcmd class DRM_UT_CORE module drm +p
+> > +
+> > +That makes direct >control wordy and annoying, but it is a secondary
+> > +interface; it is not intended to replace the ABI, just slide in
+> > +underneath and reimplement it.
+> > +
+> > +However, since the sysfs/kparam is the ABI, if a classmap DEFINEr
+> > +doesn't also add a _CLASSMAP_PARAM, there is no ABI, and no protection
+> > +is needed.  In that case, class'd prdbgs would be enabled/disabled by
+> > +legacy (class-less) queries, as a convenience, and because there's no
+> > +need to enforce irrelevant rules.
+> > +
+> > +
+> > +Dynamic Debug Classmap API
+> > +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D
+> > +
+> > +DRM.debug is built upon:
+> > +
+> > +- enum drm_debug_category: DRM_UT_<*> - <T> for short
+> > +- 23 categorized api macros: drm_dbg_<T>(), DRM_DEBUG_<T>()
+> > +- 5000 calls to them
+> > +- all calling to __pr_debug_cls(<T>, ...)
+> > +
+> > +Those compile-time const short ints are good for optimizing compilers;
+> > +a primary classmaps design goal was to keep that property.
+> > +So basically .class_id =3D=3D=3D category.
+> > +
+> > +Then we use the drm_categories DRM_UT_* enum for both the classnames
+> > +(stringified enum symbols) and their numeric values.
+> > +
+> > +Its expected that future users will also use categorized macros and an
+> > +enum-defined categorization scheme like DRM's, with dyndbg inserted in
+> > +similarly.
+> > +
+> > +DYNAMIC_DEBUG_CLASSMAP_DEFINE(var,type,_base,classnames) - this maps
+> > +classnames (a list of strings) onto class-ids consecutively, starting
+> > +at _base, it also maps the names onto CLASSMAP_PARAM bits 0..N.
+> > +
+> > +DYNAMIC_DEBUG_CLASSMAP_USE(var) - modules call this to refer to the
+> > +var _DEFINEd elsewhere (and exported).
+> > +
+> > +Classmaps are opt-in: modules invoke _DEFINE or _USE to authorize
+> > +dyndbg to update those classes.  "class FOO" queries are validated
+> > +against the classes, this finds the classid to alter; classes are not
+> > +directly selectable by their classid.
+> > +
+> > +NB: It is an inherent API limitation that the following are possible:
+> > +
+> > +  // these would be caught in review
+> > +  __pr_debug_cls(0, "fake DRM_UT_CORE msg");  // this works
+> > +  __pr_debug_cls(62, "un-known classid msg"); // this compiles, does
+> nothing
+> > +
+> > +There are 2 types of classmaps:
+> > +
+> > + DD_CLASS_TYPE_DISJOINT_BITS: classes are independent, like DRM.debug
+> > + DD_CLASS_TYPE_LEVEL_NUM: classes are relative, ordered (V3 > V2)
+> > +
+> > +DYNAMIC_DEBUG_CLASSMAP_PARAM - modelled after module_param_cb, it
+> > +refers to a DEFINEd classmap, and associates it to the param's
+> > +data-store.  This state is then applied to DEFINEr and USEr modules
+> > +when they're modprobed.
+> > +
+> > +The PARAM interface also enforces the DD_CLASS_TYPE_LEVEL_NUM relation
+> > +amongst the contained classnames; all classes are independent in the
+> > +control parser itself; there is no implied meaning in names like "V4".
+> > +
+> > +Modules or module-groups (drm & drivers) can define multiple
+> > +classmaps, as long as they (all the classmaps) share the limited 0..62
+> > +per-module-group _class_id range, without overlap.
+> > +
+> > +If a module encounters a conflict between 2 classmaps its USEing, we
+> > +can extend the _USE macro with an offset to allow de-conflicting the
+> > +respective ranges.  Or they use the DEFINErs macro-api, but with new
+> > +enum symbols.
+> > +
+> > +``#define DEBUG`` will enable all pr_debugs in scope, including any
+> > +class'd ones.  This won't be reflected in the PARAM readback value,
+> > +but the class'd pr_debug callsites can be forced off by toggling the
+> > +classmap-kparam all-on then all-off.
+>
 > --
-> 2.50.1
+> Louis Chauvet, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
+>
+>
 
-Adrian Larumbe
+--000000000000d9df49063e4ffb70
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>hi Louis, thx for the nudge.</div><br><div class=3D"g=
+mail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On =
+Mon, Sep 8, 2025 at 8:38=E2=80=AFAM Louis Chauvet &lt;<a href=3D"mailto:lou=
+is.chauvet@bootlin.com">louis.chauvet@bootlin.com</a>&gt; wrote:<br></div><=
+blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
+eft:1px solid rgb(204,204,204);padding-left:1ex">\<br>
+<br>
+Le 03/08/2025 =C3=A0 05:57, Jim Cromie a =C3=A9crit=C2=A0:<br>
+&gt; Describe the 3 API macros providing dynamic_debug&#39;s classmaps<br>
+&gt; <br>
+&gt; DYNDBG_CLASSMAP_DEFINE - create &amp; export a classmap<br>
+&gt; DYNDBG_CLASSMAP_USE=C2=A0 =C2=A0 - refer to exported map<br>
+&gt; DYNDBG_CLASSMAP_PARAM=C2=A0 - bind control param to the classmap<br>
+&gt; DYNDBG_CLASSMAP_PARAM_REF + use module&#39;s storage - __drm_debug<br>
+&gt;</blockquote><div><br></div><div>I should note:</div><div><br></div><di=
+v>classmaps-v1 made some bad-taste naming choices,</div><div>1st was the sh=
+ortening: DYNDBG_=C2=A0=C2=A0</div><div><div>These are invoked once per mod=
+ule, so we can afford full names.</div><br class=3D"gmail-Apple-interchange=
+-newline"></div><div>So series drops DYNDBG_ prefix, replaces it with DYNAM=
+IC_DEBUG_,</div><div>and this commit-msg is now corrected</div><div><br></d=
+iv><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bord=
+er-left:1px solid rgb(204,204,204);padding-left:1ex"><br>
+&gt; TBD: some of this might be over-specification, or just over-talked.<br=
+>
+&gt; <br>
+&gt; NB: The _DEFINE &amp; _USE model makes the user dependent on the defin=
+er,<br>
+&gt; just like EXPORT_SYMBOL(__drm_debug) already does.<br>
+&gt; <br>
+&gt; cc: <a href=3D"mailto:linux-doc@vger.kernel.org" target=3D"_blank">lin=
+ux-doc@vger.kernel.org</a><br>
+&gt; Signed-off-by: Jim Cromie &lt;<a href=3D"mailto:jim.cromie@gmail.com" =
+target=3D"_blank">jim.cromie@gmail.com</a>&gt;<br>
+<br>
+Reviewed-by: Louis Chauvet &lt;<a href=3D"mailto:louis.chauvet@bootlin.com"=
+ target=3D"_blank">louis.chauvet@bootlin.com</a>&gt;<br>
+<br>
+&gt; ---<br>
+&gt; v3- rework protection around PARAM<br>
+&gt; <br>
+&gt; v0.5 adjustments per Randy Dunlap<br>
+&gt; v0.7 checkpatch fixes<br>
+&gt; v0.8 more<br>
+&gt; v0.9 rewords<br>
+&gt; <br>
+&gt; fixup-howto<br>
+&gt; ---<br>
+&gt;=C2=A0 =C2=A0.../admin-guide/dynamic-debug-howto.rst=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0| 137 ++++++++++++++++--<br>
+&gt;=C2=A0 =C2=A01 file changed, 126 insertions(+), 11 deletions(-)<br>
+&gt; <br>
+&gt; diff --git a/Documentation/admin-guide/dynamic-debug-howto.rst b/Docum=
+entation/admin-guide/dynamic-debug-howto.rst<br>
+&gt; index 1ceadf4f28f9f..556e00299ed35 100644<br>
+&gt; --- a/Documentation/admin-guide/dynamic-debug-howto.rst<br>
+&gt; +++ b/Documentation/admin-guide/dynamic-debug-howto.rst<br>
+&gt; @@ -146,7 +146,9 @@ keywords are:::<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&quot;1-30&quot; is valid range but &quot;1 - 30&qu=
+ot; is not.<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt; -The meanings of each keyword are:<br>
+&gt; +Keywords:::<br>
+&gt; +<br>
+&gt; +The meanings of each keyword are::<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0func<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0The given string is compared against the fun=
+ction name<br>
+&gt; @@ -194,16 +196,6 @@ format<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0format &quot;nfsd: SETATTR&quot;=C2=A0 // a =
+neater way to match a format with whitespace<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0format &#39;nfsd: SETATTR&#39;=C2=A0 // yet =
+another way to match a format with whitespace<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt; -class<br>
+&gt; -=C2=A0 =C2=A0 The given class_name is validated against each module, =
+which may<br>
+&gt; -=C2=A0 =C2=A0 have declared a list of known class_names.=C2=A0 If the=
+ class_name is<br>
+&gt; -=C2=A0 =C2=A0 found for a module, callsite &amp; class matching and a=
+djustment<br>
+&gt; -=C2=A0 =C2=A0 proceeds.=C2=A0 Examples::<br>
+&gt; -<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0class DRM_UT_KMS=C2=A0 =C2=A0 =C2=A0 =C2=A0 # a D=
+RM.debug category<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0class JUNK=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 # silent non-match<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0// class TLD_*=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+# NOTICE: no wildcard in class names<br>
+&gt; -<br>
+&gt;=C2=A0 =C2=A0line<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0The given line number or range of line numbe=
+rs is compared<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0against the line number of each ``pr_debug()=
+`` callsite.=C2=A0 A single<br>
+&gt; @@ -218,6 +210,24 @@ line<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0line -1605=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ // the 1605 lines from line 1 to line 1605<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0line 1600-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ // all lines from line 1600 to the end of the file<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt; +class<br>
+&gt; +<br>
+&gt; +=C2=A0 =C2=A0 The given class_name is validated against each module, =
+which may<br>
+&gt; +=C2=A0 =C2=A0 have declared a list of class_names it accepts.=C2=A0 I=
+f the class_name<br>
+&gt; +=C2=A0 =C2=A0 accepted by a module, callsite &amp; class matching and=
+ adjustment<br>
+&gt; +=C2=A0 =C2=A0 proceeds.=C2=A0 Examples::<br>
+&gt; +<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0class DRM_UT_KMS=C2=A0 =C2=A0 =C2=A0 =C2=A0 # a D=
+RM.debug category<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0class JUNK=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 # silent non-match<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0// class TLD_*=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+# NOTICE: no wildcard in class names<br>
+&gt; +<br>
+&gt; +.. note ::<br>
+&gt; +<br>
+&gt; +=C2=A0 =C2=A0 Unlike other keywords, classes are &quot;name-to-change=
+&quot;, not<br>
+&gt; +=C2=A0 =C2=A0 &quot;omitting-constraint-allows-change&quot;.=C2=A0 Se=
+e Dynamic Debug Classmaps<br>
+&gt; +<br>
+&gt; +Flags:::<br>
+&gt; +<br>
+&gt;=C2=A0 =C2=A0The flags specification comprises a change operation follo=
+wed<br>
+&gt;=C2=A0 =C2=A0by one or more flag characters.=C2=A0 The change operation=
+ is one<br>
+&gt;=C2=A0 =C2=A0of the characters::<br>
+&gt; @@ -394,3 +404,108 @@ just a shortcut for ``print_hex_dump(KERN_DEBUG)=
+``.<br>
+&gt;=C2=A0 =C2=A0For ``print_hex_dump_debug()``/``print_hex_dump_bytes()``,=
+ format string is<br>
+&gt;=C2=A0 =C2=A0its ``prefix_str`` argument, if it is constant string; or =
+``hexdump``<br>
+&gt;=C2=A0 =C2=A0in case ``prefix_str`` is built dynamically.<br>
+&gt; +<br>
+&gt; +Dynamic Debug Classmaps<br>
+&gt; +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+<br>
+&gt; +<br>
+&gt; +The &quot;class&quot; keyword selects prdbgs based on author supplied=
+,<br>
+&gt; +domain-oriented names.=C2=A0 This complements the nested-scope keywor=
+ds:<br>
+&gt; +module, file, function, line.<br>
+&gt; +<br>
+&gt; +The main difference from the others: classes must be named to be<br>
+&gt; +changed.=C2=A0 This protects them from generic overwrite:<br>
+&gt; +<br>
+&gt; +=C2=A0 # IOW this cannot undo any DRM.debug settings<br>
+&gt; +=C2=A0 :#&gt; ddcmd -p<br>
+&gt; +<br>
+&gt; +This protection is needed; /sys/module/drm/parameters/debug is ABI.<b=
+r>
+&gt; +DRM.debug is authoritative when dyndbg is not used, dyndbg&#39;s PARA=
+M<br>
+&gt; +cannot undermine that guarantee just because its optional for DRM to<=
+br>
+&gt; +use it.<br>
+&gt; +<br>
+&gt; +=C2=A0 :#&gt; echo 0x1ff &gt; /sys/module/drm/parameters/debug<br>
+&gt; +<br>
+&gt; +So each class must be enabled individually (no wildcards):<br>
+&gt; +<br>
+&gt; +=C2=A0 :#&gt; ddcmd class DRM_UT_CORE +p<br>
+&gt; +=C2=A0 :#&gt; ddcmd class DRM_UT_KMS +p<br>
+&gt; +=C2=A0 # or more selectively<br>
+&gt; +=C2=A0 :#&gt; ddcmd class DRM_UT_CORE module drm +p<br>
+&gt; +<br>
+&gt; +That makes direct &gt;control wordy and annoying, but it is a seconda=
+ry<br>
+&gt; +interface; it is not intended to replace the ABI, just slide in<br>
+&gt; +underneath and reimplement it.<br>
+&gt; +<br>
+&gt; +However, since the sysfs/kparam is the ABI, if a classmap DEFINEr<br>
+&gt; +doesn&#39;t also add a _CLASSMAP_PARAM, there is no ABI, and no prote=
+ction<br>
+&gt; +is needed.=C2=A0 In that case, class&#39;d prdbgs would be enabled/di=
+sabled by<br>
+&gt; +legacy (class-less) queries, as a convenience, and because there&#39;=
+s no<br>
+&gt; +need to enforce irrelevant rules.<br>
+&gt; +<br>
+&gt; +<br>
+&gt; +Dynamic Debug Classmap API<br>
+&gt; +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D<br>
+&gt; +<br>
+&gt; +DRM.debug is built upon:<br>
+&gt; +<br>
+&gt; +- enum drm_debug_category: DRM_UT_&lt;*&gt; - &lt;T&gt; for short<br>
+&gt; +- 23 categorized api macros: drm_dbg_&lt;T&gt;(), DRM_DEBUG_&lt;T&gt;=
+()<br>
+&gt; +- 5000 calls to them<br>
+&gt; +- all calling to __pr_debug_cls(&lt;T&gt;, ...)<br>
+&gt; +<br>
+&gt; +Those compile-time const short ints are good for optimizing compilers=
+;<br>
+&gt; +a primary classmaps design goal was to keep that property.<br>
+&gt; +So basically .class_id =3D=3D=3D category.<br>
+&gt; +<br>
+&gt; +Then we use the drm_categories DRM_UT_* enum for both the classnames<=
+br>
+&gt; +(stringified enum symbols) and their numeric values.<br>
+&gt; +<br>
+&gt; +Its expected that future users will also use categorized macros and a=
+n<br>
+&gt; +enum-defined categorization scheme like DRM&#39;s, with dyndbg insert=
+ed in<br>
+&gt; +similarly.<br>
+&gt; +<br>
+&gt; +DYNAMIC_DEBUG_CLASSMAP_DEFINE(var,type,_base,classnames) - this maps<=
+br>
+&gt; +classnames (a list of strings) onto class-ids consecutively, starting=
+<br>
+&gt; +at _base, it also maps the names onto CLASSMAP_PARAM bits 0..N.<br>
+&gt; +<br>
+&gt; +DYNAMIC_DEBUG_CLASSMAP_USE(var) - modules call this to refer to the<b=
+r>
+&gt; +var _DEFINEd elsewhere (and exported).<br>
+&gt; +<br>
+&gt; +Classmaps are opt-in: modules invoke _DEFINE or _USE to authorize<br>
+&gt; +dyndbg to update those classes.=C2=A0 &quot;class FOO&quot; queries a=
+re validated<br>
+&gt; +against the classes, this finds the classid to alter; classes are not=
+<br>
+&gt; +directly selectable by their classid.<br>
+&gt; +<br>
+&gt; +NB: It is an inherent API limitation that the following are possible:=
+<br>
+&gt; +<br>
+&gt; +=C2=A0 // these would be caught in review<br>
+&gt; +=C2=A0 __pr_debug_cls(0, &quot;fake DRM_UT_CORE msg&quot;);=C2=A0 // =
+this works<br>
+&gt; +=C2=A0 __pr_debug_cls(62, &quot;un-known classid msg&quot;); // this =
+compiles, does nothing<br>
+&gt; +<br>
+&gt; +There are 2 types of classmaps:<br>
+&gt; +<br>
+&gt; + DD_CLASS_TYPE_DISJOINT_BITS: classes are independent, like DRM.debug=
+<br>
+&gt; + DD_CLASS_TYPE_LEVEL_NUM: classes are relative, ordered (V3 &gt; V2)<=
+br>
+&gt; +<br>
+&gt; +DYNAMIC_DEBUG_CLASSMAP_PARAM - modelled after module_param_cb, it<br>
+&gt; +refers to a DEFINEd classmap, and associates it to the param&#39;s<br=
+>
+&gt; +data-store.=C2=A0 This state is then applied to DEFINEr and USEr modu=
+les<br>
+&gt; +when they&#39;re modprobed.<br>
+&gt; +<br>
+&gt; +The PARAM interface also enforces the DD_CLASS_TYPE_LEVEL_NUM relatio=
+n<br>
+&gt; +amongst the contained classnames; all classes are independent in the<=
+br>
+&gt; +control parser itself; there is no implied meaning in names like &quo=
+t;V4&quot;.<br>
+&gt; +<br>
+&gt; +Modules or module-groups (drm &amp; drivers) can define multiple<br>
+&gt; +classmaps, as long as they (all the classmaps) share the limited 0..6=
+2<br>
+&gt; +per-module-group _class_id range, without overlap.<br>
+&gt; +<br>
+&gt; +If a module encounters a conflict between 2 classmaps its USEing, we<=
+br>
+&gt; +can extend the _USE macro with an offset to allow de-conflicting the<=
+br>
+&gt; +respective ranges.=C2=A0 Or they use the DEFINErs macro-api, but with=
+ new<br>
+&gt; +enum symbols.<br>
+&gt; +<br>
+&gt; +``#define DEBUG`` will enable all pr_debugs in scope, including any<b=
+r>
+&gt; +class&#39;d ones.=C2=A0 This won&#39;t be reflected in the PARAM read=
+back value,<br>
+&gt; +but the class&#39;d pr_debug callsites can be forced off by toggling =
+the<br>
+&gt; +classmap-kparam all-on then all-off.<br>
+<br>
+-- <br>
+Louis Chauvet, Bootlin<br>
+Embedded Linux and Kernel engineering<br>
+<a href=3D"https://bootlin.com" rel=3D"noreferrer" target=3D"_blank">https:=
+//bootlin.com</a><br>
+<br>
+</blockquote></div></div>
+
+--000000000000d9df49063e4ffb70--
