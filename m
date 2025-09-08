@@ -2,39 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05017B48E35
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 14:53:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C10E8B48E3F
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 14:55:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8767910E508;
-	Mon,  8 Sep 2025 12:53:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4529F10E515;
+	Mon,  8 Sep 2025 12:55:24 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XizVfR6R";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D346B10E508
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Sep 2025 12:53:51 +0000 (UTC)
-Received: from 88-113-67-44.elisa-laajakaista.fi ([88.113.67.44]
- helo=[192.168.100.137])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
- id 1uvbNU-00000000cyg-0ld8; Mon, 08 Sep 2025 15:53:49 +0300
-Message-ID: <be60de526115c5d8ee5c2a1db476388a780d5016.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Gustavo Sousa <gustavo.sousa@intel.com>, Luca Coelho
- <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Mon, 08 Sep 2025 15:53:46 +0300
-In-Reply-To: <175733540458.1838.2290402876913223031@intel.com>
-References: <20250908073734.1180687-1-luciano.coelho@intel.com>
- <20250908073734.1180687-5-luciano.coelho@intel.com>
- <175733540458.1838.2290402876913223031@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-2 
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FBB010E515;
+ Mon,  8 Sep 2025 12:55:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1757336123; x=1788872123;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=LjvrZmL6Y6fmSwZC/fek6DJdXKSocuGB/gVFarDecmk=;
+ b=XizVfR6Rt2Wta1k5JuSL2qQnAShZCZs7T/Ena7Rrv9wvfSGlMFjYz/Aq
+ UKD4CAlZAFC3EZEpPs5jZbTeCvElGkDIOgZOK73+Hppd4UcjnuSqqHLmC
+ ltCYFbLNOv33kVTTLmTBPeiOTWPYgMRtAFfBngl58t3wkzCl7hdttSkXF
+ YXvhf14Az+DDRuu2birJdL3BXe86s/mVDT6onaB9doxJtJ3/+ibX0PM1H
+ 9cNxQTo0DfVnNxpII3hxmskJrwos9xpHeBSDoNyC2upHkQBHM11LC4My2
+ D1ewWTuzVagei9gHFWRp81nen1FAzpsysl3NzE8TSPgX6O9J9TKLFOR6H Q==;
+X-CSE-ConnectionGUID: AfE0xMIaSMOCDorHiD0JjQ==
+X-CSE-MsgGUID: 1gjvGmy3TWuzNWWMnAY43Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11547"; a="58630332"
+X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="58630332"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2025 05:55:23 -0700
+X-CSE-ConnectionGUID: NM2+lZwZTNSucih6xoiJyg==
+X-CSE-MsgGUID: 7/595eG0ShaQbDYLcHOwtg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="172707068"
+Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.204])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2025 05:55:21 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Maarten
+ Lankhorst <dev@lankhorst.se>
+Subject: Re: [PATCH 2/9] drm/{i915, xe}/fbdev: add intel_fbdev_fb_pitch_align()
+In-Reply-To: <aLqsC87Ol_zCXOkN@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1756931441.git.jani.nikula@intel.com>
+ <ae51d1e224048bdc87bf7a56d8f5ebd0fbb6a383.1756931441.git.jani.nikula@intel.com>
+ <aLqsC87Ol_zCXOkN@intel.com>
+Date: Mon, 08 Sep 2025 15:55:18 +0300
+Message-ID: <48e0a14d67ba84d64f6589bbdd0090e86be4fd4f@intel.com>
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-25) on farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP autolearn=ham autolearn_force=no version=4.0.1
-Subject: Re: [PATCH 4/6] drm/i915/wm: convert x/y-tiling bools to an enum
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,108 +72,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2025-09-08 at 09:43 -0300, Gustavo Sousa wrote:
-> Quoting Luca Coelho (2025-09-08 04:35:33-03:00)
-> > There are currently two booleans to define three tiling modes, which
-> > is bad practice because it allows representing an invalid mode.  In
-> > order to simplify this, convert these two booleans into one
-> > enumeration with three possible tiling modes.
-> >=20
-> > Additionally, introduce the concept of Y "family" of tiling, which
-> > groups Y, Yf and 4 tiling, since they're effectively treated in the
-> > same way in the watermark calculations.  Describe the grouping in the
-> > enumeration definition.
-> >=20
-> > Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
-> > ---
-> > drivers/gpu/drm/i915/display/skl_watermark.c | 35 ++++++++++++++------
-> > 1 file changed, 24 insertions(+), 11 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu=
-/drm/i915/display/skl_watermark.c
-> > index 0ce3420a919e..dd4bed02c3c0 100644
-> > --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> > +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> > @@ -53,9 +53,16 @@ struct intel_dbuf_state {
-> > #define intel_atomic_get_new_dbuf_state(state) \
-> >         to_intel_dbuf_state(intel_atomic_get_new_global_obj_state(state=
-, &to_intel_display(state)->dbuf.obj))
-> >=20
-> > +/* Tiling mode groups relevant to WM calculations */
-> > +enum wm_tiling_mode {
-> > +        WM_TILING_LINEAR,
-> > +        WM_TILING_X_TILED,        /* mostly like linear */
-> > +        WM_TILING_Y_FAMILY,        /* includes Y, Yf and 4 tiling */
-> > +};
-> > +
-> > /* Stores plane specific WM parameters */
-> > struct skl_wm_params {
-> > -        bool x_tiled, y_tiled;
-> > +        enum wm_tiling_mode tiling;
-> >         bool rc_surface;
-> >         bool is_planar;
-> >         u32 width;
-> > @@ -618,7 +625,8 @@ static unsigned int skl_wm_latency(struct intel_dis=
-play *display, int level,
-> >              display->platform.cometlake) && skl_watermark_ipc_enabled(=
-display))
-> >                 latency +=3D 4;
-> >=20
-> > -        if (skl_needs_memory_bw_wa(display) && wp && wp->x_tiled)
-> > +        if (skl_needs_memory_bw_wa(display) &&
-> > +            wp && wp->tiling =3D=3D WM_TILING_X_TILED)
-> >                 latency +=3D 15;
-> >=20
-> >         return latency;
-> > @@ -1674,9 +1682,14 @@ skl_compute_wm_params(const struct intel_crtc_st=
-ate *crtc_state,
-> >                 return -EINVAL;
-> >         }
-> >=20
-> > -        wp->x_tiled =3D modifier =3D=3D I915_FORMAT_MOD_X_TILED;
-> > -        wp->y_tiled =3D modifier !=3D I915_FORMAT_MOD_X_TILED &&
-> > -                intel_fb_is_tiled_modifier(modifier);
-> > +        if (modifier =3D=3D I915_FORMAT_MOD_X_TILED)
-> > +                wp->tiling =3D WM_TILING_X_TILED;
-> > +        else if (modifier !=3D I915_FORMAT_MOD_X_TILED &&
-> > +                 intel_fb_is_tiled_modifier(modifier))
-> > +                wp->tiling =3D WM_TILING_Y_FAMILY;
-> > +        else
-> > +                wp->tiling =3D WM_TILING_LINEAR;
-> > +
->=20
-> Hm...  I feel like x_tiled and y_tiled, just like other members of
-> struct skl_wm_params, are more about represeting *properties* of the
-> framebuffer/plane that are relevant to the algorithm rather than the
-> tiling mode itself.  Invalid combinations of values would reflect a
-> problem outside of the watermark calculation.  So, I'm not sure we
-> really need an enumeration here.  If, in the future, we end up needing
-> to know a tiling-related property that could be common to different
-> tiling modes, the enumeration would not work for us.
+On Fri, 05 Sep 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Wed, Sep 03, 2025 at 11:31:59PM +0300, Jani Nikula wrote:
+>> Add new helper intel_fbdev_fb_pitch_align() in preparation for further
+>> refactoring. The alignment is different for i915 and xe.
+>>=20
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_fbdev_fb.c | 8 ++++++--
+>>  drivers/gpu/drm/i915/display/intel_fbdev_fb.h | 3 +++
+>>  drivers/gpu/drm/xe/display/intel_fbdev_fb.c   | 8 ++++++--
+>>  3 files changed, 15 insertions(+), 4 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c b/drivers/gpu=
+/drm/i915/display/intel_fbdev_fb.c
+>> index 9c557917d781..d1c03d7b9bdc 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
+>> @@ -13,6 +13,11 @@
+>>  #include "intel_fb.h"
+>>  #include "intel_fbdev_fb.h"
+>>=20=20
+>> +u32 intel_fbdev_fb_pitch_align(u32 stride)
+>> +{
+>> +	return ALIGN(stride, 64);
+>> +}
+>> +
+>>  struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
+>>  					       struct drm_fb_helper_surface_size *sizes)
+>>  {
+>> @@ -30,8 +35,7 @@ struct intel_framebuffer *intel_fbdev_fb_alloc(struct =
+drm_device *drm,
+>>  	mode_cmd.width =3D sizes->surface_width;
+>>  	mode_cmd.height =3D sizes->surface_height;
+>>=20=20
+>> -	mode_cmd.pitches[0] =3D ALIGN(mode_cmd.width *
+>> -				    DIV_ROUND_UP(sizes->surface_bpp, 8), 64);
+>> +	mode_cmd.pitches[0] =3D intel_fbdev_fb_pitch_align(mode_cmd.width * DI=
+V_ROUND_UP(sizes->surface_bpp, 8));
+>>  	mode_cmd.pixel_format =3D drm_mode_legacy_fb_format(sizes->surface_bpp,
+>>  							  sizes->surface_depth);
+>>=20=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h b/drivers/gpu=
+/drm/i915/display/intel_fbdev_fb.h
+>> index 668ae355f5e5..caeb543d5efc 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
+>> @@ -6,6 +6,8 @@
+>>  #ifndef __INTEL_FBDEV_FB_H__
+>>  #define __INTEL_FBDEV_FB_H__
+>>=20=20
+>> +#include <linux/types.h>
+>> +
+>>  struct drm_device;
+>>  struct drm_fb_helper_surface_size;
+>>  struct drm_gem_object;
+>> @@ -13,6 +15,7 @@ struct fb_info;
+>>  struct i915_vma;
+>>  struct intel_display;
+>>=20=20
+>> +u32 intel_fbdev_fb_pitch_align(u32 stride);
+>>  struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
+>>  					       struct drm_fb_helper_surface_size *sizes);
+>>  int intel_fbdev_fb_fill_info(struct intel_display *display, struct fb_i=
+nfo *info,
+>> diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c b/drivers/gpu/d=
+rm/xe/display/intel_fbdev_fb.c
+>> index bafca1059a40..fd2c40020eea 100644
+>> --- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+>> +++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+>> @@ -15,6 +15,11 @@
+>>=20=20
+>>  #include <generated/xe_wa_oob.h>
+>>=20=20
+>> +u32 intel_fbdev_fb_pitch_align(u32 stride)
+>> +{
+>> +	return ALIGN(stride, XE_PAGE_SIZE);
+>
+> I think someone needs to explain what the heck this extra alignment
+> is trying to achieve? I suspect it just needs to get nuked.
 
-This was mainly to make some sense out of the different tiling modes
-that affect watermark calculations.  If you check newer bspecs, there's
-no mention of Y-tiling anymore, only 4-tiling, which superseeded y-
-tiling.  It was quite confusing to figure this all out, not clear from
-the code at all.  Additionally, in the watermark code, there has been
-mention of linear, which sort of included x-tiling as well.
+That would indeed be great, and allow even further cleanup. I'm just
+trying to find the common parts here, and not so much dig into every
+little detail that differs.
 
-With the enumeration, we not only remove the invalid combinations (e.g.
-x-tiled and y-tiled both being set to true), but also make it clear
-that these are all different values for the "tiling" attribute for
-watermark calculations.
+I did git blame this while writing the patch, and it's all in the big xe
+driver enabling commit. I'm not sure where it comes from.
 
+Cc: Maarten, any ideas?
 
-> On the other hand, we do reduce the number of members in struct
-> skl_wm_params.
->=20
-> So, I have mixed feelings about this change.
+BR,
+Jani.
 
-It's not only the reduction of members, but also clarity in the code,
-IMHO and avoidance of impossible combinations.  With one of the next
-patches I convert some of this stuff into a switch-case, so it becomes
-clearer to see how each one is handled.
+>
+>> +}
+>> +
+>>  struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
+>>  					       struct drm_fb_helper_surface_size *sizes)
+>>  {
+>> @@ -31,8 +36,7 @@ struct intel_framebuffer *intel_fbdev_fb_alloc(struct =
+drm_device *drm,
+>>  	mode_cmd.width =3D sizes->surface_width;
+>>  	mode_cmd.height =3D sizes->surface_height;
+>>=20=20
+>> -	mode_cmd.pitches[0] =3D ALIGN(mode_cmd.width *
+>> -				    DIV_ROUND_UP(sizes->surface_bpp, 8), XE_PAGE_SIZE);
+>> +	mode_cmd.pitches[0] =3D intel_fbdev_fb_pitch_align(mode_cmd.width * DI=
+V_ROUND_UP(sizes->surface_bpp, 8));
+>>  	mode_cmd.pixel_format =3D drm_mode_legacy_fb_format(sizes->surface_bpp,
+>>  							  sizes->surface_depth);
+>>=20=20
+>> --=20
+>> 2.47.2
 
---
-Cheers,
-Luca.
+--=20
+Jani Nikula, Intel
