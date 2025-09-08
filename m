@@ -2,67 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AB94B49532
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 18:27:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F6FEB495C7
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 18:43:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0641210E56A;
-	Mon,  8 Sep 2025 16:27:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0096510E570;
+	Mon,  8 Sep 2025 16:43:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lhOBJMku";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UwJ5Gmzo";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F57910E56A;
- Mon,  8 Sep 2025 16:27:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB50710E570;
+ Mon,  8 Sep 2025 16:43:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757348868; x=1788884868;
+ t=1757349792; x=1788885792;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=kk+d4C21i4Odk8WNXJxAAsjgQON2yuupusjPpVZRt9w=;
- b=lhOBJMkuz3+rdsVdeRBERMKGvtmEV9LGov6+ZReLYHVM1vAaivmKNW5x
- 5mAVpSxCoA4+6kDTQ8N6g3xOrOQQztXz/dJVsg6oYl6oMCZz8jopFTqcb
- BcmKSkXCWoJj9Ft4GvuiJ9Y4bZN5P9op4c0y0/P2xgrd+xG8l44i8kaM6
- xAVlRGkTBKHdZDPWXTZpGBkrKKJyMqa0xm+Ubak5iIj2XCwKgxqIakmFO
- m4RiSndHYJZXW1oPUEZa5w0VM/um3fbye1MIuV7/jJntpfeqqE7fk4WPt
- JsYqzqYhYFLbqYzADix7lW/pwocmqcUAHyMU7/cuBTPNY+bcquHgBNT0i Q==;
-X-CSE-ConnectionGUID: D5VChXmYSyqBzBck0tp3iw==
-X-CSE-MsgGUID: b1iKBeXHSY6qMq5SulDx/w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11547"; a="71032659"
-X-IronPort-AV: E=Sophos;i="6.18,249,1751266800"; d="scan'208";a="71032659"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2025 09:27:47 -0700
-X-CSE-ConnectionGUID: 6iqf7wptSauha62e/kwLzQ==
-X-CSE-MsgGUID: vYijp1prS6Ce9796NT2F6Q==
+ bh=d31/gEBHYN9EflmI/bax/rIyTfDodeoFdni7fV4Xt7w=;
+ b=UwJ5Gmzol3ItbUdSIu/+19lwYcG8V10VNUBAp2aa9c6JxotIT/rFVFAy
+ Vs7d1NcG8WOvAwMiPnZYzAuTMUyEpTf3/PfVqJMK4/kwCPAcLazVQ8viY
+ D4d5aMTTzUn3dNhfBIS83WmIHY0By3ABiDyn0tQ53vJ29JIDgLxdCqbmk
+ O0QwQdGtuzfwzOnQbHQNpRPz5GMj/bgEQI34RFO2BeP9/QC3/zwDH37EL
+ RmtUW5H9RvrXpe7aQvAH8OoLQ8G8VwQyabcca85n9L3z9jLELsXZOlxzK
+ 0u9gHSVRzrMfr2NvjydbxrmguJqyC8KUDMVpXdXGzoPgEhYC6O2dojSK9 Q==;
+X-CSE-ConnectionGUID: N7PmbmWESPSY7Dca6L2Nmg==
+X-CSE-MsgGUID: iDvy5H8iT1yCMjbqQI3DVA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="59565519"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="59565519"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2025 09:43:11 -0700
+X-CSE-ConnectionGUID: 77XMHAPpRuqsxLW+EBfmJg==
+X-CSE-MsgGUID: X93UCeCqQECTffaMurN4LQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,249,1751266800"; d="scan'208";a="196475344"
+X-IronPort-AV: E=Sophos;i="6.18,249,1751266800"; d="scan'208";a="172417373"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.61])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2025 09:27:44 -0700
-Date: Mon, 8 Sep 2025 19:27:41 +0300
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2025 09:43:08 -0700
+Date: Mon, 8 Sep 2025 19:43:05 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Maarten Lankhorst <dev@lankhorst.se>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Jani Nikula <jani.nikula@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>,
- Vinod Govindapillai <vinod.govindapillai@intel.com>
-Subject: Re: [PATCH 2/9] drm/{i915, xe}/fbdev: add intel_fbdev_fb_pitch_align()
-Message-ID: <aL8D_dRE5nslOAUi@intel.com>
-References: <cover.1756931441.git.jani.nikula@intel.com>
- <ae51d1e224048bdc87bf7a56d8f5ebd0fbb6a383.1756931441.git.jani.nikula@intel.com>
- <aLqsC87Ol_zCXOkN@intel.com>
- <48e0a14d67ba84d64f6589bbdd0090e86be4fd4f@intel.com>
- <7cs3dirtgrypn7xjzmv7rxmkgbrtfxxjmtth576kfwerlydcgx@6zelewdmaukb>
- <fdcc32f2-c36b-439f-8d15-14b3fb7bd5dc@lankhorst.se>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Subject: Re: [PATCH 12/14] drm/i915/vrr: Use static guardband to support
+ seamless LRR switching
+Message-ID: <aL8HmW0mXKvHNGF5@intel.com>
+References: <20250907073241.19632-1-ankit.k.nautiyal@intel.com>
+ <20250907073241.19632-13-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <fdcc32f2-c36b-439f-8d15-14b3fb7bd5dc@lankhorst.se>
+In-Reply-To: <20250907073241.19632-13-ankit.k.nautiyal@intel.com>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -80,115 +74,242 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 08, 2025 at 06:10:56PM +0200, Maarten Lankhorst wrote:
-> Hey,
+On Sun, Sep 07, 2025 at 01:02:39PM +0530, Ankit Nautiyal wrote:
+> In the current VRR implementation, vrr.vmin and vrr.guardband are set such
+> that they do not need to change when switching from fixed refresh rate to
+> variable refresh rate. Specifically, vrr.guardband is always set to match
+> the vblank length. This approach works for most cases, but not for LRR,
+> where the guardband would need to change while the VRR timing generator is
+> still active.
 > 
-> Den 2025-09-08 kl. 16:19, skrev Lucas De Marchi:
-> > On Mon, Sep 08, 2025 at 03:55:18PM +0300, Jani Nikula wrote:
-> >> On Fri, 05 Sep 2025, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> >>> On Wed, Sep 03, 2025 at 11:31:59PM +0300, Jani Nikula wrote:
-> >>>> Add new helper intel_fbdev_fb_pitch_align() in preparation for further
-> >>>> refactoring. The alignment is different for i915 and xe.
-> >>>>
-> >>>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> >>>> ---
-> >>>>  drivers/gpu/drm/i915/display/intel_fbdev_fb.c | 8 ++++++--
-> >>>>  drivers/gpu/drm/i915/display/intel_fbdev_fb.h | 3 +++
-> >>>>  drivers/gpu/drm/xe/display/intel_fbdev_fb.c   | 8 ++++++--
-> >>>>  3 files changed, 15 insertions(+), 4 deletions(-)
-> >>>>
-> >>>> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
-> >>>> index 9c557917d781..d1c03d7b9bdc 100644
-> >>>> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
-> >>>> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
-> >>>> @@ -13,6 +13,11 @@
-> >>>>  #include "intel_fb.h"
-> >>>>  #include "intel_fbdev_fb.h"
-> >>>>
-> >>>> +u32 intel_fbdev_fb_pitch_align(u32 stride)
-> >>>> +{
-> >>>> +    return ALIGN(stride, 64);
-> >>>> +}
-> >>>> +
-> >>>>  struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
-> >>>>                             struct drm_fb_helper_surface_size *sizes)
-> >>>>  {
-> >>>> @@ -30,8 +35,7 @@ struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
-> >>>>      mode_cmd.width = sizes->surface_width;
-> >>>>      mode_cmd.height = sizes->surface_height;
-> >>>>
-> >>>> -    mode_cmd.pitches[0] = ALIGN(mode_cmd.width *
-> >>>> -                    DIV_ROUND_UP(sizes->surface_bpp, 8), 64);
-> >>>> +    mode_cmd.pitches[0] = intel_fbdev_fb_pitch_align(mode_cmd.width * DIV_ROUND_UP(sizes->surface_bpp, 8));
-> >>>>      mode_cmd.pixel_format = drm_mode_legacy_fb_format(sizes->surface_bpp,
-> >>>>                                sizes->surface_depth);
-> >>>>
-> >>>> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
-> >>>> index 668ae355f5e5..caeb543d5efc 100644
-> >>>> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
-> >>>> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
-> >>>> @@ -6,6 +6,8 @@
-> >>>>  #ifndef __INTEL_FBDEV_FB_H__
-> >>>>  #define __INTEL_FBDEV_FB_H__
-> >>>>
-> >>>> +#include <linux/types.h>
-> >>>> +
-> >>>>  struct drm_device;
-> >>>>  struct drm_fb_helper_surface_size;
-> >>>>  struct drm_gem_object;
-> >>>> @@ -13,6 +15,7 @@ struct fb_info;
-> >>>>  struct i915_vma;
-> >>>>  struct intel_display;
-> >>>>
-> >>>> +u32 intel_fbdev_fb_pitch_align(u32 stride);
-> >>>>  struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
-> >>>>                             struct drm_fb_helper_surface_size *sizes);
-> >>>>  int intel_fbdev_fb_fill_info(struct intel_display *display, struct fb_info *info,
-> >>>> diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
-> >>>> index bafca1059a40..fd2c40020eea 100644
-> >>>> --- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
-> >>>> +++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
-> >>>> @@ -15,6 +15,11 @@
-> >>>>
-> >>>>  #include <generated/xe_wa_oob.h>
-> >>>>
-> >>>> +u32 intel_fbdev_fb_pitch_align(u32 stride)
-> >>>> +{
-> >>>> +    return ALIGN(stride, XE_PAGE_SIZE);
-> >>>
-> >>> I think someone needs to explain what the heck this extra alignment
-> >>> is trying to achieve? I suspect it just needs to get nuked.
-> >>
-> >> That would indeed be great, and allow even further cleanup. I'm just
-> >> trying to find the common parts here, and not so much dig into every
-> >> little detail that differs.
-> >>
-> >> I did git blame this while writing the patch, and it's all in the big xe
-> >> driver enabling commit. I'm not sure where it comes from.
-> >>
-> >> Cc: Maarten, any ideas?
-> > 
-> > It doesn't help much, but https://lore.kernel.org/intel-xe/20231114110056.2423853-5-jouni.hogander@intel.com/
-> > was the first time this align got added.
-> > 
-> > Adding some people to Cc.
-> > 
-> > Lucas De Marchi
+> With the VRR TG always active, live updates to guardband are unsafe and not
+> recommended. To ensure hardware safety, guardband was moved out of the
+> !fastset block, meaning any change now requires a full modeset.
+> This breaks seamless LRR switching, which was previously supported.
 > 
-> If I really recall correctly, it was to ensure size was a multiple of 4k and dumb bo allocation would not fail.
-> This was at the very start of xe enabling.
+> Since the problem arises from guardband being matched to the vblank length,
+> solution is to use a minimal, sufficient static value, instead. So we use a
+> static guardband defined during mode-set that fits within the smallest
+> expected vblank and remains unchanged in case of features like LRR where
+> vtotal changes. To compute this minimum guardband we take into account
+> latencies/delays due to different features as mentioned in the Bspec.
 > 
-> i915 bo alloc allows any size, xe is much stricter. If it works with the hack removed and the bo gets 64k aligned 
-> on discrete, then this probably can be dropped.
+> v2:
+> -Use helpers for dsc/scaler prefill latencies. (Mitul)
+> -Account for pkgc latency and take max of pkgc and sagv latencies.
+> v3: Use new helper for PSR2/Panel Replay latency.
+> v4: Avoid re-setting the Vmin/Flipline for optimized guardband.
+> 
+> Bspec: 70151
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com> (#v3)
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c |   2 +-
+>  drivers/gpu/drm/i915/display/intel_vrr.c     | 127 ++++++++++++++++++-
+>  drivers/gpu/drm/i915/display/intel_vrr.h     |   3 +-
+>  3 files changed, 128 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index fb072275b1c7..3fa94675d5e1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -4902,7 +4902,6 @@ intel_modeset_pipe_config_late(struct intel_atomic_state *state,
+>  	struct drm_connector *connector;
+>  	int i;
+>  
+> -	intel_vrr_compute_config_late(crtc_state);
+>  
+>  	for_each_new_connector_in_state(&state->base, connector,
+>  					conn_state, i) {
+> @@ -4914,6 +4913,7 @@ intel_modeset_pipe_config_late(struct intel_atomic_state *state,
+>  		    !encoder->compute_config_late)
+>  			continue;
+>  
+> +		intel_vrr_compute_config_late(crtc_state, conn_state);
+>  		ret = encoder->compute_config_late(encoder, crtc_state,
+>  						   conn_state);
+>  		if (ret)
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> index 855974174afd..fff684eb2514 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -6,12 +6,15 @@
+>  
+>  #include <drm/drm_print.h>
+>  
+> +#include "intel_alpm.h"
+>  #include "intel_de.h"
+>  #include "intel_display_regs.h"
+>  #include "intel_display_types.h"
+>  #include "intel_dp.h"
+>  #include "intel_vrr.h"
+>  #include "intel_vrr_regs.h"
+> +#include "skl_scaler.h"
+> +#include "skl_watermark.h"
+>  
+>  #define FIXED_POINT_PRECISION		100
+>  #define CMRR_PRECISION_TOLERANCE	10
+> @@ -413,15 +416,135 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+>  	}
+>  }
+>  
+> -void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state)
+> +static
+> +int scaler_prefill_latency(struct intel_crtc_state *crtc_state, int linetime_us)
+> +{
+> +	int chroma_downscaling_factor = skl_scaler_chroma_downscale_factor(crtc_state);
+> +	u64 hscale_k, vscale_k;
+> +	int cdclk_adjustment;
+> +	int num_scaler_users;
+> +
+> +	/*
+> +	 * Assuming:
+> +	 * Both scaler enabled.
+> +	 * scaler 1 downscaling factor as 2 x 2 (Horiz x Vert)
+> +	 * scaler 2 downscaling factor as 2 x 1 (Horiz x Vert)
+> +	 * Cdclk Adjustment : 1
+> +	 */
+> +	num_scaler_users = 2;
+> +	hscale_k = 2 * 1000;
+> +	vscale_k = 2 * 1000;
+> +	cdclk_adjustment = 1;
+> +
+> +	return intel_vrr_guardband_scaler_latency(num_scaler_users, hscale_k, vscale_k,
+> +						  chroma_downscaling_factor,
+> +						  cdclk_adjustment,
+> +						  linetime_us);
+> +}
+> +
+> +static
+> +int dsc_prefill_latency(struct intel_crtc_state *crtc_state, int linetime_us)
+> +{
+> +#define MAX_SCALERS 2
+> +	int chroma_downscaling_factor = skl_scaler_chroma_downscale_factor(crtc_state);
+> +	u64 hscale_k[MAX_SCALERS], vscale_k[MAX_SCALERS];
+> +	int cdclk_adjustment;
+> +	int num_scaler_users;
+> +
+> +	/*
+> +	 * Assuming:
+> +	 * Both scaler enabled.
+> +	 * scaler 1 downscaling factor as 2 x 2 (Horiz x Vert)
+> +	 * scaler 2 downscaling factor as 2 x 1 (Horiz x Vert)
+> +	 * Cdclk Adjustment : 1
+> +	 */
+> +	num_scaler_users = MAX_SCALERS;
+> +	hscale_k[0] = 2 * 1000;
+> +	vscale_k[0] = 2 * 1000;
+> +	hscale_k[1] = 2 * 1000;
+> +	vscale_k[1] = 1 * 1000;
+> +
+> +	cdclk_adjustment = 1;
+> +
+> +	return intel_vrr_guardband_dsc_latency(num_scaler_users, hscale_k, vscale_k,
+> +					       chroma_downscaling_factor,
+> +					       cdclk_adjustment,
+> +					       linetime_us);
+> +}
+> +
+> +static
+> +int intel_vrr_compute_guardband(struct intel_crtc_state *crtc_state,
+> +				struct intel_connector *connector)
+> +{
+> +	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+> +	struct intel_display *display = to_intel_display(crtc_state);
+> +	int dsc_prefill_time = 0;
+> +	int psr2_pr_latency = 0;
+> +	int scaler_prefill_time;
+> +	int wm0_prefill_time;
+> +	int pkgc_max_latency;
+> +	int sagv_latency;
+> +	int sdp_latency = 0;
+> +	int guardband_us;
+> +	int linetime_us;
+> +	int guardband;
+> +	int pm_delay;
+> +
+> +	linetime_us = DIV_ROUND_UP(adjusted_mode->crtc_htotal * 1000,
+> +				   adjusted_mode->crtc_clock);
+> +
+> +	pkgc_max_latency = skl_watermark_max_latency(display, 1);
+> +	sagv_latency = display->sagv.block_time_us;
+> +
+> +	/* Assuming max wm0 lines = 4 */
+> +	wm0_prefill_time = 4 * linetime_us + 20;
+> +
+> +	scaler_prefill_time = scaler_prefill_latency(crtc_state, linetime_us);
+> +
+> +	if (crtc_state->dsc.compression_enable)
+> +		dsc_prefill_time = dsc_prefill_latency(crtc_state, linetime_us);
+> +
+> +	pm_delay = crtc_state->framestart_delay +
+> +		   max(sagv_latency, pkgc_max_latency) +
+> +		   wm0_prefill_time +
+> +		   scaler_prefill_time +
+> +		   dsc_prefill_time;
+> +
+> +	switch (connector->base.connector_type) {
+> +	case DRM_MODE_CONNECTOR_eDP:
+> +	case DRM_MODE_CONNECTOR_DisplayPort:
+> +		psr2_pr_latency = intel_alpm_compute_max_link_wake_latency(crtc_state, true);
+> +		sdp_latency = intel_dp_compute_sdp_latency(crtc_state, true);
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +
+> +	guardband_us = max(sdp_latency, psr2_pr_latency);
+> +	guardband_us = max(guardband_us, pm_delay);
+> +
+> +	guardband = DIV_ROUND_UP(guardband_us, linetime_us);
+> +
+> +	/* guardband cannot be more than the Vmax vblank */
+> +	guardband = min(guardband, crtc_state->vrr.vmax - adjusted_mode->crtc_vblank_start);
+> +
+> +	return guardband;
+> +}
+> +
+> +void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state,
+> +				   struct drm_connector_state *conn_state)
+>  {
+>  	struct intel_display *display = to_intel_display(crtc_state);
+>  	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+> +	struct intel_connector *connector =
+> +		to_intel_connector(conn_state->connector);
+>  
+>  	if (!intel_vrr_possible(crtc_state))
+>  		return;
+>  
+> -	if (DISPLAY_VER(display) >= 13) {
+> +	if (intel_vrr_always_use_vrr_tg(display)) {
+> +		crtc_state->vrr.guardband = intel_vrr_compute_guardband(crtc_state, connector);
 
-It's aligning stride, not the size. So doesn't make sense. The only
-time you need page alignment for stride is for remapping, which is
-handled correctly by i915 in the dumb bo codepath and not handled at all
-by xe as usual.
+This all looks to be in the wrong place. It needs to be done as part of
+intel_crtc_compute_vblank_delay() which then updates crtc_vblank_start
+to reflect reality instead of leaving some incorrect junk in there.
+Presumably that is why you also had to do that
+intel_dsb_wait_for_delayed_vblank() hack.
 
-I suspect what we really should do for the fbdev allocation is to use
-the dump bo code, and make sure that code works the same way for i915
-and xe.
+> +	} else if (DISPLAY_VER(display) >= 13) {
+>  		crtc_state->vrr.guardband =
+>  			crtc_state->vrr.vmin - adjusted_mode->crtc_vblank_start;
+>  	} else {
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
+> index 950041647e47..362638fd0d66 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.h
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.h
+> @@ -21,7 +21,8 @@ bool intel_vrr_possible(const struct intel_crtc_state *crtc_state);
+>  void intel_vrr_check_modeset(struct intel_atomic_state *state);
+>  void intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+>  			      struct drm_connector_state *conn_state);
+> -void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state);
+> +void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state,
+> +				   struct drm_connector_state *conn_state);
+>  void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state);
+>  void intel_vrr_enable(const struct intel_crtc_state *crtc_state);
+>  void intel_vrr_send_push(struct intel_dsb *dsb,
+> -- 
+> 2.45.2
 
 -- 
 Ville Syrjälä
