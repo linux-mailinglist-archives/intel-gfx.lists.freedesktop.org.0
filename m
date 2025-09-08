@@ -2,75 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64FD9B49345
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 17:28:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05A76B494D7
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 18:11:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E093810E557;
-	Mon,  8 Sep 2025 15:28:42 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="PsNHM3XM";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4296110E15D;
+	Mon,  8 Sep 2025 16:11:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3412910E556;
- Mon,  8 Sep 2025 15:28:41 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 3E59360054;
- Mon,  8 Sep 2025 15:28:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1A6FC4CEF1;
- Mon,  8 Sep 2025 15:28:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1757345319;
- bh=Do6afPicQEb4NL8JqQTOF9ldvaOz/50hXlHx8t3d/Vk=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=PsNHM3XMtszyc0MR1l+7nz70Pbv2C2OaoFSsE5TqVi1L0TWseb3dm8FxU4bOhGA4x
- K4Pbr34ZZu4GjLSy0wcBOLtbTfSDZ2sZXwcW4q/GMOmsbSZpLzPh3VE05cQHN1bvx6
- 51Gz7lPPEfDUpWjzsa4c4LUlGmtD5Yh+xRUZwAvoz2gdSvkS4s3poGD4jvdFCM3JbR
- k937DQwE3qDKhikqJJbGzJuWzvxXLe1oyvTjXmvEVG3yc5Fy+l/qJEMutidM5xegfs
- 8U0ArRBNo11ISeeVjRQuNSccclJrtzFk1VDZN9ty2Mo1sIkDvMoHTI/K2PNGM65fEw
- HzowuB88dAXMA==
-Date: Mon, 8 Sep 2025 16:28:28 +0100
-From: Mark Brown <broonie@kernel.org>
-To: David Hildenbrand <david@redhat.com>
-Cc: linux-kernel@vger.kernel.org, Alexander Potapenko <glider@google.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Brendan Jackman <jackmanb@google.com>,
- Christoph Lameter <cl@gentwo.org>, Dennis Zhou <dennis@kernel.org>,
- Dmitry Vyukov <dvyukov@google.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, iommu@lists.linux.dev,
- io-uring@vger.kernel.org, Jason Gunthorpe <jgg@nvidia.com>,
- Jens Axboe <axboe@kernel.dk>, Johannes Weiner <hannes@cmpxchg.org>,
- John Hubbard <jhubbard@nvidia.com>, kasan-dev@googlegroups.com,
- kvm@vger.kernel.org, "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- linux-arm-kernel@axis.com, linux-arm-kernel@lists.infradead.org,
- linux-crypto@vger.kernel.org, linux-ide@vger.kernel.org,
- linux-kselftest@vger.kernel.org, linux-mips@vger.kernel.org,
- linux-mmc@vger.kernel.org, linux-mm@kvack.org,
- linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
- linux-scsi@vger.kernel.org, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Marco Elver <elver@google.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Michal Hocko <mhocko@suse.com>, Mike Rapoport <rppt@kernel.org>,
- Muchun Song <muchun.song@linux.dev>, netdev@vger.kernel.org,
- Oscar Salvador <osalvador@suse.de>, Peter Xu <peterx@redhat.com>,
- Robin Murphy <robin.murphy@arm.com>,
- Suren Baghdasaryan <surenb@google.com>, Tejun Heo <tj@kernel.org>,
- virtualization@lists.linux.dev, Vlastimil Babka <vbabka@suse.cz>,
- wireguard@lists.zx2c4.com, x86@kernel.org, Zi Yan <ziy@nvidia.com>
-Subject: Re: [PATCH v2 19/37] mm/gup: remove record_subpages()
-Message-ID: <e8428944-e2ef-4785-b0c2-d4896b291cb1@sirena.org.uk>
-References: <20250901150359.867252-1-david@redhat.com>
- <20250901150359.867252-20-david@redhat.com>
- <f5032553-9ec0-494c-8689-0e3a6a73853c@sirena.org.uk>
- <83d3ef61-abc7-458d-b6ea-20094eeff6cd@redhat.com>
+Received: from lankhorst.se (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CDDE10E14E;
+ Mon,  8 Sep 2025 16:10:59 +0000 (UTC)
+Message-ID: <fdcc32f2-c36b-439f-8d15-14b3fb7bd5dc@lankhorst.se>
+Date: Mon, 8 Sep 2025 18:10:56 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="DHpSdvAG938A2yDi"
-Content-Disposition: inline
-In-Reply-To: <83d3ef61-abc7-458d-b6ea-20094eeff6cd@redhat.com>
-X-Cookie: Air is water with holes in it.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/9] drm/{i915, xe}/fbdev: add intel_fbdev_fb_pitch_align()
+To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>
+Cc: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ =?UTF-8?Q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>,
+ Vinod Govindapillai <vinod.govindapillai@intel.com>
+References: <cover.1756931441.git.jani.nikula@intel.com>
+ <ae51d1e224048bdc87bf7a56d8f5ebd0fbb6a383.1756931441.git.jani.nikula@intel.com>
+ <aLqsC87Ol_zCXOkN@intel.com>
+ <48e0a14d67ba84d64f6589bbdd0090e86be4fd4f@intel.com>
+ <7cs3dirtgrypn7xjzmv7rxmkgbrtfxxjmtth576kfwerlydcgx@6zelewdmaukb>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <7cs3dirtgrypn7xjzmv7rxmkgbrtfxxjmtth576kfwerlydcgx@6zelewdmaukb>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,36 +48,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hey,
 
---DHpSdvAG938A2yDi
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Den 2025-09-08 kl. 16:19, skrev Lucas De Marchi:
+> On Mon, Sep 08, 2025 at 03:55:18PM +0300, Jani Nikula wrote:
+>> On Fri, 05 Sep 2025, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
+>>> On Wed, Sep 03, 2025 at 11:31:59PM +0300, Jani Nikula wrote:
+>>>> Add new helper intel_fbdev_fb_pitch_align() in preparation for further
+>>>> refactoring. The alignment is different for i915 and xe.
+>>>>
+>>>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>>>> ---
+>>>>  drivers/gpu/drm/i915/display/intel_fbdev_fb.c | 8 ++++++--
+>>>>  drivers/gpu/drm/i915/display/intel_fbdev_fb.h | 3 +++
+>>>>  drivers/gpu/drm/xe/display/intel_fbdev_fb.c   | 8 ++++++--
+>>>>  3 files changed, 15 insertions(+), 4 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
+>>>> index 9c557917d781..d1c03d7b9bdc 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
+>>>> @@ -13,6 +13,11 @@
+>>>>  #include "intel_fb.h"
+>>>>  #include "intel_fbdev_fb.h"
+>>>>
+>>>> +u32 intel_fbdev_fb_pitch_align(u32 stride)
+>>>> +{
+>>>> +    return ALIGN(stride, 64);
+>>>> +}
+>>>> +
+>>>>  struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
+>>>>                             struct drm_fb_helper_surface_size *sizes)
+>>>>  {
+>>>> @@ -30,8 +35,7 @@ struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
+>>>>      mode_cmd.width = sizes->surface_width;
+>>>>      mode_cmd.height = sizes->surface_height;
+>>>>
+>>>> -    mode_cmd.pitches[0] = ALIGN(mode_cmd.width *
+>>>> -                    DIV_ROUND_UP(sizes->surface_bpp, 8), 64);
+>>>> +    mode_cmd.pitches[0] = intel_fbdev_fb_pitch_align(mode_cmd.width * DIV_ROUND_UP(sizes->surface_bpp, 8));
+>>>>      mode_cmd.pixel_format = drm_mode_legacy_fb_format(sizes->surface_bpp,
+>>>>                                sizes->surface_depth);
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
+>>>> index 668ae355f5e5..caeb543d5efc 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
+>>>> @@ -6,6 +6,8 @@
+>>>>  #ifndef __INTEL_FBDEV_FB_H__
+>>>>  #define __INTEL_FBDEV_FB_H__
+>>>>
+>>>> +#include <linux/types.h>
+>>>> +
+>>>>  struct drm_device;
+>>>>  struct drm_fb_helper_surface_size;
+>>>>  struct drm_gem_object;
+>>>> @@ -13,6 +15,7 @@ struct fb_info;
+>>>>  struct i915_vma;
+>>>>  struct intel_display;
+>>>>
+>>>> +u32 intel_fbdev_fb_pitch_align(u32 stride);
+>>>>  struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
+>>>>                             struct drm_fb_helper_surface_size *sizes);
+>>>>  int intel_fbdev_fb_fill_info(struct intel_display *display, struct fb_info *info,
+>>>> diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+>>>> index bafca1059a40..fd2c40020eea 100644
+>>>> --- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+>>>> +++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+>>>> @@ -15,6 +15,11 @@
+>>>>
+>>>>  #include <generated/xe_wa_oob.h>
+>>>>
+>>>> +u32 intel_fbdev_fb_pitch_align(u32 stride)
+>>>> +{
+>>>> +    return ALIGN(stride, XE_PAGE_SIZE);
+>>>
+>>> I think someone needs to explain what the heck this extra alignment
+>>> is trying to achieve? I suspect it just needs to get nuked.
+>>
+>> That would indeed be great, and allow even further cleanup. I'm just
+>> trying to find the common parts here, and not so much dig into every
+>> little detail that differs.
+>>
+>> I did git blame this while writing the patch, and it's all in the big xe
+>> driver enabling commit. I'm not sure where it comes from.
+>>
+>> Cc: Maarten, any ideas?
+> 
+> It doesn't help much, but https://lore.kernel.org/intel-xe/20231114110056.2423853-5-jouni.hogander@intel.com/
+> was the first time this align got added.
+> 
+> Adding some people to Cc.
+> 
+> Lucas De Marchi
 
-On Mon, Sep 08, 2025 at 05:22:24PM +0200, David Hildenbrand wrote:
-> On 08.09.25 17:16, Mark Brown wrote:
+If I really recall correctly, it was to ensure size was a multiple of 4k and dumb bo allocation would not fail.
+This was at the very start of xe enabling.
 
-> > I'm seeing failures in kselftest-mm in -next on at least Raspberry Pi 4
-> > and Orion O6 which bisect to this patch.  I'm seeing a NULL pointer
+i915 bo alloc allows any size, xe is much stricter. If it works with the hack removed and the bo gets 64k aligned 
+on discrete, then this probably can be dropped.
 
-> On which -next label are you on? next-20250908 should no longer have that
-> commit.
-
-Ah, sorry - it was Friday's -next but I only saw the report this
-morning.  Sorry for the noise.
-
---DHpSdvAG938A2yDi
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmi+9hwACgkQJNaLcl1U
-h9Dbtgf+Lll52kCjsemPK6UaH7DQkWfZmHDqtHqLwe5SzgAfSeqnhQgasjG5jMSv
-Nx5981jPRrpwjz/cI58x/+7VGV4mHF331CfuGkvW9jVYKznATgc/3x877cxjQPYg
-I0fxXcE59j2a4VQrjcWqpuF0unCRYckVgvCsxK0iBkltPEMKR6iqf1xBECY8ofae
-HYKT9ows31m6zoR1t0ed+9WHQqIH9nlo9gPcNJm6Vw2vMSwDBa5BuQv3MIIyOFq3
-9MutZOCRam8c+vwt91HNCNUP85vbnHqG+eZCecu4Y2rVwHaENgW7ayTBrmb1OQ4G
-cd9uBVEvCzE0tE1Rm7r+1srw8xc6vg==
-=z4uX
------END PGP SIGNATURE-----
-
---DHpSdvAG938A2yDi--
+Best regards,
+~Maarten Lankhorst
