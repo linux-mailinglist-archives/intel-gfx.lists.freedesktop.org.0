@@ -2,29 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31288B48381
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 07:02:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4136FB483C6
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 07:49:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9027210E0CA;
-	Mon,  8 Sep 2025 05:02:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D6F410E45E;
+	Mon,  8 Sep 2025 05:49:20 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="P/OTpD7K";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F4EB10E0CA;
- Mon,  8 Sep 2025 05:02:26 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8619741130584368014=="
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 266ED10E1F0;
+ Mon,  8 Sep 2025 05:49:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=202503; t=1757310555;
+ bh=u02UJ6ZXh3NmyEBtqPxpp2cMxmC0q9X+OV3aGctYjEg=;
+ h=Date:From:To:Cc:Subject:From;
+ b=P/OTpD7KrgvJ9gk0JlMAt2qEjr21n22+Kv1HHal1xqpa4utamE6CdEWtsn4+/O7KH
+ cICZK3ZzFU/Kj+O1i6RGQ62Jf432YCYY84up3p15aQm+R75SUBWy53B5B1sCT0fklj
+ WazGohXOCm9+jTSSw//vjxghUMlod/TVQl1zWW6RFNAoJ/eecrfiGI3esM5HCreNkM
+ xHt/VFPSq8Wjs4I5niewlDSOtDHYFM0M+dr1GS8540hemrWSn5jG10zyNu3Gb6ZG+g
+ +jSRFVp+TgdmoEtifZcxZVZkGVv6Wy5RVLEulF4H0ZtYBMns50VmUjmd10S6QOylke
+ HW63AAJrQMyFg==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (Client did not present a certificate)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4cKwxk3gTrz4w2S;
+ Mon,  8 Sep 2025 15:49:14 +1000 (AEST)
+Date: Mon, 8 Sep 2025 15:49:13 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>, Liam
+ Girdwood <lgirdwood@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
+ <dri-devel@lists.freedesktop.org>, Linux Kernel Mailing List
+ <linux-kernel@vger.kernel.org>, Linux Next Mailing List
+ <linux-next@vger.kernel.org>, Nick Li <nick.li@foursemi.com>, Thomas
+ Zimmermann <tzimmermann@suse.de>, Wig Cheng <onlywig@gmail.com>
+Subject: linux-next: manual merge of the devicetree tree with the sound-asoc
+ and drm-misc trees
+Message-ID: <20250908154913.5fb9ae9c@canb.auug.org.au>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/ddi=3A_Guard_reg?=
- =?utf-8?q?=5Fval_against_a_INVALID=5FTRANSCODER_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 08 Sep 2025 05:02:26 -0000
-Message-ID: <175730774605.310981.14276497327621115944@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250908042208.1011144-1-suraj.kandpal@intel.com>
-In-Reply-To: <20250908042208.1011144-1-suraj.kandpal@intel.com>
+Content-Type: multipart/signed; boundary="Sig_/OX4/p=OXFtBgv3h7kG9jnVV";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,172 +58,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8619741130584368014==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+--Sig_/OX4/p=OXFtBgv3h7kG9jnVV
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-== Series Details ==
+Hi all,
 
-Series: drm/i915/ddi: Guard reg_val against a INVALID_TRANSCODER (rev2)
-URL   : https://patchwork.freedesktop.org/series/154014/
-State : success
+Today's linux-next merge of the devicetree tree got a conflict in:
 
-== Summary ==
+  Documentation/devicetree/bindings/vendor-prefixes.yaml
 
-CI Bug Log - changes from CI_DRM_17147 -> Patchwork_154014v2
-====================================================
+between commits:
 
-Summary
--------
+  243167e96939 ("dt-bindings: vendor-prefixes: Add Shanghai FourSemi Semico=
+nductor Co.,Ltd")
+  09b26dce32f0 ("dt-bindings: vendor-prefixes: Add Mayqueen name")
 
-  **SUCCESS**
+from the sound-asoc and drm-misc trees and commit:
 
-  No regressions found.
+  4ed46073274a ("dt-bindings: vendor-prefixes: Add undocumented vendor pref=
+ixes")
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v2/index.html
+from the devicetree tree.
 
-Participating hosts (43 -> 42)
-------------------------------
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
 
-  Missing    (1): fi-snb-2520m 
+--=20
+Cheers,
+Stephen Rothwell
 
-Known issues
-------------
+diff --cc Documentation/devicetree/bindings/vendor-prefixes.yaml
+index dcf82d972037,0f5273123650..000000000000
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@@ -560,8 -568,8 +576,10 @@@ patternProperties
+      description: FocalTech Systems Co.,Ltd
+    "^forlinx,.*":
+      description: Baoding Forlinx Embedded Technology Co., Ltd.
+ +  "^foursemi,.*":
+ +    description: Shanghai FourSemi Semiconductor Co.,Ltd.
++   "^foxlink,.*":
++     description: Foxlink Group
+    "^freebox,.*":
+      description: Freebox SAS
+    "^freecom,.*":
+@@@ -943,8 -955,8 +967,10 @@@
+      description: Maxim Integrated Products
+    "^maxlinear,.*":
+      description: MaxLinear Inc.
++   "^maxtor,.*":
++     description: Maxtor Corporation
+ +  "^mayqueen,.*":
+ +    description: Mayqueen Technologies Ltd.
+    "^mbvl,.*":
+      description: Mobiveil Inc.
+    "^mcube,.*":
 
-  Here are the changes found in Patchwork_154014v2 that come from known issues:
+--Sig_/OX4/p=OXFtBgv3h7kG9jnVV
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-### IGT changes ###
+-----BEGIN PGP SIGNATURE-----
 
-#### Issues hit ####
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmi+blkACgkQAVBC80lX
+0Gy9eQf/WAaQO4uhlb73zuSy+mJ47ng+u3d0GTkf3d4rXfReg1sNQnjrAbXf101b
+/FwKmQe9Z/4a+/zjSxUj/Vmb/ns4V74C7++d0Wnw5f+FptyqW5Fwdcbpml3tJc3W
+lK9UZCJFAKGSCCUhRayO/plqTaalUeWiLr5NQe9YrfAA6+KpxdrUvMWfCjJR5Alm
+OPJRoo5n1Sy+Y/cFZ/Iluc2MUF9ARAaH49A6xPoBK+f2tAuOxJSnCBI+05eXEc2G
+Jv2lo9gTA2Zlm+/O6I5NIpCIz9afEVgOTBlQvrHVTktU5C/XLtBcB2d6BCi7t6mB
+ZbKUws7+hTkxIPhpqx+J+JX/5oU7+g==
+=zHgE
+-----END PGP SIGNATURE-----
 
-  * igt@i915_pm_rpm@module-reload:
-    - bat-dg2-9:          [PASS][1] -> [ABORT][2] ([i915#14385])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17147/bat-dg2-9/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v2/bat-dg2-9/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17147/bat-mtlp-8/igt@i915_selftest@live.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v2/bat-mtlp-8/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-11:         [PASS][5] -> [DMESG-FAIL][6] ([i915#12061]) +1 other test dmesg-fail
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17147/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v2/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-5:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17147/bat-arls-5/igt@i915_selftest@live@workarounds.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v2/bat-arls-5/igt@i915_selftest@live@workarounds.html
-    - bat-dg2-14:         [DMESG-FAIL][9] ([i915#12061]) -> [PASS][10] +1 other test pass
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17147/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v2/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#14385]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14385
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_17147 -> Patchwork_154014v2
-
-  CI-20190529: 20190529
-  CI_DRM_17147: b58a0fdf32d1945f3a6d900fdc6763b7acdaf558 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8524: 8524
-  Patchwork_154014v2: b58a0fdf32d1945f3a6d900fdc6763b7acdaf558 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v2/index.html
-
---===============8619741130584368014==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/ddi: Guard reg_val against a INVALID_TRANSCODER (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154014/">https://patchwork.freedesktop.org/series/154014/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17147 -&gt; Patchwork_154014v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v2/index.html</p>
-<h2>Participating hosts (43 -&gt; 42)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_154014v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17147/bat-dg2-9/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v2/bat-dg2-9/igt@i915_pm_rpm@module-reload.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14385">i915#14385</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17147/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v2/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17147/bat-dg2-11/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v2/bat-dg2-11/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17147/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v2/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17147/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154014v2/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17147 -&gt; Patchwork_154014v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17147: b58a0fdf32d1945f3a6d900fdc6763b7acdaf558 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8524: 8524<br />
-  Patchwork_154014v2: b58a0fdf32d1945f3a6d900fdc6763b7acdaf558 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============8619741130584368014==--
+--Sig_/OX4/p=OXFtBgv3h7kG9jnVV--
