@@ -2,175 +2,115 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1D2DB49120
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 16:20:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B38FAB491C1
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 16:38:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E46410E540;
-	Mon,  8 Sep 2025 14:20:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35A4210E543;
+	Mon,  8 Sep 2025 14:38:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eK5r2RaY";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="rZWo/xG7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40D3E10E542;
- Mon,  8 Sep 2025 14:20:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757341208; x=1788877208;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=RM+wy5zSigWSYNRL1GCrb+K7mPr9vqSg5cQUSzn2Fqg=;
- b=eK5r2RaY+3lzGUhb4x0SordidhblHOOMx1xgyRI4nGpDBoKtn+VrGAxw
- 8fD61CCxYqe9M/chK290nIuPPZrra41BE0p+iHfduIF8/5AtkLe1905md
- DB1UJtiR3wL8uXIzsC1Ke7/TTeCs2L5YGq9jwLXmBlosexhXLmiHkJ8uj
- 3KKP1CuLlKlRK8mnbSBo2K3FdS+oEDgbryF89K1J/6v9++eWVl9BFyda6
- J5/J13oEjcEk3VKuZ3fprKje+7qPJUshFqn9RgN2RYcitciuTmn4AScOv
- XKXGWwiv1eYnZCYDFc5l9M8dUx7PJ5lCtA0KIw2C4UETw/oba6YVmlMAD A==;
-X-CSE-ConnectionGUID: GuyidvqMTX+eZTqDbSXy4w==
-X-CSE-MsgGUID: bnyAieGYQNGsXG3DkEMO3w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63428006"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63428006"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2025 07:20:08 -0700
-X-CSE-ConnectionGUID: MrMtqTaUS5OWIXujfIlDVA==
-X-CSE-MsgGUID: GYZXAnfmRueLmLqjp3DmmQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="178011431"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2025 07:20:06 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Mon, 8 Sep 2025 07:20:01 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17 via Frontend Transport; Mon, 8 Sep 2025 07:20:01 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (40.107.92.71) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Mon, 8 Sep 2025 07:20:00 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mXbHBn47q7rKVXUnel8Auxj/y0ULKshm3xK5kMICQ5FAFkfzE2FqrugMaoB8yK/oVAnJBSNISc6YXk2BvthA0RgPY0LyAMw734+a4nv3Nqa0avvX2C5mQHOfoMi2nzVw3UulWjv1dZANAGFW8GE8QB905qmO4CIiV56vzjAyVXz2KtuA4yT2Na0RPOBzXdlyzy94PgmXE8VxbFxPvGazbpm7OfBSdekiMFv4r33R0cEuPTNLA+7W2H6sgLlapka5Q8wu5//tn2WBH+zVznxgQadJZ9eTglQTmXvZGq44OzK5HDTK9rs+4lVF1GWIf1LaidyuQ6fj33KvsMyq8RW6ZA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Qfv9/Os5TuZYIbdnjBN6uWhZ/7FqH5Y74++SCC5u758=;
- b=BB4lVmgOppFIZ22SwyDnfJSouPI0tmaLJLF4h2Q/YB4xOw4FnxpE7s6iEQlNIM2/Zmr1gnFoifa6xLzhiVzeMWxj/VZO6cxRVJXIigSOj942TSZFp2N8eFbxJv1dHDn7RJ9nx1zFalmLkM4ZAtEIU5F5cSk0vdNLJA6rfLyspVQ7UXiiFY2aAVuKu6X8bkIoi+2ANnEWh8jCrPCav8tOd9tNhdHx+WtRghbzBm+691+GVCEY40VyTlwiy72mKgQROxOmK60HAm4PcbG1LTkmVOosOE6YXO81F0TPgJMs/2AggEZFM4Do5JAdU4Is/jFtfHPCU0Tp3T0klp+GKAlKaw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by SJ5PPF183C9380E.namprd11.prod.outlook.com
- (2603:10b6:a0f:fc02::815) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.19; Mon, 8 Sep
- 2025 14:19:54 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.9094.021; Mon, 8 Sep 2025
- 14:19:54 +0000
-Date: Mon, 8 Sep 2025 09:19:50 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-CC: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>, "Maarten
- Lankhorst" <dev@lankhorst.se>, Jouni =?utf-8?B?SMO2Z2FuZGVy?=
- <jouni.hogander@intel.com>, Vinod Govindapillai
- <vinod.govindapillai@intel.com>
-Subject: Re: [PATCH 2/9] drm/{i915, xe}/fbdev: add intel_fbdev_fb_pitch_align()
-Message-ID: <7cs3dirtgrypn7xjzmv7rxmkgbrtfxxjmtth576kfwerlydcgx@6zelewdmaukb>
-References: <cover.1756931441.git.jani.nikula@intel.com>
- <ae51d1e224048bdc87bf7a56d8f5ebd0fbb6a383.1756931441.git.jani.nikula@intel.com>
- <aLqsC87Ol_zCXOkN@intel.com>
- <48e0a14d67ba84d64f6589bbdd0090e86be4fd4f@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <48e0a14d67ba84d64f6589bbdd0090e86be4fd4f@intel.com>
-X-ClientProxiedBy: SJ0PR05CA0169.namprd05.prod.outlook.com
- (2603:10b6:a03:339::24) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0CC310E543;
+ Mon,  8 Sep 2025 14:38:36 +0000 (UTC)
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+ by smtpout-02.galae.net (Postfix) with ESMTPS id 677491A0E17;
+ Mon,  8 Sep 2025 14:38:35 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+ by smtpout-01.galae.net (Postfix) with ESMTPS id 392C96061A;
+ Mon,  8 Sep 2025 14:38:35 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
+ with ESMTPSA id 5CAE5102F270F; 
+ Mon,  8 Sep 2025 16:38:10 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+ t=1757342314; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ content-transfer-encoding:content-language:in-reply-to:references:autocrypt;
+ bh=3+kRf5MNNIFuKMtF8DkuLBor42xHpAuXkRT1mWr6b70=;
+ b=rZWo/xG7tjPxZfgwuZ77qZWGPSIzH1ri8Gu+k61WptQZAk+tGtEfw3a7Lrsp2qHX38sxgT
+ k0nRLvzO87UJ3/IxKiEIzRSBpVyJlLciF74aDMTjJSzwRYWw1q3d0nsVJLuNBgv5Y9emQi
+ BBB+K0uW3h+lgZsbj9WqCi0c2lgwo2FnHd3K+ymd8+S656hww87hm9IyUoTnmxACAlsxI2
+ QojWGWLLHxJkY8GyOt7HBf0Y36j1x9p4iGxlzNu3rjSsv56EC3t5lj0le+59JnIVoF3F7e
+ kzs3ukLc5MMsMY72T6r4LOU38HVbXURYoqWphwZn2qrvIfS73QrGXuQ5CcaX6g==
+Message-ID: <ea069c8f-b724-409c-9dc6-345b3f9d6d85@bootlin.com>
+Date: Mon, 8 Sep 2025 16:38:09 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SJ5PPF183C9380E:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4f23bc94-bd20-41d7-f9c2-08ddeee2c7a5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7053199007;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?i8vmerGChh+C2HosZmyDj0Pwb3OlOD6WmcSwMZwYVxnZBtaAa2mrFKAgDh?=
- =?iso-8859-1?Q?D7ezbjGeGy8Hy/6NtrgW1EdnIfqQx56MEJdcg3rhYVUqpnHiLFtzQRVAmd?=
- =?iso-8859-1?Q?+C/9sJsgNm6PciK4E19i6oPZIJLdFawBEZx4DY0qWESG2qoMmgiGFlmq4g?=
- =?iso-8859-1?Q?FE9sarRKSoB2kcmG6QUdBQTJOlb8r0vM6oEfnbEFZ+U0y/UXaOIGdza21e?=
- =?iso-8859-1?Q?yCwmTgKTocLP2L969n05CD3mUsvGRL1hqnsYM1P15MhBCbAzQpg18wQ+6V?=
- =?iso-8859-1?Q?21eXl0KBkspN2QRitGKZ6jtXoxbGEHxVEIeDA5f4GonuR0twda25qQZUgb?=
- =?iso-8859-1?Q?IASSAbDVM/Ja67Fk4mZQYtAtCbyDqHhv+PDzEeweJ/+ImbxnVUBOu5GkYP?=
- =?iso-8859-1?Q?bTg4KwcYhzuUmXoyKksq0155C6nvysUtvMEy7aIZsz43T6UZgRz3trjHb/?=
- =?iso-8859-1?Q?eTFLcviGu+HXOVrdB8Q4vire7T1cvN1/TN4xuGJvgx7+LfdD+e+d/mx6j8?=
- =?iso-8859-1?Q?fAqk7Yl84dIUXOUQ6qLWdQJTbPSo9VinjNmzKwdWRRDb+BFB8m322DxuR1?=
- =?iso-8859-1?Q?rgp9HA/LECagk0M3RxhnQ5O3XGOvI3LzorDpfzDjG2+YAroFQOcdXfT//7?=
- =?iso-8859-1?Q?UWUPfqPpa5709LvH8rA0WSk8Mv8HEYnB7ui6u2ZZGhgprdYEADMWSeIGtA?=
- =?iso-8859-1?Q?6d4W8BVntAke793e5Dshv39ByFXBQiTCgMadv4UhyUzoXhxT22B8rlm3wv?=
- =?iso-8859-1?Q?16LtbLE20bblnHknu0CwYfNd+Y4E313mMYicByTdkSxx3aqsGRi6o1bv0/?=
- =?iso-8859-1?Q?ozwc/T6/uX564XqnqELbznqX7McgHJACblmfDBDbB9AgYqQlrOItlNupEs?=
- =?iso-8859-1?Q?FZsMeJyS1n025VWZmttgdQeYKzQujYyUFu5uzeEL0MxUzGaxfTKumLdgvX?=
- =?iso-8859-1?Q?1Ezaw4/YqqxrzlLlzJKqTnyoVk3WN7s1OQ/QsO6sVkhctmoHSjS0TCWx0n?=
- =?iso-8859-1?Q?AvGxTK2vm9tzBeHHfgKPPdaNA6eG5BPHNT4tjyxXWg9PIVJilGuJToThUh?=
- =?iso-8859-1?Q?ZSD0lOb8oKDYptWls+JtBC4ACTuqhp94viixWaEdEBz//ih+hs88aUSRHD?=
- =?iso-8859-1?Q?/aI9XToeqFM92uzvRh2CcUNKSl+P5QZKCdnbS3fxWFSExaPFuvNpTI3NSZ?=
- =?iso-8859-1?Q?X1FzTNJeG4P8pMelcmFbZk9JEJqMN8bDA6fE/V5rJlzARD/PiyiUvpoN2n?=
- =?iso-8859-1?Q?yneGpE6YaBatULwelOSqiQikn4DaqsesnnzZ0Fet+c8iHl+aUGf1uG0BlC?=
- =?iso-8859-1?Q?Em+tHqf6rIgCYaeWLrA8aVlYt+5TgmzplF/3auecwf4svwhPpR7hRSI45e?=
- =?iso-8859-1?Q?8wFbCDHJ+Cnefk1Q1lTisuD0g95K4dmh2QGrTip8l5ZgOtuHmsa9wppEiJ?=
- =?iso-8859-1?Q?yjX6VkmblhfOgyjcs+cC3o1PzObpRc8DwB+ZepVnUN3QrW+ZNeeVLcpaS5?=
- =?iso-8859-1?Q?w=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(7053199007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?aciGwM1V7uo+qh213I2RNwfsbUMgEyqWnssnKYpksdfN7k3vg5qNhtbXQN?=
- =?iso-8859-1?Q?hbFzc4gctWVRjZWMPcqXKV5t1OGsGy5/p3DWVAwH8Bf50cQTT9ChpnsZe7?=
- =?iso-8859-1?Q?kcQo1rEyiHgHJl4BLjSWAiaUBjjVHSLFyw3UfhA4S6S8pJtOOkg5Zp18/+?=
- =?iso-8859-1?Q?sFLwaYSIzVZ0VtfmzAIRHFoBskuiBoU48coOW2NHP/wgss8AxqmZvc8ONG?=
- =?iso-8859-1?Q?RpAfEZoRMUzba8jwJAoBcuLQluPbm2fAVqsh3VT58eGxYRSlNXR4L6MGtK?=
- =?iso-8859-1?Q?MBRPwDAs8r/XGbumxuKOzjcJ0EhTLcWlRcSQffHw1TOlJAMvwvUI2OU8YD?=
- =?iso-8859-1?Q?xlIsA9KPkstV5RSyvL7fn/mqoRVeVltE/PVdzBAc1lZgxmkNAqjuL8FZVg?=
- =?iso-8859-1?Q?UDH4GTOEWF3wVCAtP92h3jpKEir29Vpvs04Tgy5H7OYD9pT5c8eZNsucvl?=
- =?iso-8859-1?Q?EeN9SRXq6Spimcr6ggom2iMYMxecRvhlSyhE4Y3LAhk8nJ/2FfC5FTtPjD?=
- =?iso-8859-1?Q?dRKcDv3atCsnDS3Uzeky9ODGUsK1SiELVLrxW0hUCFmWM+4DTQoeOBvi9k?=
- =?iso-8859-1?Q?okh9eZCuIzLQxIj9T6sIPisOu7Er3+3lq77DUMvhv92hmYMFDTEjZ2ZP7T?=
- =?iso-8859-1?Q?BdT8GyHyvaUm0rNXEc09TXbHxMsEy0spfLVR/0jr6m4xMW/Q89yszu83UX?=
- =?iso-8859-1?Q?Rnm9EtpZYyaqeTFV6nW1YVjcrqJ8QLttETdwq3T6pF6hvRVS0CzUS5vfCq?=
- =?iso-8859-1?Q?ZM6oohIgs8fjl2oKi9eE2+gcgzMTQzhfuYz9s0woG0XwXWEgHzru1CPhdQ?=
- =?iso-8859-1?Q?HP0G8swrFeOedzu5FqwCIenngozjh2ttk2YdDG8Fi2Ts39C96KRNS2XuO3?=
- =?iso-8859-1?Q?5U9fLqSX/gv3pYWVf/Qn+/3aSbJSFXJGCPFnl6JzNA/hIeD5P0GOTf9n/F?=
- =?iso-8859-1?Q?aTX3XI6CVCeM40fuCnoxKg94aWBoBVjw1m1IvNndPXnPu2A1Ts3tTvjxtM?=
- =?iso-8859-1?Q?tvfTWTKxi2LioZoyvMv8wPlnSPV61/GL0IZcCCOojwPmJYKEUaemhZA/ox?=
- =?iso-8859-1?Q?fwVUx4Ihp0SAzxxcsGE2T3mraSt2IucxIoixp0Jpi7r5MQyYnuY2rXYybg?=
- =?iso-8859-1?Q?zvNAwY2XNvJmEIufTozKmikR/IYjIrCbiHLrpOkM0PwHTY+aXaaerVc8vi?=
- =?iso-8859-1?Q?Q6ZkBwOx10/KCX8Z1kGR/T6UlpUyTJS/ocE3DBlANeQ3l0DJLhRhRxZMFH?=
- =?iso-8859-1?Q?1D5xaBhasNsT6Saz0JNGwXcpMQ3ITSs9DFMWtoriTt75iRua+iAH8OW+tI?=
- =?iso-8859-1?Q?yQ6pSFW50WMG0hoazJ636w4I6NPmasKnmnnLdzU4LaNQ6UNMN0O3x2Y+WF?=
- =?iso-8859-1?Q?1UhlxELkFduiOwnFwh5UuD410IGHbFgkiAvV3qJfd2Cvj7X2/cdUkzofu2?=
- =?iso-8859-1?Q?GKO6af1V57n1kEFl8ONOxr1gGGwB/74QIS85VkKPw/TvbcyH35vkQBxihp?=
- =?iso-8859-1?Q?O0PjCNfN+Sb6l2+yEUpgNuHx3S4Wmbt0wzebPxTersUwQ+unviR4bgkQBm?=
- =?iso-8859-1?Q?2jnFnrvmpDgw2DKFZq1aBj4OqH2aOgOofKXy/BjN/nYkXpze0inZKpGWwL?=
- =?iso-8859-1?Q?CYuBYPE1cYIHfRybV+43QNwN1mF4oJ3IiCcGBvuD0jhkp2jVxHnD0+2w?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4f23bc94-bd20-41d7-f9c2-08ddeee2c7a5
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Sep 2025 14:19:53.9012 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: i8aRoq7AoCU6AEkHTDc1BjMiZ2duOOCLAL/nzShHvCb8qmypzKGgDNraGlJ2j/eb8SfAf5as3Fu5RkNVRo2uhD6j7+ObOpm2Gyzjie3jE84=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF183C9380E
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 29/58] docs/dyndbg: add classmap info to howto
+To: Jim Cromie <jim.cromie@gmail.com>, linux-kernel@vger.kernel.org,
+ jbaron@akamai.com, gregkh@linuxfoundation.org, ukaszb@chromium.org
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ daniel.vetter@ffwll.ch, tvrtko.ursulin@linux.intel.com,
+ jani.nikula@intel.com, ville.syrjala@linux.intel.com, seanpaul@chromium.org,
+ robdclark@gmail.com, groeck@google.com, yanivt@google.com,
+ bleung@google.com, quic_saipraka@quicinc.com, will@kernel.org,
+ catalin.marinas@arm.com, quic_psodagud@quicinc.com, maz@kernel.org,
+ arnd@arndb.de, linux-arm-kernel@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org, mingo@redhat.com, linux-doc@vger.kernel.org
+References: <20250803035816.603405-1-jim.cromie@gmail.com>
+ <20250803035816.603405-30-jim.cromie@gmail.com>
+Content-Language: en-US
+From: Louis Chauvet <louis.chauvet@bootlin.com>
+Autocrypt: addr=louis.chauvet@bootlin.com; keydata=
+ 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
+In-Reply-To: <20250803035816.603405-30-jim.cromie@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -186,120 +126,208 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 08, 2025 at 03:55:18PM +0300, Jani Nikula wrote:
->On Fri, 05 Sep 2025, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
->> On Wed, Sep 03, 2025 at 11:31:59PM +0300, Jani Nikula wrote:
->>> Add new helper intel_fbdev_fb_pitch_align() in preparation for further
->>> refactoring. The alignment is different for i915 and xe.
->>>
->>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->>> ---
->>>  drivers/gpu/drm/i915/display/intel_fbdev_fb.c | 8 ++++++--
->>>  drivers/gpu/drm/i915/display/intel_fbdev_fb.h | 3 +++
->>>  drivers/gpu/drm/xe/display/intel_fbdev_fb.c   | 8 ++++++--
->>>  3 files changed, 15 insertions(+), 4 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
->>> index 9c557917d781..d1c03d7b9bdc 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
->>> @@ -13,6 +13,11 @@
->>>  #include "intel_fb.h"
->>>  #include "intel_fbdev_fb.h"
->>>
->>> +u32 intel_fbdev_fb_pitch_align(u32 stride)
->>> +{
->>> +	return ALIGN(stride, 64);
->>> +}
->>> +
->>>  struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
->>>  					       struct drm_fb_helper_surface_size *sizes)
->>>  {
->>> @@ -30,8 +35,7 @@ struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
->>>  	mode_cmd.width = sizes->surface_width;
->>>  	mode_cmd.height = sizes->surface_height;
->>>
->>> -	mode_cmd.pitches[0] = ALIGN(mode_cmd.width *
->>> -				    DIV_ROUND_UP(sizes->surface_bpp, 8), 64);
->>> +	mode_cmd.pitches[0] = intel_fbdev_fb_pitch_align(mode_cmd.width * DIV_ROUND_UP(sizes->surface_bpp, 8));
->>>  	mode_cmd.pixel_format = drm_mode_legacy_fb_format(sizes->surface_bpp,
->>>  							  sizes->surface_depth);
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
->>> index 668ae355f5e5..caeb543d5efc 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
->>> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
->>> @@ -6,6 +6,8 @@
->>>  #ifndef __INTEL_FBDEV_FB_H__
->>>  #define __INTEL_FBDEV_FB_H__
->>>
->>> +#include <linux/types.h>
->>> +
->>>  struct drm_device;
->>>  struct drm_fb_helper_surface_size;
->>>  struct drm_gem_object;
->>> @@ -13,6 +15,7 @@ struct fb_info;
->>>  struct i915_vma;
->>>  struct intel_display;
->>>
->>> +u32 intel_fbdev_fb_pitch_align(u32 stride);
->>>  struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
->>>  					       struct drm_fb_helper_surface_size *sizes);
->>>  int intel_fbdev_fb_fill_info(struct intel_display *display, struct fb_info *info,
->>> diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
->>> index bafca1059a40..fd2c40020eea 100644
->>> --- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
->>> +++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
->>> @@ -15,6 +15,11 @@
->>>
->>>  #include <generated/xe_wa_oob.h>
->>>
->>> +u32 intel_fbdev_fb_pitch_align(u32 stride)
->>> +{
->>> +	return ALIGN(stride, XE_PAGE_SIZE);
->>
->> I think someone needs to explain what the heck this extra alignment
->> is trying to achieve? I suspect it just needs to get nuked.
->
->That would indeed be great, and allow even further cleanup. I'm just
->trying to find the common parts here, and not so much dig into every
->little detail that differs.
->
->I did git blame this while writing the patch, and it's all in the big xe
->driver enabling commit. I'm not sure where it comes from.
->
->Cc: Maarten, any ideas?
-
-It doesn't help much, but https://lore.kernel.org/intel-xe/20231114110056.2423853-5-jouni.hogander@intel.com/
-was the first time this align got added.
-
-Adding some people to Cc.
-
-Lucas De Marchi
 
 
->
->BR,
->Jani.
->
->>
->>> +}
->>> +
->>>  struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
->>>  					       struct drm_fb_helper_surface_size *sizes)
->>>  {
->>> @@ -31,8 +36,7 @@ struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
->>>  	mode_cmd.width = sizes->surface_width;
->>>  	mode_cmd.height = sizes->surface_height;
->>>
->>> -	mode_cmd.pitches[0] = ALIGN(mode_cmd.width *
->>> -				    DIV_ROUND_UP(sizes->surface_bpp, 8), XE_PAGE_SIZE);
->>> +	mode_cmd.pitches[0] = intel_fbdev_fb_pitch_align(mode_cmd.width * DIV_ROUND_UP(sizes->surface_bpp, 8));
->>>  	mode_cmd.pixel_format = drm_mode_legacy_fb_format(sizes->surface_bpp,
->>>  							  sizes->surface_depth);
->>>
->>> --
->>> 2.47.2
->
->-- 
->Jani Nikula, Intel
+Le 03/08/2025 Ã  05:57, Jim Cromie a Ã©critÂ :
+> Describe the 3 API macros providing dynamic_debug's classmaps
+> 
+> DYNDBG_CLASSMAP_DEFINE - create & export a classmap
+> DYNDBG_CLASSMAP_USE    - refer to exported map
+> DYNDBG_CLASSMAP_PARAM  - bind control param to the classmap
+> DYNDBG_CLASSMAP_PARAM_REF + use module's storage - __drm_debug
+> 
+> TBD: some of this might be over-specification, or just over-talked.
+> 
+> NB: The _DEFINE & _USE model makes the user dependent on the definer,
+> just like EXPORT_SYMBOL(__drm_debug) already does.
+> 
+> cc: linux-doc@vger.kernel.org
+> Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
+
+Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
+
+> ---
+> v3- rework protection around PARAM
+> 
+> v0.5 adjustments per Randy Dunlap
+> v0.7 checkpatch fixes
+> v0.8 more
+> v0.9 rewords
+> 
+> fixup-howto
+> ---
+>   .../admin-guide/dynamic-debug-howto.rst       | 137 ++++++++++++++++--
+>   1 file changed, 126 insertions(+), 11 deletions(-)
+> 
+> diff --git a/Documentation/admin-guide/dynamic-debug-howto.rst b/Documentation/admin-guide/dynamic-debug-howto.rst
+> index 1ceadf4f28f9f..556e00299ed35 100644
+> --- a/Documentation/admin-guide/dynamic-debug-howto.rst
+> +++ b/Documentation/admin-guide/dynamic-debug-howto.rst
+> @@ -146,7 +146,9 @@ keywords are:::
+>     "1-30" is valid range but "1 - 30" is not.
+>   
+>   
+> -The meanings of each keyword are:
+> +Keywords:::
+> +
+> +The meanings of each keyword are::
+>   
+>   func
+>       The given string is compared against the function name
+> @@ -194,16 +196,6 @@ format
+>   	format "nfsd: SETATTR"  // a neater way to match a format with whitespace
+>   	format 'nfsd: SETATTR'  // yet another way to match a format with whitespace
+>   
+> -class
+> -    The given class_name is validated against each module, which may
+> -    have declared a list of known class_names.  If the class_name is
+> -    found for a module, callsite & class matching and adjustment
+> -    proceeds.  Examples::
+> -
+> -	class DRM_UT_KMS	# a DRM.debug category
+> -	class JUNK		# silent non-match
+> -	// class TLD_*		# NOTICE: no wildcard in class names
+> -
+>   line
+>       The given line number or range of line numbers is compared
+>       against the line number of each ``pr_debug()`` callsite.  A single
+> @@ -218,6 +210,24 @@ line
+>   	line -1605          // the 1605 lines from line 1 to line 1605
+>   	line 1600-          // all lines from line 1600 to the end of the file
+>   
+> +class
+> +
+> +    The given class_name is validated against each module, which may
+> +    have declared a list of class_names it accepts.  If the class_name
+> +    accepted by a module, callsite & class matching and adjustment
+> +    proceeds.  Examples::
+> +
+> +	class DRM_UT_KMS	# a DRM.debug category
+> +	class JUNK		# silent non-match
+> +	// class TLD_*		# NOTICE: no wildcard in class names
+> +
+> +.. note ::
+> +
+> +    Unlike other keywords, classes are "name-to-change", not
+> +    "omitting-constraint-allows-change".  See Dynamic Debug Classmaps
+> +
+> +Flags:::
+> +
+>   The flags specification comprises a change operation followed
+>   by one or more flag characters.  The change operation is one
+>   of the characters::
+> @@ -394,3 +404,108 @@ just a shortcut for ``print_hex_dump(KERN_DEBUG)``.
+>   For ``print_hex_dump_debug()``/``print_hex_dump_bytes()``, format string is
+>   its ``prefix_str`` argument, if it is constant string; or ``hexdump``
+>   in case ``prefix_str`` is built dynamically.
+> +
+> +Dynamic Debug Classmaps
+> +=======================
+> +
+> +The "class" keyword selects prdbgs based on author supplied,
+> +domain-oriented names.  This complements the nested-scope keywords:
+> +module, file, function, line.
+> +
+> +The main difference from the others: classes must be named to be
+> +changed.  This protects them from generic overwrite:
+> +
+> +  # IOW this cannot undo any DRM.debug settings
+> +  :#> ddcmd -p
+> +
+> +This protection is needed; /sys/module/drm/parameters/debug is ABI.
+> +DRM.debug is authoritative when dyndbg is not used, dyndbg's PARAM
+> +cannot undermine that guarantee just because its optional for DRM to
+> +use it.
+> +
+> +  :#> echo 0x1ff > /sys/module/drm/parameters/debug
+> +
+> +So each class must be enabled individually (no wildcards):
+> +
+> +  :#> ddcmd class DRM_UT_CORE +p
+> +  :#> ddcmd class DRM_UT_KMS +p
+> +  # or more selectively
+> +  :#> ddcmd class DRM_UT_CORE module drm +p
+> +
+> +That makes direct >control wordy and annoying, but it is a secondary
+> +interface; it is not intended to replace the ABI, just slide in
+> +underneath and reimplement it.
+> +
+> +However, since the sysfs/kparam is the ABI, if a classmap DEFINEr
+> +doesn't also add a _CLASSMAP_PARAM, there is no ABI, and no protection
+> +is needed.  In that case, class'd prdbgs would be enabled/disabled by
+> +legacy (class-less) queries, as a convenience, and because there's no
+> +need to enforce irrelevant rules.
+> +
+> +
+> +Dynamic Debug Classmap API
+> +==========================
+> +
+> +DRM.debug is built upon:
+> +
+> +- enum drm_debug_category: DRM_UT_<*> - <T> for short
+> +- 23 categorized api macros: drm_dbg_<T>(), DRM_DEBUG_<T>()
+> +- 5000 calls to them
+> +- all calling to __pr_debug_cls(<T>, ...)
+> +
+> +Those compile-time const short ints are good for optimizing compilers;
+> +a primary classmaps design goal was to keep that property.
+> +So basically .class_id === category.
+> +
+> +Then we use the drm_categories DRM_UT_* enum for both the classnames
+> +(stringified enum symbols) and their numeric values.
+> +
+> +Its expected that future users will also use categorized macros and an
+> +enum-defined categorization scheme like DRM's, with dyndbg inserted in
+> +similarly.
+> +
+> +DYNAMIC_DEBUG_CLASSMAP_DEFINE(var,type,_base,classnames) - this maps
+> +classnames (a list of strings) onto class-ids consecutively, starting
+> +at _base, it also maps the names onto CLASSMAP_PARAM bits 0..N.
+> +
+> +DYNAMIC_DEBUG_CLASSMAP_USE(var) - modules call this to refer to the
+> +var _DEFINEd elsewhere (and exported).
+> +
+> +Classmaps are opt-in: modules invoke _DEFINE or _USE to authorize
+> +dyndbg to update those classes.  "class FOO" queries are validated
+> +against the classes, this finds the classid to alter; classes are not
+> +directly selectable by their classid.
+> +
+> +NB: It is an inherent API limitation that the following are possible:
+> +
+> +  // these would be caught in review
+> +  __pr_debug_cls(0, "fake DRM_UT_CORE msg");  // this works
+> +  __pr_debug_cls(62, "un-known classid msg"); // this compiles, does nothing
+> +
+> +There are 2 types of classmaps:
+> +
+> + DD_CLASS_TYPE_DISJOINT_BITS: classes are independent, like DRM.debug
+> + DD_CLASS_TYPE_LEVEL_NUM: classes are relative, ordered (V3 > V2)
+> +
+> +DYNAMIC_DEBUG_CLASSMAP_PARAM - modelled after module_param_cb, it
+> +refers to a DEFINEd classmap, and associates it to the param's
+> +data-store.  This state is then applied to DEFINEr and USEr modules
+> +when they're modprobed.
+> +
+> +The PARAM interface also enforces the DD_CLASS_TYPE_LEVEL_NUM relation
+> +amongst the contained classnames; all classes are independent in the
+> +control parser itself; there is no implied meaning in names like "V4".
+> +
+> +Modules or module-groups (drm & drivers) can define multiple
+> +classmaps, as long as they (all the classmaps) share the limited 0..62
+> +per-module-group _class_id range, without overlap.
+> +
+> +If a module encounters a conflict between 2 classmaps its USEing, we
+> +can extend the _USE macro with an offset to allow de-conflicting the
+> +respective ranges.  Or they use the DEFINErs macro-api, but with new
+> +enum symbols.
+> +
+> +``#define DEBUG`` will enable all pr_debugs in scope, including any
+> +class'd ones.  This won't be reflected in the PARAM readback value,
+> +but the class'd pr_debug callsites can be forced off by toggling the
+> +classmap-kparam all-on then all-off.
+
+-- 
+Louis Chauvet, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
