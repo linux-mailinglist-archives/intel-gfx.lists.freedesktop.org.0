@@ -2,115 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B38FAB491C1
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 16:38:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F39FEB492BA
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 17:16:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35A4210E543;
-	Mon,  8 Sep 2025 14:38:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C443110E549;
+	Mon,  8 Sep 2025 15:16:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="rZWo/xG7";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Xt4oq4p+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0CC310E543;
- Mon,  8 Sep 2025 14:38:36 +0000 (UTC)
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-02.galae.net (Postfix) with ESMTPS id 677491A0E17;
- Mon,  8 Sep 2025 14:38:35 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id 392C96061A;
- Mon,  8 Sep 2025 14:38:35 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 5CAE5102F270F; 
- Mon,  8 Sep 2025 16:38:10 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1757342314; h=from:subject:date:message-id:to:cc:mime-version:content-type:
- content-transfer-encoding:content-language:in-reply-to:references:autocrypt;
- bh=3+kRf5MNNIFuKMtF8DkuLBor42xHpAuXkRT1mWr6b70=;
- b=rZWo/xG7tjPxZfgwuZ77qZWGPSIzH1ri8Gu+k61WptQZAk+tGtEfw3a7Lrsp2qHX38sxgT
- k0nRLvzO87UJ3/IxKiEIzRSBpVyJlLciF74aDMTjJSzwRYWw1q3d0nsVJLuNBgv5Y9emQi
- BBB+K0uW3h+lgZsbj9WqCi0c2lgwo2FnHd3K+ymd8+S656hww87hm9IyUoTnmxACAlsxI2
- QojWGWLLHxJkY8GyOt7HBf0Y36j1x9p4iGxlzNu3rjSsv56EC3t5lj0le+59JnIVoF3F7e
- kzs3ukLc5MMsMY72T6r4LOU38HVbXURYoqWphwZn2qrvIfS73QrGXuQ5CcaX6g==
-Message-ID: <ea069c8f-b724-409c-9dc6-345b3f9d6d85@bootlin.com>
-Date: Mon, 8 Sep 2025 16:38:09 +0200
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE45210E54A;
+ Mon,  8 Sep 2025 15:16:25 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 7DEBD40687;
+ Mon,  8 Sep 2025 15:16:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88CCDC4CEF1;
+ Mon,  8 Sep 2025 15:16:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1757344585;
+ bh=umvdsJFWdtigWKmoxQL4B75JWYUmxJL5Q2ubcYGL9BE=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=Xt4oq4p+eD6fB5GwqIdO+UcpoPHMpVgOjZ8rtdUH+AoQ2sUDN+DrW2BOo+n7MfOU/
+ +4/cJTNl6BuJrNnN19q+pFGWWXkpZ54aWal2xvK7iy/cJcYj3QGCf3ieXdXUYixs/0
+ 4hoCWj0HqQOsGrcnoeLOI2o1rNzwesdi75IxniAnM40twnZZtf866OXUbvikKfBt3o
+ nGmXqe9RfkG0dO4wrT6PikHasjtmbO9iaFheITzsr+MRrb8jjjp5lwhwfNSQGJZmEt
+ 9YYLKFXKhVNqw5jqLv7CEFKLsntebK7HHGRfq56DDBQDLt+RFtDzVdmMy1THqPN9Bz
+ eNGyEWhH1mDQw==
+Date: Mon, 8 Sep 2025 16:16:13 +0100
+From: Mark Brown <broonie@kernel.org>
+To: David Hildenbrand <david@redhat.com>
+Cc: linux-kernel@vger.kernel.org, Alexander Potapenko <glider@google.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Brendan Jackman <jackmanb@google.com>,
+ Christoph Lameter <cl@gentwo.org>, Dennis Zhou <dennis@kernel.org>,
+ Dmitry Vyukov <dvyukov@google.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, iommu@lists.linux.dev,
+ io-uring@vger.kernel.org, Jason Gunthorpe <jgg@nvidia.com>,
+ Jens Axboe <axboe@kernel.dk>, Johannes Weiner <hannes@cmpxchg.org>,
+ John Hubbard <jhubbard@nvidia.com>, kasan-dev@googlegroups.com,
+ kvm@vger.kernel.org, "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ linux-arm-kernel@axis.com, linux-arm-kernel@lists.infradead.org,
+ linux-crypto@vger.kernel.org, linux-ide@vger.kernel.org,
+ linux-kselftest@vger.kernel.org, linux-mips@vger.kernel.org,
+ linux-mmc@vger.kernel.org, linux-mm@kvack.org,
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+ linux-scsi@vger.kernel.org, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Marco Elver <elver@google.com>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Michal Hocko <mhocko@suse.com>, Mike Rapoport <rppt@kernel.org>,
+ Muchun Song <muchun.song@linux.dev>, netdev@vger.kernel.org,
+ Oscar Salvador <osalvador@suse.de>, Peter Xu <peterx@redhat.com>,
+ Robin Murphy <robin.murphy@arm.com>,
+ Suren Baghdasaryan <surenb@google.com>, Tejun Heo <tj@kernel.org>,
+ virtualization@lists.linux.dev, Vlastimil Babka <vbabka@suse.cz>,
+ wireguard@lists.zx2c4.com, x86@kernel.org, Zi Yan <ziy@nvidia.com>
+Subject: Re: [PATCH v2 19/37] mm/gup: remove record_subpages()
+Message-ID: <f5032553-9ec0-494c-8689-0e3a6a73853c@sirena.org.uk>
+References: <20250901150359.867252-1-david@redhat.com>
+ <20250901150359.867252-20-david@redhat.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 29/58] docs/dyndbg: add classmap info to howto
-To: Jim Cromie <jim.cromie@gmail.com>, linux-kernel@vger.kernel.org,
- jbaron@akamai.com, gregkh@linuxfoundation.org, ukaszb@chromium.org
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- daniel.vetter@ffwll.ch, tvrtko.ursulin@linux.intel.com,
- jani.nikula@intel.com, ville.syrjala@linux.intel.com, seanpaul@chromium.org,
- robdclark@gmail.com, groeck@google.com, yanivt@google.com,
- bleung@google.com, quic_saipraka@quicinc.com, will@kernel.org,
- catalin.marinas@arm.com, quic_psodagud@quicinc.com, maz@kernel.org,
- arnd@arndb.de, linux-arm-kernel@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, mingo@redhat.com, linux-doc@vger.kernel.org
-References: <20250803035816.603405-1-jim.cromie@gmail.com>
- <20250803035816.603405-30-jim.cromie@gmail.com>
-Content-Language: en-US
-From: Louis Chauvet <louis.chauvet@bootlin.com>
-Autocrypt: addr=louis.chauvet@bootlin.com; keydata=
- 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
-In-Reply-To: <20250803035816.603405-30-jim.cromie@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="V80dSr/3LzMwjpsi"
+Content-Disposition: inline
+In-Reply-To: <20250901150359.867252-20-david@redhat.com>
+X-Cookie: Trouble always comes at the wrong time.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -127,207 +85,446 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
+--V80dSr/3LzMwjpsi
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Le 03/08/2025 à 05:57, Jim Cromie a écrit :
-> Describe the 3 API macros providing dynamic_debug's classmaps
-> 
-> DYNDBG_CLASSMAP_DEFINE - create & export a classmap
-> DYNDBG_CLASSMAP_USE    - refer to exported map
-> DYNDBG_CLASSMAP_PARAM  - bind control param to the classmap
-> DYNDBG_CLASSMAP_PARAM_REF + use module's storage - __drm_debug
-> 
-> TBD: some of this might be over-specification, or just over-talked.
-> 
-> NB: The _DEFINE & _USE model makes the user dependent on the definer,
-> just like EXPORT_SYMBOL(__drm_debug) already does.
-> 
-> cc: linux-doc@vger.kernel.org
-> Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
+On Mon, Sep 01, 2025 at 05:03:40PM +0200, David Hildenbrand wrote:
+> We can just cleanup the code by calculating the #refs earlier,
+> so we can just inline what remains of record_subpages().
+>=20
+> Calculate the number of references/pages ahead of times, and record them
+> only once all our tests passed.
 
-Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
+I'm seeing failures in kselftest-mm in -next on at least Raspberry Pi 4
+and Orion O6 which bisect to this patch.  I'm seeing a NULL pointer
+dereference during the GUP test (which isn't actually doing anything as
+I'm just using a standard defconfig rather than one with the mm
+fragment):
 
-> ---
-> v3- rework protection around PARAM
-> 
-> v0.5 adjustments per Randy Dunlap
-> v0.7 checkpatch fixes
-> v0.8 more
-> v0.9 rewords
-> 
-> fixup-howto
-> ---
->   .../admin-guide/dynamic-debug-howto.rst       | 137 ++++++++++++++++--
->   1 file changed, 126 insertions(+), 11 deletions(-)
-> 
-> diff --git a/Documentation/admin-guide/dynamic-debug-howto.rst b/Documentation/admin-guide/dynamic-debug-howto.rst
-> index 1ceadf4f28f9f..556e00299ed35 100644
-> --- a/Documentation/admin-guide/dynamic-debug-howto.rst
-> +++ b/Documentation/admin-guide/dynamic-debug-howto.rst
-> @@ -146,7 +146,9 @@ keywords are:::
->     "1-30" is valid range but "1 - 30" is not.
->   
->   
-> -The meanings of each keyword are:
-> +Keywords:::
-> +
-> +The meanings of each keyword are::
->   
->   func
->       The given string is compared against the function name
-> @@ -194,16 +196,6 @@ format
->   	format "nfsd: SETATTR"  // a neater way to match a format with whitespace
->   	format 'nfsd: SETATTR'  // yet another way to match a format with whitespace
->   
-> -class
-> -    The given class_name is validated against each module, which may
-> -    have declared a list of known class_names.  If the class_name is
-> -    found for a module, callsite & class matching and adjustment
-> -    proceeds.  Examples::
-> -
-> -	class DRM_UT_KMS	# a DRM.debug category
-> -	class JUNK		# silent non-match
-> -	// class TLD_*		# NOTICE: no wildcard in class names
-> -
->   line
->       The given line number or range of line numbers is compared
->       against the line number of each ``pr_debug()`` callsite.  A single
-> @@ -218,6 +210,24 @@ line
->   	line -1605          // the 1605 lines from line 1 to line 1605
->   	line 1600-          // all lines from line 1600 to the end of the file
->   
-> +class
-> +
-> +    The given class_name is validated against each module, which may
-> +    have declared a list of class_names it accepts.  If the class_name
-> +    accepted by a module, callsite & class matching and adjustment
-> +    proceeds.  Examples::
-> +
-> +	class DRM_UT_KMS	# a DRM.debug category
-> +	class JUNK		# silent non-match
-> +	// class TLD_*		# NOTICE: no wildcard in class names
-> +
-> +.. note ::
-> +
-> +    Unlike other keywords, classes are "name-to-change", not
-> +    "omitting-constraint-allows-change".  See Dynamic Debug Classmaps
-> +
-> +Flags:::
-> +
->   The flags specification comprises a change operation followed
->   by one or more flag characters.  The change operation is one
->   of the characters::
-> @@ -394,3 +404,108 @@ just a shortcut for ``print_hex_dump(KERN_DEBUG)``.
->   For ``print_hex_dump_debug()``/``print_hex_dump_bytes()``, format string is
->   its ``prefix_str`` argument, if it is constant string; or ``hexdump``
->   in case ``prefix_str`` is built dynamically.
-> +
-> +Dynamic Debug Classmaps
-> +=======================
-> +
-> +The "class" keyword selects prdbgs based on author supplied,
-> +domain-oriented names.  This complements the nested-scope keywords:
-> +module, file, function, line.
-> +
-> +The main difference from the others: classes must be named to be
-> +changed.  This protects them from generic overwrite:
-> +
-> +  # IOW this cannot undo any DRM.debug settings
-> +  :#> ddcmd -p
-> +
-> +This protection is needed; /sys/module/drm/parameters/debug is ABI.
-> +DRM.debug is authoritative when dyndbg is not used, dyndbg's PARAM
-> +cannot undermine that guarantee just because its optional for DRM to
-> +use it.
-> +
-> +  :#> echo 0x1ff > /sys/module/drm/parameters/debug
-> +
-> +So each class must be enabled individually (no wildcards):
-> +
-> +  :#> ddcmd class DRM_UT_CORE +p
-> +  :#> ddcmd class DRM_UT_KMS +p
-> +  # or more selectively
-> +  :#> ddcmd class DRM_UT_CORE module drm +p
-> +
-> +That makes direct >control wordy and annoying, but it is a secondary
-> +interface; it is not intended to replace the ABI, just slide in
-> +underneath and reimplement it.
-> +
-> +However, since the sysfs/kparam is the ABI, if a classmap DEFINEr
-> +doesn't also add a _CLASSMAP_PARAM, there is no ABI, and no protection
-> +is needed.  In that case, class'd prdbgs would be enabled/disabled by
-> +legacy (class-less) queries, as a convenience, and because there's no
-> +need to enforce irrelevant rules.
-> +
-> +
-> +Dynamic Debug Classmap API
-> +==========================
-> +
-> +DRM.debug is built upon:
-> +
-> +- enum drm_debug_category: DRM_UT_<*> - <T> for short
-> +- 23 categorized api macros: drm_dbg_<T>(), DRM_DEBUG_<T>()
-> +- 5000 calls to them
-> +- all calling to __pr_debug_cls(<T>, ...)
-> +
-> +Those compile-time const short ints are good for optimizing compilers;
-> +a primary classmaps design goal was to keep that property.
-> +So basically .class_id === category.
-> +
-> +Then we use the drm_categories DRM_UT_* enum for both the classnames
-> +(stringified enum symbols) and their numeric values.
-> +
-> +Its expected that future users will also use categorized macros and an
-> +enum-defined categorization scheme like DRM's, with dyndbg inserted in
-> +similarly.
-> +
-> +DYNAMIC_DEBUG_CLASSMAP_DEFINE(var,type,_base,classnames) - this maps
-> +classnames (a list of strings) onto class-ids consecutively, starting
-> +at _base, it also maps the names onto CLASSMAP_PARAM bits 0..N.
-> +
-> +DYNAMIC_DEBUG_CLASSMAP_USE(var) - modules call this to refer to the
-> +var _DEFINEd elsewhere (and exported).
-> +
-> +Classmaps are opt-in: modules invoke _DEFINE or _USE to authorize
-> +dyndbg to update those classes.  "class FOO" queries are validated
-> +against the classes, this finds the classid to alter; classes are not
-> +directly selectable by their classid.
-> +
-> +NB: It is an inherent API limitation that the following are possible:
-> +
-> +  // these would be caught in review
-> +  __pr_debug_cls(0, "fake DRM_UT_CORE msg");  // this works
-> +  __pr_debug_cls(62, "un-known classid msg"); // this compiles, does nothing
-> +
-> +There are 2 types of classmaps:
-> +
-> + DD_CLASS_TYPE_DISJOINT_BITS: classes are independent, like DRM.debug
-> + DD_CLASS_TYPE_LEVEL_NUM: classes are relative, ordered (V3 > V2)
-> +
-> +DYNAMIC_DEBUG_CLASSMAP_PARAM - modelled after module_param_cb, it
-> +refers to a DEFINEd classmap, and associates it to the param's
-> +data-store.  This state is then applied to DEFINEr and USEr modules
-> +when they're modprobed.
-> +
-> +The PARAM interface also enforces the DD_CLASS_TYPE_LEVEL_NUM relation
-> +amongst the contained classnames; all classes are independent in the
-> +control parser itself; there is no implied meaning in names like "V4".
-> +
-> +Modules or module-groups (drm & drivers) can define multiple
-> +classmaps, as long as they (all the classmaps) share the limited 0..62
-> +per-module-group _class_id range, without overlap.
-> +
-> +If a module encounters a conflict between 2 classmaps its USEing, we
-> +can extend the _USE macro with an offset to allow de-conflicting the
-> +respective ranges.  Or they use the DEFINErs macro-api, but with new
-> +enum symbols.
-> +
-> +``#define DEBUG`` will enable all pr_debugs in scope, including any
-> +class'd ones.  This won't be reflected in the PARAM readback value,
-> +but the class'd pr_debug callsites can be forced off by toggling the
-> +classmap-kparam all-on then all-off.
+# # # [RUN] R/O longterm GUP-fast pin in MAP_SHARED file mapping .[   92.20=
+9804] Unable to handle kernel NULL pointer dereference at virtual address 0=
+000000000000008
 
--- 
-Louis Chauvet, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+=2E..
 
+[   92.443816] Call trace:
+[   92.446284]  io_check_coalesce_buffer+0xd4/0x160 (P)
+[   92.451306]  io_sqe_buffers_register+0x1b0/0x22c
+[   92.455976]  __arm64_sys_io_uring_register+0x330/0xe74
+[   92.461176]  invoke_syscall+0x48/0x104
+[   92.464966]  el0_svc_common.constprop.0+0x40/0xe0
+
+Full log:
+
+  https://lava.sirena.org.uk/scheduler/job/1778528#L1985
+
+The bisect looks to converge reasonably clearly, I didn't make much more
+effort to diagnose:
+
+# bad: [be5d4872e528796df9d7425f2bd9b3893eb3a42c] Add linux-next specific f=
+iles for 20250905
+# good: [5fe42852269dc659c8d511864410bd5cf3393e91] Merge branch 'for-linux-=
+next-fixes' of https://gitlab.freedesktop.org/drm/misc/kernel.git
+# good: [0ccc1eeda155c947d88ef053e0b54e434e218ee2] ASoC: dt-bindings: wlf,w=
+m8960: Document routing strings (pin names)
+# good: [7748328c2fd82efed24257b2bfd796eb1fa1d09b] ASoC: dt-bindings: qcom,=
+lpass-va-macro: Update bindings for clocks to support ADSP
+# good: [dd7ae5b8b3c291c0206f127a564ae1e316705ca0] ASoC: cs42l43: Shutdown =
+jack detection on suspend
+# good: [ce1a46b2d6a8465a86f7a6f71beb4c6de83bce5c] ASoC: codecs: lpass-wsa-=
+macro: add Codev version 2.9
+# good: [ce57b718006a069226b5e5d3afe7969acd59154e] ASoC: Intel: avs: ssm456=
+7: Adjust platform name
+# good: [94b39cb3ad6db935b585988b36378884199cd5fc] spi: mxs: fix "transfere=
+d"->"transferred"
+# good: [5cc49b5a36b32a2dba41441ea13b93fb5ea21cfd] spi: spi-fsl-dspi: Repor=
+t FIFO overflows as errors
+# good: [3279052eab235bfb7130b1fabc74029c2260ed8d] ASoC: SOF: ipc4-topology=
+: Fix a less than zero check on a u32
+# good: [8f57dcf39fd0864f5f3e6701fe885e55f45d0d3a] ASoC: qcom: audioreach: =
+convert to cpu endainess type before accessing
+# good: [9d35d068fb138160709e04e3ee97fe29a6f8615b] regulator: scmi: Use int=
+ type to store negative error codes
+# good: [8a9772ec08f87c9e45ab1ad2c8d2b8c1763836eb] ASoC: soc-dapm: rename s=
+nd_soc_kcontrol_component() to snd_soc_kcontrol_to_component()
+# good: [07752abfa5dbf7cb4d9ce69fa94dc3b12bc597d9] ASoC: SOF: sof-client: I=
+ntroduce sof_client_dev_entry structure
+# good: [d57d27171c92e9049d5301785fb38de127b28fbf] ASoC: SOF: sof-client-pr=
+obes: Add available points_info(), IPC4 only
+# good: [f7c41911ad744177d8289820f01009dc93d8f91c] ASoC: SOF: ipc4-topology=
+: Add support for float sample type
+# good: [3d439e1ec3368fae17db379354bd7a9e568ca0ab] ASoC: sof: ipc4-topology=
+: Add support to sched_domain attribute
+# good: [5c39bc498f5ff7ef016abf3f16698f3e8db79677] ASoC: SOF: Intel: only d=
+etect codecs when HDA DSP probe
+# good: [f522da9ab56c96db8703b2ea0f09be7cdc3bffeb] ASoC: doc: Internally li=
+nk to Writing an ALSA Driver docs
+# good: [f4672dc6e9c07643c8c755856ba8e9eb9ca95d0c] regmap: use int type to =
+store negative error codes
+# good: [b088b6189a4066b97cef459afd312fd168a76dea] ASoC: mediatek: common: =
+Switch to for_each_available_child_of_node_scoped()
+# good: [c42e36a488c7e01f833fc9f4814f735b66b2d494] spi: Drop dev_pm_domain_=
+detach() call
+# good: [a37280daa4d583c7212681c49b285de9464a5200] ASoC: Intel: avs: Allow =
+i2s test and non-test boards to coexist
+# good: [ff9a7857b7848227788f113d6dc6a72e989084e0] spi: rb4xx: use devm for=
+ clk_prepare_enable
+# good: [edb5c1f885207d1d74e8a1528e6937e02829ee6e] ASoC: renesas: msiof: st=
+art DMAC first
+# good: [e2ab5f600bb01d3625d667d97b3eb7538e388336] rust: regulator: use `to=
+_result` for error handling
+# good: [5b4dcaf851df8c414bfc2ac3bf9c65fc942f3be4] ASoC: amd: acp: Remove (=
+explicitly) unused header
+# good: [899fb38dd76dd3ede425bbaf8a96d390180a5d1c] regulator: core: Remove =
+redundant ternary operators
+# good: [11f5c5f9e43e9020bae452232983fe98e7abfce0] ASoC: qcom: use int type=
+ to store negative error codes
+# good: [a12b74d2bd4724ee1883bc97ec93eac8fafc8d3c] ASoC: tlv320aic32x4: use=
+ dev_err_probe() for regulators
+# good: [f840737d1746398c2993be34bfdc80bdc19ecae2] ASoC: SOF: imx: Remove t=
+he use of dev_err_probe()
+# good: [d78e48ebe04e9566f8ecbf51471e80da3adbceeb] ASoC: dt-bindings: Minor=
+ whitespace cleanup in example
+# good: [96bcb34df55f7fee99795127c796315950c94fed] ASoC: test-component: Us=
+e kcalloc() instead of kzalloc()
+# good: [c232495d28ca092d0c39b10e35d3d613bd2414ab] ASoC: dt-bindings: omap-=
+twl4030: convert to DT schema
+# good: [87a877de367d835b527d1086f75727123ef85fc4] KVM: x86: Rename handle_=
+fastpath_set_msr_irqoff() to handle_fastpath_wrmsr()
+# good: [c26675447faff8c4ddc1dc5d2cd28326b8181aaf] KVM: x86: Zero XSTATE co=
+mponents on INIT by iterating over supported features
+# good: [ec0be3cdf40b5302248f3fb27a911cc630e8b855] regulator: consumer.rst:=
+ document bulk operations
+# good: [27848c082ba0b22850fd9fb7b185c015423dcdc7] spi: s3c64xx: Remove the=
+ use of dev_err_probe()
+# good: [c1dd310f1d76b4b13f1854618087af2513140897] spi: SPISG: Use devm_kca=
+lloc() in aml_spisg_clk_init()
+# good: [da9881d00153cc6d3917f6b74144b1d41b58338c] ASoC: qcom: audioreach: =
+add support for SMECNS module
+# good: [cf65182247761f7993737b710afe8c781699356b] ASoC: codecs: wsa883x: H=
+andle shared reset GPIO for WSA883x speakers
+# good: [2a55135201d5e24b80b7624880ff42eafd8e320c] ASoC: Intel: avs: Stream=
+line register-component function names
+# good: [550bc517e59347b3b1af7d290eac4fb1411a3d4e] regulator: bd718x7: Use =
+kcalloc() instead of kzalloc()
+# good: [0056b410355713556d8a10306f82e55b28d33ba8] spi: offload trigger: ad=
+i-util-sigma-delta: clean up imports
+# good: [daf855f76a1210ceed9541f71ac5dd9be02018a6] ASoC: es8323: enable DAP=
+M power widgets for playback DAC
+# good: [90179609efa421b1ccc7d8eafbc078bafb25777c] spi: spl022: use min_t()=
+ to improve code
+# good: [258384d8ce365dddd6c5c15204de8ccd53a7ab0a] ASoC: es8323: enable DAP=
+M power widgets for playback DAC and output
+# good: [6d068f1ae2a2f713d7f21a9a602e65b3d6b6fc6d] regulator: rt5133: Fix s=
+pelling mistake "regualtor" -> "regulator"
+# good: [a46e95c81e3a28926ab1904d9f754fef8318074d] ASoC: wl1273: Remove
+# good: [48124569bbc6bfda1df3e9ee17b19d559f4b1aa3] spi: remove unneeded 'fa=
+st_io' parameter in regmap_config
+# good: [37533933bfe92cd5a99ef4743f31dac62ccc8de0] regulator: remove unneed=
+ed 'fast_io' parameter in regmap_config
+# good: [0e62438e476494a1891a8822b9785bc6e73e9c3f] ASoC: Intel: sst: Remove=
+ redundant semicolons
+# good: [5c36b86d2bf68fbcad16169983ef7ee8c537db59] regmap: Remove superfluo=
+us check for !config in __regmap_init()
+# good: [714165e1c4b0d5b8c6d095fe07f65e6e7047aaeb] regulator: rt5133: Add R=
+T5133 PMIC regulator Support
+# good: [9c45f95222beecd6a284fd1284d54dd7a772cf59] spi: spi-qpic-snand: han=
+dle 'use_ecc' parameter of qcom_spi_config_cw_read()
+# good: [bab4ab484a6ca170847da9bffe86f1fa90df4bbe] ASoC: dt-bindings: Conve=
+rt brcm,bcm2835-i2s to DT schema
+# good: [b832b19318534bb4f1673b24d78037fee339c679] spi: loopback-test: Don'=
+t use %pK through printk
+# good: [8c02c8353460f8630313aef6810f34e134a3c1ee] ASoC: dt-bindings: realt=
+ek,alc5623: convert to DT schema
+# good: [6b7e2aa50bdaf88cd4c2a5e2059a7bf32d85a8b1] spi: spi-qpic-snand: rem=
+ove 'clr*status' members of struct 'qpic_ecc'
+# good: [2291a2186305faaf8525d57849d8ba12ad63f5e7] MAINTAINERS: Add entry f=
+or FourSemi audio amplifiers
+# good: [a54ef14188519a0994d0264f701f5771815fa11e] regulator: dt-bindings: =
+Clean-up active-semi,act8945a duplication
+# good: [a1d0b0ae65ae3f32597edfbb547f16c75601cd87] spi: spi-qpic-snand: avo=
+id double assignment in qcom_spi_probe()
+# good: [cf25eb8eae91bcae9b2065d84b0c0ba0f6d9dd34] ASoC: soc-component: unp=
+ack snd_soc_component_init_bias_level()
+# good: [595b7f155b926460a00776cc581e4dcd01220006] ASoC: Intel: avs: Condit=
+ional-path support
+# good: [3059067fd3378a5454e7928c08d20bf3ef186760] ASoC: cs48l32: Use PTR_E=
+RR_OR_ZERO() to simplify code
+# good: [2d86d2585ab929a143d1e6f8963da1499e33bf13] ASoC: pxa: add GPIOLIB_L=
+EGACY dependency
+# good: [9a200cbdb54349909a42b45379e792e4b39dd223] rust: regulator: impleme=
+nt Send and Sync for Regulator<T>
+# good: [162e23657e5379f07c6404dbfbf4367cb438ea7d] regulator: pf0900: Add P=
+MIC PF0900 support
+# good: [886f42ce96e7ce80545704e7168a9c6b60cd6c03] regmap: mmio: Add missin=
+g MODULE_DESCRIPTION()
+# good: [6684aba0780da9f505c202f27e68ee6d18c0aa66] XArray: Add extra debugg=
+ing check to xas_lock and friends
+git bisect start 'be5d4872e528796df9d7425f2bd9b3893eb3a42c' '5fe42852269dc6=
+59c8d511864410bd5cf3393e91' '0ccc1eeda155c947d88ef053e0b54e434e218ee2' '774=
+8328c2fd82efed24257b2bfd796eb1fa1d09b' 'dd7ae5b8b3c291c0206f127a564ae1e3167=
+05ca0' 'ce1a46b2d6a8465a86f7a6f71beb4c6de83bce5c' 'ce57b718006a069226b5e5d3=
+afe7969acd59154e' '94b39cb3ad6db935b585988b36378884199cd5fc' '5cc49b5a36b32=
+a2dba41441ea13b93fb5ea21cfd' '3279052eab235bfb7130b1fabc74029c2260ed8d' '8f=
+57dcf39fd0864f5f3e6701fe885e55f45d0d3a' '9d35d068fb138160709e04e3ee97fe29a6=
+f8615b' '8a9772ec08f87c9e45ab1ad2c8d2b8c1763836eb' '07752abfa5dbf7cb4d9ce69=
+fa94dc3b12bc597d9' 'd57d27171c92e9049d5301785fb38de127b28fbf' 'f7c41911ad74=
+4177d8289820f01009dc93d8f91c' '3d439e1ec3368fae17db379354bd7a9e568ca0ab' '5=
+c39bc498f5ff7ef016abf3f16698f3e8db79677' 'f522da9ab56c96db8703b2ea0f09be7cd=
+c3bffeb' 'f4672dc6e9c07643c8c755856ba8e9eb9ca95d0c' 'b088b6189a4066b97cef45=
+9afd312fd168a76dea' 'c42e36a488c7e01f833fc9f4814f735b66b2d494' 'a37280daa4d=
+583c7212681c49b285de9464a5200' 'ff9a7857b7848227788f113d6dc6a72e989084e0' '=
+edb5c1f885207d1d74e8a1528e6937e02829ee6e' 'e2ab5f600bb01d3625d667d97b3eb753=
+8e388336' '5b4dcaf851df8c414bfc2ac3bf9c65fc942f3be4' '899fb38dd76dd3ede425b=
+baf8a96d390180a5d1c' '11f5c5f9e43e9020bae452232983fe98e7abfce0' 'a12b74d2bd=
+4724ee1883bc97ec93eac8fafc8d3c' 'f840737d1746398c2993be34bfdc80bdc19ecae2' =
+'d78e48ebe04e9566f8ecbf51471e80da3adbceeb' '96bcb34df55f7fee99795127c796315=
+950c94fed' 'c232495d28ca092d0c39b10e35d3d613bd2414ab' '87a877de367d835b527d=
+1086f75727123ef85fc4' 'c26675447faff8c4ddc1dc5d2cd28326b8181aaf' 'ec0be3cdf=
+40b5302248f3fb27a911cc630e8b855' '27848c082ba0b22850fd9fb7b185c015423dcdc7'=
+ 'c1dd310f1d76b4b13f1854618087af2513140897' 'da9881d00153cc6d3917f6b74144b1=
+d41b58338c' 'cf65182247761f7993737b710afe8c781699356b' '2a55135201d5e24b80b=
+7624880ff42eafd8e320c' '550bc517e59347b3b1af7d290eac4fb1411a3d4e' '0056b410=
+355713556d8a10306f82e55b28d33ba8' 'daf855f76a1210ceed9541f71ac5dd9be02018a6=
+' '90179609efa421b1ccc7d8eafbc078bafb25777c' '258384d8ce365dddd6c5c15204de8=
+ccd53a7ab0a' '6d068f1ae2a2f713d7f21a9a602e65b3d6b6fc6d' 'a46e95c81e3a28926a=
+b1904d9f754fef8318074d' '48124569bbc6bfda1df3e9ee17b19d559f4b1aa3' '3753393=
+3bfe92cd5a99ef4743f31dac62ccc8de0' '0e62438e476494a1891a8822b9785bc6e73e9c3=
+f' '5c36b86d2bf68fbcad16169983ef7ee8c537db59' '714165e1c4b0d5b8c6d095fe07f6=
+5e6e7047aaeb' '9c45f95222beecd6a284fd1284d54dd7a772cf59' 'bab4ab484a6ca1708=
+47da9bffe86f1fa90df4bbe' 'b832b19318534bb4f1673b24d78037fee339c679' '8c02c8=
+353460f8630313aef6810f34e134a3c1ee' '6b7e2aa50bdaf88cd4c2a5e2059a7bf32d85a8=
+b1' '2291a2186305faaf8525d57849d8ba12ad63f5e7' 'a54ef14188519a0994d0264f701=
+f5771815fa11e' 'a1d0b0ae65ae3f32597edfbb547f16c75601cd87' 'cf25eb8eae91bcae=
+9b2065d84b0c0ba0f6d9dd34' '595b7f155b926460a00776cc581e4dcd01220006' '30590=
+67fd3378a5454e7928c08d20bf3ef186760' '2d86d2585ab929a143d1e6f8963da1499e33b=
+f13' '9a200cbdb54349909a42b45379e792e4b39dd223' '162e23657e5379f07c6404dbfb=
+f4367cb438ea7d' '886f42ce96e7ce80545704e7168a9c6b60cd6c03' '6684aba0780da9f=
+505c202f27e68ee6d18c0aa66'
+# test job: [0ccc1eeda155c947d88ef053e0b54e434e218ee2] https://lava.sirena.=
+org.uk/scheduler/job/1773040
+# test job: [7748328c2fd82efed24257b2bfd796eb1fa1d09b] https://lava.sirena.=
+org.uk/scheduler/job/1773378
+# test job: [dd7ae5b8b3c291c0206f127a564ae1e316705ca0] https://lava.sirena.=
+org.uk/scheduler/job/1773233
+# test job: [ce1a46b2d6a8465a86f7a6f71beb4c6de83bce5c] https://lava.sirena.=
+org.uk/scheduler/job/1768983
+# test job: [ce57b718006a069226b5e5d3afe7969acd59154e] https://lava.sirena.=
+org.uk/scheduler/job/1768713
+# test job: [94b39cb3ad6db935b585988b36378884199cd5fc] https://lava.sirena.=
+org.uk/scheduler/job/1768603
+# test job: [5cc49b5a36b32a2dba41441ea13b93fb5ea21cfd] https://lava.sirena.=
+org.uk/scheduler/job/1769293
+# test job: [3279052eab235bfb7130b1fabc74029c2260ed8d] https://lava.sirena.=
+org.uk/scheduler/job/1762427
+# test job: [8f57dcf39fd0864f5f3e6701fe885e55f45d0d3a] https://lava.sirena.=
+org.uk/scheduler/job/1760074
+# test job: [9d35d068fb138160709e04e3ee97fe29a6f8615b] https://lava.sirena.=
+org.uk/scheduler/job/1758673
+# test job: [8a9772ec08f87c9e45ab1ad2c8d2b8c1763836eb] https://lava.sirena.=
+org.uk/scheduler/job/1758556
+# test job: [07752abfa5dbf7cb4d9ce69fa94dc3b12bc597d9] https://lava.sirena.=
+org.uk/scheduler/job/1752251
+# test job: [d57d27171c92e9049d5301785fb38de127b28fbf] https://lava.sirena.=
+org.uk/scheduler/job/1752624
+# test job: [f7c41911ad744177d8289820f01009dc93d8f91c] https://lava.sirena.=
+org.uk/scheduler/job/1752345
+# test job: [3d439e1ec3368fae17db379354bd7a9e568ca0ab] https://lava.sirena.=
+org.uk/scheduler/job/1753454
+# test job: [5c39bc498f5ff7ef016abf3f16698f3e8db79677] https://lava.sirena.=
+org.uk/scheduler/job/1751954
+# test job: [f522da9ab56c96db8703b2ea0f09be7cdc3bffeb] https://lava.sirena.=
+org.uk/scheduler/job/1751875
+# test job: [f4672dc6e9c07643c8c755856ba8e9eb9ca95d0c] https://lava.sirena.=
+org.uk/scheduler/job/1747876
+# test job: [b088b6189a4066b97cef459afd312fd168a76dea] https://lava.sirena.=
+org.uk/scheduler/job/1746202
+# test job: [c42e36a488c7e01f833fc9f4814f735b66b2d494] https://lava.sirena.=
+org.uk/scheduler/job/1746271
+# test job: [a37280daa4d583c7212681c49b285de9464a5200] https://lava.sirena.=
+org.uk/scheduler/job/1746918
+# test job: [ff9a7857b7848227788f113d6dc6a72e989084e0] https://lava.sirena.=
+org.uk/scheduler/job/1746336
+# test job: [edb5c1f885207d1d74e8a1528e6937e02829ee6e] https://lava.sirena.=
+org.uk/scheduler/job/1746134
+# test job: [e2ab5f600bb01d3625d667d97b3eb7538e388336] https://lava.sirena.=
+org.uk/scheduler/job/1746607
+# test job: [5b4dcaf851df8c414bfc2ac3bf9c65fc942f3be4] https://lava.sirena.=
+org.uk/scheduler/job/1747672
+# test job: [899fb38dd76dd3ede425bbaf8a96d390180a5d1c] https://lava.sirena.=
+org.uk/scheduler/job/1747375
+# test job: [11f5c5f9e43e9020bae452232983fe98e7abfce0] https://lava.sirena.=
+org.uk/scheduler/job/1747503
+# test job: [a12b74d2bd4724ee1883bc97ec93eac8fafc8d3c] https://lava.sirena.=
+org.uk/scheduler/job/1734077
+# test job: [f840737d1746398c2993be34bfdc80bdc19ecae2] https://lava.sirena.=
+org.uk/scheduler/job/1727318
+# test job: [d78e48ebe04e9566f8ecbf51471e80da3adbceeb] https://lava.sirena.=
+org.uk/scheduler/job/1706175
+# test job: [96bcb34df55f7fee99795127c796315950c94fed] https://lava.sirena.=
+org.uk/scheduler/job/1699577
+# test job: [c232495d28ca092d0c39b10e35d3d613bd2414ab] https://lava.sirena.=
+org.uk/scheduler/job/1699507
+# test job: [87a877de367d835b527d1086f75727123ef85fc4] https://lava.sirena.=
+org.uk/scheduler/job/1697972
+# test job: [c26675447faff8c4ddc1dc5d2cd28326b8181aaf] https://lava.sirena.=
+org.uk/scheduler/job/1698132
+# test job: [ec0be3cdf40b5302248f3fb27a911cc630e8b855] https://lava.sirena.=
+org.uk/scheduler/job/1694308
+# test job: [27848c082ba0b22850fd9fb7b185c015423dcdc7] https://lava.sirena.=
+org.uk/scheduler/job/1693100
+# test job: [c1dd310f1d76b4b13f1854618087af2513140897] https://lava.sirena.=
+org.uk/scheduler/job/1693035
+# test job: [da9881d00153cc6d3917f6b74144b1d41b58338c] https://lava.sirena.=
+org.uk/scheduler/job/1693416
+# test job: [cf65182247761f7993737b710afe8c781699356b] https://lava.sirena.=
+org.uk/scheduler/job/1687562
+# test job: [2a55135201d5e24b80b7624880ff42eafd8e320c] https://lava.sirena.=
+org.uk/scheduler/job/1685772
+# test job: [550bc517e59347b3b1af7d290eac4fb1411a3d4e] https://lava.sirena.=
+org.uk/scheduler/job/1685910
+# test job: [0056b410355713556d8a10306f82e55b28d33ba8] https://lava.sirena.=
+org.uk/scheduler/job/1685649
+# test job: [daf855f76a1210ceed9541f71ac5dd9be02018a6] https://lava.sirena.=
+org.uk/scheduler/job/1685441
+# test job: [90179609efa421b1ccc7d8eafbc078bafb25777c] https://lava.sirena.=
+org.uk/scheduler/job/1686081
+# test job: [258384d8ce365dddd6c5c15204de8ccd53a7ab0a] https://lava.sirena.=
+org.uk/scheduler/job/1673411
+# test job: [6d068f1ae2a2f713d7f21a9a602e65b3d6b6fc6d] https://lava.sirena.=
+org.uk/scheduler/job/1673133
+# test job: [a46e95c81e3a28926ab1904d9f754fef8318074d] https://lava.sirena.=
+org.uk/scheduler/job/1673748
+# test job: [48124569bbc6bfda1df3e9ee17b19d559f4b1aa3] https://lava.sirena.=
+org.uk/scheduler/job/1670184
+# test job: [37533933bfe92cd5a99ef4743f31dac62ccc8de0] https://lava.sirena.=
+org.uk/scheduler/job/1668977
+# test job: [0e62438e476494a1891a8822b9785bc6e73e9c3f] https://lava.sirena.=
+org.uk/scheduler/job/1669534
+# test job: [5c36b86d2bf68fbcad16169983ef7ee8c537db59] https://lava.sirena.=
+org.uk/scheduler/job/1667971
+# test job: [714165e1c4b0d5b8c6d095fe07f65e6e7047aaeb] https://lava.sirena.=
+org.uk/scheduler/job/1667699
+# test job: [9c45f95222beecd6a284fd1284d54dd7a772cf59] https://lava.sirena.=
+org.uk/scheduler/job/1667598
+# test job: [bab4ab484a6ca170847da9bffe86f1fa90df4bbe] https://lava.sirena.=
+org.uk/scheduler/job/1664664
+# test job: [b832b19318534bb4f1673b24d78037fee339c679] https://lava.sirena.=
+org.uk/scheduler/job/1659213
+# test job: [8c02c8353460f8630313aef6810f34e134a3c1ee] https://lava.sirena.=
+org.uk/scheduler/job/1659264
+# test job: [6b7e2aa50bdaf88cd4c2a5e2059a7bf32d85a8b1] https://lava.sirena.=
+org.uk/scheduler/job/1656585
+# test job: [2291a2186305faaf8525d57849d8ba12ad63f5e7] https://lava.sirena.=
+org.uk/scheduler/job/1655709
+# test job: [a54ef14188519a0994d0264f701f5771815fa11e] https://lava.sirena.=
+org.uk/scheduler/job/1656024
+# test job: [a1d0b0ae65ae3f32597edfbb547f16c75601cd87] https://lava.sirena.=
+org.uk/scheduler/job/1654201
+# test job: [cf25eb8eae91bcae9b2065d84b0c0ba0f6d9dd34] https://lava.sirena.=
+org.uk/scheduler/job/1654790
+# test job: [595b7f155b926460a00776cc581e4dcd01220006] https://lava.sirena.=
+org.uk/scheduler/job/1653119
+# test job: [3059067fd3378a5454e7928c08d20bf3ef186760] https://lava.sirena.=
+org.uk/scheduler/job/1655440
+# test job: [2d86d2585ab929a143d1e6f8963da1499e33bf13] https://lava.sirena.=
+org.uk/scheduler/job/1655917
+# test job: [9a200cbdb54349909a42b45379e792e4b39dd223] https://lava.sirena.=
+org.uk/scheduler/job/1654762
+# test job: [162e23657e5379f07c6404dbfbf4367cb438ea7d] https://lava.sirena.=
+org.uk/scheduler/job/1652978
+# test job: [886f42ce96e7ce80545704e7168a9c6b60cd6c03] https://lava.sirena.=
+org.uk/scheduler/job/1654270
+# test job: [6684aba0780da9f505c202f27e68ee6d18c0aa66] https://lava.sirena.=
+org.uk/scheduler/job/1738722
+# test job: [be5d4872e528796df9d7425f2bd9b3893eb3a42c] https://lava.sirena.=
+org.uk/scheduler/job/1778528
+# bad: [be5d4872e528796df9d7425f2bd9b3893eb3a42c] Add linux-next specific f=
+iles for 20250905
+git bisect bad be5d4872e528796df9d7425f2bd9b3893eb3a42c
+# test job: [c3ce85ecd0268df1e0ca692e8126bb181fc89a08] https://lava.sirena.=
+org.uk/scheduler/job/1779086
+# bad: [c3ce85ecd0268df1e0ca692e8126bb181fc89a08] Merge branch 'main' of ht=
+tps://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git
+git bisect bad c3ce85ecd0268df1e0ca692e8126bb181fc89a08
+# test job: [973a887a5bb9a42878e276209592e0f75c287bb6] https://lava.sirena.=
+org.uk/scheduler/job/1780104
+# bad: [973a887a5bb9a42878e276209592e0f75c287bb6] Merge branch 'fs-next' of=
+ linux-next
+git bisect bad 973a887a5bb9a42878e276209592e0f75c287bb6
+# test job: [fdabd8890022a9439b95d7395f7ae046544d96fd] https://lava.sirena.=
+org.uk/scheduler/job/1780530
+# bad: [fdabd8890022a9439b95d7395f7ae046544d96fd] Merge branch 'for-next' o=
+f https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git
+git bisect bad fdabd8890022a9439b95d7395f7ae046544d96fd
+# test job: [94bd0249a4a06131c4a1c2097b6134217a658976] https://lava.sirena.=
+org.uk/scheduler/job/1780904
+# bad: [94bd0249a4a06131c4a1c2097b6134217a658976] Merge branch 'for-next' o=
+f https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git
+git bisect bad 94bd0249a4a06131c4a1c2097b6134217a658976
+# test job: [702b6c2f1008779e8fc8a4a4438410165309a4b4] https://lava.sirena.=
+org.uk/scheduler/job/1781370
+# bad: [702b6c2f1008779e8fc8a4a4438410165309a4b4] kasan-apply-write-only-mo=
+de-in-kasan-kunit-testcases-v7
+git bisect bad 702b6c2f1008779e8fc8a4a4438410165309a4b4
+# test job: [0ac48805721d5952a920356e454167bba8d27737] https://lava.sirena.=
+org.uk/scheduler/job/1781448
+# good: [0ac48805721d5952a920356e454167bba8d27737] mm: convert page_to_sect=
+ion() to memdesc_section()
+git bisect good 0ac48805721d5952a920356e454167bba8d27737
+# test job: [dc731eba2e47fa81d50aa1cb167100889253cfe0] https://lava.sirena.=
+org.uk/scheduler/job/1781608
+# good: [dc731eba2e47fa81d50aa1cb167100889253cfe0] mm/damon/paddr: support =
+addr_unit for MIGRATE_{HOT,COLD}
+git bisect good dc731eba2e47fa81d50aa1cb167100889253cfe0
+# test job: [e24bb041cafabaa5fa3d76386c86af389cc324f5] https://lava.sirena.=
+org.uk/scheduler/job/1781660
+# good: [e24bb041cafabaa5fa3d76386c86af389cc324f5] mm/memremap: reject unre=
+asonable folio/compound page sizes in memremap_pages()
+git bisect good e24bb041cafabaa5fa3d76386c86af389cc324f5
+# test job: [62fd63f4688f40f01a6df23225523ece10d4b69a] https://lava.sirena.=
+org.uk/scheduler/job/1781975
+# bad: [62fd63f4688f40f01a6df23225523ece10d4b69a] dma-remap: drop nth_page(=
+) in dma_common_contiguous_remap()
+git bisect bad 62fd63f4688f40f01a6df23225523ece10d4b69a
+# test job: [cb42f7f6d9e4eff4e5259cddf82fd913306b8fe7] https://lava.sirena.=
+org.uk/scheduler/job/1782145
+# good: [cb42f7f6d9e4eff4e5259cddf82fd913306b8fe7] fs: hugetlbfs: remove nt=
+h_page() usage within folio in adjust_range_hwpoison()
+git bisect good cb42f7f6d9e4eff4e5259cddf82fd913306b8fe7
+# test job: [db076b5db550aa34169dceee81d0974c7b2a2482] https://lava.sirena.=
+org.uk/scheduler/job/1782813
+# bad: [db076b5db550aa34169dceee81d0974c7b2a2482] mm/gup: remove record_sub=
+pages()
+git bisect bad db076b5db550aa34169dceee81d0974c7b2a2482
+# test job: [891d0b3189945a5c37ce92c4e5337ec2c17b6378] https://lava.sirena.=
+org.uk/scheduler/job/1782916
+# good: [891d0b3189945a5c37ce92c4e5337ec2c17b6378] mm/pagewalk: drop nth_pa=
+ge() usage within folio in folio_walk_start()
+git bisect good 891d0b3189945a5c37ce92c4e5337ec2c17b6378
+# test job: [21999f6315d786cbd21d5b2d0ad56f3f6125279f] https://lava.sirena.=
+org.uk/scheduler/job/1783020
+# good: [21999f6315d786cbd21d5b2d0ad56f3f6125279f] mm/gup: drop nth_page() =
+usage within folio when recording subpages
+git bisect good 21999f6315d786cbd21d5b2d0ad56f3f6125279f
+# first bad commit: [db076b5db550aa34169dceee81d0974c7b2a2482] mm/gup: remo=
+ve record_subpages()
+
+--V80dSr/3LzMwjpsi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmi+8z0ACgkQJNaLcl1U
+h9C0HQf/YLILQMy3G3PZlLVziChCHgLklSdjOdu58eGRZBkdjWnggsnR8H+o1TRT
+qrYLTwPAQ7TkDlNC/IpdZTn6fTQnbmy/5CpEidfBuHIth4hUPlGHOHWwwaHo92Gd
+bJmRfogfYX4kma6egaQbjIHdXUWb3BHdc+K3JmaaPInJN0sRsX8Od85Oxtx4cRAW
+2A6bXjqDo+7pLzkMx+1LI15r2lS9AtPy53xbumPlHVmIOmn76VnDG+TaKlD6XmmD
+z3piY3bbxBbFy5iZuZbC/xvn1JCA5lp+OHriZcz+eB8UBWoReKPRtq0Ugar/jbfo
+bOBx+BGSWZGrrkT+5KyatEb3cS3IWw==
+=1t1P
+-----END PGP SIGNATURE-----
+
+--V80dSr/3LzMwjpsi--
