@@ -2,63 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EDD3B48A31
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 12:29:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9D24B48A96
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 12:54:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E0B510E0D7;
-	Mon,  8 Sep 2025 10:29:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FB0C10E1FC;
+	Mon,  8 Sep 2025 10:54:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E9wQkjrF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e5MPtCaD";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76C6810E4B9;
- Mon,  8 Sep 2025 10:29:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99E1E10E1FC
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Sep 2025 10:54:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757327397; x=1788863397;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=I10NCmGluFjEIszAjgIQ1el85nJaKVdhsBTJLm6LR5U=;
- b=E9wQkjrFDZMXaxKlkq2V196IwBXwp9kQaSRI/tX1NwYZe4bYSGCB2+1X
- AhVaDERjSXZYSAIW95P3CsjZP5/kvnocsocHs5UQcNWFk9zgilpJRQIzF
- 6iQ5pdcGSe99quDGaONi3zR7SII/IHhQ9Gx+CxkzJOIG8kw+JdK2Wp23/
- JJPE+6/RtUAWxcySuzFo/0rHbi6BeKzYr8a7Y+zpYQRhnQpmN7Z9gvu/I
- nQwejl/QwqzamRmi3wp6aex7hSXce4kcBoCbkacaAvZg6FxYp1g8zb1mc
- kqmD+5OW/a4SxR0wykTwQapWukhx30DQ4hWdEqVCb5tt0VTqwcgpmY+rg Q==;
-X-CSE-ConnectionGUID: wlk9AsdqQG6arWRn1QI9fQ==
-X-CSE-MsgGUID: o/oqJg3OR4+SwRlMcUv1sg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11546"; a="70678727"
-X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="70678727"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2025 03:29:56 -0700
-X-CSE-ConnectionGUID: wRhDrExUTY2hCPKhyboX8A==
-X-CSE-MsgGUID: X4caZJpaTzGhQcTVsp64Qg==
+ t=1757328869; x=1788864869;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=//gaBXzDF47MWihftBQkkQ7gCMI39GrA1tdNqyor088=;
+ b=e5MPtCaDkhbhDV8DKSbNGvRTTuhrnOmH1T9VnF0thyMBJ6iPUcBaXIpZ
+ oBdfG+6SPcP6k6w6CS813dwt0ZCyOkwe79W2/NSrh8HxHYW3TS7TwfGnO
+ ixO7+GPBqu2D5M/yy0C9eITd+5V2wgR+bV7zCWD7drKrCwaI7+lj+QSoq
+ lOCaszPcpBRPdnLviEiXw9/IejtDrWB52Q2PXTQjF5t2L7r3qSCaq9U9P
+ UbbFQC15SlR05OpFCBZ3C3RJxr6l4elD2FQOURgc7SUkbte5f0tnF7F8+
+ 1+TWLqdruqCTYkvAZg8XFXiF8MGyqKNyQQg+k5rfngY/Knq5IeVIYqCUw g==;
+X-CSE-ConnectionGUID: lLeg2n2ZRcqxbOjHAWkXxw==
+X-CSE-MsgGUID: 8yLlOlUmTlyMznl7JEsDPA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="59651583"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="59651583"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2025 03:54:29 -0700
+X-CSE-ConnectionGUID: X3WhTk2SQ12t/XZE6Dm0Lw==
+X-CSE-MsgGUID: Ts91msVbQZCe+gPKHyGVBw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="196401342"
-Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.204])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2025 03:29:53 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Juha-Pekka =?utf-8?Q?Heikkil=C3=A4?= <juhapekka.heikkila@gmail.com>,
- Matt Atwood <matthew.s.atwood@intel.com>
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/display: Use DISPLAY_VER over GRAPHICS_VER
-In-Reply-To: <CAJ=qYWRSXQAUaYsJb1h+JADkKmcNuhZmgxwCBJAqdxRZviWUXg@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250903170821.310143-1-matthew.s.atwood@intel.com>
- <175700478100.122246.8257747418250302965@intel.com>
- <aLnEtkH2axNnG3td@msatwood-mobl>
- <CAJ=qYWRSXQAUaYsJb1h+JADkKmcNuhZmgxwCBJAqdxRZviWUXg@mail.gmail.com>
-Date: Mon, 08 Sep 2025 13:29:50 +0300
-Message-ID: <44f40d56b53c2aa4be7aa605247373c693b1ce4f@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="177965476"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.178])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2025 03:54:27 -0700
+Date: Mon, 8 Sep 2025 12:54:25 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Krzysztof Karas <krzysztof.karas@intel.com>
+Cc: intel-gfx@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+Subject: Re: [PATCH 1/6] drm/i915/gem: Avoid accessing uninitialized context
+ in emit_rpcs_query()
+Message-ID: <aL614bb4RAvX_21c@ashyti-mobl2.lan>
+References: <cover.1756995162.git.krzysztof.karas@intel.com>
+ <3c911724dc4fc37d6c301c68de5d16ae10180dea.1756995162.git.krzysztof.karas@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3c911724dc4fc37d6c301c68de5d16ae10180dea.1756995162.git.krzysztof.karas@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,92 +74,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, 07 Sep 2025, Juha-Pekka Heikkil=C3=A4 <juhapekka.heikkila@gmail.com=
-> wrote:
-> On Thu, Sep 4, 2025 at 7:56=E2=80=AFPM Matt Atwood <matthew.s.atwood@inte=
-l.com> wrote:
->>
->> On Thu, Sep 04, 2025 at 01:53:01PM -0300, Gustavo Sousa wrote:
->> > Quoting Matt Atwood (2025-09-03 14:08:21-03:00)
->> > >The checks in plane_has_modifier() should check against display versi=
-on
->> > >instead of graphics version.
->> > >
->> > >Bspec: 67165, 70815
->> > >
->> > >Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
->> > >---
->> > > drivers/gpu/drm/i915/display/intel_fb.c | 4 ++--
->> > > 1 file changed, 2 insertions(+), 2 deletions(-)
->> > >
->> > >diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/dr=
-m/i915/display/intel_fb.c
->> > >index b210c3250501..1e4cee857d7b 100644
->> > >--- a/drivers/gpu/drm/i915/display/intel_fb.c
->> > >+++ b/drivers/gpu/drm/i915/display/intel_fb.c
->> > >@@ -563,11 +563,11 @@ static bool plane_has_modifier(struct intel_dis=
-play *display,
->> > >                 return false;
->> > >
->> > >         if (md->modifier =3D=3D I915_FORMAT_MOD_4_TILED_BMG_CCS &&
->> > >-            (GRAPHICS_VER(i915) < 20 || !display->platform.dgfx))
->> > >+            (DISPLAY_VER(display) < 14 || !display->platform.dgfx))
->> > >                 return false;
->> > >
->> > >         if (md->modifier =3D=3D I915_FORMAT_MOD_4_TILED_LNL_CCS &&
->> > >-            (GRAPHICS_VER(i915) < 20 || display->platform.dgfx))
->> > >+            (DISPLAY_VER(display) < 20 || display->platform.dgfx))
->> > >                 return false;
->> >
->> > Hm... Maybe using GRAPHICS_VER() here was intentional? The checks on
->> > display version are already covered by the entries in intel_modifiers.
->> >
->> > If we look at commit fca0abb23447 ("drm/i915/display: allow creation of
->> > Xe2 ccs framebuffers"), we'll see that the respective entries were add=
-ed
->> > to intel_modifiers *and* the checks on GRAPHICS_VER() were added as
->> > well. Perhaps there are indeed restrictions on the graphics side to be
->> > able to use the format?
->> >
->> > --
->> > Gustavo Sousa
->> Honestly, I tried looking for reasons. I couldn't find anything in the
->> documentation to support. I decided to send upstream to see if it broke
->> stuff to not do the checks that way. CI seems very clean. Hoping Jani or
->> Juha-Pekka will chime in if it is indeed an issue.
->
-> Using GRAPHICS_VER here was intentional. Jani didn't like it but these
-> xe2 ccs don't follow display versioning but gt versioning.
->
-> Proposed change look ok but I'll need to dig in to documentation
-> before I can say for sure. I remember we had discussion about this
-> with Jani but can't remember what convinced Jani I needed to use
-> GRAPHICS_VER at that time.
+Hi Krzysztof,
 
-I think I just took your word for it.
+On Mon, Sep 08, 2025 at 09:23:02AM +0000, Krzysztof Karas wrote:
+> Following the error path in that function may lead to usage of
+> uninitialized struct i915_gem_ww_ctx object, so move call to
+> i915_gem_ww_ctx_init() a bit earlier.
+> 
+> Fixes: 15b6c9249870 ("drm/i915: Move i915_vma_lock in the selftests to avoid lock inversion, v3.")
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: <stable@vger.kernel.org> # v5.10+
+> Signed-off-by: Krzysztof Karas <krzysztof.karas@intel.com>
 
-In the long run, we can't have GRAPHICS_VER() checks in display
-code. Either this needs to be converted to DISPLAY_VER(), or, if that's
-not right, we need to add a way to ask for the *feature* support from
-i915/xe core. That means higher level semantics than just checking for
-graphics version.
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-BR,
-Jani.
-
-
-
-
-
->
-> /Juha-Pekka
->
->> >
->> > >
->> > >         return true;
->> > >--
->> > >2.50.1
->> > >
-
---=20
-Jani Nikula, Intel
+Thanks,
+Andi
