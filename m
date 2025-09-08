@@ -2,163 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4356B48E26
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 14:53:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05017B48E35
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Sep 2025 14:53:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78A4310E50D;
-	Mon,  8 Sep 2025 12:53:09 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="bnu3yxtY";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8767910E508;
+	Mon,  8 Sep 2025 12:53:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7532310E50E
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Sep 2025 12:53:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1757335987;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=nqKqSNT26uK0ctF10EJrKeCsL0Ppf+8ee2pPXGgNN7Q=;
- b=bnu3yxtYkcXe0OTHnBYCpKPzE1C2Gc7e/GNrWQNvBTQcyE7ZNNyJdqOtasldnxG/Ucf1Ob
- mfnOV4ty6PYeO/2mHnSGM50ucwErdOUzgHs7Gyc2AXNfGnuuPrzn1O67mBkAk62huBdsfE
- qUmTERAHqyD5VVZ7VjUFjq7HdvFCdMA=
-Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
- [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-639-aHkjO1RRODCix2ra1jxvlg-1; Mon, 08 Sep 2025 08:53:06 -0400
-X-MC-Unique: aHkjO1RRODCix2ra1jxvlg-1
-X-Mimecast-MFC-AGG-ID: aHkjO1RRODCix2ra1jxvlg_1757335985
-Received: by mail-wr1-f72.google.com with SMTP id
- ffacd0b85a97d-3dc0f2fd4acso2884602f8f.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 08 Sep 2025 05:53:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1757335985; x=1757940785;
- h=content-transfer-encoding:in-reply-to:autocrypt:content-language
- :from:references:cc:to:subject:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=nqKqSNT26uK0ctF10EJrKeCsL0Ppf+8ee2pPXGgNN7Q=;
- b=rbocaGAMsG6Dw6CKsoBYKZJJe1ueg5zRb9+eHoAeWf6lsWAImyfWe47SHhtKDmhxs1
- 7j766wjhSRTiHFm5qAQ0uKT0By7sbKIgIh1BoFreQNest2+ratfB9tsroOU9X88u5NvG
- VW6zYxfMh1sP3uvujEkg1nmeCCxY1dGKZVgyHKQuYbJwboMKWllKAam2+POOKW9GBUUF
- Y21WeOkICF5gNFmpDo01L5jse3sd6zFoshOYc6OCN87TignMWi5jMBo2l74Bg9DN5ljk
- yTbyoVU9T5zimHMsbll2VxPIJy3T/CRThVRtxF9xz3/Q1qFJ7tV+HdhDXYiljFiksUBX
- xpUA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWX//uBp+NPgN7h8jMSmvmYBDSk4UAMloubtgQhNncx6C2gkb0Gt35MhGh+q3Q9B6ci1W7xAi5qpUY=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyz2OKbkqaQ6kJ3cUbzECsLXTGMBTdpEDEP5WPIUV9CEFaLMN1X
- mYJ4n1q3wfgj1svkrYE6neQGA1HeIWy+ZPGfRrf7R/udAlN1hFEmaOPC9Y9Qr12Kr4sdTgIX0cC
- VhDWQFZmqn4iX6/waGeKyQY+v9N9w3It/FiHhYkYooxKpxbUnB9Tzf2D4S1O9Hnd3oDt5Ig==
-X-Gm-Gg: ASbGncuQ7wMLvGlZ+zZwBBCIib+VliQ4Kp2HRX68NGyJDlE2Hu+HHuuiHJw9zHGNT7a
- QivpSgroEZZJxnNwsmS2N3VNZQPP/6nC7R1ekAvO/BUQPJQ5CI5ja9D6niWgU2QK/bkQeoKo+mv
- KEsGCz2hORwBJR5Sz8EE5rDmB8EnYvSEY7bw+AP0Wr4kqkixoH+NT/WuhEBE3PPet2YIIPPa8vQ
- WDIdmX+ybUfbwxoTzPrcYvrNmEF1Ccq35wI4NjIgjj6Yl6rb4hzeV/IApDYyNPzMXzmf8J5Ima7
- Y3HEgjdAfmL5/HeFhF2UB04okXOoHZpWTcBC6BLJ8ej/U/igI6yGeHKTvN5Lz+GmlPH/rZ2yJ7x
- kWTs7r9paEXCBUbBAV1MfSY5LdpuIp+ojSbpJQPI8t9oj5BZ0kOE3xov53q1t0yIQ
-X-Received: by 2002:a5d:64e4:0:b0:3df:58c5:efd1 with SMTP id
- ffacd0b85a97d-3e6427d6e15mr6188470f8f.25.1757335984655; 
- Mon, 08 Sep 2025 05:53:04 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFCDxFquotzqnajJLjBsVtEGOKTyR3mfE6vqo6/1C+mdI526t5VUp3r/8RO80kgSz2c6+Q56w==
-X-Received: by 2002:a5d:64e4:0:b0:3df:58c5:efd1 with SMTP id
- ffacd0b85a97d-3e6427d6e15mr6188391f8f.25.1757335984032; 
- Mon, 08 Sep 2025 05:53:04 -0700 (PDT)
-Received: from ?IPV6:2003:d8:2f25:700:d846:15f3:6ca0:8029?
- (p200300d82f250700d84615f36ca08029.dip0.t-ipconnect.de.
- [2003:d8:2f25:700:d846:15f3:6ca0:8029])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3d1007c0dc8sm40030772f8f.53.2025.09.08.05.53.01
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 08 Sep 2025 05:53:03 -0700 (PDT)
-Message-ID: <7ee0b58a-8fe4-46fe-bfef-f04f900f3040@redhat.com>
-Date: Mon, 8 Sep 2025 14:53:00 +0200
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D346B10E508
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Sep 2025 12:53:51 +0000 (UTC)
+Received: from 88-113-67-44.elisa-laajakaista.fi ([88.113.67.44]
+ helo=[192.168.100.137])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
+ id 1uvbNU-00000000cyg-0ld8; Mon, 08 Sep 2025 15:53:49 +0300
+Message-ID: <be60de526115c5d8ee5c2a1db476388a780d5016.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Gustavo Sousa <gustavo.sousa@intel.com>, Luca Coelho
+ <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Mon, 08 Sep 2025 15:53:46 +0300
+In-Reply-To: <175733540458.1838.2290402876913223031@intel.com>
+References: <20250908073734.1180687-1-luciano.coelho@intel.com>
+ <20250908073734.1180687-5-luciano.coelho@intel.com>
+ <175733540458.1838.2290402876913223031@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2 
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 19/37] mm/gup: remove record_subpages()
-To: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-Cc: John Hubbard <jhubbard@nvidia.com>, linux-kernel@vger.kernel.org,
- Alexander Potapenko <glider@google.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Brendan Jackman <jackmanb@google.com>, Christoph Lameter <cl@gentwo.org>,
- Dennis Zhou <dennis@kernel.org>, Dmitry Vyukov <dvyukov@google.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- iommu@lists.linux.dev, io-uring@vger.kernel.org,
- Jason Gunthorpe <jgg@nvidia.com>, Jens Axboe <axboe@kernel.dk>,
- Johannes Weiner <hannes@cmpxchg.org>, kasan-dev@googlegroups.com,
- kvm@vger.kernel.org, "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- Linus Torvalds <torvalds@linux-foundation.org>, linux-arm-kernel@axis.com,
- linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
- linux-ide@vger.kernel.org, linux-kselftest@vger.kernel.org,
- linux-mips@vger.kernel.org, linux-mmc@vger.kernel.org, linux-mm@kvack.org,
- linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
- linux-scsi@vger.kernel.org, Marco Elver <elver@google.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>, Michal Hocko <mhocko@suse.com>,
- Mike Rapoport <rppt@kernel.org>, Muchun Song <muchun.song@linux.dev>,
- netdev@vger.kernel.org, Oscar Salvador <osalvador@suse.de>,
- Peter Xu <peterx@redhat.com>, Robin Murphy <robin.murphy@arm.com>,
- Suren Baghdasaryan <surenb@google.com>, Tejun Heo <tj@kernel.org>,
- virtualization@lists.linux.dev, Vlastimil Babka <vbabka@suse.cz>,
- wireguard@lists.zx2c4.com, x86@kernel.org, Zi Yan <ziy@nvidia.com>
-References: <20250901150359.867252-1-david@redhat.com>
- <20250901150359.867252-20-david@redhat.com>
- <016307ba-427d-4646-8e4d-1ffefd2c1968@nvidia.com>
- <85e760cf-b994-40db-8d13-221feee55c60@redhat.com>
- <727cabec-5ee8-4793-926b-8d78febcd623@lucifer.local>
-From: David Hildenbrand <david@redhat.com>
-Autocrypt: addr=david@redhat.com; keydata=
- xsFNBFXLn5EBEAC+zYvAFJxCBY9Tr1xZgcESmxVNI/0ffzE/ZQOiHJl6mGkmA1R7/uUpiCjJ
- dBrn+lhhOYjjNefFQou6478faXE6o2AhmebqT4KiQoUQFV4R7y1KMEKoSyy8hQaK1umALTdL
- QZLQMzNE74ap+GDK0wnacPQFpcG1AE9RMq3aeErY5tujekBS32jfC/7AnH7I0v1v1TbbK3Gp
- XNeiN4QroO+5qaSr0ID2sz5jtBLRb15RMre27E1ImpaIv2Jw8NJgW0k/D1RyKCwaTsgRdwuK
- Kx/Y91XuSBdz0uOyU/S8kM1+ag0wvsGlpBVxRR/xw/E8M7TEwuCZQArqqTCmkG6HGcXFT0V9
- PXFNNgV5jXMQRwU0O/ztJIQqsE5LsUomE//bLwzj9IVsaQpKDqW6TAPjcdBDPLHvriq7kGjt
- WhVhdl0qEYB8lkBEU7V2Yb+SYhmhpDrti9Fq1EsmhiHSkxJcGREoMK/63r9WLZYI3+4W2rAc
- UucZa4OT27U5ZISjNg3Ev0rxU5UH2/pT4wJCfxwocmqaRr6UYmrtZmND89X0KigoFD/XSeVv
- jwBRNjPAubK9/k5NoRrYqztM9W6sJqrH8+UWZ1Idd/DdmogJh0gNC0+N42Za9yBRURfIdKSb
- B3JfpUqcWwE7vUaYrHG1nw54pLUoPG6sAA7Mehl3nd4pZUALHwARAQABzSREYXZpZCBIaWxk
- ZW5icmFuZCA8ZGF2aWRAcmVkaGF0LmNvbT7CwZoEEwEIAEQCGwMCF4ACGQEFCwkIBwICIgIG
- FQoJCAsCBBYCAwECHgcWIQQb2cqtc1xMOkYN/MpN3hD3AP+DWgUCaJzangUJJlgIpAAKCRBN
- 3hD3AP+DWhAxD/9wcL0A+2rtaAmutaKTfxhTP0b4AAp1r/eLxjrbfbCCmh4pqzBhmSX/4z11
- opn2KqcOsueRF1t2ENLOWzQu3Roiny2HOU7DajqB4dm1BVMaXQya5ae2ghzlJN9SIoopTWlR
- 0Af3hPj5E2PYvQhlcqeoehKlBo9rROJv/rjmr2x0yOM8qeTroH/ZzNlCtJ56AsE6Tvl+r7cW
- 3x7/Jq5WvWeudKrhFh7/yQ7eRvHCjd9bBrZTlgAfiHmX9AnCCPRPpNGNedV9Yty2Jnxhfmbv
- Pw37LA/jef8zlCDyUh2KCU1xVEOWqg15o1RtTyGV1nXV2O/mfuQJud5vIgzBvHhypc3p6VZJ
- lEf8YmT+Ol5P7SfCs5/uGdWUYQEMqOlg6w9R4Pe8d+mk8KGvfE9/zTwGg0nRgKqlQXrWRERv
- cuEwQbridlPAoQHrFWtwpgYMXx2TaZ3sihcIPo9uU5eBs0rf4mOERY75SK+Ekayv2ucTfjxr
- Kf014py2aoRJHuvy85ee/zIyLmve5hngZTTe3Wg3TInT9UTFzTPhItam6dZ1xqdTGHZYGU0O
- otRHcwLGt470grdiob6PfVTXoHlBvkWRadMhSuG4RORCDpq89vu5QralFNIf3EysNohoFy2A
- LYg2/D53xbU/aa4DDzBb5b1Rkg/udO1gZocVQWrDh6I2K3+cCs7BTQRVy5+RARAA59fefSDR
- 9nMGCb9LbMX+TFAoIQo/wgP5XPyzLYakO+94GrgfZjfhdaxPXMsl2+o8jhp/hlIzG56taNdt
- VZtPp3ih1AgbR8rHgXw1xwOpuAd5lE1qNd54ndHuADO9a9A0vPimIes78Hi1/yy+ZEEvRkHk
- /kDa6F3AtTc1m4rbbOk2fiKzzsE9YXweFjQvl9p+AMw6qd/iC4lUk9g0+FQXNdRs+o4o6Qvy
- iOQJfGQ4UcBuOy1IrkJrd8qq5jet1fcM2j4QvsW8CLDWZS1L7kZ5gT5EycMKxUWb8LuRjxzZ
- 3QY1aQH2kkzn6acigU3HLtgFyV1gBNV44ehjgvJpRY2cC8VhanTx0dZ9mj1YKIky5N+C0f21
- zvntBqcxV0+3p8MrxRRcgEtDZNav+xAoT3G0W4SahAaUTWXpsZoOecwtxi74CyneQNPTDjNg
- azHmvpdBVEfj7k3p4dmJp5i0U66Onmf6mMFpArvBRSMOKU9DlAzMi4IvhiNWjKVaIE2Se9BY
- FdKVAJaZq85P2y20ZBd08ILnKcj7XKZkLU5FkoA0udEBvQ0f9QLNyyy3DZMCQWcwRuj1m73D
- sq8DEFBdZ5eEkj1dCyx+t/ga6x2rHyc8Sl86oK1tvAkwBNsfKou3v+jP/l14a7DGBvrmlYjO
- 59o3t6inu6H7pt7OL6u6BQj7DoMAEQEAAcLBfAQYAQgAJgIbDBYhBBvZyq1zXEw6Rg38yk3e
- EPcA/4NaBQJonNqrBQkmWAihAAoJEE3eEPcA/4NaKtMQALAJ8PzprBEXbXcEXwDKQu+P/vts
- IfUb1UNMfMV76BicGa5NCZnJNQASDP/+bFg6O3gx5NbhHHPeaWz/VxlOmYHokHodOvtL0WCC
- 8A5PEP8tOk6029Z+J+xUcMrJClNVFpzVvOpb1lCbhjwAV465Hy+NUSbbUiRxdzNQtLtgZzOV
- Zw7jxUCs4UUZLQTCuBpFgb15bBxYZ/BL9MbzxPxvfUQIPbnzQMcqtpUs21CMK2PdfCh5c4gS
- sDci6D5/ZIBw94UQWmGpM/O1ilGXde2ZzzGYl64glmccD8e87OnEgKnH3FbnJnT4iJchtSvx
- yJNi1+t0+qDti4m88+/9IuPqCKb6Stl+s2dnLtJNrjXBGJtsQG/sRpqsJz5x1/2nPJSRMsx9
- 5YfqbdrJSOFXDzZ8/r82HgQEtUvlSXNaXCa95ez0UkOG7+bDm2b3s0XahBQeLVCH0mw3RAQg
- r7xDAYKIrAwfHHmMTnBQDPJwVqxJjVNr7yBic4yfzVWGCGNE4DnOW0vcIeoyhy9vnIa3w1uZ
- 3iyY2Nsd7JxfKu1PRhCGwXzRw5TlfEsoRI7V9A8isUCoqE2Dzh3FvYHVeX4Us+bRL/oqareJ
- CIFqgYMyvHj7Q06kTKmauOe4Nf0l0qEkIuIzfoLJ3qr5UyXc2hLtWyT9Ir+lYlX9efqh7mOY
- qIws/H2t
-In-Reply-To: <727cabec-5ee8-4793-926b-8d78febcd623@lucifer.local>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: PyDTm14S-XKt6ObuemaP98pNcF2JG4UWuVbe83gLXzc_1757335985
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-25) on farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP autolearn=ham autolearn_force=no version=4.0.1
+Subject: Re: [PATCH 4/6] drm/i915/wm: convert x/y-tiling bools to an enum
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -174,128 +50,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 08.09.25 14:25, Lorenzo Stoakes wrote:
-> On Sat, Sep 06, 2025 at 08:56:48AM +0200, David Hildenbrand wrote:
->> On 06.09.25 03:05, John Hubbard wrote:
->>>
->>> Probably a similar sentiment as Lorenzo here...the above diffs make the code
->>> *worse* to read. In fact, I recall adding record_subpages() here long ago,
->>> specifically to help clarify what was going on.
->>
->> Well, there is a lot I dislike about record_subpages() to go back there.
->> Starting with "as Willy keeps explaining, the concept of subpages do
->> not exist and ending with "why do we fill out the array even on failure".
-> 
-> Yes
-> 
->>
->> :)
->>
->>>
->>> Now it's been returned to it's original, cryptic form.
->>>
->>
->> The code in the caller was so uncryptic that both me and Lorenzo missed
->> that magical addition. :P
-> 
-> :'(
-> 
->>
->>> Just my take on it, for whatever that's worth. :)
->>
->> As always, appreciated.
->>
->> I could of course keep the simple loop in some "record_folio_pages"
->> function and clean up what I dislike about record_subpages().
->>
->> But I much rather want the call chain to be cleaned up instead, if possible.
->>
->>
->> Roughly, what I am thinking (limiting it to pte+pmd case) about is the following:
-> 
-> I cannot get the below to apply even with the original patch here applied + fix.
-> 
-> It looks like (in mm-new :) commit e73f43a66d5f ("mm/gup: remove dead pgmap
-> refcounting code") by Alastair has conflicted here, but even then I can't make
-> it apply, with/without your fix...!
+On Mon, 2025-09-08 at 09:43 -0300, Gustavo Sousa wrote:
+> Quoting Luca Coelho (2025-09-08 04:35:33-03:00)
+> > There are currently two booleans to define three tiling modes, which
+> > is bad practice because it allows representing an invalid mode.  In
+> > order to simplify this, convert these two booleans into one
+> > enumeration with three possible tiling modes.
+> >=20
+> > Additionally, introduce the concept of Y "family" of tiling, which
+> > groups Y, Yf and 4 tiling, since they're effectively treated in the
+> > same way in the watermark calculations.  Describe the grouping in the
+> > enumeration definition.
+> >=20
+> > Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+> > ---
+> > drivers/gpu/drm/i915/display/skl_watermark.c | 35 ++++++++++++++------
+> > 1 file changed, 24 insertions(+), 11 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu=
+/drm/i915/display/skl_watermark.c
+> > index 0ce3420a919e..dd4bed02c3c0 100644
+> > --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> > +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> > @@ -53,9 +53,16 @@ struct intel_dbuf_state {
+> > #define intel_atomic_get_new_dbuf_state(state) \
+> >         to_intel_dbuf_state(intel_atomic_get_new_global_obj_state(state=
+, &to_intel_display(state)->dbuf.obj))
+> >=20
+> > +/* Tiling mode groups relevant to WM calculations */
+> > +enum wm_tiling_mode {
+> > +        WM_TILING_LINEAR,
+> > +        WM_TILING_X_TILED,        /* mostly like linear */
+> > +        WM_TILING_Y_FAMILY,        /* includes Y, Yf and 4 tiling */
+> > +};
+> > +
+> > /* Stores plane specific WM parameters */
+> > struct skl_wm_params {
+> > -        bool x_tiled, y_tiled;
+> > +        enum wm_tiling_mode tiling;
+> >         bool rc_surface;
+> >         bool is_planar;
+> >         u32 width;
+> > @@ -618,7 +625,8 @@ static unsigned int skl_wm_latency(struct intel_dis=
+play *display, int level,
+> >              display->platform.cometlake) && skl_watermark_ipc_enabled(=
+display))
+> >                 latency +=3D 4;
+> >=20
+> > -        if (skl_needs_memory_bw_wa(display) && wp && wp->x_tiled)
+> > +        if (skl_needs_memory_bw_wa(display) &&
+> > +            wp && wp->tiling =3D=3D WM_TILING_X_TILED)
+> >                 latency +=3D 15;
+> >=20
+> >         return latency;
+> > @@ -1674,9 +1682,14 @@ skl_compute_wm_params(const struct intel_crtc_st=
+ate *crtc_state,
+> >                 return -EINVAL;
+> >         }
+> >=20
+> > -        wp->x_tiled =3D modifier =3D=3D I915_FORMAT_MOD_X_TILED;
+> > -        wp->y_tiled =3D modifier !=3D I915_FORMAT_MOD_X_TILED &&
+> > -                intel_fb_is_tiled_modifier(modifier);
+> > +        if (modifier =3D=3D I915_FORMAT_MOD_X_TILED)
+> > +                wp->tiling =3D WM_TILING_X_TILED;
+> > +        else if (modifier !=3D I915_FORMAT_MOD_X_TILED &&
+> > +                 intel_fb_is_tiled_modifier(modifier))
+> > +                wp->tiling =3D WM_TILING_Y_FAMILY;
+> > +        else
+> > +                wp->tiling =3D WM_TILING_LINEAR;
+> > +
+>=20
+> Hm...  I feel like x_tiled and y_tiled, just like other members of
+> struct skl_wm_params, are more about represeting *properties* of the
+> framebuffer/plane that are relevant to the algorithm rather than the
+> tiling mode itself.  Invalid combinations of values would reflect a
+> problem outside of the watermark calculation.  So, I'm not sure we
+> really need an enumeration here.  If, in the future, we end up needing
+> to know a tiling-related property that could be common to different
+> tiling modes, the enumeration would not work for us.
 
-To be clear: it was never intended to be applied, because it wouldn't 
-even compile in the current form.
+This was mainly to make some sense out of the different tiling modes
+that affect watermark calculations.  If you check newer bspecs, there's
+no mention of Y-tiling anymore, only 4-tiling, which superseeded y-
+tiling.  It was quite confusing to figure this all out, not clear from
+the code at all.  Additionally, in the watermark code, there has been
+mention of linear, which sort of included x-tiling as well.
 
-It was based on this nth_page submission + fix.
+With the enumeration, we not only remove the invalid combinations (e.g.
+x-tiled and y-tiled both being set to true), but also make it clear
+that these are all different values for the "tiling" attribute for
+watermark calculations.
 
 
-[...]
+> On the other hand, we do reduce the number of members in struct
+> skl_wm_params.
+>=20
+> So, I have mixed feelings about this change.
 
->>   }
->>   static int gup_fast_pud_range(p4d_t *p4dp, p4d_t p4d, unsigned long addr,
-> 
-> OK I guess you intentionally left the rest as a TODO :)
-> 
-> So I'll wait for you to post it before reviewing in-depth.
-> 
-> This generally LGTM as an approach, getting rid of *nr is important that's
-> really horrible.
+It's not only the reduction of members, but also clarity in the code,
+IMHO and avoidance of impossible combinations.  With one of the next
+patches I convert some of this stuff into a switch-case, so it becomes
+clearer to see how each one is handled.
 
-Yes. Expect a cleanup in that direction soonish (again, either from me 
-or someone else I poke)
-
-> 
->> --
->> 2.50.1
->>
->>
->>
->> Oh, I might even have found a bug moving away from that questionable
->> "ret==1 means success" handling in gup_fast_pte_range()? Will
->> have to double-check, but likely the following is the right thing to do.
->>
->>
->>
->>  From 8f48b25ef93e7ef98611fd58ec89384ad5171782 Mon Sep 17 00:00:00 2001
->> From: David Hildenbrand <david@redhat.com>
->> Date: Sat, 6 Sep 2025 08:46:45 +0200
->> Subject: [PATCH] mm/gup: fix handling of errors from
->>   arch_make_folio_accessible() in follow_page_pte()
->>
->> In case we call arch_make_folio_accessible() and it fails, we would
->> incorrectly return a value that is "!= 0" to the caller, indicating that
->> we pinned all requested pages and that the caller can keep going.
->>
->> follow_page_pte() is not supposed to return error values, but instead
->> 0 on failure and 1 on success.
->>
->> That is of course wrong, because the caller will just keep going pinning
->> more pages. If we happen to pin a page afterwards, we're in trouble,
->> because we essentially skipped some pages.
->>
->> Fixes: f28d43636d6f ("mm/gup/writeback: add callbacks for inaccessible pages")
->> Signed-off-by: David Hildenbrand <david@redhat.com>
->> ---
->>   mm/gup.c | 3 +--
->>   1 file changed, 1 insertion(+), 2 deletions(-)
->>
->> diff --git a/mm/gup.c b/mm/gup.c
->> index 22420f2069ee1..cff226ec0ee7d 100644
->> --- a/mm/gup.c
->> +++ b/mm/gup.c
->> @@ -2908,8 +2908,7 @@ static int gup_fast_pte_range(pmd_t pmd, pmd_t *pmdp, unsigned long addr,
->>   		 * details.
->>   		 */
->>   		if (flags & FOLL_PIN) {
->> -			ret = arch_make_folio_accessible(folio);
->> -			if (ret) {
->> +			if (arch_make_folio_accessible(folio)) {
-> 
-> Oh Lord above. Lol. Yikes.
-> 
-> Yeah I think your fix is valid...
-
-I sent it out earlier today. Fortunately that function shouldn't usually 
-really fail IIUC.
-
--- 
-Cheers
-
-David / dhildenb
-
+--
+Cheers,
+Luca.
