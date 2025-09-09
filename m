@@ -2,159 +2,185 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDE0FB4A218
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Sep 2025 08:22:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 732F7B4A37E
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Sep 2025 09:29:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9EC410E621;
-	Tue,  9 Sep 2025 06:22:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93EA410E638;
+	Tue,  9 Sep 2025 07:29:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="3FDO3d86";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W3TIfuhI";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on2069.outbound.protection.outlook.com [40.107.102.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F0F810E61D;
- Tue,  9 Sep 2025 06:22:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9546C10E638
+ for <intel-gfx@lists.freedesktop.org>; Tue,  9 Sep 2025 07:29:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1757402946; x=1788938946;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=bHRQOgZ0TtbzugZGl1NaP76eCYErf6HArDO7Kmz7Qms=;
+ b=W3TIfuhIhnyuVIsGU7rMMQCfUhgGfjH6nQiLQ3KdNJeJ4BEK/F8Yr+0v
+ +L7EF5QoJhZpKbzWcT3spdK8z/u9zW/XIcAXhpFSngsNn2cut8ip8D5ch
+ lJ0P4bNdd+DpxxJOKu3eSbBHjkeEwQ61sXrcPJNQvGu1DTvPbFpFnA/dr
+ jPEzQ5VVVnodru80lIku497YDjZQzrZJJkZ+vetlBo2cD9BbjsyF3IFHW
+ 0SNjpbImhr6QDpKQef8W7F8TbMy+5U7tAeWYnCVYLUgUrLLtD9Qw/qoW9
+ 2u2yWGP35xIWw3s2kDZ9GAGFk7DJGksUOHqF3hN7VAJPtj18Qhfa4I76w w==;
+X-CSE-ConnectionGUID: /xg8BwnGRmiC+sPbRnCGjg==
+X-CSE-MsgGUID: 7yUIJiQCTXC9oshRssvGuA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11547"; a="62304040"
+X-IronPort-AV: E=Sophos;i="6.18,250,1751266800"; d="scan'208";a="62304040"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2025 00:29:05 -0700
+X-CSE-ConnectionGUID: qWJix9m3TlevVAf5SUXVgA==
+X-CSE-MsgGUID: xV57VvxFTQe5XhDt1NZ37Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,250,1751266800"; d="scan'208";a="178234356"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2025 00:29:05 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Tue, 9 Sep 2025 00:29:04 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17 via Frontend Transport; Tue, 9 Sep 2025 00:29:04 -0700
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (40.107.95.89) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Tue, 9 Sep 2025 00:29:04 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jFI6vym/4x4fUu2cjsAkYmwe9O7f9A0w7fr/oGgOEdN+1tyo4zj82uJEjJ3lmA2IrEzym5qLoL4ffHTzsJSdGAaR9mvMdbMflTm2szZJ/F4kIr5ekspXf1LH8b8yYIKLmWkwIVoG3xHv1B04MKX+3SpfiiggR+AedLefLttF5UHf1fmtvpgCdqctYtPrNLbdsv0uyWZsEEqUcYWpDJPFSSde/BCZ2nxLJqmXpI18xA55/BU+2rj1sRk2T5dHeImx7AQvy7gc9j8bDjy0EwsgEK3JRFzgT9xatcTS6vyq9iUNKYKAwYzkl7iLKpAh9V6jDumEXIWnKc4xwYW43cRPTg==
+ b=R6Nr5zIvhEMVF7RPDvAdvBqYldC6lvhnzeGjplCxVPe8SyJLSc45mF+Hyl8nruE0XNTypJrBU+6S6tSMCwdu5LoCIxF2L4WMnQAOoCSM5KxGWMb1Bawnyq2+uHCb4JzW7cDs3WtoLyU8BeqlFu2tRMAYYs7VjzDZBPrd9/FmH3N+KKFuu+iNo+agugAVXjDwk1Dq6oHjxJPpbzjMy1CKMv6H1eY2vzwXHGputoNWlDwN2YCOXnUz2sCGiKWVAoC5e9fauuglnYMC/WSh3ZOisigSHXwRKCZLQpOIVAyoPMnG1Gtl8wILLQDBl4Xhr+3sWjcCYkBqrBqkFmQj688P2w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tVF2ZrFRm25jha5Xm3qlXVaAjZIDSkZjVbumTHoKOmg=;
- b=bAMLM6BHTLpQJF/I5ch/A7inXzBKacrpB2ikAQWwFJM8FNh1u+S0tRPTcFR4F1ordDTTqQvsCWolDovyCeC1ELCoUDcqxath9VXnx7CJnJ/1qIrMWJp6Vi0SnO8BMWHcTlVtbFWQvXF/F834Y67nHojnXCDAg9mT7KODekFiinUeIVdxak4fwCDloBOGINYnBmxeNSjN8Ew0V9P/9wA4qXUdXVYIlPi/29WeC2j6trWLyZNhcaucP6/P63WA/0vSrf0ohTbEXBMqpOV4KoIxRL4BetWD2r6+AHTimTYvRTmvSlpdNIssoV4Lz4X2TrTi7OeQOK2A+Md3m0WSYGZCiA==
+ bh=BGAjZEHjCd+YTZrORPPa0JvaiGpyewkTpb6bJJMG154=;
+ b=M+u0TSX+Xe73sX8vXsHsZay1P0rbMIeta7sVoboRfECdiN/YVGJSoNYJEzfoiWL3A9UrXSxqlRWTmFSOs0xx9nVK/9iaP6naYOBxDL2mT2bWbsTLfZ3PMG+OFjTDyXu4xWbGv+g9bq9tsFjknvUPCFGuvCAYc4TMlrURB/K+YHyeBqWyGkghkyIaBtyxGy0JxKRwxC1mZxQ++aJf8s96Oy6K1RHHMNmY5/u+/GG7QJaGM5TaHH9tDtvMQRqv5ChS11ncGOaGrjkjJqBWae6HX+wgGsqpQP145GcO5j49goV+0HqQkDMd9AvTBKATdUMmXvBF8I1EWTEkOTUDv2No2Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tVF2ZrFRm25jha5Xm3qlXVaAjZIDSkZjVbumTHoKOmg=;
- b=3FDO3d86czlGJ9L4QKknmO3NgLZTVeba9PQhQoYDSBUeXqtdEElkgyC5biC/pqq5qppctIH0RSQQA8yrgKSvPSV9Bsv9HQDKB240gYFVuNBePFxtzQC3EV+g/Wrp7JPMSSqBv/xOX4/uzWW96C45ilKRklisbmwlhsps6ltB1Bw=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH8PR12MB7301.namprd12.prod.outlook.com (2603:10b6:510:222::12)
- by DM3PR12MB9352.namprd12.prod.outlook.com (2603:10b6:0:4a::20) with
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by PH7PR11MB6795.namprd11.prod.outlook.com (2603:10b6:510:1b9::10) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.22; Tue, 9 Sep
- 2025 06:22:27 +0000
-Received: from PH8PR12MB7301.namprd12.prod.outlook.com
- ([fe80::a929:e8eb:ef22:6350]) by PH8PR12MB7301.namprd12.prod.outlook.com
- ([fe80::a929:e8eb:ef22:6350%6]) with mapi id 15.20.9094.021; Tue, 9 Sep 2025
- 06:22:27 +0000
-Message-ID: <a31fb1e1-517f-41e7-9a13-5518d66f971d@amd.com>
-Date: Tue, 9 Sep 2025 11:52:18 +0530
+ 2025 07:29:02 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839%2]) with mapi id 15.20.9094.021; Tue, 9 Sep 2025
+ 07:29:02 +0000
+Message-ID: <306c65e6-1762-4b5d-8a54-a983cdeb60a2@intel.com>
+Date: Tue, 9 Sep 2025 12:58:55 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/2] drm/buddy: Optimize free block management with RB
- tree
-From: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
-To: Peter Zijlstra <peterz@infradead.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Matthew Auld <matthew.auld@intel.com>
-Cc: christian.koenig@amd.com, matthew.auld@intel.com,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org,
- alexander.deucher@amd.com
-References: <20250901185604.2222-1-Arunpravin.PaneerSelvam@amd.com>
- <20250901194151.GJ4067720@noisy.programming.kicks-ass.net>
- <5f999a32-db26-4964-8152-ac06da8beea4@amd.com>
+Subject: Re: [PATCH] drm/i915/xe3: Restrict PTL intel_encoder_is_c10phy() to
+ only PHY A
+To: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
+ <intel-gfx@lists.freedesktop.org>
+References: <20250909050228.4106539-1-dnyaneshwar.bhadane@intel.com>
 Content-Language: en-US
-In-Reply-To: <5f999a32-db26-4964-8152-ac06da8beea4@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250909050228.4106539-1-dnyaneshwar.bhadane@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PN4PR01CA0081.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:26d::10) To PH8PR12MB7301.namprd12.prod.outlook.com
- (2603:10b6:510:222::12)
+X-ClientProxiedBy: MA0PR01CA0013.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:80::13) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR12MB7301:EE_|DM3PR12MB9352:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8a459037-a612-49fb-0b04-08ddef693f3b
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|PH7PR11MB6795:EE_
+X-MS-Office365-Filtering-Correlation-Id: 250511b6-bc05-41b4-4194-08ddef728c36
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?UGxLLzNiZE5Oc3gya0w2WWp5bE51MVpTc3ZEV0puU1Eyb2FQejVrUzUzREd3?=
- =?utf-8?B?Zng1TmZub2dZWHo4YXhCTXc1aGZudTdEVkF2VW1ObHRuaXRERFB2N2xZekFy?=
- =?utf-8?B?emhhSkFkZ3p0VWNXM2JkLzRLT205TzRvdHVHdk9jdWFGQ0sxQTRVKytJOEJo?=
- =?utf-8?B?K3VEeWgybnRvOFovUWRUckVpSmFpenljcUhsMmZ1cWhhNDBqVjhOclhxVU41?=
- =?utf-8?B?QzFVZkNxYnBYYzM2Zkl4eGxzMlZVaVVybkJWSHdZcHJCVTNhZ3J6bGY2RjRC?=
- =?utf-8?B?L2d5WCsvUDNHS2hUMng4OGhIanR2aHZiYzlaYXRxTmxSbDhNVm9lOVlYTFdD?=
- =?utf-8?B?QWx0c3FhaXJpMGJNdjZyNmZ3dTVMYS9yb2txYkxCL2RUSGpLZzhtZnNHbEpO?=
- =?utf-8?B?bjVvVUwzOXB0WjJRVTZEcGg3blVuWnNDMy9xTVRnTVhRTytiMXpwaitEbllC?=
- =?utf-8?B?MktDN3pTWk9tTE11STg5OUdZM3RSb0ZBdFFDd3RwNEUvdy9aUUxSb1pPckRs?=
- =?utf-8?B?RlNjNDBPZ3lkRHozclFMaWZUbk5EQitYWTBqc2c1aWRPMkdPaDVUUGJWRER5?=
- =?utf-8?B?QUk2TDc3UUpqZUZYNEVFbU95a0cwQlV1OGtOanMvYUpOUFBSUk9DNnFXYUND?=
- =?utf-8?B?dDdjTktreFRHdEpkVjhWQ1ZiR2NaMGJ6cEw4UkZjTUlOTHFRSUhoY0YxZ3VX?=
- =?utf-8?B?cDBNL2xpREhyODB3RjBQdUJLT0tKRlhDVXZrclMrYlp0NEY1a3MvcFlZN3Rz?=
- =?utf-8?B?ejJGWDBIRXRBUlRnRERsWTZ1ei9lcnAzYzhqQjJkc3BRN1dwUEpWQzIzME55?=
- =?utf-8?B?bWZRajBpR2QzQ05zNDREbXloZU90Zit2ZGNqQUtKb3djMU5GSmVPZ1E2bk9B?=
- =?utf-8?B?NWhPdEV4VVB4ampuT2laQTJFbEpwWDRtUm5CK1l4aHBVcGNyVHZzbFdJODRQ?=
- =?utf-8?B?bEdJcStYN0o5U1JaUXZRbVZKVEUxRlNSUXZkS1VMK3hqSFlIZCs3SWVvSi93?=
- =?utf-8?B?MXdtZEV4SEo3K3lVRDF2b2NJaS8vWEFYaXpZQ1o5dzJvMm9oTUJVa2FHN01Y?=
- =?utf-8?B?bW1VNFVmMExRV2RKZ09ROWpXQmpMeWR5TG92MjJYTjFXcC8wazJWYTVUM0Jh?=
- =?utf-8?B?T0FrR3M0eWVZVzUvcU9TUERwYkNkYkdldWVack9XaTM1bmQ3SmFySkNxY296?=
- =?utf-8?B?Y2dxZlhRNTJlcnZ2RjFEUTNFNEVMcHl6MWpBNmVWQktla2dvaGlnQ3p5bHZs?=
- =?utf-8?B?L21wb0F6dmo2QWt0dk0wL1p1dGk3aGtaSmpEeU9nMlBhRXMrcS93aHpJN0RV?=
- =?utf-8?B?czUxbE9rRGNjTC9xclIzQlI5d0ZOdmxzdVNYbUxzZW1KQkw2dlhvNk1ETDFN?=
- =?utf-8?B?MS8zMlp3aDNDTlFQekhobkNZbE1hbmo5WFBRazdKZCtnUURGdFllTjVtSkh0?=
- =?utf-8?B?RzlmVkpGWGJ4MHRpd2RjVTJ5ekNIUUhCTXV0YkRxY0RZNHJ2WGc4NkxJTjVl?=
- =?utf-8?B?TWxyRFVjN3VIVk5OUlQ3b1E5c3BXVWU2ZndmWW9uK0RVYzNVbjNCNlFqSlpu?=
- =?utf-8?B?ZTN4VWZ4M2ZpYy9CbCtQZXNKaDZoRTRCWHdzNnhxMEoyTU5ZNS9pbGsrWjBm?=
- =?utf-8?B?dUlTSWZNR2pDaU1zOTVtNDQ3TXpsMC9uZUNPMlJyMkRocG1mSy9udmluUjhz?=
- =?utf-8?B?Z0xaNjNjQjdRRGVod084RlJ5SEN5UjArNmUxa3RyWmNWaW82T1MxSWFDN25U?=
- =?utf-8?B?U0tydWszRFJDcGxoUk04L0pNKzdQemVhLzczc29uQzZOVVMzanZIaHBKYUZG?=
- =?utf-8?B?bXNqZ3VyY1VpSkF6YVU5ZzgvUk9YUy9RcnpvTk8vRitlbUxqRy9nT0ZhOTNp?=
- =?utf-8?B?anRCOWhiYmlpbks2ZmVvKzVZbFNIZGcyTzZlVGJGOVhyM21ZZXpPZitFZU1D?=
- =?utf-8?Q?sssKacIEZgk=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?MWE1cGs0dWlZMjVVOS9uUHNaV2p2NTIvQkwwU2c3ejRoNjNZWjVISUtRckJq?=
+ =?utf-8?B?V2lpYTBINDl1RmJ3RFhRL041ZXRXSFhrR2VhaFNzbGx0azZkUkZ2ZGFseXN3?=
+ =?utf-8?B?cVYxZnE0QWplL3Bad3FSZGF6eWxhYk1rU3ZTN1pURFB3eWhYQXdwS0wwL3Ri?=
+ =?utf-8?B?N2dCcEtMOUNHTWtWN0x6WWtWd08zOU1yZ21CZjFoYlNVNVAwNXpTSGhlRzFJ?=
+ =?utf-8?B?WkNMYmNNaFMzOEZlVC9BeEJWbUxzeXVyb0ZJUHJqL1kybmoweUFVa0txMThW?=
+ =?utf-8?B?TUdYaHEzVWQ0TGVWeFB3elFYaWxjcG9naUhIVU1oYlVNazBxVUE2MEMyb25K?=
+ =?utf-8?B?WnRsbTZPZXE5TUYyZlJvNStNc0syU1hZZjBMK3k4cnNiVTRCOTdCUjdzbDZY?=
+ =?utf-8?B?UmQ0WWxFU2tkYUlVclp3SnhINHd3WitINWtyT1VqalNFQ0ZvVzk1U1JNcWIy?=
+ =?utf-8?B?elhabG15TVlPVGVzSU1uTnV6L244emljRlB5ZVdoWEJpUDdXUDROQnpnWkZ1?=
+ =?utf-8?B?TUcvU0dCQU1WbExyd2VrckJIREVCSEYxWmxKM1hsTGFkR3M4bnhwUTFHbkli?=
+ =?utf-8?B?REJhdE9wL2FVRTBkc2QrWVJwcXZnTVJPSi9xUFZJN2ExamNRdmE5eDVSK3M3?=
+ =?utf-8?B?Z2VYZWtJdm1tMXlKUmV6WFhucTVTc2wwV1Ftcis2QU9DMHFybExVbTlCazBl?=
+ =?utf-8?B?cWphWGlhcnRBb05Wd21xcFR5UHNCMEVyZHJoNXIwZmlydkhLUWUzUjdZaHpY?=
+ =?utf-8?B?MmhibG9YazB4cVlvR1N2enJvSTdsaG1rNnhDU3FJS2hxZkptSERvbzY5WFdH?=
+ =?utf-8?B?RVRpc01BT3A4aEg1TjJ3M3BjaG91aVJqNHVCNnRWbk1aZ0hPaXZMNUxSUzFJ?=
+ =?utf-8?B?UFlsVC9qS29ZZEh3QlE1U2M1Sno4Z3c5MkNqR29OdW1LL1hBbGlDamozenNM?=
+ =?utf-8?B?M3daZkRnY0EwcGVyNWtldnJtZEEyc3psUEtVamZycjFxL3dvZk9wOEk4QzMv?=
+ =?utf-8?B?WjN6aXdJU3BPSGI3azNURmFhYmNMQVFmRGZ5R3ZlQ1kzVUpmM1FlV1FQWlZC?=
+ =?utf-8?B?SkxHeGJHN2h6L0Q0ZmZVOTZ3WTdrZ2hucW53VTZ2a2pZUy8xLzRFY2tJR0hr?=
+ =?utf-8?B?eUlUY3NuRm82d0FBRE5pUXdWWGc5RkdUTXhISzlRWUw5eU1OZUp5SFowWWN2?=
+ =?utf-8?B?bk45RjA3M0cxOWVRRTlSOHZuN0VGVFVEMlorT0R5NGNvQ3d5V1FVQk9yaFVP?=
+ =?utf-8?B?eWxHSkJaKy9pdlU0VTFLQnAySUduSXFWMHNTWitDdmtLR0VTMXRhQktRVDhN?=
+ =?utf-8?B?SEt5ekMzeStNME93ejhMeTZhZXJCbE5DVlVwTkRma2ExY00reHdpaVoxNFZD?=
+ =?utf-8?B?Q200c3dhNkdvSEQrbW5oeVIydGZEbFhRZzZUZnUrNUppSnpVV1MvSkNLM3hv?=
+ =?utf-8?B?TjZTMnJxelZuK3ZyUUFWNVROSHVUNk1RcDFWZjFhclVQUEFoTndTNC9odjY3?=
+ =?utf-8?B?TDliOXdtV3hnbUJxR2tGVGJlUlJ4RkYzV0NHUkxTZHpVMDhBOWs4aW1LMFdW?=
+ =?utf-8?B?UmtYMXVncjFDMXRTTTExekd3WXlabm1sTWlXMEo0RnBpNVBpRUJIbit3Yk9j?=
+ =?utf-8?B?VnlLYmxCOXRPYjZsbGZmajRPcUI1Z0FXQk9kdFpKSkc3WnpxOGRpYzU4dGZP?=
+ =?utf-8?B?T1hvK3BYMWltdjRVeDQ1RHd2VlcxZzR2N2VWRTRkZ29FUWhkek9DRVB5Sml3?=
+ =?utf-8?B?RDJpOW1rSFJJWnlyb1M2RXBXYVo2eTBxMFdVZnRaUVhNczZ2cDJJMEN0T0dK?=
+ =?utf-8?B?Z1FseEVOQjhxU0RFaHkvUGhkQi9PUE9sRURKc1pleURpalZ6elRyaWxRcFEr?=
+ =?utf-8?B?Um1aT3duVzRweThCTzhkVW1oSndjYVIzYm5VRXl4L1Z5QUNFc0Q2bGJUOGpi?=
+ =?utf-8?Q?ySN0o0ojYlI=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR12MB7301.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cm1wY3NScXM5VVd4Z1ZyY0tXdCtNUjZyS1dPMjB0S2FUak5qMHlpUkJtVGha?=
- =?utf-8?B?MnQxUmFaUWFMRlpvT0x4TGx4WHRhUzFsYWNTTW5QVUtmNmF5ZEhZN3E1aHZT?=
- =?utf-8?B?QWVxWVY0eml2Ynh2elFPNVorOEtDQkd0Z2lWNlpxWndLQWt4b0YyQTNxNWl2?=
- =?utf-8?B?UU9zZmtIR2drUEpZbXZyQkpxVXBnUnVhVjBMZnVubFNsSkwxdWpNWDBaK3pX?=
- =?utf-8?B?eGlqWlVsbWNkQ2ZSNExDZG5yZDR1cmpUR1UzeWJHUWhQRWRxMi8yQ2s2Q3JV?=
- =?utf-8?B?UndHYVZmTGVORm9zc2xFcjB4KzR5cXBGWnhSU1FXTGlSblZ6Qy9Zd0ZVVmRz?=
- =?utf-8?B?S3pPcHZXaUV6WG9Ic0YxL0xyUWpJeFhMVWFyNnhVdThDYW82K1NyQVVaSDlU?=
- =?utf-8?B?MXdiZ3pMMFRzeXBITzNwV3YrN0k5MkpycVIxL0doVVhSdGV3WWFMV0Jna3FU?=
- =?utf-8?B?aXZDSExxT2gwY0pDSkpZSVRPMFhyb0hFaS9SSnhHOHV2bzE0VkEwbUdKV3V3?=
- =?utf-8?B?RFVpaDRXczYxNmQvbFNUeFhYRzlHNWcra0ZIbEtPbUZQcndWdVF5REJqM3FT?=
- =?utf-8?B?OXl0K1VqQm5jQWxjczY2QXVKK2Z2OGdUdlVyZk1YR3R5Y3h1RVZsMVhMT2N4?=
- =?utf-8?B?UlVVT2pST3NZMVc5REMrbFNOb3hSZFNNT3pORTE0R1lCOXR5amFQc25ONFd1?=
- =?utf-8?B?MC9KMmswcnFpWkRMbXpoaTlSYXZJSVNIWXl1Ty9iYlhHNmVmSzNKMTBzSnoy?=
- =?utf-8?B?cnB4SHNtL2RyaGlhZWtyTllGNjJUSmU2cUlBbTE4Mk9paW92SUtxVVNTWG1w?=
- =?utf-8?B?bkx5V29sK1p2QTBZWCszaVdjNzRmRlNRa2JUNHovK1pGNm5CQkI4RytqQnFN?=
- =?utf-8?B?ZUJoS2hXSFBZdG01OHNlcHJYK1A4WW0zTC9JaStiTjZXK1g4cjVDMDIxY1Az?=
- =?utf-8?B?ZDVJSU1GUHZRelZPR0xqaXBsNDNYRUJ6Nmg0ekFXZmpweWdTeHFZd1dvQi9j?=
- =?utf-8?B?TVg1VDNuZUhFRW5BZitncGJuTWpaVVNnNTgxQkp5L0U3OTh6NDArL01naWFS?=
- =?utf-8?B?L0NKVEpYVFQxaEd3SjVmWWJCb1N5ZTZ4U2RaU210TXdJNHAvcTZqK2V3VGN5?=
- =?utf-8?B?SE02WU1tWk1BL3ZqNnhOZHk0YjEvV0hnZEtlVkJVanNVSndJaWljdExMeHhH?=
- =?utf-8?B?SmZLb1RKTU1OZnlGelUvelR6Ykt0dE05eTVYRkdITnEramR0NDBCajBtUXV4?=
- =?utf-8?B?ZDRLRnJwWnp5VTVLK1RLNVZKdUNDM3piL2ZhVlAreVNxYjdyOExmNHREQnUr?=
- =?utf-8?B?YVNNVWxnL1RuVzkrSVdYOXQvUXZZNjRhQlFzWTU2enF2UUtuSjJwbDcvcXBB?=
- =?utf-8?B?TWhycjFiSVpLeVh4Y2VINVRUYVlEeFpVV3BGQ1BaSnFkOFlQL0VibldtejRn?=
- =?utf-8?B?dDB1c3dqYlhBUDdXUEhyNnpLRGhaUUNrZWVuMFRRc0NvRGlCSHRzRU1sTERK?=
- =?utf-8?B?RUcxQ2p4REhlaU9tVVVsWkc4MldrU0FpUDhjNUFTdlRiWEhTTEZybmRyMXpL?=
- =?utf-8?B?aTR2RDU1TXlab00xbi8zMXY1RGVwSDVQOGhXdGhRV0FCKzRIZ3U0VlFOYnlw?=
- =?utf-8?B?U3lBZ1UyV0Q5eENuOExWTFh1eVZlV2VCeG4vN2kxQk1nbkM2bGo1K2V5UTFB?=
- =?utf-8?B?M1IwT2hTK1VWWDdsVW1Qd2ZMOXFpZmJZbnJmcGpBalB5bGRLZVU0V1NJM01Z?=
- =?utf-8?B?UTlFVzk3OHJWK29qempHVWV3bWx0V25DOVU3Q01QYkF6d3RZRzc2bGF0bUZV?=
- =?utf-8?B?MmpJbnY1WVlIMWh5djNib3pQamhLaUJydituWFVzZ0lSaUVxQnNtajcrenlO?=
- =?utf-8?B?eFF0bHFLVDdSc1FiRllocXYyVHZxY0d6U3BBN2pvZmZhWStpVXovcWg5ZlBN?=
- =?utf-8?B?K0VjMzFuTFI0M1huU0M5Y0U0clVqREZxQUlpZEQxQWdscVBxNWlWdnA0eWhx?=
- =?utf-8?B?d2FDNTFaV25iYk9WK04xZEhaUEY0elpNM0d5UWlCUjdoblh2Wjc1QzFaM0tX?=
- =?utf-8?B?TDFhYWx1VDdsd0pPSGE1OTdMYjBHQllsaUVnM1psMUNPMHJoaHNlb1J4TG5j?=
- =?utf-8?Q?HUF5xkKq8R88SirkAo5s2OGx1?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8a459037-a612-49fb-0b04-08ddef693f3b
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR12MB7301.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bGlIeEtQeTlKRFdKcDExLzR6WXJ6eEhvYnloQUNUTitYVzVCSzRmV1lHL2lW?=
+ =?utf-8?B?NncwSjdHRDRuQTVxcHJ0Y0VLWWszSEkraHJQa0dTbUdoaFppSElTa0FidERr?=
+ =?utf-8?B?TGlBWithL1pmaVFFTGFFZE1IMG1VVFVvSFRJMTR1NVZ1TEZ4bUxZY2hxVCtP?=
+ =?utf-8?B?TW1Sd1YyRTM4b3lFb2FkNDB5SjZwdlprTTF4VWp6RjZSRmpLWDkrNjdZTG0w?=
+ =?utf-8?B?V3ZPaUZ5bU9qaERGQjRodzlJT1ZzTXQrQ2JPNjM4Z0tSTEFCQjJjME5hNmVB?=
+ =?utf-8?B?a2VBRlFCZTNySk1XVU03VEhaWkN4a1NHYTBhUDEwS29kMk5rZ0Z1MS8wMDM4?=
+ =?utf-8?B?NzBic1pIMWVtbzdXbnF1Mlk0UU4raGxHQWJ4V21naFFFaGk3RnExQjIrMlFK?=
+ =?utf-8?B?RXZUd0J3V3dhVTZBZG9oN2w5Vmh1ZE9xaTAyV25zMElCUVRDYWVTOUJkaGw2?=
+ =?utf-8?B?bWJvTUxuUkw3ZzFFRVlDN0dpeENGVThNS0x0c1Q2Znp3TlNxYzBWQ3M4QjlE?=
+ =?utf-8?B?bDJ4UFNjNW9VcEROWGZQN3NDSDA1Mm9MT3VwMUlrVnBnemtGcVp5T0JoWlk5?=
+ =?utf-8?B?NW9MRE1tZG9oTGJ2aElpbnlkTUZXNkxtNldLN081L0h4NTJsU3RrZ24ydmY0?=
+ =?utf-8?B?SmJPT3JlaVRVQ0F6QmVHS2pPRGwrdjJhWmZEWGtLSHlFdGpQa2JOTTBIM0lP?=
+ =?utf-8?B?SDh4dmZPdm84RzBYWnExWGYyN0gyR3FreVFKNXBUd3QxWWNEaEovMkVZVDE5?=
+ =?utf-8?B?TDdRcko5MUJIdklhV3puV1lRMkVVbDRqQnlEZk1sMWVReGUvek1UQ2xTU0lt?=
+ =?utf-8?B?OUNYTitqODNFeEthTjVTbERuTGRjSjRScGpSN3BHb0l3UUh4S3J3Q0o5U296?=
+ =?utf-8?B?aG1OMkJNMTRqVzJxVFNXK1NjS0drWjNreUQxK2NlMXNqR1JBLytPWW5wTHRw?=
+ =?utf-8?B?VXNXU0loNXpYakY3RzhTSSsxU3JYWC9YSndDVFZpMU01eXZXSVZYa2RxNnZz?=
+ =?utf-8?B?ZTYvRzRPN2VZQnl5Yzk3OTd5a3FwbTZBZWlDQUJhNkwvUC9hWWo0NVdRY0FS?=
+ =?utf-8?B?Tjk2TjNzTE9QT1JHT1EvZHdqVDd4UFRBb0ZZYWYzWGwzYURQVzhsenVYUkVy?=
+ =?utf-8?B?V0N2QlNrem45dVVNZXJTOUlZT1pOMVZKdlZ0TWhicmtZOVR2NDIrS0ZVWEZs?=
+ =?utf-8?B?ZGxXdW9WTnRWcHkrZGJzODdxejVJV2dKdXR2TzhhWDlRUW55NUJHZVh1Qkli?=
+ =?utf-8?B?bTlDTmh5WmZseXU2NEN1eFFTMldES3VnVEtjdWlrRkFzWlFRcVFyUjZYMUw0?=
+ =?utf-8?B?TGZzcmo0YzVrQWFmRXJ3MnplYUlqSHl6L2NvUW5kUnM2UWY1YXZCcjJHOEpU?=
+ =?utf-8?B?NFZZMkx0TE9KZzNudTVCNUFZeVZ0T2p2STN3aVZvVDVBNjl2ZktSMWhWZHRD?=
+ =?utf-8?B?Rmt3MTMwTVBNNHdNMmNrbTZjK0VBcXZBUERGR0RKNDBRWVYvMy8waUg5bGNs?=
+ =?utf-8?B?MlM4REtMWW1Ib2F2ME1PeW82QXBSbWF2YWFpZzJhbUtZUWd4NnlOM2lvOEFH?=
+ =?utf-8?B?d2xFYjRreUpvOUZRWTBHK2xIWmM3Q0lkK1RiZkVpVkNFdnFuZGhKSGgrUUdz?=
+ =?utf-8?B?SnRPNC80MDJSNi8yRUJ5TkZiNklPWDN6OERmZVpBQmhaQ3ZzaTI0bm4zSE44?=
+ =?utf-8?B?NDdRWnhLaFY2dGI2TzRrd0JPVExaRy9PR3c2U1NGUzhLOXB4U1ZuWWxxbVk3?=
+ =?utf-8?B?VkFkRk51Z0pjTHRwdTRCc1BIM2czcWJ0bllUN0hJOTh6dEsxdTR3bWJ0ODRZ?=
+ =?utf-8?B?QkpoTXoxMGd1eUxQVDI3ZE5ETlFBbXJodGVRbmZ0ZTNTVnEvdVpiSWNCNVJq?=
+ =?utf-8?B?MW4zQzAzM0tMczg5Z3U0cndKMFowaXllelM3b0VOWC9ySGJMUDFha3FiaEl0?=
+ =?utf-8?B?MHFRT0tmVkFDOTRseHZXUUtyZEJjbWdYQncvL2N0bW1ZM28vNXJ4SklHem5x?=
+ =?utf-8?B?K0ZWYVNOelpwb1IyY0pCWHZhTFEzOUpYajNPbGJsR0Y1M2Iydzh3dHd3aFBi?=
+ =?utf-8?B?YnB1NDFyVExBNkpYMGdRTEUwMWF0NzE2QUpJaHQ0YVUzQjFKdk9JekZYSVNn?=
+ =?utf-8?B?VW9UeHVYd2p1QVZOZnN1UXlWem1kL2xKSFJjSlhLZzVOK08vT3k2QWNWUXYy?=
+ =?utf-8?B?dUE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 250511b6-bc05-41b4-4194-08ddef728c36
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Sep 2025 06:22:27.2583 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Sep 2025 07:29:02.0427 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CkWll/XYKdBnndtwT9IrZi+tm2kmQAUqTUE1PxzxqEnnWUlBwO4Dn696r4wGit8CBZ9v8YaE5ctMMancAZAe4A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PR12MB9352
+X-MS-Exchange-CrossTenant-UserPrincipalName: 38CHMPw1/VUZnxIezfdqDI5iTBv51/xkR5Y6FnQRxgerKB8udIOtqMmSt7OJ8M8MyLDo3irKm/8JUDl8sINg0wYcruQyoBNF3Z2TCjhgs64=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6795
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,230 +196,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Peter / Jani,
 
- From the measurements I have done, the difference between RBtree full 
-iteration and list full iteration
-is negligible, even under heavy fragmentation. Based on this, I think it 
-would be reasonable to include
-these macros in rbtree.h as a convenience for cases where a full walk is 
-required, similar to the helper
-macros that already exist in list.h. In situations where the tree is 
-small or only modestly populated, the
-overhead is insignificant, and the decision of whether to use them can 
-be left to the user based on their
-workload.
+On 9/9/2025 10:32 AM, Dnyaneshwar Bhadane wrote:
+> On PTL, no combo PHY is connected to PORT B. However, PORT B can
+> still be used for Type-C and will utilize the C20 PHY for eDP
+> over Type-C. In such configurations, VBTs also enumerate PORT B.
+>
+> This leads to issues where PORT B is incorrectly identified as using the
+> C10 PHY, due to the assumption that returning true for PORT B in
+> intel_encoder_is_c10phy() would not cause problems.
+>
+>  From PTL's perspective, only PORT A/PHY A uses the C10 PHY.
+>
+> Update the helper intel_encoder_is_c10phy() to return true only for
+> PORT A/PHY on PTL.
+>
+> Bspec: 72571,73944
+> Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 
-If that still is not acceptable, I can move the macros into drm_buddy.c 
-instead. Please let me know your
-suggestion.
+LGTM. Need to send this to intel-xe@lists.freedesktop.org too.
 
-Thanks,
-Arun.
-On 9/2/2025 11:39 AM, Arunpravin Paneer Selvam wrote:
->
-> On 9/2/2025 1:11 AM, Peter Zijlstra wrote:
->> On Tue, Sep 02, 2025 at 12:26:04AM +0530, Arunpravin Paneer Selvam 
->> wrote:
->>> Replace the freelist (O(n)) used for free block management with a
->>> red-black tree, providing more efficient O(log n) search, insert,
->>> and delete operations. This improves scalability and performance
->>> when managing large numbers of free blocks per order (e.g., hundreds
->>> or thousands).
->> Did you consider the interval tree?
->
-> In this allocator, free blocks are tracked individually by order and 
-> not as arbitrary ranges. The
->
-> operations are keyed insert/delete/lookup, for which an rbtree is 
-> sufficient and simper, AFAIK.
->
->>
->>
->>> @@ -41,23 +43,53 @@ static void drm_block_free(struct drm_buddy *mm,
->>>       kmem_cache_free(slab_blocks, block);
->>>   }
->>>   -static void list_insert_sorted(struct drm_buddy *mm,
->>> -                   struct drm_buddy_block *block)
->>> +static void rbtree_insert(struct drm_buddy *mm,
->>> +              struct drm_buddy_block *block)
->>>   {
->>> +    struct rb_root *root = 
->>> &mm->free_tree[drm_buddy_block_order(block)];
->>> +    struct rb_node **link = &root->rb_node;
->>> +    struct rb_node *parent = NULL;
->>>       struct drm_buddy_block *node;
->>> -    struct list_head *head;
->>> +    u64 offset;
->>> +
->>> +    offset = drm_buddy_block_offset(block);
->>>   -    head = &mm->free_list[drm_buddy_block_order(block)];
->>> -    if (list_empty(head)) {
->>> -        list_add(&block->link, head);
->>> -        return;
->>> +    while (*link) {
->>> +        parent = *link;
->>> +        node = rb_entry(parent, struct drm_buddy_block, rb);
->>> +
->>> +        if (offset < drm_buddy_block_offset(node))
->>> +            link = &parent->rb_left;
->>> +        else
->>> +            link = &parent->rb_right;
->>>       }
->>>   -    list_for_each_entry(node, head, link)
->>> -        if (drm_buddy_block_offset(block) < 
->>> drm_buddy_block_offset(node))
->>> -            break;
->>> +    rb_link_node(&block->rb, parent, link);
->>> +    rb_insert_color(&block->rb, root);
->>> +}
->> static inline bool __drm_bb_less(const struct drm_buddy_block *a,
->>                  const struct drm_buddy_block *b)
->> {
->>     return drm_buddy_block_offset(a) < drm_buddy_block_offset(b);
->> }
->>
->> #define __node_2_drm_bb(node) rb_entry((node), struct 
->> drm_buddy_block, rb)
->>
->> static inline bool rb_drm_bb_less(struct rb_node *a, const struct 
->> rb_node *b)
->> {
->>     return __drm_bb_less(__node_2_drm_bb(a), __node_2_drm_bb(b));
->> }
->>
->> static void rbtree_insert(struct drm_buddy *mm, struct 
->> drm_buddy_block *block)
->> {
->>     rb_add(block->rb, &mm->free_tree[drm_buddy_block_order(block)], 
->> rb_drm_bb_less);
->> }
->>
->>> +
->>> +static void rbtree_remove(struct drm_buddy *mm,
->>> +              struct drm_buddy_block *block)
->>> +{
->>> +    struct rb_root *root;
->>> +
->>> +    root = &mm->free_tree[drm_buddy_block_order(block)];
->>> +    rb_erase(&block->rb, root);
->>>   -    __list_add(&block->link, node->link.prev, &node->link);
->>> +    RB_CLEAR_NODE(&block->rb);
->>> +}
->>> +
->>> +static inline struct drm_buddy_block *
->>> +rbtree_last_entry(struct drm_buddy *mm, unsigned int order)
->>> +{
->>> +    struct rb_node *node = rb_last(&mm->free_tree[order]);
->>> +
->>> +    return node ? rb_entry(node, struct drm_buddy_block, rb) : NULL;
->>> +}
->> rb_add_cached() caches the leftmost entry, if you invert the key, the
->> last is first.
->
-> With inversion, the in-tree ordering changes from natural ascending 
-> offsets to descending,
->
-> which can break assumptions in existing buddy allocator code that 
-> expects ascending order.
->
->>
->>> diff --git a/include/linux/rbtree.h b/include/linux/rbtree.h
->>> index 8d2ba3749866..17190bb4837c 100644
->>> --- a/include/linux/rbtree.h
->>> +++ b/include/linux/rbtree.h
->>> @@ -79,6 +79,62 @@ static inline void rb_link_node_rcu(struct 
->>> rb_node *node, struct rb_node *parent
->>>          ____ptr ? rb_entry(____ptr, type, member) : NULL; \
->>>       })
->>>   +/**
->>> + * rbtree_for_each_entry - iterate in-order over rb_root of given type
->>> + *
->>> + * @pos:    the 'type *' to use as a loop cursor.
->>> + * @root:    'rb_root *' of the rbtree.
->>> + * @member:    the name of the rb_node field within 'type'.
->>> + */
->>> +#define rbtree_for_each_entry(pos, root, member) \
->>> +    for ((pos) = rb_entry_safe(rb_first(root), typeof(*(pos)), 
->>> member); \
->>> +         (pos); \
->>> +         (pos) = rb_entry_safe(rb_next(&(pos)->member), 
->>> typeof(*(pos)), member))
->>> +
->>> +/**
->>> + * rbtree_reverse_for_each_entry - iterate in reverse in-order over 
->>> rb_root
->>> + * of given type
->>> + *
->>> + * @pos:    the 'type *' to use as a loop cursor.
->>> + * @root:    'rb_root *' of the rbtree.
->>> + * @member:    the name of the rb_node field within 'type'.
->>> + */
->>> +#define rbtree_reverse_for_each_entry(pos, root, member) \
->>> +    for ((pos) = rb_entry_safe(rb_last(root), typeof(*(pos)), 
->>> member); \
->>> +         (pos); \
->>> +         (pos) = rb_entry_safe(rb_prev(&(pos)->member), 
->>> typeof(*(pos)), member))
->>> +
->>> +/**
->>> + * rbtree_for_each_entry_safe - iterate in-order over rb_root safe 
->>> against removal
->>> + *
->>> + * @pos:    the 'type *' to use as a loop cursor
->>> + * @n:        another 'type *' to use as temporary storage
->>> + * @root:    'rb_root *' of the rbtree
->>> + * @member:    the name of the rb_node field within 'type'
->>> + */
->>> +#define rbtree_for_each_entry_safe(pos, n, root, member) \
->>> +    for ((pos) = rb_entry_safe(rb_first(root), typeof(*(pos)), 
->>> member), \
->>> +         (n) = (pos) ? rb_entry_safe(rb_next(&(pos)->member), 
->>> typeof(*(pos)), member) : NULL; \
->>> +         (pos); \
->>> +         (pos) = (n), \
->>> +         (n) = (pos) ? rb_entry_safe(rb_next(&(pos)->member), 
->>> typeof(*(pos)), member) : NULL)
->>> +
->>> +/**
->>> + * rbtree_reverse_for_each_entry_safe - iterate in reverse in-order 
->>> over rb_root
->>> + * safe against removal
->>> + *
->>> + * @pos:    the struct type * to use as a loop cursor.
->>> + * @n:        another struct type * to use as temporary storage.
->>> + * @root:    pointer to struct rb_root to iterate.
->>> + * @member:    name of the rb_node field within the struct.
->>> + */
->>> +#define rbtree_reverse_for_each_entry_safe(pos, n, root, member) \
->>> +    for ((pos) = rb_entry_safe(rb_last(root), typeof(*(pos)), 
->>> member), \
->>> +         (n) = (pos) ? rb_entry_safe(rb_prev(&(pos)->member), 
->>> typeof(*(pos)), member) : NULL; \
->>> +         (pos); \
->>> +         (pos) = (n), \
->>> +         (n) = (pos) ? rb_entry_safe(rb_prev(&(pos)->member), 
->>> typeof(*(pos)), member) : NULL)
->>> +
->> Not really a fan of these. That's typically a sign you're doing it
->> wrong. Full tree iteration is actually slower than linked list.
->
-> I understand your concern about full-tree iteration being slower than 
-> a list walk. In our current use cases, though,
->
-> the cost is not on the hot path and performance is comparable or even 
-> better to list traversal. We occasionally need
->
-> to walk the full set of blocks to perform specific operations, and 
-> these macros make that code simpler and
->
-> less error-prone. They aren't meant to replace targeted lookups or 
-> bounded walks, just to cover where a full
->
-> traversal is necessary.
->
-> Thanks,
->
-> Arun.
->
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
+> ---
+>   drivers/gpu/drm/i915/display/intel_cx0_phy.c | 9 ++-------
+>   1 file changed, 2 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> index 801235a5bc0a..33963ad14cfa 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> @@ -39,13 +39,8 @@ bool intel_encoder_is_c10phy(struct intel_encoder *encoder)
+>   	struct intel_display *display = to_intel_display(encoder);
+>   	enum phy phy = intel_encoder_to_phy(encoder);
+>   
+> -	/* PTL doesn't have a PHY connected to PORT B; as such,
+> -	 * there will never be a case where PTL uses PHY B.
+> -	 * WCL uses PORT A and B with the C10 PHY.
+> -	 * Reusing the condition for WCL and extending it for PORT B
+> -	 * should not cause any issues for PTL.
+> -	 */
+> -	if (display->platform.pantherlake && phy < PHY_C)
+> +	if ((display->platform.pantherlake && phy == PHY_A) ||
+> +	    ((DISPLAY_VERx100(display) == 3002) && phy == PHY_B))
+>   		return true;
+>   
+>   	if ((display->platform.lunarlake || display->platform.meteorlake) && phy < PHY_C)
