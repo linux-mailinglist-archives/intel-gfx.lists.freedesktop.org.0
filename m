@@ -2,70 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D3D7B4A0A0
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Sep 2025 06:25:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 30629B4A116
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Sep 2025 07:02:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 946D310E22A;
-	Tue,  9 Sep 2025 04:25:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CED310E43D;
+	Tue,  9 Sep 2025 05:02:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="i9pJ18PL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a/MinYNr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2A1010E22A;
- Tue,  9 Sep 2025 04:25:23 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 05467449E2;
- Tue,  9 Sep 2025 04:25:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F9D2C4CEF4;
- Tue,  9 Sep 2025 04:25:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
- s=korg; t=1757391922;
- bh=RrzY4SDc18Ci2TyOyhCgyGYX7hmnnBCU2e/pxbH8zRw=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=i9pJ18PLXuxKbzs/Iruw3PpLBgKXy9ssEffV+i7Q9gMAvoRB7kzd+iGGYRZ4Vjd4z
- nsdDoX1b8RjqFfB2U020ZMoVgWz32DH/3KHr9yu4W24HNyAdp4ShFmw5Gwb3/8dyxq
- YI0F046jfWbWEKO92OxW3X9LzuK+WjtFkn1xH7Gk=
-Date: Mon, 8 Sep 2025 21:25:18 -0700
-From: Andrew Morton <akpm@linux-foundation.org>
-To: David Hildenbrand <david@redhat.com>
-Cc: Eric Biggers <ebiggers@kernel.org>, linux-kernel@vger.kernel.org,
- Alexander Potapenko <glider@google.com>, Brendan Jackman
- <jackmanb@google.com>, Christoph Lameter <cl@gentwo.org>, Dennis Zhou
- <dennis@kernel.org>, Dmitry Vyukov <dvyukov@google.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- iommu@lists.linux.dev, io-uring@vger.kernel.org, Jason Gunthorpe
- <jgg@nvidia.com>, Jens Axboe <axboe@kernel.dk>, Johannes Weiner
- <hannes@cmpxchg.org>, John Hubbard <jhubbard@nvidia.com>,
- kasan-dev@googlegroups.com, kvm@vger.kernel.org, "Liam R. Howlett"
- <Liam.Howlett@oracle.com>, Linus Torvalds <torvalds@linux-foundation.org>,
- linux-arm-kernel@axis.com, linux-arm-kernel@lists.infradead.org,
- linux-crypto@vger.kernel.org, linux-ide@vger.kernel.org,
- linux-kselftest@vger.kernel.org, linux-mips@vger.kernel.org,
- linux-mmc@vger.kernel.org, linux-mm@kvack.org,
- linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
- linux-scsi@vger.kernel.org, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Marco Elver <elver@google.com>, Marek Szyprowski
- <m.szyprowski@samsung.com>, Michal Hocko <mhocko@suse.com>, Mike Rapoport
- <rppt@kernel.org>, Muchun Song <muchun.song@linux.dev>,
- netdev@vger.kernel.org, Oscar Salvador <osalvador@suse.de>, Peter Xu
- <peterx@redhat.com>, Robin Murphy <robin.murphy@arm.com>, Suren
- Baghdasaryan <surenb@google.com>, Tejun Heo <tj@kernel.org>,
- virtualization@lists.linux.dev, Vlastimil Babka <vbabka@suse.cz>,
- wireguard@lists.zx2c4.com, x86@kernel.org, Zi Yan <ziy@nvidia.com>
-Subject: Re: [PATCH v2 19/37] mm/gup: remove record_subpages()
-Message-Id: <20250908212518.77671b31aaad2832c17eab07@linux-foundation.org>
-In-Reply-To: <64fe4c61-f9cc-4a5a-9c33-07bd0f089e94@redhat.com>
-References: <20250901150359.867252-1-david@redhat.com>
- <20250901150359.867252-20-david@redhat.com>
- <5090355d-546a-4d06-99e1-064354d156b5@redhat.com>
- <20250905230006.GA1776@sol>
- <64fe4c61-f9cc-4a5a-9c33-07bd0f089e94@redhat.com>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8672310E43D
+ for <intel-gfx@lists.freedesktop.org>; Tue,  9 Sep 2025 05:02:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1757394154; x=1788930154;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=DC7pp8imYAI8Vd2gJ0vwbnpG/0q1QQ/8PzFpjZPvEo0=;
+ b=a/MinYNrwt0amqVY0+a/JVxdTyulLVYtUIgz55pFNXJJfVy6PGD8tZOW
+ rW+OvBFNVNct25KtxtpByTHAQspVs4dijo45/lS58m85BTrVieq5ycfk9
+ 8cmIEz9JKaUclnAkE+He1XoKKZgH4LnQIgEvKjeDQAu6EW1kYlhUg3v0T
+ ft7EtpqOdcjfGCWCrdu7PVI0aZYUjOECv1JGQlmM2vQtucJmflJwZGFog
+ DPrJINbLtEljUTxuEF7mI+h2wxN8AwyZX5ZyHKD3OhEaQaEJwSMSkPxsG
+ Y+c711FBNgEuqpWer5bsyR6e0Ex8295nIenLX6JkmzBbFHuO7D1FcCmQQ w==;
+X-CSE-ConnectionGUID: PIsjZXctRZGo9mSeDnyNrQ==
+X-CSE-MsgGUID: QtG+u1HuREmJL0ClkcrAig==
+X-IronPort-AV: E=McAfee;i="6800,10657,11547"; a="77279638"
+X-IronPort-AV: E=Sophos;i="6.18,250,1751266800"; d="scan'208";a="77279638"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2025 22:02:34 -0700
+X-CSE-ConnectionGUID: 8PLl3y5KSlabzCrCkLC+aw==
+X-CSE-MsgGUID: msJ7ouAgQrO1HJybHobeAQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,250,1751266800"; d="scan'208";a="173107715"
+Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
+ by orviesa008.jf.intel.com with ESMTP; 08 Sep 2025 22:02:33 -0700
+From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	ankit.k.nautiyal@intel.com
+Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Subject: [PATCH] drm/i915/xe3: Restrict PTL intel_encoder_is_c10phy() to only
+ PHY A
+Date: Tue,  9 Sep 2025 10:32:28 +0530
+Message-ID: <20250909050228.4106539-1-dnyaneshwar.bhadane@intel.com>
+X-Mailer: git-send-email 2.51.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,20 +66,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, 6 Sep 2025 08:57:37 +0200 David Hildenbrand <david@redhat.com> wrote:
+On PTL, no combo PHY is connected to PORT B. However, PORT B can
+still be used for Type-C and will utilize the C20 PHY for eDP
+over Type-C. In such configurations, VBTs also enumerate PORT B.
 
-> >> @@ -3024,6 +3025,7 @@ static int gup_fast_pud_leaf(pud_t orig, pud_t *pudp, unsigned long addr,
-> >>                  return 0;
-> >>          }
-> >> +       pages += *nr;
-> >>          *nr += refs;
-> >>          for (; refs; refs--)
-> >>                  *(pages++) = page++;
-> > 
-> > Can this get folded in soon?  This bug is causing crashes in AF_ALG too.
-> 
-> Andrew immediately dropped the original patch, so it's gone from 
-> mm-unstable and should be gone from next soon (today?).
+This leads to issues where PORT B is incorrectly identified as using the
+C10 PHY, due to the assumption that returning true for PORT B in
+intel_encoder_is_c10phy() would not cause problems.
 
-I restored it once you sent out the fix.  It doesn't seem to be in
-present -next but it should be there in the next one.
+From PTL's perspective, only PORT A/PHY A uses the C10 PHY.
+
+Update the helper intel_encoder_is_c10phy() to return true only for
+PORT A/PHY on PTL.
+
+Bspec: 72571,73944
+Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 9 ++-------
+ 1 file changed, 2 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index 801235a5bc0a..33963ad14cfa 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -39,13 +39,8 @@ bool intel_encoder_is_c10phy(struct intel_encoder *encoder)
+ 	struct intel_display *display = to_intel_display(encoder);
+ 	enum phy phy = intel_encoder_to_phy(encoder);
+ 
+-	/* PTL doesn't have a PHY connected to PORT B; as such,
+-	 * there will never be a case where PTL uses PHY B.
+-	 * WCL uses PORT A and B with the C10 PHY.
+-	 * Reusing the condition for WCL and extending it for PORT B
+-	 * should not cause any issues for PTL.
+-	 */
+-	if (display->platform.pantherlake && phy < PHY_C)
++	if ((display->platform.pantherlake && phy == PHY_A) ||
++	    ((DISPLAY_VERx100(display) == 3002) && phy == PHY_B))
+ 		return true;
+ 
+ 	if ((display->platform.lunarlake || display->platform.meteorlake) && phy < PHY_C)
+-- 
+2.51.0
+
