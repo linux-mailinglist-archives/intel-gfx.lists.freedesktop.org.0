@@ -2,171 +2,126 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9352B51E1A
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Sep 2025 18:45:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23FEDB5214D
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Sep 2025 21:43:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 520CF10E97F;
-	Wed, 10 Sep 2025 16:45:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED57210E9C9;
+	Wed, 10 Sep 2025 19:42:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OH8+37mp";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="M4C4B47D";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D28710E97E
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Sep 2025 16:45:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757522716; x=1789058716;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=5FPbpcoCz1+qmhx9r/YpCj1zA5fY1b8Y8EW4hb88ouE=;
- b=OH8+37mpNdUr9knrUGiP9vvirk/2+MZbmublvtrjGYFetACzq97LpIWL
- ZMRk9OTeQMQVyqa+eYKYCNhOVY0t/ds//6rV3w2hgFeOjCRbtvodEpHTo
- H7bxrETewu6xCFrdo2ezNyeoIhhFHqDQyuA9WTkI6dWmj1OxfEsLqUG4M
- xW4/96qcgQuU9AiJ4Tb4OYhLVcyEBAIFp84g6wozb0alYh5YsvDRQo8Dt
- fqs7sIj7/FP6HiO8xRww+LgLRClASda5UArbTZp2v2dDrlmSBzRWUKCSy
- le87GOkBuSfewlIpE/rMOx0UgDwNV6M+/IKreTVXrs90gVrTnGVpLzIgw w==;
-X-CSE-ConnectionGUID: KhRIKu2lSoO9uICUAhA1TA==
-X-CSE-MsgGUID: CKyVG0waTJ+PBklsaZofFA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11549"; a="59916965"
-X-IronPort-AV: E=Sophos;i="6.18,254,1751266800"; d="scan'208";a="59916965"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2025 09:45:16 -0700
-X-CSE-ConnectionGUID: pFcVMqa8SBGPcrJlOa70lw==
-X-CSE-MsgGUID: s6bfjIfsTmmpnkvXzUOhjw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,254,1751266800"; d="scan'208";a="210562962"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2025 09:45:16 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Wed, 10 Sep 2025 09:45:15 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17 via Frontend Transport; Wed, 10 Sep 2025 09:45:15 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (40.107.237.66)
- by edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Wed, 10 Sep 2025 09:45:14 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qJS6kD0hpp7x7oZ7c7SwDyJWCbmftKv/E9NOAp98P8BwZ6QXQoy4l7ow/A4gAIOJSb1sFuAJTNBp7umYVJopqIBP/e5HGyKHzrh5HZa3+zKc+GRjmi4r19wvNwKO0xNq7qDi7Kx4vPtKNBuB74/RuV0QdHXi1JweYtETHzegBq4zeQpLSyWaUsUds+laDaSvzf3KR7xZ/QcG6Er3YzSSigy6wl5MTeKlRxU4I71OR33z1DxjdWisrQtWYA45Cmzng0YP5ysm4dpOXwa0XMS9z63qqNRf671ypczhniFnbutP0V+jVT70ng2FgTRHAT3NlIwFMHdYUq3MEbX3/LDVPQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2aWD3/u77iK3ERrCipgU5zCFJUuOHC9H/JIW4NsJAD8=;
- b=NVrkuGRGhZVxQopQ64pAY99I4z6W3nRUxzJ35jyCSnpqxETj/vORxv8Nxzphs/sUf9C7i2LKQ8k6r96hW3Ang7rhWvEjhssWxLZXlEyP5K715qRxXS77bpcfJneorvYdFSsxucZNv4MHtDNn/jARS4Rb+OcEb7oHPVjjf0Obmtt9PvMva2vbWUZY5JN/mRt4FND5AgMdoFhTBZGgUcGAvoZqgyVFD7uplYILv7DyH/2nyz6XkICa3T0TtqU0Sr4Jiei85lAsocdmHlQuEoerz8kNXSHtPnrYFkW0BouJ51RMMJc1F3srxk23DteHS6sIc5Dtr2L1In1Et1/gnJ93WQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
- by SN7PR11MB7041.namprd11.prod.outlook.com (2603:10b6:806:298::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.22; Wed, 10 Sep
- 2025 16:45:12 +0000
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563%6]) with mapi id 15.20.9094.021; Wed, 10 Sep 2025
- 16:45:11 +0000
-Date: Wed, 10 Sep 2025 12:45:07 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-CC: <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH 5/5] drm/i915: split out i915_wait_util.h
-Message-ID: <aMGrEzv0IMjc6OqZ@intel.com>
-References: <cover.1757340520.git.jani.nikula@intel.com>
- <7845cd4643bfa1caf4d177d9c8bab28a6c2c9998.1757340521.git.jani.nikula@intel.com>
- <aMAuTHq8uyHWAv5l@intel.com>
- <95099d2538cd2290bf875b264e9e49812d54fe12@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <95099d2538cd2290bf875b264e9e49812d54fe12@intel.com>
-X-ClientProxiedBy: BY3PR05CA0023.namprd05.prod.outlook.com
- (2603:10b6:a03:254::28) To CYYPR11MB8430.namprd11.prod.outlook.com
- (2603:10b6:930:c6::19)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
+ [205.220.180.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF7D510E9CC
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Sep 2025 19:42:55 +0000 (UTC)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58ACgDQ5029745
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Sep 2025 19:42:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-type:date:from:in-reply-to:message-id:mime-version
+ :references:subject:to; s=qcppdkim1; bh=AshvdUVEa9FiNe5UYmEu3NEb
+ RFgCfkbR3d/lUj1X4cc=; b=M4C4B47DFelWfTtHXBl58OlfAnb9kgVzh2KD5MDP
+ u21jR0DMliki4JJ9sbq0tg/a+i93jCDeMlXDMvHLvtf7lP6zdaXEhxxR40DF68h+
+ rU/qxdJlK0+ZmRfhw4E6cF67By/Tr+FieX8DVNFtWhOFAWxwvGr5eR1s72BMLocK
+ /g2sryaJrEckcY4rJKMHckuG4bRdtmZmv+k7ig0la9HsVvpcCZ4RXA1kAkttl361
+ 6ckX43sYScEE63NUml41VV+UYRTAp8Z6clD8qHBQqabTgKjKw1MHHCSsIvDTZ3y4
+ RhcJ4PBDMquA6XnTAn+tQ4uLj2dtQHl0xxkg7UDOFdLxag==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
+ [209.85.160.197])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490aapnc0c-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Sep 2025 19:42:54 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id
+ d75a77b69052e-4b5eb7b2c05so427531cf.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Sep 2025 12:42:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1757533374; x=1758138174;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=AshvdUVEa9FiNe5UYmEu3NEbRFgCfkbR3d/lUj1X4cc=;
+ b=QM5UtsZf4tbrUlzwEttE0wfug3l1Xpjs2bRE+yFVncpDDol/bN4G0XAIbsfWf7y/1K
+ CQb582ALqkn2xre5E+uPYtiAOxFliACrRkA8jjKD67nt99LhrudcH6nM+6727Oj2Gg7e
+ 4fnTuk76pU7ORYaVpj/k7MuK2cDwaQ5qAVYfhdblwJeD7wNl9mr2IpdMgReA4iExhkmO
+ 2Kt/IUUAPz02DGKKcUdVMrGFbHwo8fTWSc6UPY+ng5JSrclzhUm2eWGWEYkAbZ6dBNeo
+ lrpSeXMC1o5x3nVICJsmR0ufUiNjEB5RG4ZfizUa7XRgtxb5oB5x0uwI8kbciFy9oeau
+ NtbQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX/QUSwwIyqJXXPaK9F1wXWTKHOa0dh490tvNYNb1RLN9vBUgE504dnzy7kSNhzyEuOYivEPLEzWbM=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YycVSMRg9tOTe9EgIcvy2n+2iV8nHj2PsUedH9BA/oMe8DSIKGj
+ GHQln/WAR06+V/HNq93LZHWTJfnX2CQ7fNVitcADb8Z/6eheOtn/jBO6SC2HTY5qCNoOVW7FC2s
+ 8kHTVMtRTcVQdrZ0w6RUZOQt3IDRCfzQoVGOd15dLNe/E1gkzHlXTGTamWlbDLS7s2YEfWEI=
+X-Gm-Gg: ASbGncuyB5uEmqDYumAJDdX8jNwpTxdRaQaxSIknjNNrFlsnubBmvo9IHmsEaxkQa/p
+ S0APmOdk/B3MbHDrlMca+kv9RdFa2LCBnbH5WOJNgQ//wN971rf+SjqQfTyP0DqoT7/mQFk/x3r
+ YrxFP11lNzj+ZrQb4RFRhJmKaHaFbiTYzhI2MF7s6ZSYqAyUfx1VK2arb6R4Iu5FC9O8xJtfKnT
+ SNMU64/RtP3bLD9cWVlYNAwkr2vAAQO0pgPkHvaA6p/6mPNhMExKnfcvyBZxdZto8gDQU0YAYam
+ tCjoFtu4+NJZR4TWwW3F7BflBKBGcLNOzfR/Z04t7Uq14D+LOgRzFZIA5raN44iO7gXtbLBB8nM
+ fLn/EWkYufQE5aXVrIfnSNt/VQht4g08jglD6qBduEoaVQFCUIiOG
+X-Received: by 2002:a05:622a:1904:b0:4b2:8ac4:ef85 with SMTP id
+ d75a77b69052e-4b5f84bdc04mr172829021cf.84.1757533373956; 
+ Wed, 10 Sep 2025 12:42:53 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE4LM5n6q3x7O/nMFCbv+KTdGAJSRvFARvfiNuJedE701eBLHhZVYWWeXkwyAfYeYOBgycy0w==
+X-Received: by 2002:a05:622a:1904:b0:4b2:8ac4:ef85 with SMTP id
+ d75a77b69052e-4b5f84bdc04mr172828411cf.84.1757533373376; 
+ Wed, 10 Sep 2025 12:42:53 -0700 (PDT)
+Received: from umbar.lan
+ (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
+ [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-56dbfb5d10fsm49073e87.108.2025.09.10.12.42.52
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 10 Sep 2025 12:42:52 -0700 (PDT)
+Date: Wed, 10 Sep 2025 22:42:50 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>
+Cc: kernel-list@raspberrypi.com, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, ankit.k.nautiyal@intel.com,
+ arun.r.murthy@intel.com, uma.shankar@intel.com, jani.nikula@intel.com,
+ harry.wentland@amd.com, siqueira@igalia.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
+ liviu.dudau@arm.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, robin.clark@oss.qualcomm.com,
+ abhinav.kumar@linux.dev, tzimmermann@suse.de,
+ jessica.zhang@oss.qualcomm.com, sean@poorly.run,
+ marijn.suijten@somainline.org,
+ laurent.pinchart+renesas@ideasonboard.com, mcanal@igalia.com,
+ dave.stevenson@raspberrypi.com, tomi.valkeinen+renesas@ideasonboard.com,
+ kieran.bingham+renesas@ideasonboard.com, louis.chauvet@bootlin.com
+Subject: Re: [PATCH 1/7] drm: writeback: Refactor drm_writeback_connector
+ structure
+Message-ID: <curkiddhkz6k4rtbxxmmmm4oqyjzvda3xc2bc5c6dmq2c5qgkk@z6cwzap2hwgy>
+References: <20250909100649.1509696-1-suraj.kandpal@intel.com>
+ <20250909100649.1509696-2-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|SN7PR11MB7041:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9e7a0311-feed-4015-aa00-08ddf089684a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?h91wSYa7OxZnBZJ+ux41iVPU2UdTNlPv4dmxbVOINVbZ9SkrTf//clTZsR?=
- =?iso-8859-1?Q?vfpvqS5936YznC/YJQKijF5EwHlCkptRISRZy3BK98eX2SyGYq5z4A/+vI?=
- =?iso-8859-1?Q?yXnPOX3cq8ZpIGiXq0ZMAnS4l+Y1HZyw+7FAHy0Z/sRPYrzHv/kgIIH56Y?=
- =?iso-8859-1?Q?JlZ4HjzfkmV6ZjwnptPf/afkRqjtSdC5baYEvXZ96lubXvZeEhvJr6xf2Z?=
- =?iso-8859-1?Q?/BOdoZclQ6tKI6Jvg5v1gPjKBVTDZoRU34mUGDsnkV0bYaqE0Oqy6bMFz1?=
- =?iso-8859-1?Q?2GLyZANvu66MjnL2uzktcyJX9ZgLvIXhWhB2Ign3ptq6b1Vc9uAMnmSVVB?=
- =?iso-8859-1?Q?W/2QMFjNgVDe9MWoGuozfTfe4b84fUe5spp5mwOix0TNgT4fbxSsPpHzPC?=
- =?iso-8859-1?Q?EQtSsaVXgExrsRYvYnLOEhvBFrsErtNKRrhxN0w+d2gWWn6L5humyCcKGU?=
- =?iso-8859-1?Q?ANC3+Kr0+eHdLIa5HSwt/CxPes9fnQ3EueINYm86N4c67a2xHG69Gq4s5I?=
- =?iso-8859-1?Q?8amGQWXRdlFO8NeccDpC3kUOIyACsD6tBq1Zd1J1ZXbsIkZPGowy+Z6/T+?=
- =?iso-8859-1?Q?+prdqMIQGFP2oJW3jic0HX/5CkKKlfB6aXckpO0T8rezd7VI6dkcPy0RMV?=
- =?iso-8859-1?Q?rLybWqRXVW2xcfy2jrrznmGaifanN7b1fhpKIyWOd7xtYwAhkc5hZaPRxY?=
- =?iso-8859-1?Q?HackEB8dYrtoBcs5V4BfNVzCdNDEp9NbjsIA7shxOVD9dv18lBI2MA6Q/2?=
- =?iso-8859-1?Q?0f4PPyF+7u2A2YNhfbGVCc536cfIGf/oufFEqzzkrmTB6wITGpwfaqQvXc?=
- =?iso-8859-1?Q?V8/Gvuqpcd54qZytegmUtaZZ3bywBdwXE7NPdr+84q3TvWQsJ5P10BIATy?=
- =?iso-8859-1?Q?20GleZOiq9Q0lizuvg2lWkM2X9jlLSL1qyGFTM/gSHhrnaCvSShdv0tvWw?=
- =?iso-8859-1?Q?6flIX/dRr6DpHZBefli7/DAaWT12kjYbcH+B9WRzuEVpUq5Qt23yaX8dRo?=
- =?iso-8859-1?Q?if+cWWI8r5RhUE7lBhFGT/Zc+Xo09ci3sVOSB4Df3WxLMGc16JtPWXxOhO?=
- =?iso-8859-1?Q?Wgmhe+FiO+YeVQE3Dn9nOPqvlxnYQCZ2acyfswPndB8LB/9NiKTl082HsJ?=
- =?iso-8859-1?Q?aQjaYMpuwpdlJZ3YPiu634XPrP7eTS8W0wXjjrgzRE+/O5Ya3+OFG4FlCh?=
- =?iso-8859-1?Q?dhtcH6soOjFop+HLViFXZtKeis+SAHzGGwyPLJMSArYI09GO7oN/V/lH5z?=
- =?iso-8859-1?Q?Vgi3h4w61k4XkbLQzFX+JLEvtpKyliA0j/V7qzjbQNI2kmGbKRFLXwduFR?=
- =?iso-8859-1?Q?ED7J6n9YWrmuPiNv8LxH2u8vmQ+qw0ApvXmyJ9NTVAcAQpsGLAij1ryJfa?=
- =?iso-8859-1?Q?EVtOi1nWfOc07BXVxxKgpCNKH8ppNP9dbrGyC4clrwjB5fXxVMsf7GSQDs?=
- =?iso-8859-1?Q?paEPawy4pb3YXu0kW51lAasqY+N1tMwpCEMYBDM5WtL4O2Yz1mFkLwhDiB?=
- =?iso-8859-1?Q?0=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?/Kr7jwIFoYZedk7u3fzwkLTl7IKg/U5iZ7b/HZxTO9scn1CjNIj1kK4gdg?=
- =?iso-8859-1?Q?dpheoPkKQ9XndJQekR8uttlpANSby9PPYKqYInIdtuK+v4qS12WhXe4eaU?=
- =?iso-8859-1?Q?k5w77Po2u8mkTVTZTpSsO1SxAwYsYA/xPKyhOICnZ2N3oPYA37yDhioOx/?=
- =?iso-8859-1?Q?npn3OmCWN6N5ul3g0Fwh4a/YwJqEEf2RCcHQiTF1HAOaf5dTGHpvzRw6Xt?=
- =?iso-8859-1?Q?xHzs/EH73U4wfEwJyXm+68ZxzHmzJlEx3uxH4Pcaf/e889Kr7YWjUSWfJx?=
- =?iso-8859-1?Q?E0o3Uhyo5NGrEXCO+yXRqIJOfY0j3fD6QyBLv65nC5DFyC2VTYRiZuuQ62?=
- =?iso-8859-1?Q?b/SA4dO7+4WyL1daEPMephCdgW8Mafp+D0q+4/UgOj5q1LS4OT468x008H?=
- =?iso-8859-1?Q?5IGOcyYNTd49b+EqgmKhrvOW34hy161B4jFQCCfvSj7MnMRyAj2/78gXqy?=
- =?iso-8859-1?Q?7R4W95yUOWJdBxzE4WaX5vdLxMpNDvPA1QIOoomwSXSpnfU1exGR7zliti?=
- =?iso-8859-1?Q?cKKsKhlJi08sbAXR4YhHAyPmhBHvLrFYLlHMq9nW4hDiAQYkNYRuRwIZyu?=
- =?iso-8859-1?Q?NzA4vlBwGWcm48bAjRTNb/8Rf2r2VvoRsWpaSqL2NsYYqZ6jAchoyF0mTE?=
- =?iso-8859-1?Q?u1sVrAGoakbvIC2I8NLLZJRsR9AxBUsCRnBH9j0sx5A9c+e710Xyphf+wD?=
- =?iso-8859-1?Q?+x6FfsjIRN4D9mVXZlDjNA3/UBtA0umC3so2IScfX/oBNnxl3rIYsLFbSJ?=
- =?iso-8859-1?Q?AVk0umXXgEtsaF87AHPSDk6fG8Ru8ZH27zvOWSNfN6LHRUpsvOdrH4b1Gj?=
- =?iso-8859-1?Q?AOPuFxQyLsv+QGa3lbqjdziZ1xpNpiD+WOO5NEq7ASpC8+KC/6+BnvumI7?=
- =?iso-8859-1?Q?vbrDqV1zySrUmZoKTxeOqEom5P14+S7LXPuCEZg5LzW2vnHJWBVXXHqJQY?=
- =?iso-8859-1?Q?Px1F1nhoF7iXXDFFcQvlJc0CN/ShZWdoUT+OxkeMGCEr01oPoEbIVU6b8A?=
- =?iso-8859-1?Q?zRypkWJEifkTURwA7bPMjTIJQbT3oCo9f+YmRsYDoMWlvkKRTt52wWUN9o?=
- =?iso-8859-1?Q?0s6qosmcpc5cQ8l3B0WjZce3oJ68uL16FZ7P/ItoFLTuZBiiFgOJPLRnXk?=
- =?iso-8859-1?Q?KjM3kVt4Fl4Hfh0S/U/E8G7FJYF53aGJPQG842GH4uzoXMoTys/wltKOqf?=
- =?iso-8859-1?Q?9oqZxZIjsAwnaYZG2BaX+zUdXyZ3ZbD9LnT2vtgLnVhOm/esEwPdwtV5DD?=
- =?iso-8859-1?Q?z41dX3p7aZOr6VCuQSt6o8YKS+2Ld3VlH7BkW3J/tzLFAW60jEF0c/eO80?=
- =?iso-8859-1?Q?SRVFxLX+gc2je9rCBoSQtopSgs/C44Zn/WiEcGFZgVh1Cm7cH6RqbLvk1l?=
- =?iso-8859-1?Q?A+u3uzNoMvo1GwqC1V05WuqnZIwNTPTFnWIZrOExd+28ywbnXl1UBszzeZ?=
- =?iso-8859-1?Q?7vMs6QqQE+LH91sh/0LtRN5hme+AMkwri1LRrFKKa+WDR0h+6+DEq1bHq5?=
- =?iso-8859-1?Q?LiLOaDZl1BjtoZ1sJ3LGi+KvrOzwfsZSabp/9LVhl50sXsCqChgbOqhiJz?=
- =?iso-8859-1?Q?iffEaGcdSSlhZJJZA8GSROE5VIHYx6FAJREnCPSnmAJz5MSIBBZhIiFFOW?=
- =?iso-8859-1?Q?YgGeb87sOxCiR4Swye8BWTJlsIFG9m1QGO0QnNws8re5LJgAmgXnTZEg?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9e7a0311-feed-4015-aa00-08ddf089684a
-X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2025 16:45:11.0632 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0K4LJkvFNp5YFFuQWBGtOaxC9IJYdcSkDG2njmqjukJUq6XWyoanKj86CvcQrCqsY4W/0da0lB9tej86OyTA8w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7041
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250909100649.1509696-2-suraj.kandpal@intel.com>
+X-Authority-Analysis: v=2.4 cv=eMETjGp1 c=1 sm=1 tr=0 ts=68c1d4be cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=yJojWOMRYYMA:10 a=QyXUC8HyAAAA:8 a=ht3OSqXAj6RBLq6GiRYA:9 a=CjuIK1q_8ugA:10
+ a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-GUID: -FPcTnbxLsuvD3fd8Uq6ADbyPBHyS1x5
+X-Proofpoint-ORIG-GUID: -FPcTnbxLsuvD3fd8Uq6ADbyPBHyS1x5
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAwMCBTYWx0ZWRfX+8iDVreOzAVk
+ XWKkmzIkJ3kSTql8O4H0oB8n4uY/RqJjXEbkybgxQUYiUzxVoWcrI59s4EBT9Jm9ESHTfzXHdsf
+ mIvLu0GlII05cTkNivt5M2EIYAUqeYXAtkFFJ8slt8pi/c0JntTmocf0uDbH+KV0rAKxG2HLApf
+ LtZM6Jkm06hLibnZx3p0QmXlDB+cw3+BlfvVUSODhfIxfb3Oml1ltlEr6SGsyDIXMGx70gCjX3R
+ bTBUNJ8XU5CGuNAwssXzG1Qn2tSO6km/kQ63PqPkZx///peSOh+ssBK2UtgXp3E0QGrhYamFobX
+ 5QbyDzDR6FJFzZk7mvU4W8hxun2eDmR7BI2agrZ5xFJpxXuNvhyLcRTFu75JNMUVEtzz07o3ohl
+ JTaISsFd
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-10_04,2025-09-10_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 priorityscore=1501 malwarescore=0 clxscore=1015 adultscore=0
+ bulkscore=0 phishscore=0 spamscore=0 suspectscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509060000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -182,798 +137,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 10, 2025 at 03:06:56PM +0300, Jani Nikula wrote:
-> On Tue, 09 Sep 2025, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> > On Mon, Sep 08, 2025 at 05:11:49PM +0300, Jani Nikula wrote:
-> >> Move waiting related utilities from i915_utils.h to separate new file
-> >> i915_wait_util.h. Clean up related includes.
-> >> 
-> >> Note: Many of the various wait macro usages could likely be refactored
-> >> to use poll_timeout_us().
-> >
-> > I hope so! :)
-> >
-> > nice clean up overall, although my dream is that we
-> > could get rid entirely of these utils that pretend
-> > they are core kernel.
-> >
-> > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> 
-> Thanks, but no dice. :(
-> 
-> I didn't realize GEM_BUG_ON() uses GEM_TRACE_DUMP() uses
+On Tue, Sep 09, 2025 at 03:36:43PM +0530, Suraj Kandpal wrote:
+> Some drivers cannot work with the current design where the connector
+> is embedded within the drm_writeback_connector such as Intel and
+> some drivers that can get it working end up adding a lot of checks
+> all around the code to check if it's a writeback conenctor or not,
+> this is due to the limitation of inheritance in C.
+> To solve this we move the drm_writeback_connector within the
 
-sorry for missing that too
+Please take a look at Documentation/process/submitting-patches.rst:
+s/we //g, etc.
 
-> __add_taint_for_CI(), i.e. 
-> roughly everything requires i915_utils.h.
+> drm_connector and remove the drm_connector base which was in
+> drm_writeback_connector. We also make this drm_writeback_connector
+> a union with hdmi connector to save memory and since a connector can
+> never be both writeback and hdmi it should serve us well.
+> We do all other requireda modifications that come with these changes
+> along with addition of new function which returns the drm_connector
+> when drm_writeback_connector is present.
+> We also modify drivers using the drm_writeback_connector to
+> allow them to use this connector without breaking them.
+> The drivers modified here are amd, komeda, mali, vc4, vkms,
+> rcar_du, msm
 > 
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  4 +-
+>  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  2 +-
+>  .../drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c  |  8 +--
+>  .../gpu/drm/arm/display/komeda/komeda_crtc.c  |  6 +-
+>  .../gpu/drm/arm/display/komeda/komeda_kms.h   |  6 +-
+>  .../arm/display/komeda/komeda_wb_connector.c  |  8 +--
+>  drivers/gpu/drm/arm/malidp_crtc.c             |  2 +-
+>  drivers/gpu/drm/arm/malidp_drv.h              |  2 +-
+>  drivers/gpu/drm/arm/malidp_hw.c               |  6 +-
+>  drivers/gpu/drm/arm/malidp_mw.c               |  8 +--
+>  drivers/gpu/drm/drm_writeback.c               | 33 ++++++---
+>  .../drm/msm/disp/dpu1/dpu_encoder_phys_wb.c   |  3 +-
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c | 16 +++--
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.h |  4 +-
+>  .../gpu/drm/renesas/rcar-du/rcar_du_crtc.h    |  4 +-
+>  .../drm/renesas/rcar-du/rcar_du_writeback.c   | 19 ++---
+>  drivers/gpu/drm/vc4/vc4_txp.c                 | 14 ++--
+>  drivers/gpu/drm/vkms/vkms_composer.c          |  2 +-
+>  drivers/gpu/drm/vkms/vkms_drv.h               |  2 +-
+>  drivers/gpu/drm/vkms/vkms_writeback.c         | 13 ++--
+>  include/drm/drm_connector.h                   | 70 +++++++++++++++++--
+>  include/drm/drm_writeback.h                   | 68 ++----------------
+>  22 files changed, 163 insertions(+), 137 deletions(-)
+> 
+> @@ -2305,6 +2366,7 @@ struct drm_connector {
+>  	 * @cec: CEC-related data.
+>  	 */
+>  	struct drm_connector_cec cec;
+> +
 
-(facepalm)...
+Probably a refactoring leftover.
 
-> Maybe I'll post just some of these and drop patch 1.
+>  };
+>  
+>  #define obj_to_connector(x) container_of(x, struct drm_connector, base)
 
-already a good start anyway ;)
-
-> 
-> BR,
-> Jani.
-> 
-> 
-> 
-> 
-> >
-> >
-> >> 
-> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> >> ---
-> >>  .../drm/i915/gt/intel_execlists_submission.c  |   1 +
-> >>  drivers/gpu/drm/i915/gt/intel_gt_mcr.c        |   1 +
-> >>  drivers/gpu/drm/i915/gt/intel_reset.c         |   7 +-
-> >>  .../gpu/drm/i915/gt/intel_ring_submission.c   |   7 +-
-> >>  drivers/gpu/drm/i915/gt/intel_rps.c           |   2 +
-> >>  drivers/gpu/drm/i915/gt/selftest_tlb.c        |   6 +-
-> >>  drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c  |   6 +-
-> >>  .../i915/gt/uc/intel_gsc_uc_heci_cmd_submit.c |   2 +
-> >>  drivers/gpu/drm/i915/gt/uc/intel_guc.c        |   8 +-
-> >>  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |   3 +-
-> >>  drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c     |   4 +-
-> >>  drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   |  13 +-
-> >>  .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  10 +-
-> >>  drivers/gpu/drm/i915/gvt/mmio_context.c       |   6 +-
-> >>  drivers/gpu/drm/i915/i915_debugfs.c           |   3 +-
-> >>  drivers/gpu/drm/i915/i915_utils.h             | 106 ----------------
-> >>  drivers/gpu/drm/i915/i915_wait_util.h         | 119 ++++++++++++++++++
-> >>  drivers/gpu/drm/i915/intel_pcode.c            |   1 +
-> >>  drivers/gpu/drm/i915/intel_uncore.c           |   7 +-
-> >>  drivers/gpu/drm/i915/pxp/intel_pxp.c          |   4 +-
-> >>  drivers/gpu/drm/i915/selftests/i915_request.c |   5 +-
-> >>  .../gpu/drm/i915/selftests/i915_selftest.c    |   2 +-
-> >>  drivers/gpu/drm/i915/selftests/igt_spinner.c  |   5 +-
-> >>  drivers/gpu/drm/i915/vlv_suspend.c            |   5 +-
-> >>  24 files changed, 183 insertions(+), 150 deletions(-)
-> >>  create mode 100644 drivers/gpu/drm/i915/i915_wait_util.h
-> >> 
-> >> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> >> index 0c1b2df02d26..7f389cb0bde4 100644
-> >> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> >> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> >> @@ -117,6 +117,7 @@
-> >>  #include "i915_timer_util.h"
-> >>  #include "i915_trace.h"
-> >>  #include "i915_vgpu.h"
-> >> +#include "i915_wait_util.h"
-> >>  #include "intel_breadcrumbs.h"
-> >>  #include "intel_context.h"
-> >>  #include "intel_engine_heartbeat.h"
-> >> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
-> >> index a60822e2b5d4..c3afa321fe30 100644
-> >> --- a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
-> >> +++ b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
-> >> @@ -4,6 +4,7 @@
-> >>   */
-> >>  
-> >>  #include "i915_drv.h"
-> >> +#include "i915_wait_util.h"
-> >>  #include "intel_gt.h"
-> >>  #include "intel_gt_mcr.h"
-> >>  #include "intel_gt_print.h"
-> >> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-> >> index 4a1675dea1c7..41b5036dc538 100644
-> >> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
-> >> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-> >> @@ -9,18 +9,17 @@
-> >>  
-> >>  #include "display/intel_display_reset.h"
-> >>  #include "display/intel_overlay.h"
-> >> -
-> >>  #include "gem/i915_gem_context.h"
-> >> -
-> >>  #include "gt/intel_gt_regs.h"
-> >> -
-> >>  #include "gt/uc/intel_gsc_fw.h"
-> >> +#include "uc/intel_guc.h"
-> >>  
-> >>  #include "i915_drv.h"
-> >>  #include "i915_file_private.h"
-> >>  #include "i915_gpu_error.h"
-> >>  #include "i915_irq.h"
-> >>  #include "i915_reg.h"
-> >> +#include "i915_wait_util.h"
-> >>  #include "intel_breadcrumbs.h"
-> >>  #include "intel_engine_pm.h"
-> >>  #include "intel_engine_regs.h"
-> >> @@ -32,8 +31,6 @@
-> >>  #include "intel_pci_config.h"
-> >>  #include "intel_reset.h"
-> >>  
-> >> -#include "uc/intel_guc.h"
-> >> -
-> >>  #define RESET_MAX_RETRIES 3
-> >>  
-> >>  static void client_mark_guilty(struct i915_gem_context *ctx, bool banned)
-> >> diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-> >> index 2a6d79abf25b..8314a4b0505e 100644
-> >> --- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-> >> +++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-> >> @@ -15,18 +15,19 @@
-> >>  #include "i915_irq.h"
-> >>  #include "i915_mitigations.h"
-> >>  #include "i915_reg.h"
-> >> +#include "i915_wait_util.h"
-> >>  #include "intel_breadcrumbs.h"
-> >>  #include "intel_context.h"
-> >> +#include "intel_engine_heartbeat.h"
-> >> +#include "intel_engine_pm.h"
-> >>  #include "intel_engine_regs.h"
-> >>  #include "intel_gt.h"
-> >>  #include "intel_gt_irq.h"
-> >> +#include "intel_gt_print.h"
-> >>  #include "intel_gt_regs.h"
-> >>  #include "intel_reset.h"
-> >>  #include "intel_ring.h"
-> >>  #include "shmem_utils.h"
-> >> -#include "intel_engine_heartbeat.h"
-> >> -#include "intel_engine_pm.h"
-> >> -#include "intel_gt_print.h"
-> >>  
-> >>  /* Rough estimate of the typical request size, performing a flush,
-> >>   * set-context and then emitting the batch.
-> >> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-> >> index 006042e0b229..4da94098bd3e 100644
-> >> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
-> >> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-> >> @@ -10,9 +10,11 @@
-> >>  #include "display/intel_display.h"
-> >>  #include "display/intel_display_rps.h"
-> >>  #include "soc/intel_dram.h"
-> >> +
-> >>  #include "i915_drv.h"
-> >>  #include "i915_irq.h"
-> >>  #include "i915_reg.h"
-> >> +#include "i915_wait_util.h"
-> >>  #include "intel_breadcrumbs.h"
-> >>  #include "intel_gt.h"
-> >>  #include "intel_gt_clock_utils.h"
-> >> diff --git a/drivers/gpu/drm/i915/gt/selftest_tlb.c b/drivers/gpu/drm/i915/gt/selftest_tlb.c
-> >> index 69ed946a39e5..a5184f09d1de 100644
-> >> --- a/drivers/gpu/drm/i915/gt/selftest_tlb.c
-> >> +++ b/drivers/gpu/drm/i915/gt/selftest_tlb.c
-> >> @@ -3,17 +3,17 @@
-> >>   * Copyright © 2022 Intel Corporation
-> >>   */
-> >>  
-> >> -#include "i915_selftest.h"
-> >> -
-> >>  #include "gem/i915_gem_internal.h"
-> >>  #include "gem/i915_gem_lmem.h"
-> >>  #include "gem/i915_gem_region.h"
-> >>  
-> >>  #include "gen8_engine_cs.h"
-> >>  #include "i915_gem_ww.h"
-> >> +#include "i915_selftest.h"
-> >> +#include "i915_wait_util.h"
-> >> +#include "intel_context.h"
-> >>  #include "intel_engine_regs.h"
-> >>  #include "intel_gpu_commands.h"
-> >> -#include "intel_context.h"
-> >>  #include "intel_gt.h"
-> >>  #include "intel_ring.h"
-> >>  
-> >> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c b/drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c
-> >> index d8edd7c054c8..e7444ebc373e 100644
-> >> --- a/drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c
-> >> +++ b/drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c
-> >> @@ -10,11 +10,13 @@
-> >>  
-> >>  #include "gt/intel_gt.h"
-> >>  #include "gt/intel_gt_print.h"
-> >> +
-> >> +#include "i915_drv.h"
-> >> +#include "i915_reg.h"
-> >> +#include "i915_wait_util.h"
-> >>  #include "intel_gsc_proxy.h"
-> >>  #include "intel_gsc_uc.h"
-> >>  #include "intel_gsc_uc_heci_cmd_submit.h"
-> >> -#include "i915_drv.h"
-> >> -#include "i915_reg.h"
-> >>  
-> >>  /*
-> >>   * GSC proxy:
-> >> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_heci_cmd_submit.c b/drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_heci_cmd_submit.c
-> >> index 2fde5c360cff..9bd29be7656f 100644
-> >> --- a/drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_heci_cmd_submit.c
-> >> +++ b/drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_heci_cmd_submit.c
-> >> @@ -8,6 +8,8 @@
-> >>  #include "gt/intel_gpu_commands.h"
-> >>  #include "gt/intel_gt.h"
-> >>  #include "gt/intel_ring.h"
-> >> +
-> >> +#include "i915_wait_util.h"
-> >>  #include "intel_gsc_uc_heci_cmd_submit.h"
-> >>  
-> >>  struct gsc_heci_pkt {
-> >> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> >> index f360f020d8f1..52ec4421a211 100644
-> >> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> >> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> >> @@ -8,15 +8,17 @@
-> >>  #include "gt/intel_gt_irq.h"
-> >>  #include "gt/intel_gt_pm_irq.h"
-> >>  #include "gt/intel_gt_regs.h"
-> >> +
-> >> +#include "i915_drv.h"
-> >> +#include "i915_irq.h"
-> >> +#include "i915_reg.h"
-> >> +#include "i915_wait_util.h"
-> >>  #include "intel_guc.h"
-> >>  #include "intel_guc_ads.h"
-> >>  #include "intel_guc_capture.h"
-> >>  #include "intel_guc_print.h"
-> >>  #include "intel_guc_slpc.h"
-> >>  #include "intel_guc_submission.h"
-> >> -#include "i915_drv.h"
-> >> -#include "i915_irq.h"
-> >> -#include "i915_reg.h"
-> >>  
-> >>  /**
-> >>   * DOC: GuC
-> >> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> >> index 380a11c92d63..3e7e5badcc2b 100644
-> >> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> >> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> >> @@ -5,11 +5,12 @@
-> >>  
-> >>  #include <linux/circ_buf.h>
-> >>  #include <linux/ktime.h>
-> >> -#include <linux/time64.h>
-> >>  #include <linux/string_helpers.h>
-> >> +#include <linux/time64.h>
-> >>  #include <linux/timekeeping.h>
-> >>  
-> >>  #include "i915_drv.h"
-> >> +#include "i915_wait_util.h"
-> >>  #include "intel_guc_ct.h"
-> >>  #include "intel_guc_print.h"
-> >>  
-> >> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
-> >> index e7ccfa520df3..1bb1491f90fc 100644
-> >> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
-> >> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
-> >> @@ -13,9 +13,11 @@
-> >>  #include "gt/intel_gt_mcr.h"
-> >>  #include "gt/intel_gt_regs.h"
-> >>  #include "gt/intel_rps.h"
-> >> +
-> >> +#include "i915_drv.h"
-> >> +#include "i915_wait_util.h"
-> >>  #include "intel_guc_fw.h"
-> >>  #include "intel_guc_print.h"
-> >> -#include "i915_drv.h"
-> >>  
-> >>  static void guc_prepare_xfer(struct intel_gt *gt)
-> >>  {
-> >> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-> >> index d5ee6e5e1443..fa9af08f9708 100644
-> >> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-> >> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-> >> @@ -3,17 +3,20 @@
-> >>   * Copyright © 2021 Intel Corporation
-> >>   */
-> >>  
-> >> -#include <drm/drm_cache.h>
-> >>  #include <linux/string_helpers.h>
-> >>  
-> >> +#include <drm/drm_cache.h>
-> >> +
-> >> +#include "gt/intel_gt.h"
-> >> +#include "gt/intel_gt_regs.h"
-> >> +#include "gt/intel_rps.h"
-> >> +
-> >>  #include "i915_drv.h"
-> >>  #include "i915_reg.h"
-> >> -#include "intel_guc_slpc.h"
-> >> +#include "i915_wait_util.h"
-> >>  #include "intel_guc_print.h"
-> >> +#include "intel_guc_slpc.h"
-> >>  #include "intel_mchbar_regs.h"
-> >> -#include "gt/intel_gt.h"
-> >> -#include "gt/intel_gt_regs.h"
-> >> -#include "gt/intel_rps.h"
-> >>  
-> >>  /**
-> >>   * DOC: SLPC - Dynamic Frequency management
-> >> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> >> index 127316d2c8aa..68f2b8d363ac 100644
-> >> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> >> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> >> @@ -25,16 +25,16 @@
-> >>  #include "gt/intel_mocs.h"
-> >>  #include "gt/intel_ring.h"
-> >>  
-> >> +#include "i915_drv.h"
-> >> +#include "i915_irq.h"
-> >> +#include "i915_reg.h"
-> >> +#include "i915_trace.h"
-> >> +#include "i915_wait_util.h"
-> >>  #include "intel_guc_ads.h"
-> >>  #include "intel_guc_capture.h"
-> >>  #include "intel_guc_print.h"
-> >>  #include "intel_guc_submission.h"
-> >>  
-> >> -#include "i915_drv.h"
-> >> -#include "i915_reg.h"
-> >> -#include "i915_irq.h"
-> >> -#include "i915_trace.h"
-> >> -
-> >>  /**
-> >>   * DOC: GuC-based command submission
-> >>   *
-> >> diff --git a/drivers/gpu/drm/i915/gvt/mmio_context.c b/drivers/gpu/drm/i915/gvt/mmio_context.c
-> >> index 2f7208843367..0b810baad20a 100644
-> >> --- a/drivers/gpu/drm/i915/gvt/mmio_context.c
-> >> +++ b/drivers/gpu/drm/i915/gvt/mmio_context.c
-> >> @@ -33,14 +33,16 @@
-> >>   *
-> >>   */
-> >>  
-> >> -#include "i915_drv.h"
-> >> -#include "i915_reg.h"
-> >>  #include "gt/intel_context.h"
-> >>  #include "gt/intel_engine_regs.h"
-> >>  #include "gt/intel_gpu_commands.h"
-> >>  #include "gt/intel_gt_regs.h"
-> >>  #include "gt/intel_ring.h"
-> >> +
-> >>  #include "gvt.h"
-> >> +#include "i915_drv.h"
-> >> +#include "i915_reg.h"
-> >> +#include "i915_wait_util.h"
-> >>  #include "trace.h"
-> >>  
-> >>  #define GEN9_MOCS_SIZE		64
-> >> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-> >> index 23fa098c4479..c2e38d4bcd01 100644
-> >> --- a/drivers/gpu/drm/i915/i915_debugfs.c
-> >> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
-> >> @@ -26,11 +26,11 @@
-> >>   *
-> >>   */
-> >>  
-> >> +#include <linux/debugfs.h>
-> >>  #include <linux/sched/mm.h>
-> >>  #include <linux/sort.h>
-> >>  #include <linux/string_helpers.h>
-> >>  
-> >> -#include <linux/debugfs.h>
-> >>  #include <drm/drm_debugfs.h>
-> >>  
-> >>  #include "gem/i915_gem_context.h"
-> >> @@ -54,6 +54,7 @@
-> >>  #include "i915_irq.h"
-> >>  #include "i915_reg.h"
-> >>  #include "i915_scheduler.h"
-> >> +#include "i915_wait_util.h"
-> >>  #include "intel_mchbar_regs.h"
-> >>  
-> >>  static inline struct drm_i915_private *node_to_i915(struct drm_info_node *node)
-> >> diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
-> >> index 4a6437d6e00e..a0c892e4c40d 100644
-> >> --- a/drivers/gpu/drm/i915/i915_utils.h
-> >> +++ b/drivers/gpu/drm/i915/i915_utils.h
-> >> @@ -134,112 +134,6 @@ wait_remaining_ms_from_jiffies(unsigned long timestamp_jiffies, int to_wait_ms)
-> >>  	}
-> >>  }
-> >>  
-> >> -/*
-> >> - * __wait_for - magic wait macro
-> >> - *
-> >> - * Macro to help avoid open coding check/wait/timeout patterns. Note that it's
-> >> - * important that we check the condition again after having timed out, since the
-> >> - * timeout could be due to preemption or similar and we've never had a chance to
-> >> - * check the condition before the timeout.
-> >> - */
-> >> -#define __wait_for(OP, COND, US, Wmin, Wmax) ({ \
-> >> -	const ktime_t end__ = ktime_add_ns(ktime_get_raw(), 1000ll * (US)); \
-> >> -	long wait__ = (Wmin); /* recommended min for usleep is 10 us */	\
-> >> -	int ret__;							\
-> >> -	might_sleep();							\
-> >> -	for (;;) {							\
-> >> -		const bool expired__ = ktime_after(ktime_get_raw(), end__); \
-> >> -		OP;							\
-> >> -		/* Guarantee COND check prior to timeout */		\
-> >> -		barrier();						\
-> >> -		if (COND) {						\
-> >> -			ret__ = 0;					\
-> >> -			break;						\
-> >> -		}							\
-> >> -		if (expired__) {					\
-> >> -			ret__ = -ETIMEDOUT;				\
-> >> -			break;						\
-> >> -		}							\
-> >> -		usleep_range(wait__, wait__ * 2);			\
-> >> -		if (wait__ < (Wmax))					\
-> >> -			wait__ <<= 1;					\
-> >> -	}								\
-> >> -	ret__;								\
-> >> -})
-> >> -
-> >> -#define _wait_for(COND, US, Wmin, Wmax)	__wait_for(, (COND), (US), (Wmin), \
-> >> -						   (Wmax))
-> >> -#define wait_for(COND, MS)		_wait_for((COND), (MS) * 1000, 10, 1000)
-> >> -
-> >> -/*
-> >> - * If CONFIG_PREEMPT_COUNT is disabled, in_atomic() always reports false.
-> >> - * On PREEMPT_RT the context isn't becoming atomic because it is used in an
-> >> - * interrupt handler or because a spinlock_t is acquired. This leads to
-> >> - * warnings which don't occur otherwise and therefore the check is disabled.
-> >> - */
-> >> -#if IS_ENABLED(CONFIG_DRM_I915_DEBUG) && IS_ENABLED(CONFIG_PREEMPT_COUNT) && !defined(CONFIG_PREEMPT_RT)
-> >> -# define _WAIT_FOR_ATOMIC_CHECK(ATOMIC) WARN_ON_ONCE((ATOMIC) && !in_atomic())
-> >> -#else
-> >> -# define _WAIT_FOR_ATOMIC_CHECK(ATOMIC) do { } while (0)
-> >> -#endif
-> >> -
-> >> -#define _wait_for_atomic(COND, US, ATOMIC) \
-> >> -({ \
-> >> -	int cpu, ret, timeout = (US) * 1000; \
-> >> -	u64 base; \
-> >> -	_WAIT_FOR_ATOMIC_CHECK(ATOMIC); \
-> >> -	if (!(ATOMIC)) { \
-> >> -		preempt_disable(); \
-> >> -		cpu = smp_processor_id(); \
-> >> -	} \
-> >> -	base = local_clock(); \
-> >> -	for (;;) { \
-> >> -		u64 now = local_clock(); \
-> >> -		if (!(ATOMIC)) \
-> >> -			preempt_enable(); \
-> >> -		/* Guarantee COND check prior to timeout */ \
-> >> -		barrier(); \
-> >> -		if (COND) { \
-> >> -			ret = 0; \
-> >> -			break; \
-> >> -		} \
-> >> -		if (now - base >= timeout) { \
-> >> -			ret = -ETIMEDOUT; \
-> >> -			break; \
-> >> -		} \
-> >> -		cpu_relax(); \
-> >> -		if (!(ATOMIC)) { \
-> >> -			preempt_disable(); \
-> >> -			if (unlikely(cpu != smp_processor_id())) { \
-> >> -				timeout -= now - base; \
-> >> -				cpu = smp_processor_id(); \
-> >> -				base = local_clock(); \
-> >> -			} \
-> >> -		} \
-> >> -	} \
-> >> -	ret; \
-> >> -})
-> >> -
-> >> -#define wait_for_us(COND, US) \
-> >> -({ \
-> >> -	int ret__; \
-> >> -	BUILD_BUG_ON(!__builtin_constant_p(US)); \
-> >> -	if ((US) > 10) \
-> >> -		ret__ = _wait_for((COND), (US), 10, 10); \
-> >> -	else \
-> >> -		ret__ = _wait_for_atomic((COND), (US), 0); \
-> >> -	ret__; \
-> >> -})
-> >> -
-> >> -#define wait_for_atomic_us(COND, US) \
-> >> -({ \
-> >> -	BUILD_BUG_ON(!__builtin_constant_p(US)); \
-> >> -	BUILD_BUG_ON((US) > 50000); \
-> >> -	_wait_for_atomic((COND), (US), 1); \
-> >> -})
-> >> -
-> >> -#define wait_for_atomic(COND, MS) wait_for_atomic_us((COND), (MS) * 1000)
-> >> -
-> >>  #define KHz(x) (1000 * (x))
-> >>  #define MHz(x) KHz(1000 * (x))
-> >>  
-> >> diff --git a/drivers/gpu/drm/i915/i915_wait_util.h b/drivers/gpu/drm/i915/i915_wait_util.h
-> >> new file mode 100644
-> >> index 000000000000..7376898e3bf8
-> >> --- /dev/null
-> >> +++ b/drivers/gpu/drm/i915/i915_wait_util.h
-> >> @@ -0,0 +1,119 @@
-> >> +/* SPDX-License-Identifier: MIT */
-> >> +/* Copyright © 2025 Intel Corporation */
-> >> +
-> >> +#ifndef __I915_WAIT_UTIL_H__
-> >> +#define __I915_WAIT_UTIL_H__
-> >> +
-> >> +#include <linux/compiler.h>
-> >> +#include <linux/delay.h>
-> >> +#include <linux/ktime.h>
-> >> +#include <linux/sched/clock.h>
-> >> +#include <linux/smp.h>
-> >> +
-> >> +/*
-> >> + * __wait_for - magic wait macro
-> >> + *
-> >> + * Macro to help avoid open coding check/wait/timeout patterns. Note that it's
-> >> + * important that we check the condition again after having timed out, since the
-> >> + * timeout could be due to preemption or similar and we've never had a chance to
-> >> + * check the condition before the timeout.
-> >> + */
-> >> +#define __wait_for(OP, COND, US, Wmin, Wmax) ({ \
-> >> +	const ktime_t end__ = ktime_add_ns(ktime_get_raw(), 1000ll * (US)); \
-> >> +	long wait__ = (Wmin); /* recommended min for usleep is 10 us */	\
-> >> +	int ret__;							\
-> >> +	might_sleep();							\
-> >> +	for (;;) {							\
-> >> +		const bool expired__ = ktime_after(ktime_get_raw(), end__); \
-> >> +		OP;							\
-> >> +		/* Guarantee COND check prior to timeout */		\
-> >> +		barrier();						\
-> >> +		if (COND) {						\
-> >> +			ret__ = 0;					\
-> >> +			break;						\
-> >> +		}							\
-> >> +		if (expired__) {					\
-> >> +			ret__ = -ETIMEDOUT;				\
-> >> +			break;						\
-> >> +		}							\
-> >> +		usleep_range(wait__, wait__ * 2);			\
-> >> +		if (wait__ < (Wmax))					\
-> >> +			wait__ <<= 1;					\
-> >> +	}								\
-> >> +	ret__;								\
-> >> +})
-> >> +
-> >> +#define _wait_for(COND, US, Wmin, Wmax)	__wait_for(, (COND), (US), (Wmin), \
-> >> +						   (Wmax))
-> >> +#define wait_for(COND, MS)		_wait_for((COND), (MS) * 1000, 10, 1000)
-> >> +
-> >> +/*
-> >> + * If CONFIG_PREEMPT_COUNT is disabled, in_atomic() always reports false.
-> >> + * On PREEMPT_RT the context isn't becoming atomic because it is used in an
-> >> + * interrupt handler or because a spinlock_t is acquired. This leads to
-> >> + * warnings which don't occur otherwise and therefore the check is disabled.
-> >> + */
-> >> +#if IS_ENABLED(CONFIG_DRM_I915_DEBUG) && IS_ENABLED(CONFIG_PREEMPT_COUNT) && !defined(CONFIG_PREEMPT_RT)
-> >> +# define _WAIT_FOR_ATOMIC_CHECK(ATOMIC) WARN_ON_ONCE((ATOMIC) && !in_atomic())
-> >> +#else
-> >> +# define _WAIT_FOR_ATOMIC_CHECK(ATOMIC) do { } while (0)
-> >> +#endif
-> >> +
-> >> +#define _wait_for_atomic(COND, US, ATOMIC) \
-> >> +({ \
-> >> +	int cpu, ret, timeout = (US) * 1000; \
-> >> +	u64 base; \
-> >> +	_WAIT_FOR_ATOMIC_CHECK(ATOMIC); \
-> >> +	if (!(ATOMIC)) { \
-> >> +		preempt_disable(); \
-> >> +		cpu = smp_processor_id(); \
-> >> +	} \
-> >> +	base = local_clock(); \
-> >> +	for (;;) { \
-> >> +		u64 now = local_clock(); \
-> >> +		if (!(ATOMIC)) \
-> >> +			preempt_enable(); \
-> >> +		/* Guarantee COND check prior to timeout */ \
-> >> +		barrier(); \
-> >> +		if (COND) { \
-> >> +			ret = 0; \
-> >> +			break; \
-> >> +		} \
-> >> +		if (now - base >= timeout) { \
-> >> +			ret = -ETIMEDOUT; \
-> >> +			break; \
-> >> +		} \
-> >> +		cpu_relax(); \
-> >> +		if (!(ATOMIC)) { \
-> >> +			preempt_disable(); \
-> >> +			if (unlikely(cpu != smp_processor_id())) { \
-> >> +				timeout -= now - base; \
-> >> +				cpu = smp_processor_id(); \
-> >> +				base = local_clock(); \
-> >> +			} \
-> >> +		} \
-> >> +	} \
-> >> +	ret; \
-> >> +})
-> >> +
-> >> +#define wait_for_us(COND, US) \
-> >> +({ \
-> >> +	int ret__; \
-> >> +	BUILD_BUG_ON(!__builtin_constant_p(US)); \
-> >> +	if ((US) > 10) \
-> >> +		ret__ = _wait_for((COND), (US), 10, 10); \
-> >> +	else \
-> >> +		ret__ = _wait_for_atomic((COND), (US), 0); \
-> >> +	ret__; \
-> >> +})
-> >> +
-> >> +#define wait_for_atomic_us(COND, US) \
-> >> +({ \
-> >> +	BUILD_BUG_ON(!__builtin_constant_p(US)); \
-> >> +	BUILD_BUG_ON((US) > 50000); \
-> >> +	_wait_for_atomic((COND), (US), 1); \
-> >> +})
-> >> +
-> >> +#define wait_for_atomic(COND, MS) wait_for_atomic_us((COND), (MS) * 1000)
-> >> +
-> >> +#endif /* __I915_WAIT_UTIL_H__ */
-> >> diff --git a/drivers/gpu/drm/i915/intel_pcode.c b/drivers/gpu/drm/i915/intel_pcode.c
-> >> index 81da75108c60..55ffedad2490 100644
-> >> --- a/drivers/gpu/drm/i915/intel_pcode.c
-> >> +++ b/drivers/gpu/drm/i915/intel_pcode.c
-> >> @@ -5,6 +5,7 @@
-> >>  
-> >>  #include "i915_drv.h"
-> >>  #include "i915_reg.h"
-> >> +#include "i915_wait_util.h"
-> >>  #include "intel_pcode.h"
-> >>  
-> >>  static int gen6_check_mailbox_status(u32 mbox)
-> >> diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
-> >> index 4ccba7c8ffb3..8cb59f8d1f4c 100644
-> >> --- a/drivers/gpu/drm/i915/intel_uncore.c
-> >> +++ b/drivers/gpu/drm/i915/intel_uncore.c
-> >> @@ -21,19 +21,20 @@
-> >>   * IN THE SOFTWARE.
-> >>   */
-> >>  
-> >> -#include <drm/drm_managed.h>
-> >>  #include <linux/pm_runtime.h>
-> >>  
-> >> -#include "display/intel_display_core.h"
-> >> +#include <drm/drm_managed.h>
-> >>  
-> >> -#include "gt/intel_gt.h"
-> >> +#include "display/intel_display_core.h"
-> >>  #include "gt/intel_engine_regs.h"
-> >> +#include "gt/intel_gt.h"
-> >>  #include "gt/intel_gt_regs.h"
-> >>  
-> >>  #include "i915_drv.h"
-> >>  #include "i915_iosf_mbi.h"
-> >>  #include "i915_reg.h"
-> >>  #include "i915_vgpu.h"
-> >> +#include "i915_wait_util.h"
-> >>  #include "intel_uncore_trace.h"
-> >>  
-> >>  #define FORCEWAKE_ACK_TIMEOUT_MS 50
-> >> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-> >> index f8da693ad3ce..27d545c4e6a5 100644
-> >> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
-> >> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-> >> @@ -2,15 +2,15 @@
-> >>  /*
-> >>   * Copyright(c) 2020 Intel Corporation.
-> >>   */
-> >> +
-> >>  #include <linux/workqueue.h>
-> >>  
-> >>  #include "gem/i915_gem_context.h"
-> >> -
-> >>  #include "gt/intel_context.h"
-> >>  #include "gt/intel_gt.h"
-> >>  
-> >>  #include "i915_drv.h"
-> >> -
-> >> +#include "i915_wait_util.h"
-> >>  #include "intel_pxp.h"
-> >>  #include "intel_pxp_gsccs.h"
-> >>  #include "intel_pxp_irq.h"
-> >> diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
-> >> index 2fb7a9e7efec..48cd617247d1 100644
-> >> --- a/drivers/gpu/drm/i915/selftests/i915_request.c
-> >> +++ b/drivers/gpu/drm/i915/selftests/i915_request.c
-> >> @@ -22,14 +22,13 @@
-> >>   *
-> >>   */
-> >>  
-> >> -#include <linux/prime_numbers.h>
-> >>  #include <linux/pm_qos.h>
-> >> +#include <linux/prime_numbers.h>
-> >>  #include <linux/sort.h>
-> >>  
-> >>  #include "gem/i915_gem_internal.h"
-> >>  #include "gem/i915_gem_pm.h"
-> >>  #include "gem/selftests/mock_context.h"
-> >> -
-> >>  #include "gt/intel_engine_heartbeat.h"
-> >>  #include "gt/intel_engine_pm.h"
-> >>  #include "gt/intel_engine_user.h"
-> >> @@ -40,11 +39,11 @@
-> >>  
-> >>  #include "i915_random.h"
-> >>  #include "i915_selftest.h"
-> >> +#include "i915_wait_util.h"
-> >>  #include "igt_flush_test.h"
-> >>  #include "igt_live_test.h"
-> >>  #include "igt_spinner.h"
-> >>  #include "lib_sw_fence.h"
-> >> -
-> >>  #include "mock_drm.h"
-> >>  #include "mock_gem_device.h"
-> >>  
-> >> diff --git a/drivers/gpu/drm/i915/selftests/i915_selftest.c b/drivers/gpu/drm/i915/selftests/i915_selftest.c
-> >> index 889281819c5b..9c276c9d0a75 100644
-> >> --- a/drivers/gpu/drm/i915/selftests/i915_selftest.c
-> >> +++ b/drivers/gpu/drm/i915/selftests/i915_selftest.c
-> >> @@ -31,7 +31,7 @@
-> >>  #include "i915_driver.h"
-> >>  #include "i915_drv.h"
-> >>  #include "i915_selftest.h"
-> >> -
-> >> +#include "i915_wait_util.h"
-> >>  #include "igt_flush_test.h"
-> >>  
-> >>  struct i915_selftest i915_selftest __read_mostly = {
-> >> diff --git a/drivers/gpu/drm/i915/selftests/igt_spinner.c b/drivers/gpu/drm/i915/selftests/igt_spinner.c
-> >> index 8c3e1f20e5a1..820364171ebe 100644
-> >> --- a/drivers/gpu/drm/i915/selftests/igt_spinner.c
-> >> +++ b/drivers/gpu/drm/i915/selftests/igt_spinner.c
-> >> @@ -3,12 +3,13 @@
-> >>   *
-> >>   * Copyright © 2018 Intel Corporation
-> >>   */
-> >> -#include "gt/intel_gpu_commands.h"
-> >> -#include "gt/intel_gt.h"
-> >>  
-> >>  #include "gem/i915_gem_internal.h"
-> >>  #include "gem/selftests/igt_gem_utils.h"
-> >> +#include "gt/intel_gpu_commands.h"
-> >> +#include "gt/intel_gt.h"
-> >>  
-> >> +#include "i915_wait_util.h"
-> >>  #include "igt_spinner.h"
-> >>  
-> >>  int igt_spinner_init(struct igt_spinner *spin, struct intel_gt *gt)
-> >> diff --git a/drivers/gpu/drm/i915/vlv_suspend.c b/drivers/gpu/drm/i915/vlv_suspend.c
-> >> index fc9f311ea1db..221e4c0b2c58 100644
-> >> --- a/drivers/gpu/drm/i915/vlv_suspend.c
-> >> +++ b/drivers/gpu/drm/i915/vlv_suspend.c
-> >> @@ -8,16 +8,17 @@
-> >>  
-> >>  #include <drm/drm_print.h>
-> >>  
-> >> +#include "gt/intel_gt_regs.h"
-> >> +
-> >>  #include "i915_drv.h"
-> >>  #include "i915_reg.h"
-> >>  #include "i915_trace.h"
-> >>  #include "i915_utils.h"
-> >> +#include "i915_wait_util.h"
-> >>  #include "intel_clock_gating.h"
-> >>  #include "intel_uncore_trace.h"
-> >>  #include "vlv_suspend.h"
-> >>  
-> >> -#include "gt/intel_gt_regs.h"
-> >> -
-> >>  struct vlv_s0ix_state {
-> >>  	/* GAM */
-> >>  	u32 wr_watermark;
-> >> -- 
-> >> 2.47.3
-> >> 
-> 
-> -- 
-> Jani Nikula, Intel
+-- 
+With best wishes
+Dmitry
