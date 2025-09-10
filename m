@@ -2,59 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 734A1B50E86
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Sep 2025 08:53:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EE66B51422
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Sep 2025 12:37:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F7E910E864;
-	Wed, 10 Sep 2025 06:53:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98AE010E8CB;
+	Wed, 10 Sep 2025 10:36:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kiI25MsZ";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="SQPKF5k1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43B7610E2BF;
- Wed, 10 Sep 2025 06:53:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757487208; x=1789023208;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=argXRs57Q5ChljOSGp6LYTxzHR/VEZErfrnFs1T5eX8=;
- b=kiI25MsZrMlIK9Dg7JLg5Yr0aTdFZ3dI3Md5JxZ9a4WtmnS/4cCvSlI7
- g5WA6qokOnX2tQvZCc0QOC+J8huIYCP8+2MugxDaitGELtv1Rsp4FAzo0
- RsiPniaVQkaedQ7MFWwATMjP+CEGSN/er7UKe5UrsuRWPwz75y/YmFDuI
- 3i6se5o0mxGXbhZit/6eIa8lTnd/t8XBaw0KawOb6w2Ek6o1CiBy0EIzr
- BsrveLx+MuiMM4+ATiL4MJwfpNfrqK+zHEXaBdEixUZON0LniPcHzuhQh
- WTq14Pn6hjwcw8gQ9ONNt3SUY10cKKn3j//PhDgyzMuoQ0Yjqsk2weHJG w==;
-X-CSE-ConnectionGUID: acfiaVcuT+mnQOJZ/Ey1Rw==
-X-CSE-MsgGUID: +JHON1QsRqiGFcLeMKX2yw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="82376640"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="82376640"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2025 23:53:27 -0700
-X-CSE-ConnectionGUID: 4ERkyensQza9ZQviIBu/WQ==
-X-CSE-MsgGUID: FWfMDlo0RQWr2yIUzOHIeQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,253,1751266800"; d="scan'208";a="173150912"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.72])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2025 23:53:25 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [RESEND 00/12] drm/i915: vlv clock cleanups
-In-Reply-To: <aMArwlpXAoA60Q-0@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1755607980.git.jani.nikula@intel.com>
- <aMArwlpXAoA60Q-0@intel.com>
-Date: Wed, 10 Sep 2025 09:53:21 +0300
-Message-ID: <138e4a2e2770990e5c367dd8c9d3a76095664d84@intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 006F410E8C4;
+ Wed, 10 Sep 2025 10:36:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:
+ Sender:Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=jftWcmtuDH54JdrPOJMYghiwn9/+zNCn9jAjHMJV4v0=; b=SQPKF5k1kLh/LqN4uCoJ64TQFi
+ Ryr2KZGIDHBXMUUutezYQrqIEP7DuZeNjRbwbv+v6uHpkbXd0JlXk/mR5hTbhVyyyWjAmB2CkZhie
+ uobWIsbvfOWN9JSSQ+WAJQUtKFh5wyqCBeY/Gr+1sv5dKglLrkUYO/9YmQNC9ARSVAtGHDCVNJLrF
+ odFgPerDTNbyOpahSObmTl2rgqKZl0U8aDp6B34RCyTa/gx+l5U9ZViESdP8Ux1sQMf9oh2cLsDeW
+ oR/6DD0sYLZvn0oyxk0No2bXh0TLaP8Pz9dLJggeQznlyJTRlzXTBL2gat58G/phtj9O2LocC9PGx
+ bPJogFig==;
+Received: from [84.66.36.92] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1uwIBq-009LXS-Jb; Wed, 10 Sep 2025 12:36:38 +0200
+Date: Wed, 10 Sep 2025 11:36:37 +0100
+From: Tvrtko Ursulin <tursulin@igalia.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-fixes
+Message-ID: <aMFUtRdJ46qK-EXl@linux>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,77 +67,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 09 Sep 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Tue, Aug 19, 2025 at 03:53:30PM +0300, Jani Nikula wrote:
->> Rebase and resend of [1].
->>=20
->> [1] https://lore.kernel.org/r/cover.1754385408.git.jani.nikula@intel.com
->>=20
->> Jani Nikula (12):
->>   drm/i915: add vlv_clock_get_gpll()
->>   drm/i915: add vlv_clock_get_czclk()
->>   drm/i915: add vlv_clock_get_hrawclk()
->>   drm/i915: make vlv_get_cck_clock_hpll() static
->>   drm/i915: add vlv_clock_get_cdclk()
->>   drm/i915: make vlv_get_cck_clock() static
->>   drm/i915: rename vlv_get_hpll_vco() to vlv_clock_get_hpll_vco()
->>   drm/i915: cache the results in vlv_clock_get_hpll_vco() and use it
->>     more
->>   drm/i915: remove intel_update_czclk() as unnecessary
->>   drm/i915: log HPLL frequency similar to CZCLK
->>   drm/i915: move hpll and czclk caching under display
->>   drm/i915: split out vlv_clock.[ch]
->>=20
->>  drivers/gpu/drm/i915/Makefile                 |  1 +
->>  drivers/gpu/drm/i915/display/intel_cdclk.c    | 29 ++----
->>  drivers/gpu/drm/i915/display/intel_display.c  | 61 -------------
->>  drivers/gpu/drm/i915/display/intel_display.h  |  6 --
->>  .../gpu/drm/i915/display/intel_display_core.h |  5 ++
->>  .../drm/i915/display/intel_display_driver.c   |  1 -
->>  drivers/gpu/drm/i915/display/vlv_clock.c      | 89 +++++++++++++++++++
->>  drivers/gpu/drm/i915/display/vlv_clock.h      | 38 ++++++++
->
-> Ideally that should live in soc/
->
-> I think we could even link it separately to both i915 and
-> the (eventual) display module since they don't actually
-> need to share anything (apart from the sideband mailbox
-> interface). Would avoid having to add anything for this
-> stuff into the inter module interface.
 
-Superficially soc/ is obvious, but it has been a bit of a problem area
-for sharing between drivers. For example, what to do with platform
-detection code there? Or MMIO?
+Hi Dave, Sima,
 
-> And as mentioned in the reply to one of the patches the
-> vlv_iosf_sb_get/put() stuff is now quite messy. So that
-> probably needs another cleanup pass to make the interface
-> actually sensible.
+Just one fix this week addressing a a theoretical problem in the display
+power handling code.
 
-Judging by the CI results, I guess we need that pass before
-merging. Ugh.
+Regards,
 
-> I guess all of that could be done/thought about later though,
-> so for now the series is:
-> Acked-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+Tvrtko
 
-Thanks, need to still track that problem before merging.
+drm-intel-fixes-2025-09-10:
+- Fix size for for_each_set_bit() in abox iteration [display] (Jani Nikula)
+The following changes since commit 76eeb9b8de9880ca38696b2fb56ac45ac0a25c6c:
 
-BR,
-Jani.
+  Linux 6.17-rc5 (2025-09-07 14:22:57 -0700)
 
->
->>  drivers/gpu/drm/i915/gt/intel_rc6.c           |  3 +-
->>  drivers/gpu/drm/i915/gt/intel_rps.c           | 11 ++-
->>  drivers/gpu/drm/i915/i915_drv.h               |  3 -
->>  drivers/gpu/drm/xe/xe_device_types.h          |  6 --
->>  12 files changed, 148 insertions(+), 105 deletions(-)
->>  create mode 100644 drivers/gpu/drm/i915/display/vlv_clock.c
->>  create mode 100644 drivers/gpu/drm/i915/display/vlv_clock.h
->>=20
->> --=20
->> 2.47.2
+are available in the Git repository at:
 
---=20
-Jani Nikula, Intel
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2025-09-10
+
+for you to fetch changes up to cfa7b7659757f8d0fc4914429efa90d0d2577dd7:
+
+  drm/i915/power: fix size for for_each_set_bit() in abox iteration (2025-09-09 09:08:37 +0100)
+
+----------------------------------------------------------------
+- Fix size for for_each_set_bit() in abox iteration [display] (Jani Nikula)
+
+----------------------------------------------------------------
+Jani Nikula (1):
+      drm/i915/power: fix size for for_each_set_bit() in abox iteration
+
+ drivers/gpu/drm/i915/display/intel_display_power.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
