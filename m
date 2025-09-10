@@ -2,60 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02913B51687
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Sep 2025 14:07:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6398EB516EF
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Sep 2025 14:30:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAED110E905;
-	Wed, 10 Sep 2025 12:07:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED22910E915;
+	Wed, 10 Sep 2025 12:30:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TqI3f10f";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="imfz3fUo";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F173310E905
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Sep 2025 12:07:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22B6610E915;
+ Wed, 10 Sep 2025 12:30:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757506022; x=1789042022;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=bLrtlN4o5gmkvRJhMTk+qa1c+IZroDTndwBx8uAAsoI=;
- b=TqI3f10fjRG0tfqQLrAZLGoNEAsvdfSbwSBKnUNzlkwi+vpoXLdgXvYT
- 1DDFXs1ydkLWpjOT8yR2rSeOWb/09Bu15NBI6CSxCPZCsVmt180OsIYdo
- I9w0JXSj4q1pc94LbKj9u+k7jjDN34Hrj/HCN0HnQNL0kVoiA1E7yPpHg
- ptNolJgKTsX7zuuYvNd6zjy6dK6NBb5d0aTK9B3PbRdeAcsI3EtApzFXc
- CUMROlYvFuTsfV123Sioes/+j2nzW2v6I37E141wsSj95x5i/0chKJ6M8
- KSKHLLsEo3J7IVGWY+HzAI+pIpBrcAMhbo8GwFoJczO53A62j+1gj+bAq Q==;
-X-CSE-ConnectionGUID: Uxd2ayNiS+y0eSU/NvNq/A==
-X-CSE-MsgGUID: CL30U7yRRM+9sWZh60bKIQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11548"; a="47384102"
-X-IronPort-AV: E=Sophos;i="6.18,254,1751266800"; d="scan'208";a="47384102"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2025 05:07:01 -0700
-X-CSE-ConnectionGUID: bNWbfm85SCChtSHTxqNLDA==
-X-CSE-MsgGUID: l/NsVNLhShury2LDP965aA==
+ t=1757507440; x=1789043440;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=r7APNqaJkxEE5yb/CK6XKcGcHQebbgHV6SZfZg2qTOI=;
+ b=imfz3fUogSAfPQZUFP682X1L4y2f5rSGmUZPHRExkCXBGr7KcSi4JL1C
+ 91q/CT5t9/9ppRrzFl2w2szTGuO9cOIrdM+93KU0UgoXu0KZHbbQUQpKq
+ KyzVZNWF/aKIi3arQWM4Leba5PoS6VEqFMdEXBhbmUvetoDnAhlqWlXZX
+ /8S22s1wneZjS4nZME6kJ6EbFvoTLR9EL0oEo+x+4dQku1Mzla9AM1DzW
+ HHQK/IoFMznYbx1znBAwO9468LjffXVqf5e7iTY3eYNM/qrLM+/1cqooP
+ qIng4jV0+zC9HdDQ6fpJoRtlUMDNXLVLfseZJnfosJ2jVp1FJa34PSp0O A==;
+X-CSE-ConnectionGUID: b2OiuwpwSr236BpCCOcWlg==
+X-CSE-MsgGUID: hZEco6nGSD2erIp2K3z0Rw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11548"; a="70068881"
+X-IronPort-AV: E=Sophos;i="6.18,254,1751266800"; d="scan'208";a="70068881"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2025 05:30:39 -0700
+X-CSE-ConnectionGUID: NpL5+lgJRx6CtN3PJxe1Lw==
+X-CSE-MsgGUID: 21IykjkhTze6g1JEz9U+Qw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,254,1751266800"; d="scan'208";a="172661151"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.72])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2025 05:06:59 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 5/5] drm/i915: split out i915_wait_util.h
-In-Reply-To: <aMAuTHq8uyHWAv5l@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1757340520.git.jani.nikula@intel.com>
- <7845cd4643bfa1caf4d177d9c8bab28a6c2c9998.1757340521.git.jani.nikula@intel.com>
- <aMAuTHq8uyHWAv5l@intel.com>
-Date: Wed, 10 Sep 2025 15:06:56 +0300
-Message-ID: <95099d2538cd2290bf875b264e9e49812d54fe12@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,254,1751266800"; d="scan'208";a="173828072"
+Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.88])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2025 05:30:38 -0700
+Date: Wed, 10 Sep 2025 15:30:35 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Subject: Re: [PATCH 12/14] drm/i915/vrr: Use static guardband to support
+ seamless LRR switching
+Message-ID: <aMFva97JaRWxZUKn@intel.com>
+References: <20250907073241.19632-1-ankit.k.nautiyal@intel.com>
+ <20250907073241.19632-13-ankit.k.nautiyal@intel.com>
+ <aL8HmW0mXKvHNGF5@intel.com>
+ <39f9b204-817a-4911-837a-7f5be94d2a0f@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <39f9b204-817a-4911-837a-7f5be94d2a0f@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,834 +76,289 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 09 Sep 2025, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Mon, Sep 08, 2025 at 05:11:49PM +0300, Jani Nikula wrote:
->> Move waiting related utilities from i915_utils.h to separate new file
->> i915_wait_util.h. Clean up related includes.
->>=20
->> Note: Many of the various wait macro usages could likely be refactored
->> to use poll_timeout_us().
->
-> I hope so! :)
->
-> nice clean up overall, although my dream is that we
-> could get rid entirely of these utils that pretend
-> they are core kernel.
->
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+On Tue, Sep 09, 2025 at 08:32:11PM +0530, Nautiyal, Ankit K wrote:
+> 
+> On 9/8/2025 10:13 PM, Ville Syrjälä wrote:
+> > On Sun, Sep 07, 2025 at 01:02:39PM +0530, Ankit Nautiyal wrote:
+> >> In the current VRR implementation, vrr.vmin and vrr.guardband are set such
+> >> that they do not need to change when switching from fixed refresh rate to
+> >> variable refresh rate. Specifically, vrr.guardband is always set to match
+> >> the vblank length. This approach works for most cases, but not for LRR,
+> >> where the guardband would need to change while the VRR timing generator is
+> >> still active.
+> >>
+> >> With the VRR TG always active, live updates to guardband are unsafe and not
+> >> recommended. To ensure hardware safety, guardband was moved out of the
+> >> !fastset block, meaning any change now requires a full modeset.
+> >> This breaks seamless LRR switching, which was previously supported.
+> >>
+> >> Since the problem arises from guardband being matched to the vblank length,
+> >> solution is to use a minimal, sufficient static value, instead. So we use a
+> >> static guardband defined during mode-set that fits within the smallest
+> >> expected vblank and remains unchanged in case of features like LRR where
+> >> vtotal changes. To compute this minimum guardband we take into account
+> >> latencies/delays due to different features as mentioned in the Bspec.
+> >>
+> >> v2:
+> >> -Use helpers for dsc/scaler prefill latencies. (Mitul)
+> >> -Account for pkgc latency and take max of pkgc and sagv latencies.
+> >> v3: Use new helper for PSR2/Panel Replay latency.
+> >> v4: Avoid re-setting the Vmin/Flipline for optimized guardband.
+> >>
+> >> Bspec: 70151
+> >> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> >> Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com> (#v3)
+> >> ---
+> >>   drivers/gpu/drm/i915/display/intel_display.c |   2 +-
+> >>   drivers/gpu/drm/i915/display/intel_vrr.c     | 127 ++++++++++++++++++-
+> >>   drivers/gpu/drm/i915/display/intel_vrr.h     |   3 +-
+> >>   3 files changed, 128 insertions(+), 4 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> >> index fb072275b1c7..3fa94675d5e1 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> >> @@ -4902,7 +4902,6 @@ intel_modeset_pipe_config_late(struct intel_atomic_state *state,
+> >>   	struct drm_connector *connector;
+> >>   	int i;
+> >>   
+> >> -	intel_vrr_compute_config_late(crtc_state);
+> >>   
+> >>   	for_each_new_connector_in_state(&state->base, connector,
+> >>   					conn_state, i) {
+> >> @@ -4914,6 +4913,7 @@ intel_modeset_pipe_config_late(struct intel_atomic_state *state,
+> >>   		    !encoder->compute_config_late)
+> >>   			continue;
+> >>   
+> >> +		intel_vrr_compute_config_late(crtc_state, conn_state);
+> >>   		ret = encoder->compute_config_late(encoder, crtc_state,
+> >>   						   conn_state);
+> >>   		if (ret)
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> >> index 855974174afd..fff684eb2514 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> >> @@ -6,12 +6,15 @@
+> >>   
+> >>   #include <drm/drm_print.h>
+> >>   
+> >> +#include "intel_alpm.h"
+> >>   #include "intel_de.h"
+> >>   #include "intel_display_regs.h"
+> >>   #include "intel_display_types.h"
+> >>   #include "intel_dp.h"
+> >>   #include "intel_vrr.h"
+> >>   #include "intel_vrr_regs.h"
+> >> +#include "skl_scaler.h"
+> >> +#include "skl_watermark.h"
+> >>   
+> >>   #define FIXED_POINT_PRECISION		100
+> >>   #define CMRR_PRECISION_TOLERANCE	10
+> >> @@ -413,15 +416,135 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+> >>   	}
+> >>   }
+> >>   
+> >> -void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state)
+> >> +static
+> >> +int scaler_prefill_latency(struct intel_crtc_state *crtc_state, int linetime_us)
+> >> +{
+> >> +	int chroma_downscaling_factor = skl_scaler_chroma_downscale_factor(crtc_state);
+> >> +	u64 hscale_k, vscale_k;
+> >> +	int cdclk_adjustment;
+> >> +	int num_scaler_users;
+> >> +
+> >> +	/*
+> >> +	 * Assuming:
+> >> +	 * Both scaler enabled.
+> >> +	 * scaler 1 downscaling factor as 2 x 2 (Horiz x Vert)
+> >> +	 * scaler 2 downscaling factor as 2 x 1 (Horiz x Vert)
+> >> +	 * Cdclk Adjustment : 1
+> >> +	 */
+> >> +	num_scaler_users = 2;
+> >> +	hscale_k = 2 * 1000;
+> >> +	vscale_k = 2 * 1000;
+> >> +	cdclk_adjustment = 1;
+> >> +
+> >> +	return intel_vrr_guardband_scaler_latency(num_scaler_users, hscale_k, vscale_k,
+> >> +						  chroma_downscaling_factor,
+> >> +						  cdclk_adjustment,
+> >> +						  linetime_us);
+> >> +}
+> >> +
+> >> +static
+> >> +int dsc_prefill_latency(struct intel_crtc_state *crtc_state, int linetime_us)
+> >> +{
+> >> +#define MAX_SCALERS 2
+> >> +	int chroma_downscaling_factor = skl_scaler_chroma_downscale_factor(crtc_state);
+> >> +	u64 hscale_k[MAX_SCALERS], vscale_k[MAX_SCALERS];
+> >> +	int cdclk_adjustment;
+> >> +	int num_scaler_users;
+> >> +
+> >> +	/*
+> >> +	 * Assuming:
+> >> +	 * Both scaler enabled.
+> >> +	 * scaler 1 downscaling factor as 2 x 2 (Horiz x Vert)
+> >> +	 * scaler 2 downscaling factor as 2 x 1 (Horiz x Vert)
+> >> +	 * Cdclk Adjustment : 1
+> >> +	 */
+> >> +	num_scaler_users = MAX_SCALERS;
+> >> +	hscale_k[0] = 2 * 1000;
+> >> +	vscale_k[0] = 2 * 1000;
+> >> +	hscale_k[1] = 2 * 1000;
+> >> +	vscale_k[1] = 1 * 1000;
+> >> +
+> >> +	cdclk_adjustment = 1;
+> >> +
+> >> +	return intel_vrr_guardband_dsc_latency(num_scaler_users, hscale_k, vscale_k,
+> >> +					       chroma_downscaling_factor,
+> >> +					       cdclk_adjustment,
+> >> +					       linetime_us);
+> >> +}
+> >> +
+> >> +static
+> >> +int intel_vrr_compute_guardband(struct intel_crtc_state *crtc_state,
+> >> +				struct intel_connector *connector)
+> >> +{
+> >> +	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+> >> +	struct intel_display *display = to_intel_display(crtc_state);
+> >> +	int dsc_prefill_time = 0;
+> >> +	int psr2_pr_latency = 0;
+> >> +	int scaler_prefill_time;
+> >> +	int wm0_prefill_time;
+> >> +	int pkgc_max_latency;
+> >> +	int sagv_latency;
+> >> +	int sdp_latency = 0;
+> >> +	int guardband_us;
+> >> +	int linetime_us;
+> >> +	int guardband;
+> >> +	int pm_delay;
+> >> +
+> >> +	linetime_us = DIV_ROUND_UP(adjusted_mode->crtc_htotal * 1000,
+> >> +				   adjusted_mode->crtc_clock);
+> >> +
+> >> +	pkgc_max_latency = skl_watermark_max_latency(display, 1);
+> >> +	sagv_latency = display->sagv.block_time_us;
+> >> +
+> >> +	/* Assuming max wm0 lines = 4 */
+> >> +	wm0_prefill_time = 4 * linetime_us + 20;
+> >> +
+> >> +	scaler_prefill_time = scaler_prefill_latency(crtc_state, linetime_us);
+> >> +
+> >> +	if (crtc_state->dsc.compression_enable)
+> >> +		dsc_prefill_time = dsc_prefill_latency(crtc_state, linetime_us);
+> >> +
+> >> +	pm_delay = crtc_state->framestart_delay +
+> >> +		   max(sagv_latency, pkgc_max_latency) +
+> >> +		   wm0_prefill_time +
+> >> +		   scaler_prefill_time +
+> >> +		   dsc_prefill_time;
+> >> +
+> >> +	switch (connector->base.connector_type) {
+> >> +	case DRM_MODE_CONNECTOR_eDP:
+> >> +	case DRM_MODE_CONNECTOR_DisplayPort:
+> >> +		psr2_pr_latency = intel_alpm_compute_max_link_wake_latency(crtc_state, true);
+> >> +		sdp_latency = intel_dp_compute_sdp_latency(crtc_state, true);
+> >> +		break;
+> >> +	default:
+> >> +		break;
+> >> +	}
+> >> +
+> >> +	guardband_us = max(sdp_latency, psr2_pr_latency);
+> >> +	guardband_us = max(guardband_us, pm_delay);
+> >> +
+> >> +	guardband = DIV_ROUND_UP(guardband_us, linetime_us);
+> >> +
+> >> +	/* guardband cannot be more than the Vmax vblank */
+> >> +	guardband = min(guardband, crtc_state->vrr.vmax - adjusted_mode->crtc_vblank_start);
+> >> +
+> >> +	return guardband;
+> >> +}
+> >> +
+> >> +void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state,
+> >> +				   struct drm_connector_state *conn_state)
+> >>   {
+> >>   	struct intel_display *display = to_intel_display(crtc_state);
+> >>   	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+> >> +	struct intel_connector *connector =
+> >> +		to_intel_connector(conn_state->connector);
+> >>   
+> >>   	if (!intel_vrr_possible(crtc_state))
+> >>   		return;
+> >>   
+> >> -	if (DISPLAY_VER(display) >= 13) {
+> >> +	if (intel_vrr_always_use_vrr_tg(display)) {
+> >> +		crtc_state->vrr.guardband = intel_vrr_compute_guardband(crtc_state, connector);
+> > This all looks to be in the wrong place. It needs to be done as part of
+> > intel_crtc_compute_vblank_delay() which then updates crtc_vblank_start
+> > to reflect reality instead of leaving some incorrect junk in there.
+> > Presumably that is why you also had to do that
+> > intel_dsb_wait_for_delayed_vblank() hack.
+> 
+> Hi Ville,
+> 
+> Thanks for for the comments.
+> 
+> Looks like intel_crtc_compute_vblank_delay() indeed is the place to add 
+> the vblank_delay and get the crtc_vblank_start point to the delayed vblank.
+> 
+> But I think, there are couple of things need to take care with this change:
+> 1) The SCL currently is derived from crtc_vblank_start - vdisplay, which 
+> is ~1 with guradband = vblank length.
+> With modified crtc_vblank_start, this will become huge so perhaps we 
+> need to set it to 1?
 
-Thanks, but no dice. :(
+When using the legacy timing generator SCL is what defines the
+position of the delayed vblank. So it should be exactly what it is.
 
-I didn't realize GEM_BUG_ON() uses GEM_TRACE_DUMP() uses
-__add_taint_for_CI(), i.e. roughly everything requires i915_utils.h.
+I don't quite recall how this stuff works with the VRR timing
+generator. I think it might have been that guardband more or less
+defines the location of the delayed vblank, and SCL then effectively
+defines the start of the safe window. So I think it should stay
+exactly the way it is. IIRC there is some way on new platforms to
+even move the SCL position into the vertical active, but I haven't
+though through what that would actually do for us.
 
-Maybe I'll post just some of these and drop patch 1.
+> 
+> 2) The intel_dsb_wait_vblank_delay() (which inturn uses 
+> intel_vrr_real_vblank_delay() for vrr case) also computes a fixed delay 
+> based on (crtc_vblank_start - vdisplay) lines
+> Instead of this should we not use intel_dsb_wait_scanline_in() to wait 
+> only till scanline reaches in range  [flipline decision boundary, vmax 
+> decision boundary]?
 
-BR,
-Jani.
+You can't use absolute line numbers with VRR since you don't know
+when the vblank will be terminated. It has to be all relative.
 
+> 
+> Let me know what you think, I can send a follow-up patch with the 
+> suggested changes.
+> 
+> Regards,
+> Ankit
+> 
+> 
+> >
+> >> +	} else if (DISPLAY_VER(display) >= 13) {
+> >>   		crtc_state->vrr.guardband =
+> >>   			crtc_state->vrr.vmin - adjusted_mode->crtc_vblank_start;
+> >>   	} else {
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
+> >> index 950041647e47..362638fd0d66 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_vrr.h
+> >> +++ b/drivers/gpu/drm/i915/display/intel_vrr.h
+> >> @@ -21,7 +21,8 @@ bool intel_vrr_possible(const struct intel_crtc_state *crtc_state);
+> >>   void intel_vrr_check_modeset(struct intel_atomic_state *state);
+> >>   void intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+> >>   			      struct drm_connector_state *conn_state);
+> >> -void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state);
+> >> +void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state,
+> >> +				   struct drm_connector_state *conn_state);
+> >>   void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state);
+> >>   void intel_vrr_enable(const struct intel_crtc_state *crtc_state);
+> >>   void intel_vrr_send_push(struct intel_dsb *dsb,
+> >> -- 
+> >> 2.45.2
 
-
-
->
->
->>=20
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  .../drm/i915/gt/intel_execlists_submission.c  |   1 +
->>  drivers/gpu/drm/i915/gt/intel_gt_mcr.c        |   1 +
->>  drivers/gpu/drm/i915/gt/intel_reset.c         |   7 +-
->>  .../gpu/drm/i915/gt/intel_ring_submission.c   |   7 +-
->>  drivers/gpu/drm/i915/gt/intel_rps.c           |   2 +
->>  drivers/gpu/drm/i915/gt/selftest_tlb.c        |   6 +-
->>  drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c  |   6 +-
->>  .../i915/gt/uc/intel_gsc_uc_heci_cmd_submit.c |   2 +
->>  drivers/gpu/drm/i915/gt/uc/intel_guc.c        |   8 +-
->>  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |   3 +-
->>  drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c     |   4 +-
->>  drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   |  13 +-
->>  .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  10 +-
->>  drivers/gpu/drm/i915/gvt/mmio_context.c       |   6 +-
->>  drivers/gpu/drm/i915/i915_debugfs.c           |   3 +-
->>  drivers/gpu/drm/i915/i915_utils.h             | 106 ----------------
->>  drivers/gpu/drm/i915/i915_wait_util.h         | 119 ++++++++++++++++++
->>  drivers/gpu/drm/i915/intel_pcode.c            |   1 +
->>  drivers/gpu/drm/i915/intel_uncore.c           |   7 +-
->>  drivers/gpu/drm/i915/pxp/intel_pxp.c          |   4 +-
->>  drivers/gpu/drm/i915/selftests/i915_request.c |   5 +-
->>  .../gpu/drm/i915/selftests/i915_selftest.c    |   2 +-
->>  drivers/gpu/drm/i915/selftests/igt_spinner.c  |   5 +-
->>  drivers/gpu/drm/i915/vlv_suspend.c            |   5 +-
->>  24 files changed, 183 insertions(+), 150 deletions(-)
->>  create mode 100644 drivers/gpu/drm/i915/i915_wait_util.h
->>=20
->> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/driv=
-ers/gpu/drm/i915/gt/intel_execlists_submission.c
->> index 0c1b2df02d26..7f389cb0bde4 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
->> @@ -117,6 +117,7 @@
->>  #include "i915_timer_util.h"
->>  #include "i915_trace.h"
->>  #include "i915_vgpu.h"
->> +#include "i915_wait_util.h"
->>  #include "intel_breadcrumbs.h"
->>  #include "intel_context.h"
->>  #include "intel_engine_heartbeat.h"
->> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c b/drivers/gpu/drm/i9=
-15/gt/intel_gt_mcr.c
->> index a60822e2b5d4..c3afa321fe30 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
->> @@ -4,6 +4,7 @@
->>   */
->>=20=20
->>  #include "i915_drv.h"
->> +#include "i915_wait_util.h"
->>  #include "intel_gt.h"
->>  #include "intel_gt_mcr.h"
->>  #include "intel_gt_print.h"
->> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i91=
-5/gt/intel_reset.c
->> index 4a1675dea1c7..41b5036dc538 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
->> @@ -9,18 +9,17 @@
->>=20=20
->>  #include "display/intel_display_reset.h"
->>  #include "display/intel_overlay.h"
->> -
->>  #include "gem/i915_gem_context.h"
->> -
->>  #include "gt/intel_gt_regs.h"
->> -
->>  #include "gt/uc/intel_gsc_fw.h"
->> +#include "uc/intel_guc.h"
->>=20=20
->>  #include "i915_drv.h"
->>  #include "i915_file_private.h"
->>  #include "i915_gpu_error.h"
->>  #include "i915_irq.h"
->>  #include "i915_reg.h"
->> +#include "i915_wait_util.h"
->>  #include "intel_breadcrumbs.h"
->>  #include "intel_engine_pm.h"
->>  #include "intel_engine_regs.h"
->> @@ -32,8 +31,6 @@
->>  #include "intel_pci_config.h"
->>  #include "intel_reset.h"
->>=20=20
->> -#include "uc/intel_guc.h"
->> -
->>  #define RESET_MAX_RETRIES 3
->>=20=20
->>  static void client_mark_guilty(struct i915_gem_context *ctx, bool banne=
-d)
->> diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/g=
-pu/drm/i915/gt/intel_ring_submission.c
->> index 2a6d79abf25b..8314a4b0505e 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
->> @@ -15,18 +15,19 @@
->>  #include "i915_irq.h"
->>  #include "i915_mitigations.h"
->>  #include "i915_reg.h"
->> +#include "i915_wait_util.h"
->>  #include "intel_breadcrumbs.h"
->>  #include "intel_context.h"
->> +#include "intel_engine_heartbeat.h"
->> +#include "intel_engine_pm.h"
->>  #include "intel_engine_regs.h"
->>  #include "intel_gt.h"
->>  #include "intel_gt_irq.h"
->> +#include "intel_gt_print.h"
->>  #include "intel_gt_regs.h"
->>  #include "intel_reset.h"
->>  #include "intel_ring.h"
->>  #include "shmem_utils.h"
->> -#include "intel_engine_heartbeat.h"
->> -#include "intel_engine_pm.h"
->> -#include "intel_gt_print.h"
->>=20=20
->>  /* Rough estimate of the typical request size, performing a flush,
->>   * set-context and then emitting the batch.
->> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/=
-gt/intel_rps.c
->> index 006042e0b229..4da94098bd3e 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
->> @@ -10,9 +10,11 @@
->>  #include "display/intel_display.h"
->>  #include "display/intel_display_rps.h"
->>  #include "soc/intel_dram.h"
->> +
->>  #include "i915_drv.h"
->>  #include "i915_irq.h"
->>  #include "i915_reg.h"
->> +#include "i915_wait_util.h"
->>  #include "intel_breadcrumbs.h"
->>  #include "intel_gt.h"
->>  #include "intel_gt_clock_utils.h"
->> diff --git a/drivers/gpu/drm/i915/gt/selftest_tlb.c b/drivers/gpu/drm/i9=
-15/gt/selftest_tlb.c
->> index 69ed946a39e5..a5184f09d1de 100644
->> --- a/drivers/gpu/drm/i915/gt/selftest_tlb.c
->> +++ b/drivers/gpu/drm/i915/gt/selftest_tlb.c
->> @@ -3,17 +3,17 @@
->>   * Copyright =C2=A9 2022 Intel Corporation
->>   */
->>=20=20
->> -#include "i915_selftest.h"
->> -
->>  #include "gem/i915_gem_internal.h"
->>  #include "gem/i915_gem_lmem.h"
->>  #include "gem/i915_gem_region.h"
->>=20=20
->>  #include "gen8_engine_cs.h"
->>  #include "i915_gem_ww.h"
->> +#include "i915_selftest.h"
->> +#include "i915_wait_util.h"
->> +#include "intel_context.h"
->>  #include "intel_engine_regs.h"
->>  #include "intel_gpu_commands.h"
->> -#include "intel_context.h"
->>  #include "intel_gt.h"
->>  #include "intel_ring.h"
->>=20=20
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c b/drivers/gpu/=
-drm/i915/gt/uc/intel_gsc_proxy.c
->> index d8edd7c054c8..e7444ebc373e 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c
->> @@ -10,11 +10,13 @@
->>=20=20
->>  #include "gt/intel_gt.h"
->>  #include "gt/intel_gt_print.h"
->> +
->> +#include "i915_drv.h"
->> +#include "i915_reg.h"
->> +#include "i915_wait_util.h"
->>  #include "intel_gsc_proxy.h"
->>  #include "intel_gsc_uc.h"
->>  #include "intel_gsc_uc_heci_cmd_submit.h"
->> -#include "i915_drv.h"
->> -#include "i915_reg.h"
->>=20=20
->>  /*
->>   * GSC proxy:
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_heci_cmd_submit.c b=
-/drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_heci_cmd_submit.c
->> index 2fde5c360cff..9bd29be7656f 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_heci_cmd_submit.c
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_heci_cmd_submit.c
->> @@ -8,6 +8,8 @@
->>  #include "gt/intel_gpu_commands.h"
->>  #include "gt/intel_gt.h"
->>  #include "gt/intel_ring.h"
->> +
->> +#include "i915_wait_util.h"
->>  #include "intel_gsc_uc_heci_cmd_submit.h"
->>=20=20
->>  struct gsc_heci_pkt {
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i9=
-15/gt/uc/intel_guc.c
->> index f360f020d8f1..52ec4421a211 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
->> @@ -8,15 +8,17 @@
->>  #include "gt/intel_gt_irq.h"
->>  #include "gt/intel_gt_pm_irq.h"
->>  #include "gt/intel_gt_regs.h"
->> +
->> +#include "i915_drv.h"
->> +#include "i915_irq.h"
->> +#include "i915_reg.h"
->> +#include "i915_wait_util.h"
->>  #include "intel_guc.h"
->>  #include "intel_guc_ads.h"
->>  #include "intel_guc_capture.h"
->>  #include "intel_guc_print.h"
->>  #include "intel_guc_slpc.h"
->>  #include "intel_guc_submission.h"
->> -#include "i915_drv.h"
->> -#include "i915_irq.h"
->> -#include "i915_reg.h"
->>=20=20
->>  /**
->>   * DOC: GuC
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm=
-/i915/gt/uc/intel_guc_ct.c
->> index 380a11c92d63..3e7e5badcc2b 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
->> @@ -5,11 +5,12 @@
->>=20=20
->>  #include <linux/circ_buf.h>
->>  #include <linux/ktime.h>
->> -#include <linux/time64.h>
->>  #include <linux/string_helpers.h>
->> +#include <linux/time64.h>
->>  #include <linux/timekeeping.h>
->>=20=20
->>  #include "i915_drv.h"
->> +#include "i915_wait_util.h"
->>  #include "intel_guc_ct.h"
->>  #include "intel_guc_print.h"
->>=20=20
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c b/drivers/gpu/drm=
-/i915/gt/uc/intel_guc_fw.c
->> index e7ccfa520df3..1bb1491f90fc 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
->> @@ -13,9 +13,11 @@
->>  #include "gt/intel_gt_mcr.h"
->>  #include "gt/intel_gt_regs.h"
->>  #include "gt/intel_rps.h"
->> +
->> +#include "i915_drv.h"
->> +#include "i915_wait_util.h"
->>  #include "intel_guc_fw.h"
->>  #include "intel_guc_print.h"
->> -#include "i915_drv.h"
->>=20=20
->>  static void guc_prepare_xfer(struct intel_gt *gt)
->>  {
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/d=
-rm/i915/gt/uc/intel_guc_slpc.c
->> index d5ee6e5e1443..fa9af08f9708 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
->> @@ -3,17 +3,20 @@
->>   * Copyright =C2=A9 2021 Intel Corporation
->>   */
->>=20=20
->> -#include <drm/drm_cache.h>
->>  #include <linux/string_helpers.h>
->>=20=20
->> +#include <drm/drm_cache.h>
->> +
->> +#include "gt/intel_gt.h"
->> +#include "gt/intel_gt_regs.h"
->> +#include "gt/intel_rps.h"
->> +
->>  #include "i915_drv.h"
->>  #include "i915_reg.h"
->> -#include "intel_guc_slpc.h"
->> +#include "i915_wait_util.h"
->>  #include "intel_guc_print.h"
->> +#include "intel_guc_slpc.h"
->>  #include "intel_mchbar_regs.h"
->> -#include "gt/intel_gt.h"
->> -#include "gt/intel_gt_regs.h"
->> -#include "gt/intel_rps.h"
->>=20=20
->>  /**
->>   * DOC: SLPC - Dynamic Frequency management
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers=
-/gpu/drm/i915/gt/uc/intel_guc_submission.c
->> index 127316d2c8aa..68f2b8d363ac 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->> @@ -25,16 +25,16 @@
->>  #include "gt/intel_mocs.h"
->>  #include "gt/intel_ring.h"
->>=20=20
->> +#include "i915_drv.h"
->> +#include "i915_irq.h"
->> +#include "i915_reg.h"
->> +#include "i915_trace.h"
->> +#include "i915_wait_util.h"
->>  #include "intel_guc_ads.h"
->>  #include "intel_guc_capture.h"
->>  #include "intel_guc_print.h"
->>  #include "intel_guc_submission.h"
->>=20=20
->> -#include "i915_drv.h"
->> -#include "i915_reg.h"
->> -#include "i915_irq.h"
->> -#include "i915_trace.h"
->> -
->>  /**
->>   * DOC: GuC-based command submission
->>   *
->> diff --git a/drivers/gpu/drm/i915/gvt/mmio_context.c b/drivers/gpu/drm/i=
-915/gvt/mmio_context.c
->> index 2f7208843367..0b810baad20a 100644
->> --- a/drivers/gpu/drm/i915/gvt/mmio_context.c
->> +++ b/drivers/gpu/drm/i915/gvt/mmio_context.c
->> @@ -33,14 +33,16 @@
->>   *
->>   */
->>=20=20
->> -#include "i915_drv.h"
->> -#include "i915_reg.h"
->>  #include "gt/intel_context.h"
->>  #include "gt/intel_engine_regs.h"
->>  #include "gt/intel_gpu_commands.h"
->>  #include "gt/intel_gt_regs.h"
->>  #include "gt/intel_ring.h"
->> +
->>  #include "gvt.h"
->> +#include "i915_drv.h"
->> +#include "i915_reg.h"
->> +#include "i915_wait_util.h"
->>  #include "trace.h"
->>=20=20
->>  #define GEN9_MOCS_SIZE		64
->> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/=
-i915_debugfs.c
->> index 23fa098c4479..c2e38d4bcd01 100644
->> --- a/drivers/gpu/drm/i915/i915_debugfs.c
->> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
->> @@ -26,11 +26,11 @@
->>   *
->>   */
->>=20=20
->> +#include <linux/debugfs.h>
->>  #include <linux/sched/mm.h>
->>  #include <linux/sort.h>
->>  #include <linux/string_helpers.h>
->>=20=20
->> -#include <linux/debugfs.h>
->>  #include <drm/drm_debugfs.h>
->>=20=20
->>  #include "gem/i915_gem_context.h"
->> @@ -54,6 +54,7 @@
->>  #include "i915_irq.h"
->>  #include "i915_reg.h"
->>  #include "i915_scheduler.h"
->> +#include "i915_wait_util.h"
->>  #include "intel_mchbar_regs.h"
->>=20=20
->>  static inline struct drm_i915_private *node_to_i915(struct drm_info_nod=
-e *node)
->> diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i9=
-15_utils.h
->> index 4a6437d6e00e..a0c892e4c40d 100644
->> --- a/drivers/gpu/drm/i915/i915_utils.h
->> +++ b/drivers/gpu/drm/i915/i915_utils.h
->> @@ -134,112 +134,6 @@ wait_remaining_ms_from_jiffies(unsigned long times=
-tamp_jiffies, int to_wait_ms)
->>  	}
->>  }
->>=20=20
->> -/*
->> - * __wait_for - magic wait macro
->> - *
->> - * Macro to help avoid open coding check/wait/timeout patterns. Note th=
-at it's
->> - * important that we check the condition again after having timed out, =
-since the
->> - * timeout could be due to preemption or similar and we've never had a =
-chance to
->> - * check the condition before the timeout.
->> - */
->> -#define __wait_for(OP, COND, US, Wmin, Wmax) ({ \
->> -	const ktime_t end__ =3D ktime_add_ns(ktime_get_raw(), 1000ll * (US)); \
->> -	long wait__ =3D (Wmin); /* recommended min for usleep is 10 us */	\
->> -	int ret__;							\
->> -	might_sleep();							\
->> -	for (;;) {							\
->> -		const bool expired__ =3D ktime_after(ktime_get_raw(), end__); \
->> -		OP;							\
->> -		/* Guarantee COND check prior to timeout */		\
->> -		barrier();						\
->> -		if (COND) {						\
->> -			ret__ =3D 0;					\
->> -			break;						\
->> -		}							\
->> -		if (expired__) {					\
->> -			ret__ =3D -ETIMEDOUT;				\
->> -			break;						\
->> -		}							\
->> -		usleep_range(wait__, wait__ * 2);			\
->> -		if (wait__ < (Wmax))					\
->> -			wait__ <<=3D 1;					\
->> -	}								\
->> -	ret__;								\
->> -})
->> -
->> -#define _wait_for(COND, US, Wmin, Wmax)	__wait_for(, (COND), (US), (Wmi=
-n), \
->> -						   (Wmax))
->> -#define wait_for(COND, MS)		_wait_for((COND), (MS) * 1000, 10, 1000)
->> -
->> -/*
->> - * If CONFIG_PREEMPT_COUNT is disabled, in_atomic() always reports fals=
-e.
->> - * On PREEMPT_RT the context isn't becoming atomic because it is used i=
-n an
->> - * interrupt handler or because a spinlock_t is acquired. This leads to
->> - * warnings which don't occur otherwise and therefore the check is disa=
-bled.
->> - */
->> -#if IS_ENABLED(CONFIG_DRM_I915_DEBUG) && IS_ENABLED(CONFIG_PREEMPT_COUN=
-T) && !defined(CONFIG_PREEMPT_RT)
->> -# define _WAIT_FOR_ATOMIC_CHECK(ATOMIC) WARN_ON_ONCE((ATOMIC) && !in_at=
-omic())
->> -#else
->> -# define _WAIT_FOR_ATOMIC_CHECK(ATOMIC) do { } while (0)
->> -#endif
->> -
->> -#define _wait_for_atomic(COND, US, ATOMIC) \
->> -({ \
->> -	int cpu, ret, timeout =3D (US) * 1000; \
->> -	u64 base; \
->> -	_WAIT_FOR_ATOMIC_CHECK(ATOMIC); \
->> -	if (!(ATOMIC)) { \
->> -		preempt_disable(); \
->> -		cpu =3D smp_processor_id(); \
->> -	} \
->> -	base =3D local_clock(); \
->> -	for (;;) { \
->> -		u64 now =3D local_clock(); \
->> -		if (!(ATOMIC)) \
->> -			preempt_enable(); \
->> -		/* Guarantee COND check prior to timeout */ \
->> -		barrier(); \
->> -		if (COND) { \
->> -			ret =3D 0; \
->> -			break; \
->> -		} \
->> -		if (now - base >=3D timeout) { \
->> -			ret =3D -ETIMEDOUT; \
->> -			break; \
->> -		} \
->> -		cpu_relax(); \
->> -		if (!(ATOMIC)) { \
->> -			preempt_disable(); \
->> -			if (unlikely(cpu !=3D smp_processor_id())) { \
->> -				timeout -=3D now - base; \
->> -				cpu =3D smp_processor_id(); \
->> -				base =3D local_clock(); \
->> -			} \
->> -		} \
->> -	} \
->> -	ret; \
->> -})
->> -
->> -#define wait_for_us(COND, US) \
->> -({ \
->> -	int ret__; \
->> -	BUILD_BUG_ON(!__builtin_constant_p(US)); \
->> -	if ((US) > 10) \
->> -		ret__ =3D _wait_for((COND), (US), 10, 10); \
->> -	else \
->> -		ret__ =3D _wait_for_atomic((COND), (US), 0); \
->> -	ret__; \
->> -})
->> -
->> -#define wait_for_atomic_us(COND, US) \
->> -({ \
->> -	BUILD_BUG_ON(!__builtin_constant_p(US)); \
->> -	BUILD_BUG_ON((US) > 50000); \
->> -	_wait_for_atomic((COND), (US), 1); \
->> -})
->> -
->> -#define wait_for_atomic(COND, MS) wait_for_atomic_us((COND), (MS) * 100=
-0)
->> -
->>  #define KHz(x) (1000 * (x))
->>  #define MHz(x) KHz(1000 * (x))
->>=20=20
->> diff --git a/drivers/gpu/drm/i915/i915_wait_util.h b/drivers/gpu/drm/i91=
-5/i915_wait_util.h
->> new file mode 100644
->> index 000000000000..7376898e3bf8
->> --- /dev/null
->> +++ b/drivers/gpu/drm/i915/i915_wait_util.h
->> @@ -0,0 +1,119 @@
->> +/* SPDX-License-Identifier: MIT */
->> +/* Copyright =C2=A9 2025 Intel Corporation */
->> +
->> +#ifndef __I915_WAIT_UTIL_H__
->> +#define __I915_WAIT_UTIL_H__
->> +
->> +#include <linux/compiler.h>
->> +#include <linux/delay.h>
->> +#include <linux/ktime.h>
->> +#include <linux/sched/clock.h>
->> +#include <linux/smp.h>
->> +
->> +/*
->> + * __wait_for - magic wait macro
->> + *
->> + * Macro to help avoid open coding check/wait/timeout patterns. Note th=
-at it's
->> + * important that we check the condition again after having timed out, =
-since the
->> + * timeout could be due to preemption or similar and we've never had a =
-chance to
->> + * check the condition before the timeout.
->> + */
->> +#define __wait_for(OP, COND, US, Wmin, Wmax) ({ \
->> +	const ktime_t end__ =3D ktime_add_ns(ktime_get_raw(), 1000ll * (US)); \
->> +	long wait__ =3D (Wmin); /* recommended min for usleep is 10 us */	\
->> +	int ret__;							\
->> +	might_sleep();							\
->> +	for (;;) {							\
->> +		const bool expired__ =3D ktime_after(ktime_get_raw(), end__); \
->> +		OP;							\
->> +		/* Guarantee COND check prior to timeout */		\
->> +		barrier();						\
->> +		if (COND) {						\
->> +			ret__ =3D 0;					\
->> +			break;						\
->> +		}							\
->> +		if (expired__) {					\
->> +			ret__ =3D -ETIMEDOUT;				\
->> +			break;						\
->> +		}							\
->> +		usleep_range(wait__, wait__ * 2);			\
->> +		if (wait__ < (Wmax))					\
->> +			wait__ <<=3D 1;					\
->> +	}								\
->> +	ret__;								\
->> +})
->> +
->> +#define _wait_for(COND, US, Wmin, Wmax)	__wait_for(, (COND), (US), (Wmi=
-n), \
->> +						   (Wmax))
->> +#define wait_for(COND, MS)		_wait_for((COND), (MS) * 1000, 10, 1000)
->> +
->> +/*
->> + * If CONFIG_PREEMPT_COUNT is disabled, in_atomic() always reports fals=
-e.
->> + * On PREEMPT_RT the context isn't becoming atomic because it is used i=
-n an
->> + * interrupt handler or because a spinlock_t is acquired. This leads to
->> + * warnings which don't occur otherwise and therefore the check is disa=
-bled.
->> + */
->> +#if IS_ENABLED(CONFIG_DRM_I915_DEBUG) && IS_ENABLED(CONFIG_PREEMPT_COUN=
-T) && !defined(CONFIG_PREEMPT_RT)
->> +# define _WAIT_FOR_ATOMIC_CHECK(ATOMIC) WARN_ON_ONCE((ATOMIC) && !in_at=
-omic())
->> +#else
->> +# define _WAIT_FOR_ATOMIC_CHECK(ATOMIC) do { } while (0)
->> +#endif
->> +
->> +#define _wait_for_atomic(COND, US, ATOMIC) \
->> +({ \
->> +	int cpu, ret, timeout =3D (US) * 1000; \
->> +	u64 base; \
->> +	_WAIT_FOR_ATOMIC_CHECK(ATOMIC); \
->> +	if (!(ATOMIC)) { \
->> +		preempt_disable(); \
->> +		cpu =3D smp_processor_id(); \
->> +	} \
->> +	base =3D local_clock(); \
->> +	for (;;) { \
->> +		u64 now =3D local_clock(); \
->> +		if (!(ATOMIC)) \
->> +			preempt_enable(); \
->> +		/* Guarantee COND check prior to timeout */ \
->> +		barrier(); \
->> +		if (COND) { \
->> +			ret =3D 0; \
->> +			break; \
->> +		} \
->> +		if (now - base >=3D timeout) { \
->> +			ret =3D -ETIMEDOUT; \
->> +			break; \
->> +		} \
->> +		cpu_relax(); \
->> +		if (!(ATOMIC)) { \
->> +			preempt_disable(); \
->> +			if (unlikely(cpu !=3D smp_processor_id())) { \
->> +				timeout -=3D now - base; \
->> +				cpu =3D smp_processor_id(); \
->> +				base =3D local_clock(); \
->> +			} \
->> +		} \
->> +	} \
->> +	ret; \
->> +})
->> +
->> +#define wait_for_us(COND, US) \
->> +({ \
->> +	int ret__; \
->> +	BUILD_BUG_ON(!__builtin_constant_p(US)); \
->> +	if ((US) > 10) \
->> +		ret__ =3D _wait_for((COND), (US), 10, 10); \
->> +	else \
->> +		ret__ =3D _wait_for_atomic((COND), (US), 0); \
->> +	ret__; \
->> +})
->> +
->> +#define wait_for_atomic_us(COND, US) \
->> +({ \
->> +	BUILD_BUG_ON(!__builtin_constant_p(US)); \
->> +	BUILD_BUG_ON((US) > 50000); \
->> +	_wait_for_atomic((COND), (US), 1); \
->> +})
->> +
->> +#define wait_for_atomic(COND, MS) wait_for_atomic_us((COND), (MS) * 100=
-0)
->> +
->> +#endif /* __I915_WAIT_UTIL_H__ */
->> diff --git a/drivers/gpu/drm/i915/intel_pcode.c b/drivers/gpu/drm/i915/i=
-ntel_pcode.c
->> index 81da75108c60..55ffedad2490 100644
->> --- a/drivers/gpu/drm/i915/intel_pcode.c
->> +++ b/drivers/gpu/drm/i915/intel_pcode.c
->> @@ -5,6 +5,7 @@
->>=20=20
->>  #include "i915_drv.h"
->>  #include "i915_reg.h"
->> +#include "i915_wait_util.h"
->>  #include "intel_pcode.h"
->>=20=20
->>  static int gen6_check_mailbox_status(u32 mbox)
->> diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/=
-intel_uncore.c
->> index 4ccba7c8ffb3..8cb59f8d1f4c 100644
->> --- a/drivers/gpu/drm/i915/intel_uncore.c
->> +++ b/drivers/gpu/drm/i915/intel_uncore.c
->> @@ -21,19 +21,20 @@
->>   * IN THE SOFTWARE.
->>   */
->>=20=20
->> -#include <drm/drm_managed.h>
->>  #include <linux/pm_runtime.h>
->>=20=20
->> -#include "display/intel_display_core.h"
->> +#include <drm/drm_managed.h>
->>=20=20
->> -#include "gt/intel_gt.h"
->> +#include "display/intel_display_core.h"
->>  #include "gt/intel_engine_regs.h"
->> +#include "gt/intel_gt.h"
->>  #include "gt/intel_gt_regs.h"
->>=20=20
->>  #include "i915_drv.h"
->>  #include "i915_iosf_mbi.h"
->>  #include "i915_reg.h"
->>  #include "i915_vgpu.h"
->> +#include "i915_wait_util.h"
->>  #include "intel_uncore_trace.h"
->>=20=20
->>  #define FORCEWAKE_ACK_TIMEOUT_MS 50
->> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915=
-/pxp/intel_pxp.c
->> index f8da693ad3ce..27d545c4e6a5 100644
->> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
->> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
->> @@ -2,15 +2,15 @@
->>  /*
->>   * Copyright(c) 2020 Intel Corporation.
->>   */
->> +
->>  #include <linux/workqueue.h>
->>=20=20
->>  #include "gem/i915_gem_context.h"
->> -
->>  #include "gt/intel_context.h"
->>  #include "gt/intel_gt.h"
->>=20=20
->>  #include "i915_drv.h"
->> -
->> +#include "i915_wait_util.h"
->>  #include "intel_pxp.h"
->>  #include "intel_pxp_gsccs.h"
->>  #include "intel_pxp_irq.h"
->> diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu=
-/drm/i915/selftests/i915_request.c
->> index 2fb7a9e7efec..48cd617247d1 100644
->> --- a/drivers/gpu/drm/i915/selftests/i915_request.c
->> +++ b/drivers/gpu/drm/i915/selftests/i915_request.c
->> @@ -22,14 +22,13 @@
->>   *
->>   */
->>=20=20
->> -#include <linux/prime_numbers.h>
->>  #include <linux/pm_qos.h>
->> +#include <linux/prime_numbers.h>
->>  #include <linux/sort.h>
->>=20=20
->>  #include "gem/i915_gem_internal.h"
->>  #include "gem/i915_gem_pm.h"
->>  #include "gem/selftests/mock_context.h"
->> -
->>  #include "gt/intel_engine_heartbeat.h"
->>  #include "gt/intel_engine_pm.h"
->>  #include "gt/intel_engine_user.h"
->> @@ -40,11 +39,11 @@
->>=20=20
->>  #include "i915_random.h"
->>  #include "i915_selftest.h"
->> +#include "i915_wait_util.h"
->>  #include "igt_flush_test.h"
->>  #include "igt_live_test.h"
->>  #include "igt_spinner.h"
->>  #include "lib_sw_fence.h"
->> -
->>  #include "mock_drm.h"
->>  #include "mock_gem_device.h"
->>=20=20
->> diff --git a/drivers/gpu/drm/i915/selftests/i915_selftest.c b/drivers/gp=
-u/drm/i915/selftests/i915_selftest.c
->> index 889281819c5b..9c276c9d0a75 100644
->> --- a/drivers/gpu/drm/i915/selftests/i915_selftest.c
->> +++ b/drivers/gpu/drm/i915/selftests/i915_selftest.c
->> @@ -31,7 +31,7 @@
->>  #include "i915_driver.h"
->>  #include "i915_drv.h"
->>  #include "i915_selftest.h"
->> -
->> +#include "i915_wait_util.h"
->>  #include "igt_flush_test.h"
->>=20=20
->>  struct i915_selftest i915_selftest __read_mostly =3D {
->> diff --git a/drivers/gpu/drm/i915/selftests/igt_spinner.c b/drivers/gpu/=
-drm/i915/selftests/igt_spinner.c
->> index 8c3e1f20e5a1..820364171ebe 100644
->> --- a/drivers/gpu/drm/i915/selftests/igt_spinner.c
->> +++ b/drivers/gpu/drm/i915/selftests/igt_spinner.c
->> @@ -3,12 +3,13 @@
->>   *
->>   * Copyright =C2=A9 2018 Intel Corporation
->>   */
->> -#include "gt/intel_gpu_commands.h"
->> -#include "gt/intel_gt.h"
->>=20=20
->>  #include "gem/i915_gem_internal.h"
->>  #include "gem/selftests/igt_gem_utils.h"
->> +#include "gt/intel_gpu_commands.h"
->> +#include "gt/intel_gt.h"
->>=20=20
->> +#include "i915_wait_util.h"
->>  #include "igt_spinner.h"
->>=20=20
->>  int igt_spinner_init(struct igt_spinner *spin, struct intel_gt *gt)
->> diff --git a/drivers/gpu/drm/i915/vlv_suspend.c b/drivers/gpu/drm/i915/v=
-lv_suspend.c
->> index fc9f311ea1db..221e4c0b2c58 100644
->> --- a/drivers/gpu/drm/i915/vlv_suspend.c
->> +++ b/drivers/gpu/drm/i915/vlv_suspend.c
->> @@ -8,16 +8,17 @@
->>=20=20
->>  #include <drm/drm_print.h>
->>=20=20
->> +#include "gt/intel_gt_regs.h"
->> +
->>  #include "i915_drv.h"
->>  #include "i915_reg.h"
->>  #include "i915_trace.h"
->>  #include "i915_utils.h"
->> +#include "i915_wait_util.h"
->>  #include "intel_clock_gating.h"
->>  #include "intel_uncore_trace.h"
->>  #include "vlv_suspend.h"
->>=20=20
->> -#include "gt/intel_gt_regs.h"
->> -
->>  struct vlv_s0ix_state {
->>  	/* GAM */
->>  	u32 wr_watermark;
->> --=20
->> 2.47.3
->>=20
-
---=20
-Jani Nikula, Intel
+-- 
+Ville Syrjälä
+Intel
