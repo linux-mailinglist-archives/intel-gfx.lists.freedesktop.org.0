@@ -2,61 +2,172 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E97CEB535EA
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Sep 2025 16:41:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4814CB537C5
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Sep 2025 17:30:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A46710EB59;
-	Thu, 11 Sep 2025 14:41:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94A0810EB5E;
+	Thu, 11 Sep 2025 15:30:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U4062rPP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fHMUpHyr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE9AE10EB58;
- Thu, 11 Sep 2025 14:41:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FBAF10EB5D;
+ Thu, 11 Sep 2025 15:30:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757601696; x=1789137696;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=vAHXMKa1sk9xQrOmj6I4FCJprifDV3AQ+W92kwNaJNQ=;
- b=U4062rPPMZfGvJ2IC0LPhjWi1FOhI6E9ynCKhA1vSLl+g7GifR2vWrI8
- Bwy8Aa9y7AdZONJmzFYoiFWo9FzfPF2bHPIxw+BNsOcCJ7CvkaWpmiaj/
- VqWpSOkk/5brSXtAsUoIGTyqeqzU2+IzltWACyHEzYZYmOygDlge39UCO
- JgIZQOnA5kDF67jyPJknzrUzFnDLCDAtMPZembPu3gHF+EcHmpkVfL13R
- 007oQj2cVZlJItqrSyWtRdpOtt6b8HEYkmr7f6vUoJG+pw14iNfZ3Z53l
- NugU6gX1d4WZ10I+UeaZVSMDmF2TBM51bfsgD5aMZogCRVi2JVQPfQ5F6 g==;
-X-CSE-ConnectionGUID: hdlnM+ENQZm33CrXCjiPUg==
-X-CSE-MsgGUID: YTlRDQKxRGKNRoMIzyvazw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="82523422"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="82523422"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2025 07:41:36 -0700
-X-CSE-ConnectionGUID: me/Bu7GzSxCvh4HGYm2KiQ==
-X-CSE-MsgGUID: 6xne29bHSJKuM1srS2nx9Q==
+ t=1757604606; x=1789140606;
+ h=date:from:to:cc:subject:message-id:
+ content-transfer-encoding:mime-version;
+ bh=elLS8OCQEBHhk2eauL+C2dP02I1wITlKZdLVaFz12sQ=;
+ b=fHMUpHyrGDpl/9+OaLR3+/HANGrJNRTcd848sXeymyq8ws7TMosZ33fp
+ WMraKeqn+nb+R+BwAtNIxIjAoYiJVCMvMrDkTYcSJWxcvaA6alQLTEmj5
+ FG4QrD8O5unoI+3U4XkE9Oh+mnDgxOsK1CKFT3PxlA13VoLHuAd688Ltc
+ LE6q/Vef1cPlX1+8PO5zMDfFPm6oqcsQpN5fHaUgZD6mb5i4qVMX0g0TD
+ 0K1Mz6N3OGZ4xCTZc8rVV1Y+iC/HQVSVwVxhuL0PiWuFuTkU7a/VB6rLL
+ BnrgK4p0AdtpCRreIBcccBl/+CZ9E2q+ubTX4PTbyzL83QhXQ7SZBLXO5 w==;
+X-CSE-ConnectionGUID: IwHg6qX6QvqMGu/ITq4GiQ==
+X-CSE-MsgGUID: qj4SM4VoS9uImymPz607NQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11549"; a="59637743"
+X-IronPort-AV: E=Sophos;i="6.18,257,1751266800"; d="scan'208";a="59637743"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2025 08:30:05 -0700
+X-CSE-ConnectionGUID: Ad2RVTEOR62yDnB/1tHcLw==
+X-CSE-MsgGUID: 49iUViGbSfClYNe8Jkh1Dw==
 X-ExtLoop1: 1
-Received: from johunt-mobl9.ger.corp.intel.com (HELO localhost)
- ([10.245.244.13])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2025 07:41:33 -0700
-Date: Thu, 11 Sep 2025 17:41:30 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Subject: Re: [PATCH 15/15] drm/i915/vrr: Fix seamless_mn drrs for PTL
-Message-ID: <aMLfmlp0u6KKpSwa@intel.com>
-References: <20250911024554.692469-1-ankit.k.nautiyal@intel.com>
- <20250911024554.692469-16-ankit.k.nautiyal@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+X-IronPort-AV: E=Sophos;i="6.18,257,1751266800"; d="scan'208";a="204483143"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2025 08:30:05 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Thu, 11 Sep 2025 08:30:03 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17 via Frontend Transport; Thu, 11 Sep 2025 08:30:03 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (40.107.92.74) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Thu, 11 Sep 2025 08:30:03 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=H8KyajHpOIGP1MXyybVxxFTbir20N+2ONcdHf3M1KunriDIl8XxjEdBp9eX2nUdchUJsZR/tM3KZhYE4tp2KloZdWegWLk1zK3UgcAgauZzLVyQbf61fNuqfyM8+QLUnkj9WjZ33Jh9ewyRMG/a2dhqyoQ/AtjlhIzd6onyHeYgXrvSVbtCfCga/N95sfk0/cINubvto9d4qhDD7oddj6bRPZF57Lpn5SAvgfC6iShmUiESf+i/VPI0+A3+X+8FSTgSBSRa/rp9bAj4K/bY1K7P5RyC0tk+sPg2XBYBOScgc0r3Wc56ujJSpULOH0iBujeByQBc+5ShoELfbfhDAsg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qNv1vsHnVLPP0x6J5XDNFQFx2horLuaxvwtyY2ZSjSo=;
+ b=qXYnwtOKiP2EVPIMXjtLdLu/ZvJLD+xh8NojIU8Km5oNNh/EWNomRpfxPpmf0snfL5+esTTuWQEM+1X4nG1+dEWcUc2xmP8uPkGot2ycEaHLZe7WcQNGK7SOBTc7oLokQQBZoxnvitntZNiE14EL45H9WUbI4BRVkxt6MZuzZydY3yDxY3T/NffHIgnVdvOLYzInseZ4nreqyVwFyEELg6Bs9FhkMUiGc0ra3rQUs0OLyFdPr0ngUmxGK2AzCgyrfWg/A3Y3JZ/LzWY3g7JRzxrpr9VTtRJoRLD3dtaFTIYs3RreJIr75xL8nK8dcd0seT+oRZGTU4u1ju5MkBHSYQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
+ by SA2PR11MB5067.namprd11.prod.outlook.com (2603:10b6:806:111::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.22; Thu, 11 Sep
+ 2025 15:29:55 +0000
+Received: from CYYPR11MB8430.namprd11.prod.outlook.com
+ ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
+ ([fe80::76d2:8036:2c6b:7563%6]) with mapi id 15.20.9094.021; Thu, 11 Sep 2025
+ 15:29:55 +0000
+Date: Thu, 11 Sep 2025 11:29:49 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+CC: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, Oded Gabbay <ogabbay@kernel.org>, "Lucas
+ De Marchi" <lucas.demarchi@intel.com>, <dri-devel@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <dim-tools@lists.freedesktop.org>
+Subject: [PULL] drm-xe-fixes
+Message-ID: <aMLq7QlaEPHGKXKX@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250911024554.692469-16-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-ClientProxiedBy: SJ0PR05CA0112.namprd05.prod.outlook.com
+ (2603:10b6:a03:334::27) To CYYPR11MB8430.namprd11.prod.outlook.com
+ (2603:10b6:930:c6::19)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|SA2PR11MB5067:EE_
+X-MS-Office365-Filtering-Correlation-Id: 77502a24-dc0c-4d89-ecd4-08ddf1480f79
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7416014;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?zPPKZs1XQ4psbxfFJnaNUX9XDhlYGH6yb/Ex+QcrntoYAiVBzXbnnJWqKU?=
+ =?iso-8859-1?Q?6mW6MQCKgQ6TzDAhMt3ZmPHupgPhMoWpJuiLhcgVlRyrU6iVEXe5hAXQxJ?=
+ =?iso-8859-1?Q?S8GU0PVkP9+7HwlMse+iyCM2mVfKm4K0j1QkuUOGrNYe1WCMCb32JvNuSq?=
+ =?iso-8859-1?Q?1BjiHbYEDBjGMtpIIXPonAHwqD7a1NQEm793mKgU/W91l54Ce0HTb5RxPe?=
+ =?iso-8859-1?Q?P1+cGTajHYK6XdoQ8lPNzIql6+A5WdXHQZ3LrpUxoPSZW4fl8wl2CmA3bS?=
+ =?iso-8859-1?Q?zFuVSc28jf5UyvjRJv3YI8MbLqUVmq/dmXxTVUlp8PQiAG1bI0DNJbaoYp?=
+ =?iso-8859-1?Q?oeT93EQ1ySGIqL9ZU20a+nIDuPJwjzISaGQUYuWof0gIKZPQ+fnbB2YJ8M?=
+ =?iso-8859-1?Q?k7iUAkrRSEurvKoLr9FDtiqZopZmKuaja3EzDaLyUakT5yCIH8pPlGcpyC?=
+ =?iso-8859-1?Q?UBeWpOH4ni4DQe/ZQ2L881jQkUCJui3LsDU/Y63qVBH2UB0MLRrq4o/Ucs?=
+ =?iso-8859-1?Q?8PMfjrmMSpvCybhELjKqqV7F1p0hicak0IOlzY8cwaVxUpQqKaz3OfGeXn?=
+ =?iso-8859-1?Q?sVQ+bZhX8w3KeHTHmAox36sYl/K9ySWYJwRXmWITbwOJCP3ytBUkKQEJ07?=
+ =?iso-8859-1?Q?WA/JcbYy4+ydaQBaUgAJeRrvx4VKiSMXkPbDnuJGsQBR70RYDX6hYJW1Yi?=
+ =?iso-8859-1?Q?hBQ9xV5IVljwjS2nSjVcm0ucEUFd956d3rFotarJsMbxPgzGRKvr3AdfTw?=
+ =?iso-8859-1?Q?L+DvJMpH5TfIxuocP4yCnsFWeQ5ngjkBNY8bq1NLqp7Tk1VFpds+BUbgl4?=
+ =?iso-8859-1?Q?yMX4PUqPxD5Z4/501bzkUHviL2twzSidWCjMoolwCC5b/My+09kkNbrw7H?=
+ =?iso-8859-1?Q?7K5v4Mm4TKXjrXxmkWNCEPwURshpyOC2bj2YcxJMcf6NHjmkWeKyQ9hNIQ?=
+ =?iso-8859-1?Q?ORt46xh+fh7ZNepGzD+SpHwFA6qCkiNU0JkfLcXqQw5q9YVMFtTGhfJXpV?=
+ =?iso-8859-1?Q?XZpM0GlZQ5ig39ZBAjQTkjWsUVv9G6mdwhmWpfTgDegVBhhdS2mTpXGppj?=
+ =?iso-8859-1?Q?dfhT4tT8yyVxgJTu/YC+Bdl/4qYloXe2yeITwSg+2Gz1sNNXn9x52Klp4L?=
+ =?iso-8859-1?Q?qf0uuJWLPZ7YyqLYvc5fDuq7sOuyN4Qbn91JCRbyhfk3jttr3laErEKk5F?=
+ =?iso-8859-1?Q?Cho6hJce4x8iAobRpKUwkNxX5g7VjgWmBBLDZcoSu/SMUbpExiU/J5O/k3?=
+ =?iso-8859-1?Q?pfyXcOr/LW8Qks086yIHLAeblF1tJJpWaGVSd7OXErnCBc8Idzl556Wq5C?=
+ =?iso-8859-1?Q?eZIGhrn8lwe3UrHfgQe2PXd85YCI3+IvjtSCvVxGgPotuUdZ2wp+HkeCyP?=
+ =?iso-8859-1?Q?ZqyCWvX2S6ag9VqPSSnIhDWp+F8z8nfrU+EsoYJ/Hdv1Di1g5cDGY=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(7416014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?qubmb4dk7SVfMIxkb/BDn+abK3CfYWcXpecNLEdk0HJ9+k50j3MDt6Y37B?=
+ =?iso-8859-1?Q?2oKNyHfrgEtzWxKkXn6e1tfNKGnE4ptSHExzjlYM5+DERxiAbJkP0dQw0g?=
+ =?iso-8859-1?Q?Hc68QCyH8OoCpfwboSWlfE+6sS/pUMObNfvvr4gjEbAqOdfbV4A90YPJLy?=
+ =?iso-8859-1?Q?+ANisXxNc/sRGxM0o+AiLU/76OnEmQLq8qmG443atEmdlGIW7mVVfdd1s4?=
+ =?iso-8859-1?Q?m0YsQL7kbf+chC7bRrBXqv8V0wO3SHNfNRQ1cJ6ObtafZ4ei7nzSRgA9oQ?=
+ =?iso-8859-1?Q?I3Qm+LJEJyvQ11orycwj0x5V5TK6GtsyC/zE5zLqEMAHHJ1hen3cXRHvif?=
+ =?iso-8859-1?Q?Apo0Q+foOYq2aDV/t2gU8Wm7qJOQiWt5ydCnNhRdUk4GLPGi4UI7ZUmwgm?=
+ =?iso-8859-1?Q?OytlXjSShEYOZMrreA7tGVibTi18QUEv+jw4XUk0tNwyb7Zs+n8tR8fLXg?=
+ =?iso-8859-1?Q?3IHSMXmplSNGrJopqF6hnwJBJ9nCXEVQwjKX682C4TuuprHItOKA6sRyia?=
+ =?iso-8859-1?Q?hBN6pJQ0c99JL7nYZAmnOTMEztEKfIgtdNNmO25J66I6Cw7kFgxtrgm9sg?=
+ =?iso-8859-1?Q?0Bhj/sJOVVf25hie+mc6Joc5NbOh+NPDIUmbH+RkV8C3BPO1QeojLtTI+N?=
+ =?iso-8859-1?Q?+MqVB+CHQBEHxJzSfX7lH9Mo5SCi4/TU+FyirgUq81FUQuMjgQwwDTiPR8?=
+ =?iso-8859-1?Q?xbDbNvlWi1kHqoZWKagmrSQ2VBTgV2gKNJUHPBXJOZd8/oXSdC+ps377Ma?=
+ =?iso-8859-1?Q?WhpiexRY4VvCRjOnkOngbFZrbrK8zJ6RbLnUocCxPmQUHrvmqAlCILTmtN?=
+ =?iso-8859-1?Q?JwC2WwElGTT+DkBAZdYnOIbFyDW7d0mE33uKDLC3TeW/yYZCg9hizUrnh+?=
+ =?iso-8859-1?Q?icm8VAelP7ddZygZ+6ZXlIO2eXykSrvL9QjOUW5/+epizXtpS2pX0VKDQ+?=
+ =?iso-8859-1?Q?00rPu3ORDzRX/8rH1WOtJDia0AK5rZiT3WRLgyb+ffdxt53oN7gqyyXy6v?=
+ =?iso-8859-1?Q?4wjslpVvoliIiP8z0iihYYu+CPYvcx5C0qjKV2EZzLfQCzI7Ptw9H8yqUv?=
+ =?iso-8859-1?Q?mIaUZAWWnw7tHRR4jdWGFTfWOboS2fTTDY/qYpDmlFhywhnaSJT8AT7qC5?=
+ =?iso-8859-1?Q?aZsbU2LlZ7XKKZZahjFUPBsLlXJOXfkZMp6L59fECGjYLqZ8Q/L+t2emzR?=
+ =?iso-8859-1?Q?jKKMK8uV/kHbdYrHjOK0+2p3QxEMS/LaFtjriUcoXQPSDpxwBCgJ4vjc54?=
+ =?iso-8859-1?Q?YcjmNLcqIQy/iyKI99vE7WQ5sPJ5QWdZ4uozs4kaxGP9QVDc3GXreL9DRa?=
+ =?iso-8859-1?Q?oAMIBttVk+kN8xXUjRzQt2OJcrwQ87q3s3LpUzkctgKdk0UiLs2+nDbreU?=
+ =?iso-8859-1?Q?sjEkUTCc+PbQZlM0xneiRPrn631yEEh/yt1hICNfvNAiKCS6TEAGPTOVnV?=
+ =?iso-8859-1?Q?NkDxY4geCfF4gBSjzvrILCZLco7qr9DOetGxJXMuOEzj15ErV7sfDtZrI6?=
+ =?iso-8859-1?Q?4rrS8jcTffAOqAP2sN08M0O0tQAVEhUFyy9+zHxx89mdgiOfZbv81PeEOR?=
+ =?iso-8859-1?Q?qKlMD87iaj39WLhpEDJ4WFJ7ofo6LZexRp1s3iVNe453tV6RO5lYS01vv7?=
+ =?iso-8859-1?Q?VmaANw99c+R75xCq82qpDUTfUj5yrgLeWaEGW3Py8Lb3V0wZO/u829fg?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 77502a24-dc0c-4d89-ecd4-08ddf1480f79
+X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Sep 2025 15:29:55.8350 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: nx6eUArWu9ledcoJWq2ymXysRQwLsqgWJi80bNEGIlc6kx8//Ifkl/dx2JAOU+PBruWBZRvze//X1R/0gwojYw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5067
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,224 +183,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 11, 2025 at 08:15:54AM +0530, Ankit Nautiyal wrote:
-> With VRR timing generator always on, the fixed refresh rate is achieved
-> by setting vrr.flipline and vrr.vmax as the vtotal for the desired mode.
-> 
-> This creates a problem for seamless_mn drrs feature, where user can
-> seamlessly set a lower mode on the supporting panels. With VRR timing
-> generator, the vrr.flipline and vrr.vmax are set to vtotal, but that
-> corresponds to the higher mode.
-> 
-> To fix this, re-compute the vrr timings when seamless_mn drrs is in
-> picture. At the same time make sure that the vrr.guardband is set as
-> per the highest mode for such panels, so that switching between higher
-> to lower mode, does not change the vrr.guardband.
-> 
-> v2: Add a new member `use_highest_mode` to vrr struct to help set the
-> vrr timings for highest mode for the seamless_mn drrs case.
-> v3:
-> -Modify existing function to compute fixed refresh rate timings instead
-> of adding a new function. (Mitul)
-> -Tweak computation for scaling the vtotal and use DIV_ROUND_UP_ULL.
-> -Improve documentation.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-> ---
->  .../drm/i915/display/intel_display_types.h    |  2 +
->  drivers/gpu/drm/i915/display/intel_dp.c       |  2 +-
->  drivers/gpu/drm/i915/display/intel_dp.h       |  1 +
->  drivers/gpu/drm/i915/display/intel_vrr.c      | 90 ++++++++++++++++++-
->  4 files changed, 90 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 358ab922d7a7..9796c7b855d0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1321,6 +1321,8 @@ struct intel_crtc_state {
->  		u8 pipeline_full;
->  		u16 flipline, vmin, vmax, guardband;
->  		u32 vsync_end, vsync_start;
-> +		/* Indicates VRR timing is scaled to highest mode for seamless M/N */
-> +		bool use_highest_mode;
->  	} vrr;
->  
->  	/* Content Match Refresh Rate state */
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index f74ac98062d4..5c29c696c83e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1742,7 +1742,7 @@ static int intel_dp_max_bpp(struct intel_dp *intel_dp,
->  	return bpp;
->  }
->  
-> -static bool has_seamless_m_n(struct intel_connector *connector)
-> +bool has_seamless_m_n(struct intel_connector *connector)
->  {
->  	struct intel_display *display = to_intel_display(connector);
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-> index d222749b191c..6da0196c23d1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> @@ -217,5 +217,6 @@ void intel_dp_dpcd_set_probe(struct intel_dp *intel_dp, bool force_on_external);
->  bool intel_dp_in_hdr_mode(const struct drm_connector_state *conn_state);
->  int intel_dp_compute_sdp_latency(const struct intel_crtc_state *crtc_state,
->  				 bool assume_all_enabled);
-> +bool has_seamless_m_n(struct intel_connector *connector);
->  
->  #endif /* __INTEL_DP_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index 002165026a20..80bbe4b1ef7f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -11,6 +11,7 @@
->  #include "intel_display_regs.h"
->  #include "intel_display_types.h"
->  #include "intel_dp.h"
-> +#include "intel_panel.h"
->  #include "intel_vrr.h"
->  #include "intel_vrr_regs.h"
->  #include "skl_scaler.h"
-> @@ -299,6 +300,16 @@ void intel_vrr_set_fixed_rr_timings(const struct intel_crtc_state *crtc_state)
->  	if (!intel_vrr_possible(crtc_state))
->  		return;
->  
-> +	if (crtc_state->vrr.use_highest_mode) {
-> +		intel_de_write(display, TRANS_VRR_VMIN(display, cpu_transcoder),
-> +			       crtc_state->vrr.vmin - 1);
-> +		intel_de_write(display, TRANS_VRR_VMAX(display, cpu_transcoder),
-> +			       crtc_state->vrr.vmax - 1);
-> +		intel_de_write(display, TRANS_VRR_FLIPLINE(display, cpu_transcoder),
-> +			       crtc_state->vrr.flipline - 1);
-> +		return;
-> +	}
-> +
->  	intel_de_write(display, TRANS_VRR_VMIN(display, cpu_transcoder),
->  		       intel_vrr_fixed_rr_vmin(crtc_state) - 1);
->  	intel_de_write(display, TRANS_VRR_VMAX(display, cpu_transcoder),
-> @@ -307,15 +318,69 @@ void intel_vrr_set_fixed_rr_timings(const struct intel_crtc_state *crtc_state)
->  		       intel_vrr_fixed_rr_flipline(crtc_state) - 1);
->  }
->  
-> +static bool needs_seamless_m_n_timings(struct intel_crtc_state *crtc_state,
-> +				       struct intel_connector *connector)
-> +{
-> +	if (!has_seamless_m_n(connector) || crtc_state->joiner_pipes)
-> +		return false;
-> +
-> +	return true;
-> +}
-> +
-> +static int intel_vrr_scale_vtotal_for_seamless_m_n(struct intel_crtc_state *crtc_state,
-> +						   struct intel_connector *connector)
-> +{
-> +	const struct drm_display_mode *highest_mode = intel_panel_highest_mode(connector);
-> +	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-> +	int vtotal = adjusted_mode->crtc_vtotal;
-> +
-> +	/*
-> +	 * For panels with seamless_m_n drrs, the user can seamlessly switch to
-> +	 * a lower mode, which has a lower clock. This works with legacy timing
-> +	 * generator, but not with the VRR timing generator.
-> +	 *
-> +	 * The VRR timing generator requires flipline and vmax to be equal for
-> +	 * fixed refresh rate operation. The default fixed RR computation sets
-> +	 * these to the current mode's vtotal. However, when switching to a
-> +	 * lower clock mode, this would result in a higher refresh rate than
-> +	 * desired.
-> +	 *
-> +	 * To simulate the lower refresh rate correctly, we scale the vtotal
-> +	 * based on the ratio of the highest mode's clock to the current mode's
-> +	 * clock.
-> +	 *
-> +	 * When switching to a higher clock mode, the current vtotal already
-> +	 * results in the desired refresh rate, so no scaling is needed.
-> +	 *
-> +	 * So compute the scaled vtotal if required, and update vrr.vmin to
-> +	 * the scaled value. Also, set vrr.use_highest_mode to indicate that
-> +	 * VRR timings are based on the highest mode.
-> +	 */
-> +	if (highest_mode && adjusted_mode->crtc_clock < highest_mode->clock) {
-> +		vtotal = DIV_ROUND_UP_ULL(vtotal * highest_mode->clock,
-> +					  adjusted_mode->crtc_clock);
-> +		crtc_state->vrr.vmin = vtotal;
-> +		crtc_state->vrr.use_highest_mode = true;
-> +	}
+Hi Dave and Sima,
 
-I have no idea what is happening here. I think the only thing we should
-be aiming for is a fixed guardband length, but this is now doing all kinds
-of otehr massaging of VRR parameters. Why?
+Here goes the xe fixes for this week.
 
-> +
-> +	return vtotal;
-> +}
-> +
->  static
-> -void intel_vrr_compute_fixed_rr_timings(struct intel_crtc_state *crtc_state)
-> +void intel_vrr_compute_fixed_rr_timings(struct intel_crtc_state *crtc_state,
-> +					struct intel_connector *connector)
->  {
-> +	int vtotal = crtc_state->hw.adjusted_mode.crtc_vtotal;
-> +
-> +	if (needs_seamless_m_n_timings(crtc_state, connector))
-> +		vtotal = intel_vrr_scale_vtotal_for_seamless_m_n(crtc_state, connector);
-> +
->  	/*
->  	 * For fixed rr,  vmin = vmax = flipline.
->  	 * vmin is already set to crtc_vtotal set vmax and flipline the same.
->  	 */
-> -	crtc_state->vrr.vmax = crtc_state->hw.adjusted_mode.crtc_vtotal;
-> -	crtc_state->vrr.flipline = crtc_state->hw.adjusted_mode.crtc_vtotal;
-> +	crtc_state->vrr.vmax = vtotal;
-> +	crtc_state->vrr.flipline = vtotal;
->  }
->  
->  static
-> @@ -397,7 +462,7 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
->  	else if (is_cmrr_frac_required(crtc_state) && is_edp)
->  		intel_vrr_compute_cmrr_timings(crtc_state);
->  	else
-> -		intel_vrr_compute_fixed_rr_timings(crtc_state);
-> +		intel_vrr_compute_fixed_rr_timings(crtc_state, connector);
->  
->  	/*
->  	 * flipline determines the min vblank length the hardware will
-> @@ -876,6 +941,7 @@ int intel_vrr_compute_guardband(struct intel_crtc_state *crtc_state,
->  {
->  	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
->  	struct intel_display *display = to_intel_display(crtc_state);
-> +	const struct drm_display_mode *highest_mode;
->  	int dsc_prefill_time = 0;
->  	int psr2_pr_latency = 0;
->  	int scaler_prefill_time;
-> @@ -888,6 +954,22 @@ int intel_vrr_compute_guardband(struct intel_crtc_state *crtc_state,
->  	int guardband;
->  	int pm_delay;
->  
-> +	/*
-> +	 * For seamless m_n the clock is changed while other modeline
-> +	 * parameters are same. In that case the linetime_us will change,
-> +	 * causing the guardband to change, and the seamless switch to
-> +	 * lower mode would not take place.
-> +	 * To avoid this, take the highest mode where panel supports
-> +	 * seamless drrs and make guardband equal to the vblank length
-> +	 * for the highest mode.
-> +	 */
-> +	highest_mode = intel_panel_highest_mode(connector);
-> +	if (needs_seamless_m_n_timings(crtc_state, connector) && highest_mode) {
-> +		guardband = highest_mode->vtotal - highest_mode->vdisplay;
-> +
-> +		return guardband;
-> +	}
-> +
->  	linetime_us = DIV_ROUND_UP(adjusted_mode->crtc_htotal * 1000,
->  				   adjusted_mode->crtc_clock);
->  
-> -- 
-> 2.45.2
+Thanks,
+Rodrigo.
 
--- 
-Ville Syrjälä
-Intel
+drm-xe-fixes-2025-09-11:
+- Don't touch survivability_mode on fini (Michal)
+- Fixes around eviction and suspend (Thomas)
+- Extend Wa_13011645652 to PTL-H, WCL (Julia)
+The following changes since commit 76eeb9b8de9880ca38696b2fb56ac45ac0a25c6c:
+
+  Linux 6.17-rc5 (2025-09-07 14:22:57 -0700)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2025-09-11
+
+for you to fetch changes up to fd99415ec8a80866e5e19f7835876e7b4f294946:
+
+  drm/xe: Extend Wa_13011645652 to PTL-H, WCL (2025-09-09 13:20:36 -0400)
+
+----------------------------------------------------------------
+- Don't touch survivability_mode on fini (Michal)
+- Fixes around eviction and suspend (Thomas)
+- Extend Wa_13011645652 to PTL-H, WCL (Julia)
+
+----------------------------------------------------------------
+Julia Filipchuk (1):
+      drm/xe: Extend Wa_13011645652 to PTL-H, WCL
+
+Michal Wajdeczko (1):
+      drm/xe/configfs: Don't touch survivability_mode on fini
+
+Thomas Hellström (3):
+      drm/xe: Attempt to bring bos back to VRAM after eviction
+      drm/xe: Allow the pm notifier to continue on failure
+      drm/xe: Block exec and rebind worker while evicting for suspend / hibernate
+
+ drivers/gpu/drm/xe/tests/xe_bo.c           |  2 +-
+ drivers/gpu/drm/xe/tests/xe_dma_buf.c      | 10 +------
+ drivers/gpu/drm/xe/xe_bo.c                 | 16 +++++++++---
+ drivers/gpu/drm/xe/xe_bo.h                 |  2 +-
+ drivers/gpu/drm/xe/xe_device_types.h       |  6 +++++
+ drivers/gpu/drm/xe/xe_dma_buf.c            |  2 +-
+ drivers/gpu/drm/xe/xe_exec.c               |  9 +++++++
+ drivers/gpu/drm/xe/xe_pm.c                 | 42 +++++++++++++++++++++++-------
+ drivers/gpu/drm/xe/xe_survivability_mode.c |  3 ++-
+ drivers/gpu/drm/xe/xe_vm.c                 | 42 +++++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_vm.h                 |  2 ++
+ drivers/gpu/drm/xe/xe_vm_types.h           |  5 ++++
+ drivers/gpu/drm/xe/xe_wa_oob.rules         |  3 ++-
+ 13 files changed, 115 insertions(+), 29 deletions(-)
