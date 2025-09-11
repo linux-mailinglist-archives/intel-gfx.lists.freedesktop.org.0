@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AFD4B526C5
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Sep 2025 04:59:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08D9CB526C6
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Sep 2025 04:59:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBC1010EA03;
-	Thu, 11 Sep 2025 02:59:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91AA110EA0C;
+	Thu, 11 Sep 2025 02:59:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nHUeEEB8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IqfV7lGg";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F87610EA09;
- Thu, 11 Sep 2025 02:59:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C73710EA07;
+ Thu, 11 Sep 2025 02:59:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757559579; x=1789095579;
+ t=1757559581; x=1789095581;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rE7zOhS6dvPjzsq5tLL/oM8h8yKvMNvB2a3cGYMMm+4=;
- b=nHUeEEB8YD1alfa9ikd38iFavjdvDk9pc0DU2EAxI50ieRifKr6Y3gKm
- KyxCVTIKiRQHNreesJvvD1G4hAZSF0hdEvjW3hxQcy5A0WLbqIIDfwBas
- 0MQaO9AknV2HINokZV0XQYMrtZMK3Ydp5r9Llw/k4cWseGpgZDTgXYVcf
- 6SrHcDsr3axIzJN/809Ju8ld6dxBBsZ/eajNkWve1cvwqqdTvWc5qEOmd
- DgDQQqXzg9ANGmDV08sxm6ovx2fNg9QgfxtdEI3vVJMUr7PrFmi+xlq0Y
- e32tmkt+DirBZ2MgdWDX4XPu+2POWTObPDCv20xZ1oiSR5i2lT/3gzi5z Q==;
-X-CSE-ConnectionGUID: NFWywlSCTL2fCDPd88ovXQ==
-X-CSE-MsgGUID: Mzpx/B1kTvew5B7+X+KmQA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11549"; a="85327070"
-X-IronPort-AV: E=Sophos;i="6.18,256,1751266800"; d="scan'208";a="85327070"
+ bh=fOfWU/xSh6h3EBCc0gCQgy/IT+uG3j5SxVJuUupuB1k=;
+ b=IqfV7lGgTgWYgp8ziM7gVoVkMvb+H2tmzhaPMFNOjZvHcLVZOP256UX3
+ DEqu9BDwrM89gVoMIuoe0t005FqdxAVNhtc3y88LXFALuZ3sG3UI96jU9
+ TowAQQGWG52ZqfZL5jt4s4r+dsstHZ/DWLa4dcC76WqoArzWqdpUUUdeX
+ jBKy78d643MlgXCCtbboBU4HBgx7t9Ar9FFzX3jC9Ym3QrnTgqoqdy8VX
+ WY9pbgXMPy55+lvY0t324Qg9JMs2bAZLZS95RvzwvClclAQm5G170RCDK
+ krus2K8QISIuoMhhaHrsSaS2zKpLU6+hJhpD9fgXN3GjxUlyB4MzOBtaE w==;
+X-CSE-ConnectionGUID: UTFCK+C2R9i9qynFhgLzWw==
+X-CSE-MsgGUID: bKvFGhmqQbGRhDIBz06AvQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11549"; a="85327080"
+X-IronPort-AV: E=Sophos;i="6.18,256,1751266800"; d="scan'208";a="85327080"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2025 19:59:39 -0700
-X-CSE-ConnectionGUID: IBlRXCemRm64sipHw2kNAQ==
-X-CSE-MsgGUID: zleAhKSYQtuFsKlmsWpkgw==
+ 10 Sep 2025 19:59:41 -0700
+X-CSE-ConnectionGUID: J4qZL2QGRzCZ7lgRZM+Ewg==
+X-CSE-MsgGUID: TgO07Zz8RVe5hqXjzGYG7A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,256,1751266800"; d="scan'208";a="173955530"
+X-IronPort-AV: E=Sophos;i="6.18,256,1751266800"; d="scan'208";a="173955533"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2025 19:59:36 -0700
+ 10 Sep 2025 19:59:38 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
  Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Subject: [PATCH 07/15] drm/i915/alpm: Add function to compute max link-wake
- latency
-Date: Thu, 11 Sep 2025 08:15:46 +0530
-Message-ID: <20250911024554.692469-8-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 08/15] drm/i915/vrr: Use vrr.sync_start for getting vtotal
+Date: Thu, 11 Sep 2025 08:15:47 +0530
+Message-ID: <20250911024554.692469-9-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250911024554.692469-1-ankit.k.nautiyal@intel.com>
 References: <20250911024554.692469-1-ankit.k.nautiyal@intel.com>
@@ -70,55 +69,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Introduce a helper to compute the max link wake latency when using
-Auxless/Aux wake mechanism for PSR/Panel Replay/LOBF features.
+Currently, in intel_vrr_get_config() crtc_vtotal is computed from
+vrr.vmin vtotal, since the VTOTAL.Vtotal bits are deprecated.
+Since vmin is currently set to crtc_vtotal, this gives us the vtotal.
+However, as we move to optimized guardband, vmin will be modified to set
+to the minimum Vtotal for highest refresh rate supported.
 
-This will be used to compute the minimum guardband so that the link wake
-latencies are accounted and these features work smoothly for higher
-refresh rate panels.
+Instead of depending on vmin, compute vtotal from crtc_vsync_start and
+vrr.vsync_start. This works since vrr.vsync_start is measured from the
+end of vblank, and crtc_vsync_start is measured from start of the
+scanline. Together their sum is equal to the crtc_vtotal.
 
-Bspec: 70151, 71477
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_alpm.c | 15 +++++++++++++++
- drivers/gpu/drm/i915/display/intel_alpm.h |  2 ++
- 2 files changed, 17 insertions(+)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 21 ++++++++++-----------
+ 1 file changed, 10 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index ed7a7ed486b5..c7d865d7c971 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -611,3 +611,18 @@ bool intel_alpm_get_error(struct intel_dp *intel_dp)
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index fd690de5b45b..855974174afd 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -735,17 +735,6 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
+ 						     TRANS_VRR_VMAX(display, cpu_transcoder)) + 1;
+ 		crtc_state->vrr.vmin = intel_de_read(display,
+ 						     TRANS_VRR_VMIN(display, cpu_transcoder)) + 1;
+-
+-		/*
+-		 * For platforms that always use VRR Timing Generator, the VTOTAL.Vtotal
+-		 * bits are not filled. Since for these platforms TRAN_VMIN is always
+-		 * filled with crtc_vtotal, use TRAN_VRR_VMIN to get the vtotal for
+-		 * adjusted_mode.
+-		 */
+-		if (intel_vrr_always_use_vrr_tg(display))
+-			crtc_state->hw.adjusted_mode.crtc_vtotal =
+-				intel_vrr_vmin_vtotal(crtc_state);
+-
+ 		if (HAS_AS_SDP(display)) {
+ 			trans_vrr_vsync =
+ 				intel_de_read(display,
+@@ -755,6 +744,16 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
+ 			crtc_state->vrr.vsync_end =
+ 				REG_FIELD_GET(VRR_VSYNC_END_MASK, trans_vrr_vsync);
+ 		}
++		/*
++		 * For platforms that always use VRR Timing Generator, the VTOTAL.Vtotal
++		 * bits are not filled. Since vrr.vsync_start is computed as:
++		 * crtc_vtotal - crtc_vsync_start, we can derive vtotal from
++		 * vrr.vsync_start and crtc_vsync_start.
++		 */
++		if (intel_vrr_always_use_vrr_tg(display))
++			crtc_state->hw.adjusted_mode.crtc_vtotal =
++				crtc_state->hw.adjusted_mode.crtc_vsync_start +
++				crtc_state->vrr.vsync_start;
+ 	}
  
- 	return false;
- }
-+
-+int intel_alpm_compute_max_link_wake_latency(const struct intel_crtc_state *crtc_state,
-+					     bool assume_all_enabled)
-+{
-+	int psr2_vblank_time = 0;
-+	int auxless_wake_time = 0;
-+
-+	if (assume_all_enabled || crtc_state->has_sel_update)
-+		psr2_vblank_time =  io_buffer_wake_time(crtc_state);
-+
-+	if (assume_all_enabled || crtc_state->has_panel_replay)
-+		auxless_wake_time = _lnl_compute_aux_less_wake_time(crtc_state);
-+
-+	return max(psr2_vblank_time, auxless_wake_time);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
-index a861c20b5d79..b371827af356 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.h
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.h
-@@ -38,4 +38,6 @@ bool intel_alpm_is_alpm_aux_less(struct intel_dp *intel_dp,
- 				 const struct intel_crtc_state *crtc_state);
- void intel_alpm_disable(struct intel_dp *intel_dp);
- bool intel_alpm_get_error(struct intel_dp *intel_dp);
-+int intel_alpm_compute_max_link_wake_latency(const struct intel_crtc_state *crtc_state,
-+					     bool assume_all_enabled);
- #endif
+ 	vrr_enable = trans_vrr_ctl & VRR_CTL_VRR_ENABLE;
 -- 
 2.45.2
 
