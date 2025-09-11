@@ -2,59 +2,108 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7D1FB52CE0
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Sep 2025 11:17:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E977DB52CDC
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Sep 2025 11:17:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12BD910EA57;
-	Thu, 11 Sep 2025 09:17:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACD3D10EA59;
+	Thu, 11 Sep 2025 09:17:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TFZQWa04";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="SIQP+lxi";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="dnRB8UHN";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="SIQP+lxi";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="dnRB8UHN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37ADA10EA57
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Sep 2025 09:17:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757582270; x=1789118270;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=vK8IISZl/fEz0y/3EDl2mj3XOIhUpkyggWM6NZvwbyc=;
- b=TFZQWa040HEhOCEUYqgFbmwRL/KwWVLXxhqKgqVEX4OoJaZv0MJgUa0k
- gq7o09oYzCc1KmsAmB3Jh1RhjqJjZaistGX5tt+44uzSHDGNUPSl0ONhl
- lQtK0ttoujREXAX9i3F4aNuiXLkDwMH1dKe6ghRp/RHcoSi0hlAY1EyRY
- Cewuy+p5FY//tOS0mIIL3+jM4nL02ACwngKPK3ej4aqz1vGMUn97qe7m2
- YerdzcRg22agFo9zAM6EWCW3idlZxnfosA1E9QfseF1nohXRFnlOZjitF
- LjVn8LbXzNmR0mdRtPk3sHE5qBKzgnwso6XD0xyAifLEzj/wsqZKLMcah w==;
-X-CSE-ConnectionGUID: WzufHIw9Tg2b7nAlZyrfcA==
-X-CSE-MsgGUID: 16YIADiUTwGBpmHw11BuOw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11549"; a="47480503"
-X-IronPort-AV: E=Sophos;i="6.18,256,1751266800"; d="scan'208";a="47480503"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2025 02:17:50 -0700
-X-CSE-ConnectionGUID: JyiAcW7yQayng0x0KbFiyA==
-X-CSE-MsgGUID: iN+GFFYnRKyPq6iRPQuxaA==
-X-ExtLoop1: 1
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.136])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2025 02:17:48 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [CI 1/4] drm/i915: split out i915_ptr_util.h
-Date: Thu, 11 Sep 2025 12:17:37 +0300
-Message-ID: <3cd06aa2483e68f19401292e9d4c28bf2977fce5.1757582214.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1757582214.git.jani.nikula@intel.com>
-References: <cover.1757582214.git.jani.nikula@intel.com>
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFA2810EA59
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Sep 2025 09:17:40 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 5ED8C60317;
+ Thu, 11 Sep 2025 09:17:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1757582259; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=hnS/7oxxjsOKOj/tXQW7Itm6Cx2fMvkmDt7Kn2kIylM=;
+ b=SIQP+lxiML3iIKHDXn93T0/i1QIePPs2OSzBLVoJOsxRhfP3m34/q5EsE6jrugqD3c5vbU
+ lcX2NdybouJQ+tUxkvpXe5I+F0AuDIGSlOTtWRAnb2rIPslEo0lLz3u8hiNGDdMXYSJftj
+ 0lCWGsaaLnLaZ0rEBS0/ZRNW7qw+DAg=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1757582259;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=hnS/7oxxjsOKOj/tXQW7Itm6Cx2fMvkmDt7Kn2kIylM=;
+ b=dnRB8UHN9GcRmaCT2HfSMnaaRQxt5KDH5yNr2e8jK6GhKPMSLOTDcurZqvJjUxub9LkO/T
+ Qh9S74zTOfJp7nCQ==
+Authentication-Results: smtp-out2.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1757582259; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=hnS/7oxxjsOKOj/tXQW7Itm6Cx2fMvkmDt7Kn2kIylM=;
+ b=SIQP+lxiML3iIKHDXn93T0/i1QIePPs2OSzBLVoJOsxRhfP3m34/q5EsE6jrugqD3c5vbU
+ lcX2NdybouJQ+tUxkvpXe5I+F0AuDIGSlOTtWRAnb2rIPslEo0lLz3u8hiNGDdMXYSJftj
+ 0lCWGsaaLnLaZ0rEBS0/ZRNW7qw+DAg=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1757582259;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=hnS/7oxxjsOKOj/tXQW7Itm6Cx2fMvkmDt7Kn2kIylM=;
+ b=dnRB8UHN9GcRmaCT2HfSMnaaRQxt5KDH5yNr2e8jK6GhKPMSLOTDcurZqvJjUxub9LkO/T
+ Qh9S74zTOfJp7nCQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id E580D13301;
+ Thu, 11 Sep 2025 09:17:38 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id DoXeNrKTwmgNAgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 11 Sep 2025 09:17:38 +0000
+Date: Thu, 11 Sep 2025 11:17:37 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-next
+Message-ID: <20250911091737.GA39831@linux.fritz.box>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MISSING_XM_UA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ MIME_TRACE(0.00)[0:+]; RCPT_COUNT_TWELVE(0.00)[16];
+ FUZZY_RATELIMITED(0.00)[rspamd.com]; ARC_NA(0.00)[];
+ FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo]
+X-Spam-Flag: NO
+X-Spam-Level: 
+X-Spam-Score: -4.30
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,245 +119,304 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Move pointer related utilities from i915_utils.h to a separate new
-i915_ptr_util.h header. Clean up related includes.
+Hi Dave, Sima,
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_context_types.h |  1 -
- drivers/gpu/drm/i915/gt/intel_timeline.h      |  1 +
- drivers/gpu/drm/i915/i915_ptr_util.h          | 66 +++++++++++++++++++
- drivers/gpu/drm/i915/i915_request.h           |  5 +-
- drivers/gpu/drm/i915/i915_utils.h             | 57 ----------------
- drivers/gpu/drm/i915/i915_vma.h               |  6 +-
- 6 files changed, 73 insertions(+), 63 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/i915_ptr_util.h
+here's the final PR for drm-misc-next that goes into v6.18. It adds
+support for the 'boot_display' sysfs attribute. Exported buffers from
+TTM should now be accounted correctly. There's a new driver for the
+Mayqueen e-Ink paper. Vkms got support for a lot of additional color
+formats. And there's of course the usual number of fixes and cleanups
+everywhere.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-index 98c7f6052069..10070ee4d74c 100644
---- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-@@ -14,7 +14,6 @@
- 
- #include "i915_active_types.h"
- #include "i915_sw_fence.h"
--#include "i915_utils.h"
- #include "intel_engine_types.h"
- #include "intel_sseu.h"
- #include "intel_wakeref.h"
-diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.h b/drivers/gpu/drm/i915/gt/intel_timeline.h
-index 57308c4d664a..5f8c8f79714e 100644
---- a/drivers/gpu/drm/i915/gt/intel_timeline.h
-+++ b/drivers/gpu/drm/i915/gt/intel_timeline.h
-@@ -10,6 +10,7 @@
- 
- #include "i915_active.h"
- #include "i915_syncmap.h"
-+#include "i915_utils.h"
- #include "intel_timeline_types.h"
- 
- struct drm_printer;
-diff --git a/drivers/gpu/drm/i915/i915_ptr_util.h b/drivers/gpu/drm/i915/i915_ptr_util.h
-new file mode 100644
-index 000000000000..9f8931d7d99b
---- /dev/null
-+++ b/drivers/gpu/drm/i915/i915_ptr_util.h
-@@ -0,0 +1,66 @@
-+/* SPDX-License-Identifier: MIT */
-+/* Copyright Â© 2025 Intel Corporation */
-+
-+#ifndef __I915_PTR_UTIL_H__
-+#define __I915_PTR_UTIL_H__
-+
-+#include <linux/types.h>
-+
-+#define ptr_mask_bits(ptr, n) ({					\
-+	unsigned long __v = (unsigned long)(ptr);			\
-+	(typeof(ptr))(__v & -BIT(n));					\
-+})
-+
-+#define ptr_unmask_bits(ptr, n) ((unsigned long)(ptr) & (BIT(n) - 1))
-+
-+#define ptr_unpack_bits(ptr, bits, n) ({				\
-+	unsigned long __v = (unsigned long)(ptr);			\
-+	*(bits) = __v & (BIT(n) - 1);					\
-+	(typeof(ptr))(__v & -BIT(n));					\
-+})
-+
-+#define ptr_pack_bits(ptr, bits, n) ({					\
-+	unsigned long __bits = (bits);					\
-+	GEM_BUG_ON(__bits & -BIT(n));					\
-+	((typeof(ptr))((unsigned long)(ptr) | __bits));			\
-+})
-+
-+#define ptr_dec(ptr) ({							\
-+	unsigned long __v = (unsigned long)(ptr);			\
-+	(typeof(ptr))(__v - 1);						\
-+})
-+
-+#define ptr_inc(ptr) ({							\
-+	unsigned long __v = (unsigned long)(ptr);			\
-+	(typeof(ptr))(__v + 1);						\
-+})
-+
-+#define page_mask_bits(ptr) ptr_mask_bits(ptr, PAGE_SHIFT)
-+#define page_unmask_bits(ptr) ptr_unmask_bits(ptr, PAGE_SHIFT)
-+#define page_pack_bits(ptr, bits) ptr_pack_bits(ptr, bits, PAGE_SHIFT)
-+#define page_unpack_bits(ptr, bits) ptr_unpack_bits(ptr, bits, PAGE_SHIFT)
-+
-+static __always_inline ptrdiff_t ptrdiff(const void *a, const void *b)
-+{
-+	return a - b;
-+}
-+
-+#define u64_to_ptr(T, x) ({						\
-+	typecheck(u64, x);						\
-+	(T *)(uintptr_t)(x);						\
-+})
-+
-+/*
-+ * container_of_user: Extract the superclass from a pointer to a member.
-+ *
-+ * Exactly like container_of() with the exception that it plays nicely
-+ * with sparse for __user @ptr.
-+ */
-+#define container_of_user(ptr, type, member) ({				\
-+	void __user *__mptr = (void __user *)(ptr);			\
-+	BUILD_BUG_ON_MSG(!__same_type(*(ptr), typeof_member(type, member)) && \
-+			 !__same_type(*(ptr), void),			\
-+			 "pointer type mismatch in container_of()");	\
-+	((type __user *)(__mptr - offsetof(type, member))); })
-+
-+#endif /* __I915_PTR_UTIL_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
-index 5f7e8138ec14..b09135301f39 100644
---- a/drivers/gpu/drm/i915/i915_request.h
-+++ b/drivers/gpu/drm/i915/i915_request.h
-@@ -31,19 +31,20 @@
- #include <linux/llist.h>
- #include <linux/lockdep.h>
- 
-+#include <uapi/drm/i915_drm.h>
-+
- #include "gem/i915_gem_context_types.h"
- #include "gt/intel_context_types.h"
- #include "gt/intel_engine_types.h"
- #include "gt/intel_timeline_types.h"
- 
- #include "i915_gem.h"
-+#include "i915_ptr_util.h"
- #include "i915_scheduler.h"
- #include "i915_selftest.h"
- #include "i915_sw_fence.h"
- #include "i915_vma_resource.h"
- 
--#include <uapi/drm/i915_drm.h>
--
- struct drm_file;
- struct drm_i915_gem_object;
- struct drm_printer;
-diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
-index eb4d43c40009..dff02a944a57 100644
---- a/drivers/gpu/drm/i915/i915_utils.h
-+++ b/drivers/gpu/drm/i915/i915_utils.h
-@@ -67,64 +67,12 @@ bool i915_error_injected(void);
- 		drm_err(&(i915)->drm, fmt, ##__VA_ARGS__); \
- })
- 
--#define ptr_mask_bits(ptr, n) ({					\
--	unsigned long __v = (unsigned long)(ptr);			\
--	(typeof(ptr))(__v & -BIT(n));					\
--})
--
--#define ptr_unmask_bits(ptr, n) ((unsigned long)(ptr) & (BIT(n) - 1))
--
--#define ptr_unpack_bits(ptr, bits, n) ({				\
--	unsigned long __v = (unsigned long)(ptr);			\
--	*(bits) = __v & (BIT(n) - 1);					\
--	(typeof(ptr))(__v & -BIT(n));					\
--})
--
--#define ptr_pack_bits(ptr, bits, n) ({					\
--	unsigned long __bits = (bits);					\
--	GEM_BUG_ON(__bits & -BIT(n));					\
--	((typeof(ptr))((unsigned long)(ptr) | __bits));			\
--})
--
--#define ptr_dec(ptr) ({							\
--	unsigned long __v = (unsigned long)(ptr);			\
--	(typeof(ptr))(__v - 1);						\
--})
--
--#define ptr_inc(ptr) ({							\
--	unsigned long __v = (unsigned long)(ptr);			\
--	(typeof(ptr))(__v + 1);						\
--})
--
--#define page_mask_bits(ptr) ptr_mask_bits(ptr, PAGE_SHIFT)
--#define page_unmask_bits(ptr) ptr_unmask_bits(ptr, PAGE_SHIFT)
--#define page_pack_bits(ptr, bits) ptr_pack_bits(ptr, bits, PAGE_SHIFT)
--#define page_unpack_bits(ptr, bits) ptr_unpack_bits(ptr, bits, PAGE_SHIFT)
--
- #define fetch_and_zero(ptr) ({						\
- 	typeof(*ptr) __T = *(ptr);					\
- 	*(ptr) = (typeof(*ptr))0;					\
- 	__T;								\
- })
- 
--static __always_inline ptrdiff_t ptrdiff(const void *a, const void *b)
--{
--	return a - b;
--}
--
--/*
-- * container_of_user: Extract the superclass from a pointer to a member.
-- *
-- * Exactly like container_of() with the exception that it plays nicely
-- * with sparse for __user @ptr.
-- */
--#define container_of_user(ptr, type, member) ({				\
--	void __user *__mptr = (void __user *)(ptr);			\
--	BUILD_BUG_ON_MSG(!__same_type(*(ptr), typeof_member(type, member)) && \
--			 !__same_type(*(ptr), void),			\
--			 "pointer type mismatch in container_of()");	\
--	((type __user *)(__mptr - offsetof(type, member))); })
--
- /*
-  * check_user_mbz: Check that a user value exists and is zero
-  *
-@@ -143,11 +91,6 @@ static __always_inline ptrdiff_t ptrdiff(const void *a, const void *b)
- 	get_user(mbz__, (U)) ? -EFAULT : mbz__ ? -EINVAL : 0;		\
- })
- 
--#define u64_to_ptr(T, x) ({						\
--	typecheck(u64, x);						\
--	(T *)(uintptr_t)(x);						\
--})
--
- #define __mask_next_bit(mask) ({					\
- 	int __idx = ffs(mask) - 1;					\
- 	mask &= ~BIT(__idx);						\
-diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
-index 0f9eee6d18d2..8054047840aa 100644
---- a/drivers/gpu/drm/i915/i915_vma.h
-+++ b/drivers/gpu/drm/i915/i915_vma.h
-@@ -30,12 +30,12 @@
- 
- #include <drm/drm_mm.h>
- 
--#include "gt/intel_ggtt_fencing.h"
- #include "gem/i915_gem_object.h"
--
--#include "i915_gem_gtt.h"
-+#include "gt/intel_ggtt_fencing.h"
- 
- #include "i915_active.h"
-+#include "i915_gem_gtt.h"
-+#include "i915_ptr_util.h"
- #include "i915_request.h"
- #include "i915_vma_resource.h"
- #include "i915_vma_types.h"
+Best regards
+Thomas
+
+drm-misc-next-2025-09-11:
+drm-misc-next for v6.18:
+
+UAPI Changes:
+
+- Provide 'boot_display' attribute on boot-up devices
+
+amdxdma:
+- Add ioctl DRM_IOCTL_AMDXDNA_GET_ARRAY
+
+Cross-subsystem Changes:
+
+bindings:
+- Add Mayqueen vendor prefix mayqueen-
+
+pci:
+- vgaarb: Use screen_info helpers
+
+Core Changes:
+
+ttm:
+- Add interface to populate buffers
+
+Driver Changes:
+
+amdgpu:
+- Pre-populate exported buffers
+
+ast:
+- Clean up detection of DRAM config
+
+bochs:
+- Clean up
+
+bridge:
+- adv7511: Write full Audio infoframe
+- ite6263: Support vendor-specific infoframes
+- simple: Add support for Realtek RTD2171 DP-to-HDMI plus DT bindings
+- Clean up
+
+gma500:
+- Clean up
+
+nouveau:
+- Pre-populate exported buffers
+
+panel:
+- edp: Add support for additonal mt8189 Chromebook panels
+- lvds: Add DT bindings for EDT ETML0700Z8DHA
+- Clean up
+
+pixpaper:
+- Add support for Mayqueen Pixpaper plus DT bindings
+
+rcar-du:
+- Use RUNTIME_PM_OPS
+- Add support for DSI commands
+
+vkms:
+- Support variants of ARGB8888, ARGB16161616, RGB565, RGB888 and P01x
+- Spport YUV with 16-bit components
+
+xe:
+- Pre-populate exported buffers
+The following changes since commit 2a1eea8fd601db4c52f0d14f8871663b7b052c91:
+
+  drm/sysfb: Remove double assignment to pointer crtc_state (2025-09-04 09:26:39 +0200)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2025-09-11
+
+for you to fetch changes up to 91494dee1091a14d91da6bcb39e12a907765c793:
+
+  xe: populate buffers before exporting them. (2025-09-11 10:04:58 +1000)
+
+----------------------------------------------------------------
+drm-misc-next for v6.18:
+
+UAPI Changes:
+
+- Provide 'boot_display' attribute on boot-up devices
+
+amdxdma:
+- Add ioctl DRM_IOCTL_AMDXDNA_GET_ARRAY
+
+Cross-subsystem Changes:
+
+bindings:
+- Add Mayqueen vendor prefix mayqueen-
+
+pci:
+- vgaarb: Use screen_info helpers
+
+Core Changes:
+
+ttm:
+- Add interface to populate buffers
+
+Driver Changes:
+
+amdgpu:
+- Pre-populate exported buffers
+
+ast:
+- Clean up detection of DRAM config
+
+bochs:
+- Clean up
+
+bridge:
+- adv7511: Write full Audio infoframe
+- ite6263: Support vendor-specific infoframes
+- simple: Add support for Realtek RTD2171 DP-to-HDMI plus DT bindings
+- Clean up
+
+gma500:
+- Clean up
+
+nouveau:
+- Pre-populate exported buffers
+
+panel:
+- edp: Add support for additonal mt8189 Chromebook panels
+- lvds: Add DT bindings for EDT ETML0700Z8DHA
+- Clean up
+
+pixpaper:
+- Add support for Mayqueen Pixpaper plus DT bindings
+
+rcar-du:
+- Use RUNTIME_PM_OPS
+- Add support for DSI commands
+
+vkms:
+- Support variants of ARGB8888, ARGB16161616, RGB565, RGB888 and P01x
+- Spport YUV with 16-bit components
+
+xe:
+- Pre-populate exported buffers
+
+----------------------------------------------------------------
+Chen Ni (1):
+      drm/ast: ast_2100: Remove unneeded semicolon
+
+Dave Airlie (4):
+      ttm/bo: add an API to populate a bo before exporting.
+      amdgpu: populate buffers before exporting them.
+      nouveau: populate buffers before exporting them.
+      xe: populate buffers before exporting them.
+
+Dmitry Baryshkov (2):
+      drm/bridge: adv7511: use update latch for AVI infoframes
+      drm/bridge: write full Audio InfoFrame
+
+Geert Uytterhoeven (1):
+      drm: rcar-du: lvds: Convert to RUNTIME_PM_OPS()
+
+Jacek Lawrynowicz (1):
+      MAINTAINERS: Remove Jacek Lawrynowicz as intel_vpu maintainer
+
+José Expósito (1):
+      drm/vkms: Assert if vkms_config_create_*() fails
+
+Leander Kieweg (1):
+      drm/tiny/bochs: Convert dev_err() to drm_err()
+
+LiangCheng Wang (2):
+      dt-bindings: display: Add Mayqueen Pixpaper e-ink panel
+      drm: tiny: Add support for Mayqueen Pixpaper e-ink panel
+
+Liao Yuanhong (1):
+      drm/sti: Remove redundant ternary operators
+
+Liu Ying (2):
+      drm/panel: lvds: Remove unused members from main structure
+      drm/bridge: ite-it6263: Support HDMI vendor specific infoframe
+
+Lizhi Hou (1):
+      accel/amdxdna: Add ioctl DRM_IOCTL_AMDXDNA_GET_ARRAY
+
+Louis Chauvet (8):
+      drm/vkms: Create helpers macro to avoid code duplication in format callbacks
+      drm/vkms: Add support for ARGB8888 formats
+      drm/vkms: Add support for ARGB16161616 formats
+      drm/vkms: Add support for RGB565 formats
+      drm/vkms: Add support for RGB888 formats
+      drm/vkms: Change YUV helpers to support u16 inputs for conversion
+      drm/vkms: Create helper macro for YUV formats
+      drm/vkms: Add P01* formats
+
+Luca Ceresoli (1):
+      drm/display: bridge-connector: remove unused variable assignment
+
+Marek Vasut (1):
+      drm/rcar-du: dsi: Implement DSI command support
+
+Mario Limonciello (AMD) (4):
+      Fix access to video_is_primary_device() when compiled without CONFIG_VIDEO
+      PCI/VGA: Replace vga_is_firmware_default() with a screen info check
+      fbcon: Use screen info to find primary device
+      DRM: Add a new 'boot_display' attribute
+
+Min Ma (1):
+      MAINTAINERS: Update Min Ma's email for AMD XDNA driver
+
+Nathan Chancellor (1):
+      drm/bridge: cdns-dsi: Select VIDEOMODE_HELPERS
+
+Neil Armstrong (2):
+      dt-bindings: display: bridge: simple: document the Realtek RTD2171 DP-to-HDMI bridge
+      drm/bridge: simple: add Realtek RTD2171 DP-to-HDMI bridge
+
+Raphael Gallais-Pou (1):
+      dt-bindings: panel: lvds: Append edt,etml0700z8dha in panel-lvds
+
+Thomas Zimmermann (7):
+      drm/ast: Do not print DRAM info
+      drm/ast: Remove unused dram_bus_width field
+      drm/ast: Remove unused mclk field
+      drm/ast: Remove unused SCU-MPLL and SCU-STRAP values
+      drm/ast: Move DRAM info next to its only user
+      drm/ast: Put AST_DRAM_ constants into enum ast_dram_layout
+      drm/gma500: Do not clear framebuffer GEM objects during cleanup
+
+Wig Cheng (1):
+      dt-bindings: vendor-prefixes: Add Mayqueen name
+
+Zhongtian Wu (1):
+      drm/panel-edp: Add 4 more panels needed by mt8189 Chromebooks
+
+ Documentation/ABI/testing/sysfs-class-drm          |    8 +
+ .../bindings/display/bridge/simple-bridge.yaml     |    1 +
+ .../bindings/display/mayqueen,pixpaper.yaml        |   63 ++
+ .../bindings/display/panel/panel-lvds.yaml         |    2 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |    2 +
+ MAINTAINERS                                        |   10 +-
+ arch/parisc/include/asm/video.h                    |    2 +-
+ arch/sparc/include/asm/video.h                     |    2 +
+ arch/x86/include/asm/video.h                       |    2 +
+ arch/x86/video/video-common.c                      |   25 +-
+ drivers/accel/amdxdna/aie2_pci.c                   |  112 +-
+ drivers/accel/amdxdna/amdxdna_pci_drv.c            |   27 +
+ drivers/accel/amdxdna/amdxdna_pci_drv.h            |    1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c        |   12 +
+ drivers/gpu/drm/ast/ast_2100.c                     |   46 +-
+ drivers/gpu/drm/ast/ast_drv.h                      |   20 +-
+ drivers/gpu/drm/ast/ast_main.c                     |  126 ---
+ drivers/gpu/drm/bridge/adv7511/adv7511_audio.c     |   23 +-
+ drivers/gpu/drm/bridge/adv7511/adv7511_drv.c       |   33 +-
+ drivers/gpu/drm/bridge/cadence/Kconfig             |    1 +
+ drivers/gpu/drm/bridge/ite-it6263.c                |   64 +-
+ drivers/gpu/drm/bridge/simple-bridge.c             |    5 +
+ drivers/gpu/drm/display/drm_bridge_connector.c     |    2 -
+ drivers/gpu/drm/drm_sysfs.c                        |   41 +
+ drivers/gpu/drm/gma500/fbdev.c                     |    2 -
+ drivers/gpu/drm/nouveau/nouveau_prime.c            |   12 +
+ drivers/gpu/drm/panel/panel-edp.c                  |   11 +
+ drivers/gpu/drm/panel/panel-lvds.c                 |    2 -
+ drivers/gpu/drm/renesas/rcar-du/rcar_lvds.c        |    4 +-
+ drivers/gpu/drm/renesas/rcar-du/rcar_mipi_dsi.c    |  225 ++++
+ .../gpu/drm/renesas/rcar-du/rcar_mipi_dsi_regs.h   |  125 +++
+ drivers/gpu/drm/sti/sti_hqvdp.c                    |    2 +-
+ drivers/gpu/drm/tiny/Kconfig                       |   15 +
+ drivers/gpu/drm/tiny/Makefile                      |    1 +
+ drivers/gpu/drm/tiny/bochs.c                       |    2 +-
+ drivers/gpu/drm/tiny/pixpaper.c                    | 1165 ++++++++++++++++++++
+ drivers/gpu/drm/ttm/ttm_bo.c                       |   15 +
+ drivers/gpu/drm/vkms/tests/vkms_config_test.c      |   51 +-
+ drivers/gpu/drm/vkms/tests/vkms_format_test.c      |  143 ++-
+ drivers/gpu/drm/vkms/vkms_formats.c                |  327 +++---
+ drivers/gpu/drm/vkms/vkms_formats.h                |    4 +-
+ drivers/gpu/drm/vkms/vkms_plane.c                  |   13 +-
+ drivers/gpu/drm/xe/xe_dma_buf.c                    |   12 +
+ drivers/pci/vgaarb.c                               |   31 +-
+ include/drm/ttm/ttm_bo.h                           |    2 +
+ include/uapi/drm/amdxdna_accel.h                   |  111 ++
+ 46 files changed, 2419 insertions(+), 486 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-class-drm
+ create mode 100644 Documentation/devicetree/bindings/display/mayqueen,pixpaper.yaml
+ create mode 100644 drivers/gpu/drm/tiny/pixpaper.c
+
 -- 
-2.47.3
-
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
