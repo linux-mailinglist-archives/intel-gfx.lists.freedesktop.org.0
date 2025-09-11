@@ -2,56 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4146AB53D50
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Sep 2025 22:55:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABC1FB53D51
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Sep 2025 22:56:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C835A10EB91;
-	Thu, 11 Sep 2025 20:55:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4456010EB92;
+	Thu, 11 Sep 2025 20:56:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C5RVtDZQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GvZIgljQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B62CE10EB91
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Sep 2025 20:55:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECB3010EB90;
+ Thu, 11 Sep 2025 20:56:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757624153; x=1789160153;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=DSn9AK4Up4lBAVD/DHuB6PYYHcQeC91QsY2DnosLwwg=;
- b=C5RVtDZQi55s4pO6FV+nF0zlhvZiLO8B3FayYesHT0V0k3YwQHt8JWYP
- F3viybmVDFKg01fjcUGeoe4CMX5uoKQgtmj8O1aZJEoTR2xiQU0/tkg2G
- pP3/5eAIKqiM3eARzVt1Z0LP/ZMmCWSi69vgl2DsmOu7JuIuDuFaQu5Y8
- iRgXlGECxP2bNqdrhMJkVBeUb8H4InNLu26EhDu1eg45lusptzh0wjP39
- pgyM774yt4DuIXmiRoLMc2I0pLcJ1kHyNI7dVhe708kZtmEv8Cu38AaAx
- 3MMQ0F31BXAeDjVsROIaN8pGv9Tw2HAljLnvQSR2BU42xvokjGx4IzYVB g==;
-X-CSE-ConnectionGUID: XRTsKMCpQJe38R6i9nkW2A==
-X-CSE-MsgGUID: dgKOcYNmQ5edOI66zzGFRw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60029827"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60029827"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2025 13:55:52 -0700
-X-CSE-ConnectionGUID: eyDwC6UkSxyZkJ/K1gcn2g==
-X-CSE-MsgGUID: af9dMay1SKiZeg9v77dXMg==
+ t=1757624200; x=1789160200;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=dh49mMIafGb6UV1KQySaY0mqAH9BH3tJDWJ2Nd0MRzg=;
+ b=GvZIgljQaoZNLA0yoxmy5x3RxNfmGYy/MVpz+DaFb63bcMz6dSKBwHf9
+ Vi9iz+L+EJ0oBZTafw7y556y3/GvcTAyp14hhuKpESX/MCrd1VpT9tysY
+ Y0r5J0VGuf+Y61TIvV/FYd7kSd7aM1Wg53shhgR38KZibnDoF+g68jJB/
+ pAv1niRJdHzgJKhcJWCqRwIJ36yAtL0ASBVXMHai6p2U8DbReoDwvAJgM
+ 3ihqcGt6CuZgrGoyU4r6Kc30GiFgMGNEKJLCN3/VztgGJZ0l/qkj6bHW4
+ Qrd2qAkJDK+eYUWBBZCYN0POOMJgs4QXcp6Y7587y0UQAu9LG0tabSEUR w==;
+X-CSE-ConnectionGUID: SNRYGELfQLCzQ7Nd6twUQw==
+X-CSE-MsgGUID: NJ/yEaqvTFKFiDHbD275iQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11550"; a="59825186"
+X-IronPort-AV: E=Sophos;i="6.18,258,1751266800"; d="scan'208";a="59825186"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2025 13:56:39 -0700
+X-CSE-ConnectionGUID: VtdvIJwvRFq2d+NUqcrNsg==
+X-CSE-MsgGUID: YfVYgqlqTryVBoKt3cFVHw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,258,1751266800"; d="scan'208";a="173696449"
-Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
- by fmviesa006.fm.intel.com with ESMTP; 11 Sep 2025 13:55:51 -0700
-From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,258,1751266800"; d="scan'208";a="174234321"
+Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
+ by fmviesa009.fm.intel.com with ESMTP; 11 Sep 2025 13:56:39 -0700
+From: Zhanjun Dong <zhanjun.dong@intel.com>
 To: intel-gfx@lists.freedesktop.org,
-	ankit.k.nautiyal@intel.com
-Cc: gustavo.sousa@intel.com, matthew.s.atwood@intel.com,
- Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Subject: [PATCH 3/3] drm/i915/xe3: Restrict PTL intel_encoder_is_c10phy() to
- only PHY A
-Date: Fri, 12 Sep 2025 02:25:42 +0530
-Message-ID: <20250911205543.388402-4-dnyaneshwar.bhadane@intel.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20250911205543.388402-1-dnyaneshwar.bhadane@intel.com>
-References: <20250911205543.388402-1-dnyaneshwar.bhadane@intel.com>
+	dri-devel@lists.freedesktop.org
+Cc: michal.wajdeczko@intel.com, daniele.ceraolospurio@intel.com,
+ Zhanjun Dong <zhanjun.dong@intel.com>
+Subject: [PATCH v2] drm/i915/guc: Skip communication warning on reset in
+ progress
+Date: Thu, 11 Sep 2025 16:56:37 -0400
+Message-Id: <20250911205637.895174-1-zhanjun.dong@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -69,48 +67,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On PTL, no combo PHY is connected to PORT B. However, PORT B can
-still be used for Type-C and will utilize the C20 PHY for eDP
-over Type-C. In such configurations, VBTs also enumerate PORT B.
+GuC IRQ and tasklet handler receive just single G2H message, and let other
+messages to be received from next tasklet. During this chained tasklet
+process, if reset process started, communication will be disabled.
+Skip warning for this condition.
 
-This leads to issues where PORT B is incorrectly identified as using the
-C10 PHY, due to the assumption that returning true for PORT B in
-intel_encoder_is_c10phy() would not cause problems.
-
-From PTL's perspective, only PORT A/PHY A uses the C10 PHY.
-
-Update the helper intel_encoder_is_c10phy() to return true only for
-PORT A/PHY on PTL.
-
-Bspec: 72571,73944
-Fixes: 9d10de78a37f ("drm/i915/wcl: C10 phy connected to port A and B")
-Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Fixes: 65dd4ed0f4e1 ("drm/i915/guc: Don't receive all G2H messages in irq handler")
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14834
+Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 11 ++++-------
- 1 file changed, 4 insertions(+), 7 deletions(-)
+History:
+v2: Update subject text, removed fixup
+---
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 801235a5bc0a..e8b354d1c513 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -39,13 +39,10 @@ bool intel_encoder_is_c10phy(struct intel_encoder *encoder)
- 	struct intel_display *display = to_intel_display(encoder);
- 	enum phy phy = intel_encoder_to_phy(encoder);
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+index 380a11c92d63..baeaa437c174 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+@@ -1326,8 +1326,12 @@ static void ct_try_receive_message(struct intel_guc_ct *ct)
+ {
+ 	int ret;
  
--	/* PTL doesn't have a PHY connected to PORT B; as such,
--	 * there will never be a case where PTL uses PHY B.
--	 * WCL uses PORT A and B with the C10 PHY.
--	 * Reusing the condition for WCL and extending it for PORT B
--	 * should not cause any issues for PTL.
--	 */
--	if (display->platform.pantherlake && phy < PHY_C)
-+	if (display->platform.pantherlake && phy == PHY_A)
-+		return true;
+-	if (GEM_WARN_ON(!ct->enabled))
++	if (!ct->enabled) {
++		struct intel_gt *gt = guc_to_gt(ct_to_guc(ct));
 +
-+	if (display->platform.pantherlake_wildcatlake && phy == PHY_B)
- 		return true;
++		GEM_WARN_ON(!gt->uc.reset_in_progress);
+ 		return;
++	}
  
- 	if ((display->platform.lunarlake || display->platform.meteorlake) && phy < PHY_C)
+ 	ret = ct_receive(ct);
+ 	if (ret > 0)
 -- 
-2.51.0
+2.34.1
 
