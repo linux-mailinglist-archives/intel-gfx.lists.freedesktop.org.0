@@ -2,29 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C551B52C5C
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Sep 2025 10:58:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53F10B52C69
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Sep 2025 11:00:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01EB610E384;
-	Thu, 11 Sep 2025 08:58:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D787B10EA51;
+	Thu, 11 Sep 2025 09:00:10 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CN731Js3";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24C1910E384;
- Thu, 11 Sep 2025 08:58:34 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5570432354330043527=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_PCI=3A_Resizable_BAR_impr?=
- =?utf-8?q?ovements?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 11 Sep 2025 08:58:34 -0000
-Message-ID: <175758111412.324767.15359145771981581589@1538d3639d33>
-X-Patchwork-Hint: ignore
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D445F10E06B;
+ Thu, 11 Sep 2025 09:00:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1757581209; x=1789117209;
+ h=from:date:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=apxpL+JA5234BjF+vbBSUV5l8bBfl2JCXGsBGUN2Sww=;
+ b=CN731Js3kiHGhOxf+CyNtov06/vfZ5YPLbKQGqE/m3J1C15vEJu33W3a
+ CNLhez96zaQokVhxVvYWu33EPqdIjLTbCfhxL1zKFBeD86I5295TWbmuJ
+ FEN8EHckskKlCcm5ecXwBE3MOaueS8NiCTn8We/vF7AwWeM35K1RphhOS
+ PdVnJQDBQKxFq79X0g3Pa+6TwWjKnSBb0u2Na75OEhCB03KrpInp+GUfg
+ wH2Ddx/YclPrQ6olhBNf33aDEoOal60qAuM1gqoq5I6VeEgw3TcSwa1l8
+ cNdPH0TmW2pii/I9yTFmFIseb+7KLkgOgVWoqi7uCZfUJZuq5rQ4UfAEO g==;
+X-CSE-ConnectionGUID: WHuoLr2HTb28gFwW3DjLBQ==
+X-CSE-MsgGUID: 77PdLy+dQf2jtwxwE9ynEQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11549"; a="59980860"
+X-IronPort-AV: E=Sophos;i="6.18,256,1751266800"; d="scan'208";a="59980860"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2025 02:00:08 -0700
+X-CSE-ConnectionGUID: DK3xpkOuRkutGbdOlc8uZg==
+X-CSE-MsgGUID: S0y7rLfnSaGwSUn6CKkovA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,256,1751266800"; d="scan'208";a="173539949"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.187])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2025 02:00:01 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Thu, 11 Sep 2025 11:59:58 +0300 (EEST)
+To: =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>
+cc: linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>, 
+ =?ISO-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>, 
+ =?ISO-8859-2?Q?Micha=B3_Winiarski?= <michal.winiarski@intel.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, 
+ David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ ?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ LKML <linux-kernel@vger.kernel.org>, linux-doc@vger.kernel.org
+Subject: Re: [PATCH 04/11] PCI: Improve Resizable BAR functions kernel doc
+In-Reply-To: <97f8d4a7-6897-4fe5-878c-c04a887cce62@amd.com>
+Message-ID: <20c3a5f5-fa15-3889-3f56-20726aa3925b@linux.intel.com>
 References: <20250911075605.5277-1-ilpo.jarvinen@linux.intel.com>
-In-Reply-To: <20250911075605.5277-1-ilpo.jarvinen@linux.intel.com>
+ <20250911075605.5277-5-ilpo.jarvinen@linux.intel.com>
+ <97f8d4a7-6897-4fe5-878c-c04a887cce62@amd.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="8323328-183604244-1757581198=:944"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,208 +78,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5570432354330043527==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-== Series Details ==
+--8323328-183604244-1757581198=:944
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
 
-Series: PCI: Resizable BAR improvements
-URL   : https://patchwork.freedesktop.org/series/154362/
-State : success
+On Thu, 11 Sep 2025, Christian K=C3=B6nig wrote:
 
-== Summary ==
+> On 11.09.25 09:55, Ilpo J=C3=A4rvinen wrote:
+> > Fix the copy-pasted errors in the Resizable BAR handling functions
+> > kernel doc and generally improve wording choices.
+> >=20
+> > Fix the formatting errors of the Return: line.
+> >=20
+> > Signed-off-by: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com>
+> > ---
+> >  drivers/pci/rebar.c | 29 ++++++++++++++++++-----------
+> >  1 file changed, 18 insertions(+), 11 deletions(-)
+> >=20
+> > diff --git a/drivers/pci/rebar.c b/drivers/pci/rebar.c
+> > index 020ed7a1b3aa..64315dd8b6bb 100644
+> > --- a/drivers/pci/rebar.c
+> > +++ b/drivers/pci/rebar.c
+> > @@ -58,8 +58,9 @@ void pci_rebar_init(struct pci_dev *pdev)
+> >   * @bar: BAR to find
+> >   *
+> >   * Helper to find the position of the ctrl register for a BAR.
+> > - * Returns -ENOTSUPP if resizable BARs are not supported at all.
+> > - * Returns -ENOENT if no ctrl register for the BAR could be found.
+> > + *
+> > + * Return: %-ENOTSUPP if resizable BARs are not supported at all,
+> > + *=09   %-ENOENT if no ctrl register for the BAR could be found.
+> >   */
+> >  static int pci_rebar_find_pos(struct pci_dev *pdev, int bar)
+> >  {
+> > @@ -92,12 +93,15 @@ static int pci_rebar_find_pos(struct pci_dev *pdev,=
+ int bar)
+> >  }
+> > =20
+> >  /**
+> > - * pci_rebar_get_possible_sizes - get possible sizes for BAR
+> > + * pci_rebar_get_possible_sizes - get possible sizes for Resizable BAR
+> >   * @pdev: PCI device
+> >   * @bar: BAR to query
+> >   *
+> >   * Get the possible sizes of a resizable BAR as bitmask defined in the=
+ spec
+> > - * (bit 0=3D1MB, bit 31=3D128TB). Returns 0 if BAR isn't resizable.
+> > + * (bit 0=3D1MB, bit 31=3D128TB).
+> > + *
+> > + * Return: A bitmask of possible sizes (0=3D1MB, 31=3D128TB), or %0 if=
+ BAR isn't
+> > + *=09   resizable.
+> >   */
+> >  u32 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar)
+> >  {
+> > @@ -121,12 +125,14 @@ u32 pci_rebar_get_possible_sizes(struct pci_dev *=
+pdev, int bar)
+> >  EXPORT_SYMBOL(pci_rebar_get_possible_sizes);
+> > =20
+> >  /**
+> > - * pci_rebar_get_current_size - get the current size of a BAR
+> > + * pci_rebar_get_current_size - get the current size of a Resizable BA=
+R
+> >   * @pdev: PCI device
+> > - * @bar: BAR to set size to
+> > + * @bar: BAR to get the size from
+> >   *
+> > - * Read the size of a BAR from the resizable BAR config.
+> > - * Returns size if found or negative error code.
+> > + * Reads the current size of a BAR from the Resizable BAR config.
+> > + *
+> > + * Return: BAR Size if @bar is resizable (bit 0=3D1MB, bit 31=3D128TB)=
+, or
+>=20
+> This is a bit misleading since there is no mask returned but rather the=
+=20
+> order or in other words which bit of the mask was used.=20
 
-CI Bug Log - changes from CI_DRM_17172 -> Patchwork_154362v1
-====================================================
+Thanks for noticing this. I'll removed "bit" x2 from it, does that fully=20
+address your concern?
 
-Summary
--------
+--=20
+ i.
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154362v1/index.html
-
-Participating hosts (42 -> 42)
-------------------------------
-
-  Additional (1): bat-jsl-1 
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_154362v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - bat-jsl-1:          NOTRUN -> [SKIP][1] ([i915#2190])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154362v1/bat-jsl-1/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - bat-jsl-1:          NOTRUN -> [SKIP][2] ([i915#4613]) +3 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154362v1/bat-jsl-1/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-11:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17172/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154362v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-
-  * igt@intel_hwmon@hwmon-read:
-    - bat-jsl-1:          NOTRUN -> [SKIP][5] ([i915#7707]) +1 other test skip
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154362v1/bat-jsl-1/igt@intel_hwmon@hwmon-read.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - bat-jsl-1:          NOTRUN -> [SKIP][6] ([i915#4103]) +1 other test skip
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154362v1/bat-jsl-1/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-jsl-1:          NOTRUN -> [SKIP][7] ([i915#3555] / [i915#9886])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154362v1/bat-jsl-1/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - bat-jsl-1:          NOTRUN -> [SKIP][8]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154362v1/bat-jsl-1/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-jsl-1:          NOTRUN -> [SKIP][9] ([i915#3555])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154362v1/bat-jsl-1/igt@kms_setmode@basic-clone-single-crtc.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
-  [i915#3555]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555
-  [i915#4103]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103
-  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
-  [i915#7707]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7707
-  [i915#9886]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9886
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_17172 -> Patchwork_154362v1
-
-  CI-20190529: 20190529
-  CI_DRM_17172: 3f2c8dd4c915813d656243253102961852a953f4 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8532: 3b9f234d6efe0529a233b81bb0d5ffee5adddb01 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_154362v1: 3f2c8dd4c915813d656243253102961852a953f4 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154362v1/index.html
-
---===============5570432354330043527==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>PCI: Resizable BAR improvements</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154362/">https://patchwork.freedesktop.org/series/154362/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154362v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154362v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17172 -&gt; Patchwork_154362v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154362v1/index.html</p>
-<h2>Participating hosts (42 -&gt; 42)</h2>
-<p>Additional (1): bat-jsl-1 <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_154362v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154362v1/bat-jsl-1/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154362v1/bat-jsl-1/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17172/bat-dg2-11/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154362v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@intel_hwmon@hwmon-read:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154362v1/bat-jsl-1/igt@intel_hwmon@hwmon-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7707">i915#7707</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154362v1/bat-jsl-1/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103">i915#4103</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154362v1/bat-jsl-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9886">i915#9886</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154362v1/bat-jsl-1/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154362v1/bat-jsl-1/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17172 -&gt; Patchwork_154362v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17172: 3f2c8dd4c915813d656243253102961852a953f4 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8532: 3b9f234d6efe0529a233b81bb0d5ffee5adddb01 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_154362v1: 3f2c8dd4c915813d656243253102961852a953f4 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============5570432354330043527==--
+> > + *=09   negative on error.
+> >   */
+> >  int pci_rebar_get_current_size(struct pci_dev *pdev, int bar)
+> >  {
+> > @@ -142,13 +148,14 @@ int pci_rebar_get_current_size(struct pci_dev *pd=
+ev, int bar)
+> >  }
+> > =20
+> >  /**
+> > - * pci_rebar_set_size - set a new size for a BAR
+> > + * pci_rebar_set_size - set a new size for a Resizable BAR
+> >   * @pdev: PCI device
+> >   * @bar: BAR to set size to
+> > - * @size: new size as defined in the spec (0=3D1MB, 31=3D128TB)
+> > + * @size: new size as defined in the PCIe spec (0=3D1MB, 31=3D128TB)
+> >   *
+> >   * Set the new size of a BAR as defined in the spec.
+> > - * Returns zero if resizing was successful, error code otherwise.
+> > + *
+> > + * Return: %0 if resizing was successful, or negative on error.
+> >   */
+> >  int pci_rebar_set_size(struct pci_dev *pdev, int bar, int size)
+> >  {
+>=20
+--8323328-183604244-1757581198=:944--
