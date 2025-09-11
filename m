@@ -2,58 +2,91 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77C1CB537FD
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Sep 2025 17:39:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32286B538A6
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Sep 2025 18:04:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 169ED10EB69;
-	Thu, 11 Sep 2025 15:39:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2C6410EB7C;
+	Thu, 11 Sep 2025 16:04:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DCuODT9b";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="PksTyhmT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 924BB10EB69
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Sep 2025 15:39:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757605162; x=1789141162;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=UMty7NybGsjNqZ8W44VkEdyU2wGpdZRJvKWeYcweRL8=;
- b=DCuODT9bmrVGO2kdi4mFEImwHm/vUUj8ZBe3I8XhOm73rIwTY7ELkIVK
- X8quI1rr66XrHB8rHj1ooimQzlvl+70536mZfJm68H7TSMJN+9QAsJiWV
- 0KnHF7Vl+oY7i7X3BxBatvtSX4RCJAi8DflGUEk/DFnx/fLXUKUH4uEXm
- HedHGWFRzC3zg7kPd1hwtWZ3S6McbnGMtnC8z8lwTArxbIpN4tvGdHfbO
- LllyGn/hiJ1jY9cwdpoBrmTV44ZKDi310PpqZzntbKyuNqsK9FlNsZv6r
- 4GkZqtuFQrsUHkNRhKg2vyOXvv/cEWwPPB7ePmH0tHtZzmad7BhaRHiQk A==;
-X-CSE-ConnectionGUID: VYab0i6GSAOO5bmqTYsxKg==
-X-CSE-MsgGUID: 1xLKVuIzTYiMk8lAf6qTSg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11549"; a="59173101"
-X-IronPort-AV: E=Sophos;i="6.18,257,1751266800"; d="scan'208";a="59173101"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2025 08:39:22 -0700
-X-CSE-ConnectionGUID: hcav6+GoR7qNIOpVvGvY0w==
-X-CSE-MsgGUID: WLMFkc3cRVSunloeVkKLag==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,257,1751266800"; d="scan'208";a="174162686"
-Received: from live-gta-imageloader.fm.intel.com (HELO
- DUT4412LNL.fm.intel.com) ([10.105.8.90])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2025 08:39:22 -0700
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
- ville.syrjala@linux.intel.com, jani.nikula@intel.com,
- animesh.manna@intel.com
-Subject: [PATCH] drm/i915/display: Simplify modular operations with vtotal
-Date: Thu, 11 Sep 2025 15:39:22 +0000
-Message-ID: <20250911153921.9038-2-jonathan.cavitt@intel.com>
-X-Mailer: git-send-email 2.43.0
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D48FE10EB7E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Sep 2025 16:04:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1757606682;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=jtZEVi1bBiJckYAxa3sEu/hHpNe6eKx7VTDTRhqbfkU=;
+ b=PksTyhmTuDiuUj54mP5maSTTulk475kySj5gc0mi27BvtAxWOUW1ZMQ27VmVH4FMr1dx87
+ PxQND6YmvAY3nTe6xDfefDsXWoo4ok3FLkI7yEPbpKdAAd6NDj02NxkKGxQRCxVabska71
+ JNIol/WSS0KnWFBHWWynizqiXva9RK4=
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
+ [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-509-GzmI4xpVPb-W8XYRejQCqg-1; Thu, 11 Sep 2025 12:04:40 -0400
+X-MC-Unique: GzmI4xpVPb-W8XYRejQCqg-1
+X-Mimecast-MFC-AGG-ID: GzmI4xpVPb-W8XYRejQCqg_1757606679
+Received: by mail-wr1-f70.google.com with SMTP id
+ ffacd0b85a97d-3e067ef24aaso600963f8f.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Sep 2025 09:04:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1757606679; x=1758211479;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=jtZEVi1bBiJckYAxa3sEu/hHpNe6eKx7VTDTRhqbfkU=;
+ b=I3X5evtx19xzy32s/vMUSQaYVyUNYOGlZj9SAHAa24vzKv08jzZ2YmH1l+Lrvf4HA8
+ wIjd6IrHjo4IXaJKlpXxysByDZQcepvv7XVeWOXHla/8tGRWZggi7sSSPPHz+6XbtVzO
+ np5xRzFT27yjABhkpfH0bmLBj5uklXc71DzCE6zur8mzUqptMbl/TNfk/C12s5v3TSXS
+ fEVQNeDnD1Lt20NiWZIbOr90rv6jb1rlcWNHB0rpdLiENEVGlDpQYeN9uH/hIswU5Ila
+ 6q5ygDJot1mDeNr1muraOIPrF3n7m4UWPDsXwWJzanqFgQgzbqwPkT60MFp9tY0NKb9l
+ VDBg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXw1eUOH7Qd4pWGN9dqmf+q3N7s1N/EofFTMR0pKydYxBJRrwXqzalOPKPLU2kBtAya1nrIvtm+8i0=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxjtOvOYz0oPd8qsSvtzPuX7f6sb1D7KVb3vAy5jLJ50mrDqkU/
+ 9UK9Y28Q91ZkIOn0w04c4/jNOIsGmJT9Eo0FbKzvWSkr4usFYMbwwkj1DXBrr4NHH3MYtj9BiDD
+ Qfp4Dvj0eCoKphp/ouPCh51vy5FMTQa0QHh8xiJ+rv9l3oWWi53smQ/orTYmjHwGwriBtzQ==
+X-Gm-Gg: ASbGnct+R5sGJY4uD2PojvoczUbS4TCMNyAmW8u8rlSRhXSjz79kAE5HgpxmYl7t5zm
+ Dv//I+pP375oqXovkITCFil+9Nxzkqtgz2DCtJclMhpKmGZfbH2KZkaKcQ6BBt9TaHXFucyOOHb
+ fNYb7XpwtSBlBFwbLJtCp4rLnAhrXN1Tyx0Vr99RC8oI6zrH/iXB3ZST23+4WfKQnGB3Wp7rIiJ
+ oZTIEsSSaA122vXACV1h+MJ3SwO73iy3zjMOWK267+8Z3eQKC1xWnhO508mg7nbsU7fHHF1Jq9C
+ XaB8kjQDvRRadOU=
+X-Received: by 2002:a5d:588c:0:b0:3e2:9a5a:1f38 with SMTP id
+ ffacd0b85a97d-3e64c692464mr14106119f8f.50.1757606678759; 
+ Thu, 11 Sep 2025 09:04:38 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEYGKzZTNFxaumU0lwQa1TM2uyRQUhmekKodD8ASxi5wTwWwSFpdAUhSe/UMfM4+ltbXkHQkA==
+X-Received: by 2002:a5d:588c:0:b0:3e2:9a5a:1f38 with SMTP id
+ ffacd0b85a97d-3e64c692464mr14106068f8f.50.1757606678233; 
+ Thu, 11 Sep 2025 09:04:38 -0700 (PDT)
+Received: from localhost ([2a01:e0a:b25:f902::ff])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-45e037c3ee8sm30016945e9.18.2025.09.11.09.04.37
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 11 Sep 2025 09:04:37 -0700 (PDT)
+Date: Thu, 11 Sep 2025 18:04:37 +0200
+From: Maxime Ripard <mripard@redhat.com>
+To: Dave Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-fixes
+Message-ID: <20250911-glistening-uakari-of-serendipity-06ceb1@houat>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="yzr6tslhgdx3cftq"
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,55 +102,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There are a couple of modulus operations in the i915 display code with
-vtotal as the divisor that add vtotal to the dividend.  In modular
-arithmetic, adding the divisor to the dividend is equivalent to adding
-zero to the dividend, so this addition can be dropped.
 
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Animesh Manna <animesh.manna@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dsb.c    | 4 ++--
- drivers/gpu/drm/i915/display/intel_vblank.c | 2 +-
- 2 files changed, 3 insertions(+), 3 deletions(-)
+--yzr6tslhgdx3cftq
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: [PULL] drm-misc-fixes
+MIME-Version: 1.0
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index dee44d45b668..67315116839b 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -173,7 +173,7 @@ static int dsb_scanline_to_hw(struct intel_atomic_state *state,
- 		intel_pre_commit_crtc_state(state, crtc);
- 	int vtotal = dsb_vtotal(state, crtc);
- 
--	return (scanline + vtotal - intel_crtc_scanline_offset(crtc_state)) % vtotal;
-+	return (scanline - intel_crtc_scanline_offset(crtc_state)) % vtotal;
- }
- 
- /*
-@@ -482,7 +482,7 @@ static void assert_dsl_ok(struct intel_atomic_state *state,
- 	 * Waiting for the entire frame doesn't make sense,
- 	 * (IN==don't wait, OUT=wait forever).
- 	 */
--	drm_WARN(crtc->base.dev, (end - start + vtotal) % vtotal == vtotal - 1,
-+	drm_WARN(crtc->base.dev, (end - start) % vtotal == vtotal - 1,
- 		 "[CRTC:%d:%s] DSB %d bad scanline window wait: %d-%d (vt=%d)\n",
- 		 crtc->base.base.id, crtc->base.name, dsb->id,
- 		 start, end, vtotal);
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index c15234c1d96e..bcfca2fcef3c 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -288,7 +288,7 @@ static int __intel_get_crtc_scanline(struct intel_crtc *crtc)
- 	 * See update_scanline_offset() for the details on the
- 	 * scanline_offset adjustment.
- 	 */
--	return (position + vtotal + crtc->scanline_offset) % vtotal;
-+	return (position + crtc->scanline_offset) % vtotal;
- }
- 
- /*
--- 
-2.43.0
+Hi,
+
+Here's this week drm-misc-fixes PR.
+
+Maxime
+
+drm-misc-fixes-2025-09-11:
+A maintainer update, an out-of-bound check for panthor and a revert for
+nouveau to fix a race.
+The following changes since commit bdd5a14e660062114bdebaef9ad52adf04970a89:
+
+  drm/bridge: ti-sn65dsi86: fix REFCLK setting (2025-09-02 09:56:05 -0700)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-09-11
+
+for you to fetch changes up to 87b90cee22d8658a69c0fbd43633839b75f8f05f:
+
+  MAINTAINERS: drm-misc: fix X: entries for nova/nouveau (2025-09-10 15:52:25 +0200)
+
+----------------------------------------------------------------
+A maintainer update, an out-of-bound check for panthor and a revert for
+nouveau to fix a race.
+
+----------------------------------------------------------------
+Chia-I Wu (1):
+      drm/panthor: validate group queue count
+
+Danilo Krummrich (1):
+      MAINTAINERS: drm-misc: fix X: entries for nova/nouveau
+
+Philipp Stanner (1):
+      Revert "drm/nouveau: Remove waitque for sched teardown"
+
+ MAINTAINERS                             |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_fence.c | 15 --------------
+ drivers/gpu/drm/nouveau/nouveau_fence.h |  1 -
+ drivers/gpu/drm/nouveau/nouveau_sched.c | 35 +++++++++++++--------------------
+ drivers/gpu/drm/nouveau/nouveau_sched.h |  9 ++++++---
+ drivers/gpu/drm/nouveau/nouveau_uvmm.c  |  8 ++++----
+ drivers/gpu/drm/panthor/panthor_drv.c   |  2 +-
+ 7 files changed, 26 insertions(+), 46 deletions(-)
+
+--yzr6tslhgdx3cftq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaMLzFAAKCRAnX84Zoj2+
+dunuAXwJbxHdjpqURM+YYUhZ8Y2JJ9gZVZ07Qpeptun8xjpUpCLOJ3pcOn+dK2zG
+GHtRZXgBgPxDxn/QnaDW66mHK5uqRRcNCUHf7jq8pXDg4g9LIOJFqlp0CfZJ7iJu
+WupqGIyy/Q==
+=F5qC
+-----END PGP SIGNATURE-----
+
+--yzr6tslhgdx3cftq--
 
