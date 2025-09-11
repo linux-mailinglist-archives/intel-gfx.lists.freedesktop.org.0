@@ -2,29 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F4F1B52875
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Sep 2025 08:06:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 687F3B52AAF
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Sep 2025 09:56:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16BBD10EA1C;
-	Thu, 11 Sep 2025 06:06:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9E5510EA27;
+	Thu, 11 Sep 2025 07:56:22 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pgc9bvnw";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D82A10EA1B;
- Thu, 11 Sep 2025 06:06:34 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3884889937327112939=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBD3010EA25;
+ Thu, 11 Sep 2025 07:56:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1757577381; x=1789113381;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=NdLKAQlWUr0SnI1fWCp+SY3s4Yp8zDJc9KTErx0pre0=;
+ b=Pgc9bvnwgYzyS/oxiqWP3c9lw0aP9dn6rxdlL3PzA8mxIhVDLI7VWEIc
+ PXuh849AQsKYhULkJnZnk7DSxbw9JozFxpOraUc/j7xLlm5D6kCDTjD7Y
+ qz3Zh2FW3XvqrvYZ/V4Qcc2VyOW57vGxXyFD7tUNySMsZBPfRvBabDVW5
+ Edv4vebcGuwLbMEUn3zKVInFdT7tBMpXOkttM6wP6bImWYGr/7sZa0IJe
+ WHFpyn+L6Qlwkc3v+P5xRvCIVIy3Y22KYq6QWDcZ3NF05oOk8KvXoYzyy
+ OFLKYQtZLQWtlNrvxbZR1QUpDksD97mlyB6mXBb9oV/9ganG0ASleeG5L Q==;
+X-CSE-ConnectionGUID: gEJztGU8RN6WZSZCD4W69w==
+X-CSE-MsgGUID: T54jX+9cR5OAJbKTmNqD/A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11549"; a="58942208"
+X-IronPort-AV: E=Sophos;i="6.18,256,1751266800"; d="scan'208";a="58942208"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2025 00:56:20 -0700
+X-CSE-ConnectionGUID: vPGNxPT3TFm13imjCknavQ==
+X-CSE-MsgGUID: PTSScRSiSEyaM2fCiqO+cQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,256,1751266800"; d="scan'208";a="210757574"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.187])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2025 00:56:13 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To: linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+ =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ ?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Subject: [PATCH 00/11] PCI: Resizable BAR improvements
+Date: Thu, 11 Sep 2025 10:55:54 +0300
+Message-Id: <20250911075605.5277-1-ilpo.jarvinen@linux.intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_Optimize_vrr=2Eguardband_?=
- =?utf-8?q?and_fix_LRR_=28rev10=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 11 Sep 2025 06:06:34 -0000
-Message-ID: <175757079456.324297.15815852571265385232@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250911024554.692469-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20250911024554.692469-1-ankit.k.nautiyal@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,132 +77,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3884889937327112939==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+pci.c has been used as catch everything that doesn't fits elsewhere
+within PCI core and thus resizable BAR code has been placed there as
+well. Move Resizable BAR related code to a newly introduced rebar.c to
+reduce size of pci.c. After move, there are no pci_rebar_*() calls from
+pci.c indicating this is indeed well-defined subset of PCI core.
 
-== Series Details ==
+Endpoint drivers perform Resizable BAR related operations which could
+well be performed by PCI core to simplify driver-side code. This
+series adds a few new API functions to that effect and converts the
+drivers to use the new APIs (in separate patches).
 
-Series: Optimize vrr.guardband and fix LRR (rev10)
-URL   : https://patchwork.freedesktop.org/series/151245/
-State : success
+While at it, also convert BAR sizes bitmask to u64 as PCIe spec already
+specifies more sizes than what will fit u32 to make the API typing more
+future-proof. The extra sizes beyond 128TB are not added at this point.
 
-== Summary ==
+These are based on pci/main, there are two minor conflicts with the
+work in pci/resource but I'm hesitant to base this on top of it as this
+is otherwise entirely independent. If we end up having to pull the
+bridge window select changes, there should be no reason why this does
+have to become collateral damage (so my suggestion, if this is good to
+go in this cycle, to take this into a separate branch than pci/resource
+and deal with those small conflicts while merging into pci/next).
 
-CI Bug Log - changes from CI_DRM_17170 -> Patchwork_151245v10
-====================================================
+I've tested sysfs resize, i915, and xe BAR resizing functionality. In
+the case of xe, I did small hack patch as its resize is anyway broken
+as is because BAR0 pins the bridge window so resizing BAR2 fails. My
+hack caused other problems further down the road (likely because BAR0
+is in use by the driver so releasing it messed assumptions xe driver
+has) but the BAR resize itself was working which was all I was
+interested to know. I'm not planning to pursue fixing the pinning
+problem within xe driver because the core changes to consider maximum
+size of the resizable BARs should take care of the main problem by
+different means.
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v10/index.html
-
-Participating hosts (42 -> 40)
-------------------------------
-
-  Missing    (2): fi-glk-j4005 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_151245v10 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-6:         [DMESG-FAIL][1] ([i915#12061]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17170/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v10/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-    - bat-dg2-14:         [DMESG-FAIL][3] ([i915#12061]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17170/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v10/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+Some parts of this are to be used by the resizable BAR changes into the
+resource fitting/assingment logic but these seem to stand on their own
+so sending these out now to reduce the size of the other patch series.
 
 
-Build changes
--------------
+Ilpo Järvinen (11):
+  PCI: Move Resizable BAR code into rebar.c
+  PCI: Cleanup pci_rebar_bytes_to_size() and move into rebar.c
+  PCI: Move pci_rebar_size_to_bytes() and export it
+  PCI: Improve Resizable BAR functions kernel doc
+  PCI: Add pci_rebar_size_supported() helper
+  drm/i915/gt: Use pci_rebar_size_supported()
+  drm/xe/vram: Use PCI rebar helpers in resize_vram_bar()
+  PCI: Add pci_rebar_get_max_size()
+  drm/xe/vram: Use pci_rebar_get_max_size()
+  drm/amdgpu: Use pci_rebar_get_max_size()
+  PCI: Convert BAR sizes bitmasks to u64
 
-  * Linux: CI_DRM_17170 -> Patchwork_151245v10
-
-  CI-20190529: 20190529
-  CI_DRM_17170: e925396dbb0b8094e00ca3d47a375538d429b225 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8532: 3b9f234d6efe0529a233b81bb0d5ffee5adddb01 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_151245v10: e925396dbb0b8094e00ca3d47a375538d429b225 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v10/index.html
-
---===============3884889937327112939==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+ Documentation/driver-api/pci/pci.rst        |   3 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |   8 +-
+ drivers/gpu/drm/i915/gt/intel_region_lmem.c |  10 +-
+ drivers/gpu/drm/xe/xe_vram.c                |  32 +-
+ drivers/pci/Makefile                        |   2 +-
+ drivers/pci/iov.c                           |   9 +-
+ drivers/pci/pci-sysfs.c                     |   2 +-
+ drivers/pci/pci.c                           | 145 ---------
+ drivers/pci/pci.h                           |   5 +-
+ drivers/pci/rebar.c                         | 318 ++++++++++++++++++++
+ drivers/pci/setup-res.c                     |  78 -----
+ include/linux/pci.h                         |  15 +-
+ 12 files changed, 354 insertions(+), 273 deletions(-)
+ create mode 100644 drivers/pci/rebar.c
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Optimize vrr.guardband and fix LRR (rev10)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151245/">https://patchwork.freedesktop.org/series/151245/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+base-commit: 8f5ae30d69d7543eee0d70083daf4de8fe15d585
+-- 
+2.39.5
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v10/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v10/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17170 -&gt; Patchwork_151245v10</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v10/index.html</p>
-<h2>Participating hosts (42 -&gt; 40)</h2>
-<p>Missing    (2): fi-glk-j4005 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_151245v10 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17170/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v10/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17170/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v10/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17170 -&gt; Patchwork_151245v10</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17170: e925396dbb0b8094e00ca3d47a375538d429b225 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8532: 3b9f234d6efe0529a233b81bb0d5ffee5adddb01 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_151245v10: e925396dbb0b8094e00ca3d47a375538d429b225 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============3884889937327112939==--
