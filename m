@@ -2,57 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C461AB55023
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Sep 2025 15:59:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C04E0B55042
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Sep 2025 16:03:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7A0F10EC5A;
-	Fri, 12 Sep 2025 13:59:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94EE310E1C5;
+	Fri, 12 Sep 2025 14:03:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SM9xUNxs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BTo6OJhB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DB3410EC58;
- Fri, 12 Sep 2025 13:59:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9778C10E1C5;
+ Fri, 12 Sep 2025 14:03:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757685570; x=1789221570;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=b8vcmhNrODWYWHKBEsP4uJ5DVtDr2qI2cxTuUyETglw=;
- b=SM9xUNxsVGfCGoUcDCH3MZ5PBTRN6gTm99WoW0R+ErAPypZpgK2nZTNu
- JSyvL8GtcKm9Hb7LfFeQfABZ6brO8Vb/F0aMDnLbKK+JLEKHjKvafUPG2
- 6nu0eO59gtjez7TK5F5zyauJVY+BubQOBNsrMm4mRlcX9F5+CR0HP5WBA
- 23tqL5Mprxutr8jDmZyrWn8evscvW1l56GXJaNatIjpIqe/1sWOg+UgaI
- MvS6HH/0vstLLi3ezpSwNw4wHW3J33htiY0Uc9MaHx4K8e/6LdWy7gN5g
- n5QScXZYmNxMOl0rbgGlZrDt4bjZO8cwoVhJ7HxG73BPdWRvWXF/JQva6 A==;
-X-CSE-ConnectionGUID: n/JbviC1R666tLmzESH57A==
-X-CSE-MsgGUID: WNbMFQ9PQuufGzQlZTxgbA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11551"; a="59966443"
-X-IronPort-AV: E=Sophos;i="6.18,259,1751266800"; d="scan'208";a="59966443"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2025 06:59:30 -0700
-X-CSE-ConnectionGUID: hHtOoQBTSOCPw30yNvvYXA==
-X-CSE-MsgGUID: q1hUCmekQ9aZip4Yi0s2UQ==
+ t=1757685815; x=1789221815;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=jwShY/Ze54nToVareWZPaA1JB9gCyqfzYO71VT8BluQ=;
+ b=BTo6OJhB+gONXRLsI5YQ346/0ctraFEZfZ/wTnTjCJUPX57sBwy6Xekp
+ 7zbR1DhDOQDWu+BYpr3p1ytTS9rCGAQ/1EBnRi5ggZSEz2WLltVlNursR
+ 1G9al+g/HwM1XxQb0KChbVBy96VKA5BKwG+SJ5ltUyJtzA8x3HrDcwYsn
+ sGMKX+qwjnr6mi1PHftxxB7sXAw9/9q3xhZU9oVS9H3WWp4vN4nBDoHBT
+ gpRY6mLFp2dRrH3mL4d1wAiFCY2YBOsFpMnXM1bPsqmTFxzQBikYgSBGR
+ ZLh6nsyObFgSIk4nwCnoimSEpg/Xn8FA2kmB407YumcBH4aNNdyhT1KWG Q==;
+X-CSE-ConnectionGUID: h/HA4q27RlSDZqlMcwvafw==
+X-CSE-MsgGUID: BN+brtIGRmGRF5j5d04n0w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11551"; a="60105920"
+X-IronPort-AV: E=Sophos;i="6.18,259,1751266800"; d="scan'208";a="60105920"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2025 07:03:35 -0700
+X-CSE-ConnectionGUID: T6eIeHsvTHC8jWY+9o9aow==
+X-CSE-MsgGUID: BpvW8T0BRfSd+sChBhl6GA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,259,1751266800"; d="scan'208";a="173533719"
+X-IronPort-AV: E=Sophos;i="6.18,259,1751266800"; d="scan'208";a="173139741"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.171])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2025 06:59:29 -0700
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH] drm/i915: Defeature DRRS on LNL+
-Date: Fri, 12 Sep 2025 16:59:26 +0300
-Message-ID: <20250912135926.18910-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.49.1
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2025 07:03:33 -0700
+Date: Fri, 12 Sep 2025 17:03:30 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 00/15] Optimize vrr.guardband and fix LRR
+Message-ID: <aMQoMoQnj6eD1KL2@intel.com>
+References: <20250911024554.692469-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250911024554.692469-1-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,39 +71,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Thu, Sep 11, 2025 at 08:15:39AM +0530, Ankit Nautiyal wrote:
+> Instead of setting vrr.guardband to vblank, use optimal guardband that
+> works for most of the cases. This will help in avoiding need of change
+> in guardband and fix the LRR feature that needs seamless switching to
+> a lower refresh rate.
 
-DRRS has been defeatured on LNL+. Adjust HAS_DOUBLE_BUFFERED_M_N()
-to match.
+I think the _only_ thing we need for that is intel_crtc_vblank_delay()
+to return a different number. But this series is doing all kinds of
+stuff to other VRR logic that I don't understand at all.
 
-Note that the M/N registers still appear to be double buffered under
-the hood but the double buffer update point is now documented to be
-just the last register write to the M/N registers, so it no longer
-happens synchronously with the vblank/MSA transmission. We should
-perhaps rename HAS_DOUBLE_BUFFERED_M_N() to more accurately reflect
-reality, but couldn't come up with a decent name right now...
+> 
+> First few patches fix/refactor and extract common functions required for
+> dsc/scaler prefill time computation. Later patches use these helpers to
+> compute an optimized guardband.
+> 
+> Also, for seamless_mn where vtotal is same but mode clock is changed to
+> seamlessly switch to lower rate, re-compute the vrr timings.
 
-Bspec: 68917
-HSD: 14016007525
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_device.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+As Art pointed out that stuff is defeatured on LNL+ (just sent
+a patch for that) so we don't need to worry about it too much.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index f329f1beafef..1f091fbcd0ec 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -155,7 +155,7 @@ struct intel_display_platforms {
- #define HAS_DISPLAY(__display)		(DISPLAY_RUNTIME_INFO(__display)->pipe_mask != 0)
- #define HAS_DMC(__display)		(DISPLAY_RUNTIME_INFO(__display)->has_dmc)
- #define HAS_DMC_WAKELOCK(__display)	(DISPLAY_VER(__display) >= 20)
--#define HAS_DOUBLE_BUFFERED_M_N(__display)	(DISPLAY_VER(__display) >= 9 || (__display)->platform.broadwell)
-+#define HAS_DOUBLE_BUFFERED_M_N(__display)	(IS_DISPLAY_VER((__display), 9, 14) || (__display)->platform.broadwell)
- #define HAS_DOUBLE_BUFFERED_LUT(__display)	(DISPLAY_VER(__display) >= 30)
- #define HAS_DOUBLE_WIDE(__display)	(DISPLAY_VER(__display) < 4)
- #define HAS_DP20(__display)		((__display)->platform.dg2 || DISPLAY_VER(__display) >= 14)
+> 
+> Few things that still need work:
+> -The timestamps corresponding with next start of vactive still need to be
+> fixed with the new scheme.
+> -Re-enabling CMRR
+> 
+> Rev2:
+> -Address comments from Mitul.
+> -Extract helpers for dsc/scaler prefill latencies.
+> -Fix downscaling factor for chroma subsampling.
+> -Use missing pkg C max latency.
+> -Fix guardband computation for seamless mn, always use vblank for
+> higher resolution.
+> 
+> Rev3:
+> -Drop patches for computing and storing PSR/Panel Replay wake times
+> latencies and use existing helpers to compute these in intel_alpm.c.
+> -Drop patch to change the Vmin as it was not required.
+> 
+> Rev4:
+> -Rebase
+> -Drop patch for checking bounds for scaler array access.
+> -Use a new flag for setting vrr timings for seamless drrs.
+> 
+> Rev5:
+> -Address comments from Mitul, Jani:
+> -Refactor few helpers for computing latencies.
+> -Rename the helper to check the guardband to intel_crtc_guardband_atomic_check()
+> -Refactor the helper intel_panel_highest_mode().
+> 
+> Rev6:
+> -Rebase
+> -Address review comments from Mitul.
+> -Improve documentation for and other minor fixes in Patch#12
+> 
+> Rev7:
+> -Address comments from Jani.
+> -Move the latency helpers from intel_display.c to intel_vrr.c and rename
+> the helpers appropriately.
+> -Drop redundant check for HAS_VRR with intel_vrr_possible().
+> 
+> Rev8:
+> -Fix CI issues.
+> -For fixed RR wait for delayed vblank before dsb interrupt.
+> 
+> Rev9:
+> -Fix vrr.vsync_start/end timings for 3D modes (patch#1)
+> -Rewrite the patch to wait for delayed vblank before dsb interrupt
+> (patch #11)
+> -Fix the flipline and vmin timings with optimized guardband (patch#12)
+> 
+> Rev10:
+> -Address comments from Ville: Use min guardband computation for setting
+> the vblank delay and set the crtc_vblank_start to delayed vblank.
+> (Patch#13)
+> -Modify the TRANS_SET_CONTEXT_LATENCY as per new guardband and use
+> vrr.guardband to readback vblank_start. (Patch#11)
+> 
+> -From previous revision:
+> ->Drop patch#11 "drm/i915/dsb: Align flipdone with delayed vblank using
+> guardband wait", as this is no longer required.
+> ->Modify Patch#12 "drm/i915/vrr: Use static guardband to support seamless
+> LRR switching" to only introduce a helper to compute the fix guardband.
+> Modify the commit message and the subject.
+> 
+> Ankit Nautiyal (15):
+>   drm/i915/vrr: Use crtc_vsync_start/end for computing
+>     vrr.vsync_start/end
+>   drm/i915/skl_watermark: Fix the scaling factor for chroma subsampling
+>   drm/i915/skl_watermark: Pass linetime as argument to latency helpers
+>   drm/i915/skl_scaler: Introduce helper for chroma downscale factor
+>   drm/i915/display: Extract helpers to set dsc/scaler prefill latencies
+>   drm/i915/dp: Add SDP latency computation helper
+>   drm/i915/alpm: Add function to compute max link-wake latency
+>   drm/i915/vrr: Use vrr.sync_start for getting vtotal
+>   drm/i915/display: Add guardband check for feature latencies
+>   drm/i915/skl_watermark: Remove redundant latency checks from vblank
+>     validation
+>   drm/i915/display: Use vrr.guardband to derive vblank_start
+>   drm/i915/vrr: Introduce helper to compute min static guardband
+>   drm/i915/display: Use optimized guardband to set vblank start
+>   drm/i915/panel: Refactor helper to get highest fixed mode
+>   drm/i915/vrr: Fix seamless_mn drrs for PTL
+> 
+>  drivers/gpu/drm/i915/display/intel_alpm.c     |  15 +
+>  drivers/gpu/drm/i915/display/intel_alpm.h     |   2 +
+>  drivers/gpu/drm/i915/display/intel_display.c  | 236 ++++++++++++++-
+>  .../drm/i915/display/intel_display_types.h    |   2 +
+>  drivers/gpu/drm/i915/display/intel_dp.c       |  63 +++-
+>  drivers/gpu/drm/i915/display/intel_dp.h       |   3 +
+>  drivers/gpu/drm/i915/display/intel_panel.c    |  11 +-
+>  drivers/gpu/drm/i915/display/intel_panel.h    |   3 +-
+>  drivers/gpu/drm/i915/display/intel_vrr.c      | 272 ++++++++++++++++--
+>  drivers/gpu/drm/i915/display/intel_vrr.h      |  10 +
+>  drivers/gpu/drm/i915/display/skl_scaler.c     |   5 +
+>  drivers/gpu/drm/i915/display/skl_scaler.h     |   3 +
+>  drivers/gpu/drm/i915/display/skl_watermark.c  |  89 +-----
+>  drivers/gpu/drm/i915/display/skl_watermark.h  |   1 +
+>  14 files changed, 586 insertions(+), 129 deletions(-)
+> 
+> -- 
+> 2.45.2
+
 -- 
-2.49.1
-
+Ville Syrj�l�
+Intel
