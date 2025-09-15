@@ -2,86 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DBF4B59AFA
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Sep 2025 16:55:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BAE0B57DF0
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Sep 2025 15:52:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D929810E7F9;
-	Tue, 16 Sep 2025 14:55:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58CB810E106;
+	Mon, 15 Sep 2025 13:52:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bjGWR4vZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pf5Veocv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com
- [209.85.214.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08A9410E106
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Sep 2025 13:48:01 +0000 (UTC)
-Received: by mail-pl1-f180.google.com with SMTP id
- d9443c01a7336-24c8ef94e5dso33710925ad.1
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Sep 2025 06:48:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1757944081; x=1758548881; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=EBmg+LxXgKyTmTcC9keCM60L1vufisbkPgvfPos4Cjw=;
- b=bjGWR4vZM4geogYf9c9oKxe56ZQOIaGw2Or2wD/K6yW0C/8DLpnTFr8PrUEf/RgsRU
- MarxtJ2G7aGblI5qwZqFXuou5xtDBF0Md3jSuUPQb0oelkqDS4OIP0mUssSgRRBaQNaB
- JKuWbd6zaPFK+Vjer9U7Px+HYU901Z4ZDjwLMxhMGccDizM9y4p0aYx3XjxxpB4vYBAD
- l7N6l7pqW7FabjikZITN72J0KIKhS/jmfPdtrRmoRFgBW4QJNk4RtrsUFCdn19ea0ywa
- eNovUQN0XMwnjwulsBGt8Rtm6Oqq1puA3D2iIzc8ATD4axMWLQ0YJR0nMmpiVwkHGHsK
- FIGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1757944081; x=1758548881;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=EBmg+LxXgKyTmTcC9keCM60L1vufisbkPgvfPos4Cjw=;
- b=ZoNmPooGD4AjMkjpKHmIPgUMDwgo3BeHoTJmtQni5XQkUct7cmBMjYZsefWMeuYcB3
- DGOAof4Ukzn/5OmhImkuLQ7cJDda7u/HqU2jw31nuVF/+lou+K+WrGktdCKPWa99HPCY
- bMCdAxIZcyFFJm89jXZbuRUgDNrs9NJJ0by02Sf6iAHATwZXioLude8vLRNtcjKoJxLD
- IsR6fzdrEL8Hk3VbqfCISE3t+oecqdtsY/GzOLZfLxBrCVDNQNAYcXi+MebP/EwFf1cz
- bkgSnsdz6Khr0gpAJsIX3FoOQG1B9Vj3DHGFq52S9Au+IhHknnG21EiKnbl5XBUT7Jgz
- dU3w==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUr7XHEhWGtI4VFNSj6oWfIWS7tIdVrCUgza8gr4drN62J//0EEgckqmGmVhzsSEc0ohQDvtisVGeA=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyn+rKRAn+cY++lvk4l95amvxkpQ/Q1icIUuKsiTLJ3wf5fkBk1
- BeJ++mECu55iLmg9sAGRNqiz/eIl8SDt/Kx4CH8T+1FQcdshrwI1Gwds
-X-Gm-Gg: ASbGncvkbBYLpRZDZ3KIvripfdYilc9drcKOUvpSnuwJmpIU2jb4XpF8JWM90ppqqrC
- ShEmhgVhJCVwPXKm1nAbjIniASqb3MGeHmKV7sXTC3CcICjYaMliEru0hcAabeQGJDqDsrPtMaP
- UiqZg1dVgtIKJPQf1kTVWGxnFFwUHLjDWim4fhchNkBs1lcAe9ZXfWMUloKPowxEW3a39Bj1T87
- p3C1dHBeChoQGJN5KJ7Wi/RoDpxV4hX6usAno7xfKZ+fObaNvYGto1G6CuPUWTN94AKVhiGe/43
- Lbe1FzOFbn7X6+qfU/q+MMbMmUWrEXVpy08jKkLFomKuIQO0fcmHEuI9iKdhOPWsHf4irp5tjlZ
- xeGGhHCN69Vn0OsgAgq5Y/6KcBxtKeszuujZePgcmLYc0oDdbzw==
-X-Google-Smtp-Source: AGHT+IGF6Q2khplFnQZiLOt+3nqcoNxxhk6Fu2ikcjzjM+rfB7FLjTLaxCP4kTmqZzCnd81NLEdLfw==
-X-Received: by 2002:a17:903:19c8:b0:24c:e9de:ee11 with SMTP id
- d9443c01a7336-25d2c560f8emr153188935ad.17.1757944081134; 
- Mon, 15 Sep 2025 06:48:01 -0700 (PDT)
-Received: from pengdl-pc.mioffice.cn ([43.224.245.249])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-26505197a82sm43706285ad.85.2025.09.15.06.47.55
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 15 Sep 2025 06:48:00 -0700 (PDT)
-From: pengdonglin <dolinux.peng@gmail.com>
-To: tj@kernel.org, tony.luck@intel.com, jani.nikula@linux.intel.com,
- ap420073@gmail.com, jv@jvosburgh.net, freude@linux.ibm.com, bcrl@kvack.org,
- trondmy@kernel.org, longman@redhat.com, kees@kernel.org
-Cc: bigeasy@linutronix.de, linux-kernel@vger.kernel.org,
- linux-rt-devel@lists.linux.dev, linux-nfs@vger.kernel.org,
- linux-aio@kvack.org, linux-fsdevel@vger.kernel.org,
- linux-security-module@vger.kernel.org, netdev@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-acpi@vger.kernel.org,
- linux-s390@vger.kernel.org, cgroups@vger.kernel.org,
- pengdonglin <dolinux.peng@gmail.com>, Hillf Danton <hdanton@sina.com>,
- "Paul E . McKenney" <paulmck@kernel.org>,
- pengdonglin <pengdonglin@xiaomi.com>
-Subject: [PATCH v2] rcu: Remove redundant rcu_read_lock/unlock() in spin_lock
- critical sections
-Date: Mon, 15 Sep 2025 21:47:29 +0800
-Message-Id: <20250915134729.1801557-1-dolinux.peng@gmail.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDE7D10E106
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Sep 2025 13:52:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1757944321; x=1789480321;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=2zjlvF4MOKAYq8CFLdwz2B7clr8sQstE6Mek/AVi4To=;
+ b=Pf5Veocvb1byXcd6IuxQmyGNfmDPmzH54PX7J5Hz18+i9iUofp8hFJpP
+ 8FVAPgNCEyLAppsD5OsEg+tS3vTKHu9nExV88c5xNFlYE+3/Wzbuj22kF
+ zolEYarLw38SODioDyyMz++FDhAP78BbVdNWm6Rxnp6Q8RKvfO6Cggc9x
+ OwfnBTl7BNx8pIUPRPZP+daK3K0ej4+PIn3mohh4Y6A3Kupkv4qs5Y1/k
+ C0X2OQqcs2eB0ef4KEzyovvTJ8glG/IDv1ZHRILI9FawD8kzQuFTKmQm+
+ riMJPHqlsmWpmk7p7L3K0y9Qh40aOrbj9pj27E3+cDSN0OrY2rVjSm3PW Q==;
+X-CSE-ConnectionGUID: l0wI9aucR3ql7MNJSJQ2OQ==
+X-CSE-MsgGUID: F+TmO6roTmyJyhc74bxWDw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11554"; a="60341579"
+X-IronPort-AV: E=Sophos;i="6.18,266,1751266800"; d="scan'208";a="60341579"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2025 06:52:00 -0700
+X-CSE-ConnectionGUID: 1gQbtr8qQx2E7BvXcwOSsg==
+X-CSE-MsgGUID: nJPW95rRT3uVx8ti21x/2w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,266,1751266800"; d="scan'208";a="174706433"
+Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.17])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2025 06:51:58 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>, Dnyaneshwar Bhadane
+ <dnyaneshwar.bhadane@intel.com>, ankit.k.nautiyal@intel.com,
+ intel-gfx@lists.freedesktop.org
+Cc: matthew.s.atwood@intel.com, Dnyaneshwar Bhadane
+ <dnyaneshwar.bhadane@intel.com>
+Subject: Re: [PATCH 1/3] drm/pcids: Split PTL pciids group to make wcl
+ subplatform
+In-Reply-To: <175794320783.1613.3172112236499856318@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250911205543.388402-1-dnyaneshwar.bhadane@intel.com>
+ <20250911205543.388402-2-dnyaneshwar.bhadane@intel.com>
+ <175794320783.1613.3172112236499856318@intel.com>
+Date: Mon, 15 Sep 2025 16:51:55 +0300
+Message-ID: <f292d091e4be602b3a43ff974ac9c588cd6e8611@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 16 Sep 2025 14:55:19 +0000
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,687 +74,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: pengdonglin <pengdonglin@xiaomi.com>
+On Mon, 15 Sep 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> Quoting Dnyaneshwar Bhadane (2025-09-11 17:55:40-03:00)
+>>To form the WCL platform as a subplatform of PTL in definition,
+>>WCL pci ids are splited into saparate group from PTL.
+>>So update the pciidlist struct to cover all the pci ids.
+>>
+>>Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+>>---
+>> drivers/gpu/drm/xe/xe_pci.c | 1 +
+>> include/drm/intel/pciids.h  | 4 +++-
+>> 2 files changed, 4 insertions(+), 1 deletion(-)
+>>
+>>diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+>>index 701ba9baa9d7..fc2ea9132804 100644
+>>--- a/drivers/gpu/drm/xe/xe_pci.c
+>>+++ b/drivers/gpu/drm/xe/xe_pci.c
+>>@@ -375,6 +375,7 @@ static const struct pci_device_id pciidlist[] = {
+>>         INTEL_LNL_IDS(INTEL_VGA_DEVICE, &lnl_desc),
+>>         INTEL_BMG_IDS(INTEL_VGA_DEVICE, &bmg_desc),
+>>         INTEL_PTL_IDS(INTEL_VGA_DEVICE, &ptl_desc),
+>>+        INTEL_WCL_IDS(INTEL_VGA_DEVICE, &ptl_desc),
+>>         { }
+>> };
+>> MODULE_DEVICE_TABLE(pci, pciidlist);
+>>diff --git a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h
+>>index da6301a6fcea..9d378c65be4b 100644
+>>--- a/include/drm/intel/pciids.h
+>>+++ b/include/drm/intel/pciids.h
+>>@@ -877,7 +877,9 @@
+>>         MACRO__(0xB08F, ## __VA_ARGS__), \
+>>         MACRO__(0xB090, ## __VA_ARGS__), \
+>>         MACRO__(0xB0A0, ## __VA_ARGS__), \
+>>-        MACRO__(0xB0B0, ## __VA_ARGS__), \
+>>+        MACRO__(0xB0B0, ## __VA_ARGS__)
+>>+
+>>+#define INTEL_WCL_IDS(MACRO__, ...) \
+>>         MACRO__(0xFD80, ## __VA_ARGS__), \
+>>         MACRO__(0xFD81, ## __VA_ARGS__)
+>
+> This patch, at its current state, will break the display part, because
+> WCL will not be detected until the next patch. We should either:
+>
+>  - bring the line "INTEL_WCL_IDS(INTEL_DISPLAY_DEVICE, &ptl_desc)" from
+>    path #2 into this one.
 
-Per Documentation/RCU/rcu_dereference.rst [1], since Linux 4.20's RCU
-consolidation [2][3], RCU read-side critical sections include:
-  - Explicit rcu_read_lock()
-  - BH/interrupt/preemption-disabling regions
-  - Spinlock critical sections (including CONFIG_PREEMPT_RT kernels [4])
+This. I've already replied to a newer version of this series to this
+effect [1][2].
 
-Thus, explicit rcu_read_lock()/unlock() calls within spin_lock*() regions are redundant.
-This patch removes them, simplifying locking semantics while preserving RCU protection.
+[1] https://lore.kernel.org/r/70fc412b47d9972ad2d1b6eca13bbdd9da992552@intel.com
+[2] https://lore.kernel.org/r/84fc10ec3b82b3436b521811589067ad0850eacd@intel.com
 
-[1] https://elixir.bootlin.com/linux/v6.17-rc5/source/Documentation/RCU/rcu_dereference.rst#L407
-[2] https://lore.kernel.org/lkml/20180829222021.GA29944@linux.vnet.ibm.com/
-[3] https://lwn.net/Articles/777036/
-[4] https://lore.kernel.org/lkml/6435833a-bdcb-4114-b29d-28b7f436d47d@paulmck-laptop/
+>  - squash this and patch #2 together.
 
-Cc: Waiman Long <longman@redhat.com>
-Cc: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Cc: Hillf Danton <hdanton@sina.com>
-Cc: Paul E. McKenney <paulmck@kernel.org>
-Signed-off-by: pengdonglin <pengdonglin@xiaomi.com>
-Signed-off-by: pengdonglin <dolinux.peng@gmail.com>
----
-Changes in v2:
-  - Clarified commit message to prevent accidental backport to older kernels
-  - Added lockdep_is_held() to avoid false positives
----
- drivers/acpi/apei/ghes.c                        | 2 --
- drivers/gpu/drm/i915/gt/intel_ring_submission.c | 2 --
- drivers/net/amt.c                               | 8 --------
- drivers/net/bonding/bond_3ad.c                  | 2 --
- drivers/net/wireless/ath/ath9k/xmit.c           | 2 --
- drivers/s390/crypto/pkey_base.c                 | 3 ---
- fs/aio.c                                        | 6 ++----
- fs/nfs/callback_proc.c                          | 2 --
- fs/nfs/nfs4state.c                              | 2 --
- fs/nfs/pnfs.c                                   | 9 ---------
- fs/nfs/pnfs_dev.c                               | 4 ----
- ipc/msg.c                                       | 1 -
- ipc/sem.c                                       | 1 -
- ipc/shm.c                                       | 1 -
- ipc/util.c                                      | 2 --
- kernel/cgroup/cgroup.c                          | 2 --
- kernel/cgroup/cpuset.c                          | 6 ------
- kernel/cgroup/debug.c                           | 4 ----
- net/mac80211/cfg.c                              | 2 --
- net/mac80211/debugfs.c                          | 2 --
- net/mac80211/debugfs_netdev.c                   | 2 --
- net/mac80211/debugfs_sta.c                      | 2 --
- net/mac80211/sta_info.c                         | 2 --
- net/ncsi/ncsi-manage.c                          | 2 --
- security/yama/yama_lsm.c                        | 4 ----
- 25 files changed, 2 insertions(+), 73 deletions(-)
+IMO cleaner with separate patches.
 
-diff --git a/drivers/acpi/apei/ghes.c b/drivers/acpi/apei/ghes.c
-index a0d54993edb3..97ee19f2cae0 100644
---- a/drivers/acpi/apei/ghes.c
-+++ b/drivers/acpi/apei/ghes.c
-@@ -1207,12 +1207,10 @@ static int ghes_notify_hed(struct notifier_block *this, unsigned long event,
- 	int ret = NOTIFY_DONE;
- 
- 	spin_lock_irqsave(&ghes_notify_lock_irq, flags);
--	rcu_read_lock();
- 	list_for_each_entry_rcu(ghes, &ghes_hed, list) {
- 		if (!ghes_proc(ghes))
- 			ret = NOTIFY_OK;
- 	}
--	rcu_read_unlock();
- 	spin_unlock_irqrestore(&ghes_notify_lock_irq, flags);
- 
- 	return ret;
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index 2a6d79abf25b..bf73166a1337 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -392,14 +392,12 @@ static void reset_rewind(struct intel_engine_cs *engine, bool stalled)
- 
- 	rq = NULL;
- 	spin_lock_irqsave(&engine->sched_engine->lock, flags);
--	rcu_read_lock();
- 	list_for_each_entry(pos, &engine->sched_engine->requests, sched.link) {
- 		if (!__i915_request_is_complete(pos)) {
- 			rq = pos;
- 			break;
- 		}
- 	}
--	rcu_read_unlock();
- 
- 	/*
- 	 * The guilty request will get skipped on a hung engine.
-diff --git a/drivers/net/amt.c b/drivers/net/amt.c
-index ed86537b2f61..aaed9fbc7526 100644
---- a/drivers/net/amt.c
-+++ b/drivers/net/amt.c
-@@ -295,7 +295,6 @@ static void amt_source_work(struct work_struct *work)
- 
- 	tunnel = gnode->tunnel_list;
- 	spin_lock_bh(&tunnel->lock);
--	rcu_read_lock();
- 	if (gnode->filter_mode == MCAST_INCLUDE) {
- 		amt_destroy_source(snode);
- 		if (!gnode->nr_sources)
-@@ -306,7 +305,6 @@ static void amt_source_work(struct work_struct *work)
- 		 */
- 		snode->status = AMT_SOURCE_STATUS_D_FWD;
- 	}
--	rcu_read_unlock();
- 	spin_unlock_bh(&tunnel->lock);
- }
- 
-@@ -426,7 +424,6 @@ static void amt_group_work(struct work_struct *work)
- 		goto out;
- 	}
- 
--	rcu_read_lock();
- 	for (i = 0; i < buckets; i++) {
- 		hlist_for_each_entry_safe(snode, t,
- 					  &gnode->sources[i], node) {
-@@ -443,7 +440,6 @@ static void amt_group_work(struct work_struct *work)
- 		amt_del_group(amt, gnode);
- 	else
- 		gnode->filter_mode = MCAST_INCLUDE;
--	rcu_read_unlock();
- 	spin_unlock_bh(&tunnel->lock);
- out:
- 	dev_put(amt->dev);
-@@ -1327,11 +1323,9 @@ static void amt_clear_groups(struct amt_tunnel_list *tunnel)
- 	int i;
- 
- 	spin_lock_bh(&tunnel->lock);
--	rcu_read_lock();
- 	for (i = 0; i < amt->hash_buckets; i++)
- 		hlist_for_each_entry_safe(gnode, t, &tunnel->groups[i], node)
- 			amt_del_group(amt, gnode);
--	rcu_read_unlock();
- 	spin_unlock_bh(&tunnel->lock);
- }
- 
-@@ -1343,11 +1337,9 @@ static void amt_tunnel_expire(struct work_struct *work)
- 	struct amt_dev *amt = tunnel->amt;
- 
- 	spin_lock_bh(&amt->lock);
--	rcu_read_lock();
- 	list_del_rcu(&tunnel->list);
- 	amt->nr_tunnels--;
- 	amt_clear_groups(tunnel);
--	rcu_read_unlock();
- 	spin_unlock_bh(&amt->lock);
- 	kfree_rcu(tunnel, rcu);
- }
-diff --git a/drivers/net/bonding/bond_3ad.c b/drivers/net/bonding/bond_3ad.c
-index 4edc8e6b6b64..c53ea73f103a 100644
---- a/drivers/net/bonding/bond_3ad.c
-+++ b/drivers/net/bonding/bond_3ad.c
-@@ -2485,7 +2485,6 @@ void bond_3ad_state_machine_handler(struct work_struct *work)
- 	 * concurrently due to incoming LACPDU as well.
- 	 */
- 	spin_lock_bh(&bond->mode_lock);
--	rcu_read_lock();
- 
- 	/* check if there are any slaves */
- 	if (!bond_has_slaves(bond))
-@@ -2537,7 +2536,6 @@ void bond_3ad_state_machine_handler(struct work_struct *work)
- 			break;
- 		}
- 	}
--	rcu_read_unlock();
- 	spin_unlock_bh(&bond->mode_lock);
- 
- 	if (update_slave_arr)
-diff --git a/drivers/net/wireless/ath/ath9k/xmit.c b/drivers/net/wireless/ath/ath9k/xmit.c
-index 0ac9212e42f7..4a0f465aa2fe 100644
---- a/drivers/net/wireless/ath/ath9k/xmit.c
-+++ b/drivers/net/wireless/ath/ath9k/xmit.c
-@@ -1993,7 +1993,6 @@ void ath_txq_schedule(struct ath_softc *sc, struct ath_txq *txq)
- 
- 	ieee80211_txq_schedule_start(hw, txq->mac80211_qnum);
- 	spin_lock_bh(&sc->chan_lock);
--	rcu_read_lock();
- 
- 	if (sc->cur_chan->stopped)
- 		goto out;
-@@ -2011,7 +2010,6 @@ void ath_txq_schedule(struct ath_softc *sc, struct ath_txq *txq)
- 	}
- 
- out:
--	rcu_read_unlock();
- 	spin_unlock_bh(&sc->chan_lock);
- 	ieee80211_txq_schedule_end(hw, txq->mac80211_qnum);
- }
-diff --git a/drivers/s390/crypto/pkey_base.c b/drivers/s390/crypto/pkey_base.c
-index b15741461a63..4c4a9feecccc 100644
---- a/drivers/s390/crypto/pkey_base.c
-+++ b/drivers/s390/crypto/pkey_base.c
-@@ -48,16 +48,13 @@ int pkey_handler_register(struct pkey_handler *handler)
- 
- 	spin_lock(&handler_list_write_lock);
- 
--	rcu_read_lock();
- 	list_for_each_entry_rcu(h, &handler_list, list) {
- 		if (h == handler) {
--			rcu_read_unlock();
- 			spin_unlock(&handler_list_write_lock);
- 			module_put(handler->module);
- 			return -EEXIST;
- 		}
- 	}
--	rcu_read_unlock();
- 
- 	list_add_rcu(&handler->list, &handler_list);
- 	spin_unlock(&handler_list_write_lock);
-diff --git a/fs/aio.c b/fs/aio.c
-index 7fc7b6221312..e3f9a5a391b5 100644
---- a/fs/aio.c
-+++ b/fs/aio.c
-@@ -359,15 +359,14 @@ static int aio_ring_mremap(struct vm_area_struct *vma)
- 	int i, res = -EINVAL;
- 
- 	spin_lock(&mm->ioctx_lock);
--	rcu_read_lock();
--	table = rcu_dereference(mm->ioctx_table);
-+	table = rcu_dereference_check(mm->ioctx_table, lockdep_is_held(&mm->ioctx_lock));
- 	if (!table)
- 		goto out_unlock;
- 
- 	for (i = 0; i < table->nr; i++) {
- 		struct kioctx *ctx;
- 
--		ctx = rcu_dereference(table->table[i]);
-+		ctx = rcu_dereference_check(table->table[i], lockdep_is_held(&mm->ioctx_lock));
- 		if (ctx && ctx->aio_ring_file == file) {
- 			if (!atomic_read(&ctx->dead)) {
- 				ctx->user_id = ctx->mmap_base = vma->vm_start;
-@@ -378,7 +377,6 @@ static int aio_ring_mremap(struct vm_area_struct *vma)
- 	}
- 
- out_unlock:
--	rcu_read_unlock();
- 	spin_unlock(&mm->ioctx_lock);
- 	return res;
- }
-diff --git a/fs/nfs/callback_proc.c b/fs/nfs/callback_proc.c
-index 8397c43358bd..16144db39335 100644
---- a/fs/nfs/callback_proc.c
-+++ b/fs/nfs/callback_proc.c
-@@ -721,7 +721,6 @@ __be32 nfs4_callback_offload(void *data, void *dummy,
- 		return cpu_to_be32(NFS4ERR_DELAY);
- 
- 	spin_lock(&cps->clp->cl_lock);
--	rcu_read_lock();
- 	list_for_each_entry_rcu(server, &cps->clp->cl_superblocks,
- 				client_link) {
- 		list_for_each_entry(tmp_copy, &server->ss_copies, copies) {
-@@ -736,7 +735,6 @@ __be32 nfs4_callback_offload(void *data, void *dummy,
- 		}
- 	}
- out:
--	rcu_read_unlock();
- 	if (!found) {
- 		memcpy(&copy->stateid, &args->coa_stateid, NFS4_STATEID_SIZE);
- 		nfs4_copy_cb_args(copy, args);
-diff --git a/fs/nfs/nfs4state.c b/fs/nfs/nfs4state.c
-index 7612e977e80b..598229fc07ed 100644
---- a/fs/nfs/nfs4state.c
-+++ b/fs/nfs/nfs4state.c
-@@ -241,13 +241,11 @@ const struct cred *nfs4_get_renew_cred(struct nfs_client *clp)
- 		goto out;
- 
- 	spin_lock(&clp->cl_lock);
--	rcu_read_lock();
- 	list_for_each_entry_rcu(server, &clp->cl_superblocks, client_link) {
- 		cred = nfs4_get_renew_cred_server_locked(server);
- 		if (cred != NULL)
- 			break;
- 	}
--	rcu_read_unlock();
- 	spin_unlock(&clp->cl_lock);
- 
- out:
-diff --git a/fs/nfs/pnfs.c b/fs/nfs/pnfs.c
-index a3135b5af7ee..c9399452bcfd 100644
---- a/fs/nfs/pnfs.c
-+++ b/fs/nfs/pnfs.c
-@@ -862,16 +862,13 @@ pnfs_layout_bulk_destroy_byserver_locked(struct nfs_client *clp,
- 			if (pnfs_layout_add_bulk_destroy_list(inode,
- 						layout_list))
- 				continue;
--			rcu_read_unlock();
- 			spin_unlock(&clp->cl_lock);
- 			iput(inode);
- 		} else {
--			rcu_read_unlock();
- 			spin_unlock(&clp->cl_lock);
- 		}
- 		nfs_sb_deactive(server->super);
- 		spin_lock(&clp->cl_lock);
--		rcu_read_lock();
- 		return -EAGAIN;
- 	}
- 	return 0;
-@@ -922,7 +919,6 @@ int pnfs_layout_destroy_byfsid(struct nfs_client *clp, struct nfs_fsid *fsid,
- 	LIST_HEAD(layout_list);
- 
- 	spin_lock(&clp->cl_lock);
--	rcu_read_lock();
- restart:
- 	list_for_each_entry_rcu(server, &clp->cl_superblocks, client_link) {
- 		if (memcmp(&server->fsid, fsid, sizeof(*fsid)) != 0)
-@@ -932,7 +928,6 @@ int pnfs_layout_destroy_byfsid(struct nfs_client *clp, struct nfs_fsid *fsid,
- 				&layout_list) != 0)
- 			goto restart;
- 	}
--	rcu_read_unlock();
- 	spin_unlock(&clp->cl_lock);
- 
- 	return pnfs_layout_free_bulk_destroy_list(&layout_list, mode);
-@@ -944,14 +939,12 @@ static void pnfs_layout_build_destroy_list_byclient(struct nfs_client *clp,
- 	struct nfs_server *server;
- 
- 	spin_lock(&clp->cl_lock);
--	rcu_read_lock();
- restart:
- 	list_for_each_entry_rcu(server, &clp->cl_superblocks, client_link) {
- 		if (pnfs_layout_bulk_destroy_byserver_locked(clp, server,
- 							     list) != 0)
- 			goto restart;
- 	}
--	rcu_read_unlock();
- 	spin_unlock(&clp->cl_lock);
- }
- 
-@@ -990,7 +983,6 @@ static void pnfs_layout_build_recover_list_byclient(struct nfs_client *clp,
- 	struct nfs_server *server;
- 
- 	spin_lock(&clp->cl_lock);
--	rcu_read_lock();
- restart:
- 	list_for_each_entry_rcu(server, &clp->cl_superblocks, client_link) {
- 		if (!(server->caps & NFS_CAP_REBOOT_LAYOUTRETURN))
-@@ -999,7 +991,6 @@ static void pnfs_layout_build_recover_list_byclient(struct nfs_client *clp,
- 							     list) != 0)
- 			goto restart;
- 	}
--	rcu_read_unlock();
- 	spin_unlock(&clp->cl_lock);
- }
- 
-diff --git a/fs/nfs/pnfs_dev.c b/fs/nfs/pnfs_dev.c
-index bf0f2d67e96c..d19752ec1a95 100644
---- a/fs/nfs/pnfs_dev.c
-+++ b/fs/nfs/pnfs_dev.c
-@@ -231,9 +231,7 @@ nfs4_delete_deviceid(const struct pnfs_layoutdriver_type *ld,
- 	struct nfs4_deviceid_node *d;
- 
- 	spin_lock(&nfs4_deviceid_lock);
--	rcu_read_lock();
- 	d = _lookup_deviceid(ld, clp, id, nfs4_deviceid_hash(id));
--	rcu_read_unlock();
- 	if (!d) {
- 		spin_unlock(&nfs4_deviceid_lock);
- 		return;
-@@ -331,14 +329,12 @@ _deviceid_purge_client(const struct nfs_client *clp, long hash)
- 	HLIST_HEAD(tmp);
- 
- 	spin_lock(&nfs4_deviceid_lock);
--	rcu_read_lock();
- 	hlist_for_each_entry_rcu(d, &nfs4_deviceid_cache[hash], node)
- 		if (d->nfs_client == clp && atomic_read(&d->ref)) {
- 			hlist_del_init_rcu(&d->node);
- 			hlist_add_head(&d->tmpnode, &tmp);
- 			clear_bit(NFS_DEVICEID_NOCACHE, &d->flags);
- 		}
--	rcu_read_unlock();
- 	spin_unlock(&nfs4_deviceid_lock);
- 
- 	if (hlist_empty(&tmp))
-diff --git a/ipc/msg.c b/ipc/msg.c
-index ee6af4fe52bf..1e579b57023f 100644
---- a/ipc/msg.c
-+++ b/ipc/msg.c
-@@ -179,7 +179,6 @@ static int newque(struct ipc_namespace *ns, struct ipc_params *params)
- 	}
- 
- 	ipc_unlock_object(&msq->q_perm);
--	rcu_read_unlock();
- 
- 	return msq->q_perm.id;
- }
-diff --git a/ipc/sem.c b/ipc/sem.c
-index a39cdc7bf88f..38ad57b2b558 100644
---- a/ipc/sem.c
-+++ b/ipc/sem.c
-@@ -579,7 +579,6 @@ static int newary(struct ipc_namespace *ns, struct ipc_params *params)
- 	ns->used_sems += nsems;
- 
- 	sem_unlock(sma, -1);
--	rcu_read_unlock();
- 
- 	return sma->sem_perm.id;
- }
-diff --git a/ipc/shm.c b/ipc/shm.c
-index a9310b6dbbc3..61fae1b6a18e 100644
---- a/ipc/shm.c
-+++ b/ipc/shm.c
-@@ -795,7 +795,6 @@ static int newseg(struct ipc_namespace *ns, struct ipc_params *params)
- 	error = shp->shm_perm.id;
- 
- 	ipc_unlock_object(&shp->shm_perm);
--	rcu_read_unlock();
- 	return error;
- 
- no_id:
-diff --git a/ipc/util.c b/ipc/util.c
-index cae60f11d9c2..1be691b5dcad 100644
---- a/ipc/util.c
-+++ b/ipc/util.c
-@@ -293,7 +293,6 @@ int ipc_addid(struct ipc_ids *ids, struct kern_ipc_perm *new, int limit)
- 	idr_preload(GFP_KERNEL);
- 
- 	spin_lock_init(&new->lock);
--	rcu_read_lock();
- 	spin_lock(&new->lock);
- 
- 	current_euid_egid(&euid, &egid);
-@@ -316,7 +315,6 @@ int ipc_addid(struct ipc_ids *ids, struct kern_ipc_perm *new, int limit)
- 	if (idx < 0) {
- 		new->deleted = true;
- 		spin_unlock(&new->lock);
--		rcu_read_unlock();
- 		return idx;
- 	}
- 
-diff --git a/kernel/cgroup/cgroup.c b/kernel/cgroup/cgroup.c
-index 312c6a8b55bb..db9e00a559df 100644
---- a/kernel/cgroup/cgroup.c
-+++ b/kernel/cgroup/cgroup.c
-@@ -2944,14 +2944,12 @@ int cgroup_attach_task(struct cgroup *dst_cgrp, struct task_struct *leader,
- 
- 	/* look up all src csets */
- 	spin_lock_irq(&css_set_lock);
--	rcu_read_lock();
- 	task = leader;
- 	do {
- 		cgroup_migrate_add_src(task_css_set(task), dst_cgrp, &mgctx);
- 		if (!threadgroup)
- 			break;
- 	} while_each_thread(leader, task);
--	rcu_read_unlock();
- 	spin_unlock_irq(&css_set_lock);
- 
- 	/* prepare dst csets and commit */
-diff --git a/kernel/cgroup/cpuset.c b/kernel/cgroup/cpuset.c
-index 27adb04df675..9b7e8e8e9411 100644
---- a/kernel/cgroup/cpuset.c
-+++ b/kernel/cgroup/cpuset.c
-@@ -4073,7 +4073,6 @@ void cpuset_cpus_allowed(struct task_struct *tsk, struct cpumask *pmask)
- 	struct cpuset *cs;
- 
- 	spin_lock_irqsave(&callback_lock, flags);
--	rcu_read_lock();
- 
- 	cs = task_cs(tsk);
- 	if (cs != &top_cpuset)
-@@ -4095,7 +4094,6 @@ void cpuset_cpus_allowed(struct task_struct *tsk, struct cpumask *pmask)
- 			cpumask_copy(pmask, possible_mask);
- 	}
- 
--	rcu_read_unlock();
- 	spin_unlock_irqrestore(&callback_lock, flags);
- }
- 
-@@ -4168,9 +4166,7 @@ nodemask_t cpuset_mems_allowed(struct task_struct *tsk)
- 	unsigned long flags;
- 
- 	spin_lock_irqsave(&callback_lock, flags);
--	rcu_read_lock();
- 	guarantee_online_mems(task_cs(tsk), &mask);
--	rcu_read_unlock();
- 	spin_unlock_irqrestore(&callback_lock, flags);
- 
- 	return mask;
-@@ -4265,10 +4261,8 @@ bool cpuset_current_node_allowed(int node, gfp_t gfp_mask)
- 	/* Not hardwall and node outside mems_allowed: scan up cpusets */
- 	spin_lock_irqsave(&callback_lock, flags);
- 
--	rcu_read_lock();
- 	cs = nearest_hardwall_ancestor(task_cs(current));
- 	allowed = node_isset(node, cs->mems_allowed);
--	rcu_read_unlock();
- 
- 	spin_unlock_irqrestore(&callback_lock, flags);
- 	return allowed;
-diff --git a/kernel/cgroup/debug.c b/kernel/cgroup/debug.c
-index 80aa3f027ac3..81ea38dd6f9d 100644
---- a/kernel/cgroup/debug.c
-+++ b/kernel/cgroup/debug.c
-@@ -49,7 +49,6 @@ static int current_css_set_read(struct seq_file *seq, void *v)
- 		return -ENODEV;
- 
- 	spin_lock_irq(&css_set_lock);
--	rcu_read_lock();
- 	cset = task_css_set(current);
- 	refcnt = refcount_read(&cset->refcount);
- 	seq_printf(seq, "css_set %pK %d", cset, refcnt);
-@@ -67,7 +66,6 @@ static int current_css_set_read(struct seq_file *seq, void *v)
- 		seq_printf(seq, "%2d: %-4s\t- %p[%d]\n", ss->id, ss->name,
- 			  css, css->id);
- 	}
--	rcu_read_unlock();
- 	spin_unlock_irq(&css_set_lock);
- 	cgroup_kn_unlock(of->kn);
- 	return 0;
-@@ -95,7 +93,6 @@ static int current_css_set_cg_links_read(struct seq_file *seq, void *v)
- 		return -ENOMEM;
- 
- 	spin_lock_irq(&css_set_lock);
--	rcu_read_lock();
- 	cset = task_css_set(current);
- 	list_for_each_entry(link, &cset->cgrp_links, cgrp_link) {
- 		struct cgroup *c = link->cgrp;
-@@ -104,7 +101,6 @@ static int current_css_set_cg_links_read(struct seq_file *seq, void *v)
- 		seq_printf(seq, "Root %d group %s\n",
- 			   c->root->hierarchy_id, name_buf);
- 	}
--	rcu_read_unlock();
- 	spin_unlock_irq(&css_set_lock);
- 	kfree(name_buf);
- 	return 0;
-diff --git a/net/mac80211/cfg.c b/net/mac80211/cfg.c
-index 2ed07fa121ab..4fe50d4c461d 100644
---- a/net/mac80211/cfg.c
-+++ b/net/mac80211/cfg.c
-@@ -4825,7 +4825,6 @@ static int ieee80211_get_txq_stats(struct wiphy *wiphy,
- 	int ret = 0;
- 
- 	spin_lock_bh(&local->fq.lock);
--	rcu_read_lock();
- 
- 	if (wdev) {
- 		sdata = IEEE80211_WDEV_TO_SUB_IF(wdev);
-@@ -4851,7 +4850,6 @@ static int ieee80211_get_txq_stats(struct wiphy *wiphy,
- 	}
- 
- out:
--	rcu_read_unlock();
- 	spin_unlock_bh(&local->fq.lock);
- 
- 	return ret;
-diff --git a/net/mac80211/debugfs.c b/net/mac80211/debugfs.c
-index e8b78ec682da..82099f4cedbe 100644
---- a/net/mac80211/debugfs.c
-+++ b/net/mac80211/debugfs.c
-@@ -82,7 +82,6 @@ static ssize_t aqm_read(struct file *file,
- 	int len = 0;
- 
- 	spin_lock_bh(&local->fq.lock);
--	rcu_read_lock();
- 
- 	len = scnprintf(buf, sizeof(buf),
- 			"access name value\n"
-@@ -105,7 +104,6 @@ static ssize_t aqm_read(struct file *file,
- 			fq->limit,
- 			fq->quantum);
- 
--	rcu_read_unlock();
- 	spin_unlock_bh(&local->fq.lock);
- 
- 	return simple_read_from_buffer(user_buf, count, ppos,
-diff --git a/net/mac80211/debugfs_netdev.c b/net/mac80211/debugfs_netdev.c
-index 1dac78271045..30a5a978a678 100644
---- a/net/mac80211/debugfs_netdev.c
-+++ b/net/mac80211/debugfs_netdev.c
-@@ -625,7 +625,6 @@ static ssize_t ieee80211_if_fmt_aqm(
- 	txqi = to_txq_info(sdata->vif.txq);
- 
- 	spin_lock_bh(&local->fq.lock);
--	rcu_read_lock();
- 
- 	len = scnprintf(buf,
- 			buflen,
-@@ -642,7 +641,6 @@ static ssize_t ieee80211_if_fmt_aqm(
- 			txqi->tin.tx_bytes,
- 			txqi->tin.tx_packets);
- 
--	rcu_read_unlock();
- 	spin_unlock_bh(&local->fq.lock);
- 
- 	return len;
-diff --git a/net/mac80211/debugfs_sta.c b/net/mac80211/debugfs_sta.c
-index 49061bd4151b..ef75255d47d5 100644
---- a/net/mac80211/debugfs_sta.c
-+++ b/net/mac80211/debugfs_sta.c
-@@ -148,7 +148,6 @@ static ssize_t sta_aqm_read(struct file *file, char __user *userbuf,
- 		return -ENOMEM;
- 
- 	spin_lock_bh(&local->fq.lock);
--	rcu_read_lock();
- 
- 	p += scnprintf(p,
- 		       bufsz + buf - p,
-@@ -178,7 +177,6 @@ static ssize_t sta_aqm_read(struct file *file, char __user *userbuf,
- 			       test_bit(IEEE80211_TXQ_DIRTY, &txqi->flags) ? " DIRTY" : "");
- 	}
- 
--	rcu_read_unlock();
- 	spin_unlock_bh(&local->fq.lock);
- 
- 	rv = simple_read_from_buffer(userbuf, count, ppos, buf, p - buf);
-diff --git a/net/mac80211/sta_info.c b/net/mac80211/sta_info.c
-index 8c550aab9bdc..663318a75d7f 100644
---- a/net/mac80211/sta_info.c
-+++ b/net/mac80211/sta_info.c
-@@ -2637,13 +2637,11 @@ static void sta_set_tidstats(struct sta_info *sta,
- 
- 	if (link_id < 0 && tid < IEEE80211_NUM_TIDS) {
- 		spin_lock_bh(&local->fq.lock);
--		rcu_read_lock();
- 
- 		tidstats->filled |= BIT(NL80211_TID_STATS_TXQ_STATS);
- 		ieee80211_fill_txq_stats(&tidstats->txq_stats,
- 					 to_txq_info(sta->sta.txq[tid]));
- 
--		rcu_read_unlock();
- 		spin_unlock_bh(&local->fq.lock);
- 	}
- }
-diff --git a/net/ncsi/ncsi-manage.c b/net/ncsi/ncsi-manage.c
-index 446e4e3b9553..6e36cd64a31e 100644
---- a/net/ncsi/ncsi-manage.c
-+++ b/net/ncsi/ncsi-manage.c
-@@ -650,7 +650,6 @@ static int set_one_vid(struct ncsi_dev_priv *ndp, struct ncsi_channel *nc,
- 
- 	spin_lock_irqsave(&nc->lock, flags);
- 
--	rcu_read_lock();
- 	list_for_each_entry_rcu(vlan, &ndp->vlan_vids, list) {
- 		vid = vlan->vid;
- 		for (i = 0; i < ncf->n_vids; i++)
-@@ -661,7 +660,6 @@ static int set_one_vid(struct ncsi_dev_priv *ndp, struct ncsi_channel *nc,
- 		if (vid)
- 			break;
- 	}
--	rcu_read_unlock();
- 
- 	if (!vid) {
- 		/* No VLAN ID is not set */
-diff --git a/security/yama/yama_lsm.c b/security/yama/yama_lsm.c
-index 3d064dd4e03f..60d38deb181b 100644
---- a/security/yama/yama_lsm.c
-+++ b/security/yama/yama_lsm.c
-@@ -117,14 +117,12 @@ static void yama_relation_cleanup(struct work_struct *work)
- 	struct ptrace_relation *relation;
- 
- 	spin_lock(&ptracer_relations_lock);
--	rcu_read_lock();
- 	list_for_each_entry_rcu(relation, &ptracer_relations, node) {
- 		if (relation->invalid) {
- 			list_del_rcu(&relation->node);
- 			kfree_rcu(relation, rcu);
- 		}
- 	}
--	rcu_read_unlock();
- 	spin_unlock(&ptracer_relations_lock);
- }
- 
-@@ -152,7 +150,6 @@ static int yama_ptracer_add(struct task_struct *tracer,
- 	added->invalid = false;
- 
- 	spin_lock(&ptracer_relations_lock);
--	rcu_read_lock();
- 	list_for_each_entry_rcu(relation, &ptracer_relations, node) {
- 		if (relation->invalid)
- 			continue;
-@@ -166,7 +163,6 @@ static int yama_ptracer_add(struct task_struct *tracer,
- 	list_add_rcu(&added->node, &ptracer_relations);
- 
- out:
--	rcu_read_unlock();
- 	spin_unlock(&ptracer_relations_lock);
- 	return 0;
- }
+> That said, since we are defining WCL as a subplatform, I think we
+> probably should make INTEL_WCL_IDS() be called from INTEL_PTL_IDS().
+
+No. Please don't do that.
+
+There are various consumers for the PCI ID macros, and they should be
+kept independent. It's easier to deal with the platform/subplatform
+relationships at the consumer side, instead of forcing it in the PCI ID
+macros.
+
+Just consider having to promote WCL to an independent platform later. It
+would mean shuffling the macros again.
+
+> Either that or make both separate platforms from the display point of
+> view.
+>
+> Also, I'm not sure how having a prelimiary patch affects backporting
+> fixes. So, I'm wondering if we should tag this patch somehow or if
+> something else should be made here to make the backporting easier.
+
+It's easy enough to ask for deps to be backported.
+
+BR,
+Jani.
+
+
 -- 
-2.34.1
-
+Jani Nikula, Intel
