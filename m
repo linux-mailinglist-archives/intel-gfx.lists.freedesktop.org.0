@@ -2,41 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 883E1B57F43
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Sep 2025 16:40:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5955CB57F45
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Sep 2025 16:40:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AFA410E4E0;
-	Mon, 15 Sep 2025 14:40:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5C8B10E2EC;
+	Mon, 15 Sep 2025 14:40:57 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="kJqEilup";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="u+YNkMxE";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4A2A910E4D5;
- Mon, 15 Sep 2025 14:40:45 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 61D9E1424;
- Mon, 15 Sep 2025 07:40:36 -0700 (PDT)
-Received: from [10.57.5.5] (unknown [10.57.5.5])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 775073F673;
- Mon, 15 Sep 2025 07:40:41 -0700 (PDT)
-Message-ID: <3ef3dc64-69dc-43b2-a77a-7fb3e552e4e6@arm.com>
-Date: Mon, 15 Sep 2025 15:40:39 +0100
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BBEA10E362
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Sep 2025 14:40:56 +0000 (UTC)
+Date: Mon, 15 Sep 2025 16:40:52 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1757947254;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=lni+I3buozORHBU99Fb6S2L5ArlJnPvanU1k2nG+bqs=;
+ b=kJqEilupnjshBEyflsSxaQ1cYXo1HmvwEGZxE5Hry+3tMhFnVh3frgVMySXIVU3YA7sr/P
+ ZmzsU0E7Km8Wp9l5bZDkkyDgnPFZnbLtBPRK/3LI31uDYiDIGpPjLv9wsR2eeUTNRRAX//
+ dmNhtGH6hrZaFy0o25aqc/JiLREHt/y5ZcTdXzlyLdSjRzpWF1ajC/tWXeGrJKOz1r4JdJ
+ O+HZHd0cB6caRbdRPYpFuFCDeIfE27yuCYcWeSk2ELWrhiOAF7HeL/2G+EZODCQqXklj6A
+ WbRdcD38CnfevP/TM/aX4fpES3ouPOth51eerceMkkYhcApyFTE2c/6EC96NyA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1757947254;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=lni+I3buozORHBU99Fb6S2L5ArlJnPvanU1k2nG+bqs=;
+ b=u+YNkMxEXUeLN4I2gvc5y9anOucA/bETagP+D7VWVq55ed12wCZJ5YaxLNDq/vrnZRM5c4
+ 1K1FhWVW76s3WjAg==
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+To: pengdonglin <dolinux.peng@gmail.com>
+Cc: tj@kernel.org, tony.luck@intel.com, jani.nikula@linux.intel.com,
+ ap420073@gmail.com, jv@jvosburgh.net, freude@linux.ibm.com,
+ bcrl@kvack.org, trondmy@kernel.org, longman@redhat.com,
+ kees@kernel.org, linux-kernel@vger.kernel.org,
+ linux-rt-devel@lists.linux.dev, linux-nfs@vger.kernel.org,
+ linux-aio@kvack.org, linux-fsdevel@vger.kernel.org,
+ linux-security-module@vger.kernel.org, netdev@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-acpi@vger.kernel.org,
+ linux-s390@vger.kernel.org, cgroups@vger.kernel.org,
+ Hillf Danton <hdanton@sina.com>, "Paul E . McKenney" <paulmck@kernel.org>,
+ pengdonglin <pengdonglin@xiaomi.com>
+Subject: Re: [PATCH v2] rcu: Remove redundant rcu_read_lock/unlock() in
+ spin_lock critical sections
+Message-ID: <20250915144052.VHYlgilw@linutronix.de>
+References: <20250915134729.1801557-1-dolinux.peng@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH i-g-t v2 0/3] Add initial Panthor tests
-To: Daniel Almeida <daniel.almeida@collabora.com>, adrinael@adrinael.net,
- arek@hiler.eu, kamil.konieczny@linux.intel.com,
- juhapekka.heikkila@gmail.com, bhanuprakash.modem@gmail.com,
- ashutosh.dixit@intel.com, karthik.b.s@intel.com,
- boris.brezillon@collabora.com, liviu.dudau@arm.com, aliceryhl@google.com,
- jeffv@google.com
-Cc: intel-gfx@lists.freedesktop.org, igt-dev@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20250912181931.3738444-1-daniel.almeida@collabora.com>
-From: Steven Price <steven.price@arm.com>
-Content-Language: en-GB
-In-Reply-To: <20250912181931.3738444-1-daniel.almeida@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250915134729.1801557-1-dolinux.peng@gmail.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,71 +72,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 12/09/2025 19:19, Daniel Almeida wrote:
-> This series adds basic Panthor tests. In particular, these are being
-> used to test both Panthor[0] and Tyr[1], i.e.: the new Rust GPU driver
-> that implements Panthor's uAPI (i.e.: panthor_drm.h). Most of the
-> initial tests were chosen in order to have something to test Tyr with,
-> but this series lays the groundwork so that more interesting tests can
-> be added to test more of Panthor itself.
+On 2025-09-15 21:47:29 [+0800], pengdonglin wrote:
+> From: pengdonglin <pengdonglin@xiaomi.com>
 > 
-> This work is being tested on a RockPi 5, featuring an rk3588 SoC and
-> Mali-G610 Valhall.
+> Per Documentation/RCU/rcu_dereference.rst [1], since Linux 4.20's RCU
+> consolidation [2][3], RCU read-side critical sections include:
+>   - Explicit rcu_read_lock()
+>   - BH/interrupt/preemption-disabling regions
+>   - Spinlock critical sections (including CONFIG_PREEMPT_RT kernels [4])
 > 
-> Note that there's a few (less than five?) remaining checkpatch.pl
-> comments about long lines. IMHO there's no way to format them better so
-> I hope we can live with this.
+> Thus, explicit rcu_read_lock()/unlock() calls within spin_lock*() regions are redundant.
+> This patch removes them, simplifying locking semantics while preserving RCU protection.
 > 
-> [0]: https://patchwork.freedesktop.org/patch/msgid/20240229162230.2634044-12-boris.brezillon@collabora.com
-> [1]: https://lore.kernel.org/dri-devel/aMLB0Vs0dJ_AkU4z@google.com/
-> 
-> Changes from v1:
-> - Rebased on top of the latest master
-> - Squashed patch 3 from v1 into patch 2.
-> - Switched to /* */ comments in headers
-> - Initialized padding fields to 0 as applicable in group_destroy and
->   vm_destroy
-> - Removed wrong assert(gpu_rev != 0)
-> - Changed indentation to use tabs
-> - Rework igt_panthor_mmap_bo to take an offset (so we don't call the
->   mmap_offset ioctl twice)
-> - Added igt_describe and docs to the functions igt_panthor.c
-> - Linked to the driver in the cover letter and patch 1.
-> - Improved the commit message for patch 1.
-> Link to v1: https://lore.kernel.org/dri-devel/20250828130402.2549948-1-daniel.almeida@collabora.com/
+> [1] https://elixir.bootlin.com/linux/v6.17-rc5/source/Documentation/RCU/rcu_dereference.rst#L407
+> [2] https://lore.kernel.org/lkml/20180829222021.GA29944@linux.vnet.ibm.com/
+> [3] https://lwn.net/Articles/777036/
+> [4] https://lore.kernel.org/lkml/6435833a-bdcb-4114-b29d-28b7f436d47d@paulmck-laptop/
 
-Looks good to me, and all the tests now pass (using Panthor) on my Rock5B.
+What about something like this:
 
-Tested-by: Steven Price <steven.price@arm.com>
+  Since commit a8bb74acd8efe ("rcu: Consolidate RCU-sched update-side
+  function definitions") there is no difference between rcu_read_lock(),
+  rcu_read_lock_bh() and rcu_read_lock_sched() in terms of RCU read
+  section and the relevant grace period. That means that spin_lock(),
+  which implies rcu_read_lock_sched(), also implies rcu_read_lock().
 
-Thanks,
-Steve
+  There is no need no explicitly start a RCU read section if one has
+  already been started implicitly by spin_lock().
 
-> 
-> Daniel Almeida (3):
->   lib: add support for opening Panthor devices
->   panthor: add initial infrastructure
->   tests/panthor: add panthor tests
-> 
->  lib/drmtest.c                 |   1 +
->  lib/drmtest.h                 |   1 +
->  lib/igt_panthor.c             | 229 ++++++++++++++++++++++++++++
->  lib/igt_panthor.h             |  30 ++++
->  lib/meson.build               |   1 +
->  meson.build                   |   8 +
->  tests/meson.build             |   2 +
->  tests/panthor/meson.build     |  15 ++
->  tests/panthor/panthor_gem.c   |  66 ++++++++
->  tests/panthor/panthor_group.c | 276 ++++++++++++++++++++++++++++++++++
->  tests/panthor/panthor_query.c |  25 +++
->  tests/panthor/panthor_vm.c    |  80 ++++++++++
->  12 files changed, 734 insertions(+)
->  create mode 100644 lib/igt_panthor.c
->  create mode 100644 lib/igt_panthor.h
->  create mode 100644 tests/panthor/meson.build
->  create mode 100644 tests/panthor/panthor_gem.c
->  create mode 100644 tests/panthor/panthor_group.c
->  create mode 100644 tests/panthor/panthor_query.c
->  create mode 100644 tests/panthor/panthor_vm.c
-> 
+  Simplify the code and remove the inner rcu_read_lock() invocation.
 
+
+The description above should make it clear what:
+- the intention is
+- the proposed solution to it and why it is correct.
+
+You can't send a patch like this. You need to split it at the very least
+by subsystem. The networking bits need to follow to follow for instance
+   Documentation/process/maintainer-netdev.rst
+
+and so on.
+
+Sebastian
