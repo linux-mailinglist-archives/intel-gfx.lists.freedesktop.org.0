@@ -2,66 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33185B59AF6
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Sep 2025 16:55:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70CECB59AF4
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Sep 2025 16:55:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77E0110E7F4;
-	Tue, 16 Sep 2025 14:55:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71C1510E7F1;
+	Tue, 16 Sep 2025 14:55:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="DKSKf3mB";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HBPfQcad";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com
- [209.85.214.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7941510E63D
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Sep 2025 04:48:21 +0000 (UTC)
-Received: by mail-pl1-f178.google.com with SMTP id
- d9443c01a7336-24456ce0b96so56441505ad.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Sep 2025 21:48:21 -0700 (PDT)
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com
+ [209.85.214.169])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6895410E643
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Sep 2025 04:48:28 +0000 (UTC)
+Received: by mail-pl1-f169.google.com with SMTP id
+ d9443c01a7336-264417f3a26so15970375ad.0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Sep 2025 21:48:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1757998101; x=1758602901; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1757998108; x=1758602908; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=vOaEQ/7pID9TluLY7/w8zgk+8Z8ChedlXZfnOV6tq/0=;
- b=DKSKf3mB/67E19Je5dZF0MRKjr93cG7Or6WRq9zmgFNLIyfHmttzjUVdTRKNj4Gi2C
- PiV40pAULKxL/jP0NO4r1JNoFxVBn9ZTfiayW6/dAWwy7D0gT2ulMX8wDAvtrjSE6fKs
- TTiC55ixaS0P/l8GkqzAQGYNwr8dWI0dGq40t56OOZPABNmyYdhALm0OLM0tYmp69Dj0
- S5vmJlzsICZGi9mt17LqdgRSlGvrWDMeHTMjkGbl0IInim4tDKx0HbJcyu78RzaQu5zM
- UwiT+ZvVGByLRF+4Q3N7rI0UTtd1xRHLug1fEonsDcGkN8tPCUqXbXtH2Bh0/HGaLZ8V
- UxPA==
+ bh=E4GnwUXvg4e1SjHBDj7IOnsANmiVf/8g2S4TikZ2k4g=;
+ b=HBPfQcad1dX2n8NIIHzzs2Pa+uMcEvLJZiKaZa7mFN0x+MV62uq1/JELXxQFXrVD3A
+ zizv20fuzL7KBbVrESDx6+qnn6OJzPz3Xtyj//sUUARGNoZ7cGBkrsV74MO8+dyN5U1G
+ zyNbtG1wqREkk/WUl9Se4sNG6wN6HUNYOzpHBQEsZjKuX9KC0AjA2MxSzFDbEgNrR2NW
+ uY4f8I7LZSofMWBKJQ9nGGNXhpqD1mVRZUWoEu4f2JZgidSzq8sBul6ku2AFwMotYGhw
+ xIaQ7dIiVv6yE4byM2HdgONpRVLVdcuergsAbHri9fYqX6VlEL2G51U0kVabjgC5VMT6
+ TYJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1757998101; x=1758602901;
+ d=1e100.net; s=20230601; t=1757998108; x=1758602908;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=vOaEQ/7pID9TluLY7/w8zgk+8Z8ChedlXZfnOV6tq/0=;
- b=CnDRFzb3HGnXg/XyZ8WHUJ7UK67bnrjsImEz2/eiZgUgnikrblUCCM9obNNiRg7kVb
- R4PU5PL+T43EQp6LkFPdaX/EQEizXQsWSkOqlbqUOaui0VIL/GXMoPAE0kcJrDkh0kkS
- wPyw/tXJnQO8T7ZD5sFO8p37Jof9uME/RfL83ITz+s5aYzvfI1T26cAVzWjNZZioM5qc
- mZsw+i2R1YuAOGE67ySOi+RhS4UXjU7RjRvdK5FsJ86GZIRKVmhsbO2xcdpUReN13lto
- BwnpRQTAZYjYicpGwd3TXM3uc5fi7Zm2BEsqUS0k1UqaaR3r6E/5nWwyakoPKCOixSEC
- 66pQ==
+ bh=E4GnwUXvg4e1SjHBDj7IOnsANmiVf/8g2S4TikZ2k4g=;
+ b=uTbSmgPUj9L/jUN3i04RnZe84snRgfdPwd9q77PSeMDKUcBHBf6iEW6lZZ9gejmP58
+ 1XRnwOrPZBHzmTe0O/1g55N1hKTTOQe6+RQy7VizQh/5P63NHghtWzEwdzImewwEzilx
+ XDzUOKMa1DankRhpfr0Yb8fLgYRivK/Ann4Dre6bmxJpU1eQeuHON1qsS9AJSn9sYKuT
+ /aOL2BpyqFMr2Rt/PEt3VpLFtujMgvJDQOh9X7BdsqAcKnCJXKuesDogsbSoURge7+Xm
+ eEB4zBuE4K33t1ckSY1OnqkTOLAkuAI7NL/Vv/gVvrM/j4S4+E0ROog0d4ckKbw+0pRp
+ 8mqg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXev9gMQkXRJvSqtN9fFt6JPBEaUbFq5pCiVeWmckhxFrDlDfQ6mXFZPpmTXyIyHQK/FCLxCFGR/f8=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx67Re/R3Gqtovbk081loK0NY7wqVEs4jV6LHRfnCBSn2nbsX4R
- HEkzxOK77oLShz3Vlvk8FD1zEZxXSxWFV+duuF9mCA5kL7LdyWL+h9tA
-X-Gm-Gg: ASbGncuGwx9OZ7hWSiqczaCmGpLQ1bw9Wvbl3OkUAdFaN/QBZjOIREX3v0H3g3Tvrcj
- 46g617z+2In+959hRtazHXw2Dr/yYWyt2hXagRaRWWSAh18nqd/6LpK/E/RP6bK7BAdxuaVqFnl
- VkVMTyJ+YKiQkcGyrzN77xtoFIA7BY9P7EZEjHitDAQ6INDrE8tExTtWbzN83VeWcorH7t73ThR
- wl1gOov0VuVX3byc21gJKQZcQraf4I7EGqN3GiV52wfQCqPSuRup9mAwPqAM9YHPF+J74fM7Jzl
- Y0Zkv/DJiLIE1XaLNA9CCSbioiHrAQzUQHea5lxnFXSH5uM3d/T23++XTOzCJ5BxqzdtvrLYf8V
- hmr6OQ0C/3k2+/Gp1bHZX9feG9YWASIOLzX7jg34=
-X-Google-Smtp-Source: AGHT+IFncLMpEiSXyRV3g2udd9oLTip5CIZ6fjiDS7nm0eY3IrUPzgwzagMuf9PJuGmIj5O4nns0xw==
-X-Received: by 2002:a17:903:2f87:b0:249:71f5:4e5a with SMTP id
- d9443c01a7336-267d161e3b9mr10726455ad.26.1757998100825; 
- Mon, 15 Sep 2025 21:48:20 -0700 (PDT)
+ AJvYcCWVDrJ5Um6e+1lWwYTI8kjPCu5KSYshbK4gY6x6zwYU8p+CdYqDSxqvdAOdvflmJc+F9KlRG/H7AzU=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzS4Pno+qzWk0qfE7KXZE7cn9y0dqlmRoFn/3Xxsx7j0WN7UpQX
+ TrxH5BefsAPb9Wc/UlThD8Naisw+YGWF3t8kXDoYrpkvERPWaz3Vgzn7
+X-Gm-Gg: ASbGnctt/tkn/w/yrb+5zEAyVGu2PWvh83HpmDoTqUVh6Nuvj3wHd0Tm5IKqGRmHAtO
+ JbLJyyPnSdw4oVQZduqJvJNiAuFZOILb8qr7EpAMvjAj9uT3YRfaex1Qt7zPmmYz9bh2d+9bHOZ
+ myhecoQP/l8ULK5ifvc7UD2+XLsZXCLDOqwmqPjBmZtofEu4TLCbIc7Qxn9IdNC/Nhr80sRvaiN
+ t1ohnt4GMwduqvM9fIT1n1v0aTKLCsRTLu/VCeNUoL87TD1Q7YxZ5IPbQew56NYMhvJaFIH/FNw
+ X+2+1oZLp2e7Ij3HDiSHtlo6TfpzoDB9FPnYCMMi3ghDvceiwqO+w246twKYE8tlN6ffQjE3EXE
+ ZK060xg3CbK/COGvqbMkonjEGnNXR+UVwexODVFs=
+X-Google-Smtp-Source: AGHT+IEX+DuJO9pqL+sh6jlOJbx2wPh/MnPUcew7z+h1RxAPsxkAl191gDKewoy1JkBZ+L5tKb1L0g==
+X-Received: by 2002:a17:902:ec8e:b0:25d:d848:1cca with SMTP id
+ d9443c01a7336-25dd8481fbdmr195481725ad.35.1757998107572; 
+ Mon, 15 Sep 2025 21:48:27 -0700 (PDT)
 Received: from pengdl-pc.mioffice.cn ([43.224.245.249])
  by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-25ef09c77f8sm104600605ad.15.2025.09.15.21.48.14
+ d9443c01a7336-25ef09c77f8sm104600605ad.15.2025.09.15.21.48.21
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 15 Sep 2025 21:48:20 -0700 (PDT)
+ Mon, 15 Sep 2025 21:48:27 -0700 (PDT)
 From: pengdonglin <dolinux.peng@gmail.com>
 To: tj@kernel.org, tony.luck@intel.com, jani.nikula@linux.intel.com,
  ap420073@gmail.com, jv@jvosburgh.net, freude@linux.ibm.com, bcrl@kvack.org,
@@ -74,12 +74,12 @@ Cc: bigeasy@linutronix.de, hdanton@sina.com, paulmck@kernel.org,
  linux-wireless@vger.kernel.org, linux-acpi@vger.kernel.org,
  linux-s390@vger.kernel.org, cgroups@vger.kernel.org,
  pengdonglin <dolinux.peng@gmail.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Hanjun Guo <guohanjun@huawei.com>,
- pengdonglin <pengdonglin@xiaomi.com>
-Subject: [PATCH v3 01/14] ACPI: APEI: Remove redundant rcu_read_lock/unlock()
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, pengdonglin <pengdonglin@xiaomi.com>
+Subject: [PATCH v3 02/14] drm/i915/gt: Remove redundant rcu_read_lock/unlock()
  in spin_lock
-Date: Tue, 16 Sep 2025 12:47:22 +0800
-Message-Id: <20250916044735.2316171-2-dolinux.peng@gmail.com>
+Date: Tue, 16 Sep 2025 12:47:23 +0800
+Message-Id: <20250916044735.2316171-3-dolinux.peng@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250916044735.2316171-1-dolinux.peng@gmail.com>
 References: <20250916044735.2316171-1-dolinux.peng@gmail.com>
@@ -114,32 +114,34 @@ been started implicitly by spin_lock().
 
 Simplify the code and remove the inner rcu_read_lock() invocation.
 
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: Tony Luck <tony.luck@intel.com>
-Cc: Hanjun Guo <guohanjun@huawei.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Tvrtko Ursulin <tursulin@ursulin.net>
 Signed-off-by: pengdonglin <pengdonglin@xiaomi.com>
 Signed-off-by: pengdonglin <dolinux.peng@gmail.com>
 ---
- drivers/acpi/apei/ghes.c | 2 --
+ drivers/gpu/drm/i915/gt/intel_ring_submission.c | 2 --
  1 file changed, 2 deletions(-)
 
-diff --git a/drivers/acpi/apei/ghes.c b/drivers/acpi/apei/ghes.c
-index a0d54993edb3..97ee19f2cae0 100644
---- a/drivers/acpi/apei/ghes.c
-+++ b/drivers/acpi/apei/ghes.c
-@@ -1207,12 +1207,10 @@ static int ghes_notify_hed(struct notifier_block *this, unsigned long event,
- 	int ret = NOTIFY_DONE;
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index 2a6d79abf25b..bf73166a1337 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -392,14 +392,12 @@ static void reset_rewind(struct intel_engine_cs *engine, bool stalled)
  
- 	spin_lock_irqsave(&ghes_notify_lock_irq, flags);
+ 	rq = NULL;
+ 	spin_lock_irqsave(&engine->sched_engine->lock, flags);
 -	rcu_read_lock();
- 	list_for_each_entry_rcu(ghes, &ghes_hed, list) {
- 		if (!ghes_proc(ghes))
- 			ret = NOTIFY_OK;
+ 	list_for_each_entry(pos, &engine->sched_engine->requests, sched.link) {
+ 		if (!__i915_request_is_complete(pos)) {
+ 			rq = pos;
+ 			break;
+ 		}
  	}
 -	rcu_read_unlock();
- 	spin_unlock_irqrestore(&ghes_notify_lock_irq, flags);
  
- 	return ret;
+ 	/*
+ 	 * The guilty request will get skipped on a hung engine.
 -- 
 2.34.1
 
