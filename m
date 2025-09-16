@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C718B59516
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Sep 2025 13:24:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5207B59517
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Sep 2025 13:24:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22B9810E6DB;
-	Tue, 16 Sep 2025 11:24:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76B5C10E77C;
+	Tue, 16 Sep 2025 11:24:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PRANn/OZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wm5lWSWe";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5CFC10E6DB;
- Tue, 16 Sep 2025 11:24:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B69FC10E774;
+ Tue, 16 Sep 2025 11:24:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758021881; x=1789557881;
+ t=1758021886; x=1789557886;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3C/faLy91vKsvaCjZ/monszBbKaa+f2c1VahrrMCD2w=;
- b=PRANn/OZdzJ2y+sEkC27gFlI7Pc69UH0t62JE/ZVDqXQCrc/UGL/4g0t
- 9BVZ3XEuQ6OxebeoeFcJUna6gUCYR8iWzFSoVON6hK8LuciOiCC+geMRK
- COqKVXelzkrAVlxR7k2dtQyly+l0ltacJhgW1WqBFE8N3dxJ2RRQt2jrA
- MqPLjvkM/6tgpTMrIuqBsXP9GhsoTSpDQzWmLYjra3oGVh3JtefnNKqMt
- h0J5SAcT5nCABI6xh4GF/tzMWRBXVatYFkTKWSC8oXlmmzbvkAhJwrAvi
- Gcz0aAFX8Jy53MdWqNlhix5tzKyJSrYT5PgBNlpTnnpLVlNJoKwsw4wjy Q==;
-X-CSE-ConnectionGUID: BMMIzkInQtqrxEuCokMxjg==
-X-CSE-MsgGUID: rfcRCM2aQaWSB3NwrxaISg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11554"; a="77905928"
-X-IronPort-AV: E=Sophos;i="6.18,269,1751266800"; d="scan'208";a="77905928"
+ bh=T6QSdd9im9TwtM6pJnF79OwFNgjEqF5MU1rz9rGCVZk=;
+ b=Wm5lWSWeIzkDk0Q3w+u0YgzojR8GMn4K9GqIQ9dQvKqf9jcPE4UQKE9c
+ r1HuKH6DxM2eFVauw8odLu6eZuElbH8nVhLdVJXaYXcWAqlEoWML69MmN
+ k9FuOnvadKB/n4ekEqObp6oojRJzcQSWb2mij0QfEnMfyh4n1UhFYvwvi
+ /l2XcVyWrfqM3qzEwc5BROgBFgz+ZjuU4GgUNnXyd1gRoMuWTxa3Kgfya
+ PecmU67YxTmc83m0rqFmvYsH/8s+u4+KYroxgdYpq3/PUvCMUcv1vke0u
+ W+yqeSFvhWErdeVkLTWMWpIkdi1qFSF0VLX5STCY0OlJvde0lRVlgRTpW A==;
+X-CSE-ConnectionGUID: sdOnzspHRXW9MQpTbIBIAg==
+X-CSE-MsgGUID: L90kVsqpQuC/kPSjQmrCpA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11554"; a="77905933"
+X-IronPort-AV: E=Sophos;i="6.18,269,1751266800"; d="scan'208";a="77905933"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2025 04:24:41 -0700
-X-CSE-ConnectionGUID: 61D6MeIUTMOqW1M1bcljTw==
-X-CSE-MsgGUID: 52SnMKjXS8S8ROwNnn+4aQ==
+ 16 Sep 2025 04:24:45 -0700
+X-CSE-ConnectionGUID: UeghP/WeQVKNOPOwp1fOiQ==
+X-CSE-MsgGUID: NlCkyIChRkylWpYQQIAqtg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,269,1751266800"; d="scan'208";a="174521703"
+X-IronPort-AV: E=Sophos;i="6.18,269,1751266800"; d="scan'208";a="174521710"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.81])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2025 04:24:39 -0700
+ 16 Sep 2025 04:24:44 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [PATCH 3/4] drm/{i915,xe}/dsb: make struct intel_dsb_buffer opaque
-Date: Tue, 16 Sep 2025 14:24:19 +0300
-Message-ID: <7c7b4dd8ac05c1b4f19e20340853693e551d1941.1758021803.git.jani.nikula@intel.com>
+Subject: [PATCH 4/4] drm/xe/dsb: drop the unnecessary struct i915_vma
+Date: Tue, 16 Sep 2025 14:24:20 +0300
+Message-ID: <fbeac00ef1a259f8c9074c6a16f34a886d0497e4.1758021803.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1758021803.git.jani.nikula@intel.com>
 References: <cover.1758021803.git.jani.nikula@intel.com>
@@ -71,69 +71,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Move the definitions of struct intel_dsb_buffer to the driver specific
-files, hiding the implementation details from the shared DSB code.
+Now that struct intel_dsb_buffer is opaque, it can be made unique to
+both drivers, and we can drop the unnecessary struct i915_vma part. Only
+the struct xe_bo part is needed.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dsb_buffer.c | 6 ++++++
- drivers/gpu/drm/i915/display/intel_dsb_buffer.h | 8 +-------
- drivers/gpu/drm/xe/display/xe_dsb_buffer.c      | 6 ++++++
- 3 files changed, 13 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/display/xe_dsb_buffer.c | 28 +++++++---------------
+ 1 file changed, 8 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb_buffer.c b/drivers/gpu/drm/i915/display/intel_dsb_buffer.c
-index fc1f0e6031ba..50faf3869b6c 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb_buffer.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb_buffer.c
-@@ -9,6 +9,12 @@
- #include "i915_vma.h"
- #include "intel_dsb_buffer.h"
- 
-+struct intel_dsb_buffer {
-+	u32 *cmd_buf;
-+	struct i915_vma *vma;
-+	size_t buf_size;
-+};
-+
- u32 intel_dsb_buffer_ggtt_offset(struct intel_dsb_buffer *dsb_buf)
- {
- 	return i915_ggtt_offset(dsb_buf->vma);
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb_buffer.h b/drivers/gpu/drm/i915/display/intel_dsb_buffer.h
-index 2cf639fae47a..d746c872e0c7 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb_buffer.h
-+++ b/drivers/gpu/drm/i915/display/intel_dsb_buffer.h
-@@ -9,13 +9,7 @@
- #include <linux/types.h>
- 
- struct drm_device;
--struct i915_vma;
--
--struct intel_dsb_buffer {
--	u32 *cmd_buf;
--	struct i915_vma *vma;
--	size_t buf_size;
--};
-+struct intel_dsb_buffer;
- 
- u32 intel_dsb_buffer_ggtt_offset(struct intel_dsb_buffer *dsb_buf);
- void intel_dsb_buffer_write(struct intel_dsb_buffer *dsb_buf, u32 idx, u32 val);
 diff --git a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-index ee7717b1980f..d55858705106 100644
+index d55858705106..fa0acb11eaad 100644
 --- a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
 +++ b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-@@ -9,6 +9,12 @@
- #include "xe_device.h"
- #include "xe_device_types.h"
+@@ -3,7 +3,6 @@
+  * Copyright 2023, Intel Corporation.
+  */
  
-+struct intel_dsb_buffer {
-+	u32 *cmd_buf;
-+	struct i915_vma *vma;
-+	size_t buf_size;
-+};
-+
+-#include "i915_vma.h"
+ #include "intel_dsb_buffer.h"
+ #include "xe_bo.h"
+ #include "xe_device.h"
+@@ -11,30 +10,30 @@
+ 
+ struct intel_dsb_buffer {
+ 	u32 *cmd_buf;
+-	struct i915_vma *vma;
++	struct xe_bo *bo;
+ 	size_t buf_size;
+ };
+ 
  u32 intel_dsb_buffer_ggtt_offset(struct intel_dsb_buffer *dsb_buf)
  {
- 	return xe_bo_ggtt_addr(dsb_buf->vma->bo);
+-	return xe_bo_ggtt_addr(dsb_buf->vma->bo);
++	return xe_bo_ggtt_addr(dsb_buf->bo);
+ }
+ 
+ void intel_dsb_buffer_write(struct intel_dsb_buffer *dsb_buf, u32 idx, u32 val)
+ {
+-	iosys_map_wr(&dsb_buf->vma->bo->vmap, idx * 4, u32, val);
++	iosys_map_wr(&dsb_buf->bo->vmap, idx * 4, u32, val);
+ }
+ 
+ u32 intel_dsb_buffer_read(struct intel_dsb_buffer *dsb_buf, u32 idx)
+ {
+-	return iosys_map_rd(&dsb_buf->vma->bo->vmap, idx * 4, u32);
++	return iosys_map_rd(&dsb_buf->bo->vmap, idx * 4, u32);
+ }
+ 
+ void intel_dsb_buffer_memset(struct intel_dsb_buffer *dsb_buf, u32 idx, u32 val, size_t size)
+ {
+ 	WARN_ON(idx > (dsb_buf->buf_size - size) / sizeof(*dsb_buf->cmd_buf));
+ 
+-	iosys_map_memset(&dsb_buf->vma->bo->vmap, idx * 4, val, size);
++	iosys_map_memset(&dsb_buf->bo->vmap, idx * 4, val, size);
+ }
+ 
+ struct intel_dsb_buffer *intel_dsb_buffer_create(struct drm_device *drm, size_t size)
+@@ -42,19 +41,12 @@ struct intel_dsb_buffer *intel_dsb_buffer_create(struct drm_device *drm, size_t
+ 	struct xe_device *xe = to_xe_device(drm);
+ 	struct intel_dsb_buffer *dsb_buf;
+ 	struct xe_bo *obj;
+-	struct i915_vma *vma;
+ 	int ret;
+ 
+ 	dsb_buf = kzalloc(sizeof(*dsb_buf), GFP_KERNEL);
+ 	if (!dsb_buf)
+ 		return ERR_PTR(-ENOMEM);
+ 
+-	vma = kzalloc(sizeof(*vma), GFP_KERNEL);
+-	if (!vma) {
+-		ret = -ENOMEM;
+-		goto err_vma;
+-	}
+-
+ 	/* Set scanout flag for WC mapping */
+ 	obj = xe_bo_create_pin_map_novm(xe, xe_device_get_root_tile(xe),
+ 					PAGE_ALIGN(size),
+@@ -66,15 +58,12 @@ struct intel_dsb_buffer *intel_dsb_buffer_create(struct drm_device *drm, size_t
+ 		goto err_pin_map;
+ 	}
+ 
+-	vma->bo = obj;
+-	dsb_buf->vma = vma;
++	dsb_buf->bo = obj;
+ 	dsb_buf->buf_size = size;
+ 
+ 	return dsb_buf;
+ 
+ err_pin_map:
+-	kfree(vma);
+-err_vma:
+ 	kfree(dsb_buf);
+ 
+ 	return ERR_PTR(ret);
+@@ -82,14 +71,13 @@ struct intel_dsb_buffer *intel_dsb_buffer_create(struct drm_device *drm, size_t
+ 
+ void intel_dsb_buffer_cleanup(struct intel_dsb_buffer *dsb_buf)
+ {
+-	xe_bo_unpin_map_no_vm(dsb_buf->vma->bo);
+-	kfree(dsb_buf->vma);
++	xe_bo_unpin_map_no_vm(dsb_buf->bo);
+ 	kfree(dsb_buf);
+ }
+ 
+ void intel_dsb_buffer_flush_map(struct intel_dsb_buffer *dsb_buf)
+ {
+-	struct xe_device *xe = dsb_buf->vma->bo->tile->xe;
++	struct xe_device *xe = dsb_buf->bo->tile->xe;
+ 
+ 	/*
+ 	 * The memory barrier here is to ensure coherency of DSB vs MMIO,
 -- 
 2.47.3
 
