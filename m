@@ -2,66 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E44E8B59AF5
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Sep 2025 16:55:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3D9BB59AF3
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Sep 2025 16:55:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7341010E7F2;
-	Tue, 16 Sep 2025 14:55:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C34C010E7F0;
+	Tue, 16 Sep 2025 14:55:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="C+eQ2WM8";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="buS1pCSa";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com
- [209.85.215.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1677410E63D
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Sep 2025 04:48:48 +0000 (UTC)
-Received: by mail-pg1-f179.google.com with SMTP id
- 41be03b00d2f7-b4c9a6d3fc7so3047817a12.3
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Sep 2025 21:48:48 -0700 (PDT)
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com
+ [209.85.214.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5678C10E63D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Sep 2025 04:48:54 +0000 (UTC)
+Received: by mail-pl1-f171.google.com with SMTP id
+ d9443c01a7336-2570bf605b1so48699645ad.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Sep 2025 21:48:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1757998127; x=1758602927; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1757998134; x=1758602934; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=KdSOTRlpcbSm77LoC5qTO7Qj2WXZD3913QNmAyohauk=;
- b=C+eQ2WM8rZSIciDptRyMiFM4MlI7xxxXBoL2BZWkIGXknoz5OEgedfazXdGSgoG7Cm
- qdsX7Z55GoL7HbYjq834Mhi21+uIcFdMoiGEeN+TMJhLks+fSrqyKqh745DyOfTqV4NK
- vIvrKHycMzuLNl2/anIZVDbjl6dZIWQ8NTS60j2V/JLuIHy0G4ji3XGqgl5Tc+a2gJk3
- gALbm1UuLdnqoXSuYcD7cGXKwVCC4ZHZaDKbs7Rh7s7SrB++Mfaiv4xCoAcBFXdzmh2y
- iDB+tzj5efnsXazh5UElP6em/AREphFSun7bBY3PETZNzo9iuJEok3UfUvobXRRG1F90
- RrnA==
+ bh=+E/nxXHnOkpnquuQqI/t3YoOv7z+zhY+r7/SIcSNR5s=;
+ b=buS1pCSaQo4PUcwAw6b50HAZU1PjqZVL4XZgfyymK2/2GHjl21VqvZlDsBkTIzJbGW
+ TEFQ7q1K31Eo4y6e60Obwy9o3jGoHenHxPk45kXTofw/aBJfPsAwYcFAneuxEmnvEMts
+ 2nVkJGPD8kLjk9Z3HJeZz5pAqp/KXCng36k/v6E6w7MgP9jMjRpRyUPnG7KsyUTArQuZ
+ dSR8hqgHevnsLH0Np0B0kc9obWAm+su/wVkJdwrWUXARD5IZdfyP/Ho6ZaBs6yFWh7Ik
+ eMvA5vZ3/ZwHKc3NZXwr3EoWO4NwL05QU5YrR3M+juhlEDRKE+sbg7BYnApzU8JxjryO
+ xWgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1757998127; x=1758602927;
+ d=1e100.net; s=20230601; t=1757998134; x=1758602934;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=KdSOTRlpcbSm77LoC5qTO7Qj2WXZD3913QNmAyohauk=;
- b=wB3S4BoR3IZIDrNuqTXolUJodcFNAqv8ClPPIPk3Y2wNX1YALyzDBNbXF5eqmOvTKO
- fBtndkVWwvgkTcpa2JV5tp1jbITdnB169KUEGcbNFFnZv59r+WIeCLIAp+MwfuWNa0Jn
- WnjhHly9of4cgICK4oBkgKaPSvzXhf7ojLM+eAxgvQHH4C8TPUlIUJdBAxkd4Ww6HS52
- c4TFEoczzkWvwZjlH+Ge9ZvUYFXaTr429+xWNcfFoji5G2O4JXp6RLlvBObf8LC0PO6v
- KDJWvBhdPxadqEqEvILvBAX63ucsLXTr0qkUq2LTdthZViYlygyU+thAN/ookPuX8taV
- iQuQ==
+ bh=+E/nxXHnOkpnquuQqI/t3YoOv7z+zhY+r7/SIcSNR5s=;
+ b=DhgfEesaaHJPe05gJyAuBhhshHZOCmIY3jWlAZRoA661/cDBIadcOhKK2xpU+yjzAZ
+ UmiReOO64acOChzMwFiKZm5IhEHTP/R808icyhucw8I8wDlET44zWpPdKkNZl+Xifs1+
+ fLanZ+SL5RhzRbDOxKGZ7SPicP9EQOanG5hJNJVcWpQePo86t5eY+USnh/GdJDyUIT6v
+ RbsyBbYkkTAyIj+x7jIzzK+gJPMFVDTFB8T7u/hzokDhfCP9E6HL6xegye/4n9tpkeTE
+ fYqsj8rP1imXdVMuhBDpgFaugEtGPz/+tS/wnF68ssO15hPB3IRfrPnVISWDLnySfT7F
+ zKyw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWMG2RfJKWVTKBBcwdfSxLq9GNCPlAUdqJnadL3CQgMHmpiYk1IXe1K5A933K4ks/u3kjNwXIA0CYw=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzaA1pkS0OdlI/cG0ffCCZ5ZZFhHcDwL84lSn+CKd3hRv+3fsbI
- 3Lvo6kV1TQ9EZo5255ba9g6SkIMYTkdPKP2JxZ0TuZInB0Pcd+sujf3V
-X-Gm-Gg: ASbGnculi+HKL3fYgjd6n9IixpRNx4h3g7lA1mIyTCVMvTWEcNidrLNrDxTk/dlIvmv
- aRXyBK2V7zI33PUIfLFGoh90J8NnfnTOgesVUhR7NrXPfu8NNJxllBtg7KxYuiolGlAao5m/47A
- iuFQ7xIaMxVPKlZ11/spx6Jbs3xiO2Mge3+GFJALpVRTe9DmqV3j1vLtDb5SRayMI1SW3dizhw8
- PtAU3OK1yxloQ1tV7ZhzxbS0qoeYv5YVp59zjaUE1ETRd/ooONp6Ng48YoEHB1+Qt0QO8gLpBHy
- qTW9g5jrcbMbm0bY+wHLlUR1nLu9QVqY3DiQRP+3/2h2doz50tgY86uAFy0XT/cAqY23hxnCQSR
- Tcbf7+nmndEOVgc32IXd8akr0/cVyHH4OlIUqZIc=
-X-Google-Smtp-Source: AGHT+IGkIhcIMGh+oiZ/aDBZPsHwPAhQG69OhML0E/f2mr/YjQA5clLbS6Ua4uwzILjLJIA06eQ5gQ==
-X-Received: by 2002:a17:902:d2c4:b0:25e:5d83:2ddd with SMTP id
- d9443c01a7336-25e5d832fdcmr159755585ad.45.1757998127447; 
- Mon, 15 Sep 2025 21:48:47 -0700 (PDT)
+ AJvYcCWv3I7RZpDvIcWbJOMK1XEUgV7+/xHH/aBuFCO+3aV2el8zL6oSkKhrH8zlK3eVApU9bxAKv7RK1KY=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz9Fb1cFrSRSP7UjJyVmejk852Xf/vT9aE6OPwmx9IhxXdrsaBR
+ CrcH8UabLWgraDI7E3wA6mOuKL5Zd5ia759lWe7uBzzHeAEnkCvJwn6u
+X-Gm-Gg: ASbGnctwAkxZfrpSCmGlmQqOlSaqA48++Dm8I4KMgHNAABZ8LuW86TjbaSXwN14NjV0
+ f3V4nVgf5R6pSEXeklSxN6dYGicoALOd0xwd7E4Bu0RdFrGNPa6Snj07jAXtFQvlSbGt4ajKOjM
+ Nv9mY54GkAhORFLTnPqU5RVUetPAh5ajcxcxjiXbR7zUO9Oes+A5JR0hqLceZhwlSmDgflri4J4
+ ActsbYvZxCpcdYyJt/bDsqmbOwoFgnymch0h13JBl8a1aTcf5QN7ymmBDM+CtcDCHdS8hR/mj22
+ HtVjPpgy2N6VuCjo0/egCItovY2LO7rnE4mcsCR4sg2EGTPxEMfhPLhZvF5+MQDGiJqcZVFRYD5
+ sN9ZB1pnoOWvxStbQqCuk2Pbe23r36K/mK+7noYaw41k4GbeiRw==
+X-Google-Smtp-Source: AGHT+IHsN0GBYzT4MMuIYjW4jOX+BASz3i1Lsko5ULcFSIEXx1CyBAF2xoChVB4z7RicwE9rHAP4nQ==
+X-Received: by 2002:a17:902:db02:b0:267:b357:9445 with SMTP id
+ d9443c01a7336-267b35796d4mr43637625ad.28.1757998133829; 
+ Mon, 15 Sep 2025 21:48:53 -0700 (PDT)
 Received: from pengdl-pc.mioffice.cn ([43.224.245.249])
  by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-25ef09c77f8sm104600605ad.15.2025.09.15.21.48.40
+ d9443c01a7336-25ef09c77f8sm104600605ad.15.2025.09.15.21.48.47
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 15 Sep 2025 21:48:46 -0700 (PDT)
+ Mon, 15 Sep 2025 21:48:53 -0700 (PDT)
 From: pengdonglin <dolinux.peng@gmail.com>
 To: tj@kernel.org, tony.luck@intel.com, jani.nikula@linux.intel.com,
  ap420073@gmail.com, jv@jvosburgh.net, freude@linux.ibm.com, bcrl@kvack.org,
@@ -73,14 +73,11 @@ Cc: bigeasy@linutronix.de, hdanton@sina.com, paulmck@kernel.org,
  netdev@vger.kernel.org, intel-gfx@lists.freedesktop.org,
  linux-wireless@vger.kernel.org, linux-acpi@vger.kernel.org,
  linux-s390@vger.kernel.org, cgroups@vger.kernel.org,
- pengdonglin <dolinux.peng@gmail.com>,
- Holger Dengler <dengler@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
- Alexander Gordeev <agordeev@linux.ibm.com>,
- pengdonglin <pengdonglin@xiaomi.com>
-Subject: [PATCH v3 05/14] s390/pkey: Remove redundant rcu_read_lock/unlock()
- in spin_lock
-Date: Tue, 16 Sep 2025 12:47:26 +0800
-Message-Id: <20250916044735.2316171-6-dolinux.peng@gmail.com>
+ pengdonglin <dolinux.peng@gmail.com>, pengdonglin <pengdonglin@xiaomi.com>
+Subject: [PATCH v3 06/14] ipc: Remove redundant rcu_read_lock/unlock() in
+ spin_lock
+Date: Tue, 16 Sep 2025 12:47:27 +0800
+Message-Id: <20250916044735.2316171-7-dolinux.peng@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250916044735.2316171-1-dolinux.peng@gmail.com>
 References: <20250916044735.2316171-1-dolinux.peng@gmail.com>
@@ -115,37 +112,71 @@ been started implicitly by spin_lock().
 
 Simplify the code and remove the inner rcu_read_lock() invocation.
 
-Cc: Harald Freudenberger <freude@linux.ibm.com>
-Cc: Holger Dengler <dengler@linux.ibm.com>
-Cc: Vasily Gorbik <gor@linux.ibm.com>
-Cc: Alexander Gordeev <agordeev@linux.ibm.com>
 Signed-off-by: pengdonglin <pengdonglin@xiaomi.com>
 Signed-off-by: pengdonglin <dolinux.peng@gmail.com>
 ---
- drivers/s390/crypto/pkey_base.c | 3 ---
- 1 file changed, 3 deletions(-)
+ ipc/msg.c  | 1 -
+ ipc/sem.c  | 1 -
+ ipc/shm.c  | 1 -
+ ipc/util.c | 2 --
+ 4 files changed, 5 deletions(-)
 
-diff --git a/drivers/s390/crypto/pkey_base.c b/drivers/s390/crypto/pkey_base.c
-index b15741461a63..4c4a9feecccc 100644
---- a/drivers/s390/crypto/pkey_base.c
-+++ b/drivers/s390/crypto/pkey_base.c
-@@ -48,16 +48,13 @@ int pkey_handler_register(struct pkey_handler *handler)
- 
- 	spin_lock(&handler_list_write_lock);
- 
--	rcu_read_lock();
- 	list_for_each_entry_rcu(h, &handler_list, list) {
- 		if (h == handler) {
--			rcu_read_unlock();
- 			spin_unlock(&handler_list_write_lock);
- 			module_put(handler->module);
- 			return -EEXIST;
- 		}
+diff --git a/ipc/msg.c b/ipc/msg.c
+index ee6af4fe52bf..1e579b57023f 100644
+--- a/ipc/msg.c
++++ b/ipc/msg.c
+@@ -179,7 +179,6 @@ static int newque(struct ipc_namespace *ns, struct ipc_params *params)
  	}
+ 
+ 	ipc_unlock_object(&msq->q_perm);
 -	rcu_read_unlock();
  
- 	list_add_rcu(&handler->list, &handler_list);
- 	spin_unlock(&handler_list_write_lock);
+ 	return msq->q_perm.id;
+ }
+diff --git a/ipc/sem.c b/ipc/sem.c
+index a39cdc7bf88f..38ad57b2b558 100644
+--- a/ipc/sem.c
++++ b/ipc/sem.c
+@@ -579,7 +579,6 @@ static int newary(struct ipc_namespace *ns, struct ipc_params *params)
+ 	ns->used_sems += nsems;
+ 
+ 	sem_unlock(sma, -1);
+-	rcu_read_unlock();
+ 
+ 	return sma->sem_perm.id;
+ }
+diff --git a/ipc/shm.c b/ipc/shm.c
+index a9310b6dbbc3..61fae1b6a18e 100644
+--- a/ipc/shm.c
++++ b/ipc/shm.c
+@@ -795,7 +795,6 @@ static int newseg(struct ipc_namespace *ns, struct ipc_params *params)
+ 	error = shp->shm_perm.id;
+ 
+ 	ipc_unlock_object(&shp->shm_perm);
+-	rcu_read_unlock();
+ 	return error;
+ 
+ no_id:
+diff --git a/ipc/util.c b/ipc/util.c
+index cae60f11d9c2..1be691b5dcad 100644
+--- a/ipc/util.c
++++ b/ipc/util.c
+@@ -293,7 +293,6 @@ int ipc_addid(struct ipc_ids *ids, struct kern_ipc_perm *new, int limit)
+ 	idr_preload(GFP_KERNEL);
+ 
+ 	spin_lock_init(&new->lock);
+-	rcu_read_lock();
+ 	spin_lock(&new->lock);
+ 
+ 	current_euid_egid(&euid, &egid);
+@@ -316,7 +315,6 @@ int ipc_addid(struct ipc_ids *ids, struct kern_ipc_perm *new, int limit)
+ 	if (idx < 0) {
+ 		new->deleted = true;
+ 		spin_unlock(&new->lock);
+-		rcu_read_unlock();
+ 		return idx;
+ 	}
+ 
 -- 
 2.34.1
 
