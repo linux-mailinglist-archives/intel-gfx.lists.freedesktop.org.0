@@ -2,50 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFBDAB593E6
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Sep 2025 12:38:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB03AB593F2
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Sep 2025 12:42:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1748B10E7A1;
-	Tue, 16 Sep 2025 10:38:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8182310E6EB;
+	Tue, 16 Sep 2025 10:41:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="EotcFjy4";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="bCB7aUI8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B70D10E7A1
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Sep 2025 10:38:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D77F10E6EB
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Sep 2025 10:41:58 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 1ED3E600AE;
- Tue, 16 Sep 2025 10:38:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A866C4CEEB;
- Tue, 16 Sep 2025 10:38:00 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id A1C68600AE;
+ Tue, 16 Sep 2025 10:41:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEE1EC4CEEB;
+ Tue, 16 Sep 2025 10:41:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1758019080;
- bh=h5n1Ac6OJ0L4253m1IBInwdgCPPtb58wfDQuEv2Gc3o=;
+ s=k20201202; t=1758019317;
+ bh=AU4jUxK/mQseaXnTxulo4sruAtv5VQoPr6ktnErkto0=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=EotcFjy4FDpgkbTkPgG0/b7fmrWXXCxuh3UEXH3kvsoQ824x2HGGpPYFutj9qr23Y
- xTOjoy3ZPS3CSL14TvtYhUr1WKiyRw5Ti8el56UrOgKA8B3Dl7nKedECHLDxMj0Fhx
- rfXbUdRZdxPBVU8Ku7tM+kQd945u8c3yNxTLXhzFy0ms6rlyILeJDlMKWJJJne8aBU
- fwHx6TSEPhETa5ivGyCH+AKeWoUitKX83Mkekui50iBNMmF+ThroI8a/QcbD6RDorN
- wu95AOYNRNjmmrKZXxbpWA4GMZSxEzASEVMgDTu2uJ8gVAfVEdr81RlxP+ocnHYLea
- je5eXSjILd0zQ==
-Date: Tue, 16 Sep 2025 12:37:57 +0200
+ b=bCB7aUI8LipqmEvMZgxYyt2hC1chVeyw5PKLZofnNC7dffqig9yQHW3zy32pW8xgn
+ tzEs7YgFz5gt54Bktf5fapvxDRJsDg5i9onmoejPoG36/miZebbmLgvANoZXJjuob0
+ ZOH1Dplm9HxtpIwSlbiWhjVFTsBUxk26PzfYat/hQiS3xpIcLGlIc4GRfIakuKpi92
+ vhB0DC8UWomRBHd8v+UP0upSevW6KE+iKnrKfOmaiQ/d/KLgSYcTAWDehgp+BS22f8
+ /nM59+yUguznvfY8RsF331wHBseToYM0WMli/Di8Sc0b1ibGZ0/+6vXe1v2dU+VkoA
+ tE9+1B9esjcUQ==
+Date: Tue, 16 Sep 2025 12:41:54 +0200
 From: Andi Shyti <andi.shyti@kernel.org>
 To: Krzysztof Karas <krzysztof.karas@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
  Sebastian Brzezinka <sebastian.brzezinka@intel.com>, 
  Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
  Jani Nikula <jani.nikula@linux.intel.com>
-Subject: Re: [PATCH v3 3/5] drm: Avoid undefined behavior on u16
- multiplication in drm_vram_helper_mode_valid_internal()
-Message-ID: <27p2dy3uhcqfugsdzbhawkhyvz74uxa5k4p7thl4fvqlss65f3@nojfpyge3wqy>
+Subject: Re: [PATCH v3 0/5] drm: Miscellaneous fixes in drm code
+Message-ID: <ujmn35bh2gknev3aibfz7zcc3biknnnkrw6aejtt5kvfd22w7x@ggniulqi4o42>
 References: <cover.1757576103.git.krzysztof.karas@intel.com>
- <827eb7e52afb3e2a24988e4e12479a2a83b1400e.1757576103.git.krzysztof.karas@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <827eb7e52afb3e2a24988e4e12479a2a83b1400e.1757576103.git.krzysztof.karas@intel.com>
+In-Reply-To: <cover.1757576103.git.krzysztof.karas@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,47 +61,45 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi Krzysztof,
 
-On Tue, Sep 16, 2025 at 06:34:06AM +0000, Krzysztof Karas wrote:
-> Fields hdisplay and vdisplay are defined as u16 and their
-> multiplication causes implicit promotion to signed 32-bit value,
-> which may overflow and cause undefined behavior.
-> 
-> Prevent possible undefined behavior by explicitly casting one of
-> the operands to (unsigned int) type.
-> 
-> Fixes: 80f7c3f77697 ("drm/vram: Add helpers to validate a display mode's memory requirements")
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: <stable@vger.kernel.org> # v5.7+
-> Signed-off-by: Krzysztof Karas <krzysztof.karas@intel.com>
-> ---
->  drivers/gpu/drm/drm_gem_vram_helper.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_gem_vram_helper.c b/drivers/gpu/drm/drm_gem_vram_helper.c
-> index b04cde4a60e7..4b144e9603b8 100644
-> --- a/drivers/gpu/drm/drm_gem_vram_helper.c
-> +++ b/drivers/gpu/drm/drm_gem_vram_helper.c
-> @@ -967,7 +967,7 @@ drm_vram_helper_mode_valid_internal(struct drm_device *dev,
->  
->  	max_fbpages = (vmm->vram_size / 2) >> PAGE_SHIFT;
->  
-> -	fbsize = mode->hdisplay * mode->vdisplay * max_bpp;
-> +	fbsize = (unsigned int)mode->hdisplay * mode->vdisplay * max_bpp;
+with that list of people Cc'ed it's probable that the series
+won't reach the right people.
 
-Why "unsigned int" and not "unsigned long"?
+Please Cc the people you have marked as "CC:" in your commit,
+including the kernel stable mailing list (git-send-email would
+take care of it unless you have explicitely added the
+"suppress-cc=all" flag from your git-send-email).
+Inclide the dri-devel mailing list also for intel-gfx patches
+and, finally, the drm maintainers responsible for applying the
+patches (you can rely, but not fully trust, get_maintainer.pl).
 
-If you are concerned about overflow, you can use
-check_mul_overflow(), as well.
-
-If we want to be sure, we can also use u64/u32 types.
-
-(same comment goes for the rest of the patches).
-
+Thanks,
 Andi
 
->  	fbpages = DIV_ROUND_UP(fbsize, PAGE_SIZE);
->  
->  	if (fbpages > max_fbpages)
+On Tue, Sep 16, 2025 at 06:32:21AM +0000, Krzysztof Karas wrote:
+> v3:
+>  * Change the casts in the last patch in the series.
+> 
+> v2 (Jani Nikula):
+>  * Remove i915 patches from drm series.
+>  * Split the last patch into 3 separate changes.
+> 
+> Krzysztof Karas (5):
+>   drm: Avoid suspicious operations in drm_fb_dma_get_gem_addr()
+>   drm: Do not attempt to round_up() zeros in drm_suballoc_try_alloc()
+>   drm: Avoid undefined behavior on u16 multiplication in 
+>     drm_vram_helper_mode_valid_internal()
+>   drm: Avoid undefined behavior on u16 multiplication  in
+>     mipi_dbi_dev_init()
+>   drm: Avoid undefined behavior on u16 multiplication in 
+>     drm_crtc_vblank_helper_get_vblank_timestamp_internal()
+> 
+>  drivers/gpu/drm/drm_fb_dma_helper.c   | 7 +++++--
+>  drivers/gpu/drm/drm_gem_vram_helper.c | 2 +-
+>  drivers/gpu/drm/drm_mipi_dbi.c        | 2 +-
+>  drivers/gpu/drm/drm_suballoc.c        | 6 ++++--
+>  drivers/gpu/drm/drm_vblank.c          | 2 +-
+>  5 files changed, 12 insertions(+), 7 deletions(-)
+> 
 > -- 
 > 2.34.1
 > 
