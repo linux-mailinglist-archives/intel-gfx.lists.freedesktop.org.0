@@ -2,66 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BECEB59B00
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Sep 2025 16:55:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3797EB59AF2
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Sep 2025 16:55:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F70010E7FD;
-	Tue, 16 Sep 2025 14:55:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F5CB10E7EC;
+	Tue, 16 Sep 2025 14:55:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="H9MixfkU";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="EuCI9B00";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com
- [209.85.214.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1FD510E63D
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Sep 2025 04:49:34 +0000 (UTC)
-Received: by mail-pl1-f172.google.com with SMTP id
- d9443c01a7336-24c8ef94e5dso40146275ad.1
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Sep 2025 21:49:34 -0700 (PDT)
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com
+ [209.85.214.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 401DC10E63D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Sep 2025 04:49:41 +0000 (UTC)
+Received: by mail-pl1-f173.google.com with SMTP id
+ d9443c01a7336-266a0e83662so12431715ad.0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Sep 2025 21:49:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1757998174; x=1758602974; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1757998181; x=1758602981; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=kee/jWM05xMj5MjToYK8a9EUY/mguZ7xPQQnB3cJ53E=;
- b=H9MixfkUCCRTmET4nIfhoJpJuDVTWhP78zfebisHMG41aK974vtbvXnhHX6pgdFXaU
- ddbL6ZHVgVwCaIYQztbq0CvrO1G9vvdtDYrHx4I1EQkSjQa6JvAjVm+V/8IDj7qwhZK+
- XKYjCyFklb/UqaiwjXScxojbjp+r6fvyt8iYjEP0cZORvGjWi8ZftMymSLX4A7xzZ4GN
- uRdr9iHDUyw9M4MKJrhlknpZvehNzOwYcGXpH6uB0c7snZaEZuqyznoWguNDTTTTcZhU
- /s+c0GR+br/uNweJ1j4fy57EMmgxTnSEvwaxNeqZiv87GU/2ExNUHn0mkeHI6kORt7bZ
- IioA==
+ bh=6Tcedso9pzLAwLQitmBj+2+6wC4HZyTUiqHFeMdiOi8=;
+ b=EuCI9B003wKwaAqN85aDwd3hRU0b0D0X8MqGBLoyVytuGhcmycCooB2XwuTUTNEVCJ
+ yI0/O/ZmKHz9TxNz6dVMUIyrA5ZWwH0A12n8s6GqDcB6TPO3TMaA8hflncxohgFC8X/W
+ EbnJJwVszRZ2B/ZGwsXpVLOq5qlfhG88r+EBNg6ZJP0IiTF8XRKdEOQorAOq5p3IF2vA
+ 6VmqhTXAEhe+eVGmZEymiThbxiXxLtV2vGyvlCcREFi/gu91cU+RXXGPZI6ug2Lxayvv
+ LvzI5MnJRYiV8OG4Zz4cHQ1+c6VCUQtIni+Rh9D8bgNmTb7hVLiTWHoXkLktVI2k9eBE
+ kriw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1757998174; x=1758602974;
+ d=1e100.net; s=20230601; t=1757998181; x=1758602981;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=kee/jWM05xMj5MjToYK8a9EUY/mguZ7xPQQnB3cJ53E=;
- b=TMzM/2NbsoQNsxXaWpygWZaF9eYycaPqPL7h0knbFm4QIxUMAIXrZ60ra0CgAG9ckt
- ZlVFfsqEsUDdkkL5Ar4Rr8ex4UKhzJ0FOCMBQ0xiHVBG7lvJXIOOw88HVSN3YAXr8Ox3
- Z8zJzj2L7vEgJ5V7CXX5AkdGN60IKJHwoUFC1cTM2XNV3TZj88QmZNCXgr7kpsWGI1lM
- Wmp/wTLC2WKawbcLqzYVmDkqkChfybWv+pWJpub0inE4OzVHk/e69zMTxXWHsPti4UlL
- 5fUEWo6e4OvBuJPkejrVEiGmY1Y8f136wIqGKcWk6jOhv7qySOdNPx8sZuS0517AtMZo
- 4knQ==
+ bh=6Tcedso9pzLAwLQitmBj+2+6wC4HZyTUiqHFeMdiOi8=;
+ b=a8DnqkOIBjMSOkzLHrdZ6deE02n3Tty459DJrJojYqexKNTPLlgGRwdx0+fdpTJkXj
+ LSu/HvERzYeNtLI7aCDUkeMj99lyxiHnViRqiUtqoffWXRE5lgAFXHs6LfYhMLTnR2+P
+ YmSt9R7wnos+j7htIuHjXBPt6jus+fMjJpFKTASAjXbW7ss4CMMqyOjE5/nf4EzqI9M4
+ NSeynummPTy4Il13gSWa8UKTI7bzpfms3RYJdoGeHvpytnL4ywdPBeYHmeO+3EYB2P5U
+ kwnGlxv2Nop3vkqqqsJpFhk58JrReoCVOF/2qnvq2DXR7R3EfScHsSaSBko71ow/LyU1
+ iIYw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXUce5fXriqlRKPBxZv9DTI6zvVG8oCnOCO/qyWp8UMxPOWM5bzSo9xzKbOXlzFrDO/IcYnqRKLIgU=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxRTMW/uGpW9/Lvl8YTabMlFmzgqdZsRrtrT5WB21xpFvZ+c5iU
- /DRJV7UKF4YORX5XRME1kx65zOTGvT/ooAoqO2alcnwzV5tUf7N0NNWj
-X-Gm-Gg: ASbGnctFV5HlcL5VXYs8xBmTPF3NFjaAmkEQSxl/LRHagZV7avQOy9989XA3z1y5O4g
- QcuS310gPiYB8nJx6J6nylBh54gjMrlLfV3v/NNuAoOahdUFhxWKE18zGyUFycBDixtcLZ0Bih/
- h4i09vgXYcrdCP9VmL/ateBs+EoNIHQWkt98QQsto8Dw/Wo18W5mZdBBsQ4n82d4psMVeRSNduL
- feCmVHtSVgifG8wzmsJ0PphM8pEYtUoXUfkcEi2D2bSyrL1SP+oVE160ZJHET80DA/0cDTFT6SC
- iceG6k/4CQsn93pljT+OFPqNeAxuAlip3P7hm0icRgiQRz3Hh31V0TFR63ilfBzYq3aChSq3Y3z
- A54RdjBjwJpAS54vOinhej+yMq9KQDB2WrUT75Dg=
-X-Google-Smtp-Source: AGHT+IHQsp/jp2h5qh/u2y0fwJLYw3kUJFgybrRxf3n883LnUrw88kxlxQMidQOFwo4KtZaOVgbKQg==
-X-Received: by 2002:a17:902:cecc:b0:267:a1d5:7372 with SMTP id
- d9443c01a7336-267d151fba1mr14211985ad.4.1757998173983; 
- Mon, 15 Sep 2025 21:49:33 -0700 (PDT)
+ AJvYcCW4/slWB3Rf4/dvNgg+dyi7L6wu0C90+GWBGktX53LXlLlak1QCImb53E+BQcb9rJMtTbV08m+tok4=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yzq7ECK9HFxk+3d6NYo9lcpHg0aLhglpTC0Ouzzp4nppByiZnkK
+ H/6QbelVJvBSgycOV6us6EYyZu06YOyv2Qc1NqRCG+oQmLi6PioMUjg1
+X-Gm-Gg: ASbGnctO3xNOmFXIX8g5pR9yPnqx6ApTuWG/HytMFj6jx0WFvAM19EHufsdz5WzgvCW
+ nJsgHy/FubWspl5T3vG56YdkSaWiY1jAL/ryn/ZnBvWmt/Lo8CxCPBgH0bWd3ieesNZCcR/FxdP
+ RUM+8M0VHgpKxNLS9eaqr5FCzA2B3PGeCYhhI9ZsNuL0QAIyyczfhgTFgQfI5RP0qKqnYFDw4RU
+ rLmBmQtLcUnkIlTlU2m6uW8Kwkkrqjm6u+ZvZu8KXwnfpKn5NuWlKAZNUjXI7DVOnVxWwzf/mb6
+ FPw+EGQyyk8BNMuuf6CvFDhePYLTo5bn4wlAzWOVS76mmFQRw2V2Bn5Y0jH7lcuzV1WPA427M0r
+ 2uWMNDLb0fnk0mWrA9Wq3M8E2DraFcb/Oc/sqsMM=
+X-Google-Smtp-Source: AGHT+IEk/DXYOCMhugqpymqTGh+KMlTQeAIuikssxOXlHLYZS5SBPJrXDrKkOxyomJ+DECodEM8EoQ==
+X-Received: by 2002:a17:902:c40d:b0:251:a3b3:1580 with SMTP id
+ d9443c01a7336-25d24cac4eemr191581215ad.6.1757998180587; 
+ Mon, 15 Sep 2025 21:49:40 -0700 (PDT)
 Received: from pengdl-pc.mioffice.cn ([43.224.245.249])
  by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-25ef09c77f8sm104600605ad.15.2025.09.15.21.49.27
+ d9443c01a7336-25ef09c77f8sm104600605ad.15.2025.09.15.21.49.34
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 15 Sep 2025 21:49:33 -0700 (PDT)
+ Mon, 15 Sep 2025 21:49:40 -0700 (PDT)
 From: pengdonglin <dolinux.peng@gmail.com>
 To: tj@kernel.org, tony.luck@intel.com, jani.nikula@linux.intel.com,
  ap420073@gmail.com, jv@jvosburgh.net, freude@linux.ibm.com, bcrl@kvack.org,
@@ -73,14 +73,12 @@ Cc: bigeasy@linutronix.de, hdanton@sina.com, paulmck@kernel.org,
  netdev@vger.kernel.org, intel-gfx@lists.freedesktop.org,
  linux-wireless@vger.kernel.org, linux-acpi@vger.kernel.org,
  linux-s390@vger.kernel.org, cgroups@vger.kernel.org,
- pengdonglin <dolinux.peng@gmail.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- pengdonglin <pengdonglin@xiaomi.com>
-Subject: [PATCH v3 12/14] net: amt: Remove redundant rcu_read_lock/unlock() in
- spin_lock
-Date: Tue, 16 Sep 2025 12:47:33 +0800
-Message-Id: <20250916044735.2316171-13-dolinux.peng@gmail.com>
+ pengdonglin <dolinux.peng@gmail.com>, Paolo Abeni <pabeni@redhat.com>,
+ Jakub Kicinski <kuba@kernel.org>, pengdonglin <pengdonglin@xiaomi.com>
+Subject: [PATCH v3 13/14] net: bonding: Remove redundant
+ rcu_read_lock/unlock() in spin_lock
+Date: Tue, 16 Sep 2025 12:47:34 +0800
+Message-Id: <20250916044735.2316171-14-dolinux.peng@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250916044735.2316171-1-dolinux.peng@gmail.com>
 References: <20250916044735.2316171-1-dolinux.peng@gmail.com>
@@ -115,77 +113,35 @@ been started implicitly by spin_lock().
 
 Simplify the code and remove the inner rcu_read_lock() invocation.
 
-Cc: Taehee Yoo <ap420073@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>
-Cc: "David S. Miller" <davem@davemloft.net>
-Cc: Eric Dumazet <edumazet@google.com>
+Cc: Jay Vosburgh <jv@jvosburgh.net>
+Cc: Paolo Abeni <pabeni@redhat.com>
 Cc: Jakub Kicinski <kuba@kernel.org>
 Signed-off-by: pengdonglin <pengdonglin@xiaomi.com>
 Signed-off-by: pengdonglin <dolinux.peng@gmail.com>
 ---
- drivers/net/amt.c | 8 --------
- 1 file changed, 8 deletions(-)
+ drivers/net/bonding/bond_3ad.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/net/amt.c b/drivers/net/amt.c
-index ed86537b2f61..aaed9fbc7526 100644
---- a/drivers/net/amt.c
-+++ b/drivers/net/amt.c
-@@ -295,7 +295,6 @@ static void amt_source_work(struct work_struct *work)
- 
- 	tunnel = gnode->tunnel_list;
- 	spin_lock_bh(&tunnel->lock);
+diff --git a/drivers/net/bonding/bond_3ad.c b/drivers/net/bonding/bond_3ad.c
+index 4edc8e6b6b64..c53ea73f103a 100644
+--- a/drivers/net/bonding/bond_3ad.c
++++ b/drivers/net/bonding/bond_3ad.c
+@@ -2485,7 +2485,6 @@ void bond_3ad_state_machine_handler(struct work_struct *work)
+ 	 * concurrently due to incoming LACPDU as well.
+ 	 */
+ 	spin_lock_bh(&bond->mode_lock);
 -	rcu_read_lock();
- 	if (gnode->filter_mode == MCAST_INCLUDE) {
- 		amt_destroy_source(snode);
- 		if (!gnode->nr_sources)
-@@ -306,7 +305,6 @@ static void amt_source_work(struct work_struct *work)
- 		 */
- 		snode->status = AMT_SOURCE_STATUS_D_FWD;
+ 
+ 	/* check if there are any slaves */
+ 	if (!bond_has_slaves(bond))
+@@ -2537,7 +2536,6 @@ void bond_3ad_state_machine_handler(struct work_struct *work)
+ 			break;
+ 		}
  	}
 -	rcu_read_unlock();
- 	spin_unlock_bh(&tunnel->lock);
- }
+ 	spin_unlock_bh(&bond->mode_lock);
  
-@@ -426,7 +424,6 @@ static void amt_group_work(struct work_struct *work)
- 		goto out;
- 	}
- 
--	rcu_read_lock();
- 	for (i = 0; i < buckets; i++) {
- 		hlist_for_each_entry_safe(snode, t,
- 					  &gnode->sources[i], node) {
-@@ -443,7 +440,6 @@ static void amt_group_work(struct work_struct *work)
- 		amt_del_group(amt, gnode);
- 	else
- 		gnode->filter_mode = MCAST_INCLUDE;
--	rcu_read_unlock();
- 	spin_unlock_bh(&tunnel->lock);
- out:
- 	dev_put(amt->dev);
-@@ -1327,11 +1323,9 @@ static void amt_clear_groups(struct amt_tunnel_list *tunnel)
- 	int i;
- 
- 	spin_lock_bh(&tunnel->lock);
--	rcu_read_lock();
- 	for (i = 0; i < amt->hash_buckets; i++)
- 		hlist_for_each_entry_safe(gnode, t, &tunnel->groups[i], node)
- 			amt_del_group(amt, gnode);
--	rcu_read_unlock();
- 	spin_unlock_bh(&tunnel->lock);
- }
- 
-@@ -1343,11 +1337,9 @@ static void amt_tunnel_expire(struct work_struct *work)
- 	struct amt_dev *amt = tunnel->amt;
- 
- 	spin_lock_bh(&amt->lock);
--	rcu_read_lock();
- 	list_del_rcu(&tunnel->list);
- 	amt->nr_tunnels--;
- 	amt_clear_groups(tunnel);
--	rcu_read_unlock();
- 	spin_unlock_bh(&amt->lock);
- 	kfree_rcu(tunnel, rcu);
- }
+ 	if (update_slave_arr)
 -- 
 2.34.1
 
