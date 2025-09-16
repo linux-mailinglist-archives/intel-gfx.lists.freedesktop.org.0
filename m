@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EFD0B5975A
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Sep 2025 15:19:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96246B5970D
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Sep 2025 15:10:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B75F010E08B;
-	Tue, 16 Sep 2025 13:19:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3368C10E315;
+	Tue, 16 Sep 2025 13:10:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 556 seconds by postgrey-1.36 at gabe;
- Tue, 16 Sep 2025 13:19:48 UTC
-Received: from 13.mo561.mail-out.ovh.net (13.mo561.mail-out.ovh.net
- [188.165.33.202])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1D6F10E08B
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Sep 2025 13:19:48 +0000 (UTC)
-Received: from director6.ghost.mail-out.ovh.net (unknown [10.109.249.107])
- by mo561.mail-out.ovh.net (Postfix) with ESMTP id 4cR2MB2tcWz6TbL
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Sep 2025 13:10:30 +0000 (UTC)
-Received: from ghost-submission-5b5ff79f4f-t8q8x (unknown [10.108.42.124])
- by director6.ghost.mail-out.ovh.net (Postfix) with ESMTPS id BF887812EE;
- Tue, 16 Sep 2025 13:10:28 +0000 (UTC)
-Received: from etezian.org ([37.59.142.105])
- by ghost-submission-5b5ff79f4f-t8q8x with ESMTPSA
- id NoBdB8RhyWhGFQAANDFDZw
- (envelope-from <andi@etezian.org>); Tue, 16 Sep 2025 13:10:28 +0000
+X-Greylist: delayed 82073 seconds by postgrey-1.36 at gabe;
+ Tue, 16 Sep 2025 13:10:34 UTC
+Received: from 3.mo581.mail-out.ovh.net (3.mo581.mail-out.ovh.net
+ [46.105.34.113])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0C3B10E315
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Sep 2025 13:10:34 +0000 (UTC)
+Received: from director11.ghost.mail-out.ovh.net (unknown [10.110.0.87])
+ by mo581.mail-out.ovh.net (Postfix) with ESMTP id 4cR2MF35P3z6W3D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Sep 2025 13:10:33 +0000 (UTC)
+Received: from ghost-submission-5b5ff79f4f-kqzgt (unknown [10.110.188.95])
+ by director11.ghost.mail-out.ovh.net (Postfix) with ESMTPS id 304C7C33CA;
+ Tue, 16 Sep 2025 13:10:31 +0000 (UTC)
+Received: from etezian.org ([37.59.142.98])
+ by ghost-submission-5b5ff79f4f-kqzgt with ESMTPSA
+ id 48lxL8dhyWhnpwAAna9SXg
+ (envelope-from <andi@etezian.org>); Tue, 16 Sep 2025 13:10:31 +0000
 Authentication-Results: garm.ovh; auth=pass
- (GARM-105G00630f26057-5988-43ac-a5ce-a2f17a65ee7d,
+ (GARM-98R0028a97aa24-8b3f-4f2a-a0f5-901bbf9e8522,
  15C4845B0CE7FC90BB5A3BE606FC2E1917F11B68) smtp.auth=andi@etezian.org
 X-OVh-ClientIp: 178.39.90.92
 From: Andi Shyti <andi.shyti@kernel.org>
 To: intel-gfx <intel-gfx@lists.freedesktop.org>
 Cc: Andi Shyti <andi.shyti@linux.intel.com>,
  Taotao Chen <chentaotao@didiglobal.com>
-Subject: [CI 1/2] drm/i915: set O_LARGEFILE in __create_shmem()
-Date: Tue, 16 Sep 2025 15:09:55 +0200
-Message-ID: <20250916130956.3913547-2-andi.shyti@kernel.org>
+Subject: [CI 2/2] drm/i915: Fix incorrect error handling in shmem_pwrite()
+Date: Tue, 16 Sep 2025 15:09:56 +0200
+Message-ID: <20250916130956.3913547-3-andi.shyti@kernel.org>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250916130956.3913547-1-andi.shyti@kernel.org>
 References: <20250916130956.3913547-1-andi.shyti@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 7045037194932193869
+X-Ovh-Tracer-Id: 7046163093246118477
 X-VR-SPAMSTATE: OK
 X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdegtdeihecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpeetnhguihcuufhhhihtihcuoegrnhguihdrshhhhihtiheskhgvrhhnvghlrdhorhhgqeenucggtffrrghtthgvrhhnpeejleekkedugfeuuddvhffhgeekgeeivddtieefveejvedtgfdvhfeukedtgfeufeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppeduvdejrddtrddtrddupddujeekrdefledrledtrdelvddpfeejrdehledrudegvddruddtheenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeduvdejrddtrddtrddupdhmrghilhhfrhhomheprghnughisegvthgviihirghnrdhorhhgpdhnsggprhgtphhtthhopedupdhrtghpthhtohepihhnthgvlhdqghhfgieslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrghdpoffvtefjohhsthepmhhoheeiudgmpdhmohguvgepshhmthhpohhuth
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdegtdeihecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpeetnhguihcuufhhhihtihcuoegrnhguihdrshhhhihtiheskhgvrhhnvghlrdhorhhgqeenucggtffrrghtthgvrhhnpeejleekkedugfeuuddvhffhgeekgeeivddtieefveejvedtgfdvhfeukedtgfeufeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppeduvdejrddtrddtrddupddujeekrdefledrledtrdelvddpfeejrdehledrudegvddrleeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepuddvjedrtddrtddruddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdpnhgspghrtghpthhtohepuddprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhgpdfovfetjfhoshhtpehmohehkedumgdpmhhouggvpehsmhhtphhouhht
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,42 +62,45 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Taotao Chen <chentaotao@didiglobal.com>
 
-Without O_LARGEFILE, file->f_op->write_iter calls
-generic_write_check_limits(), which enforces a 2GB (MAX_NON_LFS) limit,
-causing -EFBIG on large writes.
+shmem_pwrite() currently checks for short writes before negative error
+codes, which can overwrite real errors (e.g., -EFBIG) with -EIO.
+Reorder the checks to return negative errors first, then handle short
+writes.
 
-In shmem_pwrite(), this error is later masked as -EIO due to the error
-handling order, leading to igt failures like gen9_exec_parse(bb-large).
-
-Set O_LARGEFILE in __create_shmem() to prevent -EFBIG on large writes.
-
-Reported-by: kernel test robot <oliver.sang@intel.com>
-Closes: https://lore.kernel.org/oe-lkp/202508081029.343192ec-lkp@intel.com
-Fixes: 048832a3f400 ("drm/i915: Refactor shmem_pwrite() to use kiocb and write_iter")
 Signed-off-by: Taotao Chen <chentaotao@didiglobal.com>
 Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-Link: https://lore.kernel.org/r/20250822030651.28099-1-chentaotao@didiglobal.com
+Link: https://lore.kernel.org/r/20250822030651.28099-2-chentaotao@didiglobal.com
 Signed-off-by: Andi Shyti <andi.shyti@kernel.org>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 15 ++++++++++++---
+ 1 file changed, 12 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-index e3d188455f67..b9dae15c1d16 100644
+index b9dae15c1d16..26dda55a07ff 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-@@ -514,6 +514,13 @@ static int __create_shmem(struct drm_i915_private *i915,
- 	if (IS_ERR(filp))
- 		return PTR_ERR(filp);
+@@ -441,11 +441,20 @@ shmem_pwrite(struct drm_i915_gem_object *obj,
+ 	written = file->f_op->write_iter(&kiocb, &iter);
+ 	BUG_ON(written == -EIOCBQUEUED);
  
+-	if (written != size)
+-		return -EIO;
+-
 +	/*
-+	 * Prevent -EFBIG by allowing large writes beyond MAX_NON_LFS on shmem
-+	 * objects by setting O_LARGEFILE.
++	 * First, check if write_iter returned a negative error.
++	 * If the write failed, return the real error code immediately.
++	 * This prevents it from being overwritten by the short write check below.
 +	 */
-+	if (force_o_largefile())
-+		filp->f_flags |= O_LARGEFILE;
-+
- 	obj->filp = filp;
+ 	if (written < 0)
+ 		return written;
++	/*
++	 * Check for a short write (written bytes != requested size).
++	 * Even if some data was written, return -EIO to indicate that the
++	 * write was not fully completed.
++	 */
++	if (written != size)
++		return -EIO;
+ 
  	return 0;
  }
 -- 
