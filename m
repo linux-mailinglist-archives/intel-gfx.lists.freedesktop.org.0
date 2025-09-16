@@ -2,64 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A240B5938C
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Sep 2025 12:26:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04394B593A2
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Sep 2025 12:29:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B188A10E7AB;
-	Tue, 16 Sep 2025 10:25:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eqajPbBx";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id D514010E786;
+	Tue, 16 Sep 2025 10:29:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28C0810E7AB
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Sep 2025 10:25:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758018360; x=1789554360;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=gfqdGbS1NIlQV+IGtkLIinIMKcoBVPvwiXacIQkri+w=;
- b=eqajPbBxiuOiRWPJioYUz9Hz+bOXi2aiQW7Zss//2VFCmeC3j+U1xP1u
- SQKrlw3LtHdOqiJNVEFgqwYSiDepbbe2CjIO9Ue9cv1yO3JszsxwfvIEE
- HNvo48c88VeuDPX5iAnFKzvPyFLuGDDiOA326nB8bYx0v/ALql+CslsrW
- mI6qSwD8xIabb9BOIVBy5yuH3Mn4cy4dZzFSalktJIUl8l/Unl+JnY4yj
- sFmYo3NBT74QmDTajPBacNQfVw4dKrMcNRLmGJ3z31ARvpnsYdKqR1sWR
- C4TXiHciewCtgOjzPkPPr55pTiJxlQ8FmNw1pzf91l7Sq3wKJpFZBZ7HB Q==;
-X-CSE-ConnectionGUID: qo4bEf85Q8CaqZ58f2umDw==
-X-CSE-MsgGUID: /fnU8eR0TgiEBw0qbmPQqA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11554"; a="71393473"
-X-IronPort-AV: E=Sophos;i="6.18,268,1751266800"; d="scan'208";a="71393473"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2025 03:25:59 -0700
-X-CSE-ConnectionGUID: IqaTky0OTZmo4mVE/XRimA==
-X-CSE-MsgGUID: 9fEcPjVbSsSKbjl9SZm2ow==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,268,1751266800"; d="scan'208";a="174018690"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.81])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2025 03:25:56 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Andi Shyti <andi.shyti@kernel.org>, Krzysztof Karas
- <krzysztof.karas@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, Andi Shyti
- <andi.shyti@linux.intel.com>, Sebastian Brzezinka
- <sebastian.brzezinka@intel.com>, Krzysztof Niemiec
- <krzysztof.niemiec@intel.com>
-Subject: Re: [PATCH v3 1/5] drm: Avoid suspicious operations in
- drm_fb_dma_get_gem_addr()
-In-Reply-To: <37gdqefdlckaqa2kwwcu2wcwfq6vyrxiz43tc2tgornr357ok4@w6vwdtf7p44y>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1757576103.git.krzysztof.karas@intel.com>
- <af178bcb6408ec6395b1102a1429ad49f6bc9f1b.1757576103.git.krzysztof.karas@intel.com>
- <37gdqefdlckaqa2kwwcu2wcwfq6vyrxiz43tc2tgornr357ok4@w6vwdtf7p44y>
-Date: Tue, 16 Sep 2025 13:25:53 +0300
-Message-ID: <7c34d67eebe9e43aa9150d394b16d51b0b6d01d9@intel.com>
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 263CD88A72;
+ Tue, 16 Sep 2025 10:29:24 +0000 (UTC)
+Received: from 88-113-67-44.elisa-laajakaista.fi ([88.113.67.44]
+ helo=[192.168.100.137])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
+ id 1uySw3-00000000p9C-2EYx; Tue, 16 Sep 2025 13:29:21 +0300
+Message-ID: <4dcd22ba34cf11a501220834fe6b9375de26e2a1.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>, 
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 16 Sep 2025 13:29:17 +0300
+In-Reply-To: <20250905145832.12097-12-ville.syrjala@linux.intel.com>
+References: <20250905145832.12097-1-ville.syrjala@linux.intel.com>
+ <20250905145832.12097-12-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+b1 
 MIME-Version: 1.0
-Content-Type: text/plain
+X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-25) on farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP autolearn=ham autolearn_force=no version=4.0.1
+Subject: Re: [PATCH 11/13] drm/i915: Make wm latencies monotonic
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,58 +50,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 16 Sep 2025, Andi Shyti <andi.shyti@kernel.org> wrote:
-> Hi Krzysztof,
->
-> On Tue, Sep 16, 2025 at 06:33:00AM +0000, Krzysztof Karas wrote:
->> There are two unsafe scenarios in that function:
->>  1) drm_format_info_block_width/height() may return 0 and cause
->> division by 0 down the line. Return early if any of these values
->> are 0.
->>  2) dma_addr calculations are carried out using 32-bit
->> arithmetic, which could cause a truncation of the values
->> before they are extended to 64 bits. Cast one of the operands
->> to dma_addr_t, so 64-bit arithmetic is used.
->> 
->> Fixes: 8c30eecc6769 ("drm/gem: rename struct drm_gem_dma_object.{paddr => dma_addr}")
->
-> This doesn't need the Fixes tag as it's a very unlikely thing to
-> happen.
->
->> Cc: Danilo Krummrich <dakr@redhat.com>
->> Cc: <stable@vger.kernel.org> # v6.1+
->> Reviewed-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
->> Signed-off-by: Krzysztof Karas <krzysztof.karas@intel.com>
->> ---
->>  drivers/gpu/drm/drm_fb_dma_helper.c | 7 +++++--
->>  1 file changed, 5 insertions(+), 2 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/drm_fb_dma_helper.c b/drivers/gpu/drm/drm_fb_dma_helper.c
->> index fd71969d2fb1..00aaad648a33 100644
->> --- a/drivers/gpu/drm/drm_fb_dma_helper.c
->> +++ b/drivers/gpu/drm/drm_fb_dma_helper.c
->> @@ -85,6 +85,9 @@ dma_addr_t drm_fb_dma_get_gem_addr(struct drm_framebuffer *fb,
->>  	u32 block_start_y;
->>  	u32 num_hblocks;
->>  
->> +	if (block_w == 0 || block_h == 0)
->> +		return 0;
->
-> This can't go unnoticed, you make the analyzer happy but you
-> create bigger issues by silently returning '0'.
->
-> If you are really concerned you can place here a BUG_ON or
-> WARN_ON_ONCE.
+On Fri, 2025-09-05 at 17:58 +0300, Ville Syrjala wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>=20
+> Some systems (eg. LNL Lenovo Thinkapd X1 Carbon) declare
+> semi-bogus non-monotonic WM latency values:
+>  WM0 latency not provided
+>  WM1 latency 100 usec
+>  WM2 latency 100 usec
+>  WM3 latency 100 usec
+>  WM4 latency 93 usec
+>  WM5 latency 100 usec
+>=20
+> Apparently Windows just papers over the issue by bumping the
+> latencies for the higher watermark levels to make them monotonic
+> again. Do the same.
+>=20
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/skl_watermark.c | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/d=
+rm/i915/display/skl_watermark.c
+> index e11ba1a822f4..d334cc661328 100644
+> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> @@ -3238,6 +3238,19 @@ static void sanitize_wm_latency(struct intel_displ=
+ay *display)
+>  	}
+>  }
+> =20
+> +static void make_wm_latency_monotonic(struct intel_display *display)
+> +{
+> +	u16 *wm =3D display->wm.skl_latency;
+> +	int level, num_levels =3D display->wm.num_levels;
+> +
+> +	for (level =3D 1; level < num_levels; level++) {
+> +		if (wm[level] =3D=3D 0)
+> +			break;
+> +
+> +		wm[level] =3D max(wm[level], wm[level-1]);
+> +	}
+> +}
+> +
 
-Never BUG* though.
+What if, for instance, we have:
 
->
-> Andi
->
->> +
->>  	obj = drm_fb_dma_get_gem_obj(fb, plane);
->>  	if (!obj)
->>  		return 0;
+ WM0 latency not provided
+ WM1 latency 200 usec
+ WM2 latency 100 usec
+ WM3 latency 100 usec
+ WM4 latency 100 usec
+ WM5 latency 100 usec
 
--- 
-Jani Nikula, Intel
+Do we really want to set them all to be 200 usec? Maybe multiples of
+the minimum we have would still be fine?
+
+What's the actual reason for this "papering over"? Is it to synchronize
+timers?
+
+--
+Cheers,
+Luca.
