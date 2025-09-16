@@ -2,48 +2,118 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB03AB593F2
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Sep 2025 12:42:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1744B59B03
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Sep 2025 16:55:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8182310E6EB;
-	Tue, 16 Sep 2025 10:41:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A92410E7FF;
+	Tue, 16 Sep 2025 14:55:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="bCB7aUI8";
+	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="AbLSsMHN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D77F10E6EB
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Sep 2025 10:41:58 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id A1C68600AE;
- Tue, 16 Sep 2025 10:41:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEE1EC4CEEB;
- Tue, 16 Sep 2025 10:41:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1758019317;
- bh=AU4jUxK/mQseaXnTxulo4sruAtv5VQoPr6ktnErkto0=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=bCB7aUI8LipqmEvMZgxYyt2hC1chVeyw5PKLZofnNC7dffqig9yQHW3zy32pW8xgn
- tzEs7YgFz5gt54Bktf5fapvxDRJsDg5i9onmoejPoG36/miZebbmLgvANoZXJjuob0
- ZOH1Dplm9HxtpIwSlbiWhjVFTsBUxk26PzfYat/hQiS3xpIcLGlIc4GRfIakuKpi92
- vhB0DC8UWomRBHd8v+UP0upSevW6KE+iKnrKfOmaiQ/d/KLgSYcTAWDehgp+BS22f8
- /nM59+yUguznvfY8RsF331wHBseToYM0WMli/Di8Sc0b1ibGZ0/+6vXe1v2dU+VkoA
- tE9+1B9esjcUQ==
-Date: Tue, 16 Sep 2025 12:41:54 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Krzysztof Karas <krzysztof.karas@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>, 
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: Re: [PATCH v3 0/5] drm: Miscellaneous fixes in drm code
-Message-ID: <ujmn35bh2gknev3aibfz7zcc3biknnnkrw6aejtt5kvfd22w7x@ggniulqi4o42>
-References: <cover.1757576103.git.krzysztof.karas@intel.com>
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
+ [148.163.158.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7F4110E764
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Sep 2025 10:51:28 +0000 (UTC)
+Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58G7VubJ017774;
+ Tue, 16 Sep 2025 10:51:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+ :content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:reply-to:subject:to; s=pp1;
+ bh=6tiMzpFySb6QheQKIvDTH6bfs6J9A1FW2+JoAuxFTeI=; b=AbLSsMHN4/7x
+ K1xNMtFDrE+TOYW1iIsk4Mpi83HqtjESBjZwkWHJ8kKIL6P1kWFgRbg5RHL/Vc3/
+ 3gNiaqucIq+Hh51NRfzWX0tQi6l43nWNKIrpYWsuJRM6WFMkpMIumQPjbiBNolvo
+ Y5C7x/SgZ+Lg+AIaq8uXUg7N+k5h9pT/2jo/OiBPLGzNJmqVQ/uNJdo/uDuDiSBq
+ WEnHzpMxwUc0R/63Kg2X/G4mqzS8whBtZo73nJ9nqat9v/gFpoDFgpa6HdDBi/35
+ ZZtv0zCsk+pBvAE/vE0jbXVqaj9ApqBocZnQJNjhIpUknqNLYl+7NU0hbSMUKozo
+ aSRGgR2Zog==
+Received: from pps.reinject (localhost [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 496g536k9u-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 16 Sep 2025 10:51:09 +0000 (GMT)
+Received: from m0360072.ppops.net (m0360072.ppops.net [127.0.0.1])
+ by pps.reinject (8.18.1.12/8.18.0.8) with ESMTP id 58GAp8j4018605;
+ Tue, 16 Sep 2025 10:51:08 GMT
+Received: from ppma11.dal12v.mail.ibm.com
+ (db.9e.1632.ip4.static.sl-reverse.com [50.22.158.219])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 496g536k9s-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 16 Sep 2025 10:51:08 +0000 (GMT)
+Received: from pps.filterd (ppma11.dal12v.mail.ibm.com [127.0.0.1])
+ by ppma11.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 58G85k50009486;
+ Tue, 16 Sep 2025 10:51:07 GMT
+Received: from smtprelay07.dal12v.mail.ibm.com ([172.16.1.9])
+ by ppma11.dal12v.mail.ibm.com (PPS) with ESMTPS id 495nn3b4fg-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 16 Sep 2025 10:51:07 +0000
+Received: from smtpav06.wdc07v.mail.ibm.com (smtpav06.wdc07v.mail.ibm.com
+ [10.39.53.233])
+ by smtprelay07.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 58GAp6EK11011482
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Tue, 16 Sep 2025 10:51:06 GMT
+Received: from smtpav06.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 6406D5803F;
+ Tue, 16 Sep 2025 10:51:06 +0000 (GMT)
+Received: from smtpav06.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 4345B58055;
+ Tue, 16 Sep 2025 10:51:04 +0000 (GMT)
+Received: from ltc.linux.ibm.com (unknown [9.5.196.140])
+ by smtpav06.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+ Tue, 16 Sep 2025 10:51:04 +0000 (GMT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1757576103.git.krzysztof.karas@intel.com>
+Date: Tue, 16 Sep 2025 12:51:03 +0200
+From: Harald Freudenberger <freude@linux.ibm.com>
+To: pengdonglin <dolinux.peng@gmail.com>
+Cc: tj@kernel.org, tony.luck@intel.com, jani.nikula@linux.intel.com,
+ ap420073@gmail.com, jv@jvosburgh.net, bcrl@kvack.org,
+ trondmy@kernel.org, longman@redhat.com, kees@kernel.org,
+ bigeasy@linutronix.de, hdanton@sina.com, paulmck@kernel.org,
+ linux-kernel@vger.kernel.org, linux-rt-devel@lists.linux.dev,
+ linux-nfs@vger.kernel.org, linux-aio@kvack.org,
+ linux-fsdevel@vger.kernel.org, linux-security-module@vger.kernel.org,
+ netdev@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-wireless@vger.kernel.org, linux-acpi@vger.kernel.org,
+ linux-s390@vger.kernel.org, cgroups@vger.kernel.org,
+ Holger Dengler <dengler@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
+ Alexander Gordeev <agordeev@linux.ibm.com>,
+ pengdonglin <pengdonglin@xiaomi.com>
+Subject: Re: [PATCH v3 05/14] s390/pkey: Remove redundant
+ rcu_read_lock/unlock() in spin_lock
+Mail-Reply-To: freude@linux.ibm.com
+In-Reply-To: <20250916044735.2316171-6-dolinux.peng@gmail.com>
+References: <20250916044735.2316171-1-dolinux.peng@gmail.com>
+ <20250916044735.2316171-6-dolinux.peng@gmail.com>
+Message-ID: <31be6bb6541bb3e338e3025ac9e8fce5@linux.ibm.com>
+X-Sender: freude@linux.ibm.com
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: dUB5GxZDVKC_6J2Ylb023C_3mzK49UHc
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE1MDA4NiBTYWx0ZWRfX5K5HvLPe748s
+ 1a0iccxe5DzHqpq2HHVExtQN3K3dDZAHmx+plczsOrZBuez8PS/bGeKlwxmdko1vp27MiJETJTG
+ rWBkahKjm6E+Lehe9W5AsUAlfhXLzBCKZl91u4s5pKGLTilBgre1vFNiCO4KLvO9XrWU1Caav6A
+ LP5y7FEjU/NnADi5ucPQYwViKT2GmRSmRBhcRXXpZEfspZ5l5uxEmXVcbW4As4eHjzGuflsj31H
+ fsacgfENVa2S7hh4yS1XXPBx2rL5+dQv2gYhPIFTz7huQ8NQh9IyA9t8ZyRl7UxTDbk1vmK6jmT
+ k/dl/Zv55pKlRrfw9Ym17kI1XWuEyzglymXJjQwZlfbaExngRAMTnR8i/K+0vtUxACA7W2YSZzh
+ NNpGuSjP
+X-Proofpoint-ORIG-GUID: okqK8s0OaduvH8SS01anEhfn0Ac3dkSd
+X-Authority-Analysis: v=2.4 cv=UJ7dHDfy c=1 sm=1 tr=0 ts=68c9411d cx=c_pps
+ a=aDMHemPKRhS1OARIsFnwRA==:117 a=aDMHemPKRhS1OARIsFnwRA==:17
+ a=kj9zAlcOel0A:10 a=yJojWOMRYYMA:10 a=IeNN-m2dAAAA:8 a=VnNF1IyMAAAA:8
+ a=pGLkceISAAAA:8 a=6zuzY4jPHNdFWWqqfRgA:9 a=CjuIK1q_8ugA:10
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-16_02,2025-09-12_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 bulkscore=0 impostorscore=0 spamscore=0 priorityscore=1501
+ clxscore=1011 suspectscore=0 phishscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509150086
+X-Mailman-Approved-At: Tue, 16 Sep 2025 14:55:20 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,54 +126,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: freude@linux.ibm.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Krzysztof,
+On 2025-09-16 06:47, pengdonglin wrote:
+> From: pengdonglin <pengdonglin@xiaomi.com>
+> 
+> Since commit a8bb74acd8efe ("rcu: Consolidate RCU-sched update-side
+> function definitions")
+> there is no difference between rcu_read_lock(), rcu_read_lock_bh() and
+> rcu_read_lock_sched() in terms of RCU read section and the relevant 
+> grace
+> period. That means that spin_lock(), which implies 
+> rcu_read_lock_sched(),
+> also implies rcu_read_lock().
+> 
+> There is no need no explicitly start a RCU read section if one has 
+> already
+> been started implicitly by spin_lock().
+> 
+> Simplify the code and remove the inner rcu_read_lock() invocation.
+> 
+> Cc: Harald Freudenberger <freude@linux.ibm.com>
+> Cc: Holger Dengler <dengler@linux.ibm.com>
+> Cc: Vasily Gorbik <gor@linux.ibm.com>
+> Cc: Alexander Gordeev <agordeev@linux.ibm.com>
+> Signed-off-by: pengdonglin <pengdonglin@xiaomi.com>
+> Signed-off-by: pengdonglin <dolinux.peng@gmail.com>
+> ---
+>  drivers/s390/crypto/pkey_base.c | 3 ---
+>  1 file changed, 3 deletions(-)
+> 
+> diff --git a/drivers/s390/crypto/pkey_base.c 
+> b/drivers/s390/crypto/pkey_base.c
+> index b15741461a63..4c4a9feecccc 100644
+> --- a/drivers/s390/crypto/pkey_base.c
+> +++ b/drivers/s390/crypto/pkey_base.c
+> @@ -48,16 +48,13 @@ int pkey_handler_register(struct pkey_handler 
+> *handler)
+> 
+>  	spin_lock(&handler_list_write_lock);
+> 
+> -	rcu_read_lock();
+>  	list_for_each_entry_rcu(h, &handler_list, list) {
+>  		if (h == handler) {
+> -			rcu_read_unlock();
+>  			spin_unlock(&handler_list_write_lock);
+>  			module_put(handler->module);
+>  			return -EEXIST;
+>  		}
+>  	}
+> -	rcu_read_unlock();
+> 
+>  	list_add_rcu(&handler->list, &handler_list);
+>  	spin_unlock(&handler_list_write_lock);
 
-with that list of people Cc'ed it's probable that the series
-won't reach the right people.
-
-Please Cc the people you have marked as "CC:" in your commit,
-including the kernel stable mailing list (git-send-email would
-take care of it unless you have explicitely added the
-"suppress-cc=all" flag from your git-send-email).
-Inclide the dri-devel mailing list also for intel-gfx patches
-and, finally, the drm maintainers responsible for applying the
-patches (you can rely, but not fully trust, get_maintainer.pl).
-
-Thanks,
-Andi
-
-On Tue, Sep 16, 2025 at 06:32:21AM +0000, Krzysztof Karas wrote:
-> v3:
->  * Change the casts in the last patch in the series.
-> 
-> v2 (Jani Nikula):
->  * Remove i915 patches from drm series.
->  * Split the last patch into 3 separate changes.
-> 
-> Krzysztof Karas (5):
->   drm: Avoid suspicious operations in drm_fb_dma_get_gem_addr()
->   drm: Do not attempt to round_up() zeros in drm_suballoc_try_alloc()
->   drm: Avoid undefined behavior on u16 multiplication in 
->     drm_vram_helper_mode_valid_internal()
->   drm: Avoid undefined behavior on u16 multiplication  in
->     mipi_dbi_dev_init()
->   drm: Avoid undefined behavior on u16 multiplication in 
->     drm_crtc_vblank_helper_get_vblank_timestamp_internal()
-> 
->  drivers/gpu/drm/drm_fb_dma_helper.c   | 7 +++++--
->  drivers/gpu/drm/drm_gem_vram_helper.c | 2 +-
->  drivers/gpu/drm/drm_mipi_dbi.c        | 2 +-
->  drivers/gpu/drm/drm_suballoc.c        | 6 ++++--
->  drivers/gpu/drm/drm_vblank.c          | 2 +-
->  5 files changed, 12 insertions(+), 7 deletions(-)
-> 
-> -- 
-> 2.34.1
-> 
-> 
-> -- 
-> Best Regards,
-> Krzysztof
+Acked-by: Harald Freudenberger <freude@linux.ibm.com>
