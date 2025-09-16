@@ -2,74 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DE03B5901C
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Sep 2025 10:12:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A81A1B59029
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Sep 2025 10:15:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A0E410E6DA;
-	Tue, 16 Sep 2025 08:12:35 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lx8hGWJS";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35FFD89CCE;
+	Tue, 16 Sep 2025 08:15:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F8D810E0AC;
- Tue, 16 Sep 2025 08:12:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758010352; x=1789546352;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=/fOTPnIYRzNwyZiVhCec2Qefpdd4a+D5flBWydA6AZE=;
- b=lx8hGWJSEdQTR9BNvogza54a3y3txZ2UBqpPVzTLCmq1vktDeK8klsDa
- XnL/Nmnf5CtoPTb6kylv4xLKzxqG3vC7k9oFcKL6h3WOQAJ6L8lEAb8wg
- d4dhE3zDV+kBdwPGcRcA1sJdTI4G+maEIwKMj1L6QLRwsMj6A/XEUbSyW
- D9AeFUjQWdCk4ATQtp1Wvzb+HSPlQVaHTzQoFxLOKw3aLq4MHvooTRp6g
- kPoEdv+IvloOD1ow2bvfY7t7WRIrg6B+D+n8lBYTPrhsF7MUV6mSt2e1G
- mkawVuYIO7YhP3kBaCwMINkm1LHcoguNxPkjEi011ARWQ3OTh+hExclWH Q==;
-X-CSE-ConnectionGUID: CVg8k4SjSQCRjMN6Kt6nEQ==
-X-CSE-MsgGUID: bR/nNCRnRq62NUOMFk4xQA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11554"; a="60211645"
-X-IronPort-AV: E=Sophos;i="6.18,268,1751266800"; d="scan'208";a="60211645"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2025 01:12:31 -0700
-X-CSE-ConnectionGUID: ZT4Lqgl3Qg2yWk79GVLDRA==
-X-CSE-MsgGUID: j/vJU0B9RmavdKiDJ4Kqsw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,268,1751266800"; d="scan'208";a="175658518"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.81])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2025 01:12:24 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Andi Shyti <andi.shyti@kernel.org>
-Cc: Ilpo =?utf-8?Q?J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>, Krzysztof
- =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Christian
- =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>, =?utf-8?Q?Micha=C5=82?=
- Winiarski <michal.winiarski@intel.com>, Alex Deucher
- <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, David Airlie
- <airlied@gmail.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Joonas
- Lahtinen <joonas.lahtinen@linux.intel.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>, Simona Vetter <simona@ffwll.ch>, Tvrtko
- Ursulin <tursulin@ursulin.net>, ?UTF-8?q?Thomas=20Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, "Michael J . Ruhl" <mjruhl@habana.ai>,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v2 06/11] drm/i915/gt: Use pci_rebar_size_supported()
-In-Reply-To: <aMhzougLzpfw2wWw@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250915091358.9203-1-ilpo.jarvinen@linux.intel.com>
- <20250915091358.9203-7-ilpo.jarvinen@linux.intel.com>
- <b918053f6ac7b4a27148a1cbf10eb8402572c6c9@intel.com>
- <ewypjj64siaswcfvfzgxihwrflb6k6pz2mrfuu4ursdldwnqlm@ignlhd73keck>
- <aMhzougLzpfw2wWw@intel.com>
-Date: Tue, 16 Sep 2025 11:12:21 +0300
-Message-ID: <58fb988207c4d5c5ba25338c1281189e12c009c3@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E709989CCE
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Sep 2025 08:15:44 +0000 (UTC)
+Received: from 88-113-67-44.elisa-laajakaista.fi ([88.113.67.44]
+ helo=[192.168.100.137])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
+ id 1uyQqa-00000000owa-46DW; Tue, 16 Sep 2025 11:15:41 +0300
+Message-ID: <583d139ee01028f5fc90e37ab83090c5ec8dd403.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>, 
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 16 Sep 2025 11:15:32 +0300
+In-Reply-To: <20250905145832.12097-2-ville.syrjala@linux.intel.com>
+References: <20250905145832.12097-1-ville.syrjala@linux.intel.com>
+ <20250905145832.12097-2-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+b1 
+MIME-Version: 1.0
+X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-25) on farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP autolearn=ham autolearn_force=no version=4.0.1
+Subject: Re: [PATCH 01/13] drm/i915/dram: Also apply the 16Gb DIMM w/a for
+ larger DRAM chips
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,55 +51,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 15 Sep 2025, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Mon, Sep 15, 2025 at 07:24:10PM +0200, Andi Shyti wrote:
->> Hi,
->>=20
->> On Mon, Sep 15, 2025 at 03:42:23PM +0300, Jani Nikula wrote:
->> > On Mon, 15 Sep 2025, Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com=
-> wrote:
->> > > PCI core provides pci_rebar_size_supported() that helps in checking =
-if
->> > > a BAR Size is supported for the BAR or not. Use it in
->> > > i915_resize_lmem_bar() to simplify code.
->> > >
->> > > Signed-off-by: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com>
->> > > Acked-by: Christian K=C3=B6nig <christian.koenig@amd.com>
->> >=20
->> > Reviewed-by: Jani Nikula <jani.nikula@intel.com>
->> >=20
->> > and
->> >=20
->> > Acked-by: Jani Nikula <jani.nikula@intel.com>
->>=20
->> Just for some random noise on commit log's bureaucracy: why do we
->> need both Ack and R-b? I think R-b covers Ack making it
->> redundant. Right?
->
-> reviewed-by is a more formal attestation of the entries in the
-> submitting-patches doc, saying that he carefully reviewed the work.
->
-> acked by is to state that from the maintainer perspective of that file
-> the file can be merged through any tree.
->
-> in the drm trees nowdays our tooling is enforcing acked-by tag if
-> the patch is touching domains outside that drm branch itself.
->
-> if a committer tries to push a patch without ack from the maintainer
-> of that domain it will be blocked.
->
-> So I believe it is a good idea to keep a separation of the meaning.
-> Carrying a technical review of the patch in question doesn't necessarily
-> mean that you, as maintainer, is okay of getting that patch merged
-> through other trees.
+On Fri, 2025-09-05 at 17:58 +0300, Ville Syrjala wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>=20
+> While the spec only asks us to do the WM0 latency bump for 16Gb
+> DRAM devices I believe we should apply it for larger DRAM chips.
+> At the time the w/a was added there were no larger chips on
+> the market, but I think I've seen at least 32Gb DDR4 chips
+> being available these days.
+>=20
+> Whether it's possible to actually find suitable DIMMs for the
+> affected systems with largers chips I don't know. Also it's
+> not known whether the 1 usec latency bump would be sufficient
+> for larger chips. Someone would need to find such DIMMs and
+> test this. Fortunately we do have a bit of extra latency already
+> with the 1 usec bump, as the actual requirement was .4 usec for
+> for 16Gb chips.
+>=20
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
 
-Yes, all of the above. I just wanted to be explicit to avoid the
-follow-up questions "thanks for the review, but is it okay to merge via
-pci" or "thanks for the ack, but does this need review also", and move
-on from this whole thread. (Which is a nice cleanup, btw, thanks.)
+Sound reasonable.
 
-BR,
-Jani.
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
---=20
-Jani Nikula, Intel
+--
+Cheers,
+Luca.
+
+
+
+
+>  drivers/gpu/drm/i915/display/skl_watermark.c |  4 ++--
+>  drivers/gpu/drm/i915/soc/intel_dram.c        | 10 +++++-----
+>  2 files changed, 7 insertions(+), 7 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/d=
+rm/i915/display/skl_watermark.c
+> index 0b9c86042e78..b7482d428868 100644
+> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> @@ -3209,9 +3209,9 @@ adjust_wm_latency(struct intel_display *display,
+>  	}
+> =20
+>  	/*
+> -	 * WA Level-0 adjustment for 16Gb DIMMs: SKL+
+> +	 * WA Level-0 adjustment for 16Gb+ DIMMs: SKL+
+>  	 * If we could not get dimm info enable this WA to prevent from
+> -	 * any underrun. If not able to get DIMM info assume 16Gb DIMM
+> +	 * any underrun. If not able to get DIMM info assume 16Gb+ DIMM
+>  	 * to avoid any underrun.
+>  	 */
+>  	if (!display->platform.dg2 && dram_info->has_16gb_dimms)
+> diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915=
+/soc/intel_dram.c
+> index 149527827624..8e81573022ff 100644
+> --- a/drivers/gpu/drm/i915/soc/intel_dram.c
+> +++ b/drivers/gpu/drm/i915/soc/intel_dram.c
+> @@ -335,7 +335,7 @@ static bool
+>  skl_is_16gb_dimm(const struct dram_dimm_info *dimm)
+>  {
+>  	/* Convert total Gb to Gb per DRAM device */
+> -	return dimm->size / (intel_dimm_num_devices(dimm) ?: 1) =3D=3D 16;
+> +	return dimm->size / (intel_dimm_num_devices(dimm) ?: 1) >=3D 16;
+>  }
+> =20
+>  static void
+> @@ -354,7 +354,7 @@ skl_dram_get_dimm_info(struct drm_i915_private *i915,
+>  	}
+> =20
+>  	drm_dbg_kms(&i915->drm,
+> -		    "CH%u DIMM %c size: %u Gb, width: X%u, ranks: %u, 16Gb DIMMs: %s\n=
+",
+> +		    "CH%u DIMM %c size: %u Gb, width: X%u, ranks: %u, 16Gb+ DIMMs: %s\=
+n",
+>  		    channel, dimm_name, dimm->size, dimm->width, dimm->ranks,
+>  		    str_yes_no(skl_is_16gb_dimm(dimm)));
+>  }
+> @@ -384,7 +384,7 @@ skl_dram_get_channel_info(struct drm_i915_private *i9=
+15,
+>  	ch->is_16gb_dimm =3D skl_is_16gb_dimm(&ch->dimm_l) ||
+>  		skl_is_16gb_dimm(&ch->dimm_s);
+> =20
+> -	drm_dbg_kms(&i915->drm, "CH%u ranks: %u, 16Gb DIMMs: %s\n",
+> +	drm_dbg_kms(&i915->drm, "CH%u ranks: %u, 16Gb+ DIMMs: %s\n",
+>  		    channel, ch->ranks, str_yes_no(ch->is_16gb_dimm));
+> =20
+>  	return 0;
+> @@ -406,7 +406,7 @@ skl_dram_get_channels_info(struct drm_i915_private *i=
+915, struct dram_info *dram
+>  	u32 val;
+>  	int ret;
+> =20
+> -	/* Assume 16Gb DIMMs are present until proven otherwise */
+> +	/* Assume 16Gb+ DIMMs are present until proven otherwise */
+>  	dram_info->has_16gb_dimms =3D true;
+> =20
+>  	val =3D intel_uncore_read(&i915->uncore,
+> @@ -438,7 +438,7 @@ skl_dram_get_channels_info(struct drm_i915_private *i=
+915, struct dram_info *dram
+>  	drm_dbg_kms(&i915->drm, "Memory configuration is symmetric? %s\n",
+>  		    str_yes_no(dram_info->symmetric_memory));
+> =20
+> -	drm_dbg_kms(&i915->drm, "16Gb DIMMs: %s\n",
+> +	drm_dbg_kms(&i915->drm, "16Gb+ DIMMs: %s\n",
+>  		    str_yes_no(dram_info->has_16gb_dimms));
+> =20
+>  	return 0;
