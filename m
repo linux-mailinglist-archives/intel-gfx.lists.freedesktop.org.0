@@ -2,118 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1744B59B03
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Sep 2025 16:55:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E22AB594E6
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Sep 2025 13:15:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A92410E7FF;
-	Tue, 16 Sep 2025 14:55:34 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="AbLSsMHN";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99BF110E1A3;
+	Tue, 16 Sep 2025 11:15:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
- [148.163.158.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7F4110E764
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Sep 2025 10:51:28 +0000 (UTC)
-Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58G7VubJ017774;
- Tue, 16 Sep 2025 10:51:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
- :content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:reply-to:subject:to; s=pp1;
- bh=6tiMzpFySb6QheQKIvDTH6bfs6J9A1FW2+JoAuxFTeI=; b=AbLSsMHN4/7x
- K1xNMtFDrE+TOYW1iIsk4Mpi83HqtjESBjZwkWHJ8kKIL6P1kWFgRbg5RHL/Vc3/
- 3gNiaqucIq+Hh51NRfzWX0tQi6l43nWNKIrpYWsuJRM6WFMkpMIumQPjbiBNolvo
- Y5C7x/SgZ+Lg+AIaq8uXUg7N+k5h9pT/2jo/OiBPLGzNJmqVQ/uNJdo/uDuDiSBq
- WEnHzpMxwUc0R/63Kg2X/G4mqzS8whBtZo73nJ9nqat9v/gFpoDFgpa6HdDBi/35
- ZZtv0zCsk+pBvAE/vE0jbXVqaj9ApqBocZnQJNjhIpUknqNLYl+7NU0hbSMUKozo
- aSRGgR2Zog==
-Received: from pps.reinject (localhost [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 496g536k9u-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 16 Sep 2025 10:51:09 +0000 (GMT)
-Received: from m0360072.ppops.net (m0360072.ppops.net [127.0.0.1])
- by pps.reinject (8.18.1.12/8.18.0.8) with ESMTP id 58GAp8j4018605;
- Tue, 16 Sep 2025 10:51:08 GMT
-Received: from ppma11.dal12v.mail.ibm.com
- (db.9e.1632.ip4.static.sl-reverse.com [50.22.158.219])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 496g536k9s-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 16 Sep 2025 10:51:08 +0000 (GMT)
-Received: from pps.filterd (ppma11.dal12v.mail.ibm.com [127.0.0.1])
- by ppma11.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 58G85k50009486;
- Tue, 16 Sep 2025 10:51:07 GMT
-Received: from smtprelay07.dal12v.mail.ibm.com ([172.16.1.9])
- by ppma11.dal12v.mail.ibm.com (PPS) with ESMTPS id 495nn3b4fg-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 16 Sep 2025 10:51:07 +0000
-Received: from smtpav06.wdc07v.mail.ibm.com (smtpav06.wdc07v.mail.ibm.com
- [10.39.53.233])
- by smtprelay07.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 58GAp6EK11011482
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 16 Sep 2025 10:51:06 GMT
-Received: from smtpav06.wdc07v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 6406D5803F;
- Tue, 16 Sep 2025 10:51:06 +0000 (GMT)
-Received: from smtpav06.wdc07v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 4345B58055;
- Tue, 16 Sep 2025 10:51:04 +0000 (GMT)
-Received: from ltc.linux.ibm.com (unknown [9.5.196.140])
- by smtpav06.wdc07v.mail.ibm.com (Postfix) with ESMTP;
- Tue, 16 Sep 2025 10:51:04 +0000 (GMT)
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A650F10E1A3;
+ Tue, 16 Sep 2025 11:15:55 +0000 (UTC)
+Received: from 88-113-67-44.elisa-laajakaista.fi ([88.113.67.44]
+ helo=[192.168.100.137])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
+ id 1uyTf4-00000000pBx-3AJi; Tue, 16 Sep 2025 14:15:52 +0300
+Message-ID: <f172484823b7995c126a06201a01ed839db2e0e3.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>, 
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 16 Sep 2025 14:15:49 +0300
+In-Reply-To: <20250905145832.12097-14-ville.syrjala@linux.intel.com>
+References: <20250905145832.12097-1-ville.syrjala@linux.intel.com>
+ <20250905145832.12097-14-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+b1 
 MIME-Version: 1.0
-Date: Tue, 16 Sep 2025 12:51:03 +0200
-From: Harald Freudenberger <freude@linux.ibm.com>
-To: pengdonglin <dolinux.peng@gmail.com>
-Cc: tj@kernel.org, tony.luck@intel.com, jani.nikula@linux.intel.com,
- ap420073@gmail.com, jv@jvosburgh.net, bcrl@kvack.org,
- trondmy@kernel.org, longman@redhat.com, kees@kernel.org,
- bigeasy@linutronix.de, hdanton@sina.com, paulmck@kernel.org,
- linux-kernel@vger.kernel.org, linux-rt-devel@lists.linux.dev,
- linux-nfs@vger.kernel.org, linux-aio@kvack.org,
- linux-fsdevel@vger.kernel.org, linux-security-module@vger.kernel.org,
- netdev@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-wireless@vger.kernel.org, linux-acpi@vger.kernel.org,
- linux-s390@vger.kernel.org, cgroups@vger.kernel.org,
- Holger Dengler <dengler@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
- Alexander Gordeev <agordeev@linux.ibm.com>,
- pengdonglin <pengdonglin@xiaomi.com>
-Subject: Re: [PATCH v3 05/14] s390/pkey: Remove redundant
- rcu_read_lock/unlock() in spin_lock
-Mail-Reply-To: freude@linux.ibm.com
-In-Reply-To: <20250916044735.2316171-6-dolinux.peng@gmail.com>
-References: <20250916044735.2316171-1-dolinux.peng@gmail.com>
- <20250916044735.2316171-6-dolinux.peng@gmail.com>
-Message-ID: <31be6bb6541bb3e338e3025ac9e8fce5@linux.ibm.com>
-X-Sender: freude@linux.ibm.com
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: dUB5GxZDVKC_6J2Ylb023C_3mzK49UHc
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE1MDA4NiBTYWx0ZWRfX5K5HvLPe748s
- 1a0iccxe5DzHqpq2HHVExtQN3K3dDZAHmx+plczsOrZBuez8PS/bGeKlwxmdko1vp27MiJETJTG
- rWBkahKjm6E+Lehe9W5AsUAlfhXLzBCKZl91u4s5pKGLTilBgre1vFNiCO4KLvO9XrWU1Caav6A
- LP5y7FEjU/NnADi5ucPQYwViKT2GmRSmRBhcRXXpZEfspZ5l5uxEmXVcbW4As4eHjzGuflsj31H
- fsacgfENVa2S7hh4yS1XXPBx2rL5+dQv2gYhPIFTz7huQ8NQh9IyA9t8ZyRl7UxTDbk1vmK6jmT
- k/dl/Zv55pKlRrfw9Ym17kI1XWuEyzglymXJjQwZlfbaExngRAMTnR8i/K+0vtUxACA7W2YSZzh
- NNpGuSjP
-X-Proofpoint-ORIG-GUID: okqK8s0OaduvH8SS01anEhfn0Ac3dkSd
-X-Authority-Analysis: v=2.4 cv=UJ7dHDfy c=1 sm=1 tr=0 ts=68c9411d cx=c_pps
- a=aDMHemPKRhS1OARIsFnwRA==:117 a=aDMHemPKRhS1OARIsFnwRA==:17
- a=kj9zAlcOel0A:10 a=yJojWOMRYYMA:10 a=IeNN-m2dAAAA:8 a=VnNF1IyMAAAA:8
- a=pGLkceISAAAA:8 a=6zuzY4jPHNdFWWqqfRgA:9 a=CjuIK1q_8ugA:10
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-16_02,2025-09-12_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 bulkscore=0 impostorscore=0 spamscore=0 priorityscore=1501
- clxscore=1011 suspectscore=0 phishscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509150086
-X-Mailman-Approved-At: Tue, 16 Sep 2025 14:55:20 +0000
+X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-25) on farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP,URIBL_BLOCKED,URIBL_DBL_BLOCKED_OPENDNS autolearn=ham
+ autolearn_force=no version=4.0.1
+Subject: Re: [PATCH 13/13] drm/i915: Make sure wm block/lines are
+ non-decreasing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -126,60 +49,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: freude@linux.ibm.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2025-09-16 06:47, pengdonglin wrote:
-> From: pengdonglin <pengdonglin@xiaomi.com>
-> 
-> Since commit a8bb74acd8efe ("rcu: Consolidate RCU-sched update-side
-> function definitions")
-> there is no difference between rcu_read_lock(), rcu_read_lock_bh() and
-> rcu_read_lock_sched() in terms of RCU read section and the relevant 
-> grace
-> period. That means that spin_lock(), which implies 
-> rcu_read_lock_sched(),
-> also implies rcu_read_lock().
-> 
-> There is no need no explicitly start a RCU read section if one has 
-> already
-> been started implicitly by spin_lock().
-> 
-> Simplify the code and remove the inner rcu_read_lock() invocation.
-> 
-> Cc: Harald Freudenberger <freude@linux.ibm.com>
-> Cc: Holger Dengler <dengler@linux.ibm.com>
-> Cc: Vasily Gorbik <gor@linux.ibm.com>
-> Cc: Alexander Gordeev <agordeev@linux.ibm.com>
-> Signed-off-by: pengdonglin <pengdonglin@xiaomi.com>
-> Signed-off-by: pengdonglin <dolinux.peng@gmail.com>
+On Fri, 2025-09-05 at 17:58 +0300, Ville Syrjala wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>=20
+> The watermark algorithm sometimes produces results where higher
+> watermark levels have smaller blocks/lines watermarks than the lower
+> levels. That doesn't really make sense as the corresponding latencies
+> are supposed to be non-decreasing. It's unclear how the hardware
+> responds to such watermark values, so it seems better to avoid that
+> case and just make sure the values are always non-decreasing.
+>=20
+> Here's an example how things change for such a case on a GLK NUC:
+>  [PLANE:70:cursor A]   level  wm0, wm1, wm2, wm3, wm4, wm5, wm6, wm7, twm=
+, swm, stwm -> *wm0,*wm1,*wm2,*wm3,*wm4,*wm5,*wm6,*wm7,*twm, swm, stwm
+>  [PLANE:70:cursor A]   lines    0,   0,   0,   0,   0,   0,   0,   0,   0=
+,   0,    0 ->    4,   4,   4,   2,   2,   2,   2,   2,   0,   0,    0
+>  [PLANE:70:cursor A]  blocks    0,   0,   0,   0,   0,   0,   0,   0,   0=
+,   0,    0 ->   11,  11,  12,   7,   7,   7,   7,   7,  25,   0,    0
+>  [PLANE:70:cursor A] min_ddb    0,   0,   0,   0,   0,   0,   0,   0,   0=
+,   0,    0 ->   12,  12,  13,   8,   8,   8,   8,   8,  26,   0,    0
+> ->
+>  [PLANE:70:cursor A]   level  wm0, wm1, wm2, wm3, wm4, wm5, wm6, wm7, twm=
+, swm, stwm -> *wm0,*wm1,*wm2,*wm3,*wm4,*wm5,*wm6,*wm7,*twm, swm, stwm
+>  [PLANE:70:cursor A]   lines    0,   0,   0,   0,   0,   0,   0,   0,   0=
+,   0,    0 ->    4,   4,   4,   4,   4,   4,   4,   4,   0,   0,    0
+>  [PLANE:70:cursor A]  blocks    0,   0,   0,   0,   0,   0,   0,   0,   0=
+,   0,    0 ->   11,  11,  12,  12,  12,  12,  12,  12,  25,   0,    0
+>  [PLANE:70:cursor A] min_ddb    0,   0,   0,   0,   0,   0,   0,   0,   0=
+,   0,    0 ->   12,  12,  13,  13,  13,  13,  13,  13,  26,   0,    0
+>=20
+> Whether this actually helps on any display blinking issues is unclear.
+>=20
+> References: https://gitlab.freedesktop.org/drm/intel/-/issues/8683
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->  drivers/s390/crypto/pkey_base.c | 3 ---
->  1 file changed, 3 deletions(-)
-> 
-> diff --git a/drivers/s390/crypto/pkey_base.c 
-> b/drivers/s390/crypto/pkey_base.c
-> index b15741461a63..4c4a9feecccc 100644
-> --- a/drivers/s390/crypto/pkey_base.c
-> +++ b/drivers/s390/crypto/pkey_base.c
-> @@ -48,16 +48,13 @@ int pkey_handler_register(struct pkey_handler 
-> *handler)
-> 
->  	spin_lock(&handler_list_write_lock);
-> 
-> -	rcu_read_lock();
->  	list_for_each_entry_rcu(h, &handler_list, list) {
->  		if (h == handler) {
-> -			rcu_read_unlock();
->  			spin_unlock(&handler_list_write_lock);
->  			module_put(handler->module);
->  			return -EEXIST;
+
+Okay, maybe this answers my question to the other monotonic patch.
+
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+
+--
+Cheers,
+Luca.
+
+
+
+>  drivers/gpu/drm/i915/display/skl_watermark.c | 21 +++++++++++---------
+>  1 file changed, 12 insertions(+), 9 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/d=
+rm/i915/display/skl_watermark.c
+> index a40113aa3f3e..6e268836f5c6 100644
+> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> @@ -1878,18 +1878,21 @@ static void skl_compute_plane_wm(const struct int=
+el_crtc_state *crtc_state,
+>  			} else {
+>  				blocks++;
+>  			}
+> -
+> -			/*
+> -			 * Make sure result blocks for higher latency levels are
+> -			 * at least as high as level below the current level.
+> -			 * Assumption in DDB algorithm optimization for special
+> -			 * cases. Also covers Display WA #1125 for RC.
+> -			 */
+> -			if (result_prev->blocks > blocks)
+> -				blocks =3D result_prev->blocks;
 >  		}
 >  	}
-> -	rcu_read_unlock();
-> 
->  	list_add_rcu(&handler->list, &handler_list);
->  	spin_unlock(&handler_list_write_lock);
-
-Acked-by: Harald Freudenberger <freude@linux.ibm.com>
+> =20
+> +	/*
+> +	 * Make sure result blocks for higher latency levels are
+> +	 * at least as high as level below the current level.
+> +	 * Assumption in DDB algorithm optimization for special
+> +	 * cases. Also covers Display WA #1125 for RC.
+> +	 *
+> +	 * Let's always do this as the algorithm can give non
+> +	 * monotonic results on any platform.
+> +	 */
+> +	blocks =3D max_t(u32, blocks, result_prev->blocks);
+> +	lines =3D max_t(u32, lines, result_prev->lines);
+> +
+>  	if (DISPLAY_VER(display) >=3D 11) {
+>  		if (wp->y_tiled) {
+>  			int extra_lines;
