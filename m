@@ -2,59 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 660BEB84401
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Sep 2025 12:59:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0275B84423
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Sep 2025 13:04:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2FE510E6FE;
-	Thu, 18 Sep 2025 10:59:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2D7910E711;
+	Thu, 18 Sep 2025 11:04:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lO+JULjC";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="DszInJVe";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECA2E10E6FE;
- Thu, 18 Sep 2025 10:59:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758193196; x=1789729196;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=1DGk2ku1q02V6tDFpfi61S1sGnGwBL5jFsS9Q1FXyUQ=;
- b=lO+JULjCpb6u0gdpkD9XlBQJj9PRJtDubT+D4//ODq6N6m7sKxpKc8v/
- GchG91kDYFbq57thvIhecPLr+vuSXkugXDnk1dl9v4zMBgBGC9ghMEQ++
- s8OeKvo4lWKPDX5njYZod4iRpmN7AUmz9eua5bYiOZUV1TauZXdG7yJbz
- O5SFhAIUp/bR8gbuGMLlshf89KpwpkP0NDZYUUguoOJZTeO4zSqkt09U6
- nDt13WS/Y71ET3hnsShNkEaTU+F6yqyS7JiDaIQTNGvp2pd5VDCiKgUVG
- HCABQTj7eotwkWgrkP2MGLyPNp0+n1UXjSdZ5D1xmKUOw/grIRhU/Gd4u g==;
-X-CSE-ConnectionGUID: 2rCb0MCOSL2mm15lyG+5gw==
-X-CSE-MsgGUID: EIoZ7M9kTl2AGnzL7Z1/DA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11556"; a="64148311"
-X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="64148311"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2025 03:59:56 -0700
-X-CSE-ConnectionGUID: qhHJmHhLRwe2zXEiFUQKLQ==
-X-CSE-MsgGUID: rsq4iAy1T0qezW51kUoGcg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="175117208"
-Received: from administrator-system-product-name.igk.intel.com
- ([10.91.214.181])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2025 03:59:54 -0700
-Date: Thu, 18 Sep 2025 12:59:52 +0200 (CEST)
-From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- ville.syrjala@linux.intel.com, michal.grzelak@intel.com
-Subject: Re: [PATCH v2 02/15] drm/i915: do cck get/put inside
- vlv_get_cck_clock()
-In-Reply-To: <480b654b6c736a03343dfd17eb130c39fd82c637.1757688216.git.jani.nikula@intel.com>
-Message-ID: <0ff18fdb-213e-804a-a330-d345834d79e9@intel.com>
-References: <cover.1757688216.git.jani.nikula@intel.com>
- <480b654b6c736a03343dfd17eb130c39fd82c637.1757688216.git.jani.nikula@intel.com>
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF37C10E713;
+ Thu, 18 Sep 2025 11:04:09 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id EB0E96020D;
+ Thu, 18 Sep 2025 11:04:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 398A7C4CEEB;
+ Thu, 18 Sep 2025 11:04:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1758193448;
+ bh=KCM2an48/bEFBf8NS7uq6k/rwlRWv7+LUFybPERbT9Y=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=DszInJVedDqIo9ecQpafmUEKYnRlqKAGgF9vtF+tMzodzbGhTryFMiKR1RiQKN+Wt
+ +kmWJNflvgrf8kzc7bUZcd0otxxM9bU3STK6LqeEJ6azTLS6NYjF27koSDY0xLEA9h
+ XxxV1YxeYHZvj92g/7oT1vZloB0YvEh+3C1zFz00qAFr4ReHrdI3+oCjY1YyKBLZpj
+ HTqNYRpY+XbpIUKq1DbHXCNVAP4EWV/ngsouhcIaP1YDbyB/JM4syD9B3RatAp6Pu9
+ +zQql+vcpfBZUaEthnFQ9gh75wnSdKjb8qSd5tDh4lcTv2knVxxbkfMDy1IQQhFFfs
+ LTOkGJhqFSikw==
+Date: Thu, 18 Sep 2025 13:04:05 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: =?utf-8?B?6ZmI5rab5rab?= Taotao Chen <chentaotao@didiglobal.com>
+Cc: "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>, 
+ "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
+ "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>, 
+ "tursulin@ursulin.net" <tursulin@ursulin.net>,
+ "andi.shyti@linux.intel.com" <andi.shyti@linux.intel.com>, 
+ "airlied@gmail.com" <airlied@gmail.com>, "daniel@ffwll.ch" <daniel@ffwll.ch>, 
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+ "chentao325@qq.com" <chentao325@qq.com>,
+ kernel test robot <oliver.sang@intel.com>
+Subject: Re: [PATCH v2 1/2] drm/i915: set O_LARGEFILE in __create_shmem()
+Message-ID: <fumkp34yvnyibpeyfqbiactmjhkuvpzhj52l45xjzygjwv6zny@ooydqcmamfr5>
+References: <20250822030651.28099-1-chentaotao@didiglobal.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-1199131769-1758193195=:965526"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250822030651.28099-1-chentaotao@didiglobal.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,28 +67,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+Hi Taotao,
 
---8323329-1199131769-1758193195=:965526
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8BIT
+Both patches merged to drm-intel-gt-next.
 
-On Fri, 12 Sep 2025, Jani Nikula wrote:
-> Move towards VLV/CHV clock interfaces that handle sideband get/put
-> inside them instead of at the caller.
->
-> With this, we can switch to the simpler vlv_punit_get()/vlv_punit_put()
-> in vlv_get_cdclk().
->
-> We'll need to move vlv_init_gpll_ref_freq() outside of the existing
-> get/put in vlv_rps_init() and chv_rps_init().
->
-> Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Thank you,
+Andi
 
-Reviewed-by: Michał Grzelak <michal.grzelak@intel.com>
-
-BR,
-Michał
---8323329-1199131769-1758193195=:965526--
+On Fri, Aug 22, 2025 at 03:06:59AM +0000, 陈涛涛 Taotao Chen wrote:
+> From: Taotao Chen <chentaotao@didiglobal.com>
+> 
+> Without O_LARGEFILE, file->f_op->write_iter calls
+> generic_write_check_limits(), which enforces a 2GB (MAX_NON_LFS) limit,
+> causing -EFBIG on large writes.
+> 
+> In shmem_pwrite(), this error is later masked as -EIO due to the error
+> handling order, leading to igt failures like gen9_exec_parse(bb-large).
+> 
+> Set O_LARGEFILE in __create_shmem() to prevent -EFBIG on large writes.
+> 
+> Reported-by: kernel test robot <oliver.sang@intel.com>
+> Closes: https://lore.kernel.org/oe-lkp/202508081029.343192ec-lkp@intel.com
+> Fixes: 048832a3f400 ("drm/i915: Refactor shmem_pwrite() to use kiocb and write_iter")
+> Signed-off-by: Taotao Chen <chentaotao@didiglobal.com>
+> ---
+> v2:
+>  - Add force_o_largefile() guard before setting O_LARGEFILE
+> 
+>  drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> index e3d188455f67..b9dae15c1d16 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> @@ -514,6 +514,13 @@ static int __create_shmem(struct drm_i915_private *i915,
+>  	if (IS_ERR(filp))
+>  		return PTR_ERR(filp);
+>  
+> +	/*
+> +	 * Prevent -EFBIG by allowing large writes beyond MAX_NON_LFS on shmem
+> +	 * objects by setting O_LARGEFILE.
+> +	 */
+> +	if (force_o_largefile())
+> +		filp->f_flags |= O_LARGEFILE;
+> +
+>  	obj->filp = filp;
+>  	return 0;
+>  }
+> -- 
+> 2.34.1
