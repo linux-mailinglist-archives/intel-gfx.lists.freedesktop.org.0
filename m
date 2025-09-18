@@ -2,112 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEF77B832EF
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Sep 2025 08:46:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BE07B834FD
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Sep 2025 09:26:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7671410E660;
-	Thu, 18 Sep 2025 06:46:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D32D410E1EF;
+	Thu, 18 Sep 2025 07:26:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="1mXr+7CW";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="aaO3FU/C";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="1mXr+7CW";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="aaO3FU/C";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aYn2hRU2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96D6D10E65D
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 Sep 2025 06:46:01 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 3E619336B0;
- Thu, 18 Sep 2025 06:46:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1758177960; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=gI+h2IchZ4ORHzUznDKj0pHXihodVGHDFjwSkfbrTfE=;
- b=1mXr+7CWSF9rIxhC8yH9E23DGOb40KbeC7mPuhtZFqC/acEC3TEeensVVUin4PVslg98z4
- b9iSo8ZtbvJkSyKwjLJL2CmyjCu6qDMaTKFtN0kjUrPkSaPg/cQKf83F7I4ij1Sdwvb4yH
- 5JoJTnUvbX+gJuy2wOXs3ZStr2Vz2R4=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1758177960;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=gI+h2IchZ4ORHzUznDKj0pHXihodVGHDFjwSkfbrTfE=;
- b=aaO3FU/CY+KIqxLh2VS1Vwbc9HTfOLguh0/EQDDnDiQ+ZAERBjrDz+B7ZKfx7OQoDcp5VA
- wKeDObWsBG5USKDA==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=1mXr+7CW;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b="aaO3FU/C"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1758177960; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=gI+h2IchZ4ORHzUznDKj0pHXihodVGHDFjwSkfbrTfE=;
- b=1mXr+7CWSF9rIxhC8yH9E23DGOb40KbeC7mPuhtZFqC/acEC3TEeensVVUin4PVslg98z4
- b9iSo8ZtbvJkSyKwjLJL2CmyjCu6qDMaTKFtN0kjUrPkSaPg/cQKf83F7I4ij1Sdwvb4yH
- 5JoJTnUvbX+gJuy2wOXs3ZStr2Vz2R4=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1758177960;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=gI+h2IchZ4ORHzUznDKj0pHXihodVGHDFjwSkfbrTfE=;
- b=aaO3FU/CY+KIqxLh2VS1Vwbc9HTfOLguh0/EQDDnDiQ+ZAERBjrDz+B7ZKfx7OQoDcp5VA
- wKeDObWsBG5USKDA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id CECD413A39;
- Thu, 18 Sep 2025 06:45:59 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id spZLMaeqy2iEIQAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 18 Sep 2025 06:45:59 +0000
-Date: Thu, 18 Sep 2025 08:45:58 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-next-fixes
-Message-ID: <20250918064558.GA10017@linux.fritz.box>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 953C610E1EF
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Sep 2025 07:26:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1758180363; x=1789716363;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=wNI2nojtZxfuyOu5Bfpf6fzg3Edxu83K6Emo66+zQJI=;
+ b=aYn2hRU2y0GKEOnSRDW7OIqfWShGX17ZNvV/XuiWqwjzIH0wVKbiD5Se
+ Jl3xMjPEEGiyn3gZ7U07jQZxUWDUT+uiSrN1wvBEVhOhHms18iRUvK6l2
+ /plxYE8QF91qrveMJY8CBXlJo55wjnBwbe91vcmiOfiQJjl/6dXSXFHHx
+ JoMR7joF0/FVI6RVnVbI9Y0Rb2QsAXj1LoqnCdQrZiyOjWghfn7j7Cpkx
+ W6OQjyyfH/ehnLj/giBF5yyVnmG9Ur2mfXT9ag7fqzF4xITQu2wifHk7u
+ Y5SaXeOfxoySQUaSwFOJYfEzOqLhDlPLJXmMj0LuPxWHz6vNyMvDCZV3O g==;
+X-CSE-ConnectionGUID: 65UJA/gzTCSQ383BXJf7yA==
+X-CSE-MsgGUID: 6niHyaqqS22rwJCshgxIEg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11556"; a="64319453"
+X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="64319453"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2025 00:25:59 -0700
+X-CSE-ConnectionGUID: B2Ezgb2pR0i5VtSaJQjQHQ==
+X-CSE-MsgGUID: o8R3pTA4QmyyWK4uYI6Uwg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="175041652"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.185])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2025 00:25:57 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915: add note on VLV/CHV hpll_freq and czclk_freq
+ caching
+In-Reply-To: <aMq_1JGyQNylvdzm@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250917135200.1932903-1-jani.nikula@intel.com>
+ <aMq_1JGyQNylvdzm@intel.com>
+Date: Thu, 18 Sep 2025 10:25:54 +0300
+Message-ID: <7604a54688611b4645784c90a829ac572721538c@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[];
- RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
- RCVD_VIA_SMTP_AUTH(0.00)[]; RCPT_COUNT_TWELVE(0.00)[16];
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch]; TO_DN_SOME(0.00)[];
- MIME_TRACE(0.00)[0:+]; MISSING_XM_UA(0.00)[]; ARC_NA(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- RCVD_TLS_ALL(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
- FROM_HAS_DN(0.00)[]; FUZZY_RATELIMITED(0.00)[rspamd.com];
- RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns,suse.de:dkim];
- SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
- DKIM_TRACE(0.00)[suse.de:+]
-X-Spam-Flag: NO
-X-Spam-Level: 
-X-Rspamd-Queue-Id: 3E619336B0
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Rspamd-Action: no action
-X-Spam-Score: -4.51
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,51 +71,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+On Wed, 17 Sep 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Wed, Sep 17, 2025 at 04:52:00PM +0300, Jani Nikula wrote:
+>> The caching at the initial read is a bit fragile in case, say, a further
+>> refactoring starts reading the frequencies at a time where it's not
+>> possible. Add a note about it.
+>>=20
+>> Suggested-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-getting closer to the next merge window, here's the first PR from
-drm-misc-next-fixes.
+Thanks, pushed.
 
-Best regards
-Thomas
+>
+>> ---
+>>  drivers/gpu/drm/i915/display/vlv_clock.c | 7 +++++++
+>>  1 file changed, 7 insertions(+)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/vlv_clock.c b/drivers/gpu/drm/=
+i915/display/vlv_clock.c
+>> index 2c55083d8fdb..42c2837b32c1 100644
+>> --- a/drivers/gpu/drm/i915/display/vlv_clock.c
+>> +++ b/drivers/gpu/drm/i915/display/vlv_clock.c
+>> @@ -8,6 +8,13 @@
+>>  #include "vlv_clock.h"
+>>  #include "vlv_sideband.h"
+>>=20=20
+>> +/*
+>> + * FIXME: The caching of hpll_freq and czclk_freq relies on the first c=
+alls
+>> + * occurring at a time when they can actually be read. This appears to =
+be the
+>> + * case, but is somewhat fragile. Make the initialization explicit at a=
+ point
+>> + * where they can be reliably read.
+>> + */
+>> +
+>>  /* returns HPLL frequency in kHz */
+>>  int vlv_clock_get_hpll_vco(struct drm_device *drm)
+>>  {
+>> --=20
+>> 2.47.3
 
-drm-misc-next-fixes-2025-09-18:
-Short summary of fixes pull:
-
-pixpaper:
-- Fix mode_valid function signature
-The following changes since commit 0d9f0083f7a5a31d91d501467b499bb8c4b25bdf:
-
-  Merge tag 'v6.17-rc6' into drm-next (2025-09-15 17:51:07 +1000)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-fixes-2025-09-18
-
-for you to fetch changes up to 0265d0ebb409a25d3bb3a19494e0173d06d9d132:
-
-  drm/pixpaper: Fix return type of pixpaper_mode_valid() (2025-09-15 12:29:37 +0200)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
-pixpaper:
-- Fix mode_valid function signature
-
-----------------------------------------------------------------
-Nathan Chancellor (1):
-      drm/pixpaper: Fix return type of pixpaper_mode_valid()
-
-Thomas Zimmermann (1):
-      Merge drm/drm-next into drm-misc-next-fixes
-
- drivers/gpu/drm/tiny/pixpaper.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
--- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+--=20
+Jani Nikula, Intel
