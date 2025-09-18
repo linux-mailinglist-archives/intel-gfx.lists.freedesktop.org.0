@@ -2,91 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7B93B83824
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Sep 2025 10:24:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7987DB83914
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Sep 2025 10:41:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CF6610E3A6;
-	Thu, 18 Sep 2025 08:24:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08D1B10E67D;
+	Thu, 18 Sep 2025 08:41:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Oa3pqlKx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eCL657YT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45CC310E66C
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 Sep 2025 08:24:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1758183870;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=m4QsnAy0CzPIurKifptNo9f10B6Yy9sbvMq/EE+hd9g=;
- b=Oa3pqlKxWNaeXj991kc2zawkHs0mK6e5ZT0e/7iUdnpLwyxf4rw670T6t69nWnbbhkfyTC
- evOaVpLU9zoEADgzoUE9Ga5QCW2FK1pVylqX+jwnE9uIWlG9Kn4fPK7s0IbNZP1ZrBmFro
- 8bGRZzbHzfIKtrRsnkNfdbJuYSeAOH0=
-Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
- [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-505-92l4ImhpPXyIqiklpNmMNQ-1; Thu, 18 Sep 2025 04:24:28 -0400
-X-MC-Unique: 92l4ImhpPXyIqiklpNmMNQ-1
-X-Mimecast-MFC-AGG-ID: 92l4ImhpPXyIqiklpNmMNQ_1758183867
-Received: by mail-wr1-f72.google.com with SMTP id
- ffacd0b85a97d-3eae0de749dso370896f8f.3
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 Sep 2025 01:24:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1758183867; x=1758788667;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=m4QsnAy0CzPIurKifptNo9f10B6Yy9sbvMq/EE+hd9g=;
- b=MCKPG4prcl68dQW7CskPCcOUvrR/xGhvRCCOiiouGKg/ZXcXaqffqDES9LOVoj616/
- P0dTrrxF6RmMsc0ARgX4nHQYjvDYD7djMMHYfzt1ybLiT1tO4632h3zaXTTEjxH2UzX8
- OPv+xkyzafAngHBGCVQvP2dGGXHqWn+IeOVofVcG7LHD92QJHCS3+RMzYdMzznrK5A/o
- Cq0nrGCar8WC8rFIug/HQDfBFsT66wzQ9ErHDIouKmYfJZ1gUPjg6BRy560utenpsU69
- 4bkIpECx6vNfkKHIJflnor0oeHXVhy5uXnzp5BI2CFB3fh+e/gpmnyRYG9JIywFe6igg
- 0C7A==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXWE6o8o3YF1oXNp4OZcHzNeM4lIOEts1+FYqKwTwLdZj+tayOgyj5JENiRMmz9MPkBB/sgR87YwEk=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy0h4NNEvitNvoOQSh4pqmUqBWZ3Oc+/9uiLh+kV4aG4UivsPtY
- PsfRYQJRi+FhIAuOsfEhvUSh4+FPy4AA15cWX2vPoQCEn7w6T0mcjSwW3kfTxPCwEmslqfjlraF
- PbOCW4voV5nwT6DDvFfzIF+E7k3yjFbGR07RnRlQmQxu4anzKcwlydfwErhxLsU7vqi6gdg==
-X-Gm-Gg: ASbGncuUPigRhoUgFLMiSteK62EKHWJSRB6OWEmu2LBkL2cpGFVvt6OpVO9HbyXA5ek
- kcCNhzTwfZIWXdSLgi4bNsQk8tmVmaGP53pf3o1cPmv+JV/HLCLPepr+oEVTTxzIHLZMlxwBfuy
- Rxty4U4awwv36v+c8x5mguxse2QZSnPy60qTRyXsyddcZ+m/OIJ5h0Tan3amIsG3D7nMnNA3NZR
- mpjTQmo8n9s/rGNKMfDsnk7fe4N7rZiTGgaNNczDtB9gUxhrePFpuqEbV8NHEM0SQyzfOCJFz7/
- VXMNZlcb0STfn6s=
-X-Received: by 2002:a05:6000:2082:b0:3e7:492f:72b4 with SMTP id
- ffacd0b85a97d-3ecdfa32db4mr4244290f8f.42.1758183867183; 
- Thu, 18 Sep 2025 01:24:27 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHYe2Jq3iqw8F9GXKxw65z82I8UIpwQPICcX60KJ6ApCZS9tT/esEJmwGmUgclQPs2SSFJotw==
-X-Received: by 2002:a05:6000:2082:b0:3e7:492f:72b4 with SMTP id
- ffacd0b85a97d-3ecdfa32db4mr4244253f8f.42.1758183866726; 
- Thu, 18 Sep 2025 01:24:26 -0700 (PDT)
-Received: from localhost ([2a01:e0a:b25:f902::ff])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3ee0fbf0a4fsm2508947f8f.52.2025.09.18.01.24.25
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 18 Sep 2025 01:24:26 -0700 (PDT)
-Date: Thu, 18 Sep 2025 10:24:25 +0200
-From: Maxime Ripard <mripard@redhat.com>
-To: Dave Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <20250918-orthodox-pretty-puma-1ddeea@houat>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A4CD10E67C;
+ Thu, 18 Sep 2025 08:41:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1758184868; x=1789720868;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=yLzbpDG1JPMUIj/5mdtij8W6Nkzi/15azUzzRi2VDvc=;
+ b=eCL657YT/xoEDDG2jQ2+ldEJbpaeXitNjUVGC2IRdp4pTQIy45fQu+JQ
+ me41V6gK0YIgc36ebMTpXAH1HiY4tNFHwRfi8uTXoBuRDGEZijaxximHB
+ mql2daj/GNpCK/DP3OrNbmWtgh9xywGsEWA0dtpRC5n31YKuye6rVn6qx
+ +6vjWLi6E6tV1kUfTYb3QuosadezEJrm+aSSq2a4Q0GrQSS5febAYjmVU
+ rgTADwkXka+NNraDcQCa6jZ33k0iK6wtpCkC6iiD+j1NOji304hNaFuKp
+ 1eVFAUNEm6lJ9qCxNbd8hNMcZuDf8DbdCKhJeAUJdoAMQUZG1viON9krP g==;
+X-CSE-ConnectionGUID: BHGmP5QwQu+VcJqMGPBp+A==
+X-CSE-MsgGUID: uStrWSc/RDC2gcz4CPp35w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11556"; a="71611236"
+X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="71611236"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2025 01:41:07 -0700
+X-CSE-ConnectionGUID: ysNUb6R2SN+uCeLu316zyQ==
+X-CSE-MsgGUID: 8iGCtrSWSZq3jFDRH2JTMg==
+X-ExtLoop1: 1
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.185])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2025 01:41:05 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+	ville.syrjala@linux.intel.com
+Subject: [PATCH v2 00/10] drm/{i915,xe}/fbdev: refactor
+Date: Thu, 18 Sep 2025 11:40:50 +0300
+Message-ID: <cover.1758184771.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="wdhgzu7qjyuhxmnh"
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,64 +69,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+v2 of [1], unifying the stride alignment and error paths first, rebasing
+the rest on top.
 
---wdhgzu7qjyuhxmnh
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Subject: [PULL] drm-misc-fixes
-MIME-Version: 1.0
 
-Hi,
+[1] https://lore.kernel.org/r/cover.1756931441.git.jani.nikula@intel.com
 
-Here's this week drm-misc-fixes PR.
 
-Maxime
+Jani Nikula (10):
+  drm/xe/fbdev: use the same 64-byte stride alignment as i915
+  drm/i915/fbdev: make intel_framebuffer_create() error return handling
+    explicit
+  drm/{i915,xe}/fbdev: pass struct drm_device to intel_fbdev_fb_alloc()
+  drm/{i915,xe}/fbdev: deduplicate struct drm_mode_fb_cmd2 init
+  drm/i915/fbdev: abstract bo creation
+  drm/xe/fbdev: abstract bo creation
+  drm/{i915,xe}/fbdev: add intel_fbdev_fb_bo_destroy()
+  drm/{i915,xe}/fbdev: deduplicate fbdev creation
+  drm/{i915,xe}/fbdev: pass struct drm_device to
+    intel_fbdev_fb_fill_info()
+  drm/i915/fbdev: drop dependency on display in i915 specific code
 
-drm-misc-fixes-2025-09-18:
-One fix for a documentation warning, a null pointer dereference fix for
-anx7625, and a mutex unlock fix for cdns-mhdp8546
-The following changes since commit 87b90cee22d8658a69c0fbd43633839b75f8f05f:
+ drivers/gpu/drm/i915/display/intel_fbdev.c    | 59 ++++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_fbdev_fb.c | 51 ++++------------
+ drivers/gpu/drm/i915/display/intel_fbdev_fb.h | 11 ++--
+ drivers/gpu/drm/xe/display/intel_fbdev_fb.c   | 55 ++++-------------
+ 4 files changed, 86 insertions(+), 90 deletions(-)
 
-  MAINTAINERS: drm-misc: fix X: entries for nova/nouveau (2025-09-10 15:52:25 +0200)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-09-18
-
-for you to fetch changes up to 288dac9fb6084330d968459c750c838fd06e10e6:
-
-  drm: bridge: cdns-mhdp8546: Fix missing mutex unlock on error path (2025-09-16 15:42:35 +0200)
-
-----------------------------------------------------------------
-One fix for a documentation warning, a null pointer dereference fix for
-anx7625, and a mutex unlock fix for cdns-mhdp8546
-
-----------------------------------------------------------------
-Bagas Sanjaya (1):
-      Revert "drm: Add directive to format code in comment"
-
-Loic Poulain (1):
-      drm: bridge: anx7625: Fix NULL pointer dereference with early IRQ
-
-Qi Xi (1):
-      drm: bridge: cdns-mhdp8546: Fix missing mutex unlock on error path
-
- drivers/gpu/drm/bridge/analogix/anx7625.c           | 6 ++++--
- drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c | 6 ++++--
- drivers/gpu/drm/drm_gpuvm.c                         | 2 --
- 3 files changed, 8 insertions(+), 6 deletions(-)
-
---wdhgzu7qjyuhxmnh
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaMvBuQAKCRAnX84Zoj2+
-dl7eAXsHsMz9cZz0PGMyw6QlgzVO7Yax29AChzX2IlpQFbnleD08azc4XzRpHJGN
-G96LxRwBf3Qq2QQ5ALZIKO6rrrUtUIDNihWGQGPLxGScCZbsr0WSXS55Btu/7yHq
-32HKoYFHkQ==
-=0j7j
------END PGP SIGNATURE-----
-
---wdhgzu7qjyuhxmnh--
+-- 
+2.47.3
 
