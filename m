@@ -2,61 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6376DB83932
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Sep 2025 10:42:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A5B5B8393E
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Sep 2025 10:43:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED5E910E689;
-	Thu, 18 Sep 2025 08:41:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D50E510E687;
+	Thu, 18 Sep 2025 08:43:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KzqvGXJw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W9i1uoSQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16DCA10E685;
- Thu, 18 Sep 2025 08:41:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5655210E685;
+ Thu, 18 Sep 2025 08:43:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758184919; x=1789720919;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=4nUhqANXmI6+bgD2S+v9uM9WWjENE6Q3mFphNyU8iLo=;
- b=KzqvGXJwYMqPJfEp9HbFapGJhrwMvEJdi0dQW7isb9TmICiToYxNODxk
- sJlHaN8QfkMcExwKGAIjjR+XvDj1/4L5HX8gxvsZeANkToZwATmHvKHCi
- tN2LS/7CdEOGNmXMRz6id4FvxkpBQN3aRHFPhxxXasX8Bz2vlY2hKl8y4
- TwBSGEtdqwXCU67DASFy5TE+CilqQzmekxYQ3mgj8n7hEuunMXeOI6aHy
- iskiiewBaG/SBmQgDSSSmSpqreW4stKkK8u0Easni4NQKgx1npBthk8lC
- 3zH9Pp0B7NWNWtDDPU4wSdOXpW/LTB8UOXqS4wN67ezfdAnWYoBSo94gH g==;
-X-CSE-ConnectionGUID: JFmqA7biSXCIY9mQQfyT7A==
-X-CSE-MsgGUID: dETuLOlmQCe1HZwT4Ch6Iw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11556"; a="77946269"
-X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="77946269"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2025 01:41:59 -0700
-X-CSE-ConnectionGUID: 3QRT3oKoSH6L1OZ1RDmcSA==
-X-CSE-MsgGUID: m0QlG7lDQiyaEXdmxEHKhw==
+ t=1758185009; x=1789721009;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=DLGn7zKV2ykcYq/lTCerqdvTy9D+6SjLXtmloyna0fQ=;
+ b=W9i1uoSQhx0V8VVjr7/q3qEPGdjJeBdgh9k0wOuWUJbVDgpxqRSvnP4C
+ S+4C+ttjBqQ5D9HQt19GWzVoXsK0HU68v+KMGoOs1beidlIKPhmxtj5wd
+ yLv5rAFPdRCa3KxJDFlvNBaSor5c45jucP04dXtlyOr8S5DdCTbB5BzlY
+ u1mX02fdcQ2oHZijh+lirH+dfDZEMJf9A7SGSAGu+F0GzkzhHfVHA33f4
+ yKNNWQTcPEKM28Lf0SvtI/QwtY0RIjTzRJp3/rh2DM7Y2FhmGTN1B9L7v
+ I2MUvVlcP711+/TXu8hf95hd7WmFoz5HqO4NafK7ijS5VXmwpdW8UqSoL g==;
+X-CSE-ConnectionGUID: fjOkUCI7TK2vR65J9YoRdg==
+X-CSE-MsgGUID: 8DrNIjLEQZOwVKO0D0s8gg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="64311313"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="64311313"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2025 01:43:29 -0700
+X-CSE-ConnectionGUID: 8n7vRBE+TsOuZVyD75Mzfg==
+X-CSE-MsgGUID: gL2XvpVkToWbC2FvPQWYDQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="206427999"
+X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="206277691"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.185])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2025 01:41:57 -0700
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2025 01:43:24 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	ville.syrjala@linux.intel.com
-Subject: [PATCH v2 10/10] drm/i915/fbdev: drop dependency on display in i915
- specific code
-Date: Thu, 18 Sep 2025 11:41:00 +0300
-Message-ID: <a2faad2b47c63ea773a96b2885fb759602374264.1758184771.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1758184771.git.jani.nikula@intel.com>
-References: <cover.1758184771.git.jani.nikula@intel.com>
-MIME-Version: 1.0
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: Maarten Lankhorst <dev@lankhorst.se>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Jouni =?utf-8?Q?H=C3=B6gander?=
+ <jouni.hogander@intel.com>,
+ Vinod Govindapillai <vinod.govindapillai@intel.com>, "Saarinen, Jani"
+ <jani.saarinen@intel.com>
+Subject: Re: [PATCH 2/9] drm/{i915, xe}/fbdev: add intel_fbdev_fb_pitch_align()
+In-Reply-To: <aMm4UfqnlZ4RfMDm@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+References: <cover.1756931441.git.jani.nikula@intel.com>
+ <ae51d1e224048bdc87bf7a56d8f5ebd0fbb6a383.1756931441.git.jani.nikula@intel.com>
+ <aLqsC87Ol_zCXOkN@intel.com>
+ <48e0a14d67ba84d64f6589bbdd0090e86be4fd4f@intel.com>
+ <7cs3dirtgrypn7xjzmv7rxmkgbrtfxxjmtth576kfwerlydcgx@6zelewdmaukb>
+ <fdcc32f2-c36b-439f-8d15-14b3fb7bd5dc@lankhorst.se>
+ <aL8D_dRE5nslOAUi@intel.com>
+ <86c6dd41fba3bc78b82a0f0343c7be770126a4e4@intel.com>
+ <aMm4UfqnlZ4RfMDm@intel.com>
+Date: Thu, 18 Sep 2025 11:43:21 +0300
+Message-ID: <0f9e52f66a126ca0d446015539018e29219d4b13@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,41 +82,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This code is in fact i915 driver core rather than display specific. Stop
-using struct intel_display, and drop the dependency on display headers.
+On Tue, 16 Sep 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> For now I'd be happy if someone just nukes that bogus page alignemnt
+> of the stride on xe, allowing i915 and xe to use the same code here.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_fbdev_fb.c | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+I hope just [1] is enough for this.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
-index 8af409bff0f0..56b145841473 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
-@@ -8,13 +8,10 @@
- #include "gem/i915_gem_lmem.h"
- 
- #include "i915_drv.h"
--#include "intel_display_core.h"
--#include "intel_display_types.h"
- #include "intel_fbdev_fb.h"
- 
- struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm, int size)
- {
--	struct intel_display *display = to_intel_display(drm);
- 	struct drm_i915_private *dev_priv = to_i915(drm);
- 	struct drm_i915_gem_object *obj;
- 
-@@ -31,7 +28,7 @@ struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm, int size
- 		 *
- 		 * Also skip stolen on MTL as Wa_22018444074 mitigation.
- 		 */
--		if (!display->platform.meteorlake && size * 2 < dev_priv->dsm.usable_size)
-+		if (!IS_METEORLAKE(dev_priv) && size * 2 < dev_priv->dsm.usable_size)
- 			obj = i915_gem_object_create_stolen(dev_priv, size);
- 		if (IS_ERR(obj))
- 			obj = i915_gem_object_create_shmem(dev_priv, size);
--- 
-2.47.3
+[1] https://lore.kernel.org/r/7f4972104de8b179d5724ae83892ee294d3f3fd3.1758=
+184771.git.jani.nikula@intel.com
 
+
+--=20
+Jani Nikula, Intel
