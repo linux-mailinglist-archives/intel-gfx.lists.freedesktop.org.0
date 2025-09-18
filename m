@@ -2,59 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DD9CB84B1C
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Sep 2025 14:55:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1730BB84CE5
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Sep 2025 15:29:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58E4510E8AD;
-	Thu, 18 Sep 2025 12:55:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2856210E8A5;
+	Thu, 18 Sep 2025 13:29:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HFfR/DIv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PwOJEQXC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3143010E5DE;
- Thu, 18 Sep 2025 12:55:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0D6A10E8A4;
+ Thu, 18 Sep 2025 13:29:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758200100; x=1789736100;
+ t=1758202153; x=1789738153;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=wqccY5H4u3pRr6Mqj18jdrAPnLtEt1FSYNgr7jc+JAQ=;
- b=HFfR/DIvNt46lex2Jt1vwDjPsYO2gdallH5Sm6QmAZSOXwUtFK3Jqa59
- BQ0tycoPsd2JxAaQ386rmXttKsCmGVJkPMYqfmvoBzo/7jysxh+RFeZRx
- CqBBvcXOYlwJRwVup2CoCSPbgCv+OpFnuz2YDIpQyFkJVVHm4nW0CHFvJ
- eLaVlJTe9XUp0/JIdrgCuyDLdYgLEI5QqmGtNmSRPrEP5tN1gPb+tKVAv
- udxw1J1eB+G5rTCREmUNp/EySTzAHZfpZ8DBNJdjgr/FBZF5Vf1CmrWJH
- 21blHgBCA1Xb8K3O+3QMlTPhSGxBUlWdgYQ4FZA5ws5RexiQUcUivRBEb w==;
-X-CSE-ConnectionGUID: 2kYxSOjhRjCnqIWIeyOmhA==
-X-CSE-MsgGUID: OiMzaNa/T/S25t7c3jmQxA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11556"; a="71897227"
-X-IronPort-AV: E=Sophos;i="6.18,275,1751266800"; d="scan'208";a="71897227"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2025 05:55:00 -0700
-X-CSE-ConnectionGUID: 5hCq/I9kSkmHGXfOrZEEsA==
-X-CSE-MsgGUID: sYe+yEDpTi+jqDQJAhc5Fw==
+ bh=8Tky5818X+Ws3kglXn+4aVsjZxiNWi55AqolwsFSeyc=;
+ b=PwOJEQXCIzd0HocI3np8IDE/SuXgppv7tM5UI+wYn8l+ahHKftBybW9T
+ KSMWIXo43Wbt4WAMLgCRM9W5gbsO8RelJRtBKwAD2cLFVtgKXQmDzQag2
+ Bge3eK3D4JSyVw1UcNNmwQJ70IhBA7Z7gWzFkV7RMO6yCVouGhl+I7r7N
+ gMILu9EIo+L9ztTE5dsF0enyEi2J3htxJ5PcBtlACkS95TOfxabkhPMCo
+ CT+WMpr1+q9WZiOIi3Z8S2hl9tzSsBOD7B+zk1NOck607XMm2JcYkK9eD
+ 6zeqfsQzd4Uwqm1s6qH8wIPcIRTGWTe2kBYr0B4VyZ92bNgoeZCqgJlkW w==;
+X-CSE-ConnectionGUID: ivwt7y2ESD6nMuu2YFzmSQ==
+X-CSE-MsgGUID: Umved8xOQ5y/qZpHM1dUJg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11556"; a="60462738"
+X-IronPort-AV: E=Sophos;i="6.18,275,1751266800"; d="scan'208";a="60462738"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2025 06:29:12 -0700
+X-CSE-ConnectionGUID: FRRAsa39QSiH0b+bHNEapw==
+X-CSE-MsgGUID: xlw3tg3rSPqi+Th3cvCnKQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,275,1751266800"; d="scan'208";a="179808076"
+X-IronPort-AV: E=Sophos;i="6.18,275,1751266800"; d="scan'208";a="176344847"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.255])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2025 05:54:58 -0700
-Date: Thu, 18 Sep 2025 15:54:55 +0300
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2025 06:29:11 -0700
+Date: Thu, 18 Sep 2025 16:29:08 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
+To: Luca Coelho <luca@coelho.fi>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2] drm/i915/irq: add ilk_display_irq_reset()
-Message-ID: <aMwBH5twiX1KrgYH@intel.com>
-References: <903f35b109acea1f70b942a76392e58e88b0b720.1758198300.git.jani.nikula@intel.com>
- <20250918124124.2400265-1-jani.nikula@intel.com>
+Subject: Re: [PATCH 11/13] drm/i915: Make wm latencies monotonic
+Message-ID: <aMwJJPEoS8u6ovU9@intel.com>
+References: <20250905145832.12097-1-ville.syrjala@linux.intel.com>
+ <20250905145832.12097-12-ville.syrjala@linux.intel.com>
+ <4dcd22ba34cf11a501220834fe6b9375de26e2a1.camel@coelho.fi>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250918124124.2400265-1-jani.nikula@intel.com>
+In-Reply-To: <4dcd22ba34cf11a501220834fe6b9375de26e2a1.camel@coelho.fi>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -72,107 +73,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 18, 2025 at 03:41:24PM +0300, Jani Nikula wrote:
-> Abstract ilk_display_irq_reset(), moving display related reset
-> there. This results in a slightly different order for the reset,
-> hopefully with no impact.
+On Tue, Sep 16, 2025 at 01:29:17PM +0300, Luca Coelho wrote:
+> On Fri, 2025-09-05 at 17:58 +0300, Ville Syrjala wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > 
+> > Some systems (eg. LNL Lenovo Thinkapd X1 Carbon) declare
+> > semi-bogus non-monotonic WM latency values:
+> >  WM0 latency not provided
+> >  WM1 latency 100 usec
+> >  WM2 latency 100 usec
+> >  WM3 latency 100 usec
+> >  WM4 latency 93 usec
+> >  WM5 latency 100 usec
+> > 
+> > Apparently Windows just papers over the issue by bumping the
+> > latencies for the higher watermark levels to make them monotonic
+> > again. Do the same.
+> > 
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/skl_watermark.c | 15 +++++++++++++++
+> >  1 file changed, 15 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+> > index e11ba1a822f4..d334cc661328 100644
+> > --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> > +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> > @@ -3238,6 +3238,19 @@ static void sanitize_wm_latency(struct intel_display *display)
+> >  	}
+> >  }
+> >  
+> > +static void make_wm_latency_monotonic(struct intel_display *display)
+> > +{
+> > +	u16 *wm = display->wm.skl_latency;
+> > +	int level, num_levels = display->wm.num_levels;
+> > +
+> > +	for (level = 1; level < num_levels; level++) {
+> > +		if (wm[level] == 0)
+> > +			break;
+> > +
+> > +		wm[level] = max(wm[level], wm[level-1]);
+> > +	}
+> > +}
+> > +
 > 
-> v2: Also move GEN7_ERR_INT (Ville)
+> What if, for instance, we have:
 > 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  .../gpu/drm/i915/display/intel_display_irq.c  | 20 ++++++++++++++++++-
->  .../gpu/drm/i915/display/intel_display_irq.h  |  2 +-
->  drivers/gpu/drm/i915/i915_irq.c               | 15 +-------------
->  3 files changed, 21 insertions(+), 16 deletions(-)
+>  WM0 latency not provided
+>  WM1 latency 200 usec
+>  WM2 latency 100 usec
+>  WM3 latency 100 usec
+>  WM4 latency 100 usec
+>  WM5 latency 100 usec
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> index 93c2e42f98c9..c6f367e6159e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> @@ -1985,7 +1985,7 @@ void vlv_display_irq_postinstall(struct intel_display *display)
->  	spin_unlock_irq(&display->irq.lock);
->  }
->  
-> -void ibx_display_irq_reset(struct intel_display *display)
-> +static void ibx_display_irq_reset(struct intel_display *display)
->  {
->  	if (HAS_PCH_NOP(display))
->  		return;
-> @@ -1996,6 +1996,24 @@ void ibx_display_irq_reset(struct intel_display *display)
->  		intel_de_write(display, SERR_INT, 0xffffffff);
->  }
->  
-> +void ilk_display_irq_reset(struct intel_display *display)
-> +{
-> +	struct intel_uncore *uncore = to_intel_uncore(display->drm);
-> +
-> +	gen2_irq_reset(uncore, DE_IRQ_REGS);
-> +	display->irq.ilk_de_imr_mask = ~0u;
-> +
-> +	if (DISPLAY_VER(display) == 7)
-> +		intel_de_write(display, GEN7_ERR_INT, 0xffffffff);
-> +
-> +	if (display->platform.haswell) {
-> +		intel_de_write(display, EDP_PSR_IMR, 0xffffffff);
-> +		intel_de_write(display, EDP_PSR_IIR, 0xffffffff);
-> +	}
-> +
-> +	ibx_display_irq_reset(display);
-> +}
-> +
->  void gen8_display_irq_reset(struct intel_display *display)
->  {
->  	enum pipe pipe;
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.h b/drivers/gpu/drm/i915/display/intel_display_irq.h
-> index c66db3851da4..cee120347064 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_irq.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.h
-> @@ -56,7 +56,7 @@ u32 gen11_gu_misc_irq_ack(struct intel_display *display, const u32 master_ctl);
->  void gen11_gu_misc_irq_handler(struct intel_display *display, const u32 iir);
->  
->  void i9xx_display_irq_reset(struct intel_display *display);
-> -void ibx_display_irq_reset(struct intel_display *display);
-> +void ilk_display_irq_reset(struct intel_display *display);
->  void vlv_display_irq_reset(struct intel_display *display);
->  void gen8_display_irq_reset(struct intel_display *display);
->  void gen11_display_irq_reset(struct intel_display *display);
-> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-> index ab65402bc6bf..af2b43679b1b 100644
-> --- a/drivers/gpu/drm/i915/i915_irq.c
-> +++ b/drivers/gpu/drm/i915/i915_irq.c
-> @@ -656,22 +656,9 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
->  static void ilk_irq_reset(struct drm_i915_private *dev_priv)
->  {
->  	struct intel_display *display = dev_priv->display;
-> -	struct intel_uncore *uncore = &dev_priv->uncore;
-> -
-> -	gen2_irq_reset(uncore, DE_IRQ_REGS);
-> -	display->irq.ilk_de_imr_mask = ~0u;
-> -
-> -	if (GRAPHICS_VER(dev_priv) == 7)
-> -		intel_uncore_write(uncore, GEN7_ERR_INT, 0xffffffff);
-> -
-> -	if (IS_HASWELL(dev_priv)) {
-> -		intel_uncore_write(uncore, EDP_PSR_IMR, 0xffffffff);
-> -		intel_uncore_write(uncore, EDP_PSR_IIR, 0xffffffff);
-> -	}
->  
->  	gen5_gt_irq_reset(to_gt(dev_priv));
-> -
-> -	ibx_display_irq_reset(display);
-> +	ilk_display_irq_reset(display);
+> Do we really want to set them all to be 200 usec? Maybe multiples of
+> the minimum we have would still be fine?
 
-The master interrupt enable bit is in DEIER, so we really should
-reset that first. I suppose we could just do the entire display
-irq reset before the gt stuff (ie. effectively just move the pch
-irq reset ahead of the gt irq reset).
+The latencies are supposed to increase as you go along,
+each subsequent level corresponding to some deeper pkgC state.
 
->  }
->  
->  static void valleyview_irq_reset(struct drm_i915_private *dev_priv)
-> -- 
-> 2.47.3
+> 
+> What's the actual reason for this "papering over"? Is it to synchronize
+> timers?
+
+Dunno why Windows started to do this (as opposed to complaining and
+telling people to fix their pcode firmware to correctly populate the
+latencies). But since it does that it seems likely we might run into
+more cases like this in the future.
 
 -- 
 Ville Syrjälä
