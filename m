@@ -2,57 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE492B88B5E
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Sep 2025 11:59:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35105B88D77
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Sep 2025 12:22:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FA4710E97A;
-	Fri, 19 Sep 2025 09:59:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B79A10E985;
+	Fri, 19 Sep 2025 10:22:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WbJ6Ugtm";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="itPnSTlE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCBDF10E97A
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Sep 2025 09:59:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758275967; x=1789811967;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=DSn9AK4Up4lBAVD/DHuB6PYYHcQeC91QsY2DnosLwwg=;
- b=WbJ6Ugtm8UjjVjF4MZVIyqjpuAdUF+qjFAT954RaX9ODNqJT4iM8pFfH
- J2COUgS4KVUq6iRIQCwJ91eCMvIzuepNeCqhRd7ib8tr99vPX+z1rWmRh
- lAJLZmpfc3DODAx1qXoeL/LFLWR14QdNctSXlv66wThwdtsAIyNESqdPm
- 7gzqlbP3yDZtzuIe3TokbF27wFV+qOBc6SeqKBD3dzqEmRukLO15HVTlZ
- SqrDLRl9/v4utjSa3Idadd9BY0hWgkDN62UGqIbYrGFdzhLV53wo16Uv3
- WuFnu2uerRA7TIQIvXAZOo1X88MJ0K9iWBHbbNBfOItZ/BmX2x5y6Jukn w==;
-X-CSE-ConnectionGUID: XwwZdWRhQTGMIp5+eEpnJg==
-X-CSE-MsgGUID: OWAy7iB2TCmSAeO/Cgs0/Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11557"; a="64259672"
-X-IronPort-AV: E=Sophos;i="6.18,277,1751266800"; d="scan'208";a="64259672"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2025 02:59:27 -0700
-X-CSE-ConnectionGUID: Eiq+2imDTxePxGcuA82L2Q==
-X-CSE-MsgGUID: gd1hmN2SSXauchpeokIkZg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,277,1751266800"; d="scan'208";a="180050076"
-Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
- by orviesa004.jf.intel.com with ESMTP; 19 Sep 2025 02:59:26 -0700
-From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Subject: [PATCH v2 3/3] drm/i915/xe3: Restrict PTL intel_encoder_is_c10phy()
- to only PHY A
-Date: Fri, 19 Sep 2025 15:29:20 +0530
-Message-ID: <20250919095920.1594604-4-dnyaneshwar.bhadane@intel.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20250919095920.1594604-1-dnyaneshwar.bhadane@intel.com>
-References: <20250911210514.389014-1-dnyaneshwar.bhadane@intel.com>
- <20250919095920.1594604-1-dnyaneshwar.bhadane@intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE19310E984
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Sep 2025 10:22:12 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id BB3CE438D3;
+ Fri, 19 Sep 2025 10:22:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36979C4CEF0;
+ Fri, 19 Sep 2025 10:22:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1758277332;
+ bh=ssjn2KU0pcb/4ABh7q77iwxyJqODUjc/RhN0ZgKKhe0=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=itPnSTlEtqD4xn06AOVSsw1q+QRcO30pPndLRzI0Nl/RUa/ICAyFoG4Y8GRghqEsc
+ k3KRsShzLuJO8g90OOjYaraUKpysXCaiFTfA8tK/d6Duak4vkjGBAACT6eURtQDy7N
+ TEy8POX096a8xbWI0f89h52ghz1lTc8YV93x6S0L38VAKpTqW5XOKVOM7BHhec9ltv
+ giPU6uot1Y7QVtLiGsDGRIna4LdlbRUcIp5hNNFMXiKo+g8t7r+Pz2f9etFuj/2JIv
+ Qui51QhOqGPhf6TySd4PNSHCGTz1FnEh6nw4CGyHK46oCqABIMH+hlXBRkWlZpBqDS
+ EEH4/OW94NrNg==
+Date: Fri, 19 Sep 2025 12:22:08 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, saurabhg.gupta@intel.com, 
+ alex.zuo@intel.com, andi.shyti@linux.intel.com
+Subject: Re: [PATCH] drm/i915/gvt: Simplify case switch in intel_vgpu_ioctl
+Message-ID: <5bvoyx5x54b5byihaulx32shros3qw2kyyoqoqewnlqjazysci@lxlfpcgovcrd>
+References: <20250918214515.66926-2-jonathan.cavitt@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250918214515.66926-2-jonathan.cavitt@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,48 +57,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On PTL, no combo PHY is connected to PORT B. However, PORT B can
-still be used for Type-C and will utilize the C20 PHY for eDP
-over Type-C. In such configurations, VBTs also enumerate PORT B.
+Hi Jonathan,
 
-This leads to issues where PORT B is incorrectly identified as using the
-C10 PHY, due to the assumption that returning true for PORT B in
-intel_encoder_is_c10phy() would not cause problems.
+On Thu, Sep 18, 2025 at 09:45:16PM +0000, Jonathan Cavitt wrote:
+> We do not need a case switch to check cap_type_id in intel_vgpu_ioctl
+> for various reasons (it's impossible to hit the default case in the
+> current code, there's only one valid case to check, the error handling
+> code overlaps in both cases, etc.).  Simplify the case switch into a
+> single if statement.  This has the additional effect of simplifying the
+> error handling code.
+> 
+> Note that it is still currently impossible for
+> 'if (cap_type_id == VFIO_REGION_INFO_CAP_SPARSE_MMAP)'
+> to fail, but we should still guard against the possibility of this
+> changing in the future.
+> 
+> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
 
-From PTL's perspective, only PORT A/PHY A uses the C10 PHY.
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-Update the helper intel_encoder_is_c10phy() to return true only for
-PORT A/PHY on PTL.
-
-Bspec: 72571,73944
-Fixes: 9d10de78a37f ("drm/i915/wcl: C10 phy connected to port A and B")
-Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 11 ++++-------
- 1 file changed, 4 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 801235a5bc0a..e8b354d1c513 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -39,13 +39,10 @@ bool intel_encoder_is_c10phy(struct intel_encoder *encoder)
- 	struct intel_display *display = to_intel_display(encoder);
- 	enum phy phy = intel_encoder_to_phy(encoder);
- 
--	/* PTL doesn't have a PHY connected to PORT B; as such,
--	 * there will never be a case where PTL uses PHY B.
--	 * WCL uses PORT A and B with the C10 PHY.
--	 * Reusing the condition for WCL and extending it for PORT B
--	 * should not cause any issues for PTL.
--	 */
--	if (display->platform.pantherlake && phy < PHY_C)
-+	if (display->platform.pantherlake && phy == PHY_A)
-+		return true;
-+
-+	if (display->platform.pantherlake_wildcatlake && phy == PHY_B)
- 		return true;
- 
- 	if ((display->platform.lunarlake || display->platform.meteorlake) && phy < PHY_C)
--- 
-2.51.0
-
+Thanks,
+Andi
