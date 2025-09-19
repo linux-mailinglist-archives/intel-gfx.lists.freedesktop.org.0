@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E2EFB8B150
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Sep 2025 21:30:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBD94B8B153
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Sep 2025 21:30:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1403610E256;
-	Fri, 19 Sep 2025 19:30:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6610610EA82;
+	Fri, 19 Sep 2025 19:30:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GvU9cFST";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TOonJLCY";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B08FA10EA81;
- Fri, 19 Sep 2025 19:30:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E678C10EA82;
+ Fri, 19 Sep 2025 19:30:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758310230; x=1789846230;
+ t=1758310234; x=1789846234;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=WFhpACQIpph29Vnbt8OA0WENBJSom7Ns9Vm3y+E5Qnw=;
- b=GvU9cFSThUYRdoEhlKvlieIdqEevHWmGbwoAUGopKE/h9obzGaG+ZuxM
- Vh0TX83X0m+9uqcqxafm7omolUX+Q4qcww8fDUFWi0c8FcjvtPEZBa+Gl
- IBD5caAGAuY/iQLCX1hAR98x05M4WNc8ldp0/+eWGhDtWeXh+IoQ2m+g3
- WKY8w1zXEPAHsQdT0RsqdguXuc86I74Iq67Z8cWDFqK1sddEQ9ABemUif
- 5zo1YHQDwFpgzN1dPh7QW8htVb39L0edHvDQGCVq146sinQCrKsZAyusH
- FWvNVAMwFgASG3ELeIZvh0bSNI/Kpx2o3JXdFxp2PWpOtFr1/QGIEPgWI g==;
-X-CSE-ConnectionGUID: /VOvksDcS3u0xzRGbLGv4Q==
-X-CSE-MsgGUID: M+hcZ44CRJ+3blglwPshGw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11558"; a="48240288"
-X-IronPort-AV: E=Sophos;i="6.18,278,1751266800"; d="scan'208";a="48240288"
+ bh=Hp3pohhviUh99LsivDcJZroW2i4lWxBafo+9E36E2yg=;
+ b=TOonJLCYFq8Tl5yRRp61f900vVoPIhPbEhfUh+C43at5IW5P0aTvulcC
+ SfabFl0pyMBKIHr4fjxC10I4QmqsJkYe8jPeq4ZO0NE9TOFajJ7vyFhyg
+ LCDLXMieDStVmM4vs70+kg1iSlQam2NOBZ7J5kPcsKClY794COK59KhzT
+ dG3dKORBkp5YjXVNSQuw5I9umKG3J68BLlRT+9LXyFNBe2Kp6evaAg0R9
+ W8Fg7qmd0t3WlpuR4Idx5lWgORkirC/TN3zD/Ox35CgmhCS48oafSj8lW
+ ux/iCAMkg8SsPijgEkbzBW2VyBpXQN0QU6pms5J9c7RehQXD9YdvMCs5L Q==;
+X-CSE-ConnectionGUID: 2wnwRybLRduAvUrjUsikdA==
+X-CSE-MsgGUID: Hd17fxBfTq2vsfj4h5CWbw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11558"; a="48240308"
+X-IronPort-AV: E=Sophos;i="6.18,278,1751266800"; d="scan'208";a="48240308"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2025 12:30:30 -0700
-X-CSE-ConnectionGUID: D7qnpkKdRJaFm3shjqWnOw==
-X-CSE-MsgGUID: IEYUgagTSsuEInlHAemUIg==
+ 19 Sep 2025 12:30:34 -0700
+X-CSE-ConnectionGUID: O1N2B8xeSNac2Ip/SxvgeA==
+X-CSE-MsgGUID: oD7njKTUSWue7v6pP6Kl5g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,278,1751266800"; d="scan'208";a="176723047"
+X-IronPort-AV: E=Sophos;i="6.18,278,1751266800"; d="scan'208";a="176723096"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.112])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2025 12:30:28 -0700
+ 19 Sep 2025 12:30:32 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	Luca Coelho <luciano.coelho@intel.com>
-Subject: [PATCH v2 06/13] drm/i915: Extract multiply_wm_latency() from
- skl_read_wm_latency()
-Date: Fri, 19 Sep 2025 22:29:53 +0300
-Message-ID: <20250919193000.17665-7-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 07/13] drm/i915: Extract increase_wm_latency()
+Date: Fri, 19 Sep 2025 22:29:54 +0300
+Message-ID: <20250919193000.17665-8-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20250919193000.17665-1-ville.syrjala@linux.intel.com>
 References: <20250919193000.17665-1-ville.syrjala@linux.intel.com>
@@ -74,84 +73,68 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-I want skl_read_wm_latency() to just do what it says on
-the tin, ie. read the latency values from the pcode mailbox.
-Move the DG2 "multiply by two" trick elsewhere.
+Extract the "increase wm latencies by some amount" code into
+a helper that can be reused.
 
 Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_watermark.c | 29 ++++++++++++++------
- 1 file changed, 20 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 28 ++++++++++++--------
+ 1 file changed, 17 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 2bc797aba2ec..1ac94cb4f27d 100644
+index 1ac94cb4f27d..98ca592f6042 100644
 --- a/drivers/gpu/drm/i915/display/skl_watermark.c
 +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -3174,6 +3174,15 @@ void skl_watermark_ipc_init(struct intel_display *display)
- 	skl_watermark_ipc_update(display);
+@@ -3183,6 +3183,21 @@ static void multiply_wm_latency(struct intel_display *display, int mult)
+ 		wm[level] *= mult;
  }
  
-+static void multiply_wm_latency(struct intel_display *display, int mult)
++static void increase_wm_latency(struct intel_display *display, int inc)
 +{
 +	u16 *wm = display->wm.skl_latency;
 +	int level, num_levels = display->wm.num_levels;
 +
-+	for (level = 0; level < num_levels; level++)
-+		wm[level] *= mult;
++	wm[0] += inc;
++
++	for (level = 1; level < num_levels; level++) {
++		if (wm[level] == 0)
++			break;
++
++		wm[level] += inc;
++	}
 +}
 +
  static bool need_16gb_dimm_wa(struct intel_display *display)
  {
  	const struct dram_info *dram_info = intel_dram_info(display->drm);
-@@ -3200,6 +3209,9 @@ adjust_wm_latency(struct intel_display *display)
- 	int i, level, num_levels = display->wm.num_levels;
- 	int read_latency = wm_read_latency(display);
- 
-+	if (display->platform.dg2)
-+		multiply_wm_latency(display, 2);
-+
- 	/*
- 	 * If a level n (n > 1) has a 0us latency, all levels m (m >= n)
- 	 * need to be disabled. We make sure to sanitize the values out
-@@ -3262,7 +3274,6 @@ static void mtl_read_wm_latency(struct intel_display *display)
- static void skl_read_wm_latency(struct intel_display *display)
+@@ -3207,7 +3222,6 @@ adjust_wm_latency(struct intel_display *display)
  {
  	u16 *wm = display->wm.skl_latency;
--	int mult = display->platform.dg2 ? 2 : 1;
- 	u32 val;
- 	int ret;
+ 	int i, level, num_levels = display->wm.num_levels;
+-	int read_latency = wm_read_latency(display);
  
-@@ -3274,10 +3285,10 @@ static void skl_read_wm_latency(struct intel_display *display)
- 		return;
- 	}
+ 	if (display->platform.dg2)
+ 		multiply_wm_latency(display, 2);
+@@ -3232,16 +3246,8 @@ adjust_wm_latency(struct intel_display *display)
+ 	 * to add proper adjustment to each valid level we retrieve
+ 	 * from the punit when level 0 response data is 0us.
+ 	 */
+-	if (wm[0] == 0) {
+-		wm[0] += read_latency;
+-
+-		for (level = 1; level < num_levels; level++) {
+-			if (wm[level] == 0)
+-				break;
+-
+-			wm[level] += read_latency;
+-		}
+-	}
++	if (wm[0] == 0)
++		increase_wm_latency(display, wm_read_latency(display));
  
--	wm[0] = REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_0_4_MASK, val) * mult;
--	wm[1] = REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_1_5_MASK, val) * mult;
--	wm[2] = REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_2_6_MASK, val) * mult;
--	wm[3] = REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_3_7_MASK, val) * mult;
-+	wm[0] = REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_0_4_MASK, val);
-+	wm[1] = REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_1_5_MASK, val);
-+	wm[2] = REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_2_6_MASK, val);
-+	wm[3] = REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_3_7_MASK, val);
- 
- 	/* read the second set of memory latencies[4:7] */
- 	val = 1; /* data0 to be programmed to 1 for second set */
-@@ -3287,10 +3298,10 @@ static void skl_read_wm_latency(struct intel_display *display)
- 		return;
- 	}
- 
--	wm[4] = REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_0_4_MASK, val) * mult;
--	wm[5] = REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_1_5_MASK, val) * mult;
--	wm[6] = REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_2_6_MASK, val) * mult;
--	wm[7] = REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_3_7_MASK, val) * mult;
-+	wm[4] = REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_0_4_MASK, val);
-+	wm[5] = REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_1_5_MASK, val);
-+	wm[6] = REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_2_6_MASK, val);
-+	wm[7] = REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_3_7_MASK, val);
- }
- 
- static void skl_setup_wm_latency(struct intel_display *display)
+ 	/*
+ 	 * WA Level-0 adjustment for 16Gb+ DIMMs: SKL+
 -- 
 2.49.1
 
