@@ -2,55 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73FB0B8ADD2
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Sep 2025 20:09:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2619B8AFAA
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Sep 2025 20:50:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AC1E10EA6A;
-	Fri, 19 Sep 2025 18:09:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E5F210EA70;
+	Fri, 19 Sep 2025 18:50:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O7Kcs9N6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ChJMihQX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D21B10EA67;
- Fri, 19 Sep 2025 18:09:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC9D410E255
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Sep 2025 18:50:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758305344; x=1789841344;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=WB3I6mqGkxNcWfLKqxy0n97AB61Ey1b5MDDChlji5M0=;
- b=O7Kcs9N6DPO5urAVKQhqH1lD9WNZlzMfF4cNW8x6Ks3QK+NKO06Y0BNp
- M1LKLUZXC4KEms+DErMOhCuGt07ylXwlfC/ax2Lx3h01l84D7aRt2Flvr
- JLaxvrAxIo7g0r74shvcdSBfH6CIJ9X+awL/4JtbOhVHYZv8yFeV8PBuO
- oSgSKBWviPZahrf70pbhytzHBt8/DIx82zQYngxQgk4cg3Axu479dVwDe
- S+dOnyimyEjFPJip9KbYHzjPj0njQO9ingP3qXy1QfjIgZpNIFJIeKzhO
- UuJrFE6c0GvlqYS7Ya/7IBliig2CwSYqHtBYm8XhnktrQJpaR/0ky7BI/ g==;
-X-CSE-ConnectionGUID: 9PZbW88cQTK1RZTlVvYmSw==
-X-CSE-MsgGUID: LoLXA4+/Qg2LJS3F6Tmbew==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="64458820"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="64458820"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2025 11:08:55 -0700
-X-CSE-ConnectionGUID: 8in22T7SS4murCFVtGV+RA==
-X-CSE-MsgGUID: 5W8yg5uFSUmi8ae4CMB1xg==
+ t=1758307820; x=1789843820;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=a4HeozPjAC3iw9cMsa6+cAqrxBGNL2bQ7NNzqnLZygs=;
+ b=ChJMihQXDFnrQRQiIpL43ACq/3O5nFtonxMRygWfp8K8BQTkr/ldubfc
+ mNpoWTRX2XKtuwpBoYjJsRN1USKxZVInfLsGT6n/Fuc47XwZX4yYgFBpZ
+ +CdQY5B2PBfiA97zSwCjjvfTcmbLkcaRhvn9G8LELb+q9fG4mE5ZehNYA
+ JImH10XcpQIZmQAi0XHHJhqjcKaIrrxwUpezSU5wEX764xCvbdSG3z9B1
+ rJ4kiG9z+E57bfJvuXssZ4KXzGBw6TtP1dtgxh8T1l1u+1buOvKJzjZPa
+ w1KXrtNfTsRKXOpC5TPX7l0GbUmrX58biDOL5JXkdztAxkE866s4wCVMv Q==;
+X-CSE-ConnectionGUID: 5ssJnC2aQWmVDA+tJuzj2A==
+X-CSE-MsgGUID: IJfNJUtxScGPjHQUsyXj7A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11558"; a="86097335"
+X-IronPort-AV: E=Sophos;i="6.18,278,1751266800"; d="scan'208";a="86097335"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2025 11:50:20 -0700
+X-CSE-ConnectionGUID: 7mCO2A2HQpyFZ9MNNRtagQ==
+X-CSE-MsgGUID: ax4dRmlMRNeLNIoWit+yrA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,278,1751266800"; d="scan'208";a="181019131"
+X-IronPort-AV: E=Sophos;i="6.18,278,1751266800"; d="scan'208";a="175152909"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.112])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2025 11:08:54 -0700
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2025 11:50:19 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 3/3] drm/i915: s/intel_get_linetime_us()/skl_wm_linetime_us()/
-Date: Fri, 19 Sep 2025 21:08:38 +0300
-Message-ID: <20250919180838.10498-4-ville.syrjala@linux.intel.com>
+Subject: [PATCH v3 0/6] drm/i915/pm: Clean up the hibernate vs. PCI D3 quirk
+Date: Fri, 19 Sep 2025 21:50:09 +0300
+Message-ID: <20250919185015.14561-1-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
-In-Reply-To: <20250919180838.10498-1-ville.syrjala@linux.intel.com>
-References: <20250919180838.10498-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -72,40 +69,28 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Rename intel_get_linetime_us() to skl_wm_linetime_us() to better
-reflect that it's not meant to be used for anything apart from
-the watermark calculations.
+Attempt to make i915 rely more on the standard pci pm
+code instead of hand rolling a bunch of
+pci_save_state()+pci_set_power_state() stuff in the
+driver.
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/skl_watermark.c | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+v2: Drop the core pci changes for now since I couldn't
+    get any real answers to them
+    Drop some redundant pci_*() clals from the pm paths
+v3: Rebase, all r-b'd now
 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 3eaaf26100f1..e8ed9df34b1f 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -1636,9 +1636,8 @@ skl_wm_method2(u32 pixel_rate, u32 pipe_htotal, u32 latency,
- 	return ret;
- }
- 
--static int
--intel_get_linetime_us(const struct intel_crtc_state *crtc_state,
--		      int pixel_rate)
-+static int skl_wm_linetime_us(const struct intel_crtc_state *crtc_state,
-+			      int pixel_rate)
- {
- 	return DIV_ROUND_UP(crtc_state->hw.pipe_mode.crtc_htotal * 1000,
- 			    pixel_rate);
-@@ -1729,7 +1728,7 @@ skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
- 	wp->y_tile_minimum = mul_u32_fixed16(wp->y_min_scanlines,
- 					     wp->plane_blocks_per_line);
- 
--	wp->linetime_us = intel_get_linetime_us(crtc_state, plane_pixel_rate);
-+	wp->linetime_us = skl_wm_linetime_us(crtc_state, plane_pixel_rate);
- 
- 	return 0;
- }
+Ville Syrjälä (6):
+  drm/i915/pm: Simplify pm hook documentation
+  drm/i915/pm: Hoist pci_save_state()+pci_set_power_state() to the end
+    of pm _late() hook
+  drm/i915/pm: Move the hibernate+D3 quirk stuff into noirq() pm hooks
+  drm/i915/pm: Do pci_restore_state() in switcheroo resume hook
+  drm/i915/pm: Allow drivers/pci to manage our pci state normally
+  drm/i915/pm: Drop redundant pci stuff from suspend/resume paths
+
+ drivers/gpu/drm/i915/i915_driver.c | 133 +++++++++++++++--------------
+ 1 file changed, 69 insertions(+), 64 deletions(-)
+
 -- 
 2.49.1
 
