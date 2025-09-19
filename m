@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDEF0B8AFC3
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Sep 2025 20:50:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1537DB8AFD0
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Sep 2025 20:50:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 819F110EA75;
-	Fri, 19 Sep 2025 18:50:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95C1310EA77;
+	Fri, 19 Sep 2025 18:50:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ediFCcn3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QCZJVNqc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB08710EA73
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Sep 2025 18:50:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0012C10EA72
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Sep 2025 18:50:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758307838; x=1789843838;
+ t=1758307847; x=1789843847;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=e9+2Za0Ck/bIjIvlwjx7QbGsSmb6SbmkB/RKLvHtQhw=;
- b=ediFCcn3huJRvUtjawr0AGFmLGUIner1mZ/CRCOhEblsoQ/CfV0xPIUk
- 43uB468v7UZj7oPy/4DMGSBRMDO10L+Xv0RWXzTholSyQsDvD5GfpqgqW
- OPBegsFZLu7H5M4Vpal9vkhou0DI1RoJBM94b6BXGyWFt7rhtHMBjr7u0
- le4ZwsZR4TEhMT6QF3jGaP/TqU27vXPJt9kIPqRUuY/JutOgWCGx6dGyf
- l/sxS21MwzO51TtEU1WHuhq2A7Tltu7NvFTi+M3IOvB/FsjOc0EYPWaZf
- n+EmpW2FWEj0i8o3AKYUT0rGmy9GW+aLcWFH5bRfva9/OIFYpXdZcbF5a g==;
-X-CSE-ConnectionGUID: Ur/6x4iHSFaJJigww6VsLw==
-X-CSE-MsgGUID: CJfDnmuOQEeFy/1jTh4Ibg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11558"; a="86097355"
-X-IronPort-AV: E=Sophos;i="6.18,278,1751266800"; d="scan'208";a="86097355"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2025 11:50:38 -0700
-X-CSE-ConnectionGUID: 1OSYypfjTIOlXkiBvA7ozw==
-X-CSE-MsgGUID: hYC4BCXfRp+6nRanPo7UQQ==
+ bh=qwSOdT6lnTay9U7fCwmG5lMRfKmXAQAgGr85iCGq7dA=;
+ b=QCZJVNqcm1dm5QDcFlMkvzzlwARYTW7pyrrgMwoC3+eylcqIlWUl8NRh
+ KE1tVdI2oSNm5dzHv9lfresdVYZoAs+DBDNdBSX4/lIIqxQAYoB9qw04F
+ X0MVit5DjiZ6MA5W5gSmh4jbxqMD6noLyzGNz4HqnJkXXLBBJRiQ3oEDw
+ iZfYENrlDSOfVdNAV9yPE7q2NgtPe8qzO0wFbX/ueO+alg1JSSxV5ZC4m
+ cUu6yqc7BOhCoXyNAeT0sYLNcLgRj48kMVh0oxUbxe6+F7REWtqae5w9h
+ Cnkpw82nvRPjLw20H7E9YbeIOo/ATThMKpnb8g+cPDwXl5gFO4Xwe9G6p A==;
+X-CSE-ConnectionGUID: Kcdb4ADNT4qxOdwahNAI8g==
+X-CSE-MsgGUID: On98HgjVQd6JTWuPnoJgDA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11558"; a="60551389"
+X-IronPort-AV: E=Sophos;i="6.18,278,1751266800"; d="scan'208";a="60551389"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2025 11:50:43 -0700
+X-CSE-ConnectionGUID: vpCYp86fTJSzWRGTxako7Q==
+X-CSE-MsgGUID: q6EurMWAQQ2TesAQsfNzaQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,278,1751266800"; d="scan'208";a="175152970"
+X-IronPort-AV: E=Sophos;i="6.18,278,1751266800"; d="scan'208";a="180310322"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.112])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2025 11:50:36 -0700
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2025 11:50:40 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+Cc: Badal Nilawar <badal.nilawar@intel.com>,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v3 4/6] drm/i915/pm: Do pci_restore_state() in switcheroo
- resume hook
-Date: Fri, 19 Sep 2025 21:50:13 +0300
-Message-ID: <20250919185015.14561-5-ville.syrjala@linux.intel.com>
+Subject: [PATCH v3 5/6] drm/i915/pm: Allow drivers/pci to manage our pci state
+ normally
+Date: Fri, 19 Sep 2025 21:50:14 +0300
+Message-ID: <20250919185015.14561-6-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20250919185015.14561-1-ville.syrjala@linux.intel.com>
 References: <20250919185015.14561-1-ville.syrjala@linux.intel.com>
@@ -74,37 +74,55 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Since this switcheroo garbage bypasses all the core pm we
-have to manually manage the pci state. To that end add the
-missing pci_restore_state() to the switcheroo resume hook.
-We already have the pci_save_state() counterpart on the
-suspend side.
+Stop doing the pci_save_state(), except when we need to prevent
+D3 due to BIOS bugs, so that the code in drivers/pci is allowed
+to manage the state of the PCI device. Less chance something
+getting left by the wayside by i915 if/when the things change in
+drivers/pci.
 
-Arguably none of this code should exist in the driver
-in the first place, and instead the entire switcheroo
-mechanism should be rewritten and properly integrated into
-core pm code...
-
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Badal Nilawar <badal.nilawar@intel.com>
 Reviewed-by: Jouni Högander <jouni.hogander@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_driver.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/i915/i915_driver.c | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 327e5fe7dfff..009f4e27cf49 100644
+index 009f4e27cf49..0cb874e64971 100644
 --- a/drivers/gpu/drm/i915/i915_driver.c
 +++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -1346,6 +1346,8 @@ int i915_driver_resume_switcheroo(struct drm_i915_private *i915)
- 	if (ret)
- 		return ret;
+@@ -1162,9 +1162,8 @@ static int i915_drm_suspend_noirq(struct drm_device *dev, bool hibernation)
+ 	 * pci_save_state() prevents drivers/pci from
+ 	 * automagically putting the device into D3.
+ 	 */
+-	pci_save_state(pdev);
+-	if (!(hibernation && GRAPHICS_VER(dev_priv) < 6))
+-		pci_set_power_state(pdev, PCI_D3hot);
++	if (hibernation && GRAPHICS_VER(dev_priv) < 6)
++		pci_save_state(pdev);
  
-+	pci_restore_state(pdev);
-+
- 	ret = i915_drm_resume_early(&i915->drm);
- 	if (ret)
- 		return ret;
+ 	return 0;
+ }
+@@ -1172,6 +1171,7 @@ static int i915_drm_suspend_noirq(struct drm_device *dev, bool hibernation)
+ int i915_driver_suspend_switcheroo(struct drm_i915_private *i915,
+ 				   pm_message_t state)
+ {
++	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
+ 	int error;
+ 
+ 	if (drm_WARN_ON_ONCE(&i915->drm, state.event != PM_EVENT_SUSPEND &&
+@@ -1189,9 +1189,8 @@ int i915_driver_suspend_switcheroo(struct drm_i915_private *i915,
+ 	if (error)
+ 		return error;
+ 
+-	error = i915_drm_suspend_noirq(&i915->drm, false);
+-	if (error)
+-		return error;
++	pci_save_state(pdev);
++	pci_set_power_state(pdev, PCI_D3hot);
+ 
+ 	return 0;
+ }
 -- 
 2.49.1
 
