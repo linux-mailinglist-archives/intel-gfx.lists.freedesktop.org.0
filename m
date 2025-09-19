@@ -2,61 +2,175 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CA98B88701
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Sep 2025 10:36:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 826EBB88815
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Sep 2025 11:04:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D305610E969;
-	Fri, 19 Sep 2025 08:36:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5252D10E96E;
+	Fri, 19 Sep 2025 09:04:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Aith7dug";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TPV8r3Uj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21FB610E969
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Sep 2025 08:36:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72D0810E96D;
+ Fri, 19 Sep 2025 09:04:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758271003; x=1789807003;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=J6qjm5AoET9k2+lBfsCeTaB+CqL26EOWDZk4gwfTho4=;
- b=Aith7dugo8YVnZnM9hi78dQYg/i6o+nyL8FXkyskAau9eOs5URwfRLE6
- AU7wuShbLpv1P2qBjY74CgeI1w18kr4q81IyiE+78sQeuyPv4BImj9yQ4
- 8OihwE+jlZnLxZzuQDgV5IRmBov2m/j8hj7dHxI3ceVSF3DbwbYNl9AQO
- PlEh6z8u6dCZ2xg7Los5ca9JD58O5rflbnyJccMhW5RH68a3g35UKR0CG
- iSgl9uabmGoxRyBwnt4EQSr5+s9LBmuZfccQ0vWj1OspDvgABT79eZ4CP
- 9DPBfkgV19+ZJo1d378SsEjd67UP7e0E9+vFNbnBPS/l2WpDLXTl5h4eQ w==;
-X-CSE-ConnectionGUID: s6Ld6QCLTReGS8SWpABAww==
-X-CSE-MsgGUID: zv2Rq7rXSMy11+2X1E+tNg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11557"; a="60545223"
-X-IronPort-AV: E=Sophos;i="6.18,277,1751266800"; d="scan'208";a="60545223"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2025 01:36:42 -0700
-X-CSE-ConnectionGUID: E0myO415TnO65YMktwBKOw==
-X-CSE-MsgGUID: NbolaKzkR3m9zoFWGSagoQ==
+ t=1758272658; x=1789808658;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=B9+tJw9Ap48YY/5MLexNdMV2ew/0yPWQ/tPCyP1sXYY=;
+ b=TPV8r3Uj/o4GazyJAAsRlHPzhMZyA8eci2+B6JU6Fste2JLWmX268vyr
+ U096DmwcB1/0avaa6cKkzUW/5zf4pBmLbmtghkcSIvaVGyxrEaK0X6Wj7
+ iHIRONzFY2exwZP9YISfNnBlV90bh7mdS5PJrCcwTW3T56RBTaedyfJIg
+ j3d92pFyz1FvWcLUd1UqWg2XG5jr41SQYi27HKnt4vLHJ3IBghNBJOb51
+ n9nA+a8OFJQGBiqiueNd9068vteQ8vTQpaFI+wYl1GRVfWDJ6Fv7lvvX8
+ PNFXF9PQsVHZFfkc3V+Yx7AoTZSigwtccJP6/asAwsBQigfpRGIQIRbKM A==;
+X-CSE-ConnectionGUID: jUpLPPgFR76djI6R892rEQ==
+X-CSE-MsgGUID: dG5h8KnpQj2pjk/yhghyYg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11557"; a="70866544"
+X-IronPort-AV: E=Sophos;i="6.18,277,1751266800"; d="scan'208";a="70866544"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2025 02:04:18 -0700
+X-CSE-ConnectionGUID: /KpZxjD7QMWQa4YxNjCcpQ==
+X-CSE-MsgGUID: XknaS8/8Suu5n3h1IJNAEQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,277,1751266800"; d="scan'208";a="176183914"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.112])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2025 01:36:41 -0700
-Date: Fri, 19 Sep 2025 11:36:37 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Luca Coelho <luciano.coelho@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 4/6] drm/i915/wm: convert x/y-tiling bools to an enum
-Message-ID: <aM0WFVMhQwIU-4QI@intel.com>
-References: <20250908073734.1180687-1-luciano.coelho@intel.com>
- <20250908073734.1180687-5-luciano.coelho@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,277,1751266800"; d="scan'208";a="176590125"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2025 02:04:18 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Fri, 19 Sep 2025 02:04:16 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17 via Frontend Transport; Fri, 19 Sep 2025 02:04:16 -0700
+Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.20) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Fri, 19 Sep 2025 02:04:16 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=T4W49WJUhE7KRfkCju/+JWu1qDe47WX0+lgCnS8R1UPfm1KDbxJsU6SfmyYDl8GqBqfCOV6GsPyBS/vEd07vOfjEFlk1u219QaeObEZg0g+REUOn5a1nprEX8ks/u1L4qVJI9T0F/JYARL/o5TF5OYMBa4Sp9OwaOK7a+viDsxcdJ6JXUWUW3oUnK8jJdmEbrkGvxiEljo45QwMeamFfxg+YD+dvVsMrrPxyC7BTuaSe2L4bv8RZ1/XSeVXVOu786XcOL6qK0Jd8hIZmVZ0s7NMXHVe2JQlMP9ljqBKzbaHdZmo8Iq1KD4oIlz3BZw7Fcoabo6hMfD388Ce85vIQxg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Z14z8/er34h0dAnYFCtWZlTo2V3onaZUlakacdW/eww=;
+ b=RbY6G5kGL7fNUi5zAMCjdbo8sqWl4GLf4eRw6ALt3hIoeVmEizsHjPaK7R8LcIKngRC7UWbCISPw7LJHqR1i3fsyKKDGqjWWMc410pC+BYX9+uVhhJeHif8GgnX7OGsiEDMV8lrEzX1zksQw9EVm2sHBRw0Vklh1XcnkkFS7vxXiyCavFb4/Gj5HyPeYXIYUlyrv6Dj79o4/uAX4F5EhGwVAWlXvD12ng6vxbHXhQ56yUqcJ2aIcYGgzEL/bEHeTNX+SkQGtXzYdfpqUCUHCQ1XdUxK46xJ0OhqecFbxp4a9m/WReF8aDJYKl7+HS5YXqDAMgaeKpG8VpPq+GBFkhA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from IA1PR11MB6348.namprd11.prod.outlook.com (2603:10b6:208:3af::16)
+ by IA1PR11MB8150.namprd11.prod.outlook.com (2603:10b6:208:44c::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.14; Fri, 19 Sep
+ 2025 09:04:14 +0000
+Received: from IA1PR11MB6348.namprd11.prod.outlook.com
+ ([fe80::4db5:b0d9:b6b3:bb52]) by IA1PR11MB6348.namprd11.prod.outlook.com
+ ([fe80::4db5:b0d9:b6b3:bb52%4]) with mapi id 15.20.9137.012; Fri, 19 Sep 2025
+ 09:04:13 +0000
+From: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Subject: RE: [PATCH] drm/i915/vrr: Refactor VRR live status wait into common
+ helper
+Thread-Topic: [PATCH] drm/i915/vrr: Refactor VRR live status wait into common
+ helper
+Thread-Index: AQHcHAcUbHUr1QtqC0yhq4FsAFFwubSaUC2Q
+Date: Fri, 19 Sep 2025 09:04:13 +0000
+Message-ID: <IA1PR11MB6348FCE330F2FF0C57D24380B211A@IA1PR11MB6348.namprd11.prod.outlook.com>
+References: <20250902122850.3649828-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250902122850.3649828-1-ankit.k.nautiyal@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: IA1PR11MB6348:EE_|IA1PR11MB8150:EE_
+x-ms-office365-filtering-correlation-id: f7cc3315-48ad-4270-9be9-08ddf75b8141
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|38070700021|7053199007; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?mLIh1Fc3eb9hH5wILNyPEQg59wGSHWIcejLg5jxtJCfyG/bUvaEaZ5ccH4Pb?=
+ =?us-ascii?Q?QoFk1s3P68Tj0JBtciFom/EFHosFiYt2b6UXtOHI3JwWJao4QS7bCLCk08VD?=
+ =?us-ascii?Q?MupyBNMGz733Tb8yGAVHV7WYboiEZoQqVINB7fKFMNU5L6Lv/gvQ8W3TBBAh?=
+ =?us-ascii?Q?W6EtuawzfkDPqfxpjzOv1xh1vagVs/3549XjD5A1ah1+WA7RrRyuhHNxG3Xn?=
+ =?us-ascii?Q?vFXM1gFeoHJpAtVORvRlxlVSbU2PnTQGwsWO88OjgDH3yHCI6e4iKp19QhgT?=
+ =?us-ascii?Q?L2ouyxN7CTuQKI593GgLEFqR0H5GRk3sNUf7Sp9AFKS97RaBEdJStIwJc9Pn?=
+ =?us-ascii?Q?nOGGFQrXbng2H/yc8CJwikoem0H569/A4rS4IKwMsWe2yJx2j09vGepKCJcz?=
+ =?us-ascii?Q?F7ogHJAx2cpocwDErl6VyqJavbivBGKx26tervkPtTQFH/pbWOY9ZEdKK/G+?=
+ =?us-ascii?Q?F8qHSglW5N+6COnGud4maXYpO/q8A8H03rs7IvccQoGP9LeLZRyYfuLM/yUN?=
+ =?us-ascii?Q?oYg8Rn/DS+/jkT4lFa51FeNe7tbqMQMWXJ/s0YIWmvF/nZuQsRPSnIjtLNhw?=
+ =?us-ascii?Q?tKiI6ze43oeKANKvDJpP3tMAavVVz/7ltnYQlAysWmwGFqEm/XZPc1meOTZI?=
+ =?us-ascii?Q?+VVLORt9Gtk7Mgoqh7FGWF5fnkJ32hqTrt94mqficGnv3PWTQ9i8xKOVakBL?=
+ =?us-ascii?Q?eL5wsh7tv4aej7jZbrrrfggN+9Eqz2ip+R+LJcSiR5geEefaN7p3WrG+EzhS?=
+ =?us-ascii?Q?GNCqmnlTcqGfu7r7uFyn0/co7s5YK3Ra/XGdALTiDG49j8JqqftPdmS79dJ1?=
+ =?us-ascii?Q?B3r2Jb6nTtfsj6ASmoE26gUGWqmdKYoTPQja6ZsHNQ5pgtMqaQkyeoGmtcps?=
+ =?us-ascii?Q?0by7Yp7ZBj3iKiA4IxS41KrMYFGdNjbYZzzkj6zaJxqg2jPyOvnMbU90CCmB?=
+ =?us-ascii?Q?IlsMJB0Tc8Fcb5eT6ncbft91a5WUVA67QToTJIAavPqcjkKIxyPtjT/wix3Z?=
+ =?us-ascii?Q?WHDPlvZWKWtl3IPK094a/+KvcuDdN7afu753nhFLRvQL1yCJQSECBaYksQvl?=
+ =?us-ascii?Q?NlR3/fbbihGloSuKiLLVSJbVs+nHQy/ZTwSxGT62B0F4LuCwxrhdFbPvewsQ?=
+ =?us-ascii?Q?N4oiZ3PLli3lmsc7GGE+iJPTqKVSqY5WZ99IXPt95U0JwUmIUhvw6AS+Dc3V?=
+ =?us-ascii?Q?Qlcs0wem3E2lBK3rkj98MTVajsDKQIA5xk3thgKqoMcflivyCXNFZTxJX/S8?=
+ =?us-ascii?Q?dXDL9v3n1RA+mL4kfZc0pea9Cj0qZXZ0029zrJIBciXG1GqDWaHpt8LGt+wK?=
+ =?us-ascii?Q?yZLvu1zZeOuUiFfmTYI0PjD+BnAWcQq42luSCgI/onyEaud2U9xdjXAYo0cn?=
+ =?us-ascii?Q?1xEqT1ZH8QNP20W9mCO6/MFB3WU7h8gcYqhuuOeUO02aajBbV1CuMRTOg4Jl?=
+ =?us-ascii?Q?5fJjQZrEIm9boSHNKKPkO9B3D6GDRaNREvFZzWh03MtYdS88RwZhOrlXzUtL?=
+ =?us-ascii?Q?jXLT0p//99jDGrY=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA1PR11MB6348.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(38070700021)(7053199007); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?yugnSotKQnsOzeUAQ7zbet8gJq9KWMReTQEmYXtaPoO4PDH9H5JdKSSETx5b?=
+ =?us-ascii?Q?EaKYxkA0OVLRuYN6PeDm2aYJzgXsYTdolodDPNITV3kANdl6jHHe6q38zSHD?=
+ =?us-ascii?Q?hZGH59b8VT9cDZhzSIdYfJHa5XEJeSAIhGAfw5bLTtmwFoVa9vR/lX+N636X?=
+ =?us-ascii?Q?uA8Qm2jE7DQXVIZ3J3jzwxr4U7eVdBPId2iUTc67YGgVof8VTRVq5Uk3SpRl?=
+ =?us-ascii?Q?FaFPrSOv5qLHsfQvD3Fg/srO3v3KzOKVZs/ZiJyh3EeUPATz7358lEDdKTNw?=
+ =?us-ascii?Q?Uf6NgNwQWyA/SFjnfJCYjkaY7Cw6JoDNgPzIubYT5L32Ve4LUY0yNYelnGry?=
+ =?us-ascii?Q?Uj51OuyVggXqy7Xmb9ykrMvREhWBcPtLx24+sv1doHOKTYZVk/qQWKUhfuHO?=
+ =?us-ascii?Q?rPRhIaxR4dIuTk2jQUFiV8rEHMZkx4TmEjfMafR8BcjTMPjXusXQh6WDW5JW?=
+ =?us-ascii?Q?sm2LLWivrvWOFCdpVeUJcmazOYPdQRNzt3Q32MHTz05RGunedOOw08QtUEF0?=
+ =?us-ascii?Q?d6js49nfeHDHzqLlvf3nl+QIFGVPACKzrdyAnC/jbkYL+GCnhNk9mBmNDvdf?=
+ =?us-ascii?Q?fG4ppTCTRZoHY1BicYXdvhsYQgeMLjIJOewVWOXBmelKLwx5CNkjv8Oygvjn?=
+ =?us-ascii?Q?T4gGdpPwlOytvc7CmF6ImBhRSsU6zG6Dv4CUufyn2W+RPF3YUAm4YtJGdGRs?=
+ =?us-ascii?Q?UCTQIE0yAfO/aAfNFVQ8y68+tJk88dMPw2UdxNMG0kFIvaWPiEGMv0YaDox4?=
+ =?us-ascii?Q?53MRHN8iVTREm5oL4t5wu05U4FAIw2uJ0t3KjyZh6gYvGHJ3aTJyQ4KwR0HS?=
+ =?us-ascii?Q?OQl5DLAoiVTR6B4lNiEUYG0uyQjNOAB/Q6Cp6gXfKr6UF6h0+ASeotpGZNUq?=
+ =?us-ascii?Q?Ph6NK5NkixrOBgAPcJG1P+8z5HSQZ//TwTi1zlER7t5Nx332s32nLvLCQx/X?=
+ =?us-ascii?Q?2lIup8h93XT2dR1qyLCxQ3UJ03ufDqLyEk9esL+J25ekx/8AzTVIouvhjjJS?=
+ =?us-ascii?Q?Ln+ELN8gFsQ/MB3PiFxS5329bbwYI8yuRnf26mgb5Tlp9kZ6/5UgpLf8M+I8?=
+ =?us-ascii?Q?ZKRwwNjxildzYMD1ELA7rrQ6hqF5Ng3BQ6HMtw5npPLs3jWbup5e6NpJ3TdL?=
+ =?us-ascii?Q?C+kb2oiu9Ec0kvXaAImWQwXUUd3Sl7QyqayzgUXpcAzdlL3cUn8DINDi4829?=
+ =?us-ascii?Q?hqjAYyWJhuwy57Q1De/JKYGeaCLA9RZMOXNNTdYt9F8TzZbYrOcjYO+9r09X?=
+ =?us-ascii?Q?XvdR+GKDYKSndt0a19HsXP/xgUOIAuOT6LTOGHmCNEta8eoJP2bnKeCyFr4d?=
+ =?us-ascii?Q?tfAObu5nyNryxXd7sFEXfxClg38sGuKmIfXKro26wMZLINfu2k2YhjaOOjlB?=
+ =?us-ascii?Q?c0LzDEtfcFypowX43bllVlvy6+hl9OfDm4obasFNHxDwjYIVunHEdHnf4EOi?=
+ =?us-ascii?Q?XW4dtA7DcJohFQC5XIy4zZBDiu/TMn2XffyKqbiYMNRFp8wLOMdIzV2cPn2b?=
+ =?us-ascii?Q?WhDZOIS8G6793UoFi6ggKmc9Apx/k/A0iC+zYD/Gyhya/5VVQ3VrNonYo+5C?=
+ =?us-ascii?Q?NHIDBp4wrUV8YvHIE1zsSaWavsRGqn7/5LYIbB3kBuRA69n8ceOrcvMIVoEI?=
+ =?us-ascii?Q?Xm3wxg9D30TKto6pY6wdbjs=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250908073734.1180687-5-luciano.coelho@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6348.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f7cc3315-48ad-4270-9be9-08ddf75b8141
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Sep 2025 09:04:13.9004 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 107vBxSz38Ef1tl4dyecazK7kYf7r46c/cQKnxyqMrxd9gKxgGtyTtDu2WSkecu8+2/LQsl+64UAlXhU19gKi4xLRV0qryh7FM45Y5DsM35/YaJHphijgYNw1cecZc8c
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB8150
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,180 +186,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 08, 2025 at 10:35:33AM +0300, Luca Coelho wrote:
-> There are currently two booleans to define three tiling modes, which
-> is bad practice because it allows representing an invalid mode.  In
-> order to simplify this, convert these two booleans into one
-> enumeration with three possible tiling modes.
-> 
-> Additionally, introduce the concept of Y "family" of tiling, which
-> groups Y, Yf and 4 tiling, since they're effectively treated in the
-> same way in the watermark calculations.  Describe the grouping in the
-> enumeration definition.
-> 
-> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+
+
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of An=
+kit
+> Nautiyal
+> Sent: 02 September 2025 17:59
+> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+> Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>
+> Subject: [PATCH] drm/i915/vrr: Refactor VRR live status wait into common
+> helper
+>=20
+> Add a helper to consolidate timeout handling and error logging when waiti=
+ng
+> for VRR live status to clear. Log an error message if the VRR live status=
+ bit fails
+> to clear within the timeout.
+>=20
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/skl_watermark.c | 35 ++++++++++++++------
->  1 file changed, 24 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-> index 0ce3420a919e..dd4bed02c3c0 100644
-> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> @@ -53,9 +53,16 @@ struct intel_dbuf_state {
->  #define intel_atomic_get_new_dbuf_state(state) \
->  	to_intel_dbuf_state(intel_atomic_get_new_global_obj_state(state, &to_intel_display(state)->dbuf.obj))
->  
-> +/* Tiling mode groups relevant to WM calculations */
-> +enum wm_tiling_mode {
-> +	WM_TILING_LINEAR,
-> +	WM_TILING_X_TILED,	/* mostly like linear */
-
-The _TILED suffix seems redundant here.
-
-> +	WM_TILING_Y_FAMILY,	/* includes Y, Yf and 4 tiling */
-
-I don't really like the "y family" invention. Doesn't really
-unconfuse anything for the reader without going back to have
-a look at the comment.
-
-I think it would be better to just spell out each tilimg mode.
-So I guess something like "WM_TILING_Y_Yf_4"
-
-> +};
-> +
->  /* Stores plane specific WM parameters */
->  struct skl_wm_params {
-> -	bool x_tiled, y_tiled;
-> +	enum wm_tiling_mode tiling;
-
-That'll now be 4 bytes.
-
->  	bool rc_surface;
->  	bool is_planar;
-
-and we'll have a two byte hole here.
-
->  	u32 width;
-        u8 cpp;
-
-And there's a 3 byte hole already here after the cpp.
-Should group the u8 with the bools to avoid so many holes.
-
-We could also shrink y_min_scanlines to a u8 and
-stick it into the last 1 byte hole. That'd shrink the whole
-struct by 4 bytes.
-
-dbuf_block_size would also fit in a u16, but doesn't look
-like we have any other holes where we could stick it. Hmm,
-actually 'width' could probably also be shrunk to be a u16.
-So could get rid of another 4 bytes here if we really
-wanted to.
-
-But I suppose all that repacking should be a separate patch...
-
-> @@ -618,7 +625,8 @@ static unsigned int skl_wm_latency(struct intel_display *display, int level,
->  	     display->platform.cometlake) && skl_watermark_ipc_enabled(display))
->  		latency += 4;
->  
-> -	if (skl_needs_memory_bw_wa(display) && wp && wp->x_tiled)
-> +	if (skl_needs_memory_bw_wa(display) &&
-> +	    wp && wp->tiling == WM_TILING_X_TILED)
->  		latency += 15;
->  
->  	return latency;
-> @@ -1674,9 +1682,14 @@ skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
->  		return -EINVAL;
+>  drivers/gpu/drm/i915/display/intel_vrr.c | 17 ++++++++++++-----
+>  1 file changed, 12 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c
+> b/drivers/gpu/drm/i915/display/intel_vrr.c
+> index 3eed37f271b0..0797b5b375b8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -627,6 +627,15 @@ void intel_vrr_enable(const struct intel_crtc_state
+> *crtc_state)
 >  	}
->  
-> -	wp->x_tiled = modifier == I915_FORMAT_MOD_X_TILED;
-> -	wp->y_tiled = modifier != I915_FORMAT_MOD_X_TILED &&
-> -		intel_fb_is_tiled_modifier(modifier);
-> +	if (modifier == I915_FORMAT_MOD_X_TILED)
-> +		wp->tiling = WM_TILING_X_TILED;
-> +	else if (modifier != I915_FORMAT_MOD_X_TILED &&
-
-The modifier check here is redundant with the if-else construct.
-
-> +		 intel_fb_is_tiled_modifier(modifier))
-> +		wp->tiling = WM_TILING_Y_FAMILY;
-> +	else
-> +		wp->tiling = WM_TILING_LINEAR;
-
-In fact we can avoid the entire intel_fb_is_tiled_modifier()
-call with something like:
-
-if (mod == LINEAR)
-	tiling = LINEAR;
-else if (mod == X)
-	tiling = X;
-else
-	tiling = Y_Yf_4;
-
-The wm code always pops up fairly high in cpu profiles, so
-anything that makes it lighter is worth considering.
-
+>  }
+>=20
+> +static void intel_vrr_wait_for_live_status_clear(struct intel_display *d=
+isplay,
+> +						 enum transcoder
+> cpu_transcoder)
+> +{
+> +	if (intel_de_wait_for_clear(display,
+> +				    TRANS_VRR_STATUS(display,
+> cpu_transcoder),
+> +				    VRR_STATUS_VRR_EN_LIVE, 1000))
+> +		drm_err(display->drm, "Timed out waiting for VRR live status
+> to
+> +clear\n"); }
 > +
->  	wp->rc_surface = intel_fb_is_ccs_modifier(modifier);
->  	wp->is_planar = intel_format_info_is_yuv_semiplanar(format, modifier);
->  
-> @@ -1716,7 +1729,7 @@ skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
->  		wp->y_min_scanlines *= 2;
->  
->  	wp->plane_bytes_per_line = wp->width * wp->cpp;
-> -	if (wp->y_tiled) {
-> +	if (wp->tiling == WM_TILING_Y_FAMILY) {
->  		interm_pbpl = DIV_ROUND_UP(wp->plane_bytes_per_line *
->  					   wp->y_min_scanlines,
->  					   wp->dbuf_block_size);
-> @@ -1732,7 +1745,7 @@ skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
->  		interm_pbpl = DIV_ROUND_UP(wp->plane_bytes_per_line,
->  					   wp->dbuf_block_size);
->  
-> -		if (!wp->x_tiled || DISPLAY_VER(display) >= 10)
-> +		if (wp->tiling != WM_TILING_X_TILED || DISPLAY_VER(display) >= 10)
->  			interm_pbpl++;
->  
->  		wp->plane_blocks_per_line = u32_to_fixed16(interm_pbpl);
-> @@ -1820,7 +1833,7 @@ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
->  				 latency,
->  				 wp->plane_blocks_per_line);
->  
-> -	if (wp->y_tiled) {
-> +	if (wp->tiling == WM_TILING_Y_FAMILY) {
->  		selected_result = max_fixed16(method2, wp->y_tile_minimum);
->  	} else {
->  		if ((wp->cpp * crtc_state->hw.pipe_mode.crtc_htotal /
-> @@ -1870,7 +1883,7 @@ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
->  
->  		/* Display WA #1126: skl,bxt,kbl */
->  		if (level >= 1 && level <= 7) {
-> -			if (wp->y_tiled) {
-> +			if (wp->tiling == WM_TILING_Y_FAMILY) {
->  				blocks += fixed16_to_u32_round_up(wp->y_tile_minimum);
->  				lines += wp->y_min_scanlines;
->  			} else {
-> @@ -1889,7 +1902,7 @@ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
+>  void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)  {
+>  	struct intel_display *display =3D to_intel_display(old_crtc_state); @@ =
+-
+> 638,9 +647,7 @@ void intel_vrr_disable(const struct intel_crtc_state
+> *old_crtc_state)
+>  	if (!intel_vrr_always_use_vrr_tg(display)) {
+>  		intel_de_write(display, TRANS_VRR_CTL(display,
+> cpu_transcoder),
+>  			       trans_vrr_ctl(old_crtc_state));
+> -		intel_de_wait_for_clear(display,
+> -					TRANS_VRR_STATUS(display,
+> cpu_transcoder),
+> -					VRR_STATUS_VRR_EN_LIVE, 1000);
+> +		intel_vrr_wait_for_live_status_clear(display, cpu_transcoder);
+>  		intel_de_write(display, TRANS_PUSH(display, cpu_transcoder),
+> 0);
 >  	}
->  
->  	if (DISPLAY_VER(display) >= 11) {
-> -		if (wp->y_tiled) {
-> +		if (wp->tiling == WM_TILING_Y_FAMILY) {
->  			int extra_lines;
->  
->  			if (lines % wp->y_min_scanlines == 0)
-> @@ -2015,7 +2028,7 @@ static void skl_compute_transition_wm(struct intel_display *display,
->  	 */
->  	wm0_blocks = wm0->blocks - 1;
->  
-> -	if (wp->y_tiled) {
-> +	if (wp->tiling == WM_TILING_Y_FAMILY) {
->  		trans_y_tile_min =
->  			(u16)mul_round_up_u32_fixed16(2, wp->y_tile_minimum);
->  		blocks = max(wm0_blocks, trans_y_tile_min) + trans_offset;
-> -- 
-> 2.50.1
+>=20
+> @@ -686,8 +693,8 @@ void intel_vrr_transcoder_disable(const struct
+> intel_crtc_state *crtc_state)
+>=20
+>  	intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder), 0);
+>=20
+> -	intel_de_wait_for_clear(display, TRANS_VRR_STATUS(display,
+> cpu_transcoder),
+> -				VRR_STATUS_VRR_EN_LIVE, 1000);
+> +	intel_vrr_wait_for_live_status_clear(display, cpu_transcoder);
+> +
 
--- 
-Ville Syrjälä
-Intel
+LGTM
+
+Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+
+>  	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder), 0);  }
+>=20
+> --
+> 2.45.2
+
