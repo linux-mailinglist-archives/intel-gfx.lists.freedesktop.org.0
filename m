@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1AA5B8D50D
-	for <lists+intel-gfx@lfdr.de>; Sun, 21 Sep 2025 06:49:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62883B8D513
+	for <lists+intel-gfx@lfdr.de>; Sun, 21 Sep 2025 06:49:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F79210E342;
-	Sun, 21 Sep 2025 04:49:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBB3310E325;
+	Sun, 21 Sep 2025 04:49:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GdKTSU32";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l10Hon61";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C77710E343;
- Sun, 21 Sep 2025 04:49:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FE2D10E33E;
+ Sun, 21 Sep 2025 04:49:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758430152; x=1789966152;
+ t=1758430154; x=1789966154;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=p/I5cAMk1bAzevpz3P/N68/5VhEn73MeP7pqk5+5Z8U=;
- b=GdKTSU321LNxXrO6F39+lhcwHVuRgNr3t/dwMoSA8gOgo9A0tmRk+mzt
- hFbKgj95aaO8UsGLqQ6FKhGwGTd7ByZzOcOl9fm7ir9Ku3YvW0YUckfek
- MqAwZKbyDqLuNtEjGqzXADnqhBM0NqxGUjdtj43iu20qi/AW1md5ZeOrR
- hgAJ2bhVI6ktrbW7O3Hm4/Vy3KS/nCBBtBFwYXk0BUMfDdl8V20Cc4VcI
- aB60DzFP/XSE6y+ueJoEKuoScxwDB2hAkdmvo6zoZbDCnY/mXLVcXhEUJ
- /iblNjDhKCL+63KPemSpS+XGfYULbVlp+yCaItIgHdNFPPS4BIixYtSfX Q==;
-X-CSE-ConnectionGUID: ILYvpGs6RRif4uAhFCwlsg==
-X-CSE-MsgGUID: nHcQMOH2Sfe8DQlhp5aqmw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11559"; a="72154744"
-X-IronPort-AV: E=Sophos;i="6.18,282,1751266800"; d="scan'208";a="72154744"
+ bh=4wzkC0hx5pM/Uf5kaYs8ee9Z1mW0te9bhV4S9whKiB0=;
+ b=l10Hon61ll3Uzqnv4J9LZdo+R1cMkkj4bSkpGei+LTNzcEkm8zhNrtPR
+ PTW5+/I4qkAUevNYh8h/XWCs2ZOqXvwmWRfQ9p7j0OuZnm9H5JIzbDF//
+ yuyWD8uva/aW/GdI70W3K+3gxoHWwKYb4+7th359gH9uVZl7yQnd/wSne
+ lQGxxhqUQ9nN9CF+kE8aoyxRvxmoxw9HS1WahwizZlQcBJgPfKBC6R+PV
+ IyoljX6VnKIAApTIlHlQzr0gPCliGKR9YNdJImMx9+KM33WnTxoNI9UXt
+ yxrRL/73avQV6zGVk/fqOmyLWTTsjBg3KpiFhCdJBpIZXQqe9a6Xl/LUk Q==;
+X-CSE-ConnectionGUID: /TDJIaxRR8C9Az0920m++w==
+X-CSE-MsgGUID: P8ZgkY9TRde+k8CVa7blYQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11559"; a="72154747"
+X-IronPort-AV: E=Sophos;i="6.18,282,1751266800"; d="scan'208";a="72154747"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2025 21:49:12 -0700
-X-CSE-ConnectionGUID: CXMa6cj8Q5mleprInokLEw==
-X-CSE-MsgGUID: j9ggQ2+5SBOuVcuHjGuCQw==
+ 20 Sep 2025 21:49:13 -0700
+X-CSE-ConnectionGUID: OSvDg7DcQ4qKMZvVE7K5Xg==
+X-CSE-MsgGUID: tomNyfspQ5+7BXpEAPXCDw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,282,1751266800"; d="scan'208";a="176097731"
+X-IronPort-AV: E=Sophos;i="6.18,282,1751266800"; d="scan'208";a="176097736"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2025 21:49:09 -0700
+ 20 Sep 2025 21:49:11 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 7/9] drm/i915/dsb:
- s/intel_dsb_wait_vblank_delay/intel_dsb_wait_for_scl_lines
-Date: Sun, 21 Sep 2025 10:05:33 +0530
-Message-ID: <20250921043535.2012978-8-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 8/9] drm/i915/display: Wait for scl start instead of
+ dsb_wait_vblanks
+Date: Sun, 21 Sep 2025 10:05:34 +0530
+Message-ID: <20250921043535.2012978-9-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250921043535.2012978-1-ankit.k.nautiyal@intel.com>
 References: <20250921043535.2012978-1-ankit.k.nautiyal@intel.com>
@@ -69,93 +69,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The helper intel_dsb_wait_vblank_delay() is used in DSB to wait for SCL
-lines after the send push operation. Rename it to
-intel_dsb_wait_for_scl_lines() to align with the semantics.
+Until LNL, intel_dsb_wait_vblanks() waits for the undelayed vblank start.
+However, from PTL onwards, it waits for the start of the safe window,
+defined by the number of lines programmed in TRANS_SET_CONTEXT_LATENCY.
+This change was introduced to move the SCL window out of the vblank region,
+supporting modes with higher refresh rates and smaller vblanks.
+
+As a result, on PTL+ platforms, the DSB wait for vblank completes exactly
+SCL lines earlier than the undelayed vblank start. Since we use
+intel_dsb_wait_vblanks() to time the send push operation, this causes
+issues when SCL lines are non-zero.
+
+Instead of relying on the helper, instruct the DSB to wait from
+(undelayed vblank start - SCL) to (delayed vblank start - SCL) before
+sending the push. This approach works for both pre-PTL and PTL+ platforms.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_color.c   |  2 +-
  drivers/gpu/drm/i915/display/intel_display.c |  2 +-
- drivers/gpu/drm/i915/display/intel_dsb.c     | 11 +++++------
- drivers/gpu/drm/i915/display/intel_dsb.h     |  4 ++--
- 4 files changed, 9 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dsb.c     | 16 ++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dsb.h     |  2 ++
+ 3 files changed, 19 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index 671db6926e4c..4defd2425837 100644
---- a/drivers/gpu/drm/i915/display/intel_color.c
-+++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -2013,7 +2013,7 @@ void intel_color_prepare_commit(struct intel_atomic_state *state,
- 
- 	if (crtc_state->use_dsb && intel_color_uses_chained_dsb(crtc_state)) {
- 		intel_vrr_send_push(crtc_state->dsb_color, crtc_state);
--		intel_dsb_wait_vblank_delay(state, crtc_state->dsb_color);
-+		intel_dsb_wait_for_scl_lines(state, crtc_state->dsb_color);
- 		intel_vrr_check_push_sent(crtc_state->dsb_color, crtc_state);
- 		intel_dsb_interrupt(crtc_state->dsb_color);
- 	}
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 455bbebb50a5..bfeec3706f35 100644
+index bfeec3706f35..8d78037d5a2a 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7268,7 +7268,7 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
- 		intel_dsb_wait_vblanks(new_crtc_state->dsb_commit, 1);
+@@ -7265,7 +7265,7 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+ 				new_crtc_state->dsb_color);
+ 
+ 	if (new_crtc_state->use_dsb && !intel_color_uses_chained_dsb(new_crtc_state)) {
+-		intel_dsb_wait_vblanks(new_crtc_state->dsb_commit, 1);
++		intel_dsb_wait_for_scl_start(state, new_crtc_state->dsb_commit);
  
  		intel_vrr_send_push(new_crtc_state->dsb_commit, new_crtc_state);
--		intel_dsb_wait_vblank_delay(state, new_crtc_state->dsb_commit);
-+		intel_dsb_wait_for_scl_lines(state, new_crtc_state->dsb_commit);
- 		intel_vrr_check_push_sent(new_crtc_state->dsb_commit,
- 					  new_crtc_state);
- 		intel_dsb_interrupt(new_crtc_state->dsb_commit);
+ 		intel_dsb_wait_for_scl_lines(state, new_crtc_state->dsb_commit);
 diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index dfe928aefdcd..400dcc87a992 100644
+index 400dcc87a992..e94a05cc8c82 100644
 --- a/drivers/gpu/drm/i915/display/intel_dsb.c
 +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -115,8 +115,8 @@ static bool pre_commit_is_vrr_active(struct intel_atomic_state *state,
- 	return old_crtc_state->vrr.enable && !intel_crtc_vrr_disabling(state, crtc);
- }
- 
--static int dsb_vblank_delay(struct intel_atomic_state *state,
--			    struct intel_crtc *crtc)
-+static int dsb_scl_delay(struct intel_atomic_state *state,
-+			 struct intel_crtc *crtc)
- {
- 	const struct intel_crtc_state *crtc_state =
- 		intel_pre_commit_crtc_state(state, crtc);
-@@ -815,15 +815,14 @@ void intel_dsb_chain(struct intel_atomic_state *state,
- 			 wait_for_vblank ? DSB_WAIT_FOR_VBLANK : 0);
- }
- 
--void intel_dsb_wait_vblank_delay(struct intel_atomic_state *state,
--				 struct intel_dsb *dsb)
-+void intel_dsb_wait_for_scl_lines(struct intel_atomic_state *state,
-+				  struct intel_dsb *dsb)
- {
- 	struct intel_crtc *crtc = dsb->crtc;
- 	const struct intel_crtc_state *crtc_state =
- 		intel_pre_commit_crtc_state(state, crtc);
- 	int usecs = intel_scanlines_to_usecs(&crtc_state->hw.adjusted_mode,
--					     dsb_vblank_delay(state, crtc));
--
-+					     dsb_scl_delay(state, crtc));
+@@ -826,6 +826,22 @@ void intel_dsb_wait_for_scl_lines(struct intel_atomic_state *state,
  	intel_dsb_wait_usec(dsb, usecs);
  }
  
++void intel_dsb_wait_for_scl_start(struct intel_atomic_state *state,
++				  struct intel_dsb *dsb)
++{
++	struct intel_crtc *crtc = dsb->crtc;
++	const struct intel_crtc_state *crtc_state =
++		intel_pre_commit_crtc_state(state, crtc);
++	int undelayed_vblank_start = crtc_state->hw.adjusted_mode.crtc_vdisplay;
++	int delayed_vblank_start = crtc_state->hw.adjusted_mode.crtc_vblank_start;
++	int start, end;
++
++	start = undelayed_vblank_start - crtc_state->set_context_latency;
++	end = delayed_vblank_start - crtc_state->set_context_latency;
++
++	intel_dsb_wait_scanline_out(state, dsb, start, end);
++}
++
+ /**
+  * intel_dsb_commit() - Trigger workload execution of DSB.
+  * @dsb: DSB context
 diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h b/drivers/gpu/drm/i915/display/intel_dsb.h
-index c8f4499916eb..1cb5ba1a0534 100644
+index 1cb5ba1a0534..5985d0024dae 100644
 --- a/drivers/gpu/drm/i915/display/intel_dsb.h
 +++ b/drivers/gpu/drm/i915/display/intel_dsb.h
-@@ -48,8 +48,8 @@ void intel_dsb_nonpost_end(struct intel_dsb *dsb);
- void intel_dsb_interrupt(struct intel_dsb *dsb);
- void intel_dsb_wait_usec(struct intel_dsb *dsb, int count);
- void intel_dsb_wait_vblanks(struct intel_dsb *dsb, int count);
--void intel_dsb_wait_vblank_delay(struct intel_atomic_state *state,
--				 struct intel_dsb *dsb);
-+void intel_dsb_wait_for_scl_lines(struct intel_atomic_state *state,
+@@ -73,5 +73,7 @@ void intel_dsb_wait(struct intel_dsb *dsb);
+ 
+ void intel_dsb_irq_handler(struct intel_display *display,
+ 			   enum pipe pipe, enum intel_dsb_id dsb_id);
++void intel_dsb_wait_for_scl_start(struct intel_atomic_state *state,
 +				  struct intel_dsb *dsb);
- void intel_dsb_wait_scanline_in(struct intel_atomic_state *state,
- 				struct intel_dsb *dsb,
- 				int lower, int upper);
+ 
+ #endif
 -- 
 2.45.2
 
