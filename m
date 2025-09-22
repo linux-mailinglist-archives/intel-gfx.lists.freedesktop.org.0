@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B93C5B91D6D
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Sep 2025 17:03:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CB13B91D70
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Sep 2025 17:03:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4682410E4C3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9638310E4C6;
 	Mon, 22 Sep 2025 15:03:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aD95B0eq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WCGrvjtt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E30810E4BE;
- Mon, 22 Sep 2025 15:03:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FBA610E4C2;
+ Mon, 22 Sep 2025 15:03:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758553404; x=1790089404;
+ t=1758553405; x=1790089405;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tOoRxYyp2KA2qFI4rClmHS9jwMpf2/Gei/o74DjC1nc=;
- b=aD95B0eqKpV0NAbj3wAhzvhnS5oxfY5eXBh1WGgVFvWRlTKop0sPvMf0
- p62t20NREobhOyVl+qBcCrmGbyKoE15Cp0RwnfFk4xGEbVOC4Joq8opXN
- pEGGCLOar2/uywvCqVJ/wizrFlXoHbbK1JnmxHurTz3B0AzMZGRzDd+H2
- cOVweJ9yzt48Xy5EMiTaQzyVNmS6UgZZQXSdwF2ttwGMBfFG96+Rm4fEi
- kGYrUdRY8u0LgX7TKBuE6yzu0igbs3CxcqfD/Fo6S0PBNLQ5tszqIULK9
- QxGHq5vyZoDBh5YFFQpDpQy+E3Byr3Be/JXG1GnIqFh9jc39L4BKqiE3p A==;
-X-CSE-ConnectionGUID: 6s537JVOSfO7vim8WVcp9A==
-X-CSE-MsgGUID: lEguhPa3SpGNc+aACSd1qg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="71922189"
-X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="71922189"
+ bh=tG1rmdk1QMMeTvFtaTgtJVc5u3gVru4blgDZ6RRBunY=;
+ b=WCGrvjtt3O698LjoAu638YC+c6BROTSW9ZA2phDOX2IJJly5I6vksHiT
+ 97MmNM71sbFBnBo94nkI/JZB7+mW/KOZx1+VZtwKjzHsvcYhdBNMF496f
+ sLC83OUxt/aMdQk3XYJqP8VCkaqwLy5BMJzr1lFsOCjiJvvG5cODbzkvi
+ +/YPFaJHhindkFtWaKRb+dX91dnNupYOSRj1QWkNVa1UEbkqMaQ0ehmPU
+ jLvikyY0HpjB0pKpoGQg1Wbt0McPwzT6P8Sq0PEl6pyzTX+ZlaI1zj8cL
+ xkjjsVzhg0NavEU+qomZ4CADrZEx1GbmXKHqSSv9oUJYND3qfi6CMRZdP Q==;
+X-CSE-ConnectionGUID: XG6CBbTSQVOSdMNvNuCKYA==
+X-CSE-MsgGUID: p5tqPBJYT8mbrXzX6VD1tQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="71922194"
+X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="71922194"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2025 08:03:24 -0700
-X-CSE-ConnectionGUID: hDv/udxkQZeQ+dikL89c+w==
-X-CSE-MsgGUID: zFY4FsulQAauuWNRwzp75g==
+ 22 Sep 2025 08:03:25 -0700
+X-CSE-ConnectionGUID: +ko6e34HR+GeB1n0ZCiHcQ==
+X-CSE-MsgGUID: g43Y7mVsShKxZ1xfnDeXRA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="180511489"
+X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="180511507"
 Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
- by orviesa003.jf.intel.com with ESMTP; 22 Sep 2025 08:03:22 -0700
+ by orviesa003.jf.intel.com with ESMTP; 22 Sep 2025 08:03:24 -0700
 From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
- Gustavo Sousa <gustavo.sousa@intel.com>
-Subject: [PATCH v3 2/3] drm/i915/display: Add definition for wcl as subplatform
-Date: Mon, 22 Sep 2025 20:33:16 +0530
-Message-ID: <20250922150317.2334680-3-dnyaneshwar.bhadane@intel.com>
+Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Subject: [PATCH v3 3/3] drm/i915/xe3: Restrict PTL intel_encoder_is_c10phy()
+ to only PHY A
+Date: Mon, 22 Sep 2025 20:33:17 +0530
+Message-ID: <20250922150317.2334680-4-dnyaneshwar.bhadane@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20250922150317.2334680-1-dnyaneshwar.bhadane@intel.com>
 References: <20250922150317.2334680-1-dnyaneshwar.bhadane@intel.com>
@@ -68,60 +68,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We will need to differentiate between WCL and PTL in
-intel_encoder_is_c10phy(). Since WCL and PTL use the same display
-architecture, let's define WCL as a subplatform of PTL to allow the
-differentiation.
+On PTL, no combo PHY is connected to PORT B. However, PORT B can
+still be used for Type-C and will utilize the C20 PHY for eDP
+over Type-C. In such configurations, VBTs also enumerate PORT B.
 
-v2: Update commit message and reorder wcl define (Gustavo)
+This leads to issues where PORT B is incorrectly identified as using the
+C10 PHY, due to the assumption that returning true for PORT B in
+intel_encoder_is_c10phy() would not cause problems.
 
+From PTL's perspective, only PORT A/PHY A uses the C10 PHY.
+
+Update the helper intel_encoder_is_c10phy() to return true only for
+PORT A/PHY on PTL.
+
+v2: Change the condition code style for ptl/wcl
+
+Bspec: 72571,73944
+Fixes: 9d10de78a37f ("drm/i915/wcl: C10 phy connected to port A and B")
 Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_device.c | 12 ++++++++++++
- drivers/gpu/drm/i915/display/intel_display_device.h |  4 +++-
- 2 files changed, 15 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 14 ++++++--------
+ 1 file changed, 6 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index a9a36176096f..f3f1f25b0f38 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -1404,8 +1404,20 @@ static const struct platform_desc bmg_desc = {
- 	PLATFORM_GROUP(dgfx),
- };
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index 801235a5bc0a..a2d2cecf7121 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -39,14 +39,12 @@ bool intel_encoder_is_c10phy(struct intel_encoder *encoder)
+ 	struct intel_display *display = to_intel_display(encoder);
+ 	enum phy phy = intel_encoder_to_phy(encoder);
  
-+static const u16 wcl_ids[] = {
-+	INTEL_WCL_IDS(ID),
-+	0
-+};
-+
- static const struct platform_desc ptl_desc = {
- 	PLATFORM(pantherlake),
-+	.subplatforms = (const struct subplatform_desc[]) {
-+		{
-+			SUBPLATFORM(pantherlake, wildcatlake),
-+			.pciidlist = wcl_ids,
-+		},
-+		{},
+-	/* PTL doesn't have a PHY connected to PORT B; as such,
+-	 * there will never be a case where PTL uses PHY B.
+-	 * WCL uses PORT A and B with the C10 PHY.
+-	 * Reusing the condition for WCL and extending it for PORT B
+-	 * should not cause any issues for PTL.
+-	 */
+-	if (display->platform.pantherlake && phy < PHY_C)
+-		return true;
++	if (display->platform.pantherlake) {
++		if (display->platform.pantherlake_wildcatlake)
++			return phy <= PHY_B;
++		else
++			return phy == PHY_A;
 +	}
- };
  
- __diag_pop();
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 1f091fbcd0ec..0e062753cf9b 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -101,7 +101,9 @@ struct pci_dev;
- 	/* Display ver 14.1 (based on GMD ID) */ \
- 	func(battlemage) \
- 	/* Display ver 30 (based on GMD ID) */ \
--	func(pantherlake)
-+	func(pantherlake) \
-+	func(pantherlake_wildcatlake)
-+
- 
- #define __MEMBER(name) unsigned long name:1;
- #define __COUNT(x) 1 +
+ 	if ((display->platform.lunarlake || display->platform.meteorlake) && phy < PHY_C)
+ 		return true;
 -- 
 2.51.0
 
