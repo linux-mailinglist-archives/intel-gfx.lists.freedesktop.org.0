@@ -2,39 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3A3FB8FF91
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Sep 2025 12:20:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 270D0B8FFF6
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Sep 2025 12:26:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E57B10E408;
-	Mon, 22 Sep 2025 10:20:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9036810E40C;
+	Mon, 22 Sep 2025 10:26:37 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fh2dAlb8";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F99110E409;
- Mon, 22 Sep 2025 10:20:41 +0000 (UTC)
-Received: from 91-153-11-122.elisa-laajakaista.fi ([91.153.11.122]
- helo=[192.168.100.137])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
- id 1v0deu-00000000ykY-3thU; Mon, 22 Sep 2025 13:20:38 +0300
-Message-ID: <499aa60b91a385d5bf76695f082a53c07db91a72.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>, 
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, Luca Coelho <luciano.coelho@intel.com>
-Date: Mon, 22 Sep 2025 13:20:36 +0300
-In-Reply-To: <20250919193000.17665-12-ville.syrjala@linux.intel.com>
-References: <20250919193000.17665-1-ville.syrjala@linux.intel.com>
- <20250919193000.17665-12-ville.syrjala@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-2+b1 
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCECB10E40B;
+ Mon, 22 Sep 2025 10:26:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1758536796; x=1790072796;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=/f0dTH9UWMKP0fFK1dQ6tGPCEItOj243B/Mq6f+O1DU=;
+ b=fh2dAlb8DuLdXkD9Vj2/SX2X77+pLEPJ7AjXR2koP4bvD1sqPkgYkGOt
+ x1zC9lZ7uAeIZOzhBjTPGPQNVxIS9pi8jWO77mNWCSYqWu2AbmNq2ybFm
+ wQNCaz29knO3GNC84VvDaRqxvuTB0aeI7KRlyMGkeJdsTSAJtheMUUHIu
+ pX1Jc9QoMybSNfKUPs6KM31cJvfK6XTegkAkdB0TgeadMgSe6+7zPlOjb
+ EWO4CY5ZdJynnDWdVg4rA0HrQ1SEQ/r26stS8p4/0hNoQ7IKRrCexKGhU
+ M31B6rqCioKdyFgcjOr7ZCWO1ROzXRzfZoBqext/XEfLMLALnCTM64hzZ g==;
+X-CSE-ConnectionGUID: BX+R6xKPSjem9NWYwqI4Vg==
+X-CSE-MsgGUID: hFGr0JyAQbCgI4AXSJpRmA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60850800"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60850800"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 03:26:36 -0700
+X-CSE-ConnectionGUID: 5eYEy40UTuuseEgVrLMJQA==
+X-CSE-MsgGUID: 31h4LfUHR4azLBVMeP1htQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,284,1751266800"; d="scan'208";a="175579911"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.115])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 03:26:34 -0700
+Date: Mon, 22 Sep 2025 13:26:31 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 8/9] drm/i915/display: Wait for scl start instead of
+ dsb_wait_vblanks
+Message-ID: <aNEkV70k8Nv1WFzW@intel.com>
+References: <20250921043535.2012978-1-ankit.k.nautiyal@intel.com>
+ <20250921043535.2012978-9-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-25) on farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP autolearn=ham autolearn_force=no version=4.0.1
-Subject: Re: [PATCH v2 11/13] drm/i915: Make wm latencies monotonic
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250921043535.2012978-9-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,67 +73,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 2025-09-19 at 22:29 +0300, Ville Syrjala wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->=20
-> Some systems (eg. LNL Lenovo Thinkapd X1 Carbon) declare
-> semi-bogus non-monotonic WM latency values:
->  WM0 latency not provided
->  WM1 latency 100 usec
->  WM2 latency 100 usec
->  WM3 latency 100 usec
->  WM4 latency 93 usec
->  WM5 latency 100 usec
->=20
-> Apparently Windows just papers over the issue by bumping the
-> latencies for the higher watermark levels to make them monotonic
-> again. Do the same.
->=20
-> Cc: Luca Coelho <luciano.coelho@intel.com>
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+On Sun, Sep 21, 2025 at 10:05:34AM +0530, Ankit Nautiyal wrote:
+> Until LNL, intel_dsb_wait_vblanks() waits for the undelayed vblank start.
+> However, from PTL onwards, it waits for the start of the safe window,
+> defined by the number of lines programmed in TRANS_SET_CONTEXT_LATENCY.
+> This change was introduced to move the SCL window out of the vblank region,
+> supporting modes with higher refresh rates and smaller vblanks.
+> 
+> As a result, on PTL+ platforms, the DSB wait for vblank completes exactly
+> SCL lines earlier than the undelayed vblank start. Since we use
+> intel_dsb_wait_vblanks() to time the send push operation, this causes
+> issues when SCL lines are non-zero.
+> 
+> Instead of relying on the helper, instruct the DSB to wait from
+> (undelayed vblank start - SCL) to (delayed vblank start - SCL) before
+> sending the push. This approach works for both pre-PTL and PTL+ platforms.
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > ---
-
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
-
---
-Cheers,
-Luca.
-
->  drivers/gpu/drm/i915/display/skl_watermark.c | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/d=
-rm/i915/display/skl_watermark.c
-> index d83772c6ea9a..2a40c135cb96 100644
-> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> @@ -3236,6 +3236,19 @@ static void sanitize_wm_latency(struct intel_displ=
-ay *display)
->  		wm[level] =3D 0;
+>  drivers/gpu/drm/i915/display/intel_display.c |  2 +-
+>  drivers/gpu/drm/i915/display/intel_dsb.c     | 16 ++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_dsb.h     |  2 ++
+>  3 files changed, 19 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index bfeec3706f35..8d78037d5a2a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -7265,7 +7265,7 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+>  				new_crtc_state->dsb_color);
+>  
+>  	if (new_crtc_state->use_dsb && !intel_color_uses_chained_dsb(new_crtc_state)) {
+> -		intel_dsb_wait_vblanks(new_crtc_state->dsb_commit, 1);
+> +		intel_dsb_wait_for_scl_start(state, new_crtc_state->dsb_commit);
+>  
+>  		intel_vrr_send_push(new_crtc_state->dsb_commit, new_crtc_state);
+>  		intel_dsb_wait_for_scl_lines(state, new_crtc_state->dsb_commit);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+> index 400dcc87a992..e94a05cc8c82 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+> @@ -826,6 +826,22 @@ void intel_dsb_wait_for_scl_lines(struct intel_atomic_state *state,
+>  	intel_dsb_wait_usec(dsb, usecs);
 >  }
-> =20
-> +static void make_wm_latency_monotonic(struct intel_display *display)
+>  
+> +void intel_dsb_wait_for_scl_start(struct intel_atomic_state *state,
+> +				  struct intel_dsb *dsb)
 > +{
-> +	u16 *wm =3D display->wm.skl_latency;
-> +	int level, num_levels =3D display->wm.num_levels;
+> +	struct intel_crtc *crtc = dsb->crtc;
+> +	const struct intel_crtc_state *crtc_state =
+> +		intel_pre_commit_crtc_state(state, crtc);
+> +	int undelayed_vblank_start = crtc_state->hw.adjusted_mode.crtc_vdisplay;
+> +	int delayed_vblank_start = crtc_state->hw.adjusted_mode.crtc_vblank_start;
+> +	int start, end;
 > +
-> +	for (level =3D 1; level < num_levels; level++) {
-> +		if (wm[level] =3D=3D 0)
-> +			break;
+> +	start = undelayed_vblank_start - crtc_state->set_context_latency;
+> +	end = delayed_vblank_start - crtc_state->set_context_latency;
+
+For these we perhaps want something like:
+
+intel_vrr_safe_window_start()
+{
+	if (ptl+)
+		return crtc_vdisplay - set_context_latency;
+	else
+		return crtc_vdisplay;
+}
+
+intel_vrr_vmin_safe_window_end()
+{
+	intel_vrr_vmin_vblank_start() - set_context_latency;
+}
+
 > +
-> +		wm[level] =3D max(wm[level], wm[level-1]);
-> +	}
+> +	intel_dsb_wait_scanline_out(state, dsb, start, end);
+
+And I suspect we want to do this just before the usec wait in
+intel_dsb_wait_vblank_delay() (for the VRR case only). No need
+to bother higher level code with this, I think.
+
 > +}
 > +
->  static void
->  adjust_wm_latency(struct intel_display *display)
->  {
-> @@ -3246,6 +3259,8 @@ adjust_wm_latency(struct intel_display *display)
-> =20
->  	sanitize_wm_latency(display);
-> =20
-> +	make_wm_latency_monotonic(display);
-> +
->  	/*
->  	 * WaWmMemoryReadLatency
->  	 *
+>  /**
+>   * intel_dsb_commit() - Trigger workload execution of DSB.
+>   * @dsb: DSB context
+> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h b/drivers/gpu/drm/i915/display/intel_dsb.h
+> index 1cb5ba1a0534..5985d0024dae 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dsb.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dsb.h
+> @@ -73,5 +73,7 @@ void intel_dsb_wait(struct intel_dsb *dsb);
+>  
+>  void intel_dsb_irq_handler(struct intel_display *display,
+>  			   enum pipe pipe, enum intel_dsb_id dsb_id);
+> +void intel_dsb_wait_for_scl_start(struct intel_atomic_state *state,
+> +				  struct intel_dsb *dsb);
+>  
+>  #endif
+> -- 
+> 2.45.2
+
+-- 
+Ville Syrjälä
+Intel
