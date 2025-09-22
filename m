@@ -2,63 +2,187 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4F74B91306
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Sep 2025 14:48:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74E31B91316
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Sep 2025 14:48:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C58610E1B1;
-	Mon, 22 Sep 2025 12:48:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67DD210E474;
+	Mon, 22 Sep 2025 12:48:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fZJIVf4U";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cc4Z6ci4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47DDE10E1B1
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Sep 2025 12:48:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2302910E1B8;
+ Mon, 22 Sep 2025 12:48:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758545318; x=1790081318;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Viza9NbBvFgH/JMHgVpWdXG3DzvT00QuvHS0d1+gFAA=;
- b=fZJIVf4UgsthQ14tLXkyYugXGGCrCahhQYzK5PxdZnuIALa2X4mM0vyh
- EBgMvJkIqm35zwBUTjNZ0VkwgK8v+ZSgq6E5M1lkiPUovO54qSsvT5KSu
- Pht/8yOSlenP1ydkwyLcY5oEJRrXULCtucT1yZwXEDIF3bOaqW9xtQEHs
- Y1SFfLa36/c4WKEFGStsGixlQzpERTQLPAzx+gOlLvtxPaagQPFWxDxuV
- SA6IYV8OmwratjItx6QLgUW/7BlicdkUExL9Ro2NJDut3T3lPA/xigLyW
- Iye5wOqGT6rw4HFT5hxnS0YB5B5ZSe1gppaOUvzrqAkeO5ujbpKF+vnQE Q==;
-X-CSE-ConnectionGUID: pXzqWkzQR/WaqVLONwi7mw==
-X-CSE-MsgGUID: xpntlW3qQuGKdjUCuGjJzg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60744658"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60744658"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2025 05:48:38 -0700
-X-CSE-ConnectionGUID: tYLNvMH/TvqOobwNhme9Kw==
-X-CSE-MsgGUID: PKhM0fy5SbqqW9LcNnuuEA==
+ t=1758545327; x=1790081327;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=VXteay2XZdbfnUsMphUjoNyS50QoTPnCPSjJWjn3hCQ=;
+ b=cc4Z6ci4owDQZNLcnZmLCc0mj3El8YTUtxsyjwcnDl/MUhB//QFR7GpO
+ tGxxW50XIfQjS3m7S/D5WD+GL8ssKLyy9iW/cFKfrD/4kZcryiLPxOoRq
+ MOYbQbwESRkMUybC7tXrW/ncWzke091IrY0IDCggFAmhIMHFt3y87TLVy
+ dVFgqo4AlpBg4cT9RHk4gI/+gxZm/mi0+nkUtoHaljwmALKjTS4EcS6ju
+ 8X2tE/zgaYZpQm3IcpMruz3Jq/oJFNdRww+3Vy/x/WoIFenByO0E4stko
+ o920AVwDQoZwzzs9mE4pYaayW2Ntrcj+gwb7QikC75pLXuSw6TvbHIyDe Q==;
+X-CSE-ConnectionGUID: WCWIfhSlQ9eHIppbBdXHJg==
+X-CSE-MsgGUID: 7+JF4LgVRt6xyXZO0Auh1A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11560"; a="72230229"
+X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="72230229"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 05:48:46 -0700
+X-CSE-ConnectionGUID: jN2e2kAtTE+BY0AxebnAcA==
+X-CSE-MsgGUID: 0VRCmSsCS1S/+zwt4sWemw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="176386637"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.115])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2025 05:48:36 -0700
-Date: Mon, 22 Sep 2025 15:48:33 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Luca Coelho <luca@coelho.fi>
-Cc: Luca Coelho <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 4/6] drm/i915/wm: convert x/y-tiling bools to an enum
-Message-ID: <aNFFoTTumhe0Yzsq@intel.com>
-References: <20250908073734.1180687-1-luciano.coelho@intel.com>
- <20250908073734.1180687-5-luciano.coelho@intel.com>
- <aM0WFVMhQwIU-4QI@intel.com>
- <c95960bce99cc88737bfc6bc1b3914486c164e70.camel@coelho.fi>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="175606942"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 05:48:46 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Mon, 22 Sep 2025 05:48:45 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17 via Frontend Transport; Mon, 22 Sep 2025 05:48:45 -0700
+Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.10) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Mon, 22 Sep 2025 05:48:44 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=dUbcLbuLPEap2ia91XzPqniYRvZ6jsHeU86w6orIckVJI4S4zVKzjQBleCALHr/w9ku+l04wHcx/jMLaoKDyS0G5v9KSJjkLRjy+M8k9hFb4ee6YBjEzOEsoTrdRSdgOsLMqmY+nwO192X+WSQZBBzNmSG6BZGRRgVIeQLAOe5QJn9md59uTAyab1wpLpuuU1ybxfkj6ccYO4odAYzhADkFjUbqOys9QJseupSypptfFjyq2bbunWDyg0xEKXz3gKZQM8W6jEcNdEOVGgrFJwn7dFhM1fyHEbRJHkCi/NltgKRvUe1ofH8ZmgLFfChaTvU0bLC//ngnyw9C9ly81MA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9pqU4WgybI8ObRajdgXylfrkL+OyI5Yf1/EF0TsJ+9w=;
+ b=HdTFed0S6TQOW6O7+uiMKh/uLblQ/7ICaGFwHNtf0XPInlfJInb9ZTXHbWKUlf/l/iI21vb8+6qQu1DCqFT3IZUN8SkbnPr4w1skx8vYGwebhuyBpw78wBttBASQY8u56szh5kIw1u/Nx7U4OKXimNyeHw5rYJQOfQUaXnvGvlwjkOUdx8xLyd3RKZl8513x2gZFVt02RxJ0XW0o2daLCIwKXTJmScunyx7zkjVtB9vbh0iNSvjoEkwDYsgcwnru+s6pbAboZmET3qTD/pUI5BaFOgDUG2Hm02QfelKuzP6Z/nIx+lK4lQcao7GTIYiOB7mLEM12QJzKNd93rvJpyQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by SN7PR11MB7090.namprd11.prod.outlook.com (2603:10b6:806:299::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.19; Mon, 22 Sep
+ 2025 12:48:41 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839%7]) with mapi id 15.20.9137.018; Mon, 22 Sep 2025
+ 12:48:41 +0000
+Message-ID: <293909a8-26f8-4513-abd4-97cf6f1052fe@intel.com>
+Date: Mon, 22 Sep 2025 18:18:34 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RESEND 02/10] drm/i915/display: Introduce HAS_CASF for sharpness
+ support
+To: Jani Nikula <jani.nikula@linux.intel.com>, Nemesa Garg
+ <nemesa.garg@intel.com>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
+References: <20250919143418.3102605-1-nemesa.garg@intel.com>
+ <20250919143418.3102605-3-nemesa.garg@intel.com>
+ <fb4e8118c7e7cc0f566ed1e8ee09b4d58d801c73@intel.com>
+Content-Language: en-US
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <fb4e8118c7e7cc0f566ed1e8ee09b4d58d801c73@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <c95960bce99cc88737bfc6bc1b3914486c164e70.camel@coelho.fi>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-ClientProxiedBy: MA0PR01CA0089.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:ae::15) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|SN7PR11MB7090:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3df4854e-44d6-4091-8b66-08ddf9d65b65
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?aWJTb2hYdzNRMFlsSTFnekgwTTZ6MHhvWEk3ajVQU216ZUdpcDB2VGZ1YlBt?=
+ =?utf-8?B?L3RETDZ4cDZjWnEySk5zSGRUUEFMLzMwZnlRYmZJZW5KRXE2cFIwMklPSTll?=
+ =?utf-8?B?Y1JBdkFvSFFhTmJkWmZveXJQZno0Q0ZGdnNlMVBXMzBIcVRKc2RHb3FESStn?=
+ =?utf-8?B?RXJlQnZwanRoMjQ4Vmhram80Qm05dGdZbmVaUnlnYmREMU9DcDlaY2htMWk3?=
+ =?utf-8?B?WUlMSXJQNVhnSDJORlJMN05UZ3ZJMklMbE9KVEVrMGRqR0ZNdmZMVXIzSFBO?=
+ =?utf-8?B?Z2UxVnNOUERkMWNGdW1RWmFQaHZUUUZ6UHdLTmxGeHk5bysrc1BpUjErUWND?=
+ =?utf-8?B?S1NyNGFYUzZwOUsyTnYyczFtOUpSZVVUWlhVOVJmMmZ2QUUzK0h3MFJMRUNL?=
+ =?utf-8?B?UjB3YmdiWHEzM3huK1ZXc1B6Vk5lR2w0L2wrMGtyV2FxcVJuNkdKY0ZTWmtx?=
+ =?utf-8?B?eUJSZmZoRW95RXd0NGx1ME51ZGQ4c1liZTY0Y3RWUktDT1E2QWc2dGYyZW5D?=
+ =?utf-8?B?cTllbkF4TEs5NlkxUW1HYklwaUlFK25xVFVyaTFRWFZ6WDNMU1JxQ0tub1NN?=
+ =?utf-8?B?NCtPUERIWnJ0YzFIVVY4OG1JMmtycW5CMHh4VVVyRnhvMk1MQTJ0MXJCSTZj?=
+ =?utf-8?B?WE1meEZKWDVRYnN2ZG1YWlEzWFkxcXVqVGgyTG9LWlJwZGVqN3VpQW9rWnlW?=
+ =?utf-8?B?MklNTnhpTTF1V1Q1NmQyY09saXRkdFdiWW5ZS3A3V3BDTlQ1eXk2RVdZQjV4?=
+ =?utf-8?B?NmxOTi8rQzlBQ0xXVmZPS1FNTWdGdnhtSmR5RzBEcU5VczREdXFCZE1XaEgy?=
+ =?utf-8?B?SUFhcVkzNVA3T0tseGpQN2N0NGovUHRDUXlFN1NTeEEvUk5yaEJFVjg4TEZv?=
+ =?utf-8?B?QVEvM3JWUXJiMVRPcXZWU3Q1VitvMmJ1dTg1QW5jS2xDdXdIYVB1Qk5WQm1K?=
+ =?utf-8?B?VWNrYm5XRk0wZWxvd2hLcDJzMlNOejFkQkFsd0dHNG5mcFJ2SFdaV3c0cXlW?=
+ =?utf-8?B?RFdndFlYZjFYbTZhMjd0eFpNekZXZjdwSis4T1ZyNFdibExURFRrUTZGaHlk?=
+ =?utf-8?B?Z0xKWEtPZFdPdEtzcW9FWkQ2eklDWnhkZ0tST2J5cXlxczRQbXlHY2g1WDNM?=
+ =?utf-8?B?UDVhNTBMRlBJUkdsOFJtKzhQOVlkOGdKZTZVM1hjd1QzZGMvbmM3YkJubnR1?=
+ =?utf-8?B?YVJoQ3NsbkpGRXFJblhwcE5wN3BjWWhvYlVwZkZrS0JhM0hMejROSk9XaHo5?=
+ =?utf-8?B?VlRvUzErbTBVTlZLeWRlc3hONUpFMzQrZ3ZtcXZhMm5WYW5ZV1puYlNBVHgv?=
+ =?utf-8?B?QmZQRnRIVGU3bzYrd1VwTldPL2xOdHFoYmgxcGVJMGVPOFlRSGdKUlVQNmE4?=
+ =?utf-8?B?MFpPYjRaS2gxWG1YUkNDV1owTTUvWjZHKzgwVTZQWEw5RTI2c2dyN3djVW5N?=
+ =?utf-8?B?N3pEOURMSktqQTgrQmZwTHlVbXhNTHhOUzZNSUNFOXZkaVR6blhIbWY2amFH?=
+ =?utf-8?B?SzhjK3NYTkpTbWp1bHYyTDFSVE4xNGttTEIySTZzdzA4QU0vQ3RNV1Q0K29n?=
+ =?utf-8?B?b2pwcnpZR1ZXWGlRVmVkM3VtVFVZdUlHaWRjdmsyb1RUUHZka3FvYXhOVm4z?=
+ =?utf-8?B?K3hFZk1ZMlJoN3hDWlVEY0hFOC83Z3RoZDNFeE1BbVY1SUM4Z1czcXRXOWFs?=
+ =?utf-8?B?TlZXZHV3dnA0bU5wY3NSZ1l4TnU3bVI3WGRQblpvRHNOTXpFREZwWklua2Nx?=
+ =?utf-8?B?REkwbnd2eS8rcFUvVXBKYUs4LzN2dWRmV08xeHY4K2N1QlVUQUpibUVPdFVi?=
+ =?utf-8?B?SVFubkVwQldGL3FTbjM4bUVoLzZMSW9EeTBmd0h2bm5RTkw4b1lIUTk2UUtK?=
+ =?utf-8?Q?SN+b7cG89OwRK?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cVFHTTYzTTEyVVE3Y2FzUFJsSXB3dFd3WTVqdURReTU5WHFIZ2RMd3JTWWph?=
+ =?utf-8?B?amo1b1ordUJsUnZ6Q1NxYkFlZVZCVWZwNE1zU0x1VTNXU1R6VU8yL2xBaXRF?=
+ =?utf-8?B?WDlsekNTZ0phaEFNN1A4QTZBSTVxU2xaTlFieHAyV2MxakZpWmFhUlkzaUFB?=
+ =?utf-8?B?cjhTbnp0dndNYXF1WHQrUTVoeGlacElaOXVGY0d1ODB5MGNwdlRyanFQM1lq?=
+ =?utf-8?B?b0RIMjBrOS9CS3FiNkJQd3k4L2JHVk5FbVRvNGJLOVdwcUpmQWhncXVQK1hE?=
+ =?utf-8?B?dmdnL3lZZzJsWGErVFVqV3lwOG1uTnNBUnFGRHViZ21TT0FIRkROUDkvZXBi?=
+ =?utf-8?B?Szh1K2ZvdWtOSU5kYk05aXEzT1E0VS9rbEpabXZDcktEa29zR1NaTFNEWVBC?=
+ =?utf-8?B?Y09aaWJFcjVLMmI3WlF4RXBvRVljbmI0UzVZcWVPRDcybnUzbFd5M0krK2Nv?=
+ =?utf-8?B?NE9yMGlyNDV4NWpBQmRaVHU4OUhRUjMzbk5Eem5LaExlSkdLbE1ibTE5UnYx?=
+ =?utf-8?B?TWJyL0d6VUxOdk9jR1pORGZOUVlQZG5IaXkvZ2xIUm5TUWVOaElKMjN3WVl5?=
+ =?utf-8?B?Z2hrT3hhcUwzN2NXRjg4VDYrM1QyNGVZaUVab0pJa3AvWDE5V1VTNUhHc3RT?=
+ =?utf-8?B?WUc5dnpCVElobmpDL0MxdVdWMXJEajFtLy9iRGdodkpXVEtSckQzRTNzV0p2?=
+ =?utf-8?B?bjFEQ1BVOWxScGJoWDBLL0NVZTZjTlVYd3U0RFpqTkJrMWFiRnh6eUtmOFFF?=
+ =?utf-8?B?V1BZdFpIRldQWVg1UFZra0NKLzlQUUVrMXFkOE9EZlNtQ0hnQzVxek84UHl5?=
+ =?utf-8?B?M1dmZTM5THR3NUhhcS9lOVJhN1ozSVk5M3BKeXltRmxzV0QrNGxvRUlhOFdw?=
+ =?utf-8?B?eC94QkpqRGdqdnRMVllLb1dLQktzWWVQUDh3SnVzZ1Z2TEpKK0lMczNsTEht?=
+ =?utf-8?B?cGNiNTVQU2IxZDNsR3FzbXFrWTZzWVMzNGwxQUFuYklzNDVDWGU4clJ2Y0pK?=
+ =?utf-8?B?TFBOQ1V3MzVlMUxKWXdzOTR2aC83akZaS0t2U0ZWUjBiam0zK283M0d2ZTVQ?=
+ =?utf-8?B?VTdsWXhsbDdUYzlHcmhDYjVBQVJTNlVZN2ZnckluNldGS0ovTTVnRzF6RndG?=
+ =?utf-8?B?dTkzOStrOTFCN3VKdlBBLzdZZ2tHV3cyWUp0dkgvdTNDT2lwbGlOMW1yQ1Zt?=
+ =?utf-8?B?YzYyQ3FQSnlRSWZVMlRQVUdicGhKUlRtZ2F4QkV3Y1ZyOXZFNkEzMFdzYnFp?=
+ =?utf-8?B?NHFkZ256cWdsUXVFOGVKc0UyRmZOeURjcDN6M3dFMnN6dWI1Q2ZnQVRlbVF1?=
+ =?utf-8?B?ZzFYVHlLNEcwSEdoUStEdEpxZXVBeW1ZSGU4VGFvNzNJd3lGNUdRQ3YwcU1I?=
+ =?utf-8?B?dGpOU1labVVlU2FHMVlNMmMwWlhacnZJOFJEeWh2YWFzRU5UZFE3MURhb3da?=
+ =?utf-8?B?TmFldmdFRjBpUjV0Q3dvNXNjOXR6Ym1Ydmtsa3FyczA3Z2pQbjUvVXNUYzZQ?=
+ =?utf-8?B?Q1BKbmxtTnNCL3dPTzRPR1c5dE9FNzRhMnJuUk41MzcvWFlHdGVXQUVEdVNG?=
+ =?utf-8?B?OVptWXBRUTUzMzJvS3AwRmdIYXlDRU0vMGxCblVvTmVIcGtGS3lEcnN3d3J0?=
+ =?utf-8?B?N3JuU3pJRHhXUU95bFhBQXRwWVozV3lxWHU5QnV5U3hRUm1ZRGpJVkJBNThY?=
+ =?utf-8?B?K1JxSVE3UTBXekozSXFEMW1GbzcweDRDYlNGZkRnRWUzY1FHZFh0TVhBcC9R?=
+ =?utf-8?B?QkR4RmlnVlI0T0o3Ly92Z2VpTkF3d3RsL0NBenFob0JmTXVBUnNCQnVXTDVU?=
+ =?utf-8?B?dDZwWXBHVzZWVTI3T1diN0MzZXF3Wk02ZHl5d1JNbGtadW0rTHRMUFlEOWRo?=
+ =?utf-8?B?NmJNTThVS3I1MUhyejZkWW1LaTY1c2dVaUd4SUN4dnd2RDZzeHgzTG0ybE5H?=
+ =?utf-8?B?bGhQR2ljcUxUcjFtVW1GNG5WdGFGdHJTM01ibHlLM0JFNFd4V0dVbmZvLzhv?=
+ =?utf-8?B?MEJzZ1c4MWFiLzN2bmtuM1RCVFBkQkFmVGpKbXY4TXZuSWt3WXo3MFF3a29t?=
+ =?utf-8?B?b3Z1cEJibERkaWF1TWF1NVUyUzFXaEhzc0FkN2llckYxRTZ1bjZiNFp6UDA4?=
+ =?utf-8?B?WWdFa3JDQ3JOTll4cVRPT1ZIWVF1Q0RaUnA0Mi9YWDhnYVJycjcrbXB2dGJP?=
+ =?utf-8?B?WlE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3df4854e-44d6-4091-8b66-08ddf9d65b65
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Sep 2025 12:48:41.7551 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7+zvzd6cPpiHE3cTK0kRfM262hgq9CNtTWtRs0rtFR0ZkHTQBE9D6Z01oHnR8zW6lE8VTaeZnXXjBguzMjeAoMsm6S/DXF3ranYRqCha0nQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7090
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,159 +198,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 22, 2025 at 03:38:46PM +0300, Luca Coelho wrote:
-> On Fri, 2025-09-19 at 11:36 +0300, Ville Syrj�l� wrote:
-> > On Mon, Sep 08, 2025 at 10:35:33AM +0300, Luca Coelho wrote:
-> > > There are currently two booleans to define three tiling modes, which
-> > > is bad practice because it allows representing an invalid mode.  In
-> > > order to simplify this, convert these two booleans into one
-> > > enumeration with three possible tiling modes.
-> > > 
-> > > Additionally, introduce the concept of Y "family" of tiling, which
-> > > groups Y, Yf and 4 tiling, since they're effectively treated in the
-> > > same way in the watermark calculations.  Describe the grouping in the
-> > > enumeration definition.
-> > > 
-> > > Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/skl_watermark.c | 35 ++++++++++++++------
-> > >  1 file changed, 24 insertions(+), 11 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-> > > index 0ce3420a919e..dd4bed02c3c0 100644
-> > > --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> > > +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> > > @@ -53,9 +53,16 @@ struct intel_dbuf_state {
-> > >  #define intel_atomic_get_new_dbuf_state(state) \
-> > >  	to_intel_dbuf_state(intel_atomic_get_new_global_obj_state(state, &to_intel_display(state)->dbuf.obj))
-> > >  
-> > > +/* Tiling mode groups relevant to WM calculations */
-> > > +enum wm_tiling_mode {
-> > > +	WM_TILING_LINEAR,
-> > > +	WM_TILING_X_TILED,	/* mostly like linear */
-> > 
-> > The _TILED suffix seems redundant here.
-> 
-> Indeed.  I'll remove.  I just wanted to differentiate the actually
-> tiled ones from linear, but that's moot.
-> 
-> 
-> > > +	WM_TILING_Y_FAMILY,	/* includes Y, Yf and 4 tiling */
-> > 
-> > I don't really like the "y family" invention. Doesn't really
-> > unconfuse anything for the reader without going back to have
-> > a look at the comment.
-> > 
-> > I think it would be better to just spell out each tilimg mode.
-> > So I guess something like "WM_TILING_Y_Yf_4"
-> 
-> Yeah, I wasn't entirely happy with "family", but I really couldn't find
-> any better term.  My idea was to make it generic enough so we wouldn't
-> have to add a new tiling to the symbol every time we add something new.
-> Which is what happened with the "Y_TILED" before, and included also Yf
-> and 4 without any reference to this in the code.  It confused the crap
-> out of me.
-> 
-> Anyway, your idea is definitely clearer, so I'll change this.
-> 
-> 
-> > > +};
-> > > +
-> > >  /* Stores plane specific WM parameters */
-> > >  struct skl_wm_params {
-> > > -	bool x_tiled, y_tiled;
-> > > +	enum wm_tiling_mode tiling;
-> > 
-> > That'll now be 4 bytes.
-> > 
-> > >  	bool rc_surface;
-> > >  	bool is_planar;
-> > 
-> > and we'll have a two byte hole here.
-> > 
-> > >  	u32 width;
-> >         u8 cpp;
-> > 
-> > And there's a 3 byte hole already here after the cpp.
-> > Should group the u8 with the bools to avoid so many holes.
-> > 
-> > We could also shrink y_min_scanlines to a u8 and
-> > stick it into the last 1 byte hole. That'd shrink the whole
-> > struct by 4 bytes.
-> > 
-> > dbuf_block_size would also fit in a u16, but doesn't look
-> > like we have any other holes where we could stick it. Hmm,
-> > actually 'width' could probably also be shrunk to be a u16.
-> > So could get rid of another 4 bytes here if we really
-> > wanted to.
-> > 
-> > But I suppose all that repacking should be a separate patch...
-> 
-> Okay, I'll move the two remaining bools below the u8, so we fill part
-> of that existing space.  And I'll add a separate patch to reduce the
-> y_min_scanlines to u8 and fill the existing hole.
-> 
-> I'll leave the dbuf_block_size and width change out for now.  I think 4
-> bytes extra saving will not be worth the trouble, but I'll keep this in
-> mind if I eventually encounter other changes to be made with these
-> elements.
-> 
-> 
-> > > @@ -618,7 +625,8 @@ static unsigned int skl_wm_latency(struct intel_display *display, int level,
-> > >  	     display->platform.cometlake) && skl_watermark_ipc_enabled(display))
-> > >  		latency += 4;
-> > >  
-> > > -	if (skl_needs_memory_bw_wa(display) && wp && wp->x_tiled)
-> > > +	if (skl_needs_memory_bw_wa(display) &&
-> > > +	    wp && wp->tiling == WM_TILING_X_TILED)
-> > >  		latency += 15;
-> > >  
-> > >  	return latency;
-> > > @@ -1674,9 +1682,14 @@ skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
-> > >  		return -EINVAL;
-> > >  	}
-> > >  
-> > > -	wp->x_tiled = modifier == I915_FORMAT_MOD_X_TILED;
-> > > -	wp->y_tiled = modifier != I915_FORMAT_MOD_X_TILED &&
-> > > -		intel_fb_is_tiled_modifier(modifier);
-> > > +	if (modifier == I915_FORMAT_MOD_X_TILED)
-> > > +		wp->tiling = WM_TILING_X_TILED;
-> > > +	else if (modifier != I915_FORMAT_MOD_X_TILED &&
-> > 
-> > The modifier check here is redundant with the if-else construct.
-> 
-> Indeed.
-> 
-> 
-> > > +		 intel_fb_is_tiled_modifier(modifier))
-> > > +		wp->tiling = WM_TILING_Y_FAMILY;
-> > > +	else
-> > > +		wp->tiling = WM_TILING_LINEAR;
-> > 
-> > In fact we can avoid the entire intel_fb_is_tiled_modifier()
-> > call with something like:
-> > 
-> > if (mod == LINEAR)
-> > 	tiling = LINEAR;
-> > else if (mod == X)
-> > 	tiling = X;
-> > else
-> > 	tiling = Y_Yf_4;
-> 
-> Nice, I'll change it.
-> 
-> 
-> > The wm code always pops up fairly high in cpu profiles, so
-> > anything that makes it lighter is worth considering.
-> 
-> Oh, that's good to know.  But this is not happening in the "datapath",
-> but during modesets, right? Do the modesets really take so long and
-> happen so often so that avoiding a CPU cycles makes much difference?
 
-This happens on every flip. While not a big deal perhaps for sync
-flips @60Hz, but with async flips and/or high refresh rates it
-starts to matter more.
+On 9/22/2025 4:40 PM, Jani Nikula wrote:
+> On Fri, 19 Sep 2025, Nemesa Garg <nemesa.garg@intel.com> wrote:
+>> Add HAS_CASF macro to check whether platform supports
+>> the content adaptive sharpness capability or not.
+>>
+>> v2: Update commit message[Ankit]
+>> v3: Remove \n from middle[Jani]
+>>
+>> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+>> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 7 +++++++
+>>   drivers/gpu/drm/i915/display/intel_display_device.h  | 1 +
+>>   2 files changed, 8 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+>> index 0c7f91046996..bc6a041cec13 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+>> @@ -373,6 +373,13 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
+>>   
+>>   	intel_vdsc_state_dump(&p, 0, pipe_config);
+>>   
+>> +	if (HAS_CASF(display)) {
+>> +		drm_printf(&p, "sharpness strength: %d, sharpness tap size: %d, sharpness enable: %d\n",
+>> +			   pipe_config->hw.casf_params.strength,
+>> +			   pipe_config->hw.casf_params.win_size,
+>> +			   pipe_config->hw.casf_params.casf_enable);
+>> +	}
+> This breaks bisect, because it's referring to things that aren't there yet:
+>
+> ../drivers/gpu/drm/i915/display/intel_crtc_state_dump.c: In function ‘intel_crtc_state_dump’:
+> ../drivers/gpu/drm/i915/display/intel_crtc_state_dump.c:378:43: error: ‘const struct <anonymous>’ has no member named ‘casf_params’
+>    378 |                            pipe_config->hw.casf_params.strength,
+>        |                                           ^
+> ../drivers/gpu/drm/i915/display/intel_crtc_state_dump.c:379:43: error: ‘const struct <anonymous>’ has no member named ‘casf_params’
+>    379 |                            pipe_config->hw.casf_params.win_size,
+>        |                                           ^
+> ../drivers/gpu/drm/i915/display/intel_crtc_state_dump.c:380:43: error: ‘const struct <anonymous>’ has no member named ‘casf_params’
+>    380 |                            pipe_config->hw.casf_params.casf_enable);
+>        |                                           ^
+>
+This is strange, the patch where this was RB'd was not having this piece 
+of code [1].
 
--- 
-Ville Syrj�l�
-Intel
+Seems like things were moved after the patches were RB'd, without 
+mention in history :(.
+
+This indeed needs to be re-looked.
+
+[1] https://patchwork.freedesktop.org/patch/644360/?series=138754&rev=11
+
+
+Regards,
+
+Ankit
+
+> I thought about simply reordering the patches in the series, but the
+> patch that adds casf_params depends on HAS_CASF() introduced here, and
+> there are other similar issues all over the place. I can't merge this,
+> sorry.
+>
+> Every commit must compile, no exceptions.
+>
+> Checking this is as simple as:
+>
+> $ git rebase -i drm-tip/drm-tip -x make
+>
+> with whatever remote and build command you use.
+>
+> And yes, I obviously do this before merging anything, also no
+> exceptions.
+>
+> I'm more than a little annoyed that there have been umpteen versions of
+> this series, I've been incessantly pestered about gathering acks and
+> getting this merged, and there are still basic things like this that
+> nobody looked at or cared about when I'm on the verge of merging.
+>
+>
+> BR,
+> Jani.
+>
+>
+>
+>> +
+>>   dump_planes:
+>>   	if (!state)
+>>   		return;
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+>> index 1f091fbcd0ec..157aa0b8f36e 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+>> @@ -144,6 +144,7 @@ struct intel_display_platforms {
+>>   #define HAS_ASYNC_FLIPS(__display)	(DISPLAY_VER(__display) >= 5)
+>>   #define HAS_AS_SDP(__display)		(DISPLAY_VER(__display) >= 13)
+>>   #define HAS_BIGJOINER(__display)	(DISPLAY_VER(__display) >= 11 && HAS_DSC(__display))
+>> +#define HAS_CASF(__display)		(DISPLAY_VER(__display) >= 20)
+>>   #define HAS_CDCLK_CRAWL(__display)	(DISPLAY_INFO(__display)->has_cdclk_crawl)
+>>   #define HAS_CDCLK_SQUASH(__display)	(DISPLAY_INFO(__display)->has_cdclk_squash)
+>>   #define HAS_CMRR(__display)		(DISPLAY_VER(__display) >= 20)
