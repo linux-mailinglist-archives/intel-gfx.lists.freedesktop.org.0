@@ -2,64 +2,247 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2C7CB9333B
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Sep 2025 22:17:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0DDBB94E90
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Sep 2025 10:05:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D4B010E064;
-	Mon, 22 Sep 2025 20:17:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55BA610E0EA;
+	Tue, 23 Sep 2025 08:05:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H3azu7ha";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="V4olzZ1s";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Jb4G78GC";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="V4olzZ1s";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Jb4G78GC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E865C10E064;
- Mon, 22 Sep 2025 20:17:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758572273; x=1790108273;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=sOcOCCbJvZCE3xP/AQc+oRPX5l9d93VG7jEZGyyoB2w=;
- b=H3azu7ha7LgkdI3qXVS5c0mLpit09OtvEzvlNG5hjzXA/Pw7xWBB/8Xy
- aj5UuL3HUtdgjLH63tfoFKdwVNF+ErvYWhzAHVkvtrlbZO5gmuENDvcTI
- acnwZdo/oFOvYaZrgCZU7MSMmJxMT697o7IqcyKVIOmiaxfgQkpujeR1T
- jiLZnZnqqpXfDjE6ipSJTlYOlDP84t4av29HsFIrsDLfJ/OOdbHZ0Y+eH
- y1qCfKxC75J3MQ0OKxsRKUufvbN7xszkAO1zUfNtJ2feRwa3KByFiabod
- L8WEGXwbP5w57oPBvAIhhaF7O9WuREIBgJZq+Q+SFkBrXr3ajZ2AB7mIv Q==;
-X-CSE-ConnectionGUID: /wZlIFOyTgmkhEdX1vvXkg==
-X-CSE-MsgGUID: Qre4Ivt5RSmGzwslf3xotw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="60900888"
-X-IronPort-AV: E=Sophos;i="6.18,286,1751266800"; d="scan'208";a="60900888"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2025 13:17:52 -0700
-X-CSE-ConnectionGUID: lRgbQC6MQEiGiaNretL44A==
-X-CSE-MsgGUID: zcOpoNzxRSiPXOzY0CxE0w==
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6E5D10E0EA
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Sep 2025 08:05:32 +0000 (UTC)
+X-CSE-ConnectionGUID: IcKwfeFBRBmSdE9apN/DlA==
+X-CSE-MsgGUID: UuFpCeYoQ3O8y5tdZ3pI9A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="71509306"
+X-IronPort-AV: E=Sophos;i="6.18,287,1751266800"; d="scan'208";a="71509306"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2025 01:05:32 -0700
+X-CSE-ConnectionGUID: 0mLnBg6FTUuhxlWZNmMTJw==
+X-CSE-MsgGUID: 9TLO6DA/T6iPRM2LUUUMqw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,286,1751266800"; d="scan'208";a="176140862"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.115])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2025 13:17:50 -0700
-Date: Mon, 22 Sep 2025 23:17:47 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Vidya Srinivas <vidya.srinivas@intel.com>,
- Swati Sharma <swati2.sharma@intel.com>
-Subject: Re: [PATCH v2 5/5] drm/i915/dp: Handle Synaptics DSC throughput
- link-bpp quirk
-Message-ID: <aNGu6_6JkOKkAWpH@intel.com>
-References: <20250918211223.209674-6-imre.deak@intel.com>
- <20250922134637.271999-2-imre.deak@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,287,1751266800"; d="scan'208";a="175990270"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.13])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2025 01:05:31 -0700
+Resent-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Resent-Date: Tue, 23 Sep 2025 11:05:28 +0300
+Resent-Message-ID: <aNJUyDkjAMa6laUY@intel.com>
+Resent-To: intel-gfx@lists.freedesktop.org
+X-Original-To: ville.syrjala@linux.intel.com
+Delivered-To: ville.syrjala@linux.intel.com
+Received: from linux.intel.com [10.54.29.200]
+ by stinkbox.korsu.shacknet.nu with IMAP (fetchmail-6.4.39)
+ for <vsyrjala@localhost> (single-drop); Mon, 22 Sep 2025 16:51:10 +0300 (EEST)
+Received: from orviesa007.jf.intel.com (ORVIESA007.jf.intel.com
+ [10.64.159.147])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by linux.intel.com (Postfix) with ESMTPS id D9DF620B5713
+ for <ville.syrjala@linux.intel.com>; Mon, 22 Sep 2025 06:49:12 -0700 (PDT)
+X-CSE-ConnectionGUID: +W2iHUvWQp6odT9Sk1OM5w==
+X-CSE-MsgGUID: gM4pTBHbRJWYOpteGwKh7w==
+X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="176304999"
+Received: from fmvoesa108.fm.intel.com ([10.64.2.18])
+ by orviesa007-1.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 06:49:13 -0700
+X-CSE-ConnectionGUID: BUoL7Q74QVOaN50ZXNxHeA==
+X-CSE-MsgGUID: kw+4CE+yTQ+1lGuSPQK1rA==
+IronPort-SDR: 68d153d8_G7Se36raAffq9oNoVo0SOUaGXf4SczHDzeTZWc6XSgHDo9d
+ TuI0KUDuda9KmOoe54FiFVhfdwm4qNOInv1QcKg==
+X-ThreatScanner-Verdict: Negative
+X-IPAS-Result: =?us-ascii?q?A0E9AQBZU9Foj4Pfh8NaHQEBAQEJARIBBQUBQIFTgW5SQ?=
+ =?us-ascii?q?AFBW0FJhBk8iHuGVYIhbJ8wDwEBAQEBAQEBAQk9FAQBAQMBA4UAjEACJjgTA?=
+ =?us-ascii?q?QIEAQEBAQMCAQIBAQEBAQEBAQEBAQsBAQECAgEBAQIBAQYDAQEBAQIQAQEBA?=
+ =?us-ascii?q?QEBOQVJhk8NgmIBM3GBJQEBAQEBAQEBAQEBAQEdAg2BABAXBAsBDQEBNwEYH?=
+ =?us-ascii?q?AImAl8SgwIBgiIFEwM1BAMBDJpCnEZ/M4EBggwBAQbbKgR3gWQDBoEbLohQA?=
+ =?us-ascii?q?YR8hG2BIRuBSUSEDm+CHyuCDjiDDoJpgiaBFpAxjG5IgQIcA1ksAVUTDQoLB?=
+ =?us-ascii?q?wWBMDMDIAoLDAsSHBUCFC8PGjIdcwwoEoR5hB4rT4QOdD5ag1Mkaw8GgRWDW?=
+ =?us-ascii?q?wUBhy5AAwsYDUgRLDcGDhsGPQFuB5YlgzEBgQ0sIoFplwSwH4I/gWeMHpU5G?=
+ =?us-ascii?q?jOXUg6TCgGZBiKNZpU0hgWBfyOBXHGDNk8DGQ+OIRmEGoRgwm1CNAI6AgcBC?=
+ =?us-ascii?q?gEBAwmSHoFLAQE?=
+IronPort-PHdr: A9a23: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
+IronPort-Data: A9a23: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
+IronPort-HdrOrdr: A9a23:Ynbci64jc1eO4lFYYwPXwELXdLJyesId70hD6qkQc3BomwKj5q
+ WTdZMgpGXJYVcqKQodcLW7UsTuL080mqQFhrX5UY3SPzUO21HYVL2Kj7GSpQEIcheWnoU9tZ
+ uIGJIObOEYY2IK7/oSmDPIauoI8Z296rmhgeqb531xTQdsApsQnztRO0KhCFR/QAQDPYY0CJ
+ bZxscvnUvfRV0nKv+gH3EAUqz4q8bVmImOW292O/fL0njzsdqz0s+ELzGomi0GWzcK+70l6m
+ StqX2L2oyT98ujwhvQk1Te9YhShbLau6Z+OPA=
+X-Talos-CUID: 9a23:AFYfnGzn5GcIj98cdXcJBgU+J8cBLUSCkE7uBEaeVD5beJuFaVK5rfY=
+X-Talos-MUID: 9a23:IZ7zyAhVb/87uHD74Jz748MpN9grv4+DS1ExqNZfv+aZDhRJGG6HpWHi
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="60867550"
+X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="60867550"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from smtp-out2.suse.de ([195.135.223.131])
+ by mtab.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 06:49:11 -0700
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 349621F79A;
+ Mon, 22 Sep 2025 13:49:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1758548949; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=7TzD8bMv0gdipWLQ/wOu3P08SLqKkylmdgnKiucqS+8=;
+ b=V4olzZ1sVE6zlzQYJ9cqO2/GPIzc9f3v/C2WFa3nzC07/9UtK46eNSkp5Q+ZODqBIcq7km
+ VxYXSBdkebX8PDURYy9lLZwtWInJuB8+7hav0DHWYEpCDNcaQOhJ/5cWcuQLGVOUdgfu0I
+ 2zCXR0pnzQPp4LmEf8mhpKM+JwofUU8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1758548949;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=7TzD8bMv0gdipWLQ/wOu3P08SLqKkylmdgnKiucqS+8=;
+ b=Jb4G78GCOKJ7HMid6++qn5pfiNCZTNmUiXh/eihDkAn76Kw5FJyRTcWWt9V5qNxyIgl0A2
+ vgE6apw3X4EBX/Bw==
+Authentication-Results: smtp-out2.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=V4olzZ1s;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=Jb4G78GC
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1758548949; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=7TzD8bMv0gdipWLQ/wOu3P08SLqKkylmdgnKiucqS+8=;
+ b=V4olzZ1sVE6zlzQYJ9cqO2/GPIzc9f3v/C2WFa3nzC07/9UtK46eNSkp5Q+ZODqBIcq7km
+ VxYXSBdkebX8PDURYy9lLZwtWInJuB8+7hav0DHWYEpCDNcaQOhJ/5cWcuQLGVOUdgfu0I
+ 2zCXR0pnzQPp4LmEf8mhpKM+JwofUU8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1758548949;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=7TzD8bMv0gdipWLQ/wOu3P08SLqKkylmdgnKiucqS+8=;
+ b=Jb4G78GCOKJ7HMid6++qn5pfiNCZTNmUiXh/eihDkAn76Kw5FJyRTcWWt9V5qNxyIgl0A2
+ vgE6apw3X4EBX/Bw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id C067313A63;
+ Mon, 22 Sep 2025 13:49:08 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id uN1KLdRT0WguAgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Mon, 22 Sep 2025 13:49:08 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: jani.nikula@linux.intel.com, samasth.norway.ananda@oracle.com,
+ simona@ffwll.ch, deller@gmx.de
+Cc: linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ George Kennedy <george.kennedy@oracle.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Sam Ravnborg <sam@ravnborg.org>, Qianqiang Liu <qianqiang.liu@163.com>,
+ Shixiong Ou <oushixiong@kylinos.cn>, Kees Cook <kees@kernel.org>,
+ stable@vger.kernel.org, Zsolt Kajtar <soci@c64.rulez.org>
+Subject: [PATCH] fbcon: Fix OOB access in font allocation
+Date: Mon, 22 Sep 2025 15:45:54 +0200
+Message-ID: <20250922134619.257684-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250922134637.271999-2-imre.deak@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spamd-Result: default: False [-3.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ MID_CONTAINS_FROM(1.00)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[];
+ SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ RCPT_COUNT_TWELVE(0.00)[16]; ARC_NA(0.00)[];
+ FREEMAIL_TO(0.00)[linux.intel.com,oracle.com,ffwll.ch,gmx.de];
+ MIME_TRACE(0.00)[0:+]; FUZZY_RATELIMITED(0.00)[rspamd.com];
+ RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
+ FREEMAIL_ENVRCPT(0.00)[163.com,gmx.de]; TO_DN_SOME(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2]; FROM_EQ_ENVFROM(0.00)[];
+ FROM_HAS_DN(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ DNSWL_BLOCKED(0.00)[2a07:de40:b281:104:10:150:64:97:from,2a07:de40:b281:106:10:150:64:167:received];
+ DKIM_TRACE(0.00)[suse.de:+]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ FREEMAIL_CC(0.00)[vger.kernel.org,lists.freedesktop.org,suse.de,oracle.com,linuxfoundation.org,linux.intel.com,ravnborg.org,163.com,kylinos.cn,kernel.org,c64.rulez.org];
+ RCVD_TLS_ALL(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid, suse.de:dkim, suse.de:email,
+ intel.com:email, imap1.dmz-prg2.suse.org:helo, imap1.dmz-prg2.suse.org:rdns]
+X-Spam-Flag: NO
+X-Spam-Level: 
+X-Rspamd-Queue-Id: 349621F79A
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Action: no action
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,149 +258,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 22, 2025 at 04:46:37PM +0300, Imre Deak wrote:
-> Handle the DSC pixel throughput quirk, limiting the compressed link-bpp
-> value for Synaptics Panamera branch devices, working around a
-> blank/unstable output issue observed on docking stations containing
-> these branch devices, when using a mode with a high pixel clock and a
-> high compressed link-bpp value.
-> 
-> For now use the same mode clock limit for RGB/YUV444 and YUV422/420
-> output modes. This may result in limiting the link-bpp value for a
-> YUV422/420 output mode already at a lower than required mode clock.
-> 
-> v2: Apply the quirk only when DSC is enabled.
-> 
-> Reported-by: Vidya Srinivas <vidya.srinivas@intel.com>
-> Reported-by: Swati Sharma <swati2.sharma@intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  .../drm/i915/display/intel_display_types.h    |  1 +
->  drivers/gpu/drm/i915/display/intel_dp.c       | 58 +++++++++++++++++++
->  2 files changed, 59 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 73bdafae604f..aff63bf0f229 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -551,6 +551,7 @@ struct intel_connector {
->  		u8 fec_capability;
->  
->  		u8 dsc_hblank_expansion_quirk:1;
-> +		u8 dsc_throughput_quirk:1;
->  		u8 dsc_decompression_enabled:1;
->  
->  		struct {
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index dd082d2fcc96..5e7aea560910 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -2509,6 +2509,56 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
->  	return 0;
->  }
->  
-> +static void
-> +adjust_limits_for_dsc_throughput_quirk(const struct intel_connector *connector,
-> +				       const struct intel_crtc_state *crtc_state,
-> +				       struct link_config_limits *limits)
-> +{
-> +	struct intel_display *display = to_intel_display(connector);
-> +	const struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> +	const struct drm_display_mode *adjusted_mode =
-> +		&crtc_state->hw.adjusted_mode;
-> +	int max_bpp_x16;
-> +
-> +	if (!connector->dp.dsc_throughput_quirk)
-> +		return;
-> +
-> +	/*
-> +	 * Synaptics Panamera branch devices have a problem decompressing a
-> +	 * stream with a compressed link-bpp higher than 12, if the pixel
-> +	 * clock is higher than ~50 % of the maximum overall throughput
-> +	 * reported by the branch device. Work around this by limiting the
-> +	 * maximum link bpp for such pixel clocks.
-> +	 *
-> +	 * TODO: Use the throughput value specific to the actual RGB/YUV
-> +	 * format of the output, after determining the pixel clock limit for
-> +	 * YUV modes. For now use the smaller of the throughput values, which
-> +	 * may result in limiting the link-bpp value already at a lower than
-> +	 * required mode clock in case of native YUV422/420 output formats.
-> +	 * The RGB/YUV444 throughput value should be always either equal or
-> +	 * smaller than the YUV422/420 value, but let's not depend on this
-> +	 * assumption.
-> +	 */
-> +	if (adjusted_mode->crtc_clock <
-> +	    min(connector->dp.dsc_branch_caps.overall_throughput.rgb_yuv444,
-> +		connector->dp.dsc_branch_caps.overall_throughput.yuv422_420) / 2)
-> +		return;
-> +
-> +	max_bpp_x16 = clamp(fxp_q4_from_int(12),
-> +			    limits->link.min_bpp_x16, limits->link.max_bpp_x16);
-> +
-> +	if (max_bpp_x16 >= limits->link.max_bpp_x16)
-> +		return;
-> +
-> +	drm_dbg_kms(display->drm,
-> +		    "[CRTC:%d:%s][CONNECTOR:%d:%s] Decreasing link max bpp to " FXP_Q4_FMT " due to DSC throughput quirk\n",
-> +		    crtc->base.base.id, crtc->base.name,
-> +		    connector->base.base.id, connector->base.name,
-> +		    FXP_Q4_ARGS(max_bpp_x16));
-> +
-> +	limits->link.max_bpp_x16 = max_bpp_x16;
-> +}
-> +
->  /*
->   * Calculate the output link min, max bpp values in limits based on the pipe bpp
->   * range, crtc_state and dsc mode. Return true on success.
-> @@ -2558,6 +2608,9 @@ intel_dp_compute_config_link_bpp_limits(struct intel_dp *intel_dp,
->  
->  	limits->link.max_bpp_x16 = max_link_bpp_x16;
->  
-> +	if (dsc)
-> +		adjust_limits_for_dsc_throughput_quirk(connector, crtc_state, limits);
+Commit 1a194e6c8e1e ("fbcon: fix integer overflow in fbcon_do_set_font")
+introduced an out-of-bounds access by storing data and allocation sizes
+in the same variable. Restore the old size calculation and use the new
+variable 'alloc_size' for the allocation.
 
-Would feel cleaner if we did this in the actual dsc==true branch above.
-Maybe the actual thing that determines that max bpp should be some kind
-of pure function that returns the max acceptable bpp, and then the
-caller can deal with it.
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Fixes: 1a194e6c8e1e ("fbcon: fix integer overflow in fbcon_do_set_font")
+Reported-by: Jani Nikula <jani.nikula@linux.intel.com>
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15020
+Cc: Samasth Norway Ananda <samasth.norway.ananda@oracle.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: George Kennedy <george.kennedy@oracle.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Simona Vetter <simona@ffwll.ch>
+Cc: Helge Deller <deller@gmx.de>
+Cc: "Ville Syrj√§l√§" <ville.syrjala@linux.intel.com>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: Qianqiang Liu <qianqiang.liu@163.com>
+Cc: Shixiong Ou <oushixiong@kylinos.cn>
+Cc: Kees Cook <kees@kernel.org>
+Cc: <stable@vger.kernel.org> # v5.9+
+Cc: Zsolt Kajtar <soci@c64.rulez.org>
+---
+ drivers/video/fbdev/core/fbcon.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-Or at least move the 'limits->link.max_bpp_x16 = max_link_bpp_x16' into both
-!dsc and dsc branches. That way we don't have this strange looking drop out
-from the if statement just to do the single assignment, and then going back in.
-
-> +
->  	drm_dbg_kms(display->drm,
->  		    "[ENCODER:%d:%s][CRTC:%d:%s] DP link limits: pixel clock %d kHz DSC %s max lanes %d max rate %d max pipe_bpp %d max link_bpp " FXP_Q4_FMT "\n",
->  		    encoder->base.base.id, encoder->base.name,
-> @@ -4272,6 +4325,7 @@ void intel_dp_get_dsc_sink_cap(u8 dpcd_rev,
->  	connector->dp.fec_capability = 0;
->  
->  	memset(&connector->dp.dsc_branch_caps, 0, sizeof(connector->dp.dsc_branch_caps));
-> +	connector->dp.dsc_throughput_quirk = false;
->  
->  	if (dpcd_rev < DP_DPCD_REV_14)
->  		return;
-> @@ -4292,6 +4346,10 @@ void intel_dp_get_dsc_sink_cap(u8 dpcd_rev,
->  		return;
->  
->  	init_dsc_overall_throughput_limits(connector, is_branch);
-> +
-> +	if (drm_dp_has_quirk(desc, DP_DPCD_QUIRK_DSC_THROUGHPUT_BPP_LIMIT) &&
-> +	    desc->ident.hw_rev == 0x10)
-
-Rather annoying to have part of the detection here and part in the
-quirk list. Can we extend the quirk framework to support hw revisions
-as well?
-
-Could be a followup.
-
-> +		connector->dp.dsc_throughput_quirk = true;
->  }
->  
->  static void intel_edp_get_dsc_sink_cap(u8 edp_dpcd_rev, struct intel_connector *connector)
-> -- 
-> 2.49.1
-
+diff --git a/drivers/video/fbdev/core/fbcon.c b/drivers/video/fbdev/core/fbcon.c
+index 5fade44931b8..c1c0cdd7597c 100644
+--- a/drivers/video/fbdev/core/fbcon.c
++++ b/drivers/video/fbdev/core/fbcon.c
+@@ -2518,7 +2518,7 @@ static int fbcon_set_font(struct vc_data *vc, const struct console_font *font,
+ 	unsigned charcount = font->charcount;
+ 	int w = font->width;
+ 	int h = font->height;
+-	int size;
++	int size, alloc_size;
+ 	int i, csum;
+ 	u8 *new_data, *data = font->data;
+ 	int pitch = PITCH(font->width);
+@@ -2551,10 +2551,10 @@ static int fbcon_set_font(struct vc_data *vc, const struct console_font *font,
+ 		return -EINVAL;
+ 
+ 	/* Check for overflow in allocation size calculation */
+-	if (check_add_overflow(FONT_EXTRA_WORDS * sizeof(int), size, &size))
++	if (check_add_overflow(FONT_EXTRA_WORDS * sizeof(int), size, &alloc_size))
+ 		return -EINVAL;
+ 
+-	new_data = kmalloc(size, GFP_USER);
++	new_data = kmalloc(alloc_size, GFP_USER);
+ 
+ 	if (!new_data)
+ 		return -ENOMEM;
 -- 
-Ville Syrj‰l‰
-Intel
+2.51.0
