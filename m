@@ -2,29 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66BC1B91BC9
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Sep 2025 16:32:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9ADCB91D67
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Sep 2025 17:03:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB16C10E1CA;
-	Mon, 22 Sep 2025 14:32:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A0DC10E477;
+	Mon, 22 Sep 2025 15:03:22 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="enyi9zMR";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4B8E10E1CA;
- Mon, 22 Sep 2025 14:32:48 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6774509170125793320=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F032210E477;
+ Mon, 22 Sep 2025 15:03:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1758553401; x=1790089401;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=YpqmWVkQpvj6Wfty+NAkbwjzMFJU0Q1lMX2+UakAIwY=;
+ b=enyi9zMRb0C8/pOYPiv4lE3AvtwnqEWEinss6hQAvKUOqfJgwfnlr8hU
+ 4VSfd/M/cn2TkKb0kV01QPUtdVgvYQIb5NMbfnPaPkBoWeCCLhZurGfkk
+ wxKmqJIQIt7Krb8r+9hZzyvg6Op9MJCLv4Bp93h1N/EhY47+C7iBMI/wu
+ gli47FAv79sEa8mp5nRhR1xzcc2vUD6oNIcSr/wmSrEu0RLtyLXW7tCJj
+ ts0288OhSrcRGyesbE2hlXyRznb/3zq2pOrkRG6G3y8zLwReqMNitNNxV
+ P9cwHnQJG0jlt/Xdox0huYTcJHm73p16qmtU94pwa1inhXmdqJvC8BqZP A==;
+X-CSE-ConnectionGUID: qwi6mGdNTsOEw/0sNXk6ug==
+X-CSE-MsgGUID: P4wumxaoQrmtmg1tJY2VSA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="71922173"
+X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="71922173"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 08:03:20 -0700
+X-CSE-ConnectionGUID: dBrRCaPjQ4OVU0WvtqtcXA==
+X-CSE-MsgGUID: X+d7Z5LoSCKTKol7wupAoQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="180511444"
+Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
+ by orviesa003.jf.intel.com with ESMTP; 22 Sep 2025 08:03:19 -0700
+From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Subject: [PATCH v3 0/3] drm/i915/xe3: Restrict PTL intel_encoder_is_c10phy()
+ to only PHY A
+Date: Mon, 22 Sep 2025 20:33:14 +0530
+Message-ID: <20250922150317.2334680-1-dnyaneshwar.bhadane@intel.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_Work_aroun?=
- =?utf-8?q?d_a_DSC_pixel_throughput_issue_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 22 Sep 2025 14:32:48 -0000
-Message-ID: <175855156879.354596.13727090250998777653@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250918211223.209674-1-imre.deak@intel.com>
-In-Reply-To: <20250918211223.209674-1-imre.deak@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,132 +63,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6774509170125793320==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+- Add WCL as subplatform and update the definition struct. 
+- Update condition required to distinguish WCL C10 PHY selection
+on port B.
 
-== Series Details ==
+Dnyaneshwar Bhadane (3):
+  drm/pcids: Split PTL pciids group to make wcl subplatform
+  drm/i915/display: Add definition for wcl as subplatform
+  drm/i915/xe3: Restrict PTL intel_encoder_is_c10phy() to only PHY A
 
-Series: drm/i915/dp: Work around a DSC pixel throughput issue (rev3)
-URL   : https://patchwork.freedesktop.org/series/154736/
-State : success
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c       | 14 ++++++--------
+ .../gpu/drm/i915/display/intel_display_device.c    | 13 +++++++++++++
+ .../gpu/drm/i915/display/intel_display_device.h    |  4 +++-
+ drivers/gpu/drm/xe/xe_pci.c                        |  1 +
+ include/drm/intel/pciids.h                         |  5 ++++-
+ 5 files changed, 27 insertions(+), 10 deletions(-)
 
-== Summary ==
+-- 
+2.51.0
 
-CI Bug Log - changes from CI_DRM_17253 -> Patchwork_154736v3
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154736v3/index.html
-
-Participating hosts (39 -> 38)
-------------------------------
-
-  Missing    (1): fi-kbl-guc 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_154736v3 that come from known issues:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@i915_module_load@load:
-    - fi-ilk-650:         [ABORT][1] -> [ABORT][2] ([i915#15020])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17253/fi-ilk-650/igt@i915_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154736v3/fi-ilk-650/igt@i915_module_load@load.html
-    - fi-cfl-8700k:       [ABORT][3] -> [ABORT][4] ([i915#15020])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17253/fi-cfl-8700k/igt@i915_module_load@load.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154736v3/fi-cfl-8700k/igt@i915_module_load@load.html
-
-  
-  [i915#15020]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15020
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_17253 -> Patchwork_154736v3
-
-  CI-20190529: 20190529
-  CI_DRM_17253: c4d19320a0e2f7d8dec97d4a59309349a3a63ec0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8546: 8546
-  Patchwork_154736v3: c4d19320a0e2f7d8dec97d4a59309349a3a63ec0 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154736v3/index.html
-
---===============6774509170125793320==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp: Work around a DSC pixel throughput issue (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154736/">https://patchwork.freedesktop.org/series/154736/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154736v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154736v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17253 -&gt; Patchwork_154736v3</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154736v3/index.html</p>
-<h2>Participating hosts (39 -&gt; 38)</h2>
-<p>Missing    (1): fi-kbl-guc </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_154736v3 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_module_load@load:<ul>
-<li>fi-ilk-650:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17253/fi-ilk-650/igt@i915_module_load@load.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154736v3/fi-ilk-650/igt@i915_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15020">i915#15020</a>)</li>
-<li>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17253/fi-cfl-8700k/igt@i915_module_load@load.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154736v3/fi-cfl-8700k/igt@i915_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15020">i915#15020</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17253 -&gt; Patchwork_154736v3</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17253: c4d19320a0e2f7d8dec97d4a59309349a3a63ec0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8546: 8546<br />
-  Patchwork_154736v3: c4d19320a0e2f7d8dec97d4a59309349a3a63ec0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============6774509170125793320==--
