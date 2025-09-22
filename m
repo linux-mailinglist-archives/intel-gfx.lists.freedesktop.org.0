@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DADA2B9003C
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Sep 2025 12:32:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2B8BB904A1
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Sep 2025 12:58:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E718710E40E;
-	Mon, 22 Sep 2025 10:32:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEA5910E418;
+	Mon, 22 Sep 2025 10:58:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pc7H3f73";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UakvVgBH";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6D7210E40A;
- Mon, 22 Sep 2025 10:32:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A790C10E415;
+ Mon, 22 Sep 2025 10:58:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758537166; x=1790073166;
+ t=1758538684; x=1790074684;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=Jmux/3orzlFB9q6ykpnUVYCwlsICFNhh/mCyzTBnaPY=;
- b=Pc7H3f73mm6I6kCGx4PM2fPswJdV6733AcbNLz5E55IjwIHfNGdJj2rI
- UbEPkh0pb7Ad4drqPHU8Fd2XVE7nJFOX74N3L4sXNxNJEOloXEbHpNh8P
- tC1L20d90D3pKbEdUTbIO31TPcqtyCN+RdwcUJbpATMk5X9SP+iVbqlfI
- IKz8ry4PHkxOz55wXf1yujdNemwQBI3VfvsYr/gwXxYMORPSApjmoUwnw
- Tu1a2tnW4kQwurdORyX701xkFncSccNHSnvyCNjpWSZ2rAtrUMzAmVQqA
- O0fsZF6y4ZoSMM5kPGw7jFGJjf4YFvcEwb3NmquLs948h5YrKt3fAirrl w==;
-X-CSE-ConnectionGUID: 3ovGsvldQI23xMbrrxA7CQ==
-X-CSE-MsgGUID: hF3DjlByT4GA1tPXjLMrSA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11560"; a="60913974"
-X-IronPort-AV: E=Sophos;i="6.18,284,1751266800"; d="scan'208";a="60913974"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2025 03:32:45 -0700
-X-CSE-ConnectionGUID: 1pbDowNMSeWQaYxy9+d/9A==
-X-CSE-MsgGUID: ZyQjgTSgTSCCUn6CE7Uvyg==
+ bh=kf3C0N2FqMlMcueB9XMi0BFX3eNxno7IDh/KhiCQW1M=;
+ b=UakvVgBHo+XUbeOCGICdEVERJHR0R5N1Quf8ot2IcRCeHAivJiqGWxDy
+ tjRJVYUXK/Dyal3IhCAWoBaweJxWHmLn4CC7Rr20zG0jlznSEEy4qyBF6
+ 97eemIbLUFZ8XFyPINNQSe3ETEgfwB2239bdXKT25gQxRqgB0NsL9GYbd
+ tXskNKdzAEhmoqiKmTUB0XfYT+wkj40zjQGdZmLDQ/g1H9iyJ+zPBEGu1
+ fXBG819ihq4HoJrRSsiIbwZ3OA1qptdXNpn6jin6yF9LMY4ZKM4i3Sias
+ Pg2z7dmlMkw7rto8e84AktwV4kDrYheYTEjss6HqlbB9LG+1WXSnX55Or A==;
+X-CSE-ConnectionGUID: AvngpctPRQevqW47vkz5lw==
+X-CSE-MsgGUID: P1pmxRofQ+adkhPmN7yy3A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11560"; a="60493703"
+X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="60493703"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 03:58:04 -0700
+X-CSE-ConnectionGUID: Amc9usOCTi2W0gVIPDgyBQ==
+X-CSE-MsgGUID: XngxvnEDTRiSVX+BAiG4dg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,284,1751266800"; d="scan'208";a="207184275"
+X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="176518031"
 Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.115])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2025 03:32:44 -0700
-Date: Mon, 22 Sep 2025 13:32:40 +0300
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 03:58:03 -0700
+Date: Mon, 22 Sep 2025 13:57:59 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 7/9] drm/i915/dsb:
- s/intel_dsb_wait_vblank_delay/intel_dsb_wait_for_scl_lines
-Message-ID: <aNElyOcbD6F8h7It@intel.com>
+Subject: Re: [PATCH 9/9] drm/i915/vrr: Clamp guardband as per hardware and
+ timing constraints
+Message-ID: <aNErtwXjQHDgMADC@intel.com>
 References: <20250921043535.2012978-1-ankit.k.nautiyal@intel.com>
- <20250921043535.2012978-8-ankit.k.nautiyal@intel.com>
+ <20250921043535.2012978-10-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250921043535.2012978-8-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250921043535.2012978-10-ankit.k.nautiyal@intel.com>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -73,103 +73,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Sep 21, 2025 at 10:05:33AM +0530, Ankit Nautiyal wrote:
-> The helper intel_dsb_wait_vblank_delay() is used in DSB to wait for SCL
-> lines after the send push operation. Rename it to
-> intel_dsb_wait_for_scl_lines() to align with the semantics.
+On Sun, Sep 21, 2025 at 10:05:35AM +0530, Ankit Nautiyal wrote:
+> The maximum guardband value is constrained by two factors:
+> - The actual vblank length minus set context latency (SCL)
+> - The hardware register field width:
+>   - 8 bits for ICL/TGL (VRR_CTL_PIPELINE_FULL_MASK -> max 255)
+>   - 16 bits for ADL+ (XELPD_VRR_CTL_VRR_GUARDBAND_MASK -> max 65535)
+> 
+> Remove the #FIXME and clamp the guardband to the maximum allowed value.
 > 
 > Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_color.c   |  2 +-
->  drivers/gpu/drm/i915/display/intel_display.c |  2 +-
->  drivers/gpu/drm/i915/display/intel_dsb.c     | 11 +++++------
->  drivers/gpu/drm/i915/display/intel_dsb.h     |  4 ++--
->  4 files changed, 9 insertions(+), 10 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_vrr.c | 36 ++++++++++++++++++++----
+>  1 file changed, 30 insertions(+), 6 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-> index 671db6926e4c..4defd2425837 100644
-> --- a/drivers/gpu/drm/i915/display/intel_color.c
-> +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> @@ -2013,7 +2013,7 @@ void intel_color_prepare_commit(struct intel_atomic_state *state,
->  
->  	if (crtc_state->use_dsb && intel_color_uses_chained_dsb(crtc_state)) {
->  		intel_vrr_send_push(crtc_state->dsb_color, crtc_state);
-> -		intel_dsb_wait_vblank_delay(state, crtc_state->dsb_color);
-> +		intel_dsb_wait_for_scl_lines(state, crtc_state->dsb_color);
->  		intel_vrr_check_push_sent(crtc_state->dsb_color, crtc_state);
->  		intel_dsb_interrupt(crtc_state->dsb_color);
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> index 5fa86356a791..9bed273f96df 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -409,6 +409,34 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
 >  	}
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 455bbebb50a5..bfeec3706f35 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -7268,7 +7268,7 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
->  		intel_dsb_wait_vblanks(new_crtc_state->dsb_commit, 1);
->  
->  		intel_vrr_send_push(new_crtc_state->dsb_commit, new_crtc_state);
-> -		intel_dsb_wait_vblank_delay(state, new_crtc_state->dsb_commit);
-> +		intel_dsb_wait_for_scl_lines(state, new_crtc_state->dsb_commit);
->  		intel_vrr_check_push_sent(new_crtc_state->dsb_commit,
->  					  new_crtc_state);
->  		intel_dsb_interrupt(new_crtc_state->dsb_commit);
-> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-> index dfe928aefdcd..400dcc87a992 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-> @@ -115,8 +115,8 @@ static bool pre_commit_is_vrr_active(struct intel_atomic_state *state,
->  	return old_crtc_state->vrr.enable && !intel_crtc_vrr_disabling(state, crtc);
 >  }
 >  
-> -static int dsb_vblank_delay(struct intel_atomic_state *state,
-> -			    struct intel_crtc *crtc)
-> +static int dsb_scl_delay(struct intel_atomic_state *state,
-> +			 struct intel_crtc *crtc)
+> +static int intel_vrr_max_hw_guardband(const struct intel_crtc_state *crtc_state)
+> +{
+> +#define VRR_GUARDBAND_MAX 65535   /* based on XELPD_VRR_CTL_VRR_GUARDBAND_MASK */
+> +#define VRR_PIPELINE_FULL_MAX 255 /* based on VRR_CTL_PIPELINE_FULL_MASK */
+
+Magic numbers aren't great.
+
+We can get those straight from the register definitions:
+ REG_FIELD_GET(XELPD_VRR_CTL_VRR_GUARDBAND_MASK, XELPD_VRR_CTL_VRR_GUARDBAND_MASK)
+ REG_FIELD_GET(VRR_CTL_PIPELINE_FULL_MASK, VRR_CTL_PIPELINE_FULL_MASK)
+
+or perhaps
+ REG_FIELD_GET(XELPD_VRR_CTL_VRR_GUARDBAND_MASK, ~0)
+ REG_FIELD_GET(VRR_CTL_PIPELINE_FULL_MASK, ~0)
+to be a bit less repetitive.
+
+Hmm, yeah I like that second form since it seems harder
+to screw up the masks that way. I suppose we could even
+formalize this sort of stuff into a REG_FIELD_MAX() macro...
+
+
+> +	struct intel_display *display = to_intel_display(crtc_state);
+> +
+> +	if (!HAS_VRR(display))
+> +		return 0;
+
+No one should be calling this in that case.
+
+> +
+> +	if (DISPLAY_VER(display) >= 13)
+> +		return VRR_GUARDBAND_MAX;
+> +
+> +	return intel_vrr_pipeline_full_to_guardband(crtc_state, VRR_PIPELINE_FULL_MAX);
+> +}
+> +
+> +static int clamp_guardband(struct intel_crtc_state *crtc_state, int guardband)
+> +{
+> +	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+> +	int vblank_length = adjusted_mode->crtc_vtotal - adjusted_mode->crtc_vdisplay;
+> +	int set_context_latency = crtc_state->set_context_latency;
+> +	int max_hw_guardband = intel_vrr_max_hw_guardband(crtc_state);
+> +	int max_guardband;
+> +
+> +	max_guardband = min(max_hw_guardband, vblank_length - set_context_latency);
+> +
+> +	return min(guardband, max_guardband);
+
+You are missing intel_vrr_extra_vblank_delay() here.
+
+To reduce the clutter I'd pull the max guardband (in terms
+of the vblank length) calculation into a separate function:
+
+intel_vrr_max_guardband()
+{
+	return vmin - vdisplay - extra - scl;
+}
+
+Or maybe call it something like intel_vrr_max_vblank_guardband().
+
+And then we could have a
+
+intel_vrr_max_guardband()
+{
+	return min(intel_vrr_max_vblank_guardband(), intel_vrr_max_hw_guardband());
+}
+
+to give the final number.
+
+> +}
+> +
+>  void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state)
 >  {
->  	const struct intel_crtc_state *crtc_state =
->  		intel_pre_commit_crtc_state(state, crtc);
-> @@ -815,15 +815,14 @@ void intel_dsb_chain(struct intel_atomic_state *state,
->  			 wait_for_vblank ? DSB_WAIT_FOR_VBLANK : 0);
+>  	struct intel_display *display = to_intel_display(crtc_state);
+> @@ -421,16 +449,12 @@ void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state)
+>  		crtc_state->vrr.vmin - adjusted_mode->crtc_vblank_start -
+>  		intel_vrr_extra_vblank_delay(display);
+>  
+
+I think the initial guardband value here we could change to be
+simply 'vmin - crtc_vdisplay' (until we start to optimize it).
+That way all the hw details and whatnot will be handled by
+intel_vrr_max_guardband().
+
+So in the end this could be just
+guardband = min(vmin - crtc_vdisplay,
+		intel_vrr_max_guardband());
+
+
+> -	if (DISPLAY_VER(display) < 13) {
+> -		/* FIXME handle the limit in a proper way */
+> -		crtc_state->vrr.guardband =
+> -			min(crtc_state->vrr.guardband,
+> -			    intel_vrr_pipeline_full_to_guardband(crtc_state, 255));
+> +	crtc_state->vrr.guardband = clamp_guardband(crtc_state, crtc_state->vrr.guardband);
+>  
+> +	if (DISPLAY_VER(display) < 13)
+>  		crtc_state->vrr.pipeline_full =
+>  			intel_vrr_guardband_to_pipeline_full(crtc_state,
+>  							     crtc_state->vrr.guardband);
+> -	}
 >  }
 >  
-> -void intel_dsb_wait_vblank_delay(struct intel_atomic_state *state,
-> -				 struct intel_dsb *dsb)
-> +void intel_dsb_wait_for_scl_lines(struct intel_atomic_state *state,
-> +				  struct intel_dsb *dsb)
-
-I'd leave this name as is for now. Or perhaps we should call it
-intel_dsb_wait_for_delayed_vblank().
-
-The actual behaviour of this will need to be slightly different between
-the different timings generators/refresh rate modes so it can't just
-wait for SCL lines in all the cases.
-
-
->  {
->  	struct intel_crtc *crtc = dsb->crtc;
->  	const struct intel_crtc_state *crtc_state =
->  		intel_pre_commit_crtc_state(state, crtc);
->  	int usecs = intel_scanlines_to_usecs(&crtc_state->hw.adjusted_mode,
-> -					     dsb_vblank_delay(state, crtc));
-> -
-> +					     dsb_scl_delay(state, crtc));
->  	intel_dsb_wait_usec(dsb, usecs);
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h b/drivers/gpu/drm/i915/display/intel_dsb.h
-> index c8f4499916eb..1cb5ba1a0534 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dsb.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dsb.h
-> @@ -48,8 +48,8 @@ void intel_dsb_nonpost_end(struct intel_dsb *dsb);
->  void intel_dsb_interrupt(struct intel_dsb *dsb);
->  void intel_dsb_wait_usec(struct intel_dsb *dsb, int count);
->  void intel_dsb_wait_vblanks(struct intel_dsb *dsb, int count);
-> -void intel_dsb_wait_vblank_delay(struct intel_atomic_state *state,
-> -				 struct intel_dsb *dsb);
-> +void intel_dsb_wait_for_scl_lines(struct intel_atomic_state *state,
-> +				  struct intel_dsb *dsb);
->  void intel_dsb_wait_scanline_in(struct intel_atomic_state *state,
->  				struct intel_dsb *dsb,
->  				int lower, int upper);
+>  static u32 trans_vrr_ctl(const struct intel_crtc_state *crtc_state)
 > -- 
 > 2.45.2
 
