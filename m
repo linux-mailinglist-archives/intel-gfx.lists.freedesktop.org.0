@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51D19B9700C
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Sep 2025 19:21:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60EBAB9700F
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Sep 2025 19:21:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE06910E67C;
-	Tue, 23 Sep 2025 17:21:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E742610E680;
+	Tue, 23 Sep 2025 17:21:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jGqxcOfW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YNKU043X";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1068110E67C;
- Tue, 23 Sep 2025 17:20:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1853210E67D;
+ Tue, 23 Sep 2025 17:21:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758648058; x=1790184058;
+ t=1758648063; x=1790184063;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=EfjZ1cW6zfw9jV+xbmF8Wb4eWbSoJIn8JPdZAqyT9ts=;
- b=jGqxcOfWBcFqfZpv+x7LFnZqMF4oJ6wG8U97RRKySV9ZLdVanoXl/WVK
- VEoSU7fuTryg6j8wN8lD9lCyWy6ZSHyMGdbSBofTZh7RfZiJVVU4n79h3
- PMaKmLHHBBvHnVAM2x+VpWYQ838pJJF//14dQOiz1MRNQh8DJIGVFj45y
- /bB/MuQ5KR8sfzZd70gfMCjk1Qv+iHZiAg+V7w5U79ohUaotsOMVMtrTX
- wGWPaE8ZaShcS2gyXgB9Rfp3gEKzAi856L/hJ8nZ5CERfT9LlFl+dDqOk
- 4gTVgrBrYwPtHGroLB48zT4fwc/17bqJ7yaMi4StY17sB+loVDaIHmDqJ w==;
-X-CSE-ConnectionGUID: XSDlk1CWRQWqaabtuWP2XQ==
-X-CSE-MsgGUID: bj2xWRRTSfWeZXF2vFp7yQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="78375417"
-X-IronPort-AV: E=Sophos;i="6.18,288,1751266800"; d="scan'208";a="78375417"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 10:20:58 -0700
-X-CSE-ConnectionGUID: hzKX6UaFSLCRzDwD9EJ5TA==
-X-CSE-MsgGUID: 6rMsUPZFSlSOHIjoIjJrVw==
+ bh=W4vD8AIl7mjAT9IQIMhV7JLmhCyRjNIUUFJ5fXWbNJ8=;
+ b=YNKU043XQPLVMIj8BZI3SehLoa38v9+FecXk74pmeMa8RgWqIoz7S2f2
+ cxL2vl+WXvtIVZnrGHUsUASIp3znoMVL2WH4gbAfRLcT+wsjK9lCMZcy6
+ FlurFQ/m4mJ9sXlzjc9lGnqfSKgmzK8ERlRkIudgMhpWCVPMWfjiC3D/Z
+ xcb3FsvO/Srz9M4TApA7Jh9C5Y/V45kkod51ap6dc/fxLhVGjOYO3SRSB
+ lSFdeuWXUZzMzR8LdYj1ETLT8hIBkJxZcZolLb/dBjJtkxu2CLNX/YnUj
+ Ttdjdqw7v6jIf3zwijr4lBGvvybjEpyTx6GQlKlcvL/1bNnnuipBrgCN+ w==;
+X-CSE-ConnectionGUID: DeHQDwv7TK26Mo0AszgMZQ==
+X-CSE-MsgGUID: 5pRmqyozTOCcfSKlsyaCYQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="60859521"
+X-IronPort-AV: E=Sophos;i="6.18,288,1751266800"; d="scan'208";a="60859521"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2025 10:21:03 -0700
+X-CSE-ConnectionGUID: uNw7/OQtQsu9PmRCdExZbA==
+X-CSE-MsgGUID: rAYKjcK3SkuEtpYHZwEMAA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,288,1751266800"; d="scan'208";a="207747972"
+X-IronPort-AV: E=Sophos;i="6.18,288,1751266800"; d="scan'208";a="177608582"
 Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.13])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 10:20:57 -0700
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2025 10:21:01 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 18/20] drm/i915/cdclk: Use enabled_pipes instead of
- active_pipes for the glk audio w/a
-Date: Tue, 23 Sep 2025 20:19:40 +0300
-Message-ID: <20250923171943.7319-19-ville.syrjala@linux.intel.com>
+Subject: [PATCH 19/20] drm/i915/cdclk: Hide intel_modeset_calc_cdclk()
+Date: Tue, 23 Sep 2025 20:19:41 +0300
+Message-ID: <20250923171943.7319-20-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20250923171943.7319-1-ville.syrjala@linux.intel.com>
 References: <20250923171943.7319-1-ville.syrjala@linux.intel.com>
@@ -73,80 +72,151 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Currently we are considering the set of active pipes when
-determining if we need to boost the cdclk due to glk audio
-issues. Replace that with the set of logically enabled pipes
-instead. That is generally how everything else cdclk related
-is computed (cdclk_state->logical is based on logically
-enabled pipes).
+We no longer have anything of importance between
+intel_cdclk_atomic_check() and intel_modeset_calc_cdclk(), so
+hide the latter inside the former.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c | 16 +++++++++++++---
- 1 file changed, 13 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cdclk.c   | 22 +++++++++++++-------
+ drivers/gpu/drm/i915/display/intel_cdclk.h   |  4 +---
+ drivers/gpu/drm/i915/display/intel_display.c | 22 ++++----------------
+ 3 files changed, 20 insertions(+), 28 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 7b828c6a7b11..0be35e5c43c1 100644
+index 0be35e5c43c1..487d15ef206d 100644
 --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
 +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -146,6 +146,9 @@ struct intel_cdclk_state {
- 	/* forced minimum cdclk for glk+ audio w/a */
- 	int force_min_cdclk;
- 
-+	/* bitmask of enabled pipes */
-+	u8 enabled_pipes;
-+
- 	/* bitmask of active pipes */
- 	u8 active_pipes;
- 
-@@ -2933,8 +2936,8 @@ static bool glk_cdclk_audio_wa_needed(struct intel_display *display,
- 				      const struct intel_cdclk_state *cdclk_state)
- {
- 	return display->platform.geminilake &&
--		cdclk_state->active_pipes &&
--		!is_power_of_2(cdclk_state->active_pipes);
-+		cdclk_state->enabled_pipes &&
-+		!is_power_of_2(cdclk_state->enabled_pipes);
+@@ -3310,22 +3310,24 @@ static int intel_crtcs_calc_min_cdclk(struct intel_atomic_state *state,
+ 	return 0;
  }
  
- static int intel_compute_min_cdclk(struct intel_atomic_state *state)
-@@ -3252,7 +3255,8 @@ static int intel_cdclk_modeset_checks(struct intel_atomic_state *state,
+-int intel_cdclk_atomic_check(struct intel_atomic_state *state,
+-			     bool *need_cdclk_calc)
++static int intel_modeset_calc_cdclk(struct intel_atomic_state *state);
++
++int intel_cdclk_atomic_check(struct intel_atomic_state *state)
+ {
+ 	const struct intel_cdclk_state *old_cdclk_state;
  	struct intel_cdclk_state *new_cdclk_state;
++	bool need_cdclk_calc = false;
  	int ret;
  
--	if (!intel_any_crtc_active_changed(state))
-+	if (!intel_any_crtc_enable_changed(state) &&
-+	    !intel_any_crtc_active_changed(state))
- 		return 0;
+-	ret = intel_cdclk_modeset_checks(state, need_cdclk_calc);
++	ret = intel_cdclk_modeset_checks(state, &need_cdclk_calc);
+ 	if (ret)
+ 		return ret;
  
- 	new_cdclk_state = intel_atomic_get_cdclk_state(state);
-@@ -3261,6 +3265,9 @@ static int intel_cdclk_modeset_checks(struct intel_atomic_state *state,
+-	ret = intel_crtcs_calc_min_cdclk(state, need_cdclk_calc);
++	ret = intel_crtcs_calc_min_cdclk(state, &need_cdclk_calc);
+ 	if (ret)
+ 		return ret;
  
- 	old_cdclk_state = intel_atomic_get_old_cdclk_state(state);
+-	ret = intel_bw_calc_min_cdclk(state, need_cdclk_calc);
++	ret = intel_bw_calc_min_cdclk(state, &need_cdclk_calc);
+ 	if (ret)
+ 		return ret;
  
-+	new_cdclk_state->enabled_pipes =
-+		intel_calc_enabled_pipes(state, old_cdclk_state->enabled_pipes);
+@@ -3338,7 +3340,13 @@ int intel_cdclk_atomic_check(struct intel_atomic_state *state,
+ 		if (ret)
+ 			return ret;
+ 
+-		*need_cdclk_calc = true;
++		need_cdclk_calc = true;
++	}
 +
- 	new_cdclk_state->active_pipes =
- 		intel_calc_active_pipes(state, old_cdclk_state->active_pipes);
++	if (need_cdclk_calc) {
++		ret = intel_modeset_calc_cdclk(state);
++		if (ret)
++			return ret;
+ 	}
  
-@@ -3495,6 +3502,7 @@ void intel_cdclk_update_hw_state(struct intel_display *display)
- 		to_intel_cdclk_state(display->cdclk.obj.state);
+ 	return 0;
+@@ -3386,7 +3394,7 @@ static bool intel_cdclk_need_serialize(struct intel_display *display,
+ 		dg2_power_well_count(display, new_cdclk_state);
+ }
+ 
+-int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
++static int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
+ {
+ 	struct intel_display *display = to_intel_display(state);
+ 	const struct intel_cdclk_state *old_cdclk_state;
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
+index 0e67c75ca569..72963f6f399a 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.h
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
+@@ -38,11 +38,9 @@ void intel_set_cdclk_post_plane_update(struct intel_atomic_state *state);
+ void intel_cdclk_dump_config(struct intel_display *display,
+ 			     const struct intel_cdclk_config *cdclk_config,
+ 			     const char *context);
+-int intel_modeset_calc_cdclk(struct intel_atomic_state *state);
+ void intel_cdclk_get_cdclk(struct intel_display *display,
+ 			   struct intel_cdclk_config *cdclk_config);
+-int intel_cdclk_atomic_check(struct intel_atomic_state *state,
+-			     bool *need_cdclk_calc);
++int intel_cdclk_atomic_check(struct intel_atomic_state *state);
+ int intel_cdclk_state_set_joined_mbus(struct intel_atomic_state *state, bool joined_mbus);
+ struct intel_cdclk_state *
+ intel_atomic_get_cdclk_state(struct intel_atomic_state *state);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 42fb0e082cc9..e8ef23305264 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -6302,9 +6302,7 @@ int intel_atomic_check(struct drm_device *dev,
+ 	struct intel_atomic_state *state = to_intel_atomic_state(_state);
+ 	struct intel_crtc_state *old_crtc_state, *new_crtc_state;
  	struct intel_crtc *crtc;
+-	bool need_cdclk_calc = false;
+ 	int ret, i;
+-	bool any_ms = false;
  
-+	cdclk_state->enabled_pipes = 0;
- 	cdclk_state->active_pipes = 0;
+ 	if (!intel_display_driver_check_access(display))
+ 		return -ENODEV;
+@@ -6412,14 +6410,11 @@ int intel_atomic_check(struct drm_device *dev,
+ 		if (!intel_crtc_needs_modeset(new_crtc_state))
+ 			continue;
  
- 	for_each_intel_crtc(display->drm, crtc) {
-@@ -3502,6 +3510,8 @@ void intel_cdclk_update_hw_state(struct intel_display *display)
- 			to_intel_crtc_state(crtc->base.state);
- 		enum pipe pipe = crtc->pipe;
+-		any_ms = true;
+-
+ 		intel_dpll_release(state, crtc);
+ 	}
  
-+		if (crtc_state->hw.enable)
-+			cdclk_state->enabled_pipes |= BIT(pipe);
- 		if (crtc_state->hw.active)
- 			cdclk_state->active_pipes |= BIT(pipe);
+-	if (any_ms && !check_digital_port_conflicts(state)) {
+-		drm_dbg_kms(display->drm,
+-			    "rejecting conflicting digital port configuration\n");
++	if (intel_any_crtc_needs_modeset(state) && !check_digital_port_conflicts(state)) {
++		drm_dbg_kms(display->drm, "rejecting conflicting digital port configuration\n");
+ 		ret = -EINVAL;
+ 		goto fail;
+ 	}
+@@ -6436,25 +6431,16 @@ int intel_atomic_check(struct drm_device *dev,
+ 	if (ret)
+ 		goto fail;
  
+-	ret = intel_cdclk_atomic_check(state, &need_cdclk_calc);
++	ret = intel_cdclk_atomic_check(state);
+ 	if (ret)
+ 		goto fail;
+ 
+-	if (intel_any_crtc_needs_modeset(state))
+-		any_ms = true;
+-
+-	if (any_ms) {
++	if (intel_any_crtc_needs_modeset(state)) {
+ 		ret = intel_modeset_checks(state);
+ 		if (ret)
+ 			goto fail;
+ 	}
+ 
+-	if (need_cdclk_calc) {
+-		ret = intel_modeset_calc_cdclk(state);
+-		if (ret)
+-			return ret;
+-	}
+-
+ 	ret = intel_pmdemand_atomic_check(state);
+ 	if (ret)
+ 		goto fail;
 -- 
 2.49.1
 
