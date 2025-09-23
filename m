@@ -2,159 +2,124 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC588B95167
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Sep 2025 10:55:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1511EB951D3
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Sep 2025 11:04:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6239E10E5A7;
-	Tue, 23 Sep 2025 08:55:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88A4610E5AC;
+	Tue, 23 Sep 2025 09:03:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="qYNIFuqY";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="skJ4mC+1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from CH4PR04CU002.outbound.protection.outlook.com
- (mail-northcentralusazon11013051.outbound.protection.outlook.com
- [40.107.201.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9547B10E5A4;
- Tue, 23 Sep 2025 08:55:09 +0000 (UTC)
+Received: from MW6PR02CU001.outbound.protection.outlook.com
+ (mail-westus2azon11012025.outbound.protection.outlook.com [52.101.48.25])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF59C10E5AC;
+ Tue, 23 Sep 2025 09:03:49 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IviuSnqy6U7MRZed3k+EJTy7U8lX90Q2Z+LsgMMdmO5Qii8+VSIcJweN1P10YVMA8AQEOMM5nOr5r03AqP6tKNsoKFSGa17isyvocnJ9WbSXrORgIolHAKiagOfV92deEGfsWvNmvaSLG4QUtH3ADIyc3IRZR7h6IeHfdEUVjii9BWiqSgoFKc1Fonc3hpkRYcZNZYCu3tV54DxBOPlUJHkJ4K4GFeZEztIFShqRc/dobXDaojdVIhdtv4rqXeCyy6M5vwRVOXVvvudvaIJG1idtxcQmFoQFGk/pBfcqfYeirqxf+7LZ9nkiTtX74AbYDgmhd6WB7ckxJOvmeXgdQw==
+ b=Im5iVZ3rwJD2TM5syLKOXB+ecvvdn9QrLhIMRW47K1ZGffTcPcqbSkdN/VpQyGlq1Q3808IghNC+2nhutiTXREj1LRnzsiDn0V2XDnKuhFqjR0t1lNlVl4FS5TyyD08ryCFDgMtfxX67/ByJa8fQk2uoHGRb4YsQ0nDBWyBlxCAVymQ5hg0fAZAaZsS3eEGtCI0O5iH59PY4yN79uZlDQ8u+Y/PR3pFBXgAGVn9ixuMPbcybBs7LisgnEhSLzSsCYKXyXo2RybLLkQZrLqC1aDlgFc4LFv6BvwpAVDuEuDGY8UWrRNtuYrZnqqaW6GbDoX6eumNj1DaAHxaZXHufbQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kauovZgAPh8/n9Syrz6UNx8Naz3MLfPorIsaUj3E58c=;
- b=hAi3+jgcL3BS3vvpDG01aQZcCGyLQRcHq7+TuaFAvpWiWEdfLfJe/53DeHLcXqxRwNeGU0hxTi8Jfgosa7H+2YHosytXNuE9t9PqP3u0sBz9dRCrYjlE3RvEFhA8yYr8C7Ifso5u8e7d15CPrOz6Cmm3yZqEgmYuFXHQS9sxWFJyNQ3A6aKb8d8r9YlTXhvugrT5ulIO1OUU25fEni6W4wNj4S2u3FL7pdbTWplJ7flkijigggPTRo9LMlUdQ0149OHClh1ukIyAhji2H29KfnGMF2trI0PVK7Bh0JleEFLBxBT/xC2Se22jarERlaEFefSoKanrSn4cBTqbFRbTbg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=Slu87v5jRkeOmnT3rsvHp1NH5oy+OXkf9v3wAfBRTKE=;
+ b=Dgf+yV7n64EjSW0k0O/qy3pGJAqnpXqcEXMTHYUNWpu1ZjjOVIc72D+b4l66+Lwo4dUQ/s39qnjRFEZMoFLGB0Ocby2CgisL6DHD7vHpDPNWQ2cutLKsgu939lXV+14YIY3F+iLkvaXvh/8S/ZXtdmbAdRw3y+SDWpX3RnuyV9euM2IYKqoVl8Od5d3zlYvcNewHOFas1q0g/4wI5uDXvqKzE86xkPPx7UK7nYALb/g3pbw5rPj86I52VgMZzronDXY/wPhvMvNfEL6y+yTurugdWYwfDVrK+RYAkbuj6/RU0XlrJBZPUI2/40GZ3mxiTYljKrmS6mP8N12msAeF+w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=intel.com smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kauovZgAPh8/n9Syrz6UNx8Naz3MLfPorIsaUj3E58c=;
- b=qYNIFuqYnKDVZ7OtMyCu+dxbn2njv4lQH4FvYk06rsa5euypB2Q+mD7zMnOS7mW7PiXnMWZpcSjDEsaKWGtNuCqUEGWUewWJlu7MrTRgj7qo05FHC/lTphuiwYW3syu2JtBhTeCqrzeMU85rPC+TwMSu91+c4ENvLn1hDLvvG3U=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH8PR12MB7301.namprd12.prod.outlook.com (2603:10b6:510:222::12)
- by CY5PR12MB6203.namprd12.prod.outlook.com (2603:10b6:930:24::17)
+ bh=Slu87v5jRkeOmnT3rsvHp1NH5oy+OXkf9v3wAfBRTKE=;
+ b=skJ4mC+1TtY4xyZk81lXDmO9YM6rfV+QJCiYJaOkUB1MJxbPYhqxQqyrhUf+dAD2ziwxtTj7j4nPlPWcMSjpqYs7pKYTYXcBXtLch524o5OFThFOnp2Vn7tFIYjQK6hwcUdiYnALCMO7k3yUPTHqUZkTF0aqnQkG0NJ5CZe2kQo=
+Received: from BN8PR03CA0026.namprd03.prod.outlook.com (2603:10b6:408:94::39)
+ by SA1PR12MB6797.namprd12.prod.outlook.com (2603:10b6:806:259::21)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.19; Tue, 23 Sep
- 2025 08:55:06 +0000
-Received: from PH8PR12MB7301.namprd12.prod.outlook.com
- ([fe80::a929:e8eb:ef22:6350]) by PH8PR12MB7301.namprd12.prod.outlook.com
- ([fe80::a929:e8eb:ef22:6350%5]) with mapi id 15.20.9137.018; Tue, 23 Sep 2025
- 08:55:05 +0000
-Message-ID: <19d29a41-0bf6-453a-84b4-72b76f47b9c9@amd.com>
-Date: Tue, 23 Sep 2025 14:24:56 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/3] drm/buddy: Optimize free block management with RB
- tree
-Content-Language: en-US
-To: Peter Zijlstra <peterz@infradead.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: matthew.auld@intel.com, jani.nikula@linux.intel.com,
- samuel.pitoiset@gmail.com, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, alexander.deucher@amd.com,
- stable@vger.kernel.org
-References: <20250909095621.489833-1-Arunpravin.PaneerSelvam@amd.com>
- <6f6841a7-57bd-49de-9b55-b5b0514a2749@amd.com>
- <20250909140519.GK4067720@noisy.programming.kicks-ass.net>
-From: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
-In-Reply-To: <20250909140519.GK4067720@noisy.programming.kicks-ass.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PN4P287CA0107.INDP287.PROD.OUTLOOK.COM
- (2603:1096:c01:276::10) To PH8PR12MB7301.namprd12.prod.outlook.com
- (2603:10b6:510:222::12)
+ 2025 09:03:45 +0000
+Received: from BL6PEPF0001AB52.namprd02.prod.outlook.com
+ (2603:10b6:408:94:cafe::57) by BN8PR03CA0026.outlook.office365.com
+ (2603:10b6:408:94::39) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9137.20 via Frontend Transport; Tue,
+ 23 Sep 2025 09:03:45 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BL6PEPF0001AB52.mail.protection.outlook.com (10.167.241.4) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9137.12 via Frontend Transport; Tue, 23 Sep 2025 09:03:45 +0000
+Received: from arun-nv33.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 23 Sep
+ 2025 02:03:41 -0700
+From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+To: <christian.koenig@amd.com>, <matthew.auld@intel.com>,
+ <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+CC: <alexander.deucher@amd.com>, <jani.nikula@linux.intel.com>,
+ <peterz@infradead.org>, <samuel.pitoiset@gmail.com>, Arunpravin Paneer Selvam
+ <Arunpravin.PaneerSelvam@amd.com>, <stable@vger.kernel.org>
+Subject: [PATCH v7 1/3] drm/buddy: Optimize free block management with RB tree
+Date: Tue, 23 Sep 2025 14:32:40 +0530
+Message-ID: <20250923090242.60649-1-Arunpravin.PaneerSelvam@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR12MB7301:EE_|CY5PR12MB6203:EE_
-X-MS-Office365-Filtering-Correlation-Id: 58196185-fb5e-4f52-f3cf-08ddfa7ee3d5
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB52:EE_|SA1PR12MB6797:EE_
+X-MS-Office365-Filtering-Correlation-Id: 476cebeb-5ff1-469e-8111-08ddfa8019ee
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?ajhLRUg0UzdlbTR3TEFsM2dNUHhTRXRmZ3lWMGxEaW1hdlFrWU9nWDlSUnNW?=
- =?utf-8?B?RGptRXUxcFVnWHZpcTB2R1haMlZxK1ZWRjlzT3Y4YndBUzJvOFpBNGU5NkVO?=
- =?utf-8?B?RVF5TmFyMVhkL0ZNaUNtdnVobVl0aGg0ZXdyVUh6NjFoOTUwaVduL21DTEFv?=
- =?utf-8?B?bXQrdy81US9RUlEwT0wwZW1xV3ViRkRDS2h3UGhlYlFFUURGWGpLZnlCOVdo?=
- =?utf-8?B?YUhMbzQ3ZXUvanN1OGpUUFgxaHVaekNUVit3Z2dueE1LblY5dE13VTNMZVZF?=
- =?utf-8?B?Z2VhZHRsQzQ4czBTS0hYUEhjclJXSDA0R21WRlJZcENpZldFVXJsYSt5VHgr?=
- =?utf-8?B?YjYyNVFOUStlcXpueHVzRWdFK2RMYUJ1UEJOck40TzByYnRBUUFWOHg2MjVj?=
- =?utf-8?B?TEJISXNqeUdoQ2J2SHBINzkyT0NYVGFhNjJ3WDRRaU5HWDl6M0NjNTNMcHN6?=
- =?utf-8?B?dmNNVHpvSXF6eE1IM3FqZ0ZVRkc2WDFsdk4xYSs5V3JJTVdRaFgwQzZCWGhU?=
- =?utf-8?B?SktqMTdFekhYcGtxa0lIMnlVS1U5bFN1aGhwMENVK2N6VXgwZnFFWXNON0tk?=
- =?utf-8?B?bUxMUVliSU9EWXpUY01MMnV3OURsWlowRTFmWGpxZ0VmTUduRlhXRGpvdkFy?=
- =?utf-8?B?aXJZcVJ2S1gwTFRMRExUMHZGSFNnamNIT1hXNFg5czJleENwQ2phWlVGZm1s?=
- =?utf-8?B?eWV2Zk11U1FRWVVyOUIyTGFLZCtkUGlqS1FPNUxYQkJxeVNlckNITW1tbFhN?=
- =?utf-8?B?b1IxNFF4L0pyR2Q5NGpTU1RodktNanZ2Z0hyS3pHTnFRSGVCY1RGdUowUFJv?=
- =?utf-8?B?TWdEcGpWR1hxMGtjRWkxLzRTS0VVYWZ2L2tNMlhpeHRBeUlwOFFaVVVjV1Za?=
- =?utf-8?B?aTRVdmNKNnlsWnYwdkNCRlBvMFZubS9TQ0VSbmZPeGg2clFvaUxMRk9SWXMv?=
- =?utf-8?B?dFRiVHBKZ0JReDFkSnpiSTRXWDRQbVF3RFFNekU2MVJxK3M4OUdIK09ucVVQ?=
- =?utf-8?B?cDdHM0xNRm5iK2grWnFJVnE1THkwMmovM2tJTkwyWmpTakJId0YyL3N0WHl2?=
- =?utf-8?B?QW1sU0kyVUNCMVV5bXgvcHhQUWxLaTVxbEYvRnNEMytxUGo2RG9MU043Qitx?=
- =?utf-8?B?U0hMVzd1MUtYRTI4eWswMXBmTExvSERva1Y4SDhMU0V5b2cvVmRaQmhvSDJh?=
- =?utf-8?B?cU04NU1lamJ6YWpEWkNFRW41ZUhRWFJDOHU3dDVPc21xUHpIcnYzWXY4bHlZ?=
- =?utf-8?B?T3lOOVhGWEVqRk1BN2pEYm43Smlnb3MwU1NYLzRBV1IvbERCTmNoL0pNSUpw?=
- =?utf-8?B?aVA3WFplS29YUkE3bGF3NEh1OGlJODVINjVmMDZRRnU5bjRvNkQ4MlRvTDlL?=
- =?utf-8?B?cnE5amNTK202VGE2elhZVXhtbFgwUTQ2SDZmUHNkdW9HVDFJVlJXN2haaDNa?=
- =?utf-8?B?N05iVE5YWVNzeUtMUzZvTGRZdFR0c1JMd2lEU3Q3dnNyUVBUUHNUdDJweURa?=
- =?utf-8?B?bWZzemNtd3hEa0t4VDZkdCtRVUNXaFpnVlJ3bitPWW0rV001N3pOMHAreEk5?=
- =?utf-8?B?WkJzNS9QU3lHN1BLbnF0SDhBTm5idUtZc3RXTTQ5ckhJTjZKY204QmEyZEVC?=
- =?utf-8?B?QlYyeGFiNWRjRXNKWTcraHBIOFMrd0pJRmwzL2pxVlhOR21OYlJHNjUvRi9P?=
- =?utf-8?B?N040MGd1OW5MWUlLVXRDQmc2dS9BOEpZYkUzaHRHdld6bk1NL2p6UWM2Y0NY?=
- =?utf-8?B?UUEzb1pnOFp1RWJwYUlmMzlCdCtienNWaXVrMFJPcTdjZmljTVRBY0xCOVR4?=
- =?utf-8?B?WnFtTHhqNDBpcFNqa1pkY2dLQ2g3bXhVM1RlaWI0U2gyOHBuRWcwelY1OW9K?=
- =?utf-8?B?RkVnVDJIc0FHMGVrNkFPazJsYVkyUW5YSWdVeEtHakwzUnpUbkQrWktPUmxQ?=
- =?utf-8?Q?/3bPwtNFixA=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR12MB7301.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WFhUY3JnNy9pdmJrSDhvZGtmK1FFRUxQbGJ0Y3NHSHZiV3ByUXREd1V2WlZi?=
- =?utf-8?B?TllJdFBVSERRWHM1VUtkcU1zQUVRS1VZV0R4amR4QittWm81T3hhaWlLUnJF?=
- =?utf-8?B?MmgvSWxYS2FuNjVjbXJaODNVdEVGaGVMYzdqQS9CSThaK1VRSmM5QVgreGNJ?=
- =?utf-8?B?VzJyTCtoQXk2WnlBSWFBRzVZZ3FnSURaYko4dDZSUWszUHZRQUl2K0c5Ung1?=
- =?utf-8?B?dVJFeHA2aUozLzVsTnZGckpnVXBBWmQzR0h1WEY1VldXTVl2NytuNEMyRGpL?=
- =?utf-8?B?UEFheG1OSy9QL1VWbWJiaVN1OEs4WEhJZ001d3FNdlMweEpGRDZJbVk1Q3Zm?=
- =?utf-8?B?K0hxU3V0ZTVDdVIzMy9wUmUwTDZWSS90TDk4dDh0ckNtQXZNdWFEWm5pMHJt?=
- =?utf-8?B?dmExTGF1V05UTm9HTTc3SGJZVzMyaEpZWEpjNCtSV3lYU3JBb09wZUdDYVJp?=
- =?utf-8?B?NDcwNitPeUhpV0NIM0ZOL0lkR3MvVkFtVVJrRzhSdnpLZGdDbVhrUllUUmJX?=
- =?utf-8?B?bUVBTURaNVpHV2VTYTU1cXBDSDcyRy8zSVBjanVRNGJvYWI4clB1cll2SGps?=
- =?utf-8?B?WEpDaGltVExWWG45MWFRc3l5b0tLM2l1ZUlUaFViWHhJTXE0VmNqSkhsd1BU?=
- =?utf-8?B?QjRZdHBYTWIvWHE2MlJ5QktaR2FIbHVxZ0ZJcjdBNWNsWStHQXpSSDRkNVpt?=
- =?utf-8?B?YWRtNGtzeTExK2V4bk80UXlVaEtJYXBKUUxjUmVRZEYrYTA2NGlWcTl6ZERJ?=
- =?utf-8?B?N0k2S2NKZ3djMGpONjVQZ1VyaS91UnpCMWFtVS9RNGZ4QnROaHlLT3I2eGE3?=
- =?utf-8?B?WThlZzhjL09NS2EraVhpWGJHTzBnZThSTDBXRzZOeWhNTlEvTlplaWErNHlt?=
- =?utf-8?B?d1RFeFFlbWpQTkFOdm5sWWFZVUZXNlpJelp2c1VlYTZvRXNMVjZoeEU2TjNR?=
- =?utf-8?B?ZENwSWlkUW84QXNLTXVZbEFDaC8wWS9zN0syaTZBU05HN1pTamNTWnhublBD?=
- =?utf-8?B?T2t0TFVWZVN4d2VWMzlXYWdtNC8valJWc2dJNmpyWlJqTG1UYmZUc0I0dFBE?=
- =?utf-8?B?WURCc3NFbHdaMW1VYzBZT0hLczdHd3BYVmFkV0FpRGgzeU80Tkdoa0JSamdQ?=
- =?utf-8?B?eUE5T01QYzY3cS9GMHNXcG4wRVh3SzQwV0NDKzRMRWppNmdXRzE2VWpuVlRs?=
- =?utf-8?B?NWF6VmpwTzRSTDROMzZqbm56ZzZ1MTh2U05QTVN1Q2RUL3k5ck5lVjdrVFhS?=
- =?utf-8?B?VlN5dkNUL1lmYVZ2Nzd0Q0h3bjJzbTl0Sjk5dmc1WFpSdUJiR0lzZitMWHNN?=
- =?utf-8?B?alBuZVZQWGovdVh2YTdrUlFmclp3LzQ4dGVHdHEza0FTVEZTN3lIenp3aGRN?=
- =?utf-8?B?Wm52M0IrZWVCQVc3RE1hVEU4TmJXUVJaVmVxa2FkY3Jhbk5MUkRpYVpLeFUv?=
- =?utf-8?B?MnI2S1RJZ000bDlZNkFJNmVVeFROSWNxRkJlelhBSU1EL0dpUDh5SG9ndlo3?=
- =?utf-8?B?T3RHdFpkZjBHSmFLOW03KzdDM0Y1SjAybTkvcFBDUERFcFRUWC9uL3JneTh2?=
- =?utf-8?B?QlRLU2VaZlBnR0s4VmV4Y1BLUlNjTW01UUF0M0ZlUVVKZmt3LzZ1WWN4NTE4?=
- =?utf-8?B?NzRYSEtRc1c1SmlFdG9rMUkzZVp2K0FsbGsvSkFVVUFRc2JrbExSTnBqdU9j?=
- =?utf-8?B?M2RBWDJmK00yUTBzOG01eG9TbzVwTU1xMU1YSGhwQ3Y2Tzg5djBtU2JSVzJS?=
- =?utf-8?B?MjE0NHBlNy9SeTByZXUvSHNENHZtQytpczhRd3ZXdlFFcVVsUDRaR2pVa3k2?=
- =?utf-8?B?TmpIcEM3V1Z2MGxFdFNYenRuWkQzSmJ1cEdGL0JWMkNNR29kS3k2bDJFcXBz?=
- =?utf-8?B?alFJcFBhc25TZkJyUnhiaVMzK0tOVkFZMEJJNjhOTzRGTEE2Uk91RE5vWjho?=
- =?utf-8?B?d3Q2S2pQQXo5Kzh1NEI0Tlp4VTAwa3NOU05qaUtONDYxZGw5M3VuTFBYN1dH?=
- =?utf-8?B?UElvcE8vRmJsVVRFSEhXeXBiVlVLOVpIVUFyV1BtSVRUYlRaOGtOK1lCckJs?=
- =?utf-8?B?dzZIVWExbTBEOFNLVE04clRrenR3Y0QxdktvSUdHdW5TaVQrOXlXNDVEdkpB?=
- =?utf-8?Q?A+Dtuaujb3GVlXAxXbysXMlLt?=
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700013|376014|82310400026|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?to3w/sTBtFuXDNKhHZk8ap1R7VJyAEz61WJR+W3cJlzXz0iagXesNvAWCCQE?=
+ =?us-ascii?Q?6WWy+vr2mRVspNpXuFo8zY0dmpTz9s5YCORiIMeh9GGMEKmiPiIOowuQ7AjZ?=
+ =?us-ascii?Q?DmkYPTUXFGxAdGQsNHTkhPEldGerFXxy8m1nWkV4PdqrsURnog+V4Czbufc5?=
+ =?us-ascii?Q?vMFnAaUT/tRyjoZxHxBK29vRrQbdJIyS7xZAnwAZDC64FCAILmDTDWdj92oH?=
+ =?us-ascii?Q?fhdCVwp63QfBQ8bIu7cLVO+J0AJ1QnkZK++EEOeBVyX4SwYTxZupkf/y+4I3?=
+ =?us-ascii?Q?aRuQAP+22BGQyLj/pvUHGPmwm3ZycZnQwbZhrq+bI/orsFeD4faRxPdelp6R?=
+ =?us-ascii?Q?uv2tV4RGuQFKIY6ofp2TYvSiwvi66cwA+HaL/1Mq6tIZcpRh0JJRFQoslgeB?=
+ =?us-ascii?Q?9/9V7DyKE8Z1Ff1xcTfglGEtjpkpcGUNM8Cf0iJ2JrSAw6CZ0+FvgcZQcGx8?=
+ =?us-ascii?Q?TPu3jAR1gcbUtWozP/nsmiCUD8dA5kgwegPHZMJPNsPqjdOEYRWJtkwP13Bu?=
+ =?us-ascii?Q?5sN6ADMF+8mpK9fzGOWaeEhk6uwZezVgkQiKcvI4f3CpXGEXWKdg2z6Ypf5M?=
+ =?us-ascii?Q?MHIOOGkpjU+dbQPBCErjr/EHRTtrKWvQEEvUllqvQQPlGRg0KmR0Z4nE6o86?=
+ =?us-ascii?Q?mpTgMsu9FIPZUOyzXRM/KBXfU3DorSqkHcGEIa5amOZRlCf26EhWe3SKolnW?=
+ =?us-ascii?Q?DNgBmT9DtCrebwSWEn8ztLzx0EX8MdJhsiqiEPdK3kxcgsacIps5RfG1d0n6?=
+ =?us-ascii?Q?tEXaNspN0pUqVOWDTnPy64yKE7tKeUCq1vxmSXU8YJlm95RS20CSXFwwrXFi?=
+ =?us-ascii?Q?698BHXu1/yodtJcD7li2zIAgc4qdthSt2FiklTGx9Ef1n3qml1ftwdvAEX+Y?=
+ =?us-ascii?Q?bP71sH5hlzV5xcS8p3mYy0pSVptuX7SzGvHOebxX2ZsD7g+s9zNUKhN1KjkF?=
+ =?us-ascii?Q?9KzupZoY+Dx4GaHpuFwsITZnyC2UzFknkEmrZnKLq6wuPBgjpd9L53BQTCJz?=
+ =?us-ascii?Q?Lq2HFyOaYR+Fis7tLa8p4m5t5BarDrITuRjHnHsrQDhaEKXbFO5h18HJf+AW?=
+ =?us-ascii?Q?ERVv/r9/C4JlJYXYKHbHYoTiwM4dND5jRmXBBnlNWUBibgnSeiFC6Yx6uNW2?=
+ =?us-ascii?Q?szvuSflziIO6Nlb5FkNAOg2oVAS7YFXbS/WLUTEPkwT6gIyNSwgB36pj6WQO?=
+ =?us-ascii?Q?7CMNPD+cspCQi5ivZvcKJlkSeMipRiqwjOVh0yxOW2PFoJB8YHsjfVyC2hE3?=
+ =?us-ascii?Q?28oS8J1+/aQVxKcvD6P1iYoPUVxX4UzpFg1LB+uRO75ewg6/sb1gioqVyv18?=
+ =?us-ascii?Q?r4uD5o9izFIhy1ZUwVfl6qus3LDr3p2ux52jOh4biMBBixcNwsjTBeJDYM5M?=
+ =?us-ascii?Q?O8BrcTSXrXeIrdEtM7oZYY5fwTCkSBnGm7k3kFYSOnEZUNMunKnjWg2KREbo?=
+ =?us-ascii?Q?CG/+MyVNICCjVW+gG16BUOFcHCDyZ+oI6MkogzYezaevZD7wg66tj74M29Bi?=
+ =?us-ascii?Q?AaHwlkjk9oiNltFNc+DUk4mTmi+IT2BJqwuJ?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024); DIR:OUT;
+ SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 58196185-fb5e-4f52-f3cf-08ddfa7ee3d5
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR12MB7301.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2025 08:55:05.5865 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2025 09:03:45.3867 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 476cebeb-5ff1-469e-8111-08ddfa8019ee
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9OOPn5XkUmT+3FZS32uwh39KNE/wfOA823gh4SGdja/O4aKDAGMyJF/jaNspK63pwZYo17fsOjDYPbskKQjyKA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6203
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB52.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6797
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,66 +135,539 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Replace the freelist (O(n)) used for free block management with a
+red-black tree, providing more efficient O(log n) search, insert,
+and delete operations. This improves scalability and performance
+when managing large numbers of free blocks per order (e.g., hundreds
+or thousands).
 
+In the VK-CTS memory stress subtest, the buddy manager merges
+fragmented memory and inserts freed blocks into the freelist. Since
+freelist insertion is O(n), this becomes a bottleneck as fragmentation
+increases. Benchmarking shows list_insert_sorted() consumes ~52.69% CPU
+with the freelist, compared to just 0.03% with the RB tree
+(rbtree_insert.isra.0), despite performing the same sorted insert.
 
-On 9/9/2025 7:35 PM, Peter Zijlstra wrote:
-> On Tue, Sep 09, 2025 at 02:04:30PM +0200, Christian König wrote:
->> Hi Arun,
->>
->> On 09.09.25 11:56, Arunpravin Paneer Selvam wrote:
->> [SNIP]
->>
->>> +/**
->>> + * rbtree_for_each_entry_safe - iterate in-order over rb_root safe against removal
->>> + *
->>> + * @pos:	the 'type *' to use as a loop cursor
->>> + * @n:		another 'type *' to use as temporary storage
->>> + * @root:	'rb_root *' of the rbtree
->>> + * @member:	the name of the rb_node field within 'type'
->>> + */
->>> +#define rbtree_for_each_entry_safe(pos, n, root, member) \
->>> +	for ((pos) = rb_entry_safe(rb_first(root), typeof(*(pos)), member), \
->>> +	     (n) = (pos) ? rb_entry_safe(rb_next(&(pos)->member), typeof(*(pos)), member) : NULL; \
->>> +	     (pos); \
->>> +	     (pos) = (n), \
->>> +	     (n) = (pos) ? rb_entry_safe(rb_next(&(pos)->member), typeof(*(pos)), member) : NULL)
->> As far as I know exactly that operation does not work on an R/B tree.
->>
->> See the _safe() variants of the for_each_ macros are usually used to iterate over a container while being able to remove entries.
->>
->> But because of the potential re-balance storing just the next entry is not sufficient for an R/B tree to do that as far as I know.
->>
->> Please explain how exactly you want to use this macro.
-> So I don't much like these iterators; I've said so before. Either we
-> should introduce a properly threaded rb-tree (where the NULL child
-> pointers encode a linked list), or simply keep a list_head next to the
-> rb_node and use that.
->
-> The rb_{next,prev}() things are O(ln n), in the worst case they do a
-> full traversal up the tree and a full traversal down the other branch.
->
-> That said; given 'next' will remain an existing node, only the 'pos'
-> node gets removed, rb_next() will still work correctly, even in the face
-> of rebalance.
-Sorry for the delay. I have been discussing with Christian and testing a 
-few code
-changes. Maintaining a sorted list_head alongside each rb_node is expensive,
-which is the main reason we are moving from a list to an rbtree. In the 
-force_merge()
-function, we only call this during normal allocation to iterate once or 
-twice and merge
-the required blocks, not the entire tree. Therefore, rb_prev is 
-sufficient, and want to
-avoid adding unnecessary complexity for this simple operation. 
-Therefore, I have removed
-all the newly added macros in v7.
+This also improves performance in heavily fragmented workloads,
+such as games or graphics tests that stress memory.
 
-A full traversal of force_merge() is only needed during the buddy 
-allocator's fini() operation, and in that
-case, any slowness or timing overhead is not critical.
+As the buddy allocator evolves with new features such as clear-page
+tracking, the resulting fragmentation and complexity have grown.
+These RB-tree based design changes are introduced to address that
+growth and ensure the allocator continues to perform efficiently
+under fragmented conditions.
 
-Thanks,
-Arun.
->
->
+The RB tree implementation with separate clear/dirty trees provides:
+- O(n log n) aggregate complexity for all operations instead of O(n^2)
+- Elimination of soft lockups and system instability
+- Improved code maintainability and clarity
+- Better scalability for large memory systems
+- Predictable performance under fragmentation
+
+v3(Matthew):
+  - Remove RB_EMPTY_NODE check in force_merge function.
+  - Rename rb for loop macros to have less generic names and move to
+    .c file.
+  - Make the rb node rb and link field as union.
+
+v4(Jani Nikula):
+  - The kernel-doc comment should be "/**"
+  - Move all the rbtree macros to rbtree.h and add parens to ensure
+    correct precedence.
+
+v5:
+  - Remove the inline in a .c file (Jani Nikula).
+
+v6(Peter Zijlstra):
+  - Add rb_add() function replacing the existing rbtree_insert() code.
+
+v7:
+  - A full walk iteration in rbtree is slower than the list (Peter Zijlstra).
+  - The existing rbtree_postorder_for_each_entry_safe macro should be used
+    in scenarios where traversal order is not a critical factor (Christian).
+
+Cc: stable@vger.kernel.org
+Fixes: a68c7eaa7a8f ("drm/amdgpu: Enable clear page functionality")
+Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+---
+ drivers/gpu/drm/drm_buddy.c | 188 ++++++++++++++++++++++--------------
+ include/drm/drm_buddy.h     |  11 ++-
+ 2 files changed, 124 insertions(+), 75 deletions(-)
+
+diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+index a94061f373de..67aa67229cc3 100644
+--- a/drivers/gpu/drm/drm_buddy.c
++++ b/drivers/gpu/drm/drm_buddy.c
+@@ -14,6 +14,8 @@
+ 
+ static struct kmem_cache *slab_blocks;
+ 
++#define rbtree_get_free_block(node) rb_entry((node), struct drm_buddy_block, rb)
++
+ static struct drm_buddy_block *drm_block_alloc(struct drm_buddy *mm,
+ 					       struct drm_buddy_block *parent,
+ 					       unsigned int order,
+@@ -31,6 +33,8 @@ static struct drm_buddy_block *drm_block_alloc(struct drm_buddy *mm,
+ 	block->header |= order;
+ 	block->parent = parent;
+ 
++	RB_CLEAR_NODE(&block->rb);
++
+ 	BUG_ON(block->header & DRM_BUDDY_HEADER_UNUSED);
+ 	return block;
+ }
+@@ -41,23 +45,49 @@ static void drm_block_free(struct drm_buddy *mm,
+ 	kmem_cache_free(slab_blocks, block);
+ }
+ 
+-static void list_insert_sorted(struct drm_buddy *mm,
+-			       struct drm_buddy_block *block)
++static bool drm_buddy_block_offset_less(const struct drm_buddy_block *block,
++					const struct drm_buddy_block *node)
+ {
+-	struct drm_buddy_block *node;
+-	struct list_head *head;
++	return drm_buddy_block_offset(block) < drm_buddy_block_offset(node);
++}
+ 
+-	head = &mm->free_list[drm_buddy_block_order(block)];
+-	if (list_empty(head)) {
+-		list_add(&block->link, head);
+-		return;
+-	}
++static bool rbtree_block_offset_less(struct rb_node *block,
++				     const struct rb_node *node)
++{
++	return drm_buddy_block_offset_less(rbtree_get_free_block(block),
++					   rbtree_get_free_block(node));
++}
+ 
+-	list_for_each_entry(node, head, link)
+-		if (drm_buddy_block_offset(block) < drm_buddy_block_offset(node))
+-			break;
++static void rbtree_insert(struct drm_buddy *mm,
++			  struct drm_buddy_block *block)
++{
++	rb_add(&block->rb,
++	       &mm->free_tree[drm_buddy_block_order(block)],
++	       rbtree_block_offset_less);
++}
++
++static void rbtree_remove(struct drm_buddy *mm,
++			  struct drm_buddy_block *block)
++{
++	struct rb_root *root;
++
++	root = &mm->free_tree[drm_buddy_block_order(block)];
++	rb_erase(&block->rb, root);
+ 
+-	__list_add(&block->link, node->link.prev, &node->link);
++	RB_CLEAR_NODE(&block->rb);
++}
++
++static struct drm_buddy_block *
++rbtree_last_entry(struct drm_buddy *mm, unsigned int order)
++{
++	struct rb_node *node = rb_last(&mm->free_tree[order]);
++
++	return node ? rb_entry(node, struct drm_buddy_block, rb) : NULL;
++}
++
++static bool rbtree_is_empty(struct drm_buddy *mm, unsigned int order)
++{
++	return RB_EMPTY_ROOT(&mm->free_tree[order]);
+ }
+ 
+ static void clear_reset(struct drm_buddy_block *block)
+@@ -70,12 +100,13 @@ static void mark_cleared(struct drm_buddy_block *block)
+ 	block->header |= DRM_BUDDY_HEADER_CLEAR;
+ }
+ 
+-static void mark_allocated(struct drm_buddy_block *block)
++static void mark_allocated(struct drm_buddy *mm,
++			   struct drm_buddy_block *block)
+ {
+ 	block->header &= ~DRM_BUDDY_HEADER_STATE;
+ 	block->header |= DRM_BUDDY_ALLOCATED;
+ 
+-	list_del(&block->link);
++	rbtree_remove(mm, block);
+ }
+ 
+ static void mark_free(struct drm_buddy *mm,
+@@ -84,15 +115,16 @@ static void mark_free(struct drm_buddy *mm,
+ 	block->header &= ~DRM_BUDDY_HEADER_STATE;
+ 	block->header |= DRM_BUDDY_FREE;
+ 
+-	list_insert_sorted(mm, block);
++	rbtree_insert(mm, block);
+ }
+ 
+-static void mark_split(struct drm_buddy_block *block)
++static void mark_split(struct drm_buddy *mm,
++		       struct drm_buddy_block *block)
+ {
+ 	block->header &= ~DRM_BUDDY_HEADER_STATE;
+ 	block->header |= DRM_BUDDY_SPLIT;
+ 
+-	list_del(&block->link);
++	rbtree_remove(mm, block);
+ }
+ 
+ static inline bool overlaps(u64 s1, u64 e1, u64 s2, u64 e2)
+@@ -148,7 +180,7 @@ static unsigned int __drm_buddy_free(struct drm_buddy *mm,
+ 				mark_cleared(parent);
+ 		}
+ 
+-		list_del(&buddy->link);
++		rbtree_remove(mm, buddy);
+ 		if (force_merge && drm_buddy_block_is_clear(buddy))
+ 			mm->clear_avail -= drm_buddy_block_size(mm, buddy);
+ 
+@@ -179,13 +211,19 @@ static int __force_merge(struct drm_buddy *mm,
+ 		return -EINVAL;
+ 
+ 	for (i = min_order - 1; i >= 0; i--) {
+-		struct drm_buddy_block *block, *prev;
++		struct rb_root *root = &mm->free_tree[i];
++		struct rb_node *iter;
++
++		iter = rb_last(root);
+ 
+-		list_for_each_entry_safe_reverse(block, prev, &mm->free_list[i], link) {
+-			struct drm_buddy_block *buddy;
++		while (iter) {
++			struct drm_buddy_block *block, *buddy;
+ 			u64 block_start, block_end;
+ 
+-			if (!block->parent)
++			block = rbtree_get_free_block(iter);
++			iter = rb_prev(iter);
++
++			if (!block || !block->parent)
+ 				continue;
+ 
+ 			block_start = drm_buddy_block_offset(block);
+@@ -201,15 +239,10 @@ static int __force_merge(struct drm_buddy *mm,
+ 			WARN_ON(drm_buddy_block_is_clear(block) ==
+ 				drm_buddy_block_is_clear(buddy));
+ 
+-			/*
+-			 * If the prev block is same as buddy, don't access the
+-			 * block in the next iteration as we would free the
+-			 * buddy block as part of the free function.
+-			 */
+-			if (prev == buddy)
+-				prev = list_prev_entry(prev, link);
++			if (iter == &buddy->rb)
++				iter = rb_prev(iter);
+ 
+-			list_del(&block->link);
++			rbtree_remove(mm, block);
+ 			if (drm_buddy_block_is_clear(block))
+ 				mm->clear_avail -= drm_buddy_block_size(mm, block);
+ 
+@@ -258,14 +291,14 @@ int drm_buddy_init(struct drm_buddy *mm, u64 size, u64 chunk_size)
+ 
+ 	BUG_ON(mm->max_order > DRM_BUDDY_MAX_ORDER);
+ 
+-	mm->free_list = kmalloc_array(mm->max_order + 1,
+-				      sizeof(struct list_head),
++	mm->free_tree = kmalloc_array(mm->max_order + 1,
++				      sizeof(struct rb_root),
+ 				      GFP_KERNEL);
+-	if (!mm->free_list)
++	if (!mm->free_tree)
+ 		return -ENOMEM;
+ 
+ 	for (i = 0; i <= mm->max_order; ++i)
+-		INIT_LIST_HEAD(&mm->free_list[i]);
++		mm->free_tree[i] = RB_ROOT;
+ 
+ 	mm->n_roots = hweight64(size);
+ 
+@@ -273,7 +306,7 @@ int drm_buddy_init(struct drm_buddy *mm, u64 size, u64 chunk_size)
+ 				  sizeof(struct drm_buddy_block *),
+ 				  GFP_KERNEL);
+ 	if (!mm->roots)
+-		goto out_free_list;
++		goto out_free_tree;
+ 
+ 	offset = 0;
+ 	i = 0;
+@@ -312,8 +345,8 @@ int drm_buddy_init(struct drm_buddy *mm, u64 size, u64 chunk_size)
+ 	while (i--)
+ 		drm_block_free(mm, mm->roots[i]);
+ 	kfree(mm->roots);
+-out_free_list:
+-	kfree(mm->free_list);
++out_free_tree:
++	kfree(mm->free_tree);
+ 	return -ENOMEM;
+ }
+ EXPORT_SYMBOL(drm_buddy_init);
+@@ -323,7 +356,7 @@ EXPORT_SYMBOL(drm_buddy_init);
+  *
+  * @mm: DRM buddy manager to free
+  *
+- * Cleanup memory manager resources and the freelist
++ * Cleanup memory manager resources and the freetree
+  */
+ void drm_buddy_fini(struct drm_buddy *mm)
+ {
+@@ -350,7 +383,7 @@ void drm_buddy_fini(struct drm_buddy *mm)
+ 	WARN_ON(mm->avail != mm->size);
+ 
+ 	kfree(mm->roots);
+-	kfree(mm->free_list);
++	kfree(mm->free_tree);
+ }
+ EXPORT_SYMBOL(drm_buddy_fini);
+ 
+@@ -383,7 +416,7 @@ static int split_block(struct drm_buddy *mm,
+ 		clear_reset(block);
+ 	}
+ 
+-	mark_split(block);
++	mark_split(mm, block);
+ 
+ 	return 0;
+ }
+@@ -412,7 +445,7 @@ EXPORT_SYMBOL(drm_get_buddy);
+  * @is_clear: blocks clear state
+  *
+  * Reset the clear state based on @is_clear value for each block
+- * in the freelist.
++ * in the freetree.
+  */
+ void drm_buddy_reset_clear(struct drm_buddy *mm, bool is_clear)
+ {
+@@ -431,9 +464,9 @@ void drm_buddy_reset_clear(struct drm_buddy *mm, bool is_clear)
+ 	}
+ 
+ 	for (i = 0; i <= mm->max_order; ++i) {
+-		struct drm_buddy_block *block;
++		struct drm_buddy_block *block, *tmp;
+ 
+-		list_for_each_entry_reverse(block, &mm->free_list[i], link) {
++		rbtree_postorder_for_each_entry_safe(block, tmp, &mm->free_tree[i], rb) {
+ 			if (is_clear != drm_buddy_block_is_clear(block)) {
+ 				if (is_clear) {
+ 					mark_cleared(block);
+@@ -639,14 +672,18 @@ get_maxblock(struct drm_buddy *mm, unsigned int order,
+ 	unsigned int i;
+ 
+ 	for (i = order; i <= mm->max_order; ++i) {
++		struct rb_node *iter = rb_last(&mm->free_tree[i]);
+ 		struct drm_buddy_block *tmp_block;
+ 
+-		list_for_each_entry_reverse(tmp_block, &mm->free_list[i], link) {
+-			if (block_incompatible(tmp_block, flags))
+-				continue;
++		while (iter) {
++			tmp_block = rbtree_get_free_block(iter);
+ 
+-			block = tmp_block;
+-			break;
++			if (!block_incompatible(tmp_block, flags)) {
++				block = tmp_block;
++				break;
++			}
++
++			iter = rb_prev(iter);
+ 		}
+ 
+ 		if (!block)
+@@ -667,7 +704,7 @@ get_maxblock(struct drm_buddy *mm, unsigned int order,
+ }
+ 
+ static struct drm_buddy_block *
+-alloc_from_freelist(struct drm_buddy *mm,
++alloc_from_freetree(struct drm_buddy *mm,
+ 		    unsigned int order,
+ 		    unsigned long flags)
+ {
+@@ -682,14 +719,18 @@ alloc_from_freelist(struct drm_buddy *mm,
+ 			tmp = drm_buddy_block_order(block);
+ 	} else {
+ 		for (tmp = order; tmp <= mm->max_order; ++tmp) {
++			struct rb_node *iter = rb_last(&mm->free_tree[tmp]);
+ 			struct drm_buddy_block *tmp_block;
+ 
+-			list_for_each_entry_reverse(tmp_block, &mm->free_list[tmp], link) {
+-				if (block_incompatible(tmp_block, flags))
+-					continue;
++			while (iter) {
++				tmp_block = rbtree_get_free_block(iter);
+ 
+-				block = tmp_block;
+-				break;
++				if (!block_incompatible(tmp_block, flags)) {
++					block = tmp_block;
++					break;
++				}
++
++				iter = rb_prev(iter);
+ 			}
+ 
+ 			if (block)
+@@ -700,10 +741,8 @@ alloc_from_freelist(struct drm_buddy *mm,
+ 	if (!block) {
+ 		/* Fallback method */
+ 		for (tmp = order; tmp <= mm->max_order; ++tmp) {
+-			if (!list_empty(&mm->free_list[tmp])) {
+-				block = list_last_entry(&mm->free_list[tmp],
+-							struct drm_buddy_block,
+-							link);
++			if (!rbtree_is_empty(mm, tmp)) {
++				block = rbtree_last_entry(mm, tmp);
+ 				if (block)
+ 					break;
+ 			}
+@@ -771,7 +810,7 @@ static int __alloc_range(struct drm_buddy *mm,
+ 
+ 		if (contains(start, end, block_start, block_end)) {
+ 			if (drm_buddy_block_is_free(block)) {
+-				mark_allocated(block);
++				mark_allocated(mm, block);
+ 				total_allocated += drm_buddy_block_size(mm, block);
+ 				mm->avail -= drm_buddy_block_size(mm, block);
+ 				if (drm_buddy_block_is_clear(block))
+@@ -849,8 +888,8 @@ static int __alloc_contig_try_harder(struct drm_buddy *mm,
+ {
+ 	u64 rhs_offset, lhs_offset, lhs_size, filled;
+ 	struct drm_buddy_block *block;
+-	struct list_head *list;
+ 	LIST_HEAD(blocks_lhs);
++	struct rb_node *iter;
+ 	unsigned long pages;
+ 	unsigned int order;
+ 	u64 modify_size;
+@@ -862,11 +901,14 @@ static int __alloc_contig_try_harder(struct drm_buddy *mm,
+ 	if (order == 0)
+ 		return -ENOSPC;
+ 
+-	list = &mm->free_list[order];
+-	if (list_empty(list))
++	if (rbtree_is_empty(mm, order))
+ 		return -ENOSPC;
+ 
+-	list_for_each_entry_reverse(block, list, link) {
++	iter = rb_last(&mm->free_tree[order]);
++
++	while (iter) {
++		block = rbtree_get_free_block(iter);
++
+ 		/* Allocate blocks traversing RHS */
+ 		rhs_offset = drm_buddy_block_offset(block);
+ 		err =  __drm_buddy_alloc_range(mm, rhs_offset, size,
+@@ -891,6 +933,8 @@ static int __alloc_contig_try_harder(struct drm_buddy *mm,
+ 		}
+ 		/* Free blocks for the next iteration */
+ 		drm_buddy_free_list_internal(mm, blocks);
++
++		iter = rb_prev(iter);
+ 	}
+ 
+ 	return -ENOSPC;
+@@ -976,7 +1020,7 @@ int drm_buddy_block_trim(struct drm_buddy *mm,
+ 	list_add(&block->tmp_link, &dfs);
+ 	err =  __alloc_range(mm, &dfs, new_start, new_size, blocks, NULL);
+ 	if (err) {
+-		mark_allocated(block);
++		mark_allocated(mm, block);
+ 		mm->avail -= drm_buddy_block_size(mm, block);
+ 		if (drm_buddy_block_is_clear(block))
+ 			mm->clear_avail -= drm_buddy_block_size(mm, block);
+@@ -999,8 +1043,8 @@ __drm_buddy_alloc_blocks(struct drm_buddy *mm,
+ 		return  __drm_buddy_alloc_range_bias(mm, start, end,
+ 						     order, flags);
+ 	else
+-		/* Allocate from freelist */
+-		return alloc_from_freelist(mm, order, flags);
++		/* Allocate from freetree */
++		return alloc_from_freetree(mm, order, flags);
+ }
+ 
+ /**
+@@ -1017,8 +1061,8 @@ __drm_buddy_alloc_blocks(struct drm_buddy *mm,
+  * alloc_range_bias() called on range limitations, which traverses
+  * the tree and returns the desired block.
+  *
+- * alloc_from_freelist() called when *no* range restrictions
+- * are enforced, which picks the block from the freelist.
++ * alloc_from_freetree() called when *no* range restrictions
++ * are enforced, which picks the block from the freetree.
+  *
+  * Returns:
+  * 0 on success, error code on failure.
+@@ -1120,7 +1164,7 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+ 			}
+ 		} while (1);
+ 
+-		mark_allocated(block);
++		mark_allocated(mm, block);
+ 		mm->avail -= drm_buddy_block_size(mm, block);
+ 		if (drm_buddy_block_is_clear(block))
+ 			mm->clear_avail -= drm_buddy_block_size(mm, block);
+@@ -1201,10 +1245,10 @@ void drm_buddy_print(struct drm_buddy *mm, struct drm_printer *p)
+ 		   mm->chunk_size >> 10, mm->size >> 20, mm->avail >> 20, mm->clear_avail >> 20);
+ 
+ 	for (order = mm->max_order; order >= 0; order--) {
+-		struct drm_buddy_block *block;
++		struct drm_buddy_block *block, *tmp;
+ 		u64 count = 0, free;
+ 
+-		list_for_each_entry(block, &mm->free_list[order], link) {
++		rbtree_postorder_for_each_entry_safe(block, tmp, &mm->free_tree[order], rb) {
+ 			BUG_ON(!drm_buddy_block_is_free(block));
+ 			count++;
+ 		}
+diff --git a/include/drm/drm_buddy.h b/include/drm/drm_buddy.h
+index 513837632b7d..9ee105d4309f 100644
+--- a/include/drm/drm_buddy.h
++++ b/include/drm/drm_buddy.h
+@@ -10,6 +10,7 @@
+ #include <linux/list.h>
+ #include <linux/slab.h>
+ #include <linux/sched.h>
++#include <linux/rbtree.h>
+ 
+ #include <drm/drm_print.h>
+ 
+@@ -53,7 +54,11 @@ struct drm_buddy_block {
+ 	 * a list, if so desired. As soon as the block is freed with
+ 	 * drm_buddy_free* ownership is given back to the mm.
+ 	 */
+-	struct list_head link;
++	union {
++		struct rb_node rb;
++		struct list_head link;
++	};
++
+ 	struct list_head tmp_link;
+ };
+ 
+@@ -68,7 +73,7 @@ struct drm_buddy_block {
+  */
+ struct drm_buddy {
+ 	/* Maintain a free list for each order. */
+-	struct list_head *free_list;
++	struct rb_root *free_tree;
+ 
+ 	/*
+ 	 * Maintain explicit binary tree(s) to track the allocation of the
+@@ -94,7 +99,7 @@ struct drm_buddy {
+ };
+ 
+ static inline u64
+-drm_buddy_block_offset(struct drm_buddy_block *block)
++drm_buddy_block_offset(const struct drm_buddy_block *block)
+ {
+ 	return block->header & DRM_BUDDY_HEADER_OFFSET;
+ }
+
+base-commit: 3a9cf301794c1a49d95eeb13119ff490fb5cfe88
+-- 
+2.34.1
 
