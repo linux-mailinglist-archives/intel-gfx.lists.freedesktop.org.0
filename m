@@ -2,49 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95601B99CEB
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Sep 2025 14:21:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76DEFB99D28
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Sep 2025 14:24:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A54110E725;
-	Wed, 24 Sep 2025 12:21:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A879310E70C;
+	Wed, 24 Sep 2025 12:24:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="A0sflKan";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="kYI6qFeU";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36BD410E70C;
- Wed, 24 Sep 2025 12:21:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D72D010E1BC;
+ Wed, 24 Sep 2025 12:24:39 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 7A59660007;
- Wed, 24 Sep 2025 12:21:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7235C4CEE7;
- Wed, 24 Sep 2025 12:21:26 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 954DF60007;
+ Wed, 24 Sep 2025 12:24:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A344C4CEE7;
+ Wed, 24 Sep 2025 12:24:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1758716487;
- bh=cg9tYmgUiVVW1uumNXt/D1iRzUoownQi8iUjG0i70yg=;
+ s=k20201202; t=1758716678;
+ bh=3yBqULPN03ZFixtNtZO2/BT/KfxSdBJrKiUP9C1volA=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=A0sflKanrsVC28RO9dbNQruISzbMYiXxZzT6SBvxD5jNpox2TzFkC4kHIeE6in8b/
- muEyjTKXRQYoK9rY8DM1CYCoVexSDOrUXF4UaQP4kO4KhK1qP6AF6YeiGSUIM2T8gB
- Hf+spIRlBDCQrxD6QRGcP7k82pyLoq9nBqr6pV8qaRGVIorEhh8SH200WWxvkA048Y
- InGiISMKBwuxUdw/SeWb7XhpCD5fPFQNyfgBqHv2h3Y/7bRBpdWRpPDvXnBYg9fqK7
- 4EYVd2MBrfTM01rEL+nzFhb7JhvZaYmrq72uqjMFRZpFo1n5eL3HSI48mSgu8KWi8i
- KO/KvlXkMH4Eg==
-Date: Wed, 24 Sep 2025 14:21:24 +0200
+ b=kYI6qFeU4ym/VjdCIshW9h6TM/s2Z0qAMMjT1OsRwLo+ntSUVsX8gZrHrPC5cwTVQ
+ 1eBjzDR74kmzwf9tT+3j3t+HZx5EUbCja+scYEQnfmYQW9+0eF3jVcwhB3soTMH9LQ
+ LTmut/5g96LjASJe4jCth/eWBkWbu7YUp22BARlNhFblPtflrEj/0hln73X6WmuQ/I
+ 2h5/PyYHd0sYnWZRq+bExptcOZvyZUX/8Qm12WCmU2RdoRJ9tR9bnMhM3nMkbZiB1Q
+ 5k8zJzOYr/NlTRV0jl5ZUigUQElIWCNXq23svDKc3InZ2r2Ikar/3bSyyNiTlcoHIG
+ 5eog/DoMvst5w==
+Date: Wed, 24 Sep 2025 14:24:33 +0200
 From: Andi Shyti <andi.shyti@kernel.org>
-To: Madhur Kumar <madhurkumar004@gmail.com>
-Cc: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com, 
- rodrigo.vivi@intel.com, tursulin@ursulin.net, airlied@gmail.com,
- simona@ffwll.ch, 
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] drm/i915: i915_pmu: Use sysfs_emit() instead of sprintf()
-Message-ID: <wd42hb6kriwk7wlunhlei5tnbslbckdaomsmhrcjx33wta3vga@ozds23vg7ez6>
-References: <20250923195051.1277855-1-madhurkumar004@gmail.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ ville.syrjala@linux.intel.com
+Subject: Re: [PATCH 7/9] drm/i915/reg_defs: Add REG_FIELD_MAX wrapper for
+ FIELD_MAX()
+Message-ID: <i6ppumn76afqjrppko6ck33qqhiknlnizbnnvskuxjg3nu5bx2@zvyfo6easidr>
+References: <20250924105129.2771196-1-ankit.k.nautiyal@intel.com>
+ <20250924105129.2771196-8-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250923195051.1277855-1-madhurkumar004@gmail.com>
+In-Reply-To: <20250924105129.2771196-8-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,14 +59,21 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Madhur,
+Hi Ankit,
 
-On Wed, Sep 24, 2025 at 01:20:51AM +0530, Madhur Kumar wrote:
-> Follow the advice in Documentation/filesystems/sysfs.rst:
-> show() should only use sysfs_emit() or sysfs_emit_at() when formatting
-> the value to be returned to user space.
-> 
-> Signed-off-by: Madhur Kumar <madhurkumar004@gmail.com>
+> +/**
+> + * REG_FIELD_MAX() - produce the maximum value representable by a field
+> + * @__mask: shifted mask defining the field's length and position
+> + *
+> + * Local wrapper for FIELD_MAX() to return the maximum bit value that can
+> + * be held in the field specified by @_mask, cast to u32 for consistency
+> + * with other macros.
+> + */
+> +#define REG_FIELD_MAX(__mask)	((u32)FIELD_MAX(__mask))
+
+I'm not a big fan of these generic definitions inside i915. These
+should all go to bitfield.h. But this is how it's done here. For
+now:
 
 Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
