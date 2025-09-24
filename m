@@ -2,54 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18797B9AE6C
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Sep 2025 18:43:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 069E8B9AE6F
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Sep 2025 18:44:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96F9E10E77B;
-	Wed, 24 Sep 2025 16:43:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C87C10E776;
+	Wed, 24 Sep 2025 16:44:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ReOqFInj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BCpKuyyP";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A515F10E77B;
- Wed, 24 Sep 2025 16:43:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B4B110E013;
+ Wed, 24 Sep 2025 16:44:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758732237; x=1790268237;
+ t=1758732242; x=1790268242;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rcnQawlO9WN8PGMHMxLZE5dl4kI7tuz1zInZT13RJj8=;
- b=ReOqFInjo4oiGrTU1FHm4GklmTCnPekHrHknWS7Im+FdRNN0icKJh1dY
- ZX215Yh7nZyAmFofWRnwY9/rcHM39FOwF4tTyf0vc8BxmST8DADxyTsw5
- 4mUjkJCe6/nf5vCHd2ItrNaBOu0oOispfEFDI1x8oPiInJTT4cIgN5v9V
- c5JxXSva+3nZMcpo01OTMKKsRJIRk2wSAnn8XlhhaVaGDxQQCom4yw1ag
- FvUhYEQU7i/A1g0dNWpUc7sAZvd/OBv+6iT/to2o6zbhp4OESN3dCv8RL
- uGjxxASl5uxLWrKQxlu9s4/flv8FLftLyCqpPyucf13ud1P1yrAztIVmm A==;
-X-CSE-ConnectionGUID: LeJftCHJQciHi/IMImXSsg==
-X-CSE-MsgGUID: qEiLdLwsQSOesI+GGO42zQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11563"; a="72137949"
-X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="72137949"
+ bh=pa0TfAiWhzl2q13N54uqvY8GBZgKOp09DnZUmHnhGV4=;
+ b=BCpKuyyPDb89sq9J+lcTXeGmowE4otg8vsRm7i2Ck0KXmF/EQTyz2DGD
+ kmR6rXq0kDq0hmzysraCHn0asKj068PUQy/4XbWluBOl77xQ9qE83BrdR
+ svtPRg8hFQSdtm8oVCYTlPRFage++r/pct2TZwh+o0qt9AMsc5uWH8QWw
+ XuePwZETq2ANx5+7HXrIHYnlYpH9sc7J3HOU/UqqQ1pe6RvMS0s0N0ZPF
+ 2I+hgo26Ulb142GIyJ4DtA2asdPmMpk8A9UGpbDiMOpSZdbuYnBQ45UPX
+ dY8shdvzl2YxL1yyQgccwfqz0rxARmmsT7u6p2fNgKlX0L5AtraBCvyAP w==;
+X-CSE-ConnectionGUID: SWPpzbqiSFC+RYcBY3GcjQ==
+X-CSE-MsgGUID: vPfXZfOMRSqYzZS7ytFtyw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11563"; a="72137965"
+X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="72137965"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2025 09:43:57 -0700
-X-CSE-ConnectionGUID: 2ruWv3qfTEyaTuHCTjd6uw==
-X-CSE-MsgGUID: i9GCS99LRuyr39Nki+DeWw==
+ 24 Sep 2025 09:44:02 -0700
+X-CSE-ConnectionGUID: xRlKptr+RYq8LhKBkUyDlA==
+X-CSE-MsgGUID: yFz23yOqR0mX2EnYRZuAug==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="177515430"
+X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="177515438"
 Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.149])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2025 09:43:54 -0700
+ 24 Sep 2025 09:43:59 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [PATCH 02/11] drm/xe/stolen: rename fb to node in stolen compat header
-Date: Wed, 24 Sep 2025 19:43:31 +0300
-Message-ID: <71a7872e47da5f3fbe61cc21723bfcf8ff6518b8.1758732183.git.jani.nikula@intel.com>
+Subject: [PATCH 03/11] drm/xe/stolen: convert compat stolen macros to inline
+ functions
+Date: Wed, 24 Sep 2025 19:43:32 +0300
+Message-ID: <1ec1fa59e0e54da49a1ec4fd1d535288066db502.1758732183.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1758732183.git.jani.nikula@intel.com>
 References: <cover.1758732183.git.jani.nikula@intel.com>
@@ -71,80 +72,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-It's more about node than fb, and this makes more sense now that the
-struct is also named intel_stolen_node.
+Improve type safety. Allows getting rid of a __maybe_unused annotation
+too.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../compat-i915-headers/gem/i915_gem_stolen.h | 24 +++++++++----------
- 1 file changed, 12 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fbc.c      |  2 +-
+ .../compat-i915-headers/gem/i915_gem_stolen.h | 39 +++++++++++++++----
+ 2 files changed, 33 insertions(+), 8 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index 6a7357fa89db..cc67de6c06cf 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -797,7 +797,7 @@ static u64 intel_fbc_cfb_base_max(struct intel_display *display)
+ 
+ static u64 intel_fbc_stolen_end(struct intel_display *display)
+ {
+-	struct drm_i915_private __maybe_unused *i915 = to_i915(display->drm);
++	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	u64 end;
+ 
+ 	/* The FBC hardware for BDW/SKL doesn't have access to the stolen
 diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
-index 62389b290907..b45575b15322 100644
+index b45575b15322..2c77457837e4 100644
 --- a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
 +++ b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
-@@ -17,7 +17,7 @@ struct intel_stolen_node {
- };
- 
- static inline int i915_gem_stolen_insert_node_in_range(struct xe_device *xe,
--						       struct intel_stolen_node *fb,
-+						       struct intel_stolen_node *node,
- 						       u32 size, u32 align,
- 						       u32 start, u32 end)
- {
-@@ -41,13 +41,13 @@ static inline int i915_gem_stolen_insert_node_in_range(struct xe_device *xe,
- 		return err;
- 	}
- 
--	fb->bo = bo;
-+	node->bo = bo;
- 
- 	return err;
+@@ -62,8 +62,15 @@ static inline void i915_gem_stolen_remove_node(struct xe_device *xe,
+ 	node->bo = NULL;
  }
  
- static inline int i915_gem_stolen_insert_node(struct xe_device *xe,
--					      struct intel_stolen_node *fb,
-+					      struct intel_stolen_node *node,
- 					      u32 size, u32 align)
+-#define i915_gem_stolen_initialized(xe) (!!ttm_manager_type(&(xe)->ttm, XE_PL_STOLEN))
+-#define i915_gem_stolen_node_allocated(node) (!!((node)->bo))
++static inline bool i915_gem_stolen_initialized(struct xe_device *xe)
++{
++	return ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
++}
++
++static inline bool i915_gem_stolen_node_allocated(const struct intel_stolen_node *node)
++{
++	return node->bo;
++}
+ 
+ static inline u32 i915_gem_stolen_node_offset(struct intel_stolen_node *node)
  {
- 	/* Not used on xe */
-@@ -56,20 +56,20 @@ static inline int i915_gem_stolen_insert_node(struct xe_device *xe,
+@@ -74,12 +81,30 @@ static inline u32 i915_gem_stolen_node_offset(struct intel_stolen_node *node)
  }
  
- static inline void i915_gem_stolen_remove_node(struct xe_device *xe,
--					       struct intel_stolen_node *fb)
-+					       struct intel_stolen_node *node)
- {
--	xe_bo_unpin_map_no_vm(fb->bo);
--	fb->bo = NULL;
-+	xe_bo_unpin_map_no_vm(node->bo);
-+	node->bo = NULL;
- }
- 
- #define i915_gem_stolen_initialized(xe) (!!ttm_manager_type(&(xe)->ttm, XE_PL_STOLEN))
--#define i915_gem_stolen_node_allocated(fb) (!!((fb)->bo))
-+#define i915_gem_stolen_node_allocated(node) (!!((node)->bo))
- 
--static inline u32 i915_gem_stolen_node_offset(struct intel_stolen_node *fb)
-+static inline u32 i915_gem_stolen_node_offset(struct intel_stolen_node *node)
- {
- 	struct xe_res_cursor res;
- 
--	xe_res_first(fb->bo->ttm.resource, 0, 4096, &res);
-+	xe_res_first(node->bo->ttm.resource, 0, 4096, &res);
- 	return res.start;
- }
- 
-@@ -78,8 +78,8 @@ static inline u32 i915_gem_stolen_node_offset(struct intel_stolen_node *fb)
+ /* Used for < gen4. These are not supported by Xe */
+-#define i915_gem_stolen_area_address(xe) (!WARN_ON(1))
++static inline u64 i915_gem_stolen_area_address(const struct xe_device *xe)
++{
++	WARN_ON(1);
++
++	return 0;
++}
++
  /* Used for gen9 specific WA. Gen9 is not supported by Xe */
- #define i915_gem_stolen_area_size(xe) (!WARN_ON(1))
+-#define i915_gem_stolen_area_size(xe) (!WARN_ON(1))
++static inline u64 i915_gem_stolen_area_size(const struct xe_device *xe)
++{
++	WARN_ON(1);
++
++	return 0;
++}
  
--#define i915_gem_stolen_node_address(xe, fb) (xe_ttm_stolen_gpu_offset(xe) + \
--					 i915_gem_stolen_node_offset(fb))
--#define i915_gem_stolen_node_size(fb) ((u64)((fb)->bo->ttm.base.size))
-+#define i915_gem_stolen_node_address(xe, node) (xe_ttm_stolen_gpu_offset(xe) + \
-+					 i915_gem_stolen_node_offset(node))
-+#define i915_gem_stolen_node_size(node) ((u64)((node)->bo->ttm.base.size))
+-#define i915_gem_stolen_node_address(xe, node) (xe_ttm_stolen_gpu_offset(xe) + \
+-					 i915_gem_stolen_node_offset(node))
+-#define i915_gem_stolen_node_size(node) ((u64)((node)->bo->ttm.base.size))
++static inline u64 i915_gem_stolen_node_address(struct xe_device *xe,
++					       struct intel_stolen_node *node)
++{
++	return xe_ttm_stolen_gpu_offset(xe) + i915_gem_stolen_node_offset(node);
++}
++
++static inline u64 i915_gem_stolen_node_size(const struct intel_stolen_node *node)
++{
++	return node->bo->ttm.base.size;
++}
  
  #endif
 -- 
