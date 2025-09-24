@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAFFBB9AE81
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Sep 2025 18:44:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 01E4BB9AE84
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Sep 2025 18:44:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F2A210E783;
-	Wed, 24 Sep 2025 16:44:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8252E10E787;
+	Wed, 24 Sep 2025 16:44:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dWZylckj";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PDAHEYCL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E78AF10E782;
- Wed, 24 Sep 2025 16:44:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC62010E77F;
+ Wed, 24 Sep 2025 16:44:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758732271; x=1790268271;
+ t=1758732276; x=1790268276;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2ajQ6nUhwUhgYePULWTZ19eELxMn/5dI/NwW7C9OaNg=;
- b=dWZylckjhqBvqaCEcB6TTw/xhdsmitUU6L3jY2atuGFfn33PUyuKpMA9
- 1akeWykgC1C2OzaqalBvrorIw5LHBmOrGsJDfbzXLZPvQZ8U9rUb2ue/M
- ZihxHpV07VFxVz3R5fEx1mUso9sPIj/p8V0Jocj0R/+EY1oErkMcJHVSI
- smNwrwwbBIhVu1NQnNtFTY9NKdbc8aWDpEc8dMMs6EYK3wo6Up771shVl
- qFX55m7t6u0q22ILY+zsQRNoCYiC+8tKWGDDgjU9Bh3MtM1hZQRsMKH7h
- /FtWAI1/ibeZk+sowhw3+/hfvvBbxVRB4O2sZ7hF/MMiJd7UaFURRQBpG Q==;
-X-CSE-ConnectionGUID: 5T9i1FHRREKFqtB0Hr5T8g==
-X-CSE-MsgGUID: o5k+tcELT7CduUgxU+4rfg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11563"; a="64676884"
-X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="64676884"
+ bh=4pcnQKGb54WxtlZAzguaWlfcYy55sYPfJHPzRUX/FR8=;
+ b=PDAHEYCLaE4mZIpRCz6zeW0Pzbz74ctfG0vIQbyTUy0S4Btxd2FQfo0f
+ fOkmYxMoJZy7Qz161paCBYfCHAdTRhvkLR+svhZUrZj92MWR6+He4KPD3
+ mMiwDSJqU0X+1s+E1kCaVYpubHBOLNJfhq0KF/NND0u4Ss17DlmjIRPhT
+ 493fFp64BmNySfU9eOFpUO2DgIpF2H6J3lHf7gnN/DVHJ97V/IotWM0gB
+ X5aAmHmEqZZtN3qPDsEdav3ZoyAOpkNZdRYipldnITlBzA0B4Njtz/Ys9
+ LYyJLLqpKAthvo5L+uSOu8Zn5Y7/WeRcG8Qxxf1uEVO/cPaTMttdiVIqc g==;
+X-CSE-ConnectionGUID: /uyBdPeDQoqYa3/3I/uOnQ==
+X-CSE-MsgGUID: S4YLRtqZR5S7mDPoB8YxnA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11563"; a="64676898"
+X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="64676898"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2025 09:44:30 -0700
-X-CSE-ConnectionGUID: tV20KHGzTs2v2Y9vvR+juA==
-X-CSE-MsgGUID: UGBbrR5DRDuEslvLVcd59Q==
+ 24 Sep 2025 09:44:35 -0700
+X-CSE-ConnectionGUID: VND9owPHTcG3gQ5khBrHMQ==
+X-CSE-MsgGUID: Tjm1nzk8QySoXG9FiFffTg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="208009294"
+X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="208009336"
 Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.149])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2025 09:44:29 -0700
+ 24 Sep 2025 09:44:34 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [PATCH 09/11] drm/{i915,
- xe}/stolen: use the stored i915/xe device pointer
-Date: Wed, 24 Sep 2025 19:43:38 +0300
-Message-ID: <6f31114c8113ce2254d422ca53992088b673fb2f.1758732183.git.jani.nikula@intel.com>
+Subject: [PATCH 10/11] drm/{i915,
+ xe}/stolen: convert stolen interface to struct drm_device
+Date: Wed, 24 Sep 2025 19:43:39 +0300
+Message-ID: <bbfc2aeaeee3156e92d49c73983be05b6feeede2.1758732183.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1758732183.git.jani.nikula@intel.com>
 References: <cover.1758732183.git.jani.nikula@intel.com>
@@ -72,274 +72,195 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now that we store the i915/xe device pointer in struct
-intel_stolen_node, we can reduce parameter passing in a number of
-functions.
+Make the stolen interface agnostic to i915/xe, and pass struct
+drm_device instead.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbc.c      | 21 +++++++------------
- drivers/gpu/drm/i915/gem/i915_gem_stolen.c    | 20 ++++++++----------
- drivers/gpu/drm/i915/gem/i915_gem_stolen.h    | 12 ++++-------
- .../compat-i915-headers/gem/i915_gem_stolen.h | 13 ++++--------
- drivers/gpu/drm/xe/display/xe_stolen.c        | 17 +++++++--------
- 5 files changed, 33 insertions(+), 50 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fbc.c            | 13 +++++--------
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c          | 12 +++++++++---
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.h          |  6 +++---
+ .../xe/compat-i915-headers/gem/i915_gem_stolen.h    |  7 +++----
+ drivers/gpu/drm/xe/display/xe_stolen.c              |  8 +++++---
+ 5 files changed, 25 insertions(+), 21 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 05199434cb7c..0d837527aaab 100644
+index 0d837527aaab..4edb4342833e 100644
 --- a/drivers/gpu/drm/i915/display/intel_fbc.c
 +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -388,9 +388,9 @@ static void i8xx_fbc_program_cfb(struct intel_fbc *fbc)
- 					  i915_gem_stolen_node_offset(fbc->compressed_llb),
- 					  U32_MAX));
- 	intel_de_write(display, FBC_CFB_BASE,
--		       i915_gem_stolen_node_address(i915, fbc->compressed_fb));
-+		       i915_gem_stolen_node_address(fbc->compressed_fb));
- 	intel_de_write(display, FBC_LL_BASE,
--		       i915_gem_stolen_node_address(i915, fbc->compressed_llb));
-+		       i915_gem_stolen_node_address(fbc->compressed_llb));
- }
- 
- static const struct intel_fbc_funcs i8xx_fbc_funcs = {
-@@ -836,20 +836,19 @@ static int find_compression_limit(struct intel_fbc *fbc,
- 				  unsigned int size, int min_limit)
+@@ -377,14 +377,13 @@ static void i8xx_fbc_nuke(struct intel_fbc *fbc)
+ static void i8xx_fbc_program_cfb(struct intel_fbc *fbc)
  {
  	struct intel_display *display = fbc->display;
 -	struct drm_i915_private *i915 = to_i915(display->drm);
- 	u64 end = intel_fbc_stolen_end(display);
- 	int ret, limit = min_limit;
  
- 	size /= limit;
+ 	drm_WARN_ON(display->drm,
+-		    range_end_overflows_t(u64, i915_gem_stolen_area_address(i915),
++		    range_end_overflows_t(u64, i915_gem_stolen_area_address(display->drm),
+ 					  i915_gem_stolen_node_offset(fbc->compressed_fb),
+ 					  U32_MAX));
+ 	drm_WARN_ON(display->drm,
+-		    range_end_overflows_t(u64, i915_gem_stolen_area_address(i915),
++		    range_end_overflows_t(u64, i915_gem_stolen_area_address(display->drm),
+ 					  i915_gem_stolen_node_offset(fbc->compressed_llb),
+ 					  U32_MAX));
+ 	intel_de_write(display, FBC_CFB_BASE,
+@@ -798,7 +797,6 @@ static u64 intel_fbc_cfb_base_max(struct intel_display *display)
  
- 	/* Try to over-allocate to reduce reallocations and fragmentation. */
--	ret = i915_gem_stolen_insert_node_in_range(i915, fbc->compressed_fb,
-+	ret = i915_gem_stolen_insert_node_in_range(fbc->compressed_fb,
- 						   size <<= 1, 4096, 0, end);
- 	if (ret == 0)
- 		return limit;
- 
- 	for (; limit <= intel_fbc_max_limit(display); limit <<= 1) {
--		ret = i915_gem_stolen_insert_node_in_range(i915, fbc->compressed_fb,
-+		ret = i915_gem_stolen_insert_node_in_range(fbc->compressed_fb,
- 							   size >>= 1, 4096, 0, end);
- 		if (ret == 0)
- 			return limit;
-@@ -871,8 +870,7 @@ static int intel_fbc_alloc_cfb(struct intel_fbc *fbc,
- 		    i915_gem_stolen_node_allocated(fbc->compressed_llb));
- 
- 	if (DISPLAY_VER(display) < 5 && !display->platform.g4x) {
--		ret = i915_gem_stolen_insert_node(i915, fbc->compressed_llb,
--						  4096, 4096);
-+		ret = i915_gem_stolen_insert_node(fbc->compressed_llb, 4096, 4096);
- 		if (ret)
- 			goto err;
- 	}
-@@ -893,7 +891,7 @@ static int intel_fbc_alloc_cfb(struct intel_fbc *fbc,
- 
- err_llb:
- 	if (i915_gem_stolen_node_allocated(fbc->compressed_llb))
--		i915_gem_stolen_remove_node(i915, fbc->compressed_llb);
-+		i915_gem_stolen_remove_node(fbc->compressed_llb);
- err:
- 	if (i915_gem_stolen_initialized(i915))
- 		drm_info_once(display->drm,
-@@ -946,16 +944,13 @@ static void intel_fbc_program_workarounds(struct intel_fbc *fbc)
- 
- static void __intel_fbc_cleanup_cfb(struct intel_fbc *fbc)
+ static u64 intel_fbc_stolen_end(struct intel_display *display)
  {
--	struct intel_display *display = fbc->display;
 -	struct drm_i915_private *i915 = to_i915(display->drm);
--
- 	if (WARN_ON(intel_fbc_hw_is_active(fbc)))
- 		return;
+ 	u64 end;
  
+ 	/* The FBC hardware for BDW/SKL doesn't have access to the stolen
+@@ -807,7 +805,7 @@ static u64 intel_fbc_stolen_end(struct intel_display *display)
+ 	 * underruns, even if that range is not reserved by the BIOS. */
+ 	if (display->platform.broadwell ||
+ 	    (DISPLAY_VER(display) == 9 && !display->platform.broxton))
+-		end = i915_gem_stolen_area_size(i915) - 8 * 1024 * 1024;
++		end = i915_gem_stolen_area_size(display->drm) - 8 * 1024 * 1024;
+ 	else
+ 		end = U64_MAX;
+ 
+@@ -861,7 +859,6 @@ static int intel_fbc_alloc_cfb(struct intel_fbc *fbc,
+ 			       unsigned int size, int min_limit)
+ {
+ 	struct intel_display *display = fbc->display;
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	int ret;
+ 
+ 	drm_WARN_ON(display->drm,
+@@ -893,7 +890,7 @@ static int intel_fbc_alloc_cfb(struct intel_fbc *fbc,
  	if (i915_gem_stolen_node_allocated(fbc->compressed_llb))
--		i915_gem_stolen_remove_node(i915, fbc->compressed_llb);
-+		i915_gem_stolen_remove_node(fbc->compressed_llb);
- 	if (i915_gem_stolen_node_allocated(fbc->compressed_fb))
--		i915_gem_stolen_remove_node(i915, fbc->compressed_fb);
-+		i915_gem_stolen_remove_node(fbc->compressed_fb);
- }
+ 		i915_gem_stolen_remove_node(fbc->compressed_llb);
+ err:
+-	if (i915_gem_stolen_initialized(i915))
++	if (i915_gem_stolen_initialized(display->drm))
+ 		drm_info_once(display->drm,
+ 			      "not enough stolen space for compressed buffer (need %d more bytes), disabling. Hint: you may be able to increase stolen memory size in the BIOS to avoid this.\n", size);
+ 	return -ENOSPC;
+@@ -1435,7 +1432,7 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
+ 	if (!fbc)
+ 		return 0;
  
- void intel_fbc_cleanup(struct intel_display *display)
+-	if (!i915_gem_stolen_initialized(i915)) {
++	if (!i915_gem_stolen_initialized(display->drm)) {
+ 		plane_state->no_fbc_reason = "stolen memory not initialised";
+ 		return 0;
+ 	}
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-index 8bc71fb2a765..b2812ec79d19 100644
+index b2812ec79d19..e73b369c3347 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-@@ -63,11 +63,10 @@ static int __i915_gem_stolen_insert_node_in_range(struct drm_i915_private *i915,
- 	return ret;
+@@ -1024,18 +1024,24 @@ bool i915_gem_object_is_stolen(const struct drm_i915_gem_object *obj)
+ 	return obj->ops == &i915_gem_object_stolen_ops;
  }
  
--int i915_gem_stolen_insert_node_in_range(struct drm_i915_private *i915,
--					 struct intel_stolen_node *node, u64 size,
-+int i915_gem_stolen_insert_node_in_range(struct intel_stolen_node *node, u64 size,
- 					 unsigned int alignment, u64 start, u64 end)
+-bool i915_gem_stolen_initialized(const struct drm_i915_private *i915)
++bool i915_gem_stolen_initialized(struct drm_device *drm)
  {
--	return __i915_gem_stolen_insert_node_in_range(i915, &node->node,
-+	return __i915_gem_stolen_insert_node_in_range(node->i915, &node->node,
- 						      size, alignment,
- 						      start, end);
- }
-@@ -82,11 +81,10 @@ static int __i915_gem_stolen_insert_node(struct drm_i915_private *i915,
- 						      U64_MAX);
++	struct drm_i915_private *i915 = to_i915(drm);
++
+ 	return drm_mm_initialized(&i915->mm.stolen);
  }
  
--int i915_gem_stolen_insert_node(struct drm_i915_private *i915,
--				struct intel_stolen_node *node, u64 size,
-+int i915_gem_stolen_insert_node(struct intel_stolen_node *node, u64 size,
- 				unsigned int alignment)
+-u64 i915_gem_stolen_area_address(const struct drm_i915_private *i915)
++u64 i915_gem_stolen_area_address(struct drm_device *drm)
  {
--	return __i915_gem_stolen_insert_node(i915, &node->node, size, alignment);
-+	return __i915_gem_stolen_insert_node(node->i915, &node->node, size, alignment);
++	struct drm_i915_private *i915 = to_i915(drm);
++
+ 	return i915->dsm.stolen.start;
  }
  
- static void __i915_gem_stolen_remove_node(struct drm_i915_private *i915,
-@@ -97,10 +95,9 @@ static void __i915_gem_stolen_remove_node(struct drm_i915_private *i915,
- 	mutex_unlock(&i915->mm.stolen_lock);
- }
- 
--void i915_gem_stolen_remove_node(struct drm_i915_private *i915,
--				 struct intel_stolen_node *node)
-+void i915_gem_stolen_remove_node(struct intel_stolen_node *node)
+-u64 i915_gem_stolen_area_size(const struct drm_i915_private *i915)
++u64 i915_gem_stolen_area_size(struct drm_device *drm)
  {
--	__i915_gem_stolen_remove_node(i915, &node->node);
-+	__i915_gem_stolen_remove_node(node->i915, &node->node);
- }
- 
- static bool valid_stolen_size(struct drm_i915_private *i915, struct resource *dsm)
-@@ -1042,9 +1039,10 @@ u64 i915_gem_stolen_area_size(const struct drm_i915_private *i915)
++	struct drm_i915_private *i915 = to_i915(drm);
++
  	return resource_size(&i915->dsm.stolen);
  }
  
--u64 i915_gem_stolen_node_address(const struct drm_i915_private *i915,
--				 const struct intel_stolen_node *node)
-+u64 i915_gem_stolen_node_address(const struct intel_stolen_node *node)
- {
-+	struct drm_i915_private *i915 = node->i915;
-+
- 	return i915->dsm.stolen.start + i915_gem_stolen_node_offset(node);
- }
- 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.h b/drivers/gpu/drm/i915/gem/i915_gem_stolen.h
-index 25ec8325fb29..c670736f09e1 100644
+index c670736f09e1..7b0386002ed4 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.h
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.h
-@@ -13,15 +13,12 @@ struct drm_i915_gem_object;
- struct drm_i915_private;
- struct intel_stolen_node;
+@@ -34,9 +34,9 @@ bool i915_gem_object_is_stolen(const struct drm_i915_gem_object *obj);
  
--int i915_gem_stolen_insert_node(struct drm_i915_private *i915,
--				struct intel_stolen_node *node, u64 size,
-+int i915_gem_stolen_insert_node(struct intel_stolen_node *node, u64 size,
- 				unsigned alignment);
--int i915_gem_stolen_insert_node_in_range(struct drm_i915_private *i915,
--					 struct intel_stolen_node *node, u64 size,
-+int i915_gem_stolen_insert_node_in_range(struct intel_stolen_node *node, u64 size,
- 					 unsigned alignment, u64 start,
- 					 u64 end);
--void i915_gem_stolen_remove_node(struct drm_i915_private *i915,
--				 struct intel_stolen_node *node);
-+void i915_gem_stolen_remove_node(struct intel_stolen_node *node);
- struct intel_memory_region *
- i915_gem_stolen_smem_setup(struct drm_i915_private *i915, u16 type,
- 			   u16 instance);
-@@ -41,8 +38,7 @@ bool i915_gem_stolen_initialized(const struct drm_i915_private *i915);
- u64 i915_gem_stolen_area_address(const struct drm_i915_private *i915);
- u64 i915_gem_stolen_area_size(const struct drm_i915_private *i915);
+ #define I915_GEM_STOLEN_BIAS SZ_128K
  
--u64 i915_gem_stolen_node_address(const struct drm_i915_private *i915,
--				 const struct intel_stolen_node *node);
-+u64 i915_gem_stolen_node_address(const struct intel_stolen_node *node);
+-bool i915_gem_stolen_initialized(const struct drm_i915_private *i915);
+-u64 i915_gem_stolen_area_address(const struct drm_i915_private *i915);
+-u64 i915_gem_stolen_area_size(const struct drm_i915_private *i915);
++bool i915_gem_stolen_initialized(struct drm_device *drm);
++u64 i915_gem_stolen_area_address(struct drm_device *drm);
++u64 i915_gem_stolen_area_size(struct drm_device *drm);
  
- bool i915_gem_stolen_node_allocated(const struct intel_stolen_node *node);
- u64 i915_gem_stolen_node_offset(const struct intel_stolen_node *node);
+ u64 i915_gem_stolen_node_address(const struct intel_stolen_node *node);
+ 
 diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
-index b0bc3efcaf6c..7bdf73fad8bf 100644
+index 7bdf73fad8bf..42927326e567 100644
 --- a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
 +++ b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
-@@ -12,17 +12,13 @@ struct drm_device;
+@@ -10,7 +10,6 @@
+ 
+ struct drm_device;
  struct intel_stolen_node;
- struct xe_device;
+-struct xe_device;
  
--int i915_gem_stolen_insert_node_in_range(struct xe_device *xe,
--					 struct intel_stolen_node *node,
-+int i915_gem_stolen_insert_node_in_range(struct intel_stolen_node *node,
+ int i915_gem_stolen_insert_node_in_range(struct intel_stolen_node *node,
  					 u32 size, u32 align,
- 					 u32 start, u32 end);
+@@ -20,15 +19,15 @@ int i915_gem_stolen_insert_node(struct intel_stolen_node *node, u32 size, u32 al
  
--int i915_gem_stolen_insert_node(struct xe_device *xe,
--				struct intel_stolen_node *node,
--				u32 size, u32 align);
-+int i915_gem_stolen_insert_node(struct intel_stolen_node *node, u32 size, u32 align);
+ void i915_gem_stolen_remove_node(struct intel_stolen_node *node);
  
--void i915_gem_stolen_remove_node(struct xe_device *xe,
--				 struct intel_stolen_node *node);
-+void i915_gem_stolen_remove_node(struct intel_stolen_node *node);
+-bool i915_gem_stolen_initialized(struct xe_device *xe);
++bool i915_gem_stolen_initialized(struct drm_device *drm);
  
- bool i915_gem_stolen_initialized(struct xe_device *xe);
+ bool i915_gem_stolen_node_allocated(const struct intel_stolen_node *node);
  
-@@ -34,8 +30,7 @@ u64 i915_gem_stolen_area_address(const struct xe_device *xe);
+ u32 i915_gem_stolen_node_offset(struct intel_stolen_node *node);
  
- u64 i915_gem_stolen_area_size(const struct xe_device *xe);
+-u64 i915_gem_stolen_area_address(const struct xe_device *xe);
++u64 i915_gem_stolen_area_address(struct drm_device *drm);
  
--u64 i915_gem_stolen_node_address(struct xe_device *xe,
--				 struct intel_stolen_node *node);
-+u64 i915_gem_stolen_node_address(struct intel_stolen_node *node);
+-u64 i915_gem_stolen_area_size(const struct xe_device *xe);
++u64 i915_gem_stolen_area_size(struct drm_device *drm);
  
- u64 i915_gem_stolen_node_size(const struct intel_stolen_node *node);
+ u64 i915_gem_stolen_node_address(struct intel_stolen_node *node);
  
 diff --git a/drivers/gpu/drm/xe/display/xe_stolen.c b/drivers/gpu/drm/xe/display/xe_stolen.c
-index eea182b569a1..c1afe70454d1 100644
+index c1afe70454d1..d7af731d9c90 100644
 --- a/drivers/gpu/drm/xe/display/xe_stolen.c
 +++ b/drivers/gpu/drm/xe/display/xe_stolen.c
-@@ -11,11 +11,12 @@ struct intel_stolen_node {
- 	struct xe_bo *bo;
- };
- 
--int i915_gem_stolen_insert_node_in_range(struct xe_device *xe,
--					 struct intel_stolen_node *node,
-+int i915_gem_stolen_insert_node_in_range(struct intel_stolen_node *node,
- 					 u32 size, u32 align,
- 					 u32 start, u32 end)
- {
-+	struct xe_device *xe = node->xe;
-+
- 	struct xe_bo *bo;
- 	int err = 0;
- 	u32 flags = XE_BO_FLAG_PINNED | XE_BO_FLAG_STOLEN;
-@@ -41,9 +42,7 @@ int i915_gem_stolen_insert_node_in_range(struct xe_device *xe,
- 	return err;
- }
- 
--int i915_gem_stolen_insert_node(struct xe_device *xe,
--				struct intel_stolen_node *node,
--				u32 size, u32 align)
-+int i915_gem_stolen_insert_node(struct intel_stolen_node *node, u32 size, u32 align)
- {
- 	/* Not used on xe */
- 	WARN_ON(1);
-@@ -51,8 +50,7 @@ int i915_gem_stolen_insert_node(struct xe_device *xe,
- 	return -ENODEV;
- }
- 
--void i915_gem_stolen_remove_node(struct xe_device *xe,
--				 struct intel_stolen_node *node)
-+void i915_gem_stolen_remove_node(struct intel_stolen_node *node)
- {
- 	xe_bo_unpin_map_no_vm(node->bo);
+@@ -56,8 +56,10 @@ void i915_gem_stolen_remove_node(struct intel_stolen_node *node)
  	node->bo = NULL;
-@@ -92,9 +90,10 @@ u64 i915_gem_stolen_area_size(const struct xe_device *xe)
- 	return 0;
  }
  
--u64 i915_gem_stolen_node_address(struct xe_device *xe,
--				 struct intel_stolen_node *node)
-+u64 i915_gem_stolen_node_address(struct intel_stolen_node *node)
+-bool i915_gem_stolen_initialized(struct xe_device *xe)
++bool i915_gem_stolen_initialized(struct drm_device *drm)
  {
-+	struct xe_device *xe = node->xe;
++	struct xe_device *xe = to_xe_device(drm);
 +
- 	return xe_ttm_stolen_gpu_offset(xe) + i915_gem_stolen_node_offset(node);
+ 	return ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
  }
+ 
+@@ -75,7 +77,7 @@ u32 i915_gem_stolen_node_offset(struct intel_stolen_node *node)
+ }
+ 
+ /* Used for < gen4. These are not supported by Xe */
+-u64 i915_gem_stolen_area_address(const struct xe_device *xe)
++u64 i915_gem_stolen_area_address(struct drm_device *drm)
+ {
+ 	WARN_ON(1);
+ 
+@@ -83,7 +85,7 @@ u64 i915_gem_stolen_area_address(const struct xe_device *xe)
+ }
+ 
+ /* Used for gen9 specific WA. Gen9 is not supported by Xe */
+-u64 i915_gem_stolen_area_size(const struct xe_device *xe)
++u64 i915_gem_stolen_area_size(struct drm_device *drm)
+ {
+ 	WARN_ON(1);
  
 -- 
 2.47.3
