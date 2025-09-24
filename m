@@ -2,29 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2170DB9934D
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Sep 2025 11:44:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC21CB993C8
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Sep 2025 11:49:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4404810E6D1;
-	Wed, 24 Sep 2025 09:44:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD5EF10E6C9;
+	Wed, 24 Sep 2025 09:49:45 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RAC+i7fi";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A99CF10E6D1;
- Wed, 24 Sep 2025 09:44:08 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0703026018218558367=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9521710E22B;
+ Wed, 24 Sep 2025 09:49:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1758707385; x=1790243385;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=MjiJHtW59JI1Gj9g3PgVYcqja9tmaNrXkUwRWCb0r4U=;
+ b=RAC+i7fiOcIAjD9d/y3p36w4BPPDoUy0PRb5VNYvRZXMMR9PKfBcTA4T
+ w/53XKd0UEqDnwYpNg2boTehvNSqPWObWcp0tXpJeEkFd4MOk8pMb4xPK
+ Y+DGdiR0nbsiz3OsqmXfMueDJ8mEJwbxwQOtTFZxpJuRVHA0XvzHBupQQ
+ L42MsStT27anznQlhe7f6ARlHb5Mz/a5Zg5FYwg+2/xY5rVqXeSAQcl9X
+ xRugnweArFOKQon+qSGcOYCvAViuZryX60X9ISO8sEIMK+nun9vF9wruK
+ D51uZ4KcZFcShrrASjZ7DkXVNl3cKzR7fr4eJS/U0XzjP3PJ06FHVNopd w==;
+X-CSE-ConnectionGUID: DEhIznwCRDSBGgL0ly+CWw==
+X-CSE-MsgGUID: e0V9WqE8QPCtkXVFE0Bpmg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="78628826"
+X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="78628826"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2025 02:49:44 -0700
+X-CSE-ConnectionGUID: 1xO8xAMhR0OFuhpp/PsdxA==
+X-CSE-MsgGUID: 6gNQFy/cQU+04DlpWXhzdw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="207928277"
+Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.144])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2025 02:49:43 -0700
+Date: Wed, 24 Sep 2025 12:49:40 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 5/9] drm/i915/vrr:
+ s/intel_vrr_vblank_delay/intel_vrr_scl_delay
+Message-ID: <aNO-tA8hwlqBbNVb@intel.com>
+References: <20250923131043.2628282-1-ankit.k.nautiyal@intel.com>
+ <20250923131043.2628282-6-ankit.k.nautiyal@intel.com>
+ <aNKrC6CZmNZ2u-rH@intel.com>
+ <42504659-11d1-416e-99fc-2e62bd165e4b@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915/gem=3A_add_i915?=
- =?utf-8?q?=5Fgem=5Ffence=5Fwait=5Fpriority=5Fdisplay=28=29_helper?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 24 Sep 2025 09:44:08 -0000
-Message-ID: <175870704868.361018.6592974566043547244@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250924085129.146173-1-jani.nikula@intel.com>
-In-Reply-To: <20250924085129.146173-1-jani.nikula@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <42504659-11d1-416e-99fc-2e62bd165e4b@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,232 +72,115 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0703026018218558367==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Sep 24, 2025 at 03:03:39PM +0530, Nautiyal, Ankit K wrote:
+> 
+> On 9/23/2025 7:43 PM, Ville Syrjälä wrote:
+> > On Tue, Sep 23, 2025 at 06:40:39PM +0530, Ankit Nautiyal wrote:
+> >> The helper intel_vrr_vblank_delay() is used to account for scl lines
+> >> + extra_vblank_delay (for ICL/TGL case) for:
+> >> - evasion logic for vrr case
+> >> - to wait for SCL+ lines after send push operation.
+> >>
+> >> Rename the helper to intel_vrr_scl_delay since we are interested in the
+> >> SCL+ lines for the VRR cases.
+> >>
+> >> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> >> ---
+> >>   drivers/gpu/drm/i915/display/intel_dsb.c    | 4 ++--
+> >>   drivers/gpu/drm/i915/display/intel_vblank.c | 2 +-
+> >>   drivers/gpu/drm/i915/display/intel_vrr.c    | 2 +-
+> >>   drivers/gpu/drm/i915/display/intel_vrr.h    | 2 +-
+> >>   4 files changed, 5 insertions(+), 5 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+> >> index dee44d45b668..ca31e928ecb0 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+> >> @@ -128,7 +128,7 @@ static int dsb_vblank_delay(struct intel_atomic_state *state,
+> >>   		 * scanline until the delayed vblank occurs after
+> >>   		 * TRANS_PUSH has been written.
+> >>   		 */
+> >> -		return intel_vrr_vblank_delay(crtc_state) + 1;
+> >> +		return intel_vrr_scl_delay(crtc_state) + 1;
+> > I'd skip this renaming for now. I think after you've added the
+> > safe window scanline wait you can replace all of these with
+> > crtc_state->set_context_latency.
+> 
+> Hmm alright. I will drop this patch.
+> 
+> But the intel_vrr_vblank_delay() is now just 
+> crtc_state->set_context_latency + intel_vrr_extra_vblank_delay().
+> 
+> Do you mean we don't need intel_vrr_extra_vblank_delay()?
+> 
+> Perhaps you are right, with the wait for vmin safe window to end, will 
+> leave only SCL lines before delayed vblank.
+> 
+> So the one extra scanline which gets inserted for ICL/TGL will be 
+> counted in the wait for safe window.
 
-== Series Details ==
+Exactly. That icl/tgl quirk is functionally identical to
+just reducing the guardband by one line on ADL+, and thus
+both will be covered by the safe window wait.
 
-Series: drm/i915/gem: add i915_gem_fence_wait_priority_display() helper
-URL   : https://patchwork.freedesktop.org/series/154944/
-State : failure
+> 
+> 
+> >
+> >>   	else
+> >>   		return intel_mode_vblank_delay(&crtc_state->hw.adjusted_mode);
+> >>   }
+> >> @@ -723,7 +723,7 @@ void intel_dsb_vblank_evade(struct intel_atomic_state *state,
+> >>   		intel_dsb_emit_wait_dsl(dsb, DSB_OPCODE_WAIT_DSL_OUT, 0, 0);
+> >>   
+> >>   	if (pre_commit_is_vrr_active(state, crtc)) {
+> >> -		int vblank_delay = intel_vrr_vblank_delay(crtc_state);
+> >> +		int vblank_delay = intel_vrr_scl_delay(crtc_state);
+> >>   
+> >>   		end = intel_vrr_vmin_vblank_start(crtc_state);
+> >>   		start = end - vblank_delay - latency;
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+> >> index c15234c1d96e..9441b7bacd27 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_vblank.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+> >> @@ -681,7 +681,7 @@ void intel_vblank_evade_init(const struct intel_crtc_state *old_crtc_state,
+> >>   		else
+> >>   			evade->vblank_start = intel_vrr_vmax_vblank_start(crtc_state);
+> >>   
+> >> -		vblank_delay = intel_vrr_vblank_delay(crtc_state);
+> >> +		vblank_delay = intel_vrr_scl_delay(crtc_state);
+> > I was pondering about this case especially, but I *think* it should
+> > also be changed to crtc_state->set_context_latency. We don't want to
+> > perform the commit while in the SCL here because then we're not in
+> > the safe window and the DSB we use for LUT updates wouldn't start
+> > until the next safe window starts (== next frame's vactive), whereas
+> > the double buffered registers would latch already in the upcoming
+> > delayed vblank.
+> >
+> > But performing the commit while we're between undelayed vblank
+> > and SCL start should be fine since that is part of the safe
+> > window. So we don't need to evade the actual undelayed vblank
+> > when in VRR mode.
+> >
+> > The only exception here would be the LRR and M/N cases since those
+> > perhaps still need to evade the undlayed vblank proper. But we always
+> > drop out of VRR mode for those types of updates so they won't be
+> > taking this codepath anyway.
+> 
+> Hmm ok so replacing intel_vrr_vblank_delay with 
+> crtc_state->set_context_latency will work for both:
+> 
+> -the wait before push clear and
+> 
+> -the evasion case
+> 
+> So will add a last patch to just use crtc_state->set_context wherever we 
+> are using intel_vrr_vblank_delay then.
 
-== Summary ==
+ack
 
-CI Bug Log - changes from CI_DRM_17264 -> Patchwork_154944v1
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_154944v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_154944v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154944v1/index.html
-
-Participating hosts (43 -> 41)
-------------------------------
-
-  Missing    (2): fi-snb-2520m bat-adlp-6 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_154944v1:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@gem_exec_fence@basic-await@ccs0:
-    - bat-mtlp-9:         [PASS][1] -> [FAIL][2] +1 other test fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17264/bat-mtlp-9/igt@gem_exec_fence@basic-await@ccs0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154944v1/bat-mtlp-9/igt@gem_exec_fence@basic-await@ccs0.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_154944v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@requests:
-    - bat-atsm-1:         [PASS][3] -> [INCOMPLETE][4] ([i915#14564] / [i915#15017])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17264/bat-atsm-1/igt@i915_selftest@live@requests.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154944v1/bat-atsm-1/igt@i915_selftest@live@requests.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-6:         [PASS][5] -> [DMESG-FAIL][6] ([i915#12061]) +1 other test dmesg-fail
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17264/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154944v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-tgl-1115g4:      [PASS][7] -> [FAIL][8] ([i915#14867])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17264/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154944v1/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [DMESG-FAIL][9] ([i915#12061]) -> [PASS][10] +1 other test pass
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17264/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154944v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-    - bat-dg2-11:         [DMESG-FAIL][11] ([i915#12061]) -> [PASS][12] +1 other test pass
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17264/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154944v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-    - bat-mtlp-9:         [DMESG-FAIL][13] ([i915#12061]) -> [PASS][14] +1 other test pass
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17264/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154944v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-    - bat-arls-6:         [DMESG-FAIL][15] ([i915#12061]) -> [PASS][16] +1 other test pass
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17264/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154944v1/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live:
-    - bat-atsm-1:         [ABORT][17] ([i915#14201]) -> [INCOMPLETE][18] ([i915#12061] / [i915#14564])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17264/bat-atsm-1/igt@i915_selftest@live.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154944v1/bat-atsm-1/igt@i915_selftest@live.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#14201]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14201
-  [i915#14564]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14564
-  [i915#14867]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14867
-  [i915#15017]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15017
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_17264 -> Patchwork_154944v1
-
-  CI-20190529: 20190529
-  CI_DRM_17264: 53ee7e373ce454dc86b39ac27aa84d95c536b670 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8550: 4f8c7886ad02e116804ec08714f17bce1755c6e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_154944v1: 53ee7e373ce454dc86b39ac27aa84d95c536b670 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154944v1/index.html
-
---===============0703026018218558367==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gem: add i915_gem_fence_wait_priority_display() helper</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154944/">https://patchwork.freedesktop.org/series/154944/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154944v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154944v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17264 -&gt; Patchwork_154944v1</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_154944v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_154944v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154944v1/index.html</p>
-<h2>Participating hosts (43 -&gt; 41)</h2>
-<p>Missing    (2): fi-snb-2520m bat-adlp-6 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_154944v1:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@gem_exec_fence@basic-await@ccs0:<ul>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17264/bat-mtlp-9/igt@gem_exec_fence@basic-await@ccs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154944v1/bat-mtlp-9/igt@gem_exec_fence@basic-await@ccs0.html">FAIL</a> +1 other test fail</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_154944v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17264/bat-atsm-1/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154944v1/bat-atsm-1/igt@i915_selftest@live@requests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14564">i915#14564</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15017">i915#15017</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17264/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154944v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17264/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154944v1/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14867">i915#14867</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17264/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154944v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17264/bat-dg2-11/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154944v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17264/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154944v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17264/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154944v1/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_selftest@live:<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17264/bat-atsm-1/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14201">i915#14201</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154944v1/bat-atsm-1/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14564">i915#14564</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17264 -&gt; Patchwork_154944v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17264: 53ee7e373ce454dc86b39ac27aa84d95c536b670 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8550: 4f8c7886ad02e116804ec08714f17bce1755c6e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_154944v1: 53ee7e373ce454dc86b39ac27aa84d95c536b670 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============0703026018218558367==--
+-- 
+Ville Syrjälä
+Intel
