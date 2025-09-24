@@ -2,62 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E558BB99428
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Sep 2025 11:56:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E24B8B99508
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Sep 2025 12:03:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7565510E6D7;
-	Wed, 24 Sep 2025 09:56:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B06510E6DC;
+	Wed, 24 Sep 2025 10:03:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mrDb2PjZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z6URZIDW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 885FD10E6D8;
- Wed, 24 Sep 2025 09:56:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA74F10E6E3;
+ Wed, 24 Sep 2025 10:03:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758707803; x=1790243803;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=NMrBsXfSII1QWTHnh/rGw8CR80i4206V13AIqpXjlc0=;
- b=mrDb2PjZr6Z9hodAeJWzgxSJZMXdGUgx9lQEKv3p2IAGBChhSeOTlcvz
- eAqJ83lbFDZRwn5Wyuo+6TrR91trS0C6ItdlD0irfy+eD2iUhxDA9pIa8
- WU4TCY+BzZvUNgNMseP2xEZem4/hNivrhnTC2lZj914eLWQvNUYTNPdxV
- f+GUwz8/exrAIPjzs2vIW+XFJYqqi9oo+la3gDF4FqsIN12kY5tqHPP6d
- voi9dia60WhGDvg3dQmtMECAo4TaAn29FmgmMavhkenttkSQFpJxYTIQe
- kjmB6bi4Cs4W9TKHNmJ2a1+0djYV93/teubvLPiQuCcGPeSupM0JLwpvf A==;
-X-CSE-ConnectionGUID: DVYDsJ5HQJuSuJQzYWvj0g==
-X-CSE-MsgGUID: AmdcNnudTTKKXB5yVtNKfA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="86442978"
-X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="86442978"
+ t=1758708203; x=1790244203;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=dmY1PXd6LAESyj6WfheXeA7TVLW6u4KUSUZh56rvU0Y=;
+ b=Z6URZIDW6/8AuCIq1kHJM//L0q0pz68+2eeLlYCfSxIkhEvsOqQhSSUX
+ hTdwBpk9/44Bmbojx4Vr7PJxQ86yPlWv/LNIJkAaM5VcuXfYdkRZab84m
+ iCWRoFB+nm6MW2C//D4rR1esxceXBozeamy0r8jIcELsH17nZzvbo8XIV
+ +XHJZ5QBMBCDMP5cxCe8v+xyrTk4vVuKRWc+eptEUZdSUBDR0q0CkRhVW
+ 0r7VIRLIkcRU1RUc2wBdOkhLj2iLh5114ubqKp3v9CNd8o1Ox44qJ0Mp0
+ 4iWcs8FG8HFUjyGPgQgs8w1NJIdAqVu7U6rFuE3wVHBV3dMCnxYB+cKCF Q==;
+X-CSE-ConnectionGUID: +r6K78BCRd6QlASSrUgexg==
+X-CSE-MsgGUID: Z5xInlgURTegD4FWsXxoNg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="60924697"
+X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="60924697"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2025 02:56:42 -0700
-X-CSE-ConnectionGUID: QRFqIOnYT/axahSPHjSsaQ==
-X-CSE-MsgGUID: xbQ4w9koTyCUORu2sKHFfQ==
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2025 03:03:22 -0700
+X-CSE-ConnectionGUID: uDUptVxfTDOrJOzPmCAoLw==
+X-CSE-MsgGUID: fZNx2uUSSNSPzdJHglpexA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="176285170"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.245.144])
+X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="176287217"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO
+ vgovind2-mobl3.intel.com) ([10.245.246.157])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2025 02:56:41 -0700
-Date: Wed, 24 Sep 2025 12:56:38 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 06/20] drm/i915/cdclk: Extract dg2_power_well_count()
-Message-ID: <aNPAVg9USFz9rf93@intel.com>
-References: <20250923171943.7319-7-ville.syrjala@linux.intel.com>
- <20250924061602.2837-1-ville.syrjala@linux.intel.com>
- <30933726eb345cbf6ea9b1dcbfc0ad890d31e0d7@intel.com>
+ 24 Sep 2025 03:03:20 -0700
+From: Vinod Govindapillai <vinod.govindapillai@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: vinod.govindapillai@intel.com, jouni.hogander@intel.com,
+ kunal1.joshi@intel.com, jani.saarinen@intel.com
+Subject: [PATCH] drm/i915/fbc: update the impacted platforms in wa_22014263786
+Date: Wed, 24 Sep 2025 13:03:08 +0300
+Message-ID: <20250924100308.346808-1-vinod.govindapillai@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <30933726eb345cbf6ea9b1dcbfc0ad890d31e0d7@intel.com>
-X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,67 +69,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 24, 2025 at 12:05:56PM +0300, Jani Nikula wrote:
-> On Wed, 24 Sep 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > Extract the code to determine the DG2 pipe power well count
-> > into a small helper. I'll have other uses for this later.
-> >
-> > TODO: need to move this power well stuff out from the cdclk code...
-> >
-> > v2: Don't lose the early return from intel_cdclk_pcode_pre_notify()
-> >     (kernel test robot)
-> >
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_cdclk.c | 33 +++++++++++++---------
-> >  1 file changed, 19 insertions(+), 14 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > index 05d9f488895e..f190cfb85a34 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > @@ -2591,6 +2591,12 @@ static void intel_set_cdclk(struct intel_display *display,
-> >  	}
-> >  }
-> >  
-> > +static bool dg2_power_well_count(struct intel_display *display,
-> > +				 const struct intel_cdclk_state *cdclk_state)
-> > +{
-> > +	return display->platform.dg2 ? hweight8(cdclk_state->active_pipes) : 0;
-> > +}
-> > +
-> >  static void intel_cdclk_pcode_pre_notify(struct intel_atomic_state *state)
-> >  {
-> >  	struct intel_display *display = to_intel_display(state);
-> > @@ -2603,16 +2609,16 @@ static void intel_cdclk_pcode_pre_notify(struct intel_atomic_state *state)
-> >  
-> >  	if (!intel_cdclk_changed(&old_cdclk_state->actual,
-> >  				 &new_cdclk_state->actual) &&
-> > -				 new_cdclk_state->active_pipes ==
-> > -				 old_cdclk_state->active_pipes)
-> > +	    dg2_power_well_count(display, old_cdclk_state) ==
-> > +	    dg2_power_well_count(display, old_cdclk_state))
-> 
-> Both have old_cdclk_state, making this always true.
+wa_22014263786 is not applicable to the BMG and hence exclude it
+from the wa.
 
-doh
+Bspec: 74212, 66624
+Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_fbc.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-> 
-> Side note, perhaps the whole function should be renamed
-> dg2_cdclk_pcode_pre_notify(), because the additional dg2 check in
-> dg2_power_well_count() felt weird until I realized this is all dg2 only.
-
-Yeah, the whole thing should really be moved out from the cdclk
-code completely. This is essentially a variant of pmdemand,
-just through the pcode mailbox instead of using dedicated
-pmdemand registers (which internally will get sent over
-to pcode anyway). But the actual pmdemand code is also borked
-in various ways, so that too will need a lot of work :/
-
-I can cook up a patch to rename these in the meantime.
-
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index 0d380c825791..2938ee4b64d8 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -934,7 +934,8 @@ static void intel_fbc_program_workarounds(struct intel_fbc *fbc)
+ 			     0, DPFC_CHICKEN_COMP_DUMMY_PIXEL);
+ 
+ 	/* Wa_22014263786:icl,jsl,tgl,dg1,rkl,adls,adlp,mtl */
+-	if (DISPLAY_VER(display) >= 11 && !display->platform.dg2)
++	if (DISPLAY_VER(display) >= 11 && !display->platform.dg2 &&
++	    !display->platform.battlemage)
+ 		intel_de_rmw(display, ILK_DPFC_CHICKEN(fbc->id),
+ 			     0, DPFC_CHICKEN_FORCE_SLB_INVALIDATION);
+ 
 -- 
-Ville Syrjälä
-Intel
+2.43.0
+
