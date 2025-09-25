@@ -2,69 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4BD8B9DB76
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Sep 2025 08:43:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F935B9DDFE
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Sep 2025 09:38:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3C8910E846;
-	Thu, 25 Sep 2025 06:43:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70C4710E866;
+	Thu, 25 Sep 2025 07:38:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="cNaa6Q+k";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="/3se8pi5";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="vapjxTjo";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="L9uH1gnA";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="YOs5Vrh4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4212010E844
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Sep 2025 06:43:00 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id E872575B92;
- Thu, 25 Sep 2025 06:42:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1758782579; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=oFMcrEZdEURrdz2SIR1YNKgU/KyHwzydJ7NKOJngRPc=;
- b=cNaa6Q+kN1Ut+hjnzZXrNfSiMMe5TLCYgxIe+6BKjPaPpSNHHFor4S04InOmFMIB508wPo
- 0Ada2K4AIK+YjtYBG6+KeOu/cFtnhwXEXnfbEtXjNWe46K8KR6WijJhNCkqaKtYZjztCZi
- m76lwBgmElb/pP2gAVuwSvc3/1aaVuA=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1758782579;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=oFMcrEZdEURrdz2SIR1YNKgU/KyHwzydJ7NKOJngRPc=;
- b=/3se8pi5uYOnjZdfNG9Iu+sm/wVKmS7utwQl2f+2wtoDj/zoO60ZC6Cp//gi1wU6RoyxEe
- dQYRuX1of9EBN2Aw==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1758782578; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=oFMcrEZdEURrdz2SIR1YNKgU/KyHwzydJ7NKOJngRPc=;
- b=vapjxTjoK+5wkftWN3OgXbfUIJuHmVLDBDptz2RQspLcePD8TlCRYFWDSiAL82tMlYuSd8
- Nfkj4gBey+m/pCAj2iTaLQGemJCx1t4FPIcKyhfB8egbmStHulwI83Qp1VIXGDIg4oWoot
- 3VJ4O/Q1Alh6j7pOTQFAamsQTwSFAF0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1758782578;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=oFMcrEZdEURrdz2SIR1YNKgU/KyHwzydJ7NKOJngRPc=;
- b=L9uH1gnALN7Q2DsN9Z8M0+f6vvSb+MQi456DR773BiPmKqPmeRd6ovA/NQkRz+ALsNIi+a
- KPXNwpukp8Mx72Cg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 74C27132C9;
- Thu, 25 Sep 2025 06:42:58 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id 6tKwGnLk1GiwIgAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 25 Sep 2025 06:42:58 +0000
-Date: Thu, 25 Sep 2025 08:42:57 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B446910E851;
+ Thu, 25 Sep 2025 07:38:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:
+ Sender:Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=bqZvZ/5pdNu/3or+3MgLDWBFcNdLU/hmOe8Vi1ZESlY=; b=YOs5Vrh4e3fzWhff5WtfQvwM8/
+ A7rGk7Y2pb81uxpjh5SLHOtbVWYR2f8um8hk+3a4YaPmUNCV4aOlUjYfWFnymUwLV3qRX/JrPUn+0
+ b1HueBlf2RLW/OMo7dmg4c3fWCv21/THbjJRgSk/32Iy46YKkUzjq88IL8mrUpieygIOCz+MiN6nB
+ ncc4HTV9ZCY75O92XfsGXlFKWhUYjQ2KL3On9zQGFGbdcl/pRdLWQ1DdXP5nxGFksieOV9ePhT3YN
+ U5GGR4f12mob9f5+EW0eiLZb86ADs5MjBXBQVTRjl/vn8/SzIcPAQK6iJimYaGYwdessZ+AwhTwfX
+ NR2CKrnQ==;
+Received: from [84.66.36.92] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1v1gYD-00HEyM-Uw; Thu, 25 Sep 2025 09:38:02 +0200
+Date: Thu, 25 Sep 2025 08:38:01 +0100
+From: Tvrtko Ursulin <tursulin@igalia.com>
 To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
 Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
@@ -78,27 +47,11 @@ Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
  dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-next-fixes
-Message-ID: <20250925064257.GA9107@linux.fritz.box>
+Subject: [PULL] drm-intel-fixes
+Message-ID: <aNTxWfhsMkFZ3Q-a@linux>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-X-Spam-Level: 
-X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- FUZZY_RATELIMITED(0.00)[rspamd.com]; MIME_TRACE(0.00)[0:+];
- ARC_NA(0.00)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- TO_MATCH_ENVRCPT_ALL(0.00)[];
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]; RCVD_TLS_ALL(0.00)[];
- MISSING_XM_UA(0.00)[]; FROM_HAS_DN(0.00)[];
- RCPT_COUNT_TWELVE(0.00)[16]; FROM_EQ_ENVFROM(0.00)[];
- RCVD_VIA_SMTP_AUTH(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- TO_DN_SOME(0.00)[]
-X-Spam-Flag: NO
-X-Spam-Score: -4.30
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,57 +67,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+
 Hi Dave, Sima,
 
-here's the drm-misc-next-fixes PR.
+Two fixes this week: one to handle pwrite on huge buffers correctly and
+one to fix DDI transcoder programming.
 
-Best regards
-Thomas
+Tvrtko
 
-drm-misc-next-fixes-2025-09-25:
-Short summary of fixes pull:
+drm-intel-fixes-2025-09-25:
+- Set O_LARGEFILE in __create_shmem() (Taotao Chen)
+- Guard reg_val against a INVALID_TRANSCODER [ddi] (Suraj Kandpal)
+The following changes since commit 07e27ad16399afcd693be20211b0dfae63e0615f:
 
-bridge:
-- waveshare-dsi: Fix error handling in probe function
-
-pixpaper:
-- select GEM SHMEM helpers
-The following changes since commit 0265d0ebb409a25d3bb3a19494e0173d06d9d132:
-
-  drm/pixpaper: Fix return type of pixpaper_mode_valid() (2025-09-15 12:29:37 +0200)
+  Linux 6.17-rc7 (2025-09-21 15:08:52 -0700)
 
 are available in the Git repository at:
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-fixes-2025-09-25
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2025-09-25
 
-for you to fetch changes up to 0c4932f6ddf815618fa34f7403df682aed7862b5:
+for you to fetch changes up to 7f97a0a871d9532f2e1a5ee7d16d0e364215bcac:
 
-  drm/tiny: pixpaper: Fix missing dependency on DRM_GEM_SHMEM_HELPER (2025-09-23 14:07:04 +0200)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
-bridge:
-- waveshare-dsi: Fix error handling in probe function
-
-pixpaper:
-- select GEM SHMEM helpers
+  drm/i915/ddi: Guard reg_val against a INVALID_TRANSCODER (2025-09-23 08:52:18 +0100)
 
 ----------------------------------------------------------------
-LiangCheng Wang (1):
-      drm/tiny: pixpaper: Fix missing dependency on DRM_GEM_SHMEM_HELPER
+- Set O_LARGEFILE in __create_shmem() (Taotao Chen)
+- Guard reg_val against a INVALID_TRANSCODER [ddi] (Suraj Kandpal)
 
-Liu Ying (1):
-      drm/bridge: waveshare-dsi: Fix bailout for devm_drm_bridge_alloc()
+----------------------------------------------------------------
+Suraj Kandpal (1):
+      drm/i915/ddi: Guard reg_val against a INVALID_TRANSCODER
 
- drivers/gpu/drm/bridge/waveshare-dsi.c | 4 ++--
- drivers/gpu/drm/tiny/Kconfig           | 2 +-
- 2 files changed, 3 insertions(+), 3 deletions(-)
+Taotao Chen (1):
+      drm/i915: set O_LARGEFILE in __create_shmem()
 
--- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+ drivers/gpu/drm/i915/display/intel_ddi.c  | 5 +++--
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 7 +++++++
+ 2 files changed, 10 insertions(+), 2 deletions(-)
