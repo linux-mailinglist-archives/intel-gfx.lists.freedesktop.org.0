@@ -2,46 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D882BA1C81
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Sep 2025 00:24:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43602BA1CD9
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Sep 2025 00:34:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDAEF10E2DF;
-	Thu, 25 Sep 2025 22:24:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 101C610E2EA;
+	Thu, 25 Sep 2025 22:34:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="DJ2rDgnT";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="WkO1XQMT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D650410E2DF
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Sep 2025 22:24:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80C0A10E2EA
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Sep 2025 22:34:27 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 0493E61286;
- Thu, 25 Sep 2025 22:24:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 055B7C4CEF0;
- Thu, 25 Sep 2025 22:24:53 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id CFAFB61286;
+ Thu, 25 Sep 2025 22:34:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 221F7C4CEF0;
+ Thu, 25 Sep 2025 22:34:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1758839094;
- bh=G1twP7ubwsaGBSmqjUYLaTuz07aE+ImttWwk9RXof2A=;
+ s=k20201202; t=1758839666;
+ bh=P4A9eL4lSyNYDRcntAbk3yWhV7jVyYFaJyp2qmCKPt8=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=DJ2rDgnT5uNITx+AOv6fU6IbXJ6Fo3jyjCSiidaVecAdG/zvWqNByyc1gP3SToo1y
- bBTY54QPvK++oPYlGUUBu+DQuyIfpnV1mZ/Mk0oDcJrVt8exT9VKikseh4sxUXRM1y
- czSeNZQ9ue3ywH4NK+DCZXA4EcvYXNt5ciE38AuOa1WT4R1CkN7270h6pzzvjuvoAj
- VJT42wXdW3N9Hn916/UZF7Ar4L0+8CK9wcZPyo4sv7nGlY61K0ENwgI5HP5pxicy6m
- Dc7bznRxujdMwu5IzrtJ7xxZHog49a/vfhZ3RdrR73mbrvmgql4Zq/EwhezQhx1tTD
- csr1JX0fUsscA==
-Date: Fri, 26 Sep 2025 00:24:49 +0200
+ b=WkO1XQMTs4oeAmhABiScYJTAJ3vDcl3b0+gm+gEi+VyXt/hx8i+qQLog4Y53YRU16
+ 3ZZjg9RLcvZqkiyCxDmhFe6eHPPdF3Yb8LOGCoNsiwrw6t1vqXWQI64ovODfK0Hp31
+ ERGTZh79lNMWS8qVdDfiR0NeVGWEqwDluf6XUACUT8r59NaQO8z+AVvdXtscp/7W1h
+ f65kY/wG6YNb8iI+UXBlYkzGZ6+rHExOLcIAL/RTUGZ+9/em5lJ9ipuOAnnlsNxNJ3
+ 8MqVs7jqsO6/IJrO/Xo3aL5lA/3QIwegJOkWMAy1fSZFhyGbCBqa6LzNx6E5Jdnrk4
+ Gloj5UhKwgXYw==
+Date: Fri, 26 Sep 2025 00:34:22 +0200
 From: Andi Shyti <andi.shyti@kernel.org>
 To: Jonathan Cavitt <jonathan.cavitt@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, saurabhg.gupta@intel.com, 
- alex.zuo@intel.com, andi.shyti@linux.intel.com
-Subject: Re: [PATCH] drm/i915/gvt: Simplify case switch in intel_vgpu_ioctl
-Message-ID: <fdqs4pb3hv6vf7hnlzgry4vgk3pumqlwlbqo6wmsnoquwkz6ni@djzxydkwqdvc>
-References: <20250918214515.66926-2-jonathan.cavitt@intel.com>
+ alex.zuo@intel.com, andi.shyti@linux.intel.com, zhenyuw.linux@gmail.com
+Subject: Re: [PATCH v3] drm/i915/gvt: Improve intel_vgpu_ioctl hdr error
+ handling
+Message-ID: <rfjdl7lmaovq7q3drbvvt5us3t4ee4bdr5fsm6ava64ajr5ued@lmsoayx7iln6>
+References: <20250923212332.112137-2-jonathan.cavitt@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250918214515.66926-2-jonathan.cavitt@intel.com>
+In-Reply-To: <20250923212332.112137-2-jonathan.cavitt@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,23 +60,28 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi Jonathan,
 
-On Thu, Sep 18, 2025 at 09:45:16PM +0000, Jonathan Cavitt wrote:
-> We do not need a case switch to check cap_type_id in intel_vgpu_ioctl
-> for various reasons (it's impossible to hit the default case in the
-> current code, there's only one valid case to check, the error handling
-> code overlaps in both cases, etc.).  Simplify the case switch into a
-> single if statement.  This has the additional effect of simplifying the
-> error handling code.
+On Tue, Sep 23, 2025 at 09:23:33PM +0000, Jonathan Cavitt wrote:
+> Add error handling for the following VFIO_DEVICE_SET_IRQS cases with
+> respect to the hdr struct:
 > 
-> Note that it is still currently impossible for
-> 'if (cap_type_id == VFIO_REGION_INFO_CAP_SPARSE_MMAP)'
-> to fail, but we should still guard against the possibility of this
-> changing in the future.
+> - More than one VFIO_IRQ_DATA_TYPE_MASK flag is set in hdr.flags
+> - More than one VFIO_IRQ_ACTION_TYPE_MASK flag is set in hdr.flags
+> - hdr.count is not specified
+> 
+> Note that since hdr.count != 0, data_size != 0 is guaranteed unless
+> vfio_set_irqs_validate_and_prepare fails and returns an error.  So, we
+> no longer need to check data_size before running memdup_user because
+> checking the return value of the function is sufficient.
+> 
+> v2: Use correct name for mask
+> 
+> v3: Use is_power_of_2 over hweight32 as it's more efficient (Andi)
 > 
 > Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 > Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Reviewed-by: Zhenyu Wang <zhenyuw.linux@gmail.com>
 
-pushed to drm-intel-next.
+merged to drm-intel-next.
 
-Thanks,
+Thank you,
 Andi
