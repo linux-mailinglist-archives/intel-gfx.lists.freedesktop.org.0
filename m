@@ -2,47 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43602BA1CD9
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Sep 2025 00:34:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EB63BA1D1E
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Sep 2025 00:36:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 101C610E2EA;
-	Thu, 25 Sep 2025 22:34:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F48510E2F6;
+	Thu, 25 Sep 2025 22:36:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="WkO1XQMT";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="aCiMqVny";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80C0A10E2EA
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Sep 2025 22:34:27 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 357B910E2F6
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Sep 2025 22:36:46 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id CFAFB61286;
- Thu, 25 Sep 2025 22:34:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 221F7C4CEF0;
- Thu, 25 Sep 2025 22:34:25 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id DEE2D40247;
+ Thu, 25 Sep 2025 22:36:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E2E8C4CEF0;
+ Thu, 25 Sep 2025 22:36:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1758839666;
- bh=P4A9eL4lSyNYDRcntAbk3yWhV7jVyYFaJyp2qmCKPt8=;
+ s=k20201202; t=1758839805;
+ bh=3TlSksVR41bW7acZ620/aXXn0gpVBf7GuSUrhHmo6H0=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=WkO1XQMTs4oeAmhABiScYJTAJ3vDcl3b0+gm+gEi+VyXt/hx8i+qQLog4Y53YRU16
- 3ZZjg9RLcvZqkiyCxDmhFe6eHPPdF3Yb8LOGCoNsiwrw6t1vqXWQI64ovODfK0Hp31
- ERGTZh79lNMWS8qVdDfiR0NeVGWEqwDluf6XUACUT8r59NaQO8z+AVvdXtscp/7W1h
- f65kY/wG6YNb8iI+UXBlYkzGZ6+rHExOLcIAL/RTUGZ+9/em5lJ9ipuOAnnlsNxNJ3
- 8MqVs7jqsO6/IJrO/Xo3aL5lA/3QIwegJOkWMAy1fSZFhyGbCBqa6LzNx6E5Jdnrk4
- Gloj5UhKwgXYw==
-Date: Fri, 26 Sep 2025 00:34:22 +0200
+ b=aCiMqVnyxBn456sMU8PwEraCbJsni9gpq3QKRfMx3pATtfSNom/DDsn8DH2bDZN1T
+ KXTognLEbp0XmMg/MqfBh+8F65U2xJ+9eKwbmABW0u5nZyNC5XRlbFjUm2aSwSKiWd
+ k9syAjPYXQCvTOV224Gbt8+gyvm11t3efwRQGWkQkvzsPtbciqdHzARWaDUKd4j3+9
+ paNf1QYYclp6EefX/OLc1o/0x8Q2ZyPW5jNHgZyqx8H6VinNd0CnGKDv7AEmEhPypF
+ VvR9UqAHdswc+tJY+Dcn2LMDu/cJtpO3A7xDsteAv8IqZw8d6fj2QppU43zsZ6y604
+ pXBM+aMLtIZWQ==
+Date: Fri, 26 Sep 2025 00:36:42 +0200
 From: Andi Shyti <andi.shyti@kernel.org>
-To: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, saurabhg.gupta@intel.com, 
- alex.zuo@intel.com, andi.shyti@linux.intel.com, zhenyuw.linux@gmail.com
-Subject: Re: [PATCH v3] drm/i915/gvt: Improve intel_vgpu_ioctl hdr error
- handling
-Message-ID: <rfjdl7lmaovq7q3drbvvt5us3t4ee4bdr5fsm6ava64ajr5ued@lmsoayx7iln6>
-References: <20250923212332.112137-2-jonathan.cavitt@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>, 
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Madhur Kumar <madhurkumar004@gmail.com>
+Subject: Re: [CI] drm/i915: i915_pmu: Use sysfs_emit() instead of sprintf()
+Message-ID: <6vrwfvkmabyysapvjzkin3ysef7lnhrojndi6rr5sgfdleq42m@7ngkv2aubxip>
+References: <20250924204141.1199857-1-andi.shyti@linux.intel.com>
+ <aNWvBGyPXCJnv8oV@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-15
 Content-Disposition: inline
-In-Reply-To: <20250923212332.112137-2-jonathan.cavitt@intel.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aNWvBGyPXCJnv8oV@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,30 +60,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jonathan,
+Hi Ville,
 
-On Tue, Sep 23, 2025 at 09:23:33PM +0000, Jonathan Cavitt wrote:
-> Add error handling for the following VFIO_DEVICE_SET_IRQS cases with
-> respect to the hdr struct:
+On Fri, Sep 26, 2025 at 12:07:16AM +0300, Ville Syrjälä wrote:
+> On Wed, Sep 24, 2025 at 10:41:41PM +0200, Andi Shyti wrote:
+> > From: Madhur Kumar <madhurkumar004@gmail.com>
+> > 
+> > Follow the advice in Documentation/filesystems/sysfs.rst:
+> > show() should only use sysfs_emit() or sysfs_emit_at() when formatting
+> > the value to be returned to user space.
+> > 
+> > Signed-off-by: Madhur Kumar <madhurkumar004@gmail.com>
+> > Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+> > Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> > Link: https://lore.kernel.org/r/20250923195051.1277855-1-madhurkumar004@gmail.com
+> > ---
+> > Hi,
+> > 
+> > I'm resending this patch because unfortunately CI doesn't test
+> > patches from non allowed users. Although trivial, we need all the
+> > patches to be tested.
 > 
-> - More than one VFIO_IRQ_DATA_TYPE_MASK flag is set in hdr.flags
-> - More than one VFIO_IRQ_ACTION_TYPE_MASK flag is set in hdr.flags
-> - hdr.count is not specified
-> 
-> Note that since hdr.count != 0, data_size != 0 is guaranteed unless
-> vfio_set_irqs_validate_and_prepare fails and returns an error.  So, we
-> no longer need to check data_size before running memdup_user because
-> checking the return value of the function is sufficient.
-> 
-> v2: Use correct name for mask
-> 
-> v3: Use is_power_of_2 over hweight32 as it's more efficient (Andi)
-> 
-> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> Reviewed-by: Zhenyu Wang <zhenyuw.linux@gmail.com>
+> FYI you can just bounce the original mail to intel-gfx and CI will
+> pick it up.
 
-merged to drm-intel-next.
+if I bounce, doesn't the email preserve the header and the
+sender? Besides, the mailing list would see another resend and
+someone might complain why a patch has been sent twice.
 
-Thank you,
+Anyway, thanks for the hint, I will try it next time.
+
+Thanks,
 Andi
