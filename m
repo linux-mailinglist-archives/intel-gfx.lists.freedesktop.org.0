@@ -2,63 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94FAFBA8949
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Sep 2025 11:22:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E59CBA8C42
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Sep 2025 11:53:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6391710E227;
-	Mon, 29 Sep 2025 09:21:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 752C410E3E0;
+	Mon, 29 Sep 2025 09:53:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ksdd/C+J";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WXtaiPtH";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C83E010E121;
- Mon, 29 Sep 2025 09:21:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 903B110E3E0;
+ Mon, 29 Sep 2025 09:53:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759137717; x=1790673717;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=EAdJuh2rHPKTdcJoQ6aplCDnBKk+Hfyw9t9u++s/Q3k=;
- b=Ksdd/C+JDLuGL0cymjKXS/YtLPZ008oq34vu6oYxrBw1dkP8VSEIxRZh
- us+IyK8dRV0WfdJBbccywCN1zOOWQhyu/fe9x68HqgWu+/aIMemDE9RO4
- py7MjCR9KmrE8RjdA8LKgoglD+Bo+9jS9DJLYVPWa8Ov6hyHH6hvu8oKt
- 8lVoB2aGlYD0zM1U6PLexoQhMKGdupbz+yz+E8qF242zTDTx5lwygUfAf
- RiK687ti5dePLhgnIbfeNX08ApnfXvrsphsXmkNyQEW5DMEtnmLn3S1Au
- TOJV7EuiuPyt/fkqDT5qGi3XCEWJGCan+cOENcthGbd9ETrgfRTZ96FZe A==;
-X-CSE-ConnectionGUID: gSQewb66QniZbU96PrJjkg==
-X-CSE-MsgGUID: jzF3FV/ARBeF2mGybRfa/Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11567"; a="61293410"
-X-IronPort-AV: E=Sophos;i="6.18,301,1751266800"; d="scan'208";a="61293410"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2025 02:21:57 -0700
-X-CSE-ConnectionGUID: IT/ThN9HSsi2iDGOc5OVsQ==
-X-CSE-MsgGUID: MZQbF9R8S3iI5Ga6KXkVtA==
+ t=1759139605; x=1790675605;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=f4Zq8YVWZcBL4pvH2ah8d5WOtfpZ4ebUppDY/uQyRmo=;
+ b=WXtaiPtHBg3pXwQEoxMY7opHD/gYtZ3jW10aBinfVaerC/C8tsz+fNJg
+ aaGUPDx5n+FsHHQBlejB0VwEmqY/9nO0DfjXa57ifQA3raE3h6UlcsFA7
+ lbtc158/DTYpyqZiiO25QVbHOztVy4t4g2KZKLJP998ZkJrHsR5Yb4bAX
+ bUAGZ1gm+HL7KJUrCuhlBTaSxT7Jkl3u87iwIu6eheRj88CNwcb9UDuYP
+ QREPVcyiacEZ2eJuhs3DZmYSJDrz4b7YYMj/u+VJJcS8HUfiTAiclpcFC
+ Yd20YV0iwLuyKPpmd++pxQpHcQvtdU3/pSgVdleDWhrxw1c7MWlXI7l+I g==;
+X-CSE-ConnectionGUID: grLH63TYTc+RWcy3cE/qvw==
+X-CSE-MsgGUID: 2zjposm7TiCZQ3TeUOvn0A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11567"; a="65012685"
+X-IronPort-AV: E=Sophos;i="6.18,301,1751266800"; d="scan'208";a="65012685"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2025 02:53:25 -0700
+X-CSE-ConnectionGUID: cBLOR/HNSA6RUGR1g2hC1w==
+X-CSE-MsgGUID: slkzuOaPR92WR1SJTBuJjw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,301,1751266800"; d="scan'208";a="177783549"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.245.198])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2025 02:21:55 -0700
-Date: Mon, 29 Sep 2025 12:21:52 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,301,1751266800"; d="scan'208";a="177756469"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.102])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2025 02:53:24 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 15/15] drm/i915/display: Use optimized guardband to set
- vblank start
-Message-ID: <aNpPsPlJM4usqQoY@intel.com>
-References: <20250928070541.3892890-1-ankit.k.nautiyal@intel.com>
- <20250928070541.3892890-16-ankit.k.nautiyal@intel.com>
- <aNpHHxXXFOEKDUmP@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aNpHHxXXFOEKDUmP@intel.com>
-X-Patchwork-Hint: comment
+Subject: Re: [PATCH 00/11] drm/{i915, xe}/stolen: refactor and unify interfaces
+In-Reply-To: <aNbeTOg51r9puj4i@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1758732183.git.jani.nikula@intel.com>
+ <aNbeTOg51r9puj4i@intel.com>
+Date: Mon, 29 Sep 2025 12:53:20 +0300
+Message-ID: <8647037b236072ce48940261430d55a7654d4922@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,43 +70,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 29, 2025 at 11:45:19AM +0300, Ville Syrjälä wrote:
-> On Sun, Sep 28, 2025 at 12:35:40PM +0530, Ankit Nautiyal wrote:
-> > +static void intel_crtc_vblank_delay(struct intel_atomic_state *state,
-> > +				    struct intel_crtc *crtc)
-> > +{
-> > +	struct intel_crtc_state *crtc_state =
-> > +		intel_atomic_get_new_crtc_state(state, crtc);
-> > +	struct drm_display_mode *adjusted_mode =
-> > +		&crtc_state->hw.adjusted_mode;
-> > +	int vblank_delay = 0;
-> > +
-> > +	vblank_delay = intel_crtc_min_guardband_delay(state, crtc);
-> > +
-> > +	adjusted_mode->crtc_vblank_start += vblank_delay;
-> 
-> The situation with crtc_vblank_start is already kinda broken,
-> and I think we need to fix that first somehow.
-> 
-> Currently crtc_vblank_start is assumed to be the vblank_start
-> for the fixed refresh rate case. That value can be different
-> from the variable refresh rate case whenever
-> always_use_vrr_tg()==false. On icl/tgl it's always different
-> due to the extra vblank delay, and also on adl+ it could be
-> different if we were to use an optimized guardband.
-> 
-> I think there are a few options how we might solve this:
-> 1. keep crtc_vblank_start as is, and make sure every user of it
->    gets adjusted to also deal with the vrr case correctly
-> 2. enable always_use_vrr_tg() whenever there might be switch
->    between vrr and fixed refresh rate, which I think would mean
->    crtc_state->vrr.in_range==true.
+On Fri, 26 Sep 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Wed, Sep 24, 2025 at 07:43:29PM +0300, Jani Nikula wrote:
+>>=20
+>> Jani Nikula (11):
+>>   drm/{i915,xe}/stolen: rename i915_stolen_fb to intel_stolen_node
+>>   drm/xe/stolen: rename fb to node in stolen compat header
+>>   drm/xe/stolen: convert compat stolen macros to inline functions
+>>   drm/xe/stolen: switch from BUG_ON() to WARN_ON() in compat
+>>   drm/i915/stolen: convert intel_stolen_node into a real struct of its
+>>     own
+>>   drm/xe/stolen: convert compat static inlines to proper functions
+>>   drm/{i915,xe}/stolen: make struct intel_stolen_node opaque
+>>   drm/{i915,xe}/stolen: add device pointer to struct intel_stolen_node
+>>   drm/{i915,xe}/stolen: use the stored i915/xe device pointer
+>>   drm/{i915,xe}/stolen: convert stolen interface to struct drm_device
+>>   drm/xe/stolen: use the same types as i915 interface
+>
+> Looks fine by me. Series is
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-One slight downside with option 2 would that we migth lose
-fastboot support. Dunno if we could come up with a scheme that
-prefers option 2 while still allowing the live legacy TG -> VRR
-TG change during fastboot...
+Thanks for the review, pushed to din.
 
--- 
-Ville Syrjälä
-Intel
+> Side note: I have branch somewhere that replaces the raw
+> drm_mm_node FBC stuff with a real i915_gem_object. I used
+> that as a way to easily expose the CFB and LLB as files in
+> debugfs so that I could observe/modify the actual CFB contents.
+> I should look into making that official to help future FBC
+> debugging. With the abstraction layer I shouldn't even need
+> to touch the FBC code itself anymore...
+
+Yay!
+
+BR,
+Jani.
+
+--=20
+Jani Nikula, Intel
