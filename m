@@ -2,78 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47530BA9382
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Sep 2025 14:42:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14EE7BA9430
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Sep 2025 15:00:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0132310E234;
-	Mon, 29 Sep 2025 12:42:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6937210E417;
+	Mon, 29 Sep 2025 13:00:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="CmhGYThj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Gl23bGBH";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-f193.google.com (mail-pl1-f193.google.com
- [209.85.214.193])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 197B210E0DE
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 Sep 2025 18:40:23 +0000 (UTC)
-Received: by mail-pl1-f193.google.com with SMTP id
- d9443c01a7336-244580523a0so27486225ad.1
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 Sep 2025 11:40:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1758912022; x=1759516822; darn=lists.freedesktop.org;
- h=content-transfer-encoding:subject:content-language:cc:to:from
- :user-agent:mime-version:date:message-id:from:to:cc:subject:date
- :message-id:reply-to;
- bh=stJ84izxeEItUB66Vm/qDYA515D2UztYSOWsa2H0chY=;
- b=CmhGYThj0nI19G8a+y9515tUMx5brM8IdV5ilnX89g3c+3UhE8RHZ2AMgBb47Nzn5F
- Qr7oOFuY1MYmnO3Xnivil7jjCPkCosGUHhsuBhvZt9io2ull3mqEUtUsHB2wH5Ic/kT9
- xVZSt8XMYCrn8heP7gnbRIz9Z72gjV2rV/iIiQNvyRiKJqEyHtBUNc0iSZuOk0RV6F5V
- STIquWhdV8E2JgWcWmloP2nRHEVKFehS+/SYo2wxIo2GaD2S6PF8YLPGVb3INzr0uGzJ
- 28BB3wA+izIq79yFcWnKpjj5ZV0WFn2FMb2LkW/b3VQ3GmLykFcfWjtBiVwmsn8Jol0U
- B4fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1758912022; x=1759516822;
- h=content-transfer-encoding:subject:content-language:cc:to:from
- :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
- :cc:subject:date:message-id:reply-to;
- bh=stJ84izxeEItUB66Vm/qDYA515D2UztYSOWsa2H0chY=;
- b=M6MojthuLEtrMXCu9CQoiyoUtxU9GZiPLr26h2VBq5xVtIl6OAOHziDsnIF1QnJ4e2
- MrNf6G9/ArwUJTgYUPJG/RfWVMQepjxjCagToT+V99brsHyc4oZXiLIGP0bOAEYW78vB
- 5/WtxgRbiCSCjPUDx/jttAvgluu7udspheT4SiIpnfHadiA0zV4ssoBE8hbc27IVigR8
- bKK58QZcohge52Cbp3TrrjGD06pKmpFJEdbHTw3ygGMdwrCYAovvRQ1hV49kIJp2lKv4
- Mgu7pJR31o1S9AspCnCLC3yu6RILIArZIHlls9oTEFTFb4b2FQvWhYqizAsPetPlquiU
- uGwA==
-X-Gm-Message-State: AOJu0Yw9xb6SCk+zByYLvSltvqYScooorh0e0fp1SPAa7E7t22//hPNK
- /xDy69Q5mhWLM+ynnJlQpTlr8RBUdzKyJaiCSlXoJh82MmQObkmllYnt7O4WYLtb0QY=
-X-Gm-Gg: ASbGncvzyQF2kmnSZ7mr+BbKscPOhxstdZUXUPJxTUj2DUFcVMq6rbxtCdiIViP8Lib
- sGXz5tkmsb4APCPogzQDLbPXf8Tum5thYBRehRNNC0s7/gzy0lgAtgnFKkHFuMOvDLcxMB/g2WE
- 18MGoGVBa+wbB7R99rxKFPbXydJdWuAmhHe1MCXGUFIS2Zl202NY5dxo3z5l5fCJF8H89vgpwaP
- p92cjxsAaZfg3SeNu6FHYAnURdTRQ2AJ4vowPLFoZE9jdhv4ub2zUhYgtWcVO2rY42RSZPiRDDr
- ASKzsQknfzk42BisAuiyOszw+20DIzyKAgwP6txWJHWlnQV34K3UwscmO3KVT8BAKHAirwoU6cU
- Xf8teRbbaFDO1vLi8w8mhJfG4oID88FEpGwk9ehQlMVmgiw==
-X-Google-Smtp-Source: AGHT+IFXGK8iMqpu/q1zv7TPk0SPuVzNPBS6MvhQ56CHLCHoWBCkzmIr0jwTnM+QK+B7YQEUTx2v/A==
-X-Received: by 2002:a17:903:3d06:b0:275:7ee4:83bc with SMTP id
- d9443c01a7336-27ed49b8694mr107333915ad.2.1758912022346; 
- Fri, 26 Sep 2025 11:40:22 -0700 (PDT)
-Received: from [192.168.0.218] ([115.187.48.192])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-27ed66d310csm60991305ad.10.2025.09.26.11.40.19
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 26 Sep 2025 11:40:21 -0700 (PDT)
-Message-ID: <b285bfa2-2601-4977-b565-642830eea956@gmail.com>
-Date: Sat, 27 Sep 2025 00:10:17 +0530
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AFFB10E417;
+ Mon, 29 Sep 2025 13:00:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1759150831; x=1790686831;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=2SPq3hhNxWXiToFH4Ef2u7yuDE+l9ym+GNIndFMpXPc=;
+ b=Gl23bGBHS6Fjx5V56DXMvIsU2dSfI6J/LhA32rpH6Z8/taItNCXJZ0fp
+ 9SbOnq0eCE4CorHeoARrrOx8jfa94w6Ir/MyL2I2obME6fu+7mmqysstN
+ 1h7KiLwsBYok4wXYqPhi1p/AVnBmzlpGYJ+xYeXif26odRxakWEvUKAYc
+ c4JE1A1x5nou2mdOY2D+nXVrMnOp1dAQjBLT1+X5uBcyJyCnMo4ePCZoQ
+ Qk/QEyBozKAaGYAlq2DKOizoMdon7dEzszd46QF7EfRRJKZFUIidlJhuj
+ iGkN+nlHG1b4b/Cwr61kgxHQ6ByJ3n1hJlAnc0DwWwNRawsWSpWiPtIMB A==;
+X-CSE-ConnectionGUID: ofa6v4TnQtWFUM24Na7vQQ==
+X-CSE-MsgGUID: uZH6/4F5Q82BQEJsCSkcKw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11568"; a="78812043"
+X-IronPort-AV: E=Sophos;i="6.18,301,1751266800"; d="scan'208";a="78812043"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2025 06:00:30 -0700
+X-CSE-ConnectionGUID: iHFM06jEQBO/sLrdrXTR3w==
+X-CSE-MsgGUID: iEvuWF6eQz+NS51l4FAUSA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,301,1751266800"; d="scan'208";a="178612518"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO jhogande-mobl3..)
+ ([10.245.245.161])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2025 06:00:27 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: animesh.manna@intel.com,
+ =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH v2 1/2] drm/i915/alpm: Compute ALPM parameters into
+ crtc_state->alpm_state
+Date: Mon, 29 Sep 2025 16:00:02 +0300
+Message-ID: <20250929130003.28365-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Bandhan Pramanik <bandhanpramanik06.foss@gmail.com>
-To: intel-gfx@lists.freedesktop.org, linux-acpi@vger.kernel.org
-Cc: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com, rafael@kernel.org,
- lenb@kernel.org, tursulin@ursulin.net, joonas.lahtinen@linux.intel.com
-Content-Language: en-US
-Subject: [BUG] ACPI/i915: Dell Inspiron 5567 fails to resume from S3 (black
- screen), DSDT patch included
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 29 Sep 2025 12:42:26 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,99 +71,307 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello everyone,
+Currently ALPM parameters are computed directly into
+intel_dp->alpm_parameters. This is a problem when compute config ends up to
+not using the computed state.
 
-I am reporting a long-standing bug on the Dell Inspiron 5567 that causes 
-it to fail when resuming from S3 sleep, resulting in a black screen. 
-This issue has been present for years, including on Windows.
+Fix this by adding ALPM parameters into intel_crtc_state and compute into
+there. Copy needed parameters (io_wake_lines and fast_wake_lines) from
+crtc_state->alpm_state into intel_dp->alpm.alpm_parameters (io_wake_lines
+and fast_wake_lines) when they are configured into HW.
 
-After a deep investigation, I've traced the root cause to a logical flaw 
-in the vendor's ACPI DSDT and have tried to develop a patch addressing 
-that. However, a final experiment has left me with a question about the 
-interaction between the ACPI code and the i915 driver, and I am seeking 
-expert insight.
+v2:
+  - store io/fast wake lines into intel_dp->dp instead of
+    intel_dp->alpm_parameters and do it in intel_psr_enable_locked
+  - rename crtc_state->alpm_parameters -> crtc_state->alpm_state
+  - clarify commit message
 
-Firstly, the original DSDT in the _PTS method calls the sleep trigger 
-(SLPE = One) before setting a critical flag (AES3 = One), meaning the 
-flag is never set for S3 sleep.
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_alpm.c     | 36 +++++++++----------
+ drivers/gpu/drm/i915/display/intel_alpm.h     |  2 +-
+ .../drm/i915/display/intel_display_types.h    | 21 +++++++----
+ drivers/gpu/drm/i915/display/intel_psr.c      | 36 ++++++++++---------
+ 4 files changed, 53 insertions(+), 42 deletions(-)
 
-The faulty code:
-
-Method (SPTS, 1, NotSerialized)
-{
-     SLPX = One
-     SLPE = One
-     If ((Arg0 == 0x03))
-     {
-         AES3 = One
-     }
-}
-
-My fix was to reorder the operations to ensure AES3 is set before 
-sleeping. With this patch, loaded via a GRUB override, S3 suspend and 
-resume are perfectly stable.
-
-Working patch:
-
-diff --git a/dsdt.dsl b/dsdt.dsl
-index f30aef6..b6fb883 100644
---- a/dsdt.dsl
-+++ b/dsdt.dsl
-@@ -4359,11 +4359,11 @@ DefinitionBlock ("", "DSDT", 2, "DELL  ", 
-"CBX3   ", 0x01072009)
-                  Method (SPTS, 1, NotSerialized)
-                  {
-                      SLPX = One
--                    SLPE = One
-                      If ((Arg0 == 0x03))
-                      {
-                          AES3 = One
-                      }
-+                    SLPE = One
-                  }
-
-                  Method (SWAK, 1, NotSerialized)
-
-(Note: I also confirmed that the _WAK sequence explicitly clears this 
-flag (AES3 = Zero), more specifically in the SWAK method of DSDT, which 
-supports the theory that it is part of an intended state machine.)
-
-Now, here comes the main part.
-
-The _WAK sequence on this machine calls a graphics-specific method, 
-_SB.PCI0.GFX0.IUEH, which is defined in a secondary ACPI table (SSDT). 
-This method appears to be responsible for display re-initialization 
-after waking.
-
-To confirm its role, I created an experimental patch where I commented 
-out the calls to IUEH inside the RWAK method. I expected this to 
-reliably cause a black screen on resume.
-
-Surprisingly, it did not. The system still resumed and the display 
-turned on, even though my patched ACPI table with the disabled IUEH 
-calls was successfully loaded (confirmed via dmesg: "ACPI: DSDT ACPI 
-table found in initrd...").
-
-Here are the questions:
-
-1) Is the i915 driver "saving the day?" Does the kernel's native i915 
-driver handle the entire display resume sequence on its own, making the 
-ACPI IUEH call redundant on a modern Linux system?
-
-2) What is the failure mechanism? If the i915 driver is doing the work, 
-why does the black screen bug happen in the first place? Does the 
-driver's resume sequence depend on a specific hardware state that is 
-only correctly configured when my AES3 = One patch is applied before sleep?
-
-3) How can I debug this further? Are there specific tracepoints or debug 
-flags in the i915 driver I can enable to see where the resume sequence 
-fails when AES3 is not set?
-
-Here is the full acpidump for review: 
-https://gist.githubusercontent.com/BandhanPramanik/3e5350019b513c0d32afed1f22dbaf42/raw/1f44ddcfb17277ce282cf03f9aab2f91bec1bd30/acpidump
-
-Thank you for your time and for maintaining these critical subsystems.
-
-Bandhan Pramanik
-বন্ধন প্রামাণিক
+diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
+index 749119cc0b28..9f4a9d8b4dec 100644
+--- a/drivers/gpu/drm/i915/display/intel_alpm.c
++++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+@@ -122,7 +122,7 @@ static int _lnl_compute_aux_less_wake_time(const struct intel_crtc_state *crtc_s
+ 
+ static int
+ _lnl_compute_aux_less_alpm_params(struct intel_dp *intel_dp,
+-				  const struct intel_crtc_state *crtc_state)
++				  struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
+ 	int aux_less_wake_time, aux_less_wake_lines, silence_period,
+@@ -144,15 +144,15 @@ _lnl_compute_aux_less_alpm_params(struct intel_dp *intel_dp,
+ 	if (display->params.psr_safest_params)
+ 		aux_less_wake_lines = ALPM_CTL_AUX_LESS_WAKE_TIME_MASK;
+ 
+-	intel_dp->alpm_parameters.aux_less_wake_lines = aux_less_wake_lines;
+-	intel_dp->alpm_parameters.silence_period_sym_clocks = silence_period;
+-	intel_dp->alpm_parameters.lfps_half_cycle_num_of_syms = lfps_half_cycle;
++	crtc_state->alpm_state.aux_less_wake_lines = aux_less_wake_lines;
++	crtc_state->alpm_state.silence_period_sym_clocks = silence_period;
++	crtc_state->alpm_state.lfps_half_cycle_num_of_syms = lfps_half_cycle;
+ 
+ 	return true;
+ }
+ 
+ static bool _lnl_compute_alpm_params(struct intel_dp *intel_dp,
+-				     const struct intel_crtc_state *crtc_state)
++				     struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
+ 	int check_entry_lines;
+@@ -173,7 +173,7 @@ static bool _lnl_compute_alpm_params(struct intel_dp *intel_dp,
+ 	if (display->params.psr_safest_params)
+ 		check_entry_lines = 15;
+ 
+-	intel_dp->alpm_parameters.check_entry_lines = check_entry_lines;
++	crtc_state->alpm_state.check_entry_lines = check_entry_lines;
+ 
+ 	return true;
+ }
+@@ -204,7 +204,7 @@ static int io_buffer_wake_time(const struct intel_crtc_state *crtc_state)
+ }
+ 
+ bool intel_alpm_compute_params(struct intel_dp *intel_dp,
+-			       const struct intel_crtc_state *crtc_state)
++			       struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
+ 	int io_wake_lines, io_wake_time, fast_wake_lines, fast_wake_time;
+@@ -242,8 +242,8 @@ bool intel_alpm_compute_params(struct intel_dp *intel_dp,
+ 		io_wake_lines = fast_wake_lines = max_wake_lines;
+ 
+ 	/* According to Bspec lower limit should be set as 7 lines. */
+-	intel_dp->alpm_parameters.io_wake_lines = max(io_wake_lines, 7);
+-	intel_dp->alpm_parameters.fast_wake_lines = max(fast_wake_lines, 7);
++	crtc_state->alpm_state.io_wake_lines = max(io_wake_lines, 7);
++	crtc_state->alpm_state.fast_wake_lines = max(fast_wake_lines, 7);
+ 
+ 	return true;
+ }
+@@ -293,9 +293,9 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
+ 		    adjusted_mode->crtc_vdisplay - context_latency;
+ 	first_sdp_position = adjusted_mode->crtc_vtotal - adjusted_mode->crtc_vsync_start;
+ 	if (intel_alpm_aux_less_wake_supported(intel_dp))
+-		waketime_in_lines = intel_dp->alpm_parameters.io_wake_lines;
++		waketime_in_lines = crtc_state->alpm_state.io_wake_lines;
+ 	else
+-		waketime_in_lines = intel_dp->alpm_parameters.aux_less_wake_lines;
++		waketime_in_lines = crtc_state->alpm_state.aux_less_wake_lines;
+ 
+ 	crtc_state->has_lobf = (context_latency + guardband) >
+ 		(first_sdp_position + waketime_in_lines);
+@@ -321,7 +321,7 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
+ 		alpm_ctl = ALPM_CTL_ALPM_ENABLE |
+ 			ALPM_CTL_ALPM_AUX_LESS_ENABLE |
+ 			ALPM_CTL_AUX_LESS_SLEEP_HOLD_TIME_50_SYMBOLS |
+-			ALPM_CTL_AUX_LESS_WAKE_TIME(intel_dp->alpm_parameters.aux_less_wake_lines);
++			ALPM_CTL_AUX_LESS_WAKE_TIME(crtc_state->alpm_state.aux_less_wake_lines);
+ 
+ 		if (intel_dp->as_sdp_supported) {
+ 			u32 pr_alpm_ctl = PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_T1;
+@@ -339,7 +339,7 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
+ 
+ 	} else {
+ 		alpm_ctl = ALPM_CTL_EXTENDED_FAST_WAKE_ENABLE |
+-			ALPM_CTL_EXTENDED_FAST_WAKE_TIME(intel_dp->alpm_parameters.fast_wake_lines);
++			ALPM_CTL_EXTENDED_FAST_WAKE_TIME(crtc_state->alpm_state.fast_wake_lines);
+ 	}
+ 
+ 	if (crtc_state->has_lobf) {
+@@ -347,7 +347,7 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
+ 		drm_dbg_kms(display->drm, "Link off between frames (LOBF) enabled\n");
+ 	}
+ 
+-	alpm_ctl |= ALPM_CTL_ALPM_ENTRY_CHECK(intel_dp->alpm_parameters.check_entry_lines);
++	alpm_ctl |= ALPM_CTL_ALPM_ENTRY_CHECK(crtc_state->alpm_state.check_entry_lines);
+ 
+ 	intel_de_write(display, ALPM_CTL(display, cpu_transcoder), alpm_ctl);
+ 	mutex_unlock(&intel_dp->alpm_parameters.lock);
+@@ -375,14 +375,14 @@ void intel_alpm_port_configure(struct intel_dp *intel_dp,
+ 			PORT_ALPM_CTL_MAX_PHY_SWING_SETUP(15) |
+ 			PORT_ALPM_CTL_MAX_PHY_SWING_HOLD(0) |
+ 			PORT_ALPM_CTL_SILENCE_PERIOD(
+-				intel_dp->alpm_parameters.silence_period_sym_clocks);
++				crtc_state->alpm_state.silence_period_sym_clocks);
+ 		lfps_ctl_val = PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT(LFPS_CYCLE_COUNT) |
+ 			PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION(
+-				intel_dp->alpm_parameters.lfps_half_cycle_num_of_syms) |
++				crtc_state->alpm_state.lfps_half_cycle_num_of_syms) |
+ 			PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION(
+-				intel_dp->alpm_parameters.lfps_half_cycle_num_of_syms) |
++				crtc_state->alpm_state.lfps_half_cycle_num_of_syms) |
+ 			PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION(
+-				intel_dp->alpm_parameters.lfps_half_cycle_num_of_syms);
++				crtc_state->alpm_state.lfps_half_cycle_num_of_syms);
+ 	}
+ 
+ 	intel_de_write(display, PORT_ALPM_CTL(port), alpm_ctl_val);
+diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
+index a861c20b5d79..53599b464dea 100644
+--- a/drivers/gpu/drm/i915/display/intel_alpm.h
++++ b/drivers/gpu/drm/i915/display/intel_alpm.h
+@@ -17,7 +17,7 @@ struct intel_crtc;
+ 
+ void intel_alpm_init(struct intel_dp *intel_dp);
+ bool intel_alpm_compute_params(struct intel_dp *intel_dp,
+-			       const struct intel_crtc_state *crtc_state);
++			       struct intel_crtc_state *crtc_state);
+ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
+ 				    struct intel_crtc_state *crtc_state,
+ 				    struct drm_connector_state *conn_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 029c47743f8b..57879cc5546e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1344,6 +1344,17 @@ struct intel_crtc_state {
+ 
+ 	/* W2 window or 'set context latency' lines */
+ 	u16 set_context_latency;
++
++	struct {
++		u8 io_wake_lines;
++		u8 fast_wake_lines;
++
++		/* LNL and beyond */
++		u8 check_entry_lines;
++		u8 aux_less_wake_lines;
++		u8 silence_period_sym_clocks;
++		u8 lfps_half_cycle_num_of_syms;
++	} alpm_state;
+ };
+ 
+ enum intel_pipe_crc_source {
+@@ -1688,6 +1699,9 @@ struct intel_psr {
+ 	struct delayed_work dc3co_work;
+ 	u8 entry_setup_frames;
+ 
++	u8 io_wake_lines;
++	u8 fast_wake_lines;
++
+ 	bool link_ok;
+ 	bool pkg_c_latency_used;
+ 
+@@ -1847,16 +1861,9 @@ struct intel_dp {
+ 	bool colorimetry_support;
+ 
+ 	struct {
+-		u8 io_wake_lines;
+-		u8 fast_wake_lines;
+ 		enum transcoder transcoder;
+ 		struct mutex lock;
+ 
+-		/* LNL and beyond */
+-		u8 check_entry_lines;
+-		u8 aux_less_wake_lines;
+-		u8 silence_period_sym_clocks;
+-		u8 lfps_half_cycle_num_of_syms;
+ 		bool lobf_disable_debug;
+ 		bool sink_alpm_error;
+ 	} alpm_parameters;
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index f7115969b4c5..2131473cead6 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -956,15 +956,16 @@ static u32 intel_psr2_get_tp_time(struct intel_dp *intel_dp)
+ 	return val;
+ }
+ 
+-static int psr2_block_count_lines(struct intel_dp *intel_dp)
++static int
++psr2_block_count_lines(u8 io_wake_lines, u8 fast_wake_lines)
+ {
+-	return intel_dp->alpm_parameters.io_wake_lines < 9 &&
+-		intel_dp->alpm_parameters.fast_wake_lines < 9 ? 8 : 12;
++	return io_wake_lines < 9 && fast_wake_lines < 9 ? 8 : 12;
+ }
+ 
+ static int psr2_block_count(struct intel_dp *intel_dp)
+ {
+-	return psr2_block_count_lines(intel_dp) / 4;
++	return psr2_block_count_lines(intel_dp->psr.io_wake_lines,
++				      intel_dp->psr.fast_wake_lines) / 4;
+ }
+ 
+ static u8 frames_before_su_entry(struct intel_dp *intel_dp)
+@@ -1059,20 +1060,20 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
+ 		 */
+ 		int tmp;
+ 
+-		tmp = map[intel_dp->alpm_parameters.io_wake_lines -
++		tmp = map[intel_dp->psr.io_wake_lines -
+ 			  TGL_EDP_PSR2_IO_BUFFER_WAKE_MIN_LINES];
+ 		val |= TGL_EDP_PSR2_IO_BUFFER_WAKE(tmp + TGL_EDP_PSR2_IO_BUFFER_WAKE_MIN_LINES);
+ 
+-		tmp = map[intel_dp->alpm_parameters.fast_wake_lines - TGL_EDP_PSR2_FAST_WAKE_MIN_LINES];
++		tmp = map[intel_dp->psr.fast_wake_lines - TGL_EDP_PSR2_FAST_WAKE_MIN_LINES];
+ 		val |= TGL_EDP_PSR2_FAST_WAKE(tmp + TGL_EDP_PSR2_FAST_WAKE_MIN_LINES);
+ 	} else if (DISPLAY_VER(display) >= 20) {
+-		val |= LNL_EDP_PSR2_IO_BUFFER_WAKE(intel_dp->alpm_parameters.io_wake_lines);
++		val |= LNL_EDP_PSR2_IO_BUFFER_WAKE(intel_dp->psr.io_wake_lines);
+ 	} else if (DISPLAY_VER(display) >= 12) {
+-		val |= TGL_EDP_PSR2_IO_BUFFER_WAKE(intel_dp->alpm_parameters.io_wake_lines);
+-		val |= TGL_EDP_PSR2_FAST_WAKE(intel_dp->alpm_parameters.fast_wake_lines);
++		val |= TGL_EDP_PSR2_IO_BUFFER_WAKE(intel_dp->psr.io_wake_lines);
++		val |= TGL_EDP_PSR2_FAST_WAKE(intel_dp->psr.fast_wake_lines);
+ 	} else if (DISPLAY_VER(display) >= 9) {
+-		val |= EDP_PSR2_IO_BUFFER_WAKE(intel_dp->alpm_parameters.io_wake_lines);
+-		val |= EDP_PSR2_FAST_WAKE(intel_dp->alpm_parameters.fast_wake_lines);
++		val |= EDP_PSR2_IO_BUFFER_WAKE(intel_dp->psr.io_wake_lines);
++		val |= EDP_PSR2_FAST_WAKE(intel_dp->psr.fast_wake_lines);
+ 	}
+ 
+ 	if (intel_dp->psr.req_psr2_sdp_prior_scanline)
+@@ -1370,11 +1371,12 @@ static bool wake_lines_fit_into_vblank(struct intel_dp *intel_dp,
+ 	int wake_lines;
+ 
+ 	if (aux_less)
+-		wake_lines = intel_dp->alpm_parameters.aux_less_wake_lines;
++		wake_lines = crtc_state->alpm_state.aux_less_wake_lines;
+ 	else
+ 		wake_lines = DISPLAY_VER(display) < 20 ?
+-			psr2_block_count_lines(intel_dp) :
+-			intel_dp->alpm_parameters.io_wake_lines;
++			psr2_block_count_lines(crtc_state->alpm_state.io_wake_lines,
++					       crtc_state->alpm_state.fast_wake_lines) :
++			crtc_state->alpm_state.io_wake_lines;
+ 
+ 	if (crtc_state->req_psr2_sdp_prior_scanline)
+ 		vblank -= 1;
+@@ -1387,7 +1389,7 @@ static bool wake_lines_fit_into_vblank(struct intel_dp *intel_dp,
+ }
+ 
+ static bool alpm_config_valid(struct intel_dp *intel_dp,
+-			      const struct intel_crtc_state *crtc_state,
++			      struct intel_crtc_state *crtc_state,
+ 			      bool aux_less)
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
+@@ -1592,7 +1594,7 @@ static bool _psr_compute_config(struct intel_dp *intel_dp,
+ 
+ static bool
+ _panel_replay_compute_config(struct intel_dp *intel_dp,
+-			     const struct intel_crtc_state *crtc_state,
++			     struct intel_crtc_state *crtc_state,
+ 			     const struct drm_connector_state *conn_state)
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
+@@ -2022,6 +2024,8 @@ static void intel_psr_enable_locked(struct intel_dp *intel_dp,
+ 		crtc_state->req_psr2_sdp_prior_scanline;
+ 	intel_dp->psr.active_non_psr_pipes = crtc_state->active_non_psr_pipes;
+ 	intel_dp->psr.pkg_c_latency_used = crtc_state->pkg_c_latency_used;
++	intel_dp->psr.io_wake_lines = crtc_state->alpm_state.io_wake_lines;
++	intel_dp->psr.fast_wake_lines = crtc_state->alpm_state.fast_wake_lines;
+ 
+ 	if (!psr_interrupt_error_check(intel_dp))
+ 		return;
+-- 
+2.43.0
 
