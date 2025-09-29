@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6E68BA8866
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Sep 2025 11:09:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94FAFBA8949
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Sep 2025 11:22:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1151410E3DF;
-	Mon, 29 Sep 2025 09:09:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6391710E227;
+	Mon, 29 Sep 2025 09:21:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WOi1pGmO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ksdd/C+J";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 570D310E3DE;
- Mon, 29 Sep 2025 09:09:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C83E010E121;
+ Mon, 29 Sep 2025 09:21:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759136981; x=1790672981;
+ t=1759137717; x=1790673717;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=wirSoz3C07AC6o5WhPdmtslrxzgVr3wLVQOCViOeVdw=;
- b=WOi1pGmON+0Kq6BQUte0NUTWOy2LMIkKp8x3fLTOA/0lMpo46hEv01vF
- 6v8qj+sP4LNONYQh8f5FDsqzJBgtmG3fewBejDwh7JRPR81rxqw4J00FH
- rdrtYLPmiOowlLsqDbMIBlFfTThGiANeu3k8TVa6pphyYW8BkiQLHv1SH
- hrH0yfvzFxDkGyko9gfDlAfERlW68o9siHPIE1ze7s3rF8Pi3i5RWh9y2
- 9W+nnnpY3ssR85AUfwYB1RrXCtDnakforeYmZNxpnqhYC6VYHClQ0VagA
- WF/AC7VypNjrCrcu0OKiBZTe/7zhLZ5AMDxTqmt5jSxEGhaT+/YPRM82Q Q==;
-X-CSE-ConnectionGUID: PSsgYH+FRmeT1RyNcpLUNA==
-X-CSE-MsgGUID: Gfz4vKu2TTuqK5/Y0pR5iQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="61332327"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="61332327"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2025 02:09:41 -0700
-X-CSE-ConnectionGUID: wk4aSr6LRzWscLPVfr7zBw==
-X-CSE-MsgGUID: cD48UJrQSb2RlSemuSTFsA==
+ bh=EAdJuh2rHPKTdcJoQ6aplCDnBKk+Hfyw9t9u++s/Q3k=;
+ b=Ksdd/C+JDLuGL0cymjKXS/YtLPZ008oq34vu6oYxrBw1dkP8VSEIxRZh
+ us+IyK8dRV0WfdJBbccywCN1zOOWQhyu/fe9x68HqgWu+/aIMemDE9RO4
+ py7MjCR9KmrE8RjdA8LKgoglD+Bo+9jS9DJLYVPWa8Ov6hyHH6hvu8oKt
+ 8lVoB2aGlYD0zM1U6PLexoQhMKGdupbz+yz+E8qF242zTDTx5lwygUfAf
+ RiK687ti5dePLhgnIbfeNX08ApnfXvrsphsXmkNyQEW5DMEtnmLn3S1Au
+ TOJV7EuiuPyt/fkqDT5qGi3XCEWJGCan+cOENcthGbd9ETrgfRTZ96FZe A==;
+X-CSE-ConnectionGUID: gSQewb66QniZbU96PrJjkg==
+X-CSE-MsgGUID: jzF3FV/ARBeF2mGybRfa/Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11567"; a="61293410"
+X-IronPort-AV: E=Sophos;i="6.18,301,1751266800"; d="scan'208";a="61293410"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2025 02:21:57 -0700
+X-CSE-ConnectionGUID: IT/ThN9HSsi2iDGOc5OVsQ==
+X-CSE-MsgGUID: MZQbF9R8S3iI5Ga6KXkVtA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,301,1751266800"; d="scan'208";a="182478956"
+X-IronPort-AV: E=Sophos;i="6.18,301,1751266800"; d="scan'208";a="177783549"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.245.198])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2025 02:09:39 -0700
-Date: Mon, 29 Sep 2025 12:09:36 +0300
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2025 02:21:55 -0700
+Date: Mon, 29 Sep 2025 12:21:52 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Subject: Re: [PATCH 15/15] drm/i915/display: Use optimized guardband to set
  vblank start
-Message-ID: <aNpM0JQbDlD94Beo@intel.com>
+Message-ID: <aNpPsPlJM4usqQoY@intel.com>
 References: <20250928070541.3892890-1-ankit.k.nautiyal@intel.com>
  <20250928070541.3892890-16-ankit.k.nautiyal@intel.com>
  <aNpHHxXXFOEKDUmP@intel.com>
@@ -106,12 +106,10 @@ On Mon, Sep 29, 2025 at 11:45:19AM +0300, Ville Syrjälä wrote:
 >    between vrr and fixed refresh rate, which I think would mean
 >    crtc_state->vrr.in_range==true.
 
-And just as a reminder in case I think of it again later:
-3. use an optimized guardband only when always_use_vrr_tg()==true
-
-But that wouldn't actually solve the already existing issue
-on icl/tgl. So not really a good option.
-
+One slight downside with option 2 would that we migth lose
+fastboot support. Dunno if we could come up with a scheme that
+prefers option 2 while still allowing the live legacy TG -> VRR
+TG change during fastboot...
 
 -- 
 Ville Syrjälä
