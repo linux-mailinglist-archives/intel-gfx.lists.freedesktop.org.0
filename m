@@ -2,59 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E59CBA8C42
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Sep 2025 11:53:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8008EBA8D12
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Sep 2025 12:08:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 752C410E3E0;
-	Mon, 29 Sep 2025 09:53:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EE8010E081;
+	Mon, 29 Sep 2025 10:07:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WXtaiPtH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Du5Hf/zd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 903B110E3E0;
- Mon, 29 Sep 2025 09:53:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A50DF10E081;
+ Mon, 29 Sep 2025 10:07:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759139605; x=1790675605;
+ t=1759140478; x=1790676478;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=f4Zq8YVWZcBL4pvH2ah8d5WOtfpZ4ebUppDY/uQyRmo=;
- b=WXtaiPtHBg3pXwQEoxMY7opHD/gYtZ3jW10aBinfVaerC/C8tsz+fNJg
- aaGUPDx5n+FsHHQBlejB0VwEmqY/9nO0DfjXa57ifQA3raE3h6UlcsFA7
- lbtc158/DTYpyqZiiO25QVbHOztVy4t4g2KZKLJP998ZkJrHsR5Yb4bAX
- bUAGZ1gm+HL7KJUrCuhlBTaSxT7Jkl3u87iwIu6eheRj88CNwcb9UDuYP
- QREPVcyiacEZ2eJuhs3DZmYSJDrz4b7YYMj/u+VJJcS8HUfiTAiclpcFC
- Yd20YV0iwLuyKPpmd++pxQpHcQvtdU3/pSgVdleDWhrxw1c7MWlXI7l+I g==;
-X-CSE-ConnectionGUID: grLH63TYTc+RWcy3cE/qvw==
-X-CSE-MsgGUID: 2zjposm7TiCZQ3TeUOvn0A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11567"; a="65012685"
-X-IronPort-AV: E=Sophos;i="6.18,301,1751266800"; d="scan'208";a="65012685"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2025 02:53:25 -0700
-X-CSE-ConnectionGUID: cBLOR/HNSA6RUGR1g2hC1w==
-X-CSE-MsgGUID: slkzuOaPR92WR1SJTBuJjw==
+ message-id:mime-version;
+ bh=GPOrVnGuARiWqPXdkN37TfZhz0nVPuXntw8f612RF1o=;
+ b=Du5Hf/zd+4H9OERkD/QVyVnQ0QpbofJeIgnGytQhgCFGD9giuxQ/T1On
+ ufJw3SsUgT9nDMSqvAOy3lcShjWpI6xG8U8a3IryhXUbaEK70nhl7meDU
+ HUfTyFJYTJ63l0C0vXmbI2y1Lvs1bgn/CoM/avsb+LqwbVZRrIGPbmkNP
+ MmnH1tY6X1T81+T3KPYZ/cIBxQxS0MD+X1YWMZXOkbS64+pqcJYXqC8hA
+ ICNjd3vc2rFvxscAGLD6/YgLH7v6l64uhMLYWvJOBn7eKJlNodCmIdG5S
+ apgUwxtrBrxh6pUsfra2uy2TiGhmmAqnPaau4btoeBTv3QR1UMzjnDBbk w==;
+X-CSE-ConnectionGUID: miJARHksS2S1uZTXjb+ZRA==
+X-CSE-MsgGUID: ljvWlsR2S5uoW0N9PnzkcA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11567"; a="61424370"
+X-IronPort-AV: E=Sophos;i="6.18,301,1751266800"; d="scan'208";a="61424370"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2025 03:07:58 -0700
+X-CSE-ConnectionGUID: vRXF/efATfCY2U2BaQPLKA==
+X-CSE-MsgGUID: Sho9jXkPQjm48CttLMRyRA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,301,1751266800"; d="scan'208";a="177756469"
+X-IronPort-AV: E=Sophos;i="6.18,301,1751266800"; d="scan'208";a="177795506"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.102])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2025 02:53:24 -0700
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2025 03:07:55 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 00/11] drm/{i915, xe}/stolen: refactor and unify interfaces
-In-Reply-To: <aNbeTOg51r9puj4i@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Ville Syrjala <ville.syrjala@linux.intel.com>, Simona Vetter
+ <simona.vetter@ffwll.ch>
+Subject: Re: [PATCH] drm/{i915,xe}: driver agnostic drm to display pointer
+ chase
+In-Reply-To: <hc7bxiipjuejnl4rvppynwybqht2exgbtjrm6howstq3sbailj@6kjknuwggn7v>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1758732183.git.jani.nikula@intel.com>
- <aNbeTOg51r9puj4i@intel.com>
-Date: Mon, 29 Sep 2025 12:53:20 +0300
-Message-ID: <8647037b236072ce48940261430d55a7654d4922@intel.com>
+References: <20250926111032.1188876-1-jani.nikula@intel.com>
+ <vxxrpnasd5qfoof4coi3rw4pu3pbnau42u3lywc5dd52nma5sx@r5coda25idn4>
+ <20562bfd487f43278df768822cc44317f0ca6f79@intel.com>
+ <hc7bxiipjuejnl4rvppynwybqht2exgbtjrm6howstq3sbailj@6kjknuwggn7v>
+Date: Mon, 29 Sep 2025 13:07:52 +0300
+Message-ID: <07c18d19231baae7875f4e0f39c697dfdb8f1638@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,41 +75,21 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 26 Sep 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Wed, Sep 24, 2025 at 07:43:29PM +0300, Jani Nikula wrote:
->>=20
->> Jani Nikula (11):
->>   drm/{i915,xe}/stolen: rename i915_stolen_fb to intel_stolen_node
->>   drm/xe/stolen: rename fb to node in stolen compat header
->>   drm/xe/stolen: convert compat stolen macros to inline functions
->>   drm/xe/stolen: switch from BUG_ON() to WARN_ON() in compat
->>   drm/i915/stolen: convert intel_stolen_node into a real struct of its
->>     own
->>   drm/xe/stolen: convert compat static inlines to proper functions
->>   drm/{i915,xe}/stolen: make struct intel_stolen_node opaque
->>   drm/{i915,xe}/stolen: add device pointer to struct intel_stolen_node
->>   drm/{i915,xe}/stolen: use the stored i915/xe device pointer
->>   drm/{i915,xe}/stolen: convert stolen interface to struct drm_device
->>   drm/xe/stolen: use the same types as i915 interface
->
-> Looks fine by me. Series is
-> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+On Fri, 26 Sep 2025, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> I missed the fact that all the other type conversions also use 
+> the drm -> display. So yes, inlining that would be good.
 
-Thanks for the review, pushed to din.
+The downside is having to include drm/intel/display_member.h and by
+proxy thus drm/drm_device.h pretty much everywhere. Maybe that's fine,
+I'll look into it.
 
-> Side note: I have branch somewhere that replaces the raw
-> drm_mm_node FBC stuff with a real i915_gem_object. I used
-> that as a way to easily expose the CFB and LLB as files in
-> debugfs so that I could observe/modify the actual CFB contents.
-> I should look into making that official to help future FBC
-> debugging. With the abstraction layer I shouldn't even need
-> to touch the FBC code itself anymore...
+>>> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Yay!
+Thanks, pushed to din.
 
 BR,
 Jani.
 
---=20
+
+-- 
 Jani Nikula, Intel
