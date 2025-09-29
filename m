@@ -2,115 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49D19BA87F9
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Sep 2025 11:00:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06C30BA87FF
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Sep 2025 11:00:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6276110E3D5;
-	Mon, 29 Sep 2025 09:00:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C74110E3D6;
+	Mon, 29 Sep 2025 09:00:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="T2xqhC3m";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Cj33hsAy";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2802F10E3D5
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Sep 2025 09:00:19 +0000 (UTC)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58T8WfHA029194
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Sep 2025 09:00:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- K70Xwm8Y+J7KLULBIJyLbfN2P1E5MkuVdQpZLT5gNI0=; b=T2xqhC3mvopWRuOI
- dxF2M5bmsxCdK4g2NM7+MMJNM2TKUmoN2Xx3P7Zm0tFfES4xJro8VhVHUNntVmy8
- +HWYh0qYrsliHlpTf1lRpblNNs1dg+onkfVVUvmVnpCi4ExNZydJEZs8Rufpc9ua
- 0+uLj88iEvI509YZRtaz1wjW9+GqNTHx50CiGwmyO9DUxIkEJRdTAvbtoVQuYZWq
- Fu0819rAN/llh0ud1HFmTjj2caKow1zAjKezwNjEKbBLDsfNFGWEjsejHLJwDN1o
- c/btiBM9qnka/NWzUr3JV/rQ04BYJ0eG4+3qwvgJFI5Nz21Y90GDNo5QUBGJDJVO
- DP5P+Q==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
- [209.85.160.198])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49fppr02a7-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Sep 2025 09:00:17 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id
- d75a77b69052e-4db75c7fa8dso103082291cf.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Sep 2025 02:00:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1759136408; x=1759741208;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=K70Xwm8Y+J7KLULBIJyLbfN2P1E5MkuVdQpZLT5gNI0=;
- b=w7CG5vT72nRb7xQURDzPWf13gJBydufn6HqNvy1rrwq0/MTd387XrpbcEhQ5+Tedfr
- RKxoKL7RDtXTOkRzMY+CcZ0Ir43wLy7egLuDTvaHrY+Geu6zf1wJdoo4IlKsm7JSs3ek
- 36g24eu8cNCDHjBsVOVUyGECm16QzT1nwgjsUgUP2AUkAop0WD7ZOsQscJzqujvd/SXA
- 6QVj2hnpmJS5Q30ZNeUqnMZnrMshAXZ1hrrVQ1PJVoUrPo+atwdVovvAt+x4Mep9isD6
- IhcSdiytF0LnxzxXgWfdT4W626MTl94mPIYOjBn7DPpEwJoIcUm7GVjjHIYcTrALSBgs
- LXIg==
-X-Gm-Message-State: AOJu0YyPntPoi8svEquBUfpoN/DWtpRaBO2puf2NYP9tQoisBbXMOQDd
- JHHrdCTMD1Yl44/oWEg1k3ItkN55r4tO2PWFol01Dj50W0tCwxA+rvUrUUFIrI47JlLQYHI/WoZ
- vEAjJdAU8aHD1jKqXbyAD/3i3IeL+lqf9sipADLzOS1c6TURUYcm9dstzrLjNiYOKH6qxx88=
-X-Gm-Gg: ASbGncvuWoTog1A3BmzlMwdCwfld1I6wIDtSkLv7N5/stjETWUcHFEjSljIb76jh3Nv
- ui7ATdMZi9NfnfN2iyMnWb1LaqPEbcwFeVL5pUcNsekqKudlOxhvoZPkuQbfwRfvk8T9qpk5ugg
- VHP4f0V4b+Ngiy/y5JaSA9+EDQ6R6ySos9/1uDxxDpxTH8KBbVjEzhHTPhxF9alJ6wDgQDdj+Um
- yMIpkMp1DQvwOxYe+IFYdDS6+GQ9Mj9OtHh4evKAurH1BF7ZEXBXH1QjlXtoBcFf1W47kksOgK0
- P9+Lc4eUkRZ73v0ExTpTbqC+LlSuAi/7rNJs872FPWQNdArXPqdefrNYT+I7Dq7gRSD2tiBSMrx
- DzVhf+hc95Cnt+hHT3e1sKuf6mvDcmHJZgE9N28jpSlve55VXEDQS
-X-Received: by 2002:a05:622a:438c:b0:4db:e906:21d5 with SMTP id
- d75a77b69052e-4dbe90625b2mr119075921cf.5.1759136407870; 
- Mon, 29 Sep 2025 02:00:07 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGs7jT0iWYWJCXgAu4QKcdkIglyJQcSU8ATVnEsnVaemdKEYJ2P7+RTKKGMTHiRPC2iB6Hy7A==
-X-Received: by 2002:a05:622a:438c:b0:4db:e906:21d5 with SMTP id
- d75a77b69052e-4dbe90625b2mr119075461cf.5.1759136406987; 
- Mon, 29 Sep 2025 02:00:06 -0700 (PDT)
-Received: from umbar.lan
- (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
- [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
- by smtp.gmail.com with ESMTPSA id
- 38308e7fff4ca-36fb7713a3dsm26929591fa.42.2025.09.29.02.00.05
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 29 Sep 2025 02:00:06 -0700 (PDT)
-Date: Mon, 29 Sep 2025 12:00:03 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Imre Deak <imre.deak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org,
- Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH v5 2/6] drm/dp: Add helpers to query the branch DSC max
- throughput/line-width
-Message-ID: <agzmuyty22gxtm7cwpdl7ynmrubot45e65tfavbq5muamn6qnj@2wsbjqlc3pye>
-References: <20250926211236.474043-3-imre.deak@intel.com>
- <20250929063644.533890-1-imre.deak@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB79010E3DB;
+ Mon, 29 Sep 2025 09:00:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1759136433; x=1790672433;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=FLpME14axuG3wSIdlI1q7JLI2mlbInFVH9dLcGX3jNI=;
+ b=Cj33hsAyco03wy3SIZ7hl3n0huHRVjh6Yvjd1f4AjkSdoMzHxDIuTaqD
+ Mt6OiBPTqYCt0hzHgk8civp1Om0stx9fBoGFIMz3snCzjJsL/9s5wekqO
+ tjSjIeRR4OQGiEySeZ8OLxcadk27TRnh8joXWDlrnSQuR6iPJiX1BjzzD
+ 1geuhGl0L/JG2dcQ1S2islyp1DPNkl2YYOOchP/AdjNow7ayiXF+BZF/F
+ XCQivlDiBbEgC64hbURhecgw711w0QgiCCc01Bdc39V3evvJQdqyGmQ9X
+ osLz1Y2wpgaiTc0OxVTmBTeElre0/KJiyNJtIpZr/Q6lNMeyl4g7VfdbJ Q==;
+X-CSE-ConnectionGUID: 4oBSGRpdQH+IgE4yhNH9fw==
+X-CSE-MsgGUID: 7f87JC5kR5at+iUsOhVIpw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="61284841"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="61284841"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2025 02:00:33 -0700
+X-CSE-ConnectionGUID: HPChV/UZSeG7s7JvGfpnRA==
+X-CSE-MsgGUID: DuBnbobUTrKECTsID6hf2w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,301,1751266800"; d="scan'208";a="178010747"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.198])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2025 02:00:31 -0700
+Date: Mon, 29 Sep 2025 12:00:28 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 15/15] drm/i915/display: Use optimized guardband to set
+ vblank start
+Message-ID: <aNpKrMapLVw4bvGb@intel.com>
+References: <20250928070541.3892890-1-ankit.k.nautiyal@intel.com>
+ <20250928070541.3892890-16-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250929063644.533890-1-imre.deak@intel.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI5MDA4MiBTYWx0ZWRfX4dhLLlef24RF
- 2WfPHfpjeaaGofdd/udYM0QP6HBfX7FjuDWPQyIkUulUoQbv6utc7j4U2oPiXWLeLge5AxZPTwE
- LAKf/FiwL8AeOGsBOC53voxujgE7wjD0pgY+3vqTZdhCmQNkWLts46SacZ5r00+7BUdFAIdNbjK
- DqAoQg3UZFQ0t4mIsqx/WgTZzCBUaDoFAyYHfpRNrRzrkvxwXQQQGJ1oV2Yse7SwfA21hI7jf+z
- zGRe0eoFT4jSQ9uDlR22mJNTK1tzm5xGzNeRhbEfHhUsCpwRnitsbQ94U0XTdIRIdJ71klTBncr
- KvCOxIYDKKqan7NCCeDV1JBbEnsDzAfp6GFOYaOFg82ubLAn3pKCzvhWLWVEoOM5N4MFwkrHPjG
- t4BH+N2pfVhiD6FkvWLej318oMlTKQ==
-X-Proofpoint-ORIG-GUID: 2oTVAnHkjdvKbo_fbaCejFuOKcRhTwqE
-X-Authority-Analysis: v=2.4 cv=GLoF0+NK c=1 sm=1 tr=0 ts=68da4aa1 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=8nJEP1OIZ-IA:10
- a=yJojWOMRYYMA:10 a=e5mUnYsNAAAA:8 a=QyXUC8HyAAAA:8 a=wX2-_eRYuEKPtGxe6ucA:9
- a=3ZKOabzyN94A:10 a=wPNLvfGTeEIA:10 a=dawVfQjAaf238kedN5IG:22
- a=Vxmtnl_E_bksehYqCbjh:22
-X-Proofpoint-GUID: 2oTVAnHkjdvKbo_fbaCejFuOKcRhTwqE
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-29_03,2025-09-29_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 lowpriorityscore=0 adultscore=0 suspectscore=0
- impostorscore=0 spamscore=0 bulkscore=0 clxscore=1015 phishscore=0
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2509150000
- definitions=main-2509290082
+In-Reply-To: <20250928070541.3892890-16-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -126,38 +73,158 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 29, 2025 at 09:36:44AM +0300, Imre Deak wrote:
-> Add helpers to query the DP DSC sink device's per-slice throughput as
-> well as a DSC branch device's overall throughput and line-width
-> capabilities.
+On Sun, Sep 28, 2025 at 12:35:40PM +0530, Ankit Nautiyal wrote:
+> As we move towards using a shorter, optimized guardband, we need to adjust
+> how the delayed vblank start is computed.
 > 
-> v2 (Ville):
-> - Rename pixel_clock to peak_pixel_rate, document what the value means
->   in case of MST tiled displays.
-> - Fix name of drm_dp_dsc_branch_max_slice_throughput() to
->   drm_dp_dsc_sink_max_slice_throughput().
-> v3:
-> - Fix the DSC branch device minimum valid line width value from 2560
->   to 5120 pixels.
-> - Fix drm_dp_dsc_sink_max_slice_throughput()'s pixel_clock parameter
->   name to peak_pixel_rate in header file.
-> - Add handling for throughput mode 0 granular delta, defined by DP
->   Standard v2.1a.
-
-This one got sent as a separate V5, without a proper changelog. What has
-changed?
-
+> Use the helper intel_vrr_compute_guardband() to calculate the optimized
+> guardband. Since this is measured from the vblank end, we shift the
+> vblank-start accordingly.
 > 
-> Cc: dri-devel@lists.freedesktop.org
-> Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> Calculate the minimum delay required based on the guardband and apply it in
+> intel_crtc_vblank_delay() to update crtc_vblank_start.
+> 
+> Additionally, introduce a new allow_vblank_delay_fastset() helper that
+> combines the existing LRR-based logic with an additional check for the
+> optimized guardband usage.
+> 
+> v2:
+> - Check if optimized guardband is more than vblank length and add debug
+>   print.
+> - Extend vblank delay fastset logic to cover optimized guardband.
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > ---
->  drivers/gpu/drm/display/drm_dp_helper.c | 156 ++++++++++++++++++++++++
->  include/drm/display/drm_dp.h            |   3 +
->  include/drm/display/drm_dp_helper.h     |   5 +
->  3 files changed, 164 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_display.c | 79 +++++++++++++++++++-
+>  1 file changed, 76 insertions(+), 3 deletions(-)
 > 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 4135f9be53fd..97a3121a204f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -2361,6 +2361,67 @@ static int intel_crtc_compute_pipe_mode(struct intel_crtc_state *crtc_state)
+>  	return 0;
+>  }
+>  
+> +static
+> +int intel_crtc_min_guardband_delay(struct intel_atomic_state *state,
+> +				   struct intel_crtc *crtc)
+> +{
+> +	struct intel_display *display = to_intel_display(state);
+> +	struct intel_crtc_state *crtc_state =
+> +		intel_atomic_get_new_crtc_state(state, crtc);
+> +	const struct drm_display_mode *adjusted_mode =
+> +		&crtc_state->hw.adjusted_mode;
+> +	struct drm_connector_state *conn_state;
+> +	struct drm_connector *drm_connector;
+> +	int vblank_length;
+> +	int i;
+> +
+> +	if (!intel_vrr_use_optimized_guardband(crtc_state))
+> +		return 0;
+> +
+> +	vblank_length = crtc_state->vrr.vmin -
+> +			adjusted_mode->crtc_vdisplay;
+> +
+> +	for_each_new_connector_in_state(&state->base,
+> +					drm_connector,
+> +					conn_state, i) {
+> +		int guardband;
+> +		struct intel_connector *connector;
+> +
+> +		if (conn_state->crtc != &crtc->base)
+> +			continue;
+> +
+> +		connector = to_intel_connector(drm_connector);
+> +		guardband = intel_vrr_compute_guardband(crtc_state,
+> +							connector);
+> +		if (guardband > vblank_length) {
+> +			drm_dbg_kms(display->drm,
+> +				    "[CRTC:%d:%s] Cannot optimize guardband (%d) exceeds max (%d)\n",
+> +				    crtc->base.base.id, crtc->base.name,
+> +				    guardband,
+> +				    vblank_length);
+> +			return 0;
+> +		}
+> +
+> +		return vblank_length - guardband;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void intel_crtc_vblank_delay(struct intel_atomic_state *state,
+> +				    struct intel_crtc *crtc)
+> +{
+> +	struct intel_crtc_state *crtc_state =
+> +		intel_atomic_get_new_crtc_state(state, crtc);
+> +	struct drm_display_mode *adjusted_mode =
+> +		&crtc_state->hw.adjusted_mode;
+> +	int vblank_delay = 0;
+> +
+> +	vblank_delay = intel_crtc_min_guardband_delay(state, crtc);
+> +
+> +	adjusted_mode->crtc_vblank_start += vblank_delay;
+> +}
+> +
+>  static int intel_crtc_set_context_latency(struct intel_crtc_state *crtc_state)
+>  {
+>  	struct intel_display *display = to_intel_display(crtc_state);
+> @@ -2413,6 +2474,7 @@ static int intel_crtc_compute_config(struct intel_atomic_state *state,
+>  	ret = intel_crtc_compute_set_context_latency(state, crtc);
+>  	if (ret)
+>  		return ret;
+> +	intel_crtc_vblank_delay(state, crtc);
+
+IMO we should get rid of all this vblank_delay terminology here.
+This one I think should just be our current
+intel_vrr_compute_config_late() (renamed to eg.
+intel_vrr_compute_guardband()).
+
+After which we just have to solve all the chicken vs. egg problems
+to really compute the approriate optimized guardband value.
+  
+>  	ret = intel_dpll_crtc_compute_clock(state, crtc);
+>  	if (ret)
+> @@ -5101,13 +5163,24 @@ static bool allow_vblank_delay_fastset_lrr(const struct intel_crtc_state *old_cr
+>  {
+>  	struct intel_display *display = to_intel_display(old_crtc_state);
+>  
+> +	return HAS_LRR(display) && old_crtc_state->inherited &&
+> +		!intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DSI);
+> +}
+> +
+> +static bool allow_vblank_delay_fastset(const struct intel_crtc_state *old_crtc_state,
+> +				       const struct intel_crtc_state *new_crtc_state)
+> +{
+>  	/*
+>  	 * Allow fastboot to fix up vblank delay (handled via LRR
+>  	 * codepaths), a bit dodgy as the registers aren't
+>  	 * double buffered but seems to be working more or less...
+> +	 *
+> +	 * Additionally, with the optimized guardband the vblank start
+> +	 * is moved further away from the undelayed vblank. Allow this
+> +	 * vblank delay when optimized guardband is used.
+>  	 */
+> -	return HAS_LRR(display) && old_crtc_state->inherited &&
+> -		!intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DSI);
+> +	return allow_vblank_delay_fastset_lrr(old_crtc_state) ||
+> +	       intel_vrr_use_optimized_guardband(new_crtc_state);
+>  }
+>  
+>  bool
+> @@ -5242,7 +5315,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+>  	PIPE_CONF_CHECK_I(name.crtc_hsync_start); \
+>  	PIPE_CONF_CHECK_I(name.crtc_hsync_end); \
+>  	PIPE_CONF_CHECK_I(name.crtc_vdisplay); \
+> -	if (!fastset || !allow_vblank_delay_fastset_lrr(current_config)) \
+> +	if (!fastset || !allow_vblank_delay_fastset(current_config, pipe_config)) \
+>  		PIPE_CONF_CHECK_I(name.crtc_vblank_start); \
+>  	PIPE_CONF_CHECK_I(name.crtc_vsync_start); \
+>  	PIPE_CONF_CHECK_I(name.crtc_vsync_end); \
+> -- 
+> 2.45.2
 
 -- 
-With best wishes
-Dmitry
+Ville Syrjälä
+Intel
