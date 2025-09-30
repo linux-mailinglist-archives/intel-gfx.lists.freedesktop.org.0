@@ -2,64 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68857BAC3AF
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Sep 2025 11:17:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36E47BAC433
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Sep 2025 11:23:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDCAD10E53C;
-	Tue, 30 Sep 2025 09:17:06 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y7/YmSA8";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id B282010E29B;
+	Tue, 30 Sep 2025 09:23:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FACE10E29A;
- Tue, 30 Sep 2025 09:17:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759223825; x=1790759825;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:subject:from:cc:to:date:message-id;
- bh=C8Cg/mdMvEeqn4tYaiyZTCeXPJbQSpUX3pWcbQSKvc4=;
- b=Y7/YmSA8MGiUq1aphO5nDNG1qxPX8LWnQrE6zHAO4ujyqNkGc1DnG0Hn
- fVhXdr4+IicdrgVLsK+vJxmQ3wr4669Ci286ELcAKu3VITMmKkmshEHWD
- 8LIes5lQ/D0r/VZlUApgGTQCQcuQZbdKYHQ8d588gPvUdLqcDHPEV/lMU
- kSKbsUB72Gg+JG83gjgOLzzPmsRpj0pYi1T7Is19B+jrWINu27VUGuMEn
- Z7NNK3rI3mB1xq3ydfq6F64xEogeWZZgFa6ilDldva4IUe+JKm8t7RVPu
- AzqVHJFh9rjZBNbytTcqYJD3/kx5t4BGAQ3GeCQo7PGcjKI/BDASGVj+e Q==;
-X-CSE-ConnectionGUID: F2SEYjNXSkKP+9ND+TYCGw==
-X-CSE-MsgGUID: AYqI9ozcQYW7AHhCIg0Okw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11568"; a="61518887"
-X-IronPort-AV: E=Sophos;i="6.18,304,1751266800"; d="scan'208";a="61518887"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2025 02:17:04 -0700
-X-CSE-ConnectionGUID: amLqGN/MRZ6HIppG/Vrd5g==
-X-CSE-MsgGUID: e79KT6whTIWD6ZWc8522TQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,304,1751266800"; d="scan'208";a="178074674"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.108])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2025 02:17:01 -0700
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 624A910E29B;
+ Tue, 30 Sep 2025 09:23:21 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAGfirffPy5biFVLtSNEW60UCXa6_=-=NrQbU7iLQ8+BXnFQ=1A@mail.gmail.com>
-References: <CAGfirffPy5biFVLtSNEW60UCXa6_=-=NrQbU7iLQ8+BXnFQ=1A@mail.gmail.com>
-Subject: Re: BUG: unable to handle kernel NULL pointer dereference in
- eb_release_vmas
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com, tursulin@ursulin.net,
- airlied@gmail.com, simona@ffwll.ch, andi.shyti@linux.intel.com,
- ville.syrjala@linux.intel.com, nitin.r.gote@intel.com,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- syzkaller@googlegroups.com
-To: intel-gfx@lists.freedesktop.org,
- =?utf-8?b?6rmA6rCV66+8?= <km.kim1503@gmail.com>
-Date: Tue, 30 Sep 2025 12:16:58 +0300
-Message-ID: <175922381867.30706.10351894191632562572@jlahtine-mobl>
-User-Agent: alot/0.12.dev7+g16b50e5f
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_REGRESSION_on_linux-next_?=
+ =?utf-8?q?=28next-20250919=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mi, Dapeng" <dapeng1.mi@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 30 Sep 2025 09:23:21 -0000
+Message-ID: <175922420139.377882.14441921233113133267@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <70b64347-2aca-4511-af78-a767d5fa8226@intel.com>
+In-Reply-To: <70b64347-2aca-4511-af78-a767d5fa8226@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,15 +37,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+== Series Details ==
 
-Can you please open a bug as per the instructions in:
+Series: REGRESSION on linux-next (next-20250919)
+URL   : https://patchwork.freedesktop.org/series/155228/
+State : failure
 
-https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html
+== Summary ==
 
-Thanks in advance!
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/155228/revisions/1/mbox/ not applied
+Applying: REGRESSION on linux-next (next-20250919)
+error: corrupt patch at line 6
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0001 REGRESSION on linux-next (next-20250919)
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+Build failed, no error log produced
 
-Regards, Joonas
+
