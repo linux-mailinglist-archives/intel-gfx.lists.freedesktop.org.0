@@ -2,64 +2,82 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 995DFBAC928
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Sep 2025 12:57:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9BC8BACA1B
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Sep 2025 13:07:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFEAC10E564;
-	Tue, 30 Sep 2025 10:57:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A2138913D;
+	Tue, 30 Sep 2025 11:07:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="lcUUCjon";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C+WHo3vt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DEE1310E2A6;
- Tue, 30 Sep 2025 10:57:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1759229849;
- bh=6bPRcsgjW5miijm89Vj9ztPqCVHtA9OfZProSwKLM+E=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=lcUUCjonC+V4D2GtM4PuXn8rRIxReNC+RXOaJZ7hhwdzpU5mJal943IHtXfksU6wu
- 1D4iYmyYsIQxCHCBDNgn2L/cw/FXXWt6qkiOP9BOrFZOE5VtEVtOs3UMLbTPqlRi7m
- sKXNlWf3l89UmYA7IFySASPm0/qugfjqrl/9Fy28nPJgbr6M6qH4YrQBz4x7zBUoER
- 1Im9nrbMPTENN7AdmsIDsaHOzwTV3uVEXlQrAUK8WQc5UWwjVWbhHlBwe+whDMd3ua
- rnCpyrhWzx7KD6aATwtJa8IFUPOVSk/k5fYDLMd24rXPk8ymgdwszEHPAfqdwn10ho
- td+aeBNfzDZRQ==
-Received: from fedora (unknown [IPv6:2a01:e0a:2c:6930:d919:a6e:5ea1:8a9f])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: bbrezillon)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id 48A0917E0097;
- Tue, 30 Sep 2025 12:57:28 +0200 (CEST)
-Date: Tue, 30 Sep 2025 12:57:25 +0200
-From: Boris Brezillon <boris.brezillon@collabora.com>
-To: =?UTF-8?B?TG/Dr2M=?= Molinari <loic.molinari@collabora.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Rob Herring <robh@kernel.org>,
- Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
- Melissa Wen <mwen@igalia.com>, =?UTF-8?B?TWHDrXJh?= Canal
- <mcanal@igalia.com>, Hugh Dickins <hughd@google.com>, Baolin Wang
- <baolin.wang@linux.alibaba.com>, Andrew Morton <akpm@linux-foundation.org>,
- Al Viro <viro@zeniv.linux.org.uk>, =?UTF-8?B?TWlrb8WCYWo=?= Wasiak
- <mikolaj.wasiak@intel.com>, Christian Brauner <brauner@kernel.org>, Nitin
- Gote <nitin.r.gote@intel.com>, Andi Shyti <andi.shyti@linux.intel.com>,
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AFA18913D;
+ Tue, 30 Sep 2025 11:07:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1759230429; x=1790766429;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=JkEgfrFobUvPs9WUhYazXemTzj5bNBhLW05gn5e7dd8=;
+ b=C+WHo3vt7xPUc7iYxUexZY7llARR+9vmE9GiqLTQbjP9KWDIIzQLq0gG
+ 1vGubEAiZlfUN2Y+9Td/2XmpyyHDrBxCgBrFHuZPgYgDO8w8mlmynf8DY
+ AjY0s5D9aXQf2R+YK1/w2IplSsJaF7XVpAumZaYHS6FolpznX2dsarh7q
+ gpBhm1JU27ThKcPIbTXf4kIsI4AlRNsTADvD4nQiZ1pkK6Su2tusHqac1
+ RIyA8MIzOR6J+tu+QstFVPTOQoJ6YhEhntg7kpA4y7NI6R4Z0qJZffHmf
+ MvFhBRGcQBsIO9m6CfWE3hdWn8Yv83vnlGTkrRD9X8Zp687O5MiiU5Kle w==;
+X-CSE-ConnectionGUID: ksomaVP7TvGJb0IHQ7TRSQ==
+X-CSE-MsgGUID: KbpQtC7BR3qWkRLIfH4RFw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11568"; a="72907810"
+X-IronPort-AV: E=Sophos;i="6.18,304,1751266800"; d="scan'208";a="72907810"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2025 04:07:09 -0700
+X-CSE-ConnectionGUID: MY9ov9QwQ5GXH8kC6Jesqg==
+X-CSE-MsgGUID: HZtVzlPZRheexbv1wLS3bA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,304,1751266800"; d="scan'208";a="177763539"
+Received: from lkp-server01.sh.intel.com (HELO 2f2a1232a4e4) ([10.239.97.150])
+ by orviesa010.jf.intel.com with ESMTP; 30 Sep 2025 04:07:01 -0700
+Received: from kbuild by 2f2a1232a4e4 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1v3YCB-0001CR-16;
+ Tue, 30 Sep 2025 11:06:59 +0000
+Date: Tue, 30 Sep 2025 19:06:41 +0800
+From: kernel test robot <lkp@intel.com>
+To: =?iso-8859-1?Q?Lo=EFc?= Molinari <loic.molinari@collabora.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Boris Brezillon <bbrezillon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
+ Liviu Dudau <liviu.dudau@arm.com>, Melissa Wen <mwen@igalia.com>,
+ =?iso-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>,
+ Hugh Dickins <hughd@google.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Al Viro <viro@zeniv.linux.org.uk>,
+ =?utf-8?Q?Miko=C5=82aj?= Wasiak <mikolaj.wasiak@intel.com>,
+ Christian Brauner <brauner@kernel.org>,
+ Nitin Gote <nitin.r.gote@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>
+Cc: oe-kbuild-all@lists.linux.dev,
+ Linux Memory Management List <linux-mm@kvack.org>,
  linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-mm@kvack.org, kernel@collabora.com
-Subject: Re: [PATCH 3/8] drm/shmem-helper: Add huge tmpfs mount point helpers
-Message-ID: <20250930125725.258e74a5@fedora>
-In-Reply-To: <20250929200316.18417-4-loic.molinari@collabora.com>
-References: <20250929200316.18417-1-loic.molinari@collabora.com>
- <20250929200316.18417-4-loic.molinari@collabora.com>
-Organization: Collabora
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+ intel-gfx@lists.freedesktop.org, kernel@collabora.com
+Subject: Re: [PATCH 4/8] drm/i915: Use huge tmpfs mount point helpers
+Message-ID: <202509301837.pQ2TiJkx-lkp@intel.com>
+References: <20250929200316.18417-5-loic.molinari@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250929200316.18417-5-loic.molinari@collabora.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,139 +93,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 29 Sep 2025 22:03:11 +0200
-Lo=C3=AFc Molinari <loic.molinari@collabora.com> wrote:
+Hi Loïc,
 
-> Add the drm_gem_shmem_helper_huge_mnt_create() and
-> drm_gem_shmem_helper_huge_mnt_free() helpers to avoid code duplication
-> in the i915 and v3d drivers (and soon panfrost/panthor).
->=20
-> Signed-off-by: Lo=C3=AFc Molinari <loic.molinari@collabora.com>
-> ---
->  drivers/gpu/drm/drm_gem_shmem_helper.c | 56 ++++++++++++++++++++++++++
->  include/drm/drm_gem_shmem_helper.h     | 14 +++++++
->  2 files changed, 70 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/drm=
-_gem_shmem_helper.c
-> index 22c4b09e10a3..808721b8be3e 100644
-> --- a/drivers/gpu/drm/drm_gem_shmem_helper.c
-> +++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
-> @@ -5,7 +5,9 @@
-> =20
->  #include <linux/dma-buf.h>
->  #include <linux/export.h>
-> +#include <linux/fs_context.h>
->  #include <linux/module.h>
-> +#include <linux/mount.h>
->  #include <linux/mutex.h>
->  #include <linux/shmem_fs.h>
->  #include <linux/slab.h>
-> @@ -36,6 +38,60 @@ MODULE_IMPORT_NS("DMA_BUF");
->   * drm_gem_shmem_vmap()). These helpers perform the necessary type conve=
-rsion.
->   */
-> =20
-> +static int drm_gem_shmem_add_fc_param(struct fs_context *fc, const char =
-*key,
-> +				      const char *value)
-> +{
-> +	return vfs_parse_fs_string(fc, key, value, strlen(value));
-> +}
-> +
-> +/**
-> + * drm_gem_shmem_huge_mnt_create - Create a huge tmpfs mountpoint
-> + * @value: huge tmpfs mount option value
-> + *
-> + * This function creates and mounts an internal huge tmpfs mountpoint fo=
-r use
-> + * with the drm_gem_shmem_create_with_mnt() function.
-> + *
-> + * The most common option value is "within_size" which only allocates hu=
-ge pages
-> + * if the page will be fully within the GEM object size. "always", "advi=
-se" and
-> + * "never" are supported too but the latter would just create a mountpoi=
-nt
-> + * similar to default "shm_mnt" one. See shmemfs and Transparent Hugepag=
-e for
-> + * more information.
-> + *
-> + * Returns:
-> + * A struct vfsmount * on success or an ERR_PTR()-encoded negative error=
- code on
-> + * failure.
-> + */
-> +struct vfsmount *drm_gem_shmem_huge_mnt_create(const char *value)
+kernel test robot noticed the following build errors:
 
-Given drm_gem_object_init_with_mnt() lives in drm_gem.c and doesn't
-have the _shmem_ prefix, I'd be tempted to move this helper to
-drm_gem.c and rename it drm_gem_huge_mnt_create(). Actually, as I said
-in the panthor patch, I believe this could also be passed a drm_device
-and have the resulting vfsmount stored in drm_device::huge_mnt. This
-way we could get rid of drm_gem_shmem_create_with_mnt() altogether.
+[auto build test ERROR on drm-misc/drm-misc-next]
+[cannot apply to akpm-mm/mm-everything linus/master v6.17 next-20250929]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> +{
-> +	struct file_system_type *type;
-> +	struct fs_context *fc;
-> +	struct vfsmount *mnt;
-> +	int ret;
-> +
-> +	if (!IS_ENABLED(CONFIG_TRANSPARENT_HUGEPAGE))
-> +		return ERR_PTR(-EOPNOTSUPP);
-> +
-> +	type =3D get_fs_type("tmpfs");
-> +	if (!type)
-> +		return ERR_PTR(-EOPNOTSUPP);
-> +
-> +	fc =3D fs_context_for_mount(type, SB_KERNMOUNT);
-> +	if (IS_ERR(fc))
-> +		return ERR_CAST(fc);
-> +	ret =3D drm_gem_shmem_add_fc_param(fc, "source", "tmpfs");
-> +	if (ret)
-> +		return ERR_PTR(-ENOPARAM);
-> +	ret =3D drm_gem_shmem_add_fc_param(fc, "huge", value);
-> +	if (ret)
-> +		return ERR_PTR(-ENOPARAM);
-> +
-> +	mnt =3D fc_mount_longterm(fc);
-> +	put_fs_context(fc);
-> +
-> +	return mnt;
-> +}
-> +EXPORT_SYMBOL_GPL(drm_gem_shmem_huge_mnt_create);
-> +
->  static const struct drm_gem_object_funcs drm_gem_shmem_funcs =3D {
->  	.free =3D drm_gem_shmem_object_free,
->  	.print_info =3D drm_gem_shmem_object_print_info,
-> diff --git a/include/drm/drm_gem_shmem_helper.h b/include/drm/drm_gem_shm=
-em_helper.h
-> index 589f7bfe7506..5e153fb63f38 100644
-> --- a/include/drm/drm_gem_shmem_helper.h
-> +++ b/include/drm/drm_gem_shmem_helper.h
-> @@ -107,6 +107,20 @@ struct drm_gem_shmem_object {
->  #define to_drm_gem_shmem_obj(obj) \
->  	container_of(obj, struct drm_gem_shmem_object, base)
-> =20
-> +struct vfsmount *drm_gem_shmem_huge_mnt_create(const char *value);
-> +
-> +/**
-> + * drm_gem_shmem_huge_mnt_free - Release a huge tmpfs mountpoint.
-> + * @mnt: struct vfsmount * to release
-> + *
-> + * This function unmounts and releases an internal huge tmpfs mountpoint=
-. If
-> + * @mnt is NULL, no operation is performed.
-> + */
-> +static inline void drm_gem_shmem_huge_mnt_free(struct vfsmount *mnt)
-> +{
-> +	kern_unmount(mnt);
-> +}
-> +
->  int drm_gem_shmem_init(struct drm_device *dev, struct drm_gem_shmem_obje=
-ct *shmem, size_t size);
->  struct drm_gem_shmem_object *drm_gem_shmem_create(struct drm_device *dev=
-, size_t size);
->  struct drm_gem_shmem_object *drm_gem_shmem_create_with_mnt(struct drm_de=
-vice *dev,
+url:    https://github.com/intel-lab-lkp/linux/commits/Lo-c-Molinari/drm-shmem-helper-Add-huge-page-fault-handler/20250930-040600
+base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
+patch link:    https://lore.kernel.org/r/20250929200316.18417-5-loic.molinari%40collabora.com
+patch subject: [PATCH 4/8] drm/i915: Use huge tmpfs mount point helpers
+config: i386-randconfig-013-20250930 (https://download.01.org/0day-ci/archive/20250930/202509301837.pQ2TiJkx-lkp@intel.com/config)
+compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250930/202509301837.pQ2TiJkx-lkp@intel.com/reproduce)
 
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202509301837.pQ2TiJkx-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/gpu/drm/i915/gem/i915_gemfs.c: In function 'i915_gemfs_init':
+>> drivers/gpu/drm/i915/gem/i915_gemfs.c:29:17: error: implicit declaration of function 'drm_gem_shmem_huge_mnt_create' [-Wimplicit-function-declaration]
+      29 |         gemfs = drm_gem_shmem_huge_mnt_create("within_size");
+         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/gpu/drm/i915/gem/i915_gemfs.c:29:15: error: assignment to 'struct vfsmount *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+      29 |         gemfs = drm_gem_shmem_huge_mnt_create("within_size");
+         |               ^
+   drivers/gpu/drm/i915/gem/i915_gemfs.c: In function 'i915_gemfs_fini':
+>> drivers/gpu/drm/i915/gem/i915_gemfs.c:46:9: error: implicit declaration of function 'drm_gem_shmem_huge_mnt_free' [-Wimplicit-function-declaration]
+      46 |         drm_gem_shmem_huge_mnt_free(i915->mm.gemfs);
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+vim +/drm_gem_shmem_huge_mnt_create +29 drivers/gpu/drm/i915/gem/i915_gemfs.c
+
+     9	
+    10	void i915_gemfs_init(struct drm_i915_private *i915)
+    11	{
+    12		struct vfsmount *gemfs;
+    13	
+    14		/*
+    15		 * By creating our own shmemfs mountpoint, we can pass in
+    16		 * mount flags that better match our usecase.
+    17		 *
+    18		 * One example, although it is probably better with a per-file
+    19		 * control, is selecting huge page allocations ("huge=within_size").
+    20		 * However, we only do so on platforms which benefit from it, or to
+    21		 * offset the overhead of iommu lookups, where with latter it is a net
+    22		 * win even on platforms which would otherwise see some performance
+    23		 * regressions such a slow reads issue on Broadwell and Skylake.
+    24		 */
+    25	
+    26		if (GRAPHICS_VER(i915) < 11 && !i915_vtd_active(i915))
+    27			return;
+    28	
+  > 29		gemfs = drm_gem_shmem_huge_mnt_create("within_size");
+    30		if (IS_ERR(gemfs))
+    31			goto err;
+    32	
+    33		i915->mm.gemfs = gemfs;
+    34		drm_info(&i915->drm, "Using Transparent Hugepages\n");
+    35		return;
+    36	
+    37	err:
+    38		drm_notice(&i915->drm,
+    39			   "Transparent Hugepage support is recommended for optimal performance%s\n",
+    40			   GRAPHICS_VER(i915) >= 11 ? " on this platform!" :
+    41						      " when IOMMU is enabled!");
+    42	}
+    43	
+    44	void i915_gemfs_fini(struct drm_i915_private *i915)
+    45	{
+  > 46		drm_gem_shmem_huge_mnt_free(i915->mm.gemfs);
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
