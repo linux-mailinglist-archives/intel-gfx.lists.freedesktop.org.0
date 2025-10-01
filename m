@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2800CBAFB02
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Oct 2025 10:39:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D165BAFB08
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Oct 2025 10:39:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 961AF10E6DC;
-	Wed,  1 Oct 2025 08:39:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AC9E10E6DF;
+	Wed,  1 Oct 2025 08:39:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EdUCJ68E";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mlIANQiC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A65A010E6DA;
- Wed,  1 Oct 2025 08:39:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14F7310E6DA;
+ Wed,  1 Oct 2025 08:39:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759307947; x=1790843947;
+ t=1759307949; x=1790843949;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=15jrPGX6HDqnL/NXLDxjPkC78TTbhPSecEd2fvd1hgI=;
- b=EdUCJ68EaQq3T+biTsyrwM+zQCOdZuRuQjrz6ToNOepqUucuhkY0fBzA
- TUblvzsWZ5nHXoDHRzzbRXq5ImXVtp+oZJ2q5eCENFVrKIueu2gW21lMh
- 0NPx73lw7NIGIvtrn8hQUkyUo8ZMhhcxpsOQ8LnyLbLCTVfc+J4C5zj83
- 73tXgyDEOQwOK8sSsWAzXbgyEpuJx58wSLkW91lUU28FhhhW9R7nqO93i
- XuX0K8VAS0j5Q9zWWQc2kyyHMFUcn2RuAdCLJDLF5SXY6waZFr1eqCE94
- sinPCnOTqtZKoDAxf9qZurVHISlS9C6kV3N9WIVqOtAeOnglOGR5F/qBA g==;
-X-CSE-ConnectionGUID: GcbujYtjQ2ebPufy9kQDhA==
-X-CSE-MsgGUID: aWksCw5+Qp+1bzYHjS/31w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="61742777"
-X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="61742777"
+ bh=uEyDRvLwJqHP0Rva/KIOu2PWZL0PQszmPiIOh5yww7k=;
+ b=mlIANQiCb0gor2R0Mx4W/AGG+16TRbvKMJDkob2KFOXzTcBF1Oz7lnGi
+ yeq0PnN7FIJRSp42o02mxoyXpVa+1yLJJZ1gHleqsghCXrLsJazkhXjmy
+ w9SXIpktP8VsVudNPPYCQdn2F8r37wxjxx8LwnLL6ffCSMuh1KSmeXiMi
+ 6c6GZvhVhjEYk+EwQ0NyFo3hH2YB9wmBIeEn1jt5z1dY7mn766gHabofv
+ PJRzNUvrltnRF1QSDmAu4VTltzPDZKSQOuxPs0BVsj/lTKWwcMehOcgS9
+ Fdk4egsZzmQRQ6Chhvaeuexfyk9cyV+H1e6boBHaY9ds7TsY4K3deBXeX w==;
+X-CSE-ConnectionGUID: kJzcN6sYRRWbRxWWRanZMQ==
+X-CSE-MsgGUID: IFzEiEkRQY2/PNE+mDGXkg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="61742780"
+X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="61742780"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2025 01:39:07 -0700
-X-CSE-ConnectionGUID: 75QEYshpQh2MxyuFa0xJdQ==
-X-CSE-MsgGUID: 2ECxGbWETWmH2ZX3jgTJfA==
+ 01 Oct 2025 01:39:08 -0700
+X-CSE-ConnectionGUID: hiWnVVAgTaKvZCRFtVQ55Q==
+X-CSE-MsgGUID: YrVw6SkoRsOJ3+U2PNz8sg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="179142746"
+X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="179142757"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa008.fm.intel.com with ESMTP; 01 Oct 2025 01:39:05 -0700
+ by fmviesa008.fm.intel.com with ESMTP; 01 Oct 2025 01:39:06 -0700
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Mika Kahola <mika.kahola@intel.com>,
 	Imre Deak <imre.deak@intel.com>
-Subject: [RFC PATCH 24/39] drm/i915/display: Update C10/C20 state calculation
-Date: Wed,  1 Oct 2025 11:28:24 +0300
-Message-Id: <20251001082839.2585559-25-mika.kahola@intel.com>
+Subject: [RFC PATCH 25/39] drm/i915/display: Compute plls for MTL+ platform
+Date: Wed,  1 Oct 2025 11:28:25 +0300
+Message-Id: <20251001082839.2585559-26-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251001082839.2585559-1-mika.kahola@intel.com>
 References: <20251001082839.2585559-1-mika.kahola@intel.com>
@@ -68,212 +68,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For the dpll framework, the state must be computed into
-a port PLL state, which is separate from the dpll_hw_state
-in crtc_state.
+To bring MTL+ platform aligned with dpll framework we
+need to call and calculate pll state from dpll
+framework.
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 68 ++++++++++----------
- drivers/gpu/drm/i915/display/intel_cx0_phy.h |  5 +-
- drivers/gpu/drm/i915/display/intel_dpll.c    |  2 +-
- 3 files changed, 40 insertions(+), 35 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 65 +++++++++++++++++++
+ 1 file changed, 65 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 453d940e67f8..f0cba843fed1 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2034,7 +2034,7 @@ static const struct intel_c20pll_state * const mtl_c20_hdmi_tables[] = {
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index a9d9b7113f12..04eec62c06ae 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -4320,9 +4320,74 @@ static const struct dpll_info mtl_plls[] = {
+ 	{}
  };
  
- static const struct intel_c10pll_state * const *
--intel_c10pll_tables_get(struct intel_crtc_state *crtc_state,
-+intel_c10pll_tables_get(const struct intel_crtc_state *crtc_state,
- 			struct intel_encoder *encoder)
- {
- 	if (intel_crtc_has_dp_encoder(crtc_state)) {
-@@ -2138,8 +2138,9 @@ static int intel_c10pll_calc_state_from_table(struct intel_encoder *encoder,
- 	return -EINVAL;
- }
- 
--static int intel_c10pll_calc_state(struct intel_crtc_state *crtc_state,
--				   struct intel_encoder *encoder)
-+static int intel_c10pll_calc_state(const struct intel_crtc_state *crtc_state,
-+				   struct intel_encoder *encoder,
-+				   struct intel_dpll_hw_state *hw_state)
- {
- 	struct intel_display *display = to_intel_display(encoder);
- 	bool is_dp = intel_crtc_has_dp_encoder(crtc_state);
-@@ -2152,21 +2153,20 @@ static int intel_c10pll_calc_state(struct intel_crtc_state *crtc_state,
- 
- 	err = intel_c10pll_calc_state_from_table(encoder, tables, is_dp,
- 						 crtc_state->port_clock, crtc_state->lane_count,
--						 &crtc_state->dpll_hw_state.cx0pll);
-+						 &hw_state->cx0pll);
- 
- 	if (err == 0 || !intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
- 		return err;
- 
- 	/* For HDMI PLLs try SNPS PHY algorithm, if there are no precomputed tables */
--	intel_snps_hdmi_pll_compute_c10pll(&crtc_state->dpll_hw_state.cx0pll.c10,
-+	intel_snps_hdmi_pll_compute_c10pll(&hw_state->cx0pll.c10,
- 					   crtc_state->port_clock);
--	intel_c10pll_update_pll(encoder,
--				&crtc_state->dpll_hw_state.cx0pll);
--	crtc_state->dpll_hw_state.cx0pll.use_c10 = true;
--	crtc_state->dpll_hw_state.cx0pll.lane_count = crtc_state->lane_count;
-+	intel_c10pll_update_pll(encoder, &hw_state->cx0pll);
- 
--	drm_WARN_ON(display->drm,
--		    is_dp != c10pll_state_is_dp(&crtc_state->dpll_hw_state.cx0pll.c10));
-+	hw_state->cx0pll.use_c10 = true;
-+	hw_state->cx0pll.lane_count = crtc_state->lane_count;
++static int mtl_compute_c10phy_dplls(struct intel_atomic_state *state,
++				    struct intel_crtc *crtc,
++				    struct intel_encoder *encoder)
++{
++	struct intel_crtc_state *crtc_state =
++		intel_atomic_get_new_crtc_state(state, crtc);
++	struct icl_port_dpll *port_dpll =
++		&crtc_state->icl_port_dplls[ICL_PORT_DPLL_DEFAULT];
++	int ret;
 +
-+	drm_WARN_ON(display->drm, is_dp != c10pll_state_is_dp(&hw_state->cx0pll.c10));
++	ret = intel_cx0pll_calc_state(crtc_state, encoder, &port_dpll->hw_state);
++	if (ret)
++		return ret;
++
++	/* this is mainly for the fastset check */
++	icl_set_active_port_dpll(crtc_state, ICL_PORT_DPLL_DEFAULT);
++
++	crtc_state->port_clock = intel_cx0pll_calc_port_clock(encoder,
++							      &port_dpll->hw_state.cx0pll);
++
++	return 0;
++}
++
++static int mtl_compute_c20phy_dplls(struct intel_atomic_state *state,
++				    struct intel_crtc *crtc,
++				    struct intel_encoder *encoder)
++{
++	struct intel_crtc_state *crtc_state =
++		intel_atomic_get_new_crtc_state(state, crtc);
++	const struct intel_crtc_state *old_crtc_state =
++		intel_atomic_get_old_crtc_state(state, crtc);
++	struct icl_port_dpll *port_dpll;
++	int ret;
++
++	/* TODO: Add state calculation for TBT PLL */
++
++	port_dpll = &crtc_state->icl_port_dplls[ICL_PORT_DPLL_MG_PHY];
++	ret = intel_cx0pll_calc_state(crtc_state, encoder, &port_dpll->hw_state);
++	if (ret)
++		return ret;
++
++	/* this is mainly for the fastset check */
++	if (old_crtc_state->intel_dpll &&
++	    old_crtc_state->intel_dpll->info->id == DPLL_ID_ICL_TBTPLL)
++		icl_set_active_port_dpll(crtc_state, ICL_PORT_DPLL_DEFAULT);
++	else
++		icl_set_active_port_dpll(crtc_state, ICL_PORT_DPLL_MG_PHY);
++
++	crtc_state->port_clock = intel_cx0pll_calc_port_clock(encoder,
++							      &port_dpll->hw_state.cx0pll);
++
++	return 0;
++}
++
++static int mtl_compute_dplls(struct intel_atomic_state *state,
++			     struct intel_crtc *crtc,
++			     struct intel_encoder *encoder)
++{
++	if (intel_encoder_is_c10phy(encoder))
++		return mtl_compute_c10phy_dplls(state, crtc, encoder);
++	else
++		return mtl_compute_c20phy_dplls(state, crtc, encoder);
++}
++
+ __maybe_unused
+ static const struct intel_dpll_mgr mtl_pll_mgr = {
+ 	.dpll_info = mtl_plls,
++	.compute_dplls = mtl_compute_dplls,
+ };
  
- 	return 0;
- }
-@@ -2355,7 +2355,7 @@ static bool is_arrowlake_s_by_host_bridge(void)
- 	return pdev && IS_ARROWLAKE_S_BY_HOST_BRIDGE_ID(host_bridge_pci_dev_id);
- }
- 
--static u16 intel_c20_hdmi_tmds_tx_cgf_1(struct intel_crtc_state *crtc_state)
-+static u16 intel_c20_hdmi_tmds_tx_cgf_1(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	u16 tx_misc;
-@@ -2379,9 +2379,9 @@ static u16 intel_c20_hdmi_tmds_tx_cgf_1(struct intel_crtc_state *crtc_state)
- 		C20_PHY_TX_DCC_BYPASS | C20_PHY_TX_TERM_CTL(tx_term_ctrl));
- }
- 
--static int intel_c20_compute_hdmi_tmds_pll(struct intel_crtc_state *crtc_state)
-+static int intel_c20_compute_hdmi_tmds_pll(const struct intel_crtc_state *crtc_state,
-+					   struct intel_c20pll_state *pll_state)
- {
--	struct intel_c20pll_state *pll_state = &crtc_state->dpll_hw_state.cx0pll.c20;
- 	u64 datarate;
- 	u64 mpll_tx_clk_div;
- 	u64 vco_freq_shift;
-@@ -2648,8 +2648,9 @@ intel_c20_pll_find_table(const struct intel_crtc_state *crtc_state,
- 	return NULL;
- }
- 
--static int intel_c20pll_calc_state_from_table(struct intel_crtc_state *crtc_state,
--					      struct intel_encoder *encoder)
-+static int intel_c20pll_calc_state_from_table(const struct intel_crtc_state *crtc_state,
-+					      struct intel_encoder *encoder,
-+					      struct intel_cx0pll_state *pll_state)
- {
- 	const struct intel_c20pll_state *table;
- 
-@@ -2657,52 +2658,53 @@ static int intel_c20pll_calc_state_from_table(struct intel_crtc_state *crtc_stat
- 	if (!table)
- 		return -EINVAL;
- 
--	crtc_state->dpll_hw_state.cx0pll.c20 = *table;
-+	pll_state->c20 = *table;
- 
--	intel_cx0pll_update_ssc(encoder, &crtc_state->dpll_hw_state.cx0pll,
--				intel_crtc_has_dp_encoder(crtc_state));
-+	intel_cx0pll_update_ssc(encoder, pll_state, intel_crtc_has_dp_encoder(crtc_state));
- 
- 	return 0;
- }
- 
--static int intel_c20pll_calc_state(struct intel_crtc_state *crtc_state,
--				   struct intel_encoder *encoder)
-+static int intel_c20pll_calc_state(const struct intel_crtc_state *crtc_state,
-+				   struct intel_encoder *encoder,
-+				   struct intel_dpll_hw_state *hw_state)
- {
- 	struct intel_display *display = to_intel_display(encoder);
- 	bool is_dp = intel_crtc_has_dp_encoder(crtc_state);
- 	int err = -ENOENT;
- 
--	crtc_state->dpll_hw_state.cx0pll.use_c10 = false;
--	crtc_state->dpll_hw_state.cx0pll.lane_count = crtc_state->lane_count;
-+	hw_state->cx0pll.use_c10 = false;
-+	hw_state->cx0pll.lane_count = crtc_state->lane_count;
- 
- 	/* try computed C20 HDMI tables before using consolidated tables */
- 	if (!is_dp)
- 		/* TODO: Update SSC state for HDMI as well */
--		err = intel_c20_compute_hdmi_tmds_pll(crtc_state);
-+		err = intel_c20_compute_hdmi_tmds_pll(crtc_state, &hw_state->cx0pll.c20);
- 
- 	if (err)
--		err = intel_c20pll_calc_state_from_table(crtc_state, encoder);
-+		err = intel_c20pll_calc_state_from_table(crtc_state, encoder,
-+							 &hw_state->cx0pll);
- 
- 	if (err)
- 		return err;
- 
--	intel_c20_calc_vdr_params(&crtc_state->dpll_hw_state.cx0pll.c20.vdr,
-+	intel_c20_calc_vdr_params(&hw_state->cx0pll.c20.vdr,
- 				  is_dp, crtc_state->port_clock);
- 
--	drm_WARN_ON(display->drm,
--		    is_dp != c20pll_state_is_dp(&crtc_state->dpll_hw_state.cx0pll.c20));
-+	drm_WARN_ON(display->drm, is_dp != c20pll_state_is_dp(&hw_state->cx0pll.c20));
- 
- 	return 0;
- }
- 
--int intel_cx0pll_calc_state(struct intel_crtc_state *crtc_state,
--			    struct intel_encoder *encoder)
-+int intel_cx0pll_calc_state(const struct intel_crtc_state *crtc_state,
-+			    struct intel_encoder *encoder,
-+			    struct intel_dpll_hw_state *hw_state)
- {
--	memset(&crtc_state->dpll_hw_state, 0, sizeof(crtc_state->dpll_hw_state));
-+	memset(hw_state, 0, sizeof(*hw_state));
- 
- 	if (intel_encoder_is_c10phy(encoder))
--		return intel_c10pll_calc_state(crtc_state, encoder);
--	return intel_c20pll_calc_state(crtc_state, encoder);
-+		return intel_c10pll_calc_state(crtc_state, encoder, hw_state);
-+	return intel_c20pll_calc_state(crtc_state, encoder, hw_state);
- }
- 
- static bool intel_c20phy_use_mpllb(const struct intel_c20pll_state *state)
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-index 2b934b96af81..7b88c3fe9de1 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-@@ -16,6 +16,7 @@ struct intel_crtc;
- struct intel_crtc_state;
- struct intel_cx0pll_state;
- struct intel_display;
-+struct intel_dpll_hw_state;
- struct intel_encoder;
- struct intel_hdmi;
- 
-@@ -27,7 +28,9 @@ enum icl_port_dpll_id
- intel_mtl_port_pll_type(struct intel_encoder *encoder,
- 			const struct intel_crtc_state *crtc_state);
- 
--int intel_cx0pll_calc_state(struct intel_crtc_state *crtc_state, struct intel_encoder *encoder);
-+int intel_cx0pll_calc_state(const struct intel_crtc_state *crtc_state,
-+			    struct intel_encoder *encoder,
-+			    struct intel_dpll_hw_state *hw_state);
- void intel_cx0pll_readout_hw_state(struct intel_encoder *encoder,
- 				   struct intel_cx0pll_state *pll_state);
- int intel_cx0pll_calc_port_clock(struct intel_encoder *encoder,
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
-index f969c5399a51..7a48d6f0db10 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll.c
-@@ -1220,7 +1220,7 @@ static int mtl_crtc_compute_clock(struct intel_atomic_state *state,
- 		intel_get_crtc_new_encoder(state, crtc_state);
- 	int ret;
- 
--	ret = intel_cx0pll_calc_state(crtc_state, encoder);
-+	ret = intel_cx0pll_calc_state(crtc_state, encoder, &crtc_state->dpll_hw_state);
- 	if (ret)
- 		return ret;
- 
+ /**
 -- 
 2.34.1
 
