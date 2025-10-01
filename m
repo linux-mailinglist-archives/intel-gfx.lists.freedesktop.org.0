@@ -2,156 +2,185 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2E4CBAF109
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Oct 2025 06:00:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA2F2BAF25A
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Oct 2025 07:30:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07AFA10E64B;
-	Wed,  1 Oct 2025 04:00:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2E7310E659;
+	Wed,  1 Oct 2025 05:30:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="R5U76Kbg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TwmtAmVp";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010017.outbound.protection.outlook.com [52.101.201.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BBB610E2E6;
- Wed,  1 Oct 2025 04:00:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B9BC10E659;
+ Wed,  1 Oct 2025 05:30:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1759296608; x=1790832608;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=lCJRqbVFkgp3ocHw1av8vi6KEoKvk5wTodABmSaQBWk=;
+ b=TwmtAmVpktaw/hsF6s4Az1dzgVMwndvcSaSpdpeeTHqFu2sx3rTMhKpo
+ 3VxJbPeqa232bajIeXRGk0qd7RtWN3z19AJuyBfZU6Ui9OvskfzAC2voj
+ F2UnP/pa+KldA43ZJRBoFuCRZysX6ZHQ00UMzD8ImHdEcU7IwLv1GqgLW
+ rAY3oVWmOPhxOJYgoP1ljgVB8X/txkixJywV0H29C5ttckKl9ZIxnWxgZ
+ PRVhEQ6H+iHcw/FWL8TnWuO6WpaK5J6AT9MlKju4bbDF8ljJEMSpyhkbn
+ fVzSVtP62Qu8GFKR1ZFnuTq/7L/YCDQb0E8sLxRhmVAglod0F6aHwkJ2T A==;
+X-CSE-ConnectionGUID: zAwM8mJ4RN6eASYJEAzj2w==
+X-CSE-MsgGUID: fv0iepvEQtC3/jyaEMdIbw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="60776703"
+X-IronPort-AV: E=Sophos;i="6.18,305,1751266800"; d="scan'208";a="60776703"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2025 22:30:08 -0700
+X-CSE-ConnectionGUID: 5kI98RG8RwSTOIwpRUchLA==
+X-CSE-MsgGUID: /XdGZWPUQZi2TlC4I6PPyQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,305,1751266800"; d="scan'208";a="183962398"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2025 22:30:08 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Tue, 30 Sep 2025 22:30:07 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27 via Frontend Transport; Tue, 30 Sep 2025 22:30:07 -0700
+Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.65) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Tue, 30 Sep 2025 22:30:07 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nvgTfKLvfuE+Lmef3WQXlBOG7fDXIRjzOlMyN0trYZ33dwR+woB9ZJANIu90VCH518n1/D6DspvKCtNyKWfwoO3u1IIgpDnhrvVj4MRcEnqY4f03yfjkcl1N1owQu4aOT68uWmDgf/Dl+EXviOIsMtB1gSkrxKSn8FgNJraxJSHIn2vZSx1MmuKteJCnARzJL3bv8MSdt8tZnAoH2FlQjWwEWQbksEam+fZooPNr7E/NRTpyVH+iA361KbZt6ieFWwlqGuzso0HCcQ7tvHuzfahMcZqk73fb4jG62Xz1MfGaM7QRxk29p64x9NIF1AZw4+n7LN6WIZvwKZ4UlObaVQ==
+ b=m0o2/MBJFhyc1TDL+sqRxIOK4bSoX3OOe/tn/tQ/pIYfQBgphNcjh4LYLejHCVYbDzBxlT0oWfBEYULz/zLDnLzHVEj+gQLaFUu8Wj/iqe4ycvy6xHIHobR7Z1eAbJUgkWmhaAJhZmQKWL1zP9BuvFHrAIa8TajnYiTlNMZqnc8hLKAi9lGRHkrWWrR62dgUj6uZrMaS6VOD0E9bZ3hrZjju1+kd3Pg3LjyZCBxta9rSu8wl5lx0wDE1C4xLuYNrNiWflAMjhpywGpADSXo8aJX2GvpqYcJDka5m+mk8ERPo2nX4COtdCLVErAoIvdE5kr6EEwYlVtk2EgLlo+qKhg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QKvsuKT/fP/EiLYJuonJJqKWj5maha53984BKxQHBU8=;
- b=S3NLReh4Mr0r/5ZWAL8F95zw0/AkBpHH40yJrbDOOYUzcQCS11HOmkgohwV9HcdPwaRvrGsNpM2aUYp4nRey+ssrfP8/+KNnvMNa26N04K+2AUyDxYlGl0bxQafJJQ1nijFH6KzHkxxbc1lWL7jRbD9BZ2Tm7tsj/1Qy2ZqtsRYzcm/ZEwa1iA51HTnhVixSaAsKoKsUIZgCtmenrK0q0NaUaQqCC4sQHzVVdmEtAZEl8oIk46x8eYnnlzBYiqtQTmmIlEH82m2tiKbKxCTiYMAflRJlRY4YyM8u7qE7Qcn6TsHtYzCMfuOARp+XPu1JI9Zm8/63xK8K0ENHqS0jBw==
+ bh=5UzLYzI47lx+IJLVr1/5BymS5MKxYlZbsTJE65nQ5gE=;
+ b=BlryIqFkdq9YG84/WdEgomCyK36xmV7GCznyF9lgBix6K3jr/mxvmWmpvKoiLt/8XZM+PqjccAyc/Cn8xSZuPoUkuMOgc5Y5Ru94ILhQuliXLCfQwwN32xwW0pNJKw4qgTWvN/yy0uuWtPyD/hNaIYHS4j1XX+zin4gq8dBGllXuyGWR3bxtxDtADjWjqGvoJOGLerbXm6HJnL1gX9fI/QoL3rnBZPEcL5n7jHXzZZdm6IQu1d4FOo6qMqPnzL40kCYs5FEfYtb7Bz9jKP4Ym0+Cmt+imQo/pFtE2Q4BZiA5O7ZCzmGQIXJVA4e++vYvromlAaRPu5d7AgEKVGWlcQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QKvsuKT/fP/EiLYJuonJJqKWj5maha53984BKxQHBU8=;
- b=R5U76KbgX1WXjmq7HbOmYTif/0zt8XvijOoVhG6amj3jkhgU6MYHML4wr6E0XVyEMbOdKiHZpU4tfJjx+hBTJptlWp0A8QdHK4mIvImfSwjfnMsW8NBrDOcQ5HCmYxNTFUgfDUt0N5IIrQmk5OEF0iwJmAUEgBWie/ou2PKWg4c=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH8PR12MB7301.namprd12.prod.outlook.com (2603:10b6:510:222::12)
- by MW4PR12MB7336.namprd12.prod.outlook.com (2603:10b6:303:21a::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.17; Wed, 1 Oct
- 2025 03:59:56 +0000
-Received: from PH8PR12MB7301.namprd12.prod.outlook.com
- ([fe80::a929:e8eb:ef22:6350]) by PH8PR12MB7301.namprd12.prod.outlook.com
- ([fe80::a929:e8eb:ef22:6350%5]) with mapi id 15.20.9160.015; Wed, 1 Oct 2025
- 03:59:56 +0000
-Message-ID: <f17b2883-125c-41b7-8be6-714da5597abd@amd.com>
-Date: Wed, 1 Oct 2025 09:29:47 +0530
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by BL4PR11MB8872.namprd11.prod.outlook.com (2603:10b6:208:5a8::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.9; Wed, 1 Oct
+ 2025 05:30:00 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839%7]) with mapi id 15.20.9160.015; Wed, 1 Oct 2025
+ 05:29:58 +0000
+Message-ID: <24db7ad0-de95-44ef-9ca6-82a5bc190e90@intel.com>
+Date: Wed, 1 Oct 2025 10:59:51 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 3/3] drm/buddy: Add KUnit tests for allocator
- performance under fragmentation
-To: Matthew Auld <matthew.auld@intel.com>, christian.koenig@amd.com,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: alexander.deucher@amd.com, jani.nikula@linux.intel.com,
- peterz@infradead.org, samuel.pitoiset@gmail.com
-References: <20250923090242.60649-1-Arunpravin.PaneerSelvam@amd.com>
- <20250923090242.60649-3-Arunpravin.PaneerSelvam@amd.com>
- <f2db7484-efd4-459a-93b2-b6097d7e86f5@intel.com>
+Subject: Re: [PATCH 03/10] drm/i915/display: Add strength and winsize register
+To: Nemesa Garg <nemesa.garg@intel.com>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
+References: <20250926113728.606315-1-nemesa.garg@intel.com>
+ <20250926113728.606315-4-nemesa.garg@intel.com>
 Content-Language: en-US
-From: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
-In-Reply-To: <f2db7484-efd4-459a-93b2-b6097d7e86f5@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250926113728.606315-4-nemesa.garg@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SI2P153CA0021.APCP153.PROD.OUTLOOK.COM
- (2603:1096:4:190::20) To PH8PR12MB7301.namprd12.prod.outlook.com
- (2603:10b6:510:222::12)
+X-ClientProxiedBy: MA5P287CA0011.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:176::8) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR12MB7301:EE_|MW4PR12MB7336:EE_
-X-MS-Office365-Filtering-Correlation-Id: aadbd58d-e6ae-4d74-e96a-08de009efbc9
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|BL4PR11MB8872:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9df2bb92-17e7-4143-9ff8-08de00ab8f9f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?OXJiK2s2ODEvN2Yva1dWL0hZUHF4NElVZnZKNkJVNmRTblhEUFp4a3RYMXBt?=
- =?utf-8?B?VGtEREJMcGRpVjZYNGk1YlRtU3lUWXZQQjJQU3BFa1Fvd2JhSDNWd1FxZDFn?=
- =?utf-8?B?YlFVOUF2Zmo2R3NnNXl0UlFTam5uZGg0OHpHeDVkZzhTMHNnSVY5MzdJSGY2?=
- =?utf-8?B?N25YOTYyNGpqeVRtRlo3b0U1ZElWZjhqS2lkNSszd2FEbEZycWl1cVJndUZC?=
- =?utf-8?B?RUJ4R203aTBxeDEyb2NHTnY0V1FNVlZkV3Q0RldvVlA5MjQzUEN6ZGZDRldv?=
- =?utf-8?B?UUJDdDJHU3dMTGdJclJwWjcvWmo4MmYvdjcrZW9DMitXV1k4U1lEZVUvZ2VS?=
- =?utf-8?B?K25xZ2Q3ODliemphSlA2aVRtODJNZFZicTczQ3FMTkloWUV2bE1NMTRGUFhx?=
- =?utf-8?B?aFpxRlVqdHQ3MGVjSmNCeUpzQmhUNXdReXBQVjlQOXY3KzNLSVNXTEJPV2k2?=
- =?utf-8?B?cU1ORjh4cHNtMEZlZHJuQi9hRUp6NHJ6ck5hb3BRRi9nUFQrZTE2L2VwMTVa?=
- =?utf-8?B?VE5XT05xM2t0bjUvMFhoRTdSSVBEc01PL0kyZWdrVnczc011TlBjYnJzVCtD?=
- =?utf-8?B?MnJ6SXc4UGJmRUJHb0JQOFFYZ2NvZ1ZMc1BBTjNWM0s5amtBWU41MVZsZEJI?=
- =?utf-8?B?bllVK1ZjQnFJRG5MazA0citwWTN4dm5YVkllTHpRWnY2clJpL1lxd1ErNHRM?=
- =?utf-8?B?eWljSjI0WUxHbnhNclRIcWVhSG8xVHMveXQ4L05xL2NXYUFhSzk4TTVKZ2Mx?=
- =?utf-8?B?a25mem1IUEJVdnlOeE9KN0NKYmhKS3l5dTVoa0F0V2FQUCtuQ2NXN0ZHRTMv?=
- =?utf-8?B?TFhiMk5MSXFFbUhHOWF5L1lBbmNBc0RCa2NWZXJlc3lneUEyeVRaK2JpZmIy?=
- =?utf-8?B?Ylg2dldHSDRVaDlxTC9SS2V2aTBGbDFkVlN0c2xrOTk3TTBxUlhYVzJCZ1RT?=
- =?utf-8?B?d0hCOEV3NVRSNVBrVW1uZjlrTG44RlZMc3h6R2ZPbStJbmhCYTgwck1LWGtM?=
- =?utf-8?B?WmJPaXVnM3B4UXgwWWVFYUpiZWtXbUdFTTdYSW1sM1BHcnF5NUljNkpCdTg4?=
- =?utf-8?B?YTB5OFFuRkwrMWJURFdaODVTY202NWtKU1c0V2luUEZLVE5EbDRCMEJkTzV1?=
- =?utf-8?B?MjhIQmJVWSsrZTRPck40amxhWVAzdzJnQXdPaEp4WmNJZjN3WXZUbmkrTEhF?=
- =?utf-8?B?b3BBMzV6dXVTOEVXQzIra01XVThUYzQ0SHEyTjZMSUQxTEcvZ1huY0JMRC9D?=
- =?utf-8?B?NVdjMEd5TjQySEdLZkU3R0RSb3V2RUY1ckFYSGZzZVRhUllhU0tnZWJpUC81?=
- =?utf-8?B?bW90SnB4VDVGemQ2M2lveDdJUTFUVm9wcnRhNnNocVkwVzJJMUI2aFoyVEhp?=
- =?utf-8?B?dWxDdllILytSeDcyTVlxcXhEVXp6MG1tdFkzdXNpdVQyQU5JQ2Y3R091MEpx?=
- =?utf-8?B?ZGNsUnYwdGg0MVVBeHo2OUJNWFBVb2hwVXp4Z2E1YlAzblpvOWVndjNzMmJ2?=
- =?utf-8?B?R3VPOHNXMGNmNUJiVXV6OStZZytkMk1pQmpaKzRBOFVET3d2bXJHQjhaZkdT?=
- =?utf-8?B?L2FJUktmcGtVdThtQWxCWlowSlZETnk2aklkU3A1ZDNyWU90d3FOazM4eGFu?=
- =?utf-8?B?RXNSRlhad2Nib1F5S0R2bUw5ZmI4WHJ0VWg1cXVtMlhYYkkwME5COUF5Mjlk?=
- =?utf-8?B?cWVLQ1k0RmdMVS8xZ1R2UHNTQkpQSkhMZGZIcW14aEtrM3B0dGJPRlJLdTJa?=
- =?utf-8?B?K3czS0t0clNvc3RvQ1l0WmR0cmxqM0ZyeUhpS29yRkt3ZGNiMzVxdkhNY2xp?=
- =?utf-8?B?cklveWJwYWUrcWlUUWFiWW9LN2VMUFdEMmtkTWRXWlYvWm44bytOSUhVcnVK?=
- =?utf-8?B?K3N5K2lXWjlDd3lwWDA2Ri8zZ0ttSERHczM2U2dtbnExWEdUQjR4QUsxdXgy?=
- =?utf-8?Q?3Vk+vxXB2PtBeVr9WS+q6vCUJnPGAQEF?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?SytMVm1WWG9neXgrNExGbGg3Qng0dUkrYzFVbTUzSUZVZ011MFJsMDVhMjFJ?=
+ =?utf-8?B?SFlsY2h1aXNiNGVLdDIyNm9WOWhJRG9WYTZlQmtRWk1lcGZpYlFUSXN2UmhB?=
+ =?utf-8?B?MXRwbFc3WC9TaHVJWVVjYjJuejdGZUYrOUo3VG52dkNKbXZaSnZMa0V0MFhQ?=
+ =?utf-8?B?cUZRNG9KVXN6ZVZRalBONXNqbHQ2L01WZGN1Ly9KOHMyc2w4K0tDR1hVK211?=
+ =?utf-8?B?d2ErdGxTZ3ZITTNlU1k5TEpXb3ZUYkx6eHRURGZ4bnE2RGVMR0xzWFdUWkFB?=
+ =?utf-8?B?SW1MWHZKUmpzYW93MTAvYldNZXl0Q1dWSitwZHo5Q0xDMzZ4QXdZOHA0T2g1?=
+ =?utf-8?B?a1FCeGwxOWpJYnhDV1huS2ZqSHNVUkg4ZVNHRDZZOUFwK3ppQURQMThCOEQ1?=
+ =?utf-8?B?ODZGVG1PMDY3S2RRYS84ZmRqNDhOQXFIMitWcjl5Uk95MUhOb3NxcGNOYm1E?=
+ =?utf-8?B?Sk1VSGdyTUtXajRrQU8xdTZuUUdqdmc1NHZVWG1JNFQ4WXpaL2FIZG9tUzlQ?=
+ =?utf-8?B?Zm0ySXVmcDdMSzhKS2Nocm0zR1pDdGsrR3pCY00zdzVnSXhrUVRUTEtCYndm?=
+ =?utf-8?B?c0ZMVEkyZVZEN3VzaHBzbE14OHZpNjdWYUIvRDZSclhSalJvR1JsNTBON3VY?=
+ =?utf-8?B?WDU0VEkyS285SSthZkZlWnVQbnlDcHZRZ3o4dVo3aW5Fa3FEbDI2TDJ5OGdG?=
+ =?utf-8?B?RmV3TEFtWlU1T0pXWFBaMThYdE5mWWhIYTZha3pzSHpJWHNQY1BiMWZZblgz?=
+ =?utf-8?B?b0xUdjM3dzQ1cEZxdHZRVXhpWFhObU5TcmF1S3VxbktpcmRqQU9mY24zWjds?=
+ =?utf-8?B?c1d5WXhBUjFVR2RDaWMyY2JoVlVweDR6dTd1Wm5oL29GdnJjL2o2ZThwczgv?=
+ =?utf-8?B?aWI1M055SitweTRxeHBycFhPa013S0RFbURzRDFKVnptUzN1VHF3YVRuTHAr?=
+ =?utf-8?B?Uysyc05KRVd3bHVoQzNHUEZWWkpQcnRiZGp6NDQ2bzByS21LNVYwR3NGOWo4?=
+ =?utf-8?B?YjA1WW4zUkFWV3hsaXlRbC9uYlViOHc2b3JnMUVhNVVhclVFRTVuOU9FcDY3?=
+ =?utf-8?B?Qng0TlhSNjM1QStKVExqeTFiMk9DNlFCcEsyQzdzdzlraDN2Rjd0Q1NVdENj?=
+ =?utf-8?B?OURiL2dSa09uQ2dSVG1jZTVJcEVFVjdMVlNJckdXckFwcXJVQWozRHRoOXdT?=
+ =?utf-8?B?OUJZOVpiZDlFTm8vOFBEeFYvZ0p0cmlaS3dxOExMRGZ2c1dXR2phYW5OVTRt?=
+ =?utf-8?B?dnRTS0s5SWtIRVdKV2s3ME1TNjB3dk1tZW9oSlc2cjNWbE1qZHJ4M2dVM3k0?=
+ =?utf-8?B?RWkybVh3MTR0VHBUcFFML1J3K2tKRlRJV0hQSE9jamd1MkhVNTZWVlcrSFlH?=
+ =?utf-8?B?S1Z2R24zTkVkY08wODhodldxLzFjWmlDdDNPbkFKbHY4dVNiQ20yNk1CK1hT?=
+ =?utf-8?B?aVlEWmFtSDBLMWtNSEdDczlFcnNMTUVhM2FrbWxSNmx2VEJEbG9UZVRLKzdk?=
+ =?utf-8?B?amg4M0ZQRGI3U3llNms1cVBEanFPd1RFZWpHSnViOEN6L29TYVhpeGFOcFdZ?=
+ =?utf-8?B?NmVQb2NxU0l4UGJtSVUwci90SG9ERDZiTGJiSDJZVy9NazVGYlNyQ1g3QWQx?=
+ =?utf-8?B?aE1xcUN2dXhaemFUay9wVjMySGt1SUNBbU5KT3g5NGtuRnNIeUtsczFOdFY1?=
+ =?utf-8?B?T29tOURMbjFvU0FGamZjemFJMGgyeStDWjk4N1dkcHVmcnVGSVdDOWlxWVZC?=
+ =?utf-8?B?LzZJWnhJZHhjdXJqbWhUUUMwRytId3FPYzV3eFdGNzArWWsyNzV1TjdjeW83?=
+ =?utf-8?B?dEsxZUZ4M24wM2paZ3NqSXJnekN0a1VFMURXb3pVL3NyYkh5TkhrUEVvMUpX?=
+ =?utf-8?B?TnZUZW5nalptVlN2MnNZSkJUc29na3pyVzFiVEgvbmI3Z0xJT0lSM2l2ano2?=
+ =?utf-8?Q?ME70WNMRsO93HwsNgkS2CikLbhsjikwY?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR12MB7301.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M3hCNkxQQ29BckNFZDE2VGJHeFNxdjRER3cyOHM3eEVYaXg0b0lQTDRhZlhl?=
- =?utf-8?B?Ynhhajd5MjB3bVMxMjVlVlYwVlMyRFFuYlE1aTEyRHNvdHkrQXBTR1FXbkla?=
- =?utf-8?B?RURJMzVJaVVIY204c2dyYnh1NlJoNTNJNzZWakFCcVJMcUsvbGozYXRlNjdS?=
- =?utf-8?B?TE56RFAzUXIwVDdmS2svSzV2dVBDYTVmRldZMmcySXpEQ0dGb1ZuclF6WmpK?=
- =?utf-8?B?NmxTNzJXQ3cyWkVQOHVWTDJSUTdnZS9DbGFQaFdaYUQ5TnFqdjN1anVoUmM1?=
- =?utf-8?B?ZzZOS3g2Tnp1Z0wwei9wc3VNa1VjUGN2ZnA4WkpPejAzNlZ1VisvRStoVlN5?=
- =?utf-8?B?Z0RSajlEM1RpWE9nZjdqQzkzK2l3RjM0NjlTZUt0S1B4cVQvaTAzd1VpTzhI?=
- =?utf-8?B?YnpoVnVVRU9IRVIveG9lSzNoOFF2ODZ3MFZHZ0xNVXlxUUw2WWhadXpxWVpu?=
- =?utf-8?B?QWNqbkt0YWhqVHNlc3hsSVBVMm9zTk1rQWF6NGJ6eGF6Z2VhcWVBaDJVSlk3?=
- =?utf-8?B?aytmOWF2aXZtZjRFN1VZTmlEU1A5S1RJdmUyUmg2YzZVSXpGZFU2d2xiQ21t?=
- =?utf-8?B?cGV4bW52NHVMbEF3VitCTXVpVFhONmF5aG45cWpYcEFNRGFQS3AzRFg5R2dm?=
- =?utf-8?B?MDNTUXhnWHI0dnAwQmZra09qaGFjRm5neEtWRVRBT0FxUGN2SzllQWVwUFBO?=
- =?utf-8?B?U2N0Q0pnQTNmRmZOVUE0eVg3SmlSYWdoS1VyUXlMVDE4Y0Z1SFFPSGZBZDQz?=
- =?utf-8?B?Z2RwVExXWUpGYTY1UjNkMVFjSEpRRm9RNW10R2xOUXpxQUVUR0pFcWNzbC9B?=
- =?utf-8?B?L2MyK2hSK3hXOStHY3k4Nlc1MTB4M3BacXZqWkhYOWZDaHB4eDlJYm9XN3Bm?=
- =?utf-8?B?azVtdTJ5bDJvb2M3TlI1dlYxSXZPSjFIa0ZidjUrNmhnZ1FaQ2VtbGkvMHdS?=
- =?utf-8?B?cXRldDMzQjdCQzd5bzZtYTRaZU16Wk5idGRrU0ttdy8zTGZVNGhucjA0bmF4?=
- =?utf-8?B?SlRieFlGN25mM3RrSXN2cllDeHpjM3U2N2xDY1pSMEdsVEhnalNlTlkrMnkx?=
- =?utf-8?B?TVFrcUwwTnBtVDVRL1VCQmpycVZpTldBdkhOTVVKREtxMkpkZUZhdUMvdTdV?=
- =?utf-8?B?VzRVWGRrOHZueCtVK1VVQkExS25YajBYWGNYdkxTNGFhTm1MWlZ6a1dRWndm?=
- =?utf-8?B?eVU2ODJPWUJCQ2JTbEQyZVh1YWNDMEo4TkNGUFZDajlyd1NYWFFqNkVnTXJl?=
- =?utf-8?B?OEQ0bjNWN2dJd1JCdzgxUE5SMXZFK1FTTytVNE1KN0RhaWFYWVN5ZXFNallK?=
- =?utf-8?B?T05EVC9xZDVKdjh0bGtnd05HYWFnbU0wM0ZGZ2RKNnVMYXdhck5FdlpOOG13?=
- =?utf-8?B?TXQyeUhUNEhrQ01QRW5GblVFMzZrQVIzNy9aUnQ1ZEQ1QzlaSjNwV2Q0S3Z5?=
- =?utf-8?B?ekNBckFBZnVRK3d0cXVMRGMwa280T1pZSkdqQXFCU0pRL1JlVnZkNXFreFV4?=
- =?utf-8?B?NTZMTHRNNVpjUWUwam9hbGo1ZDdDSk0xYWNpbU9vTXQ1ODBPbzlsblh2djFx?=
- =?utf-8?B?MXpTbStCb0pmNHJwdk9PdkNTWUVmQ240UHZoeTdaRDRPWDZONFJTUmZPLzZy?=
- =?utf-8?B?MTU1Y2tIQjR5TWZCaUhWNVk2VzJ2dEVUU1VMUkc1UDU5emxJS0dwRC80ejJr?=
- =?utf-8?B?Wjd1TTVMS0tOblRWR281OVJ4N0VCQ3NKOEJUSTdHbkxKZ1FCb2xNTUt1YzhT?=
- =?utf-8?B?KzRCcG5BSTg3M2sxRHdqSWhXQnNPcmFNM0hUbmU2WWRVblZ2TlUwcDdGbjZP?=
- =?utf-8?B?Ry9kK2pNQ2NKcDQ5dWlSbWVZTlU3ZXFOTGhWcWQ0VWQxbFBmVGJVR3NITCt4?=
- =?utf-8?B?eXVyMHV5TWJUeU5BZnA5Ylh3YmRlUlRpQnhvZFpGNkk4d080MlpaMFpKbXBH?=
- =?utf-8?B?YUpVazd0Vi9mNWg0Q1FzampiUllmNHJFR3FYYXlUenhRT3E4WU5uTzJWb254?=
- =?utf-8?B?RXFYd0hYMm15T2pvS25mdExhazRJLytHWWd0VjBnOHVsbXBGdlF4VllDeFVH?=
- =?utf-8?B?N05Na1E2c20yV0IvN3pNQjdHWWJOYnNadTJFdmsrSW5XajhDUHB3OEFlMk9U?=
- =?utf-8?Q?0cX7mOItyLVsckcjzr1LPK8KO?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: aadbd58d-e6ae-4d74-e96a-08de009efbc9
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR12MB7301.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cFdQTVZzbGkrcjNUNkw2eFMvWWpQN0lxcXFFSDQ5NFMyWk5FNDhFWDcvcW5z?=
+ =?utf-8?B?MlFydFFCWW03RU5DK3I0V2xkelVOWkdJYnNWTDlRTDdlSW9iV1pOMTFuTTkr?=
+ =?utf-8?B?Ti9sYVIreUhQWEFGZGxRTW1Sc3pjczUyaTZVaXlwZlhaLzBKZkxaWVhVWlYw?=
+ =?utf-8?B?U1dBNm8xNDRobGs0WkVZNm50VWt1c29OVkJScUZiTVhydklxRlNJNmwwTHpa?=
+ =?utf-8?B?ditEUExkcjc3U0plNEFTQ2E5UU12MU9NOXgzSmVldEordm5PUHJSNFJKKzY1?=
+ =?utf-8?B?RXgxeVVnait1V1pZYWNJUGVrdGhCVmh1dUlwYnBZYjJlanR4TUwySjRtczFC?=
+ =?utf-8?B?Y1hJTFBwQ3JGNHYxc2tydVVvdWFqaFNnOWpQbDdlaTFNNWFKMldIYkpCdk1U?=
+ =?utf-8?B?eVNtUXNQUE9GbitCS3FIamFtNDJseExVQVBvNHdiY0pBTXhDNnFqcnNldkJ1?=
+ =?utf-8?B?d2pVUkx5NkIwOC9KK0hIZ3NVTjk2cTA0UDY1WmNicDZvZGE0UDh6ODhkakhE?=
+ =?utf-8?B?THBvUy8wcmZ2UXRxbnpUZS9OTGhMU1BoWFJPMmNCQUtINW9LWEhrQVRJQWQ1?=
+ =?utf-8?B?NEd3YTkzaVoreVZmOUtLUjkxSjVGMFp1dDV0SHd5S2trME1DQktBZFFtZk1Q?=
+ =?utf-8?B?VlgrRng2NGNIRWVnSUt1VG5nbzBRZktISWFpWXBHSUNGNUVPcUF6ZkVVU0Nw?=
+ =?utf-8?B?SFlIdVNwR0hyK2FRc252WlVFVjV5ZFROb0xzUWg5d05hSjdMcXZMQlpiQ1VV?=
+ =?utf-8?B?VGorbTluUkk5ZDdRZEhpNEh2WGpZM3RsaTczSkZMUTNDQklSTEJVdUhHVUdh?=
+ =?utf-8?B?aGRQRzVkL3NiWEFHbGF0aUJ6eXh4cFMrUUlDdXJzeFNUYlc3ZFpkcExJRWFw?=
+ =?utf-8?B?eGMvRmJRUFZtd3dLOXNIcDRJOVh1TlVvL2ZnVzVWU3FoUGhWem5sZjNJK2x5?=
+ =?utf-8?B?bnBNenBNKzNsYzdtSUFEbVdRVHRWQkFaYXlwNVdqdFU4WDVHSDVEcFhCeDJF?=
+ =?utf-8?B?aFEwQUE5bEZVbllJUGVJOTA1M1R4Y2lMenNCcnhMNy9wa2NSdlVxakQ0S3o1?=
+ =?utf-8?B?ci9rQlBURVpwMmZpMXhsc3QyamU0YStKS21jNGJMa3M3Z20wa1R1aU1kUzNw?=
+ =?utf-8?B?YWFFVURhaEpZNEhJb05TWXFuRk1JdXl0b0l1R1F4NEVlRlY1eHhDakx4S0dz?=
+ =?utf-8?B?MzhpSVhmS3BsYnBTYS9NeUdEMEVXeURWem1ZMWFSMWk3NUpFQU9zTkJrdUQy?=
+ =?utf-8?B?U3NOdHBGQzhQK0REZXI5RFhSR1pmeXBITjVCWW9sdUJWc1gwdmVxMVdpTnZI?=
+ =?utf-8?B?NHZyV2R6OGZLTlpONUxHczczRVdqR3BFVDFCQ0lYZkdEek93RXRGVkJTUmVF?=
+ =?utf-8?B?UW1ZdklaSzM4azY2aUZQYThrVzBsYjFiWExWTnplUDQyaTUrZmJLZXZHVU95?=
+ =?utf-8?B?c1M4QTFSckhVOWJvODZNczViajF5WXlaR1NsZDVJTXpRUTdqS1NFZkRRdUNR?=
+ =?utf-8?B?RFZlQkN6QUdtU2lIbWFyUHl3azJCbFpFSldlR0lLS3dmUEpTcS9hM0hQVVQ0?=
+ =?utf-8?B?dEZ3VEYrVFgyQ0oxdHk1TjFmNGdiV01OU3AvOUFVaE5JdTM3SlU5cmttUngv?=
+ =?utf-8?B?dWY0NVpPTHlEb1hLcVczN2JhdHZKdU1IT3N3dldYNEU4ajQ5MGwwMU85Wldl?=
+ =?utf-8?B?eExHazdwWVlnWFRacEpPWkNxYkZhNkJGVnp0cWZXZjN5dTV6ZDRjcWVBWHhL?=
+ =?utf-8?B?bUkrNENMTDNBenJQdE8vTm9kYitTMWt2dzh1OXR2REpaWnRqb1pzRUd4elZN?=
+ =?utf-8?B?VmY1dDlxWS8ySVJob2pjek1Wam4zUnFDdEw5VVVScEtGQ2JDTlNHWDVMcHls?=
+ =?utf-8?B?V2o0VzM0eHpTazIwZlVTSjEyc2cxTno4VTZ1V3RnY3pvWDBZb3BodCtlVjNZ?=
+ =?utf-8?B?STBlWFhTRk43RjNnMDNJUmRZYW9WcVNWSS81SzZoNWZONUtDRFEreDBFSnJZ?=
+ =?utf-8?B?Y2ZXRE9Kam5JZlRZSFgvQWRWbXYrbUxETkZoWEE5dHVlN1NvR0Y1bDBJL2FO?=
+ =?utf-8?B?VXM0ZW9JWlRKbnlkd1A2NUNJQU8welpIZlZVaXdPUy9kQ1ZpMG1RejJKZ3px?=
+ =?utf-8?B?NmFzWUhYWFlaaVhiZ1B0cHg1b1M2K1o4cVA3Z0FUT3M4TXBkc2JDdzFLK0hh?=
+ =?utf-8?B?c0E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9df2bb92-17e7-4143-9ff8-08de00ab8f9f
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Oct 2025 03:59:56.5653 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Oct 2025 05:29:58.9227 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8/n7Mj85r4jym7ZBbESfvHA5cX75QoqhQY29xRNGkYewjyIPqeRNvxzslfMUyOTMNzjQACZFfs5YXq3RXmN4Qg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7336
+X-MS-Exchange-CrossTenant-UserPrincipalName: e+2FdbGqAc7JKWxaSxyhZsCvlkWVvcFRV7A5jDQn4TnhJuhyf4qE7k5+TtyDXALAhhfC9B53UweP9cDHiqO4UV3yermcOUx3L1MoRpDzE9k=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL4PR11MB8872
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -168,202 +197,303 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
+On 9/26/2025 5:07 PM, Nemesa Garg wrote:
+> The sharpness strength value is determined by user input,
+> while the winsize is based on the resolution.
+> The casf_enable flag should be set if the platform supports
+> sharpness adjustments and the user API strength is not zero.
+> Once sharpness is enabled, update the strength bit of the
+> register whenever the user changes the strength value,
+> as the enable bit and winsize bit remain constant.
 
-On 9/26/2025 4:30 PM, Matthew Auld wrote:
-> On 23/09/2025 10:02, Arunpravin Paneer Selvam wrote:
->> Add KUnit test cases that create severe memory fragmentation and
->> measure allocation/free performance.
->>
->> The tests simulate two scenarios -
->>
->> 1. Allocation under severe fragmentation
->>     - Allocate the entire 4 GiB space as 8 KiB blocks with 64 KiB 
->> alignment,
->>       split them into two groups and free with mixed flags to block 
->> coalescing.
->>     - Repeatedly allocate and free 64 KiB blocks while timing the loop.
->>     - Freelist runtime: 76475 ms(76.5 seconds), soft-lockup triggered.
->>       RB-tree runtime: 186 ms.
->>
->> 2. Reverse free order under fragmentation
->>     - Create a similarly fragmented space, free half the blocks, reverse
->>       the order of the remainder, and release them with the cleared 
->> flag.
->>     - Freelist runtime: 85620 ms(85.6 seconds).
->>       RB-tree runtime: 114 ms.
->>
->> Signed-off-by: Arunpravin Paneer Selvam 
->> <Arunpravin.PaneerSelvam@amd.com>
->> ---
->>   drivers/gpu/drm/tests/drm_buddy_test.c | 110 +++++++++++++++++++++++++
->>   1 file changed, 110 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/tests/drm_buddy_test.c 
->> b/drivers/gpu/drm/tests/drm_buddy_test.c
->> index 7a0e523651f0..19b49fb6ec19 100644
->> --- a/drivers/gpu/drm/tests/drm_buddy_test.c
->> +++ b/drivers/gpu/drm/tests/drm_buddy_test.c
->> @@ -21,6 +21,115 @@ static inline u64 get_size(int order, u64 
->> chunk_size)
->>       return (1 << order) * chunk_size;
->>   }
->>   +static void drm_test_buddy_fragmentation_performance(struct kunit 
->> *test)
->> +{
->> +    const unsigned long max_acceptable_time_ms = 1000;
->> +    struct drm_buddy_block *block, *tmp;
->> +    int num_blocks, i, ret, count = 0;
->> +    LIST_HEAD(allocated_blocks);
->> +    unsigned long elapsed_ms;
->> +    LIST_HEAD(reverse_list);
->> +    LIST_HEAD(test_blocks);
->> +    LIST_HEAD(clear_list);
->> +    LIST_HEAD(dirty_list);
->> +    LIST_HEAD(free_list);
->> +    struct drm_buddy mm;
->> +    u64 mm_size = SZ_4G;
->> +    ktime_t start, end;
->> +
->> +    /*
->> +     * Allocation under severe fragmentation
->> +     *
->> +     * Create severe fragmentation by allocating the entire 4 GiB 
->> address space
->> +     * as tiny 8 KiB blocks but forcing a 64 KiB alignment. The 
->> resulting pattern
->> +     * leaves many scattered holes. Split the allocations into two 
->> groups and
->> +     * return them with different flags to block coalescing, then 
->> repeatedly
->> +     * allocate and free 64 KiB blocks while timing the loop. This 
->> stresses how
->> +     * quickly the allocator can satisfy larger, aligned requests 
->> from a pool of
->> +     * highly fragmented space.
->> +     */
->> +    KUNIT_ASSERT_FALSE_MSG(test, drm_buddy_init(&mm, mm_size, SZ_4K),
->> +                   "buddy_init failed\n");
->> +
->> +    num_blocks = mm_size / SZ_64K;
->> +
->> +    start = ktime_get();
->> +    /* Allocate with maximum fragmentation - 8K blocks with 64K 
->> alignment */
->> +    for (i = 0; i < num_blocks; i++)
->> +        KUNIT_ASSERT_FALSE_MSG(test, drm_buddy_alloc_blocks(&mm, 0, 
->> mm_size, SZ_8K, SZ_64K,
->> +                                    &allocated_blocks, 0),
->> +                    "buddy_alloc hit an error size=%u\n", SZ_8K);
->> +
->> +    list_for_each_entry_safe(block, tmp, &allocated_blocks, link) {
->> +        if (count % 4 == 0 || count % 4 == 3)
->> +            list_move_tail(&block->link, &clear_list);
->> +        else
->> +            list_move_tail(&block->link, &dirty_list);
->> +        count++;
->> +    }
->> +
->> +    /* Free with different flags to ensure no coalescing */
->> +    drm_buddy_free_list(&mm, &clear_list, DRM_BUDDY_CLEARED);
->> +    drm_buddy_free_list(&mm, &dirty_list, 0);
->> +
->> +    for (i = 0; i < num_blocks; i++)
->> +        KUNIT_ASSERT_FALSE_MSG(test, drm_buddy_alloc_blocks(&mm, 0, 
->> mm_size, SZ_64K, SZ_64K,
->> +                                    &test_blocks, 0),
->> +                    "buddy_alloc hit an error size=%u\n", SZ_64K);
->> +    drm_buddy_free_list(&mm, &test_blocks, 0);
->> +
->> +    end = ktime_get();
->> +    elapsed_ms = ktime_to_ms(ktime_sub(end, start));
->> +    /* Performance validation */
->> +    KUNIT_EXPECT_LT_MSG(test, elapsed_ms, max_acceptable_time_ms,
->> +                "Fragmented allocation took %lu ms (max acceptable: 
->> %lu ms)",
->> +                elapsed_ms, max_acceptable_time_ms);
->> +    drm_buddy_fini(&mm);
->> +
->> +    /*
->> +     * Reverse free order under fragmentation
->> +     *
->> +     * Construct a fragmented 4 GiB space by allocating every 8 KiB 
->> block with
->> +     * 64 KiB alignment, creating a dense scatter of small regions. 
->> Half of the
->> +     * blocks are selectively freed to form sparse gaps, while the 
->> remaining
->> +     * allocations are preserved, reordered in reverse, and released 
->> back with
->> +     * the cleared flag. This models a pathological reverse-ordered 
->> free pattern
->> +     * and measures how quickly the allocator can merge and reclaim 
->> space when
->> +     * deallocation occurs in the opposite order of allocation, 
->> exposing the
->> +     * cost difference between a linear freelist scan and an ordered 
->> tree lookup.
->> +     */
->> +    ret = drm_buddy_init(&mm, mm_size, SZ_4K);
->> +    KUNIT_ASSERT_EQ(test, ret, 0);
->> +
->> +    start = ktime_get();
->> +    /* Allocate maximum fragmentation */
->> +    for (i = 0; i < num_blocks; i++)
->> +        KUNIT_ASSERT_FALSE_MSG(test, drm_buddy_alloc_blocks(&mm, 0, 
->> mm_size, SZ_8K, SZ_64K,
->> +                                    &allocated_blocks, 0),
->> +                    "buddy_alloc hit an error size=%u\n", SZ_8K);
->> +
->> +    list_for_each_entry_safe(block, tmp, &allocated_blocks, link) {
->> +        if (count % 2 == 0)
->> +            list_move_tail(&block->link, &free_list);
->> +        count++;
->> +    }
->> +    drm_buddy_free_list(&mm, &free_list, DRM_BUDDY_CLEARED);
->> +
->> +    list_for_each_entry_safe_reverse(block, tmp, &allocated_blocks, 
->> link)
->> +        list_move(&block->link, &reverse_list);
->> +    drm_buddy_free_list(&mm, &reverse_list, DRM_BUDDY_CLEARED);
->> +
->> +    end = ktime_get();
->> +    elapsed_ms = ktime_to_ms(ktime_sub(end, start));
->> +
->> +    /* Performance validation */
->> +    KUNIT_EXPECT_LT_MSG(test, elapsed_ms, max_acceptable_time_ms,
->> +                "Reverse-ordered free took %lu ms (max acceptable: 
->> %lu ms)",
->> +                elapsed_ms, max_acceptable_time_ms);
+The commit message and subject are no longer matching with the changes, 
+so need to update these.
+
+
 >
-> Sorry for the delay. We are pretty sure these time asserts are not 
-> going to be flaky over many thousands of runs across different types 
-> of machines (maybe some underpowered atom)?
-yes, correct. I have updated the performance test to avoid the hard 
-coded timing thresholds. And the test now measures and reports execution 
-time instead of enforcing a 1000ms limit,
-since run times vary across machines. This ensures the test remains 
-portable and stable, while still exposing the performance data for 
-regression tracking.
+> v2: Introduce get_config for casf[Ankit]
+> v3: Replace 0 with FILTER_STRENGTH_MASK[Ankit]
+> v4: After updating strength add win_sz register
+> v5: Replace u16 with u32 for total_pixel
+> v6: Add the logging part here
+>
+> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+> ---
+>   drivers/gpu/drm/i915/Makefile                 |   1 +
+>   drivers/gpu/drm/i915/display/intel_casf.c     | 110 ++++++++++++++++++
+>   drivers/gpu/drm/i915/display/intel_casf.h     |  17 +++
+>   .../gpu/drm/i915/display/intel_casf_regs.h    |  22 ++++
+>   .../drm/i915/display/intel_crtc_state_dump.c  |   5 +
+>   .../drm/i915/display/intel_display_types.h    |   7 ++
+>   drivers/gpu/drm/i915/display/skl_scaler.c     |   1 +
+>   drivers/gpu/drm/xe/Makefile                   |   1 +
+>   8 files changed, 164 insertions(+)
+>   create mode 100644 drivers/gpu/drm/i915/display/intel_casf.c
+>   create mode 100644 drivers/gpu/drm/i915/display/intel_casf.h
+>   create mode 100644 drivers/gpu/drm/i915/display/intel_casf_regs.h
+>
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 78a45a6681df..2aeb1da455d7 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -228,6 +228,7 @@ i915-y += \
+>   	display/intel_bios.o \
+>   	display/intel_bo.o \
+>   	display/intel_bw.o \
+> +	display/intel_casf.o \
+>   	display/intel_cdclk.o \
+>   	display/intel_cmtg.o \
+>   	display/intel_color.o \
+> diff --git a/drivers/gpu/drm/i915/display/intel_casf.c b/drivers/gpu/drm/i915/display/intel_casf.c
+> new file mode 100644
+> index 000000000000..4597e576b6dc
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_casf.c
+> @@ -0,0 +1,110 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2025 Intel Corporation
+> + *
+> + */
+> +
+> +#include <drm/drm_print.h>
+> +
+> +#include "i915_reg.h"
+> +#include "intel_casf.h"
+> +#include "intel_casf_regs.h"
+> +#include "intel_de.h"
+> +#include "intel_display_regs.h"
+> +#include "intel_display_types.h"
+> +
+> +#define MAX_PIXELS_FOR_3_TAP_FILTER (1920 * 1080)
+> +#define MAX_PIXELS_FOR_5_TAP_FILTER (3840 * 2160)
+> +
+> +/**
+> + * DOC: Content Adaptive Sharpness Filter (CASF)
+> + *
+> + * Starting from LNL the display engine supports an
+> + * adaptive sharpening filter, enhancing the image
+> + * quality. The display hardware utilizes the second
+> + * pipe scaler for implementing CASF.
+> + * If sharpness is being enabled then pipe scaling
+> + * cannot be used.
+> + * This filter operates on a region of pixels based
+> + * on the tap size. Coefficients are used to generate
+> + * an alpha value which blends the sharpened image to
+> + * original image.
+> + */
+> +
+> +void intel_casf_update_strength(struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_display *display = to_intel_display(crtc_state);
+> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	int win_size;
+> +
+> +	intel_de_rmw(display, SHARPNESS_CTL(crtc->pipe), FILTER_STRENGTH_MASK,
+> +		     FILTER_STRENGTH(crtc_state->hw.casf_params.strength));
+> +
+> +	win_size = intel_de_read(display, SKL_PS_WIN_SZ(crtc->pipe, 1));
+> +
+> +	intel_de_write_fw(display, SKL_PS_WIN_SZ(crtc->pipe, 1), win_size);
+> +}
+> +
+> +static void intel_casf_compute_win_size(struct intel_crtc_state *crtc_state)
+> +{
+> +	const struct drm_display_mode *mode = &crtc_state->hw.adjusted_mode;
+> +	u32 total_pixels = mode->hdisplay * mode->vdisplay;
+> +
+> +	if (total_pixels <= MAX_PIXELS_FOR_3_TAP_FILTER)
+> +		crtc_state->hw.casf_params.win_size = SHARPNESS_FILTER_SIZE_3X3;
+> +	else if (total_pixels <= MAX_PIXELS_FOR_5_TAP_FILTER)
+> +		crtc_state->hw.casf_params.win_size = SHARPNESS_FILTER_SIZE_5X5;
+> +	else
+> +		crtc_state->hw.casf_params.win_size = SHARPNESS_FILTER_SIZE_7X7;
+> +}
+> +
+> +int intel_casf_compute_config(struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_display *display = to_intel_display(crtc_state);
+> +
+> +	if (!HAS_CASF(display))
+> +		return 0;
+> +
+> +	if (crtc_state->uapi.sharpness_strength == 0) {
+> +		crtc_state->hw.casf_params.casf_enable = false;
+> +		crtc_state->hw.casf_params.strength = 0;
+> +		return 0;
+> +	}
+> +
+> +	crtc_state->hw.casf_params.casf_enable = true;
+> +
+> +	/*
+> +	 * HW takes a value in form (1.0 + strength) in 4.4 fixed format.
+> +	 * Strength is from 0.0-14.9375 ie from 0-239.
+> +	 * User can give value from 0-255 but is clamped to 239.
+> +	 * Ex. User gives 85 which is 5.3125 and adding 1.0 gives 6.3125.
+> +	 * 6.3125 in 4.4 format is b01100101 which is equal to 101.
+> +	 * Also 85 + 16 = 101.
+> +	 */
+> +	crtc_state->hw.casf_params.strength =
+> +		min(crtc_state->uapi.sharpness_strength, 0xEF) + 0x10;
+> +
+> +	intel_casf_compute_win_size(crtc_state);
+> +
+> +	return 0;
+> +}
+> +
+> +void intel_casf_sharpness_get_config(struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_display *display = to_intel_display(crtc_state);
+> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	u32 sharp;
+> +
+> +	sharp = intel_de_read(display, SHARPNESS_CTL(crtc->pipe));
+> +	if (sharp & FILTER_EN) {
+> +		if (drm_WARN_ON(display->drm,
+> +				REG_FIELD_GET(FILTER_STRENGTH_MASK, sharp) < 16))
+> +			crtc_state->hw.casf_params.strength = 0;
+> +		else
+> +			crtc_state->hw.casf_params.strength =
+> +				REG_FIELD_GET(FILTER_STRENGTH_MASK, sharp);
+> +		crtc_state->hw.casf_params.casf_enable = true;
+> +		crtc_state->hw.casf_params.win_size =
+> +			REG_FIELD_GET(FILTER_SIZE_MASK, sharp);
+> +	}
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_casf.h b/drivers/gpu/drm/i915/display/intel_casf.h
+> new file mode 100644
+> index 000000000000..83523fe66c48
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_casf.h
+> @@ -0,0 +1,17 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2025 Intel Corporation
+> + */
+> +
+> +#ifndef __INTEL_CASF_H__
+> +#define __INTEL_CASF_H__
+> +
+> +#include <linux/types.h>
+> +
+> +struct intel_crtc_state;
+> +
+> +int intel_casf_compute_config(struct intel_crtc_state *crtc_state);
+> +void intel_casf_update_strength(struct intel_crtc_state *new_crtc_state);
+> +void intel_casf_sharpness_get_config(struct intel_crtc_state *crtc_state);
+After refactoring and code movement some functions doesn’t appear to be 
+at right place.
+
+IMO introduce the intel_casf_enable() and intel_casf_disable() in this 
+patch and add code to write the strength and winsize in both.
+
+Similarly in subsequent patches add register bits, functions to 
+read/write and call them from the intel_casf_* functions.
 
 Regards,
-Arun.
->
-> Assuming not a concern,
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
->
->> +
->> +    drm_buddy_fini(&mm);
->> +}
->> +
->>   static void drm_test_buddy_alloc_range_bias(struct kunit *test)
->>   {
->>       u32 mm_size, size, ps, bias_size, bias_start, bias_end, bias_rem;
->> @@ -772,6 +881,7 @@ static struct kunit_case drm_buddy_tests[] = {
->>       KUNIT_CASE(drm_test_buddy_alloc_contiguous),
->>       KUNIT_CASE(drm_test_buddy_alloc_clear),
->>       KUNIT_CASE(drm_test_buddy_alloc_range_bias),
->> +    KUNIT_CASE(drm_test_buddy_fragmentation_performance),
->>       {}
->>   };
->
 
+Ankit
+
+Finally these will be called from appropriate places.
+
+
+Regards,
+
+Ankit
+
+
+> +
+> +#endif /* __INTEL_CASF_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_casf_regs.h b/drivers/gpu/drm/i915/display/intel_casf_regs.h
+> new file mode 100644
+> index 000000000000..c24ba281ae37
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_casf_regs.h
+> @@ -0,0 +1,22 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2025 Intel Corporation
+> + */
+> +
+> +#ifndef __INTEL_CASF_REGS_H__
+> +#define __INTEL_CASF_REGS_H__
+> +
+> +#include "intel_display_reg_defs.h"
+> +
+> +#define _SHARPNESS_CTL_A               0x682B0
+> +#define _SHARPNESS_CTL_B               0x68AB0
+> +#define SHARPNESS_CTL(pipe)            _MMIO_PIPE(pipe, _SHARPNESS_CTL_A, _SHARPNESS_CTL_B)
+> +#define   FILTER_EN                    REG_BIT(31)
+> +#define   FILTER_STRENGTH_MASK         REG_GENMASK(15, 8)
+> +#define   FILTER_STRENGTH(x)           REG_FIELD_PREP(FILTER_STRENGTH_MASK, (x))
+> +#define   FILTER_SIZE_MASK             REG_GENMASK(1, 0)
+> +#define   SHARPNESS_FILTER_SIZE_3X3    REG_FIELD_PREP(FILTER_SIZE_MASK, 0)
+> +#define   SHARPNESS_FILTER_SIZE_5X5    REG_FIELD_PREP(FILTER_SIZE_MASK, 1)
+> +#define   SHARPNESS_FILTER_SIZE_7X7    REG_FIELD_PREP(FILTER_SIZE_MASK, 2)
+> +
+> +#endif /* __INTEL_CASF_REGS__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+> index 0c7f91046996..ae2f4a660ad5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+> @@ -373,6 +373,11 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
+>   
+>   	intel_vdsc_state_dump(&p, 0, pipe_config);
+>   
+> +	drm_printf(&p, "sharpness strength: %d, sharpness tap size: %d, sharpness enable: %d\n",
+> +		   pipe_config->hw.casf_params.strength,
+> +		   pipe_config->hw.casf_params.win_size,
+> +		   pipe_config->hw.casf_params.casf_enable);
+> +
+>   dump_planes:
+>   	if (!state)
+>   		return;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 358ab922d7a7..a9642641f702 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -946,6 +946,12 @@ struct intel_csc_matrix {
+>   	u16 postoff[3];
+>   };
+>   
+> +struct intel_casf {
+> +	u8 strength;
+> +	u8 win_size;
+> +	bool casf_enable;
+> +};
+> +
+>   struct intel_crtc_state {
+>   	/*
+>   	 * uapi (drm) state. This is the software state shown to userspace.
+> @@ -982,6 +988,7 @@ struct intel_crtc_state {
+>   		struct drm_property_blob *degamma_lut, *gamma_lut, *ctm;
+>   		struct drm_display_mode mode, pipe_mode, adjusted_mode;
+>   		enum drm_scaling_filter scaling_filter;
+> +		struct intel_casf casf_params;
+>   	} hw;
+>   
+>   	/* actual state of LUTs */
+> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+> index c6cccf170ff1..19aeb8d5b79c 100644
+> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
+> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+> @@ -6,6 +6,7 @@
+>   #include <drm/drm_print.h>
+>   
+>   #include "i915_utils.h"
+> +#include "intel_casf_regs.h"
+>   #include "intel_de.h"
+>   #include "intel_display_regs.h"
+>   #include "intel_display_trace.h"
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index d9c6cf0f189e..90a118bc77de 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -230,6 +230,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+>   	i915-display/intel_backlight.o \
+>   	i915-display/intel_bios.o \
+>   	i915-display/intel_bw.o \
+> +	i915-display/intel_casf.o \
+>   	i915-display/intel_cdclk.o \
+>   	i915-display/intel_cmtg.o \
+>   	i915-display/intel_color.o \
