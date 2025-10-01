@@ -2,58 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 195ACBB1356
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Oct 2025 18:05:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52D5FBB13BA
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Oct 2025 18:18:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32CC910E734;
-	Wed,  1 Oct 2025 16:05:09 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fkwlRlTZ";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id C826A10E730;
+	Wed,  1 Oct 2025 16:18:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 171A310E732;
- Wed,  1 Oct 2025 16:05:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759334709; x=1790870709;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=QJeQyZK4a49G13gBeTQcxmqn2jNkr+FRxrVFOBTMsMA=;
- b=fkwlRlTZGE6h682a1bcxEj70+VlGmFbxImKy8pn+ZgP/K+sFhHZnI5gZ
- Zal/Hr/suPg6qLr8Dx5QPphARl1+8vZylHl4DmS9ugsZPSpgFjPjM8TID
- Om8QS2cKbslVpE4Qk1wICXv7dFgI+0r1i/eQX5Rdx8IxZ/oSB49/MeqYr
- LfPwBuw7u78T/dR9zZUdos8H5BNWbQwE7ArANGES6+laCM6C/mLkCeyJN
- WAn8Ro7Yal6lAl6rjogUsSyoe+yaS4VqlW0QPSsXOuzsynJaVlphTrFgm
- sUqdDyDaBAe9EezEzaWMCT06wRZTXs/5P424PhPjYiisMxiq+R4ZfHQ6A g==;
-X-CSE-ConnectionGUID: hoHL56EPQdeyNeV5iC+uXg==
-X-CSE-MsgGUID: 6TGkeASPQ1Ke0iKusb4/yg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="61570382"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="61570382"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2025 09:05:09 -0700
-X-CSE-ConnectionGUID: dyvnorYlQgSIVwXC9T+imw==
-X-CSE-MsgGUID: sGjgutouSa2JAIDuJRtAMA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,307,1751266800"; d="scan'208";a="178628805"
-Received: from mgerlach-mobl1.amr.corp.intel.com (HELO [192.168.1.16])
- ([10.124.222.146])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2025 09:05:07 -0700
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Wed, 01 Oct 2025 13:04:49 -0300
-Subject: [PATCH v2 2/2] drm/i915/display: Enable PICA power before AUX
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCF5110E72F;
+ Wed,  1 Oct 2025 16:18:15 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3273319618805265639=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251001-pica-power-before-aux-v2-2-6308df4de5a8@intel.com>
-References: <20251001-pica-power-before-aux-v2-0-6308df4de5a8@intel.com>
-In-Reply-To: <20251001-pica-power-before-aux-v2-0-6308df4de5a8@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Imre Deak <imre.deak@intel.com>, Gustavo Sousa <gustavo.sousa@intel.com>
-X-Mailer: b4 0.15-dev
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/gvt=3A_Propagate?=
+ =?utf-8?q?_vfio=5Fset=5Firqs=5Fvalidate=5Fand=5Fprepare=28=29_error_=28rev2?=
+ =?utf-8?q?=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi.shyti@kernel.org>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 01 Oct 2025 16:18:15 -0000
+Message-ID: <175933549583.384040.11281043238356549162@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20251001142336.82089-1-andi.shyti@linux.intel.com>
+In-Reply-To: <20251001142336.82089-1-andi.shyti@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,102 +38,168 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-According to Bspec, before enabling AUX power, we need to have the
-"power well containing Aux logic powered up". Starting with Xe2_LPD,
-such power well is the "PICA" power well, which is managed by the driver
-on demand.
+--===============3273319618805265639==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-While we did add the mapping of AUX power domains to the PICA power
-well, we ended up placing its power well descriptor after the
-descriptor for AUX power. As a result, when enabling power wells for one
-of the aux power domains, the driver will enable AUX power before PICA
-power, going against the order specified in Bspec.
+== Series Details ==
 
-It appears that issue did not become apparent to us mainly because,
-luckily, AUX power is brought up after we assert PICA power, even if
-done in the wrong order; and in enough time for the first AUX
-transaction to succeed.
+Series: drm/i915/gvt: Propagate vfio_set_irqs_validate_and_prepare() error (rev2)
+URL   : https://patchwork.freedesktop.org/series/155068/
+State : success
 
-Furthermore, I have also realized that, in some cases, like driver
-initialization, PICA power is already up when we need to acquire AUX
-power.
+== Summary ==
 
-One case where we can observe the incorrect ordering is when the driver
-is resuming from runtime PM suspend. Here is an excerpt of a dmesg with
-some extra debug logs extracted from a LNL machine to illustrate the
-issue:
+CI Bug Log - changes from CI_DRM_17294 -> Patchwork_155068v2
+====================================================
 
-    [  +0.000156] xe 0000:00:02.0: [drm:intel_power_well_enable [xe]] enabling AUX_TC1
-    [  +0.001312] xe 0000:00:02.0: [drm:xelpdp_aux_power_well_enable [xe]] DBG: AUX_CH_USBC1 power status: 0
-    [  +0.000127] xe 0000:00:02.0: [drm:intel_power_well_enable [xe]] enabling PICA_TC
-    [  +0.001072] xe 0000:00:02.0: [drm:xe2lpd_pica_power_well_enable [xe]] DBG: AUX_CH_USBC1 power status: 1
-    [  +0.000102] xe 0000:00:02.0: [drm:xe2lpd_pica_power_well_enable [xe]] DBG: AUX_CH_USBC2 power status: 0
-    [  +0.000090] xe 0000:00:02.0: [drm:xe2lpd_pica_power_well_enable [xe]] DBG: AUX_CH_USBC3 power status: 0
-    [  +0.000092] xe 0000:00:02.0: [drm:xe2lpd_pica_power_well_enable [xe]] DBG: AUX_CH_USBC4 power status: 0
+Summary
+-------
 
-The first "DBG: ..." line shows that AUX power for TC1 is off after we
-assert and wait. The remaining lines show that AUX power for TC1 was on
-after we enabled PICA power and waited for AUX power.
+  **SUCCESS**
 
-It is important that we stay compliant with the spec, so let's fix this
-by listing the power wells in an order that matches the requirements
-from Bspec. (As a side note, it would be nice if we could define those
-dependencies explicitly.)
+  No regressions found.
 
-After this change, we have:
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155068v2/index.html
 
-    [  +0.000146] xe 0000:00:02.0: [drm:intel_power_well_enable [xe]] enabling PICA_TC
-    [  +0.001417] xe 0000:00:02.0: [drm:xe2lpd_pica_power_well_enable [xe]] DBG: AUX_CH_USBC1 power status: 0
-    [  +0.000116] xe 0000:00:02.0: [drm:xe2lpd_pica_power_well_enable [xe]] DBG: AUX_CH_USBC2 power status: 0
-    [  +0.000096] xe 0000:00:02.0: [drm:xe2lpd_pica_power_well_enable [xe]] DBG: AUX_CH_USBC3 power status: 0
-    [  +0.000094] xe 0000:00:02.0: [drm:xe2lpd_pica_power_well_enable [xe]] DBG: AUX_CH_USBC4 power status: 0
-    [  +0.000095] xe 0000:00:02.0: [drm:intel_power_well_enable [xe]] enabling AUX_TC1
-    [  +0.000915] xe 0000:00:02.0: [drm:xelpdp_aux_power_well_enable [xe]] DBG: AUX_CH_USBC1 power status: 1
+Participating hosts (44 -> 43)
+------------------------------
 
-Bspec: 68967, 68886, 72519
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_power_map.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+  Missing    (1): fi-snb-2520m 
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-index e89f18b7037f..9b49952994ce 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-@@ -1588,8 +1588,8 @@ static const struct i915_power_well_desc_list xe2lpd_power_wells[] = {
- 	I915_PW_DESCRIPTORS(icl_power_wells_pw_1),
- 	I915_PW_DESCRIPTORS(xe2lpd_power_wells_dcoff),
- 	I915_PW_DESCRIPTORS(xelpdp_power_wells_main),
--	I915_PW_DESCRIPTORS(xelpdp_power_wells_aux),
- 	I915_PW_DESCRIPTORS(xe2lpd_power_wells_pica),
-+	I915_PW_DESCRIPTORS(xelpdp_power_wells_aux),
- };
- 
- /*
-@@ -1710,8 +1710,8 @@ static const struct i915_power_well_desc_list xe3lpd_power_wells[] = {
- 	I915_PW_DESCRIPTORS(icl_power_wells_pw_1),
- 	I915_PW_DESCRIPTORS(xe3lpd_power_wells_dcoff),
- 	I915_PW_DESCRIPTORS(xe3lpd_power_wells_main),
--	I915_PW_DESCRIPTORS(xelpdp_power_wells_aux),
- 	I915_PW_DESCRIPTORS(xe2lpd_power_wells_pica),
-+	I915_PW_DESCRIPTORS(xelpdp_power_wells_aux),
- };
- 
- static const struct i915_power_well_desc wcl_power_wells_main[] = {
-@@ -1768,8 +1768,8 @@ static const struct i915_power_well_desc_list wcl_power_wells[] = {
- 	I915_PW_DESCRIPTORS(icl_power_wells_pw_1),
- 	I915_PW_DESCRIPTORS(xe3lpd_power_wells_dcoff),
- 	I915_PW_DESCRIPTORS(wcl_power_wells_main),
--	I915_PW_DESCRIPTORS(wcl_power_wells_aux),
- 	I915_PW_DESCRIPTORS(xe2lpd_power_wells_pica),
-+	I915_PW_DESCRIPTORS(wcl_power_wells_aux),
- };
- 
- static void init_power_well_domains(const struct i915_power_well_instance *inst,
+Known issues
+------------
 
--- 
-2.51.0
+  Here are the changes found in Patchwork_155068v2 that come from known issues:
 
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@dmabuf@all-tests@dma_fence_chain:
+    - fi-bsw-n3050:       [PASS][1] -> [ABORT][2] ([i915#12904]) +1 other test abort
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17294/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155068v2/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html
+
+  
+#### Possible fixes ####
+
+  * igt@dmabuf@all-tests:
+    - bat-apl-1:          [ABORT][3] ([i915#12904]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17294/bat-apl-1/igt@dmabuf@all-tests.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155068v2/bat-apl-1/igt@dmabuf@all-tests.html
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17294/bat-mtlp-8/igt@i915_selftest@live.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155068v2/bat-mtlp-8/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-11:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17294/bat-dg2-11/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155068v2/bat-dg2-11/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_17294 -> Patchwork_155068v2
+
+  CI-20190529: 20190529
+  CI_DRM_17294: 5f87abb254011980c8332008cfff72d2cfab4952 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8568: 8568
+  Patchwork_155068v2: 5f87abb254011980c8332008cfff72d2cfab4952 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155068v2/index.html
+
+--===============3273319618805265639==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gvt: Propagate vfio_set_irqs_validate_and_prepare() error (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155068/">https://patchwork.freedesktop.org/series/155068/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155068v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155068v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17294 -&gt; Patchwork_155068v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155068v2/index.html</p>
+<h2>Participating hosts (44 -&gt; 43)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_155068v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@dmabuf@all-tests@dma_fence_chain:<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17294/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155068v2/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) +1 other test abort</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@dmabuf@all-tests:</p>
+<ul>
+<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17294/bat-apl-1/igt@dmabuf@all-tests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155068v2/bat-apl-1/igt@dmabuf@all-tests.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17294/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155068v2/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17294/bat-dg2-11/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155068v2/bat-dg2-11/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17294 -&gt; Patchwork_155068v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17294: 5f87abb254011980c8332008cfff72d2cfab4952 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8568: 8568<br />
+  Patchwork_155068v2: 5f87abb254011980c8332008cfff72d2cfab4952 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============3273319618805265639==--
