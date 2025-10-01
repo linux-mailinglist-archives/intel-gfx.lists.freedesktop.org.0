@@ -2,62 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3148BB0481
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Oct 2025 14:10:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C8C6BB049F
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Oct 2025 14:13:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54AE010E6C8;
-	Wed,  1 Oct 2025 12:10:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19FA510E6EB;
+	Wed,  1 Oct 2025 12:13:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nY46ORQ2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HCCXlqQL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D54010E6C8;
- Wed,  1 Oct 2025 12:10:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E665610E6B6;
+ Wed,  1 Oct 2025 12:12:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759320634; x=1790856634;
+ t=1759320779; x=1790856779;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=rsxkDHthoj/fyLdkNCIaM4OF+9yow7Tfk3sFIaAsFAI=;
- b=nY46ORQ2c5O73Rg+OBMV7Cc36LiBNvaZpxWVCSKtqehfOUlbIPSpvNiu
- LtQbe8nMIvYB3p9NQs7Opt4+GxfIkasCadg1OBB3d8eDFI0mHu3iAmZ9p
- C8oxOu4mq/udp1DAwrP4j5mWw2Nnb4xMhYZQx/qXaToQS/sW0VD9qf+Ls
- RwAu68UAoVItZnvu4Yid3T8ODPOoTA9SQqb5mahtmiuTjx7ZnnO2aboLD
- S/vjFVTESbOsQLprQ4Xvt4mGZ/+g7uOS/FkBdaQu+k4cLhvZgWF8YrCxt
- gqeL/hamVSyQyoUGEReAr3DsU77xRcdxJEh3p6M3eL4RT5nKZv6+tb9Av g==;
-X-CSE-ConnectionGUID: dFNn+vfYRJiraW2twSQoOg==
-X-CSE-MsgGUID: VPWnD73UStOqsg211NF+dg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="79010251"
-X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="79010251"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2025 05:10:33 -0700
-X-CSE-ConnectionGUID: CTlUavdHRoe6RgB8PDtrVw==
-X-CSE-MsgGUID: 0W4URZzVROCwlgvALYPR8Q==
+ bh=nGrurC0VVwW4+6ntzPGDG5aNlrMuLD2o+u72dWF/LT0=;
+ b=HCCXlqQLIVpu48+1rKK0D0mbskP1zm6Wnzvx9xNQ6OLy0OgGyQ4d8qzh
+ sEzXrG63OtZVLKKPbcm+JovwkT6zVm+5FtKnaEyz7JTdiFe4hKU77pXN6
+ Yvbbo6/WnZJ05OWjc3VvZXRbzGIdDPXTBwgl7lBH0RYArykmTCo1CC4z1
+ OQ5uZna8cLseN9NjRwZtO2k13/XyehBFhgeaqgfjsZ7nqIo29WC8TXfLm
+ kzk2jcofiCRoI6uryncuounHgglwTbYeWf8OTcHXX2ajcyLeFXrH4MaJ9
+ BSOya3bxTFZwzBaII8CubaUxcj/cU2W53RnmAQeEihxknCRDBZng6/f1D g==;
+X-CSE-ConnectionGUID: ot4VIa8TQgCagcoUEzKjAA==
+X-CSE-MsgGUID: FNGU0nMQQHWUh5clDslU8g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="60806309"
+X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="60806309"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2025 05:12:58 -0700
+X-CSE-ConnectionGUID: Td4zX7cOSZaBEHXNrSFnUg==
+X-CSE-MsgGUID: qae+JJkxRvu/HU49P6aymQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="178375486"
+X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="178823142"
 Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.245.91])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2025 05:10:32 -0700
-Date: Wed, 1 Oct 2025 15:10:28 +0300
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2025 05:12:57 -0700
+Date: Wed, 1 Oct 2025 15:12:54 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Subject: Re: [PATCH 15/15] drm/i915/display: Use optimized guardband to set
  vblank start
-Message-ID: <aN0aNFjModmYJ3Lf@intel.com>
+Message-ID: <aN0axoGBGu3ZEMBk@intel.com>
 References: <20250928070541.3892890-1-ankit.k.nautiyal@intel.com>
  <20250928070541.3892890-16-ankit.k.nautiyal@intel.com>
- <aNpHHxXXFOEKDUmP@intel.com>
- <5687e76d-cd14-48b5-b30c-4d5efab8e605@intel.com>
+ <aNpKrMapLVw4bvGb@intel.com>
+ <daf38ab6-b123-4c91-a18c-1b6c7ec7715d@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <5687e76d-cd14-48b5-b30c-4d5efab8e605@intel.com>
+In-Reply-To: <daf38ab6-b123-4c91-a18c-1b6c7ec7715d@intel.com>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -75,10 +75,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 01, 2025 at 04:04:37PM +0530, Nautiyal, Ankit K wrote:
+On Wed, Oct 01, 2025 at 04:11:13PM +0530, Nautiyal, Ankit K wrote:
 > 
-> On 9/29/2025 2:15 PM, Ville Syrjälä wrote:
+> On 9/29/2025 2:30 PM, Ville Syrjälä wrote:
 > > On Sun, Sep 28, 2025 at 12:35:40PM +0530, Ankit Nautiyal wrote:
+> >> As we move towards using a shorter, optimized guardband, we need to adjust
+> >> how the delayed vblank start is computed.
+> >>
+> >> Use the helper intel_vrr_compute_guardband() to calculate the optimized
+> >> guardband. Since this is measured from the vblank end, we shift the
+> >> vblank-start accordingly.
+> >>
+> >> Calculate the minimum delay required based on the guardband and apply it in
+> >> intel_crtc_vblank_delay() to update crtc_vblank_start.
+> >>
+> >> Additionally, introduce a new allow_vblank_delay_fastset() helper that
+> >> combines the existing LRR-based logic with an additional check for the
+> >> optimized guardband usage.
+> >>
+> >> v2:
+> >> - Check if optimized guardband is more than vblank length and add debug
+> >>    print.
+> >> - Extend vblank delay fastset logic to cover optimized guardband.
+> >>
+> >> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> >> ---
+> >>   drivers/gpu/drm/i915/display/intel_display.c | 79 +++++++++++++++++++-
+> >>   1 file changed, 76 insertions(+), 3 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> >> index 4135f9be53fd..97a3121a204f 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> >> @@ -2361,6 +2361,67 @@ static int intel_crtc_compute_pipe_mode(struct intel_crtc_state *crtc_state)
+> >>   	return 0;
+> >>   }
+> >>   
+> >> +static
+> >> +int intel_crtc_min_guardband_delay(struct intel_atomic_state *state,
+> >> +				   struct intel_crtc *crtc)
+> >> +{
+> >> +	struct intel_display *display = to_intel_display(state);
+> >> +	struct intel_crtc_state *crtc_state =
+> >> +		intel_atomic_get_new_crtc_state(state, crtc);
+> >> +	const struct drm_display_mode *adjusted_mode =
+> >> +		&crtc_state->hw.adjusted_mode;
+> >> +	struct drm_connector_state *conn_state;
+> >> +	struct drm_connector *drm_connector;
+> >> +	int vblank_length;
+> >> +	int i;
+> >> +
+> >> +	if (!intel_vrr_use_optimized_guardband(crtc_state))
+> >> +		return 0;
+> >> +
+> >> +	vblank_length = crtc_state->vrr.vmin -
+> >> +			adjusted_mode->crtc_vdisplay;
+> >> +
+> >> +	for_each_new_connector_in_state(&state->base,
+> >> +					drm_connector,
+> >> +					conn_state, i) {
+> >> +		int guardband;
+> >> +		struct intel_connector *connector;
+> >> +
+> >> +		if (conn_state->crtc != &crtc->base)
+> >> +			continue;
+> >> +
+> >> +		connector = to_intel_connector(drm_connector);
+> >> +		guardband = intel_vrr_compute_guardband(crtc_state,
+> >> +							connector);
+> >> +		if (guardband > vblank_length) {
+> >> +			drm_dbg_kms(display->drm,
+> >> +				    "[CRTC:%d:%s] Cannot optimize guardband (%d) exceeds max (%d)\n",
+> >> +				    crtc->base.base.id, crtc->base.name,
+> >> +				    guardband,
+> >> +				    vblank_length);
+> >> +			return 0;
+> >> +		}
+> >> +
+> >> +		return vblank_length - guardband;
+> >> +	}
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +
 > >> +static void intel_crtc_vblank_delay(struct intel_atomic_state *state,
 > >> +				    struct intel_crtc *crtc)
 > >> +{
@@ -91,80 +170,26 @@ On Wed, Oct 01, 2025 at 04:04:37PM +0530, Nautiyal, Ankit K wrote:
 > >> +	vblank_delay = intel_crtc_min_guardband_delay(state, crtc);
 > >> +
 > >> +	adjusted_mode->crtc_vblank_start += vblank_delay;
-> > The situation with crtc_vblank_start is already kinda broken,
-> > and I think we need to fix that first somehow.
-> >
-> > Currently crtc_vblank_start is assumed to be the vblank_start
-> > for the fixed refresh rate case. That value can be different
-> > from the variable refresh rate case whenever
-> > always_use_vrr_tg()==false. On icl/tgl it's always different
-> > due to the extra vblank delay, and also on adl+ it could be
-> > different if we were to use an optimized guardband.
-> >
-> > I think there are a few options how we might solve this:
-> > 1. keep crtc_vblank_start as is, and make sure every user of it
-> >     gets adjusted to also deal with the vrr case correctly
+> >> +}
+> >> +
+> >>   static int intel_crtc_set_context_latency(struct intel_crtc_state *crtc_state)
+> >>   {
+> >>   	struct intel_display *display = to_intel_display(crtc_state);
+> >> @@ -2413,6 +2474,7 @@ static int intel_crtc_compute_config(struct intel_atomic_state *state,
+> >>   	ret = intel_crtc_compute_set_context_latency(state, crtc);
+> >>   	if (ret)
+> >>   		return ret;
+> >> +	intel_crtc_vblank_delay(state, crtc);
+> > IMO we should get rid of all this vblank_delay terminology here.
+> > This one I think should just be our current
+> > intel_vrr_compute_config_late() (renamed to eg.
+> > intel_vrr_compute_guardband()).
 > 
-> 
-> Alright, so we avoid changing the vblank_start.
-> It means for platforms with always_use_vrr_tg()==true we directly set 
-> the value for guardband. (Currently I was getting it from vmin_vtotal - 
-> vblank_start)
-> For platforms ADL+ with always always_use_vrr_tg()== false for the fixed 
-> refresh rate case, guardband is full vblank_length for variable refresh 
-> rate set the guardband directly.
+> Hmm ok so will rename this and call from intel_modeset_pipe_config_late().
 
-I think we could just use something like this:
-
-something_something_vblank_len()
-{
-	if (crtc_state->vrr.enable)
-		return crtc_state->vrr.guardband;
-	else
-		return adjuste_mode.crtc_vtotal -
-			adjusted_mode.crtc_vblank_start;
-}
-
-That should work fine for for both values of always_use_vrr_tg().
-
-> 
-> As you have mentioned need to check which all places we need vblank_start.
-> 
-> For ICL/TGL we do not use optimization for now, right?
-
-Effectively we do, because of intel_vrr_extra_vblank_delay().
-The VRR guardband is always one line less than the fixed refresh
-rate guardband. And if we run into the max pipeline full limit
-then the difference would be even larger.
-
-> The extra_vblank_delay quirk is already handled while filling the 
-> registers.
-> 
-> 
-> > 2. enable always_use_vrr_tg() whenever there might be switch
-> >     between vrr and fixed refresh rate, which I think would mean
-> >     crtc_state->vrr.in_range==true.
-> I think I didnt get this part:
-> Do you mean later at some point we move to option 2: 
-> always_use_vrr_tg()==true for all platforms.(Need to check if we can do 
-> it for ICL, TGL).
-
-I'm pretty sure I tested always_use_vrr_tg()==true briefly on
-TGL and ADL and it seemed to be working fine.
-
-But I'm a bit concerned becase we originally enabled the VRR timing
-generator earlier during the modeset (but not from the very start IIRC),
-and that wasn't working all that well on some systems. So later I
-changed things to keep running with the legacy TG for the modeset and
-only switch to the VRR TG at the very end. It might have been some MTL
-system where we had these problems actually...
-
-It's of course possible that we've since fixed whatever was the
-underlying cause there. Or maybe the problem really was that we
-started to use the VRR timings already during the modeset. With the
-current always_use_vrr_tg()==true code we will still use the fixed
-refresh rate timings for the modeset, and switch to the VRR timings
-only at the very end.
+I meant you should move the intel_vrr_compute_config_late() call
+from intel_modeset_pipe_config_late() to here, and rename it to
+eg. intel_vrr_compute_guardband().
 
 -- 
 Ville Syrjälä
