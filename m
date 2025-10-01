@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1788EBB1353
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Oct 2025 18:05:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 195ACBB1356
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Oct 2025 18:05:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 198C510E733;
-	Wed,  1 Oct 2025 16:05:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32CC910E734;
+	Wed,  1 Oct 2025 16:05:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JLJYZF/e";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fkwlRlTZ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 826A310E72F;
- Wed,  1 Oct 2025 16:05:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 171A310E732;
+ Wed,  1 Oct 2025 16:05:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759334707; x=1790870707;
+ t=1759334709; x=1790870709;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=1UO9Ym9TKuQq/C+HClY/foPFLTKF+nR9cS7zP625eOE=;
- b=JLJYZF/eEw2FL9lHA68wZcoCo/iA8gZigw+1v5tH8I6rWl0CqYKb3uo2
- Kf0rU4FvBfZHQoaCJYHwibquqeGhC8s6Xt3K5DV9Ck4b760zjFh4ADSq6
- +XDxYeKrCXsICzWxBVvaXa3Eh4JbdcUuRPjSSIuqWcDF++i+uQ82fl0vO
- VHDz+HlGca6jIj0on1szikuT35hsKFZrWWOpavQeqnsTMxwN9Voh5ZYCr
- YdYfUZY42MtP4NGTn+fDY8hlaWSZe384FvOdZFHn+kKH3ryL96kHQ55rw
- HJTUtOKPs1CPE6mgmXfEwQ/tZEu4djJH+s/tOkYYhN+7PyNIAW7thztsD g==;
-X-CSE-ConnectionGUID: 40To73CBS9G5XLaSy+Bc4Q==
-X-CSE-MsgGUID: ix04akXjSqa4P29p59ePNg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="61570373"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="61570373"
+ bh=QJeQyZK4a49G13gBeTQcxmqn2jNkr+FRxrVFOBTMsMA=;
+ b=fkwlRlTZGE6h682a1bcxEj70+VlGmFbxImKy8pn+ZgP/K+sFhHZnI5gZ
+ Zal/Hr/suPg6qLr8Dx5QPphARl1+8vZylHl4DmS9ugsZPSpgFjPjM8TID
+ Om8QS2cKbslVpE4Qk1wICXv7dFgI+0r1i/eQX5Rdx8IxZ/oSB49/MeqYr
+ LfPwBuw7u78T/dR9zZUdos8H5BNWbQwE7ArANGES6+laCM6C/mLkCeyJN
+ WAn8Ro7Yal6lAl6rjogUsSyoe+yaS4VqlW0QPSsXOuzsynJaVlphTrFgm
+ sUqdDyDaBAe9EezEzaWMCT06wRZTXs/5P424PhPjYiisMxiq+R4ZfHQ6A g==;
+X-CSE-ConnectionGUID: hoHL56EPQdeyNeV5iC+uXg==
+X-CSE-MsgGUID: 6TGkeASPQ1Ke0iKusb4/yg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="61570382"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="61570382"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2025 09:05:07 -0700
-X-CSE-ConnectionGUID: zALcIZX2THy9c/2vlpaqqA==
-X-CSE-MsgGUID: OxUUaR4ITWeRGi8u1pdlhg==
+ 01 Oct 2025 09:05:09 -0700
+X-CSE-ConnectionGUID: dyvnorYlQgSIVwXC9T+imw==
+X-CSE-MsgGUID: sGjgutouSa2JAIDuJRtAMA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,307,1751266800"; d="scan'208";a="178628738"
+X-IronPort-AV: E=Sophos;i="6.18,307,1751266800"; d="scan'208";a="178628805"
 Received: from mgerlach-mobl1.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.222.146])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2025 09:05:05 -0700
+ 01 Oct 2025 09:05:07 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Wed, 01 Oct 2025 13:04:48 -0300
-Subject: [PATCH v2 1/2] drm/i915/display: Extract separate AUX PW descriptors
+Date: Wed, 01 Oct 2025 13:04:49 -0300
+Subject: [PATCH v2 2/2] drm/i915/display: Enable PICA power before AUX
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251001-pica-power-before-aux-v2-1-6308df4de5a8@intel.com>
+Message-Id: <20251001-pica-power-before-aux-v2-2-6308df4de5a8@intel.com>
 References: <20251001-pica-power-before-aux-v2-0-6308df4de5a8@intel.com>
 In-Reply-To: <20251001-pica-power-before-aux-v2-0-6308df4de5a8@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
@@ -69,96 +69,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In an upcoming change, we will fix an ordering issue between PICA and
-AUX power wells for Xe2_LPD and later, making sure that the driver
-acquires PICA power before AUX.  As a preparation for that, let's
-extract separate descriptors for AUX power wells.
+According to Bspec, before enabling AUX power, we need to have the
+"power well containing Aux logic powered up". Starting with Xe2_LPD,
+such power well is the "PICA" power well, which is managed by the driver
+on demand.
 
-Suggested-by: Imre Deak <imre.deak@intel.com>
+While we did add the mapping of AUX power domains to the PICA power
+well, we ended up placing its power well descriptor after the
+descriptor for AUX power. As a result, when enabling power wells for one
+of the aux power domains, the driver will enable AUX power before PICA
+power, going against the order specified in Bspec.
+
+It appears that issue did not become apparent to us mainly because,
+luckily, AUX power is brought up after we assert PICA power, even if
+done in the wrong order; and in enough time for the first AUX
+transaction to succeed.
+
+Furthermore, I have also realized that, in some cases, like driver
+initialization, PICA power is already up when we need to acquire AUX
+power.
+
+One case where we can observe the incorrect ordering is when the driver
+is resuming from runtime PM suspend. Here is an excerpt of a dmesg with
+some extra debug logs extracted from a LNL machine to illustrate the
+issue:
+
+    [  +0.000156] xe 0000:00:02.0: [drm:intel_power_well_enable [xe]] enabling AUX_TC1
+    [  +0.001312] xe 0000:00:02.0: [drm:xelpdp_aux_power_well_enable [xe]] DBG: AUX_CH_USBC1 power status: 0
+    [  +0.000127] xe 0000:00:02.0: [drm:intel_power_well_enable [xe]] enabling PICA_TC
+    [  +0.001072] xe 0000:00:02.0: [drm:xe2lpd_pica_power_well_enable [xe]] DBG: AUX_CH_USBC1 power status: 1
+    [  +0.000102] xe 0000:00:02.0: [drm:xe2lpd_pica_power_well_enable [xe]] DBG: AUX_CH_USBC2 power status: 0
+    [  +0.000090] xe 0000:00:02.0: [drm:xe2lpd_pica_power_well_enable [xe]] DBG: AUX_CH_USBC3 power status: 0
+    [  +0.000092] xe 0000:00:02.0: [drm:xe2lpd_pica_power_well_enable [xe]] DBG: AUX_CH_USBC4 power status: 0
+
+The first "DBG: ..." line shows that AUX power for TC1 is off after we
+assert and wait. The remaining lines show that AUX power for TC1 was on
+after we enabled PICA power and waited for AUX power.
+
+It is important that we stay compliant with the spec, so let's fix this
+by listing the power wells in an order that matches the requirements
+from Bspec. (As a side note, it would be nice if we could define those
+dependencies explicitly.)
+
+After this change, we have:
+
+    [  +0.000146] xe 0000:00:02.0: [drm:intel_power_well_enable [xe]] enabling PICA_TC
+    [  +0.001417] xe 0000:00:02.0: [drm:xe2lpd_pica_power_well_enable [xe]] DBG: AUX_CH_USBC1 power status: 0
+    [  +0.000116] xe 0000:00:02.0: [drm:xe2lpd_pica_power_well_enable [xe]] DBG: AUX_CH_USBC2 power status: 0
+    [  +0.000096] xe 0000:00:02.0: [drm:xe2lpd_pica_power_well_enable [xe]] DBG: AUX_CH_USBC3 power status: 0
+    [  +0.000094] xe 0000:00:02.0: [drm:xe2lpd_pica_power_well_enable [xe]] DBG: AUX_CH_USBC4 power status: 0
+    [  +0.000095] xe 0000:00:02.0: [drm:intel_power_well_enable [xe]] enabling AUX_TC1
+    [  +0.000915] xe 0000:00:02.0: [drm:xelpdp_aux_power_well_enable [xe]] DBG: AUX_CH_USBC1 power status: 1
+
+Bspec: 68967, 68886, 72519
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_power_map.c | 26 ++++++++++++----------
- 1 file changed, 14 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_power_map.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-index 39b71fffa2cd..e89f18b7037f 100644
+index e89f18b7037f..9b49952994ce 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-@@ -1516,7 +1516,11 @@ static const struct i915_power_well_desc xelpdp_power_wells_main[] = {
- 		.ops = &hsw_power_well_ops,
- 		.irq_pipe_mask = BIT(PIPE_D),
- 		.has_fuses = true,
--	}, {
-+	},
-+};
-+
-+static const struct i915_power_well_desc xelpdp_power_wells_aux[] = {
-+	{
- 		.instances = &I915_PW_INSTANCES(
- 			I915_PW("AUX_A", &icl_pwdoms_aux_a, .xelpdp.aux_ch = AUX_CH_A),
- 			I915_PW("AUX_B", &icl_pwdoms_aux_b, .xelpdp.aux_ch = AUX_CH_B),
-@@ -1534,6 +1538,7 @@ static const struct i915_power_well_desc_list xelpdp_power_wells[] = {
- 	I915_PW_DESCRIPTORS(icl_power_wells_pw_1),
- 	I915_PW_DESCRIPTORS(xelpd_power_wells_dc_off),
- 	I915_PW_DESCRIPTORS(xelpdp_power_wells_main),
-+	I915_PW_DESCRIPTORS(xelpdp_power_wells_aux),
- };
- 
- I915_DECL_PW_DOMAINS(xe2lpd_pwdoms_pica_tc,
-@@ -1583,6 +1588,7 @@ static const struct i915_power_well_desc_list xe2lpd_power_wells[] = {
+@@ -1588,8 +1588,8 @@ static const struct i915_power_well_desc_list xe2lpd_power_wells[] = {
  	I915_PW_DESCRIPTORS(icl_power_wells_pw_1),
  	I915_PW_DESCRIPTORS(xe2lpd_power_wells_dcoff),
  	I915_PW_DESCRIPTORS(xelpdp_power_wells_main),
-+	I915_PW_DESCRIPTORS(xelpdp_power_wells_aux),
+-	I915_PW_DESCRIPTORS(xelpdp_power_wells_aux),
  	I915_PW_DESCRIPTORS(xe2lpd_power_wells_pica),
++	I915_PW_DESCRIPTORS(xelpdp_power_wells_aux),
  };
  
-@@ -1677,16 +1683,6 @@ static const struct i915_power_well_desc xe3lpd_power_wells_main[] = {
- 		.ops = &hsw_power_well_ops,
- 		.irq_pipe_mask = BIT(PIPE_D),
- 		.has_fuses = true,
--	}, {
--		.instances = &I915_PW_INSTANCES(
--			I915_PW("AUX_A", &icl_pwdoms_aux_a, .xelpdp.aux_ch = AUX_CH_A),
--			I915_PW("AUX_B", &icl_pwdoms_aux_b, .xelpdp.aux_ch = AUX_CH_B),
--			I915_PW("AUX_TC1", &xelpdp_pwdoms_aux_tc1, .xelpdp.aux_ch = AUX_CH_USBC1),
--			I915_PW("AUX_TC2", &xelpdp_pwdoms_aux_tc2, .xelpdp.aux_ch = AUX_CH_USBC2),
--			I915_PW("AUX_TC3", &xelpdp_pwdoms_aux_tc3, .xelpdp.aux_ch = AUX_CH_USBC3),
--			I915_PW("AUX_TC4", &xelpdp_pwdoms_aux_tc4, .xelpdp.aux_ch = AUX_CH_USBC4),
--		),
--		.ops = &xelpdp_aux_power_well_ops,
- 	},
- };
- 
-@@ -1714,6 +1710,7 @@ static const struct i915_power_well_desc_list xe3lpd_power_wells[] = {
+ /*
+@@ -1710,8 +1710,8 @@ static const struct i915_power_well_desc_list xe3lpd_power_wells[] = {
  	I915_PW_DESCRIPTORS(icl_power_wells_pw_1),
  	I915_PW_DESCRIPTORS(xe3lpd_power_wells_dcoff),
  	I915_PW_DESCRIPTORS(xe3lpd_power_wells_main),
-+	I915_PW_DESCRIPTORS(xelpdp_power_wells_aux),
+-	I915_PW_DESCRIPTORS(xelpdp_power_wells_aux),
  	I915_PW_DESCRIPTORS(xe2lpd_power_wells_pica),
++	I915_PW_DESCRIPTORS(xelpdp_power_wells_aux),
  };
  
-@@ -1751,7 +1748,11 @@ static const struct i915_power_well_desc wcl_power_wells_main[] = {
- 		.ops = &hsw_power_well_ops,
- 		.irq_pipe_mask = BIT(PIPE_C),
- 		.has_fuses = true,
--	}, {
-+	},
-+};
-+
-+static const struct i915_power_well_desc wcl_power_wells_aux[] = {
-+	{
- 		.instances = &I915_PW_INSTANCES(
- 			I915_PW("AUX_A", &icl_pwdoms_aux_a, .xelpdp.aux_ch = AUX_CH_A),
- 			I915_PW("AUX_B", &icl_pwdoms_aux_b, .xelpdp.aux_ch = AUX_CH_B),
-@@ -1767,6 +1768,7 @@ static const struct i915_power_well_desc_list wcl_power_wells[] = {
+ static const struct i915_power_well_desc wcl_power_wells_main[] = {
+@@ -1768,8 +1768,8 @@ static const struct i915_power_well_desc_list wcl_power_wells[] = {
  	I915_PW_DESCRIPTORS(icl_power_wells_pw_1),
  	I915_PW_DESCRIPTORS(xe3lpd_power_wells_dcoff),
  	I915_PW_DESCRIPTORS(wcl_power_wells_main),
-+	I915_PW_DESCRIPTORS(wcl_power_wells_aux),
+-	I915_PW_DESCRIPTORS(wcl_power_wells_aux),
  	I915_PW_DESCRIPTORS(xe2lpd_power_wells_pica),
++	I915_PW_DESCRIPTORS(wcl_power_wells_aux),
  };
  
+ static void init_power_well_domains(const struct i915_power_well_instance *inst,
 
 -- 
 2.51.0
