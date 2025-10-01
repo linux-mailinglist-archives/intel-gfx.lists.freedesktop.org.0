@@ -2,60 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 865B6BB0EDA
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Oct 2025 17:05:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 038E8BB1018
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Oct 2025 17:15:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A55810E725;
-	Wed,  1 Oct 2025 15:05:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C10410E243;
+	Wed,  1 Oct 2025 15:15:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SSVQr2MD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oFXlYxKS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5529A10E724;
- Wed,  1 Oct 2025 15:05:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D24710E243;
+ Wed,  1 Oct 2025 15:15:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759331104; x=1790867104;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=LUM+wCBnUwlh2HzZ7yUIo03w38bm3QqyA8PZWO8EAd4=;
- b=SSVQr2MDtopisuR1RcksuMiaGWKjqsevuA/+yultcGqacV76nlUw7mv2
- RhGjySdC7WWQST3a0cozg4q+S0SNO+erQFPF+1eSWWl65W+qbiUcp572O
- 9awr0bjubEvsUp8FsbRtJjUgpaiCUQ6iYOzLRppyVRQujBdQWFsNAY5Bq
- JD0Ls8+cg+BNdtgEwCAfwp/K5iNzw8kParOnU3ThWrVXcETXf3KvBSrOH
- BVxpF9Tshana0cCajJNfPuUYGGBLbDb8Xz/fYTdbTb4oNNmlyl0FABrJ/
- fXM4PKtJdcKs8A3OY/GJlx4A1CmlaCThQwQsCJ32jyigTqdwJ/v1gyFIq A==;
-X-CSE-ConnectionGUID: 4bP5lA1zROa5+ED0DhN5+Q==
-X-CSE-MsgGUID: tYX2JnwUQ3Kkjliti7coXA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="61771339"
-X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="61771339"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2025 08:05:03 -0700
-X-CSE-ConnectionGUID: m7IO2QLBQg+ZGZVcXxcnFQ==
-X-CSE-MsgGUID: diufDLE7TbqMgon9V7gf8g==
+ t=1759331719; x=1790867719;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=9QVgN2zvz6nU5aAN7aaXH3o/91v8h0BpIgIyCHw8HGw=;
+ b=oFXlYxKS2GlMDC6zBGAn/7jTGyLaNQt5GZEY3CD8ccoCVgnNTJMIUgCU
+ oLPSIQxzcwoDXcLHqGrCPbXk8Vdzcn+rJxdPTrAZibRaVNahXJ9iQcic3
+ KvfEaP2VHY36B2+Kkcbrt/yWKujtMeRYiaAVSBxCc0/1U/B04TcgmSDDq
+ bmEgnwIl0uGqSmQIxXioEU2CIwUEpT4c7DKdwhXozvvL2OA5A+q4P0H58
+ upMiZYmiQJGB1yIhYsnxsDILVeqmkWvK/TA+MFsT4R342+OwoQOxfUoNp
+ aCCl46Y0XMU+jUfKwlUshZAzyVTJU+HbWva4xdkVMIQZn1juWcooT4tYn Q==;
+X-CSE-ConnectionGUID: a4yOhVINQH2m+65ydY6tmw==
+X-CSE-MsgGUID: SYblxb2tQ6KgpV85hEIRAQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="72708025"
+X-IronPort-AV: E=Sophos;i="6.18,307,1751266800"; d="scan'208";a="72708025"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2025 08:15:18 -0700
+X-CSE-ConnectionGUID: ZRlqclfDTnWLApQyDuT1rg==
+X-CSE-MsgGUID: aX06NeGgSjyKcWbF0kuzRg==
 X-ExtLoop1: 1
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.217])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2025 08:05:01 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Jocelyn Falempe <jfalempe@redhat.com>, Maarten Lankhorst
- <dev@lankhorst.se>, Ville =?utf-8?B?U3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH 6/8] drm/{i915,xe}/panic: move framebuffer allocation
- where it belongs
-In-Reply-To: <d29f63e0118d002fc8edd368caea7e8185418e17.1756835342.git.jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1756835342.git.jani.nikula@intel.com>
- <d29f63e0118d002fc8edd368caea7e8185418e17.1756835342.git.jani.nikula@intel.com>
-Date: Wed, 01 Oct 2025 18:04:58 +0300
-Message-ID: <2224b0cc8934e4e7c89ed1fb80648c637669f188@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,307,1751266800"; d="scan'208";a="209755661"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.245.78])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2025 08:15:16 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>
+Subject: Re: [PATCH i-g-t 1/3] tests/gem_eio: Adjust for long reset-resume
+ cycle on Gen12+
+Date: Wed, 01 Oct 2025 17:15:13 +0200
+Message-ID: <1813705.X513TT2pbd@jkrzyszt-mobl2.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20251001133600.cfkspqz3mc4wggvx@kamilkon-DESK.igk.intel.com>
+References: <20250930125430.2323555-5-janusz.krzysztofik@linux.intel.com>
+ <20250930125430.2323555-6-janusz.krzysztofik@linux.intel.com>
+ <20251001133600.cfkspqz3mc4wggvx@kamilkon-DESK.igk.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,197 +75,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 02 Sep 2025, Jani Nikula <jani.nikula@intel.com> wrote:
-> The struct intel_framebuffer allocation naturally belongs in intel_fb.c,
-> not hidden inside panic implementation. Separate the panic
-> allocation. Drop the unnecessary struct i915_framebuffer and struct
-> xe_framebuffer types.
->
-> Cc: Jocelyn Falempe <jfalempe@redhat.com>
-> Cc: Maarten Lankhorst <dev@lankhorst.se>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_fb.c    | 17 ++++++++++++++++-
->  drivers/gpu/drm/i915/display/intel_panic.c |  4 ++--
->  drivers/gpu/drm/i915/display/intel_panic.h |  3 ++-
->  drivers/gpu/drm/i915/gem/i915_gem_object.h |  5 +++--
->  drivers/gpu/drm/i915/gem/i915_gem_pages.c  | 17 ++++-------------
->  drivers/gpu/drm/xe/display/xe_panic.c      | 17 ++++-------------
->  6 files changed, 31 insertions(+), 32 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-> index 2a2ed0f0461f..22a4a1575d22 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> @@ -2346,7 +2346,22 @@ intel_user_framebuffer_create(struct drm_device *dev,
->  
->  struct intel_framebuffer *intel_framebuffer_alloc(void)
->  {
-> -	return intel_bo_alloc_framebuffer();
-> +	struct intel_framebuffer *intel_fb;
-> +	struct intel_panic *panic;
-> +
-> +	intel_fb = kzalloc(sizeof(*intel_fb), GFP_KERNEL);
-> +	if (!intel_fb)
-> +		return NULL;
-> +
-> +	panic = intel_panic_alloc();
-> +	if (!panic) {
-> +		kfree(intel_fb);
-> +		return NULL;
-> +	}
-> +
-> +	intel_fb->panic = panic;
+Hi Kamil,
 
-So I screwed up here. There's no deallocation of fb->panic, and this
-leaks. I don't know what I was thinking.
+Thanks for looking at this.
 
-To make matters worse, struct intel_framebuffer is deallocated via
-drm_framebuffer_put() i.e. there's no obvious place to plug the free in.
+On Wednesday, 1 October 2025 15:36:00 CEST Kamil Konieczny wrote:
+> Hi Janusz,
+> On 2025-09-30 at 14:49:01 +0200, Janusz Krzysztofik wrote:
+>=20
+> could you improve subject? Now it is a little confusing why
+> there are two, very similar changes needed, see first and
+> second subjects:
+>=20
+> [i-g-t,1/3] tests/gem_eio: Adjust for long reset-resume cycle on Gen12+
+>=20
+> [i-g-t,2/3] tests/gem_eio: Adjust for slow resume after reset on Gen12+
+>=20
+> At first I do not know why two very similar changes are made with
+> two different commits.
 
-Any ideas before I start looking at reverting the changes, and get back
-to the drawing board with abstracting the code between i915 and xe?
+In my opinion these two patches address two separate issues.  The first iss=
+ue=20
+=2D- not enough measurements for median calculation -- prevents the exercis=
+e=20
+from calculating and reporting results.  The second issue in turn sometimes=
+=20
+applies not quite realistic expectations to those results.  In order to lea=
+rn=20
+which platforms suffer from the second issue, you have to resolve the first=
+=20
+one to see those results.  To avoid confusion, I can try to reword those=20
+commit messages so they don't look so similar.
 
-BR,
-Jani.
+>=20
+> See also below.
+>=20
+> > Subtests that measure time of resume after engine reset require results
+> > from at least 9 reset-resume cycles for reasonable calculation of a med=
+ian
+> > value to be compared against presumed limits.  On most of Gen12+
+> > platforms, the limit of 5 seconds for collecting those results occurs t=
+oo
+> > short for executing 9 reset-resum cycles.
+> >=20
+> > Raise the limit to 20 seconds, and break the loop as soon as 9 results =
+are
+> > collected.  Also, warn if less than 9 resets have been completed within
+> > the limit instead of silently succeeding despite the check being skippe=
+d.
+> >=20
+> > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> > ---
+> >  tests/intel/gem_eio.c | 11 ++++++++---
+> >  1 file changed, 8 insertions(+), 3 deletions(-)
+> >=20
+> > diff --git a/tests/intel/gem_eio.c b/tests/intel/gem_eio.c
+> > index b65b914faf..b6155c7fc4 100644
+> > --- a/tests/intel/gem_eio.c
+> > +++ b/tests/intel/gem_eio.c
+> > @@ -409,8 +409,10 @@ static void check_wait_elapsed(const char *prefix,=
+ int fd, igt_stats_t *st)
+> >  		 igt_stats_get_median(st)*1e-6,
+> >  		 igt_stats_get_max(st)*1e-6);
+> > =20
+> > -	if (st->n_values < 9)
+> > -		return; /* too few for stable median */
+> > +	if (igt_warn_on_f(st->n_values < 9,
+> > +	    "%d resets completed -- less than 9, too few for stable median\n",
+> > +	    st->n_values))
+> > +		return;
+>=20
+> imho this could be a separate change, as there was silence before.
 
-> +
-> +	return intel_fb;
->  }
->  
->  struct drm_framebuffer *
-> diff --git a/drivers/gpu/drm/i915/display/intel_panic.c b/drivers/gpu/drm/i915/display/intel_panic.c
-> index 20eecb0f168f..5431bd4d3a7d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_panic.c
-> +++ b/drivers/gpu/drm/i915/display/intel_panic.c
-> @@ -4,9 +4,9 @@
->  #include "gem/i915_gem_object.h"
->  #include "intel_panic.h"
->  
-> -struct intel_framebuffer *intel_bo_alloc_framebuffer(void)
-> +struct intel_panic *intel_panic_alloc(void)
->  {
-> -	return i915_gem_object_alloc_framebuffer();
-> +	return i915_gem_object_alloc_panic();
->  }
->  
->  int intel_panic_setup(struct drm_scanout_buffer *sb)
-> diff --git a/drivers/gpu/drm/i915/display/intel_panic.h b/drivers/gpu/drm/i915/display/intel_panic.h
-> index 67ce253fcdf5..45ce6104e6fb 100644
-> --- a/drivers/gpu/drm/i915/display/intel_panic.h
-> +++ b/drivers/gpu/drm/i915/display/intel_panic.h
-> @@ -6,8 +6,9 @@
->  
->  struct drm_scanout_buffer;
->  struct intel_framebuffer;
-> +struct intel_panic;
->  
-> -struct intel_framebuffer *intel_bo_alloc_framebuffer(void);
-> +struct intel_panic *intel_panic_alloc(void);
->  int intel_panic_setup(struct drm_scanout_buffer *sb);
->  void intel_panic_finish(struct intel_framebuffer *fb);
->  
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> index 565f8fa330db..9b3f25cb48db 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> @@ -16,9 +16,10 @@
->  #include "i915_gem_ww.h"
->  #include "i915_vma_types.h"
->  
-> -struct drm_scanout_buffer;
->  enum intel_region_id;
-> +struct drm_scanout_buffer;
->  struct intel_framebuffer;
-> +struct intel_panic;
->  
->  #define obj_to_i915(obj__) to_i915((obj__)->base.dev)
->  
-> @@ -693,7 +694,7 @@ i915_gem_object_unpin_pages(struct drm_i915_gem_object *obj)
->  int __i915_gem_object_put_pages(struct drm_i915_gem_object *obj);
->  int i915_gem_object_truncate(struct drm_i915_gem_object *obj);
->  
-> -struct intel_framebuffer *i915_gem_object_alloc_framebuffer(void);
-> +struct intel_panic *i915_gem_object_alloc_panic(void);
->  int i915_gem_object_panic_setup(struct drm_scanout_buffer *sb);
->  void i915_gem_object_panic_finish(struct intel_framebuffer *fb);
->  
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> index e36d60b785b1..b219474aecc7 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> @@ -363,11 +363,6 @@ struct intel_panic {
->  	void *vaddr;
->  };
->  
-> -struct i915_framebuffer {
-> -	struct intel_framebuffer base;
-> -	struct intel_panic panic;
-> -};
-> -
->  static void i915_panic_kunmap(struct intel_panic *panic)
->  {
->  	if (panic->vaddr) {
-> @@ -436,17 +431,13 @@ static void i915_gem_object_panic_page_set_pixel(struct drm_scanout_buffer *sb,
->  	}
->  }
->  
-> -struct intel_framebuffer *i915_gem_object_alloc_framebuffer(void)
-> +struct intel_panic *i915_gem_object_alloc_panic(void)
->  {
-> -	struct i915_framebuffer *i915_fb;
-> -
-> -	i915_fb = kzalloc(sizeof(*i915_fb), GFP_KERNEL);
-> -	if (!i915_fb)
-> -		return NULL;
-> +	struct intel_panic *panic;
->  
-> -	i915_fb->base.panic = &i915_fb->panic;
-> +	panic = kzalloc(sizeof(*panic), GFP_KERNEL);
->  
-> -	return &i915_fb->base;
-> +	return panic;
->  }
->  
->  /*
-> diff --git a/drivers/gpu/drm/xe/display/xe_panic.c b/drivers/gpu/drm/xe/display/xe_panic.c
-> index 3ef23a6795b3..b5a7615708a1 100644
-> --- a/drivers/gpu/drm/xe/display/xe_panic.c
-> +++ b/drivers/gpu/drm/xe/display/xe_panic.c
-> @@ -15,11 +15,6 @@ struct intel_panic {
->  	void *vaddr;
->  };
->  
-> -struct xe_framebuffer {
-> -	struct intel_framebuffer base;
-> -	struct intel_panic panic;
-> -};
-> -
->  static void xe_panic_kunmap(struct intel_panic *panic)
->  {
->  	if (panic->vaddr) {
-> @@ -62,17 +57,13 @@ static void xe_panic_page_set_pixel(struct drm_scanout_buffer *sb, unsigned int
->  	}
->  }
->  
-> -struct intel_framebuffer *intel_bo_alloc_framebuffer(void)
-> +struct intel_panic *intel_panic_alloc(void)
->  {
-> -	struct xe_framebuffer *xe_fb;
-> -
-> -	xe_fb = kzalloc(sizeof(*xe_fb), GFP_KERNEL);
-> -	if (!xe_fb)
-> -		return NULL;
-> +	struct intel_panic *panic;
->  
-> -	xe_fb->base.panic = &xe_fb->panic;
-> +	panic = kzalloc(sizeof(*panic), GFP_KERNEL);
->  
-> -	return &xe_fb->base;
-> +	return panic;
->  }
->  
->  int intel_panic_setup(struct drm_scanout_buffer *sb)
+OK, unless I kill that warning, taking into account the comment from Krzysz=
+tof=20
+Kara=C5=9B.
 
--- 
-Jani Nikula, Intel
+>=20
+> > =20
+> >  	/*
+> >  	 * Older platforms need to reset the display (incl. modeset to off,
+> > @@ -928,7 +930,7 @@ static void reset_stress(int fd, uint64_t ahnd, con=
+st intel_ctx_t *ctx0,
+> >  	gem_write(fd, obj.handle, 0, &bbe, sizeof(bbe));
+> > =20
+> >  	igt_stats_init(&stats);
+> > -	igt_until_timeout(5) {
+> > +	igt_until_timeout(20) {
+>=20
+> Could you increase it only when needed?
+
+Taking into account the other part of this change that breaks this loop as=
+=20
+soon as enough measurements are collected, I don't think such complication =
+is=20
+worth of effort, can you please explain why you think it is?
+
+Thanks,
+Janusz
+
+>=20
+> Regards,
+> Kamil
+>=20
+> >  		const intel_ctx_t *ctx =3D context_create_safe(fd);
+> >  		igt_spin_t *hang;
+> >  		unsigned int i;
+> > @@ -977,6 +979,9 @@ static void reset_stress(int fd, uint64_t ahnd, con=
+st intel_ctx_t *ctx0,
+> >  		gem_sync(fd, obj.handle);
+> >  		igt_spin_free(fd, hang);
+> >  		intel_ctx_destroy(fd, ctx);
+> > +
+> > +		if (stats.n_values > 8)
+> > +			break;
+> >  	}
+> >  	check_wait_elapsed(name, fd, &stats);
+> >  	igt_stats_fini(&stats);
+>=20
+
+
+
+
