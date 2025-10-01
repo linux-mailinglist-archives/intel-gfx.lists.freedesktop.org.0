@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FD48BAFAD8
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Oct 2025 10:38:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C1B9BAFADE
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Oct 2025 10:38:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB20210E6C4;
-	Wed,  1 Oct 2025 08:38:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0657D10E6BB;
+	Wed,  1 Oct 2025 08:38:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iov5N33I";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gd4MPsyL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D36E10E6AD;
- Wed,  1 Oct 2025 08:38:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BADA510E6BB;
+ Wed,  1 Oct 2025 08:38:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759307934; x=1790843934;
+ t=1759307935; x=1790843935;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rd7JiO3mU8WpLXs52eGjsY0yRe+f6uVytpR4XsSHBGc=;
- b=iov5N33IO25/OE7v8rMgYWg6MywqSEOHI64eiJl6SaQwQPl7Kuk8fLYY
- 4buNW6fhW57Psv3UmQ6C0msoIhPRoEu1pMxnCWS22sZTGoI57mgl9swtY
- spAPjOOQWwJKqOJksd1UlLJJLwYLL9XIc3cLqZhBs/K2a2WtOtDcYIqr2
- 2SHZaEvfUupOo4J4SmKB3epPP8VA8Bwr7iRVH9hfJbxVonCIxbVDcRDBh
- bChGpXvfRtbIPMgxwgBXFFZ6z6s79rDwrp+Ek3rxP+C62I9NtSb15p2KJ
- mxj9Wp4R7QBrVvb59jEYjF1qvBAymI/pNSqNT7pboVxcXn1MGqLVNvK55 Q==;
-X-CSE-ConnectionGUID: 3FXDDxHRQKWDHD65Uq3u8A==
-X-CSE-MsgGUID: E3/65ECnSnu0BXtqw13fEw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="61742741"
-X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="61742741"
+ bh=15WovQLumC74b4MhS+HEkDPhzyoc6hRSsrwaxflvbm0=;
+ b=gd4MPsyLHDJIor+hzcFAYMdF4ovtVxipuiaubnaygTvi/B6K1le8kSXB
+ blxTVyetzAdEMhniBMDk/fL+F9Si3uNrF1zrC406Dr+3h4AQW/6GCB0Tt
+ hZAL7TiBH4P1JGFHDOiQEuRF01zkTwf/k+C7qVz9wUClryTyvvyAzHMoT
+ VtuOTjn1JLo29ytklZgztTLIqM2ReZyqF15gybnJBCD04jCdlFxuBOsD9
+ C8eRSImOO4ih0CfzyvFVxx6Gu8+6Y5Jitj3j3y7syug2aMSyR5Gw5k9TU
+ iV9VECXjyW+DjgrW3gWhan1lrG4gCaDplKeFfYMObbPLgUNJPYz1VJ9+C g==;
+X-CSE-ConnectionGUID: LPVhvACPT4qx8wOmPnjf5A==
+X-CSE-MsgGUID: ihu2cVv7RMKwSe1vK0lmvg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="61742744"
+X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="61742744"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2025 01:38:53 -0700
-X-CSE-ConnectionGUID: mIBHXoF4T6ajJAen/NLgFw==
-X-CSE-MsgGUID: 1+EKlO6vTq6fZ0QO8lXtvA==
+ 01 Oct 2025 01:38:55 -0700
+X-CSE-ConnectionGUID: AVQd2TnyTT2IqtJ6kCLQgg==
+X-CSE-MsgGUID: cgOM4gvIRaKVi+HrY3YZ7Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="179142568"
+X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="179142575"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa008.fm.intel.com with ESMTP; 01 Oct 2025 01:38:51 -0700
+ by fmviesa008.fm.intel.com with ESMTP; 01 Oct 2025 01:38:53 -0700
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Imre Deak <imre.deak@intel.com>
-Subject: [RFC PATCH 14/39] drm/i915/display: Add macro to get DDI port width
- from a register value
-Date: Wed,  1 Oct 2025 11:28:14 +0300
-Message-Id: <20251001082839.2585559-15-mika.kahola@intel.com>
+Cc: Imre Deak <imre.deak@intel.com>,
+	Mika Kahola <mika.kahola@intel.com>
+Subject: [RFC PATCH 15/39] drm/i915/display: Track the Cx0 PHY enabled lane
+ count in the PLL state
+Date: Wed,  1 Oct 2025 11:28:15 +0300
+Message-Id: <20251001082839.2585559-16-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251001082839.2585559-1-mika.kahola@intel.com>
 References: <20251001082839.2585559-1-mika.kahola@intel.com>
@@ -70,34 +71,201 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Imre Deak <imre.deak@intel.com>
 
-A follow-up change will need to retrieve the DDI port field from the
-register value, add a macro for this. Make things symmetric with setting
-the field in the register.
+The Cx0 PLL enable programming requires the enabled lane count. The PLL
+manager framework doesn't pass the CRTC state to the PLL's enable hook,
+so prepare here for the conversion to use the PLL manager, by tracking
+the enabled lane count in the PLL state as well. This has the advantage,
+that the enabled lane count can be verified against the PHY/PLL's
+enabled TX lanes.
+
+This also allows dropping the lane count param from the
+__intel_cx0pll_enable() function, since it can retrieve this now from
+the PLL state.
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_regs.h | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 55 ++++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  1 +
+ 2 files changed, 49 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index 9d71e26a4fa2..c14d3caa73a7 100644
---- a/drivers/gpu/drm/i915/display/intel_display_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -2349,8 +2349,13 @@ enum skl_power_gate {
- #define  DDI_BUF_CTL_TC_PHY_OWNERSHIP		REG_BIT(6)
- #define  DDI_A_4_LANES				REG_BIT(4)
- #define  DDI_PORT_WIDTH_MASK			REG_GENMASK(3, 1)
-+#define  DDI_PORT_WIDTH_ENCODE(width)		((width) == 3 ? 4 : (width) - 1)
-+#define  DDI_PORT_WIDTH_DECODE(regval)		((regval) == 4 ? 3 : (regval) + 1)
- #define  DDI_PORT_WIDTH(width)			REG_FIELD_PREP(DDI_PORT_WIDTH_MASK, \
--							       ((width) == 3 ? 4 : (width) - 1))
-+							       DDI_PORT_WIDTH_ENCODE(width))
-+#define  DDI_PORT_WIDTH_GET(regval)		DDI_PORT_WIDTH_DECODE(REG_FIELD_GET(DDI_PORT_WIDTH_MASK, \
-+										    (regval)))
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index 2aba1ebae428..d69ff9115659 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -12,6 +12,7 @@
+ #include "intel_alpm.h"
+ #include "intel_cx0_phy.h"
+ #include "intel_cx0_phy_regs.h"
++#include "intel_display_regs.h"
+ #include "intel_ddi.h"
+ #include "intel_ddi_buf_trans.h"
+ #include "intel_de.h"
+@@ -2083,7 +2084,7 @@ static void intel_c10pll_update_pll(struct intel_encoder *encoder,
+  */
+ static int intel_c10pll_calc_state_from_table(struct intel_encoder *encoder,
+ 					      const struct intel_c10pll_state * const *tables,
+-					      bool is_dp, int port_clock,
++					      bool is_dp, int port_clock, int lane_count,
+ 					      struct intel_cx0pll_state *pll_state)
+ {
+ 	int i;
+@@ -2093,7 +2094,9 @@ static int intel_c10pll_calc_state_from_table(struct intel_encoder *encoder,
+ 			pll_state->c10 = *tables[i];
+ 			intel_cx0pll_update_ssc(encoder, pll_state, is_dp);
+ 			intel_c10pll_update_pll(encoder, pll_state);
 +
- #define  DDI_PORT_WIDTH_SHIFT			1
- #define  DDI_INIT_DISPLAY_DETECTED		REG_BIT(0)
+ 			pll_state->use_c10 = true;
++			pll_state->lane_count = lane_count;
  
+ 			return 0;
+ 		}
+@@ -2114,7 +2117,7 @@ static int intel_c10pll_calc_state(struct intel_crtc_state *crtc_state,
+ 
+ 	err = intel_c10pll_calc_state_from_table(encoder, tables,
+ 						 intel_crtc_has_dp_encoder(crtc_state),
+-						 crtc_state->port_clock,
++						 crtc_state->port_clock, crtc_state->lane_count,
+ 						 &crtc_state->dpll_hw_state.cx0pll);
+ 
+ 	if (err == 0 || !intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+@@ -2126,6 +2129,7 @@ static int intel_c10pll_calc_state(struct intel_crtc_state *crtc_state,
+ 	intel_c10pll_update_pll(encoder,
+ 				&crtc_state->dpll_hw_state.cx0pll);
+ 	crtc_state->dpll_hw_state.cx0pll.use_c10 = true;
++	crtc_state->dpll_hw_state.cx0pll.lane_count = crtc_state->lane_count;
+ 
+ 	return 0;
+ }
+@@ -2157,6 +2161,37 @@ static int intel_c10pll_calc_port_clock(struct intel_encoder *encoder,
+ 	return tmpclk;
+ }
+ 
++static int readout_enabled_lane_count(struct intel_encoder *encoder)
++{
++	struct intel_display *display = to_intel_display(encoder);
++	u8 enabled_tx_lane_count = 0;
++	int max_tx_lane_count;
++	int tx_lane;
++
++	/*
++	 * TODO: also check inactive TX lanes in all PHY lanes owned by the
++	 * display. For now checking only those PHY lane(s) which are owned
++	 * based on the active TX lane count (i.e.
++	 *   1,2 active TX lanes -> PHY lane#0
++	 *   3,4 active TX lanes -> PHY lane#0 and PHY lane#1).
++	 */
++	max_tx_lane_count = DDI_PORT_WIDTH_GET(intel_de_read(display, DDI_BUF_CTL(encoder->port)));
++	if (!drm_WARN_ON(display->drm, max_tx_lane_count == 0))
++		max_tx_lane_count = roundup_pow_of_two(max_tx_lane_count);
++
++	for (tx_lane = 0; tx_lane < max_tx_lane_count; tx_lane++) {
++		u8 phy_lane_mask = tx_lane < 2 ? INTEL_CX0_LANE0 : INTEL_CX0_LANE1;
++		int tx = tx_lane % 2 + 1;
++		u8 val;
++
++		val = intel_cx0_read(encoder, phy_lane_mask, PHY_CX0_TX_CONTROL(tx, 2));
++		if (!(val & CONTROL2_DISABLE_SINGLE_TX))
++			enabled_tx_lane_count++;
++	}
++
++	return enabled_tx_lane_count;
++}
++
+ static void intel_c10pll_readout_hw_state(struct intel_encoder *encoder,
+ 					  struct intel_cx0pll_state *cx0pll_state)
+ {
+@@ -2175,6 +2210,8 @@ static void intel_c10pll_readout_hw_state(struct intel_encoder *encoder,
+ 	 */
+ 	intel_c10_msgbus_access_begin(encoder, lane);
+ 
++	cx0pll_state->lane_count = readout_enabled_lane_count(encoder);
++
+ 	for (i = 0; i < ARRAY_SIZE(pll_state->pll); i++)
+ 		pll_state->pll[i] = intel_cx0_read(encoder, lane, PHY_C10_VDR_PLL(i));
+ 
+@@ -2581,6 +2618,7 @@ static int intel_c20pll_calc_state(struct intel_crtc_state *crtc_state,
+ 	int err = -ENOENT;
+ 
+ 	crtc_state->dpll_hw_state.cx0pll.use_c10 = false;
++	crtc_state->dpll_hw_state.cx0pll.lane_count = crtc_state->lane_count;
+ 
+ 	/* try computed C20 HDMI tables before using consolidated tables */
+ 	if (!is_dp)
+@@ -2670,6 +2708,8 @@ static void intel_c20pll_readout_hw_state(struct intel_encoder *encoder,
+ 
+ 	wakeref = intel_cx0_phy_transaction_begin(encoder);
+ 
++	cx0pll_state->lane_count = readout_enabled_lane_count(encoder);
++
+ 	/* 1. Read VDR params and current context selection */
+ 	intel_c20_readout_vdr_params(encoder, &pll_state->vdr, &cntx);
+ 
+@@ -3107,7 +3147,7 @@ static u32 intel_cx0_get_pclk_pll_ack(u8 lane_mask)
+ 
+ static void __intel_cx0pll_enable(struct intel_encoder *encoder,
+ 				  const struct intel_cx0pll_state *pll_state,
+-				  bool is_dp, int port_clock, int lane_count)
++				  bool is_dp, int port_clock)
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
+ 	enum phy phy = intel_encoder_to_phy(encoder);
+@@ -3149,7 +3189,7 @@ static void __intel_cx0pll_enable(struct intel_encoder *encoder,
+ 	 * 6. Program the enabled and disabled owned PHY lane
+ 	 * transmitters over message bus
+ 	 */
+-	intel_cx0_program_phy_lane(encoder, lane_count, lane_reversal);
++	intel_cx0_program_phy_lane(encoder, pll_state->lane_count, lane_reversal);
+ 
+ 	/*
+ 	 * 7. Follow the Display Voltage Frequency Switching - Sequence
+@@ -3192,7 +3232,7 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
+ {
+ 	__intel_cx0pll_enable(encoder, &crtc_state->dpll_hw_state.cx0pll,
+ 			      intel_crtc_has_dp_encoder(crtc_state),
+-			      crtc_state->port_clock, crtc_state->lane_count);
++			      crtc_state->port_clock);
+ }
+ 
+ int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder)
+@@ -3723,6 +3763,7 @@ void intel_cx0_pll_power_save_wa(struct intel_display *display)
+ 	for_each_intel_encoder(display->drm, encoder) {
+ 		struct intel_cx0pll_state pll_state = {};
+ 		int port_clock = 162000;
++		int lane_count = 4;
+ 
+ 		if (!intel_encoder_is_dig_port(encoder))
+ 			continue;
+@@ -3735,7 +3776,7 @@ void intel_cx0_pll_power_save_wa(struct intel_display *display)
+ 
+ 		if (intel_c10pll_calc_state_from_table(encoder,
+ 						       mtl_c10_edp_tables,
+-						       true, port_clock,
++						       true, port_clock, lane_count,
+ 						       &pll_state) < 0) {
+ 			drm_WARN_ON(display->drm,
+ 				    "Unable to calc C10 state from the tables\n");
+@@ -3746,7 +3787,7 @@ void intel_cx0_pll_power_save_wa(struct intel_display *display)
+ 			    "[ENCODER:%d:%s] Applying power saving workaround on disabled PLL\n",
+ 			    encoder->base.base.id, encoder->base.name);
+ 
+-		__intel_cx0pll_enable(encoder, &pll_state, true, port_clock, 4);
++		__intel_cx0pll_enable(encoder, &pll_state, true, port_clock);
+ 		intel_cx0pll_disable(encoder);
+ 	}
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+index 43c7200050e9..839b1a98534f 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+@@ -267,6 +267,7 @@ struct intel_cx0pll_state {
+ 		struct intel_c10pll_state c10;
+ 		struct intel_c20pll_state c20;
+ 	};
++	int lane_count;
+ 	bool ssc_enabled;
+ 	bool use_c10;
+ 	bool tbt_mode;
 -- 
 2.34.1
 
