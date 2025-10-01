@@ -2,64 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95FBABB0324
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Oct 2025 13:38:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 816D4BB0436
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Oct 2025 14:00:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF2D010E3C9;
-	Wed,  1 Oct 2025 11:38:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27BA310E34D;
+	Wed,  1 Oct 2025 12:00:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="itYn2i3m";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nDaXI9bS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AEAB910E36A;
- Wed,  1 Oct 2025 11:38:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BB5010E095;
+ Wed,  1 Oct 2025 12:00:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759318709; x=1790854709;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=wmSOtvYDuM6nbumPqIgVEj0i78dCxD9sU7/BBG6kWS4=;
- b=itYn2i3mMT3zTM8cyLwGt1/8RhEJsoAPd8ajZUaPjGg52W4haRqQ3hze
- wcKQzLZRFKeHqjIA9u2m2q6K/omJerRmFMIdXDnUw+rYaVgL39RrG9/ZM
- IWWJPDC/4mm3RRVTxIkvD44BFcucsocP0iZaP5TiOuTPVC8qRUxFcnb6c
- pjy2SF5D3N0WFjcfAW2Lg0d/3XvB0aX+JYY5WtOPlJugtG8yxGYSCqMvE
- NNmq+YwLjlYxy0vedjXKRx3bmg1zB0Vi64RwgfgOyMSDwxnYvYfpsHvIQ
- q3dYrdpSyIFYL0KqIL+3MNJncUbcp3VKqaoDNOZahBfx2GTo8xKYW246X w==;
-X-CSE-ConnectionGUID: w9zSi0g4QgWz/yQOIAE9xw==
-X-CSE-MsgGUID: qRmlW9S8QDCWFwLsmHV5WA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="72263209"
-X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="72263209"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2025 04:38:28 -0700
-X-CSE-ConnectionGUID: 2r3EJ4ZVQ5Gn03T5V+aIyw==
-X-CSE-MsgGUID: KVLAHiidT+2EmXv3DGe5TQ==
+ t=1759320038; x=1790856038;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=dRQcB8GLQBycqfRcHZl9UDpBlWs1DGUahFyZdAVFz2A=;
+ b=nDaXI9bSAjiMzgjyFtuORoZQSjeXX7br2SovQ8/UE1gObQBxvLeh7QtN
+ B9vi6G75IKBmB2kzXtbSLds+JH3xC7NH1SuaOd3wgniBeEjThwcssu4lZ
+ FovAQ6bajMbyMARLnDPaSOOWVXi+l5Ifq2woDYZ6B8HAvizOi6zvmKGnI
+ zLJmXAfASF80a3bz0IA/z32zpNuvxY+E5pAVL8YreKTWr8zBD0PZcUQA2
+ EY5LmS4j6GRam4fXceQkskApGA6unqxcu+HR4AdP2361Z0Ft0fF3IEEfM
+ meolNJF3sJrnpX4SZFo/VIVoyDSh4XF9IpIEW6cXDnjtgU0igAyIyvXbT g==;
+X-CSE-ConnectionGUID: kD0ttmOFRQSwCtl5Gw6aNw==
+X-CSE-MsgGUID: yho8M4nUSJ6mEpjpZT9VpA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65444692"
+X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="65444692"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2025 05:00:38 -0700
+X-CSE-ConnectionGUID: 17nQnyBlTUq5qFlD33DdIg==
+X-CSE-MsgGUID: +AK7a2HgSZ+gn/1JPQrtxQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="183948296"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.245.78])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2025 04:38:25 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Krzysztof Karas <krzysztof.karas@intel.com>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>
-Subject: Re: [PATCH i-g-t 1/3] tests/gem_eio: Adjust for long reset-resume
- cycle on Gen12+
-Date: Wed, 01 Oct 2025 13:38:22 +0200
-Message-ID: <2071615.PIDvDuAF1L@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <7sanw2t5euulqqukkaopvqyl5nogzz5srahbc3klbmuduh3pah@s4e5gyvy75gc>
-References: <20250930125430.2323555-5-janusz.krzysztofik@linux.intel.com>
- <20250930125430.2323555-6-janusz.krzysztofik@linux.intel.com>
- <7sanw2t5euulqqukkaopvqyl5nogzz5srahbc3klbmuduh3pah@s4e5gyvy75gc>
+X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="178575408"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.98])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2025 05:00:32 -0700
+Date: Wed, 1 Oct 2025 14:00:29 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: =?utf-8?B?6rmA6rCV66+8?= <km.kim1503@gmail.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com,
+ rodrigo.vivi@intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ simona@ffwll.ch, andi.shyti@linux.intel.com,
+ ville.syrjala@linux.intel.com, nitin.r.gote@intel.com,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ syzkaller@googlegroups.com
+Subject: Re: BUG: unable to handle kernel NULL pointer dereference in
+ eb_release_vmas
+Message-ID: <aN0X3ck-egLMn_Xy@ashyti-mobl2.lan>
+References: <CAGfirffPy5biFVLtSNEW60UCXa6_=-=NrQbU7iLQ8+BXnFQ=1A@mail.gmail.com>
+ <175922381867.30706.10351894191632562572@jlahtine-mobl>
+ <CAGfirfdDe879wFzABVZkTV7grEimpnc0XrrKpj2SX1w_TLtgNg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAGfirfdDe879wFzABVZkTV7grEimpnc0XrrKpj2SX1w_TLtgNg@mail.gmail.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,57 +78,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wednesday, 1 October 2025 08:36:38 CEST Krzysztof Karas wrote:
-> Hi Janusz,
-> 
-> > Subtests that measure time of resume after engine reset require results
-> > from at least 9 reset-resume cycles for reasonable calculation of a median
-> > value to be compared against presumed limits.  On most of Gen12+
-> > platforms, the limit of 5 seconds for collecting those results occurs too
-> > short for executing 9 reset-resum cycles.
-> reset-resum -> reset-resume, just a small typo.
-> > 
-> > Raise the limit to 20 seconds, and break the loop as soon as 9 results are
-> > collected.  Also, warn if less than 9 resets have been completed within
-> > the limit instead of silently succeeding despite the check being skipped.
-> > 
-> > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> > ---
-> >  tests/intel/gem_eio.c | 11 ++++++++---
-> >  1 file changed, 8 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/tests/intel/gem_eio.c b/tests/intel/gem_eio.c
-> > index b65b914faf..b6155c7fc4 100644
-> > --- a/tests/intel/gem_eio.c
-> > +++ b/tests/intel/gem_eio.c
-> > @@ -409,8 +409,10 @@ static void check_wait_elapsed(const char *prefix, 
-int fd, igt_stats_t *st)
-> >  		 igt_stats_get_median(st)*1e-6,
-> >  		 igt_stats_get_max(st)*1e-6);
-> >  
-> > -	if (st->n_values < 9)
-> > -		return; /* too few for stable median */
-> > +	if (igt_warn_on_f(st->n_values < 9,
-> > +	    "%d resets completed -- less than 9, too few for stable 
-median\n",
-> > +	    st->n_values))
-> > +		return;
-> Is this warning indicative of a bug? I wonder if this will
-> result in having more WARN runs from CI. If there is nothing we
-> can do to amend this, as slow reset-resume cycles are caused by
-> hardware limitations, maybe igt_info would suffice?
+On Wed, Oct 01, 2025 at 12:14:41AM +0900, 김강민 wrote:
+> Ok, I will do it.
 
-If we want to be informed about resume after reset unexpectedly still longer 
-on future platforms then an info message won't bring our attention, I believe.  
-OTOH, I understand your concern on CI reported warnings we can't do much 
-about.  Let me think it over again.
+when you do, can you please paste the link here?
 
 Thanks,
-Janusz
+Andi
 
+> Best Regards,
+> GangMin Kim.
 > 
-> 
-
-
-
-
+> 2025년 9월 30일 (화) 오후 6:17, Joonas Lahtinen
+> <joonas.lahtinen@linux.intel.com>님이 작성:
+> >
+> > Hi,
+> >
+> > Can you please open a bug as per the instructions in:
+> >
+> > https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html
+> >
+> > Thanks in advance!
+> >
+> > Regards, Joonas
