@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B6B3BAFAC6
+	by mail.lfdr.de (Postfix) with ESMTPS id D2EA5BAFAC9
 	for <lists+intel-gfx@lfdr.de>; Wed, 01 Oct 2025 10:38:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8961B10E6AA;
-	Wed,  1 Oct 2025 08:38:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4191810E6B4;
+	Wed,  1 Oct 2025 08:38:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="coZMc85o";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CTOjSirW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E20F210E6B6;
- Wed,  1 Oct 2025 08:38:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B41C10E6C0;
+ Wed,  1 Oct 2025 08:38:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759307927; x=1790843927;
+ t=1759307929; x=1790843929;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=SC9m46rU7OorFcPvs8c8yxHFO6/BcZ2+8bi11FjAMEM=;
- b=coZMc85oiTpEFLSOrsPbzX2wEQZ7tu/FmYoNDOrzx8xRwRoHywPYWA5U
- hnTpSoOFvRaQZ9c0kS/jwT3cTIyPnfAjKWemNEOzKT+o3BPdTp3mZATem
- E8TSkOkLzkXt+EbNYCzOXTqclZyR5mE5oDTDI3cthigPmyMrJVvyvHss5
- 9saaNO86VzFIpPmJom0TgzsNGNCtW+30WciGjIHfKL6QJVucuhwuIHAHb
- 1BAi9OXDvZzjxTxavqkkUnTowPrialVNkeA+YMI104pn9zXaQGe00J40o
- oUyJhdw1FvAsoCBij1MG+KIZyl4j0L7PVAMQ0stg3SnDINHXokZHtWGYq Q==;
-X-CSE-ConnectionGUID: Z3IQ9CC8Qg+BfIF3b7WWxA==
-X-CSE-MsgGUID: 7AOAPYczSz6BPw+szhJ/JQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="61742719"
-X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="61742719"
+ bh=IZP6RA3fvQe4K5XbDf3wsdm4n0PMmljvo2hg5ULoBXg=;
+ b=CTOjSirW5vtd+2p49nYcBUTrdChPbP4ZILjELwwPD4I2EC+UXwcNu2FC
+ wPZAOAwH/9ZRIFBQ5Ongz86ltc/EI10Np/4/c2UvSP+2dOnz39Xebz1QJ
+ dsN6P9rcSGr9VgDz/0hybOsnXszTa7xnzETuuiOZogYcW8BgyIVVzrWYj
+ Du4S46sVGIOl7dXF9QYmugL/r3kt3Y1UPy0RfSResClebF6CfvVh3GmLn
+ H+sI5NYA2qTsAsKqMqu3DCQj7WtefG3EJZmZfP6cyWwVeAUB+qFxznid6
+ l/GspRlIxyoI6UqAo+RiWqh7OUlPdio3M5QfBFdLBiauiYNyUuq+2Mtsx g==;
+X-CSE-ConnectionGUID: rVT8KkkLQguhPpan4axjzg==
+X-CSE-MsgGUID: JQ8dAXs8RI2HsrCC0LL32g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="61742724"
+X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="61742724"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2025 01:38:47 -0700
-X-CSE-ConnectionGUID: dXe4t7z9RT+Hdb04JQeyZg==
-X-CSE-MsgGUID: rg2bhB7ZRqCBce4TlTylFw==
+ 01 Oct 2025 01:38:48 -0700
+X-CSE-ConnectionGUID: 9RdueLjPQhegzdQDdzg6CQ==
+X-CSE-MsgGUID: YUa/zMSxSnueJ2ULAHdSJA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="179142533"
+X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="179142548"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa008.fm.intel.com with ESMTP; 01 Oct 2025 01:38:45 -0700
+ by fmviesa008.fm.intel.com with ESMTP; 01 Oct 2025 01:38:46 -0700
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Imre Deak <imre.deak@intel.com>,
-	Mika Kahola <mika.kahola@intel.com>
-Subject: [RFC PATCH 09/39] drm/i915/display: Factor out C10 msgbus access
- start/end helpers
-Date: Wed,  1 Oct 2025 11:28:09 +0300
-Message-Id: <20251001082839.2585559-10-mika.kahola@intel.com>
+Cc: Imre Deak <imre.deak@intel.com>
+Subject: [RFC PATCH 10/39] drm/i915/display: Sanitize setting the Cx0 PLL
+ use_c10 flag
+Date: Wed,  1 Oct 2025 11:28:10 +0300
+Message-Id: <20251001082839.2585559-11-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251001082839.2585559-1-mika.kahola@intel.com>
 References: <20251001082839.2585559-1-mika.kahola@intel.com>
@@ -71,145 +70,92 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Imre Deak <imre.deak@intel.com>
 
-Factor out functions to begin and complete C10 PHY programming
-sequences to make the code more concise.
+Sanitize setting the Cx0 PLL use_c10 flag during state computation and
+HW readout, making sure they happen the same way in the
+intel_c{10,20}pll_calc_state() and intel_c{10,20}pll_readout_hw_state()
+functions.
+
+Follow-up changes will add more state computation/HW readout, this
+change prepares for those as well.
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 62 +++++++++++---------
- 1 file changed, 35 insertions(+), 27 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 23 ++++++++++++--------
+ 1 file changed, 14 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index a74c1be225ac..9b38c7b4f0a7 100644
+index 9b38c7b4f0a7..0ac186e5db88 100644
 --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -449,6 +449,31 @@ static u8 intel_c10_get_tx_term_ctl(const struct intel_crtc_state *crtc_state)
- 	}
- }
+@@ -2130,12 +2130,15 @@ static int intel_c10pll_calc_port_clock(struct intel_encoder *encoder,
+ 					const struct intel_c10pll_state *pll_state);
  
-+static void intel_c10_msgbus_access_begin(struct intel_encoder *encoder,
-+					  u8 lane_mask)
-+{
-+	if (!intel_encoder_is_c10phy(encoder))
-+		return;
-+
-+	intel_cx0_rmw(encoder, lane_mask, PHY_C10_VDR_CONTROL(1),
-+		      0, C10_VDR_CTRL_MSGBUS_ACCESS, MB_WRITE_COMMITTED);
-+}
-+
-+static void intel_c10_msgbus_update_config(struct intel_encoder *encoder,
-+					   u8 lane_mask, bool master_lane)
-+{
-+	u8 val = C10_VDR_CTRL_UPDATE_CFG;
-+
-+	if (!intel_encoder_is_c10phy(encoder))
-+		return;
-+
-+	if (master_lane)
-+		val |= C10_VDR_CTRL_MASTER_LANE;
-+
-+	intel_cx0_rmw(encoder, lane_mask, PHY_C10_VDR_CONTROL(1),
-+		      0, val, MB_WRITE_COMMITTED);
-+}
-+
- void intel_cx0_phy_set_signal_levels(struct intel_encoder *encoder,
- 				     const struct intel_crtc_state *crtc_state)
+ static void intel_c10pll_readout_hw_state(struct intel_encoder *encoder,
+-					  struct intel_c10pll_state *pll_state)
++					  struct intel_cx0pll_state *cx0pll_state)
  {
-@@ -472,9 +497,9 @@ void intel_cx0_phy_set_signal_levels(struct intel_encoder *encoder,
- 		return;
- 	}
- 
-+	intel_c10_msgbus_access_begin(encoder, owned_lane_mask);
-+
- 	if (intel_encoder_is_c10phy(encoder)) {
--		intel_cx0_rmw(encoder, owned_lane_mask, PHY_C10_VDR_CONTROL(1),
--			      0, C10_VDR_CTRL_MSGBUS_ACCESS, MB_WRITE_COMMITTED);
- 		intel_cx0_rmw(encoder, owned_lane_mask, PHY_C10_VDR_CMN(3),
- 			      C10_CMN3_TXVBOOST_MASK,
- 			      C10_CMN3_TXVBOOST(intel_c10_get_tx_vboost_lvl(crtc_state)),
-@@ -513,9 +538,7 @@ void intel_cx0_phy_set_signal_levels(struct intel_encoder *encoder,
- 		      0, PHY_C10_VDR_OVRD_TX1 | PHY_C10_VDR_OVRD_TX2,
- 		      MB_WRITE_COMMITTED);
- 
--	if (intel_encoder_is_c10phy(encoder))
--		intel_cx0_rmw(encoder, owned_lane_mask, PHY_C10_VDR_CONTROL(1),
--			      0, C10_VDR_CTRL_UPDATE_CFG, MB_WRITE_COMMITTED);
-+	intel_c10_msgbus_update_config(encoder, owned_lane_mask, false);
- 
- 	intel_cx0_phy_transaction_end(encoder, wakeref);
- }
-@@ -2119,9 +2142,7 @@ static void intel_c10pll_readout_hw_state(struct intel_encoder *encoder,
- 	 * According to C10 VDR Register programming Sequence we need
- 	 * to do this to read PHY internal registers from MsgBus.
- 	 */
--	intel_cx0_rmw(encoder, lane, PHY_C10_VDR_CONTROL(1),
--		      0, C10_VDR_CTRL_MSGBUS_ACCESS,
--		      MB_WRITE_COMMITTED);
-+	intel_c10_msgbus_access_begin(encoder, lane);
- 
- 	for (i = 0; i < ARRAY_SIZE(pll_state->pll); i++)
- 		pll_state->pll[i] = intel_cx0_read(encoder, lane, PHY_C10_VDR_PLL(i));
-@@ -2140,9 +2161,7 @@ static void intel_c10_pll_program(struct intel_display *display,
- {
++	struct intel_c10pll_state *pll_state = &cx0pll_state->c10;
+ 	u8 lane = INTEL_CX0_LANE0;
+ 	intel_wakeref_t wakeref;
  	int i;
  
--	intel_cx0_rmw(encoder, INTEL_CX0_BOTH_LANES, PHY_C10_VDR_CONTROL(1),
--		      0, C10_VDR_CTRL_MSGBUS_ACCESS,
--		      MB_WRITE_COMMITTED);
-+	intel_c10_msgbus_access_begin(encoder, INTEL_CX0_BOTH_LANES);
- 
- 	/* Program the pll values only for the master lane */
- 	for (i = 0; i < ARRAY_SIZE(pll_state->pll); i++)
-@@ -2157,9 +2176,8 @@ static void intel_c10_pll_program(struct intel_display *display,
- 	intel_cx0_rmw(encoder, INTEL_CX0_BOTH_LANES, PHY_C10_VDR_CUSTOM_WIDTH,
- 		      C10_VDR_CUSTOM_WIDTH_MASK, C10_VDR_CUSTOM_WIDTH_8_10,
- 		      MB_WRITE_COMMITTED);
--	intel_cx0_rmw(encoder, INTEL_CX0_LANE0, PHY_C10_VDR_CONTROL(1),
--		      0, C10_VDR_CTRL_MASTER_LANE | C10_VDR_CTRL_UPDATE_CFG,
--		      MB_WRITE_COMMITTED);
++	cx0pll_state->use_c10 = true;
 +
-+	intel_c10_msgbus_update_config(encoder, INTEL_CX0_LANE0, true);
- }
- 
- static void intel_c10pll_dump_hw_state(struct intel_display *display,
-@@ -2959,11 +2977,7 @@ static void intel_cx0_program_phy_lane(struct intel_encoder *encoder, int lane_c
- 	bool dp_alt_mode = intel_tc_port_in_dp_alt_mode(enc_to_dig_port(encoder));
- 	u8 owned_lane_mask = intel_cx0_get_owned_lane_mask(encoder);
- 
--	if (intel_encoder_is_c10phy(encoder))
--		intel_cx0_rmw(encoder, owned_lane_mask,
--			      PHY_C10_VDR_CONTROL(1), 0,
--			      C10_VDR_CTRL_MSGBUS_ACCESS,
--			      MB_WRITE_COMMITTED);
-+	intel_c10_msgbus_access_begin(encoder, owned_lane_mask);
- 
- 	if (lane_reversal)
- 		disables = REG_GENMASK8(3, 0) >> lane_count;
-@@ -2988,11 +3002,7 @@ static void intel_cx0_program_phy_lane(struct intel_encoder *encoder, int lane_c
- 			      MB_WRITE_COMMITTED);
- 	}
- 
--	if (intel_encoder_is_c10phy(encoder))
--		intel_cx0_rmw(encoder, owned_lane_mask,
--			      PHY_C10_VDR_CONTROL(1), 0,
--			      C10_VDR_CTRL_UPDATE_CFG,
--			      MB_WRITE_COMMITTED);
-+	intel_c10_msgbus_update_config(encoder, owned_lane_mask, false);
- }
- 
- static u32 intel_cx0_get_pclk_pll_request(u8 lane_mask)
-@@ -3260,9 +3270,7 @@ void intel_lnl_mac_transmit_lfps(struct intel_encoder *encoder,
- 
  	wakeref = intel_cx0_phy_transaction_begin(encoder);
  
--	if (intel_encoder_is_c10phy(encoder))
--		intel_cx0_rmw(encoder, owned_lane_mask, PHY_C10_VDR_CONTROL(1), 0,
--			      C10_VDR_CTRL_MSGBUS_ACCESS, MB_WRITE_COMMITTED);
-+	intel_c10_msgbus_access_begin(encoder, owned_lane_mask);
+ 	/*
+@@ -2361,6 +2364,8 @@ static int intel_c20pll_calc_state(struct intel_crtc_state *crtc_state,
+ 	const struct intel_c20pll_state * const *tables;
+ 	int i;
  
- 	for (i = 0; i < 4; i++) {
- 		int tx = i % 2 + 1;
++	crtc_state->dpll_hw_state.cx0pll.use_c10 = false;
++
+ 	/* try computed C20 HDMI tables before using consolidated tables */
+ 	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
+ 		if (intel_c20_compute_hdmi_tmds_pll(crtc_state) == 0)
+@@ -2377,7 +2382,6 @@ static int intel_c20pll_calc_state(struct intel_crtc_state *crtc_state,
+ 			intel_cx0pll_update_ssc(encoder,
+ 						&crtc_state->dpll_hw_state.cx0pll,
+ 						intel_crtc_has_dp_encoder(crtc_state));
+-			crtc_state->dpll_hw_state.cx0pll.use_c10 = false;
+ 			return 0;
+ 		}
+ 	}
+@@ -2444,13 +2448,16 @@ static int intel_c20pll_calc_port_clock(struct intel_encoder *encoder,
+ }
+ 
+ static void intel_c20pll_readout_hw_state(struct intel_encoder *encoder,
+-					  struct intel_c20pll_state *pll_state)
++					  struct intel_cx0pll_state *cx0pll_state)
+ {
++	struct intel_c20pll_state *pll_state = &cx0pll_state->c20;
+ 	struct intel_display *display = to_intel_display(encoder);
+ 	bool cntx;
+ 	intel_wakeref_t wakeref;
+ 	int i;
+ 
++	cx0pll_state->use_c10 = false;
++
+ 	wakeref = intel_cx0_phy_transaction_begin(encoder);
+ 
+ 	/* 1. Read current context selection */
+@@ -3470,12 +3477,10 @@ void intel_cx0pll_readout_hw_state(struct intel_encoder *encoder,
+ 	if (pll_state->tbt_mode)
+ 		return;
+ 
+-	if (intel_encoder_is_c10phy(encoder)) {
+-		intel_c10pll_readout_hw_state(encoder, &pll_state->c10);
+-		pll_state->use_c10 = true;
+-	} else {
+-		intel_c20pll_readout_hw_state(encoder, &pll_state->c20);
+-	}
++	if (intel_encoder_is_c10phy(encoder))
++		intel_c10pll_readout_hw_state(encoder, pll_state);
++	else
++		intel_c20pll_readout_hw_state(encoder, pll_state);
+ }
+ 
+ static bool mtl_compare_hw_state_c10(const struct intel_c10pll_state *a,
 -- 
 2.34.1
 
