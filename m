@@ -2,58 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECC9DBAF8EE
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Oct 2025 10:12:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A59ABAFAAE
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Oct 2025 10:38:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 829B610E06F;
-	Wed,  1 Oct 2025 08:12:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3047C10E347;
+	Wed,  1 Oct 2025 08:38:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RwLPHXRm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SXd3aF1Q";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0609510E06F;
- Wed,  1 Oct 2025 08:12:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B874C10E0B1;
+ Wed,  1 Oct 2025 08:38:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759306346; x=1790842346;
+ t=1759307917; x=1790843917;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=OHpkjPVG1SQWxlRLSMHkPex7yR+cFqXllR/vYUPL49g=;
- b=RwLPHXRmE3ylW6sRcvpNgBjT34EZTm4DFAlrD0luCGs6hxtZTXzfOMr0
- tsdptLmfs92os/kU+vBTqOLJl6RFS3xlgRKjYGUW3iHEmWyod+R8OnSRE
- 2Jyby+f4kyfy9Qnfg0V90seV1wiLWQpew2VvWliCnrWSVqB/K6xOIJnfU
- Rq7VHqjjuUrsaO+Mjg3ZYsFC43HH/hQsUGSYnvMIQSP3c1zw/64lsPIX4
- e1a6hKEt5qUTqfHeoR3Q+Cevztne689biTNocaBZfK92Md2AavygDku50
- xNrW5a2rEA3IpTzHFWs8m9rYTo6pGI4/mqMoL/M4C8JZXDvLNZqv9MgLS Q==;
-X-CSE-ConnectionGUID: kpkud90bTWS9QkHS0QTRyA==
-X-CSE-MsgGUID: hh13HP2nSJKwqQKbFuSBEQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="61680966"
-X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="61680966"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2025 01:12:26 -0700
-X-CSE-ConnectionGUID: 2L305bYqS6muQl5Y55AlkQ==
-X-CSE-MsgGUID: iSWZRb6SSeab/ld5K7p7Hw==
+ bh=slkbW+6xSuRzWOec+sGz+6mN/MvBUyGBmaSdbUUpmR4=;
+ b=SXd3aF1QyXHuXUX8iH8XhSB3iHq7CmEsBAG1lsUHLxb3mizoPHCTLrvl
+ C1kI3NShpAnqQdrVb6X7GMU4z1hL+McRPuRXR5hSu9LO239wYi2e+B3Gn
+ /H45Wm/b577QoI6rpSEsAllrETxWDI9oe/emAtFs76E9c3Fe22pSiipsV
+ hd4/EgZpWPI/y73E9C4tEA4DOlaPaLLP49qIO6RRr8JVI7BxPgMLVcusH
+ zbcRQqG6xTLD1MVKkN3wLTyJhMdFTusNttNy6cb4zTA1qXjk1BYV0Ixwi
+ M/Mbg9Npxo+nUtW1831tQnMvdR4T0jMdwCev52AZHht03OCWWv3nXEXyC w==;
+X-CSE-ConnectionGUID: AsnlmmlkTbqdsgceVZXNQw==
+X-CSE-MsgGUID: TQh7idkCTk2p6WYkJFvAhw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="61742679"
+X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="61742679"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2025 01:38:37 -0700
+X-CSE-ConnectionGUID: IdKeV8SnS9yly2C+Ijeasg==
+X-CSE-MsgGUID: Bx4tXu3zR2qTyGn0SIGi8Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="209445867"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO
- vgovind2-mobl3.intel.com) ([10.245.246.204])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2025 01:12:22 -0700
-From: Vinod Govindapillai <vinod.govindapillai@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com, ucas.demarchi@intel.com,
- kunal1.joshi@intel.com, jani.saarinen@intel.com
-Subject: [PATCH v2] drm/i915/fbc: update the impacted platforms in
- wa_22014263786
-Date: Wed,  1 Oct 2025 11:12:09 +0300
-Message-ID: <20251001081209.272607-1-vinod.govindapillai@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="179142475"
+Received: from display-adls.igk.intel.com ([10.211.131.198])
+ by fmviesa008.fm.intel.com with ESMTP; 01 Oct 2025 01:38:34 -0700
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Mika Kahola <mika.kahola@intel.com>
+Subject: [RFC PATCH 00/39] drm/i915/display: Add MTL+ platforms to support
+ dpll framework
+Date: Wed,  1 Oct 2025 11:28:00 +0300
+Message-Id: <20251001082839.2585559-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,76 +66,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-wa_22014263786 is not applicable to the BMG and hence exclude it
-from the wa.
+This series introduces support for the DPLL framework on MTL+ platforms.
+It begins with a set of cleanups and helper refactors, then gradually
+adds the necessary infrastructure for dpll framework, followed by
+extensions to support additional platforms. The final patch enables the
+DPLL framework for MTL+.
 
-v2: Limit this wa to display verion 11 to 14, drop DG2 from the
-    exclusion list, use intel_display_wa (Lucas)
+The patches are organized as follows:
 
-Bspec: 74212, 66624
-Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_wa.c | 12 ++++++++++++
- drivers/gpu/drm/i915/display/intel_display_wa.h |  1 +
- drivers/gpu/drm/i915/display/intel_fbc.c        |  3 +--
- 3 files changed, 14 insertions(+), 2 deletions(-)
+* Fixes and refactoring
+* Tracking additional PLL/PHY HW state in the PLL SW state
+* Align the Cx0 PHY PLL state compute/readout and enabling functions on MTL+
+  as expected by the PLL manager
+* Add the Cx0 PHY PLL manager/PLL hooks for MTL+
+* Enable the PLL manager for MTL+ platforms
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
-index 31cd2c9cd488..7ca238725e30 100644
---- a/drivers/gpu/drm/i915/display/intel_display_wa.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-@@ -52,6 +52,16 @@ static bool intel_display_needs_wa_16025573575(struct intel_display *display)
- 	return DISPLAY_VERx100(display) == 3000 || DISPLAY_VERx100(display) == 3002;
- }
- 
-+/*
-+ * Wa_22014263786:
-+ * Fixes: Screen flicker with FBC and Package C state enabled
-+ * Workaround: Forced SLB invalidation before start of new frame.
-+ */
-+static bool intel_display_needs_wa_22014263786(struct intel_display *display)
-+{
-+	return DISPLAY_VERx100(display) >= 1100 && DISPLAY_VERx100(display) < 1401;
-+}
-+
- /*
-  * Wa_14011503117:
-  * Fixes: Before enabling the scaler DE fatal error is masked
-@@ -67,6 +77,8 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
- 		return intel_display_needs_wa_16025573575(display);
- 	case INTEL_DISPLAY_WA_14011503117:
- 		return DISPLAY_VER(display) == 13;
-+	case INTEL_DISPLAY_WA_22014263786:
-+		return intel_display_needs_wa_22014263786(display);
- 	default:
- 		drm_WARN(display->drm, 1, "Missing Wa number: %s\n", name);
- 		break;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
-index abc1df83f066..3644e8e2b724 100644
---- a/drivers/gpu/drm/i915/display/intel_display_wa.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-@@ -25,6 +25,7 @@ enum intel_display_wa {
- 	INTEL_DISPLAY_WA_16023588340,
- 	INTEL_DISPLAY_WA_16025573575,
- 	INTEL_DISPLAY_WA_14011503117,
-+	INTEL_DISPLAY_WA_22014263786,
- };
- 
- bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa, const char *name);
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 0d380c825791..9607fdcb0cc0 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -933,8 +933,7 @@ static void intel_fbc_program_workarounds(struct intel_fbc *fbc)
- 		intel_de_rmw(display, ILK_DPFC_CHICKEN(fbc->id),
- 			     0, DPFC_CHICKEN_COMP_DUMMY_PIXEL);
- 
--	/* Wa_22014263786:icl,jsl,tgl,dg1,rkl,adls,adlp,mtl */
--	if (DISPLAY_VER(display) >= 11 && !display->platform.dg2)
-+	if (intel_display_wa(display, 22014263786))
- 		intel_de_rmw(display, ILK_DPFC_CHICKEN(fbc->id),
- 			     0, DPFC_CHICKEN_FORCE_SLB_INVALIDATION);
- 
+Note:
+This series does not include the following features that would
+require attention as a follow up series
+
+* Add support for:
+  - CMTG
+  - C20 PHY PLL on port B
+* Decouple PLL code from encoders for better isolation of PLL code internals
+
+Imre Deak (22):
+  drm/i915/display: Sanitize PHY_C20_VDR_CUSTOM_SERDES_RATE/DP_RATE
+    field macros
+  drm/i915/display: Sanitize PHY_C20_VDR_CUSTOM_SERDES_RATE/IS_DP flag
+    macro
+  drm/i915/display: Sanitize
+    PHY_C20_VDR_CUSTOM_SERDES_RATE/CONTEXT_TOGGLE flag macro
+  drm/i915/display: Sanitize PHY_C20_VDR_CUSTOM_SERDES_RATE/IS_HDMI_FRL
+    flag macro
+  drm/i915/display: Fix PHY_C20_VDR_CUSTOM_SERDES_RATE programming
+  drm/i915/display: Fix PHY_C20_VDR_HDMI_RATE programming
+  drm/i915/display: Add missing clock to C10 PHY state compute/HW
+    readout
+  drm/i915/display: Factor out C10 msgbus access start/end helpers
+  drm/i915/display: Sanitize setting the Cx0 PLL use_c10 flag
+  drm/i915/display: Sanitize calculating C20 PLL state from tables
+  drm/i915/display: Track the C20 PHY VDR state in the PLL state
+  drm/i915/display: Move definition of Cx0 PHY functions earlier
+  drm/i915/display: Add macro to get DDI port width from a register
+    value
+  drm/i915/display: Track the Cx0 PHY enabled lane count in the PLL
+    state
+  drm/i915/display: Sanitize C10 PHY PLL SSC register setup
+  drm/i915/display: Read out the Cx0 PHY SSC enabled state
+  drm/i915/display: Determine Cx0 PLL DP mode from PLL state
+  drm/i915/display: Determine Cx0 PLL port clock from PLL state
+  drm/i915/display: Zero Cx0 PLL state before compute and HW readout
+  drm/i915/display: Print additional Cx0 PLL HW state
+  drm/i915/display: PLL verify debug state print
+  drm/i915/display: Add Thunderbolt support
+
+Mika Kahola (17):
+  drm/i915/display: Rename TBT functions to be ICL specific
+  drm/i915/display: Remove state verification
+  drm/i915/display: PLL information for MTL+
+  drm/i915/display: Update C10/C20 state calculation
+  drm/i915/display: Compute plls for MTL+ platform
+  drm/i915/display: MTL+ .get_dplls
+  drm/i915/display: MTL+ .put_dplls
+  drm/i915/display: Add .update_active_dpll
+  drm/i915/display: Add .update_dpll_ref_clks
+  drm/i915/display: Add .dump_hw_state
+  drm/i915/display: Add .compare_hw_state
+  drm/i915/display: Add .get_hw_state to MTL+ platforms
+  drm/i915/display: Add .get_freq to MTL+ platforms
+  drm/i915/display: Add .crtc_get_dpll hook
+  drm/i915/display: Add .enable_clock on DDI for MTL+ platforms
+  drm/i915/display: Get configuration for C10 and C20
+  drm/i915/display: Enable dpll framework for MTL+
+
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 897 ++++++++++--------
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h  |  25 +-
+ .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  10 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  76 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |  32 -
+ .../gpu/drm/i915/display/intel_display_regs.h |   7 +-
+ drivers/gpu/drm/i915/display/intel_dpll.c     |  24 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 297 +++++-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.h |   7 +
+ .../drm/i915/display/intel_modeset_verify.c   |   1 -
+ .../drm/i915/display/intel_snps_hdmi_pll.c    |   2 +
+ 11 files changed, 884 insertions(+), 494 deletions(-)
+
 -- 
-2.43.0
+2.34.1
 
