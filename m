@@ -2,83 +2,110 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 200B4BB3FE0
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Oct 2025 15:12:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9777DBB3DFA
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Oct 2025 14:23:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57DAF10E19F;
-	Thu,  2 Oct 2025 13:12:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9CD810E197;
+	Thu,  2 Oct 2025 12:23:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="amW3cF3C";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="Zoe0aB2l";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="9maRoxsC";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="Zoe0aB2l";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="9maRoxsC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com
- [209.85.208.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA00D10E7A2
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Oct 2025 08:48:34 +0000 (UTC)
-Received: by mail-lj1-f179.google.com with SMTP id
- 38308e7fff4ca-373a1ab2081so6996921fa.3
- for <intel-gfx@lists.freedesktop.org>; Thu, 02 Oct 2025 01:48:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1759394913; x=1759999713; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=z69FFVofVQpQbXPazzIrMIWvZw9YVt4e5mOAMA1/qQ0=;
- b=amW3cF3C6ZKw/q7Yx8thL8NgHr2N24pfoIvmC2f311h72cp+hbJgS0CZ3Ci99SRriQ
- MF8nac6sOi1f9UlgxkUp4RMUT8+71Zj5TkUUW8Sx/UUi28fYJtijlhipmdiJUR/4jXMv
- KnnOgdq81zE/+JFJuJ/kdb/DTuNopQRBewvP7qvFDrkkgsNmMk09SLoCPgV7lAtc1HZN
- J8BUKj0anytvichfyeSm/trtzkP1nXWPIy5P9urvOVe9vaWEo34dDEJ8xcm8XAaPLyeL
- sEuSNGpJx3T73zacSZzN7ObuUv1/Jz+NzOtfWFYR/cy/gRLTYAIiqPr0gwXofCnIYy/b
- SC5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1759394913; x=1759999713;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=z69FFVofVQpQbXPazzIrMIWvZw9YVt4e5mOAMA1/qQ0=;
- b=INSxoV7rXHYXZIbj8RI55sgCnRqRo3A8ciXZcKFn4kHoQwvCYRWTadAhO6hk2AqEay
- JAHE6mJv93QKuWcVGJFq/QhSz+ZSVKL8Nw9MCsJ/RuozEFgwq3Hi4V0xbXxgJThuxU4B
- MwBPzpEZn/gzteWMKwSsbAwexyq7cGJ8zWhaPdOkSiZbMb3F9mAPrIrRjzP0eHvlU01C
- RzhbGhoA6PwlvGhCNPIq+ljzUlKfujOkT0FH2O4YY7AGREBTA9im4MtSN/EvUT7m95X3
- OncgWVg5vAECX/yKKiddh+7lzB6ZvZjMAK9nS3JAe+on4BqhUWW37fq6SwXj+JAMxQut
- wagQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXfJS8qVmcRLqI9L9+V/xBc9/MtjZ+4AQNXeU6SgotQDHwMJntiNoubpWmyNIQZ25WHaFg/qM7Ml00=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw+aNYQiII3aar6QwvOVzWQtXLXS2w1f2abQP+gEIMqhLZXFcsp
- QR1cGBKdBMWzLefeVzPxC9/SRiJe9xiXPj53WHFYkq+QgkgvhdEWtBD7
-X-Gm-Gg: ASbGnctQ81sLe99gSE0lGbNRE5s/EgqabJvC8RsK0UEXjGLCGsksU3KR93ItmbO+lvr
- KNW6YshRh5UhPawOWCEQolZrnZkPJLTVG/3eMoo3jS18r3+2Jy4IyflTXDN/IyF+LRCKncPtVSV
- 7RugVVApSHG35OS+toNAcKvENiYLJrgO+K3CcCllaPmFUSKx96byNrF96um5Gq1En2T4c//zSYt
- SORe9KVrQYzBFzshBWQJT/M5pqUBtocOjnCYptlEMRnR3oJ4iwLdLDKhzQJaQKSnObVhH942Le6
- QWD3AJ5v2OySiHTXiVwMb6llCYa63flKUQ2JqBMU0C4DF9KGsV5cFi9+bEPTlkXtISyddZJ0xVG
- iNFz6xVoxdPRhAlLKIpqu8C7yoWKY/Lml7uAM3Mdkz+r1u46xEaedRBh0xqcDRU2U+lsoTkA38a
- 0PnX8N+icdqmyif5lV/b2FQ6x5zm+v+nNCM6+g+Yic
-X-Google-Smtp-Source: AGHT+IHSpWYO4jWecZ3WaJ5bbAKSHrzDEFpF/Bo9oTWfMoBxUJCFoeCGVTF74e3XeZ0egpGJ1oJ8eA==
-X-Received: by 2002:a2e:a912:0:b0:36d:501:76d8 with SMTP id
- 38308e7fff4ca-373a7430622mr20975301fa.31.1759394912620; 
- Thu, 02 Oct 2025 01:48:32 -0700 (PDT)
-Received: from localhost.localdomain
- (broadband-109-173-93-221.ip.moscow.rt.ru. [109.173.93.221])
- by smtp.gmail.com with ESMTPSA id
- 38308e7fff4ca-373ba4cdf62sm5338621fa.51.2025.10.02.01.48.32
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 02 Oct 2025 01:48:32 -0700 (PDT)
-From: Alexandr Sapozhnkiov <alsp705@gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E43910E19D
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Oct 2025 12:23:07 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 69FE31F853;
+ Thu,  2 Oct 2025 12:23:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1759407785; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=BWeyfp4bTdeFej180yLRqcwV3Jmdyhj5CVAwU6y3GRE=;
+ b=Zoe0aB2lYgjaMm7KRLoXiqo8w5PwYJAUJBqaU77forlJxWHSTRAm3UUQhhtSOjGRsl9iF3
+ KUx0NFMmlSS8vwjSqMv+UfXX7dQh9AhbvzBE8DD0BH6Kd07AtPZT1rMgUWn3Fc2EjHX7K8
+ nemJEs57XPhbylYEj/woRx+SmpH59A8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1759407785;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=BWeyfp4bTdeFej180yLRqcwV3Jmdyhj5CVAwU6y3GRE=;
+ b=9maRoxsC2NkgPZ+aw6geJ3q/Z0uQ9rkTUugjMaXhMkp4Bi6/o4Gv6rUKFEOtQ5x0bCvyRN
+ 25HMWmPt18T/WkBw==
+Authentication-Results: smtp-out2.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=Zoe0aB2l;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=9maRoxsC
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1759407785; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=BWeyfp4bTdeFej180yLRqcwV3Jmdyhj5CVAwU6y3GRE=;
+ b=Zoe0aB2lYgjaMm7KRLoXiqo8w5PwYJAUJBqaU77forlJxWHSTRAm3UUQhhtSOjGRsl9iF3
+ KUx0NFMmlSS8vwjSqMv+UfXX7dQh9AhbvzBE8DD0BH6Kd07AtPZT1rMgUWn3Fc2EjHX7K8
+ nemJEs57XPhbylYEj/woRx+SmpH59A8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1759407785;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=BWeyfp4bTdeFej180yLRqcwV3Jmdyhj5CVAwU6y3GRE=;
+ b=9maRoxsC2NkgPZ+aw6geJ3q/Z0uQ9rkTUugjMaXhMkp4Bi6/o4Gv6rUKFEOtQ5x0bCvyRN
+ 25HMWmPt18T/WkBw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 012DC13990;
+ Thu,  2 Oct 2025 12:23:04 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id UJxLOqhu3mg6JgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 02 Oct 2025 12:23:04 +0000
+Date: Thu, 2 Oct 2025 14:23:03 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Cc: Alexandr Sapozhnikov <alsp705@gmail.com>, linux-media@vger.kernel.org,
- lvc-project@linuxtesting.org
-Subject: [PATCH 5.10] gpu/i915: fix error return in mmap_offset_attach()
-Date: Thu,  2 Oct 2025 11:48:26 +0300
-Message-ID: <20251002084828.11-1-alsp705@gmail.com>
-X-Mailer: git-send-email 2.43.0
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-next-fixes
+Message-ID: <20251002122303.GA21323@linux.fritz.box>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 02 Oct 2025 13:12:48 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[]; FUZZY_RATELIMITED(0.00)[rspamd.com];
+ RCPT_COUNT_TWELVE(0.00)[16]; MIME_TRACE(0.00)[0:+];
+ ARC_NA(0.00)[]; FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+ MISSING_XM_UA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim];
+ RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ DKIM_TRACE(0.00)[suse.de:+]
+X-Spam-Flag: NO
+X-Spam-Level: 
+X-Rspamd-Queue-Id: 69FE31F853
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Action: no action
+X-Spam-Score: -4.51
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,38 +121,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Alexandr Sapozhnikov <alsp705@gmail.com>
+Hi Dave, Sima,
 
-In the drm_vma_node_allow function, kmalloc may 
-return NULL, in which case the file element will not be 
-added to the mmo->vma_node list. It would be good to 
-not ignore this event, but at least log an error message.
+here's the PR for drm-misc-next-fixes. All further fixes for upstream
+will now go through drm-misc-fixes again.
 
-Found by Linux Verification Center (linuxtesting.org) with SVACE.
+Best regards
+Thomas
 
-Signed-off-by: Alexandr Sapozhnikov <alsp705@gmail.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_mman.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+drm-misc-next-fixes-2025-10-02:
+Short summary of fixes pull:
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-index a2195e28b625..adaef8f09d59 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-@@ -706,8 +706,11 @@ mmap_offset_attach(struct drm_i915_gem_object *obj,
- 	mmo = insert_mmo(obj, mmo);
- 	GEM_BUG_ON(lookup_mmo(obj, mmap_type) != mmo);
- out:
--	if (file)
--		drm_vma_node_allow_once(&mmo->vma_node, file);
-+	if (file) {
-+		err = drm_vma_node_allow_once(&mmo->vma_node, file);
-+		if (err)
-+			goto err;
-+	}
- 	return mmo;
- 
- err:
+v3d:
+- Fix fence locking
+The following changes since commit 0c4932f6ddf815618fa34f7403df682aed7862b5:
+
+  drm/tiny: pixpaper: Fix missing dependency on DRM_GEM_SHMEM_HELPER (2025-09-23 14:07:04 +0200)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-fixes-2025-10-02
+
+for you to fetch changes up to adefb2ccea1e96b452cbbc39150bc0ccf1688b99:
+
+  drm/v3d: create a dedicated lock for dma fence (2025-09-30 14:28:14 -0100)
+
+----------------------------------------------------------------
+Short summary of fixes pull:
+
+v3d:
+- Fix fence locking
+
+----------------------------------------------------------------
+Melissa Wen (1):
+      drm/v3d: create a dedicated lock for dma fence
+
+ drivers/gpu/drm/v3d/v3d_drv.h   | 2 ++
+ drivers/gpu/drm/v3d/v3d_fence.c | 2 +-
+ drivers/gpu/drm/v3d/v3d_gem.c   | 1 +
+ 3 files changed, 4 insertions(+), 1 deletion(-)
+
 -- 
-2.43.0
-
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
