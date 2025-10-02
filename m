@@ -2,76 +2,82 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE830BB3FDD
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Oct 2025 15:12:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 200B4BB3FE0
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Oct 2025 15:12:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BEF710E192;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57DAF10E19F;
 	Thu,  2 Oct 2025 13:12:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="g01p2VEM";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="amW3cF3C";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com
- [209.85.215.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58B2B10E5F9
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Sep 2025 15:14:52 +0000 (UTC)
-Received: by mail-pg1-f179.google.com with SMTP id
- 41be03b00d2f7-b520539e95bso321355a12.3
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Sep 2025 08:14:52 -0700 (PDT)
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com
+ [209.85.208.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA00D10E7A2
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Oct 2025 08:48:34 +0000 (UTC)
+Received: by mail-lj1-f179.google.com with SMTP id
+ 38308e7fff4ca-373a1ab2081so6996921fa.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 02 Oct 2025 01:48:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1759245292; x=1759850092; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=sqQp7CJ0/ZUkBsxNzFP0LcZLdH18lJsedYddrwxvvpk=;
- b=g01p2VEMjqNv1jLShYNEN+MDF9mWBu+G7+eGoKW7T1beOPyEUflDEtcYaKkeVkHoSC
- ztBX/LapGM8TRmyg89OB6JoMz4VM8nsDq0qdzkvAX1HCgP4/UiFv4fkRbWZnvZzUsmqO
- r+RUrNfwD3MHpa40MW14aYhvnG0IlHwXsa4SWRx32fxazrH/8d8h34pEQ93dE+DL12PA
- 91YArajCuVjllbnabExBo67xP9+S4/5sKSnjXEBhEkldgTJ3HX7Ed2E6WaXdEMBeBB75
- gWtz96322qoaSvay1tfg2oF4I/S/7VVbzJyxe6jH7bmvixA5In7f/YLXQOYIR9zN5izn
- FPFA==
+ d=gmail.com; s=20230601; t=1759394913; x=1759999713; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=z69FFVofVQpQbXPazzIrMIWvZw9YVt4e5mOAMA1/qQ0=;
+ b=amW3cF3C6ZKw/q7Yx8thL8NgHr2N24pfoIvmC2f311h72cp+hbJgS0CZ3Ci99SRriQ
+ MF8nac6sOi1f9UlgxkUp4RMUT8+71Zj5TkUUW8Sx/UUi28fYJtijlhipmdiJUR/4jXMv
+ KnnOgdq81zE/+JFJuJ/kdb/DTuNopQRBewvP7qvFDrkkgsNmMk09SLoCPgV7lAtc1HZN
+ J8BUKj0anytvichfyeSm/trtzkP1nXWPIy5P9urvOVe9vaWEo34dDEJ8xcm8XAaPLyeL
+ sEuSNGpJx3T73zacSZzN7ObuUv1/Jz+NzOtfWFYR/cy/gRLTYAIiqPr0gwXofCnIYy/b
+ SC5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1759245292; x=1759850092;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=sqQp7CJ0/ZUkBsxNzFP0LcZLdH18lJsedYddrwxvvpk=;
- b=tJd399q2XeJExai6s/aNxBAHRxg8DIQWbMZkRFeDoijXEtyOngeHdnHb/hAnj4FcGg
- YpPPINsOeD9I6ViBwfD4jnAHemlP6l+Dd4/PDMq5RKXQZz5YxnzhdHeIzg4rVce1vAqR
- ftaaHmeQxY6OgvHy9Kor6Xxo8kZIgByPriR8L9wDCl9/Tle/23LOCAfuWJ9eOiVTXrNX
- z38blaxxb8oZiGtXHflebHcfFZsvbWij6LKkjfVpTexFnzQhPmHFQko7GXka0cbGLCnk
- 0jYEJVQx2he4gQ9xYqeo2UuUgoGHVpMPqUTJjUjYAF/Qz0T6ZIc4eVNHm/jEqZxe5YVx
- XUUw==
-X-Gm-Message-State: AOJu0Yxi+ItknBYwELi8dp751QgWjQCnRX4dCF7O0A2gVuhH3WyAnDZM
- 6AUsfTTx26GWuzq3Bo/dp1M6sZtqs37r0wFt9rVxtp9jk76A8BiEwEWJvRfNG6Q+Vpg9sKzAjT9
- ECfPySGm95eJ4N29G/ACXodwiMpzwVDc=
-X-Gm-Gg: ASbGncs52Xb8P41/BMKI9pyZuDLgR50cWgGzYMDhsGZjFI5IyYyOEqQq8DQqwR64Lvl
- pNfXMyF4awMKlGFhLvEJa9TTPToXRlCe2/DiBz4TOYnP1lVj0e49NTagvnGTCnp6jZqk+cQwu91
- 9jo64eumvqmRH6vQ90dYQwW4bXEWe8kQGs4qcNxz3JGcyiWUHxDX2wN1DoCwsb3z9pbUPs3OG+K
- 2moRPlUCNXvbBo6eAgp+SiwYQmLpExQ45O0U38GRRw=
-X-Google-Smtp-Source: AGHT+IExoZXRGA9mlKSnNf+W/ZNX3bZkUMtUXmlXaqFzDSzAGWgOOtRwh4IW/Lva8s/pV6iOzxj6lm0qRAbLvvk3MsE=
-X-Received: by 2002:a17:90b:1c04:b0:330:7a07:edb5 with SMTP id
- 98e67ed59e1d1-3342a22a7d9mr11752276a91.2.1759245291691; Tue, 30 Sep 2025
- 08:14:51 -0700 (PDT)
+ d=1e100.net; s=20230601; t=1759394913; x=1759999713;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=z69FFVofVQpQbXPazzIrMIWvZw9YVt4e5mOAMA1/qQ0=;
+ b=INSxoV7rXHYXZIbj8RI55sgCnRqRo3A8ciXZcKFn4kHoQwvCYRWTadAhO6hk2AqEay
+ JAHE6mJv93QKuWcVGJFq/QhSz+ZSVKL8Nw9MCsJ/RuozEFgwq3Hi4V0xbXxgJThuxU4B
+ MwBPzpEZn/gzteWMKwSsbAwexyq7cGJ8zWhaPdOkSiZbMb3F9mAPrIrRjzP0eHvlU01C
+ RzhbGhoA6PwlvGhCNPIq+ljzUlKfujOkT0FH2O4YY7AGREBTA9im4MtSN/EvUT7m95X3
+ OncgWVg5vAECX/yKKiddh+7lzB6ZvZjMAK9nS3JAe+on4BqhUWW37fq6SwXj+JAMxQut
+ wagQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXfJS8qVmcRLqI9L9+V/xBc9/MtjZ+4AQNXeU6SgotQDHwMJntiNoubpWmyNIQZ25WHaFg/qM7Ml00=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw+aNYQiII3aar6QwvOVzWQtXLXS2w1f2abQP+gEIMqhLZXFcsp
+ QR1cGBKdBMWzLefeVzPxC9/SRiJe9xiXPj53WHFYkq+QgkgvhdEWtBD7
+X-Gm-Gg: ASbGnctQ81sLe99gSE0lGbNRE5s/EgqabJvC8RsK0UEXjGLCGsksU3KR93ItmbO+lvr
+ KNW6YshRh5UhPawOWCEQolZrnZkPJLTVG/3eMoo3jS18r3+2Jy4IyflTXDN/IyF+LRCKncPtVSV
+ 7RugVVApSHG35OS+toNAcKvENiYLJrgO+K3CcCllaPmFUSKx96byNrF96um5Gq1En2T4c//zSYt
+ SORe9KVrQYzBFzshBWQJT/M5pqUBtocOjnCYptlEMRnR3oJ4iwLdLDKhzQJaQKSnObVhH942Le6
+ QWD3AJ5v2OySiHTXiVwMb6llCYa63flKUQ2JqBMU0C4DF9KGsV5cFi9+bEPTlkXtISyddZJ0xVG
+ iNFz6xVoxdPRhAlLKIpqu8C7yoWKY/Lml7uAM3Mdkz+r1u46xEaedRBh0xqcDRU2U+lsoTkA38a
+ 0PnX8N+icdqmyif5lV/b2FQ6x5zm+v+nNCM6+g+Yic
+X-Google-Smtp-Source: AGHT+IHSpWYO4jWecZ3WaJ5bbAKSHrzDEFpF/Bo9oTWfMoBxUJCFoeCGVTF74e3XeZ0egpGJ1oJ8eA==
+X-Received: by 2002:a2e:a912:0:b0:36d:501:76d8 with SMTP id
+ 38308e7fff4ca-373a7430622mr20975301fa.31.1759394912620; 
+ Thu, 02 Oct 2025 01:48:32 -0700 (PDT)
+Received: from localhost.localdomain
+ (broadband-109-173-93-221.ip.moscow.rt.ru. [109.173.93.221])
+ by smtp.gmail.com with ESMTPSA id
+ 38308e7fff4ca-373ba4cdf62sm5338621fa.51.2025.10.02.01.48.32
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 02 Oct 2025 01:48:32 -0700 (PDT)
+From: Alexandr Sapozhnkiov <alsp705@gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: Alexandr Sapozhnikov <alsp705@gmail.com>, linux-media@vger.kernel.org,
+ lvc-project@linuxtesting.org
+Subject: [PATCH 5.10] gpu/i915: fix error return in mmap_offset_attach()
+Date: Thu,  2 Oct 2025 11:48:26 +0300
+Message-ID: <20251002084828.11-1-alsp705@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-References: <CAGfirffPy5biFVLtSNEW60UCXa6_=-=NrQbU7iLQ8+BXnFQ=1A@mail.gmail.com>
- <175922381867.30706.10351894191632562572@jlahtine-mobl>
-In-Reply-To: <175922381867.30706.10351894191632562572@jlahtine-mobl>
-From: =?UTF-8?B?6rmA6rCV66+8?= <km.kim1503@gmail.com>
-Date: Wed, 1 Oct 2025 00:14:41 +0900
-X-Gm-Features: AS18NWAxKWtkalxkS1HEf0Xmhu8rrPNzm3u1MnhkYOFR4UIYsfyEiR54fm4Pd-8
-Message-ID: <CAGfirfdDe879wFzABVZkTV7grEimpnc0XrrKpj2SX1w_TLtgNg@mail.gmail.com>
-Subject: Re: BUG: unable to handle kernel NULL pointer dereference in
- eb_release_vmas
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com, 
- rodrigo.vivi@intel.com, tursulin@ursulin.net, airlied@gmail.com, 
- simona@ffwll.ch, andi.shyti@linux.intel.com, ville.syrjala@linux.intel.com, 
- nitin.r.gote@intel.com, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, syzkaller@googlegroups.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 02 Oct 2025 13:12:48 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -88,21 +94,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ok, I will do it.
+From: Alexandr Sapozhnikov <alsp705@gmail.com>
 
-Best Regards,
-GangMin Kim.
+In the drm_vma_node_allow function, kmalloc may 
+return NULL, in which case the file element will not be 
+added to the mmo->vma_node list. It would be good to 
+not ignore this event, but at least log an error message.
 
-2025=EB=85=84 9=EC=9B=94 30=EC=9D=BC (=ED=99=94) =EC=98=A4=ED=9B=84 6:17, J=
-oonas Lahtinen
-<joonas.lahtinen@linux.intel.com>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
->
-> Hi,
->
-> Can you please open a bug as per the instructions in:
->
-> https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html
->
-> Thanks in advance!
->
-> Regards, Joonas
+Found by Linux Verification Center (linuxtesting.org) with SVACE.
+
+Signed-off-by: Alexandr Sapozhnikov <alsp705@gmail.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+index a2195e28b625..adaef8f09d59 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+@@ -706,8 +706,11 @@ mmap_offset_attach(struct drm_i915_gem_object *obj,
+ 	mmo = insert_mmo(obj, mmo);
+ 	GEM_BUG_ON(lookup_mmo(obj, mmap_type) != mmo);
+ out:
+-	if (file)
+-		drm_vma_node_allow_once(&mmo->vma_node, file);
++	if (file) {
++		err = drm_vma_node_allow_once(&mmo->vma_node, file);
++		if (err)
++			goto err;
++	}
+ 	return mmo;
+ 
+ err:
+-- 
+2.43.0
+
