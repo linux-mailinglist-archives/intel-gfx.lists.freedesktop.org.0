@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7487BB7419
-	for <lists+intel-gfx@lfdr.de>; Fri, 03 Oct 2025 16:57:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90BB3BB741C
+	for <lists+intel-gfx@lfdr.de>; Fri, 03 Oct 2025 16:58:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F11610E945;
-	Fri,  3 Oct 2025 14:57:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A92A10E942;
+	Fri,  3 Oct 2025 14:57:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MEOs8/Yp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jbJonQwi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93F2110E941;
- Fri,  3 Oct 2025 14:57:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6857C10E942;
+ Fri,  3 Oct 2025 14:57:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759503475; x=1791039475;
+ t=1759503479; x=1791039479;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=03hQZndfYU1c56K6KVSj02HqyB1D/j7sgOHlnAPbnAQ=;
- b=MEOs8/YpqCqJaIYEXrzuAHAHolE2kn9dbpLA5+0DEUJGGgWH8mG0DuL5
- omF31spEPPb9SlbQmkI7t9MpKppJpFX4483jR0i+Bi52lRkRpxPxWk2oa
- 7eK5SCYY6cLk5oj1scBHlbYZFmEzVfOFgVa/eSEicQZGUeOre7g9fz3qr
- wmQwYiQpYHt7+kB2bk5MO3DP9+w4dsXBeOUIR1Vb9cM6gk5J4BOGebZF8
- SlUeyythrwK/uHW0v76eWBTdjOALSjvoLt5L5asjm6aeFZib3yAtgcxC+
- Qu0sfrrXUXa7YI5EC8ZaCJCIMDv8jeY0Qhvg/uOY8sBk3uBqGLwIGl1KX A==;
-X-CSE-ConnectionGUID: nvk0vWexTbmmgYH2gkqEAA==
-X-CSE-MsgGUID: d3hT2YsUQhmCKN52gBIanA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11571"; a="73138768"
-X-IronPort-AV: E=Sophos;i="6.18,312,1751266800"; d="scan'208";a="73138768"
+ bh=V8PwfATqvXo3Yz2fYgHN06V6aNBNcUjukEfoHKZKIw8=;
+ b=jbJonQwi1rQzacWgRFYYhVioKvgMgcCTJWnFmhaM4ZiAvyHV2MUqQXu3
+ zfzg1rhlJqdWaZk050jFZbmqjz5pk4NFE24htO5Y1kb41B6HAoAYGwA0B
+ +hw7zj2iHoKMNr3Jy6wqqhNEGPniY08u7WHZggFbpkcRrekdly++v9ttX
+ dww2VumjLj+CCSK7I2OdbmJq5PjvRE5CTsq2qz6IcWTtVtm5+lO8zdza+
+ ufIwhUqfXlBavhvtE9elaDhuSbcin/cbuZuNZgxjsHSRjAgaaOQtMzEOU
+ lWoTzztCVo7g6DuBTqvFPkI7Xz3mpUhMIHR3W1LeyqPytAQHugLTWPitb w==;
+X-CSE-ConnectionGUID: wljDatWZSBC+NiuUqeefHA==
+X-CSE-MsgGUID: G4vDMIO8QxmwAQE2dSDd0g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11571"; a="73138773"
+X-IronPort-AV: E=Sophos;i="6.18,312,1751266800"; d="scan'208";a="73138773"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2025 07:57:55 -0700
-X-CSE-ConnectionGUID: MY9AZ0X9QxyP7Yn6LHMesg==
-X-CSE-MsgGUID: G1Ln4Qy6TzK9H9xQdkojqA==
+ 03 Oct 2025 07:57:58 -0700
+X-CSE-ConnectionGUID: i0v3s36FRqytdte+YBpJlQ==
+X-CSE-MsgGUID: e6fBozsETKC9bE6qGh8UHQ==
 X-ExtLoop1: 1
 Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.244.127])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2025 07:57:53 -0700
+ 03 Oct 2025 07:57:56 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v2 4/5] drm/i915/fb: Drop the 'fb' argument from
- intel_fb_bo_framebuffer_init()
-Date: Fri,  3 Oct 2025 17:57:33 +0300
-Message-ID: <20251003145734.7634-5-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 5/5] drm/i915/wm: Use fb->modfier to check for tiled vs.
+ untiled
+Date: Fri,  3 Oct 2025 17:57:34 +0300
+Message-ID: <20251003145734.7634-6-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20251003145734.7634-1-ville.syrjala@linux.intel.com>
 References: <20251003145734.7634-1-ville.syrjala@linux.intel.com>
@@ -73,73 +73,35 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-intel_fb_bo_framebuffer_init() doesn't do anything with the passed
-framebuffer. Don't pass it therefore.
+There is no point in checking the bo fence tiling mode when
+we can just check the fb modifier instead.
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fb.c    | 2 +-
- drivers/gpu/drm/i915/display/intel_fb_bo.c | 3 +--
- drivers/gpu/drm/i915/display/intel_fb_bo.h | 3 +--
- drivers/gpu/drm/xe/display/intel_fb_bo.c   | 3 +--
- 4 files changed, 4 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/i9xx_wm.c | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index 4dfb3e5fd31e..99823ef42ef1 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -2226,7 +2226,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- 	if (!intel_fb->frontbuffer)
- 		return -ENOMEM;
+diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i915/display/i9xx_wm.c
+index fd3b7b35f351..b262319bc83d 100644
+--- a/drivers/gpu/drm/i915/display/i9xx_wm.c
++++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
+@@ -2295,12 +2295,11 @@ static void i9xx_update_wm(struct intel_display *display)
  
--	ret = intel_fb_bo_framebuffer_init(fb, obj, mode_cmd);
-+	ret = intel_fb_bo_framebuffer_init(obj, mode_cmd);
- 	if (ret)
- 		goto err_frontbuffer_put;
+ 	crtc = single_enabled_crtc(display);
+ 	if (display->platform.i915gm && crtc) {
+-		struct drm_gem_object *obj;
+-
+-		obj = intel_fb_bo(crtc->base.primary->state->fb);
++		const struct drm_framebuffer *fb =
++			crtc->base.primary->state->fb;
  
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_bo.c b/drivers/gpu/drm/i915/display/intel_fb_bo.c
-index b0e8b89f7ce8..7336d7294a7b 100644
---- a/drivers/gpu/drm/i915/display/intel_fb_bo.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb_bo.c
-@@ -18,8 +18,7 @@ void intel_fb_bo_framebuffer_fini(struct drm_gem_object *obj)
- 	/* Nothing to do for i915 */
- }
+ 		/* self-refresh seems busted with untiled */
+-		if (!intel_bo_is_tiled(obj))
++		if (fb->modifier == DRM_FORMAT_MOD_LINEAR)
+ 			crtc = NULL;
+ 	}
  
--int intel_fb_bo_framebuffer_init(struct drm_framebuffer *fb,
--				 struct drm_gem_object *_obj,
-+int intel_fb_bo_framebuffer_init(struct drm_gem_object *_obj,
- 				 struct drm_mode_fb_cmd2 *mode_cmd)
- {
- 	struct drm_i915_gem_object *obj = to_intel_bo(_obj);
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_bo.h b/drivers/gpu/drm/i915/display/intel_fb_bo.h
-index eefcb05a99f0..d775773c6c03 100644
---- a/drivers/gpu/drm/i915/display/intel_fb_bo.h
-+++ b/drivers/gpu/drm/i915/display/intel_fb_bo.h
-@@ -14,8 +14,7 @@ struct drm_mode_fb_cmd2;
- 
- void intel_fb_bo_framebuffer_fini(struct drm_gem_object *obj);
- 
--int intel_fb_bo_framebuffer_init(struct drm_framebuffer *fb,
--				 struct drm_gem_object *obj,
-+int intel_fb_bo_framebuffer_init(struct drm_gem_object *obj,
- 				 struct drm_mode_fb_cmd2 *mode_cmd);
- 
- struct drm_gem_object *
-diff --git a/drivers/gpu/drm/xe/display/intel_fb_bo.c b/drivers/gpu/drm/xe/display/intel_fb_bo.c
-index ebdb22c9499d..db8b1a27b4de 100644
---- a/drivers/gpu/drm/xe/display/intel_fb_bo.c
-+++ b/drivers/gpu/drm/xe/display/intel_fb_bo.c
-@@ -24,8 +24,7 @@ void intel_fb_bo_framebuffer_fini(struct drm_gem_object *obj)
- 	xe_bo_put(bo);
- }
- 
--int intel_fb_bo_framebuffer_init(struct drm_framebuffer *fb,
--				 struct drm_gem_object *obj,
-+int intel_fb_bo_framebuffer_init(struct drm_gem_object *obj,
- 				 struct drm_mode_fb_cmd2 *mode_cmd)
- {
- 	struct xe_bo *bo = gem_to_xe_bo(obj);
 -- 
 2.49.1
 
