@@ -2,28 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5381FBB736B
-	for <lists+intel-gfx@lfdr.de>; Fri, 03 Oct 2025 16:41:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5149CBB7368
+	for <lists+intel-gfx@lfdr.de>; Fri, 03 Oct 2025 16:41:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9956F10E127;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 960E610E125;
 	Fri,  3 Oct 2025 14:41:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6130C10E125;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF0D210E125;
  Fri,  3 Oct 2025 14:40:59 +0000 (UTC)
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, Maarten Lankhorst <dev@lankhorst.se>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Luca Abeni <lucabe72@gmail.com>, Steven Rostedt <rostedt@goodmis.org>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Jani Nikula <jani.nikula@intel.com>
-Subject: [CI 1/2] drm/i915: Disable tracepoints for PREEMPT_RT
-Date: Fri,  3 Oct 2025 16:40:55 +0200
-Message-ID: <20251003144054.112239-3-dev@lankhorst.se>
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Subject: [CI 2/2] drm/i915/display: Make intel_crtc_get_vblank_counter safe on
+ PREEMPT_RT
+Date: Fri,  3 Oct 2025 16:40:56 +0200
+Message-ID: <20251003144054.112239-4-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251003144054.112239-3-dev@lankhorst.se>
+References: <20251003144054.112239-3-dev@lankhorst.se>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -40,61 +41,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Luca Abeni reported this:
-| BUG: scheduling while atomic: kworker/u8:2/15203/0x00000003
-| CPU: 1 PID: 15203 Comm: kworker/u8:2 Not tainted 4.19.1-rt3 #10
-| Call Trace:
-|  rt_spin_lock+0x3f/0x50
-|  gen6_read32+0x45/0x1d0 [i915]
-|  g4x_get_vblank_counter+0x36/0x40 [i915]
-|  trace_event_raw_event_i915_pipe_update_start+0x7d/0xf0 [i915]
+drm_crtc_accurate_vblank_count takes a spinlock, which we should avoid
+in tracepoints and debug functions.
 
-The tracing events use trace_intel_pipe_update_start() among other events
-use functions acquire spinlock_t locks which are transformed into
-sleeping locks on PREEMPT_RT. A few trace points use
-intel_get_crtc_scanline(), others use ->get_vblank_counter() wich also
-might acquire a sleeping locks on PREEMPT_RT.
-At the time the arguments are evaluated within trace point, preemption
-is disabled and so the locks must not be acquired on PREEMPT_RT.
+This also prevents taking the spinlock 2x during the critical
+section of pipe updates for DSI updates.
 
-Based on this I don't see any other way than disable trace points on
-PREMPT_RT.
-
-[mlankhorst]
-The original patch was insufficient, and since the tracing
-infrastructure does not allow for partial disabling of tracepoints.
-
-Completely disable tracing for the entire i915 driver in PREEMPT_RT,
-a separate fix for display tracepoints on xe is added to make those
-work.
-
-Cc: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Reported-by: Luca Abeni <lucabe72@gmail.com>
-Cc: Steven Rostedt <rostedt@goodmis.org>
-Co-developed-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Acked-by: Jani Nikula <jani.nikula@intel.com>
-Link: https://lore.kernel.org/r/20250828090944.101069-1-dev@lankhorst.se
+Acked-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Link: https://lore.kernel.org/r/20250829131701.15607-2-dev@lankhorst.se
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/Makefile | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/i915/display/intel_crtc.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 78a45a6681df3..6d7800e25e554 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -13,6 +13,11 @@ subdir-ccflags-$(CONFIG_DRM_I915_WERROR) += -Werror
- # drivers. Define I915 when building i915.
- subdir-ccflags-y += -DI915
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index a187db6df2d36..c0329e1324626 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -84,8 +84,13 @@ u32 intel_crtc_get_vblank_counter(struct intel_crtc *crtc)
+ 	if (!crtc->active)
+ 		return 0;
  
-+# FIXME: Disable tracepoints on i915 for PREEMPT_RT, unfortunately
-+# it's an all or nothing flag. You cannot selectively disable
-+# only some tracepoints.
-+subdir-ccflags-$(CONFIG_PREEMPT_RT) += -DNOTRACE
-+
- subdir-ccflags-y += -I$(src)
+-	if (!vblank->max_vblank_count)
+-		return (u32)drm_crtc_accurate_vblank_count(&crtc->base);
++	if (!vblank->max_vblank_count) {
++		/* On preempt-rt we cannot take the vblank spinlock since this function is called from tracepoints */
++		if (IS_ENABLED(CONFIG_PREEMPT_RT))
++			return (u32)drm_crtc_vblank_count(&crtc->base);
++		else
++			return (u32)drm_crtc_accurate_vblank_count(&crtc->base);
++	}
  
- # Please keep these build lists sorted!
+ 	return crtc->base.funcs->get_vblank_counter(&crtc->base);
+ }
 -- 
 2.51.0
 
