@@ -2,167 +2,172 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBA21BB8217
-	for <lists+intel-gfx@lfdr.de>; Fri, 03 Oct 2025 22:44:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 775DCBB8220
+	for <lists+intel-gfx@lfdr.de>; Fri, 03 Oct 2025 22:47:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6D2610E97C;
-	Fri,  3 Oct 2025 20:44:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6947710E97F;
+	Fri,  3 Oct 2025 20:47:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aStlnDOu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fkKd54Ej";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A37110E97A;
- Fri,  3 Oct 2025 20:44:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1918810E97B;
+ Fri,  3 Oct 2025 20:47:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759524276; x=1791060276;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=u9DYha2JtNRYlcbintjZBXlF5JN34KujqQdGjmuD0WU=;
- b=aStlnDOuL0dXGGPngKnicRsHT6FC1fxQOVxiXlKhLapmjDKYmTyjws7F
- m4wLash+hx/MF5bQ/cUKUKP/+cgr9WXW3UDIGKM7UfXuagl+xr4wZkaLI
- HY6vTzZkHOVSizxNNiul5CPpDJJ3jMVsd8mdf1FG6Y8mQPoeSGDvbOjpQ
- ygFpT6dUh2nlBvgvzqagDm2pw+HX4Dbp9J0+uLvLQshX5ukVGDUtax8k1
- fEQuHmQWx0gFYQKdqDc0v5UfmqfgINF8DOr9rnG0bgaiza0wnFs/48rxH
- Nbz7DzPNz2sLW0V//XfMgnVHKUs1LR/P9Ld9YQX/bKxDMA47cJl715KmW g==;
-X-CSE-ConnectionGUID: 11nctZO9QtC/JTfdvnocYQ==
-X-CSE-MsgGUID: kBPj4teFRMirpb/XoBDDxg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11571"; a="72487093"
-X-IronPort-AV: E=Sophos;i="6.18,313,1751266800"; d="scan'208";a="72487093"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2025 13:44:35 -0700
-X-CSE-ConnectionGUID: +wpvlaCkQx2DxCfDn5FKIw==
-X-CSE-MsgGUID: U2zG4DsdSpu8r1w2A0Xdlg==
+ t=1759524462; x=1791060462;
+ h=date:from:to:cc:subject:message-id:
+ content-transfer-encoding:mime-version;
+ bh=FImHgjkHWox0QgefpNvmr+LMstgnebbcAWE6zbrkS0c=;
+ b=fkKd54EjeZfSeUf8s1fKDvDrgkAptu5cb9RB8FxZvkOOSkJl+jdRzG2m
+ C3DX+9xSWvkcPAYGrhxZcDdI+WMc3+D8Fas1XQ2tzpSD1OrtLp6qkubye
+ +WKZ4YrFuijN0Trwnr8Yh9ZRVcRWN7EMsXsG5SLRRRsuF362T0aV+V53Y
+ 3kJ9zN7qOzH0wDb73EZr6F3+18/xvcIMLJ5OS6nrDTsfAnwY0cbrFvZGM
+ PfzPTPt5Xsg16G/1988cAh3w3NQoX3YzysJtThYMoG8eRixC5oFcNSIj9
+ j6Md+8sU/nX8b+qHHBNXpS5XZiZYizWNUfY3F8tFhPh0ER2oTyL1dpgbf w==;
+X-CSE-ConnectionGUID: UWbOFwzfQcS6t4v3yNaq/Q==
+X-CSE-MsgGUID: iePj0WIiRuKIToRPSp5orQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11571"; a="61910537"
+X-IronPort-AV: E=Sophos;i="6.18,313,1751266800"; d="scan'208";a="61910537"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Oct 2025 13:47:41 -0700
+X-CSE-ConnectionGUID: Szldy5+BTlekz3AyTv1DqQ==
+X-CSE-MsgGUID: oONXrM6bSyyRW2m3K7oJSg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,313,1751266800"; d="scan'208";a="178500214"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2025 13:44:35 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.18,313,1751266800"; d="scan'208";a="179169825"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Oct 2025 13:47:41 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Fri, 3 Oct 2025 13:44:33 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.27; Fri, 3 Oct 2025 13:47:40 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Fri, 3 Oct 2025 13:44:33 -0700
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.15)
- by edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Fri, 3 Oct 2025 13:47:40 -0700
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.28) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Fri, 3 Oct 2025 13:44:33 -0700
+ 15.2.2562.27; Fri, 3 Oct 2025 13:47:40 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BR+LpH+ZjbtQOV6qBcnaSjXytRuf5IgSPfqnvprjDZDrHucJXsoxZxBwv0pypBHU9fZBFXFRO4JhcEO/KD4elIX6aN1V+1pLr/HkgaHC/rRl+9KmFElXXQeFO0RFvzfwBvYNWUqUZViU1L9UWsrDOZmB7jFZuBfDZPyk9NfKgueJyb6I9N+62x78Shq4VZO7bFqURCd7dAZ9h7nHjjjaqKqRfvtegz73bAkp1uOCiMPId/edjtyrKoH+6qLYCSmiK0cL1/FvFjmZa3/fPRNGiSXpl4QhmjIhUU6SGCfV98E9SIgBTLWxDs5PnxJoWRJ5nZ5buAIprdPBG1hNWZBPTA==
+ b=Tw49ZxlOs1Fe9BLR9hIejOJb/cJqOJNbPyt8L/TL0DdavY7DwIprb5Hdo6b21JVjfYhhfZDqDcK3Z1mSYKppjf4qCYNVhNSXX4oq7fNFyWmVV1UOmgzN6xiFeFd7ncAZNYHzpfBkmxvyoiWOe51fo/rxaJ8NZ1SGvecCZ9XbnsDtiARqI9881AWS7ew9KvBT3cMil4yn6lsxeyiQZe1Yz37XTawxm5I8azC9P8mMS7yyTRjajP8fD6Dgho6RdNyc6k5DQnZyLkEFg5bCFYgMmt7a1Er4ATzNsy8gjPbmU7mrILQXkNqSR5F0f4Ye/prLNJDs/MDi7Un4H7Npu21d1Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jfe01L5U9gS1UT6/klz254UthnBEIZxBfHyMutj5Dz4=;
- b=YGovvJlIledtM9AmBrnshO0Antmg9MVSgTM4h27ynqnTPVkGBoH7e+eUC9LvBAmgGCK3kGpYz6VHSVT3jI7lE5QC/mUsqo36nneI1Ke35WCgGco/9o2H/k6r7E2Ex4s7r/1lWg0DhlRq4rozn2zki6Cp4HcupRxh3/TS/HN5M3/o0l2Djqj8uSE8SFNT5+7Wp3HjGZgGIUJL/6GLSDNWM58cG/a1WzEvKNau05M32ya7kQQ84z/4yySBupV66IC9fzV8k3oW5qMJf/n+KrU0EePm+N3YwQI0OjFyOuDjEd+8r9bZZnUGKD9CIa4QWxTqCjV43bpJE8JxAxKN7wl8Fw==
+ bh=Tcp0dlCAYHlWylCxiGOH5i8mzhMf6ROorZDPaYbSKmQ=;
+ b=nUtqdwDlpD/fC3vrXguw9KEfsN5YNIkV+x3MZW6tbrksS//uKxshdEJRxFL0OrLXUq7eioQAbhtmQ7eCcKQNGH8sE/l0Um1dacLiGTsnR91TpYZ6MHGp5V6PYeAphx2j8fS1Y2buURxmiKGuGLglISJ12N7RaRXgOOcuuO5zzULCCRogpvKhh7rCAo0nGuRttTV4t/fCabE+by03YdwTj0/OYkJ0x5YomHTxt8DT54CcERGPmomjTODMouUh9J8BgPPTomNbh6sbwucq8i6t81sFP6JoX41C7LGjtuIPEXCspfmiDGWkw+3OGigsrcCK55ySowl/ZZ+3xOHQGwUIQw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
- by MN0PR11MB6304.namprd11.prod.outlook.com (2603:10b6:208:3c0::7)
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by SN7PR11MB7537.namprd11.prod.outlook.com (2603:10b6:806:348::11)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.18; Fri, 3 Oct
- 2025 20:44:24 +0000
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563%6]) with mapi id 15.20.9160.018; Fri, 3 Oct 2025
- 20:44:24 +0000
-Date: Fri, 3 Oct 2025 16:44:20 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <jouni.hogander@intel.com>
-Subject: Re: [RFC] drm/{i915,xe}/display: pass hooks to display probe
-Message-ID: <aOA1pJXB83R30139@intel.com>
-References: <20251003092107.2892508-1-jani.nikula@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.18; Fri, 3 Oct
+ 2025 20:47:34 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.9182.015; Fri, 3 Oct 2025
+ 20:47:34 +0000
+Date: Fri, 3 Oct 2025 15:47:30 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+CC: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Oded Gabbay <ogabbay@kernel.org>, "Lucas
+ De Marchi" <lucas.demarchi@intel.com>, <dri-devel@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <dim-tools@lists.freedesktop.org>
+Subject: [PULL] drm-xe-next-fixes
+Message-ID: <q6yeyb7n2eqo5megxjqayooajirx5hhsntfo65m3y4myscz7oz@25qbabbbr4hj>
+Content-Type: text/plain; charset="iso-8859-1"; format=flowed
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251003092107.2892508-1-jani.nikula@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0077.namprd13.prod.outlook.com
- (2603:10b6:a03:2c4::22) To CYYPR11MB8430.namprd11.prod.outlook.com
- (2603:10b6:930:c6::19)
+X-ClientProxiedBy: SJ0PR05CA0065.namprd05.prod.outlook.com
+ (2603:10b6:a03:332::10) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|MN0PR11MB6304:EE_
-X-MS-Office365-Filtering-Correlation-Id: 36d269e8-ad3c-431c-d607-08de02bda307
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SN7PR11MB7537:EE_
+X-MS-Office365-Filtering-Correlation-Id: d8613759-c561-4ffd-557f-08de02be1468
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?GbVJS3cy58n77JIvJZJdtnQcXb2iz82Sj1TxepAJgcpHfhgYxNPWsIKTl9?=
- =?iso-8859-1?Q?6XvJrtmBKW+d57dVvjIydfyiFH4zKdCI7xyrlsMVX5ylL47Z6SLcgu78Ag?=
- =?iso-8859-1?Q?CyfhjVYXDrtUHS0b4yuYfVkKw6v2dqFlrJGMJHA0f0Wpbx997xvXxZ8YDo?=
- =?iso-8859-1?Q?S/xp1vvS1qrDBafAWjox5VQvKqwrLMz1pyCaBkObJ0uBhpGrVwKRvMe2Wy?=
- =?iso-8859-1?Q?IldSpQ3nINkMLBAS5jZF5Jq555z27T3H981sSW0UOUN6lXZQxKrU9aqfzC?=
- =?iso-8859-1?Q?OgFNLtYmjB9GDqOxrodnYCmy06maeh42QThclJ/vcn2WhEkYqw08S9RRAj?=
- =?iso-8859-1?Q?FLwljoxSH62SehfRC1tyWriyvwb9hPz9YnFZzzWci9u4lTrNjbx6D9/LZy?=
- =?iso-8859-1?Q?DDojvGa7MvLZe5sVlezoaRZXFYAsyXpexU8lqvrNku+OraRT1v16t3FEJh?=
- =?iso-8859-1?Q?vYwuDc7nWutoN7k6BcYFWtn1i54ffWnjW8e9jllL/LFlIYFRP8swnueJD9?=
- =?iso-8859-1?Q?0/WFMF77OTVRPi8/68uTo0tQoxNvZiFIEudKauBoViUTd8lxDbIUNg8rLP?=
- =?iso-8859-1?Q?wjRW5VBpoauIez2lq3J33DW03MWSZ0goeKGdhMS5xVSoLx+c/LS1m5RLJA?=
- =?iso-8859-1?Q?NOtZWewIscN9Z0iUI9w19n53dy96fm9b6cmjhQXOa/cUduVh/4aLRBIqJq?=
- =?iso-8859-1?Q?TIu9nhqq7eJrLFrWZKpg7Jv5ZgGvfFxD4bmKp/yzZL9OGS9ory5yJub63E?=
- =?iso-8859-1?Q?7zGgpKWLNP2CP4Bngk5Sujne8PwFJnjuVSGTj/LYpeNyE3AhmN9T3U7iqP?=
- =?iso-8859-1?Q?kTygUCPwNP9NIqji6eccvule3ZoAWl/u+qc4cmHgh3OmL81I5OvEnslp8O?=
- =?iso-8859-1?Q?Ee3Wi89/SjKPcp+oqJLxu/Gw2B9C1WdT/7LGtSiax58LAWTnsrbFZkj0wT?=
- =?iso-8859-1?Q?Nsxzfx5F0VZLrNCkyV/JPYM/TDtZxgdX9yeZ7dcXhVzFiX7tdFetlKkKjR?=
- =?iso-8859-1?Q?Sz7pr6cbLALmLUPTvK5gxEohTXsz+YX2KscOoaz8ORgUoWpeLy+oxcisUS?=
- =?iso-8859-1?Q?Kzjj/1uxsyNJIJNUy6lm6jTiIOBvd2uqUBqWZS/la02trePrLaLs6D/fbK?=
- =?iso-8859-1?Q?QwJ/DTcCpaPoILgvlJ1MvGphaBbjLEPfGfWT3g9EboaAHbarusxs7Vx+Oo?=
- =?iso-8859-1?Q?3xL3UHUsOj9vYbYcLBlFlxSephAxnrrcOd9d2J854yuj3/N61Jdbhfq4rB?=
- =?iso-8859-1?Q?MiaYU6dmPDIM8OKLSF+qamxDLTWwt2jyxpWEj33n6e9BKJsmQiTg4uju+a?=
- =?iso-8859-1?Q?hrKR3z6BXQCK7S/ihz088rgHWPQpAT7gxR9s2Rh/CU8rnikUN+UM5d21oA?=
- =?iso-8859-1?Q?g2ky7QqbU+a3Kxmkb16/Xe2zV6QUcJsFEOasIcQBE5tG8khyjPQDKGlDy3?=
- =?iso-8859-1?Q?EB4S+Vo83qpxWuFXu4rAaeaZs8uL/IDTZ+p9CbdZI3cXOQcv4b3/8O6QCD?=
- =?iso-8859-1?Q?wQzo7lwAsxxnxDPJ/aIloH?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7416014;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?E6OlJBv2o/gPMooEbREYgKmSnK41H1ecNnSOAuAtGTlA2ngjAzlXqtF5n/?=
+ =?iso-8859-1?Q?cdrleKELNKpLxkZ/3wMYWZ8tKRObCDrydzBxtPQ3yyWU65qOrY6Y9s4F5D?=
+ =?iso-8859-1?Q?XsaRViROFS19a34Sz4z/9HlxvojhKuCm8FFFDjX7bQq8lx6ecgLIcyhLC+?=
+ =?iso-8859-1?Q?1ax2sLUplNsRx3bqBORxzV2zxWPaNSYc+5+mlU4/a6c4AxkGTYQ08khWLX?=
+ =?iso-8859-1?Q?JKGRiMWGd6BF5SOwtW8/V8E34dsqt+wsJX7mzl4ZaeCamn3wGm+wgbr7MU?=
+ =?iso-8859-1?Q?itq2D8L/NL7NviWAUluaIzQqxjFEprD7E0hOZXI4jFtnPZK6Pu//yfY4Jr?=
+ =?iso-8859-1?Q?evGrwPx4gVJhtK5xrn2TS/wrEvQ/Z+9wLhm++BT682XY5FfSGIxb4unfxe?=
+ =?iso-8859-1?Q?ER+Z+hkfp8TvJ5VUBH1WyTH5FgviwuXabdqiC0tdwR4oqzUILUZCsaBekW?=
+ =?iso-8859-1?Q?iXwIruynjbmgCly8rIXxo1Q+JuvUwmzypm8WzLTXpj2ry9Qc3hxBp8nDFj?=
+ =?iso-8859-1?Q?1FiWV4irHJy/ZIbhVDlHQFav1rdxU1qmQBnw4NAg4qouKSsCyHWl0Bl4jO?=
+ =?iso-8859-1?Q?K3QKg8CZb8jfh0OONQuP0UDmORW/9FYZYwIXAqSYk+XSE2aeeYb+XPKXan?=
+ =?iso-8859-1?Q?bZhmezwWW3T0kBfc8eQ3HLOc+FSbwvxQhUOCN+VxW1X1jQ4uoI36V7moir?=
+ =?iso-8859-1?Q?ekKl9NKbU4MxXBJRESPCgGaIxQ2OtZm8iAgtCVcAo19Y2hMkwto6O33XMy?=
+ =?iso-8859-1?Q?qaaxEWjla8xMG188AaNLVShkClNi1lxqmOcKO3tMKCU9UQG2R7yxD96iUs?=
+ =?iso-8859-1?Q?EXO0Q7mUh5fA1AP9iJTc8rzOTGZ2Ra68nMZL7woKdCCE+a6g1f/z7urlpM?=
+ =?iso-8859-1?Q?MPk0MErkIPerEEf/pviqJpSrFXAsuUA+tmCShGmXFbi1dpEfssSY/Fx+56?=
+ =?iso-8859-1?Q?FWCgalCqJDfVkXi5lrYTJmIjXlVGjqJAcEyAioOqzuUWDowZD3TGFZKLJN?=
+ =?iso-8859-1?Q?3r0wlvdYP4mKLnHQkfPU/Q4I/FLiEJw0WZPKJXcEa84q0P4OdTJS+AV6c+?=
+ =?iso-8859-1?Q?tMlakdlozz4t9+vV+HQqvS0dxeTONHNUDSt7S/fy1jCBB7cjgDQZnrBbJK?=
+ =?iso-8859-1?Q?CJ/0eWz/yQYvQu+sz+8WLb4x6ybufW4WafT5SVQpBmAKjnyrjul28iaPqh?=
+ =?iso-8859-1?Q?3cvBcbVqPtmo5kSqfSHLlEXxLr2+OG38IU5EkK5wJjGKCf32HWeMbD8aN5?=
+ =?iso-8859-1?Q?woTPzqPgSwSbAKd9Y645/MXE97/3SxGaNTiiOOrJ6H8DUZxQPJJxDO+QTq?=
+ =?iso-8859-1?Q?liELC5CHwh8rf191tYs23t3iS16mRYQzRgeC/HnTwPiB+y/Uq7JKBW6Umg?=
+ =?iso-8859-1?Q?joggsa1GYpluIbnxP33w4s3NoudqMzdLQtmZHjNxyEkUEFhJMmsFDlJgCZ?=
+ =?iso-8859-1?Q?17mZwg1xVWsfHw+2HGYFYSO3A20IeEOaw6mO3w=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(7416014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?zWjGUoWEEVECDy67zX+nH4ZNGWGMZXrsK7CEgzmQ206intX3c2hlLN7DnM?=
- =?iso-8859-1?Q?iJQm/i5/D7YQKkAa34o7j2U62pMoz2hiIMtBjSERDNOzHIQSLN2M5WuZcu?=
- =?iso-8859-1?Q?sChGSYXj8GA+QbB96Kdnq0lhYEfCgfwfDNQIydoyy+FoDlfHUWQueqvTf6?=
- =?iso-8859-1?Q?h/yFkR7sWqMxwUFqXN5UufvnKs/X/d6Ta6FWK2zpuWukThoEhrw0BLvzFb?=
- =?iso-8859-1?Q?c1F+ghg2ks9zc+WiI9tx9bzTwlNEU55o5+152oQbBXqqt2HQGGnBvs0rNV?=
- =?iso-8859-1?Q?jDlmQw/QKQggu3ZlhLmH+nT6h7gmyXYCBrmBJTeQ4MMWq9RPxYxyS4mv8H?=
- =?iso-8859-1?Q?j65AIWA4/dyszrwwqEs0TpaQ8qDWyYBGXYM7vKUZNTc7tjSucjPIu80c1g?=
- =?iso-8859-1?Q?JWXx9SAYNqXZ3d4eyOoJMIB1Ac//bRRH2xndePMjs4jBCvlKi4dhMfk0xu?=
- =?iso-8859-1?Q?dDBJuXNMncmWsIwnDqEaH3mCTUUWnj2SOSQiSsYipmRLnUBZNwz6xvFX+c?=
- =?iso-8859-1?Q?bOo2TYgWgWAWF9IrVVxTqi1/NlA0bOFxeASy60a4EB0t233uBztO11PpBJ?=
- =?iso-8859-1?Q?D0oPrFePgjqmW6mgaSdMvxnZYwR4t9CYML1UTinYsNBjtSZ6SgmbmlzNv/?=
- =?iso-8859-1?Q?Yhn6uh011WXTAJ4qAL/wwKmTzOJH0Uf6Q/KSSF9PP6+OvmaUl7RiWzOAr5?=
- =?iso-8859-1?Q?FoFr4SjCL7c3A8ifWBy7kEDtgo29rPEA4cSRlEJR15vYTeXrruwJAfeefO?=
- =?iso-8859-1?Q?fzITV9vAcaCIX6A8j4bC2Z0oaifLuSOILeBNT8PXWYsBsDL8UVMZ1ZWQ/Q?=
- =?iso-8859-1?Q?2S/LBJbljs6hhe+PvS+QT/qbMr+rpRHVhP/viOP05G9CHji3rZgq5VIQR4?=
- =?iso-8859-1?Q?CY18YwmD+BuIyv5iLb2bfev5IG6xFezXGgH1uvX1XXjOtYu6acJ6pMjPsh?=
- =?iso-8859-1?Q?8nYTHIxqEETwFCBTDmHU0nWTHuTN07z1FkmeGrQexcdZeMuaVGT4was8zL?=
- =?iso-8859-1?Q?ts5rNQZ5bFFjCpz9PlBpoHP4/RqSD+PQJVnfi1Hfy01hBk7eDqtAyNRlpa?=
- =?iso-8859-1?Q?H4TTzlYU5ut1Hx0WK893BV1Qf7DwOy77yW62GZ4+QtsiKaXjZ1HQ8WqdNH?=
- =?iso-8859-1?Q?eCMXWenDtsezc0dTkk9bncEsurOI5qhIJo7TWOzYGBH5rgDkFsvTq2MT4k?=
- =?iso-8859-1?Q?Oo5XNAsDOGJOkezF3Jrta9Vdq5wzO9wsppButLHGFD9gv173QbdHPNeRTK?=
- =?iso-8859-1?Q?+l5CtpTS5TKy0PJJOhd4MvVAYa113EVbwsxTkGG5DehAWi20VtltQSRXzK?=
- =?iso-8859-1?Q?xmbEJs8fxcF+oUVWFdKrfzDUzcU61Yas4xwQYTcBJwHKCZJ05xbrZnmgs8?=
- =?iso-8859-1?Q?DNpzfiOLUK6T6E0PmrpZj6FGl4IcoWK/z8wtAbE+KTybV+SJbppGf6Mnh/?=
- =?iso-8859-1?Q?zamUd7Q0e86y9gtHSoQfkGjwJLqtkv56cJpEwkfxqwIsR9yleSjnoRTYBs?=
- =?iso-8859-1?Q?OOpI6jhtMk0L4U1GSd3Xg1j/ju+ENYPIuRlNRg4cAG8bYevfAAifqfwtes?=
- =?iso-8859-1?Q?0W2DgJYqDFy3BIIKG1XOLtGPmbn2T14NX2dwwTFRBFy+z3sVzGnJf/zAI7?=
- =?iso-8859-1?Q?gxu3psntUWWnekR7TF9JrjYgG5QJQ5yM8o?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 36d269e8-ad3c-431c-d607-08de02bda307
-X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?OdqoXalV2Xn5KelL+PTi0JXE9xasx120LZDPiv2rmg30n1e0Hyy+Jw6TWk?=
+ =?iso-8859-1?Q?S2a/38Lp2Qm2Mqc63lO9c5IN6UJqKch0fyKuSHByGHKVs9F8x9wcS78lv8?=
+ =?iso-8859-1?Q?n22wXh2x+Ugjwr9mJstXj6LwvoScm2YXOU17990UInCAcp9zX+VgJgZWFk?=
+ =?iso-8859-1?Q?FDwjvb+uQBj1GyDYYsEAQWKkgEV6AgasAkkg08wcAUj6VQu67tY6uJ942a?=
+ =?iso-8859-1?Q?jfntcuwwo1uXxNuZpBHDWmm11O/XSYx2GP7U/8sf5n0lHalzd+oXDh3549?=
+ =?iso-8859-1?Q?YLgUOPQNw1A2kDecUr4G4N4KN8seMd6Jq7AJnXcz6pzDDka7Iu9Oq4JfKh?=
+ =?iso-8859-1?Q?yNli4YcleAOjJ8kVk5Lv0kKJJNCg+wMippYCh2aDSnBc1qwIw9X3y3QQfI?=
+ =?iso-8859-1?Q?l6LqUIzBGodaLDtKOy7bju7YCRLHWQwysOD+R5nRgCoBuPMKBNtUvFqiHz?=
+ =?iso-8859-1?Q?f1ZazjkBlV4uAeg2ny44P3ermT7RUtSjRQn78yuhQlD0W1p1xh/hT//ZiM?=
+ =?iso-8859-1?Q?vp6H6wOf380/QGkyicPWebxh6RQNmxHXJoVx4aRY0FZvHzby55E0kw9T37?=
+ =?iso-8859-1?Q?wVr473rfKawpZWxkscgyQcwwsQAAmIR6HWzMAGefesvIhj2xIf47qWKKch?=
+ =?iso-8859-1?Q?6PlqaAFdDHxaEQQBFN/ifedrPvh5SbQIsarwZ0UZ2Qi8IRGOqRFTbZZ5B4?=
+ =?iso-8859-1?Q?k/f817u4Sk9XpXF0ZWkYZAAgSiG6t+2MjDUYYhd56v1arGk6VFVRwbgp+W?=
+ =?iso-8859-1?Q?SGr4+d9QhSaa9Xkv7jk8c+KdnPFM1mWyl2diEJ52wkLv5mGYBfIuU8TMhM?=
+ =?iso-8859-1?Q?C2VKjOJzfwSOrRYq2u+Qx+lbTYj80SftQtQ/z8iHu2gU2XyCxe5facseUF?=
+ =?iso-8859-1?Q?HzptFXSKRgqSKqc+DQ9RinF7UPRbOqjFOe4p+wYuWntsIn1fqxzFGxdTFV?=
+ =?iso-8859-1?Q?oPAv93rLyo13pjOBA9L4BnHs8LVLugXlEYkkRTGTnBqzBE9QL/VP74HpSh?=
+ =?iso-8859-1?Q?yvbwF0IT5vYy9x/QUTqpFlO/8TJnl9OxSQHfsFz8gy56JHBlGIVIAYvEBv?=
+ =?iso-8859-1?Q?PyhdTkjT1haJ1Hg1r1dOZrcaLiCC/ImmQMmi/cwX1mkfAo/nCzfbF1uBfH?=
+ =?iso-8859-1?Q?3NcTDcL4aUEffsnhSMdSFyr2vFhM2KbULl4DgeLWGnc1b5h9yC8iTFQrgZ?=
+ =?iso-8859-1?Q?v3mi4S3xH3M/8u8yy8GuZPaSos8Ew1PbFw/NYtrsS2Nid5Sq99Z2tJSBf/?=
+ =?iso-8859-1?Q?1ObgxIY2wyG1OEg3Jw9eI8Q+mQBF4zMbMXxj6VrLxjqEebhPehmoykczrj?=
+ =?iso-8859-1?Q?8TyBpMcw9COqrx5+2MQz0bO7fu2cyBClh+8bAAiMNwZRJb8Fs/NiSXJ9s+?=
+ =?iso-8859-1?Q?GhCUg/JUEcvfrp+WMHbpTELH2nin+Av6MOmtCz4COqlrBozQqVuXPBD9oU?=
+ =?iso-8859-1?Q?pUnmYU7XQP4QVk09sUoeLtjTHGSlCfYfAMCqBO/QO9HgKQp0MRolgk7TtN?=
+ =?iso-8859-1?Q?+v6Za0enUFPTc6Nm13INkdHrdxE3b0j0MMnxnqP777vcJvRaq9WkzI5ziE?=
+ =?iso-8859-1?Q?daqleDDIG6IeZfq6d5IWs6hFYDoZHGXm/hIq9Z/YeINK38DVpyweErXUTh?=
+ =?iso-8859-1?Q?vFp8i0KcmfmJcRtJES9UVewaNgoP2pkcJNYMgEwdptQRiOoNiUaCGTsw?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: d8613759-c561-4ffd-557f-08de02be1468
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Oct 2025 20:44:24.3155 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Oct 2025 20:47:34.4151 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: VV2FJpiQ8TJ8WrAxe1AAUYo4hw/f1C6zvIEPyvfBgcbZr1JosUxW/DATLeoqnpDHKpR40tPbKA6n1Y8+x6VOfw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6304
+X-MS-Exchange-CrossTenant-UserPrincipalName: +LHxif96UaR6ChLmqbhSpKiGrFZysw6nIbylXf+D9jiLptu3E+BLXd1gRd2TTpBpj7zbeEP8MVhyOqWdkSydVCi9m2pMfMmVJ161fIQ6XZI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7537
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -179,365 +184,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 03, 2025 at 12:21:07PM +0300, Jani Nikula wrote:
-> Let's gradually start calling i915 and xe core drivers from display via
-> function pointers passed at display probe. For starters, just add a
-> small feature test hook ->has_flat_ccs.
+Hi Dave and Sima,
 
-I like this idea.
+This contains a set of fixes for 6.18-rc1. I ended up delaying this and
+hence collected more patches. Fixes are mostly spread around the driver
+for the new features, particularly on error paths.
 
-> 
-> FIXME: "hooks" is a terrible name, both as a parameter and a struct
-> intel_display member name. It should reflect that we're calling the core
-> or parent driver. This is a placeholder name for now.
+Thanks
+Lucas De Marchi
 
-core_ops ?
-core_iface ?
-parent_ops ?
-parent_iface ?
+drm-xe-next-fixes-2025-10-03:
+Cross-subsystem Changes:
+  - Fix userptr to not allow device private pages with SVM (Thomas
+    Hellström)
 
-> 
-> FIXME: Initially, one struct is fine... but once it accumulates a lot of
-> functions, should it have more indirection? Maybe everything should be
-> in sub-structs, or the top struct should just be a collection of
-> pointers to hook structs?
-> 
-> 	struct intel_core_hooks {
-> 		const struct intel_rpm_hooks *rpm;
-> 	};
+Driver Changes:
+  - Fix build with clang 16 (Michal Wajdeczko)
+  - Fix handling of invalid configfs syntax usage and spell out the
+    expected syntax in the documentation (Lucas De Marchi)
+  - Do not try late bind firmware when running as VF since it
+    shouldn't handle firmware loading (Michal Wajdeczko)
+  - Fix idle assertion for local BOs (Thomas Hellström)
+  - Fix uninitialized variable for late binding (Colin Ian King,
+    Mallesh Koujalagi)
+  - Do not require perfmon_capable to expose free memory at page
+    granularity. Handle it like other drm drivers do (Matthew Auld)
+  - Fix lock handling on suspend error path (Shuicheng Lin)
+  - Fix I2C controller resume after S3 (Raag Jadav)
+The following changes since commit b2ec5ca9d5c2c019e2316f7ba447596d1dcd8fde:
 
-struct intel_core_iface {
-       const struct intel_rpm_ops *rpm;
-}
+   Merge tag 'amd-drm-next-6.18-2025-09-26' of https://gitlab.freedesktop.org/agd5f/linux into drm-next (2025-09-30 09:26:31 +1000)
 
-?!
+are available in the Git repository at:
 
-> 
-> The above would allow having the struct initialization inside the
-> implementation file, and the functions themselves static. In any case,
-> it seems best to have just one initialization of the hooks, instead of
-> one init/register call for each functional area.
+   https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-fixes-2025-10-03
 
-+1 on this when needed.
+for you to fetch changes up to 1af59cd5cc2b65d7fc95165f056695ce3f171133:
 
-> 
-> The downside is of course having to call the functions like:
-> 
-> 	display->hooks->rpm->get(display->drm);
+   drm/xe/i2c: Don't rely on d3cold.allowed flag in system PM path (2025-10-03 14:17:08 -0500)
 
-struct intel_core_iface *core = display->core;
+----------------------------------------------------------------
+Cross-subsystem Changes:
+  - Fix userptr to not allow device private pages with SVM (Thomas
+    Hellström)
 
-core->rpm->get();
+Driver Changes:
+  - Fix build with clang 16 (Michal Wajdeczko)
+  - Fix handling of invalid configfs syntax usage and spell out the
+    expected syntax in the documentation (Lucas De Marchi)
+  - Do not try late bind firmware when running as VF since it
+    shouldn't handle firmware loading (Michal Wajdeczko)
+  - Fix idle assertion for local BOs (Thomas Hellström)
+  - Fix uninitialized variable for late binding (Colin Ian King,
+    Mallesh Koujalagi)
+  - Do not require perfmon_capable to expose free memory at page
+    granularity. Handle it like other drm drivers do (Matthew Auld)
+  - Fix lock handling on suspend error path (Shuicheng Lin)
+  - Fix I2C controller resume after S3 (Raag Jadav)
 
-or when multiple of a single ops is used
+----------------------------------------------------------------
+Colin Ian King (1):
+       drm/xe/xe_late_bind_fw: Fix missing initialization of variable offset
 
-struct intel_rpm_ops *rpm = display->core->rpm;
+Lucas De Marchi (2):
+       drm/xe/configfs: Fix engine class parsing
+       drm/xe/configfs: Improve doc for ctx_restore* attributes
 
-rpm->get();
+Mallesh Koujalagi (1):
+       drm/xe/xe_late_bind_fw: Initialize uval variable in xe_late_bind_fw_num_fans()
 
-> 
-> FIXME: It would really be convenient if we could stop using a display
-> device with mock_gem_device() in mock_gem_device.c. The purpose of the
-> mock gem device is to run mock *gem* tests. Could we make it happen
-> without display?
+Matthew Auld (1):
+       drm/xe/uapi: loosen used tracking restriction
 
-no thoughts on this...
+Michal Wajdeczko (3):
+       drm/xe/tests: Fix build break on clang 16.0.6
+       drm/xe/vf: Rename sriov_update_device_info
+       drm/xe/vf: Don't claim support for firmware late-bind if VF
 
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  .../gpu/drm/i915/display/intel_display_core.h |  4 ++++
->  .../drm/i915/display/intel_display_device.c   |  5 ++++-
->  .../drm/i915/display/intel_display_device.h   |  4 +++-
->  drivers/gpu/drm/i915/display/intel_fb.c       |  5 ++---
->  .../drm/i915/display/skl_universal_plane.c    |  5 +++--
->  drivers/gpu/drm/i915/i915_driver.c            | 17 ++++++++++++++++-
->  drivers/gpu/drm/i915/i915_driver.h            |  2 ++
->  .../gpu/drm/i915/selftests/mock_gem_device.c  |  4 +++-
->  drivers/gpu/drm/xe/display/xe_display.c       | 12 +++++++++++-
->  include/drm/intel/display_interface.h         | 19 +++++++++++++++++++
->  10 files changed, 67 insertions(+), 10 deletions(-)
->  create mode 100644 include/drm/intel/display_interface.h
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-> index df4da52cbdb3..424d22725ca8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-> @@ -39,6 +39,7 @@ struct intel_audio_funcs;
->  struct intel_cdclk_funcs;
->  struct intel_cdclk_vals;
->  struct intel_color_funcs;
-> +struct intel_core_hooks;
->  struct intel_crtc;
->  struct intel_crtc_state;
->  struct intel_dmc;
-> @@ -291,6 +292,9 @@ struct intel_display {
->  	/* Intel PCH: where the south display engine lives */
->  	enum intel_pch pch_type;
->  
-> +	/* Core functions exposed to display */
-> +	const struct intel_core_hooks *hooks;
-> +
->  	/* Display functions */
->  	struct {
->  		/* Top level crtc-ish functions */
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-> index f3f1f25b0f38..87aaa1930846 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_device.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-> @@ -1647,7 +1647,8 @@ static void display_platforms_or(struct intel_display_platforms *dst,
->  	bitmap_or(dst->bitmap, dst->bitmap, src->bitmap, display_platforms_num_bits());
->  }
->  
-> -struct intel_display *intel_display_device_probe(struct pci_dev *pdev)
-> +struct intel_display *intel_display_device_probe(struct pci_dev *pdev,
-> +						 const struct intel_core_hooks *hooks)
->  {
->  	struct intel_display *display;
->  	const struct intel_display_device_info *info;
-> @@ -1663,6 +1664,8 @@ struct intel_display *intel_display_device_probe(struct pci_dev *pdev)
->  	/* Add drm device backpointer as early as possible. */
->  	display->drm = pci_get_drvdata(pdev);
->  
-> +	display->hooks = hooks;
-> +
->  	intel_display_params_copy(&display->params);
->  
->  	if (has_no_display(pdev)) {
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-> index 0e062753cf9b..999570d15160 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-> @@ -12,6 +12,7 @@
->  #include "intel_display_limits.h"
->  
->  struct drm_printer;
-> +struct intel_core_hooks;
->  struct intel_display;
->  struct pci_dev;
->  
-> @@ -310,7 +311,8 @@ struct intel_display_device_info {
->  
->  bool intel_display_device_present(struct intel_display *display);
->  bool intel_display_device_enabled(struct intel_display *display);
-> -struct intel_display *intel_display_device_probe(struct pci_dev *pdev);
-> +struct intel_display *intel_display_device_probe(struct pci_dev *pdev,
-> +						 const struct intel_core_hooks *hooks);
->  void intel_display_device_remove(struct intel_display *display);
->  void intel_display_device_info_runtime_init(struct intel_display *display);
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-> index 69237dabdae8..dc321df4db28 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> @@ -9,6 +9,7 @@
->  #include <drm/drm_blend.h>
->  #include <drm/drm_gem.h>
->  #include <drm/drm_modeset_helper.h>
-> +#include <drm/intel/display_interface.h>
->  
->  #include "i915_drv.h"
->  #include "i915_utils.h"
-> @@ -547,8 +548,6 @@ static bool plane_has_modifier(struct intel_display *display,
->  			       u8 plane_caps,
->  			       const struct intel_modifier_desc *md)
->  {
-> -	struct drm_i915_private *i915 = to_i915(display->drm);
-> -
->  	if (!IS_DISPLAY_VER(display, md->display_ver.from, md->display_ver.until))
->  		return false;
->  
-> @@ -560,7 +559,7 @@ static bool plane_has_modifier(struct intel_display *display,
->  	 * where supported.
->  	 */
->  	if (intel_fb_is_ccs_modifier(md->modifier) &&
-> -	    HAS_FLAT_CCS(i915) != !md->ccs.packed_aux_planes)
-> +	    display->hooks->has_flat_ccs(display->drm) != !md->ccs.packed_aux_planes)
->  		return false;
->  
->  	if (md->modifier == I915_FORMAT_MOD_4_TILED_BMG_CCS &&
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> index e13fb781e7b2..139d20e8accd 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -7,6 +7,7 @@
->  #include <drm/drm_blend.h>
->  #include <drm/drm_damage_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/intel/display_interface.h>
->  
->  #include "pxp/intel_pxp.h"
->  #include "i915_drv.h"
-> @@ -1572,7 +1573,7 @@ icl_plane_update_noarm(struct intel_dsb *dsb,
->  	}
->  
->  	/* FLAT CCS doesn't need to program AUX_DIST */
-> -	if (!HAS_FLAT_CCS(to_i915(display->drm)) && DISPLAY_VER(display) < 20)
-> +	if (!display->hooks->has_flat_ccs(display->drm) && DISPLAY_VER(display) < 20)
->  		intel_de_write_dsb(display, dsb, PLANE_AUX_DIST(pipe, plane_id),
->  				   skl_plane_aux_dist(plane_state, color_plane));
->  
-> @@ -2930,7 +2931,7 @@ skl_universal_plane_create(struct intel_display *display,
->  		caps = skl_plane_caps(display, pipe, plane_id);
->  
->  	/* FIXME: xe has problems with AUX */
-> -	if (!IS_ENABLED(I915) && !HAS_FLAT_CCS(to_i915(display->drm)))
-> +	if (!IS_ENABLED(I915) && !display->hooks->has_flat_ccs(display->drm))
->  		caps &= ~(INTEL_PLANE_CAP_CCS_RC |
->  			  INTEL_PLANE_CAP_CCS_RC_CC |
->  			  INTEL_PLANE_CAP_CCS_MC);
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index b46cb54ef5dc..cf042e5d1444 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -46,6 +46,7 @@
->  #include <drm/drm_ioctl.h>
->  #include <drm/drm_managed.h>
->  #include <drm/drm_probe_helper.h>
-> +#include <drm/intel/display_interface.h>
->  #include <drm/intel/display_member.h>
->  
->  #include "display/i9xx_display_sr.h"
-> @@ -738,6 +739,20 @@ static void i915_welcome_messages(struct drm_i915_private *dev_priv)
->  			 "DRM_I915_DEBUG_RUNTIME_PM enabled\n");
->  }
->  
-> +static bool has_flat_ccs(struct drm_device *drm)
-> +{
-> +	return HAS_FLAT_CCS(to_i915(drm));
-> +}
-> +
-> +static const struct intel_core_hooks hooks = {
-> +	.has_flat_ccs = has_flat_ccs,
-> +};
-> +
-> +const struct intel_core_hooks *i915_driver_hooks(void)
-> +{
-> +	return &hooks;
-> +}
-> +
->  /* Ensure drm and display members are placed properly. */
->  INTEL_DISPLAY_MEMBER_STATIC_ASSERT(struct drm_i915_private, drm, display);
->  
-> @@ -762,7 +777,7 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
->  	/* Set up device info and initial runtime info. */
->  	intel_device_info_driver_create(i915, pdev->device, match_info);
->  
-> -	display = intel_display_device_probe(pdev);
-> +	display = intel_display_device_probe(pdev, &hooks);
->  	if (IS_ERR(display))
->  		return ERR_CAST(display);
->  
-> diff --git a/drivers/gpu/drm/i915/i915_driver.h b/drivers/gpu/drm/i915/i915_driver.h
-> index 1e95ecb2a163..26e3afb1d892 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.h
-> +++ b/drivers/gpu/drm/i915/i915_driver.h
-> @@ -12,6 +12,7 @@ struct pci_dev;
->  struct pci_device_id;
->  struct drm_i915_private;
->  struct drm_printer;
-> +struct intel_core_hooks;
->  
->  #define DRIVER_NAME		"i915"
->  #define DRIVER_DESC		"Intel Graphics"
-> @@ -24,6 +25,7 @@ void i915_driver_shutdown(struct drm_i915_private *i915);
->  
->  int i915_driver_resume_switcheroo(struct drm_i915_private *i915);
->  int i915_driver_suspend_switcheroo(struct drm_i915_private *i915, pm_message_t state);
-> +const struct intel_core_hooks *i915_driver_hooks(void);
->  
->  void
->  i915_print_iommu_status(struct drm_i915_private *i915, struct drm_printer *p);
-> diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> index fb8751bd5df0..32bfea4a3cca 100644
-> --- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> +++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> @@ -27,12 +27,14 @@
->  #include <linux/iommu.h>
->  
->  #include <drm/drm_managed.h>
-> +#include <drm/intel/display_interface.h>
->  
->  #include "display/intel_display_device.h"
->  
->  #include "gt/intel_gt.h"
->  #include "gt/intel_gt_requests.h"
->  #include "gt/mock_engine.h"
-> +#include "i915_driver.h"
->  #include "intel_memory_region.h"
->  #include "intel_region_ttm.h"
->  
-> @@ -183,7 +185,7 @@ struct drm_i915_private *mock_gem_device(void)
->  	/* Set up device info and initial runtime info. */
->  	intel_device_info_driver_create(i915, pdev->device, &mock_info);
->  
-> -	display = intel_display_device_probe(pdev);
-> +	display = intel_display_device_probe(pdev, i915_driver_hooks());
->  	if (IS_ERR(display))
->  		goto err_device;
->  
-> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-> index 5f4044e63185..644641954125 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display.c
-> +++ b/drivers/gpu/drm/xe/display/xe_display.c
-> @@ -13,6 +13,7 @@
->  #include <drm/drm_drv.h>
->  #include <drm/drm_managed.h>
->  #include <drm/drm_probe_helper.h>
-> +#include <drm/intel/display_interface.h>
->  #include <drm/intel/display_member.h>
->  #include <uapi/drm/xe_drm.h>
->  
-> @@ -515,6 +516,15 @@ static void display_device_remove(struct drm_device *dev, void *arg)
->  	intel_display_device_remove(display);
->  }
->  
-> +static bool has_flat_ccs(struct drm_device *drm)
-> +{
-> +	return xe_device_has_flat_ccs(to_xe_device(drm));
-> +}
-> +
-> +static const struct intel_core_hooks hooks = {
-> +	.has_flat_ccs = has_flat_ccs,
-> +};
-> +
->  /**
->   * xe_display_probe - probe display and create display struct
->   * @xe: XE device instance
-> @@ -535,7 +545,7 @@ int xe_display_probe(struct xe_device *xe)
->  	if (!xe->info.probe_display)
->  		goto no_display;
->  
-> -	display = intel_display_device_probe(pdev);
-> +	display = intel_display_device_probe(pdev, &hooks);
->  	if (IS_ERR(display))
->  		return PTR_ERR(display);
->  
-> diff --git a/include/drm/intel/display_interface.h b/include/drm/intel/display_interface.h
-> new file mode 100644
-> index 000000000000..82e3b6b641f7
-> --- /dev/null
-> +++ b/include/drm/intel/display_interface.h
-> @@ -0,0 +1,19 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/* Copyright © 2025 Intel Corporation x*/
-> +
-> +#ifndef __DISPLAY_INTERFACE_H__
-> +#define __DISPLAY_INTERFACE_H__
-> +
-> +#include <linux/types.h>
-> +
-> +struct drm_device;
-> +
-> +/**
-> + * struct intel_core_hooks - services core provides to display
-> + */
-> +struct intel_core_hooks {
-> +	/** @has_flat_ccs: does the device support flat CCS */
-> +	bool (*has_flat_ccs)(struct drm_device *drm);
-> +};
-> +
-> +#endif
-> -- 
-> 2.47.3
-> 
+Raag Jadav (1):
+       drm/xe/i2c: Don't rely on d3cold.allowed flag in system PM path
+
+Shuicheng Lin (1):
+       drm/xe/hw_engine_group: Fix double write lock release in error path
+
+Thomas Hellström (2):
+       drm/xe/bo: Fix an idle assertion for local bos
+       drm/gpusvm, drm/xe: Fix userptr to not allow device private pages
+
+  drivers/gpu/drm/drm_gpusvm.c            | 24 ++++++++++++-----------
+  drivers/gpu/drm/xe/tests/xe_pci.c       | 12 ++++++------
+  drivers/gpu/drm/xe/xe_bo.c              | 34 ++++++++++++++++++++++-----------
+  drivers/gpu/drm/xe/xe_configfs.c        | 23 +++++++++++++++++-----
+  drivers/gpu/drm/xe/xe_device.c          | 19 +++++++++---------
+  drivers/gpu/drm/xe/xe_hw_engine_group.c |  6 +-----
+  drivers/gpu/drm/xe/xe_late_bind_fw.c    | 20 +++++++++----------
+  drivers/gpu/drm/xe/xe_pm.c              |  2 +-
+  drivers/gpu/drm/xe/xe_query.c           | 15 ++++++---------
+  drivers/gpu/drm/xe/xe_svm.c             | 11 +++--------
+  drivers/gpu/drm/xe/xe_svm.h             | 14 ++++++++++++++
+  drivers/gpu/drm/xe/xe_userptr.c         |  1 +
+  drivers/gpu/drm/xe/xe_vm.c              |  1 +
+  include/drm/drm_gpusvm.h                |  7 ++++---
+  14 files changed, 111 insertions(+), 78 deletions(-)
