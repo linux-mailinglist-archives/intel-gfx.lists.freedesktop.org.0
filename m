@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 540F5BBD0B7
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Oct 2025 06:42:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39A30BBD0BA
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Oct 2025 06:42:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C795D10E330;
-	Mon,  6 Oct 2025 04:42:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4C1610E3B6;
+	Mon,  6 Oct 2025 04:42:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XLiSmvCK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RzGekOjH";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26CDD10E329;
- Mon,  6 Oct 2025 04:42:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFF4C10E3A0;
+ Mon,  6 Oct 2025 04:42:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759725736; x=1791261736;
+ t=1759725738; x=1791261738;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Lb0D99S8oRtd53uMI/T/pnwOBXor8pPYsE3ou7Afk9E=;
- b=XLiSmvCKcZWL9MnguneH72/2g4YBMOwcx4NpIHHhI7st8FnlGhPPGw+g
- JQFB+Cc2XzGDf3qTbnllsPiU016oN5lUyn+VM33ik1fLTkjHeEeS44xP/
- HQIoyH5KVnUoCoyC9G6dTnZe/mxnnvyHUYsdKjdB3XiAzX58eIz4KEu3h
- Cfze6s5QHhpvfi1x/MobTr5OxfohayNSqvz2ZcTlz4NGxB8b0M3Z/7npr
- h+5LXtIKBrkkWq1tCevuSw8x68Nk5FUB8VFxegCxwkHAjtzWcz3hU3/bL
- gpzipn7xvqANn/3CgN4MRlQnrekPE+HYDvuFOy8QsTgHfQkXaAtpew5ZH A==;
-X-CSE-ConnectionGUID: ZHVt9uE/TRW0Befdx8J7OA==
-X-CSE-MsgGUID: YzOFCELkRvykszJo9PqSWg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="61996415"
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="61996415"
+ bh=SI7pr/DgJmi8Ga77vmjd11pOM3Zro2FrlMp3MRg7C68=;
+ b=RzGekOjHWGqsySSLuD7xCKuf1vHpYtZEi6kA2Rihfe92VRCNNoSmJPEg
+ /38y0O4oOeAFju8djNPzTCBzDMNVFqfvpvoFcrQya0yhUOiMZTd/pejrJ
+ 1haWFKHJeQ8XVt9Zw6Gw8ZkMIGPNtSiJbPVcHnpnR7M9lkOhkMeaoqaQ+
+ W2btiC7pujOrpUThIJWpMEXdkOnnqaxXatUHvt69wU9xoEPOsjQ2DsODf
+ XQ4jWWyT7pDMbYxvAYboiO950XMTRQfAcvucH1weZa1fvLp200oeovjkJ
+ I/ReNq2IXlT3lzMNEyUajTIMMCQSsUL7s8a4cv2gmFPdK+1hSnlEcr+Ud Q==;
+X-CSE-ConnectionGUID: BXhTcfptSteZF8Rryvv8Jg==
+X-CSE-MsgGUID: /XwMRtgvS3OuKwzClAnZVA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="61996416"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="61996416"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2025 21:42:16 -0700
-X-CSE-ConnectionGUID: +oNe8O6aSmuKh11jEz+/Bw==
-X-CSE-MsgGUID: vKJxxJ2FS+iOqJvxNj1bkA==
+ 05 Oct 2025 21:42:17 -0700
+X-CSE-ConnectionGUID: oW7OdtVoQZqtivq5Tw4o4Q==
+X-CSE-MsgGUID: K7zCUsZvTIqZLI4OEenX0w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="179063004"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="179063006"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2025 21:42:15 -0700
+ 05 Oct 2025 21:42:17 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com
-Subject: [PATCH 06/16] drm/i915/dp: Add SDP latency computation helper
-Date: Mon,  6 Oct 2025 09:58:42 +0530
-Message-ID: <20251006042852.263249-7-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 07/16] drm/i915/alpm: Add function to compute max link-wake
+ latency
+Date: Mon,  6 Oct 2025 09:58:43 +0530
+Message-ID: <20251006042852.263249-8-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20251006042852.263249-1-ankit.k.nautiyal@intel.com>
 References: <20251006042852.263249-1-ankit.k.nautiyal@intel.com>
@@ -68,87 +69,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add a helper to compute vblank time needed for transmitting specific
-DisplayPort SDPs like PPS, GAMUT_METADATA, and VSC_EXT. Latency is
-based on line count per packet type and current line time.
+Introduce a helper to compute the max link wake latency when using
+Auxless/Aux wake mechanism for PSR/Panel Replay/LOBF features.
 
-Used to ensure adequate vblank when features like DSC/HDR are enabled.
+This will be used to compute the minimum guardband so that the link wake
+latencies are accounted and these features work smoothly for higher
+refresh rate panels.
 
-Bspec: 70151
+Bspec: 70151, 71477
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 47 +++++++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dp.h |  2 ++
- 2 files changed, 49 insertions(+)
+ drivers/gpu/drm/i915/display/intel_alpm.c | 15 +++++++++++++++
+ drivers/gpu/drm/i915/display/intel_alpm.h |  2 ++
+ 2 files changed, 17 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 2eab591a8ef5..83c46e4680b3 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -6857,3 +6857,50 @@ void intel_dp_mst_resume(struct intel_display *display)
- 		}
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
+index 749119cc0b28..df380ecf7d0f 100644
+--- a/drivers/gpu/drm/i915/display/intel_alpm.c
++++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+@@ -598,3 +598,18 @@ bool intel_alpm_get_error(struct intel_dp *intel_dp)
+ 
+ 	return false;
  }
 +
-+static
-+int intel_dp_get_sdp_latency(u32 type, int linetime_us)
++int intel_alpm_compute_max_link_wake_latency(const struct intel_crtc_state *crtc_state,
++					     bool assume_all_enabled)
 +{
-+	int lines;
++	int psr2_vblank_time = 0;
++	int auxless_wake_time = 0;
 +
-+	switch (type) {
-+	case DP_SDP_VSC_EXT_VESA:
-+	case DP_SDP_VSC_EXT_CEA:
-+		lines = 10;
-+		break;
-+	case HDMI_PACKET_TYPE_GAMUT_METADATA:
-+		lines = 8;
-+		break;
-+	case DP_SDP_PPS:
-+		lines = 6;
-+		break;
-+	default:
-+		lines = 0;
-+		break;
-+	}
++	if (assume_all_enabled || crtc_state->has_sel_update)
++		psr2_vblank_time =  io_buffer_wake_time(crtc_state);
 +
-+	return lines * linetime_us;
++	if (assume_all_enabled || crtc_state->has_panel_replay)
++		auxless_wake_time = _lnl_compute_aux_less_wake_time(crtc_state);
++
++	return max(psr2_vblank_time, auxless_wake_time);
 +}
-+
-+int intel_dp_compute_sdp_latency(const struct intel_crtc_state *crtc_state,
-+				 bool assume_all_enabled)
-+{
-+	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-+	int sdp_latency = 0;
-+	int linetime_us;
-+
-+	linetime_us = DIV_ROUND_UP(adjusted_mode->crtc_htotal * 1000,
-+				   adjusted_mode->crtc_clock);
-+	if (assume_all_enabled ||
-+	    crtc_state->infoframes.enable &
-+	    intel_hdmi_infoframe_enable(HDMI_PACKET_TYPE_GAMUT_METADATA))
-+		sdp_latency = max(sdp_latency,
-+				  intel_dp_get_sdp_latency(HDMI_PACKET_TYPE_GAMUT_METADATA,
-+							   linetime_us));
-+
-+	if (assume_all_enabled || crtc_state->dsc.compression_enable)
-+		sdp_latency = max(sdp_latency,
-+				  intel_dp_get_sdp_latency(DP_SDP_PPS, linetime_us));
-+
-+	return sdp_latency;
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index f90cfd1dbbd0..d222749b191c 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -215,5 +215,7 @@ int intel_dp_compute_min_hblank(struct intel_crtc_state *crtc_state,
- int intel_dp_dsc_bpp_step_x16(const struct intel_connector *connector);
- void intel_dp_dpcd_set_probe(struct intel_dp *intel_dp, bool force_on_external);
- bool intel_dp_in_hdr_mode(const struct drm_connector_state *conn_state);
-+int intel_dp_compute_sdp_latency(const struct intel_crtc_state *crtc_state,
-+				 bool assume_all_enabled);
- 
- #endif /* __INTEL_DP_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
+index a861c20b5d79..b371827af356 100644
+--- a/drivers/gpu/drm/i915/display/intel_alpm.h
++++ b/drivers/gpu/drm/i915/display/intel_alpm.h
+@@ -38,4 +38,6 @@ bool intel_alpm_is_alpm_aux_less(struct intel_dp *intel_dp,
+ 				 const struct intel_crtc_state *crtc_state);
+ void intel_alpm_disable(struct intel_dp *intel_dp);
+ bool intel_alpm_get_error(struct intel_dp *intel_dp);
++int intel_alpm_compute_max_link_wake_latency(const struct intel_crtc_state *crtc_state,
++					     bool assume_all_enabled);
+ #endif
 -- 
 2.45.2
 
