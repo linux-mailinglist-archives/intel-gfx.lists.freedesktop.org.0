@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9F31BBD0A8
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Oct 2025 06:42:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C1AEBBD0AB
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Oct 2025 06:42:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B64C110E2E7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F353810E2E8;
 	Mon,  6 Oct 2025 04:42:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b11VFE1E";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z3ndeiKd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A86C910E298;
- Mon,  6 Oct 2025 04:42:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E5F110E2E7;
+ Mon,  6 Oct 2025 04:42:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759725728; x=1791261728;
+ t=1759725729; x=1791261729;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=kpp8C3R51Gz4vQQa+dyhawDbNS9mxI8zMvC1Vvq8+8s=;
- b=b11VFE1EVT6UN+772EsIjOYWYxWn2GF08k0gUapwjqxTfFf0ef7FRUfb
- oyQmLgBERZxPA0Ug78jYgt3yF1AeMpWnDAL0Dpmx1vllWgxXpuEZF9nrX
- h2nhqRi1RyPAqI8BvTPfSGNvoexSxJQ2dsPBO23PYzowYj5kRN7ItNLYG
- dTha1kkuWleKQH5R73zD9R5/qXoyRgNM4BxX5AHz1lJlvQgdOhgCaLWPj
- WQU5/lSgCR7tFCBityZhalWbwNJoH5YNFvSD53JJcVrFe/VGklun0IQH3
- Y1iov8rsMkDb0jvqSfdjr/JQmyopWtMxGwXioIQhFU8H6RQaDAEZDhO8d Q==;
-X-CSE-ConnectionGUID: IIw8jYiKQRqRB2m86e/ycw==
-X-CSE-MsgGUID: 9QQ8CYdTSEuWx3OJjgVteQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="61996408"
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="61996408"
+ bh=+bPKLCGVtTfEo06Sn2iiMoHmcdOO0UtqNl/4J33CSA4=;
+ b=Z3ndeiKdZ712ci0TNTYmmleKh/Gs41p7HFEI675hBA++1g8xhZmffbYs
+ BwHx5HNXbkbeDhSVE1Zaae7qxRemxxd7b/l+l0qcwvsDmge6M0JdKm5LZ
+ d+89C4Oy4uQm/g5croZnj4V8DAGiDS9+zOdUdqS1UjvHveskfJnIdif6s
+ xUfL9JatdfJ6OtTIfgUDFVLAZJn2ZnNqumfdpGmf8JiKQsu2aTRqzz9G9
+ zZdWYsEd6KgTbQXasp3I9RKl3a+/wt8btK0EXLJc21qUjCQpvA79pJujQ
+ Sq4vlVIPfIM6Bn1HDWTcywtfOs0e2pvx1arLIPuvEGYH5rIRX9wjqi1kP w==;
+X-CSE-ConnectionGUID: 0sJh8LFGSWuHTwv7CibD2w==
+X-CSE-MsgGUID: Ci7H0vK9TNyUSSX7KMNjzg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="61996409"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="61996409"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2025 21:42:07 -0700
-X-CSE-ConnectionGUID: pw0Blrg4Q4OIh9/jEJujUA==
-X-CSE-MsgGUID: dUlA7qeJROyTd8cOGt1GEg==
+ 05 Oct 2025 21:42:09 -0700
+X-CSE-ConnectionGUID: SwNHLYY7R3GWh8/w8OM5LA==
+X-CSE-MsgGUID: 7FyYAXaaSimVRPyYbuEnwQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="179062992"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="179062993"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2025 21:42:06 -0700
+ 05 Oct 2025 21:42:08 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com
-Subject: [PATCH 01/16] drm/i915/vrr: Use crtc_vsync_start/end for computing
- vrr.vsync_start/end
-Date: Mon,  6 Oct 2025 09:58:37 +0530
-Message-ID: <20251006042852.263249-2-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 02/16] drm/i915/skl_watermark: Fix the scaling factor for
+ chroma subsampling
+Date: Mon,  6 Oct 2025 09:58:38 +0530
+Message-ID: <20251006042852.263249-3-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20251006042852.263249-1-ankit.k.nautiyal@intel.com>
 References: <20251006042852.263249-1-ankit.k.nautiyal@intel.com>
@@ -69,34 +69,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use adjusted_mode->crtc_vsync_start/end instead of
-adjusted_mode->vsync_start while computing vrr.vsync_start/end.
-For most modes, these are same but for 3D/stereo modes the
-crtc_vsync_start is different than vsync_start.
+The Bspec:70151, mentions Chroma subsampling is a 2x downscale
+operation. This means that the downscale factor is 2 in each direction.
+So correct the downscaling factor to 4.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vrr.c | 4 ++--
+ drivers/gpu/drm/i915/display/skl_watermark.c | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 190c51be5cbc..4bc14b5e685f 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -394,10 +394,10 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
- 	if (HAS_AS_SDP(display)) {
- 		crtc_state->vrr.vsync_start =
- 			(crtc_state->hw.adjusted_mode.crtc_vtotal -
--			 crtc_state->hw.adjusted_mode.vsync_start);
-+			 crtc_state->hw.adjusted_mode.crtc_vsync_start);
- 		crtc_state->vrr.vsync_end =
- 			(crtc_state->hw.adjusted_mode.crtc_vtotal -
--			 crtc_state->hw.adjusted_mode.vsync_end);
-+			 crtc_state->hw.adjusted_mode.crtc_vsync_end);
- 	}
- }
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 9eb28d935757..4b1ef4fa8ed2 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -2188,7 +2188,7 @@ dsc_prefill_latency(const struct intel_crtc_state *crtc_state)
+ 				    crtc_state->hw.adjusted_mode.clock);
+ 	int num_scaler_users = hweight32(scaler_state->scaler_users);
+ 	int chroma_downscaling_factor =
+-		crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ? 2 : 1;
++		crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ? 4 : 1;
+ 	u32 dsc_prefill_latency = 0;
  
+ 	if (!crtc_state->dsc.compression_enable ||
+@@ -2231,7 +2231,7 @@ scaler_prefill_latency(const struct intel_crtc_state *crtc_state)
+ 		u64 hscale_k = max(1000, mul_u32_u32(scaler_state->scalers[0].hscale, 1000) >> 16);
+ 		u64 vscale_k = max(1000, mul_u32_u32(scaler_state->scalers[0].vscale, 1000) >> 16);
+ 		int chroma_downscaling_factor =
+-			crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ? 2 : 1;
++			crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ? 4 : 1;
+ 		int latency;
+ 
+ 		latency = DIV_ROUND_UP_ULL((4 * linetime * hscale_k * vscale_k *
 -- 
 2.45.2
 
