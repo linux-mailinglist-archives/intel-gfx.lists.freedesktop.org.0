@@ -2,58 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D2EABBD0D5
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Oct 2025 06:42:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8A26BBD2A3
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Oct 2025 08:53:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B70CA10E3C7;
-	Mon,  6 Oct 2025 04:42:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74E9C10E2F7;
+	Mon,  6 Oct 2025 06:52:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TR6W+h+6";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="eIwlSBHH";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACB4310E3C6;
- Mon,  6 Oct 2025 04:42:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759725753; x=1791261753;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=xrFFXiDuTnFbokQneBjqq/L4Rlz+xwZin0Q4qD8HBRo=;
- b=TR6W+h+65+KuJ5aTzY9jnbgmgvi5CrFPsgw/v09gSU/HEHS5j3sjdxHr
- hcSgnwYAHgZMzQtsMaY9gDjb+eX8H/7TujF7fYeFlWmKpEkU5XVCy7OTu
- uG8dNzop2xDnIg20y1MvSvDcCpva8sdtYFpGxawgcCnBgVIPBVGhZqmVn
- nIlqBYOcF+oGFPLhsjzu9kFeEirNrrdOaVYyGtqy/DfbVLfgSZSSQ/a/+
- LYcTuHOHQlxmFvKtrYnw9TbiJ60FRAbM0mfCiD5CuVS40tdCNP52KEB7g
- nJNg4myO1cuJAGCJDzm6D+9dL5XPsopl/b6cAxUbarxGv4LyVDNYseEPb Q==;
-X-CSE-ConnectionGUID: 2xaGKvkoSmGCJt9Ir4UUcA==
-X-CSE-MsgGUID: rH5kGWkeRlGRhuFqC6Y+XQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="61996435"
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="61996435"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2025 21:42:32 -0700
-X-CSE-ConnectionGUID: SLyu/1NvQYOc5C1/Ibwhvg==
-X-CSE-MsgGUID: skdop3EVTwWCrB1NmHrCvg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="179063044"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2025 21:42:31 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com
-Subject: [PATCH 16/16] drm/i915/vrr: Use optimized guardband when VRR TG is
- active
-Date: Mon,  6 Oct 2025 09:58:52 +0530
-Message-ID: <20251006042852.263249-17-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20251006042852.263249-1-ankit.k.nautiyal@intel.com>
-References: <20251006042852.263249-1-ankit.k.nautiyal@intel.com>
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6866B10E196;
+ Mon,  6 Oct 2025 06:52:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1759733572;
+ bh=dz/7ybhFy53bNalb8jRF6/95hGJfso+9p3SQZuWaD+w=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=eIwlSBHHSU3fGpgntkmPgbspid1vf+fh1JA91yxAY6BJMprianRhs2g6YgCGjCuT+
+ ojdXWJPfdA926eGkHDJ864aW57Ntr8XblLboCkbpRwnnkcPzUo2208o+A0ik1zQWx3
+ E/3y4Pg075Zq/9MU7ziDIdiAnYTXh0GNZ4u+/KxBvkLSh2Sb3Z8BcRTyKwqQUq8s76
+ 8li7JiqVY7anifjlHOR0rfFyVRjgMtemgO1XGquYJCcv64T530YToTfq5UQSzMBmJD
+ kiLUoKNzQPFCM7b+QiiAe/ljf3G9b3/GtyyIGfAEGXlbbL466HvAh8q/gqVtDlpO9U
+ cqd76BOVb58EQ==
+Received: from fedora (unknown [IPv6:2a01:e0a:2c:6930:d919:a6e:5ea1:8a9f])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: bbrezillon)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id 543B617E0AC3;
+ Mon,  6 Oct 2025 08:52:51 +0200 (CEST)
+Date: Mon, 6 Oct 2025 08:52:47 +0200
+From: Boris Brezillon <boris.brezillon@collabora.com>
+To: =?UTF-8?B?TG/Dr2M=?= Molinari <loic.molinari@collabora.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Rob Herring <robh@kernel.org>,
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Melissa Wen <mwen@igalia.com>, =?UTF-8?B?TWHDrXJh?= Canal
+ <mcanal@igalia.com>, Hugh Dickins <hughd@google.com>, Baolin Wang
+ <baolin.wang@linux.alibaba.com>, Andrew Morton <akpm@linux-foundation.org>,
+ Al Viro <viro@zeniv.linux.org.uk>, =?UTF-8?B?TWlrb8WCYWo=?= Wasiak
+ <mikolaj.wasiak@intel.com>, Christian Brauner <brauner@kernel.org>, Nitin
+ Gote <nitin.r.gote@intel.com>, Andi Shyti <andi.shyti@linux.intel.com>,
+ Christopher Healy <healych@amazon.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-mm@kvack.org, kernel@collabora.com, kernel test robot <lkp@intel.com>
+Subject: Re: [PATCH v3 01/10] drm/shmem-helper: Add huge page fault handler
+Message-ID: <20251006085247.52f29f59@fedora>
+In-Reply-To: <20251004093054.21388-2-loic.molinari@collabora.com>
+References: <20251004093054.21388-1-loic.molinari@collabora.com>
+ <20251004093054.21388-2-loic.molinari@collabora.com>
+Organization: Collabora
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,128 +76,142 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently, optimized guardband is only used on platforms where the VRR
-timing generator is always enabled. We want to use the optimized/reduced
-guardband whenever we are using the VRR timing generator, as the legacy
-timing generator doesn't need vrr guardband.
+On Sat,  4 Oct 2025 11:30:44 +0200
+Lo=C3=AFc Molinari <loic.molinari@collabora.com> wrote:
 
-On platforms where the VRR timing generator is always ON, we optimize the
-guardband regardless of whether the display is operating in fixed or
-variable refresh rate mode.
+> This gives the mm subsystem the ability to propose the insertion of
+> PUD or PMD-sized mappings for the faulting addresses.
+>=20
+> On builds with CONFIG_TRANSPARENT_HUGEPAGE enabled, if the mmap() user
+> address is aligned to a huge page size, if the GEM object is backed by
+> shmem buffers on mount points setting the 'huge=3D' option and if the
+> shmem backing store manages to allocate a huge folio, the CPU mapping
+> will then benefit from significantly increased memcpy() performance.
+> When these conditions are met on a system with 2 MiB huge pages, an
+> aligned copy of 2 MiB would raise a single page fault instead of 4096.
+>=20
+> v2:
+> - set ret to VM_FAULT_FALLBACK in default switch statement
+> - ifdef out paddr declaration
+>=20
+> Signed-off-by: Lo=C3=AFc Molinari <loic.molinari@collabora.com>
+> Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
+> Reported-by: kernel test robot <lkp@intel.com>
+> Closes: https://lore.kernel.org/oe-kbuild-all/202509241315.8jjCyL7U-lkp@i=
+ntel.com/
+> Closes: https://lore.kernel.org/oe-kbuild-all/202509241654.qJk1H5kr-lkp@i=
+ntel.com/
+> Closes: https://lore.kernel.org/oe-kbuild-all/202509241920.PtSEkfd4-lkp@i=
+ntel.com/
 
-On platforms where the VRR timing generator is not always ON, we optimize
-the guardband only when VRR is enabled.
+I'm not sure those Closes/Reported-by tags are needed when you fix bugs
+introduced in a previous revisions of the patchset.
 
-Add a helper intel_vrr_use_optimized_guardband() to determine if the
-optimized/reduced guardband should be used.
-
-The actual computation is now performed internally within
-intel_vrr_compute_guardband() which calls
-intel_vrr_compute_optimized_guardband() when appropriate.
-
-This completes the transition to optimized guardband usage across all
-supported platforms.
-
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c |  5 +----
- drivers/gpu/drm/i915/display/intel_vrr.c     | 23 +++++++++++++++-----
- drivers/gpu/drm/i915/display/intel_vrr.h     |  5 ++---
- 3 files changed, 21 insertions(+), 12 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 6f61278a36c2..84f830294007 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2425,17 +2425,14 @@ static void intel_crtc_compute_vrr_guardband(struct intel_atomic_state *state,
- 			continue;
- 
- 		connector = to_intel_connector(drm_connector);
-+		intel_vrr_compute_guardband(crtc_state, connector);
- 		if (intel_vrr_always_use_vrr_tg(display)) {
--			intel_vrr_compute_optimized_guardband(crtc_state, connector);
--
- 			vblank_length = adjusted_mode->crtc_vtotal -
- 					(crtc_state->set_context_latency +
- 					 adjusted_mode->crtc_vdisplay);
- 
- 			adjusted_mode->crtc_vblank_start +=
- 				vblank_length - crtc_state->vrr.guardband;
--		} else {
--			intel_vrr_compute_guardband(crtc_state);
- 		}
- 	}
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 2dca4be28a9c..24f608d4a28f 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -495,8 +495,15 @@ int dsc_prefill_latency(struct intel_crtc_state *crtc_state, int linetime_us)
- 					   linetime_us);
- }
- 
--int intel_vrr_compute_optimized_guardband(struct intel_crtc_state *crtc_state,
--					  struct intel_connector *connector)
-+static bool intel_vrr_use_optimized_guardband(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+
-+	return intel_vrr_always_use_vrr_tg(display) || crtc_state->vrr.enable;
-+}
-+
-+static int intel_vrr_compute_optimized_guardband(struct intel_crtc_state *crtc_state,
-+						 struct intel_connector *connector)
- {
- 	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
- 	struct intel_display *display = to_intel_display(crtc_state);
-@@ -550,16 +557,22 @@ int intel_vrr_compute_optimized_guardband(struct intel_crtc_state *crtc_state,
- 	return guardband;
- }
- 
--void intel_vrr_compute_guardband(struct intel_crtc_state *crtc_state)
-+void intel_vrr_compute_guardband(struct intel_crtc_state *crtc_state,
-+				 struct intel_connector *connector)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-+	int guardband;
- 
- 	if (!intel_vrr_possible(crtc_state))
- 		return;
- 
--	crtc_state->vrr.guardband = min(crtc_state->vrr.vmin - adjusted_mode->crtc_vdisplay,
--					intel_vrr_max_guardband(crtc_state));
-+	if (intel_vrr_use_optimized_guardband(crtc_state))
-+		guardband = intel_vrr_compute_optimized_guardband(crtc_state, connector);
-+	else
-+		guardband = crtc_state->vrr.vmin - adjusted_mode->crtc_vdisplay;
-+
-+	crtc_state->vrr.guardband = min(guardband, intel_vrr_max_guardband(crtc_state));
- 
- 	if (DISPLAY_VER(display) < 13)
- 		crtc_state->vrr.pipeline_full =
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
-index 8d1f31ae92df..6986e8f122dc 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.h
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.h
-@@ -21,7 +21,8 @@ bool intel_vrr_possible(const struct intel_crtc_state *crtc_state);
- void intel_vrr_check_modeset(struct intel_atomic_state *state);
- void intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
- 			      struct drm_connector_state *conn_state);
--void intel_vrr_compute_guardband(struct intel_crtc_state *crtc_state);
-+void intel_vrr_compute_guardband(struct intel_crtc_state *crtc_state,
-+				 struct intel_connector *connector);
- void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state);
- void intel_vrr_enable(const struct intel_crtc_state *crtc_state);
- void intel_vrr_send_push(struct intel_dsb *dsb,
-@@ -42,7 +43,5 @@ void intel_vrr_set_fixed_rr_timings(const struct intel_crtc_state *crtc_state);
- bool intel_vrr_always_use_vrr_tg(struct intel_display *display);
- int intel_vrr_safe_window_start(const struct intel_crtc_state *crtc_state);
- int intel_vrr_vmin_safe_window_end(const struct intel_crtc_state *crtc_state);
--int intel_vrr_compute_optimized_guardband(struct intel_crtc_state *crtc_state,
--					  struct intel_connector *connector);
- 
- #endif /* __INTEL_VRR_H__ */
--- 
-2.45.2
+> ---
+>  drivers/gpu/drm/drm_gem_shmem_helper.c | 56 ++++++++++++++++++++++++--
+>  1 file changed, 52 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/drm=
+_gem_shmem_helper.c
+> index 50594cf8e17c..22c4b09e10a3 100644
+> --- a/drivers/gpu/drm/drm_gem_shmem_helper.c
+> +++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
+> @@ -573,7 +573,8 @@ int drm_gem_shmem_dumb_create(struct drm_file *file, =
+struct drm_device *dev,
+>  }
+>  EXPORT_SYMBOL_GPL(drm_gem_shmem_dumb_create);
+> =20
+> -static vm_fault_t drm_gem_shmem_fault(struct vm_fault *vmf)
+> +static vm_fault_t drm_gem_shmem_huge_fault(struct vm_fault *vmf,
+> +					   unsigned int order)
+>  {
+>  	struct vm_area_struct *vma =3D vmf->vma;
+>  	struct drm_gem_object *obj =3D vma->vm_private_data;
+> @@ -582,6 +583,10 @@ static vm_fault_t drm_gem_shmem_fault(struct vm_faul=
+t *vmf)
+>  	vm_fault_t ret;
+>  	struct page *page;
+>  	pgoff_t page_offset;
+> +	unsigned long pfn;
+> +#if defined(CONFIG_ARCH_SUPPORTS_PMD_PFNMAP) || defined(CONFIG_ARCH_SUPP=
+ORTS_PUD_PFNMAP)
+> +	unsigned long paddr;
+> +#endif
+> =20
+>  	/* We don't use vmf->pgoff since that has the fake offset */
+>  	page_offset =3D (vmf->address - vma->vm_start) >> PAGE_SHIFT;
+> @@ -592,17 +597,57 @@ static vm_fault_t drm_gem_shmem_fault(struct vm_fau=
+lt *vmf)
+>  	    drm_WARN_ON_ONCE(obj->dev, !shmem->pages) ||
+>  	    shmem->madv < 0) {
+>  		ret =3D VM_FAULT_SIGBUS;
+> -	} else {
+> -		page =3D shmem->pages[page_offset];
+> +		goto out;
+> +	}
+> =20
+> -		ret =3D vmf_insert_pfn(vma, vmf->address, page_to_pfn(page));
+> +	page =3D shmem->pages[page_offset];
+> +	pfn =3D page_to_pfn(page);
+> +
+> +	switch (order) {
+> +	case 0:
+> +		ret =3D vmf_insert_pfn(vma, vmf->address, pfn);
+> +		break;
+> +
+> +#ifdef CONFIG_ARCH_SUPPORTS_PMD_PFNMAP
+> +	case PMD_ORDER:
+> +		paddr =3D pfn << PAGE_SHIFT;
+> +		if (((vmf->address & ~PMD_MASK) =3D=3D (paddr & ~PMD_MASK)) &&
+> +		    (folio_order(page_folio(page)) =3D=3D PMD_ORDER))
+> +			ret =3D vmf_insert_pfn_pmd(
+> +				    vmf, pfn & (PMD_MASK >> PAGE_SHIFT), false);
+> +		else
+> +			ret =3D VM_FAULT_FALLBACK;
+> +		break;
+> +#endif
+> +
+> +#ifdef CONFIG_ARCH_SUPPORTS_PUD_PFNMAP
+> +	case PUD_ORDER:
+> +		paddr =3D pfn << PAGE_SHIFT;
+> +		if (((vmf->address & ~PUD_MASK) =3D=3D (paddr & ~PUD_MASK)) &&
+> +		    (folio_order(page_folio(page)) =3D=3D PUD_ORDER))
+> +			ret =3D vmf_insert_pfn_pud(
+> +				    vmf, pfn & (PUD_MASK >> PAGE_SHIFT), false);
+> +		else
+> +			ret =3D VM_FAULT_FALLBACK;
+> +		break;
+> +#endif
+> +
+> +	default:
+> +		ret =3D VM_FAULT_FALLBACK;
+> +		break;
+>  	}
+> =20
+> + out:
+>  	dma_resv_unlock(shmem->base.resv);
+> =20
+>  	return ret;
+>  }
+> =20
+> +static vm_fault_t drm_gem_shmem_fault(struct vm_fault *vmf)
+> +{
+> +	return drm_gem_shmem_huge_fault(vmf, 0);
+> +}
+> +
+>  static void drm_gem_shmem_vm_open(struct vm_area_struct *vma)
+>  {
+>  	struct drm_gem_object *obj =3D vma->vm_private_data;
+> @@ -639,6 +684,9 @@ static void drm_gem_shmem_vm_close(struct vm_area_str=
+uct *vma)
+> =20
+>  const struct vm_operations_struct drm_gem_shmem_vm_ops =3D {
+>  	.fault =3D drm_gem_shmem_fault,
+> +#if defined(CONFIG_ARCH_SUPPORTS_PMD_PFNMAP) || defined(CONFIG_ARCH_SUPP=
+ORTS_PUD_PFNMAP)
+> +	.huge_fault =3D drm_gem_shmem_huge_fault,
+> +#endif
+>  	.open =3D drm_gem_shmem_vm_open,
+>  	.close =3D drm_gem_shmem_vm_close,
+>  };
 
