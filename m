@@ -2,77 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CA1EBC7E67
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 10:04:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37055BC82BF
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 11:06:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDF5F10E973;
-	Thu,  9 Oct 2025 08:04:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 901B810E986;
+	Thu,  9 Oct 2025 09:06:06 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NDsvWvDS";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5632810E973;
- Thu,  9 Oct 2025 08:04:38 +0000 (UTC)
-Received: from localhost (mailhub4.si.c-s.fr [172.26.127.67])
- by localhost (Postfix) with ESMTP id 4cj2Td0Mj6z9sSL;
- Thu,  9 Oct 2025 10:04:37 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from pegase2.c-s.fr ([172.26.127.65])
- by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id qQ36Dhni13kk; Thu,  9 Oct 2025 10:04:36 +0200 (CEST)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
- by pegase2.c-s.fr (Postfix) with ESMTP id 4cj2Tc5kJ8z9sSC;
- Thu,  9 Oct 2025 10:04:36 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
- by messagerie.si.c-s.fr (Postfix) with ESMTP id A8FDF8B770;
- Thu,  9 Oct 2025 10:04:36 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
- by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
- with ESMTP id CnXkw3FAfnqR; Thu,  9 Oct 2025 10:04:36 +0200 (CEST)
-Received: from [192.168.235.99] (unknown [192.168.235.99])
- by messagerie.si.c-s.fr (Postfix) with ESMTP id AE04F8B76D;
- Thu,  9 Oct 2025 10:04:34 +0200 (CEST)
-Message-ID: <faf62f20-8844-42a0-a7a7-846d8ead0622@csgroup.eu>
-Date: Thu, 9 Oct 2025 10:04:34 +0200
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com
+ [209.85.216.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EF2410E563
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Oct 2025 06:29:44 +0000 (UTC)
+Received: by mail-pj1-f49.google.com with SMTP id
+ 98e67ed59e1d1-3307e8979f2so1207315a91.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 06 Oct 2025 23:29:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1759818584; x=1760423384; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=aKkMnGRmG/HCXRR/J+wbpneMSFSl98hzVTOk4wOIvPo=;
+ b=NDsvWvDS/OEmehKZipK3u2lsX7Q/LBDUkzSdLkvuU/BYr86A6l7Mp6tGPNA/9kVilP
+ Htk1sOjWSgBJNAxC766gom8gBNumNAiHJ0qPKlxwnvtwjY0amXcuTa/h8Zt8yFYAZqdG
+ 3E3Fx7xyIL7WooJwUvSWz3CoMXaEpw7Fw0O0yIzwuwnzt892TF0d/pW7eXmyAWOTVRdl
+ 7aDq+4llQ6fdTIKfj6MLThYAYs3+a5OOQ8Y+9hKMIXl+Q9w78ZUtMHYvnZ3s/L7GwNpy
+ +tJY9GH1QpspXAA4GlRvTpbk8O0Yb85eK5PhMRP78aTuepddiX7q14ZVrKmyQPMlt9vc
+ AJSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1759818584; x=1760423384;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=aKkMnGRmG/HCXRR/J+wbpneMSFSl98hzVTOk4wOIvPo=;
+ b=bA5WCoqNkoVNTKV4eygXXqGdSjBUDwPRjzSYVaf2KeUSPpTHFodEFqKHB//sfxcNnC
+ oyoATiVzbDKMsSHyad5gPrzLcxoP7VS7E6uN69xibI4H7L68Qpxdhy9P0pK6Cv+IUa4Y
+ DheSgpF7wGs4lNvc0uCuQ6K7p2ctTANZlWK8C5UdKGWA991ccCK6R+TEm8xe06LNQe+b
+ JrWToedaOfOiXFBzdrIytaK000plI8TJuyZ958JZCJiLKGJFOs5b9cfpF+Z2I2q7BClX
+ AXLp/LL3BEBjUWsEQDJxYlss2Ds6QWpc8604AXwr+/ciUjbqWWV16iGdeyS7BKrwEKdX
+ E6hg==
+X-Gm-Message-State: AOJu0YzCdRM73OrvHJZ4OR+CvGXGvKwgwdmyWazKMa9P3BnxAHrq3mud
+ yJZiudPo3bWIO858Kg/DWo5CQ7IiY3W+FdLC+bftmXcXzt/qVVbMa1pGgQpcQRFZpzVfva0IqFz
+ 8MbTF+iBNCN3v0gsVEPgdK7YjtKvvxe4=
+X-Gm-Gg: ASbGncvgIvalbG8fkkyougl4Ld14Jury125KUesl+SweClQqRXR2MAgpWY9huTh9zfg
+ ZKa8Pz4Pa7QhNRLEBE++6PLIJwa8SvcxDw5C29z6dxVOn/VnBHQ/zoNB/ueOLn9EKgvZKw61Q9q
+ xirVFWuZFH65pCm0zJFHQeMNbakkGkSkjeolojstn9sTjxtZlWH9L+1irnD+TPaal5D9KH82yGd
+ HrXmXNeW1OzDM5FFb6iq441dkF5n5vaeA==
+X-Google-Smtp-Source: AGHT+IEW6knPiqMjhqg1CsWXzM0Am7GvQ+mxVelPlkPt1JP7ue4KThWpZkJDaJNhj3RD4YPttWj4FZC7v5OYuOR6TPM=
+X-Received: by 2002:a17:90b:180a:b0:330:3fb7:d874 with SMTP id
+ 98e67ed59e1d1-339c27e2dc9mr10969162a91.8.1759818583824; Mon, 06 Oct 2025
+ 23:29:43 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: (bisected) [PATCH v2 08/37] mm/hugetlb: check for unreasonable
- folio sizes when registering hstate
-To: David Hildenbrand <david@redhat.com>, linux-kernel@vger.kernel.org
-Cc: Zi Yan <ziy@nvidia.com>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- Alexander Potapenko <glider@google.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Brendan Jackman <jackmanb@google.com>, Christoph Lameter <cl@gentwo.org>,
- Dennis Zhou <dennis@kernel.org>, Dmitry Vyukov <dvyukov@google.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- iommu@lists.linux.dev, io-uring@vger.kernel.org,
- Jason Gunthorpe <jgg@nvidia.com>, Jens Axboe <axboe@kernel.dk>,
- Johannes Weiner <hannes@cmpxchg.org>, John Hubbard <jhubbard@nvidia.com>,
- kasan-dev@googlegroups.com, kvm@vger.kernel.org,
- Linus Torvalds <torvalds@linux-foundation.org>, linux-arm-kernel@axis.com,
- linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
- linux-ide@vger.kernel.org, linux-kselftest@vger.kernel.org,
- linux-mips@vger.kernel.org, linux-mmc@vger.kernel.org, linux-mm@kvack.org,
- linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
- linux-scsi@vger.kernel.org, Marco Elver <elver@google.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>, Michal Hocko <mhocko@suse.com>,
- Mike Rapoport <rppt@kernel.org>, Muchun Song <muchun.song@linux.dev>,
- netdev@vger.kernel.org, Oscar Salvador <osalvador@suse.de>,
- Peter Xu <peterx@redhat.com>, Robin Murphy <robin.murphy@arm.com>,
- Suren Baghdasaryan <surenb@google.com>, Tejun Heo <tj@kernel.org>,
- virtualization@lists.linux.dev, Vlastimil Babka <vbabka@suse.cz>,
- wireguard@lists.zx2c4.com, x86@kernel.org,
- "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
-References: <20250901150359.867252-1-david@redhat.com>
- <20250901150359.867252-9-david@redhat.com>
- <3e043453-3f27-48ad-b987-cc39f523060a@csgroup.eu>
- <d3fc12d4-0b59-4b1f-bb5c-13189a01e13d@redhat.com>
-From: Christophe Leroy <christophe.leroy@csgroup.eu>
-Content-Language: fr-FR
-In-Reply-To: <d3fc12d4-0b59-4b1f-bb5c-13189a01e13d@redhat.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <CAGfirffPy5biFVLtSNEW60UCXa6_=-=NrQbU7iLQ8+BXnFQ=1A@mail.gmail.com>
+ <175922381867.30706.10351894191632562572@jlahtine-mobl>
+ <CAGfirfdDe879wFzABVZkTV7grEimpnc0XrrKpj2SX1w_TLtgNg@mail.gmail.com>
+ <aN0X3ck-egLMn_Xy@ashyti-mobl2.lan>
+ <CAGfirffg4JzGkwaKTm9fL9Nyud4kBALvfW3Et33ZF60e8cVO1g@mail.gmail.com>
+In-Reply-To: <CAGfirffg4JzGkwaKTm9fL9Nyud4kBALvfW3Et33ZF60e8cVO1g@mail.gmail.com>
+From: =?UTF-8?B?6rmA6rCV66+8?= <km.kim1503@gmail.com>
+Date: Tue, 7 Oct 2025 15:29:32 +0900
+X-Gm-Features: AS18NWAJwJZBfwvucMwYUat98KEOwu2C85iSdEGMBYwKufVF5K91QzrHXZw2m3s
+Message-ID: <CAGfirfdACPUrW7hxOKXEpaPZ6=Lkwde24CfHov9=75JhXiPApg@mail.gmail.com>
+Subject: Re: BUG: unable to handle kernel NULL pointer dereference in
+ eb_release_vmas
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, rodrigo.vivi@intel.com, 
+ tursulin@ursulin.net, airlied@gmail.com, simona@ffwll.ch, 
+ ville.syrjala@linux.intel.com, nitin.r.gote@intel.com, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ syzkaller@googlegroups.com
+Content-Type: multipart/alternative; boundary="0000000000008ede9b06408bb117"
+X-Mailman-Approved-At: Thu, 09 Oct 2025 09:06:04 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,63 +90,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--0000000000008ede9b06408bb117
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+I noticed that I had sent the related link to only one person, so I=E2=80=
+=99m
+resending it just in case.
+
+https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15062
+<https://l.mailtrack.com/l/a23538b60e872501ef9881ddb3a7e5ffc2cbce55?u=3D123=
+92148>
+
+Best Regards,
+GangMin Kim.
 
 
-Le 09/10/2025 à 09:22, David Hildenbrand a écrit :
-> On 09.10.25 09:14, Christophe Leroy wrote:
->> Hi David,
->>
->> Le 01/09/2025 à 17:03, David Hildenbrand a écrit :
->>> diff --git a/mm/hugetlb.c b/mm/hugetlb.c
->>> index 1e777cc51ad04..d3542e92a712e 100644
->>> --- a/mm/hugetlb.c
->>> +++ b/mm/hugetlb.c
->>> @@ -4657,6 +4657,7 @@ static int __init hugetlb_init(void)
->>>        BUILD_BUG_ON(sizeof_field(struct page, private) * BITS_PER_BYTE <
->>>                __NR_HPAGEFLAGS);
->>> +    BUILD_BUG_ON_INVALID(HUGETLB_PAGE_ORDER > MAX_FOLIO_ORDER);
->>>        if (!hugepages_supported()) {
->>>            if (hugetlb_max_hstate || default_hstate_max_huge_pages)
->>> @@ -4740,6 +4741,7 @@ void __init hugetlb_add_hstate(unsigned int order)
->>>        }
->>>        BUG_ON(hugetlb_max_hstate >= HUGE_MAX_HSTATE);
->>>        BUG_ON(order < order_base_2(__NR_USED_SUBPAGE));
->>> +    WARN_ON(order > MAX_FOLIO_ORDER);
->>>        h = &hstates[hugetlb_max_hstate++];
->>>        __mutex_init(&h->resize_lock, "resize mutex", &h->resize_key);
->>>        h->order = order;
-> 
-> We end up registering hugetlb folios that are bigger than 
-> MAX_FOLIO_ORDER. So we have to figure out how a config can trigger that 
-> (and if we have to support that).
-> 
+2025=EB=85=84 10=EC=9B=94 1=EC=9D=BC (=EC=88=98) =EC=98=A4=ED=9B=84 11:42, =
+=EA=B9=80=EA=B0=95=EB=AF=BC <km.kim1503@gmail.com>=EB=8B=98=EC=9D=B4 =EC=9E=
+=91=EC=84=B1:
 
-MAX_FOLIO_ORDER is defined as:
+> The link is as follows.
+>
+> https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15062
+> <https://l.mailtrack.com/l/7ffb70a27148d4fd131a86469e503e9a70232ef6?u=3D1=
+2392148>
+>
+> Best Regards,
+> GangMin Kim.
+>
+> 2025=EB=85=84 10=EC=9B=94 1=EC=9D=BC (=EC=88=98) =EC=98=A4=ED=9B=84 9:00,=
+ Andi Shyti <andi.shyti@linux.intel.com>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=
+=B1:
+> >
+> > On Wed, Oct 01, 2025 at 12:14:41AM +0900, =EA=B9=80=EA=B0=95=EB=AF=BC w=
+rote:
+> > > Ok, I will do it.
+> >
+> > when you do, can you please paste the link here?
+> >
+> > Thanks,
+> > Andi
+> >
+> > > Best Regards,
+> > > GangMin Kim.
+> > >
+> > > 2025=EB=85=84 9=EC=9B=94 30=EC=9D=BC (=ED=99=94) =EC=98=A4=ED=9B=84 6=
+:17, Joonas Lahtinen
+> > > <joonas.lahtinen@linux.intel.com>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=
+=B1:
+> > > >
+> > > > Hi,
+> > > >
+> > > > Can you please open a bug as per the instructions in:
+> > > >
+> > > >
+> https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html
+> <https://l.mailtrack.com/l/de3b4dc95c086ae49b881e7922499a64745d7a93?u=3D1=
+2392148>
+> > > >
+> > > > Thanks in advance!
+> > > >
+> > > > Regards, Joonas
+>
 
-#ifdef CONFIG_ARCH_HAS_GIGANTIC_PAGE
-#define MAX_FOLIO_ORDER		PUD_ORDER
-#else
-#define MAX_FOLIO_ORDER		MAX_PAGE_ORDER
-#endif
+--0000000000008ede9b06408bb117
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-MAX_PAGE_ORDER is the limit for dynamic creation of hugepages via 
-/sys/kernel/mm/hugepages/ but bigger pages can be created at boottime 
-with kernel boot parameters without CONFIG_ARCH_HAS_GIGANTIC_PAGE:
+<div dir=3D"ltr"><div dir=3D"ltr">I noticed that I had sent the related lin=
+k to only one person, so I=E2=80=99m resending it just in case.<br><br><a h=
+ref=3D"https://l.mailtrack.com/l/a23538b60e872501ef9881ddb3a7e5ffc2cbce55?u=
+=3D12392148">https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15062<=
+/a><br><br>Best Regards,<br>GangMin Kim.</div><br><br><img width=3D"0" heig=
+ht=3D"0" class=3D"mailtrack-img" alt=3D"" style=3D"display:flex" src=3D"htt=
+ps://mailtrack.io/trace/mail/0ff16b36172e3d8a1b6f03f56160274b1ff3dff4.png?u=
+=3D12392148"><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"l=
+tr" class=3D"gmail_attr">2025=EB=85=84 10=EC=9B=94 1=EC=9D=BC (=EC=88=98) =
+=EC=98=A4=ED=9B=84 11:42, =EA=B9=80=EA=B0=95=EB=AF=BC &lt;<a href=3D"mailto=
+:km.kim1503@gmail.com">km.kim1503@gmail.com</a>&gt;=EB=8B=98=EC=9D=B4 =EC=
+=9E=91=EC=84=B1:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
+:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
+>The link is as follows.<br>
+<br>
+<a href=3D"https://l.mailtrack.com/l/7ffb70a27148d4fd131a86469e503e9a70232e=
+f6?u=3D12392148" rel=3D"noreferrer" target=3D"_blank">https://gitlab.freede=
+sktop.org/drm/i915/kernel/-/issues/15062</a><br>
+<br>
+Best Regards,<br>
+GangMin Kim.<br>
+<br>
+2025=EB=85=84 10=EC=9B=94 1=EC=9D=BC (=EC=88=98) =EC=98=A4=ED=9B=84 9:00, A=
+ndi Shyti &lt;<a href=3D"mailto:andi.shyti@linux.intel.com" target=3D"_blan=
+k">andi.shyti@linux.intel.com</a>&gt;=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:=
+<br>
+&gt;<br>
+&gt; On Wed, Oct 01, 2025 at 12:14:41AM +0900, =EA=B9=80=EA=B0=95=EB=AF=BC =
+wrote:<br>
+&gt; &gt; Ok, I will do it.<br>
+&gt;<br>
+&gt; when you do, can you please paste the link here?<br>
+&gt;<br>
+&gt; Thanks,<br>
+&gt; Andi<br>
+&gt;<br>
+&gt; &gt; Best Regards,<br>
+&gt; &gt; GangMin Kim.<br>
+&gt; &gt;<br>
+&gt; &gt; 2025=EB=85=84 9=EC=9B=94 30=EC=9D=BC (=ED=99=94) =EC=98=A4=ED=9B=
+=84 6:17, Joonas Lahtinen<br>
+&gt; &gt; &lt;<a href=3D"mailto:joonas.lahtinen@linux.intel.com" target=3D"=
+_blank">joonas.lahtinen@linux.intel.com</a>&gt;=EB=8B=98=EC=9D=B4 =EC=9E=91=
+=EC=84=B1:<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; Hi,<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; Can you please open a bug as per the instructions in:<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; <a href=3D"https://l.mailtrack.com/l/de3b4dc95c086ae49b881e7=
+922499a64745d7a93?u=3D12392148" rel=3D"noreferrer" target=3D"_blank">https:=
+//drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html</a><br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; Thanks in advance!<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; Regards, Joonas<br>
+</blockquote></div></div>
 
-   hugepagesz=64m hugepages=1 hugepagesz=256m hugepages=1
-
-Gives:
-
-HugeTLB: registered 1.00 GiB page size, pre-allocated 0 pages
-HugeTLB: 0 KiB vmemmap can be freed for a 1.00 GiB page
-HugeTLB: registered 64.0 MiB page size, pre-allocated 1 pages
-HugeTLB: 0 KiB vmemmap can be freed for a 64.0 MiB page
-HugeTLB: registered 256 MiB page size, pre-allocated 1 pages
-HugeTLB: 0 KiB vmemmap can be freed for a 256 MiB page
-HugeTLB: registered 4.00 MiB page size, pre-allocated 0 pages
-HugeTLB: 0 KiB vmemmap can be freed for a 4.00 MiB page
-HugeTLB: registered 16.0 MiB page size, pre-allocated 0 pages
-HugeTLB: 0 KiB vmemmap can be freed for a 16.0 MiB page
-
-
-Christophe
+--0000000000008ede9b06408bb117--
