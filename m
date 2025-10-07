@@ -2,59 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3328BC2C8B
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Oct 2025 23:43:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A920BBC2F5A
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Oct 2025 01:35:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62A1110E0D9;
-	Tue,  7 Oct 2025 21:43:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39FAA10E1A6;
+	Tue,  7 Oct 2025 23:35:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CQ64gv9v";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SYmdwjox";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42F3710E0D9;
- Tue,  7 Oct 2025 21:43:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B04910E1A6
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Oct 2025 23:35:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759873436; x=1791409436;
+ t=1759880148; x=1791416148;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=/hA9jRKroVvNTtEWrGGZJy9T+3IZCMTHk9r1tFl8/7k=;
- b=CQ64gv9vUxMSpb1ihBWPQ2gNzRfGjvQmttDciVFxY6OUpnBzRLaKXZv2
- n7uc0rO8X7Q7pasFggh3GdkSO1LuK0Od3cL6ufn9CHZE3GijC9U+BiK9D
- yNgVn+5Hg5/yWXPAwx4ioGpJj2fp0wI4DNn7BVo00LBjX1U2f00OBpjAy
- KuVNVm4bATRgV6n5UJvIC7Dcfv3055HPXBwfKoPYJ2JnKdfQCmhPNWABc
- FNZEi4HvZp0fgUAIOnAbHIeX7wMhAT65QW/LUiLfoT9qsWnZqSdwnfcX1
- 57Tu4mr5XSftuliASdMqZQRg0Wu8YOtOHZoCyGssLCCiWVnUGsZYhqsm6 Q==;
-X-CSE-ConnectionGUID: x2r9VRJ7RpyHAOo2ZzDPrA==
-X-CSE-MsgGUID: 3mS1HD75Qqe8UqP05M3jpw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="72325792"
-X-IronPort-AV: E=Sophos;i="6.18,322,1751266800"; d="scan'208";a="72325792"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 14:43:55 -0700
-X-CSE-ConnectionGUID: nM5xL7tWSJSEm7Zhkwd+yg==
-X-CSE-MsgGUID: VyLQLN8EShGRCxqhY3PApA==
+ bh=3QFQFFqfu4QXY/BOv/YKq8kXggKv8sUNtikZbla5lt8=;
+ b=SYmdwjoxS3WQRD/cOr9iwkjqleR5v+sI/xgb1tFUla4VP7A007TsWQee
+ 4kEvyjyF7o/0ajC+TB7YCstU6eAE5yN2rtqN57/CTVqu21WsYtEMtKuEo
+ +VtXEGB2xF0KK7RozowtYun4T7fMbI7anvVzTlqerzmc13p9WWK03pOwj
+ Kw833DYsmkBi61dVjJxlygtPJAqUJiXeS8EsXjMo0eebNZ7pVKyz/uwDV
+ B1m8Zq7YTCcimFyFNCY7Cci/jcXIgzWJ04EszXbNIspLEWs49xGR9tD+M
+ KilwVPkDjEUXEK4U2qVCkpTVe/WkDEj9eYvgOwAfR1dMOC4N2kfUpoAsJ w==;
+X-CSE-ConnectionGUID: S+QKeN+FS7Ggxzjz3DHpQA==
+X-CSE-MsgGUID: qhzPYV7zRd+G4+irQSYqBg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="79718500"
+X-IronPort-AV: E=Sophos;i="6.18,322,1751266800"; d="scan'208";a="79718500"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2025 16:35:48 -0700
+X-CSE-ConnectionGUID: Epr/eNh+Q32W7NzD4xPTIg==
+X-CSE-MsgGUID: gGaz0CFqRSKTwN3TZhG0LQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,322,1751266800"; d="scan'208";a="184312506"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO
- vgovind2-mobl3.intel.com) ([10.245.246.13])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 14:43:53 -0700
-From: Vinod Govindapillai <vinod.govindapillai@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com, lucas.demarchi@intel.com,
- kunal1.joshi@intel.com, jani.saarinen@intel.com, jani.nikula@intel.com,
- ville.syrjala@linux.intel.com
-Subject: [PATCH v3] drm/i915/fbc: update the impacted platforms in
- wa_22014263786
-Date: Wed,  8 Oct 2025 00:43:17 +0300
-Message-ID: <20251007214317.875781-1-vinod.govindapillai@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,322,1751266800"; d="scan'208";a="179883188"
+Received: from unerlige-desk1.jf.intel.com ([10.88.27.165])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2025 16:35:48 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: intel-gfx@lists.freedesktop.org, lucas.demarchi@intel.com,
+ riana.tauro@intel.com, andi.shyti@kernel.org
+Cc: matthew.brost@intel.com
+Subject: [PATCH] drm/i915: Fix conversion between clock ticks and nanoseconds
+Date: Tue,  7 Oct 2025 16:35:44 -0700
+Message-ID: <20251007233543.635130-2-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,68 +67,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-wa_22014263786 is not applicable to the BMG and hence exclude it
-from the wa.
+When tick values are large, the multiplication by NSEC_PER_SEC is larger
+than 64 bits and results in bad conversions.
 
-v2: Limit this wa to display verion 11 to 14, drop DG2 from the
-    exclusion list, use intel_display_wa (Lucas)
+The issue is seen in PMU busyness counters that look like they have
+wrapped around due to bad conversion. i915 PMU implementation returns
+monotonically increasing counters. If a count is lesser than previous
+one, it will only return the larger value until the smaller value
+catches up. The user will see this as zero delta between two
+measurements even though the engines are busy.
 
-v3: simplify the wa handling loop (Jani)
-    Description of wa moved to place where wa is applied (Ville)
+Fix it by using a scaling factor to do the conversion. Add the same fix
+for reverse conversion as well.
 
-Bspec: 74212, 66624
-Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14955
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_wa.c | 2 ++
- drivers/gpu/drm/i915/display/intel_display_wa.h | 1 +
- drivers/gpu/drm/i915/display/intel_fbc.c        | 9 ++++++---
- 3 files changed, 9 insertions(+), 3 deletions(-)
+v2:
+- Fix divide by zero for Gen11 (Andi)
+- Update commit message
+---
+ .../gpu/drm/i915/gt/intel_gt_clock_utils.c    | 19 ++++++++++++++-----
+ drivers/gpu/drm/i915/gt/intel_gt_types.h      |  2 ++
+ 2 files changed, 16 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
-index 31cd2c9cd488..c528aaa679ca 100644
---- a/drivers/gpu/drm/i915/display/intel_display_wa.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-@@ -67,6 +67,8 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
- 		return intel_display_needs_wa_16025573575(display);
- 	case INTEL_DISPLAY_WA_14011503117:
- 		return DISPLAY_VER(display) == 13;
-+	case INTEL_DISPLAY_WA_22014263786:
-+		return IS_DISPLAY_VERx100(display, 1100, 1400);
- 	default:
- 		drm_WARN(display->drm, 1, "Missing Wa number: %s\n", name);
- 		break;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
-index abc1df83f066..3644e8e2b724 100644
---- a/drivers/gpu/drm/i915/display/intel_display_wa.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-@@ -25,6 +25,7 @@ enum intel_display_wa {
- 	INTEL_DISPLAY_WA_16023588340,
- 	INTEL_DISPLAY_WA_16025573575,
- 	INTEL_DISPLAY_WA_14011503117,
-+	INTEL_DISPLAY_WA_22014263786,
- };
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c b/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c
+index 88b147fa5cb1..41a0e8622b33 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c
+@@ -3,6 +3,8 @@
+  * Copyright © 2020 Intel Corporation
+  */
  
- bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa, const char *name);
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 4edb4342833e..24473e6b10de 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -928,9 +928,12 @@ static void intel_fbc_program_workarounds(struct intel_fbc *fbc)
- 	if (IS_DISPLAY_VER(display, 11, 12))
- 		intel_de_rmw(display, ILK_DPFC_CHICKEN(fbc->id),
- 			     0, DPFC_CHICKEN_COMP_DUMMY_PIXEL);
--
--	/* Wa_22014263786:icl,jsl,tgl,dg1,rkl,adls,adlp,mtl */
--	if (DISPLAY_VER(display) >= 11 && !display->platform.dg2)
-+	/*
-+	 * Wa_22014263786: icl,jsl,tgl,dg1,rkl,adls,adlp,mtl
-+	 * Fixes: Screen flicker with FBC and Package C state enabled
-+	 * Workaround: Forced SLB invalidation before start of new frame.
-+	 */
-+	if (intel_display_wa(display, 22014263786))
- 		intel_de_rmw(display, ILK_DPFC_CHICKEN(fbc->id),
- 			     0, DPFC_CHICKEN_FORCE_SLB_INVALIDATION);
++#include <linux/gcd.h>
++
+ #include "i915_drv.h"
+ #include "i915_reg.h"
+ #include "intel_gt.h"
+@@ -171,7 +173,12 @@ static u32 read_clock_frequency(struct intel_uncore *uncore)
  
+ void intel_gt_init_clock_frequency(struct intel_gt *gt)
+ {
++	unsigned long clock_period_scale;
++
+ 	gt->clock_frequency = read_clock_frequency(gt->uncore);
++	clock_period_scale = gcd(NSEC_PER_SEC, gt->clock_frequency);
++	gt->clock_nsec_scaled = NSEC_PER_SEC / clock_period_scale;
++	gt->clock_freq_scaled = gt->clock_frequency / clock_period_scale;
+ 
+ 	/* Icelake appears to use another fixed frequency for CTX_TIMESTAMP */
+ 	if (GRAPHICS_VER(gt->i915) == 11)
+@@ -180,11 +187,11 @@ void intel_gt_init_clock_frequency(struct intel_gt *gt)
+ 		gt->clock_period_ns = intel_gt_clock_interval_to_ns(gt, 1);
+ 
+ 	GT_TRACE(gt,
+-		 "Using clock frequency: %dkHz, period: %dns, wrap: %lldms\n",
++		 "Using clock frequency: %dkHz, period: %dns, wrap: %lldms, scale %lu\n",
+ 		 gt->clock_frequency / 1000,
+ 		 gt->clock_period_ns,
+-		 div_u64(mul_u32_u32(gt->clock_period_ns, S32_MAX),
+-			 USEC_PER_SEC));
++		 div_u64(mul_u32_u32(gt->clock_period_ns, S32_MAX), USEC_PER_SEC),
++		 clock_period_scale);
+ }
+ 
+ #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM)
+@@ -205,7 +212,8 @@ static u64 div_u64_roundup(u64 nom, u32 den)
+ 
+ u64 intel_gt_clock_interval_to_ns(const struct intel_gt *gt, u64 count)
+ {
+-	return div_u64_roundup(count * NSEC_PER_SEC, gt->clock_frequency);
++	return div_u64_roundup(count * gt->clock_nsec_scaled,
++			       gt->clock_freq_scaled);
+ }
+ 
+ u64 intel_gt_pm_interval_to_ns(const struct intel_gt *gt, u64 count)
+@@ -215,7 +223,8 @@ u64 intel_gt_pm_interval_to_ns(const struct intel_gt *gt, u64 count)
+ 
+ u64 intel_gt_ns_to_clock_interval(const struct intel_gt *gt, u64 ns)
+ {
+-	return div_u64_roundup(gt->clock_frequency * ns, NSEC_PER_SEC);
++	return div_u64_roundup(gt->clock_freq_scaled * ns,
++			       gt->clock_nsec_scaled);
+ }
+ 
+ u64 intel_gt_ns_to_pm_interval(const struct intel_gt *gt, u64 ns)
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+index bcee084b1f27..a19c568fcdc0 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+@@ -166,6 +166,8 @@ struct intel_gt {
+ 
+ 	u32 clock_frequency;
+ 	u32 clock_period_ns;
++	u32 clock_freq_scaled;
++	u32 clock_nsec_scaled;
+ 
+ 	struct intel_llc llc;
+ 	struct intel_rc6 rc6;
 -- 
 2.43.0
 
