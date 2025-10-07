@@ -2,59 +2,111 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BC4EBC2A42
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Oct 2025 22:25:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3B97BC2BBC
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Oct 2025 23:23:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E87A10E383;
-	Tue,  7 Oct 2025 20:25:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDF5B10E009;
+	Tue,  7 Oct 2025 21:23:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VSNnoWXE";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.cz header.i=@suse.cz header.b="tc1cRKtx";
+	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="aPxvBVdt";
+	dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b="tc1cRKtx";
+	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="aPxvBVdt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6516410E383
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Oct 2025 20:25:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759868721; x=1791404721;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Qb4Fe30kKDtu+MM/KpYlWQbjCZkd9/TKOPSsTI/HDsk=;
- b=VSNnoWXEhZHWWPx+aUM2pDbmI0oQkE4CbrTM4ad04Sn7qDINwCntOAR4
- qkolnGeNiklCN6LIs41Cc6qwm12LOkGZk/dczO3Y1YiRGOzxWme8V5Y4e
- 6XFXil5uEFVizFJGXHr2KEstME8+hYMDUOyYCsX45MvMGmSXURA5wzN3q
- CwiNNP2gzM4+m2uPcHTxAbo84syevmEPI53IiCImJua2Vl+H00tkCjcTJ
- AAE/hs4v6vHmsUDokp17Gi0OyHLB8QihzfxlXsuDO3IkmObPn+T0v/hNu
- U3CoCGQiuGXH+fl6V1FmDxjQsP2fZDHQ0cF7gJX3vEV+hwTX4J67Iamna g==;
-X-CSE-ConnectionGUID: 0oJwwebaQV+o95F9ugXM1Q==
-X-CSE-MsgGUID: z+b21OKmRoe4duYbfoYhUA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="61265631"
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="61265631"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 13:25:20 -0700
-X-CSE-ConnectionGUID: iSGznkGETd2se2vn2/HMQg==
-X-CSE-MsgGUID: jJd7shdQQN6Xgl2+R5xY+g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="180291363"
-Received: from osgcshtiger.sh.intel.com ([10.239.70.161])
- by orviesa008.jf.intel.com with ESMTP; 07 Oct 2025 13:25:19 -0700
-From: Jia Yao <jia.yao@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Jia Yao <jia.yao@intel.com>, Alex Zuo <alex.zuo@intel.com>,
- Shuicheng Lin <shuicheng.lin@intel.com>,
- Askar Safin <safinaskar@gmail.com>, Pingfan Liu <piliu@redhat.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>
-Subject: [PATCH v2] drm/i915: Setting/clearing the memory access bit when
- en/disabling i915
-Date: Tue,  7 Oct 2025 20:25:14 +0000
-Message-Id: <20251007202514.1661491-1-jia.yao@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251007180634.912006-1-jia.yao@intel.com>
-References: <20251007180634.912006-1-jia.yao@intel.com>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B706610E009
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Oct 2025 21:23:30 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 33EE8336F1;
+ Tue,  7 Oct 2025 21:23:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+ t=1759872209;
+ h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
+ cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=fSW6s0xFTBjNpOrglwzoHKOoMpDQchDWIDZB/oPFhRw=;
+ b=tc1cRKtx6tL8LoF7fN/wSJukiw0lfxeERLcCDxrpswbM6n5eqZgeEGbx0TF0kaPvqc8aIc
+ XwVUWX7E8vw0fqjUOnJq27K3lBZDRhnXqQgsLzf5WSIpSIb8ZtF+cKL+GN192kjgEWNuJm
+ Dq5Do2khlOOMj0jAAgCc6a1Jspg2b9M=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+ s=susede2_ed25519; t=1759872209;
+ h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
+ cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=fSW6s0xFTBjNpOrglwzoHKOoMpDQchDWIDZB/oPFhRw=;
+ b=aPxvBVdtmPLMCzW5SW71b19JlqaStxWuHxcePDu/iU9wmbpeYwGvBrEJi2humL/HQz5OjL
+ PD1MpQPrpR0AetAg==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+ t=1759872209;
+ h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
+ cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=fSW6s0xFTBjNpOrglwzoHKOoMpDQchDWIDZB/oPFhRw=;
+ b=tc1cRKtx6tL8LoF7fN/wSJukiw0lfxeERLcCDxrpswbM6n5eqZgeEGbx0TF0kaPvqc8aIc
+ XwVUWX7E8vw0fqjUOnJq27K3lBZDRhnXqQgsLzf5WSIpSIb8ZtF+cKL+GN192kjgEWNuJm
+ Dq5Do2khlOOMj0jAAgCc6a1Jspg2b9M=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+ s=susede2_ed25519; t=1759872209;
+ h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
+ cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=fSW6s0xFTBjNpOrglwzoHKOoMpDQchDWIDZB/oPFhRw=;
+ b=aPxvBVdtmPLMCzW5SW71b19JlqaStxWuHxcePDu/iU9wmbpeYwGvBrEJi2humL/HQz5OjL
+ PD1MpQPrpR0AetAg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id AB7DB13693;
+ Tue,  7 Oct 2025 21:23:27 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id wdEfHc+E5WhSNQAAD6G6ig
+ (envelope-from <pvorel@suse.cz>); Tue, 07 Oct 2025 21:23:27 +0000
+Date: Tue, 7 Oct 2025 23:23:25 +0200
+From: Petr Vorel <pvorel@suse.cz>
+To: Andi Shyti <andi.shyti@kernel.org>
+Cc: Alexandr Sapozhnkiov <alsp705@gmail.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ lvc-project@linuxtesting.org
+Subject: Re: [PATCH 5.10] gpu/i915: fix error return in mmap_offset_attach()
+Message-ID: <20251007212325.GA160168@pevik>
+References: <20251002084828.11-1-alsp705@gmail.com>
+ <ris5iw6gdn7squdjpo5kapdyd7jqwbzy3kbpnzspp7jhpm4tlj@osq47p45ydcv>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ris5iw6gdn7squdjpo5kapdyd7jqwbzy3kbpnzspp7jhpm4tlj@osq47p45ydcv>
+X-Spam-Level: 
+X-Spamd-Result: default: False [-3.50 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000]; MID_RHS_NOT_FQDN(0.50)[];
+ HAS_REPLYTO(0.30)[pvorel@suse.cz];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ DKIM_SIGNED(0.00)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
+ FUZZY_RATELIMITED(0.00)[rspamd.com];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com]; MIME_TRACE(0.00)[0:+];
+ ARC_NA(0.00)[]; TO_DN_SOME(0.00)[];
+ RCPT_COUNT_TWELVE(0.00)[13]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ FREEMAIL_CC(0.00)[gmail.com,linux.intel.com,intel.com,ursulin.net,ffwll.ch,lists.freedesktop.org,vger.kernel.org,linuxtesting.org];
+ MISSING_XM_UA(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
+ FROM_HAS_DN(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo];
+ REPLYTO_EQ_FROM(0.00)[]
+X-Spam-Flag: NO
+X-Spam-Score: -3.50
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,111 +119,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: Petr Vorel <pvorel@suse.cz>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Make i915's PCI device management more robust by always setting/clearing
-the memory access bit when enabling/disabling the device, and by
-consolidating this logic into helper functions.
+> Hi,
 
-It fixes kexec reboot issue by disabling memory access before shutting
-down the device, which can block unsafe and unwanted access from DMA.
+> On Thu, Oct 02, 2025 at 11:48:26AM +0300, Alexandr Sapozhnkiov wrote:
+> > From: Alexandr Sapozhnikov <alsp705@gmail.com>
 
-v2:
-  - follow brace style
+> > In the drm_vma_node_allow function, kmalloc may 
+> > return NULL, in which case the file element will not be 
+> > added to the mmo->vma_node list. It would be good to 
+> > not ignore this event, but at least log an error message.
 
-Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14598
-Cc: Alex Zuo <alex.zuo@intel.com>
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>
-Cc: Askar Safin <safinaskar@gmail.com>
-Cc: Pingfan Liu <piliu@redhat.com>
-Suggested-by: Chris Wilson <chris.p.wilson@linux.intel.com>
-Signed-off-by: Jia Yao <jia.yao@intel.com>
----
- drivers/gpu/drm/i915/i915_driver.c | 35 +++++++++++++++++++++++++++---
- 1 file changed, 32 insertions(+), 3 deletions(-)
+> > Found by Linux Verification Center (linuxtesting.org) with SVACE.
 
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index b46cb54ef5dc..766f85726b67 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -118,6 +118,33 @@
- 
- static const struct drm_driver i915_drm_driver;
- 
-+static int i915_enable_device(struct pci_dev *pdev)
-+{
-+	u32 cmd;
-+	int ret;
-+
-+	ret = pci_enable_device(pdev);
-+	if (ret)
-+		return ret;
-+
-+	pci_read_config_dword(pdev, PCI_COMMAND, &cmd);
-+	if (!(cmd & PCI_COMMAND_MEMORY))
-+		pci_write_config_dword(pdev, PCI_COMMAND, cmd | PCI_COMMAND_MEMORY);
-+
-+	return 0;
-+}
-+
-+static void i915_disable_device(struct pci_dev *pdev)
-+{
-+	u32 cmd;
-+
-+	pci_read_config_dword(pdev, PCI_COMMAND, &cmd);
-+	if (cmd & PCI_COMMAND_MEMORY)
-+		pci_write_config_dword(pdev, PCI_COMMAND, cmd & ~PCI_COMMAND_MEMORY);
-+
-+	pci_disable_device(pdev);
-+}
-+
- static int i915_workqueues_init(struct drm_i915_private *dev_priv)
- {
- 	/*
-@@ -788,7 +815,7 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	struct intel_display *display;
- 	int ret;
- 
--	ret = pci_enable_device(pdev);
-+	ret = i915_enable_device(pdev);
- 	if (ret) {
- 		pr_err("Failed to enable graphics device: %pe\n", ERR_PTR(ret));
- 		return ret;
-@@ -796,7 +823,7 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 
- 	i915 = i915_driver_create(pdev, ent);
- 	if (IS_ERR(i915)) {
--		pci_disable_device(pdev);
-+		i915_disable_device(pdev);
- 		return PTR_ERR(i915);
- 	}
- 
-@@ -885,7 +912,7 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	enable_rpm_wakeref_asserts(&i915->runtime_pm);
- 	i915_driver_late_release(i915);
- out_pci_disable:
--	pci_disable_device(pdev);
-+	i915_disable_device(pdev);
- 	i915_probe_error(i915, "Device initialization failed (%d)\n", ret);
- 	return ret;
- }
-@@ -1003,6 +1030,7 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
- 
- 	intel_dmc_suspend(display);
- 
-+	intel_pxp_fini(i915);
- 	i915_gem_suspend(i915);
- 
- 	/*
-@@ -1020,6 +1048,7 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
- 	enable_rpm_wakeref_asserts(&i915->runtime_pm);
- 
- 	intel_runtime_pm_driver_last_release(&i915->runtime_pm);
-+	i915_disable_device(to_pci_dev(i915->drm.dev));
- }
- 
- static bool suspend_to_idle(struct drm_i915_private *dev_priv)
--- 
-2.34.1
+> > Signed-off-by: Alexandr Sapozhnikov <alsp705@gmail.com>
+> > ---
+> >  drivers/gpu/drm/i915/gem/i915_gem_mman.c | 7 +++++--
+> >  1 file changed, 5 insertions(+), 2 deletions(-)
+
+> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> > index a2195e28b625..adaef8f09d59 100644
+> > --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> > @@ -706,8 +706,11 @@ mmap_offset_attach(struct drm_i915_gem_object *obj,
+> >  	mmo = insert_mmo(obj, mmo);
+> >  	GEM_BUG_ON(lookup_mmo(obj, mmap_type) != mmo);
+> >  out:
+> > -	if (file)
+> > -		drm_vma_node_allow_once(&mmo->vma_node, file);
+> > +	if (file) {
+> > +		err = drm_vma_node_allow_once(&mmo->vma_node, file);
+> > +		if (err)
+> > +			goto err;
+> > +	}
+
+> NACK here! You have received several reviews on this patch and
+> didn't react to them. Please, read carefully the reviews you
+> received and send a second version of the patch.
+
+> Please do use versioning properly in your title and add a
+> changelog.
+
+> Before sending patches, please read the documentation[*].
+
+> Andi
+
+> [*] https://www.kernel.org/doc/html/v4.17/process/submitting-patches.html
+
+Maybe read the latest version.
+https://www.kernel.org/doc/html/latest/process/submitting-patches.html
+
+Kind regards,
+Petr
+
+> >  	return mmo;
+
+> >  err:
+> > -- 
+> > 2.43.0
 
