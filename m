@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5DA6BC6486
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Oct 2025 20:26:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 198BEBC6489
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Oct 2025 20:26:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4527C10E89E;
-	Wed,  8 Oct 2025 18:26:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA1F610E88B;
+	Wed,  8 Oct 2025 18:26:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FgduzfEH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F0Xdx6M0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36F5D10E88B;
- Wed,  8 Oct 2025 18:26:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0898D10E89F;
+ Wed,  8 Oct 2025 18:26:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759947977; x=1791483977;
+ t=1759947981; x=1791483981;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+fqBfrO8cwU9+cxarFpb+koVYQ8ee3tTuSQhm0QgVNw=;
- b=FgduzfEHoi3+/W2SMZxiRAL6JWEVBh84e67VErnCldSxw3k99HGgSmKt
- WZHdtBzTa2iZUFtgxY3vafy1rOOl9Y1kU5aloeXWYjfZHHQWVii1rCHCk
- PoOqKSjdqMiqk6ObTYHQK3dNG8jxoYqr9RpJU0DaWK7AVLjDAb0y26hXi
- G2n+q0Z05PCWfgtEqRilHba+i6kR/lWUbhy4ClKGCb9D5rfBG0HrNU/xY
- 4M5y1jdI8AtQigC4zkn/dm9NxLyGramimGSFBhwW2BrAlZuM4tIOw1OF3
- CHwUXzfAnR9ff6MBQEmUQ1w7OeriXXHt/T2H/8P2FMNdUVDfq9mcJi4Xo A==;
-X-CSE-ConnectionGUID: oFVL7JaZRqOaqouyYsBZhA==
-X-CSE-MsgGUID: uI7fOj2gRCikJ2MuRuKxZw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="62245572"
-X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="62245572"
+ bh=cmn2t+sdBgin6ZUWZaP3IMLjXLXgH7yyK+qIWS41XPU=;
+ b=F0Xdx6M0UCXX70JuZEzvPokFoASmUxwTZSk4gJ/pkN35Cllfa7I5oxnl
+ L3cEuLU2zC78lDrYNKT84r2NYB9NJA4RQdkDy3V8LVvsOF7Y4NdKR9h4r
+ O9/AnmSa83VKL2Wuh6UQOxufWNBcRGnzOoMbg3QFjQnLQqswmwqvs3P+K
+ bKHvTbzioDscsEahEfTqCmx8FO+/jPV37fqliTpuGkXPT5bQfDCMy+8rg
+ qgjsCpmVXXgwfcNlVN1a+zbGWZ7in5G3jEZTMRY9HDgHCPPtmTmGi0lG9
+ xnCiOiGArZH3RBPkQuS8LVUaLFvDaa8Vj+RXcnwfLLI5uY2F82vjI7F2u A==;
+X-CSE-ConnectionGUID: tH8TIFnlQuWmnmRy9HRMwQ==
+X-CSE-MsgGUID: NsCyQJ2IT3mFl/iJs98dsA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="62245579"
+X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="62245579"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 11:26:17 -0700
-X-CSE-ConnectionGUID: BhuXTw2kTeycBNlbJ4FPOA==
-X-CSE-MsgGUID: sPR5ngv5Rai+TQFeiq9/2Q==
+ 08 Oct 2025 11:26:20 -0700
+X-CSE-ConnectionGUID: 0f2yKTMXSniQqxmOHMkl6A==
+X-CSE-MsgGUID: eVGrLUnPQnqloeHRFst5ng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="185799879"
+X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="185799884"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.175])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 11:26:16 -0700
+ 08 Oct 2025 11:26:19 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [RFC][PATCH 04/11] drm/i915/dsc: Add prefill helper for DSC
-Date: Wed,  8 Oct 2025 21:25:51 +0300
-Message-ID: <20251008182559.20615-5-ville.syrjala@linux.intel.com>
+Subject: [RFC][PATCH 05/11] drm/i915/scaler: Add scaler prefill helpers
+Date: Wed,  8 Oct 2025 21:25:52 +0300
+Message-ID: <20251008182559.20615-6-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20251008182559.20615-1-ville.syrjala@linux.intel.com>
 References: <20251008182559.20615-1-ville.syrjala@linux.intel.com>
@@ -72,47 +72,235 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Add intel_vdsc_prefill_lines() which tells us how many extra lines
-of latency the DSC adds to the pipe prefill.
+Add helpers to compute the required prefill line count and
+adjustment factors for the scalers.
 
-We shouldn't need a "worst case" vs, "current case" split here
-as the DSC state should only change during full modesets.
+The "1st" variants hand out numbers for the first scaler stage
+in the pipeline (pipe scaler if no plane scalers are enabled,
+or the max from all the plane scaler). The "2nd" variants deal
+with second scaler stage (pipe scaler when plane scaling is also
+enabled, otherwise there is no second stage).
+
+The _worst() variants give out worst case estimates, meant for
+guardband sizing. The other variants are meant for the actual
+vblank/guardband length check vs. prefill+pkgc/sagv latency.
+
+A few other helpers are added for the purpose of the WM0 prefill
+worst case estimates (to be introduced later).
 
 The returned numbers are in .16 binary fixed point.
 
+TODO: pretty rough, should check the actual scaler max scaling
+      factros instead of just assuming 3x everywhere
+
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vdsc.c | 8 ++++++++
- drivers/gpu/drm/i915/display/intel_vdsc.h | 1 +
- 2 files changed, 9 insertions(+)
+ drivers/gpu/drm/i915/display/skl_scaler.c | 174 ++++++++++++++++++++++
+ drivers/gpu/drm/i915/display/skl_scaler.h |  11 ++
+ 2 files changed, 185 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-index 8e799e225af1..bca747e24a7f 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-@@ -1077,3 +1077,11 @@ int intel_vdsc_min_cdclk(const struct intel_crtc_state *crtc_state)
- 
- 	return min_cdclk;
+diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+index c6cccf170ff1..6e90639494ca 100644
+--- a/drivers/gpu/drm/i915/display/skl_scaler.c
++++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+@@ -968,3 +968,177 @@ void adl_scaler_ecc_unmask(const struct intel_crtc_state *crtc_state)
+ 			  1);
+ 	intel_de_write(display, XELPD_DISPLAY_ERR_FATAL_MASK, 0);
  }
 +
-+unsigned int intel_vdsc_prefill_lines(const struct intel_crtc_state *crtc_state)
++static unsigned int skl_scaler_scale(const struct intel_crtc_state *crtc_state, int i)
 +{
-+	if (!crtc_state->dsc.compression_enable)
-+		return 0;
++	const struct intel_crtc_scaler_state *scaler_state =
++		&crtc_state->scaler_state;
 +
-+	return 0x18000; /* 1.5 */
++	drm_dbg_kms(to_intel_display(crtc_state)->drm, "scaler %d %x %x\n",
++		    i, scaler_state->scalers[i].hscale,
++		    scaler_state->scalers[i].vscale);
++
++	return DIV_ROUND_UP_ULL(mul_u32_u32(scaler_state->scalers[i].hscale,
++					    scaler_state->scalers[i].vscale),
++				0x10000);
 +}
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.h b/drivers/gpu/drm/i915/display/intel_vdsc.h
-index 9e2812f99dd7..2139391ff881 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.h
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.h
-@@ -32,5 +32,6 @@ void intel_dsc_dp_pps_write(struct intel_encoder *encoder,
- void intel_vdsc_state_dump(struct drm_printer *p, int indent,
- 			   const struct intel_crtc_state *crtc_state);
- int intel_vdsc_min_cdclk(const struct intel_crtc_state *crtc_state);
-+unsigned int intel_vdsc_prefill_lines(const struct intel_crtc_state *crtc_state);
++
++static unsigned int skl_scaler_downscale(const struct intel_crtc_state *crtc_state, int i)
++{
++	return max(0x10000, skl_scaler_scale(crtc_state, i));
++}
++
++static unsigned int skl_plane_scaler_downscale(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	const struct intel_crtc_scaler_state *scaler_state =
++		&crtc_state->scaler_state;
++	unsigned int scale = 0x10000;
++	int i;
++
++	for (i = 0; i < crtc->num_scalers; i++) {
++		/* ignore pfit */
++		if (i == scaler_state->scaler_id)
++			continue;
++
++		if (!scaler_state->scalers[i].in_use)
++			continue;
++
++		scale = max(scale, skl_scaler_downscale(crtc_state, i));
++	}
++
++	return scale;
++}
++
++static unsigned int skl_pipe_scaler_downscale(const struct intel_crtc_state *crtc_state)
++{
++	const struct intel_crtc_scaler_state *scaler_state =
++		&crtc_state->scaler_state;
++
++	if (!crtc_state->pch_pfit.enabled)
++		return 0x10000;
++
++	return skl_scaler_downscale(crtc_state, scaler_state->scaler_id);
++}
++
++unsigned int skl_scaler_1st_prefill_adjustment(const struct intel_crtc_state *crtc_state)
++{
++	const struct intel_crtc_scaler_state *scaler_state =
++		&crtc_state->scaler_state;
++	int num_scalers = hweight32(scaler_state->scaler_users);
++
++	if (num_scalers < 1)
++		return 0x10000;
++
++	if (num_scalers == 1 && crtc_state->pch_pfit.enabled)
++		return skl_pipe_scaler_downscale(crtc_state);
++	else
++		return skl_plane_scaler_downscale(crtc_state);
++}
++
++unsigned int skl_scaler_2nd_prefill_adjustment(const struct intel_crtc_state *crtc_state)
++{
++	const struct intel_crtc_scaler_state *scaler_state =
++		&crtc_state->scaler_state;
++	int num_scalers = hweight32(scaler_state->scaler_users);
++
++	if (num_scalers < 2)
++		return 0x10000;
++
++	return skl_pipe_scaler_downscale(crtc_state);
++}
++
++unsigned int skl_scaler_1st_prefill_lines(const struct intel_crtc_state *crtc_state)
++{
++	const struct intel_crtc_scaler_state *scaler_state =
++		&crtc_state->scaler_state;
++	int num_scalers = hweight32(scaler_state->scaler_users);
++
++	if (num_scalers > 0)
++		return 4 << 16;
++
++	return 0;
++}
++
++unsigned int skl_scaler_2nd_prefill_lines(const struct intel_crtc_state *crtc_state)
++{
++	const struct intel_crtc_scaler_state *scaler_state =
++		&crtc_state->scaler_state;
++	int num_scalers = hweight32(scaler_state->scaler_users);
++
++	if (num_scalers > 1 && crtc_state->pch_pfit.enabled)
++		return 4 << 16;
++
++	return 0;
++}
++
++static unsigned int _skl_scaler_max_scale(const struct intel_crtc_state *crtc_state,
++					  unsigned int max_scale)
++{
++	struct intel_display *display = to_intel_display(crtc_state);
++
++	/*
++	 * Downscaling requires increasing cdclk, so max scale
++	 * factor is limited to the max_dotclock/dotclock ratio.
++	 */
++	drm_dbg_kms(display->drm, "max %d, dotclock %d\n",
++		    display->cdclk.max_dotclk_freq, crtc_state->hw.pipe_mode.crtc_clock);
++
++	/* FIXME find out the max downscale factors properly */
++	return min(max_scale, DIV_ROUND_UP_ULL((u64)display->cdclk.max_dotclk_freq << 16,
++					       crtc_state->hw.pipe_mode.crtc_clock));
++}
++
++static unsigned int skl_scaler_max_scale(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	unsigned int max_scale;
++
++	if (crtc->num_scalers < 1)
++		return 0x10000;
++
++	/* FIXME find out the max downscale factors properly */
++	max_scale = 9 << 16;
++
++	return _skl_scaler_max_scale(crtc_state, max_scale);
++}
++
++unsigned int skl_scaler_1st_prefill_adjustment_worst(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++
++	if (crtc->num_scalers > 0)
++		return skl_scaler_max_scale(crtc_state);
++	else
++		return 0x10000;
++}
++
++unsigned int skl_scaler_2nd_prefill_adjustment_worst(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++
++	if (crtc->num_scalers > 1)
++		return skl_scaler_max_scale(crtc_state);
++	else
++		return 0x10000;
++}
++
++unsigned int skl_scaler_1st_prefill_lines_worst(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++
++	if (crtc->num_scalers > 0)
++		return 4 << 16;
++	else
++		return 0;
++}
++
++unsigned int skl_scaler_2nd_prefill_lines_worst(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++
++	if (crtc->num_scalers > 1)
++		return 4 << 16;
++	else
++		return 0;
++}
+diff --git a/drivers/gpu/drm/i915/display/skl_scaler.h b/drivers/gpu/drm/i915/display/skl_scaler.h
+index 12a19016c5f6..6fab40d2b4ee 100644
+--- a/drivers/gpu/drm/i915/display/skl_scaler.h
++++ b/drivers/gpu/drm/i915/display/skl_scaler.h
+@@ -45,4 +45,15 @@ skl_scaler_mode_valid(struct intel_display *display,
+ void adl_scaler_ecc_mask(const struct intel_crtc_state *crtc_state);
  
- #endif /* __INTEL_VDSC_H__ */
+ void adl_scaler_ecc_unmask(const struct intel_crtc_state *crtc_state);
++
++unsigned int skl_scaler_1st_prefill_adjustment_worst(const struct intel_crtc_state *crtc_state);
++unsigned int skl_scaler_2nd_prefill_adjustment_worst(const struct intel_crtc_state *crtc_state);
++unsigned int skl_scaler_1st_prefill_lines_worst(const struct intel_crtc_state *crtc_state);
++unsigned int skl_scaler_2nd_prefill_lines_worst(const struct intel_crtc_state *crtc_state);
++
++unsigned int skl_scaler_1st_prefill_adjustment(const struct intel_crtc_state *crtc_state);
++unsigned int skl_scaler_2nd_prefill_adjustment(const struct intel_crtc_state *crtc_state);
++unsigned int skl_scaler_1st_prefill_lines(const struct intel_crtc_state *crtc_state);
++unsigned int skl_scaler_2nd_prefill_lines(const struct intel_crtc_state *crtc_state);
++
+ #endif
 -- 
 2.49.1
 
