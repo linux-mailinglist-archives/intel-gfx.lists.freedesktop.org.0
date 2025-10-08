@@ -2,187 +2,171 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13BB7BC37AE
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Oct 2025 08:34:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81F5DBC37CC
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Oct 2025 08:41:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7198410E75C;
-	Wed,  8 Oct 2025 06:34:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46F2E10E75E;
+	Wed,  8 Oct 2025 06:40:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X0WWvbAx";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XjliAvzt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EE3D10E75C;
- Wed,  8 Oct 2025 06:34:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62BD310E75E;
+ Wed,  8 Oct 2025 06:40:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759905280; x=1791441280;
- h=message-id:date:from:subject:to:cc:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=osEvKTYRd/T55DtLyP8pSIqMpqIjEo046tmPDH1GfWI=;
- b=X0WWvbAx5gjgZ/WjzLLq844XxMfs4KJuxB217MWtRe/JNyge6jt54xlh
- tQrCf54tIF+Fmbkq4cyGBGTe4qCrWSA5zQOkP3mjNwefm4qvdo3IaG8TK
- JwoqQnAbX9Jx1y4n6ZN1cbv5KWRE18dpoH/TctxmJDZJ+g6TNjH4nI6ot
- FcjvXH6WIyH8WPn0Z8SBto93iijXg5y9C/hx53Mfkzto+LYw8AU+LVOlZ
- JOkbQSAk0rRt8Y5KwWK1jpPl7Q2SXKo8BETfw8fwwI8L87/0q4J9bSxNI
- VzWXl2R1k/9C/gYnIct2zfAHHbh6UWJuo8UT2JayqFcC/HIs1AkOPtFFx w==;
-X-CSE-ConnectionGUID: eu+ZkE6HS/aLC2FAK8XqDQ==
-X-CSE-MsgGUID: ZTv8HYT4QlOtaKTLhF5gDQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="62135145"
-X-IronPort-AV: E=Sophos;i="6.18,323,1751266800"; d="scan'208";a="62135145"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 23:34:40 -0700
-X-CSE-ConnectionGUID: Y4bskpXXShagmRJxee1GVA==
-X-CSE-MsgGUID: 0X6Skj4nTvCoTzsAuR+wsw==
+ t=1759905648; x=1791441648;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=Ps0IduZhcjEySitI/Mjnz//XT4G69yxAZAJwbSBf1wQ=;
+ b=XjliAvztM3lXhBlPbp2nGkFZY06lHJlYOmg/m5CvIh/VQQavyODhjrQB
+ hLM9v4G0VDcYLKjnfOhiXuURXbWQorcU5kuutVOmjsgmuXNDaf9CrylOz
+ R/4zhr2PhFi3AyGp2GjGStyE9+5vnOpiFMmmC40YJ3qvXSPdHu0WYaO8e
+ h1rg+jmgDrrBis8rKe5pd6bw9wi9j7ZtKOu+8Xwbx+iaBwoUvKRK+gNyy
+ lQu4x25Mte8tCXswh4QLooXxb0QjSgD5tvPx2748wMh3Z3cp8scw8MZvq
+ ygLy9QlQRNHHnvwDOJDOvKxeQCQr46JMds/mWoUN+6+1Kj/9ZCqYQuE8l g==;
+X-CSE-ConnectionGUID: zH+en0nwQbidGdeJ8yBKMA==
+X-CSE-MsgGUID: fA6qW/hoRLiknM4eg/fEnA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="87559809"
+X-IronPort-AV: E=Sophos;i="6.18,323,1751266800"; d="scan'208";a="87559809"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2025 23:40:47 -0700
+X-CSE-ConnectionGUID: DC+aGBLBQEWqhyulNNhlUA==
+X-CSE-MsgGUID: Z6HYHY6GRkq8cmJd2Lb5wQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,323,1751266800"; d="scan'208";a="179950713"
+X-IronPort-AV: E=Sophos;i="6.18,323,1751266800"; d="scan'208";a="184741113"
 Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 23:34:39 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2025 23:40:47 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
  fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 7 Oct 2025 23:34:38 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.27; Tue, 7 Oct 2025 23:40:47 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Tue, 7 Oct 2025 23:34:38 -0700
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.6) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Tue, 7 Oct 2025 23:40:47 -0700
+Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.6) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 7 Oct 2025 23:34:38 -0700
+ 15.2.2562.27; Tue, 7 Oct 2025 23:40:44 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PPRIfIvmFhiFtVmZozKhAN1DUCvgOHfSZ6cXC+Ls9F9yMRZpKJXlSw6Mnx/pkLuAv9b532LOBPjYlm8eXJ2vOTwoBuZ7IIuJ7g/jVIkV3N0+m2m1qs5jsco1mqATptWdn7iX8pEEOtrBg5yKCFs0kzHUlMBGVziuZISK1wWvMdnhMvBCOAkddx+HzHPG6dbHe24pelRECQi7Fk7N33rCWR6bzu+aR0R4lhBmnHELBOVw9U5VSjE7+uBTTJr3Tug/Eglac0BdjvFBKrn6Vf5IBq7n/Rp+YLKZj3Qi+b3OC0FLBAhy0GfAPvYhISWPO7+5RuGsarvX178Epif8bz+mMA==
+ b=LG5OBADmXBj/oy9SMXfUzZ/Qha5Bve7IdOLHbzPptUmp6XHM3g9NrJ363+R+X/mzAQSw5bcboTlKX/cbaHiiue3DfKNi+7vecNQsw1UuzJPrkRmnf8jtkK2N2sTSti9ZJ2A/GC0kjL6UEzuaMxZ472eMtaMolBewh94he6IXWbuzGTENi/Ds+eviGHesjjrTNSfKYYLAXtdfPxeRxULQ1g67z0pHGayRu6fTQ/ND7hn4W3yJdGqeQZsNFVn5evpVO67p504IGQCkr9iB3wU/rA29/fRzRXYGhofvM55QqDulbsIWYZxYA2ZNM7pQ1WztJgbzf2frkAstf7ooRkOndw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QpHZ8kB+FcUCB8DlG/taP6JSTV+/M93D/XCzy2TgHMc=;
- b=eWFyhoUM24EmU5nj3BTLKNsBa7qSkQ8v4eZ1feA6tUy57aGJwdTCI5ae1RtJDt0aWUm0Mfz7/1EnLQ3pPPBmTNcDyhfO+UReNdc6KEM14AD+sgmz5NFCznP0mRpcYglO0RNdzkHziVEUACoCpfpU2pMuozXtw8nZDZNsUYZuneqK08zW0hisBkwgZ87MlE8AH7Thv1vrgq4HfLjHyDHwa8MTSSRZxP+t99Fu+oS3/7TWAeixV8gkwzLzuqTeV9Lbld50DDLal6a6GM7rIr5g+BuPXK2Uwb4sDXKTRU8mulz/cK/x3JTs6pvpB4IjH9ajO/6HINnHuAfsjt2FUGOabg==
+ bh=lGobivRB2hW60KMMA/Avhr/I8sC2LLTWmTlgidqApjA=;
+ b=h+lUSBHPd7FCsD0ZNbT2wL1BlnlQnNtPes7CusfIjXCz8IRy9pqNZTTI4Z23nRgeKASoeUgst6xZ8zxgeib3riPIqztT1S9vPeEXSNkkGoEPevQKZFJNUJnfnS4uGCbvLcpNFbHSt6TJ1hCn4DT7YlJXS8/bsOF9XsLc9HZzp5qux2obH1esjEtZpkdhVlX6InKxNY5zK2WX3rvDLCpoSc3/cQGImnYZ+2dRmgy48v85Bb2Pze3cE6GHy31Cq9gt881JErWckCs8U3gUZ4AeI3B+bSp9/eWm4gK/sfao2v1ZzGpYoBURXeCWCeKxb2K2XlOF2hSlQvE2oJTeGLAJZg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by SN7PR11MB8042.namprd11.prod.outlook.com (2603:10b6:806:2ed::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9182.20; Wed, 8 Oct
- 2025 06:34:31 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839%7]) with mapi id 15.20.9203.007; Wed, 8 Oct 2025
- 06:34:30 +0000
-Message-ID: <4bf6ed9e-e419-4309-aa2f-070372520763@intel.com>
-Date: Wed, 8 Oct 2025 12:04:22 +0530
-User-Agent: Mozilla Thunderbird
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Subject: Re: [PATCH 11/16] drm/i915/vblank: Add helper to get correct vblank
- length
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
+ by CY5PR11MB6137.namprd11.prod.outlook.com (2603:10b6:930:2b::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.9; Wed, 8 Oct
+ 2025 06:40:38 +0000
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::8900:d137:e757:ac9f%3]) with mapi id 15.20.9203.007; Wed, 8 Oct 2025
+ 06:40:38 +0000
+Date: Wed, 8 Oct 2025 09:40:32 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
 CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-References: <20251006042852.263249-1-ankit.k.nautiyal@intel.com>
- <20251006042852.263249-12-ankit.k.nautiyal@intel.com>
- <aOQe_BRj8-dQmKGO@intel.com> <f1a8c1bc-6977-4ba4-9ffc-b1a4922d3f43@intel.com>
- <aOUu6WoGHhYv4mRy@intel.com> <aOVOJp2zeN1eCp7O@intel.com>
-Content-Language: en-US
-In-Reply-To: <aOVOJp2zeN1eCp7O@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Subject: Re: [PATCH 2/4] drm/i915/opregion: Extract
+ intel_opregion_runtime_{suspend, resume}()
+Message-ID: <aOYHYIce_3eJWbc8@ideak-desk>
+References: <20250708160320.5653-1-ville.syrjala@linux.intel.com>
+ <20250708160320.5653-2-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA0P287CA0011.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:d9::7) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+In-Reply-To: <20250708160320.5653-2-ville.syrjala@linux.intel.com>
+X-ClientProxiedBy: DB9PR05CA0002.eurprd05.prod.outlook.com
+ (2603:10a6:10:1da::7) To SJ0PR11MB4845.namprd11.prod.outlook.com
+ (2603:10b6:a03:2d1::10)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|SN7PR11MB8042:EE_
-X-MS-Office365-Filtering-Correlation-Id: f5350f43-c31e-4d92-a611-08de0634bb6a
+X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|CY5PR11MB6137:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7cc2fe11-26e5-4c07-132a-08de0635974a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?RHhGVDBic1RVUlZRV1loeXNnQUNaWUVON2xoZGx6MFFrdTIza1lRN04yTzc3?=
- =?utf-8?B?c0xIM2NxZUE1NmJuNjl4QzdGdTRNQWNmeW5pd3hhTmNQcksxTG9LV0VNeHU2?=
- =?utf-8?B?Mkd6eDMxRlhDTXp3V2hNeGpFcE83SUZSa0F1TE11eUE3dnV0SWJ5OXQ1OERB?=
- =?utf-8?B?T1BtRURlck1mc3FucmNiQ2tuNXFqYnJhYkZkMWxpbDNMZ2tGdjhGcGsweEZj?=
- =?utf-8?B?eGRyaTYyQVZ6U0RzR3VuNG9DRCtDRFJqam9ZY2wyNWh1TTZMeWN0cWE3VXRK?=
- =?utf-8?B?TUtvMVZtZnducWRuUkZjQ0N6OHBibWVqS3hYNFlnUHZjd2pxeXJUdW5TNmhp?=
- =?utf-8?B?TmcxVC80N3dZZ1p6MVRwT2xlVFY0djNKM3FlZ3NzYkh1VTdtRkNjMEJIRzdO?=
- =?utf-8?B?NDJUVmp2c1k0R3FkeTg3WmxpMm5VSWcwSi9CdEM1elJRSW16QmJMS3pvSXo5?=
- =?utf-8?B?Ukkrc21oS0cyRzRTOUNWck1lQlVJZGNxTkc2N1RCWk83YWNMWUppMDRWNkpD?=
- =?utf-8?B?bURVaUJjOHpiR1BUN012cnljcnNBNkpGWVBXYzdGclB6ZTdUdHVyemxtd2tM?=
- =?utf-8?B?d0txUWJTT1liUEdkTzBhdHZLZG9qU1FZLzlaUkM2SEc5SC9iM3FHRlpEMU9D?=
- =?utf-8?B?aU9kenN6T252QmhHR2tsbTZQUmVjalRhSjdxUlNzd1RjSWVpcmxEbmlvajNl?=
- =?utf-8?B?WmlVN2d1MUxFRkRld0wyYTZad1ZyYTFZd0RhMERoVnc2bUZqandQeXppSGxx?=
- =?utf-8?B?VE15a01makFkRmtOYzVLTlhQWHNld1ZJK3dQSXRuTXphWmVHejh4a21KS3hu?=
- =?utf-8?B?OHpreWFzSkdndDZvTWY2OE9nRW5WSy96QmwwTGFmNHpNblVVUE9RaHduTGMv?=
- =?utf-8?B?YmtCUG5WMHphWnRXQkQ2blJvcWc5bzAxTDMzMGhwNiswbFZCelBydzJ6M3Bm?=
- =?utf-8?B?dXZxU2wxZFRBMWNNNHQyRVY5RU0wbThaRHlQSm95RDhxcVNJNXZxL3JZblAr?=
- =?utf-8?B?bHBYdEtNdjJxSE1oZGJCWXhKSGk3d1MxWEFEVHcwYmNxeTQ5L2FBQjh0Tmx2?=
- =?utf-8?B?SjlUL3ZiMFhLYnVHRnV2VVliREF0Q0FlM3JCem5aVGR5TGJSK3RsNkFzNW5h?=
- =?utf-8?B?UHIwc2RKTERwQmdFMGI5UDg5V05xazVtWndQdEZ2WGplTERaaVdvbkI4eVVh?=
- =?utf-8?B?SEFUQjA4SmJnVThmdmdreFpGeU1DV1NqbiswNk8ybVFYaG1LOTJQcFVUaXRw?=
- =?utf-8?B?OHJhWE40ako1bk1iS0UwdmgrZEI4eDVKZFl0WExIbFpjY2g5TjhnODI1T0tn?=
- =?utf-8?B?MDZuRWVCQ3p4bnRoeitFWWoxTGQ0YnRORyttN1UwbTVyRU8waGhpend6alFp?=
- =?utf-8?B?Slk3OU01QzBDeUtMeEZPRk0ya3o2c1dNYlF1bGlXb0R5SjA0WnpkMXBxUkxV?=
- =?utf-8?B?aE1RUHBLRXkxbEhDbElMeWlhcWdHM3V3VzJINStuNjN3RS9kak44cHl4T3Bz?=
- =?utf-8?B?QlhNbWhOSy9IUkdYKzMvS3BFazlwUlErYWJUaUxHR0pTZWpObkJQanhFaGJ0?=
- =?utf-8?B?aHRwK2E1Q2tJSUh3QzRwVE5SZ2RUQVRNdU83T2RCYkZRZWgyQlZuMFdrd2lR?=
- =?utf-8?B?RlpUQ1kyNk8vakZWY0tmamx4bXVLSVdtME16MDNMaVJLcUw1WFJadEIyOUlD?=
- =?utf-8?B?cHQyQVFFd1VBRlNZNGZNaVRqRm1rdzlQMnVVbCtSV1lVazgzbDcwQTc5dkU0?=
- =?utf-8?B?MmNBd1R3RkY3eE8wZE9WSXZzYmxwcjNpdEVtaXk2YjlmU21Lb1gyYWVqYSsz?=
- =?utf-8?B?Z0NlQkQ3WkpYR3F1emllSHdJMlNvZmJvSVVDMTZKdGFRU0cxWE5YZ3AyQlZ1?=
- =?utf-8?B?Q0UrSUJqQ3VXWnozQkNmdlhtVTlFNk9HbHBCRkV3UzR4Ni9oNFNUa2EreldW?=
- =?utf-8?Q?NA45qVC6DOm21gQ/QgPGBfi990P9FQ2P?=
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|366016|1800799024|10070799003|7053199007; 
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?q2fIEzNEAMBopjnALJHLfdqEWzEwRBH66SUAkAV6l5qLZ8oujWxZWrMjBc?=
+ =?iso-8859-1?Q?GPCSaOe7IZHPcx8g29vyw/fGyfCp5j1gg/usTBsjJramP8Glx5bWUh+rC5?=
+ =?iso-8859-1?Q?yqlAru7zKbdR6E23+rQu9U6nm9W1UwqgGZr5gXfV2EnaNL2H/XpC4pmwDN?=
+ =?iso-8859-1?Q?Pu7FNEeDMsZ+ZaPZKuUQkOvSyCIA/hU2MYFRw7bFg3UEosUqgDhqauJSDn?=
+ =?iso-8859-1?Q?W+MWIC455v/ym+Bit/i6VKmWYhRGUAXGv8LNt+P8puI6OyO3IgAx/kkkqJ?=
+ =?iso-8859-1?Q?AavttR2phBgYzWNywmK0J1BMWfQM5Le/5d/Ox0qWlh34A0nJeDwhcrMIjz?=
+ =?iso-8859-1?Q?ukNuyHzZ0ogZxgZNB/TaAvPDuWyA2Id4QoWkFajHJqnt/ol7W+cCbYSsrA?=
+ =?iso-8859-1?Q?5JQFt5d67L93sHxGgR7ap0GsD/An8QrlgesGHOSdsFWaJmNus34Mjjq4JG?=
+ =?iso-8859-1?Q?NAYEPGmWCumB8WCOi2ZpHcG982YNPAGMPbaXABLx9Z2GHM4Zb2bvURcpjw?=
+ =?iso-8859-1?Q?wtKoaUAdiKOt3M9nh6zYVVuCDLaH37mjhvS2Ys2fC63jWIPEK8JVajciU0?=
+ =?iso-8859-1?Q?Gzl29XIiqj7Ks7fYqDtvI1ZriQqCmaMUgxXCh/Cni0Ll+9k40VRoi9zWk4?=
+ =?iso-8859-1?Q?gKwqxR/2SZAj0oGtu7JU7iD5zVyN0tTtf2cC+NaFYTTKgFFX/S+SQbPAX/?=
+ =?iso-8859-1?Q?1zmc2INF9pNCwatDVyD4IM9PyN1hfKdhyRIEFb9rcIgxUJt7+ZnKkbJiTD?=
+ =?iso-8859-1?Q?m/KdrZe0X5hoQyxgOzQlkBqqnUeYRfME6IM/ONXYix8JqgSxBW0EZXkBFL?=
+ =?iso-8859-1?Q?da4cmHeEjlAfH6k2LKtBzxfOvn08Csl6yBdoox6mZAAc1P8V7vLXNrFhat?=
+ =?iso-8859-1?Q?W1/Ka4gMIapuaXJq/zupPreOKIHWyatQYKJCMvQgtSbytgyUweZ55De6d6?=
+ =?iso-8859-1?Q?+EyXAFPGm6CHRcplcRRr/6wZ1JCPmyyOaPXtG9WeztX3VCSkftn+QhhXdY?=
+ =?iso-8859-1?Q?FRtK/J+GkYKPP4fs7Yb5rCP3fxyhigzq11mCzzZlFyxu/etaB7fy7nROCA?=
+ =?iso-8859-1?Q?p+S0bQNBbig9Hk4vmz/GC+a0fRjFSIqUwcxC8JqdKlPIecyb1elObDEeUB?=
+ =?iso-8859-1?Q?YRWle/kvEDmg6k7JmGiecBT5gFV6P/kW8lV2vK6Cx/O6SEvuGJvusWUqXc?=
+ =?iso-8859-1?Q?t3znjE4XjKpqsIHfn40ZbPGSGF5WIn+AuxJ9O+dP9f+eyh/At9VfbhWCmx?=
+ =?iso-8859-1?Q?nURJACWUtAburRnMI/4g43Exsvqb7uczyBpkapRnyqVQrqJtSGCWbjvAVw?=
+ =?iso-8859-1?Q?HRDCyq9K6ZH9x6WTfPtZF9bPZcN8v8A3+S7VY8w5tZ87S797eftEy6Sox/?=
+ =?iso-8859-1?Q?Yg27EcjnhXZJcFrRmW6wae9BG46Rk1LptbvDyH0Gw+Yi4xP8oc8KxnZ1gC?=
+ =?iso-8859-1?Q?AlhdGrrrIkwdckC8Y7Z4BL9wURj3e3hxY2TMRmJU0d2H8eb0BQg7CZVvWz?=
+ =?iso-8859-1?Q?0qbkg4Nmi8HFbQFCfHKGP/?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(10070799003)(7053199007); DIR:OUT;
+ SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RmN3T3lyUFF0YjVmUjZBT0hZNUtkNEJkL2tjWTczYWx0cXZrV3JUUlQzcEVF?=
- =?utf-8?B?MGJPejBZK0hIdWQwSXY4eXdTL0RiZnVoOVFqbm85Q0V2SnFEWE1WSEp4dmJX?=
- =?utf-8?B?K2o2Z2Z5RUdma3BOOUc2NVFqQjBpbzJybHRIRDFUbzNmOVNRNXlyejJLalhM?=
- =?utf-8?B?YnRKbElqSEpHdWs5NmxxYk1OSWVlUmFDMUlVVnJKR0Z3eVk0dTRTTytjNEt0?=
- =?utf-8?B?VnR3ekR3RDJibUU5WTl1RnNKbThWK1czOGJvR1MzdjZsTmxTek1vcktyb1Bn?=
- =?utf-8?B?VHljSXhpV09tU3VIVXRVdTMyT0NUSUQ4TGZEZThsK3BKb2lqUTdERWlJRkJV?=
- =?utf-8?B?NmFBN0o3eHFSTVlVT0U5MTh2MHpEaUwzQXREdGpZRkVjNFA5OW9zb1FzRFNa?=
- =?utf-8?B?YmxNQ0hwOG9ES0p2dHNqaU1DeHMwNlpDeVhwczgwcjByV3BrbktidFZZUU9Q?=
- =?utf-8?B?VzBrSEpQRkIySFJNQWpHVlUrd1pVSWdnbDVpalJ1R2U1V3RZWHRyc2I4SWZE?=
- =?utf-8?B?c1M2a3BUQzhsZEgwaHZ4QjU3ekI2Qy9LNmx6WmFsRld0RUxtc3gwSGxFVk1i?=
- =?utf-8?B?dVkrYlo4V3V4R1c4cjNkQzJzMFlWRFcyQkhFRzVIS0JscGFUUGowL29zemhu?=
- =?utf-8?B?blJUOElsN1BJR1NYaDA3Mk85b0IxczlxR3FtVnZ5bGx1NyttOXE4UW84d0g3?=
- =?utf-8?B?Y2U5WktEemRyL0dtcFFxN3FGNzZFUkZ1OG8vb0I0K0x2VHo3cXl2US9hc3F5?=
- =?utf-8?B?Um1sSk9sU3ZmM3FuT1BycVE3Z2haMEpadkwrNnN6SVZISmowYWZtcFNGa2Fr?=
- =?utf-8?B?RmZmaHFaR1MxWHdWV0RkdjlLR0VSdHlWOXd5MlkxSW5STXFtRkpaQ1ZCUnlm?=
- =?utf-8?B?MjJaK0k1eEEwWi8ydWdiSW5SaUlKNDI4cXV3OGw0NTkrNGN4WkJXMjJ4TGtR?=
- =?utf-8?B?TXkwYzYra05pcURycGcxckJDMldjS1E2eHByczdMaU5sQjdTb0FXeUtqRzJD?=
- =?utf-8?B?MUdURnFFbm1WbUczbFMzUXU5VkIvMi9sSlIyb2RHRUtnYWZFREsxajRxdy9S?=
- =?utf-8?B?Y3Z2cXlBTnd2d1RISWd4T3ZyZm0wcVNXbFp3enZ5UEtlRUpaa05aRmtjSzZx?=
- =?utf-8?B?K21LUTFLUVVhOEtoRWZrRXVOanlxaDkvNytSdTZOM3d6a2pxcU56bWJRUDZ6?=
- =?utf-8?B?VWJ3WVRlNGhFU2VzaGNuM0Y1NTdYdTJxNUNjVTRBVEUxdzhuVkZrbURicmkw?=
- =?utf-8?B?V2VtZ2c0NDE4K3BIV21zV29QKzN0ak5yMDlLZG9HQnVoZEFiOU1sMTJxRUp4?=
- =?utf-8?B?R1RSdU1lb1JBVG5aTmRoZkZNZVJGSUplMFZ6Z1Y0dHVQUlVmU1ZoRm0zRFU3?=
- =?utf-8?B?UzdjM240bmtUcWxNY0lkV21ZZlZ4Um9id1JlZENSWVpyYi9ORTNEM0pUMTlQ?=
- =?utf-8?B?ZlVoOHk0ZGpaaVpOV1BCVVRpc29sNmVTMUNPMHUvbHlyNStsRFJRZXVEYWkx?=
- =?utf-8?B?Q0Q2dHhkOHVLcGFzWjErLzJkMFVpWXlMdE9INW1WaGVxNVJuTzdWNkptQ3hT?=
- =?utf-8?B?MWYwZXBJa0FrTktCdWdMRXVYbmc3OTJ1WkQ2M3BYaEh6RTBVamV0MlFRMEJI?=
- =?utf-8?B?UWFwaGVtQzdPWjBGazJJSWR5QkkwVHRLWGE0RllDOEx5S1FPSzBYK3RNYU43?=
- =?utf-8?B?anlBK0pMWFdHMFNOWWlZYm10c0NwUjJxRjZTaXVqRGIwKzNwS0VVNE9IS2R0?=
- =?utf-8?B?MjJ1cjRMUGdQY2x4UGJjc3RycjdlYlRoY29lMktUcHVVbUR1N1Q0S09xbzZy?=
- =?utf-8?B?RUt6dzR5QzFDZnpDK2tuM3JPbWYvWHZNMU9yMXhjejlGd085WnoxM0xPZWNV?=
- =?utf-8?B?Y0pDMHJFbHAveTVjcEJuTzFjcTFXTm5JdHBYeEUvaG50ZW9KMnU2QkpNaEJJ?=
- =?utf-8?B?MHVaa1VLeC9ZZTJ3U296RXhjQzI1YWo5c2tCcTdwK3p0OFdNU1l4Y3kyaGJD?=
- =?utf-8?B?TDBLWU1HcDVid0VtelY5djZDVENyV3hReU9Sa1k3YmE1SFRTZ3k2WDRMNjdx?=
- =?utf-8?B?aUFMVktoZVd1Q3BYVHVwOFhQOU5pR1U0Tk1YdC9GbTlybXhOeUQwbVBDSlc5?=
- =?utf-8?B?enExQkQxWlVHS3A1aGowTU5KTE1YeGlkNnpsT082bzFJckJqR2QrMHQvWjVu?=
- =?utf-8?B?cEE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f5350f43-c31e-4d92-a611-08de0634bb6a
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?KoQBiv6eMrhfEW4Mm0A4yekgc5likgI+hnBHi/py5/r6klOJQ0E2h5KUt1?=
+ =?iso-8859-1?Q?sx6UQzdB5M5PAgC4VlEnOQmhWXplIWOmywyRZkK3mxCqWCdVookjjWRsml?=
+ =?iso-8859-1?Q?4r/EQ0Sep2vRTiLkpa6mM+Bq1qczAzsVYAaWNKzKDGBTM8CkTMJ0SzO1Gy?=
+ =?iso-8859-1?Q?rnRD0G+hRh9zz2fdgWllInsePCXNUQcomlVEpACfVxuyblH8yvgNWbrXzH?=
+ =?iso-8859-1?Q?e1vua1QpMaZFCvb79EEydluhLR/iSYPLocnTbmwfP8LzUNuBs7IYguUSwA?=
+ =?iso-8859-1?Q?T+GhRFAMCBnPI+nA8BGbSYYqx5YUnBxKmAmISrDhuU4J6CY1oNfiooFKZK?=
+ =?iso-8859-1?Q?RtKYuxoKU2IolGfe35LEimU+fm9iq2JiGFIgxGx5gemOXEy/656w+8FBlM?=
+ =?iso-8859-1?Q?gAoOO34G0JITA7M8Ay2UIfbgZj3UawUsQYUEnNETyqa+7ARF6K9HXjJDYW?=
+ =?iso-8859-1?Q?4gFq3uyRKbsCrdJf5wtsmI7RHi0EGSxgMSbPOrkPTptWixff9y7xu6ADLL?=
+ =?iso-8859-1?Q?2iRCLjeC8bdPieKtoDGPIWIPbUtqtPH82Qqb0wJ/BzWJObsBrm8+59Sxfp?=
+ =?iso-8859-1?Q?6pcNFpCGllCayntgwQ2Sw8MVy59jQHtjKZFOaDxJW3VdOPkyGxmGHbBgCo?=
+ =?iso-8859-1?Q?Q/ohZmu8pZXiNAxI4GlSv2OZIb7XmS9LRmF2DLS0iyCyQrYEdqy51R18D9?=
+ =?iso-8859-1?Q?R8h+mUOuI7nTmPxuEMK/Qq8X4HFnh/DFJEyCJHj5ejC4RV8lcWJ21pTrkn?=
+ =?iso-8859-1?Q?zoYlh0aRw0TOg6GlIE0ABS7aRwL7VkwFdOYUiIf8btWLMv0Z6UPpX+tEY7?=
+ =?iso-8859-1?Q?9JmT8q6sC029kxPULNs7fYba/WozUu6REF3AGoDjs6Le5Fq3oMBLywS4U2?=
+ =?iso-8859-1?Q?tx0uWr0d7SDBw8CWySGqKihX09qzTcn9uqdCahwjO4jBBNlgiW9D0NiT8+?=
+ =?iso-8859-1?Q?TfME8We1bHH5ExxWL8r0N0yedqM5Ip0YuPVqNKj+hh5DAxHt+NvoChoYEr?=
+ =?iso-8859-1?Q?kakRCxEqCkHtl1gemSOuEMuKJ/fJSHMB6SxKVzqbl8AkehGPX9d45v/LvK?=
+ =?iso-8859-1?Q?UfNqexooAFddT9+baeWJqPcJrW3uSMRQNQcBJL4n3f13yLDcOldeDPLkZg?=
+ =?iso-8859-1?Q?SAyX2GMOITYD+6dG185+NboPt5kcdPbiIP6DVZId5A4PdZMrUw33wK+dJA?=
+ =?iso-8859-1?Q?n1DgWSGG6KBDsI5anMoeM+UuECtvOo5j0GcBIH+TwafHUbLeLD+ZwFihRV?=
+ =?iso-8859-1?Q?rDdkSaknVjTFZpC7UbwHwKeuMTec5AU93VWdo0PV9U4MhjJHGKYT40jrFS?=
+ =?iso-8859-1?Q?lkKOvR7nLiMp7Raz7uBQPMggGT+ppgFKsXdudrjcpnujd3+Xm6wpfJBmV8?=
+ =?iso-8859-1?Q?sZ6Q5KyNJS3XMcLsEb+rniIpuWk6qoYjPfqX5WycbVdrI7uEEy/ChTJKcB?=
+ =?iso-8859-1?Q?WdH/UlEMCwtPV66+CK00fFwXobWR0MEV1mAdyEFjiifhQJBJi4bHl/Alib?=
+ =?iso-8859-1?Q?nTRGREacHZ5CLxgsgHEUbSZW3ekrqWpvzp04GFxFGAuNAxGIBdzi9cKQUu?=
+ =?iso-8859-1?Q?copOcZKSTUzGnBJVRgr/sA8vFQi1MQ/HIF839jO3cl2EUm3U2r5Z9YztNL?=
+ =?iso-8859-1?Q?z2f7brqwPa6f7KTxuWp/nGalmrZaqoCL34kxZ4bjlJ9p3/fsl2OfMsrqyh?=
+ =?iso-8859-1?Q?x1C76pl3aP4PjsCK93w70kN2+snemR74pWBjdujt?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7cc2fe11-26e5-4c07-132a-08de0635974a
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2025 06:34:29.1945 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2025 06:40:37.8866 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZTDIzFmcdo3G6QDDidmsqpV7AX1344Vb5JBZbIYK9WD6ieFt0zoHEOjfdO9ppVHNkp6E3F6WapPWp8nEdWdiRCng06443aelH5WuiSQbR/8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB8042
+X-MS-Exchange-CrossTenant-UserPrincipalName: fSbConWJljsvq9F+e9i5zcy5rsF6LtIoSZBz0fUdL3bEfew1ga+b6/7uK+huQWFzM/o7FBPGKP/84Dk8Zc/few==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6137
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -196,196 +180,151 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, Jul 08, 2025 at 07:03:18PM +0300, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> Extract the opregion runtime PM stuff to new functions. We'll
+> need to add a bit more to the suspend side, and we don't want
+> to clutter the top level runtime PM code with such details.
+> 
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-On 10/7/2025 11:00 PM, Ville SyrjÃ¤lÃ¤ wrote:
-> On Tue, Oct 07, 2025 at 06:16:57PM +0300, Ville SyrjÃ¤lÃ¤ wrote:
->> On Tue, Oct 07, 2025 at 11:22:44AM +0530, Nautiyal, Ankit K wrote:
->>> On 10/7/2025 1:26 AM, Ville SyrjÃ¤lÃ¤ wrote:
->>>> On Mon, Oct 06, 2025 at 09:58:47AM +0530, Ankit Nautiyal wrote:
->>>>> Currently crtc_vblank_start is assumed to be the vblank_start for the fixed
->>>>> refresh rate case. That value can be different from the variable refresh
->>>>> rate case whenever always_use_vrr_tg()==false. On icl/tgl it's always
->>>>> different due to the extra vblank delay, and also on adl+ it could be
->>>>> different if we were to use an optimized guardband.
->>>>>
->>>>> So places where crtc_vblank_start is used to compute vblank length needs
->>>>> change so as to account for cases where vrr is enabled. Specifically
->>>>> with vrr.enable the effective vblank length is actually guardband.
->>>>>
->>>>> Add a helper to get the correct vblank length for both vrr and fixed
->>>>> refresh rate cases. Use this helper where vblank_start is used to
->>>>> compute the vblank length.
->>>>>
->>>>> Signed-off-by: Ankit Nautiyal<ankit.k.nautiyal@intel.com>
->>>>> ---
->>>>>    drivers/gpu/drm/i915/display/intel_pfit.c    | 11 +++++++----
->>>>>    drivers/gpu/drm/i915/display/intel_psr.c     |  3 +--
->>>>>    drivers/gpu/drm/i915/display/intel_vblank.c  | 10 ++++++++++
->>>>>    drivers/gpu/drm/i915/display/intel_vblank.h  |  2 ++
->>>>>    drivers/gpu/drm/i915/display/skl_watermark.c |  3 ++-
->>>>>    5 files changed, 22 insertions(+), 7 deletions(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/i915/display/intel_pfit.c b/drivers/gpu/drm/i915/display/intel_pfit.c
->>>>> index 68539e7c2a24..ebbaa1d419ba 100644
->>>>> --- a/drivers/gpu/drm/i915/display/intel_pfit.c
->>>>> +++ b/drivers/gpu/drm/i915/display/intel_pfit.c
->>>>> @@ -14,6 +14,7 @@
->>>>>    #include "intel_lvds_regs.h"
->>>>>    #include "intel_pfit.h"
->>>>>    #include "intel_pfit_regs.h"
->>>>> +#include "intel_vblank.h"
->>>>>    #include "skl_scaler.h"
->>>>>    
->>>>>    static int intel_pch_pfit_check_dst_window(const struct intel_crtc_state *crtc_state)
->>>>> @@ -306,14 +307,15 @@ centre_horizontally(struct drm_display_mode *adjusted_mode,
->>>>>    }
->>>>>    
->>>>>    static void
->>>>> -centre_vertically(struct drm_display_mode *adjusted_mode,
->>>>> +centre_vertically(struct intel_crtc_state *crtc_state,
->>>>> +		  struct drm_display_mode *adjusted_mode,
->>>>>    		  int height)
->>>>>    {
->>>>>    	u32 border, sync_pos, blank_width, sync_width;
->>>>>    
->>>>>    	/* keep the vsync and vblank widths constant */
->>>>>    	sync_width = adjusted_mode->crtc_vsync_end - adjusted_mode->crtc_vsync_start;
->>>>> -	blank_width = adjusted_mode->crtc_vblank_end - adjusted_mode->crtc_vblank_start;
->>>>> +	blank_width = intel_crtc_vblank_length(crtc_state);
->>>> This pfit stuff is computed way before the guardband, and also only
->>>> relevant for ancient gen2-4 hardware. So no point in touching this
->>>> stuff IMO.
->>> Alright can skip this stuff.
->>>
->>>
->>>>>    	sync_pos = (blank_width - sync_width + 1) / 2;
->>>>>    
->>>>>    	border = (adjusted_mode->crtc_vdisplay - height + 1) / 2;
->>>>> @@ -392,7 +394,8 @@ static void i9xx_scale_aspect(struct intel_crtc_state *crtc_state,
->>>>>    					  PFIT_HORIZ_INTERP_BILINEAR);
->>>>>    		}
->>>>>    	} else if (scaled_width < scaled_height) { /* letter */
->>>>> -		centre_vertically(adjusted_mode,
->>>>> +		centre_vertically(crtc_state,
->>>>> +				  adjusted_mode,
->>>>>    				  scaled_width / pipe_src_w);
->>>>>    
->>>>>    		*border = LVDS_BORDER_ENABLE;
->>>>> @@ -489,7 +492,7 @@ static int gmch_panel_fitting(struct intel_crtc_state *crtc_state,
->>>>>    		 * heights and modify the values programmed into the CRTC.
->>>>>    		 */
->>>>>    		centre_horizontally(adjusted_mode, pipe_src_w);
->>>>> -		centre_vertically(adjusted_mode, pipe_src_h);
->>>>> +		centre_vertically(crtc_state, adjusted_mode, pipe_src_h);
->>>>>    		border = LVDS_BORDER_ENABLE;
->>>>>    		break;
->>>>>    	case DRM_MODE_SCALE_ASPECT:
->>>>> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
->>>>> index f7115969b4c5..ae6b94a5d450 100644
->>>>> --- a/drivers/gpu/drm/i915/display/intel_psr.c
->>>>> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
->>>>> @@ -1365,8 +1365,7 @@ static bool wake_lines_fit_into_vblank(struct intel_dp *intel_dp,
->>>>>    				       bool aux_less)
->>>>>    {
->>>>>    	struct intel_display *display = to_intel_display(intel_dp);
->>>>> -	int vblank = crtc_state->hw.adjusted_mode.crtc_vblank_end -
->>>>> -		crtc_state->hw.adjusted_mode.crtc_vblank_start;
->>>>> +	int vblank = intel_crtc_vblank_length(crtc_state);
->>>> I *think* this also gets computed during .compute_config() which is
->>>> before the guardband calculation. So if this stuff actually depends on
->>>> the guardband then we have a real problem here. And if it doesn't (as
->>>> in it really interested in the undelayed vblank length) them maybe it
->>>> should just compute it as crtc_vtotal-crtc_vactive.
->>> As far as I understand it depends on guardband for VRR case.
->>> For non vrr case : crtc_vtotal - crtc_vactive - scl lines
->>> For vrr case: guardband length.
->>>
->>> Currently since guardband is equal to vblank length this can be
->>> crtc_vtotal - crtc_vactive - scl lines.
->>>
->>> Perhaps with the optimized guardband, we need to set the guardband
->>> during intel_vrr_compute_config().
->>>
->>> Later intel_psr_compute_config gets called and then we can check the
->>> guardband.
->> Originally we moved the vblank delay calculation to happen later
->> because we needed to know about PSR for it to be done correctly.
->> I think someone will need to try to actually write down all the
->> requirements from both PSR and VRR side and sides and come up
->> with a way to get it all done in the right order, without any
->> more chicken vs. egg problems.
-> I haven't actually checked any of PSR details here, but I'm thinking
-> if my assumptions hold that there is a dependency both ways, we migth
-> need soemthing like this:
->
-> 1. .compute_config()
->     Check if PSR is generallty possible/desired, and verify that a maximum
->     guardband would suffice for PSR (this check could also take PSR specific
->     SCL requirements into consideration)
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-
-psr_compute_config currently checks for wake_lines_fit_into_vblank().
-
-So here we continue to check against maximum guardband (vblank_length)
-
-So only thing to add here is the SCL considerations.
-
-> 2. compute_scl()
->     Bump SCL if PSR (or anything else) needs it
-
-This is already there, so we are good.
-
-
-> 3. vrr_compute_guardband()
->     Try to accomodate PSR requirements, but don't worry if we can't satisy
->     that
-
-Hmm here currently we are not checking anything.
-
-With optimized guardband we must check with max psr requirements and not 
-the current psr requirements.
-
-(With VRR psr will be off so we don't want to change guardband here)
-
-
-> .compute_config_late()
->     Check whether the actual guardband is sufficient for PSR, and
->     calculate any other state that depends on the guardband. If not,
->     disable PSR (hopefully we can still do that at this point...)
-
-
-Can try disabling psr here if the guardband is not sufficient with 
-actual psr requirements.
-
-We can check here for other latencies also e.g. SDP.
-
-But scaler related latencies we cannot check here.
-
-
-Coming back to this patch to use the vblank_start adjustment, I guess we 
-need to re-evaluate.
-
-
-Regards,
-
-Ankit
-
-> I think that might generally work (if the assumption about being
-> able to revert the early PSR decision in .compute_config_late()
-> is valid).
->
-> The only corner case I see is if something else requires
-> bumping SCL and that reduces the guardband below what PSR needs.
-> But perhaps we should not worry about such issues, unless perhaps
-> that other SCL bumping requirement can be trivially accomodated
-> in the PSR .compute_config() as well.
->
-> Or I suppose we might try to see if we could compute SCL (considering
-> only the non-PSR requirements) even earlier (as in before PSR
-> .compute_config()), and then have the PSR code itself bump SCL if
-> required during .compute_config(). But this sort of approach we could
-> look into later, doesn't have to be done now IMO.
->
+> ---
+>  drivers/gpu/drm/i915/display/intel_opregion.c | 41 +++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_opregion.h | 11 +++++
+>  drivers/gpu/drm/i915/i915_driver.c            | 25 +----------
+>  3 files changed, 54 insertions(+), 23 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
+> index 81efdb17fc0c..9e39ab55a099 100644
+> --- a/drivers/gpu/drm/i915/display/intel_opregion.c
+> +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
+> @@ -1255,6 +1255,47 @@ void intel_opregion_suspend(struct intel_display *display, pci_power_t state)
+>  		intel_opregion_suspend_display(display);
+>  }
+>  
+> +void intel_opregion_runtime_resume(struct intel_display *display)
+> +{
+> +	struct intel_opregion *opregion = display->opregion;
+> +
+> +	if (!opregion)
+> +		return;
+> +
+> +	intel_opregion_notify_adapter(display, PCI_D0);
+> +}
+> +
+> +void intel_opregion_runtime_suspend(struct intel_display *display)
+> +{
+> +	struct intel_opregion *opregion = display->opregion;
+> +
+> +	if (!opregion)
+> +		return;
+> +
+> +	/*
+> +	 * FIXME: We really should find a document that references the arguments
+> +	 * used below!
+> +	 */
+> +	if (display->platform.broadwell) {
+> +		/*
+> +		 * On Broadwell, if we use PCI_D1 the PCH DDI ports will stop
+> +		 * being detected, and the call we do at intel_runtime_resume()
+> +		 * won't be able to restore them. Since PCI_D3hot matches the
+> +		 * actual specification and appears to be working, use it.
+> +		 */
+> +		intel_opregion_notify_adapter(display, PCI_D3hot);
+> +	} else {
+> +		/*
+> +		 * current versions of firmware which depend on this opregion
+> +		 * notification have repurposed the D1 definition to mean
+> +		 * "runtime suspended" vs. what you would normally expect (D3)
+> +		 * to distinguish it from notifications that might be sent via
+> +		 * the suspend path.
+> +		 */
+> +		intel_opregion_notify_adapter(display, PCI_D1);
+> +	}
+> +}
+> +
+>  void intel_opregion_unregister(struct intel_display *display)
+>  {
+>  	struct intel_opregion *opregion = display->opregion;
+> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.h b/drivers/gpu/drm/i915/display/intel_opregion.h
+> index 8101eeebfd8b..7067ffe07744 100644
+> --- a/drivers/gpu/drm/i915/display/intel_opregion.h
+> +++ b/drivers/gpu/drm/i915/display/intel_opregion.h
+> @@ -44,6 +44,9 @@ void intel_opregion_resume(struct intel_display *display);
+>  void intel_opregion_suspend(struct intel_display *display,
+>  			    pci_power_t state);
+>  
+> +void intel_opregion_runtime_resume(struct intel_display *display);
+> +void intel_opregion_runtime_suspend(struct intel_display *display);
+> +
+>  bool intel_opregion_asle_present(struct intel_display *display);
+>  void intel_opregion_asle_intr(struct intel_display *display);
+>  int intel_opregion_notify_encoder(struct intel_encoder *encoder,
+> @@ -88,6 +91,14 @@ static inline void intel_opregion_suspend(struct intel_display *display,
+>  {
+>  }
+>  
+> +static inline void intel_opregion_runtime_resume(struct intel_display *display)
+> +{
+> +}
+> +
+> +static inline void intel_opregion_runtime_suspend(struct intel_display *display)
+> +{
+> +}
+> +
+>  static inline bool intel_opregion_asle_present(struct intel_display *display)
+>  {
+>  	return false;
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> index c6263c6d3384..da0b7d9da3d5 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -1553,28 +1553,7 @@ static int intel_runtime_suspend(struct device *kdev)
+>  	if (root_pdev)
+>  		pci_d3cold_disable(root_pdev);
+>  
+> -	/*
+> -	 * FIXME: We really should find a document that references the arguments
+> -	 * used below!
+> -	 */
+> -	if (IS_BROADWELL(dev_priv)) {
+> -		/*
+> -		 * On Broadwell, if we use PCI_D1 the PCH DDI ports will stop
+> -		 * being detected, and the call we do at intel_runtime_resume()
+> -		 * won't be able to restore them. Since PCI_D3hot matches the
+> -		 * actual specification and appears to be working, use it.
+> -		 */
+> -		intel_opregion_notify_adapter(display, PCI_D3hot);
+> -	} else {
+> -		/*
+> -		 * current versions of firmware which depend on this opregion
+> -		 * notification have repurposed the D1 definition to mean
+> -		 * "runtime suspended" vs. what you would normally expect (D3)
+> -		 * to distinguish it from notifications that might be sent via
+> -		 * the suspend path.
+> -		 */
+> -		intel_opregion_notify_adapter(display, PCI_D1);
+> -	}
+> +	intel_opregion_runtime_suspend(display);
+>  
+>  	assert_forcewakes_inactive(&dev_priv->uncore);
+>  
+> @@ -1603,7 +1582,7 @@ static int intel_runtime_resume(struct device *kdev)
+>  	drm_WARN_ON_ONCE(&dev_priv->drm, atomic_read(&rpm->wakeref_count));
+>  	disable_rpm_wakeref_asserts(rpm);
+>  
+> -	intel_opregion_notify_adapter(display, PCI_D0);
+> +	intel_opregion_runtime_resume(display);
+>  
+>  	root_pdev = pcie_find_root_port(pdev);
+>  	if (root_pdev)
+> -- 
+> 2.49.0
+> 
