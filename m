@@ -2,169 +2,180 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D8AFBC62A7
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Oct 2025 19:37:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B66CBC645F
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Oct 2025 20:22:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A32D210E0C1;
-	Wed,  8 Oct 2025 17:37:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B61EB10E0C9;
+	Wed,  8 Oct 2025 18:22:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XTzQ3dOm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N6mEq0RW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3FA010E0C1
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Oct 2025 17:37:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2183C10E0C9
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Oct 2025 18:22:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759945043; x=1791481043;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=psXWvdJCctCCjgJwvFHF7csGZ2rpt4sn9fKgjae9xNQ=;
- b=XTzQ3dOmuWCWnf2zIa74X+5cl06tJdTl//UxjC9YbSyljdQ0vwJ931g1
- yUrwol2D/H294y6a2PQ2degJd2Z1TNVn7HttssZ7XSswMkFZQdopO5ut8
- uPy6Nn+2CHqw2clBBhQ8YtvrP65hw7QDQZslCRVHKyBqVT7cq5dFBqTdA
- pHPNqjGuegTFj1R/ZRKkpByG0FaVTU8iy7fef6v9nP+/lR1LlUfRPyOoD
- LyICIMjrSYlzhSvG4XkAqQycjwY14yKdlLt84Kj0GBySDDbN8uP/eIF56
- K7yr42PzqFsdgxkmTbM7F3jNARJzYTQSamAyiYS9v4dwxL2bQ7ExM8MpN A==;
-X-CSE-ConnectionGUID: J6sgAN+lTa6/Q1xQH3L4OQ==
-X-CSE-MsgGUID: PXMQDNolRWe0BVKPof1N6g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="65789557"
-X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="65789557"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 10:37:22 -0700
-X-CSE-ConnectionGUID: hBblMuB4S+SNJYSH4fauRw==
-X-CSE-MsgGUID: TCFBpfqdTI+x/RFpoQl5Bw==
+ t=1759947724; x=1791483724;
+ h=date:from:to:subject:message-id:references:in-reply-to:
+ mime-version; bh=a83XKJcz0Hh+EZpXdhI/LGeGvtTUsbz4m0Li5/VMYiA=;
+ b=N6mEq0RW7Zaq7at2EINSf2JB9vRfE7hSMVvMohEMNnuQBDyjGz6VfAcb
+ vcl1wPAy/r4OAF6Ym+b39B29rAZngKfnWVrO//QTch0WdPVMS1rV0JOiB
+ 0wwE3WFns2fEUwlmPlA59r8ixfQ0xwf7sZjkxmkyRIYkQ6nZxf+we851v
+ sN166M7pZGLotuhJ5A3gZR4I5N+/6Y0DbVJt0e0f+j5HJ62sq41lnYKQ3
+ yhHxC+vpYNm3LrFj5SpfdSah1WRTiybq8k/WJZOCpwL7HI44yiV8tXqQq
+ hwrAvj0FKWer+n9RDOwD5tfKj3huK1ua9wvs+pkJfX+4y9sdsIgQZdH4k A==;
+X-CSE-ConnectionGUID: RSV+/k9xRx+xaF1kv4NNPg==
+X-CSE-MsgGUID: 8tLmOkaoT7qlXt+x2DUzrA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="62245256"
+X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="62245256"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2025 11:22:03 -0700
+X-CSE-ConnectionGUID: Umfj0NMqS+a0gYRJjYrlNw==
+X-CSE-MsgGUID: pnhySX1wR5GtiQsZRdGHKA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="180426578"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 10:37:21 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="185799172"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2025 11:22:03 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Wed, 8 Oct 2025 10:37:20 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.2562.27; Wed, 8 Oct 2025 11:22:03 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Wed, 8 Oct 2025 10:37:20 -0700
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.32) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Wed, 8 Oct 2025 11:22:03 -0700
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.8) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Wed, 8 Oct 2025 10:37:19 -0700
+ 15.2.2562.27; Wed, 8 Oct 2025 11:22:03 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GZ+xKUH3Z4awqtyubQihqP2HlcFJO3hWZohFt7Ovru0hclSqfwFrNMOOzksqC0dXAnBlRTK/95fyVqAZFlP8gaxg7FdE1SmlmHfSGuk/AsmXB0xiUuJQUP9/PViSbn3CbZLGB20WM/5NhaUbIqnIhhTmXfXQN0urWEWo/OY9xyaaOjE0SonVRFcpQivMjb4+6N3m1EDhhsjszEbR7wS9MeRfpuVBJXK11VEMD/yyVC9FSR1rR2+0FYBizfI/unYoDIIvV1VDUKPo+Te+9ZdkY1M1Yb6p3McQU9C6GWYSRO+4JxO93guAVl4M14WMlFe4q8UxB2n5v/HkjazPiryg1g==
+ b=Xd6DsYdnRUksDQluVztxfV0qoQYAXo8GQo7YT1RotkpP0KJPM0BO/QByAGOcXbsbG+urrY/2wO0LicGpSh6irtVEGhUrJYLw8vMwzs11QfYN3g96bxhcKjhf7uVEFIOQyjTsqIt2T9nAx/V8XDz4qBM5JhAgi4m1fC/vMgy5U/N3xAq56DPmiKWRjMziNz4L7z5444WcKUitftjlwPVReWLxJoebJf2lRV+BVs/y37Zaqv+5YCl1q18awl0p8KC3TDUfZSVQQaoyw7oK0zef+BC/OuI90dZRfzbfyU+Ooo2J60NS2oRK4h7XrPBzHidpJlZKNb0nLcTooEytykQfwQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=E57NpRthYgUc74lvVfPoi7s9ziSHKMVPsgSvBC0s5cs=;
- b=eYGEBj2qgtzYAISAK4dX2jJ9do6A5nEP3I1l+G1j6bw6+UuTy6cOzaHUUbCJedu8HCBUQbdY8GVYcafYVrzdZgFa9nDu8QZFoRjq6e7tZTheJW2TAM9W7Rnddp/nmpyU3APK7kvkg2RrE6/uWJUhQmGd9mqvsQc9CHAj7l32Xqccsp4yBWrU/xhDXD6llt8qEZuFSgCJQefVnxGZxUUipsDd6VG5RFmiQgxbeprt72/Hn4j4MtDbBXxAU6qQbJI4xKaJAzqME0rL1TWe5SXg5BiIv1CFxdFJcmtSNdYaZ2LRAS7oScZEDsXMvEimbNhLvmprv/q6ZT6odoR2N4LrKw==
+ bh=M5g+nrflRU8L90Wn1W859BmA5WxZh7hwLpVvRJtUYFI=;
+ b=E4xqhJSJIpQAKedZZVHEJ4GZcqEVMz79Fm3gMMuNW6B3wcWGO++nWqDDYK9WjkWzXvG78HeKBSmTx4yGRFhiS2iso/9y840hxKqtl05Wdb7LeXz49QVR8CCM323KlCEkKsqiD1LRjMK0oXzd6xF2IbyiXOuOdXNZoZ7lRI7o/t6DAM/uxxc88X1GQh1SciRm5njkLRjjNwUuiLv1WKHsMCXzCkcS6rLTxcuU62wGKTd20S5yXfTLRuBPmIn7h1sT+j9mpLVGCrlKj1mDLzT31WJ/cEyNX/gj0IA6X6oLxJ0mpIB4qsLdisPHxe+6WyedeyQbjUFOzsYZTn/SKmcNdA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by PH8PR11MB7094.namprd11.prod.outlook.com (2603:10b6:510:216::11) with
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com (2603:10b6:8:136::15)
+ by IA3PR11MB9157.namprd11.prod.outlook.com (2603:10b6:208:57b::19) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.9; Wed, 8 Oct
- 2025 17:37:16 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e%4]) with mapi id 15.20.9182.017; Wed, 8 Oct 2025
- 17:37:16 +0000
-Date: Wed, 8 Oct 2025 10:37:13 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Matt Atwood <matthew.s.atwood@intel.com>
-CC: <rodrigo.vivi@intel.com>, <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/i915:move and rename reg_in_range_table
-Message-ID: <20251008173713.GB1207432@mdroper-desk1.amr.corp.intel.com>
-References: <20251007212447.941389-1-matthew.s.atwood@intel.com>
- <20251008165334.GA1207432@mdroper-desk1.amr.corp.intel.com>
- <aOad4gBFCtuKcbsh@msatwood-mobl>
-Content-Type: text/plain; charset="iso-8859-1"
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.23; Wed, 8 Oct
+ 2025 18:22:01 +0000
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::6387:4b73:8906:7543]) by DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::6387:4b73:8906:7543%7]) with mapi id 15.20.9182.017; Wed, 8 Oct 2025
+ 18:22:01 +0000
+Date: Wed, 8 Oct 2025 11:21:59 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: <intel-gfx@lists.freedesktop.org>
+Subject: Re: =?utf-8?B?4pyXIGk5MTUuQ0kuRnVsbDogZmFp?= =?utf-8?Q?lure_fo?=
+ =?utf-8?Q?r?= drm/i915: Fix conversion between clock ticks and nanoseconds
+Message-ID: <aOarx9UmUYSVov1U@soc-5CG1426VCC.clients.intel.com>
+References: <20251007233543.635130-2-umesh.nerlige.ramappa@intel.com>
+ <175992202261.17350.9919082238977709936@6aec98b87f92>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aOad4gBFCtuKcbsh@msatwood-mobl>
-X-ClientProxiedBy: SJ0PR05CA0042.namprd05.prod.outlook.com
- (2603:10b6:a03:33f::17) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+In-Reply-To: <175992202261.17350.9919082238977709936@6aec98b87f92>
+X-ClientProxiedBy: MW4PR03CA0171.namprd03.prod.outlook.com
+ (2603:10b6:303:8d::26) To DS0PR11MB7408.namprd11.prod.outlook.com
+ (2603:10b6:8:136::15)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|PH8PR11MB7094:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8b423942-fdd3-4cd3-bdcd-08de069152c7
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7408:EE_|IA3PR11MB9157:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1d3befc7-5936-4922-378d-08de069792fa
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?6slj+bJHIt4ddw/taD1uvhHjDLdP3+IKLeQQZ81is872yvn4x8qX2tLfZG?=
- =?iso-8859-1?Q?y4o6vZqD/u4NV7JpNJHMDihzs7eYC2O792Pd2uEUVZ6yHJY9tsn86V89+6?=
- =?iso-8859-1?Q?XBAB3s8PLWP0q2D/P8Prkep6XKkE7HWCvM4Vd2QgxlxS+9ZsW6xgxAaaWP?=
- =?iso-8859-1?Q?VmTk50x1wluRMhVZfcihTD4GgnEc41ooVjtd0KN1iRGezfD4n8ggY5/p1v?=
- =?iso-8859-1?Q?DyJpMDNnV0Ju+EtzZxiVPD7tn1DpOJGi5jrFvINfaOnLpKpQ/q+km0Hu9u?=
- =?iso-8859-1?Q?mtPKc3tJebYc1AFQUNr1k2FR3X5CMaPiM1/2oIN0E0lUVhOhW/MSOWohPP?=
- =?iso-8859-1?Q?etLVlvDdNJ0GszzBgeZCKai08m2YGMl7BpNeuiger5blrwJIpHZgza4BWX?=
- =?iso-8859-1?Q?0u3hF39S3iuZcMmfhjMbwSG6grdjq/VtIZFaO3IWZDjvfn4umz9OYLN1Y0?=
- =?iso-8859-1?Q?35hOQhp6L8JSL4ilBQAVMNJVVNv/g/ECkZ5HLDxejNG6+vnin85Vkt+f4E?=
- =?iso-8859-1?Q?+yUQz9ERp/ffc8HvF8PMd+qfUb3FVtnIeIABLik3U0JKN4Dj1Yct9JDG/X?=
- =?iso-8859-1?Q?9HMwgGc17NdroQL+eHxu9Jt9N9E52rBO9nP//opFem3ls3EK8X8GD7JTnB?=
- =?iso-8859-1?Q?dGzR3iMQRIc+sT++Bs7FysmzS1tuN86ccJ5qN2/OHjRtAR5GrFbZWfIEaf?=
- =?iso-8859-1?Q?CzBpfC7XV5ud/fep8XKfBdpDu3lCLUzCbLoFrwnjFiEC5+cZVwla9fyfkj?=
- =?iso-8859-1?Q?g0eBO/FHwRvFAXuE+GK7S63iAM5LdV08L3MZXmXRbD7J2w6K9PRpCMsE5g?=
- =?iso-8859-1?Q?5Fwxtudtw2uzBTogmXgOhmhnrabRYgtxSzMIpBY8O4Z8zMZPOKPNHNJyeH?=
- =?iso-8859-1?Q?BjZpBo2yhSGdSD8wg62TxRd3Blk7mXz2jWVtue5550+mciBM60mPMrve1j?=
- =?iso-8859-1?Q?QmmX6yeeDGIhMRva++/E+eM1SmD4j9j+hN36D/mhdr1Kt8NzA/b7m7zOxf?=
- =?iso-8859-1?Q?B96WrhswIBbW8/WlErBKxtZTMN+yMK3TDyW+IfSiuB4vDMilOQ1O4lL/2u?=
- =?iso-8859-1?Q?fG6R4GIcTI+DC5+0tdapIvfjE0I86DUGNpK3X17xlinZGn+43671lbhP00?=
- =?iso-8859-1?Q?5rekbnALa4mCj9i+nEkmYuXp5Cg14ndBmHKOEZ4eCLBVmpYlSW9xkgufWG?=
- =?iso-8859-1?Q?cwX2IPxGslnfQ5NIT5VjS7VuAmgqgW0RN5eQJ6JpWrD+M2k+vqyja2v9WU?=
- =?iso-8859-1?Q?Vm8SZnaLl+VOo9/YTRzkQypjHI4TlCCCK19uRwfhbj8fPoaiURT1Z68Mx6?=
- =?iso-8859-1?Q?FWR7SU1ME1yAZfEJvITaC7PELh4Ny6+hmbwotF+rlGl1LbSyVm9UvACrD6?=
- =?iso-8859-1?Q?Kg0Br8XJbeb00Xs+YZiTPs2v6xue19IX1yyV8cFEdOzwQtsIX5PhyZbdS0?=
- =?iso-8859-1?Q?QxCTVjmF8nVMSToT6HX+OOjpTTmIwl+DySshhbWyIzT34rvLaXsg2TGahK?=
- =?iso-8859-1?Q?Xb1BGiMxrLCvtNDj4doTOH?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?UWZ0T1kwVzN6aEFiTGRLM1FGT2R3aTRweVR6bk5IMXdVeHRlMWxmaGN4cmVN?=
+ =?utf-8?B?aWxwVExNbnJ0VndjTnRqRUE5cDNFd0pCMzNkNTFValFHTUdPMUxwdlZmQStT?=
+ =?utf-8?B?MnZmR1MrK0dTSDdFQ01VNldFNG05ZnpCZ1B3ZVRQZW5BVW41cmd4NTdLQ2Fa?=
+ =?utf-8?B?UmVHMHU3R3BRYzdPUWVpK1NwVmtjMjloeStZTzJUT2s5ek1wUFZzNGlkODhW?=
+ =?utf-8?B?Q2FLRGpFOXY4L09JR1FrRzcwb3BGZ0U0M2lndjZzVjFINjRnVys0d0xkZk9M?=
+ =?utf-8?B?djZwREZVbzN6SHROQ2pyUVRXOElUenBtb2svdkMyQ0FoRlFWUjl2cEVCTWFH?=
+ =?utf-8?B?R29iUlBaNjgwaWlqQzdxbm9mMEcwSHhtNXpBZldtMzNsWVMxekdtb3dmdnhz?=
+ =?utf-8?B?aWwxY1RTYitHRmliOVRnSFJkZ0I5TXNUUmFSRnk3ZnZXaGZwV1JRNU5mT28x?=
+ =?utf-8?B?bEtlc21PKzRhS1RXejkvTzhkYm5SaTZNcFhPZTVLT1djeUNTVUtRVmNBdXlU?=
+ =?utf-8?B?YlJwRTkrckoyVC9lZHE1K2lIUGJaYXdXMVJYS01DclFaWE5xU0RiTGVzNnJu?=
+ =?utf-8?B?czhrb0lNVlgvbEcrOS9zbDVKbDhoZHRtTS9Oc3UxcFhIdjd0RzQ3MnZXLzkw?=
+ =?utf-8?B?NGRYK1grRXREajV6VldNdzA2cmYwK0MrOGRVRUk3NWVzbkhxKytraW9ORUVD?=
+ =?utf-8?B?RHA0WFR0emhIWkFYTThNZmNHZXZjRnhxOXVTV0tpODRKY1poRExLZjgrQkRC?=
+ =?utf-8?B?OXl6blBpb1BZYWxxaG93ZkUxMDVsN2I1UGNQaVQ1a0JUVXlyazNFdVF4dUNV?=
+ =?utf-8?B?cEZDTE5pQVFVRnRWQm9JR2U1Ulo5K1hLKzQyaUpMdzdqaSt3Y3k3MmNwMHp0?=
+ =?utf-8?B?SnQ2NTVjU054QnExdnRMaXNkTDZPeUJEVHlGNmlFRk9iWWFkL2lGTDg5WGxy?=
+ =?utf-8?B?TmlHWGdYVHF6akcvUmE0bkhQVUNCaGJiRndXYkxtOGU0Mkt3akhXSVZQQUZF?=
+ =?utf-8?B?NFVjMk1lTE5HcGxjTDliWXlQYXZFT2Vka2ZOS0tMNVBMaklPampObUhIeG01?=
+ =?utf-8?B?T3M0cWZnS2lkbGprcTBFRXVGMDQvUTdLQURscEx1TXdQT1JBNXc5K1JDQmxo?=
+ =?utf-8?B?ejNXaWR4TlRoVjNUVlNJZTFPYXFjVGExa0tIYXYrRy8vM0RCQ0tidkZ5bFdx?=
+ =?utf-8?B?Rm9NSlVET3ZZclhZWTZ4MU1mbmN6VS9xTXhTM01GT1dGTlJKaFJnS2FCRTZm?=
+ =?utf-8?B?TjdycWpnSnAyR1FlYWl1cG8yQ09CN0RZWWVHektPc2JWb1VPSlRRcEZqQ1RO?=
+ =?utf-8?B?ZHpQQ0tiNElwTFhURzQzVWU0RUhYZjFZdWh1UmQ3OVJ3bHZOTXVZeUFXeDZZ?=
+ =?utf-8?B?UGZQTTVhTE1CaHo4TngxbDZVeStxK0hUYjlWZlljaCtnU29qdHNQanlHNFBW?=
+ =?utf-8?B?c2tpczVjR1l5OFExSHVObHQrMGJ2ZG9Qc29ZMDNOdjFoZmh4RHd0K1QzL2ht?=
+ =?utf-8?B?ZXZGcWRZcHhLWThKVVFzTGxCVmU1R25qWTRNeUlYc0FTT2lUSklNWWtBcVJj?=
+ =?utf-8?B?K0ZtTDNwR3JFWEw4eFJRd2I4a3A1L1o0V1g4UWIvR05OYlJNL0haRlVjQnVp?=
+ =?utf-8?B?WFVvSk1JSXE1QkYxb1BhWE42bXBCMnRicXozZ0Zsa3JMbHJMeWNCUlJGc0x6?=
+ =?utf-8?B?aGN2UjdsakpTa1VsNkE5NlAzazlNdW5lMjhPTWpUVVdYR0JQM2Y0UFBSWWtZ?=
+ =?utf-8?B?eSt2eWQxN2VKNzB0ZWJQYUo1YzI2d2VHczREdGFBNzdXdTVOT1c1ampGQ0E5?=
+ =?utf-8?B?Y2NDUUw1YXVZbnc5MlVkUk5XRUhiMmFOKzdYeEVSdVRTUFpWK2QramZxR3NP?=
+ =?utf-8?B?K2hOcEhIZ295WFN3WHhMcUNjaG5Ma2w1dDFiVVVLZkpQNHc9PQ==?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7408.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?R2dsv/UDWq1hpA74jhMY+FijlmPmyu4yjNjBdfbJ7SLQjR0i6KHnXOVF5I?=
- =?iso-8859-1?Q?iEGFifm2+7uo7PQlafxBVW5kBR7dJAMBrGjXoeSjfLOmBXwe5s6M051TGI?=
- =?iso-8859-1?Q?xpUKpuZjHQXwHGqzgxxKjzLJ4NCT5vKoDGdEp0ggu+x9jHJncIfzWorUSm?=
- =?iso-8859-1?Q?gkA6a/0UeYGOeAwYwHNFknJci5+JnV/7nSQyLGT/MTvzlWADgbkygBm6vv?=
- =?iso-8859-1?Q?bVCGp3SE6n+eAi1HmyCZZg1mq2NOQjjaqoqMklOElbuwfntgBrWghTI6No?=
- =?iso-8859-1?Q?K0AN8gXFj31MB/RwoF/VvHkrRYhfwYRr3E+V66j01E4ncRomQL71nDQ8xC?=
- =?iso-8859-1?Q?spgQD8XiZla+iKsoRycYBxZL6YGZA99dWafUV7dXIPQt8SYW4ryKRQzpJj?=
- =?iso-8859-1?Q?4ZM2Qh4phwgBBOa2W6ksDdWR9nM3kWu3wRNSQwDhjwC3R7FeLveVw91+I4?=
- =?iso-8859-1?Q?aB5nwZejO7Q+rTgrRrr89Py2Ynl6UWZdoaoB5XDou4VT2T0nWqyHhxN9a7?=
- =?iso-8859-1?Q?m7Hv8y6kt7sEZFWVMV1yAi03gvdSo/BSEnaVFpqmbZQ11GKa44eISQnOVw?=
- =?iso-8859-1?Q?cGqnhumlw6FjXOtbFFTCuZZc0WEayU1Dxf0FDvWVLiJd1DPPyV6p3gpCeM?=
- =?iso-8859-1?Q?JCri2IAXCn7tDZKBKaGhlqixv04y5zN4GykD/IRjFaFQCsLQEeInjxCu7V?=
- =?iso-8859-1?Q?nhxpBUHjBHPeF+vNZr/5GR3maKspD4XZo6AxNHe4IVhugBf1ynJd5njGkq?=
- =?iso-8859-1?Q?ZOtJ3v/krLqbdU+pNkZpawiJ728DldIGhEZis62pLPbdmXoz3GRlmpzgth?=
- =?iso-8859-1?Q?/uUZUbJtshkUidMy7k39n+f9gZT1I5icvYzDdNJgguvq6XrbeJYiLMpi7E?=
- =?iso-8859-1?Q?VyDfd7TINxfml33NzbUTZaxeOKUOm+xli88H77QnrYUZw4IZ9hhKrVt8m3?=
- =?iso-8859-1?Q?QBwK/gp+SlHXP+vXBj1bWHv5rKNQgRlw6sOg24kc6KjbZUDcVOlzMkzzWA?=
- =?iso-8859-1?Q?jnCTA/TlsbPldsbRziYLWzOQBuSjCaUSVPMUW/QutaT0Dgwz88ZPyc6ri5?=
- =?iso-8859-1?Q?KhIQx7SQB4S8IoOSxP7PrGSAg9d/kvGUAXtR3CPaEQughVzV4h6jsRZ8e2?=
- =?iso-8859-1?Q?RGStHNmfkfPd2uca4EUzg/4/RXYP13mwB/OrSceRgBIC2PdoFn4eHPKV1Q?=
- =?iso-8859-1?Q?i1gCyAHm/mSf3tMeebWG4Z4wctrDbUtPXKlCVGDNBeK5KAru4OBM621WbU?=
- =?iso-8859-1?Q?GYlDVx5MK/o3YFY4JadvsrO/vPZ8t5r8WCqVeRG9snlQko0NoDSSHU+EEv?=
- =?iso-8859-1?Q?1ZUrCnafUlRc5krhXnphKvwPJEbq5jSbaWNGpqDeuW3FUS2QGFtZcKI8uL?=
- =?iso-8859-1?Q?sJo7rKE63zvUBWt6SnROJiokLltJLU/jid8bWv5WonsdGi1kM/z67Y8+WQ?=
- =?iso-8859-1?Q?IJ/cnukJrqH3SaJ1S/ZOLiN88n/OBpFmzIgekKdqXLMs0q4QA2Wl8y03Qm?=
- =?iso-8859-1?Q?2jtfCjxCIEwSuAwPMUdpraifxgeD2RZw9Ss19tXf2kl7wv6zHH4+Cqa+0l?=
- =?iso-8859-1?Q?cYf/RwNHf9TrSoNsJHGrfYBSHMoUvCGyAweShb5Uir7gc81rSSs9C3KF32?=
- =?iso-8859-1?Q?uYp8hhwExmNNpDpkWY1vfnjo58f22/176aSP+5ygAo02+BWbWSdPNbpQ?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8b423942-fdd3-4cd3-bdcd-08de069152c7
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?akRSR2ZBNjlEUWU2YlJzRW50cmllVjVsREZvanF4VFkvMVVoYkZEWkZwL3lR?=
+ =?utf-8?B?R2ExakM2aWQvS2UwekdFc2hnazhWQTc3ZC9UTUx5aGdJNG5CRTVDQVZ4cXFD?=
+ =?utf-8?B?Z0pFWjU0UW5SSGI3QkxDU0lJYWZEYzFpamZZa3V1aFRBenFQSXh6eFV3QTZW?=
+ =?utf-8?B?cWRQWFAxaU1EQzN1Z3lwUzFEY0cvVmNFM3owMHgva2J5MEVWRjRjMnlHVkJ1?=
+ =?utf-8?B?ZHlxU0hzKzEyL2hESVU4ajRaZmJvWFFXaVgwZXRzaHJKNnBMR3loT1FjbGRO?=
+ =?utf-8?B?NUZjOEpJU0Y0akNMUHNQOGNHOWRwaVRPWmx1NG5iNldjMVZhMHlSSzRPOTBD?=
+ =?utf-8?B?cVExZWpEd096TEhWK1R2ZUZUOWZNaG9nZVpPOGh1VlNCVFU1Y1JEY3NwS0Zx?=
+ =?utf-8?B?SlhKOEg0bnU5aVBka0lMZ3loSThNWUVnUDNESWhmQnZOWkZzL3RYcWZaVlZV?=
+ =?utf-8?B?VmJsdFJYZTRlYzlUTW50Q0t4UzJwbm5BSjVGVnR1UEFWcFZSckd1alhZd0dh?=
+ =?utf-8?B?TkF0dFAyNHRMS2x4TUgzYTlhTmFjZTlHeUZQT1IrVDZlbzd3enB6UUZHeVJL?=
+ =?utf-8?B?UHNLOUNuRTRHSnpqbEdnK3ViS1BQV3NLY1ZKdFd1OHZnT0ZISzFBWVdpN3Nm?=
+ =?utf-8?B?N05INTZoTzJIUVlaMnUyYVVGRnJTOG10cWNraXg3ZHE0dlRzb3Zpdmh6QjRs?=
+ =?utf-8?B?c3NFMlFxcWxjdzlHVTNLeU1uNUJ4Mm92S2VCTkZqalV2SzU0VFQ5bnZzMmhj?=
+ =?utf-8?B?QVkveDl2WkE5S2xOS3Y1UWc2dmg4SERIbTNwT3M2Vm5JbFh1eXNmUkRKMG9L?=
+ =?utf-8?B?WS9qRlo0NE9uZlpzK2pvL0dySEdGYW9MMVhRbXBxUm1ackZ1eEh6RmlkUHJT?=
+ =?utf-8?B?Q2tFWGhyTFIrVnFyclRlV2RzQ2VKNnlPcTlDUzRyVDF6NjE4REZ3R2IrTWhO?=
+ =?utf-8?B?NVU1SC94bWV2emJZamg4b092bngvb25mMjljVkVoSEdIK29nTGlycFpUU21q?=
+ =?utf-8?B?cjdxcUduNVQ3aHhTMUxxTngvL0NrYXRVVGg5cXo1UlBkU3hvbHd1N1pHcVI5?=
+ =?utf-8?B?TTg2RHhYZzFoTFZBbnhxbUpla1N4SkNqalBLNXBGUzl4dXU2ZFFSKzVWQ2ox?=
+ =?utf-8?B?MmpQa3k3WjYvMko4MTdXZnhTaW9jWkhCVmhsc3YwVk9nNnRJOWZiNzZyVzZ2?=
+ =?utf-8?B?c3V5Zy8xWFFrTDdQSlJjNThUVFp2STlPU3dtQ3lRenV2ZnZLU3ZIZkhPNWlj?=
+ =?utf-8?B?ZjkySVBoYTRQektZK1pkNkk5azFoN3FMWHZjU3JwaDEvS3FMNjN6UDJVVlBC?=
+ =?utf-8?B?eHhOL3RRZUV2VHVXWWMwcUZKSmNwQU5waUZRV2RmdWNjMnVaZE5kVFZNNXVv?=
+ =?utf-8?B?VTJrWEFzV3M4ekI0RnZMczBzSWtYa0JLOVZwTmlWWkxBSGY3ZFlzWWZHMXk0?=
+ =?utf-8?B?TDRmY3l5b3dUb1AyclFQTW56dEtud3Zad0tvWVJXYTJaaFBFYmpxTzY1ZWlp?=
+ =?utf-8?B?enFwMEp6Qy9Zb3JUV0F4Z0JNQWpnSnFUNk5wUCtvTVVKK2JRNVJwRWdpdkVB?=
+ =?utf-8?B?Q3VCcHVLVEpFa0oxN0RiaFEreDhOTVZDaXZheUlDKytwR1l2cUNNQjl4bU5j?=
+ =?utf-8?B?Tko5aGh1VlJVWmlUbVAySDl0dVd2MlZ4S3dZQzQzTUVtS0ZEdDdEbDMxTmMy?=
+ =?utf-8?B?eG1peC9OL2tEdUVKMnpuZ1JSc0hhenh3dHNUajd6WjVqUFFEcll1dVllL29L?=
+ =?utf-8?B?NmFwaW1WWjNrUis3WVROaTErd3ZEOGEycXV2LzREcHdXSUhyckJUU0NwdW1Z?=
+ =?utf-8?B?V0U1cDVRQ3lMUDhFK0k4b1Q5UlI0KzlMeEc4cHBBSkRrSE4wcVJiMXE5bUIy?=
+ =?utf-8?B?U2pUaCsrNXZnZStONHF3U2RleGJaekxwd0QzNGZnWStsb2NTemxJOWZQLzBx?=
+ =?utf-8?B?Tk1PT3h6eGcxRUppdHJ4Mjh0NEo5QVhxc0p3NTdUWnhLNlgrdVk1YmJhUGJj?=
+ =?utf-8?B?VGhZVDVqbDNSUDR1NWh1V1QzQUJtWFd6TW9JZGNsTzZsQURqaVVRVTdpQlVL?=
+ =?utf-8?B?dFVTeFlYK3lEM3A4cGYxajF5Z01ENkVNMlRNM2NqSEVFZHVqUXprUS9HN01E?=
+ =?utf-8?B?NmRySG9YNFBLRzJNQys4STRLbmN1NklqbFI3SFp2Q0lhNDNZVEpqL1ExMmlX?=
+ =?utf-8?Q?X5oC0YUNUeRW3+Vc1Ajw1zc=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1d3befc7-5936-4922-378d-08de069792fa
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7408.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2025 17:37:16.4061 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2025 18:22:01.1202 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gAdLr4Qr3mHCMEvjsk2GYASZBlv8QpxFT5B5hVi6uJgrXaHtSsvAGZKFtUqJxpvWssgr7qd4SNJjHcHzmrdmke/0AIvuh8j7RmAlCrq4ma8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB7094
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2YMGOINKb9ubGSrFOn54SrGSocyH0prw62sKIpUWfNQvTUAVt8ij3gucxrBtRB6ojWaE4lbrtX2WXxuGRAB5STavNcXN2dXf08quM2dgwL8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB9157
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -181,310 +192,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 08, 2025 at 10:22:42AM -0700, Matt Atwood wrote:
-> On Wed, Oct 08, 2025 at 09:53:34AM -0700, Matt Roper wrote:
-> > On Tue, Oct 07, 2025 at 02:23:36PM -0700, Matt Atwood wrote:
-> > > reg_in_range_table is a useful function that is used in multiple places,
-> > > and will be needed for WA_BB implementation later.
-> > > 
-> > > Let's move this function and i915_range struct to its own file, as we are
-> > > trying to move away from i915_utils files.
-> > 
-> > It looks like this is a new revision of this patch from a couple years
-> > ago, right?
-> > 
-> >         https://lore.kernel.org/all/20231129205122.3464299-1-matthew.s.atwood@intel.com/
-> > 
-> > Even though it's been a long time, it would still be a good idea to
-> > include a patch changelog so that it's clear what's been changed and
-> > what review feedback was/wasn't incorporated.
-> Sorry, I will include it if theres another version
-> > 
-> > I'm also wondering if we should be thinking about moving i915 to use
-> > 'struct regmap_range' and existing functions like regmap_reg_in_ranges()
-> > rather than maintaining our own i915-specific versions of the logic.
-> > regmap in general does a bunch of other stuff that isn't relevant to
-> > i915, but it seems like we might be able to re-use the type definitions
-> > and basic lookups to avoid reinventing the wheel.
-> This is doable but just requires a rewrite of the current implementation
-> as it's not a 1:1 conversion.
+On Wed, Oct 08, 2025 at 11:13:42AM +0000, Patchwork wrote:
+>   Patch Details
+>
+> Series:  drm/i915: Fix conversion between clock ticks and nanoseconds           
+> URL:     https://patchwork.freedesktop.org/series/155566/                       
+> State:   failure                                                                
+> Details: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155566v1/index.html 
+>
+>     CI Bug Log - changes from CI_DRM_17325_full -> Patchwork_155566v1_full
+>
+>Summary
+>
+>   FAILURE
+>
+>   Serious unknown changes coming with Patchwork_155566v1_full absolutely
+>   need to be
+>   verified manually.
+>
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in Patchwork_155566v1_full, please notify your bug team
+>   (I915-ci-infra@lists.freedesktop.org) to allow them
+>   to document this new failure mode, which will reduce false positives in
+>   CI.
+>
+>Participating hosts (12 -> 12)
+>
+>   No changes in participating hosts
+>
+>Possible new issues
+>
+>   Here are the unknown changes that may have been introduced in
+>   Patchwork_155566v1_full:
+>
+>  IGT changes
+>
+>    Possible regressions
+>
+>     * igt@kms_atomic_transition@plane-all-modeset-transition@pipe-a-hdmi-a-1:
+>          * shard-tglu: PASS -> FAIL +1 other test fail
+>
+>    Warnings
+>
+>     * igt@kms_pm_dc@dc9-dpms:
+>          * shard-tglu: SKIP (i915#4281) -> SKIP
 
-The idea is that we'd eliminate 'struct i915_range' and related
-functions and just use the regmap types and functions instead.  It looks
-like the main difference is that the regmap lists are size-based, while
-our lists use a sentinel to mark the end of the table.
+The above are unrelated to changes in this patch.
 
-Although I did just notice that even the basic types and helpers for
-regmap rely on CONFIG_REGMAP, so that might be an argument against
-switching over since we'd need to add an extra kconfig dependency, and
-most of what it brings in isn't useful to us.  But probably more
-something for Rodrigo and the other maintainers to weigh in on.
-
-
-Matt
-
-> > 
-> > > 
-> > > Suggested-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > > Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/Makefile               |  1 +
-> > >  drivers/gpu/drm/i915/gt/intel_workarounds.c |  1 +
-> > >  drivers/gpu/drm/i915/i915_mmio_range.c      | 18 +++++++++
-> > >  drivers/gpu/drm/i915/i915_mmio_range.h      | 19 +++++++++
-> > >  drivers/gpu/drm/i915/i915_perf.c            | 45 ++++++++-------------
-> > >  drivers/gpu/drm/i915/intel_uncore.c         |  1 +
-> > >  drivers/gpu/drm/i915/intel_uncore.h         |  6 ---
-> > >  7 files changed, 57 insertions(+), 34 deletions(-)
-> > >  create mode 100644 drivers/gpu/drm/i915/i915_mmio_range.c
-> > >  create mode 100644 drivers/gpu/drm/i915/i915_mmio_range.h
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> > > index 78a45a6681df..e5819c4320bf 100644
-> > > --- a/drivers/gpu/drm/i915/Makefile
-> > > +++ b/drivers/gpu/drm/i915/Makefile
-> > > @@ -26,6 +26,7 @@ i915-y += \
-> > >  	i915_ioctl.o \
-> > >  	i915_irq.o \
-> > >  	i915_mitigations.o \
-> > > +	i915_mmio_range.o \
-> > >  	i915_module.o \
-> > >  	i915_params.o \
-> > >  	i915_pci.o \
-> > > diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > > index 7d486dfa2fc1..a3c08bde9b2e 100644
-> > > --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > > +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > > @@ -5,6 +5,7 @@
-> > >  
-> > >  #include "i915_drv.h"
-> > >  #include "i915_reg.h"
-> > > +#include "i915_mmio_range.h"
-> > >  #include "intel_context.h"
-> > >  #include "intel_engine_pm.h"
-> > >  #include "intel_engine_regs.h"
-> > > diff --git a/drivers/gpu/drm/i915/i915_mmio_range.c b/drivers/gpu/drm/i915/i915_mmio_range.c
-> > > new file mode 100644
-> > > index 000000000000..c5484b16e28a
-> > > --- /dev/null
-> > > +++ b/drivers/gpu/drm/i915/i915_mmio_range.c
-> > > @@ -0,0 +1,18 @@
-> > > +// SPDX-License-Identifier: MIT
-> > > +/*
-> > > + * Copyright © 2025 Intel Corporation
-> > > + */
-> > > +
-> > > +#include "i915_mmio_range.h"
-> > > +
-> > > +bool reg_in_i915_range_table(u32 addr, const struct i915_range *table)
-> > 
-> > I think some of the feedback about function naming from the previous
-> > version was overlooked.  If we have a file i915_foo.c, then the general
-> > expectation is that the non-static function names should be
-> > i915_foo_*().  In this case, it means that functions you expose here
-> > should probably start with an "i915_mmio_range_" prefix.  So maybe
-> > something like "i915_mmio_range_table_contains()" would be a better
-> > choice.
-> Ah, the initial feedback I got from Rodrigo was that the original
-> function name could give the impression a function was more generic then
-> it actually was. The name I chose her was getting the struct name
-> (i915_range) into the function name. I can easily change the name
-> depending on what the community wants. 
-> 
-> MattA
-> > 
-> > Our existing code isn't entirely consistent about following this rule
-> > (especially for i915 which has a lot of historical baggage), but we try
-> > to follow it when writing new code.
-> > 
-> > 
-> > Matt
-> > 
-> > > +{
-> > > +	while (table->start || table->end) {
-> > > +		if (addr >= table->start && addr <= table->end)
-> > > +			return true;
-> > > +
-> > > +		table++;
-> > > +	}
-> > > +
-> > > +	return false;
-> > > +}
-> > > diff --git a/drivers/gpu/drm/i915/i915_mmio_range.h b/drivers/gpu/drm/i915/i915_mmio_range.h
-> > > new file mode 100644
-> > > index 000000000000..c3c477a8a0c1
-> > > --- /dev/null
-> > > +++ b/drivers/gpu/drm/i915/i915_mmio_range.h
-> > > @@ -0,0 +1,19 @@
-> > > +/* SPDX-License-Identifier: MIT */
-> > > +/*
-> > > + * Copyright © 2025 Intel Corporation
-> > > + */
-> > > +
-> > > +#ifndef __I915_MMIO_RANGE_H__
-> > > +#define __I915_MMIO_RANGE_H__
-> > > +
-> > > +#include <linux/types.h>
-> > > +
-> > > +/* Other register ranges (e.g., shadow tables, MCR tables, etc.) */
-> > > +struct i915_range {
-> > > +	u32 start;
-> > > +	u32 end;
-> > > +};
-> > > +
-> > > +bool reg_in_i915_range_table(u32 addr, const struct i915_range *table);
-> > > +
-> > > +#endif /* __I915_MMIO_RANGE_H__ */
-> > > diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-> > > index 1658f1246c6f..b319398d7df1 100644
-> > > --- a/drivers/gpu/drm/i915/i915_perf.c
-> > > +++ b/drivers/gpu/drm/i915/i915_perf.c
-> > > @@ -219,6 +219,7 @@
-> > >  #include "i915_perf.h"
-> > >  #include "i915_perf_oa_regs.h"
-> > >  #include "i915_reg.h"
-> > > +#include "i915_mmio_range.h"
-> > >  
-> > >  /* HW requires this to be a power of two, between 128k and 16M, though driver
-> > >   * is currently generally designed assuming the largest 16M size is used such
-> > > @@ -4320,18 +4321,6 @@ static bool gen8_is_valid_flex_addr(struct i915_perf *perf, u32 addr)
-> > >  	return false;
-> > >  }
-> > >  
-> > > -static bool reg_in_range_table(u32 addr, const struct i915_range *table)
-> > > -{
-> > > -	while (table->start || table->end) {
-> > > -		if (addr >= table->start && addr <= table->end)
-> > > -			return true;
-> > > -
-> > > -		table++;
-> > > -	}
-> > > -
-> > > -	return false;
-> > > -}
-> > > -
-> > >  #define REG_EQUAL(addr, mmio) \
-> > >  	((addr) == i915_mmio_reg_offset(mmio))
-> > >  
-> > > @@ -4421,61 +4410,61 @@ static const struct i915_range mtl_oa_mux_regs[] = {
-> > >  
-> > >  static bool gen7_is_valid_b_counter_addr(struct i915_perf *perf, u32 addr)
-> > >  {
-> > > -	return reg_in_range_table(addr, gen7_oa_b_counters);
-> > > +	return reg_in_i915_range_table(addr, gen7_oa_b_counters);
-> > >  }
-> > >  
-> > >  static bool gen8_is_valid_mux_addr(struct i915_perf *perf, u32 addr)
-> > >  {
-> > > -	return reg_in_range_table(addr, gen7_oa_mux_regs) ||
-> > > -		reg_in_range_table(addr, gen8_oa_mux_regs);
-> > > +	return reg_in_i915_range_table(addr, gen7_oa_mux_regs) ||
-> > > +		reg_in_i915_range_table(addr, gen8_oa_mux_regs);
-> > >  }
-> > >  
-> > >  static bool gen11_is_valid_mux_addr(struct i915_perf *perf, u32 addr)
-> > >  {
-> > > -	return reg_in_range_table(addr, gen7_oa_mux_regs) ||
-> > > -		reg_in_range_table(addr, gen8_oa_mux_regs) ||
-> > > -		reg_in_range_table(addr, gen11_oa_mux_regs);
-> > > +	return reg_in_i915_range_table(addr, gen7_oa_mux_regs) ||
-> > > +		reg_in_i915_range_table(addr, gen8_oa_mux_regs) ||
-> > > +		reg_in_i915_range_table(addr, gen11_oa_mux_regs);
-> > >  }
-> > >  
-> > >  static bool hsw_is_valid_mux_addr(struct i915_perf *perf, u32 addr)
-> > >  {
-> > > -	return reg_in_range_table(addr, gen7_oa_mux_regs) ||
-> > > -		reg_in_range_table(addr, hsw_oa_mux_regs);
-> > > +	return reg_in_i915_range_table(addr, gen7_oa_mux_regs) ||
-> > > +		reg_in_i915_range_table(addr, hsw_oa_mux_regs);
-> > >  }
-> > >  
-> > >  static bool chv_is_valid_mux_addr(struct i915_perf *perf, u32 addr)
-> > >  {
-> > > -	return reg_in_range_table(addr, gen7_oa_mux_regs) ||
-> > > -		reg_in_range_table(addr, chv_oa_mux_regs);
-> > > +	return reg_in_i915_range_table(addr, gen7_oa_mux_regs) ||
-> > > +		reg_in_i915_range_table(addr, chv_oa_mux_regs);
-> > >  }
-> > >  
-> > >  static bool gen12_is_valid_b_counter_addr(struct i915_perf *perf, u32 addr)
-> > >  {
-> > > -	return reg_in_range_table(addr, gen12_oa_b_counters);
-> > > +	return reg_in_i915_range_table(addr, gen12_oa_b_counters);
-> > >  }
-> > >  
-> > >  static bool mtl_is_valid_oam_b_counter_addr(struct i915_perf *perf, u32 addr)
-> > >  {
-> > >  	if (HAS_OAM(perf->i915) &&
-> > >  	    GRAPHICS_VER_FULL(perf->i915) >= IP_VER(12, 70))
-> > > -		return reg_in_range_table(addr, mtl_oam_b_counters);
-> > > +		return reg_in_i915_range_table(addr, mtl_oam_b_counters);
-> > >  
-> > >  	return false;
-> > >  }
-> > >  
-> > >  static bool xehp_is_valid_b_counter_addr(struct i915_perf *perf, u32 addr)
-> > >  {
-> > > -	return reg_in_range_table(addr, xehp_oa_b_counters) ||
-> > > -		reg_in_range_table(addr, gen12_oa_b_counters) ||
-> > > +	return reg_in_i915_range_table(addr, xehp_oa_b_counters) ||
-> > > +		reg_in_i915_range_table(addr, gen12_oa_b_counters) ||
-> > >  		mtl_is_valid_oam_b_counter_addr(perf, addr);
-> > >  }
-> > >  
-> > >  static bool gen12_is_valid_mux_addr(struct i915_perf *perf, u32 addr)
-> > >  {
-> > >  	if (GRAPHICS_VER_FULL(perf->i915) >= IP_VER(12, 70))
-> > > -		return reg_in_range_table(addr, mtl_oa_mux_regs);
-> > > +		return reg_in_i915_range_table(addr, mtl_oa_mux_regs);
-> > >  	else
-> > > -		return reg_in_range_table(addr, gen12_oa_mux_regs);
-> > > +		return reg_in_i915_range_table(addr, gen12_oa_mux_regs);
-> > >  }
-> > >  
-> > >  static u32 mask_reg_value(u32 reg, u32 val)
-> > > diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
-> > > index 8cb59f8d1f4c..aea81e41d6dd 100644
-> > > --- a/drivers/gpu/drm/i915/intel_uncore.c
-> > > +++ b/drivers/gpu/drm/i915/intel_uncore.c
-> > > @@ -35,6 +35,7 @@
-> > >  #include "i915_reg.h"
-> > >  #include "i915_vgpu.h"
-> > >  #include "i915_wait_util.h"
-> > > +#include "i915_mmio_range.h"
-> > >  #include "intel_uncore_trace.h"
-> > >  
-> > >  #define FORCEWAKE_ACK_TIMEOUT_MS 50
-> > > diff --git a/drivers/gpu/drm/i915/intel_uncore.h b/drivers/gpu/drm/i915/intel_uncore.h
-> > > index 6048b99b96cb..6df624afab30 100644
-> > > --- a/drivers/gpu/drm/i915/intel_uncore.h
-> > > +++ b/drivers/gpu/drm/i915/intel_uncore.h
-> > > @@ -123,12 +123,6 @@ struct intel_forcewake_range {
-> > >  	enum forcewake_domains domains;
-> > >  };
-> > >  
-> > > -/* Other register ranges (e.g., shadow tables, MCR tables, etc.) */
-> > > -struct i915_range {
-> > > -	u32 start;
-> > > -	u32 end;
-> > > -};
-> > > -
-> > >  struct intel_uncore {
-> > >  	void __iomem *regs;
-> > >  
-> > > -- 
-> > > 2.51.0
-> > > 
-> > 
-> > -- 
-> > Matt Roper
-> > Graphics Software Engineer
-> > Linux GPU Platform Enablement
-> > Intel Corporation
-
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+Umesh
+>
+>Known issues
+>
