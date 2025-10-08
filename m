@@ -2,64 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81F5DBC37CC
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Oct 2025 08:41:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 912F4BC37D8
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Oct 2025 08:42:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46F2E10E75E;
-	Wed,  8 Oct 2025 06:40:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BB9010E07D;
+	Wed,  8 Oct 2025 06:42:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XjliAvzt";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KihELY16";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62BD310E75E;
- Wed,  8 Oct 2025 06:40:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F077E10E07D;
+ Wed,  8 Oct 2025 06:42:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759905648; x=1791441648;
+ t=1759905721; x=1791441721;
  h=date:from:to:cc:subject:message-id:reply-to:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=Ps0IduZhcjEySitI/Mjnz//XT4G69yxAZAJwbSBf1wQ=;
- b=XjliAvztM3lXhBlPbp2nGkFZY06lHJlYOmg/m5CvIh/VQQavyODhjrQB
- hLM9v4G0VDcYLKjnfOhiXuURXbWQorcU5kuutVOmjsgmuXNDaf9CrylOz
- R/4zhr2PhFi3AyGp2GjGStyE9+5vnOpiFMmmC40YJ3qvXSPdHu0WYaO8e
- h1rg+jmgDrrBis8rKe5pd6bw9wi9j7ZtKOu+8Xwbx+iaBwoUvKRK+gNyy
- lQu4x25Mte8tCXswh4QLooXxb0QjSgD5tvPx2748wMh3Z3cp8scw8MZvq
- ygLy9QlQRNHHnvwDOJDOvKxeQCQr46JMds/mWoUN+6+1Kj/9ZCqYQuE8l g==;
-X-CSE-ConnectionGUID: zH+en0nwQbidGdeJ8yBKMA==
-X-CSE-MsgGUID: fA6qW/hoRLiknM4eg/fEnA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="87559809"
-X-IronPort-AV: E=Sophos;i="6.18,323,1751266800"; d="scan'208";a="87559809"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 23:40:47 -0700
-X-CSE-ConnectionGUID: DC+aGBLBQEWqhyulNNhlUA==
-X-CSE-MsgGUID: Z6HYHY6GRkq8cmJd2Lb5wQ==
+ bh=/6R6FliWNZZPlPkoD0SAIbz0khbNN6Q2pq9THeGGcc4=;
+ b=KihELY164xfs+79P6/wo/Wrz985dTT5kkgOjNgUma/Rmh9xflADbgNhP
+ 2fcNOOs769DztZadzl9OyC1i6pFLfCjJpliQauRsE3otAdeOw0b5bv+Zl
+ y11lRvCYgYo5K5bzT4sWLU6fl95HcDsxPsehHkENssDU0WHhSxpmWoEo4
+ ygXL9qjVOKCmiEWWg5avfa9E+6rjlebZUwu3It4NVNu7r0a6uZZzP/E7T
+ 6kKqaTMiV9nerCFUhWJhh/Vn8Jtt82LjXNLd9+fcXd+WkK1lPytejA6iT
+ HrCfpSs1UQFJZESXk0d6IczxgbjIGAS9XJL2CCnbKWjSd7YC7fl4rm/Le w==;
+X-CSE-ConnectionGUID: 2AoMsbqcSY6b+5yVCEr+Ug==
+X-CSE-MsgGUID: kr1cuxMHSqekefI84zbgyQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="61297807"
+X-IronPort-AV: E=Sophos;i="6.18,323,1751266800"; d="scan'208";a="61297807"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2025 23:42:00 -0700
+X-CSE-ConnectionGUID: DYpBAqT6RyKFr5sax2iZFw==
+X-CSE-MsgGUID: mg9Uh3fxSN6cyk4kpn10GQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,323,1751266800"; d="scan'208";a="184741113"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 23:40:47 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.18,323,1751266800"; d="scan'208";a="179613383"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2025 23:42:01 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 7 Oct 2025 23:40:47 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.27; Tue, 7 Oct 2025 23:41:59 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Tue, 7 Oct 2025 23:40:47 -0700
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.6) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Tue, 7 Oct 2025 23:41:59 -0700
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.62)
+ by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 7 Oct 2025 23:40:44 -0700
+ 15.2.2562.27; Tue, 7 Oct 2025 23:41:59 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LG5OBADmXBj/oy9SMXfUzZ/Qha5Bve7IdOLHbzPptUmp6XHM3g9NrJ363+R+X/mzAQSw5bcboTlKX/cbaHiiue3DfKNi+7vecNQsw1UuzJPrkRmnf8jtkK2N2sTSti9ZJ2A/GC0kjL6UEzuaMxZ472eMtaMolBewh94he6IXWbuzGTENi/Ds+eviGHesjjrTNSfKYYLAXtdfPxeRxULQ1g67z0pHGayRu6fTQ/ND7hn4W3yJdGqeQZsNFVn5evpVO67p504IGQCkr9iB3wU/rA29/fRzRXYGhofvM55QqDulbsIWYZxYA2ZNM7pQ1WztJgbzf2frkAstf7ooRkOndw==
+ b=ISJwVKfQwWAb69Ze1BW2pOmc4/+mLWTA+EurvZ3enbF1uQ997srhheHln1InhLEep6w+KAmaYF2EzyAc8TZ8TexUv54/yKut88xHqTSLkZMVud1lOcDW/sP4daVZ4UURe9mq+Ny8hJJp+qc/0ZG2c1gtuUf0MjaYrg7DV8LogdyCL3MdU7XFeiAykctQHx3CUKcHn88daTtPwVMOr+LPvvA3jN+Y6HHIjf/OTBo2uGxyFj2SQPX5TFYNn4+DONkhBi/02VDjhxXaHRvWKl/+CI6Tb7GvCs8vLdKAl8fyQlobUtfmaSUOTTOJtXOi/S9llzP147cxBwwPCr2MkOoFUg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lGobivRB2hW60KMMA/Avhr/I8sC2LLTWmTlgidqApjA=;
- b=h+lUSBHPd7FCsD0ZNbT2wL1BlnlQnNtPes7CusfIjXCz8IRy9pqNZTTI4Z23nRgeKASoeUgst6xZ8zxgeib3riPIqztT1S9vPeEXSNkkGoEPevQKZFJNUJnfnS4uGCbvLcpNFbHSt6TJ1hCn4DT7YlJXS8/bsOF9XsLc9HZzp5qux2obH1esjEtZpkdhVlX6InKxNY5zK2WX3rvDLCpoSc3/cQGImnYZ+2dRmgy48v85Bb2Pze3cE6GHy31Cq9gt881JErWckCs8U3gUZ4AeI3B+bSp9/eWm4gK/sfao2v1ZzGpYoBURXeCWCeKxb2K2XlOF2hSlQvE2oJTeGLAJZg==
+ bh=Df2ynDshoB+qbpPRXKys0a3ojG7+CflK507N5rdec3Q=;
+ b=m1lfzWSGK7GOgEMYWbh+z9OuxlwSznoWp6Zy7sPg2GRC/P+ksCkrt4WpvTEIHJfW1W5atA6MjO/DIeQozlzQsWf1Z/wJtAyfLs79zrJ/ToNZlb9lYrG836Opuydum79mdc+OVUtsx376trs2880/CazqI0d7QCIvTIIffohppmC8wC3LfhbSft+7PeSPxMuLcVwuOBJwFb+cASt2I56WS0FFXG14Gp9l/DC8D6Wq6d2PrE2/Bqd0CQe8KjUsdHXqWeRijU0eApwC/N73JXremX80U0/uYqnU/V0c2ElcCtVL+4ya46tGEHgAkNKRGw7fJ0Z1nX4CylOwjDFuQsqH/g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,103 +69,103 @@ Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
  by CY5PR11MB6137.namprd11.prod.outlook.com (2603:10b6:930:2b::22)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.9; Wed, 8 Oct
- 2025 06:40:38 +0000
+ 2025 06:41:53 +0000
 Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
  ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
  ([fe80::8900:d137:e757:ac9f%3]) with mapi id 15.20.9203.007; Wed, 8 Oct 2025
- 06:40:38 +0000
-Date: Wed, 8 Oct 2025 09:40:32 +0300
+ 06:41:53 +0000
+Date: Wed, 8 Oct 2025 09:41:49 +0300
 From: Imre Deak <imre.deak@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
 CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 2/4] drm/i915/opregion: Extract
- intel_opregion_runtime_{suspend, resume}()
-Message-ID: <aOYHYIce_3eJWbc8@ideak-desk>
+Subject: Re: [PATCH 3/4] drm/i915/opregion: Make
+ intel_opregion_notify_adapter() static
+Message-ID: <aOYHrTWhkIF36G3n@ideak-desk>
 References: <20250708160320.5653-1-ville.syrjala@linux.intel.com>
- <20250708160320.5653-2-ville.syrjala@linux.intel.com>
+ <20250708160320.5653-3-ville.syrjala@linux.intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250708160320.5653-2-ville.syrjala@linux.intel.com>
-X-ClientProxiedBy: DB9PR05CA0002.eurprd05.prod.outlook.com
- (2603:10a6:10:1da::7) To SJ0PR11MB4845.namprd11.prod.outlook.com
+In-Reply-To: <20250708160320.5653-3-ville.syrjala@linux.intel.com>
+X-ClientProxiedBy: DU7P195CA0007.EURP195.PROD.OUTLOOK.COM
+ (2603:10a6:10:54d::26) To SJ0PR11MB4845.namprd11.prod.outlook.com
  (2603:10b6:a03:2d1::10)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|CY5PR11MB6137:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7cc2fe11-26e5-4c07-132a-08de0635974a
+X-MS-Office365-Filtering-Correlation-Id: ca30780a-d894-417a-9b0c-08de0635c454
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
  ARA:13230040|376014|366016|1800799024|10070799003|7053199007; 
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?q2fIEzNEAMBopjnALJHLfdqEWzEwRBH66SUAkAV6l5qLZ8oujWxZWrMjBc?=
- =?iso-8859-1?Q?GPCSaOe7IZHPcx8g29vyw/fGyfCp5j1gg/usTBsjJramP8Glx5bWUh+rC5?=
- =?iso-8859-1?Q?yqlAru7zKbdR6E23+rQu9U6nm9W1UwqgGZr5gXfV2EnaNL2H/XpC4pmwDN?=
- =?iso-8859-1?Q?Pu7FNEeDMsZ+ZaPZKuUQkOvSyCIA/hU2MYFRw7bFg3UEosUqgDhqauJSDn?=
- =?iso-8859-1?Q?W+MWIC455v/ym+Bit/i6VKmWYhRGUAXGv8LNt+P8puI6OyO3IgAx/kkkqJ?=
- =?iso-8859-1?Q?AavttR2phBgYzWNywmK0J1BMWfQM5Le/5d/Ox0qWlh34A0nJeDwhcrMIjz?=
- =?iso-8859-1?Q?ukNuyHzZ0ogZxgZNB/TaAvPDuWyA2Id4QoWkFajHJqnt/ol7W+cCbYSsrA?=
- =?iso-8859-1?Q?5JQFt5d67L93sHxGgR7ap0GsD/An8QrlgesGHOSdsFWaJmNus34Mjjq4JG?=
- =?iso-8859-1?Q?NAYEPGmWCumB8WCOi2ZpHcG982YNPAGMPbaXABLx9Z2GHM4Zb2bvURcpjw?=
- =?iso-8859-1?Q?wtKoaUAdiKOt3M9nh6zYVVuCDLaH37mjhvS2Ys2fC63jWIPEK8JVajciU0?=
- =?iso-8859-1?Q?Gzl29XIiqj7Ks7fYqDtvI1ZriQqCmaMUgxXCh/Cni0Ll+9k40VRoi9zWk4?=
- =?iso-8859-1?Q?gKwqxR/2SZAj0oGtu7JU7iD5zVyN0tTtf2cC+NaFYTTKgFFX/S+SQbPAX/?=
- =?iso-8859-1?Q?1zmc2INF9pNCwatDVyD4IM9PyN1hfKdhyRIEFb9rcIgxUJt7+ZnKkbJiTD?=
- =?iso-8859-1?Q?m/KdrZe0X5hoQyxgOzQlkBqqnUeYRfME6IM/ONXYix8JqgSxBW0EZXkBFL?=
- =?iso-8859-1?Q?da4cmHeEjlAfH6k2LKtBzxfOvn08Csl6yBdoox6mZAAc1P8V7vLXNrFhat?=
- =?iso-8859-1?Q?W1/Ka4gMIapuaXJq/zupPreOKIHWyatQYKJCMvQgtSbytgyUweZ55De6d6?=
- =?iso-8859-1?Q?+EyXAFPGm6CHRcplcRRr/6wZ1JCPmyyOaPXtG9WeztX3VCSkftn+QhhXdY?=
- =?iso-8859-1?Q?FRtK/J+GkYKPP4fs7Yb5rCP3fxyhigzq11mCzzZlFyxu/etaB7fy7nROCA?=
- =?iso-8859-1?Q?p+S0bQNBbig9Hk4vmz/GC+a0fRjFSIqUwcxC8JqdKlPIecyb1elObDEeUB?=
- =?iso-8859-1?Q?YRWle/kvEDmg6k7JmGiecBT5gFV6P/kW8lV2vK6Cx/O6SEvuGJvusWUqXc?=
- =?iso-8859-1?Q?t3znjE4XjKpqsIHfn40ZbPGSGF5WIn+AuxJ9O+dP9f+eyh/At9VfbhWCmx?=
- =?iso-8859-1?Q?nURJACWUtAburRnMI/4g43Exsvqb7uczyBpkapRnyqVQrqJtSGCWbjvAVw?=
- =?iso-8859-1?Q?HRDCyq9K6ZH9x6WTfPtZF9bPZcN8v8A3+S7VY8w5tZ87S797eftEy6Sox/?=
- =?iso-8859-1?Q?Yg27EcjnhXZJcFrRmW6wae9BG46Rk1LptbvDyH0Gw+Yi4xP8oc8KxnZ1gC?=
- =?iso-8859-1?Q?AlhdGrrrIkwdckC8Y7Z4BL9wURj3e3hxY2TMRmJU0d2H8eb0BQg7CZVvWz?=
- =?iso-8859-1?Q?0qbkg4Nmi8HFbQFCfHKGP/?=
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?xXNF5sJHJ7WEGFpaihBebzNVM/GjHy3eO/7r1zkkH2uDoaIDQ3mKYnnk8Y?=
+ =?iso-8859-1?Q?9nlJPm2srAw8krTEMo5l/ViOPaZmCdohDl/svOZmSHYXamJnsLpovDhouQ?=
+ =?iso-8859-1?Q?E7cfulZ/NnYEKXsmWmV/GJXExi3ARf+isP55xl7Fvv8bkIy+WLuM/ZD06r?=
+ =?iso-8859-1?Q?K8+ZPpW6z4eyowMHJon3KQq7Jho4JaYSBgq0/ZdE3NeMH3YbqqYBSQEiMK?=
+ =?iso-8859-1?Q?lBgNc8ZGujKk7vFNRLmtqtbgXPjhq7hW4IYKAsFvAmAo6nvKsXpH8VAWPa?=
+ =?iso-8859-1?Q?ATP8gOJJ3//gPORD8cG/Tj4t0FbfKjizJQzkKSObSU/mlT/rzxmcwa57Bn?=
+ =?iso-8859-1?Q?Ji3KIMPg2roLmKojE39O09CKfsYTH5X+fmgQiECvCPbqQdarCqJ4DSP2aX?=
+ =?iso-8859-1?Q?zO3aKFJikUmJgyQBKEJghtOXgbDQ1M6Ty5RQnnJkFGFscw3tgM2EiuPDWq?=
+ =?iso-8859-1?Q?MwcoUPQtRs71u62vnTdU5bFvwiAhPo4+ZKgCn3kBKoaIP8rkEpLyKxjK61?=
+ =?iso-8859-1?Q?1Wbua125F3VKO/+vp+aNhzrp0kbI1Ov17W7GpOaFKLFrvPAW4o8iqY1aWF?=
+ =?iso-8859-1?Q?hBU+ueDobfTzq6OYd5/agrwdAV7OgT0rJtoIsoiEX1T/6JQ+LyfGGkT5ew?=
+ =?iso-8859-1?Q?uTKqPEQVbpsAl4we70O17BLNRsuyuijfzftqZpp2ga+GZCl6pAYkdBYKTW?=
+ =?iso-8859-1?Q?vkyLwZWkp8v6Er3jZEzM6PsYWCz9gLh9ZdN+g5b8R8l6qTTYURNHnZ25Zu?=
+ =?iso-8859-1?Q?c5NCeUyXdsTlzuTlBtoMhUU9GGbKtMbUhfV6u9ftB/IGx1z9jaEGMsKmgN?=
+ =?iso-8859-1?Q?IdxCc5DFqhvFIJ12YzUx56Mlu957hCxoobTnrE55imoI8xaE88Q9jiXCmt?=
+ =?iso-8859-1?Q?6ufdq/iEwkpB/IbmRsTMi392TnPgPMXMwDdS+HkwXfIaCJgIf7lDfcMfgb?=
+ =?iso-8859-1?Q?XVKa6Zt6eE3b7OZ8dC4w11LY8NtfPbvfKn0CJ76bLEeS6s+dCgrf3Q7dWC?=
+ =?iso-8859-1?Q?dG1QQk9W/KZ5LRlaIQJBElDP9cY6tVChVsEInHDjbAg3Wg3Fs+7IZMXXbi?=
+ =?iso-8859-1?Q?IUHUPW4EhydUTLXH/mfv6BnSB5gclH2Dc3C8kdNoZ2AD70zPRzHPbgZbIy?=
+ =?iso-8859-1?Q?eF8CMtYUbE6lQ0JH/quLYL8vZ6g3S3puqHI8AHtGMrEDMQOtI83zfQUsc7?=
+ =?iso-8859-1?Q?TkZ6RHJCLeKJk+ygGuvqDExQSUbF7RgmIlP8n448rM8QFAOAx5XY2UCeay?=
+ =?iso-8859-1?Q?8l7wEHYex5+N0S+vnjph1eKov0VtuVIW7h5ByEDAZC8N4HyBaqzOwdSeoa?=
+ =?iso-8859-1?Q?TyvFg1fTHmX12Wb05d2zP1MJrg2PxU410ohTZOgTrok4fVpOUuSA7yym1k?=
+ =?iso-8859-1?Q?8cHOuIACIRcg2Z1ro5ukH+X9fRcMJmpkcAvBMmvXyK2HnNW9nLAwZzdtwT?=
+ =?iso-8859-1?Q?IbV+xE7KTAE3bqgn2Fs8pc9QD6LZLoGf49Ozs/8Y4ILQfHCfQfUO0V3YSc?=
+ =?iso-8859-1?Q?wvnBc8iJfzPFf1S7U5GwuZ?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(376014)(366016)(1800799024)(10070799003)(7053199007); DIR:OUT;
  SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?KoQBiv6eMrhfEW4Mm0A4yekgc5likgI+hnBHi/py5/r6klOJQ0E2h5KUt1?=
- =?iso-8859-1?Q?sx6UQzdB5M5PAgC4VlEnOQmhWXplIWOmywyRZkK3mxCqWCdVookjjWRsml?=
- =?iso-8859-1?Q?4r/EQ0Sep2vRTiLkpa6mM+Bq1qczAzsVYAaWNKzKDGBTM8CkTMJ0SzO1Gy?=
- =?iso-8859-1?Q?rnRD0G+hRh9zz2fdgWllInsePCXNUQcomlVEpACfVxuyblH8yvgNWbrXzH?=
- =?iso-8859-1?Q?e1vua1QpMaZFCvb79EEydluhLR/iSYPLocnTbmwfP8LzUNuBs7IYguUSwA?=
- =?iso-8859-1?Q?T+GhRFAMCBnPI+nA8BGbSYYqx5YUnBxKmAmISrDhuU4J6CY1oNfiooFKZK?=
- =?iso-8859-1?Q?RtKYuxoKU2IolGfe35LEimU+fm9iq2JiGFIgxGx5gemOXEy/656w+8FBlM?=
- =?iso-8859-1?Q?gAoOO34G0JITA7M8Ay2UIfbgZj3UawUsQYUEnNETyqa+7ARF6K9HXjJDYW?=
- =?iso-8859-1?Q?4gFq3uyRKbsCrdJf5wtsmI7RHi0EGSxgMSbPOrkPTptWixff9y7xu6ADLL?=
- =?iso-8859-1?Q?2iRCLjeC8bdPieKtoDGPIWIPbUtqtPH82Qqb0wJ/BzWJObsBrm8+59Sxfp?=
- =?iso-8859-1?Q?6pcNFpCGllCayntgwQ2Sw8MVy59jQHtjKZFOaDxJW3VdOPkyGxmGHbBgCo?=
- =?iso-8859-1?Q?Q/ohZmu8pZXiNAxI4GlSv2OZIb7XmS9LRmF2DLS0iyCyQrYEdqy51R18D9?=
- =?iso-8859-1?Q?R8h+mUOuI7nTmPxuEMK/Qq8X4HFnh/DFJEyCJHj5ejC4RV8lcWJ21pTrkn?=
- =?iso-8859-1?Q?zoYlh0aRw0TOg6GlIE0ABS7aRwL7VkwFdOYUiIf8btWLMv0Z6UPpX+tEY7?=
- =?iso-8859-1?Q?9JmT8q6sC029kxPULNs7fYba/WozUu6REF3AGoDjs6Le5Fq3oMBLywS4U2?=
- =?iso-8859-1?Q?tx0uWr0d7SDBw8CWySGqKihX09qzTcn9uqdCahwjO4jBBNlgiW9D0NiT8+?=
- =?iso-8859-1?Q?TfME8We1bHH5ExxWL8r0N0yedqM5Ip0YuPVqNKj+hh5DAxHt+NvoChoYEr?=
- =?iso-8859-1?Q?kakRCxEqCkHtl1gemSOuEMuKJ/fJSHMB6SxKVzqbl8AkehGPX9d45v/LvK?=
- =?iso-8859-1?Q?UfNqexooAFddT9+baeWJqPcJrW3uSMRQNQcBJL4n3f13yLDcOldeDPLkZg?=
- =?iso-8859-1?Q?SAyX2GMOITYD+6dG185+NboPt5kcdPbiIP6DVZId5A4PdZMrUw33wK+dJA?=
- =?iso-8859-1?Q?n1DgWSGG6KBDsI5anMoeM+UuECtvOo5j0GcBIH+TwafHUbLeLD+ZwFihRV?=
- =?iso-8859-1?Q?rDdkSaknVjTFZpC7UbwHwKeuMTec5AU93VWdo0PV9U4MhjJHGKYT40jrFS?=
- =?iso-8859-1?Q?lkKOvR7nLiMp7Raz7uBQPMggGT+ppgFKsXdudrjcpnujd3+Xm6wpfJBmV8?=
- =?iso-8859-1?Q?sZ6Q5KyNJS3XMcLsEb+rniIpuWk6qoYjPfqX5WycbVdrI7uEEy/ChTJKcB?=
- =?iso-8859-1?Q?WdH/UlEMCwtPV66+CK00fFwXobWR0MEV1mAdyEFjiifhQJBJi4bHl/Alib?=
- =?iso-8859-1?Q?nTRGREacHZ5CLxgsgHEUbSZW3ekrqWpvzp04GFxFGAuNAxGIBdzi9cKQUu?=
- =?iso-8859-1?Q?copOcZKSTUzGnBJVRgr/sA8vFQi1MQ/HIF839jO3cl2EUm3U2r5Z9YztNL?=
- =?iso-8859-1?Q?z2f7brqwPa6f7KTxuWp/nGalmrZaqoCL34kxZ4bjlJ9p3/fsl2OfMsrqyh?=
- =?iso-8859-1?Q?x1C76pl3aP4PjsCK93w70kN2+snemR74pWBjdujt?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7cc2fe11-26e5-4c07-132a-08de0635974a
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?MZHzm3Lw8quodWif++qtV5xfJf4Zenav08MI5PuIliPH14DyF2WtcOr7em?=
+ =?iso-8859-1?Q?V7YwIYZwAoVSWnTyCidpNgOlsPQo2lFBSTsS5AI8+OoUlVny58VE+Tma1s?=
+ =?iso-8859-1?Q?NWJ4NbyLe4OBplNOVngx7A6q7gE8tggpKc0M9KiQkZdfgaoIS6G2aHN94M?=
+ =?iso-8859-1?Q?POsS0vdeVEyT4YAhVrBjzIzqJho8g/w75UY0GllM6RBUrYZkwsSszPDEux?=
+ =?iso-8859-1?Q?x3gSUVwB2T7O3/yMLH9vE4xTQI4R8lyxNEYmAXC5sl/67EWRHwClfgmTth?=
+ =?iso-8859-1?Q?RAMhQMsVhhVrOmaunCa0um9QGZV8FMnL9xqjOeSnRN+dDX3c0+dsrA1M99?=
+ =?iso-8859-1?Q?7hLLS1RloVh03G7QQ27MDrDzdmxhWHtcMt8Z1qzy6fDaCHHZoQlxU9A13F?=
+ =?iso-8859-1?Q?G2CWynLxa9oQpCqO/K2xyzvKzM5MWPt8nGrghYCFg7ruuIRTKVgC/1ebnM?=
+ =?iso-8859-1?Q?S6ud2fxaUOAF/GFL/+lwXjKTQRIs5gorgjX16vacDwxsJoNq8TTx/MsDAj?=
+ =?iso-8859-1?Q?Esf6HQyMN3bBDqtrbvZzhr6L1YMFI8xmwTJR9e4ry8mSBZDhY2ItUwgIs6?=
+ =?iso-8859-1?Q?fy6bG8RKIKBzW3NQS6ttiWZrWAgcp7UFWxqOQyAvRtd/nDLKT3b8OnO2JJ?=
+ =?iso-8859-1?Q?4mtyMXxoj8R+SAov6TVptdHv94ZSAbnYHtcucOwbuvyCgMiVcitHitD/wv?=
+ =?iso-8859-1?Q?lyGra9uDXKzWQH17JdPmLCW02dGk4DCIkK1QRT1LDH0eViWldu0Lc9Abb0?=
+ =?iso-8859-1?Q?msPw4KtNg4wyB5uNPCg2E/renE99Zgg6C7anZJV3GuRZX/O8k/saRzULae?=
+ =?iso-8859-1?Q?Yb5jAFEl3Ni8/fW3sP99DnFP4BvR51m6xs7ko4RrOMA5A/AletfSYGzhZ9?=
+ =?iso-8859-1?Q?2CodZiM4uW+KEQBFXVILB0fozQQGe21maOg/bE4RvrTiny+B0jGT33MtJL?=
+ =?iso-8859-1?Q?8kXqmRkn350ueCeuv0LbVekpn5kI4WSsvT1gYcENOfC2rK3QZMnwfu09Rp?=
+ =?iso-8859-1?Q?gTWAoqgyhpAue/NjUpH0ei8NAr8IBq5BWx2yVg4ex8778I/PMpKzc6Y7tT?=
+ =?iso-8859-1?Q?3DVuF9wcHQfYEjRYwz16Iu1DQzmq0lEVtZ0u3LvbtuhzMFI1OQWFcwtgd+?=
+ =?iso-8859-1?Q?8RnwKrICAefuK7/qDHWVPtUQGGSgA8GcgmckxlaYVg8SRO6/bexkv0AZr3?=
+ =?iso-8859-1?Q?3N2qswqsT0va9wcaxXlhngULDlNiVMfPxN3obEAfzDhzDFVIR15Six6zxZ?=
+ =?iso-8859-1?Q?twF3Ijv5IcdkMoO5wrH5NIJy+kvlNM4IURWQgAcwNYjkiZvO06AQzHx/iO?=
+ =?iso-8859-1?Q?V61WMvWA6wn92bTJxKYFqncj8dVIg7pEujdTWpJliIyGr8epZPegGDq4C9?=
+ =?iso-8859-1?Q?0wBmFQh4f6Vtdzv3HggVTiqPO5hLTPaLQjN7wxly7KGrd4FWH3bgWGIVB7?=
+ =?iso-8859-1?Q?OvK+k2AZIRSPMIEN5JT4dF1erPaJKgh6I8ryCgwrvRYt9XTHth5IeZBOPO?=
+ =?iso-8859-1?Q?aCD/tcr8R9sKwZCtdAxhLXazKUB5JDOnXBak3ECr2+tgHQJUXRTq8bj5TQ?=
+ =?iso-8859-1?Q?EOY8XR4U/QKo81I4R4TyXi8mkSI+J3F/5irsrY1ufGYGd9aVGjWSsdQUvA?=
+ =?iso-8859-1?Q?/gQ5N4i+hqtOmF3mWQ0W/degseM4mWzXcf/7KoZohb10c4CAMyB2Gw/8Cd?=
+ =?iso-8859-1?Q?IQjSrjyP8MlM25THoPQ+hH5kZei8DDQRBK1z8Ib9?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: ca30780a-d894-417a-9b0c-08de0635c454
 X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2025 06:40:37.8866 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2025 06:41:53.3074 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fSbConWJljsvq9F+e9i5zcy5rsF6LtIoSZBz0fUdL3bEfew1ga+b6/7uK+huQWFzM/o7FBPGKP/84Dk8Zc/few==
+X-MS-Exchange-CrossTenant-UserPrincipalName: dIPAFqwP9jmdn96Wetlhj1zga4b+GpiGRJZR8Psx8faYYXecv1kRsYaYkT/cCZ36z62yZ6CbhK+KB92byW5BmQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6137
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -184,147 +184,62 @@ Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 08, 2025 at 07:03:18PM +0300, Ville Syrjala wrote:
+On Tue, Jul 08, 2025 at 07:03:19PM +0300, Ville Syrjala wrote:
 > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> Extract the opregion runtime PM stuff to new functions. We'll
-> need to add a bit more to the suspend side, and we don't want
-> to clutter the top level runtime PM code with such details.
+> intel_opregion_notify_adapter() is no longer needed outside
+> intel_opregion.c. Make it static.
 > 
 > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Imre Deak <imre.deak@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_opregion.c | 41 +++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_opregion.h | 11 +++++
->  drivers/gpu/drm/i915/i915_driver.c            | 25 +----------
->  3 files changed, 54 insertions(+), 23 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_opregion.c | 4 ++--
+>  drivers/gpu/drm/i915/display/intel_opregion.h | 8 --------
+>  2 files changed, 2 insertions(+), 10 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-> index 81efdb17fc0c..9e39ab55a099 100644
+> index 9e39ab55a099..e99616ea2ae6 100644
 > --- a/drivers/gpu/drm/i915/display/intel_opregion.c
 > +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-> @@ -1255,6 +1255,47 @@ void intel_opregion_suspend(struct intel_display *display, pci_power_t state)
->  		intel_opregion_suspend_display(display);
->  }
+> @@ -470,8 +470,8 @@ static const struct {
+>  	{ PCI_D3cold,	0x04 },
+>  };
 >  
-> +void intel_opregion_runtime_resume(struct intel_display *display)
-> +{
-> +	struct intel_opregion *opregion = display->opregion;
-> +
-> +	if (!opregion)
-> +		return;
-> +
-> +	intel_opregion_notify_adapter(display, PCI_D0);
-> +}
-> +
-> +void intel_opregion_runtime_suspend(struct intel_display *display)
-> +{
-> +	struct intel_opregion *opregion = display->opregion;
-> +
-> +	if (!opregion)
-> +		return;
-> +
-> +	/*
-> +	 * FIXME: We really should find a document that references the arguments
-> +	 * used below!
-> +	 */
-> +	if (display->platform.broadwell) {
-> +		/*
-> +		 * On Broadwell, if we use PCI_D1 the PCH DDI ports will stop
-> +		 * being detected, and the call we do at intel_runtime_resume()
-> +		 * won't be able to restore them. Since PCI_D3hot matches the
-> +		 * actual specification and appears to be working, use it.
-> +		 */
-> +		intel_opregion_notify_adapter(display, PCI_D3hot);
-> +	} else {
-> +		/*
-> +		 * current versions of firmware which depend on this opregion
-> +		 * notification have repurposed the D1 definition to mean
-> +		 * "runtime suspended" vs. what you would normally expect (D3)
-> +		 * to distinguish it from notifications that might be sent via
-> +		 * the suspend path.
-> +		 */
-> +		intel_opregion_notify_adapter(display, PCI_D1);
-> +	}
-> +}
-> +
->  void intel_opregion_unregister(struct intel_display *display)
+> -int intel_opregion_notify_adapter(struct intel_display *display,
+> -				  pci_power_t state)
+> +static int intel_opregion_notify_adapter(struct intel_display *display,
+> +					 pci_power_t state)
 >  {
->  	struct intel_opregion *opregion = display->opregion;
+>  	int i;
+>  
 > diff --git a/drivers/gpu/drm/i915/display/intel_opregion.h b/drivers/gpu/drm/i915/display/intel_opregion.h
-> index 8101eeebfd8b..7067ffe07744 100644
+> index 7067ffe07744..d5b60029e007 100644
 > --- a/drivers/gpu/drm/i915/display/intel_opregion.h
 > +++ b/drivers/gpu/drm/i915/display/intel_opregion.h
-> @@ -44,6 +44,9 @@ void intel_opregion_resume(struct intel_display *display);
->  void intel_opregion_suspend(struct intel_display *display,
->  			    pci_power_t state);
->  
-> +void intel_opregion_runtime_resume(struct intel_display *display);
-> +void intel_opregion_runtime_suspend(struct intel_display *display);
-> +
->  bool intel_opregion_asle_present(struct intel_display *display);
+> @@ -51,8 +51,6 @@ bool intel_opregion_asle_present(struct intel_display *display);
 >  void intel_opregion_asle_intr(struct intel_display *display);
 >  int intel_opregion_notify_encoder(struct intel_encoder *encoder,
-> @@ -88,6 +91,14 @@ static inline void intel_opregion_suspend(struct intel_display *display,
->  {
+>  				  bool enable);
+> -int intel_opregion_notify_adapter(struct intel_display *display,
+> -				  pci_power_t state);
+>  int intel_opregion_get_panel_type(struct intel_display *display);
+>  const struct drm_edid *intel_opregion_get_edid(struct intel_connector *connector);
+>  
+> @@ -114,12 +112,6 @@ intel_opregion_notify_encoder(struct intel_encoder *encoder, bool enable)
+>  	return 0;
 >  }
 >  
-> +static inline void intel_opregion_runtime_resume(struct intel_display *display)
-> +{
-> +}
-> +
-> +static inline void intel_opregion_runtime_suspend(struct intel_display *display)
-> +{
-> +}
-> +
->  static inline bool intel_opregion_asle_present(struct intel_display *display)
+> -static inline int
+> -intel_opregion_notify_adapter(struct intel_display *display, pci_power_t state)
+> -{
+> -	return 0;
+> -}
+> -
+>  static inline int intel_opregion_get_panel_type(struct intel_display *display)
 >  {
->  	return false;
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index c6263c6d3384..da0b7d9da3d5 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -1553,28 +1553,7 @@ static int intel_runtime_suspend(struct device *kdev)
->  	if (root_pdev)
->  		pci_d3cold_disable(root_pdev);
->  
-> -	/*
-> -	 * FIXME: We really should find a document that references the arguments
-> -	 * used below!
-> -	 */
-> -	if (IS_BROADWELL(dev_priv)) {
-> -		/*
-> -		 * On Broadwell, if we use PCI_D1 the PCH DDI ports will stop
-> -		 * being detected, and the call we do at intel_runtime_resume()
-> -		 * won't be able to restore them. Since PCI_D3hot matches the
-> -		 * actual specification and appears to be working, use it.
-> -		 */
-> -		intel_opregion_notify_adapter(display, PCI_D3hot);
-> -	} else {
-> -		/*
-> -		 * current versions of firmware which depend on this opregion
-> -		 * notification have repurposed the D1 definition to mean
-> -		 * "runtime suspended" vs. what you would normally expect (D3)
-> -		 * to distinguish it from notifications that might be sent via
-> -		 * the suspend path.
-> -		 */
-> -		intel_opregion_notify_adapter(display, PCI_D1);
-> -	}
-> +	intel_opregion_runtime_suspend(display);
->  
->  	assert_forcewakes_inactive(&dev_priv->uncore);
->  
-> @@ -1603,7 +1582,7 @@ static int intel_runtime_resume(struct device *kdev)
->  	drm_WARN_ON_ONCE(&dev_priv->drm, atomic_read(&rpm->wakeref_count));
->  	disable_rpm_wakeref_asserts(rpm);
->  
-> -	intel_opregion_notify_adapter(display, PCI_D0);
-> +	intel_opregion_runtime_resume(display);
->  
->  	root_pdev = pcie_find_root_port(pdev);
->  	if (root_pdev)
+>  	return -ENODEV;
 > -- 
 > 2.49.0
 > 
