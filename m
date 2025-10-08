@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77123BC648F
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Oct 2025 20:26:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B46CBC6492
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Oct 2025 20:26:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FCF910E8AF;
-	Wed,  8 Oct 2025 18:26:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B27FE10E8A8;
+	Wed,  8 Oct 2025 18:26:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P/fhyzgZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mLbO/U01";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F46410E8B0;
- Wed,  8 Oct 2025 18:26:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2C6210E8A8;
+ Wed,  8 Oct 2025 18:26:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759947988; x=1791483988;
+ t=1759947992; x=1791483992;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=bRrS0mdHl/if9cNJrPywoMqxhLbZbwe++AxdsIzuo30=;
- b=P/fhyzgZbc8+SHXjpq2rTPPBCHjR+izgUYrihzTGeUVO5t1m5iaMvI4n
- 80X3pxfE9SI4jCW3PyBZASxjh158p72oeV7VsVPEwajmBhY8q8zp9XRFI
- ukD/MciVvEcawwLaTu7EyogQP9giTmQrb9jNOqv3BVWl3ixkIZ62lzG72
- JaW8fj3dKxnFo96cV4SgzKchJ4J8/rcgV+irQq2k4xCQnFwYKeRGtXnt4
- VL0PsJLxuYRxSGqraUiSBIm48bj2iF5j9bjKH9AdZ49nFbHOzrJ/ZcwPi
- tCQMmR0oL+suwsN1kOUKQu9EdNYsbmwBLyKG/PJKaDDeopCHeA3CSnvla w==;
-X-CSE-ConnectionGUID: OaaA9dZCQeGnrlgSb6QrhQ==
-X-CSE-MsgGUID: muU8eeuYQnOvFkq5pr2n/A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="62245591"
-X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="62245591"
+ bh=JrorDixySo2A+gIE1r8A0YiVD8jg/by7p8Dtu6uxDws=;
+ b=mLbO/U01CUw+/bDSIacjijg+l9m4zYXZdMc9s9Zv3o9y2yR3kJA1oWVW
+ FYxj69K8l/43RGSg1JepaPzGvwgqX886W2WTkioKLIfv/3KN9idEJ0CmF
+ ok2juO+9qhPvnFmQWV8cxvM61SQhj9tPRkv+fQ3MIYOHI3/Z647+mAOfU
+ 9ZIKbeDI9Za+Es+12cS6SwjmeNFlODL8dTSdDDrTxaXsqv/aJSG5vAjTK
+ RCMIJ3hMcxEOg9YWM3YCHi1l8fKNZngKFxXoFJnZJNzw42L+vzPsX5mDn
+ uOZJf2FWT9S548h/Hi+b8tOsr06p3RYgvd84iUZ47SuKRyp/rln06SMGE w==;
+X-CSE-ConnectionGUID: RehiqpzNS3qxSc4HPYccBw==
+X-CSE-MsgGUID: cQLxgshWSICZptjCTpKZrA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="62245593"
+X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="62245593"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 11:26:28 -0700
-X-CSE-ConnectionGUID: R8PYiBziSgaK7MZK3/uw7A==
-X-CSE-MsgGUID: WkqCBEldQmaRfm0XL2Txlg==
+ 08 Oct 2025 11:26:31 -0700
+X-CSE-ConnectionGUID: Nkkdck9FSju5M+Wa9Y6Itw==
+X-CSE-MsgGUID: a4zsjx25Q2W8dzGbICfiFQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="185799892"
+X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="185799899"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.175])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 11:26:26 -0700
+ 08 Oct 2025 11:26:30 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [RFC][PATCH 07/11] drm/i915: Introduce
- intel_compute_global_watermarks_late()
-Date: Wed,  8 Oct 2025 21:25:54 +0300
-Message-ID: <20251008182559.20615-8-ville.syrjala@linux.intel.com>
+Subject: [RFC][PATCH 08/11] drm/i915/prefill: Introduce intel_prefill.c
+Date: Wed,  8 Oct 2025 21:25:55 +0300
+Message-ID: <20251008182559.20615-9-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20251008182559.20615-1-ville.syrjala@linux.intel.com>
 References: <20251008182559.20615-1-ville.syrjala@linux.intel.com>
@@ -73,159 +72,282 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Add a late watermarks computation stage for skl+. Need this
-(temporarily perhaps) to get the final cdclk values into
-skl_wm_check_vblank().
+Add a new helper thingy to deal with the pipe prefill latency.
 
-But the order is actually wrong now for SAGV. For SAGV we
-want to first do skl_wm_check_vblank(), then copute
-crttc_state->use_sagv_wm, and then do intel_bw_atomic_check().
+We get three potentially useful thigns out of this:
+- intel_prefill_vblank_too_short() used for checking the
+  actual vblank/guardband length
+- intel_prefill_min_guardband() to calculate a suitable guardband
+  size based on some worst case scaling/etc. estimates
+- intel_prefill_min_cdclk() used to calculate a minimum cdclk
+  freqency required for very small vblank lengths (in case the
+  otherwise compute minimum cdclk doesn't result in fast enough
+  prefill).
 
-Scalers are completely borked as far as skl_wm_check_vblank()
-goes as well.
-
-TODO: just a hack really, need to figure out the correct order
-      for real
+The internal arithmetic is done terms of scanlines using .16
+binary fixed point represantion.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c  |  4 ++
- .../gpu/drm/i915/display/intel_display_core.h |  1 +
- drivers/gpu/drm/i915/display/intel_wm.c       | 10 +++++
- drivers/gpu/drm/i915/display/intel_wm.h       |  1 +
- drivers/gpu/drm/i915/display/skl_watermark.c  | 38 ++++++++++++++++---
- 5 files changed, 48 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/Makefile                |   1 +
+ drivers/gpu/drm/i915/display/intel_prefill.c | 167 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_prefill.h |  48 ++++++
+ drivers/gpu/drm/xe/Makefile                  |   1 +
+ 4 files changed, 217 insertions(+)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_prefill.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_prefill.h
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index afa78774eaeb..54ed36183ebe 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -6455,6 +6455,10 @@ int intel_atomic_check(struct drm_device *dev,
- 			return ret;
- 	}
- 
-+	ret = intel_compute_global_watermarks_late(state);
-+	if (ret)
-+		goto fail;
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index 78a45a6681df..088a6c6cd138 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -351,6 +351,7 @@ i915-y += \
+ 	display/intel_panel.o \
+ 	display/intel_pfit.o \
+ 	display/intel_pps.o \
++	display/intel_prefill.o \
+ 	display/intel_qp_tables.o \
+ 	display/intel_sdvo.o \
+ 	display/intel_snps_hdmi_pll.o \
+diff --git a/drivers/gpu/drm/i915/display/intel_prefill.c b/drivers/gpu/drm/i915/display/intel_prefill.c
+new file mode 100644
+index 000000000000..8b9c14e5c505
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_prefill.c
+@@ -0,0 +1,167 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2025 Intel Corporation
++ */
 +
- 	ret = intel_pmdemand_atomic_check(state);
- 	if (ret)
- 		goto fail;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index df4da52cbdb3..62bd894a72f9 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -89,6 +89,7 @@ struct intel_wm_funcs {
- 	void (*optimize_watermarks)(struct intel_atomic_state *state,
- 				    struct intel_crtc *crtc);
- 	int (*compute_global_watermarks)(struct intel_atomic_state *state);
-+	int (*compute_global_watermarks_late)(struct intel_atomic_state *state);
- 	void (*get_hw_state)(struct intel_display *display);
- 	void (*sanitize)(struct intel_display *display);
- };
-diff --git a/drivers/gpu/drm/i915/display/intel_wm.c b/drivers/gpu/drm/i915/display/intel_wm.c
-index f887a664fe22..3035d9879d83 100644
---- a/drivers/gpu/drm/i915/display/intel_wm.c
-+++ b/drivers/gpu/drm/i915/display/intel_wm.c
-@@ -104,6 +104,16 @@ int intel_compute_global_watermarks(struct intel_atomic_state *state)
- 	return 0;
- }
- 
-+int intel_compute_global_watermarks_late(struct intel_atomic_state *state)
++#include <linux/debugfs.h>
++
++#include <drm/drm_print.h>
++
++#include "intel_cdclk.h"
++#include "intel_display_core.h"
++#include "intel_display_types.h"
++#include "intel_prefill.h"
++#include "intel_vdsc.h"
++#include "skl_scaler.h"
++#include "skl_watermark.h"
++
++static unsigned int prefill_usecs_to_lines(const struct intel_crtc_state *crtc_state, unsigned int usecs)
 +{
-+	struct intel_display *display = to_intel_display(state);
++	const struct drm_display_mode *pipe_mode = &crtc_state->hw.pipe_mode;
 +
-+	if (display->funcs.wm->compute_global_watermarks_late)
-+		return display->funcs.wm->compute_global_watermarks_late(state);
-+
-+	return 0;
++	return DIV_ROUND_UP_ULL(mul_u32_u32(pipe_mode->crtc_clock, usecs << 16),
++				pipe_mode->crtc_htotal * 1000);
 +}
 +
- void intel_wm_get_hw_state(struct intel_display *display)
- {
- 	if (display->funcs.wm->get_hw_state)
-diff --git a/drivers/gpu/drm/i915/display/intel_wm.h b/drivers/gpu/drm/i915/display/intel_wm.h
-index 9ad4e9eae5ca..9f69dc5dfda5 100644
---- a/drivers/gpu/drm/i915/display/intel_wm.h
-+++ b/drivers/gpu/drm/i915/display/intel_wm.h
-@@ -24,6 +24,7 @@ void intel_atomic_update_watermarks(struct intel_atomic_state *state,
- void intel_optimize_watermarks(struct intel_atomic_state *state,
- 			       struct intel_crtc *crtc);
- int intel_compute_global_watermarks(struct intel_atomic_state *state);
-+int intel_compute_global_watermarks_late(struct intel_atomic_state *state);
- void intel_wm_get_hw_state(struct intel_display *display);
- void intel_wm_sanitize(struct intel_display *display);
- bool intel_wm_plane_visible(const struct intel_crtc_state *crtc_state,
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index aac3ca8f6c0f..5c18fe9a5237 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -2433,7 +2433,7 @@ static int skl_build_pipe_wm(struct intel_atomic_state *state,
- 
- 	crtc_state->wm.skl.optimal = crtc_state->wm.skl.raw;
- 
--	return skl_wm_check_vblank(crtc_state);
-+	return 0;
- }
- 
- static bool skl_wm_level_equals(const struct skl_wm_level *l1,
-@@ -3002,11 +3002,6 @@ skl_compute_wm(struct intel_atomic_state *state)
- 	if (ret)
- 		return ret;
- 
--	/*
--	 * skl_compute_ddb() will have adjusted the final watermarks
--	 * based on how much ddb is available. Now we can actually
--	 * check if the final watermarks changed.
--	 */
- 	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
- 		struct skl_pipe_wm *pipe_wm = &new_crtc_state->wm.skl.optimal;
- 
-@@ -3030,6 +3025,36 @@ skl_compute_wm(struct intel_atomic_state *state)
- 		pipe_wm->use_sagv_wm = !HAS_HW_SAGV_WM(display) &&
- 			DISPLAY_VER(display) >= 12 &&
- 			intel_crtc_can_enable_sagv(new_crtc_state);
-+	}
++static void _intel_prefill_init(struct intel_prefill_ctx *ctx,
++				const struct intel_crtc_state *crtc_state)
++{
++	ctx->prefill.fixed = crtc_state->framestart_delay;
 +
-+	return 0;
++	/* 20 usec for translation walks/etc. */
++	ctx->prefill.fixed += prefill_usecs_to_lines(crtc_state, 20);
++
++	ctx->prefill.dsc = intel_vdsc_prefill_lines(crtc_state);
++
++	ctx->prefill.full = 0;
 +}
 +
-+static int
-+skl_compute_wm_late(struct intel_atomic_state *state)
++static void intel_prefill_init_nocdclk_worst(struct intel_prefill_ctx *ctx,
++					     const struct intel_crtc_state *crtc_state)
 +{
-+	struct intel_crtc *crtc;
-+	struct intel_crtc_state __maybe_unused *new_crtc_state;
-+	int i;
++	_intel_prefill_init(ctx, crtc_state);
 +
-+	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
-+		int ret;
++	ctx->prefill.wm0 = skl_wm0_prefill_lines_worst(crtc_state);
++	ctx->prefill.scaler_1st = skl_scaler_1st_prefill_lines_worst(crtc_state);
++	ctx->prefill.scaler_2nd = skl_scaler_2nd_prefill_lines_worst(crtc_state);
 +
-+		/*
-+		 * FIXME we need something along the lins of the following order:
-+		 * 1. intel_atomic_setup_scalers() (needed by skl_wm_check_vblank())
-+		 * 2. intel_modeset_calc_cdclk() (needed by skl_wm_check_vblank())
-+		 * 3. skl_compute_wm() (skl_wm_check_vblank() + update use_sagv_wm)
-+		 * 4. intel_bw_atomic_check() (needs use_sagv_wm)
-+		 * but shuffling all that needs a lot more work...
-+		 *
-+		 * For now hack it by deferreing skl_wm_check_vblank() until
-+		 * intel_modeset_calc_cdclk() has been done. Scalers are still
-+		 * completely broken wrt. skl_wm_check_vblank().
-+		 */
-+		ret = skl_wm_check_vblank(new_crtc_state);
-+		if (ret)
-+			return ret;
- 
- 		ret = skl_wm_add_affected_planes(state, crtc);
- 		if (ret)
-@@ -4060,6 +4085,7 @@ void intel_wm_state_verify(struct intel_atomic_state *state,
- 
- static const struct intel_wm_funcs skl_wm_funcs = {
- 	.compute_global_watermarks = skl_compute_wm,
-+	.compute_global_watermarks_late = skl_compute_wm_late,
- 	.get_hw_state = skl_wm_get_hw_state,
- 	.sanitize = skl_wm_sanitize,
- };
++	ctx->adj.scaler_1st = skl_scaler_1st_prefill_adjustment_worst(crtc_state);
++	ctx->adj.scaler_2nd = skl_scaler_2nd_prefill_adjustment_worst(crtc_state);
++}
++
++static void intel_prefill_init_nocdclk(struct intel_prefill_ctx *ctx,
++				       const struct intel_crtc_state *crtc_state)
++{
++	_intel_prefill_init(ctx, crtc_state);
++
++	ctx->prefill.wm0 = skl_wm0_prefill_lines(crtc_state);
++	ctx->prefill.scaler_1st = skl_scaler_1st_prefill_lines(crtc_state);
++	ctx->prefill.scaler_2nd = skl_scaler_2nd_prefill_lines(crtc_state);
++
++	ctx->adj.scaler_1st = skl_scaler_1st_prefill_adjustment(crtc_state);
++	ctx->adj.scaler_2nd = skl_scaler_2nd_prefill_adjustment(crtc_state);
++}
++
++static unsigned int prefill_adjust(unsigned int value, unsigned int factor)
++{
++	return DIV_ROUND_UP_ULL(mul_u32_u32(value, factor), 0x10000);
++}
++
++static unsigned int prefill_lines_nocdclk(const struct intel_prefill_ctx *ctx)
++{
++	unsigned int prefill = 0;
++
++	prefill += ctx->prefill.dsc;
++	prefill = prefill_adjust(prefill, ctx->adj.scaler_2nd);
++
++	prefill += ctx->prefill.scaler_2nd;
++	prefill = prefill_adjust(prefill, ctx->adj.scaler_1st);
++
++	prefill += ctx->prefill.scaler_1st;
++	prefill += ctx->prefill.wm0;
++
++	return prefill;
++}
++
++static unsigned int prefill_lines_cdclk(const struct intel_prefill_ctx *ctx)
++{
++	return prefill_adjust(prefill_lines_nocdclk(ctx), ctx->adj.cdclk);
++}
++
++static unsigned int prefill_lines_full(const struct intel_prefill_ctx *ctx)
++{
++	return ctx->prefill.fixed + prefill_lines_cdclk(ctx);
++}
++
++void intel_prefill_init_worst(struct intel_prefill_ctx *ctx,
++			      const struct intel_crtc_state *crtc_state)
++{
++	intel_prefill_init_nocdclk_worst(ctx, crtc_state);
++
++	ctx->adj.cdclk = intel_cdclk_prefill_adjustment_worst(crtc_state);
++
++	ctx->prefill.full = prefill_lines_full(ctx);
++}
++
++void intel_prefill_init(struct intel_prefill_ctx *ctx,
++			const struct intel_crtc_state *crtc_state,
++			const struct intel_cdclk_state *cdclk_state)
++{
++	intel_prefill_init_nocdclk(ctx, crtc_state);
++
++	ctx->adj.cdclk = intel_cdclk_prefill_adjustment(crtc_state, cdclk_state);
++
++	ctx->prefill.full = prefill_lines_full(ctx);
++}
++
++static unsigned int prefill_lines_with_latency(const struct intel_prefill_ctx *ctx,
++					       const struct intel_crtc_state *crtc_state,
++					       unsigned int latency_us)
++{
++	return ctx->prefill.full + prefill_usecs_to_lines(crtc_state, latency_us);
++}
++
++int intel_prefill_min_guardband(const struct intel_prefill_ctx *ctx,
++				const struct intel_crtc_state *crtc_state,
++				unsigned int latency_us)
++{
++	unsigned int prefill = prefill_lines_with_latency(ctx, crtc_state, latency_us);
++
++	return DIV_ROUND_UP(prefill, 0x10000);
++}
++
++static int intel_guardband(const struct intel_crtc_state *crtc_state)
++{
++	const struct drm_display_mode *pipe_mode = &crtc_state->hw.pipe_mode;
++
++	if (crtc_state->vrr.enable)
++		return crtc_state->vrr.guardband;
++	else
++		return pipe_mode->crtc_vblank_end - pipe_mode->crtc_vblank_start;
++}
++
++static int intel_prefill_guardband(const struct intel_crtc_state *crtc_state)
++{
++	return intel_guardband(crtc_state) << 16;
++}
++
++bool intel_prefill_vblank_too_short(const struct intel_prefill_ctx *ctx,
++				    const struct intel_crtc_state *crtc_state,
++				    unsigned int latency_us)
++{
++	unsigned int guardband = intel_prefill_guardband(crtc_state);
++	unsigned int prefill = prefill_lines_with_latency(ctx, crtc_state, latency_us);
++
++	return guardband < prefill;
++}
++
++int intel_prefill_min_cdclk(const struct intel_prefill_ctx *ctx,
++			    const struct intel_crtc_state *crtc_state)
++{
++	unsigned int prefill_unadjusted = prefill_lines_nocdclk(ctx);
++	unsigned int prefill_available = intel_prefill_guardband(crtc_state) -
++		ctx->prefill.fixed;
++
++	return intel_cdclk_min_cdclk_for_prefill(crtc_state, prefill_unadjusted,
++						 prefill_available);
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_prefill.h b/drivers/gpu/drm/i915/display/intel_prefill.h
+new file mode 100644
+index 000000000000..0f07660261dc
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_prefill.h
+@@ -0,0 +1,48 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#ifndef __INTEL_PREFILL_H__
++#define __INTEL_PREFILL_H__
++
++#include <linux/types.h>
++
++struct intel_cdclk_state;
++struct intel_crtc_state;
++
++struct intel_prefill_ctx {
++	/* .16 scanlines */
++	struct {
++		unsigned int fixed;
++		unsigned int wm0;
++		unsigned int scaler_1st;
++		unsigned int scaler_2nd;
++		unsigned int dsc;
++		unsigned int full;
++	} prefill;
++
++	/* .16 adjustment factors */
++	struct {
++		unsigned int cdclk;
++		unsigned int scaler_1st;
++		unsigned int scaler_2nd;
++	} adj;
++};
++
++void intel_prefill_init_worst(struct intel_prefill_ctx *ctx,
++			      const struct intel_crtc_state *crtc_state);
++void intel_prefill_init(struct intel_prefill_ctx *ctx,
++			const struct intel_crtc_state *crtc_state,
++			const struct intel_cdclk_state *cdclk_state);
++
++bool intel_prefill_vblank_too_short(const struct intel_prefill_ctx *ctx,
++				    const struct intel_crtc_state *crtc_state,
++				    unsigned int latency_us);
++int intel_prefill_min_guardband(const struct intel_prefill_ctx *ctx,
++				const struct intel_crtc_state *crtc_state,
++				unsigned int latency_us);
++int intel_prefill_min_cdclk(const struct intel_prefill_ctx *ctx,
++			    const struct intel_crtc_state *crtc_state);
++
++#endif /* __INTEL_PREFILL_H__ */
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 84321fad3265..1be020cc417d 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -300,6 +300,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+ 	i915-display/intel_pmdemand.o \
+ 	i915-display/intel_pch.o \
+ 	i915-display/intel_pps.o \
++	i915-display/intel_prefill.o \
+ 	i915-display/intel_psr.o \
+ 	i915-display/intel_qp_tables.o \
+ 	i915-display/intel_quirks.o \
 -- 
 2.49.1
 
