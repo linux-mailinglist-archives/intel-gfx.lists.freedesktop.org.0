@@ -2,78 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37055BC82BF
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 11:06:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D797BC82C2
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 11:06:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 901B810E986;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9770910E987;
 	Thu,  9 Oct 2025 09:06:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NDsvWvDS";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Y/T+FA7m";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com
- [209.85.216.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EF2410E563
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Oct 2025 06:29:44 +0000 (UTC)
-Received: by mail-pj1-f49.google.com with SMTP id
- 98e67ed59e1d1-3307e8979f2so1207315a91.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 06 Oct 2025 23:29:44 -0700 (PDT)
+Received: from mail-yx1-f52.google.com (mail-yx1-f52.google.com
+ [74.125.224.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 285CF10E087
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Oct 2025 08:51:03 +0000 (UTC)
+Received: by mail-yx1-f52.google.com with SMTP id
+ 956f58d0204a3-6354af028c6so7183346d50.3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 08 Oct 2025 01:51:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1759818584; x=1760423384; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=aKkMnGRmG/HCXRR/J+wbpneMSFSl98hzVTOk4wOIvPo=;
- b=NDsvWvDS/OEmehKZipK3u2lsX7Q/LBDUkzSdLkvuU/BYr86A6l7Mp6tGPNA/9kVilP
- Htk1sOjWSgBJNAxC766gom8gBNumNAiHJ0qPKlxwnvtwjY0amXcuTa/h8Zt8yFYAZqdG
- 3E3Fx7xyIL7WooJwUvSWz3CoMXaEpw7Fw0O0yIzwuwnzt892TF0d/pW7eXmyAWOTVRdl
- 7aDq+4llQ6fdTIKfj6MLThYAYs3+a5OOQ8Y+9hKMIXl+Q9w78ZUtMHYvnZ3s/L7GwNpy
- +tJY9GH1QpspXAA4GlRvTpbk8O0Yb85eK5PhMRP78aTuepddiX7q14ZVrKmyQPMlt9vc
- AJSg==
+ d=gmail.com; s=20230601; t=1759913462; x=1760518262; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=ufLXNAx9x9jMay2OYMWWHclc8YCBaanqtNStl5ICSCo=;
+ b=Y/T+FA7mKYU59n07iuQ0tXzXUx9eGq6BrC9GAGn28F28AGFrdDVBmR8s4dEKwDWrpI
+ cLU4qyiKLmQhPxnAxjHlZVJOkKNcjJ7TkIUSmkkYbB33IYihT6q/528ZmV6lDak42DBN
+ 5CRe1OaATI3HOrJWpreRIAu+OYLgzXtOBceqbeKIFIg5bFuw5sa/36BhcfdqMjmMCZJV
+ r7QPns1qg9YAGbfOlQvrrvLLph2TUrw8XlZEoW71rNrxE0rQsfXbb9lsSByjIkvjEXUV
+ OJOKfHyz36fvXRwQgAb1RGRQFyGFRrPDMSWDIzderFFK7tBvowfISDcu+LzwithAhxNm
+ CCVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1759818584; x=1760423384;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=aKkMnGRmG/HCXRR/J+wbpneMSFSl98hzVTOk4wOIvPo=;
- b=bA5WCoqNkoVNTKV4eygXXqGdSjBUDwPRjzSYVaf2KeUSPpTHFodEFqKHB//sfxcNnC
- oyoATiVzbDKMsSHyad5gPrzLcxoP7VS7E6uN69xibI4H7L68Qpxdhy9P0pK6Cv+IUa4Y
- DheSgpF7wGs4lNvc0uCuQ6K7p2ctTANZlWK8C5UdKGWA991ccCK6R+TEm8xe06LNQe+b
- JrWToedaOfOiXFBzdrIytaK000plI8TJuyZ958JZCJiLKGJFOs5b9cfpF+Z2I2q7BClX
- AXLp/LL3BEBjUWsEQDJxYlss2Ds6QWpc8604AXwr+/ciUjbqWWV16iGdeyS7BKrwEKdX
- E6hg==
-X-Gm-Message-State: AOJu0YzCdRM73OrvHJZ4OR+CvGXGvKwgwdmyWazKMa9P3BnxAHrq3mud
- yJZiudPo3bWIO858Kg/DWo5CQ7IiY3W+FdLC+bftmXcXzt/qVVbMa1pGgQpcQRFZpzVfva0IqFz
- 8MbTF+iBNCN3v0gsVEPgdK7YjtKvvxe4=
-X-Gm-Gg: ASbGncvgIvalbG8fkkyougl4Ld14Jury125KUesl+SweClQqRXR2MAgpWY9huTh9zfg
- ZKa8Pz4Pa7QhNRLEBE++6PLIJwa8SvcxDw5C29z6dxVOn/VnBHQ/zoNB/ueOLn9EKgvZKw61Q9q
- xirVFWuZFH65pCm0zJFHQeMNbakkGkSkjeolojstn9sTjxtZlWH9L+1irnD+TPaal5D9KH82yGd
- HrXmXNeW1OzDM5FFb6iq441dkF5n5vaeA==
-X-Google-Smtp-Source: AGHT+IEW6knPiqMjhqg1CsWXzM0Am7GvQ+mxVelPlkPt1JP7ue4KThWpZkJDaJNhj3RD4YPttWj4FZC7v5OYuOR6TPM=
-X-Received: by 2002:a17:90b:180a:b0:330:3fb7:d874 with SMTP id
- 98e67ed59e1d1-339c27e2dc9mr10969162a91.8.1759818583824; Mon, 06 Oct 2025
- 23:29:43 -0700 (PDT)
+ d=1e100.net; s=20230601; t=1759913462; x=1760518262;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=ufLXNAx9x9jMay2OYMWWHclc8YCBaanqtNStl5ICSCo=;
+ b=A4rcs2ZrDiLcAhdj3j2WsrWl62mfLVUI+v3Ds2sZ744UcIKxs3PxG64WxSFzihQS9i
+ 9MBOCeyYCycMo6VSx64OnbJSJnAumFtA4kP6kj9MFqia7A6NagQ1sJW947G3Qr9sdbGB
+ Y9AVJTjLIpMPpbNCSdeQbYiskx2Iu01LZ7PSDLUm64gcEDHx1oXQNC4wd6zVVqjc52aT
+ DR1HqR/HKvSXTeD5tjaXygC4PFPb2aVciBbXPEx7xkr4oI5GxXNpal9kqme607EYB3T3
+ ly1wiV6KeQv7WInAuEiVXOJ1odtEyLYrByTFP1ZXVPKqUsPOI9fGJO29Ig7G6YjVM8D5
+ Avhw==
+X-Gm-Message-State: AOJu0Yy1wzW5rewolSO5dlw7zb6PFpcJ3lGEnX3IXOFlNtuAUN663k68
+ 9SoLYLynAYwj8pJmbDfuMqd7nQT3p0iA4RahFhjNuGcpM5mF06VUoCl8kBEozf3xDzsnHU65sTD
+ RNckWKQBbNTvtqy4X8PiyJcexjFdyVgs=
+X-Gm-Gg: ASbGncs53fmV8v4gdon5P8APDkB8Nwg4iPMk7rh8QnY34EVwK86brjzdTNJr0ld/1Ck
+ sqQdfB6zjQDltyaD0R1Q1tQintIk5Vt+WQ5TzuAH75KkEgjHIyaS/XvrO+2/NOoLPIAphWWC34X
+ n41ptWZr0VwjJRM5sK/RLEWLEQ6Wr3sF8lvydbXgHT2OXK2JHNOeEfY9tI4toq0rT/USU6HK2Cb
+ eiaX0RhX7PcRWAG3eI5gx9SKljU5xQ=
+X-Google-Smtp-Source: AGHT+IFG8mon2VrzLIPct30JCDUtD78WTBQAl4iZzwHX8S5t/w1YPC1V6OmSfYUa+AGNYt3c/byzxEacSK8GWXksOa0=
+X-Received: by 2002:a53:dd0c:0:b0:636:596:793e with SMTP id
+ 956f58d0204a3-63ccb84f27fmr1991216d50.14.1759913462153; Wed, 08 Oct 2025
+ 01:51:02 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAGfirffPy5biFVLtSNEW60UCXa6_=-=NrQbU7iLQ8+BXnFQ=1A@mail.gmail.com>
- <175922381867.30706.10351894191632562572@jlahtine-mobl>
- <CAGfirfdDe879wFzABVZkTV7grEimpnc0XrrKpj2SX1w_TLtgNg@mail.gmail.com>
- <aN0X3ck-egLMn_Xy@ashyti-mobl2.lan>
- <CAGfirffg4JzGkwaKTm9fL9Nyud4kBALvfW3Et33ZF60e8cVO1g@mail.gmail.com>
-In-Reply-To: <CAGfirffg4JzGkwaKTm9fL9Nyud4kBALvfW3Et33ZF60e8cVO1g@mail.gmail.com>
-From: =?UTF-8?B?6rmA6rCV66+8?= <km.kim1503@gmail.com>
-Date: Tue, 7 Oct 2025 15:29:32 +0900
-X-Gm-Features: AS18NWAJwJZBfwvucMwYUat98KEOwu2C85iSdEGMBYwKufVF5K91QzrHXZw2m3s
-Message-ID: <CAGfirfdACPUrW7hxOKXEpaPZ6=Lkwde24CfHov9=75JhXiPApg@mail.gmail.com>
-Subject: Re: BUG: unable to handle kernel NULL pointer dereference in
- eb_release_vmas
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, rodrigo.vivi@intel.com, 
- tursulin@ursulin.net, airlied@gmail.com, simona@ffwll.ch, 
- ville.syrjala@linux.intel.com, nitin.r.gote@intel.com, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- syzkaller@googlegroups.com
-Content-Type: multipart/alternative; boundary="0000000000008ede9b06408bb117"
+References: <20251007180634.912006-1-jia.yao@intel.com>
+ <20251007202514.1661491-1-jia.yao@intel.com>
+In-Reply-To: <20251007202514.1661491-1-jia.yao@intel.com>
+From: Askar Safin <safinaskar@gmail.com>
+Date: Wed, 8 Oct 2025 11:50:26 +0300
+X-Gm-Features: AS18NWCAZsLpGrqNyZA9_68DKyB8sTzvzemtoVUR1D4yNEy0CHK0YWca92Lu6eE
+Message-ID: <CAPnZJGCPP+dDbJHYQHzRbV0GHExFVHtVhgbZKUnGmJFofzJpJg@mail.gmail.com>
+Subject: Re: [PATCH v2] drm/i915: Setting/clearing the memory access bit when
+ en/disabling i915
+To: Jia Yao <jia.yao@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Alex Zuo <alex.zuo@intel.com>, 
+ Shuicheng Lin <shuicheng.lin@intel.com>, Pingfan Liu <piliu@redhat.com>, 
+ Chris Wilson <chris.p.wilson@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Thu, 09 Oct 2025 09:06:04 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -90,130 +86,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---0000000000008ede9b06408bb117
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Tue, Oct 7, 2025 at 11:25=E2=80=AFPM Jia Yao <jia.yao@intel.com> wrote:
+> Make i915's PCI device management more robust by always setting/clearing
 
-I noticed that I had sent the related link to only one person, so I=E2=80=
-=99m
-resending it just in case.
+Thank you! I tested this patch, and it indeed fixes the problem. You may ad=
+d:
 
-https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15062
-<https://l.mailtrack.com/l/a23538b60e872501ef9881ddb3a7e5ffc2cbce55?u=3D123=
-92148>
+Tested-By: Askar Safin <safinaskar@gmail.com>
 
-Best Regards,
-GangMin Kim.
+Please, CC me with further patches, I will test them.
 
+Also, I will repeat that the bug doesn't happen if we have
+CONFIG_INTEL_IOMMU_DEFAULT_ON=3Dy.
+So, probably we just need to patch all distro's configs to include
+CONFIG_INTEL_IOMMU_DEFAULT_ON=3Dy
+(Ubuntu already does that.)
+On the other hand, if there is some deeper issue to fix, then, of
+course, I'm glad it is being fixed!
 
-2025=EB=85=84 10=EC=9B=94 1=EC=9D=BC (=EC=88=98) =EC=98=A4=ED=9B=84 11:42, =
-=EA=B9=80=EA=B0=95=EB=AF=BC <km.kim1503@gmail.com>=EB=8B=98=EC=9D=B4 =EC=9E=
-=91=EC=84=B1:
+Also, please, add some "Fixes" tag and CC stable to make sure this fix
+will be backported to stable kernels.
 
-> The link is as follows.
->
-> https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15062
-> <https://l.mailtrack.com/l/7ffb70a27148d4fd131a86469e503e9a70232ef6?u=3D1=
-2392148>
->
-> Best Regards,
-> GangMin Kim.
->
-> 2025=EB=85=84 10=EC=9B=94 1=EC=9D=BC (=EC=88=98) =EC=98=A4=ED=9B=84 9:00,=
- Andi Shyti <andi.shyti@linux.intel.com>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=
-=B1:
-> >
-> > On Wed, Oct 01, 2025 at 12:14:41AM +0900, =EA=B9=80=EA=B0=95=EB=AF=BC w=
-rote:
-> > > Ok, I will do it.
-> >
-> > when you do, can you please paste the link here?
-> >
-> > Thanks,
-> > Andi
-> >
-> > > Best Regards,
-> > > GangMin Kim.
-> > >
-> > > 2025=EB=85=84 9=EC=9B=94 30=EC=9D=BC (=ED=99=94) =EC=98=A4=ED=9B=84 6=
-:17, Joonas Lahtinen
-> > > <joonas.lahtinen@linux.intel.com>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=
-=B1:
-> > > >
-> > > > Hi,
-> > > >
-> > > > Can you please open a bug as per the instructions in:
-> > > >
-> > > >
-> https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html
-> <https://l.mailtrack.com/l/de3b4dc95c086ae49b881e7922499a64745d7a93?u=3D1=
-2392148>
-> > > >
-> > > > Thanks in advance!
-> > > >
-> > > > Regards, Joonas
->
+For example:
 
---0000000000008ede9b06408bb117
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Fixes: 1da177e4c3f4 ("Linux-2.6.12-rc2")
+Cc: <stable@vger.kernel.org>
 
-<div dir=3D"ltr"><div dir=3D"ltr">I noticed that I had sent the related lin=
-k to only one person, so I=E2=80=99m resending it just in case.<br><br><a h=
-ref=3D"https://l.mailtrack.com/l/a23538b60e872501ef9881ddb3a7e5ffc2cbce55?u=
-=3D12392148">https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15062<=
-/a><br><br>Best Regards,<br>GangMin Kim.</div><br><br><img width=3D"0" heig=
-ht=3D"0" class=3D"mailtrack-img" alt=3D"" style=3D"display:flex" src=3D"htt=
-ps://mailtrack.io/trace/mail/0ff16b36172e3d8a1b6f03f56160274b1ff3dff4.png?u=
-=3D12392148"><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"l=
-tr" class=3D"gmail_attr">2025=EB=85=84 10=EC=9B=94 1=EC=9D=BC (=EC=88=98) =
-=EC=98=A4=ED=9B=84 11:42, =EA=B9=80=EA=B0=95=EB=AF=BC &lt;<a href=3D"mailto=
-:km.kim1503@gmail.com">km.kim1503@gmail.com</a>&gt;=EB=8B=98=EC=9D=B4 =EC=
-=9E=91=EC=84=B1:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
-:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
->The link is as follows.<br>
-<br>
-<a href=3D"https://l.mailtrack.com/l/7ffb70a27148d4fd131a86469e503e9a70232e=
-f6?u=3D12392148" rel=3D"noreferrer" target=3D"_blank">https://gitlab.freede=
-sktop.org/drm/i915/kernel/-/issues/15062</a><br>
-<br>
-Best Regards,<br>
-GangMin Kim.<br>
-<br>
-2025=EB=85=84 10=EC=9B=94 1=EC=9D=BC (=EC=88=98) =EC=98=A4=ED=9B=84 9:00, A=
-ndi Shyti &lt;<a href=3D"mailto:andi.shyti@linux.intel.com" target=3D"_blan=
-k">andi.shyti@linux.intel.com</a>&gt;=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:=
-<br>
-&gt;<br>
-&gt; On Wed, Oct 01, 2025 at 12:14:41AM +0900, =EA=B9=80=EA=B0=95=EB=AF=BC =
-wrote:<br>
-&gt; &gt; Ok, I will do it.<br>
-&gt;<br>
-&gt; when you do, can you please paste the link here?<br>
-&gt;<br>
-&gt; Thanks,<br>
-&gt; Andi<br>
-&gt;<br>
-&gt; &gt; Best Regards,<br>
-&gt; &gt; GangMin Kim.<br>
-&gt; &gt;<br>
-&gt; &gt; 2025=EB=85=84 9=EC=9B=94 30=EC=9D=BC (=ED=99=94) =EC=98=A4=ED=9B=
-=84 6:17, Joonas Lahtinen<br>
-&gt; &gt; &lt;<a href=3D"mailto:joonas.lahtinen@linux.intel.com" target=3D"=
-_blank">joonas.lahtinen@linux.intel.com</a>&gt;=EB=8B=98=EC=9D=B4 =EC=9E=91=
-=EC=84=B1:<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; Hi,<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; Can you please open a bug as per the instructions in:<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; <a href=3D"https://l.mailtrack.com/l/de3b4dc95c086ae49b881e7=
-922499a64745d7a93?u=3D12392148" rel=3D"noreferrer" target=3D"_blank">https:=
-//drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html</a><br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; Thanks in advance!<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; Regards, Joonas<br>
-</blockquote></div></div>
+Here I chose the initial git commit, because i915 always was in git history=
+.
 
---0000000000008ede9b06408bb117--
+--=20
+Askar Safin
