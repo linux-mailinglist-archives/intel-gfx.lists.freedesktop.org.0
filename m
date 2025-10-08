@@ -2,64 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DA57BC4A73
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Oct 2025 13:57:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11665BC4A9A
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Oct 2025 13:59:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B78D810E7DA;
-	Wed,  8 Oct 2025 11:57:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A2DF10E7E8;
+	Wed,  8 Oct 2025 11:59:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O7mhQ2es";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EREJvJ4w";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F38E10E7D8;
- Wed,  8 Oct 2025 11:57:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E84E10E7F2;
+ Wed,  8 Oct 2025 11:59:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759924640; x=1791460640;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=SvHccNgBdnQZ2CjVF/Wlfjp2ge03F4soHV0UsGLstBQ=;
- b=O7mhQ2es3BtlBFG2iDgU+azI2iARRrrqCsBVYDM0L2OXrxmiMR40LHWz
- Lqw40fPPJxo6PEKfGhlO2dGsJKaYn0RBcVNheXOxpziqVGZoSWhQ7kugf
- jtjW6GVjXKvejyZCSGPOOBVIXV4QBeclm+qUCNFhmoXAub/Ns9vIROWUU
- djTmwIsXm34eqjNV6ZEza043aKmBKpuzYbo58PvfeRaghDu/ogKG/P12n
- CBAxp55MsqORMsnsLivJ9LLcYz/2lHgV8ovN8QBP2+mDf5T6KWHDmJoCm
- FJeqbGkCkQDg3ZU+lOSLG3ZA9N1UjqjzaNyhtjiE0lzFDC5r6XTqecCOa A==;
-X-CSE-ConnectionGUID: wF85PgtKR8qeJO9zGv/JZQ==
-X-CSE-MsgGUID: RcWaxfnVSFKJiC0/PFwoGQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="49672038"
-X-IronPort-AV: E=Sophos;i="6.19,323,1754982000"; d="scan'208";a="49672038"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 04:57:20 -0700
-X-CSE-ConnectionGUID: 6v2WGbpuQfyZYTpAAvwUYQ==
-X-CSE-MsgGUID: dm2+09g9TmyLkx4ZEwUXjg==
+ t=1759924759; x=1791460759;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=3lP+HNAZbz2svo9Xkf9+w7S6faaoSp7rSZ5AgdadtwY=;
+ b=EREJvJ4wt1aIR96ckoz/3X30zm+R/Pu7ZZmZvBVuGnuv9/9CBs60FDo5
+ qEuUPi98rhyZa1EcEv3Fqbv/7oS1Si3A/g49R6QrZkactKWkmfXqLxiVg
+ zwJsUkotem6HWVnduwbvJp9HikeJUhocHRSDVGqNsxw6BMS0nuY5tJW9U
+ Ne1EOjodR1h176m5djx54M0+7JWqFfWUMLI6qD0J/+J4umzm5EqUGhw/h
+ Er7IW3fu45vIe5DtCbNxiunjIJgOXomlilqbhjKEqNJ+/uKaR5M2nk2lq
+ 3zPtyq4TNjKkBqwJLXs0+y4uPYa88Y2qqCabFFBe89kTqJwurNXc7yAHK Q==;
+X-CSE-ConnectionGUID: klXYJ4jESvqmTQvnpNwMWQ==
+X-CSE-MsgGUID: pGap8eOGSJqIGlYtmUcgWw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="79762440"
+X-IronPort-AV: E=Sophos;i="6.19,323,1754982000"; d="scan'208";a="79762440"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2025 04:59:16 -0700
+X-CSE-ConnectionGUID: +yX+slekRdiN8NXBk9ME9w==
+X-CSE-MsgGUID: fC241smFT6yEdAcgOcs9nw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,323,1754982000"; d="scan'208";a="180452901"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.245.244.147])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 04:57:16 -0700
-From: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
-To: dri-devel@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: Adrian Larumbe <adrian.larumbe@collabora.com>,
- Simona Vetter <simona@ffwll.ch>, Andi Shyti <andi.shyti@linux.intel.com>,
+X-IronPort-AV: E=Sophos;i="6.19,323,1754982000"; d="scan'208";a="184688637"
+Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.211.136.201])
+ by orviesa004-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Oct 2025 04:59:15 -0700
+Date: Wed, 8 Oct 2025 13:59:11 +0200
+From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Krzysztof Karas <krzysztof.karas@intel.com>
+Subject: Re: [PATCH i-g-t v2 1/5] tests/gem_eio: Skip on too few reset-resume
+ cycles
+Message-ID: <20251008115911.ihnnpmj33gcwsh23@kamilkon-DESK.igk.intel.com>
+Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
  Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>
-Subject: [PATCH v2 2/2] drm/i915: force getparam ioctl return bool for
- HAS_CONTEXT_ISOLATION
-Date: Wed,  8 Oct 2025 13:56:33 +0200
-Message-ID: <20251008115632.16333-4-krzysztof.niemiec@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20251008115632.16333-2-krzysztof.niemiec@intel.com>
-References: <20251008115632.16333-2-krzysztof.niemiec@intel.com>
+ igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Krzysztof Karas <krzysztof.karas@intel.com>
+References: <20251007113910.3336564-7-janusz.krzysztofik@linux.intel.com>
+ <20251007113910.3336564-8-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251007113910.3336564-8-janusz.krzysztofik@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,67 +78,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Adrian Larumbe <adrian.larumbe@collabora.com>
+Hi Janusz,
+On 2025-10-07 at 13:38:24 +0200, Janusz Krzysztofik wrote:
+> Subtests that measure time of resume after engine reset compare a median
+> value calculated from the measurements against a presumed limit and fail
+> if the limit has been exceeded.  However, if it occurs not possible to
+> collect enough measurements required for stable median value calculation,
+> that condition is now ignored and success is reported, as if the measured
+> time fit below the limit.
+> 
+> Skip if not able to collect sufficient number of time measurements.  CI
+> results from slow platforms that always skip may be handled as expected
+> skips.
+> 
+> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> ---
+>  tests/intel/gem_eio.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+> 
+> diff --git a/tests/intel/gem_eio.c b/tests/intel/gem_eio.c
+> index b65b914faf..0a00ef026e 100644
+> --- a/tests/intel/gem_eio.c
+> +++ b/tests/intel/gem_eio.c
+> @@ -409,8 +409,9 @@ static void check_wait_elapsed(const char *prefix, int fd, igt_stats_t *st)
+>  		 igt_stats_get_median(st)*1e-6,
+>  		 igt_stats_get_max(st)*1e-6);
+>  
+> -	if (st->n_values < 9)
+> -		return; /* too few for stable median */
+> +	igt_require_f(st->n_values > 8,
+> +		      "at least 9 resets completed for stable median calculation, %d is too few\n",
 
-In a previous commit, the uAPI documentation for this param was updated
-to reflect the actual usage expected by Iris. Now make sure the driver
-does indeed return a boolean value rather than an engine bitmask.
+imho add 'Test needs' at begin of sentence:
+		      "Test needs at least 9 resets completed for stable median calculation, %d is too few\n",
 
-Signed-off-by: Adrian Larumbe <adrian.larumbe@collabora.com>
-Signed-off-by: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_engine_user.c | 14 ++++++++++++++
- drivers/gpu/drm/i915/gt/intel_engine_user.h |  1 +
- drivers/gpu/drm/i915/i915_getparam.c        |  2 +-
- 3 files changed, 16 insertions(+), 1 deletion(-)
+With this
+Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_user.c b/drivers/gpu/drm/i915/gt/intel_engine_user.c
-index 833987015b8b..1f8e2bc540a9 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_user.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_user.c
-@@ -324,3 +324,17 @@ unsigned int intel_engines_has_context_isolation(struct drm_i915_private *i915)
- 
- 	return which;
- }
-+
-+bool engines_context_isolated(struct drm_i915_private *i915)
-+{
-+	struct intel_engine_cs *engine;
-+
-+	if (!DRIVER_CAPS(i915)->has_logical_contexts)
-+		return false;
-+
-+	for_each_uabi_engine(engine, i915)
-+		if (!engine->default_state)
-+			return false;
-+
-+	return true;
-+}
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_user.h b/drivers/gpu/drm/i915/gt/intel_engine_user.h
-index 3dc7e8ab9fbc..760167db07d5 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_user.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_user.h
-@@ -15,6 +15,7 @@ struct intel_engine_cs *
- intel_engine_lookup_user(struct drm_i915_private *i915, u8 class, u8 instance);
- 
- unsigned int intel_engines_has_context_isolation(struct drm_i915_private *i915);
-+bool engines_context_isolated(struct drm_i915_private *i915);
- 
- void intel_engine_add_user(struct intel_engine_cs *engine);
- void intel_engines_driver_register(struct drm_i915_private *i915);
-diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm/i915/i915_getparam.c
-index 6fcda6d7b5b7..34999ab51a6f 100644
---- a/drivers/gpu/drm/i915/i915_getparam.c
-+++ b/drivers/gpu/drm/i915/i915_getparam.c
-@@ -163,7 +163,7 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
- 			value = -EINVAL;
- 		break;
- 	case I915_PARAM_HAS_CONTEXT_ISOLATION:
--		value = intel_engines_has_context_isolation(i915);
-+		value = engines_context_isolated(i915);
- 		break;
- 	case I915_PARAM_SLICE_MASK:
- 		/* Not supported from Xe_HP onward; use topology queries */
--- 
-2.45.2
-
+> +		      st->n_values);
+>  
+>  	/*
+>  	 * Older platforms need to reset the display (incl. modeset to off,
+> -- 
+> 2.51.0
+> 
