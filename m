@@ -2,53 +2,95 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EFD8BC9341
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 15:08:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DEFA3BC943F
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 15:22:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BA4910EA3D;
-	Thu,  9 Oct 2025 13:08:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47CB610EA41;
+	Thu,  9 Oct 2025 13:22:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="sr18lMkZ";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="awaNgI7/";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="cwrjkfKR";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="awaNgI7/";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="cwrjkfKR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9750B10EA3D
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Oct 2025 13:08:32 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 31D2D43D40;
- Thu,  9 Oct 2025 13:08:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A1C8C4CEE7;
- Thu,  9 Oct 2025 13:08:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1760015312;
- bh=+Tv4QqjzLnqOG6noumG4PSZX/u3Hyls+NhPekWtf71I=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=sr18lMkZmBwKP2uoS6f7smY0jN/iV8/LBXQZSwruxdkrRnLSVLYqcNrWWw0Pl4NCo
- TQ3rrESv5CU8ypiZmtab3Hfnzum4bMdvmINQ3xCHUuW6V1czboS945SP+QpcuS+6yr
- D1BePqSqvqeFaJnLQzae9TCR6ur+axJWRb1IPMVjNmcnFCg2M16jj94CNnxSrW5j6L
- m/d1XDcgtzr6BDmnJpRXZ63rRUvSh3ViJLgPo5fgwtkmiXbaR9xVu/z5OzdtNsuwh1
- 7ankmMDzr8Oz6WXpbTQ6YNWiBsmVHJutVTfAMNzED3zO82aNfkSwMB3Rd77yF4c9EK
- ua1zsDilTof+A==
-Date: Thu, 9 Oct 2025 15:08:28 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>, 
- Jani Nikula <jani.nikula@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Matt Atwood <matthew.s.atwood@intel.com>, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915:move and rename reg_in_range_table
-Message-ID: <j3gmjykrxu4q5txs2kum5kh2uzcezdte63hh64eljuek44liv6@avyzhf3ucgfu>
-References: <20251007212447.941389-1-matthew.s.atwood@intel.com>
- <20251008165334.GA1207432@mdroper-desk1.amr.corp.intel.com>
- <aOad4gBFCtuKcbsh@msatwood-mobl>
- <20251008173713.GB1207432@mdroper-desk1.amr.corp.intel.com>
- <aObY74gMUQwr__a2@intel.com>
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04A6C10EA47
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Oct 2025 13:22:56 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id AAC411F74A;
+ Thu,  9 Oct 2025 13:22:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1760016174; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=nxbzPBH17ar9K23CahzAe5b30MTmOO7lOdw/AEZcP0U=;
+ b=awaNgI7/B8kYXqIFwTWq0bTxrrbbQgWzmYQL40a/KGIHLfrwsJezjNSwwQ5oBaRko8yH3L
+ zJnopVUZRPGe8w1zUAsf23kKmnS2KVtb0P/nZd+/paWDRlBXL6/LUOufHd7EJ3p5of4rMm
+ knVtAwJkGpGdK5RPUY0VgX03PRAagL8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1760016174;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=nxbzPBH17ar9K23CahzAe5b30MTmOO7lOdw/AEZcP0U=;
+ b=cwrjkfKRUzslGnFAMfnZN+BbuuRHgp8fiGPsw7EQNL51euzvgDiBbRojNyLdDUzWltIC1j
+ NbG6hac4zQvJojCg==
+Authentication-Results: smtp-out2.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1760016174; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=nxbzPBH17ar9K23CahzAe5b30MTmOO7lOdw/AEZcP0U=;
+ b=awaNgI7/B8kYXqIFwTWq0bTxrrbbQgWzmYQL40a/KGIHLfrwsJezjNSwwQ5oBaRko8yH3L
+ zJnopVUZRPGe8w1zUAsf23kKmnS2KVtb0P/nZd+/paWDRlBXL6/LUOufHd7EJ3p5of4rMm
+ knVtAwJkGpGdK5RPUY0VgX03PRAagL8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1760016174;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=nxbzPBH17ar9K23CahzAe5b30MTmOO7lOdw/AEZcP0U=;
+ b=cwrjkfKRUzslGnFAMfnZN+BbuuRHgp8fiGPsw7EQNL51euzvgDiBbRojNyLdDUzWltIC1j
+ NbG6hac4zQvJojCg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 5308A13A61;
+ Thu,  9 Oct 2025 13:22:54 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id 0EDeEi6352iECAAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 09 Oct 2025 13:22:54 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: jfalempe@redhat.com, javierm@redhat.com, mripard@kernel.org,
+ maarten.lankhorst@linux.intel.com
+Cc: dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH 0/4] drm/client: Implement free callback for fbdev and log
+Date: Thu,  9 Oct 2025 15:16:27 +0200
+Message-ID: <20251009132006.45834-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aObY74gMUQwr__a2@intel.com>
+Content-Transfer-Encoding: 8bit
+X-Spam-Level: 
+X-Spamd-Result: default: False [-2.80 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000]; MID_CONTAINS_FROM(1.00)[];
+ R_MISSING_CHARSET(0.50)[]; NEURAL_HAM_SHORT(-0.20)[-1.000];
+ MIME_GOOD(-0.10)[text/plain]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ FROM_HAS_DN(0.00)[]; ARC_NA(0.00)[]; MIME_TRACE(0.00)[0:+];
+ RCPT_COUNT_TWELVE(0.00)[14];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,imap1.dmz-prg2.suse.org:helo];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2]; FUZZY_RATELIMITED(0.00)[rspamd.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[]
+X-Spam-Flag: NO
+X-Spam-Score: -2.80
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,64 +106,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 08, 2025 at 05:34:39PM -0400, Rodrigo Vivi wrote:
-> On Wed, Oct 08, 2025 at 10:37:13AM -0700, Matt Roper wrote:
-> > On Wed, Oct 08, 2025 at 10:22:42AM -0700, Matt Atwood wrote:
-> > > On Wed, Oct 08, 2025 at 09:53:34AM -0700, Matt Roper wrote:
-> > > > On Tue, Oct 07, 2025 at 02:23:36PM -0700, Matt Atwood wrote:
-> > > > > reg_in_range_table is a useful function that is used in multiple places,
-> > > > > and will be needed for WA_BB implementation later.
-> > > > > 
-> > > > > Let's move this function and i915_range struct to its own file, as we are
-> > > > > trying to move away from i915_utils files.
-> > > > 
-> > > > It looks like this is a new revision of this patch from a couple years
-> > > > ago, right?
-> > > > 
-> > > >         https://lore.kernel.org/all/20231129205122.3464299-1-matthew.s.atwood@intel.com/
-> > > > 
-> > > > Even though it's been a long time, it would still be a good idea to
-> > > > include a patch changelog so that it's clear what's been changed and
-> > > > what review feedback was/wasn't incorporated.
-> > > Sorry, I will include it if theres another version
-> > > > 
-> > > > I'm also wondering if we should be thinking about moving i915 to use
-> > > > 'struct regmap_range' and existing functions like regmap_reg_in_ranges()
-> > > > rather than maintaining our own i915-specific versions of the logic.
-> > > > regmap in general does a bunch of other stuff that isn't relevant to
-> > > > i915, but it seems like we might be able to re-use the type definitions
-> > > > and basic lookups to avoid reinventing the wheel.
-> > > This is doable but just requires a rewrite of the current implementation
-> > > as it's not a 1:1 conversion.
-> > 
-> > The idea is that we'd eliminate 'struct i915_range' and related
-> > functions and just use the regmap types and functions instead.  It looks
-> > like the main difference is that the regmap lists are size-based, while
-> > our lists use a sentinel to mark the end of the table.
-> > 
-> > Although I did just notice that even the basic types and helpers for
-> > regmap rely on CONFIG_REGMAP, so that might be an argument against
-> > switching over since we'd need to add an extra kconfig dependency, and
-> > most of what it brings in isn't useful to us.  But probably more
-> > something for Rodrigo and the other maintainers to weigh in on.
-> 
-> Cc: all other maintainers.
-> 
-> I could easily be convinced either way.
-> 
-> I like the idea of reusing something existing and this helper and struct
-> does fit to our needs.
-> I don't mind having to include another config dependency here.
-> The part that is not good is to bring a lot more than we need :/
-> 
-> Perhaps the really right thing to do there would be to split regmap
-> into a generic map part and the support to the other different bus stuff.
-> Then we start using the generic part.
+Add struct drm_client_funcs.free and release the memory fbdev and
+log clients from its implementations. Also fix the locking in the
+log's unregister code.
 
-It's true that they are similar (regmap_reg_in_ranges() is
-basically a copy paste), but regmap and mmio are two different
-things (although conceptually similar in some cases). Working to
-expose regmap_range so that we can use it as mmio_range looks to
-me a bit of an overkill.
+Resolves several corner cases in the current clients and avoids
+duplicated code.
 
-Andi
+Thomas Zimmermann (4):
+  drm/client: Add client free callback to unprepare fb_helper
+  drm/log: Do not hold lock across drm_client_release()
+  drm/log: Add free callback
+  drm/client: Do not free client memory by default
+
+ drivers/gpu/drm/armada/armada_fbdev.c      |  2 --
+ drivers/gpu/drm/clients/drm_fbdev_client.c | 17 +++++++++++++++--
+ drivers/gpu/drm/clients/drm_log.c          | 16 ++++++++++++----
+ drivers/gpu/drm/drm_client.c               |  4 ++++
+ drivers/gpu/drm/drm_client_event.c         |  9 +++++----
+ drivers/gpu/drm/drm_fbdev_dma.c            |  4 ----
+ drivers/gpu/drm/drm_fbdev_shmem.c          |  2 --
+ drivers/gpu/drm/drm_fbdev_ttm.c            |  2 --
+ drivers/gpu/drm/exynos/exynos_drm_fbdev.c  |  2 --
+ drivers/gpu/drm/gma500/fbdev.c             |  3 ---
+ drivers/gpu/drm/i915/display/intel_fbdev.c |  2 --
+ drivers/gpu/drm/msm/msm_fbdev.c            |  2 --
+ drivers/gpu/drm/omapdrm/omap_fbdev.c       |  2 --
+ drivers/gpu/drm/radeon/radeon_fbdev.c      |  2 --
+ drivers/gpu/drm/tegra/fbdev.c              |  2 --
+ include/drm/drm_client.h                   | 10 ++++++++++
+ 16 files changed, 46 insertions(+), 35 deletions(-)
+
+-- 
+2.51.0
+
