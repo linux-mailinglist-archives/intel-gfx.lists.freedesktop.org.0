@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EB50BCAE2E
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 23:13:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ECDBBCAE31
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 23:13:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27F9710EB25;
-	Thu,  9 Oct 2025 21:13:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1098210EB19;
+	Thu,  9 Oct 2025 21:13:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ixVWCKm/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jMpRWYym";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5257510EB22;
- Thu,  9 Oct 2025 21:13:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52DD710EB19;
+ Thu,  9 Oct 2025 21:13:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760044409; x=1791580409;
+ t=1760044413; x=1791580413;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tWpmlcdInPlduCaXPQu/wvrpZInwFbBzGNhOHl+8KqU=;
- b=ixVWCKm/05mN1ZuTzCOAc14RvXlvxgzK6ixORnk8lOgNp44c4fx8D/0y
- qy18Qu/NshveBXLI3y3YUm7qEVUd9WR8826gUgxdwfHl+9c/dhGRdnFpn
- aIfuGg+dJgoMHw5iOWeFiPsUnzhQS1nDLlC8K88cyq8XKZ/X1qxrqXKuK
- U6CBpvTRDPHS4+bvKFakxKJOEAkOKFCtDm60yavOZ2uaLJprMkrw9Vqaq
- Yd+EEj+oXktsmVzSb9v7F3tc6ciY2aM5Pon2FPAoc9tPQ1eZJFjnp5DW5
- rXOR9HUkq2Z5O6NinyuKGgEebvD3gmM25b42y7Mrgk5shhvVLpFQrHk6l w==;
-X-CSE-ConnectionGUID: nNTTyMNhTxep6xAusdFxdA==
-X-CSE-MsgGUID: KyKTBpcNS6uUfq7sWvawFg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11577"; a="79910094"
-X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="79910094"
+ bh=FHOJhvwrW7k3Ke5SwyWfE1EiUGS8bBxekU1ytOxtMIk=;
+ b=jMpRWYymQMjy0Tqe1wZcDC8rNptg/jQ9xsYnXIUm8wOgGzJMUB2SX+Pn
+ maG6I6LQs2bn8wWAdtLbamZaDoV7QuT4BtakatpsoFnFtPnnKwkLPwaxh
+ EPB/2uXkzvb7/hLpENHIHzIvjhxSOK/aS6W7Zfqj7f2MhMJcZ38DtxLlA
+ RP7pDH7BVudj23dxXIP5+MRzvd9LjVetM+ujGtNFDufH2VF/GzmW12RPx
+ C5HILUTpzO4lAQpIREfL9o9l7YnNrq9tg6um/M5vA0YR77HuFo3jAdw6P
+ kTIByenuTNi/EQm1nz92gcqD9HsTMQnCCsoid5ySW03h/yxQ9fPw2kgSK A==;
+X-CSE-ConnectionGUID: KhZNQ7yyS1yvgBItM4EOFQ==
+X-CSE-MsgGUID: QHj1ISTHQQWdK3DGd0jiXQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11577"; a="79910102"
+X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="79910102"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2025 14:13:29 -0700
-X-CSE-ConnectionGUID: EIqhinV1Q+mXe31AwjGiNA==
-X-CSE-MsgGUID: 2S1E013ySuWtY7OEmYs3aw==
+ 09 Oct 2025 14:13:33 -0700
+X-CSE-ConnectionGUID: 0/WvxLxJTDyz0BvbJtcLRg==
+X-CSE-MsgGUID: VsDzlW0ZTem690HgkuQjPQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="204516329"
+X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="204516355"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.21])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2025 14:13:28 -0700
+ 09 Oct 2025 14:13:32 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 3/8] drm/i915: Implement .min_plane_width() for PTL+
-Date: Fri, 10 Oct 2025 00:13:07 +0300
-Message-ID: <20251009211313.30234-4-ville.syrjala@linux.intel.com>
+Subject: [PATCH 4/8] drm/i915: Start checking plane min size for the chroma
+ plane
+Date: Fri, 10 Oct 2025 00:13:08 +0300
+Message-ID: <20251009211313.30234-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20251009211313.30234-1-ville.syrjala@linux.intel.com>
 References: <20251009211313.30234-1-ville.syrjala@linux.intel.com>
@@ -72,26 +73,65 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-PTL+ spposedly still has the same plane min width limit
-as ADL. Check for it.
+Currently we check the plane min size only for the Y plane.
+Extend the check to the CbCr plane as well.
+
+This will also allow us to remove the planar format check from
+icl_plane_min_width() since the +2 on the CbCr plane is equivalent
+to +4 on the Y plane. I suspect this approach actually models the
+hardware issue more accurately.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 1 +
- 1 file changed, 1 insertion(+)
+ .../gpu/drm/i915/display/skl_universal_plane.c | 18 +++++-------------
+ 1 file changed, 5 insertions(+), 13 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 504871065e09..9049cd79a29f 100644
+index 9049cd79a29f..6f187e14f9ae 100644
 --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
 +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -2818,6 +2818,7 @@ skl_universal_plane_create(struct intel_display *display,
- 	intel_fbc_add_plane(skl_plane_fbc(display, pipe, plane_id), plane);
+@@ -400,17 +400,8 @@ static int icl_plane_min_width(const struct drm_framebuffer *fb,
+ 			       int color_plane,
+ 			       unsigned int rotation)
+ {
+-	int min_width;
+-
+-	min_width = 16 / fb->format->cpp[color_plane];
+-
+ 	/* Wa_14011264657, Wa_14011050563: gen11+ */
+-	if (intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier))
+-		min_width += 4;
+-	else
+-		min_width += 2;
+-
+-	return min_width;
++	return 16 / fb->format->cpp[color_plane] + 2;
+ }
  
- 	if (DISPLAY_VER(display) >= 30) {
-+		plane->min_width = adl_plane_min_width;
- 		plane->max_width = xe3_plane_max_width;
- 		plane->max_height = icl_plane_max_height;
- 		plane->min_cdclk = icl_plane_min_cdclk;
+ static int xe3_plane_max_width(const struct drm_framebuffer *fb,
+@@ -2070,6 +2061,7 @@ static int skl_check_nv12_aux_surface(struct intel_plane_state *plane_state)
+ 	int uv_plane = 1;
+ 	int ccs_plane = intel_fb_is_ccs_modifier(fb->modifier) ?
+ 			skl_main_to_aux_plane(fb, uv_plane) : 0;
++	int min_width = intel_plane_min_width(plane, fb, uv_plane, rotation);
+ 	int max_width = intel_plane_max_width(plane, fb, uv_plane, rotation);
+ 	int max_height = intel_plane_max_height(plane, fb, uv_plane, rotation);
+ 	int x = plane_state->uapi.src.x1 >> 17;
+@@ -2079,11 +2071,11 @@ static int skl_check_nv12_aux_surface(struct intel_plane_state *plane_state)
+ 	u32 offset;
+ 
+ 	/* FIXME not quite sure how/if these apply to the chroma plane */
+-	if (w > max_width || h > max_height) {
++	if (w > max_width || w < min_width || h > max_height || h < 1) {
+ 		drm_dbg_kms(display->drm,
+-			    "[PLANE:%d:%s] CbCr source size %dx%d too big (limit %dx%d)\n",
++			    "[PLANE:%d:%s] requested CbCr source size %dx%d outside limits (min: %dx1 max: %dx%d)\n",
+ 			    plane->base.base.id, plane->base.name,
+-			    w, h, max_width, max_height);
++			    w, h, min_width, max_width, max_height);
+ 		return -EINVAL;
+ 	}
+ 
 -- 
 2.49.1
 
