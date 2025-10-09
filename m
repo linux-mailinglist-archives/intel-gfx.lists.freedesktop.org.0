@@ -2,107 +2,117 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D073BC9487
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 15:23:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06D66BC9513
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 15:33:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD5D410EA4E;
-	Thu,  9 Oct 2025 13:23:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B41A10EA4B;
+	Thu,  9 Oct 2025 13:32:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="aLgyG/QF";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="ZJKWu9TK";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="aLgyG/QF";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="ZJKWu9TK";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="NSgjC7lf";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46BF610EA55
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Oct 2025 13:23:13 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 395571F7E7;
- Thu,  9 Oct 2025 13:22:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1760016176; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=xwzQ0SKlizCCwXOt8RJTik21J0MBmxveRLtKN2upYpQ=;
- b=aLgyG/QFZTllg109Vm7VYEXNsyhv/4/6db2+Yc/scE/lBP7dkA7VheD4vgMfd4ebuV6UtZ
- gdrBxdO03lTc2iw+FOcSR0eQgywhO+GCDcuDmJMiFUI2NyHseUxVNWhDgz7CdJ2Zk0uDnc
- 1WtPrFd6/xffZi5zxM6j/9nKyATDR2o=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1760016176;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=xwzQ0SKlizCCwXOt8RJTik21J0MBmxveRLtKN2upYpQ=;
- b=ZJKWu9TKYBlRfwE9H8hwUUeHlO2+k2aGaCU+DESSMtFvC6Ds+YbxdeA0bLnYRTibKr3TUq
- ZGAabxf9mdeK12Cg==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1760016176; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=xwzQ0SKlizCCwXOt8RJTik21J0MBmxveRLtKN2upYpQ=;
- b=aLgyG/QFZTllg109Vm7VYEXNsyhv/4/6db2+Yc/scE/lBP7dkA7VheD4vgMfd4ebuV6UtZ
- gdrBxdO03lTc2iw+FOcSR0eQgywhO+GCDcuDmJMiFUI2NyHseUxVNWhDgz7CdJ2Zk0uDnc
- 1WtPrFd6/xffZi5zxM6j/9nKyATDR2o=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1760016176;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=xwzQ0SKlizCCwXOt8RJTik21J0MBmxveRLtKN2upYpQ=;
- b=ZJKWu9TKYBlRfwE9H8hwUUeHlO2+k2aGaCU+DESSMtFvC6Ds+YbxdeA0bLnYRTibKr3TUq
- ZGAabxf9mdeK12Cg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id D7D1813A61;
- Thu,  9 Oct 2025 13:22:55 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id wHh/My+352iECAAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 09 Oct 2025 13:22:55 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: jfalempe@redhat.com, javierm@redhat.com, mripard@kernel.org,
- maarten.lankhorst@linux.intel.com
-Cc: dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 692C310EA46
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Oct 2025 13:32:56 +0000 (UTC)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5996EaiB029956
+ for <intel-gfx@lists.freedesktop.org>; Thu, 9 Oct 2025 13:32:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-type:date:from:in-reply-to:message-id:mime-version
+ :references:subject:to; s=qcppdkim1; bh=RRr9DsOTbQL+IhH2cQUogvPD
+ iLS8DNEDEbNUEWkTRTg=; b=NSgjC7lfbBgTxi4WQX3tdtzkY/WqL0mozpo5s32Z
+ E/wukCkntqZq08uD5vOClESI3KnKzb5bsudg3ABvfFY0HOpSRctfklIdnhQTUW45
+ MhfWkYbbM102O/ipBVg9zILkwap0aipTxBcPTcPTUOFrRoQRBOKDJ1nSa1KvFcMj
+ WyPpeV/dOst/tb/kSGtNjerKKCelofJuz+VsmLKB9JHUclgjriAnvsvR84HbdOPg
+ Kfi6UDLynP12r9cZITunI4XKApAChyAmtES3Cy7iMbnL9h7+RSTii5eTrjj9CxWE
+ 94Xt4f6BGN37Z/Nu27kDJckZyr5bMurQdBo9ytUJNm5mDQ==
+Received: from mail-vk1-f198.google.com (mail-vk1-f198.google.com
+ [209.85.221.198])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49nv4nayfh-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+ for <intel-gfx@lists.freedesktop.org>; Thu, 09 Oct 2025 13:32:55 +0000 (GMT)
+Received: by mail-vk1-f198.google.com with SMTP id
+ 71dfb90a1353d-54a887b39b2so1861399e0c.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 09 Oct 2025 06:32:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1760016774; x=1760621574;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=RRr9DsOTbQL+IhH2cQUogvPDiLS8DNEDEbNUEWkTRTg=;
+ b=mM7oPRII7MzCa8DoM7LCmd2VfvsvjLJZTamsat0Th61yZho+1V+suvhpr55IM9aH0x
+ oKeDd+XbMo7dFff/pqRCKgQns8YCAcWzjRwi9DhwkxQizFUlIkrBf2ZkqwxIdxu1erRL
+ h+O5+w6HX/GXzuP1pdemRbNzN5b4O+nr+Z6r4saLA9gvxdhEgOzh/QarHMWd8KlN7thd
+ SClcZ22hd1kx6IYAwsDRa4/lVK6adogJ/2cAm+QcRNkdQKKXtMN96XQD+dcsv0K/4+mi
+ gDcOoLiVdEvnk53av7D1qIbexgx00z54AGLKE3yKYZ+/Mwe2KBts/8KP01OhMq0DOKsK
+ nEqA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWcuh4H/o5sCno5W2kWJ+BuKCpfpla4VnnXxUvrX6cB0Vl+SivqxcnyytFBrnOK8w9838uyl3yjYgU=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxa6G/k3zBZnGjPjuk3o562Zp9AfMAzX/bajoQYGhkX+pkb0YfO
+ BUFIAEZZt9fQWhXQktjiTfBCoj56hTWhqH00mdF5Vz0diPEreVqq/rVeXYst4tPj1ZIcel08W5A
+ zrCQ6ge+LSheUr0vscIu3O48uJBJalbLfj5xFQRKW+XTmJ0YmXKzMvKAmklrisnx1hHwrfao=
+X-Gm-Gg: ASbGncvbHwHpbXWSQ0A8W9lWYywkI1N76p03SsXIVMSTvHWL3pfMFoo/oJBYGfswGgX
+ OtqvSWBZICxf4sb/xP3OrV7maP9w3kZiVSB8cBDnLoIEO32cE8X+DrgbTyh/HW0GjBzlB31Jsr1
+ S+QNdRnrdiLrx/Jrubd54wWB3ZuNKZaW2dIoVLsMl4aJs/8NDxxuLHIoC4NOXOyZ90Y4+TimxOD
+ Dv0g8EOSHnK1Ypp90ivJCcbu6sgnqNdN2Up/kaV3FnHVOe/ssgFepZm7lXWEZ3e6C1gcFDCULiY
+ keMxJKTIV0bxSMKpPWeLNh2+ubA8miyfY3eJifvSv5WWKCfJrJmswaMUmN7+UAMrV5op/R+ca81
+ chjk99nj/E4je8B6Xd+aMLNnvy2ekmWga4Rg6bjGlbjIg8H3SMcowbbs+Jw==
+X-Received: by 2002:a05:6122:169a:b0:544:79bd:f937 with SMTP id
+ 71dfb90a1353d-554b8c23f89mr3464563e0c.15.1760016774180; 
+ Thu, 09 Oct 2025 06:32:54 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF11oySDBoem7xTkH1oLPUQwPCox0qjhESMy2x1A0tSRyY/Tw898j/talcs/MTKAv8Q9vNTjA==
+X-Received: by 2002:a05:6122:169a:b0:544:79bd:f937 with SMTP id
+ 71dfb90a1353d-554b8c23f89mr3464505e0c.15.1760016773679; 
+ Thu, 09 Oct 2025 06:32:53 -0700 (PDT)
+Received: from umbar.lan
+ (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
+ [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-5907adb1268sm1047769e87.90.2025.10.09.06.32.52
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 09 Oct 2025 06:32:52 -0700 (PDT)
+Date: Thu, 9 Oct 2025 16:32:51 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: jfalempe@redhat.com, javierm@redhat.com, mripard@kernel.org,
+ maarten.lankhorst@linux.intel.com, dri-devel@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org,
  linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
  freedreno@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH 4/4] drm/client: Do not free client memory by default
-Date: Thu,  9 Oct 2025 15:16:31 +0200
-Message-ID: <20251009132006.45834-5-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251009132006.45834-1-tzimmermann@suse.de>
+ linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 1/4] drm/client: Add client free callback to unprepare
+ fb_helper
+Message-ID: <w23s7pc3diq742biiq6sah6lkps6irejtkvcwvyotbaty37hvj@j2nheyk3ir4e>
 References: <20251009132006.45834-1-tzimmermann@suse.de>
+ <20251009132006.45834-2-tzimmermann@suse.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-6.80 / 50.00]; REPLY(-4.00)[];
- BAYES_HAM(-3.00)[100.00%]; MID_CONTAINS_FROM(1.00)[];
- NEURAL_HAM_LONG(-1.00)[-1.000]; R_MISSING_CHARSET(0.50)[];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,suse.de:email,imap1.dmz-prg2.suse.org:helo];
- ARC_NA(0.00)[]; MIME_TRACE(0.00)[0:+]; TO_DN_SOME(0.00)[];
- RCPT_COUNT_TWELVE(0.00)[14]; RCVD_VIA_SMTP_AUTH(0.00)[];
- FUZZY_RATELIMITED(0.00)[rspamd.com]; FROM_HAS_DN(0.00)[];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
- RCVD_COUNT_TWO(0.00)[2];
- R_RATELIMIT(0.00)[to_ip_from(RLb7ziy8p3fscxnwi7udzruu4s)];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- RCVD_TLS_ALL(0.00)[]
-X-Spam-Flag: NO
-X-Spam-Score: -6.80
-X-Spam-Level: 
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251009132006.45834-2-tzimmermann@suse.de>
+X-Authority-Analysis: v=2.4 cv=ZJzaWH7b c=1 sm=1 tr=0 ts=68e7b988 cx=c_pps
+ a=1Os3MKEOqt8YzSjcPV0cFA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=x6icFKpwvdMA:10 a=EUspDBNiAAAA:8 a=463TWv_Jhf9JylTOhJ4A:9 a=CjuIK1q_8ugA:10
+ a=hhpmQAJR8DioWGSBphRh:22
+X-Proofpoint-ORIG-GUID: VZMh-lHiNtI8OJxsPBiXBPHZ5i0I_vDr
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA4MDEyMSBTYWx0ZWRfX4Ry3mqMF5EO4
+ PbiULhI47Qhsb+IPHLnURRdvfyh9mJAWwTIADHKY4qdbfYolXyCmkbj4/4GtEdT8McCFCUTBGd5
+ LLePc2fJzH06PbD4wLuWn3UqteB61KSHp6jTB6YZjSnjUSweVBQJ3OdVSZGr7sJxWaiskuvpQUy
+ MCvdIMX+kkLvLJhnXUvfzPgaqGX6R8pUupkA+wLNVtZ30jBFxzfAjfiTN4REf2KHWAm7JIcGrcb
+ fi92XA2X2Wc8o2+6ZFCmz5WGi5j9E0Lliy1BvfF+23ocTXwd2sez1pqio0bsaJ/M7/d3Ha9h1SO
+ yiho2ZIMwF00OC3aXI+4cCKXTYGw3McXAfMVLzbWDGAX22ayh6JsSbg+xpA55QlJjIY/G00XRZt
+ tKQXpAscLK9QmvIvs7lKgXO1g9o8RA==
+X-Proofpoint-GUID: VZMh-lHiNtI8OJxsPBiXBPHZ5i0I_vDr
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-09_04,2025-10-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 adultscore=0 clxscore=1015 malwarescore=0 lowpriorityscore=0
+ phishscore=0 priorityscore=1501 impostorscore=0 suspectscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510080121
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -118,40 +128,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Make no assumption on the allocation of the client's memory. For
-example, amdgpu stores a client within another data structures,
-where it cannot be freed by itself.
+On Thu, Oct 09, 2025 at 03:16:28PM +0200, Thomas Zimmermann wrote:
+> Add free callback to struct drm_client_funcs. Invoke function to
+> free the client memory as part of the release process. Implement
+> free for fbdev emulation.
+> 
+> Fbdev emulation allocates and prepares client memory in
+> drm_fbdev_client_setup(). The release happens in fb_destroy from
+> struct fb_ops. Multiple implementations of this callback exist in
+> the various drivers that provide fbdev implementation. Each of them
+> needs to follow the implementation details of the fbdev setup code.
+> 
+> Adding a free callback for the client puts the unprepare and release
+> of the fbdev client in a single place.
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> ---
+>  drivers/gpu/drm/armada/armada_fbdev.c      |  2 --
+>  drivers/gpu/drm/clients/drm_fbdev_client.c | 17 +++++++++++++++--
+>  drivers/gpu/drm/drm_client.c               |  4 ++++
+>  drivers/gpu/drm/drm_fbdev_dma.c            |  4 ----
+>  drivers/gpu/drm/drm_fbdev_shmem.c          |  2 --
+>  drivers/gpu/drm/drm_fbdev_ttm.c            |  2 --
+>  drivers/gpu/drm/exynos/exynos_drm_fbdev.c  |  2 --
+>  drivers/gpu/drm/gma500/fbdev.c             |  3 ---
+>  drivers/gpu/drm/i915/display/intel_fbdev.c |  2 --
+>  drivers/gpu/drm/msm/msm_fbdev.c            |  2 --
 
-The correct place to free the client's memory is the client's free
-callback. All existing clients implement this.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> # core, msm
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
----
- drivers/gpu/drm/drm_client_event.c | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
+>  drivers/gpu/drm/omapdrm/omap_fbdev.c       |  2 --
+>  drivers/gpu/drm/radeon/radeon_fbdev.c      |  2 --
+>  drivers/gpu/drm/tegra/fbdev.c              |  2 --
+>  include/drm/drm_client.h                   | 10 ++++++++++
+>  14 files changed, 29 insertions(+), 27 deletions(-)
+> 
 
-diff --git a/drivers/gpu/drm/drm_client_event.c b/drivers/gpu/drm/drm_client_event.c
-index c83196ad8b59..f36fe0392ce6 100644
---- a/drivers/gpu/drm/drm_client_event.c
-+++ b/drivers/gpu/drm/drm_client_event.c
-@@ -39,12 +39,13 @@ void drm_client_dev_unregister(struct drm_device *dev)
- 	mutex_lock(&dev->clientlist_mutex);
- 	list_for_each_entry_safe(client, tmp, &dev->clientlist, list) {
- 		list_del(&client->list);
--		if (client->funcs && client->funcs->unregister) {
-+		/*
-+		 * Unregistering consumes and frees the client.
-+		 */
-+		if (client->funcs && client->funcs->unregister)
- 			client->funcs->unregister(client);
--		} else {
-+		else
- 			drm_client_release(client);
--			kfree(client);
--		}
- 	}
- 	mutex_unlock(&dev->clientlist_mutex);
- }
 -- 
-2.51.0
-
+With best wishes
+Dmitry
