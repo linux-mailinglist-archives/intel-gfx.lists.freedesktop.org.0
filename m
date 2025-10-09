@@ -2,165 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFCC7BC7F68
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 10:14:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 82F36BC7FD4
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 10:19:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11E6A10E100;
-	Thu,  9 Oct 2025 08:14:13 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="eklmgPlV";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 005B710E221;
+	Thu,  9 Oct 2025 08:19:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBDF210E950
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Oct 2025 08:14:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1759997650;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=z/B31lhY4bVYeZNnk+dMlfOVrRbTYtHHzwgcdMMaTVE=;
- b=eklmgPlVwxUbD5RGKNTMAISiecA9nE5fWKvBUBlE1Eaa5aW9+2nYOpVnuT0ItCXsQ2jK3l
- ceI+GP+B/aJdI56cbRLWcJg6OveIIRtDiv/L1fXBz0TXjWhPVqP8FttRgfzbAPME09OqRg
- 6nC3+3g8hGxfyzITX7ZUeHxupzqIIOg=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-160-gqvzshKPNW2gFu9WORLQog-1; Thu, 09 Oct 2025 04:14:09 -0400
-X-MC-Unique: gqvzshKPNW2gFu9WORLQog-1
-X-Mimecast-MFC-AGG-ID: gqvzshKPNW2gFu9WORLQog_1759997648
-Received: by mail-wm1-f69.google.com with SMTP id
- 5b1f17b1804b1-46e3d9bf9e1so3724845e9.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 09 Oct 2025 01:14:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1759997648; x=1760602448;
- h=content-transfer-encoding:in-reply-to:autocrypt:content-language
- :from:references:cc:to:subject:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=z/B31lhY4bVYeZNnk+dMlfOVrRbTYtHHzwgcdMMaTVE=;
- b=kLfg/WNsuA+Qc7x3Ca8UGXqlqZlD6RXelRQuloYdrZZobY6b7p+DB5Ezq26zwh36OU
- OAbuEeq6FYX/XJyiKfLKY/upYVbNGtf07YhCH+5BlQRxMmLxSQjSOA573nudDQm/HKWp
- JM8l9jz409cNI/6E9solXQOEIp4JPv53khYN0f/OqwN75UJId70hLW5DYwVjRB78V9p9
- cLsq1Sb4mYyIij6/uaqrjDUtKDQn0ii2oUN8ZrcIUszYB1sLtTTlixMsaM8ABN7OZrTF
- I1U1+PF5n250mtsTNX2e2fTzgErrugTAbvoahfElcjI6Cxb8QrCn+uNnmj20mKNUBFjZ
- wX5A==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU+uCL3+MWFXDK3NHsvltIQz3qcc7L+XweIgZKF7Dec43krhqjd67jXlnM+SDCKG0/IHGGfGbK0ebE=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyW0TY2yY3ZcfIFTbNDRA82A+Nvyi3ecGXlNxcw2eJK3AisvsRs
- jjUMfiRFYCm0pdxcP29IQUDB8ww9VCFant6MUPGRis4c43C+vXC6ADCaq6xTMhhIaGxYrOHBH49
- Isx95Zqm8aiqnrh7PRguAxPyN2KLv4xebi2yT48gMdLlatS7U95uzo4MUX+X6taEwx2Rqpg==
-X-Gm-Gg: ASbGncsVuvD9NwxxyEveKiC21Lg7XKoam3aME4OZTR9/6lo0dhfmia1UscLZSrme02o
- 0ltTmLUgw/n8wZvEQLsn1weh1JA4jQ+QnvsvGGlYlQKzfZL4iz4hS6cAkuDbM6ahy50B4Af95pK
- OP9LfCucnJslgy5ag1tdQe3Q4VnmJ8X/vKXHM4E3nc3RaIjA+C1vadUeEYJzs3sP8Mcy1jkb32k
- gThRFvbXEP48px3MseesitsS6Y9QxiBitfEAMkfukSkmBvJqlqRVvTbg0CstOSMldOyTKxsNcpL
- g8ZcMG5acGTFggNQUxewZ2q1kr3aUzh3VBNzhiKZF7GA71fIM/wtDLFxf6MYE3XVISR1w+NZ003
- mCjMAsFmd
-X-Received: by 2002:a05:600c:4750:b0:45f:28d2:bd38 with SMTP id
- 5b1f17b1804b1-46fa9af3095mr47092755e9.18.1759997648089; 
- Thu, 09 Oct 2025 01:14:08 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGo93r/upxlN0XWroa/gVbVuSE1HI9H4cBHGhOGnkYv+FuHkp7MlpzQ4ByJt+h+2JF6rzGBiQ==
-X-Received: by 2002:a05:600c:4750:b0:45f:28d2:bd38 with SMTP id
- 5b1f17b1804b1-46fa9af3095mr47092215e9.18.1759997647608; 
- Thu, 09 Oct 2025 01:14:07 -0700 (PDT)
-Received: from [192.168.3.141] (tmo-083-189.customers.d1-online.com.
- [80.187.83.189]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-46fa9d6fb41sm71628175e9.17.2025.10.09.01.14.03
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 09 Oct 2025 01:14:07 -0700 (PDT)
-Message-ID: <9361c75a-ab37-4d7f-8680-9833430d93d4@redhat.com>
-Date: Thu, 9 Oct 2025 10:14:02 +0200
+Received: from 6aec98b87f92 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1317A10E221;
+ Thu,  9 Oct 2025 08:19:14 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: (bisected) [PATCH v2 08/37] mm/hugetlb: check for unreasonable
- folio sizes when registering hstate
-To: Christophe Leroy <christophe.leroy@csgroup.eu>,
- linux-kernel@vger.kernel.org
-Cc: Zi Yan <ziy@nvidia.com>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- Alexander Potapenko <glider@google.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Brendan Jackman <jackmanb@google.com>, Christoph Lameter <cl@gentwo.org>,
- Dennis Zhou <dennis@kernel.org>, Dmitry Vyukov <dvyukov@google.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- iommu@lists.linux.dev, io-uring@vger.kernel.org,
- Jason Gunthorpe <jgg@nvidia.com>, Jens Axboe <axboe@kernel.dk>,
- Johannes Weiner <hannes@cmpxchg.org>, John Hubbard <jhubbard@nvidia.com>,
- kasan-dev@googlegroups.com, kvm@vger.kernel.org,
- Linus Torvalds <torvalds@linux-foundation.org>, linux-arm-kernel@axis.com,
- linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
- linux-ide@vger.kernel.org, linux-kselftest@vger.kernel.org,
- linux-mips@vger.kernel.org, linux-mmc@vger.kernel.org, linux-mm@kvack.org,
- linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
- linux-scsi@vger.kernel.org, Marco Elver <elver@google.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>, Michal Hocko <mhocko@suse.com>,
- Mike Rapoport <rppt@kernel.org>, Muchun Song <muchun.song@linux.dev>,
- netdev@vger.kernel.org, Oscar Salvador <osalvador@suse.de>,
- Peter Xu <peterx@redhat.com>, Robin Murphy <robin.murphy@arm.com>,
- Suren Baghdasaryan <surenb@google.com>, Tejun Heo <tj@kernel.org>,
- virtualization@lists.linux.dev, Vlastimil Babka <vbabka@suse.cz>,
- wireguard@lists.zx2c4.com, x86@kernel.org,
- "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
-References: <20250901150359.867252-1-david@redhat.com>
- <20250901150359.867252-9-david@redhat.com>
- <3e043453-3f27-48ad-b987-cc39f523060a@csgroup.eu>
- <d3fc12d4-0b59-4b1f-bb5c-13189a01e13d@redhat.com>
- <faf62f20-8844-42a0-a7a7-846d8ead0622@csgroup.eu>
-From: David Hildenbrand <david@redhat.com>
-Autocrypt: addr=david@redhat.com; keydata=
- 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
- qIws/H2t
-In-Reply-To: <faf62f20-8844-42a0-a7a7-846d8ead0622@csgroup.eu>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: N1pGKL8j-_pgGSi8j51t7neDduQcskX_FPO_T0oE9FA_1759997648
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_Preparatory_patches_for_g?=
+ =?utf-8?q?uardband_optimization?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 09 Oct 2025 08:19:14 -0000
+Message-ID: <175999795406.21518.15246387056600462335@6aec98b87f92>
+X-Patchwork-Hint: ignore
+References: <20251009071736.800248-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20251009071736.800248-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -173,75 +37,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 09.10.25 10:04, Christophe Leroy wrote:
-> 
-> 
-> Le 09/10/2025 à 09:22, David Hildenbrand a écrit :
->> On 09.10.25 09:14, Christophe Leroy wrote:
->>> Hi David,
->>>
->>> Le 01/09/2025 à 17:03, David Hildenbrand a écrit :
->>>> diff --git a/mm/hugetlb.c b/mm/hugetlb.c
->>>> index 1e777cc51ad04..d3542e92a712e 100644
->>>> --- a/mm/hugetlb.c
->>>> +++ b/mm/hugetlb.c
->>>> @@ -4657,6 +4657,7 @@ static int __init hugetlb_init(void)
->>>>         BUILD_BUG_ON(sizeof_field(struct page, private) * BITS_PER_BYTE <
->>>>                 __NR_HPAGEFLAGS);
->>>> +    BUILD_BUG_ON_INVALID(HUGETLB_PAGE_ORDER > MAX_FOLIO_ORDER);
->>>>         if (!hugepages_supported()) {
->>>>             if (hugetlb_max_hstate || default_hstate_max_huge_pages)
->>>> @@ -4740,6 +4741,7 @@ void __init hugetlb_add_hstate(unsigned int order)
->>>>         }
->>>>         BUG_ON(hugetlb_max_hstate >= HUGE_MAX_HSTATE);
->>>>         BUG_ON(order < order_base_2(__NR_USED_SUBPAGE));
->>>> +    WARN_ON(order > MAX_FOLIO_ORDER);
->>>>         h = &hstates[hugetlb_max_hstate++];
->>>>         __mutex_init(&h->resize_lock, "resize mutex", &h->resize_key);
->>>>         h->order = order;
->>
->> We end up registering hugetlb folios that are bigger than
->> MAX_FOLIO_ORDER. So we have to figure out how a config can trigger that
->> (and if we have to support that).
->>
-> 
-> MAX_FOLIO_ORDER is defined as:
-> 
-> #ifdef CONFIG_ARCH_HAS_GIGANTIC_PAGE
-> #define MAX_FOLIO_ORDER		PUD_ORDER
-> #else
-> #define MAX_FOLIO_ORDER		MAX_PAGE_ORDER
-> #endif
-> 
-> MAX_PAGE_ORDER is the limit for dynamic creation of hugepages via
-> /sys/kernel/mm/hugepages/ but bigger pages can be created at boottime
-> with kernel boot parameters without CONFIG_ARCH_HAS_GIGANTIC_PAGE:
-> 
->     hugepagesz=64m hugepages=1 hugepagesz=256m hugepages=1
-> 
-> Gives:
-> 
-> HugeTLB: registered 1.00 GiB page size, pre-allocated 0 pages
-> HugeTLB: 0 KiB vmemmap can be freed for a 1.00 GiB page
-> HugeTLB: registered 64.0 MiB page size, pre-allocated 1 pages
-> HugeTLB: 0 KiB vmemmap can be freed for a 64.0 MiB page
-> HugeTLB: registered 256 MiB page size, pre-allocated 1 pages
-> HugeTLB: 0 KiB vmemmap can be freed for a 256 MiB page
-> HugeTLB: registered 4.00 MiB page size, pre-allocated 0 pages
-> HugeTLB: 0 KiB vmemmap can be freed for a 4.00 MiB page
-> HugeTLB: registered 16.0 MiB page size, pre-allocated 0 pages
-> HugeTLB: 0 KiB vmemmap can be freed for a 16.0 MiB page
+== Series Details ==
 
-I think it's a violation of CONFIG_ARCH_HAS_GIGANTIC_PAGE. The existing 
-folio_dump() code would not handle it correctly as well.
+Series: Preparatory patches for guardband optimization
+URL   : https://patchwork.freedesktop.org/series/155661/
+State : failure
 
-See how snapshot_page() uses MAX_FOLIO_NR_PAGES.
+== Summary ==
 
--- 
-Cheers
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/155661/revisions/1/mbox/ not applied
+Applying: drm/i915/vrr: Use crtc_vsync_start/end for computing vrr.vsync_start/end
+Applying: drm/i915/vrr: s/intel_vrr_compute_config_late/intel_vrr_compute_guardband
+Applying: drm/i915/vblank: Add helper to get correct vblank length
+Applying: drm/i915/psr: Consider SCL lines when validating vblank for wake latency
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/display/intel_psr.c
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/i915/display/intel_psr.c
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/display/intel_psr.c
+error: Failed to merge in the changes.
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0004 drm/i915/psr: Consider SCL lines when validating vblank for wake latency
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+Build failed, no error log produced
 
-David / dhildenb
 
