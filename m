@@ -2,64 +2,81 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3DC7BC853B
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 11:32:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 708A5BC8653
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 12:01:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 201A610E9B7;
-	Thu,  9 Oct 2025 09:32:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IUeXx6Bm";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7169C10E1FF;
+	Thu,  9 Oct 2025 10:01:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DDC410E9B7;
- Thu,  9 Oct 2025 09:32:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760002375; x=1791538375;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=70aqtrpWW+OJJnKEiX19aH7tMRkTBMJ66XZ0FnFUdDE=;
- b=IUeXx6BmE2yPJEMraAzebNtT61C0ca85X0Dol4rjoI0qjSq6Tzf7ZVn4
- H80PhmwDuBFvi0pAkLp9plCdk+Jfbus6BwkRT08GT87jCzV498/SUzRii
- IIsDVWGncvur7akyP51MoK5oUcpNvGGTjCX4FTN2ILWMdGcUYy3rkvJhX
- ZXNjSxxgTZ/RJnpCPwxCWcfRW3ooup0AyYPjQ2fa3msWJUfrTr+ZgNw0k
- FpLl0wodi8/slXIa0+qvlxf1iOnH2Jl5RlqM2wGtNsz+qn+rt55bqk8oH
- AjFlFgD51EETJLdE3FH8L6pWSKFD30aP9DBqIMcEYZ0aX409DxTvcYl/Q g==;
-X-CSE-ConnectionGUID: 2SbpGqSXTWadAEbubVUvuA==
-X-CSE-MsgGUID: ShFguISWRF2+pNgIxZYS6A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="66060897"
-X-IronPort-AV: E=Sophos;i="6.19,215,1754982000"; d="scan'208";a="66060897"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2025 02:32:55 -0700
-X-CSE-ConnectionGUID: RoSHHP76Tw2u6KyqLjC3MA==
-X-CSE-MsgGUID: oI7rC+AORAOLxShOd4TGTw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,215,1754982000"; d="scan'208";a="185789631"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orviesa005.jf.intel.com with ESMTP; 09 Oct 2025 02:32:50 -0700
-From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Thu, 09 Oct 2025 15:02:53 +0530
-Subject: [PATCH v6 5/5] drm/i915/display: Error codes for async flip failures
+Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 614D810E02C;
+ Thu,  9 Oct 2025 10:01:13 +0000 (UTC)
+Received: from localhost (mailhub4.si.c-s.fr [172.26.127.67])
+ by localhost (Postfix) with ESMTP id 4cj548110xz9sSL;
+ Thu,  9 Oct 2025 12:01:12 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from pegase2.c-s.fr ([172.26.127.65])
+ by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id qOLNCcqM6pFr; Thu,  9 Oct 2025 12:01:12 +0200 (CEST)
+Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
+ by pegase2.c-s.fr (Postfix) with ESMTP id 4cj5476tjqz9sSC;
+ Thu,  9 Oct 2025 12:01:11 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+ by messagerie.si.c-s.fr (Postfix) with ESMTP id D06108B76C;
+ Thu,  9 Oct 2025 12:01:11 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from messagerie.si.c-s.fr ([127.0.0.1])
+ by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
+ with ESMTP id MfDghYtIuYkA; Thu,  9 Oct 2025 12:01:11 +0200 (CEST)
+Received: from [192.168.235.99] (unknown [192.168.235.99])
+ by messagerie.si.c-s.fr (Postfix) with ESMTP id 776CE8B767;
+ Thu,  9 Oct 2025 12:01:09 +0200 (CEST)
+Message-ID: <0c730c52-97ee-43ea-9697-ac11d2880ab7@csgroup.eu>
+Date: Thu, 9 Oct 2025 12:01:08 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251009-atomic-v6-5-d209709cc3ba@intel.com>
-References: <20251009-atomic-v6-0-d209709cc3ba@intel.com>
-In-Reply-To: <20251009-atomic-v6-0-d209709cc3ba@intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, xaver.hugl@kde.org, 
- harry.wentland@amd.com, uma.shankar@intel.com, louis.chauvet@bootlin.com
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, Arun R Murthy <arun.r.murthy@intel.com>
-X-Mailer: b4 0.15-dev
+User-Agent: Mozilla Thunderbird
+Subject: Re: (bisected) [PATCH v2 08/37] mm/hugetlb: check for unreasonable
+ folio sizes when registering hstate
+To: David Hildenbrand <david@redhat.com>, linux-kernel@vger.kernel.org
+Cc: Zi Yan <ziy@nvidia.com>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Alexander Potapenko <glider@google.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Brendan Jackman <jackmanb@google.com>, Christoph Lameter <cl@gentwo.org>,
+ Dennis Zhou <dennis@kernel.org>, Dmitry Vyukov <dvyukov@google.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ iommu@lists.linux.dev, io-uring@vger.kernel.org,
+ Jason Gunthorpe <jgg@nvidia.com>, Jens Axboe <axboe@kernel.dk>,
+ Johannes Weiner <hannes@cmpxchg.org>, John Hubbard <jhubbard@nvidia.com>,
+ kasan-dev@googlegroups.com, kvm@vger.kernel.org,
+ Linus Torvalds <torvalds@linux-foundation.org>, linux-arm-kernel@axis.com,
+ linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+ linux-ide@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ linux-mips@vger.kernel.org, linux-mmc@vger.kernel.org, linux-mm@kvack.org,
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+ linux-scsi@vger.kernel.org, Marco Elver <elver@google.com>,
+ Marek Szyprowski <m.szyprowski@samsung.com>, Michal Hocko <mhocko@suse.com>,
+ Mike Rapoport <rppt@kernel.org>, Muchun Song <muchun.song@linux.dev>,
+ netdev@vger.kernel.org, Oscar Salvador <osalvador@suse.de>,
+ Peter Xu <peterx@redhat.com>, Robin Murphy <robin.murphy@arm.com>,
+ Suren Baghdasaryan <surenb@google.com>, Tejun Heo <tj@kernel.org>,
+ virtualization@lists.linux.dev, Vlastimil Babka <vbabka@suse.cz>,
+ wireguard@lists.zx2c4.com, x86@kernel.org,
+ "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
+References: <20250901150359.867252-1-david@redhat.com>
+ <20250901150359.867252-9-david@redhat.com>
+ <3e043453-3f27-48ad-b987-cc39f523060a@csgroup.eu>
+ <d3fc12d4-0b59-4b1f-bb5c-13189a01e13d@redhat.com>
+ <faf62f20-8844-42a0-a7a7-846d8ead0622@csgroup.eu>
+ <9361c75a-ab37-4d7f-8680-9833430d93d4@redhat.com>
+ <03671aa8-4276-4707-9c75-83c96968cbb2@csgroup.eu>
+ <1db15a30-72d6-4045-8aa1-68bd8411b0ba@redhat.com>
+From: Christophe Leroy <christophe.leroy@csgroup.eu>
+Content-Language: fr-FR
+In-Reply-To: <1db15a30-72d6-4045-8aa1-68bd8411b0ba@redhat.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,65 +92,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For failures in async flip atomic check/commit path return user readable
-error codes in struct drm_atomic_state.
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 25 ++++++++++++++-----------
- 1 file changed, 14 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index b57efd8707743eb1b5a2b377fba8d6955af89825..6639f9168cf775c220fb653d69f8e27c5a4e6b88 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5911,9 +5911,10 @@ static int intel_async_flip_check_uapi(struct intel_atomic_state *state,
- 	}
- 
- 	if (intel_crtc_needs_modeset(new_crtc_state)) {
--		drm_dbg_kms(display->drm,
--			    "[CRTC:%d:%s] modeset required\n",
--			    crtc->base.base.id, crtc->base.name);
-+		drm_mode_atomic_add_error_msg(&state->base.error_code,
-+					      DRM_MODE_ATOMIC_CRTC_NEED_FULL_MODESET,
-+					      "[CRTC:%d:%s] requires full modeset",
-+					      crtc->base.base.id, crtc->base.name);
- 		return -EINVAL;
- 	}
- 
-@@ -5980,9 +5981,10 @@ static int intel_async_flip_check_hw(struct intel_atomic_state *state, struct in
- 	}
- 
- 	if (intel_crtc_needs_modeset(new_crtc_state)) {
--		drm_dbg_kms(display->drm,
--			    "[CRTC:%d:%s] modeset required\n",
--			    crtc->base.base.id, crtc->base.name);
-+		drm_mode_atomic_add_error_msg(&state->base.error_code,
-+					      DRM_MODE_ATOMIC_CRTC_NEED_FULL_MODESET,
-+					      "[CRTC:%d:%s] requires full modeset",
-+					      crtc->base.base.id, crtc->base.name);
- 		return -EINVAL;
- 	}
- 
-@@ -6020,11 +6022,12 @@ static int intel_async_flip_check_hw(struct intel_atomic_state *state, struct in
- 
- 		if (!intel_plane_can_async_flip(plane, new_plane_state->hw.fb->format->format,
- 						new_plane_state->hw.fb->modifier)) {
--			drm_dbg_kms(display->drm,
--				    "[PLANE:%d:%s] pixel format %p4cc / modifier 0x%llx does not support async flip\n",
--				    plane->base.base.id, plane->base.name,
--				    &new_plane_state->hw.fb->format->format,
--				    new_plane_state->hw.fb->modifier);
-+			drm_mode_atomic_add_error_msg(&state->base.error_code,
-+						      DRM_MODE_ATOMIC_ASYNC_MODIFIER_NOT_SUPP,
-+						      "[PLANE:%d:%s] pixel format %p4cc / 0x%llx modifier does not support async flip",
-+						      plane->base.base.id, plane->base.name,
-+						      &new_plane_state->hw.fb->format->format,
-+						      new_plane_state->hw.fb->modifier);
- 			return -EINVAL;
- 		}
- 
+Le 09/10/2025 à 11:20, David Hildenbrand a écrit :
+> On 09.10.25 11:16, Christophe Leroy wrote:
+>>
+>>
+>> Le 09/10/2025 à 10:14, David Hildenbrand a écrit :
+>>> On 09.10.25 10:04, Christophe Leroy wrote:
+>>>>
+>>>>
+>>>> Le 09/10/2025 à 09:22, David Hildenbrand a écrit :
+>>>>> On 09.10.25 09:14, Christophe Leroy wrote:
+>>>>>> Hi David,
+>>>>>>
+>>>>>> Le 01/09/2025 à 17:03, David Hildenbrand a écrit :
+>>>>>>> diff --git a/mm/hugetlb.c b/mm/hugetlb.c
+>>>>>>> index 1e777cc51ad04..d3542e92a712e 100644
+>>>>>>> --- a/mm/hugetlb.c
+>>>>>>> +++ b/mm/hugetlb.c
+>>>>>>> @@ -4657,6 +4657,7 @@ static int __init hugetlb_init(void)
+>>>>>>>          BUILD_BUG_ON(sizeof_field(struct page, private) *
+>>>>>>> BITS_PER_BYTE <
+>>>>>>>                  __NR_HPAGEFLAGS);
+>>>>>>> +    BUILD_BUG_ON_INVALID(HUGETLB_PAGE_ORDER > MAX_FOLIO_ORDER);
+>>>>>>>          if (!hugepages_supported()) {
+>>>>>>>              if (hugetlb_max_hstate || 
+>>>>>>> default_hstate_max_huge_pages)
+>>>>>>> @@ -4740,6 +4741,7 @@ void __init hugetlb_add_hstate(unsigned int
+>>>>>>> order)
+>>>>>>>          }
+>>>>>>>          BUG_ON(hugetlb_max_hstate >= HUGE_MAX_HSTATE);
+>>>>>>>          BUG_ON(order < order_base_2(__NR_USED_SUBPAGE));
+>>>>>>> +    WARN_ON(order > MAX_FOLIO_ORDER);
+>>>>>>>          h = &hstates[hugetlb_max_hstate++];
+>>>>>>>          __mutex_init(&h->resize_lock, "resize mutex", &h- 
+>>>>>>> >resize_key);
+>>>>>>>          h->order = order;
+>>>>>
+>>>>> We end up registering hugetlb folios that are bigger than
+>>>>> MAX_FOLIO_ORDER. So we have to figure out how a config can trigger 
+>>>>> that
+>>>>> (and if we have to support that).
+>>>>>
+>>>>
+>>>> MAX_FOLIO_ORDER is defined as:
+>>>>
+>>>> #ifdef CONFIG_ARCH_HAS_GIGANTIC_PAGE
+>>>> #define MAX_FOLIO_ORDER        PUD_ORDER
+>>>> #else
+>>>> #define MAX_FOLIO_ORDER        MAX_PAGE_ORDER
+>>>> #endif
+>>>>
+>>>> MAX_PAGE_ORDER is the limit for dynamic creation of hugepages via
+>>>> /sys/kernel/mm/hugepages/ but bigger pages can be created at boottime
+>>>> with kernel boot parameters without CONFIG_ARCH_HAS_GIGANTIC_PAGE:
+>>>>
+>>>>      hugepagesz=64m hugepages=1 hugepagesz=256m hugepages=1
+>>>>
+>>>> Gives:
+>>>>
+>>>> HugeTLB: registered 1.00 GiB page size, pre-allocated 0 pages
+>>>> HugeTLB: 0 KiB vmemmap can be freed for a 1.00 GiB page
+>>>> HugeTLB: registered 64.0 MiB page size, pre-allocated 1 pages
+>>>> HugeTLB: 0 KiB vmemmap can be freed for a 64.0 MiB page
+>>>> HugeTLB: registered 256 MiB page size, pre-allocated 1 pages
+>>>> HugeTLB: 0 KiB vmemmap can be freed for a 256 MiB page
+>>>> HugeTLB: registered 4.00 MiB page size, pre-allocated 0 pages
+>>>> HugeTLB: 0 KiB vmemmap can be freed for a 4.00 MiB page
+>>>> HugeTLB: registered 16.0 MiB page size, pre-allocated 0 pages
+>>>> HugeTLB: 0 KiB vmemmap can be freed for a 16.0 MiB page
+>>>
+>>> I think it's a violation of CONFIG_ARCH_HAS_GIGANTIC_PAGE. The existing
+>>> folio_dump() code would not handle it correctly as well.
+>>
+>> I'm trying to dig into history and when looking at commit 4eb0716e868e
+>> ("hugetlb: allow to free gigantic pages regardless of the
+>> configuration") I understand that CONFIG_ARCH_HAS_GIGANTIC_PAGE is
+>> needed to be able to allocate gigantic pages at runtime. It is not
+>> needed to reserve gigantic pages at boottime.
+>>
+>> What am I missing ?
+> 
+> That CONFIG_ARCH_HAS_GIGANTIC_PAGE has nothing runtime-specific in its 
+> name.
 
--- 
-2.25.1
+In its name for sure, but the commit I mention says:
 
+     On systems without CONTIG_ALLOC activated but that support gigantic 
+pages,
+     boottime reserved gigantic pages can not be freed at all.  This patch
+     simply enables the possibility to hand back those pages to memory
+     allocator.
+
+And one of the hunks is:
+
+diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
+index 7f7fbd8bd9d5b..7a1aa53d188d3 100644
+--- a/arch/arm64/Kconfig
++++ b/arch/arm64/Kconfig
+@@ -19,7 +19,7 @@ config ARM64
+         select ARCH_HAS_FAST_MULTIPLIER
+         select ARCH_HAS_FORTIFY_SOURCE
+         select ARCH_HAS_GCOV_PROFILE_ALL
+-       select ARCH_HAS_GIGANTIC_PAGE if CONTIG_ALLOC
++       select ARCH_HAS_GIGANTIC_PAGE
+         select ARCH_HAS_KCOV
+         select ARCH_HAS_KEEPINITRD
+         select ARCH_HAS_MEMBARRIER_SYNC_CORE
+
+So I understand from the commit message that it was possible at that 
+time to have gigantic pages without ARCH_HAS_GIGANTIC_PAGE as long as 
+you didn't have to be able to free them during runtime.
+
+> 
+> Can't we just select CONFIG_ARCH_HAS_GIGANTIC_PAGE for the relevant 
+> hugetlb config that allows for *gigantic pages*.
+> 
+
+We probably can, but I'd really like to understand history and how we 
+ended up in the situation we are now.
+Because blind fixes often lead to more problems.
+
+If I follow things correctly I see a helper gigantic_page_supported() 
+added by commit 944d9fec8d7a ("hugetlb: add support for gigantic page 
+allocation at runtime").
+
+And then commit 461a7184320a ("mm/hugetlb: introduce 
+ARCH_HAS_GIGANTIC_PAGE") is added to wrap gigantic_page_supported()
+
+Then commit 4eb0716e868e ("hugetlb: allow to free gigantic pages 
+regardless of the configuration") changed gigantic_page_supported() to 
+gigantic_page_runtime_supported()
+
+So where are we now ?
+
+Christophe
