@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E700BCAE37
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 23:13:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93817BCAE3A
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 23:14:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C665610EB20;
-	Thu,  9 Oct 2025 21:13:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53F2710EB26;
+	Thu,  9 Oct 2025 21:13:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ev5oazpZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zy6RXZpZ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DD6E10EB20;
- Thu,  9 Oct 2025 21:13:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 986EA10EB26;
+ Thu,  9 Oct 2025 21:13:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760044422; x=1791580422;
+ t=1760044426; x=1791580426;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=E7oqMIzad01SB4TCZ7cXGlXyXxqAKz62RQInQhaHKM8=;
- b=ev5oazpZ0/eDdW86yDGsceBzb9XqphepBpFjLHNvXDu+MLNQDRDK7QkM
- 0RRved4ZnbHA7KRZ3JoV8VSCv4piWu56YfY7NG83vZRc7nvJjbVJSEVho
- JpNNJ9DmoDeZdPBofEHRuMO8cmqmhoVF0jzSAPXQ96RLY3o0huP61YIzu
- 8DVXG1wKcGspkEqrUKIMgiPNDYgnbqplwM3xvVuAgXXyy7e2ZOQ6ZEWme
- ufwHgY6F9pJgZYHxSHxkhPVrmUzhUYyyWmHaOiUMxos245OcuTy2xrBN4
- 3ocDBPkIJ24f94AaXz00M3mJC1NwYmKI0iZj0INJYfa8QLvooTPzBzY8z g==;
-X-CSE-ConnectionGUID: Nt3mP4ZKQve/tBA3mJIKtg==
-X-CSE-MsgGUID: DhtBrFO+R2q3jBsvhsoH+w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11577"; a="79910106"
-X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="79910106"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2025 14:13:41 -0700
-X-CSE-ConnectionGUID: ZE7vl631RDiFVWNj1FCMRw==
-X-CSE-MsgGUID: gm1XN6yVSnGt6m913GIjqQ==
+ bh=RYnYP05QrD1SldD4jpLiSIKqsmw/qDWgRKBBJUjhJQg=;
+ b=Zy6RXZpZGgB+Po9jWadNHEkX5o4kkmTgS8v/pEfoe5bfqNfU6qjZf708
+ fudoJgKDflobxTG48VF/UNUte8n7rhw160NtoEgX2CDhfJ/n/xNXRbiYK
+ QALnvxDzMWKaZHW5qpVSISdbevYXI6guY2JWQmi8f0c8iwGknnzALdWCT
+ AkperOjfDHCWJxM4yjF4rp0I3zLoVA4nHa+w1Nv8YAgCBkPLcIGmc2oDZ
+ MEkFrK7dLBEuqc5lBm4LF2BDSNOu33j8I96jpd7vfAKNi1efjN/lv81w2
+ WT11YQblF6t2LRufkcH/ZIKwclGiZ2+2108uF9BWN0Dm2npYRUwsnMEZU g==;
+X-CSE-ConnectionGUID: UF/tuWBcTN+2xKJ1fNGJOg==
+X-CSE-MsgGUID: wgWRf0ABT9qHCO1H62yu7w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11577"; a="62306750"
+X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="62306750"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2025 14:13:46 -0700
+X-CSE-ConnectionGUID: T9/EJuk3T+2unhOpItAaaw==
+X-CSE-MsgGUID: QLoP5zhDQMKyE4qMFi7wkA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="204516378"
+X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="185933284"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.21])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2025 14:13:40 -0700
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2025 14:13:44 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 6/8] drm/i915: Remove pointless crtc hw.enable check
-Date: Fri, 10 Oct 2025 00:13:10 +0300
-Message-ID: <20251009211313.30234-7-ville.syrjala@linux.intel.com>
+Subject: [PATCH 7/8] drm/i915: Extract glk_plane_has_planar()
+Date: Fri, 10 Oct 2025 00:13:11 +0300
+Message-ID: <20251009211313.30234-8-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20251009211313.30234-1-ville.syrjala@linux.intel.com>
 References: <20251009211313.30234-1-ville.syrjala@linux.intel.com>
@@ -72,29 +72,49 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-We don't need to check for crtc hw.enable because that would also
-imply that the plane is disabled and we would have bailed out already
-earlier.
+Extract glk_plane_has_planar() out from skl_plane_has_planar()
+to make the logic a bit less convoluted.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 8ead07b4b7a7..64b30fad75ee 100644
+index 64b30fad75ee..53130b5e4249 100644
 --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
 +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -1755,8 +1755,7 @@ static int skl_plane_check_fb(const struct intel_crtc_state *crtc_state,
- 	}
+@@ -2424,7 +2424,7 @@ static bool skl_plane_has_planar(struct intel_display *display,
+ 	if (display->platform.skylake || display->platform.broxton)
+ 		return false;
  
- 	/* Y-tiling is not supported in IF-ID Interlace mode */
--	if (crtc_state->hw.enable &&
--	    crtc_state->hw.adjusted_mode.flags & DRM_MODE_FLAG_INTERLACE &&
-+	if (crtc_state->hw.adjusted_mode.flags & DRM_MODE_FLAG_INTERLACE &&
- 	    fb->modifier != DRM_FORMAT_MOD_LINEAR &&
- 	    fb->modifier != I915_FORMAT_MOD_X_TILED) {
- 		drm_dbg_kms(display->drm,
+-	if (DISPLAY_VER(display) == 9 && pipe == PIPE_C)
++	if (pipe == PIPE_C)
+ 		return false;
+ 
+ 	if (plane_id != PLANE_1 && plane_id != PLANE_2)
+@@ -2446,11 +2446,20 @@ static const u32 *skl_get_plane_formats(struct intel_display *display,
+ 	}
+ }
+ 
++static bool glk_plane_has_planar(struct intel_display *display,
++				 enum pipe pipe, enum plane_id plane_id)
++{
++	if (plane_id != PLANE_1 && plane_id != PLANE_2)
++		return false;
++
++	return true;
++}
++
+ static const u32 *glk_get_plane_formats(struct intel_display *display,
+ 					enum pipe pipe, enum plane_id plane_id,
+ 					int *num_formats)
+ {
+-	if (skl_plane_has_planar(display, pipe, plane_id)) {
++	if (glk_plane_has_planar(display, pipe, plane_id)) {
+ 		*num_formats = ARRAY_SIZE(glk_planar_formats);
+ 		return glk_planar_formats;
+ 	} else {
 -- 
 2.49.1
 
