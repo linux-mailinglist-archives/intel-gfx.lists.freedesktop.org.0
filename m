@@ -2,59 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8029BCAE3B
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 23:14:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53419BCAF82
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 23:45:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CE8710EB28;
-	Thu,  9 Oct 2025 21:13:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E2CB10EB23;
+	Thu,  9 Oct 2025 21:45:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kHaE9jSn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J7CuLYCe";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F42810EB22;
- Thu,  9 Oct 2025 21:13:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCC2B10EB23;
+ Thu,  9 Oct 2025 21:45:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760044431; x=1791580431;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=2w2R/0lm+O+tUoBcIvtGBw7R+xiW/3p8VbsPlpiAf7M=;
- b=kHaE9jSnVYYor31vtCjbXEnJh/ABQHyaHQZY83kqgHx7qsUi7GRwx8/K
- +qOBlIQwjYmiDqrwwnwkg/RMI68Cj5p/Uk9y0WZNjTfYWh1dE3Ul7Ym9D
- BTyF3OSMlQV64BKhPFbuMo82ZkvjOXakIzSaC544Fq0A5Dzh+qdttAHLU
- 7klK5kgRJv1uxawqc84933Svc4jKLHkiBNkXEEvlrLTZEofcR/b66sAxs
- kOXTnke18zSkiExK6zXtltdoOIGWzMNVgjsYO8Q4oHKdvs45R009v23m9
- hoZAa28QJjPUEHzOJoRexaouNR1JgoN46Ngz0HQEAzGlwwh6Gtx/GdTRX A==;
-X-CSE-ConnectionGUID: 94H6Vx08QoqPKh/gz6WR4g==
-X-CSE-MsgGUID: pacf0OSMTWK5FdunFsdDhw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11577"; a="62306753"
-X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="62306753"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2025 14:13:51 -0700
-X-CSE-ConnectionGUID: 5Lv7rgIJTB6qVzOTsgaDHw==
-X-CSE-MsgGUID: cHjCpy1kQeyTLcJzhpyOSw==
+ t=1760046341; x=1791582341;
+ h=mime-version:content-transfer-encoding:in-reply-to:
+ references:subject:from:cc:to:date:message-id;
+ bh=C8ig8SU83hj8GCY1oOwnQLTSifH7XUAF9p8J6OjwS34=;
+ b=J7CuLYCeBIsHbbVAVzS2kQwDhDH6Y/aFj/OiWTYl+q+ff1D6ZgIvVwEo
+ YcKNu7jtOPG3TPsA4o4KdmG0eqJ5cu0AYyXiuMTw0Mxp3TTsyhPUBulg6
+ fzXxf8oyQcXCadkk02rkn/k3f8AM6ZNg0MW8oizc/pcqoMioGSKkojgzq
+ jWlFYmnPV2/J3iUOcOgGsz/8KojH4EN9Shvp0/YuDx59QcTujhepElvyk
+ 448IjK8MU827CtaUaH+C2vdbsRX0TNB4HBLp1Xn3/VP5gJUKv/DKEH4zh
+ lYBxg8Ud0YWQaLAOirFCuEK/zU02dXoqHn/gN4GUmgAOyMlYPrUrXipNk g==;
+X-CSE-ConnectionGUID: megd2crnSgCbsSm8bAtYKg==
+X-CSE-MsgGUID: 7TK7g1u1QYib+RbmeoHqpw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11577"; a="72522891"
+X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="72522891"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2025 14:45:41 -0700
+X-CSE-ConnectionGUID: TC+Ffi7XRWm6f5/GywJA6Q==
+X-CSE-MsgGUID: eT6uZniIRByIat4OxbXkNA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="185933292"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.21])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2025 14:13:49 -0700
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 8/8] drm/i915: Unify the logic in {skl,glk}_plane_has_*()
-Date: Fri, 10 Oct 2025 00:13:12 +0300
-Message-ID: <20251009211313.30234-9-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.49.1
-In-Reply-To: <20251009211313.30234-1-ville.syrjala@linux.intel.com>
-References: <20251009211313.30234-1-ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="180065180"
+Received: from dev-409.igk.intel.com (HELO localhost) ([10.211.128.26])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2025 14:45:39 -0700
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20251008115632.16333-3-krzysztof.niemiec@intel.com>
+References: <20251008115632.16333-2-krzysztof.niemiec@intel.com>
+ <20251008115632.16333-3-krzysztof.niemiec@intel.com>
+Subject: Re: [PATCH v2 1/2] drm/i915: Change semantics of context isolation
+ reporting to UM
+From: Chris Wilson <chris.p.wilson@linux.intel.com>
+Cc: Adrian Larumbe <adrian.larumbe@collabora.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+To: Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Date: Thu, 09 Oct 2025 23:43:55 +0200
+Message-ID: <176004623530.3107872.452127983185392051@DEV-409>
+User-Agent: alot/0.10
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,58 +76,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Quoting Krzysztof Niemiec (2025-10-08 13:56:32)
+> From: Adrian Larumbe <adrian.larumbe@collabora.com>
+>=20
+> I915_PARAM_HAS_CONTEXT_ISOLATION was already being used as a boolean by
+> both Iris and Vulkan, and stood for the guarantee that, when creating a
+> new context, it would not contain register state from preexisting ones.
 
-Use the similar logic in skl_plane_has_planar(),
-glk_plane_has_planar() and skl_plane_has_rc_ccs() to avoid
-having to think too much when comparing the three.
-
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- .../gpu/drm/i915/display/skl_universal_plane.c   | 16 ++++++----------
- 1 file changed, 6 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 53130b5e4249..d056fc549c7e 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -2427,10 +2427,7 @@ static bool skl_plane_has_planar(struct intel_display *display,
- 	if (pipe == PIPE_C)
- 		return false;
- 
--	if (plane_id != PLANE_1 && plane_id != PLANE_2)
--		return false;
--
--	return true;
-+	return plane_id == PLANE_1 || plane_id == PLANE_2;
- }
- 
- static const u32 *skl_get_plane_formats(struct intel_display *display,
-@@ -2449,10 +2446,7 @@ static const u32 *skl_get_plane_formats(struct intel_display *display,
- static bool glk_plane_has_planar(struct intel_display *display,
- 				 enum pipe pipe, enum plane_id plane_id)
- {
--	if (plane_id != PLANE_1 && plane_id != PLANE_2)
--		return false;
--
--	return true;
-+	return plane_id == PLANE_1 || plane_id == PLANE_2;
- }
- 
- static const u32 *glk_get_plane_formats(struct intel_display *display,
-@@ -2699,8 +2693,10 @@ skl_plane_disable_flip_done(struct intel_plane *plane)
- static bool skl_plane_has_rc_ccs(struct intel_display *display,
- 				 enum pipe pipe, enum plane_id plane_id)
- {
--	return pipe != PIPE_C &&
--		(plane_id == PLANE_1 || plane_id == PLANE_2);
-+	if (pipe == PIPE_C)
-+		return false;
-+
-+	return plane_id == PLANE_1 || plane_id == PLANE_2;
- }
- 
- static u8 skl_plane_caps(struct intel_display *display,
--- 
-2.49.1
-
+The ABI predates Iris and Vulkan and provides information about
+platforms that they do not support. Since they are using a strict subset
+of the pre-existing ABI, there is no requirement to make backwards or
+forwards incompatible changes to the stable information provided by the
+kernel.
+-Chris
