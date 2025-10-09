@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93817BCAE3A
+	by mail.lfdr.de (Postfix) with ESMTPS id B8029BCAE3B
 	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 23:14:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53F2710EB26;
-	Thu,  9 Oct 2025 21:13:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CE8710EB28;
+	Thu,  9 Oct 2025 21:13:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zy6RXZpZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kHaE9jSn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 986EA10EB26;
- Thu,  9 Oct 2025 21:13:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F42810EB22;
+ Thu,  9 Oct 2025 21:13:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760044426; x=1791580426;
+ t=1760044431; x=1791580431;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=RYnYP05QrD1SldD4jpLiSIKqsmw/qDWgRKBBJUjhJQg=;
- b=Zy6RXZpZGgB+Po9jWadNHEkX5o4kkmTgS8v/pEfoe5bfqNfU6qjZf708
- fudoJgKDflobxTG48VF/UNUte8n7rhw160NtoEgX2CDhfJ/n/xNXRbiYK
- QALnvxDzMWKaZHW5qpVSISdbevYXI6guY2JWQmi8f0c8iwGknnzALdWCT
- AkperOjfDHCWJxM4yjF4rp0I3zLoVA4nHa+w1Nv8YAgCBkPLcIGmc2oDZ
- MEkFrK7dLBEuqc5lBm4LF2BDSNOu33j8I96jpd7vfAKNi1efjN/lv81w2
- WT11YQblF6t2LRufkcH/ZIKwclGiZ2+2108uF9BWN0Dm2npYRUwsnMEZU g==;
-X-CSE-ConnectionGUID: UF/tuWBcTN+2xKJ1fNGJOg==
-X-CSE-MsgGUID: wgWRf0ABT9qHCO1H62yu7w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11577"; a="62306750"
-X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="62306750"
+ bh=2w2R/0lm+O+tUoBcIvtGBw7R+xiW/3p8VbsPlpiAf7M=;
+ b=kHaE9jSnVYYor31vtCjbXEnJh/ABQHyaHQZY83kqgHx7qsUi7GRwx8/K
+ +qOBlIQwjYmiDqrwwnwkg/RMI68Cj5p/Uk9y0WZNjTfYWh1dE3Ul7Ym9D
+ BTyF3OSMlQV64BKhPFbuMo82ZkvjOXakIzSaC544Fq0A5Dzh+qdttAHLU
+ 7klK5kgRJv1uxawqc84933Svc4jKLHkiBNkXEEvlrLTZEofcR/b66sAxs
+ kOXTnke18zSkiExK6zXtltdoOIGWzMNVgjsYO8Q4oHKdvs45R009v23m9
+ hoZAa28QJjPUEHzOJoRexaouNR1JgoN46Ngz0HQEAzGlwwh6Gtx/GdTRX A==;
+X-CSE-ConnectionGUID: 94H6Vx08QoqPKh/gz6WR4g==
+X-CSE-MsgGUID: pacf0OSMTWK5FdunFsdDhw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11577"; a="62306753"
+X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="62306753"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2025 14:13:46 -0700
-X-CSE-ConnectionGUID: T9/EJuk3T+2unhOpItAaaw==
-X-CSE-MsgGUID: QLoP5zhDQMKyE4qMFi7wkA==
+ 09 Oct 2025 14:13:51 -0700
+X-CSE-ConnectionGUID: 5Lv7rgIJTB6qVzOTsgaDHw==
+X-CSE-MsgGUID: cHjCpy1kQeyTLcJzhpyOSw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="185933284"
+X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="185933292"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.21])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2025 14:13:44 -0700
+ 09 Oct 2025 14:13:49 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 7/8] drm/i915: Extract glk_plane_has_planar()
-Date: Fri, 10 Oct 2025 00:13:11 +0300
-Message-ID: <20251009211313.30234-8-ville.syrjala@linux.intel.com>
+Subject: [PATCH 8/8] drm/i915: Unify the logic in {skl,glk}_plane_has_*()
+Date: Fri, 10 Oct 2025 00:13:12 +0300
+Message-ID: <20251009211313.30234-9-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20251009211313.30234-1-ville.syrjala@linux.intel.com>
 References: <20251009211313.30234-1-ville.syrjala@linux.intel.com>
@@ -72,49 +72,56 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Extract glk_plane_has_planar() out from skl_plane_has_planar()
-to make the logic a bit less convoluted.
+Use the similar logic in skl_plane_has_planar(),
+glk_plane_has_planar() and skl_plane_has_rc_ccs() to avoid
+having to think too much when comparing the three.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
+ .../gpu/drm/i915/display/skl_universal_plane.c   | 16 ++++++----------
+ 1 file changed, 6 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 64b30fad75ee..53130b5e4249 100644
+index 53130b5e4249..d056fc549c7e 100644
 --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
 +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -2424,7 +2424,7 @@ static bool skl_plane_has_planar(struct intel_display *display,
- 	if (display->platform.skylake || display->platform.broxton)
+@@ -2427,10 +2427,7 @@ static bool skl_plane_has_planar(struct intel_display *display,
+ 	if (pipe == PIPE_C)
  		return false;
  
--	if (DISPLAY_VER(display) == 9 && pipe == PIPE_C)
-+	if (pipe == PIPE_C)
- 		return false;
- 
- 	if (plane_id != PLANE_1 && plane_id != PLANE_2)
-@@ -2446,11 +2446,20 @@ static const u32 *skl_get_plane_formats(struct intel_display *display,
- 	}
+-	if (plane_id != PLANE_1 && plane_id != PLANE_2)
+-		return false;
+-
+-	return true;
++	return plane_id == PLANE_1 || plane_id == PLANE_2;
  }
  
-+static bool glk_plane_has_planar(struct intel_display *display,
-+				 enum pipe pipe, enum plane_id plane_id)
-+{
-+	if (plane_id != PLANE_1 && plane_id != PLANE_2)
+ static const u32 *skl_get_plane_formats(struct intel_display *display,
+@@ -2449,10 +2446,7 @@ static const u32 *skl_get_plane_formats(struct intel_display *display,
+ static bool glk_plane_has_planar(struct intel_display *display,
+ 				 enum pipe pipe, enum plane_id plane_id)
+ {
+-	if (plane_id != PLANE_1 && plane_id != PLANE_2)
+-		return false;
+-
+-	return true;
++	return plane_id == PLANE_1 || plane_id == PLANE_2;
+ }
+ 
+ static const u32 *glk_get_plane_formats(struct intel_display *display,
+@@ -2699,8 +2693,10 @@ skl_plane_disable_flip_done(struct intel_plane *plane)
+ static bool skl_plane_has_rc_ccs(struct intel_display *display,
+ 				 enum pipe pipe, enum plane_id plane_id)
+ {
+-	return pipe != PIPE_C &&
+-		(plane_id == PLANE_1 || plane_id == PLANE_2);
++	if (pipe == PIPE_C)
 +		return false;
 +
-+	return true;
-+}
-+
- static const u32 *glk_get_plane_formats(struct intel_display *display,
- 					enum pipe pipe, enum plane_id plane_id,
- 					int *num_formats)
- {
--	if (skl_plane_has_planar(display, pipe, plane_id)) {
-+	if (glk_plane_has_planar(display, pipe, plane_id)) {
- 		*num_formats = ARRAY_SIZE(glk_planar_formats);
- 		return glk_planar_formats;
- 	} else {
++	return plane_id == PLANE_1 || plane_id == PLANE_2;
+ }
+ 
+ static u8 skl_plane_caps(struct intel_display *display,
 -- 
 2.49.1
 
