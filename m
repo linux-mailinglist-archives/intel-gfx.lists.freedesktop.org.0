@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27CC0BC7B8C
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 09:30:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28920BC7B8F
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 09:30:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A468A10E941;
-	Thu,  9 Oct 2025 07:30:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 997D110E945;
+	Thu,  9 Oct 2025 07:30:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jTeyRjJa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fRCSLbnx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92CF110E941;
- Thu,  9 Oct 2025 07:30:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EEE710E941;
+ Thu,  9 Oct 2025 07:30:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759995049; x=1791531049;
+ t=1759995051; x=1791531051;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=kpp8C3R51Gz4vQQa+dyhawDbNS9mxI8zMvC1Vvq8+8s=;
- b=jTeyRjJaEuz8OR115fioOiuwhpzx5FPinwOV1PA35ncDcfOvrBHrkYtK
- tzHdRedAsU9WiQzLZWrJM+Eoqv5YJvTKKsEAmiNFWVqeTkndiKJYWJMT/
- eoyiJLmuA53du19xjxd7ynXenSORj0Imzzp868aRoMoE6XDNXCWQgY/x8
- pm7P9/aH4h2pkEjAaXNbxfnmR+IBTXRylDHmE3rRlZhx2Ml3o/jYMygYJ
- qF9ZeGHiJGOAFQ5C6drYshSlle+VhcAXAHB4z4Nr/d+QSIsuLfERxOk2a
- 8nsynDncvOrBiWrggshA49KFCgeXvT9YABs8MjW+N6HXw9DskxgnodQKl g==;
-X-CSE-ConnectionGUID: cbzF7GlMSIKJXTMTI3ZUAA==
-X-CSE-MsgGUID: 5iqR0kvaTAyxZ4EFcgbx9A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="66050817"
-X-IronPort-AV: E=Sophos;i="6.19,215,1754982000"; d="scan'208";a="66050817"
+ bh=JPEFzKO3aOqlyaDFzQ7Upt1VYZjv6/km+Pfjruy4CSg=;
+ b=fRCSLbnxgGCkNPirDXOtx2AwLYvfBj1IRtotJIyOG43QjfHEs7HdA9WH
+ 7P7tH7NzmLPmD25aGt8O1qpPXn9zAFPQeMCz8nHm7XOW5w1OklJOp9KCa
+ ZXSwbNPcRc09iw5ertFfI62hqwHnu6L//DVwDLNSixwPewML2oPLy3bSL
+ jU2WEA8CfsqWyRhQhf1Kh6zssF+jYHmN6B/1FuX95588whR5We5FZBGQx
+ jO8pLHOkf3qqU3bJUdVtimLsdEfLkrGKa3NW2BVcUuTQs4mqJIFXkjXNG
+ oJw3XMU/VSyxgpGmw2qXLWNeC0NQ/tMrINXaOfLOUkmXM2lP/fQdQnWL2 g==;
+X-CSE-ConnectionGUID: N9T27ayuScSA2y9i4awP8Q==
+X-CSE-MsgGUID: SAqIzlQXTci4HZrxh//EYA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="66050818"
+X-IronPort-AV: E=Sophos;i="6.19,215,1754982000"; d="scan'208";a="66050818"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2025 00:30:49 -0700
-X-CSE-ConnectionGUID: vP2bktXuT2O63I7Gh2Gvhg==
-X-CSE-MsgGUID: z4ubykp9RjiT8/cbAJortw==
+ 09 Oct 2025 00:30:51 -0700
+X-CSE-ConnectionGUID: SMAzvakkT4utz+4TuBQb1g==
+X-CSE-MsgGUID: tvVJ+fVFSGqjW+PqIYGXSw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,215,1754982000"; d="scan'208";a="181073410"
+X-IronPort-AV: E=Sophos;i="6.19,215,1754982000"; d="scan'208";a="181073420"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2025 00:30:47 -0700
+ 09 Oct 2025 00:30:49 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- Uma Shankar <uma.shankar@intel.com>
-Subject: [PATCH 1/8] drm/i915/vrr: Use crtc_vsync_start/end for computing
- vrr.vsync_start/end
-Date: Thu,  9 Oct 2025 12:47:29 +0530
-Message-ID: <20251009071736.800248-2-ankit.k.nautiyal@intel.com>
+Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 2/8] drm/i915/vrr:
+ s/intel_vrr_compute_config_late/intel_vrr_compute_guardband
+Date: Thu,  9 Oct 2025 12:47:30 +0530
+Message-ID: <20251009071736.800248-3-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20251009071736.800248-1-ankit.k.nautiyal@intel.com>
 References: <20251009071736.800248-1-ankit.k.nautiyal@intel.com>
@@ -70,34 +69,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use adjusted_mode->crtc_vsync_start/end instead of
-adjusted_mode->vsync_start while computing vrr.vsync_start/end.
-For most modes, these are same but for 3D/stereo modes the
-crtc_vsync_start is different than vsync_start.
+The helper intel_vrr_compute_config_late() practically just computes the
+guardband. Rename intel_vrr_compute_config_late() to
+intel_vrr_compute_guardband().
+
+Since we are going to compute the guardband and then move the
+vblank_start for optmizing guardband move it to
+intel_crtc_compute_config() which handles such changes.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vrr.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 4 ++--
+ drivers/gpu/drm/i915/display/intel_vrr.c     | 2 +-
+ drivers/gpu/drm/i915/display/intel_vrr.h     | 2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index b57efd870774..cd499e58bed3 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -2414,6 +2414,8 @@ static int intel_crtc_compute_config(struct intel_atomic_state *state,
+ 	if (ret)
+ 		return ret;
+ 
++	intel_vrr_compute_guardband(crtc_state);
++
+ 	ret = intel_dpll_crtc_compute_clock(state, crtc);
+ 	if (ret)
+ 		return ret;
+@@ -4722,8 +4724,6 @@ intel_modeset_pipe_config_late(struct intel_atomic_state *state,
+ 	struct drm_connector *connector;
+ 	int i;
+ 
+-	intel_vrr_compute_config_late(crtc_state);
+-
+ 	for_each_new_connector_in_state(&state->base, connector,
+ 					conn_state, i) {
+ 		struct intel_encoder *encoder =
 diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 190c51be5cbc..4bc14b5e685f 100644
+index 4bc14b5e685f..8d71d7dc9d12 100644
 --- a/drivers/gpu/drm/i915/display/intel_vrr.c
 +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -394,10 +394,10 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
- 	if (HAS_AS_SDP(display)) {
- 		crtc_state->vrr.vsync_start =
- 			(crtc_state->hw.adjusted_mode.crtc_vtotal -
--			 crtc_state->hw.adjusted_mode.vsync_start);
-+			 crtc_state->hw.adjusted_mode.crtc_vsync_start);
- 		crtc_state->vrr.vsync_end =
- 			(crtc_state->hw.adjusted_mode.crtc_vtotal -
--			 crtc_state->hw.adjusted_mode.vsync_end);
-+			 crtc_state->hw.adjusted_mode.crtc_vsync_end);
- 	}
+@@ -433,7 +433,7 @@ intel_vrr_max_guardband(struct intel_crtc_state *crtc_state)
+ 		   intel_vrr_max_vblank_guardband(crtc_state));
  }
  
+-void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state)
++void intel_vrr_compute_guardband(struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+ 	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
+index 7317f8730089..bc9044621635 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.h
++++ b/drivers/gpu/drm/i915/display/intel_vrr.h
+@@ -21,7 +21,7 @@ bool intel_vrr_possible(const struct intel_crtc_state *crtc_state);
+ void intel_vrr_check_modeset(struct intel_atomic_state *state);
+ void intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+ 			      struct drm_connector_state *conn_state);
+-void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state);
++void intel_vrr_compute_guardband(struct intel_crtc_state *crtc_state);
+ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state);
+ void intel_vrr_enable(const struct intel_crtc_state *crtc_state);
+ void intel_vrr_send_push(struct intel_dsb *dsb,
 -- 
 2.45.2
 
