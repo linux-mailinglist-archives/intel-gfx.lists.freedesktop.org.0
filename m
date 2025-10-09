@@ -2,57 +2,169 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E40FBCAFB9
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 23:52:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3462BCB1D6
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Oct 2025 00:38:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4708810E245;
-	Thu,  9 Oct 2025 21:52:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB5FA10EB32;
+	Thu,  9 Oct 2025 22:38:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F/k7yZDa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Uo+MAbGR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D72E610E245
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Oct 2025 21:52:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE89C10EB32;
+ Thu,  9 Oct 2025 22:38:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760046736; x=1791582736;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=gVUTxZfHsqcfWFnDgGGWMiUpd2InAp2ch/X39dExpTM=;
- b=F/k7yZDaLIy2l8KJ9im5FbaywsHaJDGg8fvkJy+DOL74SiDxKUOo5+v5
- t6mQWyWz0E6qIXn74rVBbh0V9NE9T84go3iy6vXx1fxxda5lfL7yESHn1
- 1z4EYwLFMZ1DpeoD//pikj/3O13GLJnWRZryNzMb88SKleb0ySgw3eFxt
- 31B66iYS5H75h0NyRGOrLxPU63AwRmborJmd5tMS3Nv7jl2fQwrfqQgYK
- orQvnJxTj/A6qgDWJyEYSrbeFgY5O6njyWiZyD3acppVIRQtyA/nZ6fRC
- hcQ4D6dY9ReoKBKT8Jl1h+1cGdZgEhTRCfstv9hwTh+Uydq16a+kchbXQ w==;
-X-CSE-ConnectionGUID: eThFZXrzRRWQh1bKjA4ZAA==
-X-CSE-MsgGUID: nB8cJRnvRVOq/QQzeKLsEQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11577"; a="62294834"
-X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="62294834"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2025 14:52:15 -0700
-X-CSE-ConnectionGUID: LiOOv21dSMOOjXvtORVEJQ==
-X-CSE-MsgGUID: l/CxlaZ/SeiJjVgpV+BB1A==
+ t=1760049506; x=1791585506;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=LjmQ0RZ8ibZbryIHZR73MJV5iwPP4d/dUMBS2Y9wIcg=;
+ b=Uo+MAbGRWn30gxs37SiAAEXtd1R7YTMtGHgEY+tFMGclxkir1xyvLuSY
+ HNMV6osk9O3Mcc6TlzKOXIASbLlfaRhEQdYHCFysaBYsqgyqswCeiDw1+
+ A7/f44pvV2Mzg6+mNjFDgK1IDz4avM6J8LfefpJ1TTxoD2eHa83/F419/
+ uqASH7YAiDeOTRkOM0rdrQaZgdPsdvpGIQWl1e8kaTjvPsyeGXissdAwZ
+ PXIjX7HMD9iIYFV4XkPMdQDWWVFYPH0xL/HPdZxsIAtu2FwVUv2aKN58G
+ SK2R0nJIaA2QVN60YO2XRJTc9ouUg8p6czwHbsBLiRSGZz66+b+YCQNYh g==;
+X-CSE-ConnectionGUID: HKXFNXpLQy+J94co6h9GRg==
+X-CSE-MsgGUID: CmkWwXKtTBW+PI6pdW+11Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62190415"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62190415"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2025 15:38:25 -0700
+X-CSE-ConnectionGUID: ecFwID9oShOwMUPHAzBWzA==
+X-CSE-MsgGUID: AD+TCUEAQMG+SJ/4IyPmvQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="180835815"
-Received: from unknown (HELO msatwood-mobl.jf.intel.com) ([10.241.243.179])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2025 14:52:15 -0700
-From: Matt Atwood <matthew.s.atwood@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	matthew.d.roper@intel.com
-Cc: rodrigo.vivi@intel.com, jani.nikula@intel.com, andi.shyti@kernel.org,
- Matt Atwood <matthew.s.atwood@intel.com>
-Subject: [PATCH v3] drm/i915:move and rename reg_in_range_table
-Date: Thu,  9 Oct 2025 14:52:08 -0700
-Message-ID: <20251009215210.41000-1-matthew.s.atwood@intel.com>
-X-Mailer: git-send-email 2.51.0
-MIME-Version: 1.0
-Content-Type: text/plain; charset=y
+X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="211473978"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2025 15:38:27 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Thu, 9 Oct 2025 15:38:24 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27 via Frontend Transport; Thu, 9 Oct 2025 15:38:24 -0700
+Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.5) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Thu, 9 Oct 2025 15:38:24 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=PDSImDZp9gFJlazlMX42V9ThNfLv+bpH89bINCndAvhDrz1t3fjdffKVZ2b7xEzzQXpqFepRa5RsNcF90XIhm3SbNstrLY2RUK5xz/FU30q+3nUtZPbNiI/F46MDCKFV7Typh5+5O2LCIBmWlyVrOVvvtz4JApDbQWNJk0LGB75UrbF5IehjdwoUYLc17kxCvn3ETnkTi8NYNYfGUgl2tdC9mmAX3vgyHDQYHc/b3/SvmGTdTBP9V1ViTJvthWnNP6lobHeg+G8X9GtKGpLZsEVuDwQ/KLjXhMixC9URlkIpN9NqjeaHLzJAq9V0uB/jH+ilNz4C+i/n3GCHXF87qw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=64adEeSgUP5ieJJCySkwtXr+QepmPCtuzSADcqhJ/60=;
+ b=FpG6Pd02VWp0l2CUAbDH0sBAY48A7/TczRlA+G3v0G8QD5Nd2+KUdCMkXl2OIYS5+OyPyyQSK2sd983Xs7IIwDhiJEnvGx4NgmQILQabNUdyC1Hz3ftr/LLd5kFKh9NIrES3mAzDIsR84Qj2RHBvVmRmBl2uL1aTk4EeQ1YgCi40fQj0QsSDZbS6RvMjzpGOEbTsG62J9WnNqwgXUDdoYsbs1DsWSGfJ6/JisNXGql+LvTiEByK0+YtmQjtD0L6T01N1wHmH579X8xOL/iCnrrsMcUqj+us2ncgKL89zFnzwQBMcPH4wI+LFR+Zk2IOsHOfa9Jv8zs91DGzvzpz9aQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by SJ5PPF263E38237.namprd11.prod.outlook.com (2603:10b6:a0f:fc02::81a) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9182.20; Thu, 9 Oct
+ 2025 22:38:22 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::7b65:81e6:c6c4:449e%4]) with mapi id 15.20.9203.009; Thu, 9 Oct 2025
+ 22:38:22 +0000
+Date: Thu, 9 Oct 2025 15:38:19 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 2/8] drm/i915: Drop the min plane width w/a adl+
+Message-ID: <20251009223819.GD1207432@mdroper-desk1.amr.corp.intel.com>
+References: <20251009211313.30234-1-ville.syrjala@linux.intel.com>
+ <20251009211313.30234-3-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251009211313.30234-3-ville.syrjala@linux.intel.com>
+X-ClientProxiedBy: BYAPR07CA0088.namprd07.prod.outlook.com
+ (2603:10b6:a03:12b::29) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|SJ5PPF263E38237:EE_
+X-MS-Office365-Filtering-Correlation-Id: d0b3e2e8-0f6a-4130-a23a-08de07848d38
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|7053199007;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?akznVBi7wpAuaTQx34hSjv+FdP5b5QYsFF7lRf7bMY91z1PBG1EnaseFkQ?=
+ =?iso-8859-1?Q?nEJnIFw6sTroEBufi8d3w2ROSalT1N00AP2yc6zW5K6UhY7d+7fX8HqkPL?=
+ =?iso-8859-1?Q?A2gHkJIKt4omPWhdBJyT5wHj53PlZeRg2aworMRXoJTP2Yk3KfRpjuMa72?=
+ =?iso-8859-1?Q?KYJGiBVK23oweIhkABN8jOUrWtrV8M0Hl8KlUauTSyU4yfmJsU9ZWYt40e?=
+ =?iso-8859-1?Q?bODyDRxm76vkOJuseVnxnuNA8ulXhQ7/d26VOp7GERquzrwFLkXNofzhrV?=
+ =?iso-8859-1?Q?prEPKW79dkqxWTSOsYB+hD6aC4obN2e0rFnwUspKoTY6ehu7ZVQIWjz4aS?=
+ =?iso-8859-1?Q?mGj/u8bvnCuW+ZFWvrvMJHOPljY2SOfEGDCWXO408BaWvn2plNFUbFGraB?=
+ =?iso-8859-1?Q?CCt8nrTAlzka101jD5/4iSRd0SivonC+bd+NfvpbgIVPRk6+At5waaqYHX?=
+ =?iso-8859-1?Q?GO7cnTue/CUmqnZL0aTjYU/kiStAjLpL4tnnaO6RHDKk87TmZwsA8iOvmr?=
+ =?iso-8859-1?Q?jR6v2rhO+hs/nhIDWuXcO1HvzfB62wB4pdv4xC1xULyAsWLlI2jPfQzGJG?=
+ =?iso-8859-1?Q?IvGlv4WpCFMj89b7IUEDYTq7Fm4c2hMshphNccHJ9HLkTjpFADzPIssD3v?=
+ =?iso-8859-1?Q?dB7NNjrX6HbjXEQUH4SUrFbYYW8odl2v9CoHacDkdujzg5hLcUQdsEEQ9H?=
+ =?iso-8859-1?Q?sVIgB207f/TScGjEhoUoH6bLQBU1bmIRzyVghTVNbFpiFnB9X2WRI1hWRb?=
+ =?iso-8859-1?Q?heiUUejUb1k1Uz7vedVFWO8A6nKL3eTYBO5th3Vow6nSKcFLvCq+A9TRMu?=
+ =?iso-8859-1?Q?U39Vwe94aA+PV1FmdGkTJDNzR1VlZ5CJIt9EUmZkgfEnch6WBsA5OCwVn8?=
+ =?iso-8859-1?Q?ZHnjvNIcj1VeoZl08Ew7tMgtQsf9GQ38cWV52i5WIbLleDk3tCGuP0Skt2?=
+ =?iso-8859-1?Q?/oV0L2utuIFcIIZU3eiY5oYo0/aj00aH6urPqmu0kuEzC7i12kydtlrOcM?=
+ =?iso-8859-1?Q?zgJXFw1OQ02uIo+4FIUXvveRD8hG/LFl8qt0H8gRNS0sEE0REdfT3h4LSo?=
+ =?iso-8859-1?Q?F67wChTqAn+mTPGsL+3sgNCy+X+ICwgMG2c2oP6sfyqf9nxPPw8gOjf2vb?=
+ =?iso-8859-1?Q?HP4+W/EmIo3Y3Vk/XAeSBRjq4a2X3fIeCdcC8TCoFR01SL49I7pEFxbra4?=
+ =?iso-8859-1?Q?9eFvRmFWT15fDSsUF7pxqfC5wLslNxshZfQmStWroFYM3MnlC2REWoZdUu?=
+ =?iso-8859-1?Q?/tbWW7Ae1RjsCg0U2BOj+M9npiW4rssv9i6oyEHm2kJvjWGGtbuIMpRF9L?=
+ =?iso-8859-1?Q?5pipQfUlUXdaHnGORI/kN1N2oAMwwOH7oWmB8H0/gBZGPTjyqGR5GFmG/j?=
+ =?iso-8859-1?Q?QUsU6hrOdlkzlRyae7O4Z7xZaUD8V+4dYtuDzdHQhW/Mh2yfrHSN3YpaMk?=
+ =?iso-8859-1?Q?NhTEy/QRAP5d/iKP0JlkEmn8WOWvYUWt5eT6uDv9Sn0AKaEQ8hFfjEoQS/?=
+ =?iso-8859-1?Q?BeidlupggPpfyxkviiDUFj?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(7053199007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?8oWmhoi9ADtQxEp9tYYxOoQSpyRMV8C8vN9zyLYdaNTLsT26wbvqa0yE1k?=
+ =?iso-8859-1?Q?/sUdO96XEHs2XffFstbXef1dM18EgvMwwKvWSLv61j5cwCzmQYCQK8UBrw?=
+ =?iso-8859-1?Q?S2tG/bHTWhJINj91qLPvTtMbqHuhFHVK6Xu2uPs+IdbU9B7j1ddR21fHOk?=
+ =?iso-8859-1?Q?VzrN8ruiR9RARB5j7y3uLVocOiW+4MMYbN4w0c+aOrouEOsPU//m128GXN?=
+ =?iso-8859-1?Q?kfTzbkGIziAf4RswkCpKSNXJ5p9id7LrUR8PJfMEySgEhTcA8gtZVr61eC?=
+ =?iso-8859-1?Q?5FX9o7jYXY3ceCJQPvOBnozPUHji9lTiwqFRzwekAjGB1Mbv6xdxaZPsG6?=
+ =?iso-8859-1?Q?AjB5n3tefPOqj7uJz+/l0VaoY3dv8YuvHEcbJHcB3yDvc5EI//qAw0gpvr?=
+ =?iso-8859-1?Q?i781GbGPUo7bI7VH9ZGcEFa126A9fzQB00/uVPBEYrJ1+xPBdXa6gl9Q7q?=
+ =?iso-8859-1?Q?LAcEyMUfbvplvHjr1mGNRiUrTNtr7UPPjUlhHLJgl5y1aPylX/CSBL8gBA?=
+ =?iso-8859-1?Q?s28nQA2Y2FGJFzokbkQjDhUbGcHoh4ec0I806zhCa1x3PzA2wJALkicFFU?=
+ =?iso-8859-1?Q?/2XHsJvTvPj2QC94CiXxV996664snRZKU/jaHV5CE8dS+BBaZFTDOQb9Pw?=
+ =?iso-8859-1?Q?vOF0EKh04MGhwQJDYIytPvMfmNQfvhTfXLqV2JK0oeeAVPlwFTp1fUXiyx?=
+ =?iso-8859-1?Q?ko08hISFnbkrLR99ObXalySJTOscglvmguPrrpFK6tr5xC1PU3ZczsNQ9J?=
+ =?iso-8859-1?Q?q1WRxkl2JZUFPh5rgrxE/vGwOTawt8Hlkg0YvJ0I8+blSawl8RSPJWwHTu?=
+ =?iso-8859-1?Q?uMdXrfcfPfBr5iCGtM0qED2chhE1wPCojtCaQEHb9ry0JMSPS9TG5CADey?=
+ =?iso-8859-1?Q?yqxT9fyDl8QxzD95SSwUboXaW+Jpef+OI7q+VU0PY2C60Kpe9nGpn4QuIO?=
+ =?iso-8859-1?Q?2LR8ojKTMcNpgCeQtwvVxYx7xBPVuPlNVUa2L5+DXjR3yvklTclrdUh+OG?=
+ =?iso-8859-1?Q?OjIb5SbyfhQAydELGlP259LYnPyAkncdGA5oYHAGiLoMZSWpeNmCpyaJ3L?=
+ =?iso-8859-1?Q?JLhE+pHw0vQSGganYrakGQh9dS2EMbWQ/CHkQTCi91//xpgTKXwhtA1AYb?=
+ =?iso-8859-1?Q?Z/NgNvjpMdGRg5TDl2Fx5EHS1LclX68vsoN4/iwpuevTS/39c1VgUVRAek?=
+ =?iso-8859-1?Q?gohixfutZrnH2jemzMJkBKsHn6kdBIMTGvKubGeP3K5bLTw2mz4D2t0pf4?=
+ =?iso-8859-1?Q?SEWhJQlTUNwFDZUTvmAFLxq6hW0XXGq3axl/2lBBP0PqtCJ1wLjld7f/eJ?=
+ =?iso-8859-1?Q?d4W9GseWgxdxAvZSbHjO2CZprkQLDpO9+USDlEEugQOsSz/Yt0nTKw3B5Z?=
+ =?iso-8859-1?Q?UwgJd5gcrPI2cyUCOLiGgbWvZWm4RDwFvB19a32j1M6aSqkrnhkWyrxLrE?=
+ =?iso-8859-1?Q?sO+xJB1fKD+lPW1vOGVNSkYTHdrOMvLJ3X1oqCEukn8qmnzb8InkNsf5iC?=
+ =?iso-8859-1?Q?wrrXOVoXgEqesPrXi9peUYmtFJQucSB01R5H4Hc4dZJvdF1s6bep1s5kBn?=
+ =?iso-8859-1?Q?KjsEnc2+SWV9Vd1aWkKiLFE6wcd+MRoPihVZ/uRBnrRFGgC9UOPTWQuN8H?=
+ =?iso-8859-1?Q?bzDtbLiAjpmf3hucoDSbOYPr9eQ0IFY/kmithmKJ4FbL4Uw9pRPRdXuQ?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: d0b3e2e8-0f6a-4130-a23a-08de07848d38
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Oct 2025 22:38:22.1369 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: pPztq/cCRG0zAt0nKJh3yekDiHv3Vvl/Z2Wsb07pKQ97vTLjaYySujISfgzoilFm6LB4hLo+wRg2tyaFWJSmF0Wvfll47+50gjYzLdNaeuE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF263E38237
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,453 +180,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-reg_in_range_table is a useful function that is used in multiple places,
-and will be needed for WA_BB implementation later.
+On Fri, Oct 10, 2025 at 12:13:06AM +0300, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> ADL+ no longer need the plane min width w/a (Wa_14011264657 or
 
-Let's move this function and i915_range struct to its own file, as we are
-trying to move away from i915_utils files.
+Nitpick:  For clarity you might want to write this as "ADL-P and beyond"
+since ADL-S (which uses display version 12) actually does still need
+Wa_14011264657.
 
-v2: move functions to their own file
-v3: use correct naming convention
 
-Suggested-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
----
- drivers/gpu/drm/i915/Makefile                 |  1 +
- drivers/gpu/drm/i915/gt/intel_workarounds.c   |  9 +--
- drivers/gpu/drm/i915/i915_mmio_range.c        | 18 +++++
- drivers/gpu/drm/i915/i915_mmio_range.h        | 19 ++++++
- drivers/gpu/drm/i915/i915_perf.c              | 67 ++++++++-----------
- drivers/gpu/drm/i915/intel_uncore.c           | 15 +++--
- drivers/gpu/drm/i915/intel_uncore.h           |  8 +--
- drivers/gpu/drm/i915/selftests/intel_uncore.c |  4 +-
- 8 files changed, 82 insertions(+), 59 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/i915_mmio_range.c
- create mode 100644 drivers/gpu/drm/i915/i915_mmio_range.h
+Matt
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 78a45a6681df..e5819c4320bf 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -26,6 +26,7 @@ i915-y += \
- 	i915_ioctl.o \
- 	i915_irq.o \
- 	i915_mitigations.o \
-+	i915_mmio_range.o \
- 	i915_module.o \
- 	i915_params.o \
- 	i915_pci.o \
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 7d486dfa2fc1..ece88c612e27 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -5,6 +5,7 @@
- 
- #include "i915_drv.h"
- #include "i915_reg.h"
-+#include "i915_mmio_range.h"
- #include "intel_context.h"
- #include "intel_engine_pm.h"
- #include "intel_engine_regs.h"
-@@ -2923,7 +2924,7 @@ void intel_engine_apply_workarounds(struct intel_engine_cs *engine)
- 	wa_list_apply(&engine->wa_list);
- }
- 
--static const struct i915_range mcr_ranges_gen8[] = {
-+static const struct i915_mmio_range mcr_ranges_gen8[] = {
- 	{ .start = 0x5500, .end = 0x55ff },
- 	{ .start = 0x7000, .end = 0x7fff },
- 	{ .start = 0x9400, .end = 0x97ff },
-@@ -2932,7 +2933,7 @@ static const struct i915_range mcr_ranges_gen8[] = {
- 	{},
- };
- 
--static const struct i915_range mcr_ranges_gen12[] = {
-+static const struct i915_mmio_range mcr_ranges_gen12[] = {
- 	{ .start =  0x8150, .end =  0x815f },
- 	{ .start =  0x9520, .end =  0x955f },
- 	{ .start =  0xb100, .end =  0xb3ff },
-@@ -2941,7 +2942,7 @@ static const struct i915_range mcr_ranges_gen12[] = {
- 	{},
- };
- 
--static const struct i915_range mcr_ranges_xehp[] = {
-+static const struct i915_mmio_range mcr_ranges_xehp[] = {
- 	{ .start =  0x4000, .end =  0x4aff },
- 	{ .start =  0x5200, .end =  0x52ff },
- 	{ .start =  0x5400, .end =  0x7fff },
-@@ -2960,7 +2961,7 @@ static const struct i915_range mcr_ranges_xehp[] = {
- 
- static bool mcr_range(struct drm_i915_private *i915, u32 offset)
- {
--	const struct i915_range *mcr_ranges;
-+	const struct i915_mmio_range *mcr_ranges;
- 	int i;
- 
- 	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 55))
-diff --git a/drivers/gpu/drm/i915/i915_mmio_range.c b/drivers/gpu/drm/i915/i915_mmio_range.c
-new file mode 100644
-index 000000000000..724041e81aa7
---- /dev/null
-+++ b/drivers/gpu/drm/i915/i915_mmio_range.c
-@@ -0,0 +1,18 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright Â© 2025 Intel Corporation
-+ */
-+
-+#include "i915_mmio_range.h"
-+
-+bool i915_mmio_range_table_contains(u32 addr, const struct i915_mmio_range *table)
-+{
-+	while (table->start || table->end) {
-+		if (addr >= table->start && addr <= table->end)
-+			return true;
-+
-+		table++;
-+	}
-+
-+	return false;
-+}
-diff --git a/drivers/gpu/drm/i915/i915_mmio_range.h b/drivers/gpu/drm/i915/i915_mmio_range.h
-new file mode 100644
-index 000000000000..f1c7086d3e3c
---- /dev/null
-+++ b/drivers/gpu/drm/i915/i915_mmio_range.h
-@@ -0,0 +1,19 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright Â© 2025 Intel Corporation
-+ */
-+
-+#ifndef __I915_MMIO_RANGE_H__
-+#define __I915_MMIO_RANGE_H__
-+
-+#include <linux/types.h>
-+
-+/* Other register ranges (e.g., shadow tables, MCR tables, etc.) */
-+struct i915_mmio_range {
-+	u32 start;
-+	u32 end;
-+};
-+
-+bool i915_mmio_range_table_contains(u32 addr, const struct i915_mmio_range *table);
-+
-+#endif /* __I915_MMIO_RANGE_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 1658f1246c6f..0b9d9f3f7813 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -219,6 +219,7 @@
- #include "i915_perf.h"
- #include "i915_perf_oa_regs.h"
- #include "i915_reg.h"
-+#include "i915_mmio_range.h"
- 
- /* HW requires this to be a power of two, between 128k and 16M, though driver
-  * is currently generally designed assuming the largest 16M size is used such
-@@ -4320,29 +4321,17 @@ static bool gen8_is_valid_flex_addr(struct i915_perf *perf, u32 addr)
- 	return false;
- }
- 
--static bool reg_in_range_table(u32 addr, const struct i915_range *table)
--{
--	while (table->start || table->end) {
--		if (addr >= table->start && addr <= table->end)
--			return true;
--
--		table++;
--	}
--
--	return false;
--}
--
- #define REG_EQUAL(addr, mmio) \
- 	((addr) == i915_mmio_reg_offset(mmio))
- 
--static const struct i915_range gen7_oa_b_counters[] = {
-+static const struct i915_mmio_range gen7_oa_b_counters[] = {
- 	{ .start = 0x2710, .end = 0x272c },	/* OASTARTTRIG[1-8] */
- 	{ .start = 0x2740, .end = 0x275c },	/* OAREPORTTRIG[1-8] */
- 	{ .start = 0x2770, .end = 0x27ac },	/* OACEC[0-7][0-1] */
- 	{}
- };
- 
--static const struct i915_range gen12_oa_b_counters[] = {
-+static const struct i915_mmio_range gen12_oa_b_counters[] = {
- 	{ .start = 0x2b2c, .end = 0x2b2c },	/* GEN12_OAG_OA_PESS */
- 	{ .start = 0xd900, .end = 0xd91c },	/* GEN12_OAG_OASTARTTRIG[1-8] */
- 	{ .start = 0xd920, .end = 0xd93c },	/* GEN12_OAG_OAREPORTTRIG1[1-8] */
-@@ -4353,7 +4342,7 @@ static const struct i915_range gen12_oa_b_counters[] = {
- 	{}
- };
- 
--static const struct i915_range mtl_oam_b_counters[] = {
-+static const struct i915_mmio_range mtl_oam_b_counters[] = {
- 	{ .start = 0x393000, .end = 0x39301c },	/* GEN12_OAM_STARTTRIG1[1-8] */
- 	{ .start = 0x393020, .end = 0x39303c },	/* GEN12_OAM_REPORTTRIG1[1-8] */
- 	{ .start = 0x393040, .end = 0x39307c },	/* GEN12_OAM_CEC[0-7][0-1] */
-@@ -4361,43 +4350,43 @@ static const struct i915_range mtl_oam_b_counters[] = {
- 	{}
- };
- 
--static const struct i915_range xehp_oa_b_counters[] = {
-+static const struct i915_mmio_range xehp_oa_b_counters[] = {
- 	{ .start = 0xdc48, .end = 0xdc48 },	/* OAA_ENABLE_REG */
- 	{ .start = 0xdd00, .end = 0xdd48 },	/* OAG_LCE0_0 - OAA_LENABLE_REG */
- 	{}
- };
- 
--static const struct i915_range gen7_oa_mux_regs[] = {
-+static const struct i915_mmio_range gen7_oa_mux_regs[] = {
- 	{ .start = 0x91b8, .end = 0x91cc },	/* OA_PERFCNT[1-2], OA_PERFMATRIX */
- 	{ .start = 0x9800, .end = 0x9888 },	/* MICRO_BP0_0 - NOA_WRITE */
- 	{ .start = 0xe180, .end = 0xe180 },	/* HALF_SLICE_CHICKEN2 */
- 	{}
- };
- 
--static const struct i915_range hsw_oa_mux_regs[] = {
-+static const struct i915_mmio_range hsw_oa_mux_regs[] = {
- 	{ .start = 0x09e80, .end = 0x09ea4 }, /* HSW_MBVID2_NOA[0-9] */
- 	{ .start = 0x09ec0, .end = 0x09ec0 }, /* HSW_MBVID2_MISR0 */
- 	{ .start = 0x25100, .end = 0x2ff90 },
- 	{}
- };
- 
--static const struct i915_range chv_oa_mux_regs[] = {
-+static const struct i915_mmio_range chv_oa_mux_regs[] = {
- 	{ .start = 0x182300, .end = 0x1823a4 },
- 	{}
- };
- 
--static const struct i915_range gen8_oa_mux_regs[] = {
-+static const struct i915_mmio_range gen8_oa_mux_regs[] = {
- 	{ .start = 0x0d00, .end = 0x0d2c },	/* RPM_CONFIG[0-1], NOA_CONFIG[0-8] */
- 	{ .start = 0x20cc, .end = 0x20cc },	/* WAIT_FOR_RC6_EXIT */
- 	{}
- };
- 
--static const struct i915_range gen11_oa_mux_regs[] = {
-+static const struct i915_mmio_range gen11_oa_mux_regs[] = {
- 	{ .start = 0x91c8, .end = 0x91dc },	/* OA_PERFCNT[3-4] */
- 	{}
- };
- 
--static const struct i915_range gen12_oa_mux_regs[] = {
-+static const struct i915_mmio_range gen12_oa_mux_regs[] = {
- 	{ .start = 0x0d00, .end = 0x0d04 },     /* RPM_CONFIG[0-1] */
- 	{ .start = 0x0d0c, .end = 0x0d2c },     /* NOA_CONFIG[0-8] */
- 	{ .start = 0x9840, .end = 0x9840 },	/* GDT_CHICKEN_BITS */
-@@ -4410,7 +4399,7 @@ static const struct i915_range gen12_oa_mux_regs[] = {
-  * Ref: 14010536224:
-  * 0x20cc is repurposed on MTL, so use a separate array for MTL.
-  */
--static const struct i915_range mtl_oa_mux_regs[] = {
-+static const struct i915_mmio_range mtl_oa_mux_regs[] = {
- 	{ .start = 0x0d00, .end = 0x0d04 },	/* RPM_CONFIG[0-1] */
- 	{ .start = 0x0d0c, .end = 0x0d2c },	/* NOA_CONFIG[0-8] */
- 	{ .start = 0x9840, .end = 0x9840 },	/* GDT_CHICKEN_BITS */
-@@ -4421,61 +4410,61 @@ static const struct i915_range mtl_oa_mux_regs[] = {
- 
- static bool gen7_is_valid_b_counter_addr(struct i915_perf *perf, u32 addr)
- {
--	return reg_in_range_table(addr, gen7_oa_b_counters);
-+	return i915_mmio_range_table_contains(addr, gen7_oa_b_counters);
- }
- 
- static bool gen8_is_valid_mux_addr(struct i915_perf *perf, u32 addr)
- {
--	return reg_in_range_table(addr, gen7_oa_mux_regs) ||
--		reg_in_range_table(addr, gen8_oa_mux_regs);
-+	return i915_mmio_range_table_contains(addr, gen7_oa_mux_regs) ||
-+		i915_mmio_range_table_contains(addr, gen8_oa_mux_regs);
- }
- 
- static bool gen11_is_valid_mux_addr(struct i915_perf *perf, u32 addr)
- {
--	return reg_in_range_table(addr, gen7_oa_mux_regs) ||
--		reg_in_range_table(addr, gen8_oa_mux_regs) ||
--		reg_in_range_table(addr, gen11_oa_mux_regs);
-+	return i915_mmio_range_table_contains(addr, gen7_oa_mux_regs) ||
-+		i915_mmio_range_table_contains(addr, gen8_oa_mux_regs) ||
-+		i915_mmio_range_table_contains(addr, gen11_oa_mux_regs);
- }
- 
- static bool hsw_is_valid_mux_addr(struct i915_perf *perf, u32 addr)
- {
--	return reg_in_range_table(addr, gen7_oa_mux_regs) ||
--		reg_in_range_table(addr, hsw_oa_mux_regs);
-+	return i915_mmio_range_table_contains(addr, gen7_oa_mux_regs) ||
-+		i915_mmio_range_table_contains(addr, hsw_oa_mux_regs);
- }
- 
- static bool chv_is_valid_mux_addr(struct i915_perf *perf, u32 addr)
- {
--	return reg_in_range_table(addr, gen7_oa_mux_regs) ||
--		reg_in_range_table(addr, chv_oa_mux_regs);
-+	return i915_mmio_range_table_contains(addr, gen7_oa_mux_regs) ||
-+		i915_mmio_range_table_contains(addr, chv_oa_mux_regs);
- }
- 
- static bool gen12_is_valid_b_counter_addr(struct i915_perf *perf, u32 addr)
- {
--	return reg_in_range_table(addr, gen12_oa_b_counters);
-+	return i915_mmio_range_table_contains(addr, gen12_oa_b_counters);
- }
- 
- static bool mtl_is_valid_oam_b_counter_addr(struct i915_perf *perf, u32 addr)
- {
- 	if (HAS_OAM(perf->i915) &&
- 	    GRAPHICS_VER_FULL(perf->i915) >= IP_VER(12, 70))
--		return reg_in_range_table(addr, mtl_oam_b_counters);
-+		return i915_mmio_range_table_contains(addr, mtl_oam_b_counters);
- 
- 	return false;
- }
- 
- static bool xehp_is_valid_b_counter_addr(struct i915_perf *perf, u32 addr)
- {
--	return reg_in_range_table(addr, xehp_oa_b_counters) ||
--		reg_in_range_table(addr, gen12_oa_b_counters) ||
-+	return i915_mmio_range_table_contains(addr, xehp_oa_b_counters) ||
-+		i915_mmio_range_table_contains(addr, gen12_oa_b_counters) ||
- 		mtl_is_valid_oam_b_counter_addr(perf, addr);
- }
- 
- static bool gen12_is_valid_mux_addr(struct i915_perf *perf, u32 addr)
- {
- 	if (GRAPHICS_VER_FULL(perf->i915) >= IP_VER(12, 70))
--		return reg_in_range_table(addr, mtl_oa_mux_regs);
-+		return i915_mmio_range_table_contains(addr, mtl_oa_mux_regs);
- 	else
--		return reg_in_range_table(addr, gen12_oa_mux_regs);
-+		return i915_mmio_range_table_contains(addr, gen12_oa_mux_regs);
- }
- 
- static u32 mask_reg_value(u32 reg, u32 val)
-diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
-index 8cb59f8d1f4c..aba90b80854f 100644
---- a/drivers/gpu/drm/i915/intel_uncore.c
-+++ b/drivers/gpu/drm/i915/intel_uncore.c
-@@ -35,6 +35,7 @@
- #include "i915_reg.h"
- #include "i915_vgpu.h"
- #include "i915_wait_util.h"
-+#include "i915_mmio_range.h"
- #include "intel_uncore_trace.h"
- 
- #define FORCEWAKE_ACK_TIMEOUT_MS 50
-@@ -999,7 +1000,7 @@ find_fw_domain(struct intel_uncore *uncore, u32 offset)
-  * scanned for obvious mistakes or typos by the selftests.
-  */
- 
--static const struct i915_range gen8_shadowed_regs[] = {
-+static const struct i915_mmio_range gen8_shadowed_regs[] = {
- 	{ .start =  0x2030, .end =  0x2030 },
- 	{ .start =  0xA008, .end =  0xA00C },
- 	{ .start = 0x12030, .end = 0x12030 },
-@@ -1007,7 +1008,7 @@ static const struct i915_range gen8_shadowed_regs[] = {
- 	{ .start = 0x22030, .end = 0x22030 },
- };
- 
--static const struct i915_range gen11_shadowed_regs[] = {
-+static const struct i915_mmio_range gen11_shadowed_regs[] = {
- 	{ .start =   0x2030, .end =   0x2030 },
- 	{ .start =   0x2550, .end =   0x2550 },
- 	{ .start =   0xA008, .end =   0xA00C },
-@@ -1034,7 +1035,7 @@ static const struct i915_range gen11_shadowed_regs[] = {
- 	{ .start = 0x1D8510, .end = 0x1D8550 },
- };
- 
--static const struct i915_range gen12_shadowed_regs[] = {
-+static const struct i915_mmio_range gen12_shadowed_regs[] = {
- 	{ .start =   0x2030, .end =   0x2030 },
- 	{ .start =   0x2510, .end =   0x2550 },
- 	{ .start =   0xA008, .end =   0xA00C },
-@@ -1078,7 +1079,7 @@ static const struct i915_range gen12_shadowed_regs[] = {
- 	{ .start = 0x1F8510, .end = 0x1F8550 },
- };
- 
--static const struct i915_range dg2_shadowed_regs[] = {
-+static const struct i915_mmio_range dg2_shadowed_regs[] = {
- 	{ .start =   0x2030, .end =   0x2030 },
- 	{ .start =   0x2510, .end =   0x2550 },
- 	{ .start =   0xA008, .end =   0xA00C },
-@@ -1117,7 +1118,7 @@ static const struct i915_range dg2_shadowed_regs[] = {
- 	{ .start = 0x1F8510, .end = 0x1F8550 },
- };
- 
--static const struct i915_range mtl_shadowed_regs[] = {
-+static const struct i915_mmio_range mtl_shadowed_regs[] = {
- 	{ .start =   0x2030, .end =   0x2030 },
- 	{ .start =   0x2510, .end =   0x2550 },
- 	{ .start =   0xA008, .end =   0xA00C },
-@@ -1135,7 +1136,7 @@ static const struct i915_range mtl_shadowed_regs[] = {
- 	{ .start =  0x22510, .end =  0x22550 },
- };
- 
--static const struct i915_range xelpmp_shadowed_regs[] = {
-+static const struct i915_mmio_range xelpmp_shadowed_regs[] = {
- 	{ .start = 0x1C0030, .end = 0x1C0030 },
- 	{ .start = 0x1C0510, .end = 0x1C0550 },
- 	{ .start = 0x1C8030, .end = 0x1C8030 },
-@@ -1156,7 +1157,7 @@ static const struct i915_range xelpmp_shadowed_regs[] = {
- 	{ .start = 0x38CFD4, .end = 0x38CFDC },
- };
- 
--static int mmio_range_cmp(u32 key, const struct i915_range *range)
-+static int mmio_range_cmp(u32 key, const struct i915_mmio_range *range)
- {
- 	if (key < range->start)
- 		return -1;
-diff --git a/drivers/gpu/drm/i915/intel_uncore.h b/drivers/gpu/drm/i915/intel_uncore.h
-index 6048b99b96cb..fafc2ca9a237 100644
---- a/drivers/gpu/drm/i915/intel_uncore.h
-+++ b/drivers/gpu/drm/i915/intel_uncore.h
-@@ -123,12 +123,6 @@ struct intel_forcewake_range {
- 	enum forcewake_domains domains;
- };
- 
--/* Other register ranges (e.g., shadow tables, MCR tables, etc.) */
--struct i915_range {
--	u32 start;
--	u32 end;
--};
--
- struct intel_uncore {
- 	void __iomem *regs;
- 
-@@ -162,7 +156,7 @@ struct intel_uncore {
- 	 * Shadowed registers are special cases where we can safely write
- 	 * to the register *without* grabbing forcewake.
- 	 */
--	const struct i915_range *shadowed_reg_table;
-+	const struct i915_mmio_range *shadowed_reg_table;
- 	unsigned int shadowed_reg_table_entries;
- 
- 	struct notifier_block pmic_bus_access_nb;
-diff --git a/drivers/gpu/drm/i915/selftests/intel_uncore.c b/drivers/gpu/drm/i915/selftests/intel_uncore.c
-index 58bcbdcef563..507bf42a1aaf 100644
---- a/drivers/gpu/drm/i915/selftests/intel_uncore.c
-+++ b/drivers/gpu/drm/i915/selftests/intel_uncore.c
-@@ -64,7 +64,7 @@ static int intel_fw_table_check(const struct intel_forcewake_range *ranges,
- static int intel_shadow_table_check(void)
- {
- 	struct {
--		const struct i915_range *regs;
-+		const struct i915_mmio_range *regs;
- 		unsigned int size;
- 	} range_lists[] = {
- 		{ gen8_shadowed_regs, ARRAY_SIZE(gen8_shadowed_regs) },
-@@ -74,7 +74,7 @@ static int intel_shadow_table_check(void)
- 		{ mtl_shadowed_regs, ARRAY_SIZE(mtl_shadowed_regs) },
- 		{ xelpmp_shadowed_regs, ARRAY_SIZE(xelpmp_shadowed_regs) },
- 	};
--	const struct i915_range *range;
-+	const struct i915_mmio_range *range;
- 	unsigned int i, j;
- 	s32 prev;
- 
+> Wa_14011050563). Don't apply it there. DG2 still needs it.
+> 
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/skl_universal_plane.c | 12 +++++++++++-
+>  1 file changed, 11 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> index 153c76d00977..504871065e09 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> @@ -389,6 +389,13 @@ static int glk_plane_max_width(const struct drm_framebuffer *fb,
+>  	}
+>  }
+>  
+> +static int adl_plane_min_width(const struct drm_framebuffer *fb,
+> +			       int color_plane,
+> +			       unsigned int rotation)
+> +{
+> +	return 16 / fb->format->cpp[color_plane];
+> +}
+> +
+>  static int icl_plane_min_width(const struct drm_framebuffer *fb,
+>  			       int color_plane,
+>  			       unsigned int rotation)
+> @@ -2815,7 +2822,10 @@ skl_universal_plane_create(struct intel_display *display,
+>  		plane->max_height = icl_plane_max_height;
+>  		plane->min_cdclk = icl_plane_min_cdclk;
+>  	} else if (DISPLAY_VER(display) >= 11) {
+> -		plane->min_width = icl_plane_min_width;
+> +		if (DISPLAY_VER(display) >= 14 || display->platform.alderlake_p)
+> +			plane->min_width = adl_plane_min_width;
+> +		else
+> +			plane->min_width = icl_plane_min_width;
+>  		if (icl_is_hdr_plane(display, plane_id))
+>  			plane->max_width = icl_hdr_plane_max_width;
+>  		else
+> -- 
+> 2.49.1
+> 
+
 -- 
-2.51.0
-
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
