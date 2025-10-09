@@ -2,81 +2,165 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57933BC82BC
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 11:06:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AFCC7BC7F68
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 10:14:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A120E10E988;
-	Thu,  9 Oct 2025 09:06:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11E6A10E100;
+	Thu,  9 Oct 2025 08:14:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="B4geSTF/";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="eklmgPlV";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com
- [209.85.208.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54ED810E8F1
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Oct 2025 01:10:20 +0000 (UTC)
-Received: by mail-ed1-f45.google.com with SMTP id
- 4fb4d7f45d1cf-639fe77bb29so97643a12.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 08 Oct 2025 18:10:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1759972218; x=1760577018; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=gHNwCzkNohYs+pMN4B89ykQsTowN8bxnB/b42VHF3Kk=;
- b=B4geSTF/OwUGQ82EWuqTcysRVXfk8iTI0MaADLdmUFsNXkXUKmlFPWbcrRBKqeIeiW
- pRGzReXLR6XB/6+3WZNiCqzLWYeVofglKAykaA+ZUm8Lgz7MGfa+ojNmL+H6CG7xQlaH
- BnGaiVBhra0HSHh5HhWmm3Hski09zi/uiQ0XuRJndzXUTeMANR1Avo7u6I6suoM/kT/4
- S03IXhzob4SBd1Ura7SLG7aNsu5PZ5J6UdtEcVqSthPggNNmanmoO8pmkQjhf4eep85c
- I7xXv8Nlnyu5pkodyTEeMFdK5kYvCujqSbaWGHEEzYrKzX9IF8sS/Fk+IPeE076oiOdt
- UIQQ==
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBDF210E950
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Oct 2025 08:14:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1759997650;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=z/B31lhY4bVYeZNnk+dMlfOVrRbTYtHHzwgcdMMaTVE=;
+ b=eklmgPlVwxUbD5RGKNTMAISiecA9nE5fWKvBUBlE1Eaa5aW9+2nYOpVnuT0ItCXsQ2jK3l
+ ceI+GP+B/aJdI56cbRLWcJg6OveIIRtDiv/L1fXBz0TXjWhPVqP8FttRgfzbAPME09OqRg
+ 6nC3+3g8hGxfyzITX7ZUeHxupzqIIOg=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-160-gqvzshKPNW2gFu9WORLQog-1; Thu, 09 Oct 2025 04:14:09 -0400
+X-MC-Unique: gqvzshKPNW2gFu9WORLQog-1
+X-Mimecast-MFC-AGG-ID: gqvzshKPNW2gFu9WORLQog_1759997648
+Received: by mail-wm1-f69.google.com with SMTP id
+ 5b1f17b1804b1-46e3d9bf9e1so3724845e9.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 09 Oct 2025 01:14:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1759972218; x=1760577018;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=gHNwCzkNohYs+pMN4B89ykQsTowN8bxnB/b42VHF3Kk=;
- b=XzbPfhoEMUpECCKYzgoNS8AJ8o8YW/qv7RCaXqN5M2Ml6b5GuIm71l0oWGZm2pnKA9
- 1HDgiwaOfKHVs0gzntrBSGsbM4aG/g/+0lXUdWvXh7zW7sAE9pLu500I3J33IOmlUYlt
- zW7Qy01UuCpGyVGjYNT6zy2018umFELuDQBNLbkLz2a4kmVxnpr+1rGfgIRn17YcQAJy
- dmXUzbnYjlHobNJqyEh3ZAx+F0X/AgNjQYKAPAhXamhW+tFQ9KUTMwwsGhD+Y9amSUv/
- lDj22hrlgwqyb1/jscqN3US7KRtPPvyLkjz74YMYXCnwUETKmI0xkJ4Yyimq2iF0D2Eb
- htmg==
+ d=1e100.net; s=20230601; t=1759997648; x=1760602448;
+ h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+ :from:references:cc:to:subject:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=z/B31lhY4bVYeZNnk+dMlfOVrRbTYtHHzwgcdMMaTVE=;
+ b=kLfg/WNsuA+Qc7x3Ca8UGXqlqZlD6RXelRQuloYdrZZobY6b7p+DB5Ezq26zwh36OU
+ OAbuEeq6FYX/XJyiKfLKY/upYVbNGtf07YhCH+5BlQRxMmLxSQjSOA573nudDQm/HKWp
+ JM8l9jz409cNI/6E9solXQOEIp4JPv53khYN0f/OqwN75UJId70hLW5DYwVjRB78V9p9
+ cLsq1Sb4mYyIij6/uaqrjDUtKDQn0ii2oUN8ZrcIUszYB1sLtTTlixMsaM8ABN7OZrTF
+ I1U1+PF5n250mtsTNX2e2fTzgErrugTAbvoahfElcjI6Cxb8QrCn+uNnmj20mKNUBFjZ
+ wX5A==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUxwfmKRYw6YZ8+ab2dg6MGB2TVMNW5jvqEmLN9ZQSlpFgTYqtqUOuUcBeyZiTuDOteUa4L4ZoBUes=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwVB+A5ZyjS6Gkhj64RKI/vY1zBFiCGVQCKptyoScvV5D/2WDGo
- 1ke0br2Pyien5afSTkUJr3ecIHB38bvOrx0QMBiDHeHpaRX8gZns6jJk
-X-Gm-Gg: ASbGncvoFxb7wToMTWcRLFSFb8dJGg1fpdkW7Nf9IuFlXGGeRzEgdy2B1g/gquFHYMH
- t13ft7bYt7toK00Gt7y/bGI97zMUUCv4uproFEUXmepjsheYdEDE7KcWymrXjpvxPxIYYGaE7m8
- SDJCWbUC3f56X698yUS2hLwZtRcnBzumxAI7pDbrNue8+GjCQwropDv0LJLknJP+K7dlk2BFAMt
- 6uCsgExEZOlEPqr6/pMoWM3J59zb98ITQzd51oEOmf5rJm3T9wFq/DFIFHI1xWFaf21c0Zi19tj
- eKO3xud9Rb8g2svIN+jl+QnumdPpct/bYLGr9YqSD2Njg1c/8fvujykU5hchAxq7d2hTDQiWvKt
- T5dDntO/zdWsw6LRGxmZ/oH1msz9SrzjwaNDKM1u2Qpc=
-X-Google-Smtp-Source: AGHT+IFUVSoo1eoMPJWEELwFIyb0TmQNTBhyRzWwaIZEnkB7f2xM/gEhdtxapqA11Ju2Mj6UA4MtcA==
-X-Received: by 2002:a05:6402:510f:b0:62f:5992:a64a with SMTP id
- 4fb4d7f45d1cf-639d5b7f489mr5361550a12.13.1759972218246; 
- Wed, 08 Oct 2025 18:10:18 -0700 (PDT)
-Received: from localhost ([212.73.77.104]) by smtp.gmail.com with UTF8SMTPSA id
- 4fb4d7f45d1cf-639f30ad247sm1240289a12.7.2025.10.08.18.10.15
+ AJvYcCU+uCL3+MWFXDK3NHsvltIQz3qcc7L+XweIgZKF7Dec43krhqjd67jXlnM+SDCKG0/IHGGfGbK0ebE=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyW0TY2yY3ZcfIFTbNDRA82A+Nvyi3ecGXlNxcw2eJK3AisvsRs
+ jjUMfiRFYCm0pdxcP29IQUDB8ww9VCFant6MUPGRis4c43C+vXC6ADCaq6xTMhhIaGxYrOHBH49
+ Isx95Zqm8aiqnrh7PRguAxPyN2KLv4xebi2yT48gMdLlatS7U95uzo4MUX+X6taEwx2Rqpg==
+X-Gm-Gg: ASbGncsVuvD9NwxxyEveKiC21Lg7XKoam3aME4OZTR9/6lo0dhfmia1UscLZSrme02o
+ 0ltTmLUgw/n8wZvEQLsn1weh1JA4jQ+QnvsvGGlYlQKzfZL4iz4hS6cAkuDbM6ahy50B4Af95pK
+ OP9LfCucnJslgy5ag1tdQe3Q4VnmJ8X/vKXHM4E3nc3RaIjA+C1vadUeEYJzs3sP8Mcy1jkb32k
+ gThRFvbXEP48px3MseesitsS6Y9QxiBitfEAMkfukSkmBvJqlqRVvTbg0CstOSMldOyTKxsNcpL
+ g8ZcMG5acGTFggNQUxewZ2q1kr3aUzh3VBNzhiKZF7GA71fIM/wtDLFxf6MYE3XVISR1w+NZ003
+ mCjMAsFmd
+X-Received: by 2002:a05:600c:4750:b0:45f:28d2:bd38 with SMTP id
+ 5b1f17b1804b1-46fa9af3095mr47092755e9.18.1759997648089; 
+ Thu, 09 Oct 2025 01:14:08 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGo93r/upxlN0XWroa/gVbVuSE1HI9H4cBHGhOGnkYv+FuHkp7MlpzQ4ByJt+h+2JF6rzGBiQ==
+X-Received: by 2002:a05:600c:4750:b0:45f:28d2:bd38 with SMTP id
+ 5b1f17b1804b1-46fa9af3095mr47092215e9.18.1759997647608; 
+ Thu, 09 Oct 2025 01:14:07 -0700 (PDT)
+Received: from [192.168.3.141] (tmo-083-189.customers.d1-online.com.
+ [80.187.83.189]) by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-46fa9d6fb41sm71628175e9.17.2025.10.09.01.14.03
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 08 Oct 2025 18:10:17 -0700 (PDT)
-From: Askar Safin <safinaskar@gmail.com>
-To: jia.yao@intel.com
-Cc: alex.zuo@intel.com, chris.p.wilson@linux.intel.com,
- intel-gfx@lists.freedesktop.org, piliu@redhat.com,
- linux-kernel@vger.kernel.org, shuicheng.lin@intel.com
-Subject: Re: [PATCH v2] drm/i915: Setting/clearing the memory access bit when
- en/disabling i915
-Date: Thu,  9 Oct 2025 04:10:00 +0300
-Message-ID: <20251009011010.37763-1-safinaskar@gmail.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20251007202514.1661491-1-jia.yao@intel.com>
-References: <20251007202514.1661491-1-jia.yao@intel.com>
+ Thu, 09 Oct 2025 01:14:07 -0700 (PDT)
+Message-ID: <9361c75a-ab37-4d7f-8680-9833430d93d4@redhat.com>
+Date: Thu, 9 Oct 2025 10:14:02 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: (bisected) [PATCH v2 08/37] mm/hugetlb: check for unreasonable
+ folio sizes when registering hstate
+To: Christophe Leroy <christophe.leroy@csgroup.eu>,
+ linux-kernel@vger.kernel.org
+Cc: Zi Yan <ziy@nvidia.com>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Alexander Potapenko <glider@google.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Brendan Jackman <jackmanb@google.com>, Christoph Lameter <cl@gentwo.org>,
+ Dennis Zhou <dennis@kernel.org>, Dmitry Vyukov <dvyukov@google.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ iommu@lists.linux.dev, io-uring@vger.kernel.org,
+ Jason Gunthorpe <jgg@nvidia.com>, Jens Axboe <axboe@kernel.dk>,
+ Johannes Weiner <hannes@cmpxchg.org>, John Hubbard <jhubbard@nvidia.com>,
+ kasan-dev@googlegroups.com, kvm@vger.kernel.org,
+ Linus Torvalds <torvalds@linux-foundation.org>, linux-arm-kernel@axis.com,
+ linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+ linux-ide@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ linux-mips@vger.kernel.org, linux-mmc@vger.kernel.org, linux-mm@kvack.org,
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+ linux-scsi@vger.kernel.org, Marco Elver <elver@google.com>,
+ Marek Szyprowski <m.szyprowski@samsung.com>, Michal Hocko <mhocko@suse.com>,
+ Mike Rapoport <rppt@kernel.org>, Muchun Song <muchun.song@linux.dev>,
+ netdev@vger.kernel.org, Oscar Salvador <osalvador@suse.de>,
+ Peter Xu <peterx@redhat.com>, Robin Murphy <robin.murphy@arm.com>,
+ Suren Baghdasaryan <surenb@google.com>, Tejun Heo <tj@kernel.org>,
+ virtualization@lists.linux.dev, Vlastimil Babka <vbabka@suse.cz>,
+ wireguard@lists.zx2c4.com, x86@kernel.org,
+ "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
+References: <20250901150359.867252-1-david@redhat.com>
+ <20250901150359.867252-9-david@redhat.com>
+ <3e043453-3f27-48ad-b987-cc39f523060a@csgroup.eu>
+ <d3fc12d4-0b59-4b1f-bb5c-13189a01e13d@redhat.com>
+ <faf62f20-8844-42a0-a7a7-846d8ead0622@csgroup.eu>
+From: David Hildenbrand <david@redhat.com>
+Autocrypt: addr=david@redhat.com; keydata=
+ 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
+ qIws/H2t
+In-Reply-To: <faf62f20-8844-42a0-a7a7-846d8ead0622@csgroup.eu>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: N1pGKL8j-_pgGSi8j51t7neDduQcskX_FPO_T0oE9FA_1759997648
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 09 Oct 2025 09:06:04 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,35 +176,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-[It seems this letter got lost, so I'm sending it again, this time using git-send-email.
-Please, CC lkml additionally next time, hopefully it will work better than intel-gfx@freedesktop ]
+On 09.10.25 10:04, Christophe Leroy wrote:
+> 
+> 
+> Le 09/10/2025 à 09:22, David Hildenbrand a écrit :
+>> On 09.10.25 09:14, Christophe Leroy wrote:
+>>> Hi David,
+>>>
+>>> Le 01/09/2025 à 17:03, David Hildenbrand a écrit :
+>>>> diff --git a/mm/hugetlb.c b/mm/hugetlb.c
+>>>> index 1e777cc51ad04..d3542e92a712e 100644
+>>>> --- a/mm/hugetlb.c
+>>>> +++ b/mm/hugetlb.c
+>>>> @@ -4657,6 +4657,7 @@ static int __init hugetlb_init(void)
+>>>>         BUILD_BUG_ON(sizeof_field(struct page, private) * BITS_PER_BYTE <
+>>>>                 __NR_HPAGEFLAGS);
+>>>> +    BUILD_BUG_ON_INVALID(HUGETLB_PAGE_ORDER > MAX_FOLIO_ORDER);
+>>>>         if (!hugepages_supported()) {
+>>>>             if (hugetlb_max_hstate || default_hstate_max_huge_pages)
+>>>> @@ -4740,6 +4741,7 @@ void __init hugetlb_add_hstate(unsigned int order)
+>>>>         }
+>>>>         BUG_ON(hugetlb_max_hstate >= HUGE_MAX_HSTATE);
+>>>>         BUG_ON(order < order_base_2(__NR_USED_SUBPAGE));
+>>>> +    WARN_ON(order > MAX_FOLIO_ORDER);
+>>>>         h = &hstates[hugetlb_max_hstate++];
+>>>>         __mutex_init(&h->resize_lock, "resize mutex", &h->resize_key);
+>>>>         h->order = order;
+>>
+>> We end up registering hugetlb folios that are bigger than
+>> MAX_FOLIO_ORDER. So we have to figure out how a config can trigger that
+>> (and if we have to support that).
+>>
+> 
+> MAX_FOLIO_ORDER is defined as:
+> 
+> #ifdef CONFIG_ARCH_HAS_GIGANTIC_PAGE
+> #define MAX_FOLIO_ORDER		PUD_ORDER
+> #else
+> #define MAX_FOLIO_ORDER		MAX_PAGE_ORDER
+> #endif
+> 
+> MAX_PAGE_ORDER is the limit for dynamic creation of hugepages via
+> /sys/kernel/mm/hugepages/ but bigger pages can be created at boottime
+> with kernel boot parameters without CONFIG_ARCH_HAS_GIGANTIC_PAGE:
+> 
+>     hugepagesz=64m hugepages=1 hugepagesz=256m hugepages=1
+> 
+> Gives:
+> 
+> HugeTLB: registered 1.00 GiB page size, pre-allocated 0 pages
+> HugeTLB: 0 KiB vmemmap can be freed for a 1.00 GiB page
+> HugeTLB: registered 64.0 MiB page size, pre-allocated 1 pages
+> HugeTLB: 0 KiB vmemmap can be freed for a 64.0 MiB page
+> HugeTLB: registered 256 MiB page size, pre-allocated 1 pages
+> HugeTLB: 0 KiB vmemmap can be freed for a 256 MiB page
+> HugeTLB: registered 4.00 MiB page size, pre-allocated 0 pages
+> HugeTLB: 0 KiB vmemmap can be freed for a 4.00 MiB page
+> HugeTLB: registered 16.0 MiB page size, pre-allocated 0 pages
+> HugeTLB: 0 KiB vmemmap can be freed for a 16.0 MiB page
 
-On Tue, Oct 7, 2025 at 11:25 PM Jia Yao <jia.yao@intel.com> wrote:
-> Make i915's PCI device management more robust by always setting/clearing
+I think it's a violation of CONFIG_ARCH_HAS_GIGANTIC_PAGE. The existing 
+folio_dump() code would not handle it correctly as well.
 
-Thank you! I tested this patch, and it indeed fixes the problem. You may add:
-
-Tested-By: Askar Safin <safinaskar@gmail.com>
-
-Please, CC me with further patches, I will test them.
-
-Also, I will repeat that the bug doesn't happen if we have
-CONFIG_INTEL_IOMMU_DEFAULT_ON=y.
-So, probably we just need to patch all distro's configs to include
-CONFIG_INTEL_IOMMU_DEFAULT_ON=y
-(Ubuntu already does that.)
-On the other hand, if there is some deeper issue to fix, then, of
-course, I'm glad it is being fixed!
-
-Also, please, add some "Fixes" tag and CC stable to make sure this fix
-will be backported to stable kernels.
-
-For example:
-
-  Fixes: 1da177e4c3f4 ("Linux-2.6.12-rc2")
-  Cc: <stable@vger.kernel.org>
-
-Here I chose the initial git commit, because i915 always was in git history.
+See how snapshot_page() uses MAX_FOLIO_NR_PAGES.
 
 -- 
-Askar Safin
+Cheers
+
+David / dhildenb
+
