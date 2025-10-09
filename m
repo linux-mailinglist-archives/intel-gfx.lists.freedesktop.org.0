@@ -2,65 +2,182 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABCE6BC8759
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 12:22:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B98CBC8774
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 12:26:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3536E10E204;
-	Thu,  9 Oct 2025 10:22:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F3E210E9AB;
+	Thu,  9 Oct 2025 10:26:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n8CCaaPc";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="AEkkbBeT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EEAC10E1FE;
- Thu,  9 Oct 2025 10:22:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760005338; x=1791541338;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=2yMPl39cZzRlvcORBiml8WrDorZ+0SCxGQk0IW7gfSs=;
- b=n8CCaaPcD2td72ZT6GWwYhNYG4vRtra2UtnpH7CeeAd2TMuY1kYLo1mw
- g4uS7lU5NVjkO7tG0D+RSq7Iic72XVo03a7w9JHXnwTFwnu+WP8K9CRd1
- O31S1OhEjBM5dY9NE+ZHijp6pIVfytsDL8etj0F2suQl/QPHZsnvnbuPo
- X7hzZMFdzJFKSYIyNzEnC3aQDYR2bPJGof7Ra8zYZzb9HhhWrYbHD+XMf
- JJkpRGXlJ9rX4p5JRoHprpXEcbJ0doCEAIFArL2LaZS21u8Js+CwbflLM
- lcZzVpzI+N9iBje6OI0aEkywn9EralPbzeitbxFDxTo8+1EGw7g1CKbdn g==;
-X-CSE-ConnectionGUID: cVGrgiJ0SOCRrOz4vd6ilQ==
-X-CSE-MsgGUID: FOPHa+BqR3ex+DqePGphsA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="87670489"
-X-IronPort-AV: E=Sophos;i="6.19,215,1754982000"; d="scan'208";a="87670489"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2025 03:22:17 -0700
-X-CSE-ConnectionGUID: 3zU1BFfISdekcb2qGuZZTw==
-X-CSE-MsgGUID: NztXUYWRQPCvIP0KRR0YkQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,215,1754982000"; d="scan'208";a="180258264"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.245.14])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2025 03:22:15 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Krzysztof Karas <krzysztof.karas@intel.com>
-Subject: Re: [PATCH i-g-t v2 2/5] tests/gem_eio: Try harder to measure median
- resume time
-Date: Thu, 09 Oct 2025 12:22:12 +0200
-Message-ID: <3173009.ktpJ11cQ8Q@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20251008164242.hm7u3f5ujaw457gc@kamilkon-DESK.igk.intel.com>
-References: <20251007113910.3336564-7-janusz.krzysztofik@linux.intel.com>
- <2326700.3ZeAukHxDK@jkrzyszt-mobl2.ger.corp.intel.com>
- <20251008164242.hm7u3f5ujaw457gc@kamilkon-DESK.igk.intel.com>
+Received: from SN4PR0501CU005.outbound.protection.outlook.com
+ (mail-southcentralusazon11011063.outbound.protection.outlook.com
+ [40.93.194.63])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56F8F10E215;
+ Thu,  9 Oct 2025 10:26:01 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=LPJawCBvlNpu1oP6SlGKaWPBKvCgBaXt5knCw9W5wgVd4wWV/8/e41tFIaVtoi+DvySnbctSfvpq7CECOAGMhSQXGPyfG0dmZfULenc+8E/EbDX2c/JaEwDcWcCP/XJZ5N+a14wbVJTurk/LGUkmprOT8gMmrpszr1b0ZPZN6sUXDfMDdraTBYS194onXyzh33kANiy+N5W8iPhufLHhMyl2z64WF4KY3UlAO7/qMKO2ELzMOEDjHVLqa/HeHgtpvgDM7dlOEvWlbDSGlkiNkcHIXaSCgCsQP0lX7NnsC/3OPHks/xXQXgsCGJ+YTQaLanVWz/zIseYB+0qm6J7jTA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=biWLAK0VQUxowCTa/aYyaJoQmxJX91FUNylh8OApvso=;
+ b=tjsBr5Rnu5JUB2YChOCfBtXX1sASbxwpxG4kkVS/3ae+g8Ju5Kn9TG8CzxtNbWIAIFml5MdvccRpjTvwATmwbSlkEaqrtu92jb5mQsvvDu5ezwU8QbBAAzqZMvxmJz34C3Od8JUbZipM9hXblov1PorErrfKBa+xtpzUuA6vT4/XtD8l0xMqkJjQ7RhY/BQtCpgUM9U1R+YORnhMFuojrgNxUTVtqQzBsIW5+9emmTow1BETlURWrQ+fA4TWh0H1eTgs3miNOVB4nHwuxVnLAe+qjqgafrccFVwqktIW1+3qCLkaujFBiU5nDGg/sfs/TwL+Fz3y2zJH7Fk9fULZiQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=biWLAK0VQUxowCTa/aYyaJoQmxJX91FUNylh8OApvso=;
+ b=AEkkbBeTUwol5us3ROkbAmaPeGD0TxWx7uK/Xhn979IVUSv40JhSvCk/PHINPD0K4Yhh8kJOjqI6kChQWkCoEQSPnI7Kfmy41Dkv8SkFswT6QuT2zDqyxn+pVTWvvQEBprczJIxe/R9J+niSahd8ZULkHPDrK+/lKQlPQ5zS+DDNKxmAqQo5VoIpnMo3/7L5z9bDGcd/l5e9Jo0P9AY3J1J8kmIrRVgj58qDpngRt/xxtCA0UCWAVPWw8B0YPp96RNamkFAYdwcvp1DDofkmPEgFmzM+qKpm+GwU16NLEvkbwrf5EcL7eaes6mlWYrzsRybtxiOuHY9YWDkXMK4VCQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from PH8PR12MB7277.namprd12.prod.outlook.com (2603:10b6:510:223::13)
+ by PH7PR12MB7455.namprd12.prod.outlook.com (2603:10b6:510:20e::8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.9; Thu, 9 Oct
+ 2025 10:25:53 +0000
+Received: from PH8PR12MB7277.namprd12.prod.outlook.com
+ ([fe80::3a4:70ea:ff05:1251]) by PH8PR12MB7277.namprd12.prod.outlook.com
+ ([fe80::3a4:70ea:ff05:1251%7]) with mapi id 15.20.9203.009; Thu, 9 Oct 2025
+ 10:25:53 +0000
+Message-ID: <a04d8499-85ad-40b4-8173-dcc81a5a71bf@nvidia.com>
+Date: Thu, 9 Oct 2025 21:25:42 +1100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 06/35] mm/page_alloc: reject unreasonable
+ folio/compound page sizes in alloc_contig_range_noprof()
+To: David Hildenbrand <david@redhat.com>, linux-kernel@vger.kernel.org
+Cc: Alexander Potapenko <glider@google.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Brendan Jackman <jackmanb@google.com>, Christoph Lameter <cl@gentwo.org>,
+ Dennis Zhou <dennis@kernel.org>, Dmitry Vyukov <dvyukov@google.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ iommu@lists.linux.dev, io-uring@vger.kernel.org,
+ Jason Gunthorpe <jgg@nvidia.com>, Jens Axboe <axboe@kernel.dk>,
+ Johannes Weiner <hannes@cmpxchg.org>, John Hubbard <jhubbard@nvidia.com>,
+ kasan-dev@googlegroups.com, kvm@vger.kernel.org,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>, linux-arm-kernel@axis.com,
+ linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+ linux-ide@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ linux-mips@vger.kernel.org, linux-mmc@vger.kernel.org, linux-mm@kvack.org,
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+ linux-scsi@vger.kernel.org, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Marco Elver <elver@google.com>, Marek Szyprowski <m.szyprowski@samsung.com>,
+ Michal Hocko <mhocko@suse.com>, Mike Rapoport <rppt@kernel.org>,
+ Muchun Song <muchun.song@linux.dev>, netdev@vger.kernel.org,
+ Oscar Salvador <osalvador@suse.de>, Peter Xu <peterx@redhat.com>,
+ Robin Murphy <robin.murphy@arm.com>, Suren Baghdasaryan <surenb@google.com>,
+ Tejun Heo <tj@kernel.org>, virtualization@lists.linux.dev,
+ Vlastimil Babka <vbabka@suse.cz>, wireguard@lists.zx2c4.com, x86@kernel.org,
+ Zi Yan <ziy@nvidia.com>
+References: <20250821200701.1329277-1-david@redhat.com>
+ <20250821200701.1329277-7-david@redhat.com>
+ <fa2e262c-d732-48e3-9c59-6ed7c684572c@nvidia.com>
+ <5a5013ca-e976-4622-b881-290eb0d78b44@redhat.com>
+Content-Language: en-US
+From: Balbir Singh <balbirs@nvidia.com>
+In-Reply-To: <5a5013ca-e976-4622-b881-290eb0d78b44@redhat.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SJ0PR03CA0191.namprd03.prod.outlook.com
+ (2603:10b6:a03:2ef::16) To PH8PR12MB7277.namprd12.prod.outlook.com
+ (2603:10b6:510:223::13)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR12MB7277:EE_|PH7PR12MB7455:EE_
+X-MS-Office365-Filtering-Correlation-Id: fc042970-8d41-4fd6-bef1-08de071e3985
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|7416014|376014|1800799024|10070799003|366016|7053199007; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?ZUpVelpzcVYydjk3V1lyTVk2cGpJZmZuUUFOUnRScHhGUis1L25Ra3pEQVU4?=
+ =?utf-8?B?L1BZREhsQ1o3WEc3VXdoRHIrMUdCeitRRmYxeTlONlhyRWFoYUlXQVNxVVE2?=
+ =?utf-8?B?b1ZLaW9KR1RmUzA5bW5BOHdvTUt1c3h4a1F1ZUVRa0dUMCtjSjVmZjZsVGR4?=
+ =?utf-8?B?WFJkWUZXT29IRUN1U2ZSMHh2VWlVMG9GSlM0MVVtYkZ3bEpER1ZTMm9jeWcw?=
+ =?utf-8?B?RGVZakJ4bURmVGVJM05MMjgxT3FlTFlQNEY4SGtnM1F5ZEp0Z2Vjd0VQZi9r?=
+ =?utf-8?B?cFlqMWt6bzRuQk5qdHZ2MGlVWkFBQmRVWjRFRUVrZ1d6blgxdlR4cDJhT3d5?=
+ =?utf-8?B?Yi9VZVl5T1g2MUpHYm96N2c2M2tyS2djWDFoSENRTUpLZ3J3OE5qcElWQnlp?=
+ =?utf-8?B?QjBKWnFwZ3E3bVAxOVM3WEhPVHhMQTNFV050aHdjalJMLzNQQnEvOXJ4c2lD?=
+ =?utf-8?B?UlAxQTFaQ3krQTZiN25YS3duN3ZxclVUMjdINnQ3UGVUMzRFb0JHdGp4bjdE?=
+ =?utf-8?B?Ym9wakZhQ1FkZlNBRGxhNmcwNHVDZ3Ywbno3bGIyZ3NUT1RBbXgxTmN0QWdj?=
+ =?utf-8?B?OXRxMis4TWk4OUhPTHRTQmRld2FMb2FnYlZSN0J6L1Q5eUJ2Wm05RUdZdUhZ?=
+ =?utf-8?B?ZXZadVVsdlJZUHVTeVhmNSsvdGY2eVJtbnVtQktsOWIxUHJiU3M2K2tPTXJK?=
+ =?utf-8?B?a1YrVVcvS3RHZ21oSmgxYVZoZjBWRC9jY0ZlOXd5bFlyK0x1VVFHcElxejFv?=
+ =?utf-8?B?M095d25yeW80R2x6V0JGb3c2WUhaa1JMaS8zbmg4ajM0dGZzdlZ6cDJuSjNJ?=
+ =?utf-8?B?NVVoOFpKR0xlSnlaTmFJRURXNHdRdzRLRnduREk0eFVOcjNhaGVCcEQwZ0tp?=
+ =?utf-8?B?WDhCaUFpZzlvQ0ZmQ2QyeGFmNm9uT2VhaC92SmJ3OFV6Vi93Mmx0d2FZeDU3?=
+ =?utf-8?B?RzBTZHZSdVhtU3BnMHJKV2JpaVRpbGYwbVJ0REg5YVZ0MEg3cG5XVjJkY01h?=
+ =?utf-8?B?c3hSMzVvR0Job2xVWlV3SElGVG84QytVUC8vbnF1UTFhVXExRCsrcVpTTTBv?=
+ =?utf-8?B?SENKL2d5UnBLc3hjdWpsVjF5V2F0YjI5T2xsdzNIcGcxYlFqK09nN1pjdzhm?=
+ =?utf-8?B?U1M2R1N3L3g4ZjRvajlwbXJxYmhKVW5ZRTVtRjRWb0Q1WnVJTmJWWXQvRjdV?=
+ =?utf-8?B?TlVnWVRTWGdlTkUwS0F1ejQ5VWl6bkc5b0paREhLR3NFeWxJNTVSak8wSHUr?=
+ =?utf-8?B?ZDVoMElwZzlSZmI3K05kNkQ4MFlKc3hxcDlNS0hyUFhCQjlMUzUwd1UrRHRL?=
+ =?utf-8?B?NzEzcks2eU9jaFpGVkVTamt0Q1NwYzIrb1I4U1F1UU5HaVM3alNHTGhnaVYw?=
+ =?utf-8?B?S0ZsUmpWTW9ZUUtHZVg2THVoTDRzVnQwS0NRSHlPZXBRYW5obmYrLzZPcGNm?=
+ =?utf-8?B?MW40QXJLc1B3Z3dDRlN1aHNkZnFKNHg0VU5wYU9FT2xGbk9GSUlXM2RKclYv?=
+ =?utf-8?B?MVA3cG03Q2xJeDEyZEtIOEwrYUlqbW5FS2w5ZkRuNkd3Zm9BTjNuWlFzZDVM?=
+ =?utf-8?B?RkMyNjdIOGlTMWc5NTl2djNPRlZxY1hDZFJhRXgvV0REdDZITTg0TkE5ZC9D?=
+ =?utf-8?B?WWdldmhzRVl1V3hmMVBGTjF4Y2thS2lrTGh6RjA2d29wNklCcUNaNE9lUjFk?=
+ =?utf-8?B?R0tzQkR4bitDYUZwQVgzamNQTlVUUlBJYi96N1N0bTZEV2t5VXRRSjR4SHZ2?=
+ =?utf-8?B?eTlUNmFyUWt0WnZDZU5kYWVRYlBLb0FTZVNlOEF2WWtNRTdUNWRVZllsbWp2?=
+ =?utf-8?B?YUo0SVZuQTRkNWdLZUd4cy9rSHFMYUIwTFBkRGZENTZOdjU4UHl5L0I5N0hM?=
+ =?utf-8?B?SWtGaGVLUXlMR0grcmd1a0dYOHZORHM3d3Ivbm4xSGpqM1F5ejE4S2tjSEhZ?=
+ =?utf-8?Q?RIki05ZQBRLqC4OWQsYahsTOprT9c9ID?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR12MB7277.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(7416014)(376014)(1800799024)(10070799003)(366016)(7053199007);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dlFSQlFOSzNOSHBwYXBRZm5xNWRYa0M0KzdRR0JoTzRaVXFPR2VFNmNHV2hG?=
+ =?utf-8?B?M0t5WW03V1FvVnJKTXVWVDIweWt6cDJ6RmlrdnoxMGVpYjUxRXN4VjQxUU15?=
+ =?utf-8?B?cTRFWWp5Ukd0azJmZ0cxTjdlS2JWR1YwVnV3VCtjSU9Qa1dwTEpHSW5EVDE3?=
+ =?utf-8?B?Ry9GVUJ5eE5mWXpORnpHSUZLMHBRVmxDNTY4V2xjYjlZaXJqWEtEaDJLVGU3?=
+ =?utf-8?B?NFNIbXk1MUh6dThIRkw4WmlXWjJLaVdaWDIxNlhMQ2wzVll0ZFg1VDVVOW5s?=
+ =?utf-8?B?ZmNwbXorRzVoUzVZQWVJSWJ1RnpwNHozOXJ5ZDdhMDN2TzFyNjF0WFVrTnl1?=
+ =?utf-8?B?N3k0UUdTMzQyT2lpMWJDRjB4S3JmMTVheWtDajA2M0RYeFhIYW5VR240dC9a?=
+ =?utf-8?B?UVhjMlc2a2xaUHIvUjQyVGxOS01GaXJHdytlMEVyYkRtWXJCckF4SXlUMSs4?=
+ =?utf-8?B?M0hEWStPWnI1Mlc2QmVlTTBhTC95VE4zZk5STE1pTE1aOWlKT1RXM1BvMTdP?=
+ =?utf-8?B?RFFMSFlvT0tURmtaYzdEaVBRWmVTK2ZyNS9EU0dzQy9oUHZFVkN4QlIvaDVR?=
+ =?utf-8?B?ZndBQm1vMnBjM1BEN0orZXNhcUdEQThxYzRQSTVhTUI2VkJHaCt0L1F2L2ZL?=
+ =?utf-8?B?L1NNQVhSTlhRVUVXQTJOZUlrUy9KeEpKRnhIZ29wVzFvM0hXNDFiOW5mcEJ1?=
+ =?utf-8?B?N056YWQxQUxHNm41MzIwSERsNjI3NG9OVGdMaWRJcjU1TElHY21acEFPclBB?=
+ =?utf-8?B?NklLc2JrVzZVcTVLMWh1WVNxZ2JRMmJ5TXZvZ2h5bHliQ2pvZzR3RFdKRDBu?=
+ =?utf-8?B?ZkZCb1N4TGt2MTEyWnBXTDNQaFZZc1VEaHoyb3paTGhQK1FkSHFsQzNHQ0Uz?=
+ =?utf-8?B?WmN6eHZuMXdFU2dFeE9laU0zek1oZ0pMU3REaW42WkZJTWpQK1A2cDIvdDk4?=
+ =?utf-8?B?T3pnZks4cThmc2pxZUY4UllZK2JBT3h4a1VMT3p5MVVrUGdHOEx3bDhyUnFm?=
+ =?utf-8?B?U1pKQVgvUTdwd3d0Rm1LYkJ1RXJCejNOVlVvVmtlUDg2ZTVTU3ZBaVRJaGxh?=
+ =?utf-8?B?RmFiU1RIOTVlR2diNi91UUFMUFhYWEJJcytlazdjbkJxRWJyRUVUMGtzUFg2?=
+ =?utf-8?B?WG9kMS9aNkJybVRDNGJTUnFCd21TcjBFNXFFaUZHd0Y5cE5GUTNHVGtZbDRh?=
+ =?utf-8?B?Z2h3d0dYUWg2MG5aZlBJTWpYSnJ6RGpoNXVjdTJ0NzlBQWRmaERvWVJYN25R?=
+ =?utf-8?B?SnRnS0VXRjNkVndpQVFRNFg1YnFpak5aNTVZSHF2bDAwRTdlNWFxd3ZpYTNL?=
+ =?utf-8?B?OUpPRVNtS1JyRWorL2RYWTlrYktzMmxlZWtzTTF4WW5TY1BpU3d6U2pvRFpT?=
+ =?utf-8?B?bVNVM2lxaDl4U0s0OXlHODVQWS9GdjkrSW1LcW05bDROeHlqOE5tQ3EraERJ?=
+ =?utf-8?B?bHp3VkFySnBHTkpYS1dYRHZvWFcxVlRibkZqZHEyMlo3dGNtazJGM2RxTkN6?=
+ =?utf-8?B?MFFybFRoV2NjUXlhelRqTUlObGszSjcvT3ordnZrcGVKVmN3RUc3TzgwMjl3?=
+ =?utf-8?B?SmR5SlhRU1pPZDJ6QWxaeHhqdm1oL1NEcEc3c2ErS2pjckFKV285bURldERa?=
+ =?utf-8?B?aDg3TEltTHlQdFc2MTROVW9DUDN4OXArQUNVNmtveU5hZjlkRkwwQVRmcEgy?=
+ =?utf-8?B?cmU0TDhVOWoxRUJqTlBXQ1o5eW5uMVEyaWZUamNOb3hQOGx6K2RwT0xpTlpT?=
+ =?utf-8?B?VVBBNjBZN3h6TGtYL25VMXNkK1VnZVVzS2NZU2grZ1A0TytxT3F3MVhaWkpv?=
+ =?utf-8?B?eHl0MElDN2UyNnZOaDh5cXUyMUp5eE1TQVN3TGhjOHJJbUpBNk1xWVpselFG?=
+ =?utf-8?B?Tkp2cnd5U2dJSEU2ZkpIbzF3Y29pK3RVanRXVUcxRVRDeEI3WlBLb1N5bFpz?=
+ =?utf-8?B?ZkRvN1FkYWNtMksvUUlveTRCMXdiRXgyalJRSDZnTmlWSU5JbGhFN1RiRWZx?=
+ =?utf-8?B?TC9hRU9XWFVSTnZ5MnJ2YThBRG1EYjlyb0dtYm1EU0twUW5xMTlZODBjWHdk?=
+ =?utf-8?B?ZVBQRmh5MVpweE44ZHNMV1dGZ09aa1ZPNHg4SE9iOENIbEYzSHlxd1RXbStm?=
+ =?utf-8?B?K1phdm5PS2pQc2w3dFdMT1U1OU1XTlVUcVZHRHBMdzArM1hRS2RVYWhYZXk0?=
+ =?utf-8?Q?efW3/6z1peeZJ05KBnsNhLkPgCVix25OmEHkOeTGaYh2?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fc042970-8d41-4fd6-bef1-08de071e3985
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR12MB7277.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Oct 2025 10:25:53.1264 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: L959gJC8jrvJvfIb4iQtdd7P0YXxd978MySa+fAzHqrX3t6Dj+mRSWeQoKjvNjEI4YvCngzAp2V3GSUCLThCkQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7455
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,185 +193,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Kamil,
-
-On Wednesday, 8 October 2025 18:42:42 CEST Kamil Konieczny wrote:
-> Hi Janusz,
-> On 2025-10-08 at 14:52:44 +0200, Janusz Krzysztofik wrote:
-> > Hi Kamil,
-> > 
-> > On Wednesday, 8 October 2025 14:14:47 CEST Kamil Konieczny wrote:
-> > > Hi Janusz,
-> > > On 2025-10-07 at 13:38:25 +0200, Janusz Krzysztofik wrote:
-> > > > Subtests that measure time of resume after engine reset require results
-> > > > from at least 9 reset-resume cycles for reasonable calculation of a median
-> > > > value to be compared against a presumed limit.  On most Gen12+ platforms,
-> > > > as well as on some older ones like JSL, CHV, ILK or ELK, the current limit
-> > > > of 5 seconds for collecting those results occurs too short.
-> > > > 
-> > > > Raise the limit to an empirically determined value of 20 seconds and break
-> > > > the loop as soon as 9 results are collected.
-> > > > 
-> > > > v2: Split out a change in handling of not enough measurements to a
-> > > >     separate patch (Kamil),
-> > > >   - reword commit message to be more distinct from other patches in
-> > > >     series (Kamil),
-> > > >   - reword commit message and description so they no longer state the
-> > > >     scope of the issue is limited to Gen12+, and list other (non-Gen12+)
-> > > >     platforms found also affected.
-> > > > 
-> > > > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> > > > ---
-> > > >  tests/intel/gem_eio.c | 5 ++++-
-> > > >  1 file changed, 4 insertions(+), 1 deletion(-)
-> > > > 
-> > > > diff --git a/tests/intel/gem_eio.c b/tests/intel/gem_eio.c
-> > > > index 0a00ef026e..79dcef8fa6 100644
-> > > > --- a/tests/intel/gem_eio.c
-> > > > +++ b/tests/intel/gem_eio.c
-> > > > @@ -929,7 +929,7 @@ static void reset_stress(int fd, uint64_t ahnd, const 
-> > intel_ctx_t *ctx0,
-> > > >  	gem_write(fd, obj.handle, 0, &bbe, sizeof(bbe));
-> > > >  
-> > > >  	igt_stats_init(&stats);
-> > > > -	igt_until_timeout(5) {
-> > > > +	igt_until_timeout(20) {
-> > > 
-> > > What I wanted here was actually (in pseudocode):
-> > > 
-> > > mtime = gen < 5 || gen >= 12 ? 20 : 5;
-> > 
-> > That's incorrect.  JSL, now mentioned in commit description (see also 
-> > changelog), is gen11, and it's the only one of that gen that exhibits the 
-> > problem.  Moreover, some affected CI machines need more time in unwedge-stress 
-> > and not necessarily in reset-stress, some vice versa, and still some need more 
-> > time in both.  That may sound strange, but that's how results from my many 
-> > trybot attempts look like.  Also, not all pre-gen5 machines require a higher 
-> > limit on resume time, as it is handled now and extended over gen12+ in next 
-> > patch.  So before I try to fulfil your expectation and use a formula here, not 
-> > a constant, we have to agree on how much precise that formula should be.  If 
-> > you don't accept a simplified approach then I have to spend more time on 
-> > finding out what exactly takes time on kernel side in each of those distinct 
-> > cases and maybe then I will be able to formulate exact conditions when we 
-> > should wait longer and when not.
-> > 
+On 10/9/25 17:12, David Hildenbrand wrote:
+> On 09.10.25 06:21, Balbir Singh wrote:
+>> On 8/22/25 06:06, David Hildenbrand wrote:
+>>> Let's reject them early, which in turn makes folio_alloc_gigantic() reject
+>>> them properly.
+>>>
+>>> To avoid converting from order to nr_pages, let's just add MAX_FOLIO_ORDER
+>>> and calculate MAX_FOLIO_NR_PAGES based on that.
+>>>
+>>> Signed-off-by: David Hildenbrand <david@redhat.com>
+>>> ---
+>>>   include/linux/mm.h | 6 ++++--
+>>>   mm/page_alloc.c    | 5 ++++-
+>>>   2 files changed, 8 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/include/linux/mm.h b/include/linux/mm.h
+>>> index 00c8a54127d37..77737cbf2216a 100644
+>>> --- a/include/linux/mm.h
+>>> +++ b/include/linux/mm.h
+>>> @@ -2055,11 +2055,13 @@ static inline long folio_nr_pages(const struct folio *folio)
+>>>     /* Only hugetlbfs can allocate folios larger than MAX_ORDER */
+>>>   #ifdef CONFIG_ARCH_HAS_GIGANTIC_PAGE
+>>> -#define MAX_FOLIO_NR_PAGES    (1UL << PUD_ORDER)
+>>> +#define MAX_FOLIO_ORDER        PUD_ORDER
+>>
+>> Do we need to check for CONTIG_ALLOC as well with CONFIG_ARCH_HAS_GIGANTIC_PAGE?
+>>
 > 
-> One more note - maybe it is related with two GTs: GT0 and GT1?
-
-Maybe, but that's only one of potential factors, not covering cases like DG2 
-or ILK as an example of two cases completely different, I believe.
-
-> 
-> It could go with simplified formula here and just use some value,
-> 20 or 10?
-
-I still don't understand what your goal here is.  What issue do you expect to 
-be avoided or resolved by replacing the new, higher constant value with a 
-formula?  If I understood your point than I should be able to propose a 
-solution.
-
-> 
-> Btw did you see results for v1? The gem_eio@kms subtests
-> is failing due to disk limit in CI, and in logs there are
-> 21 'Forcing GPU reset' messages.
-> 
-> https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_13866/shard-dg2-5/igt@gem_eio@kms.html
-> https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_13866/shard-tglu-8/igt@gem_eio@kms.html
-> 
-> Is it not related to your series?
-
-Yes, that's related, in the sense that before, there was a shorter, 5s limit 
-for performing resets and measuring resume time, so less noise was accumulated 
-in dmesg than now when we wait up to 20s for 9 measurements collected in order 
-to avoid falsely reporting success when we don't evaluate results because less 
-than 9 have been collected.
-
-> Maybe number of resets should also be lowered?
-
-The kms subtest consist of 3 exercises.  The first one -- inflight -- triggers 
-7 resets (1 reset per ring), the remaining two ones are equivalents of reset-
-stress and unwedge-stress, with 9 resets per each of the 2 scenarios required 
-as a minimum for stable median calculation, so 25 resets in total.
-
-Are you sure we are free to lower that limit of 9 measurements required for 
-stable median?
-
-I think we should rather convince CI and display developers to limit the 
-amount of noise in dmesg generated in CI runs by display debugging.
-
-> Also test took over 20 seconds after it was killed.
-
-I can see "Disk usage limit exceeded" event reported at timestamp 340.998570, 
-and next subtest scheduled at 342.958470.  Where do you see those 20 seconds?
-
-Thanks,
-Janusz
-
-
-> 
-> Regards,
-> Kamil
-> 
-> > > 
-> > > 	igt_until_timeout(mtime) {
-> > > 
-> > > >  		const intel_ctx_t *ctx = context_create_safe(fd);
-> > > >  		igt_spin_t *hang;
-> > > >  		unsigned int i;
-> > > > @@ -978,6 +978,9 @@ static void reset_stress(int fd, uint64_t ahnd, const 
-> > intel_ctx_t *ctx0,
-> > > >  		gem_sync(fd, obj.handle);
-> > > >  		igt_spin_free(fd, hang);
-> > > >  		intel_ctx_destroy(fd, ctx);
-> > > > +
-> > > > +		if (stats.n_values > 8)
-> > > 
-> > > Can it be a define as it is used in other places, for example:
-> > > #define NUMER_OF_MEASURED_CYCLES_NEEDED 9
-> > > 
-> > > so you will use it elsewhere, and here it will be:
-> > > 
-> > > 		if (stats.n_values >= NUMER_OF_MEASURED_CYCLES_NEEDED)
-> > > 			break;
-> > 
-> > OK.
-> > 
-> > > 
-> > > >  	}
-> > > >  	check_wait_elapsed(name, fd, &stats);
-> > > 
-> > > I did give you r-b for patch 1/5 but I am not sure how
-> > > reliable are measurements, should it be an assert instead of skip?
-> > > Maybe function check_wait_elapsed() should return bool to tell if
-> > > median is ready, and in each place subtests itself decide if it
-> > > should skip or assert? Up to you.
-> > 
-> > check_wait_elapsed() is called only from reset_stress(), which in turn is 
-> > called only by 3 subtests, all in scope of this series.  Can you suggest some 
-> > criteria when you think a subtest should skip and when it should fail if not 
-> > enough results have been collected?  I've chosen skip because we couldn't do 
-> > much with fail other than blocklisting the failing subtest, while CI can 
-> > handle skips as expected skips on selected platforms if we really can't find 
-> > a balance among the loop long enough for collecting enough measurements and 
-> > short enough for not exceeding per test timeout on platforms with many 
-> > engines.
-> > 
-> > Thanks,
-> > Janusz
-> > 
-> > 
-> > > 
-> > > Regards,
-> > > Kamil
-> > > 
-> > > >  	igt_stats_fini(&stats);
-> > > 
-> > 
-> > 
-> > 
-> > 
+> I don't think so, can you elaborate?
 > 
 
+The only way to allocate a gigantic page is to use CMA, IIRC, which is covered by CONTIG_ALLOC
 
+>>>   #else
+>>> -#define MAX_FOLIO_NR_PAGES    MAX_ORDER_NR_PAGES
+>>> +#define MAX_FOLIO_ORDER        MAX_PAGE_ORDER
+>>>   #endif
+>>>   +#define MAX_FOLIO_NR_PAGES    (1UL << MAX_FOLIO_ORDER)
+>>> +
+>>>   /*
+>>>    * compound_nr() returns the number of pages in this potentially compound
+>>>    * page.  compound_nr() can be called on a tail page, and is defined to
+>>> diff --git a/mm/page_alloc.c b/mm/page_alloc.c
+>>> index ca9e6b9633f79..1e6ae4c395b30 100644
+>>> --- a/mm/page_alloc.c
+>>> +++ b/mm/page_alloc.c
+>>> @@ -6833,6 +6833,7 @@ static int __alloc_contig_verify_gfp_mask(gfp_t gfp_mask, gfp_t *gfp_cc_mask)
+>>>   int alloc_contig_range_noprof(unsigned long start, unsigned long end,
+>>>                     acr_flags_t alloc_flags, gfp_t gfp_mask)
+>>>   {
+>>> +    const unsigned int order = ilog2(end - start);
+>>
+>> Do we need a VM_WARN_ON(end < start)?
+> 
+> I don't think so.
+> 
 
+end - start being < 0, completely breaks ilog2. But we would error out because ilog2 > MAX_FOLIO_ORDER, so we should fine
 
+>>
+>>>       unsigned long outer_start, outer_end;
+>>>       int ret = 0;
+>>>   @@ -6850,6 +6851,9 @@ int alloc_contig_range_noprof(unsigned long start, unsigned long end,
+>>>                           PB_ISOLATE_MODE_CMA_ALLOC :
+>>>                           PB_ISOLATE_MODE_OTHER;
+>>>   +    if (WARN_ON_ONCE((gfp_mask & __GFP_COMP) && order > MAX_FOLIO_ORDER))
+>>> +        return -EINVAL;
+>>> +
+>>>       gfp_mask = current_gfp_context(gfp_mask);
+>>>       if (__alloc_contig_verify_gfp_mask(gfp_mask, (gfp_t *)&cc.gfp_mask))
+>>>           return -EINVAL;
+>>> @@ -6947,7 +6951,6 @@ int alloc_contig_range_noprof(unsigned long start, unsigned long end,
+>>>               free_contig_range(end, outer_end - end);
+>>>       } else if (start == outer_start && end == outer_end && is_power_of_2(end - start)) {
+>>>           struct page *head = pfn_to_page(start);
+>>> -        int order = ilog2(end - start);
+>>>             check_new_pages(head, order);
+>>>           prep_new_page(head, order, gfp_mask, 0);
+>>
+>> Acked-by: Balbir Singh <balbirs@nvidia.com>
+> 
+> Thanks for the review, but note that this is already upstream.
+> 
+
+Sorry, this showed up in my updated mm thread and I ended up reviewing it, please ignore if it's upstream
+
+Balbir
