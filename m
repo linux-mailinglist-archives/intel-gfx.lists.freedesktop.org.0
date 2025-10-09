@@ -2,66 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFF8BBC9B66
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 17:13:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1141DBC9CB1
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 17:29:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7039910EA8B;
-	Thu,  9 Oct 2025 15:13:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B03110EA94;
+	Thu,  9 Oct 2025 15:29:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="efki7MVh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IBt590ri";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CBEF10EA8B
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Oct 2025 15:13:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 289BD10EA94
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Oct 2025 15:29:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760022802; x=1791558802;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=B+KkNfoyTd9BI3XiAD88G317kTFdOfgCMt1Zd+h0p6U=;
- b=efki7MVh0qqOzgcm/2AdauqH91RwcFMcqgPw9wXpmKKgcLlbRCuqbOQS
- JyZN3TatUV9NcUbo39O4UDL6vb7Wl8J+unDTkBaVHxnrA8+RoBd1GCLZw
- rLTlkK3KnHrUXCzq/nosiJ0ySExs1RiJmK8JIxswdyGmCsiQ6KUosEtS4
- keqFFqpFSA40yxDT2c5H4kpbaaPcgP7bp4ShGGa/xtA9vOoA6AzuJW5Sy
- TaOz/RNLSKNvcTtsWfru5DwX4VVIOjnMXvYmapVTZvbhBQoPOYNNzYOeW
- cnVrTChHBHwfYcEAbw14Rt+GTpj15Y73GaWzuu3XemnSHAtwGGgyUCYCu Q==;
-X-CSE-ConnectionGUID: qlhndVFkRbuPy2Oli0Kl7g==
-X-CSE-MsgGUID: WcG+joR7TbyxLULiIeRg6A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11577"; a="87694362"
-X-IronPort-AV: E=Sophos;i="6.19,216,1754982000"; d="scan'208";a="87694362"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2025 08:13:22 -0700
-X-CSE-ConnectionGUID: HmqejZwTSPiVwzbsiwZWmQ==
-X-CSE-MsgGUID: gV0/hhuURMuNICUEltywkA==
+ t=1760023787; x=1791559787;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=SpcNTU6HmOqL45i2uccbFXvImH/0Psnay/o51CFNHBA=;
+ b=IBt590riPZqPVUw4DsvTUq5rzBKKzN+wKQ2C45di2o2WElgN44sZea+8
+ IsxaN4nwyqQbRQsGnMwjYkooc0TQTAgG5rADEQZIi+3t/x50ep54Q2XJf
+ 500xSE3Fx+7RtB5B+2/FjaxBTx1zRXBEO/cAJjJQO8O29tlHs0w4FkhRc
+ vsXA9qGLPn2vau9a7EnhyUwLxaIQUOXOtxXdnSKdR4fIG+smTMmQPoaCN
+ iP0uhKiFfKJP+ms4ZwBs0u5gFi2U//a59SEg/BM61vrVHLLcRVUjIUygQ
+ FCSgt4iFq6H+2I3txTa+42fLElAW1UpeketPobFAQ0/diO4WyP/6AudRA w==;
+X-CSE-ConnectionGUID: R8Otx8WFSFGlqTLIWtKhsw==
+X-CSE-MsgGUID: J7QYemLxSniztf73Wddnlw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11577"; a="62120236"
+X-IronPort-AV: E=Sophos;i="6.19,216,1754982000"; d="scan'208";a="62120236"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2025 08:29:46 -0700
+X-CSE-ConnectionGUID: Xc/Y1QcFQ6OLC8xAsW3M6Q==
+X-CSE-MsgGUID: u6tVWfPtSUCSbKVSubyZNw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,216,1754982000"; d="scan'208";a="217831552"
-Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.113])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2025 08:13:19 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Andi Shyti <andi.shyti@kernel.org>
-Cc: Matt Roper <matthew.d.roper@intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
- <tvrtko.ursulin@igalia.com>, Matt Atwood <matthew.s.atwood@intel.com>,
- intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915:move and rename reg_in_range_table
-In-Reply-To: <aOfC1YjjHbm88V5H@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251007212447.941389-1-matthew.s.atwood@intel.com>
- <20251008165334.GA1207432@mdroper-desk1.amr.corp.intel.com>
- <aOad4gBFCtuKcbsh@msatwood-mobl>
- <20251008173713.GB1207432@mdroper-desk1.amr.corp.intel.com>
- <aObY74gMUQwr__a2@intel.com>
- <j3gmjykrxu4q5txs2kum5kh2uzcezdte63hh64eljuek44liv6@avyzhf3ucgfu>
- <aOfC1YjjHbm88V5H@intel.com>
-Date: Thu, 09 Oct 2025 18:13:15 +0300
-Message-ID: <f15e85530354f34d1630b52d0ea249b15da2be60@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,216,1754982000"; d="scan'208";a="181163301"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.21])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2025 08:29:44 -0700
+Date: Thu, 9 Oct 2025 18:29:41 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Luca Coelho <luciano.coelho@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, vinod.govindapillai@intel.com,
+ jani.nikula@linux.intel.com
+Subject: Re: [PATCH v3 1/7] drm/i915/wm: clarify watermark ops with comments
+Message-ID: <aOfU5VlVZ6-WKrTK@intel.com>
+References: <20251009075517.837587-1-luciano.coelho@intel.com>
+ <20251009075517.837587-2-luciano.coelho@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251009075517.837587-2-luciano.coelho@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,78 +73,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 09 Oct 2025, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Thu, Oct 09, 2025 at 03:08:28PM +0200, Andi Shyti wrote:
->> On Wed, Oct 08, 2025 at 05:34:39PM -0400, Rodrigo Vivi wrote:
->> > On Wed, Oct 08, 2025 at 10:37:13AM -0700, Matt Roper wrote:
->> > > On Wed, Oct 08, 2025 at 10:22:42AM -0700, Matt Atwood wrote:
->> > > > On Wed, Oct 08, 2025 at 09:53:34AM -0700, Matt Roper wrote:
->> > > > > On Tue, Oct 07, 2025 at 02:23:36PM -0700, Matt Atwood wrote:
->> > > > > > reg_in_range_table is a useful function that is used in multiple places,
->> > > > > > and will be needed for WA_BB implementation later.
->> > > > > > 
->> > > > > > Let's move this function and i915_range struct to its own file, as we are
->> > > > > > trying to move away from i915_utils files.
->> > > > > 
->> > > > > It looks like this is a new revision of this patch from a couple years
->> > > > > ago, right?
->> > > > > 
->> > > > >         https://lore.kernel.org/all/20231129205122.3464299-1-matthew.s.atwood@intel.com/
->> > > > > 
->> > > > > Even though it's been a long time, it would still be a good idea to
->> > > > > include a patch changelog so that it's clear what's been changed and
->> > > > > what review feedback was/wasn't incorporated.
->> > > > Sorry, I will include it if theres another version
->> > > > > 
->> > > > > I'm also wondering if we should be thinking about moving i915 to use
->> > > > > 'struct regmap_range' and existing functions like regmap_reg_in_ranges()
->> > > > > rather than maintaining our own i915-specific versions of the logic.
->> > > > > regmap in general does a bunch of other stuff that isn't relevant to
->> > > > > i915, but it seems like we might be able to re-use the type definitions
->> > > > > and basic lookups to avoid reinventing the wheel.
->> > > > This is doable but just requires a rewrite of the current implementation
->> > > > as it's not a 1:1 conversion.
->> > > 
->> > > The idea is that we'd eliminate 'struct i915_range' and related
->> > > functions and just use the regmap types and functions instead.  It looks
->> > > like the main difference is that the regmap lists are size-based, while
->> > > our lists use a sentinel to mark the end of the table.
->> > > 
->> > > Although I did just notice that even the basic types and helpers for
->> > > regmap rely on CONFIG_REGMAP, so that might be an argument against
->> > > switching over since we'd need to add an extra kconfig dependency, and
->> > > most of what it brings in isn't useful to us.  But probably more
->> > > something for Rodrigo and the other maintainers to weigh in on.
->> > 
->> > Cc: all other maintainers.
->> > 
->> > I could easily be convinced either way.
->> > 
->> > I like the idea of reusing something existing and this helper and struct
->> > does fit to our needs.
->> > I don't mind having to include another config dependency here.
->> > The part that is not good is to bring a lot more than we need :/
->> > 
->> > Perhaps the really right thing to do there would be to split regmap
->> > into a generic map part and the support to the other different bus stuff.
->> > Then we start using the generic part.
->> 
->> It's true that they are similar (regmap_reg_in_ranges() is
->> basically a copy paste), but regmap and mmio are two different
->> things (although conceptually similar in some cases). Working to
->> expose regmap_range so that we can use it as mmio_range looks to
->> me a bit of an overkill.
->
-> fair enough. Let's go then with this i915-only approach here, but
-> renaming the functions and structs.
+On Thu, Oct 09, 2025 at 10:54:32AM +0300, Luca Coelho wrote:
+> Some of the ops in struct intel_wm_funcs are used only for legacy
+> watermark management, while others are only for SKL+ or both.  Clarify
+> that in the struct definition.
 
-Agreed.
+We have (roughly) three vintages of wm stuff right now.
 
-I'll note that there's also include/linux/range.h, which could be
-expanded to our use case, but it deals with u64 offsets.
+pre-g4x without proper atomic watermark code currently
+(though I do have it in a branch somewhere...):
+- .compute_watermarks() 
+   doesn't really do what it says on the tin here, but I just
+   needed a place to hide the ugliness from higher level code
+- .update_wm()
 
-BR,
-Jani.
+g4x/vlv/chv/ilk+ (hw with single buffered wm registers)
+ .compute_watermarks()
+ .initial_watermarks()
+ .optimize_watermarks()
+ .atomic_update_watermarks()
+ .get_hw_state()
+ .sanitize()
+
+skl+ (hw with double buffered wm registers)
+ .compute_global_watermarks()
+ .get_hw_state()
+ .sanitize()
+
+Most of the differences between the three are more
+accidental than intentional, and should be unified.
+
+I think if we managed to clean this up properly then
+we would be left with this:
+ .compute()
+ .sanitize()
+ .get_hw_state()
+ .initial_watermarks() (pre-skl only)
+ .optimize_watermarks() (pre-skl only)
+ .atomic_update_watermarks() (pre-skl only)
+
+Getting there would be mostly a matter of figuring out the right
+order to do things in intel_atomic_check().
+
+> 
+> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_core.h | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+> index df4da52cbdb3..7144b61fb1ff 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+> @@ -78,7 +78,7 @@ struct intel_display_funcs {
+>  
+>  /* functions used for watermark calcs for display. */
+>  struct intel_wm_funcs {
+> -	/* update_wm is for legacy wm management */
+> +	/* these are only for legacy wm management */
+>  	void (*update_wm)(struct intel_display *display);
+>  	int (*compute_watermarks)(struct intel_atomic_state *state,
+>  				  struct intel_crtc *crtc);
+> @@ -88,8 +88,12 @@ struct intel_wm_funcs {
+>  					 struct intel_crtc *crtc);
+>  	void (*optimize_watermarks)(struct intel_atomic_state *state,
+>  				    struct intel_crtc *crtc);
+> +
+> +	/* these are for SKL+ wm management */
+>  	int (*compute_global_watermarks)(struct intel_atomic_state *state);
+>  	void (*get_hw_state)(struct intel_display *display);
+> +
+> +	/* this is used by both legacy and SKL+ */
+>  	void (*sanitize)(struct intel_display *display);
+>  };
+>  
+> -- 
+> 2.51.0
 
 -- 
-Jani Nikula, Intel
+Ville Syrjälä
+Intel
