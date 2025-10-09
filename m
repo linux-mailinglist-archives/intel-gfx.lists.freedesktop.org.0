@@ -2,57 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4257BBC83CD
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 11:14:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 195B1BC8328
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Oct 2025 11:08:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC19410E9A0;
-	Thu,  9 Oct 2025 09:14:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1624D10E98C;
+	Thu,  9 Oct 2025 09:08:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bHs+dS2y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C9/ejS7q";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4589510E99B;
- Thu,  9 Oct 2025 09:14:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 509E810E98A;
+ Thu,  9 Oct 2025 09:08:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760001275; x=1791537275;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=24cfM/3/o8WjgwXkInWoaXRUq/STalaVRBYSOf464YU=;
- b=bHs+dS2y2AK9x+XFwur3HvD/rEEGM/RvErso+Zs2oiNCWYR7XWJgSzSH
- A3hfY5+PIj9qxYeaO7nQ2cHcEMEyEOtZEs87Yg2ZnCY0GPC9qcyGqsH/a
- STeqEd6Zco8voiZku2AhvipxAad+tlkPGXnIuiO5GIG7aJ6zQJTB6zlnf
- 9xtDNe42vXGDXrdMzHZNLaeXIzT2tPsF2Bm1TLngmUu/msKBvpHRfXzat
- 36qnjBYVgncNgr/aEkns8a8clUoRVGk9ngIFJYHxFzmV2o4qxWNNVNJ1f
- ERemxNJwms+FeBQ0aVlTse7kjAKRR6JUf7l5e5F28f1kxqP4bsNQ3e9q8 Q==;
-X-CSE-ConnectionGUID: XSyc6ocLSKaTA6kG4QlfBg==
-X-CSE-MsgGUID: A7l3GgezQB6kOwnLRwfJyA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62123504"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62123504"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2025 02:14:35 -0700
-X-CSE-ConnectionGUID: 6vUtsqfRTl2oZPDL5Zjq9g==
-X-CSE-MsgGUID: HFaU+V6FRwKjVGo0YilAig==
+ t=1760000924; x=1791536924;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=fvep23//chNCFYNAfdSyIgM69wVc23KqWs+OFcZMV3M=;
+ b=C9/ejS7qX38gnAToJq4L/zP0wb/Xk6erkdeBQhvj3wyPYt4Pb6hcPKXg
+ /WB/j9uoK5ZoSJB1IxYGUpRL2t5TSjP4semYui7/4g10C9tLcbkKKuD5F
+ HzDx1pX5VcghqEkrxvJqjVMOt8hw6BfZIsEcXlDP3x20R2DqBMduhH8Vp
+ +qGc8GSS2BXTKNJE4mbrY/2BMWv97uJlbGP+Mayaejypyw3hKu2OMQ8Ud
+ xyRgrDoBlshmeffqwo3cItPUaLxrf/FpBRRN19IBsP8C5dyhxpQlg51ij
+ lFHhCUvV38zX2AkbnmClW3qULli80QkH6OQ7191W//Rp0PRRZpd8z4+Al w==;
+X-CSE-ConnectionGUID: LOFPpNZ9SjOl98MisUfyrQ==
+X-CSE-MsgGUID: k0JM+q4+R8ujF3orJkgIBw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="87665405"
+X-IronPort-AV: E=Sophos;i="6.19,215,1754982000"; d="scan'208";a="87665405"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2025 02:08:44 -0700
+X-CSE-ConnectionGUID: R9f6YEemRR2+qcwBj/C+NQ==
+X-CSE-MsgGUID: KkKt9yUnTLelgy75V39/Ig==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,215,1754982000"; d="scan'208";a="179918089"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2025 02:14:33 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 8/8] drm/i915/display: Prepare for vblank_delay for LRR
-Date: Thu,  9 Oct 2025 14:31:02 +0530
-Message-ID: <20251009090102.850344-9-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20251009090102.850344-1-ankit.k.nautiyal@intel.com>
-References: <20251009090102.850344-1-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,215,1754982000"; d="scan'208";a="184927120"
+Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.113])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2025 02:08:39 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: =?utf-8?B?6rmA6rCV66+8?= <km.kim1503@gmail.com>, Andi Shyti
+ <andi.shyti@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, rodrigo.vivi@intel.com,
+ tursulin@ursulin.net, airlied@gmail.com, simona@ffwll.ch,
+ ville.syrjala@linux.intel.com, nitin.r.gote@intel.com,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ syzkaller@googlegroups.com
+Subject: Re: BUG: unable to handle kernel NULL pointer dereference in
+ eb_release_vmas
+In-Reply-To: <CAGfirfdACPUrW7hxOKXEpaPZ6=Lkwde24CfHov9=75JhXiPApg@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <CAGfirffPy5biFVLtSNEW60UCXa6_=-=NrQbU7iLQ8+BXnFQ=1A@mail.gmail.com>
+ <175922381867.30706.10351894191632562572@jlahtine-mobl>
+ <CAGfirfdDe879wFzABVZkTV7grEimpnc0XrrKpj2SX1w_TLtgNg@mail.gmail.com>
+ <aN0X3ck-egLMn_Xy@ashyti-mobl2.lan>
+ <CAGfirffg4JzGkwaKTm9fL9Nyud4kBALvfW3Et33ZF60e8cVO1g@mail.gmail.com>
+ <CAGfirfdACPUrW7hxOKXEpaPZ6=Lkwde24CfHov9=75JhXiPApg@mail.gmail.com>
+Date: Thu, 09 Oct 2025 12:08:36 +0300
+Message-ID: <27ca005b5505e66cb51bb4917a71ef44b0afc7c0@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,36 +81,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Update allow_vblank_delay_fastset() to permit vblank delay adjustments
-during with LRR when VRR TG is always active.
+On Tue, 07 Oct 2025, =EA=B9=80=EA=B0=95=EB=AF=BC <km.kim1503@gmail.com> wro=
+te:
+> https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15062
+> <https://l.mailtrack.com/l/a23538b60e872501ef9881ddb3a7e5ffc2cbce55?u=3D1=
+2392148>
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+Please do not send HTML messages in general, and especially not with
+tracking links.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index cd499e58bed3..1426218c01d2 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4958,9 +4958,15 @@ static bool allow_vblank_delay_fastset(const struct intel_crtc_state *old_crtc_s
- 	 * Allow fastboot to fix up vblank delay (handled via LRR
- 	 * codepaths), a bit dodgy as the registers aren't
- 	 * double buffered but seems to be working more or less...
-+	 *
-+	 * Also allow this when the VRR timing generator is always on,
-+	 * and optimized guardband is used. In such cases,
-+	 * vblank delay may vary even without inherited state, but it's
-+	 * still safe as VRR guardband is still same.
- 	 */
--	return HAS_LRR(display) && old_crtc_state->inherited &&
--		!intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DSI);
-+	return HAS_LRR(display) &&
-+	       (old_crtc_state->inherited || intel_vrr_always_use_vrr_tg(display)) &&
-+	       !intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DSI);
- }
- 
- bool
--- 
-2.45.2
 
+Thanks,
+Jani.
+
+
+--=20
+Jani Nikula, Intel
