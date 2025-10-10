@@ -2,59 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B12FFBCD5E3
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Oct 2025 15:57:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ADA1BCD60B
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Oct 2025 16:01:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00DD310EC0A;
-	Fri, 10 Oct 2025 13:57:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 164D510EC0B;
+	Fri, 10 Oct 2025 14:01:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m2erk5e6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="amfTeXfA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F5F410E0BA;
- Fri, 10 Oct 2025 13:57:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74EFC10E0BA;
+ Fri, 10 Oct 2025 14:01:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760104630; x=1791640630;
+ t=1760104866; x=1791640866;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=TD2/JgrHoAePyoGFCe2/z+jIe+ciYNmfVfugR/cZgyk=;
- b=m2erk5e6BzxcbRAm8ps5jKqDVxFwMttcvzJZUe/O5ZeVdVTBwCHGwZIh
- Vr8wORqH5Bunzg7V7ANcdHfufXyRKKy00GVbvGNiNhn7Z6wkuSBSj68HN
- Rezl21+zXJZGII8uMvghgmewsuTd6qv7wokspdDvr6GIJjrPtkT+Q4aAi
- Q22peuiRuuaWdYx2O/s9uCepPKYqqDgK+u5gsMAWji/dESRr+jZdCn8Tv
- 9BSC+X8myzl2fMp+wTWjpnRV0dJpi+/MxlYgFkwL1KLWsU7IXmhQ4aDwn
- RzfVV330RjE0pmZd8N19aSKHm+lxN8ijlFG4zkSAHy345x76YSYfv3V0S g==;
-X-CSE-ConnectionGUID: ijLbyhPnRMa6en3OvPqIKQ==
-X-CSE-MsgGUID: SMQeMBDoTEOfKNiBwm9jMg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11578"; a="62026631"
-X-IronPort-AV: E=Sophos;i="6.19,219,1754982000"; d="scan'208";a="62026631"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2025 06:57:10 -0700
-X-CSE-ConnectionGUID: etHN8UWvTk6aZ9E+7NtFGw==
-X-CSE-MsgGUID: LLAdSWPDSWWfEL4uK2ODAw==
+ bh=FCNZ4OZw9pCj0KMOljeb6PI4QXveLlJcb42lbqFqwwg=;
+ b=amfTeXfATjBTru2j0iPi7wJpHN479qmBkoidapI5JMe+NMSy/hYleLB+
+ nqiNUqXU+gNqZlRflo/LfzpQgb+5TghyxNkuo6c8nkL65bYNGeBDPc/+0
+ bUqnQMmUqigrT6VY0FB9FQd2WjzmqiCpT7xEsNWbHb2hG5zP3rFgw/2Jx
+ hexsmglz7K8W6Y+iYnJQ5kvPjY0hA9fmVMHD6LlCrLYi+IzAcyXXaaQ1L
+ OAumFCAqhiXDXWmp8MPs5m8PDHUbhjJpZjUFaeJ5zXp9IVsOeA+Bqcnth
+ W7uFcP/lWJaPWeB4dZ/JqpKCCd3yh0uwffFnzgear/+2WwDDVW7R7bIrB g==;
+X-CSE-ConnectionGUID: svgnsUImQ8CyQGxLno49XA==
+X-CSE-MsgGUID: C8kPuSPnQCu6czGWCw16lQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62242791"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62242791"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2025 07:01:05 -0700
+X-CSE-ConnectionGUID: Y2ml8esSTL6z2BJbVJ1YuQ==
+X-CSE-MsgGUID: FdbofpaiTVS45CE+CdpW7Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,219,1754982000"; d="scan'208";a="211635086"
+X-IronPort-AV: E=Sophos;i="6.19,219,1754982000"; d="scan'208";a="180236435"
 Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
  ([10.245.245.174])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2025 06:57:08 -0700
-Date: Fri, 10 Oct 2025 16:57:05 +0300
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2025 07:01:03 -0700
+Date: Fri, 10 Oct 2025 17:01:00 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 1/3] drm/i915: include gen 2 in HAS_128_BYTE_Y_TILING()
-Message-ID: <aOkQsaOGg9wiILT-@intel.com>
+Subject: Re: [PATCH 2/3] drm/i915/display: duplicate 128-byte Y-tiling
+ feature check
+Message-ID: <aOkRnFsaCeaGW_xq@intel.com>
 References: <cover.1760094361.git.jani.nikula@intel.com>
- <41bf9d67a11f38f4ab0f82740f38d5c8fe0bb58b.1760094361.git.jani.nikula@intel.com>
+ <2a7877f8f1d11114c1a17869bd24d83e13b1fac2.1760094361.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <41bf9d67a11f38f4ab0f82740f38d5c8fe0bb58b.1760094361.git.jani.nikula@intel.com>
+In-Reply-To: <2a7877f8f1d11114c1a17869bd24d83e13b1fac2.1760094361.git.jani.nikula@intel.com>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -72,73 +73,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 10, 2025 at 02:07:51PM +0300, Jani Nikula wrote:
-> Gen 2 platforms actually have 128-byte Y-tile, it's just different from
-> the 128-byte Y-tile on i945+. Make the HAS_128_BYTE_Y_TILING() feature
-> check macro and its usage slightly less convoluted by including gen 2 in
-> it.
+On Fri, Oct 10, 2025 at 02:07:52PM +0300, Jani Nikula wrote:
+> We should try to get rid of checks that depend on struct
+> drm_i915_private (or struct xe_device) in display
+> code. HAS_128_BYTE_Y_TILING() is one of them. In the interest of
+> simplicity, just duplicate the check as HAS_128B_Y_TILING() in display.
 > 
-> i915_tiling_ok() would strictly not need changing, but separate the if
-> clauses to emphasize gen 2 X-tile also being 128 bytes.
+> v2: gen2 also has 128-byte Y-tile
 > 
-> Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-
-I think I want to redo the gem side tile size stuff with a
-bigger hammer a bit at some point, but this seems fine 
-for now.
-
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
 > ---
->  drivers/gpu/drm/i915/display/intel_fb.c    | 2 +-
->  drivers/gpu/drm/i915/gem/i915_gem_tiling.c | 5 +++--
->  drivers/gpu/drm/i915/i915_drv.h            | 3 +--
->  3 files changed, 5 insertions(+), 5 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display_device.h | 1 +
+>  drivers/gpu/drm/i915/display/intel_fb.c             | 3 +--
+>  drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h   | 1 -
+>  3 files changed, 2 insertions(+), 3 deletions(-)
 > 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+> index 0e062753cf9b..9960ac13a6dd 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+> @@ -142,6 +142,7 @@ struct intel_display_platforms {
+>  	func(overlay_needs_physical); \
+>  	func(supports_tv);
+>  
+> +#define HAS_128B_Y_TILING(__display)	(!(__display)->platform.i915g && !(__display)->platform.i915gm)
+>  #define HAS_4TILE(__display)		((__display)->platform.dg2 || DISPLAY_VER(__display) >= 14)
+>  #define HAS_ASYNC_FLIPS(__display)	(DISPLAY_VER(__display) >= 5)
+>  #define HAS_AS_SDP(__display)		(DISPLAY_VER(__display) >= 13)
 > diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-> index 99823ef42ef1..3bfd211d64ba 100644
+> index 3bfd211d64ba..7388791dfde0 100644
 > --- a/drivers/gpu/drm/i915/display/intel_fb.c
 > +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> @@ -814,7 +814,7 @@ intel_tile_width_bytes(const struct drm_framebuffer *fb, int color_plane)
+> @@ -777,7 +777,6 @@ unsigned int
+>  intel_tile_width_bytes(const struct drm_framebuffer *fb, int color_plane)
+>  {
+>  	struct intel_display *display = to_intel_display(fb->dev);
+> -	struct drm_i915_private *i915 = to_i915(display->drm);
+>  	unsigned int cpp = fb->format->cpp[color_plane];
+>  
+>  	switch (fb->modifier) {
+> @@ -814,7 +813,7 @@ intel_tile_width_bytes(const struct drm_framebuffer *fb, int color_plane)
 >  			return 64;
 >  		fallthrough;
 >  	case I915_FORMAT_MOD_Y_TILED:
-> -		if (DISPLAY_VER(display) == 2 || HAS_128_BYTE_Y_TILING(i915))
-> +		if (HAS_128_BYTE_Y_TILING(i915))
+> -		if (HAS_128_BYTE_Y_TILING(i915))
+> +		if (HAS_128B_Y_TILING(display))
 >  			return 128;
 >  		else
 >  			return 512;
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_tiling.c b/drivers/gpu/drm/i915/gem/i915_gem_tiling.c
-> index 5a296ba3758a..567b97d28d30 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_tiling.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_tiling.c
-> @@ -145,8 +145,9 @@ i915_tiling_ok(struct drm_i915_gem_object *obj,
->  			return false;
->  	}
+
+I suppose we could just assume 128 byte Y-tile in the display
+code since Y-tiled scanout wasn't even a thing before skl.
+Ie. the else branch here should be dead code in reality.
+
+But this isn't incorrect, so
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+> index b8269391bc69..be3edf20de22 100644
+> --- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+> +++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+> @@ -36,6 +36,5 @@ static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
+>  #define IS_MOBILE(xe) (xe && 0)
 >  
-> -	if (GRAPHICS_VER(i915) == 2 ||
-> -	    (tiling == I915_TILING_Y && HAS_128_BYTE_Y_TILING(i915)))
-> +	if (tiling == I915_TILING_Y && HAS_128_BYTE_Y_TILING(i915))
-> +		tile_width = 128;
-> +	else if (GRAPHICS_VER(i915) == 2)
->  		tile_width = 128;
->  	else
->  		tile_width = 512;
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 6e159bb8ad2f..4b66e5d017d9 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -602,8 +602,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->  /* With the 945 and later, Y tiling got adjusted so that it was 32 128-byte
->   * rows, which changed the alignment requirements and fence programming.
->   */
-> -#define HAS_128_BYTE_Y_TILING(i915) (GRAPHICS_VER(i915) != 2 && \
-> -					 !(IS_I915G(i915) || IS_I915GM(i915)))
-> +#define HAS_128_BYTE_Y_TILING(i915) (!IS_I915G(i915) && !IS_I915GM(i915))
+>  #define HAS_FLAT_CCS(xe) (xe_device_has_flat_ccs(xe))
+> -#define HAS_128_BYTE_Y_TILING(xe) (xe || 1)
 >  
->  #define HAS_RC6(i915)		 (INTEL_INFO(i915)->has_rc6)
->  #define HAS_RC6p(i915)		 (INTEL_INFO(i915)->has_rc6p)
+>  #endif
 > -- 
 > 2.47.3
 
