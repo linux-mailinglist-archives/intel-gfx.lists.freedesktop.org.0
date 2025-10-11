@@ -2,65 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3B5ABD5DDC
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Oct 2025 21:04:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 581C9BD5DCA
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Oct 2025 21:04:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6971810E4EE;
-	Mon, 13 Oct 2025 19:04:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E945510E4E9;
+	Mon, 13 Oct 2025 19:04:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="a12PGG6d";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="TkMkbUJx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com
- [209.85.221.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0287810E2FF
- for <intel-gfx@lists.freedesktop.org>; Sat, 11 Oct 2025 12:35:52 +0000 (UTC)
-Received: by mail-wr1-f49.google.com with SMTP id
- ffacd0b85a97d-3ee13baf2e1so2145126f8f.3
- for <intel-gfx@lists.freedesktop.org>; Sat, 11 Oct 2025 05:35:52 -0700 (PDT)
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
+ [209.85.128.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DD4B10E070
+ for <intel-gfx@lists.freedesktop.org>; Sat, 11 Oct 2025 12:49:27 +0000 (UTC)
+Received: by mail-wm1-f54.google.com with SMTP id
+ 5b1f17b1804b1-46e6674caa5so14717385e9.0
+ for <intel-gfx@lists.freedesktop.org>; Sat, 11 Oct 2025 05:49:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1760186151; x=1760790951; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1760186966; x=1760791766; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=TXJ/rrc4+RhJtlKX2UPvq0ayC/JQyR8aJQz5j72SzFc=;
- b=a12PGG6dbtnQbPrsyzxJVfQqVeFBFvjLKAZoT3L9HmXkpzx2mWWpo2YjjDAGjZO95B
- 3iF4AKXGipL4pcpg6hIoqX/utRGWuVL90xTcs9QPXw/8UKG4cZB2ruYTEvgE0kY8/rZo
- iaptgKsXmwB5gRBWJdHmOIpt2yx6/40URTQYgUdEySgkvSBCVKi3DpasxAM9GZ3hT5wN
- /Ap9WtLEZ1PT+g5kKGtbdxtGhTqmref32SNJ3UHiXUgBcVcySIGvA0CQV5ahaaiEAJpP
- vXp+mQBphDJzvz0CKdlyk1ueWl4L/0kkoQTU+TY/s6HeWjgbFv7MM7Muhtm+XeabYgA0
- BR9w==
+ bh=XyfGQY2LePMu13FoufhKbLjnwELjszWS2B5wGZ1sKQw=;
+ b=TkMkbUJxSp7o9xZoHhSPpfdXQL2x37FusLzUFcf78SuwcCkNMgjzFo0AuTJM1vp9Tt
+ yX577UtHqMR56Rsc2XrIQT3/zrDOgZUJSRTRoUDYokIBMw9p4ZSL+Wun44syD5NyoVFZ
+ cip/FN7ueJsXNaZIHe9UwaCD5AaqZerll6UAvrH/3cGN6A1KNUJyQO8oqLSC3Hl8KXGT
+ cTpVRfHqNxdSIt7VB6zQrwPh7qrgykFI2pLGflitwSvPFR/WYKNQKu0euZ6lD7g3YM/p
+ lnzaFqeDpAc14dWsuln9gDOgakmdaol+a4NSu0t0H3E9Ou102r96xxmZ8OF6QN2h0WtV
+ PPcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1760186151; x=1760790951;
+ d=1e100.net; s=20230601; t=1760186966; x=1760791766;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=TXJ/rrc4+RhJtlKX2UPvq0ayC/JQyR8aJQz5j72SzFc=;
- b=byXr2MEg1iyVD75cyxE1vcBKELbtURP0pKeOGMemF3kIRJuVUMyQCKf2Z6sFfxea0Y
- jrD5bEKifLW9uTZd9j62D5eyXp+tRXemmXNRiq3EKyMENg23CAwwkgX3sd+CfVRQGDDj
- CEoHI7HKS4X3kpluyy8XRhjzqwKdDoMk7/oZhTFLyTrcQV82jTvp+c5kygwE9EO1qYvw
- oCKU20kOeGru0O3RmwCqQtyf9sS3FwDZZJWMSDsQ6ww7AywHWQCWm3NL8/4h3Vk0q5nM
- XQYRdPnV2yQI3AwboYNSN125XictTNNEIHTCaGb1gp/E2vW71tF/H7kCTk3DB98JMthA
- +Ufg==
+ bh=XyfGQY2LePMu13FoufhKbLjnwELjszWS2B5wGZ1sKQw=;
+ b=X5RdwSMl8nuACvqtr8rjKlkJGpw4S1d9oXxvRXtyHC5bnQtSdamWNnmwfUOQ2oU4C7
+ +X0u5WJmEGh482q2tVwcZKsIUTaH/5DDfCf3QroEEZZYOoXFFKADm4XEJgzEEqtthOI1
+ fbU4kz3+H0N9WoUi5nL8jwiB/N472IqZWqfc1jJEhuowtOtHfx7VV7yHiZYRTCMOojFO
+ tSMLlTz/pc+TRr+NTH/et0lrRLpIGpP/gaBweDddgljFb7oCUvzvaOwozxMnVsG82GEk
+ Yjczz3VuMw9lYBQwSiAxn+3bi3VgRnp85whQOCmwQyNNGAEweyFd8FCiY7MZf3lawuyJ
+ ManQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCU6RfVQvcI5EqM24z1ljebpyP81DeGk26wppziBrKVOW5Dd/fiBTn/t75vjxFcEtXwo8djmglvdvZk=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw/GYnSYJxWIElElU3l9vFfNRmujJAdaYunHSQopEQ/7dxKJCem
- SKeza8aNG9USRgBVa9IoHHvSpskQ9ZHmpBIzFJ5lz4/WXaVGHFCkj6IY
-X-Gm-Gg: ASbGnctLiMAjXgUCuaBUybJmjnH+6UcEWHMH3GJV5ZZMBr0+8speHEQHT0ZVvj7A23m
- bM03XOY50Xlo1IIaYP+wvRKrrWcdQdSPJERSUnuMWT0bb8+K0q0zfki+2R4zifG18QQMyjQWvpz
- /kz77F0iBbKfdxpuvCLdgTESWrHqAZyZtzC1QHiXgD8VOYVpRMRWsU6AyEFjnMGwmFFHz68v1uq
- /6la9H8woUO9cYsGZvjHOzY2lSGjhXSagspvp4qExDVND+gngqiKcJjUSOHW9W92KmavHaaN7Ul
- LsF6fjtJstq8tLH2HcaJwHgpAX4xeeBgQHbmAnVyEU+wwzKhCABkHIzZeLD8dM8N2vYXQ8DWqtR
- mOonywAnkWnh+48JH73VtUHGoeOsUjFP3TERr2w==
-X-Google-Smtp-Source: AGHT+IH8v/8zN3M8MFKs+aG72hohzFADI1wO2qjJoIkA1tRBIb/oYeOdd//w9yxZpvU4cs7Qn7ow9g==
-X-Received: by 2002:a05:6000:1886:b0:425:852e:ceb2 with SMTP id
- ffacd0b85a97d-4266e7d4490mr9890801f8f.31.1760186151229; 
- Sat, 11 Oct 2025 05:35:51 -0700 (PDT)
+ AJvYcCVWwhDrz3s7YzqX6of+BR+AXCaT4JiR0HLXBOPOJR2q5ANaEcj7uK4ckDCAmdm+qvfRZTERbQiKS5o=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxAPaYZHJECUlGEuPcTp56DdhiBVWgH/3UKdsf80sFL2UOsbgS5
+ H6yZhCjIaVFib2xYR3mA8sqSvXAC/8cQ4xe05UiTXmfRzdArxByajpjt
+X-Gm-Gg: ASbGnctY9/1afBmexi+qXqQ0HQ2eUf6POni8s9DrVuM/tR3AQlNSFoDQ/YTupJqPe+t
+ BQ2BwJ3GXsN5adVn4MeB0A3MEMGQGE+8Jf2r3QXHSP9lbaBSkaoBR5CC0QjFS3ZqZFlEwXkYb0n
+ HYjDLSbLXkZfCQS4Ndx4r6UB1Q50QAQIaZ/bqRPZ1z55MwbBb33VhO8bNKtPrt/04s4Iih3TXz2
+ Pfnx7AvqsOybBURHI2uj0RydewtvKAbFUVi4UNM14JTg9vP/gMxx0YeP14m2no5CA5ZwClhuv7l
+ nprYC07y37puUZ2E5UxK7EG0omhPJcXI+n0tiPqGzUPgMKy9but7IwCuNZ787qARWbyt1MT/y1W
+ VdcGwizuruFyWKF2m0PfwoVfNuwxsRUnMdGYweBEvn+8CifIK
+X-Google-Smtp-Source: AGHT+IGOL/iGOOiJ0W1rg32u+UUi5UBjVVyHo3vcBAdJR9e/rc/aSoT32KkemcPLLP9ISEkRMT06zA==
+X-Received: by 2002:a05:600c:2287:b0:45d:d86b:b386 with SMTP id
+ 5b1f17b1804b1-46fa29f13dfmr99087265e9.14.1760186965844; 
+ Sat, 11 Oct 2025 05:49:25 -0700 (PDT)
 Received: from localhost ([212.73.77.104]) by smtp.gmail.com with UTF8SMTPSA id
- 5b1f17b1804b1-46fb482b99fsm94411555e9.3.2025.10.11.05.35.49
+ ffacd0b85a97d-426ce57d49bsm9156274f8f.10.2025.10.11.05.49.24
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 11 Oct 2025 05:35:50 -0700 (PDT)
+ Sat, 11 Oct 2025 05:49:25 -0700 (PDT)
 From: Askar Safin <safinaskar@gmail.com>
 To: ville.syrjala@linux.intel.com
 Cc: alex.zuo@intel.com, chris.p.wilson@linux.intel.com,
@@ -68,13 +68,12 @@ Cc: alex.zuo@intel.com, chris.p.wilson@linux.intel.com,
  shuicheng.lin@intel.com
 Subject: Re: [PATCH v2] drm/i915: Setting/clearing the memory access bit when
  en/disabling i915
-Date: Sat, 11 Oct 2025 15:35:43 +0300
-Message-ID: <20251011123546.3085-1-safinaskar@gmail.com>
+Date: Sat, 11 Oct 2025 15:49:19 +0300
+Message-ID: <20251011124920.2857-1-safinaskar@gmail.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <aOaOJ1YI-NgTloIy@intel.com>
 References: <aOaOJ1YI-NgTloIy@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 13 Oct 2025 19:04:11 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -92,18 +91,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-"Ville Syrjälä" <ville.syrjala@linux.intel.com>:
-> I was asking you whether that invalid access was caused by that
-> pxp stuff or not?
-
-I just tested patch, which adds intel_pxp_fini(i915) to
-i915_driver_shutdown and does nothing else.
-
-The bug was not fixed.
-
-Also, do you have machines for testing, except for my laptop? :)
-
-Anyway, if you want me to test something, just ask.
+Also, I just tested opposite thing. I. e. I tested v2 patch, but without
+intel_pxp_fini(i915) line. And the patch worked.
+I. e. intel_pxp_fini(i915) line is not needed for fix to work.
 
 -- 
 Askar Safin
