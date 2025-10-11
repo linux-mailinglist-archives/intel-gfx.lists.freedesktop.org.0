@@ -2,84 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 853EFBD5DC1
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Oct 2025 21:04:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3B5ABD5DDC
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Oct 2025 21:04:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B2E410E4E6;
-	Mon, 13 Oct 2025 19:04:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6971810E4EE;
+	Mon, 13 Oct 2025 19:04:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Mpjb1Ysk";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="a12PGG6d";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-il1-f170.google.com (mail-il1-f170.google.com
- [209.85.166.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAF6C10EAED
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Oct 2025 17:59:20 +0000 (UTC)
-Received: by mail-il1-f170.google.com with SMTP id
- e9e14a558f8ab-42f91d225c9so4295575ab.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 09 Oct 2025 10:59:20 -0700 (PDT)
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com
+ [209.85.221.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0287810E2FF
+ for <intel-gfx@lists.freedesktop.org>; Sat, 11 Oct 2025 12:35:52 +0000 (UTC)
+Received: by mail-wr1-f49.google.com with SMTP id
+ ffacd0b85a97d-3ee13baf2e1so2145126f8f.3
+ for <intel-gfx@lists.freedesktop.org>; Sat, 11 Oct 2025 05:35:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1760032760; x=1760637560; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1760186151; x=1760790951; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=/3z8Tk8lrK8AXvTeNfDXtN9XLGvTU1P/hpcdsNXRN/Q=;
- b=Mpjb1YskGp9pDgIvV6DS4y63O6kT/6clp+WUMW+4tWeDuOjQIZlgezOVUBfECP777C
- Yvh8mG2G1k/vnsaI88olP3JVF7RHEAklRCsS0+t+0lJum7Pfmj+lzs4GxfI+LrP6ckbi
- chkxvQ0wkym1YUJHk/HWjvHGKCZ6okKlmnlP4LWmKvWWaWg/juTB7vDVFT9wn+g2cmiU
- OvFKLn/pXPwpE1MWcgQRzNFIfw1AEwJQQkLVfG83xOKk6obJiEKAEgW0xcTtYa29Spz2
- tQVD9Ixlc/l8zJkTLrr8MTXyJU9dlKsDgcm1qJ4c/ESgSl+jC8GKRX1CHSaYJMC63flR
- JmQQ==
+ bh=TXJ/rrc4+RhJtlKX2UPvq0ayC/JQyR8aJQz5j72SzFc=;
+ b=a12PGG6dbtnQbPrsyzxJVfQqVeFBFvjLKAZoT3L9HmXkpzx2mWWpo2YjjDAGjZO95B
+ 3iF4AKXGipL4pcpg6hIoqX/utRGWuVL90xTcs9QPXw/8UKG4cZB2ruYTEvgE0kY8/rZo
+ iaptgKsXmwB5gRBWJdHmOIpt2yx6/40URTQYgUdEySgkvSBCVKi3DpasxAM9GZ3hT5wN
+ /Ap9WtLEZ1PT+g5kKGtbdxtGhTqmref32SNJ3UHiXUgBcVcySIGvA0CQV5ahaaiEAJpP
+ vXp+mQBphDJzvz0CKdlyk1ueWl4L/0kkoQTU+TY/s6HeWjgbFv7MM7Muhtm+XeabYgA0
+ BR9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1760032760; x=1760637560;
+ d=1e100.net; s=20230601; t=1760186151; x=1760790951;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=/3z8Tk8lrK8AXvTeNfDXtN9XLGvTU1P/hpcdsNXRN/Q=;
- b=WzZpaZ/olok/+Xfm4eskZSSGqiSk13+HTyvSrh8GLh251tDt/Hpw2o4QLuIBxgu8Kx
- 1ZHUXgjANMDjrVM75iKo6san7BbmiyCqi/6cQkg+kEC1hyhfmQcaHpOXpYxqHQ2AgFoh
- D5NDa23oj6qL26mcDNYZ1qf0uMrKPU/+XmUaFrcCNxt3ajqtEVf0fPsARaz5/NldZr5B
- Py0X8u8aKODy9P5GNbA1nkGUdU1D0EBsbwzs/hBgPFZorxFZhG2yoYLmfrR9CHS/L7HS
- URknus/1cb0uenVaj35wM7MCDG+ypSB2xEFKhMHGoSNF1nk94d3R+4odtPznDTH7fEQA
- sa+w==
+ bh=TXJ/rrc4+RhJtlKX2UPvq0ayC/JQyR8aJQz5j72SzFc=;
+ b=byXr2MEg1iyVD75cyxE1vcBKELbtURP0pKeOGMemF3kIRJuVUMyQCKf2Z6sFfxea0Y
+ jrD5bEKifLW9uTZd9j62D5eyXp+tRXemmXNRiq3EKyMENg23CAwwkgX3sd+CfVRQGDDj
+ CEoHI7HKS4X3kpluyy8XRhjzqwKdDoMk7/oZhTFLyTrcQV82jTvp+c5kygwE9EO1qYvw
+ oCKU20kOeGru0O3RmwCqQtyf9sS3FwDZZJWMSDsQ6ww7AywHWQCWm3NL8/4h3Vk0q5nM
+ XQYRdPnV2yQI3AwboYNSN125XictTNNEIHTCaGb1gp/E2vW71tF/H7kCTk3DB98JMthA
+ +Ufg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXTfYZ64W5adCX3oyJLKdwHvDWZlBSWIdvdMMP3gNLATBys03UNDpwNhhPZVViL3tahXGKG/Fx9eGA=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwZDBb3D40jaBiRG2+mG60RqN7ZO4PzRbYOVhbgjSPDYnGj1gdk
- /kben3qbNvjCkhitrCgFNrgXhRKH2X/5wD9NZM3CnUw7T3YkNmcJVL/3
-X-Gm-Gg: ASbGnctWdBQ6lnNO5LrwJDcgK5T3el2JyEVXTywn5l0o/mLBzCyEF3EoaAllQPWeVZs
- GnJoyxcnJ1HJeAh16YgrIQdzrDkgZCY+EJndBGoNnHNGM+TFjf+sHg/sYXQK8BNLmqNKPa6pw9C
- LYiW+Ik7wYjbnoq0sh/vjwBlMUH86+M3EV/exzMOgH9idfxiIdnALzxocu8enQDvaHjFe71vLGN
- nNIrm327hbB3cWrAN4ua1sLdKzfli+IXptZvyNtI4KZnCYRlg4bSDnha90KntH7/aW9J+5s2NK2
- 929xTRUE26Ox9aTlvlhGXP7A/rgIWd+6xfvsaiHIWIdG6cMdLSUpkw1griDId3GO+T4jEMchi+3
- oTv3QTTY8ZRLFSMVjIijWTI2AXtq9PXwBdEDTkEaMajc46v3YP4mAp8TJVtzAvRQo+LHNORgzZl
- xDeBXAmgP+SNBXm0ARc1/trOEdttY=
-X-Google-Smtp-Source: AGHT+IFR+shW7+C0q+f1Fmrt23B3YTQHyjOfr3zpgzC23vGg6C8CMdPg7iTrZ94nDfkkiwmOyi5W4Q==
-X-Received: by 2002:a05:6e02:4405:20b0:42f:9888:48f1 with SMTP id
- e9e14a558f8ab-42f98884980mr10397445ab.1.1760032759717; 
- Thu, 09 Oct 2025 10:59:19 -0700 (PDT)
-Received: from godzilla.raven-morpho.ts.net
- (c-98-38-17-99.hsd1.co.comcast.net. [98.38.17.99])
- by smtp.googlemail.com with ESMTPSA id
- 8926c6da1cb9f-58f7200c4afsm30256173.35.2025.10.09.10.59.18
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 09 Oct 2025 10:59:19 -0700 (PDT)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: jbaron@akamai.com
-Cc: gregkh@linuxfoundation.org, ukaszb@chromium.org, louis.chauvet@bootlin.com,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, daniel.vetter@ffwll.ch,
- tvrtko.ursulin@linux.intel.com, jani.nikula@intel.com,
- ville.syrjala@linux.intel.com, Jim Cromie <jim.cromie@gmail.com>,
- linux-doc@vger.kernel.org
-Subject: [PATCH v5 30/30] docs/dyndbg: add classmap info to howto
-Date: Thu,  9 Oct 2025 11:58:34 -0600
-Message-ID: <20251009175834.1024308-31-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251009175834.1024308-1-jim.cromie@gmail.com>
-References: <20251009175834.1024308-1-jim.cromie@gmail.com>
+ AJvYcCU6RfVQvcI5EqM24z1ljebpyP81DeGk26wppziBrKVOW5Dd/fiBTn/t75vjxFcEtXwo8djmglvdvZk=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw/GYnSYJxWIElElU3l9vFfNRmujJAdaYunHSQopEQ/7dxKJCem
+ SKeza8aNG9USRgBVa9IoHHvSpskQ9ZHmpBIzFJ5lz4/WXaVGHFCkj6IY
+X-Gm-Gg: ASbGnctLiMAjXgUCuaBUybJmjnH+6UcEWHMH3GJV5ZZMBr0+8speHEQHT0ZVvj7A23m
+ bM03XOY50Xlo1IIaYP+wvRKrrWcdQdSPJERSUnuMWT0bb8+K0q0zfki+2R4zifG18QQMyjQWvpz
+ /kz77F0iBbKfdxpuvCLdgTESWrHqAZyZtzC1QHiXgD8VOYVpRMRWsU6AyEFjnMGwmFFHz68v1uq
+ /6la9H8woUO9cYsGZvjHOzY2lSGjhXSagspvp4qExDVND+gngqiKcJjUSOHW9W92KmavHaaN7Ul
+ LsF6fjtJstq8tLH2HcaJwHgpAX4xeeBgQHbmAnVyEU+wwzKhCABkHIzZeLD8dM8N2vYXQ8DWqtR
+ mOonywAnkWnh+48JH73VtUHGoeOsUjFP3TERr2w==
+X-Google-Smtp-Source: AGHT+IH8v/8zN3M8MFKs+aG72hohzFADI1wO2qjJoIkA1tRBIb/oYeOdd//w9yxZpvU4cs7Qn7ow9g==
+X-Received: by 2002:a05:6000:1886:b0:425:852e:ceb2 with SMTP id
+ ffacd0b85a97d-4266e7d4490mr9890801f8f.31.1760186151229; 
+ Sat, 11 Oct 2025 05:35:51 -0700 (PDT)
+Received: from localhost ([212.73.77.104]) by smtp.gmail.com with UTF8SMTPSA id
+ 5b1f17b1804b1-46fb482b99fsm94411555e9.3.2025.10.11.05.35.49
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sat, 11 Oct 2025 05:35:50 -0700 (PDT)
+From: Askar Safin <safinaskar@gmail.com>
+To: ville.syrjala@linux.intel.com
+Cc: alex.zuo@intel.com, chris.p.wilson@linux.intel.com,
+ intel-gfx@lists.freedesktop.org, jia.yao@intel.com, piliu@redhat.com,
+ shuicheng.lin@intel.com
+Subject: Re: [PATCH v2] drm/i915: Setting/clearing the memory access bit when
+ en/disabling i915
+Date: Sat, 11 Oct 2025 15:35:43 +0300
+Message-ID: <20251011123546.3085-1-safinaskar@gmail.com>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <aOaOJ1YI-NgTloIy@intel.com>
+References: <aOaOJ1YI-NgTloIy@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 13 Oct 2025 19:04:11 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -97,199 +92,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Describe the 3 API macros providing dynamic_debug's classmaps
+"Ville Syrjälä" <ville.syrjala@linux.intel.com>:
+> I was asking you whether that invalid access was caused by that
+> pxp stuff or not?
 
-DYNAMIC_DEBUG_CLASSMAP_DEFINE - create & export a classmap
-DYNAMIC_DEBUG_CLASSMAP_USE    - refer to exported map
-DYNAMIC_DEBUG_CLASSMAP_PARAM  - bind control param to the classmap
-DYNAMIC_DEBUG_CLASSMAP_PARAM_REF + use module's storage - __drm_debug
+I just tested patch, which adds intel_pxp_fini(i915) to
+i915_driver_shutdown and does nothing else.
 
-NB: The _DEFINE & _USE model makes the user dependent on the definer,
-just like EXPORT_SYMBOL(__drm_debug) already does.
+The bug was not fixed.
 
-cc: linux-doc@vger.kernel.org
-Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
----
-v3- rework protection around PARAM
+Also, do you have machines for testing, except for my laptop? :)
 
-v0.5 adjustments per Randy Dunlap
-v0.7 checkpatch fixes
-v0.8 more
-v0.9 rewords
+Anyway, if you want me to test something, just ask.
 
-fixup-howto
----
- .../admin-guide/dynamic-debug-howto.rst       | 129 ++++++++++++++++--
- 1 file changed, 116 insertions(+), 13 deletions(-)
-
-diff --git a/Documentation/admin-guide/dynamic-debug-howto.rst b/Documentation/admin-guide/dynamic-debug-howto.rst
-index 1ceadf4f28f9..adac32a5cd23 100644
---- a/Documentation/admin-guide/dynamic-debug-howto.rst
-+++ b/Documentation/admin-guide/dynamic-debug-howto.rst
-@@ -146,7 +146,9 @@ keywords are:::
-   "1-30" is valid range but "1 - 30" is not.
- 
- 
--The meanings of each keyword are:
-+Keywords:::
-+
-+The meanings of each keyword are::
- 
- func
-     The given string is compared against the function name
-@@ -194,16 +196,6 @@ format
- 	format "nfsd: SETATTR"  // a neater way to match a format with whitespace
- 	format 'nfsd: SETATTR'  // yet another way to match a format with whitespace
- 
--class
--    The given class_name is validated against each module, which may
--    have declared a list of known class_names.  If the class_name is
--    found for a module, callsite & class matching and adjustment
--    proceeds.  Examples::
--
--	class DRM_UT_KMS	# a DRM.debug category
--	class JUNK		# silent non-match
--	// class TLD_*		# NOTICE: no wildcard in class names
--
- line
-     The given line number or range of line numbers is compared
-     against the line number of each ``pr_debug()`` callsite.  A single
-@@ -218,6 +210,24 @@ line
- 	line -1605          // the 1605 lines from line 1 to line 1605
- 	line 1600-          // all lines from line 1600 to the end of the file
- 
-+class
-+
-+    The given class_name is validated against each module, which may
-+    have declared a list of class_names it accepts.  If the class_name
-+    accepted by a module, callsite & class matching and adjustment
-+    proceeds.  Examples::
-+
-+	class DRM_UT_KMS	# a drm.debug category
-+	class JUNK		# silent non-match
-+	// class TLD_*		# NOTICE: no wildcard in class names
-+
-+.. note ::
-+
-+    Unlike other keywords, classes are "name-to-change", not
-+    "omitting-constraint-allows-change".  See Dynamic Debug Classmaps
-+
-+Flags:::
-+
- The flags specification comprises a change operation followed
- by one or more flag characters.  The change operation is one
- of the characters::
-@@ -238,11 +248,15 @@ The flags are::
-   s    Include the source file name
-   l    Include line number
- 
-+Notes:
-+
-+To query without changing	``+_`` or ``-_``.
-+To clear all flags		``=_`` or ``-fslmpt``.
-+
- For ``print_hex_dump_debug()`` and ``print_hex_dump_bytes()``, only
- the ``p`` flag has meaning, other flags are ignored.
- 
--Note the regexp ``^[-+=][fslmpt_]+$`` matches a flags specification.
--To clear all flags at once, use ``=_`` or ``-fslmpt``.
-+The regexp ``^[-+=][fslmpt_]+$`` matches a flags specification.
- 
- 
- Debug messages during Boot Process
-@@ -394,3 +408,92 @@ just a shortcut for ``print_hex_dump(KERN_DEBUG)``.
- For ``print_hex_dump_debug()``/``print_hex_dump_bytes()``, format string is
- its ``prefix_str`` argument, if it is constant string; or ``hexdump``
- in case ``prefix_str`` is built dynamically.
-+
-+Dynamic Debug Classmaps
-+=======================
-+
-+The "class" keyword selects prdbgs based on author supplied,
-+domain-oriented names.  This complements the nested-scope keywords:
-+module, file, function, line.
-+
-+The main difference from the others: classes must be named to be
-+changed.  This protects them from unintended overwrite:
-+
-+  # IOW this cannot undo any drm.debug settings
-+  :#> ddcmd -p
-+
-+This protection is needed; /sys/module/drm/parameters/debug is ABI.
-+drm.debug is authoritative when dyndbg is not used, dyndbg-under-DRM
-+is an implementation detail, and must not behave erratically, just
-+because another admin fed >control something unrelated.
-+
-+So each class must be enabled individually (no wildcards):
-+
-+  :#> ddcmd class DRM_UT_CORE +p
-+  :#> ddcmd class DRM_UT_KMS +p
-+  # or more selectively
-+  :#> ddcmd class DRM_UT_CORE module drm +p
-+
-+That makes direct >control wordy and annoying, but it is a secondary
-+interface; it is not intended to replace the ABI, just slide in
-+underneath and reimplement the guaranteed behavior.  So DRM would keep
-+using the convenient way, and be able to trust it.
-+
-+  :#> echo 0x1ff > /sys/module/drm/parameters/debug
-+
-+That said, since the sysfs/kparam is the ABI, if the author omits the
-+CLASSMAP_PARAM, theres no ABI to guard, and he probably wants a less
-+pedantic >control interface.  In this case, protection is dropped.
-+
-+Dynamic Debug Classmap API
-+==========================
-+
-+DYNAMIC_DEBUG_CLASSMAP_DEFINE(clname,type,_base,classnames) - this maps
-+classnames (a list of strings) onto class-ids consecutively, starting
-+at _base.
-+
-+DYNAMIC_DEBUG_CLASSMAP_USE(clname) & _USE_(clname,_base) - modules
-+call this to refer to the var _DEFINEd elsewhere (and exported).
-+
-+DYNAMIC_DEBUG_CLASSMAP_PARAM(clname) - creates the sysfs/kparam,
-+maps/exposes bits 0..N as class-names.
-+
-+Classmaps are opt-in: modules invoke _DEFINE or _USE to authorize
-+dyndbg to update those classes.  "class FOO" queries are validated
-+against the classes, this finds the classid to alter; classes are not
-+directly selectable by their classid.
-+
-+NB: It is an inherent API limitation (due to int class_id defn) that
-+the following are possible:
-+
-+  // these errors should be caught in review
-+  __pr_debug_cls(0, "fake DRM_UT_CORE msg");  // this works
-+  __pr_debug_cls(62, "un-known classid msg"); // this compiles, does nothing
-+
-+There are 2 types of classmaps:
-+
-+ DD_CLASS_TYPE_DISJOINT_BITS: classes are independent, like drm.debug
-+ DD_CLASS_TYPE_LEVEL_NUM: classes are relative, ordered (V3 > V2)
-+
-+DYNAMIC_DEBUG_CLASSMAP_PARAM - modelled after module_param_cb, it
-+refers to a DEFINEd classmap, and associates it to the param's
-+data-store.  This state is then applied to DEFINEr and USEr modules
-+when they're modprobed.
-+
-+The PARAM interface also enforces the DD_CLASS_TYPE_LEVEL_NUM relation
-+amongst the contained classnames; all classes are independent in the
-+control parser itself.  There is no implied meaning in names like "V4"
-+or "PL_ERROR" vs "PL_WARNING".
-+
-+Modules or module-groups (drm & drivers) can define multiple
-+classmaps, as long as they (all the classmaps) share the limited 0..62
-+per-module-group _class_id range, without overlap.
-+
-+If a module encounters a conflict between 2 classmaps its _USEing or
-+_DEFINEing, it can invoke the extended _USE_(name,_base) macro to
-+de-conflict the respective ranges.
-+
-+``#define DEBUG`` will enable all pr_debugs in scope, including any
-+class'd ones.  This won't be reflected in the PARAM readback value,
-+but the class'd pr_debug callsites can be forced off by toggling the
-+classmap-kparam all-on then all-off.
 -- 
-2.51.0
-
+Askar Safin
