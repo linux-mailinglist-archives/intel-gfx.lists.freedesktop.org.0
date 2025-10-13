@@ -2,52 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8AF3BD26BC
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Oct 2025 12:01:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0A1EBD26C5
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Oct 2025 12:01:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 108B910E419;
-	Mon, 13 Oct 2025 10:01:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E55F210E41D;
+	Mon, 13 Oct 2025 10:01:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SDAyAiNE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i+hIlB8A";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8BFD10E087;
- Mon, 13 Oct 2025 10:01:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A954510E419;
+ Mon, 13 Oct 2025 10:01:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760349688; x=1791885688;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=CoDN9qz8mLPLNzQPVY36dl2wnqbqV4zs9CgPrsfNG2g=;
- b=SDAyAiNE1upwATInxcjQyl3ktbyQV44VqcPzbZQ9MOdMOrDkd+eHvgk9
- WlDJSb+jY8Jg8EDFrFdBCY+nlR9NRU9DcEdKJ7eCrK8cx7H688zGzL9MM
- O+m/vb+1uGtPGh9WLSZLDj6dSEnS293Xx0ma21rqGqhDtMDY7RScdzzTV
- oHGEPUxPAFfcdeyiFYkwrKQs0BNtKxfq55XbnIVz/mP+HplKK7jk4sQAy
- ZL6iq7unYLOS0eP/qyzOwA2/FI3lkxB+X8+79XuIevLkz4nY8vEfihLcG
- ZVWSqLuLqwa5trlrUHhAOMTEmTA0oCz89PEhJBdZuY0PyX/2ZDmQs0zOU Q==;
-X-CSE-ConnectionGUID: 6xdfjiudR8CxO3ZDkn+0gA==
-X-CSE-MsgGUID: LdxdFiGYQ2mMMIk2+Gsvlw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11580"; a="80126160"
-X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="80126160"
+ t=1760349689; x=1791885689;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=omCRPyl09KaRVGFpZp4vuJPF4/3qUsdjmfsHzZQHT1w=;
+ b=i+hIlB8A+5/RUTr9idqF1SnZo7fTo1eTFfT4z4q2gbHn4jfoL3DPFpWl
+ CNWkDLw2xNhgLrETaYaJiCrme5c8a6kCMzALtBcqYXeXQdIca65pKJ410
+ EADPF3FZuSDmRLnpg6Yx2qnk4su+c0zEyWSY8C7Hiwu3P/HIHW82oRfre
+ or4SXGQSAuySOLdmUIVYx59cNQEPwvOZ4RDuMQOCw4S6oD3iSVh6VMwq1
+ lTcyc7oOqevbq3obD4+LGbYViQj+oYuGoHGO6jpbFswcqC6hvBogxHPnA
+ kEmRxA+8VLXD0BdNaEh4fjFG3lL9qKEEu3HUmkNaRqL7wi07RNt9w2Ibm w==;
+X-CSE-ConnectionGUID: EL1CRVgqSEyAWpvxjk2ywA==
+X-CSE-MsgGUID: Nt3N4t0ARGeDYoLikOWjTQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11580"; a="80126164"
+X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="80126164"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2025 03:01:28 -0700
-X-CSE-ConnectionGUID: chl1NhfbQo2cYkvJOpvzPA==
-X-CSE-MsgGUID: eNLg6brOQV6h2y+e4GWRMQ==
+ 13 Oct 2025 03:01:29 -0700
+X-CSE-ConnectionGUID: H6u0um6PQO+qM9Zrzb7CUg==
+X-CSE-MsgGUID: 5UNoMQrLThGhQ51VbTzyZw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="212186987"
+X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="212186992"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by orviesa002.jf.intel.com with ESMTP; 13 Oct 2025 03:01:27 -0700
+ by orviesa002.jf.intel.com with ESMTP; 13 Oct 2025 03:01:28 -0700
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH 0/7] drm/i915/display: Fix C20 PHY PLL DP/HDMI mode programming
-Date: Mon, 13 Oct 2025 12:50:38 +0300
-Message-Id: <20251013095045.3658871-1-mika.kahola@intel.com>
+Cc: Imre Deak <imre.deak@intel.com>,
+	Mika Kahola <mika.kahola@intel.com>
+Subject: [PATCH 1/7] drm/i915/display: Sanitize
+ PHY_C20_VDR_CUSTOM_SERDES_RATE/DP_RATE field macros
+Date: Mon, 13 Oct 2025 12:50:39 +0300
+Message-Id: <20251013095045.3658871-2-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20251013095045.3658871-1-mika.kahola@intel.com>
+References: <20251013095045.3658871-1-mika.kahola@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -65,35 +69,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patchset fixes the DP/HDMI mode programming for C20 PHY PLLs. While at it,
-it also adds the missing port clock HW readout for C10 PHY PLLs.
- 
- 
-These patches were originally part of the RFC PLL rework patch series [1],
-now resent separately since they include a fix, which as such should be
-tested/merged separately.
- 
-[1] https://lore.kernel.org/all/20251001082839.2585559-1-mika.kahola@intel.com
+From: Imre Deak <imre.deak@intel.com>
 
-Imre Deak (7):
-  drm/i915/display: Sanitize PHY_C20_VDR_CUSTOM_SERDES_RATE/DP_RATE
-    field macros
-  drm/i915/display: Sanitize PHY_C20_VDR_CUSTOM_SERDES_RATE/IS_DP flag
-    macro
-  drm/i915/display: Sanitize
-    PHY_C20_VDR_CUSTOM_SERDES_RATE/CONTEXT_TOGGLE flag macro
-  drm/i915/display: Sanitize PHY_C20_VDR_CUSTOM_SERDES_RATE/IS_HDMI_FRL
-    flag macro
-  drm/i915/display: Fix PHY_C20_VDR_CUSTOM_SERDES_RATE programming
-  drm/i915/display: Fix PHY_C20_VDR_HDMI_RATE programming
-  drm/i915/display: Add missing clock to C10 PHY state compute/HW
-    readout
+Rename the PHY_C20_CUSTOM_SERDES / PHY_C20_CUSTOM_SERDES_MASK register
+field names to PHY_C20_DP_RATE / PHY_C20_DP_RATE_MASK, and move the
+definitions under the actual register containing the fields.
 
- drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 43 ++++++++++++-------
- .../gpu/drm/i915/display/intel_cx0_phy_regs.h | 10 +++--
- .../drm/i915/display/intel_snps_hdmi_pll.c    |  2 +
- 3 files changed, 36 insertions(+), 19 deletions(-)
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c      | 6 +++---
+ drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h | 4 ++--
+ 2 files changed, 5 insertions(+), 5 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index a2d2cecf7121..0d83145eff41 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -2700,12 +2700,12 @@ static void intel_c20_pll_program(struct intel_display *display,
+ 	/* 5. For DP or 6. For HDMI */
+ 	if (is_dp) {
+ 		intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_SERDES_RATE,
+-			      BIT(6) | PHY_C20_CUSTOM_SERDES_MASK,
+-			      BIT(6) | PHY_C20_CUSTOM_SERDES(intel_c20_get_dp_rate(port_clock)),
++			      BIT(6) | PHY_C20_DP_RATE_MASK,
++			      BIT(6) | PHY_C20_DP_RATE(intel_c20_get_dp_rate(port_clock)),
+ 			      MB_WRITE_COMMITTED);
+ 	} else {
+ 		intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_SERDES_RATE,
+-			      BIT(7) | PHY_C20_CUSTOM_SERDES_MASK,
++			      BIT(7) | PHY_C20_DP_RATE_MASK,
+ 			      is_hdmi_frl(port_clock) ? BIT(7) : 0,
+ 			      MB_WRITE_COMMITTED);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+index 77eae1d845f7..25ab8808e548 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+@@ -298,10 +298,10 @@
+ #define PHY_C20_RD_DATA_L		0xC08
+ #define PHY_C20_RD_DATA_H		0xC09
+ #define PHY_C20_VDR_CUSTOM_SERDES_RATE	0xD00
++#define   PHY_C20_DP_RATE_MASK		REG_GENMASK8(4, 1)
++#define   PHY_C20_DP_RATE(val)		REG_FIELD_PREP8(PHY_C20_DP_RATE_MASK, val)
+ #define PHY_C20_VDR_HDMI_RATE		0xD01
+ #define   PHY_C20_CONTEXT_TOGGLE	REG_BIT8(0)
+-#define   PHY_C20_CUSTOM_SERDES_MASK	REG_GENMASK8(4, 1)
+-#define   PHY_C20_CUSTOM_SERDES(val)	REG_FIELD_PREP8(PHY_C20_CUSTOM_SERDES_MASK, val)
+ #define PHY_C20_VDR_CUSTOM_WIDTH	0xD02
+ #define   PHY_C20_CUSTOM_WIDTH_MASK	REG_GENMASK(1, 0)
+ #define   PHY_C20_CUSTOM_WIDTH(val)	REG_FIELD_PREP8(PHY_C20_CUSTOM_WIDTH_MASK, val)
 -- 
 2.34.1
 
