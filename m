@@ -2,63 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 197FCBD3818
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Oct 2025 16:28:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5C42BD3A50
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Oct 2025 16:46:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 541B410E46A;
-	Mon, 13 Oct 2025 14:28:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7536710E48C;
+	Mon, 13 Oct 2025 14:46:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H8UFXkbx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g55sTfYs";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08F3110E469;
- Mon, 13 Oct 2025 14:27:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EC1710E474;
+ Mon, 13 Oct 2025 14:45:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760365679; x=1791901679;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=mPFeOhXMX6PN0dKXztCnHZ/cQcbyrLw1FgTdhpPU74Y=;
- b=H8UFXkbxvm+aay/aeCUUPICiG+rkqluh5ZAnv0ZANH1g3zShcCghWtc2
- tcCA1cxaej7VgHBG1d5B8vGPZVRb+q/7BsqYHo99/bgjFS+rIURbE0O/a
- /DM2mi8LZHUk+WtvUdV1fsiinDm9/oFXChcgO8HJL9/rXmrxqqSD27vwK
- 2pa3ISkvpYC2igkZO0OzEF+C/vqOl1wg3Nmnz8qPiZYtJI70CpXs+c2Cw
- veqiD+Wn6xlDwndzP4bjpGfKFayJL5jqrOs67XQboZ5IjiAVty2EV4zOv
- V70Rp6F1LNv8eu317Bxs4QZCPQSiXbog63JwAKZexR9SHcmLKIK2zahOh A==;
-X-CSE-ConnectionGUID: Y/hKth7AQVeBOAmbrbSmug==
-X-CSE-MsgGUID: Pn01Sfn1QSGrgDnJPealwA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="73609203"
-X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="73609203"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2025 07:27:59 -0700
-X-CSE-ConnectionGUID: apO4DUHtRO2SU+o/Y11BVg==
-X-CSE-MsgGUID: B2qa/ss3QTmo7UGPwj3Ssg==
+ t=1760366759; x=1791902759;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=KRv0U7G+9iopupW6LqNqUIvU8j7be5VuP1yEk0gHkAE=;
+ b=g55sTfYsjynrnR71oJ7HwgnMnuZtA6zf4dlDWpDk8kuGhSpHymptwDwB
+ RVj19eg85VKe3meGwDZIOCwUiihQ0bKhphF1bzXy9QGJ1F6CvVLFlT6Lj
+ KDxsOeGXGyGAsW4YW3tuzRvNFGMWE3yERvc5HI8iU+Qg5R3PBgXYn6VmN
+ 1BAzQWG233Nr8RWntj4crV3g1IkVbUH7NfpKrQzlTSdGr1tmYwMSrk1WW
+ 1p8M9pVKLODMCIU3AFnUSyxCMDEqWcCA/ZKWykMase6i5DxvM/2KdH59Q
+ TldvZvAZx8FP+4VqAAVYInxCqYwiayt2GIgtRvIR0kDg8dq7e0DESMH/g g==;
+X-CSE-ConnectionGUID: 28aUQRE4QDCdRp6uSU66Ng==
+X-CSE-MsgGUID: kKwrBwRSTOCc02CD52NsSQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="62602328"
+X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="62602328"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2025 07:45:59 -0700
+X-CSE-ConnectionGUID: wypeoV39TP29LTKKDf04+w==
+X-CSE-MsgGUID: bgPXDPr5QBuX6C2dgLSDTg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="185872983"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.105])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2025 07:27:57 -0700
-Date: Mon, 13 Oct 2025 17:27:53 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jouni.hogander@intel.com, animesh.manna@intel.com
-Subject: Re: [PATCH 7/8] drm/i915/vrr: Recompute vblank_start for platforms
- with always-on VRR TG
-Message-ID: <aO0MaW2Q-o6QXGo_@intel.com>
-References: <20251013123559.1055429-1-ankit.k.nautiyal@intel.com>
- <20251013123559.1055429-8-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="181425501"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.253])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2025 07:45:56 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com
+Subject: [PATCH v2] drm/i915/display: add HAS_AUX_CCS() feature check
+Date: Mon, 13 Oct 2025 17:45:52 +0300
+Message-ID: <20251013144552.1710851-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <f3839c6a87796d087b944720248d39462521d20b.1760094361.git.jani.nikula@intel.com>
+References: <f3839c6a87796d087b944720248d39462521d20b.1760094361.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251013123559.1055429-8-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,73 +70,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Oct 13, 2025 at 06:05:58PM +0530, Ankit Nautiyal wrote:
-> Currently, crtc_vblank_start is read from either the VBLANK_START register
-> (on pre-ADL platforms) or computed as vdisplay + set_context_latency in
-> intel_get_transcoder_timings().
-> 
-> This works when the entire vblank region after vdisplay is treated as
-> guardband, i.e.:
-> delayed vblank start = vdisplay + SCL = vtotal - guardband.
-> 
-> However, with optimized guardband, the guardband becomes shorter, and the
-> delayed vblank_start moves further away from vdisplay.
-> 
-> For platforms where intel_vrr_always_use_vrr_tg == false, the delayed
-> vblank start is only relevant in VRR mode. We retain the original
-> crtc_vblank_start and apply adjustments in VRR-specific paths. Evasion
-> logic, push clear already use vtotal - guardband directly for VRR case.
-> 
-> On platforms where intel_vrr_always_use_vrr_tg == true, the delayed
-> vblank_start is used in both fixed and VRR modes. So we need to change the
-> crtc_vblank_start so that fixed rr case works properly.
-> 
-> Therefore for the readout, we need to overwrite crtc_vblank_start
-> with vtotal - guardband to ensure correct behavior across both modes.
-> 
-> This change prepares the pipeline for optimized guardband usage by ensuring
-> crtc_vblank_start reflects the correct timing on platforms with always-on
-> VRR TG.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_vrr.c | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index 8d71d7dc9d12..221b25832e56 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -821,6 +821,20 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
->  	 */
->  	if (crtc_state->vrr.enable)
->  		crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
-> +
-> +	/*
-> +	 * For platforms that always use the VRR timing generator, we overwrite
-> +	 * crtc_vblank_start with vtotal - guardband to reflect the delayed
-> +	 * vblank start. This works for both default and optimized guardband values.
-> +	 * On other platforms, we keep the original value from
-> +	 * intel_get_transcoder_timings() and apply adjustments only in VRR-specific
-> +	 * paths as needed.
-> +	 */
-> +	if (intel_vrr_always_use_vrr_tg(display))
-> +		crtc_state->hw.adjusted_mode.crtc_vblank_start =
-> +			crtc_state->hw.adjusted_mode.crtc_vtotal -
-> +			crtc_state->vrr.guardband;
+We should try to get rid of checks that depend on struct
+drm_i915_private (or struct xe_device) in display code. HAS_FLAT_CCS()
+is one of them. In the interest of simplicity, add a reversed
+HAS_AUX_CCS() feature check macro, as that's we mostly use it for in
+display.
 
-You still lost the compute counterpart somewhere.
+v2: include adl-p (Ville)
 
-And as mentioned, the new order of compute_pipe_mode()->compute_guardband()
-will require that we fix up pipe_mode well (in the compute path). Could
-just do it as 'pipe_mode.crtc_vblank_start = adjusted_mode.crtc_vblank_start'
-after adjusted_mode has been tweaked.
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_device.h | 1 +
+ drivers/gpu/drm/i915/display/intel_fb.c             | 4 +---
+ drivers/gpu/drm/i915/display/skl_universal_plane.c  | 4 ++--
+ drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h   | 2 --
+ 4 files changed, 4 insertions(+), 7 deletions(-)
 
-It's a bit annoying that we need that one special pipe_mode handling in
-the compute path, but there is no counterpart in the readout path.
-But I suppose the only way to fix that would be to manually account for
-joiner in the guardband calculations, which might be annoying as well...
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index 9960ac13a6dd..2d856c5fcbed 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -144,6 +144,7 @@ struct intel_display_platforms {
+ 
+ #define HAS_128B_Y_TILING(__display)	(!(__display)->platform.i915g && !(__display)->platform.i915gm)
+ #define HAS_4TILE(__display)		((__display)->platform.dg2 || DISPLAY_VER(__display) >= 14)
++#define HAS_AUX_CCS(__display)		(IS_DISPLAY_VER(__display, 9, 12) || (__display)->platform.alderlake_p || (__display)->platform.meteorlake)
+ #define HAS_ASYNC_FLIPS(__display)	(DISPLAY_VER(__display) >= 5)
+ #define HAS_AS_SDP(__display)		(DISPLAY_VER(__display) >= 13)
+ #define HAS_BIGJOINER(__display)	(DISPLAY_VER(__display) >= 11 && HAS_DSC(__display))
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index 7388791dfde0..9c256a2805e4 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -547,8 +547,6 @@ static bool plane_has_modifier(struct intel_display *display,
+ 			       u8 plane_caps,
+ 			       const struct intel_modifier_desc *md)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+-
+ 	if (!IS_DISPLAY_VER(display, md->display_ver.from, md->display_ver.until))
+ 		return false;
+ 
+@@ -560,7 +558,7 @@ static bool plane_has_modifier(struct intel_display *display,
+ 	 * where supported.
+ 	 */
+ 	if (intel_fb_is_ccs_modifier(md->modifier) &&
+-	    HAS_FLAT_CCS(i915) != !md->ccs.packed_aux_planes)
++	    HAS_AUX_CCS(display) != !!md->ccs.packed_aux_planes)
+ 		return false;
+ 
+ 	if (md->modifier == I915_FORMAT_MOD_4_TILED_BMG_CCS &&
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index e13fb781e7b2..0319174adf95 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -1572,7 +1572,7 @@ icl_plane_update_noarm(struct intel_dsb *dsb,
+ 	}
+ 
+ 	/* FLAT CCS doesn't need to program AUX_DIST */
+-	if (!HAS_FLAT_CCS(to_i915(display->drm)) && DISPLAY_VER(display) < 20)
++	if (HAS_AUX_CCS(display))
+ 		intel_de_write_dsb(display, dsb, PLANE_AUX_DIST(pipe, plane_id),
+ 				   skl_plane_aux_dist(plane_state, color_plane));
+ 
+@@ -2930,7 +2930,7 @@ skl_universal_plane_create(struct intel_display *display,
+ 		caps = skl_plane_caps(display, pipe, plane_id);
+ 
+ 	/* FIXME: xe has problems with AUX */
+-	if (!IS_ENABLED(I915) && !HAS_FLAT_CCS(to_i915(display->drm)))
++	if (!IS_ENABLED(I915) && HAS_AUX_CCS(display))
+ 		caps &= ~(INTEL_PLANE_CAP_CCS_RC |
+ 			  INTEL_PLANE_CAP_CCS_RC_CC |
+ 			  INTEL_PLANE_CAP_CCS_MC);
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+index be3edf20de22..7c657ea98a44 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+@@ -35,6 +35,4 @@ static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
+ 
+ #define IS_MOBILE(xe) (xe && 0)
+ 
+-#define HAS_FLAT_CCS(xe) (xe_device_has_flat_ccs(xe))
+-
+ #endif
 -- 
-Ville Syrjälä
-Intel
+2.47.3
+
