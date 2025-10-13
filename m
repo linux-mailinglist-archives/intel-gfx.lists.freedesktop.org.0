@@ -2,72 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F424BD5721
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Oct 2025 19:19:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1978FBD574A
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Oct 2025 19:21:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF49B10E0A2;
-	Mon, 13 Oct 2025 17:19:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72EB910E496;
+	Mon, 13 Oct 2025 17:21:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MpH0SiOT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jyw+HdOc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9188E10E0A2;
- Mon, 13 Oct 2025 17:19:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AB3210E496;
+ Mon, 13 Oct 2025 17:21:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760375963; x=1791911963;
+ t=1760376094; x=1791912094;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=d5yntMWubaY2pHM4QP+zNiwJMlVYEJMFLfu1vJMivyM=;
- b=MpH0SiOTYZtylZ964aP05znoHUjbarHHostpIlB6AQF+09TGINeJVrmU
- TwjSR5iiyI5n4KoX8eybaIcwuQ1ktWJsCd1DHkmDSz+NyLTAZSpDJi/sO
- OoTu1KjqP4vuGancLRuDaTlduiowihyUTk5TUj/88+Q08UOsX1+bUEPnm
- avpFbz35ltNGQxWtzkh6rI9vzhNsx0/pqfacwu8dGXxDHZ3fEKGwEv7G1
- i3NhWTh6ol5qUDVCki9ojIkU4BpcHNKnQmQKTBAAzAnqksmiT2JouTJvh
- 4vqdum1+ctuBLBR5YQsppDooPKik5HeS6jtY/UYhs+NPmF/hI3oqcGybR A==;
-X-CSE-ConnectionGUID: wyS8uXIOQTa8DZzHEhyfqQ==
-X-CSE-MsgGUID: AJtJfqJGQ8+pLXlMkmu6Ww==
-X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="62415596"
-X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="62415596"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2025 10:19:23 -0700
-X-CSE-ConnectionGUID: OpCbmG/sQWeFaLE9amUMdg==
-X-CSE-MsgGUID: tMqduKj+SJi3/ZRGoFBSZA==
+ bh=9wXB1eTOPc+uonIxnxAD6CgiRbmpb/5VL2S3+PnkRSI=;
+ b=jyw+HdOcNV74bLdrBF7StUqEFEhybutswhEWkTu4LLc2p2+lj7zd7Xqq
+ DM/pZ25EjSIMem6zn+eWaP2AcVqiGp4/6/K1rdhaVjoD3RoKYbHObaNMB
+ wJnVxNPL2E80MDD58qQlXOijlrK8DUYW5vYw6IVVzsCp8zeuibC63CM8+
+ AaKP38+9abGRsCb0X+GxBbDaiKqNqdoG8piKk6HrOyF4E6Lk7mbS2ooqy
+ up/NOKrCP/EEQ/ujoe26PIj2uV0IdRLYNicXbeNtrYSspjY9v+r/2VHwK
+ LM8aiz9JGadcJisxUoDUqOcfyc2sOxzqc4k+v76FExnSFITMW0UlAqwni Q==;
+X-CSE-ConnectionGUID: 2n76ZZegQ2+TugWix3l0gw==
+X-CSE-MsgGUID: mL5DSvcMTKG9K8oJeLpS4Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="62560631"
+X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="62560631"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2025 10:21:33 -0700
+X-CSE-ConnectionGUID: h28bAf/yTqCz1jWogI69fg==
+X-CSE-MsgGUID: rCpu5TJHRNiMApoALQFebA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="186062167"
+X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="181335488"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.105])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2025 10:19:20 -0700
-Date: Mon, 13 Oct 2025 20:19:17 +0300
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2025 10:21:32 -0700
+Date: Mon, 13 Oct 2025 20:21:29 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
-Cc: Maarten Lankhorst <dev@lankhorst.se>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>,
- Vinod Govindapillai <vinod.govindapillai@intel.com>,
- "Saarinen, Jani" <jani.saarinen@intel.com>
-Subject: Re: [PATCH 2/9] drm/{i915, xe}/fbdev: add intel_fbdev_fb_pitch_align()
-Message-ID: <aO00lQvvlyKUX9_N@intel.com>
-References: <ae51d1e224048bdc87bf7a56d8f5ebd0fbb6a383.1756931441.git.jani.nikula@intel.com>
- <aLqsC87Ol_zCXOkN@intel.com>
- <48e0a14d67ba84d64f6589bbdd0090e86be4fd4f@intel.com>
- <7cs3dirtgrypn7xjzmv7rxmkgbrtfxxjmtth576kfwerlydcgx@6zelewdmaukb>
- <fdcc32f2-c36b-439f-8d15-14b3fb7bd5dc@lankhorst.se>
- <aL8D_dRE5nslOAUi@intel.com>
- <86c6dd41fba3bc78b82a0f0343c7be770126a4e4@intel.com>
- <aMm4UfqnlZ4RfMDm@intel.com>
- <0f9e52f66a126ca0d446015539018e29219d4b13@intel.com>
- <179b10ce04e0e0d5f08fd8e2eaeae4cf689ba2ea@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v2] drm/i915/display: add HAS_AUX_CCS() feature check
+Message-ID: <aO01GQI4sWTzGanS@intel.com>
+References: <f3839c6a87796d087b944720248d39462521d20b.1760094361.git.jani.nikula@intel.com>
+ <20251013144552.1710851-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <179b10ce04e0e0d5f08fd8e2eaeae4cf689ba2ea@intel.com>
+In-Reply-To: <20251013144552.1710851-1-jani.nikula@intel.com>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -85,28 +72,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Oct 13, 2025 at 04:52:04PM +0300, Jani Nikula wrote:
-> On Thu, 18 Sep 2025, Jani Nikula <jani.nikula@intel.com> wrote:
-> > On Tue, 16 Sep 2025, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> >> For now I'd be happy if someone just nukes that bogus page alignemnt
-> >> of the stride on xe, allowing i915 and xe to use the same code here.
-> >
-> > I hope just [1] is enough for this.
-> >
-> > [1] https://lore.kernel.org/r/7f4972104de8b179d5724ae83892ee294d3f3fd3.1758184771.git.jani.nikula@intel.com
+On Mon, Oct 13, 2025 at 05:45:52PM +0300, Jani Nikula wrote:
+> We should try to get rid of checks that depend on struct
+> drm_i915_private (or struct xe_device) in display code. HAS_FLAT_CCS()
+> is one of them. In the interest of simplicity, add a reversed
+> HAS_AUX_CCS() feature check macro, as that's we mostly use it for in
+> display.
 > 
-> So that regressed [2]. (Bisected internally, unfortunately not reported
-> on the gitlab issue.) Any ideas, before I go on and resurrect this patch
-> adding different strides for i915 and xe?
+> v2: include adl-p (Ville)
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_device.h | 1 +
+>  drivers/gpu/drm/i915/display/intel_fb.c             | 4 +---
+>  drivers/gpu/drm/i915/display/skl_universal_plane.c  | 4 ++--
+>  drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h   | 2 --
+>  4 files changed, 4 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+> index 9960ac13a6dd..2d856c5fcbed 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+> @@ -144,6 +144,7 @@ struct intel_display_platforms {
+>  
+>  #define HAS_128B_Y_TILING(__display)	(!(__display)->platform.i915g && !(__display)->platform.i915gm)
+>  #define HAS_4TILE(__display)		((__display)->platform.dg2 || DISPLAY_VER(__display) >= 14)
+> +#define HAS_AUX_CCS(__display)		(IS_DISPLAY_VER(__display, 9, 12) || (__display)->platform.alderlake_p || (__display)->platform.meteorlake)
 
-That bisect doesn't make any real sense to me unless there's an existing
-bug in the xe code where it fails to pin (and somehow the smaller stride
-alignment makes it fail) but it still reports success to the caller. 
+Looks about right.
 
-Unfortunately that code in xe is completely illegible due the scoped
-guard mess. So it's darn near impossible to see with a visual inspection
-where it might silently fail. I think someone will need to sprinkle
-debugs all over that code to track what is happening to the pin count.
+>  #define HAS_ASYNC_FLIPS(__display)	(DISPLAY_VER(__display) >= 5)
+>  #define HAS_AS_SDP(__display)		(DISPLAY_VER(__display) >= 13)
+
+Should it go here to keep these sorted?
+
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+>  #define HAS_BIGJOINER(__display)	(DISPLAY_VER(__display) >= 11 && HAS_DSC(__display))
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> index 7388791dfde0..9c256a2805e4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> @@ -547,8 +547,6 @@ static bool plane_has_modifier(struct intel_display *display,
+>  			       u8 plane_caps,
+>  			       const struct intel_modifier_desc *md)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(display->drm);
+> -
+>  	if (!IS_DISPLAY_VER(display, md->display_ver.from, md->display_ver.until))
+>  		return false;
+>  
+> @@ -560,7 +558,7 @@ static bool plane_has_modifier(struct intel_display *display,
+>  	 * where supported.
+>  	 */
+>  	if (intel_fb_is_ccs_modifier(md->modifier) &&
+> -	    HAS_FLAT_CCS(i915) != !md->ccs.packed_aux_planes)
+> +	    HAS_AUX_CCS(display) != !!md->ccs.packed_aux_planes)
+>  		return false;
+>  
+>  	if (md->modifier == I915_FORMAT_MOD_4_TILED_BMG_CCS &&
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> index e13fb781e7b2..0319174adf95 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> @@ -1572,7 +1572,7 @@ icl_plane_update_noarm(struct intel_dsb *dsb,
+>  	}
+>  
+>  	/* FLAT CCS doesn't need to program AUX_DIST */
+> -	if (!HAS_FLAT_CCS(to_i915(display->drm)) && DISPLAY_VER(display) < 20)
+> +	if (HAS_AUX_CCS(display))
+>  		intel_de_write_dsb(display, dsb, PLANE_AUX_DIST(pipe, plane_id),
+>  				   skl_plane_aux_dist(plane_state, color_plane));
+>  
+> @@ -2930,7 +2930,7 @@ skl_universal_plane_create(struct intel_display *display,
+>  		caps = skl_plane_caps(display, pipe, plane_id);
+>  
+>  	/* FIXME: xe has problems with AUX */
+> -	if (!IS_ENABLED(I915) && !HAS_FLAT_CCS(to_i915(display->drm)))
+> +	if (!IS_ENABLED(I915) && HAS_AUX_CCS(display))
+>  		caps &= ~(INTEL_PLANE_CAP_CCS_RC |
+>  			  INTEL_PLANE_CAP_CCS_RC_CC |
+>  			  INTEL_PLANE_CAP_CCS_MC);
+> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+> index be3edf20de22..7c657ea98a44 100644
+> --- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+> +++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+> @@ -35,6 +35,4 @@ static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
+>  
+>  #define IS_MOBILE(xe) (xe && 0)
+>  
+> -#define HAS_FLAT_CCS(xe) (xe_device_has_flat_ccs(xe))
+> -
+>  #endif
+> -- 
+> 2.47.3
 
 -- 
 Ville Syrjälä
