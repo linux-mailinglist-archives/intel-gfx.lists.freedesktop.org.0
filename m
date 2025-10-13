@@ -2,56 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33F59BD30D4
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Oct 2025 14:49:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5F69BD30D7
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Oct 2025 14:49:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48CC710E0C2;
-	Mon, 13 Oct 2025 12:49:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4AFF310E0EE;
+	Mon, 13 Oct 2025 12:49:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mqguW9+c";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RzcDtyLE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A578210E0C2;
- Mon, 13 Oct 2025 12:49:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A29C10E0EE;
+ Mon, 13 Oct 2025 12:49:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760359748; x=1791895748;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=uKO/xpIOaCG4nRvIBQnQe0dFw6RZFtnwshPUShAdsw4=;
- b=mqguW9+cScmkGEou2VFKELiXj0JW7PcxkR3apYHi5sspp1eggm0Y+tPt
- yYqaRvn12NTUlIRvEJ3H+6eHFxhJRKcvcQLWv1t0cKq9N/4YfvBoMhefw
- yxLYbU+8ewfb3BEOg7EtYhgDnTMW+SAOiaaozHxoq4jkHkrV4bpZgWBOQ
- FJd3fX3+FTX8a922Jqy7B5cuNwyYrOLqBxqRg94X7xNzk+RIUYZkSVCp+
- zM8CBpO4mzBK3BmJkD5T2sKEifMzfwkEezkHGYx6vltKm4BMX2RRBAZE0
- 1S/dThb46XsklbtrtxeH8LfsdhbSUvP6e3eU/2vbQDMRhxDi782k6UQod g==;
-X-CSE-ConnectionGUID: WocqUN5aThaAMBsx3HcwpA==
-X-CSE-MsgGUID: 2H4asKnuSFuBd869J1vNUA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11580"; a="85121147"
-X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="85121147"
+ t=1760359750; x=1791895750;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=kpp8C3R51Gz4vQQa+dyhawDbNS9mxI8zMvC1Vvq8+8s=;
+ b=RzcDtyLEoh0Zg25/yyeYfadPKfSXONDlVggsi/PbbnTNOfJrcqjYjixr
+ ikxgpwfWysxXNSbEdU973xKyIenve5Rev0/M/0VduBqt3PJvz7G7uSJz3
+ HFeK4tNoKSESRJ1ghRDw0sBiFkrqWgXii66HqN3aOAzULnU+ZzHZtpDRn
+ Fw0QGqleV6YOSZ8K6riwYKOOKmoKYM3C8ry8WrVkvm7Q1qI4ny01XwJ7K
+ xzeneZRbVmOUEFAdFH1Kb8tBWWk9u39F7rF8OjyWfBOdxXnCdkM3yqEkd
+ 5f6REja+IBuZCgLjQbd5PqJmaOuBHRfTNIm/oK4iwxbpB0sc5di4ZhNuc w==;
+X-CSE-ConnectionGUID: 4G1GyxanTQ6QvMvb+9r7/w==
+X-CSE-MsgGUID: PG4FpYwFQwGdi6pvnl+lOg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11580"; a="85121149"
+X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="85121149"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2025 05:49:08 -0700
-X-CSE-ConnectionGUID: urEHRU5uRxC+AsXjK9d+dg==
-X-CSE-MsgGUID: y5nUEzGoSyeh8WeO7VEFIw==
+ 13 Oct 2025 05:49:10 -0700
+X-CSE-ConnectionGUID: 16E8qnIkQfWExK5JATPaVw==
+X-CSE-MsgGUID: iceeWXScSQS00r7KHB9YeA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="182026832"
+X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="182026843"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2025 05:49:05 -0700
+ 13 Oct 2025 05:49:07 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
- animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 0/8] Preparatory patches for guardband optimization
-Date: Mon, 13 Oct 2025 18:05:51 +0530
-Message-ID: <20251013123559.1055429-1-ankit.k.nautiyal@intel.com>
+ animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ Uma Shankar <uma.shankar@intel.com>
+Subject: [PATCH 1/8] drm/i915/vrr: Use crtc_vsync_start/end for computing
+ vrr.vsync_start/end
+Date: Mon, 13 Oct 2025 18:05:52 +0530
+Message-ID: <20251013123559.1055429-2-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20251013123559.1055429-1-ankit.k.nautiyal@intel.com>
+References: <20251013123559.1055429-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,49 +71,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Handle few cases which will need changes when guardband will no longer
-be matched to vblank length.
-- Fix the vblank_start evaluation.
-- Fix PSR wake latency checks wrt to guradband.
+Use adjusted_mode->crtc_vsync_start/end instead of
+adjusted_mode->vsync_start while computing vrr.vsync_start/end.
+For most modes, these are same but for 3D/stereo modes the
+crtc_vsync_start is different than vsync_start.
 
-Rev 2: PSR went through some changes recently, rebase the patches on latest
-PSR changes.
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_vrr.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Rev 3: Address comments from Ville and Jouni:
-- Add a patch to move intel_dpll_crtc_compute_clock() early in the
-  function.
-- Merge patch to adjust vblank_start and the readout changes.
-- Fix agument to alpm_config_valid()
-- Add documentation for retionale behind PSR late-stage configuration.
-
-Ankit Nautiyal (8):
-  drm/i915/vrr: Use crtc_vsync_start/end for computing
-    vrr.vsync_start/end
-  drm/i915/display: Move intel_dpll_crtc_compute_clock early
-  drm/i915/vrr:
-    s/intel_vrr_compute_config_late/intel_vrr_compute_guardband
-  drm/i915/vblank: Add helper to get correct vblank length
-  drm/i915/psr: Consider SCL lines when validating vblank for wake
-    latency
-  drm/i915/display: Check if final vblank is sufficient for PSR features
-  drm/i915/vrr: Recompute vblank_start for platforms with always-on VRR
-    TG
-  drm/i915/display: Add vblank_start adjustment logic for always-on VRR
-    TG
-
- drivers/gpu/drm/i915/display/intel_ddi.c     |   3 +
- drivers/gpu/drm/i915/display/intel_display.c |  18 +-
- drivers/gpu/drm/i915/display/intel_dp.c      |   9 +
- drivers/gpu/drm/i915/display/intel_dp.h      |   3 +
- drivers/gpu/drm/i915/display/intel_psr.c     | 167 +++++++++++++------
- drivers/gpu/drm/i915/display/intel_psr.h     |   2 +
- drivers/gpu/drm/i915/display/intel_vblank.c  |  10 ++
- drivers/gpu/drm/i915/display/intel_vblank.h  |   2 +
- drivers/gpu/drm/i915/display/intel_vrr.c     |  26 ++-
- drivers/gpu/drm/i915/display/intel_vrr.h     |   2 +-
- drivers/gpu/drm/i915/display/skl_watermark.c |   3 +-
- 11 files changed, 184 insertions(+), 61 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index 190c51be5cbc..4bc14b5e685f 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -394,10 +394,10 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+ 	if (HAS_AS_SDP(display)) {
+ 		crtc_state->vrr.vsync_start =
+ 			(crtc_state->hw.adjusted_mode.crtc_vtotal -
+-			 crtc_state->hw.adjusted_mode.vsync_start);
++			 crtc_state->hw.adjusted_mode.crtc_vsync_start);
+ 		crtc_state->vrr.vsync_end =
+ 			(crtc_state->hw.adjusted_mode.crtc_vtotal -
+-			 crtc_state->hw.adjusted_mode.vsync_end);
++			 crtc_state->hw.adjusted_mode.crtc_vsync_end);
+ 	}
+ }
+ 
 -- 
 2.45.2
 
