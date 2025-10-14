@@ -2,60 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBA97BDB09F
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Oct 2025 21:18:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D84EEBDB2BA
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Oct 2025 22:11:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4382C10E691;
-	Tue, 14 Oct 2025 19:18:52 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NF/RI+0r";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C24410E23E;
+	Tue, 14 Oct 2025 20:11:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A98010E691;
- Tue, 14 Oct 2025 19:18:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760469531; x=1792005531;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=X3a2acJpqgsRztub6egK53nyHZ8NcygmBSlchcSzvGI=;
- b=NF/RI+0r48bQyHJDInXQyv95O0fRSP4cABsB+HAMFfj62RmvZTb1YWFI
- chPmsY3NMrvgARAGuIpmjhwK8eDXHcfFlOPDORhFfZ64TaY6Y+g/bme5u
- SN94t3H4jqdT5ZU1bXACutYBuMnXlVYINM+5Bjeuq2tF1XLL5TdxJgeq1
- rzhr1a4wO8+T0Oc/4z+8oCsdNWRzTN3msJp8c+4Rdct6mcDdQybUK2MWR
- FyAnJNlRk4F7gAh+gV3M3xHuKSNk75a0Huni8uzUmEQSpW/ptbMhymCPB
- m+Lx0rFsjatlrCj0XSGlGe9eKHc4pjFEgcrxuHnM7PDJkG4RBW3SYgPgW A==;
-X-CSE-ConnectionGUID: v32Z2Ly3TMK8xV7t25JnFw==
-X-CSE-MsgGUID: mdV85SYLSIO8Fbb4BiMpWg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11582"; a="50200860"
-X-IronPort-AV: E=Sophos;i="6.19,229,1754982000"; d="scan'208";a="50200860"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2025 12:18:51 -0700
-X-CSE-ConnectionGUID: eHSj4ASTSmqfXBolPozSrA==
-X-CSE-MsgGUID: 7sQWmce0Q3mAHfuMwahAdA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,229,1754982000"; d="scan'208";a="205669397"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.227])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2025 12:18:49 -0700
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
-	Uma Shankar <uma.shankar@intel.com>
-Subject: [PATCH v2 9/9] drm/i915/wm: Use skl_prefill
-Date: Tue, 14 Oct 2025 22:18:08 +0300
-Message-ID: <20251014191808.12326-10-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.49.1
-In-Reply-To: <20251014191808.12326-1-ville.syrjala@linux.intel.com>
-References: <20251014191808.12326-1-ville.syrjala@linux.intel.com>
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26AF210E23E;
+ Tue, 14 Oct 2025 20:11:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1254466123152060769=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/prefill=3A_Intro?=
+ =?utf-8?q?duce_helpers_for_prefill_latency_calculations_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 14 Oct 2025 20:11:34 -0000
+Message-ID: <176047269414.12447.15988834827533887602@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251014191808.12326-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20251014191808.12326-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,211 +37,206 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============1254466123152060769==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Replace the current ad-hoc prefill calculations with skl_prefill.
+== Series Details ==
 
-v2: cdclk_state no longer needed
-    Rename to skl_prefill
+Series: drm/i915/prefill: Introduce helpers for prefill latency calculations (rev2)
+URL   : https://patchwork.freedesktop.org/series/155629/
+State : success
 
-Reviewed-by: Uma Shankar <uma.shankar@intel.com> #v1
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/skl_watermark.c | 126 +++----------------
- 1 file changed, 20 insertions(+), 106 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 700707a91c70..256162da9afc 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -30,6 +30,7 @@
- #include "intel_plane.h"
- #include "intel_vblank.h"
- #include "intel_wm.h"
-+#include "skl_prefill.h"
- #include "skl_scaler.h"
- #include "skl_universal_plane_regs.h"
- #include "skl_watermark.h"
-@@ -2147,105 +2148,6 @@ static int icl_build_plane_wm(struct intel_crtc_state *crtc_state,
- 	return 0;
- }
- 
--static int
--cdclk_prefill_adjustment(const struct intel_crtc_state *crtc_state)
--{
--	struct intel_display *display = to_intel_display(crtc_state);
--	struct intel_atomic_state *state =
--		to_intel_atomic_state(crtc_state->uapi.state);
--	const struct intel_cdclk_state *cdclk_state;
--
--	cdclk_state = intel_atomic_get_cdclk_state(state);
--	if (IS_ERR(cdclk_state)) {
--		drm_WARN_ON(display->drm, PTR_ERR(cdclk_state));
--		return 1;
--	}
--
--	return min(1, DIV_ROUND_UP(crtc_state->pixel_rate,
--				   2 * intel_cdclk_logical(cdclk_state)));
--}
--
--static int
--dsc_prefill_latency(const struct intel_crtc_state *crtc_state)
--{
--	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
--	const struct intel_crtc_scaler_state *scaler_state =
--					&crtc_state->scaler_state;
--	int linetime = DIV_ROUND_UP(1000 * crtc_state->hw.adjusted_mode.htotal,
--				    crtc_state->hw.adjusted_mode.clock);
--	int num_scaler_users = hweight32(scaler_state->scaler_users);
--	int chroma_downscaling_factor =
--		crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ? 2 : 1;
--	u32 dsc_prefill_latency = 0;
--
--	if (!crtc_state->dsc.compression_enable ||
--	    !num_scaler_users ||
--	    num_scaler_users > crtc->num_scalers)
--		return dsc_prefill_latency;
--
--	dsc_prefill_latency = DIV_ROUND_UP(15 * linetime * chroma_downscaling_factor, 10);
--
--	for (int i = 0; i < num_scaler_users; i++) {
--		u64 hscale_k, vscale_k;
--
--		hscale_k = max(1000, mul_u32_u32(scaler_state->scalers[i].hscale, 1000) >> 16);
--		vscale_k = max(1000, mul_u32_u32(scaler_state->scalers[i].vscale, 1000) >> 16);
--		dsc_prefill_latency = DIV_ROUND_UP_ULL(dsc_prefill_latency * hscale_k * vscale_k,
--						       1000000);
--	}
--
--	dsc_prefill_latency *= cdclk_prefill_adjustment(crtc_state);
--
--	return intel_usecs_to_scanlines(&crtc_state->hw.adjusted_mode, dsc_prefill_latency);
--}
--
--static int
--scaler_prefill_latency(const struct intel_crtc_state *crtc_state)
--{
--	const struct intel_crtc_scaler_state *scaler_state =
--					&crtc_state->scaler_state;
--	int num_scaler_users = hweight32(scaler_state->scaler_users);
--	int scaler_prefill_latency = 0;
--	int linetime = DIV_ROUND_UP(1000 * crtc_state->hw.adjusted_mode.htotal,
--				    crtc_state->hw.adjusted_mode.clock);
--
--	if (!num_scaler_users)
--		return scaler_prefill_latency;
--
--	scaler_prefill_latency = 4 * linetime;
--
--	if (num_scaler_users > 1) {
--		u64 hscale_k = max(1000, mul_u32_u32(scaler_state->scalers[0].hscale, 1000) >> 16);
--		u64 vscale_k = max(1000, mul_u32_u32(scaler_state->scalers[0].vscale, 1000) >> 16);
--		int chroma_downscaling_factor =
--			crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ? 2 : 1;
--		int latency;
--
--		latency = DIV_ROUND_UP_ULL((4 * linetime * hscale_k * vscale_k *
--					    chroma_downscaling_factor), 1000000);
--		scaler_prefill_latency += latency;
--	}
--
--	scaler_prefill_latency *= cdclk_prefill_adjustment(crtc_state);
--
--	return intel_usecs_to_scanlines(&crtc_state->hw.adjusted_mode, scaler_prefill_latency);
--}
--
--static bool
--skl_is_vblank_too_short(const struct intel_crtc_state *crtc_state,
--			int wm0_lines, int latency)
--{
--	const struct drm_display_mode *adjusted_mode =
--		&crtc_state->hw.adjusted_mode;
--
--	return crtc_state->framestart_delay +
--		intel_usecs_to_scanlines(adjusted_mode, latency) +
--		scaler_prefill_latency(crtc_state) +
--		dsc_prefill_latency(crtc_state) +
--		wm0_lines >
--		intel_crtc_vblank_length(crtc_state);
--}
--
- unsigned int skl_wm0_prefill_lines_worst(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
-@@ -2324,9 +2226,10 @@ unsigned int skl_wm0_prefill_lines(const struct intel_crtc_state *crtc_state)
-  * the scenario to apply Wa_16025596647.
-  */
- static int skl_max_wm_level_for_vblank(struct intel_crtc_state *crtc_state,
--				       int wm0_lines)
-+				       const struct skl_prefill_ctx *ctx)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	int level;
- 
- 	for (level = display->wm.num_levels - 1; level >= 0; level--) {
-@@ -2341,10 +2244,13 @@ static int skl_max_wm_level_for_vblank(struct intel_crtc_state *crtc_state,
- 		if (level == 0)
- 			latency = 0;
- 
--		if (!skl_is_vblank_too_short(crtc_state, wm0_lines, latency))
-+		if (!skl_prefill_vblank_too_short(ctx, crtc_state, latency))
- 			return level;
- 	}
- 
-+	drm_dbg_kms(display->drm, "[CRTC:%d:%s] Not enough time in vblank for prefill\n",
-+		    crtc->base.base.id, crtc->base.name);
-+
- 	return -EINVAL;
- }
- 
-@@ -2352,14 +2258,15 @@ static int skl_wm_check_vblank(struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
--	int wm0_lines, level;
-+	struct skl_prefill_ctx ctx;
-+	int level;
- 
- 	if (!crtc_state->hw.active)
- 		return 0;
- 
--	wm0_lines = skl_max_wm0_lines(crtc_state);
-+	skl_prefill_init(&ctx, crtc_state);
- 
--	level = skl_max_wm_level_for_vblank(crtc_state, wm0_lines);
-+	level = skl_max_wm_level_for_vblank(crtc_state, &ctx);
- 	if (level < 0)
- 		return level;
- 
-@@ -2369,6 +2276,13 @@ static int skl_wm_check_vblank(struct intel_crtc_state *crtc_state)
- 	 */
- 	crtc_state->wm_level_disabled = level < display->wm.num_levels - 1;
- 
-+	/*
-+	 * TODO: assert that we are in fact using the maximum guardband
-+	 * if we end up disabling any WM levels here. Otherwise we clearly
-+	 * failed in using a realistic worst case prefill estimate when
-+	 * determining the guardband size.
-+	 */
-+
- 	for (level++; level < display->wm.num_levels; level++) {
- 		enum plane_id plane_id;
- 
-@@ -2387,8 +2301,8 @@ static int skl_wm_check_vblank(struct intel_crtc_state *crtc_state)
- 
- 	if (DISPLAY_VER(display) >= 12 &&
- 	    display->sagv.block_time_us &&
--	    skl_is_vblank_too_short(crtc_state, wm0_lines,
--				    display->sagv.block_time_us)) {
-+	    skl_prefill_vblank_too_short(&ctx, crtc_state,
-+					 display->sagv.block_time_us)) {
- 		enum plane_id plane_id;
- 
- 		for_each_plane_id_on_crtc(crtc, plane_id) {
--- 
-2.49.1
+CI Bug Log - changes from CI_DRM_17362 -> Patchwork_155629v2
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v2/index.html
+
+Participating hosts (41 -> 40)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_155629v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-mtlp-6:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17362/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v2/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+    - bat-mtlp-9:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17362/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v2/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+    - bat-arls-6:         [PASS][5] -> [DMESG-FAIL][6] ([i915#12061]) +1 other test dmesg-fail
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17362/bat-arls-6/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v2/bat-arls-6/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17362/bat-mtlp-8/igt@i915_selftest@live.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v2/bat-mtlp-8/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-3:         [DMESG-FAIL][9] ([i915#12061]) -> [PASS][10] +1 other test pass
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17362/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v2/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_pm_rpm@basic-rte:
+    - bat-rpls-4:         [DMESG-WARN][11] ([i915#13400]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17362/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v2/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live:
+    - bat-atsm-1:         [DMESG-FAIL][13] ([i915#12061] / [i915#14204]) -> [DMESG-FAIL][14] ([i915#12061] / [i915#13929])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17362/bat-atsm-1/igt@i915_selftest@live.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v2/bat-atsm-1/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@mman:
+    - bat-atsm-1:         [DMESG-FAIL][15] ([i915#14204]) -> [DMESG-FAIL][16] ([i915#13929])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17362/bat-atsm-1/igt@i915_selftest@live@mman.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v2/bat-atsm-1/igt@i915_selftest@live@mman.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#13400]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13400
+  [i915#13929]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929
+  [i915#14204]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_17362 -> Patchwork_155629v2
+
+  CI-20190529: 20190529
+  CI_DRM_17362: c6c2a6f0013cf24b117a1dd397c9e0530ff2f4cb @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8582: 8582
+  Patchwork_155629v2: c6c2a6f0013cf24b117a1dd397c9e0530ff2f4cb @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v2/index.html
+
+--===============1254466123152060769==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/prefill: Introduce helpers for prefill latency calculations (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155629/">https://patchwork.freedesktop.org/series/155629/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17362 -&gt; Patchwork_155629v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v2/index.html</p>
+<h2>Participating hosts (41 -&gt; 40)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_155629v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17362/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v2/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17362/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v2/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17362/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v2/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17362/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v2/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17362/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v2/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_rpm@basic-rte:</p>
+<ul>
+<li>bat-rpls-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17362/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13400">i915#13400</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v2/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17362/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v2/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@mman:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17362/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v2/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17362 -&gt; Patchwork_155629v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17362: c6c2a6f0013cf24b117a1dd397c9e0530ff2f4cb @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8582: 8582<br />
+  Patchwork_155629v2: c6c2a6f0013cf24b117a1dd397c9e0530ff2f4cb @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============1254466123152060769==--
