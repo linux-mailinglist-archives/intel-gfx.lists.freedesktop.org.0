@@ -2,52 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F172BBD9566
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Oct 2025 14:29:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36F14BD9781
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Oct 2025 14:55:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45D5410E224;
-	Tue, 14 Oct 2025 12:29:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BA4E10E5FD;
+	Tue, 14 Oct 2025 12:55:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="SxyDwdxr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Srhajso0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33B8610E224;
- Tue, 14 Oct 2025 12:29:23 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id C30E044E62;
- Tue, 14 Oct 2025 12:29:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0F43C4CEE7;
- Tue, 14 Oct 2025 12:29:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1760444962;
- bh=+dANSiTL0H12KnLe6qhjXfPuJ5JC6wEBsW+kIkDejso=;
- h=Date:From:To:Cc:Subject:From;
- b=SxyDwdxrGZ6NkZCxsuj6pznUMaCnKl8ODTCENcX720rCW2u3ZLnIv3Qw/gXNQWBj6
- jktdCyPsoVfffWFtKhGkj7AIuA2Hv8XWiQbmQM1p4M7+A1PFUYbAywis1joiotilAg
- yAhH+dHVNwRgthJHR89hockSiwFIXlhEOsaCIKrM7j84rRiJIyda5kkOE0hMbnoCzW
- kYEsM4aumNN0qdYWFzDEAvwSbepaGNU/nSnvF59DWwXPKgqR6qtOnCaKsdoz0ep1gT
- +59eOAeCH0K788GMI7HSReJ+ish5YmRKCLc4w8+Ig6uQClk9XMLPoZNQD3u1VOYNea
- P0ouqi6fYEy3w==
-Date: Tue, 14 Oct 2025 13:29:17 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Simona Vetter <simona.vetter@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B607710E5FB;
+ Tue, 14 Oct 2025 12:55:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1760446527; x=1791982527;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=O9SkHDvjuILVvTEeejvLwJNXSOActaQbLgkxknLenkg=;
+ b=Srhajso0sR7G0IpLpDAcuEHgCoWH+haULBoA9Dq/n7+UjYmg3HA+lHZW
+ 4DsnUifcU9DEGot07HMNIlL8QrfeLEydnEYU06YGj54Ptp7dH1ugbPsDk
+ eBCnxTMGhOv1xl+yCfmpqRRuqtgkDFLmrKXmFYwpAXmhnH895VPv8ZJJ0
+ gWPhlR024AZph7VmiXgBgt+CEGea769EWYuecvG4rqoOxe1xVSMNANSY2
+ 3wcBUOQShkaco6vQQf0Q/BKI5TJhBFSvkNAA5c2948F7qchCDJ4wghqwa
+ UkUqfecrEpe3MXE2aecdSPYW0F8MD/nWI2oH/GqZ/mGp6I5NIr9ZWTI5t A==;
+X-CSE-ConnectionGUID: GW9iO+QMRp23VigrE9Tj4A==
+X-CSE-MsgGUID: DIAng1PCQuW8xIAd+cm7+Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11582"; a="61813299"
+X-IronPort-AV: E=Sophos;i="6.19,228,1754982000"; d="scan'208";a="61813299"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2025 05:55:26 -0700
+X-CSE-ConnectionGUID: QY2Ihee+Q+e8UyNkNfp5bA==
+X-CSE-MsgGUID: 54RAfzYUSEqmJq5yrtg8mw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,228,1754982000"; d="scan'208";a="181096653"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.244.230])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2025 05:55:24 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- DRI <dri-devel@lists.freedesktop.org>
-Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Subject: linux-next: manual merge of the drm-intel tree with the
- drm-intel-fixes tree
-Message-ID: <aO5CHSMNxGMZsUPd@sirena.org.uk>
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH v2 0/3] drm/i915: Avoid lock inversion when pinning to GGTT
+Date: Tue, 14 Oct 2025 14:47:35 +0200
+Message-ID: <20251014125504.14804-5-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="R9j/QHozM9Mndnk6"
-Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,55 +74,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On completion of i915_vma_pin_ww(), a synchronous variant of
+dma_fence_work_commit() is called.  When pinning a VMA to GGTT address
+space on a Cherry View family processor, or on a Broxton generation SoC
+with VTD enabled, i.e., when stop_machine() is then called from
+intel_ggtt_bind_vma(), that can potentially lead to lock inversion among
+reservation_ww and cpu_hotplug locks.
 
---R9j/QHozM9Mndnk6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Call asynchronous variant of dma_fence_work_commit() in that case.  With
+that in place, adjust two selftest affected by that change.
 
-Hi all,
+v2: Fix spelling (Sebastian, Krzysztof; 2/3),
+  - explain why VMA pinning is commited asynchronously on CHV/BXT+VTD
+    (Krzysztof; 2/3, 3/3),
+  - use more precise wording in commit description (3/3).
 
-Today's linux-next merge of the drm-intel tree got a conflict in:
+Janusz Krzysztofik (3):
+  drm/i915: Avoid lock inversion when pinning to GGTT
+  drm/i915: Wait longer for threads in migrate selftest on CHV/BXT+VTD
+  drm/i915: Wait for page_sizes_gtt in gtt selftest on CHV/BXT+VTD
 
-  drivers/gpu/drm/i915/display/intel_fb.c
+ drivers/gpu/drm/i915/gt/selftest_migrate.c    |  3 ++-
+ drivers/gpu/drm/i915/i915_vma.c               | 10 ++++++++--
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c |  4 ++++
+ 3 files changed, 14 insertions(+), 3 deletions(-)
 
-between commit:
+Cc: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Cc: Krzysztof Karas <krzysztof.karas@intel.com>
+-- 
+2.51.0
 
-  86af6b90e0556 ("drm/i915/fb: Fix the set_tiling vs. addfb race, again")
-
-=66rom the drm-intel-fixes tree and commits:
-
-  1d1e4ded21601 ("drm/i915/fb: Fix the set_tiling vs. addfb race, again")
-  d76eeea515700 ("drm/i915/fb: Drop the 'fb' argument from intel_fb_bo_fram=
-ebuffer_init()")
-
-=66rom the drm-intel tree.
-
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
-
-diff --cc drivers/gpu/drm/i915/display/intel_fb.c
-index b817ff44c0439,9c256a2805e40..0000000000000
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-
---R9j/QHozM9Mndnk6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmjuQh0ACgkQJNaLcl1U
-h9DCwAf8DToewlBYi1iWpDOvN0TRvqMkhHvzYDD7bYPTtcDpaf7pW5T/xDK4M5lG
-DhQVdnVrlTOK0g7yz8NgSE4h8urwHoj0ovu0V5lo6IJ5U+rdAkjSNZVxXBHWRYnl
-Iy8rPxWkzvdIETYk5090rwm1pbkA3edocday97Lja568kXyqWzjtTetyQzmnxVpn
-IY0wi0Y30BR/HIs739NmOOwJL+lZtC69khvJ7lYhW38jBdV3hcAf5OVOoAyaSO4S
-KNre4ceoLg3fBY/Ls+YR9QRjFQKbi8UkkuXIUzxgf4UIwOwJUB9cDqTfdGjn/kiC
-8bqHz6veLrUIo73Rpe+N5xBIbTiXBA==
-=w8mK
------END PGP SIGNATURE-----
-
---R9j/QHozM9Mndnk6--
