@@ -2,68 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EB4ABD8311
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Oct 2025 10:33:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3327ABD8536
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Oct 2025 10:58:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7B9910E57C;
-	Tue, 14 Oct 2025 08:33:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41E2E10E580;
+	Tue, 14 Oct 2025 08:58:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LQWDHNGW";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="XfwXc4hX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D68610E152;
- Tue, 14 Oct 2025 08:33:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760430806; x=1791966806;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Oigry3JoQFBKZRMXiz2+W9qCgXbi3V4sOSXG0kWLxj8=;
- b=LQWDHNGWEDHAdMdUSLqfXpuey4jXO2ThwLS2cOkqzaPiPpKueNOY0ow4
- mEJqE0H4VFHFwXUoJdmDSJoQtOAOArZFxY0+B2zvy/Oya2cWFMTZB+mie
- 2AZ5pwD02UozHhtInJlM7ePK2iy3VkZms1fi66h4cA/DrkliGzq/zYt2P
- CxUpbVZbxUXdw7QZW9VlVjKlbtbKrbaZ1e0rAhV4bazK+34dk4FLILhZ6
- 56SfnYV9akDjO5A4zOiIgtJNATQPsVhXQy831ZONGRys0HTSw2dH57fv3
- fdesCPgrQ+Zw9xNCv59gR5leyJvFO0Q+h/NkgQBWMr4cG/nL/oIMGmpSx Q==;
-X-CSE-ConnectionGUID: 3qBetQwJQjWJgJFfqKphnA==
-X-CSE-MsgGUID: BUXGVGRuRIyqed8eKnfcNA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="61795378"
-X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="61795378"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2025 01:33:25 -0700
-X-CSE-ConnectionGUID: rXy+KZliQL+ZEeVwbnFysw==
-X-CSE-MsgGUID: NJN8rHOeRAOpI1ycsmqZuw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="181627920"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.244.196])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2025 01:33:21 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Krzysztof Karas <krzysztof.karas@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, 
- Thomas =?UTF-8?B?SGVsbHN0csO2bQ==?= <thomas.hellstrom@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-Subject: Re: [PATCH 2/3] drm/i915: Wait longer for threads in migrate selftest
- on CHV/BXT+VTD
-Date: Tue, 14 Oct 2025 10:33:19 +0200
-Message-ID: <5929253.DvuYhMxLoT@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <uoshfjo7uu4ezvd4ehregiktmf2mabme7qr2wrldxdygy3mmrg@swgp5q4wlus7>
-References: <20251008161258.3568573-5-janusz.krzysztofik@linux.intel.com>
- <20251008161258.3568573-7-janusz.krzysztofik@linux.intel.com>
- <uoshfjo7uu4ezvd4ehregiktmf2mabme7qr2wrldxdygy3mmrg@swgp5q4wlus7>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3530110E580
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Oct 2025 08:58:28 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id B79CF43EBA;
+ Tue, 14 Oct 2025 08:58:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C693C4CEE7;
+ Tue, 14 Oct 2025 08:58:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1760432307;
+ bh=B85MgEf+YfNnqea7NZC65HigapS66TEXOzh2kLpYujA=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=XfwXc4hXZGR/yXG6EBKo4tcUfA9Fd8YJbIU+9neR9Ip8TJl77arwl3mCQM9nf9ogn
+ taOVHgESDZpin/aIp9P5KiqawVBGXkOsZiGs1W1oc41uPkfamewSrgN7BNgkBNCDGd
+ k4bOOUBAXZTC6ONGn8iqndwoLKsK4sF4f1+RG3pmxpu3/pyudqBP/aDy7862g0JqlB
+ oawTAclCBFWyYflC7wTSKh+MYBLatSKawyBrRY9WvfHB5sIVLyBcWIlDgAhN5X4ZBI
+ JNrjdsxyuwTIw20qwA8ojBRTbo8P0+decZJEiWFBJUV/OnyhAV0w5LG5DfGGymgtuu
+ qyFgo0qTnrc5g==
+Date: Tue, 14 Oct 2025 10:58:24 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, lucas.demarchi@intel.com, 
+ riana.tauro@intel.com, matthew.brost@intel.com
+Subject: Re: [PATCH] drm/i915: Fix conversion between clock ticks and
+ nanoseconds
+Message-ID: <qvs2yu3mkfbsxft4zh3jizhp3xvdlviz4sj4mfte6cw4zo3ems@yhbfu7vakhq2>
+References: <20251007233543.635130-2-umesh.nerlige.ramappa@intel.com>
+ <itxmibglcduar4qqnc3iwwzumskfw522fbioubyzfbibb7tdrg@tz2mvn6c2mru>
+ <aOlGQ/YmR0QgPK7S@soc-5CG1426VCC.clients.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aOlGQ/YmR0QgPK7S@soc-5CG1426VCC.clients.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,63 +60,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Krzysztof,
+Hi Umesh,
 
-Thanks for reviewing the series.
-
-On Tuesday, 14 October 2025 09:12:15 CEST Krzysztof Karas wrote:
-> Hi Janusz,
-> 
-> > When running on a Cherryview, or on a Broxton with VTD enabled, pinning of
-> > a VMA to GGTT is now committed asynchronously.
-> You could also mention previously discovered lockdep issues on
-> those platforms. I think that would make it easier to link this
-> commit to the previous one in this series, since there is no
-> mention of Cherryview nor Broxton in the code.
-
-OK, and I think I'll do the same with patch 3/3.
-
-Thanks,
-Janusz
-
-> 
-> > That may defer further
-> > processing of resources that depend on that VMA.  As a consequence, a 10ms
-> > delay in a multithreaded migrate test case may occur too short and still
-> > incomplete threads may be interrupted, and the test case may fail with
-> > -ERESTARTSYS or -EINTR error code returned by any of those threads.
-> 
+On Fri, Oct 10, 2025 at 10:45:39AM -0700, Umesh Nerlige Ramappa wrote:
+> On Thu, Oct 09, 2025 at 02:24:52PM +0200, Andi Shyti wrote:
+> > > @@ -171,7 +173,12 @@ static u32 read_clock_frequency(struct intel_uncore *uncore)
+> > > 
+> > >  void intel_gt_init_clock_frequency(struct intel_gt *gt)
+> > >  {
+> > > +	unsigned long clock_period_scale;
+> > > +
+> > >  	gt->clock_frequency = read_clock_frequency(gt->uncore);
 > > 
-> > Extend the delay to empiricaly determined 100ms on affected platforms.
-> empiricaly -> empirically
-> 
+> > Shall we add a paranoid check here to raise a warning if
+> > clock_frequency is '0'?
 > > 
-> > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/gt/selftest_migrate.c | 3 ++-
-> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> > It should never happen, but for robustness I would suggest:
+> 
+> I did post that change, but BAT fails for PNV since clock_frequency is 0 on
+> PNV (gen3). I will use this version without the check.
+
+I saw the failure, haven't checked the all the paths, but isn't
+then PNV affected by division by 0?
+
+Andi
+
 > > 
-> > diff --git a/drivers/gpu/drm/i915/gt/selftest_migrate.c b/drivers/gpu/drm/i915/gt/selftest_migrate.c
-> > index 54bc447efce0b..cde755751a0ba 100644
-> > --- a/drivers/gpu/drm/i915/gt/selftest_migrate.c
-> > +++ b/drivers/gpu/drm/i915/gt/selftest_migrate.c
-> > @@ -710,7 +710,8 @@ static int threaded_migrate(struct intel_migrate *migrate,
-> >  		thread[i].tsk = tsk;
-> >  	}
-> >  
-> > -	msleep(10 * n_cpus); /* start all threads before we kthread_stop() */
-> > +	/* start all threads before we kthread_stop() */
-> > +	msleep((intel_vm_no_concurrent_access_wa(migrate->context->vm->i915) ? 100 : 10) * n_cpus);
-> Hmm, I wonder if having 100 ms delay for all platofms would
-> noticeably affect our testing (to have more uniformity here),
-> but on the other hand 10 ms was established here for a reason
-> in the past, so it should be fine.
-> >  
-> >  	for (i = 0; i < n_cpus; ++i) {
-> >  		struct task_struct *tsk = thread[i].tsk;
-> 
-> 
-
-
-
-
+> >        GEM_WARN_ON(!gt->clock_frequency);
+> > 
+> > (or even BUG_ON, though that might be overkill).
+> > 
+> > Andi
+> > 
+> > > +	clock_period_scale = gcd(NSEC_PER_SEC, gt->clock_frequency);
+> > > +	gt->clock_nsec_scaled = NSEC_PER_SEC / clock_period_scale;
+> > > +	gt->clock_freq_scaled = gt->clock_frequency / clock_period_scale;
+> > > 
+> > >  	/* Icelake appears to use another fixed frequency for CTX_TIMESTAMP */
+> > >  	if (GRAPHICS_VER(gt->i915) == 11)
