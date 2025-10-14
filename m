@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B3FDBDB096
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Oct 2025 21:18:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95DE8BDB099
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Oct 2025 21:18:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9313410E68E;
-	Tue, 14 Oct 2025 19:18:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01F2A10E693;
+	Tue, 14 Oct 2025 19:18:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mxr7IkaN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XgqRSwwa";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C04A610E68C;
- Tue, 14 Oct 2025 19:18:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D341C10E690;
+ Tue, 14 Oct 2025 19:18:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760469519; x=1792005519;
+ t=1760469523; x=1792005523;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=wHO1h/yr8sr0E8dwgEyfdBRkgdUsvBp3JQWc588OI8E=;
- b=mxr7IkaNLBR2oR8S7cpg4Fmtdf8f0TDxEHLEjwkhaurH0JQWv84AfLuY
- GLwzomCV2YxOyJVMjZcPKArBy8+Mf7BOHnzBj6Xxmu34RcNtcjfXDthIM
- d572wdJz6ZFZWBDqrNZgfKk/ew941AwxgjJmOSfg7ABTJrevDqwj+n/u9
- B2fPTehrXQOi27dOkPTZSTSJVNvCJEs73pfDkfEsbSajX1L7ATta+z5JH
- 7SSteR0NTmbPAP28Ma+uUS7cew7e4WowCNx9KVEtOo2vqmuQZCL1gHQAQ
- kAeic0/xK1l0pYO6m+snuMP9RiyyzQkAl5IOH+jffwtryTBcx7/H2TbzI w==;
-X-CSE-ConnectionGUID: xd0phOsNSl6ga2UyEf9lrQ==
-X-CSE-MsgGUID: pV9Z+p37TBu5Rvx8+O4seg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11582"; a="50200849"
-X-IronPort-AV: E=Sophos;i="6.19,229,1754982000"; d="scan'208";a="50200849"
+ bh=V/0oxyfJNPnUPxLBaiRh8qewVq04eaU5xAV/3/Vu5co=;
+ b=XgqRSwwaRYVM/nIqNQKc57gK55N0yI5jf3YzlRUO+lsL3A0nTFEPhTto
+ gy8/ElOqdP1lvcCJnb4P6Zrs/sMkL8VXZPWe6j4DnwkIzPr6mD6qRt4NU
+ uEfZS8A4NiRd7XP1+3SL/agaFbkw2V7ndGE2lXfoFGFsoDCx9zTMSTutG
+ Z1JQB50Bz4ftDOg33FhXTwFrPqNil1JuibDK+NXbHB7Of/djjy2qQakV1
+ okqkQZG23alYFe0BeTVwj5JD9cQWvRn96jX4AYynQPWeogzo/CdCtPhlb
+ VnhhViw36UJF+YCwKcV/BaX64Vv8DhyEN9k9ngpxUBHoL5KZ5wVpTBHXk Q==;
+X-CSE-ConnectionGUID: Pp7L+BgcRIuXYUputI5h1Q==
+X-CSE-MsgGUID: YEQ2fGm0RRCORO3CJPCweQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11582"; a="50200854"
+X-IronPort-AV: E=Sophos;i="6.19,229,1754982000"; d="scan'208";a="50200854"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2025 12:18:38 -0700
-X-CSE-ConnectionGUID: xiVVeIICSOSw85E8GCW97Q==
-X-CSE-MsgGUID: mejKSOD7QF2boqnZVAHWrg==
+ 14 Oct 2025 12:18:43 -0700
+X-CSE-ConnectionGUID: fcqGtizcT7yEPcfHPZZAPg==
+X-CSE-MsgGUID: RbE8iGrlSIe4+ktQbJUDRQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,229,1754982000"; d="scan'208";a="205669359"
+X-IronPort-AV: E=Sophos;i="6.19,229,1754982000"; d="scan'208";a="205669378"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.227])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2025 12:18:37 -0700
+ 14 Oct 2025 12:18:41 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	Uma Shankar <uma.shankar@intel.com>
-Subject: [PATCH v2 6/9] drm/i915/scaler: Add scaler prefill helpers
-Date: Tue, 14 Oct 2025 22:18:05 +0300
-Message-ID: <20251014191808.12326-7-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 7/9] drm/i915/wm: Add WM0 prefill helpers
+Date: Tue, 14 Oct 2025 22:18:06 +0300
+Message-ID: <20251014191808.12326-8-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20251014191808.12326-1-ville.syrjala@linux.intel.com>
 References: <20251014191808.12326-1-ville.syrjala@linux.intel.com>
@@ -73,160 +73,35 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Add helpers to compute the required prefill line count and
-adjustment factors for the scalers.
-
-The "1st" variants hand out numbers for the first scaler stage
-in the pipeline (pipe scaler if no plane scalers are enabled,
-or the max from all the plane scaler). The "2nd" variants deal
-with second scaler stage (pipe scaler when plane scaling is also
-enabled, otherwise there is no second stage).
-
-The _worst() variants give out worst case estimates, meant for
-guardband sizing. The other variants are meant for the actual
-vblank/guardband length check vs. prefill+pkgc/sagv latency.
-
-A few other helpers are added for the purpose of the WM0 prefill
-worst case estimates (to be introduced later).
+Add skl_wm0_prefill_lines() (based on the actual state) and
+skl_wm0_prefill_lines_worst() (worst case estimate) which
+tell us how many extra lines are needed in prefill for WM0.
 
 The returned numbers are in .16 binary fixed point.
 
-TODO: pretty rough, should check the actual scaler max scaling
-      factors instead of just assuming 3x everywhere
+TODO: skl_wm0_prefill_lines_worst() is a bit rough still
 
-v2: Drop debugs
+v2: Drop all pre-icl FIXMEs since this only gets used for VRR guardband
 
 Reviewed-by: Uma Shankar <uma.shankar@intel.com> #v1
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_scaler.c | 168 ++++++++++++++++++++++
- drivers/gpu/drm/i915/display/skl_scaler.h |  11 ++
- 2 files changed, 179 insertions(+)
+ drivers/gpu/drm/i915/display/skl_scaler.c    | 32 ++++++++++-
+ drivers/gpu/drm/i915/display/skl_scaler.h    |  4 ++
+ drivers/gpu/drm/i915/display/skl_watermark.c | 57 ++++++++++++++++++++
+ drivers/gpu/drm/i915/display/skl_watermark.h |  3 ++
+ 4 files changed, 95 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-index c6cccf170ff1..47cdea75d27c 100644
+index 47cdea75d27c..65f2eb528161 100644
 --- a/drivers/gpu/drm/i915/display/skl_scaler.c
 +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-@@ -968,3 +968,171 @@ void adl_scaler_ecc_unmask(const struct intel_crtc_state *crtc_state)
- 			  1);
- 	intel_de_write(display, XELPD_DISPLAY_ERR_FATAL_MASK, 0);
+@@ -1083,7 +1083,37 @@ static unsigned int _skl_scaler_max_scale(const struct intel_crtc_state *crtc_st
+ 					       crtc_state->hw.pipe_mode.crtc_clock));
  }
-+
-+static unsigned int skl_scaler_scale(const struct intel_crtc_state *crtc_state, int i)
-+{
-+	const struct intel_crtc_scaler_state *scaler_state =
-+		&crtc_state->scaler_state;
-+
-+	return DIV_ROUND_UP_ULL(mul_u32_u32(scaler_state->scalers[i].hscale,
-+					    scaler_state->scalers[i].vscale),
-+				0x10000);
-+}
-+
-+static unsigned int skl_scaler_downscale(const struct intel_crtc_state *crtc_state, int i)
-+{
-+	return max(0x10000, skl_scaler_scale(crtc_state, i));
-+}
-+
-+static unsigned int skl_plane_scaler_downscale(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+	const struct intel_crtc_scaler_state *scaler_state =
-+		&crtc_state->scaler_state;
-+	unsigned int scale = 0x10000;
-+	int i;
-+
-+	for (i = 0; i < crtc->num_scalers; i++) {
-+		/* ignore pfit */
-+		if (i == scaler_state->scaler_id)
-+			continue;
-+
-+		if (!scaler_state->scalers[i].in_use)
-+			continue;
-+
-+		scale = max(scale, skl_scaler_downscale(crtc_state, i));
-+	}
-+
-+	return scale;
-+}
-+
-+static unsigned int skl_pipe_scaler_downscale(const struct intel_crtc_state *crtc_state)
-+{
-+	const struct intel_crtc_scaler_state *scaler_state =
-+		&crtc_state->scaler_state;
-+
-+	if (!crtc_state->pch_pfit.enabled)
-+		return 0x10000;
-+
-+	return skl_scaler_downscale(crtc_state, scaler_state->scaler_id);
-+}
-+
-+unsigned int skl_scaler_1st_prefill_adjustment(const struct intel_crtc_state *crtc_state)
-+{
-+	const struct intel_crtc_scaler_state *scaler_state =
-+		&crtc_state->scaler_state;
-+	int num_scalers = hweight32(scaler_state->scaler_users);
-+
-+	if (num_scalers < 1)
-+		return 0x10000;
-+
-+	if (num_scalers == 1 && crtc_state->pch_pfit.enabled)
-+		return skl_pipe_scaler_downscale(crtc_state);
-+	else
-+		return skl_plane_scaler_downscale(crtc_state);
-+}
-+
-+unsigned int skl_scaler_2nd_prefill_adjustment(const struct intel_crtc_state *crtc_state)
-+{
-+	const struct intel_crtc_scaler_state *scaler_state =
-+		&crtc_state->scaler_state;
-+	int num_scalers = hweight32(scaler_state->scaler_users);
-+
-+	if (num_scalers < 2)
-+		return 0x10000;
-+
-+	return skl_pipe_scaler_downscale(crtc_state);
-+}
-+
-+unsigned int skl_scaler_1st_prefill_lines(const struct intel_crtc_state *crtc_state)
-+{
-+	const struct intel_crtc_scaler_state *scaler_state =
-+		&crtc_state->scaler_state;
-+	int num_scalers = hweight32(scaler_state->scaler_users);
-+
-+	if (num_scalers > 0)
-+		return 4 << 16;
-+
-+	return 0;
-+}
-+
-+unsigned int skl_scaler_2nd_prefill_lines(const struct intel_crtc_state *crtc_state)
-+{
-+	const struct intel_crtc_scaler_state *scaler_state =
-+		&crtc_state->scaler_state;
-+	int num_scalers = hweight32(scaler_state->scaler_users);
-+
-+	if (num_scalers > 1 && crtc_state->pch_pfit.enabled)
-+		return 4 << 16;
-+
-+	return 0;
-+}
-+
-+static unsigned int _skl_scaler_max_scale(const struct intel_crtc_state *crtc_state,
-+					  unsigned int max_scale)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+
-+	/*
-+	 * Downscaling requires increasing cdclk, so max scale
-+	 * factor is limited to the max_dotclock/dotclock ratio.
-+	 *
-+	 * FIXME find out the max downscale factors properly
-+	 */
-+	return min(max_scale, DIV_ROUND_UP_ULL((u64)display->cdclk.max_dotclk_freq << 16,
-+					       crtc_state->hw.pipe_mode.crtc_clock));
-+}
-+
-+static unsigned int skl_scaler_max_scale(const struct intel_crtc_state *crtc_state)
+ 
+-static unsigned int skl_scaler_max_scale(const struct intel_crtc_state *crtc_state)
++unsigned int skl_scaler_max_total_scale(const struct intel_crtc_state *crtc_state)
 +{
 +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
 +	unsigned int max_scale;
@@ -236,69 +111,140 @@ index c6cccf170ff1..47cdea75d27c 100644
 +
 +	/* FIXME find out the max downscale factors properly */
 +	max_scale = 9 << 16;
++	if (crtc->num_scalers > 1)
++		max_scale *= 9;
 +
 +	return _skl_scaler_max_scale(crtc_state, max_scale);
 +}
 +
-+unsigned int skl_scaler_1st_prefill_adjustment_worst(const struct intel_crtc_state *crtc_state)
++unsigned int skl_scaler_max_hscale(const struct intel_crtc_state *crtc_state)
 +{
 +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	unsigned int max_scale;
 +
-+	if (crtc->num_scalers > 0)
-+		return skl_scaler_max_scale(crtc_state);
-+	else
++	if (crtc->num_scalers < 1)
 +		return 0x10000;
++
++	/* FIXME find out the max downscale factors properly */
++	max_scale = 3 << 16;
++
++	return _skl_scaler_max_scale(crtc_state, max_scale);
 +}
 +
-+unsigned int skl_scaler_2nd_prefill_adjustment_worst(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+
-+	if (crtc->num_scalers > 1)
-+		return skl_scaler_max_scale(crtc_state);
-+	else
-+		return 0x10000;
-+}
-+
-+unsigned int skl_scaler_1st_prefill_lines_worst(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+
-+	if (crtc->num_scalers > 0)
-+		return 4 << 16;
-+	else
-+		return 0;
-+}
-+
-+unsigned int skl_scaler_2nd_prefill_lines_worst(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+
-+	if (crtc->num_scalers > 1)
-+		return 4 << 16;
-+	else
-+		return 0;
-+}
++unsigned int skl_scaler_max_scale(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	unsigned int max_scale;
 diff --git a/drivers/gpu/drm/i915/display/skl_scaler.h b/drivers/gpu/drm/i915/display/skl_scaler.h
-index 12a19016c5f6..6fab40d2b4ee 100644
+index 6fab40d2b4ee..5deabca909e6 100644
 --- a/drivers/gpu/drm/i915/display/skl_scaler.h
 +++ b/drivers/gpu/drm/i915/display/skl_scaler.h
-@@ -45,4 +45,15 @@ skl_scaler_mode_valid(struct intel_display *display,
- void adl_scaler_ecc_mask(const struct intel_crtc_state *crtc_state);
+@@ -46,6 +46,10 @@ void adl_scaler_ecc_mask(const struct intel_crtc_state *crtc_state);
  
  void adl_scaler_ecc_unmask(const struct intel_crtc_state *crtc_state);
+ 
++unsigned int skl_scaler_max_total_scale(const struct intel_crtc_state *crtc_state);
++unsigned int skl_scaler_max_scale(const struct intel_crtc_state *crtc_state);
++unsigned int skl_scaler_max_hscale(const struct intel_crtc_state *crtc_state);
 +
-+unsigned int skl_scaler_1st_prefill_adjustment_worst(const struct intel_crtc_state *crtc_state);
-+unsigned int skl_scaler_2nd_prefill_adjustment_worst(const struct intel_crtc_state *crtc_state);
-+unsigned int skl_scaler_1st_prefill_lines_worst(const struct intel_crtc_state *crtc_state);
-+unsigned int skl_scaler_2nd_prefill_lines_worst(const struct intel_crtc_state *crtc_state);
+ unsigned int skl_scaler_1st_prefill_adjustment_worst(const struct intel_crtc_state *crtc_state);
+ unsigned int skl_scaler_2nd_prefill_adjustment_worst(const struct intel_crtc_state *crtc_state);
+ unsigned int skl_scaler_1st_prefill_lines_worst(const struct intel_crtc_state *crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 06e5e6c77d2e..700707a91c70 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -30,6 +30,7 @@
+ #include "intel_plane.h"
+ #include "intel_vblank.h"
+ #include "intel_wm.h"
++#include "skl_scaler.h"
+ #include "skl_universal_plane_regs.h"
+ #include "skl_watermark.h"
+ #include "skl_watermark_regs.h"
+@@ -2245,6 +2246,57 @@ skl_is_vblank_too_short(const struct intel_crtc_state *crtc_state,
+ 		intel_crtc_vblank_length(crtc_state);
+ }
+ 
++unsigned int skl_wm0_prefill_lines_worst(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_display *display = to_intel_display(crtc_state);
++	struct intel_plane *plane = to_intel_plane(crtc_state->uapi.crtc->primary);
++	const struct drm_display_mode *pipe_mode = &crtc_state->hw.pipe_mode;
++	int ret, pixel_rate, width, level = 0;
++	const struct drm_format_info *info;
++	struct skl_wm_level wm = {};
++	struct skl_wm_params wp;
++	unsigned int latency;
++	u64 modifier;
++	u32 format;
 +
-+unsigned int skl_scaler_1st_prefill_adjustment(const struct intel_crtc_state *crtc_state);
-+unsigned int skl_scaler_2nd_prefill_adjustment(const struct intel_crtc_state *crtc_state);
-+unsigned int skl_scaler_1st_prefill_lines(const struct intel_crtc_state *crtc_state);
-+unsigned int skl_scaler_2nd_prefill_lines(const struct intel_crtc_state *crtc_state);
++	/* only expected to be used for VRR guardband calculation */
++	drm_WARN_ON(display->drm, !HAS_VRR(display));
 +
- #endif
++	/* FIXME rather ugly to pick this by hand but maybe no better way? */
++	format = DRM_FORMAT_XBGR16161616F;
++	if (HAS_4TILE(display))
++		modifier = I915_FORMAT_MOD_4_TILED;
++	else
++		modifier = I915_FORMAT_MOD_Y_TILED;
++
++	info = drm_get_format_info(display->drm, format, modifier);
++
++	pixel_rate = DIV_ROUND_UP_ULL(mul_u32_u32(skl_scaler_max_total_scale(crtc_state),
++						  pipe_mode->crtc_clock),
++				      0x10000);
++
++	/* FIXME limit to max plane width? */
++	width = DIV_ROUND_UP_ULL(mul_u32_u32(skl_scaler_max_hscale(crtc_state),
++					     pipe_mode->crtc_hdisplay),
++				 0x10000);
++
++	/* FIXME is 90/270 rotation worse than 0/180? */
++	ret = skl_compute_wm_params(crtc_state, width, info,
++				    modifier, DRM_MODE_ROTATE_0,
++				    pixel_rate, &wp, 0, 1);
++	drm_WARN_ON(display->drm, ret);
++
++	latency = skl_wm_latency(display, level, &wp);
++
++	skl_compute_plane_wm(crtc_state, plane, level, latency, &wp, &wm, &wm);
++
++	/* FIXME is this sane? */
++	if (wm.min_ddb_alloc == U16_MAX)
++		wm.lines = skl_wm_max_lines(display);
++
++	return wm.lines << 16;
++}
++
+ static int skl_max_wm0_lines(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+@@ -2261,6 +2313,11 @@ static int skl_max_wm0_lines(const struct intel_crtc_state *crtc_state)
+ 	return wm0_lines;
+ }
+ 
++unsigned int skl_wm0_prefill_lines(const struct intel_crtc_state *crtc_state)
++{
++	return skl_max_wm0_lines(crtc_state) << 16;
++}
++
+ /*
+  * TODO: In case we use PKG_C_LATENCY to allow C-states when the delayed vblank
+  * size is too small for the package C exit latency we need to notify PSR about
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.h b/drivers/gpu/drm/i915/display/skl_watermark.h
+index 62790816f030..6bc2ec9164bf 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.h
++++ b/drivers/gpu/drm/i915/display/skl_watermark.h
+@@ -79,5 +79,8 @@ void intel_program_dpkgc_latency(struct intel_atomic_state *state);
+ 
+ bool intel_dbuf_pmdemand_needs_update(struct intel_atomic_state *state);
+ 
++unsigned int skl_wm0_prefill_lines_worst(const struct intel_crtc_state *crtc_state);
++unsigned int skl_wm0_prefill_lines(const struct intel_crtc_state *crtc_state);
++
+ #endif /* __SKL_WATERMARK_H__ */
+ 
 -- 
 2.49.1
 
