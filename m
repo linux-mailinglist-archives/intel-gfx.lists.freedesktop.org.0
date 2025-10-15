@@ -2,81 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D13F5BDE631
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 14:04:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CB66BDE6CA
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 14:14:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C334210E79B;
-	Wed, 15 Oct 2025 12:04:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=fooishbar.org header.i=@fooishbar.org header.b="MYoewjL/";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BB3F10E791;
+	Wed, 15 Oct 2025 12:14:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com
- [209.85.222.169])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D01DC10E7A3
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Oct 2025 12:04:31 +0000 (UTC)
-Received: by mail-qk1-f169.google.com with SMTP id
- af79cd13be357-863fa984ef5so1097123285a.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Oct 2025 05:04:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=fooishbar.org; s=google; t=1760529871; x=1761134671;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=yIkDzOp9lOkC64phyHj+bKX1qlxxtXvg/X9w367rNpc=;
- b=MYoewjL/vwDYq3coel9hzz+PwQ17hKdmPqn9U5l3tr4IK/YQM7nYSfkiGpjCOf6vWU
- jBmJqWtGS9Log4iljNq0wCLe+Q6ZfRTd1m5b9YtXd4oW+pzcXjQgPPQ6Erltlg2+i0ee
- iquKRXCXhLqf4xtXhTSYzis79paR+2gUbMdg8Qg99Fj/IPBk6qo6m1MEmuUjwgQwASIf
- qhCAJocJx/V75IBrDE+bL4DVwQh9TUAizsT3NfMd2pb3Xl+0vsjHCCK9nj0zaWAVZGk5
- SqRxwkuKSp5fqP6yWO9N3EOH7nhW7XUv13KP824M1dKwPX9Z6fJhh7Q/d8QDGZpXheG+
- /7hw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1760529871; x=1761134671;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=yIkDzOp9lOkC64phyHj+bKX1qlxxtXvg/X9w367rNpc=;
- b=gv7IEiJGq/Q7KA6JMe1nzI8gw4f0XBD3HfHAq7LAg5kiAsnjyp4VRbjCOIkud/ITEC
- 2q8z6JhoBLEaEzul8ID1vyUfil3LrGbMYmoTnbsh1xz2UT71JEYMuSqSylYGozVmtkUg
- ldhqavUkYk3rXqCMInIOGvX2EyELQahD4t/BUeQ4L1b/6EE/XmQDBgkSuJ/Q0g20KZdP
- vtJICPUgOnPfBo/x3QULsc9mtsah8DAJCJGqPMeLGrjRSnOy/17XZr1Dy4fWvW+IgRhB
- ImXHe5JGuGD+xqzU8kJJ242HQVlqDve0G7vuO+/hQIP6wrmOEaoScjCsmQ4aZ1sd8afl
- Mj6A==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXx6Dec0vkqYupA+6U6HbJOLjkvME7UF8IKuZkwPdRR7y187hDGoBl3GMpKHPJXIW57ijOw+gwckbc=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzmU0d+bZQegXtGwCAHO0S7xjlP6s3hcM0AifYpIoaOxyt2JS6K
- zlNysiUOaHrMgENa6YfO/E5A/GkHGm6ARi8mUGp67eSvjgVVY1lHElST1FYE1tiRYY6qtlmgeTE
- QsSlUfAQ6Q137N4vntOj2LkKnwyNcP3Hi/pjV7jBgFA==
-X-Gm-Gg: ASbGncsU0Jy1NS2M7HYeWqa0ZWtaVANcCnZNEaFpaRFJ8iPpVCro8WZr32BMDdRHWrz
- oz+2Wa9Jyv7iWpwgFjHSFvCniU2fBRxOOZPdrGKgDJaaL1kCewI4RUmu0LbMkswYcWjpch8VKuB
- dNlvqDwXscB45xgsYoJBEqHAdSxxroGniYqapXw84wvklBvqVbMa3UDGp3MOq7s1s7Si3WfDKQl
- 5SYSwS6cjm5iFUeqpSToHbDa1Ewb7vZsA==
-X-Google-Smtp-Source: AGHT+IGsy4ghNUujV8ICs5xCd3l4JFRIFi1WBGAyKhaZaEA9CMFYjjgZCN0vS1WL/9stf48sqTR9sa0kj6mJ0PU2Rkg=
-X-Received: by 2002:a05:620a:800b:b0:85b:5fdf:69ef with SMTP id
- af79cd13be357-883524cb7c1mr3776426285a.30.1760529870781; Wed, 15 Oct 2025
- 05:04:30 -0700 (PDT)
-MIME-Version: 1.0
-References: <20251013060212.14583-1-vignesh.raman@collabora.com>
-In-Reply-To: <20251013060212.14583-1-vignesh.raman@collabora.com>
-From: Daniel Stone <daniel@fooishbar.org>
-Date: Wed, 15 Oct 2025 13:04:18 +0100
-X-Gm-Features: AS18NWBrg_BqO2tS4RN_x8d2btqMDE8us2R2sNEBkP2IYKjicDOGCIjh3Jp7IkM
-Message-ID: <CAPj87rPDppYBRuQ99mh=VqrsSErGKcw-ZRY+zPuGrDj77G5k6Q@mail.gmail.com>
-Subject: Re: [PATCH v1] drm/ci: disable broken MR check in sanity job
-To: Vignesh Raman <vignesh.raman@collabora.com>
-Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com, 
- helen.fornazier@gmail.com, airlied@gmail.com, simona.vetter@ffwll.ch, 
- robdclark@gmail.com, guilherme.gallo@collabora.com, 
- sergi.blanch.torne@collabora.com, valentine.burley@collabora.com, 
- lumag@kernel.org, linux-mediatek@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, 
- intel-gfx@lists.freedesktop.org, virtualization@lists.linux.dev, 
- linux-kernel@vger.kernel.org
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9390F10E784;
+ Wed, 15 Oct 2025 12:14:43 +0000 (UTC)
+Received: from mobile-access-d98cd5-201.dhcp.inet.fi ([217.140.213.201]
+ helo=[192.168.8.139])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
+ id 1v90Ou-00000001ZPm-0mNz; Wed, 15 Oct 2025 15:14:41 +0300
+Message-ID: <8f5b496106ca27abccdc5d7f59ebe3abfac2454b.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Mika Kahola <mika.kahola@intel.com>, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Cc: Imre Deak <imre.deak@intel.com>
+Date: Wed, 15 Oct 2025 15:14:39 +0300
+In-Reply-To: <20251013095045.3658871-6-mika.kahola@intel.com>
+References: <20251013095045.3658871-1-mika.kahola@intel.com>
+ <20251013095045.3658871-6-mika.kahola@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-4 
+MIME-Version: 1.0
+X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-25) on farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+ autolearn=ham autolearn_force=no version=4.0.1
+Subject: Re: [PATCH 5/7] drm/i915/display: Fix
+ PHY_C20_VDR_CUSTOM_SERDES_RATE programming
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,22 +51,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Vignesh,
+On Mon, 2025-10-13 at 12:50 +0300, Mika Kahola wrote:
+> From: Imre Deak <imre.deak@intel.com>
+>=20
+> Make sure all the DP/HDMI/HDMI-FRL flags are programmed in all the modes
+> the PLL is configured.
+>=20
+> Atm the DP mode flag is not programmed in case the PLL is configured for
+> HDMI mode for instance. This is incorrect after HW reset, since the DP
+> mode flag is asserted after reset, hence would need to be cleared for
+> HDMI, but also incorrect because of the same reason after configuring
+> the PLL to HDMI mode after it was used in DP mode (for instance on a
+> DP++ connector).
+>=20
+> There is a similar issue with the HDMI-FRL flag, potentially remaining
+> set when configuring the PLL in DP mode.
+>=20
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.c | 25 +++++++++++---------
+>  1 file changed, 14 insertions(+), 11 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/d=
+rm/i915/display/intel_cx0_phy.c
+> index 9be7e155a584..6e49659d2f17 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> @@ -2624,6 +2624,7 @@ static void intel_c20_pll_program(struct intel_disp=
+lay *display,
+>  				  bool is_dp, int port_clock)
+>  {
+>  	u8 owned_lane_mask =3D intel_cx0_get_owned_lane_mask(encoder);
+> +	u8 serdes;
+>  	bool cntx;
+>  	int i;
+> =20
+> @@ -2699,21 +2700,23 @@ static void intel_c20_pll_program(struct intel_di=
+splay *display,
+>  		      MB_WRITE_COMMITTED);
+> =20
+>  	/* 5. For DP or 6. For HDMI */
+> -	if (is_dp) {
+> -		intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_SERDES_RATE=
+,
+> -			      PHY_C20_IS_DP | PHY_C20_DP_RATE_MASK,
+> -			      PHY_C20_IS_DP | PHY_C20_DP_RATE(intel_c20_get_dp_rate(port_cloc=
+k)),
+> -			      MB_WRITE_COMMITTED);
+> -	} else {
+> -		intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_SERDES_RATE=
+,
+> -			      PHY_C20_IS_HDMI_FRL | PHY_C20_DP_RATE_MASK,
+> -			      is_hdmi_frl(port_clock) ? PHY_C20_IS_HDMI_FRL : 0,
+> -			      MB_WRITE_COMMITTED);
+> +	serdes =3D 0;
+> +
+> +	if (is_dp)
+> +		serdes =3D PHY_C20_IS_DP |
+> +			 PHY_C20_DP_RATE(intel_c20_get_dp_rate(port_clock));
+> +	else if (is_hdmi_frl(port_clock))
+> +		serdes =3D PHY_C20_IS_HDMI_FRL;
+> =20
+> +	intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_SERDES_RATE,
+> +		      PHY_C20_IS_DP | PHY_C20_DP_RATE_MASK | PHY_C20_IS_HDMI_FRL,
+> +		      serdes,
+> +		      MB_WRITE_COMMITTED);
+> +
+> +	if (!is_dp)
+>  		intel_cx0_write(encoder, INTEL_CX0_BOTH_LANES, PHY_C20_VDR_HDMI_RATE,
+>  				intel_c20_get_hdmi_rate(port_clock),
+>  				MB_WRITE_COMMITTED);
+> -	}
+> =20
+>  	/*
+>  	 * 7. Write Vendor specific registers to toggle context setting to load
 
-On Mon, 13 Oct 2025 at 07:02, Vignesh Raman <vignesh.raman@collabora.com> w=
-rote:
-> GitLab recently changed the required permissions for the
-> are-developers-allowed-to-push-to-my-MR check:
-> https://gitlab.freedesktop.org/freedesktop/ci-templates/-/issues/81
->
-> Until that=E2=80=99s resolved, disable the check - it=E2=80=99s mostly ob=
-solete anyway.
->
-> Based on https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/37782
+Seems to match the bspec.
 
-Thanks for fixing this.
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
-Reviewed-by: Daniel Stone <daniels@collabora.com>
-
+--
 Cheers,
-Daniel
+Luca.
