@@ -2,45 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAFF1BDE86C
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 14:44:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67B44BDE86F
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 14:44:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA86D10E7AD;
-	Wed, 15 Oct 2025 12:44:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51A9910E7B0;
+	Wed, 15 Oct 2025 12:44:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NDTtlr5x";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hWKZiIEv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CF7A10E7AD;
- Wed, 15 Oct 2025 12:44:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79C3E10E7B0;
+ Wed, 15 Oct 2025 12:44:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760532281; x=1792068281;
+ t=1760532283; x=1792068283;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5Jgr636DTcJs2cRTtSyKveKOxwgUBAIRwVjcJW/L9q4=;
- b=NDTtlr5xlWTnGd6+DAXz1lQrlBNy1lBH6NCiNT+an4k8RJaDvNVuUhpv
- QpEgK7LGgDoasaOct0UdCinBAoN/g7NHDV1twRBVdrwM5FUDyF10Ydj0O
- YRAiZO1q92L+Dtfe87MfMhQtTmpWWMZlnOH9mFThz/u6DSBfVXZCWi5qs
- 7yBmaUxLIgw/WPflqQKx8xUiJWpUyRg/cQLR0LWvSyu6r6RPbZGTFq6G6
- 5BpeXk+IAnssFPzc/0SVfAJE+JzOl+xNi3tGPMf4hIv5ERq9560W378QC
- 1Kq3MHlSMu3xyUEca4MTieQ8Gpnehyu6JS/59v0o2mJ2Ha6IcmC/D0yaE Q==;
-X-CSE-ConnectionGUID: NAJzZ4siQZuCvW5UgeDmlQ==
-X-CSE-MsgGUID: zcbl/ZmNQ16AFRKhg3DK/w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11582"; a="62601556"
-X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="62601556"
+ bh=N+xQY5kI+WbXIcJ9o1ijdWIPmySlo1uOtUEzhlE+N5I=;
+ b=hWKZiIEvvfqHp7PlMT16vsVv7I4Gbo8cz8b/ArozO7yZmxdYP7dsJQew
+ CUKrf4Nr4n/KbjAxIW5TOAjXqmdtycvX/D9ic10/a5kVU0ZC7+K6SPtaP
+ qZ3nrda4x75DPsi/YIm5XsnJtz6seAlQj6/hUQ2VTHexS/nF1uQ59mTke
+ XIRRMX3MDbR53CWgPEUukxbdK+J1GaUibVfrjZPIQ4IFL5W7YCKFj3U5e
+ gbdroqdtfx8VJkIlHpFc/rXFVzFPyZD+1YCUfMIS4TXu76PNpAYj0lWJL
+ UozXHs49VPF6MYmun5RmUh6d58N1tHT38GF2B2zIhwDj2gZphdn1kKPU2 A==;
+X-CSE-ConnectionGUID: iH2oKl5AS1SzZlrsIgOwow==
+X-CSE-MsgGUID: HXfX6WcwTm+wG8q/Yh7CQA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11582"; a="62601558"
+X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="62601558"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 05:44:41 -0700
-X-CSE-ConnectionGUID: +jS3oE7oR7yj7Fn2stNHDg==
-X-CSE-MsgGUID: zpim8IBJRKCau62868Pbsg==
+ 15 Oct 2025 05:44:43 -0700
+X-CSE-ConnectionGUID: RoeCGfX3R0C0P2BShHCO6A==
+X-CSE-MsgGUID: aIkS5cbcR+GXKEqcdDEe4w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="181384930"
+X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="181384938"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.245.92])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 05:44:39 -0700
+ 15 Oct 2025 05:44:42 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org,
@@ -49,10 +49,10 @@ Cc: intel-gfx@lists.freedesktop.org,
  Tvrtko Ursulin <tursulin@ursulin.net>,
  Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
  Krzysztof Karas <krzysztof.karas@intel.com>
-Subject: [PATCH i-g-t v3 1/6] tests/gem_eio: Skip on too few reset-resume
- cycles
-Date: Wed, 15 Oct 2025 14:39:19 +0200
-Message-ID: <20251015124419.66460-9-janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH i-g-t v3 2/6] tests/gem_eio: Try harder to measure median
+ resume time
+Date: Wed, 15 Oct 2025 14:39:20 +0200
+Message-ID: <20251015124419.66460-10-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251015124419.66460-8-janusz.krzysztofik@linux.intel.com>
 References: <20251015124419.66460-8-janusz.krzysztofik@linux.intel.com>
@@ -73,44 +73,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Subtests that measure time of resume after engine reset compare a median
-value calculated from the measurements against a presumed limit and fail
-if the limit has been exceeded.  However, if it occurs not possible to
-collect enough measurements required for stable median value calculation,
-that condition is now ignored and success is reported, as if the measured
-time fit below the limit.
+Subtests that measure time of resume after engine reset require results
+from at least 9 reset-resume cycles for reasonable calculation of a median
+value to be compared against a presumed limit.  On most Gen12+ platforms,
+as well as on some older ones like JSL, CHV, ILK or ELK, the current limit
+of 5 seconds for collecting those results occurs too short.
 
-Skip if not able to collect sufficient number of time measurements.  CI
-results from slow platforms that always skip may be handled as expected
-skips.
+Raise the limit to an empirically determined value of 20 seconds and break
+the loop as soon as 9 results are collected.
 
-v3: Use a symbol for minimum number of measurements (Kamil),
-  - reword skip message for its better readability (Kamil).
+v3: Use NUMER_OF_MEASURED_CYCLES_NEEDED symbol (Kamil).
+v2: Split out a change in handling of not enough measurements to a
+    separate patch (Kamil),
+  - reword commit message to be more distinct from other patches in
+    series (Kamil),
+  - reword commit message and description so they no longer state the
+    scope of the issue is limited to Gen12+, and list other (non-Gen12+)
+    platforms found also affected.
 
 Cc: Krzysztof Karas <krzysztof.karas@intel.com>
 Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
 Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 ---
- tests/intel/gem_eio.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ tests/intel/gem_eio.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
 diff --git a/tests/intel/gem_eio.c b/tests/intel/gem_eio.c
-index b65b914faf..35291e759d 100644
+index 35291e759d..3b7a6bd209 100644
 --- a/tests/intel/gem_eio.c
 +++ b/tests/intel/gem_eio.c
-@@ -409,8 +409,10 @@ static void check_wait_elapsed(const char *prefix, int fd, igt_stats_t *st)
- 		 igt_stats_get_median(st)*1e-6,
- 		 igt_stats_get_max(st)*1e-6);
+@@ -930,7 +930,7 @@ static void reset_stress(int fd, uint64_t ahnd, const intel_ctx_t *ctx0,
+ 	gem_write(fd, obj.handle, 0, &bbe, sizeof(bbe));
  
--	if (st->n_values < 9)
--		return; /* too few for stable median */
-+#define NUMER_OF_MEASURED_CYCLES_NEEDED 9
-+	igt_require_f(st->n_values >= NUMER_OF_MEASURED_CYCLES_NEEDED,
-+		      "at least %d completed resets are needed for stable median calculation, %d is too few\n",
-+		      NUMER_OF_MEASURED_CYCLES_NEEDED, st->n_values);
- 
- 	/*
- 	 * Older platforms need to reset the display (incl. modeset to off,
+ 	igt_stats_init(&stats);
+-	igt_until_timeout(5) {
++	igt_until_timeout(20) {
+ 		const intel_ctx_t *ctx = context_create_safe(fd);
+ 		igt_spin_t *hang;
+ 		unsigned int i;
+@@ -979,6 +979,9 @@ static void reset_stress(int fd, uint64_t ahnd, const intel_ctx_t *ctx0,
+ 		gem_sync(fd, obj.handle);
+ 		igt_spin_free(fd, hang);
+ 		intel_ctx_destroy(fd, ctx);
++
++		if (stats.n_values >= NUMER_OF_MEASURED_CYCLES_NEEDED)
++			break;
+ 	}
+ 	check_wait_elapsed(name, fd, &stats);
+ 	igt_stats_fini(&stats);
 -- 
 2.51.0
 
