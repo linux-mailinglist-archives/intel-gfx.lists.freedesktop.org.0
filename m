@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C0A0BDC4E5
+	by mail.lfdr.de (Postfix) with ESMTPS id 4033FBDC4E6
 	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 05:18:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AEA510E6FA;
-	Wed, 15 Oct 2025 03:17:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A5E010E6FF;
+	Wed, 15 Oct 2025 03:17:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AOYtNeFb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KoXToI03";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CA0910E6FA;
- Wed, 15 Oct 2025 03:17:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FD1610E6FD;
+ Wed, 15 Oct 2025 03:17:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760498263; x=1792034263;
+ t=1760498267; x=1792034267;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=WTDIqU/QGehrDg8xEJsu3zThsgDU63sReqI3cVot/co=;
- b=AOYtNeFbnag1kaMH0Q3TU6ilbaVRWJ5GY5OdQwk7dHtYTp8lcZcDaJwF
- yHsfTxCCiVcd9smNLzTU3n8gBCITS1ivFqFCa54UAHp2gMKx1fWjot7A4
- 9fucJU3EAQrnqCz77ZYeJY6vIcL7u92unz03xLLR8equU9b6HmkyA0PEo
- dO5d7TXbrS9QR1BNGJlm5nYmeL7QyB6WGfCGkRar7iq8OWD/ne99W8RKn
- rT7rPetafj7U2zIr2y7aM1spYE5Yf48ujYLJp665HbCxLRDnIwjhGmOO6
- J8jtPAZGfiesNsGzic+aOAYRcu8P69h6eaKPNTlwG0B3YpZ8frDGfowWt A==;
-X-CSE-ConnectionGUID: o/iNlW6pR5KscOGdPZ60bg==
-X-CSE-MsgGUID: 1erUDF6cTNaM5Y9YnJgyIg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62577228"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62577228"
+ bh=OFZD7puwb9M9oUxQbaERz7q+dzOXZuXJ8+4/C5QVy8k=;
+ b=KoXToI03llaSehYO4/wYiYLS39+QSErU24XB1A8okCg5vhsybk5BSTSC
+ wMkCfInps5h9TRbJ+hRGqYlK7fzlfEfEKNvMNMpHZzjh2oBImoU2itPrg
+ jn4u/46xk5GqlBTyAQM9l4E2L500xopIQVQCt+m1vUgaj7uJlql1u4LlT
+ UsJCXkJsSH4UCYks2VEppzXXuAw7slQOBHMmya4gj2eE7+POI6kM/cDVj
+ ++ftKbwh3SFdwQxbpxUH5argtykMeXwltyh+MjFle3/La/ZJdcdvAPGrB
+ XiEUDTyMiMJNKoa+0P+Sq+zWlTrZj6yf0mlnabEbbjPJGURFTWt5lWyTc Q==;
+X-CSE-ConnectionGUID: TWU0WiGvQtG9kjg6h+eJ1g==
+X-CSE-MsgGUID: pbCKu5GHQLOKwQTpB8L5Jg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62577236"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62577236"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2025 20:17:43 -0700
-X-CSE-ConnectionGUID: zEQjmMx1Sd60Vxhy8Je5GA==
-X-CSE-MsgGUID: h/FERhBjRTa1t3jTuAEMRA==
+ 14 Oct 2025 20:17:47 -0700
+X-CSE-ConnectionGUID: yh/gY8iRTPC6rPUQc6a0QA==
+X-CSE-MsgGUID: rq7HvmaeSOOoF63UhObXhg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="186302833"
+X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="186302855"
 Received: from smoehrl-linux.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.222.185])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2025 20:17:39 -0700
+ 14 Oct 2025 20:17:42 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Wed, 15 Oct 2025 00:15:15 -0300
-Subject: [PATCH 15/32] drm/i915/xe3p_lpd: Always apply level-0 watermark
- adjustment
+Date: Wed, 15 Oct 2025 00:15:16 -0300
+Subject: [PATCH 16/32] drm/i915/xe3p_lpd: Add CDCLK table
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251015-xe3p_lpd-basic-enabling-v1-15-d2d1e26520aa@intel.com>
+Message-Id: <20251015-xe3p_lpd-basic-enabling-v1-16-d2d1e26520aa@intel.com>
 References: <20251015-xe3p_lpd-basic-enabling-v1-0-d2d1e26520aa@intel.com>
 In-Reply-To: <20251015-xe3p_lpd-basic-enabling-v1-0-d2d1e26520aa@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
@@ -82,39 +81,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When reading memory latencies for watermark calculations, previous
-display releases instructed to apply an adjustment of adding a certain
-value (e.g. 6us) to all levels when the level 0's memory latency read
-from hardware was zero.
+Add CDCLK table for Xe3p_LPD.
 
-For Xe3p_LPD, the instruction is to always use 6us for level 0 and to
-add that value to the other levels.  Update adjust_wm_latency()
-accordingly.
+Just as with Xe3_LPD, we don't need to send voltage index info in the
+PMDemand message, so we are able to re-use xe3lpd_cdclk_funcs.
 
-Bspec: 68986, 69126
+With the new CDCLK table, we also need to update the maximum CDCLK value
+returned by intel_update_max_cdclk().
+
+Bspec: 68861, 68863
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_watermark.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 44 ++++++++++++++++++++++++++++--
+ 1 file changed, 42 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 41f64e347436..88342d07727f 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -3249,6 +3249,13 @@ adjust_wm_latency(struct intel_display *display)
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index f2e092f89ddd..ffd8cab2d565 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -1534,6 +1534,41 @@ static const struct intel_cdclk_vals xe3lpd_cdclk_table[] = {
+ 	{}
+ };
  
- 	make_wm_latency_monotonic(display);
- 
-+	/*
-+	 * Xe3p asks to ignore wm[0] read from the register and always
-+	 * use the adjustment done with read_latency.
-+	 */
-+	if (DISPLAY_VER(display) >= 35)
-+		wm[0] = 0;
++static const struct intel_cdclk_vals xe3p_lpd_cdclk_table[] = {
++	{ .refclk = 38400, .cdclk = 151200, .ratio = 21, .waveform = 0xa4a4 },
++	{ .refclk = 38400, .cdclk = 176400, .ratio = 21, .waveform = 0xaa54 },
++	{ .refclk = 38400, .cdclk = 201600, .ratio = 21, .waveform = 0xaaaa },
++	{ .refclk = 38400, .cdclk = 226800, .ratio = 21, .waveform = 0xad5a },
++	{ .refclk = 38400, .cdclk = 252000, .ratio = 21, .waveform = 0xb6b6 },
++	{ .refclk = 38400, .cdclk = 277200, .ratio = 21, .waveform = 0xdbb6 },
++	{ .refclk = 38400, .cdclk = 302400, .ratio = 21, .waveform = 0xeeee },
++	{ .refclk = 38400, .cdclk = 327600, .ratio = 21, .waveform = 0xf7de },
++	{ .refclk = 38400, .cdclk = 352800, .ratio = 21, .waveform = 0xfefe },
++	{ .refclk = 38400, .cdclk = 378000, .ratio = 21, .waveform = 0xfffe },
++	{ .refclk = 38400, .cdclk = 403200, .ratio = 21, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 422400, .ratio = 22, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 441600, .ratio = 23, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 460800, .ratio = 24, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 480000, .ratio = 25, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 499200, .ratio = 26, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 518400, .ratio = 27, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 537600, .ratio = 28, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 556800, .ratio = 29, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 576000, .ratio = 30, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 595200, .ratio = 31, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 614400, .ratio = 32, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 633600, .ratio = 33, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 652800, .ratio = 34, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 672000, .ratio = 35, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 691200, .ratio = 36, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 710400, .ratio = 37, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 729600, .ratio = 38, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 748800, .ratio = 39, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 768000, .ratio = 40, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 787200, .ratio = 41, .waveform = 0xffff },
++	{}
++};
 +
- 	/*
- 	 * WaWmMemoryReadLatency
- 	 *
+ static const int cdclk_squash_len = 16;
+ 
+ static int cdclk_squash_divider(u16 waveform)
+@@ -3555,7 +3590,9 @@ static int intel_compute_max_dotclk(struct intel_display *display)
+  */
+ void intel_update_max_cdclk(struct intel_display *display)
+ {
+-	if (DISPLAY_VERx100(display) >= 3002) {
++	if (DISPLAY_VER(display) >= 35) {
++		display->cdclk.max_cdclk_freq = 787200;
++	} else if (DISPLAY_VERx100(display) >= 3002) {
+ 		display->cdclk.max_cdclk_freq = 480000;
+ 	} else if (DISPLAY_VER(display) >= 30) {
+ 		display->cdclk.max_cdclk_freq = 691200;
+@@ -3906,7 +3943,10 @@ static const struct intel_cdclk_funcs i830_cdclk_funcs = {
+  */
+ void intel_init_cdclk_hooks(struct intel_display *display)
+ {
+-	if (DISPLAY_VER(display) >= 30) {
++	if (DISPLAY_VER(display) >= 35) {
++		display->funcs.cdclk = &xe3lpd_cdclk_funcs;
++		display->cdclk.table = xe3p_lpd_cdclk_table;
++	} else if (DISPLAY_VER(display) >= 30) {
+ 		display->funcs.cdclk = &xe3lpd_cdclk_funcs;
+ 		display->cdclk.table = xe3lpd_cdclk_table;
+ 	} else if (DISPLAY_VER(display) >= 20) {
 
 -- 
 2.51.0
