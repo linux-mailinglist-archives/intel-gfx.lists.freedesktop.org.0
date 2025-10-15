@@ -2,60 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42BDDBDDDF2
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 11:51:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35E87BDE078
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 12:35:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17F9810E767;
-	Wed, 15 Oct 2025 09:51:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1647810E036;
+	Wed, 15 Oct 2025 10:35:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ea2rV5rY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mqiHiyyp";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 706EB10E767;
- Wed, 15 Oct 2025 09:51:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7834B10E036;
+ Wed, 15 Oct 2025 10:35:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760521902; x=1792057902;
+ t=1760524549; x=1792060549;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=VPtKZoooZ/9bv7bf3a2f6R3SpYvb0RoN5uz2wEF8UuE=;
- b=Ea2rV5rYev3x11honwd4hgG19SVU4hWXftr3h09pXy4ABFz6gPyu0lHw
- rTXsjOxyS1CopEwDkTD++ddegCF7jZEq2uxo5iIB/hjrs8QPi7biaG+zv
- IOiNI1hgJORpawPqLV3ShOAF5SOR5miYMekaWMt0cf+zSNpd2qFVkoSTJ
- SA2A2IZupbTSmPgBZ/5Vyow2sk/gmuCKOX2rxxyeGmrbFLSEjJXUp5H+3
- JfWrJbvtUnOhAozYfleI0yxEkyf3VpG0cTXb1ApUszJe/6nkKOqdOpwpi
- m+/hV8B5Ra4yYdeFXDTIFBk9YPIiGJApYjAHNsMiL+sGjkutKe8vc+yuA g==;
-X-CSE-ConnectionGUID: p4fBNnZdSGiESGXO/vZ33w==
-X-CSE-MsgGUID: JZCvkFwPR3K7Ctrw6TF4Sw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62620942"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62620942"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 02:51:42 -0700
-X-CSE-ConnectionGUID: 9ex5NHAiQrG0T97EuzTW3Q==
-X-CSE-MsgGUID: kjqikoJGR/eI9YGPp81YFg==
+ bh=pyRWpTx+28daC29UG018S9EhdB7zpr3ZhIcda/aayBQ=;
+ b=mqiHiyypsLiuLraBWh+ft9ysBB5l1aZlIjyO/nyU/ltKOSFEjyi/U4jh
+ Lkq0BQgSvXknzrTO+BKI/q2CJJMPukjYr5wozqBYSEcRmxl8L2CMMStIy
+ JIlhfBziDHPoSLRrzNJmexW0eB8eMpU1yG6nJPyS6KIF1ZT7EkTvXp0XL
+ XxhUAuIuj1yBmqaly+9WTPAApaDesZlu7hy6DermkbTmBdrDxq4bhMxR1
+ /q+/8t1D07bhWctvRHiLWe09ppJ6rOryY6gnJXovuC7MC+CYXiolRhNmE
+ +ImjyfrJ9JlinZJ35mEX1wNo1z3tsFti4sce9l50H6qir4qj0aeFX0Fvf Q==;
+X-CSE-ConnectionGUID: WvMv0R3yR6+iU/mOV2JReQ==
+X-CSE-MsgGUID: pgvs7qrCTry1+b/NyMKckQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11582"; a="50262599"
+X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="50262599"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2025 03:35:48 -0700
+X-CSE-ConnectionGUID: a0L2ifNuQjycgPddEnY3SQ==
+X-CSE-MsgGUID: S+bklzjcR3eLwUV5s0e1Qw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="181258823"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.100])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 02:51:40 -0700
-From: Jani Nikula <jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="205842517"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2025 03:35:46 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
- Jocelyn Falempe <jfalempe@redhat.com>,
- Maarten Lankhorst <dev@lankhorst.se>,
- =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v2] drm/i915/panic: fix panic structure allocation memory leak
-Date: Wed, 15 Oct 2025 12:51:35 +0300
-Message-ID: <20251015095135.2183415-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
+Cc: ville.syrjala@linux.intel.com, uma.shankar@intel.com,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 0/6] Optimize vrr.guardband
+Date: Wed, 15 Oct 2025 15:52:35 +0530
+Message-ID: <20251015102241.1797828-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,98 +68,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Separating the panic allocation from framebuffer allocation in commit
-729c5f7ffa83 ("drm/{i915,xe}/panic: move framebuffer allocation where it
-belongs") failed to deallocate the panic structure anywhere.
+Instead of setting vrr.guardband to vblank, use optimal guardband that
+works for most of the cases. This will help in avoiding need of change
+in guardband and fix the LRR feature that needs seamless switching to
+a lower refresh rate.
 
-The fix is two-fold. First, free the panic structure in
-intel_user_framebuffer_destroy() in the general case. Second, move the
-panic allocation later to intel_framebuffer_init() to not leak the panic
-structure in error paths (if any, now or later) between
-intel_framebuffer_alloc() and intel_framebuffer_init().
+-Patch [1-2] are squashed from series [1] and [2] and are not meant for
+ review.
+-Patch [3-6] are patches to check the guardband for prefill+PSR+SDP
+ latencies and to use a static optimized guardband.
 
-v2: Rebase
+[1] "Preparatory patches for guardband optimization"
+https://patchwork.freedesktop.org/series/155661/#rev7
 
-Fixes: 729c5f7ffa83 ("drm/{i915,xe}/panic: move framebuffer allocation where it belongs")
-Cc: Jocelyn Falempe <jfalempe@redhat.com>
-Cc: Maarten Lankhorst <dev@lankhorst.se>
-Reported-by: Michał Grzelak <michal.grzelak@intel.com>
-Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Tested-by: Michał Grzelak <michal.grzelak@intel.com> # v1
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_fb.c | 25 +++++++++++++------------
- 1 file changed, 13 insertions(+), 12 deletions(-)
+[2] "Introduce helpers for prefill latency calculations"
+https://patchwork.freedesktop.org/series/155629/#rev2
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index 9c256a2805e4..3958628c73e9 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -2114,6 +2114,7 @@ static void intel_user_framebuffer_destroy(struct drm_framebuffer *fb)
- 
- 	intel_frontbuffer_put(intel_fb->frontbuffer);
- 
-+	kfree(intel_fb->panic);
- 	kfree(intel_fb);
- }
- 
-@@ -2212,16 +2213,22 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- 	struct intel_display *display = to_intel_display(obj->dev);
- 	struct drm_framebuffer *fb = &intel_fb->base;
- 	u32 max_stride;
--	int ret = -EINVAL;
-+	int ret;
- 	int i;
- 
-+	intel_fb->panic = intel_panic_alloc();
-+	if (!intel_fb->panic)
-+		return -ENOMEM;
-+
- 	/*
- 	 * intel_frontbuffer_get() must be done before
- 	 * intel_fb_bo_framebuffer_init() to avoid set_tiling vs. addfb race.
- 	 */
- 	intel_fb->frontbuffer = intel_frontbuffer_get(obj);
--	if (!intel_fb->frontbuffer)
--		return -ENOMEM;
-+	if (!intel_fb->frontbuffer) {
-+		ret = -ENOMEM;
-+		goto err_free_panic;
-+	}
- 
- 	ret = intel_fb_bo_framebuffer_init(obj, mode_cmd);
- 	if (ret)
-@@ -2320,6 +2327,9 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- 	intel_fb_bo_framebuffer_fini(obj);
- err_frontbuffer_put:
- 	intel_frontbuffer_put(intel_fb->frontbuffer);
-+err_free_panic:
-+	kfree(intel_fb->panic);
-+
- 	return ret;
- }
- 
-@@ -2346,20 +2356,11 @@ intel_user_framebuffer_create(struct drm_device *dev,
- struct intel_framebuffer *intel_framebuffer_alloc(void)
- {
- 	struct intel_framebuffer *intel_fb;
--	struct intel_panic *panic;
- 
- 	intel_fb = kzalloc(sizeof(*intel_fb), GFP_KERNEL);
- 	if (!intel_fb)
- 		return NULL;
- 
--	panic = intel_panic_alloc();
--	if (!panic) {
--		kfree(intel_fb);
--		return NULL;
--	}
--
--	intel_fb->panic = panic;
--
- 	return intel_fb;
- }
- 
+Ankit Nautiyal (5):
+  [NOT FOR REVIEW] drm/i915/vrr: prep patches for guardband optimization
+    squashed
+  drm/i915/dp: Add SDP latency computation helper
+  drm/i915/psr: Add function to compute max link-wake latency
+  drm/i915/display: Add guardband check for feature latencies
+  drm/i915/vrr: Use the min static optimized guardband
+
+Ville Syrjälä (1):
+  [NOT FOR REVIEW] drm/i915/prefill: Prefill latency calculations series
+    squashed
+
+ drivers/gpu/drm/i915/Makefile                |   1 +
+ drivers/gpu/drm/i915/display/intel_cdclk.c   |  80 +++++-
+ drivers/gpu/drm/i915/display/intel_cdclk.h   |   6 +
+ drivers/gpu/drm/i915/display/intel_ddi.c     |   3 +
+ drivers/gpu/drm/i915/display/intel_display.c |  82 +++++-
+ drivers/gpu/drm/i915/display/intel_dp.c      |  42 +++
+ drivers/gpu/drm/i915/display/intel_dp.h      |   4 +
+ drivers/gpu/drm/i915/display/intel_psr.c     | 257 +++++++++++++------
+ drivers/gpu/drm/i915/display/intel_psr.h     |   3 +
+ drivers/gpu/drm/i915/display/intel_vblank.c  |  10 +
+ drivers/gpu/drm/i915/display/intel_vblank.h  |   2 +
+ drivers/gpu/drm/i915/display/intel_vdsc.c    |   8 +
+ drivers/gpu/drm/i915/display/intel_vdsc.h    |   1 +
+ drivers/gpu/drm/i915/display/intel_vrr.c     |  90 ++++++-
+ drivers/gpu/drm/i915/display/intel_vrr.h     |   2 +-
+ drivers/gpu/drm/i915/display/skl_prefill.c   | 157 +++++++++++
+ drivers/gpu/drm/i915/display/skl_prefill.h   |  46 ++++
+ drivers/gpu/drm/i915/display/skl_scaler.c    | 198 ++++++++++++++
+ drivers/gpu/drm/i915/display/skl_scaler.h    |  15 ++
+ drivers/gpu/drm/i915/display/skl_watermark.c | 156 +++++------
+ drivers/gpu/drm/i915/display/skl_watermark.h |   3 +
+ drivers/gpu/drm/xe/Makefile                  |   1 +
+ 22 files changed, 983 insertions(+), 184 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/skl_prefill.c
+ create mode 100644 drivers/gpu/drm/i915/display/skl_prefill.h
+
 -- 
-2.47.3
+2.45.2
 
