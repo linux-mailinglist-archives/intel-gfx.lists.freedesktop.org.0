@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4888BDDC56
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 11:27:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD131BDDB7B
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 11:17:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4623E10E284;
-	Wed, 15 Oct 2025 09:27:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4ADED10E765;
+	Wed, 15 Oct 2025 09:17:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N/x50WLd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LG1ZGYlN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CAEB410E284;
- Wed, 15 Oct 2025 09:27:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E92CE10E760;
+ Wed, 15 Oct 2025 09:17:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760520470; x=1792056470;
+ t=1760519874; x=1792055874;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+YdPnumwkYCVM2mMs3L4AHKZWsBiWec2v3SIKlegEcM=;
- b=N/x50WLdkt28dnUQeO7zvuywYa/NPRopbMgCOWC1n8cKVOKJGyS86e7V
- Yt0faGYSbC0kJYJUgx+Yde9A695GWc4niSUH/vTXY86lYJZ3+rSJTxac3
- VhLdqRPA3/srl6iU+2bbDQtobVO75DM4AwuSaSgAN3D/pFUk5fTRU3TPO
- Nt6CwLb51kk9cFaiXVgsrk0IBLl9Ag4p1xYlB7FiMEevb9kjr3pogz0nT
- svnnxTzMWV+XWvfL9Gr0HXg5QqTS+zlKKrJm5hj6s5+9ENRvEVDFjD/RH
- glWj03I/jSQchD4uA62hiUXwlfRVx6DcWSr+7M6Dx/1rqmwcpRzq+JxF1 w==;
-X-CSE-ConnectionGUID: GQ+he3FdRH6vSM/Y3cha5w==
-X-CSE-MsgGUID: gmUbnxErQOqske5TUvx7tg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11582"; a="74031333"
-X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="74031333"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 02:27:49 -0700
-X-CSE-ConnectionGUID: 1jWrF0AzR0uZvGrls5jbGQ==
-X-CSE-MsgGUID: tO3GKiIYRNWQ2IwKOaRiiQ==
+ bh=UZriKd1Vd2GUxXoOvLAi155POT63hGW18fh5rYdb98g=;
+ b=LG1ZGYlN9HoOxn0rmjlyLBy7e9tyldnczO5xltPg8m+3/G6q9goUYh3t
+ xr07HqLkOhzp+g4XA6AXTgNGogkuvjGnTFEjciTaHCBLK87zOKiVreMHD
+ rYCpy7SFkQgrNV1L5tPa8/O2mT9i7nhvZXS1yqegTQT81Q3llv2oE6+Fq
+ +N1HeSAwCrcIj9BwE6w0WK2DTC7Nz/zNmchnUXFz8Gl3DuALVdNDqaj9y
+ CTDHR4xfEJ+aDwZVgVIL13xmQxo9iD0rdMGF2nsHhwNwHOpsDpZSGD8mI
+ In4jR2PTzOMsB4GxVxZceDkcGd5KyZXd8Afjpo+m8dnIGLVIHCnbpxDAz A==;
+X-CSE-ConnectionGUID: QPJu/CXNSCe/IvKxQLolcQ==
+X-CSE-MsgGUID: m0wPycf8SfiJvUCqQvGYHA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11582"; a="73367670"
+X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="73367670"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2025 02:17:53 -0700
+X-CSE-ConnectionGUID: e00eIfpGRkCqU8IGjcrc8g==
+X-CSE-MsgGUID: KZHby1ksSJec8Jz6LjCqMA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="187207617"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 02:27:47 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
- animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 08/10] drm/i915/psr: Check if final vblank is sufficient for
- PSR features
-Date: Wed, 15 Oct 2025 14:44:41 +0530
-Message-ID: <20251015091441.1785187-1-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20251015072217.1710717-9-ankit.k.nautiyal@intel.com>
-References: <20251015072217.1710717-9-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="181922213"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.245.92])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2025 02:17:52 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: I915-ci-infra@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: =?UTF-8?B?4pyX?= i915.CI.Full: failure for drm/i915: Avoid lock
+ inversion when pinning to GGTT (rev2)
+Date: Wed, 15 Oct 2025 11:17:49 +0200
+Message-ID: <13864218.uLZWGnKmhe@jkrzyszt-mobl2.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <176047796460.12447.7161243985847652732@97596180aaec>
+References: <20251014125504.14804-5-janusz.krzysztofik@linux.intel.com>
+ <176047796460.12447.7161243985847652732@97596180aaec>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,124 +71,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently, wake line latency checks rely on the vblank length,
-which does not account for either the extra vblank delay for icl/tgl or for
-the optimized guardband which will come into picture later at some point.
+Hi I915-ci-infra@lists.freedesktop.org,
 
-Validate whether the final vblank (with extra vblank delay) or guardband
-is sufficient to support wake line latencies required by Panel Replay and
-PSR2 selective update. Disable the PSR features if their wake requirements
-cannot be accomodated.
+On Tuesday, 14 October 2025 23:39:24 CEST Patchwork wrote:
+> == Series Details ==
+> 
+> Series: drm/i915: Avoid lock inversion when pinning to GGTT (rev2)
+> URL   : https://patchwork.freedesktop.org/series/155622/
+> State : failure
+> 
+> == Summary ==
+> 
+> CI Bug Log - changes from CI_DRM_17362_full -> Patchwork_155622v2_full
+> ====================================================
+> 
+> Summary
+> -------
+> 
+>   **FAILURE**
+> 
+>   Serious unknown changes coming with Patchwork_155622v2_full absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in Patchwork_155622v2_full, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
+> 
+>   
+> 
+> Participating hosts (12 -> 11)
+> ------------------------------
+> 
+>   Missing    (1): shard-dg2-set2 
+> 
+> Possible new issues
+> -------------------
+> 
+>   Here are the unknown changes that may have been introduced in Patchwork_155622v2_full:
+> 
+> ### IGT changes ###
+> 
+> #### Possible regressions ####
+> 
+>   * igt@i915_suspend@debugfs-reader:
+>     - shard-dg2:          [PASS][1] -> [ABORT][2]
+>    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17362/shard-dg2-1/igt@i915_suspend@debugfs-reader.html
+>    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155622v2/shard-dg2-10/igt@i915_suspend@debugfs-reader.html
 
-v2: Add comments clarifying wake line checks and rationale for not
-    resetting SCL. (Jouni)
-v3: Reset other psr flags based on features that are dropped. (Jouni)
-v4: Update commit message.
-v5: Remove early return and simplyfy the checking for wakelines. (Jouni)
+The change under the pre-merge testing doesn't affect DG2, only CHV and BXT 
+platforms, then the above is not related.  Please update filters and re-
+report.
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: Animesh Manna <animesh.manna@intel.com>
-Cc: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 71 +++++++++++++++++++++---
- 1 file changed, 63 insertions(+), 8 deletions(-)
+Thanks,
+Janusz
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 383e6dc1ed63..703e5f6af04c 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1405,6 +1405,20 @@ int _intel_psr_min_set_context_latency(const struct intel_crtc_state *crtc_state
- 		return 1;
- }
- 
-+static bool _wake_lines_fit_into_vblank(const struct intel_crtc_state *crtc_state,
-+					int vblank,
-+					int wake_lines)
-+{
-+	if (crtc_state->req_psr2_sdp_prior_scanline)
-+		vblank -= 1;
-+
-+	/* Vblank >= PSR2_CTL Block Count Number maximum line count */
-+	if (vblank < wake_lines)
-+		return false;
-+
-+	return true;
-+}
-+
- static bool wake_lines_fit_into_vblank(struct intel_dp *intel_dp,
- 				       const struct intel_crtc_state *crtc_state,
- 				       bool aux_less,
-@@ -1428,14 +1442,16 @@ static bool wake_lines_fit_into_vblank(struct intel_dp *intel_dp,
- 					       crtc_state->alpm_state.fast_wake_lines) :
- 			crtc_state->alpm_state.io_wake_lines;
- 
--	if (crtc_state->req_psr2_sdp_prior_scanline)
--		vblank -= 1;
--
--	/* Vblank >= PSR2_CTL Block Count Number maximum line count */
--	if (vblank < wake_lines)
--		return false;
--
--	return true;
-+	/*
-+	 * Guardband has not been computed yet, so we conservatively check if the
-+	 * full vblank duration is sufficient to accommodate wake line requirements
-+	 * for PSR features like Panel Replay and Selective Update.
-+	 *
-+	 * Once the actual guardband is available, a more accurate validation is
-+	 * performed in intel_psr_compute_config_late(), and PSR features are
-+	 * disabled if wake lines exceed the available guardband.
-+	 */
-+	return _wake_lines_fit_into_vblank(crtc_state, vblank, wake_lines);
- }
- 
- static bool alpm_config_valid(struct intel_dp *intel_dp,
-@@ -4351,6 +4367,45 @@ void intel_psr_compute_config_late(struct intel_dp *intel_dp,
- 				   struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
-+	int vblank = intel_crtc_vblank_length(crtc_state);
-+	int wake_lines;
-+
-+	if (intel_psr_needs_alpm_aux_less(intel_dp, crtc_state))
-+		wake_lines = crtc_state->alpm_state.aux_less_wake_lines;
-+	else if (intel_psr_needs_alpm(intel_dp, crtc_state))
-+		wake_lines = DISPLAY_VER(display) < 20 ?
-+			     psr2_block_count_lines(crtc_state->alpm_state.io_wake_lines,
-+						    crtc_state->alpm_state.fast_wake_lines) :
-+			     crtc_state->alpm_state.io_wake_lines;
-+	else
-+		wake_lines = 0;
-+
-+	/*
-+	 * Disable the PSR features if wake lines exceed the available vblank.
-+	 * Though SCL is computed based on these PSR features, it is not reset
-+	 * even if the PSR features are disabled to avoid changing vblank start
-+	 * at this stage.
-+	 */
-+	if (wake_lines && !_wake_lines_fit_into_vblank(crtc_state, vblank, wake_lines)) {
-+		drm_dbg_kms(display->drm,
-+			    "Adjusting PSR/PR mode: vblank too short for wake lines = %d\n",
-+			    wake_lines);
-+
-+		if (crtc_state->has_panel_replay) {
-+			crtc_state->has_panel_replay = false;
-+			/*
-+			 * #TODO : Add fall back to PSR/PSR2
-+			 * Since panel replay cannot be supported, we can fall back to PSR/PSR2.
-+			 * This will require calling compute_config for psr and psr2 with check for
-+			 * actual guardband instead of vblank_length.
-+			 */
-+			crtc_state->has_psr = false;
-+		}
-+
-+		crtc_state->has_sel_update = false;
-+		crtc_state->enable_psr2_su_region_et = false;
-+		crtc_state->enable_psr2_sel_fetch = false;
-+	}
- 
- 	/* Wa_18037818876 */
- 	if (intel_psr_needs_wa_18037818876(intel_dp, crtc_state)) {
--- 
-2.45.2
+> 
+>   
+> Known issues
+> ------------
+...
+
+
 
