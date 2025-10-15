@@ -2,46 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86FC3BDF555
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 17:24:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 922C9BDF5AF
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 17:29:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E458310E827;
-	Wed, 15 Oct 2025 15:24:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9C9510E82B;
+	Wed, 15 Oct 2025 15:29:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NykgA7Zb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QJntI8r0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCD0310E2B9;
- Wed, 15 Oct 2025 15:24:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECE4C10E829;
+ Wed, 15 Oct 2025 15:29:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760541860; x=1792077860;
+ t=1760542149; x=1792078149;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=0XYFDNrLzoFcqzZ8GcMlv7ESdvmWnd9C9g/uB6jY5cs=;
- b=NykgA7ZbSdaZ5Nwqleo3L8Z5ksLEip92MPYMgq4Z0CFb2JCS65UNa5Rq
- VISja1+OChD0fYsJUWC5f8B5Tcvvyp9uzF9sI0pfs2IYXb9mn8JXnG2H3
- farBCPTIhLxDSYT13PW8IjZmQ2s6aQLsB7WVLEk6BTXJcO4RpzVAXLgol
- HpWbk5DvxgXWHcYMSG872sX/DvPkRVGeVbxehP+yIguFXKzPkrpALHqyJ
- ghneAQgfBBQx5Lz7X+EATixSZISjmAXQorNH1aZ3aKcgmSAXQ1Cj94YTO
- cVHK0HmNt64Kc7rKYge5Y8DwJK0wAgIC+NUcpklQNwxNy3T1opw+xAdGD g==;
-X-CSE-ConnectionGUID: NT6v7gvLTUWdq+TMIbZMyQ==
-X-CSE-MsgGUID: RghfVNomQse0tCEkB//t/g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="72997304"
-X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="72997304"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 08:24:20 -0700
-X-CSE-ConnectionGUID: 92b6r3KuQZ6+i1i/9SEKIg==
-X-CSE-MsgGUID: wARSql8tThOMKB0yUK699w==
+ bh=IHZSkKLCLTDWl+VDMKgkksUA6ZkzR8e2DAevbI39CC4=;
+ b=QJntI8r0YB7lzDMwQWwvUGjGp/E8TgXU9d6eDZOxiaF4W5JQ8MVeBGIm
+ IBIZx84K9TqIaMF8W16L2S0fqqK/Xgj0GuEeFjT6xUDUtM1YPLu6SNfKn
+ DmvnylvwaqlkiS3+nAyazhewiZCMaTorWSxSqdoyFGffqNDacQ60c/iL/
+ knfzBMq1argXqM2sj6C4bN5KV/dh0R2CptuaJV7nHR7uaXY2x2vbGo/Cq
+ E6RNMAIFZ7RdrdH1KlfF24QWxsJeFbbevf1bXnrYYjdP4Ce2eR7nlMWSB
+ vvWFcleKvwSPBFNWHND0ZJiAZN9VApDzFRjerYkhUjeqA9XIZDwBaZmkY A==;
+X-CSE-ConnectionGUID: IAi/zS/7QBeOOP1DErS70g==
+X-CSE-MsgGUID: ro05We+tQSucTDPhaSSlpQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="73321671"
+X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="73321671"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2025 08:29:08 -0700
+X-CSE-ConnectionGUID: cqO8qA2mSjaB9F9L3JQb4g==
+X-CSE-MsgGUID: l2338CsgQa+DIaULgsJrvA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="186222190"
+X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="181872778"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.100])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 08:24:15 -0700
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2025 08:29:03 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Gustavo Sousa <gustavo.sousa@intel.com>, intel-xe@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org
@@ -62,8 +62,8 @@ In-Reply-To: <20251015-xe3p_lpd-basic-enabling-v1-27-d2d1e26520aa@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20251015-xe3p_lpd-basic-enabling-v1-0-d2d1e26520aa@intel.com>
  <20251015-xe3p_lpd-basic-enabling-v1-27-d2d1e26520aa@intel.com>
-Date: Wed, 15 Oct 2025 18:24:12 +0300
-Message-ID: <d04fa666b1ab4737aa2a927c897e0ee7062482d9@intel.com>
+Date: Wed, 15 Oct 2025 18:29:00 +0300
+Message-ID: <d02b6f306e3b503066dcb4cf7d1a8c1fdf626e30@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -97,6 +97,9 @@ On Wed, 15 Oct 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
 > which is a new feature in Xe3p_LPD.  In upcoming changes, we will use
 > that field in order to handle the IOM resource management programming
 > required for that.
+
+We probably want to add the info to print_ddi_port().
+
 >
 > Note that, when dedicated_external is set, the fields dp_usb_type_c and
 > tbt are tagged as "don't care" in the spec, so they should be ignored in
@@ -132,12 +135,6 @@ On Wed, 15 Oct 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
 > +	if (intel_bios_encoder_is_dedicated_external(devdata))
 > +		return false;
 > +
-
-We already have mechanisms for this. Please don't pollute the functions.
-
-dp_usb_type_c should just be set to 0 in a new sanitize_something()
-function at the end of parse_ddi_port()
-
 >  	return devdata->display->vbt.version >= 195 && devdata->child.dp_usb_type_c;
 >  }
 >  
@@ -146,12 +143,6 @@ function at the end of parse_ddi_port()
 > +	if (intel_bios_encoder_is_dedicated_external(devdata))
 > +		return false;
 > +
-
-Ditto.
-
-tbt should just be set to 0 in a new sanitize_something() function at
-the end of parse_ddi_port()
-
 >  	return devdata->display->vbt.version >= 209 && devdata->child.tbt;
 >  }
 >  
@@ -196,11 +187,6 @@ the end of parse_ddi_port()
 > +	 * Fields dp_usb_type_c and tbt must be ignored when
 > +	 * dedicated_external is set.
 > +	 */
-
-We can add that info in the sanitize function. We don't generally add a
-whole lot of explanatory text here, because if we did, the file would be
-10x consisting mostly of VBT quirk explanations.
-
 > +	u8 dedicated_external:1;				/* 264+ */
 > +	u8 dyn_port_over_tc:1;					/* 264+ */
 >  	u8 dp_port_trace_length:4;				/* 209+ */
