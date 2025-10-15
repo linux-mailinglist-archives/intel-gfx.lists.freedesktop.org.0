@@ -2,46 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45D22BDF4C4
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 17:15:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 86FC3BDF555
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 17:24:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A510410E824;
-	Wed, 15 Oct 2025 15:15:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E458310E827;
+	Wed, 15 Oct 2025 15:24:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y+yHd0To";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NykgA7Zb";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECBCE10E824;
- Wed, 15 Oct 2025 15:15:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCD0310E2B9;
+ Wed, 15 Oct 2025 15:24:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760541343; x=1792077343;
+ t=1760541860; x=1792077860;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=4NcEdckshK7UGL1mGkxhEwa9Hx4kNkI98fsj8lG35rc=;
- b=Y+yHd0TovcYIK94yybXV4TA66GvYUz2Ze/7/awKpQC3mDihsUKW/83wd
- XhDb33cDHpvzOdKeuSEAgVGurr5aNUEsazUSpFpPIzkr/6q+uuNFOFKaf
- AShmFjke3wa0QAAmw/Qz/Z5JRSVAidfO59W4lBXlJwAXTMrYtmA77XDLK
- ZYOiZX0ecgRcYs41cCGHWHU4o+iREO+PrZ2qYN22ixJYqY3jOpW7XSIC9
- i1oGwfLnEzqn0SThoktXyIboMQlrjSH6DgmWA4uPq9YoFyyW3HoFNhuzN
- olGBTLb0Ee4i6i1j99HWeROoV8CkCS6mN8SDTM8q845ISKs3r3+SGT0kB Q==;
-X-CSE-ConnectionGUID: jU0AoJ+8R8qDdi1EEChAVA==
-X-CSE-MsgGUID: d0LtIJKfSXytiKBEPEMSOQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="61750421"
-X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="61750421"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 08:15:42 -0700
-X-CSE-ConnectionGUID: T5Peom97Sgm2lBafS7N+sg==
-X-CSE-MsgGUID: RkWXNZiRRuWPTq/T8tgnFA==
+ bh=0XYFDNrLzoFcqzZ8GcMlv7ESdvmWnd9C9g/uB6jY5cs=;
+ b=NykgA7ZbSdaZ5Nwqleo3L8Z5ksLEip92MPYMgq4Z0CFb2JCS65UNa5Rq
+ VISja1+OChD0fYsJUWC5f8B5Tcvvyp9uzF9sI0pfs2IYXb9mn8JXnG2H3
+ farBCPTIhLxDSYT13PW8IjZmQ2s6aQLsB7WVLEk6BTXJcO4RpzVAXLgol
+ HpWbk5DvxgXWHcYMSG872sX/DvPkRVGeVbxehP+yIguFXKzPkrpALHqyJ
+ ghneAQgfBBQx5Lz7X+EATixSZISjmAXQorNH1aZ3aKcgmSAXQ1Cj94YTO
+ cVHK0HmNt64Kc7rKYge5Y8DwJK0wAgIC+NUcpklQNwxNy3T1opw+xAdGD g==;
+X-CSE-ConnectionGUID: NT6v7gvLTUWdq+TMIbZMyQ==
+X-CSE-MsgGUID: RghfVNomQse0tCEkB//t/g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="72997304"
+X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="72997304"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2025 08:24:20 -0700
+X-CSE-ConnectionGUID: 92b6r3KuQZ6+i1i/9SEKIg==
+X-CSE-MsgGUID: wARSql8tThOMKB0yUK699w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="212810061"
+X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="186222190"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.100])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 08:15:37 -0700
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2025 08:24:15 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Gustavo Sousa <gustavo.sousa@intel.com>, intel-xe@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org
@@ -56,14 +56,14 @@ Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>, Dnyaneshwar Bhadane
  <sai.teja.pottumuttu@intel.com>, Shekhar Chauhan
  <shekhar.chauhan@intel.com>, Vinod Govindapillai
  <vinod.govindapillai@intel.com>
-Subject: Re: [PATCH 26/32] drm/i915/xe3p_lpd: Enable pixel normalizer for
- fp16 formats for FBC
-In-Reply-To: <20251015-xe3p_lpd-basic-enabling-v1-26-d2d1e26520aa@intel.com>
+Subject: Re: [PATCH 27/32] drm/i915/vbt: Add fields dedicated_external and
+ dyn_port_over_tc
+In-Reply-To: <20251015-xe3p_lpd-basic-enabling-v1-27-d2d1e26520aa@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20251015-xe3p_lpd-basic-enabling-v1-0-d2d1e26520aa@intel.com>
- <20251015-xe3p_lpd-basic-enabling-v1-26-d2d1e26520aa@intel.com>
-Date: Wed, 15 Oct 2025 18:15:34 +0300
-Message-ID: <5dadb6bb5aa99400dbc6da05523d6979b2c9b099@intel.com>
+ <20251015-xe3p_lpd-basic-enabling-v1-27-d2d1e26520aa@intel.com>
+Date: Wed, 15 Oct 2025 18:24:12 +0300
+Message-ID: <d04fa666b1ab4737aa2a927c897e0ee7062482d9@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -82,116 +82,130 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Wed, 15 Oct 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> From: Vinod Govindapillai <vinod.govindapillai@intel.com>
+> VBT version 264 adds new fields associated to Xe3p_LPD's new ways of
+> configuring SoC for TC ports and PHYs.  Update the code to match the
+> updates in VBT.
 >
-> There is a hw restriction that we could enable the FBC for FP16
-> formats only if the pixel normalization block is enabled. Hence
-> enable the pixel normalizer block with normalzation factor as
-> 1.0 for the supported FP16 formats to get the FBC enabled. Two
-> existing helper function definitions are moved up to avoid the
-> forward declarations as part of this patch as well.
+> The new field dedicated_external is used to represent TC ports that are
+> connected to PHYs outside of the Type-C subsystem, meaning that they
+> behave like dedicated ports and don't require the extra Type-C
+> programming.  In an upcoming change, we will update the driver to take
+> this field into consideration when detecting the type of port.
 >
-> Bspec: 69863, 68881
+> The new field dyn_port_over_tc is used to inform that the TC port can be
+> dynamically allocated for a legacy connector in the Type-C subsystem,
+> which is a new feature in Xe3p_LPD.  In upcoming changes, we will use
+> that field in order to handle the IOM resource management programming
+> required for that.
+>
+> Note that, when dedicated_external is set, the fields dp_usb_type_c and
+> tbt are tagged as "don't care" in the spec, so they should be ignored in
+> that case, so also make sure to update the accessor functions to take
+> that into consideration.
+>
+> Bspec: 20124, 68954, 74304
 > Cc: Shekhar Chauhan <shekhar.chauhan@intel.com>
-> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 > Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/skl_universal_plane.c | 50 ++++++++++++++--------
->  .../drm/i915/display/skl_universal_plane_regs.h    |  1 +
->  2 files changed, 33 insertions(+), 18 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_bios.c     | 20 +++++++++++++++++++-
+>  drivers/gpu/drm/i915/display/intel_bios.h     |  2 ++
+>  drivers/gpu/drm/i915/display/intel_vbt_defs.h |  7 ++++++-
+>  3 files changed, 27 insertions(+), 2 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> index 16a9c141281b..ae1bf6beac95 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -486,6 +486,23 @@ static int skl_plane_max_height(const struct drm_framebuffer *fb,
->  	return 4096;
->  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+> index 3596dce84c28..e466728ced0f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -2777,7 +2777,7 @@ static int child_device_expected_size(u16 version)
+>  {
+>  	BUILD_BUG_ON(sizeof(struct child_device_config) < 40);
 >  
-> +static enum intel_fbc_id skl_fbc_id_for_pipe(enum pipe pipe)
-> +{
-> +	return pipe - PIPE_A + INTEL_FBC_A;
-> +}
-> +
-> +static bool skl_plane_has_fbc(struct intel_display *display,
-> +			      enum intel_fbc_id fbc_id, enum plane_id plane_id)
-> +{
-> +	if ((DISPLAY_RUNTIME_INFO(display)->fbc_mask & BIT(fbc_id)) == 0)
+> -	if (version > 263)
+> +	if (version > 264)
+>  		return -ENOENT;
+>  	else if (version >= 263)
+>  		return 44;
+> @@ -3714,14 +3714,32 @@ int intel_bios_hdmi_ddc_pin(const struct intel_bios_encoder_data *devdata)
+>  
+>  bool intel_bios_encoder_supports_typec_usb(const struct intel_bios_encoder_data *devdata)
+>  {
+> +	if (intel_bios_encoder_is_dedicated_external(devdata))
 > +		return false;
 > +
-> +	if (DISPLAY_VER(display) >= 20)
-> +		return icl_is_hdr_plane(display, plane_id);
-> +	else
-> +		return plane_id == PLANE_1;
+
+We already have mechanisms for this. Please don't pollute the functions.
+
+dp_usb_type_c should just be set to 0 in a new sanitize_something()
+function at the end of parse_ddi_port()
+
+>  	return devdata->display->vbt.version >= 195 && devdata->child.dp_usb_type_c;
+>  }
+>  
+>  bool intel_bios_encoder_supports_tbt(const struct intel_bios_encoder_data *devdata)
+>  {
+> +	if (intel_bios_encoder_is_dedicated_external(devdata))
+> +		return false;
+> +
+
+Ditto.
+
+tbt should just be set to 0 in a new sanitize_something() function at
+the end of parse_ddi_port()
+
+>  	return devdata->display->vbt.version >= 209 && devdata->child.tbt;
+>  }
+>  
+> +bool intel_bios_encoder_is_dedicated_external(const struct intel_bios_encoder_data *devdata)
+> +{
+> +	return devdata->display->vbt.version >= 264 &&
+> +		devdata->child.dedicated_external;
 > +}
 > +
->  static int icl_plane_max_height(const struct drm_framebuffer *fb,
->  				int color_plane,
->  				unsigned int rotation)
-> @@ -896,7 +913,21 @@ static void skl_write_plane_wm(struct intel_dsb *dsb,
->  static void
->  xe3p_lpd_plane_check_pixel_normalizer(struct intel_plane_state *plane_state)
->  {
-> -	plane_state->pixel_normalizer = 0;
-> +	struct intel_display *display = to_intel_display(plane_state);
-> +	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
-> +	enum intel_fbc_id fbc_id = skl_fbc_id_for_pipe(plane->pipe);
-> +	u32 reg = 0;
+> +bool intel_bios_encoder_supports_dyn_port_over_tc(const struct intel_bios_encoder_data *devdata)
+> +{
+> +	return devdata->display->vbt.version >= 264 &&
+> +		devdata->child.dyn_port_over_tc;
+> +}
 > +
+>  bool intel_bios_encoder_lane_reversal(const struct intel_bios_encoder_data *devdata)
+>  {
+>  	return devdata && devdata->child.lane_reversal;
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
+> index f9e438b2787b..75dff27b4228 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.h
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.h
+> @@ -79,6 +79,8 @@ bool intel_bios_encoder_supports_dp(const struct intel_bios_encoder_data *devdat
+>  bool intel_bios_encoder_supports_edp(const struct intel_bios_encoder_data *devdata);
+>  bool intel_bios_encoder_supports_typec_usb(const struct intel_bios_encoder_data *devdata);
+>  bool intel_bios_encoder_supports_tbt(const struct intel_bios_encoder_data *devdata);
+> +bool intel_bios_encoder_is_dedicated_external(const struct intel_bios_encoder_data *devdata);
+> +bool intel_bios_encoder_supports_dyn_port_over_tc(const struct intel_bios_encoder_data *devdata);
+>  bool intel_bios_encoder_supports_dsi(const struct intel_bios_encoder_data *devdata);
+>  bool intel_bios_encoder_supports_dp_dual_mode(const struct intel_bios_encoder_data *devdata);
+>  bool intel_bios_encoder_is_lspcon(const struct intel_bios_encoder_data *devdata);
+> diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+> index 70e31520c560..f07ab64a8d97 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+> @@ -554,7 +554,12 @@ struct child_device_config {
+>  	u8 dvo_function;
+>  	u8 dp_usb_type_c:1;					/* 195+ */
+>  	u8 tbt:1;						/* 209+ */
+> -	u8 flags2_reserved:2;					/* 195+ */
 > +	/*
-> +	 * To enable FBC for FP16 formats, enable pixel normalizer with
-> +	 * normalization factor as 1.0
+> +	 * Fields dp_usb_type_c and tbt must be ignored when
+> +	 * dedicated_external is set.
 > +	 */
-> +	if (skl_plane_has_fbc(display, fbc_id, plane->id) &&
-> +	    intel_fbc_is_fp16_format_supported(plane_state))
-> +		reg = PLANE_PIXEL_NORMALIZE_NORM_FACTOR(PLANE_PIXEL_NORMALIZE_NORM_FACTOR_1_0) |
-> +		      PLANE_PIXEL_NORMALIZE_ENABLE;
 
-Again, this functions should be about software state, and shouldn't have
-to concern itself with the register macros.
+We can add that info in the sanitize function. We don't generally add a
+whole lot of explanatory text here, because if we did, the file would be
+10x consisting mostly of VBT quirk explanations.
 
-The function name still doesn't make sense.
-
-> +
-> +	plane_state->pixel_normalizer = reg;
->  }
->  
->  static void
-> @@ -2449,23 +2480,6 @@ void icl_link_nv12_planes(struct intel_plane_state *uv_plane_state,
->  	}
->  }
->  
-> -static enum intel_fbc_id skl_fbc_id_for_pipe(enum pipe pipe)
-> -{
-> -	return pipe - PIPE_A + INTEL_FBC_A;
-> -}
-> -
-> -static bool skl_plane_has_fbc(struct intel_display *display,
-> -			      enum intel_fbc_id fbc_id, enum plane_id plane_id)
-> -{
-> -	if ((DISPLAY_RUNTIME_INFO(display)->fbc_mask & BIT(fbc_id)) == 0)
-> -		return false;
-> -
-> -	if (DISPLAY_VER(display) >= 20)
-> -		return icl_is_hdr_plane(display, plane_id);
-> -	else
-> -		return plane_id == PLANE_1;
-> -}
-> -
->  static struct intel_fbc *skl_plane_fbc(struct intel_display *display,
->  				       enum pipe pipe, enum plane_id plane_id)
->  {
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h b/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
-> index 11c713f9b237..eb25de5d1778 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
-> @@ -466,5 +466,6 @@
->  #define   PLANE_PIXEL_NORMALIZE_ENABLE			REG_BIT(31)
->  #define   PLANE_PIXEL_NORMALIZE_NORM_FACTOR_MASK	REG_GENMASK(15, 0)
->  #define   PLANE_PIXEL_NORMALIZE_NORM_FACTOR(val)	REG_FIELD_PREP(PLANE_PIXEL_NORMALIZE_NORM_FACTOR_MASK, (val))
-> +#define   PLANE_PIXEL_NORMALIZE_NORM_FACTOR_1_0		0x3c00
->  
->  #endif /* __SKL_UNIVERSAL_PLANE_REGS_H__ */
+> +	u8 dedicated_external:1;				/* 264+ */
+> +	u8 dyn_port_over_tc:1;					/* 264+ */
+>  	u8 dp_port_trace_length:4;				/* 209+ */
+>  	u8 dp_gpio_index;					/* 195+ */
+>  	u16 dp_gpio_pin_num;					/* 195+ */
 
 -- 
 Jani Nikula, Intel
