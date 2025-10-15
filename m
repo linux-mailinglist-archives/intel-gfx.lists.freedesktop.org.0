@@ -2,94 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0455CBDED7A
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 15:50:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61CFDBDEDC2
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 15:54:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8706E10E295;
-	Wed, 15 Oct 2025 13:50:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D77C10E7EE;
+	Wed, 15 Oct 2025 13:54:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.cz header.i=@suse.cz header.b="09pUS0WC";
-	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="NpJUV8sL";
-	dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b="09pUS0WC";
-	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="NpJUV8sL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C1qHv4qV";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FD5710E7EC
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Oct 2025 13:50:47 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 8ABDA21036;
- Wed, 15 Oct 2025 13:50:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
- t=1760536245; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=m55Z1MpiPA9kFipYDGRqhKKsAgHyNh0/e6FGRD9sxiI=;
- b=09pUS0WCGuHzHKwAQv3KtiKyjXJkm2oXe5cSkHX7Tv+xr1Gb13r1WZWx5kUrpW9HwanM+U
- NO9TJsiDj6E26YtQw52EHARzClvo+PzIK2CPRjmhZyrb+0rRsn8CDgnpMiZw8meoGmbGPA
- +cGpQ7fKWdlhS5BbwRwB4Rizvd6SGT0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
- s=susede2_ed25519; t=1760536245;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=m55Z1MpiPA9kFipYDGRqhKKsAgHyNh0/e6FGRD9sxiI=;
- b=NpJUV8sLm4zOQkt7UpjEtKjS8XXFRC9tQ7Qlgp0WwGaYYH05foDB6gNbAWHmh24ew6vczh
- AW+u/qF7q7bWfyBQ==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
- t=1760536245; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=m55Z1MpiPA9kFipYDGRqhKKsAgHyNh0/e6FGRD9sxiI=;
- b=09pUS0WCGuHzHKwAQv3KtiKyjXJkm2oXe5cSkHX7Tv+xr1Gb13r1WZWx5kUrpW9HwanM+U
- NO9TJsiDj6E26YtQw52EHARzClvo+PzIK2CPRjmhZyrb+0rRsn8CDgnpMiZw8meoGmbGPA
- +cGpQ7fKWdlhS5BbwRwB4Rizvd6SGT0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
- s=susede2_ed25519; t=1760536245;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=m55Z1MpiPA9kFipYDGRqhKKsAgHyNh0/e6FGRD9sxiI=;
- b=NpJUV8sLm4zOQkt7UpjEtKjS8XXFRC9tQ7Qlgp0WwGaYYH05foDB6gNbAWHmh24ew6vczh
- AW+u/qF7q7bWfyBQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 3F67013A42;
- Wed, 15 Oct 2025 13:50:45 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id ZHsJDrWm72jBYQAAD6G6ig
- (envelope-from <pvorel@suse.cz>); Wed, 15 Oct 2025 13:50:45 +0000
-From: Petr Vorel <pvorel@suse.cz>
-To: intel-gfx@lists.freedesktop.org
-Cc: Petr Vorel <pvorel@suse.cz>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Uma Shankar <uma.shankar@intel.com>, Jani Nikula <jani.nikula@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Simona Vetter <simona@ffwll.ch>, dri-devel@lists.freedesktop.org
-Subject: [PATCH 1/1] drm/i915/dmc: Use drm_WARN_ONCE()
-Date: Wed, 15 Oct 2025 15:50:42 +0200
-Message-ID: <20251015135042.16744-1-pvorel@suse.cz>
-X-Mailer: git-send-email 2.51.0
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E68910E7EC;
+ Wed, 15 Oct 2025 13:54:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1760536473; x=1792072473;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=MTg0uQuPsc/9wcSTF4nO4+4jHZEP6DwkbRPi7EvOLg8=;
+ b=C1qHv4qVJU8WDfD/DeNyiwSv4Bz2TvDsZl3ygGk+ePHqIV2XBlPM7mz3
+ jYow0nPVhtHrih2XG9PMkXfWAHqNHsta88W1C0dlJX9+TgdWVv2haNMUq
+ LE9cK1UXJtTYgnCIfgTduDBV+6RaSKUUrRvUHOyx98U4VtIat1iCb362z
+ I4bRuNFyLc7TF/5JbGjk+7rJI2UMaZcNy0u8wduA6xhwtztBIYG8CdlEv
+ ysTCpC2VArOjdKVQlwV7xgOBc2W7jBluo2vDW39dDGy+jgXerrShR1AKv
+ IyYPS+YQtLHOUnnvLkM/kKmk5ScHxTGF3V3xozk73rkxI+b6ZuvV51DEQ Q==;
+X-CSE-ConnectionGUID: Kvi0LBraQoGtrK1pX0SlbA==
+X-CSE-MsgGUID: NRD1GAepQKiBvICaWsflYA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="61919026"
+X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="61919026"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2025 06:54:33 -0700
+X-CSE-ConnectionGUID: MoubEPGXS7OBjaBq5gZr8A==
+X-CSE-MsgGUID: iuICPxZqT/yEwz4FFM2R5w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="182139821"
+Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.116])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2025 06:54:30 -0700
+Date: Wed, 15 Oct 2025 16:54:28 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jouni.hogander@intel.com, animesh.manna@intel.com
+Subject: Re: [PATCH 09/10] drm/i915/display: Add vblank_start adjustment
+ logic for always-on VRR TG
+Message-ID: <aO-nlDe9i-Xe51Vx@intel.com>
+References: <20251015072217.1710717-1-ankit.k.nautiyal@intel.com>
+ <20251015072217.1710717-10-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-2.80 / 50.00]; BAYES_HAM(-3.00)[99.99%];
- NEURAL_HAM_LONG(-1.00)[-1.000]; MID_CONTAINS_FROM(1.00)[];
- R_MISSING_CHARSET(0.50)[]; NEURAL_HAM_SHORT(-0.20)[-1.000];
- MIME_GOOD(-0.10)[text/plain]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- ARC_NA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- FROM_HAS_DN(0.00)[]; MIME_TRACE(0.00)[0:+];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,suse.cz:mid,suse.cz:email];
- FUZZY_RATELIMITED(0.00)[rspamd.com]; RCPT_COUNT_SEVEN(0.00)[8];
- RCVD_COUNT_TWO(0.00)[2]; FROM_EQ_ENVFROM(0.00)[];
- DKIM_SIGNED(0.00)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
- TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[]
-X-Spam-Flag: NO
-X-Spam-Score: -2.80
-X-Spam-Level: 
+In-Reply-To: <20251015072217.1710717-10-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,46 +74,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-assert_dmc_loaded() removed in 43175c92d4038 used drm_WARN_ONCE(),
-but new assert_dmc_loaded() use drm_WARN().
+On Wed, Oct 15, 2025 at 12:52:16PM +0530, Ankit Nautiyal wrote:
+> As we move towards using a shorter, optimized guardband, we need to adjust
+> how the delayed vblank start is computed.
+> 
+> Adjust the crtc_vblank_start using Vmin Vtotal - guardband only when
+> intel_vrr_always_use_vrr_tg() is true. Also update the
+> pipe_mode->crtc_vblank_start which is derived from
+> adjusted_mode->crtc_vblank_start in intel_crtc_compute_pipe_mode().
+> 
+> To maintain consistency between the computed and readout paths, also update
+> the readout logic in intel_vrr_get_config() to overwrite crtc_vblank_start
+> with the same value (vtotal - guardband) on platforms with always-on
+> VRR TG. pipe_mode is derived
+> 
+> This also paves way for guardband optimization, by handling the movement of
+> the crtc_vblank_start for platforms that have VRR TG always active.
+> 
+> v2: Drop the helper and add the adjustment directly to
+>     intel_vrr_compute_guardband(). (Ville)
+> v3: Use adjusted_mode.crtc_vtotal instead of vmin and include the readout
+>     logic to keep the compute and readout paths in sync. (Ville)
+> v4: Also set pipe_mode->crtc_vblank_start as its derived from
+>     adjusted_mode. (Ville)
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_vrr.c | 23 ++++++++++++++++++++++-
+>  1 file changed, 22 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> index 8d71d7dc9d12..1cfcc31bd899 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -436,7 +436,8 @@ intel_vrr_max_guardband(struct intel_crtc_state *crtc_state)
+>  void intel_vrr_compute_guardband(struct intel_crtc_state *crtc_state)
+>  {
+>  	struct intel_display *display = to_intel_display(crtc_state);
+> -	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+> +	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+> +	struct drm_display_mode *pipe_mode = &crtc_state->hw.pipe_mode;
+>  
+>  	if (!intel_vrr_possible(crtc_state))
+>  		return;
+> @@ -444,6 +445,13 @@ void intel_vrr_compute_guardband(struct intel_crtc_state *crtc_state)
+>  	crtc_state->vrr.guardband = min(crtc_state->vrr.vmin - adjusted_mode->crtc_vdisplay,
+>  					intel_vrr_max_guardband(crtc_state));
+>  
+> +	if (intel_vrr_always_use_vrr_tg(display)) {
+> +		adjusted_mode->crtc_vblank_start  =
+> +			adjusted_mode->crtc_vtotal - crtc_state->vrr.guardband;
 
-Log is already noise quite a lot due loop over dmc->dmc_info[dmc_id]
-array (76 logs on my machine), therefore use drm_WARN_ONCE().
+Maybe a small comment here to explain why we touch pipe_mode.
+Eg.
 
-Fixes: 43175c92d4038 ("drm/i915/dmc: Assert DMC is loaded harder")
-Signed-off-by: Petr Vorel <pvorel@suse.cz>
----
-Ville, am I wrong and it's really needed to see all the oops for the
-threads?
+/*
+ * pipe_mode has already been derived from the
+ * original adjusted_mode, keep the two in sync.
+ */
 
-Kind regards,
-Petr
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
- drivers/gpu/drm/i915/display/intel_dmc.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+> +		pipe_mode->crtc_vblank_start =
+> +			adjusted_mode->crtc_vblank_start;
+> +	}
+> +
+>  	if (DISPLAY_VER(display) < 13)
+>  		crtc_state->vrr.pipeline_full =
+>  			intel_vrr_guardband_to_pipeline_full(crtc_state,
+> @@ -821,6 +829,19 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
+>  	 */
+>  	if (crtc_state->vrr.enable)
+>  		crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
+> +
+> +	/*
+> +	 * For platforms that always use the VRR timing generator, we overwrite
+> +	 * crtc_vblank_start with vtotal - guardband to reflect the delayed
+> +	 * vblank start. This works for both default and optimized guardband values.
+> +	 * On other platforms, we keep the original value from
+> +	 * intel_get_transcoder_timings() and apply adjustments only in VRR-specific
+> +	 * paths as needed.
+> +	 */
+> +	if (intel_vrr_always_use_vrr_tg(display))
+> +		crtc_state->hw.adjusted_mode.crtc_vblank_start =
+> +			crtc_state->hw.adjusted_mode.crtc_vtotal -
+> +			crtc_state->vrr.guardband;
+>  }
+>  
+>  int intel_vrr_safe_window_start(const struct intel_crtc_state *crtc_state)
+> -- 
+> 2.45.2
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 517bebb0b4aac..53db7279c7c99 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -626,7 +626,7 @@ static void assert_dmc_loaded(struct intel_display *display,
- 	found = intel_de_read(display, DMC_PROGRAM(dmc->dmc_info[dmc_id].start_mmioaddr, 0));
- 	expected = dmc->dmc_info[dmc_id].payload[0];
- 
--	drm_WARN(display->drm, found != expected,
-+	drm_WARN_ONCE(display->drm, found != expected,
- 		 "DMC %d program storage start incorrect (expected 0x%x, current 0x%x)\n",
- 		 dmc_id, expected, found);
- 
-@@ -642,7 +642,7 @@ static void assert_dmc_loaded(struct intel_display *display,
- 			expected &= ~DMC_EVT_CTL_ENABLE;
- 		}
- 
--		drm_WARN(display->drm, found != expected,
-+		drm_WARN_ONCE(display->drm, found != expected,
- 			 "DMC %d mmio[%d]/0x%x incorrect (expected 0x%x, current 0x%x)\n",
- 			 dmc_id, i, i915_mmio_reg_offset(reg), expected, found);
- 	}
 -- 
-2.51.0
-
+Ville Syrjälä
+Intel
