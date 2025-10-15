@@ -2,63 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61CFDBDEDC2
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 15:54:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA89ABDEE23
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 16:00:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D77C10E7EE;
-	Wed, 15 Oct 2025 13:54:35 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C1qHv4qV";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3552B10E7FA;
+	Wed, 15 Oct 2025 14:00:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E68910E7EC;
- Wed, 15 Oct 2025 13:54:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760536473; x=1792072473;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=MTg0uQuPsc/9wcSTF4nO4+4jHZEP6DwkbRPi7EvOLg8=;
- b=C1qHv4qVJU8WDfD/DeNyiwSv4Bz2TvDsZl3ygGk+ePHqIV2XBlPM7mz3
- jYow0nPVhtHrih2XG9PMkXfWAHqNHsta88W1C0dlJX9+TgdWVv2haNMUq
- LE9cK1UXJtTYgnCIfgTduDBV+6RaSKUUrRvUHOyx98U4VtIat1iCb362z
- I4bRuNFyLc7TF/5JbGjk+7rJI2UMaZcNy0u8wduA6xhwtztBIYG8CdlEv
- ysTCpC2VArOjdKVQlwV7xgOBc2W7jBluo2vDW39dDGy+jgXerrShR1AKv
- IyYPS+YQtLHOUnnvLkM/kKmk5ScHxTGF3V3xozk73rkxI+b6ZuvV51DEQ Q==;
-X-CSE-ConnectionGUID: Kvi0LBraQoGtrK1pX0SlbA==
-X-CSE-MsgGUID: NRD1GAepQKiBvICaWsflYA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="61919026"
-X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="61919026"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 06:54:33 -0700
-X-CSE-ConnectionGUID: MoubEPGXS7OBjaBq5gZr8A==
-X-CSE-MsgGUID: iuICPxZqT/yEwz4FFM2R5w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="182139821"
-Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.116])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 06:54:30 -0700
-Date: Wed, 15 Oct 2025 16:54:28 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jouni.hogander@intel.com, animesh.manna@intel.com
-Subject: Re: [PATCH 09/10] drm/i915/display: Add vblank_start adjustment
- logic for always-on VRR TG
-Message-ID: <aO-nlDe9i-Xe51Vx@intel.com>
-References: <20251015072217.1710717-1-ankit.k.nautiyal@intel.com>
- <20251015072217.1710717-10-ankit.k.nautiyal@intel.com>
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F14310E7FA;
+ Wed, 15 Oct 2025 14:00:43 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1409396425635316241=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251015072217.1710717-10-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/prefill=3A_Intro?=
+ =?utf-8?q?duce_helpers_for_prefill_latency_calculations_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 15 Oct 2025 14:00:43 -0000
+Message-ID: <176053684305.16661.4685584037208089560@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251014191808.12326-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20251014191808.12326-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,100 +37,166 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 15, 2025 at 12:52:16PM +0530, Ankit Nautiyal wrote:
-> As we move towards using a shorter, optimized guardband, we need to adjust
-> how the delayed vblank start is computed.
-> 
-> Adjust the crtc_vblank_start using Vmin Vtotal - guardband only when
-> intel_vrr_always_use_vrr_tg() is true. Also update the
-> pipe_mode->crtc_vblank_start which is derived from
-> adjusted_mode->crtc_vblank_start in intel_crtc_compute_pipe_mode().
-> 
-> To maintain consistency between the computed and readout paths, also update
-> the readout logic in intel_vrr_get_config() to overwrite crtc_vblank_start
-> with the same value (vtotal - guardband) on platforms with always-on
-> VRR TG. pipe_mode is derived
-> 
-> This also paves way for guardband optimization, by handling the movement of
-> the crtc_vblank_start for platforms that have VRR TG always active.
-> 
-> v2: Drop the helper and add the adjustment directly to
->     intel_vrr_compute_guardband(). (Ville)
-> v3: Use adjusted_mode.crtc_vtotal instead of vmin and include the readout
->     logic to keep the compute and readout paths in sync. (Ville)
-> v4: Also set pipe_mode->crtc_vblank_start as its derived from
->     adjusted_mode. (Ville)
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_vrr.c | 23 ++++++++++++++++++++++-
->  1 file changed, 22 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index 8d71d7dc9d12..1cfcc31bd899 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -436,7 +436,8 @@ intel_vrr_max_guardband(struct intel_crtc_state *crtc_state)
->  void intel_vrr_compute_guardband(struct intel_crtc_state *crtc_state)
->  {
->  	struct intel_display *display = to_intel_display(crtc_state);
-> -	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-> +	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-> +	struct drm_display_mode *pipe_mode = &crtc_state->hw.pipe_mode;
->  
->  	if (!intel_vrr_possible(crtc_state))
->  		return;
-> @@ -444,6 +445,13 @@ void intel_vrr_compute_guardband(struct intel_crtc_state *crtc_state)
->  	crtc_state->vrr.guardband = min(crtc_state->vrr.vmin - adjusted_mode->crtc_vdisplay,
->  					intel_vrr_max_guardband(crtc_state));
->  
-> +	if (intel_vrr_always_use_vrr_tg(display)) {
-> +		adjusted_mode->crtc_vblank_start  =
-> +			adjusted_mode->crtc_vtotal - crtc_state->vrr.guardband;
+--===============1409396425635316241==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Maybe a small comment here to explain why we touch pipe_mode.
-Eg.
+== Series Details ==
 
-/*
- * pipe_mode has already been derived from the
- * original adjusted_mode, keep the two in sync.
- */
+Series: drm/i915/prefill: Introduce helpers for prefill latency calculations (rev3)
+URL   : https://patchwork.freedesktop.org/series/155629/
+State : success
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Summary ==
 
-> +		pipe_mode->crtc_vblank_start =
-> +			adjusted_mode->crtc_vblank_start;
-> +	}
-> +
->  	if (DISPLAY_VER(display) < 13)
->  		crtc_state->vrr.pipeline_full =
->  			intel_vrr_guardband_to_pipeline_full(crtc_state,
-> @@ -821,6 +829,19 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
->  	 */
->  	if (crtc_state->vrr.enable)
->  		crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
-> +
-> +	/*
-> +	 * For platforms that always use the VRR timing generator, we overwrite
-> +	 * crtc_vblank_start with vtotal - guardband to reflect the delayed
-> +	 * vblank start. This works for both default and optimized guardband values.
-> +	 * On other platforms, we keep the original value from
-> +	 * intel_get_transcoder_timings() and apply adjustments only in VRR-specific
-> +	 * paths as needed.
-> +	 */
-> +	if (intel_vrr_always_use_vrr_tg(display))
-> +		crtc_state->hw.adjusted_mode.crtc_vblank_start =
-> +			crtc_state->hw.adjusted_mode.crtc_vtotal -
-> +			crtc_state->vrr.guardband;
->  }
->  
->  int intel_vrr_safe_window_start(const struct intel_crtc_state *crtc_state)
-> -- 
-> 2.45.2
+CI Bug Log - changes from CI_DRM_17365 -> Patchwork_155629v3
+====================================================
 
--- 
-Ville Syrjälä
-Intel
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v3/index.html
+
+Participating hosts (41 -> 39)
+------------------------------
+
+  Missing    (2): fi-bsw-nick fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_155629v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@dmabuf@all-tests@dma_fence_chain:
+    - fi-bsw-n3050:       NOTRUN -> [ABORT][1] ([i915#12904]) +1 other test abort
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v3/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [PASS][2] -> [DMESG-FAIL][3] ([i915#12061]) +1 other test dmesg-fail
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17365/bat-mtlp-8/igt@i915_selftest@live.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v3/bat-mtlp-8/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-3:         [PASS][4] -> [DMESG-FAIL][5] ([i915#12061]) +1 other test dmesg-fail
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17365/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v3/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+    - bat-dg2-9:          [PASS][6] -> [DMESG-FAIL][7] ([i915#12061]) +1 other test dmesg-fail
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17365/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v3/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_psr@psr-primary-mmap-gtt:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][8] +21 other tests skip
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v3/fi-bsw-n3050/igt@kms_psr@psr-primary-mmap-gtt.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_17365 -> Patchwork_155629v3
+
+  CI-20190529: 20190529
+  CI_DRM_17365: 6a9cafb6723c47062cc4d593804d5bb69155d81a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8585: 8585
+  Patchwork_155629v3: 6a9cafb6723c47062cc4d593804d5bb69155d81a @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v3/index.html
+
+--===============1409396425635316241==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/prefill: Introduce helpers for prefill latency calculations (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155629/">https://patchwork.freedesktop.org/series/155629/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17365 -&gt; Patchwork_155629v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v3/index.html</p>
+<h2>Participating hosts (41 -&gt; 39)</h2>
+<p>Missing    (2): fi-bsw-nick fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_155629v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@dmabuf@all-tests@dma_fence_chain:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v3/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) +1 other test abort</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17365/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v3/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17365/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v3/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17365/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v3/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-primary-mmap-gtt:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155629v3/fi-bsw-n3050/igt@kms_psr@psr-primary-mmap-gtt.html">SKIP</a> +21 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17365 -&gt; Patchwork_155629v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17365: 6a9cafb6723c47062cc4d593804d5bb69155d81a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8585: 8585<br />
+  Patchwork_155629v3: 6a9cafb6723c47062cc4d593804d5bb69155d81a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============1409396425635316241==--
