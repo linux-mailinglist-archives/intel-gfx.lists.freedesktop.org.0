@@ -2,74 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74355BDF612
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 17:31:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 331F3BDF666
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 17:33:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8E3F10E844;
-	Wed, 15 Oct 2025 15:30:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F66610E851;
+	Wed, 15 Oct 2025 15:33:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="MEWQfOsC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i1ZnBeA6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 549ED10E83C;
- Wed, 15 Oct 2025 15:30:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1760542256;
- bh=p24aKtUnOv8fOlBIkkg8gEu+LqJuafLvKyczTp6ZjwE=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=MEWQfOsCnRe6aZZhYvFIqCiIoQf3UYeJT8GZNE11MLdXGrg7qQ99gGn0Mv1U5z26U
- hG9wdE50d/yKpuWNzmz7/B8MOUMTpJBwb05ymIJu7pAsnJs4YPyOzkvsgCcHAftyKV
- KsQL+eY9RSD8kFFjMdo32EzSAaD2p4TJrhgq8N55T5GDpkoNXuWBr/NEu4lalt6bKG
- bUwPvfd+5x2LCuHthh8sS/qcuAbZvG8qFEneVQHgSmPf98TC4ZhRo/5gMwZXN2W83R
- Yd6N+hYdGkGsufOyOah/xrsePiDYufrifamK0JwB7ria3gzFXxWObkpUFVOl72Qi8O
- nttUt+QahpoqA==
-Received: from debian-rockchip-rock5b-rk3588.. (unknown
- [IPv6:2a01:e0a:5e3:6100:826d:bc07:e98c:84a])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- (Authenticated sender: loicmolinari)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id 2095217E00A3;
- Wed, 15 Oct 2025 17:30:55 +0200 (CEST)
-From: =?UTF-8?q?Lo=C3=AFc=20Molinari?= <loic.molinari@collabora.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
- Liviu Dudau <liviu.dudau@arm.com>, Melissa Wen <mwen@igalia.com>,
- =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>,
- Hugh Dickins <hughd@google.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- =?UTF-8?q?Lo=C3=AFc=20Molinari?= <loic.molinari@collabora.com>,
- Al Viro <viro@zeniv.linux.org.uk>,
- =?UTF-8?q?Miko=C5=82aj=20Wasiak?= <mikolaj.wasiak@intel.com>,
- Christian Brauner <brauner@kernel.org>,
- Nitin Gote <nitin.r.gote@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>, Jonathan Corbet <corbet@lwn.net>,
- Christopher Healy <healych@amazon.com>,
- Matthew Wilcox <willy@infradead.org>, Bagas Sanjaya <bagasdotme@gmail.com>
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-mm@kvack.org,
- linux-doc@vger.kernel.org, kernel@collabora.com
-Subject: [PATCH v4 13/13] Documentation/gpu/drm-mm: Add THP paragraph to GEM
- mapping section
-Date: Wed, 15 Oct 2025 17:30:17 +0200
-Message-ID: <20251015153018.43735-14-loic.molinari@collabora.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20251015153018.43735-1-loic.molinari@collabora.com>
-References: <20251015153018.43735-1-loic.molinari@collabora.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FF0510E84F;
+ Wed, 15 Oct 2025 15:33:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1760542421; x=1792078421;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=z9CkWZZdQFnYfBut6M2K2YlAJSOzAxGgJ5wAZRHYSkU=;
+ b=i1ZnBeA6d9dVjzAWx8c5Cj6bhkZIwZ2Nunf5l8qEibJecTsUkSnl+ZF9
+ oBGh0lQvzhueg7OOsUzCbCMnIji4JN3LxyysUtBF8JLUV8aOShmGLFdqk
+ f4cz2YNGw4KWHVKeBN+YVkI54pytJBThONkTrIUoFWzQIyBw7SOvDVzl/
+ NzkTWQyjQ64qt/DnSMBZU3OFnHnLig6KYBxqanZIdJVkxubj9Pn/9wtc6
+ GO08qwx5c6tYezwQ+1p0GZnzhrFIFvcW/oBTTiQE3f0xRMLZ8I3zIKUOw
+ wnZBcjQ5eaVA0Z8iQ2dqV1Rw/dnDBsYW5DPRY98mpRaWnDn8CMMWSWzhZ A==;
+X-CSE-ConnectionGUID: 7hRBiJwMT1Ks4BP6wlUCTQ==
+X-CSE-MsgGUID: 9WY2C/NFRcmf33fTs8S5oA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="62871943"
+X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="62871943"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2025 08:33:40 -0700
+X-CSE-ConnectionGUID: /HyojC6CR4e4jiB+mifn6g==
+X-CSE-MsgGUID: 5x3rVhjgSRa7DUeocPUJ6g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="205907165"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.100])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2025 08:33:35 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>, Dnyaneshwar Bhadane
+ <dnyaneshwar.bhadane@intel.com>, Gustavo Sousa <gustavo.sousa@intel.com>,
+ Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>, Juha-pekka
+ Heikkila
+ <juha-pekka.heikkila@intel.com>, Luca Coelho <luciano.coelho@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Matt Atwood
+ <matthew.s.atwood@intel.com>, Matt Roper <matthew.d.roper@intel.com>, Ravi
+ Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>, Sai Teja Pottumuttu
+ <sai.teja.pottumuttu@intel.com>, Shekhar Chauhan
+ <shekhar.chauhan@intel.com>, Vinod Govindapillai
+ <vinod.govindapillai@intel.com>
+Subject: Re: [PATCH 29/32] drm/i915/display: Handle dedicated external ports
+ in intel_encoder_is_tc()
+In-Reply-To: <20251015-xe3p_lpd-basic-enabling-v1-29-d2d1e26520aa@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251015-xe3p_lpd-basic-enabling-v1-0-d2d1e26520aa@intel.com>
+ <20251015-xe3p_lpd-basic-enabling-v1-29-d2d1e26520aa@intel.com>
+Date: Wed, 15 Oct 2025 18:33:31 +0300
+Message-ID: <bc0b111384b7c28187aa5e7fef1cd39718ab1f75@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,65 +81,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add a paragraph to the GEM objects mapping section explaining how
-transparent huge pages are handled by GEM.
+On Wed, 15 Oct 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> Starting with Xe3p_LPD, the VBT has a new field, called in the driver
+> "dedicated_external", which tells that a Type-C capable port is
+> physically connected to a PHY outside of the Type-C subsystem.  When
+> that's the case, the driver must not do the extra Type-C programming for
+> that port.  Update intel_encoder_is_tc() to check for that case.
+>
+> While at it, add a note to intel_phy_is_tc() to remind us that it is
+> about whether the respective port is a Type-C capable port rather than
+> the PHY itself.
+>
+> (Maybe it would be a nice idea to rename intel_phy_is_tc()?)
+>
+> Note that this was handled with a new bool member added to struct
+> intel_digital_port instead of having querying the VBT directly because
+> VBT memory is freed (intel_bios_driver_remove) before encoder cleanup
+> (intel_ddi_encoder_destroy), which would cause an oops to happen when
+> the latter calls intel_encoder_is_tc().  This could be fixed by keeping
+> VBT data around longer, but that's left for a follow-up work, if deemed
+> necessary.
+>
+> Cc: Shekhar Chauhan <shekhar.chauhan@intel.com>
+> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c           |  7 +++++++
+>  drivers/gpu/drm/i915/display/intel_display.c       | 19 ++++++++++++++++++-
+>  drivers/gpu/drm/i915/display/intel_display_types.h |  1 +
+>  3 files changed, 26 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index c09aa759f4d4..6fcbebb81263 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -5343,6 +5343,13 @@ void intel_ddi_init(struct intel_display *display,
+>  			goto err;
+>  	}
+>  
+> +	if (intel_bios_encoder_is_dedicated_external(devdata)) {
+> +		dig_port->dedicated_external = true;
+> +		drm_dbg_kms(display->drm,
+> +			    "Port %c is dedicated external\n",
+> +			    port_name(port));
+> +	}
 
-v4:
-- fix wording after huge_pages handler removal
+With the information print added in parse_ddi_port(), the printing here
+becomes redundant.
 
-Signed-off-by: Loïc Molinari <loic.molinari@collabora.com>
-Reviewed-by: Bagas Sanjaya <bagasdotme@gmail.com>
----
- Documentation/gpu/drm-mm.rst | 25 ++++++++++++++++++++-----
- 1 file changed, 20 insertions(+), 5 deletions(-)
+> +
+>  	if (intel_encoder_is_tc(encoder)) {
+>  		bool is_legacy =
+>  			!intel_bios_encoder_supports_typec_usb(devdata) &&
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 6ac718192e1c..46474199d1ab 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -1778,7 +1778,17 @@ bool intel_phy_is_combo(struct intel_display *display, enum phy phy)
+>  		return false;
+>  }
+>  
+> -/* Prefer intel_encoder_is_tc() */
+> +/*
+> + * This function returns true if the DDI port respective to the PHY enumeration
+> + * is a Type-C capable port.
+> + *
+> + * Depending on the VBT, the port might be configured
+> + * as a "dedicated external" port, meaning that actual physical PHY is outside
+> + * of the Type-C subsystem and, as such, not really a "Type-C PHY".
+> + *
+> + * Prefer intel_encoder_is_tc(), especially if you really need to know if we
+> + * are dealing with Type-C connections.
+> + */
+>  bool intel_phy_is_tc(struct intel_display *display, enum phy phy)
+>  {
+>  	/*
+> @@ -1863,6 +1873,13 @@ bool intel_encoder_is_tc(struct intel_encoder *encoder)
+>  {
+>  	struct intel_display *display = to_intel_display(encoder);
+>  
+> +	if (intel_encoder_is_dig_port(encoder)) {
+> +		struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+> +
+> +		if (dig_port->dedicated_external)
 
-diff --git a/Documentation/gpu/drm-mm.rst b/Documentation/gpu/drm-mm.rst
-index d55751cad67c..3d6176adc7ca 100644
---- a/Documentation/gpu/drm-mm.rst
-+++ b/Documentation/gpu/drm-mm.rst
-@@ -283,6 +283,9 @@ made up of several fields, the more interesting ones being:
- 		void (*open)(struct vm_area_struct * area);
- 		void (*close)(struct vm_area_struct * area);
- 		vm_fault_t (*fault)(struct vm_fault *vmf);
-+		vm_fault_t (*map_pages)(struct vm_fault *vmf,
-+					pgoff_t start_pgoff,
-+					pgoff_t end_pgoff);
- 	};
- 
- 
-@@ -290,15 +293,27 @@ The open and close operations must update the GEM object reference
- count. Drivers can use the drm_gem_vm_open() and drm_gem_vm_close() helper
- functions directly as open and close handlers.
- 
--The fault operation handler is responsible for mapping individual pages
--to userspace when a page fault occurs. Depending on the memory
--allocation scheme, drivers can allocate pages at fault time, or can
--decide to allocate memory for the GEM object at the time the object is
--created.
-+The fault and map_pages operations are responsible for mapping pages to
-+userspace when a page fault occurs. Depending on the memory allocation
-+scheme, drivers can allocate pages at fault time, or can decide to
-+allocate memory for the GEM object at the time the object is created.
- 
- Drivers that want to map the GEM object upfront instead of handling page
- faults can implement their own mmap file operation handler.
- 
-+In order to reduce page table overhead, if the internal shmem mountpoint
-+"shm_mnt" is configured to use transparent huge pages (for builds with
-+CONFIG_TRANSPARENT_HUGEPAGE enabled) and if the shmem backing store
-+managed to allocate a huge page for a faulty address, the fault and
-+map_pages handlers will first attempt to insert that huge page into the
-+VMA before falling back to individual page insertion. mmap() user
-+address alignment for GEM objects is handled by providing a custom
-+get_unmapped_area file operation which forwards to the shmem backing
-+store. For most drivers, which don't create a huge mountpoint by default
-+or through a module parameter, transparent huge pages can be enabled by
-+either setting the "transparent_hugepage_shmem" kernel parameter or the
-+"/sys/kernel/mm/transparent_hugepage/shmem_enabled" sysfs knob.
-+
- For platforms without MMU the GEM core provides a helper method
- drm_gem_dma_get_unmapped_area(). The mmap() routines will call this to get a
- proposed address for the mapping.
+Why go through all the trouble of duplicating the "decicated external"
+information in the digital port, when you already have encoder
+available, and can just use intel_bios_encoder_is_dedicated_external()
+right here?
+
+> +			return false;
+> +	}
+> +
+>  	return intel_phy_is_tc(display, intel_encoder_to_phy(encoder));
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 13652e2996a4..b5b9351501b1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1909,6 +1909,7 @@ struct intel_digital_port {
+>  	bool lane_reversal;
+>  	bool ddi_a_4_lanes;
+>  	bool release_cl2_override;
+> +	bool dedicated_external;
+>  	u8 max_lanes;
+>  	/* Used for DP and ICL+ TypeC/DP and TypeC/HDMI ports. */
+>  	enum aux_ch aux_ch;
+
 -- 
-2.47.3
-
+Jani Nikula, Intel
