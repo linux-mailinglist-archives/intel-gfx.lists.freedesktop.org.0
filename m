@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A327CBDC4B0
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 05:16:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5485BDC4B3
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 05:16:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07D4210E6E2;
-	Wed, 15 Oct 2025 03:16:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38A4610E6E3;
+	Wed, 15 Oct 2025 03:16:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RUW3/IjE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JY7hrHCH";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3167B10E086;
- Wed, 15 Oct 2025 03:16:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0ED2E10E6E1;
+ Wed, 15 Oct 2025 03:16:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760498213; x=1792034213;
+ t=1760498217; x=1792034217;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=0kKeZ5XY3aHfGWTOt8oYoDPBJRBlCiSt68r0K5+2LDA=;
- b=RUW3/IjEu0p3CKrovb+5fwFEaOoPSTaEjrxA5CtbuckEuog/676Uz8cB
- OOFs6Qcl8yG1POeR0QvttTwWWZA23okrkwXrgyekVuRmYUpYbbj5xLtmV
- WNHUfJkPBdJopUbGidNb0kHPhi4/CYq/yEKca9N0Efgg/yIm3VlMONUvh
- BReBQjw4yCgtgZ2RCpv/wBqtvt34fifA83L/ljeBTenOVwxn9SbJi/1Be
- OZS7+qKwVtnJGETeNAcPJ5r5WypHxlRCDIrnmf6e8PmVzJ5yXnnIERcrk
- KobSsCLNYDhUZAcatnqIHfCYQ7VlvAAoIUaRYWWZkZ5PfcWynnJfQz6o8 A==;
-X-CSE-ConnectionGUID: Z3vAx/ZaR3KaoF5uL8cFvA==
-X-CSE-MsgGUID: MBcpVnhhSd6xiD9CBOKApw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62577139"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62577139"
+ bh=/bRhT3gLpY9xSaSqeJuxnq7vIpDb7jRK7dSFIppcE18=;
+ b=JY7hrHCHye3D8/M7GpR71DLh4PWzpwvgrKcixmuUYEVQ9x/HTtvgZkQk
+ JWPMtQUGmcCrmKuZyZldJ/Zitw/xPdCRqu4S3qie0UEUsxZ88HqV6/tKU
+ 2pAoH8jAwgt9nzIsT2IPn37nq8PmOAMMUYNPWl2hNLMMJTdQyUl8Yb+78
+ TCSVZgr/HddMc6vIJPd3T+rYoq/w5wZNaElFBWWx1fi7wJ9nzLNiIOYLt
+ GVnP0iBXc8MxQ1N/a0N/ASISe3dItTpjpNgNKcJPWSCm8nuzzfzAk0d9G
+ ipnFmvvk/FksAlWDoCGmK0aDqwzwqPFyW43Eq6WpFvdhLmHNcZnzSyFMz A==;
+X-CSE-ConnectionGUID: yIJGoBO9QDWWEj0BSbLirA==
+X-CSE-MsgGUID: BXUbhtz0S5CUeZYOUnuyOQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62577149"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62577149"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2025 20:16:52 -0700
-X-CSE-ConnectionGUID: wp/JzZDXTru1F5TtB2aFpg==
-X-CSE-MsgGUID: jyHDExJRRc+IAZfaDKOKcw==
+ 14 Oct 2025 20:16:56 -0700
+X-CSE-ConnectionGUID: mEMmmBa3R8+bBl0V4eBovA==
+X-CSE-MsgGUID: 1jTd6gQETxmruYTs1/kaNg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="186302355"
+X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="186302390"
 Received: from smoehrl-linux.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.222.185])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2025 20:16:48 -0700
+ 14 Oct 2025 20:16:52 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Wed, 15 Oct 2025 00:15:02 -0300
-Subject: [PATCH 02/32] drm/i915/xe3p_lpd: Add Xe3p_LPD display IP features
+Date: Wed, 15 Oct 2025 00:15:03 -0300
+Subject: [PATCH 03/32] drm/i915/xe3p_lpd: Drop north display reset option
+ programming
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251015-xe3p_lpd-basic-enabling-v1-2-d2d1e26520aa@intel.com>
+Message-Id: <20251015-xe3p_lpd-basic-enabling-v1-3-d2d1e26520aa@intel.com>
 References: <20251015-xe3p_lpd-basic-enabling-v1-0-d2d1e26520aa@intel.com>
 In-Reply-To: <20251015-xe3p_lpd-basic-enabling-v1-0-d2d1e26520aa@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
@@ -81,31 +82,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
+From: Matt Roper <matthew.d.roper@intel.com>
 
-Xe3p_LPD (display version 35) is similar to Xe2_LPD with respect to the
-features described by struct intel_display_device_info, so reuse its
-device descriptor.
+The NDE_RSTWRN_OPT has been removed on Xe3p platforms and reset option
+programming is no longer necessary during display init.
 
-Bspec: 74304
-Signed-off-by: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
+Bspec: 68846, 69137
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_device.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/i915/display/intel_display_power.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index f3f1f25b0f38..a38de39ed98c 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -1507,6 +1507,7 @@ static const struct {
- 	{ 20,  0, &xe2_lpd_display },
- 	{ 30,  0, &xe2_lpd_display },
- 	{ 30,  2, &wcl_display },
-+	{ 35,  0, &xe2_lpd_display },
- };
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index da4babfd6bcb..821f5097e9c0 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -1436,6 +1436,9 @@ static void intel_pch_reset_handshake(struct intel_display *display,
+ 	i915_reg_t reg;
+ 	u32 reset_bits;
  
- static const struct intel_display_device_info *
++	if (DISPLAY_VER(display) >= 35)
++		return;
++
+ 	if (display->platform.ivybridge) {
+ 		reg = GEN7_MSG_CTL;
+ 		reset_bits = WAIT_FOR_PCH_FLR_ACK | WAIT_FOR_PCH_RESET_ACK;
 
 -- 
 2.51.0
