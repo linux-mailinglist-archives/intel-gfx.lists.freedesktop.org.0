@@ -2,70 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D5A3BDF36E
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 16:58:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 706A2BDF39E
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 17:00:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FD7F10E81F;
-	Wed, 15 Oct 2025 14:58:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34A8F10E820;
+	Wed, 15 Oct 2025 15:00:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U/CKlq4b";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HZIHvw36";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DEE210E81E;
- Wed, 15 Oct 2025 14:58:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF00610E81E;
+ Wed, 15 Oct 2025 15:00:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760540325; x=1792076325;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=AkFteLIUweH7oSgstjfVyfQNUSoqK2drQI6zXQEXil8=;
- b=U/CKlq4bDftg9xTV6HHgwOAytNcJw2TuBpuCwEAxO4LjavWk3t7lclx7
- rlsLQKr7IUtKfniQjIe8SBpzzqTqYji0zcCNaMnrzdme2yyFR5hsnN1Mt
- ry6x8maKlhAVdxm1qnFRtm3c7WiubTDqfYJQnc2q4FsceUui4yLQd7+2a
- ulW+6GNsJiEADfMdfd5NagiWz2W/wWZMQWgsV6BJeKiAa5ZdZ5KvO8Shg
- cUduA4MRAthPvVwWst3nEhG46gccNKiyDaUzOQrOZ3mRom516pXAlc5XD
- DnbV3AGBt+i3KaTJRHv/rv7z/dMsC9t1SJJb2ti6+C3gVh00/eMv1y1B8 g==;
-X-CSE-ConnectionGUID: XX8G7T+FQpWrdgGiOqLI1Q==
-X-CSE-MsgGUID: RR95hpEBR9KryjYJmcFjPA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="66579385"
-X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="66579385"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 07:58:44 -0700
-X-CSE-ConnectionGUID: Odei/Z+TTXqSIXa4Gkq4cQ==
-X-CSE-MsgGUID: UAOM4GBfTAO9OSsDUo5CQw==
+ t=1760540434; x=1792076434;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=uUWhwj+qNtPLTzfQ6WgwlI0YPQRlImlC8f+kD0z9Y2c=;
+ b=HZIHvw36N7EYfNhb6Zm2S6CdIrVKtoB+VU3GxxonNdsVEvwjqcwrCKNx
+ yEbj7dFWzJsGKbrq+9k904S3g8UiTTJ3QlWCgsx+Ctvlb+4lS7TfDJ/8h
+ rYaLzn0QcJzhc2Xyeo3W6W57EUJfTxLBCoC/kGGs/21bmyo6YT8T7kX0v
+ PTL5vcobnXuPS3VT2kS6bscXWbqdIxWoFBBACzq1QYr/b5zD6Ysd3bFHj
+ U6aOXvfh3bLDDXanC2J228aSc/bGcBgnByHPOJyMf+UVvRXVHrGgyH0J1
+ xC58VMwJAJh0B4jx+1pBobkWtFgBWnZqOXJU4CbR6eUvoG97rQ/uhczso w==;
+X-CSE-ConnectionGUID: WdzgE9xTQCuTE07/uDVFKg==
+X-CSE-MsgGUID: TaGMjxgvREKGV+IDE5TLmw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="50285426"
+X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="50285426"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2025 08:00:33 -0700
+X-CSE-ConnectionGUID: knU57drSQCuvQf3G3QvRQQ==
+X-CSE-MsgGUID: srwFpEBJSSCba/bzSwMmhQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="205895948"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.100])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 07:58:40 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>, Dnyaneshwar Bhadane
- <dnyaneshwar.bhadane@intel.com>, Gustavo Sousa <gustavo.sousa@intel.com>,
- Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>, Juha-pekka
- Heikkila
- <juha-pekka.heikkila@intel.com>, Luca Coelho <luciano.coelho@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, Matt Atwood
- <matthew.s.atwood@intel.com>, Matt Roper <matthew.d.roper@intel.com>, Ravi
- Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>, Sai Teja Pottumuttu
- <sai.teja.pottumuttu@intel.com>, Shekhar Chauhan
- <shekhar.chauhan@intel.com>, Vinod Govindapillai
- <vinod.govindapillai@intel.com>
-Subject: Re: [PATCH 14/32] drm/i915/xe3p_lpd: Adapt to updates on
- MBUS_CTL/DBUF_CTL registers
-In-Reply-To: <20251015-xe3p_lpd-basic-enabling-v1-14-d2d1e26520aa@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251015-xe3p_lpd-basic-enabling-v1-0-d2d1e26520aa@intel.com>
- <20251015-xe3p_lpd-basic-enabling-v1-14-d2d1e26520aa@intel.com>
-Date: Wed, 15 Oct 2025 17:58:37 +0300
-Message-ID: <49092d9e223f524bb4a8f478e9cf964a465e7938@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="181992589"
+Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.116])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2025 08:00:32 -0700
+Date: Wed, 15 Oct 2025 18:00:29 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jouni.hogander@intel.com, animesh.manna@intel.com
+Subject: Re: [PATCH 10/10] drm/i915/display: Prepare for vblank_delay for LRR
+Message-ID: <aO-3DSHSHX4lD1cV@intel.com>
+References: <20251015072217.1710717-1-ankit.k.nautiyal@intel.com>
+ <20251015072217.1710717-11-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251015072217.1710717-11-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,102 +73,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 15 Oct 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> From: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
->
-> Some of the register fields of MBUS_CTL and DBUF_CTL register are
-> changed for Xe3p_LPD platforms. Update the changed fields in the driver.
-> Below are the changes:
->
-> MBUS_CTL:
-> 	Translation Throttle Min
-> 		It changed from BIT[15:13] to BIT[16:13]
->
-> DBUF_CTL:
-> 	Min Tracker State Service
-> 		It changed from BIT[18:16] to BIT[20:16]
->         Max Tracker State Service
-> 		It changed to from BIT[23:19] to BIT[14:10]
-> 		but using default value, so no need to define
-> 		in code.
->
-> Bspec: 68868, 68872
-> Signed-off-by: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+On Wed, Oct 15, 2025 at 12:52:17PM +0530, Ankit Nautiyal wrote:
+> Update allow_vblank_delay_fastset() to permit vblank delay adjustments
+> during with LRR when VRR TG is always active.
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/skl_watermark.c      | 16 ++++++++++++----
->  drivers/gpu/drm/i915/display/skl_watermark_regs.h | 12 ++++++++++--
->  2 files changed, 22 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-> index 9df9ee137bf9..41f64e347436 100644
-> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> @@ -3505,7 +3505,10 @@ void intel_dbuf_mdclk_cdclk_ratio_update(struct intel_display *display,
->  	if (!HAS_MBUS_JOINING(display))
->  		return;
->  
-> -	if (DISPLAY_VER(display) >= 20)
-> +	if (DISPLAY_VER(display) >= 35)
-> +		intel_de_rmw(display, MBUS_CTL, XE3P_MBUS_TRANSLATION_THROTTLE_MIN_MASK,
-> +			     XE3P_MBUS_TRANSLATION_THROTTLE_MIN(ratio - 1));
-> +	else if (DISPLAY_VER(display) >= 20)
->  		intel_de_rmw(display, MBUS_CTL, MBUS_TRANSLATION_THROTTLE_MIN_MASK,
->  			     MBUS_TRANSLATION_THROTTLE_MIN(ratio - 1));
->  
-> @@ -3516,9 +3519,14 @@ void intel_dbuf_mdclk_cdclk_ratio_update(struct intel_display *display,
->  		    ratio, str_yes_no(joined_mbus));
->  
->  	for_each_dbuf_slice(display, slice)
-> -		intel_de_rmw(display, DBUF_CTL_S(slice),
-> -			     DBUF_MIN_TRACKER_STATE_SERVICE_MASK,
-> -			     DBUF_MIN_TRACKER_STATE_SERVICE(ratio - 1));
-> +		if (DISPLAY_VER(display) >= 35)
-> +			intel_de_rmw(display, DBUF_CTL_S(slice),
-> +				     XE3P_DBUF_MIN_TRACKER_STATE_SERVICE_MASK,
-> +				     XE3P_DBUF_MIN_TRACKER_STATE_SERVICE(ratio - 1));
-> +		else
-> +			intel_de_rmw(display, DBUF_CTL_S(slice),
-> +				     DBUF_MIN_TRACKER_STATE_SERVICE_MASK,
-> +				     DBUF_MIN_TRACKER_STATE_SERVICE(ratio - 1));
->  }
->  
->  static void intel_dbuf_mdclk_min_tracker_update(struct intel_atomic_state *state)
-> diff --git a/drivers/gpu/drm/i915/display/skl_watermark_regs.h b/drivers/gpu/drm/i915/display/skl_watermark_regs.h
-> index c5572fc0e847..7e0877303e05 100644
-> --- a/drivers/gpu/drm/i915/display/skl_watermark_regs.h
-> +++ b/drivers/gpu/drm/i915/display/skl_watermark_regs.h
-> @@ -41,7 +41,11 @@
->  #define   MBUS_JOIN_PIPE_SELECT(pipe)		REG_FIELD_PREP(MBUS_JOIN_PIPE_SELECT_MASK, pipe)
->  #define   MBUS_JOIN_PIPE_SELECT_NONE		MBUS_JOIN_PIPE_SELECT(7)
->  #define   MBUS_TRANSLATION_THROTTLE_MIN_MASK	REG_GENMASK(15, 13)
-> -#define   MBUS_TRANSLATION_THROTTLE_MIN(val)	REG_FIELD_PREP(MBUS_TRANSLATION_THROTTLE_MIN_MASK, val)
-> +#define   MBUS_TRANSLATION_THROTTLE_MIN(val) \
-> +		REG_FIELD_PREP(MBUS_TRANSLATION_THROTTLE_MIN_MASK, val)
-> +#define   XE3P_MBUS_TRANSLATION_THROTTLE_MIN_MASK	REG_GENMASK(16, 13)
-> +#define   XE3P_MBUS_TRANSLATION_THROTTLE_MIN(val) \
-> +		REG_FIELD_PREP(XE3P_MBUS_TRANSLATION_THROTTLE_MIN_MASK, val)
->  
->  /*
->   * The below are numbered starting from "S1" on gen11/gen12, but starting
-> @@ -65,7 +69,11 @@
->  #define  DBUF_TRACKER_STATE_SERVICE_MASK	REG_GENMASK(23, 19)
->  #define  DBUF_TRACKER_STATE_SERVICE(x)		REG_FIELD_PREP(DBUF_TRACKER_STATE_SERVICE_MASK, x)
->  #define  DBUF_MIN_TRACKER_STATE_SERVICE_MASK	REG_GENMASK(18, 16) /* ADL-P+ */
-> -#define  DBUF_MIN_TRACKER_STATE_SERVICE(x)		REG_FIELD_PREP(DBUF_MIN_TRACKER_STATE_SERVICE_MASK, x) /* ADL-P+ */
-> +#define  DBUF_MIN_TRACKER_STATE_SERVICE(x) \
-> +		REG_FIELD_PREP(DBUF_MIN_TRACKER_STATE_SERVICE_MASK, x) /* ADL-P+ */
-> +#define  XE3P_DBUF_MIN_TRACKER_STATE_SERVICE_MASK	REG_GENMASK(20, 16)
-> +#define  XE3P_DBUF_MIN_TRACKER_STATE_SERVICE(x) \
-> +		REG_FIELD_PREP(XE3P_DBUF_MIN_TRACKER_STATE_SERVICE_MASK, x)
+>  drivers/gpu/drm/i915/display/intel_display.c | 10 ++++++++--
+>  1 file changed, 8 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index ceee5ae99c2c..65a7da694ef6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -4958,9 +4958,15 @@ static bool allow_vblank_delay_fastset(const struct intel_crtc_state *old_crtc_s
+>  	 * Allow fastboot to fix up vblank delay (handled via LRR
+>  	 * codepaths), a bit dodgy as the registers aren't
+>  	 * double buffered but seems to be working more or less...
+> +	 *
+> +	 * Also allow this when the VRR timing generator is always on,
+> +	 * and optimized guardband is used. In such cases,
+> +	 * vblank delay may vary even without inherited state, but it's
+> +	 * still safe as VRR guardband is still same.
+>  	 */
+> -	return HAS_LRR(display) && old_crtc_state->inherited &&
+> -		!intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DSI);
+> +	return HAS_LRR(display) &&
+> +	       (old_crtc_state->inherited || intel_vrr_always_use_vrr_tg(display)) &&
+> +	       !intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DSI);
 
-Please just keep the long lines in this file. In this case, I think it's
-cleaner.
+I suppose this won't actually do anything until we get the fixed
+guardband size in place. But with that I suppose it is the right
+thing to do.
 
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
->  
->  #define MTL_LATENCY_LP0_LP1		_MMIO(0x45780)
->  #define MTL_LATENCY_LP2_LP3		_MMIO(0x45784)
+However I was pondering about the place where do timing generator
+reprogramming. Currently that is done from within the vblank evasion
+critical section. But that is actually wrong because the VRR registers
+aren't double buffered. So in the worst case we'll evade the previous
+vblank start, and then reprogram the timing generator which could
+move the vblank start to be just ahead of the current scanline and
+then the commit will end up straddling the start of vblank (which is
+exactly what the vblank evasion tried to prevent).
+
+So I think we'll have to move the timing generator update to happen
+after we've done all the double buffered register programming. I suppose
+that might still be technically wrong as then the position of the
+delayed vblank might still move before the double buffered registers
+have been latched. I don't think that shouldn't cause any underruns/etc.
+but in the worst case the start of vblank moves backwards past the
+current scanline, and then the registers don't actually latch until the
+next frame.
+
+I wonder if we should use the vblank worker here to do the timing
+generator update right after the delayed vblank? That would guarantee
+that the current delayed vblank stays in place until the register have
+been latched.
+
+Though we may still end up in at least two weird scenarios:
+- delayed vblank moves forward, and we might get two delayed vblank
+  events for the same frame
+- vtotal gets reduced below the current delayed vblank start. Which
+  I suppose means the vtotal for the frame will not necessarily be
+  the old or new vtotal value, but something in between.
+
+That's all assuming certain behaviours of the VRR timing generator
+of course. I haven't actuall confirmed how the hardware behaves
+in either case. We should probably do some more hw poking at some
+point to really figure this stuff out...
 
 -- 
-Jani Nikula, Intel
+Ville Syrjälä
+Intel
