@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBC7ABDC6B9
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 06:09:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AEE78BDC6BF
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 06:09:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D0AA10E739;
-	Wed, 15 Oct 2025 04:09:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F05310E73C;
+	Wed, 15 Oct 2025 04:09:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hU6uTRu/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k3Y9uXta";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A77C410E738;
- Wed, 15 Oct 2025 04:09:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9161C10E73A;
+ Wed, 15 Oct 2025 04:09:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760501361; x=1792037361;
+ t=1760501364; x=1792037364;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DktWQY4Dix5z2okO36Rn1Gaz/2razp+Kb7ptMle3DI4=;
- b=hU6uTRu/SiuIEh+1rz+Axl8x7KiT26rt3dhJTL85L5GwIheoE1fO6sEh
- jJLTBZ5IP+gtWC6YYwrRw2+T0SGtJmoJPvbGHv696J1h2oZBFdFmw6YPb
- g2hQe6uIY6FUeSS0LzZUCa0ozs2mDCeZb0FxR1gdStMrpBvLXZ2YhrXRM
- z0Ds/iZNnKGcj8rJQnobYmLuk5XMRJR5Iw4F3ZPVPv5gbrOXU1f/8KckY
- npaY32ANNQfs7JQVwbRePbLszynfbAapF+y5+PnDQI+Oe1+SRcQipEqUu
- ogEsah2u1cvkTduqkU3Cpp4HwGJ493OZan3aWwzZZ1txveEq8HIQZtwwX Q==;
-X-CSE-ConnectionGUID: qK+HQNHWTUO2qNRlZoNXtQ==
-X-CSE-MsgGUID: 3aTLPxesR0id08qaIlcuug==
-X-IronPort-AV: E=McAfee;i="6800,10657,11582"; a="66318986"
-X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="66318986"
+ bh=XcxzaCdaVi0iCHsWtUBTfnmxDIcW7Q0TKi8JrQ9i5ro=;
+ b=k3Y9uXtaYrxCpzDbEnQ9Nb3JkZkVIlvto0OYpQDP3cC4ZK7CUxB+mH3q
+ MwvNnV6jpd+vLVogmtag53hddnUyowON6/LTEU3ZdDULvjZFN0K42zGgJ
+ hXGD4rl04hBrsSo+BH8GW5RYsJxuG9C7E4EOJl8bV5uEwFNrrKfp2n0YQ
+ CO2EOldv9LNYlkJ2TBUyxXrduBqI20RqbCAcV/UfUXta+4naL0uAXoT0U
+ p6BC8JlIH0FWs6vrXL7Qga3LpewdJmMMsqyfYXJtEykQWMRaxSRPMldbo
+ oU+lz3XfZ6xLFeY7xeASVwdZif6h9VSsZnffIqBHismxNialo9Cy1IqMj g==;
+X-CSE-ConnectionGUID: ld3hIQp5TQex9557RaR+eQ==
+X-CSE-MsgGUID: 4Zl2wHitRG+NY10HjthG0A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11582"; a="66318992"
+X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="66318992"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2025 21:09:21 -0700
-X-CSE-ConnectionGUID: 5yvq6YAnTba4lCmzA3RGoQ==
-X-CSE-MsgGUID: d8AZC1r9SQ+MNTlOYGS2dw==
+ 14 Oct 2025 21:09:24 -0700
+X-CSE-ConnectionGUID: rsN3S0+FTLyUhrhNAjTqQA==
+X-CSE-MsgGUID: utt+2iyuQHqy4x3lB4u+QA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="219196286"
+X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="219196296"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa001.jf.intel.com with ESMTP; 14 Oct 2025 21:09:19 -0700
+ by orviesa001.jf.intel.com with ESMTP; 14 Oct 2025 21:09:22 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, uma.shankar@intel.com,
  gustavo.sousa@intel.com, lucas.demarchi@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 19/25] drm/i915/ltphy: Enable/Disable Tx after Non TBT Enable
- sequence
-Date: Wed, 15 Oct 2025 09:38:11 +0530
-Message-Id: <20251015040817.3431297-20-suraj.kandpal@intel.com>
+Subject: [PATCH 20/25] drm/i915/ltphy: Define the LT Phy state compare function
+Date: Wed, 15 Oct 2025 09:38:12 +0530
+Message-Id: <20251015040817.3431297-21-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251015040817.3431297-1-suraj.kandpal@intel.com>
 References: <20251015040817.3431297-1-suraj.kandpal@intel.com>
@@ -70,136 +69,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We need to enable and disable the Tx for each active lane after the
-Non-TBT enable sequence is done.
+Define function to compare the state and if mismatch is detected
+dump both the states.
 
-Bspec: 74500, 74497, 74701
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_lt_phy.c   | 87 +++++++++++++++++++
- .../gpu/drm/i915/display/intel_lt_phy_regs.h  |  4 +
- 2 files changed, 91 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c | 33 +++++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_lt_phy.c  | 30 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_lt_phy.h  |  6 ++++
+ 3 files changed, 68 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index 359a2dbf0847..f1e41f009bb5 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -1494,6 +1494,92 @@ intel_lt_phy_program_pll(struct intel_encoder *encoder,
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index d5b2612d4ec2..b05f70582788 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -99,6 +99,7 @@
+ #include "intel_hdmi.h"
+ #include "intel_hotplug.h"
+ #include "intel_link_bw.h"
++#include "intel_lt_phy.h"
+ #include "intel_lvds.h"
+ #include "intel_lvds_regs.h"
+ #include "intel_modeset_setup.h"
+@@ -4963,6 +4964,24 @@ static bool allow_vblank_delay_fastset(const struct intel_crtc_state *old_crtc_s
+ 		!intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DSI);
  }
  
 +static void
-+intel_lt_phy_enable_disable_tx(struct intel_encoder *encoder,
-+			       const struct intel_crtc_state *crtc_state)
++pipe_config_lt_phy_pll_mismatch(struct drm_printer *p, bool fastset,
++				const struct intel_crtc *crtc,
++				const char *name,
++				const struct intel_lt_phy_pll_state *a,
++				const struct intel_lt_phy_pll_state *b)
 +{
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-+	bool lane_reversal = dig_port->lane_reversal;
-+	u8 lane_count = crtc_state->lane_count;
-+	bool is_dp_alt =
-+		intel_tc_port_in_dp_alt_mode(dig_port);
-+	enum intel_tc_pin_assignment tc_pin =
-+		intel_tc_port_get_pin_assignment(dig_port);
-+	u8 transmitter_mask = 0;
++	struct intel_display *display = to_intel_display(crtc);
++	char *chipname = "LTPHY";
 +
-+	/*
-+	 * We have a two transmitters per lane and total of 2 PHY lanes so a total
-+	 * of 4 transmitters. We prepare a mask of the lanes that need to be activated
-+	 * and the transmitter which need to be activated for each lane. TX 0,1 correspond
-+	 * to LANE0 and TX 2, 3 correspond to LANE1.
-+	 */
++	pipe_config_mismatch(p, fastset, crtc, name, chipname);
 +
-+	switch (lane_count) {
-+	case 1:
-+		transmitter_mask = lane_reversal ? REG_BIT8(3) : REG_BIT8(0);
-+		if (is_dp_alt) {
-+			if (tc_pin == INTEL_TC_PIN_ASSIGNMENT_D)
-+				transmitter_mask = REG_BIT8(0);
-+			else
-+				transmitter_mask = REG_BIT8(1);
-+		}
-+		break;
-+	case 2:
-+		transmitter_mask = lane_reversal ? REG_GENMASK8(3, 2) : REG_GENMASK8(1, 0);
-+		if (is_dp_alt)
-+			transmitter_mask = REG_GENMASK8(1, 0);
-+		break;
-+	case 3:
-+		transmitter_mask = lane_reversal ? REG_GENMASK8(3, 1) : REG_GENMASK8(2, 0);
-+		if (is_dp_alt)
-+			transmitter_mask = REG_GENMASK8(2, 0);
-+		break;
-+	case 4:
-+		transmitter_mask = REG_GENMASK8(3, 0);
-+		break;
-+	default:
-+		MISSING_CASE(lane_count);
-+		transmitter_mask = REG_GENMASK8(3, 0);
-+		break;
-+	}
-+
-+	if (transmitter_mask & BIT(0)) {
-+		intel_lt_phy_p2p_write(encoder, INTEL_LT_PHY_LANE0, LT_PHY_TXY_CTL10(0),
-+				       LT_PHY_TX_LANE_ENABLE, LT_PHY_TXY_CTL10_MAC(0),
-+				       LT_PHY_TX_LANE_ENABLE);
-+	} else {
-+		intel_lt_phy_p2p_write(encoder, INTEL_LT_PHY_LANE0, LT_PHY_TXY_CTL10(0),
-+				       0, LT_PHY_TXY_CTL10_MAC(0), 0);
-+	}
-+
-+	if (transmitter_mask & BIT(1)) {
-+		intel_lt_phy_p2p_write(encoder, INTEL_LT_PHY_LANE0, LT_PHY_TXY_CTL10(1),
-+				       LT_PHY_TX_LANE_ENABLE, LT_PHY_TXY_CTL10_MAC(1),
-+				       LT_PHY_TX_LANE_ENABLE);
-+	} else {
-+		intel_lt_phy_p2p_write(encoder, INTEL_LT_PHY_LANE0, LT_PHY_TXY_CTL10(1),
-+				       0, LT_PHY_TXY_CTL10_MAC(1), 0);
-+	}
-+
-+	if (transmitter_mask & BIT(2)) {
-+		intel_lt_phy_p2p_write(encoder, INTEL_LT_PHY_LANE1, LT_PHY_TXY_CTL10(0),
-+				       LT_PHY_TX_LANE_ENABLE, LT_PHY_TXY_CTL10_MAC(0),
-+				       LT_PHY_TX_LANE_ENABLE);
-+	} else {
-+		intel_lt_phy_p2p_write(encoder, INTEL_LT_PHY_LANE1, LT_PHY_TXY_CTL10(0),
-+				       0, LT_PHY_TXY_CTL10_MAC(0), 0);
-+	}
-+
-+	if (transmitter_mask & BIT(3)) {
-+		intel_lt_phy_p2p_write(encoder, INTEL_LT_PHY_LANE1, LT_PHY_TXY_CTL10(1),
-+				       LT_PHY_TX_LANE_ENABLE, LT_PHY_TXY_CTL10_MAC(1),
-+				       LT_PHY_TX_LANE_ENABLE);
-+	} else {
-+		intel_lt_phy_p2p_write(encoder, INTEL_LT_PHY_LANE1, LT_PHY_TXY_CTL10(1),
-+				       0, LT_PHY_TXY_CTL10_MAC(1), 0);
-+	}
++	drm_printf(p, "expected:\n");
++	intel_lt_phy_dump_hw_state(display, a);
++	drm_printf(p, "found:\n");
++	intel_lt_phy_dump_hw_state(display, b);
 +}
 +
- void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
- 			     const struct intel_crtc_state *crtc_state)
- {
-@@ -1620,6 +1706,7 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
- 	intel_lt_phy_powerdown_change_sequence(encoder, owned_lane_mask,
- 					       XELPDP_P0_STATE_ACTIVE);
+ bool
+ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 			  const struct intel_crtc_state *pipe_config,
+@@ -5087,6 +5106,16 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 	} \
+ } while (0)
  
-+	intel_lt_phy_enable_disable_tx(encoder, crtc_state);
++#define PIPE_CONF_CHECK_PLL_LT(name) do { \
++	if (!intel_lt_phy_pll_compare_hw_state(&current_config->name, \
++					       &pipe_config->name)) { \
++		pipe_config_lt_phy_pll_mismatch(&p, fastset, crtc, __stringify(name), \
++						&current_config->name, \
++						&pipe_config->name); \
++		ret = false; \
++	} \
++} while (0)
++
+ #define PIPE_CONF_CHECK_TIMINGS(name) do {     \
+ 	PIPE_CONF_CHECK_I(name.crtc_hdisplay); \
+ 	PIPE_CONF_CHECK_I(name.crtc_htotal); \
+@@ -5311,7 +5340,9 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 		PIPE_CONF_CHECK_PLL(dpll_hw_state);
+ 
+ 	/* FIXME convert MTL+ platforms over to dpll_mgr */
+-	if (DISPLAY_VER(display) >= 14)
++	if (HAS_LT_PHY(display))
++		PIPE_CONF_CHECK_PLL_LT(dpll_hw_state.ltpll);
++	else if (DISPLAY_VER(display) >= 14)
+ 		PIPE_CONF_CHECK_PLL_CX0(dpll_hw_state.cx0pll);
+ 
+ 	PIPE_CONF_CHECK_X(dsi_pll.ctrl);
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+index f1e41f009bb5..0be4aad0efcc 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+@@ -1843,6 +1843,36 @@ void intel_lt_phy_set_signal_levels(struct intel_encoder *encoder,
  	intel_lt_phy_transaction_end(encoder, wakeref);
  }
  
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-index 1eab328c70f4..b8d02c39e738 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-@@ -35,6 +35,10 @@
- #define  LT_PHY_TX_CURSOR_MASK		REG_GENMASK8(5, 0)
- #define  LT_PHY_TX_CURSOR(val)		REG_FIELD_PREP8(LT_PHY_TX_CURSOR_MASK, val)
- 
-+#define LT_PHY_TXY_CTL10(idx)		(0x40A + (0x200 * (idx)))
-+#define LT_PHY_TXY_CTL10_MAC(idx)	_MMIO(LT_PHY_TXY_CTL10(idx))
-+#define  LT_PHY_TX_LANE_ENABLE		REG_BIT8(0)
++void intel_lt_phy_dump_hw_state(struct intel_display *display,
++				const struct intel_lt_phy_pll_state *hw_state)
++{
++	int i, j;
 +
- /* LT Phy Vendor Register */
- #define LT_PHY_VDR_0_CONFIG	0xC02
- #define  LT_PHY_VDR_DP_PLL_ENABLE	REG_BIT(7)
++	drm_dbg_kms(display->drm, "lt_phy_pll_hw_state:\n");
++	for (i = 0; i < 3; i++) {
++		drm_dbg_kms(display->drm, "config[%d] = 0x%.4x,\n",
++			    i, hw_state->config[i]);
++	}
++
++	for (i = 0; i <= 12; i++)
++		for (j = 3; j >= 0; j--)
++			drm_dbg_kms(display->drm, "vdr_data[%d][%d] = 0x%.4x,\n",
++				    i, j, hw_state->data[i][j]);
++}
++
++bool
++intel_lt_phy_pll_compare_hw_state(const struct intel_lt_phy_pll_state *a,
++				  const struct intel_lt_phy_pll_state *b)
++{
++	if (memcmp(&a->config, &b->config, sizeof(a->config)) != 0)
++		return false;
++
++	if (memcmp(&a->data, &b->data, sizeof(a->data)) != 0)
++		return false;
++
++	return true;
++}
++
+ void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
+ 			      const struct intel_crtc_state *crtc_state)
+ {
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h b/drivers/gpu/drm/i915/display/intel_lt_phy.h
+index 6e67ae78801c..e93e5becc316 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.h
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
+@@ -8,6 +8,7 @@
+ 
+ #include <linux/types.h>
+ 
++struct intel_display;
+ struct intel_encoder;
+ struct intel_crtc_state;
+ struct intel_lt_phy_pll_state;
+@@ -22,6 +23,11 @@ int intel_lt_phy_calc_port_clock(struct intel_encoder *encoder,
+ 				 const struct intel_crtc_state *crtc_state);
+ void intel_lt_phy_set_signal_levels(struct intel_encoder *encoder,
+ 				    const struct intel_crtc_state *crtc_state);
++void intel_lt_phy_dump_hw_state(struct intel_display *display,
++				const struct intel_lt_phy_pll_state *hw_state);
++bool
++intel_lt_phy_pll_compare_hw_state(const struct intel_lt_phy_pll_state *a,
++				  const struct intel_lt_phy_pll_state *b);
+ void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
+ 			      const struct intel_crtc_state *crtc_state);
+ void intel_xe3plpd_pll_disable(struct intel_encoder *encoder);
 -- 
 2.34.1
 
