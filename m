@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C54DCBDC689
+	by mail.lfdr.de (Postfix) with ESMTPS id 07885BDC68A
 	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 06:08:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2689810E6FE;
-	Wed, 15 Oct 2025 04:08:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CECC10E706;
+	Wed, 15 Oct 2025 04:08:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b1NF9PN4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V2kD39Ai";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3644D10E6FE;
- Wed, 15 Oct 2025 04:08:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2277210E6F4;
+ Wed, 15 Oct 2025 04:08:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760501317; x=1792037317;
+ t=1760501320; x=1792037320;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=L9HGMB2+0CN1R/YbxiHOePGDdeBcw7P/dUK1KiJ00I8=;
- b=b1NF9PN4a6Rmm/8xdcxNc4sADrQIBd0zzU8CkRjlCYtVTwy2A5d1kC5r
- GDn+42UlLWiXd8tcrjHoLKgcQ0j0r1iVEMk12ssa1vNLTVQXaMu+eqCxi
- v0xPWbmxx6d1nJqn9Fj6P1Ft2m4jv425JJA6Grf7KFex+osZvo7k795tb
- /pqAav8We5Vr3ycW2niT9Q7NrZIfXahwwVPUND6sEgoi3CfPZ0FCDz9Mh
- rZgpFCsi9tYIWwvv/nk/wmOKOmq8f0u/WckDVvQUuicl+hrvwAPGZLR4m
- 3fnuIsi1+ZvrXraTg5f0VghUX/WJdAN7AMsJN6/JnL52IGsSS11dlxZOd Q==;
-X-CSE-ConnectionGUID: rpzQJgueRcqqjHyXhUnBIQ==
-X-CSE-MsgGUID: acJipUckTAS4yvyDgokZNg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11582"; a="66318946"
-X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="66318946"
+ bh=DZckqOZLShkOK6nygddBt4QtTAylEiDZ9+l+JBnxTh8=;
+ b=V2kD39AizSGjX97H613z4BxWlJdXA07h9Bj8vQ2Dep4tVt8Xf6r6d2qU
+ a/Cc50RxSDcGFlxyq0s9cF6nddMUJVzZjNzDnnzILs/WpZAKzXu/PZjLO
+ QfzidIZkt399XmfmJkEgSXaXCV7TTgtxTV/63ruFEBBxwQ8GHv0n5TnYh
+ wcDTPiPVLPXquslJRbloZAs/lGEXR9bROP2fd9xIuHQz0iktIU8oqEGj8
+ rxwSoMFL2PoV3bWUnaKobzmV6k1l5nsnU/tP2liFMKr/b4hnqpxl9cMgV
+ Rif7ONP7ZVUXZ6rX3EW+EUCWKdUzsagE09PMAaL4bz8GI93MEbYRW3+RA Q==;
+X-CSE-ConnectionGUID: Lx4yesSQRXmW5mSk1gOjvA==
+X-CSE-MsgGUID: l44Gg49nTcOonITdq3yP4w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11582"; a="66318948"
+X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="66318948"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2025 21:08:37 -0700
-X-CSE-ConnectionGUID: YJURX2ABTVa/HmQvjikbEw==
-X-CSE-MsgGUID: doiafrJ5TNSUeiEp5pereA==
+ 14 Oct 2025 21:08:40 -0700
+X-CSE-ConnectionGUID: 5yEhIbyaQo+5t3Y6LLxgjA==
+X-CSE-MsgGUID: vhM//zv4RAiv5hWYY3WdVQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="219196100"
+X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="219196110"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa001.jf.intel.com with ESMTP; 14 Oct 2025 21:08:35 -0700
+ by orviesa001.jf.intel.com with ESMTP; 14 Oct 2025 21:08:37 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, uma.shankar@intel.com,
  gustavo.sousa@intel.com, lucas.demarchi@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 04/25] drm/i915/ltphy: Program sequence for PORT_CLOCK_CTL for
- LT Phy
-Date: Wed, 15 Oct 2025 09:37:56 +0530
-Message-Id: <20251015040817.3431297-5-suraj.kandpal@intel.com>
+Subject: [PATCH 05/25] drm/i915/ltphy: Add a wrapper for LT Phy powerdown
+ change sequence
+Date: Wed, 15 Oct 2025 09:37:57 +0530
+Message-Id: <20251015040817.3431297-6-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251015040817.3431297-1-suraj.kandpal@intel.com>
 References: <20251015040817.3431297-1-suraj.kandpal@intel.com>
@@ -70,123 +70,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Program sequence from port clock ctl except for the SSC
-enablement part which will be taken care of later.
+Add a wrapper on cx0 powerdown change sequence for LT Phy usage,
+as the sequence remains unchanged when going from SNPS Phy to
+LT Phy.
 
-Bspec: 74492
+Bspec: 74495
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c |  8 ++---
- drivers/gpu/drm/i915/display/intel_cx0_phy.h |  1 +
- drivers/gpu/drm/i915/display/intel_lt_phy.c  | 36 ++++++++++++++++++++
- 3 files changed, 41 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c |  6 +++---
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h |  2 ++
+ drivers/gpu/drm/i915/display/intel_lt_phy.c  | 13 +++++++++++++
+ 3 files changed, 18 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index db2b05521c62..eab49c08d7ff 100644
+index eab49c08d7ff..8455d0725968 100644
 --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2585,7 +2585,7 @@ static bool is_dp2(u32 clock)
- 	return false;
+@@ -2806,8 +2806,8 @@ static u32 intel_cx0_get_powerdown_state(u8 lane_mask, u8 state)
+ 	return val;
  }
  
--static bool is_hdmi_frl(u32 clock)
-+bool intel_cx0_is_hdmi_frl(u32 clock)
+-static void intel_cx0_powerdown_change_sequence(struct intel_encoder *encoder,
+-						u8 lane_mask, u8 state)
++void intel_cx0_powerdown_change_sequence(struct intel_encoder *encoder,
++					 u8 lane_mask, u8 state)
  {
- 	switch (clock) {
- 	case 300000: /* 3 Gbps */
-@@ -2612,7 +2612,7 @@ static int intel_get_c20_custom_width(u32 clock, bool dp)
- {
- 	if (dp && is_dp2(clock))
- 		return 2;
--	else if (is_hdmi_frl(clock))
-+	else if (intel_cx0_is_hdmi_frl(clock))
- 		return 1;
- 	else
- 		return 0;
-@@ -2706,7 +2706,7 @@ static void intel_c20_pll_program(struct intel_display *display,
- 	} else {
- 		intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_SERDES_RATE,
- 			      BIT(7) | PHY_C20_CUSTOM_SERDES_MASK,
--			      is_hdmi_frl(port_clock) ? BIT(7) : 0,
-+			      intel_cx0_is_hdmi_frl(port_clock) ? BIT(7) : 0,
- 			      MB_WRITE_COMMITTED);
- 
- 		intel_cx0_write(encoder, INTEL_CX0_BOTH_LANES, PHY_C20_VDR_HDMI_RATE,
-@@ -2766,7 +2766,7 @@ static void intel_program_port_clock_ctl(struct intel_encoder *encoder,
- 
- 	val |= XELPDP_FORWARD_CLOCK_UNGATE;
- 
--	if (!is_dp && is_hdmi_frl(port_clock))
-+	if (!is_dp && intel_cx0_is_hdmi_frl(port_clock))
- 		val |= XELPDP_DDI_CLOCK_SELECT_PREP(display, XELPDP_DDI_CLOCK_SELECT_DIV18CLK);
- 	else
- 		val |= XELPDP_DDI_CLOCK_SELECT_PREP(display, XELPDP_DDI_CLOCK_SELECT_MAXPCLK);
+ 	struct intel_display *display = to_intel_display(encoder);
+ 	enum port port = encoder->port;
+@@ -2837,7 +2837,7 @@ static void intel_cx0_powerdown_change_sequence(struct intel_encoder *encoder,
+ 	/* Update Timeout Value */
+ 	if (intel_de_wait_custom(display, buf_ctl2_reg,
+ 				 intel_cx0_get_powerdown_update(lane_mask), 0,
+-				 XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_US, 0, NULL))
++				 XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_US, 2, NULL))
+ 		drm_warn(display->drm,
+ 			 "PHY %c failed to bring out of Lane reset after %dus.\n",
+ 			 phy_name(phy), XELPDP_PORT_RESET_START_TIMEOUT_US);
 diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-index c92026fe7b8f..b111a893b428 100644
+index b111a893b428..8c9b97f0922d 100644
 --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
 +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-@@ -43,6 +43,7 @@ void intel_cx0_phy_set_signal_levels(struct intel_encoder *encoder,
+@@ -41,6 +41,8 @@ bool intel_cx0pll_compare_hw_state(const struct intel_cx0pll_state *a,
+ 				   const struct intel_cx0pll_state *b);
+ void intel_cx0_phy_set_signal_levels(struct intel_encoder *encoder,
  				     const struct intel_crtc_state *crtc_state);
++void intel_cx0_powerdown_change_sequence(struct intel_encoder *encoder,
++					 u8 lane_mask, u8 state);
  int intel_cx0_phy_check_hdmi_link_rate(struct intel_hdmi *hdmi, int clock);
  void intel_cx0_setup_powerdown(struct intel_encoder *encoder);
-+bool intel_cx0_is_hdmi_frl(u32 clock);
- int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder);
- void intel_cx0_pll_power_save_wa(struct intel_display *display);
- void intel_lnl_mac_transmit_lfps(struct intel_encoder *encoder,
+ bool intel_cx0_is_hdmi_frl(u32 clock);
 diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index c65333cc9494..8c6f60d9e0ac 100644
+index 8c6f60d9e0ac..263e9780b55c 100644
 --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -108,13 +108,49 @@ intel_lt_phy_lane_reset(struct intel_encoder *encoder,
- 	intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port), lane_phy_pulse_status, 0);
+@@ -42,6 +42,13 @@ intel_lt_phy_setup_powerdown(struct intel_encoder *encoder, u8 lane_count)
+ 	intel_cx0_setup_powerdown(encoder);
  }
  
 +static void
-+intel_lt_phy_program_port_clock_ctl(struct intel_encoder *encoder,
-+				    const struct intel_crtc_state *crtc_state,
-+				    bool lane_reversal)
++intel_lt_phy_powerdown_change_sequence(struct intel_encoder *encoder,
++				       u8 lane_mask, u8 state)
 +{
-+	struct intel_display *display = to_intel_display(encoder);
-+	u32 val = 0;
-+
-+	intel_de_rmw(display, XELPDP_PORT_BUF_CTL1(display, encoder->port),
-+		     XELPDP_PORT_REVERSAL,
-+		     lane_reversal ? XELPDP_PORT_REVERSAL : 0);
-+
-+	val |= XELPDP_FORWARD_CLOCK_UNGATE;
-+
-+	/*
-+	 * We actually mean MACCLK here and not MAXPCLK when using LT Phy
-+	 * but since the register bits still remain the same we use
-+	 * the same definition
-+	 */
-+	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI) &&
-+	    intel_cx0_is_hdmi_frl(crtc_state->port_clock))
-+		val |= XELPDP_DDI_CLOCK_SELECT_PREP(display, XELPDP_DDI_CLOCK_SELECT_DIV18CLK);
-+	else
-+		val |= XELPDP_DDI_CLOCK_SELECT_PREP(display, XELPDP_DDI_CLOCK_SELECT_MAXPCLK);
-+
-+	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
-+		     XELPDP_LANE1_PHY_CLOCK_SELECT | XELPDP_FORWARD_CLOCK_UNGATE |
-+		     XELPDP_DDI_CLOCK_SELECT_MASK(display) | XELPDP_SSC_ENABLE_PLLA |
-+		     XELPDP_SSC_ENABLE_PLLB, val);
++	intel_cx0_powerdown_change_sequence(encoder, lane_mask, state);
 +}
 +
- void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
- 			     const struct intel_crtc_state *crtc_state)
+ static void
+ intel_lt_phy_lane_reset(struct intel_encoder *encoder,
+ 			u8 lane_count)
+@@ -69,6 +76,8 @@ intel_lt_phy_lane_reset(struct intel_encoder *encoder,
+ 		     XE3PLPDP_PHY_MODE_MASK, XE3PLPDP_PHY_MODE_DP);
+ 
+ 	intel_lt_phy_setup_powerdown(encoder, lane_count);
++	intel_lt_phy_powerdown_change_sequence(encoder, owned_lane_mask,
++					       XELPDP_P2_STATE_RESET);
+ 
+ 	intel_de_rmw(display, XE3PLPD_PORT_BUF_CTL5(port),
+ 		     XE3PLPD_MACCLK_RESET_0, 0);
+@@ -144,6 +153,7 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
  {
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-+	bool lane_reversal = dig_port->lane_reversal;
-+
+ 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+ 	bool lane_reversal = dig_port->lane_reversal;
++	u8 owned_lane_mask = intel_lt_phy_get_owned_lane_mask(encoder);
+ 
  	/* 1. Enable MacCLK at default 162 MHz frequency. */
  	intel_lt_phy_lane_reset(encoder, crtc_state->lane_count);
+@@ -152,6 +162,9 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
+ 	intel_lt_phy_program_port_clock_ctl(encoder, crtc_state, lane_reversal);
  
- 	/* 2. Program PORT_CLOCK_CTL register to configure clock muxes, gating, and SSC. */
-+	intel_lt_phy_program_port_clock_ctl(encoder, crtc_state, lane_reversal);
-+
  	/* 3. Change owned PHY lanes power to Ready state. */
++	intel_lt_phy_powerdown_change_sequence(encoder, owned_lane_mask,
++					       XELPDP_P2_STATE_READY);
++
  	/*
  	 * 4. Read the PHY message bus VDR register PHY_VDR_0_Config check enabled PLL type,
+ 	 * encoded rate and encoded mode.
 -- 
 2.34.1
 
