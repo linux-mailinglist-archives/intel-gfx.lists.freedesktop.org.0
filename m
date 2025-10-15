@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCB9FBDC4BA
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 05:17:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15FBABDC4BD
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 05:17:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36E8910E6E8;
-	Wed, 15 Oct 2025 03:17:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72CC210E6E0;
+	Wed, 15 Oct 2025 03:17:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LLFZd+FI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A5/XIcOh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97DA310E6E5;
- Wed, 15 Oct 2025 03:17:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48A4810E6E0;
+ Wed, 15 Oct 2025 03:17:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760498224; x=1792034224;
+ t=1760498228; x=1792034228;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=TY0jxdvXu2F6nXPOBTtrtdjCYAarx907SrRF3D/OZQM=;
- b=LLFZd+FIsuPDqIOf3FFlIayCheftbyudY4Pdc6nSDJV6dwYNE/k/B7SN
- od+TDDWlurMJ1Oz/cDc8lQK9IgjXRjt6/xWzNdCTJbHBUGdEtaMzK72Dm
- ieDjft9YPNFNnrs1DiXhfubhGTkkVUIjy234vebooEkDU5bdsIjBak2gW
- 0sC8cu2KK6ITwcNhK+lFGtbe7z/5nK0qNNly2cE4Utm5YpccjLf3yRy3S
- 9o8A6p+fAH8526ImsKKJQwxXEdabvBNd/v6XuPdGLOZ2FunTr43YQxRuM
- l+/R9DluuLPpEi/yYOF8uHGMjSCLX7as9b7Bx0UCXRgaWfaabq2GPD5B0 A==;
-X-CSE-ConnectionGUID: 9D+myotFSliOF2SQ3O+r9w==
-X-CSE-MsgGUID: mD884O82RPa0n+pAzkJXTQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62577166"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62577166"
+ bh=HAfkiep5gQMtTWE2lXa/X0wpldTZEr21g/JLY1KOysc=;
+ b=A5/XIcOhMgzGdKZyjZ7Y/zNihd/V91wyf8Tp0ZQ1frJuMOtSdF1G6Tcu
+ gDoCLTRxGu+dSTy9lfneNawMTDEfNh/Lfq99gfSJww9mzcz9APkdzRirZ
+ nnxhMzTF4UqJ4yMXvfbo9Qaq38AzTCSpNFSTUlQEoSxDMOuvPCr8Y4LBy
+ EWyKNYMIa85mGr6z0Hs+jkD0xxc4VtL31MBZuI0G+NX23jkeRxPLAY09U
+ H/bTIeNhtSvJiIOzmfUnfYuLhQO22puZEQFhIJti0jLLkf+5VE1FA2syo
+ V0UfL2m0j1GlIgZLqrco5tqax19LJw6O/o0VZV497v1xdL2gxPdpNLfNg Q==;
+X-CSE-ConnectionGUID: AvK7bU6zQ2W/tW1H1cD4CA==
+X-CSE-MsgGUID: yQ8N2yhYRiiX30ngsohGCQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62577173"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62577173"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2025 20:17:04 -0700
-X-CSE-ConnectionGUID: dW2fS9X5Qjq77036ODjNNA==
-X-CSE-MsgGUID: PxXUH4QaQrSJ8ZU1xijqiw==
+ 14 Oct 2025 20:17:08 -0700
+X-CSE-ConnectionGUID: WQQq/qjHSqi0QySDOQ22ZA==
+X-CSE-MsgGUID: 5AfrtZ6JTDuMKHPZhyuNpQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="186302461"
+X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="186302505"
 Received: from smoehrl-linux.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.222.185])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2025 20:17:00 -0700
+ 14 Oct 2025 20:17:03 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Wed, 15 Oct 2025 00:15:05 -0300
-Subject: [PATCH 05/32] drm/i915/dram: Add field ecc_impacting_de
+Date: Wed, 15 Oct 2025 00:15:06 -0300
+Subject: [PATCH 06/32] drm/i915/xe3p_lpd: Update bandwidth parameters
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251015-xe3p_lpd-basic-enabling-v1-5-d2d1e26520aa@intel.com>
+Message-Id: <20251015-xe3p_lpd-basic-enabling-v1-6-d2d1e26520aa@intel.com>
 References: <20251015-xe3p_lpd-basic-enabling-v1-0-d2d1e26520aa@intel.com>
 In-Reply-To: <20251015-xe3p_lpd-basic-enabling-v1-0-d2d1e26520aa@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
@@ -81,67 +81,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Starting with Xe3p_LPD, we now have a new field in MEM_SS_INFO_GLOBAL
-that indicates whether the memory has enabled ECC that limits display
-bandwidth.  Add the field ecc_impacting_de to struct dram_info to
-contain that information and set it appropriately when probing for
-memory info.  We will use that field when updating bandwidth parameters
-for Xe3p_LPD.
+From: Matt Atwood <matthew.s.atwood@intel.com>
 
-Bspec: 69131
+Bandwidth parameters for Xe3p_LPD are basically the same as for Xe3_LPD.
+However, now Xe3p_LPD has the ecc_impacting_de field, which could impact
+how the derating is defined.
+
+For the cases where that field is true, we use xe3p_lpd_ecc_sa_info,
+similarly to what was done for Xe2_HPD.  Note, however, that Bspec
+specifies the ECC derating value only for GDDR memory.  For now, we just
+re-use the value that was defined for Xe2_HPD, namely 45.  We need to
+confirm with the hardware team what would be the correct value(s) to use
+for the ECC case.
+
+Bspec: 68859, 69131
+Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/i915_reg.h       | 1 +
- drivers/gpu/drm/i915/soc/intel_dram.c | 4 ++++
- drivers/gpu/drm/i915/soc/intel_dram.h | 1 +
- 3 files changed, 6 insertions(+)
+ drivers/gpu/drm/i915/display/intel_bw.c | 21 ++++++++++++++++++++-
+ 1 file changed, 20 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 354ef75ef6a5..5bf3b4ab2baa 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1233,6 +1233,7 @@
- #define   OROM_OFFSET_MASK			REG_GENMASK(20, 16)
- 
- #define MTL_MEM_SS_INFO_GLOBAL			_MMIO(0x45700)
-+#define   XE3P_ECC_IMPACTING_DE			REG_BIT(12)
- #define   MTL_N_OF_ENABLED_QGV_POINTS_MASK	REG_GENMASK(11, 8)
- #define   MTL_N_OF_POPULATED_CH_MASK		REG_GENMASK(7, 4)
- #define   MTL_DDR_TYPE_MASK			REG_GENMASK(3, 0)
-diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
-index 8841cfe1cac8..bf9f8e38d6ba 100644
---- a/drivers/gpu/drm/i915/soc/intel_dram.c
-+++ b/drivers/gpu/drm/i915/soc/intel_dram.c
-@@ -685,6 +685,7 @@ static int gen12_get_dram_info(struct drm_i915_private *i915, struct dram_info *
- 
- static int xelpdp_get_dram_info(struct drm_i915_private *i915, struct dram_info *dram_info)
- {
-+	struct intel_display *display = i915->display;
- 	u32 val = intel_uncore_read(&i915->uncore, MTL_MEM_SS_INFO_GLOBAL);
- 
- 	switch (REG_FIELD_GET(MTL_DDR_TYPE_MASK, val)) {
-@@ -723,6 +724,9 @@ static int xelpdp_get_dram_info(struct drm_i915_private *i915, struct dram_info
- 	dram_info->num_qgv_points = REG_FIELD_GET(MTL_N_OF_ENABLED_QGV_POINTS_MASK, val);
- 	/* PSF GV points not supported in D14+ */
- 
-+	if (DISPLAY_VER(display) >= 35)
-+		dram_info->ecc_impacting_de = REG_FIELD_GET(XE3P_ECC_IMPACTING_DE, val);
-+
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/i915/soc/intel_dram.h b/drivers/gpu/drm/i915/soc/intel_dram.h
-index 03a973f1c941..ac77f1ab409f 100644
---- a/drivers/gpu/drm/i915/soc/intel_dram.h
-+++ b/drivers/gpu/drm/i915/soc/intel_dram.h
-@@ -30,6 +30,7 @@ struct dram_info {
- 	u8 num_channels;
- 	u8 num_qgv_points;
- 	u8 num_psf_gv_points;
-+	bool ecc_impacting_de; /* Only valid from Xe3p_LPD onward. */
- 	bool symmetric_memory;
- 	bool has_16gb_dimms;
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index 8f5b86cd91b6..f0940ff9d19b 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -461,6 +461,20 @@ static const struct intel_sa_info xe3lpd_3002_sa_info = {
+ 	.derating = 10,
  };
+ 
++static const struct intel_sa_info xe3p_lpd_ecc_sa_info = {
++	.deburst = 32,
++	.deprogbwlimit = 65, /* GB/s */
++	.displayrtids = 256,
++	/*
++	 * FIXME: The Bspec only shows that derating for ECC should be 45 for
++	 * GDDR memory and does not mention other types of memory.  For now, we
++	 * just re-use that value, but we need to confirm whether that is
++	 * correct or if there are different values depending on the memory
++	 * type.
++	 */
++	.derating = 45,
++};
++
+ static int icl_get_bw_info(struct intel_display *display,
+ 			   const struct dram_info *dram_info,
+ 			   const struct intel_sa_info *sa)
+@@ -812,7 +826,12 @@ void intel_bw_init_hw(struct intel_display *display)
+ 	if (!HAS_DISPLAY(display))
+ 		return;
+ 
+-	if (DISPLAY_VERx100(display) >= 3002) {
++	if (DISPLAY_VER(display) >= 35) {
++		if (dram_info->ecc_impacting_de)
++			tgl_get_bw_info(display, dram_info, &xe3p_lpd_ecc_sa_info);
++		else
++			tgl_get_bw_info(display, dram_info, &xe3lpd_sa_info);
++	} else if (DISPLAY_VERx100(display) >= 3002) {
+ 		tgl_get_bw_info(display, dram_info, &xe3lpd_3002_sa_info);
+ 	} else if (DISPLAY_VER(display) >= 30) {
+ 		tgl_get_bw_info(display, dram_info, &xe3lpd_sa_info);
 
 -- 
 2.51.0
