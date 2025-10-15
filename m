@@ -2,70 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 922C9BDF5AF
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 17:29:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24252BDF5B8
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 17:30:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9C9510E82B;
-	Wed, 15 Oct 2025 15:29:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88A6A10E829;
+	Wed, 15 Oct 2025 15:30:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QJntI8r0";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="UGlk5dxE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECE4C10E829;
- Wed, 15 Oct 2025 15:29:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760542149; x=1792078149;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=IHZSkKLCLTDWl+VDMKgkksUA6ZkzR8e2DAevbI39CC4=;
- b=QJntI8r0YB7lzDMwQWwvUGjGp/E8TgXU9d6eDZOxiaF4W5JQ8MVeBGIm
- IBIZx84K9TqIaMF8W16L2S0fqqK/Xgj0GuEeFjT6xUDUtM1YPLu6SNfKn
- DmvnylvwaqlkiS3+nAyazhewiZCMaTorWSxSqdoyFGffqNDacQ60c/iL/
- knfzBMq1argXqM2sj6C4bN5KV/dh0R2CptuaJV7nHR7uaXY2x2vbGo/Cq
- E6RNMAIFZ7RdrdH1KlfF24QWxsJeFbbevf1bXnrYYjdP4Ce2eR7nlMWSB
- vvWFcleKvwSPBFNWHND0ZJiAZN9VApDzFRjerYkhUjeqA9XIZDwBaZmkY A==;
-X-CSE-ConnectionGUID: IAi/zS/7QBeOOP1DErS70g==
-X-CSE-MsgGUID: ro05We+tQSucTDPhaSSlpQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="73321671"
-X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="73321671"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 08:29:08 -0700
-X-CSE-ConnectionGUID: cqO8qA2mSjaB9F9L3JQb4g==
-X-CSE-MsgGUID: l2338CsgQa+DIaULgsJrvA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="181872778"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.100])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 08:29:03 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>, Dnyaneshwar Bhadane
- <dnyaneshwar.bhadane@intel.com>, Gustavo Sousa <gustavo.sousa@intel.com>,
- Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>, Juha-pekka
- Heikkila
- <juha-pekka.heikkila@intel.com>, Luca Coelho <luciano.coelho@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, Matt Atwood
- <matthew.s.atwood@intel.com>, Matt Roper <matthew.d.roper@intel.com>, Ravi
- Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>, Sai Teja Pottumuttu
- <sai.teja.pottumuttu@intel.com>, Shekhar Chauhan
- <shekhar.chauhan@intel.com>, Vinod Govindapillai
- <vinod.govindapillai@intel.com>
-Subject: Re: [PATCH 27/32] drm/i915/vbt: Add fields dedicated_external and
- dyn_port_over_tc
-In-Reply-To: <20251015-xe3p_lpd-basic-enabling-v1-27-d2d1e26520aa@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251015-xe3p_lpd-basic-enabling-v1-0-d2d1e26520aa@intel.com>
- <20251015-xe3p_lpd-basic-enabling-v1-27-d2d1e26520aa@intel.com>
-Date: Wed, 15 Oct 2025 18:29:00 +0300
-Message-ID: <d02b6f306e3b503066dcb4cf7d1a8c1fdf626e30@intel.com>
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FC6A10E829;
+ Wed, 15 Oct 2025 15:30:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1760542223;
+ bh=iAfD1supnmTcutAfLpNBfRXCPSsq6a/c6jvRpYWxSK8=;
+ h=From:To:Cc:Subject:Date:From;
+ b=UGlk5dxEuSjLSbtT9NmUo94HkIqMWhZRQe/oeGpEimv/hJEBjdk3BcyV5kSqV1qFa
+ H/9zyuU8p3Z7piOmEN9VOOJ30qinzDf1k2O9I6nZMNV5XyqcpGh2EQMpjNZzGItgBk
+ 29piFiyIr/XMCDqs3LYAjvVw8RsnBB3LCJfkcf3o1E2kOJWzDUkt5l41LpSccu7HL+
+ Qzs5CSAVpTtmJhJN50tT3kW2nPJb+Sdhf/90KFqUBCoqeKVrMzBU9Wy3bR3BiXg43I
+ lFIuS309BpebbEmyj2TCMc0M31FWcyEuCry6RfknT2s1FTCasFcYFaZs8kPxQhtHzO
+ KLs9wihkZOyWA==
+Received: from debian-rockchip-rock5b-rk3588.. (unknown
+ [IPv6:2a01:e0a:5e3:6100:826d:bc07:e98c:84a])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ (Authenticated sender: loicmolinari)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id 00C5417E1060;
+ Wed, 15 Oct 2025 17:30:22 +0200 (CEST)
+From: =?UTF-8?q?Lo=C3=AFc=20Molinari?= <loic.molinari@collabora.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
+ Liviu Dudau <liviu.dudau@arm.com>, Melissa Wen <mwen@igalia.com>,
+ =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>,
+ Hugh Dickins <hughd@google.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ =?UTF-8?q?Lo=C3=AFc=20Molinari?= <loic.molinari@collabora.com>,
+ Al Viro <viro@zeniv.linux.org.uk>,
+ =?UTF-8?q?Miko=C5=82aj=20Wasiak?= <mikolaj.wasiak@intel.com>,
+ Christian Brauner <brauner@kernel.org>,
+ Nitin Gote <nitin.r.gote@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>, Jonathan Corbet <corbet@lwn.net>,
+ Christopher Healy <healych@amazon.com>,
+ Matthew Wilcox <willy@infradead.org>, Bagas Sanjaya <bagasdotme@gmail.com>
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-mm@kvack.org,
+ linux-doc@vger.kernel.org, kernel@collabora.com
+Subject: [PATCH v4 00/13] drm: Reduce page tables overhead with THP
+Date: Wed, 15 Oct 2025 17:30:04 +0200
+Message-ID: <20251015153018.43735-1-loic.molinari@collabora.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,117 +82,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 15 Oct 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> VBT version 264 adds new fields associated to Xe3p_LPD's new ways of
-> configuring SoC for TC ports and PHYs.  Update the code to match the
-> updates in VBT.
->
-> The new field dedicated_external is used to represent TC ports that are
-> connected to PHYs outside of the Type-C subsystem, meaning that they
-> behave like dedicated ports and don't require the extra Type-C
-> programming.  In an upcoming change, we will update the driver to take
-> this field into consideration when detecting the type of port.
->
-> The new field dyn_port_over_tc is used to inform that the TC port can be
-> dynamically allocated for a legacy connector in the Type-C subsystem,
-> which is a new feature in Xe3p_LPD.  In upcoming changes, we will use
-> that field in order to handle the IOM resource management programming
-> required for that.
+This series aims to reduce the page tables overhead of DRM drivers for
+builds with CONFIG_TRANSPARENT_HUGEPAGE enabled and either the sysfs
+knob '/sys/kernel/mm/transparent_hugepage/shmem_enabled' appropriately
+set or drivers using a dedicated huge tmpfs mount point.
 
-We probably want to add the info to print_ddi_port().
+It starts by implementing a map_pages handler for GEM objects to map
+pages around a faulty address in a single batch. It also checks in
+both the fault and fault-around handlers whether a faulty address is
+part of a huge page in order to attempt a PMD sized PFN insertion into
+the VMA. It then introduces a dedicated get_unmapped_area file
+operation on the DRM file descriptor for GEM objects to get the best
+virtual address alignment for the underlying shmem buffers.
 
->
-> Note that, when dedicated_external is set, the fields dp_usb_type_c and
-> tbt are tagged as "don't care" in the spec, so they should be ignored in
-> that case, so also make sure to update the accessor functions to take
-> that into consideration.
->
-> Bspec: 20124, 68954, 74304
-> Cc: Shekhar Chauhan <shekhar.chauhan@intel.com>
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_bios.c     | 20 +++++++++++++++++++-
->  drivers/gpu/drm/i915/display/intel_bios.h     |  2 ++
->  drivers/gpu/drm/i915/display/intel_vbt_defs.h |  7 ++++++-
->  3 files changed, 27 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-> index 3596dce84c28..e466728ced0f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -2777,7 +2777,7 @@ static int child_device_expected_size(u16 version)
->  {
->  	BUILD_BUG_ON(sizeof(struct child_device_config) < 40);
->  
-> -	if (version > 263)
-> +	if (version > 264)
->  		return -ENOENT;
->  	else if (version >= 263)
->  		return 44;
-> @@ -3714,14 +3714,32 @@ int intel_bios_hdmi_ddc_pin(const struct intel_bios_encoder_data *devdata)
->  
->  bool intel_bios_encoder_supports_typec_usb(const struct intel_bios_encoder_data *devdata)
->  {
-> +	if (intel_bios_encoder_is_dedicated_external(devdata))
-> +		return false;
-> +
->  	return devdata->display->vbt.version >= 195 && devdata->child.dp_usb_type_c;
->  }
->  
->  bool intel_bios_encoder_supports_tbt(const struct intel_bios_encoder_data *devdata)
->  {
-> +	if (intel_bios_encoder_is_dedicated_external(devdata))
-> +		return false;
-> +
->  	return devdata->display->vbt.version >= 209 && devdata->child.tbt;
->  }
->  
-> +bool intel_bios_encoder_is_dedicated_external(const struct intel_bios_encoder_data *devdata)
-> +{
-> +	return devdata->display->vbt.version >= 264 &&
-> +		devdata->child.dedicated_external;
-> +}
-> +
-> +bool intel_bios_encoder_supports_dyn_port_over_tc(const struct intel_bios_encoder_data *devdata)
-> +{
-> +	return devdata->display->vbt.version >= 264 &&
-> +		devdata->child.dyn_port_over_tc;
-> +}
-> +
->  bool intel_bios_encoder_lane_reversal(const struct intel_bios_encoder_data *devdata)
->  {
->  	return devdata && devdata->child.lane_reversal;
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
-> index f9e438b2787b..75dff27b4228 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.h
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.h
-> @@ -79,6 +79,8 @@ bool intel_bios_encoder_supports_dp(const struct intel_bios_encoder_data *devdat
->  bool intel_bios_encoder_supports_edp(const struct intel_bios_encoder_data *devdata);
->  bool intel_bios_encoder_supports_typec_usb(const struct intel_bios_encoder_data *devdata);
->  bool intel_bios_encoder_supports_tbt(const struct intel_bios_encoder_data *devdata);
-> +bool intel_bios_encoder_is_dedicated_external(const struct intel_bios_encoder_data *devdata);
-> +bool intel_bios_encoder_supports_dyn_port_over_tc(const struct intel_bios_encoder_data *devdata);
->  bool intel_bios_encoder_supports_dsi(const struct intel_bios_encoder_data *devdata);
->  bool intel_bios_encoder_supports_dp_dual_mode(const struct intel_bios_encoder_data *devdata);
->  bool intel_bios_encoder_is_lspcon(const struct intel_bios_encoder_data *devdata);
-> diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> index 70e31520c560..f07ab64a8d97 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> @@ -554,7 +554,12 @@ struct child_device_config {
->  	u8 dvo_function;
->  	u8 dp_usb_type_c:1;					/* 195+ */
->  	u8 tbt:1;						/* 209+ */
-> -	u8 flags2_reserved:2;					/* 195+ */
-> +	/*
-> +	 * Fields dp_usb_type_c and tbt must be ignored when
-> +	 * dedicated_external is set.
-> +	 */
-> +	u8 dedicated_external:1;				/* 264+ */
-> +	u8 dyn_port_over_tc:1;					/* 264+ */
->  	u8 dp_port_trace_length:4;				/* 209+ */
->  	u8 dp_gpio_index;					/* 195+ */
->  	u16 dp_gpio_pin_num;					/* 195+ */
+The remaining commits propose shmem helpers to create and release huge
+tmpfs mount points and adapt the i915 and V3D drivers. The helpers are
+then used to optionally enable Transparent Hugepage for Panfrost and
+Panthor.
+
+For Panthor on a Rock 5B, this series makes the first memcpy() to an
+entire BO object mapped in userspace about twice as fast with
+Transparent Hugepage enabled.
+
+Loïc Molinari (13):
+  drm/shmem-helper: Simplify page offset calculation in fault handler
+  drm/shmem-helper: Implement map_pages fault-around handler
+  drm/shmem-helper: Map huge pages in fault handlers
+  drm/gem: Introduce drm_gem_get_unmapped_area() fop
+  drm/gem: Add huge tmpfs mount point helper
+  drm/i915: Use huge tmpfs mount point helper
+  drm/v3d: Use huge tmpfs mount point helper
+  drm/v3d: Fix builds with CONFIG_TRANSPARENT_HUGEPAGE=n
+  drm/gem: Get rid of *_with_mnt helpers
+  drm/panthor: Introduce huge tmpfs mount point option
+  drm/panthor: Improve IOMMU map/unmap debugging logs
+  drm/panfrost: Introduce huge tmpfs mount point option
+  Documentation/gpu/drm-mm: Add THP paragraph to GEM mapping section
+
+ Documentation/gpu/drm-mm.rst                  |  25 ++-
+ drivers/gpu/drm/drm_gem.c                     | 199 +++++++++++++-----
+ drivers/gpu/drm/drm_gem_shmem_helper.c        | 138 ++++++++----
+ drivers/gpu/drm/i915/Makefile                 |   3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c     |  47 +++--
+ drivers/gpu/drm/i915/gem/i915_gemfs.c         |  69 ------
+ drivers/gpu/drm/i915/gem/i915_gemfs.h         |  14 --
+ .../gpu/drm/i915/gem/selftests/huge_pages.c   |  10 +-
+ drivers/gpu/drm/i915/i915_drv.h               |   5 -
+ drivers/gpu/drm/panfrost/panfrost_device.c    |   3 +
+ drivers/gpu/drm/panfrost/panfrost_drv.c       |   6 +
+ drivers/gpu/drm/panfrost/panfrost_drv.h       |  11 +
+ drivers/gpu/drm/panfrost/panfrost_gem.c       |  19 ++
+ drivers/gpu/drm/panfrost/panfrost_gem.h       |   2 +
+ drivers/gpu/drm/panthor/panthor_device.c      |   3 +
+ drivers/gpu/drm/panthor/panthor_drv.c         |   7 +
+ drivers/gpu/drm/panthor/panthor_drv.h         |  11 +
+ drivers/gpu/drm/panthor/panthor_gem.c         |  19 ++
+ drivers/gpu/drm/panthor/panthor_gem.h         |   2 +
+ drivers/gpu/drm/panthor/panthor_mmu.c         |  19 +-
+ drivers/gpu/drm/v3d/Makefile                  |   3 +-
+ drivers/gpu/drm/v3d/v3d_bo.c                  |   6 +-
+ drivers/gpu/drm/v3d/v3d_drv.c                 |   2 +-
+ drivers/gpu/drm/v3d/v3d_drv.h                 |  13 +-
+ drivers/gpu/drm/v3d/v3d_gem.c                 |  29 ++-
+ drivers/gpu/drm/v3d/v3d_gemfs.c               |  60 ------
+ include/drm/drm_device.h                      |  11 +
+ include/drm/drm_gem.h                         |   8 +-
+ include/drm/drm_gem_shmem_helper.h            |   3 -
+ mm/shmem.c                                    |   1 +
+ 30 files changed, 456 insertions(+), 292 deletions(-)
+ delete mode 100644 drivers/gpu/drm/i915/gem/i915_gemfs.c
+ delete mode 100644 drivers/gpu/drm/i915/gem/i915_gemfs.h
+ create mode 100644 drivers/gpu/drm/panfrost/panfrost_drv.h
+ create mode 100644 drivers/gpu/drm/panthor/panthor_drv.h
+ delete mode 100644 drivers/gpu/drm/v3d/v3d_gemfs.c
 
 -- 
-Jani Nikula, Intel
+2.47.3
+
