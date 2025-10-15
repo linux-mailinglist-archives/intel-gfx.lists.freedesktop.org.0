@@ -2,29 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2459BDF12E
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 16:32:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2166BBDF26C
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Oct 2025 16:47:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2699010E2A9;
-	Wed, 15 Oct 2025 14:32:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2DE810E80F;
+	Wed, 15 Oct 2025 14:47:02 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PGb4sM6P";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F68E10E2A9;
- Wed, 15 Oct 2025 14:32:56 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1800982701566379892=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1697D10E2B2;
+ Wed, 15 Oct 2025 14:47:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1760539622; x=1792075622;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=pIN4AHB+yr0JVUmkdUt1wpJ0LH1goJwIzTDbVafZ0Fg=;
+ b=PGb4sM6PT/nd1+5vr2q1i7LnWUhJ691oT5w8otHKradQzEhTtSjJq7AZ
+ Ow/kay2mRfUIL102QkGb4SFH/imRtjw5ibefM2k1sIMx4EMHuzLQOO8Wn
+ Rqp60MoM7Cvel+rLPnXPPRmJACGddq5etzSFDy06UCpeIft0xlTDTKWkB
+ qUPm/qXB0AxOIKdOYaa3cofuqzFNpwhVhzgUPR4JSrn6S/QONSr4qVcOE
+ AbO3vL+0KTEiuOZpk1hugUImT32Mofzdz0uuUnMp3B63K6garr09uwzE2
+ bky606HJ/NrMaq1tssa7cJn0sq/LQSj8IgYaH8pJZWe13FPuVaHqPk2KA Q==;
+X-CSE-ConnectionGUID: XfLtKO6jRS6OUEqSq71ZFA==
+X-CSE-MsgGUID: FS//L30eTiap7x6anhYE8g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="62759897"
+X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="62759897"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2025 07:47:01 -0700
+X-CSE-ConnectionGUID: f7G8tXOlQomDmzzhaUSS8Q==
+X-CSE-MsgGUID: x4H0mRTxTQ+0bZ6FdO9sVQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="181866277"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.100])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2025 07:46:57 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>, Dnyaneshwar Bhadane
+ <dnyaneshwar.bhadane@intel.com>, Gustavo Sousa <gustavo.sousa@intel.com>,
+ Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>, Juha-pekka
+ Heikkila
+ <juha-pekka.heikkila@intel.com>, Luca Coelho <luciano.coelho@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Matt Atwood
+ <matthew.s.atwood@intel.com>, Matt Roper <matthew.d.roper@intel.com>, Ravi
+ Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>, Sai Teja Pottumuttu
+ <sai.teja.pottumuttu@intel.com>, Shekhar Chauhan
+ <shekhar.chauhan@intel.com>, Vinod Govindapillai
+ <vinod.govindapillai@intel.com>
+Subject: Re: [PATCH 05/32] drm/i915/dram: Add field ecc_impacting_de
+In-Reply-To: <20251015-xe3p_lpd-basic-enabling-v1-5-d2d1e26520aa@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251015-xe3p_lpd-basic-enabling-v1-0-d2d1e26520aa@intel.com>
+ <20251015-xe3p_lpd-basic-enabling-v1-5-d2d1e26520aa@intel.com>
+Date: Wed, 15 Oct 2025 17:46:52 +0300
+Message-ID: <3a8d9b266399ddf75dcd173e86b57d5b1b7635fa@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Fix_C?=
- =?utf-8?q?20_PHY_PLL_DP/HDMI_mode_programming_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mika Kahola" <mika.kahola@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 15 Oct 2025 14:32:56 -0000
-Message-ID: <176053877625.17708.262599291378379376@97596180aaec>
-X-Patchwork-Hint: ignore
-References: <20251015125446.3931198-1-mika.kahola@intel.com>
-In-Reply-To: <20251015125446.3931198-1-mika.kahola@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,154 +77,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1800982701566379892==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, 15 Oct 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> Starting with Xe3p_LPD, we now have a new field in MEM_SS_INFO_GLOBAL
+> that indicates whether the memory has enabled ECC that limits display
+> bandwidth.  Add the field ecc_impacting_de to struct dram_info to
+> contain that information and set it appropriately when probing for
+> memory info.  We will use that field when updating bandwidth parameters
+> for Xe3p_LPD.
 
-== Series Details ==
+Could the field name be more accurate than "ecc impacting de"? It sounds
+quite handwavy to me.
 
-Series: drm/i915/display: Fix C20 PHY PLL DP/HDMI mode programming (rev2)
-URL   : https://patchwork.freedesktop.org/series/155823/
-State : success
+BR,
+Jani.
 
-== Summary ==
+>
+> Bspec: 69131
+> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_reg.h       | 1 +
+>  drivers/gpu/drm/i915/soc/intel_dram.c | 4 ++++
+>  drivers/gpu/drm/i915/soc/intel_dram.h | 1 +
+>  3 files changed, 6 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 354ef75ef6a5..5bf3b4ab2baa 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -1233,6 +1233,7 @@
+>  #define   OROM_OFFSET_MASK			REG_GENMASK(20, 16)
+>  
+>  #define MTL_MEM_SS_INFO_GLOBAL			_MMIO(0x45700)
+> +#define   XE3P_ECC_IMPACTING_DE			REG_BIT(12)
+>  #define   MTL_N_OF_ENABLED_QGV_POINTS_MASK	REG_GENMASK(11, 8)
+>  #define   MTL_N_OF_POPULATED_CH_MASK		REG_GENMASK(7, 4)
+>  #define   MTL_DDR_TYPE_MASK			REG_GENMASK(3, 0)
+> diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
+> index 8841cfe1cac8..bf9f8e38d6ba 100644
+> --- a/drivers/gpu/drm/i915/soc/intel_dram.c
+> +++ b/drivers/gpu/drm/i915/soc/intel_dram.c
+> @@ -685,6 +685,7 @@ static int gen12_get_dram_info(struct drm_i915_private *i915, struct dram_info *
+>  
+>  static int xelpdp_get_dram_info(struct drm_i915_private *i915, struct dram_info *dram_info)
+>  {
+> +	struct intel_display *display = i915->display;
+>  	u32 val = intel_uncore_read(&i915->uncore, MTL_MEM_SS_INFO_GLOBAL);
+>  
+>  	switch (REG_FIELD_GET(MTL_DDR_TYPE_MASK, val)) {
+> @@ -723,6 +724,9 @@ static int xelpdp_get_dram_info(struct drm_i915_private *i915, struct dram_info
+>  	dram_info->num_qgv_points = REG_FIELD_GET(MTL_N_OF_ENABLED_QGV_POINTS_MASK, val);
+>  	/* PSF GV points not supported in D14+ */
+>  
+> +	if (DISPLAY_VER(display) >= 35)
+> +		dram_info->ecc_impacting_de = REG_FIELD_GET(XE3P_ECC_IMPACTING_DE, val);
+> +
+>  	return 0;
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/soc/intel_dram.h b/drivers/gpu/drm/i915/soc/intel_dram.h
+> index 03a973f1c941..ac77f1ab409f 100644
+> --- a/drivers/gpu/drm/i915/soc/intel_dram.h
+> +++ b/drivers/gpu/drm/i915/soc/intel_dram.h
+> @@ -30,6 +30,7 @@ struct dram_info {
+>  	u8 num_channels;
+>  	u8 num_qgv_points;
+>  	u8 num_psf_gv_points;
+> +	bool ecc_impacting_de; /* Only valid from Xe3p_LPD onward. */
+>  	bool symmetric_memory;
+>  	bool has_16gb_dimms;
+>  };
 
-CI Bug Log - changes from CI_DRM_17365 -> Patchwork_155823v2
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155823v2/index.html
-
-Participating hosts (41 -> 39)
-------------------------------
-
-  Missing    (2): fi-bsw-nick fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_155823v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@load:
-    - bat-mtlp-9:         [PASS][1] -> [ABORT][2] ([i915#13494])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17365/bat-mtlp-9/igt@i915_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155823v2/bat-mtlp-9/igt@i915_module_load@load.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-6:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17365/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155823v2/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-tgl-1115g4:      [PASS][5] -> [FAIL][6] ([i915#14867])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17365/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155823v2/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#13494]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494
-  [i915#14867]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14867
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_17365 -> Patchwork_155823v2
-
-  CI-20190529: 20190529
-  CI_DRM_17365: 6a9cafb6723c47062cc4d593804d5bb69155d81a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8585: 8585
-  Patchwork_155823v2: 6a9cafb6723c47062cc4d593804d5bb69155d81a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155823v2/index.html
-
---===============1800982701566379892==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Fix C20 PHY PLL DP/HDMI mode programming (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155823/">https://patchwork.freedesktop.org/series/155823/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155823v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155823v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17365 -&gt; Patchwork_155823v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155823v2/index.html</p>
-<h2>Participating hosts (41 -&gt; 39)</h2>
-<p>Missing    (2): fi-bsw-nick fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_155823v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17365/bat-mtlp-9/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155823v2/bat-mtlp-9/igt@i915_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494">i915#13494</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17365/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155823v2/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17365/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155823v2/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14867">i915#14867</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17365 -&gt; Patchwork_155823v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17365: 6a9cafb6723c47062cc4d593804d5bb69155d81a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8585: 8585<br />
-  Patchwork_155823v2: 6a9cafb6723c47062cc4d593804d5bb69155d81a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============1800982701566379892==--
+-- 
+Jani Nikula, Intel
