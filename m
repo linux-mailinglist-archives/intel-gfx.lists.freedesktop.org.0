@@ -2,60 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DD0EBE520E
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Oct 2025 20:54:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 18CAEBE52A7
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Oct 2025 21:03:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3BD110EA6D;
-	Thu, 16 Oct 2025 18:54:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3DC3B10E33E;
+	Thu, 16 Oct 2025 19:03:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LF5/iVu/";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="Ulx6s2QW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB86610EA6F;
- Thu, 16 Oct 2025 18:54:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760640895; x=1792176895;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=tzpl8QpKWNbW/sInDO2DlFNkEjPjzM8E8Enq4vjcmUU=;
- b=LF5/iVu/XKyC1gg8YoE3jESQSarKW64i0UKExVtJTjSCqxtsm61KGRNA
- phcc2h1a23algYwIn33V+jh+4p9OG99zAc4fvoHrSV6KGn5PUtS5IJ2sI
- WxSjjdf6hngHcEPIp3AGkVaxgwSbY9DctfNMyZ4K+V/fsm7QvQrIN7mYQ
- xqZSWsVbm4ZQ2PzaqSuqWuUJ4nTvgSeT5eAThVnukF/9m/ql+A2HsKSOf
- 9Z/Top1g9HNYMyarG3KMJ2r2ccpeBklv1qxm8UDNEC6f+Qpd5XWnL2Gpq
- vhQaqSwbkXk0BVSLlMoKchmoqIA+p1a4pD3qhPrSXYGfs2IrD1FUdntBl A==;
-X-CSE-ConnectionGUID: IujnyAwSSZqulJz61JgeSw==
-X-CSE-MsgGUID: I8U0rObzQOewKBG0WC7wZg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62755605"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62755605"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2025 11:54:55 -0700
-X-CSE-ConnectionGUID: NWIy8qS4S2OTBgaFKoDzyg==
-X-CSE-MsgGUID: Oy/RXj05QvCGMbSZbDfiBg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="219687995"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.12])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2025 11:54:53 -0700
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
-	Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v2 10/10] drm/i915/gem:
- s/i915_gem_object_get_frontbuffer/i915_gem_object_frontbuffer_lookup/
-Date: Thu, 16 Oct 2025 21:54:08 +0300
-Message-ID: <20251016185408.22735-11-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.49.1
-In-Reply-To: <20251016185408.22735-1-ville.syrjala@linux.intel.com>
-References: <20251016185408.22735-1-ville.syrjala@linux.intel.com>
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [198.137.202.133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2264E10E33E;
+ Thu, 16 Oct 2025 19:03:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+ Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+ bh=9TVQSnu3Egn0t9BpMy9FqQd8zgavzk0Dgwf9JL3wdvQ=; b=Ulx6s2QWBfXNlD1aMRyz5hdLSR
+ Q/bvr34SOukyO8meFXIMwPdmfv6OKe56iQWRTYZe3TvmoUrh8Gx8XClS5yoj0VRCAhG8SkXoaQRHv
+ 9Yw9SKokz66ujz7QnY11DZjl667avOJluBui5K2mtXt6PO8G9VAJs6tPSVAw4FhVlT7JMr6KmTYLX
+ gzU6xlru0C0BTCCmZaCOO1GaZ3y4raN94gbCktMrZTLROR+VZNYQ3EhCiaRQsL6X20VrKHLVku078
+ tokVt+j2nGff998ZumyYZtgx/qHUGWJnyN1waftJtQoaSgKOQNSsURTKyYDDab5fTjKexziKxw1YT
+ o2jAVPOQ==;
+Received: from [50.53.43.113] (helo=[192.168.254.34])
+ by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
+ id 1v9TGC-00000005lce-2ZNm; Thu, 16 Oct 2025 19:03:36 +0000
+Message-ID: <1b4daf74-4242-4f12-8ae5-84eedb95086d@infradead.org>
+Date: Thu, 16 Oct 2025 12:03:36 -0700
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] mei: intel_lb_mei_interface.h: mark struct member with
+ kernel-doc
+To: "Gote, Nitin R" <nitin.r.gote@intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: "Usyskin, Alexander" <alexander.usyskin@intel.com>,
+ "De Marchi, Lucas" <lucas.demarchi@intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+References: <20251016035942.1148176-1-rdunlap@infradead.org>
+ <IA3PR11MB898737E5BCC26C83D5470439D0E9A@IA3PR11MB8987.namprd11.prod.outlook.com>
+Content-Language: en-US
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <IA3PR11MB898737E5BCC26C83D5470439D0E9A@IA3PR11MB8987.namprd11.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,93 +69,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The i915_gem_object_get_frontbuffer() name is rather confusing wrt.
-intel_frontbuffer_get(). Rename to i915_gem_object_frontbuffer_lookup()
-to make things less confusing.
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_object.c             | 4 ++--
- drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.c | 2 +-
- drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h | 6 +++---
- drivers/gpu/drm/i915/i915_vma.c                        | 2 +-
- 4 files changed, 7 insertions(+), 7 deletions(-)
+On 10/16/25 3:08 AM, Gote, Nitin R wrote:
+> 
+>> -----Original Message-----
+>> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Randy
+>> Dunlap
+>> Sent: Thursday, October 16, 2025 9:30 AM
+>> To: dri-devel@lists.freedesktop.org
+>> Cc: Randy Dunlap <rdunlap@infradead.org>; Usyskin, Alexander
+>> <alexander.usyskin@intel.com>; De Marchi, Lucas <lucas.demarchi@intel.com>;
+>> Jani Nikula <jani.nikula@linux.intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>;
+>> Thomas Hellström <thomas.hellstrom@linux.intel.com>; Joonas Lahtinen
+>> <joonas.lahtinen@linux.intel.com>; Tvrtko Ursulin <tursulin@ursulin.net>; intel-
+>> gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org; David Airlie
+>> <airlied@gmail.com>; Simona Vetter <simona@ffwll.ch>
+>> Subject: [PATCH] mei: intel_lb_mei_interface.h: mark struct member with kernel-
+>> doc
+>>
+>> Use correct kernel-doc notation to prevent 3 kernel-doc warnings.
+>> @push_payload is a struct member here, not a function, so use '@'
+>> and ':' in its description.
+>>
+>> Warning: intel_lb_mei_interface.h:55 Incorrect use of kernel-doc format:          *
+>> push_payload - Sends a payload to the authentication firmware
+>> Warning: intel_lb_mei_interface.h:67 Invalid param: * @dev: Device struct
+>> corresponding to the mei device * @type: Payload type (see &enum
+>> intel_lb_type) * @flags: Payload flags bitmap (e.g.
+>> %INTEL_LB_FLAGS_IS_PERSISTENT) * @payload: Pointer to payload buffer *
+>> @payload_size: Payload buffer size in bytes * * Return: 0 success, negative errno
+>> value on transport failure, *         positive status returned by firmware */ int
+>> (*push_payload)(struct device *dev, u32 type, u32 flags, const void *payload,
+>> size_t payload_size)
+>> Warning: intel_lb_mei_interface.h:67 struct member '* @dev: Device struct
+>> corresponding to the mei device * @type: Payload type (see &enum
+>> intel_lb_type' not described in 'intel_lb_component_ops'
+>>
+> 
+> A small checkpatch warning needs to be fixed here.
+> Otherwise, patch LGTM.
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-index 36680eddf88e..828936e603a6 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-@@ -478,7 +478,7 @@ void __i915_gem_object_flush_frontbuffer(struct drm_i915_gem_object *obj,
- {
- 	struct i915_frontbuffer *front;
- 
--	front = i915_gem_object_get_frontbuffer(obj);
-+	front = i915_gem_object_frontbuffer_lookup(obj);
- 	if (front) {
- 		intel_frontbuffer_flush(&front->base, origin);
- 		i915_gem_object_frontbuffer_put(front);
-@@ -490,7 +490,7 @@ void __i915_gem_object_invalidate_frontbuffer(struct drm_i915_gem_object *obj,
- {
- 	struct i915_frontbuffer *front;
- 
--	front = i915_gem_object_get_frontbuffer(obj);
-+	front = i915_gem_object_frontbuffer_lookup(obj);
- 	if (front) {
- 		intel_frontbuffer_invalidate(&front->base, origin);
- 		i915_gem_object_frontbuffer_put(front);
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.c
-index 7ef89613c025..aaa15e7b3f17 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.c
-@@ -28,7 +28,7 @@ i915_gem_object_frontbuffer_get(struct drm_i915_gem_object *obj)
- 	struct drm_i915_private *i915 = to_i915(obj->base.dev);
- 	struct i915_frontbuffer *front, *cur;
- 
--	front = i915_gem_object_get_frontbuffer(obj);
-+	front = i915_gem_object_frontbuffer_lookup(obj);
- 	if (front)
- 		return front;
- 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h b/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h
-index 385f7e8049b8..2133e29047c5 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h
-@@ -46,8 +46,8 @@ void i915_gem_object_frontbuffer_ref(struct i915_frontbuffer *front);
- void i915_gem_object_frontbuffer_put(struct i915_frontbuffer *front);
- 
- /**
-- * i915_gem_object_get_frontbuffer - Get the object's frontbuffer
-- * @obj: The object whose frontbuffer to get.
-+ * i915_gem_object_frontbuffer_lookup - Look up the object's frontbuffer
-+ * @obj: The object whose frontbuffer to look up.
-  *
-  * Get pointer to object's frontbuffer if such exists. Please note that RCU
-  * mechanism is used to handle e.g. ongoing removal of frontbuffer pointer.
-@@ -55,7 +55,7 @@ void i915_gem_object_frontbuffer_put(struct i915_frontbuffer *front);
-  * Return: pointer to object's frontbuffer is such exists or NULL
-  */
- static inline struct i915_frontbuffer *
--i915_gem_object_get_frontbuffer(const struct drm_i915_gem_object *obj)
-+i915_gem_object_frontbuffer_lookup(const struct drm_i915_gem_object *obj)
- {
- 	struct i915_frontbuffer *front;
- 
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index cb36daaa101d..6888d3f4557b 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -1992,7 +1992,7 @@ int _i915_vma_move_to_active(struct i915_vma *vma,
- 	if (flags & EXEC_OBJECT_WRITE) {
- 		struct i915_frontbuffer *front;
- 
--		front = i915_gem_object_get_frontbuffer(obj);
-+		front = i915_gem_object_frontbuffer_lookup(obj);
- 		if (unlikely(front)) {
- 			if (intel_frontbuffer_invalidate(&front->base, ORIGIN_CS))
- 				i915_active_add_request(&front->write, rq);
+I suppose that you are referring to the line length warning?
+OK, I'll send a v2 with the warning lines reformatted.
+
+Thanks.
+
+> Reviewed-by: Nitin Gote <nitin.r.gote@intel.com>
+> 
+>> Fixes: 741eeabb7c78 ("mei: late_bind: add late binding component driver")
+>> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+>> ---
+>> Cc: Alexander Usyskin <alexander.usyskin@intel.com>
+>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+>> Cc: Tvrtko Ursulin <tursulin@ursulin.net>
+>> Cc: intel-gfx@lists.freedesktop.org
+>> Cc: intel-xe@lists.freedesktop.org
+>> Cc: David Airlie <airlied@gmail.com>
+>> Cc: Simona Vetter <simona@ffwll.ch>
+>> Cc: dri-devel@lists.freedesktop.org
+>> ---
+>>  include/drm/intel/intel_lb_mei_interface.h |    2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> --- linux-next-20251013.orig/include/drm/intel/intel_lb_mei_interface.h
+>> +++ linux-next-20251013/include/drm/intel/intel_lb_mei_interface.h
+>> @@ -53,7 +53,7 @@ enum intel_lb_status {
+>>   */
+>>  struct intel_lb_component_ops {
+>>  	/**
+>> -	 * push_payload - Sends a payload to the authentication firmware
+>> +	 * @push_payload: Sends a payload to the authentication firmware
+>>  	 * @dev: Device struct corresponding to the mei device
+>>  	 * @type: Payload type (see &enum intel_lb_type)
+>>  	 * @flags: Payload flags bitmap (e.g. %INTEL_LB_FLAGS_IS_PERSISTENT)
+
 -- 
-2.49.1
+~Randy
 
