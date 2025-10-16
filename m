@@ -2,57 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ADEEBE2774
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Oct 2025 11:43:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DE4BBE277A
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Oct 2025 11:43:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C903210E994;
-	Thu, 16 Oct 2025 09:43:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40ECC10E2EF;
+	Thu, 16 Oct 2025 09:43:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GVP6r4Ot";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gTvNHD9j";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9C2C10E99C;
- Thu, 16 Oct 2025 09:43:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10C2610E993;
+ Thu, 16 Oct 2025 09:43:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760607797; x=1792143797;
+ t=1760607799; x=1792143799;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=TjZxJOUIuC62wfV22KZRugNqVdFiRMVm0qdJhL9XX34=;
- b=GVP6r4OtDDUbAjKW9Cmgy6BU+HldQyJVK+AT/UaqbXhu+ebtBFgjSC+4
- pVQt4+EMtnAedWbEsxwFE5jP8Wo1Hgd3izqcmWSVP1nOWXXClf8fix5nJ
- OB5EGSqIPxXI48DROGpvtKUPn+WhAUj+WVgFYGWdlfg6GHc7JSH8JsER9
- 89ldpHNKEXZuPvAPqnbfKcn8uynZvajKeJ3gfd6HLNFORdJgU5VnKTlKV
- FFwv0xnccg+EDYgi20dThJpSr0qLc2V//oj7sHZ0TdaKaNUquv1zOUW0R
- nkZ82a8tHG/kYGFeYcRdjO8v+e/Sx81QyZrfCSOzyXa77nYUTpAu852Ri w==;
-X-CSE-ConnectionGUID: Kh79+MIUQXu3iiozN5/8TQ==
-X-CSE-MsgGUID: UONg3gdXThOiYMCscKjAhg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62725252"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62725252"
+ bh=q+ks2IWWAroVzBDeb5y4jbBJ+linczglT4dhjFXxf1M=;
+ b=gTvNHD9jWVsIR+HrKz3vEjhUKP27h5kUsJrg8nYnxInzSgDQaDBSD7iE
+ lpM4hbzHho8raAMWDNV/xCzPP3xCGvYavMt/KgsQRPBrYvsFHD5ILAz4f
+ 5EfRy/Pd4A6imApYUjVge9TVqQuqr1xN8zSkATOLPOeg4vg31CSbmc+sJ
+ aTRfsw1nZOaQPbfjAM0EDD56RWxiPBlTYwuL55IyZLTz1DuF9tQ0Qb7Tu
+ 0TdDsjkmdKVZdA5Yey0pnlIVwPQYXidl4lm1BWuKJ0YMWDCKGoWlz105I
+ 5+NAjMXJ+Tt9T2TX3o4ZtQbMsUryJDORgmRMmzmClQ+SuJVYwDwDjhG6U g==;
+X-CSE-ConnectionGUID: K2cJqiHmRlSA1tHnAGUq5Q==
+X-CSE-MsgGUID: LCmYE/DZQf2c8Wwwl5IpdQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62725257"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62725257"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2025 02:43:16 -0700
-X-CSE-ConnectionGUID: nke6UjC4TPqme8cGH4FURQ==
-X-CSE-MsgGUID: kBVy/mldTwqLO3ob4XOdEg==
+ 16 Oct 2025 02:43:19 -0700
+X-CSE-ConnectionGUID: +4ULHFnCRrSJr6O+gIyvCQ==
+X-CSE-MsgGUID: VXNnf8gkRHmZGThnCrOkXA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,233,1754982000"; d="scan'208";a="219570793"
+X-IronPort-AV: E=Sophos;i="6.19,233,1754982000"; d="scan'208";a="219570798"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2025 02:43:14 -0700
+ 16 Oct 2025 02:43:17 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 1/6] [NOT FOR REVIEW] drm/i915/vrr: prep patches for guardband
- optimization squashed
-Date: Thu, 16 Oct 2025 15:00:04 +0530
-Message-ID: <20251016093009.2139105-2-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 2/6] [NOT FOR REVIEW] drm/i915/prefill: Prefill latency
+ calculations series squashed
+Date: Thu, 16 Oct 2025 15:00:05 +0530
+Message-ID: <20251016093009.2139105-3-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20251016093009.2139105-1-ankit.k.nautiyal@intel.com>
 References: <20251016093009.2139105-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,610 +70,867 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a squashed patch based on the preparatory series for guardband
-optimization. It contains all the changes in the v8 of the series:
-'Preparatory patches for guardband optimization' [1]
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-This handles few cases which will need changes when guardband will no
-longer be matched to vblank length.
-- Fix the vblank_start evaluation.
-- Fix PSR wake latency checks wrt to guradband.
+This is a squashed patch based on the series from Ville Syrjälä
+to introduce helpers for prefill latency calculations
+'drm/i915/prefill: Introduce helpers for prefill latency calculations' [1]
+
+Introduce skl_prefill and various accompanying helpers to do
+pipe prefill latency related stuff (vblank/guardband length
+checks, and in the future reduced guardband length).
 
 NOTE: This patch is not meant for review. Any review related to this
 patch should be done on the original series. In order not to diverge
 the discussion from the main series.
 
-[1] https://patchwork.freedesktop.org/series/155661/#rev8
+[1] http://patchwork.freedesktop.org/series/155629/#rev3
 
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c     |   7 +
- drivers/gpu/drm/i915/display/intel_display.c |  18 +-
- drivers/gpu/drm/i915/display/intel_dp.c      |  11 +
- drivers/gpu/drm/i915/display/intel_dp.h      |   3 +
- drivers/gpu/drm/i915/display/intel_psr.c     | 244 +++++++++++++------
- drivers/gpu/drm/i915/display/intel_psr.h     |   2 +
- drivers/gpu/drm/i915/display/intel_vblank.c  |  10 +
- drivers/gpu/drm/i915/display/intel_vblank.h  |   2 +
- drivers/gpu/drm/i915/display/intel_vrr.c     |  33 ++-
- drivers/gpu/drm/i915/display/intel_vrr.h     |   2 +-
- drivers/gpu/drm/i915/display/skl_watermark.c |   3 +-
- 11 files changed, 246 insertions(+), 89 deletions(-)
+ drivers/gpu/drm/i915/Makefile                |   1 +
+ drivers/gpu/drm/i915/display/intel_cdclk.c   |  80 +++++++++-
+ drivers/gpu/drm/i915/display/intel_cdclk.h   |   6 +
+ drivers/gpu/drm/i915/display/intel_display.c |   8 +
+ drivers/gpu/drm/i915/display/intel_vdsc.c    |   8 +
+ drivers/gpu/drm/i915/display/intel_vdsc.h    |   1 +
+ drivers/gpu/drm/i915/display/skl_prefill.c   | 157 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/skl_prefill.h   |  46 ++++++
+ drivers/gpu/drm/i915/display/skl_scaler.c    | 141 +++++++++++++++++
+ drivers/gpu/drm/i915/display/skl_scaler.h    |  15 ++
+ drivers/gpu/drm/i915/display/skl_watermark.c | 155 ++++++++----------
+ drivers/gpu/drm/i915/display/skl_watermark.h |   3 +
+ drivers/gpu/drm/xe/Makefile                  |   1 +
+ 13 files changed, 528 insertions(+), 94 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/skl_prefill.c
+ create mode 100644 drivers/gpu/drm/i915/display/skl_prefill.h
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index c09aa759f4d4..870140340342 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -4559,6 +4559,13 @@ static int intel_ddi_compute_config_late(struct intel_encoder *encoder,
- 	struct intel_display *display = to_intel_display(encoder);
- 	struct drm_connector *connector = conn_state->connector;
- 	u8 port_sync_transcoders = 0;
-+	int ret = 0;
-+
-+	if (intel_crtc_has_dp_encoder(crtc_state))
-+		ret = intel_dp_compute_config_late(encoder, crtc_state, conn_state);
-+
-+	if (ret)
-+		return ret;
- 
- 	drm_dbg_kms(display->drm, "[ENCODER:%d:%s] [CRTC:%d:%s]\n",
- 		    encoder->base.base.id, encoder->base.name,
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index d5b2612d4ec2..65a7da694ef6 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2410,11 +2410,11 @@ static int intel_crtc_compute_config(struct intel_atomic_state *state,
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	int ret;
- 
--	ret = intel_crtc_compute_set_context_latency(state, crtc);
-+	ret = intel_dpll_crtc_compute_clock(state, crtc);
- 	if (ret)
- 		return ret;
- 
--	ret = intel_dpll_crtc_compute_clock(state, crtc);
-+	ret = intel_crtc_compute_set_context_latency(state, crtc);
- 	if (ret)
- 		return ret;
- 
-@@ -2431,6 +2431,8 @@ static int intel_crtc_compute_config(struct intel_atomic_state *state,
- 	if (crtc_state->has_pch_encoder)
- 		return ilk_fdi_compute_config(crtc, crtc_state);
- 
-+	intel_vrr_compute_guardband(crtc_state);
-+
- 	return 0;
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index 6d7800e25e55..aa2f0fd95117 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -302,6 +302,7 @@ i915-y += \
+ 	display/intel_vblank.o \
+ 	display/intel_vga.o \
+ 	display/intel_wm.o \
++	display/skl_prefill.o \
+ 	display/skl_scaler.o \
+ 	display/skl_universal_plane.o \
+ 	display/skl_watermark.o \
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index f2e092f89ddd..bd45b719d4f8 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -2806,16 +2806,20 @@ static int intel_cdclk_guardband(struct intel_display *display)
+ 		return 90;
  }
  
-@@ -4722,8 +4724,6 @@ intel_modeset_pipe_config_late(struct intel_atomic_state *state,
- 	struct drm_connector *connector;
- 	int i;
+-static int intel_pixel_rate_to_cdclk(const struct intel_crtc_state *crtc_state)
++static int _intel_pixel_rate_to_cdclk(const struct intel_crtc_state *crtc_state, int pixel_rate)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+ 	int ppc = intel_cdclk_ppc(display, crtc_state->double_wide);
+ 	int guardband = intel_cdclk_guardband(display);
+-	int pixel_rate = crtc_state->pixel_rate;
  
--	intel_vrr_compute_config_late(crtc_state);
--
- 	for_each_new_connector_in_state(&state->base, connector,
- 					conn_state, i) {
- 		struct intel_encoder *encoder =
-@@ -4958,9 +4958,15 @@ static bool allow_vblank_delay_fastset(const struct intel_crtc_state *old_crtc_s
- 	 * Allow fastboot to fix up vblank delay (handled via LRR
- 	 * codepaths), a bit dodgy as the registers aren't
- 	 * double buffered but seems to be working more or less...
-+	 *
-+	 * Also allow this when the VRR timing generator is always on,
-+	 * and optimized guardband is used. In such cases,
-+	 * vblank delay may vary even without inherited state, but it's
-+	 * still safe as VRR guardband is still same.
- 	 */
--	return HAS_LRR(display) && old_crtc_state->inherited &&
--		!intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DSI);
-+	return HAS_LRR(display) &&
-+	       (old_crtc_state->inherited || intel_vrr_always_use_vrr_tg(display)) &&
-+	       !intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DSI);
+ 	return DIV_ROUND_UP(pixel_rate * 100, guardband * ppc);
  }
  
- bool
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index a723e846321f..7059d55687cf 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -6979,3 +6979,14 @@ void intel_dp_mst_resume(struct intel_display *display)
- 		}
- 	}
- }
-+
-+int intel_dp_compute_config_late(struct intel_encoder *encoder,
-+				 struct intel_crtc_state *crtc_state,
-+				 struct drm_connector_state *conn_state)
++static int intel_pixel_rate_to_cdclk(const struct intel_crtc_state *crtc_state)
 +{
-+	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-+
-+	intel_psr_compute_config_late(intel_dp, crtc_state);
-+
-+	return 0;
++	return _intel_pixel_rate_to_cdclk(crtc_state, crtc_state->pixel_rate);
 +}
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index b379443e0211..281ced3a3b39 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -218,5 +218,8 @@ int intel_dp_compute_min_hblank(struct intel_crtc_state *crtc_state,
- int intel_dp_dsc_bpp_step_x16(const struct intel_connector *connector);
- void intel_dp_dpcd_set_probe(struct intel_dp *intel_dp, bool force_on_external);
- bool intel_dp_in_hdr_mode(const struct drm_connector_state *conn_state);
-+int intel_dp_compute_config_late(struct intel_encoder *encoder,
-+				 struct intel_crtc_state *crtc_state,
-+				 struct drm_connector_state *conn_state);
- 
- #endif /* __INTEL_DP_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 2131473cead6..703e5f6af04c 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1361,14 +1361,78 @@ static int intel_psr_entry_setup_frames(struct intel_dp *intel_dp,
- 	return entry_setup_frames;
++
+ static int intel_planes_min_cdclk(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+@@ -4056,3 +4060,75 @@ void intel_cdclk_read_hw(struct intel_display *display)
+ 	cdclk_state->actual = display->cdclk.hw;
+ 	cdclk_state->logical = display->cdclk.hw;
  }
- 
-+static
-+int _intel_psr_min_set_context_latency(const struct intel_crtc_state *crtc_state,
-+				       bool needs_panel_replay,
-+				       bool needs_sel_update)
++
++static int calc_cdclk(const struct intel_crtc_state *crtc_state, int min_cdclk)
 +{
 +	struct intel_display *display = to_intel_display(crtc_state);
 +
-+	if (!crtc_state->has_psr)
-+		return 0;
++	if (DISPLAY_VER(display) >= 10 || display->platform.broxton) {
++		return bxt_calc_cdclk(display, min_cdclk);
++	} else if (DISPLAY_VER(display) == 9) {
++		int vco;
 +
-+	/* Wa_14015401596 */
-+	if (intel_vrr_possible(crtc_state) && IS_DISPLAY_VER(display, 13, 14))
-+		return 1;
++		vco = display->cdclk.skl_preferred_vco_freq;
++		if (vco == 0)
++			vco = 8100000;
 +
-+	/* Rest is for SRD_STATUS needed on LunarLake and onwards */
-+	if (DISPLAY_VER(display) < 20)
-+		return 0;
-+
-+	/*
-+	 * Comment on SRD_STATUS register in Bspec for LunarLake and onwards:
-+	 *
-+	 * To deterministically capture the transition of the state machine
-+	 * going from SRDOFFACK to IDLE, the delayed V. Blank should be at least
-+	 * one line after the non-delayed V. Blank.
-+	 *
-+	 * Legacy TG: TRANS_SET_CONTEXT_LATENCY > 0
-+	 * VRR TG: TRANS_VRR_CTL[ VRR Guardband ] < (TRANS_VRR_VMAX[ VRR Vmax ]
-+	 * - TRANS_VTOTAL[ Vertical Active ])
-+	 *
-+	 * SRD_STATUS is used only by PSR1 on PantherLake.
-+	 * SRD_STATUS is used by PSR1 and Panel Replay DP on LunarLake.
-+	 */
-+
-+	if (DISPLAY_VER(display) >= 30 && (needs_panel_replay ||
-+					   needs_sel_update))
-+		return 0;
-+	else if (DISPLAY_VER(display) < 30 && (needs_sel_update ||
-+					       intel_crtc_has_type(crtc_state,
-+								   INTEL_OUTPUT_EDP)))
-+		return 0;
-+	else
-+		return 1;
-+}
-+
-+static bool _wake_lines_fit_into_vblank(const struct intel_crtc_state *crtc_state,
-+					int vblank,
-+					int wake_lines)
-+{
-+	if (crtc_state->req_psr2_sdp_prior_scanline)
-+		vblank -= 1;
-+
-+	/* Vblank >= PSR2_CTL Block Count Number maximum line count */
-+	if (vblank < wake_lines)
-+		return false;
-+
-+	return true;
-+}
-+
- static bool wake_lines_fit_into_vblank(struct intel_dp *intel_dp,
- 				       const struct intel_crtc_state *crtc_state,
--				       bool aux_less)
-+				       bool aux_less,
-+				       bool needs_panel_replay,
-+				       bool needs_sel_update)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	int vblank = crtc_state->hw.adjusted_mode.crtc_vblank_end -
- 		crtc_state->hw.adjusted_mode.crtc_vblank_start;
- 	int wake_lines;
-+	int scl = _intel_psr_min_set_context_latency(crtc_state,
-+						     needs_panel_replay,
-+						     needs_sel_update);
-+	vblank -= scl;
- 
- 	if (aux_less)
- 		wake_lines = crtc_state->alpm_state.aux_less_wake_lines;
-@@ -1378,19 +1442,23 @@ static bool wake_lines_fit_into_vblank(struct intel_dp *intel_dp,
- 					       crtc_state->alpm_state.fast_wake_lines) :
- 			crtc_state->alpm_state.io_wake_lines;
- 
--	if (crtc_state->req_psr2_sdp_prior_scanline)
--		vblank -= 1;
--
--	/* Vblank >= PSR2_CTL Block Count Number maximum line count */
--	if (vblank < wake_lines)
--		return false;
--
--	return true;
-+	/*
-+	 * Guardband has not been computed yet, so we conservatively check if the
-+	 * full vblank duration is sufficient to accommodate wake line requirements
-+	 * for PSR features like Panel Replay and Selective Update.
-+	 *
-+	 * Once the actual guardband is available, a more accurate validation is
-+	 * performed in intel_psr_compute_config_late(), and PSR features are
-+	 * disabled if wake lines exceed the available guardband.
-+	 */
-+	return _wake_lines_fit_into_vblank(crtc_state, vblank, wake_lines);
- }
- 
- static bool alpm_config_valid(struct intel_dp *intel_dp,
- 			      struct intel_crtc_state *crtc_state,
--			      bool aux_less)
-+			      bool aux_less,
-+			      bool needs_panel_replay,
-+			      bool needs_sel_update)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
- 
-@@ -1400,7 +1468,8 @@ static bool alpm_config_valid(struct intel_dp *intel_dp,
- 		return false;
- 	}
- 
--	if (!wake_lines_fit_into_vblank(intel_dp, crtc_state, aux_less)) {
-+	if (!wake_lines_fit_into_vblank(intel_dp, crtc_state, aux_less,
-+					needs_panel_replay, needs_sel_update)) {
- 		drm_dbg_kms(display->drm,
- 			    "PSR2/Panel Replay not enabled, too short vblank time\n");
- 		return false;
-@@ -1492,7 +1561,7 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
- 		return false;
- 	}
- 
--	if (!alpm_config_valid(intel_dp, crtc_state, false))
-+	if (!alpm_config_valid(intel_dp, crtc_state, false, false, true))
- 		return false;
- 
- 	if (!crtc_state->enable_psr2_sel_fetch &&
-@@ -1643,7 +1712,7 @@ _panel_replay_compute_config(struct intel_dp *intel_dp,
- 		return false;
- 	}
- 
--	if (!alpm_config_valid(intel_dp, crtc_state, true))
-+	if (!alpm_config_valid(intel_dp, crtc_state, true, true, false))
- 		return false;
- 
- 	return true;
-@@ -1658,15 +1727,40 @@ static bool intel_psr_needs_wa_18037818876(struct intel_dp *intel_dp,
- 		!crtc_state->has_sel_update);
- }
- 
-+static
-+void intel_psr_set_non_psr_pipes(struct intel_dp *intel_dp,
-+				 struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(intel_dp);
-+	struct intel_atomic_state *state = to_intel_atomic_state(crtc_state->uapi.state);
-+	struct intel_crtc *crtc;
-+	u8 active_pipes = 0;
-+
-+	/* Wa_16025596647 */
-+	if (DISPLAY_VER(display) != 20 &&
-+	    !IS_DISPLAY_VERx100_STEP(display, 3000, STEP_A0, STEP_B0))
-+		return;
-+
-+	/* Not needed by Panel Replay  */
-+	if (crtc_state->has_panel_replay)
-+		return;
-+
-+	/* We ignore possible secondary PSR/Panel Replay capable eDP */
-+	for_each_intel_crtc(display->drm, crtc)
-+		active_pipes |= crtc->active ? BIT(crtc->pipe) : 0;
-+
-+	active_pipes = intel_calc_active_pipes(state, active_pipes);
-+
-+	crtc_state->active_non_psr_pipes = active_pipes &
-+		~BIT(to_intel_crtc(crtc_state->uapi.crtc)->pipe);
-+}
-+
- void intel_psr_compute_config(struct intel_dp *intel_dp,
- 			      struct intel_crtc_state *crtc_state,
- 			      struct drm_connector_state *conn_state)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
--	struct intel_atomic_state *state = to_intel_atomic_state(crtc_state->uapi.state);
--	struct intel_crtc *crtc;
--	u8 active_pipes = 0;
- 
- 	if (!psr_global_enabled(intel_dp)) {
- 		drm_dbg_kms(display->drm, "PSR disabled by flag\n");
-@@ -1707,31 +1801,6 @@ void intel_psr_compute_config(struct intel_dp *intel_dp,
- 		return;
- 
- 	crtc_state->has_sel_update = intel_sel_update_config_valid(intel_dp, crtc_state);
--
--	/* Wa_18037818876 */
--	if (intel_psr_needs_wa_18037818876(intel_dp, crtc_state)) {
--		crtc_state->has_psr = false;
--		drm_dbg_kms(display->drm,
--			    "PSR disabled to workaround PSR FSM hang issue\n");
--	}
--
--	/* Rest is for Wa_16025596647 */
--	if (DISPLAY_VER(display) != 20 &&
--	    !IS_DISPLAY_VERx100_STEP(display, 3000, STEP_A0, STEP_B0))
--		return;
--
--	/* Not needed by Panel Replay  */
--	if (crtc_state->has_panel_replay)
--		return;
--
--	/* We ignore possible secondary PSR/Panel Replay capable eDP */
--	for_each_intel_crtc(display->drm, crtc)
--		active_pipes |= crtc->active ? BIT(crtc->pipe) : 0;
--
--	active_pipes = intel_calc_active_pipes(state, active_pipes);
--
--	crtc_state->active_non_psr_pipes = active_pipes &
--		~BIT(to_intel_crtc(crtc_state->uapi.crtc)->pipe);
- }
- 
- void intel_psr_get_config(struct intel_encoder *encoder,
-@@ -2371,43 +2440,10 @@ void intel_psr_trigger_frame_change_event(struct intel_dsb *dsb,
-  */
- int intel_psr_min_set_context_latency(const struct intel_crtc_state *crtc_state)
- {
--	struct intel_display *display = to_intel_display(crtc_state);
--
--	if (!crtc_state->has_psr)
--		return 0;
--
--	/* Wa_14015401596 */
--	if (intel_vrr_possible(crtc_state) && IS_DISPLAY_VER(display, 13, 14))
--		return 1;
--
--	/* Rest is for SRD_STATUS needed on LunarLake and onwards */
--	if (DISPLAY_VER(display) < 20)
--		return 0;
--
--	/*
--	 * Comment on SRD_STATUS register in Bspec for LunarLake and onwards:
--	 *
--	 * To deterministically capture the transition of the state machine
--	 * going from SRDOFFACK to IDLE, the delayed V. Blank should be at least
--	 * one line after the non-delayed V. Blank.
--	 *
--	 * Legacy TG: TRANS_SET_CONTEXT_LATENCY > 0
--	 * VRR TG: TRANS_VRR_CTL[ VRR Guardband ] < (TRANS_VRR_VMAX[ VRR Vmax ]
--	 * - TRANS_VTOTAL[ Vertical Active ])
--	 *
--	 * SRD_STATUS is used only by PSR1 on PantherLake.
--	 * SRD_STATUS is used by PSR1 and Panel Replay DP on LunarLake.
--	 */
- 
--	if (DISPLAY_VER(display) >= 30 && (crtc_state->has_panel_replay ||
--					   crtc_state->has_sel_update))
--		return 0;
--	else if (DISPLAY_VER(display) < 30 && (crtc_state->has_sel_update ||
--					       intel_crtc_has_type(crtc_state,
--								   INTEL_OUTPUT_EDP)))
--		return 0;
--	else
--		return 1;
-+	return _intel_psr_min_set_context_latency(crtc_state,
-+						  crtc_state->has_panel_replay,
-+						  crtc_state->has_sel_update);
- }
- 
- static u32 man_trk_ctl_enable_bit_get(struct intel_display *display)
-@@ -4326,3 +4362,57 @@ bool intel_psr_needs_alpm_aux_less(struct intel_dp *intel_dp,
- {
- 	return intel_dp_is_edp(intel_dp) && crtc_state->has_panel_replay;
- }
-+
-+void intel_psr_compute_config_late(struct intel_dp *intel_dp,
-+				   struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(intel_dp);
-+	int vblank = intel_crtc_vblank_length(crtc_state);
-+	int wake_lines;
-+
-+	if (intel_psr_needs_alpm_aux_less(intel_dp, crtc_state))
-+		wake_lines = crtc_state->alpm_state.aux_less_wake_lines;
-+	else if (intel_psr_needs_alpm(intel_dp, crtc_state))
-+		wake_lines = DISPLAY_VER(display) < 20 ?
-+			     psr2_block_count_lines(crtc_state->alpm_state.io_wake_lines,
-+						    crtc_state->alpm_state.fast_wake_lines) :
-+			     crtc_state->alpm_state.io_wake_lines;
-+	else
-+		wake_lines = 0;
-+
-+	/*
-+	 * Disable the PSR features if wake lines exceed the available vblank.
-+	 * Though SCL is computed based on these PSR features, it is not reset
-+	 * even if the PSR features are disabled to avoid changing vblank start
-+	 * at this stage.
-+	 */
-+	if (wake_lines && !_wake_lines_fit_into_vblank(crtc_state, vblank, wake_lines)) {
-+		drm_dbg_kms(display->drm,
-+			    "Adjusting PSR/PR mode: vblank too short for wake lines = %d\n",
-+			    wake_lines);
-+
-+		if (crtc_state->has_panel_replay) {
-+			crtc_state->has_panel_replay = false;
-+			/*
-+			 * #TODO : Add fall back to PSR/PSR2
-+			 * Since panel replay cannot be supported, we can fall back to PSR/PSR2.
-+			 * This will require calling compute_config for psr and psr2 with check for
-+			 * actual guardband instead of vblank_length.
-+			 */
-+			crtc_state->has_psr = false;
-+		}
-+
-+		crtc_state->has_sel_update = false;
-+		crtc_state->enable_psr2_su_region_et = false;
-+		crtc_state->enable_psr2_sel_fetch = false;
++		return skl_calc_cdclk(min_cdclk, vco);
++	} else if (display->platform.broadwell) {
++		return bdw_calc_cdclk(min_cdclk);
++	} else if (display->platform.cherryview || display->platform.valleyview) {
++		return vlv_calc_cdclk(display, min_cdclk);
++	} else {
++		return display->cdclk.max_cdclk_freq;
 +	}
-+
-+	/* Wa_18037818876 */
-+	if (intel_psr_needs_wa_18037818876(intel_dp, crtc_state)) {
-+		crtc_state->has_psr = false;
-+		drm_dbg_kms(display->drm,
-+			    "PSR disabled to workaround PSR FSM hang issue\n");
-+	}
-+
-+	intel_psr_set_non_psr_pipes(intel_dp, crtc_state);
 +}
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
-index 9147996d6c9e..b17ce312dc37 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr.h
-@@ -83,5 +83,7 @@ void intel_psr_debugfs_register(struct intel_display *display);
- bool intel_psr_needs_alpm(struct intel_dp *intel_dp, const struct intel_crtc_state *crtc_state);
- bool intel_psr_needs_alpm_aux_less(struct intel_dp *intel_dp,
- 				   const struct intel_crtc_state *crtc_state);
-+void intel_psr_compute_config_late(struct intel_dp *intel_dp,
-+				   struct intel_crtc_state *crtc_state);
- 
- #endif /* __INTEL_PSR_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index 0b7fcc05e64c..2fc0c1c0bb87 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -767,3 +767,13 @@ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
- 
- 	return scanline;
- }
 +
-+int intel_crtc_vblank_length(const struct intel_crtc_state *crtc_state)
++static unsigned int _intel_cdclk_prefill_adj(const struct intel_crtc_state *crtc_state,
++					     int clock, int min_cdclk)
 +{
-+	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
++	struct intel_display *display = to_intel_display(crtc_state);
++	int ppc = intel_cdclk_ppc(display, crtc_state->double_wide);
++	int cdclk = calc_cdclk(crtc_state, min_cdclk);
 +
-+	if (crtc_state->vrr.enable)
-+		return crtc_state->vrr.guardband;
-+	else
-+		return adjusted_mode->crtc_vtotal - adjusted_mode->crtc_vblank_start;
++	return min(0x10000, DIV_ROUND_UP_ULL((u64)clock << 16, ppc * cdclk));
 +}
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.h b/drivers/gpu/drm/i915/display/intel_vblank.h
-index 21fbb08d61d5..98d04cacd65f 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.h
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.h
-@@ -48,4 +48,6 @@ const struct intel_crtc_state *
- intel_pre_commit_crtc_state(struct intel_atomic_state *state,
- 			    struct intel_crtc *crtc);
- 
-+int intel_crtc_vblank_length(const struct intel_crtc_state *crtc_state);
 +
- #endif /* __INTEL_VBLANK_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 190c51be5cbc..597008a6c744 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -394,10 +394,10 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
- 	if (HAS_AS_SDP(display)) {
- 		crtc_state->vrr.vsync_start =
- 			(crtc_state->hw.adjusted_mode.crtc_vtotal -
--			 crtc_state->hw.adjusted_mode.vsync_start);
-+			 crtc_state->hw.adjusted_mode.crtc_vsync_start);
- 		crtc_state->vrr.vsync_end =
- 			(crtc_state->hw.adjusted_mode.crtc_vtotal -
--			 crtc_state->hw.adjusted_mode.vsync_end);
-+			 crtc_state->hw.adjusted_mode.crtc_vsync_end);
- 	}
- }
- 
-@@ -433,10 +433,11 @@ intel_vrr_max_guardband(struct intel_crtc_state *crtc_state)
- 		   intel_vrr_max_vblank_guardband(crtc_state));
- }
- 
--void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state)
-+void intel_vrr_compute_guardband(struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
--	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-+	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-+	struct drm_display_mode *pipe_mode = &crtc_state->hw.pipe_mode;
- 
- 	if (!intel_vrr_possible(crtc_state))
- 		return;
-@@ -444,6 +445,17 @@ void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state)
- 	crtc_state->vrr.guardband = min(crtc_state->vrr.vmin - adjusted_mode->crtc_vdisplay,
- 					intel_vrr_max_guardband(crtc_state));
- 
-+	if (intel_vrr_always_use_vrr_tg(display)) {
-+		adjusted_mode->crtc_vblank_start  =
-+			adjusted_mode->crtc_vtotal - crtc_state->vrr.guardband;
-+		/*
-+		 * pipe_mode has already been derived from the
-+		 * original adjusted_mode, keep the two in sync.
-+		 */
-+		pipe_mode->crtc_vblank_start =
-+			adjusted_mode->crtc_vblank_start;
-+	}
++unsigned int intel_cdclk_prefill_adjustment(const struct intel_crtc_state *crtc_state)
++{
++	/* FIXME use the actual min_cdclk for the pipe here */
++	return intel_cdclk_prefill_adjustment_worst(crtc_state);
++}
 +
- 	if (DISPLAY_VER(display) < 13)
- 		crtc_state->vrr.pipeline_full =
- 			intel_vrr_guardband_to_pipeline_full(crtc_state,
-@@ -821,6 +833,19 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
- 	 */
- 	if (crtc_state->vrr.enable)
- 		crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
++unsigned int intel_cdclk_prefill_adjustment_worst(const struct intel_crtc_state *crtc_state)
++{
++	int clock = crtc_state->hw.pipe_mode.crtc_clock;
++	int min_cdclk;
 +
 +	/*
-+	 * For platforms that always use the VRR timing generator, we overwrite
-+	 * crtc_vblank_start with vtotal - guardband to reflect the delayed
-+	 * vblank start. This works for both default and optimized guardband values.
-+	 * On other platforms, we keep the original value from
-+	 * intel_get_transcoder_timings() and apply adjustments only in VRR-specific
-+	 * paths as needed.
++	 * FIXME could perhaps consider a few more of the factors
++	 * that go the per-crtc min_cdclk. Namely anything that
++	 * only changes during full modesets.
++	 *
++	 * FIXME this assumes 1:1 scaling, but the other _worst() stuff
++	 * assumes max downscaling, so the final result will be
++	 * unrealistically bad. Figure out where the actual maximum value
++	 * lies and use that to compute a more realistic worst case
++	 * estimate...
 +	 */
-+	if (intel_vrr_always_use_vrr_tg(display))
-+		crtc_state->hw.adjusted_mode.crtc_vblank_start =
-+			crtc_state->hw.adjusted_mode.crtc_vtotal -
-+			crtc_state->vrr.guardband;
++	min_cdclk = _intel_pixel_rate_to_cdclk(crtc_state, clock);
++
++	return _intel_cdclk_prefill_adj(crtc_state, clock, min_cdclk);
++}
++
++int intel_cdclk_min_cdclk_for_prefill(const struct intel_crtc_state *crtc_state,
++				      unsigned int prefill_lines_unadjusted,
++				      unsigned int prefill_lines_available)
++{
++	struct intel_display *display = to_intel_display(crtc_state);
++	const struct drm_display_mode *pipe_mode = &crtc_state->hw.pipe_mode;
++	int ppc = intel_cdclk_ppc(display, crtc_state->double_wide);
++
++	return DIV_ROUND_UP_ULL(mul_u32_u32(pipe_mode->crtc_clock, prefill_lines_unadjusted),
++				ppc * prefill_lines_available);
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
+index 72963f6f399a..1c1140b53b17 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.h
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
+@@ -70,4 +70,10 @@ bool intel_cdclk_pmdemand_needs_update(struct intel_atomic_state *state);
+ void intel_cdclk_force_min_cdclk(struct intel_cdclk_state *cdclk_state, int force_min_cdclk);
+ void intel_cdclk_read_hw(struct intel_display *display);
+ 
++unsigned int intel_cdclk_prefill_adjustment(const struct intel_crtc_state *crtc_state);
++unsigned int intel_cdclk_prefill_adjustment_worst(const struct intel_crtc_state *crtc_state);
++int intel_cdclk_min_cdclk_for_prefill(const struct intel_crtc_state *crtc_state,
++				      unsigned int prefill_lines_unadjusted,
++				      unsigned int prefill_lines_available);
++
+ #endif /* __INTEL_CDCLK_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 65a7da694ef6..4367ecfab2b3 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7978,6 +7978,14 @@ enum drm_mode_status intel_mode_valid(struct drm_device *dev,
+ 	    mode->vtotal > vtotal_max)
+ 		return MODE_V_ILLEGAL;
+ 
++	/*
++	 * WM_LINETIME only goes up to (almost) 64 usec, and also
++	 * knowing that the linetime is always bounded will ease the
++	 * mind during various calculations.
++	 */
++	if (DIV_ROUND_UP(mode->htotal * 1000, mode->clock) > 64)
++		return MODE_H_ILLEGAL;
++
+ 	return MODE_OK;
  }
  
- int intel_vrr_safe_window_start(const struct intel_crtc_state *crtc_state)
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
-index 7317f8730089..bc9044621635 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.h
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.h
-@@ -21,7 +21,7 @@ bool intel_vrr_possible(const struct intel_crtc_state *crtc_state);
- void intel_vrr_check_modeset(struct intel_atomic_state *state);
- void intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
- 			      struct drm_connector_state *conn_state);
--void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state);
-+void intel_vrr_compute_guardband(struct intel_crtc_state *crtc_state);
- void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state);
- void intel_vrr_enable(const struct intel_crtc_state *crtc_state);
- void intel_vrr_send_push(struct intel_dsb *dsb,
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+index 8e799e225af1..bca747e24a7f 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+@@ -1077,3 +1077,11 @@ int intel_vdsc_min_cdclk(const struct intel_crtc_state *crtc_state)
+ 
+ 	return min_cdclk;
+ }
++
++unsigned int intel_vdsc_prefill_lines(const struct intel_crtc_state *crtc_state)
++{
++	if (!crtc_state->dsc.compression_enable)
++		return 0;
++
++	return 0x18000; /* 1.5 */
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.h b/drivers/gpu/drm/i915/display/intel_vdsc.h
+index 9e2812f99dd7..2139391ff881 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.h
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.h
+@@ -32,5 +32,6 @@ void intel_dsc_dp_pps_write(struct intel_encoder *encoder,
+ void intel_vdsc_state_dump(struct drm_printer *p, int indent,
+ 			   const struct intel_crtc_state *crtc_state);
+ int intel_vdsc_min_cdclk(const struct intel_crtc_state *crtc_state);
++unsigned int intel_vdsc_prefill_lines(const struct intel_crtc_state *crtc_state);
+ 
+ #endif /* __INTEL_VDSC_H__ */
+diff --git a/drivers/gpu/drm/i915/display/skl_prefill.c b/drivers/gpu/drm/i915/display/skl_prefill.c
+new file mode 100644
+index 000000000000..4707c2e7127a
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/skl_prefill.c
+@@ -0,0 +1,157 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#include <linux/debugfs.h>
++
++#include <drm/drm_print.h>
++
++#include "intel_cdclk.h"
++#include "intel_display_core.h"
++#include "intel_display_types.h"
++#include "intel_vblank.h"
++#include "intel_vdsc.h"
++#include "skl_prefill.h"
++#include "skl_scaler.h"
++#include "skl_watermark.h"
++
++static unsigned int prefill_usecs_to_lines(const struct intel_crtc_state *crtc_state,
++					   unsigned int usecs)
++{
++	const struct drm_display_mode *pipe_mode = &crtc_state->hw.pipe_mode;
++
++	return DIV_ROUND_UP_ULL(mul_u32_u32(pipe_mode->crtc_clock, usecs << 16),
++				pipe_mode->crtc_htotal * 1000);
++}
++
++static void prefill_init(struct skl_prefill_ctx *ctx,
++			 const struct intel_crtc_state *crtc_state)
++{
++	memset(ctx, 0, sizeof(*ctx));
++
++	ctx->prefill.fixed = crtc_state->framestart_delay << 16;
++
++	/* 20 usec for translation walks/etc. */
++	ctx->prefill.fixed += prefill_usecs_to_lines(crtc_state, 20);
++
++	ctx->prefill.dsc = intel_vdsc_prefill_lines(crtc_state);
++}
++
++static void prefill_init_nocdclk_worst(struct skl_prefill_ctx *ctx,
++				       const struct intel_crtc_state *crtc_state)
++{
++	prefill_init(ctx, crtc_state);
++
++	ctx->prefill.wm0 = skl_wm0_prefill_lines_worst(crtc_state);
++	ctx->prefill.scaler_1st = skl_scaler_1st_prefill_lines_worst(crtc_state);
++	ctx->prefill.scaler_2nd = skl_scaler_2nd_prefill_lines_worst(crtc_state);
++
++	ctx->adj.scaler_1st = skl_scaler_1st_prefill_adjustment_worst(crtc_state);
++	ctx->adj.scaler_2nd = skl_scaler_2nd_prefill_adjustment_worst(crtc_state);
++}
++
++static void prefill_init_nocdclk(struct skl_prefill_ctx *ctx,
++				 const struct intel_crtc_state *crtc_state)
++{
++	prefill_init(ctx, crtc_state);
++
++	ctx->prefill.wm0 = skl_wm0_prefill_lines(crtc_state);
++	ctx->prefill.scaler_1st = skl_scaler_1st_prefill_lines(crtc_state);
++	ctx->prefill.scaler_2nd = skl_scaler_2nd_prefill_lines(crtc_state);
++
++	ctx->adj.scaler_1st = skl_scaler_1st_prefill_adjustment(crtc_state);
++	ctx->adj.scaler_2nd = skl_scaler_2nd_prefill_adjustment(crtc_state);
++}
++
++static unsigned int prefill_adjust(unsigned int value, unsigned int factor)
++{
++	return DIV_ROUND_UP_ULL(mul_u32_u32(value, factor), 0x10000);
++}
++
++static unsigned int prefill_lines_nocdclk(const struct skl_prefill_ctx *ctx)
++{
++	unsigned int prefill = 0;
++
++	prefill += ctx->prefill.dsc;
++	prefill = prefill_adjust(prefill, ctx->adj.scaler_2nd);
++
++	prefill += ctx->prefill.scaler_2nd;
++	prefill = prefill_adjust(prefill, ctx->adj.scaler_1st);
++
++	prefill += ctx->prefill.scaler_1st;
++	prefill += ctx->prefill.wm0;
++
++	return prefill;
++}
++
++static unsigned int prefill_lines_cdclk(const struct skl_prefill_ctx *ctx)
++{
++	return prefill_adjust(prefill_lines_nocdclk(ctx), ctx->adj.cdclk);
++}
++
++static unsigned int prefill_lines_full(const struct skl_prefill_ctx *ctx)
++{
++	return ctx->prefill.fixed + prefill_lines_cdclk(ctx);
++}
++
++void skl_prefill_init_worst(struct skl_prefill_ctx *ctx,
++			    const struct intel_crtc_state *crtc_state)
++{
++	prefill_init_nocdclk_worst(ctx, crtc_state);
++
++	ctx->adj.cdclk = intel_cdclk_prefill_adjustment_worst(crtc_state);
++
++	ctx->prefill.full = prefill_lines_full(ctx);
++}
++
++void skl_prefill_init(struct skl_prefill_ctx *ctx,
++		      const struct intel_crtc_state *crtc_state)
++{
++	prefill_init_nocdclk(ctx, crtc_state);
++
++	ctx->adj.cdclk = intel_cdclk_prefill_adjustment(crtc_state);
++
++	ctx->prefill.full = prefill_lines_full(ctx);
++}
++
++static unsigned int prefill_lines_with_latency(const struct skl_prefill_ctx *ctx,
++					       const struct intel_crtc_state *crtc_state,
++					       unsigned int latency_us)
++{
++	return ctx->prefill.full + prefill_usecs_to_lines(crtc_state, latency_us);
++}
++
++int skl_prefill_min_guardband(const struct skl_prefill_ctx *ctx,
++			      const struct intel_crtc_state *crtc_state,
++			      unsigned int latency_us)
++{
++	unsigned int prefill = prefill_lines_with_latency(ctx, crtc_state, latency_us);
++
++	return DIV_ROUND_UP(prefill, 0x10000);
++}
++
++static unsigned int prefill_guardband(const struct intel_crtc_state *crtc_state)
++{
++	return intel_crtc_vblank_length(crtc_state) << 16;
++}
++
++bool skl_prefill_vblank_too_short(const struct skl_prefill_ctx *ctx,
++				  const struct intel_crtc_state *crtc_state,
++				  unsigned int latency_us)
++{
++	unsigned int guardband = prefill_guardband(crtc_state);
++	unsigned int prefill = prefill_lines_with_latency(ctx, crtc_state, latency_us);
++
++	return guardband < prefill;
++}
++
++int skl_prefill_min_cdclk(const struct skl_prefill_ctx *ctx,
++			  const struct intel_crtc_state *crtc_state)
++{
++	unsigned int prefill_unadjusted = prefill_lines_nocdclk(ctx);
++	unsigned int prefill_available = prefill_guardband(crtc_state) - ctx->prefill.fixed;
++
++	return intel_cdclk_min_cdclk_for_prefill(crtc_state, prefill_unadjusted,
++						 prefill_available);
++}
+diff --git a/drivers/gpu/drm/i915/display/skl_prefill.h b/drivers/gpu/drm/i915/display/skl_prefill.h
+new file mode 100644
+index 000000000000..028ee19b64ce
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/skl_prefill.h
+@@ -0,0 +1,46 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#ifndef __SKL_PREFILL_H__
++#define __SKL_PREFILL_H__
++
++#include <linux/types.h>
++
++struct intel_crtc_state;
++
++struct skl_prefill_ctx {
++	/* .16 scanlines */
++	struct {
++		unsigned int fixed;
++		unsigned int wm0;
++		unsigned int scaler_1st;
++		unsigned int scaler_2nd;
++		unsigned int dsc;
++		unsigned int full;
++	} prefill;
++
++	/* .16 adjustment factors */
++	struct {
++		unsigned int cdclk;
++		unsigned int scaler_1st;
++		unsigned int scaler_2nd;
++	} adj;
++};
++
++void skl_prefill_init_worst(struct skl_prefill_ctx *ctx,
++			    const struct intel_crtc_state *crtc_state);
++void skl_prefill_init(struct skl_prefill_ctx *ctx,
++		      const struct intel_crtc_state *crtc_state);
++
++bool skl_prefill_vblank_too_short(const struct skl_prefill_ctx *ctx,
++				  const struct intel_crtc_state *crtc_state,
++				  unsigned int latency_us);
++int skl_prefill_min_guardband(const struct skl_prefill_ctx *ctx,
++			      const struct intel_crtc_state *crtc_state,
++			      unsigned int latency_us);
++int skl_prefill_min_cdclk(const struct skl_prefill_ctx *ctx,
++			  const struct intel_crtc_state *crtc_state);
++
++#endif /* __SKL_PREFILL_H__ */
+diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+index c6cccf170ff1..d29efcbf2319 100644
+--- a/drivers/gpu/drm/i915/display/skl_scaler.c
++++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+@@ -968,3 +968,144 @@ void adl_scaler_ecc_unmask(const struct intel_crtc_state *crtc_state)
+ 			  1);
+ 	intel_de_write(display, XELPD_DISPLAY_ERR_FATAL_MASK, 0);
+ }
++
++unsigned int skl_scaler_1st_prefill_adjustment(const struct intel_crtc_state *crtc_state)
++{
++	/*
++	 * FIXME don't have scalers assigned yet
++	 * so can't look up the scale factors
++	 */
++	return 0x10000;
++}
++
++unsigned int skl_scaler_2nd_prefill_adjustment(const struct intel_crtc_state *crtc_state)
++{
++	/*
++	 * FIXME don't have scalers assigned yet
++	 * so can't look up the scale factors
++	 */
++	return 0x10000;
++}
++
++unsigned int skl_scaler_1st_prefill_lines(const struct intel_crtc_state *crtc_state)
++{
++	const struct intel_crtc_scaler_state *scaler_state =
++		&crtc_state->scaler_state;
++	int num_scalers = hweight32(scaler_state->scaler_users);
++
++	if (num_scalers > 0)
++		return 4 << 16;
++
++	return 0;
++}
++
++unsigned int skl_scaler_2nd_prefill_lines(const struct intel_crtc_state *crtc_state)
++{
++	const struct intel_crtc_scaler_state *scaler_state =
++		&crtc_state->scaler_state;
++	int num_scalers = hweight32(scaler_state->scaler_users);
++
++	if (num_scalers > 1 && crtc_state->pch_pfit.enabled)
++		return 4 << 16;
++
++	return 0;
++}
++
++static unsigned int _skl_scaler_max_scale(const struct intel_crtc_state *crtc_state,
++					  unsigned int max_scale)
++{
++	struct intel_display *display = to_intel_display(crtc_state);
++
++	/*
++	 * Downscaling requires increasing cdclk, so max scale
++	 * factor is limited to the max_dotclock/dotclock ratio.
++	 *
++	 * FIXME find out the max downscale factors properly
++	 */
++	return min(max_scale, DIV_ROUND_UP_ULL((u64)display->cdclk.max_dotclk_freq << 16,
++					       crtc_state->hw.pipe_mode.crtc_clock));
++}
++
++unsigned int skl_scaler_max_total_scale(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	unsigned int max_scale;
++
++	if (crtc->num_scalers < 1)
++		return 0x10000;
++
++	/* FIXME find out the max downscale factors properly */
++	max_scale = 9 << 16;
++	if (crtc->num_scalers > 1)
++		max_scale *= 9;
++
++	return _skl_scaler_max_scale(crtc_state, max_scale);
++}
++
++unsigned int skl_scaler_max_hscale(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	unsigned int max_scale;
++
++	if (crtc->num_scalers < 1)
++		return 0x10000;
++
++	/* FIXME find out the max downscale factors properly */
++	max_scale = 3 << 16;
++
++	return _skl_scaler_max_scale(crtc_state, max_scale);
++}
++
++unsigned int skl_scaler_max_scale(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	unsigned int max_scale;
++
++	if (crtc->num_scalers < 1)
++		return 0x10000;
++
++	/* FIXME find out the max downscale factors properly */
++	max_scale = 9 << 16;
++
++	return _skl_scaler_max_scale(crtc_state, max_scale);
++}
++
++unsigned int skl_scaler_1st_prefill_adjustment_worst(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++
++	if (crtc->num_scalers > 0)
++		return skl_scaler_max_scale(crtc_state);
++	else
++		return 0x10000;
++}
++
++unsigned int skl_scaler_2nd_prefill_adjustment_worst(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++
++	if (crtc->num_scalers > 1)
++		return skl_scaler_max_scale(crtc_state);
++	else
++		return 0x10000;
++}
++
++unsigned int skl_scaler_1st_prefill_lines_worst(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++
++	if (crtc->num_scalers > 0)
++		return 4 << 16;
++	else
++		return 0;
++}
++
++unsigned int skl_scaler_2nd_prefill_lines_worst(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++
++	if (crtc->num_scalers > 1)
++		return 4 << 16;
++	else
++		return 0;
++}
+diff --git a/drivers/gpu/drm/i915/display/skl_scaler.h b/drivers/gpu/drm/i915/display/skl_scaler.h
+index 12a19016c5f6..5deabca909e6 100644
+--- a/drivers/gpu/drm/i915/display/skl_scaler.h
++++ b/drivers/gpu/drm/i915/display/skl_scaler.h
+@@ -45,4 +45,19 @@ skl_scaler_mode_valid(struct intel_display *display,
+ void adl_scaler_ecc_mask(const struct intel_crtc_state *crtc_state);
+ 
+ void adl_scaler_ecc_unmask(const struct intel_crtc_state *crtc_state);
++
++unsigned int skl_scaler_max_total_scale(const struct intel_crtc_state *crtc_state);
++unsigned int skl_scaler_max_scale(const struct intel_crtc_state *crtc_state);
++unsigned int skl_scaler_max_hscale(const struct intel_crtc_state *crtc_state);
++
++unsigned int skl_scaler_1st_prefill_adjustment_worst(const struct intel_crtc_state *crtc_state);
++unsigned int skl_scaler_2nd_prefill_adjustment_worst(const struct intel_crtc_state *crtc_state);
++unsigned int skl_scaler_1st_prefill_lines_worst(const struct intel_crtc_state *crtc_state);
++unsigned int skl_scaler_2nd_prefill_lines_worst(const struct intel_crtc_state *crtc_state);
++
++unsigned int skl_scaler_1st_prefill_adjustment(const struct intel_crtc_state *crtc_state);
++unsigned int skl_scaler_2nd_prefill_adjustment(const struct intel_crtc_state *crtc_state);
++unsigned int skl_scaler_1st_prefill_lines(const struct intel_crtc_state *crtc_state);
++unsigned int skl_scaler_2nd_prefill_lines(const struct intel_crtc_state *crtc_state);
++
+ #endif
 diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 9df9ee137bf9..06e5e6c77d2e 100644
+index 06e5e6c77d2e..256162da9afc 100644
 --- a/drivers/gpu/drm/i915/display/skl_watermark.c
 +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -28,6 +28,7 @@
- #include "intel_flipq.h"
- #include "intel_pcode.h"
+@@ -30,6 +30,8 @@
  #include "intel_plane.h"
-+#include "intel_vblank.h"
+ #include "intel_vblank.h"
  #include "intel_wm.h"
++#include "skl_prefill.h"
++#include "skl_scaler.h"
  #include "skl_universal_plane_regs.h"
  #include "skl_watermark.h"
-@@ -2241,7 +2242,7 @@ skl_is_vblank_too_short(const struct intel_crtc_state *crtc_state,
- 		scaler_prefill_latency(crtc_state) +
- 		dsc_prefill_latency(crtc_state) +
- 		wm0_lines >
--		adjusted_mode->crtc_vtotal - adjusted_mode->crtc_vblank_start;
-+		intel_crtc_vblank_length(crtc_state);
+ #include "skl_watermark_regs.h"
+@@ -2146,103 +2148,55 @@ static int icl_build_plane_wm(struct intel_crtc_state *crtc_state,
+ 	return 0;
+ }
+ 
+-static int
+-cdclk_prefill_adjustment(const struct intel_crtc_state *crtc_state)
++unsigned int skl_wm0_prefill_lines_worst(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+-	struct intel_atomic_state *state =
+-		to_intel_atomic_state(crtc_state->uapi.state);
+-	const struct intel_cdclk_state *cdclk_state;
+-
+-	cdclk_state = intel_atomic_get_cdclk_state(state);
+-	if (IS_ERR(cdclk_state)) {
+-		drm_WARN_ON(display->drm, PTR_ERR(cdclk_state));
+-		return 1;
+-	}
+-
+-	return min(1, DIV_ROUND_UP(crtc_state->pixel_rate,
+-				   2 * intel_cdclk_logical(cdclk_state)));
+-}
+-
+-static int
+-dsc_prefill_latency(const struct intel_crtc_state *crtc_state)
+-{
+-	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+-	const struct intel_crtc_scaler_state *scaler_state =
+-					&crtc_state->scaler_state;
+-	int linetime = DIV_ROUND_UP(1000 * crtc_state->hw.adjusted_mode.htotal,
+-				    crtc_state->hw.adjusted_mode.clock);
+-	int num_scaler_users = hweight32(scaler_state->scaler_users);
+-	int chroma_downscaling_factor =
+-		crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ? 2 : 1;
+-	u32 dsc_prefill_latency = 0;
+-
+-	if (!crtc_state->dsc.compression_enable ||
+-	    !num_scaler_users ||
+-	    num_scaler_users > crtc->num_scalers)
+-		return dsc_prefill_latency;
+-
+-	dsc_prefill_latency = DIV_ROUND_UP(15 * linetime * chroma_downscaling_factor, 10);
+-
+-	for (int i = 0; i < num_scaler_users; i++) {
+-		u64 hscale_k, vscale_k;
+-
+-		hscale_k = max(1000, mul_u32_u32(scaler_state->scalers[i].hscale, 1000) >> 16);
+-		vscale_k = max(1000, mul_u32_u32(scaler_state->scalers[i].vscale, 1000) >> 16);
+-		dsc_prefill_latency = DIV_ROUND_UP_ULL(dsc_prefill_latency * hscale_k * vscale_k,
+-						       1000000);
+-	}
+-
+-	dsc_prefill_latency *= cdclk_prefill_adjustment(crtc_state);
++	struct intel_plane *plane = to_intel_plane(crtc_state->uapi.crtc->primary);
++	const struct drm_display_mode *pipe_mode = &crtc_state->hw.pipe_mode;
++	int ret, pixel_rate, width, level = 0;
++	const struct drm_format_info *info;
++	struct skl_wm_level wm = {};
++	struct skl_wm_params wp;
++	unsigned int latency;
++	u64 modifier;
++	u32 format;
+ 
+-	return intel_usecs_to_scanlines(&crtc_state->hw.adjusted_mode, dsc_prefill_latency);
+-}
++	/* only expected to be used for VRR guardband calculation */
++	drm_WARN_ON(display->drm, !HAS_VRR(display));
+ 
+-static int
+-scaler_prefill_latency(const struct intel_crtc_state *crtc_state)
+-{
+-	const struct intel_crtc_scaler_state *scaler_state =
+-					&crtc_state->scaler_state;
+-	int num_scaler_users = hweight32(scaler_state->scaler_users);
+-	int scaler_prefill_latency = 0;
+-	int linetime = DIV_ROUND_UP(1000 * crtc_state->hw.adjusted_mode.htotal,
+-				    crtc_state->hw.adjusted_mode.clock);
++	/* FIXME rather ugly to pick this by hand but maybe no better way? */
++	format = DRM_FORMAT_XBGR16161616F;
++	if (HAS_4TILE(display))
++		modifier = I915_FORMAT_MOD_4_TILED;
++	else
++		modifier = I915_FORMAT_MOD_Y_TILED;
+ 
+-	if (!num_scaler_users)
+-		return scaler_prefill_latency;
++	info = drm_get_format_info(display->drm, format, modifier);
+ 
+-	scaler_prefill_latency = 4 * linetime;
++	pixel_rate = DIV_ROUND_UP_ULL(mul_u32_u32(skl_scaler_max_total_scale(crtc_state),
++						  pipe_mode->crtc_clock),
++				      0x10000);
+ 
+-	if (num_scaler_users > 1) {
+-		u64 hscale_k = max(1000, mul_u32_u32(scaler_state->scalers[0].hscale, 1000) >> 16);
+-		u64 vscale_k = max(1000, mul_u32_u32(scaler_state->scalers[0].vscale, 1000) >> 16);
+-		int chroma_downscaling_factor =
+-			crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ? 2 : 1;
+-		int latency;
++	/* FIXME limit to max plane width? */
++	width = DIV_ROUND_UP_ULL(mul_u32_u32(skl_scaler_max_hscale(crtc_state),
++					     pipe_mode->crtc_hdisplay),
++				 0x10000);
+ 
+-		latency = DIV_ROUND_UP_ULL((4 * linetime * hscale_k * vscale_k *
+-					    chroma_downscaling_factor), 1000000);
+-		scaler_prefill_latency += latency;
+-	}
++	/* FIXME is 90/270 rotation worse than 0/180? */
++	ret = skl_compute_wm_params(crtc_state, width, info,
++				    modifier, DRM_MODE_ROTATE_0,
++				    pixel_rate, &wp, 0, 1);
++	drm_WARN_ON(display->drm, ret);
+ 
+-	scaler_prefill_latency *= cdclk_prefill_adjustment(crtc_state);
++	latency = skl_wm_latency(display, level, &wp);
+ 
+-	return intel_usecs_to_scanlines(&crtc_state->hw.adjusted_mode, scaler_prefill_latency);
+-}
++	skl_compute_plane_wm(crtc_state, plane, level, latency, &wp, &wm, &wm);
+ 
+-static bool
+-skl_is_vblank_too_short(const struct intel_crtc_state *crtc_state,
+-			int wm0_lines, int latency)
+-{
+-	const struct drm_display_mode *adjusted_mode =
+-		&crtc_state->hw.adjusted_mode;
++	/* FIXME is this sane? */
++	if (wm.min_ddb_alloc == U16_MAX)
++		wm.lines = skl_wm_max_lines(display);
+ 
+-	return crtc_state->framestart_delay +
+-		intel_usecs_to_scanlines(adjusted_mode, latency) +
+-		scaler_prefill_latency(crtc_state) +
+-		dsc_prefill_latency(crtc_state) +
+-		wm0_lines >
+-		intel_crtc_vblank_length(crtc_state);
++	return wm.lines << 16;
  }
  
  static int skl_max_wm0_lines(const struct intel_crtc_state *crtc_state)
+@@ -2261,15 +2215,21 @@ static int skl_max_wm0_lines(const struct intel_crtc_state *crtc_state)
+ 	return wm0_lines;
+ }
+ 
++unsigned int skl_wm0_prefill_lines(const struct intel_crtc_state *crtc_state)
++{
++	return skl_max_wm0_lines(crtc_state) << 16;
++}
++
+ /*
+  * TODO: In case we use PKG_C_LATENCY to allow C-states when the delayed vblank
+  * size is too small for the package C exit latency we need to notify PSR about
+  * the scenario to apply Wa_16025596647.
+  */
+ static int skl_max_wm_level_for_vblank(struct intel_crtc_state *crtc_state,
+-				       int wm0_lines)
++				       const struct skl_prefill_ctx *ctx)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	int level;
+ 
+ 	for (level = display->wm.num_levels - 1; level >= 0; level--) {
+@@ -2284,10 +2244,13 @@ static int skl_max_wm_level_for_vblank(struct intel_crtc_state *crtc_state,
+ 		if (level == 0)
+ 			latency = 0;
+ 
+-		if (!skl_is_vblank_too_short(crtc_state, wm0_lines, latency))
++		if (!skl_prefill_vblank_too_short(ctx, crtc_state, latency))
+ 			return level;
+ 	}
+ 
++	drm_dbg_kms(display->drm, "[CRTC:%d:%s] Not enough time in vblank for prefill\n",
++		    crtc->base.base.id, crtc->base.name);
++
+ 	return -EINVAL;
+ }
+ 
+@@ -2295,14 +2258,15 @@ static int skl_wm_check_vblank(struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+-	int wm0_lines, level;
++	struct skl_prefill_ctx ctx;
++	int level;
+ 
+ 	if (!crtc_state->hw.active)
+ 		return 0;
+ 
+-	wm0_lines = skl_max_wm0_lines(crtc_state);
++	skl_prefill_init(&ctx, crtc_state);
+ 
+-	level = skl_max_wm_level_for_vblank(crtc_state, wm0_lines);
++	level = skl_max_wm_level_for_vblank(crtc_state, &ctx);
+ 	if (level < 0)
+ 		return level;
+ 
+@@ -2312,6 +2276,13 @@ static int skl_wm_check_vblank(struct intel_crtc_state *crtc_state)
+ 	 */
+ 	crtc_state->wm_level_disabled = level < display->wm.num_levels - 1;
+ 
++	/*
++	 * TODO: assert that we are in fact using the maximum guardband
++	 * if we end up disabling any WM levels here. Otherwise we clearly
++	 * failed in using a realistic worst case prefill estimate when
++	 * determining the guardband size.
++	 */
++
+ 	for (level++; level < display->wm.num_levels; level++) {
+ 		enum plane_id plane_id;
+ 
+@@ -2330,8 +2301,8 @@ static int skl_wm_check_vblank(struct intel_crtc_state *crtc_state)
+ 
+ 	if (DISPLAY_VER(display) >= 12 &&
+ 	    display->sagv.block_time_us &&
+-	    skl_is_vblank_too_short(crtc_state, wm0_lines,
+-				    display->sagv.block_time_us)) {
++	    skl_prefill_vblank_too_short(&ctx, crtc_state,
++					 display->sagv.block_time_us)) {
+ 		enum plane_id plane_id;
+ 
+ 		for_each_plane_id_on_crtc(crtc, plane_id) {
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.h b/drivers/gpu/drm/i915/display/skl_watermark.h
+index 62790816f030..6bc2ec9164bf 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.h
++++ b/drivers/gpu/drm/i915/display/skl_watermark.h
+@@ -79,5 +79,8 @@ void intel_program_dpkgc_latency(struct intel_atomic_state *state);
+ 
+ bool intel_dbuf_pmdemand_needs_update(struct intel_atomic_state *state);
+ 
++unsigned int skl_wm0_prefill_lines_worst(const struct intel_crtc_state *crtc_state);
++unsigned int skl_wm0_prefill_lines(const struct intel_crtc_state *crtc_state);
++
+ #endif /* __SKL_WATERMARK_H__ */
+ 
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 84321fad3265..6f5964f1a04d 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -311,6 +311,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+ 	i915-display/intel_vga.o \
+ 	i915-display/intel_vrr.o \
+ 	i915-display/intel_wm.o \
++	i915-display/skl_prefill.o \
+ 	i915-display/skl_scaler.o \
+ 	i915-display/skl_universal_plane.o \
+ 	i915-display/skl_watermark.o
 -- 
 2.45.2
 
