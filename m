@@ -2,74 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F04E7BE5816
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Oct 2025 23:03:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 500D7BE5997
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Oct 2025 23:49:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C883010E360;
-	Thu, 16 Oct 2025 21:03:53 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BKylPG78";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA69610EAB1;
+	Thu, 16 Oct 2025 21:49:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1420210E360;
- Thu, 16 Oct 2025 21:03:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760648633; x=1792184633;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=0jLVE8BLDYoirq6Kx9qgBd7bDQnRTJGGsxfFadFFF68=;
- b=BKylPG78qWRLLVbsgZigWnN9D0HRWILfRYS/XI95ofy+iOyLiQkzHwIp
- xfInr5c0gs8kOhBNyPZCoTMdsbv3Cnn0XCF7aEUb/NmZF0Vxpb31Z2zO1
- fZoSP06VvK4PbUdHh9CkNE5Yz3ZevNanEpRJf+AxfyQHnEK0vbXw4i/I2
- mo2kvQMuLB6c9UB4MvtemMghZvnWByFbziNTPyQYiWxm9pmtopls8V7V7
- 3r3883OL2LPtXjSM9Uf3erBmvjnKHUuvU8OmFAevg40e1pwMtyRUkx22z
- +rCe5WMHnboW8FRxxwppNqeefDL9oeVPvZDQj9+3kS+wXWAeTsRsF1fwM A==;
-X-CSE-ConnectionGUID: X876zscWShWRoPes+N3luA==
-X-CSE-MsgGUID: 18OGdxMoTR6MunoRyl78fg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11584"; a="73458987"
-X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="73458987"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2025 14:03:53 -0700
-X-CSE-ConnectionGUID: KksSOW/cTFqVjLfFGNqTjA==
-X-CSE-MsgGUID: 0aO4ulNRRDacVv9pzWcyiw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="182544655"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.12])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2025 14:03:48 -0700
-Date: Fri, 17 Oct 2025 00:03:45 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
- Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>,
- Juha-pekka Heikkila <juha-pekka.heikkila@intel.com>,
- Luca Coelho <luciano.coelho@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Atwood <matthew.s.atwood@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>,
- Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>,
- Shekhar Chauhan <shekhar.chauhan@intel.com>,
- Vinod Govindapillai <vinod.govindapillai@intel.com>
-Subject: Re: [PATCH 15/32] drm/i915/xe3p_lpd: Always apply level-0 watermark
- adjustment
-Message-ID: <aPFdsf0JJ_3xZ1Of@intel.com>
-References: <20251015-xe3p_lpd-basic-enabling-v1-0-d2d1e26520aa@intel.com>
- <20251015-xe3p_lpd-basic-enabling-v1-15-d2d1e26520aa@intel.com>
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50E1710EAB1;
+ Thu, 16 Oct 2025 21:49:36 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0955617219464707816=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251015-xe3p_lpd-basic-enabling-v1-15-d2d1e26520aa@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/frontbuffer=3A_F?=
+ =?utf-8?q?ix_the_intel=5Ffrontbuffer_lifetime_mess_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 16 Oct 2025 21:49:36 -0000
+Message-ID: <176065137632.23601.8556587998789018593@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251016185408.22735-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20251016185408.22735-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,51 +37,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 15, 2025 at 12:15:15AM -0300, Gustavo Sousa wrote:
-> When reading memory latencies for watermark calculations, previous
-> display releases instructed to apply an adjustment of adding a certain
-> value (e.g. 6us) to all levels when the level 0's memory latency read
-> from hardware was zero.
-> 
-> For Xe3p_LPD, the instruction is to always use 6us for level 0 and to
-> add that value to the other levels.  Update adjust_wm_latency()
-> accordingly.
-> 
-> Bspec: 68986, 69126
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/skl_watermark.c | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-> index 41f64e347436..88342d07727f 100644
-> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> @@ -3249,6 +3249,13 @@ adjust_wm_latency(struct intel_display *display)
->  
->  	make_wm_latency_monotonic(display);
->  
-> +	/*
-> +	 * Xe3p asks to ignore wm[0] read from the register and always
-> +	 * use the adjustment done with read_latency.
-> +	 */
-> +	if (DISPLAY_VER(display) >= 35)
-> +		wm[0] = 0;
+--===============0955617219464707816==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-make_wm_latency_monotonic() already used wm[0]. I think this
-needs to be the very first thing you do in adjust_wm_latency().
+== Series Details ==
 
-> +
->  	/*
->  	 * WaWmMemoryReadLatency
->  	 *
-> 
-> -- 
-> 2.51.0
+Series: drm/i915/frontbuffer: Fix the intel_frontbuffer lifetime mess (rev2)
+URL   : https://patchwork.freedesktop.org/series/155472/
+State : success
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_17377 -> Patchwork_155472v2
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155472v2/index.html
+
+Participating hosts (41 -> 40)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_17377 -> Patchwork_155472v2
+
+  CI-20190529: 20190529
+  CI_DRM_17377: 1f32baee68e7a3010d6092c3303516354f7b2298 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8588: 8588
+  Patchwork_155472v2: 1f32baee68e7a3010d6092c3303516354f7b2298 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155472v2/index.html
+
+--===============0955617219464707816==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/frontbuffer: Fix the intel_frontbuffer lifetime mess (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155472/">https://patchwork.freedesktop.org/series/155472/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155472v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155472v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17377 -&gt; Patchwork_155472v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155472v2/index.html</p>
+<h2>Participating hosts (41 -&gt; 40)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17377 -&gt; Patchwork_155472v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17377: 1f32baee68e7a3010d6092c3303516354f7b2298 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8588: 8588<br />
+  Patchwork_155472v2: 1f32baee68e7a3010d6092c3303516354f7b2298 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============0955617219464707816==--
