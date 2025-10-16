@@ -2,29 +2,113 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60E10BE1F3F
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Oct 2025 09:41:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A80FEBE21F7
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Oct 2025 10:21:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB9B710E979;
-	Thu, 16 Oct 2025 07:41:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C29310E1C1;
+	Thu, 16 Oct 2025 08:21:15 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=suse.cz header.i=@suse.cz header.b="JmwB9YU3";
+	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="WNXRSSLy";
+	dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b="JmwB9YU3";
+	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="WNXRSSLy";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1206D10E979;
- Thu, 16 Oct 2025 07:41:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8254566284536889044=="
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A2A210E065
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Oct 2025 08:21:14 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 4581E21992;
+ Thu, 16 Oct 2025 08:21:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+ t=1760602873;
+ h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
+ cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=qNtRHXW1ZEHasrajMZinxSaj7H8IKNLZBLBe6Cv+2ss=;
+ b=JmwB9YU3Tegva1W3+6Ham+5n4ZniEv8INBGjWUbUXaspxEMy2MpV3XaCV0QsP1UJoHEsv3
+ FDmlMWeKnzWbCnKEpnwuvRsw2hRdibct1MwVzDpoXnueZ8Xbeerov3BZHGsGtNRoQEcj0+
+ dr6NgwgT/LWRbx29BZzVArhpxXD+9lU=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+ s=susede2_ed25519; t=1760602873;
+ h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
+ cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=qNtRHXW1ZEHasrajMZinxSaj7H8IKNLZBLBe6Cv+2ss=;
+ b=WNXRSSLyPc/yXBDwlGIvD4YO96X6kcVYsRXs1UVazRWKY11L9KM4JIp7lZO4qtqtpu/b6O
+ Gq7o/pj8lBNnFdDw==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+ t=1760602873;
+ h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
+ cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=qNtRHXW1ZEHasrajMZinxSaj7H8IKNLZBLBe6Cv+2ss=;
+ b=JmwB9YU3Tegva1W3+6Ham+5n4ZniEv8INBGjWUbUXaspxEMy2MpV3XaCV0QsP1UJoHEsv3
+ FDmlMWeKnzWbCnKEpnwuvRsw2hRdibct1MwVzDpoXnueZ8Xbeerov3BZHGsGtNRoQEcj0+
+ dr6NgwgT/LWRbx29BZzVArhpxXD+9lU=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+ s=susede2_ed25519; t=1760602873;
+ h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
+ cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=qNtRHXW1ZEHasrajMZinxSaj7H8IKNLZBLBe6Cv+2ss=;
+ b=WNXRSSLyPc/yXBDwlGIvD4YO96X6kcVYsRXs1UVazRWKY11L9KM4JIp7lZO4qtqtpu/b6O
+ Gq7o/pj8lBNnFdDw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 8700C1376E;
+ Thu, 16 Oct 2025 08:21:12 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id w9vCHPiq8GipDwAAD6G6ig
+ (envelope-from <pvorel@suse.cz>); Thu, 16 Oct 2025 08:21:12 +0000
+Date: Thu, 16 Oct 2025 10:21:10 +0200
+From: Petr Vorel <pvorel@suse.cz>
+To: Randy Dunlap <rdunlap@infradead.org>
+Cc: dri-devel@lists.freedesktop.org,
+ Alexander Usyskin <alexander.usyskin@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas =?iso-8859-2?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+Subject: Re: [PATCH] mei: intel_lb_mei_interface.h: mark struct member with
+ kernel-doc
+Message-ID: <20251016082110.GA256560@pevik>
+References: <20251016035942.1148176-1-rdunlap@infradead.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_Preparatory_patches_for_g?=
- =?utf-8?q?uardband_optimization_=28rev8=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 16 Oct 2025 07:41:55 -0000
-Message-ID: <176060051506.20799.3032077487769563043@97596180aaec>
-X-Patchwork-Hint: ignore
-References: <20251016055415.2101347-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20251016055415.2101347-1-ankit.k.nautiyal@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251016035942.1148176-1-rdunlap@infradead.org>
+X-Spam-Level: 
+X-Spamd-Result: default: False [-3.50 / 50.00]; BAYES_HAM(-3.00)[99.99%];
+ NEURAL_HAM_LONG(-1.00)[-1.000]; MID_RHS_NOT_FQDN(0.50)[];
+ HAS_REPLYTO(0.30)[pvorel@suse.cz];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
+ MIME_TRACE(0.00)[0:+]; MISSING_XM_UA(0.00)[];
+ TO_DN_SOME(0.00)[]; RCPT_COUNT_TWELVE(0.00)[13];
+ FUZZY_RATELIMITED(0.00)[rspamd.com];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ DKIM_SIGNED(0.00)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
+ FROM_HAS_DN(0.00)[];
+ FREEMAIL_CC(0.00)[lists.freedesktop.org,intel.com,linux.intel.com,ursulin.net,gmail.com,ffwll.ch];
+ RCVD_TLS_ALL(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,suse.cz:email,suse.cz:replyto];
+ RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ REPLYTO_EQ_FROM(0.00)[]
+X-Spam-Flag: NO
+X-Spam-Score: -3.50
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,159 +121,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
+Reply-To: Petr Vorel <pvorel@suse.cz>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8254566284536889044==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi,
 
-== Series Details ==
+...
+> Use correct kernel-doc notation to prevent 3 kernel-doc warnings.
+> @push_payload is a struct member here, not a function, so use '@'
+> and ':' in its description.
 
-Series: Preparatory patches for guardband optimization (rev8)
-URL   : https://patchwork.freedesktop.org/series/155661/
-State : success
+>  struct intel_lb_component_ops {
+>  	/**
+> -	 * push_payload - Sends a payload to the authentication firmware
+> +	 * @push_payload: Sends a payload to the authentication firmware
 
-== Summary ==
+Obviously correct.
 
-CI Bug Log - changes from CI_DRM_17371 -> Patchwork_155661v8
-====================================================
+Reviewed-by: Petr Vorel <pvorel@suse.cz>
 
-Summary
--------
+Kind regards,
+Petr
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155661v8/index.html
-
-Participating hosts (41 -> 40)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_155661v8 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17371/bat-mtlp-8/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155661v8/bat-mtlp-8/igt@i915_selftest@live.html
-    - bat-dg2-8:          [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17371/bat-dg2-8/igt@i915_selftest@live.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155661v8/bat-dg2-8/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-9:         [PASS][5] -> [DMESG-FAIL][6] ([i915#12061]) +1 other test dmesg-fail
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17371/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155661v8/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-
-  * igt@runner@aborted:
-    - fi-bsw-n3050:       NOTRUN -> [FAIL][7] ([i915#15124])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155661v8/fi-bsw-n3050/igt@runner@aborted.html
-    - fi-bsw-nick:        NOTRUN -> [FAIL][8] ([i915#15124])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155661v8/fi-bsw-nick/igt@runner@aborted.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#15124]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15124
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_17371 -> Patchwork_155661v8
-
-  CI-20190529: 20190529
-  CI_DRM_17371: aaaff197c9186f4959c2bcb18035725188b950ed @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8587: 8587
-  Patchwork_155661v8: aaaff197c9186f4959c2bcb18035725188b950ed @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155661v8/index.html
-
---===============8254566284536889044==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Preparatory patches for guardband optimization (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155661/">https://patchwork.freedesktop.org/series/155661/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155661v8/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155661v8/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17371 -&gt; Patchwork_155661v8</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155661v8/index.html</p>
-<h2>Participating hosts (41 -&gt; 40)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_155661v8 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17371/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155661v8/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17371/bat-dg2-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155661v8/bat-dg2-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17371/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155661v8/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155661v8/fi-bsw-n3050/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15124">i915#15124</a>)</li>
-<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155661v8/fi-bsw-nick/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15124">i915#15124</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17371 -&gt; Patchwork_155661v8</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17371: aaaff197c9186f4959c2bcb18035725188b950ed @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8587: 8587<br />
-  Patchwork_155661v8: aaaff197c9186f4959c2bcb18035725188b950ed @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============8254566284536889044==--
+>  	 * @dev: Device struct corresponding to the mei device
+>  	 * @type: Payload type (see &enum intel_lb_type)
+>  	 * @flags: Payload flags bitmap (e.g. %INTEL_LB_FLAGS_IS_PERSISTENT)
