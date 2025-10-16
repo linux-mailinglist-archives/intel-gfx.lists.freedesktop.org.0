@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99BE0BE51F9
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Oct 2025 20:54:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B50FBE51FF
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Oct 2025 20:54:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 012E310E342;
-	Thu, 16 Oct 2025 18:54:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1A8D10EA75;
+	Thu, 16 Oct 2025 18:54:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z6UaqQJT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mJXvSLMR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3032D10E342;
- Thu, 16 Oct 2025 18:54:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3EBC310EA68;
+ Thu, 16 Oct 2025 18:54:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760640869; x=1792176869;
+ t=1760640873; x=1792176873;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=f0EZvylB9Gwjp0oAWBj1+XUktaPua4WGJRW57/b7HIU=;
- b=Z6UaqQJT8o1GUPHnbdzBcG/5h5Rb+5gXP+Ko6zzDGf9cLhDmC7daQOBw
- siveDwJSyyrLT8vC9I4ETKPCs+IEQCS7ZABln0KBRxE1+WroHL6CiK7iR
- PSlmq+75c70UYDFwmkQRLChpCKdkSj5x1GLiviZfrvZsDKDmE4WsRLO8a
- 7abqSlBNTWmEOrtCYjIVcH49q1xrdxgHVdTXkWt4lLalOi0aQobRr0NTR
- px7ec+4lDT41zMx7je86tMZE+qWMNppzgIrdAyOT0wNMeK11rM4ubIGTK
- jtoD0l4kNVSjvmlOEeY20cWmd0V+GTGg9Tdxj4nT8f/FngFTaQNoWod03 Q==;
-X-CSE-ConnectionGUID: G/5wHVojRg2EKyYkgMZPDg==
-X-CSE-MsgGUID: CzyY8hUvTUeI60tGZPR5UA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11584"; a="62894813"
-X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="62894813"
+ bh=1IGkRa3MyXeE/x8ovX9HkhJV3pwnoKQnb3f35BhHSgA=;
+ b=mJXvSLMRjHQpxMwzRonRWtTiMO05UHqmUZGzk8sN9qvHieL4tDVkNQdW
+ 0B/JCTH9x15r7rIzIuCyt7iPLTzInCpOkfeE9jTnIwBj3djkEw1VE+jVx
+ pLjzvyBa2pGhmHJLq4ipPNfEXFGvKgItsOzVGgADvwDQpB4lu/IxfR5bK
+ QqXiQ/fR6NFYPV0whiXEfRiPdRVYzuI5VmaWTZlRDI5BfjzFebkQQL2+d
+ Zq+k89ZrjButt7mDFfKRQzA2XfV5O9HKhkkzmzBAOFlLmKjfUL87L3Am1
+ x1QnK36UF3glrww8ax1dqyymLORZljX+7vqaAs3tgbqYekHWdLno119/L Q==;
+X-CSE-ConnectionGUID: kn1oYg/hQ1qhkDrQG2Nhyw==
+X-CSE-MsgGUID: ojEERvaMQ7y1dQ4Z7qS/zw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11584"; a="62894817"
+X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="62894817"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2025 11:54:29 -0700
-X-CSE-ConnectionGUID: cBWNn49ZQqe1i3G3P9gLyA==
-X-CSE-MsgGUID: lv1DrsSIRRikPjXz8tXz8A==
+ 16 Oct 2025 11:54:33 -0700
+X-CSE-ConnectionGUID: hCBBRNxaQbat14M9syN+Rw==
+X-CSE-MsgGUID: rJc24rjxQeS9qu45B8QXvA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="182514574"
+X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="182514620"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.12])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2025 11:54:28 -0700
+ 16 Oct 2025 11:54:32 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v2 04/10] drm/i915/frontbuffer: Turn
- intel_bo_flush_if_display() into a frontbuffer operation
-Date: Thu, 16 Oct 2025 21:54:02 +0300
-Message-ID: <20251016185408.22735-5-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 05/10] drm/i915/frontbuffer: Handle the dirtyfb cache flush
+ inside intel_frontbuffer_flush()
+Date: Thu, 16 Oct 2025 21:54:03 +0300
+Message-ID: <20251016185408.22735-6-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20251016185408.22735-1-ville.syrjala@linux.intel.com>
 References: <20251016185408.22735-1-ville.syrjala@linux.intel.com>
@@ -74,120 +74,56 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Convert intel_bo_flush_if_display() to be an operation on the
-frontbuffer object rather than the underlying gem bo. This
-will help with cleaning up the frontbuffer xe/i915 vs. display
-split.
+intel_bo_frontbuffer_flush_for_display() is a bit too low level
+to be direclty in the high level dirtyfb code. Move the calls
+into intel_frontbuffer_flush().
+
+There is a slight beahavioural change here in that we now skip
+the flush if the bo is not a current scanout buffer (front->bits
+== 0). But that is fine as the flush will eventually happen via
+the fb pinning code if/when the bo becomes a scanout buffer again.
 
 Acked-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bo.c          | 10 +++++-----
- drivers/gpu/drm/i915/display/intel_bo.h          |  2 +-
- drivers/gpu/drm/i915/display/intel_fb.c          |  2 +-
- drivers/gpu/drm/i915/display/intel_frontbuffer.c |  2 +-
- drivers/gpu/drm/xe/display/intel_bo.c            |  8 ++++----
- 5 files changed, 12 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fb.c          | 1 -
+ drivers/gpu/drm/i915/display/intel_frontbuffer.c | 4 +++-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bo.c b/drivers/gpu/drm/i915/display/intel_bo.c
-index 6ae1374d5c2b..2792aca7bc22 100644
---- a/drivers/gpu/drm/i915/display/intel_bo.c
-+++ b/drivers/gpu/drm/i915/display/intel_bo.c
-@@ -29,11 +29,6 @@ bool intel_bo_is_protected(struct drm_gem_object *obj)
- 	return i915_gem_object_is_protected(to_intel_bo(obj));
- }
- 
--void intel_bo_flush_if_display(struct drm_gem_object *obj)
--{
--	i915_gem_object_flush_if_display(to_intel_bo(obj));
--}
--
- int intel_bo_fb_mmap(struct drm_gem_object *obj, struct vm_area_struct *vma)
- {
- 	return i915_gem_fb_mmap(to_intel_bo(obj), vma);
-@@ -55,6 +50,11 @@ struct intel_frontbuffer *intel_bo_set_frontbuffer(struct drm_gem_object *obj,
- 	return i915_gem_object_set_frontbuffer(to_intel_bo(obj), front);
- }
- 
-+void intel_bo_frontbuffer_flush_for_display(struct intel_frontbuffer *front)
-+{
-+	i915_gem_object_flush_if_display(to_intel_bo(front->obj));
-+}
-+
- void intel_bo_describe(struct seq_file *m, struct drm_gem_object *obj)
- {
- 	i915_debugfs_describe_obj(m, to_intel_bo(obj));
-diff --git a/drivers/gpu/drm/i915/display/intel_bo.h b/drivers/gpu/drm/i915/display/intel_bo.h
-index 48d87019e48a..08247bf36d40 100644
---- a/drivers/gpu/drm/i915/display/intel_bo.h
-+++ b/drivers/gpu/drm/i915/display/intel_bo.h
-@@ -16,13 +16,13 @@ bool intel_bo_is_tiled(struct drm_gem_object *obj);
- bool intel_bo_is_userptr(struct drm_gem_object *obj);
- bool intel_bo_is_shmem(struct drm_gem_object *obj);
- bool intel_bo_is_protected(struct drm_gem_object *obj);
--void intel_bo_flush_if_display(struct drm_gem_object *obj);
- int intel_bo_fb_mmap(struct drm_gem_object *obj, struct vm_area_struct *vma);
- int intel_bo_read_from_page(struct drm_gem_object *obj, u64 offset, void *dst, int size);
- 
- struct intel_frontbuffer *intel_bo_get_frontbuffer(struct drm_gem_object *obj);
- struct intel_frontbuffer *intel_bo_set_frontbuffer(struct drm_gem_object *obj,
- 						   struct intel_frontbuffer *front);
-+void intel_bo_frontbuffer_flush_for_display(struct intel_frontbuffer *front);
- 
- void intel_bo_describe(struct seq_file *m, struct drm_gem_object *obj);
- 
 diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index 3958628c73e9..ab301c657395 100644
+index ab301c657395..088e194ecf69 100644
 --- a/drivers/gpu/drm/i915/display/intel_fb.c
 +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -2194,7 +2194,7 @@ static int intel_user_framebuffer_dirty(struct drm_framebuffer *fb,
+@@ -2194,7 +2194,6 @@ static int intel_user_framebuffer_dirty(struct drm_framebuffer *fb,
  	return ret;
  
  flush:
--	intel_bo_flush_if_display(obj);
-+	intel_bo_frontbuffer_flush_for_display(front);
+-	intel_bo_frontbuffer_flush_for_display(front);
  	intel_frontbuffer_flush(front, ORIGIN_DIRTYFB);
  	return ret;
  }
 diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-index 53e93985c7d4..5562801d2ea3 100644
+index 5562801d2ea3..bdf8bfa7deb9 100644
 --- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
 +++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-@@ -167,7 +167,7 @@ static void intel_frontbuffer_flush_work(struct work_struct *work)
+@@ -150,6 +150,9 @@ void __intel_fb_flush(struct intel_frontbuffer *front,
+ {
+ 	struct intel_display *display = to_intel_display(front->obj->dev);
+ 
++	if (origin == ORIGIN_DIRTYFB)
++		intel_bo_frontbuffer_flush_for_display(front);
++
+ 	if (origin == ORIGIN_CS) {
+ 		spin_lock(&display->fb_tracking.lock);
+ 		/* Filter out new bits since rendering started. */
+@@ -167,7 +170,6 @@ static void intel_frontbuffer_flush_work(struct work_struct *work)
  	struct intel_frontbuffer *front =
  		container_of(work, struct intel_frontbuffer, flush_work);
  
--	intel_bo_flush_if_display(front->obj);
-+	intel_bo_frontbuffer_flush_for_display(front);
+-	intel_bo_frontbuffer_flush_for_display(front);
  	intel_frontbuffer_flush(front, ORIGIN_DIRTYFB);
  	intel_frontbuffer_put(front);
  }
-diff --git a/drivers/gpu/drm/xe/display/intel_bo.c b/drivers/gpu/drm/xe/display/intel_bo.c
-index 27437c22bd70..2437c00a2d3e 100644
---- a/drivers/gpu/drm/xe/display/intel_bo.c
-+++ b/drivers/gpu/drm/xe/display/intel_bo.c
-@@ -28,10 +28,6 @@ bool intel_bo_is_protected(struct drm_gem_object *obj)
- 	return xe_bo_is_protected(gem_to_xe_bo(obj));
- }
- 
--void intel_bo_flush_if_display(struct drm_gem_object *obj)
--{
--}
--
- int intel_bo_fb_mmap(struct drm_gem_object *obj, struct vm_area_struct *vma)
- {
- 	return drm_gem_prime_mmap(obj, vma);
-@@ -55,6 +51,10 @@ struct intel_frontbuffer *intel_bo_set_frontbuffer(struct drm_gem_object *obj,
- 	return front;
- }
- 
-+void intel_bo_frontbuffer_flush_for_display(struct intel_frontbuffer *front)
-+{
-+}
-+
- void intel_bo_describe(struct seq_file *m, struct drm_gem_object *obj)
- {
- 	/* FIXME */
 -- 
 2.49.1
 
