@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14342BEA8AD
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Oct 2025 18:14:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B349BEA8B2
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Oct 2025 18:14:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69C3A10EC73;
-	Fri, 17 Oct 2025 16:14:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF8B310EC77;
+	Fri, 17 Oct 2025 16:14:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ThuYcWPp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AR4rZZoQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAF5B10EC76;
- Fri, 17 Oct 2025 16:14:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0D3010EC77;
+ Fri, 17 Oct 2025 16:14:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760717667; x=1792253667;
+ t=1760717670; x=1792253670;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=oxjW2pr4bJjdv8/nrJf6ep7Hyod/qBIXdqCmvmTJIuo=;
- b=ThuYcWPpEFP1TzsmH1PDi248C3UMJEM5f24UYdfCqpSvc1jsOHUso66T
- wUy/U4vWAgcQ+pB5GjDcbF6NmJBzxt6eBxUuS4uFPz8SKhEluCmoHuOni
- zPyicy/wG2vKjgXtAzq5zcjnTCs9BtlCfT8gLAOeqyj9WYLD/5bL17XMc
- 9CrNkBA+xtUkwjo9NNOdNoLWIhS7s+l415RP8PVpkgWgLPE5vYdnTaui3
- 41i6FDuoNEWWeDsbh7s0w2Tv7npsSXLQg7SFoaO36h+CRVQpODK9dtOce
- V1N8RwKS0wEa/663SfZB0wcuasEwOdOEKTrthfs6tIZvsVknI0rbszzJr A==;
-X-CSE-ConnectionGUID: seIS83WJTyiXxeiCDzv6Cg==
-X-CSE-MsgGUID: QlrRSkDKRX+Ii07/6MUnKg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11585"; a="62142212"
-X-IronPort-AV: E=Sophos;i="6.19,236,1754982000"; d="scan'208";a="62142212"
+ bh=iazpCNEjIb9f33DYLpr9olhIoB8iYtyqf1DPcaOCeY4=;
+ b=AR4rZZoQg56f96pytIZOn8Y8eAxsgYMJWMPpXqGlOTfZStea1avZhS8k
+ IdbfzCYQdQA1QkoQ3Ex1b/yJp5WaUxFTkMScV1ld/dlAx7Cu44m6YMY4f
+ mq+dI9C5Nd3M6OGzvEclkovAHbGleoUoz+A/F/pxucvDiU0hlzUCpCET1
+ mGiHPvRp2Mc7hyyzbRa90UiKL2fJYhRpazb12XuMaVs4kIj4fZXpkF3JD
+ ZWZVe2JG2+FhB9JnWac1q92Mm9fwU/4aWReL1FFUTqJJC/cczk5Ajchr/
+ 7PbN/deTIguKgxXdCP4P4Y+50SWN6nnn856Y4yZWB2/efhtFGZG/tjhgK w==;
+X-CSE-ConnectionGUID: lvFBxcN0T2qlphMXeTRftQ==
+X-CSE-MsgGUID: yvvJ5RArQ368diY1sBqU3g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11585"; a="62142215"
+X-IronPort-AV: E=Sophos;i="6.19,236,1754982000"; d="scan'208";a="62142215"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2025 09:14:27 -0700
-X-CSE-ConnectionGUID: kptaZloyS7a1vokNzhkivw==
-X-CSE-MsgGUID: J+PeIXWeR++FBTVUou2GBw==
+ 17 Oct 2025 09:14:30 -0700
+X-CSE-ConnectionGUID: vss6RYzAQ3Ga2gK0n8luug==
+X-CSE-MsgGUID: ug0/ZisKRfCOCs1qzkQneg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,236,1754982000"; d="scan'208";a="188062852"
+X-IronPort-AV: E=Sophos;i="6.19,236,1754982000"; d="scan'208";a="188062860"
 Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.129])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2025 09:14:25 -0700
+ 17 Oct 2025 09:14:29 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
- Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Subject: [PATCH 1/9] drm/i915/scaler: Don't clobber plane scaler scale factors
- with pfit scale factors
-Date: Fri, 17 Oct 2025 19:14:09 +0300
-Message-ID: <20251017161417.4399-2-ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH 2/9] drm/i915/scaler: Adjust pipe scaler scale factors for
+ 4:2:0 ouput
+Date: Fri, 17 Oct 2025 19:14:10 +0300
+Message-ID: <20251017161417.4399-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20251017161417.4399-1-ville.syrjala@linux.intel.com>
 References: <20251017161417.4399-1-ville.syrjala@linux.intel.com>
@@ -74,34 +73,35 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-When intel_atomic_setup_scaler() is called for a plane scaler
-it first computes the scale factors correctly, and then (if
-pfit is enabled on the pipe) it overwrites them with the pfit
-scale factors.
+4:2:0 output effectively involves an extra downscale factor of
+2x2 due to the chroma downsampling. Adjust the stored scaler
+scale factors accodingly.
 
-Skip the pfit scaler stuff when intel_atomic_setup_scaler()
-is called for a plane scaler (plane_state != NULL).
-
-Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Fixes: 9217f9aaef62 ("drm/i915/scaler: Compute scaling factors for pipe scaler")
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_scaler.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/skl_scaler.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-index d29efcbf2319..640c65818f8a 100644
+index 640c65818f8a..e8a8facdc300 100644
 --- a/drivers/gpu/drm/i915/display/skl_scaler.c
 +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-@@ -464,7 +464,7 @@ static int intel_atomic_setup_scaler(struct intel_crtc_state *crtc_state,
+@@ -499,6 +499,15 @@ static int intel_atomic_setup_scaler(struct intel_crtc_state *crtc_state,
+ 
+ 			return -EINVAL;
  		}
++
++		/*
++		 * For the purposes of prefill 4:2:0 chroma
++		 * subsampling is considered a 2x2 downscale.
++		 */
++		if (crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420) {
++			hscale <<= 1;
++			vscale <<= 1;
++		}
  	}
  
--	if (crtc_state->pch_pfit.enabled) {
-+	if (!plane_state && crtc_state->pch_pfit.enabled) {
- 		struct drm_rect src;
- 		int max_hscale, max_vscale;
- 
+ 	scaler_state->scalers[*scaler_id].hscale = hscale;
 -- 
 2.49.1
 
