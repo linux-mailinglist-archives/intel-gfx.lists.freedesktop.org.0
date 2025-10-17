@@ -2,167 +2,187 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E379BE7BD7
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Oct 2025 11:31:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09444BE7CD3
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Oct 2025 11:37:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E74A510EB84;
-	Fri, 17 Oct 2025 09:31:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D401D10EB7A;
+	Fri, 17 Oct 2025 09:37:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BC64ijdK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Sysw8DJF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B17FA10EB84;
- Fri, 17 Oct 2025 09:31:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86DA710E041;
+ Fri, 17 Oct 2025 09:37:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760693461; x=1792229461;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- in-reply-to:mime-version;
- bh=8R2NKlc5+nopVaWZr8tAnCReJJShqegxFOFc2eE/ppM=;
- b=BC64ijdK0jBKX0EPgwtmLreyfsFMQ3EPcKZgJ9nes9uiCThqoINKD2Gp
- 77bd1qJBtnZFFFPPTAQOJqB3jEtwx5Bn6vKtPPoVHVUxINac2QwtuIBhq
- BwKi+iIZsd4KaEmV7/3miaoPfjtiOLVNuiUv80bC9Yg/2SjmiJAGeLuir
- 59iPi6yBJsG3anqnQw3KK/zx0tNY7vM8xi6tx5KMQepAz5ExbA9NRuRCF
- CyjZ8K9tpG/Zyv9c4vEn8Phor1qAWaokaZ9omqkLt63hmKyYKLEeE7mMq
- Yka76l6mhwIxffr11kZV1XpHLf3HifoWhRy1/PJdjqkJQ2Lja3Jm323eU Q==;
-X-CSE-ConnectionGUID: LYrWnNntR6mu6pqBrIFU/A==
-X-CSE-MsgGUID: kqLsnlyiTlep0Tp5HO/O1A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11584"; a="88370730"
-X-IronPort-AV: E=Sophos;i="6.19,236,1754982000"; d="scan'208";a="88370730"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2025 02:31:00 -0700
-X-CSE-ConnectionGUID: BBxjmhjDT4e39IcvriOYvg==
-X-CSE-MsgGUID: ANcYFtGXQRegQDUJIts6VA==
+ t=1760693847; x=1792229847;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=TVZIgdcxNf1rjXPFhMZBtt3KfRNBq3JmNN8S28ohZds=;
+ b=Sysw8DJFBrZ2L/LDoWr3GeTDvr4AK9jQNhIUq/CnMhT69bCvBhvMOb7i
+ T5V85sSUWzBLao4QW7K2E3dPSVbpYXBR5lwQHogT1hdDz4hzGg6f9wHXF
+ rfB6xm6SWeqXYZCgl3FYR0Vb18Q5s/KN2F730k3Xvw0NBowdyClh2U/bc
+ 0U8Ht7oB6LOi5Lo0c128Pei9WQCzXFaPOn9QIfjIAu33GJsdma6sfMCdI
+ X/NoKo0bUcs5b+1Q07ZSw9l8j71e8X7PQqZXWpfxOW5U+p04OdcwIjYIl
+ NoGiIHWrgHrR9dctkLPTr4WaCBdEJs9+K+2h8JkYTw1ArM/pMF8fjn+43 w==;
+X-CSE-ConnectionGUID: FtKNULcITyytn3HS+4em9A==
+X-CSE-MsgGUID: J5WWVrkfSdyp4Dek1uuAyw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11584"; a="85519133"
+X-IronPort-AV: E=Sophos;i="6.19,236,1754982000"; d="scan'208";a="85519133"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Oct 2025 02:37:27 -0700
+X-CSE-ConnectionGUID: KrXUqMgGQR+uWnV2HUXDWA==
+X-CSE-MsgGUID: Q2MUMhj2TdmufWFHAxNVBA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,236,1754982000"; d="scan'208";a="213659611"
+X-IronPort-AV: E=Sophos;i="6.19,236,1754982000"; d="scan'208";a="182497725"
 Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2025 02:31:00 -0700
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Oct 2025 02:37:27 -0700
 Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
  ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Fri, 17 Oct 2025 02:30:59 -0700
+ 15.2.2562.27; Fri, 17 Oct 2025 02:37:26 -0700
 Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Fri, 17 Oct 2025 02:30:59 -0700
-Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.24) by
+ 15.2.2562.27 via Frontend Transport; Fri, 17 Oct 2025 02:37:26 -0700
+Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.9) by
  edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Fri, 17 Oct 2025 02:30:59 -0700
+ 15.2.2562.27; Fri, 17 Oct 2025 02:37:26 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EgssKTn5PvdM0Q7HmCWsfP/vWp/005s7XvzE4xLArulDcSqyImJpDAbe/ZNCU/l9ktym/l+x8nzsVfE0KCqE66IVj0oUgxGe8YSF6XIq/txswXida/nMlrEDHVqskkBgBVsClfqoYySxSbyCOKbVAROZRL5O3edKbfxJrXj5jnZXkiIWTi1SGV5hR99peCfjXAOOZznsNBmMvGmEQzWb41xFGgNpkRp4QWyF8iih1z9dDA7Nk2llbtQyMcL7mX8Jo6cCpY+/OCgwR2qMd2kxMmf0jbDSVlMOFezceT22TW215AVVEwUddhYgUVgnD1lDLENhLGJEyisdeAmWN5cqIw==
+ b=G9o45buvSBZ40pocvFp3TNiahMqmIhrX0/rryY73C4hwIpS7rf/crkwe9VvTmtU6CR4l+7W2wVe8T9JWcB2nT5eVs7CksNHGGhJNneNGNCqoAAX41zKQ7iAPV5MBCSlYnIZ+9yYsaat7LMdA0LP0aM5IN2B2k0S6tnDOc7xDDBUM8c18lTMGgq1hTGCxxZpJN0dtryeBTvc4nOKdw0zbu5X6vxpQP5NV8Ds+Yegff+ycLjoCPZbyeWaEd+taVMlfdXUeHvVw0r8Okz0eqsCPhlxxRx5LZ10f6FlJypdoLuK0Judar+tVumnOLGoa9m0nOpfi+Jf3Bm+3LxEJwsNG4A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3jH4KvxV2BlSzgRqh/dd2ZizOjGtMzfg8sL5gnTyUyQ=;
- b=PG8lpnK3Jv3aC2YA6XQHz7TH2YtrgAuYJd0mB7nbd/MZ/2430uqFwXf52ufG/yeAilmdpHhIuIzHduKsa6YviOLX/izOV+HYUtQDEE4Vxmj1QEfGHPzmiYe0AMPv30h4Mw0a2k30Ibe48Cy/SjjjyPn/mpS0tSTDeJGHvzdGXryU2mxgIb5t8ksL3uKTCX/1IcqkiJ9ZRAH2VyvpwIGVhMlj4bB/YeR+vY0oAjGPE9W/dEk9jlIh3VR7hj1JGjuMj18TyVRxPipx0Bd5NqCfxIm4A8BeWWplRpQJVxzUVBnqGx68Q06pQ415AqciASboVOwHVq+KYLr57Wsdq3Km0g==
+ bh=bxuSD70ZvgLB/rieWcmv7dp2FwZxVSiPUY2lcAFGJrg=;
+ b=XhJA+L2CuQ+63LZd1ohLZvVShcs8wDNElpyGciU3oRw4gax/Cn2uRIVb58UkhMOtcJoq0O5BmLgTKXOFK4/C3eLB42AVorYMWaeRd2X/ou7iC7yVUijVN3/wL67IsvBg+6I5Sj5JRPxcxeTY3ujKn8MHBikzVeKHWJnaQxcAcjZCczq+8VSswnqam+I2TMeZDWMeSQ+ZQ5fCdjhOTQGtwyQaORuiVR45XRSx6BHqfYcLHsPaZ8TUzEpZKdaduLCP3SnyjToiPZMQCZStMvGXb0hqPVxyKS0UTl2KucYZWgSZP52ExR4+ZFWNpovKySSUy5Zg4ioe9s/xTBC+nmC83A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
- by LV8PR11MB8533.namprd11.prod.outlook.com (2603:10b6:408:1e5::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.11; Fri, 17 Oct
- 2025 09:30:52 +0000
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::8900:d137:e757:ac9f%3]) with mapi id 15.20.9228.011; Fri, 17 Oct 2025
- 09:30:52 +0000
-Date: Fri, 17 Oct 2025 12:30:47 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: <I915-ci-infra@lists.freedesktop.org>
-CC: <intel-gfx@lists.freedesktop.org>
-Subject: Re: =?utf-8?B?4pyXIGk5MTUuQ0kuQkFUOiBmYWls?= =?utf-8?Q?ure?= for
- drm/i915/dp: Fix panel replay in DSC mode (rev2)
-Message-ID: <aPIMx-HJrhuM_xo7@ideak-desk>
-References: <20251015161934.262108-1-imre.deak@intel.com>
- <176055989763.19094.12450157913190398736@97596180aaec>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <176055989763.19094.12450157913190398736@97596180aaec>
-X-ClientProxiedBy: DB7PR05CA0013.eurprd05.prod.outlook.com
- (2603:10a6:10:36::26) To SJ0PR11MB4845.namprd11.prod.outlook.com
- (2603:10b6:a03:2d1::10)
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by PH7PR11MB7515.namprd11.prod.outlook.com (2603:10b6:510:278::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.13; Fri, 17 Oct
+ 2025 09:37:24 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839%7]) with mapi id 15.20.9203.009; Fri, 17 Oct 2025
+ 09:37:24 +0000
+Message-ID: <ad6cd831-517a-4eb9-b812-1fb4dadea00d@intel.com>
+Date: Fri, 17 Oct 2025 15:07:17 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] drm/i915/psr: Add helper to get min psr guardband
+To: "Hogander, Jouni" <jouni.hogander@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+CC: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
+References: <20251017050202.2211985-1-ankit.k.nautiyal@intel.com>
+ <20251017050202.2211985-2-ankit.k.nautiyal@intel.com>
+ <4300808467d7a93f080b170faadee3748e7bb2e6.camel@intel.com>
+Content-Language: en-US
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <4300808467d7a93f080b170faadee3748e7bb2e6.camel@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5P287CA0074.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b3::8) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|LV8PR11MB8533:EE_
-X-MS-Office365-Filtering-Correlation-Id: a966f0a1-0dfb-40ee-c57c-08de0d5fdd6a
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|PH7PR11MB7515:EE_
+X-MS-Office365-Filtering-Correlation-Id: b6e782b0-af76-4406-458e-08de0d60c6df
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|10070799003|7053199007|13003099007; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?m4BPKIYLTGfWAtnxv0gvg0mx5Vd/dsS5nZyCgiMDBqv3WovQMjmMnQxTy5qf?=
- =?us-ascii?Q?b5RkB4UhA1/98uMnbQbZpZ9HyumuziZQpexPXHSzobL5y0kOtKvA/lN9xE+3?=
- =?us-ascii?Q?NYcMSkn9VA8LKdbn48NWfg83Wpb1TsN05l4Dg2pnp9SmkKeRT+I0u0etnxUR?=
- =?us-ascii?Q?ipUjiMYqIFBtgBwpGSHszHIELbfIXXpfZ5ZrCMpvQ2oGclLNbtNyMPK1gt1s?=
- =?us-ascii?Q?MOHYgOII25PXlCE7PR7Cb/O43q9dj/Th/5/ZPop2IYYCXptJPhyWZEpuzsje?=
- =?us-ascii?Q?P8TILok1B+H3r0a/Gh6lDPUbYL/9kC7moUw+Fn9YtHafjDxdlbaOSmOSqiul?=
- =?us-ascii?Q?+revKofDDBgUXORII5owdnEi3nXbi0lD0aS0awHyWd42GdY7s29kEGZUlu2a?=
- =?us-ascii?Q?/mWYQbDevMES/iygBdfNIpHXqU84+Qac/UaAPkKOTOPjG/8itTvk5WZoSXU1?=
- =?us-ascii?Q?QNHUnKXoiUiY/MK0H5kPCnaNedH7lfUDRm8K6YhzhXG+Z7yiedDxdX0ua9Ba?=
- =?us-ascii?Q?cMl66f4a7VJAS7ASR4zKGvi7jgmtiOTG1zA1btc2FaWGEoTYkYLmfdUKzdMg?=
- =?us-ascii?Q?KfAm06d0iXw/RNARkIHP9oT4RcmN1UNF8kNL84FI0gnGAtTm/o1Nl4EdDbcE?=
- =?us-ascii?Q?Y0znH0QeoNi4SqAEqj/tR/IkvmxsBQd1mdb2DuMepJgnTxIw8z+g3OvPFuK7?=
- =?us-ascii?Q?3dvGkGDOjsGzX1TmpM26l/MuW0V2A8Zq7B5scbSeBbXZps/ac7N+AOLLce9+?=
- =?us-ascii?Q?WyrTyBp00mXAvVLEVtIqbJUFtBoCKr7BnOuCsrlMbEWK/h7Aq09WAxUSFfQz?=
- =?us-ascii?Q?SgyUbTXcTd7lR/2mWC6D6x1kdfF7XC569j1ce1jx3tESQoGG/wKUryaEJWUU?=
- =?us-ascii?Q?FJa9ZiOTXUBfQ31HkZRFGRqmNxtcahBOrYGhjMgDdu+s4qklHcQWCd7p2Y2w?=
- =?us-ascii?Q?PCRgrC5LH8uepuEiJl2xxKh46oVk6OcoaMz2fiEGGPZt5u5j4EobdtsW3pEz?=
- =?us-ascii?Q?cLcMXSCH1zPSPpiqnXPlV1oz1VTXMFiFqOZGecgJEl1lKhP8XeQJlyY/WFrp?=
- =?us-ascii?Q?i/TZCjHX+phbCipt8jMTOmweXf04PcWr0b+eNLnwNztyDCI6oCg87i3FB5Pn?=
- =?us-ascii?Q?zJrfrp1aa/g5oQr4c58l5OesEAuqNzEonS2pIlbYCQGMNar/6A9a7zMXhvkl?=
- =?us-ascii?Q?UHpC2zG8aviDiTGIKLMylzgrPYeDhKuveMbx/QxFwjXKBBuaQop3pxyJ1pVc?=
- =?us-ascii?Q?2WbNte2ezEUrHRXLjNf1SLRoyTbm+0lisb8BlK6+0eAHIwQo4iMcPouRlL3Z?=
- =?us-ascii?Q?LBtf7eAWUMrUjYxV2q1+d5kb1hx8eHzoVlFpM+GosKINwF95j35wWkjRd5iu?=
- =?us-ascii?Q?Kfi4UUFa8KS8R2e3k/73UWfmPe0N/jWRUlw14ByEB14/AHpjDQ=3D=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?ZmVoN2hFNXlkYnpmUDZtdEhMQmR4dXpLcmFkQTBLSUozZ1NDSWFqSkZCNUZr?=
+ =?utf-8?B?eG03WW8wVUFidmJDZzdDNUdYd1NzNFgvejlDRkZDZWlOWnlxcXY5RHNzSHht?=
+ =?utf-8?B?bHBaVWllRTBGanYzK0hYN3hRQkZRZTloM091MFpTbzE1MHlGbys3cGk5ZFNQ?=
+ =?utf-8?B?UDFJSExjTFZtd0NHcEs4a3B0cHJHVm53d1A0amFoYk5WUGZta0ZZZDI4bFVF?=
+ =?utf-8?B?UWovZGQ2eC9ZR1lMUm1SWDIzSFZzcFBzblNJZzdIc3JYUzlsSGlMUkdmNlZW?=
+ =?utf-8?B?UnVvY3RlL25kMnFKeWZpUkhHVFJ3d05SYzY5a3k5ZE9KbGFha1V0K2JzdDJo?=
+ =?utf-8?B?cVA1cUh2MDhBV3UwazFrVmNaUjNPR05lM3ZkQzJNRWExWE9tS3RzY2p1aTYx?=
+ =?utf-8?B?MEVDREluVVl2dHJVM1E2dUpodXU0RlhWSk1xbEpqTHV1WFYyK1M4NVZNWFlz?=
+ =?utf-8?B?NTRiVmgyYURpaXdiWDlsc1dIVXhvUnhaZU0xeStlSW5rdmd5MjFubWVNanNq?=
+ =?utf-8?B?SlNyOHpIVzB0NmZQbG9xR2hSK2xpQmtYUFZzSjlhRFhMOXM1eTg5MHMwc1Zm?=
+ =?utf-8?B?d3pET2gwVC9kMjZvNVFoUUtQblFPSm8zbU9BUzcrWVVhVCtFenpJVHNMc25s?=
+ =?utf-8?B?NXVHMUJMYWpDNmViY2RiWHVDV20rcnM5djFwYlVqZHY5ZFhheEl3aExzM25S?=
+ =?utf-8?B?dnh4Vzd5M3JweHRrRG1neTFHei9LUVhwWGdoTWExYVN2dzA0QVJZTEVoM1du?=
+ =?utf-8?B?dEVLSkI2RXdSWmkvcUx5TmxoQTI4UGtTcmdCT2xlNWh0RnBYbk9EWHJCcDhR?=
+ =?utf-8?B?WWlXejlqb2prOVBGdDZDNCt5TFRwd1N4Y1hBL2lUS1J5Z3hsdkxnTW1pU1VZ?=
+ =?utf-8?B?amRMMGk3dU95VW1iSFlSeXRyclh6eTlMV09sZXJ1VU8ydGtrMmhOL0kwYVBx?=
+ =?utf-8?B?MUtaTHArQUhTRTJiRE5ibThOS25OWVYrdVpJS3h2ajFRdmRtMVEyV1Z2dERL?=
+ =?utf-8?B?Rk1EWWhrS0RyMVF1WjBKR01XOEhxZzV0SlJXZEJ0YTMzZWV2R1htUlF6RVVl?=
+ =?utf-8?B?RWtibE45MDQ2eWJ4MVdRZFYwTThFSjJBYkpKNGdzemovaVkrZ2IwSjhmNWp3?=
+ =?utf-8?B?azIzb2duMkowK1IwN1kvQ2hJclpwMFJyU0Mzc3NZZDNNeVhCNyttWGRQUTVw?=
+ =?utf-8?B?TXlQWjU4bzdna1p3a0dFUGsvQkVSQ3JSUTBRWXBFSm5zbmJONUZFaGdteGcx?=
+ =?utf-8?B?Z216Nm1pVE5MV0x4M1FwSVhXbC9KaDExVmZnY2p5MXBlckU2Q2FCbkE0RXFS?=
+ =?utf-8?B?QXQwekVQQkFWVjJTQVJtRVJtcmpOdTlXcWl0U0xtOTVVb2IxRVQrS1ltc0sr?=
+ =?utf-8?B?Rlh1bXNIZG1KR21CZXZWcUtQcjB1UDgyaWpMMzRGWHU1Ym1neWtnZHBXUC9Q?=
+ =?utf-8?B?MHZuOWVScktDeW1nQlBTdVR3cDBRcng3VU91OTFNYkdKUnYwY2VTL2wwbkxp?=
+ =?utf-8?B?Z1p0UXROS3pxNm5ncFhWbTY4TzNOKzkwRTVXV0N4RXdqMEgxRjBCK1A3SXY0?=
+ =?utf-8?B?YWRuSFpMVDhwZ0lQbkdoYU9aakRCblNIaUhXTXREL2ZHS2xXNFk1dk9CM2Rw?=
+ =?utf-8?B?aG9WZkZtZjhObTdlSm9YUERXM3IwYVBCWFcvQU1WVisreHJKd1FnNWhkRkNM?=
+ =?utf-8?B?cGphYkZiVnJLTTlzWFZ6dDkxenpwb0JIbjJla3EydGZaMEJJbERseVRXWXY1?=
+ =?utf-8?B?Y05pdkJtTHg2ak12VnV3OGM1LzlKT3FJbWMwSmhVd0wxenJSV05IYmdhcG9j?=
+ =?utf-8?B?NVgxb1U5TE8xY2h4NUtWYWQyQjBqVXI5U2haYmJOc1RLYjVCYStGenVGWHgw?=
+ =?utf-8?B?cjViM0p6ZjYrc2tmbWNqWGN2QUtRQWdwV0Q1VjNZa2pQNWVkU3NzRXIyRC9a?=
+ =?utf-8?Q?e4HPY/wUuu4FuJPvjKAcqH+t41NNJfKW?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(10070799003)(7053199007)(13003099007);
- DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?4xRRxye55EPu1eT5SRGMUZ8VBWl0m50gY24pNfGi4jkwwD1LT7t2EriLG55i?=
- =?us-ascii?Q?WJRLMd/QqOMHVeTSqH/LkHk+brLGOVDmMxwEdWMrzjYznogejYH6JzjVXybM?=
- =?us-ascii?Q?1zlilSoU6Ho7he/NFNIKPSIYrxekY4Tc7Ysm4tN1ZtzS7mfeqV9wXKbZ1B/f?=
- =?us-ascii?Q?13xorTVcuoGRafgx1+/99tUq6SE56xP1F7MrvSTLC4sCH4HkPQKByW7ebfKj?=
- =?us-ascii?Q?VvTvlQDFpkmE69BX+u2d3MOLoDni73fRJxSfkrpHRsEtbcXn3g2y+HGS0Wse?=
- =?us-ascii?Q?18l6PcEvfhFR5A3MTmuXETLXt/duZLsYc836LCP8jWBrVmUtXHDPddQ+7FOa?=
- =?us-ascii?Q?pLTt4WBYLxuBQ/T2LUVRJOBhwMiwAh+6swjL45ENoBDcPABfhW3EdNsmgNQ3?=
- =?us-ascii?Q?Pff5pKUPpNKkD2jvxdma6BqIRUa7KJJiMoVemsIqiPqfXsXkqiNebSHVvtvI?=
- =?us-ascii?Q?qkjBcxCZ5AB8bD+FZyYqRKSXoBXAFCOKXELJt5ZcOzEi05474QcAbyxEhW1a?=
- =?us-ascii?Q?3+eCDhD4+VTqCv9+Zl0Mxbjmb/mf6Drthh5GAC3WD22OIMzmE2WVh/Y6c7fX?=
- =?us-ascii?Q?VVQnP3mfBX/+mtiBaUN622VaGVEGLeDjlPCsKspX0dmXIInlhbrFKFB73+z2?=
- =?us-ascii?Q?gMFFgljj2n8n8dKCNffap70ee7hBj0yWtw2tah8sVg5B/+1J6ro1AvvtQBEj?=
- =?us-ascii?Q?XQeN4P7PcOqHiBJjF3DWWzYN5vhHB3FPyYxil5nauswuVZVjpOjkNeRmzNL8?=
- =?us-ascii?Q?co2gFAOfH/3UKT4qjiTvM6Hy+8INNtcJspyd0J/K23+j8WBp4v6Exf23i1mZ?=
- =?us-ascii?Q?3X7Cnmu/8ClSOxNv653AOOt6+DOBIq6Mx8S8ERmeIFCrC0c3Pt5kB+acnPlw?=
- =?us-ascii?Q?PDwTUp1voQIBiGl8krRi8jFxK7ctC/uOM3uGhu6Irv0CFAOy5GxK1i+gZaJG?=
- =?us-ascii?Q?9pzxwccC3rVveymGJbFKXnfVQy4cZBGS785Xz9PUwpfJG9GYfcxjUHAa589h?=
- =?us-ascii?Q?/IbMGpfc69vae35KL0NyFoCUUug+ZonbypLuLPyoehdfG/zj4uKh2r1p75M9?=
- =?us-ascii?Q?YyA1eype7aOr9AvP1ZUWR7BeitRxw1sp0v7x31c4J6krsDx3Mv7JyiXiyqWA?=
- =?us-ascii?Q?olouGMJeS3dYQMTOvLknUIJGzCmb++0WJhf1IpRp4wp6WoYiPYFxb3APue9R?=
- =?us-ascii?Q?bzW1o7zVknQjdw6p8hYkPsAhW8mOTd5r0o1YXI223qAR8AcWRwE8bPCnXS+U?=
- =?us-ascii?Q?rwh1uJ6fi0Bg3XvjXy+tBap/d1xRlrtT3izjpsbBulZIMHeeH8BoD+2WgHIG?=
- =?us-ascii?Q?lAl6BPyVG8RFMeEbZ7s7Wzx0iutM7Yq3mRkpGtpJhvsDzVNvqQnBWFxyi3vh?=
- =?us-ascii?Q?v5toDJeS6/kfk9Ur/sBspcm5BFEKV5TzX5x7fSKKKFPn4kOwlEGBW93V1Py/?=
- =?us-ascii?Q?lflMQw0ub7bDXLdBGS5QVNZxjc7/1GtF8XvRbMwj8xtN8Ft/UaDPBAGOygCl?=
- =?us-ascii?Q?HTguxgRx8aD5io0Y2DuQ5KAptXSJc1prWlNRx/7UJD7+EVCnwiHtMvr1Tv7y?=
- =?us-ascii?Q?+dGFYM7ZFBIn1EKKyit+YISoMVVasFwpiDOKboVlP7xFrkrzR8SPd9mQewxx?=
- =?us-ascii?Q?RRgCCYqWEXNow+I9+ZkZs69cwUKhDC29VUSCovJsj/QS?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a966f0a1-0dfb-40ee-c57c-08de0d5fdd6a
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Nm9OWG5ZTmozTmhYbGgyRE85S3N6NSszK0tXQ3JQanBXVDQ0aDRoOE8vZWpN?=
+ =?utf-8?B?NDB3b1B6TndjOS83enVGWjh1ZlY1WDNJZ0JFbzFQNCs4TVkyd0VEeERONWlI?=
+ =?utf-8?B?UVJZQzZVekFPUzNiU01scGN1STIvVFBRRHNNTEdRT1UwSEd0MFFOSVlPc25v?=
+ =?utf-8?B?bVRIMGpEK2hhMUhvK0NlRVZJWlgyWWo5dTlYNlp1eDJIQmY3M2F1VzhVd1Uy?=
+ =?utf-8?B?UXVOSkVGdmRXOGV6MllRUjF1cHhRQ21Ccm96eDVldVkxUmtFNzdpdEFIM3pX?=
+ =?utf-8?B?Vkdxam9NU1pMU3U5aHB2d1BVdVNLRjFQTUU4M0lUY3AyN2hYbHZMdVR4M0Jw?=
+ =?utf-8?B?azh3Nk01WkY2M05MTyttdTRjd0NSSUNUeERPMTc1cEVsZlNhbldOTW5sejB2?=
+ =?utf-8?B?MldxY0cvbTBHWjc4NWp5Vm9qNGdVaXlqZngvcXluVGtTdkJrcXVuRXh4alk2?=
+ =?utf-8?B?Nm5yOXdOamp4SXNmaHdKR0ZTSExzeU5KR1BJWTV3aDB0S2RpZUN1R0RhcU9n?=
+ =?utf-8?B?T2pwcFhkYWxtN0tWbVdyOUM1b0lhZWZRa2JuM1lNZDErSk9zc1RhRXhnZndK?=
+ =?utf-8?B?ZFNwTlJ2blRMME93YThEQmRqNWVtSXBHMTYrVGpVY1hhUlJzVVY1OENHR0Ja?=
+ =?utf-8?B?TjFRNjVoWEpGb0hvRXVVZHExbG9yRjZGakdBNXE5YlAraGFyTUdxSmRPb0Zw?=
+ =?utf-8?B?RmRLL21scU9RdkxFUEpvekRKdWhvTEVTaTM4bDg1V2sybUFPVmx4WGx1T1gy?=
+ =?utf-8?B?bzlpSW92Ky8vY2lkV3pVNnBJZ20yZkFYbnlqZHByYUFza2V1QWloeDVYWEgv?=
+ =?utf-8?B?K2RRaTg1K1k3L0FKVStvVEJHR0hCQlhTU1YyM3FHbWg4cEkybDIzUDROTFpl?=
+ =?utf-8?B?SXNqOWlHa2U5L1JTMkpWSFFFUE1meWRCdklzMFVhRTJzOHlldUljWmpTeWdp?=
+ =?utf-8?B?WVdoNVVKVHY0YlEzNlVsbXhrOGVjMmZDcmMycnlxT1U2MGU2T1g0R0FXZERs?=
+ =?utf-8?B?Nkd6eGRFYnRpWmdJSFNKbUhBWHBhKzhsZnJXREZWaWx5cFY0VVQ5VEZTTlRV?=
+ =?utf-8?B?VXM2WExmZnBScU5vNEt2ZFhRbDBUSmNLajNxZ0lqT0tIOTJpREJPcStITDUz?=
+ =?utf-8?B?YVQ0SVJEVDVyNEJXMzFFWlordUsrS0xlTGlKMU9BZEI3QnJQS0FMcDMzaXB0?=
+ =?utf-8?B?ZER6NmZhSHhFU3lGWGMxa0xTSFVzT0pqL2xtTkxEMHZvT1NVTHJxSys5bGda?=
+ =?utf-8?B?RUx1b3Q1NkM0aFNQc1FHelorYVJPUHU5dXA4bytSRjF4NHJLV1JEN1kvSUwv?=
+ =?utf-8?B?NEpJQTdiQXc0cERYSXJ6YlhTK1pCZHJrbEVKUS9WNFl2d3RuYThNSlRKMmxK?=
+ =?utf-8?B?bDM5VkR5K0txMHBkTWZoQmw5eC9Jc3lGRUtBOGFUdUpPd3lTdkdIMjR5YTdE?=
+ =?utf-8?B?czVQajJUVCtQajMxOS9jbmRhWHkyZ21MV3NqNkxKemhQbFZvTksyOFgzZGxP?=
+ =?utf-8?B?bFhxQktyZkl6RlpWZ201bTk0TTI5bEFhWlA2Wlg2RjlZampFUUdZSk4xeksw?=
+ =?utf-8?B?WlJxR2ZxMTBzSmN2cXRNdmpkcWdKMW45eDdXeTJiRFU1cHBpdnhSWWsrWkJ3?=
+ =?utf-8?B?b0ZIWjRTcEJaVFBRVnZIa3RqTVp5V2dvVkNtdFJFQXNxaTdTdDR6TzUzVlV1?=
+ =?utf-8?B?cTBvS2JmVktnemhDOW1KRkV0U0Jjb3NmV2Y4VVkzSmdBSFVHYjFLM2thOUtQ?=
+ =?utf-8?B?anFCUnVZeFhTR3M1ajZjMkdhQk1JT0dDM1ZvdmNBdE9IS0FaME1oSWV5RWsx?=
+ =?utf-8?B?b1VJVTBpVHY0aUVKUFNyYkNBc0FtNWdzTWxnanoyaTZWNGVmei92WnlqZ240?=
+ =?utf-8?B?aFZBVUZTWUR3VFpySFVZTTVlZGh2Y2gvL3B6b3l4QWowbmUwN0VJTWlndXht?=
+ =?utf-8?B?NVVSK0UwM0dJbDY0ZGNHaE0wQ3RqOFpzWUFYZUpCdTFuYW1uUTBmK1pEVzdL?=
+ =?utf-8?B?RVdYRVd3WWh2NTI1UXUwZDVzOTZZZmdRblZHU2Vtbnp3SWpOWnZkdUl4c2Qy?=
+ =?utf-8?B?SDQ0bVk4aFBhRklmaGNBc2U0VHBXa2pyV1RpckFZQ01EOWo0bjV3RzhYV2Y1?=
+ =?utf-8?B?NHUvRURVYmlIckwwNmZQSi9OQkV5a0VzcUJCMlFRN09ZWDBkQjZUT1pjSDhp?=
+ =?utf-8?B?SGc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b6e782b0-af76-4406-458e-08de0d60c6df
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Oct 2025 09:30:52.3633 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Oct 2025 09:37:24.2463 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vUd/O+MQLTFCOlQoRBVL/pNRX+W8T/4v8wlW7d4pLs5QLGXpGZ69ZbU1Jjf+QjCU57kYBJwREWa0lsacoXgUFQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR11MB8533
+X-MS-Exchange-CrossTenant-UserPrincipalName: gUr9Kc1PDFj6v2g3TgFrGZA7L70kL0xt2sNHW5lRRC6ewb/xxk2L0sJ8HmzNPjeZi0nHJVchXih0F9WzpwOXSQo/z2x99+aWU98nte2aWW4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7515
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -176,136 +196,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi CI team,
 
-the failure is unrelated to the changes, see below for details, could
-you please forward the patchset to testing on shards as well?
+On 10/17/2025 2:37 PM, Hogander, Jouni wrote:
+> On Fri, 2025-10-17 at 10:31 +0530, Ankit Nautiyal wrote:
+>> Introduce a helper to compute the max link wake latency when using
+>> Auxless/Aux wake mechanism for PSR/Panel Replay/LOBF features.
+>>
+>> This will be used to compute the minimum guardband so that the link
+>> wake
+>> latencies are accounted and these features work smoothly for higher
+>> refresh rate panels.
+>>
+>> Bspec: 70151, 71477
+>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_psr.c | 12 ++++++++++++
+>>   drivers/gpu/drm/i915/display/intel_psr.h |  1 +
+>>   2 files changed, 13 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c
+>> b/drivers/gpu/drm/i915/display/intel_psr.c
+>> index 703e5f6af04c..a8303b669853 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+>> @@ -4416,3 +4416,15 @@ void intel_psr_compute_config_late(struct
+>> intel_dp *intel_dp,
+>>   
+>>   	intel_psr_set_non_psr_pipes(intel_dp, crtc_state);
+>>   }
+>> +
+>> +int intel_psr_min_guardband(struct intel_crtc_state *crtc_state)
+>> +{
+>> +	struct intel_display *display =
+>> to_intel_display(crtc_state);
+>> +	int auxless_wake_lines = crtc_state-
+>>> alpm_state.aux_less_wake_lines;
+>> +	int wake_lines = DISPLAY_VER(display) < 20 ?
+>> +			 psr2_block_count_lines(crtc_state-
+>>> alpm_state.io_wake_lines,
+>> +						crtc_state-
+>>> alpm_state.fast_wake_lines) :
+>> +			 crtc_state->alpm_state.io_wake_lines;
+>> +
+>> +	return max(auxless_wake_lines, wake_lines);
+> hmm, now if you add:
+>
+> if (crtc_state->req_psr2_sdp_prior_scanline)
+> 		psr_min_guardband++;
 
-On Wed, Oct 15, 2025 at 08:24:57PM +0000, Patchwork wrote:
-> == Series Details ==
-> 
-> Series: drm/i915/dp: Fix panel replay in DSC mode (rev2)
-> URL   : https://patchwork.freedesktop.org/series/155587/
-> State : failure
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from CI_DRM_17368 -> Patchwork_155587v2
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **FAILURE**
-> 
->   Serious unknown changes coming with Patchwork_155587v2 absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in Patchwork_155587v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
->   to document this new failure mode, which will reduce false positives in CI.
-> 
->   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155587v2/index.html
-> 
-> Participating hosts (40 -> 38)
-> ------------------------------
-> 
->   Missing    (2): fi-snb-2520m bat-adls-6 
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in Patchwork_155587v2:
-> 
-> ### IGT changes ###
-> 
-> #### Possible regressions ####
-> 
->   * igt@gem_sync@basic-each:
->     - fi-kbl-guc:         [PASS][1] -> [INCOMPLETE][2]
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17368/fi-kbl-guc/igt@gem_sync@basic-each.html
->    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155587v2/fi-kbl-guc/igt@gem_sync@basic-each.html
+I did not get this part. Do we need to account for 1 more wakelines if 
+this flag is set?
 
-There doesn't seem to be any display connected to fi-kbl-guc, so the
-display specific changes in the patchset are unrelated to the failure.
+What we want to do is to check for min guardband for 
+panel_replay/sel_update based on the required wakelines.
 
-It took me a while to determine that no display is connected. Is an
-empty "i915_display_info0" linked on the CI result page supposed to
-indicat this always? Could you indicate in a more obvious way that "No
-display connected" on the results page?
+Whether we can use the auxless_wake_lines and wake_lines as computed 
+above to estimate the max wakelines or instead we should use functions 
+from alpm.c :
 
-The failure imo, is either due to a network connection issue (no WARNs,
-errors in the log, dmesg ending with a flood of 0 bytes read) or some
-GFX device DC6 -> DC0 transition or some GFX GEM related issue, see
-more below. There are no pstore or other post-mortem logs available, so
-it's impossible to know the root cause for sure. Putting much more
-effort into making such logs available everywhere would be really
-appreciated.
+io_buffer_wake_time() and _lnl_compute_aux_less_wake_time() to get the 
+worst case wakelines.
 
-The fact that the connection is lost while the system is active, so not
-around system suspend/resume (where network device failures were typical
-in the past) makes the likelihood of a network device failure lower.
 
-I see the GFX device being in DC6 when the connection is lost, so it's
-possible the machine hangs when GFX is trying to exit to DC0.
+>
+> Whatever is the PSR mode it can be enabled what comes to vblank
+> restrictions and you can drop psr_compute_config_late?
 
-A recent similar connection lost failure during a GEM/GT test on the
-same fi-kbl-guc machine is:
-https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154881v1/fi-kbl-guc/igt@i915_selftest@live@requests.html
 
-> Known issues
-> ------------
-> 
->   Here are the changes found in Patchwork_155587v2 that come from known issues:
-> 
-> ### IGT changes ###
-> 
-> #### Issues hit ####
-> 
->   * igt@dmabuf@all-tests:
->     - bat-apl-1:          [PASS][3] -> [ABORT][4] ([i915#12904]) +1 other test abort
->    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17368/bat-apl-1/igt@dmabuf@all-tests.html
->    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155587v2/bat-apl-1/igt@dmabuf@all-tests.html
-> 
->   * igt@i915_selftest@live@late_gt_pm:
->     - fi-cfl-8109u:       [PASS][5] -> [DMESG-WARN][6] ([i915#13735]) +80 other tests dmesg-warn
->    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17368/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html
->    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155587v2/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html
-> 
->   * igt@i915_selftest@live@workarounds:
->     - bat-dg2-9:          [PASS][7] -> [DMESG-FAIL][8] ([i915#12061]) +1 other test dmesg-fail
->    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17368/bat-dg2-9/igt@i915_selftest@live@workarounds.html
->    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155587v2/bat-dg2-9/igt@i915_selftest@live@workarounds.html
->     - bat-arls-6:         [PASS][9] -> [DMESG-FAIL][10] ([i915#12061]) +1 other test dmesg-fail
->    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17368/bat-arls-6/igt@i915_selftest@live@workarounds.html
->    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155587v2/bat-arls-6/igt@i915_selftest@live@workarounds.html
-> 
->   * igt@kms_pipe_crc_basic@read-crc:
->     - fi-cfl-8109u:       [PASS][11] -> [DMESG-WARN][12] ([i915#13735] / [i915#13890]) +49 other tests dmesg-warn
->    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17368/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc.html
->    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155587v2/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc.html
-> 
->   
->   [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
->   [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
->   [i915#13735]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735
->   [i915#13890]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13890
-> 
-> 
-> Build changes
-> -------------
-> 
->   * Linux: CI_DRM_17368 -> Patchwork_155587v2
-> 
->   CI-20190529: 20190529
->   CI_DRM_17368: 69ca30df000b382e7657f300148be505083377f2 @ git://anongit.freedesktop.org/gfx-ci/linux
->   IGT_8585: 8585
->   Patchwork_155587v2: 69ca30df000b382e7657f300148be505083377f2 @ git://anongit.freedesktop.org/gfx-ci/linux
-> 
-> == Logs ==
-> 
-> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155587v2/index.html
+I think we cannot drop the psr_compute_config_late as it checks whether 
+the actual guardband is enough for PSR features.
+
+intel_psr_min_guardband() is used along with other features to have an estimate on the guardband that works for all cases, without a need to change the guardband.
+It is bounded by the vblank length available
+
+Regards,
+
+Ankit
+
+>
+> BR,
+>
+> Jouni Högander
+>
+>> +}
+>> diff --git a/drivers/gpu/drm/i915/display/intel_psr.h
+>> b/drivers/gpu/drm/i915/display/intel_psr.h
+>> index b17ce312dc37..620b35928832 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_psr.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_psr.h
+>> @@ -85,5 +85,6 @@ bool intel_psr_needs_alpm_aux_less(struct intel_dp
+>> *intel_dp,
+>>   				   const struct intel_crtc_state
+>> *crtc_state);
+>>   void intel_psr_compute_config_late(struct intel_dp *intel_dp,
+>>   				   struct intel_crtc_state
+>> *crtc_state);
+>> +int intel_psr_min_guardband(struct intel_crtc_state *crtc_state);
+>>   
+>>   #endif /* __INTEL_PSR_H__ */
