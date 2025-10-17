@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAF6ABE701C
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Oct 2025 09:51:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3125BBE7134
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Oct 2025 10:14:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E01010EB3A;
-	Fri, 17 Oct 2025 07:51:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EC4D10EB40;
+	Fri, 17 Oct 2025 08:14:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="f8+0uFET";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BwTXOkMI";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6069010EB38;
- Fri, 17 Oct 2025 07:51:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:References:
- To:From:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=Ob6yGN7Aa+gUQgQpl07I49pYyGNrtgIWuPzbg8h95oo=; b=f8+0uFETPqXIvSMoLD9mefBot/
- X3mjAJFeUTs9v1Il3HfeSUBW0nXM2E+fvjK/JEeIFIQwPKh0LStA8UNAnLv8uDKgIV6r7WzrR69lK
- B4lrEflyudd1UezYSCb5t0llWbCWTyQWJoECx3M8KJRM3V3tJ8D+jlYp0GO4Oa8JPcIrePz8m22Fw
- 0VRlPCS9tW4UPrMvu4wyhIA1P9XNXnnobYR2h4sog+NeeQIXVVmbkCjZQrTMto5aI6SJfnKdZXgTj
- U9KIUwI6D4SkA84LSTx+aW8e7CoZmlDIFv2AJQuaiwt8jitJAhk4nwWPpehs1sxu+To09YzzLeW8+
- pxPIbzkw==;
-Received: from [90.242.12.242] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1v9fEx-00Avsk-D1; Fri, 17 Oct 2025 09:51:07 +0200
-Message-ID: <77f52a1d-5491-49a1-9eae-693678392c7f@igalia.com>
-Date: Fri, 17 Oct 2025 08:51:06 +0100
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AF5610EB40;
+ Fri, 17 Oct 2025 08:14:50 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 5C67644555;
+ Fri, 17 Oct 2025 08:14:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6C47C4CEE7;
+ Fri, 17 Oct 2025 08:14:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1760688890;
+ bh=WgmGxowg4YifJntvPv4VERS8Lf84ABa0RNmkryHG+Is=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=BwTXOkMIOZMSszWM8T8bLUP//0m9jWfzGT6s1RygldDM/OYIBUVUFS+dwHn/V1opv
+ VPSgTZBBi05zP9Gbzlm2E7DABGKrRiJPPpxc1njFcEc4bX4f0RwTrMkHolAZsD/swI
+ DEzoD9+a6P0WRA3d6Ncfgxt2+CvWu18b6tGIxcxq9xZREvZrOxdQsgUKagu0p/15Ne
+ iiLv/bingqDORgfrM1gy21SvXqJp9S+QtQRjhEKW9n2r/MfSFAsscL0ZwLQOgppL1t
+ Ydok6tPIbEGnPuQ7Bi37wFXTz6pC1qvx5lTgqSHbDGdp22qkmw26mf6p1JTfizBn6Y
+ fDeYoK06Sd0qw==
+Date: Fri, 17 Oct 2025 10:14:45 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>, 
+ Krzysztof Karas <krzysztof.karas@intel.com>
+Subject: Re: [PATCH v2 1/3] drm/i915: Avoid lock inversion when pinning to GGTT
+Message-ID: <teb77bxalkobbdkfzsrgslpjcnj2kkbyidstgjqfjr6422kmb4@bjikp64baaxm>
+References: <20251014125504.14804-5-janusz.krzysztofik@linux.intel.com>
+ <20251014125504.14804-6-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH i-g-t v2] lib/igt_fb/intel: Use correct MOCS for
- displayable surfaces
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- igt-dev@lists.freedesktop.org, =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>
-References: <20251003130517.40414-1-tvrtko.ursulin@igalia.com>
- <20251009141233.mun3udwxxv7nptyb@kamilkon-DESK.igk.intel.com>
- <465a28fa-250e-404e-b05f-647e1322f3d7@igalia.com>
-Content-Language: en-GB
-In-Reply-To: <465a28fa-250e-404e-b05f-647e1322f3d7@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251014125504.14804-6-janusz.krzysztofik@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,166 +65,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Janusz,
 
-Gentle ping on this one - primarily to Ville - do you think we can land 
-this so that we can have some kernel series CI runs against it?
+...
 
-Regards,
+> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+> index 25e97031d76e4..20deb01c0e5fe 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.c
+> +++ b/drivers/gpu/drm/i915/i915_vma.c
+> @@ -1595,8 +1595,14 @@ int i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
+>  err_vma_res:
+>  	i915_vma_resource_free(vma_res);
+>  err_fence:
+> -	if (work)
+> -		dma_fence_work_commit_imm(&work->base);
+> +	if (work) {
+> +		/* don't risk lockdep splat against stop_machine() */
+> +		if (i915_vma_is_ggtt(vma) &&
+> +		    intel_vm_no_concurrent_access_wa(vma->vm->i915))
+> +			dma_fence_work_commit(&work->base);
+> +		else
+> +			dma_fence_work_commit_imm(&work->base);
 
-Tvrtko
+This looks a bit hacky to me. The proper solution would be to fix
+the locking order and make sure we do not call stop_machine()
+while holding the lock.
 
-On 10/10/2025 09:29, Tvrtko Ursulin wrote:
-> 
-> On 09/10/2025 15:12, Kamil Konieczny wrote:
->> Hi Tvrtko,
->> On 2025-10-03 at 14:05:17 +0100, Tvrtko Ursulin wrote:
->>
->> small nit, as this is touching more than one lib, you could
->> just write it short:
->>
->> [PATCH i-g-t v2] lib: Use correct MOCS for displayable surfaces
->>
->> No need for resend unless you will send v3 or want to retest it
->> again.
-> 
-> I think I started with a smaller patch and forgot to change the tags 
-> when I refactored it.
-> 
-> Anyway, CI looks good AFAICT so we could merge it if everyone agrees?
-> 
-> I would then need to send the rebased xe series to see if it is 
-> completely stable without the clflush patch.
-> 
-> Regards,
-> 
-> Tvrtko
-> 
->>> Using the uncached MOCS for displayable surfaces is not always correct,
->>> especially when CCS compression is used with which some platforms 
->>> require
->>> a special uncached entry, otherwise writes get unexpectedly cached.
->>>
->>> Lets copy the knowledge of what is the correct MOCS for displayable
->>> surfaces from Mesa and add some new helpers to get it.
->>>
->>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>> Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
->>> ---
->>> v2:
->>>   * Renamed external_index to displayable_index. (Ville)
->>> ---
->>>   lib/igt_fb.c       |  2 +-
->>>   lib/intel_bufops.c |  2 ++
->>>   lib/intel_mocs.c   | 21 +++++++++++++++++++--
->>>   lib/intel_mocs.h   |  2 ++
->>>   4 files changed, 24 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/lib/igt_fb.c b/lib/igt_fb.c
->>> index 03ede3a6fa20..b5a16f9cbe90 100644
->>> --- a/lib/igt_fb.c
->>> +++ b/lib/igt_fb.c
->>> @@ -2712,7 +2712,7 @@ igt_fb_create_intel_buf(int fd, struct buf_ops 
->>> *bops,
->>>                       fb->strides[0],
->>>                       region,
->>>                       intel_get_pat_idx_uc(fd),
->>> -                    DEFAULT_MOCS_INDEX);
->>> +                    DISPLAYABLE_MOCS_INDEX);
->>>       intel_buf_set_name(buf, name);
->>>       /* only really needed for proper CCS handling */
->>> diff --git a/lib/intel_bufops.c b/lib/intel_bufops.c
->>> index 475b0d1f7b10..1196069a500f 100644
->>> --- a/lib/intel_bufops.c
->>> +++ b/lib/intel_bufops.c
->>> @@ -1008,6 +1008,8 @@ static void __intel_buf_init(struct buf_ops *bops,
->>>       buf->pat_index = pat_index;
->>>       if (mocs_index == DEFAULT_MOCS_INDEX)
->>>           mocs_index = intel_get_uc_mocs_index(bops->fd);
->>> +    else if (mocs_index == DISPLAYABLE_MOCS_INDEX)
->>> +        mocs_index = intel_get_displayable_mocs_index(bops->fd);
->>>       buf->mocs_index = mocs_index;
->>>       IGT_INIT_LIST_HEAD(&buf->link);
->>> diff --git a/lib/intel_mocs.c b/lib/intel_mocs.c
->>> index e0c33c31c088..9809e32113eb 100644
->>> --- a/lib/intel_mocs.c
->>> +++ b/lib/intel_mocs.c
->>> @@ -9,12 +9,14 @@
->>>   struct drm_intel_mocs_index {
->>>       uint8_t uc_index;
->>>       uint8_t wb_index;
->>> +    uint8_t displayable_index;
->>>       uint8_t defer_to_pat_index;
->>>   };
->>>   static void get_mocs_index(int fd, struct drm_intel_mocs_index *mocs)
->>>   {
->>>       uint16_t devid = intel_get_drm_devid(fd);
->>> +    unsigned int ip_ver = intel_graphics_ver(devid);
->>>       /*
->>>        * Gen >= 12 onwards don't have a setting for PTE,
->>> @@ -23,25 +25,31 @@ static void get_mocs_index(int fd, struct 
->>> drm_intel_mocs_index *mocs)
->>>        * This helper function is providing current UC as well
->>>        * as WB MOCS index based on platform.
->>>        */
->>> -    if (intel_graphics_ver(devid) >= IP_VER(20, 0)) {
->>> +    if (ip_ver >= IP_VER(20, 0)) {
->>>           mocs->uc_index = 3;
->>>           mocs->wb_index = 4;
->>> +        mocs->displayable_index = 1;
->>>           mocs->defer_to_pat_index = 0;
->>>       } else if (IS_METEORLAKE(devid)) {
->>>           mocs->uc_index = 5;
->>>           mocs->wb_index = 1;
->>> +        mocs->displayable_index = 14;
->>>       } else if (IS_DG2(devid)) {
->>>           mocs->uc_index = 1;
->>>           mocs->wb_index = 3;
->>> +        mocs->displayable_index = 3;
->>>       } else if (IS_DG1(devid)) {
->>>           mocs->uc_index = 1;
->>>           mocs->wb_index = 5;
->>> -    } else if (IS_GEN12(devid)) {
->>> +        mocs->displayable_index = 5;
->>> +    } else if (ip_ver >= IP_VER(12, 0)) {
->>>           mocs->uc_index = 3;
->>>           mocs->wb_index = 2;
->>> +        mocs->displayable_index = 61;
->>>       } else {
->>>           mocs->uc_index = I915_MOCS_PTE;
->>>           mocs->wb_index = I915_MOCS_CACHED;
->>> +        mocs->displayable_index = I915_MOCS_PTE;
->>>       }
->>>   }
->>> @@ -63,6 +71,15 @@ uint8_t intel_get_uc_mocs_index(int fd)
->>>       return mocs.uc_index;
->>>   }
->>> +uint8_t intel_get_displayable_mocs_index(int fd)
->>> +{
->>> +    struct drm_intel_mocs_index mocs;
->>> +
->>> +    get_mocs_index(fd, &mocs);
->>> +
->>> +    return mocs.displayable_index;
->>> +}
->>> +
->>>   uint8_t intel_get_defer_to_pat_mocs_index(int fd)
->>>   {
->>>       struct drm_intel_mocs_index mocs;
->>> diff --git a/lib/intel_mocs.h b/lib/intel_mocs.h
->>> index 8597286d259d..394bb41be042 100644
->>> --- a/lib/intel_mocs.h
->>> +++ b/lib/intel_mocs.h
->>> @@ -9,9 +9,11 @@
->>>   #include <stdint.h>
->>>   #define DEFAULT_MOCS_INDEX ((uint8_t)-1)
->>> +#define DISPLAYABLE_MOCS_INDEX ((uint8_t)-2)
->>>   uint8_t intel_get_wb_mocs_index(int fd);
->>>   uint8_t intel_get_uc_mocs_index(int fd);
->>> +uint8_t intel_get_displayable_mocs_index(int fd);
->>>   uint8_t intel_get_defer_to_pat_mocs_index(int fd);
->>>   #endif /* _INTEL_MOCS_H */
->>> -- 
->>> 2.48.0
->>>
-> 
+In the past we have added plenty of dirty and ugly hacks to
+work around locking orders just to make lockdep happy. I would
+rather live with a lockdep warning than carry a hack for many
+years ahead.
 
+On the other hand, we call stop_machine() for a specific case
+caused by a hardware flaw in BXT, so doing a heavy refactoring
+might be excessive.
+
+To be honest, I do not have a clean solution in mind, and I do
+not feel like either blocking or acking this approach.
+
+It looks like you have achieved consensus here, so I can apply it
+if you want (for maintainership's sake), unless someone objects.
+
+Thanks,
+Andi
+
+> +	}
+>  err_rpm:
+>  	intel_runtime_pm_put(&vma->vm->i915->runtime_pm, wakeref);
+>  
+> -- 
+> 2.51.0
+> 
