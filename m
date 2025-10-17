@@ -2,57 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28969BE8A59
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Oct 2025 14:48:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 921DBBE8A5C
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Oct 2025 14:48:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8992410EBD3;
-	Fri, 17 Oct 2025 12:48:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E24E110EBDF;
+	Fri, 17 Oct 2025 12:48:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MbJp5Bm/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j81CWOf9";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 548A010EBD3;
- Fri, 17 Oct 2025 12:48:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5304D10EBDC;
+ Fri, 17 Oct 2025 12:48:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760705301; x=1792241301;
+ t=1760705304; x=1792241304;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZAYQydhEMj9N1IJ3cvAf04+0Gg8RmHcZAhXH6Wob6+w=;
- b=MbJp5Bm/pxK5mF5HPD0IpbA0mhlc5LR1Z/CodG+vtnz42t5kDy3vqp1C
- FXLDewFN4bBVb+NV3zRjvW7xwo/HQpeh/rvnILyXLhxSGgWjSSczW97cK
- R4HqYR0gwzNqeRJxziHwWtdy0c+M0umHkjBdAPrq8oinE3eUB0EiLT4+M
- szXDwVqq0B2mGHBeRlgX3Fp8r8eapU3mU40QJEwxraIaka+JLUGgxTM8Z
- YDmE3jXiN2Bhuja2mlByoMhWC5d7mzg+MuyF8lPA8Y+8eFpAY/J5uhGTw
- VznRRL1NU4g3J/Rq2ZuSIjnrv+eI/6DDUmnPiaWYQ2D+rmd/rxQKtdaDi w==;
-X-CSE-ConnectionGUID: XGqLKYhGS0qs6yRLID8YFA==
-X-CSE-MsgGUID: 8J3VxeYjTmuqMk4QrIjHMw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11584"; a="61944196"
-X-IronPort-AV: E=Sophos;i="6.19,236,1754982000"; d="scan'208";a="61944196"
+ bh=eyiqPjsgwzHILhPJ8WLyZMDgQQpDqKNuRpa6BJkLspA=;
+ b=j81CWOf9z5LBlfMfWKlkgSCg3m9agdV4oTnbPj4kW90xi2IRKQFSNS/N
+ hGPsvOKiikgJptaQZWrV6lgPJT3NFOVRNOXkLVG/2J1uZT+vvlQ5gaSDP
+ 76NhS+fUFsHlbE425PClaYlSo8L5AERzTDCN0/3hXQ2zT5f0NspNXXZF2
+ SlIzN7Fq6LdID/nAs6i+fUJyrGLPntNLRsWEY4VgnWdCxqErTpyL6K4Bv
+ 1Vpuuq5w2N6vhQYS0tcpZrdMwYfaNgiqYiThnruCkI4PFmQ1APIVXAxHE
+ 8ER9xCngqXl0ccPSFuFC3RKU/JZD31vOTyypMXFPx+tdhL43ljtXARvT9 A==;
+X-CSE-ConnectionGUID: dqkz9rTKQN6FxvC/Kj3+XQ==
+X-CSE-MsgGUID: U/Wimf1DQZyteoJlINDj+Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11584"; a="61944198"
+X-IronPort-AV: E=Sophos;i="6.19,236,1754982000"; d="scan'208";a="61944198"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2025 05:48:20 -0700
-X-CSE-ConnectionGUID: hK3bzhueTRmdNK17jRptYQ==
-X-CSE-MsgGUID: tRDEJQdPTb2us3iAJoG88w==
+ 17 Oct 2025 05:48:23 -0700
+X-CSE-ConnectionGUID: hrXls7n3RvCe035N/uRl1g==
+X-CSE-MsgGUID: GXUmq/KyTAK3x3jeiBwGCQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,236,1754982000"; d="scan'208";a="182281071"
+X-IronPort-AV: E=Sophos;i="6.19,236,1754982000"; d="scan'208";a="182281077"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2025 05:48:18 -0700
+ 17 Oct 2025 05:48:21 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 2/5] drm/i915/dp: Add helper to get min sdp guardband
-Date: Fri, 17 Oct 2025 18:05:01 +0530
-Message-ID: <20251017123504.2247954-3-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 3/5] drm/i915/dp: Check if guardband can accommodate sdp
+ latencies
+Date: Fri, 17 Oct 2025 18:05:02 +0530
+Message-ID: <20251017123504.2247954-4-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20251017123504.2247954-1-ankit.k.nautiyal@intel.com>
 References: <20251017123504.2247954-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,78 +71,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add a helper to compute vblank time needed for transmitting specific
-DisplayPort SDPs like PPS, GAMUT_METADATA, and VSC_EXT. Latency is
-based on line count per packet type.
+Check if guardband is sufficient for all DP SDP latencies.
+If its not, fail .compute_config_late().
 
-This will be used to ensure adequate guardband when features like DSC/HDR
-are enabled.
-
-v2: Correct the lines required for PPS SDP. (Jouni)
-
-Bspec: 70151
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 36 +++++++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dp.h |  2 ++
- 2 files changed, 38 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dp.c | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 7059d55687cf..acbb4d476543 100644
+index acbb4d476543..fc227db7b7c1 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -6990,3 +6990,39 @@ int intel_dp_compute_config_late(struct intel_encoder *encoder,
+@@ -93,6 +93,7 @@
+ #include "intel_psr.h"
+ #include "intel_quirks.h"
+ #include "intel_tc.h"
++#include "intel_vblank.h"
+ #include "intel_vdsc.h"
+ #include "intel_vrr.h"
  
- 	return 0;
+@@ -6980,14 +6981,35 @@ void intel_dp_mst_resume(struct intel_display *display)
+ 	}
  }
-+
+ 
 +static
-+int intel_dp_get_lines_for_sdp(u32 type)
++int intel_dp_sdp_compute_config_late(struct intel_crtc_state *crtc_state)
 +{
-+	switch (type) {
-+	case DP_SDP_VSC_EXT_VESA:
-+	case DP_SDP_VSC_EXT_CEA:
-+		return 10;
-+	case HDMI_PACKET_TYPE_GAMUT_METADATA:
-+		return 8;
-+	case DP_SDP_PPS:
-+		return 7;
-+	default:
-+		break;
++	struct intel_display *display = to_intel_display(crtc_state);
++	int guardband = intel_crtc_vblank_length(crtc_state);
++	int min_sdp_guardband = intel_dp_sdp_min_guardband(crtc_state, false);
++
++	if (guardband < min_sdp_guardband) {
++		drm_dbg_kms(display->drm, "guardband %d < min sdp guardband %d\n",
++			    guardband, min_sdp_guardband);
++		return -EINVAL;
 +	}
 +
 +	return 0;
 +}
 +
-+int intel_dp_sdp_min_guardband(const struct intel_crtc_state *crtc_state,
-+			       bool assume_all_enabled)
-+{
-+	int sdp_guardband = 0;
-+
-+	if (assume_all_enabled ||
-+	    crtc_state->infoframes.enable &
-+	    intel_hdmi_infoframe_enable(HDMI_PACKET_TYPE_GAMUT_METADATA))
-+		sdp_guardband = max(sdp_guardband,
-+				    intel_dp_get_lines_for_sdp(HDMI_PACKET_TYPE_GAMUT_METADATA));
-+
-+	if (assume_all_enabled ||
-+	    crtc_state->dsc.compression_enable)
-+		sdp_guardband = max(sdp_guardband, intel_dp_get_lines_for_sdp(DP_SDP_PPS));
-+
-+	return sdp_guardband;
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index 281ced3a3b39..7ee5aeb28fe2 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -221,5 +221,7 @@ bool intel_dp_in_hdr_mode(const struct drm_connector_state *conn_state);
  int intel_dp_compute_config_late(struct intel_encoder *encoder,
  				 struct intel_crtc_state *crtc_state,
- 				 struct drm_connector_state *conn_state);
-+int intel_dp_sdp_min_guardband(const struct intel_crtc_state *crtc_state,
-+			       bool assume_all_enabled);
+ 				 struct drm_connector_state *conn_state)
+ {
+ 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++	int ret;
  
- #endif /* __INTEL_DP_H__ */
+ 	intel_psr_compute_config_late(intel_dp, crtc_state);
+ 
++	ret = intel_dp_sdp_compute_config_late(crtc_state);
++	if (ret)
++		return ret;
++
+ 	return 0;
+ }
+ 
 -- 
 2.45.2
 
