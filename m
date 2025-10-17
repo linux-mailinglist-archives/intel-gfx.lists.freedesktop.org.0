@@ -2,57 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D71EBE6F07
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Oct 2025 09:31:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DAF6ABE701C
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Oct 2025 09:51:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 631EF10EAF5;
-	Fri, 17 Oct 2025 07:31:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E01010EB3A;
+	Fri, 17 Oct 2025 07:51:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="WLaKsOv+";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="f8+0uFET";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1C2510EAF5;
- Fri, 17 Oct 2025 07:31:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1760686296;
- bh=+BMP92K4asKFaGVxNw7U7Zl5UFujoFolv1nhfrtKbto=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=WLaKsOv+PriMSUKniOrtmEXJaysfC6roB605EvkuYZgZ5pOgtRwb+klzkqa3zLy+3
- TziAC0z7uf7vMRQkkUdOgda1bI6JuvZkfnjGPNTDaJ4Ey8bPBDjhJ+H7qY4UCKvAOd
- 11GI3+ZY+7NHLI7bkbomSD675uSgk5FnOxSmPX5EW5zNcIRKWb+8X0kI9t6LIQ7Qpt
- w/HCWZHSP9yOLVJJP1to35UeXykuyZiBYpNLnm9UWk6LjOTg7bLwPGG9FtWCuy3Uhx
- gtk5SbONRX3EalYkRgfIVhqafdHuNcxJcnoQEyRdWVBA4yOxYzDi+FSvC4aW/NcmHD
- Nz3MB0AbQjHkg==
-Received: from [192.168.50.250] (unknown [171.76.80.157])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: vignesh)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id B11C217E0FAD;
- Fri, 17 Oct 2025 09:31:32 +0200 (CEST)
-Message-ID: <6769d162-ab1c-4427-a0be-22c0b62673c3@collabora.com>
-Date: Fri, 17 Oct 2025 13:01:24 +0530
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6069010EB38;
+ Fri, 17 Oct 2025 07:51:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:References:
+ To:From:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=Ob6yGN7Aa+gUQgQpl07I49pYyGNrtgIWuPzbg8h95oo=; b=f8+0uFETPqXIvSMoLD9mefBot/
+ X3mjAJFeUTs9v1Il3HfeSUBW0nXM2E+fvjK/JEeIFIQwPKh0LStA8UNAnLv8uDKgIV6r7WzrR69lK
+ B4lrEflyudd1UezYSCb5t0llWbCWTyQWJoECx3M8KJRM3V3tJ8D+jlYp0GO4Oa8JPcIrePz8m22Fw
+ 0VRlPCS9tW4UPrMvu4wyhIA1P9XNXnnobYR2h4sog+NeeQIXVVmbkCjZQrTMto5aI6SJfnKdZXgTj
+ U9KIUwI6D4SkA84LSTx+aW8e7CoZmlDIFv2AJQuaiwt8jitJAhk4nwWPpehs1sxu+To09YzzLeW8+
+ pxPIbzkw==;
+Received: from [90.242.12.242] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1v9fEx-00Avsk-D1; Fri, 17 Oct 2025 09:51:07 +0200
+Message-ID: <77f52a1d-5491-49a1-9eae-693678392c7f@igalia.com>
+Date: Fri, 17 Oct 2025 08:51:06 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/7] drm/ci: disable apq8016 and apq8096 bare-metal jobs
-To: rob.clark@oss.qualcomm.com
-Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
- helen.fornazier@gmail.com, airlied@gmail.com, simona.vetter@ffwll.ch,
- robdclark@gmail.com, guilherme.gallo@collabora.com,
- sergi.blanch.torne@collabora.com, valentine.burley@collabora.com,
- lumag@kernel.org, linux-mediatek@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org,
- amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
- linux-kernel@vger.kernel.org
-References: <20250718105407.32878-1-vignesh.raman@collabora.com>
- <20250718105407.32878-2-vignesh.raman@collabora.com>
- <CACSVV029ueL_4Y5irmmOwy_9QDQGqDe_1wCGUe22FdefQiNjkw@mail.gmail.com>
-Content-Language: en-US
-From: Vignesh Raman <vignesh.raman@collabora.com>
-In-Reply-To: <CACSVV029ueL_4Y5irmmOwy_9QDQGqDe_1wCGUe22FdefQiNjkw@mail.gmail.com>
+Subject: Re: [PATCH i-g-t v2] lib/igt_fb/intel: Use correct MOCS for
+ displayable surfaces
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ igt-dev@lists.freedesktop.org, =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?=
+ <ville.syrjala@linux.intel.com>
+References: <20251003130517.40414-1-tvrtko.ursulin@igalia.com>
+ <20251009141233.mun3udwxxv7nptyb@kamilkon-DESK.igk.intel.com>
+ <465a28fa-250e-404e-b05f-647e1322f3d7@igalia.com>
+Content-Language: en-GB
+In-Reply-To: <465a28fa-250e-404e-b05f-647e1322f3d7@igalia.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -70,56 +65,166 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Rob,
 
-On 16/10/25 20:22, Rob Clark wrote:
-> On Fri, Jul 18, 2025 at 3:54 AM Vignesh Raman
-> <vignesh.raman@collabora.com> wrote:
->>
->> These devices are being moved to LAVA. The jobs will be enabled and the
->> job definitions will be updated once the move is complete.
-> 
-> fwiw, the runners are up and running in LAVA now
-
-Thanks. I will enable them and send v2.
+Gentle ping on this one - primarily to Ville - do you think we can land 
+this so that we can have some kernel series CI runs against it?
 
 Regards,
-Vignesh
 
+Tvrtko
+
+On 10/10/2025 09:29, Tvrtko Ursulin wrote:
 > 
-> BR,
-> -R
+> On 09/10/2025 15:12, Kamil Konieczny wrote:
+>> Hi Tvrtko,
+>> On 2025-10-03 at 14:05:17 +0100, Tvrtko Ursulin wrote:
+>>
+>> small nit, as this is touching more than one lib, you could
+>> just write it short:
+>>
+>> [PATCH i-g-t v2] lib: Use correct MOCS for displayable surfaces
+>>
+>> No need for resend unless you will send v3 or want to retest it
+>> again.
 > 
->> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
->> ---
->>   drivers/gpu/drm/ci/test.yml | 6 ++++--
->>   1 file changed, 4 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/ci/test.yml b/drivers/gpu/drm/ci/test.yml
->> index 81147e86bfd0..53d19ffaaf61 100644
->> --- a/drivers/gpu/drm/ci/test.yml
->> +++ b/drivers/gpu/drm/ci/test.yml
->> @@ -148,7 +148,9 @@ msm:sc7180-trogdor-kingoftown:
->>       GPU_VERSION: ${DEVICE_TYPE}
->>       RUNNER_TAG: mesa-ci-x86-64-lava-sc7180-trogdor-kingoftown
->>
->> -msm:apq8016:
->> +# FIXME: Disable the bare-metal jobs. These devices are being moved to LAVA.
->> +# Once the move is complete, update the job definitions accordingly.
->> +.msm:apq8016:
->>     extends:
->>       - .baremetal-igt-arm64
->>     stage: msm
->> @@ -165,7 +167,7 @@ msm:apq8016:
->>     script:
->>       - ./install/bare-metal/fastboot.sh || exit $?
->>
->> -msm:apq8096:
->> +.msm:apq8096:
->>     extends:
->>       - .baremetal-igt-arm64
->>     stage: msm
->> --
->> 2.47.2
->>
+> I think I started with a smaller patch and forgot to change the tags 
+> when I refactored it.
+> 
+> Anyway, CI looks good AFAICT so we could merge it if everyone agrees?
+> 
+> I would then need to send the rebased xe series to see if it is 
+> completely stable without the clflush patch.
+> 
+> Regards,
+> 
+> Tvrtko
+> 
+>>> Using the uncached MOCS for displayable surfaces is not always correct,
+>>> especially when CCS compression is used with which some platforms 
+>>> require
+>>> a special uncached entry, otherwise writes get unexpectedly cached.
+>>>
+>>> Lets copy the knowledge of what is the correct MOCS for displayable
+>>> surfaces from Mesa and add some new helpers to get it.
+>>>
+>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>>> Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>>> ---
+>>> v2:
+>>>   * Renamed external_index to displayable_index. (Ville)
+>>> ---
+>>>   lib/igt_fb.c       |  2 +-
+>>>   lib/intel_bufops.c |  2 ++
+>>>   lib/intel_mocs.c   | 21 +++++++++++++++++++--
+>>>   lib/intel_mocs.h   |  2 ++
+>>>   4 files changed, 24 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/lib/igt_fb.c b/lib/igt_fb.c
+>>> index 03ede3a6fa20..b5a16f9cbe90 100644
+>>> --- a/lib/igt_fb.c
+>>> +++ b/lib/igt_fb.c
+>>> @@ -2712,7 +2712,7 @@ igt_fb_create_intel_buf(int fd, struct buf_ops 
+>>> *bops,
+>>>                       fb->strides[0],
+>>>                       region,
+>>>                       intel_get_pat_idx_uc(fd),
+>>> -                    DEFAULT_MOCS_INDEX);
+>>> +                    DISPLAYABLE_MOCS_INDEX);
+>>>       intel_buf_set_name(buf, name);
+>>>       /* only really needed for proper CCS handling */
+>>> diff --git a/lib/intel_bufops.c b/lib/intel_bufops.c
+>>> index 475b0d1f7b10..1196069a500f 100644
+>>> --- a/lib/intel_bufops.c
+>>> +++ b/lib/intel_bufops.c
+>>> @@ -1008,6 +1008,8 @@ static void __intel_buf_init(struct buf_ops *bops,
+>>>       buf->pat_index = pat_index;
+>>>       if (mocs_index == DEFAULT_MOCS_INDEX)
+>>>           mocs_index = intel_get_uc_mocs_index(bops->fd);
+>>> +    else if (mocs_index == DISPLAYABLE_MOCS_INDEX)
+>>> +        mocs_index = intel_get_displayable_mocs_index(bops->fd);
+>>>       buf->mocs_index = mocs_index;
+>>>       IGT_INIT_LIST_HEAD(&buf->link);
+>>> diff --git a/lib/intel_mocs.c b/lib/intel_mocs.c
+>>> index e0c33c31c088..9809e32113eb 100644
+>>> --- a/lib/intel_mocs.c
+>>> +++ b/lib/intel_mocs.c
+>>> @@ -9,12 +9,14 @@
+>>>   struct drm_intel_mocs_index {
+>>>       uint8_t uc_index;
+>>>       uint8_t wb_index;
+>>> +    uint8_t displayable_index;
+>>>       uint8_t defer_to_pat_index;
+>>>   };
+>>>   static void get_mocs_index(int fd, struct drm_intel_mocs_index *mocs)
+>>>   {
+>>>       uint16_t devid = intel_get_drm_devid(fd);
+>>> +    unsigned int ip_ver = intel_graphics_ver(devid);
+>>>       /*
+>>>        * Gen >= 12 onwards don't have a setting for PTE,
+>>> @@ -23,25 +25,31 @@ static void get_mocs_index(int fd, struct 
+>>> drm_intel_mocs_index *mocs)
+>>>        * This helper function is providing current UC as well
+>>>        * as WB MOCS index based on platform.
+>>>        */
+>>> -    if (intel_graphics_ver(devid) >= IP_VER(20, 0)) {
+>>> +    if (ip_ver >= IP_VER(20, 0)) {
+>>>           mocs->uc_index = 3;
+>>>           mocs->wb_index = 4;
+>>> +        mocs->displayable_index = 1;
+>>>           mocs->defer_to_pat_index = 0;
+>>>       } else if (IS_METEORLAKE(devid)) {
+>>>           mocs->uc_index = 5;
+>>>           mocs->wb_index = 1;
+>>> +        mocs->displayable_index = 14;
+>>>       } else if (IS_DG2(devid)) {
+>>>           mocs->uc_index = 1;
+>>>           mocs->wb_index = 3;
+>>> +        mocs->displayable_index = 3;
+>>>       } else if (IS_DG1(devid)) {
+>>>           mocs->uc_index = 1;
+>>>           mocs->wb_index = 5;
+>>> -    } else if (IS_GEN12(devid)) {
+>>> +        mocs->displayable_index = 5;
+>>> +    } else if (ip_ver >= IP_VER(12, 0)) {
+>>>           mocs->uc_index = 3;
+>>>           mocs->wb_index = 2;
+>>> +        mocs->displayable_index = 61;
+>>>       } else {
+>>>           mocs->uc_index = I915_MOCS_PTE;
+>>>           mocs->wb_index = I915_MOCS_CACHED;
+>>> +        mocs->displayable_index = I915_MOCS_PTE;
+>>>       }
+>>>   }
+>>> @@ -63,6 +71,15 @@ uint8_t intel_get_uc_mocs_index(int fd)
+>>>       return mocs.uc_index;
+>>>   }
+>>> +uint8_t intel_get_displayable_mocs_index(int fd)
+>>> +{
+>>> +    struct drm_intel_mocs_index mocs;
+>>> +
+>>> +    get_mocs_index(fd, &mocs);
+>>> +
+>>> +    return mocs.displayable_index;
+>>> +}
+>>> +
+>>>   uint8_t intel_get_defer_to_pat_mocs_index(int fd)
+>>>   {
+>>>       struct drm_intel_mocs_index mocs;
+>>> diff --git a/lib/intel_mocs.h b/lib/intel_mocs.h
+>>> index 8597286d259d..394bb41be042 100644
+>>> --- a/lib/intel_mocs.h
+>>> +++ b/lib/intel_mocs.h
+>>> @@ -9,9 +9,11 @@
+>>>   #include <stdint.h>
+>>>   #define DEFAULT_MOCS_INDEX ((uint8_t)-1)
+>>> +#define DISPLAYABLE_MOCS_INDEX ((uint8_t)-2)
+>>>   uint8_t intel_get_wb_mocs_index(int fd);
+>>>   uint8_t intel_get_uc_mocs_index(int fd);
+>>> +uint8_t intel_get_displayable_mocs_index(int fd);
+>>>   uint8_t intel_get_defer_to_pat_mocs_index(int fd);
+>>>   #endif /* _INTEL_MOCS_H */
+>>> -- 
+>>> 2.48.0
+>>>
+> 
 
