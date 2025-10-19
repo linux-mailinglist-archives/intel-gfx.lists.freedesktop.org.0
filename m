@@ -2,197 +2,171 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8124BEDFA7
-	for <lists+intel-gfx@lfdr.de>; Sun, 19 Oct 2025 09:30:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F060FBEEB44
+	for <lists+intel-gfx@lfdr.de>; Sun, 19 Oct 2025 20:27:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E29BE10E198;
-	Sun, 19 Oct 2025 07:30:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2975110E222;
+	Sun, 19 Oct 2025 18:27:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cTgE1EO1";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UH553tGJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A91210E096;
- Sun, 19 Oct 2025 07:30:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB4FD10E159;
+ Sun, 19 Oct 2025 18:27:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760859011; x=1792395011;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=Meuj6ypweZmG/WtN0mubYCnHNWDxK8bj95OsWQdkFFo=;
- b=cTgE1EO1tBhW1tFdrFym6fUPRVQYpT3y67kmC9omF9PzjlCngurX14ab
- cpCm25Ww2pZ9PfMl75Qh8ELIozMsob67X/+h4kVyeOyvgLjq/ZX9dJqmp
- 0QA2ALb9IWLbynhxOdyUpITsy2vT/FDqsqBJDKdPVrlaM71UiiI35J6K0
- zZ/3CePvaY6QOCPuG2Ti2YkPKWWY0D6sTXbPE/HEdnW7BNCamoXAkQ8pc
- q4G3FXGxcoCm8hNeBtZnzVuJ/WklvyH52RVJbDcauWhM4M+ZY29S24P7Q
- kOumORnCwmoP6n7GDqx5P9q/QzeD8zzdEYZLNr8WJnGXl8Z2ul0qkAyDw w==;
-X-CSE-ConnectionGUID: WeL2VpsGRku2PxK8jTQTvA==
-X-CSE-MsgGUID: dBoTJFfsTl2hOaajQfXbXg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74453138"
-X-IronPort-AV: E=Sophos;i="6.19,240,1754982000"; d="scan'208";a="74453138"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2025 00:30:10 -0700
-X-CSE-ConnectionGUID: B8A9qgFqS8SeLgD7jZyn1A==
-X-CSE-MsgGUID: tFdoobGxT5O2x4eyJxuYQQ==
+ t=1760898428; x=1792434428;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ in-reply-to:mime-version;
+ bh=LcQjMjLNo6ki3fnGsSLTxuiP42e8t7pteg2/nH3YjpY=;
+ b=UH553tGJ+MNiqxZPAJxfhaIzUEklBY7u9m9Yb/ipLdjGq93SZUH6rXSG
+ 8VK4IY1RmeIW809FXNLl+2QiT+SYkh91oj6+KvH7OzL1toCljJNzhnl+n
+ 13SfgLT7O2a72kxrh7kxG8eq1sssTMoCPgh6GnXurpckTQT3F2CcnTgAj
+ uG9rnFLU7yej82J1qDiudPaS0my27G44NgDyk9bMvI78aOTHdrDD8L7an
+ AWLXcf8fPD1h5dLoARtIPpY9nUeYJiWVTqqCnnp0JhwTcjzjTIfPLVQEj
+ iYnoiXUs4PFEcvZrU7PlfZqUyYbp2rREszqKORmUpptQMofaJolCAkVXg g==;
+X-CSE-ConnectionGUID: 02zd3+crSvO7ThLrcd9VwQ==
+X-CSE-MsgGUID: aGugyvZhQvGCV2JlK2f6cg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11587"; a="73637134"
+X-IronPort-AV: E=Sophos;i="6.19,241,1754982000"; d="scan'208";a="73637134"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2025 11:27:07 -0700
+X-CSE-ConnectionGUID: n49ZzVx+Qemj9JQMdHVPSg==
+X-CSE-MsgGUID: cSsQgSfQSZG05BAebhNBXg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,240,1754982000"; d="scan'208";a="183568947"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2025 00:30:09 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.19,241,1754982000"; d="scan'208";a="187583303"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2025 11:27:06 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Sun, 19 Oct 2025 00:30:09 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.27; Sun, 19 Oct 2025 11:27:04 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Sun, 19 Oct 2025 00:30:09 -0700
-Received: from BN8PR05CU002.outbound.protection.outlook.com (52.101.57.59) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Sun, 19 Oct 2025 11:27:04 -0700
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.0) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Sun, 19 Oct 2025 00:30:09 -0700
+ 15.2.2562.27; Sun, 19 Oct 2025 11:27:04 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PqbNn2EHa5FNDr3NhvETRTPnPa0YjmdbplrbQyn0fP8GVrB5btAherEA4ghiORzXYkYxNEedXrQDaN+hC+VoZYgWPF+znKxtV7BY3Y1FJ4WHagMwZCrdOaFVa8ieIAt2/u9O7AYgTTx71Hv0FYO+g0LTBJMKH/ydu3tW2azADR1m3kAbipCOK/AN1eujpkDnRzptiXBno59GHD8oz95XDPgWHH6qH9QCQyWu/bUxugtwTrMr2F+oNPa43VNLtqRfREiv6xKZdo6WgOxS8mVrsjScXT41kBYd1kgOPvAkJAyxd6LOdGAKQAzbo1N+zN9Ii4Z34wGCSdzt2avd+nAx2w==
+ b=AiRz8+AE0WeaAL+pQ30nNrSmID7FqmkzznOLb/sw/QBRWzHFS8tq9lm2tNcHA3pBL/S8GiVQgi56I2L5negUrT2ZVHzZ+CyRhX/Iytese7CIFclJjNZG7eAD1bftVjeMiXr35usy2WPNeZOxO9G8mWim8hMKHkoZJmqj8LX1vY5SxFzIzIoOnLVii9MzoXx+NRDzxTT8Rd2zFOePv0cz/8GEI8Xuq9WSDuqp8gXvyAWvv1LA2PT4uDrJGyKGiTeGzEacMr3QSGwHvw+suj29P9DCAvFOsnqFRisSrAGCbHl/URoDjxcU90PdKIVBMvuq5NL3XfSg0bUnDD5KOpSuGg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Meuj6ypweZmG/WtN0mubYCnHNWDxK8bj95OsWQdkFFo=;
- b=NAKy0BJkbCBtAwx77mRmCwAIBjvpxmPYSm1KBSiGzLxOU27jZ0a/rxv0je/SptNdKq0hwFVEO3EuQ5PoajkCj6paEfXBwEtJmINjBLQije0XV911pMWpX2qm+PkmGF5edzM++eDCrBr3/9PdJjf/5sJZOgXQ8n3m4xXL5FGvHvr3RjEbjc0z9l/zDU0m+X51Yx8+DxtH/6Ya0MgWahG3jHKkfY5BHokea0rvvVHyk7Le6bpfe6IcaDv8PETze/SbABS5Cb9z/XI1dczVZSvlbgBW0GRB96DlNCzL1KRjJgwaxINnkFQXHKYCuWTCYxCAK/pgnQpFDEQAZr2mvusYwg==
+ bh=lKEs0jIWDrBVhkWUUALwEDJM0ZoYmG1LpTJ1UIDvII4=;
+ b=gVR5q2bqGQ0PdAfbfToXUWFLwvkRssQzoMzjgr8Iq4Xek0BzWQfAh7+wPzqh3M8RHehX0MrSsO0vz4qIL8d3P4dXPYwkMgUhHWe/FQyYXAG/GpXaMkxjzkQmeuyF09ezdEdzCHEOysbXTX4gWgjmLu+XZU+qYb6hl2GrEFXypn7RrcPw776UaM2cO4FJftv9bxPX+RmmtnEbgx1VaSOFa8bng0zGNZjMZTRZ7VOpx7WEeIHb57aeM8ZxonFZ/fWJ1GnTM334bq9uskMHk1w9jczoGBg5sAFwNt+33IlOqBIzT63V/WZnrOtTsEiWpXiI7njRsZLdy0+ZPP3+GkddqQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from CY5PR11MB6366.namprd11.prod.outlook.com (2603:10b6:930:3a::8)
- by PH0PR11MB7167.namprd11.prod.outlook.com (2603:10b6:510:1e9::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.15; Sun, 19 Oct
- 2025 07:30:06 +0000
-Received: from CY5PR11MB6366.namprd11.prod.outlook.com
- ([fe80::22af:c9c9:3681:5201]) by CY5PR11MB6366.namprd11.prod.outlook.com
- ([fe80::22af:c9c9:3681:5201%4]) with mapi id 15.20.9228.014; Sun, 19 Oct 2025
- 07:30:06 +0000
-From: "Usyskin, Alexander" <alexander.usyskin@intel.com>
-To: Randy Dunlap <rdunlap@infradead.org>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>
-CC: Petr Vorel <pvorel@suse.cz>, "Gote, Nitin R" <nitin.r.gote@intel.com>, "De
- Marchi, Lucas" <lucas.demarchi@intel.com>, Jani Nikula
- <jani.nikula@linux.intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- =?utf-8?B?VGhvbWFzIEhlbGxzdHLDtm0=?= <thomas.hellstrom@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>, David Airlie <airlied@gmail.com>, "Simona
- Vetter" <simona@ffwll.ch>
-Subject: RE: [PATCH v2] mei: intel_lb_mei_interface.h: mark struct member with
- kernel-doc
-Thread-Topic: [PATCH v2] mei: intel_lb_mei_interface.h: mark struct member
- with kernel-doc
-Thread-Index: AQHcPtB2W4bh+Hb09kK6rlDxVOf6VLTJFimg
-Date: Sun, 19 Oct 2025 07:30:05 +0000
-Message-ID: <CY5PR11MB6366AC1589B2FE4E054ED6CCEDF4A@CY5PR11MB6366.namprd11.prod.outlook.com>
-References: <20251016190941.1306157-1-rdunlap@infradead.org>
-In-Reply-To: <20251016190941.1306157-1-rdunlap@infradead.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CY5PR11MB6366:EE_|PH0PR11MB7167:EE_
-x-ms-office365-filtering-correlation-id: 104b080d-a3e5-4f57-29a6-08de0ee15341
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|7416014|366016|38070700021; 
-x-microsoft-antispam-message-info: =?utf-8?B?TlJnQ1E2NVQ0dC9OcHVpSHBjaGE2ejFmUk9sWThPTHByeTUrT1RJMG1Idkoy?=
- =?utf-8?B?SzRUS0cxV3QzbGdyWGF5Q0FIWTVqNzRLZ1JLZzBzeXZjdFQ4dGdYQ1VWSndW?=
- =?utf-8?B?b0d4Y0dPb1cyT1FLNWF4L3kxUVl1SU1GNWVzdzBFL1ZBalJQOFZkcEFTcXEr?=
- =?utf-8?B?V3phbk9pVTJ5N2pIV005RnNVMXVFL042SGJYNU1xSzNvOUtJSnVPYmw1azFV?=
- =?utf-8?B?cmJUNC9ocVcxWEIzaUJkQXNTUEZHWXlxdVdudTE2ckVYOWpjUnJYWGNWOElD?=
- =?utf-8?B?Um1ud1VYMHd4NEhhUzh5dmFpY3RNVldDc25neWc2RUU1Z2JrU1pBWnFzTXRp?=
- =?utf-8?B?UkZhbFljOWhFRzlaTzdQUVU3My9ub2xNZTNXejRMdzl2ajU2SDJqUzBVS0t5?=
- =?utf-8?B?dmYvWTZCSW9RenlvMlVuY2lCcy84YmZWQU0vdHN4VzQzbExEM2RMM1E1VjJ1?=
- =?utf-8?B?cDlXeTJjSXEzbzhFOHdGbjNxQ3c2YW80WHEyK3lLTXVVWnpSNEFjQi9BNUFx?=
- =?utf-8?B?UlVMZ0VGZjlmWXJyRjd3WW80TkJMQ3pCRHRNYkRydDV0eDFUM1VmYitLMTZv?=
- =?utf-8?B?cE5icG14RXlrWmhrQUc4bVkrQzE3d2lHUW9JM2wyVXVvMXgzZnMwKy9ESE5E?=
- =?utf-8?B?S25kQk1CNXVvMXIwUTRPd29jSCt5RjRRYjZWa1NVdzRPdnM0a3lVdFFkN05t?=
- =?utf-8?B?MGg4Q0xvZGpMT3lnc2hTSFV6ZW4rTzg4ZExhS0FObk83RllHRDhEWjdmdlNI?=
- =?utf-8?B?Lyt5Z2Z1cVM3czNUWnlzaURsWFVFRjJJZGs4RVF4Si8zRXNXODMwRXk2VUg2?=
- =?utf-8?B?K29qUjhHdjQ0Sjl6OW84bDFPRzd3MlNkNElIV2tqTllNc1M2b0h0ZVd5cFhE?=
- =?utf-8?B?OFllbXJGR2JvR0lLVEpHZ3orVGV1WEVDOHUzdDg5cU94eThNM1NKcE5nRGlu?=
- =?utf-8?B?SVZSRW5BWCs1dHMzQmxpTVF4c0dQNXhvLzdRL1FDMzZwVnpMeDhOQUVWakc3?=
- =?utf-8?B?VUhKL0QyM0tRVlIxQUxRYm1RdTAwTks1Qm54bktZeXJXTGNQU2NSVkZuVTVo?=
- =?utf-8?B?ZTkrM09XWGRQK2l6WTB5blpKWml3Vm5iTUV4OHVjNXNLRjJPSnlBTEVLSFhP?=
- =?utf-8?B?RjQ5TXEyUFRORmZCeXVNRmlRaE5zR1gyNnEyd1czN0NyODVGK0wyZUZzQWVx?=
- =?utf-8?B?L2taOXZYS3FVcHlObkFMRXowWnlnaGM5Z0hFODZpRmxhT2ZiSDhicVZndURF?=
- =?utf-8?B?bFQ0Z2F4YnJPWEVlQzk2YWFUck1Zd2k2REtOYS9sdTMzWHF2RFRvZ0JGaUlD?=
- =?utf-8?B?aDdWTkorY2wyeGpvR2pPV1huVU9NYWZRbDVvVVBESnhYdjZKR3ZkRFRWdlJK?=
- =?utf-8?B?QmJ2Yk9hL0RDb054SUV3N2MvaE9uR3dsVG5kbHMvSGdHamlhUysrUG0xUkpj?=
- =?utf-8?B?NTVUS2tzRDEwcDF4ZDhBMDBoNWl4NGhTelBENDZLV1dqckFwZVgzTDd3TVBr?=
- =?utf-8?B?amllKzJmSzhJclFIei9zSDBLYkNzZEdlbGFma1pxZHNOckFicmszakY4MXIw?=
- =?utf-8?B?aE9WaERTdXQzUWxmMDhLc2VZWUFiQVdVdjB3a0N2bTdlSWVLaVgzMGtrQlMx?=
- =?utf-8?B?RmU0aWFtZWVMV21RRjdtN1RiWlFWQStiVmg5RnVlcEJibDVlUGhuRW4yZy9q?=
- =?utf-8?B?aWMzcTlZWktFSDlRYTlSQjAzamwzenBLalJ1Q0p2cWxBaUdvQkZHQWM1NXJm?=
- =?utf-8?B?aUFraDhsc2lNY0tCR3FnQ1l4aGtkQkdXaFlHcURtWmJmUUk5MXZJZW9VK21B?=
- =?utf-8?B?dUpmRlM3M2JlRWdVMFd6RGFXajFQWm9naXRSTGFGWnRaOWR2c0pLWGpTQjA4?=
- =?utf-8?B?cXRSaEtYZXczbGZISnVaM0tlVWx4eG9UdklsdVZ2NDk0ZkNlOXVqTGlLVFVS?=
- =?utf-8?B?bzlvOGdsckpXQ1lIZGIrbUt2Rk9IV3Jlb3RqbTFkOFYrVXo4UWdXeE5BNXpW?=
- =?utf-8?B?cXA3eXQvZlBnPT0=?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6366.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(7416014)(366016)(38070700021); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?aFhmdUxrUWFIUnlLQU53M29PWFBLN3pMQVgxT2I2cy9FT3lJMVRUakgxMXRQ?=
- =?utf-8?B?SUdrb1JUbXA5TEZOd3dldWs0MUlmTjUrQm9BT1VwM0EwWnk3S3NMZXhyaGFp?=
- =?utf-8?B?RUIxQmdsUHhYT2JIdUdZQXRlRkxSNk5BbHNIRnE0SGlmb3NKZGpVTWN3NFEv?=
- =?utf-8?B?RzlkRk5vM2RycG1WaWZvV3p4cEs3U3NacGRhTGUreDh1Ni9EQVNHZktQZUFo?=
- =?utf-8?B?SDRxRGJCN3dWNzAwQTZjV1VrZm5DbTVpL3dDM0dVWi9sYlBGSTVnTnkzTGVn?=
- =?utf-8?B?S2EyV0pxWG9pUFRyNkJZYVJCVGdzRyt2dUxpbzF1Y2JxYWtNSFNpWnlUUDJp?=
- =?utf-8?B?RXlBMnJPUEc1WHpyOTM0d2JneUFuM0c1YlBMeDlHMXhyTkNMZFJmWERpUllq?=
- =?utf-8?B?UEpDOFJGaXc4L2pyQ0VVbm4rWFRCb1M0TUtHVjFPZzUrVjB6Rjd5RjQ1MTQ1?=
- =?utf-8?B?YTBwQ3E4WDlOUXp5UWp5MjVSeVVFV3VtUWNYU01iM05rSWF3Z1hRZFY2MmU2?=
- =?utf-8?B?WXdTSXdSUG1xeTRQNUxOVnpiSUpyU0FnMXVhbHdYNStqN0hhYjdsa2VOcDM4?=
- =?utf-8?B?eHBVM0Z1TWl1R3dDeVRidHpFak9VdFl4SXpwQmtIRWhyOGF3QkFQUm1HZzM2?=
- =?utf-8?B?RDdCZDdjRXlxZVViU1dISndxdVlqSGFaMlpLbHk4WVE2QVQ3Y1Z6dW50d2h5?=
- =?utf-8?B?QzZnL29rVEFKc2dYckdZMXdNaWZYS0tXcVJMeGNHSVloM0FpdlVnclBVOEps?=
- =?utf-8?B?K3Ztd3ZBVUozQkg2b2dtWHV2RWw2R0sra2s2aW1uRURCSVpFcWd4c1J5eWxa?=
- =?utf-8?B?cWkzODBSSHJMZHlVMXNtNGN1bVhIZkZTVm0rYWVtVkw4Z0ZmVVhQUHg1aFdj?=
- =?utf-8?B?OEpjUktxZWpkdWpqYkdnWm1TQytVeG5vN0hRcEtERlRNeEV4OWRNdjlQajZ3?=
- =?utf-8?B?dXNhRnh3RWNDdlE1L2dKUzRZS3dYMWJsM3JVa0EyYXBucWxVakNLMDhoUkdr?=
- =?utf-8?B?NWJJcURiT0Z6Rk5ETFZzMHhoTVIwT1VReEwyQlF0NEp3UEpsNnpFcWluTDlZ?=
- =?utf-8?B?S0xTUVBVT1ltTEJTVDR6NWxQWFlMaEhUcHFHakF0eDNTU2dSdDhkekhDSzdk?=
- =?utf-8?B?NnU3SThFandzaFovRFRhOGJqZmgwOHNIM1JkUEZYS2RMYjlyVUxka3F3VDZQ?=
- =?utf-8?B?c2tTclM2QUNsS0tOVnplMGVkNGRTQzFFTitkRDhGQU5uTEVocGJTVCtDWHFK?=
- =?utf-8?B?RDVZYnJTTG5lbmsxV0FKZFdhUUFkSSttdVZEMm5RSDhSazFVYUVWTjBuYzIy?=
- =?utf-8?B?WFVBOUsxd25JN3pBQUFJbFIxbEM3ZnlPNUZPZ0RPaGFYcTRYRVRPRE5ia3Nw?=
- =?utf-8?B?RzZJeEZJdVRvUGE4Y0tmd0l6bEZXSlFjeEJrRDRjZDlzek9sR0xlR0I3ZEpj?=
- =?utf-8?B?aUNBZzhPUWVnWERwVzZGMWRVbG8vQXYydTgrOU5EeWwwNnhONjJzNEFnOGZa?=
- =?utf-8?B?VXk2azcwQ21yNDYrVHNVdzJheVhvaW1qUGtNU2NqUHJMM2pCdENxdmdLY0RO?=
- =?utf-8?B?S05nSVhkTkkxT2orWnBjOFc0dXExYTY2OUQyTVBDTTE3UzV4Z2lLOCtpbmd3?=
- =?utf-8?B?ZllJdmgwMmRpOG9EeFpVYit1SDBLZnhqYnV0YkVhUGlRblpVOVM1dTNOa2VL?=
- =?utf-8?B?NWNnMDlKNzZvaXUrZEZla0JlZk9aQTdzQzZCSlF5K3V3bzFpQjUra01yb1lJ?=
- =?utf-8?B?K29oMlVpYUVMQ2F0SXgxaGhLeWltSW1na2dwRjNxT3Rscmw4bkNHMWV5YmVC?=
- =?utf-8?B?TUVoa0VnalpSbUxmWW5ra0h0b0xrM0tSMnc5dXNINGptS1FDK3VVK2pWTTR6?=
- =?utf-8?B?YlZhUGNad0dENC8rZGNJQys2ZjJEKzcrL2lmRk9RVUN2cDlMYVZoUTQxbFhl?=
- =?utf-8?B?OW9GMm5YeTJlbkV0TEpMc3BpWlFEMG54QzVvM1Q4ajBsRDdFcUN2N2ZFWUlk?=
- =?utf-8?B?bTluMEkrM3NXNVN3Z3pVbVZoY3JOYldMY1hsdzNjRi92b0lKMEk4Y0dvZmFV?=
- =?utf-8?B?aGthWFlHeWtMN1FlaC9pcjIrVmtaQ24vQXdhZmF0RGFOYkFNcGZaenBCVlZN?=
- =?utf-8?Q?A/g+k6JcQFeoDyj8fOvATa/MM?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
+ by MN0PR11MB6033.namprd11.prod.outlook.com (2603:10b6:208:374::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.15; Sun, 19 Oct
+ 2025 18:27:01 +0000
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::8900:d137:e757:ac9f%3]) with mapi id 15.20.9228.015; Sun, 19 Oct 2025
+ 18:27:01 +0000
+Date: Sun, 19 Oct 2025 21:26:55 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: ALOK TIWARI <alok.a.tiwari@oracle.com>
+CC: <dri-devel@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, Simona Vetter <simona@ffwll.ch>, "David
+ Airlie" <airlied@gmail.com>, <tursulin@ursulin.net>,
+ <joonas.lahtinen@linux.intel.com>, <rodrigo.vivi@intel.com>,
+ <jani.nikula@linux.intel.com>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, <alok.a.tiwarilinux@gmail.com>, Ville
+ =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Subject: Re: [bug-report] i915 DMC assert crash on HDMI hotplug
+Message-ID: <aPUtb50BDUOgSg8N@ideak-desk>
+References: <33db45cc-c007-4a72-9303-7690d6818e73@oracle.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <33db45cc-c007-4a72-9303-7690d6818e73@oracle.com>
+X-ClientProxiedBy: DUZPR01CA0219.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:4b4::16) To SJ0PR11MB4845.namprd11.prod.outlook.com
+ (2603:10b6:a03:2d1::10)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|MN0PR11MB6033:EE_
+X-MS-Office365-Filtering-Correlation-Id: fcae181f-5205-47f0-f883-08de0f3d18b7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|376014|10070799003|7416014|366016; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?oZaLApPXjcJswTPW1dOjj96Cn7cuGcvbgU4qmwgByyjT4ORr2iM8RRCTH5Qm?=
+ =?us-ascii?Q?NaCEG2kdEWzNyLty6tzJBHp+bKWE00KyPu7qKCS8s/Vm2QCNuZjiLkpr/B+r?=
+ =?us-ascii?Q?APzB9wog45VJAdOBPa7kuGvzsMgiorQoUl8TA2gZe5XZYbZlugrsteHXewtS?=
+ =?us-ascii?Q?+db+WaT/BLrWuyhZregkYUvmTIIp+6q2E+SEQ2l71uV2IV8S1XUlCG2Bpuis?=
+ =?us-ascii?Q?7YfW3cb3KvCRYD0I5aEA4YJNbJtwdqH1hTmadAPeKJUC4KTKzQihdjJATCVs?=
+ =?us-ascii?Q?nq/1GDn1fvvfKg3OfeGsxirgkBJNL2tcVg931AZwxK1rz2SZCMc4jz4rh8T2?=
+ =?us-ascii?Q?e0GKxKk7bKRsG1uwqWV5p+Min56AOxpP8V3xTmjNg4fbCvutbdsYqEXHYF11?=
+ =?us-ascii?Q?PEHjQXxfk3U7gy5HaH+n1Q1JP5Vrqs/OlFBC34cgE4mN3lLi916UDr3hqosd?=
+ =?us-ascii?Q?h1mQGcfh1jyKl8FRiysQs6ViiE3TPY+UsxFyL4kOg2Yma6PbBLCPiHQABioy?=
+ =?us-ascii?Q?z2nJ6VEcV8nTU70cnaTDyTBY/IHed3db4IgMOhEsHzpsjDDXzfreyhFFpJMP?=
+ =?us-ascii?Q?hvX2JGnLaK4qMO5/2aHx6SYeyS7Ay0NGibYcC0bvno4b2FErfONPpwlULz5F?=
+ =?us-ascii?Q?Sgi4SVJp5wXYBuLYWBiNrAh1bN0FOFpX1wCyn5Cg3vP4yZUSw0ip71FVYBoC?=
+ =?us-ascii?Q?FcJ76/jTBvTPq5l+Ent7cY+UAFn0xh/OypYPq0ZnwMBV5ammB9oBP+4p+kP9?=
+ =?us-ascii?Q?LrAbgUETCD+2t9wDcBLNaar9SSlQTJjXYGxXD0g0uxNBBiDW/lJc0yxKQqL+?=
+ =?us-ascii?Q?z15gpwMNOyXgPcM7el7TXFDGXnjSb9IDBHiU4jzjLTbFpWIkwUeNDvKsfnL/?=
+ =?us-ascii?Q?PD9ixQvOAjchr6HfnmDi63PxfKALlA3El8jnQVmatS2LZfT6cdhVybjVf/xK?=
+ =?us-ascii?Q?wMy9nPA0TEEwEzYUA2tN8Bq8LfhzdICjXaYaMSjki8eOMRH3zi0F86I/7rw3?=
+ =?us-ascii?Q?LClEwHnwYPFmlHqgeUC5eQHE4WwknTTmQqI82gTKrNunUcazJbZiQ3yjlbb9?=
+ =?us-ascii?Q?tXtPSjGqF0gt+TqLvIMPQxXdlIEmNhqtM+7Z4JfhhNisvJnd0y4VWqaik9dS?=
+ =?us-ascii?Q?UJ4+Vy0YSgu89fxY4rs05r+k07+4+mONiI8rBLUODMSlBvT0XZ1kwLaM12bj?=
+ =?us-ascii?Q?75wa7w9cNv/8AxPdPTWd/uzzV6JdnQ3e72WLnmVGfYFYgiqYzECgye2uIk97?=
+ =?us-ascii?Q?4g/eg6qwo7E8MzURdVuZ8LNlGeABJbyJLx2ONC+fvlLLpDWw3d0klt+TRcXn?=
+ =?us-ascii?Q?i5SGAOdgu8JaC3vqqG7ta8S7jsum04BtBVGFd4mypoTBUzA60NXptu36Bza+?=
+ =?us-ascii?Q?DK1ks2jlXU2Bk2llsAFihTjH13ppsWrcG0S3FXW2IFQtPlS8+Q=3D=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(10070799003)(7416014)(366016); DIR:OUT;
+ SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?axU3wnPZlhs7Ci5iKa4Vhql9iG5EGUvN4dpvhh7oJyDmOGmJMiVvzeyBTKQC?=
+ =?us-ascii?Q?bs8gxcfE4yNuUxIDGl53aDaJcfsOB8jfH11dlSOYZui08y3d82S6bL5hjCBt?=
+ =?us-ascii?Q?BS8piTXb2JTb06aoyeVL9f1pILn1z6Ll0hBE/kkUlB+IUHTCNO/zb7TeAmSI?=
+ =?us-ascii?Q?uigrx4WUJ2i42r7zMDZviKka5H+myNrGBTjeTlHQijkRb5WlR8SjyQMObW/A?=
+ =?us-ascii?Q?QIhdTSiAgPXZIU0R0oOv5Wwc8ZQjFyBa+d8pi7ZcSYOHXzI8HnjCYi/Jh0yJ?=
+ =?us-ascii?Q?TtZqPw6GAy50Hj08vhhVixsNJJJ5tFCAa0JlH25ikf9FjcWpqfBXueNp6PWM?=
+ =?us-ascii?Q?/No9JCqrRCuCPkisI1ykUasiROWHvhUpWn3AlzbNeKYKJb5WwPdO/PQKCZp4?=
+ =?us-ascii?Q?zZid+r1gXIg3ZySdSoWveANeJwXakHSlAblfYS4j3gbJliBesPtIcTBLdKf1?=
+ =?us-ascii?Q?qME+MJaBNqjDFSkTpcKlgsp/6OGgaBXDMegF5aBlMqUprveNWXSoim68Nc8R?=
+ =?us-ascii?Q?HlliuY2QuMCsDfJlw0cj0MJlYBlrfIKkKPZFrN26vWpVwlk4bTn1CIICS+zr?=
+ =?us-ascii?Q?Fb9NfZO9dsI+qI+iuGZ9s2wgBxuK9KFwExniccYxqYyZDXyteKNK/njxfY6x?=
+ =?us-ascii?Q?iqvUApKFmKJprBKC8njth9X5jNLZ4sXbnjPdY3ivXxHmgAjwHUVRhOSD2XQa?=
+ =?us-ascii?Q?Nnd787I/nEFThpkK47xN9zVWEarz8qo/41TCq6ocEO5jZ6fklburM5ze1kSQ?=
+ =?us-ascii?Q?3Ne6HEDS0Pvhv8b/YWhZa0E1dR4QzBpMHpP+V9UU4agyJoaEwKhkovUf5RA/?=
+ =?us-ascii?Q?HJ7pFFs2vcZN26C9fh235mw7wyBNCRPrSU47y4CUlAk0Zu1XpkpDd+urTu0l?=
+ =?us-ascii?Q?C6Bcx7ag/m8xJafKa7EJjqzl2T6uEOBi7ttc+t3pcdvUfJXJfYS0MPC4/ZyA?=
+ =?us-ascii?Q?9yRXMePMZADJ+2P1JdsUaEY3gFFA3ofWqDH2a0LO0yfZ1O7Ykui7uau4/KGK?=
+ =?us-ascii?Q?ZPnlkfF4EHL72YptGmpLH977ntgxtJvnNxEhyG2l4KRS+3EknoPE0Q31o7NT?=
+ =?us-ascii?Q?ypKv0RBLjFa1frVVf/u2nRbS1eRx2xyEsiVoilwHq+Tc9KzIRUlxyBLr/fPY?=
+ =?us-ascii?Q?U8Gs00rlvR7E6cPZY2OHRZKDI+1hzNF/+cI6iNE7k9yYQU5e46vhqVhPNKV8?=
+ =?us-ascii?Q?bNeTKqfUBrv45oOs0xQOTSC/JYxWuCKNeTDCtqTCfKB/lpZagjQmPpdmn5zu?=
+ =?us-ascii?Q?rXgHw3UusA4mkNlJmRPYFEdaOCCLdl3oMRv57oeLO+q6UE0Gy4qyNngpXI+E?=
+ =?us-ascii?Q?x+Qm8rzqPd94ejmCLijLFhznCx75IDXN+PxoC0dN2ls0aY7Yhpm+0pzczieW?=
+ =?us-ascii?Q?I3zttmkze5608NkNy2VFI8JK9fYZ5aPnM/x6OD7EzSl93CN9OIKb551WRSFA?=
+ =?us-ascii?Q?TvxkB9/d+cEeH9gCweZCyedLKzAVhdkW7RZsNrgArw7M7mn9vbDocghGazOH?=
+ =?us-ascii?Q?SPUsc7ikn43qk2YaV5WP7QXQFo/ZpeN/FQR4+/qGtVIiQ9KWg84KNnF35/wE?=
+ =?us-ascii?Q?il1r4wGCwHRfDpjXGr/wuSWGD48+I6fZyhzgvzcF7UkW3sZigCDxNXDHnMMM?=
+ =?us-ascii?Q?QTQWF2EMl+QwdP16Ck5i5lMEODOXwwENcJYZucBLnBcy?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: fcae181f-5205-47f0-f883-08de0f3d18b7
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6366.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 104b080d-a3e5-4f57-29a6-08de0ee15341
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Oct 2025 07:30:06.0196 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: C36C2khlZjdNsxocxAIhtCe7iEFanwOwv+DHAl5OD1fa+vMGpAqv0jVdmzi/TGOUWR4AV0LzqzIIyr/BGXafhE7wFfe0qorXRmpcL9edNYw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7167
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2025 18:27:01.7739 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5s5DlUR7jgoXGsT219KijGYzQwnj1y2bGHRzcWjPxDxJIVRsyi7bMV7RUoGHLxP2dcJ++rr3pzMMS8n5SVPrgQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6033
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -206,57 +180,217 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PiBTdWJqZWN0OiBbUEFUQ0ggdjJdIG1laTogaW50ZWxfbGJfbWVpX2ludGVyZmFjZS5oOiBtYXJr
-IHN0cnVjdCBtZW1iZXIgd2l0aA0KPiBrZXJuZWwtZG9jDQo+IA0KPiBVc2UgY29ycmVjdCBrZXJu
-ZWwtZG9jIG5vdGF0aW9uIHRvIHByZXZlbnQgMyBrZXJuZWwtZG9jIHdhcm5pbmdzLg0KPiBAcHVz
-aF9wYXlsb2FkIGlzIGEgc3RydWN0IG1lbWJlciBoZXJlLCBub3QgYSBmdW5jdGlvbiwgc28gdXNl
-ICdAJw0KPiBhbmQgJzonIGluIGl0cyBkZXNjcmlwdGlvbi4NCj4gDQo+IFdhcm5pbmc6IGludGVs
-X2xiX21laV9pbnRlcmZhY2UuaDo1NSBJbmNvcnJlY3QgdXNlIG9mIGtlcm5lbC1kb2MgZm9ybWF0
-Og0KPiAgKiBwdXNoX3BheWxvYWQgLSBTZW5kcyBhIHBheWxvYWQgdG8gdGhlIGF1dGhlbnRpY2F0
-aW9uIGZpcm13YXJlDQo+IFdhcm5pbmc6IGludGVsX2xiX21laV9pbnRlcmZhY2UuaDo2NyBJbnZh
-bGlkIHBhcmFtOg0KPiAgKiBAZGV2OiBEZXZpY2Ugc3RydWN0IGNvcnJlc3BvbmRpbmcgdG8gdGhl
-IG1laSBkZXZpY2UNCj4gICogQHR5cGU6IFBheWxvYWQgdHlwZSAoc2VlICZlbnVtIGludGVsX2xi
-X3R5cGUpDQo+ICAqIEBmbGFnczogUGF5bG9hZCBmbGFncyBiaXRtYXAgKGUuZy4gJUlOVEVMX0xC
-X0ZMQUdTX0lTX1BFUlNJU1RFTlQpDQo+ICAqIEBwYXlsb2FkOiBQb2ludGVyIHRvIHBheWxvYWQg
-YnVmZmVyDQo+ICAqIEBwYXlsb2FkX3NpemU6IFBheWxvYWQgYnVmZmVyIHNpemUgaW4gYnl0ZXMN
-Cj4gICogKiBSZXR1cm46IDAgc3VjY2VzcywgbmVnYXRpdmUgZXJybm8gdmFsdWUgb24gdHJhbnNw
-b3J0IGZhaWx1cmUsDQo+ICAqICAgICAgICAgcG9zaXRpdmUgc3RhdHVzIHJldHVybmVkIGJ5IGZp
-cm13YXJlICovDQo+ICBpbnQgKCpwdXNoX3BheWxvYWQpKHN0cnVjdCBkZXZpY2UgKmRldiwgdTMy
-IHR5cGUsIHUzMiBmbGFncywgY29uc3Qgdm9pZA0KPiAgKnBheWxvYWQsIHNpemVfdCBwYXlsb2Fk
-X3NpemUpDQo+IFdhcm5pbmc6IGludGVsX2xiX21laV9pbnRlcmZhY2UuaDo2NyBzdHJ1Y3QgbWVt
-YmVyICcqIEBkZXY6IERldmljZSBzdHJ1Y3QNCj4gIGNvcnJlc3BvbmRpbmcgdG8gdGhlIG1laSBk
-ZXZpY2UgKiBAdHlwZTogUGF5bG9hZCB0eXBlIChzZWUgJmVudW0NCj4gIGludGVsX2xiX3R5cGUn
-IG5vdCBkZXNjcmliZWQgaW4gJ2ludGVsX2xiX2NvbXBvbmVudF9vcHMnDQo+IA0KDQpOb3Qgc3Vy
-ZSBhYm91dCB0aGUgcmlnaHQgZm9ybWF0IGhlcmUgYnV0IHRoaXMgcGF0Y2ggbWFrZXMgdGhpbmdz
-IGJldHRlci4NCg0KQWNrZWQtYnk6IEFsZXhhbmRlciBVc3lza2luIDxhbGV4YW5kZXIudXN5c2tp
-bkBpbnRlbC5jb20+DQoNCj4gRml4ZXM6IDc0MWVlYWJiN2M3OCAoIm1laTogbGF0ZV9iaW5kOiBh
-ZGQgbGF0ZSBiaW5kaW5nIGNvbXBvbmVudCBkcml2ZXIiKQ0KPiBTaWduZWQtb2ZmLWJ5OiBSYW5k
-eSBEdW5sYXAgPHJkdW5sYXBAaW5mcmFkZWFkLm9yZz4NCj4gUmV2aWV3ZWQtYnk6IFBldHIgVm9y
-ZWwgPHB2b3JlbEBzdXNlLmN6Pg0KPiBSZXZpZXdlZC1ieTogTml0aW4gR290ZSA8bml0aW4uci5n
-b3RlQGludGVsLmNvbT4NCj4gLS0tDQo+IHYyOiByZWZvcm1hdCBsb25nIGtlcm5lbC1kb2Mgd2Fy
-bmluZyBsaW5lcyB0byA8PSA3NSBjaGFycy4gKE5pdGluKQ0KPiANCj4gQ2M6IEFsZXhhbmRlciBV
-c3lza2luIDxhbGV4YW5kZXIudXN5c2tpbkBpbnRlbC5jb20+DQo+IENjOiBMdWNhcyBEZSBNYXJj
-aGkgPGx1Y2FzLmRlbWFyY2hpQGludGVsLmNvbT4NCj4gQ2M6IEphbmkgTmlrdWxhIDxqYW5pLm5p
-a3VsYUBsaW51eC5pbnRlbC5jb20+DQo+IENjOiBSb2RyaWdvIFZpdmkgPHJvZHJpZ28udml2aUBp
-bnRlbC5jb20+DQo+IENjOiBUaG9tYXMgSGVsbHN0csO2bSA8dGhvbWFzLmhlbGxzdHJvbUBsaW51
-eC5pbnRlbC5jb20+DQo+IENjOiBKb29uYXMgTGFodGluZW4gPGpvb25hcy5sYWh0aW5lbkBsaW51
-eC5pbnRlbC5jb20+DQo+IENjOiBUdnJ0a28gVXJzdWxpbiA8dHVyc3VsaW5AdXJzdWxpbi5uZXQ+
-DQo+IENjOiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IENjOiBpbnRlbC14ZUBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gQ2M6IERhdmlkIEFpcmxpZSA8YWlybGllZEBnbWFpbC5j
-b20+DQo+IENjOiBTaW1vbmEgVmV0dGVyIDxzaW1vbmFAZmZ3bGwuY2g+DQo+IENjOiBkcmktZGV2
-ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IC0tLQ0KPiAgaW5jbHVkZS9kcm0vaW50ZWwvaW50
-ZWxfbGJfbWVpX2ludGVyZmFjZS5oIHwgICAgMiArLQ0KPiAgMSBmaWxlIGNoYW5nZWQsIDEgaW5z
-ZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pDQo+IA0KPiAtLS0gbGludXgtbmV4dC0yMDI1MTAxMy5v
-cmlnL2luY2x1ZGUvZHJtL2ludGVsL2ludGVsX2xiX21laV9pbnRlcmZhY2UuaA0KPiArKysgbGlu
-dXgtbmV4dC0yMDI1MTAxMy9pbmNsdWRlL2RybS9pbnRlbC9pbnRlbF9sYl9tZWlfaW50ZXJmYWNl
-LmgNCj4gQEAgLTUzLDcgKzUzLDcgQEAgZW51bSBpbnRlbF9sYl9zdGF0dXMgew0KPiAgICovDQo+
-ICBzdHJ1Y3QgaW50ZWxfbGJfY29tcG9uZW50X29wcyB7DQo+ICAJLyoqDQo+IC0JICogcHVzaF9w
-YXlsb2FkIC0gU2VuZHMgYSBwYXlsb2FkIHRvIHRoZSBhdXRoZW50aWNhdGlvbiBmaXJtd2FyZQ0K
-PiArCSAqIEBwdXNoX3BheWxvYWQ6IFNlbmRzIGEgcGF5bG9hZCB0byB0aGUgYXV0aGVudGljYXRp
-b24gZmlybXdhcmUNCj4gIAkgKiBAZGV2OiBEZXZpY2Ugc3RydWN0IGNvcnJlc3BvbmRpbmcgdG8g
-dGhlIG1laSBkZXZpY2UNCj4gIAkgKiBAdHlwZTogUGF5bG9hZCB0eXBlIChzZWUgJmVudW0gaW50
-ZWxfbGJfdHlwZSkNCj4gIAkgKiBAZmxhZ3M6IFBheWxvYWQgZmxhZ3MgYml0bWFwIChlLmcuDQo+
-ICVJTlRFTF9MQl9GTEFHU19JU19QRVJTSVNURU5UKQ0K
+On Sun, Oct 19, 2025 at 07:51:08PM +0530, ALOK TIWARI wrote:
+> Hi,
+> 
+> On a Lenovo 12TECTO1WW HW (BIOS M5HKT1DA), the i915 DRM driver triggers a
+> DMC firmware assertion
+> when connecting or disconnecting an HDMI display. The GPU firmware (DMC)
+> registers show incorrect
+> values, causing assert_dmc_loaded() to warn in intel_dmc.c.
+> 
+> This occurs on kernel 6.18-rc1 and appears related to DMC power and hotplug
+> handling.
+> 
+> Kernel: 6.18.0-rc1
+
+This looks like
+https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15153
+
+Could you attach a dmesg log to the above ticket booting with the
+drm.debug=0xe kernel parameter and reproducing the problem?
+
+> 
+> ---
+> 
+> [  130.665424] audit: type=1326 audit(1760882657.655:78): auid=1001 uid=1001
+> gid=1001 ses=3 subj=snap.snapd-desktop-integration.snapd-desktop-integration
+> pid=2408 comm="snapd-desktop-i"
+> exe="/snap/snapd-desktop-integration/315/usr/bin/snapd-desktop-integration"
+> sig=0 arch=c000003e syscall=203 compat=0 ip=0x7e4ba6bc4531 code=0x50000
+> [  131.287051] nvme nvme0: using unchecked data buffer
+> intel_dmcintel_dmc[  218.492264] ------------[ cut here ]------------
+> [  218.492268] i915 0000:00:02.0: [drm] DMC 0 mmio[5]/0x8f03c incorrect
+> (expected 0x30100, current 0x0)
+> [  218.492292] WARNING: CPU: 6 PID: 409 at
+> drivers/gpu/drm/i915/display/intel_dmc.c:645 assert_dmc_loaded+0x2c1/0x420
+> [i915]
+> [  218.492455] Modules linked in: rfcomm ccm cmac algif_hash algif_skcipher
+> af_alg xe snd_hda_codec_intelhdmi drm_gpuvm drm_gpusvm_helper
+> snd_hda_codec_alc269 gpu_sched snd_hda_scodec_component drm_ttm_helper
+> snd_hda_codec_realtek_lib drm_exec snd_hda_codec_generic drm_suballoc_helper
+> intel_uncore_frequency intel_uncore_frequency_common i915 snd_hda_intel
+> snd_sof_pci_intel_tgl snd_sof_pci_intel_cnl snd_sof_intel_hda_generic
+> soundwire_intel snd_sof_intel_hda_sdw_bpt snd_sof_intel_hda_common
+> snd_soc_hdac_hda snd_sof_intel_hda_mlink snd_sof_intel_hda
+> snd_hda_codec_hdmi soundwire_cadence snd_sof_pci snd_sof_xtensa_dsp snd_sof
+> iwlmvm snd_sof_utils snd_soc_acpi_intel_match bnep
+> snd_soc_acpi_intel_sdca_quirks soundwire_generic_allocation snd_soc_acpi
+> soundwire_bus x86_pkg_temp_thermal snd_soc_sdca intel_powerclamp mac80211
+> crc8 snd_soc_avs snd_soc_hda_codec snd_hda_ext_core snd_hda_codec coretemp
+> kvm_intel snd_hda_core snd_intel_dspcfg snd_intel_sdw_acpi snd_hwdep
+> snd_soc_core kvm libarc4 snd_compress iwlwifi ac97_bus
+> [  218.492496]  snd_pcm_dmaengine snd_pcm snd_seq_midi snd_seq_midi_event
+> snd_rawmidi binfmt_misc snd_seq cmdlinepart processor_thermal_device_pci
+> btusb processor_thermal_device spi_nor snd_seq_device btmtk
+> processor_thermal_wt_hint drm_buddy platform_temperature_control snd_timer
+> btrtl irqbypass ttm processor_thermal_soc_slider polyval_clmulni
+> nls_iso8859_1 ghash_clmulni_intel platform_profile btbcm aesni_intel
+> mei_hdcp think_lmi processor_thermal_rfim btintel mei_pxp rapl snd
+> intel_rapl_msr processor_thermal_rapl cfg80211 bluetooth
+> firmware_attributes_class input_leds drm_display_helper intel_cstate mtd
+> mei_me joydev wmi_bmof intel_rapl_common soundcore cec ecdh_generic
+> processor_thermal_wt_req ecc mei rc_core processor_thermal_power_floor
+> intel_pmc_core i2c_algo_bit processor_thermal_mbox pmt_telemetry
+> pmt_discovery pmt_class intel_pmc_ssram_telemetry int3400_thermal
+> int3403_thermal intel_vsec acpi_thermal_rel int340x_thermal_zone acpi_pad
+> acpi_tad mac_hid sch_fq_codel msr parport_pc ppdev lp parport efi_pstore
+> [  218.492543]  autofs4 btrfs blake2b_generic raid10 raid456
+> async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq
+> raid1 raid0 hid_generic usbhid nvme i2c_i801 e1000e nvme_core hid i2c_mux
+> nvme_keyring i2c_smbus ahci spi_intel_pci nvme_auth spi_intel libahci hkdf
+> video wmi
+> [  218.492563] CPU: 6 UID: 0 PID: 409 Comm: kworker/u32:8 Not tainted
+> 6.18.0-rc1 #3 PREEMPT(voluntary)
+> [  218.492566] Hardware name: LENOVO 12TECTO1WW/3355, BIOS M5HKT1DA
+> 06/17/2025
+> [  218.492568] Workqueue: events_unbound intel_display_power_put_async_work
+> [i915]
+> [  218.492706] RIP: 0010:assert_dmc_loaded+0x2c1/0x420 [i915]
+> [  218.492840] Code: 55 a8 e8 52 2d 9c cf 44 8b 45 cc 8b 4d bc 45 89 e9 48
+> 89 c6 8b 45 c8 48 8b 55 a8 48 c7 c7 28 7e db c1 50 41 56 e8 9f 19 e4 ce <0f>
+> 0b 58 5a e9 92 fe ff ff 48 8b 17 eb c6 48 8b 3b 48 85 ff 74 04
+> [  218.492842] RSP: 0018:ffffd04682ff7c48 EFLAGS: 00010246
+> [  218.492844] RAX: 0000000000000000 RBX: ffff8ef885a22000 RCX:
+> 0000000000000000
+> [  218.492845] RDX: 0000000000000000 RSI: 0000000000000000 RDI:
+> 0000000000000000
+> [  218.492846] RBP: ffffd04682ff7cb0 R08: 0000000000000000 R09:
+> 0000000000000000
+> [  218.492847] R10: 0000000000000000 R11: 0000000000000000 R12:
+> 0000000000000000
+> [  218.492848] R13: 000000000008f03c R14: 0000000000030100 R15:
+> 0000000000000005
+> [  218.492850] FS:  0000000000000000(0000) GS:ffff8efc32794000(0000)
+> knlGS:0000000000000000
+> [  218.492851] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> [  218.492852] CR2: 000075deec01b098 CR3: 00000001fba40006 CR4:
+> 0000000000f72ef0
+> [  218.492854] PKRU: 55555554
+> [  218.492855] Call Trace:
+> [  218.492856]  <TASK>
+> [  218.492860]  assert_main_dmc_loaded+0x10/0x20 [i915]
+> [  218.492990]  skl_enable_dc6+0xad/0x230 [i915]
+> [  218.493113]  gen9_dc_off_power_well_disable+0xb8/0xd0 [i915]
+> [  218.493244]  intel_power_well_disable+0x67/0x80 [i915]
+> [  218.493394]  intel_power_well_put+0x4b/0xc0 [i915]
+> [  218.493523]  __intel_display_power_put_domain+0xc7/0x1d0 [i915]
+> [  218.493649]  release_async_put_domains+0x5b/0x90 [i915]
+> [  218.493774]  intel_display_power_put_async_work+0x6b/0x170 [i915]
+> [  218.493896]  process_one_work+0x1a1/0x3f0
+> [  218.493901]  worker_thread+0x2ba/0x3d0
+> [  218.493904]  kthread+0x107/0x220
+> [  218.493906]  ? __pfx_worker_thread+0x10/0x10
+> [  218.493908]  ? __pfx_kthread+0x10/0x10
+> [  218.493910]  ret_from_fork+0x202/0x230
+> [  218.493912]  ? __pfx_kthread+0x10/0x10
+> [  218.493914]  ret_from_fork_asm+0x1a/0x30
+> [  218.493918]  </TASK>
+> [  218.493919] ---[ end trace 0000000000000000 ]---
+> [  218.493921] ------------[ cut here ]------------
+> [  218.493921] i915 0000:00:02.0: [drm] DMC 0 mmio[6]/0x8f00c incorrect
+> (expected 0x40b8408c, current 0x0)
+> [  218.493937] WARNING: CPU: 6 PID: 409 at
+> drivers/gpu/drm/i915/display/intel_dmc.c:645 assert_dmc_loaded+0x2c1/0x420
+> [i915]
+> [  218.494063] Modules linked in: rfcomm ccm cmac algif_hash algif_skcipher
+> af_alg xe snd_hda_codec_intelhdmi drm_gpuvm drm_gpusvm_helper
+> snd_hda_codec_alc269 gpu_sched snd_hda_scodec_component drm_ttm_helper
+> snd_hda_codec_realtek_lib drm_exec snd_hda_codec_generic drm_suballoc_helper
+> intel_uncore_frequency intel_uncore_frequency_common i915 snd_hda_intel
+> snd_sof_pci_intel_tgl snd_sof_pci_intel_cnl snd_sof_intel_hda_generic
+> soundwire_intel snd_sof_intel_hda_sdw_bpt snd_sof_intel_hda_common
+> snd_soc_hdac_hda snd_sof_intel_hda_mlink snd_sof_intel_hda
+> snd_hda_codec_hdmi soundwire_cadence snd_sof_pci snd_sof_xtensa_dsp snd_sof
+> iwlmvm snd_sof_utils snd_soc_acpi_intel_match bnep
+> snd_soc_acpi_intel_sdca_quirks soundwire_generic_allocation snd_soc_acpi
+> soundwire_bus x86_pkg_temp_thermal snd_soc_sdca intel_powerclamp mac80211
+> crc8 snd_soc_avs snd_soc_hda_codec snd_hda_ext_core snd_hda_codec coretemp
+> kvm_intel snd_hda_core snd_intel_dspcfg snd_intel_sdw_acpi snd_hwdep
+> snd_soc_core kvm libarc4 snd_compress iwlwifi ac97_bus
+> [  218.494101]  snd_pcm_dmaengine snd_pcm snd_seq_midi snd_seq_midi_event
+> snd_rawmidi binfmt_misc snd_seq cmdlinepart processor_thermal_device_pci
+> btusb processor_thermal_device spi_nor snd_seq_device btmtk
+> processor_thermal_wt_hint drm_buddy platform_temperature_control snd_timer
+> btrtl irqbypass ttm processor_thermal_soc_slider polyval_clmulni
+> nls_iso8859_1 ghash_clmulni_intel platform_profile btbcm aesni_intel
+> mei_hdcp think_lmi processor_thermal_rfim btintel mei_pxp rapl snd
+> intel_rapl_msr processor_thermal_rapl cfg80211 bluetooth
+> firmware_attributes_class input_leds drm_display_helper intel_cstate mtd
+> mei_me joydev wmi_bmof intel_rapl_common soundcore cec ecdh_generic
+> processor_thermal_wt_req ecc mei rc_core processor_thermal_power_floor
+> intel_pmc_core i2c_algo_bit processor_thermal_mbox pmt_telemetry
+> pmt_discovery pmt_class intel_pmc_ssram_telemetry int3400_thermal
+> int3403_thermal intel_vsec acpi_thermal_rel int340x_thermal_zone acpi_pad
+> acpi_tad mac_hid sch_fq_codel msr parport_pc ppdev lp parport efi_pstore
+> [  218.494145]  autofs4 btrfs blake2b_generic raid10 raid456
+> async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq
+> raid1 raid0 hid_generic usbhid nvme i2c_i801 e1000e nvme_core hid i2c_mux
+> nvme_keyring i2c_smbus ahci spi_intel_pci nvme_auth spi_intel libahci hkdf
+> video wmi
+> [  218.494165] CPU: 6 UID: 0 PID: 409 Comm: kworker/u32:8 Tainted: G    W
+> 6.18.0-rc1 #3 PREEMPT(voluntary)
+> [  218.494168] Tainted: [W]=WARN
+> [  218.494169] Hardware name: LENOVO 12TECTO1WW/3355, BIOS M5HKT1DA
+> 06/17/2025
+> [  218.494170] Workqueue: events_unbound intel_display_power_put_async_work
+> [i915]
+> [  218.494309] RIP: 0010:assert_dmc_loaded+0x2c1/0x420 [i915]
+> [  218.494435] Code: 55 a8 e8 52 2d 9c cf 44 8b 45 cc 8b 4d bc 45 89 e9 48
+> 89 c6 8b 45 c8 48 8b 55 a8 48 c7 c7 28 7e db c1 50 41 56 e8 9f 19 e4 ce <0f>
+> 0b 58 5a e9 92 fe ff ff 48 8b 17 eb c6 48 8b 3b 48 85 ff 74 04
+> [  218.494437] RSP: 0018:ffffd04682ff7c48 EFLAGS: 00010246
+> [  218.494439] RAX: 0000000000000000 RBX: ffff8ef885a22000 RCX:
+> 0000000000000000
+> [  218.494440] RDX: 0000000000000000 RSI: 0000000000000000 RDI:
+> 0000000000000000
+> [  218.494441] RBP: ffffd04682ff7cb0 R08: 0000000000000000 R09:
+> 0000000000000000
+> [  218.494442] R10: 0000000000000000 R11: 0000000000000000 R12:
+> 0000000000000000
+> [  218.494443] R13: 000000000008f00c R14: 0000000040b8408c R15:
+> 0000000000000006
+> [  218.494444] FS:  0000000000000000(0000) GS:ffff8efc32794000(0000)
+> knlGS:0000000000000000
+> [  218.494446] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> [  218.494447] CR2: 000075deec01b098 CR3: 00000001fba40006 CR4:
+> 0000000000f72ef0
+> [  218.494448] PKRU: 55555554
+> [  218.494449] Call Trace:
+> [  218.494450]  <TASK>
+> [  218.494452]  assert_main_dmc_loaded+0x10/0x20 [i915]
+> [  218.494572]  skl_enable_dc6+0xad/0x230 [i915]
+> [  218.494667]  gen9_dc_off_power_well_disable+0xb8/0xd0 [i915]
+> [  218.494757]  intel_power_well_disable+0x67/0x80 [i915]
+> [  218.494845]  intel_power_well_put+0x4b/0xc0 [i915]
+> [  218.494930]  __intel_display_power_put_domain+0xc7/0x1d0 [i915]
+> [  218.495015]  release_async_put_domains+0x5b/0x90 [i915]
+> [  218.495099]  intel_display_power_put_async_work+0x6b/0x170 [i915]
+> [  218.495181]  process_one_work+0x1a1/0x3f0
+> [  218.495184]  worker_thread+0x2ba/0x3d0
+> [  218.495185]  kthread+0x107/0x220
+> [  218.495187]  ? __pfx_worker_thread+0x10/0x10
+> [  218.495189]  ? __pfx_kthread+0x10/0x10
+> [  218.495190]  ret_from_fork+0x202/0x230
+> [  218.495191]  ? __pfx_kthread+0x10/0x10
+> [  218.495192]  ret_from_fork_asm+0x1a/0x30
+> [  218.495195]  </TASK>
+> [  218.495195] ---[ end trace 0000000000000000 ]---
+> 
+> 
+> Thanks,
+> Alok
