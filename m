@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7176CBF3036
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Oct 2025 20:51:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9160BF3039
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Oct 2025 20:51:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D422B10E4B3;
-	Mon, 20 Oct 2025 18:50:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A55910E4BB;
+	Mon, 20 Oct 2025 18:51:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T+voRzrC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A8rWsWWy";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D94E610E4BA;
- Mon, 20 Oct 2025 18:50:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B035D10E4B6;
+ Mon, 20 Oct 2025 18:51:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760986258; x=1792522258;
+ t=1760986262; x=1792522262;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=M+KofK3kvM837qmmo1acDhod7c6zj9mw9xHO1be2MRg=;
- b=T+voRzrCRFYK2pAGFn1pxjIePpUNRIllG0e2J6+5yC+smNOSJ/6yJcoQ
- HYsFCPd0wxB0NbCA9aO/6DDa657belPt2752+rKyhEQ4APDPZRLn2Jbej
- eyX/SuNR8wh++EVPg1pUZzmUsCyFo3y0O06qRpQrJT4uLVjS1zWKP4e+Z
- 3Dzl1MEDBnR9y3Pbovgkc0rheUgSqK0bEwnRwAlgoM/K08ckrDvDN3bEZ
- IbyYlgdBoODw7ZhsFsGHwdvBQVzhnWTOBOubMRbAD5tnGXqvwhqhwMMXT
- uXwx/0Pp7CViax3dLqmIDGc7k2PLorOFMAtm56unANB3Ds7r+r0C9TWWp A==;
-X-CSE-ConnectionGUID: 4CNCTef9R4aa+pkn2W4Vyg==
-X-CSE-MsgGUID: Mm1ft1EtR722Y1CDrA0VdA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="85729728"
-X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="85729728"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 11:50:58 -0700
-X-CSE-ConnectionGUID: 1Of6qES4SVe1AAkXJsGaeQ==
-X-CSE-MsgGUID: mSXhPE9sSoW61cJB7A2nhg==
+ bh=PPxF78AlFdKx/5TCYjXz8L51sUoUFs8/dnazCGYu2nU=;
+ b=A8rWsWWyzWDjyDcEfJ9t2Rvlp7Xr6XzAki/x1Vp8NEI/XE4eMhy4H+PK
+ ZYM5e0LYWaWMdyXF4qO2PSgzWV4Hnm0fH7yUYUECdrkeqBaS7wK/YMzy6
+ BI2E7THrIvu1pUDUpzlMmTbjHJWe1wI8PSBlleV5ytVhnYyV8n0kdhByp
+ XIRQ8lfHib7/ngplxzTplS/NzFOOKe0Qh1uubO1dZPxmL7TNL3lsyhLXb
+ QFw/e99D/tqrTexVp+r0NmmB3qe74riYFGbqNvLYV0IZ0sT0QMitbWQx3
+ RSCffKMdQ2HujFP87rgPkVcNPUlyrrfcf7xShVOAi14kmacszqF5kQutN A==;
+X-CSE-ConnectionGUID: AVpRhDIfRryTbZ0Im6Mcmw==
+X-CSE-MsgGUID: uTyNK+ImRcyDiD9BxLXpbA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63147895"
+X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="63147895"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2025 11:51:01 -0700
+X-CSE-ConnectionGUID: IYFS3LMlTtCpefzn1egHvg==
+X-CSE-MsgGUID: Eblt4cVUSSOsmCph5qnZ8g==
 X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="188684602"
 Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
  ([10.245.245.58])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 11:50:56 -0700
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2025 11:51:00 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 04/22] drm/i915/vrr: Compute fixed refresh rate timings the
- sam way as CMRR timings
-Date: Mon, 20 Oct 2025 21:50:20 +0300
-Message-ID: <20251020185038.4272-5-ville.syrjala@linux.intel.com>
+Subject: [PATCH 05/22] drm/i915/vrr: Reorganize
+ intel_vrr_compute_cmrr_timings() a bit
+Date: Mon, 20 Oct 2025 21:50:21 +0300
+Message-ID: <20251020185038.4272-6-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20251020185038.4272-1-ville.syrjala@linux.intel.com>
 References: <20251020185038.4272-1-ville.syrjala@linux.intel.com>
@@ -72,35 +73,36 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Unify the VRR timing computation stuff a bit having both the
-fixed refrehs rate and CMRR cases assign the crtc_state->vrr
-stuff in exactly the same way.
+Move the cmrr.enable assignment next to the mode_flags assignment
+to keep things in a bit more logical order in
+intel_vrr_compute_cmrr_timings().
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vrr.c | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 92fb72b56f16..510dc199376f 100644
+index 510dc199376f..01cb9cfe08e1 100644
 --- a/drivers/gpu/drm/i915/display/intel_vrr.c
 +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -305,12 +305,10 @@ void intel_vrr_set_fixed_rr_timings(const struct intel_crtc_state *crtc_state)
+@@ -220,7 +220,6 @@ cmrr_get_vtotal(struct intel_crtc_state *crtc_state, bool video_mode_required)
  static
- void intel_vrr_compute_fixed_rr_timings(struct intel_crtc_state *crtc_state)
+ void intel_vrr_compute_cmrr_timings(struct intel_crtc_state *crtc_state)
  {
--	/*
--	 * For fixed rr,  vmin = vmax = flipline.
--	 * vmin is already set to crtc_vtotal set vmax and flipline the same.
--	 */
-+	/* For fixed rr,  vmin = vmax = flipline */
- 	crtc_state->vrr.vmax = crtc_state->hw.adjusted_mode.crtc_vtotal;
--	crtc_state->vrr.flipline = crtc_state->hw.adjusted_mode.crtc_vtotal;
-+	crtc_state->vrr.vmin = crtc_state->vrr.vmax;
-+	crtc_state->vrr.flipline = crtc_state->vrr.vmin;
+-	crtc_state->cmrr.enable = true;
+ 	/*
+ 	 * TODO: Compute precise target refresh rate to determine
+ 	 * if video_mode_required should be true. Currently set to
+@@ -230,6 +229,8 @@ void intel_vrr_compute_cmrr_timings(struct intel_crtc_state *crtc_state)
+ 	crtc_state->vrr.vmax = cmrr_get_vtotal(crtc_state, false);
+ 	crtc_state->vrr.vmin = crtc_state->vrr.vmax;
+ 	crtc_state->vrr.flipline = crtc_state->vrr.vmin;
++
++	crtc_state->cmrr.enable = true;
+ 	crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
  }
  
- static
 -- 
 2.49.1
 
