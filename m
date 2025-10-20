@@ -2,74 +2,181 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1005FBF1D62
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Oct 2025 16:27:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA0A8BF22EE
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Oct 2025 17:45:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46F8910E459;
-	Mon, 20 Oct 2025 14:27:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4623110E475;
+	Mon, 20 Oct 2025 15:45:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="DTyneNx/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oAAzLcpm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5499910E459;
- Mon, 20 Oct 2025 14:27:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1760970455;
- bh=Z+Jk2n3KQE2PXcZ2LSy+OKXke9czfkMyq1d/vRHQvWM=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=DTyneNx/KHQy2qFPL/YkilQtY9GUGNh1gDJY1/46Wg8FGzsDPlqT2/gJbLtP57CcB
- YVnXKSeevBpyNtg/oK3TyBGdh3pcZwpB/iY4lRccPGS07iCMVIpRF4wePE0GzDKa/u
- LF8Sz5Yh6DGm3j+za8zBYh3+uvHLRTjI8M5dELv0TbwibS9+OnRbXKiKVTI6bnGHzF
- uTI71zBNOw3o9pnGCzJ9v/2A6BuzBntcWmXu88irLOMaYcyDKEupPcnSeyMNA+bOT7
- aJO42FEpScVdxPVeQuGgx3/4/ZOWBl9wvQu5Uh4uOieV9G9H8gNL96bRkkFHjW7zLc
- o18mw5+r79iOw==
-Received: from [IPV6:2a01:e0a:5e3:6100:7aed:fe0e:8590:cbaa] (unknown
- [IPv6:2a01:e0a:5e3:6100:7aed:fe0e:8590:cbaa])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits))
- (No client certificate requested)
- (Authenticated sender: loicmolinari)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id E2CFC17E0E90;
- Mon, 20 Oct 2025 16:27:34 +0200 (CEST)
-Message-ID: <85b2c930-54e3-4172-b46b-54bd408271ff@collabora.com>
-Date: Mon, 20 Oct 2025 16:27:34 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 07/13] drm/v3d: Use huge tmpfs mount point helper
-To: Tvrtko Ursulin <tursulin@ursulin.net>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
- Liviu Dudau <liviu.dudau@arm.com>, Melissa Wen <mwen@igalia.com>,
- =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
- Hugh Dickins <hughd@google.com>, Baolin Wang
- <baolin.wang@linux.alibaba.com>, Andrew Morton <akpm@linux-foundation.org>,
- Al Viro <viro@zeniv.linux.org.uk>, =?UTF-8?Q?Miko=C5=82aj_Wasiak?=
- <mikolaj.wasiak@intel.com>, Christian Brauner <brauner@kernel.org>,
- Nitin Gote <nitin.r.gote@intel.com>, Andi Shyti
- <andi.shyti@linux.intel.com>, Jonathan Corbet <corbet@lwn.net>,
- Christopher Healy <healych@amazon.com>, Matthew Wilcox
- <willy@infradead.org>, Bagas Sanjaya <bagasdotme@gmail.com>
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-mm@kvack.org,
- linux-doc@vger.kernel.org, kernel@collabora.com
-References: <20251015153018.43735-1-loic.molinari@collabora.com>
- <20251015153018.43735-8-loic.molinari@collabora.com>
- <0130b962-6cd7-4f2c-8fd0-809a21495e03@ursulin.net>
-Content-Language: fr
-From: =?UTF-8?Q?Lo=C3=AFc_Molinari?= <loic.molinari@collabora.com>
-Organization: Collabora Ltd
-In-Reply-To: <0130b962-6cd7-4f2c-8fd0-809a21495e03@ursulin.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D52B910E474;
+ Mon, 20 Oct 2025 15:45:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1760975111; x=1792511111;
+ h=from:to:cc:subject:date:message-id:
+ content-transfer-encoding:mime-version;
+ bh=+iHMn14f3xJ8wMa/dYVPAu+AWyCPPP2loLBClLIEpWE=;
+ b=oAAzLcpmkVror4f7ERJWoo6szaMY22wlixRRVK9Ww0v6c7OTcpZxW4Z1
+ pi19IvnZ/kgL42VFDHAAR0Pp5D+LOm8A5iV/jia9ZPpHkdtFyMbn+bCm+
+ 5/kC/kPferTHG5u+wTRFJW84720UIyKON5J2IaAk1c2aG4beO0oUFmu7J
+ 4uemgYU2af4dCO8cr0BwUwN2T+sBw76V8ffO2OCqFbgODs6IkSDApCShe
+ sF9804pb1JTtoDTTwRvbg/dh8rmHR6kxlt6Cqtogpk/x/e2gko2i1O5DY
+ yPTgWlbhXGlxUZj6Jylit2W1qd01+64C4mmIM8ID5pPBD+gsmSisD+uXO A==;
+X-CSE-ConnectionGUID: Y3JrJswfTdaV4fMB7Pnj4w==
+X-CSE-MsgGUID: x5ZJOAHPT9yZyxLD1n0BqQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="62985823"
+X-IronPort-AV: E=Sophos;i="6.19,242,1754982000"; d="scan'208";a="62985823"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2025 08:45:10 -0700
+X-CSE-ConnectionGUID: JaEPgq60TJunZ8JLsXv85w==
+X-CSE-MsgGUID: fd3/LvwtSMa8ZbFCHMgDqQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,242,1754982000"; d="scan'208";a="213972928"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2025 08:45:10 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Mon, 20 Oct 2025 08:45:10 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27 via Frontend Transport; Mon, 20 Oct 2025 08:45:10 -0700
+Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.30) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Mon, 20 Oct 2025 08:45:09 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=eE5+uxW3ozpKs7zsBFEOcylbyZ+Oumejz+WIpXd9hW0fZn5L+BlysQFNMyNmVQnsMGNfQjoPVOwqsucy4EN0z6Hx3mGQbTDH8EtUDm5h6ke4Yx7Rv40WL2mGpYz1X4H0krKhAw+SC+CHB4n+/EzSAyPvQhKkVZT/zVzd4nY9rmhfGhUdpbgr0p45pKURpQFbDtZUImqXhghRAskYq9qu5q/yWEX/kZSanvcOi/jeDcTZCDYF27pP7eYfa+u5TrubaSJPsP4IGuap2mIxoRlYY0h0y3cE29kuhw/wnyomq8GRBPvC/rYv0i3Ec45siCe2uaPluWdgXKZbumk3MHf3dQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zNbLlzO/FcvFjovBIM7Jz/LCn54hI/80LVyV48m1360=;
+ b=fAxJ3nnoYxbxiKbQuQjic1oBFPwT0KJZZMoYP1ku1pn02kq9yBwinJNEd16ugxCf6+46fr1itj4rHmjFHHjeDl12Q8btBDc0bhNz2rWAOdvXCO8XLnXPbYmZwGBype+O9eHxHceZcFNd60A/xXqbVMSveLs4nfKhx/jcFnyEgMtRSwsqFw/lRpl62nLd/yWwFtllmm4/nYcwUiyRmS4HNVGuYf86Qx5vmpC/U6iHl/wvYTwhIHRB07FVtWsZXjswQK6C9Eq6GWNMtLq3hkxILJjF+gltFhvg+GKtAAufSaDhXU3Z17GDsDuMn8rS4JnENVOqURb02EKO0BnKnYWKxA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
+ by CY5PR11MB6414.namprd11.prod.outlook.com (2603:10b6:930:36::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.14; Mon, 20 Oct
+ 2025 15:45:05 +0000
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::8900:d137:e757:ac9f%3]) with mapi id 15.20.9228.015; Mon, 20 Oct 2025
+ 15:45:05 +0000
+From: Imre Deak <imre.deak@intel.com>
+To: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+CC: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH] drm/i915/dp: Simplify intel_dp_needs_8b10b_fec()
+Date: Mon, 20 Oct 2025 18:44:38 +0300
+Message-ID: <20251020154438.416761-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.49.1
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: DB9PR02CA0024.eurprd02.prod.outlook.com
+ (2603:10a6:10:1d9::29) To SJ0PR11MB4845.namprd11.prod.outlook.com
+ (2603:10b6:a03:2d1::10)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|CY5PR11MB6414:EE_
+X-MS-Office365-Filtering-Correlation-Id: cf47af14-5342-4f4a-b19f-08de0fefa3b7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0; ARA:13230040|376014|10070799003|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?ekZUcXBhZDkwRDE2WDRSbWpDaFpGTXlxRUIzMUEvRzJtVTZKMmU2a2pZdlM5?=
+ =?utf-8?B?cm56SVRiY2VkdEtleGlKK3lvUTM1Z3FFdXZucWlsOXZScUR5a211dmZGdmhP?=
+ =?utf-8?B?dDNwTElDanpMWVpFMDNuVWx2RG5nVU1NcXpicDV0M2hzUnFMb1RpaVBvdXlX?=
+ =?utf-8?B?eHdHU05kSGlhRnhPalRHSHJvTlNsN1U3R1FnYUZnbzg4dC9aRmFPbm9IMUND?=
+ =?utf-8?B?bTZhSDk5OFZKeUU0amdwdUNSM244TXlkWXp5YzlXcmxXNmttZVR1MmpHRktw?=
+ =?utf-8?B?N3NpaTFXcXhwK05NUEx3ZXJlQnUwNlJDSGFCc29ZS1lwK3lGUFN2UTVHZGg5?=
+ =?utf-8?B?YTc5TEl3aUNoam55Q2tvVGR1UWJmWm5lREN5S29nU0VxR0xLZ0VlMzJTUFBJ?=
+ =?utf-8?B?TzlvY2JlSzJMVkxuRmFzR0Z5ZXFYKzQ5bEZZUFIyM1BMdDRNdkYxbjNvY0tu?=
+ =?utf-8?B?cG02Zm9EVjYwUFpjT3NaRGZwU00vSmx6bldQaFFoeUk4Nlp4REpNMG5Nejkw?=
+ =?utf-8?B?THBmMHh6c1k4aXFTeDJqMVZabHloWHc2bDdoZ0dUYVNzekwzYURxZk43VlAr?=
+ =?utf-8?B?YXhsUlo0Tk5NMzJHcGpDRjRlemRKN0lCT2YxN0pnZ0RpcDhvcmNvbFE4Rmwy?=
+ =?utf-8?B?anRzN3YxTmpjTFhJcXdMQUJhNFRnMzJIRlp5eWRhbWtZK1BrSy9RcG5SdGc2?=
+ =?utf-8?B?LzQ4VkhMbUQ3ck5kT1BycklKM0NRUkRUYlNENUMvWVZaNEJSZDN0S0Z4b01x?=
+ =?utf-8?B?YzB6dTE5R0U2V2VsbDdaT2dtVnhSSWdNWm83SnJmQzZRTkNFZmc2UmMvUU04?=
+ =?utf-8?B?Q1ZEM1RWbXhGY2xkQXMvVEVkUXNSRDNoZ1FQRFNKUk82aUYzdXp3TE9YQUh2?=
+ =?utf-8?B?WW5ESXJtWkIwZGNpOS9JU1NIRkkyNjdqdGR3aXAvaUowaGZ3MjgrRjkrTjVu?=
+ =?utf-8?B?K3NvWFp4T1JVS1c3c3Zna3l0ZkdXbmxJVU9aYmZHOXpiNGhQK1NnZmlsWDN1?=
+ =?utf-8?B?dkI3VWtKaStTL1BORC9TOHpzK3NVUlcrSzFhTkIxSEZhM0hrdCtWbkEycmJK?=
+ =?utf-8?B?ZHhxU1dCVUlQUDJRUjlsdDZRT0svck9TRzdsUVJ4SVVsUElrOXpnVVJrNmRK?=
+ =?utf-8?B?NnA4Ulo1ZzNIUzl3WWV5L2J2NWNodStnN01NbkswUjg3cHRsbVQ2eUIvdjdu?=
+ =?utf-8?B?UnpzMXJta2d0cEYzQW9NVkJSd2xkaFIzS0dVbFM1UWtVdU9YRTRVdGdQUDJw?=
+ =?utf-8?B?OHQrTTlENVFnVGlhWkhyUit4aWlVbEhvdU5TNDExWXpBa0U3Ri9pcmN6cWND?=
+ =?utf-8?B?Nit5VVl0OEZ4eHlLRmNjcjZGNmRSN3VRR0NBM1hBSUtaTmEwN3VBdkRNcDRO?=
+ =?utf-8?B?cDBPNjhBTmIrbEQ1UmFNdFBDbkt2bS85bHpvNmlFUTFrdXVFbjB5Tk5lWnN0?=
+ =?utf-8?B?MDZIOE9tK1IzdEttSWpBOUNHbW1FTzJBRkE1VlVNQzhNN2ppSERhaUZyblQr?=
+ =?utf-8?B?Nlk2d1RtRit3Qm9DVW5xTHN5VzZtNk42ZHBabGpGUmVwR1lMQjA5cFNJajZw?=
+ =?utf-8?B?VXlzT2V2cG02Y2Y1Z20xUExtMkFmdXFWeWJBREtmUVVFVUxDdVY0OVhEc2Fz?=
+ =?utf-8?B?TnJteU9QaGtLUU0wYS9rYXpmQ0RQWFh3WE16UGpieXN3ZHVPdVRHYWpCamY2?=
+ =?utf-8?B?VjZnZnVJWmFwUDYzRC94Z3hMaStUckFoYnNZbXZ3V0pDbEpWaEU2VFB0YUtG?=
+ =?utf-8?B?Rnk5ckxTV0NZYkJrRjJGZkJSUTdtWitaTWhvbmpEQWh3VThkTTVZL0hhZ2s2?=
+ =?utf-8?B?cVRTd3JBaFZMdUV0ZGVpTG03Q2JHSHJsNng4bmdCUzhUMjdFTVFKeCtGM1Yv?=
+ =?utf-8?B?SEUzNHJDR2RKL0VjREN5K0MvSkJMTjIrWEljYzhoanJ6aXoxNUZIeXdOUmdt?=
+ =?utf-8?Q?AjoVioF9wmyyFG162AE110r3zVYHhiYa?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(10070799003)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?L0JGNitIQXB1QmNMUVVFaVhaQmdaMVdWd01NMTZnR1Exa2dZTHVXSUVhNHFa?=
+ =?utf-8?B?TXhJdVRnS2VFN1JJTjZEZHM1RnNiL1V2VTEyTGEwTnkzb2FoZ2grZldOdENU?=
+ =?utf-8?B?SkprVEFNMVpiZ2pPWCtJcnJ3QUN0czBtdXJuVVVWdlZkdkY4WVNIOGF3dTE3?=
+ =?utf-8?B?dEt1Z1JBT1NnT2kxSG1KTFJNaGNFem1uSmxZWXdRZlhtTm1TeEY2VDJLb2Jz?=
+ =?utf-8?B?a2tGMXlEQkxDZUNYNDV5eHROUVY0V1ZoSkV0U2JzMnZ2dUEwU0REWEJZYzdG?=
+ =?utf-8?B?cURRbkhTakVablBUY0dDSVVxUDJGUi8rYksyYlVxMFBicW1iWGpmM1pXaHVL?=
+ =?utf-8?B?d2FmaEtLemFSUFd3ZitONjNpdHlOMlJTUXIrNm9wZ2liUnZIQ25EZTM4cmha?=
+ =?utf-8?B?MzJaL3FUNnNzZmZKMHc5MXFaSHF6bW1VVlQwaW1USytsNnM4OFNGb3FlOHVF?=
+ =?utf-8?B?dDVKaDhOS3Z6WjRRQ0c5K1RzYzFkbnpxNk5wTURwS2NhYVhLREtDUm9kNjl6?=
+ =?utf-8?B?dkR0S3BVNER1b1FtVVpOMWc2aTBQc1hwUG9qQldWdCsrSXVBVWlFcUI5aURM?=
+ =?utf-8?B?YXhCeFZGQWlHZW9PenV6VU50M253eUVySTlIQnNWQkl6d0NTK3BIbDg0TU1n?=
+ =?utf-8?B?VWlNdlJScmdNMnZ3MlRhOUs2U3dLVkNzSEdsMGkrcTNVRzdjckQ5bDRoU2xz?=
+ =?utf-8?B?Mkt0NUlYTUF1U1Vmc2NFTlhSNzZPM09tRFFleGk5b2toNnVIL2VwQ25MdlRB?=
+ =?utf-8?B?QXFOU2J0aWVVM1lKcGRtZkZ0LzRKQk9MVjJ1WGc4Y0g4ZGZOVHVSNXRyMHdP?=
+ =?utf-8?B?ZW13akNVN2FVSnJtWXFHODRQQkdvMExFNVRYVXVVVy8reVdGSzVJbjBldGZZ?=
+ =?utf-8?B?ekVvajB2NVY0Y1I3OHk0d0Z5RGRheUFaNFFiRXFZN1diRld1d1RmNnloejBN?=
+ =?utf-8?B?OEVRM2trRkg4NWZrK3kvbDN3dnhpZ3oya1ZXd2piZEpoenhUbUo4T1p4dHVG?=
+ =?utf-8?B?U2J1RUZ5cnBNOXkwU01uN0UwMzUyVmZLdUtqdVJldUJVeHo2M2pCdVZhQmRS?=
+ =?utf-8?B?U3I1bTZ1RUFKcmgxYWRjOUZySzcrVGpPaW5QNWxVUDBCYlRIOWJ6ZytkNE1R?=
+ =?utf-8?B?YjVVREc4WFRKOWhoNUdFc3pZYzNBMldIRzZrd1kzRUw4eUxGMGp0cnR0M2ZI?=
+ =?utf-8?B?Rlg0UWU0dVlDLzhIWnVkenBqYjhPV0lHUDlZbXRicitWWlJmOFhKd0l2c0lS?=
+ =?utf-8?B?VkQ5MHVValNKQzZHbVJUdnVKQ0tOVnlmbmtSd2lBVVhWZ0RSN2ZKdTdPcGxj?=
+ =?utf-8?B?UG9SMEFtT1Nuc3RuVWFNbGhHd09PWGFwK3FsNnNOT2hqNUJsZ3ZET0l2YUhL?=
+ =?utf-8?B?Vmp0cUR2ZXpOeGRtYU9LVjVlMWtSd09VdzRsdVJhdFNaMi9xN1RPazFXWnR6?=
+ =?utf-8?B?NHhHUU90c2xpdFNCS2o5cEZRWmxucWVzRkltM2FRMHl1SEVJcFIvSk8xNDJi?=
+ =?utf-8?B?MU8xZUxnQmJKWUpHb3BORHJJbjZCVmlOdnJvT0xqUzFyQlFVeGpPVzF0NGx5?=
+ =?utf-8?B?cGh0TmNGclhRN2gvRkRCMDU5cmN2Y2Z6WlgyWnJXM0syZ2NXN243NTZnazVU?=
+ =?utf-8?B?U2ozcU90ZVFDVWw0WmQ3OXA5ZDlIK0diTE9aSDUxVjM3eFBsU2VYdmVndEZk?=
+ =?utf-8?B?VXFOUmJTUzlUQ3MyNU5YL2xJRWFBcFh2TUdYLy9FMHIrUjFYRHR3Z1dPc0NW?=
+ =?utf-8?B?bzNkU0dYUnEwRkdVYmx4QW9NQjBXdndJSm1wclJwRzRoTzUyRjN1Z2syL1pj?=
+ =?utf-8?B?bnJMMWhwc3NEZXpqT3ZiWnBLTW1wdjA3ZTF4eHBuSUFaODUyYlZFK2YzRHhZ?=
+ =?utf-8?B?a29CckU3V3RaVHE4Nkt1OHFRYVE1RFI2Z01oRDVWNlc2Z0lDYVRkK0g3NFMr?=
+ =?utf-8?B?d0NBQzIwd3lSUWxDaWNxVUhYbW5MMGw0c1J3aFg1N05EV1RPZmVHTzlkSmhC?=
+ =?utf-8?B?NDNJWHZ1MWhoTkRHd01XUVBXVFRpUWxyNDVvdTlRZkd6YVduZHZka3hMbWMv?=
+ =?utf-8?B?ODVBUzZlYXdEbHFvSzNrNTlmVlhmNWw5S3I4TFhXVXRzRGFSZmpGUlhFL1FR?=
+ =?utf-8?B?TlBzbmhnSG1KaXBhYi82b2lYREVPUERjUkhOTGtUMFBRblhtTTkrWjFwTXhl?=
+ =?utf-8?Q?PN84S4sQrxiDk9V2i5J+k8eBp9dMFDDcgtqcIqA8OD4q?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: cf47af14-5342-4f4a-b19f-08de0fefa3b7
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2025 15:45:05.2805 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5gywTC0zJqnwEqbg3eMk6cNwgbSSV0XMMExQ5R+P1d5jtYpMhedYo7rUWZHMkZxIGjH7ak8DNOtz5nM0EifhjQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6414
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,275 +192,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 20/10/2025 11:33, Tvrtko Ursulin wrote:
-> 
-> On 15/10/2025 16:30, Loïc Molinari wrote:
->> Make use of the new drm_gem_huge_mnt_create() helper to avoid code
->> duplication. Now that it's just a few lines long, the single function
->> in v3d_gemfs.c is moved into v3d_gem.c.
->>
->> v3:
->> - use huge tmpfs mountpoint in drm_device
->> - move v3d_gemfs.c into v3d_gem.c
->>
->> v4:
->> - clean up mountpoint creation error handling
->>
->> Signed-off-by: Loïc Molinari <loic.molinari@collabora.com>
->> ---
->>   drivers/gpu/drm/v3d/Makefile    |  3 +-
->>   drivers/gpu/drm/v3d/v3d_bo.c    |  5 ++-
->>   drivers/gpu/drm/v3d/v3d_drv.c   |  2 +-
->>   drivers/gpu/drm/v3d/v3d_drv.h   | 11 +-----
->>   drivers/gpu/drm/v3d/v3d_gem.c   | 27 +++++++++++++--
->>   drivers/gpu/drm/v3d/v3d_gemfs.c | 60 ---------------------------------
->>   6 files changed, 30 insertions(+), 78 deletions(-)
->>   delete mode 100644 drivers/gpu/drm/v3d/v3d_gemfs.c
->>
->> diff --git a/drivers/gpu/drm/v3d/Makefile b/drivers/gpu/drm/v3d/Makefile
->> index fcf710926057..b7d673f1153b 100644
->> --- a/drivers/gpu/drm/v3d/Makefile
->> +++ b/drivers/gpu/drm/v3d/Makefile
->> @@ -13,8 +13,7 @@ v3d-y := \
->>       v3d_trace_points.o \
->>       v3d_sched.o \
->>       v3d_sysfs.o \
->> -    v3d_submit.o \
->> -    v3d_gemfs.o
->> +    v3d_submit.o
->>   v3d-$(CONFIG_DEBUG_FS) += v3d_debugfs.o
->> diff --git a/drivers/gpu/drm/v3d/v3d_bo.c b/drivers/gpu/drm/v3d/v3d_bo.c
->> index c41476ddde68..6b9909bfce82 100644
->> --- a/drivers/gpu/drm/v3d/v3d_bo.c
->> +++ b/drivers/gpu/drm/v3d/v3d_bo.c
->> @@ -112,7 +112,7 @@ v3d_bo_create_finish(struct drm_gem_object *obj)
->>       if (IS_ERR(sgt))
->>           return PTR_ERR(sgt);
->> -    if (!v3d->gemfs)
->> +    if (!obj->dev->huge_mnt)
-> 
-> Maybe it would be a good idea to add a helper for this check. Keeping 
-> aligned with drm_gem_huge_mnt_create() something like 
-> drm_gem_has_huge_mnt()? That would then hide the optional drm_device 
-> struct member if you decide to go for that.
+The intel_crtc_state::fec_enable check in intel_dp_needs_8b10b_fec() is
+redundant drop it: originally it ensured that the FEC enabled state for
+a CRTC other than the CRTC intel_dp_needs_8b10b_fec() called for is
+preserved, even if DSC is not enabled for the latter CRTC. The way FEC
+gets enabled for all the CRTCs on an 8b10b MST link is changed by
 
-Sounds good. This would prevent cluttering code with ifdefs in drivers 
-while still removing the huge_mnt field in drm_device in builds with 
-CONFIG_TRANSPARENT_HUGEPAGE=n. I'll propose a new version doing so.
+commit 7c027070e98d ("drm/i915/dp_mst: Track DSC enabled status on the
+MST link") and
+commit 470b84af457e ("drm/i915/dp_mst: Recompute all MST link CRTCs if
+DSC gets enabled on the link")
 
-> 
->>           align = SZ_4K;
->>       else if (obj->size >= SZ_1M)
->>           align = SZ_1M;
->> @@ -148,12 +148,11 @@ struct v3d_bo *v3d_bo_create(struct drm_device 
->> *dev, struct drm_file *file_priv,
->>                    size_t unaligned_size)
->>   {
->>       struct drm_gem_shmem_object *shmem_obj;
->> -    struct v3d_dev *v3d = to_v3d_dev(dev);
->>       struct v3d_bo *bo;
->>       int ret;
->>       shmem_obj = drm_gem_shmem_create_with_mnt(dev, unaligned_size,
->> -                          v3d->gemfs);
->> +                          dev->huge_mnt);
-> 
-> Okay this one goes away by the end of the series.
-> 
->>       if (IS_ERR(shmem_obj))
->>           return ERR_CAST(shmem_obj);
->>       bo = to_v3d_bo(&shmem_obj->base);
->> diff --git a/drivers/gpu/drm/v3d/v3d_drv.c b/drivers/gpu/drm/v3d/ 
->> v3d_drv.c
->> index c5a3bbbc74c5..19ec0ea7f38e 100644
->> --- a/drivers/gpu/drm/v3d/v3d_drv.c
->> +++ b/drivers/gpu/drm/v3d/v3d_drv.c
->> @@ -106,7 +106,7 @@ static int v3d_get_param_ioctl(struct drm_device 
->> *dev, void *data,
->>           args->value = v3d->perfmon_info.max_counters;
->>           return 0;
->>       case DRM_V3D_PARAM_SUPPORTS_SUPER_PAGES:
->> -        args->value = !!v3d->gemfs;
->> +        args->value = !!dev->huge_mnt;
->>           return 0;
->>       case DRM_V3D_PARAM_GLOBAL_RESET_COUNTER:
->>           mutex_lock(&v3d->reset_lock);
->> diff --git a/drivers/gpu/drm/v3d/v3d_drv.h b/drivers/gpu/drm/v3d/ 
->> v3d_drv.h
->> index 1884686985b8..99a39329bb85 100644
->> --- a/drivers/gpu/drm/v3d/v3d_drv.h
->> +++ b/drivers/gpu/drm/v3d/v3d_drv.h
->> @@ -158,11 +158,6 @@ struct v3d_dev {
->>       struct drm_mm mm;
->>       spinlock_t mm_lock;
->> -    /*
->> -     * tmpfs instance used for shmem backed objects
->> -     */
->> -    struct vfsmount *gemfs;
->> -
->>       struct work_struct overflow_mem_work;
->>       struct v3d_queue_state queue[V3D_MAX_QUEUES];
->> @@ -569,6 +564,7 @@ extern const struct dma_fence_ops v3d_fence_ops;
->>   struct dma_fence *v3d_fence_create(struct v3d_dev *v3d, enum 
->> v3d_queue q);
->>   /* v3d_gem.c */
->> +extern bool super_pages;
->>   int v3d_gem_init(struct drm_device *dev);
->>   void v3d_gem_destroy(struct drm_device *dev);
->>   void v3d_reset_sms(struct v3d_dev *v3d);
->> @@ -576,11 +572,6 @@ void v3d_reset(struct v3d_dev *v3d);
->>   void v3d_invalidate_caches(struct v3d_dev *v3d);
->>   void v3d_clean_caches(struct v3d_dev *v3d);
->> -/* v3d_gemfs.c */
->> -extern bool super_pages;
->> -void v3d_gemfs_init(struct v3d_dev *v3d);
->> -void v3d_gemfs_fini(struct v3d_dev *v3d);
->> -
->>   /* v3d_submit.c */
->>   void v3d_job_cleanup(struct v3d_job *job);
->>   void v3d_job_put(struct v3d_job *job);
->> diff --git a/drivers/gpu/drm/v3d/v3d_gem.c b/drivers/gpu/drm/v3d/ 
->> v3d_gem.c
->> index bb110d35f749..635ff0fabe7e 100644
->> --- a/drivers/gpu/drm/v3d/v3d_gem.c
->> +++ b/drivers/gpu/drm/v3d/v3d_gem.c
->> @@ -258,6 +258,30 @@ v3d_invalidate_caches(struct v3d_dev *v3d)
->>       v3d_invalidate_slices(v3d, 0);
->>   }
->> +static void
->> +v3d_huge_mnt_init(struct v3d_dev *v3d)
->> +{
->> +    int err = 0;
->> +
->> +    /*
->> +     * By using a huge shmemfs mountpoint when the user wants to
->> +     * enable Super Pages, we can pass in mount flags that better
->> +     * match our usecase.
->> +     */
->> +
->> +    if (super_pages)
->> +        err = drm_gem_huge_mnt_create(&v3d->drm, "within_size");
-> 
-> If it is this patch that is creating the build failure then the two 
-> should be squashed.
-> 
-> Then in "drm/v3d: Fix builds with CONFIG_TRANSPARENT_HUGEPAGE=n" this 
-> ends up a bit ugly:
-> 
-> #ifdef CONFIG_TRANSPARENT_HUGEPAGE
->       if (super_pages)
-> #endif
->           err = drm_gem_huge_mnt_create(&v3d->drm, "within_size");
-> 
-> Does this not work:
-> 
->       if (IS_ENABLED(CONFIG_TRANSPARENT_HUGEPAGE) && super_pages)
->           err = drm_gem_huge_mnt_create(&v3d->drm, "within_size");
-> 
-> ?
+depending on intel_dsc_enabled_on_link() in intel_dp_needs_8b10b_fec()
+instead of the above fec_enable check. Drop the check.
 
-I've got a new version ready that does exactly that (after discussing 
-with Boris).
+Suggested-by: Jouni Högander <jouni.hogander@intel.com>
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 3 ---
+ 1 file changed, 3 deletions(-)
 
-> 
-> Regards,
-> 
-> Tvrtko
-> 
->> +
->> +    if (v3d->drm.huge_mnt)
->> +        drm_info(&v3d->drm, "Using Transparent Hugepages\n");
->> +    else if (err)
->> +        drm_warn(&v3d->drm, "Can't use Transparent Hugepages (%d)\n",
->> +             err);
->> +    else
->> +        drm_notice(&v3d->drm,
->> +               "Transparent Hugepage support is recommended for 
->> optimal performance on this platform!\n");
->> +}
->> +
->>   int
->>   v3d_gem_init(struct drm_device *dev)
->>   {
->> @@ -309,7 +333,7 @@ v3d_gem_init(struct drm_device *dev)
->>       v3d_init_hw_state(v3d);
->>       v3d_mmu_set_page_table(v3d);
->> -    v3d_gemfs_init(v3d);
->> +    v3d_huge_mnt_init(v3d);
->>       ret = v3d_sched_init(v3d);
->>       if (ret) {
->> @@ -329,7 +353,6 @@ v3d_gem_destroy(struct drm_device *dev)
->>       enum v3d_queue q;
->>       v3d_sched_fini(v3d);
->> -    v3d_gemfs_fini(v3d);
->>       /* Waiting for jobs to finish would need to be done before
->>        * unregistering V3D.
->> diff --git a/drivers/gpu/drm/v3d/v3d_gemfs.c b/drivers/gpu/drm/v3d/ 
->> v3d_gemfs.c
->> deleted file mode 100644
->> index c1a30166c099..000000000000
->> --- a/drivers/gpu/drm/v3d/v3d_gemfs.c
->> +++ /dev/null
->> @@ -1,60 +0,0 @@
->> -// SPDX-License-Identifier: GPL-2.0+
->> -/* Copyright (C) 2024 Raspberry Pi */
->> -
->> -#include <linux/fs.h>
->> -#include <linux/mount.h>
->> -#include <linux/fs_context.h>
->> -
->> -#include "v3d_drv.h"
->> -
->> -void v3d_gemfs_init(struct v3d_dev *v3d)
->> -{
->> -    struct file_system_type *type;
->> -    struct fs_context *fc;
->> -    struct vfsmount *gemfs;
->> -    int ret;
->> -
->> -    /*
->> -     * By creating our own shmemfs mountpoint, we can pass in
->> -     * mount flags that better match our usecase. However, we
->> -     * only do so on platforms which benefit from it.
->> -     */
->> -    if (!IS_ENABLED(CONFIG_TRANSPARENT_HUGEPAGE))
->> -        goto err;
->> -
->> -    /* The user doesn't want to enable Super Pages */
->> -    if (!super_pages)
->> -        goto err;
->> -
->> -    type = get_fs_type("tmpfs");
->> -    if (!type)
->> -        goto err;
->> -
->> -    fc = fs_context_for_mount(type, SB_KERNMOUNT);
->> -    if (IS_ERR(fc))
->> -        goto err;
->> -    ret = vfs_parse_fs_string(fc, "source", "tmpfs");
->> -    if (!ret)
->> -        ret = vfs_parse_fs_string(fc, "huge", "within_size");
->> -    if (!ret)
->> -        gemfs = fc_mount_longterm(fc);
->> -    put_fs_context(fc);
->> -    if (ret)
->> -        goto err;
->> -
->> -    v3d->gemfs = gemfs;
->> -    drm_info(&v3d->drm, "Using Transparent Hugepages\n");
->> -
->> -    return;
->> -
->> -err:
->> -    v3d->gemfs = NULL;
->> -    drm_notice(&v3d->drm,
->> -           "Transparent Hugepage support is recommended for optimal 
->> performance on this platform!\n");
->> -}
->> -
->> -void v3d_gemfs_fini(struct v3d_dev *v3d)
->> -{
->> -    if (v3d->gemfs)
->> -        kern_unmount(v3d->gemfs);
->> -}
-> 
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index b0aeb6c2de86c..475518b4048b7 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2377,9 +2377,6 @@ bool intel_dp_needs_8b10b_fec(const struct intel_crtc_state *crtc_state,
+ 	if (intel_dp_is_uhbr(crtc_state))
+ 		return false;
+ 
+-	if (crtc_state->fec_enable)
+-		return true;
+-
+ 	/*
+ 	 * Though eDP v1.5 supports FEC with DSC, unlike DP, it is optional.
+ 	 * Since, FEC is a bandwidth overhead, continue to not enable it for
+-- 
+2.49.1
 
