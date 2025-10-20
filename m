@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E9F7BF3069
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Oct 2025 20:51:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F10AFBF306C
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Oct 2025 20:51:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A910110E4D2;
-	Mon, 20 Oct 2025 18:51:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69C7910E4D3;
+	Mon, 20 Oct 2025 18:51:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KpCMr/Px";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="na5fpx47";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CBC010E4D2;
- Mon, 20 Oct 2025 18:51:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA72D10E4D0;
+ Mon, 20 Oct 2025 18:51:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760986311; x=1792522311;
+ t=1760986315; x=1792522315;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=sCkib+IYknqcqqFunA9fAFlnQOSXo6Xi5raZj9ebZqU=;
- b=KpCMr/PxSaCNXUZQVxds3WZxhtANMO77YETadGh4bo4I8A+xHJd0K4Mg
- nWzf3wCMaVvC30pEG2S++UyEUku+1cGwTBQfmmFffYq7ES9BWZMvWXH+s
- ngCpqMDGY/IwQgRTjJyhRljVTGP2aOsOH0RyW9fiHEwKZ5a5HRazk/0ir
- ZViTLOWuviiBTl73dx4Ha09sWOgmUxb3Sot+UhjNYkXJlBwN++BhcInDe
- gQ8wYb10wz7TjmlidLyjKhkk1YgsRTQco//LyYYg1k1G6RzXXBYtmU7HL
- 04nQmWOxxW47XuZfEwiMV1vA3khj5spekvQ2SIET26T1wxukneu1yX/gc g==;
-X-CSE-ConnectionGUID: EgTA1KVoSD+n0GWuBx/Xkw==
-X-CSE-MsgGUID: Hm5TbjZLTEuWZ63xC2ahsQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="50679000"
-X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="50679000"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 11:51:50 -0700
-X-CSE-ConnectionGUID: 6soNQqwbQbWYfCEXRHOpcA==
-X-CSE-MsgGUID: 9W8YYVbnQWS0a+EIiDpm4A==
+ bh=AkGpIoellrBxXHaYm4T3QxfxgbrWCthfnVfWGOgrVdc=;
+ b=na5fpx47AKtpgSqdz3hgl6GaZSDm2vczqYC5wHRoX6MoPNUGrgDhDlz1
+ duIrhjymYcy8nnzZ99WD6u1LMvAVLdYzrHzG19WFTx2AXWj6v7WLLzIkt
+ GYw+EQoR0/rceStV2EFUDWSWW+qXSCe6OEeRdXQrw0f8Haif3EQNyO4En
+ Tcz2wcewKv50cA9+3bdV19Cafh81CQKUEnSvqbTx3w6cRyJXP/xs79Xvi
+ 0Dx/5HOpVWlGTNW3vdfspA/z/CCxPcLOxelZVV/7TR8ZHdJDEjsKEH4+J
+ CO0ly+yaqNPKSA/OCsfs5VC6AyuUzzf9PS1J9DmuPNRutQuXCgo2vN7KQ A==;
+X-CSE-ConnectionGUID: 6cbipeTuT5OUIjuXjyEFqg==
+X-CSE-MsgGUID: 7avUVdomTY2oGTcz876M0Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="62140063"
+X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="62140063"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2025 11:51:54 -0700
+X-CSE-ConnectionGUID: VroIngkHR5OtcizOw9b+wg==
+X-CSE-MsgGUID: lFGZJ22rTQCU8Ge2Kx3DQA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="183241706"
+X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="183415097"
 Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
  ([10.245.245.58])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 11:51:49 -0700
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2025 11:51:53 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 18/22] drm/i915/vrr: s/crtc_state/old_crtc_state/ in
- intel_vrr_transcoder_disable()
-Date: Mon, 20 Oct 2025 21:50:34 +0300
-Message-ID: <20251020185038.4272-19-ville.syrjala@linux.intel.com>
+Subject: [PATCH 19/22] drm/i915/vrr: Nuke intel_vrr_vblank_exit_length()
+Date: Mon, 20 Oct 2025 21:50:35 +0300
+Message-ID: <20251020185038.4272-20-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20251020185038.4272-1-ville.syrjala@linux.intel.com>
 References: <20251020185038.4272-1-ville.syrjala@linux.intel.com>
@@ -73,41 +72,45 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-We generally use the 'old_crtc_state' in the disable functiosn to
-make it clear these generally get called when the hardware is
-still using the old crtc state rather than the new crtc state.
-Rename the intel_vrr_transcoder_disable() 'crtc_state' parameter
-to 'old_crtc_state' for consistency.
+Now that we always populate crtc_state->vrr.guardband even on
+ICL/TGL intel_vrr_vblank_exit_length() has become rather pointless.
+Get rid of it.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vrr.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 29143dd092a8..71c5d8bf7557 100644
+index 71c5d8bf7557..ba92e0a76855 100644
 --- a/drivers/gpu/drm/i915/display/intel_vrr.c
 +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -770,15 +770,15 @@ void intel_vrr_transcoder_enable(const struct intel_crtc_state *crtc_state)
- 		intel_vrr_tg_enable(crtc_state, false);
- }
+@@ -143,10 +143,6 @@ static int intel_vrr_pipeline_full_to_guardband(const struct intel_crtc_state *c
+  *
+  * framestart_delay is programmable 1-4.
+  */
+-static int intel_vrr_vblank_exit_length(const struct intel_crtc_state *crtc_state)
+-{
+-	return crtc_state->vrr.guardband;
+-}
  
--void intel_vrr_transcoder_disable(const struct intel_crtc_state *crtc_state)
-+void intel_vrr_transcoder_disable(const struct intel_crtc_state *old_crtc_state)
+ int intel_vrr_vmin_vtotal(const struct intel_crtc_state *crtc_state)
  {
--	struct intel_display *display = to_intel_display(crtc_state);
-+	struct intel_display *display = to_intel_display(old_crtc_state);
+@@ -161,12 +157,12 @@ int intel_vrr_vmax_vtotal(const struct intel_crtc_state *crtc_state)
  
--	if (!intel_vrr_possible(crtc_state))
-+	if (!intel_vrr_possible(old_crtc_state))
- 		return;
- 
- 	if (intel_vrr_always_use_vrr_tg(display))
--		intel_vrr_tg_disable(crtc_state);
-+		intel_vrr_tg_disable(old_crtc_state);
+ int intel_vrr_vmin_vblank_start(const struct intel_crtc_state *crtc_state)
+ {
+-	return intel_vrr_vmin_vtotal(crtc_state) - intel_vrr_vblank_exit_length(crtc_state);
++	return intel_vrr_vmin_vtotal(crtc_state) - crtc_state->vrr.guardband;
  }
  
- bool intel_vrr_is_fixed_rr(const struct intel_crtc_state *crtc_state)
+ int intel_vrr_vmax_vblank_start(const struct intel_crtc_state *crtc_state)
+ {
+-	return intel_vrr_vmax_vtotal(crtc_state) - intel_vrr_vblank_exit_length(crtc_state);
++	return intel_vrr_vmax_vtotal(crtc_state) - crtc_state->vrr.guardband;
+ }
+ 
+ static bool
 -- 
 2.49.1
 
