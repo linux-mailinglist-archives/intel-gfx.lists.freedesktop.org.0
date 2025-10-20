@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE4FABF3072
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Oct 2025 20:52:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 523FDBF307B
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Oct 2025 20:52:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BA3110E4D6;
-	Mon, 20 Oct 2025 18:52:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 897B110E4DB;
+	Mon, 20 Oct 2025 18:52:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KBD2AG2m";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k1ssuTlW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 148B910E4D6;
- Mon, 20 Oct 2025 18:52:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC40410E4D9;
+ Mon, 20 Oct 2025 18:52:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760986322; x=1792522322;
+ t=1760986326; x=1792522326;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DfaxvvztMw0gnUW+aYgRI+ss3GafoAZTgTZRt9QLNJU=;
- b=KBD2AG2mXYEgvMMFRoKc7zxMQ7XtzJm5DETGIhXJxPnDiRhGZiVK1lsm
- hwe9bUJUPsH/ehII35/OVDlR8FCvWs24zzQ0BmAX9tLpJhLXDyqUfQB2b
- hqSbtTSaNSfzDVJ1+opj1jfX6Fi1CkuF2EqhT9r/2UTQeeZ0k3x1Q88C4
- 87Ugp9nHcPJsUwJAw4m8lAoi159KDxxuCraiw60Mu6EFYzFun8REz56C8
- JvHSOpO8flCChz4vJQy895z+tnapUu1ehvaa/v7GY+SHMVqTQuOKXly1+
- ZOOLV+u3kEGHX597IQDd5i3ds8Qmqom02e8p6aR1vOkiL2YR4IpXf5UR0 g==;
-X-CSE-ConnectionGUID: 47WtNpVTSAuQdYwWainljA==
-X-CSE-MsgGUID: Ok2PMxGaTCWamziv2hYMLw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63004450"
-X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="63004450"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ bh=3oKeT3J0orvU7LDwgMkJrmsFuIDkve2Rx88ShQ5HgQU=;
+ b=k1ssuTlW6qj192Q0bSbiSLS0tJwjAduNCaSwrT5SV2bJCskyfWRVqzSi
+ P7NlmjYRtXzXdw/HXPO/R7wCursgKb9Z76BMcU3nQv6Sm62VcnxnyvAC2
+ HkwtBkpswOKwDd64ifQzvKU6LkDcDyMECXvIrx6vgqu2bU2lq9Lbj+lVU
+ a8sekMsrEpRSSzd9ATsCesy862U/nUxQLkz8/5AaznqheeI//C/z+bJd1
+ SFkIILp+3aQfeTZpzZ9MYByW/JZJMbiIdPEcuVG2snchky0o/9FLjSn3O
+ m1Dzi/gQjWwPqvMPAgGfHOncv8lW3yv380aDiguErBwqTm+M770jUtdwQ A==;
+X-CSE-ConnectionGUID: agQ21FMbQoSiVIjpfKWvUQ==
+X-CSE-MsgGUID: kl+mp58uQaGMi4APG/46QQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63004461"
+X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="63004461"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 11:52:02 -0700
-X-CSE-ConnectionGUID: WQ/yOltzQfS+xL6RdAzSUA==
-X-CSE-MsgGUID: VV5pauG7RlKugetTcribZQ==
+ 20 Oct 2025 11:52:06 -0700
+X-CSE-ConnectionGUID: PUdtMwW5T4iaom7bJ514MA==
+X-CSE-MsgGUID: IKzvH/kVSfC9iCHA9XOyig==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="182586035"
+X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="214362372"
 Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
  ([10.245.245.58])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 11:52:01 -0700
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2025 11:52:04 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 21/22] drm/i915/vrr: Update the intel_vrr_extra_vblank_delay()
- comment
-Date: Mon, 20 Oct 2025 21:50:37 +0300
-Message-ID: <20251020185038.4272-22-ville.syrjala@linux.intel.com>
+Subject: [PATCH 22/22] drm/i915/vrr: Check HAS_VRR() first in
+ intel_vrr_is_capable()
+Date: Mon, 20 Oct 2025 21:50:38 +0300
+Message-ID: <20251020185038.4272-23-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20251020185038.4272-1-ville.syrjala@linux.intel.com>
 References: <20251020185038.4272-1-ville.syrjala@linux.intel.com>
@@ -73,32 +73,39 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The coment in intel_vrr_extra_vblank_delay() is a bit outdated now
-that we generally got rid of the "vblank delay" stuff. Update the
-comment to better describe the current state of things.
+There's no point in doing all the other checks in
+intel_vrr_is_capable() is the platform doesn't support VRR at all
+Check HAS_VRR() before wasting time on the other checks.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vrr.c | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 8875e5fe86aa..c28491b9002a 100644
+index c28491b9002a..00cbc126fb36 100644
 --- a/drivers/gpu/drm/i915/display/intel_vrr.c
 +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -87,10 +87,8 @@ static int intel_vrr_extra_vblank_delay(struct intel_display *display)
+@@ -25,6 +25,9 @@ bool intel_vrr_is_capable(struct intel_connector *connector)
+ 	const struct drm_display_info *info = &connector->base.display_info;
+ 	struct intel_dp *intel_dp;
+ 
++	if (!HAS_VRR(display))
++		return false;
++
  	/*
- 	 * On ICL/TGL VRR hardware inserts one extra scanline
- 	 * just after vactive, which pushes the vmin decision
--	 * boundary ahead accordingly. We'll include the extra
--	 * scanline in our vblank delay estimates to make sure
--	 * that we never underestimate how long we have until
--	 * the delayed vblank has passed.
-+	 * boundary ahead accordingly, and thus reduces the
-+	 * max guardband length by one scanline.
- 	 */
- 	return DISPLAY_VER(display) < 13 ? 1 : 0;
+ 	 * DP Sink is capable of VRR video timings if
+ 	 * Ignore MSA bit is set in DPCD.
+@@ -49,8 +52,7 @@ bool intel_vrr_is_capable(struct intel_connector *connector)
+ 		return false;
+ 	}
+ 
+-	return HAS_VRR(display) &&
+-		info->monitor_range.max_vfreq - info->monitor_range.min_vfreq > 10;
++	return info->monitor_range.max_vfreq - info->monitor_range.min_vfreq > 10;
  }
+ 
+ bool intel_vrr_is_in_range(struct intel_connector *connector, int vrefresh)
 -- 
 2.49.1
 
