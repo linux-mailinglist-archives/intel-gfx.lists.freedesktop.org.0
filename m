@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32E28BF3063
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Oct 2025 20:51:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D5B5BF3066
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Oct 2025 20:51:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 978BD10E4B6;
-	Mon, 20 Oct 2025 18:51:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3B8C10E4CE;
+	Mon, 20 Oct 2025 18:51:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LEbIKsr9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EIA392MT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75E5210E4CC;
- Mon, 20 Oct 2025 18:51:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43C8010E4D0;
+ Mon, 20 Oct 2025 18:51:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760986302; x=1792522302;
+ t=1760986307; x=1792522307;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=67LuaIFQtEBk9yVHtdSFzvc06StlgkrTFVCsRTTIEgE=;
- b=LEbIKsr9hLfaBGW13gXSYeXx22iVgI87U0DbacbAJwedDqbgOssF+FX0
- RBVNCjg76f2xKQz2MXg3f0kblEgDeGkz7CYx9YVzRrqhamN5mBqZ0GwDx
- aVkGnrzDmyli3U5FqYxegWxg9/13a+T9P9BP2N9esVkE10Xn2C5aX8mgs
- HsGvVZqCz4OZ9giP5xGVR4kL+7eHE5QhSgzLJ7KC1IPMlsuPPzYibn3aQ
- mIeVIwQhIxbfq4kplwpsdV+zK/S4ECzvcU28vsWVGlauJCfUlLDLj/TaS
- t3jDEs+3SGmE0dQQTSfbTLI8nLev4VPmUc4BqPReVV20QH4gbmaaIkuL7 Q==;
-X-CSE-ConnectionGUID: z4+oVQqDRxCJ5LFEFkIEYA==
-X-CSE-MsgGUID: zFlALCtDSUeHh/oFVkQ6GA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63147711"
-X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="63147711"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 11:51:42 -0700
-X-CSE-ConnectionGUID: L00UAnO1Qs69kdW+3f8YXA==
-X-CSE-MsgGUID: okIdbr5+QK6AynKnjNnGwg==
+ bh=wQRNyjwXgSoMkRdqO3iEsSEsWX3zfmeuxDTs4msJYlI=;
+ b=EIA392MTuccDtOsrbmNaV4+/x67v/ceAtpkg2/DZ2UAL4WpxMpfEno7l
+ jsdC6luJg+fsnemli217mfTEbYGD+M9HEP+SwpSU6s1gDlsfvj71CU0Vu
+ J2wiQut7ViLJSGM+uwvgC6nbfdynH9bbKr63+Kx6ZtEobD65CEZGpfwmr
+ sl4FYmKgY/XzJD/jI71J5HqIKb2rVQKHrvRoG8jJOdTmHkCHMTnEE/KUi
+ 6xGuQTj7CcuGgChiKLnYKxuha96HpI6yAYlgzF2mO+1J1Er+iJw0yBd0k
+ cxFEChwLGyJEy/SXTVGFY2ORw0onWZOXEgW70AQeDvX6uGI2+PV1iMXcK A==;
+X-CSE-ConnectionGUID: 7v312d1RShStyldU+r+xng==
+X-CSE-MsgGUID: cf63wjBpQDGvs2BIIvXvoQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63254850"
+X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="63254850"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2025 11:51:47 -0700
+X-CSE-ConnectionGUID: g7B4qxWaSPCIxqeJ4RBuNw==
+X-CSE-MsgGUID: zjyD6Nx2S5KszQeJ4Fu5Bw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="188497201"
+X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="182543938"
 Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
  ([10.245.245.58])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 11:51:41 -0700
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2025 11:51:45 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 16/22] drm/i915/vrr: Remove redundant HAS_VRR() checks
-Date: Mon, 20 Oct 2025 21:50:32 +0300
-Message-ID: <20251020185038.4272-17-ville.syrjala@linux.intel.com>
+Subject: [PATCH 17/22] drm/i915/vrr: Move HAS_VRR() check into
+ intel_vrr_set_transcoder_timings()
+Date: Mon, 20 Oct 2025 21:50:33 +0300
+Message-ID: <20251020185038.4272-18-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20251020185038.4272-1-ville.syrjala@linux.intel.com>
 References: <20251020185038.4272-1-ville.syrjala@linux.intel.com>
@@ -72,39 +73,43 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-intel_vrr_transcoder_{enable,disable}() already check
-for intel_vrr_possible(), so the extra HAS_VRR() checks are
-redundant. Remove them.
+Reduce the clutter in hsw_configure_cpu_transcoder() a bit by moving
+the HAS_VRR() check into intel_vrr_set_transcoder_timings().
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vrr.c | 6 ------
- 1 file changed, 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 3 +--
+ drivers/gpu/drm/i915/display/intel_vrr.c     | 3 +++
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 490b4f2907e1..2744f83bda2e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -1581,8 +1581,7 @@ static void hsw_configure_cpu_transcoder(const struct intel_crtc_state *crtc_sta
+ 	}
+ 
+ 	intel_set_transcoder_timings(crtc_state);
+-	if (HAS_VRR(display))
+-		intel_vrr_set_transcoder_timings(crtc_state);
++	intel_vrr_set_transcoder_timings(crtc_state);
+ 
+ 	if (cpu_transcoder != TRANSCODER_EDP)
+ 		intel_de_write(display, TRANS_MULT(display, cpu_transcoder),
 diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 67b1ed606d8f..b64a54d22991 100644
+index b64a54d22991..29143dd092a8 100644
 --- a/drivers/gpu/drm/i915/display/intel_vrr.c
 +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -760,9 +760,6 @@ void intel_vrr_transcoder_enable(const struct intel_crtc_state *crtc_state)
- {
+@@ -534,6 +534,9 @@ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
  	struct intel_display *display = to_intel_display(crtc_state);
+ 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
  
--	if (!HAS_VRR(display))
--		return;
--
- 	if (!intel_vrr_possible(crtc_state))
- 		return;
- 
-@@ -774,9 +771,6 @@ void intel_vrr_transcoder_disable(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 
--	if (!HAS_VRR(display))
--		return;
--
- 	if (!intel_vrr_possible(crtc_state))
- 		return;
- 
++	if (!HAS_VRR(display))
++		return;
++
+ 	/*
+ 	 * This bit seems to have two meanings depending on the platform:
+ 	 * TGL: generate VRR "safe window" for DSB vblank waits
 -- 
 2.49.1
 
