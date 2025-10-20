@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59ECABF302D
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Oct 2025 20:50:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BDD9BF3030
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Oct 2025 20:50:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B199E10E4B4;
-	Mon, 20 Oct 2025 18:50:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1BC810E4B7;
+	Mon, 20 Oct 2025 18:50:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bkc03JVX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S+rGv+Nn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DF9010E4B4;
- Mon, 20 Oct 2025 18:50:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E14910E4B7;
+ Mon, 20 Oct 2025 18:50:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760986246; x=1792522246;
+ t=1760986250; x=1792522250;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=pLD2Vg+TmrD5eEPitSMrUXA3ZtAfIJxBMunug1Tz2pM=;
- b=Bkc03JVXdAwSlgnRAyEsrKXNW+dU/BqUwMQ0HYbEB+pqF9MbjQx1QzML
- UHoO/lLS7+6pZECdhyTHiUBhJIkyUPaHXQsOvhRXxzZLW/gLxQYplKy1J
- nXjCv+J7qUFq5k3QJsQRLw5ZIXZBfGZg5swQ14ZPEwENjrUxMbBBgz8ks
- fAzV72Kltgmfywi63UP5c/SuJmCE4J38wK7jyf5wkRrT+eg8yy0FfSvEF
- L+mzxfEGiHQeT8yUx11iLw5EiprOa6aM5MAtpYQSrGwJZRzKTV7GhDikG
- gTI9XxiT0E7UglpoevH5ifloorI49ReYAwjZauQG3kUpxdRoXCfs9YshJ w==;
-X-CSE-ConnectionGUID: srrrgnQaTYq56o7RKczIgA==
-X-CSE-MsgGUID: 4GdGRjJSQpCW0RD/7T/ILg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="88576210"
-X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="88576210"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 11:50:46 -0700
-X-CSE-ConnectionGUID: bOqmCHJ6RXS0Fl4XDmJizQ==
-X-CSE-MsgGUID: C9AMkdm5SKudQ8jjlZN7pw==
+ bh=/5f6BQty/6BPfqONjMKbI1qqLHYDFGCv5sVbpLRbeJ8=;
+ b=S+rGv+NnLi341ysnBZvbUkGce0+EwAImg3lHklRdD2711p83WbtvLaF+
+ 4W7GT6ewTQEh9pzL8AFWbuV3j6opsPpT0I+qtmgIB78BHQ+FrCgBZxQwz
+ augeO3dO4PqgUMaElFWsqm2p5AyWcoualGhfSCFB4cG+jezZD41XTqqK/
+ 1mV0LMnIJp0FGJboC2YOTqiDbJ/YUy6t5HaM0Cv8k81DOnsZBmtI8ueiv
+ lqGiP7E9GLrT5Zedd21mp2dIimulCQy3T9Sqish4Jn+ia+NfyGuUNsaTL
+ 0SVE8Qgb52uKMXhTulUq8QBgGWLPvci5+7A2SzfrJSeuf8UCilYVRskXJ w==;
+X-CSE-ConnectionGUID: OtoRT/XkTC63iMnDKjwpQw==
+X-CSE-MsgGUID: pgBsNe7nS3ibDnbufzphRA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63203963"
+X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="63203963"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2025 11:50:50 -0700
+X-CSE-ConnectionGUID: fEpv1AxpTrGPzsHGeQZI4w==
+X-CSE-MsgGUID: o0jNQ2iwTgeAQEejyQy0lQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="182585796"
+X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="214362154"
 Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
  ([10.245.245.58])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 11:50:46 -0700
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2025 11:50:49 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 01/22] drm/i915/vrr: Fix intel_vrr_always_use_vrr_tg()==true
- on TGL
-Date: Mon, 20 Oct 2025 21:50:17 +0300
-Message-ID: <20251020185038.4272-2-ville.syrjala@linux.intel.com>
+Subject: [PATCH 02/22] drm/i915/lrr: Include SCL in lrr_params_changed()
+Date: Mon, 20 Oct 2025 21:50:18 +0300
+Message-ID: <20251020185038.4272-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20251020185038.4272-1-ville.syrjala@linux.intel.com>
 References: <20251020185038.4272-1-ville.syrjala@linux.intel.com>
@@ -73,50 +72,53 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-On TGL the hardware always needs TRANS_VBLANK.VBLANK_START
-to be programemd with VACTIVE+SCL. Make it so.
+If SCL is changing we need to take the LRR codepath to update
+it during a fastset. Account for that in lrr_params_changed().
 
-The current way of programming it with crtc_vblank_start only
-works for the legacy timing generator, as there the delayed
-vblank does happen exactly at VACTIVE+SCL.
-
-But if one tries to change intel_vrr_always_use_vrr_tg() to
-always use the VRR timing generator on TGL, crtc_vblank_start
-will point to the VRR timing generator's delayed vblank,
-which may not match VACTIVE+SCL.
-
-Fortunately the state checker caught the issue right away
-when I tried intel_vrr_always_use_vrr_tg()==true on TGL.
+The current code will only notice the SCL change if the position
+of the delayed vblank also changes. But that might not happen
+when using the VRR timing generator because the delayed vblank
+is then defined by the guardband instead of the SCL.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c | 13 ++++++++-----
+ 1 file changed, 8 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index a8b4619de347..09d3eb422ad4 100644
+index 09d3eb422ad4..490b4f2907e1 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2631,6 +2631,9 @@ static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_sta
- 		 * to make it stand out in register dumps.
- 		 */
- 		crtc_vblank_start = 1;
-+	} else if (DISPLAY_VER(display) == 12) {
-+		/* VBLANK_START - VACTIVE defines SCL on TGL */
-+		crtc_vblank_start = crtc_vdisplay + crtc_state->set_context_latency;
- 	}
+@@ -5711,12 +5711,16 @@ static int intel_modeset_checks(struct intel_atomic_state *state)
+ 	return 0;
+ }
  
- 	if (DISPLAY_VER(display) >= 4)
-@@ -2721,6 +2724,9 @@ static void intel_set_transcoder_timings_lrr(const struct intel_crtc_state *crtc
- 		 * to make it stand out in register dumps.
- 		 */
- 		crtc_vblank_start = 1;
-+	} else if (DISPLAY_VER(display) == 12) {
-+		/* VBLANK_START - VACTIVE defines SCL on TGL */
-+		crtc_vblank_start = crtc_vdisplay + crtc_state->set_context_latency;
- 	}
+-static bool lrr_params_changed(const struct drm_display_mode *old_adjusted_mode,
+-			       const struct drm_display_mode *new_adjusted_mode)
++static bool lrr_params_changed(const struct intel_crtc_state *old_crtc_state,
++			       const struct intel_crtc_state *new_crtc_state)
+ {
++	const struct drm_display_mode *old_adjusted_mode = &old_crtc_state->hw.adjusted_mode;
++	const struct drm_display_mode *new_adjusted_mode = &new_crtc_state->hw.adjusted_mode;
++
+ 	return old_adjusted_mode->crtc_vblank_start != new_adjusted_mode->crtc_vblank_start ||
+ 		old_adjusted_mode->crtc_vblank_end != new_adjusted_mode->crtc_vblank_end ||
+-		old_adjusted_mode->crtc_vtotal != new_adjusted_mode->crtc_vtotal;
++		old_adjusted_mode->crtc_vtotal != new_adjusted_mode->crtc_vtotal ||
++		old_crtc_state->set_context_latency != new_crtc_state->set_context_latency;
+ }
  
- 	/*
+ static void intel_crtc_check_fastset(const struct intel_crtc_state *old_crtc_state,
+@@ -5742,8 +5746,7 @@ static void intel_crtc_check_fastset(const struct intel_crtc_state *old_crtc_sta
+ 				   &new_crtc_state->dp_m_n))
+ 		new_crtc_state->update_m_n = false;
+ 
+-	if (!lrr_params_changed(&old_crtc_state->hw.adjusted_mode,
+-				&new_crtc_state->hw.adjusted_mode))
++	if (!lrr_params_changed(old_crtc_state, new_crtc_state))
+ 		new_crtc_state->update_lrr = false;
+ 
+ 	if (intel_crtc_needs_modeset(new_crtc_state))
 -- 
 2.49.1
 
