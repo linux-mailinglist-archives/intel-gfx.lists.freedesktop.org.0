@@ -2,46 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7706BF5407
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Oct 2025 10:33:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B81DEBF547A
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Oct 2025 10:36:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E45D10E591;
-	Tue, 21 Oct 2025 08:33:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6067D10E598;
+	Tue, 21 Oct 2025 08:36:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hQnmlWXB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GnD7W1lC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55F5010E591;
- Tue, 21 Oct 2025 08:33:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C11A10E593;
+ Tue, 21 Oct 2025 08:36:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761035585; x=1792571585;
+ t=1761035779; x=1792571779;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=mbyV75+AfbKAPu7AOxRbcMvTlA/ce4oBEAlYOokgvVs=;
- b=hQnmlWXBVPOYufaTdc9ACheyWRq5plKVdABkooC5qu9YiUptGEwJoZJx
- Y6LymmNaNMEF5V6/CMHHd+D+ZkRGlZIWQa80uwW8GeO+YeYxacdKwafAH
- DeXz6l2V7EELLt4PDH/xANIYqTtaEvwjuY8UMgT1Vq54XVWb9/ler8whZ
- YEwuL7oy6Bw4d9uPBW6yf5n7f/FYj0e+KXCJ4r76ArchWzR8hsvSFQgFL
- sG5dRZikDu/adEh0MJwvdUroAV7Dti7C4OCqXcuZpItyloLspwuNnZT5l
- NeYbvlrJaqmde6qdqx5hNx4Ps9de/8iJyJCyRBdgfgQyRHO8pmXiBpfeR Q==;
-X-CSE-ConnectionGUID: 1Q4zfbeZTZ2NaZua+XyJ6Q==
-X-CSE-MsgGUID: VQoZQPdXQp6yuuc4o7QoEA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63305812"
-X-IronPort-AV: E=Sophos;i="6.19,244,1754982000"; d="scan'208";a="63305812"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2025 01:33:05 -0700
-X-CSE-ConnectionGUID: Ybc6Ev76RAuWyu+RsVubRw==
-X-CSE-MsgGUID: UmZBzrN5RWiBJhaEQlYYbw==
+ bh=6/iHwHL2VndExd1l0j80JaUkfyr4bBwlfE/bIRAlUbk=;
+ b=GnD7W1lCx3d0OLD6IM93+7XK6F5XEX8gGs+wEmYgMjQ9Hgved5rFqfIA
+ JdSL8dsHmfvu8kb9qV5aPEjamNmNIsNtRgBpbaAdaCrXXUQJ3zURIVLIG
+ yA5LGcbSBjsIlf7xaiEpnQHyNwsZeVI6vDNNm0wqqYl2fxmbVFFFlCDZ+
+ eOvmrzYiQovTqjLcIDPFq9bpodezG4vR2BV0pLyEQHLy1g8RQT47WFtfP
+ kQNyqMEIyJRXzb2JaIcTGg79+rk+0JgKFAeYwfY0US5rER/9GaX8Yo37G
+ hkti7ksDlMpO1/ru+yZ/p4HQHrfKIs9DTPmZUQ3rmkQLPFeWfdCyIvYbA w==;
+X-CSE-ConnectionGUID: Ui0HQt7oQfOG4Inl27x+eA==
+X-CSE-MsgGUID: 0/+/Fft2SrKVpsBMBN0Vng==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63078229"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63078229"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2025 01:36:19 -0700
+X-CSE-ConnectionGUID: 2EGLKywKR36VWqmYeh5LOQ==
+X-CSE-MsgGUID: wLsU1StWRq6e8b7lXlQWZg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,244,1754982000"; d="scan'208";a="183242160"
+X-IronPort-AV: E=Sophos;i="6.19,244,1754982000"; d="scan'208";a="207214803"
 Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.52])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2025 01:33:00 -0700
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2025 01:36:14 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Gustavo Sousa <gustavo.sousa@intel.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
@@ -54,16 +54,16 @@ Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>, Dnyaneshwar Bhadane
  Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>, Shekhar Chauhan
  <shekhar.chauhan@intel.com>, Vinod Govindapillai
  <vinod.govindapillai@intel.com>
-Subject: Re: [PATCH 27/32] drm/i915/vbt: Add fields dedicated_external and
- dyn_port_over_tc
-In-Reply-To: <176073244932.2362.18113914581478817061@intel.com>
+Subject: Re: [PATCH 29/32] drm/i915/display: Handle dedicated external ports
+ in intel_encoder_is_tc()
+In-Reply-To: <176054550462.3168.930912579291937601@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20251015-xe3p_lpd-basic-enabling-v1-0-d2d1e26520aa@intel.com>
- <20251015-xe3p_lpd-basic-enabling-v1-27-d2d1e26520aa@intel.com>
- <d02b6f306e3b503066dcb4cf7d1a8c1fdf626e30@intel.com>
- <176073244932.2362.18113914581478817061@intel.com>
-Date: Tue, 21 Oct 2025 11:32:57 +0300
-Message-ID: <33bca917d351c5161a13239b67e5d7cb1ec9fb3b@intel.com>
+ <20251015-xe3p_lpd-basic-enabling-v1-29-d2d1e26520aa@intel.com>
+ <bc0b111384b7c28187aa5e7fef1cd39718ab1f75@intel.com>
+ <176054550462.3168.930912579291937601@intel.com>
+Date: Tue, 21 Oct 2025 11:36:11 +0300
+Message-ID: <fbe88673f719ed7dd8ae3ae5b63212ff48cd8bed@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -81,32 +81,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 17 Oct 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> Quoting Jani Nikula (2025-10-15 12:29:00-03:00)
->>We probably want to add the info to print_ddi_port().
+On Wed, 15 Oct 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> Quoting Jani Nikula (2025-10-15 12:33:31-03:00)
+>>On Wed, 15 Oct 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+>>> @@ -1863,6 +1873,13 @@ bool intel_encoder_is_tc(struct intel_encoder *encoder)
+>>>  {
+>>>          struct intel_display *display = to_intel_display(encoder);
+>>>  
+>>> +        if (intel_encoder_is_dig_port(encoder)) {
+>>> +                struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+>>> +
+>>> +                if (dig_port->dedicated_external)
+>>
+>>Why go through all the trouble of duplicating the "decicated external"
+>>information in the digital port, when you already have encoder
+>>available, and can just use intel_bios_encoder_is_dedicated_external()
+>>right here?
 >
-> Yep.  Good idea.
+> I believe the last paragraph of the commit message explains the why.
+> Are you suggesting that we handle the lifespan issue right in this
+> series instead?
 >
-> I'm currently looking at print_ddi_port() and the one-liner is already
-> quite long and I don't know we would be able to come up with a good
-> abbreviation to put there.
+> Using intel_bios_encoder_is_dedicated_external() my first approach, but
+> then we were hit with an oops because the VBT data was not available
+> anymore in the driver unbind path.
 
-Yeah, it is...
-
->
-> Probably just print on its own line?
-> E.g.:
->
-> 	dedicated_external = intel_bios_encoder_is_dedicated_external(devdata);
-> 	if (dedicated_external)
-> 		drm_dbg_kms(display->drm,
-> 			    "Port %c is dedicated external\n");
-
-Ack.
-
-> Do you think printing for dyn_port_over_tc is also useful?
-
-We'll only know when we're debugging some issue! ;)
+Ugh. I think this deserves a comment, perhaps accompanied with a FIXME,
+not just a mention in the commit message.
 
 BR,
 Jani.
