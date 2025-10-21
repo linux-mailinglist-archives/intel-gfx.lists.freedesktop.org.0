@@ -2,67 +2,94 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2804ABF61B7
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Oct 2025 13:43:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EF49BF6C47
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Oct 2025 15:29:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28ADC10E062;
-	Tue, 21 Oct 2025 11:43:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3809810E5EA;
+	Tue, 21 Oct 2025 13:29:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="X6A8Vg+W";
+	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="TLmFnjHZ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32E0510E062;
- Tue, 21 Oct 2025 11:43:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1761047018;
- bh=4/wPubUubr6qTSSbAihLczvGyM352rWdAaTJHeSVTBo=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=X6A8Vg+WYATpuhsFpQ3ZsJxt/QswcDrcGTpcfIoEoQIS63m673G0GbGfTRQL8aydv
- +ccpa8fOn0/TF2FvpJGMdtw0ffwoUDQLJn4zA96ldPBS/BlMMsG0uGyrMbwdSvDkCk
- cVP37O9DJBzFd7fbgnfPjW19UrL+XZOngS5BcIhOxhb68KfeAFiC5BfWfW778xBL8h
- BSoMudQQwKJw2RKbCnudstHVmQkkoJ+MN8CSXPhp3tlKlBOakfHMPpnKe+73m08/Rz
- LG9VWkhwuOkiPA+fmuEVp4neXVFjyrD3lXjoSoHMVuM2ex8xkyMuVCoWQuGDd+kyaA
- selFJWS4cADRA==
-Received: from fedora (unknown [IPv6:2a01:e0a:2c:6930:d919:a6e:5ea1:8a9f])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: bbrezillon)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id 873A917E0CA3;
- Tue, 21 Oct 2025 13:43:37 +0200 (CEST)
-Date: Tue, 21 Oct 2025 13:43:31 +0200
-From: Boris Brezillon <boris.brezillon@collabora.com>
-To: =?UTF-8?B?TG/Dr2M=?= Molinari <loic.molinari@collabora.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Rob Herring <robh@kernel.org>,
- Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
- Melissa Wen <mwen@igalia.com>, =?UTF-8?B?TWHDrXJh?= Canal
- <mcanal@igalia.com>, Hugh Dickins <hughd@google.com>, Baolin Wang
- <baolin.wang@linux.alibaba.com>, Andrew Morton <akpm@linux-foundation.org>,
- Al Viro <viro@zeniv.linux.org.uk>, =?UTF-8?B?TWlrb8WCYWo=?= Wasiak
- <mikolaj.wasiak@intel.com>, Christian Brauner <brauner@kernel.org>, Nitin
- Gote <nitin.r.gote@intel.com>, Andi Shyti <andi.shyti@linux.intel.com>,
- Jonathan Corbet <corbet@lwn.net>, Christopher Healy <healych@amazon.com>,
- Matthew Wilcox <willy@infradead.org>, Bagas Sanjaya <bagasdotme@gmail.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-mm@kvack.org,
- linux-doc@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCH v5 05/12] drm/gem: Add huge tmpfs mountpoint helpers
-Message-ID: <20251021134331.549ebeea@fedora>
-In-Reply-To: <20251021113049.17242-6-loic.molinari@collabora.com>
-References: <20251021113049.17242-1-loic.molinari@collabora.com>
- <20251021113049.17242-6-loic.molinari@collabora.com>
-Organization: Collabora
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
+ [213.167.242.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD5B910E5EA;
+ Tue, 21 Oct 2025 13:29:12 +0000 (UTC)
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi
+ [91.158.153.178])
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id A6D036A6;
+ Tue, 21 Oct 2025 15:27:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+ s=mail; t=1761053248;
+ bh=TdmnHYraVLXyq2KpB8KKjs8nVP++3l4uw6Cj2Qx6icU=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=TLmFnjHZ7QGrJGGch1/PS5cm/SEPmEHLgfnRuKGU633tUbrafTejahnxqwDqb8WUA
+ BzvQIu/AKRvUSlGdmWCAqjQjW9PUt5VL1fWjA2Ktkz5YhQDUq8+cEhbqslGSWERmTI
+ Acn2+DbnOn3ka05kWMPm1BmHMJcyPmrIx4Z+WbUg=
+Message-ID: <5ae8b52a-ff6c-4ab6-b2e6-83bd858b206a@ideasonboard.com>
+Date: Tue, 21 Oct 2025 16:29:08 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] drm/client: Add client free callback to unprepare
+ fb_helper
+To: Thomas Zimmermann <tzimmermann@suse.de>, jfalempe@redhat.com,
+ javierm@redhat.com, mripard@kernel.org, maarten.lankhorst@linux.intel.com
+Cc: dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org
+References: <20251009132006.45834-1-tzimmermann@suse.de>
+ <20251009132006.45834-2-tzimmermann@suse.de>
+Content-Language: en-US
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <20251009132006.45834-2-tzimmermann@suse.de>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,219 +105,275 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 21 Oct 2025 13:30:42 +0200
-Lo=C3=AFc Molinari <loic.molinari@collabora.com> wrote:
-
-> Add the drm_gem_huge_mnt_create() and drm_gem_has_huge_mnt() helpers
-> to avoid code duplication in the i915, V3D, Panfrost and Panthor
-> drivers. The former creates and mounts a dedicated huge tmpfs
-> mountpoint, for the lifetime of a DRM device, used at GEM object
-> initialization. The latter checks whether a dedicated huge tmpfs
-> mountpoint is in use by a DRM device.
->=20
-> The next commits will port drivers to this helper.
->=20
-> v3:
-> - store huge tmpfs mountpoint in drm_device
->=20
-> v4:
-> - return 0 in builds with CONFIG_TRANSPARENT_HUGEPAGE=3Dn
-> - return 0 when huge_mnt already exists
-> - use new vfs_parse_fs_string() helper
->=20
-> v5:
-> - removed warning on !dev->huge_mnt and reset to NULL on free
-> - inline drm_gem_huge_mnt_create() to remove func from text and avoid
->   calls in builds with CONFIG_TRANSPARENT_HUGEPAGE=3Dn
-> - compile out drm_device's huge_mnt field in builds with
->   CONFIG_TRANSPARENT_HUGEPAGE=3Dn
-> - add drm_gem_has_huge_mnt() helper
->=20
-> Signed-off-by: Lo=C3=AFc Molinari <loic.molinari@collabora.com>
+On 09/10/2025 16:16, Thomas Zimmermann wrote:
+> Add free callback to struct drm_client_funcs. Invoke function to
+> free the client memory as part of the release process. Implement
+> free for fbdev emulation.
+> 
+> Fbdev emulation allocates and prepares client memory in
+> drm_fbdev_client_setup(). The release happens in fb_destroy from
+> struct fb_ops. Multiple implementations of this callback exist in
+> the various drivers that provide fbdev implementation. Each of them
+> needs to follow the implementation details of the fbdev setup code.
+> 
+> Adding a free callback for the client puts the unprepare and release
+> of the fbdev client in a single place.
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 > ---
->  drivers/gpu/drm/drm_gem.c | 39 +++++++++++++++++++++++++++++
->  include/drm/drm_device.h  | 15 +++++++++++
->  include/drm/drm_gem.h     | 52 +++++++++++++++++++++++++++++++++++++++
->  3 files changed, 106 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
-> index a98d5744cc6c..161da048330e 100644
-> --- a/drivers/gpu/drm/drm_gem.c
-> +++ b/drivers/gpu/drm/drm_gem.c
-> @@ -29,6 +29,9 @@
->  #include <linux/export.h>
->  #include <linux/file.h>
->  #include <linux/fs.h>
-> +#ifdef CONFIG_TRANSPARENT_HUGEPAGE
-> +#include <linux/fs_context.h>
-> +#endif
->  #include <linux/iosys-map.h>
->  #include <linux/mem_encrypt.h>
->  #include <linux/mm.h>
-> @@ -82,6 +85,42 @@
->   * up at a later date, and as our interface with shmfs for memory alloca=
-tion.
+>  drivers/gpu/drm/armada/armada_fbdev.c      |  2 --
+>  drivers/gpu/drm/clients/drm_fbdev_client.c | 17 +++++++++++++++--
+>  drivers/gpu/drm/drm_client.c               |  4 ++++
+>  drivers/gpu/drm/drm_fbdev_dma.c            |  4 ----
+>  drivers/gpu/drm/drm_fbdev_shmem.c          |  2 --
+>  drivers/gpu/drm/drm_fbdev_ttm.c            |  2 --
+>  drivers/gpu/drm/exynos/exynos_drm_fbdev.c  |  2 --
+>  drivers/gpu/drm/gma500/fbdev.c             |  3 ---
+>  drivers/gpu/drm/i915/display/intel_fbdev.c |  2 --
+>  drivers/gpu/drm/msm/msm_fbdev.c            |  2 --
+>  drivers/gpu/drm/omapdrm/omap_fbdev.c       |  2 --
+
+For omapdrm:
+
+Acked-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+
+ Tomi
+
+>  drivers/gpu/drm/radeon/radeon_fbdev.c      |  2 --
+>  drivers/gpu/drm/tegra/fbdev.c              |  2 --
+>  include/drm/drm_client.h                   | 10 ++++++++++
+>  14 files changed, 29 insertions(+), 27 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/armada/armada_fbdev.c b/drivers/gpu/drm/armada/armada_fbdev.c
+> index cb53cc91bafb..22e2081bfa04 100644
+> --- a/drivers/gpu/drm/armada/armada_fbdev.c
+> +++ b/drivers/gpu/drm/armada/armada_fbdev.c
+> @@ -28,8 +28,6 @@ static void armada_fbdev_fb_destroy(struct fb_info *info)
+>  	fbh->fb->funcs->destroy(fbh->fb);
+>  
+>  	drm_client_release(&fbh->client);
+> -	drm_fb_helper_unprepare(fbh);
+> -	kfree(fbh);
+>  }
+>  
+>  static const struct fb_ops armada_fb_ops = {
+> diff --git a/drivers/gpu/drm/clients/drm_fbdev_client.c b/drivers/gpu/drm/clients/drm_fbdev_client.c
+> index f894ba52bdb5..5336accab1b6 100644
+> --- a/drivers/gpu/drm/clients/drm_fbdev_client.c
+> +++ b/drivers/gpu/drm/clients/drm_fbdev_client.c
+> @@ -13,16 +13,28 @@
+>   * struct drm_client_funcs
 >   */
-> =20
-> +#ifdef CONFIG_TRANSPARENT_HUGEPAGE
-> +static void drm_gem_huge_mnt_free(struct drm_device *dev, void *data)
+>  
+> +static void drm_fbdev_client_free(struct drm_client_dev *client)
 > +{
-> +	kern_unmount(dev->huge_mnt);
+> +	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
+> +
+> +	drm_fb_helper_unprepare(fb_helper);
+> +	kfree(fb_helper);
 > +}
 > +
-> +int __drm_gem_huge_mnt_create(struct drm_device *dev, const char *value)
-> +{
-> +	struct file_system_type *type;
-> +	struct fs_context *fc;
-> +	int ret;
-> +
-> +	if (unlikely(drm_gem_has_huge_mnt(dev)))
-> +		return 0;
-> +
-> +	type =3D get_fs_type("tmpfs");
-> +	if (unlikely(!type))
-> +		return -EOPNOTSUPP;
-> +	fc =3D fs_context_for_mount(type, SB_KERNMOUNT);
-> +	if (IS_ERR(fc))
-> +		return PTR_ERR(fc);
-> +	ret =3D vfs_parse_fs_string(fc, "source", "tmpfs");
-> +	if (unlikely(ret))
-> +		return -ENOPARAM;
-> +	ret =3D vfs_parse_fs_string(fc, "huge", value);
-> +	if (unlikely(ret))
-> +		return -ENOPARAM;
-> +
-> +	dev->huge_mnt =3D fc_mount_longterm(fc);
-> +	put_fs_context(fc);
-> +
-> +	return drmm_add_action_or_reset(dev, drm_gem_huge_mnt_free, NULL);
-> +}
-> +EXPORT_SYMBOL_GPL(__drm_gem_huge_mnt_create);
-> +#endif
-> +
->  static void
->  drm_gem_init_release(struct drm_device *dev, void *ptr)
+>  static void drm_fbdev_client_unregister(struct drm_client_dev *client)
 >  {
-> diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
-> index 778b2cca6c49..684939987d83 100644
-> --- a/include/drm/drm_device.h
-> +++ b/include/drm/drm_device.h
-> @@ -3,6 +3,9 @@
-> =20
->  #include <linux/list.h>
->  #include <linux/kref.h>
-> +#ifdef CONFIG_TRANSPARENT_HUGEPAGE
-> +#include <linux/mount.h>
-> +#endif
->  #include <linux/mutex.h>
->  #include <linux/idr.h>
->  #include <linux/sched.h>
-> @@ -168,6 +171,18 @@ struct drm_device {
+>  	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
+>  
+>  	if (fb_helper->info) {
+> +		/*
+> +		 * Fully probed framebuffer device
+> +		 */
+>  		drm_fb_helper_unregister_info(fb_helper);
+>  	} else {
+> +		/*
+> +		 * Partially initialized client, no framebuffer device yet
+> +		 */
+>  		drm_client_release(&fb_helper->client);
+> -		drm_fb_helper_unprepare(fb_helper);
+> -		kfree(fb_helper);
+>  	}
+>  }
+>  
+> @@ -88,6 +100,7 @@ static int drm_fbdev_client_resume(struct drm_client_dev *client, bool holds_con
+>  
+>  static const struct drm_client_funcs drm_fbdev_client_funcs = {
+>  	.owner		= THIS_MODULE,
+> +	.free		= drm_fbdev_client_free,
+>  	.unregister	= drm_fbdev_client_unregister,
+>  	.restore	= drm_fbdev_client_restore,
+>  	.hotplug	= drm_fbdev_client_hotplug,
+> diff --git a/drivers/gpu/drm/drm_client.c b/drivers/gpu/drm/drm_client.c
+> index 3fa38d4ac70b..fe9c6d7083ea 100644
+> --- a/drivers/gpu/drm/drm_client.c
+> +++ b/drivers/gpu/drm/drm_client.c
+> @@ -168,6 +168,10 @@ void drm_client_release(struct drm_client_dev *client)
+>  
+>  	drm_client_modeset_free(client);
+>  	drm_client_close(client);
+> +
+> +	if (client->funcs && client->funcs->free)
+> +		client->funcs->free(client);
+> +
+>  	drm_dev_put(dev);
+>  }
+>  EXPORT_SYMBOL(drm_client_release);
+> diff --git a/drivers/gpu/drm/drm_fbdev_dma.c b/drivers/gpu/drm/drm_fbdev_dma.c
+> index 8bd626ef16c7..c6196293e424 100644
+> --- a/drivers/gpu/drm/drm_fbdev_dma.c
+> +++ b/drivers/gpu/drm/drm_fbdev_dma.c
+> @@ -57,8 +57,6 @@ static void drm_fbdev_dma_fb_destroy(struct fb_info *info)
+>  	drm_client_buffer_vunmap(fb_helper->buffer);
+>  	drm_client_framebuffer_delete(fb_helper->buffer);
+>  	drm_client_release(&fb_helper->client);
+> -	drm_fb_helper_unprepare(fb_helper);
+> -	kfree(fb_helper);
+>  }
+>  
+>  static const struct fb_ops drm_fbdev_dma_fb_ops = {
+> @@ -92,8 +90,6 @@ static void drm_fbdev_dma_shadowed_fb_destroy(struct fb_info *info)
+>  	drm_client_buffer_vunmap(fb_helper->buffer);
+>  	drm_client_framebuffer_delete(fb_helper->buffer);
+>  	drm_client_release(&fb_helper->client);
+> -	drm_fb_helper_unprepare(fb_helper);
+> -	kfree(fb_helper);
+>  }
+>  
+>  static const struct fb_ops drm_fbdev_dma_shadowed_fb_ops = {
+> diff --git a/drivers/gpu/drm/drm_fbdev_shmem.c b/drivers/gpu/drm/drm_fbdev_shmem.c
+> index 1e827bf8b815..51573058df6f 100644
+> --- a/drivers/gpu/drm/drm_fbdev_shmem.c
+> +++ b/drivers/gpu/drm/drm_fbdev_shmem.c
+> @@ -65,8 +65,6 @@ static void drm_fbdev_shmem_fb_destroy(struct fb_info *info)
+>  	drm_client_buffer_vunmap(fb_helper->buffer);
+>  	drm_client_framebuffer_delete(fb_helper->buffer);
+>  	drm_client_release(&fb_helper->client);
+> -	drm_fb_helper_unprepare(fb_helper);
+> -	kfree(fb_helper);
+>  }
+>  
+>  static const struct fb_ops drm_fbdev_shmem_fb_ops = {
+> diff --git a/drivers/gpu/drm/drm_fbdev_ttm.c b/drivers/gpu/drm/drm_fbdev_ttm.c
+> index 85feb55bba11..ccf460fbc1f0 100644
+> --- a/drivers/gpu/drm/drm_fbdev_ttm.c
+> +++ b/drivers/gpu/drm/drm_fbdev_ttm.c
+> @@ -53,8 +53,6 @@ static void drm_fbdev_ttm_fb_destroy(struct fb_info *info)
+>  	drm_client_framebuffer_delete(fb_helper->buffer);
+>  
+>  	drm_client_release(&fb_helper->client);
+> -	drm_fb_helper_unprepare(fb_helper);
+> -	kfree(fb_helper);
+>  }
+>  
+>  static const struct fb_ops drm_fbdev_ttm_fb_ops = {
+> diff --git a/drivers/gpu/drm/exynos/exynos_drm_fbdev.c b/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
+> index 93de25b77e68..a3bd21a827ad 100644
+> --- a/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
+> +++ b/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
+> @@ -42,8 +42,6 @@ static void exynos_drm_fb_destroy(struct fb_info *info)
+>  	drm_framebuffer_remove(fb);
+>  
+>  	drm_client_release(&fb_helper->client);
+> -	drm_fb_helper_unprepare(fb_helper);
+> -	kfree(fb_helper);
+>  }
+>  
+>  static const struct fb_ops exynos_drm_fb_ops = {
+> diff --git a/drivers/gpu/drm/gma500/fbdev.c b/drivers/gpu/drm/gma500/fbdev.c
+> index a6af21514cff..bc92fa24a1e2 100644
+> --- a/drivers/gpu/drm/gma500/fbdev.c
+> +++ b/drivers/gpu/drm/gma500/fbdev.c
+> @@ -84,9 +84,6 @@ static void psb_fbdev_fb_destroy(struct fb_info *info)
+>  	drm_gem_object_put(obj);
+>  
+>  	drm_client_release(&fb_helper->client);
+> -
+> -	drm_fb_helper_unprepare(fb_helper);
+> -	kfree(fb_helper);
+>  }
+>  
+>  static const struct fb_ops psb_fbdev_fb_ops = {
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> index 3fbdf75415cc..d5f26c8bb102 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> @@ -146,8 +146,6 @@ static void intel_fbdev_fb_destroy(struct fb_info *info)
+>  	drm_framebuffer_remove(fb_helper->fb);
+>  
+>  	drm_client_release(&fb_helper->client);
+> -	drm_fb_helper_unprepare(fb_helper);
+> -	kfree(fb_helper);
+>  }
+>  
+>  __diag_push();
+> diff --git a/drivers/gpu/drm/msm/msm_fbdev.c b/drivers/gpu/drm/msm/msm_fbdev.c
+> index b5969374d53f..aad6fb77f0de 100644
+> --- a/drivers/gpu/drm/msm/msm_fbdev.c
+> +++ b/drivers/gpu/drm/msm/msm_fbdev.c
+> @@ -52,8 +52,6 @@ static void msm_fbdev_fb_destroy(struct fb_info *info)
+>  	drm_framebuffer_remove(fb);
+>  
+>  	drm_client_release(&helper->client);
+> -	drm_fb_helper_unprepare(helper);
+> -	kfree(helper);
+>  }
+>  
+>  static const struct fb_ops msm_fb_ops = {
+> diff --git a/drivers/gpu/drm/omapdrm/omap_fbdev.c b/drivers/gpu/drm/omapdrm/omap_fbdev.c
+> index 948af7ec1130..b5df2923d2a6 100644
+> --- a/drivers/gpu/drm/omapdrm/omap_fbdev.c
+> +++ b/drivers/gpu/drm/omapdrm/omap_fbdev.c
+> @@ -103,8 +103,6 @@ static void omap_fbdev_fb_destroy(struct fb_info *info)
+>  	drm_framebuffer_remove(fb);
+>  
+>  	drm_client_release(&helper->client);
+> -	drm_fb_helper_unprepare(helper);
+> -	kfree(helper);
+>  }
+>  
+>  /*
+> diff --git a/drivers/gpu/drm/radeon/radeon_fbdev.c b/drivers/gpu/drm/radeon/radeon_fbdev.c
+> index dc81b0c2dbff..4df6c9167bf0 100644
+> --- a/drivers/gpu/drm/radeon/radeon_fbdev.c
+> +++ b/drivers/gpu/drm/radeon/radeon_fbdev.c
+> @@ -184,8 +184,6 @@ static void radeon_fbdev_fb_destroy(struct fb_info *info)
+>  	radeon_fbdev_destroy_pinned_object(gobj);
+>  
+>  	drm_client_release(&fb_helper->client);
+> -	drm_fb_helper_unprepare(fb_helper);
+> -	kfree(fb_helper);
+>  }
+>  
+>  static const struct fb_ops radeon_fbdev_fb_ops = {
+> diff --git a/drivers/gpu/drm/tegra/fbdev.c b/drivers/gpu/drm/tegra/fbdev.c
+> index 1b70f5e164af..91aece6f34e0 100644
+> --- a/drivers/gpu/drm/tegra/fbdev.c
+> +++ b/drivers/gpu/drm/tegra/fbdev.c
+> @@ -53,8 +53,6 @@ static void tegra_fbdev_fb_destroy(struct fb_info *info)
+>  	drm_framebuffer_remove(fb);
+>  
+>  	drm_client_release(&helper->client);
+> -	drm_fb_helper_unprepare(helper);
+> -	kfree(helper);
+>  }
+>  
+>  static const struct fb_ops tegra_fb_ops = {
+> diff --git a/include/drm/drm_client.h b/include/drm/drm_client.h
+> index bdd845e383ef..eecb8d6e15c7 100644
+> --- a/include/drm/drm_client.h
+> +++ b/include/drm/drm_client.h
+> @@ -28,6 +28,16 @@ struct drm_client_funcs {
 >  	 */
->  	struct drm_master *master;
-> =20
+>  	struct module *owner;
+>  
 > +	/**
-> +	 * @huge_mnt:
+> +	 * @free:
 > +	 *
-> +	 * Huge tmpfs mountpoint used at GEM object initialization
-> +	 * drm_gem_object_init(). Drivers can call drm_gem_huge_mnt_create() to
-> +	 * create a huge tmfps mountpoint. The default tmpfs mountpoint
-> +	 * (`shm_mnt`) is used if NULL.
+> +	 * Called when the client gets unregistered. Implementations should
+> +	 * release all client-specific data and free the memory.
+> +	 *
+> +	 * This callback is optional.
 > +	 */
-> +#ifdef CONFIG_TRANSPARENT_HUGEPAGE
-
-Can we move the ifdef before the kernel doc for this field?
-
-> +	struct vfsmount *huge_mnt;
-> +#endif
+> +	void (*free)(struct drm_client_dev *client);
 > +
 >  	/**
->  	 * @driver_features: per-device driver features
+>  	 * @unregister:
 >  	 *
-> diff --git a/include/drm/drm_gem.h b/include/drm/drm_gem.h
-> index 7c8bd67d087c..9845854850fb 100644
-> --- a/include/drm/drm_gem.h
-> +++ b/include/drm/drm_gem.h
-> @@ -492,6 +492,58 @@ struct drm_gem_object {
->  		DRM_GEM_FOPS,\
->  	}
-> =20
-> +#ifdef CONFIG_TRANSPARENT_HUGEPAGE
-> +int __drm_gem_huge_mnt_create(struct drm_device *dev, const char *value);
-> +#endif
-> +
-> +/**
-> + * drm_gem_huge_mnt_create - Create, mount and use a huge tmpfs mountpoi=
-nt
-> + * @dev: DRM device a huge tmpfs mountpoint should be used with
-> + * @value: huge tmpfs mount option value
-> + *
-> + * This function creates and mounts a dedicated huge tmpfs mountpoint fo=
-r the
-> + * lifetime of the DRM device @dev which is used at GEM object initializ=
-ation
-> + * with drm_gem_object_init().
-> + *
-> + * The most common option value @value is "within_size" which only alloc=
-ates
-> + * huge pages if the page will be fully within the GEM object size. "alw=
-ays",
-> + * "advise" and "never" are supported too but the latter would just crea=
-te a
-> + * mountpoint similar to the default one (`shm_mnt`). See shmemfs and
-> + * Transparent Hugepage for more information.
-> + *
-> + * Returns:
-> + * 0 on success or a negative error code on failure.
-> + */
-> +static inline int drm_gem_huge_mnt_create(struct drm_device *dev,
-> +					  const char *value)
-> +{
-> +#ifdef CONFIG_TRANSPARENT_HUGEPAGE
-> +	return __drm_gem_huge_mnt_create(dev, value);
-> +#else
-> +	return 0;
-> +#endif
-> +}
-
-Unless __drm_gem_huge_mnt_create() is really used internally (at first
-glance, that doesn't seem to be the case), I'd suggest renaming it
-drm_gem_huge_mnt_create() and having:
-
-#ifdef CONFIG_TRANSPARENT_HUGEPAGE
-int drm_gem_huge_mnt_create(struct drm_device *dev, const char *value);
-#else
-static inline int drm_gem_huge_mnt_create(struct drm_device *dev,
-					  const char *value)
-{
-	return 0;
-}
-#endif
-
-> +
-> +/**
-> + * drm_gem_has_huge_mnt - Check if a huge tmpfs mountpoint is in use
-> + * @dev: DRM device
-> + *
-> + * This function checks whether a huge tmpfs mountpoint is in use after =
-by DRM
-> + * device @dev. A huge tmpfs mountpoint is used after a successful call =
-to
-> + * drm_gem_huge_mnt_create() on builds with Transparent Hugepage enabled.
-> + *
-> + * Returns:
-> + * true on success, false otherwise.
-> + */
-> +static inline bool drm_gem_has_huge_mnt(struct drm_device *dev)
-> +{
-> +#ifdef CONFIG_TRANSPARENT_HUGEPAGE
-> +	return !!dev->huge_mnt;
-> +#else
-> +	return false;
-> +#endif
-> +}
-> +
->  void drm_gem_object_release(struct drm_gem_object *obj);
->  void drm_gem_object_free(struct kref *kref);
->  int drm_gem_object_init(struct drm_device *dev,
 
