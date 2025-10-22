@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 244CCBF977B
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Oct 2025 02:32:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77174BF977E
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Oct 2025 02:32:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A98610E688;
-	Wed, 22 Oct 2025 00:32:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D954B10E689;
+	Wed, 22 Oct 2025 00:32:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m12vRCys";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hWwE0SSC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CAD0510E688;
- Wed, 22 Oct 2025 00:32:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00EC110E689;
+ Wed, 22 Oct 2025 00:32:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761093121; x=1792629121;
+ t=1761093131; x=1792629131;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=hJjaZquFFqus1+75Y1vf6k0xqADWLTQhbdEQAyJp9i8=;
- b=m12vRCysGHym4pdcrqP3U8uoY1IZB8+SIP05nCZ5EbfMkxUumQ+wEoaQ
- ZBeFEcyvNTG1dV/gAmcVcUK9BMgI/ZqnkL/jfMVKmadDuIWj1Ts0Y9FcX
- l1JOcsfIt6bmSq9Xb4s75hNQRVYkWNnbkjcmT9+hn8+5A4oLEq0hM6kuT
- w9yH7U4uTzTSEe6Rgq49GQWU0BC4Xqio/CpzXoB2JW+wrsVc65cOOpL42
- ll9geNbYLYwqGgZMwrKlj3bdvEilmCg0VH0QA8HT8oR+cbRfUBiNIXEzU
- PL1VRMR9JEZpvNcNEkGFiR/B4xTWa+7J9cgWkxKOaJc7Jj13tZQi3lWAH A==;
-X-CSE-ConnectionGUID: 15bbBUPhR2Oln7SyWAHtaQ==
-X-CSE-MsgGUID: ZFl6lMw0TP6EqFW1VMnJGQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="85855762"
-X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="85855762"
+ bh=XCuFAW+zH5fQxCj2QkaozFGGvjg4KNdh97B2bUw89WQ=;
+ b=hWwE0SSCkGpN2k9W0oK6Mak53fBPSsNYrU/BfWU9Le6KlOmBht+CWdjy
+ HqHhQN2mwvvqOl0CKWJSfDEa85PmnmiroANBLE1ntXWk3+cvVEVryTWKI
+ MQe/EHUnnVE5xOGqj5J4fWx6s6/8mRh/lSrnPevWqEPvJPd2TULdDX7rF
+ 7hDZjjMBvnJcPE3q4npCm9/+/WJDLSjEuvw/eE4pLJ4FTqyFGoce+2idM
+ S+T3i5FY8F0embOnCuVocnxMSK9GtEzlmJ0DW/lg+GoPGbsyjke/gUo9p
+ rrhe3g5i5WanNnkuLTpSiVVlm5vFeiM5YLJNpQkHh/KzOY/X2M5b0JA+7 A==;
+X-CSE-ConnectionGUID: 3vcDbqhzSGyKTe1y0ABv1A==
+X-CSE-MsgGUID: 9FOaJxCwTgaruDs7Vp2Hyg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="85855772"
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="85855772"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2025 17:32:00 -0700
-X-CSE-ConnectionGUID: 8J9T+dv6Q5iboQk7JWm0Wg==
-X-CSE-MsgGUID: H6VHBogJQQiw4Dc/VzI17Q==
+ 21 Oct 2025 17:32:04 -0700
+X-CSE-ConnectionGUID: 6ir+fUl1TqiZsS8aUsRkGg==
+X-CSE-MsgGUID: pwsgPO/nQt6kWkZfGsiRbg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="188132440"
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="188132454"
 Received: from gpacheco-mobl.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.221.26])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2025 17:31:57 -0700
+ 21 Oct 2025 17:32:00 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Tue, 21 Oct 2025 21:28:42 -0300
-Subject: [PATCH v2 17/32] drm/i915/xe3p_lpd: Load DMC firmware
+Date: Tue, 21 Oct 2025 21:28:43 -0300
+Subject: [PATCH v2 18/32] drm/i915/xe3p_lpd: Drop support for interlace
+ mode
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251021-xe3p_lpd-basic-enabling-v2-17-10eae6d655b8@intel.com>
+Message-Id: <20251021-xe3p_lpd-basic-enabling-v2-18-10eae6d655b8@intel.com>
 References: <20251021-xe3p_lpd-basic-enabling-v2-0-10eae6d655b8@intel.com>
 In-Reply-To: <20251021-xe3p_lpd-basic-enabling-v2-0-10eae6d655b8@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
@@ -63,7 +64,8 @@ Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>, 
  Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>, 
  Shekhar Chauhan <shekhar.chauhan@intel.com>, 
- Vinod Govindapillai <vinod.govindapillai@intel.com>
+ Vinod Govindapillai <vinod.govindapillai@intel.com>, 
+ Suraj Kandpal <suraj.kandpal@intel.com>
 X-Mailer: b4 0.15-dev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -80,41 +82,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Load the DMC firmware for Xe3p_LPD.
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
+Interlace mode is officially removed from HW from Xe3p_LPD.  The
+register TRANS_VSYNCSHIFT and the bits in TRANS_CONF are now removed, so
+make sure we do not set/get these anymore.
+
+Bspec: 69961, 70000
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 14 ++++++++------
+ 1 file changed, 8 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index be6d37ea1139..098061c6bf2c 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -127,6 +127,9 @@ static bool dmc_firmware_param_disabled(struct intel_display *display)
- #define DISPLAY_VER13_DMC_MAX_FW_SIZE	0x20000
- #define DISPLAY_VER12_DMC_MAX_FW_SIZE	ICL_DMC_MAX_FW_SIZE
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index a8b4619de347..5ae02bfc2148 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -2633,7 +2633,7 @@ static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_sta
+ 		crtc_vblank_start = 1;
+ 	}
  
-+#define XE3P_LPD_DMC_PATH		DMC_PATH(xe3p_lpd)
-+MODULE_FIRMWARE(XE3P_LPD_DMC_PATH);
-+
- #define XE3LPD_3002_DMC_PATH		DMC_PATH(xe3lpd_3002)
- MODULE_FIRMWARE(XE3LPD_3002_DMC_PATH);
+-	if (DISPLAY_VER(display) >= 4)
++	if (DISPLAY_VER(display) >= 4 && DISPLAY_VER(display) < 35)
+ 		intel_de_write(display,
+ 			       TRANS_VSYNCSHIFT(display, cpu_transcoder),
+ 			       vsyncshift);
+@@ -2771,7 +2771,7 @@ static bool intel_pipe_is_interlaced(const struct intel_crtc_state *crtc_state)
+ 	struct intel_display *display = to_intel_display(crtc_state);
+ 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
  
-@@ -186,7 +189,11 @@ static const char *dmc_firmware_default(struct intel_display *display, u32 *size
- {
- 	const char *fw_path = NULL;
- 	u32 max_fw_size = 0;
--	if (DISPLAY_VERx100(display) == 3002) {
-+
-+	if (DISPLAY_VERx100(display) == 3500) {
-+		fw_path = XE3P_LPD_DMC_PATH;
-+		max_fw_size = XE2LPD_DMC_MAX_FW_SIZE;
-+	} else if (DISPLAY_VERx100(display) == 3002) {
- 		fw_path = XE3LPD_3002_DMC_PATH;
- 		max_fw_size = XE2LPD_DMC_MAX_FW_SIZE;
- 	} else if (DISPLAY_VERx100(display) == 3000) {
+-	if (DISPLAY_VER(display) == 2)
++	if (DISPLAY_VER(display) == 2 || DISPLAY_VER(display) >= 35)
+ 		return false;
+ 
+ 	if (DISPLAY_VER(display) >= 9 ||
+@@ -3162,10 +3162,12 @@ static void hsw_set_transconf(const struct intel_crtc_state *crtc_state)
+ 	if (display->platform.haswell && crtc_state->dither)
+ 		val |= TRANSCONF_DITHER_EN | TRANSCONF_DITHER_TYPE_SP;
+ 
+-	if (crtc_state->hw.adjusted_mode.flags & DRM_MODE_FLAG_INTERLACE)
+-		val |= TRANSCONF_INTERLACE_IF_ID_ILK;
+-	else
+-		val |= TRANSCONF_INTERLACE_PF_PD_ILK;
++	if (DISPLAY_VER(display) < 35) {
++		if (crtc_state->hw.adjusted_mode.flags & DRM_MODE_FLAG_INTERLACE)
++			val |= TRANSCONF_INTERLACE_IF_ID_ILK;
++		else
++			val |= TRANSCONF_INTERLACE_PF_PD_ILK;
++	}
+ 
+ 	if (display->platform.haswell &&
+ 	    crtc_state->output_format != INTEL_OUTPUT_FORMAT_RGB)
 
 -- 
 2.51.0
