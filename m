@@ -2,47 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7ACDBFBD83
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Oct 2025 14:28:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5325ABFBE3D
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Oct 2025 14:39:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4394A10E76A;
-	Wed, 22 Oct 2025 12:28:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B209710E771;
+	Wed, 22 Oct 2025 12:39:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VyL1xRgc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ex1CkGKX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3B6F10E768;
- Wed, 22 Oct 2025 12:28:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 582CC10E771;
+ Wed, 22 Oct 2025 12:39:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761136123; x=1792672123;
+ t=1761136765; x=1792672765;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=cssdBK5U7FRhrQq+c8n1PlmNi+X5se5OmAXFi6I0vqo=;
- b=VyL1xRgcYRVfhoa6bNIgZ97xVLvj6xTiKRIs5//1soe3JxMRqL088Mow
- i+TutP/hlBuVJ3wC8vRX2ApmOHLfDJM6s1OEJNy6vGDQGZORtKW/1v7MF
- 396VZm9xXdwuAwo4QgoV9n2XI1AbCMEquzKbdLrOHwdtTxgkDTrOdKFUE
- /tCPLQMU+wbNLABX+fCRm9O2I0XqiDJ4IQeSMLGSjeTnarEfUDUcPGlVN
- wPRqA70eABCyNGd4wma+LlGmzLUCohvbuh6jorp1kHN3m6HQ93+qk048V
- ySHddSPqa7pwfjPAjbTnmWl3d4NLZ7+NAx4QORnI/cRFIMapZWsWGB+U7 Q==;
-X-CSE-ConnectionGUID: Rt5/Hs2GTqmIqeTM5C6dow==
-X-CSE-MsgGUID: NoF0fQfCTjaIY1Uvf990iA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74626447"
-X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="74626447"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 05:28:33 -0700
-X-CSE-ConnectionGUID: 10MtsczyQAWwZGW7beIAyA==
-X-CSE-MsgGUID: chhYgwF3T1eGd/FJgi52Bw==
+ bh=Kp3EPDRPEosCEJNp+cwvxYvQ47zKI+dU4GEFDPA6ljg=;
+ b=ex1CkGKXlKFBgDjGfPQuwfUklCdP/4JWCB7sSwz0B/FPsYd4CDI7z0WF
+ 1ok+OO1Sfydc5mRzxrtzWoJJhwPXBQmJSU10SpIR/6dzsIOsIkKQ8/CoK
+ OChCBx4eIlEgnSasYeo0JXiP3CmCuMxVDjwzxuggnZNY/5dVXARd8VvqZ
+ fSG/21yR80wgaKvdSHDLVQQofm+ZnR5seoTQU7xGyhDP7E24psT5WbnGw
+ MnMs72WF3F9ZMICc8znyEVu/Vg2yZytT2YdJjibTiXSkh+mDkC6dmTVYg
+ 5AtP3dw6DE01Cuoh0U2b2aAODQLAPbzyrWwf2os5tlBTib/8aF0HqF3uD w==;
+X-CSE-ConnectionGUID: 7W2C9BoqTlW5nuGbmLZDGw==
+X-CSE-MsgGUID: N4+Rq4P6TUuHBGYqVQksvA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74400940"
+X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="74400940"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2025 05:39:25 -0700
+X-CSE-ConnectionGUID: judo2azUQYKDrNOkfZs2IQ==
+X-CSE-MsgGUID: /+qh+RSWSEi397pbk/UezA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="183563752"
+X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="188143739"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.74])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 05:28:29 -0700
-Date: Wed, 22 Oct 2025 15:28:26 +0300
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2025 05:39:21 -0700
+Date: Wed, 22 Oct 2025 15:39:18 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Gustavo Sousa <gustavo.sousa@intel.com>
 Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
@@ -58,15 +58,16 @@ Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  Shekhar Chauhan <shekhar.chauhan@intel.com>,
  Vinod Govindapillai <vinod.govindapillai@intel.com>,
  Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
-Subject: Re: [PATCH v2 07/32] drm/i915/xe3p_lpd: Support UINT16 formats
-Message-ID: <aPjN6jrrJsMcD0h-@intel.com>
+Subject: Re: [PATCH v2 08/32] drm/i915/xe3p_lpd: Extend FBC support to UINT16
+ formats
+Message-ID: <aPjQdtGHkctqp77F@intel.com>
 References: <20251021-xe3p_lpd-basic-enabling-v2-0-10eae6d655b8@intel.com>
- <20251021-xe3p_lpd-basic-enabling-v2-7-10eae6d655b8@intel.com>
+ <20251021-xe3p_lpd-basic-enabling-v2-8-10eae6d655b8@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251021-xe3p_lpd-basic-enabling-v2-7-10eae6d655b8@intel.com>
+In-Reply-To: <20251021-xe3p_lpd-basic-enabling-v2-8-10eae6d655b8@intel.com>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -84,181 +85,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 21, 2025 at 09:28:32PM -0300, Gustavo Sousa wrote:
+On Tue, Oct 21, 2025 at 09:28:33PM -0300, Gustavo Sousa wrote:
 > From: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
 > 
-> Starting from display Xe3p_LPD, UINT16 formats are also supported. Add
-> its corresponding PLANE_CTL bit and add the format in the necessary
-> functions.
-
-Those have been supported by the hardware for a lot longer
-than that.
-
-I have an old branch that adds them here:
-https://github.com/vsyrjala/linux.git uint16
-but I never landed that.
-
+> Starting Xe3p_LPD, FBC is supported on UINT16 formats as well. Also
+> UINT16 being a 64bpp format, will use cpp of 8 for cfb stride and thus
+> size calculations.
 > 
-> v2:
->   - Add reference to Bspec 68911. (Matt Atwood)
-> 
-> Bspec: 68904, 69853, 68911
+> Cc: Shekhar Chauhan <shekhar.chauhan@intel.com>
+> BSpec: 68881, 68904, 69560
 > Signed-off-by: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
-> Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
 > Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/skl_universal_plane.c | 96 +++++++++++++++-------
->  .../drm/i915/display/skl_universal_plane_regs.h    |  1 +
->  2 files changed, 68 insertions(+), 29 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_fbc.c | 42 ++++++++++++++++++++++++++++----
+>  1 file changed, 37 insertions(+), 5 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> index 0319174adf95..530adff81b99 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -136,36 +136,47 @@ static const u32 icl_sdr_uv_plane_formats[] = {
->  	DRM_FORMAT_XVYU2101010,
->  };
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+> index 10ef3136dadc..af3585aeefd3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> @@ -141,15 +141,25 @@ static unsigned int intel_fbc_plane_stride(const struct intel_plane_state *plane
+>  	return stride;
+>  }
 >  
-> +#define ICL_HDR_PLANE_FORMATS		\
-> +	DRM_FORMAT_C8,			\
-> +	DRM_FORMAT_RGB565,		\
-> +	DRM_FORMAT_XRGB8888,		\
-> +	DRM_FORMAT_XBGR8888,		\
-> +	DRM_FORMAT_ARGB8888,		\
-> +	DRM_FORMAT_ABGR8888,		\
-> +	DRM_FORMAT_XRGB2101010,		\
-> +	DRM_FORMAT_XBGR2101010,		\
-> +	DRM_FORMAT_ARGB2101010,		\
-> +	DRM_FORMAT_ABGR2101010,		\
-> +	DRM_FORMAT_XRGB16161616F,	\
-> +	DRM_FORMAT_XBGR16161616F,	\
-> +	DRM_FORMAT_ARGB16161616F,	\
-> +	DRM_FORMAT_ABGR16161616F,	\
-> +	DRM_FORMAT_YUYV,		\
-> +	DRM_FORMAT_YVYU,		\
-> +	DRM_FORMAT_UYVY,		\
-> +	DRM_FORMAT_VYUY,		\
-> +	DRM_FORMAT_NV12,		\
-> +	DRM_FORMAT_P010,		\
-> +	DRM_FORMAT_P012,		\
-> +	DRM_FORMAT_P016,		\
-> +	DRM_FORMAT_Y210,		\
-> +	DRM_FORMAT_Y212,		\
-> +	DRM_FORMAT_Y216,		\
-> +	DRM_FORMAT_XYUV8888,		\
-> +	DRM_FORMAT_XVYU2101010,		\
-> +	DRM_FORMAT_XVYU12_16161616,	\
-> +	DRM_FORMAT_XVYU16161616
-> +
->  static const u32 icl_hdr_plane_formats[] = {
-> -	DRM_FORMAT_C8,
-> -	DRM_FORMAT_RGB565,
-> -	DRM_FORMAT_XRGB8888,
-> -	DRM_FORMAT_XBGR8888,
-> -	DRM_FORMAT_ARGB8888,
-> -	DRM_FORMAT_ABGR8888,
-> -	DRM_FORMAT_XRGB2101010,
-> -	DRM_FORMAT_XBGR2101010,
-> -	DRM_FORMAT_ARGB2101010,
-> -	DRM_FORMAT_ABGR2101010,
-> -	DRM_FORMAT_XRGB16161616F,
-> -	DRM_FORMAT_XBGR16161616F,
-> -	DRM_FORMAT_ARGB16161616F,
-> -	DRM_FORMAT_ABGR16161616F,
-> -	DRM_FORMAT_YUYV,
-> -	DRM_FORMAT_YVYU,
-> -	DRM_FORMAT_UYVY,
-> -	DRM_FORMAT_VYUY,
-> -	DRM_FORMAT_NV12,
-> -	DRM_FORMAT_P010,
-> -	DRM_FORMAT_P012,
-> -	DRM_FORMAT_P016,
-> -	DRM_FORMAT_Y210,
-> -	DRM_FORMAT_Y212,
-> -	DRM_FORMAT_Y216,
-> -	DRM_FORMAT_XYUV8888,
-> -	DRM_FORMAT_XVYU2101010,
-> -	DRM_FORMAT_XVYU12_16161616,
-> -	DRM_FORMAT_XVYU16161616,
-> +	ICL_HDR_PLANE_FORMATS,
-> +};
-> +
-> +static const u32 xe3p_lpd_hdr_plane_formats[] = {
-> +	ICL_HDR_PLANE_FORMATS,
-> +	DRM_FORMAT_XRGB16161616,
-> +	DRM_FORMAT_XBGR16161616,
-> +	DRM_FORMAT_ARGB16161616,
-> +	DRM_FORMAT_ABGR16161616,
->  };
->  
->  int skl_format_to_fourcc(int format, bool rgb_order, bool alpha)
-> @@ -220,6 +231,18 @@ int skl_format_to_fourcc(int format, bool rgb_order, bool alpha)
->  			else
->  				return DRM_FORMAT_XRGB2101010;
->  		}
-> +	case PLANE_CTL_FORMAT_XRGB_16161616:
-> +		if (rgb_order) {
-> +			if (alpha)
-> +				return DRM_FORMAT_ABGR16161616;
-> +			else
-> +				return DRM_FORMAT_XBGR16161616;
-> +		} else {
-> +			if (alpha)
-> +				return DRM_FORMAT_ARGB16161616;
-> +			else
-> +				return DRM_FORMAT_XRGB16161616;
-> +		}
->  	case PLANE_CTL_FORMAT_XRGB_16161616F:
->  		if (rgb_order) {
->  			if (alpha)
-> @@ -960,6 +983,12 @@ static u32 skl_plane_ctl_format(u32 pixel_format)
->  	case DRM_FORMAT_XRGB2101010:
->  	case DRM_FORMAT_ARGB2101010:
->  		return PLANE_CTL_FORMAT_XRGB_2101010;
-> +	case DRM_FORMAT_XBGR16161616:
-> +	case DRM_FORMAT_ABGR16161616:
-> +		return PLANE_CTL_FORMAT_XRGB_16161616 | PLANE_CTL_ORDER_RGBX;
-> +	case DRM_FORMAT_XRGB16161616:
-> +	case DRM_FORMAT_ARGB16161616:
-> +		return PLANE_CTL_FORMAT_XRGB_16161616;
->  	case DRM_FORMAT_XBGR16161616F:
->  	case DRM_FORMAT_ABGR16161616F:
->  		return PLANE_CTL_FORMAT_XRGB_16161616F | PLANE_CTL_ORDER_RGBX;
-> @@ -2479,6 +2508,11 @@ static const u32 *icl_get_plane_formats(struct intel_display *display,
->  					int *num_formats)
+> -static unsigned int intel_fbc_cfb_cpp(void)
+> +static unsigned int intel_fbc_cfb_cpp(const struct intel_plane_state *plane_state)
 >  {
->  	if (icl_is_hdr_plane(display, plane_id)) {
-> +		if (DISPLAY_VER(display) >= 35) {
-> +			*num_formats = ARRAY_SIZE(xe3p_lpd_hdr_plane_formats);
-> +			return xe3p_lpd_hdr_plane_formats;
-> +		}
+> -	return 4; /* FBC always 4 bytes per pixel */
+> +	const struct drm_framebuffer *fb = plane_state->hw.fb;
 > +
->  		*num_formats = ARRAY_SIZE(icl_hdr_plane_formats);
->  		return icl_hdr_plane_formats;
->  	} else if (icl_is_nv12_y_plane(display, plane_id)) {
-> @@ -2637,6 +2671,10 @@ static bool tgl_plane_format_mod_supported(struct drm_plane *_plane,
->  	case DRM_FORMAT_RGB565:
->  	case DRM_FORMAT_XVYU2101010:
->  	case DRM_FORMAT_C8:
-> +	case DRM_FORMAT_XBGR16161616:
-> +	case DRM_FORMAT_ABGR16161616:
+> +	switch (fb->format->format) {
 > +	case DRM_FORMAT_XRGB16161616:
+> +	case DRM_FORMAT_XBGR16161616:
 > +	case DRM_FORMAT_ARGB16161616:
->  	case DRM_FORMAT_Y210:
->  	case DRM_FORMAT_Y212:
->  	case DRM_FORMAT_Y216:
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h b/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
-> index 479bb3f7f92b..84cf565bd653 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
-> @@ -64,6 +64,7 @@
->  #define   PLANE_CTL_FORMAT_Y410			REG_FIELD_PREP(PLANE_CTL_FORMAT_MASK_ICL, 7)
->  #define   PLANE_CTL_FORMAT_Y412			REG_FIELD_PREP(PLANE_CTL_FORMAT_MASK_ICL, 9)
->  #define   PLANE_CTL_FORMAT_Y416			REG_FIELD_PREP(PLANE_CTL_FORMAT_MASK_ICL, 11)
-> +#define   PLANE_CTL_FORMAT_XRGB_16161616	REG_FIELD_PREP(PLANE_CTL_FORMAT_MASK_ICL, 18)
->  #define   PLANE_CTL_PIPE_CSC_ENABLE		REG_BIT(23) /* Pre-GLK */
->  #define   PLANE_CTL_KEY_ENABLE_MASK		REG_GENMASK(22, 21)
->  #define   PLANE_CTL_KEY_ENABLE_SOURCE		REG_FIELD_PREP(PLANE_CTL_KEY_ENABLE_MASK, 1)
+> +	case DRM_FORMAT_ABGR16161616:
+> +		return 8;
+> +	default:
+> +		return 4;
+> +	}
+
+return max(cpp, 4);
+
+>  }
+>  
+>  /* plane stride based cfb stride in bytes, assuming 1:1 compression limit */
+>  static unsigned int intel_fbc_plane_cfb_stride(const struct intel_plane_state *plane_state)
+>  {
+> -	unsigned int cpp = intel_fbc_cfb_cpp();
+> +	unsigned int cpp = intel_fbc_cfb_cpp(plane_state);
+>  
+>  	return intel_fbc_plane_stride(plane_state) * cpp;
+>  }
+> @@ -203,7 +213,7 @@ static unsigned int intel_fbc_cfb_stride(const struct intel_plane_state *plane_s
+>  	struct intel_display *display = to_intel_display(plane_state->uapi.plane->dev);
+>  	unsigned int stride = intel_fbc_plane_cfb_stride(plane_state);
+>  	unsigned int width = drm_rect_width(&plane_state->uapi.src) >> 16;
+> -	unsigned int cpp = intel_fbc_cfb_cpp();
+> +	unsigned int cpp = intel_fbc_cfb_cpp(plane_state);
+>  
+>  	return _intel_fbc_cfb_stride(display, cpp, width, stride);
+>  }
+> @@ -1081,11 +1091,33 @@ static bool lnl_fbc_pixel_format_is_valid(const struct intel_plane_state *plane_
+>  	}
+>  }
+>  
+> +static bool xe3p_lpd_fbc_pixel_format_is_valid(const struct intel_plane_state *plane_state)
+> +{
+> +	const struct drm_framebuffer *fb = plane_state->hw.fb;
+> +
+> +	switch (fb->format->format) {
+> +	case DRM_FORMAT_XRGB8888:
+> +	case DRM_FORMAT_XBGR8888:
+> +	case DRM_FORMAT_ARGB8888:
+> +	case DRM_FORMAT_ABGR8888:
+> +	case DRM_FORMAT_RGB565:
+> +	case DRM_FORMAT_XRGB16161616:
+> +	case DRM_FORMAT_XBGR16161616:
+> +	case DRM_FORMAT_ARGB16161616:
+> +	case DRM_FORMAT_ABGR16161616:
+> +		return true;
+> +	default:
+> +		return false;
+> +	}
+> +}
+> +
+>  static bool pixel_format_is_valid(const struct intel_plane_state *plane_state)
+>  {
+>  	struct intel_display *display = to_intel_display(plane_state->uapi.plane->dev);
+>  
+> -	if (DISPLAY_VER(display) >= 20)
+> +	if (DISPLAY_VER(display) >= 35)
+> +		return xe3p_lpd_fbc_pixel_format_is_valid(plane_state);
+> +	else if (DISPLAY_VER(display) >= 20)
+>  		return lnl_fbc_pixel_format_is_valid(plane_state);
+>  	else if (DISPLAY_VER(display) >= 5 || display->platform.g4x)
+>  		return g4x_fbc_pixel_format_is_valid(plane_state);
 > 
 > -- 
 > 2.51.0
