@@ -2,74 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5325ABFBE3D
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Oct 2025 14:39:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B1857BFC29A
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Oct 2025 15:33:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B209710E771;
-	Wed, 22 Oct 2025 12:39:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C94010E787;
+	Wed, 22 Oct 2025 13:33:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ex1CkGKX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m8Og8kVc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 582CC10E771;
- Wed, 22 Oct 2025 12:39:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6849910E780;
+ Wed, 22 Oct 2025 13:33:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761136765; x=1792672765;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Kp3EPDRPEosCEJNp+cwvxYvQ47zKI+dU4GEFDPA6ljg=;
- b=ex1CkGKXlKFBgDjGfPQuwfUklCdP/4JWCB7sSwz0B/FPsYd4CDI7z0WF
- 1ok+OO1Sfydc5mRzxrtzWoJJhwPXBQmJSU10SpIR/6dzsIOsIkKQ8/CoK
- OChCBx4eIlEgnSasYeo0JXiP3CmCuMxVDjwzxuggnZNY/5dVXARd8VvqZ
- fSG/21yR80wgaKvdSHDLVQQofm+ZnR5seoTQU7xGyhDP7E24psT5WbnGw
- MnMs72WF3F9ZMICc8znyEVu/Vg2yZytT2YdJjibTiXSkh+mDkC6dmTVYg
- 5AtP3dw6DE01Cuoh0U2b2aAODQLAPbzyrWwf2os5tlBTib/8aF0HqF3uD w==;
-X-CSE-ConnectionGUID: 7W2C9BoqTlW5nuGbmLZDGw==
-X-CSE-MsgGUID: N4+Rq4P6TUuHBGYqVQksvA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74400940"
-X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="74400940"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 05:39:25 -0700
-X-CSE-ConnectionGUID: judo2azUQYKDrNOkfZs2IQ==
-X-CSE-MsgGUID: /+qh+RSWSEi397pbk/UezA==
+ t=1761140026; x=1792676026;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=syDAhxW8a9ZTGx4rBhoijl91vhbCmKS6CmYeLhmIx3E=;
+ b=m8Og8kVcOvH4FSuxPSBzsCBAzYFtNEmM1zYlXyZ7RXW90FInqXX0hCG8
+ 3hyG3yDGoP6P2B7VY6vleGDnEadZzK0VTNn4KIOXLjjTCoLTfCPPpM/6K
+ nT293+yXNkzFC2nllYzrWucDv01Zpha2JiQW5l/LAScOG3HspKXiZUtdt
+ M6A202oHZm2vb+xc8eg2p6H6V7OyVhq1gCueyL7JvP5nlB8spqJrNtQR/
+ dBhkPtGRuRUKGvTQDg7qxkoqTdu6U/sMjoPhY/rzBminHDBedXaXmGgTz
+ OX3SD2rjuF3moW2fGCgsLEVWg31Wr/n+KiG2xf8CSgNoJia5SApV+VCc0 g==;
+X-CSE-ConnectionGUID: lWRrueXaRimRMtHSGsOHFg==
+X-CSE-MsgGUID: 78ljdM3KQl2sbTGxxNo0ew==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="73577100"
+X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="73577100"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2025 06:33:45 -0700
+X-CSE-ConnectionGUID: y83IkOIRSueholsDShcZYQ==
+X-CSE-MsgGUID: LxuUalhSSfuI7YEbJtjZXQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="188143739"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.74])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 05:39:21 -0700
-Date: Wed, 22 Oct 2025 15:39:18 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
- Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>,
- Juha-pekka Heikkila <juha-pekka.heikkila@intel.com>,
- Luca Coelho <luciano.coelho@intel.com>,
+X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="183767506"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.82])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2025 06:33:37 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To: linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+ =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Atwood <matthew.s.atwood@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>,
- Shekhar Chauhan <shekhar.chauhan@intel.com>,
- Vinod Govindapillai <vinod.govindapillai@intel.com>,
- Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
-Subject: Re: [PATCH v2 08/32] drm/i915/xe3p_lpd: Extend FBC support to UINT16
- formats
-Message-ID: <aPjQdtGHkctqp77F@intel.com>
-References: <20251021-xe3p_lpd-basic-enabling-v2-0-10eae6d655b8@intel.com>
- <20251021-xe3p_lpd-basic-enabling-v2-8-10eae6d655b8@intel.com>
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ "Michael J . Ruhl" <mjruhl@habana.ai>,
+ Andi Shyti <andi.shyti@linux.intel.com>
+Cc: linux-kernel@vger.kernel.org,
+ =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Subject: [PATCH v3 00/11] PCI: Resizable BAR improvements
+Date: Wed, 22 Oct 2025 16:33:20 +0300
+Message-Id: <20251022133331.4357-1-ilpo.jarvinen@linux.intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251021-xe3p_lpd-basic-enabling-v2-8-10eae6d655b8@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,105 +81,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 21, 2025 at 09:28:33PM -0300, Gustavo Sousa wrote:
-> From: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
-> 
-> Starting Xe3p_LPD, FBC is supported on UINT16 formats as well. Also
-> UINT16 being a 64bpp format, will use cpp of 8 for cfb stride and thus
-> size calculations.
-> 
-> Cc: Shekhar Chauhan <shekhar.chauhan@intel.com>
-> BSpec: 68881, 68904, 69560
-> Signed-off-by: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_fbc.c | 42 ++++++++++++++++++++++++++++----
->  1 file changed, 37 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-> index 10ef3136dadc..af3585aeefd3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -141,15 +141,25 @@ static unsigned int intel_fbc_plane_stride(const struct intel_plane_state *plane
->  	return stride;
->  }
->  
-> -static unsigned int intel_fbc_cfb_cpp(void)
-> +static unsigned int intel_fbc_cfb_cpp(const struct intel_plane_state *plane_state)
->  {
-> -	return 4; /* FBC always 4 bytes per pixel */
-> +	const struct drm_framebuffer *fb = plane_state->hw.fb;
-> +
-> +	switch (fb->format->format) {
-> +	case DRM_FORMAT_XRGB16161616:
-> +	case DRM_FORMAT_XBGR16161616:
-> +	case DRM_FORMAT_ARGB16161616:
-> +	case DRM_FORMAT_ABGR16161616:
-> +		return 8;
-> +	default:
-> +		return 4;
-> +	}
+pci.c has been used as catch everything that doesn't fits elsewhere
+within PCI core and thus resizable BAR code has been placed there as
+well. Move Resizable BAR related code to a newly introduced rebar.c to
+reduce size of pci.c. After move, there are no pci_rebar_*() calls from
+pci.c indicating this is indeed well-defined subset of PCI core.
 
-return max(cpp, 4);
+Endpoint drivers perform Resizable BAR related operations which could
+well be performed by PCI core to simplify driver-side code. This
+series adds a few new API functions to that effect and converts the
+drivers to use the new APIs (in separate patches).
 
->  }
->  
->  /* plane stride based cfb stride in bytes, assuming 1:1 compression limit */
->  static unsigned int intel_fbc_plane_cfb_stride(const struct intel_plane_state *plane_state)
->  {
-> -	unsigned int cpp = intel_fbc_cfb_cpp();
-> +	unsigned int cpp = intel_fbc_cfb_cpp(plane_state);
->  
->  	return intel_fbc_plane_stride(plane_state) * cpp;
->  }
-> @@ -203,7 +213,7 @@ static unsigned int intel_fbc_cfb_stride(const struct intel_plane_state *plane_s
->  	struct intel_display *display = to_intel_display(plane_state->uapi.plane->dev);
->  	unsigned int stride = intel_fbc_plane_cfb_stride(plane_state);
->  	unsigned int width = drm_rect_width(&plane_state->uapi.src) >> 16;
-> -	unsigned int cpp = intel_fbc_cfb_cpp();
-> +	unsigned int cpp = intel_fbc_cfb_cpp(plane_state);
->  
->  	return _intel_fbc_cfb_stride(display, cpp, width, stride);
->  }
-> @@ -1081,11 +1091,33 @@ static bool lnl_fbc_pixel_format_is_valid(const struct intel_plane_state *plane_
->  	}
->  }
->  
-> +static bool xe3p_lpd_fbc_pixel_format_is_valid(const struct intel_plane_state *plane_state)
-> +{
-> +	const struct drm_framebuffer *fb = plane_state->hw.fb;
-> +
-> +	switch (fb->format->format) {
-> +	case DRM_FORMAT_XRGB8888:
-> +	case DRM_FORMAT_XBGR8888:
-> +	case DRM_FORMAT_ARGB8888:
-> +	case DRM_FORMAT_ABGR8888:
-> +	case DRM_FORMAT_RGB565:
-> +	case DRM_FORMAT_XRGB16161616:
-> +	case DRM_FORMAT_XBGR16161616:
-> +	case DRM_FORMAT_ARGB16161616:
-> +	case DRM_FORMAT_ABGR16161616:
-> +		return true;
-> +	default:
-> +		return false;
-> +	}
-> +}
-> +
->  static bool pixel_format_is_valid(const struct intel_plane_state *plane_state)
->  {
->  	struct intel_display *display = to_intel_display(plane_state->uapi.plane->dev);
->  
-> -	if (DISPLAY_VER(display) >= 20)
-> +	if (DISPLAY_VER(display) >= 35)
-> +		return xe3p_lpd_fbc_pixel_format_is_valid(plane_state);
-> +	else if (DISPLAY_VER(display) >= 20)
->  		return lnl_fbc_pixel_format_is_valid(plane_state);
->  	else if (DISPLAY_VER(display) >= 5 || display->platform.g4x)
->  		return g4x_fbc_pixel_format_is_valid(plane_state);
-> 
-> -- 
-> 2.51.0
+While at it, also convert BAR sizes bitmask to u64 as PCIe spec already
+specifies more sizes than what will fit u32 to make the API typing more
+future-proof. The extra sizes beyond 128TB are not added at this point.
 
+Some parts of this are to be used by the resizable BAR changes into the
+resource fitting/assingment logic but these seem to stand on their own
+so sending these out now to reduce the size of the other patch series.
+
+v3:
+- Rebased to solve minor conflicts
+
+v2: https://lore.kernel.org/linux-pci/20250915091358.9203-1-ilpo.jarvinen@linux.intel.com/
+- Kerneldoc:
+  - Improve formatting of errno returns
+  - Open "ctrl" -> "control"
+  - Removed mislead "bit" words (when referring to BAR size)
+  - Rewrote pci_rebar_get_possible_sizes() kernel doc to not claim the
+    returned bitmask is defined in PCIe spec as the capability bits now
+    span across two registers in the spec and are not continuous (we
+    don't support the second block of bits yet, but this API is expected
+    to return the bits without the hole so it will not be matching with
+    the spec layout).
+- Dropped superfluous zero check from pci_rebar_size_supported()
+- Small improvement to changelog of patch 7
+
+Ilpo JÃ¤rvinen (11):
+  PCI: Move Resizable BAR code into rebar.c
+  PCI: Cleanup pci_rebar_bytes_to_size() and move into rebar.c
+  PCI: Move pci_rebar_size_to_bytes() and export it
+  PCI: Improve Resizable BAR functions kernel doc
+  PCI: Add pci_rebar_size_supported() helper
+  drm/i915/gt: Use pci_rebar_size_supported()
+  drm/xe/vram: Use PCI rebar helpers in resize_vram_bar()
+  PCI: Add pci_rebar_get_max_size()
+  drm/xe/vram: Use pci_rebar_get_max_size()
+  drm/amdgpu: Use pci_rebar_get_max_size()
+  PCI: Convert BAR sizes bitmasks to u64
+
+ Documentation/driver-api/pci/pci.rst        |   3 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |   8 +-
+ drivers/gpu/drm/i915/gt/intel_region_lmem.c |  10 +-
+ drivers/gpu/drm/xe/xe_vram.c                |  32 +-
+ drivers/pci/Makefile                        |   2 +-
+ drivers/pci/iov.c                           |   9 +-
+ drivers/pci/pci-sysfs.c                     |   2 +-
+ drivers/pci/pci.c                           | 145 ---------
+ drivers/pci/pci.h                           |   5 +-
+ drivers/pci/rebar.c                         | 314 ++++++++++++++++++++
+ drivers/pci/setup-res.c                     |  78 -----
+ include/linux/pci.h                         |  15 +-
+ 12 files changed, 350 insertions(+), 273 deletions(-)
+ create mode 100644 drivers/pci/rebar.c
+
+
+base-commit: 2f2c7254931f41b5736e3ba12aaa9ac1bbeeeb92
 -- 
-Ville Syrjälä
-Intel
+2.39.5
+
