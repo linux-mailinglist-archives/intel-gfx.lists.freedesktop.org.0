@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BEDBBF979C
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Oct 2025 02:32:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CFFDBF979F
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Oct 2025 02:32:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77BDF10E6A1;
-	Wed, 22 Oct 2025 00:32:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8375F10E6A3;
+	Wed, 22 Oct 2025 00:32:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MWSHxfEH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FIvvQQPw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF66A10E69D;
- Wed, 22 Oct 2025 00:32:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3685610E6A4;
+ Wed, 22 Oct 2025 00:32:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761093161; x=1792629161;
+ t=1761093164; x=1792629164;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=mAAxwBQC6hZXx6tXGJxSCjLxemvBuqaM9VbwFL0dotI=;
- b=MWSHxfEHDs+eMYTIes+UN3TeCIuSiuyZA8GSFEXZaOICDv9xlflefat5
- D1FDiU9VAv1AC4BegkArQfOmbMdP/NTelCme0MpqMIKI5EZ1nOFcWWlHD
- YtRLyXzCUKGzZX0K+cwKqHJgpzpFH1H729bE8rwDkWIA4khk9ITZeGaRA
- IbOvZuSNzp1HCyBKS8ll+qWjAJwvdvSlu22LXSVz8c46bTg1HLcpHWOrI
- 6sWY+0ROu0q00ixHXtbbvuNijFoXlzQaTUbKoTtRxpOn2gdZkEnZQ3yO/
- UExdOM6hiZRiN0gIOt8KvBA9v7Kq1n8afKFotkCdt8ZG7vyzfGIJ5vz1r Q==;
-X-CSE-ConnectionGUID: G28CIRmZSAecS/FYLC2vIw==
-X-CSE-MsgGUID: 86i1zMeBR3Gbf/VNWVZKlQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="67095543"
-X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="67095543"
+ bh=fPjgeb/0xXArloKV8nF+suz/TSWcNw7BxEs/4BPtdj8=;
+ b=FIvvQQPwp0sqrogGOJarTydFiJT21ufvSqAkU19G8dThiZxsmnZ/uE6X
+ p/0f2KnBHBn4VBlDzhrwE8i+ZpKKjxBV6g+vXtD9qyycpFLTdeM5XnMAD
+ cn5fIcnh7AzxqWcOCsfzYQp2MryVuwssKiRc7zPIvwnyUBzOf8BX7SuKp
+ ShT603s13Vurel0j9G5gjgMalczpVTZzL1i5sdGP0tayVJt/J9VTfi6zY
+ arMBAkYtW6Irmh4MIaau7a6+FoMEs8tlMbO268c2gKrv7JbNf/iiS6RJz
+ t4oMBjaiYoIO1aTq7jWUicaFHIno3/kqjjjoNH339tyapFZI+yFMJsYtI g==;
+X-CSE-ConnectionGUID: 942IuMM9T++EFklEguFS8g==
+X-CSE-MsgGUID: uggeBp59QEyB5k3JiKLXYQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="67095544"
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="67095544"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2025 17:32:40 -0700
-X-CSE-ConnectionGUID: bcwy6/WJTziTHiTWom5qqA==
-X-CSE-MsgGUID: yDaVsfYsQhGDuIoceDMUIw==
+ 21 Oct 2025 17:32:44 -0700
+X-CSE-ConnectionGUID: +sK2jK7oTrm0BoP8A3ehjQ==
+X-CSE-MsgGUID: QQs27W2ETzKDYHPtgcLMow==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="188132598"
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="188132619"
 Received: from gpacheco-mobl.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.221.26])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2025 17:32:35 -0700
+ 21 Oct 2025 17:32:40 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Tue, 21 Oct 2025 21:28:53 -0300
-Subject: [PATCH v2 28/32] drm/i915/power: Use intel_encoder_is_tc()
+Date: Tue, 21 Oct 2025 21:28:54 -0300
+Subject: [PATCH v2 29/32] drm/i915/display: Handle dedicated external ports
+ in intel_encoder_is_tc()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251021-xe3p_lpd-basic-enabling-v2-28-10eae6d655b8@intel.com>
+Message-Id: <20251021-xe3p_lpd-basic-enabling-v2-29-10eae6d655b8@intel.com>
 References: <20251021-xe3p_lpd-basic-enabling-v2-0-10eae6d655b8@intel.com>
 In-Reply-To: <20251021-xe3p_lpd-basic-enabling-v2-0-10eae6d655b8@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
@@ -64,7 +65,7 @@ Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
  Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>, 
  Shekhar Chauhan <shekhar.chauhan@intel.com>, 
  Vinod Govindapillai <vinod.govindapillai@intel.com>, 
- Suraj Kandpal <suraj.kandpal@intel.com>
+ Jani Nikula <jani.nikula@linux.intel.com>
 X-Mailer: b4 0.15-dev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -81,98 +82,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Starting with Xe3p_LPD, when intel_phy_is_tc() returns true, it does
-not necessarily mean that the port is connected to a PHY in the Type-C
-subsystem.  The reason is that there is now a VBT field called
-dedicated_external that will indicate that a Type-C capable port is
-connected to a (most likely) combo/dedicated PHY.  When that's the case,
-we must not do the extra programming required for Type-C connections.
+Starting with Xe3p_LPD, the VBT has a new field, called in the driver
+"dedicated_external", which tells that a Type-C capable port is
+physically connected to a PHY outside of the Type-C subsystem.  When
+that's the case, the driver must not do the extra Type-C programming for
+that port.  Update intel_encoder_is_tc() to check for that case.
 
-In an upcoming change, we will modify intel_encoder_is_tc() to take the
-VBT field dedicated_external into consideration.  Update
-intel_display_power_well.c to use that function instead of
-intel_phy_is_tc().
+While at it, add a note to intel_phy_is_tc() to remind us that it is
+about whether the respective port is a Type-C capable port rather than
+the PHY itself.
 
-Note that, even though icl_aux_power_well_{enable,disable} are not part
-of Xe3p_LPD's display paths, we modify them anyway for uniformity.
+(Maybe it would be a nice idea to rename intel_phy_is_tc()?)
 
+Note that this was handled with a new bool member added to struct
+intel_digital_port instead of having querying the VBT directly because
+VBT memory is freed (intel_bios_driver_remove) before encoder cleanup
+(intel_ddi_encoder_destroy), which would cause an oops to happen when
+the latter calls intel_encoder_is_tc().  This could be fixed by keeping
+VBT data around longer, but that's left for a follow-up work, if deemed
+necessary.
+
+v2:
+  - Drop printing info about dedicated external, now that we are doing
+    it when parsing the VBT. (Jani)
+  - Add a FIXME comment on the code explaining why we need to store
+    dedicated_external in struct intel_digital_port. (Jani)
+
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
 Cc: Shekhar Chauhan <shekhar.chauhan@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- .../drm/i915/display/intel_display_power_well.c    | 26 +++++++++++++++-------
- 1 file changed, 18 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c           | 11 +++++++++++
+ drivers/gpu/drm/i915/display/intel_display.c       | 19 ++++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_display_types.h |  1 +
+ 3 files changed, 30 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index ba2552adb58b..e8200672dcf3 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -256,8 +256,9 @@ aux_ch_to_digital_port(struct intel_display *display,
- 	return NULL;
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 870140340342..a3dc384cfd71 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -5350,6 +5350,17 @@ void intel_ddi_init(struct intel_display *display,
+ 			goto err;
+ 	}
+ 
++	/*
++	 * FIXME: We currently need to store dedicated_external because devdata
++	 * does not live long enough for when intel_encoder_is_tc() is called on
++	 * the unbind path.  This needs to be fixed by making sure that the VBT
++	 * data is kept long enough, so that
++	 * intel_bios_encoder_is_dedicated_external() can be called directly
++	 * from intel_encoder_is_tc().
++	 */
++	if (intel_bios_encoder_is_dedicated_external(devdata))
++		dig_port->dedicated_external = true;
++
+ 	if (intel_encoder_is_tc(encoder)) {
+ 		bool is_legacy =
+ 			!intel_bios_encoder_supports_typec_usb(devdata) &&
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 5ae02bfc2148..20885b81917f 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -1778,7 +1778,17 @@ bool intel_phy_is_combo(struct intel_display *display, enum phy phy)
+ 		return false;
  }
  
--static enum phy icl_aux_pw_to_phy(struct intel_display *display,
--				  const struct i915_power_well *power_well)
-+static struct intel_encoder *
-+icl_aux_pw_to_encoder(struct intel_display *display,
-+		      const struct i915_power_well *power_well)
+-/* Prefer intel_encoder_is_tc() */
++/*
++ * This function returns true if the DDI port respective to the PHY enumeration
++ * is a Type-C capable port.
++ *
++ * Depending on the VBT, the port might be configured
++ * as a "dedicated external" port, meaning that actual physical PHY is outside
++ * of the Type-C subsystem and, as such, not really a "Type-C PHY".
++ *
++ * Prefer intel_encoder_is_tc(), especially if you really need to know if we
++ * are dealing with Type-C connections.
++ */
+ bool intel_phy_is_tc(struct intel_display *display, enum phy phy)
  {
- 	enum aux_ch aux_ch = icl_aux_pw_to_ch(power_well);
- 	struct intel_digital_port *dig_port = aux_ch_to_digital_port(display, aux_ch);
-@@ -269,7 +270,15 @@ static enum phy icl_aux_pw_to_phy(struct intel_display *display,
- 	 * as HDMI-only and routed to a combo PHY, the encoder either won't be
- 	 * present at all or it will not have an aux_ch assigned.
- 	 */
--	return dig_port ? intel_encoder_to_phy(&dig_port->base) : PHY_NONE;
-+	return dig_port ? &dig_port->base : NULL;
-+}
+ 	/*
+@@ -1863,6 +1873,13 @@ bool intel_encoder_is_tc(struct intel_encoder *encoder)
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
+ 
++	if (intel_encoder_is_dig_port(encoder)) {
++		struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
 +
-+static enum phy icl_aux_pw_to_phy(struct intel_display *display,
-+				  const struct i915_power_well *power_well)
-+{
-+	struct intel_encoder *encoder = icl_aux_pw_to_encoder(display, power_well);
++		if (dig_port->dedicated_external)
++			return false;
++	}
 +
-+	return encoder ? intel_encoder_to_phy(encoder) : PHY_NONE;
+ 	return intel_phy_is_tc(display, intel_encoder_to_phy(encoder));
  }
  
- static void hsw_wait_for_power_well_enable(struct intel_display *display,
-@@ -568,9 +577,9 @@ static void
- icl_aux_power_well_enable(struct intel_display *display,
- 			  struct i915_power_well *power_well)
- {
--	enum phy phy = icl_aux_pw_to_phy(display, power_well);
-+	struct intel_encoder *encoder = icl_aux_pw_to_encoder(display, power_well);
- 
--	if (intel_phy_is_tc(display, phy))
-+	if (encoder && intel_encoder_is_tc(encoder))
- 		return icl_tc_phy_aux_power_well_enable(display, power_well);
- 	else if (display->platform.icelake)
- 		return icl_combo_phy_aux_power_well_enable(display,
-@@ -583,9 +592,9 @@ static void
- icl_aux_power_well_disable(struct intel_display *display,
- 			   struct i915_power_well *power_well)
- {
--	enum phy phy = icl_aux_pw_to_phy(display, power_well);
-+	struct intel_encoder *encoder = icl_aux_pw_to_encoder(display, power_well);
- 
--	if (intel_phy_is_tc(display, phy))
-+	if (encoder && intel_encoder_is_tc(encoder))
- 		return hsw_power_well_disable(display, power_well);
- 	else if (display->platform.icelake)
- 		return icl_combo_phy_aux_power_well_disable(display,
-@@ -1847,10 +1856,11 @@ tgl_tc_cold_off_power_well_is_enabled(struct intel_display *display,
- static void xelpdp_aux_power_well_enable(struct intel_display *display,
- 					 struct i915_power_well *power_well)
- {
-+	struct intel_encoder *encoder = icl_aux_pw_to_encoder(display, power_well);
- 	enum aux_ch aux_ch = i915_power_well_instance(power_well)->xelpdp.aux_ch;
- 	enum phy phy = icl_aux_pw_to_phy(display, power_well);
- 
--	if (intel_phy_is_tc(display, phy))
-+	if (encoder && intel_encoder_is_tc(encoder))
- 		icl_tc_port_assert_ref_held(display, power_well,
- 					    aux_ch_to_digital_port(display, aux_ch));
- 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index bba03791f0ea..4738439ee03d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1925,6 +1925,7 @@ struct intel_digital_port {
+ 	bool lane_reversal;
+ 	bool ddi_a_4_lanes;
+ 	bool release_cl2_override;
++	bool dedicated_external;
+ 	u8 max_lanes;
+ 	/* Used for DP and ICL+ TypeC/DP and TypeC/HDMI ports. */
+ 	enum aux_ch aux_ch;
 
 -- 
 2.51.0
