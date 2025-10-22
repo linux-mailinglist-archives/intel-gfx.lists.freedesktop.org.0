@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7798BF9757
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Oct 2025 02:31:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF522BF975D
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Oct 2025 02:31:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 575D910E667;
-	Wed, 22 Oct 2025 00:31:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36B7910E669;
+	Wed, 22 Oct 2025 00:31:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LszdjYhk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QQMLYncl";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 223EA10E667;
- Wed, 22 Oct 2025 00:31:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E59E710E673;
+ Wed, 22 Oct 2025 00:31:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761093081; x=1792629081;
+ t=1761093085; x=1792629085;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=M9U4bwVEYqm54NN0l8dt14HLPYd7GCBtHN/P2KTbbbg=;
- b=LszdjYhkNP3pBHEdZttmKken5aDKRe+qdPrdhh4SwZZwpZDZXdavlRJo
- c51XzQMQOtJ9dJ7Ft50pK+hT0itpnrTvRBELBQivj2QOm34y2H8T1UKHX
- /8JxLL1ToaJk3M24Cm3hQemofl1D6EJfst2IM8m7Hw1DDrFqBOiJsBYJ8
- bNbdvJUHsUUE0DUmKI0AunRVAUdQkNOG1Lefa9uSCqr4CGhzW3bewKfJf
- H3gYIY+22Qp/vImFt+effyJO82qb6RHdP6ejTAWYFLxU1ViiL0KOaOPtJ
- zgSrMcJR2pfV9HWV5ZMXqCdVS4VNVEgvVXtVi18IEiaRG6k8r+CFJbJkD Q==;
-X-CSE-ConnectionGUID: xzPKVpmUQySdFvBIoHSK/A==
-X-CSE-MsgGUID: MxA3JSYSR2Cfhhy+GEShbg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="85855712"
-X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="85855712"
+ bh=+6yiQCYhz5CYvbz+9djkq732HGqE6YdQFnFXTgfLAFQ=;
+ b=QQMLYncluIEqeWUgOsbRleVHbj1LW0Lfupq2tED18Ro8FO6rvYDyQiF/
+ zt+m0fPIHMvh5WuWUb/6zNJ6N1E9cwvvV0at3UmBJ9ZzhviUrOu6h1ANn
+ AcyVSZWdBIfbH82pZO1q6WBc0OCHMjzDYknsvyjakQCagr2eRlsbCzcU6
+ O/8dyhxO0MU1LFmGq6T7Ij9Jt1L3ODcoy8XHKdAstJS96/CsXGWBng1Jw
+ v2HOpXuNMp9HvToAg4CVjVprIfZCpXviNzXEoOoeew2XhVube2NLKC5e8
+ ORmGENm4kLD33f2/VY4du6QTDQb5TxAu6gaB70+m3lS4pIgn1TCE8FCBj A==;
+X-CSE-ConnectionGUID: 1TOoBDICTMS5F9avaLXIkw==
+X-CSE-MsgGUID: tlp5TvZHR1eHJUSNNV9Cpg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="85855716"
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="85855716"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2025 17:31:21 -0700
-X-CSE-ConnectionGUID: aBBLiYegS16VYIm7DVMwwg==
-X-CSE-MsgGUID: CBAsCcunSHmoCj45hVctvA==
+ 21 Oct 2025 17:31:24 -0700
+X-CSE-ConnectionGUID: 6WkmHLDxSPWahXob6NXYiA==
+X-CSE-MsgGUID: XgtvC3SEQgSzymLopu27aA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="188132299"
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="188132325"
 Received: from gpacheco-mobl.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.221.26])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2025 17:31:17 -0700
+ 21 Oct 2025 17:31:21 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Tue, 21 Oct 2025 21:28:31 -0300
-Subject: [PATCH v2 06/32] drm/i915/xe3p_lpd: Expand bifield masks dbuf
- blocks fields
+Date: Tue, 21 Oct 2025 21:28:32 -0300
+Subject: [PATCH v2 07/32] drm/i915/xe3p_lpd: Support UINT16 formats
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251021-xe3p_lpd-basic-enabling-v2-6-10eae6d655b8@intel.com>
+Message-Id: <20251021-xe3p_lpd-basic-enabling-v2-7-10eae6d655b8@intel.com>
 References: <20251021-xe3p_lpd-basic-enabling-v2-0-10eae6d655b8@intel.com>
 In-Reply-To: <20251021-xe3p_lpd-basic-enabling-v2-0-10eae6d655b8@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
@@ -84,60 +83,170 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
 
-On Xe3p_LPD, the dbuf blocks fields of different registers are now
-documented as 13-bit fields. The dbuf isn't really large enough to need
-the 13th bit, but let's go ahead and update the definition now just in
-case some new display IP in future ends up needing the larger size. The
-extra bit is an unused bit in previous display versions, so we can
-safely just extend the existing definition.
+Starting from display Xe3p_LPD, UINT16 formats are also supported. Add
+its corresponding PLANE_CTL bit and add the format in the necessary
+functions.
 
-Bspec: 69847, 69880, 72053
+v2:
+  - Add reference to Bspec 68911. (Matt Atwood)
+
+Bspec: 68904, 69853, 68911
 Signed-off-by: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_universal_plane_regs.h | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 96 +++++++++++++++-------
+ .../drm/i915/display/skl_universal_plane_regs.h    |  1 +
+ 2 files changed, 68 insertions(+), 29 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 0319174adf95..530adff81b99 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -136,36 +136,47 @@ static const u32 icl_sdr_uv_plane_formats[] = {
+ 	DRM_FORMAT_XVYU2101010,
+ };
+ 
++#define ICL_HDR_PLANE_FORMATS		\
++	DRM_FORMAT_C8,			\
++	DRM_FORMAT_RGB565,		\
++	DRM_FORMAT_XRGB8888,		\
++	DRM_FORMAT_XBGR8888,		\
++	DRM_FORMAT_ARGB8888,		\
++	DRM_FORMAT_ABGR8888,		\
++	DRM_FORMAT_XRGB2101010,		\
++	DRM_FORMAT_XBGR2101010,		\
++	DRM_FORMAT_ARGB2101010,		\
++	DRM_FORMAT_ABGR2101010,		\
++	DRM_FORMAT_XRGB16161616F,	\
++	DRM_FORMAT_XBGR16161616F,	\
++	DRM_FORMAT_ARGB16161616F,	\
++	DRM_FORMAT_ABGR16161616F,	\
++	DRM_FORMAT_YUYV,		\
++	DRM_FORMAT_YVYU,		\
++	DRM_FORMAT_UYVY,		\
++	DRM_FORMAT_VYUY,		\
++	DRM_FORMAT_NV12,		\
++	DRM_FORMAT_P010,		\
++	DRM_FORMAT_P012,		\
++	DRM_FORMAT_P016,		\
++	DRM_FORMAT_Y210,		\
++	DRM_FORMAT_Y212,		\
++	DRM_FORMAT_Y216,		\
++	DRM_FORMAT_XYUV8888,		\
++	DRM_FORMAT_XVYU2101010,		\
++	DRM_FORMAT_XVYU12_16161616,	\
++	DRM_FORMAT_XVYU16161616
++
+ static const u32 icl_hdr_plane_formats[] = {
+-	DRM_FORMAT_C8,
+-	DRM_FORMAT_RGB565,
+-	DRM_FORMAT_XRGB8888,
+-	DRM_FORMAT_XBGR8888,
+-	DRM_FORMAT_ARGB8888,
+-	DRM_FORMAT_ABGR8888,
+-	DRM_FORMAT_XRGB2101010,
+-	DRM_FORMAT_XBGR2101010,
+-	DRM_FORMAT_ARGB2101010,
+-	DRM_FORMAT_ABGR2101010,
+-	DRM_FORMAT_XRGB16161616F,
+-	DRM_FORMAT_XBGR16161616F,
+-	DRM_FORMAT_ARGB16161616F,
+-	DRM_FORMAT_ABGR16161616F,
+-	DRM_FORMAT_YUYV,
+-	DRM_FORMAT_YVYU,
+-	DRM_FORMAT_UYVY,
+-	DRM_FORMAT_VYUY,
+-	DRM_FORMAT_NV12,
+-	DRM_FORMAT_P010,
+-	DRM_FORMAT_P012,
+-	DRM_FORMAT_P016,
+-	DRM_FORMAT_Y210,
+-	DRM_FORMAT_Y212,
+-	DRM_FORMAT_Y216,
+-	DRM_FORMAT_XYUV8888,
+-	DRM_FORMAT_XVYU2101010,
+-	DRM_FORMAT_XVYU12_16161616,
+-	DRM_FORMAT_XVYU16161616,
++	ICL_HDR_PLANE_FORMATS,
++};
++
++static const u32 xe3p_lpd_hdr_plane_formats[] = {
++	ICL_HDR_PLANE_FORMATS,
++	DRM_FORMAT_XRGB16161616,
++	DRM_FORMAT_XBGR16161616,
++	DRM_FORMAT_ARGB16161616,
++	DRM_FORMAT_ABGR16161616,
+ };
+ 
+ int skl_format_to_fourcc(int format, bool rgb_order, bool alpha)
+@@ -220,6 +231,18 @@ int skl_format_to_fourcc(int format, bool rgb_order, bool alpha)
+ 			else
+ 				return DRM_FORMAT_XRGB2101010;
+ 		}
++	case PLANE_CTL_FORMAT_XRGB_16161616:
++		if (rgb_order) {
++			if (alpha)
++				return DRM_FORMAT_ABGR16161616;
++			else
++				return DRM_FORMAT_XBGR16161616;
++		} else {
++			if (alpha)
++				return DRM_FORMAT_ARGB16161616;
++			else
++				return DRM_FORMAT_XRGB16161616;
++		}
+ 	case PLANE_CTL_FORMAT_XRGB_16161616F:
+ 		if (rgb_order) {
+ 			if (alpha)
+@@ -960,6 +983,12 @@ static u32 skl_plane_ctl_format(u32 pixel_format)
+ 	case DRM_FORMAT_XRGB2101010:
+ 	case DRM_FORMAT_ARGB2101010:
+ 		return PLANE_CTL_FORMAT_XRGB_2101010;
++	case DRM_FORMAT_XBGR16161616:
++	case DRM_FORMAT_ABGR16161616:
++		return PLANE_CTL_FORMAT_XRGB_16161616 | PLANE_CTL_ORDER_RGBX;
++	case DRM_FORMAT_XRGB16161616:
++	case DRM_FORMAT_ARGB16161616:
++		return PLANE_CTL_FORMAT_XRGB_16161616;
+ 	case DRM_FORMAT_XBGR16161616F:
+ 	case DRM_FORMAT_ABGR16161616F:
+ 		return PLANE_CTL_FORMAT_XRGB_16161616F | PLANE_CTL_ORDER_RGBX;
+@@ -2479,6 +2508,11 @@ static const u32 *icl_get_plane_formats(struct intel_display *display,
+ 					int *num_formats)
+ {
+ 	if (icl_is_hdr_plane(display, plane_id)) {
++		if (DISPLAY_VER(display) >= 35) {
++			*num_formats = ARRAY_SIZE(xe3p_lpd_hdr_plane_formats);
++			return xe3p_lpd_hdr_plane_formats;
++		}
++
+ 		*num_formats = ARRAY_SIZE(icl_hdr_plane_formats);
+ 		return icl_hdr_plane_formats;
+ 	} else if (icl_is_nv12_y_plane(display, plane_id)) {
+@@ -2637,6 +2671,10 @@ static bool tgl_plane_format_mod_supported(struct drm_plane *_plane,
+ 	case DRM_FORMAT_RGB565:
+ 	case DRM_FORMAT_XVYU2101010:
+ 	case DRM_FORMAT_C8:
++	case DRM_FORMAT_XBGR16161616:
++	case DRM_FORMAT_ABGR16161616:
++	case DRM_FORMAT_XRGB16161616:
++	case DRM_FORMAT_ARGB16161616:
+ 	case DRM_FORMAT_Y210:
+ 	case DRM_FORMAT_Y212:
+ 	case DRM_FORMAT_Y216:
 diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h b/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
-index ca9fdfbbe57c..479bb3f7f92b 100644
+index 479bb3f7f92b..84cf565bd653 100644
 --- a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
 +++ b/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
-@@ -324,7 +324,7 @@
- #define   PLANE_WM_IGNORE_LINES			REG_BIT(30)
- #define   PLANE_WM_AUTO_MIN_ALLOC_EN		REG_BIT(29)
- #define   PLANE_WM_LINES_MASK			REG_GENMASK(26, 14)
--#define   PLANE_WM_BLOCKS_MASK			REG_GENMASK(11, 0)
-+#define   PLANE_WM_BLOCKS_MASK			REG_GENMASK(12, 0)
- 
- #define _PLANE_WM_SAGV_1_A			0x70258
- #define _PLANE_WM_SAGV_1_B			0x71258
-@@ -375,10 +375,10 @@
- 							_PLANE_BUF_CFG_1_A, _PLANE_BUF_CFG_1_B, \
- 							_PLANE_BUF_CFG_2_A, _PLANE_BUF_CFG_2_B)
- 
--/* skl+: 10 bits, icl+ 11 bits, adlp+ 12 bits */
--#define   PLANE_BUF_END_MASK			REG_GENMASK(27, 16)
-+/* skl+: 10 bits, icl+ 11 bits, adlp+ 12 bits, xe3p_lpd 13 bits */
-+#define   PLANE_BUF_END_MASK			REG_GENMASK(28, 16)
- #define   PLANE_BUF_END(end)			REG_FIELD_PREP(PLANE_BUF_END_MASK, (end))
--#define   PLANE_BUF_START_MASK			REG_GENMASK(11, 0)
-+#define   PLANE_BUF_START_MASK			REG_GENMASK(12, 0)
- #define   PLANE_BUF_START(start)		REG_FIELD_PREP(PLANE_BUF_START_MASK, (start))
- 
- #define _PLANE_MIN_BUF_CFG_1_A			0x70274
-@@ -389,9 +389,9 @@
- 							_PLANE_MIN_BUF_CFG_1_A, _PLANE_MIN_BUF_CFG_1_B, \
- 							_PLANE_MIN_BUF_CFG_2_A, _PLANE_MIN_BUF_CFG_2_B)
- #define	  PLANE_AUTO_MIN_DBUF_EN		REG_BIT(31)
--#define	  PLANE_MIN_DBUF_BLOCKS_MASK		REG_GENMASK(27, 16)
-+#define	  PLANE_MIN_DBUF_BLOCKS_MASK		REG_GENMASK(28, 16)
- #define	  PLANE_MIN_DBUF_BLOCKS(val)		REG_FIELD_PREP(PLANE_MIN_DBUF_BLOCKS_MASK, (val))
--#define	  PLANE_INTERIM_DBUF_BLOCKS_MASK	REG_GENMASK(11, 0)
-+#define	  PLANE_INTERIM_DBUF_BLOCKS_MASK	REG_GENMASK(12, 0)
- #define	  PLANE_INTERIM_DBUF_BLOCKS(val)	REG_FIELD_PREP(PLANE_INTERIM_DBUF_BLOCKS_MASK, (val))
- 
- /* tgl+ */
+@@ -64,6 +64,7 @@
+ #define   PLANE_CTL_FORMAT_Y410			REG_FIELD_PREP(PLANE_CTL_FORMAT_MASK_ICL, 7)
+ #define   PLANE_CTL_FORMAT_Y412			REG_FIELD_PREP(PLANE_CTL_FORMAT_MASK_ICL, 9)
+ #define   PLANE_CTL_FORMAT_Y416			REG_FIELD_PREP(PLANE_CTL_FORMAT_MASK_ICL, 11)
++#define   PLANE_CTL_FORMAT_XRGB_16161616	REG_FIELD_PREP(PLANE_CTL_FORMAT_MASK_ICL, 18)
+ #define   PLANE_CTL_PIPE_CSC_ENABLE		REG_BIT(23) /* Pre-GLK */
+ #define   PLANE_CTL_KEY_ENABLE_MASK		REG_GENMASK(22, 21)
+ #define   PLANE_CTL_KEY_ENABLE_SOURCE		REG_FIELD_PREP(PLANE_CTL_KEY_ENABLE_MASK, 1)
 
 -- 
 2.51.0
