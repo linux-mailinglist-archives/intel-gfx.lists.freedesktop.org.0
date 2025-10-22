@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18101BF9781
+	by mail.lfdr.de (Postfix) with ESMTPS id ADF81BF9784
 	for <lists+intel-gfx@lfdr.de>; Wed, 22 Oct 2025 02:32:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A8D510E68E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E835410E68F;
 	Wed, 22 Oct 2025 00:32:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ALutpHmu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a+szLRav";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DF0510E68A;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B43A10E689;
  Wed, 22 Oct 2025 00:32:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1761093131; x=1792629131;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=7dudOjZtK6RJSVyMvb0HmH+2YylMfxzsdLI0SjzZP6k=;
- b=ALutpHmuXO4+6ZvjqYW5x3lRXK8wy8cHHigFY4MnEXaAgQR2frZBry5L
- DI1Bgd7Fo4yMCbN/AlYG3x70jguzGe6qUGFgrGvXP0AOQpUMKWEE1tEpb
- enKZT/0fTGrD4f04dbKgdSS8iqf1DY3etTsNYP0EzN5g+3c6vdwJ6oHp3
- liylyFX9Fjfr3FZ736DRhrWNfoApSummh4Jo4XdLKMTG/JjEFA0mCmQVj
- 6Z0Pk04nstsetpeTkjzfaMo+wOes4Jvk4eTxRNnsak5Nvs253UWDsa16F
- q40jcyiWU9GQvz+CWneCMJ31CIIGB9Md2uf6Yr9w4MIs6+mCcCcuEHAVR w==;
-X-CSE-ConnectionGUID: nujtDh+eQmGDsmvEnxqVmg==
-X-CSE-MsgGUID: L4kZW5qVRxy2T7JhCuFftw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="85855776"
-X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="85855776"
+ bh=+Kj2lFFZo6aSEZI/v5rM6UkkK3PvmACWoSSxpl4vGFY=;
+ b=a+szLRavPhl0vlNlUO0WcPQYW07TwF4oSq41C66V3bpeJll911YTkItL
+ inOOmTOyb48l0AYcF/jfsqFYKQpP61RN+BL0rZAzScfkJprMt5v6r3tSO
+ RmfmvLYQt1XmZa2P4z2mhTMJme5bQLLa1yto7CBXuyZi4oYSzGkRCC6bj
+ /nkb4v8nzkhvNbGT7kNKLaDXSyCsSNDyh8Jo1vKDuQfDzLSCEqwjdkbU7
+ Rbr9RIrcmzN7JoMU32yteZqJsk/HdNml1WjeXd8gQnv9lVIpUmotqe5Or
+ o8chhQ/llfc39B1/cVVyNcYcGJ7TZdy4x3o3JJgotdocwVNoirA9SdhLW g==;
+X-CSE-ConnectionGUID: bvN7HmWnRx6ymGyIAVfUeA==
+X-CSE-MsgGUID: YEy3ZVTVT5GoiCSg9wu+0w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="85855782"
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="85855782"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2025 17:32:08 -0700
-X-CSE-ConnectionGUID: QGS9zeFxQ/WyujCnHs0QOQ==
-X-CSE-MsgGUID: /xUx4N5HSLicHjfCRYUBSw==
+ 21 Oct 2025 17:32:11 -0700
+X-CSE-ConnectionGUID: 29JHFVfXSYOfhQZXEMd4eA==
+X-CSE-MsgGUID: QwmStWjgS3KhGHLn00Oagg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="188132461"
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="188132472"
 Received: from gpacheco-mobl.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.221.26])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2025 17:32:04 -0700
+ 21 Oct 2025 17:32:08 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Tue, 21 Oct 2025 21:28:44 -0300
-Subject: [PATCH v2 19/32] drm/i915/xe3p_lpd: PSR SU minimum lines is 4
+Date: Tue, 21 Oct 2025 21:28:45 -0300
+Subject: [PATCH v2 20/32] drm/i915/xe3p_lpd: Enable system caching for FBC
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20251021-xe3p_lpd-basic-enabling-v2-19-10eae6d655b8@intel.com>
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251021-xe3p_lpd-basic-enabling-v2-20-10eae6d655b8@intel.com>
 References: <20251021-xe3p_lpd-basic-enabling-v2-0-10eae6d655b8@intel.com>
 In-Reply-To: <20251021-xe3p_lpd-basic-enabling-v2-0-10eae6d655b8@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
@@ -63,8 +63,7 @@ Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>, 
  Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>, 
  Shekhar Chauhan <shekhar.chauhan@intel.com>, 
- Vinod Govindapillai <vinod.govindapillai@intel.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>
+ Vinod Govindapillai <vinod.govindapillai@intel.com>
 X-Mailer: b4 0.15-dev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -81,66 +80,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Jouni Högander <jouni.hogander@intel.com>
+From: Vinod Govindapillai <vinod.govindapillai@intel.com>
 
-Ensure the minimum selective update line count is 4 in case of display
-version 35 and onwards.
+Configure one of the FBC instances to use system caching. FBC
+read/write requests are tagged as cacheable till a programmed
+limit is reached by the hw.
 
-v2:
-  - Fix style by dropping extra spaces after assignment operator.
-    (Jani).
-
-Bspec: 69887
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+Bspec: 74722
+Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 25 +++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+ drivers/gpu/drm/i915/display/intel_fbc.c      | 47 +++++++++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_fbc_regs.h |  9 +++++
+ 2 files changed, 56 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index cfc8b04f98fa..a23519b9b388 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -2804,6 +2804,29 @@ intel_psr_apply_su_area_workarounds(struct intel_crtc_state *crtc_state)
- 		intel_psr_apply_pr_link_on_su_wa(crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index af3585aeefd3..368b1ff1dc8c 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -126,6 +126,9 @@ struct intel_fbc {
+ 	 */
+ 	struct intel_fbc_state state;
+ 	const char *no_fbc_reason;
++
++	/* Only one of FBC instances can use the system cache */
++	bool own_sys_cache;
+ };
+ 
+ /* plane stride in pixels */
+@@ -570,12 +573,51 @@ static bool ilk_fbc_is_compressing(struct intel_fbc *fbc)
+ 	return intel_de_read(fbc->display, ILK_DPFC_STATUS(fbc->id)) & DPFC_COMP_SEG_MASK;
  }
  
-+static void intel_psr_su_area_min_lines(struct intel_crtc_state *crtc_state)
++static void nvl_fbc_program_system_cache(struct intel_fbc *fbc, bool enable)
 +{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	struct drm_rect damaged_area;
++	struct intel_display *display = fbc->display;
++	u32 cfb_offset, usage;
 +
-+	/*
-+	 * Bspec mentions 4 being minimum lines in SU for display version
-+	 * 35 and onwards.
-+	 */
-+	if (DISPLAY_VER(display) < 35 || drm_rect_height(&crtc_state->psr2_su_area) >= 4)
++	lockdep_assert_held(&fbc->lock);
++
++	usage = intel_de_read(display, NVL_FBC_SYS_CACHE_USAGE_CFG);
++
++	/* System cache already being used by another pipe */
++	if (enable && (usage & FBC_SYS_CACHE_TAG_USE_RES_SPACE))
 +		return;
 +
-+	damaged_area.x1 = crtc_state->psr2_su_area.x1;
-+	damaged_area.y1 = crtc_state->psr2_su_area.y1;
-+	damaged_area.x2 = crtc_state->psr2_su_area.x2;
-+	damaged_area.y2 = crtc_state->psr2_su_area.y2;
++	/* Only the fbc instance which owns system cache can disable it */
++	if (!enable && !fbc->own_sys_cache)
++		return;
 +
-+	damaged_area.y2 += 4 - drm_rect_height(&damaged_area);
-+	drm_rect_intersect(&damaged_area, &crtc_state->pipe_src);
-+	damaged_area.y1 -= 4 - drm_rect_height(&damaged_area);
-+	clip_area_update(&crtc_state->psr2_su_area, &damaged_area, &crtc_state->pipe_src);
++	/*
++	 * Not programming the cache limit and cache reading enable bits explicitly
++	 * here. The default values should take care of those and that could leave
++	 * adjustments of those bits to the system hw policy
++	 *
++	 * TODO: check if we need to explicitly program these?
++	 */
++	cfb_offset = enable ? i915_gem_stolen_node_offset(fbc->compressed_fb) : 0;
++	usage |= FBC_SYS_CACHE_START_BASE(cfb_offset);
++	usage |= enable ? FBC_SYS_CACHE_TAG_USE_RES_SPACE : FBC_SYS_CACHE_TAG_DONT_CACHE;
++
++	intel_de_write(display, NVL_FBC_SYS_CACHE_USAGE_CFG, usage);
++
++	fbc->own_sys_cache = enable;
++
++	drm_dbg_kms(display->drm, "System caching for FBC[%d] %s\n",
++		    fbc->id, enable ? "configured" : "cleared");
 +}
 +
- int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 				struct intel_crtc *crtc)
+ static void ilk_fbc_program_cfb(struct intel_fbc *fbc)
  {
-@@ -2912,6 +2935,8 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 	if (full_update)
- 		goto skip_sel_fetch_set_loop;
+ 	struct intel_display *display = fbc->display;
  
-+	intel_psr_su_area_min_lines(crtc_state);
+ 	intel_de_write(display, ILK_DPFC_CB_BASE(fbc->id),
+ 		       i915_gem_stolen_node_offset(fbc->compressed_fb));
 +
- 	intel_psr_apply_su_area_workarounds(crtc_state);
++	if (DISPLAY_VER(display) >= 35)
++		nvl_fbc_program_system_cache(fbc, true);
+ }
  
- 	ret = drm_atomic_add_affected_planes(&state->base, &crtc->base);
+ static const struct intel_fbc_funcs ilk_fbc_funcs = {
+@@ -953,6 +995,8 @@ static void intel_fbc_program_workarounds(struct intel_fbc *fbc)
+ 
+ static void __intel_fbc_cleanup_cfb(struct intel_fbc *fbc)
+ {
++	struct intel_display *display = fbc->display;
++
+ 	if (WARN_ON(intel_fbc_hw_is_active(fbc)))
+ 		return;
+ 
+@@ -960,6 +1004,9 @@ static void __intel_fbc_cleanup_cfb(struct intel_fbc *fbc)
+ 		i915_gem_stolen_remove_node(fbc->compressed_llb);
+ 	if (i915_gem_stolen_node_allocated(fbc->compressed_fb))
+ 		i915_gem_stolen_remove_node(fbc->compressed_fb);
++
++	if (DISPLAY_VER(display) >= 35)
++		nvl_fbc_program_system_cache(fbc, false);
+ }
+ 
+ void intel_fbc_cleanup(struct intel_display *display)
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc_regs.h b/drivers/gpu/drm/i915/display/intel_fbc_regs.h
+index 272dba7f9695..e8d2e41ede98 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_fbc_regs.h
+@@ -128,4 +128,13 @@
+ #define   FBC_REND_NUKE			REG_BIT(2)
+ #define   FBC_REND_CACHE_CLEAN		REG_BIT(1)
+ 
++#define NVL_FBC_SYS_CACHE_USAGE_CFG             _MMIO(0x1344E0)
++#define   FBC_SYS_CACHE_START_BASE_MASK         REG_GENMASK(31, 16)
++#define   FBC_SYS_CACHE_START_BASE(base)        REG_FIELD_PREP(FBC_SYS_CACHE_START_BASE_MASK, (base))
++#define   FBC_SYS_CACHEABLE_RANGE_MASK          REG_GENMASK(15, 4)
++#define   FBC_SYS_CACHEABLE_RANGE(range)        REG_FIELD_PREP(FBC_SYS_CACHEABLE_RANGE_MASK, (range))
++#define   FBC_SYS_CACHE_TAG_MASK                REG_GENMASK(3, 2)
++#define   FBC_SYS_CACHE_TAG_DONT_CACHE          REG_FIELD_PREP(FBC_SYS_CACHE_TAG_MASK, 0)
++#define   FBC_SYS_CACHE_TAG_USE_RES_SPACE       REG_FIELD_PREP(FBC_SYS_CACHE_TAG_MASK, 3)
++
+ #endif /* __INTEL_FBC_REGS__ */
 
 -- 
 2.51.0
