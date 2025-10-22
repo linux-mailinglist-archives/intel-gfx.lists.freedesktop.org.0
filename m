@@ -2,55 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85237BFBCDC
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Oct 2025 14:14:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CF8EBFBCE2
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Oct 2025 14:15:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E58B910E769;
-	Wed, 22 Oct 2025 12:14:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B5BF10E76C;
+	Wed, 22 Oct 2025 12:15:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IOfKnT+F";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AZaLj3bg";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D60BB10E768;
- Wed, 22 Oct 2025 12:14:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3EEEE10E76E;
+ Wed, 22 Oct 2025 12:15:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761135296; x=1792671296;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=V1KCMkUrQZz7PtKox6e702RfbV8ycbn/E6qgMKBBXiE=;
- b=IOfKnT+FqRrcJXYaJ78grg/oH9KPlmfypNNlhXDFV/Yx5m7Uy9xjKJ2J
- NqKuL5BBfedOe0DCzIXslNqP8uolt80uBF46MlEi+wsdBxrrS5XYuhi+F
- 5z08lyRh74Z+9++2vzWORDzzpIiYevr7TldiGF9zfiPdw73H+q5a57zJV
- vPcDGceEnWmovZP8eYGHWmg91aHg4a60ZCd6IEb5mNnscCzQFlfdOQUHw
- WhHLlRKEgTnNBjorFEqWTh8pqd4svfCgv6FRO+20fS5tBbuAyIRJUD8B+
- YKzeicpUwdyJRjodiQWp8/gxJtWwlF4gK9lEmygjFMQ8r6p9zHBvIL4lk g==;
-X-CSE-ConnectionGUID: IJH5JATeTiOzsqnfnIwj0Q==
-X-CSE-MsgGUID: bBwdofADTIaUlBrWZQjyWQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="80909085"
-X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="80909085"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 05:14:56 -0700
-X-CSE-ConnectionGUID: DYHvc2swSIClGsVsRUu+jg==
-X-CSE-MsgGUID: LzV2EriSR7CL5bN09JLBkg==
+ t=1761135300; x=1792671300;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=/2cIdzqXu/jNKAxty3QMbMKgy4rLctn3f2eZyz0EJHI=;
+ b=AZaLj3bg4yyZkt5gU89WHWISOyEzmdWVzGkcy7DFdze2rSSdHtPg+X/2
+ INZZhyhEaXqoKFh/EQ0kmnuV65KAnmW52RVwbaevWhRvGosylEtZbbYwI
+ yeBaSWRpV9cqvyla2OMsQgdpjIP2jDi0WxdX6cfZwG6IoLpl7T/tCifMu
+ escw2Ol6EXFYRZGgu6AVTEXl5m8ZE4W6aB+vhTE87yKxSX2/N84O0f0Sd
+ ehNBCTxhaAmdvCyh2XR61VmqS/p+3l90oSNdvCSIDQsb7FYHIsLYLNPkT
+ HoJys0pE/a0/Zi7tjNv18Zr1GPznR5JvxvbqKKMhLldjpjFGmQrSYpqqo Q==;
+X-CSE-ConnectionGUID: nLEgi1WgQx2KjdEhAAao8Q==
+X-CSE-MsgGUID: RE4WwRdXSdCokSgy1+8C5A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63187864"
+X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="63187864"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2025 05:15:00 -0700
+X-CSE-ConnectionGUID: 3qDtgMIwQq2Y44TCgmFagg==
+X-CSE-MsgGUID: JpTfE7u0TpeNjufwPAWNCg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="183028280"
+X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="188983242"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.104])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 05:14:54 -0700
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2025 05:14:56 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 1/2] drm/i915/display: drop a few unnecessary i915_drv.h
- includes
-Date: Wed, 22 Oct 2025 15:14:49 +0300
-Message-ID: <20251022121450.452649-1-jani.nikula@intel.com>
+Subject: [PATCH 2/2] drm/xe/compat: drop include xe_device.h from i915_drv.h
+Date: Wed, 22 Oct 2025 15:14:50 +0300
+Message-ID: <20251022121450.452649-2-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20251022121450.452649-1-jani.nikula@intel.com>
+References: <20251022121450.452649-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
@@ -69,50 +70,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We've stopped using struct drm_i915_private in intel_fb.c and
-skl_universal_plane.c, so we can drop the i915_drv.h includes.
+xe_device.h and xe_device_has_flat_ccs() are no longer needed since
+commit 3a5c5c472c0e ("drm/i915/display: add HAS_AUX_CCS() feature
+check").
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fb.c            | 1 -
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 3 ++-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index 3958628c73e9..6ade38198f39 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -10,7 +10,6 @@
- #include <drm/drm_gem.h>
- #include <drm/drm_modeset_helper.h>
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+index 7c657ea98a44..3e79a74ff7de 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+@@ -12,7 +12,6 @@
  
--#include "i915_drv.h"
- #include "i915_utils.h"
- #include "intel_bo.h"
- #include "intel_display.h"
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 0319174adf95..765d288cce2b 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -7,9 +7,9 @@
- #include <drm/drm_blend.h>
- #include <drm/drm_damage_helper.h>
- #include <drm/drm_fourcc.h>
-+#include <drm/drm_print.h>
+ #include <drm/drm_drv.h>
  
- #include "pxp/intel_pxp.h"
--#include "i915_drv.h"
- #include "i915_utils.h"
- #include "intel_bo.h"
- #include "intel_de.h"
-@@ -24,6 +24,7 @@
- #include "intel_plane.h"
- #include "intel_psr.h"
- #include "intel_psr_regs.h"
-+#include "intel_step.h"
- #include "skl_scaler.h"
- #include "skl_universal_plane.h"
- #include "skl_universal_plane_regs.h"
+-#include "xe_device.h" /* for xe_device_has_flat_ccs() */
+ #include "xe_device_types.h"
+ 
+ static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
 -- 
 2.47.3
 
