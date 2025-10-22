@@ -2,59 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B87A8BFCEAD
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Oct 2025 17:37:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7CBEBFCEB9
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Oct 2025 17:37:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E724910E7F6;
-	Wed, 22 Oct 2025 15:37:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCBB310E7F2;
+	Wed, 22 Oct 2025 15:37:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZdgnmuuN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OSE/TnE1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADE6B10E7EF;
- Wed, 22 Oct 2025 15:37:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28C5310E16A;
+ Wed, 22 Oct 2025 15:37:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761147423; x=1792683423;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=T6QSdd9im9TwtM6pJnF79OwFNgjEqF5MU1rz9rGCVZk=;
- b=ZdgnmuuNhoQqrBy/eDwq8eX08f8kuGobcPn8oRfaASrK1/hfIXcNHTj0
- YA1Xfjwwv6lne3bdnerJ3C2TpKacy4rkXWKpbG2U2a1NC3vSS77L+yaeH
- 4xytmO/jTbycLEDYIdDkK2+QeMElSNQ2j/ieJBdZxnvWxxuQON4ak1koK
- pdmMPr2XlMVZu8GJtCFOye2run4hdDWc8/sLfsQCj24gfV40//7Sq8px6
- BLw1IsVKoqPJN0pstmUjWq3wkp6FaRyM/BVVpo+ZsAZ4oUYfSkLdbur0U
- R2Bwhh3AAxbtapxbYIWH3sYBnaPAbz1mDgZa8vhd1srRLG3KUjcn4D/mF A==;
-X-CSE-ConnectionGUID: ksSoGCT2TX6ZQwiJ7Xyjlg==
-X-CSE-MsgGUID: RnOySrqeQJWH2LH2Mf/mgA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="66942637"
-X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="66942637"
+ t=1761147441; x=1792683441;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=ATB/1dNealDgozTL2yfvJqxSSapbSoA7dGYmKw4qhv8=;
+ b=OSE/TnE1HiHasy7/zH4xMpawTyMWBhLBUr00Mb/eaWYugQ2xAk8RT2Ly
+ arcqAacHI3lqomP49Bx8wjyoC6qM/EklYM+Jt9M8+eh7jV/4bGlLdcRqD
+ o9+fedH3pkGwJcjqV8wwNpbDFeEE/G3YjIGOGEplqh4E0RXsT5lDBs1NK
+ vtp0Kv1Lrm04fenp6Cf1/NItxldFOqmyKs4FOSbDmRGgpvHL7x48hQXeM
+ hOMIp7TpDuiec14llOuAN9R6eb+7/LdmoxiC0QWE70wruaG9um03twwrj
+ dMlpD0RjM4sdKU8wxW6Dfv+UQl9vAuZcyAkTtdKBQi4WUbw9EbZ+Aim6u g==;
+X-CSE-ConnectionGUID: XPvtqW4ERMulCrqXRjtitQ==
+X-CSE-MsgGUID: qxeWPP5wT/yTH0pahWpyCw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="62329657"
+X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="62329657"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 08:37:03 -0700
-X-CSE-ConnectionGUID: 7CojQ1RbTxWiLrw4Cz/9AQ==
-X-CSE-MsgGUID: Z/i10RaQRzO8rEq9YvuddA==
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2025 08:37:21 -0700
+X-CSE-ConnectionGUID: y+ro+eP1TqWSLzR9JZK9vA==
+X-CSE-MsgGUID: YYFI5/UgR+mB8PbKkv3xbg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="188187665"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.104])
+X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="188187724"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.74])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 08:37:01 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [RESEND 4/4] drm/xe/dsb: drop the unnecessary struct i915_vma
-Date: Wed, 22 Oct 2025 18:36:38 +0300
-Message-ID: <76cf64a0d63bae39bc91ef70e5c8e6cd81b23ab2.1761147363.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1761147363.git.jani.nikula@intel.com>
-References: <cover.1761147363.git.jani.nikula@intel.com>
+ 22 Oct 2025 08:37:19 -0700
+Date: Wed, 22 Oct 2025 18:37:16 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: Re: [PATCH] drm/i915/display: Take into account AS SDP in
+ intel_dp_sdp_min_guardband
+Message-ID: <aPj6LCMluIBg5J1W@intel.com>
+References: <20251022122552.890090-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251022122552.890090-1-jouni.hogander@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,117 +73,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now that struct intel_dsb_buffer is opaque, it can be made unique to
-both drivers, and we can drop the unnecessary struct i915_vma part. Only
-the struct xe_bo part is needed.
+On Wed, Oct 22, 2025 at 03:25:52PM +0300, Jouni Högander wrote:
+> We started seeing "[drm] *ERROR* Timed out waiting PSR idle state" after
+> taking optimized guardband into use. These are seen because VSC SDPs are
+> sent on same line as AS SDPs when AS SDP is enabled. AS SDP is sent on line
+> configured in EMP_AS_SDP_TL register. We are configuring
+> crtc_state->vrr.vsync_start into that register.
+> 
+> Fix this by ensuring AS SDP is sent on line which is within
+> guardband. From the bspec:
+> 
+> EMP_AS_SDP_TL < SCL + Guardband
+> 
+> Bspec: 71197
+> 
+> Fixes: 52ecd48b8d3f ("drm/i915/dp: Add helper to get min sdp guardband")
+> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 15 ++++++++++++---
+>  1 file changed, 12 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index b0aeb6c2de86c..54b5e060be82a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -7026,7 +7026,7 @@ int intel_dp_compute_config_late(struct intel_encoder *encoder,
+>  }
+>  
+>  static
+> -int intel_dp_get_lines_for_sdp(u32 type)
+> +int intel_dp_get_lines_for_sdp(const struct intel_crtc_state *crtc_state, u32 type)
+>  {
+>  	switch (type) {
+>  	case DP_SDP_VSC_EXT_VESA:
+> @@ -7036,6 +7036,8 @@ int intel_dp_get_lines_for_sdp(u32 type)
+>  		return 8;
+>  	case DP_SDP_PPS:
+>  		return 7;
+> +	case DP_SDP_ADAPTIVE_SYNC:
+> +		return crtc_state->vrr.vsync_start + 1;
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/xe/display/xe_dsb_buffer.c | 28 +++++++---------------
- 1 file changed, 8 insertions(+), 20 deletions(-)
+Is the +1 actually needed? I get the impression the bspec page isn't
+being very accurate with the '<' usage.
 
-diff --git a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-index d55858705106..fa0acb11eaad 100644
---- a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-+++ b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-@@ -3,7 +3,6 @@
-  * Copyright 2023, Intel Corporation.
-  */
- 
--#include "i915_vma.h"
- #include "intel_dsb_buffer.h"
- #include "xe_bo.h"
- #include "xe_device.h"
-@@ -11,30 +10,30 @@
- 
- struct intel_dsb_buffer {
- 	u32 *cmd_buf;
--	struct i915_vma *vma;
-+	struct xe_bo *bo;
- 	size_t buf_size;
- };
- 
- u32 intel_dsb_buffer_ggtt_offset(struct intel_dsb_buffer *dsb_buf)
- {
--	return xe_bo_ggtt_addr(dsb_buf->vma->bo);
-+	return xe_bo_ggtt_addr(dsb_buf->bo);
- }
- 
- void intel_dsb_buffer_write(struct intel_dsb_buffer *dsb_buf, u32 idx, u32 val)
- {
--	iosys_map_wr(&dsb_buf->vma->bo->vmap, idx * 4, u32, val);
-+	iosys_map_wr(&dsb_buf->bo->vmap, idx * 4, u32, val);
- }
- 
- u32 intel_dsb_buffer_read(struct intel_dsb_buffer *dsb_buf, u32 idx)
- {
--	return iosys_map_rd(&dsb_buf->vma->bo->vmap, idx * 4, u32);
-+	return iosys_map_rd(&dsb_buf->bo->vmap, idx * 4, u32);
- }
- 
- void intel_dsb_buffer_memset(struct intel_dsb_buffer *dsb_buf, u32 idx, u32 val, size_t size)
- {
- 	WARN_ON(idx > (dsb_buf->buf_size - size) / sizeof(*dsb_buf->cmd_buf));
- 
--	iosys_map_memset(&dsb_buf->vma->bo->vmap, idx * 4, val, size);
-+	iosys_map_memset(&dsb_buf->bo->vmap, idx * 4, val, size);
- }
- 
- struct intel_dsb_buffer *intel_dsb_buffer_create(struct drm_device *drm, size_t size)
-@@ -42,19 +41,12 @@ struct intel_dsb_buffer *intel_dsb_buffer_create(struct drm_device *drm, size_t
- 	struct xe_device *xe = to_xe_device(drm);
- 	struct intel_dsb_buffer *dsb_buf;
- 	struct xe_bo *obj;
--	struct i915_vma *vma;
- 	int ret;
- 
- 	dsb_buf = kzalloc(sizeof(*dsb_buf), GFP_KERNEL);
- 	if (!dsb_buf)
- 		return ERR_PTR(-ENOMEM);
- 
--	vma = kzalloc(sizeof(*vma), GFP_KERNEL);
--	if (!vma) {
--		ret = -ENOMEM;
--		goto err_vma;
--	}
--
- 	/* Set scanout flag for WC mapping */
- 	obj = xe_bo_create_pin_map_novm(xe, xe_device_get_root_tile(xe),
- 					PAGE_ALIGN(size),
-@@ -66,15 +58,12 @@ struct intel_dsb_buffer *intel_dsb_buffer_create(struct drm_device *drm, size_t
- 		goto err_pin_map;
- 	}
- 
--	vma->bo = obj;
--	dsb_buf->vma = vma;
-+	dsb_buf->bo = obj;
- 	dsb_buf->buf_size = size;
- 
- 	return dsb_buf;
- 
- err_pin_map:
--	kfree(vma);
--err_vma:
- 	kfree(dsb_buf);
- 
- 	return ERR_PTR(ret);
-@@ -82,14 +71,13 @@ struct intel_dsb_buffer *intel_dsb_buffer_create(struct drm_device *drm, size_t
- 
- void intel_dsb_buffer_cleanup(struct intel_dsb_buffer *dsb_buf)
- {
--	xe_bo_unpin_map_no_vm(dsb_buf->vma->bo);
--	kfree(dsb_buf->vma);
-+	xe_bo_unpin_map_no_vm(dsb_buf->bo);
- 	kfree(dsb_buf);
- }
- 
- void intel_dsb_buffer_flush_map(struct intel_dsb_buffer *dsb_buf)
- {
--	struct xe_device *xe = dsb_buf->vma->bo->tile->xe;
-+	struct xe_device *xe = dsb_buf->bo->tile->xe;
- 
- 	/*
- 	 * The memory barrier here is to ensure coherency of DSB vs MMIO,
+Hmm, there is an extra note in the EMP_AS_SDP_TL register:
+"For DP/eDP, if there is a set context latency (SCL) window, then it
+ cannot be the first line of SCL
+ For DP/eDP, if there is no SCL window, then it cannot be the first line 
+ of the Delayed V. Blank"
+So I guess there might be a real reason for that extra line.
+
+Though I'm pretty sure no one has even confirmed that we don't have any
+off by one errors in EMP_AS_SDP_TL/etc. Should do that at some point...
+
+>  	default:
+>  		break;
+>  	}
+> @@ -7052,11 +7054,18 @@ int intel_dp_sdp_min_guardband(const struct intel_crtc_state *crtc_state,
+>  	    crtc_state->infoframes.enable &
+>  	    intel_hdmi_infoframe_enable(HDMI_PACKET_TYPE_GAMUT_METADATA))
+>  		sdp_guardband = max(sdp_guardband,
+> -				    intel_dp_get_lines_for_sdp(HDMI_PACKET_TYPE_GAMUT_METADATA));
+> +				    intel_dp_get_lines_for_sdp(crtc_state,
+> +							       HDMI_PACKET_TYPE_GAMUT_METADATA));
+>  
+>  	if (assume_all_enabled ||
+>  	    crtc_state->dsc.compression_enable)
+> -		sdp_guardband = max(sdp_guardband, intel_dp_get_lines_for_sdp(DP_SDP_PPS));
+> +		sdp_guardband = max(sdp_guardband,
+> +				    intel_dp_get_lines_for_sdp(crtc_state, DP_SDP_PPS));
+> +
+> +	if (assume_all_enabled ||
+
+assume_all_enable && HAS_AS_SDP() ?
+
+> +	    crtc_state->infoframes.enable & intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC))
+> +		sdp_guardband = max(sdp_guardband,
+> +				    intel_dp_get_lines_for_sdp(crtc_state, DP_SDP_ADAPTIVE_SYNC));
+>  
+>  	return sdp_guardband;
+>  }
+> -- 
+> 2.43.0
+
 -- 
-2.47.3
-
+Ville Syrjälä
+Intel
