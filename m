@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AB13BF9790
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Oct 2025 02:32:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AA21BF9793
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Oct 2025 02:32:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1B8B10E698;
-	Wed, 22 Oct 2025 00:32:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69E1210E69B;
+	Wed, 22 Oct 2025 00:32:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dwHW+Nca";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nq5xmnCy";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 914FA10E698;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5B9510E699;
  Wed, 22 Oct 2025 00:32:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1761093149; x=1792629149;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=AKSk0SHxsHypnr8qaR6e6SwPBA0IYYy9RWMNiQxZY6Y=;
- b=dwHW+NcaAFf12Le5gI6LKjj6vIpnr0iVgUi2DSdsVL5wNPBDBacIF+Fu
- 3qrpK6SznrOxI88ZlDf3uPKhkf+YfkvMjxJX8ET8f3b+j1He7WSx+DdsT
- XdsF91D4GlLif3YrvK4Tx1JEXDFGl38mnTVS0c7zmcWyMazLoJkgsgSog
- Z/DG3VyQ91qZjTlxWpiTZCX6dZ0ricKaO+2r5eNHlsJxkptrPClGNH4z5
- 9g7/xWRUEmZZP3tvGGXrPEv57UDd68yfZq/0H1XjqXkfG22Dd8nJR6BYP
- 8iXbxQ6urQ8Q8nExEQYE0mkTtkrAgFH2bCxMXQcop0Afoz2QUhyDpTQXk Q==;
-X-CSE-ConnectionGUID: NiTyZMENQ0asQRDQgCdkug==
-X-CSE-MsgGUID: pLXrZF93Q+GVOeUcO4RwgQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="85855798"
-X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="85855798"
+ bh=YKgD7vFmRg6409KtX9uuvsTSWtN20L1HUcJabFGaRGI=;
+ b=Nq5xmnCyER6sgGB5GD8HC2wOIggTnq25Vf6fUijjsDZy+SbKpj6YKNhP
+ g32UAiG4JoYpo/h5jK47CDHDR8m0zSyiv6JgT+sa1tvIeibv5yFFti5vZ
+ 4EfgxugRn9Ds5ejQ3XOjA5019xLcyGcSkSnlYLctlCwT2b/7D7/HN0B0L
+ j9dIUmeddq6x5i3zfjzGS0GZe63eAM6PsjhLRv3xaCg7sQlDSsnr8/jb8
+ rnQWjcr4lf44b0gY9vFalYDcDz3MS4aQEDFSodtubnOCt26m4b2a2SVZn
+ aYgdygRujET2pq6XCGbb6KEKtCacWxeUOSU8eTwtCLlRy/EaPb87WMwxr g==;
+X-CSE-ConnectionGUID: NTw/o+XxTu2koUpWjNnaTQ==
+X-CSE-MsgGUID: z4bw/lfXRHWhAjLywnckNg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="85855799"
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="85855799"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2025 17:32:25 -0700
-X-CSE-ConnectionGUID: X1/gTkwaSs+Z91uYxZAXTA==
-X-CSE-MsgGUID: M0deOqVVS+GVPjElnYw1CA==
+ 21 Oct 2025 17:32:28 -0700
+X-CSE-ConnectionGUID: V+AweSClQb6/XXeSttkz1g==
+X-CSE-MsgGUID: 09NfdAeRS3CJ2NnAM25F3g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="188132504"
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="188132518"
 Received: from gpacheco-mobl.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.221.26])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2025 17:32:21 -0700
+ 21 Oct 2025 17:32:25 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Tue, 21 Oct 2025 21:28:49 -0300
-Subject: [PATCH v2 24/32] drm/i915/xe3p_lpd: Introduce pixel normalizer
- config support
+Date: Tue, 21 Oct 2025 21:28:50 -0300
+Subject: [PATCH v2 25/32] drm/i915/xe3p_lpd: Add FBC support for FP16 formats
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251021-xe3p_lpd-basic-enabling-v2-24-10eae6d655b8@intel.com>
+Message-Id: <20251021-xe3p_lpd-basic-enabling-v2-25-10eae6d655b8@intel.com>
 References: <20251021-xe3p_lpd-basic-enabling-v2-0-10eae6d655b8@intel.com>
 In-Reply-To: <20251021-xe3p_lpd-basic-enabling-v2-0-10eae6d655b8@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
@@ -83,96 +82,112 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Vinod Govindapillai <vinod.govindapillai@intel.com>
 
-To enable FBC for FP16 formats, we need to enable the pixel normalizer
-block. Introduce the register definitions and the initial steps for
-configuring the pixel normalizer block. In this patch the pixel
-normalizer block is kept as disabled. The follow-up patches will handle
-configuring the pixel normalizer block for hdr planes for FP16 formats.
+Add supported FP16 formats for FBC. FBC can be enabled with FP16 formats
+only when plane pixel normalizer block is enabled.
 
-Bspec: 69863
+Bspec: 6881, 69863, 68904
 Cc: Shekhar Chauhan <shekhar.chauhan@intel.com>
 Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_types.h      |  3 +++
- drivers/gpu/drm/i915/display/skl_universal_plane.c      | 15 +++++++++++++++
- drivers/gpu/drm/i915/display/skl_universal_plane_regs.h | 11 +++++++++++
- 3 files changed, 29 insertions(+)
+ drivers/gpu/drm/i915/display/intel_fbc.c | 37 ++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_fbc.h |  1 +
+ 2 files changed, 38 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 5ae66b7444b6..bba03791f0ea 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -679,6 +679,9 @@ struct intel_plane_state {
- 	/* surface address register */
- 	u32 surf;
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index 368b1ff1dc8c..6f31294c6a6d 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -63,6 +63,7 @@
+ #include "intel_fbc.h"
+ #include "intel_fbc_regs.h"
+ #include "intel_frontbuffer.h"
++#include "skl_universal_plane_regs.h"
  
-+	/* plane pixel normalizer config for Xe3p_LPD+ FBC FP16 */
-+	u32 pixel_normalizer;
-+
- 	/*
- 	 * scaler_id
- 	 *    = -1 : not using a scaler
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 9f1111324dab..16a9c141281b 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -893,6 +893,12 @@ static void skl_write_plane_wm(struct intel_dsb *dsb,
- 				   xe3_plane_min_ddb_reg_val(min_ddb, interim_ddb));
+ #define for_each_fbc_id(__display, __fbc_id) \
+ 	for ((__fbc_id) = INTEL_FBC_A; (__fbc_id) < I915_MAX_FBCS; (__fbc_id)++) \
+@@ -153,6 +154,8 @@ static unsigned int intel_fbc_cfb_cpp(const struct intel_plane_state *plane_stat
+ 	case DRM_FORMAT_XBGR16161616:
+ 	case DRM_FORMAT_ARGB16161616:
+ 	case DRM_FORMAT_ABGR16161616:
++	case DRM_FORMAT_ARGB16161616F:
++	case DRM_FORMAT_ABGR16161616F:
+ 		return 8;
+ 	default:
+ 		return 4;
+@@ -695,6 +698,30 @@ static void skl_fbc_program_cfb_stride(struct intel_fbc *fbc)
+ 		     CHICKEN_FBC_STRIDE_MASK, val);
  }
  
-+static void
-+xe3p_lpd_plane_check_pixel_normalizer(struct intel_plane_state *plane_state)
++static bool
++xe3p_lpd_fbc_is_fp16_format(const struct intel_plane_state *plane_state)
 +{
-+	plane_state->pixel_normalizer = 0;
++	const struct drm_framebuffer *fb = plane_state->hw.fb;
++
++	switch (fb->format->format) {
++	case DRM_FORMAT_ARGB16161616F:
++	case DRM_FORMAT_ABGR16161616F:
++		return true;
++	default:
++		return false;
++	}
 +}
 +
- static void
- skl_plane_disable_arm(struct intel_dsb *dsb,
- 		      struct intel_plane *plane,
-@@ -1671,6 +1677,11 @@ icl_plane_update_arm(struct intel_dsb *dsb,
- 
- 	icl_plane_update_sel_fetch_arm(dsb, plane, crtc_state, plane_state);
- 
-+	/* Only the HDR planes can have pixel normalizer */
-+	if (DISPLAY_VER(display) >= 35 && icl_is_hdr_plane(display, plane_id))
-+		intel_de_write_dsb(display, dsb,
-+				   PLANE_PIXEL_NORMALIZE(plane->pipe, plane->id),
-+				   plane_state->pixel_normalizer);
- 	/*
- 	 * The control register self-arms if the plane was previously
- 	 * disabled. Try to make the plane enable atomic by writing
-@@ -2385,6 +2396,10 @@ static int skl_plane_check(struct intel_crtc_state *crtc_state,
- 		plane_state->damage = DRM_RECT_INIT(0, 0, 0, 0);
- 	}
- 
-+	/* Pixel normalizer for Xe3p_LPD+ */
-+	if (DISPLAY_VER(display) >= 35 && icl_is_hdr_plane(display, plane->id))
-+		xe3p_lpd_plane_check_pixel_normalizer(plane_state);
++bool
++intel_fbc_is_fp16_format_supported(const struct intel_plane_state *plane_state)
++{
++	struct intel_display *display = to_intel_display(plane_state);
 +
- 	plane_state->ctl = skl_plane_ctl(plane_state);
- 
- 	if (DISPLAY_VER(display) >= 10)
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h b/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
-index 84cf565bd653..11c713f9b237 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
-@@ -456,4 +456,15 @@
- 								_SEL_FETCH_PLANE_OFFSET_5_A, _SEL_FETCH_PLANE_OFFSET_5_B, \
- 								_SEL_FETCH_PLANE_OFFSET_6_A, _SEL_FETCH_PLANE_OFFSET_6_B)
- 
-+#define _PLANE_PIXEL_NORMALIZE_1_A		0x701a8
-+#define _PLANE_PIXEL_NORMALIZE_2_A		0x702a8
-+#define _PLANE_PIXEL_NORMALIZE_1_B		0x711a8
-+#define _PLANE_PIXEL_NORMALIZE_2_B		0x712a8
-+#define PLANE_PIXEL_NORMALIZE(pipe, plane)	_MMIO_SKL_PLANE((pipe), (plane), \
-+								_PLANE_PIXEL_NORMALIZE_1_A, _PLANE_PIXEL_NORMALIZE_1_B, \
-+								_PLANE_PIXEL_NORMALIZE_2_A, _PLANE_PIXEL_NORMALIZE_2_B)
-+#define   PLANE_PIXEL_NORMALIZE_ENABLE			REG_BIT(31)
-+#define   PLANE_PIXEL_NORMALIZE_NORM_FACTOR_MASK	REG_GENMASK(15, 0)
-+#define   PLANE_PIXEL_NORMALIZE_NORM_FACTOR(val)	REG_FIELD_PREP(PLANE_PIXEL_NORMALIZE_NORM_FACTOR_MASK, (val))
++	if (DISPLAY_VER(display) >= 35)
++		return xe3p_lpd_fbc_is_fp16_format(plane_state);
 +
- #endif /* __SKL_UNIVERSAL_PLANE_REGS_H__ */
++	return false;
++}
+ static u32 ivb_dpfc_ctl(struct intel_fbc *fbc)
+ {
+ 	struct intel_display *display = fbc->display;
+@@ -810,6 +837,8 @@ static void intel_fbc_nuke(struct intel_fbc *fbc)
+ static void intel_fbc_activate(struct intel_fbc *fbc)
+ {
+ 	struct intel_display *display = fbc->display;
++	struct intel_plane *plane = fbc->state.plane;
++	struct intel_plane_state *plane_state = to_intel_plane_state(plane->base.state);
+ 
+ 	lockdep_assert_held(&fbc->lock);
+ 
+@@ -822,6 +851,11 @@ static void intel_fbc_activate(struct intel_fbc *fbc)
+ 	 */
+ 	drm_WARN_ON(display->drm, fbc->active && HAS_FBC_DIRTY_RECT(display));
+ 
++	drm_WARN_ON(display->drm,
++		    DISPLAY_VER(display) >= 35 &&
++		    xe3p_lpd_fbc_is_fp16_format(plane_state) &&
++		    (plane_state->pixel_normalizer & PLANE_PIXEL_NORMALIZE_ENABLE) == 0);
++
+ 	intel_fbc_hw_activate(fbc);
+ 	intel_fbc_nuke(fbc);
+ 
+@@ -1142,6 +1176,9 @@ static bool xe3p_lpd_fbc_pixel_format_is_valid(const struct intel_plane_state *p
+ {
+ 	const struct drm_framebuffer *fb = plane_state->hw.fb;
+ 
++	if (xe3p_lpd_fbc_is_fp16_format(plane_state))
++		return true;
++
+ 	switch (fb->format->format) {
+ 	case DRM_FORMAT_XRGB8888:
+ 	case DRM_FORMAT_XBGR8888:
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.h b/drivers/gpu/drm/i915/display/intel_fbc.h
+index c86562404a00..dc7c76bfd135 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.h
++++ b/drivers/gpu/drm/i915/display/intel_fbc.h
+@@ -53,5 +53,6 @@ void intel_fbc_prepare_dirty_rect(struct intel_atomic_state *state,
+ 				  struct intel_crtc *crtc);
+ void intel_fbc_dirty_rect_update_noarm(struct intel_dsb *dsb,
+ 				       struct intel_plane *plane);
++bool intel_fbc_is_fp16_format_supported(const struct intel_plane_state *plane_state);
+ 
+ #endif /* __INTEL_FBC_H__ */
 
 -- 
 2.51.0
