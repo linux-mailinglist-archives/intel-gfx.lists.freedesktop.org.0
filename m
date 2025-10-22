@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6711CBFCCFB
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EA43BFCCFC
 	for <lists+intel-gfx@lfdr.de>; Wed, 22 Oct 2025 17:17:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0E4D10E7E9;
-	Wed, 22 Oct 2025 15:17:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFB3D10E7EE;
+	Wed, 22 Oct 2025 15:17:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c/CybO/C";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AvrLRbNJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D13BC10E7E9;
- Wed, 22 Oct 2025 15:17:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71BFE10E7EE;
+ Wed, 22 Oct 2025 15:17:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761146250; x=1792682250;
+ t=1761146253; x=1792682253;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=0NdD7BRVnT4dNa9HXB1E6k7c6KCJmS509gukWR5/rjc=;
- b=c/CybO/CZSbna8sBvCOhP+KZyjS53jAlhEK74ohwxKwEhcfDcnw2wGCH
- hrvgMjZFJktgKHtDcvpJFVoJTUPtpqZ1PmsN/CPZ689/wJgRt5o8tbXpp
- s5fOGuazFGam+g6/CnXYchAbywMDGEyFLCRB9Q5ZesejcNsUPVqM4QyGl
- eMAHYbc4I/3RQwRCQTq6vYaFRJHl8CH7lnrOCGazmgexad8UrXCAb6Aib
- dE/SrzTKECw77jm6ExhBid4DvshY+YxOPm666A13BQSBCAJUpz5XDCfVT
- rFllwCSw907tIb5sdP9n3AaTgvrenHSMNC+bSAG0y64sK+sqKwtY1fAZk w==;
-X-CSE-ConnectionGUID: kX3rCVazRYOM2TwlQjRa4A==
-X-CSE-MsgGUID: aasm5upzR56FUWW9Ezkt9g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="50873998"
-X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="50873998"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 08:17:29 -0700
-X-CSE-ConnectionGUID: BPcjIgJSTDGkZt0kmVac0A==
-X-CSE-MsgGUID: Ob5IO4qbTHquqxobtUbHrQ==
+ bh=qMD/0Czn9V7M+FyR0zP4hWR4F811C62BkKM7t2rCDX8=;
+ b=AvrLRbNJ/5Vdpj8WcRgRQWmtMOEW6+IfJCTkSCxHtYFXJPOqjAr5xEWw
+ iea2bieqCXVv87NDqgGVTiDEmrp7HYNrdzI/w7uoJIJ6m6fkusGTijDtm
+ 1WOiXdWPpnwfZjaRK0dL3IoJQkJxc1Xm20GQjDcMChh9vRms0GAbO5lg7
+ /Hhp/PWO4H/vcl1G4OO12EevTJFhkGdrE8UuvO3x5DOdvmx4v9eNGRi9s
+ S7eZHjDmgijpdHWR3GZDr8SmeZJIUTkMVxkmlDu3HLyk4ZAerp75Gre1J
+ PLu++dNWdMT+mz4nzzVyutqlVhqjzped/MURgEU9h8YaWCdHnv/Qzv0Fp g==;
+X-CSE-ConnectionGUID: dvmHMiMiRPy6IU0l2sMnow==
+X-CSE-MsgGUID: jFjY06sVQ+qAn3jJyjxpnw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="80736011"
+X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="80736011"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2025 08:17:33 -0700
+X-CSE-ConnectionGUID: aQvwIQiITV+idsL3xDjFuw==
+X-CSE-MsgGUID: aw/aXztzTzShk5C2y/JVNA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="188304945"
+X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="189178419"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.104])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 08:17:27 -0700
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2025 08:17:31 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 2/6] drm/i915/display: create intel_display_utils.h
-Date: Wed, 22 Oct 2025 18:17:10 +0300
-Message-ID: <dbdd1915466850293b9737b751170dd225197873.1761146196.git.jani.nikula@intel.com>
+Subject: [PATCH 3/6] drm/i915/display: add intel_display_run_as_guest()
+Date: Wed, 22 Oct 2025 18:17:11 +0300
+Message-ID: <469f9c41e0c3e3099314a3cf1a7671bf36ec8ffd.1761146196.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1761146196.git.jani.nikula@intel.com>
 References: <cover.1761146196.git.jani.nikula@intel.com>
@@ -71,115 +71,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Start a file for display specific generic utilities.
+Add intel_display_utils.c for display utilities that need more than a
+header.
 
-Move KHz() and MHz() helpers there first.
+Start off with intel_display_run_as_guest(). The implementation is
+intentional duplication of the i915_utils.h i915_run_as_guest(), with
+the idea that it's small enough to not matter.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_backlight.c     |  2 +-
- drivers/gpu/drm/i915/display/intel_ddi.c           |  1 +
- drivers/gpu/drm/i915/display/intel_display_utils.h | 10 ++++++++++
- drivers/gpu/drm/i915/display/intel_dp_mst.c        |  2 +-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c      |  1 +
- drivers/gpu/drm/i915/i915_utils.h                  |  3 ---
- 6 files changed, 14 insertions(+), 5 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_display_utils.h
+ drivers/gpu/drm/i915/Makefile                  |  1 +
+ .../gpu/drm/i915/display/intel_display_utils.c | 18 ++++++++++++++++++
+ .../gpu/drm/i915/display/intel_display_utils.h |  6 ++++++
+ drivers/gpu/drm/i915/display/intel_pch.c       |  4 ++--
+ drivers/gpu/drm/xe/Makefile                    |  1 +
+ 5 files changed, 28 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_display_utils.c
 
-diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
-index 3b14f929825a..a68fdbd2acb9 100644
---- a/drivers/gpu/drm/i915/display/intel_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_backlight.c
-@@ -13,7 +13,6 @@
- #include <drm/drm_print.h>
- 
- #include "i915_reg.h"
--#include "i915_utils.h"
- #include "intel_backlight.h"
- #include "intel_backlight_regs.h"
- #include "intel_connector.h"
-@@ -21,6 +20,7 @@
- #include "intel_display_regs.h"
- #include "intel_display_rpm.h"
- #include "intel_display_types.h"
-+#include "intel_display_utils.h"
- #include "intel_dp_aux_backlight.h"
- #include "intel_dsi_dcs_backlight.h"
- #include "intel_panel.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 870140340342..cd9fc3d1f36a 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -53,6 +53,7 @@
- #include "intel_display_power.h"
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
-+#include "intel_display_utils.h"
- #include "intel_dkl_phy.h"
- #include "intel_dkl_phy_regs.h"
- #include "intel_dp.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_display_utils.h b/drivers/gpu/drm/i915/display/intel_display_utils.h
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index 47bac9b2c611..046f9282fb65 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -255,6 +255,7 @@ i915-y += \
+ 	display/intel_display_rpm.o \
+ 	display/intel_display_rps.o \
+ 	display/intel_display_snapshot.o \
++	display/intel_display_utils.o \
+ 	display/intel_display_wa.o \
+ 	display/intel_dmc.o \
+ 	display/intel_dmc_wl.o \
+diff --git a/drivers/gpu/drm/i915/display/intel_display_utils.c b/drivers/gpu/drm/i915/display/intel_display_utils.c
 new file mode 100644
-index 000000000000..0a2b603ea856
+index 000000000000..13d3999dd580
 --- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_display_utils.h
-@@ -0,0 +1,10 @@
-+/* SPDX-License-Identifier: MIT */
++++ b/drivers/gpu/drm/i915/display/intel_display_utils.c
+@@ -0,0 +1,18 @@
++// SPDX-License-Identifier: MIT
 +/* Copyright © 2025 Intel Corporation */
 +
-+#ifndef __INTEL_DISPLAY_UTILS__
-+#define __INTEL_DISPLAY_UTILS__
++#ifdef CONFIG_X86
++#include <asm/hypervisor.h>
++#endif
 +
-+#define KHz(x) (1000 * (x))
-+#define MHz(x) KHz(1000 * (x))
++#include "intel_display_utils.h"
 +
-+#endif /* __INTEL_DISPLAY_UTILS__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index a845b2612a3f..8d11a989cf79 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -33,7 +33,6 @@
++bool intel_display_run_as_guest(struct intel_display *display)
++{
++#if IS_ENABLED(CONFIG_X86)
++	return !hypervisor_is_type(X86_HYPER_NATIVE);
++#else
++	/* Not supported yet */
++	return false;
++#endif
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_display_utils.h b/drivers/gpu/drm/i915/display/intel_display_utils.h
+index 0a2b603ea856..e54e69afd959 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_utils.h
++++ b/drivers/gpu/drm/i915/display/intel_display_utils.h
+@@ -4,7 +4,13 @@
+ #ifndef __INTEL_DISPLAY_UTILS__
+ #define __INTEL_DISPLAY_UTILS__
+ 
++#include <linux/types.h>
++
++struct intel_display;
++
+ #define KHz(x) (1000 * (x))
+ #define MHz(x) KHz(1000 * (x))
+ 
++bool intel_display_run_as_guest(struct intel_display *display);
++
+ #endif /* __INTEL_DISPLAY_UTILS__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_pch.c b/drivers/gpu/drm/i915/display/intel_pch.c
+index 469e8a3cfb49..65359a36df48 100644
+--- a/drivers/gpu/drm/i915/display/intel_pch.c
++++ b/drivers/gpu/drm/i915/display/intel_pch.c
+@@ -5,8 +5,8 @@
+ 
  #include <drm/drm_print.h>
- #include <drm/drm_probe_helper.h>
  
 -#include "i915_utils.h"
- #include "intel_atomic.h"
- #include "intel_audio.h"
- #include "intel_connector.h"
-@@ -43,6 +42,7 @@
- #include "intel_display_driver.h"
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
+ #include "intel_display_core.h"
 +#include "intel_display_utils.h"
- #include "intel_dp.h"
- #include "intel_dp_hdcp.h"
- #include "intel_dp_link_training.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 8ea96cc524a1..900a945ff8ab 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -32,6 +32,7 @@
- #include "intel_de.h"
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
-+#include "intel_display_utils.h"
- #include "intel_dkl_phy.h"
- #include "intel_dkl_phy_regs.h"
- #include "intel_dpio_phy.h"
-diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
-index 44de4a4aa84a..c1f978a7c141 100644
---- a/drivers/gpu/drm/i915/i915_utils.h
-+++ b/drivers/gpu/drm/i915/i915_utils.h
-@@ -100,9 +100,6 @@ static inline bool is_power_of_2_u64(u64 n)
- 	return (n != 0 && ((n & (n - 1)) == 0));
- }
+ #include "intel_pch.h"
  
--#define KHz(x) (1000 * (x))
--#define MHz(x) KHz(1000 * (x))
--
- void add_taint_for_CI(struct drm_i915_private *i915, unsigned int taint);
- static inline void __add_taint_for_CI(unsigned int taint)
- {
+ #define INTEL_PCH_DEVICE_ID_MASK		0xff80
+@@ -328,7 +328,7 @@ void intel_pch_detect(struct intel_display *display)
+ 			    "Display disabled, reverting to NOP PCH\n");
+ 		display->pch_type = PCH_NOP;
+ 	} else if (!pch) {
+-		if (i915_run_as_guest() && HAS_DISPLAY(display)) {
++		if (intel_display_run_as_guest(display) && HAS_DISPLAY(display)) {
+ 			intel_virt_detect_pch(display, &id, &pch_type);
+ 			display->pch_type = pch_type;
+ 		} else {
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 82c6b3d29676..feb8225d4d79 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -257,6 +257,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+ 	i915-display/intel_display_power_map.o \
+ 	i915-display/intel_display_power_well.o \
+ 	i915-display/intel_display_trace.o \
++	i915-display/intel_display_utils.o \
+ 	i915-display/intel_display_wa.o \
+ 	i915-display/intel_dkl_phy.o \
+ 	i915-display/intel_dmc.o \
 -- 
 2.47.3
 
