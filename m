@@ -2,65 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75546BFB58A
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Oct 2025 12:14:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DEB6DBFB622
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Oct 2025 12:22:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4F9210E73A;
-	Wed, 22 Oct 2025 10:14:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E031E10E725;
+	Wed, 22 Oct 2025 10:22:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lG0UOy/8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ICD6RTGR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E261910E736;
- Wed, 22 Oct 2025 10:14:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 465B010E069;
+ Wed, 22 Oct 2025 10:22:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761128045; x=1792664045;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=6vjn1H8rNiLOgQgAa18nhmtmVtmG907ZLx+q3HiuLqQ=;
- b=lG0UOy/8TSALBJWC5lgJIGj3yHKDBLilMyZ6e5Ziepbc11tXchn5cwXA
- rGWc41TJco8sAIgmNwBT9hXrDXd/VTQRodmW/pMj4Y3/+oRW5uaD+hTyK
- DpnsaNCKMYWQYbOC/Z4CwrnKPFLTVYb76AiOF0SKPeis9uaa7Lo8LHnKr
- sr1nEsUxVZWQpbrn+CD3Wf3ZhXBEYzgGFigfgoyUeVYBCgOEy5raLXvV9
- 5LKrRgLqyuTSfjjWiSSwtcEUj7Ni1tzlGbrNENezLr4vcm9aJUmoeaqkK
- xKJGoJ+nmpmWH8esc/ilYkdDBaCGvPDkEdTKRSLOXQ019yV81U9/SZmVM Q==;
-X-CSE-ConnectionGUID: MlXB5h0UROKeTVLCl8b6rQ==
-X-CSE-MsgGUID: me+yIIWKTf+BrIOZPb3bXQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="67135584"
-X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="67135584"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 03:14:04 -0700
-X-CSE-ConnectionGUID: 2+FicCQ3SYWK+M+zCq0wYw==
-X-CSE-MsgGUID: TqWbeSpjQhioYfAg0WFvtA==
+ t=1761128568; x=1792664568;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=M8fzZvn2TkbI77VsUuRslIDx11TNR7FYqz3t+eN01ig=;
+ b=ICD6RTGRaguZ4FT8TbIPjJ5qYQvaLKZk/56sbEFUS2SYECvmUO7wS0ee
+ +YO6jKE8atQOTFQCAIrFAV2qSSsaZsxqgMNqAAbn8rz3WrA4OwRarnXl3
+ oVmLUeYnrTkn3SORGuMW/cENBvBjNANe+AaD3NkYs34dEfgHmoCUjIy7+
+ 1BBHbvNwdF1as8L4Q4NJ8Zjkjyno4+vnF2x52Ho4Ky9KLJULxnv3fVRuH
+ afiTx37OBuwYiuPR4JW2Ye7+tQYENqlxClCbKId+F/cMd/uecJJqhm3CV
+ rmkFN6rDcuOJCJjFOlxrWh/SNOZTrnwQM9qlCBjoM+7Hk6rHIhQVAxliz g==;
+X-CSE-ConnectionGUID: Ml16TsnxQ2CxK+ZW9EZoVw==
+X-CSE-MsgGUID: TsI1l9qeRnG5tW4pISMCIA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="73876596"
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="73876596"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2025 03:22:48 -0700
+X-CSE-ConnectionGUID: 4v2J5rq6S9C4tANmGtZ4Zg==
+X-CSE-MsgGUID: 5CJE7kegQeeL7Txy+11fnw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="183004343"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.57])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 03:14:01 -0700
-Date: Wed, 22 Oct 2025 12:13:59 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="221029013"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.244.51])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2025 03:22:44 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: Andi Shyti <andi.shyti@kernel.org>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Thomas =?UTF-8?B?SGVsbHN0csO2bQ==?= <thomas.hellstrom@linux.intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>
-Subject: Re: [PATCH] drm/buddy: Mark drm_test_buddy_fragmentation_performance
- test as slow
-Message-ID: <aPiuZz4W5jj__n8g@ashyti-mobl2.lan>
-References: <20251021164341.6154-2-krzysztof.niemiec@intel.com>
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>
+Subject: Re: [PATCH v2 2/3] drm/i915: Wait longer for threads in migrate
+ selftest on CHV/BXT+VTD
+Date: Wed, 22 Oct 2025 12:22:41 +0200
+Message-ID: <3847115.MHq7AAxBmi@jkrzyszt-mobl2.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <fnrlush5qxoasswzyc7xqp35ewlyqjvvnk2ehfscfh4y5vyyga@j7pewlzaoms4>
+References: <20251014125504.14804-5-janusz.krzysztofik@linux.intel.com>
+ <20251014125504.14804-7-janusz.krzysztofik@linux.intel.com>
+ <fnrlush5qxoasswzyc7xqp35ewlyqjvvnk2ehfscfh4y5vyyga@j7pewlzaoms4>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251021164341.6154-2-krzysztof.niemiec@intel.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,22 +80,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Krzysztof,
+Hi Andi,
 
-On Tue, Oct 21, 2025 at 06:43:42PM +0200, Krzysztof Niemiec wrote:
-> Mark the newly introduced drm_test_buddy_fragmentation_performance test
-> as KUNIT_SPEED_SLOW, as it might take more than a second on some
-> systems.
+On Friday, 17 October 2025 10:45:23 CEST Andi Shyti wrote:
+> Hi Janusz,
 > 
-> Fixes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15095
+> > diff --git a/drivers/gpu/drm/i915/gt/selftest_migrate.c b/drivers/gpu/drm/
+i915/gt/selftest_migrate.c
+> > index 54bc447efce0b..cde755751a0ba 100644
+> > --- a/drivers/gpu/drm/i915/gt/selftest_migrate.c
+> > +++ b/drivers/gpu/drm/i915/gt/selftest_migrate.c
+> > @@ -710,7 +710,8 @@ static int threaded_migrate(struct intel_migrate 
+*migrate,
+> >  		thread[i].tsk = tsk;
+> >  	}
+> >  
+> > -	msleep(10 * n_cpus); /* start all threads before we kthread_stop() 
+*/
+> > +	/* start all threads before we kthread_stop() */
+> > +	msleep((intel_vm_no_concurrent_access_wa(migrate->context->vm->i915) 
+? 100 : 10) * n_cpus);
+> 
+> First question, why 100? Second question why not 100 for
+> everyone?
 
-This is Closes: not Fixes: and please don't add a blank line
-between tags.
+100ms because 10ms occurred too short on CHV / BXT+VTD with GGTT workarounds, 
+and I've empirically determined a sufficient delay of 100ms, as mentioned in 
+commit description.  Do you want me to add that information to the inline 
+comment as well?
 
-Please, next time in this path, Cc also:
+Not for everyone because 10ms has proven to be sufficient for platforms with 
+no CHV / BXT+VTD specific workarounds.  Do you want me to use a single value?
 
-  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-  Maxime Ripard <mripard@kernel.org>
-  Thomas Zimmermann <tzimmermann@suse.de>
+Thanks,
+Janusz
 
-Andi
+> 
+> Andi
+> 
+> >  	for (i = 0; i < n_cpus; ++i) {
+> >  		struct task_struct *tsk = thread[i].tsk;
+> 
+
+
+
+
