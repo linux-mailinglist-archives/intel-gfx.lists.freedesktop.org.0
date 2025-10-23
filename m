@@ -2,61 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ECE3C00F68
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Oct 2025 14:04:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35E40C01037
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Oct 2025 14:11:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A563B10E3E4;
-	Thu, 23 Oct 2025 12:04:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BCvQHVHU";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EFB610E3EF;
+	Thu, 23 Oct 2025 12:11:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA3F910E3E4;
- Thu, 23 Oct 2025 12:04:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761221080; x=1792757080;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=173NivRYlENfQA8nm85ut64V7vOQCRCxWLOT3Ao/ZiA=;
- b=BCvQHVHU10cnyHQAyASqyHDWWONO3pVMugGGP9TYh/VGt1G184a15dTk
- gTIzNpmVSte8utl7koC1foWhs+8WuZCjRas6cVjYYLAc1YcRobElQNeg8
- WiqMaux5kE0hggjvf1hSSum9t+KaN6b4O8xmjfdbLusjhPUOreVxxdDe+
- ugPtUAV1i96DIIwQVeq64efWdfgjCkeGqf3jdbss3FtJ7JoFv8Y5FeAF/
- 6jpTp2ouvhhNALl/dy6yEbSTRm7yBT35j7kgtxQFmwSCOhS8FW2kXho1v
- BHMHrYPptAmG+JSQOlv/dffVW+Kid/azvJtucm2Z0OxlcAKan2Wxq3WLC Q==;
-X-CSE-ConnectionGUID: 3Ib+tbyrQiqQdP9s3SjVLg==
-X-CSE-MsgGUID: xvi8zgLCTj6+Y0YXjXf88w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="81013477"
-X-IronPort-AV: E=Sophos;i="6.19,249,1754982000"; d="scan'208";a="81013477"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2025 05:04:40 -0700
-X-CSE-ConnectionGUID: lid6FonLT9SWIaGZOyDHOA==
-X-CSE-MsgGUID: s8wXthP2QlGBeefnu1hDOA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,249,1754982000"; d="scan'208";a="184530642"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.153])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2025 05:04:38 -0700
-Date: Thu, 23 Oct 2025 15:04:35 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jouni.hogander@intel.com
-Subject: Re: [PATCH] drm/i915/vrr: Fix transmission line for Adaptive Sync SDP
-Message-ID: <aPoZ05jth8oGvoGk@intel.com>
-References: <20251023081614.2645242-1-ankit.k.nautiyal@intel.com>
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CF6210E3F1;
+ Thu, 23 Oct 2025 12:11:52 +0000 (UTC)
+Received: from mobile-access-d98cd6-211.dhcp.inet.fi ([217.140.214.211]
+ helo=[192.168.8.139])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
+ id 1vBuAU-00000001lW7-1gh3; Thu, 23 Oct 2025 15:11:48 +0300
+Message-ID: <7628ac21165ad1ff73f4e829132cf8136ccf25df.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>, 
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, Mitul Golani
+ <mitulkumar.ajitkumar.golani@intel.com>
+Date: Thu, 23 Oct 2025 15:11:45 +0300
+In-Reply-To: <20251017161417.4399-2-ville.syrjala@linux.intel.com>
+References: <20251017161417.4399-1-ville.syrjala@linux.intel.com>
+ <20251017161417.4399-2-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-5 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251023081614.2645242-1-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-25) on farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+ autolearn=ham autolearn_force=no version=4.0.1
+Subject: Re: [PATCH 1/9] drm/i915/scaler: Don't clobber plane scaler scale
+ factors with pfit scale factors
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,74 +52,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 23, 2025 at 01:46:14PM +0530, Ankit Nautiyal wrote:
-> Currently the EMP_AS_SDP_TL is set to vrr.vsync_start which is
-> incorrect.
-> 
-> As per Bspec:71197 the transmission line must be within the SCL +
-> guardband region. Before guardband optimization, guradband was same as
-> vblank length so EMP_AS_SDP_TL set with vrr.sync_start was falling in
-> this region and it was not giving an issue.
-> 
-> Now with optimized guardband, this is falling outside the SCL +
-> guardband region and since the same transmission line is used by VSC SDP
-> also, this results in PSR timeout issues.
-> 
-> Further restrictions on the position of the transmission line:
-> For DP/eDP, if there is a set context latency (SCL) window, then it
-> cannot be the first line of SCL
-> For DP/eDP, if there is no SCL window, then it cannot be the first line of
-> the Delayed V. Blank
-> 
-> Fix the EMP_AS_SDP_TL to VTOTAL - (delayed vblank_start - SCL + 1)
-> Internally the HW computes the value as VTOTAL - EMP_AS_SDP_TL.
-> 
-> Fixes: e1123e617e51 ("drm/i915/vrr: Program EMP_AS_SDP_TL for DP AS SDP")
-> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Cc: Jouni Högander <jouni.hogander@intel.com>
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+On Fri, 2025-10-17 at 19:14 +0300, Ville Syrjala wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>=20
+> When intel_atomic_setup_scaler() is called for a plane scaler
+> it first computes the scale factors correctly, and then (if
+> pfit is enabled on the pipe) it overwrites them with the pfit
+> scale factors.
+>=20
+> Skip the pfit scaler stuff when intel_atomic_setup_scaler()
+> is called for a plane scaler (plane_state !=3D NULL).
+>=20
+> Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+> Fixes: 9217f9aaef62 ("drm/i915/scaler: Compute scaling factors for pipe s=
+caler")
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_vrr.c | 12 +++++++++---
->  1 file changed, 9 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index 92fb72b56f16..dd81d2133aba 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -655,18 +655,24 @@ void intel_vrr_set_db_point_and_transmission_line(const struct intel_crtc_state
->  {
->  	struct intel_display *display = to_intel_display(crtc_state);
->  	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> +	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-> +	int transmission_line;
->  
->  	/*
->  	 * For BMG and LNL+ onwards the EMP_AS_SDP_TL is used for programming
->  	 * double buffering point and transmission line for VRR packets for
->  	 * HDMI2.1/DP/eDP/DP->HDMI2.1 PCON.
->  	 * Since currently we support VRR only for DP/eDP, so this is programmed
-> -	 * to for Adaptive Sync SDP to Vsync start.
-> +	 * for Adaptive Sync SDP.
->  	 */
-> -	if (DISPLAY_VERx100(display) == 1401 || DISPLAY_VER(display) >= 20)
-> +	if (DISPLAY_VERx100(display) == 1401 || DISPLAY_VER(display) >= 20) {
-> +		transmission_line = adjusted_mode->crtc_vtotal - (adjusted_mode->crtc_vblank_start -
-> +								  crtc_state->set_context_latency +
-> +								  1);
->  		intel_de_write(display,
->  			       EMP_AS_SDP_TL(display, cpu_transcoder),
-> -			       EMP_AS_SDP_DB_TL(crtc_state->vrr.vsync_start));
-> +			       EMP_AS_SDP_DB_TL(transmission_line));
-> +	}
 
-Pretty sure we are expected to send it at vsync_start.
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
->  }
->  
->  static int intel_vrr_hw_vmin(const struct intel_crtc_state *crtc_state)
-> -- 
-> 2.45.2
+--
+Cheers,
+Luca.
 
--- 
-Ville Syrjälä
-Intel
+
+>  drivers/gpu/drm/i915/display/skl_scaler.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/=
+i915/display/skl_scaler.c
+> index d29efcbf2319..640c65818f8a 100644
+> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
+> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+> @@ -464,7 +464,7 @@ static int intel_atomic_setup_scaler(struct intel_crt=
+c_state *crtc_state,
+>  		}
+>  	}
+> =20
+> -	if (crtc_state->pch_pfit.enabled) {
+> +	if (!plane_state && crtc_state->pch_pfit.enabled) {
+>  		struct drm_rect src;
+>  		int max_hscale, max_vscale;
+> =20
