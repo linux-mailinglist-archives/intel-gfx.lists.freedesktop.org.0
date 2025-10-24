@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17E4CC057FB
+	by mail.lfdr.de (Postfix) with ESMTPS id 54549C057FC
 	for <lists+intel-gfx@lfdr.de>; Fri, 24 Oct 2025 12:08:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F53D10EA2D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A79A610EA2F;
 	Fri, 24 Oct 2025 10:08:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RjXC9H06";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iD616mbt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C51810EA28;
- Fri, 24 Oct 2025 10:07:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECA0B10EA2D;
+ Fri, 24 Oct 2025 10:07:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761300477; x=1792836477;
+ t=1761300480; x=1792836480;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dJJfV+pmf6RVfPK28x4zZ+VZ32cSC/NtOQ5XWaYDxaQ=;
- b=RjXC9H06E3qEQB63Kc1g0Vf5hLmQZak07ypv7qarUotGNwAhDdRj/b3B
- v9ZrI9Nofb8H+dzP7bBlrV1J24Dlv49necPLYC2bDlZGjqOml30Xcz9MC
- ZxCDQqj1A8ZWbg/UMeRZiuAfGTSfy8clRj5ChU+OgOZ0NQeJySaKOu9dQ
- /8yhejmROCqxnToA/luO3TZbZ2bCxR6pECpSfr/ijs/rfJOb2Ga0R5haX
- 5ZTngPTAXPm4YuNpfRg/GgVXWiU7zaD8VhG7U0DQ3lqSCjaOFoZ9VobkU
- u91W21Q6NbhPPzRF2AKCh06F2+dS6o2yDplfLpWiNa+TiuE8rh/P9+t1d w==;
-X-CSE-ConnectionGUID: NkA3dykARt+zEvu1Q3xHow==
-X-CSE-MsgGUID: UdyRmvcVRHORnuq5D+QcRg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="67346824"
-X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="67346824"
+ bh=5wT9VWm3I4CvrTLJcV8sZE0+ym0XjAlNQ1tOGhdZB5E=;
+ b=iD616mbtDGroLNliH52RAs70Yvk8+xFfIrT0RsN7j9RUAJ8PvLEuDuPW
+ T5ve6454nVfGUm/HEwSMZ9LFBfnqQ+PPssW4LiaGO1fVeDb0Q4gJcWTuq
+ p5ZPaGnj1CnPpQe8gZ+2qqJGxjRgTtFPbtMXvoQ43TN57/7ND9oQh/MWs
+ Zctw5t1dDcJ0S4ldJFWjH9VlgG0WE3qAjabXZ8EPOka/bw8MG1zXVB3t/
+ 1JHvHkDz77Gwz8ni4Z1CaL14I40U2neTXMOdJE+y19Q9JRA6OYmqcNLXA
+ GE8t5B7uhb8mZizKn0qf5pWFNrSucifCTpXXJl1B3LQkGb2+Y2KbHSKRq Q==;
+X-CSE-ConnectionGUID: pjt6DAy9S+asz6nZXNbW+Q==
+X-CSE-MsgGUID: +qUz4xwLSF+qOON4k0YTTg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="67346826"
+X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="67346826"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2025 03:07:57 -0700
-X-CSE-ConnectionGUID: mWstu2gEQEi+LI+cbwIq6w==
-X-CSE-MsgGUID: h7wQw6y5TB668pYQOU16gQ==
+ 24 Oct 2025 03:07:59 -0700
+X-CSE-ConnectionGUID: 8p/6JqZaSj2qrWyDXOuEmQ==
+X-CSE-MsgGUID: /UTTQ0peQHqzNxWglqBbDg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="208039269"
+X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="208039276"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa002.fm.intel.com with ESMTP; 24 Oct 2025 03:07:54 -0700
+ by fmviesa002.fm.intel.com with ESMTP; 24 Oct 2025 03:07:57 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, uma.shankar@intel.com,
  gustavo.sousa@intel.com, lucas.demarchi@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v2 13/26] drm/i915/ltphy: Program the P2P Transaction flow for
- LT Phy
-Date: Fri, 24 Oct 2025 15:36:59 +0530
-Message-Id: <20251024100712.3776261-14-suraj.kandpal@intel.com>
+Subject: [PATCH v2 14/26] drm/i915/ltphy: Program the rest of the
+ PORT_CLOCK_CTL steps
+Date: Fri, 24 Oct 2025 15:37:00 +0530
+Message-Id: <20251024100712.3776261-15-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251024100712.3776261-1-suraj.kandpal@intel.com>
 References: <20251024100712.3776261-1-suraj.kandpal@intel.com>
@@ -70,277 +70,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Program the LT PHY P2P transaction which uses P2M cycle to get
-get data fro Phy when it is ready and then go read the MAC register
-from the MAC address space.
+Program the rest of the steps with regards to PORT_CLOCK_CTL in
+Non-TBT PLL enable sequence.
 
-Bspec: 68966, 74497, 74483, 74500
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
-V1 -> V2: Update the comment for udelay added (Arun)
----
- drivers/gpu/drm/i915/display/intel_cx0_phy.c  |  10 +-
- drivers/gpu/drm/i915/display/intel_cx0_phy.h  |   5 +
- .../gpu/drm/i915/display/intel_cx0_phy_regs.h |   1 +
- drivers/gpu/drm/i915/display/intel_lt_phy.c   | 116 ++++++++++++++++++
- .../gpu/drm/i915/display/intel_lt_phy_regs.h  |  15 +++
- 5 files changed, 142 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_lt_phy.c   | 25 +++++++++++++++++++
+ .../gpu/drm/i915/display/intel_lt_phy_regs.h  |  1 +
+ 2 files changed, 26 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 00c6bac55872..d0f44594f21d 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -125,8 +125,8 @@ static void intel_cx0_phy_transaction_end(struct intel_encoder *encoder, intel_w
- 	intel_display_power_put(display, POWER_DOMAIN_DC_OFF, wakeref);
- }
- 
--static void intel_clear_response_ready_flag(struct intel_encoder *encoder,
--					    int lane)
-+void intel_clear_response_ready_flag(struct intel_encoder *encoder,
-+				     int lane)
- {
- 	struct intel_display *display = to_intel_display(encoder);
- 
-@@ -135,7 +135,7 @@ static void intel_clear_response_ready_flag(struct intel_encoder *encoder,
- 		     0, XELPDP_PORT_P2M_RESPONSE_READY | XELPDP_PORT_P2M_ERROR_SET);
- }
- 
--static void intel_cx0_bus_reset(struct intel_encoder *encoder, int lane)
-+void intel_cx0_bus_reset(struct intel_encoder *encoder, int lane)
- {
- 	struct intel_display *display = to_intel_display(encoder);
- 	enum port port = encoder->port;
-@@ -156,8 +156,8 @@ static void intel_cx0_bus_reset(struct intel_encoder *encoder, int lane)
- 	intel_clear_response_ready_flag(encoder, lane);
- }
- 
--static int intel_cx0_wait_for_ack(struct intel_encoder *encoder,
--				  int command, int lane, u32 *val)
-+int intel_cx0_wait_for_ack(struct intel_encoder *encoder,
-+			   int command, int lane, u32 *val)
- {
- 	struct intel_display *display = to_intel_display(encoder);
- 	enum port port = encoder->port;
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-index 283be36d5dff..a5446686b23b 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-@@ -22,6 +22,8 @@ struct intel_display;
- struct intel_encoder;
- struct intel_hdmi;
- 
-+void intel_clear_response_ready_flag(struct intel_encoder *encoder,
-+				     int lane);
- bool intel_encoder_is_c10phy(struct intel_encoder *encoder);
- void intel_mtl_pll_enable(struct intel_encoder *encoder,
- 			  const struct intel_crtc_state *crtc_state);
-@@ -53,6 +55,9 @@ u8 intel_cx0_read(struct intel_encoder *encoder,
- 		  u8 lane_mask, u16 addr);
- void intel_cx0_write(struct intel_encoder *encoder,
- 		     u8 lane_mask, u16 addr, u8 data, bool committed);
-+int intel_cx0_wait_for_ack(struct intel_encoder *encoder,
-+			   int command, int lane, u32 *val);
-+void intel_cx0_bus_reset(struct intel_encoder *encoder, int lane);
- int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder);
- void intel_cx0_pll_power_save_wa(struct intel_display *display);
- void intel_lnl_mac_transmit_lfps(struct intel_encoder *encoder,
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-index 93bed6b0bda1..635b35669348 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-@@ -50,6 +50,7 @@
- #define   XELPDP_PORT_M2P_COMMAND_WRITE_UNCOMMITTED	REG_FIELD_PREP(XELPDP_PORT_M2P_COMMAND_TYPE_MASK, 0x1)
- #define   XELPDP_PORT_M2P_COMMAND_WRITE_COMMITTED	REG_FIELD_PREP(XELPDP_PORT_M2P_COMMAND_TYPE_MASK, 0x2)
- #define   XELPDP_PORT_M2P_COMMAND_READ			REG_FIELD_PREP(XELPDP_PORT_M2P_COMMAND_TYPE_MASK, 0x3)
-+#define   XELPDP_PORT_P2P_TRANSACTION_PENDING		REG_BIT(24)
- #define   XELPDP_PORT_M2P_DATA_MASK			REG_GENMASK(23, 16)
- #define   XELPDP_PORT_M2P_DATA(val)			REG_FIELD_PREP(XELPDP_PORT_M2P_DATA_MASK, val)
- #define   XELPDP_PORT_M2P_TRANSACTION_RESET		REG_BIT(15)
 diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index c7a109e4422c..281f4c5eb4a1 100644
+index 281f4c5eb4a1..1b2d373e05ba 100644
 --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -20,6 +20,10 @@
- #include "intel_psr.h"
- #include "intel_tc.h"
- 
-+#define for_each_lt_phy_lane_in_mask(__lane_mask, __lane) \
-+	for ((__lane) = 0; (__lane) < 2; (__lane)++) \
-+		for_each_if((__lane_mask) & BIT(__lane))
-+
- #define INTEL_LT_PHY_LANE0		BIT(0)
- #define INTEL_LT_PHY_LANE1		BIT(1)
- #define INTEL_LT_PHY_BOTH_LANES		(INTEL_LT_PHY_LANE1 |\
-@@ -1000,6 +1004,114 @@ static void intel_lt_phy_write(struct intel_encoder *encoder,
- 	intel_cx0_write(encoder, lane_mask, addr, data, committed);
- }
- 
-+static void intel_lt_phy_clear_status_p2p(struct intel_encoder *encoder,
-+					  int lane)
-+{
-+	struct intel_display *display = to_intel_display(encoder);
-+
-+	intel_de_rmw(display,
-+		     XE3PLPD_PORT_P2M_MSGBUS_STATUS_P2P(encoder->port, lane),
-+		     XELPDP_PORT_P2M_RESPONSE_READY, 0);
-+}
-+
-+static void
-+assert_dc_off(struct intel_display *display)
-+{
-+	bool enabled;
-+
-+	enabled = intel_display_power_is_enabled(display, POWER_DOMAIN_DC_OFF);
-+	drm_WARN_ON(display->drm, !enabled);
-+}
-+
-+static int __intel_lt_phy_p2p_write_once(struct intel_encoder *encoder,
-+					 int lane, u16 addr, u8 data,
-+					 i915_reg_t mac_reg_addr,
-+					 u8 expected_mac_val)
-+{
-+	struct intel_display *display = to_intel_display(encoder);
+@@ -1489,6 +1489,8 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
+ 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+ 	bool lane_reversal = dig_port->lane_reversal;
+ 	u8 owned_lane_mask = intel_lt_phy_get_owned_lane_mask(encoder);
++	enum phy phy = intel_encoder_to_phy(encoder);
 +	enum port port = encoder->port;
-+	enum phy phy = intel_encoder_to_phy(encoder);
-+	int ack;
-+	u32 val;
-+
-+	if (intel_de_wait_for_clear(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port, lane),
-+				    XELPDP_PORT_P2P_TRANSACTION_PENDING,
-+				    XELPDP_MSGBUS_TIMEOUT_SLOW)) {
-+		drm_dbg_kms(display->drm,
-+			    "PHY %c Timeout waiting for previous transaction to complete. Resetting bus.\n",
-+			    phy_name(phy));
-+		intel_cx0_bus_reset(encoder, lane);
-+		return -ETIMEDOUT;
-+	}
-+
-+	intel_de_rmw(display, XELPDP_PORT_P2M_MSGBUS_STATUS(display, port, lane), 0, 0);
-+
-+	intel_de_write(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port, lane),
-+		       XELPDP_PORT_P2P_TRANSACTION_PENDING |
-+		       XELPDP_PORT_M2P_COMMAND_WRITE_COMMITTED |
-+		       XELPDP_PORT_M2P_DATA(data) |
-+		       XELPDP_PORT_M2P_ADDRESS(addr));
-+
-+	ack = intel_cx0_wait_for_ack(encoder, XELPDP_PORT_P2M_COMMAND_WRITE_ACK, lane, &val);
-+	if (ack < 0)
-+		return ack;
-+
-+	if (val & XELPDP_PORT_P2M_ERROR_SET) {
-+		drm_dbg_kms(display->drm,
-+			    "PHY %c Error occurred during P2P write command. Status: 0x%x\n",
-+			    phy_name(phy), val);
-+		intel_lt_phy_clear_status_p2p(encoder, lane);
-+		intel_cx0_bus_reset(encoder, lane);
-+		return -EINVAL;
-+	}
-+
-+	/*
-+	 * This needs to be added to give PHY time to set everything up this was a requirement
-+	 * to get the display up and running
-+	 * This is the time PHY takes to settle down after programming the PHY.
-+	 */
-+	udelay(150);
-+	intel_clear_response_ready_flag(encoder, lane);
-+	intel_lt_phy_clear_status_p2p(encoder, lane);
-+
-+	return 0;
-+}
-+
-+static void __intel_lt_phy_p2p_write(struct intel_encoder *encoder,
-+				     int lane, u16 addr, u8 data,
-+				     i915_reg_t mac_reg_addr,
-+				     u8 expected_mac_val)
-+{
-+	struct intel_display *display = to_intel_display(encoder);
-+	enum phy phy = intel_encoder_to_phy(encoder);
-+	int i, status;
-+
-+	assert_dc_off(display);
-+
-+	/* 3 tries is assumed to be enough to write successfully */
-+	for (i = 0; i < 3; i++) {
-+		status = __intel_lt_phy_p2p_write_once(encoder, lane, addr, data, mac_reg_addr,
-+						       expected_mac_val);
-+
-+		if (status == 0)
-+			return;
-+	}
-+
-+	drm_err_once(display->drm,
-+		     "PHY %c P2P Write %04x failed after %d retries.\n", phy_name(phy), addr, i);
-+}
-+
-+static void intel_lt_phy_p2p_write(struct intel_encoder *encoder,
-+				   u8 lane_mask, u16 addr, u8 data,
-+				   i915_reg_t mac_reg_addr,
-+				   u8 expected_mac_val)
-+{
-+	int lane;
-+
-+	for_each_lt_phy_lane_in_mask(lane_mask, lane)
-+		__intel_lt_phy_p2p_write(encoder, lane, addr, data, mac_reg_addr, expected_mac_val);
-+}
-+
- static void
- intel_lt_phy_setup_powerdown(struct intel_encoder *encoder, u8 lane_count)
- {
-@@ -1412,6 +1524,10 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
- 		 * register at offset 0xC00 for Owned PHY Lanes*.
- 		 */
- 		/* 6.3. Clear P2P transaction Ready bit. */
-+		intel_lt_phy_p2p_write(encoder, owned_lane_mask, LT_PHY_RATE_UPDATE,
-+				       LT_PHY_RATE_CONTROL_VDR_UPDATE, LT_PHY_MAC_VDR,
-+				       LT_PHY_PCLKIN_GATE);
-+
+ 	intel_wakeref_t wakeref = 0;
+ 
+ 	wakeref = intel_lt_phy_transaction_begin(encoder);
+@@ -1529,19 +1531,42 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
+ 				       LT_PHY_PCLKIN_GATE);
+ 
  		/* 7. Program PORT_CLOCK_CTL[PCLK PLL Request LN0] = 0. */
++		intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, port),
++			     XELPDP_LANE_PCLK_PLL_REQUEST(0), 0);
++
  		/* 8. Poll for PORT_CLOCK_CTL[PCLK PLL Ack LN0]= 0. */
++		if (intel_de_wait_custom(display, XELPDP_PORT_CLOCK_CTL(display, port),
++					 XELPDP_LANE_PCLK_PLL_ACK(0), 0,
++					 XE3PLPD_MACCLK_TURNOFF_LATENCY_US, 0, NULL))
++			drm_warn(display->drm, "PHY %c PLL MacCLK Ack deassertion Timeout after %dus.\n",
++				 phy_name(phy), XE3PLPD_MACCLK_TURNOFF_LATENCY_US);
++
  		/*
+ 		 * 9. Follow the Display Voltage Frequency Switching - Sequence Before Frequency
+ 		 * Change. We handle this step in bxt_set_cdclk().
+ 		 */
+ 		/* 10. Program DDI_CLK_VALFREQ to match intended DDI clock frequency. */
+ 		/* 11. Program PORT_CLOCK_CTL[PCLK PLL Request LN0] = 1. */
++		intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, port),
++			     XELPDP_LANE_PCLK_PLL_REQUEST(0),
++			     XELPDP_LANE_PCLK_PLL_REQUEST(0));
++
+ 		/* 12. Poll for PORT_CLOCK_CTL[PCLK PLL Ack LN0]= 1. */
++		if (intel_de_wait_custom(display, XELPDP_PORT_CLOCK_CTL(display, port),
++					 XELPDP_LANE_PCLK_PLL_ACK(0),
++					 XELPDP_LANE_PCLK_PLL_ACK(0),
++					 XE3PLPD_MACCLK_TURNON_LATENCY_US, 2, NULL))
++			drm_warn(display->drm, "PHY %c PLL MacCLK Ack assertion Timeout after %dus.\n",
++				 phy_name(phy), XE3PLPD_MACCLK_TURNON_LATENCY_US);
+ 	} else {
+ 		intel_de_write(display, DDI_CLK_VALFREQ(encoder->port), crtc_state->port_clock);
+ 	}
+ 
+ 	/* 13. Ungate the forward clock by setting PORT_CLOCK_CTL[Forward Clock Ungate] = 1. */
++	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, port),
++		     XELPDP_FORWARD_CLOCK_UNGATE,
++		     XELPDP_FORWARD_CLOCK_UNGATE);
++
+ 	/* 14. SW clears PORT_BUF_CTL2 [PHY Pulse Status]. */
+ 	/*
+ 	 * 15. Clear the PHY VDR register 0xCC4[Rate Control VDR Update] over PHY message bus for
 diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-index 8bc25a564300..eb3a3dd53ab8 100644
+index eb3a3dd53ab8..06829ab28b7c 100644
 --- a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
 +++ b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-@@ -6,12 +6,17 @@
- #ifndef __INTEL_LT_PHY_REGS_H__
- #define __INTEL_LT_PHY_REGS_H__
- 
-+#define XE3PLPD_MSGBUS_TIMEOUT_FAST_US	500
+@@ -9,6 +9,7 @@
+ #define XE3PLPD_MSGBUS_TIMEOUT_FAST_US	500
  #define XE3PLPD_MACCLK_TURNON_LATENCY_MS	1
  #define XE3PLPD_MACCLK_TURNON_LATENCY_US	21
++#define XE3PLPD_MACCLK_TURNOFF_LATENCY_US	1
  #define XE3PLPD_RATE_CALIB_DONE_LATENCY_US	50
  #define XE3PLPD_RESET_START_LATENCY_US	10
  #define XE3PLPD_RESET_END_LATENCY_US		200
- 
-+/* LT Phy MAC Register */
-+#define LT_PHY_MAC_VDR			_MMIO(0xC00)
-+#define    LT_PHY_PCLKIN_GATE		REG_BIT8(0)
-+
- /* LT Phy Vendor Register */
- #define LT_PHY_VDR_0_CONFIG	0xC02
- #define  LT_PHY_VDR_DP_PLL_ENABLE	REG_BIT(7)
-@@ -26,6 +31,7 @@
- #define LT_PHY_VDR_X_DATAY(idx, y)	((0xC06 + (3 - (y))) + 0x6 * (idx))
- 
- #define LT_PHY_RATE_UPDATE		0xCC4
-+#define    LT_PHY_RATE_CONTROL_VDR_UPDATE	REG_BIT8(0)
- 
- #define _XE3PLPD_PORT_BUF_CTL5(idx)	_MMIO(_PICK_EVEN_2RANGES(idx, PORT_TC1, \
- 								 _XELPDP_PORT_BUF_CTL1_LN0_A, \
-@@ -38,4 +44,13 @@
- #define  XE3PLPD_MACCLK_RATE_MASK	REG_GENMASK(4, 0)
- #define  XE3PLPD_MACCLK_RATE_DEF	REG_FIELD_PREP(XE3PLPD_MACCLK_RATE_MASK, 0x1F)
- 
-+#define _XE3PLPD_PORT_P2M_MSGBUS_STATUS_P2P(idx, lane)	_MMIO(_PICK_EVEN_2RANGES(idx, PORT_TC1, \
-+										 _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_A, \
-+										 _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_B, \
-+										 _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_USBC1, \
-+										 _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_USBC2) \
-+										 + 0x60 + (lane) * 0x4)
-+#define XE3PLPD_PORT_P2M_MSGBUS_STATUS_P2P(port, lane)	 _XE3PLPD_PORT_P2M_MSGBUS_STATUS_P2P(__xe2lpd_port_idx(port), \
-+											    lane)
-+#define   XE3LPD_PORT_P2M_ADDR_MASK			REG_GENMASK(11, 0)
- #endif /* __INTEL_LT_PHY_REGS_H__ */
 -- 
 2.34.1
 
