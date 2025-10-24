@@ -2,60 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D8D6C05092
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Oct 2025 10:26:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C59EC051CD
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Oct 2025 10:43:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1AEF10E18B;
-	Fri, 24 Oct 2025 08:26:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CF5C10E0DB;
+	Fri, 24 Oct 2025 08:43:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rx6CyoFx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ciEJ8QwF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD50F10E0DB;
- Fri, 24 Oct 2025 08:26:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 144A010E0DB;
+ Fri, 24 Oct 2025 08:43:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761294384; x=1792830384;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=nDxsXYvOLaVYadygPORyUldWw7uirMClbyOXL1yZ3yw=;
- b=Rx6CyoFxVmXlrP9IidKwHJejL7IuNXpFIC+7yfOFpOQPHt0d8ts/9vBi
- gqTRbfS1jiwi61rubaDuDGBAnn81mF0B9iYs7WpKiNZ39jtF/3e3Hw6l0
- 8PZeAvBxkDWNCmt7YSBAZCrWTYmYB+zUylVR583lV3NxWhEpCak+5kJ7P
- N0YUhBjFu0MnAEsfpD4rHYshza8BrYmZep2Sx7NW6F7mYZPsEFqeq+WvA
- 8LBCoVCmYEopLyrllRxPSsH/MC3ir1nuc3uGb004Qp9r5Nf21/GEhJ3eN
- x3cmaDx7fzNACIQHIIXdl3+dyOBVNVjvHlkQ3qdKdDstyn2oCnC9Infc/ A==;
-X-CSE-ConnectionGUID: n6GuWsHMSNO1z6F2VOKJzA==
-X-CSE-MsgGUID: W7nYsZzHRhyLb/jiC013+Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74819359"
-X-IronPort-AV: E=Sophos;i="6.19,251,1754982000"; d="scan'208";a="74819359"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2025 01:26:23 -0700
-X-CSE-ConnectionGUID: vnWfFM2ARSqy9Hg1WnnnQw==
-X-CSE-MsgGUID: zipVqwhxSCqpY4r+OKQXog==
+ t=1761295382; x=1792831382;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=LACkC+L6J9O+hWVwPvWofIf+pqpRxLY3HZylSVRsaZQ=;
+ b=ciEJ8QwFCMo4mScbf8nV/L37dDzG9UwClo2J5dx+ZTK2Ed087Fzqw8CB
+ YK3lpHElp/pbLvv3TeNLUFnr9/EqnNbCP0RImXTcx1VrFdnuaBKPhpTkq
+ OEhPgQEsp9HsdVAn/vwZR5Sg/DiaNMHVy3BaCxLPsB5NG72qpacheHjQN
+ 6l/PVaaTGXTA8amfxS16/5B6+uwFpuflNpICvtrC2Whir2vgYVExpwfED
+ mbbuxIo7krcRukBh/LUiwfSUW9FFEacd0AzYo6ae7hJkJhXSEgPU/BrBv
+ KlAFXrMFNtTJQIzicr5ob0QPruO7PlGFdtBARqpPZimBEwcYDXJ3snZgt Q==;
+X-CSE-ConnectionGUID: +ionEYoPRnulo30a5/sJtg==
+X-CSE-MsgGUID: eFx6YdqSRMGBvC6305LjiQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63178858"
+X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="63178858"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2025 01:43:02 -0700
+X-CSE-ConnectionGUID: 5mUcvLfDTKWMqHEA78JhEg==
+X-CSE-MsgGUID: eDZlIxTsTTSsE21hMleSyw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,251,1754982000"; d="scan'208";a="183551085"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.231])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2025 01:26:23 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: I915-ci-infra@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: =?UTF-8?B?4pyX?= i915.CI.Full: failure for drm/i915: Avoid lock
- inversion when pinning to GGTT (rev3)
-Date: Fri, 24 Oct 2025 10:26:20 +0200
-Message-ID: <2251275.Icojqenx9y@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <176128046833.49991.14877943513710466398@97596180aaec>
-References: <20251023082925.351307-5-janusz.krzysztofik@linux.intel.com>
- <176128046833.49991.14877943513710466398@97596180aaec>
+X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="215302231"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.230])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2025 01:42:59 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Jouni
+ =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>, Maarten Lankhorst
+ <maarten@lankhorst.se>
+Subject: Re: [PATCH v2] drm/{i915,xe}/fbdev: add intel_fbdev_fb_pitch_align()
+In-Reply-To: <aPkEHv4iCGjYi2AC@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251022161054.708388-1-jani.nikula@intel.com>
+ <aPkEHv4iCGjYi2AC@intel.com>
+Date: Fri, 24 Oct 2025 11:42:57 +0300
+Message-ID: <64b17e1cfe060e4d2d4fa51019129bd54f277857@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,69 +72,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi I915-ci-infra@lists.freedesktop.org,
+On Wed, 22 Oct 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Wed, Oct 22, 2025 at 07:10:54PM +0300, Jani Nikula wrote:
+>> For reasons still unknown, xe appears to require a stride alignment of
+>> XE_PAGE_SIZE, and using 64 leads to sporadic failures. Go back to having
+>> separate stride alignment for i915 and xe, until the issue is root
+>> caused.
+>>=20
+>> v2: Add FIXME comment, reference issue with Link (Ville)
+>>=20
+>> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> Cc: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+>> Cc: Maarten Lankhorst <maarten@lankhorst.se>
+>> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6220
+>> Fixes: 4a36b339a14a ("drm/xe/fbdev: use the same 64-byte stride alignmen=
+t as i915")
+>> Link: https://lore.kernel.org/r/ae51d1e224048bdc87bf7a56d8f5ebd0fbb6a383=
+.1756931441.git.jani.nikula@intel.com
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-On Friday, 24 October 2025 06:34:28 CEST Patchwork wrote:
-> == Series Details ==
-> 
-> Series: drm/i915: Avoid lock inversion when pinning to GGTT (rev3)
-> URL   : https://patchwork.freedesktop.org/series/155622/
-> State : failure
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from CI_DRM_17414_full -> Patchwork_155622v3_full
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **FAILURE**
-> 
->   Serious unknown changes coming with Patchwork_155622v3_full absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in Patchwork_155622v3_full, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
->   to document this new failure mode, which will reduce false positives in CI.
-> 
->   
-> 
-> Participating hosts (11 -> 11)
-> ------------------------------
-> 
->   No changes in participating hosts
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in Patchwork_155622v3_full:
-> 
-> ### IGT changes ###
-> 
-> #### Possible regressions ####
-> 
->   * igt@kms_setmode@basic:
->     - shard-rkl:          [PASS][1] -> [FAIL][2]
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17414/shard-rkl-5/igt@kms_setmode@basic.html
->    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155622v3/shard-rkl-2/igt@kms_setmode@basic.html
-> 
->   * igt@kms_setmode@basic@pipe-a-hdmi-a-1:
->     - shard-rkl:          NOTRUN -> [FAIL][3] +1 other test fail
->    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155622v3/shard-rkl-2/igt@kms_setmode@basic@pipe-a-hdmi-a-1.html
+Thanks, pushed.
 
-Changes tested in this pre-merge run can only affect CHV and BXT platforms, 
-then the above potential regressions are not related.  Please update filters 
-and re-report.
-
-Thanks,
-Janusz
-
-> 
->   
-> Known issues
-> ------------
-...
+Now Someone(tm) only needs to get at the bottom of this.
 
 
+BR,
+Jani.
 
+>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_fbdev.c    |  2 +-
+>>  drivers/gpu/drm/i915/display/intel_fbdev_fb.c |  5 +++++
+>>  drivers/gpu/drm/i915/display/intel_fbdev_fb.h |  3 +++
+>>  drivers/gpu/drm/xe/display/intel_fbdev_fb.c   | 11 +++++++++++
+>>  4 files changed, 20 insertions(+), 1 deletion(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/dr=
+m/i915/display/intel_fbdev.c
+>> index 51d3d87caf43..d5c001761aa0 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+>> @@ -218,7 +218,7 @@ static void intel_fbdev_fill_mode_cmd(struct drm_fb_=
+helper_surface_size *sizes,
+>>  	mode_cmd->width =3D sizes->surface_width;
+>>  	mode_cmd->height =3D sizes->surface_height;
+>>=20=20
+>> -	mode_cmd->pitches[0] =3D ALIGN(mode_cmd->width * DIV_ROUND_UP(sizes->s=
+urface_bpp, 8), 64);
+>> +	mode_cmd->pitches[0] =3D intel_fbdev_fb_pitch_align(mode_cmd->width * =
+DIV_ROUND_UP(sizes->surface_bpp, 8));
+>>  	mode_cmd->pixel_format =3D drm_mode_legacy_fb_format(sizes->surface_bp=
+p,
+>>  							   sizes->surface_depth);
+>>  	mode_cmd->modifier[0] =3D DRM_FORMAT_MOD_LINEAR;
+>> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c b/drivers/gpu=
+/drm/i915/display/intel_fbdev_fb.c
+>> index 56b145841473..0838fdd37254 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
+>> @@ -10,6 +10,11 @@
+>>  #include "i915_drv.h"
+>>  #include "intel_fbdev_fb.h"
+>>=20=20
+>> +u32 intel_fbdev_fb_pitch_align(u32 stride)
+>> +{
+>> +	return ALIGN(stride, 64);
+>> +}
+>> +
+>>  struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm,=
+ int size)
+>>  {
+>>  	struct drm_i915_private *dev_priv =3D to_i915(drm);
+>> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h b/drivers/gpu=
+/drm/i915/display/intel_fbdev_fb.h
+>> index 1fa44ed28543..fd0b3775dc1f 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
+>> @@ -6,12 +6,15 @@
+>>  #ifndef __INTEL_FBDEV_FB_H__
+>>  #define __INTEL_FBDEV_FB_H__
+>>=20=20
+>> +#include <linux/types.h>
+>> +
+>>  struct drm_device;
+>>  struct drm_gem_object;
+>>  struct drm_mode_fb_cmd2;
+>>  struct fb_info;
+>>  struct i915_vma;
+>>=20=20
+>> +u32 intel_fbdev_fb_pitch_align(u32 stride);
+>>  struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm,=
+ int size);
+>>  void intel_fbdev_fb_bo_destroy(struct drm_gem_object *obj);
+>>  int intel_fbdev_fb_fill_info(struct drm_device *drm, struct fb_info *in=
+fo,
+>> diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c b/drivers/gpu/d=
+rm/xe/display/intel_fbdev_fb.c
+>> index af72f7305e5a..7ad76022cb14 100644
+>> --- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+>> +++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+>> @@ -12,6 +12,17 @@
+>>=20=20
+>>  #include <generated/xe_device_wa_oob.h>
+>>=20=20
+>> +/*
+>> + * FIXME: There shouldn't be any reason to have XE_PAGE_SIZE stride
+>> + * alignment. The same 64 as i915 uses should be fine, and we shouldn't=
+ need to
+>> + * have driver specific values. However, dropping the stride alignment =
+to 64
+>> + * leads to underflowing the bo pin count in the atomic cleanup work.
+>> + */
+>> +u32 intel_fbdev_fb_pitch_align(u32 stride)
+>> +{
+>> +	return ALIGN(stride, XE_PAGE_SIZE);
+>> +}
+>> +
+>>  struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm,=
+ int size)
+>>  {
+>>  	struct xe_device *xe =3D to_xe_device(drm);
+>> --=20
+>> 2.47.3
+
+--=20
+Jani Nikula, Intel
