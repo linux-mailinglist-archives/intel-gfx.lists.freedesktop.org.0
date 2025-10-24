@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C9B7C057E7
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EF61C057E8
 	for <lists+intel-gfx@lfdr.de>; Fri, 24 Oct 2025 12:07:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E58610EA1A;
-	Fri, 24 Oct 2025 10:07:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CE4B10EA18;
+	Fri, 24 Oct 2025 10:07:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ANcXRjyN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WtBYGUbv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A95610EA21;
- Fri, 24 Oct 2025 10:07:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 229DC10EA18;
+ Fri, 24 Oct 2025 10:07:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761300460; x=1792836460;
+ t=1761300463; x=1792836463;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6BU7TetzN9tR8kNlekvuyOt4uKoXccSHlr0kb4O5OkE=;
- b=ANcXRjyN4syisy3zljYYdoGMv0kV3lKVFL0yU8SSyPILZfxE82hQ8TMn
- p2hAuGoA+O3CTcR8KZEfYGAVsoThPkJ0BvmLAdgXgl+YMERSwcYdvJQpq
- 3h2HNrgqR8yBLM+3wg2iB3MmnLcJEmvLJROhvrYvWN80z+ooD9Feamufe
- H+YDD481sn1KyXL7J6pKlIO2M+WgV3fJwxnw0QfBmTFelF4a/E+AC1b9Y
- eozU+PJRJXlKymyI7uEu6ECHdrbndDoxGsDtzo2MnAu7W1g2wwAbXIJZ3
- hfsX3nvuBt3KIqyAUY7qx7HKS7mxq5gzlTqAvrTk4HycamAWhGwR9UHrL Q==;
-X-CSE-ConnectionGUID: rweCHDu0QjuOQyO28vbtJQ==
-X-CSE-MsgGUID: 08NiPxSzSouiS0/NDxrkag==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74922928"
-X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="74922928"
+ bh=WPD+p+ZR+mL7Q7Xq2l0xLI6SAZ80jkE+VIrLNwfUIt8=;
+ b=WtBYGUbvkkqMMequNmqsWDw57aesSE1zppXEYVLiPU8kz7RzGJgx+izc
+ TYsvllvJmiePE5a/9FVea5JaTpj9RuEkdQot6UfviTMZxMxXjgQkZkSK7
+ RxrsROp+Ek7Um2a7k8CJVd5i1FZwCUdvOEiSsllDWQX1TV6uRCQ/tUfgv
+ zU9kEygJ7i/YH6kvUeY1PR67zTzvKh7ZCRcAMVXL+xEiQVVF0hJrG9NS7
+ SsxoIntuaaqhmiAV6NfYnYEad8PGbTQ/gKkgWURktXSCfLBTzP1BQlDSF
+ F936ZlzzYjqekDwN7vkmTQD8iHXi3BW/Q4qFZJgdZmVSPl3aIPnQBjhII g==;
+X-CSE-ConnectionGUID: xaIA6xxEQG+LjpXcAdO5rQ==
+X-CSE-MsgGUID: YD1SPfdVTnaZxpEvpOFTow==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="86110769"
+X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="86110769"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2025 03:07:40 -0700
-X-CSE-ConnectionGUID: 1CZ6y7UsQF+x/vjit7+ncw==
-X-CSE-MsgGUID: L9CorpeXR1CXZ7NSSGDiQQ==
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2025 03:07:43 -0700
+X-CSE-ConnectionGUID: MONksD+oSW+lBT4ip7JfXA==
+X-CSE-MsgGUID: 3tVZXcKUT/qoKg6K3l6gRQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="208039204"
+X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="208039223"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa002.fm.intel.com with ESMTP; 24 Oct 2025 03:07:36 -0700
+ by fmviesa002.fm.intel.com with ESMTP; 24 Oct 2025 03:07:39 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, uma.shankar@intel.com,
  gustavo.sousa@intel.com, lucas.demarchi@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v2 07/26] drm/i915/ltphy: Read PHY_VDR_0_CONFIG register
-Date: Fri, 24 Oct 2025 15:36:53 +0530
-Message-Id: <20251024100712.3776261-8-suraj.kandpal@intel.com>
+Subject: [PATCH v2 08/26] drm/i915/ltphy: Add LT Phy Programming recipe tables
+Date: Fri, 24 Oct 2025 15:36:54 +0530
+Message-Id: <20251024100712.3776261-9-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251024100712.3776261-1-suraj.kandpal@intel.com>
 References: <20251024100712.3776261-1-suraj.kandpal@intel.com>
@@ -69,252 +69,1141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Read PHY_VDR_0_CONFIG to check if there is any change in the register and
-decide based on that if P2P sequence to change the data rate of LT PHY
-are required or not. This scenario only happens if the requested mode
-uses 1.62Gbps with DP mode since LT PHY defaults to this mode if
-any other mode is requested we need to follow the whole sequence.
+Add the LT Phy programming recipe tables for eDP, DP & HDMI and a
+function to use the correct table.
 
+Bspec: 74667
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
-V1 -> V2: Update the commit message (Arun)
----
- drivers/gpu/drm/i915/display/intel_cx0_phy.c |   4 +-
- drivers/gpu/drm/i915/display/intel_cx0_phy.h |   2 +
- drivers/gpu/drm/i915/display/intel_lt_phy.c  | 146 ++++++++++++++++---
- 3 files changed, 127 insertions(+), 25 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dpll.c     |  29 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  11 +
+ drivers/gpu/drm/i915/display/intel_lt_phy.c   | 992 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_lt_phy.h   |   5 +
+ 4 files changed, 1036 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 3d79f3be1ccd..c8848e8bfe8c 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -271,8 +271,8 @@ static u8 __intel_cx0_read(struct intel_encoder *encoder,
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
+index f969c5399a51..8c3ef5867a12 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+@@ -17,6 +17,7 @@
+ #include "intel_display_types.h"
+ #include "intel_dpio_phy.h"
+ #include "intel_dpll.h"
++#include "intel_lt_phy.h"
+ #include "intel_lvds.h"
+ #include "intel_lvds_regs.h"
+ #include "intel_panel.h"
+@@ -1232,6 +1233,26 @@ static int mtl_crtc_compute_clock(struct intel_atomic_state *state,
  	return 0;
  }
  
--static u8 intel_cx0_read(struct intel_encoder *encoder,
--			 u8 lane_mask, u16 addr)
-+u8 intel_cx0_read(struct intel_encoder *encoder,
-+		  u8 lane_mask, u16 addr)
++static int xe3plpd_crtc_compute_clock(struct intel_atomic_state *state,
++				      struct intel_crtc *crtc)
++{
++	struct intel_crtc_state *crtc_state =
++		intel_atomic_get_new_crtc_state(state, crtc);
++	struct intel_encoder *encoder =
++		intel_get_crtc_new_encoder(state, crtc_state);
++	int ret;
++
++	ret = intel_lt_phy_pll_calc_state(crtc_state, encoder);
++	if (ret)
++		return ret;
++
++	/* TODO: Do the readback via intel_compute_shared_dplls() */
++
++	crtc_state->hw.adjusted_mode.crtc_clock = intel_crtc_dotclock(crtc_state);
++
++	return 0;
++}
++
+ static int ilk_fb_cb_factor(const struct intel_crtc_state *crtc_state)
  {
- 	int lane = lane_mask_to_lane(lane_mask);
+ 	struct intel_display *display = to_intel_display(crtc_state);
+@@ -1691,6 +1712,10 @@ static int i8xx_crtc_compute_clock(struct intel_atomic_state *state,
+ 	return 0;
+ }
  
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-index 8c9b97f0922d..b448ce936c37 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-@@ -46,6 +46,8 @@ void intel_cx0_powerdown_change_sequence(struct intel_encoder *encoder,
- int intel_cx0_phy_check_hdmi_link_rate(struct intel_hdmi *hdmi, int clock);
- void intel_cx0_setup_powerdown(struct intel_encoder *encoder);
- bool intel_cx0_is_hdmi_frl(u32 clock);
-+u8 intel_cx0_read(struct intel_encoder *encoder,
-+		  u8 lane_mask, u16 addr);
- int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder);
- void intel_cx0_pll_power_save_wa(struct intel_display *display);
- void intel_lnl_mac_transmit_lfps(struct intel_encoder *encoder,
++static const struct intel_dpll_global_funcs xe3plpd_dpll_funcs = {
++	.crtc_compute_clock = xe3plpd_crtc_compute_clock,
++};
++
+ static const struct intel_dpll_global_funcs mtl_dpll_funcs = {
+ 	.crtc_compute_clock = mtl_crtc_compute_clock,
+ };
+@@ -1789,7 +1814,9 @@ int intel_dpll_crtc_get_dpll(struct intel_atomic_state *state,
+ void
+ intel_dpll_init_clock_hook(struct intel_display *display)
+ {
+-	if (DISPLAY_VER(display) >= 14)
++	if (HAS_LT_PHY(display))
++		display->funcs.dpll = &xe3plpd_dpll_funcs;
++	else if (DISPLAY_VER(display) >= 14)
+ 		display->funcs.dpll = &mtl_dpll_funcs;
+ 	else if (display->platform.dg2)
+ 		display->funcs.dpll = &dg2_dpll_funcs;
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+index f131bdd1c975..6183da90b28d 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+@@ -267,6 +267,16 @@ struct intel_cx0pll_state {
+ 	bool tbt_mode;
+ };
+ 
++struct intel_lt_phy_pll_state {
++	u32 clock; /* in kHz */
++	u8 addr_msb[13];
++	u8 addr_lsb[13];
++	u8 data[13][4];
++	u8 config[3];
++	bool ssc_enabled;
++	bool tbt_mode;
++};
++
+ struct intel_dpll_hw_state {
+ 	union {
+ 		struct i9xx_dpll_hw_state i9xx;
+@@ -276,6 +286,7 @@ struct intel_dpll_hw_state {
+ 		struct icl_dpll_hw_state icl;
+ 		struct intel_mpllb_state mpllb;
+ 		struct intel_cx0pll_state cx0pll;
++		struct intel_lt_phy_pll_state ltpll;
+ 	};
+ };
+ 
 diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index 239f7cdd373b..0fdc1ddbc5b1 100644
+index 0fdc1ddbc5b1..b0399bf21fd1 100644
 --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -6,6 +6,7 @@
- #include <drm/drm_print.h>
- 
- #include "i915_reg.h"
-+#include "i915_utils.h"
- #include "intel_cx0_phy.h"
- #include "intel_cx0_phy_regs.h"
+@@ -12,6 +12,7 @@
  #include "intel_de.h"
-@@ -14,12 +15,14 @@
+ #include "intel_display.h"
+ #include "intel_display_types.h"
++#include "intel_dpll_mgr.h"
  #include "intel_hdmi.h"
  #include "intel_lt_phy.h"
  #include "intel_lt_phy_regs.h"
-+#include "intel_psr.h"
- #include "intel_tc.h"
- 
- #define INTEL_LT_PHY_LANE0		BIT(0)
- #define INTEL_LT_PHY_LANE1		BIT(1)
- #define INTEL_LT_PHY_BOTH_LANES		(INTEL_LT_PHY_LANE1 |\
+@@ -24,6 +25,957 @@
  					 INTEL_LT_PHY_LANE0)
-+#define MODE_DP				3
+ #define MODE_DP				3
  
++static const struct intel_lt_phy_pll_state xe3plpd_lt_dp_rbr = {
++	.clock = 162000,
++	.config = {
++		0x83,
++		0x2d,
++		0x0,
++	},
++	.addr_msb = {
++		0x87,
++		0x87,
++		0x87,
++		0x87,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++	},
++	.addr_lsb = {
++		0x10,
++		0x0c,
++		0x14,
++		0xe4,
++		0x0c,
++		0x10,
++		0x14,
++		0x18,
++		0x48,
++		0x40,
++		0x4c,
++		0x24,
++		0x44,
++	},
++	.data = {
++		{ 0x0,  0x4c, 0x2,  0x0  },
++		{ 0x5,  0xa,  0x2a, 0x20 },
++		{ 0x80, 0x0,  0x0,  0x0  },
++		{ 0x4,  0x4,  0x82, 0x28 },
++		{ 0xfa, 0x16, 0x83, 0x11 },
++		{ 0x80, 0x0f, 0xf9, 0x53 },
++		{ 0x84, 0x26, 0x5,  0x4  },
++		{ 0x0,  0xe0, 0x1,  0x0  },
++		{ 0x4b, 0x48, 0x0,  0x0  },
++		{ 0x27, 0x8,  0x0,  0x0  },
++		{ 0x5a, 0x13, 0x29, 0x13 },
++		{ 0x0,  0x5b, 0xe0, 0x0a },
++		{ 0x0,  0x0,  0x0,  0x0  },
++	},
++};
++
++static const struct intel_lt_phy_pll_state xe3plpd_lt_dp_hbr1 = {
++	.clock = 270000,
++	.config = {
++		0x8b,
++		0x2d,
++		0x0,
++	},
++	.addr_msb = {
++		0x87,
++		0x87,
++		0x87,
++		0x87,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++	},
++	.addr_lsb = {
++		0x10,
++		0x0c,
++		0x14,
++		0xe4,
++		0x0c,
++		0x10,
++		0x14,
++		0x18,
++		0x48,
++		0x40,
++		0x4c,
++		0x24,
++		0x44,
++	},
++	.data = {
++		{ 0x0,  0x4c, 0x2,  0x0  },
++		{ 0x3,  0xca, 0x34, 0xa0 },
++		{ 0xe0, 0x0,  0x0,  0x0  },
++		{ 0x5,  0x4,  0x81, 0xad },
++		{ 0xfa, 0x11, 0x83, 0x11 },
++		{ 0x80, 0x0f, 0xf9, 0x53 },
++		{ 0x84, 0x26, 0x7,  0x4  },
++		{ 0x0,  0xe0, 0x1,  0x0  },
++		{ 0x43, 0x48, 0x0,  0x0  },
++		{ 0x27, 0x8,  0x0,  0x0  },
++		{ 0x5a, 0x13, 0x29, 0x13 },
++		{ 0x0,  0x5b, 0xe0, 0x0d },
++		{ 0x0,  0x0,  0x0,  0x0  },
++	},
++};
++
++static const struct intel_lt_phy_pll_state xe3plpd_lt_dp_hbr2 = {
++	.clock = 540000,
++	.config = {
++		0x93,
++		0x2d,
++		0x0,
++	},
++	.addr_msb = {
++		0x87,
++		0x87,
++		0x87,
++		0x87,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++	},
++	.addr_lsb = {
++		0x10,
++		0x0c,
++		0x14,
++		0xe4,
++		0x0c,
++		0x10,
++		0x14,
++		0x18,
++		0x48,
++		0x40,
++		0x4c,
++		0x24,
++		0x44,
++	},
++	.data = {
++		{ 0x0,  0x4c, 0x2,  0x0  },
++		{ 0x1,  0x4d, 0x34, 0xa0 },
++		{ 0xe0, 0x0,  0x0,  0x0  },
++		{ 0xa,  0x4,  0x81, 0xda },
++		{ 0xfa, 0x11, 0x83, 0x11 },
++		{ 0x80, 0x0f, 0xf9, 0x53 },
++		{ 0x84, 0x26, 0x7,  0x4  },
++		{ 0x0,  0xe0, 0x1,  0x0  },
++		{ 0x43, 0x48, 0x0,  0x0  },
++		{ 0x27, 0x8,  0x0,  0x0  },
++		{ 0x5a, 0x13, 0x29, 0x13 },
++		{ 0x0,  0x5b, 0xe0, 0x0d },
++		{ 0x0,  0x0,  0x0,  0x0  },
++	},
++};
++
++static const struct intel_lt_phy_pll_state xe3plpd_lt_dp_hbr3 = {
++	.clock = 810000,
++	.config = {
++		0x9b,
++		0x2d,
++		0x0,
++	},
++	.addr_msb = {
++		0x87,
++		0x87,
++		0x87,
++		0x87,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++	},
++	.addr_lsb = {
++		0x10,
++		0x0c,
++		0x14,
++		0xe4,
++		0x0c,
++		0x10,
++		0x14,
++		0x18,
++		0x48,
++		0x40,
++		0x4c,
++		0x24,
++		0x44,
++	},
++	.data = {
++		{ 0x0,  0x4c, 0x2,  0x0  },
++		{ 0x1,  0x4a, 0x34, 0xa0 },
++		{ 0xe0, 0x0,  0x0,  0x0  },
++		{ 0x5,  0x4,  0x80, 0xa8 },
++		{ 0xfa, 0x11, 0x83, 0x11 },
++		{ 0x80, 0x0f, 0xf9, 0x53 },
++		{ 0x84, 0x26, 0x7,  0x4  },
++		{ 0x0,  0xe0, 0x1,  0x0  },
++		{ 0x43, 0x48, 0x0,  0x0  },
++		{ 0x27, 0x8,  0x0,  0x0  },
++		{ 0x5a, 0x13, 0x29, 0x13 },
++		{ 0x0,  0x5b, 0xe0, 0x0d },
++		{ 0x0,  0x0,  0x0,  0x0  },
++	},
++};
++
++static const struct intel_lt_phy_pll_state xe3plpd_lt_dp_uhbr10 = {
++	.clock = 1000000,
++	.config = {
++		0x43,
++		0x2d,
++		0x0,
++	},
++	.addr_msb = {
++		0x85,
++		0x85,
++		0x85,
++		0x85,
++		0x86,
++		0x86,
++		0x86,
++		0x86,
++		0x86,
++		0x86,
++		0x86,
++		0x86,
++		0x86,
++	},
++	.addr_lsb = {
++		0x10,
++		0x0c,
++		0x14,
++		0xe4,
++		0x0c,
++		0x10,
++		0x14,
++		0x18,
++		0x48,
++		0x40,
++		0x4c,
++		0x24,
++		0x44,
++	},
++	.data = {
++		{ 0x0,  0x4c, 0x2,  0x0  },
++		{ 0x1,  0xa,  0x20, 0x80 },
++		{ 0x6a, 0xaa, 0xaa, 0xab },
++		{ 0x0,  0x3,  0x4,  0x94 },
++		{ 0xfa, 0x1c, 0x83, 0x11 },
++		{ 0x80, 0x0f, 0xf9, 0x53 },
++		{ 0x84, 0x26, 0x4,  0x4  },
++		{ 0x0,  0xe0, 0x1,  0x0  },
++		{ 0x45, 0x48, 0x0,  0x0  },
++		{ 0x27, 0x8,  0x0,  0x0  },
++		{ 0x5a, 0x14, 0x2a, 0x14 },
++		{ 0x0,  0x5b, 0xe0, 0x8  },
++		{ 0x0,  0x0,  0x0,  0x0  },
++	},
++};
++
++static const struct intel_lt_phy_pll_state xe3plpd_lt_dp_uhbr13_5 = {
++	.clock = 1350000,
++	.config = {
++		0xcb,
++		0x2d,
++		0x0,
++	},
++	.addr_msb = {
++		0x87,
++		0x87,
++		0x87,
++		0x87,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++	},
++	.addr_lsb = {
++		0x10,
++		0x0c,
++		0x14,
++		0xe4,
++		0x0c,
++		0x10,
++		0x14,
++		0x18,
++		0x48,
++		0x40,
++		0x4c,
++		0x24,
++		0x44,
++	},
++	.data = {
++		{ 0x0,  0x4c, 0x2,  0x0  },
++		{ 0x2,  0x9,  0x2b, 0xe0 },
++		{ 0x90, 0x0,  0x0,  0x0  },
++		{ 0x8,  0x4,  0x80, 0xe0 },
++		{ 0xfa, 0x15, 0x83, 0x11 },
++		{ 0x80, 0x0f, 0xf9, 0x53 },
++		{ 0x84, 0x26, 0x6,  0x4  },
++		{ 0x0,  0xe0, 0x1,  0x0  },
++		{ 0x49, 0x48, 0x0,  0x0  },
++		{ 0x27, 0x8,  0x0,  0x0  },
++		{ 0x5a, 0x13, 0x29, 0x13 },
++		{ 0x0,  0x57, 0xe0, 0x0c },
++		{ 0x0,  0x0,  0x0,  0x0  },
++	},
++};
++
++static const struct intel_lt_phy_pll_state xe3plpd_lt_dp_uhbr20 = {
++	.clock = 2000000,
++	.config = {
++		0x53,
++		0x2d,
++		0x0,
++	},
++	.addr_msb = {
++		0x85,
++		0x85,
++		0x85,
++		0x85,
++		0x86,
++		0x86,
++		0x86,
++		0x86,
++		0x86,
++		0x86,
++		0x86,
++		0x86,
++		0x86,
++	},
++	.addr_lsb = {
++		0x10,
++		0x0c,
++		0x14,
++		0xe4,
++		0x0c,
++		0x10,
++		0x14,
++		0x18,
++		0x48,
++		0x40,
++		0x4c,
++		0x24,
++		0x44,
++	},
++	.data = {
++		{ 0x0,  0x4c, 0x2,  0x0  },
++		{ 0x1,  0xa,  0x20, 0x80 },
++		{ 0x6a, 0xaa, 0xaa, 0xab },
++		{ 0x0,  0x3,  0x4,  0x94 },
++		{ 0xfa, 0x1c, 0x83, 0x11 },
++		{ 0x80, 0x0f, 0xf9, 0x53 },
++		{ 0x84, 0x26, 0x4,  0x4  },
++		{ 0x0,  0xe0, 0x1,  0x0  },
++		{ 0x45, 0x48, 0x0,  0x0  },
++		{ 0x27, 0x8,  0x0,  0x0  },
++		{ 0x5a, 0x14, 0x2a, 0x14 },
++		{ 0x0,  0x5b, 0xe0, 0x8  },
++		{ 0x0,  0x0,  0x0,  0x0  },
++	},
++};
++
++static const struct intel_lt_phy_pll_state * const xe3plpd_lt_dp_tables[] = {
++	&xe3plpd_lt_dp_rbr,
++	&xe3plpd_lt_dp_hbr1,
++	&xe3plpd_lt_dp_hbr2,
++	&xe3plpd_lt_dp_hbr3,
++	&xe3plpd_lt_dp_uhbr10,
++	&xe3plpd_lt_dp_uhbr13_5,
++	&xe3plpd_lt_dp_uhbr20,
++	NULL,
++};
++
++static const struct intel_lt_phy_pll_state xe3plpd_lt_edp_2_16 = {
++	.clock = 216000,
++	.config = {
++		0xa3,
++		0x2d,
++		0x1,
++	},
++	.addr_msb = {
++		0x87,
++		0x87,
++		0x87,
++		0x87,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++	},
++	.addr_lsb = {
++		0x10,
++		0x0c,
++		0x14,
++		0xe4,
++		0x0c,
++		0x10,
++		0x14,
++		0x18,
++		0x48,
++		0x40,
++		0x4c,
++		0x24,
++		0x44,
++	},
++	.data = {
++		{ 0x0,  0x4c, 0x2,  0x0  },
++		{ 0x3,  0xca, 0x2a, 0x20 },
++		{ 0x80, 0x0,  0x0,  0x0  },
++		{ 0x6,  0x4,  0x81, 0xbc },
++		{ 0xfa, 0x16, 0x83, 0x11 },
++		{ 0x80, 0x0f, 0xf9, 0x53 },
++		{ 0x84, 0x26, 0x5,  0x4  },
++		{ 0x0,  0xe0, 0x1,  0x0  },
++		{ 0x4b, 0x48, 0x0,  0x0  },
++		{ 0x27, 0x8,  0x0,  0x0  },
++		{ 0x5a, 0x13, 0x29, 0x13 },
++		{ 0x0,  0x5b, 0xe0, 0x0a },
++		{ 0x0,  0x0,  0x0,  0x0  },
++	},
++};
++
++static const struct intel_lt_phy_pll_state xe3plpd_lt_edp_2_43 = {
++	.clock = 243000,
++	.config = {
++		0xab,
++		0x2d,
++		0x1,
++	},
++	.addr_msb = {
++		0x87,
++		0x87,
++		0x87,
++		0x87,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++	},
++	.addr_lsb = {
++		0x10,
++		0x0c,
++		0x14,
++		0xe4,
++		0x0c,
++		0x10,
++		0x14,
++		0x18,
++		0x48,
++		0x40,
++		0x4c,
++		0x24,
++		0x44,
++	},
++	.data = {
++		{ 0x0,  0x4c, 0x2,  0x0  },
++		{ 0x3,  0xca, 0x2f, 0x60 },
++		{ 0xb0, 0x0,  0x0,  0x0  },
++		{ 0x6,  0x4,  0x81, 0xbc },
++		{ 0xfa, 0x13, 0x83, 0x11 },
++		{ 0x80, 0x0f, 0xf9, 0x53 },
++		{ 0x84, 0x26, 0x6,  0x4  },
++		{ 0x0,  0xe0, 0x1,  0x0  },
++		{ 0x47, 0x48, 0x0,  0x0  },
++		{ 0x0,  0x0,  0x0,  0x0  },
++		{ 0x5a, 0x13, 0x29, 0x13 },
++		{ 0x0,  0x5b, 0xe0, 0x0c },
++		{ 0x0,  0x0,  0x0,  0x0  },
++	},
++};
++
++static const struct intel_lt_phy_pll_state xe3plpd_lt_edp_3_24 = {
++	.clock = 324000,
++	.config = {
++		0xb3,
++		0x2d,
++		0x1,
++	},
++	.addr_msb = {
++		0x87,
++		0x87,
++		0x87,
++		0x87,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++	},
++	.addr_lsb = {
++		0x10,
++		0x0c,
++		0x14,
++		0xe4,
++		0x0c,
++		0x10,
++		0x14,
++		0x18,
++		0x48,
++		0x40,
++		0x4c,
++		0x24,
++		0x44,
++	},
++	.data = {
++		{ 0x0,  0x4c, 0x2,  0x0  },
++		{ 0x2,  0x8a, 0x2a, 0x20 },
++		{ 0x80, 0x0,  0x0,  0x0  },
++		{ 0x6,  0x4,  0x81, 0x28 },
++		{ 0xfa, 0x16, 0x83, 0x11 },
++		{ 0x80, 0x0f, 0xf9, 0x53 },
++		{ 0x84, 0x26, 0x5,  0x4  },
++		{ 0x0,  0xe0, 0x1,  0x0  },
++		{ 0x4b, 0x48, 0x0,  0x0  },
++		{ 0x27, 0x8,  0x0,  0x0  },
++		{ 0x5a, 0x13, 0x29, 0x13 },
++		{ 0x0,  0x5b, 0xe0, 0x0a },
++		{ 0x0,  0x0,  0x0,  0x0  },
++	},
++};
++
++static const struct intel_lt_phy_pll_state xe3plpd_lt_edp_4_32 = {
++	.clock = 432000,
++	.config = {
++		0xbb,
++		0x2d,
++		0x1,
++	},
++	.addr_msb = {
++		0x87,
++		0x87,
++		0x87,
++		0x87,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++	},
++	.addr_lsb = {
++		0x10,
++		0x0c,
++		0x14,
++		0xe4,
++		0x0c,
++		0x10,
++		0x14,
++		0x18,
++		0x48,
++		0x40,
++		0x4c,
++		0x24,
++		0x44,
++	},
++	.data = {
++		{ 0x0,  0x4c, 0x2,  0x0  },
++		{ 0x1,  0x4d, 0x2a, 0x20 },
++		{ 0x80, 0x0,  0x0,  0x0  },
++		{ 0xc,  0x4,  0x81, 0xbc },
++		{ 0xfa, 0x16, 0x83, 0x11 },
++		{ 0x80, 0x0f, 0xf9, 0x53 },
++		{ 0x84, 0x26, 0x5,  0x4  },
++		{ 0x0,  0xe0, 0x1,  0x0  },
++		{ 0x4b, 0x48, 0x0,  0x0  },
++		{ 0x27, 0x8,  0x0,  0x0  },
++		{ 0x5a, 0x13, 0x29, 0x13 },
++		{ 0x0,  0x5b, 0xe0, 0x0a },
++		{ 0x0,  0x0,  0x0,  0x0  },
++	},
++};
++
++static const struct intel_lt_phy_pll_state xe3plpd_lt_edp_6_75 = {
++	.clock = 675000,
++	.config = {
++		0xdb,
++		0x2d,
++		0x1,
++	},
++	.addr_msb = {
++		0x87,
++		0x87,
++		0x87,
++		0x87,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++	},
++	.addr_lsb = {
++		0x10,
++		0x0c,
++		0x14,
++		0xe4,
++		0x0c,
++		0x10,
++		0x14,
++		0x18,
++		0x48,
++		0x40,
++		0x4c,
++		0x24,
++		0x44,
++	},
++	.data = {
++		{ 0x0,  0x4c, 0x2,  0x0  },
++		{ 0x1,  0x4a, 0x2b, 0xe0 },
++		{ 0x90, 0x0,  0x0,  0x0  },
++		{ 0x6,  0x4,  0x80, 0xa8 },
++		{ 0xfa, 0x15, 0x83, 0x11 },
++		{ 0x80, 0x0f, 0xf9, 0x53 },
++		{ 0x84, 0x26, 0x6,  0x4  },
++		{ 0x0,  0xe0, 0x1,  0x0  },
++		{ 0x49, 0x48, 0x0,  0x0  },
++		{ 0x27, 0x8,  0x0,  0x0  },
++		{ 0x5a, 0x13, 0x29, 0x13 },
++		{ 0x0,  0x57, 0xe0, 0x0c },
++		{ 0x0,  0x0,  0x0,  0x0  },
++	},
++};
++
++static const struct intel_lt_phy_pll_state * const xe3plpd_lt_edp_tables[] = {
++	&xe3plpd_lt_dp_rbr,
++	&xe3plpd_lt_edp_2_16,
++	&xe3plpd_lt_edp_2_43,
++	&xe3plpd_lt_dp_hbr1,
++	&xe3plpd_lt_edp_3_24,
++	&xe3plpd_lt_edp_4_32,
++	&xe3plpd_lt_dp_hbr2,
++	&xe3plpd_lt_edp_6_75,
++	&xe3plpd_lt_dp_hbr3,
++	NULL,
++};
++
++static const struct intel_lt_phy_pll_state xe3plpd_lt_hdmi_252 = {
++	.clock = 25200,
++	.config = {
++		0x84,
++		0x2d,
++		0x0,
++	},
++	.addr_msb = {
++		0x87,
++		0x87,
++		0x87,
++		0x87,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++	},
++	.addr_lsb = {
++		0x10,
++		0x0c,
++		0x14,
++		0xe4,
++		0x0c,
++		0x10,
++		0x14,
++		0x18,
++		0x48,
++		0x40,
++		0x4c,
++		0x24,
++		0x44,
++	},
++	.data = {
++		{ 0x0,  0x4c, 0x2,  0x0  },
++		{ 0x0c, 0x15, 0x27, 0x60 },
++		{ 0x0,  0x0,  0x0,  0x0  },
++		{ 0x8,  0x4,  0x98, 0x28 },
++		{ 0x42, 0x0,  0x84, 0x10 },
++		{ 0x80, 0x0f, 0xd9, 0xb5 },
++		{ 0x86, 0x0,  0x0,  0x0  },
++		{ 0x1,  0xa0, 0x1,  0x0  },
++		{ 0x4b, 0x0,  0x0,  0x0  },
++		{ 0x28, 0x0,  0x0,  0x0  },
++		{ 0x0,  0x14, 0x2a, 0x14 },
++		{ 0x0,  0x0,  0x0,  0x0  },
++		{ 0x0,  0x0,  0x0,  0x0  },
++	},
++};
++
++static const struct intel_lt_phy_pll_state xe3plpd_lt_hdmi_272 = {
++	.clock = 27200,
++	.config = {
++		0x84,
++		0x2d,
++		0x0,
++	},
++	.addr_msb = {
++		0x87,
++		0x87,
++		0x87,
++		0x87,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++	},
++	.addr_lsb = {
++		0x10,
++		0x0c,
++		0x14,
++		0xe4,
++		0x0c,
++		0x10,
++		0x14,
++		0x18,
++		0x48,
++		0x40,
++		0x4c,
++		0x24,
++		0x44,
++	},
++	.data = {
++		{ 0x0,  0x4c, 0x2,  0x0  },
++		{ 0x0b, 0x15, 0x26, 0xa0 },
++		{ 0x60, 0x0,  0x0,  0x0  },
++		{ 0x8,  0x4,  0x96, 0x28 },
++		{ 0xfa, 0x0c, 0x84, 0x11 },
++		{ 0x80, 0x0f, 0xd9, 0x53 },
++		{ 0x86, 0x0,  0x0,  0x0  },
++		{ 0x1,  0xa0, 0x1,  0x0  },
++		{ 0x4b, 0x0,  0x0,  0x0  },
++		{ 0x28, 0x0,  0x0,  0x0  },
++		{ 0x0,  0x14, 0x2a, 0x14 },
++		{ 0x0,  0x0,  0x0,  0x0  },
++		{ 0x0,  0x0,  0x0,  0x0  },
++	},
++};
++
++static const struct intel_lt_phy_pll_state xe3plpd_lt_hdmi_742p5 = {
++	.clock = 74250,
++	.config = {
++		0x84,
++		0x2d,
++		0x0,
++	},
++	.addr_msb = {
++		0x87,
++		0x87,
++		0x87,
++		0x87,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++	},
++	.addr_lsb = {
++		0x10,
++		0x0c,
++		0x14,
++		0xe4,
++		0x0c,
++		0x10,
++		0x14,
++		0x18,
++		0x48,
++		0x40,
++		0x4c,
++		0x24,
++		0x44,
++	},
++	.data = {
++		{ 0x0,  0x4c, 0x2,  0x0  },
++		{ 0x4,  0x15, 0x26, 0xa0 },
++		{ 0x60, 0x0,  0x0,  0x0  },
++		{ 0x8,  0x4,  0x88, 0x28 },
++		{ 0xfa, 0x0c, 0x84, 0x11 },
++		{ 0x80, 0x0f, 0xd9, 0x53 },
++		{ 0x86, 0x0,  0x0,  0x0  },
++		{ 0x1,  0xa0, 0x1,  0x0  },
++		{ 0x4b, 0x0,  0x0,  0x0  },
++		{ 0x28, 0x0,  0x0,  0x0  },
++		{ 0x0,  0x14, 0x2a, 0x14 },
++		{ 0x0,  0x0,  0x0,  0x0  },
++		{ 0x0,  0x0,  0x0,  0x0  },
++	},
++};
++
++static const struct intel_lt_phy_pll_state xe3plpd_lt_hdmi_1p485 = {
++	.clock = 148500,
++	.config = {
++		0x84,
++		0x2d,
++		0x0,
++	},
++	.addr_msb = {
++		0x87,
++		0x87,
++		0x87,
++		0x87,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++	},
++	.addr_lsb = {
++		0x10,
++		0x0c,
++		0x14,
++		0xe4,
++		0x0c,
++		0x10,
++		0x14,
++		0x18,
++		0x48,
++		0x40,
++		0x4c,
++		0x24,
++		0x44,
++	},
++	.data = {
++		{ 0x0,  0x4c, 0x2,  0x0  },
++		{ 0x2,  0x15, 0x26, 0xa0 },
++		{ 0x60, 0x0,  0x0,  0x0  },
++		{ 0x8,  0x4,  0x84, 0x28 },
++		{ 0xfa, 0x0c, 0x84, 0x11 },
++		{ 0x80, 0x0f, 0xd9, 0x53 },
++		{ 0x86, 0x0,  0x0,  0x0  },
++		{ 0x1,  0xa0, 0x1,  0x0  },
++		{ 0x4b, 0x0,  0x0,  0x0  },
++		{ 0x28, 0x0,  0x0,  0x0  },
++		{ 0x0,  0x14, 0x2a, 0x14 },
++		{ 0x0,  0x0,  0x0,  0x0  },
++		{ 0x0,  0x0,  0x0,  0x0  },
++	},
++};
++
++static const struct intel_lt_phy_pll_state xe3plpd_lt_hdmi_5p94 = {
++	.clock = 594000,
++	.config = {
++		0x84,
++		0x2d,
++		0x0,
++	},
++	.addr_msb = {
++		0x87,
++		0x87,
++		0x87,
++		0x87,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++		0x88,
++	},
++	.addr_lsb = {
++		0x10,
++		0x0c,
++		0x14,
++		0xe4,
++		0x0c,
++		0x10,
++		0x14,
++		0x18,
++		0x48,
++		0x40,
++		0x4c,
++		0x24,
++		0x44,
++	},
++	.data = {
++		{ 0x0,  0x4c, 0x2,  0x0  },
++		{ 0x0,  0x95, 0x26, 0xa0 },
++		{ 0x60, 0x0,  0x0,  0x0  },
++		{ 0x8,  0x4,  0x81, 0x28 },
++		{ 0xfa, 0x0c, 0x84, 0x11 },
++		{ 0x80, 0x0f, 0xd9, 0x53 },
++		{ 0x86, 0x0,  0x0,  0x0  },
++		{ 0x1,  0xa0, 0x1,  0x0  },
++		{ 0x4b, 0x0,  0x0,  0x0  },
++		{ 0x28, 0x0,  0x0,  0x0  },
++		{ 0x0,  0x14, 0x2a, 0x14 },
++		{ 0x0,  0x0,  0x0,  0x0  },
++		{ 0x0,  0x0,  0x0,  0x0  },
++	},
++};
++
++static const struct intel_lt_phy_pll_state * const xe3plpd_lt_hdmi_tables[] = {
++	&xe3plpd_lt_hdmi_252,
++	&xe3plpd_lt_hdmi_272,
++	&xe3plpd_lt_hdmi_742p5,
++	&xe3plpd_lt_hdmi_1p485,
++	&xe3plpd_lt_hdmi_5p94,
++	NULL,
++};
++
  static u8 intel_lt_phy_get_owned_lane_mask(struct intel_encoder *encoder)
  {
-@@ -32,6 +35,12 @@ static u8 intel_lt_phy_get_owned_lane_mask(struct intel_encoder *encoder)
- 		? INTEL_LT_PHY_BOTH_LANES : INTEL_LT_PHY_LANE0;
+ 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+@@ -238,6 +1190,46 @@ static void intel_lt_phy_transaction_end(struct intel_encoder *encoder, intel_wa
+ 	intel_display_power_put(display, POWER_DOMAIN_DC_OFF, wakeref);
  }
  
-+static u8 intel_lt_phy_read(struct intel_encoder *encoder,
-+			    u8 lane_mask, u16 addr)
++static const struct intel_lt_phy_pll_state * const *
++intel_lt_phy_pll_tables_get(struct intel_crtc_state *crtc_state,
++			    struct intel_encoder *encoder)
 +{
-+	return intel_cx0_read(encoder, lane_mask, addr);
-+}
-+
- static void
- intel_lt_phy_setup_powerdown(struct intel_encoder *encoder, u8 lane_count)
- {
-@@ -149,12 +158,96 @@ intel_lt_phy_program_port_clock_ctl(struct intel_encoder *encoder,
- 		     XELPDP_SSC_ENABLE_PLLB, val);
- }
- 
-+static u32
-+intel_lt_phy_get_dp_clock(u8 rate)
-+{
-+	switch (rate) {
-+	case 0:
-+		return 162000;
-+	case 1:
-+		return 270000;
-+	case 2:
-+		return 540000;
-+	case 3:
-+		return 810000;
-+	case 4:
-+		return 216000;
-+	case 5:
-+		return 243000;
-+	case 6:
-+		return 324000;
-+	case 7:
-+		return 432000;
-+	case 8:
-+		return 1000000;
-+	case 9:
-+		return 1350000;
-+	case 10:
-+		return 2000000;
-+	case 11:
-+		return 675000;
-+	default:
-+		MISSING_CASE(rate);
-+		return 0;
-+	}
-+}
-+
-+static bool
-+intel_lt_phy_config_changed(struct intel_encoder *encoder,
-+			    const struct intel_crtc_state *crtc_state)
-+{
-+	u8 val, rate;
-+	u32 clock;
-+
-+	val = intel_lt_phy_read(encoder, INTEL_LT_PHY_LANE0,
-+				LT_PHY_VDR_0_CONFIG);
-+	rate = REG_FIELD_GET8(LT_PHY_VDR_RATE_ENCODING_MASK, val);
-+
-+	/*
-+	 * The only time we do not reconfigure the PLL is when we are
-+	 * using 1.62 Gbps clock since PHY PLL defaults to that
-+	 * otherwise we always need to reconfigure it.
-+	 */
 +	if (intel_crtc_has_dp_encoder(crtc_state)) {
-+		clock = intel_lt_phy_get_dp_clock(rate);
-+		if (crtc_state->port_clock == 1620000 && crtc_state->port_clock == clock)
-+			return false;
++		if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
++			return xe3plpd_lt_edp_tables;
++
++		return xe3plpd_lt_dp_tables;
++	} else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
++		return xe3plpd_lt_hdmi_tables;
 +	}
 +
-+	return true;
++	MISSING_CASE(encoder->type);
++	return NULL;
 +}
 +
-+static intel_wakeref_t intel_lt_phy_transaction_begin(struct intel_encoder *encoder)
++int
++intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
++			    struct intel_encoder *encoder)
 +{
-+	struct intel_display *display = to_intel_display(encoder);
-+	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-+	intel_wakeref_t wakeref;
++	const struct intel_lt_phy_pll_state * const *tables;
++	int i;
 +
-+	intel_psr_pause(intel_dp);
-+	wakeref = intel_display_power_get(display, POWER_DOMAIN_DC_OFF);
++	tables = intel_lt_phy_pll_tables_get(crtc_state, encoder);
++	if (!tables)
++		return -EINVAL;
 +
-+	return wakeref;
-+}
++	for (i = 0; tables[i]; i++) {
++		if (crtc_state->port_clock == tables[i]->clock) {
++			crtc_state->dpll_hw_state.ltpll = *tables[i];
++			return 0;
++		}
++	}
 +
-+static void intel_lt_phy_transaction_end(struct intel_encoder *encoder, intel_wakeref_t wakeref)
-+{
-+	struct intel_display *display = to_intel_display(encoder);
-+	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++	/* TODO: Add a function to compute the data for HDMI TMDS*/
 +
-+	intel_psr_resume(intel_dp);
-+	intel_display_power_put(display, POWER_DOMAIN_DC_OFF, wakeref);
++	return -EINVAL;
 +}
 +
  void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
  			     const struct intel_crtc_state *crtc_state)
  {
-+	struct intel_display *display = to_intel_display(encoder);
- 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
- 	bool lane_reversal = dig_port->lane_reversal;
- 	u8 owned_lane_mask = intel_lt_phy_get_owned_lane_mask(encoder);
-+	intel_wakeref_t wakeref = 0;
-+
-+	wakeref = intel_lt_phy_transaction_begin(encoder);
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h b/drivers/gpu/drm/i915/display/intel_lt_phy.h
+index bd3ff3007e1d..3f255c9b0f96 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.h
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
+@@ -13,5 +13,10 @@ struct intel_crtc_state;
  
- 	/* 1. Enable MacCLK at default 162 MHz frequency. */
- 	intel_lt_phy_lane_reset(encoder, crtc_state->lane_count);
-@@ -170,29 +263,34 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
- 	 * 4. Read the PHY message bus VDR register PHY_VDR_0_Config check enabled PLL type,
- 	 * encoded rate and encoded mode.
- 	 */
--	/*
--	 * 5. Program the PHY internal PLL registers over PHY message bus for the desired
--	 * frequency and protocol type
--	 */
--	/* 6. Use the P2P transaction flow */
--	/*
--	 * 6.1. Set the PHY VDR register 0xCC4[Rate Control VDR Update] = 1 over PHY message
--	 * bus for Owned PHY Lanes.
--	 */
--	/*
--	 * 6.2. Poll for P2P Transaction Ready = "1" and read the MAC message bus VDR register
--	 * at offset 0xC00 for Owned PHY Lanes.
--	 */
--	/* 6.3. Clear P2P transaction Ready bit. */
--	/* 7. Program PORT_CLOCK_CTL[PCLK PLL Request LN0] = 0. */
--	/* 8. Poll for PORT_CLOCK_CTL[PCLK PLL Ack LN0]= 0. */
--	/*
--	 * 9. Follow the Display Voltage Frequency Switching - Sequence Before Frequency Change.
--	 * We handle this step in bxt_set_cdclk()
--	 */
--	/* 10. Program DDI_CLK_VALFREQ to match intended DDI clock frequency. */
--	/* 11. Program PORT_CLOCK_CTL[PCLK PLL Request LN0] = 1. */
--	/* 12. Poll for PORT_CLOCK_CTL[PCLK PLL Ack LN0]= 1. */
-+	if (intel_lt_phy_config_changed(encoder, crtc_state)) {
-+		/*
-+		 * 5. Program the PHY internal PLL registers over PHY message bus for the desired
-+		 * frequency and protocol type
-+		 */
-+		/* 6. Use the P2P transaction flow */
-+		/*
-+		 * 6.1. Set the PHY VDR register 0xCC4[Rate Control VDR Update] = 1 over PHY message
-+		 * bus for Owned PHY Lanes.
-+		 */
-+		/*
-+		 * 6.2. Poll for P2P Transaction Ready = "1" and read the MAC message bus VDR
-+		 * register at offset 0xC00 for Owned PHY Lanes*.
-+		 */
-+		/* 6.3. Clear P2P transaction Ready bit. */
-+		/* 7. Program PORT_CLOCK_CTL[PCLK PLL Request LN0] = 0. */
-+		/* 8. Poll for PORT_CLOCK_CTL[PCLK PLL Ack LN0]= 0. */
-+		/*
-+		 * 9. Follow the Display Voltage Frequency Switching - Sequence Before Frequency
-+		 * Change. We handle this step in bxt_set_cdclk().
-+		 */
-+		/* 10. Program DDI_CLK_VALFREQ to match intended DDI clock frequency. */
-+		/* 11. Program PORT_CLOCK_CTL[PCLK PLL Request LN0] = 1. */
-+		/* 12. Poll for PORT_CLOCK_CTL[PCLK PLL Ack LN0]= 1. */
-+	} else {
-+		intel_de_write(display, DDI_CLK_VALFREQ(encoder->port), crtc_state->port_clock);
-+	}
+ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
+ 			     const struct intel_crtc_state *crtc_state);
++int
++intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
++			    struct intel_encoder *encoder);
 +
- 	/* 13. Ungate the forward clock by setting PORT_CLOCK_CTL[Forward Clock Ungate] = 1. */
- 	/* 14. SW clears PORT_BUF_CTL2 [PHY Pulse Status]. */
- 	/*
-@@ -206,4 +304,6 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
- 	 * We handle this step in bxt_set_cdclk()
- 	 */
- 	/* 19. Move the PHY powerdown state to Active and program to enable/disable transmitters */
-+
-+	intel_lt_phy_transaction_end(encoder, wakeref);
- }
++#define HAS_LT_PHY(display) (DISPLAY_VER(display) >= 35)
+ 
+ #endif /* __INTEL_LT_PHY_H__ */
 -- 
 2.34.1
 
