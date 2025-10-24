@@ -2,64 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88036C04B63
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Oct 2025 09:27:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FEF2C04BAE
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Oct 2025 09:32:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBAA010E9EE;
-	Fri, 24 Oct 2025 07:26:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4D4F10E9F2;
+	Fri, 24 Oct 2025 07:32:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kSAUhYPD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X7uFryI/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D696B10E9EC;
- Fri, 24 Oct 2025 07:26:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C56B910E9F0;
+ Fri, 24 Oct 2025 07:32:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761290816; x=1792826816;
+ t=1761291155; x=1792827155;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=VUR2+txcZEmXk01BYCehzTFOqm6r3TBM+dT9nPFOX94=;
- b=kSAUhYPDmCvirTb8iGnvdVivDBuYAquzCtY3x+LUVPb8plysaAP6OjZc
- vCrKibGQ17RHdsngU+MKVCXcX7LwTkyiswUjwEVkYOR9xfElwbUs4snEX
- GSHmnwwmE1MZpyGVfLbCWmA5+wZJqn7NDUby4jAiPUtcAQdmGVTT4il1u
- AbphkpBPwJPZjdJsmzlnvyaN9pI4T4y7aGbCGRp8MfTaBgpOyxi5jeKhH
- F0aLenuKfUHmz8owyJ5r3WZ6AZ/1HQvmAG4AVijHYkwCG5z+xfZGnO67E
- EAs11xfLYrl2kYyKRbA8z45f6YSNLZVsHD/BYYBnBsgSkTWBrIqQM4hMr Q==;
-X-CSE-ConnectionGUID: J1wvv0RsR5Kw6hBlKpcKog==
-X-CSE-MsgGUID: 5gR0ij4XQ3OhkN9w5ePoQg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63174399"
-X-IronPort-AV: E=Sophos;i="6.19,251,1754982000"; d="scan'208";a="63174399"
+ bh=8438EG8EzBXjnb7028tMlILzcLuVF6rZh3zf69qQv94=;
+ b=X7uFryI/ikD8YiNNj0tlUZBAxOCWJU5BD6RfctwGPoQnNOez/mj6niBM
+ VVfaxKOddyZ9F0pAMZqh+dHe3YyFKcLQBZRxpgWPlIW2DEGNHpjYn0idO
+ /LgoyEhxBoozpYI63OdAk6QNl33D8JzF2Mafkko1899w4Tk67QhnssIXY
+ Yb0e0WFm3a9RpQSykMH///ckWjDb6E+8fl3l1yhCrFOS5nat1Whz0FV8S
+ 6wmVqB70n98zqBb7SkZpwJ03+8EoBwPgob08kZ346GmX9dsEnz4wlGhjo
+ giCcyyiIIR6jh/yaH0zJ2oTZd/Rhy8p4pUfG614ivu57daZOJuSbXv1LF Q==;
+X-CSE-ConnectionGUID: NZQS9SqgQ1KxysYiywtS4Q==
+X-CSE-MsgGUID: 2Jmw41goQD+9D3R6r/VmyA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="67336999"
+X-IronPort-AV: E=Sophos;i="6.19,251,1754982000"; d="scan'208";a="67336999"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2025 00:26:56 -0700
-X-CSE-ConnectionGUID: +LVeqPSiSm6g+43XtCBUKA==
-X-CSE-MsgGUID: TBgJBwksQiKUYqIaHpt3Tw==
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2025 00:32:30 -0700
+X-CSE-ConnectionGUID: 5E5g7xmXRpqYxNRSQ8jxng==
+X-CSE-MsgGUID: cS4HEBvyRziNy4Pj2nO/0Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,251,1754982000"; d="scan'208";a="189490226"
+X-IronPort-AV: E=Sophos;i="6.19,251,1754982000"; d="scan'208";a="189491586"
 Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
  by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2025 00:26:55 -0700
+ 24 Oct 2025 00:32:30 -0700
 Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
  fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Fri, 24 Oct 2025 00:26:54 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ 15.2.2562.27; Fri, 24 Oct 2025 00:32:29 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
  FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Fri, 24 Oct 2025 00:26:54 -0700
-Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.48) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Fri, 24 Oct 2025 00:32:29 -0700
+Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.31) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Fri, 24 Oct 2025 00:26:54 -0700
+ 15.2.2562.27; Fri, 24 Oct 2025 00:32:29 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZnKHtbLzE39vqBGNIg9QPD35+v/pcuzqHTEMEav6caRlOJ1Ir2tb2kqcY1GqCPFkWO2eXqyv8qNLsfkugEUFTMd1edmYadAdpyBRYHpuqwYivbsHcAP54Uasg6na8xsK1ttpwo6D1h91lLPmpPNOpvx0xbjEr/fnmQvX5D1Wixzil3fqubSs5fbhd8/T7dnWLROc8lHbEvOO6esM265gqLDPFoHE+CmpPsBuCd8E6b2hacF4Pp8vcRiIr5q/jds8ZXTXXWxy9hHafJnY95/NGoDCV/tGnbSG6/HCNyqIacawYekl+YsX8kDstGg1E2w2HYehVko8oiqHgOTxO2lBPQ==
+ b=RXnhyolD7GKOuRvO/hV8bXihFuz3tO7EJCZK+3hVLQqhg+KNORyo0vnHkSZ8rc2aO5Qhup90P7Zz5jmWUJu8eGgQSNrmkFbj/K4ALy/XRqYj0opLLSuLAHiKveypuad480EDirDJ8P8nbxhiGJvnxNJfjCKv4NroyPQXMmZ7dn8YYBkGruFGSFh6+YiR4b7g1vr+yEiVb+flu42qQ2S+H5G+vTD1TiAsLp9LM41noPnG2ueivgW9ttGaGnrAymf6lPLS5zD4QhvsT9yFpqEAzKOCUo7ywg6zHxtGUkDEBnWOU8R5moihvvMwvGhlSCimWVXSk6L0D4K2jrHIXFY+nQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/2rpOssEoGQZBr25jxSi3DCBBvMSR+SAZ8VIbiT69S0=;
- b=jZEYOJ9ul+iynLdgin+pWszU9vwS+JK7luSsxbkPHDIfsX4/yjCzCk218ri+unor3rNoscTodL8iTNE8RIK/mAimAbS5MVCqOdMTlXTIUfC19y6lSrSCop1lTzRTV0TNxNm9KIFbsHx4E1R8boBEBmfoLsoqaxm2fLxmQl+9iU715zWPstFuftixM9uH1xQxroKlXsKjos9PBgspMw/E14FXYLjTruoDHh/gnNjiYnc2db8u+Zqq2BI6aRc165iEia7Tb4VvWZeXYCEr4SSmwT38YGM9dcMLa1F5Nw4eFPloitZpFyvGbUW8loo2N/rYUNRBkiAQBBd0PFEWQufOWA==
+ bh=0OBlrv5cEs2wsvhF8W8KCco3WV0i9GABdoCjjTLIA6g=;
+ b=UjziPJh4iWpssDQo3fmEg0PAG3t6trLnvelvbZIKk2d7AdnTroBDXCrYuwj7k8SrA3RyyuMB0RDEXPR8jLg7TbpwQ2mVrQBa74ecI6qCnFY6fJLuCvagH3IWrq95FUiilywwIvkDonnvwlZLk4tF0/qmlY1TOkPT8oglAE+RZWwMQ1fAUErzAGtfEpL3CJaAs1FDowPp3rBPQwQZVU+L15RL3oINLPHW6NJ1SDum1L8nCMUwVLxsTZWBJHkY+QsssIrPLC9iaaTuHhmiFh1AQ070nbQ6aw2GasjRcBWqybG04fjUcdxPpFfyC0juLhibg7Lrf5igNY2M7ri/5wIbCg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,25 +69,25 @@ Received: from IA0PR11MB7307.namprd11.prod.outlook.com (2603:10b6:208:437::10)
  by CY8PR11MB7243.namprd11.prod.outlook.com (2603:10b6:930:96::14)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.13; Fri, 24 Oct
- 2025 07:26:52 +0000
+ 2025 07:32:28 +0000
 Received: from IA0PR11MB7307.namprd11.prod.outlook.com
  ([fe80::dafa:d38d:8ac1:e843]) by IA0PR11MB7307.namprd11.prod.outlook.com
  ([fe80::dafa:d38d:8ac1:e843%6]) with mapi id 15.20.9253.011; Fri, 24 Oct 2025
- 07:26:52 +0000
-Message-ID: <860f87c8-79ea-4c0c-8273-881610992407@intel.com>
-Date: Fri, 24 Oct 2025 12:56:46 +0530
+ 07:32:28 +0000
+Message-ID: <64f9c328-8ec5-4f57-9644-40de45fd248a@intel.com>
+Date: Fri, 24 Oct 2025 13:02:22 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 22/25] drm/i915/ltphy: Define LT PHY PLL state verify
- function
+Subject: Re: [PATCH 23/25] drm/i915/display: Aux Enable and Display powerwell
+ timeouts
 To: Suraj Kandpal <suraj.kandpal@intel.com>, <intel-xe@lists.freedesktop.org>, 
  <intel-gfx@lists.freedesktop.org>
 CC: <ankit.k.nautiyal@intel.com>, <uma.shankar@intel.com>,
  <gustavo.sousa@intel.com>, <lucas.demarchi@intel.com>
 References: <20251015040817.3431297-1-suraj.kandpal@intel.com>
- <20251015040817.3431297-23-suraj.kandpal@intel.com>
+ <20251015040817.3431297-24-suraj.kandpal@intel.com>
 Content-Language: en-US
 From: "Murthy, Arun R" <arun.r.murthy@intel.com>
-In-Reply-To: <20251015040817.3431297-23-suraj.kandpal@intel.com>
+In-Reply-To: <20251015040817.3431297-24-suraj.kandpal@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 X-ClientProxiedBy: MA5PR01CA0078.INDPRD01.PROD.OUTLOOK.COM
@@ -96,92 +96,92 @@ X-ClientProxiedBy: MA5PR01CA0078.INDPRD01.PROD.OUTLOOK.COM
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: IA0PR11MB7307:EE_|CY8PR11MB7243:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8e348660-bedd-448a-b01a-08de12ceb3b1
+X-MS-Office365-Filtering-Correlation-Id: c224dcef-99d7-4d4b-b43a-08de12cf7bb4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?R0k5OVBBenhidHBCYzZqM2k4ODN3aXNuclk0SVJ0NG9OdksvdHQ5bU5XV2w4?=
- =?utf-8?B?dWkwemhXL2tPL09kWmZORjk2MFlzdms3YWlCYVBkc2syRFQ3dU0wRnFNQlVk?=
- =?utf-8?B?L0NLbFJIdXVPaGJia0NHQ21NNzA2SVU2VExvYmJHTkl0ZWdkalVNNmhDaHpv?=
- =?utf-8?B?NUlnMEVBQVF3WnNGbmlHMmR4cU9NYUdTNWhZK1BDYlVSTVJJVjZRK2E1SE1p?=
- =?utf-8?B?UUxTRnE3T1pSN3o0a0o2OEtPejcxbHQyYWw0L09vc0ZjdktoWk0zc2laS1RF?=
- =?utf-8?B?clFZYy9Bc2h4czZ0K3NxWllpMVZldmpMaFYyS1h3eU1nMGppTTNwbEFzNVVN?=
- =?utf-8?B?aXFzbnpidE1WdExKM1QycU50TU9CRzlGREYxeC8xTjh5aFRmTDBlNG9LVnZw?=
- =?utf-8?B?OUh0NEFINUR6RERJelYrY1VFMC9Ea3drZzY4bWc1MlVUU0VJQUhZaWpyUllW?=
- =?utf-8?B?NEdEdThORlJ1dTh0NzZFaEkwZTlJb2RrWVFETEFkcG1jSUNUNXU5QUNGeXhI?=
- =?utf-8?B?Ylh5WGdSdWV6azhNNUQ3THF0Y0xmYnQ0bEtEbmRJbTFYd2hzcVdkVnByM3Vi?=
- =?utf-8?B?RmRBR0kvYmtBNnYzQ3hyR09IWkV6TGhzdmdhOW1RZkkvRUU1ZmdKYXM3MVBI?=
- =?utf-8?B?RlFoNldFQTNxNk9XZGVJU2NGNHFhNmJURlBtanFOaHZHSnkxc3lWazJEK0hy?=
- =?utf-8?B?clh6RnVlaW1EYjFKZ210TGlEaW1lZkFwNkdLK0g4M0lmR0gzaldQdlRSQXZX?=
- =?utf-8?B?N3ZpeFQ3M2orWmMrbGpqTnFvRW81eXJxZkdRTFlhUDVUYjFLRis5ajRrdlVD?=
- =?utf-8?B?bjVZbEwrVENiZ0pNMCsyRlZoZ1NpelZXYWRmZ0R6NlRUcGNCK0l6UE1Idlpq?=
- =?utf-8?B?SmRkWTMyQTl5SWhhRWNhUU9INkY4ZFhxeVpIS0RsaHU5TW9QVjloMVQyMFJo?=
- =?utf-8?B?TWhXalRoQ1ZremJucE5mSy8vZFNYano2Z3l4dld5OWJwNXBydFdScUkyMUQ0?=
- =?utf-8?B?Tk5tRStOQ0pwVUdERE1VeTVtRklBZkk5a1VnWjYyUUlsazBQUVVjQ0ZUSXJz?=
- =?utf-8?B?UFJKVHVQa2VDb3dWeEpRZERYNWhsSjMvZ1FqSEN3ZGVjcEUzUmVYWG5nZVVY?=
- =?utf-8?B?SUtHcXYvYUdMZ3NXUVlJT2dzS3E1SDQ3YUF3NHdqYUpkNFdHVTJFbDdYektU?=
- =?utf-8?B?b0gySW5hY3hZZ3djMkc2K3c1WSs2cXZXcWw5UlNjQW5ONitTeEpYSHU5REo3?=
- =?utf-8?B?NUk3a3pWc3c5WU9xNTdNYmhYenNxcHFaVGVKNy9ONkU5UWZXMGNqN3prdVNQ?=
- =?utf-8?B?REZxRUdaZWlUQ2x4czNWVTIyK2JYRU04QWxJSTYzSHRXSlIyOWhWZTh4K0ww?=
- =?utf-8?B?Q0VNTVV1YmVyU2lXZFg3aXNMVGtuQVlWYnpZa3JaYWNuc0dvcGZUbWYwaU5P?=
- =?utf-8?B?V1VHNHFVUkZXUlpFWEdYMEdFcDlqck42NjhsV1NrZEk4VTducndFMDdFODBk?=
- =?utf-8?B?OE5hc1d5VUFucUhxcStyUFdSOGFRK2phUm52QkNscG5zSXJBMGFtcXBCMWdj?=
- =?utf-8?B?Si9sUXZEcjM0MlY3RTFMMC9FdkYrUHo3Tk51NGxKdWEzdkhRM0d6RlVOc1dW?=
- =?utf-8?B?RmlWWGEvVFAvRHRLS0xCZmJrZEFOUk14UDdzK1pBOERUZ1NEZUFzSmE2QUR4?=
- =?utf-8?B?RVA4S3I5RzQ1bzVVVE9qaUtyRDN1QUtDdlZ4RVdWZmdBWUhMUmF5M3BxR2xt?=
- =?utf-8?B?VzRqM013VmUzYUh6TWxyajBlcnNlOVlSc1JjbE5uSU8vaGZ1QkZvY1c0V2x2?=
- =?utf-8?B?RlVvbGlUelpRcmtzT2l2MElxa0lMOXE2Rjlkd2dSNG1VWlQ4VmdPeEp4ajJB?=
- =?utf-8?B?RVJjYktLdTcwNEkyMXNZeGN5dy91TnJjYnpIcmRicGlYUDVwcTJEeXN2azRS?=
- =?utf-8?Q?aBodQJfoLuwFJkFjPOXMs2U5vPoeAVAo?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?eEtubGRYT3JIVFhTRmV6WXEwYlZSWDE0T01uSkFOSmxneWhWcFhlOTRxTVF6?=
+ =?utf-8?B?NWtWa210THppZXNqWW1BZEYvWDg5OG1IN3djdlpJRGRWcS9XOGl4YWdSQ3M3?=
+ =?utf-8?B?VThLaWY0RC9teUU2a2xtTHVhQUZyclNNN0YvUEZOamlIdUtHcnYzOGYwQk1n?=
+ =?utf-8?B?Qis4ZDFDcUY5S0lhTERwY2xDRU1DZmZyUStIdjBpdzFEWnlXbzhKL1BMaEdp?=
+ =?utf-8?B?K3NheXJla1BJY3Y0QjdxQlpkSGt1RlhDZDl4YVpmQ0kyeHk4ZVVsMGVZaWdH?=
+ =?utf-8?B?ZmNUUlljZVI4SzBRNGNBSU1hcDNUUW8ybGRhUTc1bzQ5U2hyYjVKejF2UGRW?=
+ =?utf-8?B?Rmt1RGFmOTVsbUVxUXRROXBMT3hCekVBU0dIbFJyUm4xL0Z3MEdEdm4xWit0?=
+ =?utf-8?B?dkFsS3FTN3ZiRHJqRGQxd2x3aEovVUR1WldkYVNhUXRZVkRoVHplNTRzdFBD?=
+ =?utf-8?B?L1IrS2pDMkFXSzBlRThENTQ1SzMvVnRNZm1sVURCNDV3Ti9RZS9nM1NKN0cx?=
+ =?utf-8?B?SVY0RVJpcVF5M0Mzc2tyZ2gzdGk3bzhQaUZwdDJyeU1Fd2VmdnRTMkY2YU04?=
+ =?utf-8?B?RFJ4cko2WEZFbWh3SEpXVC9IakZLNXVXQ2xMdWt1alZXMmpzK1M2Q2R3bWlk?=
+ =?utf-8?B?b0NaUFJyakU1NzltWGluUm9sMDAzRnlKOXlFM2grUmZqQ2VZbHlNUW5GNTJr?=
+ =?utf-8?B?RWpXSDBpbVc0OEFSOG5LbFBmbEkraDZKSG1LZGgzV0NZb0xJeFFLMnQyMmtC?=
+ =?utf-8?B?UENtdVMvU1JLZEI1OUVTakJHZmovVmk2T25jNUQ0LzMxVE5zOUNrWUdJVFh4?=
+ =?utf-8?B?V1BRZXZucnNoclNOcEFPb1NXQ1dvVkJTeUpuT3pCOTByYWI5bmZHVHd0WkNQ?=
+ =?utf-8?B?R2U4SjVib3NKbVpQR2k2UHI4VG43ZytmdnUxR1RiTVJxdzIxK0hEYlJDNFVn?=
+ =?utf-8?B?UFYrMElOMjRKZUwxU25xTXdXM1JSTFM3WUdTSlBYb3dRYUQ1TVY1cGRiSVpY?=
+ =?utf-8?B?YzZ5YzQzcVhWNVVTZVIwWGh4VXBhOGpqdUw5TCtrbVpBdVNmVlYxNzdPRGo5?=
+ =?utf-8?B?R0g4Z1J0eVVFb3ZHdVYwRHp4K3pBY0IwMHl0NkFGaTFXeVFIL0pxOUxQSXF4?=
+ =?utf-8?B?THFpL3hoMnB2U1BxUmw3dnRTS3ppOWtTSUlhaEQvT2lROHVtZEIvMUJSMERq?=
+ =?utf-8?B?QVErVTl3dEx5RmJGcGVjNUFSRHFoNWpCK0JsNWxoYzhQd0JucHFmQkZKUTBQ?=
+ =?utf-8?B?OUladG9aZldhclVsTDBHTmlrWHlsdlBSaFVJbENjRTgvVVUxcENPNVIreUdp?=
+ =?utf-8?B?cVpWSTc0ZHB5cmlpMG1ZSElienRnTGZHOUpVZXZhbXJZeVhsY3pGTXlGazBa?=
+ =?utf-8?B?UzVhVzdVRVNXMlJVaHlPWTNOdlFCUmFzbk8zT1FFcXpid0xEQ3dzQWZJL0ds?=
+ =?utf-8?B?ZkdkYVlDMDVtUm9rNGVnY3c0MS92VDh5ZW5TUjJ4N3JiTXpDc1crSVdONDQ1?=
+ =?utf-8?B?bXpQbmE4WklwS2srakQyRCtmUFkvTXltS1BuN3RVSGdkR2JrTm1mZzVIUll2?=
+ =?utf-8?B?YUlIRVFZYXk1SlRKMngwUHJySVhFQjI3R2w2MGRmbnI0ZkNQVUtiRXM1b3Zy?=
+ =?utf-8?B?Zndja2JyTW00T3ZIejNmM0xzeGZZc3ZGaUdGTUFCamZQbHhselNMdVBMNHNS?=
+ =?utf-8?B?VjRZcmlNdkZnVTBab1hmS1NxSXdyL1lza0gxOEVxMHhMeEdnZFNMaTlmMngx?=
+ =?utf-8?B?bUgydW03bGNZYmJjUGlZb3hTT2hMMS91QWhYdGN2SUkzTVh1bS83NlhHTXpM?=
+ =?utf-8?B?a0ZTRFNhWUZFaW9GN2VvZ3EzM3djSmlOSzRUYXMvRG9QcDBqM3djc1pjK1N5?=
+ =?utf-8?B?L2dPcmxvT2pWNk1NQ1hxSmo0YzY2N1BQT0ZvU2RROWxWT0pNRThqRTlydTJt?=
+ =?utf-8?Q?EwS7Q+qp89bZ9X1Kfk3dELAttGilAYcU?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:IA0PR11MB7307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ditKbW11bUI2WnpUQmJXbEZPMUdoZFk4Q0J2RDErakxVNUZtZVVaRG1JM0dO?=
- =?utf-8?B?V1pYNGMxZG5rTXovZU5ZU1FxV1hjWTJINnZRUHhydFhEMDY1L2NteXdnUG5U?=
- =?utf-8?B?TFcra3YrU05laUtOYjhOYVAyQk8vbW5YN0lXSHFkM2dNRHdFNTVQVm5RTGtw?=
- =?utf-8?B?YUZNaGxEc0YzRnM4THVwN0dzUFlIeW56c2lQVkQ5R243WkNjTmU0d2VBMlkw?=
- =?utf-8?B?dWZaRWdLUWx3OFM0RC8wb3FVcmxMZkFoTmFqUCtHK015eDhaclNNd1BiY3cx?=
- =?utf-8?B?ZlRGd0I0eHVTNkZWdzJyeG9lUEgzOHd6OHp5dmdmM0Z6UlcxZGNadEwxN0hX?=
- =?utf-8?B?Nm1OM3FBTzByOElROXVGS1dFaUdzTHlrMHZ2Wmxwc2piUGZUVFRISjY4Zml1?=
- =?utf-8?B?N3ZLT21rUlptNlJSRWJQNUIzMm5vZFRNYys3anhkZkxxV1ZEWlE0MnVCL3FM?=
- =?utf-8?B?a0gvSlNlbFNmUGNOSWJsZGFqalk3WHFBbnVkakhKN0xVWVhJWkxobUcwMkZL?=
- =?utf-8?B?bTVXYVVIZDhFYkE2bzVVdmhWS1FRN0huSmpuUTRSdldudWQ0OWN0ZHlVYzlY?=
- =?utf-8?B?Q3E5UWN5R3ZBcWhKai9FalAySUwzRDlSRlViaWthUmJOTW9xV2tKNVdON3pF?=
- =?utf-8?B?RnlucFdORGpnYkl4T25FTzRHUEFtVTJEN0NyTlRpem9LTnJFVHQ1VW5UUDE3?=
- =?utf-8?B?S3NoaUIzRmtVOEZ6MnUzNjZheWdLUDBVSEhhNEFoWTJlbE1FdGIwc2pnejE3?=
- =?utf-8?B?SnV3TElTc28wNUl5TWcwYVVWTmVteWI5QjBwa3diZ2lkclRRKzRLSHA3SFpr?=
- =?utf-8?B?dTJsQTJNU3V1dmxkMEllaUJnemUxd3gwWU05K0FldGJ0ZHFNSXRxTTBZOWR0?=
- =?utf-8?B?cHlJd3ZGU3VEdmI0WFlkRVFiTkQvMUVGRmJxL01wL3AwNFhmdDZ3S3J3R0Mz?=
- =?utf-8?B?cE9DNHlDVzVQS29ZeHMzZTdNay92SFdhK3BtRWs0cmgrVXpoMGdldWl6S0Fq?=
- =?utf-8?B?S2xCZllVRWJwWkdRbDlkdmM1U294bW0rcTF5S0RyWU84RTl0WE9YZXluY3VE?=
- =?utf-8?B?MkZDQWllQjVMbmVYZTlpMjJ4RW8zMHJ3K0V6dlhTTXh6cjBzOEU0alU1Ynk3?=
- =?utf-8?B?YmhEK3c3K1FCUjJQZU5BaFlpMmUzR000VEN2aU5LMnI3ZitWOFBia1BncU5D?=
- =?utf-8?B?S2lCZEx3MWFSNlpGRFVNWm92c1MzVVVpTzgvL0JXY2NoY21xNks2RFVwVTJl?=
- =?utf-8?B?VGhZSlROclVVMStPVVo5eGFxOVhvSUJySE9MOFdZNmd3bzc1ajhDamFrY3Fr?=
- =?utf-8?B?d0lJa3AySjR3U3JjcUgrd1JOVDRvZ2FQaEtQV1JYM3NjSGovR1c0MjhGMDBN?=
- =?utf-8?B?c1FuNjh6cElNWGRqQ01hcUlZOUI1NEFjZ29tNytPcjFxUVk2WXRjLzY4R20x?=
- =?utf-8?B?RGg4T2pjeUpxMU5XZXFuaDhFa0xTQ3hZNXNILzNoTG1vYVFDUVlDYXM5Znlu?=
- =?utf-8?B?RllzNE05bVljTjZHMTBIcTNYcmdhOXdlZEM4dTdpaTZKZy9zekdPb0tCYmVZ?=
- =?utf-8?B?N2Fra1kvTXViMnZuVmF3cTVoK2VSRmo3VDhSbWU3T2QzSUMxbGV1YjFRNkFT?=
- =?utf-8?B?L2Q1UUdLV29EeVRKOFo1OU1OTlVkeUFVRVptNGlMYlUyT3JRVzBiVDVEeTM1?=
- =?utf-8?B?MHkxbE5Na3lRNjQzUmMyUU4xelpGd21WTWthUmRhK2hEdlh5QnA4djd2RFhn?=
- =?utf-8?B?bkVIamtONGlLQkx4S2lNVmcwT3hTeUlRSmpjNllHVnJqYmdqcitkUGovNGdm?=
- =?utf-8?B?b0dmdFNWdXlHSHRoVEhkRzRFRWxwZ3FsYTBXWnFQdUFsQkNoQ1F4SDdpeWZm?=
- =?utf-8?B?bzRmay81aDNhRFlFZEczTTk4MnBSUnBRZ2ZndXNzbTBrNm4vQXJLS0VSNkg0?=
- =?utf-8?B?bXRLeWdwdm11eUMxaTRXVWY3VjNvQ1FFa3N4YXd5Mkg1cGFhV1F6YkdrRE1L?=
- =?utf-8?B?YmpNU2c4aWNlM1g1a1R6OEF3MXgrQlZpZTNabEs3dXl0M2ZVd0l5cHFKV3Fp?=
- =?utf-8?B?Wll5aHlJc0djb2RDK0pUQ3JmSlUvT2JRS0FmMm5oWW56QXdESFU5TlZkVUhl?=
- =?utf-8?B?ZWdMODIvYWZkVzJ1anFncGprSDNWS1Z0b3Y5ZmZSUUs2YzRlVStnSDJVQysv?=
- =?utf-8?B?d1E9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8e348660-bedd-448a-b01a-08de12ceb3b1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZU4yeFhVYVJVWmdYTFhTRVJLYlRJYklQUXJOa3R2dHM1bWZZOVlzeHR2K0hz?=
+ =?utf-8?B?NDFTM05sY3RHUEEvK29wM0lJWnpMRVlYUkh0Y1VnbGtDdnlaZU9qdGtHb2dW?=
+ =?utf-8?B?ZWFIdkNxRmhNUytpNzVqNjdsa1paTncyNFkzenBrTnhmamwyTFYrT1VESmlz?=
+ =?utf-8?B?aVRLdVI4dlhVcUdkQ0hOeXZSb0NIbUJFMm5kdE9FRWZjOXQ5dmpTZlQrYXQ4?=
+ =?utf-8?B?alRwWUFLdjRyUHpaZ1p3cm5SWVNLOFRBaHJ2c2hLano2Q0RhM3RFZXgvS0xT?=
+ =?utf-8?B?bmQ1eE0vcldjMVFDWkFHbTlYUEY4cXNBVU5pVSs5RkpSb3JvWG54TEJvOThD?=
+ =?utf-8?B?M1N5WkNQZ0d3SjJKSkJqOE1vRSt2TzczTzdDdE81QlJZbjA4dHJEaEpNb3hn?=
+ =?utf-8?B?aDNnMlBKaUlvRmRmeXRVSjBGRGNZVGE1dlh3eTRTR0FmdWtxcDIrWSs2T1Vu?=
+ =?utf-8?B?cFc1dzgyTnAvd01ScE9NZkNxY05JczBEaE5adU04UnBYSFZQVmRLT2ZHaGc4?=
+ =?utf-8?B?ZUROaEdoODNmOFdZazNYTUtoL2YvUU9SVk1JL0s4NEw3Z0ZFTC9IU3dMUFMr?=
+ =?utf-8?B?SHBxWlBiTWhxeU5nUnZxREwrQWdLUWVzTkNuZnlaSEU5aEdYKzBNRFg4YlBV?=
+ =?utf-8?B?cTR3U0FOVk5YbW1FYVE1aU9FNFJjRktCZXM1clFPaWRoVlNpaERTRzFYcThj?=
+ =?utf-8?B?OXUwVGNSRVljZ2gxUnRpVVpuR0NXbXlPQUZkamVhTGtPdVlrYlBKVjUyVkJx?=
+ =?utf-8?B?Y0k3eFZFdzlQRXNhdlAvcDROMG4rekVQNmErL2xxTnphYmhDNmhleWtFci9u?=
+ =?utf-8?B?emVpQjhQT0xjSXFCUEY3emI1TkZrUnJDSk9rZDc1QW1zWGxxMnI5MWlKemVK?=
+ =?utf-8?B?MGxHVXBNMVpHcEplcVZqYk4ydXBXMEhGMGQyVkZlRmRhallZd1ZyNXRuaVhY?=
+ =?utf-8?B?ekpJYzAwZ3pBdlJBZUVrcTVuT1czbjBHYk1IQ0dMR1Z0SVFzQ0JDWTQ4bHRr?=
+ =?utf-8?B?WDZyS0FQRzVvZWpoUGR1ekc2Q2g5czgyVThrcElBQlgwTXJqS1JsdW9aWjNU?=
+ =?utf-8?B?M1RMQ2Q1dDY1V1dEaEkzeEFXYWd4Ym9xUHNjV3FsMytNdkwySTJnY3ZmMTBj?=
+ =?utf-8?B?T3hxQmxxSXJidDZMM3pvQk9uNUpBNm1YU1pEYmNlQXI4Mkp1elJWZVlzS1Fy?=
+ =?utf-8?B?aURWaVRxRW5rRGRXRFEvWnEra3FyQXlubXF4TWVvbVlYUklrNkVmMi94VDZO?=
+ =?utf-8?B?UFRoRERNa0UzZlRkODhCN1hxQ0ZlNmZrc1JSZW1Ja1NLenY5RUNoUHZ0bGph?=
+ =?utf-8?B?dEhpaHprM1Y5SVBueVpsTVZOOVRHQWdVVjc0V2tMcXNQZVg3cS9GbjB2dXJU?=
+ =?utf-8?B?M3hCWnM3ang1SkhNS2ZBMkFjTkVxUDlBSFhsaE11cGVyeDZLZm9NaGxTWGNo?=
+ =?utf-8?B?SmVobkJrWlNhSGVuUDh6MGpmdk1yK2M1Q2h4aUphSWlTTmhYZ2lZZFkzODFX?=
+ =?utf-8?B?bnpoSTV3MGZIcXNiZVRuQXdTcU9qdlh6RUlmbXZFTlMyV3g5S1JsdzJsSDZj?=
+ =?utf-8?B?OGVhanFFQmpJTGJZbWRudTNTVHB3RUtxR29ZS2VGQ2VlWWpJaUVYdFhyV1RH?=
+ =?utf-8?B?OHpieDgrZGpPODlPNys0OFF0QmtnTEszemJkZDZncUtSWXd1SGx0SW1SdW9F?=
+ =?utf-8?B?am14YWJKY1lrUmNrWVBzV1lnZzF5VTJOaVhxdGppR2pwRHhxWDJMNjZGcldz?=
+ =?utf-8?B?SWtkTm5MRURhdmxYcVhCSE1kWGJqYVVFbktlVnhQK1lGTTJqb0RwTGhvaHM4?=
+ =?utf-8?B?UjBjWHZRMDFETGNTdEc1S2U0dENCMjlnMjN0OGY0Mk9IQ1lDZVo0Tmp3VWIw?=
+ =?utf-8?B?MXp3NDE0Q2NNZWFJYVkyTnJpUm50VGpmMWNnWjUzODlJdWNKUW5EMWlvMkkw?=
+ =?utf-8?B?MGdSR2pSQ1JCNGMzSTcvTU42U2pzdVJLNDZYNW1JRjQvNXI0Sm1udzdFRjR3?=
+ =?utf-8?B?Y3M1OHppUFZoTkZNZ0lHTmd5ekJxT3IzSHlIT1VycktaeUQ3SVNsVHAvb3JY?=
+ =?utf-8?B?aGhKSzViMXNYVkxiY21mUmhHZjVwKzNESnROa3RzU2JQbzdoT0xUamd0c2lt?=
+ =?utf-8?B?VWUyYWtUTW1HaEs2Z2wyaWZTMDd0SDRvbzRWUEVJUmVUS2NveUU3cGZJVlBB?=
+ =?utf-8?B?TkE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c224dcef-99d7-4d4b-b43a-08de12cf7bb4
 X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7307.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Oct 2025 07:26:52.4872 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Oct 2025 07:32:28.0146 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AJ91JD1Vv3MynM0FxU6UFCye+sGBHdXx7vZqTgZt3xnkaH/Xoxrnb5V/txlSt8srH3CF/E6kKVuI5D3z8dYGhQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: bNzUArTSiAfsVMaZKMRuLnwKZlYYlLBvkzE5Hlw1Re0rIBeBmUd57slv16Tcn7qIEdAjxzyTc8sOV/hkKwvr3w==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7243
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -201,147 +201,63 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 On 15-10-2025 09:38, Suraj Kandpal wrote:
-> Define function to verify the LT PHY PLL state function and call it
-> in intel_modeset_verify_crtc.
+>  From XE3P we can now poll if the AUX power is up or down define the
+> timeouts for each respectively.
 >
+> Bspec: 68967
 > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 > ---
-
-Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
-
->   drivers/gpu/drm/i915/display/intel_cx0_phy.c  |  2 +-
->   drivers/gpu/drm/i915/display/intel_lt_phy.c   | 56 +++++++++++++++++++
->   drivers/gpu/drm/i915/display/intel_lt_phy.h   |  4 ++
->   .../drm/i915/display/intel_modeset_verify.c   |  2 +
->   4 files changed, 63 insertions(+), 1 deletion(-)
+>   .../i915/display/intel_display_power_well.c   | 23 +++++++++++++++++--
+>   1 file changed, 21 insertions(+), 2 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> index 986da034d4de..fc6cdf026a34 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> @@ -3580,7 +3580,7 @@ void intel_cx0pll_state_verify(struct intel_atomic_state *state,
->   	struct intel_encoder *encoder;
->   	struct intel_cx0pll_state mpll_hw_state = {};
->   
-> -	if (DISPLAY_VER(display) < 14)
-> +	if (!IS_DISPLAY_VER(display, 14, 30))
->   		return;
->   
->   	if (!new_crtc_state->hw.active)
-> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-> index 11178cd00a5b..72c3ba787e2a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-> @@ -1906,6 +1906,61 @@ void intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
->   	intel_lt_phy_transaction_end(encoder, wakeref);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> index 5e88b930f5aa..1fc2e9450f03 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> @@ -1864,18 +1864,37 @@ static void xelpdp_aux_power_well_enable(struct intel_display *display,
+>   	 * expected to just wait a fixed 600us after raising the request
+>   	 * bit.
+>   	 */
+> -	usleep_range(600, 1200);
+> +
+
+Un-necessary blank line and place the comment properly!
+
+Thanks and Regards,
+Arun R Murthy
+-------------------
+
+> +	if (DISPLAY_VER(display) >= 35) {
+> +		if (intel_de_wait_for_set(display, XELPDP_DP_AUX_CH_CTL(display, aux_ch),
+> +					  XELPDP_DP_AUX_CH_CTL_POWER_STATUS, 2))
+> +			drm_warn(display->drm,
+> +				 "Timeout waiting for PHY %c AUX channel power to be up\n",
+> +				 phy_name(phy));
+> +	} else {
+> +		usleep_range(600, 1200);
+> +	}
 >   }
 >   
-> +void intel_lt_phy_pll_state_verify(struct intel_atomic_state *state,
-> +				   struct intel_crtc *crtc)
-> +{
-> +	struct intel_display *display = to_intel_display(state);
-> +	struct intel_digital_port *dig_port;
-> +	const struct intel_crtc_state *new_crtc_state =
-> +		intel_atomic_get_new_crtc_state(state, crtc);
-> +	struct intel_encoder *encoder;
-> +	struct intel_lt_phy_pll_state pll_hw_state = {};
-> +	const struct intel_lt_phy_pll_state *pll_sw_state = &new_crtc_state->dpll_hw_state.ltpll;
-> +	int clock;
-> +	int i, j;
-> +
-> +	if (DISPLAY_VER(display) < 35)
-> +		return;
-> +
-> +	if (!new_crtc_state->hw.active)
-> +		return;
-> +
-> +	/* intel_get_crtc_new_encoder() only works for modeset/fastset commits */
-> +	if (!intel_crtc_needs_modeset(new_crtc_state) &&
-> +	    !intel_crtc_needs_fastset(new_crtc_state))
-> +		return;
-> +
-> +	encoder = intel_get_crtc_new_encoder(state, new_crtc_state);
-> +	intel_lt_phy_pll_readout_hw_state(encoder, new_crtc_state, &pll_hw_state);
-> +	clock = intel_lt_phy_calc_port_clock(encoder, new_crtc_state);
-> +
-> +	dig_port = enc_to_dig_port(encoder);
-> +	if (intel_tc_port_in_tbt_alt_mode(dig_port))
-> +		return;
-> +
-> +	INTEL_DISPLAY_STATE_WARN(display, pll_hw_state.clock != clock,
-> +				 "[CRTC:%d:%s] mismatch in LT PHY: Register CLOCK (expected %d, found %d)",
-> +				 crtc->base.base.id, crtc->base.name,
-> +				 pll_sw_state->clock, pll_hw_state.clock);
-> +
-> +	for (i = 0; i < 3; i++) {
-> +		INTEL_DISPLAY_STATE_WARN(display, pll_hw_state.config[i] != pll_sw_state->config[i],
-> +					 "[CRTC:%d:%s] mismatch in LT PHY PLL CONFIG%d: (expected 0x%04x, found 0x%04x)",
-> +					 crtc->base.base.id, crtc->base.name, i,
-> +					 pll_sw_state->config[i], pll_hw_state.config[i]);
-> +	}
-> +
-> +	for (i = 0; i <= 12; i++) {
-> +		for (j = 3; j >= 0; j--)
-> +			INTEL_DISPLAY_STATE_WARN(display,
-> +						 pll_hw_state.data[i][j] !=
-> +						 pll_sw_state->data[i][j],
-> +						 "[CRTC:%d:%s] mismatch in LT PHY PLL DATA[%d][%d]: (expected 0x%04x, found 0x%04x)",
-> +						 crtc->base.base.id, crtc->base.name, i, j,
-> +						 pll_sw_state->data[i][j], pll_hw_state.data[i][j]);
-> +	}
-> +}
-> +
->   void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
->   			      const struct intel_crtc_state *crtc_state)
+>   static void xelpdp_aux_power_well_disable(struct intel_display *display,
+>   					  struct i915_power_well *power_well)
 >   {
-> @@ -1925,4 +1980,5 @@ void intel_xe3plpd_pll_disable(struct intel_encoder *encoder)
->   		intel_mtl_tbt_pll_disable(encoder);
->   	else
->   		intel_lt_phy_pll_disable(encoder);
+>   	enum aux_ch aux_ch = i915_power_well_instance(power_well)->xelpdp.aux_ch;
+> +	enum phy phy = icl_aux_pw_to_phy(display, power_well);
+>   
+>   	intel_de_rmw(display, XELPDP_DP_AUX_CH_CTL(display, aux_ch),
+>   		     XELPDP_DP_AUX_CH_CTL_POWER_REQUEST,
+>   		     0);
+> -	usleep_range(10, 30);
 > +
->   }
-> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-> index dd8cbb151b23..a538d4c69210 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lt_phy.h
-> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-> @@ -8,9 +8,11 @@
->   
->   #include <linux/types.h>
->   
-> +struct intel_atomic_state;
->   struct intel_display;
->   struct intel_encoder;
->   struct intel_crtc_state;
-> +struct intel_crtc;
->   struct intel_lt_phy_pll_state;
->   
->   void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
-> @@ -31,6 +33,8 @@ intel_lt_phy_pll_compare_hw_state(const struct intel_lt_phy_pll_state *a,
->   void intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
->   				       const struct intel_crtc_state *crtc_state,
->   				       struct intel_lt_phy_pll_state *pll_state);
-> +void intel_lt_phy_pll_state_verify(struct intel_atomic_state *state,
-> +				   struct intel_crtc *crtc);
->   void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
->   			      const struct intel_crtc_state *crtc_state);
->   void intel_xe3plpd_pll_disable(struct intel_encoder *encoder);
-> diff --git a/drivers/gpu/drm/i915/display/intel_modeset_verify.c b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-> index f2f6b9d9afa1..b361a77cd235 100644
-> --- a/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-> +++ b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-> @@ -16,6 +16,7 @@
->   #include "intel_display_core.h"
->   #include "intel_display_types.h"
->   #include "intel_fdi.h"
-> +#include "intel_lt_phy.h"
->   #include "intel_modeset_verify.h"
->   #include "intel_snps_phy.h"
->   #include "skl_watermark.h"
-> @@ -246,6 +247,7 @@ void intel_modeset_verify_crtc(struct intel_atomic_state *state,
->   	intel_dpll_state_verify(state, crtc);
->   	intel_mpllb_state_verify(state, crtc);
->   	intel_cx0pll_state_verify(state, crtc);
-> +	intel_lt_phy_pll_state_verify(state, crtc);
+> +	if (DISPLAY_VER(display) >= 35) {
+> +		if (intel_de_wait_for_clear(display, XELPDP_DP_AUX_CH_CTL(display, aux_ch),
+> +					    XELPDP_DP_AUX_CH_CTL_POWER_STATUS, 1))
+> +			drm_warn(display->drm,
+> +				 "Timeout waiting for PHY %c AUX channel to powerdown\n",
+> +				 phy_name(phy));
+> +	} else {
+> +		usleep_range(10, 30);
+> +	}
 >   }
 >   
->   void intel_modeset_verify_disabled(struct intel_atomic_state *state)
+>   static bool xelpdp_aux_power_well_enabled(struct intel_display *display,
