@@ -2,78 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 399E4C0587F
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Oct 2025 12:12:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93DD7C05A03
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Oct 2025 12:39:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1D5110EA53;
-	Fri, 24 Oct 2025 10:12:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AC6910EA39;
+	Fri, 24 Oct 2025 10:39:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eNGIJm7A";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UYqJNxrP";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B633310EA52;
- Fri, 24 Oct 2025 10:12:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1DF810EA4A;
+ Fri, 24 Oct 2025 10:39:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761300762; x=1792836762;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=xlFYDG2bQlVTloS05eCO9qDMzMthfcITU9mwgsQzjDk=;
- b=eNGIJm7AN7UlVokllgHjFBz5m43Sw5zshgu0bzexnF2+eb9ZPouuSB3P
- gQHR+xKYE2s2Gy5b2Q99Ie0rydQPkBqlmwdhpankG0U+9tlfT1HKx6k0e
- 0L6adnMa1FDRbTjmSg+RttFe45XdmRjH3GUUVF5oaUHSuLZlWYAvoycH0
- i1xk93TCuRWDZPNeBQaO/u46zya7AmOWQE0OZ0SHu3eTQbBaCszUxDuB+
- 2v6uJR5pPWcDgG0VS3wu+E1+XEHaiG0tjEfmM1n2vFlUxBeI664154MbC
- aA/09nvNP+rMrubt265fzlxV+q+eOgv3habUFACQGw1FdfNUcbDVNu2vR Q==;
-X-CSE-ConnectionGUID: i/x3o3UcRRiCE9zO/1jO8w==
-X-CSE-MsgGUID: tt41Iv5HT3K2ikd7maQcdg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="88948819"
-X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="88948819"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2025 03:12:42 -0700
-X-CSE-ConnectionGUID: A7yLYNKyQ0Ws/5qhPckICQ==
-X-CSE-MsgGUID: aVukQjuxQOaWBvcBdIAMQA==
+ t=1761302367; x=1792838367;
+ h=from:date:to:cc:subject:in-reply-to:message-id:
+ references:mime-version:content-id;
+ bh=SRKpqs7p8PGtv14YGwum4fAb1Zzbp8J6idns3ccYONg=;
+ b=UYqJNxrP93jaoiQH0CtHA/MTI51sLDbGCGJII2E0vkcxnGI06K5+6Del
+ kTcGEY7w22KnudQjKFpHq/zQxHeJi4b920sUwrHVr9vh5GQBn52GGuzGx
+ QY+PbEQrep/v+20RmfVcnp1d+7/iszV+bjq+nPWeJnwvLNL3FQxstwF00
+ mwOTy/zYndeitlI4B6NptITEaLA3TdOwDheMteCdzelG39o1yEOSvnU6w
+ xQilY1JBOS0OKGRckMi6slyPr+DLkd+34Xu7hO8/1xZGKtHz7ameu0AXr
+ a0iDX16/k0ewW/mDA9h0atw09j6TFksRQYwyOJBqnfADI9RzgbUbcljyq w==;
+X-CSE-ConnectionGUID: 454chpIhRwWX7C2B9TfWuQ==
+X-CSE-MsgGUID: cVK/JzfhTD+hz+aCitoatg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63384795"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63384795"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2025 03:39:26 -0700
+X-CSE-ConnectionGUID: hmXiIFeFQhStZZIY+yihLg==
+X-CSE-MsgGUID: 9rKxUU0iQBu3gyCS+BTRhg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="184109635"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.230])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2025 03:12:31 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Jason Gunthorpe <jgg@nvidia.com>, Alexander Gordeev
- <agordeev@linux.ibm.com>, David Airlie <airlied@gmail.com>, Alex
- Williamson <alex.williamson@redhat.com>, Ankit Agrawal
- <ankita@nvidia.com>, Christian Borntraeger <borntraeger@linux.ibm.com>,
- Brett Creeley <brett.creeley@amd.com>, dri-devel@lists.freedesktop.org,
- Eric Auger <eric.auger@redhat.com>, Eric Farman <farman@linux.ibm.com>,
- Giovanni Cabiddu <giovanni.cabiddu@intel.com>, Vasily Gorbik
- <gor@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
- intel-gfx@lists.freedesktop.org, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Kevin Tian <kevin.tian@intel.com>,
- kvm@vger.kernel.org, Kirti Wankhede <kwankhede@nvidia.com>,
- linux-s390@vger.kernel.org, Longfang Liu <liulongfang@huawei.com>, Matthew
- Rosato <mjrosato@linux.ibm.com>, Nikhil Agarwal <nikhil.agarwal@amd.com>,
- Nipun Gupta <nipun.gupta@amd.com>, Peter Oberparleiter
- <oberpar@linux.ibm.com>, Halil Pasic <pasic@linux.ibm.com>, Pranjal
- Shrivastava <praan@google.com>, qat-linux@intel.com, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>, Shameer
- Kolothum <skolothumtho@nvidia.com>, Mostafa Saleh <smostafa@google.com>,
- Sven Schnelle <svens@linux.ibm.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, virtualization@lists.linux.dev, Vineeth Vijayan
- <vneethv@linux.ibm.com>, Yishai Hadas <yishaih@nvidia.com>, Zhenyu Wang
- <zhenyuw.linux@gmail.com>, Zhi Wang <zhi.wang.linux@gmail.com>
-Cc: patches@lists.linux.dev
-Subject: Re: [PATCH 13/22] vfio/gvt: Provide a get_region_info op
-In-Reply-To: <13-v1-679a6fa27d31+209-vfio_get_region_info_op_jgg@nvidia.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <13-v1-679a6fa27d31+209-vfio_get_region_info_op_jgg@nvidia.com>
-Date: Fri, 24 Oct 2025 13:12:28 +0300
-Message-ID: <c30b38456cc11ced5b74d9d38900cf8544a1978e@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="184882780"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.112])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2025 03:39:18 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Fri, 24 Oct 2025 13:39:15 +0300 (EEST)
+To: Bjorn Helgaas <helgaas@kernel.org>
+cc: Lucas De Marchi <lucas.demarchi@intel.com>, linux-pci@vger.kernel.org, 
+ Bjorn Helgaas <bhelgaas@google.com>, 
+ =?ISO-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>, 
+ =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>, 
+ =?ISO-8859-2?Q?Micha=B3_Winiarski?= <michal.winiarski@intel.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, 
+ David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ "Michael J . Ruhl" <mjruhl@habana.ai>, 
+ Andi Shyti <andi.shyti@linux.intel.com>, 
+ LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 00/11] PCI: Resizable BAR improvements
+In-Reply-To: <20251023221323.GA1325049@bhelgaas>
+Message-ID: <468ebc86-25aa-a22f-a45c-6ec15faa5b09@linux.intel.com>
+References: <20251023221323.GA1325049@bhelgaas>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: multipart/mixed; BOUNDARY="8323328-1816897247-1761300158=:1178"
+Content-ID: <50255ee2-82ed-c181-c05c-72f2a8f7243a@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,349 +82,150 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 23 Oct 2025, Jason Gunthorpe <jgg@nvidia.com> wrote:
-> Move it out of intel_vgpu_ioctl() and re-indent it.
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-Not a huge deal, but this will conflict with 69b4d367fff6
-("drm/i915/gvt: Simplify case switch in intel_vgpu_ioctl") in
-drm-intel-next.
+--8323328-1816897247-1761300158=:1178
+Content-Type: text/plain; CHARSET=ISO-8859-15
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-ID: <0a125242-ab0c-aae7-2380-e599003f1850@linux.intel.com>
 
-BR,
-Jani.
+On Thu, 23 Oct 2025, Bjorn Helgaas wrote:
 
+> On Thu, Oct 23, 2025 at 05:02:42PM -0500, Lucas De Marchi wrote:
+> > On Thu, Oct 23, 2025 at 04:29:43PM -0500, Bjorn Helgaas wrote:
+> > > On Wed, Oct 22, 2025 at 04:33:20PM +0300, Ilpo J=E4rvinen wrote:
+> > > > pci.c has been used as catch everything that doesn't fits elsewhere
+> > > > within PCI core and thus resizable BAR code has been placed there a=
+s
+> > > > well. Move Resizable BAR related code to a newly introduced rebar.c=
+ to
+> > > > reduce size of pci.c. After move, there are no pci_rebar_*() calls =
+from
+> > > > pci.c indicating this is indeed well-defined subset of PCI core.
+> > > >=20
+> > > > Endpoint drivers perform Resizable BAR related operations which cou=
+ld
+> > > > well be performed by PCI core to simplify driver-side code. This
+> > > > series adds a few new API functions to that effect and converts the
+> > > > drivers to use the new APIs (in separate patches).
+> > > >=20
+> > > > While at it, also convert BAR sizes bitmask to u64 as PCIe spec alr=
+eady
+> > > > specifies more sizes than what will fit u32 to make the API typing =
+more
+> > > > future-proof. The extra sizes beyond 128TB are not added at this po=
+int.
+> > > >=20
+> > > > Some parts of this are to be used by the resizable BAR changes into=
+ the
+> > > > resource fitting/assingment logic but these seem to stand on their =
+own
+> > > > so sending these out now to reduce the size of the other patch seri=
+es.
+> > > >=20
+> > > > v3:
+> > > > - Rebased to solve minor conflicts
+> > > >=20
+> > > > v2: https://lore.kernel.org/linux-pci/20250915091358.9203-1-ilpo.ja=
+rvinen@linux.intel.com/
+> > > > - Kerneldoc:
+> > > >   - Improve formatting of errno returns
+> > > >   - Open "ctrl" -> "control"
+> > > >   - Removed mislead "bit" words (when referring to BAR size)
+> > > >   - Rewrote pci_rebar_get_possible_sizes() kernel doc to not claim =
+the
+> > > >     returned bitmask is defined in PCIe spec as the capability bits=
+ now
+> > > >     span across two registers in the spec and are not continuous (w=
+e
+> > > >     don't support the second block of bits yet, but this API is exp=
+ected
+> > > >     to return the bits without the hole so it will not be matching =
+with
+> > > >     the spec layout).
+> > > > - Dropped superfluous zero check from pci_rebar_size_supported()
+> > > > - Small improvement to changelog of patch 7
+> > > >=20
+> > > > Ilpo J=E4rvinen (11):
+> > > >   PCI: Move Resizable BAR code into rebar.c
+> > > >   PCI: Cleanup pci_rebar_bytes_to_size() and move into rebar.c
+> > > >   PCI: Move pci_rebar_size_to_bytes() and export it
+> > > >   PCI: Improve Resizable BAR functions kernel doc
+> > > >   PCI: Add pci_rebar_size_supported() helper
+> > > >   drm/i915/gt: Use pci_rebar_size_supported()
+> > > >   drm/xe/vram: Use PCI rebar helpers in resize_vram_bar()
+> > > >   PCI: Add pci_rebar_get_max_size()
+> > > >   drm/xe/vram: Use pci_rebar_get_max_size()
+> > > >   drm/amdgpu: Use pci_rebar_get_max_size()
+> > > >   PCI: Convert BAR sizes bitmasks to u64
+> > > >=20
+> > > >  Documentation/driver-api/pci/pci.rst        |   3 +
+> > > >  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |   8 +-
+> > > >  drivers/gpu/drm/i915/gt/intel_region_lmem.c |  10 +-
+> > > >  drivers/gpu/drm/xe/xe_vram.c                |  32 +-
+> > > >  drivers/pci/Makefile                        |   2 +-
+> > > >  drivers/pci/iov.c                           |   9 +-
+> > > >  drivers/pci/pci-sysfs.c                     |   2 +-
+> > > >  drivers/pci/pci.c                           | 145 ---------
+> > > >  drivers/pci/pci.h                           |   5 +-
+> > > >  drivers/pci/rebar.c                         | 314 ++++++++++++++++=
+++++
+> > > >  drivers/pci/setup-res.c                     |  78 -----
+> > > >  include/linux/pci.h                         |  15 +-
+> > > >  12 files changed, 350 insertions(+), 273 deletions(-)
+> > > >  create mode 100644 drivers/pci/rebar.c
+> > >=20
+> > > Applied to pci/rebar for v6.18, thanks, Ilpo!
+> >=20
+> > is this for v6.18 or it's a typo and it's going to v6.19?
+>=20
+> Oops, sorry, I meant v6.19!  I still have v6.18 regressions top of
+> mind :)
+>=20
+> > > If we have follow-on resource assignment changes that depend on these=
+,
+> > > maybe I'll rename the branch to be more generic before applying them.
 
+Okay.
+
+The bigger challenge, though, will be that it now seems I need to bite the=
+=20
+bullet and rework the BAR resizing functions to fix v6.18-rc & v6.15=20
+regressions which will touch pci_resize_resource() or more to be more=20
+precise, add pci_release_and_resize_resource() interface. I've been=20
+postponing this as it seems quite intrusive and the upcoming resource=20
+fitting improvements should make driver initiated BAR resize pretty=20
+unnecessary anyway. It seems the shortcut didn't work. :-(
+
+It will certainly conflict with the rebar.c move in this series. (I=20
+hopefully have the rework ready next week).
+
+And sure, I've resource assignment changes piling up as well here, just=20
+have been busy with handling all the regression so I've not gotten to=20
+submit some of those. Most of them shouldn't conflict with rebar.c code=20
+anyway (probably only adding a few new helpers for the max rebar changes=20
+will but with the current state of affairs with all these regressions on=20
+my plate, the max rebar changes themselves seems already tracking=20
+next-next instead of 6.19).
+
+> > > Also applied the drivers/gpu changes based on the acks.  I see the CI
+> > > merge failures since this series is based on v6.18-rc1; I assume the
+> > > CI applies to current linux-next or similar.  I'll check the conflict=
+s
+> >=20
+> > it tries on drm-tip that contains drm-xe-next going to v6.19. We have
+> > some changes there that conflict, but shouldn't be hard.
 >
-> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
-> ---
->  drivers/gpu/drm/i915/gvt/kvmgt.c | 301 +++++++++++++++----------------
->  1 file changed, 150 insertions(+), 151 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
-> index 69830a5c49d3fd..6b47e33078eb52 100644
-> --- a/drivers/gpu/drm/i915/gvt/kvmgt.c
-> +++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
-> @@ -1140,6 +1140,155 @@ static int intel_vgpu_set_irqs(struct intel_vgpu *vgpu, u32 flags,
->  	return func(vgpu, index, start, count, flags, data);
->  }
->  
-> +static int intel_vgpu_get_region_info(struct vfio_device *vfio_dev,
-> +				      struct vfio_region_info __user *arg)
-> +{
-> +	struct vfio_info_cap caps = { .buf = NULL, .size = 0 };
-> +	struct vfio_region_info_cap_sparse_mmap *sparse = NULL;
-> +	struct intel_vgpu *vgpu = vfio_dev_to_vgpu(vfio_dev);
-> +	struct vfio_region_info info;
-> +	unsigned long minsz;
-> +	int nr_areas = 1;
-> +	int cap_type_id;
-> +	unsigned int i;
-> +	int ret;
-> +
-> +	minsz = offsetofend(struct vfio_region_info, offset);
-> +
-> +	if (copy_from_user(&info, arg, minsz))
-> +		return -EFAULT;
-> +
-> +	if (info.argsz < minsz)
-> +		return -EINVAL;
-> +
-> +	switch (info.index) {
-> +	case VFIO_PCI_CONFIG_REGION_INDEX:
-> +		info.offset = VFIO_PCI_INDEX_TO_OFFSET(info.index);
-> +		info.size = vgpu->gvt->device_info.cfg_space_size;
-> +		info.flags = VFIO_REGION_INFO_FLAG_READ |
-> +			     VFIO_REGION_INFO_FLAG_WRITE;
-> +		break;
-> +	case VFIO_PCI_BAR0_REGION_INDEX:
-> +		info.offset = VFIO_PCI_INDEX_TO_OFFSET(info.index);
-> +		info.size = vgpu->cfg_space.bar[info.index].size;
-> +		if (!info.size) {
-> +			info.flags = 0;
-> +			break;
-> +		}
-> +
-> +		info.flags = VFIO_REGION_INFO_FLAG_READ |
-> +			     VFIO_REGION_INFO_FLAG_WRITE;
-> +		break;
-> +	case VFIO_PCI_BAR1_REGION_INDEX:
-> +		info.offset = VFIO_PCI_INDEX_TO_OFFSET(info.index);
-> +		info.size = 0;
-> +		info.flags = 0;
-> +		break;
-> +	case VFIO_PCI_BAR2_REGION_INDEX:
-> +		info.offset = VFIO_PCI_INDEX_TO_OFFSET(info.index);
-> +		info.flags = VFIO_REGION_INFO_FLAG_CAPS |
-> +			     VFIO_REGION_INFO_FLAG_MMAP |
-> +			     VFIO_REGION_INFO_FLAG_READ |
-> +			     VFIO_REGION_INFO_FLAG_WRITE;
-> +		info.size = gvt_aperture_sz(vgpu->gvt);
-> +
-> +		sparse = kzalloc(struct_size(sparse, areas, nr_areas),
-> +				 GFP_KERNEL);
-> +		if (!sparse)
-> +			return -ENOMEM;
-> +
-> +		sparse->header.id = VFIO_REGION_INFO_CAP_SPARSE_MMAP;
-> +		sparse->header.version = 1;
-> +		sparse->nr_areas = nr_areas;
-> +		cap_type_id = VFIO_REGION_INFO_CAP_SPARSE_MMAP;
-> +		sparse->areas[0].offset =
-> +			PAGE_ALIGN(vgpu_aperture_offset(vgpu));
-> +		sparse->areas[0].size = vgpu_aperture_sz(vgpu);
-> +		break;
-> +
-> +	case VFIO_PCI_BAR3_REGION_INDEX ... VFIO_PCI_BAR5_REGION_INDEX:
-> +		info.offset = VFIO_PCI_INDEX_TO_OFFSET(info.index);
-> +		info.size = 0;
-> +		info.flags = 0;
-> +
-> +		gvt_dbg_core("get region info bar:%d\n", info.index);
-> +		break;
-> +
-> +	case VFIO_PCI_ROM_REGION_INDEX:
-> +	case VFIO_PCI_VGA_REGION_INDEX:
-> +		info.offset = VFIO_PCI_INDEX_TO_OFFSET(info.index);
-> +		info.size = 0;
-> +		info.flags = 0;
-> +
-> +		gvt_dbg_core("get region info index:%d\n", info.index);
-> +		break;
-> +	default: {
-> +		struct vfio_region_info_cap_type cap_type = {
-> +			.header.id = VFIO_REGION_INFO_CAP_TYPE,
-> +			.header.version = 1
-> +		};
-> +
-> +		if (info.index >= VFIO_PCI_NUM_REGIONS + vgpu->num_regions)
-> +			return -EINVAL;
-> +		info.index = array_index_nospec(
-> +			info.index, VFIO_PCI_NUM_REGIONS + vgpu->num_regions);
-> +
-> +		i = info.index - VFIO_PCI_NUM_REGIONS;
-> +
-> +		info.offset = VFIO_PCI_INDEX_TO_OFFSET(info.index);
-> +		info.size = vgpu->region[i].size;
-> +		info.flags = vgpu->region[i].flags;
-> +
-> +		cap_type.type = vgpu->region[i].type;
-> +		cap_type.subtype = vgpu->region[i].subtype;
-> +
-> +		ret = vfio_info_add_capability(&caps, &cap_type.header,
-> +					       sizeof(cap_type));
-> +		if (ret)
-> +			return ret;
-> +	}
-> +	}
-> +
-> +	if ((info.flags & VFIO_REGION_INFO_FLAG_CAPS) && sparse) {
-> +		switch (cap_type_id) {
-> +		case VFIO_REGION_INFO_CAP_SPARSE_MMAP:
-> +			ret = vfio_info_add_capability(
-> +				&caps, &sparse->header,
-> +				struct_size(sparse, areas, sparse->nr_areas));
-> +			if (ret) {
-> +				kfree(sparse);
-> +				return ret;
-> +			}
-> +			break;
-> +		default:
-> +			kfree(sparse);
-> +			return -EINVAL;
-> +		}
-> +	}
-> +
-> +	if (caps.size) {
-> +		info.flags |= VFIO_REGION_INFO_FLAG_CAPS;
-> +		if (info.argsz < sizeof(info) + caps.size) {
-> +			info.argsz = sizeof(info) + caps.size;
-> +			info.cap_offset = 0;
-> +		} else {
-> +			vfio_info_cap_shift(&caps, sizeof(info));
-> +			if (copy_to_user((void __user *)arg + sizeof(info),
-> +					 caps.buf, caps.size)) {
-> +				kfree(caps.buf);
-> +				kfree(sparse);
-> +				return -EFAULT;
-> +			}
-> +			info.cap_offset = sizeof(info);
-> +		}
-> +
-> +		kfree(caps.buf);
-> +	}
-> +
-> +	kfree(sparse);
-> +	return copy_to_user(arg, &info, minsz) ? -EFAULT : 0;
-> +}
-> +
->  static long intel_vgpu_ioctl(struct vfio_device *vfio_dev, unsigned int cmd,
->  			     unsigned long arg)
->  {
-> @@ -1168,157 +1317,6 @@ static long intel_vgpu_ioctl(struct vfio_device *vfio_dev, unsigned int cmd,
->  		return copy_to_user((void __user *)arg, &info, minsz) ?
->  			-EFAULT : 0;
->  
-> -	} else if (cmd == VFIO_DEVICE_GET_REGION_INFO) {
-> -		struct vfio_region_info info;
-> -		struct vfio_info_cap caps = { .buf = NULL, .size = 0 };
-> -		unsigned int i;
-> -		int ret;
-> -		struct vfio_region_info_cap_sparse_mmap *sparse = NULL;
-> -		int nr_areas = 1;
-> -		int cap_type_id;
-> -
-> -		minsz = offsetofend(struct vfio_region_info, offset);
-> -
-> -		if (copy_from_user(&info, (void __user *)arg, minsz))
-> -			return -EFAULT;
-> -
-> -		if (info.argsz < minsz)
-> -			return -EINVAL;
-> -
-> -		switch (info.index) {
-> -		case VFIO_PCI_CONFIG_REGION_INDEX:
-> -			info.offset = VFIO_PCI_INDEX_TO_OFFSET(info.index);
-> -			info.size = vgpu->gvt->device_info.cfg_space_size;
-> -			info.flags = VFIO_REGION_INFO_FLAG_READ |
-> -				     VFIO_REGION_INFO_FLAG_WRITE;
-> -			break;
-> -		case VFIO_PCI_BAR0_REGION_INDEX:
-> -			info.offset = VFIO_PCI_INDEX_TO_OFFSET(info.index);
-> -			info.size = vgpu->cfg_space.bar[info.index].size;
-> -			if (!info.size) {
-> -				info.flags = 0;
-> -				break;
-> -			}
-> -
-> -			info.flags = VFIO_REGION_INFO_FLAG_READ |
-> -				     VFIO_REGION_INFO_FLAG_WRITE;
-> -			break;
-> -		case VFIO_PCI_BAR1_REGION_INDEX:
-> -			info.offset = VFIO_PCI_INDEX_TO_OFFSET(info.index);
-> -			info.size = 0;
-> -			info.flags = 0;
-> -			break;
-> -		case VFIO_PCI_BAR2_REGION_INDEX:
-> -			info.offset = VFIO_PCI_INDEX_TO_OFFSET(info.index);
-> -			info.flags = VFIO_REGION_INFO_FLAG_CAPS |
-> -					VFIO_REGION_INFO_FLAG_MMAP |
-> -					VFIO_REGION_INFO_FLAG_READ |
-> -					VFIO_REGION_INFO_FLAG_WRITE;
-> -			info.size = gvt_aperture_sz(vgpu->gvt);
-> -
-> -			sparse = kzalloc(struct_size(sparse, areas, nr_areas),
-> -					 GFP_KERNEL);
-> -			if (!sparse)
-> -				return -ENOMEM;
-> -
-> -			sparse->header.id = VFIO_REGION_INFO_CAP_SPARSE_MMAP;
-> -			sparse->header.version = 1;
-> -			sparse->nr_areas = nr_areas;
-> -			cap_type_id = VFIO_REGION_INFO_CAP_SPARSE_MMAP;
-> -			sparse->areas[0].offset =
-> -					PAGE_ALIGN(vgpu_aperture_offset(vgpu));
-> -			sparse->areas[0].size = vgpu_aperture_sz(vgpu);
-> -			break;
-> -
-> -		case VFIO_PCI_BAR3_REGION_INDEX ... VFIO_PCI_BAR5_REGION_INDEX:
-> -			info.offset = VFIO_PCI_INDEX_TO_OFFSET(info.index);
-> -			info.size = 0;
-> -			info.flags = 0;
-> -
-> -			gvt_dbg_core("get region info bar:%d\n", info.index);
-> -			break;
-> -
-> -		case VFIO_PCI_ROM_REGION_INDEX:
-> -		case VFIO_PCI_VGA_REGION_INDEX:
-> -			info.offset = VFIO_PCI_INDEX_TO_OFFSET(info.index);
-> -			info.size = 0;
-> -			info.flags = 0;
-> -
-> -			gvt_dbg_core("get region info index:%d\n", info.index);
-> -			break;
-> -		default:
-> -			{
-> -				struct vfio_region_info_cap_type cap_type = {
-> -					.header.id = VFIO_REGION_INFO_CAP_TYPE,
-> -					.header.version = 1 };
-> -
-> -				if (info.index >= VFIO_PCI_NUM_REGIONS +
-> -						vgpu->num_regions)
-> -					return -EINVAL;
-> -				info.index =
-> -					array_index_nospec(info.index,
-> -							VFIO_PCI_NUM_REGIONS +
-> -							vgpu->num_regions);
-> -
-> -				i = info.index - VFIO_PCI_NUM_REGIONS;
-> -
-> -				info.offset =
-> -					VFIO_PCI_INDEX_TO_OFFSET(info.index);
-> -				info.size = vgpu->region[i].size;
-> -				info.flags = vgpu->region[i].flags;
-> -
-> -				cap_type.type = vgpu->region[i].type;
-> -				cap_type.subtype = vgpu->region[i].subtype;
-> -
-> -				ret = vfio_info_add_capability(&caps,
-> -							&cap_type.header,
-> -							sizeof(cap_type));
-> -				if (ret)
-> -					return ret;
-> -			}
-> -		}
-> -
-> -		if ((info.flags & VFIO_REGION_INFO_FLAG_CAPS) && sparse) {
-> -			switch (cap_type_id) {
-> -			case VFIO_REGION_INFO_CAP_SPARSE_MMAP:
-> -				ret = vfio_info_add_capability(&caps,
-> -					&sparse->header,
-> -					struct_size(sparse, areas,
-> -						    sparse->nr_areas));
-> -				if (ret) {
-> -					kfree(sparse);
-> -					return ret;
-> -				}
-> -				break;
-> -			default:
-> -				kfree(sparse);
-> -				return -EINVAL;
-> -			}
-> -		}
-> -
-> -		if (caps.size) {
-> -			info.flags |= VFIO_REGION_INFO_FLAG_CAPS;
-> -			if (info.argsz < sizeof(info) + caps.size) {
-> -				info.argsz = sizeof(info) + caps.size;
-> -				info.cap_offset = 0;
-> -			} else {
-> -				vfio_info_cap_shift(&caps, sizeof(info));
-> -				if (copy_to_user((void __user *)arg +
-> -						  sizeof(info), caps.buf,
-> -						  caps.size)) {
-> -					kfree(caps.buf);
-> -					kfree(sparse);
-> -					return -EFAULT;
-> -				}
-> -				info.cap_offset = sizeof(info);
-> -			}
-> -
-> -			kfree(caps.buf);
-> -		}
-> -
-> -		kfree(sparse);
-> -		return copy_to_user((void __user *)arg, &info, minsz) ?
-> -			-EFAULT : 0;
->  	} else if (cmd == VFIO_DEVICE_GET_IRQ_INFO) {
->  		struct vfio_irq_info info;
->  
-> @@ -1475,6 +1473,7 @@ static const struct vfio_device_ops intel_vgpu_dev_ops = {
->  	.write		= intel_vgpu_write,
->  	.mmap		= intel_vgpu_mmap,
->  	.ioctl		= intel_vgpu_ioctl,
-> +	.get_region_info = intel_vgpu_get_region_info,
->  	.dma_unmap	= intel_vgpu_dma_unmap,
->  	.bind_iommufd	= vfio_iommufd_emulated_bind,
->  	.unbind_iommufd = vfio_iommufd_emulated_unbind,
+> > We also need https://lore.kernel.org/linux-pci/20250918-xe-pci-rebar-2-=
+v1-1-6c094702a074@intel.com/
+> > to actually fix the rebar in some cases. Could you take a look?
+>=20
+> Will do.  Remind me again if I forget!
+>=20
+> Bjorn
+>=20
 
--- 
-Jani Nikula, Intel
+--=20
+ i.
+--8323328-1816897247-1761300158=:1178--
