@@ -2,61 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41B2AC076B8
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Oct 2025 18:59:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43951C07763
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Oct 2025 19:05:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A331310EB20;
-	Fri, 24 Oct 2025 16:59:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7856F10EB2B;
+	Fri, 24 Oct 2025 17:05:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="oieEWKBF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZLQmnCHD";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 572 seconds by postgrey-1.36 at gabe;
- Fri, 24 Oct 2025 16:59:20 UTC
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69CCA10EB20
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Oct 2025 16:59:20 +0000 (UTC)
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4ctTQc70Q1z9sdM;
- Fri, 24 Oct 2025 18:49:44 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; t=1761324585;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=voMhPB56AjZqI1kvGnHcSiUUhK8Wg3bhpr9YnMNAyT4=;
- b=oieEWKBFBDRsdgxZE5eHK9Xd/Ycru1/jelXO40sEvgWSOiozSlaXJfKTek6OUCjVKyDBlT
- e+Csbh6+mXBLJaNaXqAkePkeSYvMUglcsrfjeeFomFENI7KqWCBoRB7mM6O0p8uFF0R5H9
- 5z6OAD8gnzz45dr2Cj5MkEIFBKgZTHx+pNqQw/DmoARCBRdo9tsVoorwrXnCkTJcGqTpMb
- cvuPygxxAgDC2fvezRLNxuCtx7m0h9V3ZTLYCxHbPYY1aZBZNsIOiqTLaCB5VFYIr7+w7o
- qqSKYArh5P2vmw7+IvYfD42iL8uGQ/dG+AJdlNZcTraRjj/N6Rm4j0NI5jOKUg==
-Message-ID: <a9c1aea1-1427-4c15-9453-3e7510183082@mailbox.org>
-Date: Fri, 24 Oct 2025 18:49:40 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48C3C10EB2C;
+ Fri, 24 Oct 2025 17:05:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1761325553; x=1792861553;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4sqTU3mD+VDwwBEE1sK0AXQAdYQPGX6o20dXsnXPrE4=;
+ b=ZLQmnCHDZkvM7AP4RK256fEGt4sG9HwxB7Ezr/Rye5qzInpGdjfHcvaW
+ WqZey1Xt2ES7gImvjwrFmLLTNHfEKYOvv20Vsc/ZpPTH2EbgvaKid+feA
+ rfp9elV8FP3tqiicdc7hWdD2lrZsWsKB/YkTOWF21SjN35vaTmT7JZSJT
+ D9pNLNomsqoLw1OIr3HJPaB36NqJasoGwYv32JtQVojIMUPBbrLag6G6Z
+ pdVVV7YvV5zn8m5LCtRWC9oqRbSY2dF2YCOXqa+XREqcGTMka9Oo917dc
+ 844Jbxt+xesMJfQJeTuVqFhAPp1+6bep0ocuwTtHngdbjNIwINW6EMmg4 A==;
+X-CSE-ConnectionGUID: Jkn1NufgRfWENMvZkUvMSA==
+X-CSE-MsgGUID: 7IYhava6SteCpY1Ggh3xlA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63410864"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63410864"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2025 10:05:52 -0700
+X-CSE-ConnectionGUID: lEUe2pYSSkm7SlLEBDTquQ==
+X-CSE-MsgGUID: N/R7Xb/uTwqRdUL29bqMEw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="215392221"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.245.246.244])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2025 10:05:48 -0700
+From: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+To: dri-devel@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+Subject: [PATCH] drm/i915/selftests: Defer signalling the request fence
+Date: Fri, 24 Oct 2025 19:03:14 +0200
+Message-ID: <20251024170313.135544-2-krzysztof.niemiec@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Subject: Re: [PATCH] drm/i915/dmabuf: Flush the cache in vmap
-To: Jocelyn Falempe <jfalempe@redhat.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Christian Brauner <brauner@kernel.org>,
- Andi Shyti <andi.shyti@linux.intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20251024110432.1313391-1-jfalempe@redhat.com>
- <a1d6cf1f-02b6-4c89-84e2-4b2af39829ef@ursulin.net>
- <6757f62e-0b10-4fc5-a9cb-16006c723459@redhat.com>
-From: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
-Content-Language: de-CH-frami, en-CA
-In-Reply-To: <6757f62e-0b10-4fc5-a9cb-16006c723459@redhat.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-MBO-RS-META: 6ixkkyxgpz6k615ok73tmkoswm4f4eg4
-X-MBO-RS-ID: dce591b738c6af03645
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,42 +72,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 10/24/25 14:48, Jocelyn Falempe wrote:
-> On 24/10/2025 13:53, Tvrtko Ursulin wrote:
->> On 24/10/2025 12:04, Jocelyn Falempe wrote:
->>> On a lenovo se100 server, when using i915 GPU for rendering, and the
->>> ast driver for display, the graphic output is corrupted, and almost
->>> unusable.
->>>
->>> Adding a clflush call in the vmap function fixes this issue
->>> completely.
->>
->> AST is importing i915 allocated buffer in this use case, or how exactly is the relationship?
-> 
-> I think it's mutter/gnome-shell who copy the buffer from i915 to ast, here is the logs:
-> 
-> gnome-shell[2079]: Failed to initialize accelerated iGPU/dGPU framebuffer sharing: Do not want to use software renderer (llvmpipe (LLVM 19.1.7, 256 bits)), falling back to CPU copy path
+The i915_active selftests operate on an active attached to a mock
+request. This request is created during the test, and a fence is
+attached to it for the test to control when the request is processed.
+However, because signalling the fence happens inside the same thread as
+the test, and before a call to __i915_active_wait(), a race condition is
+created where if the request is processed before the aforementioned
+call, the active callback will not be called.
 
-FWIW, the code which logged "falling back to CPU copy path" was removed in mutter 42. Can you still reproduce the issue with a newer version of mutter, ideally 49? A lot has changed over the last 3.5 years.
+Defer signalling the request's fence, so that the request completes only
+after the test's call to __i915_active_wait().
 
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14808
+Signed-off-by: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+---
+ drivers/gpu/drm/i915/selftests/i915_active.c | 15 ++++++++++++---
+ 1 file changed, 12 insertions(+), 3 deletions(-)
 
-> gnome-shell[1533]: Created gbm renderer for '/dev/dri/card0'
-> gnome-shell[1533]: GPU /dev/dri/card1 selected as primary
-> 
-> card0 is ast and card1 is i915
-> 
-> Do you think there is something missing in mutter?
-
-Not that I can see offhand.
-
-After logging "Failed to initialize accelerated iGPU/dGPU framebuffer sharing", mutter tries to export a dma-buf from the i915 BO, import it into the AST device, create an KMS FB for the imported BO and assign the FB to the primary plane of a CRTC. If this path works (which seems to be the case in this scenario, or you wouldn't see BOs shared between i915 & AST), mutter doesn't do any copies between different BOs. It's between the AST & i915 drivers to correctly handle access to the shared BO.
-
-Does the AST driver wait for the i915 GPU to finish drawing to the shared BO, by waiting for the exclusive fence of the dma-buf synchronization object, before reading from the BO?
-
-
-P.S. If the path described above didn't work, mutter would fall back to reading the i915 BO contents with glReadPixels and copying them to a dumb BO allocated from the AST device, so you wouldn't see BOs shared between the drivers. With current mutter, you can force this fallback with the environment variable MUTTER_DEBUG_MULTI_GPU_FORCE_COPY_MODE=primary-gpu-cpu . Does that avoid the issue?
-
-
+diff --git a/drivers/gpu/drm/i915/selftests/i915_active.c b/drivers/gpu/drm/i915/selftests/i915_active.c
+index 0d89d70b9c36..a82a56c3eeb6 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_active.c
++++ b/drivers/gpu/drm/i915/selftests/i915_active.c
+@@ -74,15 +74,25 @@ static struct live_active *__live_alloc(struct drm_i915_private *i915)
+ 	return active;
+ }
+ 
++static struct i915_sw_fence *submit;
++static struct delayed_work __live_submit_work;
++
++static void __live_submit_work_handler(struct work_struct *work)
++{
++	i915_sw_fence_commit(submit);
++	heap_fence_put(submit);
++}
++
+ static struct live_active *
+ __live_active_setup(struct drm_i915_private *i915)
+ {
+ 	struct intel_engine_cs *engine;
+-	struct i915_sw_fence *submit;
+ 	struct live_active *active;
+ 	unsigned int count = 0;
+ 	int err = 0;
+ 
++	INIT_DELAYED_WORK(&__live_submit_work, __live_submit_work_handler);
++
+ 	active = __live_alloc(i915);
+ 	if (!active)
+ 		return ERR_PTR(-ENOMEM);
+@@ -132,8 +142,7 @@ __live_active_setup(struct drm_i915_private *i915)
+ 	}
+ 
+ out:
+-	i915_sw_fence_commit(submit);
+-	heap_fence_put(submit);
++	schedule_delayed_work(&__live_submit_work, msecs_to_jiffies(500));
+ 	if (err) {
+ 		__live_put(active);
+ 		active = ERR_PTR(err);
 -- 
-Earthling Michel Dänzer       \        GNOME / Xwayland / Mesa developer
-https://redhat.com             \               Libre software enthusiast
+2.45.2
+
