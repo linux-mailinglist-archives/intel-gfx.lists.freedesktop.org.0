@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0436C05825
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Oct 2025 12:08:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 154CCC05816
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Oct 2025 12:08:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1863E10EA45;
-	Fri, 24 Oct 2025 10:08:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0FE810EA36;
+	Fri, 24 Oct 2025 10:08:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HJXggmG7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jOg5Ozzv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C03E10EA36;
- Fri, 24 Oct 2025 10:08:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1562810EA36;
+ Fri, 24 Oct 2025 10:08:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761300494; x=1792836494;
+ t=1761300497; x=1792836497;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=iK7TznjK2q0LCskMS6+FzcC7iM+WkR1K+fqeAlVSVJM=;
- b=HJXggmG7IwOw1Bp8D1L2Eo+OlF5QzRq39Xs0JvUqZEeMMXet26WeR+/W
- FFJCQgs/zf6G1YW+oGzw3EHaU3lLjXThw/NV4R8OCbsHJGa+jkuinxp2y
- lkbGbPv6rVdCMUhkoDsQteXJlniJftbfeZU/WNoNqxB2kJVJAs44WVdLF
- +ruczAi6rvE/NZxPHdjcQUIEBl9zSnIfqYmr0ccbqnh4fws8VA5ZGG7Vt
- BCjL0bZaoHVEtch5PRq+Au7qYJdfLs4wM2/JBjVFX8AySXOYom9mCOPGC
- IZDES5pPCMiNBSH2uLGliaK2RCKXrUFncRK6joHkIB/nSrEMie/riec2T g==;
-X-CSE-ConnectionGUID: aR4qlpZZT2aEjoYzryVEBg==
-X-CSE-MsgGUID: ZZGv/KSFSWC9F75TBF0uSw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="67346848"
-X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="67346848"
+ bh=pp3izI25KO2cOPI9Dl1DbLaB1YHlwde5M06u+XmiKlI=;
+ b=jOg5OzzvsKqe+SfWNbIdDmr5iYQVVfAHt4O09PUYSjKU8TmiWkfMrEb4
+ Ly2MhH4z4cGn7/RgcOAOxTfEDlMHfMAYkmJY42bNmdCIUz9uYXJ1zl5bz
+ fxymcYrnPda0v1wFmY0t32l1RiCdAOYwma5gA2WpxPtZvKkNEYLDOhYAt
+ /qHwYlPyBHjQa1Vv/wj1uKuC0mQkiZFfvwMr1Yt024F48XvUtX3mGQMEQ
+ DZSgei6kU/iO8pQouJXwVJlDhAQgFsD3Psl4KqX0bKC2i3ZF3Uczxuy8G
+ 1fvpRhNwiWRIWaqK6G+EXi9i9Gcp/pwZz6n0rnVjQilJaOQRqVKuJAVKT w==;
+X-CSE-ConnectionGUID: C/11i12CRNmjrPnz0gtirg==
+X-CSE-MsgGUID: bktDQlQWTLSOQ83HHpsdMA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="67346851"
+X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="67346851"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2025 03:08:14 -0700
-X-CSE-ConnectionGUID: 4LYXJIceSZ6KOxZf9/jv3Q==
-X-CSE-MsgGUID: f7Kx80pAR7eJ/WYT2TPTfw==
+ 24 Oct 2025 03:08:17 -0700
+X-CSE-ConnectionGUID: DtGPaguxQlGwfHW/hqQbDg==
+X-CSE-MsgGUID: stYtliRlRXaJePg4IAK3fg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="208039315"
+X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="208039319"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa002.fm.intel.com with ESMTP; 24 Oct 2025 03:08:11 -0700
+ by fmviesa002.fm.intel.com with ESMTP; 24 Oct 2025 03:08:14 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, uma.shankar@intel.com,
  gustavo.sousa@intel.com, lucas.demarchi@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v2 19/26] drm/i915/ltphy: Program LT Phy Voltage Swing
-Date: Fri, 24 Oct 2025 15:37:05 +0530
-Message-Id: <20251024100712.3776261-20-suraj.kandpal@intel.com>
+Subject: [PATCH v2 20/26] drm/i915/ltphy: Enable/Disable Tx after Non TBT
+ Enable sequence
+Date: Fri, 24 Oct 2025 15:37:06 +0530
+Message-Id: <20251024100712.3776261-21-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251024100712.3776261-1-suraj.kandpal@intel.com>
 References: <20251024100712.3776261-1-suraj.kandpal@intel.com>
@@ -69,173 +70,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Program LT Phy voltage swing using the Swing tables and plug in the
-function at encoder->set_signal_level
+We need to enable and disable the Tx for each active lane after the
+Non-TBT enable sequence is done.
 
-Bspec: 74493
+Bspec: 74500, 74497, 74701
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c      | 13 +++-
- drivers/gpu/drm/i915/display/intel_lt_phy.c   | 63 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_lt_phy.h   |  2 +
- .../gpu/drm/i915/display/intel_lt_phy_regs.h  | 13 ++++
- 4 files changed, 88 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_lt_phy.c   | 87 +++++++++++++++++++
+ .../gpu/drm/i915/display/intel_lt_phy_regs.h  |  4 +
+ 2 files changed, 91 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index a4ea9f29fd85..2cbe9fa7135d 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -1467,10 +1467,15 @@ static int translate_signal_level(struct intel_dp *intel_dp,
- 				  u8 signal_levels)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
-+	const u8 *signal_array;
-+	size_t array_size;
- 	int i;
- 
--	for (i = 0; i < ARRAY_SIZE(index_to_dp_signal_levels); i++) {
--		if (index_to_dp_signal_levels[i] == signal_levels)
-+	signal_array = index_to_dp_signal_levels;
-+	array_size = ARRAY_SIZE(index_to_dp_signal_levels);
-+
-+	for (i = 0; i < array_size; i++) {
-+		if (signal_array[i] == signal_levels)
- 			return i;
- 	}
- 
-@@ -5301,7 +5306,9 @@ void intel_ddi_init(struct intel_display *display,
- 		encoder->get_config = hsw_ddi_get_config;
- 	}
- 
--	if (DISPLAY_VER(display) >= 14) {
-+	if (HAS_LT_PHY(display)) {
-+		encoder->set_signal_levels = intel_lt_phy_set_signal_levels;
-+	} else if (DISPLAY_VER(display) >= 14) {
- 		encoder->set_signal_levels = intel_cx0_phy_set_signal_levels;
- 	} else if (display->platform.dg2) {
- 		encoder->set_signal_levels = intel_snps_phy_set_signal_levels;
 diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index 2be48c3943dc..d97874e8881f 100644
+index d97874e8881f..9ee862f95209 100644
 --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -9,6 +9,8 @@
- #include "i915_utils.h"
- #include "intel_cx0_phy.h"
- #include "intel_cx0_phy_regs.h"
-+#include "intel_ddi.h"
-+#include "intel_ddi_buf_trans.h"
- #include "intel_de.h"
- #include "intel_display.h"
- #include "intel_display_types.h"
-@@ -1004,6 +1006,12 @@ static void intel_lt_phy_write(struct intel_encoder *encoder,
- 	intel_cx0_write(encoder, lane_mask, addr, data, committed);
+@@ -1490,6 +1490,92 @@ intel_lt_phy_program_pll(struct intel_encoder *encoder,
+ 	}
  }
  
-+static void intel_lt_phy_rmw(struct intel_encoder *encoder,
-+			     u8 lane_mask, u16 addr, u8 clear, u8 set, bool committed)
++static void
++intel_lt_phy_enable_disable_tx(struct intel_encoder *encoder,
++			       const struct intel_crtc_state *crtc_state)
 +{
-+	intel_cx0_rmw(encoder, lane_mask, addr, clear, set, committed);
++	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
++	bool lane_reversal = dig_port->lane_reversal;
++	u8 lane_count = crtc_state->lane_count;
++	bool is_dp_alt =
++		intel_tc_port_in_dp_alt_mode(dig_port);
++	enum intel_tc_pin_assignment tc_pin =
++		intel_tc_port_get_pin_assignment(dig_port);
++	u8 transmitter_mask = 0;
++
++	/*
++	 * We have a two transmitters per lane and total of 2 PHY lanes so a total
++	 * of 4 transmitters. We prepare a mask of the lanes that need to be activated
++	 * and the transmitter which need to be activated for each lane. TX 0,1 correspond
++	 * to LANE0 and TX 2, 3 correspond to LANE1.
++	 */
++
++	switch (lane_count) {
++	case 1:
++		transmitter_mask = lane_reversal ? REG_BIT8(3) : REG_BIT8(0);
++		if (is_dp_alt) {
++			if (tc_pin == INTEL_TC_PIN_ASSIGNMENT_D)
++				transmitter_mask = REG_BIT8(0);
++			else
++				transmitter_mask = REG_BIT8(1);
++		}
++		break;
++	case 2:
++		transmitter_mask = lane_reversal ? REG_GENMASK8(3, 2) : REG_GENMASK8(1, 0);
++		if (is_dp_alt)
++			transmitter_mask = REG_GENMASK8(1, 0);
++		break;
++	case 3:
++		transmitter_mask = lane_reversal ? REG_GENMASK8(3, 1) : REG_GENMASK8(2, 0);
++		if (is_dp_alt)
++			transmitter_mask = REG_GENMASK8(2, 0);
++		break;
++	case 4:
++		transmitter_mask = REG_GENMASK8(3, 0);
++		break;
++	default:
++		MISSING_CASE(lane_count);
++		transmitter_mask = REG_GENMASK8(3, 0);
++		break;
++	}
++
++	if (transmitter_mask & BIT(0)) {
++		intel_lt_phy_p2p_write(encoder, INTEL_LT_PHY_LANE0, LT_PHY_TXY_CTL10(0),
++				       LT_PHY_TX_LANE_ENABLE, LT_PHY_TXY_CTL10_MAC(0),
++				       LT_PHY_TX_LANE_ENABLE);
++	} else {
++		intel_lt_phy_p2p_write(encoder, INTEL_LT_PHY_LANE0, LT_PHY_TXY_CTL10(0),
++				       0, LT_PHY_TXY_CTL10_MAC(0), 0);
++	}
++
++	if (transmitter_mask & BIT(1)) {
++		intel_lt_phy_p2p_write(encoder, INTEL_LT_PHY_LANE0, LT_PHY_TXY_CTL10(1),
++				       LT_PHY_TX_LANE_ENABLE, LT_PHY_TXY_CTL10_MAC(1),
++				       LT_PHY_TX_LANE_ENABLE);
++	} else {
++		intel_lt_phy_p2p_write(encoder, INTEL_LT_PHY_LANE0, LT_PHY_TXY_CTL10(1),
++				       0, LT_PHY_TXY_CTL10_MAC(1), 0);
++	}
++
++	if (transmitter_mask & BIT(2)) {
++		intel_lt_phy_p2p_write(encoder, INTEL_LT_PHY_LANE1, LT_PHY_TXY_CTL10(0),
++				       LT_PHY_TX_LANE_ENABLE, LT_PHY_TXY_CTL10_MAC(0),
++				       LT_PHY_TX_LANE_ENABLE);
++	} else {
++		intel_lt_phy_p2p_write(encoder, INTEL_LT_PHY_LANE1, LT_PHY_TXY_CTL10(0),
++				       0, LT_PHY_TXY_CTL10_MAC(0), 0);
++	}
++
++	if (transmitter_mask & BIT(3)) {
++		intel_lt_phy_p2p_write(encoder, INTEL_LT_PHY_LANE1, LT_PHY_TXY_CTL10(1),
++				       LT_PHY_TX_LANE_ENABLE, LT_PHY_TXY_CTL10_MAC(1),
++				       LT_PHY_TX_LANE_ENABLE);
++	} else {
++		intel_lt_phy_p2p_write(encoder, INTEL_LT_PHY_LANE1, LT_PHY_TXY_CTL10(1),
++				       0, LT_PHY_TXY_CTL10_MAC(1), 0);
++	}
 +}
 +
- static void intel_lt_phy_clear_status_p2p(struct intel_encoder *encoder,
- 					  int lane)
+ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
+ 			     const struct intel_crtc_state *crtc_state)
  {
-@@ -1689,6 +1697,61 @@ void intel_lt_phy_pll_disable(struct intel_encoder *encoder)
+@@ -1616,6 +1702,7 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
+ 	intel_lt_phy_powerdown_change_sequence(encoder, owned_lane_mask,
+ 					       XELPDP_P0_STATE_ACTIVE);
+ 
++	intel_lt_phy_enable_disable_tx(encoder, crtc_state);
  	intel_lt_phy_transaction_end(encoder, wakeref);
  }
  
-+void intel_lt_phy_set_signal_levels(struct intel_encoder *encoder,
-+				    const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(encoder);
-+	const struct intel_ddi_buf_trans *trans;
-+	u8 owned_lane_mask;
-+	intel_wakeref_t wakeref;
-+	int n_entries, ln;
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-+
-+	if (intel_tc_port_in_tbt_alt_mode(dig_port))
-+		return;
-+
-+	owned_lane_mask = intel_lt_phy_get_owned_lane_mask(encoder);
-+
-+	wakeref = intel_lt_phy_transaction_begin(encoder);
-+
-+	trans = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
-+	if (drm_WARN_ON_ONCE(display->drm, !trans)) {
-+		intel_lt_phy_transaction_end(encoder, wakeref);
-+		return;
-+	}
-+
-+	for (ln = 0; ln < crtc_state->lane_count; ln++) {
-+		int level = intel_ddi_level(encoder, crtc_state, ln);
-+		int lane = ln / 2;
-+		int tx = ln % 2;
-+		u8 lane_mask = lane == 0 ? INTEL_LT_PHY_LANE0 : INTEL_LT_PHY_LANE1;
-+
-+		if (!(lane_mask & owned_lane_mask))
-+			continue;
-+
-+		intel_lt_phy_rmw(encoder, lane_mask, LT_PHY_TXY_CTL8(tx),
-+				 LT_PHY_TX_SWING_LEVEL_MASK | LT_PHY_TX_SWING_MASK,
-+				 LT_PHY_TX_SWING_LEVEL(trans->entries[level].lt.txswing_level) |
-+				 LT_PHY_TX_SWING(trans->entries[level].lt.txswing),
-+				 MB_WRITE_COMMITTED);
-+
-+		intel_lt_phy_rmw(encoder, lane_mask, LT_PHY_TXY_CTL2(tx),
-+				 LT_PHY_TX_CURSOR_MASK,
-+				 LT_PHY_TX_CURSOR(trans->entries[level].lt.pre_cursor),
-+				 MB_WRITE_COMMITTED);
-+		intel_lt_phy_rmw(encoder, lane_mask, LT_PHY_TXY_CTL3(tx),
-+				 LT_PHY_TX_CURSOR_MASK,
-+				 LT_PHY_TX_CURSOR(trans->entries[level].lt.main_cursor),
-+				 MB_WRITE_COMMITTED);
-+		intel_lt_phy_rmw(encoder, lane_mask, LT_PHY_TXY_CTL4(tx),
-+				 LT_PHY_TX_CURSOR_MASK,
-+				 LT_PHY_TX_CURSOR(trans->entries[level].lt.post_cursor),
-+				 MB_WRITE_COMMITTED);
-+	}
-+
-+	intel_lt_phy_transaction_end(encoder, wakeref);
-+}
-+
- void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
- 			      const struct intel_crtc_state *crtc_state)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-index 15d3d680871c..6e67ae78801c 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-@@ -20,6 +20,8 @@ intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
- 			    struct intel_encoder *encoder);
- int intel_lt_phy_calc_port_clock(struct intel_encoder *encoder,
- 				 const struct intel_crtc_state *crtc_state);
-+void intel_lt_phy_set_signal_levels(struct intel_encoder *encoder,
-+				    const struct intel_crtc_state *crtc_state);
- void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
- 			      const struct intel_crtc_state *crtc_state);
- void intel_xe3plpd_pll_disable(struct intel_encoder *encoder);
 diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-index 1f4e48177c8b..da83a7c5faa3 100644
+index da83a7c5faa3..9223487d764e 100644
 --- a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
 +++ b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-@@ -19,6 +19,19 @@
- #define LT_PHY_MAC_VDR			_MMIO(0xC00)
- #define    LT_PHY_PCLKIN_GATE		REG_BIT8(0)
+@@ -32,6 +32,10 @@
+ #define  LT_PHY_TX_CURSOR_MASK		REG_GENMASK8(5, 0)
+ #define  LT_PHY_TX_CURSOR(val)		REG_FIELD_PREP8(LT_PHY_TX_CURSOR_MASK, val)
  
-+/* LT Phy Pipe Spec Registers */
-+#define LT_PHY_TXY_CTL8(idx)		(0x408 + (0x200 * (idx)))
-+#define  LT_PHY_TX_SWING_LEVEL_MASK	REG_GENMASK8(7, 4)
-+#define  LT_PHY_TX_SWING_LEVEL(val)	REG_FIELD_PREP8(LT_PHY_TX_SWING_LEVEL_MASK, val)
-+#define  LT_PHY_TX_SWING_MASK		REG_BIT8(3)
-+#define  LT_PHY_TX_SWING(val)		REG_FIELD_PREP8(LT_PHY_TX_SWING_MASK, val)
-+
-+#define LT_PHY_TXY_CTL2(idx)		(0x402 + (0x200 * (idx)))
-+#define LT_PHY_TXY_CTL3(idx)		(0x403 + (0x200 * (idx)))
-+#define LT_PHY_TXY_CTL4(idx)		(0x404 + (0x200 * (idx)))
-+#define  LT_PHY_TX_CURSOR_MASK		REG_GENMASK8(5, 0)
-+#define  LT_PHY_TX_CURSOR(val)		REG_FIELD_PREP8(LT_PHY_TX_CURSOR_MASK, val)
++#define LT_PHY_TXY_CTL10(idx)		(0x40A + (0x200 * (idx)))
++#define LT_PHY_TXY_CTL10_MAC(idx)	_MMIO(LT_PHY_TXY_CTL10(idx))
++#define  LT_PHY_TX_LANE_ENABLE		REG_BIT8(0)
 +
  /* LT Phy Vendor Register */
  #define LT_PHY_VDR_0_CONFIG	0xC02
