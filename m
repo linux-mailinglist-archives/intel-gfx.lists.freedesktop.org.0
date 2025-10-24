@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A530C05811
+	by mail.lfdr.de (Postfix) with ESMTPS id 5198EC05810
 	for <lists+intel-gfx@lfdr.de>; Fri, 24 Oct 2025 12:08:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D9A410EA3B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C5CB10EA3A;
 	Fri, 24 Oct 2025 10:08:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fFbz8KZy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k3fRtrNl";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8070810EA33;
- Fri, 24 Oct 2025 10:08:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DF8010EA36;
+ Fri, 24 Oct 2025 10:08:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761300488; x=1792836488;
+ t=1761300491; x=1792836491;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tqjiqJUu6e8zqWSGYvXhbGWHMPwsHNlcc4LMYrcRwgI=;
- b=fFbz8KZyEet7InrZUIDLFxOBS7QSLf9T/HY/t89f46+CThOLaLHduXJX
- PJmeG2mGiDpcA/JH1S459OKYzXLPRcmaVvzVV3eRdYwIOnr/2EMApLjDo
- 1o22WrZZISWaW2JyAVCfee76wGeylhZ8CGInRXjfkbUkr/EpaLFwWdZb/
- uHU9zmqCweqWqEuxJkMY8FIH9QlufiT/eqqmjcjEWoqSpUaJ6N3DHXwqN
- WTEoUpGDIfngpmUObBc68wc2alqjYVznWk+Kw1zt7tI6iyaCroVxxI0H/
- aZ5Mq9sFThdC7WIdlhp5hKF+r64/l1bB8KEZs3OtCU0vYEFTiptfJ0zqw Q==;
-X-CSE-ConnectionGUID: meyX25ElTseoTsW/OFYaVA==
-X-CSE-MsgGUID: djoFxgxdTTioXUJMnxEE6g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="67346841"
-X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="67346841"
+ bh=lXErV8h5Z9kB/cMMWCpuw5wu0Qf+4aeNxOHiE12B8cw=;
+ b=k3fRtrNlmuqU9kMaba84I7gJ8Yh+zY8UNpZmfoKoURBJYeJfoasnr+/p
+ /iFjG6d/Us4o0jp/u6grNIT9Fj6zpY7UzoC2ZNBsejueQJgqDN6nCBqIO
+ TsUecSKsnjdsMZTjjHC8DY/1SjsScvAVFKnyVJQSpU/GQOk8TiorbVJ2z
+ Ibbgr5k9VphxO3ewvkSZpIKBImbq7tHm5V99QhpWwEm2luM81c96tRgN2
+ 7JEvvH+OviYtrzjD7h4yFQBuHv6RvBGZzv1vkrb2DzmWEzccBof0D6sSk
+ I3nMckG2Q5OIjq2VNrj0iRH5DhGyfSR+73bJ/vCJv16hD7gvcwp8hNh4U A==;
+X-CSE-ConnectionGUID: 2LIchZYdTaC3kGxYZ5DRzg==
+X-CSE-MsgGUID: 1zS93iAZQSeVkI0m+0bptQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="67346844"
+X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="67346844"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2025 03:08:08 -0700
-X-CSE-ConnectionGUID: QL5WY/3ZT4yCfVRaZR6Bcg==
-X-CSE-MsgGUID: GsmJySJJSku4c+b/oKicDw==
+ 24 Oct 2025 03:08:11 -0700
+X-CSE-ConnectionGUID: 0c26yORIQMa0VTfhOFRI3g==
+X-CSE-MsgGUID: Yi2JBLQPTjyX8LIo5EdYmA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="208039295"
+X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="208039301"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa002.fm.intel.com with ESMTP; 24 Oct 2025 03:08:05 -0700
+ by fmviesa002.fm.intel.com with ESMTP; 24 Oct 2025 03:08:08 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, uma.shankar@intel.com,
  gustavo.sousa@intel.com, lucas.demarchi@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v2 17/26] drm/i915/ltphy: Hook up LT Phy Enable & Disable
- sequences
-Date: Fri, 24 Oct 2025 15:37:03 +0530
-Message-Id: <20251024100712.3776261-18-suraj.kandpal@intel.com>
+Subject: [PATCH v2 18/26] drm/i915/ddi: Define LT Phy Swing tables
+Date: Fri, 24 Oct 2025 15:37:04 +0530
+Message-Id: <20251024100712.3776261-19-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251024100712.3776261-1-suraj.kandpal@intel.com>
 References: <20251024100712.3776261-1-suraj.kandpal@intel.com>
@@ -70,133 +69,154 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hook up the LT Phy enable and disable sequences using encoder->
-enable/disable_clock and reusing the TBT enable disable sequence from
-cx0 PHY since it remains the same.
+Define and initialize LT Phy Swing tables for DP 1.4, 2.1 and eDp.
+HDMI TMDS is not needed since LT Phy H/w handles that.
 
+Bspec: 74493
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c |  7 ++++---
- drivers/gpu/drm/i915/display/intel_cx0_phy.h |  3 +++
- drivers/gpu/drm/i915/display/intel_ddi.c     |  7 ++++++-
- drivers/gpu/drm/i915/display/intel_lt_phy.c  | 21 ++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_lt_phy.h  |  3 +++
- 5 files changed, 37 insertions(+), 4 deletions(-)
+ .../drm/i915/display/intel_ddi_buf_trans.c    | 81 ++++++++++++++++++-
+ .../drm/i915/display/intel_ddi_buf_trans.h    |  9 +++
+ 2 files changed, 89 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index a1c718f2fe02..bfaa21e8cb27 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -18,6 +18,7 @@
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+index a238be5bc455..f39e690e9ed2 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+@@ -10,6 +10,7 @@
+ #include "intel_de.h"
  #include "intel_display_types.h"
  #include "intel_dp.h"
- #include "intel_hdmi.h"
 +#include "intel_lt_phy.h"
- #include "intel_panel.h"
- #include "intel_psr.h"
- #include "intel_snps_hdmi_pll.h"
-@@ -3151,8 +3152,8 @@ static int intel_mtl_tbt_clock_select(struct intel_display *display,
- 	}
+ 
+ /* HDMI/DVI modes ignore everything but the last 2 items. So we share
+  * them for both DP and FDI transports, allowing those ports to
+@@ -1115,6 +1116,69 @@ static const struct intel_ddi_buf_trans mtl_c20_trans_uhbr = {
+ 	.num_entries = ARRAY_SIZE(_mtl_c20_trans_uhbr),
+ };
+ 
++/* DP1.4 */
++static const union intel_ddi_buf_trans_entry _xe3plpd_lt_trans_dp14[] = {
++	{ .lt = { 1, 0, 0, 21, 0  } },
++	{ .lt = { 1, 1, 0, 24, 3  } },
++	{ .lt = { 1, 2, 0, 28, 7  } },
++	{ .lt = { 0, 3, 0, 35, 13 } },
++	{ .lt = { 1, 1, 0, 27, 0  } },
++	{ .lt = { 1, 2, 0, 31, 4  } },
++	{ .lt = { 0, 3, 0, 39, 9  } },
++	{ .lt = { 1, 2, 0, 35, 0  } },
++	{ .lt = { 0, 3, 0, 41, 7  } },
++	{ .lt = { 0, 3, 0, 48, 0  } },
++};
++
++/* DP2.1 */
++static const union intel_ddi_buf_trans_entry _xe3plpd_lt_trans_uhbr[] = {
++	{ .lt = { 0, 0, 0, 48, 0  } },
++	{ .lt = { 0, 0, 0, 43, 5  } },
++	{ .lt = { 0, 0, 0, 40, 8  } },
++	{ .lt = { 0, 0, 0, 37, 11 } },
++	{ .lt = { 0, 0, 0, 33, 15 } },
++	{ .lt = { 0, 0, 2, 46, 0  } },
++	{ .lt = { 0, 0, 2, 42, 4  } },
++	{ .lt = { 0, 0, 2, 38, 8  } },
++	{ .lt = { 0, 0, 2, 35, 11 } },
++	{ .lt = { 0, 0, 2, 33, 13 } },
++	{ .lt = { 0, 0, 4, 44, 0  } },
++	{ .lt = { 0, 0, 4, 40, 4  } },
++	{ .lt = { 0, 0, 4, 37, 7  } },
++	{ .lt = { 0, 0, 4, 33, 11 } },
++	{ .lt = { 0, 0, 8, 40, 0  } },
++	{ .lt = { 1, 0, 2, 26, 2  } },
++};
++
++/* eDp */
++static const union intel_ddi_buf_trans_entry _xe3plpd_lt_trans_edp[] = {
++	{ .lt = { 1, 0, 0, 12, 0 } },
++	{ .lt = { 1, 1, 0, 13, 1 } },
++	{ .lt = { 1, 2, 0, 15, 3 } },
++	{ .lt = { 1, 3, 0, 19, 7 } },
++	{ .lt = { 1, 1, 0, 14, 0 } },
++	{ .lt = { 1, 2, 0, 16, 2 } },
++	{ .lt = { 1, 3, 0, 21, 5 } },
++	{ .lt = { 1, 2, 0, 18, 0 } },
++	{ .lt = { 1, 3, 0, 22, 4 } },
++	{ .lt = { 1, 3, 0, 26, 0 } },
++};
++
++static const struct intel_ddi_buf_trans xe3plpd_lt_trans_dp14 = {
++	.entries = _xe3plpd_lt_trans_dp14,
++	.num_entries = ARRAY_SIZE(_xe3plpd_lt_trans_dp14),
++};
++
++static const struct intel_ddi_buf_trans xe3plpd_lt_trans_uhbr = {
++	.entries = _xe3plpd_lt_trans_uhbr,
++	.num_entries = ARRAY_SIZE(_xe3plpd_lt_trans_uhbr),
++};
++
++static const struct intel_ddi_buf_trans xe3plpd_lt_trans_edp = {
++	.entries = _xe3plpd_lt_trans_edp,
++	.num_entries = ARRAY_SIZE(_xe3plpd_lt_trans_edp),
++};
++
+ bool is_hobl_buf_trans(const struct intel_ddi_buf_trans *table)
+ {
+ 	return table == &tgl_combo_phy_trans_edp_hbr2_hobl;
+@@ -1707,11 +1771,26 @@ mtl_get_c20_buf_trans(struct intel_encoder *encoder,
+ 		return intel_get_buf_trans(&mtl_c20_trans_dp14, n_entries);
  }
  
--static void intel_mtl_tbt_pll_enable(struct intel_encoder *encoder,
--				     const struct intel_crtc_state *crtc_state)
-+void intel_mtl_tbt_pll_enable(struct intel_encoder *encoder,
-+			      const struct intel_crtc_state *crtc_state)
++static const struct intel_ddi_buf_trans *
++xe3plpd_get_lt_buf_trans(struct intel_encoder *encoder,
++			 const struct intel_crtc_state *crtc_state,
++			 int *n_entries)
++{
++	if (intel_crtc_has_dp_encoder(crtc_state) && intel_dp_is_uhbr(crtc_state))
++		return intel_get_buf_trans(&xe3plpd_lt_trans_uhbr, n_entries);
++	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
++		return intel_get_buf_trans(&xe3plpd_lt_trans_edp, n_entries);
++	else
++		return intel_get_buf_trans(&xe3plpd_lt_trans_dp14, n_entries);
++}
++
+ void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
  {
  	struct intel_display *display = to_intel_display(encoder);
- 	enum phy phy = intel_encoder_to_phy(encoder);
-@@ -3336,7 +3337,7 @@ static bool intel_cx0_pll_is_enabled(struct intel_encoder *encoder)
- 			     intel_cx0_get_pclk_pll_request(lane);
- }
- 
--static void intel_mtl_tbt_pll_disable(struct intel_encoder *encoder)
-+void intel_mtl_tbt_pll_disable(struct intel_encoder *encoder)
- {
- 	struct intel_display *display = to_intel_display(encoder);
- 	enum phy phy = intel_encoder_to_phy(encoder);
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-index f0f0efa2d48b..a37827482a32 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-@@ -64,5 +64,8 @@ int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder);
- void intel_cx0_pll_power_save_wa(struct intel_display *display);
- void intel_lnl_mac_transmit_lfps(struct intel_encoder *encoder,
- 				 const struct intel_crtc_state *crtc_state);
-+void intel_mtl_tbt_pll_enable(struct intel_encoder *encoder,
-+			      const struct intel_crtc_state *crtc_state);
-+void intel_mtl_tbt_pll_disable(struct intel_encoder *encoder);
- 
- #endif /* __INTEL_CX0_PHY_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 870140340342..a4ea9f29fd85 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -72,6 +72,7 @@
- #include "intel_hotplug.h"
- #include "intel_hti.h"
- #include "intel_lspcon.h"
-+#include "intel_lt_phy.h"
- #include "intel_mg_phy_regs.h"
- #include "intel_modeset_lock.h"
- #include "intel_panel.h"
-@@ -5231,7 +5232,11 @@ void intel_ddi_init(struct intel_display *display,
- 	encoder->cloneable = 0;
- 	encoder->pipe_mask = ~0;
  
 -	if (DISPLAY_VER(display) >= 14) {
 +	if (HAS_LT_PHY(display)) {
-+		encoder->enable_clock = intel_xe3plpd_pll_enable;
-+		encoder->disable_clock = intel_xe3plpd_pll_disable;
-+		encoder->port_pll_type = intel_mtl_port_pll_type;
++		encoder->get_buf_trans = xe3plpd_get_lt_buf_trans;
 +	} else if (DISPLAY_VER(display) >= 14) {
- 		encoder->enable_clock = intel_mtl_pll_enable;
- 		encoder->disable_clock = intel_mtl_pll_disable;
- 		encoder->port_pll_type = intel_mtl_port_pll_type;
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index d86d44dec14f..2be48c3943dc 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -1688,3 +1688,24 @@ void intel_lt_phy_pll_disable(struct intel_encoder *encoder)
+ 		if (intel_encoder_is_c10phy(encoder))
+ 			encoder->get_buf_trans = mtl_get_c10_buf_trans;
+ 		else
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
+index 29a190390192..cec332090a20 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
++++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
+@@ -50,6 +50,14 @@ struct dg2_snps_phy_buf_trans {
+ 	u8 post_cursor;
+ };
  
- 	intel_lt_phy_transaction_end(encoder, wakeref);
- }
++struct xe3plpd_lt_phy_buf_trans {
++	u8 txswing;
++	u8 txswing_level;
++	u8 pre_cursor;
++	u8 main_cursor;
++	u8 post_cursor;
++};
 +
-+void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
-+			      const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-+
-+	if (intel_tc_port_in_tbt_alt_mode(dig_port))
-+		intel_mtl_tbt_pll_enable(encoder, crtc_state);
-+	else
-+		intel_lt_phy_pll_enable(encoder, crtc_state);
-+}
-+
-+void intel_xe3plpd_pll_disable(struct intel_encoder *encoder)
-+{
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-+
-+	if (intel_tc_port_in_tbt_alt_mode(dig_port))
-+		intel_mtl_tbt_pll_disable(encoder);
-+	else
-+		intel_lt_phy_pll_disable(encoder);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-index 499091e04e82..15d3d680871c 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-@@ -20,6 +20,9 @@ intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
- 			    struct intel_encoder *encoder);
- int intel_lt_phy_calc_port_clock(struct intel_encoder *encoder,
- 				 const struct intel_crtc_state *crtc_state);
-+void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
-+			      const struct intel_crtc_state *crtc_state);
-+void intel_xe3plpd_pll_disable(struct intel_encoder *encoder);
+ union intel_ddi_buf_trans_entry {
+ 	struct hsw_ddi_buf_trans hsw;
+ 	struct bxt_ddi_buf_trans bxt;
+@@ -57,6 +65,7 @@ union intel_ddi_buf_trans_entry {
+ 	struct icl_mg_phy_ddi_buf_trans mg;
+ 	struct tgl_dkl_phy_ddi_buf_trans dkl;
+ 	struct dg2_snps_phy_buf_trans snps;
++	struct xe3plpd_lt_phy_buf_trans lt;
+ };
  
- #define HAS_LT_PHY(display) (DISPLAY_VER(display) >= 35)
- 
+ struct intel_ddi_buf_trans {
 -- 
 2.34.1
 
