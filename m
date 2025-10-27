@@ -2,187 +2,131 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A4A4C0D0E3
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Oct 2025 12:07:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E152C0D21E
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Oct 2025 12:21:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF29C10E43F;
-	Mon, 27 Oct 2025 11:07:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFED010E444;
+	Mon, 27 Oct 2025 11:21:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mFCzNkAL";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="0AchCHqo";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="s/e1Tz29";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="0AchCHqo";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="s/e1Tz29";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B89C810E077;
- Mon, 27 Oct 2025 11:07:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761563236; x=1793099236;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=Ytd2bRuAuCmi6bQ/kSeQsbLkk+2COTMxKm4l/XnWWdk=;
- b=mFCzNkAL2NpQs4tzS2xA7DoSt9t/G5BLwvgCskU1Spz/mogfHqiru2im
- Rzuw+3tHKMIHhA/lOwgLSVWp0oRojLhZi07oPJxnrp8JOqO8yMEq6MW+4
- uOz25Xhty6BEMLacfM0JZlN7uhdwBaEjm2KdOtKuCLopQcyWOF/Vp2Ql8
- 4ZbjtaCB9IlUZEfbIlz3kQYXHj8tNRYzfb8UUwZyDZkH/wXUw1rpmpuAm
- AoC/x9+IMq+OfjEKRtTf/6fVhmNYeHxSrTaLrMoQCuX/DHyV+SPYhYcdB
- 219SD2IcfbJTxFwKp3BRLeopYL21INr0lZcXhpr4GWmL3wSpefFyFAuuy w==;
-X-CSE-ConnectionGUID: DmwR7GqmRXS0PpG0Q9r9GQ==
-X-CSE-MsgGUID: crnf/K+zSBe5kBOstEdXTw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="67503673"
-X-IronPort-AV: E=Sophos;i="6.19,258,1754982000"; d="scan'208";a="67503673"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2025 04:07:16 -0700
-X-CSE-ConnectionGUID: t8GEn7TjRvi3gadEEGQORQ==
-X-CSE-MsgGUID: /ZiLcwIQSJClu2IdWJqvNQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,258,1754982000"; d="scan'208";a="222226227"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2025 04:07:16 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 27 Oct 2025 04:07:15 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Mon, 27 Oct 2025 04:07:15 -0700
-Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.31) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 27 Oct 2025 04:07:15 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lrU1rUYS4eCj1O9bA295HW8FQW4MuYz5vpj+Xm8MzvOUhaCrHjXN1q8CIhTHYX1u1t9WiAd/uzqUtMjTvZiIYQp+FiroBSnOoIJOFy29E1APg2HEvzTVAWjXu0pWRj/YSkmIYDN+liFUUEN2MCVDOzvbOEIz3diarKXsAyOzHDKszMllu0gndZw5WE5YY7+o5Bdu0he61SLxEeni4T8GvyNwbB/mOUaxnqJyGeb9KQS3FWUNyG8xV+RQNkhr9eCZDR7KTFI9TV+cKG4mEy6tZDz1WVNl64RLLh4YAxmbsG2ML0OPf9eeXIaHu0Bxu7Lpp8ehhTahsCLapoW2xI8rNg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=c8zibzKsWK/tdgVHTI/IMvzDYaXwVKww+eabz2wUdQc=;
- b=W6GdeMux+Eh8USdTUVWReHz0YPsEb+6HduFt2H7LJi7PP1eSYsJIpjHN80Xh+G9Y0A9CRgjC98qy5kCOi5oYMOuW1l3EWX4AIN1F1Z451w/j6jHTkz5zXB0QDPUZ2NqFHLRpGqi73sSTmGyME1I8hsPnUzdSwnswisUAjtDe0jtjYZOLJtyP0nnWT+kvy8ZiikpyksINv/zgWOP3AG4BWOBcGeAXnM3h+oVfzUPX29+oR/93qWNqOOD5R6bJyIabJg20NeVRVI1jSEinKfY/5oPJquhVOKgCQjVd3DLjc25hokfN+WaThkrDbsx7KCT5EWdnRUOjJmId3iijB1rhPw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by SJ0PR11MB5183.namprd11.prod.outlook.com (2603:10b6:a03:2d9::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.16; Mon, 27 Oct
- 2025 11:07:13 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839%7]) with mapi id 15.20.9253.013; Mon, 27 Oct 2025
- 11:07:13 +0000
-Message-ID: <5cee964e-7994-4d10-a433-b6e492103eed@intel.com>
-Date: Mon, 27 Oct 2025 16:37:07 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/vrr: Fix transmission line for Adaptive Sync SDP
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <jouni.hogander@intel.com>
-References: <20251023081614.2645242-1-ankit.k.nautiyal@intel.com>
- <aPoZ05jth8oGvoGk@intel.com> <b7971dfc-2c75-4a33-ba91-5a2d30339b35@intel.com>
- <aPo-STwN09z7qnFB@intel.com> <aPpE_z3rVxfv5x0r@intel.com>
- <aPtzjSIXxRMMjR42@intel.com>
-Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <aPtzjSIXxRMMjR42@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0055.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1d3::8) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1AA8310E442
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Oct 2025 11:21:03 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id C37551F452;
+ Mon, 27 Oct 2025 11:21:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1761564061; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=tyrBsdOxerVuz0BGZbs7D+7dD8O1FitbC0Qhpgf78ZI=;
+ b=0AchCHqonSDqsi6uPj44tX/YrwgGr0B596Sn+ngsu3UbN0mva7w8ld55udANIpuoaa/Zkt
+ b7oy/v7dW2vdFk6r0/Ym4YnZq/7teO4Xqxa/03tqpsBpX7omLaFUurFoN3QQDnegq7sP7r
+ dPlCmpQcBNBB6kzEGex8rGYJm61k2HU=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1761564061;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=tyrBsdOxerVuz0BGZbs7D+7dD8O1FitbC0Qhpgf78ZI=;
+ b=s/e1Tz29lcXheMgQnns2gQz4FgOiqwS2rr2FdJIdVtJpWHLZjJUlANnT+Le67mJWCFO1LF
+ YtNrx/+b49hMBgBg==
+Authentication-Results: smtp-out2.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1761564061; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=tyrBsdOxerVuz0BGZbs7D+7dD8O1FitbC0Qhpgf78ZI=;
+ b=0AchCHqonSDqsi6uPj44tX/YrwgGr0B596Sn+ngsu3UbN0mva7w8ld55udANIpuoaa/Zkt
+ b7oy/v7dW2vdFk6r0/Ym4YnZq/7teO4Xqxa/03tqpsBpX7omLaFUurFoN3QQDnegq7sP7r
+ dPlCmpQcBNBB6kzEGex8rGYJm61k2HU=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1761564061;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=tyrBsdOxerVuz0BGZbs7D+7dD8O1FitbC0Qhpgf78ZI=;
+ b=s/e1Tz29lcXheMgQnns2gQz4FgOiqwS2rr2FdJIdVtJpWHLZjJUlANnT+Le67mJWCFO1LF
+ YtNrx/+b49hMBgBg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 821DB136CF;
+ Mon, 27 Oct 2025 11:21:01 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id ZlLoHJ1V/2gAUAAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Mon, 27 Oct 2025 11:21:01 +0000
+Message-ID: <d2753c3c-9fcc-436b-bbae-75f40b29bce6@suse.de>
+Date: Mon, 27 Oct 2025 12:21:01 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|SJ0PR11MB5183:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7e8f58df-eb75-4116-46ea-08de1548fb9b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?V2hmSndNQ0F0cGF5aFFWaWNjWU8vVzdsbzVYTmFqaSs1UkZNTDFEaUtDbnd6?=
- =?utf-8?B?enFhYm9kSStmRE1ZMmdHTGpKUWRSVU83RTBueXRrdm5wK1BjNFBkRncxcWZp?=
- =?utf-8?B?anJoMVNMYW5kV2tmRHlSM2pvTWE4OEI5eENSRlRXcjlscm1ETmRScmRFTHla?=
- =?utf-8?B?aXlkUFVBdlJ5R015MVBkakE1cXcrS1hlQUllSysxTmVVVTVnNHVEUHI2U0RS?=
- =?utf-8?B?Y0puZkJjMCtqK0RuOXRUcFdCQVpWVndaRnNxY2pRR3RiZUxtYlNFY2tzRitn?=
- =?utf-8?B?YndjU1dDVEgwYmhya05Db3c3ejF3YWw2S0RMNFpzbk5RZ1kxNnBzY1hGOWNJ?=
- =?utf-8?B?Qys4Y29nWVJWQlRzQWtpSEd5clRSd2VyaG9yOGxlZ0hKYmdZRS9xZzRabEdQ?=
- =?utf-8?B?QytFL1NEZTVCalNmMTUzenp1NjdPOS9HMFUwSnBZN2ViajRCb2NpSUtnRDJC?=
- =?utf-8?B?cGZhR1pZaldqT2dyb0MxTFN0M2JvcWU0bzhPUjhyQk5FMjJRbEZXVkJsQXMv?=
- =?utf-8?B?bHRvSVc0VXMrSllCVXh3anM4bHp2a1huU3pGK3ZQbFVEcmlyRlArbktoNm4z?=
- =?utf-8?B?UWkxVTN2VzVHSTYwWVBnVVMwb091T0FxMW5HdjVrZEdKNkFvVEZlMHhITlE5?=
- =?utf-8?B?R3NqcmlXdE1BOXVYcGYzZFZ6RldKY0N2NHVjYW9UTGNaank2WC9qUnhvZkhW?=
- =?utf-8?B?UXJ3MS9KbVdRV2JmSzFhandkUjl6TlYyRXl6cGpJMTlzUk5nSnVmaDZtaFg1?=
- =?utf-8?B?ZmJ6QnJ2TG1Ka0dtWEF2SUVyZTVqSkJaV2NoYi8wT1IyWEZ6Q0tIWmdVTllu?=
- =?utf-8?B?ckwxWE93cXpjdlVyalVqQUdienNybWVVakJmaWxlZWZXYVRybGplTzVSSTJw?=
- =?utf-8?B?UURPemZ0b2tMOWVrM1NmUmJzSnVQUEdZQjI5bnM3bEVaZW9IVlM1RzkzOCty?=
- =?utf-8?B?VGJZVXc2OHZoTjdZQnRmUFNrTjRnYiswbktwVXF3QlU2SUU4L2dtNndTTXo0?=
- =?utf-8?B?VWk4VVZiYVY0bWhWNWVyVWxsSkVCZXhBTnRCa3EwaUJMVE50NUhXc3kwcWRO?=
- =?utf-8?B?S25wN29yYVBUeGMzUlJvOXZBQVkybVNxV21ncXI4TUZ5UUZFYk94WTZnOS9T?=
- =?utf-8?B?YjV2ODl3UWZkMWQ1RDZiRnQwaEprVXNmQloyZ0tHbVJmKzM2Z0QxYkMxRXFJ?=
- =?utf-8?B?RElkcjFPaDNVRkU3RXVjSWFPaU5OTjBycnh5VURZWWZtak9Ga0tyRXpObHJO?=
- =?utf-8?B?VERicXpqVUZPeE5pSkg5aHY0WUkxamlUOGFxaXlFbHp4dWprd1Y0Nk1ZQVB3?=
- =?utf-8?B?ZStuT0xaMVJFckR0aGQxVVRMQjZZeGdwY08wVDNZYmR3dGJ2VEtQNzNBcCto?=
- =?utf-8?B?elRndUJTUGpuNU1MYUhKdWRUN0tDUE0zRk00MU1zWG5nMFJqNC8xU0N5NWtN?=
- =?utf-8?B?VUhXSDN1OG5PZlNJZDA3cVlNQ0NlditabFI5ZUFnbE43UFVwSzRiS0tVVFhr?=
- =?utf-8?B?LzFnQjB0Umw3WW5OK2d3R1RKUzVmN0lwN3p0S0hLUEpuaTZyemFBT3ZTZW5Y?=
- =?utf-8?B?eGpDak5vTjNIdi9ITmZmNjZUTm80L2Y4TFoxc0NtWk54a2IrSFlIblE5dnlu?=
- =?utf-8?B?WEZVRzVhV1Vpb2tFMHZUMGliSXJyOHJsRTcxTldjSmJJOHkycUVQRFEycEV3?=
- =?utf-8?B?a0s3UzhvdVFucG5obkh5Z0YxenVoWVJUcHQvQ0ZtaEFkMGMxQVZNZzhGeUQr?=
- =?utf-8?B?T2htd3JnVGI1UkJzNy9UTWRiNU9Ub1lpdENHTm9VVEpsWDgvNkRYTllKVFJZ?=
- =?utf-8?B?NSt6UDdwQmtwZzFjUWVJOUIzMnJqZW9iRDhKa3RJNTlFSldBYk1TckQ3UG5i?=
- =?utf-8?B?Zzk2QlBsL2JZRlRuR3ovVWFDMUpQczhGbm1VWUJ4YThXOXc9PQ==?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dWFvTkJ5Wlg3VUlJTU9SdDhSWU13UVdBREZvZGtsdzh0V2dEL05SVjRvZEFq?=
- =?utf-8?B?emg1Q1hDWklPdWl2SFJMVml5UDhuZXFGb1A2WU5qSjFKK2NWR3Q2M1AwN3pQ?=
- =?utf-8?B?L3Q0eml0eG9nZXByVjR0aExXMHpSSlY5MnZsQ0ovVW9UamozZ1dzeDMwUm0x?=
- =?utf-8?B?TFJWdEpSMVNCTzlLbWZYcnpsbUtmYksxTitrSE5ITFBXMGY2YzdONTJ6K3Rq?=
- =?utf-8?B?bENvbHJnOElzMWpacDJvT25IVWVqMDI2UjB0RzVCTEcvUU9VVUNQTEtsTmUx?=
- =?utf-8?B?MktXTmN2bmRONEdTeG5jV3FubzZzV3JIR3cvdmdBN1Uyd1lVRUc4Z0NuZFhF?=
- =?utf-8?B?NU1JcDBkWDhHMGRWVzJEWWlqRkREakdkb0E3SEJEWGVFaE5PUXRFR3ZyUUJT?=
- =?utf-8?B?cHZxMWQ0d1dYa2MwWjUxMGZDN3hMSlZEZU5PWW9XNUIzWG5XeTRtY2pEbHBz?=
- =?utf-8?B?Wm9IbnF2ek5Zb3JNdkI2MXdTekZsMXppTW4vV2MxazEzeFR2L3Q0ZXd4eUhu?=
- =?utf-8?B?aVhXQTVjRWdPMXhDcjhyV3BtQXhKZmptVkgyR0xqUXpOWnBFZDFYeU95Yyta?=
- =?utf-8?B?aWVqSXlOKzlKWmp6cW5WOWJSbTkvSXBBS0hOdWh3TTlZMEd2OWdSak9yWUpt?=
- =?utf-8?B?SmZyWXFPbFgxWmpTck43YVZPZ3p1dExjdXNCOTVtcmt5YjdqMDlxQU9KeDNL?=
- =?utf-8?B?dzAxT2JsNDJxMzY3a0V0UlpPNlpGWm9iUjNYMmlPVWFyZFZ3d0pLSE9pbUNN?=
- =?utf-8?B?Vzg2RDlGY09sOFA1U3NKbllDc1ZzTzR6dnU2VFdHOVpCb2hpZWhNbEpoSURz?=
- =?utf-8?B?Z1kwZHF2Z0NzakRvZFYvTHlHdE92dFhrdjNBNUJBVVJocWRURUo5YVBnVGhF?=
- =?utf-8?B?SnVleC9QMk5SNW9XL2ZnZFVZUDdSN25PU2RHY3dqeXFxb2wzdG1EMGVoQWdy?=
- =?utf-8?B?aUcyRUlobnkxN1UzaTNrVWc1ejZQRGFCNmtoRDNMK3daU1l1MWhMK2tDQnFp?=
- =?utf-8?B?M3I3MjJDWXd1N1hablEyLytkVzdFN2cxVkl6TmhiNjZVM3RlK3VpQVYrQlEr?=
- =?utf-8?B?ZUFVOC9MNlRBekREZjhpZC9TRDFTY3N3d0pMRGw3b1p3MklRMEw1b2ZoaVRV?=
- =?utf-8?B?SGJxamMzQTUzeHlNa1JlZ05TT0xXUk5TVmtPbG9EaHhuSm1IaDNLT2hXUzEw?=
- =?utf-8?B?bWh0S2tkK2lxVCs2bXVwN3llc2tnTlo1TzYxNkRUMG50akJKcXNPL0xGRk1N?=
- =?utf-8?B?eUJ6VURCVVIwYi9jQ3BPZnZrbFkyZWo0R1Fqb2kyNFljU3pjaXR3dkpHRys1?=
- =?utf-8?B?MEtrdmJrM1hUNVcyK3JJK0p0OEhLVU9zVitHbXMzQlVQMHA0cEptU1ZVRmRu?=
- =?utf-8?B?L1ZIOHB0M1FRZWd2V3N6K3o3cHV3OEd4MkdlcDlQdjJMWDBsNUltY0l0TnlU?=
- =?utf-8?B?ck43QXc3SW1Jam9lWXNHR1l3eFlxTFRtYVBQZUM3K1FCNVQzWklXdGlRN1JL?=
- =?utf-8?B?bTEyeVl4cHB0dnFaSVIwd1VlUVV0Rysxekl1YXp3V3pHR0s1TU9WVXptNkpZ?=
- =?utf-8?B?TnhjcDRUNC9BZU1wN1ZRZWk5TFNVOURYTzN3UDhzUFBZYkwxaHB6SUlET0Va?=
- =?utf-8?B?TjROUzF4Qkxocys3WWpHMHFiV24xWDBTTmk3RnZYTlI1WVYyeDlCbFJQcVhk?=
- =?utf-8?B?QjBLakoxZ0pQWEl0ZFhXa2hBSkx2WkNUSlFZVWlFVHZybWUzazhQWnV5WEQ3?=
- =?utf-8?B?Nm02SmJFZEFiSTB2VkN4alkzWWd5LyswUkY0YU5XVWpvMXUyZitENGZUdU4r?=
- =?utf-8?B?VWF4WVBOaTFsSXNOMUpnMlg0YnRybWFyMktTb2VmZ3hLU3ZvdFRnMzVZcDNV?=
- =?utf-8?B?ampTZWRCRnZrWFdIN2JReFpxdG9ySmJoL3VYcWtIRkpFR1RxOXpMV3paVHBs?=
- =?utf-8?B?ZXBmOWxnVzRWMWFWU2Rnc1J5TUZyS0lNZmlsOFI1ajk3SXd5dUUxSTJzWG1V?=
- =?utf-8?B?MGQxMjhjOWVIbUgzSVdyRzBxa2tEZlVCZHd6T2tvUDE2WXFlYXZUbGpUTkgz?=
- =?utf-8?B?OG1DRTVQTW50cVhhbGJWS1FyWXhLVFBqaWZqYlNHR3NHeHUvTThiLzNWMEdS?=
- =?utf-8?B?WGlHRXRMMGtXQytYR0lrL0JRdnlPSmk0STNUeEZzYlVFelFnbk1qS2tTQWxT?=
- =?utf-8?B?RHc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7e8f58df-eb75-4116-46ea-08de1548fb9b
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Oct 2025 11:07:13.7684 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3Jvk5Pt5tJWWr5DrHO5gvrrXLKSZvR82E2uJkAixmrnWjiAgJjetHBi5d0dLxazkEEYBuBFlvKC9hU1zHGA55CyeNyEdpLukIhz3zH1WfBg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5183
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/3] drm: replace drm_print.h includes from headers
+ with a forward declaration
+To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org,
+ maarten.lankhorst@linux.intel.com, Maxime Ripard <mripard@kernel.org>,
+ David Airlie <airlied@redhat.com>, simona.vetter@ffwll.ch
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+References: <cover.1761126446.git.jani.nikula@intel.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <cover.1761126446.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Level: 
+X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ RCVD_VIA_SMTP_AUTH(0.00)[];
+ FUZZY_RATELIMITED(0.00)[rspamd.com]; ARC_NA(0.00)[];
+ MIME_TRACE(0.00)[0:+]; RCPT_COUNT_SEVEN(0.00)[8];
+ MID_RHS_MATCH_FROM(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_HAS_DN(0.00)[]; TO_DN_SOME(0.00)[];
+ FROM_EQ_ENVFROM(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email, suse.de:mid,
+ imap1.dmz-prg2.suse.org:helo]
+X-Spam-Flag: NO
+X-Spam-Score: -4.30
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -198,125 +142,423 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi,
 
-On 10/24/2025 6:09 PM, Ville Syrjälä wrote:
-> On Thu, Oct 23, 2025 at 06:08:47PM +0300, Ville Syrjälä wrote:
->> On Thu, Oct 23, 2025 at 05:40:09PM +0300, Ville Syrjälä wrote:
->>> On Thu, Oct 23, 2025 at 05:57:02PM +0530, Nautiyal, Ankit K wrote:
->>>> On 10/23/2025 5:34 PM, Ville Syrjälä wrote:
->>>>> On Thu, Oct 23, 2025 at 01:46:14PM +0530, Ankit Nautiyal wrote:
->>>>>> Currently the EMP_AS_SDP_TL is set to vrr.vsync_start which is
->>>>>> incorrect.
->>>>>>
->>>>>> As per Bspec:71197 the transmission line must be within the SCL +
->>>>>> guardband region. Before guardband optimization, guradband was same as
->>>>>> vblank length so EMP_AS_SDP_TL set with vrr.sync_start was falling in
->>>>>> this region and it was not giving an issue.
->>>>>>
->>>>>> Now with optimized guardband, this is falling outside the SCL +
->>>>>> guardband region and since the same transmission line is used by VSC SDP
->>>>>> also, this results in PSR timeout issues.
->>>>>>
->>>>>> Further restrictions on the position of the transmission line:
->>>>>> For DP/eDP, if there is a set context latency (SCL) window, then it
->>>>>> cannot be the first line of SCL
->>>>>> For DP/eDP, if there is no SCL window, then it cannot be the first line of
->>>>>> the Delayed V. Blank
->>>>>>
->>>>>> Fix the EMP_AS_SDP_TL to VTOTAL - (delayed vblank_start - SCL + 1)
->>>>>> Internally the HW computes the value as VTOTAL - EMP_AS_SDP_TL.
->>>>>>
->>>>>> Fixes: e1123e617e51 ("drm/i915/vrr: Program EMP_AS_SDP_TL for DP AS SDP")
->>>>>> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->>>>>> Cc: Jouni Högander <jouni.hogander@intel.com>
->>>>>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->>>>>> ---
->>>>>>    drivers/gpu/drm/i915/display/intel_vrr.c | 12 +++++++++---
->>>>>>    1 file changed, 9 insertions(+), 3 deletions(-)
->>>>>>
->>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
->>>>>> index 92fb72b56f16..dd81d2133aba 100644
->>>>>> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
->>>>>> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
->>>>>> @@ -655,18 +655,24 @@ void intel_vrr_set_db_point_and_transmission_line(const struct intel_crtc_state
->>>>>>    {
->>>>>>    	struct intel_display *display = to_intel_display(crtc_state);
->>>>>>    	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
->>>>>> +	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
->>>>>> +	int transmission_line;
->>>>>>    
->>>>>>    	/*
->>>>>>    	 * For BMG and LNL+ onwards the EMP_AS_SDP_TL is used for programming
->>>>>>    	 * double buffering point and transmission line for VRR packets for
->>>>>>    	 * HDMI2.1/DP/eDP/DP->HDMI2.1 PCON.
->>>>>>    	 * Since currently we support VRR only for DP/eDP, so this is programmed
->>>>>> -	 * to for Adaptive Sync SDP to Vsync start.
->>>>>> +	 * for Adaptive Sync SDP.
->>>>>>    	 */
->>>>>> -	if (DISPLAY_VERx100(display) == 1401 || DISPLAY_VER(display) >= 20)
->>>>>> +	if (DISPLAY_VERx100(display) == 1401 || DISPLAY_VER(display) >= 20) {
->>>>>> +		transmission_line = adjusted_mode->crtc_vtotal - (adjusted_mode->crtc_vblank_start -
->>>>>> +								  crtc_state->set_context_latency +
->>>>>> +								  1);
->>>>>>    		intel_de_write(display,
->>>>>>    			       EMP_AS_SDP_TL(display, cpu_transcoder),
->>>>>> -			       EMP_AS_SDP_DB_TL(crtc_state->vrr.vsync_start));
->>>>>> +			       EMP_AS_SDP_DB_TL(transmission_line));
->>>>>> +	}
->>>>> Pretty sure we are expected to send it at vsync_start.
->>>> Hmm.. then do we need to move vsync_start too similar to vblank_start
->>>> for optimized guardband?
->>> The vsync pulse location is dictated by the timings.
->>>
->>>> If we do not move vsync_start, and set the transmission line to
->>>> vsync_start, it will never fall in the region SCL + guardband with a
->>>> reduced guardband.
->>> Only if the vsync pulse is early in the vblank. That's up to the
->>> display.
->> Oh and I think we should get rid of that 'assume_all_enabled' stuff
->> for the AS SDP, and account for it only when actually needed.
->> Which I *think* means PCON or panel replay with AUX-less ALPM.
->>
->> There's also that t1 vs. t2 setup time thing for the panel replay,
->> which seems to be telling me that we could sometimes transmit the
->> AS SDP later. But if I'm reading that right we have to switch to the
->> t1 (vsync) transmission line whenever we switch to live frame mode,
->> which I presume can happen basically at any time. So maybe we can't
->> actually use that t2 transmission line.
-> Ah, apparently we have to always put t1 into EMP_AS_SDP_TL, and
-> there's some other logic for panel replay to use t2 when possible.
-> But since it's all dynamic we have to use t1 when calculating the
-> guardband/SCL.
+for the series
 
-Yeah t2 will be taken up by HW based on PR_ALPM_CTL adaptive sync SDP 
-position (to have either t1/t2 or t1 always or t2 always) and also what 
-we send in AS SDP payload wrt to Fixed Vtotal, Fixed AVG VTotal mode.
+Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
 
-I agree with your suggestion above. For PCON, VRR support still needs 
-work so perhaps we can skip that. Makes sense to always enable AS  SDP 
-when Panel replay with Auxless-ALPM is supported.
+Some thoughts: Consider merging patches 1 and 2 OR split off the change 
+to ttm_resource.h from patch 3.  Doing the latter would make a revert of 
+the forward declaration easier in case some trees stop building. Feel 
+free to put everything into drm-misc-next if that still compiles then.
 
-With that we can use Jouni's patch to increase the guardband such that 
-Vsync falls in the required region [1], effectively 
-`crtc_state->vrr.vsync_start + 1`.
+Best regards
+Thomas
 
-I was trying with the above changes suggested, sent also to trybot [2].
-
-But now I see that we have a problem with LRR on such panels.
-
-When switching to lower mode with LRR, the `vsync_start` changes, which 
-results in guardband being changed.
-
-So seamless switch to the required lower mode cannot take place. :-(
-
-
-[1] https://patchwork.freedesktop.org/patch/682984/?series=156341&rev=2
-
-[2] https://patchwork.freedesktop.org/series/156569/
-
-
-Regards,
-
-Ankit
-
+Am 22.10.25 um 11:48 schrieb Jani Nikula:
+> v2 of [1] with a bunch of inevitable build errors fixed.
 >
+> BR,
+> Jani.
+>
+>
+> [1] https://lore.kernel.org/r/cover.1761063757.git.jani.nikula@intel.com
+>
+>
+> Jani Nikula (3):
+>    drm/mm: replace drm_print.h include with a forward declaration
+>    drm/buddy: replace drm_print.h include with a forward declaration
+>    drm/ttm: replace drm_print.h include with a forward declaration
+>
+>   drivers/accel/amdxdna/amdxdna_gem.c                       | 1 +
+>   drivers/accel/rocket/rocket_gem.c                         | 1 +
+>   drivers/gpu/drm/adp/adp_drv.c                             | 1 +
+>   drivers/gpu/drm/arm/display/komeda/komeda_framebuffer.c   | 1 +
+>   drivers/gpu/drm/arm/hdlcd_crtc.c                          | 1 +
+>   drivers/gpu/drm/arm/hdlcd_drv.c                           | 1 +
+>   drivers/gpu/drm/arm/malidp_drv.c                          | 1 +
+>   drivers/gpu/drm/arm/malidp_mw.c                           | 1 +
+>   drivers/gpu/drm/armada/armada_crtc.c                      | 1 +
+>   drivers/gpu/drm/armada/armada_debugfs.c                   | 1 +
+>   drivers/gpu/drm/armada/armada_fb.c                        | 1 +
+>   drivers/gpu/drm/armada/armada_fbdev.c                     | 1 +
+>   drivers/gpu/drm/armada/armada_gem.c                       | 1 +
+>   drivers/gpu/drm/armada/armada_overlay.c                   | 1 +
+>   drivers/gpu/drm/armada/armada_plane.c                     | 1 +
+>   drivers/gpu/drm/ast/ast_mode.c                            | 1 +
+>   drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c              | 1 +
+>   drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_plane.c           | 1 +
+>   drivers/gpu/drm/drm_buddy.c                               | 1 +
+>   drivers/gpu/drm/drm_dumb_buffers.c                        | 1 +
+>   drivers/gpu/drm/drm_fbdev_dma.c                           | 1 +
+>   drivers/gpu/drm/drm_fbdev_shmem.c                         | 1 +
+>   drivers/gpu/drm/drm_gem_dma_helper.c                      | 1 +
+>   drivers/gpu/drm/drm_gem_framebuffer_helper.c              | 1 +
+>   drivers/gpu/drm/drm_gem_ttm_helper.c                      | 1 +
+>   drivers/gpu/drm/drm_gem_vram_helper.c                     | 1 +
+>   drivers/gpu/drm/drm_gpuvm.c                               | 1 +
+>   drivers/gpu/drm/drm_mipi_dbi.c                            | 1 +
+>   drivers/gpu/drm/drm_mm.c                                  | 1 +
+>   drivers/gpu/drm/drm_prime.c                               | 1 +
+>   drivers/gpu/drm/etnaviv/etnaviv_buffer.c                  | 1 +
+>   drivers/gpu/drm/etnaviv/etnaviv_drv.c                     | 1 +
+>   drivers/gpu/drm/etnaviv/etnaviv_gem.c                     | 1 +
+>   drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c              | 1 +
+>   drivers/gpu/drm/etnaviv/etnaviv_gpu.c                     | 2 ++
+>   drivers/gpu/drm/etnaviv/etnaviv_mmu.c                     | 2 ++
+>   drivers/gpu/drm/exynos/exynos5433_drm_decon.c             | 1 +
+>   drivers/gpu/drm/exynos/exynos7_drm_decon.c                | 1 +
+>   drivers/gpu/drm/exynos/exynos_drm_fb.c                    | 1 +
+>   drivers/gpu/drm/exynos/exynos_drm_fbdev.c                 | 1 +
+>   drivers/gpu/drm/exynos/exynos_drm_fimd.c                  | 1 +
+>   drivers/gpu/drm/exynos/exynos_drm_g2d.c                   | 1 +
+>   drivers/gpu/drm/exynos/exynos_drm_gem.c                   | 1 +
+>   drivers/gpu/drm/exynos/exynos_drm_ipp.c                   | 1 +
+>   drivers/gpu/drm/exynos/exynos_drm_plane.c                 | 1 +
+>   drivers/gpu/drm/exynos/exynos_drm_vidi.c                  | 1 +
+>   drivers/gpu/drm/exynos/exynos_mixer.c                     | 1 +
+>   drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_plane.c               | 1 +
+>   drivers/gpu/drm/gma500/backlight.c                        | 2 ++
+>   drivers/gpu/drm/gma500/cdv_device.c                       | 1 +
+>   drivers/gpu/drm/gma500/cdv_intel_display.c                | 1 +
+>   drivers/gpu/drm/gma500/cdv_intel_dp.c                     | 1 +
+>   drivers/gpu/drm/gma500/cdv_intel_hdmi.c                   | 1 +
+>   drivers/gpu/drm/gma500/cdv_intel_lvds.c                   | 1 +
+>   drivers/gpu/drm/gma500/gem.c                              | 1 +
+>   drivers/gpu/drm/gma500/intel_bios.c                       | 1 +
+>   drivers/gpu/drm/gma500/intel_gmbus.c                      | 2 ++
+>   drivers/gpu/drm/gma500/mid_bios.c                         | 1 +
+>   drivers/gpu/drm/gma500/oaktrail_crtc.c                    | 1 +
+>   drivers/gpu/drm/gma500/oaktrail_hdmi.c                    | 1 +
+>   drivers/gpu/drm/gma500/oaktrail_hdmi_i2c.c                | 3 +++
+>   drivers/gpu/drm/gma500/oaktrail_lvds.c                    | 1 +
+>   drivers/gpu/drm/gma500/opregion.c                         | 3 +++
+>   drivers/gpu/drm/gma500/psb_drv.c                          | 1 +
+>   drivers/gpu/drm/gma500/psb_intel_display.c                | 1 +
+>   drivers/gpu/drm/gma500/psb_intel_lvds.c                   | 1 +
+>   drivers/gpu/drm/gma500/psb_intel_sdvo.c                   | 1 +
+>   drivers/gpu/drm/gma500/psb_irq.c                          | 1 +
+>   drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c           | 1 +
+>   drivers/gpu/drm/hisilicon/kirin/kirin_drm_drv.c           | 1 +
+>   drivers/gpu/drm/i915/display/i9xx_wm.c                    | 2 ++
+>   drivers/gpu/drm/i915/display/intel_bios.c                 | 1 +
+>   drivers/gpu/drm/i915/display/intel_bw.c                   | 2 ++
+>   drivers/gpu/drm/i915/display/intel_cdclk.c                | 1 +
+>   drivers/gpu/drm/i915/display/intel_connector.c            | 1 +
+>   drivers/gpu/drm/i915/display/intel_crtc.c                 | 1 +
+>   drivers/gpu/drm/i915/display/intel_display.c              | 1 +
+>   drivers/gpu/drm/i915/display/intel_display_debugfs.c      | 1 +
+>   drivers/gpu/drm/i915/display/intel_display_driver.c       | 1 +
+>   drivers/gpu/drm/i915/display/intel_display_irq.c          | 1 +
+>   drivers/gpu/drm/i915/display/intel_display_power.c        | 2 ++
+>   drivers/gpu/drm/i915/display/intel_display_power_well.c   | 2 ++
+>   drivers/gpu/drm/i915/display/intel_display_reset.c        | 1 +
+>   drivers/gpu/drm/i915/display/intel_dpt.c                  | 2 ++
+>   drivers/gpu/drm/i915/display/intel_fb.c                   | 1 +
+>   drivers/gpu/drm/i915/display/intel_fb_bo.c                | 1 +
+>   drivers/gpu/drm/i915/display/intel_fb_pin.c               | 2 ++
+>   drivers/gpu/drm/i915/display/intel_fbc.c                  | 1 +
+>   drivers/gpu/drm/i915/display/intel_fbdev_fb.c             | 2 ++
+>   drivers/gpu/drm/i915/display/intel_frontbuffer.c          | 1 +
+>   drivers/gpu/drm/i915/display/intel_gmbus.c                | 1 +
+>   drivers/gpu/drm/i915/display/intel_hdcp_gsc.c             | 1 +
+>   drivers/gpu/drm/i915/display/intel_hotplug.c              | 1 +
+>   drivers/gpu/drm/i915/display/intel_overlay.c              | 1 +
+>   drivers/gpu/drm/i915/display/intel_pipe_crc.c             | 2 ++
+>   drivers/gpu/drm/i915/display/intel_plane.c                | 1 +
+>   drivers/gpu/drm/i915/display/intel_plane_initial.c        | 2 ++
+>   drivers/gpu/drm/i915/display/intel_psr.c                  | 1 +
+>   drivers/gpu/drm/i915/display/intel_vblank.c               | 1 +
+>   drivers/gpu/drm/i915/display/skl_universal_plane.c        | 1 +
+>   drivers/gpu/drm/i915/gem/i915_gem_context.c               | 1 +
+>   drivers/gpu/drm/i915/gem/i915_gem_create.c                | 1 +
+>   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c            | 1 +
+>   drivers/gpu/drm/i915/gem/i915_gem_object.c                | 1 +
+>   drivers/gpu/drm/i915/gem/i915_gem_pages.c                 | 4 +++-
+>   drivers/gpu/drm/i915/gem/i915_gem_phys.c                  | 1 +
+>   drivers/gpu/drm/i915/gem/i915_gem_shrinker.c              | 2 ++
+>   drivers/gpu/drm/i915/gem/i915_gem_stolen.c                | 1 +
+>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c                   | 3 ++-
+>   drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c                | 1 +
+>   drivers/gpu/drm/i915/gem/i915_gem_userptr.c               | 2 ++
+>   drivers/gpu/drm/i915/gem/i915_gemfs.c                     | 2 ++
+>   drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c  | 2 ++
+>   drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c        | 2 ++
+>   drivers/gpu/drm/i915/gt/gen8_engine_cs.c                  | 2 ++
+>   drivers/gpu/drm/i915/gt/intel_breadcrumbs.c               | 2 ++
+>   drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c          | 2 ++
+>   drivers/gpu/drm/i915/gt/intel_engine_user.c               | 2 ++
+>   drivers/gpu/drm/i915/gt/intel_execlists_submission.c      | 2 ++
+>   drivers/gpu/drm/i915/gt/intel_ggtt.c                      | 1 +
+>   drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c              | 2 ++
+>   drivers/gpu/drm/i915/gt/intel_ggtt_gmch.c                 | 1 +
+>   drivers/gpu/drm/i915/gt/intel_gt_debugfs.c                | 2 ++
+>   drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c             | 2 ++
+>   drivers/gpu/drm/i915/gt/intel_lrc.c                       | 2 ++
+>   drivers/gpu/drm/i915/gt/intel_mocs.c                      | 2 ++
+>   drivers/gpu/drm/i915/gt/intel_rc6.c                       | 2 ++
+>   drivers/gpu/drm/i915/gt/intel_region_lmem.c               | 2 ++
+>   drivers/gpu/drm/i915/gt/intel_renderstate.c               | 2 ++
+>   drivers/gpu/drm/i915/gt/intel_sa_media.c                  | 1 +
+>   drivers/gpu/drm/i915/gt/intel_sseu.c                      | 2 ++
+>   drivers/gpu/drm/i915/gt/intel_sseu_debugfs.c              | 2 ++
+>   drivers/gpu/drm/i915/gt/intel_timeline.c                  | 1 +
+>   drivers/gpu/drm/i915/gt/intel_wopcm.c                     | 2 ++
+>   drivers/gpu/drm/i915/gt/selftest_context.c                | 2 ++
+>   drivers/gpu/drm/i915/gt/selftest_execlists.c              | 2 ++
+>   drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_heci_cmd_submit.c | 2 ++
+>   drivers/gpu/drm/i915/gvt/aperture_gm.c                    | 2 ++
+>   drivers/gpu/drm/i915/gvt/cfg_space.c                      | 2 ++
+>   drivers/gpu/drm/i915/gvt/cmd_parser.c                     | 2 ++
+>   drivers/gpu/drm/i915/gvt/display.c                        | 1 +
+>   drivers/gpu/drm/i915/gvt/dmabuf.c                         | 1 +
+>   drivers/gpu/drm/i915/gvt/edid.c                           | 1 +
+>   drivers/gpu/drm/i915/gvt/gtt.c                            | 2 ++
+>   drivers/gpu/drm/i915/gvt/handlers.c                       | 1 +
+>   drivers/gpu/drm/i915/gvt/interrupt.c                      | 2 ++
+>   drivers/gpu/drm/i915/gvt/kvmgt.c                          | 1 +
+>   drivers/gpu/drm/i915/gvt/mmio.c                           | 3 +++
+>   drivers/gpu/drm/i915/gvt/mmio_context.c                   | 2 ++
+>   drivers/gpu/drm/i915/gvt/scheduler.c                      | 2 ++
+>   drivers/gpu/drm/i915/gvt/vgpu.c                           | 2 ++
+>   drivers/gpu/drm/i915/i915_cmd_parser.c                    | 1 +
+>   drivers/gpu/drm/i915/i915_debugfs.c                       | 1 +
+>   drivers/gpu/drm/i915/i915_gem.c                           | 1 +
+>   drivers/gpu/drm/i915/i915_getparam.c                      | 2 ++
+>   drivers/gpu/drm/i915/i915_irq.c                           | 1 +
+>   drivers/gpu/drm/i915/i915_module.c                        | 1 +
+>   drivers/gpu/drm/i915/i915_pmu.c                           | 2 ++
+>   drivers/gpu/drm/i915/i915_query.c                         | 2 ++
+>   drivers/gpu/drm/i915/i915_request.c                       | 2 ++
+>   drivers/gpu/drm/i915/i915_switcheroo.c                    | 2 ++
+>   drivers/gpu/drm/i915/i915_sysfs.c                         | 2 ++
+>   drivers/gpu/drm/i915/i915_ttm_buddy_manager.c             | 4 ++--
+>   drivers/gpu/drm/i915/i915_utils.c                         | 1 +
+>   drivers/gpu/drm/i915/i915_vgpu.c                          | 2 ++
+>   drivers/gpu/drm/i915/i915_vma.c                           | 2 ++
+>   drivers/gpu/drm/i915/intel_clock_gating.c                 | 2 ++
+>   drivers/gpu/drm/i915/intel_gvt.c                          | 2 ++
+>   drivers/gpu/drm/i915/intel_memory_region.c                | 1 +
+>   drivers/gpu/drm/i915/intel_pcode.c                        | 2 ++
+>   drivers/gpu/drm/i915/intel_step.c                         | 2 ++
+>   drivers/gpu/drm/i915/intel_uncore.c                       | 1 +
+>   drivers/gpu/drm/i915/intel_wakeref.c                      | 2 ++
+>   drivers/gpu/drm/i915/pxp/intel_pxp.c                      | 2 ++
+>   drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c                | 2 ++
+>   drivers/gpu/drm/i915/pxp/intel_pxp_huc.c                  | 2 ++
+>   drivers/gpu/drm/i915/pxp/intel_pxp_session.c              | 2 ++
+>   drivers/gpu/drm/i915/selftests/i915_active.c              | 2 ++
+>   drivers/gpu/drm/i915/selftests/i915_request.c             | 2 ++
+>   drivers/gpu/drm/i915/soc/intel_dram.c                     | 1 +
+>   drivers/gpu/drm/i915/soc/intel_gmch.c                     | 1 +
+>   drivers/gpu/drm/i915/vlv_iosf_sb.c                        | 2 ++
+>   drivers/gpu/drm/imagination/pvr_ccb.c                     | 1 +
+>   drivers/gpu/drm/imagination/pvr_fw.c                      | 1 +
+>   drivers/gpu/drm/imagination/pvr_fw_meta.c                 | 2 ++
+>   drivers/gpu/drm/imagination/pvr_fw_trace.c                | 1 +
+>   drivers/gpu/drm/imagination/pvr_power.c                   | 1 +
+>   drivers/gpu/drm/imagination/pvr_vm.c                      | 1 +
+>   drivers/gpu/drm/imx/dcss/dcss-plane.c                     | 1 +
+>   drivers/gpu/drm/imx/ipuv3/ipuv3-plane.c                   | 1 +
+>   drivers/gpu/drm/imx/lcdc/imx-lcdc.c                       | 1 +
+>   drivers/gpu/drm/kmb/kmb_drv.c                             | 1 +
+>   drivers/gpu/drm/kmb/kmb_plane.c                           | 1 +
+>   drivers/gpu/drm/lima/lima_sched.c                         | 2 ++
+>   drivers/gpu/drm/loongson/lsdc_benchmark.c                 | 1 +
+>   drivers/gpu/drm/loongson/lsdc_crtc.c                      | 1 +
+>   drivers/gpu/drm/loongson/lsdc_debugfs.c                   | 1 +
+>   drivers/gpu/drm/loongson/lsdc_drv.c                       | 1 +
+>   drivers/gpu/drm/loongson/lsdc_gem.c                       | 1 +
+>   drivers/gpu/drm/loongson/lsdc_i2c.c                       | 1 +
+>   drivers/gpu/drm/loongson/lsdc_irq.c                       | 1 +
+>   drivers/gpu/drm/loongson/lsdc_output_7a1000.c             | 1 +
+>   drivers/gpu/drm/loongson/lsdc_output_7a2000.c             | 1 +
+>   drivers/gpu/drm/loongson/lsdc_pixpll.c                    | 1 +
+>   drivers/gpu/drm/loongson/lsdc_plane.c                     | 1 +
+>   drivers/gpu/drm/loongson/lsdc_ttm.c                       | 1 +
+>   drivers/gpu/drm/mcde/mcde_display.c                       | 1 +
+>   drivers/gpu/drm/mediatek/mtk_crtc.c                       | 1 +
+>   drivers/gpu/drm/mediatek/mtk_gem.c                        | 1 +
+>   drivers/gpu/drm/mediatek/mtk_plane.c                      | 1 +
+>   drivers/gpu/drm/meson/meson_overlay.c                     | 1 +
+>   drivers/gpu/drm/meson/meson_plane.c                       | 1 +
+>   drivers/gpu/drm/mgag200/mgag200_drv.c                     | 1 +
+>   drivers/gpu/drm/mgag200/mgag200_g200.c                    | 1 +
+>   drivers/gpu/drm/mgag200/mgag200_g200eh.c                  | 1 +
+>   drivers/gpu/drm/mgag200/mgag200_g200eh3.c                 | 1 +
+>   drivers/gpu/drm/mgag200/mgag200_g200eh5.c                 | 1 +
+>   drivers/gpu/drm/mgag200/mgag200_g200er.c                  | 1 +
+>   drivers/gpu/drm/mgag200/mgag200_g200ev.c                  | 1 +
+>   drivers/gpu/drm/mgag200/mgag200_g200ew3.c                 | 1 +
+>   drivers/gpu/drm/mgag200/mgag200_g200se.c                  | 1 +
+>   drivers/gpu/drm/mgag200/mgag200_g200wb.c                  | 1 +
+>   drivers/gpu/drm/mgag200/mgag200_vga.c                     | 1 +
+>   drivers/gpu/drm/mgag200/mgag200_vga_bmc.c                 | 1 +
+>   drivers/gpu/drm/mxsfb/lcdif_kms.c                         | 1 +
+>   drivers/gpu/drm/mxsfb/mxsfb_kms.c                         | 1 +
+>   drivers/gpu/drm/nouveau/nouveau_drv.h                     | 1 +
+>   drivers/gpu/drm/omapdrm/omap_crtc.c                       | 1 +
+>   drivers/gpu/drm/omapdrm/omap_debugfs.c                    | 1 +
+>   drivers/gpu/drm/omapdrm/omap_dmm_tiler.c                  | 2 ++
+>   drivers/gpu/drm/omapdrm/omap_drv.c                        | 1 +
+>   drivers/gpu/drm/omapdrm/omap_fb.c                         | 1 +
+>   drivers/gpu/drm/omapdrm/omap_fbdev.c                      | 1 +
+>   drivers/gpu/drm/omapdrm/omap_gem.c                        | 1 +
+>   drivers/gpu/drm/omapdrm/omap_irq.c                        | 1 +
+>   drivers/gpu/drm/omapdrm/omap_overlay.c                    | 1 +
+>   drivers/gpu/drm/omapdrm/omap_plane.c                      | 1 +
+>   drivers/gpu/drm/panfrost/panfrost_devfreq.c               | 2 ++
+>   drivers/gpu/drm/panfrost/panfrost_drv.c                   | 1 +
+>   drivers/gpu/drm/panfrost/panfrost_gem.c                   | 1 +
+>   drivers/gpu/drm/panfrost/panfrost_gpu.c                   | 2 ++
+>   drivers/gpu/drm/panfrost/panfrost_mmu.c                   | 1 +
+>   drivers/gpu/drm/panthor/panthor_devfreq.c                 | 1 +
+>   drivers/gpu/drm/panthor/panthor_device.c                  | 1 +
+>   drivers/gpu/drm/panthor/panthor_drv.c                     | 1 +
+>   drivers/gpu/drm/panthor/panthor_fw.c                      | 1 +
+>   drivers/gpu/drm/panthor/panthor_gem.c                     | 1 +
+>   drivers/gpu/drm/panthor/panthor_gpu.c                     | 1 +
+>   drivers/gpu/drm/panthor/panthor_heap.c                    | 1 +
+>   drivers/gpu/drm/panthor/panthor_hw.c                      | 2 ++
+>   drivers/gpu/drm/panthor/panthor_mmu.c                     | 1 +
+>   drivers/gpu/drm/panthor/panthor_sched.c                   | 1 +
+>   drivers/gpu/drm/pl111/pl111_display.c                     | 1 +
+>   drivers/gpu/drm/qxl/qxl_cmd.c                             | 1 +
+>   drivers/gpu/drm/qxl/qxl_debugfs.c                         | 1 +
+>   drivers/gpu/drm/qxl/qxl_display.c                         | 1 +
+>   drivers/gpu/drm/qxl/qxl_drv.c                             | 1 +
+>   drivers/gpu/drm/qxl/qxl_gem.c                             | 1 +
+>   drivers/gpu/drm/qxl/qxl_image.c                           | 2 ++
+>   drivers/gpu/drm/qxl/qxl_ioctl.c                           | 2 ++
+>   drivers/gpu/drm/qxl/qxl_irq.c                             | 1 +
+>   drivers/gpu/drm/qxl/qxl_kms.c                             | 1 +
+>   drivers/gpu/drm/qxl/qxl_release.c                         | 2 ++
+>   drivers/gpu/drm/qxl/qxl_ttm.c                             | 1 +
+>   drivers/gpu/drm/radeon/radeon.h                           | 1 +
+>   drivers/gpu/drm/renesas/rcar-du/rcar_du_crtc.c            | 1 +
+>   drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c             | 1 +
+>   drivers/gpu/drm/rockchip/analogix_dp-rockchip.c           | 1 +
+>   drivers/gpu/drm/rockchip/cdn-dp-core.c                    | 1 +
+>   drivers/gpu/drm/rockchip/cdn-dp-reg.c                     | 2 ++
+>   drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c           | 1 +
+>   drivers/gpu/drm/rockchip/inno_hdmi.c                      | 1 +
+>   drivers/gpu/drm/rockchip/rk3066_hdmi.c                    | 1 +
+>   drivers/gpu/drm/rockchip/rockchip_drm_drv.c               | 1 +
+>   drivers/gpu/drm/rockchip/rockchip_drm_gem.c               | 1 +
+>   drivers/gpu/drm/rockchip/rockchip_drm_vop.c               | 1 +
+>   drivers/gpu/drm/rockchip/rockchip_lvds.c                  | 1 +
+>   drivers/gpu/drm/rockchip/rockchip_rgb.c                   | 1 +
+>   drivers/gpu/drm/sitronix/st7586.c                         | 1 +
+>   drivers/gpu/drm/sitronix/st7735r.c                        | 1 +
+>   drivers/gpu/drm/solomon/ssd130x.c                         | 1 +
+>   drivers/gpu/drm/sti/sti_cursor.c                          | 1 +
+>   drivers/gpu/drm/sti/sti_drv.c                             | 1 +
+>   drivers/gpu/drm/sti/sti_gdp.c                             | 1 +
+>   drivers/gpu/drm/sti/sti_hqvdp.c                           | 1 +
+>   drivers/gpu/drm/sti/sti_plane.c                           | 1 +
+>   drivers/gpu/drm/stm/drv.c                                 | 1 +
+>   drivers/gpu/drm/stm/ltdc.c                                | 1 +
+>   drivers/gpu/drm/sun4i/sun4i_backend.c                     | 1 +
+>   drivers/gpu/drm/sun4i/sun4i_drv.c                         | 1 +
+>   drivers/gpu/drm/sun4i/sun4i_frontend.c                    | 1 +
+>   drivers/gpu/drm/sun4i/sun8i_mixer.c                       | 1 +
+>   drivers/gpu/drm/sun4i/sun8i_ui_layer.c                    | 1 +
+>   drivers/gpu/drm/sun4i/sun8i_vi_layer.c                    | 1 +
+>   drivers/gpu/drm/sysfb/efidrm.c                            | 1 +
+>   drivers/gpu/drm/sysfb/ofdrm.c                             | 1 +
+>   drivers/gpu/drm/sysfb/simpledrm.c                         | 1 +
+>   drivers/gpu/drm/sysfb/vesadrm.c                           | 1 +
+>   drivers/gpu/drm/tegra/dc.c                                | 1 +
+>   drivers/gpu/drm/tegra/drm.c                               | 1 +
+>   drivers/gpu/drm/tegra/dsi.c                               | 1 +
+>   drivers/gpu/drm/tegra/fb.c                                | 1 +
+>   drivers/gpu/drm/tegra/hdmi.c                              | 1 +
+>   drivers/gpu/drm/tegra/hub.c                               | 1 +
+>   drivers/gpu/drm/tegra/sor.c                               | 1 +
+>   drivers/gpu/drm/tests/drm_mm_test.c                       | 1 +
+>   drivers/gpu/drm/tidss/tidss_crtc.c                        | 1 +
+>   drivers/gpu/drm/tidss/tidss_dispc.c                       | 1 +
+>   drivers/gpu/drm/tiny/bochs.c                              | 1 +
+>   drivers/gpu/drm/tiny/cirrus-qemu.c                        | 1 +
+>   drivers/gpu/drm/tiny/gm12u320.c                           | 1 +
+>   drivers/gpu/drm/tiny/hx8357d.c                            | 1 +
+>   drivers/gpu/drm/tiny/ili9163.c                            | 1 +
+>   drivers/gpu/drm/tiny/ili9225.c                            | 1 +
+>   drivers/gpu/drm/tiny/ili9341.c                            | 1 +
+>   drivers/gpu/drm/tiny/ili9486.c                            | 1 +
+>   drivers/gpu/drm/tiny/mi0283qt.c                           | 1 +
+>   drivers/gpu/drm/tiny/panel-mipi-dbi.c                     | 1 +
+>   drivers/gpu/drm/tiny/pixpaper.c                           | 1 +
+>   drivers/gpu/drm/tiny/repaper.c                            | 1 +
+>   drivers/gpu/drm/ttm/tests/ttm_mock_manager.c              | 1 +
+>   drivers/gpu/drm/ttm/ttm_bo.c                              | 1 +
+>   drivers/gpu/drm/ttm/ttm_resource.c                        | 1 +
+>   drivers/gpu/drm/ttm/ttm_tt.c                              | 1 +
+>   drivers/gpu/drm/tve200/tve200_display.c                   | 1 +
+>   drivers/gpu/drm/udl/udl_edid.c                            | 1 +
+>   drivers/gpu/drm/v3d/v3d_bo.c                              | 2 ++
+>   drivers/gpu/drm/v3d/v3d_debugfs.c                         | 1 +
+>   drivers/gpu/drm/v3d/v3d_drv.c                             | 1 +
+>   drivers/gpu/drm/v3d/v3d_gem.c                             | 1 +
+>   drivers/gpu/drm/v3d/v3d_gemfs.c                           | 2 ++
+>   drivers/gpu/drm/v3d/v3d_irq.c                             | 2 ++
+>   drivers/gpu/drm/v3d/v3d_sched.c                           | 1 +
+>   drivers/gpu/drm/v3d/v3d_submit.c                          | 1 +
+>   drivers/gpu/drm/vboxvideo/vbox_irq.c                      | 1 +
+>   drivers/gpu/drm/vboxvideo/vbox_main.c                     | 1 +
+>   drivers/gpu/drm/vboxvideo/vbox_mode.c                     | 1 +
+>   drivers/gpu/drm/vboxvideo/vbox_ttm.c                      | 1 +
+>   drivers/gpu/drm/vc4/vc4_bo.c                              | 1 +
+>   drivers/gpu/drm/vc4/vc4_debugfs.c                         | 1 +
+>   drivers/gpu/drm/vc4/vc4_dpi.c                             | 1 +
+>   drivers/gpu/drm/vc4/vc4_drv.c                             | 1 +
+>   drivers/gpu/drm/vc4/vc4_dsi.c                             | 1 +
+>   drivers/gpu/drm/vc4/vc4_gem.c                             | 1 +
+>   drivers/gpu/drm/vc4/vc4_hdmi.c                            | 1 +
+>   drivers/gpu/drm/vc4/vc4_hvs.c                             | 1 +
+>   drivers/gpu/drm/vc4/vc4_irq.c                             | 1 +
+>   drivers/gpu/drm/vc4/vc4_kms.c                             | 1 +
+>   drivers/gpu/drm/vc4/vc4_perfmon.c                         | 2 ++
+>   drivers/gpu/drm/vc4/vc4_plane.c                           | 1 +
+>   drivers/gpu/drm/vc4/vc4_render_cl.c                       | 2 ++
+>   drivers/gpu/drm/vc4/vc4_txp.c                             | 1 +
+>   drivers/gpu/drm/vc4/vc4_v3d.c                             | 2 ++
+>   drivers/gpu/drm/vc4/vc4_validate.c                        | 2 ++
+>   drivers/gpu/drm/vc4/vc4_validate_shaders.c                | 2 ++
+>   drivers/gpu/drm/vc4/vc4_vec.c                             | 1 +
+>   drivers/gpu/drm/virtio/virtgpu_debugfs.c                  | 1 +
+>   drivers/gpu/drm/virtio/virtgpu_display.c                  | 1 +
+>   drivers/gpu/drm/virtio/virtgpu_drv.c                      | 1 +
+>   drivers/gpu/drm/virtio/virtgpu_kms.c                      | 1 +
+>   drivers/gpu/drm/virtio/virtgpu_object.c                   | 2 ++
+>   drivers/gpu/drm/virtio/virtgpu_plane.c                    | 1 +
+>   drivers/gpu/drm/virtio/virtgpu_vq.c                       | 1 +
+>   drivers/gpu/drm/vkms/vkms_composer.c                      | 1 +
+>   drivers/gpu/drm/vkms/vkms_crtc.c                          | 1 +
+>   drivers/gpu/drm/vkms/vkms_drv.c                           | 1 +
+>   drivers/gpu/drm/vkms/vkms_output.c                        | 1 +
+>   drivers/gpu/drm/vkms/vkms_plane.c                         | 1 +
+>   drivers/gpu/drm/vkms/vkms_writeback.c                     | 1 +
+>   drivers/gpu/drm/vmwgfx/vmwgfx_drv.h                       | 1 +
+>   drivers/gpu/drm/xe/xe_heci_gsc.c                          | 2 ++
+>   drivers/gpu/drm/xe/xe_tuning.c                            | 1 +
+>   drivers/gpu/drm/xen/xen_drm_front.c                       | 1 +
+>   drivers/gpu/drm/xen/xen_drm_front_gem.c                   | 1 +
+>   drivers/gpu/drm/xen/xen_drm_front_kms.c                   | 1 +
+>   include/drm/drm_buddy.h                                   | 2 +-
+>   include/drm/drm_mm.h                                      | 2 +-
+>   include/drm/ttm/ttm_resource.h                            | 3 ++-
+>   378 files changed, 474 insertions(+), 7 deletions(-)
+>
+
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
+
+
