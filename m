@@ -2,54 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0700DC114C8
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Oct 2025 21:03:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 687CFC11730
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Oct 2025 21:56:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFB2610E09C;
-	Mon, 27 Oct 2025 20:03:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2D2210E18C;
+	Mon, 27 Oct 2025 20:56:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f9MoAyhU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jvmGKSn1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D102E10E09C;
- Mon, 27 Oct 2025 20:03:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B2FF10E18C;
+ Mon, 27 Oct 2025 20:56:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761595382; x=1793131382;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=koNz2UOA85aVG+97G6eYD9tEXDuGl2PlnydndY6KwyI=;
- b=f9MoAyhU6gNpihhIUvoGs2y/LwUAkJbwFYRio7lxgvdWmOOpFtu2gzG7
- LtQOGVjuuoR94uAk5pma+lTjkMon5Q8fa05xkTCqxYaVykdJ7TY6A2+Lf
- jPTvr336z0JFO+vp6UN7W9NNCFEO6PMw0JuFkkuQeA2LlVnI/BTlwhlRs
- Q9x2ZqWeU5zPKMiQoaZs0EakfOQbl2cCpVQVKmjUYRv50Trd2EAtPIbCy
- QZczmEPlwvaR8k+fmesPek56jRSu1uHWcYNvEkaqmXvZxZTERabP2gzQ3
- bF8mW7uHJAzQLxWjaMzztzSJBrQKefEYKmF0qD1IKMRZTNKJ3+7yEjskz A==;
-X-CSE-ConnectionGUID: pH0diEWGTcKHhTaPK3Q2aw==
-X-CSE-MsgGUID: qJFFizuTSS+ObEDpmrs5sQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63593493"
-X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="63593493"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2025 13:03:01 -0700
-X-CSE-ConnectionGUID: q2qqXaQaQyavDJ5glGSkWw==
-X-CSE-MsgGUID: 5LLKd+5/Td+lm63OQkxhQw==
+ t=1761598590; x=1793134590;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=SkT1gTTRIHX3ohsSGu9csBLFkAxHRFH2I2pJK3SsWss=;
+ b=jvmGKSn1DFP1GiRo7hjl2Bdb+/OdubUQolHZUIr22Y63ZDQodKR3XmwE
+ lj10qEI6JibAhGGriG4GBmJxo3zgyYnJbZkzPAEILZG2RysSiF0EMMPQn
+ Z0XlFX5ftBIGRAwtjdEW4oJLJH1MJbIZgE1YXuK7XaxvT86FACcVjMQsw
+ ckdpgGTwtfUMHUU6OW0tMz+xHoFZY0XztnUvQRzcBI5Ci9+vABm9UQlNb
+ hRsXYPoTbCZ3aC6PSXKd50lyyNgJKJwxnnZkazUoIBG3HBtFl8hywAceK
+ VYSxrlPPc4CQ/EfTp8EHZkjj/nNd6v3YNgsMDNwLBWfNLfQnIl1wbEb4X Q==;
+X-CSE-ConnectionGUID: ZTt6aOyDR82rhwtSpu8QVA==
+X-CSE-MsgGUID: 9vvsaEtbRxulOnMaVKBucQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="81320818"
+X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="81320818"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2025 13:56:30 -0700
+X-CSE-ConnectionGUID: NKUcaRevQjKN4uwr6vs1EQ==
+X-CSE-MsgGUID: bGofuZAORv+b9NUQr2pQwg==
 X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="185496070"
 Received: from kialmah1-desk5.jf.intel.com ([10.23.33.174])
- by fmviesa003.fm.intel.com with ESMTP; 27 Oct 2025 13:03:01 -0700
+ by fmviesa008.fm.intel.com with ESMTP; 27 Oct 2025 13:56:29 -0700
 From: Khaled Almahallawy <khaled.almahallawy@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Khaled Almahallawy <khaled.almahallawy@intel.com>,
  =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
  Imre Deak <imre.deak@intel.com>, Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v4] drm/i915/display: Extend i915_display_info with Type-C
+Subject: [PATCH v5] drm/i915/display: Extend i915_display_info with Type-C
  port details
-Date: Mon, 27 Oct 2025 13:02:56 -0700
-Message-ID: <20251027200256.3058319-1-khaled.almahallawy@intel.com>
+Date: Mon, 27 Oct 2025 13:56:28 -0700
+Message-ID: <20251027205628.3067346-1-khaled.almahallawy@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251027200256.3058319-1-khaled.almahallawy@intel.com>
+References: <20251027200256.3058319-1-khaled.almahallawy@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -89,19 +92,21 @@ v2: Use drm_printer (Ville)
 v3: Forward Declaration drm_printer struct (Jani)
 v4: Handle MST connector with no active encoder (Imre)
     Add a delimiter between fields and ":" after the port name (Imre)
+v5: Init dig_port and use it in intel_encorder_is_tc and tc_info (Imre)
+    Move tc->port_name to a newline (Imre)
 
 Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Cc: Imre Deak <imre.deak@intel.com>
 Cc: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_debugfs.c |  9 +++++++++
- drivers/gpu/drm/i915/display/intel_tc.c              | 12 ++++++++++++
- drivers/gpu/drm/i915/display/intel_tc.h              |  3 +++
+ .../gpu/drm/i915/display/intel_display_debugfs.c    |  8 ++++++++
+ drivers/gpu/drm/i915/display/intel_tc.c             | 13 +++++++++++++
+ drivers/gpu/drm/i915/display/intel_tc.h             |  3 +++
  3 files changed, 24 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 10dddec3796f..4d931e4bef81 100644
+index 10dddec3796f..7014331108aa 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
 @@ -47,6 +47,7 @@
@@ -117,11 +122,11 @@ index 10dddec3796f..4d931e4bef81 100644
  	struct intel_connector *intel_connector = to_intel_connector(connector);
  	const struct drm_display_mode *mode;
 +	struct drm_printer p = drm_seq_file_printer(m);
-+	struct intel_digital_port *dig_port;
++	struct intel_digital_port *dig_port = NULL;
  
  	seq_printf(m, "[CONNECTOR:%d:%s]: status: %s\n",
  		   connector->base.id, connector->name,
-@@ -268,14 +271,20 @@ static void intel_connector_info(struct seq_file *m,
+@@ -268,14 +271,19 @@ static void intel_connector_info(struct seq_file *m,
  			intel_dp_mst_info(m, intel_connector);
  		else
  			intel_dp_info(m, intel_connector);
@@ -135,18 +140,17 @@ index 10dddec3796f..4d931e4bef81 100644
  		break;
  	}
  
-+	if (dig_port != NULL  &&
-+	    intel_encoder_is_tc(intel_attached_encoder(intel_connector)))
-+		intel_tc_info(&p, intel_attached_dig_port(intel_connector));
++	if (dig_port != NULL && intel_encoder_is_tc(&dig_port->base))
++		intel_tc_info(&p, dig_port);
 +
  	intel_hdcp_info(m, intel_connector);
  
  	seq_printf(m, "\tmax bpc: %u\n", connector->display_info.bpc);
 diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-index c4a5601c5107..ef38d8483b46 100644
+index c4a5601c5107..addc876f455b 100644
 --- a/drivers/gpu/drm/i915/display/intel_tc.c
 +++ b/drivers/gpu/drm/i915/display/intel_tc.c
-@@ -1703,6 +1703,18 @@ void intel_tc_port_sanitize_mode(struct intel_digital_port *dig_port,
+@@ -1703,6 +1703,19 @@ void intel_tc_port_sanitize_mode(struct intel_digital_port *dig_port,
  	mutex_unlock(&tc->lock);
  }
  
@@ -155,7 +159,8 @@ index c4a5601c5107..ef38d8483b46 100644
 +	struct intel_tc_port *tc = to_tc_port(dig_port);
 +
 +	mutex_lock(&tc->lock);
-+	drm_printf(p, "\tTC Port %s: mode: %s, pin assignment: %c, max lanes: %d\n", tc->port_name,
++	drm_printf(p, "\tTC Port %s: mode: %s, pin assignment: %c, max lanes: %d\n",
++		   tc->port_name,
 +		   tc_port_mode_name(tc->mode),
 +		   pin_assignment_name(tc->pin_assignment),
 +		   tc->max_lane_count);
