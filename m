@@ -2,63 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 969C4C1145E
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Oct 2025 20:52:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0700DC114C8
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Oct 2025 21:03:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71C5110E55A;
-	Mon, 27 Oct 2025 19:52:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFB2610E09C;
+	Mon, 27 Oct 2025 20:03:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OH6FXLmD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f9MoAyhU";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92CC810E193;
- Mon, 27 Oct 2025 19:52:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D102E10E09C;
+ Mon, 27 Oct 2025 20:03:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761594749; x=1793130749;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Fs4EGxVHvLWjFnZ5wv6psyxeI2TYN6+cHE3HTa23z5s=;
- b=OH6FXLmDC9jOeu/qYw7z1HdXWs3+LhmQhxQq9QizuKmf+KvWpl81rCVQ
- pdXmJb6Z0HA40nwLnRf59JS4n2zrCsA9zFX76AApEUp/6JHMT/4AszAGs
- p6qzplvYqBnqGZdln6XJzLf/RT07IT3IDZ06pqX/1qqcbr5GBP+1VFaqX
- N73L3mvdoXoWxiNFj/lLDEBqa1j3Ec7qaNfZpXRxV7GOngYu7b1yWphlL
- tr55DklWsk7EWK0TUG8oxlIPRS73qILQmJXsXJW4lS/3osbUcd5NhweA1
- HdjgqGnudAXXymg0zJOV/Kv1ctqlxWYhhj66GlfeTWHkPvimDoTLnigQO A==;
-X-CSE-ConnectionGUID: +C1PD0XERQWC0llCjFkzjg==
-X-CSE-MsgGUID: KWe+4zdpSR+jf0E2+A3J/w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63780113"
-X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="63780113"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2025 12:52:28 -0700
-X-CSE-ConnectionGUID: mb9YMrZ+Qaa/VPaJawRyow==
-X-CSE-MsgGUID: jIpiWLthSFyvluomxc772g==
+ t=1761595382; x=1793131382;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=koNz2UOA85aVG+97G6eYD9tEXDuGl2PlnydndY6KwyI=;
+ b=f9MoAyhU6gNpihhIUvoGs2y/LwUAkJbwFYRio7lxgvdWmOOpFtu2gzG7
+ LtQOGVjuuoR94uAk5pma+lTjkMon5Q8fa05xkTCqxYaVykdJ7TY6A2+Lf
+ jPTvr336z0JFO+vp6UN7W9NNCFEO6PMw0JuFkkuQeA2LlVnI/BTlwhlRs
+ Q9x2ZqWeU5zPKMiQoaZs0EakfOQbl2cCpVQVKmjUYRv50Trd2EAtPIbCy
+ QZczmEPlwvaR8k+fmesPek56jRSu1uHWcYNvEkaqmXvZxZTERabP2gzQ3
+ bF8mW7uHJAzQLxWjaMzztzSJBrQKefEYKmF0qD1IKMRZTNKJ3+7yEjskz A==;
+X-CSE-ConnectionGUID: pH0diEWGTcKHhTaPK3Q2aw==
+X-CSE-MsgGUID: qJFFizuTSS+ObEDpmrs5sQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63593493"
+X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="63593493"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2025 13:03:01 -0700
+X-CSE-ConnectionGUID: q2qqXaQaQyavDJ5glGSkWw==
+X-CSE-MsgGUID: 5LLKd+5/Td+lm63OQkxhQw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="189170404"
-Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
- by orviesa003.jf.intel.com with ESMTP; 27 Oct 2025 12:52:25 -0700
-Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1vDTGQ-000IOr-1i;
- Mon, 27 Oct 2025 19:52:22 +0000
-Date: Tue, 28 Oct 2025 03:51:05 +0800
-From: kernel test robot <lkp@intel.com>
-To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, intel-xe@lists.freedesktop.org,
- mitulkumar.ajitkumar.golani@intel.com, ankit.k.nautiyal@intel.com,
- uma.shankar@intel.com, ville.syrjala@linux.intel.com
-Subject: Re: [PATCH v8 22/22] drm/i915/vrr: Add function to check if DC
- Balance Possible
-Message-ID: <202510280310.FHuwVpY6-lkp@intel.com>
-References: <20251027162927.2655581-23-mitulkumar.ajitkumar.golani@intel.com>
+Received: from kialmah1-desk5.jf.intel.com ([10.23.33.174])
+ by fmviesa003.fm.intel.com with ESMTP; 27 Oct 2025 13:03:01 -0700
+From: Khaled Almahallawy <khaled.almahallawy@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Khaled Almahallawy <khaled.almahallawy@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Imre Deak <imre.deak@intel.com>, Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH v4] drm/i915/display: Extend i915_display_info with Type-C
+ port details
+Date: Mon, 27 Oct 2025 13:02:56 -0700
+Message-ID: <20251027200256.3058319-1-khaled.almahallawy@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251027162927.2655581-23-mitulkumar.ajitkumar.golani@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,58 +68,122 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Mitul,
+Expose key Type-C port data in i915_display_info to make it easier to
+understand the port configuration and active mode, especially whether
+the link is in DP-Alt or TBT-Alt, without having to scan kernel logs.
 
-kernel test robot noticed the following build warnings:
+Tested in DP-Alt, TBT-Alt, SST, and MST.
 
-[auto build test WARNING on next-20251027]
-[cannot apply to drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip v6.18-rc3 v6.18-rc2 v6.18-rc1 linus/master v6.18-rc3]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Expected output:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Mitul-Golani/drm-i915-display-Add-source-param-for-dc-balance/20251028-011354
-base:   next-20251027
-patch link:    https://lore.kernel.org/r/20251027162927.2655581-23-mitulkumar.ajitkumar.golani%40intel.com
-patch subject: [PATCH v8 22/22] drm/i915/vrr: Add function to check if DC Balance Possible
-config: i386-buildonly-randconfig-003-20251028 (https://download.01.org/0day-ci/archive/20251028/202510280310.FHuwVpY6-lkp@intel.com/config)
-compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251028/202510280310.FHuwVpY6-lkp@intel.com/reproduce)
+[CONNECTOR:290:DP-2]: status: connected
+	TC Port: E/TC#2 mode: tbt-alt pin assignment: - max lanes: 4
+	physical dimensions: 600x340mm
+...
+[CONNECTOR:263:DP-5]: status: connected
+	TC Port: G/TC#4 mode: dp-alt pin assignment: C max lanes: 4
+	physical dimensions: 610x350mm
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202510280310.FHuwVpY6-lkp@intel.com/
+v2: Use drm_printer (Ville)
+    Lock/Unlock around the printf (Imre)
+v3: Forward Declaration drm_printer struct (Jani)
+v4: Handle MST connector with no active encoder (Imre)
+    Add a delimiter between fields and ":" after the port name (Imre)
 
-All warnings (new ones prefixed by >>):
+Cc: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
+Cc: Imre Deak <imre.deak@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_debugfs.c |  9 +++++++++
+ drivers/gpu/drm/i915/display/intel_tc.c              | 12 ++++++++++++
+ drivers/gpu/drm/i915/display/intel_tc.h              |  3 +++
+ 3 files changed, 24 insertions(+)
 
-   drivers/gpu/drm/i915/display/intel_vrr.c: In function 'intel_vrr_compute_vrr_timings':
->> drivers/gpu/drm/i915/display/intel_vrr.c:259:31: warning: unused variable 'display' [-Wunused-variable]
-     259 |         struct intel_display *display = to_intel_display(crtc_state);
-         |                               ^~~~~~~
-
-
-vim +/display +259 drivers/gpu/drm/i915/display/intel_vrr.c
-
-e098418ea9f1ca Mitul Golani   2025-10-27  254  
-58f9466c8292f8 Ankit Nautiyal 2025-03-11  255  static
-8a553374db132e Ville Syrj‰l‰  2025-10-20  256  void intel_vrr_compute_vrr_timings(struct intel_crtc_state *crtc_state,
-8a553374db132e Ville Syrj‰l‰  2025-10-20  257  				   int vmin, int vmax)
-58f9466c8292f8 Ankit Nautiyal 2025-03-11  258  {
-5de4c2be73f248 Mitul Golani   2025-10-27 @259  	struct intel_display *display = to_intel_display(crtc_state);
-5de4c2be73f248 Mitul Golani   2025-10-27  260  
-8a553374db132e Ville Syrj‰l‰  2025-10-20  261  	crtc_state->vrr.vmax = vmax;
-8a553374db132e Ville Syrj‰l‰  2025-10-20  262  	crtc_state->vrr.vmin = vmin;
-8a553374db132e Ville Syrj‰l‰  2025-10-20  263  	crtc_state->vrr.flipline = crtc_state->vrr.vmin;
-8a553374db132e Ville Syrj‰l‰  2025-10-20  264  
-58f9466c8292f8 Ankit Nautiyal 2025-03-11  265  	crtc_state->vrr.enable = true;
-58f9466c8292f8 Ankit Nautiyal 2025-03-11  266  	crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
-5de4c2be73f248 Mitul Golani   2025-10-27  267  
-e098418ea9f1ca Mitul Golani   2025-10-27  268  	if (intel_vrr_dc_balance_possible(crtc_state))
-5de4c2be73f248 Mitul Golani   2025-10-27  269  		crtc_state->vrr.dc_balance.enable = true;
-58f9466c8292f8 Ankit Nautiyal 2025-03-11  270  }
-58f9466c8292f8 Ankit Nautiyal 2025-03-11  271  
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index 10dddec3796f..4d931e4bef81 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -47,6 +47,7 @@
+ #include "intel_psr_regs.h"
+ #include "intel_vdsc.h"
+ #include "intel_wm.h"
++#include "intel_tc.h"
+ 
+ static struct intel_display *node_to_intel_display(struct drm_info_node *node)
+ {
+@@ -246,6 +247,8 @@ static void intel_connector_info(struct seq_file *m,
+ {
+ 	struct intel_connector *intel_connector = to_intel_connector(connector);
+ 	const struct drm_display_mode *mode;
++	struct drm_printer p = drm_seq_file_printer(m);
++	struct intel_digital_port *dig_port;
+ 
+ 	seq_printf(m, "[CONNECTOR:%d:%s]: status: %s\n",
+ 		   connector->base.id, connector->name,
+@@ -268,14 +271,20 @@ static void intel_connector_info(struct seq_file *m,
+ 			intel_dp_mst_info(m, intel_connector);
+ 		else
+ 			intel_dp_info(m, intel_connector);
++		dig_port = dp_to_dig_port(intel_attached_dp(intel_connector));
+ 		break;
+ 	case DRM_MODE_CONNECTOR_HDMIA:
+ 		intel_hdmi_info(m, intel_connector);
++		dig_port = hdmi_to_dig_port(intel_attached_hdmi(intel_connector));
+ 		break;
+ 	default:
+ 		break;
+ 	}
+ 
++	if (dig_port != NULL  &&
++	    intel_encoder_is_tc(intel_attached_encoder(intel_connector)))
++		intel_tc_info(&p, intel_attached_dig_port(intel_connector));
++
+ 	intel_hdcp_info(m, intel_connector);
+ 
+ 	seq_printf(m, "\tmax bpc: %u\n", connector->display_info.bpc);
+diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
+index c4a5601c5107..ef38d8483b46 100644
+--- a/drivers/gpu/drm/i915/display/intel_tc.c
++++ b/drivers/gpu/drm/i915/display/intel_tc.c
+@@ -1703,6 +1703,18 @@ void intel_tc_port_sanitize_mode(struct intel_digital_port *dig_port,
+ 	mutex_unlock(&tc->lock);
+ }
+ 
++void intel_tc_info(struct drm_printer *p,  struct intel_digital_port *dig_port)
++{
++	struct intel_tc_port *tc = to_tc_port(dig_port);
++
++	mutex_lock(&tc->lock);
++	drm_printf(p, "\tTC Port %s: mode: %s, pin assignment: %c, max lanes: %d\n", tc->port_name,
++		   tc_port_mode_name(tc->mode),
++		   pin_assignment_name(tc->pin_assignment),
++		   tc->max_lane_count);
++	mutex_unlock(&tc->lock);
++}
++
+ /*
+  * The type-C ports are different because even when they are connected, they may
+  * not be available/usable by the graphics driver: see the comment on
+diff --git a/drivers/gpu/drm/i915/display/intel_tc.h b/drivers/gpu/drm/i915/display/intel_tc.h
+index fff8b96e4972..6719aea5bd58 100644
+--- a/drivers/gpu/drm/i915/display/intel_tc.h
++++ b/drivers/gpu/drm/i915/display/intel_tc.h
+@@ -8,6 +8,7 @@
+ 
+ #include <linux/types.h>
+ 
++struct drm_printer;
+ struct intel_crtc_state;
+ struct intel_digital_port;
+ struct intel_encoder;
+@@ -113,4 +114,6 @@ void intel_tc_port_cleanup(struct intel_digital_port *dig_port);
+ 
+ bool intel_tc_cold_requires_aux_pw(struct intel_digital_port *dig_port);
+ 
++void intel_tc_info(struct drm_printer *p,  struct intel_digital_port *dig_port);
++
+ #endif /* __INTEL_TC_H__ */
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.43.0
+
