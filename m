@@ -2,64 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33898C135BC
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Oct 2025 08:47:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3B40C135D4
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Oct 2025 08:48:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6603410E1D7;
-	Tue, 28 Oct 2025 07:47:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B8C610E5A0;
+	Tue, 28 Oct 2025 07:48:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BN13o+0f";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NZtSQPEm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 458A310E1D7;
- Tue, 28 Oct 2025 07:47:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49E7410E366;
+ Tue, 28 Oct 2025 07:48:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761637651; x=1793173651;
+ t=1761637717; x=1793173717;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=RIB8KpXZtAAGOnGr2JvgGvKIz7ShVOj28+BaiBAMZUE=;
- b=BN13o+0fkmOUWOPl5f2FQfjfJlBvTKPBDjs+VhAlmGIk1nHXM4sRtWfZ
- Dgar3hWwRwL90MnC2+mi1nNc+P2CEaSYhB67jg2uIqV1dNa9XIFZwUwwB
- y/zpNpIhOH+r0u30wM945wSqurBr83BaQtQ9HtGGyBFIV5SedfbwhJIpv
- +P17Vc3Xu6vYzsxErtQEcfLWuaqq4JEdUjMeSVqFfE41Tm/ckGBtIyKRO
- UnVCVUkDFMRH86y2QJjgfR4kEGrCBjMhrVFgitdJe9aiHCDwBWDxG7M9p
- 5VYG7ffvsDaUFr7Sg7TRosa3kw42wHlJ23TlFMJ6h7lPcv60RIVn3+KXV A==;
-X-CSE-ConnectionGUID: RQIDilmHQASi8HKp6sfThA==
-X-CSE-MsgGUID: 84dQLS1UTpeJOKxEQKg7Wg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63656963"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63656963"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 00:47:31 -0700
-X-CSE-ConnectionGUID: Yh910C9uQ0uTGPH61ss5wQ==
-X-CSE-MsgGUID: 2kQm5XXbRiq3mktJlaBBtA==
+ bh=zDyVMh8dYbmY+MCHZJ8g2shqwPhyjKewoo9NCvHceRA=;
+ b=NZtSQPEmSLQySmILlZDts6CPuFsD09VK1Hmzp/SjD3s8JCp3zjUG5Yur
+ 2Z+buq9UzCPylWGcdPFNnc4vyB/Iga6HECAUUgsHJeuQ7hy8odOdn3v7E
+ fQC7DGuUnWCN9ZvCZwDHHblYn366GD5LMauKr2ftr550GMq5P/TfQGUoU
+ uHbX/4dHBUgi77bTkPuVBSn4J+zGpVZEGuYKnd3Sude5WlirG08hDoi4H
+ 9mWkSC+RUv1DfOy9XGcL9PYRHC3W0ILtHak6GUcU2Qf76Wv/8zszltTS7
+ cJbjPYPUQac316BEOt7yLg9r5TckKZ3a3eZjizLU9AmJEF2+9ZK4/IQW1 A==;
+X-CSE-ConnectionGUID: hYF8Hw36TPOXyR2V2tBaKg==
+X-CSE-MsgGUID: 9xRHb2xLReeKYOIaroNMLQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="67565981"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="67565981"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2025 00:48:36 -0700
+X-CSE-ConnectionGUID: WlpcfeLjR1eBWpCu3k53dg==
+X-CSE-MsgGUID: OY4MiNCFQCmZ4gebf098Vw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,260,1754982000"; d="scan'208";a="185606703"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 00:47:30 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.19,260,1754982000"; d="scan'208";a="189634110"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2025 00:48:37 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 28 Oct 2025 00:47:30 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.2562.27; Tue, 28 Oct 2025 00:48:36 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Tue, 28 Oct 2025 00:47:30 -0700
-Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.53) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Tue, 28 Oct 2025 00:48:36 -0700
+Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.51) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 28 Oct 2025 00:47:29 -0700
+ 15.2.2562.27; Tue, 28 Oct 2025 00:48:35 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VO9KxEJOBrFVrOftdjtwD/N+PrfrzGLBUTvVie3xpEmLJMy3DYluvBgIkqj0bvD9tvQ12e5w8bmgHpBBcTL2JbagJ2kiOf7QiyDr4NbSBGfMTGHuspwLXCM14IxTXPwTbMH3bkkySPrJYw8ie1daM3EjK8y0N+I+dY1neG4JuZXCxDHFgdI8fH5uYu346iDSe+ewrEsklqeQ4TgjqKWdp4RQ/KLXvQQez1Ze5lZ7mUwUgKZeFcA7IGFsJS56UwwvyLjAFmQ6U0+ailuoNqaxH4j4S4OOJ0Q10iKsMthS1Os2OmCBzC2xhFTBbNw/wC3gNds5BvrIHDG8WYxyXvWFnQ==
+ b=hSES5O/H4HMWLFda9VUoeSRW8e+3Sr7zW/6KAJezgqrh6MWjlrj3WZExS9apbN0I+UMlU2DTFat+ePPRa79OdLwLNmX8afg8RO+Gb6DHoogZd5RnVIWZnBI0AZJlNAe/lmYNKjfz6P8F2zqNWBvgFggNMyEhJhtgsDUfhfHAL6IXTsM6TyIfsfLCRTKi7/r5DvG7L7ACGA65kFbrq6bLu9CGBv7vFHFqwMKFWVasvZHNoAfIMWdXgVS2qmH3txox+K8cJS5DOM9a5tNhj5KEL35xN477zzAQ11cc9SfYYZy4bbUVRR66ddpIpWpiZQpgi39GtTmS8H+EFV6Kb10w+w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SmeXCJcdiimITJ7t/aCn7xmbZ2+MDIjdoXlScj4tnh8=;
- b=sUoovMwIue32XffsG+GYJteFfyqgRzYibv07nBSkFfPE9BivlOtRf+W8nd6FXC+stSk5D7FTovPwJrjTka0ie/QKds597VWEoP88XlbaZ7E9h9VaB62RahybSqi6jy0TsZLYwUVhXVAoSNTLgIxOZPRcKx5pIzFyFkddH2Cx/tWpIIqMOOmBlXvsECIC5uYdpB4ZsM6pFrWDxKi5E1dN1DxYBKi8rYW57E8b8EDXfSYKiy7IkdBnQpfnnBdSUboFJskqVWwlrEARSgG2/ZuQyE5ohe+cAkUQBMfYMvOavZm6JLNsGbt1sdcwYjyLeBty0dHXR6Ms+8Mmi6MXO+Z0vg==
+ bh=mHR1AEYFlvZ/pjTMnfkKgV8acWXezsjxVT3Brt/MAKU=;
+ b=EKzQE+F5ESaR8ez3/N623ql0woeUp/qyohm+Mu78VW8DcDuJaFKyQP/PyiCtbQ/MA+E3m7Mj4d15v2NmpZUvsKXaO5j/gzhUDBqkDFVF30evRC9ETpOgdFMKx4LPBQ8GWtraZeT7vhSO37bIWX/wZFYtoIT9mxBeZnuQiFXDuEU20FD/OYLWbCyfsEmmeOQT3BZOUDKv0DOVp3ElMUAVzwvfbDVgg9C5vUrS9VYtBSL15R8q1rtxFXDoJUtKSJP2GB2E7dyDYu80pHYHqKcL+0LPJfbXGrS+TJ2UxP7RTY2/VXir26iNSrhRgLun6TGVo9IuDW/8FzLqdRpVTdklkQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,118 +69,119 @@ Received: from IA0PR11MB7307.namprd11.prod.outlook.com (2603:10b6:208:437::10)
  by PH0PR11MB4935.namprd11.prod.outlook.com (2603:10b6:510:35::24)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.19; Tue, 28 Oct
- 2025 07:47:27 +0000
+ 2025 07:48:33 +0000
 Received: from IA0PR11MB7307.namprd11.prod.outlook.com
  ([fe80::dafa:d38d:8ac1:e843]) by IA0PR11MB7307.namprd11.prod.outlook.com
  ([fe80::dafa:d38d:8ac1:e843%6]) with mapi id 15.20.9253.017; Tue, 28 Oct 2025
- 07:47:27 +0000
-Message-ID: <0d6c75e8-b8b2-4937-8e14-3656cb725ca1@intel.com>
-Date: Tue, 28 Oct 2025 13:17:19 +0530
+ 07:48:33 +0000
+Message-ID: <b1e53257-e9aa-4a2d-aaa6-9757498aea32@intel.com>
+Date: Tue, 28 Oct 2025 13:18:26 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 03/26] drm/i915/ltphy: Phy lane reset for LT Phy
+Subject: Re: [PATCH v2 04/26] drm/i915/cx0: Move the HDMI FRL function to
+ intel_hdmi
 To: Suraj Kandpal <suraj.kandpal@intel.com>, <intel-xe@lists.freedesktop.org>, 
  <intel-gfx@lists.freedesktop.org>
 CC: <ankit.k.nautiyal@intel.com>, <uma.shankar@intel.com>,
  <gustavo.sousa@intel.com>, <lucas.demarchi@intel.com>
 References: <20251024100712.3776261-1-suraj.kandpal@intel.com>
- <20251024100712.3776261-4-suraj.kandpal@intel.com>
+ <20251024100712.3776261-5-suraj.kandpal@intel.com>
 Content-Language: en-US
 From: "Murthy, Arun R" <arun.r.murthy@intel.com>
-In-Reply-To: <20251024100712.3776261-4-suraj.kandpal@intel.com>
+In-Reply-To: <20251024100712.3776261-5-suraj.kandpal@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA0PR01CA0036.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:81::12) To IA0PR11MB7307.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA0PR01CA0034.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:81::8) To IA0PR11MB7307.namprd11.prod.outlook.com
  (2603:10b6:208:437::10)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: IA0PR11MB7307:EE_|PH0PR11MB4935:EE_
-X-MS-Office365-Filtering-Correlation-Id: e9386f30-367c-4a2b-b4e8-08de15f63d64
+X-MS-Office365-Filtering-Correlation-Id: 6ee8097f-85ee-408b-fa5e-08de15f664f6
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?clhyc0h5djNUSjJwYm91OTJqQ1RZVDJ6cGJtRy9BU1Yyb3NScjJwNnBzWDFW?=
- =?utf-8?B?cGtoY3h0N2NYOXIxUDAvYXdmWlFSSGZFK3BiRzk0VlFlLzI5azdnYTNwSExC?=
- =?utf-8?B?VTRZcFVUOXcxeXRiZTFVM3NGa0psVFZaUTM5R2E2UTE0VEVPNkx5ZUJpa0ZE?=
- =?utf-8?B?TVAyeTlXSkpSdlVlMEtDRmc2cjZEOXd2VFo2TU44VjlremUrc21XYkFKRXV2?=
- =?utf-8?B?czloUXE5MHlKSDlXZ1ExdnRoeW1WVjNkOG9icWYwaEFPZzMrbWZPYU1Kdi9V?=
- =?utf-8?B?LzdqRitTZXZrSHJqVktZNE42QTlabnVoaFpPQ0FRbVF2dVZMUit3bVJ6dHJX?=
- =?utf-8?B?eG9rbS9UYmNZdXFPVHdkTjFoMW04YWxGNjQ2RDJhU0ZSWVIyL0FiUWZSMlcy?=
- =?utf-8?B?c2hjSWliL0ZtUTRJaWJnOE05ODNNdmF4TEl5UUsrdldJdHVNWHBhczllQS9C?=
- =?utf-8?B?a2pYcWkwbWtBOTBIcTdLU2dLM0tHdE5ZSDh1d2lLdXRZTUltUkRMYjJMaHNS?=
- =?utf-8?B?TkIwYW51QW5sVHJ1TGxwY3V4THA2ZXZPS3dOVk5SMzRWcUxWNDlZcU9IcHo1?=
- =?utf-8?B?Y3pCbnNoT2poTDF2NDdlekE1ZDZFQ1doZTdFQ0U2Mm5sZDF3alpBOUphZ3Vj?=
- =?utf-8?B?VGpiVE9ITWpDV3Z1ZjRVblZaZStMWFhRdWtUU25BNHRUSCt2czlTd1drS3Aw?=
- =?utf-8?B?S0hKZG9SNElJVWxabXhJL1JXeWJTbjBPblp3TFQ1Zm5HMG1BeXowYnkzL2Ni?=
- =?utf-8?B?TDh0MWZMemhqSlpaVHBSSk02eFArOWZ4cGRXaUw3eEIwWWZ2RzZscG5JWnQ1?=
- =?utf-8?B?UEkrZkl4RzdubkdaeE9NZHdyOFdadDFTdnUyOHdKRFI0ZFJkQ3ZRbm1RRmsz?=
- =?utf-8?B?QmczU1VOYm5kenVoUTNGTUVSQmpHbFdrWGtsam1RUkxXY0V4MG1QZlh5bHAw?=
- =?utf-8?B?ZEVRUkpPNXpxOVVZMzl6RHJSdFJXNWpLd3pUampvT1o4akFlSW9mb05URTRT?=
- =?utf-8?B?RENMRzEwV1QyT201UCtjZ1NKSkZJZGgza2ZwSHFKalVGRTQyTndXUFh0RXRZ?=
- =?utf-8?B?cWRTSFdndTA5WmZ3a3JscFdCTllHNWVMSjdjM2V3emErZndLRWs1QnFrU2hY?=
- =?utf-8?B?VTlBbU9IOFE3MlQxNHp1WW9nVklwVjhGRkZZWndQVEJ0V2IzLzV3SEE3d01D?=
- =?utf-8?B?SWNhK0VuamhSU1pMRHU4eGN5cmVRMi9pNEtVTGxUNVJrMU5keTlEU0sybm1n?=
- =?utf-8?B?aDFUV0VmSTdjL1JJVDJYTStQVXlYR3RBR3BzNlYyVE5YbmpQVm82cU9TZk5a?=
- =?utf-8?B?KzZWaVVnMnFtemRpM3lVRGp1bWhHZEV0d25EZTlHL1BTSkFrQ3NLY0ltOCt5?=
- =?utf-8?B?eWpyTUpCMWE4TkVLRHp0enBoVnlXbXpqbmlNMG5MeVU3T1NnS3o4eGlQcXR3?=
- =?utf-8?B?Vy8yd3k4Sk9VeDBsbkhpdE81S1VlOFFadWcrWnUwMm5FWFVheEpsODA0clUx?=
- =?utf-8?B?M1dQRE1iVEFSemdzMXcyL0laL2xYeEhqTlRPM05BVTlNLytoRGhmQkVqYWVM?=
- =?utf-8?B?eUdIdVpibmh2aS9yRTZMS3dGb3hNdTZMM3l5ZXl2UzhNVmY4T1N6blpLYUdQ?=
- =?utf-8?B?eFZ4RTJRZ3E5L0MrVGhRdXR3d0YvdlIyVGUyMFFBekJoSWc1SktrZEFSSVFP?=
- =?utf-8?B?ek5WaXllMWNhQnFpWGlkNkZGa0RVdHpvQTEzU1EvN2dVdEFOOGRaQzRnQjgz?=
- =?utf-8?B?N0tFaUxJOFB4clM3RzVQNnNodUNmZi9tRytZdnh4YVZsQ2o5MExiMStwMEdp?=
- =?utf-8?B?VGlQQS8zcHljUklLRVV5Vmx3V1Z0bjhWL2VOdzNHRHIxYUhOVWpPbVRzL3JZ?=
- =?utf-8?B?aFUxNjdCclZEbXdwZzRvUEtyWTRBd1A5NWw5N3hWWW9FVFplQkllQWxoemNZ?=
- =?utf-8?Q?jz6GQmfk+O81WSLWv3vM6WVimREw23wG?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?eEtFMTNTa2RKczluZzlPVUNSTXAyNkcxLzVWNng3YmxJWG5KaEROSWhKNkdW?=
+ =?utf-8?B?T3ZnT1Vydi9JRTJ3N1dhV0RCMkpnL29XOGRqcGhRcTA5cWJWQW5tQ3FSc0N5?=
+ =?utf-8?B?RytQbTM1Q0trcHd5WWYvNUNCMXZNM1VSN1lveitSRDRQdWp0R0l1UkcxbUFv?=
+ =?utf-8?B?Y2lyZ0Y4QkRZcjRxaUZZZHhGUFYwQ2xaODMzc0FrNndQRWFKdmN3QTdtZE5m?=
+ =?utf-8?B?WEFSbTB5VzlrcWhWdmJMU2hoQnFBM1J2M3RZSThidEpISnRXUk9ucGRUbFBj?=
+ =?utf-8?B?c3F3dkcwc3RHaTlvdTdibkdxRDFZekMxeXo1UTNHWG1aTVBaaDY4THB4LzRk?=
+ =?utf-8?B?eGFibWNnSXBuZGhNR05xZkVvTzQ2eFJRT2svUmZNb0R3RGs2b1BsbjluaXZv?=
+ =?utf-8?B?M09wVEZqemhSemxGbmRRbTc1c1BPaUdLb1k1MUFXRTZqdkVFTXh3dDdwQ1k1?=
+ =?utf-8?B?anhWblBieTZwdTZsRWpSMk5qSkVxSXNXTlNjVlZQTXJSNUxiT2JjMFlrdTRV?=
+ =?utf-8?B?bUV2T1pGeEhJVStGM3c3TmV2TG5nOVQ0OUZXNUpTcThhTGNFZE16Q1VnSVBS?=
+ =?utf-8?B?ZVpvT2YrVU5Jay93M3FGUXdFb0M5VU1uS1JCZnVSSFBDS0V0V0tVcndLQ1Jh?=
+ =?utf-8?B?b0VuWmhBT3l3WVQ1eDA5THdXajZ2UmlnZlVVZGRZdGxBSDhDc0tVTmNSMGc2?=
+ =?utf-8?B?U2lteUFoYTVJZVMwNDRhbHE4cDk4TFBkQ2tTYXRHMm5adWRoODlzZnZZNHVR?=
+ =?utf-8?B?MkUxY05zcVYvcjJsZno3dlN4QW1MeXJCeWVwWDZEL3lTWVFNZTRGU2JqNTRy?=
+ =?utf-8?B?M2lOZTVMYmVXWm5FbjFYR3VBNjlSeE9OR2dBQmFmY0xnZytZOHg4RGM5WDJ1?=
+ =?utf-8?B?L09tZUtHSmpMT0o1U1pxTGdLU3pPZG9ndkpvY3FDYysyWStya2NzcXpvbk1R?=
+ =?utf-8?B?QjF1ekN4N21HOEtWSTdXQ3dOMVNOaG5JY24ra3B4a0FaaCtGU1E5SHBPZjJq?=
+ =?utf-8?B?ZW1UZ2ZIbVl3aU0za0FZSEhxWTB3M0lLOXlOdjIycEtNcWlXQ1FEVVpVT1Bj?=
+ =?utf-8?B?M0hZRkpzdUJKOXBTQ3BwSjgrWG1ta09iWCs0RkFPcXhBNm5semFKM0I4am9G?=
+ =?utf-8?B?MzZ1dnBkZTBUUmR2aTd3dFVOaDlFeEVjWjgzQ3pZNEdnajE2U3daaDA0MUFU?=
+ =?utf-8?B?UU92OU15SWdkMlp0OEEreVBSUjJBTmhQbE15eVNHTDdYNFJWM2FxNE41TXBF?=
+ =?utf-8?B?UVljSkNRV1RERkRKcmtVZFVmQzVnSjFLN0VhRFdPZUdDV1pOVlUwYkVWUjNG?=
+ =?utf-8?B?TWRRSmVGY1kzajEzb1pySFBBdnJiMlhWckxOOGU3aGt2TU9JRk9Sb0d1eHVU?=
+ =?utf-8?B?L3lwZU5hUlRJZGtXSTd1SWQ0aVhNM2VvdTlmZko1aGt1TTNmdXJhd3IrWGhu?=
+ =?utf-8?B?TzVqQTFkMnNybzBaa3Nsd3Nxb2JaZDlvY3pWUXZlazk4U2FzY0tkRXk1RFRG?=
+ =?utf-8?B?alFBSXpHSFBycmZ4TmNDK05wQ0lXMVZkcGs4T1JZbW4rMGVrTjlsTysyWVcx?=
+ =?utf-8?B?ejdsSE9XZkxLSEtyeW85SmkvWlU5STUyYWFSWFFHTU5qWEpScWdYRXNYVUxE?=
+ =?utf-8?B?SFdFMTcwUTRzcGV6NW85Q3cyYlFMeEtFZTRYZDkyK1dMbEtuYmt1TXRtNVdl?=
+ =?utf-8?B?WmE5a01HYlJOYk1EcldPV2F1S0V4NEwzWWNtQ3dOVHQ5MGlPZlhOalplOGZs?=
+ =?utf-8?B?T3FBcHRTNFZram82Wkh1aUYwTUVxZ1oxUGljRHcvd2x0T3BjVjBsS0JQZjY1?=
+ =?utf-8?B?YXlaM2FZT0VRRUZqYnVkK2E3S1JUNCtTMHJSZUZkNEdPdUlrWWFKdUpQOUJr?=
+ =?utf-8?B?OTRNWWJDQWM1bUZOSXFDREFJdDJPYUdJMm1LVFFubWVXZ1FwUEdqOVJyUDJL?=
+ =?utf-8?Q?cdDtvmiLym6dxw7MyZ0UO8znFT5Pcitc?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:IA0PR11MB7307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SmUyRHZhTUljOVhKUkorWHVrdTE5M2F2RnYzRVNqV09Edmp1UUVHUEs5Y2Ri?=
- =?utf-8?B?WDc0eWZ2bWdhSEJQTVlCQkwvUUJIc1RMUmQzR2wxVGkrb1BlR0FGOWtiUzE4?=
- =?utf-8?B?R0MvekxLZStXdG9lTXZnVVRLbEJQbGhGM3BSaHVZNlhKbVRaUytzSkVIYkZr?=
- =?utf-8?B?Q1I3UHZpRXQyaVNheUNkbkxkOWZVMmFkdzNLRHZLcHJLY1ZJQXQxaTNlNTNG?=
- =?utf-8?B?MVBWUFRBeEViYmRkUmFyTlhDejEwUklSZnloUnpocy9PRUo4c0FFVnJiN3lV?=
- =?utf-8?B?Ykg5UXZIQnZXRHRPSWF4RHVuRitoQWtVcUZpQ1NLY25rTHFreDB5dFRnSkdR?=
- =?utf-8?B?V0xIbWhTSkRkN295QS9LcHNZSlUxbHFtMjRMeThSWHJYR2JYUmw2MTNOMmNE?=
- =?utf-8?B?MkxyVUNnb00yR1BFRWRGem9JeFFnZXR0ZW11UTNwWDhUREYzZEtoSXVrbVpj?=
- =?utf-8?B?RktGMXk5eE5QMHlvVGVsUFpyZG5VS25vay9pZStzeTdSMStBdWJBNVhxMFZL?=
- =?utf-8?B?cjFpU29lNGpLY3hiaXcvV1ZjZ0VRK21JclJ5ZVBsR29kYmNPT0NxRVpFd2Ev?=
- =?utf-8?B?N1BGaC9iUDIyd0tvcmx6U2ViY2tOTEt5OW9RQnF1bjJiR1BFQlMxNHlLTDlz?=
- =?utf-8?B?SU52aWFSYU9EM1NUSW1GaWtsTkJvem1QbDJGWW5mTGRLUy9RSUVoMkVoOFNX?=
- =?utf-8?B?MTNncCtKQ0Q3YUJncGdXS2VacFVJZW8yRlVDRDdCQ2hRNVpHeXZSZGtLZm5I?=
- =?utf-8?B?aVBteDFsN1NHQlBadWx4VHE0QXhGaGE0aG9pWHc5TEJFWklmbXpWK3E2endE?=
- =?utf-8?B?N1Y2clRLOU5ISzZsb0RmdDNtZ1pkTkllbGJBUFNXY2NQSDFoR3RydTFERDVP?=
- =?utf-8?B?OEE1a1RRVlhpaTF0aElIOXNhbVNIQjFLTGZLbnV3c1NCYllIRHhxeHhSRHda?=
- =?utf-8?B?a2ZGY3QyY2hwNG1UU1p2RUtNWUJEaWdLQWRyc3VPUzROZkszSnJPZ2ZPeUtp?=
- =?utf-8?B?TEpqUTBzcTJTeDJFTkxpanFBUm4wcHBTZE52VVdjdGxQd0NkaG1HS0t6Y1Nq?=
- =?utf-8?B?T0dUY3c1R0ZPSnlJMXRCcHFSdm12WGRPbTI1Rkh0WERHNjByQXdzdWJFd1BC?=
- =?utf-8?B?NnNPaThFUmZIYi9RWmMrVXJHZWZBb29vNUxQYi94MGYrYzd5NVZLRDlxb0wr?=
- =?utf-8?B?c3NaNVFvYno4SjkwOTM3ZFFUb3l2L2lKVmhFcGZIOEFyUHdWbEZENmVNTUE0?=
- =?utf-8?B?bExlZ1pJdmo3d1VMVlpBWWpKSjVGdEFNNHpiVXRqcWN1VktWRE5CNnE4bGRh?=
- =?utf-8?B?emNUWVhrVCtUaVZlZXNUSW14ZWt5dGJuekxZM1NqcVhad2FkQ2xrL2tPSWlm?=
- =?utf-8?B?ZGs5SllNbDZnbmlONFI2QUkyckRUZTVmd0JiaXM5NUFmVlU1clZITWZiazVE?=
- =?utf-8?B?L3d5Z2lEbG90YUkzSjFyQVFiUmtJcTNxeU5rZTg1d0h3c1dGa2pVR2c3aUF3?=
- =?utf-8?B?dklSNjVjODByekhUaEhxS3ZVNm5ydCszSXNycTJtVG8yakVkMWUxYnBQQXhW?=
- =?utf-8?B?dHhHbmwyY2QvY1RnUW8vcWdPWlFEeG1yK0JIQTVNSjRHS3c3azhIK0tCYjdR?=
- =?utf-8?B?cW5sSHJRUUc0RDhMK2E4TThRRk4zeGhGZVFTalg0Y2xhV0dhd3hBMWY4T1Jm?=
- =?utf-8?B?bmMxOFBXeFk1anpTVnZmTjkweHRPNVhFUkg2eHVDVE05MTFqU0x4cXo3cTRr?=
- =?utf-8?B?L3E0UlZoWXIyOEJ6RndZZlVwUXdGblY1aHdrUjZIS3NORVViVVZ4Tmk5MEwy?=
- =?utf-8?B?NXBHNFhpb2p0dHI1K2IrcUJaYzRJYjMzMTBhUitidm05a2tpMmhMeVY2MWpB?=
- =?utf-8?B?SlRsOStRRVgvd3BsT0dEYStGSHJzSzZySkJnUyt0R1lLTlM2QktyN1ptMUlD?=
- =?utf-8?B?eGxFSVNZMlQ1ZG93WUY3ZjhoS3g0c3VuQTNiTUx6Z1hmdFZKMU9nYmp2enFz?=
- =?utf-8?B?OUFVTHljYlFnLzBqcTZlYmdtbDM3eE5IWm9JTlYxWEhDUnA1ZXNSczhFV2Fv?=
- =?utf-8?B?NXg1ZkxvMnVQeFpRSWFZNGFBVks2ajk3RVE0OUZ5VnlHS1k3UVNqZENQcmpy?=
- =?utf-8?B?S2hwNVlEaWtGQXZPU3VKcFYxNmtmYTRxZ1RuYVJFejROWDNiMmxBRllvV2Rw?=
- =?utf-8?B?MEE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: e9386f30-367c-4a2b-b4e8-08de15f63d64
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?K2lDTFVhTHlNVmZVTFVya2toQkVOUy9TbFh6alpHdytJdWw5d2JwK2d1Q0Za?=
+ =?utf-8?B?R2tYckRKV3F4OHRhMkp1NWxESEVyTGJGQjBTQy9KMjVyZ1g5WE5CQTFndFFB?=
+ =?utf-8?B?VEdYM1hzdjVoRVRWZkdlUEFjTE1QZittUUdYcy9iL01ZRDY5WmVySWNkTHJG?=
+ =?utf-8?B?VEFqa0d1RC9UbXFWd0RXZ3krc05YRXc2Q1FRMXg2KzMyUWk1SzdaVVB4a3ZP?=
+ =?utf-8?B?cTYzV2I1dDZBeTQ0U3ZZTk5mcTNQN3FZM2ZwT1ozN0szTDB1aFpWZ004Z1c5?=
+ =?utf-8?B?S0JER2JmaTdiSDlQa1Z4Mkh1S3F1WDVrb2ZpaTU5Um5Ib2QxME5JMlFhWm00?=
+ =?utf-8?B?Z1lDK0lMcXQwYnZaZmZRZUxNbWhyZFplVlhVdHZlRnJiVXRnOHI4V0hoUzBV?=
+ =?utf-8?B?eVRhU1BDY1B6dG5pUVpBYzJPSEIrKzhUZmt4VEVnTlZSK1BlQ2tsTEdtTWtG?=
+ =?utf-8?B?dEdMZVFnbVZDOGRVeHhTbWtUTDNDUXhaYy9SQ2x6cXd1ZUJaWkkxOEdPY2hT?=
+ =?utf-8?B?cGJLWnZtWjFMQjVNVUY1eWphUEtOYmtDR0p2SDhTcERwK2ZTTVM0cmllRkFH?=
+ =?utf-8?B?VXpCR3dlcE9TOWxDVlphbFZ4T3JadFFEZ2VvN2dDKy9YOFB3M3JXQndpUjB2?=
+ =?utf-8?B?N0Z0WU43YU5LZGd3RUpHemJnMGNmMlFrZ010REJYcDFxbzhZYk9xMmY3UGVy?=
+ =?utf-8?B?R003UzhTTkJGb2VtOG83RWxLU1VtMUIwWWwvd2Vna3AwMmxodnB0N1Z4Z2gw?=
+ =?utf-8?B?eHpSblRNdVZZTjdMYmVrZlRkK3kxRGNrcWM1TENkSEFtbnNHOHR6MHh2UVpI?=
+ =?utf-8?B?K3NyRFFUV3BJeDNGMjJMV25aSzBKdVJ4RUI4ODVoUlpOZGlReHNBR0YzeEFT?=
+ =?utf-8?B?ZC9WRTlCeVdpVjBacWRkK3F0ZTNuNU84TXlQQ3BUVkZjMHM0WkZhSHBxR0dV?=
+ =?utf-8?B?bkJEZkwxazB1VDFsaE5ZZzhaQlNlZVBDYk9qdWhmKzY1anNBZUlzN1FLNUtK?=
+ =?utf-8?B?Ti94QUo4czNNZXlWeHBtdmI2aDJXc0swbzNyYmh5R0dkdERobFJOQVd3eUdi?=
+ =?utf-8?B?NndRZ3VWanlET21ldW5Bd1A4WDlLbG0vMmR3MFY5NThmRi9wYjAydEt3dGhs?=
+ =?utf-8?B?NmpudTN2eXdQRjYzOThsRWk1L2F2R3R5ZVM3VU4xa2ZmbUVaQUVkcGZLZ2xr?=
+ =?utf-8?B?ZGVBSVhsZWR3bmwwLzErdFk0VzRKdWFoMHR0QzZaT3J5TjZQaFplQ2pXSmNL?=
+ =?utf-8?B?QVd6RXk4ZWxDUzNUMmJnQlY1QkJqVDVLNW5wSFZjWENxbzRQaTBpaUJXYnpq?=
+ =?utf-8?B?d1dXVWpUN0RJcUVueE9MVy9Tb053OVhndE81MHdYZVgzMnlNZGdSYjFwRVJ5?=
+ =?utf-8?B?cjh5VXBEckxrMnMyQUx5bjNCMHVFVlhYNDI2SnFVY3NJOTE1bUh4b1U1MUZj?=
+ =?utf-8?B?WVRXaXZuYzVkWk1vUDM1TjBIVVUrNE16S3pldFB6THZRNFN3M2Q0cmRQU3dJ?=
+ =?utf-8?B?MUlxcmtRU3VJNm5yelh6ODFXdFNYeEpBRzFFMW5Iek5tTzRkWFU5M2xEY1d3?=
+ =?utf-8?B?ckp3Zlg2Y3dWbXdvYjArS3RVdk1kZDlsMmlESmg4d0dBQlVQdzZ0aGpISmgx?=
+ =?utf-8?B?VDE3SUFUVG1zcEF0NS9rOUkrdjg5dE8yWldnb0RHUW41M29WczZyVFJlKzF3?=
+ =?utf-8?B?MXhBakxxQzZHMG5KdjA0Ym1nMktZVlJkb21FUmtaQ0k4NVVpYlhVY1hXelg4?=
+ =?utf-8?B?TTY4Q0tXVXAzWU9zOTZYUDdJU1ViZ1dKU1dKYk1qUGVpNml4YlY5Q21BUUxG?=
+ =?utf-8?B?UUJiYXBvaVlqUWMwWmI2SDFTWEpPYjhWYnRFMFpjeTFaYVhBMzlTOFBVdDR2?=
+ =?utf-8?B?dDBOU2FFVDhlSU9QeFFabnUvZVlma2JmLzVZaG44blIzRi9WS0h2R0ZIeFdH?=
+ =?utf-8?B?aUMva0M0Ly9mSTgwSUxHV2FEbkVUUHhoUTZnSktvZXRvcXdSV0tPTmdXVmx1?=
+ =?utf-8?B?SUwyRHJ2NTRLYmtyYjJhRGxTU0c0L0JnYzc2dUpJLy80VnRTbkt0UTR4QmpZ?=
+ =?utf-8?B?UFVQdGw0WnloNG15YTExMnhYUEhldVZ5b0h3RFUzd1hMaEM5SmF0M1ZQZGVy?=
+ =?utf-8?B?Zkd2RVpMVzgzQnlnWUkyV1FkMzFkV3R3dFlpMGh6OHhXRXhKVFN2YktGVGE5?=
+ =?utf-8?B?MlE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6ee8097f-85ee-408b-fa5e-08de15f664f6
 X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7307.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2025 07:47:27.3352 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2025 07:48:33.6458 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mzow2xFLifAWH1WjloBy4JmSKY6ne+mbvBRlR+498rN6Zgvl8k18b4pEIp/hFAESd/AJ4dm4DcMERWQ28wGALQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: HcdXUsU2z7k/YOyV6+4KCAittxkUEizbGrzlzr2KkoT14NBpIS+PO/Wy0ruF9s/V4P48opfjPJNT0mSK0p9EfA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4935
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -199,332 +200,113 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On 24-10-2025 15:36, Suraj Kandpal wrote:
-> Define function to bring phy lane out of reset for LT Phy and the
-> corresponding pre-requisite steps before we follow the steps for
-> Phy lane reset. Also create a skeleton of LT PHY PLL enable sequence
-> function in which we can place this function
+> Move the is_hdmi_frl to intel_hdmi.c. Rename it appropriately and
+> make it non static.
 >
-> Bspec: 77449, 74749, 74499, 74495, 68960
 > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
 Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 
 Thanks and Regards,
 Arun R Murthy
--------------------
+--------------------
 
 > ---
-> V1 -> V2: Align the definitions (Arun)
-> ---
->   drivers/gpu/drm/i915/Makefile                 |   1 +
->   drivers/gpu/drm/i915/display/intel_cx0_phy.c  |   2 +-
->   drivers/gpu/drm/i915/display/intel_cx0_phy.h  |   2 +
->   .../gpu/drm/i915/display/intel_cx0_phy_regs.h |   4 +
->   drivers/gpu/drm/i915/display/intel_lt_phy.c   | 159 ++++++++++++++++++
->   drivers/gpu/drm/i915/display/intel_lt_phy.h   |  17 ++
->   .../gpu/drm/i915/display/intel_lt_phy_regs.h  |  17 ++
->   drivers/gpu/drm/xe/Makefile                   |   1 +
->   8 files changed, 202 insertions(+), 1 deletion(-)
->   create mode 100644 drivers/gpu/drm/i915/display/intel_lt_phy.c
->   create mode 100644 drivers/gpu/drm/i915/display/intel_lt_phy.h
+>   drivers/gpu/drm/i915/display/intel_cx0_phy.c | 21 +++-----------------
+>   drivers/gpu/drm/i915/display/intel_hdmi.c    | 14 +++++++++++++
+>   drivers/gpu/drm/i915/display/intel_hdmi.h    |  1 +
+>   3 files changed, 18 insertions(+), 18 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index 47bac9b2c611..ab090cefc4ef 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -355,6 +355,7 @@ i915-y += \
->   	display/intel_gmbus.o \
->   	display/intel_hdmi.o \
->   	display/intel_lspcon.o \
-> +	display/intel_lt_phy.o \
->   	display/intel_lvds.o \
->   	display/intel_panel.o \
->   	display/intel_pfit.o \
 > diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> index 0b02163b545a..c99e0885e737 100644
+> index c99e0885e737..6991707abdc7 100644
 > --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
 > +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> @@ -2854,7 +2854,7 @@ static void intel_cx0_powerdown_change_sequence(struct intel_encoder *encoder,
->   			 phy_name(phy), XELPDP_PORT_RESET_START_TIMEOUT_US);
+> @@ -2590,20 +2590,6 @@ static bool is_dp2(u32 clock)
+>   	return false;
 >   }
 >   
-> -static void intel_cx0_setup_powerdown(struct intel_encoder *encoder)
-> +void intel_cx0_setup_powerdown(struct intel_encoder *encoder)
+> -static bool is_hdmi_frl(u32 clock)
+> -{
+> -	switch (clock) {
+> -	case 300000: /* 3 Gbps */
+> -	case 600000: /* 6 Gbps */
+> -	case 800000: /* 8 Gbps */
+> -	case 1000000: /* 10 Gbps */
+> -	case 1200000: /* 12 Gbps */
+> -		return true;
+> -	default:
+> -		return false;
+> -	}
+> -}
+> -
+>   static bool intel_c20_protocol_switch_valid(struct intel_encoder *encoder)
 >   {
->   	struct intel_display *display = to_intel_display(encoder);
->   	enum port port = encoder->port;
-> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-> index c5a7b529955b..c92026fe7b8f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-> @@ -41,6 +41,8 @@ bool intel_cx0pll_compare_hw_state(const struct intel_cx0pll_state *a,
->   				   const struct intel_cx0pll_state *b);
->   void intel_cx0_phy_set_signal_levels(struct intel_encoder *encoder,
->   				     const struct intel_crtc_state *crtc_state);
-> +int intel_cx0_phy_check_hdmi_link_rate(struct intel_hdmi *hdmi, int clock);
-> +void intel_cx0_setup_powerdown(struct intel_encoder *encoder);
->   int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder);
->   void intel_cx0_pll_power_save_wa(struct intel_display *display);
->   void intel_lnl_mac_transmit_lfps(struct intel_encoder *encoder,
-> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-> index cd941f16529c..93bed6b0bda1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-> @@ -104,6 +104,8 @@
->   #define   XELPDP_PORT_BUF_PORT_DATA_20BIT		REG_FIELD_PREP(XELPDP_PORT_BUF_PORT_DATA_WIDTH_MASK, 1)
->   #define   XELPDP_PORT_BUF_PORT_DATA_40BIT		REG_FIELD_PREP(XELPDP_PORT_BUF_PORT_DATA_WIDTH_MASK, 2)
->   #define   XELPDP_PORT_REVERSAL				REG_BIT(16)
-> +#define   XE3PLPDP_PHY_MODE_MASK			REG_GENMASK(15, 12)
-> +#define   XE3PLPDP_PHY_MODE_DP				REG_FIELD_PREP(XE3PLPDP_PHY_MODE_MASK, 0x3)
->   #define   XELPDP_PORT_BUF_IO_SELECT_TBT			REG_BIT(11)
->   #define   XELPDP_PORT_BUF_PHY_IDLE			REG_BIT(7)
->   #define   XELPDP_TC_PHY_OWNERSHIP			REG_BIT(6)
-> @@ -124,6 +126,7 @@
->   	 _XELPDP_PORT_BUF_CTL2(port))
->   #define   XELPDP_LANE_PIPE_RESET(lane)			_PICK(lane, REG_BIT(31), REG_BIT(30))
->   #define   XELPDP_LANE_PHY_CURRENT_STATUS(lane)		_PICK(lane, REG_BIT(29), REG_BIT(28))
-> +#define   XE3PLPDP_LANE_PHY_PULSE_STATUS(lane)		_PICK(lane, REG_BIT(27), REG_BIT(26))
->   #define   XELPDP_LANE_POWERDOWN_UPDATE(lane)		_PICK(lane, REG_BIT(25), REG_BIT(24))
->   #define   _XELPDP_LANE0_POWERDOWN_NEW_STATE_MASK	REG_GENMASK(23, 20)
->   #define   _XELPDP_LANE0_POWERDOWN_NEW_STATE(val)	REG_FIELD_PREP(_XELPDP_LANE0_POWERDOWN_NEW_STATE_MASK, val)
-> @@ -151,6 +154,7 @@
->   #define   XELPDP_POWER_STATE_ACTIVE(val)		REG_FIELD_PREP(XELPDP_POWER_STATE_ACTIVE_MASK, val)
->   #define   XELPDP_P0_STATE_ACTIVE			0x0
->   #define   XELPDP_P2_STATE_READY				0x2
-> +#define   XE3PLPD_P4_STATE_DISABLE			0x4
->   #define   XELPDP_P2PG_STATE_DISABLE			0x9
->   #define   XELPDP_P4PG_STATE_DISABLE			0xC
->   #define   XELPDP_P2_STATE_RESET				0x2
-> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-> new file mode 100644
-> index 000000000000..c65333cc9494
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-> @@ -0,0 +1,159 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright © 2025 Intel Corporation
-> + */
-> +
-> +#include <drm/drm_print.h>
-> +
-> +#include "i915_reg.h"
-> +#include "intel_cx0_phy.h"
-> +#include "intel_cx0_phy_regs.h"
-> +#include "intel_de.h"
-> +#include "intel_display.h"
-> +#include "intel_display_types.h"
-> +#include "intel_lt_phy.h"
-> +#include "intel_lt_phy_regs.h"
-> +#include "intel_tc.h"
-> +
-> +#define INTEL_LT_PHY_LANE0		BIT(0)
-> +#define INTEL_LT_PHY_LANE1		BIT(1)
-> +#define INTEL_LT_PHY_BOTH_LANES		(INTEL_LT_PHY_LANE1 |\
-> +					 INTEL_LT_PHY_LANE0)
-> +
-> +static u8 intel_lt_phy_get_owned_lane_mask(struct intel_encoder *encoder)
-> +{
-> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-> +
-> +	if (!intel_tc_port_in_dp_alt_mode(dig_port))
-> +		return INTEL_LT_PHY_BOTH_LANES;
-> +
-> +	return intel_tc_port_max_lane_count(dig_port) > 2
-> +		? INTEL_LT_PHY_BOTH_LANES : INTEL_LT_PHY_LANE0;
-> +}
-> +
-> +static void
-> +intel_lt_phy_setup_powerdown(struct intel_encoder *encoder, u8 lane_count)
-> +{
-> +	/*
-> +	 * The new PORT_BUF_CTL6 stuff for dc5 entry and exit needs to be handled
-> +	 * by dmc firmware not explicitly mentioned in Bspec. This leaves this
-> +	 * function as a wrapper only but keeping it expecting future changes.
-> +	 */
-> +	intel_cx0_setup_powerdown(encoder);
-> +}
-> +
-> +static void
-> +intel_lt_phy_lane_reset(struct intel_encoder *encoder,
-> +			u8 lane_count)
-> +{
-> +	struct intel_display *display = to_intel_display(encoder);
-> +	enum port port = encoder->port;
-> +	enum phy phy = intel_encoder_to_phy(encoder);
-> +	u8 owned_lane_mask = intel_lt_phy_get_owned_lane_mask(encoder);
-> +	u32 lane_pipe_reset = owned_lane_mask == INTEL_LT_PHY_BOTH_LANES
-> +				? XELPDP_LANE_PIPE_RESET(0) | XELPDP_LANE_PIPE_RESET(1)
-> +				: XELPDP_LANE_PIPE_RESET(0);
-> +	u32 lane_phy_current_status = owned_lane_mask == INTEL_LT_PHY_BOTH_LANES
-> +					? (XELPDP_LANE_PHY_CURRENT_STATUS(0) |
-> +					   XELPDP_LANE_PHY_CURRENT_STATUS(1))
-> +					: XELPDP_LANE_PHY_CURRENT_STATUS(0);
-> +	u32 lane_phy_pulse_status = owned_lane_mask == INTEL_LT_PHY_BOTH_LANES
-> +					? (XE3PLPDP_LANE_PHY_PULSE_STATUS(0) |
-> +					   XE3PLPDP_LANE_PHY_PULSE_STATUS(1))
-> +					: XE3PLPDP_LANE_PHY_PULSE_STATUS(0);
-> +
-> +	intel_de_rmw(display, XE3PLPD_PORT_BUF_CTL5(port),
-> +		     XE3PLPD_MACCLK_RATE_MASK, XE3PLPD_MACCLK_RATE_DEF);
-> +
-> +	intel_de_rmw(display, XELPDP_PORT_BUF_CTL1(display, port),
-> +		     XE3PLPDP_PHY_MODE_MASK, XE3PLPDP_PHY_MODE_DP);
-> +
-> +	intel_lt_phy_setup_powerdown(encoder, lane_count);
-> +
-> +	intel_de_rmw(display, XE3PLPD_PORT_BUF_CTL5(port),
-> +		     XE3PLPD_MACCLK_RESET_0, 0);
-> +
-> +	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, port),
-> +		     XELPDP_LANE_PCLK_PLL_REQUEST(0),
-> +		     XELPDP_LANE_PCLK_PLL_REQUEST(0));
-> +
-> +	if (intel_de_wait_custom(display, XELPDP_PORT_CLOCK_CTL(display, port),
-> +				 XELPDP_LANE_PCLK_PLL_ACK(0),
-> +				 XELPDP_LANE_PCLK_PLL_ACK(0),
-> +				 XE3PLPD_MACCLK_TURNON_LATENCY_US,
-> +				 XE3PLPD_MACCLK_TURNON_LATENCY_MS, NULL))
-> +		drm_warn(display->drm, "PHY %c PLL MacCLK assertion Ack not done after %dus.\n",
-> +			 phy_name(phy), XE3PLPD_MACCLK_TURNON_LATENCY_MS * 1000);
-> +
-> +	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, port),
-> +		     XELPDP_FORWARD_CLOCK_UNGATE,
-> +		     XELPDP_FORWARD_CLOCK_UNGATE);
-> +
-> +	intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port),
-> +		     lane_pipe_reset | lane_phy_pulse_status, 0);
-> +
-> +	if (intel_de_wait_custom(display, XELPDP_PORT_BUF_CTL2(display, port),
-> +				 lane_phy_current_status, 0,
-> +				 XE3PLPD_RESET_END_LATENCY_US, 2, NULL))
-> +		drm_warn(display->drm,
-> +			 "PHY %c failed to bring out of Lane reset after %dus.\n",
-> +			 phy_name(phy), XE3PLPD_RESET_END_LATENCY_US);
-> +
-> +	if (intel_de_wait_custom(display, XELPDP_PORT_BUF_CTL2(display, port),
-> +				 lane_phy_pulse_status, lane_phy_pulse_status,
-> +				 XE3PLPD_RATE_CALIB_DONE_LATENCY_US, 0, NULL))
-> +		drm_warn(display->drm, "PHY %c PLL rate not changed after %dus.\n",
-> +			 phy_name(phy), XE3PLPD_RATE_CALIB_DONE_LATENCY_US);
-> +
-> +	intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port), lane_phy_pulse_status, 0);
-> +}
-> +
-> +void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
-> +			     const struct intel_crtc_state *crtc_state)
-> +{
-> +	/* 1. Enable MacCLK at default 162 MHz frequency. */
-> +	intel_lt_phy_lane_reset(encoder, crtc_state->lane_count);
-> +
-> +	/* 2. Program PORT_CLOCK_CTL register to configure clock muxes, gating, and SSC. */
-> +	/* 3. Change owned PHY lanes power to Ready state. */
-> +	/*
-> +	 * 4. Read the PHY message bus VDR register PHY_VDR_0_Config check enabled PLL type,
-> +	 * encoded rate and encoded mode.
-> +	 */
-> +	/*
-> +	 * 5. Program the PHY internal PLL registers over PHY message bus for the desired
-> +	 * frequency and protocol type
-> +	 */
-> +	/* 6. Use the P2P transaction flow */
-> +	/*
-> +	 * 6.1. Set the PHY VDR register 0xCC4[Rate Control VDR Update] = 1 over PHY message
-> +	 * bus for Owned PHY Lanes.
-> +	 */
-> +	/*
-> +	 * 6.2. Poll for P2P Transaction Ready = "1" and read the MAC message bus VDR register
-> +	 * at offset 0xC00 for Owned PHY Lanes.
-> +	 */
-> +	/* 6.3. Clear P2P transaction Ready bit. */
-> +	/* 7. Program PORT_CLOCK_CTL[PCLK PLL Request LN0] = 0. */
-> +	/* 8. Poll for PORT_CLOCK_CTL[PCLK PLL Ack LN0]= 0. */
-> +	/*
-> +	 * 9. Follow the Display Voltage Frequency Switching - Sequence Before Frequency Change.
-> +	 * We handle this step in bxt_set_cdclk()
-> +	 */
-> +	/* 10. Program DDI_CLK_VALFREQ to match intended DDI clock frequency. */
-> +	/* 11. Program PORT_CLOCK_CTL[PCLK PLL Request LN0] = 1. */
-> +	/* 12. Poll for PORT_CLOCK_CTL[PCLK PLL Ack LN0]= 1. */
-> +	/* 13. Ungate the forward clock by setting PORT_CLOCK_CTL[Forward Clock Ungate] = 1. */
-> +	/* 14. SW clears PORT_BUF_CTL2 [PHY Pulse Status]. */
-> +	/*
-> +	 * 15. Clear the PHY VDR register 0xCC4[Rate Control VDR Update] over PHY message bus for
-> +	 * Owned PHY Lanes.
-> +	 */
-> +	/* 16. Poll for PORT_BUF_CTL2 register PHY Pulse Status = 1 for Owned PHY Lanes. */
-> +	/* 17. SW clears PORT_BUF_CTL2 [PHY Pulse Status]. */
-> +	/*
-> +	 * 18. Follow the Display Voltage Frequency Switching - Sequence After Frequency Change.
-> +	 * We handle this step in bxt_set_cdclk()
-> +	 */
-> +	/* 19. Move the PHY powerdown state to Active and program to enable/disable transmitters */
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-> new file mode 100644
-> index 000000000000..bd3ff3007e1d
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-> @@ -0,0 +1,17 @@
-> +/* SPDX-License-Identifier: MIT
-> + *
-> + * Copyright © 2025 Intel Corporation
-> + */
-> +
-> +#ifndef __INTEL_LT_PHY_H__
-> +#define __INTEL_LT_PHY_H__
-> +
-> +#include <linux/types.h>
-> +
-> +struct intel_encoder;
-> +struct intel_crtc_state;
-> +
-> +void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
-> +			     const struct intel_crtc_state *crtc_state);
-> +
-> +#endif /* __INTEL_LT_PHY_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-> index 6eaa038bf684..8bc25a564300 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-> @@ -6,6 +6,12 @@
->   #ifndef __INTEL_LT_PHY_REGS_H__
->   #define __INTEL_LT_PHY_REGS_H__
+>   	struct intel_digital_port *intel_dig_port = enc_to_dig_port(encoder);
+> @@ -2617,7 +2603,7 @@ static int intel_get_c20_custom_width(u32 clock, bool dp)
+>   {
+>   	if (dp && is_dp2(clock))
+>   		return 2;
+> -	else if (is_hdmi_frl(clock))
+> +	else if (intel_hdmi_is_frl(clock))
+>   		return 1;
+>   	else
+>   		return 0;
+> @@ -2706,11 +2692,10 @@ static void intel_c20_pll_program(struct intel_display *display,
 >   
-> +#define XE3PLPD_MACCLK_TURNON_LATENCY_MS	1
-> +#define XE3PLPD_MACCLK_TURNON_LATENCY_US	21
-> +#define XE3PLPD_RATE_CALIB_DONE_LATENCY_US	50
-> +#define XE3PLPD_RESET_START_LATENCY_US	10
-> +#define XE3PLPD_RESET_END_LATENCY_US		200
-> +
->   /* LT Phy Vendor Register */
->   #define LT_PHY_VDR_0_CONFIG	0xC02
->   #define  LT_PHY_VDR_DP_PLL_ENABLE	REG_BIT(7)
-> @@ -21,4 +27,15 @@
+>   	/* 5. For DP or 6. For HDMI */
+>   	serdes = 0;
+> -
+>   	if (is_dp)
+>   		serdes = PHY_C20_IS_DP |
+>   			 PHY_C20_DP_RATE(intel_c20_get_dp_rate(port_clock));
+> -	else if (is_hdmi_frl(port_clock))
+> +	else if (intel_hdmi_is_frl(port_clock))
+>   		serdes = PHY_C20_IS_HDMI_FRL;
 >   
->   #define LT_PHY_RATE_UPDATE		0xCC4
+>   	intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_SERDES_RATE,
+> @@ -2777,7 +2762,7 @@ static void intel_program_port_clock_ctl(struct intel_encoder *encoder,
 >   
-> +#define _XE3PLPD_PORT_BUF_CTL5(idx)	_MMIO(_PICK_EVEN_2RANGES(idx, PORT_TC1, \
-> +								 _XELPDP_PORT_BUF_CTL1_LN0_A, \
-> +								 _XELPDP_PORT_BUF_CTL1_LN0_B, \
-> +								 _XELPDP_PORT_BUF_CTL1_LN0_USBC1, \
-> +								 _XELPDP_PORT_BUF_CTL1_LN0_USBC2) \
-> +								+ 0x34)
-> +#define XE3PLPD_PORT_BUF_CTL5(port)	_XE3PLPD_PORT_BUF_CTL5(__xe2lpd_port_idx(port))
-> +#define  XE3PLPD_MACCLK_RESET_0		REG_BIT(11)
-> +#define  XE3PLPD_MACCLK_RATE_MASK	REG_GENMASK(4, 0)
-> +#define  XE3PLPD_MACCLK_RATE_DEF	REG_FIELD_PREP(XE3PLPD_MACCLK_RATE_MASK, 0x1F)
+>   	val |= XELPDP_FORWARD_CLOCK_UNGATE;
+>   
+> -	if (!is_dp && is_hdmi_frl(port_clock))
+> +	if (!is_dp && intel_hdmi_is_frl(port_clock))
+>   		val |= XELPDP_DDI_CLOCK_SELECT_PREP(display, XELPDP_DDI_CLOCK_SELECT_DIV18CLK);
+>   	else
+>   		val |= XELPDP_DDI_CLOCK_SELECT_PREP(display, XELPDP_DDI_CLOCK_SELECT_MAXPCLK);
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> index 4ab7e2e3bfd4..e81c3e5aa250 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -68,6 +68,20 @@
+>   #include "intel_snps_phy.h"
+>   #include "intel_vrr.h"
+>   
+> +bool intel_hdmi_is_frl(u32 clock)
+> +{
+> +	switch (clock) {
+> +	case 300000: /* 3 Gbps */
+> +	case 600000: /* 6 Gbps */
+> +	case 800000: /* 8 Gbps */
+> +	case 1000000: /* 10 Gbps */
+> +	case 1200000: /* 12 Gbps */
+> +		return true;
+> +	default:
+> +		return false;
+> +	}
+> +}
 > +
->   #endif /* __INTEL_LT_PHY_REGS_H__ */
-> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> index 82c6b3d29676..086e18f7edb2 100644
-> --- a/drivers/gpu/drm/xe/Makefile
-> +++ b/drivers/gpu/drm/xe/Makefile
-> @@ -293,6 +293,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
->   	i915-display/intel_hti.o \
->   	i915-display/intel_link_bw.o \
->   	i915-display/intel_lspcon.o \
-> +	i915-display/intel_lt_phy.o \
->   	i915-display/intel_modeset_lock.o \
->   	i915-display/intel_modeset_setup.o \
->   	i915-display/intel_modeset_verify.o \
+>   static void
+>   assert_hdmi_port_disabled(struct intel_hdmi *intel_hdmi)
+>   {
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.h b/drivers/gpu/drm/i915/display/intel_hdmi.h
+> index dec2ad7dd8a2..be2fad57e4ad 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.h
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.h
+> @@ -60,6 +60,7 @@ int intel_hdmi_dsc_get_num_slices(const struct intel_crtc_state *crtc_state,
+>   				  int src_max_slices, int src_max_slice_width,
+>   				  int hdmi_max_slices, int hdmi_throughput);
+>   int intel_hdmi_dsc_get_slice_height(int vactive);
+> +bool intel_hdmi_is_frl(u32 clock);
+>   
+>   void hsw_write_infoframe(struct intel_encoder *encoder,
+>   			 const struct intel_crtc_state *crtc_state,
