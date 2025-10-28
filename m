@@ -2,61 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5E3AC16BAE
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Oct 2025 21:07:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D5BDC16D31
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Oct 2025 21:52:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 947DC10E663;
-	Tue, 28 Oct 2025 20:07:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9E5D10E17F;
+	Tue, 28 Oct 2025 20:52:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JLXTPriX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CMVR2UUq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99AC210E657;
- Tue, 28 Oct 2025 20:07:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 823DC10E149;
+ Tue, 28 Oct 2025 20:52:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761682069; x=1793218069;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=dKm7EbbMJfhQQJ6Fk0HrN3tG7hQMrWbdsDSdiHPZH4g=;
- b=JLXTPriXraH6S6yoNWG01kDIWZuJyJc2OmccslFWNTT2NxAlFccMMSbZ
- WwacmcNIcPvrFXZ0GWqm79c68SIHqyoRSmRpZFMUej4OMnJDWCu2OjlVB
- nEOCs2gVARZOCAfsHJC1gT8nd2OaHYWZd6KkDSnrJSAt6vsIj4eJ4Z4/R
- m/Atk22CFxPLihN9KZV5iSyx7pb7S0FeQnAKSrdTjtxkUzm4sVfcvm1IG
- 34hEIcfG64RFgRW5snU4tbk7rSMhaf4Ao/WbkSpzSA8qA9kc+SzNJ+BfQ
- u97WC47uTnceCYFFmDY8S8LIopc/kVeekfMUfqSZ6SBLIi2DzgDvyuYBz g==;
-X-CSE-ConnectionGUID: PSBY1++WQE2UPXmqXnDOgw==
-X-CSE-MsgGUID: e2g3Vbg8RyOZGT/ZwThNMA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="66410039"
-X-IronPort-AV: E=Sophos;i="6.19,262,1754982000"; d="scan'208";a="66410039"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 13:07:48 -0700
-X-CSE-ConnectionGUID: JXRdQxh2RFGlM539pvmYZg==
-X-CSE-MsgGUID: VTzWAsqiSa+klAGfIRLRWg==
+ t=1761684769; x=1793220769;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=MrFmi4nutVJ88C6N9UIN60oxiHIesmpQ4tsvTyjR+Ts=;
+ b=CMVR2UUq8sqzIyCXLKKJWYpuwGTztctRN2Ck33tCkjy+z6JAcN70rAhm
+ KbPyN1v8w/kpWfZ+OD/E3xAV4kWSRKYiDia6B62A2UHXZ/nBb6wzgbjpt
+ Fl2TFJjWZbdGUjJeuVINymt5dYcL4pI5Bct1Rg3BWeEye0SBh6WHGTVaR
+ 4aIeTdFwI8HL59oKMCITtmkJ3q+nom6KQKrex/fLlJ5tbVuRhmeQlN8jg
+ xOEECwWiSAKnPkui70dcRvewilr0hsiUSWHjdr/cojtAACR2XmOH61aSt
+ tvQVEDkCiF+LiUWKi1D2VqDez8DY3SNIXdrcl7sAoYqBBbkP8PyFSmDCl g==;
+X-CSE-ConnectionGUID: t6C4/db8RqKUD1D6IEJnSw==
+X-CSE-MsgGUID: M1IdLbPnSSm6nu3ZHCr9CQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="67440085"
+X-IronPort-AV: E=Sophos;i="6.19,262,1754982000"; d="scan'208";a="67440085"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2025 13:52:49 -0700
+X-CSE-ConnectionGUID: opDK6Fe4SQyJydL/YF5G1Q==
+X-CSE-MsgGUID: gKdLiDTtTL2UdTwLcAaHHg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,262,1754982000"; d="scan'208";a="185366658"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.90])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 13:07:46 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- tiago.martins.araujo@gmail.com, jani.nikula@intel.com
-Subject: [PATCH 3/3] drm/displayid: add quirk to ignore DisplayID checksum
- errors
-Date: Tue, 28 Oct 2025 22:07:27 +0200
-Message-ID: <c04d81ae648c5f21b3f5b7953f924718051f2798.1761681968.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1761681968.git.jani.nikula@intel.com>
-References: <cover.1761681968.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,262,1754982000"; d="scan'208";a="222679629"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.169])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2025 13:52:46 -0700
+Date: Tue, 28 Oct 2025 22:52:43 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Dan Carpenter <dan.carpenter@linaro.org>
+Subject: Re: [PATCH 2/2] drm/atomic: WARN about invalid drm_foo_get_state()
+ usage
+Message-ID: <aQEtG0CbmPxLMiQD@intel.com>
+References: <20251017163327.9074-2-ville.syrjala@linux.intel.com>
+ <6bccb6ce0672f5b736bb8669060d8005@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <6bccb6ce0672f5b736bb8669060d8005@kernel.org>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,129 +74,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add a mechanism for DisplayID specific quirks, and add the first quirk
-to ignore DisplayID section checksum errors.
+On Mon, Oct 20, 2025 at 07:29:49AM +0000, Maxime Ripard wrote:
+> On Fri, 17 Oct 2025 19:33:27 +0300, Ville Syrjala wrote:
+> > From: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
+> > 
+> > drm_{crtc,plane,connector,private_obj}_get_state() must not
+> > be called after the atomic check phase. At that point the commit
+> > has been carved in stone and no new objects must be introduced
+> > 
+> > [ ... ]
+> 
+> Reviewed-by: Maxime Ripard <mripard@kernel.org>
 
-It would be quite inconvenient to pass existing EDID quirks from
-drm_edid.c for DisplayID parsing. Not all places doing DisplayID
-iteration have the quirks readily available, and would have to pass it
-in all places. Simply add a separate array of DisplayID specific EDID
-quirks. We do end up checking it every time we iterate DisplayID blocks,
-but hopefully the number of quirks remains small.
+Thanks. This is now in, so I guess we'll see if there are further
+issues still remaining anywhere.
 
-There are a few laptop models with DisplayID checksum failures, leading
-to higher refresh rates only present in the DisplayID blocks being
-ignored. Add a quirk for the panel in the machines.
+After any initial fires have been put out, I'm thinking we should
+change the implementation from just WARN to "WARN+return an error"...
 
-Reported-by: Tiago Martins Ara√∫jo <tiago.martins.araujo@gmail.com>
-Closes: https://lore.kernel.org/r/CACRbrPGvLP5LANXuFi6z0S7XMbAG4X5y2YOLBDxfOVtfGGqiKQ@mail.gmail.com
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14703
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/drm_displayid.c          | 41 +++++++++++++++++++++---
- drivers/gpu/drm/drm_displayid_internal.h |  2 ++
- 2 files changed, 39 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_displayid.c b/drivers/gpu/drm/drm_displayid.c
-index 20b453d2b854..58d0bb6d2676 100644
---- a/drivers/gpu/drm/drm_displayid.c
-+++ b/drivers/gpu/drm/drm_displayid.c
-@@ -9,6 +9,34 @@
- #include "drm_crtc_internal.h"
- #include "drm_displayid_internal.h"
- 
-+enum {
-+	QUIRK_IGNORE_CHECKSUM,
-+};
-+
-+struct displayid_quirk {
-+	const struct drm_edid_ident ident;
-+	u8 quirks;
-+};
-+
-+static const struct displayid_quirk quirks[] = {
-+	{
-+		.ident = DRM_EDID_IDENT_INIT('C', 'S', 'O', 5142, "MNE007ZA1-5"),
-+		.quirks = BIT(QUIRK_IGNORE_CHECKSUM),
-+	},
-+};
-+
-+static u8 get_quirks(const struct drm_edid *drm_edid)
-+{
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(quirks); i++) {
-+		if (drm_edid_match(drm_edid, &quirks[i].ident))
-+			return quirks[i].quirks;
-+	}
-+
-+	return 0;
-+}
-+
- static const struct displayid_header *
- displayid_get_header(const u8 *displayid, int length, int index)
- {
-@@ -23,7 +51,7 @@ displayid_get_header(const u8 *displayid, int length, int index)
- }
- 
- static const struct displayid_header *
--validate_displayid(const u8 *displayid, int length, int idx)
-+validate_displayid(const u8 *displayid, int length, int idx, bool ignore_checksum)
- {
- 	int i, dispid_length;
- 	u8 csum = 0;
-@@ -41,8 +69,11 @@ validate_displayid(const u8 *displayid, int length, int idx)
- 	for (i = 0; i < dispid_length; i++)
- 		csum += displayid[idx + i];
- 	if (csum) {
--		DRM_NOTE("DisplayID checksum invalid, remainder is %d\n", csum);
--		return ERR_PTR(-EINVAL);
-+		DRM_NOTE("DisplayID checksum invalid, remainder is %d%s\n", csum,
-+			 ignore_checksum ? " (ignoring)" : "");
-+
-+		if (!ignore_checksum)
-+			return ERR_PTR(-EINVAL);
- 	}
- 
- 	return base;
-@@ -52,6 +83,7 @@ static const u8 *find_next_displayid_extension(struct displayid_iter *iter)
- {
- 	const struct displayid_header *base;
- 	const u8 *displayid;
-+	bool ignore_checksum = iter->quirks & BIT(QUIRK_IGNORE_CHECKSUM);
- 
- 	displayid = drm_edid_find_extension(iter->drm_edid, DISPLAYID_EXT, &iter->ext_index);
- 	if (!displayid)
-@@ -61,7 +93,7 @@ static const u8 *find_next_displayid_extension(struct displayid_iter *iter)
- 	iter->length = EDID_LENGTH - 1;
- 	iter->idx = 1;
- 
--	base = validate_displayid(displayid, iter->length, iter->idx);
-+	base = validate_displayid(displayid, iter->length, iter->idx, ignore_checksum);
- 	if (IS_ERR(base))
- 		return NULL;
- 
-@@ -76,6 +108,7 @@ void displayid_iter_edid_begin(const struct drm_edid *drm_edid,
- 	memset(iter, 0, sizeof(*iter));
- 
- 	iter->drm_edid = drm_edid;
-+	iter->quirks = get_quirks(drm_edid);
- }
- 
- static const struct displayid_block *
-diff --git a/drivers/gpu/drm/drm_displayid_internal.h b/drivers/gpu/drm/drm_displayid_internal.h
-index 957dd0619f5c..5b1b32f73516 100644
---- a/drivers/gpu/drm/drm_displayid_internal.h
-+++ b/drivers/gpu/drm/drm_displayid_internal.h
-@@ -167,6 +167,8 @@ struct displayid_iter {
- 
- 	u8 version;
- 	u8 primary_use;
-+
-+	u8 quirks;
- };
- 
- void displayid_iter_edid_begin(const struct drm_edid *drm_edid,
 -- 
-2.47.3
-
+Ville Syrj‰l‰
+Intel
