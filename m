@@ -2,60 +2,145 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEB26C1690D
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Oct 2025 20:08:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E201C16AE8
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Oct 2025 20:54:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A02C810E035;
-	Tue, 28 Oct 2025 19:07:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A196010E654;
+	Tue, 28 Oct 2025 19:54:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A+bQWUDU";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="PtrDBg+z";
+	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="YHrc+n4k";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6592A10E035;
- Tue, 28 Oct 2025 19:07:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761678475; x=1793214475;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=EcaSJ4vn5PYEh4vyHZVCiyVNX/+UDjaQezq/UoFzp/o=;
- b=A+bQWUDUPSISm0IfSZyFYtAcvDd/FoQ+D9j+HWohGDW/yXGFch9V+hUa
- IMU4qby9MOgxs+4oVwqtnpebXdSz8EARLoScxZ9xCGyCwyPx5XCBcOS4t
- Uvd8w1B1sjIY7X6pxbOxhryt9elq0vy9JMJp1VVcDF2ntWQREjw6Or/Lh
- g2RqNj0kN91QgPjaBt0FjH7228MZ2yIJckTRBFV4c7tYMHIAQ7GtOu86i
- SC8EL8DD526BySo7wBKQJkIOAnpgjMcX85mT6snCGhwowicoIDgKulVhN
- k7PsT1PMIFVOwhBBsgsq4urbXysvQasWZjTaNtVzXJTVylNfiNjVeDmzg g==;
-X-CSE-ConnectionGUID: Ur+6w/frRQ2EzYhXaocEaw==
-X-CSE-MsgGUID: S3tY/7V6Qp+NbL25HXUlRw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="75134204"
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="75134204"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 12:07:55 -0700
-X-CSE-ConnectionGUID: xH5XBjjYRNWYxntxfBUJYg==
-X-CSE-MsgGUID: jDQcB1fnShGCZLKomyoP2Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="222657813"
-Received: from kialmah1-desk5.jf.intel.com ([10.23.33.174])
- by orviesa001.jf.intel.com with ESMTP; 28 Oct 2025 12:07:56 -0700
-From: Khaled Almahallawy <khaled.almahallawy@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Khaled Almahallawy <khaled.almahallawy@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Imre Deak <imre.deak@intel.com>, Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v6] drm/i915/display: Extend i915_display_info with Type-C
- port details
-Date: Tue, 28 Oct 2025 12:07:53 -0700
-Message-ID: <20251028190753.3089937-1-khaled.almahallawy@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251027205628.3067346-1-khaled.almahallawy@intel.com>
-References: <20251027205628.3067346-1-khaled.almahallawy@intel.com>
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
+ [205.220.180.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A280010E654
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Oct 2025 19:54:33 +0000 (UTC)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 59SJr5lr2511527
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Oct 2025 19:54:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+ 2afrDbATXikU2P98B6c0J0m4ZgHNuW/14p+YdDAqu64=; b=PtrDBg+z1RJoSGZw
+ ngQn86Waw+T2U8zDWNrDutSLoe8j2rGOU4ErW+W7tYqptFgesimHadUVZrlht1ng
+ CmUKNwb7ereJCI5Q4e/KyV2GRswAopZAku1w5o5l4np9fDq5tIY4CfPbmpZRWH63
+ uA1o7cSLf7Fq7TbmIiSeq0pR7CGoHjqgD5H4SttoWiB5yd5o7x4ElY5GVsDiN8+T
+ BOZtA5o+WBjmIKIvr1/jXlM5oAajD8efbYjRmeinshLqFUGNz2KNfzhu2IrHFyxI
+ dvrhDN3guCj5uHHPZytfGhC2ApcnimbGGdEFEXC+2Haci447ir0uEEI7XhUhjehI
+ M2Lj6g==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
+ [209.85.160.197])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a34cd8041-1
+ (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Oct 2025 19:54:32 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id
+ d75a77b69052e-4e884663b25so165228131cf.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Oct 2025 12:54:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oss.qualcomm.com; s=google; t=1761681272; x=1762286072;
+ darn=lists.freedesktop.org; 
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=2afrDbATXikU2P98B6c0J0m4ZgHNuW/14p+YdDAqu64=;
+ b=YHrc+n4k2Zs2POjUDpEwGd1MbKTZBmKxl0LQ8XcnLr5evfFM3xhJIY9TZGpNzyCVCZ
+ S7my0a2Qc8W8SEEIsJNmb/yu3UWnK8hNWRvDMFqIFKwULpQs9QhqUzTK6QpSC2VQ5o3l
+ JSP6r2Jqj6W49yJQmiLW+aQ49PElMkkQhohU9Rt1gJ2AQmYz+ac+2UEhy3RFHUhy7Fhl
+ kXNKva2zaHa/G9zs8I8CyLAYr+lbFeVxfYL2EWAsYPLyOFjnMtpXQXHmOxK/24IpD9DE
+ O8TpsFo8JagyC8Fjul5EZLDdo96ZEPeGOU7M1fnzf8rpUclHP/VeVr7jeNX4O7WDotft
+ cqKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1761681272; x=1762286072;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=2afrDbATXikU2P98B6c0J0m4ZgHNuW/14p+YdDAqu64=;
+ b=bqJcU18LWJyKvc53qn0/0pfQ17zEXicUI2JMTfG/SH9pTQKrnuAA/CEaUnoSIan5S3
+ QTy65R8YCwsdQ1HGdW8GLfW4kNh7+sM5XTqsd/xi/ib85W7o5Uv77HIT+BIGacRyfmzI
+ hsmMlFSrAverhkPOe8RJ0dnrOCdzk5jMLiI6iewtfOhsl5dkwq9X13kQKdc2lmnmXPNn
+ EvZLaZ9cTUUwiVSmqQD8s4W5J9elgT1g3VJRQGHyXOeOBw+eD0P6VYKHg55aEL1uRH4/
+ 5GfdJTP8kxt0KcLMevorbHRrcdh+BBW0YHBLTeIJRvFkDQRmiLEKgwP6pKGrUdSvUTS8
+ UwsQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUQxT8e1rU0bOokuCoyThsD1lmzODx3FJjvOE0yg+JW6gnH9rocMRBdiK1C4kNGXzEfUjcbv5eFBsg=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwZo1dsfW/1jnMzlhqPNzMHSbZSqFvQiIL4UNuPJtyHmdDQoxRT
+ 4OmjE4YnnAHqjeAiQ7fw3Yrz0nVPfCV9ouFSo9cVJCOmSBEgcuVMWW1N8RiSD0Y7jNpXKbg9nO3
+ KRkhDc0GZgiU2KXKaZUiugJedpiMoabj4zTtSOfWsiViP0oXE0aa2K+eFhun1UApvfCFAlFA=
+X-Gm-Gg: ASbGncsS4sY4f5IY/i53y1l5LReKcWBDtIKWyAod1l9aSgVM1tIOmKKt33hfrP3a/5t
+ uCrXiskKdP1p1Zu+PXLVj+JdA7TQUgvMLR8IgBRjfD9g1McH/+VdzmybTxr8jDFdWuPkQVJT8Ok
+ 7TLnzI7CNtbHv5+piSSCN9SKwdkBayawhcP9EYDOez2Lm1iF8uOXv897NnNq/7gD9QxAELpVamP
+ BrVvYwOQresUKABqrl6ICV57TT2e2DGBChCBrlUWwueqDN2VKeWyBWQRzkemiQGITIDQGq6KTeU
+ 3iaYV4GlP/5P6dUG739vswgjwAgIoVYK5iDaRknAYg+nkvs27v/iilVuy17OdgonRkckN0V/RLP
+ RPhuC99cANTGUxwK3X4arfbDf9DrTHL/JV1tZXdiyDp+PJV1+uW1df5RmiRrTuoETRO3877Nb+b
+ 3nxrgB/67JRLbH
+X-Received: by 2002:ac8:5754:0:b0:4d7:bf73:7641 with SMTP id
+ d75a77b69052e-4ed15bb30c4mr5992771cf.17.1761681271909; 
+ Tue, 28 Oct 2025 12:54:31 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFp30l/mxiO0/x28DsAYuBVAOl6GnYN2VrIZ7Onq+dUKIoHEjlqng8hPS5TJz3djMSRii/+MQ==
+X-Received: by 2002:ac8:5754:0:b0:4d7:bf73:7641 with SMTP id
+ d75a77b69052e-4ed15bb30c4mr5992331cf.17.1761681271214; 
+ Tue, 28 Oct 2025 12:54:31 -0700 (PDT)
+Received: from umbar.lan
+ (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
+ [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-59301f87f14sm3312685e87.112.2025.10.28.12.54.30
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 28 Oct 2025 12:54:30 -0700 (PDT)
+Date: Tue, 28 Oct 2025 21:54:28 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>, javierm@redhat.com,
+ airlied@gmail.com, simona@ffwll.ch, linux@armlinux.org.uk,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ inki.dae@samsung.com, sw0312.kim@samsung.com,
+ kyungmin.park@samsung.com, patrik.r.jakobsson@gmail.com,
+ jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
+ robin.clark@oss.qualcomm.com, lumag@kernel.org,
+ abhinav.kumar@linux.dev, sean@poorly.run,
+ marijn.suijten@somainline.org, tomi.valkeinen@ideasonboard.com,
+ alexander.deucher@amd.com, thierry.reding@gmail.com,
+ mperttunen@nvidia.com, jonathanh@nvidia.com,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v2] drm/fb-helper: Allocate and release fb_info in single
+ place
+Message-ID: <dlvkkogiueskk4emkwdkpst4pvqk54ordyuqobh3hzqckuzz3f@gguhnqagpvwj>
+References: <20251027081245.80262-1-tzimmermann@suse.de>
+ <3d1bc193-fbee-464a-b62e-ceca06d8829f@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <3d1bc193-fbee-464a-b62e-ceca06d8829f@amd.com>
+X-Proofpoint-ORIG-GUID: 7P1YO3sPZ5RdlPd-FcsN9w05iPlRnW7h
+X-Proofpoint-GUID: 7P1YO3sPZ5RdlPd-FcsN9w05iPlRnW7h
+X-Authority-Analysis: v=2.4 cv=avi/yCZV c=1 sm=1 tr=0 ts=69011f78 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=8nJEP1OIZ-IA:10
+ a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=zd2uoN0lAAAA:8 a=EUspDBNiAAAA:8 a=G-TusFqAXxKo-7y7638A:9 a=3ZKOabzyN94A:10
+ a=wPNLvfGTeEIA:10 a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI4MDE2NyBTYWx0ZWRfX4CY2jZm7xlim
+ Vu9zR0wVUWLSbO0TX33v/6eG/s3/92dqVUNHK0oRwArfAT0pleNUN5YJaLWURptxgFp95KJgG+I
+ +QBcJ5u3MWzuZkIjRQe5CHUqZTb8YsPhSrl5yH8swlT6R1ZPj1bakHyD5SbOzK3r7YA7B+0IS3Y
+ 5Dg7LT9g5fjX1dp9L0mtYW+CzGZTZ6Zvc0gLtj6qxnyJfkXSq8KovhKM5dw3yfa58WGL1xeal5A
+ woIW+b+UlEI2B8aEZ+Omz+e1USIn4QhVsfhoO2iZEpQlJ9Zjjc4VjrRVb2A7xiZcOKi7dQGKPjm
+ oYz2NnRIxN71gIuq5m0Mr6iX041YmrjeDCWQcIuuwAoyvlh2yMFn4EhwN6GeVnmmxdeck+kiDCC
+ FMVHwNLJDgB7TkMMdJoljhhxYy8vkA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-28_07,2025-10-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 priorityscore=1501 impostorscore=0 malwarescore=0
+ suspectscore=0 adultscore=0 spamscore=0 bulkscore=0 phishscore=0
+ lowpriorityscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2510280167
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,125 +156,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Expose key Type-C port data in i915_display_info to make it easier to
-understand the port configuration and active mode, especially whether
-the link is in DP-Alt or TBT-Alt, without having to scan kernel logs.
+On Tue, Oct 28, 2025 at 08:58:10AM +0100, Christian König wrote:
+> On 10/27/25 09:12, Thomas Zimmermann wrote:
+> > Move the calls to drm_fb_helper_alloc_info() from drivers into a
+> > single place in fbdev helpers. Allocates struct fb_info for a new
+> > framebuffer device. Then call drm_fb_helper_single_fb_probe() to
+> > create an fbdev screen buffer. Also release the instance on errors
+> > by calling drm_fb_helper_release_info().
+> > 
+> > Simplifies the code and fixes the error cleanup for some of the
+> > drivers.
+> > 
+> > Regular release of the struct fb_info instance still happens in
+> > drm_fb_helper_fini() as before.
+> > 
+> > v2:
+> > - remove error rollback in driver implementations (kernel test robot)
+> > - initialize info in TTM implementation (kernel test robot)
+> > 
+> > Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> 
+> Acked-by: Christian König <christian.koenig@amd.com> for the radeon changes.
+> 
 
-Tested in DP-Alt, TBT-Alt, SST, and MST.
+Acked-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> # msm
 
-Expected output:
 
-[CONNECTOR:290:DP-2]: status: connected
-	TC Port: E/TC#2 mode: tbt-alt pin assignment: - max lanes: 4
-	physical dimensions: 600x340mm
-...
-[CONNECTOR:263:DP-5]: status: connected
-	TC Port: G/TC#4 mode: dp-alt pin assignment: C max lanes: 4
-	physical dimensions: 610x350mm
-
-v2: Use drm_printer (Ville)
-    Lock/Unlock around the printf (Imre)
-v3: Forward Declaration drm_printer struct (Jani)
-v4: Handle MST connector with no active encoder (Imre)
-    Add a delimiter between fields and ":" after the port name (Imre)
-v5: Init dig_port and use it in intel_encorder_is_tc and tc_info (Imre)
-    Move tc->port_name to a newline (Imre)
-v6: Use intel_tc_port_lock/Unlock (Imre)
-
-Cc: Ville SyrjÃ¤lÃ¤ <ville.syrjala@linux.intel.com>
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
----
- .../gpu/drm/i915/display/intel_display_debugfs.c    |  8 ++++++++
- drivers/gpu/drm/i915/display/intel_tc.c             | 13 +++++++++++++
- drivers/gpu/drm/i915/display/intel_tc.h             |  3 +++
- 3 files changed, 24 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 10dddec3796f..7014331108aa 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -47,6 +47,7 @@
- #include "intel_psr_regs.h"
- #include "intel_vdsc.h"
- #include "intel_wm.h"
-+#include "intel_tc.h"
- 
- static struct intel_display *node_to_intel_display(struct drm_info_node *node)
- {
-@@ -246,6 +247,8 @@ static void intel_connector_info(struct seq_file *m,
- {
- 	struct intel_connector *intel_connector = to_intel_connector(connector);
- 	const struct drm_display_mode *mode;
-+	struct drm_printer p = drm_seq_file_printer(m);
-+	struct intel_digital_port *dig_port = NULL;
- 
- 	seq_printf(m, "[CONNECTOR:%d:%s]: status: %s\n",
- 		   connector->base.id, connector->name,
-@@ -268,14 +271,19 @@ static void intel_connector_info(struct seq_file *m,
- 			intel_dp_mst_info(m, intel_connector);
- 		else
- 			intel_dp_info(m, intel_connector);
-+		dig_port = dp_to_dig_port(intel_attached_dp(intel_connector));
- 		break;
- 	case DRM_MODE_CONNECTOR_HDMIA:
- 		intel_hdmi_info(m, intel_connector);
-+		dig_port = hdmi_to_dig_port(intel_attached_hdmi(intel_connector));
- 		break;
- 	default:
- 		break;
- 	}
- 
-+	if (dig_port != NULL && intel_encoder_is_tc(&dig_port->base))
-+		intel_tc_info(&p, dig_port);
-+
- 	intel_hdcp_info(m, intel_connector);
- 
- 	seq_printf(m, "\tmax bpc: %u\n", connector->display_info.bpc);
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-index c4a5601c5107..08e94004d3a7 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.c
-+++ b/drivers/gpu/drm/i915/display/intel_tc.c
-@@ -1703,6 +1703,19 @@ void intel_tc_port_sanitize_mode(struct intel_digital_port *dig_port,
- 	mutex_unlock(&tc->lock);
- }
- 
-+void intel_tc_info(struct drm_printer *p,  struct intel_digital_port *dig_port)
-+{
-+	struct intel_tc_port *tc = to_tc_port(dig_port);
-+
-+	intel_tc_port_lock(dig_port);
-+	drm_printf(p, "\tTC Port %s: mode: %s, pin assignment: %c, max lanes: %d\n",
-+		   tc->port_name,
-+		   tc_port_mode_name(tc->mode),
-+		   pin_assignment_name(tc->pin_assignment),
-+		   tc->max_lane_count);
-+	intel_tc_port_unlock(dig_port);
-+}
-+
- /*
-  * The type-C ports are different because even when they are connected, they may
-  * not be available/usable by the graphics driver: see the comment on
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.h b/drivers/gpu/drm/i915/display/intel_tc.h
-index fff8b96e4972..6719aea5bd58 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.h
-+++ b/drivers/gpu/drm/i915/display/intel_tc.h
-@@ -8,6 +8,7 @@
- 
- #include <linux/types.h>
- 
-+struct drm_printer;
- struct intel_crtc_state;
- struct intel_digital_port;
- struct intel_encoder;
-@@ -113,4 +114,6 @@ void intel_tc_port_cleanup(struct intel_digital_port *dig_port);
- 
- bool intel_tc_cold_requires_aux_pw(struct intel_digital_port *dig_port);
- 
-+void intel_tc_info(struct drm_printer *p,  struct intel_digital_port *dig_port);
-+
- #endif /* __INTEL_TC_H__ */
 -- 
-2.43.0
-
+With best wishes
+Dmitry
