@@ -2,57 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D040C19259
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Oct 2025 09:46:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3881AC19262
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Oct 2025 09:46:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F04F910E744;
-	Wed, 29 Oct 2025 08:46:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9511910E745;
+	Wed, 29 Oct 2025 08:46:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d+Wwp+JG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZeMOL54a";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4970510E742;
- Wed, 29 Oct 2025 08:46:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 922C110E742;
+ Wed, 29 Oct 2025 08:46:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761727574; x=1793263574;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ClXirpcF+Z4tbtUmNmKR5XN/37fIlSbcSSC7L/zKoSg=;
- b=d+Wwp+JGdWcz+LAXo7/xPuSe2sabP998fxevIOw1MMgqZyQPz0Q3tXmQ
- EGMCx+F2QH8nlTvjmPzHmr2NyluRtg63nXijKE4R9CB6k0IFqF1XRNbrL
- vfP7sXlYljgsNGUdjOt442zt4H2ppMaZMqG5gxSaJc4fNwsphxi1bInf6
- FNRPmoKGetPrNpazeqWaUxhzS3RV07wbynlj8lBKVEDUAG5H440al5Nm/
- P2JMYMTsTyPMDm8IMyKRv/1IpHPabue+FP5GTp4QZm88zshhvIZBybq0m
- B7NzduUrg31SttislHiyXl9+KXdzYBGo8uh3odSe3eKXycNRk1dyZuY7F g==;
-X-CSE-ConnectionGUID: JGCGsa0aTd+8I/OcDKnKyg==
-X-CSE-MsgGUID: DrTKibumQ0CsoxkhYc5TSQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="62868907"
-X-IronPort-AV: E=Sophos;i="6.19,263,1754982000"; d="scan'208";a="62868907"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2025 01:46:14 -0700
-X-CSE-ConnectionGUID: 2GhyypKoSPyB3QWnoDXlOQ==
-X-CSE-MsgGUID: Z++K0ASuQ9aE535eU9+9DA==
+ t=1761727612; x=1793263612;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=D6Fe/RwVkdUZ0QkkkOvKLvbowEFty/2gcPrg0NrzRiQ=;
+ b=ZeMOL54aMaC7V54hMiWTAeFXqEVFMK4zGFstFm8ss0nb82oyOEj/V8ap
+ /DLd7pv2hdVLmT6TS22yGuj8b7n68i8B7mWr9piB2p8K0+2XHqd4MYMk7
+ t1YggHUExFf/O149Tq09E1cJ7JakARlJfTM2/h93+qh0CKM1BpYkQxbzC
+ 25ff/A1Wb+QHWd/Inere8Wpubn+4GAWt2vLCzcEuUyT9WpTiL4FmHfyul
+ J83ujnlCTYCBsHO/aOQdpW9bYEGQDPwjG+ch3B0+rpEPEWRt8Uh2KMCFQ
+ P+y4HBRUrcpQmt6LNxY4V63qXfUpmCkUBB/HElDOIhT+OBmrPm9SYvkE9 A==;
+X-CSE-ConnectionGUID: m56NHvvLR56dph1z0f0rBA==
+X-CSE-MsgGUID: pESKv8n2TiSmRbLTHR69yg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74132133"
+X-IronPort-AV: E=Sophos;i="6.19,263,1754982000"; d="scan'208";a="74132133"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2025 01:46:51 -0700
+X-CSE-ConnectionGUID: WE6Ud+ulQZaXgFm9kvWTlA==
+X-CSE-MsgGUID: rxNiD3VETU6hhpE3dmFF0Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,263,1754982000"; d="scan'208";a="185676110"
-Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.160])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2025 01:46:12 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	ville.syrjala@linux.intel.com
-Subject: [PATCH v2 2/2] drm/i915/dsi: debug log send packet sequence contents
-Date: Wed, 29 Oct 2025 10:46:03 +0200
-Message-ID: <20251029084603.2254982-2-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20251029084603.2254982-1-jani.nikula@intel.com>
-References: <20251029084603.2254982-1-jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,263,1754982000"; d="scan'208";a="222811500"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.242])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2025 01:46:50 -0700
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH v2 0/9] drm/i915: Fix CDCLK and scaler prefill calculations
+Date: Wed, 29 Oct 2025 10:46:38 +0200
+Message-ID: <20251029084647.4165-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.49.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -72,51 +68,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This might help debug issues better than just debug logging the function
-name.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-v2: Debug log type as hex (Ville)
+Reorder stuff enough to allow the prefill vs. vblank checks
+to use the real per-crtc min CDCLK and the real scale factors.
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
+v2: Add an early crtc_state->min_cdclk vs. max_cdcdlk_freq check
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-index 63837406d99b..fac8729e442c 100644
---- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-@@ -107,8 +107,7 @@ static const u8 *mipi_exec_send_packet(struct intel_dsi *intel_dsi,
- 	u16 len;
- 	enum port port;
- 	ssize_t ret;
--
--	drm_dbg_kms(display->drm, "\n");
-+	bool hs_mode;
- 
- 	flags = *data++;
- 	type = *data++;
-@@ -130,13 +129,18 @@ static const u8 *mipi_exec_send_packet(struct intel_dsi *intel_dsi,
- 		goto out;
- 	}
- 
--	if ((flags >> MIPI_TRANSFER_MODE_SHIFT) & 1)
-+	hs_mode = (flags >> MIPI_TRANSFER_MODE_SHIFT) & 1;
-+	if (hs_mode)
- 		dsi_device->mode_flags &= ~MIPI_DSI_MODE_LPM;
- 	else
- 		dsi_device->mode_flags |= MIPI_DSI_MODE_LPM;
- 
- 	dsi_device->channel = (flags >> MIPI_VIRTUAL_CHANNEL_SHIFT) & 3;
- 
-+	drm_dbg_kms(display->drm, "DSI packet: Port %c (seq %u), Flags 0x%02x, VC %u, %s, Type 0x%02x, Length %u, Data %*ph\n",
-+		    port_name(port), seq_port, flags, dsi_device->channel,
-+		    hs_mode ? "HS" : "LP", type, len, (int)len, data);
-+
- 	switch (type) {
- 	case MIPI_DSI_GENERIC_SHORT_WRITE_0_PARAM:
- 		ret = mipi_dsi_generic_write(dsi_device, NULL, 0);
+Ville Syrjälä (9):
+  drm/i915/scaler: Don't clobber plane scaler scale factors with pfit
+    scale factors
+  drm/i915/scaler: Adjust pipe scaler scale factors for 4:2:0 ouput
+  drm/i915:
+    s/intel_atomic_check_crtcs()/intel_atomic_check_crtcs_late()/
+  drm/i915: Introduce a new intel_atomic_check_crtcs()
+  drm/i915/scaler: Call skl_update_scaler_crtc() earlier
+  drm/i915/scaler: Assign scalers earlier
+  drm/i915/wm: Do skl_wm_check_vblank() after DDB stuff
+  drm/i915/cdclk: Use a more optimal min_cdclk for vblank length check
+  drm/i915/scaler: Use the actual scale factors for vblank length check
+
+ drivers/gpu/drm/i915/display/intel_cdclk.c   | 17 +++-
+ drivers/gpu/drm/i915/display/intel_display.c | 61 +++++++++-----
+ drivers/gpu/drm/i915/display/skl_scaler.c    | 88 +++++++++++++++++---
+ drivers/gpu/drm/i915/display/skl_watermark.c |  6 +-
+ 4 files changed, 139 insertions(+), 33 deletions(-)
+
 -- 
-2.47.3
+2.49.1
 
