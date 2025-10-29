@@ -2,63 +2,83 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26FC8C19CC7
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Oct 2025 11:40:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43348C1A0C0
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Oct 2025 12:33:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A22F010E797;
-	Wed, 29 Oct 2025 10:40:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76EDC10E76B;
+	Wed, 29 Oct 2025 11:33:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cEEzDIXE";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="DoNaI13q";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CECB10E797;
- Wed, 29 Oct 2025 10:40:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761734423; x=1793270423;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=EPPeponlyekpCQGmbPotKL1qRfB73f7qnvY2x+Ep9WU=;
- b=cEEzDIXE0OCPUDbCY2J6H0NZrCw/Cn0VOO8U+K+QF3pZyrqM6is7OZMO
- OP+FLFFziLboHZDQt/9cx+ijM5X9vKjxRZ+oXwLhdRQrq1IuYHwNyMiiG
- jUz7jQh2zvBxfEVNIbidd0GEKo9S349SMEmklIb3XFt0GzQ+63ZkPu5Sc
- G56bIeSknb5Q7akoqQ/jndJ/km5DH7XbYMY/ocITDf2G54LyO4P0Uzyyy
- dVlUP2oZTkuCgW+eAxw8/Cx5VaEUDLBt8+tmbwFMGIG72Oj+ilmvOjIUz
- ftcR5CD2Q7RjriJ3AMnwcQfZGx9CGbxIhzV3urmBIAtMFLtdFphZD5C5E w==;
-X-CSE-ConnectionGUID: JFdL7tUPRJGmxN3K2kN8cQ==
-X-CSE-MsgGUID: ihthr9MCTjyxI5eX+2CHGQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="67688576"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="67688576"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2025 03:40:23 -0700
-X-CSE-ConnectionGUID: oG8vYNNDS0SerxifAzmYVA==
-X-CSE-MsgGUID: BXEgwvzjRo6Yh22UcIfe8Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,263,1754982000"; d="scan'208";a="185700041"
-Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.160])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2025 03:40:19 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org, maarten.lankhorst@linux.intel.com,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@redhat.com>,
- simona.vetter@ffwll.ch
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 4/4] drm/ttm: replace drm_print.h include with a forward
- declaration
-Date: Wed, 29 Oct 2025 12:39:48 +0200
-Message-ID: <cfdb1095033112c2a7e58767481c98929984a33c.1761734313.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1761734313.git.jani.nikula@intel.com>
-References: <cover.1761734313.git.jani.nikula@intel.com>
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
+ [209.85.128.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 078A410E76B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Oct 2025 11:33:24 +0000 (UTC)
+Received: by mail-wm1-f41.google.com with SMTP id
+ 5b1f17b1804b1-47112edf9f7so46803855e9.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Oct 2025 04:33:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1761737602; x=1762342402;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=P3BwMyFRrDoQuY67GIqd8U85YxOQh59i8+ZBPvA01xs=;
+ b=DoNaI13qRyky+HIpxOWrjrB4WmfbJ8pZK73QmRZ5a5fJxBEGs8kxN7F0LXJI/INdvm
+ /toP7OUjtqCqqZU3y1HbqxXN4NnNXg9ESjOhhRvInzwAm1zsZOdd3FT8bDOYvn6lo9xq
+ LSBLkGq6N7tatqo0PF+r4dN07EjEpqpl2Q5Uy7n6/ptxdga3zyEBjk4koKK2uIjZ8x+q
+ 6+MNR1uCp6JXO1KulG7T+f0W65QpzIRm1YhBL8I2B/COJSC2sb+w6baqSyXUa4SdLUjd
+ G0D27R5B4NcpCmopKn27sfl+MyS/IzFqYkxmCMTkUhc/n7wb+DnsaH6V/26QshdiAiMe
+ oA9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1761737602; x=1762342402;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=P3BwMyFRrDoQuY67GIqd8U85YxOQh59i8+ZBPvA01xs=;
+ b=IUbRLeN6BcjlOzDCl4642MmJ8WS/uytQymxozkIZUuJ7OHtwDZ55MBTTGLI4bIq+b7
+ EoVIL0tJ3rcr2MMm8gQCGgZA3zZvUQsNgqkLm7k5ZzolNHq9Ayh8VAMquSx7gtEieduO
+ 2nM0CCOvIh5dgNaABh5cNbApZMPlyVrrdJooX5KwZrl/gn81BOYrjjI3boj3AFSdl8r0
+ 0VT6W1YrudFZnPxMIHZgzpTS/WxtzBxIancQ1f0Dt3epbt6SqixB0288sjYTyWPhX4jk
+ rv6YlnbAScKP2NwiqAu0PKKiJik3QQiQsqZVjVJo+nZpyuktC952wyApIvYtiTPzZkcN
+ 4c8w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUMPC31wQbcGvP2Eg/Bc5eo7GkSoW9LQMEpItkWORGz9LXYQda/Hx9UYqtLK8pmaSvsoBpt7CEfBuM=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwJNzQwu+hgldqeXgb2N8qZFUSwD3TWhSRGWBAjQVFbJRteJFdS
+ GMh1WavoErz2DgprD6OzLafizlOj+io9/R0yYZCutaUGYgN/vaZGY+VIzpMCD5q1eB8=
+X-Gm-Gg: ASbGncsaBp5ybn+tRejQs5SzzkHcA8HkcQCzMXm+O+SobmnOuJQ8kBVvB4vpyqrdkrn
+ wCkcfNGDOe5haG2LcaSx+NXj+j0grhUCqj91prXcq5InljRhSQxUGXlyD/HCOUAdZj6hdTjL8oR
+ cKF36vNMUWL/gYNgPLqKDKmVoefNb1gxt0zQbEuWg5hbUbNTptVFVQajagdOOm3KD6vhS+gcELs
+ BS0yOInYvSPtFg0LtWvrfVFmrHsboBkHJILMCJhc9imCpa+2GSuBW59Kkl+YzOJu/WlUNDFXt18
+ X6z2MycqT21hnGaaLDsUolUv/sV3sZLLjB7Wm+xVxIcXGMTwMYMYnC9QKhCFqnijFJUAQHfZoeQ
+ eqYGh1B4/7Q98ondXs2NM69V8Uqv8+ld9A1/zXu87FOqQRMzoCnkA+fdjBf24WEz805cX3aulCS
+ igHnVTznKnimg2vdI=
+X-Google-Smtp-Source: AGHT+IH3bRjeykgeUR2mhaW2uW2joh5ceK9dL8tnXMY6z73ohXgFggCLePeWUImJ1Mb6PkVjpVlqwA==
+X-Received: by 2002:a05:600c:4511:b0:46e:477a:f3dd with SMTP id
+ 5b1f17b1804b1-4771e1f1575mr27319225e9.36.1761737602088; 
+ Wed, 29 Oct 2025 04:33:22 -0700 (PDT)
+Received: from [192.168.0.101] ([90.242.12.242])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4771e235ae1sm52656425e9.17.2025.10.29.04.33.21
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 29 Oct 2025 04:33:21 -0700 (PDT)
+Message-ID: <bb365451-b451-41ef-82cd-eef8e21ead19@ursulin.net>
+Date: Wed, 29 Oct 2025 11:33:20 +0000
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915: Fix conversion between clock ticks and
+ nanoseconds
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>, andi.shyti@kernel.org
+References: <20251016000350.1152382-2-umesh.nerlige.ramappa@intel.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <20251016000350.1152382-2-umesh.nerlige.ramappa@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,42 +94,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The ttm/ttm_resource.h header does not really need anything from
-drm_print.h. A simple forward declaration for struct drm_printer is
-sufficient.
 
-An explicit drm_print.h include has previously been added to all the
-files that indirectly depended on this include.
+On 16/10/2025 01:03, Umesh Nerlige Ramappa wrote:
+> When tick values are large, the multiplication by NSEC_PER_SEC is larger
+> than 64 bits and results in bad conversions.
+> 
+> The issue is seen in PMU busyness counters that look like they have
+> wrapped around due to bad conversion. i915 PMU implementation returns
+> monotonically increasing counters. If a count is lesser than previous
+> one, it will only return the larger value until the smaller value
+> catches up. The user will see this as zero delta between two
+> measurements even though the engines are busy.
+> 
+> Fix it by using mul_u64_u32_div()
+> 
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14955
+> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
-v3: Only remove the include here (Thomas)
+There was no need for Fixes: or cc: stable?
 
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- include/drm/ttm/ttm_resource.h | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Regards,
 
-diff --git a/include/drm/ttm/ttm_resource.h b/include/drm/ttm/ttm_resource.h
-index f49daa504c36..68bf010d8b40 100644
---- a/include/drm/ttm/ttm_resource.h
-+++ b/include/drm/ttm/ttm_resource.h
-@@ -31,14 +31,15 @@
- #include <linux/iosys-map.h>
- #include <linux/dma-fence.h>
- 
--#include <drm/drm_print.h>
- #include <drm/ttm/ttm_caching.h>
- #include <drm/ttm/ttm_kmap_iter.h>
- 
- #define TTM_MAX_BO_PRIORITY	4U
- #define TTM_NUM_MEM_TYPES 9
- 
-+struct dentry;
- struct dmem_cgroup_device;
-+struct drm_printer;
- struct ttm_device;
- struct ttm_resource_manager;
- struct ttm_resource;
--- 
-2.47.3
+Tvrtko
+
+> ---
+> v2:
+> - Fix divide by zero for Gen11 (Andi)
+> - Update commit message
+> 
+> v3:
+> - Drop GCD and use mul_u64_u32_div() instead (Ashutosh)
+> ---
+>   drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c b/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c
+> index 88b147fa5cb1..c90b35881a26 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c
+> @@ -205,7 +205,7 @@ static u64 div_u64_roundup(u64 nom, u32 den)
+>   
+>   u64 intel_gt_clock_interval_to_ns(const struct intel_gt *gt, u64 count)
+>   {
+> -	return div_u64_roundup(count * NSEC_PER_SEC, gt->clock_frequency);
+> +	return mul_u64_u32_div(count, NSEC_PER_SEC, gt->clock_frequency);
+>   }
+>   
+>   u64 intel_gt_pm_interval_to_ns(const struct intel_gt *gt, u64 count)
+> @@ -215,7 +215,7 @@ u64 intel_gt_pm_interval_to_ns(const struct intel_gt *gt, u64 count)
+>   
+>   u64 intel_gt_ns_to_clock_interval(const struct intel_gt *gt, u64 ns)
+>   {
+> -	return div_u64_roundup(gt->clock_frequency * ns, NSEC_PER_SEC);
+> +	return mul_u64_u32_div(ns, gt->clock_frequency, NSEC_PER_SEC);
+>   }
+>   
+>   u64 intel_gt_ns_to_pm_interval(const struct intel_gt *gt, u64 ns)
 
