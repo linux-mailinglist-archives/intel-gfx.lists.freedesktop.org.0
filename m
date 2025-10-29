@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA7A6C1B7C1
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Oct 2025 15:59:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DCD06C1B7C4
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Oct 2025 15:59:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5383310E7EF;
-	Wed, 29 Oct 2025 14:59:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 681C510E7F7;
+	Wed, 29 Oct 2025 14:59:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bTMd3TVV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c3CcAn21";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D3D510E7EF
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Oct 2025 14:59:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6377110E7F0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Oct 2025 14:59:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761749943; x=1793285943;
+ t=1761749951; x=1793285951;
  h=resent-to:resent-from:resent-date:resent-message-id:from:
  to:cc:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=axtpxbsbqIbY+pXjWEdqmedajIQMek/k75tQuJpjV34=;
- b=bTMd3TVVHmmk/Tzrgo8iHkiuww5tchOPjuDbbWmjzgZ/l+AZCSa05Wmh
- gyYzzqJHiHv+nOyGRM4cKaSGQf11+wvSSMFK7JmKbpOqPeH6Fe61aQr+D
- 7fbHnQLmqzv23F+hnYWIOg5GLJ0wJbmJuehUnbhBBZM1S62mf6/23N0Wp
- Go7ikLgIE5zMJnksyQfBXqed9BUq02Nt37aX9O/VzFaCl+xM8Vc5DSRPE
- Kr7VV88mPiwCptydHWIE8rV7d1V8QAu33+b46ljB60Ev+hWAR+VD9bCdD
- OZkCoGVuDjeY/8p6kKh7yFOrwjdub/II6T6B1ZeaZMIXNSC3IC3dzhsSN A==;
-X-CSE-ConnectionGUID: vPsUaGyER62XNE8yHrZ8Rw==
-X-CSE-MsgGUID: VHmlBHeBQ7y1RAVMbvKf+w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="86501382"
-X-IronPort-AV: E=Sophos;i="6.19,264,1754982000"; d="scan'208";a="86501382"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2025 07:59:03 -0700
-X-CSE-ConnectionGUID: qPVjpnKHQ8Kr3m6jP8aqWw==
-X-CSE-MsgGUID: FvZJdoTvRNG/5jwqpeZ41w==
+ bh=V1HIvT74sB7sBX9ryMv0gu/J9ItskqqzOn3wyNxNvO0=;
+ b=c3CcAn21PgXplnCkd7k00CzpfkemtDoXPp766JNEZBo88W36ItGwfB5F
+ M0KvtSFDIhtcmlBaM7Yu5/H60b1CPldgwAumBLC54C+HzN6a5remGiJxB
+ dA1+gnIk97pqIKBN8+iExN2BEZQLh0sOxvQdexkMUdVQ+yrgUoMlUu+0W
+ AsTDm7yYp1ZdPErzTY7ZMrdbyeR92coPyXWtJgdBvWyEPbLCRnVFDsxrl
+ mxP6nNzcE9uHY6jjDRxm02z0LTRG2C8lbsw0B9Cq1Shgo52nO9JzvXesJ
+ ueDI1PoUeEQwb3ze8OfLuvvo6xK0FnZ6wQLXmRdUFksVUFXdS0KFN1ArK g==;
+X-CSE-ConnectionGUID: DYoQpimpTaCWLPjizwdOIg==
+X-CSE-MsgGUID: qTFMUjBQTJOZJK15oAGD6A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="74162927"
+X-IronPort-AV: E=Sophos;i="6.19,264,1754982000"; d="scan'208";a="74162927"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2025 07:59:10 -0700
+X-CSE-ConnectionGUID: fW16FUC5ToyyeWiOHZai0Q==
+X-CSE-MsgGUID: 1sovw/bNT36jV8Z5St6sJA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,264,1754982000"; d="scan'208";a="185573000"
+X-IronPort-AV: E=Sophos;i="6.19,264,1754982000"; d="scan'208";a="190045128"
 Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.160])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2025 07:59:02 -0700
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2025 07:59:09 -0700
 Resent-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7,
  02160 Espoo
 Resent-To: intel-gfx@lists.freedesktop.org
 Resent-From: Jani Nikula <jani.nikula@intel.com>
-Resent-Date: Wed, 29 Oct 2025 16:58:59 +0200
-Resent-Message-ID: <f457ca58dd483ee78ffb7efd19ed9f01d2a4bb9c@intel.com>
+Resent-Date: Wed, 29 Oct 2025 16:59:06 +0200
+Resent-Message-ID: <bd7ae22ba116e24988e6298299598b3ec9121be3@intel.com>
 From: Jani Nikula <jani.nikula@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
@@ -59,8 +59,8 @@ In-Reply-To: <20251016185408.22735-9-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20251016185408.22735-1-ville.syrjala@linux.intel.com>
  <20251016185408.22735-9-ville.syrjala@linux.intel.com>
-Date: Wed, 29 Oct 2025 15:36:27 +0200
-Message-ID: <dddd33010e1c47ca7c690e7d9657111cf9b64447@intel.com>
+Date: Wed, 29 Oct 2025 15:37:00 +0200
+Message-ID: <00e94e43f5fc12ca95e19a9631a24e3d2c93c5c7@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -83,16 +83,15 @@ On Thu, 16 Oct 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
 > After upcoming intel_frontbuffer lifetime related changed we
+
+*changes I believe, and sorry for noticing these just after hitting send
+ *facepalm*.
+
 > won't need intel_frontbuffer::obj for anything apart from
 > getting at the display. Add a direct pointer for that instead
 > so that the obj pointer can be completely eliminated.
 >
 > Acked-by: Jani Nikula <jani.nikula@intel.com>
-
-Upgrade to
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
 >  .../gpu/drm/i915/display/intel_frontbuffer.c  | 19 ++++++++-----------
