@@ -2,83 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD0B5C20270
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Oct 2025 14:05:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2D83C20279
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Oct 2025 14:05:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8776410E26C;
-	Thu, 30 Oct 2025 13:05:22 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=huawei.com header.i=@huawei.com header.b="A7gT8hbq";
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b="A7gT8hbq";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A2CC10E28D;
+	Thu, 30 Oct 2025 13:05:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 944 seconds by postgrey-1.36 at gabe;
- Tue, 28 Oct 2025 02:11:40 UTC
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E59210E064;
- Tue, 28 Oct 2025 02:11:40 +0000 (UTC)
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
- c=relaxed/relaxed; q=dns/txt; h=From;
- bh=KtvB1oS5JczByJ2TXJbSMekROy5U9Mx/XYWBZ+fYkHA=;
- b=A7gT8hbqcf1aNZZeClcqtU4HxgyLOxf+3xdLrC8jUe8vHKhZ1LQNE8l8SKUtwaXK9LQz7rCyl
- lk9MkCiBuwNYVYuwRKropa5IUssDfu9mJHKsffJQzdjrpvVV6aaeXCfQ//mhWQ7v3JnOpgSoyxp
- oDXln4mSG91mIVyZjIf8s2U=
-Received: from canpmsgout03.his.huawei.com (unknown [172.19.92.159])
- by szxga01-in.huawei.com (SkyGuard) with ESMTPS id 4cwYNH0pMBz1BFnt;
- Tue, 28 Oct 2025 09:54:55 +0800 (CST)
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
- c=relaxed/relaxed; q=dns/txt; h=From;
- bh=KtvB1oS5JczByJ2TXJbSMekROy5U9Mx/XYWBZ+fYkHA=;
- b=A7gT8hbqcf1aNZZeClcqtU4HxgyLOxf+3xdLrC8jUe8vHKhZ1LQNE8l8SKUtwaXK9LQz7rCyl
- lk9MkCiBuwNYVYuwRKropa5IUssDfu9mJHKsffJQzdjrpvVV6aaeXCfQ//mhWQ7v3JnOpgSoyxp
- oDXln4mSG91mIVyZjIf8s2U=
-Received: from mail.maildlp.com (unknown [172.19.163.48])
- by canpmsgout03.his.huawei.com (SkyGuard) with ESMTPS id 4cwYMt0r7lzpStg;
- Tue, 28 Oct 2025 09:54:34 +0800 (CST)
-Received: from dggpemf500015.china.huawei.com (unknown [7.185.36.143])
- by mail.maildlp.com (Postfix) with ESMTPS id 2A5C71800B4;
- Tue, 28 Oct 2025 09:55:50 +0800 (CST)
-Received: from [10.67.121.110] (10.67.121.110) by
- dggpemf500015.china.huawei.com (7.185.36.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.11; Tue, 28 Oct 2025 09:55:48 +0800
-Subject: Re: [PATCH 02/22] vfio/hisi: Convert to the get_region_info op
-To: Jason Gunthorpe <jgg@nvidia.com>, Alexander Gordeev
- <agordeev@linux.ibm.com>, David Airlie <airlied@gmail.com>, Alex Williamson
- <alex.williamson@redhat.com>, Ankit Agrawal <ankita@nvidia.com>, Christian
- Borntraeger <borntraeger@linux.ibm.com>, Brett Creeley
- <brett.creeley@amd.com>, <dri-devel@lists.freedesktop.org>, Eric Auger
- <eric.auger@redhat.com>, Eric Farman <farman@linux.ibm.com>, Giovanni Cabiddu
- <giovanni.cabiddu@intel.com>, Vasily Gorbik <gor@linux.ibm.com>, Heiko
- Carstens <hca@linux.ibm.com>, <intel-gfx@lists.freedesktop.org>, Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Kevin Tian <kevin.tian@intel.com>,
- <kvm@vger.kernel.org>, Kirti Wankhede <kwankhede@nvidia.com>,
- <linux-s390@vger.kernel.org>, Matthew Rosato <mjrosato@linux.ibm.com>, Nikhil
- Agarwal <nikhil.agarwal@amd.com>, Nipun Gupta <nipun.gupta@amd.com>, Peter
- Oberparleiter <oberpar@linux.ibm.com>, Halil Pasic <pasic@linux.ibm.com>,
- Pranjal Shrivastava <praan@google.com>, <qat-linux@intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>, Shameer Kolothum
- <skolothumtho@nvidia.com>, Mostafa Saleh <smostafa@google.com>, Sven Schnelle
- <svens@linux.ibm.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- <virtualization@lists.linux.dev>, Vineeth Vijayan <vneethv@linux.ibm.com>,
- Yishai Hadas <yishaih@nvidia.com>, Zhenyu Wang <zhenyuw.linux@gmail.com>, Zhi
- Wang <zhi.wang.linux@gmail.com>
-CC: <patches@lists.linux.dev>
-References: <2-v1-679a6fa27d31+209-vfio_get_region_info_op_jgg@nvidia.com>
-From: liulongfang <liulongfang@huawei.com>
-Message-ID: <bdb90638-3439-be4e-8722-6e8f9564b7b4@huawei.com>
-Date: Tue, 28 Oct 2025 09:55:47 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+X-Greylist: delayed 303 seconds by postgrey-1.36 at gabe;
+ Wed, 29 Oct 2025 04:17:07 UTC
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6027810E09A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Oct 2025 04:17:07 +0000 (UTC)
+X-UUID: 687dbf04b47d11f0a38c85956e01ac42-20251029
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.6, REQID:24ce07cd-caf3-4987-ad82-1f3ea74b1d01, IP:0,
+ UR
+ L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+ elease,TS:0
+X-CID-META: VersionHash:a9d874c, CLOUDID:10746e5ee0c5b761bd759bb49646ec09,
+ BulkI
+ D:nil,BulkQuantity:0,Recheck:0,SF:102|850,TC:nil,Content:0|15|50,EDM:-3,IP
+ :nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,
+ LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 687dbf04b47d11f0a38c85956e01ac42-20251029
+X-User: hehuiwen@kylinos.cn
+Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
+ (envelope-from <hehuiwen@kylinos.cn>)
+ (Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
+ with ESMTP id 235195869; Wed, 29 Oct 2025 12:11:56 +0800
+From: Huiwen He <hehuiwen@kylinos.cn>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Huiwen He <hehuiwen@kylinos.cn>
+Subject: [PATCH] drm/i915: remove redundant __GFP_NOWARN
+Date: Wed, 29 Oct 2025 12:11:44 +0800
+Message-Id: <20251029041144.449363-1-hehuiwen@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <2-v1-679a6fa27d31+209-vfio_get_region_info_op_jgg@nvidia.com>
-Content-Type: text/plain; charset="gbk"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.67.121.110]
-X-ClientProxiedBy: kwepems500001.china.huawei.com (7.221.188.70) To
- dggpemf500015.china.huawei.com (7.185.36.143)
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 30 Oct 2025 13:05:18 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -95,103 +65,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2025/10/24 7:09, Jason Gunthorpe wrote:
-> Change the function signature of hisi_acc_vfio_pci_ioctl()
-> and re-indent it.
-> 
-> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
-> ---
->  .../vfio/pci/hisilicon/hisi_acc_vfio_pci.c    | 57 +++++++++----------
->  1 file changed, 27 insertions(+), 30 deletions(-)
-> 
-> diff --git a/drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c b/drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c
-> index fde33f54e99ec5..f06dcfcf09599f 100644
-> --- a/drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c
-> +++ b/drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c
-> @@ -1324,43 +1324,39 @@ static ssize_t hisi_acc_vfio_pci_read(struct vfio_device *core_vdev,
->  	return vfio_pci_core_read(core_vdev, buf, new_count, ppos);
->  }
->  
-> -static long hisi_acc_vfio_pci_ioctl(struct vfio_device *core_vdev, unsigned int cmd,
-> -				    unsigned long arg)
-> +static int hisi_acc_vfio_get_region(struct vfio_device *core_vdev,
-> +				    struct vfio_region_info __user *arg)
->  {
-> -	if (cmd == VFIO_DEVICE_GET_REGION_INFO) {
-> -		struct vfio_pci_core_device *vdev =
-> -			container_of(core_vdev, struct vfio_pci_core_device, vdev);
-> -		struct pci_dev *pdev = vdev->pdev;
-> -		struct vfio_region_info info;
-> -		unsigned long minsz;
-> +	struct vfio_pci_core_device *vdev =
-> +		container_of(core_vdev, struct vfio_pci_core_device, vdev);
-> +	struct pci_dev *pdev = vdev->pdev;
-> +	struct vfio_region_info info;
-> +	unsigned long minsz;
->  
-> -		minsz = offsetofend(struct vfio_region_info, offset);
-> +	minsz = offsetofend(struct vfio_region_info, offset);
->  
-> -		if (copy_from_user(&info, (void __user *)arg, minsz))
-> -			return -EFAULT;
-> +	if (copy_from_user(&info, arg, minsz))
-> +		return -EFAULT;
->  
-> -		if (info.argsz < minsz)
-> -			return -EINVAL;
-> +	if (info.argsz < minsz)
-> +		return -EINVAL;
->  
-> -		if (info.index == VFIO_PCI_BAR2_REGION_INDEX) {
-> -			info.offset = VFIO_PCI_INDEX_TO_OFFSET(info.index);
-> +	if (info.index != VFIO_PCI_BAR2_REGION_INDEX)
-> +		return vfio_pci_ioctl_get_region_info(core_vdev, arg);
+The __GFP_NOWARN flag was included in GFP_NOWAIT since commit
+16f5dfbc851b ("gfp: include __GFP_NOWARN in GFP_NOWAIT"). So
+remove the redundant __GFP_NOWARN flag.
 
-Looking at your first patch from my driver implementation code, the vfio_pci_ioctl_get_region_info
-function doesn't need to modify the first parameter; it can directly use vdev.
+Signed-off-by: Huiwen He <hehuiwen@kylinos.cn>
+---
+ drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c | 4 ++--
+ drivers/gpu/drm/i915/i915_active.c               | 3 +--
+ 2 files changed, 3 insertions(+), 4 deletions(-)
 
-Thanks.
-Longfang.
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+index 8d4bb95f8424..22432912db2e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+@@ -220,7 +220,7 @@ static void heartbeat(struct work_struct *wrk)
+ 		goto out;
+ 	}
+ 
+-	rq = heartbeat_create(ce, GFP_NOWAIT | __GFP_NOWARN);
++	rq = heartbeat_create(ce, GFP_NOWAIT);
+ 	if (IS_ERR(rq))
+ 		goto unlock;
+ 
+@@ -282,7 +282,7 @@ static int __intel_engine_pulse(struct intel_engine_cs *engine)
+ 	GEM_BUG_ON(!intel_engine_has_preemption(engine));
+ 	GEM_BUG_ON(!intel_engine_pm_is_awake(engine));
+ 
+-	rq = heartbeat_create(ce, GFP_NOWAIT | __GFP_NOWARN);
++	rq = heartbeat_create(ce, GFP_NOWAIT);
+ 	if (IS_ERR(rq))
+ 		return PTR_ERR(rq);
+ 
+diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
+index 6b0c1162505a..f3acce9c1195 100644
+--- a/drivers/gpu/drm/i915/i915_active.c
++++ b/drivers/gpu/drm/i915/i915_active.c
+@@ -725,8 +725,7 @@ int i915_request_await_active(struct i915_request *rq,
+ 
+ static int sw_await_fence(void *arg, struct dma_fence *fence)
+ {
+-	return i915_sw_fence_await_dma_fence(arg, fence, 0,
+-					     GFP_NOWAIT | __GFP_NOWARN);
++	return i915_sw_fence_await_dma_fence(arg, fence, 0, GFP_NOWAIT);
+ }
+ 
+ int i915_sw_fence_await_active(struct i915_sw_fence *fence,
+-- 
+2.25.1
 
->  
-> -			/*
-> -			 * ACC VF dev BAR2 region consists of both functional
-> -			 * register space and migration control register space.
-> -			 * Report only the functional region to Guest.
-> -			 */
-> -			info.size = pci_resource_len(pdev, info.index) / 2;
-> +	info.offset = VFIO_PCI_INDEX_TO_OFFSET(info.index);
->  
-> -			info.flags = VFIO_REGION_INFO_FLAG_READ |
-> -					VFIO_REGION_INFO_FLAG_WRITE |
-> -					VFIO_REGION_INFO_FLAG_MMAP;
-> +	/*
-> +	 * ACC VF dev BAR2 region consists of both functional
-> +	 * register space and migration control register space.
-> +	 * Report only the functional region to Guest.
-> +	 */
-> +	info.size = pci_resource_len(pdev, info.index) / 2;
->  
-> -			return copy_to_user((void __user *)arg, &info, minsz) ?
-> -					    -EFAULT : 0;
-> -		}
-> -	}
-> -	return vfio_pci_core_ioctl(core_vdev, cmd, arg);
-> +	info.flags = VFIO_REGION_INFO_FLAG_READ | VFIO_REGION_INFO_FLAG_WRITE |
-> +		     VFIO_REGION_INFO_FLAG_MMAP;
-> +
-> +	return copy_to_user(arg, &info, minsz) ? -EFAULT : 0;
->  }
->  
->  static int hisi_acc_vf_debug_check(struct seq_file *seq, struct vfio_device *vdev)
-> @@ -1557,7 +1553,8 @@ static const struct vfio_device_ops hisi_acc_vfio_pci_migrn_ops = {
->  	.release = vfio_pci_core_release_dev,
->  	.open_device = hisi_acc_vfio_pci_open_device,
->  	.close_device = hisi_acc_vfio_pci_close_device,
-> -	.ioctl = hisi_acc_vfio_pci_ioctl,
-> +	.ioctl = vfio_pci_core_ioctl,
-> +	.get_region_info = hisi_acc_vfio_get_region,
->  	.device_feature = vfio_pci_core_ioctl_feature,
->  	.read = hisi_acc_vfio_pci_read,
->  	.write = hisi_acc_vfio_pci_write,
-> 
