@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98DD3C19286
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Oct 2025 09:47:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EFF8C19289
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Oct 2025 09:47:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 221F010E759;
-	Wed, 29 Oct 2025 08:47:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A65ED10E75A;
+	Wed, 29 Oct 2025 08:47:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ItgawKJb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BFqZSLV4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7F8810E759;
- Wed, 29 Oct 2025 08:47:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD9EF10E75A;
+ Wed, 29 Oct 2025 08:47:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761727645; x=1793263645;
+ t=1761727648; x=1793263648;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=KpEjfzWT0oXxBLuGgd2hA26b51vBcBnUtF8/rEfWoSc=;
- b=ItgawKJb+d57y2Dt16mbZkD2du5Y0wNiOu0z4dYrH87FPFcEjas5L3zK
- I8w+SzWRU2PNxUq9iY8Y29cPrqUQkjbkwvN72kFIVqzf3/aUesXpWS2g4
- +P9eOSgOAH652zm8e52YelXdXnaC4uwIQ6iga0kjIftNAGa5KU4sxXUyR
- 3QjMKt7e2KPxNzE7AbvGgS002ip250YpjUFXN0fbwtwQrfdh7hUkywjZF
- e48sznEaESADuqZndAOpE+OeelPtd3h3m3yRgLpBrWZDAHs8ST6YB9rfn
- dqDhLcdftuUB1sEzj2K5Tv7JZEzqp12VR16bLPiqenOJg+aMBmEXKatoM g==;
-X-CSE-ConnectionGUID: LqQhZM8LSsGBv5v3WFh2SA==
-X-CSE-MsgGUID: vNF751KzRhWVzhC9VR1yDw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63937506"
-X-IronPort-AV: E=Sophos;i="6.19,263,1754982000"; d="scan'208";a="63937506"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2025 01:47:25 -0700
-X-CSE-ConnectionGUID: 7U7d+roNSD+CGpXvjkmnLw==
-X-CSE-MsgGUID: 36xw7owMSReZW/kgCVkN2A==
+ bh=PYJYqPdZv1Ude+g/glCCBD4SR8tKtHqYEZxFsbNoHjw=;
+ b=BFqZSLV4lZFljKCISZvi4+mKAHMtiP6MivK0u62g5pkhDkLWNqonOZQO
+ SJRnqJKr6M5Qj/GwiXYh1/M/gjg8PoTZmNRaKJVfxij6wCZCHpudxBfM/
+ flqgadx4MTWcwzYPh20t6PmXHK/jkMH/OKP57VDBaSqxUjr8EwAgP7zRn
+ 11QUidFOLmGNaXNXAHeN2dqK1ijaZGfIiUI3OZACo1bVU+cZKGivu/dbX
+ UtDjhK5Tnr5v2E7lDpy6U0+gH8JlFHQqLWLiYwvLOZyV1mF7g0myvpDP0
+ /+4XePX6e4p250zxj0TxXSlsABTbpJZkZLl0+hgUK2ngUC/33KtE5miiz w==;
+X-CSE-ConnectionGUID: bcCLjiv0TEqQDE5lkrAyRQ==
+X-CSE-MsgGUID: pOMpPnE4Rr220tarPPOqvQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="75187236"
+X-IronPort-AV: E=Sophos;i="6.19,263,1754982000"; d="scan'208";a="75187236"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2025 01:47:28 -0700
+X-CSE-ConnectionGUID: +3mYQVhMR7aTfSrGiAb3AQ==
+X-CSE-MsgGUID: RTQPn47/SNWcxLAS8LlvVQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,263,1754982000"; d="scan'208";a="185676447"
+X-IronPort-AV: E=Sophos;i="6.19,263,1754982000"; d="scan'208";a="185230588"
 Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
  ([10.245.244.242])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2025 01:47:23 -0700
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2025 01:47:27 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	Luca Coelho <luciano.coelho@intel.com>
-Subject: [PATCH v2 8/9] drm/i915/cdclk: Use a more optimal min_cdclk for
+Subject: [PATCH v2 9/9] drm/i915/scaler: Use the actual scale factors for
  vblank length check
-Date: Wed, 29 Oct 2025 10:46:46 +0200
-Message-ID: <20251029084647.4165-9-ville.syrjala@linux.intel.com>
+Date: Wed, 29 Oct 2025 10:46:47 +0200
+Message-ID: <20251029084647.4165-10-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20251029084647.4165-1-ville.syrjala@linux.intel.com>
 References: <20251029084647.4165-1-ville.syrjala@linux.intel.com>
@@ -74,74 +74,110 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Adjust intel_cdclk_prefill_adjustment() to give out a potentially more
-optimal value, purely based on the final minimum CDCLK (also considering
-planes/pfit/etc.) for the current pipe. We can't actually check against
-the current CDCLK frequency as that might be much higher due to some
-other pipe, and said other pipe might later reduce the CDCLK below
-what the current pipe would find acceptable (given which WM levels
-are enabled). Ie. we don't consider any global constraints (other
-pipes, dbuf bandwidth, etc) on the mimimum CDCLK frequency here.
+Now that the scaler assignment has been moved to an earlier point
+we can start to use the actual scale factors in the prefill vs.
+vblank length check.
 
-We must also make sure crtc_state->min_cdclk doesn't exceed the
-platform max or else _intel_cdclk_prefill_adj() will get confused
-when trying to find the corresponding platform specific cdclk
-frequency.
-
-v2: check min_cdclk against platform max
-
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com> #v1
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c   | 17 +++++++++++++++--
- drivers/gpu/drm/i915/display/intel_display.c |  6 ++++++
- 2 files changed, 21 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/skl_scaler.c | 77 ++++++++++++++++++++---
+ 1 file changed, 67 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index e92e7fd9fd13..838834c49a90 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -4092,8 +4092,21 @@ static unsigned int _intel_cdclk_prefill_adj(const struct intel_crtc_state *crtc
- 
- unsigned int intel_cdclk_prefill_adjustment(const struct intel_crtc_state *crtc_state)
- {
--	/* FIXME use the actual min_cdclk for the pipe here */
--	return intel_cdclk_prefill_adjustment_worst(crtc_state);
-+	int clock = crtc_state->hw.pipe_mode.crtc_clock;
-+	int min_cdclk;
-+
-+	/*
-+	 * Only consider the current pipe's minimum cdclk here as a safe
-+	 * lower bound. This must *not* be based on the actual/logical cdclk
-+	 * frequency here as that may get reduced later due to eg. a modeset
-+	 * on a different pipe, and that would completely invalidate the
-+	 * guardband length checks we did on this pipe previously. That
-+	 * could lead to prefill exceeding the guardband which would result
-+	 * in underruns.
-+	 */
-+	min_cdclk = crtc_state->min_cdclk;
-+
-+	return _intel_cdclk_prefill_adj(crtc_state, clock, min_cdclk);
+diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+index e8a8facdc300..53436c731cf1 100644
+--- a/drivers/gpu/drm/i915/display/skl_scaler.c
++++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+@@ -978,22 +978,79 @@ void adl_scaler_ecc_unmask(const struct intel_crtc_state *crtc_state)
+ 	intel_de_write(display, XELPD_DISPLAY_ERR_FATAL_MASK, 0);
  }
  
- unsigned int intel_cdclk_prefill_adjustment_worst(const struct intel_crtc_state *crtc_state)
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 2eb714fbc35f..0ce6f923d722 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5759,6 +5759,12 @@ static int intel_atomic_check_crtcs(struct intel_atomic_state *state)
- 		int ret;
++static unsigned int skl_scaler_scale(const struct intel_crtc_state *crtc_state, int i)
++{
++	const struct intel_crtc_scaler_state *scaler_state =
++		&crtc_state->scaler_state;
++
++	return DIV_ROUND_UP_ULL(mul_u32_u32(scaler_state->scalers[i].hscale,
++					    scaler_state->scalers[i].vscale),
++				0x10000);
++}
++
++static unsigned int skl_scaler_downscale(const struct intel_crtc_state *crtc_state, int i)
++{
++	return max(0x10000, skl_scaler_scale(crtc_state, i));
++}
++
++static unsigned int skl_plane_scaler_downscale(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	const struct intel_crtc_scaler_state *scaler_state =
++		&crtc_state->scaler_state;
++	unsigned int scale = 0x10000;
++	int i;
++
++	for (i = 0; i < crtc->num_scalers; i++) {
++		/* ignore pfit */
++		if (i == scaler_state->scaler_id)
++			continue;
++
++		if (!scaler_state->scalers[i].in_use)
++			continue;
++
++		scale = max(scale, skl_scaler_downscale(crtc_state, i));
++	}
++
++	return scale;
++}
++
++static unsigned int skl_pipe_scaler_downscale(const struct intel_crtc_state *crtc_state)
++{
++	const struct intel_crtc_scaler_state *scaler_state =
++		&crtc_state->scaler_state;
++
++	if (!crtc_state->pch_pfit.enabled)
++		return 0x10000;
++
++	return skl_scaler_downscale(crtc_state, scaler_state->scaler_id);
++}
++
+ unsigned int skl_scaler_1st_prefill_adjustment(const struct intel_crtc_state *crtc_state)
+ {
+-	/*
+-	 * FIXME don't have scalers assigned yet
+-	 * so can't look up the scale factors
+-	 */
+-	return 0x10000;
++	const struct intel_crtc_scaler_state *scaler_state =
++		&crtc_state->scaler_state;
++	int num_scalers = hweight32(scaler_state->scaler_users);
++
++	if (num_scalers < 1)
++		return 0x10000;
++
++	if (num_scalers == 1 && crtc_state->pch_pfit.enabled)
++		return skl_pipe_scaler_downscale(crtc_state);
++	else
++		return skl_plane_scaler_downscale(crtc_state);
+ }
  
- 		new_crtc_state->min_cdclk = intel_crtc_min_cdclk(new_crtc_state);
-+		if (new_crtc_state->min_cdclk > display->cdclk.max_cdclk_freq) {
-+			drm_dbg_kms(display->drm, "[CRTC:%d:%s] required cdclk (%d kHz) exceeds max (%d kHz)\n",
-+				    crtc->base.base.id, crtc->base.name, new_crtc_state->min_cdclk,
-+				    display->cdclk.max_cdclk_freq);
-+			return -EINVAL;
-+		}
+ unsigned int skl_scaler_2nd_prefill_adjustment(const struct intel_crtc_state *crtc_state)
+ {
+-	/*
+-	 * FIXME don't have scalers assigned yet
+-	 * so can't look up the scale factors
+-	 */
+-	return 0x10000;
++	const struct intel_crtc_scaler_state *scaler_state =
++		&crtc_state->scaler_state;
++	int num_scalers = hweight32(scaler_state->scaler_users);
++
++	if (num_scalers < 2)
++		return 0x10000;
++
++	return skl_pipe_scaler_downscale(crtc_state);
+ }
  
- 		if (DISPLAY_VER(display) >= 9) {
- 			ret = intel_atomic_setup_scalers(state, crtc);
+ unsigned int skl_scaler_1st_prefill_lines(const struct intel_crtc_state *crtc_state)
 -- 
 2.49.1
 
