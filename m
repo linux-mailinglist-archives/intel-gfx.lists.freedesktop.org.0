@@ -2,65 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E64DFC1B78E
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Oct 2025 15:58:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1EEBC1B7A6
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Oct 2025 15:58:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 768E410E7EC;
-	Wed, 29 Oct 2025 14:58:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89CAF10E7EE;
+	Wed, 29 Oct 2025 14:58:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HechsRLv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TQCu81HS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A039F10E7EC
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Oct 2025 14:58:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFE7810E7ED
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Oct 2025 14:58:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761749918; x=1793285918;
+ t=1761749927; x=1793285927;
  h=resent-to:resent-from:resent-date:resent-message-id:from:
  to:cc:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=WYfpXQb36kSShJ4EqMDwnv4NfotsqsuaAM3EIXvUA2Y=;
- b=HechsRLvCaLq0NwjyNMvsF7FMWqvL6En93W/cxfpydDnUzqO3AmN9Nfo
- sCQrmkqgm/fiatAIuB2HkCTp3b2k3hRLqhU/RdBSTH4or0sqgDyUZahuz
- ql6u4d0tzDHw10UhGpL/5E1zsKvgMTWdM0QO8/LZnYDH4pR3z2m7QfwAt
- laHc0DA+DxpyNJsxUUw3Q98XsffFjMt3bUQhLA5iSlM66pz2TfhuqX/0F
- SooPz+WlC7VGVJeUZpZy7cwE59gqJxAyyym92n0ZwlOf8qS1Hu6S6rwNP
- UWFQCFalFJQz+gn1Zb6oHrkxWkyMvKO/9/lYrRhK1wOahRUdtiCDngGFt g==;
-X-CSE-ConnectionGUID: SZYE7tFyTbGUlqz25jfh3A==
-X-CSE-MsgGUID: uhJywienTDmSEJRzAHR+lA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="89341993"
-X-IronPort-AV: E=Sophos;i="6.19,264,1754982000"; d="scan'208";a="89341993"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2025 07:58:38 -0700
-X-CSE-ConnectionGUID: japFqkGcQPuxDkcq0+fF5w==
-X-CSE-MsgGUID: OoaZ3vGTTQ2UdVZge4yYfw==
+ bh=MDDnzdIp+mLIXH8LZZKXUOLAv4gNndCGWG23UwcuCxY=;
+ b=TQCu81HS9tkNZ4Ym1bCIGqroQyUrUfv8kMoUN3+1nfKrFCkIijAb2JDS
+ ZSbreGxOAYl68k/G8O5bK6+VHTSGRo1RM7Hsh5uFtFNoZYCpfuR1U8abt
+ KSAG75GOfFn9dX282LFkNmY6fJysoPAM/lPLH13eFrFAeZjSGGZJxg9NC
+ SfQjEW3S05oY19vjoVpRwzKGAHOTLc7+rk6oHdALHAENNP5uwgT5g+yGt
+ LCVo60uV8jo4WBK+ej79JZoMvlCTC9wLZ+Yrk1mt6eENXLEeiIOUEGBpo
+ hy2/Or6aor/IeVjRkQmua6W2uzPYflu0nqfhcWpXH8Sk6NVFU518Whixx Q==;
+X-CSE-ConnectionGUID: D+nbqJKzT1uNs4igB8L4ng==
+X-CSE-MsgGUID: z4nnfmRfQrewzJrsnZT2MA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="67736216"
+X-IronPort-AV: E=Sophos;i="6.19,264,1754982000"; d="scan'208";a="67736216"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2025 07:58:47 -0700
+X-CSE-ConnectionGUID: vhORrnQiQZKNfYwAD3DHVg==
+X-CSE-MsgGUID: SdvvTw8CRFuM6w+oC+RXQQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,264,1754982000"; d="scan'208";a="186437173"
+X-IronPort-AV: E=Sophos;i="6.19,264,1754982000"; d="scan'208";a="186144552"
 Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.160])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2025 07:58:37 -0700
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2025 07:58:46 -0700
 Resent-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7,
  02160 Espoo
 Resent-To: intel-gfx@lists.freedesktop.org
 Resent-From: Jani Nikula <jani.nikula@intel.com>
-Resent-Date: Wed, 29 Oct 2025 16:58:34 +0200
-Resent-Message-ID: <a83b03e548c882b97bcb7cf12978355343bef375@intel.com>
+Resent-Date: Wed, 29 Oct 2025 16:58:43 +0200
+Resent-Message-ID: <8454763d31370e5c3fb76538505d6b6df3b35f00@intel.com>
 From: Jani Nikula <jani.nikula@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 05/10] drm/i915/frontbuffer: Handle the dirtyfb cache
- flush inside intel_frontbuffer_flush()
-In-Reply-To: <20251016185408.22735-6-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH v2 06/10] drm/i915/frontbuffef: Split fb_tracking.lock
+ into two
+In-Reply-To: <20251016185408.22735-7-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20251016185408.22735-1-ville.syrjala@linux.intel.com>
- <20251016185408.22735-6-ville.syrjala@linux.intel.com>
-Date: Wed, 29 Oct 2025 15:34:41 +0200
-Message-ID: <563c7783ed3df2e81202be6e91eb846fcc022aea@intel.com>
+ <20251016185408.22735-7-ville.syrjala@linux.intel.com>
+Date: Wed, 29 Oct 2025 15:35:25 +0200
+Message-ID: <5bcca4db3f5017f1e697a1e5869bac8aec5fc1a7@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -81,21 +81,17 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Thu, 16 Oct 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+
+Subject, *frontbuffer
+
 >
-> intel_bo_frontbuffer_flush_for_display() is a bit too low level
-> to be direclty in the high level dirtyfb code. Move the calls
-
-*directly
-
-> into intel_frontbuffer_flush().
+> Our fb_tracking.lock is serving a double duty:
+> - protects fb_tracking.busy_bits
+> - provides the write-side protection for obj->frontbuffer
 >
-> There is a slight beahavioural change here in that we now skip
-
-*behavioural
-
-> the flush if the bo is not a current scanout buffer (front->bits
-> =3D=3D 0). But that is fine as the flush will eventually happen via
-> the fb pinning code if/when the bo becomes a scanout buffer again.
+> Split obj->frontbuffer role into a separate lock so that
+> we can clean up the current mess with the frontbuffer lifetime
+> management.
 >
 > Acked-by: Jani Nikula <jani.nikula@intel.com>
 
@@ -103,51 +99,110 @@ Upgrade to
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_fb.c          | 1 -
->  drivers/gpu/drm/i915/display/intel_frontbuffer.c | 4 +++-
->  2 files changed, 3 insertions(+), 2 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display_core.h      |  4 ++++
+>  drivers/gpu/drm/i915/display/intel_display_driver.c    |  1 +
+>  drivers/gpu/drm/i915/display/intel_frontbuffer.c       | 10 +++++-----
+>  drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h |  2 +-
+>  4 files changed, 11 insertions(+), 6 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i9=
-15/display/intel_fb.c
-> index ab301c657395..088e194ecf69 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> @@ -2194,7 +2194,6 @@ static int intel_user_framebuffer_dirty(struct drm_=
-framebuffer *fb,
->  	return ret;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/=
+gpu/drm/i915/display/intel_display_core.h
+> index fa43636b89fa..13576d07c999 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+> @@ -141,6 +141,10 @@ struct intel_dpll_global {
+>  };
 >=20=20
->  flush:
-> -	intel_bo_frontbuffer_flush_for_display(front);
->  	intel_frontbuffer_flush(front, ORIGIN_DIRTYFB);
->  	return ret;
->  }
+>  struct intel_frontbuffer_tracking {
+> +	/* protects obj->frontbuffer (write-side) */
+> +	spinlock_t frontbuffer_lock;
+> +
+> +	/* protects busy_bits */
+>  	spinlock_t lock;
+>=20=20
+>  	/*
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/driver=
+s/gpu/drm/i915/display/intel_display_driver.c
+> index f84a0b26b7a6..ac684f8c5d40 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> @@ -184,6 +184,7 @@ void intel_display_driver_early_probe(struct intel_di=
+splay *display)
+>  	if (!HAS_DISPLAY(display))
+>  		return;
+>=20=20
+> +	spin_lock_init(&display->fb_tracking.frontbuffer_lock);
+>  	spin_lock_init(&display->fb_tracking.lock);
+>  	mutex_init(&display->backlight.lock);
+>  	mutex_init(&display->audio.mutex);
 > diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c b/drivers/g=
 pu/drm/i915/display/intel_frontbuffer.c
-> index 5562801d2ea3..bdf8bfa7deb9 100644
+> index bdf8bfa7deb9..02b06dfb9fee 100644
 > --- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
 > +++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-> @@ -150,6 +150,9 @@ void __intel_fb_flush(struct intel_frontbuffer *front,
->  {
->  	struct intel_display *display =3D to_intel_display(front->obj->dev);
->=20=20
-> +	if (origin =3D=3D ORIGIN_DIRTYFB)
-> +		intel_bo_frontbuffer_flush_for_display(front);
-> +
->  	if (origin =3D=3D ORIGIN_CS) {
->  		spin_lock(&display->fb_tracking.lock);
->  		/* Filter out new bits since rendering started. */
-> @@ -167,7 +170,6 @@ static void intel_frontbuffer_flush_work(struct work_=
-struct *work)
->  	struct intel_frontbuffer *front =3D
->  		container_of(work, struct intel_frontbuffer, flush_work);
->=20=20
-> -	intel_bo_frontbuffer_flush_for_display(front);
->  	intel_frontbuffer_flush(front, ORIGIN_DIRTYFB);
->  	intel_frontbuffer_put(front);
+> @@ -210,7 +210,7 @@ static void frontbuffer_retire(struct i915_active *re=
+f)
 >  }
+>=20=20
+>  static void frontbuffer_release(struct kref *ref)
+> -	__releases(&to_intel_display(front->obj->dev)->fb_tracking.lock)
+> +	__releases(&to_intel_display(front->obj->dev)->fb_tracking.frontbuffer_=
+lock)
+>  {
+>  	struct intel_frontbuffer *ret, *front =3D
+>  		container_of(ref, typeof(*front), ref);
+> @@ -223,7 +223,7 @@ static void frontbuffer_release(struct kref *ref)
+>=20=20
+>  	ret =3D intel_bo_set_frontbuffer(obj, NULL);
+>  	drm_WARN_ON(display->drm, ret);
+> -	spin_unlock(&display->fb_tracking.lock);
+> +	spin_unlock(&display->fb_tracking.frontbuffer_lock);
+>=20=20
+>  	i915_active_fini(&front->write);
+>=20=20
+> @@ -256,9 +256,9 @@ intel_frontbuffer_get(struct drm_gem_object *obj)
+>  			 I915_ACTIVE_RETIRE_SLEEPS);
+>  	INIT_WORK(&front->flush_work, intel_frontbuffer_flush_work);
+>=20=20
+> -	spin_lock(&display->fb_tracking.lock);
+> +	spin_lock(&display->fb_tracking.frontbuffer_lock);
+>  	cur =3D intel_bo_set_frontbuffer(obj, front);
+> -	spin_unlock(&display->fb_tracking.lock);
+> +	spin_unlock(&display->fb_tracking.frontbuffer_lock);
+>=20=20
+>  	if (cur !=3D front) {
+>  		drm_gem_object_put(obj);
+> @@ -272,7 +272,7 @@ void intel_frontbuffer_put(struct intel_frontbuffer *=
+front)
+>  {
+>  	kref_put_lock(&front->ref,
+>  		      frontbuffer_release,
+> -		      &to_intel_display(front->obj->dev)->fb_tracking.lock);
+> +		      &to_intel_display(front->obj->dev)->fb_tracking.frontbuffer_lock=
+);
+>  }
+>=20=20
+>  /**
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h b/dri=
+vers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h
+> index b682969e3a29..1ec382c43aee 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h
+> @@ -77,7 +77,7 @@ i915_gem_object_get_frontbuffer(const struct drm_i915_g=
+em_object *obj)
+>   * Set object's frontbuffer pointer. If frontbuffer is already set for t=
+he
+>   * object keep it and return it's pointer to the caller. Please note tha=
+t RCU
+>   * mechanism is used to handle e.g. ongoing removal of frontbuffer point=
+er. This
+> - * function is protected by i915->display->fb_tracking.lock
+> + * function is protected by i915->display->fb_tracking.frontbuffer_lock
+>   *
+>   * Return: pointer to frontbuffer which was set.
+>   */
 
 --=20
 Jani Nikula, Intel
