@@ -2,82 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF77AC22694
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Oct 2025 22:26:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5A77C226BE
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Oct 2025 22:32:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 425EF10EA5E;
-	Thu, 30 Oct 2025 21:26:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L4Y7PJev";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 207BF10EA41;
+	Thu, 30 Oct 2025 21:32:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EF7A10EA65
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Oct 2025 21:26:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761859608; x=1793395608;
- h=resent-from:resent-date:resent-message-id:resent-to:from:
- to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=TECnABXriVx4/JwCTmIKSx7hjh4Igb+HbXMpi7A/ztQ=;
- b=L4Y7PJevrxgOYREDC2FbsPZAU7SxGd8N/HOqAobdZ30iNdcaGMu5wk27
- htLT9YOyq4/iy6mXUdIWS7qgRs5sLCyOqToKFaY5EwvoWbv43Wy/zDvdr
- Vx4bwEuTEJUOxxfBXvuNSfkCtcRiKQ3nzCmGptC2kx6v5gMnaYy9j4uoC
- yr3MPlwL2So1XVhYspV9Fl2ClGiRpsZ9SbqelhlDdLFtX8TIb6/jPXvpi
- bQl/0IgnRepn6KwYYkP3SSBlmxOSqEE1CRJe1s3Vn6m1cHd9vGk44KZuu
- FvOsCzORI7e/QmZZelo1cKuI2B4FUpF+13piwbJCNjGKgfLiu6xehEPw/ A==;
-X-CSE-ConnectionGUID: D1r5kgnWT8+mXiqhqLsspw==
-X-CSE-MsgGUID: 7Won5JvTSDSF42Ww2ubbcA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="51588057"
-X-IronPort-AV: E=Sophos;i="6.19,267,1754982000"; d="scan'208";a="51588057"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 14:26:48 -0700
-X-CSE-ConnectionGUID: O1ih9pucTF+LsfQ+at/Q+Q==
-X-CSE-MsgGUID: ZpZcdnkTTFa0j1WdH3fuKA==
-X-ExtLoopCount2: 2 from 10.245.245.234
-X-IronPort-AV: E=Sophos;i="6.19,267,1754982000"; d="scan'208";a="186501230"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.234])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 14:26:47 -0700
-Resent-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Resent-Date: Thu, 30 Oct 2025 23:26:44 +0200
-Resent-Message-ID: <aQPYFJrbQnnpOMvx@intel.com>
-Resent-To: intel-gfx@lists.freedesktop.org
-X-Original-To: ville.syrjala@linux.intel.com
-Delivered-To: ville.syrjala@linux.intel.com
-Received: from linux.intel.com [10.54.29.200]
- by stinkbox.korsu.shacknet.nu with IMAP (fetchmail-6.5.4)
- for <vsyrjala@localhost> (single-drop); Wed, 29 Oct 2025 22:45:43 +0200 (EET)
-Received: from orviesa003.jf.intel.com (ORVIESA003.jf.intel.com
- [10.64.159.143])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by linux.intel.com (Postfix) with ESMTPS id BF44A20B92E9
- for <ville.syrjala@linux.intel.com>; Wed, 29 Oct 2025 13:42:29 -0700 (PDT)
-X-CSE-ConnectionGUID: 8w5wYORfQLaYB6+/UJan9A==
-X-CSE-MsgGUID: FmZf1VwLTiWy8FnYwG67EQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,264,1754982000"; d="scan'208";a="189839632"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
- ([10.245.244.242])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2025 13:42:28 -0700
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 3/3] drm/i915/dram: Fix ICL DIMM_S decoding
-Date: Wed, 29 Oct 2025 22:42:15 +0200
-Message-ID: <20251029204215.12292-4-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.49.1
-In-Reply-To: <20251029204215.12292-1-ville.syrjala@linux.intel.com>
-References: <20251029204215.12292-1-ville.syrjala@linux.intel.com>
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD55410EA3F;
+ Thu, 30 Oct 2025 21:32:22 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3455454514218000423=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_Use_display_parent_interf?=
+ =?utf-8?q?ace_for_runtime_pm_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 30 Oct 2025 21:32:22 -0000
+Message-ID: <176185994289.1110.7373435235379394791@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <20251030202836.1815680-1-jouni.hogander@intel.com>
+In-Reply-To: <20251030202836.1815680-1-jouni.hogander@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,338 +37,204 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============3455454514218000423==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Unfortunately the MAD_DIMM DIMM_S and DIMM_L bits on ICL are
-not idential, so we are currently decoding DIMM_S incorrectly.
+== Series Details ==
 
-Fix the problem by defining the DIMM_S and DIMM_L bits separately.
-And for consistency do that same for SKL, even though there the
-bits do match between the two DIMMs. The result is rather
-repetitive in places, but I didn't feel like obfuscatign things
-with cpp macros/etc.
+Series: Use display parent interface for runtime pm (rev3)
+URL   : https://patchwork.freedesktop.org/series/156309/
+State : success
 
-Broken decoding on Dell XPS 13 7390 2-in-1:
- CH0 DIMM L size: 32 Gb, width: X16, ranks: 2, 16Gb+ DIMMs: no
- CH0 DIMM S size: 32 Gb, width: X32, ranks: 3, 16Gb+ DIMMs: no
- CH0 ranks: 2, 16Gb+ DIMMs: no
- CH1 DIMM L size: 32 Gb, width: X16, ranks: 2, 16Gb+ DIMMs: no
- CH1 DIMM S size: 32 Gb, width: X32, ranks: 3, 16Gb+ DIMMs: no
- CH1 ranks: 2, 16Gb+ DIMMs: no
- Memory configuration is symmetric? no
+== Summary ==
 
-Fixed decoding on Dell XPS 13 7390 2-in-1:
- CH0 DIMM L size: 32 Gb, width: X16, ranks: 2, 16Gb+ DIMMs: no
- CH0 DIMM S size: 32 Gb, width: X16, ranks: 2, 16Gb+ DIMMs: no
- CH0 ranks: 2, 16Gb+ DIMMs: no
- CH1 DIMM L size: 32 Gb, width: X16, ranks: 2, 16Gb+ DIMMs: no
- CH1 DIMM S size: 32 Gb, width: X16, ranks: 2, 16Gb+ DIMMs: no
- CH1 ranks: 2, 16Gb+ DIMMs: no
- Memory configuration is symmetric? yes
+CI Bug Log - changes from CI_DRM_17456 -> Patchwork_156309v3
+====================================================
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/intel_mchbar_regs.h |  53 +++++---
- drivers/gpu/drm/i915/soc/intel_dram.c    | 166 +++++++++++++++++------
- 2 files changed, 155 insertions(+), 64 deletions(-)
+Summary
+-------
 
-diff --git a/drivers/gpu/drm/i915/intel_mchbar_regs.h b/drivers/gpu/drm/i915/intel_mchbar_regs.h
-index a46a45b9d2e1..614d4017b57b 100644
---- a/drivers/gpu/drm/i915/intel_mchbar_regs.h
-+++ b/drivers/gpu/drm/i915/intel_mchbar_regs.h
-@@ -160,25 +160,40 @@
- 
- #define SKL_MAD_DIMM_CH0_0_0_0_MCHBAR_MCMAIN	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x500C)
- #define SKL_MAD_DIMM_CH1_0_0_0_MCHBAR_MCMAIN	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5010)
--#define   SKL_DRAM_S_SHIFT			16
--#define   SKL_DRAM_RANK_MASK			REG_GENMASK(10, 10)
--#define   SKL_DRAM_RANK_1			REG_FIELD_PREP(SKL_DRAM_RANK_MASK, 0)
--#define   SKL_DRAM_RANK_2			REG_FIELD_PREP(SKL_DRAM_RANK_MASK, 1)
--#define   SKL_DRAM_WIDTH_MASK			REG_GENMASK(9, 8)
--#define   SKL_DRAM_WIDTH_X8			REG_FIELD_PREP(SKL_DRAM_WIDTH_MASK, 0)
--#define   SKL_DRAM_WIDTH_X16			REG_FIELD_PREP(SKL_DRAM_WIDTH_MASK, 1)
--#define   SKL_DRAM_WIDTH_X32			REG_FIELD_PREP(SKL_DRAM_WIDTH_MASK, 2)
--#define   SKL_DRAM_SIZE_MASK			REG_GENMASK(5, 0)
--#define   ICL_DRAM_RANK_MASK			REG_GENMASK(10, 9)
--#define   ICL_DRAM_RANK_1			REG_FIELD_PREP(ICL_DRAM_RANK_MASK, 0)
--#define   ICL_DRAM_RANK_2			REG_FIELD_PREP(ICL_DRAM_RANK_MASK, 1)
--#define   ICL_DRAM_RANK_3			REG_FIELD_PREP(ICL_DRAM_RANK_MASK, 2)
--#define   ICL_DRAM_RANK_4			REG_FIELD_PREP(ICL_DRAM_RANK_MASK, 3)
--#define   ICL_DRAM_WIDTH_MASK			REG_GENMASK(8, 7)
--#define   ICL_DRAM_WIDTH_X8			REG_FIELD_PREP(ICL_DRAM_WIDTH_MASK, 0)
--#define   ICL_DRAM_WIDTH_X16			REG_FIELD_PREP(ICL_DRAM_WIDTH_MASK, 1)
--#define   ICL_DRAM_WIDTH_X32			REG_FIELD_PREP(ICL_DRAM_WIDTH_MASK, 2)
--#define   ICL_DRAM_SIZE_MASK			REG_GENMASK(6, 0)
-+#define   SKL_DIMM_S_RANK_MASK			REG_GENMASK(26, 26)
-+#define   SKL_DIMM_S_RANK_1			REG_FIELD_PREP(SKL_DIMM_S_RANK_MASK, 0)
-+#define   SKL_DIMM_S_RANK_2			REG_FIELD_PREP(SKL_DIMM_S_RANK_MASK, 1)
-+#define   SKL_DIMM_S_WIDTH_MASK			REG_GENMASK(25, 24)
-+#define   SKL_DIMM_S_WIDTH_X8			REG_FIELD_PREP(SKL_DIMM_S_WIDTH_MASK, 0)
-+#define   SKL_DIMM_S_WIDTH_X16			REG_FIELD_PREP(SKL_DIMM_S_WIDTH_MASK, 1)
-+#define   SKL_DIMM_S_WIDTH_X32			REG_FIELD_PREP(SKL_DIMM_S_WIDTH_MASK, 2)
-+#define   SKL_DIMM_S_SIZE_MASK			REG_GENMASK(21, 16)
-+#define   SKL_DIMM_L_RANK_MASK			REG_GENMASK(10, 10)
-+#define   SKL_DIMM_L_RANK_1			REG_FIELD_PREP(SKL_DIMM_L_RANK_MASK, 0)
-+#define   SKL_DIMM_L_RANK_2			REG_FIELD_PREP(SKL_DIMM_L_RANK_MASK, 1)
-+#define   SKL_DIMM_L_WIDTH_MASK			REG_GENMASK(9, 8)
-+#define   SKL_DIMM_L_WIDTH_X8			REG_FIELD_PREP(SKL_DIMM_L_WIDTH_MASK, 0)
-+#define   SKL_DIMM_L_WIDTH_X16			REG_FIELD_PREP(SKL_DIMM_L_WIDTH_MASK, 1)
-+#define   SKL_DIMM_L_WIDTH_X32			REG_FIELD_PREP(SKL_DIMM_L_WIDTH_MASK, 2)
-+#define   SKL_DIMM_L_SIZE_MASK			REG_GENMASK(5, 0)
-+#define   ICL_DIMM_S_RANK_MASK			REG_GENMASK(27, 26)
-+#define   ICL_DIMM_S_RANK_1			REG_FIELD_PREP(ICL_DIMM_S_RANK_MASK, 0)
-+#define   ICL_DIMM_S_RANK_2			REG_FIELD_PREP(ICL_DIMM_S_RANK_MASK, 1)
-+#define   ICL_DIMM_S_WIDTH_MASK			REG_GENMASK(25, 24)
-+#define   ICL_DIMM_S_WIDTH_X8			REG_FIELD_PREP(ICL_DIMM_S_WIDTH_MASK, 0)
-+#define   ICL_DIMM_S_WIDTH_X16			REG_FIELD_PREP(ICL_DIMM_S_WIDTH_MASK, 1)
-+#define   ICL_DIMM_S_WIDTH_X32			REG_FIELD_PREP(ICL_DIMM_S_WIDTH_MASK, 2)
-+#define   ICL_DIMM_S_SIZE_MASK			REG_GENMASK(22, 16)
-+#define   ICL_DIMM_L_RANK_MASK			REG_GENMASK(10, 9)
-+#define   ICL_DIMM_L_RANK_1			REG_FIELD_PREP(ICL_DIMM_L_RANK_MASK, 0)
-+#define   ICL_DIMM_L_RANK_2			REG_FIELD_PREP(ICL_DIMM_L_RANK_MASK, 1)
-+#define   ICL_DIMM_L_RANK_3			REG_FIELD_PREP(ICL_DIMM_L_RANK_MASK, 2)
-+#define   ICL_DIMM_L_RANK_4			REG_FIELD_PREP(ICL_DIMM_L_RANK_MASK, 3)
-+#define   ICL_DIMM_L_WIDTH_MASK			REG_GENMASK(8, 7)
-+#define   ICL_DIMM_L_WIDTH_X8			REG_FIELD_PREP(ICL_DIMM_L_WIDTH_MASK, 0)
-+#define   ICL_DIMM_L_WIDTH_X16			REG_FIELD_PREP(ICL_DIMM_L_WIDTH_MASK, 1)
-+#define   ICL_DIMM_L_WIDTH_X32			REG_FIELD_PREP(ICL_DIMM_L_WIDTH_MASK, 2)
-+#define   ICL_DIMM_L_SIZE_MASK			REG_GENMASK(6, 0)
- 
- #define SA_PERF_STATUS_0_0_0_MCHBAR_PC		_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5918)
- #define  DG1_QCLK_RATIO_MASK			REG_GENMASK(9, 2)
-diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
-index 768bede992bc..d8afc6963a48 100644
---- a/drivers/gpu/drm/i915/soc/intel_dram.c
-+++ b/drivers/gpu/drm/i915/soc/intel_dram.c
-@@ -266,69 +266,121 @@ static int intel_dimm_num_devices(const struct dram_dimm_info *dimm)
- }
- 
- /* Returns total Gb for the whole DIMM */
--static int skl_get_dimm_size(u16 val)
-+static int skl_get_dimm_s_size(u32 val)
- {
--	return REG_FIELD_GET(SKL_DRAM_SIZE_MASK, val) * 8;
-+	return REG_FIELD_GET(SKL_DIMM_S_SIZE_MASK, val) * 8;
- }
- 
--static int skl_get_dimm_width(u16 val)
-+static int skl_get_dimm_l_size(u32 val)
- {
--	if (skl_get_dimm_size(val) == 0)
-+	return REG_FIELD_GET(SKL_DIMM_L_SIZE_MASK, val) * 8;
-+}
-+
-+static int skl_get_dimm_s_width(u32 val)
-+{
-+	if (skl_get_dimm_s_size(val) == 0)
-+		return 0;
-+
-+	switch (val & SKL_DIMM_S_WIDTH_MASK) {
-+	case SKL_DIMM_S_WIDTH_X8:
-+	case SKL_DIMM_S_WIDTH_X16:
-+	case SKL_DIMM_S_WIDTH_X32:
-+		return 8 << REG_FIELD_GET(SKL_DIMM_S_WIDTH_MASK, val);
-+	default:
-+		MISSING_CASE(val);
-+		return 0;
-+	}
-+}
-+
-+static int skl_get_dimm_l_width(u32 val)
-+{
-+	if (skl_get_dimm_l_size(val) == 0)
- 		return 0;
- 
--	switch (val & SKL_DRAM_WIDTH_MASK) {
--	case SKL_DRAM_WIDTH_X8:
--	case SKL_DRAM_WIDTH_X16:
--	case SKL_DRAM_WIDTH_X32:
--		val = REG_FIELD_GET(SKL_DRAM_WIDTH_MASK, val);
--		return 8 << val;
-+	switch (val & SKL_DIMM_L_WIDTH_MASK) {
-+	case SKL_DIMM_L_WIDTH_X8:
-+	case SKL_DIMM_L_WIDTH_X16:
-+	case SKL_DIMM_L_WIDTH_X32:
-+		return 8 << REG_FIELD_GET(SKL_DIMM_L_WIDTH_MASK, val);
- 	default:
- 		MISSING_CASE(val);
- 		return 0;
- 	}
- }
- 
--static int skl_get_dimm_ranks(u16 val)
-+static int skl_get_dimm_s_ranks(u32 val)
- {
--	if (skl_get_dimm_size(val) == 0)
-+	if (skl_get_dimm_s_size(val) == 0)
- 		return 0;
- 
--	val = REG_FIELD_GET(SKL_DRAM_RANK_MASK, val);
-+	return REG_FIELD_GET(SKL_DIMM_S_RANK_MASK, val) + 1;
-+}
-+
-+static int skl_get_dimm_l_ranks(u32 val)
-+{
-+	if (skl_get_dimm_l_size(val) == 0)
-+		return 0;
- 
--	return val + 1;
-+	return REG_FIELD_GET(SKL_DIMM_L_RANK_MASK, val) + 1;
- }
- 
- /* Returns total Gb for the whole DIMM */
--static int icl_get_dimm_size(u16 val)
-+static int icl_get_dimm_s_size(u32 val)
- {
--	return REG_FIELD_GET(ICL_DRAM_SIZE_MASK, val) * 8 / 2;
-+	return REG_FIELD_GET(ICL_DIMM_S_SIZE_MASK, val) * 8 / 2;
- }
- 
--static int icl_get_dimm_width(u16 val)
-+static int icl_get_dimm_l_size(u32 val)
- {
--	if (icl_get_dimm_size(val) == 0)
-+	return REG_FIELD_GET(ICL_DIMM_L_SIZE_MASK, val) * 8 / 2;
-+}
-+
-+static int icl_get_dimm_s_width(u32 val)
-+{
-+	if (icl_get_dimm_s_size(val) == 0)
-+		return 0;
-+
-+	switch (val & ICL_DIMM_S_WIDTH_MASK) {
-+	case ICL_DIMM_S_WIDTH_X8:
-+	case ICL_DIMM_S_WIDTH_X16:
-+	case ICL_DIMM_S_WIDTH_X32:
-+		return 8 << REG_FIELD_GET(ICL_DIMM_S_WIDTH_MASK, val);
-+	default:
-+		MISSING_CASE(val);
-+		return 0;
-+	}
-+}
-+
-+static int icl_get_dimm_l_width(u32 val)
-+{
-+	if (icl_get_dimm_l_size(val) == 0)
- 		return 0;
- 
--	switch (val & ICL_DRAM_WIDTH_MASK) {
--	case ICL_DRAM_WIDTH_X8:
--	case ICL_DRAM_WIDTH_X16:
--	case ICL_DRAM_WIDTH_X32:
--		val = REG_FIELD_GET(ICL_DRAM_WIDTH_MASK, val);
--		return 8 << val;
-+	switch (val & ICL_DIMM_L_WIDTH_MASK) {
-+	case ICL_DIMM_L_WIDTH_X8:
-+	case ICL_DIMM_L_WIDTH_X16:
-+	case ICL_DIMM_L_WIDTH_X32:
-+		return 8 << REG_FIELD_GET(ICL_DIMM_L_WIDTH_MASK, val);
- 	default:
- 		MISSING_CASE(val);
- 		return 0;
- 	}
- }
- 
--static int icl_get_dimm_ranks(u16 val)
-+static int icl_get_dimm_s_ranks(u32 val)
- {
--	if (icl_get_dimm_size(val) == 0)
-+	if (icl_get_dimm_s_size(val) == 0)
- 		return 0;
- 
--	val = REG_FIELD_GET(ICL_DRAM_RANK_MASK, val);
-+	return REG_FIELD_GET(ICL_DIMM_S_RANK_MASK, val) + 1;
-+}
-+
-+static int icl_get_dimm_l_ranks(u32 val)
-+{
-+	if (icl_get_dimm_l_size(val) == 0)
-+		return 0;
- 
--	return val + 1;
-+	return REG_FIELD_GET(ICL_DIMM_L_RANK_MASK, val) + 1;
- }
- 
- static bool
-@@ -339,35 +391,59 @@ skl_is_16gb_dimm(const struct dram_dimm_info *dimm)
- }
- 
- static void
--skl_dram_get_dimm_info(struct drm_i915_private *i915,
--		       struct dram_dimm_info *dimm,
--		       int channel, char dimm_name, u16 val)
-+skl_dram_print_dimm_info(struct drm_i915_private *i915,
-+			 struct dram_dimm_info *dimm,
-+			 int channel, char dimm_name)
- {
--	if (GRAPHICS_VER(i915) >= 11) {
--		dimm->size = icl_get_dimm_size(val);
--		dimm->width = icl_get_dimm_width(val);
--		dimm->ranks = icl_get_dimm_ranks(val);
--	} else {
--		dimm->size = skl_get_dimm_size(val);
--		dimm->width = skl_get_dimm_width(val);
--		dimm->ranks = skl_get_dimm_ranks(val);
--	}
--
- 	drm_dbg_kms(&i915->drm,
- 		    "CH%u DIMM %c size: %u Gb, width: X%u, ranks: %u, 16Gb+ DIMMs: %s\n",
- 		    channel, dimm_name, dimm->size, dimm->width, dimm->ranks,
- 		    str_yes_no(skl_is_16gb_dimm(dimm)));
- }
- 
-+static void
-+skl_dram_get_dimm_l_info(struct drm_i915_private *i915,
-+			 struct dram_dimm_info *dimm,
-+			 int channel, u32 val)
-+{
-+	if (GRAPHICS_VER(i915) >= 11) {
-+		dimm->size = icl_get_dimm_l_size(val);
-+		dimm->width = icl_get_dimm_l_width(val);
-+		dimm->ranks = icl_get_dimm_l_ranks(val);
-+	} else {
-+		dimm->size = skl_get_dimm_l_size(val);
-+		dimm->width = skl_get_dimm_l_width(val);
-+		dimm->ranks = skl_get_dimm_l_ranks(val);
-+	}
-+
-+	skl_dram_print_dimm_info(i915, dimm, channel, 'L');
-+}
-+
-+static void
-+skl_dram_get_dimm_s_info(struct drm_i915_private *i915,
-+			 struct dram_dimm_info *dimm,
-+			 int channel, u32 val)
-+{
-+	if (GRAPHICS_VER(i915) >= 11) {
-+		dimm->size = icl_get_dimm_s_size(val);
-+		dimm->width = icl_get_dimm_s_width(val);
-+		dimm->ranks = icl_get_dimm_s_ranks(val);
-+	} else {
-+		dimm->size = skl_get_dimm_s_size(val);
-+		dimm->width = skl_get_dimm_s_width(val);
-+		dimm->ranks = skl_get_dimm_s_ranks(val);
-+	}
-+
-+	skl_dram_print_dimm_info(i915, dimm, channel, 'S');
-+}
-+
- static int
- skl_dram_get_channel_info(struct drm_i915_private *i915,
- 			  struct dram_channel_info *ch,
- 			  int channel, u32 val)
- {
--	skl_dram_get_dimm_info(i915, &ch->dimm_l,
--			       channel, 'L', val & 0xffff);
--	skl_dram_get_dimm_info(i915, &ch->dimm_s,
--			       channel, 'S', val >> 16);
-+	skl_dram_get_dimm_l_info(i915, &ch->dimm_l, channel, val);
-+	skl_dram_get_dimm_s_info(i915, &ch->dimm_s, channel, val);
- 
- 	if (ch->dimm_l.size == 0 && ch->dimm_s.size == 0) {
- 		drm_dbg_kms(&i915->drm, "CH%u not populated\n", channel);
--- 
-2.49.1
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156309v3/index.html
+
+Participating hosts (46 -> 45)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_156309v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@dmabuf@all-tests@dma_fence_chain:
+    - fi-bsw-nick:        [PASS][1] -> [ABORT][2] ([i915#12904]) +1 other test abort
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17456/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156309v3/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
+
+  * igt@i915_selftest@live:
+    - bat-dg2-8:          [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17456/bat-dg2-8/igt@i915_selftest@live.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156309v3/bat-dg2-8/igt@i915_selftest@live.html
+
+  
+#### Possible fixes ####
+
+  * igt@dmabuf@all-tests@dma_fence_chain:
+    - fi-bsw-n3050:       [ABORT][5] ([i915#12904]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17456/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156309v3/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17456/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156309v3/bat-arls-5/igt@i915_selftest@live@workarounds.html
+    - bat-mtlp-6:         [DMESG-FAIL][9] ([i915#12061]) -> [PASS][10] +1 other test pass
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17456/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156309v3/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live:
+    - bat-atsm-1:         [DMESG-FAIL][11] ([i915#12061] / [i915#14204]) -> [DMESG-FAIL][12] ([i915#12061] / [i915#13929])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17456/bat-atsm-1/igt@i915_selftest@live.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156309v3/bat-atsm-1/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@mman:
+    - bat-atsm-1:         [DMESG-FAIL][13] ([i915#14204]) -> [DMESG-FAIL][14] ([i915#13929])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17456/bat-atsm-1/igt@i915_selftest@live@mman.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156309v3/bat-atsm-1/igt@i915_selftest@live@mman.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+  [i915#13929]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929
+  [i915#14204]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_17456 -> Patchwork_156309v3
+
+  CI-20190529: 20190529
+  CI_DRM_17456: 54a9b2250675164ff39f81674a9a818e92cbccaf @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8603: e6eb3c0fe0f28f3d6e530ae202fbb9f29bde9147 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_156309v3: 54a9b2250675164ff39f81674a9a818e92cbccaf @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156309v3/index.html
+
+--===============3455454514218000423==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Use display parent interface for runtime pm (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156309/">https://patchwork.freedesktop.org/series/156309/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156309v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156309v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17456 -&gt; Patchwork_156309v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156309v3/index.html</p>
+<h2>Participating hosts (46 -&gt; 45)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_156309v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@dmabuf@all-tests@dma_fence_chain:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17456/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156309v3/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) +1 other test abort</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17456/bat-dg2-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156309v3/bat-dg2-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@dmabuf@all-tests@dma_fence_chain:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17456/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156309v3/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17456/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156309v3/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17456/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156309v3/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17456/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156309v3/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@mman:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17456/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156309v3/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17456 -&gt; Patchwork_156309v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17456: 54a9b2250675164ff39f81674a9a818e92cbccaf @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8603: e6eb3c0fe0f28f3d6e530ae202fbb9f29bde9147 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_156309v3: 54a9b2250675164ff39f81674a9a818e92cbccaf @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============3455454514218000423==--
