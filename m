@@ -2,183 +2,75 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E0A0C20A1D
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Oct 2025 15:37:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E888C20F2E
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Oct 2025 16:33:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF27510E9C7;
-	Thu, 30 Oct 2025 14:37:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7541610E9F2;
+	Thu, 30 Oct 2025 15:33:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f1P/gJQQ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gVmHCdGW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3115610E9BE;
- Thu, 30 Oct 2025 14:37:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761835044; x=1793371044;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=p2zeLnO7Qx+z2YR7KIc4utmLaDQDPaBPHpEh8qiuv8s=;
- b=f1P/gJQQv7vt3RrXIuIXzDY/wh23b12zbWQzQg5ynC3rKgqUAthJkddO
- kKvlW+2ybd90OOTbHPpO8G43NZ/XcNirltkOg6CQtzn5wW75t1EBbRVQc
- RBIkc7xL/npm7W+FvWhtB1+PRem/XCRqEekqyJiViW5/wRiCZxWxaUIUs
- cGCdu0LfUW3F8a4gil0bTZSR5uf210fzvWPM8+j8zphOQstm+MMOa6idg
- GHj3TCW7zCVUNGv9Ug1jtou7/8ailBHpVNPsa8DK1minblM7znzmHLhqh
- gQ6CPq072U3kjklX1OB9yQGmcb2AE/QSkKM5GPvXL+8WG5dpcuOVNKQu9 A==;
-X-CSE-ConnectionGUID: dN2gXjdNQG6AsVQRuDS22A==
-X-CSE-MsgGUID: 5geSf4vhSbiK/li9COeE5w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="74655439"
-X-IronPort-AV: E=Sophos;i="6.19,267,1754982000"; d="scan'208";a="74655439"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 07:37:24 -0700
-X-CSE-ConnectionGUID: nZ2XSm9XRhq4KWgnfmLrRQ==
-X-CSE-MsgGUID: Zj3DMXUqTe6uo8Reg95azg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="185851015"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 07:37:24 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 30 Oct 2025 07:37:23 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Thu, 30 Oct 2025 07:37:23 -0700
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.40)
- by edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 30 Oct 2025 07:37:22 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=p0cfyRHUKfjExurL8XYKLel/IRinFuB1tXrFfKyflS8z+FHw91qI3d06yi1ARfHOmyBhY0RwJMH1KXqMn3tlvbrcYlqp8xkPbI7D6N7a552N7AF51JzTTmz47mZGqIBfV3ufB0DvU7RZXbazK/6hJGR5Flsj1iAtnx7C7sOlgenw4+Osc1OKumKXfg/+H4IOeDB2CzDClmMFoy+F4p3Ue56gBxwSlE2FeI3B2DiwL4fmCyflNKXULYBv+8uekTpVL/KeHCdtQdY6ghwO1kOpgT2nvQWgcX2FEr2mzf1OPnc0IXVoHVU8Rn/tiUmmIlyjtTr/27hvlBnxc09w8Akf8w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=swWHCOZt91jwhtraTmX8IwegYtjsOEG99XF2PI17Blo=;
- b=dWhMZwK6mQpk9X+6fujGGtgO1Gk0WxMIcVSDE8ob8sm92CL9gXWiHRzyI/g5/fTTl/scJ/TtoYoMBznLdc5SjvjCfJM1U5UnabOAdcuACeQ1x8rcJLB12rMhnMdbhJxYct7FPa6ooKmkHMpanlWvdLrEz1NUUbIbQnzYOb38D69IQ2iSpObniqkDWxQuhdxBoQZyFgeQTIIKf26oMRiucNKz8iBrf89srmeIWBQhmf31imBEYXqDL7OmCnPkXJAl1/u102hBADtXn/doG0YDMmlpzzqBy9WSWGUW/B7e1RneIiRizJRI4vFNCFuOE+hN/7u1OU4ldYPJzTXq9uJhCQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by IA0PR11MB7209.namprd11.prod.outlook.com (2603:10b6:208:441::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.14; Thu, 30 Oct
- 2025 14:37:20 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.9275.011; Thu, 30 Oct 2025
- 14:37:18 +0000
-Date: Thu, 30 Oct 2025 09:37:14 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>
-CC: Alex =?utf-8?Q?Benn=C3=A9e?= <alex.bennee@linaro.org>, Simon Richter
- <Simon.Richter@hogyros.de>, Alex Deucher <alexander.deucher@amd.com>,
- <amd-gfx@lists.freedesktop.org>, Bjorn Helgaas <bhelgaas@google.com>, "David
- Airlie" <airlied@gmail.com>, <dri-devel@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>, "Jani
- Nikula" <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, <linux-pci@vger.kernel.org>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Christian =?utf-8?B?S8O2bmln?=
- <christian.koenig@amd.com>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, =?utf-8?Q?Micha=C5=82?= Winiarski
- <michal.winiarski@intel.com>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 6/9] drm/xe: Remove driver side BAR release before resize
-Message-ID: <rk3bknl7gw2iaslzjc6hejijvevxyj5rt5m6ovqjxgu637mj2a@b723dlcpmvkf>
-References: <20251028173551.22578-1-ilpo.jarvinen@linux.intel.com>
- <20251028173551.22578-7-ilpo.jarvinen@linux.intel.com>
- <3ts3e2fwom7inbu2kzrvljo5mm7wz5ruaf6daib6cf5tk3v4al@njzufk22tcsy>
-Content-Type: text/plain; charset="iso-8859-1"; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3ts3e2fwom7inbu2kzrvljo5mm7wz5ruaf6daib6cf5tk3v4al@njzufk22tcsy>
-X-ClientProxiedBy: BY3PR10CA0002.namprd10.prod.outlook.com
- (2603:10b6:a03:255::7) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com
+ [209.85.214.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 708FC10E9F2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Oct 2025 15:33:25 +0000 (UTC)
+Received: by mail-pl1-f172.google.com with SMTP id
+ d9443c01a7336-27eca7297a7so1354305ad.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Oct 2025 08:33:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1761838405; x=1762443205; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=zSrtuFsWyaFuDIg9Oq0ESkGEkzoKb+w5VcoJTz4/A6g=;
+ b=gVmHCdGWVZ1d8H5QboZZo3OLnJJM+ZeRmwXQPE7hAZUutozZHNR/FLuy/GtLsKyshr
+ OCzP8d5GvJa+w9aMCMTQe0grzsJdifQcdpV//S82lAyPa4vdTDfK3ooWhG9pLfeRfA1j
+ zaR8DmGtotI3h85OtXW97O5ECOFCHFY6ZCBbw7yKMoteyz3keRQx1WgXKB+YT6Y9mpIU
+ 4jdiH7UbB1sCCqNS7wYO2fcktMi18UnwCRzngStVfhoW4ZuD6RDocjLMcR7gLBwSrUim
+ xgweJzUmMNBx2m4ljPIKTo02DbHErzGR4CZuRmRnSA/LEt9XY2BfAmGpvwwRYLnc/t73
+ xayQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1761838405; x=1762443205;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=zSrtuFsWyaFuDIg9Oq0ESkGEkzoKb+w5VcoJTz4/A6g=;
+ b=W/2X6YNZE1HhA0Kh6AOZtKkRzDQ2yPiljueopr/k40annXPo4vlP0+MQC84E7FcTbr
+ Uw+AKBBLrTvXJGmAS57ktT1X2h5XRO9d19DkRszJwiTP2uvGAt+rLVpph2Bt7+mcGwCX
+ 12KTCH1Rlwt2WwbDZAPGRQJhImqmpTrG61F2SKG/HEVMwR0ZOksMXgNKCY6gD+O43pLk
+ H4HYV+xqskBgtTAzhD1rDZAkyLTLlNLDh+LVk/UtrM7FbCeBoOWFccmcUVLgc8Eow8Om
+ kxd4X8sq8M5+Mr3EewOZQ95D9Rlrcc39m0w+YUtfra8n42nluOWpyhIy1Wzmzgzf71W5
+ MmIw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV8Qmc11BOoxZBOQv6BQieyEXFqcdNr0NReL3+fjyGZ8rZ+J68GJXNmio+N86W9oDbHg0xriY4RQqM=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yytw7Vv0EmJzFtk2BI0xAr17IcoDrc9Pgow1GbJboBXDJ5INgwm
+ 9Up0eOdR1d/xoIVhJli59vIlBuxf7nImtMTv6j7LaTF1PP31Ac8C1wpD/LptFAfwlDSc1sy5fmw
+ Jz6en4EFx7dp95igV7dyshyyBloZ4O3w=
+X-Gm-Gg: ASbGncsq3ztkAw5hIIJaaV0sCDLZ9ARc8SSyJu5b+vP5S3O2dEsB0NuS6pKNLbhNno/
+ 8IAIV0wqMo2CpKyLNSjq870vSRAAvEAe/1M3y34yEhhQTObfi3jcbgAITipKLzXf9KdK5mvna3W
+ 2BbJ/Vd0Wf/sZfEs/d0pIA3F+i6RbhT9W0V6RwOyGc6PhtoZFMdl5Z4VwdgQnrqsoLGvhGDTJTE
+ Gi0ftWTvT/xRut4DVuPff2dY6tqEvoheiyAS+FjYwwFDljgP8FTSmiIcWv7
+X-Google-Smtp-Source: AGHT+IF/DIcmG8u5RIhhAldrw36dsfpg+I4aimMNvV0R2hPUZTuiDy91PQ+wNVE4OZ/Fz3BlbzPBEjTfu7I/QAPnw0U=
+X-Received: by 2002:a17:903:41ca:b0:27e:eb9b:b80f with SMTP id
+ d9443c01a7336-2951a37f5b0mr1184265ad.2.1761838404814; Thu, 30 Oct 2025
+ 08:33:24 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|IA0PR11MB7209:EE_
-X-MS-Office365-Filtering-Correlation-Id: a7c0ad72-0205-44a4-1575-08de17c1d405
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|7416014|1800799024|366016|7053199007; 
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?6VNdKEG9Q32hDUNzgqaKziUg/SaDe2dHpNw42rsdwPd9iB+dxU8NWL5phT?=
- =?iso-8859-1?Q?l/pkzJxkM7jEuoyS/dvLqty1lOJgbU7SBHTwnQGlD4Tbf4Zvek9nEbp5Rw?=
- =?iso-8859-1?Q?BV1Wv1LcJ02F2PY1NhPQAlyZlcwN/w3IKSz9me191fjD1gSxp724m37r6f?=
- =?iso-8859-1?Q?ANJA5Bf44Z80uWyawOAww8TYKR/zFa03toBCWaebjHE5dmPq6q31n2ZHPj?=
- =?iso-8859-1?Q?fd22gCMOJkL7OvrfjSkSFRUBfU7FTtJvGQZOrWSBo8gAPsdo5zPdR+ioEx?=
- =?iso-8859-1?Q?4gG6Tz8+ErdXGkneFXnr/pUjsi/lGuwIMpCthLUqMZuyCPIO0fwdaY1PDu?=
- =?iso-8859-1?Q?aXNtJNpjtZqaVYiCP4MzZe6vhwoVeMFmD86zUdkzkxo8xQH9oRRsDd1f3J?=
- =?iso-8859-1?Q?g3G/DOHr5utkz6josy/z8IQRTkTVHHU0XtbaqCtj7uHPrmyaDeTV9Zcj17?=
- =?iso-8859-1?Q?RmEaeF3vpFR7t2nhmx/Zsy1WSaZXhTfc/ydqk/wyf1Xhoo834At5R3mH17?=
- =?iso-8859-1?Q?Pygu+n/9fklJENvCLFw/L3aVAUmxjfPrj7hFcJbywGj7Rd2ToGhq0kSpri?=
- =?iso-8859-1?Q?wjbCVn411C+D1JcQcNcbukfNxKbIoM+bNQqonesqOgYyqS3/J6+8A8ajtN?=
- =?iso-8859-1?Q?y6UNL/LgxSgtJ+Dc9P8uuNBJcJopkHhYcCQocf28HP32skCaiSOb3s6rPx?=
- =?iso-8859-1?Q?Z/qdmnGhLDDCO33HT+TVIX2KuhPr8/fkPxoR7WnqIB3y8sDQXZK16gknLo?=
- =?iso-8859-1?Q?+yoAmKrN681PONneLxCnwpSqChUhL7DY0wpxMdZsbHfzXkLtYjqFb6v36g?=
- =?iso-8859-1?Q?SUaEYMOePbMMRjVhS6RZkof+WI9JHVVRgJasi8UUGGrwVu3oguPnh/xU74?=
- =?iso-8859-1?Q?FOWzoh71q7uQ6QrA7r2CzfMPpJjpFTk/16GkQdg4zMafJWUi0iCZrD8MZc?=
- =?iso-8859-1?Q?SDCvwX/Cz/R4TjjOdRCpV7aLaH3a7f1k6+aMZczhBbsNQxehxpbr0r4mR2?=
- =?iso-8859-1?Q?Kyc/FG+LgsX4tFHRDeJwHiPsIEdhdvIHzP+TTJRi5PuyaZHaRhIj9ADh+K?=
- =?iso-8859-1?Q?E3GJlJHryMcKFIWJkBduAc6LUrB0Dzcec2AhGFrak+FqXqs6y/+Y+yUVyp?=
- =?iso-8859-1?Q?Uz9v3l5TK0tuEeJR7X3jRLpQrD5p4moLcXUL4I0puvVvsqxL2/CLYpv667?=
- =?iso-8859-1?Q?FGeqaIuhiVpCvvHRiCw645LbdUyGY3bOaQARdOtu1Ya4rPMGHhi3O2aZ1s?=
- =?iso-8859-1?Q?7hRB+K2GhJJkpSuhdrSy/jEiC0honwS185IYN2UOsdiBY6ytUySH+mOpEp?=
- =?iso-8859-1?Q?uzS6dUiWFkKBKsoVItEuV3vCDLtO6w61KP7idLbjvqMaJoeQKsCV2lP8gF?=
- =?iso-8859-1?Q?Jzpa+EidY2uClGotujFDDXegVAjjSVW44Qtnez5rppqzl2WhDGpBIi1DyJ?=
- =?iso-8859-1?Q?tO0FL+mATdZX7Cw2DmBUS+/OzM8sc9LBD5XdCnlvx/+mVMZHCCbzcnwE4M?=
- =?iso-8859-1?Q?nGUDFDw1MHfblgncJPiZJiAEjaZ0qX1/BxuSVwqZQerQ=3D=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(1800799024)(366016)(7053199007); DIR:OUT;
- SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?pEkzPwAEczI3sexOMLNRa/Uabr79Q238j5scIuqYODKceGyix4baTTWVm4?=
- =?iso-8859-1?Q?kCqPxMCrMVY9XG+ZEQQ0madJRQQwXCZjqVz9KhTyOXf0TsIdWBmHB2tnb2?=
- =?iso-8859-1?Q?ZweLcr5TnP8UMLyiU9ZabhAOx4/u15G4KMh5UzYNFZnfuml0G8nzeQqnTD?=
- =?iso-8859-1?Q?GB7FpRwSaOgEymopg5VWL0VEaLMc6QrKeBA3YSLGbnagLJZSKwytwUAfhz?=
- =?iso-8859-1?Q?DdTzTEDQwhAVK9tOYBQsKYZOIQpGo6b7PhWMWE1rzgeIJJsE+6BJI1eaha?=
- =?iso-8859-1?Q?J4eJG9yUDG2saV27XeZLW5xjmfRVvmcHsSco2HZLa1dJRbZjvN8wIoBGxC?=
- =?iso-8859-1?Q?2KhOst7PP/LOpKYpjlcFnB4LnTKDvBLtTTi7P/v5E7tfbWp81YNGx7xUzQ?=
- =?iso-8859-1?Q?PLqQkwPYsuKII4kq8MndqpMPAbO93eY4W9UmhSo9QStS47ofXqw3oh0Hy4?=
- =?iso-8859-1?Q?PK+QCdQtew6tOCaGG/PayUzwa61JZy0PZR5potAN09875RARvu66co/+mc?=
- =?iso-8859-1?Q?wecqCnqTRzkfQuh1rFVN1+g5ih7DYypnuGPoCAUfESdr5akFespCM0SRGQ?=
- =?iso-8859-1?Q?tPyuYkMUlnZ4z44S4IoZGNf6PwY4b6lGwFUV6sWHXKU43YjTxaXVtd/16O?=
- =?iso-8859-1?Q?aFghOcCgbH85Xef3zDOzTJ/CuFeHIo/kYqflj+SV3kkYtcVzcuYboloS8e?=
- =?iso-8859-1?Q?sImecTu8hA9/78szjj0OL2x3YFHyCjt0I5jGxtqY7mwQULE8qDrBklJSXJ?=
- =?iso-8859-1?Q?TC4NTJQi7rh0lsOFpW7fOshTYMjjn3IuzORI1W7Wa5InpcV/HSVyGzuwRe?=
- =?iso-8859-1?Q?u1Y5l2+yaRUDfTbTrliwvtsyxL2lOtSrj/SQltqfIic5B9vgV8KeaXKXtO?=
- =?iso-8859-1?Q?Srih6M2tCxlIoDusaeTrQFENZLuXZIXLfCEAurQFIZ0ZzT/9QT0APtGTyD?=
- =?iso-8859-1?Q?wSeAFjABglivMnZbUdxKZYQqXFkRWbUW5gZYRB8vMI7B155T7jldSbjyY3?=
- =?iso-8859-1?Q?nookyXcFSYcr3YcMwdWhL0K+q0Ek/VrG56saemUpQ+RvNtRa7ETjSBSMmX?=
- =?iso-8859-1?Q?6Y+dW8b+snPum0e+V9qudmXMIvjXtMCJcZHyto2jtGmKV1pLiQ/XFbhDHG?=
- =?iso-8859-1?Q?d0tdw5mrbvFt3U+0C4kdXvuyB+MPszfVlAdw2OaHc2KteHxjbsY6RFKHqa?=
- =?iso-8859-1?Q?70lc1IhL/4Pef2eW4oX7NOciEgOmM3x+v6aWjlGsDrSv8kr8gJCE4JaybI?=
- =?iso-8859-1?Q?Sa9dVqMhDQmxZSzINzdvGod5MY+3qPW8ktlPgsdi9VInyo+kg0HrlsVCqi?=
- =?iso-8859-1?Q?WCDThDEmtoooceBMsRsrusdGDCZpXeaSQo7F8mdy7KNG7rC4+l7cxVD2m7?=
- =?iso-8859-1?Q?FKkMiJ16WybadjZBCDY5XtPtLmjKdYBdIUFuqogWY7WMS4T6kNKuVXfBMs?=
- =?iso-8859-1?Q?Ynr9odO9WHbLJ7m9QzS7/FouvNOYtFS978B8F5mpwYxMpmSKKso5UnRCyb?=
- =?iso-8859-1?Q?wzZ0WWudfHz4M5cZhS0YtNcoStqxuAaRLJRD3tU0LJTWn6SAwJHqeioIQn?=
- =?iso-8859-1?Q?AAkTv+YON/0WD58yzrJVHy/VPUfeaRB5NwjOktK/vZU/ufwScZVz92Zl1i?=
- =?iso-8859-1?Q?ntDsbcdfgNY46TwvIKi3vMue3bVxFEVlgVoGIuS3cUbdtenJqKFLhEHw?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a7c0ad72-0205-44a4-1575-08de17c1d405
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Oct 2025 14:37:18.8385 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: r5QWzF+cOvu+nvhpxkTqYmB0pBaKZWUFCv7Mwoool2M1l9LCY3bS1u6cBMCUO5icDfdOckfbM/PDzP4J+JN6zAA6ifPfHP1uWz7Wgm3Pwf0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7209
-X-OriginatorOrg: intel.com
+References: <cover.1761681968.git.jani.nikula@intel.com>
+ <c04d81ae648c5f21b3f5b7953f924718051f2798.1761681968.git.jani.nikula@intel.com>
+In-Reply-To: <c04d81ae648c5f21b3f5b7953f924718051f2798.1761681968.git.jani.nikula@intel.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 30 Oct 2025 11:33:13 -0400
+X-Gm-Features: AWmQ_bmWPKIX3d-kIDddLaL2dw67OeDnzKsWnv6V0e-DXCx6Xc_EyN4vl5wEspA
+Message-ID: <CADnq5_MA9sUeKC6XEJGqvzSwXzwXL8bqUfs4U41aTJY2qF=Upw@mail.gmail.com>
+Subject: Re: [PATCH 3/3] drm/displayid: add quirk to ignore DisplayID checksum
+ errors
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, tiago.martins.araujo@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -194,62 +86,151 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 28, 2025 at 04:24:04PM -0500, Lucas De Marchi wrote:
->On Tue, Oct 28, 2025 at 07:35:48PM +0200, Ilpo Järvinen wrote:
->>PCI core handles releasing device's resources and their rollback in
->>case of failure of a BAR resizing operation. Releasing resource prior
->>to calling pci_resize_resource() prevents PCI core from restoring the
->>BARs as they were.
->>
->>Remove driver-side release of BARs from the xe driver.
->>
->>Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
->>Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->>---
->>drivers/gpu/drm/xe/xe_vram.c | 3 ---
->>1 file changed, 3 deletions(-)
->>
->>diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
->>index b44ebf50fedb..929412f0d131 100644
->>--- a/drivers/gpu/drm/xe/xe_vram.c
->>+++ b/drivers/gpu/drm/xe/xe_vram.c
->>@@ -33,9 +33,6 @@ _resize_bar(struct xe_device *xe, int resno, resource_size_t size)
->>	int bar_size = pci_rebar_bytes_to_size(size);
->>	int ret;
->>
->>-	if (pci_resource_len(pdev, resno))
->>-		pci_release_resource(pdev, resno);
->>-
+On Tue, Oct 28, 2025 at 5:26=E2=80=AFPM Jani Nikula <jani.nikula@intel.com>=
+ wrote:
 >
->conflict with drm-xe-next:
+> Add a mechanism for DisplayID specific quirks, and add the first quirk
+> to ignore DisplayID section checksum errors.
 >
->++<<<<<<< ours
-> +      release_bars(pdev);
+> It would be quite inconvenient to pass existing EDID quirks from
+> drm_edid.c for DisplayID parsing. Not all places doing DisplayID
+> iteration have the quirks readily available, and would have to pass it
+> in all places. Simply add a separate array of DisplayID specific EDID
+> quirks. We do end up checking it every time we iterate DisplayID blocks,
+> but hopefully the number of quirks remains small.
+>
+> There are a few laptop models with DisplayID checksum failures, leading
+> to higher refresh rates only present in the DisplayID blocks being
+> ignored. Add a quirk for the panel in the machines.
+>
+> Reported-by: Tiago Martins Ara=C3=BAjo <tiago.martins.araujo@gmail.com>
+> Closes: https://lore.kernel.org/r/CACRbrPGvLP5LANXuFi6z0S7XMbAG4X5y2YOLBD=
+xfOVtfGGqiKQ@mail.gmail.com
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14703
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+
+Series is:
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
+
+> ---
+>  drivers/gpu/drm/drm_displayid.c          | 41 +++++++++++++++++++++---
+>  drivers/gpu/drm/drm_displayid_internal.h |  2 ++
+>  2 files changed, 39 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_displayid.c b/drivers/gpu/drm/drm_displa=
+yid.c
+> index 20b453d2b854..58d0bb6d2676 100644
+> --- a/drivers/gpu/drm/drm_displayid.c
+> +++ b/drivers/gpu/drm/drm_displayid.c
+> @@ -9,6 +9,34 @@
+>  #include "drm_crtc_internal.h"
+>  #include "drm_displayid_internal.h"
+>
+> +enum {
+> +       QUIRK_IGNORE_CHECKSUM,
+> +};
 > +
->++=======
->++>>>>>>> theirs
+> +struct displayid_quirk {
+> +       const struct drm_edid_ident ident;
+> +       u8 quirks;
+> +};
+> +
+> +static const struct displayid_quirk quirks[] =3D {
+> +       {
+> +               .ident =3D DRM_EDID_IDENT_INIT('C', 'S', 'O', 5142, "MNE0=
+07ZA1-5"),
+> +               .quirks =3D BIT(QUIRK_IGNORE_CHECKSUM),
+> +       },
+> +};
+> +
+> +static u8 get_quirks(const struct drm_edid *drm_edid)
+> +{
+> +       int i;
+> +
+> +       for (i =3D 0; i < ARRAY_SIZE(quirks); i++) {
+> +               if (drm_edid_match(drm_edid, &quirks[i].ident))
+> +                       return quirks[i].quirks;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+>  static const struct displayid_header *
+>  displayid_get_header(const u8 *displayid, int length, int index)
+>  {
+> @@ -23,7 +51,7 @@ displayid_get_header(const u8 *displayid, int length, i=
+nt index)
+>  }
 >
->if we don't need to release the BARs anymore to call
->pci_resize_resource(), then the resolution is simply to drop the
->function release_bars() function.
+>  static const struct displayid_header *
+> -validate_displayid(const u8 *displayid, int length, int idx)
+> +validate_displayid(const u8 *displayid, int length, int idx, bool ignore=
+_checksum)
+>  {
+>         int i, dispid_length;
+>         u8 csum =3D 0;
+> @@ -41,8 +69,11 @@ validate_displayid(const u8 *displayid, int length, in=
+t idx)
+>         for (i =3D 0; i < dispid_length; i++)
+>                 csum +=3D displayid[idx + i];
+>         if (csum) {
+> -               DRM_NOTE("DisplayID checksum invalid, remainder is %d\n",=
+ csum);
+> -               return ERR_PTR(-EINVAL);
+> +               DRM_NOTE("DisplayID checksum invalid, remainder is %d%s\n=
+", csum,
+> +                        ignore_checksum ? " (ignoring)" : "");
+> +
+> +               if (!ignore_checksum)
+> +                       return ERR_PTR(-EINVAL);
+>         }
 >
->I'm sending that to our CI for coverage:
->https://lore.kernel.org/intel-xe/20251028211613.3228940-2-lucas.demarchi@intel.com/T/#u
-
-CI came back clean. Looks good from xe side:
-
-Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-thanks
-Lucas De Marchi
-
+>         return base;
+> @@ -52,6 +83,7 @@ static const u8 *find_next_displayid_extension(struct d=
+isplayid_iter *iter)
+>  {
+>         const struct displayid_header *base;
+>         const u8 *displayid;
+> +       bool ignore_checksum =3D iter->quirks & BIT(QUIRK_IGNORE_CHECKSUM=
+);
 >
->thanks
->Lucas De Marchi
+>         displayid =3D drm_edid_find_extension(iter->drm_edid, DISPLAYID_E=
+XT, &iter->ext_index);
+>         if (!displayid)
+> @@ -61,7 +93,7 @@ static const u8 *find_next_displayid_extension(struct d=
+isplayid_iter *iter)
+>         iter->length =3D EDID_LENGTH - 1;
+>         iter->idx =3D 1;
 >
->>	ret = pci_resize_resource(pdev, resno, bar_size);
->>	if (ret) {
->>		drm_info(&xe->drm, "Failed to resize BAR%d to %dM (%pe). Consider enabling 'Resizable BAR' support in your BIOS\n",
->>-- 
->>2.39.5
->>
+> -       base =3D validate_displayid(displayid, iter->length, iter->idx);
+> +       base =3D validate_displayid(displayid, iter->length, iter->idx, i=
+gnore_checksum);
+>         if (IS_ERR(base))
+>                 return NULL;
+>
+> @@ -76,6 +108,7 @@ void displayid_iter_edid_begin(const struct drm_edid *=
+drm_edid,
+>         memset(iter, 0, sizeof(*iter));
+>
+>         iter->drm_edid =3D drm_edid;
+> +       iter->quirks =3D get_quirks(drm_edid);
+>  }
+>
+>  static const struct displayid_block *
+> diff --git a/drivers/gpu/drm/drm_displayid_internal.h b/drivers/gpu/drm/d=
+rm_displayid_internal.h
+> index 957dd0619f5c..5b1b32f73516 100644
+> --- a/drivers/gpu/drm/drm_displayid_internal.h
+> +++ b/drivers/gpu/drm/drm_displayid_internal.h
+> @@ -167,6 +167,8 @@ struct displayid_iter {
+>
+>         u8 version;
+>         u8 primary_use;
+> +
+> +       u8 quirks;
+>  };
+>
+>  void displayid_iter_edid_begin(const struct drm_edid *drm_edid,
+> --
+> 2.47.3
+>
