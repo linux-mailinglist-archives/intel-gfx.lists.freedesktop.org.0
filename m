@@ -2,56 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54D20C1F59E
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Oct 2025 10:41:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE72EC1F5A1
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Oct 2025 10:41:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E23AC10E94A;
-	Thu, 30 Oct 2025 09:41:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3D8510E952;
+	Thu, 30 Oct 2025 09:41:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C5hcBXQR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="evCNPEWL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3FBF10E94A;
- Thu, 30 Oct 2025 09:41:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDC4110E952;
+ Thu, 30 Oct 2025 09:41:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761817313; x=1793353313;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=6dYH/LemY7sUKalLuAc9GIBCXURAJN90W9TJisAa+Fc=;
- b=C5hcBXQRZ+SQCVLbpOBg6Q3u5MpreDqpA9mYl3T1WTeocML7rw8j2kaq
- ccbcRinub0uBPmwZ5UFM6vkkc9Hz3FieMn+d58xsEhvQP/7zKKedp8VOD
- 671DSNLi0pZywKE1g6GtF7mjszqqoaLHRPwZaaVYB9ScNBj87sZ653J/Y
- znzDCZ9/S3feVcWtfANCy7eg/O0K8vZP4YqHeOOovqEdwXdGSsYA7TEUP
- oYJb2qhgIHBsRyD5jbgJ8Uhp8HpL6ddz6MSjnYW2qFZIVFKqjWw9eQCf3
- NcImGQGJ60B9EBxmh4jVUvl1kWmIol3AA2gkKtgUu27tH2kKwm7C4qUcP Q==;
-X-CSE-ConnectionGUID: ofzajfaZTaKY8RW0IRYVBg==
-X-CSE-MsgGUID: XBR9M2CXTy25e+19RBSY/A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="63651894"
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="63651894"
+ t=1761817315; x=1793353315;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Z5oZuGwfmvp6gMHnjkfkQD9CR5A+1TTYm9u2UBJXkV0=;
+ b=evCNPEWLXlrnuAO3S+bf9eDdbXdb+TSFcUQuAn25c0+aw5mfkHBQCpTr
+ ZhtvmYZoOxKNXlViMOqV8B8KNAeS2P5GUbKCQNTnraKXXeDup184B9g2w
+ FX3EELTvFcVtXRu6QZZ/z3/D1VUx9c87mc8Cv/Givzh2fPEMyFOgr5vgR
+ 3luMtd/1t37DveYfmksjNdqD6pYvVG2Fo9i428LHXQMGXDvQ6DUF3dlXh
+ L6SUZSbPAwVgS4XOstATrMnDK2BsLgMIHQvl4TX0Ms86ge40xPox1HVZm
+ FFQbutOqoP4Y2nlREIjSxD5JFhZhblWXrYeYROY7FyRP+c8gClBrNB3U1 w==;
+X-CSE-ConnectionGUID: mrfl5Fz5Soq7UXRRal1lgw==
+X-CSE-MsgGUID: ++9kSH54TtqGFdAM2ZcP9Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="63651900"
+X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="63651900"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 02:41:53 -0700
-X-CSE-ConnectionGUID: YsfVEOK5Sl60QGuXRYIGtw==
-X-CSE-MsgGUID: ywjG2tbJSe6dwvmq/C9v5w==
+ 30 Oct 2025 02:41:55 -0700
+X-CSE-ConnectionGUID: KX/TxpuYQsWukm8FkQ6D/g==
+X-CSE-MsgGUID: f6vthAzPSkeo+XHDrhmccQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="189983022"
+X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="189983041"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 02:41:51 -0700
+ 30 Oct 2025 02:41:53 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jouni.hogander@intel.com, ville.syrjala@linux.intel.com,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 0/6] Fix Adaptive Sync SDP for Panel Replay
-Date: Thu, 30 Oct 2025 14:58:51 +0530
-Message-ID: <20251030092857.3090072-1-ankit.k.nautiyal@intel.com>
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH 1/6] drm/i915/dp: Fix readback for target_rr in Adaptive Sync
+ SDP
+Date: Thu, 30 Oct 2025 14:58:52 +0530
+Message-ID: <20251030092857.3090072-2-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20251030092857.3090072-1-ankit.k.nautiyal@intel.com>
+References: <20251030092857.3090072-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,39 +71,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Enable Adaptive Sync SDP always when Panel replay + auxless ALPM is
-supported. Ensure AS SDP is sent on line which is within the SCL +
-guardband region.
+Correct the bit-shift logic to properly readback the 10 bit target_rr from
+DB3 and DB4.
 
-This series is in continuation from discussions in [1] [2].
+v2: Align the style with readback for vtotal. (Ville)
 
-[1] https://lore.kernel.org/all/1b8c6c6de1e5fe0db83e6ae942dfee7e6f950767.camel@intel.com/
-[2] https://lore.kernel.org/all/aPtqdAxDwiuQZbrn@intel.com/
+Fixes: 12ea89291603 ("drm/i915/dp: Add Read/Write support for Adaptive Sync SDP")
+Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Rev2:
-Add few fixes in AS_SDP and Lobf.
-
-Rev3:
-Add patch to avoid VRR with PCON.
-
-Ankit Nautiyal (5):
-  drm/i915/dp: Fix readback for target_rr in Adaptive Sync SDP
-  drm/i915/vrr: Avoid vrr for PCON with HDMI2.1 sink
-  drm/i915/dp: Allow AS_SDP only if panel replay + auxless alpm is
-    supported
-  drm/i915/alpm: Compute LOBF late after guardband is already determined
-  drm/i915/alpm: Allow LOBF only if window1 > alpm check_entry lines
-
-Jouni Högander (1):
-  drm/i915/display: Take into account AS SDP in
-    intel_dp_sdp_min_guardband
-
- drivers/gpu/drm/i915/display/intel_alpm.c | 41 ++++++++++++++++++-----
- drivers/gpu/drm/i915/display/intel_alpm.h |  6 ++--
- drivers/gpu/drm/i915/display/intel_dp.c   | 35 ++++++++++++++-----
- drivers/gpu/drm/i915/display/intel_vrr.c  |  7 ++++
- 4 files changed, 69 insertions(+), 20 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 475518b4048b..81d694122e7a 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -4996,7 +4996,7 @@ int intel_dp_as_sdp_unpack(struct drm_dp_as_sdp *as_sdp,
+ 	as_sdp->length = sdp->sdp_header.HB3 & DP_ADAPTIVE_SYNC_SDP_LENGTH;
+ 	as_sdp->mode = sdp->db[0] & DP_ADAPTIVE_SYNC_SDP_OPERATION_MODE;
+ 	as_sdp->vtotal = (sdp->db[2] << 8) | sdp->db[1];
+-	as_sdp->target_rr = (u64)sdp->db[3] | ((u64)sdp->db[4] & 0x3);
++	as_sdp->target_rr = ((sdp->db[4] & 0x3) << 8) | sdp->db[3];
+ 	as_sdp->target_rr_divider = sdp->db[4] & 0x20 ? true : false;
+ 
+ 	return 0;
 -- 
 2.45.2
 
