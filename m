@@ -2,143 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43C60C1FC46
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Oct 2025 12:17:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81FBDC1FF4B
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Oct 2025 13:15:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AE2810E900;
-	Thu, 30 Oct 2025 11:17:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="CkzMs23u";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Evz0+Qsd";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="CkzMs23u";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Evz0+Qsd";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8110F10E963;
+	Thu, 30 Oct 2025 12:15:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 011A310E901
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Oct 2025 11:17:30 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id BC1701F6E6;
- Thu, 30 Oct 2025 11:17:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1761823049; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=GIeVYpy3Zped/GGBjv38GPNtjRY0ZrSfDqW9N5fkXCw=;
- b=CkzMs23uAOrLFlfS58wanNTOqAQdYh6Zf09hSuk/O9V2tUNP6pWr3MeMetTrmBT3d8v3zq
- 0D3G08l0VMhZKXwfMC2iC5Dlh3r5bSZdUI8ajQpQU7JSv4a4cHhBb3DixI6c6k3lu22mYC
- fbUC+ABP9T5nHnDS75K/TeJ4qIGOKzM=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1761823049;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=GIeVYpy3Zped/GGBjv38GPNtjRY0ZrSfDqW9N5fkXCw=;
- b=Evz0+QsdwszB1EAiCUvMxp0iyHkt+Z8yJNisJMV3fRjZ8RAF1sjoKG3nY/e6Yj0bAiPhaZ
- 7auWQkV/cHI+vYCw==
-Authentication-Results: smtp-out2.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=CkzMs23u;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=Evz0+Qsd
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1761823049; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=GIeVYpy3Zped/GGBjv38GPNtjRY0ZrSfDqW9N5fkXCw=;
- b=CkzMs23uAOrLFlfS58wanNTOqAQdYh6Zf09hSuk/O9V2tUNP6pWr3MeMetTrmBT3d8v3zq
- 0D3G08l0VMhZKXwfMC2iC5Dlh3r5bSZdUI8ajQpQU7JSv4a4cHhBb3DixI6c6k3lu22mYC
- fbUC+ABP9T5nHnDS75K/TeJ4qIGOKzM=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1761823049;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=GIeVYpy3Zped/GGBjv38GPNtjRY0ZrSfDqW9N5fkXCw=;
- b=Evz0+QsdwszB1EAiCUvMxp0iyHkt+Z8yJNisJMV3fRjZ8RAF1sjoKG3nY/e6Yj0bAiPhaZ
- 7auWQkV/cHI+vYCw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 8DA9013393;
- Thu, 30 Oct 2025 11:17:29 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id AiwEIklJA2mwXwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 30 Oct 2025 11:17:29 +0000
-Message-ID: <c4e3b172-3df8-4d1b-a1b0-51cacae56f0c@suse.de>
-Date: Thu, 30 Oct 2025 12:17:25 +0100
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9380710E94E;
+ Thu, 30 Oct 2025 12:15:40 +0000 (UTC)
+Received: from 85-76-145-237-nat.elisa-mobile.fi ([85.76.145.237]
+ helo=[10.198.114.10])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
+ id 1vERZ2-00000001w37-1vJh; Thu, 30 Oct 2025 14:15:38 +0200
+Message-ID: <5f4a253cd371d420440ad6226888e642e6dbad84.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Date: Thu, 30 Oct 2025 14:14:05 +0200
+In-Reply-To: <b16635eefb68dfe22ba9c8550cde3f8d4e2ec575@intel.com>
+References: <cover.1761146196.git.jani.nikula@intel.com>
+ <469f9c41e0c3e3099314a3cf1a7671bf36ec8ffd.1761146196.git.jani.nikula@intel.com>
+ <309c3611169c5362c132ee8496150c74faf22497.camel@coelho.fi>
+ <b16635eefb68dfe22ba9c8550cde3f8d4e2ec575@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-5 
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/4] drm: replace drm_print.h includes from headers
- with a forward declaration
-To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org,
- maarten.lankhorst@linux.intel.com, Maxime Ripard <mripard@kernel.org>,
- David Airlie <airlied@redhat.com>, simona.vetter@ffwll.ch
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-References: <cover.1761734313.git.jani.nikula@intel.com>
- <41bb4163-8f5b-47c5-8121-7010147bc5e6@suse.de>
- <b8cc203c44518822197023c2dbf4a21aad681a4c@intel.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <b8cc203c44518822197023c2dbf4a21aad681a4c@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: BC1701F6E6
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[];
- RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
- RCVD_VIA_SMTP_AUTH(0.00)[]; RCVD_TLS_ALL(0.00)[];
- ARC_NA(0.00)[]; MIME_TRACE(0.00)[0:+];
- FUZZY_RATELIMITED(0.00)[rspamd.com]; TO_DN_SOME(0.00)[];
- RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- MID_RHS_MATCH_FROM(0.00)[];
- SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- RCPT_COUNT_SEVEN(0.00)[8]; RCVD_COUNT_TWO(0.00)[2];
- TO_MATCH_ENVRCPT_ALL(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,suse.de:mid,suse.de:dkim];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- DKIM_TRACE(0.00)[suse.de:+]
-X-Rspamd-Action: no action
-X-Spam-Flag: NO
-X-Spam-Score: -4.51
+X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-25) on farmhouse.coelho.fi
 X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+ autolearn=ham autolearn_force=no version=4.0.1
+Subject: Re: [PATCH 3/6] drm/i915/display: add intel_display_run_as_guest()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,51 +51,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi
+On Thu, 2025-10-30 at 10:48 +0200, Jani Nikula wrote:
+> On Thu, 30 Oct 2025, Luca Coelho <luca@coelho.fi> wrote:
+> > On Wed, 2025-10-22 at 18:17 +0300, Jani Nikula wrote:
+> > > Add intel_display_utils.c for display utilities that need more than a
+> > > header.
+> > >=20
+> > > Start off with intel_display_run_as_guest(). The implementation is
+> > > intentional duplication of the i915_utils.h i915_run_as_guest(), with
+> > > the idea that it's small enough to not matter.
+> > >=20
+> > > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> > > ---
+> >=20
+> >=20
+> >=20
+> > >  drivers/gpu/drm/i915/Makefile                  |  1 +
+> > >  .../gpu/drm/i915/display/intel_display_utils.c | 18 ++++++++++++++++=
+++
+> > >  .../gpu/drm/i915/display/intel_display_utils.h |  6 ++++++
+> > >  drivers/gpu/drm/i915/display/intel_pch.c       |  4 ++--
+> > >  drivers/gpu/drm/xe/Makefile                    |  1 +
+> > >  5 files changed, 28 insertions(+), 2 deletions(-)
+> > >  create mode 100644 drivers/gpu/drm/i915/display/intel_display_utils.=
+c
+> > >=20
+> > > diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Mak=
+efile
+> > > index 47bac9b2c611..046f9282fb65 100644
+> > > --- a/drivers/gpu/drm/i915/Makefile
+> > > +++ b/drivers/gpu/drm/i915/Makefile
+> > > @@ -255,6 +255,7 @@ i915-y +=3D \
+> > >  	display/intel_display_rpm.o \
+> > >  	display/intel_display_rps.o \
+> > >  	display/intel_display_snapshot.o \
+> > > +	display/intel_display_utils.o \
+> > >  	display/intel_display_wa.o \
+> > >  	display/intel_dmc.o \
+> > >  	display/intel_dmc_wl.o \
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_utils.c b/dri=
+vers/gpu/drm/i915/display/intel_display_utils.c
+> > > new file mode 100644
+> > > index 000000000000..13d3999dd580
+> > > --- /dev/null
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_utils.c
+> > > @@ -0,0 +1,18 @@
+> > > +// SPDX-License-Identifier: MIT
+> > > +/* Copyright =C2=A9 2025 Intel Corporation */
+> > > +
+> > > +#ifdef CONFIG_X86
+> > > +#include <asm/hypervisor.h>
+> > > +#endif
+> > > +
+> > > +#include "intel_display_utils.h"
+> > > +
+> > > +bool intel_display_run_as_guest(struct intel_display *display)
+> > > +{
+> > > +#if IS_ENABLED(CONFIG_X86)
+> > > +	return !hypervisor_is_type(X86_HYPER_NATIVE);
+> > > +#else
+> > > +	/* Not supported yet */
+> > > +	return false;
+> > > +#endif
+> > > +}
+> >=20
+> > Why can't this be an inline in the header file?
+>=20
+> I'll turn it around. I think there needs to be a rationale for inlining,
+> not the other way around. A regular function should be the default.
+>=20
+> I think the primary reason for inlining would be performance, but I'll
+> accept small "superfluous" static inlines that don't require pulling in
+> other headers.
+>=20
+> I don't think either is true here.
+>=20
+> Additionally the static inline exposes all of that ifdef mess and the
+> implementation details in the header too. A change in asm/hypervisor.h
+> leads to a rebuild of everything that includes intel_display_utils.h,
+> making the header dependencies worse. (Maybe a change in
+> asm/hypervisor.h leads to a rebuild of everything anyway, but you get
+> the general point.)
 
-Am 30.10.25 um 10:31 schrieb Jani Nikula:
-> On Wed, 29 Oct 2025, Thomas Zimmermann <tzimmermann@suse.de> wrote:
->> Am 29.10.25 um 11:39 schrieb Jani Nikula:
->>> v3 of [1] with the series restructured to be able to trivially revert
->>> the header changes without touching drivers again.
->>>
->>>
->>> [1] https://lore.kernel.org/r/cover.1761126446.git.jani.nikula@intel.com
->>>
->>> Jani Nikula (4):
->>>     drm: include drm_print.h where needed
->>>     drm/buddy: replace drm_print.h include with a forward declaration
->>>     drm/mm: replace drm_print.h include with a forward declaration
->>>     drm/ttm: replace drm_print.h include with a forward declaration
->> For the series:
->>
->> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
->>
->> Thanks for tidying this up.
-> Thank you for the review!
->
-> Considering that this touches a lot of drivers, albeit just the include
-> lists and thus highly unlikely to cause functional changes or hard
-> conflicts, can I go ahead and merge this to drm-misc-next?
+Arguable but fair points, thanks.
 
-Of course, go ahead.
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
-Best regards
-Thomas
-
->
-> BR,
-> Jani.
->
->
-
--- 
 --
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
-
-
+Cheers,
+Luca.
