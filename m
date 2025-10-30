@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C63A3C1F108
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Oct 2025 09:48:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49AB2C1F16B
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Oct 2025 09:51:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 268B210E90B;
-	Thu, 30 Oct 2025 08:48:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C37F710E935;
+	Thu, 30 Oct 2025 08:51:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HpM3kSJW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iokexpTZ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06DE710E915;
- Thu, 30 Oct 2025 08:48:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0859410E92D;
+ Thu, 30 Oct 2025 08:51:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761814130; x=1793350130;
+ t=1761814262; x=1793350262;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=7Q+m9+8QD/sx4zuscPwXJxeDu17lGmn5brVwWDfu7ys=;
- b=HpM3kSJWd/eC1NcHVhh/S96xI/cP7vt+LX/jrKMx+D+jlU+LPn7blC42
- 1zhpYi2gq0y9pMOShqLIfBFXf0cB+uzY1b3Qly9Cevg5l19jDE4IAh+7p
- 8WLSPU7sdHCV6Yhch4jZlEvDzGuw3rGybLh1OdmExcCIrMtF6zZ1CEl6G
- tMqfA753YB4dMA8ymcRjL1OhIdsDqmrfV8g35lEjIHHpwqpfu6E5WmGQD
- T4TcXUX5saefXrgxkj6H2SGNdLAZ7X/SAegbB1EOZhuwIogMc6ZKamDNs
- Q5inLccjR+rD65tJvCEO/1SOT0XuHWqxtKEfq7btjmPForMLWPYckNsMe w==;
-X-CSE-ConnectionGUID: 6sKOzq9NTACU+OEoNp6BAA==
-X-CSE-MsgGUID: vOyRLatBRpeIap+d7OeAVg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="67783638"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="67783638"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 01:48:50 -0700
-X-CSE-ConnectionGUID: spjAN0bCSr20QjoeVh9JtA==
-X-CSE-MsgGUID: SKKASgCiSw6LXthAfZOpdA==
+ bh=bup7AB98FqqifvUSoe+GWZ7fyeuCwOu83UHRPn3q+Xg=;
+ b=iokexpTZEefRTQy/nUHQQiWzYoqSYzo1hOWb4uTXVtczatDCxlZPtS13
+ n05LUzc23VCmOTgalXOIsxeIugE4Rc5vYOVO5HoDR15fUbdNhul5oVRXQ
+ v1LOeHsHDKO9v7X7hxXu0AJmkLuxBSOLbbSrAExEIWE7PjzPHMO5neFl/
+ SvabhkN7z7K+AMu3ddKumVOPI9gPfiiv3PUof/ENSNa1S6GXyIQVpz+44
+ 5grzOfFke76DfTdcNumPfp9RBxtH9kZFp61GqKd/HM1FfdKVBqlsWaCpO
+ /Bwum2HzI3311cVrCnNeUVgbXQK6CoJbAtfLq+DR57y0FogYFSrnd2bzO w==;
+X-CSE-ConnectionGUID: SrIYutexQnO2yy+0lLqS7w==
+X-CSE-MsgGUID: KvCLpHYbRJS+EelHml6o5A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="74548259"
+X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="74548259"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2025 01:51:01 -0700
+X-CSE-ConnectionGUID: pLsi2s9EQ1aNXI1z08d6qQ==
+X-CSE-MsgGUID: zB81DpTpQi2UUAHkcAUScQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="216751581"
+X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="185832979"
 Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.223])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 01:48:48 -0700
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2025 01:51:00 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: Luca Coelho <luca@coelho.fi>, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 3/6] drm/i915/display: add intel_display_run_as_guest()
-In-Reply-To: <309c3611169c5362c132ee8496150c74faf22497.camel@coelho.fi>
+Subject: Re: [PATCH 4/6] drm/i915/display: add intel_display_vtd_active()
+In-Reply-To: <ae26093b5ee79d456afaaae0d4040e91d45eb2c2.camel@coelho.fi>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <cover.1761146196.git.jani.nikula@intel.com>
- <469f9c41e0c3e3099314a3cf1a7671bf36ec8ffd.1761146196.git.jani.nikula@intel.com>
- <309c3611169c5362c132ee8496150c74faf22497.camel@coelho.fi>
-Date: Thu, 30 Oct 2025 10:48:45 +0200
-Message-ID: <b16635eefb68dfe22ba9c8550cde3f8d4e2ec575@intel.com>
+ <e022166af7c67f43904e2d0fc87bc5c13e0f1204.1761146196.git.jani.nikula@intel.com>
+ <ae26093b5ee79d456afaaae0d4040e91d45eb2c2.camel@coelho.fi>
+Date: Thu, 30 Oct 2025 10:50:57 +0200
+Message-ID: <a453394c50138e2c5a06c924af006d36bab83239@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -73,83 +73,47 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Thu, 30 Oct 2025, Luca Coelho <luca@coelho.fi> wrote:
 > On Wed, 2025-10-22 at 18:17 +0300, Jani Nikula wrote:
->> Add intel_display_utils.c for display utilities that need more than a
->> header.
->>=20
->> Start off with intel_display_run_as_guest(). The implementation is
->> intentional duplication of the i915_utils.h i915_run_as_guest(), with
->> the idea that it's small enough to not matter.
->>=20
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->
->
->
->>  drivers/gpu/drm/i915/Makefile                  |  1 +
->>  .../gpu/drm/i915/display/intel_display_utils.c | 18 ++++++++++++++++++
->>  .../gpu/drm/i915/display/intel_display_utils.h |  6 ++++++
->>  drivers/gpu/drm/i915/display/intel_pch.c       |  4 ++--
->>  drivers/gpu/drm/xe/Makefile                    |  1 +
->>  5 files changed, 28 insertions(+), 2 deletions(-)
->>  create mode 100644 drivers/gpu/drm/i915/display/intel_display_utils.c
->>=20
->> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefi=
-le
->> index 47bac9b2c611..046f9282fb65 100644
->> --- a/drivers/gpu/drm/i915/Makefile
->> +++ b/drivers/gpu/drm/i915/Makefile
->> @@ -255,6 +255,7 @@ i915-y +=3D \
->>  	display/intel_display_rpm.o \
->>  	display/intel_display_rps.o \
->>  	display/intel_display_snapshot.o \
->> +	display/intel_display_utils.o \
->>  	display/intel_display_wa.o \
->>  	display/intel_dmc.o \
->>  	display/intel_dmc_wl.o \
 >> diff --git a/drivers/gpu/drm/i915/display/intel_display_utils.c b/driver=
 s/gpu/drm/i915/display/intel_display_utils.c
->> new file mode 100644
->> index 000000000000..13d3999dd580
->> --- /dev/null
+>> index 13d3999dd580..04d010f7c23e 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_utils.c
 >> +++ b/drivers/gpu/drm/i915/display/intel_display_utils.c
->> @@ -0,0 +1,18 @@
->> +// SPDX-License-Identifier: MIT
->> +/* Copyright =C2=A9 2025 Intel Corporation */
+>> @@ -1,10 +1,15 @@
+>>  // SPDX-License-Identifier: MIT
+>>  /* Copyright =C2=A9 2025 Intel Corporation */
+>>=20=20
+>> +#include <linux/device.h>
 >> +
->> +#ifdef CONFIG_X86
->> +#include <asm/hypervisor.h>
->> +#endif
+>> +#include <drm/drm_device.h>
 >> +
->> +#include "intel_display_utils.h"
+>>  #ifdef CONFIG_X86
+>>  #include <asm/hypervisor.h>
+>>  #endif
+>>=20=20
+>> +#include "intel_display_core.h"
+>>  #include "intel_display_utils.h"
+>>=20=20
+>>  bool intel_display_run_as_guest(struct intel_display *display)
+>> @@ -16,3 +21,12 @@ bool intel_display_run_as_guest(struct intel_display =
+*display)
+>>  	return false;
+>>  #endif
+>>  }
 >> +
->> +bool intel_display_run_as_guest(struct intel_display *display)
+>> +bool intel_display_vtd_active(struct intel_display *display)
 >> +{
->> +#if IS_ENABLED(CONFIG_X86)
->> +	return !hypervisor_is_type(X86_HYPER_NATIVE);
->> +#else
->> +	/* Not supported yet */
->> +	return false;
->> +#endif
+>> +	if (device_iommu_mapped(display->drm->dev))
+>> +		return true;
+>> +
+>> +	/* Running as a guest, we assume the host is enforcing VT'd */
+>> +	return intel_display_run_as_guest(display);
 >> +}
 >
-> Why can't this be an inline in the header file?
+> This also looks quite much like an "inlineable" function, no?
 
-I'll turn it around. I think there needs to be a rationale for inlining,
-not the other way around. A regular function should be the default.
-
-I think the primary reason for inlining would be performance, but I'll
-accept small "superfluous" static inlines that don't require pulling in
-other headers.
-
-I don't think either is true here.
-
-Additionally the static inline exposes all of that ifdef mess and the
-implementation details in the header too. A change in asm/hypervisor.h
-leads to a rebuild of everything that includes intel_display_utils.h,
-making the header dependencies worse. (Maybe a change in
-asm/hypervisor.h leads to a rebuild of everything anyway, but you get
-the general point.)
-
+Same reason as before, and that display->drm->dev dereference would
+require pulling in both intel_display_core.h and drm/drm_device.h in the
+header.
 
 BR,
 Jani.
