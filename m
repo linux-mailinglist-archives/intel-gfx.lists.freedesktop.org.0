@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4655C1F5B0
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Oct 2025 10:42:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABFBCC1F5B6
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Oct 2025 10:42:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CD7210E961;
-	Thu, 30 Oct 2025 09:42:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4518610E964;
+	Thu, 30 Oct 2025 09:42:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N4MR4rCO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W7dGf7UT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5926910E95F;
- Thu, 30 Oct 2025 09:42:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31F6F10E961;
+ Thu, 30 Oct 2025 09:42:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761817324; x=1793353324;
+ t=1761817326; x=1793353326;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=n8pTYbrOwWt+7c5GNuo/5Yv99rRvFMCKJN13QbVQRyE=;
- b=N4MR4rCOwhWIpBrNNl81ID5AYOPmzI23HKBd8InIxf+mMx87HL8s/NzM
- wCMTRu7uhAyL+sJ6XCliTizNY1Z6r0hJfzl1kNrMdDQnagv85LjIX4vLw
- 6GalKFUAhH+rafsdXpAlSXxfL8hGM9cWjCOppigwO97+P2FlmaYeKE01n
- n8s1+2IMoJ9XZ/5UEfu2xKq5L1czuuUM1eD40Cnf6JUAKrm7lxMctZ+Rv
- B0xwJbeTxhVREDAlUDTS3x2mT0ySg9XSBypUWt9xV68789KGQiPd1roDu
- vaqquV1gEOaZej2296/loVHSnoLd7SAZZjD98PnBo12PQzwecqKnxfUHu g==;
-X-CSE-ConnectionGUID: Z31hsmodTJuRh8pTTjBy0g==
-X-CSE-MsgGUID: Oe6761CUTQqxF4wJv0gn7g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="63651908"
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="63651908"
+ bh=HUQPBqav0K2QpGEkvupql2mSfnLZWzkNjQf6Dz4O58E=;
+ b=W7dGf7UTNZoZ2sIzHJPUB1aQeiiH5O/rYgxPCg+FuqIarH78D7ZGrN+V
+ MFWydpsSUZ6fzr6o5+UyDTjGrtQjVJtEs8FkmUynQuq43z76j4HhErHXb
+ XMkriKWvEOhKdmqNbHiDk1N9see05qokjg8ou0Ym2oIsklm90e1dvj4BV
+ I+GqrVxfR8x/guxNMGxAJ/oynlk1eVLfWMHFDoNxBOtRrzmiM3BzW4mrp
+ 1XXS4dKeMgESRFXqxDsxGU/ykcwBJpKc/0JExlTE1+yO55ky+Ji8oGA6A
+ SgseQZ3vVszVrEvDd0kZwnZQZGx87BDBkT044XvhMWWQZjyEwsxGSM4WZ Q==;
+X-CSE-ConnectionGUID: oLx0ApPUQcijq69qeMBWBg==
+X-CSE-MsgGUID: CH9E1Xz8T5aZG9ADN64HeQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="63651910"
+X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="63651910"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 02:42:03 -0700
-X-CSE-ConnectionGUID: DHEL1RS+RJ2TBpDSbwlaMw==
-X-CSE-MsgGUID: mpx5tQ3hQzSx/FUUrq72LA==
+ 30 Oct 2025 02:42:05 -0700
+X-CSE-ConnectionGUID: ln9OO4M2Q4ihcjPR6DdNLw==
+X-CSE-MsgGUID: WlOjNHvOREGVp7rUkSXe1A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="189983090"
+X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="189983097"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 02:42:02 -0700
+ 30 Oct 2025 02:42:04 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jouni.hogander@intel.com, ville.syrjala@linux.intel.com,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 5/6] drm/i915/alpm: Compute LOBF late after guardband is
- already determined
-Date: Thu, 30 Oct 2025 14:58:56 +0530
-Message-ID: <20251030092857.3090072-6-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 6/6] drm/i915/alpm: Allow LOBF only if window1 > alpm
+ check_entry lines
+Date: Thu, 30 Oct 2025 14:58:57 +0530
+Message-ID: <20251030092857.3090072-7-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20251030092857.3090072-1-ankit.k.nautiyal@intel.com>
 References: <20251030092857.3090072-1-ankit.k.nautiyal@intel.com>
@@ -70,122 +70,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently intel_alpm_lobf_compute_config() tries to account for
-guardband +SCL requirements during encoder->compute_config() phase,
-even before guardband is computed.
-Also, LOBF depends on crtc_state->has_psr which can be modified in
-encoder->compute_config_late().
-
-Move the  lobf computation in encoder->compute_config_late() phase after
-the guardband and the final state of crtc_state->has_psr are already
-computed.
-
-Use crtc_state->vrr.guardband and crtc_state->set_context_latency for
-the computation and add more documentation for the dependency of first
-sdp position, guardband, set context latency and wake lines.
+LOBF must be disabled if the number of lines within Window 1 is not greater
+than ALPM_CTL[ALPM Entry Check]
 
 Bspec:71041
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_alpm.c | 28 +++++++++++++++--------
- drivers/gpu/drm/i915/display/intel_alpm.h |  6 ++---
- drivers/gpu/drm/i915/display/intel_dp.c   |  3 ++-
- 3 files changed, 24 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/i915/display/intel_alpm.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index 6372f533f65b..1c240dd8d668 100644
+index 1c240dd8d668..58cd0d2a4395 100644
 --- a/drivers/gpu/drm/i915/display/intel_alpm.c
 +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -248,14 +248,13 @@ bool intel_alpm_compute_params(struct intel_dp *intel_dp,
- 	return true;
- }
- 
--void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
--				    struct intel_crtc_state *crtc_state,
--				    struct drm_connector_state *conn_state)
-+void intel_alpm_lobf_compute_config_late(struct intel_dp *intel_dp,
-+					 struct intel_crtc_state *crtc_state,
-+					 struct drm_connector_state *conn_state)
- {
+@@ -255,6 +255,7 @@ void intel_alpm_lobf_compute_config_late(struct intel_dp *intel_dp,
  	struct intel_display *display = to_intel_display(intel_dp);
  	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
  	int waketime_in_lines, first_sdp_position;
--	int context_latency, guardband;
++	int window1;
  
  	if (intel_dp->alpm.lobf_disable_debug) {
  		drm_dbg_kms(display->drm, "LOBF is disabled by debug flag\n");
-@@ -288,17 +287,28 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
+@@ -287,6 +288,18 @@ void intel_alpm_lobf_compute_config_late(struct intel_dp *intel_dp,
  	if (!intel_alpm_compute_params(intel_dp, crtc_state))
  		return;
  
--	context_latency = adjusted_mode->crtc_vblank_start - adjusted_mode->crtc_vdisplay;
--	guardband = adjusted_mode->crtc_vtotal -
--		    adjusted_mode->crtc_vdisplay - context_latency;
 +	/*
-+	 * LOBF can only be enabled if the time from the start of the SCL+Guardband
-+	 * window to the position of the first SDP is greater than the time it takes
-+	 * to wake the main link.
-+	 *
-+	 * Position of first sdp : vsync_start
-+	 * start of scl + guardband : vtotal - (scl + guardband)
-+	 * time in lines to wake main link : waketime_in_lines
-+	 *
-+	 * Position of first sdp - start of (scl + guardband) > time in lines to wake main link
-+	 * vsync_start - (vtotal - (scl + guardband)) > waketime_in_lines
-+	 * vsync_start - vtotal + scl + guardband > waketime_in_lines
-+	 * scl + guardband > waketime_in_lines + (vtotal - vsync_start)
++	 * LOBF must be disabled if the number of lines within Window 1 is not
++	 * greater than ALPM_CTL[ALPM Entry Check]
 +	 */
- 	first_sdp_position = adjusted_mode->crtc_vtotal - adjusted_mode->crtc_vsync_start;
- 	if (intel_alpm_aux_less_wake_supported(intel_dp))
- 		waketime_in_lines = crtc_state->alpm_state.io_wake_lines;
- 	else
- 		waketime_in_lines = crtc_state->alpm_state.aux_less_wake_lines;
- 
--	crtc_state->has_lobf = (context_latency + guardband) >
--		(first_sdp_position + waketime_in_lines);
-+	crtc_state->has_lobf = (crtc_state->set_context_latency + crtc_state->vrr.guardband) >
-+			       (first_sdp_position + waketime_in_lines);
- }
- 
- static void lnl_alpm_configure(struct intel_dp *intel_dp,
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
-index 53599b464dea..138d56a499ee 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.h
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.h
-@@ -18,9 +18,9 @@ struct intel_crtc;
- void intel_alpm_init(struct intel_dp *intel_dp);
- bool intel_alpm_compute_params(struct intel_dp *intel_dp,
- 			       struct intel_crtc_state *crtc_state);
--void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
--				    struct intel_crtc_state *crtc_state,
--				    struct drm_connector_state *conn_state);
-+void intel_alpm_lobf_compute_config_late(struct intel_dp *intel_dp,
-+					 struct intel_crtc_state *crtc_state,
-+					 struct drm_connector_state *conn_state);
- void intel_alpm_configure(struct intel_dp *intel_dp,
- 			  const struct intel_crtc_state *crtc_state);
- void intel_alpm_enable_sink(struct intel_dp *intel_dp,
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index ae94a3f87b86..243ce24cde6a 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3424,7 +3424,6 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 	intel_vrr_compute_config(pipe_config, conn_state);
- 	intel_dp_compute_as_sdp(intel_dp, pipe_config);
- 	intel_psr_compute_config(intel_dp, pipe_config, conn_state);
--	intel_alpm_lobf_compute_config(intel_dp, pipe_config, conn_state);
- 	intel_dp_drrs_compute_config(connector, pipe_config, link_bpp_x16);
- 	intel_dp_compute_vsc_sdp(intel_dp, pipe_config, conn_state);
- 	intel_dp_compute_hdr_metadata_infoframe_sdp(intel_dp, pipe_config, conn_state);
-@@ -7028,6 +7027,8 @@ int intel_dp_compute_config_late(struct intel_encoder *encoder,
- 	if (ret)
- 		return ret;
- 
-+	intel_alpm_lobf_compute_config_late(intel_dp, crtc_state, conn_state);
++	window1 = adjusted_mode->crtc_vtotal -
++		  (adjusted_mode->crtc_vdisplay +
++		   crtc_state->vrr.guardband +
++		   crtc_state->set_context_latency);
 +
- 	return 0;
- }
- 
++	if (window1 <= crtc_state->alpm_state.check_entry_lines)
++		return;
++
+ 	/*
+ 	 * LOBF can only be enabled if the time from the start of the SCL+Guardband
+ 	 * window to the position of the first SDP is greater than the time it takes
 -- 
 2.45.2
 
