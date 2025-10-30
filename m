@@ -2,84 +2,84 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC0FAC204E7
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Oct 2025 14:46:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AB1EC20520
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Oct 2025 14:48:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C680110E97A;
-	Thu, 30 Oct 2025 13:46:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9101F10E98A;
+	Thu, 30 Oct 2025 13:48:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kBLi0O68";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d4zbQYD7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD0E510E0A1;
- Thu, 30 Oct 2025 13:46:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1F9510E984;
+ Thu, 30 Oct 2025 13:48:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761831965; x=1793367965;
+ t=1761832114; x=1793368114;
  h=content-transfer-encoding:in-reply-to:references:subject:
  from:cc:to:date:message-id:mime-version;
- bh=l5Zacrv7ow/COtX9H6qAJQPWg0IbQkDtkpwgFo9UdMc=;
- b=kBLi0O68SrSAqUPAatkP7RBtC1ks2lrSnO+Nee85qxBtxW4hiU/yoQ6j
- J1W6g9a2H2opq+sYOn7EFYq2HgzuOk/S9h3pASjvfVk+XoYB0X98WR6e/
- P98Xj7f3PH4bTrNCkK3hGHEUQ/PrTswdPdZvi3kxWEiZRagz5VJMCFWPj
- En3hh8hz70xwvosiZ9byF6KBmrchn4km0guSUIE2c0oxXzfEWo6VMN4dS
- n60MQlqcJsgw2UPUNaF81kXaj6G12Yl5cLW7u1gWgGfVGiLeKrBaujKv9
- jfyVFtxrIdEFzaWzW9Sm9GEL7yK/5IoPHF+qNhXVn7Io0c8CRd6LlyaIU w==;
-X-CSE-ConnectionGUID: ibrJ9JXcQ26yLCXj9hYkDg==
-X-CSE-MsgGUID: h84Dj6eOQHqWtI4YbkfCSA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="67625823"
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="67625823"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 06:46:04 -0700
-X-CSE-ConnectionGUID: r2sy3+N5Sr+ySkLj7hF5/Q==
-X-CSE-MsgGUID: 5nXKn77DRwq++k1W9LAfIg==
+ bh=/7kTrAK3DaSOvBZa6gywg6AGZ3FPscU4OcGUddp0jbo=;
+ b=d4zbQYD7cuh19M+Yhv5AaTJI+1jQN81b9FAapBZ+e+bbUELv+y0UJQD3
+ cuHmKBTjgIiKuOs0KCAie/ZWn6rjd27LATro2N6p2lGY2+bpj7rhoVcYp
+ G8TyIR9bYkys+nMPc0i4SKbm7lWJGkIx9T5pgcqAHOZ5t89mbGeSPs5/W
+ 9tgop7vdLL7w86dstE+UftainXg7WHUonKvNAEfG83guIaZSfi7LPzg45
+ KMZ3Z8t/on37FSu221fY6THh454evezR9MngXbNVVbMFp5mw4x4MkIj3a
+ vkBUp9qG51cAJDdD+opjYqnbZsw+eXkr+mFz8ygW1HMivQegb3rTq4p49 Q==;
+X-CSE-ConnectionGUID: AImEnGiASGqTvtNB0ycdsw==
+X-CSE-MsgGUID: POX1zjILTpSjgu2UQne+cA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="63882662"
+X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="63882662"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2025 06:48:33 -0700
+X-CSE-ConnectionGUID: cjcsGJUJQF+ylWUek+5Dig==
+X-CSE-MsgGUID: VoBaiUqgTB+8vX0bmHJX0A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="190297637"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 06:46:05 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="216808806"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2025 06:48:33 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 30 Oct 2025 06:46:03 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.27; Thu, 30 Oct 2025 06:48:32 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Thu, 30 Oct 2025 06:46:03 -0700
-Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.16) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Thu, 30 Oct 2025 06:48:32 -0700
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.33)
+ by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 30 Oct 2025 06:46:03 -0700
+ 15.2.2562.27; Thu, 30 Oct 2025 06:48:32 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QshJwmIeskjWXiNoU1gUxU6QRsbKJNm5u9BPl+FIYaNr6QtGNXw5P1aGwVkDsNGsMf06kzjVBeiEQyRdfUPYO0rm19Ckt8FpDTkUYKqBPZKMsdpw2bDdjo2J8Y2gThOgkp6HtUxBTt/ixRi8xJZ7gzr+1Hrkc7Oz/UrUiCw+B4YaCiEH9CGJoPRoC9D8+5+gCNxEu0NHGJqfjw+r1mjEs4kHDjN67apku4WsNUHVNR4CLTvs4EMCJ4Wi9yXbcGoRZCr+WgDSM3UwYZ5JJXglzLve1dwFrm3Mr5P2ANuY63Xy3EhJ2LdtKARMKuqMpxOFC2gSjtP0mEaz8B8M/QfS2g==
+ b=GjXRRBKEU49I+4LPF7SqcT/rE7W2cSyrNQ2k93fw6C7WpIVieuH2vKdEy4OdPQFjabJLEuqg7/Cz2MGFQFAPFcwn+Wrb0LcPfkCVlv7UGptfDFlDM2jFCe7jSX2L+02CSWv0yu6e0yEcqwnYq7ldG0VyCteE8DN2yPAfZU+DLRX/5VPpE4dFeuRHERC2dakfYbGkVPXqRo8SqlPH7CxxI8kNYmzozQtjeWeoEMyditH2K5V/7RPjw8n4OIxgGv9Sfb4/hKEdSKRu8b/GExlpWT1WXRdYl6tHNFo6VprPWK1Y6cSXTize2Up2tVq/nZqzmRy+khwMTik/+eShBSPNTg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FY7TkieARAZHepW4w7cxAc0yByAMyUeOHQxb4MI+Y3Q=;
- b=bMpImg9NhtHPPDWqjF/RPlGc2ZmstagQKpXzyl5PowcRh5PnJiFYHO8oHmCNns4CSrjrpmqc+T98FB73dcf5iE99q33bIJ11sGm+qRargJTk/tTR0Ia4nJcanefCntNZVZMEACh9eF1YapcwjLFV+/8PKjC4ouPgrBwtRudppFV+HrK37GV2gNupiLT91MQsoZei6nbqMzNqB8ez05tXx8LrnvyILIHC7+LpY/B6d0gGkfM9QVUM3Or31t5P/6CL2CSCUBCZGfZPKL7sQqz1NNatNG9MPfn17STAVXltSB4xxc4mboEH1H68sGkdy4dFNaIVI7OX+WlBBjOc1Yuh7A==
+ bh=KFEGc959Q7miWnsU97TEwL58u4ZRHz/NjMNG1Ss7A0w=;
+ b=Y/304czl85CBKXNnB41HEdW0z/jAhAaJlE95YWDZ4PQZ+Ql609w2Z1S5QqvMNMs4WdmSyUwF+vxkanNiDmpZThgyiZiFOsJzG6GcdaD1EVOG3aGVr0rKPjo3j2CPAGWktyT2AZLQr+Oln5LG+dOHWbzk+WW/uR3Yh59x02PdQtZR4tsgqTNnJfXxXlJ0npD4+3z18sazF+pXX6qdFEE+2QZf838UzlQJPpQIPY0kpfNr+l4sri8SoblDIb0+JZUQdUYP1kLyq/xVzqfcqD6UWOk0TldGzygb2h+uib+SIvk3NiMf8SZ7+Ijihf+SgKpmlmTZczI0X3eLYiDDuRGJFA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
- by SA3PR11MB8001.namprd11.prod.outlook.com (2603:10b6:806:2f5::11)
- with Microsoft SMTP Server (version=TLS1_2,
+ by DM6PR11MB4754.namprd11.prod.outlook.com (2603:10b6:5:2ad::7) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.13; Thu, 30 Oct
- 2025 13:46:01 +0000
+ 2025 13:48:30 +0000
 Received: from PH8PR11MB8287.namprd11.prod.outlook.com
  ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
  ([fe80::7e8b:2e5:8ce4:2350%7]) with mapi id 15.20.9275.013; Thu, 30 Oct 2025
- 13:46:01 +0000
+ 13:48:30 +0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <aQKW3rfS1l4BdDdh@intel.com>
+In-Reply-To: <aQKTXsWok4HaRCdv@intel.com>
 References: <20251021-xe3p_lpd-basic-enabling-v2-0-10eae6d655b8@intel.com>
  <20251021-xe3p_lpd-basic-enabling-v2-14-10eae6d655b8@intel.com>
- <aQKTXsWok4HaRCdv@intel.com> <aQKW3rfS1l4BdDdh@intel.com>
+ <aQKTXsWok4HaRCdv@intel.com>
 Subject: Re: [PATCH v2 14/32] drm/i915/wm: Reorder adjust_wm_latency() for
  Xe3_LPD
 From: Gustavo Sousa <gustavo.sousa@intel.com>
@@ -94,102 +94,102 @@ CC: <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
  <shekhar.chauhan@intel.com>, Vinod Govindapillai
  <vinod.govindapillai@intel.com>
 To: Ville =?utf-8?b?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Thu, 30 Oct 2025 10:45:56 -0300
-Message-ID: <176183195677.3303.15857641770094558190@intel.com>
+Date: Thu, 30 Oct 2025 10:48:26 -0300
+Message-ID: <176183210613.3303.9074203441742899547@intel.com>
 User-Agent: alot/0.12.dev22+g972188619
-X-ClientProxiedBy: BY5PR16CA0020.namprd16.prod.outlook.com
- (2603:10b6:a03:1a0::33) To PH8PR11MB8287.namprd11.prod.outlook.com
+X-ClientProxiedBy: SJ0PR13CA0131.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c6::16) To PH8PR11MB8287.namprd11.prod.outlook.com
  (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|SA3PR11MB8001:EE_
-X-MS-Office365-Filtering-Correlation-Id: 52813d1a-27a0-4721-e311-08de17baa963
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|DM6PR11MB4754:EE_
+X-MS-Office365-Filtering-Correlation-Id: 31c40a56-3500-4e28-6f29-08de17bb0270
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?YWcrZVBNYkFjbG4vbGlOclpXVUFGcWFSNEZaVStuaG5ERmlmdVdyWnNOYjNv?=
- =?utf-8?B?T09zUzJ3RjdqSk0va1pyc2NndWEwWjdBR3FOR3dnbExuRW11Tk9ZeGVYdmZL?=
- =?utf-8?B?TlBSNWxVeDd6SXZkQnZSeG1iZ0dtWEJJbUZpYlRrYmJGRmNmZ1Y3Sm81Q1RU?=
- =?utf-8?B?RWNQTHIzZThSV3JYMlR4d1lBRFlTM09WM0VVaG85RURQZTVySnhYMm5kdVRG?=
- =?utf-8?B?SmpLMSs5elZUN1BNS2dGYWdVSXZGKzNDeXIyZ0ZiV1JFVVlZOTh3N01lZjlN?=
- =?utf-8?B?ajNlem5XQ3FDNk10UjdMYXhkWmE5Z3VlS3BmVEluVlQ2NUxRQjhSdVZraE53?=
- =?utf-8?B?VVVhcW1PVGplRGtjUkhubklrT2VwNnVHN0p6UkNCUy9ZdEUwVk5Bb21EcnE1?=
- =?utf-8?B?cHpuOHhoMDRWbDluSkZWckZneFJMenBSbjZJbUVNS0VuUmpMcXVvUWo3QW5D?=
- =?utf-8?B?QUplQWp2Z1o3VCswelpINWpob1k4Mk9aK0F5VXlrQkltVUNBNjhnUVp5UndH?=
- =?utf-8?B?ajEwR0VXYXhZWTdkM3JyQnJXbXZzRnVPWCtzYXZZeGUxanRSSGFYb0tJMSs5?=
- =?utf-8?B?TnpnWm5LdWdzb20rcHpIWTgzUmRMeUtmVjJlcXhjOXFrRmdYR2lFdm01RjI1?=
- =?utf-8?B?N1FtQi9kdlVzZU1JcS92MEdOdDhkQm9rUUFaZ3hmMGd4Rks4OVZGOUJnME1K?=
- =?utf-8?B?dGVNMGljWUI0M0ZSR3FyeS9RSGRzWUZYMjBtT3A5Y0U4QXVwYWJFMmFKcXV4?=
- =?utf-8?B?emRWUDZOTmo3ejVwM3hLUW56clJUVVN3Z2VwTVhMb0huM25ES0prQ3ZLK0Jn?=
- =?utf-8?B?MllSR3NXbzd0RGRMNmUwQUEyd2w4UUNjc0xSbGZzK0dDcm1aNXJxcTJ5RmpY?=
- =?utf-8?B?Qyt6d0lBaW9tSE5nMjRzdFRSa0NRWUd6clFmYWpmL0tQNTJlS0NpM0NZQmVP?=
- =?utf-8?B?L0tJRkpjMTRrRkpkcVNWcHp4YnhZNGxVOGQvYklsRDlmQWJ2OWUyR25lMXBW?=
- =?utf-8?B?dW5OdmNBUS84cmo3cWI2MlE0WDdlczVINklhMlQzMHN2L2MzSGFnOW9rNGM5?=
- =?utf-8?B?ZjI1bXVJWDZhMW5YUnp2T21zUndrVmJ4bFBOYk50VW5PditmdDYrd3ZmZ2hN?=
- =?utf-8?B?eHU1WS9xRExiS01pOWpXcE1JbERXeThiTktlWTlxRHZGaEVkbUJFS2phQ0FX?=
- =?utf-8?B?YmYvV0IzakhET2l3YjlxN1YvTExQNHh5Um4vcGsxd2E3OHZVOFA0VWpLQnpr?=
- =?utf-8?B?ekZ0YU4ydDlUTFJ3VStBYjJHS1NXR1N3UGtOTXVGa2VoVWxjWjlNZ0tqZE1S?=
- =?utf-8?B?c3o2VU9HZlR1b1Z5U1JLL3BLYkdmZHhEM0NMdFVSWHI0VVVXVGZ3ZXFNQnVX?=
- =?utf-8?B?UzJKaUQvZmhuLzNHRjFOa3g2U2JhZ3NqZDJrenR5d1ptRDJMRW41NWhMZTky?=
- =?utf-8?B?MlM4TGlnQm80czJZODlIbWtBVVY0UVYyVExLMC8wSjFkaUFoN1hET3R5UHRK?=
- =?utf-8?B?VitqQ0FkdDBBaUFhaGQ3dnFpN2NUcTltc0MxN0tILzQvMFQ5OFBDbmtNQUtm?=
- =?utf-8?B?QW5CSE5YTXUxVXhWQkp5L0ord1FQRXZPWmhNQ1JUUnM4RnAzRWNOQW54TFJP?=
- =?utf-8?B?a1JpWXN6a2VMOVZFelZ5SElPdm5pMzN3UFRvd25oNmVQVlFtbEFHSTlUY1dz?=
- =?utf-8?B?dmlxK2FvRVExUllZemZrQjdhUmJNVDRKUHkrSkgrVldQTTVlcXIwY0Z6WkxQ?=
- =?utf-8?B?UjRDVjNicEltY1NGbktPZ29nTHVmc2xhUDdFVWwxOFVEQ3BpNWlObWxKSkg5?=
- =?utf-8?B?MDNobjFncWJzMnptUzF0YjlhN0FRN0tpUW10K1ZFaFNSTU1OSUdaL0syY2hJ?=
- =?utf-8?B?VGtsSXgvZDE3cWltWUJNaDcvNi9PS0w4N3NoWVhLOVdFZGdRYytRSDU2b1FF?=
- =?utf-8?Q?eVavnWGh1rcGCSldIYUlBouoxqqIcb4K?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?RDRrKzJrY041YVhFazJOdzBtVmc3R05SNlQvQVJIWFNxSW5NcnhFeFhncHVz?=
+ =?utf-8?B?b21BVWlJa0taSWQyWk92QmpYdTY0ZUE2MXZpUGxXb2VsWE0rTEFQYTRzeitk?=
+ =?utf-8?B?TTlTQUpvS252Z1psQ09mMndOckpmOG5zUUlCanFXc0NnbXVHbjhnR2xWSC9F?=
+ =?utf-8?B?cm9nZ2pKR3FuVC9UbDNuTm5BVjhwV254U0NyUHB6aVp3czIyNkMwbGIwMnpl?=
+ =?utf-8?B?dk9GWkpSWU54ZWpsZzFyMi83cGdTQ2JBZDJ4ck1BclNqR0Fobm5sT3R2eGtr?=
+ =?utf-8?B?SmVXREhleTIrOGs5QkpkVjlzTENEdWFWSmhRN2ljQjdvcGkwM2lDN1A0a2FW?=
+ =?utf-8?B?WXFJSTVPcURnTFcyQnRhZ1p1R0trSnlFMEllbEFhL01BRnZ4UWt1RHRmeFZx?=
+ =?utf-8?B?bm1LcWpJWlhFRE5XeUdVZm80R1FHOWlVNHJpb09udHJxejE2d3FJUVlreVZE?=
+ =?utf-8?B?aVpEUTdMTmtwRGRua1JDRlBOQW53N3huNGJ0Q0E5NG5UZmpUbGdRWXhDbjZ0?=
+ =?utf-8?B?NUxQazNxSStGZ1BZMXFQSERWOUx3MUwvSXFBZnJJaFdkVjdtNUhPVjFHT2Zq?=
+ =?utf-8?B?TkVEYkZFR0FYZ0tqYUd2UkFKRFgwbWFNdFFIOTFsV256UGt1ZU1VeHZyQkxz?=
+ =?utf-8?B?dWxVQkQvTGRqNEMzUFBBT1pKbi8rWkNsdVNzTVNwUHNzNnNvcXAxc1NuaGEy?=
+ =?utf-8?B?cmJHVW5qd0VrcWRaTDFRbTNzQ1VEejJIMUVhckZvdFhqVW5Gd1hudTdWWEVp?=
+ =?utf-8?B?WlNhbCtaQ2xMTEtUbS9NdnZOcE5SalFVN0x1UDgxRlIwMU0xbWhXUFVQN2Rq?=
+ =?utf-8?B?TGRuaEp3Q2tBWGVoN25JbFQyTlF3Wm9HMHF6d0hnSHJ0NzJBeG51c3dyRU8z?=
+ =?utf-8?B?YXJTbDRaZVJsbVBWTWxqRlRKTlUwQURsU0kwb2J6a0wxTVNPeENwYTFGSlFV?=
+ =?utf-8?B?ZnhpT3d1TkkrdFNXbWpsTjJyRjY1d2Z1OUp1RW4vS1Exc1kvWEVKZ0l0OHNN?=
+ =?utf-8?B?UDV2U2d2c3Z1aEFtYjNDVXVSVThjUnBKclYyRHdnY2ViV2xOVlBxbitvUXN0?=
+ =?utf-8?B?ODZWUUxoOUFYM0JlSVFlL2N3SzZYOXFXdmY3VWo1R2Rkb2E2eWpCTjhQdkNm?=
+ =?utf-8?B?M1JuUjRkT21YTjlBY3dibmNVUkgzQVZXL3plcnB0aVNIbjhaQlVwNHE3M3lx?=
+ =?utf-8?B?YnFYNW5WSVBHb0ZpVnNmeVpWdjNwNlkrckpiay9MbnRLYjE2bjNsTUxBSURh?=
+ =?utf-8?B?VUZCMUtFQUR3ZUsxc1lyaytaOFV1RHJNMWRrY1k4WHdsR2NoaXRSUnhFb1lC?=
+ =?utf-8?B?dmhEbXh4bGlDdkkxR1ErTnhpcnBORFlOcW4wTE15eU5sOFFHbnNKU2E1dldP?=
+ =?utf-8?B?aG9wZXpzS01XYVdxUTczZUZoTk9HSmxTazhaRWM2blpiTERNUGtCU09xeTJP?=
+ =?utf-8?B?N1pqbVl3Tmx3anhLd2t5L0tlZnlRa1ZyL3hTbC9hWDRJRXBhNC93TFhLOVN6?=
+ =?utf-8?B?Vnl4WVBRc2d1SVhZV3ZKempVbTREVFh6RUMwNFlpV0NKR1U2Y1h0dlpUTGRk?=
+ =?utf-8?B?Y2dkKzVCVEI5SmRBWnkrWW1Zcm41VW92c1RzQXpnSHpSeGQ1VXpIeU9YTVVU?=
+ =?utf-8?B?NjFkRE41Vk5pa3JBRjcvcWNabUh5eEJRNHczajVEbzI2RlZUSmo1TWJ3TC92?=
+ =?utf-8?B?WHFZeFgyc1RLcnA5aFZ5UXZPaUc4RlVMRDNxT1hoamtES3BkSGdSM21xRWJ5?=
+ =?utf-8?B?TkhWZnQrY3RET3RNZndPQjBZK3Z2Q0hzSldsb2pBZGFwM3lMY3ltSHpVZ2Fj?=
+ =?utf-8?B?NzZHdEFCV3h2c3ZHaE5NVU10L1ZTZHprdE5zTTlYYWc0YkwzOWdPVnV6Z3lJ?=
+ =?utf-8?B?eHdlVG9ES1RmNHRNeUswM1V6Y2F0N2FzdzRZTnl4dFhZQVlVMzBZNmNvRVk4?=
+ =?utf-8?Q?dA3iaNs0n1KLVe6DJMTG+Li1AoXezIMd?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cFlURHRRMUlhY0labTFWaGZjazJkRGtrK3lhUDN3WnF5MjVFcndRdkFOWHl3?=
- =?utf-8?B?QzNreTdjNEcvdlcvS2hBUEtJZUdOOW5JcGJ1VXFxVURlbDJmYXVvQnJEUjly?=
- =?utf-8?B?MmFveGZwRmN1VmdSbE5EVzVxbGtqRU90aXNmb2lGOVNMQmdvSmtKNU9KVXpS?=
- =?utf-8?B?cENMSWlDSEkrVGM1WldyS1JlWlNrWjhUUWhtVTFNVjhrS0NEbGF0K2kxaFVC?=
- =?utf-8?B?K0l3K0dKN1pvWjJTR2Y3TkVVcEdzcWZwNHk0amhUWWZZcWFld09YK1NmSWZa?=
- =?utf-8?B?Z1ZueG0vVWg5RlB6R3Fmelg0cVhUWUt1Z01vRlZoRW1rcTlQcVBLU25nTTZr?=
- =?utf-8?B?NkluWDVyRUJrQXVVYldyVyt2UXEzdE9KeEhGbzNQaWUzeXB3bEYwRGczQTJm?=
- =?utf-8?B?RXh4Y3JyTDNyUEdYQjJaQUFGNE5wVkhaZWJ4eFVHMzV0dWdLM3Avd0JFdGZq?=
- =?utf-8?B?dlpzWUR1K3FQSytKRHJvSDQ1akhudlQ3RzJNeEc2eVJQcFVlOURCMzBubkFS?=
- =?utf-8?B?MDk0cVdCZ3hHeTFCQ0ExNWdhRGgrQ2I4cm5BMEh1S1pzeXNBb25xZVhodk1P?=
- =?utf-8?B?MHYwSmJLQnlvUlZsZWN5ai9uRzZic0kyQzNQNGN1RjNDR1BPZVFDbWw4Y1FE?=
- =?utf-8?B?U2dDL1RFSkYrQ0h5MURmU1FiRURnMDV2YTlmS1crajIydHpHMlgrcVBiRkVG?=
- =?utf-8?B?WXlxNklTMWwreVNCTWMzTSs5TjRYNVZQTjcySit0eFNXNmVXajcvMlY4Y29C?=
- =?utf-8?B?R0JDZndJVklyYWpMOWYrSUVpOTNEMWpuNG1XUjZMMDBKY0VGS2tJM3U5Tml4?=
- =?utf-8?B?Mk5PKy9DczU3MGlIS3lJY2V0VDZnRHlZYzh0ZVc2TkFqNGJWQUVrRWhrNkFL?=
- =?utf-8?B?clo4allYRjRrNFpaanl5OGxvOUFqM0dwUWU1ZGNVVm1nTUhrMVFTWWo1aWlr?=
- =?utf-8?B?MXRnSjdFVk02TFZhTjJNNWM3TEtoc0FwMHkvZklvNG1jMDlJZHloZ1hpTk5o?=
- =?utf-8?B?WmhlTmpoMW9wNFZFb1JNa1ZuNzI2V3plQnFabC9tRnhzVit2dmorMGorRi8y?=
- =?utf-8?B?ejByRCtTNCtjbzRUU0VuaGVaejNiUDg1Q21oQ2R2TEZpV3QzQW9vSkJSZmh4?=
- =?utf-8?B?M2dJVGRwRTdMU0ZmNFhUUVFWYmpvNkJrTTZ5QTFtMHZXTS8ySThZYUdGWTY1?=
- =?utf-8?B?c1NPNzBBMHMvVUlvdWl3L3JoNGplNXlMVUFnR1Z6Tk9ESGN2cHpuTDRKdm9l?=
- =?utf-8?B?L1A0aS90cHgrZnpGR2o2a1BiRGhhZmhMY0dVcVh6S05Hbm9kM0hNRTlORVRY?=
- =?utf-8?B?Y1BFR2xZTGVoWnlPTUZpa0t3RTJ1SWIzN1NDOTRiSTNaTHBKdVVJVVpFa0JO?=
- =?utf-8?B?TUFWU1NFdC9oa2NqWjVSRHpIeHl1bTdJSWRlR0QyWURIOWlIZjBwOEF0ZXUw?=
- =?utf-8?B?RzNseUxaTkFNNk91QnM3NWdUd1RPQWh5QTBoOS9aNjRQcnZOL1JVcXhnM0c5?=
- =?utf-8?B?S1FoemVVdnBwcmt5NEJLOFRHd09yNGw3ai9KVmM4TlNSS09sb2hCdk5MNHdu?=
- =?utf-8?B?Tk5WWURmY1pWNlZnaWVNL2dvbnpyTWxqMXRIYjlRYXhSbDl6UHk5RndTbkVC?=
- =?utf-8?B?U0ZRN2N6OC8weFJ4eFRLOE4vRUZpa2hhMnk4bENFSW9NRGI5SzFUdkw4S2RO?=
- =?utf-8?B?dGV5ODlJRHBDajhxUHJSbit2cXJkTlBrU2pPTmdOcWpUM0J0dVF0a0RIY3lM?=
- =?utf-8?B?aUVnVEdFQ0NVaTlIWFdFN0djQis3anZialM2NU9EemMyK2NNL3FwaTlEY1RW?=
- =?utf-8?B?bkZjSURCQlovMEk5dlFKdEJxWVMxajVHUG1qeWE2ZkgwdFdIVHlDVXk2OURK?=
- =?utf-8?B?YzZBTEg1azRmME9BaTJkd0xxQVdjWlFqU3pYUnBQc2U4bHg3V2ZldzZtVHFS?=
- =?utf-8?B?U3JJc1h0c2k0K09JM0VDK3g0TC81QVlQa1pMdWdWNzhpZ3JwRUhEMzNRakVT?=
- =?utf-8?B?dWhjYXBZSDBFZnpKaVcwNUxnMG1GUUQwNEZLZml3M2ErQnBSWlpTV1E4K3Vp?=
- =?utf-8?B?RlNpbGtwL0FhcEtuNmRaYythdWlLL3YyUDhuaXI5VHl2OUxIWWIxY0NwWDFV?=
- =?utf-8?B?cGZMbkxPdmwxTGlGQ3NhVHZhZ0k5WGplTG1wbTRJbkNva0l3MTNBaU1SNnNj?=
- =?utf-8?B?c3c9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 52813d1a-27a0-4721-e311-08de17baa963
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q2dQcUNRQzN2aUFYdXNDZ3Q5NjFkc2pxQ1NvWm9CSlZoMVRvalFLbEEzUFlG?=
+ =?utf-8?B?YzFLSlhTd0M1R0ZraENYN0xFZVdveVIwa3JnRFVoSDYvNUcyM3BLcEczWEpT?=
+ =?utf-8?B?d0FjdDBaWGRqcGxtdktaSVFqTDlyWW44NnA2L1UzZlFGWVNzNjJ3Ynp3Z3dL?=
+ =?utf-8?B?dW5FQnd3QVhhWjFKZ2ZWSmo3UmZycVQrY0xjQjlqMlhZdUdCeWZNVzRlYVFO?=
+ =?utf-8?B?L0JSdVVBZjIyblpwbW9aM3llY28wN2krK1ZSZjlJNGdIUDY3OGo5NVhvcUdt?=
+ =?utf-8?B?WEMvYXhiemRxZG1ac3prek51bWdVQnAyaDJMeEdzNktKQk9abnkzWWZBUnBP?=
+ =?utf-8?B?S3pESUVkTS80MjVkbDdHVmQrRXJJTmRXT2g4MGZtdVFJNXdwQUNCQTQ2Y0dP?=
+ =?utf-8?B?MnpZR3gveWhjKzExcUZwZ2FiVDdQbzlSRnNHWjRxVU1DZW5yc0UySnk2RDZ3?=
+ =?utf-8?B?d3NCNXlZWms3cnVrcnN3bUVmeEt3SU5MMUFpZmg0R0FYK2NuUTFoMXpBRTlU?=
+ =?utf-8?B?Uk1RTnlJaVMzZnNzNmJobTlLUWtrbndYcHBRWlcvbm1LTW45UDM1WVM2RWdp?=
+ =?utf-8?B?RHA5MDBrNFc1MzZPQWRNbmFRc1B0K1B4L3pZbzJrczFyYnVrQ0RZc3RYY2lq?=
+ =?utf-8?B?QVBWd2piWVovUE5TdDNCL0RQbFUvZ0t3WDV1UXhvVlc5d2NtVTMzQ0REQ3Vw?=
+ =?utf-8?B?bmlRMjdRVER5RHlkZTNYeVcyZFJQTWFSM2QveERSN0REblRubEpDSHFSRjNn?=
+ =?utf-8?B?VXJTN0ZxMmFKL1crY3AzY01mTWk4UzdFU2tHaWZuc0tFK0ltVkFQckl4c1BK?=
+ =?utf-8?B?WHJDanR3NS94RiszdDZIUUFvaGhuQm54TEZ1SHQxdXIwUVY0T25VOGpGK0VG?=
+ =?utf-8?B?YXRHaE9TWWFkSStyUTBVMEVkQTFadWhka3lBNytMNVJnSDAyTGRKdGhoOTU4?=
+ =?utf-8?B?T2ZRY01wcVJrdk95NThrckFSNTlwd0lzY29OeC9lblV1VDlGRElVRW1zVjVS?=
+ =?utf-8?B?NTBOK0FlK0dVbytPY0QwZ2xQK3UyYTFubnRXeElnNTRpYjlHaWs2QVJUenhD?=
+ =?utf-8?B?N29KRTB1ZjBISmVqZ2Rod0NiMWlLOXRwbjdSaU9qL0pvd1doWGlQMHh0OHdL?=
+ =?utf-8?B?UGxtSVZMbzFab3cvRytJb0JldmZpU09TdEFva24rQlJraEVHV0VLVnF6M0Rr?=
+ =?utf-8?B?d09lOE9UVXlwd1FmV2FhQjBZcXdaV1VEZVA3VU4vR3EwUEMrSHR3azRkQWxN?=
+ =?utf-8?B?OHRrcEZsOXZ3Zk5aN3VSQnNaZ1o2K0FPa0VMOTFhVTZYazVKRFZ3SHR6WEVT?=
+ =?utf-8?B?NlNua2Q5bnVBSm5hR0tydlo1UEVmeXl0UUF4Nk8vU1RlMHhaeHBaM1lvSjRD?=
+ =?utf-8?B?QkppYUtWbXQyTVY5NU5GWmpXT3VZdm14SGtpZFg4THJlbjB0azFaME5GaHo0?=
+ =?utf-8?B?RVR3UEF0bGIrNFBBZSs4WXRwazQzODgzci9uWlVYVHF3M1IvQkVqVC9KazMx?=
+ =?utf-8?B?OFd6Y1Ewc244bGFwTTBvMUVwNmZmOGFyTTY4bWNkc3NISlpZdVUxaXZEWnRV?=
+ =?utf-8?B?Q1RSUUZYM052MFE0UmFWQ01oZUxXZktyVUw3aExTVDUzaDNMOTBGZ25VWVFL?=
+ =?utf-8?B?Tnl3SlIzNnA1OFdGNjlnZzZVd2RoVHJ0RXJGWFB6WUl6dlNyTHl3OVVxcG0v?=
+ =?utf-8?B?WGprNDkxZXZVSTZGdDNLTVlHREVVVUtxRklzTU1NT1BoZ3RiSHl5bytHSEhT?=
+ =?utf-8?B?dEM4SjU0OXgrZjZlb28xbCtHelg0M1QzWDlNanlaN05GQXZySmhiSlFVMGhn?=
+ =?utf-8?B?RHJHeHZ0eHpUQUlnKy8wdUN5OU9jMm5ONi8yemM4bkFkVXRnOUlxUzdSQmRB?=
+ =?utf-8?B?ZzVRcnR5ZWdiSlFndnNGQms5d083YWhlQUU3TFdNUTZkRTFEc1d5b2NIbllC?=
+ =?utf-8?B?ZVM4eFdnMnJEemFqclhpZCs5SExtZnl4OFcwSmNVdjUxQlphRHFjNWxMREpI?=
+ =?utf-8?B?Z01NWkNQNW54dWJpR3oyRTJmUklBSE5NVXAvcGFEalo4QWFVM1ZWV2hHZENa?=
+ =?utf-8?B?MVpxK0Via0FSS3B5ODd6MjRwS21taVc3bTI5SlRGT0tjdzdhaVJFdkNobDMr?=
+ =?utf-8?B?TDk4dWVXUXFZN2F5Mm5Pc3NKM1FrcDd2Z2JqSHJOcmh5b0J0S0I3dkNsUVN5?=
+ =?utf-8?B?Zmc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 31c40a56-3500-4e28-6f29-08de17bb0270
 X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Oct 2025 13:46:01.0086 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Oct 2025 13:48:30.1899 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 31/H+UFNFzfxNDB4J6gh33u5fofyU/pzkxVBYIqofd8DO54pc/wTxMhEw5s4UPBbHJTxlYEDTQMg2inWePGI8w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB8001
+X-MS-Exchange-CrossTenant-UserPrincipalName: CwbmwsbaHSmwkwbrxlIoiiF3I2XX5/hcgE5TdpTb/c4nH4PL3rKX8MptLTQaTgBNTC2F71e8xX5PURfNNslVHA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4754
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -206,164 +206,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Ville Syrj=C3=A4l=C3=A4 (2025-10-29 19:36:14-03:00)
->On Thu, Oct 30, 2025 at 12:22:01AM +0200, Ville Syrj=C3=A4l=C3=A4 wrote:
->> On Tue, Oct 21, 2025 at 09:28:39PM -0300, Gustavo Sousa wrote:
->> > In an upcoming change related to Xe3p_LPD, we will need to (i) update
->> > wm[0] in adjust_wm_latency() and (ii) do the same increase_wm_latency(=
-)
->> > that is currently done when (wm[0] =3D=3D 0).
->> >=20
->> > Because make_wm_latency_monotonic() depends on wm[0], part (i) needs t=
-o
->> > be done before it gets called.  In order to keep (i) and (ii) as a
->> > contiguous logical sequence, let's reorder adjust_wm_latency(), making
->> > make_wm_latency_monotonic() the last thing to be done.
->> >=20
->> > Also take this opportunity to simplify the code by doing the call to
->> > increase_wm_latency() only once.
->> >=20
->> > Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> > Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
->> > ---
->> >  drivers/gpu/drm/i915/display/skl_watermark.c | 12 ++++++++----
->> >  1 file changed, 8 insertions(+), 4 deletions(-)
->> >=20
->> > diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gp=
-u/drm/i915/display/skl_watermark.c
->> > index c141d575009f..57260a2a765a 100644
->> > --- a/drivers/gpu/drm/i915/display/skl_watermark.c
->> > +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
->> > @@ -3213,14 +3213,13 @@ static void
->> >  adjust_wm_latency(struct intel_display *display)
->> >  {
->> >          u16 *wm =3D display->wm.skl_latency;
->> > +        int inc =3D 0;
->> > =20
->> >          if (display->platform.dg2)
->> >                  multiply_wm_latency(display, 2);
->> > =20
->> >          sanitize_wm_latency(display);
->> > =20
->> > -        make_wm_latency_monotonic(display);
->> > -
+Quoting Ville Syrj=C3=A4l=C3=A4 (2025-10-29 19:22:01-03:00)
+>On Tue, Oct 21, 2025 at 09:28:39PM -0300, Gustavo Sousa wrote:
+>> In an upcoming change related to Xe3p_LPD, we will need to (i) update
+>> wm[0] in adjust_wm_latency() and (ii) do the same increase_wm_latency()
+>> that is currently done when (wm[0] =3D=3D 0).
 >>=20
->> I was thinking that by doing this early we avoid potentially papering
->> over our own bugs in the later adjustments. But Windows does appear to
->> do this after the read latency adjustment.
+>> Because make_wm_latency_monotonic() depends on wm[0], part (i) needs to
+>> be done before it gets called.  In order to keep (i) and (ii) as a
+>> contiguous logical sequence, let's reorder adjust_wm_latency(), making
+>> make_wm_latency_monotonic() the last thing to be done.
+>>=20
+>> Also take this opportunity to simplify the code by doing the call to
+>> increase_wm_latency() only once.
+>>=20
+>> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/skl_watermark.c | 12 ++++++++----
+>>  1 file changed, 8 insertions(+), 4 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/=
+drm/i915/display/skl_watermark.c
+>> index c141d575009f..57260a2a765a 100644
+>> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+>> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+>> @@ -3213,14 +3213,13 @@ static void
+>>  adjust_wm_latency(struct intel_display *display)
+>>  {
+>>          u16 *wm =3D display->wm.skl_latency;
+>> +        int inc =3D 0;
+>> =20
+>>          if (display->platform.dg2)
+>>                  multiply_wm_latency(display, 2);
+>> =20
+>>          sanitize_wm_latency(display);
+>> =20
+>> -        make_wm_latency_monotonic(display);
+>> -
 >
->Hmm, I suppose it doesn't really matter whether it's before or after
->since the read latency adjustment applies to all wm levels. So I think
->I still prefer to keep it early to avoid papering over our own bugs.
-
-Okay.  In this case, I guess I can drop this patch then and go back to
-the original approach + moving the assignment of "wm[0] =3D 0" to be done
-earlier.
-
+>I was thinking that by doing this early we avoid potentially papering
+>over our own bugs in the later adjustments. But Windows does appear to
+>do this after the read latency adjustment.
 >
->>=20
->> And it looks like Windows actually stopped doing this for xe3 and now
->> it rejects non-monotonic values. And it also does that after the read
->> latency adjustment.
->>=20
->> So I guess what we want to do is move this later, only call it for=20
->> pre-xe3, and add another step after it to validate that the latencies
->> are indeed monotonic.
+>And it looks like Windows actually stopped doing this for xe3 and now
+>it rejects non-monotonic values. And it also does that after the read
+>latency adjustment.
+>
+>So I guess what we want to do is move this later, only call it for=20
+>pre-xe3, and add another step after it to validate that the latencies
+>are indeed monotonic.
+>
+>>          /*
+>>           * WaWmMemoryReadLatency
+>>           *
+>> @@ -3229,7 +3228,7 @@ adjust_wm_latency(struct intel_display *display)
+>>           * from the punit when level 0 response data is 0us.
+>>           */
+>>          if (wm[0] =3D=3D 0)
+>> -                increase_wm_latency(display, wm_read_latency(display));
+>> +                inc +=3D wm_read_latency(display);
+>> =20
+>>          /*
+>>           * WA Level-0 adjustment for 16Gb+ DIMMs: SKL+
+>> @@ -3238,7 +3237,12 @@ adjust_wm_latency(struct intel_display *display)
+>>           * to avoid any underrun.
+>>           */
+>>          if (need_16gb_dimm_wa(display))
+>> -                increase_wm_latency(display, 1);
+>> +                inc +=3D 1;
+>> +
+>> +        if (inc)
+>> +                increase_wm_latency(display, inc);
+>
+>I don't see that variable being helpful in any real way.
+>Just makes the function more complicated for no good reason.
 
-I guess in our case, we would reject them in sanitize_wm_latency(),
-making everything after the invalid level (i.e. wm[level] < wm[level -
-1]) be forced to zero, right?
-
-In summary, with keeping make_wm_latency_monotonic() early, something
-like this?
-
-    |diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gp=
-u/drm/i915/display/skl_watermark.c
-    |index c141d575009f..6cf1565dcefd 100644
-    |--- a/drivers/gpu/drm/i915/display/skl_watermark.c
-    |+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-    |@@ -3183,11 +3183,16 @@ static void sanitize_wm_latency(struct intel_d=
-isplay *display)
-    | 	int level, num_levels =3D display->wm.num_levels;
-    |=20
-    | 	/*
-    |-	 * If a level n (n > 1) has a 0us latency, all levels m (m >=3D n)
-    |-	 * need to be disabled. We make sure to sanitize the values out
-    |-	 * of the punit to satisfy this requirement.
-    |+	 * Two types of sanitization are done here:
-    |+	 * 1) If a level n (n > 1) has a 0us latency, all levels m (m >=3D n=
-)
-    |+	 *    need to be disabled. We make sure to sanitize the values out o=
-f
-    |+	 *    the punit to satisfy this requirement.
-    |+	 * 2) For Xe3 onward, only accept monotonic ranges.
-    | 	 */
-    | 	for (level =3D 1; level < num_levels; level++) {
-    |+		if (DISPLAY_VER(display) >=3D 30 && wm[level] < wm[level - 1])
-    |+			wm[level] =3D 0;
-    |+
-    | 		if (wm[level] =3D=3D 0)
-    | 			break;
-    | 	}
-    |@@ -3201,6 +3206,9 @@ static void make_wm_latency_monotonic(struct int=
-el_display *display)
-    | 	u16 *wm =3D display->wm.skl_latency;
-    | 	int level, num_levels =3D display->wm.num_levels;
-    |=20
-    |+	if (DISPLAY_VER(display) < 30)
-    |+		return;
-    |+
-    | 	for (level =3D 1; level < num_levels; level++) {
-    | 		if (wm[level] =3D=3D 0)
-    | 			break;
-
-If so, I could include this patch as part of this series to avoid
-conflicts or keep it as a separate patch...
+I liked the fact that we would be calling increase_wm_latency() only
+once... Not a big deal though.
 
 --
 Gustavo Sousa
 
->>=20
->> >          /*
->> >           * WaWmMemoryReadLatency
->> >           *
->> > @@ -3229,7 +3228,7 @@ adjust_wm_latency(struct intel_display *display)
->> >           * from the punit when level 0 response data is 0us.
->> >           */
->> >          if (wm[0] =3D=3D 0)
->> > -                increase_wm_latency(display, wm_read_latency(display)=
-);
->> > +                inc +=3D wm_read_latency(display);
->> > =20
->> >          /*
->> >           * WA Level-0 adjustment for 16Gb+ DIMMs: SKL+
->> > @@ -3238,7 +3237,12 @@ adjust_wm_latency(struct intel_display *display=
-)
->> >           * to avoid any underrun.
->> >           */
->> >          if (need_16gb_dimm_wa(display))
->> > -                increase_wm_latency(display, 1);
->> > +                inc +=3D 1;
->> > +
->> > +        if (inc)
->> > +                increase_wm_latency(display, inc);
->>=20
->> I don't see that variable being helpful in any real way.
->> Just makes the function more complicated for no good reason.
->> It also has nothing to do with the rest of this patch.
->>=20
->> > +
->> > +        make_wm_latency_monotonic(display);
->> >  }
->> > =20
->> >  static void mtl_read_wm_latency(struct intel_display *display)
->> >=20
->> > --=20
->> > 2.51.0
+>It also has nothing to do with the rest of this patch.
+>
+>> +
+>> +        make_wm_latency_monotonic(display);
+>>  }
+>> =20
+>>  static void mtl_read_wm_latency(struct intel_display *display)
 >>=20
 >> --=20
->> Ville Syrj=C3=A4l=C3=A4
->> Intel
+>> 2.51.0
 >
 >--=20
 >Ville Syrj=C3=A4l=C3=A4
