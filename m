@@ -2,68 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDE2BC2BCB3
-	for <lists+intel-gfx@lfdr.de>; Mon, 03 Nov 2025 13:46:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E4F1C2BC95
+	for <lists+intel-gfx@lfdr.de>; Mon, 03 Nov 2025 13:46:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FEEF10E3ED;
-	Mon,  3 Nov 2025 12:46:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D195610E3DB;
+	Mon,  3 Nov 2025 12:46:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="eam9D8Lo";
+	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="UdR7bSxa";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
- [209.85.128.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E12D10EAF7
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 10:09:40 +0000 (UTC)
-Received: by mail-wm1-f54.google.com with SMTP id
- 5b1f17b1804b1-4711b95226dso25724035e9.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 03:09:40 -0700 (PDT)
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
+ [209.85.128.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 803C610EAFC
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 10:09:41 +0000 (UTC)
+Received: by mail-wm1-f52.google.com with SMTP id
+ 5b1f17b1804b1-475dbb524e4so12354035e9.2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 03:09:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=suse.com; s=google; t=1761905379; x=1762510179; darn=lists.freedesktop.org; 
+ d=suse.com; s=google; t=1761905380; x=1762510180; darn=lists.freedesktop.org; 
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=AR6DCodMEiRozMtWWQUdsBs+LPg+2s6MkeWZ5TMIU0g=;
- b=eam9D8LoH2KHTz8LTAN1EI2U5Lbyj02hXTV64u+PZ6GHBqw3kDo1fR6540UabmRDHX
- peq2XK9DmhhTCp6RQ3GkziMMLJDaHOKs0UnPB7Itpp01mwe3TWisL5PmF/knub5kHeVQ
- FM+JvBfK13GkBXX+QLQwfXk+Ehl812MRCBLoBumFeUwJie3gs7GlZtruHeRXoHmWSYMJ
- HZi2TAyv2NHv8tRPu6tHfqF2UtjMW8Cii/2Ole84yQb5dSCgJegzMMRP7XZ4sX8cIzJg
- H0ecSCEBdiSx2x73Fl67rAY/MlsIZyitK4HADaBhvPK2b33H9m64l6tC2fU0zI7hDYmF
- Pl9A==
+ bh=uIEAHpZJgPenfQa0eR0eha1rgNHE8FkwlCwPAkqtADI=;
+ b=UdR7bSxadN1D7NnOG/8atzU9iq5djtnBgXLH/tl/MD6I5kUzjXwNqoABdx40HfGOOK
+ ag+ETuCf1YGFp6DwdBh4yOxfljV8PNLRzWSEBImGAJ1psu+2/kDuRRGs3HuhTHWH7iZg
+ +/HncfDEx1winMW4d8Qd/f4LQAqe32vl2VMOa//hyYUoj5AX3k3LhIBNdsoR4aM8UDIQ
+ n1CRaadA8KkzL8bPqvvX4tB59qER0aNCYuFJ3ctA/iZVKHxckk2xiTGHK3O46QJBA+nC
+ 92mWcaKKPc0Ssq0SqdMAfRgt3G4bISdsM52LcEXzyMRNHMrAZSkKOUXYLS6UamL1IRDC
+ J5Zw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761905379; x=1762510179;
+ d=1e100.net; s=20230601; t=1761905380; x=1762510180;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=AR6DCodMEiRozMtWWQUdsBs+LPg+2s6MkeWZ5TMIU0g=;
- b=RJnwC3JPbhgP/PCPQ9Elawqn6LT+J+qbaZhKnFDR9hheX7StvB/H3Px4Z6/NoUxZeP
- hClCh0TTOAyU6Vw3xM+LTZx1qZCXiTd98glGYNqG8O3ipeRn3aUWi2BMFbIkEnf18MDa
- HFTmMp7CoKUV2CTV9DS1Himx0SjvlxfzUKSeiMRC+iivqj4DqpqiwER+MXWoSXvbjLL9
- lM4yFJlhmkaHCwULx7bJsoXeT1mBytu9+kf5vbKjMsiL771B7EJLiWQ3fUvNcD07h9n9
- FLO8mAv5qVbtpknKIn4s6i7nlpBoW2Vx2gaYybdRs9z+6QJUz+oQm2tfNJ+4LbjYRkfV
- A8JA==
+ bh=uIEAHpZJgPenfQa0eR0eha1rgNHE8FkwlCwPAkqtADI=;
+ b=LXqslJhizGVNa73bXsuyx5pDuElsFpFYuD/UT5wFvTsWL39NjoSAsjoRs2dExQS8l7
+ hgEHHG3Uiyz/PzzWvVPI5Vp9Iapy/mYKrvOXbWUmr1732v1/jSG5WaupRzxdCizer0F5
+ ouOuZuzyO4teF+PlSYqf19QBsHAy4hNoWmHq7k/933X0ib5KKB8s4CqDqlPsJu2/HYh0
+ rZAvNnYssI+gJh0Ry1jqEWaQTMRg3c4mqdfKc+P/CBBmIWxZVaW+cZQNDfnDs6lFejQ1
+ glolIBbChC1fV1jkECj0NokpmIQy3s9QXOMnvOZMR4flXghgiR0z27qKEedcu4Fg+mZC
+ rMFA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCV8+kOpa+al2UddM/iUbTWKeYc7VwaSR2gFw5y9Wf/a6MBLrVh/7wgMylsexV6xV18NmCF++t53M1E=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxZ8+zlwDrRHu8by0I6rtxF3aHQutEOnf1P72ooGzCV0IaygTmR
- yEhxY4aY1K+nRgAtxuDLYvWR3LCuDDiTr311zhY2ZAtVUlNbWFjBsC9rfNXqacjw4U9fcyL3Cbx
- suvBq
-X-Gm-Gg: ASbGncusC9gykMBWVjHHhAUXU4bI1+Xmpc74Oy74KQQ61Y7AlgoNePMsyjKLMyh+7Xe
- 1tY9QXfjzSDHC9aGaE6arHZpwkTHWxpiugATZVjbqXpAg+Zatc9j6hNcb0T0ME2IZR3K/M0B60h
- MTZsh6291aRymgaHcUC1mMWsdGGZWGMZud51CCVYlfvTGe88DVjK9o50EL2cHd7C6JohCYV+pkD
- j1exyf0tzU9HHjG4hFdTP3eUvD6ogUflOTDpMv/p/zILRq+WVfNZjA7LHF8t4/cxOug3bvoa0zS
- ocT73E/TT9uyXKXQZt8mNqw73cGRstEvdSnelKTqGe1pJL3/w/FMpQHRlcF5yDAZmsM4cdqZpbj
- kyd17G68wRsaTpcxsJ+tRaEUhXbxbUdel2EsMQ1jTcKpGo2egIMhxrW0lQR/PnnMBYNBPzpwvlG
- 1VamD2nXd1dYXjRUL5JnIsVchW
-X-Google-Smtp-Source: AGHT+IF5CL1Q/oaHD87zPjFp4KiqyMUDxM2HoYOoLKtrm0XnT5ekaMI5s76J1xMKBksDY9h87GST6A==
-X-Received: by 2002:a05:600c:3e06:b0:475:dc58:39e5 with SMTP id
- 5b1f17b1804b1-4773089b541mr25699695e9.27.1761905378913; 
- Fri, 31 Oct 2025 03:09:38 -0700 (PDT)
+ AJvYcCVKDW4zh09t7pZB0/sZTKvPEn0CFvqAkHFNNgIc/85tWOZmskmI0Q3dVmiZabZot8y3h1klCUoHE+o=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwRTtaEQpooucp+n1TUqfnjcE4YUqAEmDULB2MgBJNKlY1t9Nti
+ qdBNQ9o2d1Q/J/K5C2uBse6vodusBPcGgOO95RZtReVLjggaVxSEKzyzV0ps/EXod8Y=
+X-Gm-Gg: ASbGncvoFDmJc5lEEmttevQXYnnlhmPibUNe1cesdN+m8Wo+/YlnTgubkK91p7mvoXh
+ OsxZPWHA7VG0yPzS7dldiWmiTetctfbp6fFZMmFuSZwSRK8tBCP3JJKdUFEVkumsYfIgyzjiU5b
+ 4fReo8GCGsjStSRV3SMIHJIJXtleelJjwq5jkJoTMV1quQ60nUsIHsrnatxrxFGYUF/dyLrfN/U
+ DpuAe1dpo1uuJAfh7MwUGs7jdDqxeyD82i3zwd0jXaJVQhPHnuaCdJ3DARmHgbrCUSNLuygRmbF
+ Rc5ffmGFymf1CXm4+puuB7YnGxXFAC6KIPBV+L2u0QkwsygrPAj7liwyexfUDrgKSB3IVsZ9zxC
+ V+kqJR6Kx5H3uJ2MkBiUl8d9Eg3QhV1nfzvnKe+5mdBPSvh54AB74cjnFnFY1o8yi2tjqrKO92i
+ WPiRatT7AB1+qpygM25xhkEef7zYOTuoOfPLxNjoMbl7Ld1A==
+X-Google-Smtp-Source: AGHT+IEuYSheTD0LAmCUTXMqTUnmXFPaQcuKHhOpSOYN7DCVbycYCPaNazgBhc5bsfGHuKVEiD6GEw==
+X-Received: by 2002:a05:600c:4695:b0:471:1774:3003 with SMTP id
+ 5b1f17b1804b1-477308be7b3mr29933385e9.29.1761905379892; 
+ Fri, 31 Oct 2025 03:09:39 -0700 (PDT)
 Received: from localhost.localdomain ([2a00:6d43:105:c401:e307:1a37:2e76:ce91])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-429c13e1c9esm2839171f8f.22.2025.10.31.03.09.38
+ ffacd0b85a97d-429c13e1c9esm2839171f8f.22.2025.10.31.03.09.39
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 31 Oct 2025 03:09:38 -0700 (PDT)
+ Fri, 31 Oct 2025 03:09:39 -0700 (PDT)
 From: Marco Crivellari <marco.crivellari@suse.com>
 To: linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
@@ -76,13 +75,14 @@ Cc: Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
  Simona Vetter <simona@ffwll.ch>
-Subject: [PATCH 2/3] drm/i915: replace use of system_wq with system_percpu_wq
-Date: Fri, 31 Oct 2025 11:09:22 +0100
-Message-ID: <20251031100923.85721-3-marco.crivellari@suse.com>
+Subject: [PATCH 3/3] drm/i915: WQ_PERCPU added to alloc_workqueue users
+Date: Fri, 31 Oct 2025 11:09:23 +0100
+Message-ID: <20251031100923.85721-4-marco.crivellari@suse.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251031100923.85721-1-marco.crivellari@suse.com>
 References: <20251031100923.85721-1-marco.crivellari@suse.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 03 Nov 2025 12:46:06 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -105,47 +105,94 @@ used wq is "system_wq" (per-cpu wq) while queue_delayed_work() use
 WORK_CPU_UNBOUND (used when a cpu is not specified). The same applies to
 schedule_work() that is using system_wq and queue_work(), that makes use
 again of WORK_CPU_UNBOUND.
+This lack of consistentcy cannot be addressed without refactoring the API.
 
-This lack of consistency cannot be addressed without refactoring the API.
+alloc_workqueue() treats all queues as per-CPU by default, while unbound
+workqueues must opt-in via WQ_UNBOUND.
 
-system_wq should be the per-cpu workqueue, yet in this name nothing makes
-that clear, so replace system_wq with system_percpu_wq.
+This default is suboptimal: most workloads benefit from unbound queues,
+allowing the scheduler to place worker threads where they’re needed and
+reducing noise when CPUs are isolated.
 
-The old wq (system_wq) will be kept for a few release cycles.
+This change adds a new WQ_PERCPU flag to explicitly request
+alloc_workqueue() to be per-cpu when WQ_UNBOUND has not been specified.
+
+With the introduction of the WQ_PERCPU flag (equivalent to !WQ_UNBOUND),
+any alloc_workqueue() caller that doesn’t explicitly specify WQ_UNBOUND
+must now use WQ_PERCPU.
+
+Once migration is complete, WQ_UNBOUND can be removed and unbound will
+become the implicit default.
 
 Suggested-by: Tejun Heo <tj@kernel.org>
 Signed-off-by: Marco Crivellari <marco.crivellari@suse.com>
 ---
- drivers/gpu/drm/i915/i915_driver.c | 2 +-
- drivers/gpu/drm/i915/i915_drv.h    | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_driver.c | 4 ++--
+ drivers/gpu/drm/i915/i915_driver.c                  | 3 ++-
+ drivers/gpu/drm/i915/selftests/i915_sw_fence.c      | 2 +-
+ drivers/gpu/drm/i915/selftests/mock_gem_device.c    | 2 +-
+ 4 files changed, 6 insertions(+), 5 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+index cf1c14412abe..e12f9126b155 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.c
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+@@ -257,13 +257,13 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
+ 		goto cleanup_wq_modeset;
+ 	}
+ 
+-	display->wq.cleanup = alloc_workqueue("i915_cleanup", WQ_HIGHPRI, 0);
++	display->wq.cleanup = alloc_workqueue("i915_cleanup", WQ_HIGHPRI | WQ_PERCPU, 0);
+ 	if (!display->wq.cleanup) {
+ 		ret = -ENOMEM;
+ 		goto cleanup_wq_flip;
+ 	}
+ 
+-	display->wq.unordered = alloc_workqueue("display_unordered", 0, 0);
++	display->wq.unordered = alloc_workqueue("display_unordered", WQ_PERCPU, 0);
+ 	if (!display->wq.unordered) {
+ 		ret = -ENOMEM;
+ 		goto cleanup_wq_cleanup;
 diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index a28c3710c4d5..0f33cdc11736 100644
+index 0f33cdc11736..380cb20a47c6 100644
 --- a/drivers/gpu/drm/i915/i915_driver.c
 +++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -140,7 +140,7 @@ static int i915_workqueues_init(struct drm_i915_private *dev_priv)
- 	/*
- 	 * The unordered i915 workqueue should be used for all work
- 	 * scheduling that do not require running in order, which used
--	 * to be scheduled on the system_wq before moving to a driver
-+	 * to be scheduled on the system_percpu_wq before moving to a driver
+@@ -143,7 +143,8 @@ static int i915_workqueues_init(struct drm_i915_private *dev_priv)
+ 	 * to be scheduled on the system_percpu_wq before moving to a driver
  	 * instance due deprecation of flush_scheduled_work().
  	 */
- 	dev_priv->unordered_wq = alloc_workqueue("i915-unordered", 0, 0);
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 6a768aad8edd..d9f73b9995cf 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -256,7 +256,7 @@ struct drm_i915_private {
- 	 *
- 	 * This workqueue should be used for all unordered work
- 	 * scheduling within i915, which used to be scheduled on the
--	 * system_wq before moving to a driver instance due
-+	 * system_percpu_wq before moving to a driver instance due
- 	 * deprecation of flush_scheduled_work().
- 	 */
- 	struct workqueue_struct *unordered_wq;
+-	dev_priv->unordered_wq = alloc_workqueue("i915-unordered", 0, 0);
++	dev_priv->unordered_wq = alloc_workqueue("i915-unordered", WQ_PERCPU,
++						 0);
+ 	if (dev_priv->unordered_wq == NULL)
+ 		goto out_free_wq;
+ 
+diff --git a/drivers/gpu/drm/i915/selftests/i915_sw_fence.c b/drivers/gpu/drm/i915/selftests/i915_sw_fence.c
+index 8f5ce71fa453..b81d65c77458 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_sw_fence.c
++++ b/drivers/gpu/drm/i915/selftests/i915_sw_fence.c
+@@ -526,7 +526,7 @@ static int test_ipc(void *arg)
+ 	struct workqueue_struct *wq;
+ 	int ret = 0;
+ 
+-	wq = alloc_workqueue("i1915-selftest", 0, 0);
++	wq = alloc_workqueue("i1915-selftest", WQ_PERCPU, 0);
+ 	if (wq == NULL)
+ 		return -ENOMEM;
+ 
+diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+index fb8751bd5df0..684e6ca0f960 100644
+--- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
++++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+@@ -221,7 +221,7 @@ struct drm_i915_private *mock_gem_device(void)
+ 	if (!i915->wq)
+ 		goto err_drv;
+ 
+-	i915->unordered_wq = alloc_workqueue("mock-unordered", 0, 0);
++	i915->unordered_wq = alloc_workqueue("mock-unordered", WQ_PERCPU, 0);
+ 	if (!i915->unordered_wq)
+ 		goto err_wq;
+ 
 -- 
 2.51.0
 
