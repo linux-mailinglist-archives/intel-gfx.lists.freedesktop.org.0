@@ -2,194 +2,85 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 178B1C26635
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Oct 2025 18:36:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65F90C26761
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Oct 2025 18:46:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B947D10E098;
-	Fri, 31 Oct 2025 17:36:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C4BE10E2FA;
+	Fri, 31 Oct 2025 17:46:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ajVAtSeW";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="f/vGS4b/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4C1510E098;
- Fri, 31 Oct 2025 17:36:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761932179; x=1793468179;
- h=content-transfer-encoding:in-reply-to:references:subject:
- from:cc:to:date:message-id:mime-version;
- bh=l7wXLwczE8Mx9qxSkQIN3BNUMmgr1PUXkVIdCsGsxNo=;
- b=ajVAtSeWftJGXOoQQj7lIFNAZP4QrovNRYDvdg2n8Imbbl7pXsTdKyhj
- dcgJ8Ls2KHXmQkt8k1xlQYfeRPmVF9EHMfYrEQstRAwEUHY/N4dRqWajM
- 0UmTHnGjK+W5CB7gjk8ztyZNZa3txccuWWqPiBEj0bqCgBep5pWpXleHt
- OcsQKGWnkF6U+dULxtVJ2r5cO9yjIPeqdfBh5j8m7VQ3MIQFbcmsmU+0s
- m0Ny1CHP0I3SHgkezRE3fsCcXIYWUgligKvoDxUAE0/2/87vv36dPgQzE
- FPEcivlDPpf4b/j8DHQMge4ctWruztXpRpSLsSD84YSobqWLltlsnu1nf g==;
-X-CSE-ConnectionGUID: ozKf8IZGRF+6GLJbKrc15g==
-X-CSE-MsgGUID: k+SIoVykTR2qNNQdsy0PMg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="51670418"
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="51670418"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 10:36:18 -0700
-X-CSE-ConnectionGUID: Z5EAU2ooQuKsGubxnOue6Q==
-X-CSE-MsgGUID: 9n/i4lfTQDC0eIJZ78mERA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="209852622"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 10:36:18 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Fri, 31 Oct 2025 10:36:17 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Fri, 31 Oct 2025 10:36:17 -0700
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.53) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Fri, 31 Oct 2025 10:36:17 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AGPfX1sqjyfYltEh2aJldioumfSExC9fnVDX7H+MSCBh3AggI9KP9DGIM8zc3DRKU7/6DRybeoUZ176PXn423s4AE6f6prmmFR8N7TLUrGEoPMnjrsxdiU3ronjKOpBeGrdtnjr4o6b2k8xYJ26VSvrZsJpkAM6wqiCiRxBiwM2x6NMWHEPoPPwu5WdNouC3mS2M71rU1CAXVtoVFmo4auGwMYTDGvZtLRtECxT42vlCFSbGa/GxLygUQN3vmU0JtsGZ2lhVPFYWNBBG8uY8sNnrALvOcXYM7q0baT+sKl8jrm6+WQ0P/3GfYOipUXvTbb3E8pO8Fet4aE6WjugF0w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rSkbNsNcRvEAcjzhRGRkDDbG54XmrNTKtmMmUxxrVcc=;
- b=qLEQ659aK/9u4G2P2cpQQJj8Tcimwj2J2bhOTpgzrWPijzDhrsJmmsp04UpychPZptr351sI/9te9sB0wNzQUajh/be2dJi/t+tlICUxWfvZop8yddWoFEa4WsEq4EYCyGX9FWOG1YBmR8+JMVTMXNOVOfU6ZT6Mj8KcSvsPC38DkcxS7I9MPkJKk79xZl5ReWarCRUhBxgHzqa+Y/nd+MQp3yJ1VGkBidhl2I1NlLQ6V33NNBvk4nmTdvP+0lLKORMjNOkOHKTdtnxiUGe8noHFLVKxeoilOTobmoNTEJ2SZqeobivu95K/sIuzVbGgEuT5XnUPpk5FdCEXMAd/WA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
- by MW4PR11MB8289.namprd11.prod.outlook.com (2603:10b6:303:1e8::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.13; Fri, 31 Oct
- 2025 17:36:14 +0000
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::7e8b:2e5:8ce4:2350%7]) with mapi id 15.20.9275.013; Fri, 31 Oct 2025
- 17:36:13 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20251029221423.GG2806654@mdroper-desk1.amr.corp.intel.com>
-References: <20251021-xe3p_lpd-basic-enabling-v2-0-10eae6d655b8@intel.com>
- <20251021-xe3p_lpd-basic-enabling-v2-19-10eae6d655b8@intel.com>
- <20251029221423.GG2806654@mdroper-desk1.amr.corp.intel.com>
-Subject: Re: [PATCH v2 19/32] drm/i915/xe3p_lpd: PSR SU minimum lines is 4
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>, Dnyaneshwar Bhadane
- <dnyaneshwar.bhadane@intel.com>, Jouni =?utf-8?q?H=C3=B6gander?=
- <jouni.hogander@intel.com>, Juha-pekka Heikkila
- <juha-pekka.heikkila@intel.com>, Luca Coelho <luciano.coelho@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, Matt Atwood
- <matthew.s.atwood@intel.com>, Ravi Kumar Vodapalli
- <ravi.kumar.vodapalli@intel.com>, Shekhar Chauhan
- <shekhar.chauhan@intel.com>, Vinod Govindapillai
- <vinod.govindapillai@intel.com>, Jani Nikula <jani.nikula@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Date: Fri, 31 Oct 2025 14:36:09 -0300
-Message-ID: <176193216968.3685.707322924217220205@intel.com>
-User-Agent: alot/0.12.dev22+g972188619
-X-ClientProxiedBy: SJ0PR13CA0219.namprd13.prod.outlook.com
- (2603:10b6:a03:2c1::14) To PH8PR11MB8287.namprd11.prod.outlook.com
- (2603:10b6:510:1c7::14)
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com
+ [209.85.218.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A40A910E2F9
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 17:46:56 +0000 (UTC)
+Received: by mail-ej1-f53.google.com with SMTP id
+ a640c23a62f3a-b6d83bf1077so521982766b.3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 10:46:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1761932815; x=1762537615; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=/U74qDhWtRZ2/GEt0OgV6FI8TLhf3YNClD+a4qkyCyc=;
+ b=f/vGS4b/IRy0skEcgq9qbDAoPxe+xid0CvnsB9X5eJO8C9RE5sqkKNEnh3Pt+6RN/y
+ AAZcF/9X8PAx6Qm8RS5826R3nEG5zazPiFgtEic+Da4aTrPY0jlv8MRjkAOU6DSiVnwC
+ AdfvNOxrGUcbpcr7665p72x6bXyOelH0trWP0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1761932815; x=1762537615;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=/U74qDhWtRZ2/GEt0OgV6FI8TLhf3YNClD+a4qkyCyc=;
+ b=w9jKZCRcwpsSDybMpf+Puxeo6x9bRFDSqDNYkAJuH6muIhsR8UWkhnrzjuwF47xMaX
+ okZswasS7FXuAqwLt8r2pXKBvIyiTIsif8XirFt6M8P7cJMV5U8oCroxkXN+P/IJUX2Z
+ dwG+8JzZL5gS1b/m/YGXlYl9d2yd/lI6dQGFpi55mi8m1ViQQkAqA3C4N5+aF07pohgR
+ GXp8tWf3Yq0QLEilji+/ep1d6vDQGpmATLJT5lxOhqrcX6tLsMxDPJdg2rbFAPIbkHbD
+ m2pzhEdCnU4pq3VHhasVc0mWBYPQ9mxiMULeGp5TbrrtcxEw3/c3tBqdZt+cgyUK3Yge
+ o1QA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV119iNr6wu6jSHEDoW6p/YPse8Ugxq448fNr8uFXnJEy58R+KfHu+u9IXtrP9I7R6VrTbfbJY57vI=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyV1q0zQSuurdXQ2uHsE/SsCvfQShtB2NPDsldwfA4Bdf8zrtYQ
+ A0eLkl15No/v7iOxqaBW7CSrOgj4/iTP8vWpWsvuNq8mpUWCWQabq2XSUkFbdmMCOj8=
+X-Gm-Gg: ASbGncs9yQjkgwtEnqdyDKSFQ9saF5rRGqS2V3Kok+l7zAy277YGQO9mMX5E1ymbNnM
+ fDe9V5i3ulYm3AJkvDoU28gp3nKpDvawU1f+1Dnbel3qmQ68d/tXqwiCyQo6emNQjf5SVk4Kv25
+ 3O00TETJYppRXyQnHTryeW+XKpNJlVUjl24MDOq7+CFa3PbPIa/UNQDKVp+5kZGgfmMiXHAi53p
+ LndXgGc/URdTwK5n5y2xai7eDdGKc+o0KFa7EmdBIpLhRvKJsERRD5mLkDTm8nY4xjmPtUtEDfl
+ T5sE+qQ126Uh1eRk2in9NT/8j7j9QIoB8oDh8x8AWLB95OrmNkwz8FVfRcCFTpBSygJcKupdVQf
+ aSB7RwTlTTuXipt3Sq7EAH3AiKYcMO/6TNLMfdXD+/1xD6l2FuLGgdQQU41z9SY2OaaJYeTIcXJ
+ Cycfgs1B+HchDpg/tBIo49JA==
+X-Google-Smtp-Source: AGHT+IF9FGeHOiBrOmfXVtaVLh47pAXMMNvGpvR4PtefXoKPk1p0EH9vsTbNtl1+JtB019yoDDIA4Q==
+X-Received: by 2002:a17:907:1c93:b0:b40:8deb:9cbe with SMTP id
+ a640c23a62f3a-b70700bad7dmr509520766b.2.1761932814193; 
+ Fri, 31 Oct 2025 10:46:54 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-b7077c3ec52sm230828166b.43.2025.10.31.10.46.53
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 31 Oct 2025 10:46:53 -0700 (PDT)
+Date: Fri, 31 Oct 2025 18:46:51 +0100
+From: Simona Vetter <simona.vetter@ffwll.ch>
+To: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+Cc: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: Re: [PULL] drm-xe-next
+Message-ID: <aQT2C_cJMjYbZL0T@phenom.ffwll.local>
+References: <aQCl9uJxN6CWJ8Vg@fedora>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|MW4PR11MB8289:EE_
-X-MS-Office365-Filtering-Correlation-Id: a50a8110-8cb1-464b-7b3f-08de18a3fce6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?Vmd4dXQ0VHkvaUZoSWdpQnNVbHlaQzl6SThEZHhEckhGQ21CN3ZkdkEwbzU3?=
- =?utf-8?B?SXZ2STdxKzZtamZWMUZ5aU9pYnJjMnJxRGJ0V0hRUmVXbHcxSit4a1JvNkZj?=
- =?utf-8?B?UjdKTWg3c3pnM2NVYnVyQmQ4K3dYY2RvNytlZVNWdjRZU0ZNdUhvY1FGZDhW?=
- =?utf-8?B?dXdndUJhallJQjdLeXBsUTY3SlZObmoxNXpOOXhXZjBOSklUdHozTytCMHFZ?=
- =?utf-8?B?M0RUWVMzUU5MRXZzOWUxMHJJLzkvRkxMa2JaWkhSK2ZPRjhHRVZsRjFjbmg0?=
- =?utf-8?B?TTNvQUt2M3J2VWZSaU8yb3ZvVVZqRElmeEE5QmlRQjRHNGhPaFBObWJ3cXll?=
- =?utf-8?B?NGdHU0lQZ2lRbTl5S0hWU0JBR0R4NkRPbGs3VW5TNCtpWVYxNFYrYXp2NHVx?=
- =?utf-8?B?bHhtUDYyUHdwMEpNNnlHQ1VzcmZHYmNqby9PSEJ6bG5ObGFFOTQ5d1Uxc21i?=
- =?utf-8?B?RzBuWEZrenM1RGpBcXA2cnErZHlheEljamJmZEt4bTJsTmo2VCtlRnZHaFlC?=
- =?utf-8?B?VitsbVlnQzV5NVlCQk1FNlZiV3pHeXBGbGtjZEhuY2pzYndOMTA3ZFMrQktQ?=
- =?utf-8?B?TVkxd3N2dmsrdFdzS3NhNXFXV1FjT2pVV0xDN3BXVHl4ckdXaHRWUGd4V2NO?=
- =?utf-8?B?MTU5R1lVWWl4djZwQ1NQd1ZOanZuODhtcENIQVozOXRyVVNpVDFIUGYrOGl4?=
- =?utf-8?B?WFRoZUdhWjgrbUhWSERVNXJlS1hodUd2NTBma2dWMGJpc3hvQnFTeXFDTWI0?=
- =?utf-8?B?ajhlbDU4RmlJcm9HQWlBU3hjUEtVRVR5amd5VWNPTGdhcjNnQ3hnaTJNT0Mw?=
- =?utf-8?B?QUZPcTFZZ1duNkZSZXgvV0tnR0Y5b2xXQUZnY2xKdXZiQmEyV2haSjVvUS9Z?=
- =?utf-8?B?dWg5RFBwWDNlQ3pEQzBkRTNnbzZwTVA3VDk5bUtPbTV4WUJlZm5DdlNqL2Vp?=
- =?utf-8?B?QjNoa1NEVHZNV0l5cmtxM0lZbzc1WHM3Mmp2dzdGeE9CSWxZVUtQUzlmWERV?=
- =?utf-8?B?M1JoOUpMUkMzVitleUJDaWNzTDV5VGJ3T1d6VCtZWW1DYnlnYU40MjNqQVBp?=
- =?utf-8?B?SG56bm02dGQ1UjUzanphRkppTmtOaU45cmdkWDNDalRXRFRHOWFDeXpLbkl5?=
- =?utf-8?B?dmFpWjhjV0R6YWtJN2I3Rk5uVzdkQ09RaEtyaDNXT1NidE0zbzd6UmNXWVd0?=
- =?utf-8?B?a2J2K3F1bnlHK3dxTVVraHJNRDMya0tSL1JEWm9heHJsdHJGOXVpMEFOQlpH?=
- =?utf-8?B?b0pZTU80c0NVR0VQQWFhRHN2ZFFLRTQwdHRFNU43ZVNzY0QvbU9IV2hSMVFE?=
- =?utf-8?B?OUJJTFVldlJrcmVYVVhKVHhOVkNDR3BTRXA0Y3lnR2I1dStaUGNWc3AzWUk5?=
- =?utf-8?B?MUJ6OHpydzNnZGNlK3htWlBYRGRLU2M4Skdxa29NREVKNHRSTEFtdWliTldt?=
- =?utf-8?B?WDM5WnB1TjU0UU9JSUVHSXJWdEswZ1R6ZTkxRHlCbWwyWDFoUXo4VS9JSGJi?=
- =?utf-8?B?ekhpQU9PYUMxcjVSTGZqU3FNeXV1aStjSVRZdmtvbkwxaW45TjRsSlJzMmhH?=
- =?utf-8?B?VlZJWElQcUg3WmtaUUIxdm95eVlQTXZvbTgyRDUrSzA2N2VpVDRLNnBBNWpM?=
- =?utf-8?B?MWNocEFEQzQrVkpNR3lyUitCSGcyTHpuRWFiTlZHT21vSUh5NHBIV2wrVWE4?=
- =?utf-8?B?Z0VMSzVRWXQwSHgyQXl1cDM0WVNkQllleHkvV2dkdnZ2RUM0Z0pxbC9vaVRw?=
- =?utf-8?B?TDB6WFZJQjh3cGxmcE9zcDZXdks1RUw1Z0FtT0ttWGdtWkYvekJlYXp2Q3F2?=
- =?utf-8?B?SnU5MWpaRFF5T3F0Vnp2eVFNcTNZRWtvL3Z3eWVTTmdJUU44UUlSOVVpSTli?=
- =?utf-8?B?N0krVno1VDFsOE1ZYU9pUUhjMXMySHFOQjRidFltWXBiRnVKYk1IaVZ3bFdB?=
- =?utf-8?Q?o/BYu+q1nSVpdBQveRuMHVOubd/wCrzC?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VGlwWVFJUmlCQ2xzcXlFL1VjWVhNZ0JCdmtOWU4rdWhzZDJpZFdXdzRvTmFQ?=
- =?utf-8?B?QWIrZFlxVy9EYUFKYXNlT2ZDaS8zUlp2SHc5MjMwS3dkOHpBSVV2dnZNdlZo?=
- =?utf-8?B?RkYzSzRPRGttaVl6UksvK1doNGdoYU1MdmtYYk0rSmFwcFZNTysvbUJVd20v?=
- =?utf-8?B?YTJOK25iNmNJUSswSWhDTjZTWkROZk1OSGM3TjF2Rm9wWkVMbVcyM3BWVlhS?=
- =?utf-8?B?Rnloa29kTW5RVlNxa3BjM3Y4NjUwRE5ieThDOVQ5YTFxZFVySTJSMHdheWlt?=
- =?utf-8?B?dmxHQ3JUS1lOK2FpOEUvWjVrdlp3WDZGenZyMHdpRTZXZU9iR1hyKzhTeGVJ?=
- =?utf-8?B?TUpRTGg5Z0F6c1psTVB5Z1ZXckM2Q1pQM3lhZ1dNSTZyWEs4WGs5UC9CNzBW?=
- =?utf-8?B?UHpCY21OZGpySXlWZXEvQkhMRUFwQWNBeG5aRVFwYkRKeldrVmFUNVF1S0Nk?=
- =?utf-8?B?Z1pwdEo1Z1VtRGsxUTJZWEorMW9TeUlDMkdQS0kzdVQxVFQ3L0VBTUFLVkl5?=
- =?utf-8?B?VzIyc3hKOUxYR3VTT3dkQlUrbnhLRjZSL2Q4S3E1ODlMbEtsSmt1Qy9ZNEtM?=
- =?utf-8?B?RjBoVTdIYmkyUGZ2eDJsN3oxN015dXBDS0NldVowd0MyUG9QSVRnNisxcHRL?=
- =?utf-8?B?NUluMFlaMVZZNDdVaVdReWRITWg3Zm5TdUJQdFRxcTNNM2FrSEpHNDVLRm1v?=
- =?utf-8?B?KzZjdGZMVzY1REREVGI1OEsyeERGMlZZTDM1ZzllRjJMQzlKOWtNdG9WWW5U?=
- =?utf-8?B?eDkxRk0rcnFScnkxMDcwTTFNdnNFWEp6Yy9CY0RSbDAzWU5sN2UvNHRnNzZ3?=
- =?utf-8?B?WUt1TnJmT2NjODBVZy9xY1lvVTBHRUIwMkVlZ0tTN0ovdGw2aDRvOEZEQ2E2?=
- =?utf-8?B?alJtRHQvRWNtYkxNMUZSMmhlQWFzL1JHS2h1TEdZSFEwNzN1M0k5L1FEeGJB?=
- =?utf-8?B?bG1waTNucmJWWWg2bFpjK2lzSzlxMnppcGNwS0NaUlZCS0JMRTFZTUpSL0pJ?=
- =?utf-8?B?MnByYTF5bVdaaXQwUWxxM2Uyc1FGVlFWL2JGU1dyTnRpOTgwVUgxcm9IUmpP?=
- =?utf-8?B?bDRYdjFMbWdEdnVGNTJLejJJbDlMcUpqY096MVh4WG1LMHNwUnRkNzVDbDVK?=
- =?utf-8?B?ME1DdDFIQkxPTDlIQVAxK0E1b0xBK2w2Z2pmOEtaaUpJa2ttT1k1MlIyUWs1?=
- =?utf-8?B?aGZES1cyYVRyaGhWQ0Q5cExRY2YxTTZrVHlKSlZuaUc1N0taU2w5ZFZGaUlJ?=
- =?utf-8?B?RVhodHc3dWladXpLZGw2YmhPYjRLVWs0bExuaDV3Rk5WNjQyUDEyNnlwMjR3?=
- =?utf-8?B?Vk41WUpMRzVOb3A1eCtzbmtiemNGTUdFRkV5ODBLRmJXaElNSGpPa0tzY1ZR?=
- =?utf-8?B?cVhrRmJZUUJhbUlRNmxVRHJyLzVFeFZtTkt4bWVvdzNMRTh3ZyttVFVDY2da?=
- =?utf-8?B?OEFrUVA1cnlrdXlmc1VzL2ZBRUJRWFN5K1FCWG8wazhUcVdISmRIMEVBOWZk?=
- =?utf-8?B?b0FQdTErYUdCVVE1YVF4c0pGcDkwVjJpNktNWUUxQ0wvdEFKY1FONWx6TjRC?=
- =?utf-8?B?Y0tYaW9TNmRCOXYxYXdkdTVlR3pJUk9UOVJLZHpLT0tDUnVQditOOER2RFJO?=
- =?utf-8?B?elZ1aEpSUC9XSnd0czZSRzVVNVNIRGg1N1JRSVB3MTE4MWJEd1RUbXBwUjR5?=
- =?utf-8?B?UEl3RUJWU04wOWR0L054dXJVL1MrWGZ6ZHRSZXc3Qitnam1UaDh5bmIxbjJr?=
- =?utf-8?B?TDFES0QvaDN5R3hmZEV0NDdTcTJHZzRzUUVCSVdjbC81V0pyODJTM2pvMUxC?=
- =?utf-8?B?YWFQcDJPK2RZZUxpTGdVWG9jYmZCOXlNeTQ5cUlDY0FQUDFKSWkwWnJ2ejFt?=
- =?utf-8?B?S3Zab1h5blNKQkZjZlZEaEJ0UWdKSjdQZHU4ZTk2U2JkS3F0STV1MVZXb1Rl?=
- =?utf-8?B?T25CSnRUM0RQQldTU0Z2a2JiUTdYSXpRV1ZsdGc3a2RPVkJzYzUwaWtaV2th?=
- =?utf-8?B?WFRkbEYwSXAvZUhhRlljV1N6RFdoZE1DczJTeE5jM1lPSTJHcWtyVmtDSjg0?=
- =?utf-8?B?c3FFK1Y4bStldFRCT2RBUHF1MjRCZTJiSEZ4aUFJVUZMUFlrVmhJWFVTcnAz?=
- =?utf-8?B?UldvUFF2OC9HZTVhWXdPVG9jVll5VlhsU1VQM3JCQUxJOHFKUThCYm52ZzBy?=
- =?utf-8?B?cWc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a50a8110-8cb1-464b-7b3f-08de18a3fce6
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Oct 2025 17:36:13.6450 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: JQ8Jz3QSYS6KT9cuYG07ZfV/BTLsIQ8e//6Pmw8lGC0f7wQB6e60KL3jFFk21QVF0H1pcGn+lNy/LQojxCKMLA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB8289
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aQCl9uJxN6CWJ8Vg@fedora>
+X-Operating-System: Linux phenom 6.12.38+deb13-amd64 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -205,96 +96,182 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Matt Roper (2025-10-29 19:14:23-03:00)
->On Tue, Oct 21, 2025 at 09:28:44PM -0300, Gustavo Sousa wrote:
->> From: Jouni H=C3=B6gander <jouni.hogander@intel.com>
->>=20
->> Ensure the minimum selective update line count is 4 in case of display
->> version 35 and onwards.
->
->I don't think this is true for Xe3p (at least based on what's shown
->at the bottom of bspec 69887).
+On Tue, Oct 28, 2025 at 12:16:06PM +0100, Thomas Hellstrom wrote:
+> Hi Dave, Simona!
+> 
+> This weeks drm-xe-next PR.
+> 
+> drm-xe-next-2025-10-28:
+> Driver Changes:
+> More xe3p support (Harish, Brian, Balasubramani, Matt Roper)
+> Make panic support work on VRAM for display (Maarten)
+> Fix stolen size check (Shuicheng)
+> xe_pci_test update (Gustavo)
+> VF migration updates (Tomasz)
+> A couple of fixes around allocation and PM references (Matt Brost)
+> Migration update for the MEM_COPY instruction (Matt Auld)
+> Initial CRI support (Balasubramani, Matt Roper)
+> Use SVM range helpers in PT layer (Matt Brost)
+> Drop MAX_GT_TYPE_CHARS constant (Matt Roper)
+> Fix spelling and typos (Sanjay)
+> Fix VF FLR synchronization between all GTs (Michal)
+> Add a Workaround (Nitin)
+> Access VF's register using dedicated MMIO view (Michal)
+> The following changes since commit d104d7ea864c1b9d8ffb3d93a58d49f9395be670:
+> 
+>   drm/xe/xe3p: Add xe3p EU stall data format (2025-10-18 19:45:14 -0700)
+> 
+> are available in the Git repository at:
+> 
+>   https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-2025-10-28
+> 
+> for you to fetch changes up to 4504e780689245f01bee6ee4c19c74051bd87593:
+> 
+>   drm/xe/pf: Access VF's register using dedicated MMIO view (2025-10-27 17:22:18 +0100)
 
-Agreed.  I think we can drop this patch.
+Pulled into drm-next, thanks!
+-Sima
 
---
-Gustavo Sousa
+> 
+> ----------------------------------------------------------------
+> Driver Changes:
+> More xe3p support (Harish, Brian, Balasubramani, Matt Roper)
+> Make panic support work on VRAM for display (Maarten)
+> Fix stolen size check (Shuicheng)
+> xe_pci_test update (Gustavo)
+> VF migration updates (Tomasz)
+> A couple of fixes around allocation and PM references (Matt Brost)
+> Migration update for the MEM_COPY instruction (Matt Auld)
+> Initial CRI support (Balasubramani, Matt Roper)
+> Use SVM range helpers in PT layer (Matt Brost)
+> Drop MAX_GT_TYPE_CHARS constant (Matt Roper)
+> Fix spelling and typos (Sanjay)
+> Fix VF FLR synchronization between all GTs (Michal)
+> Add a Workaround (Nitin)
+> Access VF's register using dedicated MMIO view (Michal)
+> 
+> ----------------------------------------------------------------
+> Balasubramani Vivekanandan (2):
+>       drm/xe/xe3p_lpm: Add special check in Media GT for Main GAMCTRL
+>       drm/xe/cri: Add CRI platform definition
+> 
+> Brian Welty (1):
+>       drm/xe/xe3p_lpm: Configure MAIN_GAMCTRL_QUEUE_SELECT
+> 
+> Gustavo Sousa (2):
+>       drm/xe/tests/pci: Convert GT count check to general device check
+>       drm/xe/tests/pci: Check dma_mask_size, va_bits and vm_max_level
+> 
+> Maarten Lankhorst (2):
+>       drm/xe: Extract xe_bo_is_visible_vram
+>       drm/xe/display: Make panic support work on vram.
+> 
+> Matt Roper (4):
+>       drm/xe/cri: Setup MOCS table
+>       drm/xe/xe3p_xpc: Treat all PSMI MCR ranges as "INSTANCE0"
+>       drm/xe/xe3p_xpc: Add MCR steering for NODE and L3BANK ranges
+>       drm/xe/configfs: Drop MAX_GT_TYPE_CHARS constant
+> 
+> Matthew Auld (7):
+>       drm/xe/migrate: fix offset and len check
+>       drm/xe/migrate: rework size restrictions for sram pte emit
+>       drm/xe/migrate: fix chunk handling for 2M page emit
+>       drm/xe/migrate: fix batch buffer sizing
+>       drm/xe/migrate: trim batch buffer sizing
+>       drm/xe/migrate: support MEM_COPY instruction
+>       drm/xe/migrate: skip bounce buffer path on xe2
+> 
+> Matthew Brost (4):
+>       drm/xe: Check return value of GGTT workqueue allocation
+>       drm/xe: Do not wake device during a GT reset
+>       drm/xe: Avoid PM wake reference during VF migration
+>       drm/xe: Use SVM range helpers in PT layer
+> 
+> Michal Wajdeczko (2):
+>       drm/xe/pf: Fix VF FLR synchronization between all GTs
+>       drm/xe/pf: Access VF's register using dedicated MMIO view
+> 
+> Nitin Gote (1):
+>       drm/xe/xe3: Add WA_14024681466 for Xe3_LPG
+> 
+> Sanjay Yadav (1):
+>       drm/xe: Fix spelling and typos across Xe driver files
+> 
+> Shuicheng Lin (1):
+>       drm/xe: Fix stolen size check to allow equal WOPCM size
+> 
+> Tomasz Lis (4):
+>       drm/xe/vf: Revert logic of vf.migration.enabled
+>       drm/xe/vf: Fix GuC FW check for VF migration support
+>       drm/xe: Assert that VF will never use fixed placement of BOs
+>       drm/xe/vf: Do not disable VF migration on ATS-M
+> 
+>  drivers/gpu/drm/xe/display/xe_panic.c             |  50 +++++---
+>  drivers/gpu/drm/xe/instructions/xe_gpu_commands.h |   6 +
+>  drivers/gpu/drm/xe/regs/xe_gt_regs.h              |  10 ++
+>  drivers/gpu/drm/xe/tests/xe_pci_test.c            |  16 ++-
+>  drivers/gpu/drm/xe/xe_bo.c                        |  29 ++++-
+>  drivers/gpu/drm/xe/xe_bo.h                        |   1 +
+>  drivers/gpu/drm/xe/xe_bo_doc.h                    |   8 +-
+>  drivers/gpu/drm/xe/xe_configfs.c                  |   5 +-
+>  drivers/gpu/drm/xe/xe_device.c                    |   2 +-
+>  drivers/gpu/drm/xe/xe_device_types.h              |  10 +-
+>  drivers/gpu/drm/xe/xe_exec.c                      |   2 +-
+>  drivers/gpu/drm/xe/xe_force_wake_types.h          |   4 +-
+>  drivers/gpu/drm/xe/xe_ggtt.c                      |   3 +
+>  drivers/gpu/drm/xe/xe_gt.c                        |  19 ++--
+>  drivers/gpu/drm/xe/xe_gt_freq.c                   |   2 +-
+>  drivers/gpu/drm/xe/xe_gt_mcr.c                    |  35 +++---
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf.c               |  36 ++----
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c       |   2 +
+>  drivers/gpu/drm/xe/xe_gt_sriov_vf.c               |   7 +-
+>  drivers/gpu/drm/xe/xe_gt_topology.c               |   7 ++
+>  drivers/gpu/drm/xe/xe_gt_topology.h               |   2 +
+>  drivers/gpu/drm/xe/xe_gt_types.h                  |   9 +-
+>  drivers/gpu/drm/xe/xe_guc.c                       |  46 ++++++++
+>  drivers/gpu/drm/xe/xe_guc.h                       |   1 +
+>  drivers/gpu/drm/xe/xe_guc_ads.c                   |   6 +-
+>  drivers/gpu/drm/xe/xe_guc_ads_types.h             |   2 +-
+>  drivers/gpu/drm/xe/xe_guc_ct_types.h              |   2 +-
+>  drivers/gpu/drm/xe/xe_guc_fwif.h                  |   1 +
+>  drivers/gpu/drm/xe/xe_guc_log_types.h             |   2 +-
+>  drivers/gpu/drm/xe/xe_guc_submit.c                |   2 +-
+>  drivers/gpu/drm/xe/xe_guc_tlb_inval.c             |   2 +-
+>  drivers/gpu/drm/xe/xe_map.h                       |   4 +-
+>  drivers/gpu/drm/xe/xe_migrate.c                   | 132 ++++++++++++++++++----
+>  drivers/gpu/drm/xe/xe_migrate_doc.h               |   2 +-
+>  drivers/gpu/drm/xe/xe_mmio.c                      |  29 +++++
+>  drivers/gpu/drm/xe/xe_mmio.h                      |   4 +
+>  drivers/gpu/drm/xe/xe_mocs.c                      |  26 +++++
+>  drivers/gpu/drm/xe/xe_pci.c                       |  20 ++++
+>  drivers/gpu/drm/xe/xe_pci_types.h                 |   1 +
+>  drivers/gpu/drm/xe/xe_platform_types.h            |   1 +
+>  drivers/gpu/drm/xe/xe_pm.c                        |   2 +-
+>  drivers/gpu/drm/xe/xe_preempt_fence_types.h       |   2 +-
+>  drivers/gpu/drm/xe/xe_pt.c                        |  28 ++---
+>  drivers/gpu/drm/xe/xe_range_fence.h               |   4 +-
+>  drivers/gpu/drm/xe/xe_sched_job.c                 |   6 +-
+>  drivers/gpu/drm/xe/xe_sched_job.h                 |  12 +-
+>  drivers/gpu/drm/xe/xe_sched_job_types.h           |   2 +-
+>  drivers/gpu/drm/xe/xe_sriov_vf.c                  |  39 +++----
+>  drivers/gpu/drm/xe/xe_sriov_vf.h                  |   1 +
+>  drivers/gpu/drm/xe/xe_sriov_vf_ccs.c              |  46 +++++++-
+>  drivers/gpu/drm/xe/xe_sriov_vf_types.h            |   6 +-
+>  drivers/gpu/drm/xe/xe_svm.c                       |   2 +-
+>  drivers/gpu/drm/xe/xe_tlb_inval.h                 |   2 +-
+>  drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c            |   2 +-
+>  drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h        |   4 +-
+>  drivers/gpu/drm/xe/xe_uc_fw_types.h               |   6 +-
+>  drivers/gpu/drm/xe/xe_uc_types.h                  |   2 +-
+>  drivers/gpu/drm/xe/xe_validation.h                |   6 +-
+>  drivers/gpu/drm/xe/xe_vm.c                        |  10 +-
+>  drivers/gpu/drm/xe/xe_vm_doc.h                    |   8 +-
+>  drivers/gpu/drm/xe/xe_vm_types.h                  |   4 +-
+>  drivers/gpu/drm/xe/xe_wa.c                        |   4 +
+>  include/drm/intel/pciids.h                        |   4 +
+>  63 files changed, 534 insertions(+), 216 deletions(-)
 
->
->
->Matt
->
->>=20
->> v2:
->>   - Fix style by dropping extra spaces after assignment operator.
->>     (Jani).
->>=20
->> Bspec: 69887
->> Cc: Jani Nikula <jani.nikula@linux.intel.com>
->> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
->> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_psr.c | 25 +++++++++++++++++++++++++
->>  1 file changed, 25 insertions(+)
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/=
-i915/display/intel_psr.c
->> index cfc8b04f98fa..a23519b9b388 100644
->> --- a/drivers/gpu/drm/i915/display/intel_psr.c
->> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
->> @@ -2804,6 +2804,29 @@ intel_psr_apply_su_area_workarounds(struct intel_=
-crtc_state *crtc_state)
->>                  intel_psr_apply_pr_link_on_su_wa(crtc_state);
->>  }
->> =20
->> +static void intel_psr_su_area_min_lines(struct intel_crtc_state *crtc_s=
-tate)
->> +{
->> +        struct intel_display *display =3D to_intel_display(crtc_state);
->> +        struct drm_rect damaged_area;
->> +
->> +        /*
->> +         * Bspec mentions 4 being minimum lines in SU for display versi=
-on
->> +         * 35 and onwards.
->> +         */
->> +        if (DISPLAY_VER(display) < 35 || drm_rect_height(&crtc_state->p=
-sr2_su_area) >=3D 4)
->> +                return;
->> +
->> +        damaged_area.x1 =3D crtc_state->psr2_su_area.x1;
->> +        damaged_area.y1 =3D crtc_state->psr2_su_area.y1;
->> +        damaged_area.x2 =3D crtc_state->psr2_su_area.x2;
->> +        damaged_area.y2 =3D crtc_state->psr2_su_area.y2;
->> +
->> +        damaged_area.y2 +=3D 4 - drm_rect_height(&damaged_area);
->> +        drm_rect_intersect(&damaged_area, &crtc_state->pipe_src);
->> +        damaged_area.y1 -=3D 4 - drm_rect_height(&damaged_area);
->> +        clip_area_update(&crtc_state->psr2_su_area, &damaged_area, &crt=
-c_state->pipe_src);
->> +}
->> +
->>  int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->>                                  struct intel_crtc *crtc)
->>  {
->> @@ -2912,6 +2935,8 @@ int intel_psr2_sel_fetch_update(struct intel_atomi=
-c_state *state,
->>          if (full_update)
->>                  goto skip_sel_fetch_set_loop;
->> =20
->> +        intel_psr_su_area_min_lines(crtc_state);
->> +
->>          intel_psr_apply_su_area_workarounds(crtc_state);
->> =20
->>          ret =3D drm_atomic_add_affected_planes(&state->base, &crtc->bas=
-e);
->>=20
->> --=20
->> 2.51.0
->>=20
->
->--=20
->Matt Roper
->Graphics Software Engineer
->Linux GPU Platform Enablement
->Intel Corporation
+-- 
+Simona Vetter
+Software Engineer
+http://blog.ffwll.ch
