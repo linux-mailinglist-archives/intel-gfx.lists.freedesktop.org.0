@@ -2,94 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 996EAC2535A
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Oct 2025 14:13:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 349D2C2546F
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Oct 2025 14:36:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD0C910EB38;
-	Fri, 31 Oct 2025 13:12:58 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="l7zRKTAV";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F95A10EB40;
+	Fri, 31 Oct 2025 13:35:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
- [209.85.221.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5F5710EB37
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 13:12:56 +0000 (UTC)
-Received: by mail-wr1-f44.google.com with SMTP id
- ffacd0b85a97d-429be5d31c9so684361f8f.1
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 06:12:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1761916375; x=1762521175;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:to:subject:user-agent:mime-version:date:message-id:from
- :to:cc:subject:date:message-id:reply-to;
- bh=qNX6KVX2q+PDu84U/XKuqBODfvtpJV43jMXyUpGBL08=;
- b=l7zRKTAVEgdGT5QgFXb1Ym3aXagtNqi7MQkaQ6QyHhL658ZaF3OMHPh6Vb1Mz3U5TO
- 7HLn8S8jdub94LPiUsvFUw5z/jql4AMsb9AG4+/cywjgogWcmdJXXUpxDBTLyC9ugAMy
- zJQdo8RZ068Mr681gAH1KCN0ut352FowfUC+ZILvYSDgKF98r1BsbFjx5txM9fNkvH8/
- JTh1u0/dldJL1bCRG8Lq8N+DZ4JGPR2KPeOqvQoFbuv1OVd0sOziS8jqqmq35irZV5Ou
- k7tljhYQmSaJJld58Adgb0pFTKFVB0Z/mvRw48QJs6KZMASFvlL88CEGMkBFFRcCkDPN
- u/8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761916375; x=1762521175;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=qNX6KVX2q+PDu84U/XKuqBODfvtpJV43jMXyUpGBL08=;
- b=e6p/bdSXYsBg/Qf7IWpc0YJO4Ll2Q8gNPdAU8Kt9dYOUjcKxtH7xNXi9toclonSwFD
- bDzTpRlhp3aD3hFOfcBDdoFZST8W0pekENjnTSCqvL+F4Yo99gPQBfCA8uXuVxOCzhpo
- sSZE27lafaqGYQhup0OVIlZqsccTOzhWh6p0cDxaifSYWVOpzUg7+pgQohtHhYHvn4E4
- f+e/p4zZVYF5bS3Aa05RiAfgZ/PKAE7Lbx4iOBhZCRTCMahsFmliC9hKdy4AUbtfrMPx
- Jpy2ibVNIgJEN4dcv8snIbs33jVjuHygfbqDjYCejVq5q8SSIdHaLCjAUznlro/lMYWp
- KSGA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU452gQM68d7cFgCsk2G6+FHtzBsXGI74WyR4GftGGvjRV1s/X+PRP/cr/COUE+HkRTCsmrGJOv+7c=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyfs6rOnmfIt0zqoIkjdwxwJBm6lRwns5kfpHcZOeeJJpdPQagz
- 3SFvO8xbEQcIkO1blMaqgTdVBMYxxJTeih86GGR8GKVdI+z/uxysaqo1UlYZuvWW1WA=
-X-Gm-Gg: ASbGncsqmjRgI78yGFm/mW6HNGTv/oFCip/ckWxJ4+E/C/s4rOlNZmPYb21/qeqP2mC
- OUyimyeNthjVXCOBV6AGUK70MvLqItATosCsc2aFXsGLUybdBMAyO3IXQ80oxPg6emZwmZefZUA
- 6HXLpYQWq9tue7wSbQfrPHusZqo7PIetQ+JrtTlZJcEE91uNnR5MTDgoPSpeoQ76by7K2yeorvC
- mtJ9Nl1boTGzdq7UBhOignmOU93V6D3nrTsHFvLnvTa71CkwNz8vEsWi4Rg4dEJcUhAqk4SZOo9
- eVcjQebJpKfI2D+xZUcXMxqkehWbhqsV0QMxHMfpVq9SfhpOFHQsmZExYg1KnAFbYDjokYfPALk
- WSDVIw0zj0khOeJ0Zy04rohRq7H5jdx5Q+h744ts+FmiFW6Ei61YpiIV6LO/yMGEO1RQp9GWD/Y
- 8kls2ZS1rPtF0P8Nlo
-X-Google-Smtp-Source: AGHT+IGvJ4sKk1W5UvLUKiJV8ymzexXWGjytfB8WkCGAXgvIDnyQNsS7gF8HDUe265tffTW7EbBNWQ==
-X-Received: by 2002:a5d:5c84:0:b0:429:9501:c9c1 with SMTP id
- ffacd0b85a97d-429bd6e16d4mr3017033f8f.46.1761916375087; 
- Fri, 31 Oct 2025 06:12:55 -0700 (PDT)
-Received: from [192.168.0.101] ([90.240.106.137])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-429c54efcadsm173675f8f.5.2025.10.31.06.12.54
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 31 Oct 2025 06:12:54 -0700 (PDT)
-Message-ID: <8c91e311-cef1-4018-88e0-a22f289d7983@ursulin.net>
-Date: Fri, 31 Oct 2025 13:12:53 +0000
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5A0110EB40;
+ Fri, 31 Oct 2025 13:35:57 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/dmabuf: Flush the cache in vmap
-To: Thomas Zimmermann <tzimmermann@suse.de>,
- Jocelyn Falempe <jfalempe@redhat.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Christian Brauner <brauner@kernel.org>,
- Andi Shyti <andi.shyti@linux.intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20251024110432.1313391-1-jfalempe@redhat.com>
- <a1d6cf1f-02b6-4c89-84e2-4b2af39829ef@ursulin.net>
- <d123d897-8e65-417b-ad3f-40fe5b49f2b1@suse.de>
- <5ae02bda-0732-4dd4-827e-9e2dac7ae6bd@redhat.com>
- <8384a735-9d90-4817-86a6-7b7bae81b6e2@suse.de>
- <fb6f4e12-6bef-4f72-abbe-b82de6c85282@ursulin.net>
- <70fe6101-4404-42d8-a1b5-0d22a11d8f67@redhat.com>
- <a90547e6-c05b-4e1c-be5f-2898b516abcc@suse.de>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <a90547e6-c05b-4e1c-be5f-2898b516abcc@suse.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_Enable_LT_PHY_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 31 Oct 2025 13:35:57 -0000
+Message-ID: <176191775773.4698.8210001969726707960@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <20251031103643.4147868-1-suraj.kandpal@intel.com>
+In-Reply-To: <20251031103643.4147868-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,128 +36,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 27/10/2025 10:26, Thomas Zimmermann wrote:
-> Hi
-> 
-> Am 27.10.25 um 10:46 schrieb Jocelyn Falempe:
->> On 24/10/2025 17:55, Tvrtko Ursulin wrote:
->>>
->>> On 24/10/2025 16:18, Thomas Zimmermann wrote:
->>>> Hi
->>>>
->>>> Am 24.10.25 um 15:33 schrieb Jocelyn Falempe:
->>>>> On 24/10/2025 14:40, Thomas Zimmermann wrote:
->>>>>> Hi
->>>>>>
->>>>>> Am 24.10.25 um 13:53 schrieb Tvrtko Ursulin:
->>>>>>>
->>>>>>> On 24/10/2025 12:04, Jocelyn Falempe wrote:
->>>>>>>> On a lenovo se100 server, when using i915 GPU for rendering, and 
->>>>>>>> the
->>>>>>>> ast driver for display, the graphic output is corrupted, and almost
->>>>>>>> unusable.
->>>>>>>>
->>>>>>>> Adding a clflush call in the vmap function fixes this issue
->>>>>>>> completely.
->>>>>>>
->>>>>>> AST is importing i915 allocated buffer in this use case, or how 
->>>>>>> exactly is the relationship?
->>>>>>>
->>>>>>> Wondering if some path is not calling dma_buf_begin/ 
->>>>>>> end_cpu_access().
->>>>>>
->>>>>> Yes, ast doesn't call begin/end_cpu_access in [1].
->>>>>>
->>>>>> Jocelyn, if that fixes the issue, feel free to send me a patch for 
->>>>>> review.
->>>>>>
->>>>>> [1] https://elixir.bootlin.com/linux/v6.17.4/source/drivers/gpu/ 
->>>>>> drm/ ast/ ast_mode.c
->>>>>
->>>>> I tried the following patch, but that doesn't fix the graphical issue:
->>>>>
->>>>> diff --git a/drivers/gpu/drm/ast/ast_mode.c b/drivers/gpu/drm/ast/ 
->>>>> ast_mode.c
->>>>> index b4e8edc7c767..e50f95a4c8a9 100644
->>>>> --- a/drivers/gpu/drm/ast/ast_mode.c
->>>>> +++ b/drivers/gpu/drm/ast/ast_mode.c
->>>>> @@ -564,6 +564,7 @@ static void 
->>>>> ast_primary_plane_helper_atomic_update(struct drm_plane *plane,
->>>>>         struct drm_crtc_state *crtc_state = 
->>>>> drm_atomic_get_new_crtc_state(state, crtc);
->>>>>         struct drm_rect damage;
->>>>>         struct drm_atomic_helper_damage_iter iter;
->>>>> +       int ret;
->>>>>
->>>>>         if (!old_fb || (fb->format != old_fb->format) || 
->>>>> crtc_state- >mode_changed) {
->>>>>                 struct ast_crtc_state *ast_crtc_state = 
->>>>> to_ast_crtc_state(crtc_state);
->>>>> @@ -572,11 +573,16 @@ static void 
->>>>> ast_primary_plane_helper_atomic_update(struct drm_plane *plane,
->>>>>                 ast_set_vbios_color_reg(ast, fb->format, 
->>>>> ast_crtc_state->vmode);
->>>>>         }
->>>>>
->>>>> +       ret = drm_gem_fb_begin_cpu_access(fb, DMA_FROM_DEVICE);
->>>>> +       pr_info("AST begin_cpu_access %d\n", ret);
->>>>
->>>> Presumably, you end up in [1]. I cannot find the cflush there or in 
->>>> [2]. Maybe you need to add this call somewhere in there, similar to 
->>>> [3]. Just guessing.
->>>
->>> Near [2] clflush can happen at [4] *if* the driver thinks it is 
->>> needed. Most GPUs are cache coherent so mostly it isn't. But if this 
->>> is a Meteorlake machine (when I google Lenovo se100 it makes me think 
->>> so?) then the userspace has some responsibility to manage things 
->>> since there it is only 1-way coherency. Or userspace could have even 
->>> told the driver to stay off in which case it then needs to manage 
->>> everything. From the top of my head I am not sure how exactly this 
->>> used to work, or how it is supposed to interact with exported buffers.
->>>
->>> If this is indeed on Meteorlake, maybe Joonas or Rodrigo remember 
->>> better how the special 1-way coherency is supposed to be managed there?
->>
->> I've made an experiment, and if I add:
->>
->> * a calls to drm_gem_fb_begin_cpu_access() in the ast driver.
->> * and in i915_gem_domain.c flush_write_domain():
->>         case I915_GEM_DOMAIN_RENDER:
->> +               i915_gem_clflush_object(obj, I915_CLFLUSH_SYNC | 
->> I915_CLFLUSH_FORCE);
->>
->> Then that fixes the issue too.
->>
->> So I think there are two things to fix:
->>  * The missing call to drm_gem_fb_begin_cpu_access() in ast.
-> 
-> Yes. We definitely want to add these calls, as they are expected for 
-> this case.
+Series: Enable LT PHY (rev3)
+URL   : https://patchwork.freedesktop.org/series/155955/
+State : failure
 
-Browsing around a bit, I notice ast_primary_plane_helper_atomic_update() 
-calls to_drm_shadow_plane_state() to get the source of the memcpy. 
-Should there somewhere be calls to drm_gem_begin_shadow_fb_access() and 
-drm_gem_end_shadow_fb_access()? Or those should be set as  vfuncs by 
-someone? Sorry I get lost easily in the DRM maze of 
-helpers<->vfuncs<->helpers<->vfuncs..
+== Summary ==
 
->>  * The missing cache flush in i915 for the Arrowlake iGPU (but 
->> probably not the way I've done it).
-> 
-> You call begin_cpu_access with DMA_FROM_DEVICE, but there's no support 
-> for that flag in i915 AFAICT. Maybe this needs to be added somehow?
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/155955/revisions/3/mbox/ not applied
+Applying: drm/i915/ltphy: Add LT Phy related VDR and Pipe Registers
+Applying: drm/i915/cx0: Change register bit naming for powerdown values
+Applying: drm/i915/ltphy: Phy lane reset for LT Phy
+Applying: drm/i915/cx0: Move the HDMI FRL function to intel_hdmi
+Applying: drm/i915/ltphy: Program sequence for PORT_CLOCK_CTL for LT Phy
+Applying: drm/i915/ltphy: Add a wrapper for LT Phy powerdown change sequence
+Applying: drm/i915/ltphy: Read PHY_VDR_0_CONFIG register
+Applying: drm/i915/ltphy: Add LT Phy Programming recipe tables
+Applying: drm/i915/ltphy: Program the VDR PLL registers for LT PHY
+Applying: drm/i915/ltphy: Update the ltpll config table value for eDP
+Applying: drm/i915/ltphy: Enable SSC during port clock programming
+Applying: drm/i915/ltphy: Add function to calculate LT PHY port clock
+Applying: drm/i915/ltphy: Program the P2P Transaction flow for LT Phy
+Applying: drm/i915/ltphy: Program the rest of the PORT_CLOCK_CTL steps
+Applying: drm/i915/ltphy: Program the rest of the LT Phy Enable sequence
+Applying: drm/i915/ltphy: Program LT Phy Non-TBT PLL disable sequence
+Applying: drm/i915/ltphy: Hook up LT Phy Enable & Disable sequences
+error: sha1 information is lacking or useless (drivers/gpu/drm/i915/display/intel_cx0_phy.c).
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0017 drm/i915/ltphy: Hook up LT Phy Enable & Disable sequences
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+Build failed, no error log produced
 
-AFAIR the premise is GPU writes will not get stuck in the last level 
-cache but I might be remembering a reverse of what Meteorlake 1-way 
-coherency means. This area of the driver ended up a mess and was never 
-properly cleaned up. I even had a series to try and do it but it never 
-happened. We will need someone who actually remembers how Meteorlake works.
-
-Regards,
-
-Tvrtko
 
