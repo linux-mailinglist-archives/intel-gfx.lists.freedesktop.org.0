@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98B77C24844
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Oct 2025 11:38:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88E46C249E2
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Oct 2025 11:50:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F00210EB3E;
-	Fri, 31 Oct 2025 10:38:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CF3510EBB2;
+	Fri, 31 Oct 2025 10:50:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qf0BSTxa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UM1pSzcf";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7F6710EB35;
- Fri, 31 Oct 2025 10:37:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60FF910EBB1;
+ Fri, 31 Oct 2025 10:50:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761907077; x=1793443077;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=j+ssrSWGUNB5bEu6OWRLsxJzOZF1tfhM8tftgVPO4NI=;
- b=Qf0BSTxaEb/qAunZriPB5gNQAw/zG7/+JrbJwgdQGqoG5qQeb7+4Qcx8
- Flmg1KcTHEnGKrREYJ3K66N9ZO+JNtmBesImkdSxZzvimLWEBppJFdPbY
- RiDjERnu2bjChu2uf4SB45YL+rUqv/aTlqLI0/wT5GwfTDGmXfuAt/O2v
- LasUoNDZN9RlvXG42TXbiSdAkUA+PVopFfgKNRilkrhJsxQBoAsrXj905
- t5NN15kuNlOGVvMc+7P9Dh3Ms2r6AzaBy0yIMkEX3XI3gIPtIM7Bh9uH0
- lgYHxVOZLLRBaBS6p9dnn2EabYzAPFT5UpGVmUMIGeixyUADPohHUOjmc w==;
-X-CSE-ConnectionGUID: 0lGOjbj2RrGX3luxJmqMEQ==
-X-CSE-MsgGUID: qsJaz7ajSx2BIpxX9Hmr2w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="86690907"
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="86690907"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 03:37:57 -0700
-X-CSE-ConnectionGUID: vnf79PyjRpGQVDkaDDdbfg==
-X-CSE-MsgGUID: jvs4NgVwSQag0TcoJEstYA==
+ t=1761907854; x=1793443854;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=Cb6MTIuOM4SH7cmeevF5Q23tPtbQmpIpsuPcvDJlj6o=;
+ b=UM1pSzcfoYR2wXUuFJyNrs6byZnjGiOIzV0VZupXakgr5LurdnEuMh+P
+ rbGIlgCbQR8XuXf/sfunwgcK5ZMBA0NY7ZQ8y7fTFKJoBc3MtZzwrZg5D
+ UfLxhTFcFE4K1UBtD1vr8uufap7a0mSg1j868jDDlFm6Bqbm+Kg/K4apM
+ 5mS1B31BTZALcMt+0by+/DJKJpP1vWHTi5GG70OL1L981QlzpPSV98CZ3
+ 0xGL2bm5SIQHUHOxp9pUT7S0KGzXVwOF4Y8JMZnKMMK/SdS5e/8HMECno
+ tFKkqa1H92/uZVSW3n+S0I+9VvZG8VMGRzQ25arFKpXqSY4rv/6JBIS0/ w==;
+X-CSE-ConnectionGUID: dl8zCnmFSymfpIJrY1L1Tw==
+X-CSE-MsgGUID: Bd2pM6DrRzS9x28RhZKN2A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="63953412"
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="63953412"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2025 03:50:54 -0700
+X-CSE-ConnectionGUID: XmIJn75iRdijZW1PXiPhpA==
+X-CSE-MsgGUID: p4UL7hfTQSmeg4245HZqPQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="190554768"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa005.fm.intel.com with ESMTP; 31 Oct 2025 03:37:54 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, uma.shankar@intel.com,
- gustavo.sousa@intel.com, lucas.demarchi@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v3 25/25] drm/i915/ltphy: Modify the step that need to be
- skipped
-Date: Fri, 31 Oct 2025 16:06:43 +0530
-Message-Id: <20251031103643.4147868-26-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251031103643.4147868-1-suraj.kandpal@intel.com>
-References: <20251031103643.4147868-1-suraj.kandpal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="186539415"
+Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.37])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2025 03:50:52 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: Re: [PATCH v3 0/6] Use display parent interface for runtime pm
+In-Reply-To: <20251030202836.1815680-1-jouni.hogander@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251030202836.1815680-1-jouni.hogander@intel.com>
+Date: Fri, 31 Oct 2025 12:50:49 +0200
+Message-ID: <d28d4a6355e691f27c2dc2dffe62cc0242b11860@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,93 +70,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Bspec has changed the non tbt pll enable sequence now we skip
-steps 5-17 if no config change has occurred.
+On Thu, 30 Oct 2025, Jouni H=C3=B6gander <jouni.hogander@intel.com> wrote:
+> Add struct intel_display_parent_interface which is supposed to contain
+> function pointers passed at display probe. This is supposed to allow
+> differing implementations between i915 and xe drivers.
+>
+> Add runtime pm as an example and first set of functions using this new
+> mechanism. Pass own implementations of runtime from i915 and xe
+> drivers during probe.
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_lt_phy.c | 63 +++++++++++----------
- 1 file changed, 33 insertions(+), 30 deletions(-)
+Good stuff, let's merge? We've got two sets of eyes on patch 1, that's
+enough.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index 2af573e6ea68..7dba37d83d3e 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -1674,40 +1674,43 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
- 					 XE3PLPD_MACCLK_TURNON_LATENCY_US, 2, NULL))
- 			drm_warn(display->drm, "PHY %c PLL MacCLK Ack assertion Timeout after %dus.\n",
- 				 phy_name(phy), XE3PLPD_MACCLK_TURNON_LATENCY_US);
-+
-+		/*
-+		 * 13. Ungate the forward clock by setting
-+		 * PORT_CLOCK_CTL[Forward Clock Ungate] = 1.
-+		 */
-+		intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, port),
-+			     XELPDP_FORWARD_CLOCK_UNGATE,
-+			     XELPDP_FORWARD_CLOCK_UNGATE);
-+
-+		/* 14. SW clears PORT_BUF_CTL2 [PHY Pulse Status]. */
-+		intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port),
-+			     lane_phy_pulse_status,
-+			     lane_phy_pulse_status);
-+		/*
-+		 * 15. Clear the PHY VDR register 0xCC4[Rate Control VDR Update] over
-+		 * PHY message bus for Owned PHY Lanes.
-+		 */
-+		rate_update = intel_lt_phy_read(encoder, INTEL_LT_PHY_LANE0, LT_PHY_RATE_UPDATE);
-+		rate_update &= ~LT_PHY_RATE_CONTROL_VDR_UPDATE;
-+		intel_lt_phy_write(encoder, owned_lane_mask, LT_PHY_RATE_UPDATE,
-+				   rate_update, MB_WRITE_COMMITTED);
-+
-+		/* 16. Poll for PORT_BUF_CTL2 register PHY Pulse Status = 1 for Owned PHY Lanes. */
-+		if (intel_de_wait_custom(display, XELPDP_PORT_BUF_CTL2(display, port),
-+					 lane_phy_pulse_status, lane_phy_pulse_status,
-+					 XE3PLPD_RATE_CALIB_DONE_LATENCY_US, 2, NULL))
-+			drm_warn(display->drm, "PHY %c PLL rate not changed after %dus.\n",
-+				 phy_name(phy), XE3PLPD_RATE_CALIB_DONE_LATENCY_US);
-+
-+		/* 17. SW clears PORT_BUF_CTL2 [PHY Pulse Status]. */
-+		intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port),
-+			     lane_phy_pulse_status,
-+			     lane_phy_pulse_status);
- 	} else {
- 		intel_de_write(display, DDI_CLK_VALFREQ(encoder->port), crtc_state->port_clock);
- 	}
- 
--	/* 13. Ungate the forward clock by setting PORT_CLOCK_CTL[Forward Clock Ungate] = 1. */
--	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, port),
--		     XELPDP_FORWARD_CLOCK_UNGATE,
--		     XELPDP_FORWARD_CLOCK_UNGATE);
--
--	/* 14. SW clears PORT_BUF_CTL2 [PHY Pulse Status]. */
--	intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port),
--		     lane_phy_pulse_status,
--		     lane_phy_pulse_status);
--	/*
--	 * 15. Clear the PHY VDR register 0xCC4[Rate Control VDR Update] over PHY message bus for
--	 * Owned PHY Lanes.
--	 */
--	rate_update = intel_lt_phy_read(encoder, INTEL_LT_PHY_LANE0, LT_PHY_RATE_UPDATE);
--	rate_update &= ~LT_PHY_RATE_CONTROL_VDR_UPDATE;
--	intel_lt_phy_write(encoder, owned_lane_mask, LT_PHY_RATE_UPDATE,
--			   rate_update, MB_WRITE_COMMITTED);
--
--	/* 16. Poll for PORT_BUF_CTL2 register PHY Pulse Status = 1 for Owned PHY Lanes. */
--	if (intel_de_wait_custom(display, XELPDP_PORT_BUF_CTL2(display, port),
--				 lane_phy_pulse_status, lane_phy_pulse_status,
--				 XE3PLPD_RATE_CALIB_DONE_LATENCY_US, 2, NULL))
--		drm_warn(display->drm, "PHY %c PLL rate not changed after %dus.\n",
--			 phy_name(phy), XE3PLPD_RATE_CALIB_DONE_LATENCY_US);
--
--	/* 17. SW clears PORT_BUF_CTL2 [PHY Pulse Status]. */
--	intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port),
--		     lane_phy_pulse_status,
--		     lane_phy_pulse_status);
--
- 	/*
- 	 * 18. Follow the Display Voltage Frequency Switching - Sequence After Frequency Change.
- 	 * We handle this step in bxt_set_cdclk()
--- 
-2.34.1
+BR,
+Jani.
 
+>
+> v3:
+>   - useless includes removed
+>   - drop xe_display_rpm_{get, put}_raw
+> v2:
+>   - unrelated include removal dropped
+>   - add _interface suffix to rpm function pointer struct
+>   - add struct ref_tracker forward declaration
+>   - use kernel-doc comments as needed
+>   - move i915 display rpm interface implementation to intel_runtime_pm.c
+>   - rename intel_display as i915_display
+>   - move xe_display_rpm_interface code into xe_display_rpm.c
+>   - rename xe_rpm as xe_display_rpm
+>   - use <> when including drm/intel/display_parent_interface.h
+>   - drop checks for validity of rpm function pointers
+>   - keep xe_display_rpm.c
+>
+> Jani Nikula (1):
+>   drm/{i915,xe}/display: pass parent interface to display probe
+>
+> Jouni H=C3=B6gander (5):
+>   drm/{i915,xe}/display: Add display runtime pm parent interface
+>   drm/i915/display: Runtime pm wrappers for display parent interface
+>   drm/xe/display: Runtime pm wrappers for display parent interface
+>   drm/i915/display: Use display parent interface for i915 runtime pm
+>   drm/xe/display: Use display parent interface for xe runtime pm
+>
+>  .../gpu/drm/i915/display/intel_display_core.h |  4 +
+>  .../drm/i915/display/intel_display_device.c   |  5 +-
+>  .../drm/i915/display/intel_display_device.h   |  4 +-
+>  .../gpu/drm/i915/display/intel_display_rpm.c  | 33 ++++----
+>  drivers/gpu/drm/i915/i915_driver.c            | 12 ++-
+>  drivers/gpu/drm/i915/i915_driver.h            |  2 +
+>  drivers/gpu/drm/i915/intel_runtime_pm.c       | 77 +++++++++++++++++++
+>  drivers/gpu/drm/i915/intel_runtime_pm.h       |  3 +
+>  .../gpu/drm/i915/selftests/mock_gem_device.c  |  4 +-
+>  drivers/gpu/drm/xe/Makefile                   |  1 +
+>  drivers/gpu/drm/xe/display/xe_display.c       |  8 +-
+>  drivers/gpu/drm/xe/display/xe_display_rpm.c   | 61 +++++++--------
+>  drivers/gpu/drm/xe/display/xe_display_rpm.h   | 11 +++
+>  include/drm/intel/display_parent_interface.h  | 45 +++++++++++
+>  14 files changed, 215 insertions(+), 55 deletions(-)
+>  create mode 100644 drivers/gpu/drm/xe/display/xe_display_rpm.h
+>  create mode 100644 include/drm/intel/display_parent_interface.h
+
+--=20
+Jani Nikula, Intel
