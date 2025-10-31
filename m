@@ -2,72 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5BFAC26866
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Oct 2025 19:09:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63740C26872
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Oct 2025 19:10:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB67110E384;
-	Fri, 31 Oct 2025 18:09:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E35EE10E380;
+	Fri, 31 Oct 2025 18:10:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="jMk9fYrf";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="iOFka/+f";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com
- [209.85.218.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62BB910E384
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 18:09:09 +0000 (UTC)
-Received: by mail-ej1-f51.google.com with SMTP id
- a640c23a62f3a-b3e9d633b78so644933466b.1
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 11:09:09 -0700 (PDT)
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com
+ [209.85.208.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C760510E385
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 18:10:43 +0000 (UTC)
+Received: by mail-ed1-f51.google.com with SMTP id
+ 4fb4d7f45d1cf-63c21467e5bso5441040a12.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 11:10:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1761934148; x=1762538948; darn=lists.freedesktop.org; 
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=nKtssmUP+ALDMkzJQfah53QYQZLXpEc5pubXPz+gpuA=;
- b=jMk9fYrfWm8u3EGuynJgG6OWhLxBDg59KSbdIjLROZ0HgsPpJuNuIqMWIkbg0z6Mm8
- gA+r2/PNpksUzcLqC0OYRHSXdsSyr9VZ10wFKJXZ8FQBk0hFgW7D/pG1T/oxWuDlq76G
- PmIJlKq2MSGSbNnEy+uiv2jbNK2gv46Q+uLv4=
+ d=ffwll.ch; s=google; t=1761934242; x=1762539042; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=goq7oUWUWsNMgZUzSM4G2HjOLnb020AUxbJ19px76+I=;
+ b=iOFka/+f/oBBJ7JCNJOhlK7DHWb4muKB74jq3xmskv76tZjUZgw1Of/g/xrqV/SMew
+ Ge9jxUI5l2H4oZvBHiBKYvySVoySrBDPe5a63RmjmVMu7QbakZSwgfE/zpBHwYeIZOZ5
+ t++yntCIWKGsotayEl86GAv58f+cQCtKWcILk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761934148; x=1762538948;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=nKtssmUP+ALDMkzJQfah53QYQZLXpEc5pubXPz+gpuA=;
- b=iRSlHi+mLwwFj3qW+ODGAKBMmFbGE6FYeTR31m+43wfGjymIyuhYEOgwtDwVB4fLh+
- uB9FKsaB+tjagtDC8KxK+1sPHYo59nUEi+ovJzOe69dxHXPVPFp03YB5fDRNJs9KTEp0
- qfNoSH5aaH/T35jQT0WD+yEpalNRKjmBfOO3sqbj592HD1qjGV3+cRLVJXq7wbwGN2Bs
- p/TJ1v/latRfdob+LolxoPDE/hyxqHQwiQ+TS+PuMQZYv84DguQCkw+luGIu/a3wbwrn
- 8TL/8qulwBiwg4LFoDdc0sDVTDpk/3Bl9dO5rY7cuOlezJkhR+IITQnpdgxRZMnndRP/
- FR/w==
+ d=1e100.net; s=20230601; t=1761934242; x=1762539042;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=goq7oUWUWsNMgZUzSM4G2HjOLnb020AUxbJ19px76+I=;
+ b=Z7YmL5oyKaTO7wtDnbgAAJVkIMCKXIejpsI0nKFu9/ctrzPeTxjAHzxK0ctK2laZuP
+ hZPC88sD9cSEDY0ETzJo3y0vOTLEdo3p6WkDTqvA3y50xChcqwKV0DyX+VKbPU0cDVk/
+ fXyRqV4kPvELjoQWeXJJ5Oz7FPl9btfc6N6ZAMtot6vvzXlQytLKPkJNmeiHYjdWv8bl
+ fUtYciLjIw9MWp2mqPupA9itF7ivVeM5mrdjW4o4JcZLYtAbgkZzkQBU3Z3LZY2Rnxoo
+ ew9/HTm4ctxoF4hAgVnqRvQ38rMkbGit0G+yiKAlmdEzemIjG9EIDHOwgoqW3g9OHQGZ
+ +3sA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVzuCS66fVSE6ObNgO34tr0Leu83s9Oc8FIMMQpWxbFbpXqDnx24nRF5/yjtAKWkZE28GmCzslBu0E=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywebk63MvWb02/KXCVp2rKAMx0dFI1O3aXGkjroXrQgIVAb2E8r
- fu7vbhj/rFMNK6LAUMDX7eox5cGC/moI1nvet4RbvJ0iYuYmHpn48AAmPDq58wo9vN0=
-X-Gm-Gg: ASbGncs/BPNvzWeMhJszb5srUMEeRsvU9a0lXhYZXYEfeyF3tqJkNp+Cnx273ey5UuG
- AxSLfaPYRY6bFFccxGpBXTqFOMPwhj5mC40zL+6bEnW3VfiNIA7nb4dShxRIsRVuuUb6mwy431f
- aSyyWmslAEcWK4+0vbC3/lq5TcCTFad+i/7YAn508SNVDZeSCnva0AUuO/U/eXHp+Nx0MDhEijF
- ceiUUbBCVYfHXKQWmHqB20oYCXkwv9404hJWuoi0EohYgLaHTiKDWwSztBp1sriwZVLazS0ZWpV
- v+cUJlTqstbuQe6aANOdjoGvVm0FmupgAGV94/9OBSptNfgxmz3/7BVkFTaJwX6fvONhclckete
- LtgdC+m8F+t8k++rq4Q/4g9Qegij56HWVD3RzbF+q+97YtXHr1e8/YELMge9c34jSAJ1k7m3+cv
- WrLMPdSy8xy8ezshhHaJ7mEw==
-X-Google-Smtp-Source: AGHT+IEKnHd7pJ1dQSxnCMJJVqL4EtiSOZpH8KMq1b10ZNQEIBxUJj5PF57dXuhBIN7vAPX1M39U3w==
-X-Received: by 2002:a17:907:3cc7:b0:b2f:4970:8720 with SMTP id
- a640c23a62f3a-b706e270568mr574233266b.8.1761934147789; 
- Fri, 31 Oct 2025 11:09:07 -0700 (PDT)
+ AJvYcCXiqOMNMoEmoOw9uVeZGOBdRdgi1apL1Dp5CrFpI9Xnu8MHvYsG3D8u1GGdQRvxTDd75UtK9qa5Koc=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxb0JrCNYnnxix5z2gTXiJlh8lTccNyEsxh0STCr1/hQThO47rZ
+ W95NfSTfcTdbAjOmWJ8Ok75E6yazAKvbtIhunBHCHe9WwyeCPpwPs0eQm+ysxaPjQI4=
+X-Gm-Gg: ASbGnctw7X4rZA+vXivFxsZJBloI4oMyw+ZbMkWK19lzP4dKsoVJ8zFKnp38lPZLnX8
+ KkZXREaLrug7sr3hAbgRNfcK0nACYoh7BiFeCV1P71Ixm/RdUuWP430F2VN5lSdxrRkdgeRYud4
+ 3ihYDa71d3j2D9NrpUH++Sx1yo3+CVgdGwrf1bYSvnsKdphd21jxhgdLZxOLhqDMAMmEcLJBaBV
+ wuXacQ6tvSPPjiWKsVyar3J3ywh/qwfVFkJ95FR9u5IlSym7D+M6kGkBygClxjH7uU9ccxI+Neg
+ QEGvr8v7nZT7KxTe0J6CJh7cY3AUQ689uTs320aW/Wg2fVcPU/aq9u/Kktjc2q44cscTcs+emQK
+ oyfdHgRyVrrahG+Ew/81/O+s7sIZ1uytYjekuEscZJ84hN00BFZEqU3cD2C6RmLLzt8gs/85UB8
+ 0vGVpZlZtxJA15v6/k4UVJDQ==
+X-Google-Smtp-Source: AGHT+IG3MzUXGsIJduWiFugHvrzY+MOlJnj7mGwkcGbRKgIwXZW7ZonUMUpl0WXw619tuwJopi9knQ==
+X-Received: by 2002:a05:6402:34d5:b0:637:8faa:9df7 with SMTP id
+ 4fb4d7f45d1cf-640771cee09mr3179026a12.29.1761934242194; 
+ Fri, 31 Oct 2025 11:10:42 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
  by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-b7077cfa966sm236173766b.65.2025.10.31.11.09.06
+ 4fb4d7f45d1cf-6407b428102sm2100968a12.20.2025.10.31.11.10.40
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 31 Oct 2025 11:09:07 -0700 (PDT)
-Date: Fri, 31 Oct 2025 19:09:05 +0100
+ Fri, 31 Oct 2025 11:10:41 -0700 (PDT)
+Date: Fri, 31 Oct 2025 19:10:39 +0100
 From: Simona Vetter <simona.vetter@ffwll.ch>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
 Cc: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>,
  Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Tvrtko Ursulin <tursulin@ursulin.net>,
- Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>,
  Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
@@ -75,14 +74,13 @@ Cc: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
  dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: Re: [PULL] drm-intel-fixes
-Message-ID: <aQT7QV8F48fwteHm@phenom.ffwll.local>
-References: <aQNtTV75vPaDhnXh@intel.com>
+Subject: Re: [PULL] drm-misc-fixes
+Message-ID: <aQT7n1Z617Y2oKTs@phenom.ffwll.local>
+References: <20251030195644.GA188441@localhost.localdomain>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aQNtTV75vPaDhnXh@intel.com>
+In-Reply-To: <20251030195644.GA188441@localhost.localdomain>
 X-Operating-System: Linux phenom 6.12.38+deb13-amd64 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -99,42 +97,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 30, 2025 at 09:51:09AM -0400, Rodrigo Vivi wrote:
-> Hi Dave and Sima,
+On Thu, Oct 30, 2025 at 08:56:44PM +0100, Thomas Zimmermann wrote:
+> Hi Dave, Sima,
 > 
-> Here goes our only fix for intel-display for this
-> round.
+> here's the drm-misc-fixes PR for this week.
 > 
-> Thanks,
-> Rodrigo.
+> Best regards
+> Thomas
 > 
-> drm-intel-fixes-2025-10-30:
-> - Fix DMC/DC6 asserts on ADL-S (Ville)
-> The following changes since commit dcb6fa37fd7bc9c3d2b066329b0d27dedf8becaa:
+> drm-misc-fixes-2025-10-30:
+> Short summary of fixes pull:
 > 
->   Linux 6.18-rc3 (2025-10-26 15:59:49 -0700)
+> ast:
+> - Preserve correct bits on register I/O
+> 
+> dma-fence:
+> - Use correct timeline name
+> 
+> etnaviv:
+> - Use correct GPU adress space for flush
+> 
+> imx:
+> - parallel-display: Fix bridge handling
+> 
+> nouveau:
+> - Fix locking in scheduler
+> 
+> panel:
+> - kingdisplay-kd097d04: Disable EOT packet
+> - sitronix-st7789v: Use correct SYNC flags
+> 
+> sched:
+> - Fix locking to avoid race condition
+> - Fix SIGKILL handling
+> 
+> sysfb:
+> - Avoid NULL-pointer access
+> The following changes since commit 23437509a69476d4f896891032d62ac868731668:
+> 
+>   drm/panic: Fix 24bit pixel crossing page boundaries (2025-10-21 11:28:03 +0200)
 > 
 > are available in the Git repository at:
 > 
->   https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2025-10-30
+>   https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-10-30
 > 
-> for you to fetch changes up to dc8aa0cb87a7836b59422cc02d969c8df849ee39:
+> for you to fetch changes up to a9fb41b5def8e1e0103d5fd1453787993587281e:
 > 
->   drm/i915/dmc: Clear HRR EVT_CTL/HTP to zero on ADL-S (2025-10-28 16:00:19 -0400)
+>   drm/ast: Clear preserved bits from register output value (2025-10-30 20:44:44 +0100)
 
 Pulled into drm-fixes, thanks!
 -Sima
 
 > 
 > ----------------------------------------------------------------
-> - Fix DMC/DC6 asserts on ADL-S (Ville)
+> Short summary of fixes pull:
+> 
+> ast:
+> - Preserve correct bits on register I/O
+> 
+> dma-fence:
+> - Use correct timeline name
+> 
+> etnaviv:
+> - Use correct GPU adress space for flush
+> 
+> imx:
+> - parallel-display: Fix bridge handling
+> 
+> nouveau:
+> - Fix locking in scheduler
+> 
+> panel:
+> - kingdisplay-kd097d04: Disable EOT packet
+> - sitronix-st7789v: Use correct SYNC flags
+> 
+> sched:
+> - Fix locking to avoid race condition
+> - Fix SIGKILL handling
+> 
+> sysfb:
+> - Avoid NULL-pointer access
 > 
 > ----------------------------------------------------------------
-> Ville Syrjälä (1):
->       drm/i915/dmc: Clear HRR EVT_CTL/HTP to zero on ADL-S
+> Akash Goel (1):
+>       dma-fence: Fix safe access wrapper to call timeline name method
 > 
->  drivers/gpu/drm/i915/display/intel_dmc.c | 55 +++++++++++++++++++++++++++++++-
->  1 file changed, 54 insertions(+), 1 deletion(-)
+> David Rosca (1):
+>       drm/sched: avoid killing parent entity on child SIGKILL
+> 
+> Luca Ceresoli (2):
+>       drm/imx: parallel-display: convert to devm_drm_bridge_alloc() API
+>       drm/imx: parallel-display: add the bridge before attaching it
+> 
+> Philipp Stanner (2):
+>       drm/sched: Fix race in drm_sched_entity_select_rq()
+>       drm/nouveau: Fix race in nouveau_sched_fini()
+> 
+> Sebastian Fleer (1):
+>       drm/panel: kingdisplay-kd097d04: Disable EoTp
+> 
+> Sebastian Reichel (1):
+>       drm/panel: sitronix-st7789v: fix sync flags for t28cp45tn89
+> 
+> Thomas Zimmermann (2):
+>       drm/sysfb: Do not dereference NULL pointer in plane reset
+>       drm/ast: Clear preserved bits from register output value
+> 
+> Tomeu Vizoso (1):
+>       drm/etnaviv: fix flush sequence logic
+> 
+>  drivers/dma-buf/dma-fence.c                        |  2 +-
+>  drivers/gpu/drm/ast/ast_drv.h                      |  8 ++++----
+>  drivers/gpu/drm/drm_gem_atomic_helper.c            |  8 ++++++--
+>  drivers/gpu/drm/etnaviv/etnaviv_buffer.c           |  2 +-
+>  drivers/gpu/drm/imx/ipuv3/parallel-display.c       | 18 +++++++++---------
+>  drivers/gpu/drm/nouveau/nouveau_sched.c            | 14 ++++++++++++--
+>  drivers/gpu/drm/panel/panel-kingdisplay-kd097d04.c |  2 +-
+>  drivers/gpu/drm/panel/panel-sitronix-st7789v.c     |  7 ++++++-
+>  drivers/gpu/drm/scheduler/sched_entity.c           |  6 ++++--
+>  9 files changed, 44 insertions(+), 23 deletions(-)
+> 
+> -- 
+> Thomas Zimmermann
+> Graphics Driver Developer
+> SUSE Software Solutions Germany GmbH
+> Frankenstrasse 146, 90461 Nuernberg, Germany
+> GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+> HRB 36809 (AG Nuernberg)
 
 -- 
 Simona Vetter
