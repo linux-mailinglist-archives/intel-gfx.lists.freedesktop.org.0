@@ -2,194 +2,188 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52DF8C230F3
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Oct 2025 03:49:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40FCAC2348A
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Oct 2025 06:15:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4ED410EAAA;
-	Fri, 31 Oct 2025 02:49:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE47F10E1B5;
+	Fri, 31 Oct 2025 05:15:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mir6W1Qi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VnYo26c8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7978310E188;
- Fri, 31 Oct 2025 02:49:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D05B710E18A;
+ Fri, 31 Oct 2025 05:15:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761878942; x=1793414942;
- h=content-transfer-encoding:in-reply-to:references:subject:
- from:cc:to:date:message-id:mime-version;
- bh=Lv3NSqW2qMMkBwJBXohuPGEFC8KehlBLJXqDQzHmPjQ=;
- b=Mir6W1QidYUhZJrC3oJ+9Hw3hk/P62MWEXyGjLteu7o8myG20SvjZhDh
- fbCNYjY93o+5R9br4k/Y7pFqMLF41r3pn0TC6bEaCI6AXCLXfzcpG36ls
- inWoQgHtNB83XMPl934vTwhKxDSWYmASNN/97g+vXGvJMbiF9m5Si0E3f
- 0M/pWGEeMpxN3XPsdIH+XoZ2E0NGQB61DQp4mcG6H/mXIQgADV75lkZBz
- xfJ+mQcZOfePUwfzeP1q5DIgue6CnTbKZRchgdM1NUectJSpxbQryxsLD
- 9c9DpqlVpxZEsVKOm48j1sxxl7xiaY5dRjkQy+4XmN6rgJDpxHE4cj4n0 A==;
-X-CSE-ConnectionGUID: BMZN4zkxTxSKM9ilVBR4Bg==
-X-CSE-MsgGUID: oP4c37HtSoK66MjulDKAug==
-X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="64183744"
-X-IronPort-AV: E=Sophos;i="6.19,268,1754982000"; d="scan'208";a="64183744"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 19:49:02 -0700
-X-CSE-ConnectionGUID: BRWUUsQUQPO8DWcVlq9Wcg==
-X-CSE-MsgGUID: Je+E8pAFTn2/K8gAbL+c4Q==
+ t=1761887727; x=1793423727;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=Bx0MViud9ZlDZoAL4n79bLk2rBdP+UPpoiwDdBxjOJE=;
+ b=VnYo26c80Wu0IEfWQUCZUNSYy/X3Rs89OSB5XecEZfuGWI94vHCKDON0
+ I5wf1Zla4lDdmYyoZauO2lHw005rGW/LLzjZ7OYZCY3DuP4L0zgKcJvUi
+ un5eIKYzzO9FcEAzQl4R72nxPjtO0+WdItIvnmhmVnKGMK/LjfLQnyRNJ
+ o/FuPwGysbWXG19vj+otlcnGDOz1O8a/TNs8kXR2LM0GmAbJ8/fZIZFs/
+ +xn+CBLpe8eFnKIw49s7Z6GjGIRVQI2GRq/lx46ORnF8Kkmrb8XVbElXn
+ kjtwbdQHCJYYFCu6XQfj9NDJufSiBnlYP3PFZOh5SGOa3BeL++ffzHHd4 g==;
+X-CSE-ConnectionGUID: 5BCvgklPTCiUuIIlsn1k7Q==
+X-CSE-MsgGUID: pB0kSpA5Q2OYFJR1WZ4xlQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="67901864"
+X-IronPort-AV: E=Sophos;i="6.19,268,1754982000"; d="scan'208";a="67901864"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2025 22:15:26 -0700
+X-CSE-ConnectionGUID: Rb1Nw7EXTG2RQHEi37/vSA==
+X-CSE-MsgGUID: HZ8DkYJ9Roqiiim2LDnAVw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,268,1754982000"; d="scan'208";a="191261863"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 19:49:02 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.19,268,1754982000"; d="scan'208";a="216978145"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2025 22:15:26 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 30 Oct 2025 19:49:01 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.2562.27; Thu, 30 Oct 2025 22:15:26 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Thu, 30 Oct 2025 19:49:01 -0700
-Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.49) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Thu, 30 Oct 2025 22:15:26 -0700
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.23) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 30 Oct 2025 19:49:01 -0700
+ 15.2.2562.27; Thu, 30 Oct 2025 22:15:25 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lTCbwAWnLGyM2cDjTnmh1mFBv+Ccb/tQjUOHgtLGQiRoEZvfvRIEdouD7+SmZGx1TQVqx/ToaOqM/m+NhY6ktTIk+KJuaEOBeVaAzQ9Er0thNwdY9cVZjrJ4wpa81arZR2vjGLRlbimBhJdoCddoxir2iRo4gu3Z0rqSGltmZSgf1PRtp7jTeESJvcCu1XTGB4IhNff0/sXl8e81X29sMWt1nqgB/tOOrqnutqdxEWhtNthPj7Js0S6VGTSWstiNflrJwH/b7Zgjn28Sj2BK3l/NAL839ifr7LrIyNiy1RiDA7aN3ex6525V9D4JKegYMZ02mf6Qh+FwrpKUs+mASQ==
+ b=geu2OgmieqxD0PLdrcy9hxqjwtKsXoGcilk4ltm5MoxnHsqce5DLHExMA3cZVuLIeGwVyCeupBQgGAnyza1CKnxzGKa5rHdETNzgCpyFmVYjtoqYJFQAFi0S/EPvuNnKuPaSg55t2IlsEGumtZzjZAJWrHTeWJsLfdYePS5PmW2OOec+fvRMOUrpwJRecoZx2+CVeLlAaG7EpY3AU9Fp+/Y8QnIx0njhAhfU1baKvA6huGH4rMGKYtL2svT7G1P09JiQc1x9B3W4QR6VyExXz+41xwY4ozx5F6UlHe/51p0zf1oNh09IOe5eILIIOTIhfd6astjtUjU7vpLjUV1XsQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=63QMYsRLFyeEMgyC1eoEl3uiwNsk34d84PX1HgEQxWQ=;
- b=nxq2Fvu6NPSyR/TlFbXLEtpjWNM1C14LzNRyb7GnnSoIvoXLFcJn6XB+GOOqIScta8TxCMPD0zcpGFwS5SjAr94SRonZ03AREA4BUA0KFGvDOMxWLPbdOQsIeCACy+M2NHDaZAjcGEG60dmz1sAR2T2XmP1bvK34cpQnVQhgESwytPiL02eaey3UrP1x30w6HNUP0Kpuy6Xvz97NnunOSvWWaEw1z/ivNGfShijcMTNgRHQNkXj5QvgDdUe2r59NZ6Ws1zxk93e5JrzmLbeGT15sLVMklkK2wTDoWe8Otsl+dYWXZeN06t/APOmW2x1c4w7J3xMBIOohzRJKGdxYjA==
+ bh=dA5UzAjk5MdRsf399P520tc7RGhDsXJRnfR8Kry8a5g=;
+ b=sW7v/tkp7exeEbtEL9FVLlXCHRmwKQgQ/lf2BjmMTeNieNC0P0o946XCbr8VgM6TPeb3B7IeEhLQirlsc53/VS3aye1kl4bqidwp4XgockDPro2a4DKn2CXh88qNJt1/uWw382FcAau8MCbKZKz5w6FbGRaNejd5S+sNu/U1deMra+f1PduG7aDsSrLVzML30Z11CKKRUNEmiZ0ZtpmftEthv0u7z+vcyrsfJoFyS6UnHWdY8Tr7Z8z9XWib5yj6ctpxqDvvVR6Vq7dq0/JzTOmTD2P28CTz/db0HqpobyCweGRRn2cmZc/tAxWSUytgGKm64Hyus7s5qqa8dYJDVg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
- by SA1PR11MB8320.namprd11.prod.outlook.com (2603:10b6:806:37c::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.14; Fri, 31 Oct
- 2025 02:48:59 +0000
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::7e8b:2e5:8ce4:2350%7]) with mapi id 15.20.9275.013; Fri, 31 Oct 2025
- 02:48:59 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20251029212215.GC2806654@mdroper-desk1.amr.corp.intel.com>
-References: <20251021-xe3p_lpd-basic-enabling-v2-0-10eae6d655b8@intel.com>
- <20251021-xe3p_lpd-basic-enabling-v2-13-10eae6d655b8@intel.com>
- <20251029212215.GC2806654@mdroper-desk1.amr.corp.intel.com>
-Subject: Re: [PATCH v2 13/32] drm/i915/xe3p_lpd: Adapt to updates on
- MBUS_CTL/DBUF_CTL registers
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>, Dnyaneshwar Bhadane
- <dnyaneshwar.bhadane@intel.com>, Jouni =?utf-8?q?H=C3=B6gander?=
- <jouni.hogander@intel.com>, Juha-pekka Heikkila
- <juha-pekka.heikkila@intel.com>, Luca Coelho <luciano.coelho@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, Matt Atwood
- <matthew.s.atwood@intel.com>, Ravi Kumar Vodapalli
- <ravi.kumar.vodapalli@intel.com>, Shekhar Chauhan
- <shekhar.chauhan@intel.com>, Vinod Govindapillai
- <vinod.govindapillai@intel.com>, Jani Nikula <jani.nikula@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Date: Thu, 30 Oct 2025 23:48:55 -0300
-Message-ID: <176187893526.3303.4396397116272962497@intel.com>
-User-Agent: alot/0.12.dev22+g972188619
-X-ClientProxiedBy: BY5PR03CA0009.namprd03.prod.outlook.com
- (2603:10b6:a03:1e0::19) To PH8PR11MB8287.namprd11.prod.outlook.com
- (2603:10b6:510:1c7::14)
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by SA1PR11MB8280.namprd11.prod.outlook.com (2603:10b6:806:25d::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.12; Fri, 31 Oct
+ 2025 05:15:22 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839%7]) with mapi id 15.20.9253.013; Fri, 31 Oct 2025
+ 05:15:22 +0000
+Message-ID: <2de1d59b-08d0-4454-bf20-b6027840c137@intel.com>
+Date: Fri, 31 Oct 2025 10:45:14 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 12/26] drm/i915/ltphy: Add function to calculate LT PHY
+ port clock
+To: Suraj Kandpal <suraj.kandpal@intel.com>, <intel-xe@lists.freedesktop.org>, 
+ <intel-gfx@lists.freedesktop.org>
+CC: <arun.r.murthy@intel.com>, <uma.shankar@intel.com>,
+ <gustavo.sousa@intel.com>, <lucas.demarchi@intel.com>, Nemesa Garg
+ <nemesa.garg@intel.com>
+References: <20251024100712.3776261-1-suraj.kandpal@intel.com>
+ <20251024100712.3776261-13-suraj.kandpal@intel.com>
+Content-Language: en-US
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <20251024100712.3776261-13-suraj.kandpal@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5PR01CA0147.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b9::16) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|SA1PR11MB8320:EE_
-X-MS-Office365-Filtering-Correlation-Id: b86a01a5-967c-4adb-d9be-08de18280a84
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|SA1PR11MB8280:EE_
+X-MS-Office365-Filtering-Correlation-Id: 404ff6de-0a44-4f1f-a3c0-08de183c7ddf
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?eUVPc3lMcXh0WFBySkRjcUZHMVJaK0FnemhKWHBaeUpVQ0MzUjNkTFIzYUQx?=
- =?utf-8?B?c0h2LzJxajNCQWxIWnk5T3pJV0QwTmFlWSs2czErOEdlK2hKMGVzMmd3dnBv?=
- =?utf-8?B?eWFMY0YrbjhRbFZVcjJZaUhkV1ZJOFpvNHpGcHdCeWZIZy9FNENNelZDUW9s?=
- =?utf-8?B?cVZVSWNKMFQvd3IzS0l0bVFxVFhIakRYUkFRRG14Y05FdDhzemU4L0pXUWlN?=
- =?utf-8?B?RWk5ZzFuSitzekVoZTdWMUJsbTFpVjc0YjQ4dzBpTUplZ2hqSkNXNE5Rb2oz?=
- =?utf-8?B?eTV3WGdoZTI0NVgwL29Xc2V1SlhRQmlhZEhUMUVOYTBGRGxYSDlFY2RkcjQz?=
- =?utf-8?B?eVlaczFPaHQ2Rzd3cktTYlVMajhXeWhDek1icnZoTXpUQzcySU9PNWJaTTRL?=
- =?utf-8?B?SWluT0RqRE0vOFZKVXYxWVEyblNaZUZjQ2ZUTzhXK0lyTVl2K2g5OUprNEhk?=
- =?utf-8?B?WkM3dU1COFdTR0lNcXdZTk1uT1k2T0dEZkRWcWJtYjlpSDl6UGhmOWh0RWsw?=
- =?utf-8?B?TGU0R2RFTG5KcVlDVDFoaC9yRG9PL2tqbUNnLy9icjI0UFZHQWFNeHE3Zktr?=
- =?utf-8?B?bHhldDZEcENaWDFOWkNVM1U3Rzh4dHBTZmhnWHk3QmFVMVRHSWQvVXMzRXhS?=
- =?utf-8?B?QnU3clZWQ3VtbGhaZXpxcnluOE5NWE8xUjNHRHpjS0pCM2VJSmRoMWphajdP?=
- =?utf-8?B?a1liMkJvbTZ5SmJyb1k1WU0wTnhGeS9TV2dUMEhIbEZSQ2k1citVMkFKZURM?=
- =?utf-8?B?NkJVUW54a0ZJelRGOERJTzZzQS94cW9mTjhUVjF3VDR0U1Fha2FmYnlKUWEx?=
- =?utf-8?B?T24xRU44WUt1THlBWXlScG02allkK3NSUEZjbzdSc0FhTjJKbWFMOFVJb3Vx?=
- =?utf-8?B?L3l3dGMyL2RmY3Q4aHFMYzVtZWFWUmxONkxRN3F3MjhiRG5TSGRXN0x4OHRS?=
- =?utf-8?B?SGE2RXFOU1BGa1ZBaEtiQjM2UmZsRXl1LzVNUG1BMVZSb1BWck51dWtVdEFR?=
- =?utf-8?B?Sm1PMy9GVmdXVmhDKzRmNk1hV2xxQXBtekxTYndyWWczRVRWTlhHTjczMEhY?=
- =?utf-8?B?Z3M2WW5vUWs1c2RwYlFXTzJpdUFHTXRmS3hrVk0zWWppRi95MytYdU4rVS9s?=
- =?utf-8?B?V1BKT0tPVjNMU2pGRWppQTdFc3R4Qk1WRnZLRVV2RlptUFlpV3JJYjlQUVBt?=
- =?utf-8?B?YkZqcVR6TmFZbmxrcDZucUNJdnBRRGM3RkZUdDRPdE9zRlI2eEZ5V2hLUlNx?=
- =?utf-8?B?eGRHa0NidDJIa0RFMkw0TGQ4RXVlMkplNzl0WVJDT0x2TlM5UGdIVGtSMC9O?=
- =?utf-8?B?dHZmZ2hMZC91S0NkYmNGSSt1Zm5ZMEdmMEIvZDVVVStTWm9rUzhOOGJ5M0oz?=
- =?utf-8?B?MEdDQkpmNnVOUTVLK2hVdEhQMTZ2bVg0N3dyUGVKZjBoTmlRQkd6U3Z0MGc4?=
- =?utf-8?B?SEUzVTdGZ2sxb21EOWpsNEcrQnFrQk5kbldMVytvcGhkS2Z0VXZOMGNrdWpS?=
- =?utf-8?B?UjBTWEtKVFRNSkE5dHpNN2dCRTdhR0RCUDVnbk55YnphRFBjUUZ3OHhpVmhu?=
- =?utf-8?B?eEJ1K2sxSU40Sk43RkdaV2ViSEpwa0RvZGhjYU5MZU1oUllwTE5NdGQxL3RN?=
- =?utf-8?B?NHE2UnNaeDdyRzNtMmRESXRFSFpjcm4yaHUvZGw3UVIyNUk1SHdhSVhTYTdr?=
- =?utf-8?B?U1MvUUVxN1krdUlqbTdvK3JGbUorUVpLcUxrdzdZTmQ3RTViSmphMkVkOGJh?=
- =?utf-8?B?ZkhTWnA4UmUzZ1lhVjN3SGtsUkI5ZEFTZlBRak1TZ1djNyttV2M4NHVaVktx?=
- =?utf-8?B?T09ZNnRsYUJKbU5yeFVsa2lUNUpuVmxTQVRmUzluenYzOHpTVVFIUEJndVhu?=
- =?utf-8?B?OHR0RmNsU0JWQmpIQ1EzalVsZXFERmNhZEQrZWVIY096alBaT2RGbGMzaUtn?=
- =?utf-8?Q?Cq4thkcA1FGQCocA+hy9FGX2b7Lj1zWh?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?T2YzMnVjR0crdDdMTzkzZTNsejJLUEM4Zzl1VTU1bVMrYzdObFlZcnR1Qlp5?=
+ =?utf-8?B?aExqeGpzVEMwbi92TFluQU5nN205UWtKMHFqZ1hUZjdtNis4dlZsSzhUV0lE?=
+ =?utf-8?B?ZHZBQ3k2Nk5WRkdkRlhtUFV0VldwMThlYmUwQXVEUUZTUzVOSG04bmc3TUtS?=
+ =?utf-8?B?MENSK3Y0QjJoZG0xd3IzNmpKaDlsVlZVT2puTVVWRVIwVGZOVDJJanFBWVU1?=
+ =?utf-8?B?MnRnSTlZVzhQL2ZnTlNVYU5vMlNuYnpJNEUvY2NLRWtTTTBhbjI1cDFtUlBP?=
+ =?utf-8?B?L1hkZnZUbURUZHhnM1lXNjFYM3V2cTFUUXk2RndEa3JhZUhuSzlrY1dMN2Zl?=
+ =?utf-8?B?b0E3RFdKUzlJdVRSRUp4c2ZockxzWkp4dWFGSFdldFpBVkk2QXkyZnNtRjdZ?=
+ =?utf-8?B?cFBPV1ovWktLcjhFZW9wajU0OHphN1phOXdsS1VoelZ6K0VDWDZKMEVLa1pF?=
+ =?utf-8?B?dTI4c25wU3plbUI0MS8wamVERzFtTXdBTVp6S3EyTHBKNnF4OXlrUytyRW1l?=
+ =?utf-8?B?UDgyYzRtMjdFZXFzWERYT3RMaGJDRVBSMy9VcDd4VUJ1VEk2OUowSGZCK0lu?=
+ =?utf-8?B?UkpSTFRlOS9kZ0ZjdytuSXFpMjRtMEloR09jbWZ1VGJLaWx0alYwU1hnVVBB?=
+ =?utf-8?B?Ni9sWU4zS0dBbVBYV3hmbWJ0cjJuMnp6WGZBQWUvVGtlTnVENkZTWEV5MVBj?=
+ =?utf-8?B?NWU1dkRGU2Ria3dNejRwWXFZK2lyUjhuZzlXdzQzTEpyNVluSi9OQm5rQ2tz?=
+ =?utf-8?B?K25mRnErYWFlYlV6L1BJQk9LdHVEVkc3dUZEQk8zYld0d1F5dC9uN2FoVkFV?=
+ =?utf-8?B?cWc5SUl0Z0g5RHFHNU5ubVhQSEY3cTFnMHVkNE9HQnR6ell6aUptU1hYdFdp?=
+ =?utf-8?B?dllLVm0ycTJsNGZsMHVXYkhsT09qUi9VdSsvdWtSUHUyRXBheTJSOWdNb2di?=
+ =?utf-8?B?Yzhkd3hvMnkwMTFKaUk4MU5VSmJqR0kzZ2hyKyt0YXZKaGxUVnAwckpRN0xB?=
+ =?utf-8?B?OS9ma1FHTERQSENaZDZaNU9zeHhmOVZPMUVHRmk5bGxGVlRZVXFpaW51UHM2?=
+ =?utf-8?B?dTI0U1M2SVhSZW1meDQxRzd5QVRqU3pxbnRQTGxmTlo3MENVak1DZnhQNS92?=
+ =?utf-8?B?WVBsR013UHNMWDd6WUkwUktBRGFMdTZoSERZOWpJUU9aNlNhTk1sK043dTZr?=
+ =?utf-8?B?QVl1K0tiT3k2N3dtMkRXTm5EaWU3aE1qMFA2eWF3eTNtNFk4Y2gvQ1hWUFZY?=
+ =?utf-8?B?azhWMUZVYzdvcGczNXBZQUFZMWRITnpIUERGNXBkSEY5enVXSFpRYkhxQ2ll?=
+ =?utf-8?B?bGUxM1pLdTd3TkI1WVZDYTVwa3JPVVhURWVvZHBMVnF0U005bUNhYzBQS3BP?=
+ =?utf-8?B?OFRBajFqYXZWa0FyUzZoS1JZSVQ2ODdocGdsUTFOYkx1ZnFHdFhlcDFIbkdJ?=
+ =?utf-8?B?RCt3TDZUaTNvTXJvMHZVZmJad29YS0xKRDczeG5lT2J2dHpxMVF5VW04eXh1?=
+ =?utf-8?B?UlRhY0pacXRzZEYxbEZSNGtlYUJWVk8vZllnNnB3YmkyNFpaRG14SDFIRGpI?=
+ =?utf-8?B?L21LUGZpTFJxaDdvaUFPMmNERkJTN2pxTFhHVWE1cXRlT1YvUUUwaGFzc1RT?=
+ =?utf-8?B?enI4Y2hKcFFUeE44U1ZVRUN6NmNuN2pZdnovNCthSldrR0pTMTZKZzd3eVJr?=
+ =?utf-8?B?aitQZ2FsOFZlSmxhT1Fyc2pJZlJMMkw0S2ZNVUNqTy9qcE9MOGhoOHJSZVJv?=
+ =?utf-8?B?WHJPSUhoUnU0NjYxek1KYjBINi9say9DNGVyQWVYUm5iWC9RNUVORUVRRVc1?=
+ =?utf-8?B?NGxCcllFcTdzb3B0VDRpSzdTR2UybE5vUmJSUXRma1FFMGFnWXB4K1ZCbmVv?=
+ =?utf-8?B?U1hLcHVkSFRzZDBRdzB0Mjl0NElJVXdVUkZzNEU5U0d6VE5LaW1DT1ZTaTha?=
+ =?utf-8?Q?bQnerBfA2ZH1cl202211VWYs0mYehC+z?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QlV6ZS91YlYySStNZXhGblgzVmo4NXF5TnpyZ252T0VQS1RCMlZJTlBqWCsy?=
- =?utf-8?B?ekthcHVuQ2lLYU44T1RoaS9tQk1VNWo5c1NhanNXS0VkYU5XQmNkWEgxN1B4?=
- =?utf-8?B?QmxabDgvTDhKRDk4L2QrM1pGQ2k3TFl4MTJVMFBaSHJUckhBRGpoQlhZaStz?=
- =?utf-8?B?dER5aDVXMElnMlZmSHRRaU1XbWtTdUZwbi80bCtacklaaU5wT084RnBrVGdx?=
- =?utf-8?B?NG91WkQzamEzSkhUUDY2UEdIdW5aSCtiUkVoL01WTDg2Q0hnd0xacUYvN2J6?=
- =?utf-8?B?bnppOGtONW5rMTQvMXBnV0UwQUVyOExGbGZKMGdUSVR5RmMwaldGZngxS2Vu?=
- =?utf-8?B?ZHVkZ01wdUtxcjlIZ3IrRWFRWkxqTTZ0WktZUklPek4zS1RlSXQwUFR1ZmFF?=
- =?utf-8?B?WDdsS3hhSFVLRFp4QzFzQU0yMjhCOE1zZ2ZYL1JFTHlaTWlPNjkxUFI1bFZa?=
- =?utf-8?B?cHpPY29WUTNiSm9HR2FORDkvR2NISWNwM09Fdk9HVFVuZyttc0NBVHhuQjdM?=
- =?utf-8?B?b013Tk05WGFmQk1teWMwRWRpQS9WTXpFMWpqWkltNUpqSDZITjQ3VzAzdDNW?=
- =?utf-8?B?OVh0N1Z2aHJ5ZExXaThDNzBBY250MndSd0ZtZ0R0SkVTdVRWMlhHK0VDQTRq?=
- =?utf-8?B?NnB0UXRyamQxMzdZcDNKUGZHUWJRSG1YaU5jRlFJOUY1SUlYWXBWa29ZRy9t?=
- =?utf-8?B?cFQ5aXFaZHExWjdrU00wL2ZzaVNwcDdsL0JaWE11Y2FrUzkxYkxyK3ZidXli?=
- =?utf-8?B?eWtRdWdSMVVpNGF6emc0djFaZlFINjNtMzBxaXNuQ3Y4OHpTMkl1SnAwRnBo?=
- =?utf-8?B?QXNqUEdpOGo4T2dxM2o1OFkxZmsyemFNWVRVU2hQa3QreThnOHJ5NWdPTzFM?=
- =?utf-8?B?YTYwN2FJYUpmU3IrZG5ybnVFTW1jQzhXUkZwVzVhU1dkL2tuc1doMStnMzJ5?=
- =?utf-8?B?RlgvVTJXaHprWTBQYjZTMFJmSlpEMkw4VjJUa0ZEbFR3bEVFUmZod3VMRjdD?=
- =?utf-8?B?K0tIMzdsM1VrQ0FnQkVoZ0lwUEVQOGY5TkZ5Y0J4SjRPYWJOUDQxVFlOd2Fl?=
- =?utf-8?B?SktvU1hhcXg4R2xoS0ViRlNvVjZZc2dQQko5dzRqekI4ZURNT3BNSWE3K3pO?=
- =?utf-8?B?amQ0Q2Y3bmhiZU5BVFA5WmRIYXU0czRySkUxMFVJZGdyNHVoZFAvSCtaVmZq?=
- =?utf-8?B?OFl2dFJyODNQcUZQOWpJYk4rUEt6UmxIdVdFN29oczVVMFhLc1pPVm5HNkJj?=
- =?utf-8?B?MjBrSWxTUFVsSThCd1MyQnpXV3J5TE1xcFFNQndFbzVjMXovdnRvVmd5SW5k?=
- =?utf-8?B?VzhQaHNyTjRHbFpRYzlzYTJCbXZnd1Y4dXFkbWhKYVdWTjRZKzNaWUlXYkw4?=
- =?utf-8?B?TnBkVkQyWG8zWHZBaDVFMzB6ZFVpcFlOcmlHUytjZTg3aUt0M0Y0dURaTzE2?=
- =?utf-8?B?T3QwaUJNcGprMXBhRUc2d05hNXN5NnZVVzl3Y1hRZ1dJd1A4R09sc1ZjMnJx?=
- =?utf-8?B?bHRmNHgrZnBCMzMzRmJkYkNKZ0o1NnlNNGlsUTRFb0M5bG1ocVgzUXhaTUZO?=
- =?utf-8?B?MXFaNk4yRnJMS2pOa2ZPalY3RitldkVONXdaVEp0VFVhckQzdDV6K3RMbEtt?=
- =?utf-8?B?ZVdUREFnaVNRMnRVSXpkUjdVaWxKeUVRSHJubzFNODF5OVEvSHZLSG00Rlhv?=
- =?utf-8?B?QVIrY0cvajVwYk5VVkxITU9KTWhFMWN4TnI3TjdJNDExUzArNGxxY1I0N1NP?=
- =?utf-8?B?bUlNejExaTBoWSsvUGJ1a1d1SkwwY3Bab0VpNWxOYXNMNk50TkUzNnNlVWNn?=
- =?utf-8?B?QkhvU0tyUWpxTnIzcm5PWVJHSUFjQ2k0ZTg5RzY4aU9TR2EvTUgrcUowMlRM?=
- =?utf-8?B?OEIxeWNXaGluVkNPYVFEaUp5d21idjlYYXFrWk1GVzMyWWd0dTE1Yit0N2xy?=
- =?utf-8?B?WEpiSTJVZ1d2VW9WdHdRRnVGWWZKMjVhOW9SYWJ2MkpvSjZRQXozUml4bmxW?=
- =?utf-8?B?RFlWUVdPVTNBZ3poYW1YWTN3TmcvZ0VGd0w1NEZDUitabjlDYjUxYUZlRVBG?=
- =?utf-8?B?clMxbTkrNE92K1l2RkRIeVpoWXd6RnJNVVBqU1NFM09oa1NUMHIrbjBqRUJH?=
- =?utf-8?B?VjlIMXloS1VwNmNjZm1Jc1g3YS9nbURJekViSk45OUxKTU5oQkZtOWtPSThm?=
- =?utf-8?B?REE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: b86a01a5-967c-4adb-d9be-08de18280a84
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?emFKZUtFYXN0NnN2RVEvdW5YaWt5RlBvOTFSS0hDNnppdlB4QnpaT0hldUxV?=
+ =?utf-8?B?Y1htU1dMcms2d1hYelFnU3dNUTUwd0N4YzFTd2tic2VCZnBRYVQ0MWRFb0dN?=
+ =?utf-8?B?eHc4RzJZTEdiZkRqR012cmNUV055cVorbWlJYmcxYTVHYy91ZjhTcXUwdzZI?=
+ =?utf-8?B?NGdWaktEWEtZeEk1dkhtVXlDdnNtQnB4UXQ1QzdyTENoNWh6TmhTcmE0ekQ1?=
+ =?utf-8?B?cEU0OXMrMm1jZnIxT2VLN2t1dmN5OTJEc2xMWDNxM3VTL09RTUw2bVdONDlM?=
+ =?utf-8?B?bm1HUFBOSVBwbkQ3Zmd5YVRBbUJFU0szOWE4dXp4NjYwK0gvWklMNW1xLzIz?=
+ =?utf-8?B?Wkh2N3FvbWlwUHpTcUp6SmxidFJqMkFSc2RjNndrdzBnQXBvN1dvYXhYMUhH?=
+ =?utf-8?B?NlpwdnhpbUVEMkQwUGRrcGhTUkhqZnNMQm1QTjM5LzZIVFhhTzVqMzJmaVU1?=
+ =?utf-8?B?anlBUy8xTUJ5WkhrZXlCb1pBNUtUNytQeERsd2l0ZTl6SE5yOE9hSVdRdDM3?=
+ =?utf-8?B?ZDNKQmZzc0VjTzloSDdhZ2JFYkdrZSttUGR3bFB6WGVoK2xrbzFHWWdNZ0ww?=
+ =?utf-8?B?cnhlaG5qMy9rTVVsWEtuT0pLeW53ekZ5NXJld2dva21tR0lTTVZDdExkc3hn?=
+ =?utf-8?B?V2RYZjVxOFFaOE11aEpGQkRFQnVBQnAyaDFCdkJWa29ZZTNPcVBYTEdZcEhO?=
+ =?utf-8?B?MlR1WVY4d0daNXpUTW42dU0yMXlBN3MydElLNVMrQWdoVzVCd2lkMC9OSXhD?=
+ =?utf-8?B?VkV0akhMVnoycTZ1cHZiaEdVVUJyRkU3TzFBS0pVcGFXQ2kwamh2c29yYjVY?=
+ =?utf-8?B?SXVOQ3ZiUUFDSWtIMGI0dXV5eWxDaE9jR0tXZlFWK2tNSTdFMmpHTGlXc25w?=
+ =?utf-8?B?em1nUWpmWVkzSUlRZm50cGg3WlBzVlVzWk5FSklxRmVVT1pGdW5qK3RNRlFw?=
+ =?utf-8?B?SkpnZVp5OFc4Y0p2TTNEYldTb1FsSFJxZDNJd012eENTRU0xMGF1eTFTUlky?=
+ =?utf-8?B?MlRadjd6TmlVbEt4VEFGMWxhRHlEMkhlMUtEa0lrWVdyU2hRcnpQVS9RbFZp?=
+ =?utf-8?B?N291N3d3ZmphaE9TaEV0OXdjVWV0bEJhbXBITlJyWDlkOFlPVTV3L1BmSDcr?=
+ =?utf-8?B?N3IvTGM3YXp2MEdVOVZwbk10Y2tncGo2Z09Udllqci81VE1qMnNGbStWNlVH?=
+ =?utf-8?B?UDhmK3RqR1J3WHByT2ZPR2NRUVUxNDllNURuRUtLeEVRV0tPejJKNjhPVFlo?=
+ =?utf-8?B?emdUYVdGNGcrUUtHd3pqOFkxTzViNCt5OGp6S2RuaUtEYldzbDdlQWFjY09S?=
+ =?utf-8?B?YTA4SXdoY2ZCS05DTlY5dXVDSGpuQUlod1krQUsxLzZsZUtYWjdLakZ0ck1W?=
+ =?utf-8?B?U2pvRDhCV2twTllKdEZPRjhuNTluck5VakVMZ1NHMXNnZldxTHBnSDNEZkM3?=
+ =?utf-8?B?YlNVdGtsRkNpMUtWNStEOHNqRnk4MloyRjBnQzhSemNTTEhhM2lPaGFGTm5t?=
+ =?utf-8?B?S3ovSVhmQ25HM1AzMEpwMHE4ZmtSNE9RT1NtZG1iUS9Iak1LRjRFRGlyMFdI?=
+ =?utf-8?B?S29zaU1YdGwyWEFXdHFTQ0QwWTBIRW82VWlGVzVDSmhKU3k5UzJIZFlzam5F?=
+ =?utf-8?B?T1c3UWJkN1c1M01YdlZkaWlwanUxT3dTWm5XL0ZUNnlIMU5pMTArMVlBT21w?=
+ =?utf-8?B?U0l5V2JRQTkySzdhT1NMWTkxU2pxZ24rbUI5dnAyL2VYTVZ2MERMWGwyZU13?=
+ =?utf-8?B?cEgrR09scXFiL01XTm9jUGZtZXFDWFpFVW9NSUoybmovZFd0VzBLVjIrV0F4?=
+ =?utf-8?B?R1ptTzhhR3AySlB2VXlEL1NUQ1pkNi9lRU0yV0ZtdXhUOHUxZ1ZSa1BiMkMz?=
+ =?utf-8?B?QmwyZTNKVVRQTFRNYkp6MkZzekx0OUg4ZXlKM2NFTG00a0J3Rnc2TUZQbG1h?=
+ =?utf-8?B?NTI0dDNMNU1GQS9qcGg5QXB5WnhoVmdTa1pMMit3NGZxaGRDVXVvZVN2eHkw?=
+ =?utf-8?B?U3NjTG02eGpDQkZvNm96Rys5a3FxdmlNZXhUUGRIVFNlUGJJK0NiNVRmbzZm?=
+ =?utf-8?B?NFE5d0F0eFg1dEFCKzBURHZkajVGT21BYWFhd2owOHFXKzZ2bzd6cXUxMHRt?=
+ =?utf-8?B?aWFSWEloOW1tdVJBb2dNMFZZMHQveWtvZlllV2FuMDlQdVRXeUpOWkNFdFBa?=
+ =?utf-8?B?Umc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 404ff6de-0a44-4f1f-a3c0-08de183c7ddf
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Oct 2025 02:48:59.3195 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Oct 2025 05:15:22.5444 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XHE40pSJyHIDN5ISsL9G+41187lRannTg4Ph/RxI1yGz5jyIOodXKPxz6Y+ntgTq4CG7fWl5ud1HOD2X1utvLw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8320
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZLQSDpqF/w/9k4XO3jsoMYQZyB4iKBltpap6z4aJCe5XVw77Uyjemx1BEUXoWfKr9aGTkL0ydysPtvY1B2H/SVs0uUufp2Xl91bSHlM3Pgs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8280
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -206,234 +200,219 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Matt Roper (2025-10-29 18:22:15-03:00)
->On Tue, Oct 21, 2025 at 09:28:38PM -0300, Gustavo Sousa wrote:
->> From: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
->>=20
->> Some of the register fields of MBUS_CTL and DBUF_CTL register are
->> changed for Xe3p_LPD platforms. Update the changed fields in the driver.
->> Below are the changes:
->>=20
->> MBUS_CTL:
->>         Translation Throttle Min
->>                 It changed from BIT[15:13] to BIT[16:13]
->>=20
->> DBUF_CTL:
->>         Min Tracker State Service
->>                 It changed from BIT[18:16] to BIT[20:16]
->>         Max Tracker State Service
->>                 It changed to from BIT[23:19] to BIT[14:10]
->>                 but using default value, so no need to define
->>                 in code.
->
->In a lot of cases when a register field picks up extra high bit(s), the
->extra bits were previously reserved, so it's fine to just adjust the
->existing definition (since reserved bits are required to always read out
->of hardware as zeroes).  However in these cases, the new bits these
->fields are extending into were actively used by the hardware for other
->purposes on previous platforms, which is why it's necessary to keep the
->existing pre-Xe3p definitions unchanged and create separate Xe3p ones
->that can be used only on the newer Xe3p platforms.  You should make some
->mention of that in the commit message so it's clear why we're handling
->these a bit differently than a lot of other registers.
 
-Agreed.  Just updated the local v3 to make that clear.
+On 10/24/2025 3:36 PM, Suraj Kandpal wrote:
+> The current algorithm is very wrong and was made wrose with
+> changes in algorithm that were done. It needs to be rewritten
+> to be able to extract the correct values and get the right port clock.
+
+
+I think you mean previous versions of the algorithm here.
+
+Since the algorithm is introduced first time in this patch, the commit 
+message should reflect that.
+
+As I understand, the function intel_lt_phy_calc_hdmi_port_clock() helps 
+to derive the port clock from the LT phy register values which helps in 
+readout and compare the LT phyold/new states.
+
+Few of the things that should be mentioned in the commit message:
+
+-Why this is needed for HDMI.
+
+-The fact  that the function to calculate LT Phy port clock is the 
+inverse of the function provided in Bspec: 74667.
+
 
 >
->>=20
->> v2:
->>   - Keep definitions in the same line (i.e. without line continuation
->>     breaks) for better readability. (Jani)
->>=20
->> Bspec: 68868, 68872
->> Cc: Jani Nikula <jani.nikula@linux.intel.com>
->> Signed-off-by: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
->> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/skl_watermark.c      | 16 +++++--
->>  drivers/gpu/drm/i915/display/skl_watermark_regs.h | 52 ++++++++++++----=
--------
->>  2 files changed, 40 insertions(+), 28 deletions(-)
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/=
-drm/i915/display/skl_watermark.c
->> index 256162da9afc..c141d575009f 100644
->> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
->> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
->> @@ -3477,7 +3477,10 @@ void intel_dbuf_mdclk_cdclk_ratio_update(struct i=
-ntel_display *display,
->>          if (!HAS_MBUS_JOINING(display))
->>                  return;
->> =20
->> -        if (DISPLAY_VER(display) >=3D 20)
->> +        if (DISPLAY_VER(display) >=3D 35)
->> +                intel_de_rmw(display, MBUS_CTL, XE3P_MBUS_TRANSLATION_T=
-HROTTLE_MIN_MASK,
->> +                             XE3P_MBUS_TRANSLATION_THROTTLE_MIN(ratio -=
- 1));
->> +        else if (DISPLAY_VER(display) >=3D 20)
->>                  intel_de_rmw(display, MBUS_CTL, MBUS_TRANSLATION_THROTT=
-LE_MIN_MASK,
->>                               MBUS_TRANSLATION_THROTTLE_MIN(ratio - 1));
->> =20
->> @@ -3488,9 +3491,14 @@ void intel_dbuf_mdclk_cdclk_ratio_update(struct i=
-ntel_display *display,
->>                      ratio, str_yes_no(joined_mbus));
->> =20
->>          for_each_dbuf_slice(display, slice)
->> -                intel_de_rmw(display, DBUF_CTL_S(slice),
->> -                             DBUF_MIN_TRACKER_STATE_SERVICE_MASK,
->> -                             DBUF_MIN_TRACKER_STATE_SERVICE(ratio - 1))=
-;
->> +                if (DISPLAY_VER(display) >=3D 35)
->> +                        intel_de_rmw(display, DBUF_CTL_S(slice),
->> +                                     XE3P_DBUF_MIN_TRACKER_STATE_SERVIC=
-E_MASK,
->> +                                     XE3P_DBUF_MIN_TRACKER_STATE_SERVIC=
-E(ratio - 1));
->> +                else
->> +                        intel_de_rmw(display, DBUF_CTL_S(slice),
->> +                                     DBUF_MIN_TRACKER_STATE_SERVICE_MAS=
-K,
->> +                                     DBUF_MIN_TRACKER_STATE_SERVICE(rat=
-io - 1));
->>  }
->> =20
->>  static void intel_dbuf_mdclk_min_tracker_update(struct intel_atomic_sta=
-te *state)
->> diff --git a/drivers/gpu/drm/i915/display/skl_watermark_regs.h b/drivers=
-/gpu/drm/i915/display/skl_watermark_regs.h
->> index c5572fc0e847..94915afc6b0b 100644
->> --- a/drivers/gpu/drm/i915/display/skl_watermark_regs.h
->> +++ b/drivers/gpu/drm/i915/display/skl_watermark_regs.h
->> @@ -32,16 +32,18 @@
->>  #define MBUS_BBOX_CTL_S1                _MMIO(0x45040)
->>  #define MBUS_BBOX_CTL_S2                _MMIO(0x45044)
->> =20
->> -#define MBUS_CTL                                _MMIO(0x4438C)
->> -#define   MBUS_JOIN                                REG_BIT(31)
->> -#define   MBUS_HASHING_MODE_MASK                REG_BIT(30)
->> -#define   MBUS_HASHING_MODE_2x2                        REG_FIELD_PREP(M=
-BUS_HASHING_MODE_MASK, 0)
->> -#define   MBUS_HASHING_MODE_1x4                        REG_FIELD_PREP(M=
-BUS_HASHING_MODE_MASK, 1)
->> -#define   MBUS_JOIN_PIPE_SELECT_MASK                REG_GENMASK(28, 26)
->> -#define   MBUS_JOIN_PIPE_SELECT(pipe)                REG_FIELD_PREP(MBU=
-S_JOIN_PIPE_SELECT_MASK, pipe)
->> -#define   MBUS_JOIN_PIPE_SELECT_NONE                MBUS_JOIN_PIPE_SELE=
-CT(7)
->> -#define   MBUS_TRANSLATION_THROTTLE_MIN_MASK        REG_GENMASK(15, 13)
->> -#define   MBUS_TRANSLATION_THROTTLE_MIN(val)        REG_FIELD_PREP(MBUS=
-_TRANSLATION_THROTTLE_MIN_MASK, val)
->> +#define MBUS_CTL                                        _MMIO(0x4438C)
->> +#define   MBUS_JOIN                                        REG_BIT(31)
->> +#define   MBUS_HASHING_MODE_MASK                        REG_BIT(30)
->> +#define   MBUS_HASHING_MODE_2x2                                REG_FIEL=
-D_PREP(MBUS_HASHING_MODE_MASK, 0)
->> +#define   MBUS_HASHING_MODE_1x4                                REG_FIEL=
-D_PREP(MBUS_HASHING_MODE_MASK, 1)
->> +#define   MBUS_JOIN_PIPE_SELECT_MASK                        REG_GENMASK=
-(28, 26)
->> +#define   MBUS_JOIN_PIPE_SELECT(pipe)                        REG_FIELD_=
-PREP(MBUS_JOIN_PIPE_SELECT_MASK, pipe)
->> +#define   MBUS_JOIN_PIPE_SELECT_NONE                        MBUS_JOIN_P=
-IPE_SELECT(7)
->> +#define   MBUS_TRANSLATION_THROTTLE_MIN_MASK                REG_GENMASK=
-(15, 13)
->> +#define   MBUS_TRANSLATION_THROTTLE_MIN(val)                REG_FIELD_P=
-REP(MBUS_TRANSLATION_THROTTLE_MIN_MASK, val)
->> +#define   XE3P_MBUS_TRANSLATION_THROTTLE_MIN_MASK        REG_GENMASK(16=
-, 13)
->> +#define   XE3P_MBUS_TRANSLATION_THROTTLE_MIN(val)        REG_FIELD_PREP=
-(XE3P_MBUS_TRANSLATION_THROTTLE_MIN_MASK, val)
+> Bspec: 74667
+> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+> V1 -> V2: Correct comment grammar
+> ---
+>   drivers/gpu/drm/i915/display/intel_dpll.c   |  2 +
+>   drivers/gpu/drm/i915/display/intel_lt_phy.c | 74 +++++++++++++++++++++
+>   drivers/gpu/drm/i915/display/intel_lt_phy.h |  3 +
+>   3 files changed, 79 insertions(+)
 >
->Nitpick:  I'm not sure if we're 100% consistent, but I feel like we
->usually sort bitfields based on their upper bound rather than their
->lower bound.  So even though xe3p and pre-xe3p start at the same bit 13,
->the xe3p should probably be sorted first since it ends at a higher bit
->(16 vs 15).
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
+> index 8c3ef5867a12..2e1f67be8eda 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpll.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+> @@ -1247,6 +1247,8 @@ static int xe3plpd_crtc_compute_clock(struct intel_atomic_state *state,
+>   		return ret;
+>   
+>   	/* TODO: Do the readback via intel_compute_shared_dplls() */
+> +	crtc_state->port_clock =
+> +			intel_lt_phy_calc_port_clock(encoder, crtc_state);
+>   
+>   	crtc_state->hw.adjusted_mode.crtc_clock = intel_crtc_dotclock(crtc_state);
+>   
+> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> index 0b1b320f5c3a..c7a109e4422c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> @@ -1237,6 +1237,80 @@ intel_lt_phy_pll_is_ssc_enabled(struct intel_crtc_state *crtc_state,
+>   	return false;
+>   }
+>   
+> +static int
+> +intel_lt_phy_calc_hdmi_port_clock(const struct intel_lt_phy_pll_state *lt_state)
+> +{
+> +#define DIV_CONST 10000000
 
-Ack.
+This is not used.
 
-Thanks!
 
---
-Gustavo Sousa
+> +#define REF_CLK 38400
 
->
->> =20
->>  /*
->>   * The below are numbered starting from "S1" on gen11/gen12, but starti=
-ng
->> @@ -51,21 +53,23 @@
->>   * way things will be named by the hardware team going forward, plus it=
-'s more
->>   * consistent with how most of the rest of our registers are named.
->>   */
->> -#define _DBUF_CTL_S0                                0x45008
->> -#define _DBUF_CTL_S1                                0x44FE8
->> -#define _DBUF_CTL_S2                                0x44300
->> -#define _DBUF_CTL_S3                                0x44304
->> -#define DBUF_CTL_S(slice)                        _MMIO(_PICK(slice, \
->> -                                                            _DBUF_CTL_S=
-0, \
->> -                                                            _DBUF_CTL_S=
-1, \
->> -                                                            _DBUF_CTL_S=
-2, \
->> -                                                            _DBUF_CTL_S=
-3))
->> -#define  DBUF_POWER_REQUEST                        REG_BIT(31)
->> -#define  DBUF_POWER_STATE                        REG_BIT(30)
->> -#define  DBUF_TRACKER_STATE_SERVICE_MASK        REG_GENMASK(23, 19)
->> -#define  DBUF_TRACKER_STATE_SERVICE(x)                REG_FIELD_PREP(DB=
-UF_TRACKER_STATE_SERVICE_MASK, x)
->> -#define  DBUF_MIN_TRACKER_STATE_SERVICE_MASK        REG_GENMASK(18, 16)=
- /* ADL-P+ */
->> +#define _DBUF_CTL_S0                                        0x45008
->> +#define _DBUF_CTL_S1                                        0x44FE8
->> +#define _DBUF_CTL_S2                                        0x44300
->> +#define _DBUF_CTL_S3                                        0x44304
->> +#define DBUF_CTL_S(slice)                                _MMIO(_PICK(sl=
-ice, \
->> +                                                                    _DB=
-UF_CTL_S0, \
->> +                                                                    _DB=
-UF_CTL_S1, \
->> +                                                                    _DB=
-UF_CTL_S2, \
->> +                                                                    _DB=
-UF_CTL_S3))
->> +#define  DBUF_POWER_REQUEST                                REG_BIT(31)
->> +#define  DBUF_POWER_STATE                                REG_BIT(30)
->> +#define  DBUF_TRACKER_STATE_SERVICE_MASK                REG_GENMASK(23,=
- 19)
->> +#define  DBUF_TRACKER_STATE_SERVICE(x)                        REG_FIELD=
-_PREP(DBUF_TRACKER_STATE_SERVICE_MASK, x)
->> +#define  DBUF_MIN_TRACKER_STATE_SERVICE_MASK                REG_GENMASK=
-(18, 16) /* ADL-P+ */
->>  #define  DBUF_MIN_TRACKER_STATE_SERVICE(x)                REG_FIELD_PRE=
-P(DBUF_MIN_TRACKER_STATE_SERVICE_MASK, x) /* ADL-P+ */
->> +#define  XE3P_DBUF_MIN_TRACKER_STATE_SERVICE_MASK        REG_GENMASK(20=
-, 16)
->> +#define  XE3P_DBUF_MIN_TRACKER_STATE_SERVICE(x)                REG_FIEL=
-D_PREP(XE3P_DBUF_MIN_TRACKER_STATE_SERVICE_MASK, x)
->
->Same here.
->
->
->Matt
->
->> =20
->>  #define MTL_LATENCY_LP0_LP1                _MMIO(0x45780)
->>  #define MTL_LATENCY_LP2_LP3                _MMIO(0x45784)
->>=20
->> --=20
->> 2.51.0
->>=20
->
->--=20
->Matt Roper
->Graphics Software Engineer
->Linux GPU Platform Enablement
->Intel Corporation
+
+Since this is 38400Khz, REF_CLK_KHZ would be better.
+
+
+> +#define REGVAL(i) (				\
+> +	(lt_state->data[i][3])		|	\
+> +	(lt_state->data[i][2] << 8)	|	\
+> +	(lt_state->data[i][1] << 16)	|	\
+> +	(lt_state->data[i][0] << 24)		\
+> +)
+> +
+> +	int clk = 0;
+> +	u32 d8, pll_reg_5, pll_reg_3, pll_reg_57, m2div_frac, m2div_int;
+> +	u64 temp0, temp1;
+> +
+> +	/*
+> +	 * d7 max val can be 10 so 4 bits.
+> +	 * postdiv can be max 9 hence it needs 4 bits.
+> +	 * d8 = loop_cnt / 2 and loop count can be max 255
+> +	 * hence we it needs only 7 bits to but 8 bits is given to it.
+> +	 * PLL_reg57 = ((D7 << 24) + (postdiv << 15) + (D8 << 7) + D6_new);
+> +	 * d4 max val can be 256 so 9 bits.
+> +	 * d3 can be max 9 hence needs 4 bits.
+> +	 * d1 can be max 2 hence needs 2 bits.
+> +	 * m2div can never be > 511 hence m2div_int
+> +	 * needs up to 9 bits but it is given 10.
+> +	 * PLL_reg3 = (uint32_t)((D4 << 21) + (D3 << 18) + (D1 << 15)+ (m2div_int << 5));
+
+The algorithm uses + in the formulae above but as per my understanding 
+the intention is to combine the non-overlapping bits.
+
+So I agree with the above reasoning and the method to derive `d8` and 
+`m2div_int` from the register values.
+
+Since this is not very explicit, the comment can be bit improved to 
+mention the formulae first and then the reasoning about the bits each 
+constituent takes, something like:
+
+         /*
+          * The algorithm uses '+' to combine bitfields when 
+constructing PLL_reg3 and PLL_reg57:
+          * PLL_reg57 = (D7 << 24) + (postdiv << 15) + (D8 << 7) + D6_new;
+          * PLL_reg3 = (D4 << 21) + (D3 << 18) + (D1 << 15) + (m2div_int 
+<< 5);
+          *
+          * However, this is likely intended to be a bitwise OR operation,
+          * as each field occupies distinct, non-overlapping bits in the 
+register.
+          *
+          * PLL_reg57 is composed of following fields packed into a 
+32-bit value:
+          * - D7: max value 10 -> fits in 4 bits -> placed at bits 24-27
+          * - postdiv: max value 9 -> fits in 4 bits -> placed at bits 15-18
+          * - D8: derived from loop_cnt / 2, max 127 -> fits in 7 bits 
+(though 8 bits are given to it) -> placed at bits 7-14
+          * - D6_new: fits in lower 7 bits -> placed at bits 0-6
+          * PLL_reg57 = (D7 << 24) | (postdiv << 15) | (D8 << 7) | D6_new;
+          *
+          * Similarly, PLL_reg3 is packed as:
+          * - D4: max value 256 -> fits in 9 bits -> placed at bits 21-29
+          * - D3: max value 9 -> fits in 4 bits -> placed at bits 18-21
+          * - D1: max value 2 -> fits in 2 bits -> placed at bits 15-16
+          * - m2div_int: max value 511 -> fits in 9 bits (10 bits 
+allocated) -> placed at bits 5-14
+          * PLL_reg3 = (D4 << 21) | (D3 << 18) | (D1 << 15) | (m2div_int 
+<< 5);
+          */
+
+> +	 */
+> +	pll_reg_5 = REGVAL(2);
+> +	pll_reg_3 = REGVAL(1);
+> +	pll_reg_57 = REGVAL(3);
+> +	m2div_frac = pll_reg_5;
+> +
+> +	d8 = (pll_reg_57 & REG_GENMASK(14, 7)) >> 7;
+> +	m2div_int = (pll_reg_3  & REG_GENMASK(14, 5)) >> 5;
+> +	temp0 = ((u64)m2div_frac * REF_CLK) >> 32;
+> +	temp1 = (u64)m2div_int * REF_CLK;
+> +	if (d8 == 0)
+> +		return 0;
+> +
+> +	clk = div_u64((temp1 + temp0), d8 * 10);
+
+temp1 + temp0 is effectively m2div. Since  m2div = val / 2 / refclk_mhz 
+and val  = d8 * clk * 10; m2div should be multiplied with a factor of 2.
+
+Perhaps I am missing something? It would be good to document how this is 
+derived.
+
+
+Regards,
+
+Ankit
+
+> +
+> +	return clk;
+> +}
+> +
+> +int
+> +intel_lt_phy_calc_port_clock(struct intel_encoder *encoder,
+> +			     const struct intel_crtc_state *crtc_state)
+> +{
+> +	int clk;
+> +	const struct intel_lt_phy_pll_state *lt_state =
+> +		&crtc_state->dpll_hw_state.ltpll;
+> +	u8 mode, rate;
+> +
+> +	mode = REG_FIELD_GET8(LT_PHY_VDR_MODE_ENCODING_MASK,
+> +			      lt_state->config[0]);
+> +	/*
+> +	 * For edp/dp read the clock value from the tables
+> +	 * and return the clock as the algorithm used for
+> +	 * calculating the port clock does not exactly matches
+> +	 * with edp/dp clock.
+> +	 */
+> +	if (mode == MODE_DP) {
+> +		rate = REG_FIELD_GET8(LT_PHY_VDR_RATE_ENCODING_MASK,
+> +				      lt_state->config[0]);
+> +		clk = intel_lt_phy_get_dp_clock(rate);
+> +	} else {
+> +		clk = intel_lt_phy_calc_hdmi_port_clock(lt_state);
+> +	}
+> +
+> +	return clk;
+> +}
+> +
+>   int
+>   intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
+>   			    struct intel_encoder *encoder)
+> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h b/drivers/gpu/drm/i915/display/intel_lt_phy.h
+> index 3f255c9b0f96..5b4e0d9c940f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lt_phy.h
+> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
+> @@ -10,12 +10,15 @@
+>   
+>   struct intel_encoder;
+>   struct intel_crtc_state;
+> +struct intel_lt_phy_pll_state;
+>   
+>   void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
+>   			     const struct intel_crtc_state *crtc_state);
+>   int
+>   intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
+>   			    struct intel_encoder *encoder);
+> +int intel_lt_phy_calc_port_clock(struct intel_encoder *encoder,
+> +				 const struct intel_crtc_state *crtc_state);
+>   
+>   #define HAS_LT_PHY(display) (DISPLAY_VER(display) >= 35)
+>   
