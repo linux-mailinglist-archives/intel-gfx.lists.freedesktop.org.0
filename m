@@ -2,63 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFB23C249F8
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Oct 2025 11:53:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35EB0C24B0C
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Oct 2025 12:06:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AFC210EBB3;
-	Fri, 31 Oct 2025 10:53:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A95810EBBA;
+	Fri, 31 Oct 2025 11:06:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fxw8ZDJ6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GXDh/Qgm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 785DE10EBA7;
- Fri, 31 Oct 2025 10:53:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87AB110EB56;
+ Fri, 31 Oct 2025 11:06:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761908004; x=1793444004;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=CGvpYN53Edp0HZ0W7hX9qwx6unmwE61P8STK4QgrYfk=;
- b=Fxw8ZDJ67ZOmgzowHaliV0fG43H297sL0180jlOFZQMK/CtGomWcCAsw
- FiiWe6xKULsUfakdUXH41Y5VWBusfsYkfCW/jpnuDgYPia8dZWrWe6mWc
- SypkGTEHpXWMb/8zAgQo2HEPGyVf4fJmx5of36mv1JQPu5YCo5RGk+ztC
- MQ4bQxOAAAZPCQlXKe/5c3cRU/KcCmxW0X5zHMzqA5YeGxiEUMVxVLDwt
- NJzcVGAqq2XNYzL8JXz2BKitmv5Ojf4yScqr3kG5a8It2402R2ta9tLh/
- PeCvCDKij4edFpf53iWrRziU/bWzy50eH0Wack+aJ53CpHsC92pNgufiJ g==;
-X-CSE-ConnectionGUID: OeAXlTZRQRGodabcHBJjHw==
-X-CSE-MsgGUID: iscTr6vyTLCzJzttWPa/ng==
-X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="67722678"
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="67722678"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 03:53:23 -0700
-X-CSE-ConnectionGUID: XaJV+kfHRS+Ak5d68sTGZQ==
-X-CSE-MsgGUID: WFK/JoO9Rr6bYxnXg5ZDUg==
+ t=1761908774; x=1793444774;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=wdWyR3R04EamsZBOTjsZ4tH4Q35xaaW0LVTrQO3G9NE=;
+ b=GXDh/Qgm+G/uhbG+1HS8OrOtDslcyMAU7/QDGo3wjJlaVATGmlgWpcY+
+ hHriKMFtegV9d6IGyw9dT/ONNIPGPza3AvMnDTfGokRGEjFp7NFYknuof
+ AykBccSrfelgl42SKtq42IH1jDur1lPMDUBJiSVY2ocfgW5eci5EtAK9C
+ nrpX/K+Ar9vny/k5IIW9RQaCQqF3tt4Gd5DDMzLOfM1/cg3RaKRM8zN/i
+ Bud9F9ZkBAlawuz4PvRLSM2B5+OKV/eq+GJuUZkwaapEQZQ6Mt3oM2XGV
+ ZCXhkIycTfWdG0lmmAW4p6xMwfBu6Qq2pU8/GLhyRsiB1c5/v3peRB1Pb Q==;
+X-CSE-ConnectionGUID: SdixlttoRi6v4/AxW6StFA==
+X-CSE-MsgGUID: uvt9pUvARjeYGbA/i8TcZQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="51640456"
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="51640456"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2025 04:06:14 -0700
+X-CSE-ConnectionGUID: DUDD6QLATVCDVwxzRLodtQ==
+X-CSE-MsgGUID: MoGhaQGRRRiOG3+q8cMu9A==
 X-ExtLoop1: 1
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.51])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 03:53:19 -0700
-From: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
-To: dri-devel@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: =?UTF-8?q?=EA=B9=80=EA=B0=95=EB=AF=BC?= <km.kim1503@gmail.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>
-Subject: [PATCH] drm/i915/gem: Fix NULL pointer dereference in
- eb_release_vmas()
-Date: Fri, 31 Oct 2025 11:53:00 +0100
-Message-ID: <20251031105259.72927-2-krzysztof.niemiec@intel.com>
-X-Mailer: git-send-email 2.45.2
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="186327297"
+Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.37])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2025 04:06:13 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v2 1/2] drm/i915/dsi: log send packet sequence errors
+In-Reply-To: <aQHVpSHJjRW0PYjw@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251029084603.2254982-1-jani.nikula@intel.com>
+ <aQHVpSHJjRW0PYjw@intel.com>
+Date: Fri, 31 Oct 2025 13:06:09 +0200
+Message-ID: <3aeabd8dae0e34a7a415534ddcbf1b06900cc4ae@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,75 +70,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Set eb->vma[i+1].vma to NULL to prevent eb_release_vmas() from
-processing unitialized data, leading to a potential NULL dereference.
+On Wed, 29 Oct 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Wed, Oct 29, 2025 at 10:46:02AM +0200, Jani Nikula wrote:
+>> We might be getting send packet sequence errors and never know. Log them
+>> as errors. Also upgrade the not supported read commands to errors.
+>>=20
+>> v2: Also error log -EOPNOTSUPP (Ville)
+>>=20
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-During the execution of eb_lookup_vmas(), the eb->vma array is
-successively filled up with struct eb_vma objects. This process includes
-calling eb_add_vma(), which might fail; however, even in the event of
-failure, eb->vma[i].vma is set for the currently processes buffer.
+Thanks, series pushed to din.
 
-If eb_add_vma() fails, eb_lookup_vmas() returns with an error, which
-prompts a call to eb_release_vmas() to clean up the mess. Since
-eb_lookup_vmas() might fail during processing any (possibly not first)
-buffer, eb_release_vmas() checks whether a buffer's vma is NULL to know
-which one has failed first. The NULL is set if the vma cannot be set or
-is invalid in some way, but during and after the eb_add_vma() call, it
-is set to a valid pointer for the currently processed eb_vma.
 
-This means that during the check in eb_release_vmas(), the buffer that
-failed eb_add_vma() (say, eb->vma[i]) is processed (and rightfully so,
-since the vma associated with it still needs cleanup), but eb->vma[i+1]
-is left completely uninitialized (since the loop was broken prematurely
-after failing on eb_add_vma() for eb->vma[i]). Therefore
-eb->vma[i+1].vma has junk in it, and if that junk is not NULL, that vma
-will be processed by eb_release_vmas(), leading to memory corruption.
-
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15062
-
-Reported-by: 김강민 <km.kim1503@gmail.com>
-Signed-off-by: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
----
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 19 ++++++++++++++-----
- 1 file changed, 14 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 39c7c32e1e74..0f8f02e22c03 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -960,18 +960,27 @@ static int eb_lookup_vmas(struct i915_execbuffer *eb)
- 		}
- 
- 		err = eb_add_vma(eb, &current_batch, i, vma);
--		if (err)
-+		if (err) {
-+			if (i + 1 < eb->buffer_count) {
-+				/*
-+				 * Execbuffer code expects last vma entry to be NULL,
-+				 * since we already initialized this entry,
-+				 * set the next value to NULL or we mess up
-+				 * cleanup handling.
-+				 */
-+				eb->vma[i + 1].vma = NULL;
-+			}
-+
- 			return err;
-+		}
- 
- 		if (i915_gem_object_is_userptr(vma->obj)) {
- 			err = i915_gem_object_userptr_submit_init(vma->obj);
- 			if (err) {
- 				if (i + 1 < eb->buffer_count) {
- 					/*
--					 * Execbuffer code expects last vma entry to be NULL,
--					 * since we already initialized this entry,
--					 * set the next value to NULL or we mess up
--					 * cleanup handling.
-+					 * Set the next vma to null, for the same
-+					 * reason as above.
- 					 */
- 					eb->vma[i + 1].vma = NULL;
- 				}
--- 
-2.45.2
-
+--=20
+Jani Nikula, Intel
