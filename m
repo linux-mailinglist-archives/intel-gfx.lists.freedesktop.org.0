@@ -2,62 +2,88 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1001AC267F1
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Oct 2025 18:57:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5BFAC26866
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Oct 2025 19:09:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 994F910E302;
-	Fri, 31 Oct 2025 17:57:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB67110E384;
+	Fri, 31 Oct 2025 18:09:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RrKLz5K6";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="jMk9fYrf";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC42E10E06D;
- Fri, 31 Oct 2025 17:57:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761933461; x=1793469461;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=U1SJEHv77UlVmQIwfYx3kPtQgJj8QTjOlyY+o3sqETU=;
- b=RrKLz5K6YyY2z2iQwDmq3c/38tijcrdJNPsqWdXgF6yESMXkoIs+kgTq
- TS6i7ljqLUNL86rdmJXQBNUg0bJk0JDLL584JvbEQox4pPgr5kIU4ulg/
- b8LceE9PDfVtNuFNWhCX+ZHZX0hhnzLcB5ccU6EJkK+J/mYKgJHe3BJLL
- L13EHcQkS2jrz7Obn4utAnaFGG+WjPKBTxW2Z4WvJxmX5+zzVu7SlEpqQ
- 6Bvvdikts4Qi2boXa5/9UUaessV0bE94qABh+IXm930c6dIzztMaBnabh
- Po9RcCJrc4Zt4ZotSF0U2w7C9jFwVPQPZ/pvLedVVvT0lltsmP6GNQvpG A==;
-X-CSE-ConnectionGUID: wgDrTKoPTPGzLGGczsOsHQ==
-X-CSE-MsgGUID: wBks1JGZROaQNuzU6tb0YQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="64197819"
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="64197819"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 10:57:41 -0700
-X-CSE-ConnectionGUID: gOmtIhR0Snmk1PIgUlTCxA==
-X-CSE-MsgGUID: OdM79Rh1TAqwOU7/K0rLzw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="186171943"
-Received: from kialmah1-desk5.jf.intel.com ([10.23.33.174])
- by fmviesa006.fm.intel.com with ESMTP; 31 Oct 2025 10:57:40 -0700
-From: Khaled Almahallawy <khaled.almahallawy@intel.com>
-To: dri-devel@lists.freedesktop.org,
-	linux-arm-msm@vger.kernel.org
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Khaled Almahallawy <khaled.almahallawy@intel.com>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Jani Nikula <jani.nikula@intel.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Dmitry Baryshkov <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>, Sean Paul <sean@poorly.run>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: [PATCH v2] drm/display/dp: Rename bit 4 of DPCD TEST_REQUEST to match
- DP2.1 spec
-Date: Fri, 31 Oct 2025 10:57:38 -0700
-Message-ID: <20251031175738.3430347-1-khaled.almahallawy@intel.com>
-X-Mailer: git-send-email 2.43.0
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com
+ [209.85.218.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62BB910E384
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 18:09:09 +0000 (UTC)
+Received: by mail-ej1-f51.google.com with SMTP id
+ a640c23a62f3a-b3e9d633b78so644933466b.1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 11:09:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1761934148; x=1762538948; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=nKtssmUP+ALDMkzJQfah53QYQZLXpEc5pubXPz+gpuA=;
+ b=jMk9fYrfWm8u3EGuynJgG6OWhLxBDg59KSbdIjLROZ0HgsPpJuNuIqMWIkbg0z6Mm8
+ gA+r2/PNpksUzcLqC0OYRHSXdsSyr9VZ10wFKJXZ8FQBk0hFgW7D/pG1T/oxWuDlq76G
+ PmIJlKq2MSGSbNnEy+uiv2jbNK2gv46Q+uLv4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1761934148; x=1762538948;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=nKtssmUP+ALDMkzJQfah53QYQZLXpEc5pubXPz+gpuA=;
+ b=iRSlHi+mLwwFj3qW+ODGAKBMmFbGE6FYeTR31m+43wfGjymIyuhYEOgwtDwVB4fLh+
+ uB9FKsaB+tjagtDC8KxK+1sPHYo59nUEi+ovJzOe69dxHXPVPFp03YB5fDRNJs9KTEp0
+ qfNoSH5aaH/T35jQT0WD+yEpalNRKjmBfOO3sqbj592HD1qjGV3+cRLVJXq7wbwGN2Bs
+ p/TJ1v/latRfdob+LolxoPDE/hyxqHQwiQ+TS+PuMQZYv84DguQCkw+luGIu/a3wbwrn
+ 8TL/8qulwBiwg4LFoDdc0sDVTDpk/3Bl9dO5rY7cuOlezJkhR+IITQnpdgxRZMnndRP/
+ FR/w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVzuCS66fVSE6ObNgO34tr0Leu83s9Oc8FIMMQpWxbFbpXqDnx24nRF5/yjtAKWkZE28GmCzslBu0E=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Ywebk63MvWb02/KXCVp2rKAMx0dFI1O3aXGkjroXrQgIVAb2E8r
+ fu7vbhj/rFMNK6LAUMDX7eox5cGC/moI1nvet4RbvJ0iYuYmHpn48AAmPDq58wo9vN0=
+X-Gm-Gg: ASbGncs/BPNvzWeMhJszb5srUMEeRsvU9a0lXhYZXYEfeyF3tqJkNp+Cnx273ey5UuG
+ AxSLfaPYRY6bFFccxGpBXTqFOMPwhj5mC40zL+6bEnW3VfiNIA7nb4dShxRIsRVuuUb6mwy431f
+ aSyyWmslAEcWK4+0vbC3/lq5TcCTFad+i/7YAn508SNVDZeSCnva0AUuO/U/eXHp+Nx0MDhEijF
+ ceiUUbBCVYfHXKQWmHqB20oYCXkwv9404hJWuoi0EohYgLaHTiKDWwSztBp1sriwZVLazS0ZWpV
+ v+cUJlTqstbuQe6aANOdjoGvVm0FmupgAGV94/9OBSptNfgxmz3/7BVkFTaJwX6fvONhclckete
+ LtgdC+m8F+t8k++rq4Q/4g9Qegij56HWVD3RzbF+q+97YtXHr1e8/YELMge9c34jSAJ1k7m3+cv
+ WrLMPdSy8xy8ezshhHaJ7mEw==
+X-Google-Smtp-Source: AGHT+IEKnHd7pJ1dQSxnCMJJVqL4EtiSOZpH8KMq1b10ZNQEIBxUJj5PF57dXuhBIN7vAPX1M39U3w==
+X-Received: by 2002:a17:907:3cc7:b0:b2f:4970:8720 with SMTP id
+ a640c23a62f3a-b706e270568mr574233266b.8.1761934147789; 
+ Fri, 31 Oct 2025 11:09:07 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-b7077cfa966sm236173766b.65.2025.10.31.11.09.06
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 31 Oct 2025 11:09:07 -0700 (PDT)
+Date: Fri, 31 Oct 2025 19:09:05 +0100
+From: Simona Vetter <simona.vetter@ffwll.ch>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: Re: [PULL] drm-intel-fixes
+Message-ID: <aQT7QV8F48fwteHm@phenom.ffwll.local>
+References: <aQNtTV75vPaDhnXh@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <aQNtTV75vPaDhnXh@intel.com>
+X-Operating-System: Linux phenom 6.12.38+deb13-amd64 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,51 +99,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The DP_TEST_LINK_FAUX_PATTERN field was deprecated in the DP 1.3 spec.
-Update its name to align with the DP 2.1 definition and reflect its
-actual use in the code. No functional changes.
+On Thu, Oct 30, 2025 at 09:51:09AM -0400, Rodrigo Vivi wrote:
+> Hi Dave and Sima,
+> 
+> Here goes our only fix for intel-display for this
+> round.
+> 
+> Thanks,
+> Rodrigo.
+> 
+> drm-intel-fixes-2025-10-30:
+> - Fix DMC/DC6 asserts on ADL-S (Ville)
+> The following changes since commit dcb6fa37fd7bc9c3d2b066329b0d27dedf8becaa:
+> 
+>   Linux 6.18-rc3 (2025-10-26 15:59:49 -0700)
+> 
+> are available in the Git repository at:
+> 
+>   https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2025-10-30
+> 
+> for you to fetch changes up to dc8aa0cb87a7836b59422cc02d969c8df849ee39:
+> 
+>   drm/i915/dmc: Clear HRR EVT_CTL/HTP to zero on ADL-S (2025-10-28 16:00:19 -0400)
 
-v2: Comment about spec version where the bit was introduced (Konrad)
+Pulled into drm-fixes, thanks!
+-Sima
 
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>
-Cc: Dmitry Baryshkov <lumag@kernel.org>
-Cc: Abhinav Kumar <abhinav.kumar@linux.dev>
-Cc: Sean Paul <sean@poorly.run>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
----
- drivers/gpu/drm/msm/dp/dp_link.c | 2 +-
- include/drm/display/drm_dp.h     | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+> 
+> ----------------------------------------------------------------
+> - Fix DMC/DC6 asserts on ADL-S (Ville)
+> 
+> ----------------------------------------------------------------
+> Ville Syrjälä (1):
+>       drm/i915/dmc: Clear HRR EVT_CTL/HTP to zero on ADL-S
+> 
+>  drivers/gpu/drm/i915/display/intel_dmc.c | 55 +++++++++++++++++++++++++++++++-
+>  1 file changed, 54 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/msm/dp/dp_link.c b/drivers/gpu/drm/msm/dp/dp_link.c
-index 66e1bbd80db3..5d465cf4dbc2 100644
---- a/drivers/gpu/drm/msm/dp/dp_link.c
-+++ b/drivers/gpu/drm/msm/dp/dp_link.c
-@@ -665,7 +665,7 @@ static int msm_dp_link_parse_request(struct msm_dp_link_private *link)
- 		return rlen;
- 	}
- 
--	if (!data || (data == DP_TEST_LINK_FAUX_PATTERN)) {
-+	if (!data || (data == DP_TEST_PHY_TEST_CHANNEL_CODING_TYPE)) {
- 		drm_dbg_dp(link->drm_dev, "link 0x%x not supported\n", data);
- 		goto end;
- 	}
-diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
-index e4eebabab975..e299a66e698d 100644
---- a/include/drm/display/drm_dp.h
-+++ b/include/drm/display/drm_dp.h
-@@ -849,7 +849,7 @@
- # define DP_TEST_LINK_VIDEO_PATTERN	    (1 << 1)
- # define DP_TEST_LINK_EDID_READ		    (1 << 2)
- # define DP_TEST_LINK_PHY_TEST_PATTERN	    (1 << 3) /* DPCD >= 1.1 */
--# define DP_TEST_LINK_FAUX_PATTERN	    (1 << 4) /* DPCD >= 1.2 */
-+# define DP_TEST_PHY_TEST_CHANNEL_CODING_TYPE	    (1 << 4) /* DP 2.1 */
- # define DP_TEST_LINK_AUDIO_PATTERN         (1 << 5) /* DPCD >= 1.2 */
- # define DP_TEST_LINK_AUDIO_DISABLED_VIDEO  (1 << 6) /* DPCD >= 1.2 */
- 
 -- 
-2.43.0
-
+Simona Vetter
+Software Engineer
+http://blog.ffwll.ch
