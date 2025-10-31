@@ -2,54 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A97D2C24823
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Oct 2025 11:37:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8486EC24826
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Oct 2025 11:37:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 303AD10EB33;
-	Fri, 31 Oct 2025 10:37:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14D8610EB2F;
+	Fri, 31 Oct 2025 10:37:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qr3Ks+rM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XGxkH+pU";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 893CF10EB2F;
- Fri, 31 Oct 2025 10:37:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0061E10EB34;
+ Fri, 31 Oct 2025 10:37:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761907072; x=1793443072;
+ t=1761907075; x=1793443075;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=0UUapnppW5uvXCCO9OU2rozQk54/DKgi3D1W8nyEHHg=;
- b=Qr3Ks+rMacmWgHBcHiHnXQaj8wn58OqMy8675Trk0s1vbfNEiHqHIFF1
- 0S6nPDSXRFYOH7aqtRAUQizqNah9JIvXPTSr7Lv3zqXzNFarj4FV4LT39
- e43F3s5jc5lwFV6efvv02gnMk3AmGPiRXqF/fa3ue8HOv1dHpRctdsnst
- 7RyvGEbUrC5+u4jCJMt3ipbbVma9w3fK/unkuBD1cvAukxP0DO7Jl5Hec
- gVPOJ7RLMjNalA5+C25TGQS3IzociEu8+kk6nfKlrlsuVtBCu7q3Wp4Ir
- ia3wTznGGit5BOc7FoHjC3oikF+x0jUtpCFcQD9+Gak3rcvWELNbNscbu w==;
-X-CSE-ConnectionGUID: l5+XwQYTSPux9DZWAMk4Hg==
-X-CSE-MsgGUID: EsDTB3SHRCuJWzoHgQpZXw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="86690904"
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="86690904"
+ bh=EfY0r6kzaWdztcKHGPY5haHhathDiTMf7RbNMF0/lnw=;
+ b=XGxkH+pUC4KuwUiyxy/GE4JJlxXQgI0KBiBcRV5F97gzgeWQIiT/PCAC
+ dD8aAozHPAmRniCXnOJH2Tg+P/KUbonFvRaWh3YBzOibSsu04Mg2MSh64
+ pRivsIkPvPxePP5qa3JTa2chM+5f0LFuN7YuODQw/wEaw/wGd8REvzQt9
+ auOzf3Kg2E0rNFn+KX9lJYFcrEKak2rOltnPEv8ZcdmHSDLJbHwP0Ua0j
+ uM722+BQMlsPxFQEhx8w1PmwysGgTJdPly8f1+HFkRb2SS+N+vR4HgaI7
+ F3UzuQ3kWxqQmIy3uG2sGUgtSItChRwA5t6KsUryj4BdoD7cFCk6LH4RQ Q==;
+X-CSE-ConnectionGUID: fyFlh7XlRQ+2Qr27kvgIlw==
+X-CSE-MsgGUID: XjwayDugQumPOlClJEvC0Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="86690906"
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208,223";a="86690906"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 03:37:52 -0700
-X-CSE-ConnectionGUID: bV5+YWx+Rxme92PfE/RkDg==
-X-CSE-MsgGUID: WBofn9DyQv6F/GqkjTUdvQ==
+ 31 Oct 2025 03:37:54 -0700
+X-CSE-ConnectionGUID: mu30UjXKSBOiojxQtWRz8g==
+X-CSE-MsgGUID: aZPj9dFvT5iOtp6zTJUOwA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="190554753"
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; 
+ d="scan'208,223";a="190554760"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa005.fm.intel.com with ESMTP; 31 Oct 2025 03:37:49 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 31 Oct 2025 03:37:51 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, uma.shankar@intel.com,
  gustavo.sousa@intel.com, lucas.demarchi@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v3 23/25] drm/i915/ltphy: Define LT PHY PLL state verify
- function
-Date: Fri, 31 Oct 2025 16:06:41 +0530
-Message-Id: <20251031103643.4147868-24-suraj.kandpal@intel.com>
+Subject: [PATCH v3 24/25] drm/i915/display: Aux Enable and Display powerwell
+ timeouts
+Date: Fri, 31 Oct 2025 16:06:42 +0530
+Message-Id: <20251031103643.4147868-25-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251031103643.4147868-1-suraj.kandpal@intel.com>
 References: <20251031103643.4147868-1-suraj.kandpal@intel.com>
@@ -70,148 +71,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Define function to verify the LT PHY PLL state function and call it
-in intel_modeset_verify_crtc.
+From XE3P we can now poll if the AUX power is up or down define the
+timeouts for each respectively.
 
+Bspec: 68967
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cx0_phy.c  |  2 +-
- drivers/gpu/drm/i915/display/intel_lt_phy.c   | 56 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_lt_phy.h   |  4 ++
- .../drm/i915/display/intel_modeset_verify.c   |  2 +
- 4 files changed, 63 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 82f9401c40b9..8ee627c5ed7c 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -3575,7 +3575,7 @@ void intel_cx0pll_state_verify(struct intel_atomic_state *state,
- 	struct intel_encoder *encoder;
- 	struct intel_cx0pll_state mpll_hw_state = {};
- 
--	if (DISPLAY_VER(display) < 14)
-+	if (!IS_DISPLAY_VER(display, 14, 30))
- 		return;
- 
- 	if (!new_crtc_state->hw.active)
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index 08f47844d3aa..2af573e6ea68 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -1916,6 +1916,61 @@ void intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
- 	intel_lt_phy_transaction_end(encoder, wakeref);
+---
+
+V1 -> V2:
+-Remove the extra blank line added (Arun)
+
+ .../i915/display/intel_display_power_well.c   | 22 +++++++++++++++++--
+ 1 file changed, 20 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index d1b70a117d73..eab7019f2252 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -1866,18 +1866,36 @@ static void xelpdp_aux_power_well_enable(struct intel_display *display,
+ 	 * expected to just wait a fixed 600us after raising the request
+ 	 * bit.
+ 	 */
+-	usleep_range(600, 1200);
++	if (DISPLAY_VER(display) >= 35) {
++		if (intel_de_wait_for_set(display, XELPDP_DP_AUX_CH_CTL(display, aux_ch),
++					  XELPDP_DP_AUX_CH_CTL_POWER_STATUS, 2))
++			drm_warn(display->drm,
++				 "Timeout waiting for PHY %c AUX channel power to be up\n",
++				 phy_name(phy));
++	} else {
++		usleep_range(600, 1200);
++	}
  }
  
-+void intel_lt_phy_pll_state_verify(struct intel_atomic_state *state,
-+				   struct intel_crtc *crtc)
-+{
-+	struct intel_display *display = to_intel_display(state);
-+	struct intel_digital_port *dig_port;
-+	const struct intel_crtc_state *new_crtc_state =
-+		intel_atomic_get_new_crtc_state(state, crtc);
-+	struct intel_encoder *encoder;
-+	struct intel_lt_phy_pll_state pll_hw_state = {};
-+	const struct intel_lt_phy_pll_state *pll_sw_state = &new_crtc_state->dpll_hw_state.ltpll;
-+	int clock;
-+	int i, j;
-+
-+	if (DISPLAY_VER(display) < 35)
-+		return;
-+
-+	if (!new_crtc_state->hw.active)
-+		return;
-+
-+	/* intel_get_crtc_new_encoder() only works for modeset/fastset commits */
-+	if (!intel_crtc_needs_modeset(new_crtc_state) &&
-+	    !intel_crtc_needs_fastset(new_crtc_state))
-+		return;
-+
-+	encoder = intel_get_crtc_new_encoder(state, new_crtc_state);
-+	intel_lt_phy_pll_readout_hw_state(encoder, new_crtc_state, &pll_hw_state);
-+	clock = intel_lt_phy_calc_port_clock(encoder, new_crtc_state);
-+
-+	dig_port = enc_to_dig_port(encoder);
-+	if (intel_tc_port_in_tbt_alt_mode(dig_port))
-+		return;
-+
-+	INTEL_DISPLAY_STATE_WARN(display, pll_hw_state.clock != clock,
-+				 "[CRTC:%d:%s] mismatch in LT PHY: Register CLOCK (expected %d, found %d)",
-+				 crtc->base.base.id, crtc->base.name,
-+				 pll_sw_state->clock, pll_hw_state.clock);
-+
-+	for (i = 0; i < 3; i++) {
-+		INTEL_DISPLAY_STATE_WARN(display, pll_hw_state.config[i] != pll_sw_state->config[i],
-+					 "[CRTC:%d:%s] mismatch in LT PHY PLL CONFIG%d: (expected 0x%04x, found 0x%04x)",
-+					 crtc->base.base.id, crtc->base.name, i,
-+					 pll_sw_state->config[i], pll_hw_state.config[i]);
-+	}
-+
-+	for (i = 0; i <= 12; i++) {
-+		for (j = 3; j >= 0; j--)
-+			INTEL_DISPLAY_STATE_WARN(display,
-+						 pll_hw_state.data[i][j] !=
-+						 pll_sw_state->data[i][j],
-+						 "[CRTC:%d:%s] mismatch in LT PHY PLL DATA[%d][%d]: (expected 0x%04x, found 0x%04x)",
-+						 crtc->base.base.id, crtc->base.name, i, j,
-+						 pll_sw_state->data[i][j], pll_hw_state.data[i][j]);
-+	}
-+}
-+
- void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
- 			      const struct intel_crtc_state *crtc_state)
+ static void xelpdp_aux_power_well_disable(struct intel_display *display,
+ 					  struct i915_power_well *power_well)
  {
-@@ -1935,4 +1990,5 @@ void intel_xe3plpd_pll_disable(struct intel_encoder *encoder)
- 		intel_mtl_tbt_pll_disable(encoder);
- 	else
- 		intel_lt_phy_pll_disable(encoder);
+ 	enum aux_ch aux_ch = i915_power_well_instance(power_well)->xelpdp.aux_ch;
++	enum phy phy = icl_aux_pw_to_phy(display, power_well);
+ 
+ 	intel_de_rmw(display, XELPDP_DP_AUX_CH_CTL(display, aux_ch),
+ 		     XELPDP_DP_AUX_CH_CTL_POWER_REQUEST,
+ 		     0);
+-	usleep_range(10, 30);
 +
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-index dd8cbb151b23..a538d4c69210 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-@@ -8,9 +8,11 @@
- 
- #include <linux/types.h>
- 
-+struct intel_atomic_state;
- struct intel_display;
- struct intel_encoder;
- struct intel_crtc_state;
-+struct intel_crtc;
- struct intel_lt_phy_pll_state;
- 
- void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
-@@ -31,6 +33,8 @@ intel_lt_phy_pll_compare_hw_state(const struct intel_lt_phy_pll_state *a,
- void intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
- 				       const struct intel_crtc_state *crtc_state,
- 				       struct intel_lt_phy_pll_state *pll_state);
-+void intel_lt_phy_pll_state_verify(struct intel_atomic_state *state,
-+				   struct intel_crtc *crtc);
- void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
- 			      const struct intel_crtc_state *crtc_state);
- void intel_xe3plpd_pll_disable(struct intel_encoder *encoder);
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_verify.c b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-index f2f6b9d9afa1..b361a77cd235 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-@@ -16,6 +16,7 @@
- #include "intel_display_core.h"
- #include "intel_display_types.h"
- #include "intel_fdi.h"
-+#include "intel_lt_phy.h"
- #include "intel_modeset_verify.h"
- #include "intel_snps_phy.h"
- #include "skl_watermark.h"
-@@ -246,6 +247,7 @@ void intel_modeset_verify_crtc(struct intel_atomic_state *state,
- 	intel_dpll_state_verify(state, crtc);
- 	intel_mpllb_state_verify(state, crtc);
- 	intel_cx0pll_state_verify(state, crtc);
-+	intel_lt_phy_pll_state_verify(state, crtc);
++	if (DISPLAY_VER(display) >= 35) {
++		if (intel_de_wait_for_clear(display, XELPDP_DP_AUX_CH_CTL(display, aux_ch),
++					    XELPDP_DP_AUX_CH_CTL_POWER_STATUS, 1))
++			drm_warn(display->drm,
++				 "Timeout waiting for PHY %c AUX channel to powerdown\n",
++				 phy_name(phy));
++	} else {
++		usleep_range(10, 30);
++	}
  }
  
- void intel_modeset_verify_disabled(struct intel_atomic_state *state)
+ static bool xelpdp_aux_power_well_enabled(struct intel_display *display,
 -- 
 2.34.1
 
