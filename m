@@ -2,54 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69349C247F9
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Oct 2025 11:37:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1A1FC247FC
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Oct 2025 11:37:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA4F210EB04;
-	Fri, 31 Oct 2025 10:37:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B18510EB15;
+	Fri, 31 Oct 2025 10:37:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k/TMtbVY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GoiAsGQK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F017E10EB15;
- Fri, 31 Oct 2025 10:37:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E289D10EB05;
+ Fri, 31 Oct 2025 10:37:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761907040; x=1793443040;
+ t=1761907043; x=1793443043;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=TjtX08au4ctfsMsK+6GZmHiNBUx1rcDRpzO4r/ZPxso=;
- b=k/TMtbVYy5Rzcuy7630ifDqjTcJG40LHVOEcOry0x3/gyCpj4hmgmEjA
- qiO0PsFSUxn/Dk/0xYqpHCgCneYX7eEQKJ/c27YpemDMScGOicFw3nZBP
- 6F1s8Wg7m+pqNswGxRPSRCWDlTp6Vokz5JdFkmnO2SgHgZOpFO9BQDW6E
- Z87GK+wX7ACL4nXUzQctsNgnBjk4sFNmZTXWI8mP4LSlZvgJ+MGROtSmo
- 7YKsn7R6YJtsFlA2scPhIrvdzp1ygXn/vrpkXjrS9fCr8qGKP1THfuAW0
- N5xFXE22int0EEyfwLmlJdMWIf0gMrcIpwksZK7TiVG0YpKyhYM6fDLaK g==;
-X-CSE-ConnectionGUID: ggqN3mo5TS2zX8zsaXVmXg==
-X-CSE-MsgGUID: 2xQbQigORFKFkpBash23BQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="86690873"
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="86690873"
+ bh=9SRqN9zMDoeRJtozBnDgdPnU5jaYPUAYbErRt36VLpM=;
+ b=GoiAsGQKJuofaEz+C39URtjGxQz7kiLkhttkK58mdL0OIFWds+di95uw
+ 1bGLKU8JFywiOlHpbM/f/ep3I3CqCKkY+F9V4GYrIZYALuli1qXzA7fYX
+ EGZtUsPU2mzxy9LZAljHIHR3Iuo/FhO5Dt+WfeV+UuyEfVQlHPYlEAIFt
+ 4ddfIC+gSqplyH7i7i6sYhLDTkJXxA9SC2wQDrBirhjSrEUBK98NQSQbE
+ yNLe9W1FdnULypV8I/HBej3igJloCpbXqHZzKocXt8bEYNdOZs+jezr7K
+ Sqg6rALkUVoDWB4Isz4tdD8C3tT8XmpeoklRgGJvUd6k//SStYqaRFZ0L w==;
+X-CSE-ConnectionGUID: uaYtBkQWT+6gkofMg6qcfg==
+X-CSE-MsgGUID: ilJZFCW5Qsy20wv7UkdC1w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="86690875"
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="86690875"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 03:37:19 -0700
-X-CSE-ConnectionGUID: MO6quYmuQZ2vfR6bKJtt5g==
-X-CSE-MsgGUID: WolRju47TQS8/CSJLbgqHA==
+ 31 Oct 2025 03:37:22 -0700
+X-CSE-ConnectionGUID: KQ27PNdeTJmPl0Q6Vx8fpA==
+X-CSE-MsgGUID: 1HP4gxF4RS2DNcqp4ltISg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="190554654"
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="190554665"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa005.fm.intel.com with ESMTP; 31 Oct 2025 03:37:16 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 31 Oct 2025 03:37:19 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, uma.shankar@intel.com,
  gustavo.sousa@intel.com, lucas.demarchi@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v3 11/25] drm/i915/ltphy: Enable SSC during port clock
- programming
-Date: Fri, 31 Oct 2025 16:06:29 +0530
-Message-Id: <20251031103643.4147868-12-suraj.kandpal@intel.com>
+ Suraj Kandpal <suraj.kandpal@intel.com>,
+ Nemesa Garg <nemesa.garg@intel.com>
+Subject: [PATCH v3 12/25] drm/i915/ltphy: Add function to calculate LT PHY
+ port clock
+Date: Fri, 31 Oct 2025 16:06:30 +0530
+Message-Id: <20251031103643.4147868-13-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251031103643.4147868-1-suraj.kandpal@intel.com>
 References: <20251031103643.4147868-1-suraj.kandpal@intel.com>
@@ -70,74 +71,160 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We enable SSC when we program PORT_CLOCK_CTL register. We logically
-determine if ssc is enabled or not while we calculate our state.
+Create a reverse algorithm which is used to find port clock
+from the LT PHY state is provided which is used for
+comparision & verification functions.
 
-Bspec: 74492, 74667
+Bspec: 74667
+Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_lt_phy.c | 26 +++++++++++++++++++++
- 1 file changed, 26 insertions(+)
 
+V1 -> V2:
+-Correct comment grammar
+
+V2 -> V3:
+-Update commit mesage (Ankit)
+-Update & add a more refined comment (Ankit)
+
+ drivers/gpu/drm/i915/display/intel_dpll.c   |  2 +
+ drivers/gpu/drm/i915/display/intel_lt_phy.c | 89 +++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_lt_phy.h |  3 +
+ 3 files changed, 94 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
+index 8c3ef5867a12..2e1f67be8eda 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+@@ -1247,6 +1247,8 @@ static int xe3plpd_crtc_compute_clock(struct intel_atomic_state *state,
+ 		return ret;
+ 
+ 	/* TODO: Do the readback via intel_compute_shared_dplls() */
++	crtc_state->port_clock =
++			intel_lt_phy_calc_port_clock(encoder, crtc_state);
+ 
+ 	crtc_state->hw.adjusted_mode.crtc_clock = intel_crtc_dotclock(crtc_state);
+ 
 diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index 892dea3b975f..1b7d92fff834 100644
+index 1b7d92fff834..22c0ee91d23f 100644
 --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -16,6 +16,7 @@
- #include "intel_hdmi.h"
- #include "intel_lt_phy.h"
- #include "intel_lt_phy_regs.h"
-+#include "intel_panel.h"
- #include "intel_psr.h"
- #include "intel_tc.h"
- 
-@@ -1109,6 +1110,12 @@ intel_lt_phy_program_port_clock_ctl(struct intel_encoder *encoder,
- 	else
- 		val |= XELPDP_DDI_CLOCK_SELECT_PREP(display, XELPDP_DDI_CLOCK_SELECT_MAXPCLK);
- 
-+	 /* DP2.0 10G and 20G rates enable MPLLA*/
-+	if (crtc_state->port_clock == 1000000 || crtc_state->port_clock == 2000000)
-+		val |= XELPDP_SSC_ENABLE_PLLA;
-+	else
-+		val |= crtc_state->dpll_hw_state.ltpll.ssc_enabled ? XELPDP_SSC_ENABLE_PLLB : 0;
-+
- 	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
- 		     XELPDP_LANE1_PHY_CLOCK_SELECT | XELPDP_FORWARD_CLOCK_UNGATE |
- 		     XELPDP_DDI_CLOCK_SELECT_MASK(display) | XELPDP_SSC_ENABLE_PLLA |
-@@ -1211,6 +1218,23 @@ intel_lt_phy_pll_tables_get(struct intel_crtc_state *crtc_state,
- 	return NULL;
+@@ -1235,6 +1235,95 @@ intel_lt_phy_pll_is_ssc_enabled(struct intel_crtc_state *crtc_state,
+ 	return false;
  }
  
-+static bool
-+intel_lt_phy_pll_is_ssc_enabled(struct intel_crtc_state *crtc_state,
-+				struct intel_encoder *encoder)
++static int
++intel_lt_phy_calc_hdmi_port_clock(const struct intel_lt_phy_pll_state *lt_state)
 +{
-+	struct intel_display *display = to_intel_display(encoder);
++#define REF_CLK_KHZ 38400
++#define REGVAL(i) (				\
++	(lt_state->data[i][3])		|	\
++	(lt_state->data[i][2] << 8)	|	\
++	(lt_state->data[i][1] << 16)	|	\
++	(lt_state->data[i][0] << 24)		\
++)
 +
-+	if (intel_crtc_has_dp_encoder(crtc_state)) {
-+		if (intel_panel_use_ssc(display)) {
-+			struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++	int clk = 0;
++	u32 d8, pll_reg_5, pll_reg_3, pll_reg_57, m2div_frac, m2div_int;
++	u64 temp0, temp1;
++	/*
++	 * The algorithm uses '+' to combine bitfields when
++	 * constructing PLL_reg3 and PLL_reg57:
++	 * PLL_reg57 = (D7 << 24) + (postdiv << 15) + (D8 << 7) + D6_new;
++	 * PLL_reg3 = (D4 << 21) + (D3 << 18) + (D1 << 15) + (m2div_int << 5);
++	 * However, this is likely intended to be a bitwise OR operation,
++	 * as each field occupies distinct, non-overlapping bits in the register.
++	 * PLL_reg57 is composed of following fields packed into a 32-bit value:
++	 * - D7: max value 10 -> fits in 4 bits -> placed at bits 24-27
++	 * - postdiv: max value 9 -> fits in 4 bits -> placed at bits 15-18
++	 * - D8: derived from loop_cnt / 2, max 127 -> fits in 7 bits
++	 *	(though 8 bits are given to it) -> placed at bits 7-14
++	 * - D6_new: fits in lower 7 bits -> placed at bits 0-6
++	 * PLL_reg57 = (D7 << 24) | (postdiv << 15) | (D8 << 7) | D6_new;
++	 * Similarly, PLL_reg3 is packed as:
++	 * - D4: max value 256 -> fits in 9 bits -> placed at bits 21-29
++	 * - D3: max value 9 -> fits in 4 bits -> placed at bits 18-21
++	 * - D1: max value 2 -> fits in 2 bits -> placed at bits 15-16
++	 * - m2div_int: max value 511 -> fits in 9 bits (10 bits allocated)
++	 *   -> placed at bits 5-14
++	 * PLL_reg3 = (D4 << 21) | (D3 << 18) | (D1 << 15) | (m2div_int << 5);
++	 */
++	pll_reg_5 = REGVAL(2);
++	pll_reg_3 = REGVAL(1);
++	pll_reg_57 = REGVAL(3);
++	m2div_frac = pll_reg_5;
 +
-+			return (intel_dp->dpcd[DP_MAX_DOWNSPREAD] & DP_MAX_DOWNSPREAD_0_5);
-+		}
++	/*
++	 * From forward algorithm we know
++	 * m2div = 2 * m2
++	 * val = y * frequency * 5
++	 * So now,
++	 * frequency = (m2 * 2 * refclk_khz / (d8 * 10))
++	 * frequency = (m2div * refclk_khz / (d8 * 10))
++	 */
++	d8 = (pll_reg_57 & REG_GENMASK(14, 7)) >> 7;
++	m2div_int = (pll_reg_3  & REG_GENMASK(14, 5)) >> 5;
++	temp0 = ((u64)m2div_frac * REF_CLK_KHZ) >> 32;
++	temp1 = (u64)m2div_int * REF_CLK_KHZ;
++	if (d8 == 0)
++		return 0;
++
++	clk = div_u64((temp1 + temp0), d8 * 10);
++
++	return clk;
++}
++
++int
++intel_lt_phy_calc_port_clock(struct intel_encoder *encoder,
++			     const struct intel_crtc_state *crtc_state)
++{
++	int clk;
++	const struct intel_lt_phy_pll_state *lt_state =
++		&crtc_state->dpll_hw_state.ltpll;
++	u8 mode, rate;
++
++	mode = REG_FIELD_GET8(LT_PHY_VDR_MODE_ENCODING_MASK,
++			      lt_state->config[0]);
++	/*
++	 * For edp/dp read the clock value from the tables
++	 * and return the clock as the algorithm used for
++	 * calculating the port clock does not exactly matches
++	 * with edp/dp clock.
++	 */
++	if (mode == MODE_DP) {
++		rate = REG_FIELD_GET8(LT_PHY_VDR_RATE_ENCODING_MASK,
++				      lt_state->config[0]);
++		clk = intel_lt_phy_get_dp_clock(rate);
++	} else {
++		clk = intel_lt_phy_calc_hdmi_port_clock(lt_state);
 +	}
 +
-+	return false;
++	return clk;
 +}
 +
  int
  intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
  			    struct intel_encoder *encoder)
-@@ -1229,6 +1253,8 @@ intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
- 				if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
- 					crtc_state->dpll_hw_state.ltpll.config[2] = 1;
- 			}
-+			crtc_state->dpll_hw_state.ltpll.ssc_enabled =
-+				intel_lt_phy_pll_is_ssc_enabled(crtc_state, encoder);
- 			return 0;
- 		}
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h b/drivers/gpu/drm/i915/display/intel_lt_phy.h
+index 3f255c9b0f96..5b4e0d9c940f 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.h
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
+@@ -10,12 +10,15 @@
+ 
+ struct intel_encoder;
+ struct intel_crtc_state;
++struct intel_lt_phy_pll_state;
+ 
+ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
+ 			     const struct intel_crtc_state *crtc_state);
+ int
+ intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
+ 			    struct intel_encoder *encoder);
++int intel_lt_phy_calc_port_clock(struct intel_encoder *encoder,
++				 const struct intel_crtc_state *crtc_state);
+ 
+ #define HAS_LT_PHY(display) (DISPLAY_VER(display) >= 35)
+ 
 -- 
 2.34.1
 
