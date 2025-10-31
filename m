@@ -2,64 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE4BBC2451E
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Oct 2025 11:02:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 906EDC24925
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Oct 2025 11:47:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C45F10EAE5;
-	Fri, 31 Oct 2025 10:01:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26EFE10EB0D;
+	Fri, 31 Oct 2025 10:47:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yd1Qf8Sz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CMyO4vVP";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9645610EAE8;
- Fri, 31 Oct 2025 10:01:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F9D710EB0D;
+ Fri, 31 Oct 2025 10:47:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761904914; x=1793440914;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=LW60E5Pl24aDuKn8yIHTta7QtiR8pK2/piftF/6u3fY=;
- b=Yd1Qf8SztpkTOB2mVpEPsbJdlraoVJ7pOxPYheGMhDsCQAZaZpKYq1WE
- +T5U9fL/CUrqP7hcTs0X+iRoftmF1VKWcmFoTqf/uX7iwOi00kcOn+Srw
- KxW0BKZAH/cHUtPsHsHqEknvIKyLEPkYipOCIdHm8AUGjl0RrRGQTe4X6
- EyLkOmR4jSwCFbGBeg2ELqYI/gZc81ddWgop1Wz1CMKK5XuekcjR3SRi7
- 17Cs5WuinS3ZTNKQZhyO4gCDO0rexyX+3BdwlyxcFfeNkPDPl1AQ+m4B+
- Xl8vcVhzVrei73WYe3DS/+dV3yHGSIy9pcpBKBdioTWPFghkxpPC93MHO A==;
-X-CSE-ConnectionGUID: CfgaZC0RSZqYkocKxs74uA==
-X-CSE-MsgGUID: UB0aIozmSQCfIoCWGSe5yQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="51636339"
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="51636339"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 03:01:54 -0700
-X-CSE-ConnectionGUID: +dRpyo4YRTORVvYZa76bVw==
-X-CSE-MsgGUID: XtJoJgrgR+eXjACmHAyxsA==
+ t=1761907661; x=1793443661;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=cw5VT61ZG6SIh8Q+MJGVm9sXyqxLpw0u18nN/vbvAvo=;
+ b=CMyO4vVPfGdBeWV+e9pBoYgIl0ugRF8xKRBZSvTiIPOIuAlCVv7szCqk
+ iffmjiU7beVGSgNgTJ0PTX14GND0WwTqhhcYFsmv+YmnVTy586ZiKXxqV
+ +0F0gvFmFcIPayMCBWKLkxCeC/aadX8jtS+65o4S3U4ElCh3rInpD4o1r
+ dUBjk+KlDkl6/BDUXuaetxQRnfbXO4xmNdPTWN6KbbqEEZoKxdHK8vn7T
+ I+OYKhq/zoSTyIOSDvPD7E3iTTJiaN03wJDeh50pf5AJx+i2mt5vqjgOs
+ 3KjeLx2Bpi4az0LaV2WNfR6wqH3Qws07IFx/fYTNySy9gFA1fL3m2I5+B A==;
+X-CSE-ConnectionGUID: 0i9LM35GS6iPwlPapzkBRw==
+X-CSE-MsgGUID: owy5rckbT0Olzrs2DsznhA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="64217539"
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="64217539"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2025 03:47:41 -0700
+X-CSE-ConnectionGUID: Ht7xIPM9SOGmwM70rTYrug==
+X-CSE-MsgGUID: +HqcysWsQvCaatuvZ7vFTA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="186316185"
-Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.37])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 03:01:50 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>,
- dri-devel@lists.freedesktop.org, maarten.lankhorst@linux.intel.com, Maxime
- Ripard <mripard@kernel.org>, David Airlie <airlied@redhat.com>,
- simona.vetter@ffwll.ch
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v3 0/4] drm: replace drm_print.h includes from headers
- with a forward declaration
-In-Reply-To: <c4e3b172-3df8-4d1b-a1b0-51cacae56f0c@suse.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1761734313.git.jani.nikula@intel.com>
- <41bb4163-8f5b-47c5-8121-7010147bc5e6@suse.de>
- <b8cc203c44518822197023c2dbf4a21aad681a4c@intel.com>
- <c4e3b172-3df8-4d1b-a1b0-51cacae56f0c@suse.de>
-Date: Fri, 31 Oct 2025 12:01:47 +0200
-Message-ID: <18ad4c11261b85614f7e3a2aabe611f2ecbf16a5@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="223441281"
+Received: from display-adls.igk.intel.com ([10.211.131.198])
+ by orviesa001.jf.intel.com with ESMTP; 31 Oct 2025 03:47:39 -0700
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Mika Kahola <mika.kahola@intel.com>
+Subject: [CI 00/32] [PATCH 00/32] drm/i915/display: Add MTL+ platforms to
+ support dpll framework
+Date: Fri, 31 Oct 2025 12:35:17 +0200
+Message-Id: <20251031103549.173208-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,19 +66,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 30 Oct 2025, Thomas Zimmermann <tzimmermann@suse.de> wrote:
-> Am 30.10.25 um 10:31 schrieb Jani Nikula:
->> Considering that this touches a lot of drivers, albeit just the include
->> lists and thus highly unlikely to cause functional changes or hard
->> conflicts, can I go ahead and merge this to drm-misc-next?
->
-> Of course, go ahead.
+This is v2 of [1], with the following changes
 
-Done, thanks again!
+- Add support for eDP on C20 phy pll on PantherLake.
 
-BR,
-Jani.
+- As required by the above point use the non_tc_phy instead of c10phy term
+  for the PLL hooks computing the state for, getting/putting etc. the PLLs
+  of the non TypeC ports/outputs (on port A and B). Use the tc_phy instead
+  of the c20phy term for the PLLs of all the other TypeC ports/outputs
+  (port TC1-4).Support for eDP on C20 phy pll on PantherLake.
 
+[1] https://lore.kernel.org/intel-xe/20251001082839.2585559-1-mika.kahola@intel.com/
+
+Imre Deak (15):
+  drm/i915/display: Factor out C10 msgbus access start/end helpers
+  drm/i915/display: Sanitize setting the Cx0 PLL use_c10 flag
+  drm/i915/display: Sanitize calculating C20 PLL state from tables
+  drm/i915/display: Track the C20 PHY VDR state in the PLL state
+  drm/i915/display: Move definition of Cx0 PHY functions earlier
+  drm/i915/display: Add macro to get DDI port width from a register
+    value
+  drm/i915/display: Track the Cx0 PHY enabled lane count in the PLL
+    state
+  drm/i915/display: Sanitize C10 PHY PLL SSC register setup
+  drm/i915/display: Read out the Cx0 PHY SSC enabled state
+  drm/i915/display: Determine Cx0 PLL DP mode from PLL state
+  drm/i915/display: Determine Cx0 PLL port clock from PLL state
+  drm/i915/display: Zero Cx0 PLL state before compute and HW readout
+  drm/i915/display: Print additional Cx0 PLL HW state
+  drm/i915/display: PLL verify debug state print
+  drm/i915/display: Add Thunderbolt support
+
+Mika Kahola (17):
+  drm/i915/display: Rename TBT functions to be ICL specific
+  drm/i915/display: Remove state verification
+  drm/i915/display: PLL information for MTL+
+  drm/i915/display: Update C10/C20 state calculation
+  drm/i915/display: Compute plls for MTL+ platform
+  drm/i915/display: MTL+ .get_dplls
+  drm/i915/display: MTL+ .put_dplls
+  drm/i915/display: Add .update_active_dpll
+  drm/i915/display: Add .update_dpll_ref_clks
+  drm/i915/display: Add .dump_hw_state
+  drm/i915/display: Add .compare_hw_state
+  drm/i915/display: Add .get_hw_state to MTL+ platforms
+  drm/i915/display: Add .get_freq to MTL+ platforms
+  drm/i915/display: Add .crtc_get_dpll hook
+  drm/i915/display: Add .enable_clock on DDI for MTL+ platforms
+  drm/i915/display: Get configuration for C10 and C20
+  drm/i915/display: Enable dpll framework for MTL+
+
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 896 ++++++++++--------
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h  |  25 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  81 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |  32 -
+ .../gpu/drm/i915/display/intel_display_regs.h |   7 +-
+ drivers/gpu/drm/i915/display/intel_dpll.c     |  24 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 314 +++++-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.h |   7 +
+ .../drm/i915/display/intel_modeset_verify.c   |   1 -
+ 9 files changed, 893 insertions(+), 494 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.34.1
+
