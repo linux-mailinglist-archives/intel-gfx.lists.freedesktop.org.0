@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6554C27696
-	for <lists+intel-gfx@lfdr.de>; Sat, 01 Nov 2025 04:25:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E530C27699
+	for <lists+intel-gfx@lfdr.de>; Sat, 01 Nov 2025 04:25:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26EA210EC49;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF3D610EC4A;
 	Sat,  1 Nov 2025 03:25:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OT33dBCt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L7JKagMZ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F371210EC46;
- Sat,  1 Nov 2025 03:25:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A34DB10EC46;
+ Sat,  1 Nov 2025 03:25:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761967535; x=1793503535;
+ t=1761967536; x=1793503536;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=bPs4nwPRzYcP4jAKxlzUq88SCvDxgJCBadlVP+xYv/4=;
- b=OT33dBCtWCtJHNibBvnf5XgIvgZYEJeYjCLu1zvTmCcUCdUJaHriTZEt
- qsxgpLWYSh6vzT2wB4KhA27Uyw9ACqIEFw3NvPt7HKP8at/xRzRL128Vq
- 57hPfNI3A7jOEBZuWnhco7OfsRNTKLvxCyZahTYcDex3jk6uAOInr2sTU
- IaJ5GeaP6Zeg3s0Neq/fyLIRWR0+NuSZd3/Gzi8NqsAQAns6LQMYJGZG6
- ZFRFIcOnFxTKKuOkNznluiyg5VbecUdwAy3OPDyUw7mmaoA6hydOMujMU
- JKmPnHQS31a3U19ICxqaxxdrxsysxkshqWmJdy/GzD/0/Tka1eu8lUqla Q==;
-X-CSE-ConnectionGUID: iJ+WAkMBTFOagz3ele1rQg==
-X-CSE-MsgGUID: Wp4hfwjaQdmU4oPuRMipwQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="64019852"
-X-IronPort-AV: E=Sophos;i="6.19,271,1754982000"; d="scan'208";a="64019852"
+ bh=PZEttlSJ9OlY6XyzQ0IC3jYCB1gY/foGko/IHt/3PrA=;
+ b=L7JKagMZpKOUZawLQHiGvviPlqGb2dNpTyXrIq7As7fm0hlZI+jWZRxW
+ +4xtFwAQAYiKA/InJsXodWGLtRqKQmU4ayJujkf8bSs6CeW9CfeNNIERY
+ KX6TWJjQZMkJDyPqfBG4JDpBQb7FMhj+vhYZ8xWDuOiz+8su7Rfru5A0s
+ 2TRg1TqV9vDpOGawDB2DEcSmb3ymBk/uud0LokWqg9gbm2YfPLQafaZSA
+ j03TBqLBmdX+bmYKCyvSFj7l1kyS+oqYad/aIOmJCUS0GcYnMb+O/eXf6
+ VMQ5HEMLOqaKnVjGFZtdPKV5Imgbzo7voswM4LiZV4/3pf/fL6AWRUner Q==;
+X-CSE-ConnectionGUID: EoQnMNZCTfugg/dM9NUpDw==
+X-CSE-MsgGUID: TknsWQeFRjqlVHF+J1qLZw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="64019853"
+X-IronPort-AV: E=Sophos;i="6.19,271,1754982000"; d="scan'208";a="64019853"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 20:25:35 -0700
-X-CSE-ConnectionGUID: OdE4Bi9hTSq/hcATOgje7w==
-X-CSE-MsgGUID: Sy91qpZlRqq998M9ofyG3Q==
+ 31 Oct 2025 20:25:36 -0700
+X-CSE-ConnectionGUID: likRN98ZTxmvm0f9NAqnPA==
+X-CSE-MsgGUID: AFMdo8Q6SE+hH9eoryjgpg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,271,1754982000"; d="scan'208";a="217037972"
+X-IronPort-AV: E=Sophos;i="6.19,271,1754982000"; d="scan'208";a="217037983"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa002.jf.intel.com with ESMTP; 31 Oct 2025 20:25:33 -0700
+ by orviesa002.jf.intel.com with ESMTP; 31 Oct 2025 20:25:35 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: Suraj Kandpal <suraj.kandpal@intel.com>,
  Arun R Murthy <arun.r.murthy@intel.com>
-Subject: [PATCH v5 09/25] drm/i915/ltphy: Program the VDR PLL registers for LT
- PHY
-Date: Sat,  1 Nov 2025 08:54:57 +0530
-Message-Id: <20251101032513.4171255-10-suraj.kandpal@intel.com>
+Subject: [PATCH v5 10/25] drm/i915/ltphy: Update the ltpll config table value
+ for eDP
+Date: Sat,  1 Nov 2025 08:54:58 +0530
+Message-Id: <20251101032513.4171255-11-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251101032513.4171255-1-suraj.kandpal@intel.com>
 References: <20251101032513.4171255-1-suraj.kandpal@intel.com>
@@ -69,130 +69,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Fetch the tables which need to be used and program it in
-the specified VDR register space. Everything is done over
-the respective lanes.
+When we get the eDP tables we reuse dp tables for some data rates.
+We need to modify the 3rd config value of this table to 1 instead
+of 0 since that is the only difference in the dp and edp table for
+that particular data rate.
 
-Bspec: 68862, 74500
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c |  7 ++--
- drivers/gpu/drm/i915/display/intel_cx0_phy.h |  5 +++
- drivers/gpu/drm/i915/display/intel_lt_phy.c  | 38 ++++++++++++++++++++
- 3 files changed, 45 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_lt_phy.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index bfa3b3eab8cb..7d57f0d8d4d7 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -23,9 +23,6 @@
- #include "intel_snps_hdmi_pll.h"
- #include "intel_tc.h"
- 
--#define MB_WRITE_COMMITTED      true
--#define MB_WRITE_UNCOMMITTED    false
--
- #define for_each_cx0_lane_in_mask(__lane_mask, __lane) \
- 	for ((__lane) = 0; (__lane) < 2; (__lane)++) \
- 		for_each_if((__lane_mask) & BIT(__lane))
-@@ -358,8 +355,8 @@ static void __intel_cx0_write(struct intel_encoder *encoder,
- 		     "PHY %c Write %04x failed after %d retries.\n", phy_name(phy), addr, i);
- }
- 
--static void intel_cx0_write(struct intel_encoder *encoder,
--			    u8 lane_mask, u16 addr, u8 data, bool committed)
-+void intel_cx0_write(struct intel_encoder *encoder,
-+		     u8 lane_mask, u16 addr, u8 data, bool committed)
- {
- 	int lane;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-index 948fd626846d..c1e61d16fb68 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-@@ -8,6 +8,9 @@
- 
- #include <linux/types.h>
- 
-+#define MB_WRITE_COMMITTED      true
-+#define MB_WRITE_UNCOMMITTED    false
-+
- enum icl_port_dpll_id;
- struct intel_atomic_state;
- struct intel_c10pll_state;
-@@ -47,6 +50,8 @@ int intel_cx0_phy_check_hdmi_link_rate(struct intel_hdmi *hdmi, int clock);
- void intel_cx0_setup_powerdown(struct intel_encoder *encoder);
- bool intel_cx0_is_hdmi_frl(u32 clock);
- u8 intel_cx0_read(struct intel_encoder *encoder, u8 lane_mask, u16 addr);
-+void intel_cx0_write(struct intel_encoder *encoder,
-+		     u8 lane_mask, u16 addr, u8 data, bool committed);
- int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder);
- void intel_cx0_pll_power_save_wa(struct intel_display *display);
- void intel_lnl_mac_transmit_lfps(struct intel_encoder *encoder,
 diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index 22686da809d0..ece81e8d558d 100644
+index ece81e8d558d..892dea3b975f 100644
 --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -992,6 +992,12 @@ static u8 intel_lt_phy_read(struct intel_encoder *encoder, u8 lane_mask, u16 add
- 	return intel_cx0_read(encoder, lane_mask, addr);
- }
- 
-+static void intel_lt_phy_write(struct intel_encoder *encoder,
-+			       u8 lane_mask, u16 addr, u8 data, bool committed)
-+{
-+	intel_cx0_write(encoder, lane_mask, addr, data, committed);
-+}
-+
- static void
- intel_lt_phy_setup_powerdown(struct intel_encoder *encoder, u8 lane_count)
- {
-@@ -1228,6 +1234,36 @@ intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
- 	return -EINVAL;
- }
- 
-+static void
-+intel_lt_phy_program_pll(struct intel_encoder *encoder,
-+			 const struct intel_crtc_state *crtc_state)
-+{
-+	u8 owned_lane_mask = intel_lt_phy_get_owned_lane_mask(encoder);
-+	int i, j, k;
-+
-+	intel_lt_phy_write(encoder, owned_lane_mask, LT_PHY_VDR_0_CONFIG,
-+			   crtc_state->dpll_hw_state.ltpll.config[0], MB_WRITE_COMMITTED);
-+	intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0, LT_PHY_VDR_1_CONFIG,
-+			   crtc_state->dpll_hw_state.ltpll.config[1], MB_WRITE_COMMITTED);
-+	intel_lt_phy_write(encoder, owned_lane_mask, LT_PHY_VDR_2_CONFIG,
-+			   crtc_state->dpll_hw_state.ltpll.config[2], MB_WRITE_COMMITTED);
-+
-+	for (i = 0; i <= 12; i++) {
-+		intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0, LT_PHY_VDR_X_ADDR_MSB(i),
-+				   crtc_state->dpll_hw_state.ltpll.addr_msb[i],
-+				   MB_WRITE_COMMITTED);
-+		intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0, LT_PHY_VDR_X_ADDR_LSB(i),
-+				   crtc_state->dpll_hw_state.ltpll.addr_lsb[i],
-+				   MB_WRITE_COMMITTED);
-+
-+		for (j = 3, k = 0; j >= 0; j--, k++)
-+			intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0,
-+					   LT_PHY_VDR_X_DATAY(i, j),
-+					   crtc_state->dpll_hw_state.ltpll.data[i][k],
-+					   MB_WRITE_COMMITTED);
-+	}
-+}
-+
- void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
- 			     const struct intel_crtc_state *crtc_state)
- {
-@@ -1258,6 +1294,8 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
- 		 * 5. Program the PHY internal PLL registers over PHY message bus for the desired
- 		 * frequency and protocol type
- 		 */
-+		intel_lt_phy_program_pll(encoder, crtc_state);
-+
- 		/* 6. Use the P2P transaction flow */
- 		/*
- 		 * 6.1. Set the PHY VDR register 0xCC4[Rate Control VDR Update] = 1 over PHY message
+@@ -1225,6 +1225,10 @@ intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
+ 	for (i = 0; tables[i]; i++) {
+ 		if (crtc_state->port_clock == tables[i]->clock) {
+ 			crtc_state->dpll_hw_state.ltpll = *tables[i];
++			if (intel_crtc_has_dp_encoder(crtc_state)) {
++				if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
++					crtc_state->dpll_hw_state.ltpll.config[2] = 1;
++			}
+ 			return 0;
+ 		}
+ 	}
 -- 
 2.34.1
 
