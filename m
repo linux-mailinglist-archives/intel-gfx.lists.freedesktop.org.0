@@ -2,59 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED219C27614
+	by mail.lfdr.de (Postfix) with ESMTPS id 03AF0C27615
 	for <lists+intel-gfx@lfdr.de>; Sat, 01 Nov 2025 04:04:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 517F610E310;
-	Sat,  1 Nov 2025 03:04:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE1DF10E311;
+	Sat,  1 Nov 2025 03:04:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C0PpH62A";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zljad8kq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CED8510E239;
- Sat,  1 Nov 2025 03:04:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8255E10E314;
+ Sat,  1 Nov 2025 03:04:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761966284; x=1793502284;
+ t=1761966287; x=1793502287;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=csrvD4CTEXLHqjjRjSHY8k5rW6+PFKay6kTVq2XDhFI=;
- b=C0PpH62ATZDShNFa3eLxrqH4Ddb5hUGR1VIHApI9Pe3tY9Kk+VJmpwaJ
- JfK0yJBGZ9mq8CdBR5ry1osdPOhJKMhedei6xJzau+N+lmC63+u7O0kfa
- GhjmnGlemrrpY46MY+k5dxrBct5dY929KEaiFTunbzYhRIxO3cz67p2hb
- auxyYmBMnb3sbX0gS754BrbrkS+7Wu2hw6bXPn6ArA0CGCxBAwzPCLZ9f
- LmgpsNnHydsD9asGWgfRfZXyZqFO1YTl7JSMMBvHZBz4q4UE2DiWrT5Rn
- RbTLO3Jzz7luAtuyD3m/O6+vpi+2KAFZ2WfwlG6drngXHBmvwY0qhH/K3 Q==;
-X-CSE-ConnectionGUID: CJtgS3MTTs+1Q56fy4TZ1A==
-X-CSE-MsgGUID: jhtVMfNCR+yO4JcpWLGpLQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="81759498"
-X-IronPort-AV: E=Sophos;i="6.19,271,1754982000"; d="scan'208";a="81759498"
+ bh=+tP5mvOLDrwNsIfA9u57VpFEHmPkn9/dNFme8nSv1qY=;
+ b=Zljad8kqtlSrI2KOfZmqu5GMKCd1wU7ZKY52LRD9mKIVhQ4pwvuxikhc
+ FJUpdDFgr8jaJJpd0vDsBhjD1Jno0OFF/3lvx+i7VmM2ExhG544qA+zVJ
+ acRBnVMtjoaE8i3cZsyH7LHFn/Ru06QO9Cj90K6sq9+E0Po7FyqE6X5F+
+ xG2dFrSq9/fB8vaj+wpGryeLVj3w+4zSVYjTbGHkhP1Yr1VrP/KS5SBqm
+ 3of/3Y5Fcf0ehyUvxMxxu+qiJnJ0WQL5iAdL5G/oNIDeMu37n8AgE2ad8
+ kmIJSlLyMDZTGADXvsokFu+VDFyfj34RnYqwqvf3rLYXaDyEkcOugqp5n Q==;
+X-CSE-ConnectionGUID: GtaiNtcATwymxJZZL/2n0Q==
+X-CSE-MsgGUID: 6k8pwgy2R3+m5T0dLWBAeg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="81759499"
+X-IronPort-AV: E=Sophos;i="6.19,271,1754982000"; d="scan'208";a="81759499"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 20:04:44 -0700
-X-CSE-ConnectionGUID: FV9L2FNoS6akD2QAeyqIYA==
-X-CSE-MsgGUID: xowAkSz3TruGtCsSeOpa9A==
+ 31 Oct 2025 20:04:46 -0700
+X-CSE-ConnectionGUID: 0iIk+cw0SpaF0eAEWJUmig==
+X-CSE-MsgGUID: YUJFUazMTJiPgeFy+l2iQA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,271,1754982000"; d="scan'208";a="217222556"
+X-IronPort-AV: E=Sophos;i="6.19,271,1754982000"; d="scan'208";a="217222561"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa001.fm.intel.com with ESMTP; 31 Oct 2025 20:04:40 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 31 Oct 2025 20:04:42 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, uma.shankar@intel.com,
  gustavo.sousa@intel.com, lucas.demarchi@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v4 01/25] drm/i915/ltphy: Add LT Phy related VDR and Pipe
- Registers
-Date: Sat,  1 Nov 2025 08:34:10 +0530
-Message-Id: <20251101030434.4159839-2-suraj.kandpal@intel.com>
+Subject: [PATCH v4 02/25] drm/i915/cx0: Change register bit naming for
+ powerdown values
+Date: Sat,  1 Nov 2025 08:34:11 +0530
+Message-Id: <20251101030434.4159839-3-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251101030434.4159839-1-suraj.kandpal@intel.com>
 References: <20251101030434.4159839-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,50 +70,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add LT Phy related VDR and pipe registers into its own new file.
+Change the register bit naming for powerdown values from CX0 to
+XELPDP so that it can be used with LT Phy too.
 
-Bspec: 74500
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c      | 14 +++++++-------
+ drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h | 10 +++++-----
+ 2 files changed, 12 insertions(+), 12 deletions(-)
 
-V1 -> V2:
--Remove unnecessary header inclusion (Jani/Arun)
-
- .../gpu/drm/i915/display/intel_lt_phy_regs.h  | 24 +++++++++++++++++++
- 1 file changed, 24 insertions(+)
- create mode 100644 drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-new file mode 100644
-index 000000000000..6eaa038bf684
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-@@ -0,0 +1,24 @@
-+/* SPDX-License-Identifier: MIT
-+ *
-+ * Copyright © 2025 Intel Corporation
-+ */
-+
-+#ifndef __INTEL_LT_PHY_REGS_H__
-+#define __INTEL_LT_PHY_REGS_H__
-+
-+/* LT Phy Vendor Register */
-+#define LT_PHY_VDR_0_CONFIG	0xC02
-+#define  LT_PHY_VDR_DP_PLL_ENABLE	REG_BIT(7)
-+#define LT_PHY_VDR_1_CONFIG	0xC03
-+#define  LT_PHY_VDR_RATE_ENCODING_MASK	REG_GENMASK8(6, 3)
-+#define  LT_PHY_VDR_MODE_ENCODING_MASK	REG_GENMASK8(2, 0)
-+#define LT_PHY_VDR_2_CONFIG	0xCC3
-+
-+#define LT_PHY_VDR_X_ADDR_MSB(idx)	(0xC04 + 0x6 * (idx))
-+#define LT_PHY_VDR_X_ADDR_LSB(idx)	(0xC05 + 0x6 * (idx))
-+
-+#define LT_PHY_VDR_X_DATAY(idx, y)	((0xC06 + (3 - (y))) + 0x6 * (idx))
-+
-+#define LT_PHY_RATE_UPDATE		0xCC4
-+
-+#endif /* __INTEL_LT_PHY_REGS_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index a74c1be225ac..0b02163b545a 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -2861,11 +2861,11 @@ static void intel_cx0_setup_powerdown(struct intel_encoder *encoder)
+ 
+ 	intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port),
+ 		     XELPDP_POWER_STATE_READY_MASK,
+-		     XELPDP_POWER_STATE_READY(CX0_P2_STATE_READY));
++		     XELPDP_POWER_STATE_READY(XELPDP_P2_STATE_READY));
+ 	intel_de_rmw(display, XELPDP_PORT_BUF_CTL3(display, port),
+ 		     XELPDP_POWER_STATE_ACTIVE_MASK |
+ 		     XELPDP_PLL_LANE_STAGGERING_DELAY_MASK,
+-		     XELPDP_POWER_STATE_ACTIVE(CX0_P0_STATE_ACTIVE) |
++		     XELPDP_POWER_STATE_ACTIVE(XELPDP_P0_STATE_ACTIVE) |
+ 		     XELPDP_PLL_LANE_STAGGERING_DELAY(0));
+ }
+ 
+@@ -2938,7 +2938,7 @@ static void intel_cx0_phy_lane_reset(struct intel_encoder *encoder,
+ 			 phy_name(phy), XELPDP_REFCLK_ENABLE_TIMEOUT_US);
+ 
+ 	intel_cx0_powerdown_change_sequence(encoder, INTEL_CX0_BOTH_LANES,
+-					    CX0_P2_STATE_RESET);
++					    XELPDP_P2_STATE_RESET);
+ 	intel_cx0_setup_powerdown(encoder);
+ 
+ 	intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port), lane_pipe_reset, 0);
+@@ -3043,7 +3043,7 @@ static void __intel_cx0pll_enable(struct intel_encoder *encoder,
+ 	 * TODO: For DP alt mode use only one lane.
+ 	 */
+ 	intel_cx0_powerdown_change_sequence(encoder, INTEL_CX0_BOTH_LANES,
+-					    CX0_P2_STATE_READY);
++					    XELPDP_P2_STATE_READY);
+ 
+ 	/*
+ 	 * 4. Program PORT_MSGBUS_TIMER register's Message Bus Timer field to 0xA000.
+@@ -3284,13 +3284,13 @@ static u8 cx0_power_control_disable_val(struct intel_encoder *encoder)
+ 	struct intel_display *display = to_intel_display(encoder);
+ 
+ 	if (intel_encoder_is_c10phy(encoder))
+-		return CX0_P2PG_STATE_DISABLE;
++		return XELPDP_P2PG_STATE_DISABLE;
+ 
+ 	if ((display->platform.battlemage && encoder->port == PORT_A) ||
+ 	    (DISPLAY_VER(display) >= 30 && encoder->type == INTEL_OUTPUT_EDP))
+-		return CX0_P2PG_STATE_DISABLE;
++		return XELPDP_P2PG_STATE_DISABLE;
+ 
+-	return CX0_P4PG_STATE_DISABLE;
++	return XELPDP_P4PG_STATE_DISABLE;
+ }
+ 
+ static void intel_cx0pll_disable(struct intel_encoder *encoder)
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+index 86e2e1c7babf..cd941f16529c 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+@@ -149,11 +149,11 @@
+ #define   XELPDP_PLL_LANE_STAGGERING_DELAY(val)		REG_FIELD_PREP(XELPDP_PLL_LANE_STAGGERING_DELAY_MASK, val)
+ #define   XELPDP_POWER_STATE_ACTIVE_MASK		REG_GENMASK(3, 0)
+ #define   XELPDP_POWER_STATE_ACTIVE(val)		REG_FIELD_PREP(XELPDP_POWER_STATE_ACTIVE_MASK, val)
+-#define   CX0_P0_STATE_ACTIVE				0x0
+-#define   CX0_P2_STATE_READY				0x2
+-#define   CX0_P2PG_STATE_DISABLE			0x9
+-#define   CX0_P4PG_STATE_DISABLE			0xC
+-#define   CX0_P2_STATE_RESET				0x2
++#define   XELPDP_P0_STATE_ACTIVE			0x0
++#define   XELPDP_P2_STATE_READY				0x2
++#define   XELPDP_P2PG_STATE_DISABLE			0x9
++#define   XELPDP_P4PG_STATE_DISABLE			0xC
++#define   XELPDP_P2_STATE_RESET				0x2
+ 
+ #define _XELPDP_PORT_MSGBUS_TIMER_LN0_A			0x640d8
+ #define _XELPDP_PORT_MSGBUS_TIMER_LN0_B			0x641d8
 -- 
 2.34.1
 
