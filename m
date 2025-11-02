@@ -2,142 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E4ACC28E69
-	for <lists+intel-gfx@lfdr.de>; Sun, 02 Nov 2025 12:44:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6479FC299BD
+	for <lists+intel-gfx@lfdr.de>; Mon, 03 Nov 2025 00:14:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6AED10E0BB;
-	Sun,  2 Nov 2025 11:44:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D27D810E124;
+	Sun,  2 Nov 2025 23:13:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="ulDejbNT";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="JOs+pFiA";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="ulDejbNT";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="JOs+pFiA";
+	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="Yt8NQl0B";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6410610E0BB
- for <intel-gfx@lists.freedesktop.org>; Sun,  2 Nov 2025 11:44:37 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40F6410E11F;
+ Sun,  2 Nov 2025 23:13:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=202503; t=1762125231;
+ bh=UrApUplrhg650aeZjiGycPOh3SlW4EIV3RN/nqafq1E=;
+ h=Date:From:To:Cc:Subject:From;
+ b=Yt8NQl0BCT6YyP6Ob7vUHE3jJT/zHLqfXClfbB4WesXkBOO2tzgl/AeTUbFcXcaNW
+ vF5WawPsb2+39n/qKKELR7EYcSFRWEms+6RtK/xJBKPMOA14yRqojVY31ePzLGRfgv
+ MeKs5Ap0F2EVAAzfqroqW1QCzhTLVC+lUADd8HUXYQQH2ux90jT4/BcuH95b6ibifO
+ p2V2Uoq/fTS6ZmR6Hfiz7xJRWO+BxlsHqujChOZKQORAdZ8Y3frMI9Z9/JXwpLHA6S
+ 53LH2sLMw75+SssbBnKvt4mOLPZQhZMah5YnryLgw22t6L3YUaZFJQM3lEIIL3Mths
+ Do70td8lTNP+A==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 77B4121976;
- Sun,  2 Nov 2025 11:44:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1762083875; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=3rpRjFNk7I3yO3U+i+VbM9SsYbCLJkYa7H2rvdyHJnc=;
- b=ulDejbNT/docWm1ktehOhuANLJeqi4HTN3EAO4UmVZ2ZS70Ay3lM2kbZwAzbP2MxxHQQDm
- H4j5U750sQiOftxPWgoypD47O2kSDSsS6CvIdTZK+zGL3r+i+Ea0Aaecy0sGhkslpeduCN
- cqe3I0oz87yfDe56DeFrX4monyJzYsI=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1762083875;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=3rpRjFNk7I3yO3U+i+VbM9SsYbCLJkYa7H2rvdyHJnc=;
- b=JOs+pFiAYTBy7RGFlT4BVjnQvVx22DLgDoi6Ek+MTIUz8SqMr7P8h2MjWkSTDeoiCiw/aI
- Qz+5S6CIKRkDcqDA==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=ulDejbNT;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=JOs+pFiA
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1762083875; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=3rpRjFNk7I3yO3U+i+VbM9SsYbCLJkYa7H2rvdyHJnc=;
- b=ulDejbNT/docWm1ktehOhuANLJeqi4HTN3EAO4UmVZ2ZS70Ay3lM2kbZwAzbP2MxxHQQDm
- H4j5U750sQiOftxPWgoypD47O2kSDSsS6CvIdTZK+zGL3r+i+Ea0Aaecy0sGhkslpeduCN
- cqe3I0oz87yfDe56DeFrX4monyJzYsI=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1762083875;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=3rpRjFNk7I3yO3U+i+VbM9SsYbCLJkYa7H2rvdyHJnc=;
- b=JOs+pFiAYTBy7RGFlT4BVjnQvVx22DLgDoi6Ek+MTIUz8SqMr7P8h2MjWkSTDeoiCiw/aI
- Qz+5S6CIKRkDcqDA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 36B28136C7;
- Sun,  2 Nov 2025 11:44:35 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id mG7uCyNEB2mGWwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Sun, 02 Nov 2025 11:44:35 +0000
-Message-ID: <9c67c29b-06e9-469b-9273-eaac368632d6@suse.de>
-Date: Sun, 2 Nov 2025 12:44:34 +0100
+ key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (Client did not present a certificate)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4d09Wf1QQXz4w0p;
+ Mon, 03 Nov 2025 10:13:49 +1100 (AEDT)
+Date: Mon, 3 Nov 2025 10:13:49 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Simona Vetter <simona.vetter@ffwll.ch>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
+ Mailing List <linux-next@vger.kernel.org>
+Subject: linux-next: manual merge of the drm-intel tree with the drm-misc tree
+Message-ID: <20251103101349.5af777a5@canb.auug.org.au>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/4] drm: replace drm_print.h includes from headers
- with a forward declaration
-To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org,
- maarten.lankhorst@linux.intel.com, Maxime Ripard <mripard@kernel.org>,
- David Airlie <airlied@redhat.com>, simona.vetter@ffwll.ch
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-References: <cover.1761734313.git.jani.nikula@intel.com>
- <41bb4163-8f5b-47c5-8121-7010147bc5e6@suse.de>
- <b8cc203c44518822197023c2dbf4a21aad681a4c@intel.com>
- <c4e3b172-3df8-4d1b-a1b0-51cacae56f0c@suse.de>
- <18ad4c11261b85614f7e3a2aabe611f2ecbf16a5@intel.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <18ad4c11261b85614f7e3a2aabe611f2ecbf16a5@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Level: 
-X-Spam-Flag: NO
-X-Rspamd-Queue-Id: 77B4121976
-X-Rspamd-Action: no action
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[]; FUZZY_RATELIMITED(0.00)[rspamd.com];
- RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
- RCPT_COUNT_SEVEN(0.00)[8]; MIME_TRACE(0.00)[0:+];
- MID_RHS_MATCH_FROM(0.00)[]; RCVD_TLS_ALL(0.00)[];
- TO_DN_SOME(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
- FROM_HAS_DN(0.00)[];
- DNSWL_BLOCKED(0.00)[2a07:de40:b281:104:10:150:64:97:from,2a07:de40:b281:106:10:150:64:167:received];
- RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:url];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- DKIM_TRACE(0.00)[suse.de:+]
-X-Spam-Score: -4.51
+Content-Type: multipart/signed; boundary="Sig_/z21a/cOLsFpemMoUDjgkfrw";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,97 +60,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi
+--Sig_/z21a/cOLsFpemMoUDjgkfrw
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Am 31.10.25 um 11:01 schrieb Jani Nikula:
-> On Thu, 30 Oct 2025, Thomas Zimmermann <tzimmermann@suse.de> wrote:
->> Am 30.10.25 um 10:31 schrieb Jani Nikula:
->>> Considering that this touches a lot of drivers, albeit just the include
->>> lists and thus highly unlikely to cause functional changes or hard
->>> conflicts, can I go ahead and merge this to drm-misc-next?
->> Of course, go ahead.
-> Done, thanks again!
+Hi all,
 
-Looks like fallout from this series:
+Today's linux-next merge of the drm-intel tree got a conflict in:
 
+  drivers/gpu/drm/i915/gt/intel_rc6.c
 
-   CC [M]  drivers/gpu/drm/rockchip/rockchip_drm_vop2.o
-linux/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c: In function 
-'vop2_convert_format':
-linux/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c:215:17: error: 
-implicit declaration of function 'DRM_ERROR'; did you mean 'SO_ERROR'? 
-[-Wimplicit-function-declaration]
-   215 |                 DRM_ERROR("unsupported format[%08x]\n", format);
-       |                 ^~~~~~~~~
-       |                 SO_ERROR
-linux/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c: In function 
-'rockchip_vop2_mod_supported':
-linux/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c:395:33: error: 
-implicit declaration of function 'drm_dbg_kms' 
-[-Wimplicit-function-declaration]
-   395 |                                 drm_dbg_kms(vop2->drm,
-       |                                 ^~~~~~~~~~~
-linux/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c: In function 
-'vop2_setup_scale':
-linux/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c:602:25: error: 
-implicit declaration of function 'drm_dbg'; did you mean 'dev_dbg'? 
-[-Wimplicit-function-declaration]
-   602 |                         drm_dbg(vop2->drm, "%s dst_w[%d] should 
-align as 2 pixel\n",
-       |                         ^~~~~~~
-       |                         dev_dbg
-linux/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c: In function 
-'vop2_core_clks_prepare_enable':
-linux/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c:763:17: error: 
-implicit declaration of function 'drm_err'; did you mean 'pr_err'? 
-[-Wimplicit-function-declaration]
-   763 |                 drm_err(vop2->drm, "failed to enable hclk - 
-%d\n", ret);
-       |                 ^~~~~~~
-       |                 pr_err
-linux/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c: In function 
-'vop2_crtc_atomic_disable':
-linux/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c:967:17: error: 
-implicit declaration of function 'drm_info'; did you mean 'pr_info'? 
-[-Wimplicit-function-declaration]
-   967 |                 drm_info(vop2->drm, "wait for vp%d dsp_hold 
-timeout\n", vp->id);
-       |                 ^~~~~~~~
-       |                 pr_info
-linux/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c: In function 
-'vop2_crtc_atomic_enable':
-linux/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c:1758:41: error: 
-implicit declaration of function 'drm_warn'; did you mean 'dev_warn'? 
-[-Wimplicit-function-declaration]
-  1758 |  drm_warn(vop2->drm,
-       |                                         ^~~~~~~~
-       |                                         dev_warn
-linux/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c: In function 
-'rk3576_vp_isr':
-linux/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c:2198:17: error: 
-implicit declaration of function 'drm_err_ratelimited'; did you mean 
-'pr_err_ratelimited'? [-Wimplicit-function-declaration]
-  2198 |                 drm_err_ratelimited(vop2->drm, "POST_BUF_EMPTY 
-irq err at vp%d\n", vp->id);
-       |                 ^~~~~~~~~~~~~~~~~~~
-       |                 pr_err_ratelimited
+between commit:
 
+  f6e8dc9edf96 ("drm: include drm_print.h where needed")
 
-Best regards
-Thomas
+from the drm-misc tree and commits:
 
->
-> BR,
-> Jani.
->
->
+  8c2833ff1df3 ("drm/i915: add vlv_clock_get_czclk()")
+  5615e78e813e ("drm/i915: split out vlv_clock.[ch]")
 
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
+from the drm-intel tree.
 
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
 
+--=20
+Cheers,
+Stephen Rothwell
+
+diff --cc drivers/gpu/drm/i915/gt/intel_rc6.c
+index 13721c9081b6,932f9f1b06b2..000000000000
+--- a/drivers/gpu/drm/i915/gt/intel_rc6.c
++++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
+@@@ -6,8 -6,7 +6,9 @@@
+  #include <linux/pm_runtime.h>
+  #include <linux/string_helpers.h>
+ =20
+ +#include <drm/drm_print.h>
+ +
++ #include "display/vlv_clock.h"
+  #include "gem/i915_gem_region.h"
+  #include "i915_drv.h"
+  #include "i915_reg.h"
+
+--Sig_/z21a/cOLsFpemMoUDjgkfrw
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmkH5a0ACgkQAVBC80lX
+0GwATAf+IaMAVNnjxQs9NAYsjoodKNpiqtMya/5O4WpRBOXablOVAi64oRQ1fViR
+SJJx3BBzT+wgoQOiiw8Cbt9yYumCNVAfNGfpUEBXxPbkXr4S9gioxVI88eMhn4Ob
+OjJrzUCbQFAz3yORvpZ5g/opYgkFdVQRxHtw0QgS5QOxFcIvWzWD3vFOAnuj1yL2
+Vui1+OAVM+dqVa4V2+A9ITd+KeArkOr9J220hDlx8wU7efheCh8deoHJ9nndlCl2
+lGmq92cRH0CAfjXsxq0IDnTz58//cobXBUWj2Peaxxnd52o7rfWbn9EgN/khgCHK
+EKJZs8U03LQ1G+FidjQVmPmbvWqXwQ==
+=BAmB
+-----END PGP SIGNATURE-----
+
+--Sig_/z21a/cOLsFpemMoUDjgkfrw--
