@@ -2,29 +2,86 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22BA1C2D328
-	for <lists+intel-gfx@lfdr.de>; Mon, 03 Nov 2025 17:40:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2324C2D38E
+	for <lists+intel-gfx@lfdr.de>; Mon, 03 Nov 2025 17:48:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A725310E441;
-	Mon,  3 Nov 2025 16:40:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6458C10E444;
+	Mon,  3 Nov 2025 16:48:11 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="AsOQff3j";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E395710E441;
- Mon,  3 Nov 2025 16:40:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5655125480559039526=="
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
+ [209.85.128.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D819510E446
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Nov 2025 16:48:10 +0000 (UTC)
+Received: by mail-wm1-f41.google.com with SMTP id
+ 5b1f17b1804b1-47118259fd8so34708025e9.3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 03 Nov 2025 08:48:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=suse.com; s=google; t=1762188489; x=1762793289; darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=m5sPGkrkFa+BIv4P90jHrJVfi2snemHJi/xGZTBOH3w=;
+ b=AsOQff3jCWVFBnXoFKVE3TUByiscYusNm3eSlPKJZwLIIVQgC5K2mJSgcPRJzh69h8
+ le/69bGpjCUw3RIMgd6opT5+U0qwmbRTFCR3zEaSGfCVUfoPUxC63XQDQTWoNfb75Vdu
+ MPpg4XCCOepYaHcxd8/8f05mSofutkLd/tPeW9bIXpsJDMZj7AatTgK7vcAlZbxKPwd6
+ rHw10V3nAXRLz94ZtsUBGoYvOfZGQuWGcyczWF2IRHfh//yFb24iHx6z5ytW9BR78DJE
+ vmARJtDF5bsB2NzdZXxPHgTq2lg1sIykvA7rfH8wldw9IazYwYz+UoKELYMSsedTQXkA
+ isFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1762188489; x=1762793289;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=m5sPGkrkFa+BIv4P90jHrJVfi2snemHJi/xGZTBOH3w=;
+ b=neOTVahgDpe4FV/1ql54rHJDEVIwFiMOwmkpKCyCKsgalV+nGVLDm9me4FniFa1SrE
+ K1wpVwQQ7xqwkaG3fOGob/xDkbNtm84xbGaBOn6BG0W/iEEGII5xjPaZhq43AliD5+OD
+ ZLiEcHJE3ybQRoo8M1YnwcERwhqIkSzY1whW5jVkuhtE8HJsYpSAn+9qOm/DmismdPiT
+ 5+334OrsqYaVxdnVLssejXrpwIZ6+xVxQ9FsQxGgPX9K7Kv3Me4qkJT+FzDVrpaRxvUJ
+ emqxZtcenfZDtgV4d4gy5Brv7on4FFkHa1Hi8b0elVIXe6hpZXms7XNm5m5ERVboJZB6
+ xfAg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWcP9aQCciPwP9SiRn/6/RtouEw3Oo0OpFEtMMCxgIDJFp9TeSC0YS4TMpYO2oPX5qhWbXWQBgFHC8=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx81ybPZIQsORLq/9oqVJgvQBnDs02wcZhE3b7Bhj2iq3J74YBY
+ S6f8cvqob6LXboTJ5p4tl0xgV7aJzMY/eT/zsCAFqCohaauejcH8EJUY14fqIfnigM8=
+X-Gm-Gg: ASbGncvAQegoow4gTeGzw/HEmq+CvcPIBRcckQvQM3UBWozMc75uGvVlhoVWjVVyXzr
+ /aCLHHyvV2EeAVaOJEf6LhKwJCiwaQrQJrOuEbaIM3fXSvh+VvpsJVls/Oh3CTz+ZRamMeFopuQ
+ UZwgQiEEfJhvtgr1vq4Gdvs2RLR3DWhtBbZYiSbwYt0FqPvER3yKkVyylo/LPHhISSS7AVJFcUn
+ 7UsHLnGcPEDsUlRKW/ilm8hFSz+J4epIMnH+4HtVDGK2wLrncESddLNXKDBu8oMlrLGmlBgE7pX
+ MMZ37Q9DRNSSjts9oJpQD7q3g7DjUuM4vV+l4WzdSlDJLSmeZgTVes3MjXLAAxkMH9uB2Hqn4Wd
+ SjZWORRD4TfSg2E2pgZaTdwdns8fL+x0Hk7q/AfSiy1Emrm5wpzNund1S469MGOtQ7fUF+HUePH
+ UgG6kw5r/mjgxRzDpVnschx80S
+X-Google-Smtp-Source: AGHT+IHn+Z1e4sX03I15uydQaHtVImGCDSavhgeRz4F8FOoyRNKT0SkIDzFYOHn5zbcS1AudwJpIGg==
+X-Received: by 2002:a05:600c:4e87:b0:46e:74cc:42b8 with SMTP id
+ 5b1f17b1804b1-4773080fbfbmr118466665e9.17.1762188489181; 
+ Mon, 03 Nov 2025 08:48:09 -0800 (PST)
+Received: from localhost.localdomain ([2a00:6d43:105:c401:e307:1a37:2e76:ce91])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-429d1061efasm9864899f8f.24.2025.11.03.08.48.08
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 03 Nov 2025 08:48:08 -0800 (PST)
+From: Marco Crivellari <marco.crivellari@suse.com>
+To: linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>,
+ Frederic Weisbecker <frederic@kernel.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Marco Crivellari <marco.crivellari@suse.com>,
+ Michal Hocko <mhocko@suse.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Krzysztof Karas <krzysztof.karas@intel.com>
+Subject: [PATCH v2 0/3] replace old wq(s), add WQ_PERCPU to alloc_workqueue
+Date: Mon,  3 Nov 2025 17:47:57 +0100
+Message-ID: <20251103164800.294729-1-marco.crivellari@suse.com>
+X-Mailer: git-send-email 2.51.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_replace_old_wq=28s=29=2C_?=
- =?utf-8?q?added_WQ=5FPERCPU_to_alloc=5Fworkqueue?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Marco Crivellari" <marco.crivellari@suse.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 03 Nov 2025 16:40:24 -0000
-Message-ID: <176218802492.11360.11087039616638494491@10055242dc62>
-X-Patchwork-Hint: ignore
-References: <20251031100923.85721-1-marco.crivellari@suse.com>
-In-Reply-To: <20251031100923.85721-1-marco.crivellari@suse.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,220 +94,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5655125480559039526==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi,
 
-== Series Details ==
+=== Current situation: problems ===
 
-Series: replace old wq(s), added WQ_PERCPU to alloc_workqueue
-URL   : https://patchwork.freedesktop.org/series/156920/
-State : success
+Let's consider a nohz_full system with isolated CPUs: wq_unbound_cpumask is
+set to the housekeeping CPUs, for !WQ_UNBOUND the local CPU is selected.
 
-== Summary ==
+This leads to different scenarios if a work item is scheduled on an
+isolated CPU where "delay" value is 0 or greater then 0:
+        schedule_delayed_work(, 0);
 
-CI Bug Log - changes from CI_DRM_17478 -> Patchwork_156920v1
-====================================================
+This will be handled by __queue_work() that will queue the work item on the
+current local (isolated) CPU, while:
 
-Summary
--------
+        schedule_delayed_work(, 1);
 
-  **SUCCESS**
+Will move the timer on an housekeeping CPU, and schedule the work there.
 
-  No regressions found.
+Currently if a user enqueue a work item using schedule_delayed_work() the
+used wq is "system_wq" (per-cpu wq) while queue_delayed_work() use
+WORK_CPU_UNBOUND (used when a cpu is not specified). The same applies to
+schedule_work() that is using system_wq and queue_work(), that makes use
+again of WORK_CPU_UNBOUND.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156920v1/index.html
+This lack of consistency cannot be addressed without refactoring the API.
 
-Participating hosts (46 -> 45)
-------------------------------
+=== Recent changes to the WQ API ===
 
-  Missing    (1): fi-snb-2520m 
+The following, address the recent changes in the Workqueue API:
 
-Known issues
-------------
+- commit 128ea9f6ccfb ("workqueue: Add system_percpu_wq and system_dfl_wq")
+- commit 930c2ea566af ("workqueue: Add new WQ_PERCPU flag")
 
-  Here are the changes found in Patchwork_156920v1 that come from known issues:
+The old workqueues will be removed in a future release cycle.
 
-### IGT changes ###
+=== Introduced Changes by this series ===
 
-#### Issues hit ####
+1) [P 1-2]  Replace uses of system_wq and system_unbound_wq
 
-  * igt@dmabuf@all-tests:
-    - bat-apl-1:          [PASS][1] -> [ABORT][2] ([i915#12904]) +1 other test abort
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17478/bat-apl-1/igt@dmabuf@all-tests.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156920v1/bat-apl-1/igt@dmabuf@all-tests.html
+    system_wq is a per-CPU workqueue, but his name is not clear.
+    system_unbound_wq is to be used when locality is not required.
 
-  * igt@i915_selftest@live:
-    - bat-jsl-1:          [PASS][3] -> [DMESG-FAIL][4] ([i915#13774]) +1 other test dmesg-fail
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17478/bat-jsl-1/igt@i915_selftest@live.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156920v1/bat-jsl-1/igt@i915_selftest@live.html
+    Because of that, system_wq has been replaced with system_percpu_wq, and
+    system_unbound_wq has been replaced with system_dfl_wq.
 
-  
-#### Possible fixes ####
+2) [P 3] WQ_PERCPU added to alloc_workqueue()
 
-  * igt@dmabuf@all-tests@dma_fence_chain:
-    - fi-bsw-n3050:       [ABORT][5] ([i915#12904]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17478/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156920v1/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html
-
-  * igt@i915_selftest@live:
-    - bat-dg2-8:          [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17478/bat-dg2-8/igt@i915_selftest@live.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156920v1/bat-dg2-8/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-11:         [DMESG-FAIL][9] ([i915#12061]) -> [PASS][10] +1 other test pass
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17478/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156920v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-    - bat-dg2-14:         [DMESG-FAIL][11] ([i915#12061]) -> [PASS][12] +1 other test pass
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17478/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156920v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-    - bat-mtlp-9:         [DMESG-FAIL][13] ([i915#12061]) -> [PASS][14] +1 other test pass
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17478/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156920v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live:
-    - bat-atsm-1:         [DMESG-FAIL][15] ([i915#12061] / [i915#13929]) -> [DMESG-FAIL][16] ([i915#12061] / [i915#14204])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17478/bat-atsm-1/igt@i915_selftest@live.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156920v1/bat-atsm-1/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@mman:
-    - bat-atsm-1:         [DMESG-FAIL][17] ([i915#13929]) -> [DMESG-FAIL][18] ([i915#14204])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17478/bat-atsm-1/igt@i915_selftest@live@mman.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156920v1/bat-atsm-1/igt@i915_selftest@live@mman.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-  [i915#13774]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13774
-  [i915#13929]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929
-  [i915#14204]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204
+    This change adds a new WQ_PERCPU flag to explicitly request
+    alloc_workqueue() to be per-cpu when WQ_UNBOUND has not been specified.
 
 
-Build changes
--------------
+Thanks!
 
-  * Linux: CI_DRM_17478 -> Patchwork_156920v1
+---
+Changes in v2:
+- fix typo in patch subject (add instead of added).
 
-  CI-20190529: 20190529
-  CI_DRM_17478: c26efcd32b045f9e5d5f06e85bdc91e1d7f008f9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8605: 8605
-  Patchwork_156920v1: c26efcd32b045f9e5d5f06e85bdc91e1d7f008f9 @ git://anongit.freedesktop.org/gfx-ci/linux
+- in every patch is also present the specific commit hash about the
+  workqueue API change.
 
-== Logs ==
+- fixed commit log of P1 (removed "Adding system_dfl_wq...").
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156920v1/index.html
+- P2: subject changed reflecting the effective change.
 
---===============5655125480559039526==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+- rebased to v6.18-rc4.
 
+Marco Crivellari (3):
+  drm/i915: replace use of system_unbound_wq with system_dfl_wq
+  drm/i915: replace use of system_wq with system_percpu_wq in the
+    documentation
+  drm/i915: add WQ_PERCPU to alloc_workqueue users
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+ drivers/gpu/drm/i915/display/intel_display_driver.c | 4 ++--
+ drivers/gpu/drm/i915/display/intel_display_power.c  | 2 +-
+ drivers/gpu/drm/i915/display/intel_tc.c             | 4 ++--
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c        | 2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c              | 4 ++--
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c           | 4 ++--
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c   | 6 +++---
+ drivers/gpu/drm/i915/i915_active.c                  | 2 +-
+ drivers/gpu/drm/i915/i915_driver.c                  | 5 +++--
+ drivers/gpu/drm/i915/i915_drv.h                     | 2 +-
+ drivers/gpu/drm/i915/i915_sw_fence_work.c           | 2 +-
+ drivers/gpu/drm/i915/i915_vma_resource.c            | 2 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp.c                | 2 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp_irq.c            | 2 +-
+ drivers/gpu/drm/i915/selftests/i915_sw_fence.c      | 2 +-
+ drivers/gpu/drm/i915/selftests/mock_gem_device.c    | 2 +-
+ 16 files changed, 24 insertions(+), 23 deletions(-)
 
+-- 
+2.51.1
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>replace old wq(s), added WQ_PERCPU to alloc_workqueue</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156920/">https://patchwork.freedesktop.org/series/156920/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156920v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156920v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17478 -&gt; Patchwork_156920v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156920v1/index.html</p>
-<h2>Participating hosts (46 -&gt; 45)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_156920v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests:</p>
-<ul>
-<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17478/bat-apl-1/igt@dmabuf@all-tests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156920v1/bat-apl-1/igt@dmabuf@all-tests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17478/bat-jsl-1/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156920v1/bat-jsl-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13774">i915#13774</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests@dma_fence_chain:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17478/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156920v1/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17478/bat-dg2-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156920v1/bat-dg2-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17478/bat-dg2-11/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156920v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17478/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156920v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17478/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156920v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17478/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156920v1/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@mman:</p>
-<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17478/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156920v1/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17478 -&gt; Patchwork_156920v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17478: c26efcd32b045f9e5d5f06e85bdc91e1d7f008f9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8605: 8605<br />
-  Patchwork_156920v1: c26efcd32b045f9e5d5f06e85bdc91e1d7f008f9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============5655125480559039526==--
