@@ -2,49 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CD66C299FB
-	for <lists+intel-gfx@lfdr.de>; Mon, 03 Nov 2025 00:22:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2550FC29B37
+	for <lists+intel-gfx@lfdr.de>; Mon, 03 Nov 2025 01:24:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4DBC10E12A;
-	Sun,  2 Nov 2025 23:22:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7B5F10E1DA;
+	Mon,  3 Nov 2025 00:24:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="mfG+CMex";
+	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="H9heTeJr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 716E910E12A;
- Sun,  2 Nov 2025 23:22:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F6DB10E1B1;
+ Mon,  3 Nov 2025 00:24:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=202503; t=1762125754;
- bh=2rNjtOI2mww09uharcAW9DKM4SCrFQrcePKn6Adh+n0=;
+ s=202503; t=1762129459;
+ bh=Iy94SWbg1+RQ4Kuynk8DOKGrvK0LPLOCMyntYUWRNLQ=;
  h=Date:From:To:Cc:Subject:From;
- b=mfG+CMexHVEfMn3XGPzUyXvEjUu1LqUoNtF+InvzBVCkEMXKMEarUI88/zOD5lxlG
- qem25g7hWN2y8mHmJmlqw0ePJKNVOkCJSu5KFVi/kKlAg05LK9Ia5HQmZhQV5dsOEX
- fAlytqfzGSAjxvov8UQT5Tw80nJKtSbG6rM0bmDLf1I31a0bUw+8SVVjQAKfsnV+tM
- nbr+bkqHUj1pe6FULUN5iXqFed0eoA9+OlfWhWynMF7rN4SASamgjDdyKhLKmb66Gx
- FfCAmpvXU9+hFXO6xv9cT2pZwOSZ422NbaWBN98KO/uWDMgXSMv71dp0N4LFSd0LIa
- nF+ICqKnc7Qwg==
+ b=H9heTeJrqmE8UuajRxoJsONK2bQsP8jqTOFQ35+XxoSgcyR2QFPxDg6qXBYBHx2jz
+ 68texnh7DpH2jRsHC/9x3tcgBaZ5u4apJWc3fjFaEgJK5Tn5M5bwGE1Dr8G8RFFiZq
+ VSez0aOBaB5VG0a3e705BwOp1AvdM7hANCoUsy5e83byHoVT46kn0dkULI//njub5P
+ jPQgOp77Dn3KBuV7d+qEoyA3rsc3m5UwgnExhWSdovjOGCLl6kBrdWCCzObj8i1IGP
+ CAW/Zv2q9OxORRj4ZgrBlhs2UfyzfhP1+gp+Nv/ip97DLlFiv1lPx/Qb6/9gzUwkSD
+ Q8V/oZ7G6Z3tQ==
 Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest
  SHA256) (Client did not present a certificate)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4d09jj6TLhz4w93;
- Mon, 03 Nov 2025 10:22:33 +1100 (AEDT)
-Date: Mon, 3 Nov 2025 10:22:33 +1100
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4d0C4z2VW2z4w9q;
+ Mon, 03 Nov 2025 11:24:19 +1100 (AEDT)
+Date: Mon, 3 Nov 2025 11:24:18 +1100
 From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Simona Vetter <simona.vetter@ffwll.ch>, Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
- Mailing List <linux-next@vger.kernel.org>, Ville =?UTF-8?B?U3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>
-Subject: linux-next: manual merge of the drm-intel tree with the drm-misc tree
-Message-ID: <20251103102233.7c6adc9a@canb.auug.org.au>
+To: Simona Vetter <simona.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
+Cc: Jani Nikula <jani.nikula@intel.com>, Linux Kernel Mailing List
+ <linux-kernel@vger.kernel.org>, Linux Next Mailing List
+ <linux-next@vger.kernel.org>
+Subject: linux-next: build failure after merge of the drm-misc tree
+Message-ID: <20251103112418.031b3f8c@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/fUz4vqoMbt2t_KNm2IayWRr";
+Content-Type: multipart/signed; boundary="Sig_/KlBPDI1Nmz+Tm.siOFEFuQt";
  protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -61,66 +58,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/fUz4vqoMbt2t_KNm2IayWRr
-Content-Type: text/plain; charset=UTF-8
+--Sig_/KlBPDI1Nmz+Tm.siOFEFuQt
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: quoted-printable
 
 Hi all,
 
-Today's linux-next merge of the drm-intel tree got a conflict in:
+After merging the drm-misc tree, today's linux-next build (x86_64
+allmodconfig) failed like this:
 
-  drivers/gpu/drm/i915/display/intel_bw.c
+drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c: In function 'rzg2l_du_probe':
+drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c:173:9: error: implicit declara=
+tion of function 'drm_info'; did you mean 'pr_info'? [-Wimplicit-function-d=
+eclaration]
+  173 |         drm_info(&rcdu->ddev, "Device %s probed\n", dev_name(&pdev-=
+>dev));
+      |         ^~~~~~~~
+      |         pr_info
 
-between commit:
+Presumably caused by commit
 
-  f6e8dc9edf96 ("drm: include drm_print.h where needed")
+  9695c143b72a ("drm/buddy: replace drm_print.h include with a forward decl=
+aration")
+or
+  ea722522d505 ("drm/mm: replace drm_print.h include with a forward declara=
+tion")
+or
+  d7a849d126d0 ("drm/ttm: replace drm_print.h include with a forward declar=
+ation")
 
-from the drm-misc tree and commit:
+I have applied the following fix patch for today:
 
-  ac930bab1c89 ("drm/i915/bw: Untangle dbuf bw from the sagv/mem bw stuff")
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+Date: Mon, 3 Nov 2025 11:12:27 +1100
+Subject: [PATCH] fix up for dropping drm_print.h includes
 
-from the drm-intel tree.
+Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
+---
+ drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
+diff --git a/drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c b/drivers/gpu/drm=
+/renesas/rz-du/rzg2l_du_drv.c
+index e1aa6a719529..c34b1a13e685 100644
+--- a/drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c
++++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c
+@@ -18,6 +18,7 @@
+ #include <drm/drm_fbdev_dma.h>
+ #include <drm/drm_gem_dma_helper.h>
+ #include <drm/drm_probe_helper.h>
++#include <drm/drm_print.h>
+=20
+ #include "rzg2l_du_drv.h"
+ #include "rzg2l_du_kms.h"
+--=20
+2.51.1
 
+Which lead to this:
+
+drivers/gpu/drm/rockchip/rockchip_drm_vop2.c: In function 'vop2_convert_for=
+mat':
+drivers/gpu/drm/rockchip/rockchip_drm_vop2.c:215:17: error: implicit declar=
+ation of function 'DRM_ERROR'; did you mean 'SO_ERROR'? [-Wimplicit-functio=
+n-declaration]
+  215 |                 DRM_ERROR("unsupported format[%08x]\n", format);
+      |                 ^~~~~~~~~
+      |                 SO_ERROR
+drivers/gpu/drm/rockchip/rockchip_drm_vop2.c: In function 'rockchip_vop2_mo=
+d_supported':
+drivers/gpu/drm/rockchip/rockchip_drm_vop2.c:395:33: error: implicit declar=
+ation of function 'drm_dbg_kms' [-Wimplicit-function-declaration]
+  395 |                                 drm_dbg_kms(vop2->drm,
+      |                                 ^~~~~~~~~~~
+drivers/gpu/drm/rockchip/rockchip_drm_vop2.c: In function 'vop2_setup_scale=
+':
+drivers/gpu/drm/rockchip/rockchip_drm_vop2.c:602:25: error: implicit declar=
+ation of function 'drm_dbg'; did you mean 'dev_dbg'? [-Wimplicit-function-d=
+eclaration]
+  602 |                         drm_dbg(vop2->drm, "%s dst_w[%d] should ali=
+gn as 2 pixel\n",
+      |                         ^~~~~~~
+      |                         dev_dbg
+drivers/gpu/drm/rockchip/rockchip_drm_vop2.c: In function 'vop2_core_clks_p=
+repare_enable':
+drivers/gpu/drm/rockchip/rockchip_drm_vop2.c:763:17: error: implicit declar=
+ation of function 'drm_err'; did you mean 'pr_err'? [-Wimplicit-function-de=
+claration]
+  763 |                 drm_err(vop2->drm, "failed to enable hclk - %d\n", =
+ret);
+      |                 ^~~~~~~
+      |                 pr_err
+drivers/gpu/drm/rockchip/rockchip_drm_vop2.c: In function 'vop2_crtc_atomic=
+_disable':
+drivers/gpu/drm/rockchip/rockchip_drm_vop2.c:967:17: error: implicit declar=
+ation of function 'drm_info'; did you mean 'pr_info'? [-Wimplicit-function-=
+declaration]
+  967 |                 drm_info(vop2->drm, "wait for vp%d dsp_hold timeout=
+\n", vp->id);
+      |                 ^~~~~~~~
+      |                 pr_info
+drivers/gpu/drm/rockchip/rockchip_drm_vop2.c: In function 'vop2_crtc_atomic=
+_enable':
+drivers/gpu/drm/rockchip/rockchip_drm_vop2.c:1758:41: error: implicit decla=
+ration of function 'drm_warn'; did you mean 'dev_warn'? [-Wimplicit-functio=
+n-declaration]
+ 1758 |                                         drm_warn(vop2->drm,
+      |                                         ^~~~~~~~
+      |                                         dev_warn
+drivers/gpu/drm/rockchip/rockchip_drm_vop2.c: In function 'rk3576_vp_isr':
+drivers/gpu/drm/rockchip/rockchip_drm_vop2.c:2198:17: error: implicit decla=
+ration of function 'drm_err_ratelimited'; did you mean 'pr_err_ratelimited'=
+? [-Wimplicit-function-declaration]
+ 2198 |                 drm_err_ratelimited(vop2->drm, "POST_BUF_EMPTY irq =
+err at vp%d\n", vp->id);
+      |                 ^~~~~~~~~~~~~~~~~~~
+      |                 pr_err_ratelimited
+
+So, I have instead used the drm-misc tree from next-20251031 for today.
 --=20
 Cheers,
 Stephen Rothwell
 
-diff --cc drivers/gpu/drm/i915/display/intel_bw.c
-index b3e4cc9985e9,3033c53e61d1..000000000000
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@@ -3,9 -3,6 +3,8 @@@
-   * Copyright =C2=A9 2019 Intel Corporation
-   */
- =20
-- #include <drm/drm_atomic_state_helper.h>
- +#include <drm/drm_print.h>
- +
-  #include "soc/intel_dram.h"
- =20
-  #include "i915_drv.h"
-
---Sig_/fUz4vqoMbt2t_KNm2IayWRr
+--Sig_/KlBPDI1Nmz+Tm.siOFEFuQt
 Content-Type: application/pgp-signature
 Content-Description: OpenPGP digital signature
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmkH57kACgkQAVBC80lX
-0GzFmQf+J56RnPQxGAMIrZg2X4PAPoS7F6DlQhHOjBxn07eOrXCTErRQqEeN+Rlp
-6iFvL9UdMmiVi5qBo3riK92kx2sfLZdVXq0zs2TZbARlW/SDt0AaslUZEHz408t/
-7EVXxdxvOIkPr1D/lANCVsjvhk21L7EeTlbT61EFF8ccsOQArMR4F/pNM4uxhm6P
-zLRCNQR5Jpz9UOk6MrTtUKNiFD0SYGaHTgf+6sVDBZMGz1s5XpcuA5K6GyhaPSEZ
-/tvnHyfc9oBFrCFUqrC4MJZ0UlP54j9Mn6Z+jOEXqjg9ZgtHbCmT4AdNSahMo9Xv
-UNWjtDWGl6tnpMs/QW0yZzPXUFV2cQ==
-=ynOq
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmkH9jIACgkQAVBC80lX
+0GyxLwf+K1ygjtBBNcNgTPWtGNQp75QVY0hRVBj1BczKJcoXQ8OjJHdIP7UfCaz6
+kjmLSWm19LAx2XwKNgf+S4OqGAmWDHxXM3eHIPrGrYcy+B7udmXdN8EYClaj+qlH
+I+V/II8nUI5lqDNFrJnSMGClVJLYmkiKlT3Bf2pB6Y3mnxyCApxsGZGXJ9lV5jZ7
+1mRw94CMV+WQrsI4nke4e6jxo7OoLTk68Lr4GtviGzF9XVpUhOIQzDEl5pN3MWdL
+aoMsKfT8XBo5iZ84yXUL0hB05PTLkxO1KMpgzIFrrOVwf8/6DBoCJQaEA/Wc/jrR
+zD5Y1te9+YDa1/O07EppD5U1YXsbqg==
+=waFo
 -----END PGP SIGNATURE-----
 
---Sig_/fUz4vqoMbt2t_KNm2IayWRr--
+--Sig_/KlBPDI1Nmz+Tm.siOFEFuQt--
