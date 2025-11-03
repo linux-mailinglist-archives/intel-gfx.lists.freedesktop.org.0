@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0668DC2D6D2
-	for <lists+intel-gfx@lfdr.de>; Mon, 03 Nov 2025 18:20:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6570C2D6D5
+	for <lists+intel-gfx@lfdr.de>; Mon, 03 Nov 2025 18:20:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FBA910E458;
-	Mon,  3 Nov 2025 17:19:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F194910E45A;
+	Mon,  3 Nov 2025 17:20:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="biYgvomy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aTkNdH7q";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4DAA10E458;
- Mon,  3 Nov 2025 17:19:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D810F10E206;
+ Mon,  3 Nov 2025 17:20:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762190397; x=1793726397;
+ t=1762190401; x=1793726401;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=V4hvwNPOwGlO9pPLOTp5nvo17RRjh4hGvkN2gFA3tOY=;
- b=biYgvomywqtl/h1ebyE34czcHC5NHlgGI9u4Y8SoFUJdQFB6ChyiLwTk
- jU/+Bm1VWVoh0b9PkF+AsRgZW12CGGLMnsg/1ed1T0tXi1E+uTnqEpSQy
- D+3EUpxkaG9J3hc50AoihLD5P05ZHFc/Ewhy5Ckea0Lnad2yk2jbGahZf
- Fbd8IUApEA9jJqnovjnIu1BMFQCY/I93KFxEaCMI3rFs8TXKnpLY00We6
- XwlagrI87snWv8PXZ4b2Bj9/UMfbQPQO4JujqD4ApU5wLute7saJ8Pljc
- Fw+4rmjiN6QJc97tWvqvmRvsf9Gbtx2pvmWSSu7t2B1DP65jSn39ExAMz w==;
-X-CSE-ConnectionGUID: hrstrSFiTTK9nQ9xjrR6zQ==
-X-CSE-MsgGUID: PX8AtFq0T7ax7RRhsZ6kcA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="64309978"
-X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; d="scan'208";a="64309978"
+ bh=z/H7z3PlOT+UvENaEjSx/DLODtJKEKirQjyjEaW720Y=;
+ b=aTkNdH7qrL3cShgF6cPGWfUVADIUV2O++eXbiU6f35HGORPtKmZTBLHy
+ 7SIJBZYcQofYHoRgtU00XG08Jd7kyAUFu9lUgf3sPqsJaQ7ftPp2A/yJ/
+ sVBwkmjhgjk3ntX81sH+cmOLcHL9FCChNG7aaN/yKUbNgVtJiEu2M817l
+ aIJ9Z6yaEGP8Mx1EJFHCgd7HwK2zIdPvNpMwqtgNgY/yr1ixxEmrzH+U+
+ aanQv7fUdNP/E+SGmnWW6LWqTclB74yuObFd1I9DgrsD7MjRNwT4fuTS7
+ NRRsJ3VziO6yRtVZRomymhHjyb7qT9ObQlQW3dl3xR4j+hfkG3tmYf422 Q==;
+X-CSE-ConnectionGUID: JZImbFX3QQCFUwFxY9mgfw==
+X-CSE-MsgGUID: DRC3lULMTJisNdh3Tz7bBQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="64309987"
+X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; d="scan'208";a="64309987"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2025 09:19:56 -0800
-X-CSE-ConnectionGUID: WhLv9/6HTR6MLqzNV2K7nQ==
-X-CSE-MsgGUID: cXg6/kvnQzClUw+kb/VCKg==
+ 03 Nov 2025 09:20:00 -0800
+X-CSE-ConnectionGUID: /yoOmnw5RhyhfgYPJ6gE9A==
+X-CSE-MsgGUID: 01rPr1FYS4W0UsYpLyukkA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; d="scan'208";a="186606274"
+X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; d="scan'208";a="186606292"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [192.168.1.16])
  ([10.124.220.223])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2025 09:19:53 -0800
+ 03 Nov 2025 09:19:56 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Mon, 03 Nov 2025 14:17:57 -0300
-Subject: [PATCH v3 06/29] drm/i915/xe3p_lpd: Horizontal flip support for
- linear surfaces
+Date: Mon, 03 Nov 2025 14:17:58 -0300
+Subject: [PATCH v3 07/29] drm/i915/xe3p_lpd: Remove gamma,csc bottom color
+ checks
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251103-xe3p_lpd-basic-enabling-v3-6-00e87b510ae7@intel.com>
+Message-Id: <20251103-xe3p_lpd-basic-enabling-v3-7-00e87b510ae7@intel.com>
 References: <20251103-xe3p_lpd-basic-enabling-v3-0-00e87b510ae7@intel.com>
 In-Reply-To: <20251103-xe3p_lpd-basic-enabling-v3-0-00e87b510ae7@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
@@ -65,7 +65,8 @@ Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
  Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>, 
  Shekhar Chauhan <shekhar.chauhan@intel.com>, 
  Vinod Govindapillai <vinod.govindapillai@intel.com>, 
- Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
+ Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>, 
+ Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 X-Mailer: b4 0.15-dev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -84,30 +85,55 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
 
-Starting from Xe3p_LPD, linear surfaces also support horizontal flip.
+With Xe3p_LPD, the SKL_BOTTOM_COLOR_GAMMA_ENABLE and
+SKL_BOTTOM_COLOR_CSC_ENABLE bits are being removed. Thus, we need not
+set gamma_enable nor csc_enable in crtc_state.
 
-Bspec: 68904
+Note that GAMMA_MODE.POST_CSC_GAMMA_ENABLE and CSC_MODE.ICL_CSC_ENABLE
+are the documented alternatives for the bottom color bits being removed.
+But as these suggested bits are being checked in state checker as part
+of gamma_mode, csc_mode fields and as gamma_enable/csc_enable are not
+being used anywhere else functionally post ICL, we need not set these
+fields in crtc_state.
+
+Bspec: 69734
 Signed-off-by: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_color.c | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index ba1bf0bd4c55..bc55fafe9ce3 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -1748,7 +1748,8 @@ static int skl_plane_check_fb(const struct intel_crtc_state *crtc_state,
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+index 1e97020e7304..a217a67ceb43 100644
+--- a/drivers/gpu/drm/i915/display/intel_color.c
++++ b/drivers/gpu/drm/i915/display/intel_color.c
+@@ -1090,18 +1090,19 @@ static void skl_get_config(struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+-	u32 tmp;
  
- 	if (rotation & DRM_MODE_REFLECT_X &&
--	    fb->modifier == DRM_FORMAT_MOD_LINEAR) {
-+	    fb->modifier == DRM_FORMAT_MOD_LINEAR &&
-+	    DISPLAY_VER(display) < 35) {
- 		drm_dbg_kms(display->drm,
- 			    "[PLANE:%d:%s] horizontal flip is not supported with linear surface formats\n",
- 			    plane->base.base.id, plane->base.name);
+ 	crtc_state->gamma_mode = hsw_read_gamma_mode(crtc);
+ 	crtc_state->csc_mode = ilk_read_csc_mode(crtc);
+ 
+-	tmp = intel_de_read(display, SKL_BOTTOM_COLOR(crtc->pipe));
++	if (DISPLAY_VER(display) < 35) {
++		u32 tmp = intel_de_read(display, SKL_BOTTOM_COLOR(crtc->pipe));
+ 
+-	if (tmp & SKL_BOTTOM_COLOR_GAMMA_ENABLE)
+-		crtc_state->gamma_enable = true;
++		if (tmp & SKL_BOTTOM_COLOR_GAMMA_ENABLE)
++			crtc_state->gamma_enable = true;
+ 
+-	if (tmp & SKL_BOTTOM_COLOR_CSC_ENABLE)
+-		crtc_state->csc_enable = true;
++		if (tmp & SKL_BOTTOM_COLOR_CSC_ENABLE)
++			crtc_state->csc_enable = true;
++	}
+ }
+ 
+ static void skl_color_commit_arm(struct intel_dsb *dsb,
 
 -- 
 2.51.0
