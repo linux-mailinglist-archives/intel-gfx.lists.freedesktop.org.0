@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DEE5C2D6FC
-	for <lists+intel-gfx@lfdr.de>; Mon, 03 Nov 2025 18:20:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17B7EC2D6FF
+	for <lists+intel-gfx@lfdr.de>; Mon, 03 Nov 2025 18:20:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07EC810E472;
-	Mon,  3 Nov 2025 17:20:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84E9110E475;
+	Mon,  3 Nov 2025 17:20:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NbtnzjbJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hIHqdDVV";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24D5610E474;
- Mon,  3 Nov 2025 17:20:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E528A10E473;
+ Mon,  3 Nov 2025 17:20:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762190446; x=1793726446;
+ t=1762190450; x=1793726450;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=TH9PcFygxBXNCHqrOlMNn4rQPynBMcTX6I1xasGylC0=;
- b=NbtnzjbJly7S0AHOqni/8oD0qEMziT2yLWMtZ1xAR/9vQwlB2B1bVO37
- zjomiWYnq3G/zEmL6//+xzzErqHwI2CJYQUAtBjNDYnJYNqSwlVNy126q
- PDKLywIZ2AXUTBjCyUDxvB5zkWdi0aqF5nOoOlgpnQM8VuzO3RFrOVMyI
- fy/RFvGRrQTgpz1wmL0k/FR8RZbOnO+dmE+FFqKcG7tosCr8lhjXNTnTn
- 7EFNpzgZZIy6GR7caeo+Z+Prd3jCc9M7m+uDKlwGfuNyvsaJxX2ta9qVl
- mvwOpnHUali82HCoQo4En1IU+1eRwMNZpk+J1hMkziWjQFQ5VyifmPArg w==;
-X-CSE-ConnectionGUID: 2gT86w9pRpW9HwdXR4LDrg==
-X-CSE-MsgGUID: cdSCZ3deQXKR5eyNf0eHOQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="64310102"
-X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; d="scan'208";a="64310102"
+ bh=gBSLN1M8qsiHIBHuhIqDs04lGg9AVi2bFvJIGZQPXaU=;
+ b=hIHqdDVVXzRj0utoRCoFdYqk+XFS12ydUXyQNPBWpvCUXZij58TGw91+
+ 2YYx4IFmTVJ1rKPU/17Def5/v8Tl9jZHQakh32ZzNUcBzhdWjucNpB6x8
+ tJkM1siTGvLsThenURvlWllD8P+1C9yEgy29VJF4QA/GvWANy5r4xPuA2
+ OpdW6+I9ULflsjKoM9V6VzdKYnHWjddQ6VgVHsBDvf3hrF6HOtJFYmnh/
+ etWRltFenvYDZdMb5rE7kkG7NNL1dMkefnGOXqcr2zHsICccifi/iKddl
+ EKDDanpOCCk7IafiaQuVkAafXQSx+qgLEvaWZkY6FJ4C7a8Yl2DQeTuMl g==;
+X-CSE-ConnectionGUID: k6bqGD1aQ7GtJNHtL5qEhQ==
+X-CSE-MsgGUID: R4Na6w/RSkKhf3J2On9ZYw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="64310121"
+X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; d="scan'208";a="64310121"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2025 09:20:46 -0800
-X-CSE-ConnectionGUID: svg1CLYDSaqjrrkugIbKJQ==
-X-CSE-MsgGUID: 742rUja9QOiKszRpyyRWYw==
+ 03 Nov 2025 09:20:50 -0800
+X-CSE-ConnectionGUID: qnsfzDTnSaWMET3tfMmxlA==
+X-CSE-MsgGUID: JO4snjYaRXCdc4aTDS3iPA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; d="scan'208";a="186606590"
+X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; d="scan'208";a="186606597"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [192.168.1.16])
  ([10.124.220.223])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2025 09:20:42 -0800
+ 03 Nov 2025 09:20:46 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Mon, 03 Nov 2025 14:18:10 -0300
-Subject: [PATCH v3 19/29] drm/i915/wm: Do not make latency values monotonic
- on Xe3 onward
+Date: Mon, 03 Nov 2025 14:18:11 -0300
+Subject: [PATCH v3 20/29] drm/i915/xe3p_lpd: Always apply WaWmMemoryReadLatency
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20251103-xe3p_lpd-basic-enabling-v3-19-00e87b510ae7@intel.com>
+Message-Id: <20251103-xe3p_lpd-basic-enabling-v3-20-00e87b510ae7@intel.com>
 References: <20251103-xe3p_lpd-basic-enabling-v3-0-00e87b510ae7@intel.com>
 In-Reply-To: <20251103-xe3p_lpd-basic-enabling-v3-0-00e87b510ae7@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
@@ -82,63 +81,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The Windows driver is rejecting non-monotonic ranges latency values for
-Xe3.  Let's make sure that we do not call make_wm_latency_monotonic()
-for Xe3 and beyond.
+When reading memory latencies for watermark calculations, previous
+display releases instructed to apply an adjustment of adding a certain
+value (e.g. 6us) to all levels when the level 0's memory latency read
+from hardware was zero.
 
-Also, because of that, let's add a check at the end of
-adjust_wm_latency() to ensure we raise a warning if the final list of
-latency values is not monotonic.
+For Xe3p_LPD, the instruction is to always use 6us for level 0 and to
+add that value to the other levels.  Add the necessary code in
+sanitize_wm_latency() so that WaWmMemoryReadLatency is always applied
+for Xe3p_LPD and beyond.
 
+v2:
+  - Rebased after addition of prep patch "drm/i915/wm: Reorder
+    adjust_wm_latency() for Xe3_LPD" (dropped in v3).
+v3:
+  - Back to the simpler approach of doing the 'wm[0] = 0' step without
+    modifying the rest of the code, and that inside
+    sanitize_wm_latency(). (Matt Roper, Ville)
+
+Bspec: 68986, 69126
+Cc: Matt Atwood <matthew.s.atwood@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
 Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_watermark.c | 17 ++++++++++++++++-
- 1 file changed, 16 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index d20c88ebe919..e13324af7afb 100644
+index e13324af7afb..ed55fe84e930 100644
 --- a/drivers/gpu/drm/i915/display/skl_watermark.c
 +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -3211,6 +3211,18 @@ static void make_wm_latency_monotonic(struct intel_display *display)
- 	}
- }
+@@ -3184,6 +3184,13 @@ static void sanitize_wm_latency(struct intel_display *display)
+ 	u16 *wm = display->wm.skl_latency;
+ 	int level, num_levels = display->wm.num_levels;
  
-+static bool is_wm_latency_monotonic(struct intel_display *display)
-+{
-+	u16 *wm = display->wm.skl_latency;
-+	int level, num_levels = display->wm.num_levels;
++	/*
++	 * Xe3p and beyond should ignore level 0's reported latency and
++	 * always apply WaWmMemoryReadLatency logic.
++	 */
++	if (DISPLAY_VER(display) >= 35)
++		wm[0] = 0;
 +
-+	for (level = 1; level < num_levels; level++)
-+		if (wm[level] < wm[level - 1])
-+			return false;
-+
-+	return true;
-+}
-+
- static void
- adjust_wm_latency(struct intel_display *display)
- {
-@@ -3221,7 +3233,8 @@ adjust_wm_latency(struct intel_display *display)
- 
- 	sanitize_wm_latency(display);
- 
--	make_wm_latency_monotonic(display);
-+	if (DISPLAY_VER(display) < 30)
-+		make_wm_latency_monotonic(display);
- 
  	/*
- 	 * WaWmMemoryReadLatency
-@@ -3241,6 +3254,8 @@ adjust_wm_latency(struct intel_display *display)
- 	 */
- 	if (need_16gb_dimm_wa(display))
- 		increase_wm_latency(display, 1);
-+
-+	drm_WARN_ON(display->drm, !is_wm_latency_monotonic(display));
- }
- 
- static void mtl_read_wm_latency(struct intel_display *display)
+ 	 * If a level n (n > 1) has a 0us latency, all levels m (m >= n)
+ 	 * need to be disabled. We make sure to sanitize the values out
 
 -- 
 2.51.0
