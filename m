@@ -2,68 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 199E3C2BCBF
-	for <lists+intel-gfx@lfdr.de>; Mon, 03 Nov 2025 13:46:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C63DFC2BCA9
+	for <lists+intel-gfx@lfdr.de>; Mon, 03 Nov 2025 13:46:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58FB010E3CA;
-	Mon,  3 Nov 2025 12:46:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C42C10E3E5;
+	Mon,  3 Nov 2025 12:46:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="mPHhFvBj";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="WjHqLbTe";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
- [209.85.128.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1114F10E39D
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Nov 2025 09:53:51 +0000 (UTC)
-Received: by mail-wm1-f43.google.com with SMTP id
- 5b1f17b1804b1-470ff2f6e56so80855e9.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 03 Nov 2025 01:53:50 -0800 (PST)
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
+ [209.85.128.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C58F10E1B0
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Nov 2025 09:55:41 +0000 (UTC)
+Received: by mail-wm1-f53.google.com with SMTP id
+ 5b1f17b1804b1-47105bbb8d9so71985e9.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 03 Nov 2025 01:55:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1762163629; x=1762768429;
+ d=google.com; s=20230601; t=1762163740; x=1762768540;
  darn=lists.freedesktop.org; 
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=D423dPTmNpGJKcSjJTsDfI/X/hTMvomXahsqpyIMTdY=;
- b=mPHhFvBj4SjDaRE1K19UZypM19UJYo7FvpcOukHCABGzfecwECiNv5PpzJdLZfgnrw
- 1gj9aT688EZZRPVVmPK5yixWCviMBcw+E0OqQa/PRTpfCRJXXUjFTIT7n9RWu4QW8ssX
- O4CczpNkLfCK9Ha528+bVqEccsKsQ6U6Dk8w9efG7NtGjfx0d5SY/JYnkgvWs0Dy1cL7
- ck5Ml/qh25niKDb1GPSKUEbN20y2qW3vfmy7lsGU09MmFbEZTqZLvZ10irbEMb+YqVFK
- 6oC+BAKQFOIkozEJbDqh3pSTgdzwXFuhm4X3FF0J8PTPvuGFWjjtq9G8vVHZQEs1rQqO
- dWCQ==
+ bh=/iKwbtWviZdAY+4F++DJl0rWWY/RQA9LSGiuI2/hl/A=;
+ b=WjHqLbTeaihn0zyC2YkqBlvPkzyIXcI3WyrujAMOoihlnHLdqx6bmKOk7maHnzRdhz
+ L/8tGP+MWDxdp9uasMfJfpQji3XzEGwO90JOfQfZvCH3Q16lV7nqMzBEPYdheSemkOvw
+ /cW1urRZ1C+RHKyUYugIBWikLF04OKsypSE1F4qydXE2xORyuTv72KSOPcAkhweYg2rE
+ 8EjPRFQkdIio2eUdHBNJ8OaD7j42HeZxL3oennFo6FUy4GyGV0jM/7+bSHTddBYvGVCL
+ zOPPg2DTEFMLOxfJX/lxYY4aAB56UA0ecqm+7Kv/yu8nnu+FlQxioLNSgro6dYrT/Tsf
+ mjmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1762163629; x=1762768429;
+ d=1e100.net; s=20230601; t=1762163740; x=1762768540;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=D423dPTmNpGJKcSjJTsDfI/X/hTMvomXahsqpyIMTdY=;
- b=HACcFwf0xdCe7xEHEyVdjxQUzzlsroLnHWsIVt0tYZPSVlW3GlQqhRdIWclLZtBYIJ
- 7b/v2Yk9Iyk9yCGKamgZINWm+l1NHTRa8JLoPmT3qGxdwOM1bt03pUPKQHdhY9RjAi9M
- TwEYb7Gk6ECUeFbumKRPsofcQhMycEtfwHp0Drcm7NRbaiXUvdFl8aknzi1xyxvb01iC
- 5BA7YgWUl7bQ9EftNSNwDqKSBUvBvaLiqcn7iGqJx8mNXRwd52Szm6PYNkvehNosbTEJ
- n/HbSpUq6BRGhysqaLpnQxFP0ngJIYOtYMgd13sxCBzVglrtLXLQw8pavXu1nZk6OJeW
- 46SQ==
+ bh=/iKwbtWviZdAY+4F++DJl0rWWY/RQA9LSGiuI2/hl/A=;
+ b=Bh8gSIyE9RIFoaikkIxCyvGrP3yldXpi7sxgEN5GZAmFNeKAcgSNlgKA7O7IdHDB/c
+ YFOGkvLcEauO/fIiyd9Tt/MrqT38tvzPmZHhPUVYS9gRtUSxQ1z42axH9qM3uDWwRT0K
+ yasW1NPk1ITMB+pddCLTYK0EWfgNLRWu4gkrQd6PjAMA6awhZmi2N4FDR8bt9YKleKDF
+ 57Pbv8Ey3vNksMM4v8JZb6apAW2FXWEPJyQi4307vvOzG0XUlcF3x58uXbathzgm4EOX
+ qavL9a+zDfTZwB0tNDEXOM+pAaAEBpIs53kvn6VkCQEIYzWGumqSM26rltzmfq1bYfmi
+ I8EQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWEGkCnT/aG2XCisuKSoQS/sKAGL1YvW/dvLBrdV754z0Gf0AiQZbeZydR+slPinjm8y0AYtcorNMk=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz+Oxh2FMeKmKQrGPs7sC23Dk/ABeJj8AAFah0TgvTTK350Fuix
- Vgns4RCcwXEM5Qnjs0s60IujU/oTMw9TIobAU0pU7Y+1U1ZZjGXMdYn3hyVeMwNw8g==
-X-Gm-Gg: ASbGncv4nfVWO99jZcat7niwW0AE2ENM8GbccZXu9EY062iq9cu7bab204tZ6re9/va
- IEMVB96YmqbrcwZvIljVvwm1dvjbOFwjYc6luUhi94JG3DNzUya/E6Z9qwlZashfnYtLvKLExRS
- OK9Z1rxsirR07/wwnYc06XVrf3g0VBfuofG1e/yNJjfRLVUk6SWNAcRyMeblIcEsJBE+u/nZ2+D
- EWcSdgbnmv1wl2QXoL2AmcIEcism2pUheDHZ5Acj4EDqbpwG8dgdekSEX8+NhKMYXpC6svwngFR
- WNvrLE6M8nxUOuHOXLouBSsPAbe00Af962ApHmIwFGf9wUXCmbJ7BwAzctrv77Z/ONLGJvnW/5N
- FdSv1hNP5D1HHTtFYvYU9XXSbrKYCONg9fBigPR204uHOmHG+vof1bpDZ0sMNVKqv7ZWT+R6ll+
- XtBfyzx4D11REEHP9hOF5P4SxFIDn+GopNk9hez8bl0b3KJQ9+30LuH5JicrvV
-X-Google-Smtp-Source: AGHT+IGPSKpaT0Ddsg2x/WOeGEJojnpupEDLfdcNfDHxyjySRpAR+bkp9FY0Epu5UNDkS8vExhWcRA==
-X-Received: by 2002:a05:600c:8711:b0:45f:2940:d194 with SMTP id
- 5b1f17b1804b1-4773cdce892mr7221205e9.2.1762163629307; 
- Mon, 03 Nov 2025 01:53:49 -0800 (PST)
+ AJvYcCUJjZV32gn5YvwUcHPNvxqO4SYhhGENfOse2bzXE3CZfWcrh71xAhRcuZGjSI5Fy2mQKxB0O847zgY=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw8NG9lfkHIaz41Zg7CRBLGKOLP2nqHPiW0bTjfLGKxp1vXtkpW
+ 03JD/I9riScOcwzBjcDZDLPmWcObVLfLvDEsSnp2td/WEaVjLEHYxb1ajVtRLGiZN2ve7jdhN2v
+ UF672JE7M
+X-Gm-Gg: ASbGncvATxQfSY732IUkNs6CU3GR2pH57eD4VtKfSmBaAuhUdpMVYNwZe/pCWR1NX4s
+ yj2g10er22ywflEEzg/K6PFePC4AqF7kLmy95Qava503o2XP5wd7ExpA2ydnCBag5NzDaUZhZW1
+ +z5c8DIPpmvrmjakvkfuUbQdg2J5ZaSiwS0YR5GPK7w4WRNqS2QSc5hBDV9kMfw5DOhH7Rr6hsI
+ oLoILMdCyZxi5lef9KKpRCf3wkzY0ffaXceNSoCfq9fxgRoza4T/o83c9KXSZJzMVIUHTFhQNLP
+ JFwqEBRSjEEQmQjS0u6lxGw1mfTkfSpb6Dn4lO/0IpngvkA81IdVzTVfhy51zOYNiALIlR0qEzI
+ zZPHSAXHnbFYPEBaOgwryKvJxfri58lXqk0BhR9iAzRrPCYFIhAy4u2GC0Rh3gfZHzE+lrs2jh7
+ VYCerfi1UQM8Wf/FdsXcpljgcwrdcYc6axlHh3RxlQg8f6xIvZlw==
+X-Google-Smtp-Source: AGHT+IHAx+AWORE9paLXTzRW7mKzqe0hb2wtQ9DF+W6v23M9Vo/fGIuffOpRO4zhYPoMBhdyXFmsSw==
+X-Received: by 2002:a05:600c:8a0d:20b0:477:255c:bea8 with SMTP id
+ 5b1f17b1804b1-4773da9baeemr5918155e9.7.1762163740369; 
+ Mon, 03 Nov 2025 01:55:40 -0800 (PST)
 Received: from google.com (54.140.140.34.bc.googleusercontent.com.
  [34.140.140.54]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4773c374f84sm144508145e9.0.2025.11.03.01.53.48
+ ffacd0b85a97d-429c13ebfe8sm19975798f8f.35.2025.11.03.01.55.39
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 03 Nov 2025 01:53:48 -0800 (PST)
-Date: Mon, 3 Nov 2025 09:53:45 +0000
+ Mon, 03 Nov 2025 01:55:39 -0800 (PST)
+Date: Mon, 3 Nov 2025 09:55:36 +0000
 From: Mostafa Saleh <smostafa@google.com>
 To: Jason Gunthorpe <jgg@nvidia.com>
 Cc: Alexander Gordeev <agordeev@linux.ibm.com>,
@@ -93,14 +94,14 @@ Cc: Alexander Gordeev <agordeev@linux.ibm.com>,
  virtualization@lists.linux.dev, Vineeth Vijayan <vneethv@linux.ibm.com>,
  Yishai Hadas <yishaih@nvidia.com>, Zhenyu Wang <zhenyuw.linux@gmail.com>,
  Zhi Wang <zhi.wang.linux@gmail.com>, patches@lists.linux.dev
-Subject: Re: [PATCH 09/22] vfio/platform: Provide a get_region_info op
-Message-ID: <aQh7qbe_lcNysroo@google.com>
+Subject: Re: [PATCH 14/22] vfio: Require drivers to implement get_region_info
+Message-ID: <aQh8GG15d_-Ge2Xx@google.com>
 References: <0-v1-679a6fa27d31+209-vfio_get_region_info_op_jgg@nvidia.com>
- <9-v1-679a6fa27d31+209-vfio_get_region_info_op_jgg@nvidia.com>
+ <14-v1-679a6fa27d31+209-vfio_get_region_info_op_jgg@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <9-v1-679a6fa27d31+209-vfio_get_region_info_op_jgg@nvidia.com>
+In-Reply-To: <14-v1-679a6fa27d31+209-vfio_get_region_info_op_jgg@nvidia.com>
 X-Mailman-Approved-At: Mon, 03 Nov 2025 12:46:06 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -117,9 +118,8 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 23, 2025 at 08:09:23PM -0300, Jason Gunthorpe wrote:
-> Move it out of vfio_platform_ioctl() and re-indent it. Add it to all
-> platform drivers.
+On Thu, Oct 23, 2025 at 08:09:28PM -0300, Jason Gunthorpe wrote:
+> Remove the fallback through the ioctl callback, no drivers use this now.
 > 
 > Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
 
@@ -129,117 +129,31 @@ Thanks,
 Mostafa
 
 > ---
->  drivers/vfio/platform/vfio_amba.c             |  1 +
->  drivers/vfio/platform/vfio_platform.c         |  1 +
->  drivers/vfio/platform/vfio_platform_common.c  | 50 +++++++++++--------
->  drivers/vfio/platform/vfio_platform_private.h |  2 +
->  4 files changed, 32 insertions(+), 22 deletions(-)
+>  drivers/vfio/vfio_main.c | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/vfio/platform/vfio_amba.c b/drivers/vfio/platform/vfio_amba.c
-> index 9f5c527baa8a36..d600deaf23b6d7 100644
-> --- a/drivers/vfio/platform/vfio_amba.c
-> +++ b/drivers/vfio/platform/vfio_amba.c
-> @@ -115,6 +115,7 @@ static const struct vfio_device_ops vfio_amba_ops = {
->  	.open_device	= vfio_platform_open_device,
->  	.close_device	= vfio_platform_close_device,
->  	.ioctl		= vfio_platform_ioctl,
-> +	.get_region_info = vfio_platform_ioctl_get_region_info,
->  	.read		= vfio_platform_read,
->  	.write		= vfio_platform_write,
->  	.mmap		= vfio_platform_mmap,
-> diff --git a/drivers/vfio/platform/vfio_platform.c b/drivers/vfio/platform/vfio_platform.c
-> index 512533501eb7f3..0e85c914b65105 100644
-> --- a/drivers/vfio/platform/vfio_platform.c
-> +++ b/drivers/vfio/platform/vfio_platform.c
-> @@ -101,6 +101,7 @@ static const struct vfio_device_ops vfio_platform_ops = {
->  	.open_device	= vfio_platform_open_device,
->  	.close_device	= vfio_platform_close_device,
->  	.ioctl		= vfio_platform_ioctl,
-> +	.get_region_info = vfio_platform_ioctl_get_region_info,
->  	.read		= vfio_platform_read,
->  	.write		= vfio_platform_write,
->  	.mmap		= vfio_platform_mmap,
-> diff --git a/drivers/vfio/platform/vfio_platform_common.c b/drivers/vfio/platform/vfio_platform_common.c
-> index 3bf1043cd7957c..3ebd50fb78fbb7 100644
-> --- a/drivers/vfio/platform/vfio_platform_common.c
-> +++ b/drivers/vfio/platform/vfio_platform_common.c
-> @@ -272,6 +272,34 @@ int vfio_platform_open_device(struct vfio_device *core_vdev)
->  }
->  EXPORT_SYMBOL_GPL(vfio_platform_open_device);
+> diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
+> index a390163ce706c4..f056e82ba35075 100644
+> --- a/drivers/vfio/vfio_main.c
+> +++ b/drivers/vfio/vfio_main.c
+> @@ -1297,13 +1297,13 @@ static long vfio_device_fops_unl_ioctl(struct file *filep,
+>  		break;
 >  
-> +int vfio_platform_ioctl_get_region_info(struct vfio_device *core_vdev,
-> +					struct vfio_region_info __user *arg)
-> +{
-> +	struct vfio_platform_device *vdev =
-> +		container_of(core_vdev, struct vfio_platform_device, vdev);
-> +	struct vfio_region_info info;
-> +	unsigned long minsz;
-> +
-> +	minsz = offsetofend(struct vfio_region_info, offset);
-> +
-> +	if (copy_from_user(&info, arg, minsz))
-> +		return -EFAULT;
-> +
-> +	if (info.argsz < minsz)
-> +		return -EINVAL;
-> +
-> +	if (info.index >= vdev->num_regions)
-> +		return -EINVAL;
-> +
-> +	/* map offset to the physical address  */
-> +	info.offset = VFIO_PLATFORM_INDEX_TO_OFFSET(info.index);
-> +	info.size = vdev->regions[info.index].size;
-> +	info.flags = vdev->regions[info.index].flags;
-> +
-> +	return copy_to_user(arg, &info, minsz) ? -EFAULT : 0;
-> +}
-> +EXPORT_SYMBOL_GPL(vfio_platform_ioctl_get_region_info);
-> +
->  long vfio_platform_ioctl(struct vfio_device *core_vdev,
->  			 unsigned int cmd, unsigned long arg)
->  {
-> @@ -300,28 +328,6 @@ long vfio_platform_ioctl(struct vfio_device *core_vdev,
->  		return copy_to_user((void __user *)arg, &info, minsz) ?
->  			-EFAULT : 0;
+>  	case VFIO_DEVICE_GET_REGION_INFO:
+> -		if (!device->ops->get_region_info)
+> -			goto ioctl_fallback;
+> -		ret = device->ops->get_region_info(device, uptr);
+> +		if (unlikely(!device->ops->get_region_info))
+> +			ret = -EINVAL;
+> +		else
+> +			ret = device->ops->get_region_info(device, uptr);
+>  		break;
 >  
-> -	} else if (cmd == VFIO_DEVICE_GET_REGION_INFO) {
-> -		struct vfio_region_info info;
-> -
-> -		minsz = offsetofend(struct vfio_region_info, offset);
-> -
-> -		if (copy_from_user(&info, (void __user *)arg, minsz))
-> -			return -EFAULT;
-> -
-> -		if (info.argsz < minsz)
-> -			return -EINVAL;
-> -
-> -		if (info.index >= vdev->num_regions)
-> -			return -EINVAL;
-> -
-> -		/* map offset to the physical address  */
-> -		info.offset = VFIO_PLATFORM_INDEX_TO_OFFSET(info.index);
-> -		info.size = vdev->regions[info.index].size;
-> -		info.flags = vdev->regions[info.index].flags;
-> -
-> -		return copy_to_user((void __user *)arg, &info, minsz) ?
-> -			-EFAULT : 0;
-> -
->  	} else if (cmd == VFIO_DEVICE_GET_IRQ_INFO) {
->  		struct vfio_irq_info info;
->  
-> diff --git a/drivers/vfio/platform/vfio_platform_private.h b/drivers/vfio/platform/vfio_platform_private.h
-> index 8d8fab51684909..a6008320e77bae 100644
-> --- a/drivers/vfio/platform/vfio_platform_private.h
-> +++ b/drivers/vfio/platform/vfio_platform_private.h
-> @@ -85,6 +85,8 @@ int vfio_platform_open_device(struct vfio_device *core_vdev);
->  void vfio_platform_close_device(struct vfio_device *core_vdev);
->  long vfio_platform_ioctl(struct vfio_device *core_vdev,
->  			 unsigned int cmd, unsigned long arg);
-> +int vfio_platform_ioctl_get_region_info(struct vfio_device *core_vdev,
-> +					struct vfio_region_info __user *arg);
->  ssize_t vfio_platform_read(struct vfio_device *core_vdev,
->  			   char __user *buf, size_t count,
->  			   loff_t *ppos);
+>  	default:
+> -ioctl_fallback:
+>  		if (unlikely(!device->ops->ioctl))
+>  			ret = -EINVAL;
+>  		else
 > -- 
 > 2.43.0
 > 
