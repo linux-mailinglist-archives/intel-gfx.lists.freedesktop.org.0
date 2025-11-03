@@ -2,68 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 945DFC2BC6D
-	for <lists+intel-gfx@lfdr.de>; Mon, 03 Nov 2025 13:46:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6846BC2BC91
+	for <lists+intel-gfx@lfdr.de>; Mon, 03 Nov 2025 13:46:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B474810E3CC;
-	Mon,  3 Nov 2025 12:46:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA6CA10E3D9;
+	Mon,  3 Nov 2025 12:46:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="gM1OvX9T";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="HgRCYkKw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com
- [209.85.214.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E73AA10E359
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Nov 2025 06:06:18 +0000 (UTC)
-Received: by mail-pl1-f174.google.com with SMTP id
- d9443c01a7336-2959197b68eso184825ad.1
- for <intel-gfx@lists.freedesktop.org>; Sun, 02 Nov 2025 22:06:18 -0800 (PST)
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com
+ [209.85.214.180])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C50410E14E
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Nov 2025 06:21:48 +0000 (UTC)
+Received: by mail-pl1-f180.google.com with SMTP id
+ d9443c01a7336-295c64cb951so76675ad.0
+ for <intel-gfx@lists.freedesktop.org>; Sun, 02 Nov 2025 22:21:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1762149978; x=1762754778;
+ d=google.com; s=20230601; t=1762150907; x=1762755707;
  darn=lists.freedesktop.org; 
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=daEhgCusceEtpwe81ptEC+bKqGITwloFYe7hKEHFGD0=;
- b=gM1OvX9Ttw+flCMj0pZRLbRhdMPBKR/u1W4HPuifagCBIFO5RIQ5ZBcSA2sDXICxJW
- FR9KpVlYOftZMzX1RyDVITZn8gS3gAznV6kNdk2DXYn3QhjHv14pO7FxEWQWYJOFSHhm
- 3b83RGMI+TsOmaJNcbYN7jhZAY2Q5Ia3y+YhFGN5PigRQKhiHHqIUYzKDpCBLnFYAKOp
- VXnxWQLcmGCgkk0Xg75q016IXbqTBFRoGSfnRUBW/w4ofZ0ajeE+vVEJjxuDtwwE8+kI
- 4qQ+Fc/A3rhrOvjvaOcLFHTvsxhFdtjlxPugWVKvOU4JYAlGufoK1X6PSGWb7W3rQ6GF
- VP3Q==
+ bh=nWlZBJWMNR3o5R9SijDhT22MNLu42EpPET2zOzK998A=;
+ b=HgRCYkKwSXly4mS3QfKWV/5AJTSyDV311Tq8Hlj6nRVIB0QRt11mO2R2hC/mqfGYlh
+ vMr8pSEmIKBIrJ05puNCyrF8NVPDE1kQCgqSG4yFedlqQ/RM9+Ss9FiKotD0y518au9z
+ hWGmuy0/+ua9osj/aSivkN8Nukz+5dcSLsV7gdc2b/dXkKCycvyxQFlzOuShLOFK1nYK
+ q6sL7KmUOHYAN6H2BvpV2xUeAD9Sx2eOIaroyXxxOFNvUPPHCY+f29KLsoiJtZirnX01
+ gG/HZNTEnIZL/rhhwJZxmayRklOuQgCaxa+aJfRIAhLECTol8RZgonCF1EZ7YmLFlQ4q
+ 9YRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1762149978; x=1762754778;
+ d=1e100.net; s=20230601; t=1762150907; x=1762755707;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=daEhgCusceEtpwe81ptEC+bKqGITwloFYe7hKEHFGD0=;
- b=gtlvNhLpm8Myiya1Qo2GWla0BcRA+21lHvBeQ4NOJKyMJttaNBO7tZu2REyArm28Yc
- zJlf/ObWV2198GRLRWr6tvlUznom1vIbCuMKY5WgbBdq0gimjZG1cGEUxkl+yhXJWM0w
- wz7qIwJxTDBL/WbY3kp/R5han7Eekrj8RqWp2lR2D+4JVNSYSdg5OQVicFpK+j0DGThO
- Hsa9bDfLhQJ5HZoSC+5YA5m3W59V+v/CJWboU3nR2ZpD6zgjYsEK+e7+xYtx4Zb2tWL6
- TWc8yiy/Mkau2fYlxRq1xioLy01+aABZCpQaAG9to++laq/egy59WFD9mBmQhVxS6Svn
- B6vA==
+ bh=nWlZBJWMNR3o5R9SijDhT22MNLu42EpPET2zOzK998A=;
+ b=I4IA2fTJr2xffh2HHCYr/TqI2V7kAy5lHRBykrDP0xWoD8LIl+8csR6nSpN3b8POqn
+ pEisJJYUZQAA1E/jMQxyQOs/V4lEo+wYrKajtWhxJ/UcRSo0MBOQthk02zpA/R6bWdQE
+ S9PQ+ucobJnhr7B38fIjvj8L5GcbThxYx1ElbvVfrKj5AztErrhGfTKFneNia5cQWZhf
+ /BdeFB8gBJLfBeZmXy8fpGJ1oR6gAq0LSOe36akMnhcRvka1sx4r8HMR5uItjYsmML4S
+ QFK/+xplN2z/ZE6zStGw/PmrfaCN3VxuXh+q6VeLUQMAboMUl92BWE9B/uPSfiE4An1/
+ GRLQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWFEGPyCttmI8yrZj4Z3addnJJSXH/cIvdqDte7s1O+jtMemBZGnsJXFg/EpWsz55ZvJQQvtSfUakk=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz0/RzJFw8qT1KOv53rCM/qiqUzC/yF3bbk99+gazlKAN3j/uPZ
- XqnQs0qdvUbOdaBBWhUq4QsVrQHM2ojXR9PNtBIgK9T4wwSFZvsDh1yXfn24ji/xIg==
-X-Gm-Gg: ASbGncsKglgT1PFFnmwY6HigXQ3NwO585s8RNC6bUn7gYwwN71jKPeFxfa0qg7LMsR8
- bFWJ/m0EsKnA4P7xjIC81mOPLMAb3bN/BwVfWPizKDOTfj4OsGASbeaarN6FX8SOQaOrxrpl1Jo
- rWuHBLyHi8Sviz1/jgwYzBmw3IqN1oM6eTq8F9bDJYcmkCkLOQPRd2I1EIsQOFgaO3JJUyUxZks
- jRC06mZD0dLgD4EUsACwYNfXP15mhgKBF0USnWv8xUCoZeY2mFvJqxeEWXCY6Us79Nq3H8+quQZ
- qJRcikmXr9hsQo+9gGPOEpsGVFg/aGZAKbug3wbERRXeh/P61kG5jVuzRqBIAwuZOCjcytPthrP
- tRkeyc3KRHLYahTGy+HatNpi+nqpFq7WUPT5V9EpipIUdoT8nS4WwP3ys1Ok3SJgUcO6P45Q2WO
- lt0F7g4KmwE6fxAt1K8HI7ZRrzZdyIzoSODMc9qw==
-X-Google-Smtp-Source: AGHT+IEluRFzLqUGHbmfa87kzbGcxD4xtCtUDt3Aesdz6fP5oqFYMacpJF/LHmpqMlg6+1lRT50KTA==
-X-Received: by 2002:a17:902:ea08:b0:294:faad:8cb4 with SMTP id
- d9443c01a7336-29554b85496mr5533065ad.8.1762149977826; 
- Sun, 02 Nov 2025 22:06:17 -0800 (PST)
+ AJvYcCXCki5NalBqJ9RMnnsUB+lUNfPQUnvMw3Pu1dBK+MAFWTJCewKT3lv3zHu1pe0KVl9LQycFxEmSONA=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyFcHmpTc0qoVWOXOWm6R58eHRvRkFp/q9vt+KeRVm/aBzo/loy
+ DfACRo1hGxgh3mutFGb2ay9DKwwGRM4Wcgh2RieMKOnSiUSxwQkPywqsrNVgScqAKg==
+X-Gm-Gg: ASbGnct8rl75iemoszg7rgpuwJ/uztVpHqUFXCUO/ct7BUGofGLJr1HEkJ6kCE5l4cz
+ S9ZuLu1FNi2SfF3LS2ONJIr62e8d0a443A/ubBTsvheK1xxuCULEmjAX1vsx1fduwYs30erLimh
+ mlXTTDjlowm9TBVgwNwcyZvAnJjkCF6Ll8AEpjH1MlnFQT3DkAYRU+jIS6SUE+2vU/mQUuvxN2p
+ BASIF4SmhiNRs84xXH9keYInbNF2+v+fqr7V4MHhkagoUBkWix0on0tCg7k8bKDd7Z2LND3p0hD
+ ULwmL5xf+kXb3ZaJaYAaeFvmuxhqKZBGySAkwUQpw/NlxGHQ56n+Y4dw2dhBy3FhcAt+uLE2Tm8
+ w8pTCVaaP2GfgRCdc/tas8zQ4JmL7jAsJwv9PZCjlOt1lFkpOexMZMqGt04ZejjVOXTKVpNTVPD
+ BuqHDtdQqqC7VcPFr3nbiDeOjCu8IoZUApTfmnbQ==
+X-Google-Smtp-Source: AGHT+IGruOwIqSOkw/c0UIqbUAnBCrsgVRvu/C4si6qjv3qWziT7RTJr58fgj5zqaOcpkLKvHmo5tQ==
+X-Received: by 2002:a17:902:e891:b0:290:dd42:eb5f with SMTP id
+ d9443c01a7336-29554be37d6mr5455555ad.12.1762150907195; 
+ Sun, 02 Nov 2025 22:21:47 -0800 (PST)
 Received: from google.com (164.210.142.34.bc.googleusercontent.com.
  [34.142.210.164]) by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-7a9bad978c4sm5062872b3a.13.2025.11.02.22.06.10
+ d2e1a72fcca58-7a7db67cbdfsm9912363b3a.49.2025.11.02.22.21.39
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 02 Nov 2025 22:06:17 -0800 (PST)
-Date: Mon, 3 Nov 2025 06:06:07 +0000
+ Sun, 02 Nov 2025 22:21:46 -0800 (PST)
+Date: Mon, 3 Nov 2025 06:21:36 +0000
 From: Pranjal Shrivastava <praan@google.com>
 To: Jason Gunthorpe <jgg@nvidia.com>
 Cc: Alexander Gordeev <agordeev@linux.ibm.com>,
@@ -93,14 +93,14 @@ Cc: Alexander Gordeev <agordeev@linux.ibm.com>,
  Vineeth Vijayan <vneethv@linux.ibm.com>, Yishai Hadas <yishaih@nvidia.com>,
  Zhenyu Wang <zhenyuw.linux@gmail.com>,
  Zhi Wang <zhi.wang.linux@gmail.com>, patches@lists.linux.dev
-Subject: Re: [PATCH 02/22] vfio/hisi: Convert to the get_region_info op
-Message-ID: <aQhGTwg4kpuP8pgF@google.com>
+Subject: Re: [PATCH 03/22] vfio/virtio: Convert to the get_region_info op
+Message-ID: <aQhJ8OZiVYe06hv_@google.com>
 References: <0-v1-679a6fa27d31+209-vfio_get_region_info_op_jgg@nvidia.com>
- <2-v1-679a6fa27d31+209-vfio_get_region_info_op_jgg@nvidia.com>
+ <3-v1-679a6fa27d31+209-vfio_get_region_info_op_jgg@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <2-v1-679a6fa27d31+209-vfio_get_region_info_op_jgg@nvidia.com>
+In-Reply-To: <3-v1-679a6fa27d31+209-vfio_get_region_info_op_jgg@nvidia.com>
 X-Mailman-Approved-At: Mon, 03 Nov 2025 12:46:06 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -117,105 +117,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 23, 2025 at 08:09:16PM -0300, Jason Gunthorpe wrote:
-> Change the function signature of hisi_acc_vfio_pci_ioctl()
-> and re-indent it.
+On Thu, Oct 23, 2025 at 08:09:17PM -0300, Jason Gunthorpe wrote:
+> Remove virtiovf_vfio_pci_core_ioctl() and change the signature of
+> virtiovf_pci_ioctl_get_region_info().
 > 
 > Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
 > ---
->  .../vfio/pci/hisilicon/hisi_acc_vfio_pci.c    | 57 +++++++++----------
->  1 file changed, 27 insertions(+), 30 deletions(-)
+>  drivers/vfio/pci/virtio/common.h    |  4 +---
+>  drivers/vfio/pci/virtio/legacy_io.c | 20 ++++----------------
+>  drivers/vfio/pci/virtio/main.c      |  3 ++-
+>  3 files changed, 7 insertions(+), 20 deletions(-)
 > 
-> diff --git a/drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c b/drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c
-> index fde33f54e99ec5..f06dcfcf09599f 100644
-> --- a/drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c
-> +++ b/drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c
-> @@ -1324,43 +1324,39 @@ static ssize_t hisi_acc_vfio_pci_read(struct vfio_device *core_vdev,
->  	return vfio_pci_core_read(core_vdev, buf, new_count, ppos);
->  }
->  
-> -static long hisi_acc_vfio_pci_ioctl(struct vfio_device *core_vdev, unsigned int cmd,
-> -				    unsigned long arg)
-> +static int hisi_acc_vfio_get_region(struct vfio_device *core_vdev,
-> +				    struct vfio_region_info __user *arg)
->  {
-> -	if (cmd == VFIO_DEVICE_GET_REGION_INFO) {
-> -		struct vfio_pci_core_device *vdev =
-> -			container_of(core_vdev, struct vfio_pci_core_device, vdev);
-> -		struct pci_dev *pdev = vdev->pdev;
-> -		struct vfio_region_info info;
-> -		unsigned long minsz;
-> +	struct vfio_pci_core_device *vdev =
-> +		container_of(core_vdev, struct vfio_pci_core_device, vdev);
-> +	struct pci_dev *pdev = vdev->pdev;
-> +	struct vfio_region_info info;
-> +	unsigned long minsz;
->  
-> -		minsz = offsetofend(struct vfio_region_info, offset);
-> +	minsz = offsetofend(struct vfio_region_info, offset);
->  
-> -		if (copy_from_user(&info, (void __user *)arg, minsz))
-> -			return -EFAULT;
-> +	if (copy_from_user(&info, arg, minsz))
-> +		return -EFAULT;
->  
-> -		if (info.argsz < minsz)
-> -			return -EINVAL;
-> +	if (info.argsz < minsz)
-> +		return -EINVAL;
->  
-> -		if (info.index == VFIO_PCI_BAR2_REGION_INDEX) {
-> -			info.offset = VFIO_PCI_INDEX_TO_OFFSET(info.index);
-> +	if (info.index != VFIO_PCI_BAR2_REGION_INDEX)
-> +		return vfio_pci_ioctl_get_region_info(core_vdev, arg);
->  
+> diff --git a/drivers/vfio/pci/virtio/common.h b/drivers/vfio/pci/virtio/common.h
+> index c7d7e27af386e9..a10f2d92cb6238 100644
+> --- a/drivers/vfio/pci/virtio/common.h
+> +++ b/drivers/vfio/pci/virtio/common.h
+> @@ -109,10 +109,8 @@ void virtiovf_migration_reset_done(struct pci_dev *pdev);
+>
 
-I'm curious to learn the reason for flipping polarity here? (apart from
-readability).
-
-> -			/*
-> -			 * ACC VF dev BAR2 region consists of both functional
-> -			 * register space and migration control register space.
-> -			 * Report only the functional region to Guest.
-> -			 */
-> -			info.size = pci_resource_len(pdev, info.index) / 2;
-> +	info.offset = VFIO_PCI_INDEX_TO_OFFSET(info.index);
->  
-> -			info.flags = VFIO_REGION_INFO_FLAG_READ |
-> -					VFIO_REGION_INFO_FLAG_WRITE |
-> -					VFIO_REGION_INFO_FLAG_MMAP;
-> +	/*
-> +	 * ACC VF dev BAR2 region consists of both functional
-> +	 * register space and migration control register space.
-> +	 * Report only the functional region to Guest.
-> +	 */
-> +	info.size = pci_resource_len(pdev, info.index) / 2;
->  
-> -			return copy_to_user((void __user *)arg, &info, minsz) ?
-> -					    -EFAULT : 0;
-> -		}
-> -	}
-> -	return vfio_pci_core_ioctl(core_vdev, cmd, arg);
-> +	info.flags = VFIO_REGION_INFO_FLAG_READ | VFIO_REGION_INFO_FLAG_WRITE |
-> +		     VFIO_REGION_INFO_FLAG_MMAP;
-> +
-> +	return copy_to_user(arg, &info, minsz) ? -EFAULT : 0;
->  }
->  
->  static int hisi_acc_vf_debug_check(struct seq_file *seq, struct vfio_device *vdev)
-> @@ -1557,7 +1553,8 @@ static const struct vfio_device_ops hisi_acc_vfio_pci_migrn_ops = {
->  	.release = vfio_pci_core_release_dev,
->  	.open_device = hisi_acc_vfio_pci_open_device,
->  	.close_device = hisi_acc_vfio_pci_close_device,
-> -	.ioctl = hisi_acc_vfio_pci_ioctl,
-> +	.ioctl = vfio_pci_core_ioctl,
-> +	.get_region_info = hisi_acc_vfio_get_region,
->  	.device_feature = vfio_pci_core_ioctl_feature,
->  	.read = hisi_acc_vfio_pci_read,
->  	.write = hisi_acc_vfio_pci_write,
-
-The change seems to maintain original functionality and LGTM.
-Acked-by: Pranjal Shrivastava <praan@google.com>
+Reviewed-by: Pranjal Shrivastava <praan@google.com>
 
 Thanks,
 Praan
