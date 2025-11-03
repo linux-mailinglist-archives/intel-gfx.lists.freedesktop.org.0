@@ -2,107 +2,89 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5298C2BC94
-	for <lists+intel-gfx@lfdr.de>; Mon, 03 Nov 2025 13:46:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37B44C2C0D7
+	for <lists+intel-gfx@lfdr.de>; Mon, 03 Nov 2025 14:24:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCE9010E3DA;
-	Mon,  3 Nov 2025 12:46:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA22110E3E7;
+	Mon,  3 Nov 2025 13:24:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="CQfx10Id";
+	dkim=pass (2048-bit key; unprotected) header.d=oracle.com header.i=@oracle.com header.b="iFYWqZGh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com
- [209.85.214.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE41D10E1C9
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Nov 2025 11:03:47 +0000 (UTC)
-Received: by mail-pl1-f180.google.com with SMTP id
- d9443c01a7336-295c64cb951so131785ad.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 03 Nov 2025 03:03:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1762167827; x=1762772627;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=JG+etGO4DCF1PIFwJUo34O2NHRXv7sGubVRA4h3tffk=;
- b=CQfx10IdZbSczTZDGaGrJzKY74WzA34tBAFmMzDnDfTY82fOYZ28bx2595bra3rCvC
- QZCgfLbYSJElnEHcJdq9xFG1ulYFBmrDUBLaOnTYWRPR861sWclU+9bGrOSEOZs7CS2w
- ia7Epjq03UaCifpxaKAkmed65wa3yxblaL4oU1x/ic3Ae5MFwO1G/qTDap1VUGG3BFBb
- kl9v08pqreXLndxn2AxpUJDiYVNhs+QxI5nPIi3NgDMGon1rxSHM9SEOCoSBgsAx9QMu
- Ewmiu4dAJXrR+CEZUZCOIjdBHi/4jW4saz4W+47n/IwNXuj2spC9yrEupHuNnoiAIzI2
- sXhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1762167827; x=1762772627;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=JG+etGO4DCF1PIFwJUo34O2NHRXv7sGubVRA4h3tffk=;
- b=qsh0ggt4MEqUBJrNVQDoy+idLy2hUjdqNFKoZjZtiq+PQOMiR+Rh7YF9arKHaSggS7
- wJxee5j/8xUjPsYw2LmvwooJrzZshVTqcfTDBJ39oh+s0gHa+NuWr2t3ruFmMO8cc7uC
- Wuj+DDCkLDBgBf9a78/f3dtmnYWxkgX0QwzLrIeCqgVvbrJ/6BQFvcmZjoZ8CAM9f6XO
- EqCQC6gNdxePRTurSe0ZslN6JQJtk3cj5wYHzq7om8JXnUe75xt3BPii6FdPCGLvwNjv
- Tt7Si1nVIiMnjBI4y6ehor/zGx3E3bfviC0Sia39QbEJ5Sjs/vEmWgDRqeWhwDNntl0p
- xDdQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUHuWgfvaZTh5FfgzYXFnb9wr2fsS4UATvDIM3HtJZ7TjIy+ESP8BCy7e0/8X77ow9qn8AtWaSesfM=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz6+RXXd1ExZ8o3NrKqByFqxax7Sq180gkr9QPKdUhIz/wxMDK6
- +xufOrQeSdmu2qixpxI53OdVnhBUKYIO84xqtVlGzLQUE1xO7muHrDlH9CeweWcmYA==
-X-Gm-Gg: ASbGncuNtW4m1BSN9gwFV8m8YrOjpzVsIE7FtW3//84Y/W4mMSNGig2qyvExY7aa8zJ
- IUhNfbHQSyu38FveH+iUeRXSEh5ytSPpmPY3tTztVKzJoe8tr/UY2hcMZhxHcFDkt2KEkb7oWBE
- d6P3iqn4ls738h9M7IORGWAD2Be8HoequtxUMMi3r+YQdg99gPny9exFpcPV14gcZjVouyIEXPk
- 83lJkolmOf/8TEPcSxugqRyQbImxU7fHQo1qEEueGnUZP1Shk2ScZAIN0mLRuJJSppGtCIEZxsI
- cDUrzUEYpXZNbA2xhTByV9j+z7HtR0tJM/dUNYICgg0XAiSCAv5NtFkZaUze2uenQRkfg6qq702
- W+WM4MzK7eWpuHqo+c7uPaDmLsbae0tSVFjmpnso2l05QR8TVEFnsVdUROS/D1jDP73Nl5kymbV
- y118q6CXsZovARoDGWlhleb05gKJ5PXqqDVAEWzQ==
-X-Google-Smtp-Source: AGHT+IGcDUbk6qqLdQjGL3Yxey3X8mTSWxpSXkjqaoDl6gxo10SeAyfD2HQnpWNy1nfGBwMDtJcUBw==
-X-Received: by 2002:a17:903:228c:b0:271:9873:80d9 with SMTP id
- d9443c01a7336-29556476bd0mr5742325ad.7.1762167826744; 
- Mon, 03 Nov 2025 03:03:46 -0800 (PST)
-Received: from google.com (164.210.142.34.bc.googleusercontent.com.
- [34.142.210.164]) by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-29537cccdecsm102934645ad.19.2025.11.03.03.03.39
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 03 Nov 2025 03:03:46 -0800 (PST)
-Date: Mon, 3 Nov 2025 11:03:36 +0000
-From: Pranjal Shrivastava <praan@google.com>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Cc: Alexander Gordeev <agordeev@linux.ibm.com>,
- David Airlie <airlied@gmail.com>,
- Alex Williamson <alex.williamson@redhat.com>,
- Ankit Agrawal <ankita@nvidia.com>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- Brett Creeley <brett.creeley@amd.com>,
- dri-devel@lists.freedesktop.org, Eric Auger <eric.auger@redhat.com>,
- Eric Farman <farman@linux.ibm.com>,
- Giovanni Cabiddu <giovanni.cabiddu@intel.com>,
- Vasily Gorbik <gor@linux.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>, intel-gfx@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Kevin Tian <kevin.tian@intel.com>, kvm@vger.kernel.org,
- Kirti Wankhede <kwankhede@nvidia.com>, linux-s390@vger.kernel.org,
- Longfang Liu <liulongfang@huawei.com>,
- Matthew Rosato <mjrosato@linux.ibm.com>,
- Nikhil Agarwal <nikhil.agarwal@amd.com>, Nipun Gupta <nipun.gupta@amd.com>,
- Peter Oberparleiter <oberpar@linux.ibm.com>,
- Halil Pasic <pasic@linux.ibm.com>, qat-linux@intel.com,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
- Shameer Kolothum <skolothumtho@nvidia.com>,
- Mostafa Saleh <smostafa@google.com>, Sven Schnelle <svens@linux.ibm.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, virtualization@lists.linux.dev,
- Vineeth Vijayan <vneethv@linux.ibm.com>, Yishai Hadas <yishaih@nvidia.com>,
- Zhenyu Wang <zhenyuw.linux@gmail.com>,
- Zhi Wang <zhi.wang.linux@gmail.com>, patches@lists.linux.dev
-Subject: Re: [PATCH 15/22] vfio: Add get_region_info_caps op
-Message-ID: <aQiMCKszFCvDDHhH@google.com>
-References: <0-v1-679a6fa27d31+209-vfio_get_region_info_op_jgg@nvidia.com>
- <15-v1-679a6fa27d31+209-vfio_get_region_info_op_jgg@nvidia.com>
- <aQiBGEgQ3vCpCvXM@google.com>
+Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com
+ [205.220.165.32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51FBB10E3E9;
+ Mon,  3 Nov 2025 13:24:11 +0000 (UTC)
+Received: from pps.filterd (m0246617.ppops.net [127.0.0.1])
+ by mx0b-00069f02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5A3CsDRk027983;
+ Mon, 3 Nov 2025 13:24:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
+ :content-transfer-encoding:date:from:message-id:mime-version
+ :subject:to; s=corp-2025-04-25; bh=A1z1GaA2ZWP2ElxKq43acmm31FDlp
+ 8pjuPHKdodN12Q=; b=iFYWqZGhfX/5S8A5fo4bZzrb6WX+yolY76RlLTH98Pp78
+ kqdiE7q0LL8N7dBa0HnB9lxWn9N1nC9KCHdx4HeCKlPWP+IYS56NUxuYJIg7OWPl
+ Wftvu0RcxmEjv+xuyoHEVdvlIRzlqfNtkatkmikx7Kgdaea32Q09XGyRvNsqOVIm
+ MMlj2uw2LmhqWoWjZagIs3umv7sPPb80EPKnfA+Ox9lVbQMBkxTSGKaOiQx28k3c
+ BDFLbK8vwhHXYWUs+VUOkVqS8z3LrnVyP3EyYMEYkUyo4w/THkQNyUWVnlG3BdyV
+ XpsSk+EFlB0BFgiaKPqoTUVl0098opnqD8elE3ROA==
+Received: from phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com
+ (phxpaimrmta03.appoci.oracle.com [138.1.37.129])
+ by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 4a6vtcg1tw-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Mon, 03 Nov 2025 13:24:07 +0000 (GMT)
+Received: from pps.filterd
+ (phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
+ by phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com (8.18.1.2/8.18.1.2)
+ with ESMTP id 5A3Bu7rP015654; Mon, 3 Nov 2025 13:24:07 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+ by phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTPS id
+ 4a58n7w1ge-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Mon, 03 Nov 2025 13:24:07 +0000
+Received: from phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com
+ (phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
+ by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 5A3DO61q004131;
+ Mon, 3 Nov 2025 13:24:06 GMT
+Received: from ca-dev110.us.oracle.com (ca-dev110.us.oracle.com
+ [10.129.136.45])
+ by phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTP id
+ 4a58n7w1fm-1; Mon, 03 Nov 2025 13:24:06 +0000
+From: Alok Tiwari <alok.a.tiwari@oracle.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, jani.nikula@linux.intel.com,
+ rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com,
+ tursulin@ursulin.net, airlied@gmail.com, simona@ffwll.ch
+Cc: alok.a.tiwarilinux@gmail.com, alok.a.tiwari@oracle.com
+Subject: [PATCH next] drm/i915/dmc: Fix extra bracket and wrong variable in
+ PIPEDMC error logs
+Date: Mon,  3 Nov 2025 05:23:31 -0800
+Message-ID: <20251103132337.762156-1-alok.a.tiwari@oracle.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aQiBGEgQ3vCpCvXM@google.com>
-X-Mailman-Approved-At: Mon, 03 Nov 2025 12:46:06 +0000
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-03_02,2025-11-03_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0
+ mlxlogscore=999 spamscore=0
+ adultscore=0 phishscore=0 malwarescore=0 bulkscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2510240000
+ definitions=main-2511030121
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTAzMDExNyBTYWx0ZWRfX5MOq8KD9Hb/g
+ c+LNvFJqjZsSDO7F7Xx3B3Jq7ve39mgAxIwhatgv4VL5Wzg/92hFX1dbiDGUnc4NbTu6XjgFqWD
+ opN5p09P5fdOdSSSEPKUudXg1KO4fJsGrT/T014xTnZiTVjzerZ5aVvvEyU/otGha0uGidhkm7v
+ 9/TnTcCWla35IsectGkFPf7tbQAYAC8ZtS5VfvDRQZIJgUG0tWwjkEqQnmraKDuR/PAVKDQKb52
+ ZYvu6SMONJ4YZYK4QLYlYVbMBQkmbVB+DLiMVK9NEoKOrQea+eWksyOjopdSuzlUnImeotfqAdn
+ sh/A0dqGHJcVvX20IdSgJTZF/xB0rHG6CKCn3cB28XKBmUvwMsGA1SycrFiAeGsD6KT9QL0bBLX
+ WydH5cuVrbGjY6kZzudGpdoRKoO0cQ==
+X-Authority-Analysis: v=2.4 cv=K6gv3iWI c=1 sm=1 tr=0 ts=6908acf7 b=1 cx=c_pps
+ a=WeWmnZmh0fydH62SvGsd2A==:117
+ a=WeWmnZmh0fydH62SvGsd2A==:17
+ a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=yPCof4ZbAAAA:8
+ a=qih3M7bnp2dTq5QDXH4A:9
+X-Proofpoint-ORIG-GUID: rAtryftTOSciMkoebWxwavOuBkbJ47pM
+X-Proofpoint-GUID: rAtryftTOSciMkoebWxwavOuBkbJ47pM
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -118,89 +100,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 03, 2025 at 10:16:56AM +0000, Pranjal Shrivastava wrote:
-> On Thu, Oct 23, 2025 at 08:09:29PM -0300, Jason Gunthorpe wrote:
-> > This op does the copy to/from user for the info and can return back
-> > a cap chain through a vfio_info_cap * result.
-> > 
-> > Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
-> > ---
-> >  drivers/vfio/vfio_main.c | 54 +++++++++++++++++++++++++++++++++++++---
-> >  include/linux/vfio.h     |  4 +++
-> >  2 files changed, 54 insertions(+), 4 deletions(-)
-> 
-> The newly added vfio_get_region_info seems to pull-in common boilerplate
-> code (like copy_from_user, arg size validation) into the core code,
-> removing redundancy across all other vfio drivers. LGTM.
+Fixes two issues in intel_pipedmc_irq_handler():
+- Removed an extra ']' in the PIPEDMC error and interrupt vector log.
+- Corrected the interrupt vector log to print int_vector instead of tmp,
+  as tmp will be zero in this case.
 
-I missed one thing in this patch (luckily caught it in patch 22):
+Signed-off-by: Alok Tiwari <alok.a.tiwari@oracle.com>
+---
+ drivers/gpu/drm/i915/display/intel_dmc.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-> diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
-> index f056e82ba35075..82e7d79b1f9fe2 100644
-> --- a/drivers/vfio/vfio_main.c
-> +++ b/drivers/vfio/vfio_main.c
-> @@ -1259,6 +1259,55 @@ static int vfio_ioctl_device_feature(struct vfio_device *device,
->  	}
->  }
->  
-> +static long vfio_get_region_info(struct vfio_device *device,
-> +				 struct vfio_region_info __user *arg)
-> +{
-> +	unsigned long minsz = offsetofend(struct vfio_region_info, offset);
-> +	struct vfio_region_info info = {};
-> +	int ret;
-> +
-> +	if (copy_from_user(&info, arg, minsz))
-> +		return -EFAULT;
-> +	if (info.argsz < minsz)
-> +		return -EINVAL;
-> +
-> +	if (device->ops->get_region_info_caps) {
-> +		struct vfio_info_cap caps = { .buf = NULL, .size = 0 };
-> +
-> +		ret = device->ops->get_region_info_caps(device, &info, &caps);
-> +		if (ret)
-> +			return ret;
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index 0bddb20a7c86..f47b57568a75 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -1712,14 +1712,14 @@ void intel_pipedmc_irq_handler(struct intel_display *display, enum pipe pipe)
+ 			drm_err_ratelimited(display->drm, "[CRTC:%d:%s] PIPEDMC GTT fault\n",
+ 					    crtc->base.base.id, crtc->base.name);
+ 		if (tmp & PIPEDMC_ERROR)
+-			drm_err(display->drm, "[CRTC:%d:%s]] PIPEDMC error\n",
++			drm_err(display->drm, "[CRTC:%d:%s] PIPEDMC error\n",
+ 				crtc->base.base.id, crtc->base.name);
+ 	}
+ 
+ 	int_vector = intel_de_read(display, PIPEDMC_STATUS(pipe)) & PIPEDMC_INT_VECTOR_MASK;
+ 	if (tmp == 0 && int_vector != 0)
+-		drm_err(display->drm, "[CRTC:%d:%s]] PIPEDMC interrupt vector 0x%x\n",
+-			crtc->base.base.id, crtc->base.name, tmp);
++		drm_err(display->drm, "[CRTC:%d:%s] PIPEDMC interrupt vector 0x%x\n",
++			crtc->base.base.id, crtc->base.name, int_vector);
+ }
+ 
+ void intel_pipedmc_enable_event(struct intel_crtc *crtc,
+-- 
+2.50.1
 
-device->ops->get_region_info_caps (via vfio_info_add_capability) can
-allocate caps.buf and then return an error for a different reason. The
-if (ret) check returns early and the kfree(caps.buf) on the success path
-is never reached.
-
-Should we add kfree(caps.buf) to the error path here?
-This keeps the allocation and cleanup logic centralized in the core code
-
-Let's either write comment saying that the get_region_info_caps op is required
-to free caps.buf before returning error OR add a kfree(caps.buf) here.
-
-> +
-> +		if (caps.size) {
-> +			info.flags |= VFIO_REGION_INFO_FLAG_CAPS;
-> +			if (info.argsz < sizeof(info) + caps.size) {
-> +				info.argsz = sizeof(info) + caps.size;
-> +				info.cap_offset = 0;
-> +			} else {
-> +				vfio_info_cap_shift(&caps, sizeof(info));
-> +				if (copy_to_user(arg + 1, caps.buf,
-> +						 caps.size)) {
-> +					kfree(caps.buf);
-> +					return -EFAULT;
-> +				}
-> +				info.cap_offset = sizeof(info);
-> +			}
-> +			kfree(caps.buf);
-> +		}
-> +
-> +		if (copy_to_user(arg, &info, minsz))
-> +			return -EFAULT;
-> +	} else if (device->ops->get_region_info) {
-> +		ret = device->ops->get_region_info(device, arg);
-> +		if (ret)
-> +			return ret;
-
-With the above comment addressed,
-
-Reviewed-by: Pranjal Shrivastava <praan@google.com>
-
-Thanks,
-Praan
