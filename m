@@ -2,57 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 772B4C2DBCA
-	for <lists+intel-gfx@lfdr.de>; Mon, 03 Nov 2025 19:51:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B24BBC2DBEB
+	for <lists+intel-gfx@lfdr.de>; Mon, 03 Nov 2025 19:53:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0096810E200;
-	Mon,  3 Nov 2025 18:51:53 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LIsZHB3w";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A5F610E218;
+	Mon,  3 Nov 2025 18:53:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA2E610E200
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Nov 2025 18:51:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762195912; x=1793731912;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=2QcG+HmGPD2BlvZ3c3aQBac6AK3WhZj+ZKOB56gtqAw=;
- b=LIsZHB3wQ88dEFejwq26J938DDN0imnTSo0pVaDUTeG4/EJR4OF0mPGb
- 58j+hR7bSVlDpn4h0RYCXtmHrX5Au/vsWSJ5IYW2AU1kIRclXE3mAHQlt
- CbJq3lP88IpFmH8jSEDXcnsLNkpx1flRStfvG8tv4IWABe4KzY35VJcBL
- K/zmPU8Fo2dRJmCredQ6vgn/W/jcRSIF2FbJ0diLiQz3wq+Hx6MPMbQo9
- vmvem1seSSNP5RA4v58PUnVcL7Vro+ER/3oclbUVlAfgtF143cRXwpQWm
- C/D7YsWtzUDOG3638ltEPVhxdBZAcgdcTSYehcsiS9w2PihflMjsA08LQ A==;
-X-CSE-ConnectionGUID: tPr6crWxS+i7OPHvFGZkgg==
-X-CSE-MsgGUID: ojxMxBOMSu+JpYst1srycg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="51850236"
-X-IronPort-AV: E=Sophos;i="6.19,277,1754982000"; d="scan'208";a="51850236"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2025 10:51:52 -0800
-X-CSE-ConnectionGUID: 8a+WVVbEQHeQtvinj7ZwaQ==
-X-CSE-MsgGUID: +EFEhQ0CR52+E4m6q/Ehrw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,277,1754982000"; d="scan'208";a="192106810"
-Received: from rvodapal-mobl.iind.intel.com ([10.190.239.40])
- by orviesa005.jf.intel.com with ESMTP; 03 Nov 2025 10:51:48 -0800
-From: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: balasubramani.vivekanandan@intel.com, matthew.d.roper@intel.com,
- lucas.demarchi@intel.com, gustavo.sousa@intel.com,
- clinton.a.taylor@intel.com, matthew.s.atwood@intel.com,
- dnyaneshwar.bhadane@intel.com, shekhar.chauhan@intel.com,
- Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
-Subject: [PATCH] drm/i915/pmu: Use raw_spin_lock where ever needed in i915 pmu
-Date: Tue,  4 Nov 2025 00:21:41 +0530
-Message-Id: <20251103185141.854074-1-ravi.kumar.vodapalli@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56ED110E216;
+ Mon,  3 Nov 2025 18:53:12 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1291541433032430800=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/dmc=3A_Fix_extra?=
+ =?utf-8?q?_bracket_and_wrong_variable_in_PIPEDMC_error_logs?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Alok Tiwari" <alok.a.tiwari@oracle.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 03 Nov 2025 18:53:12 -0000
+Message-ID: <176219599234.11629.4750135629791491436@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <20251103132337.762156-1-alok.a.tiwari@oracle.com>
+In-Reply-To: <20251103132337.762156-1-alok.a.tiwari@oracle.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,130 +37,186 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently i915 pmu driver gets registered with linux perf
-subsystem with its callback functions implemented, it is
-using spin_lock for synchronization where ever is needed.
-linux perf subsystem in some instance is using raw_spin_locks
-for synchronization and calls the i915 pmu callback functions with
-raw_spin_lock held.
+--===============1291541433032430800==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The issue is
-When PREEMPT_RT is configured in kernel config the normal spin_lock
-behaves as mutex lock and when these are called with raw_spin_lock
-held race condition can occur.So in the path of the raw_spin_lock
-held convert spin_lock into raw_spin_lock where ever is needed.
+== Series Details ==
 
-Signed-off-by: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
----
- drivers/gpu/drm/i915/i915_pmu.c | 22 +++++++++++-----------
- 1 file changed, 11 insertions(+), 11 deletions(-)
+Series: drm/i915/dmc: Fix extra bracket and wrong variable in PIPEDMC error logs
+URL   : https://patchwork.freedesktop.org/series/156925/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-index 5bc696bfbb0f..d760ec44a98c 100644
---- a/drivers/gpu/drm/i915/i915_pmu.c
-+++ b/drivers/gpu/drm/i915/i915_pmu.c
-@@ -230,7 +230,7 @@ static u64 get_rc6(struct intel_gt *gt)
- 		intel_gt_pm_put_async(gt, wakeref);
- 	}
- 
--	spin_lock_irqsave(&pmu->lock, flags);
-+	raw_spin_lock_irqsave(&pmu->lock, flags);
- 
- 	if (wakeref) {
- 		store_sample(pmu, gt_id, __I915_SAMPLE_RC6, val);
-@@ -251,7 +251,7 @@ static u64 get_rc6(struct intel_gt *gt)
- 	else
- 		store_sample(pmu, gt_id, __I915_SAMPLE_RC6_LAST_REPORTED, val);
- 
--	spin_unlock_irqrestore(&pmu->lock, flags);
-+	raw_spin_unlock_irqrestore(&pmu->lock, flags);
- 
- 	return val;
- }
-@@ -302,7 +302,7 @@ void i915_pmu_gt_parked(struct intel_gt *gt)
- 	if (!pmu->registered)
- 		return;
- 
--	spin_lock_irq(&pmu->lock);
-+	raw_spin_lock_irq(&pmu->lock);
- 
- 	park_rc6(gt);
- 
-@@ -314,7 +314,7 @@ void i915_pmu_gt_parked(struct intel_gt *gt)
- 	if (pmu->unparked == 0)
- 		pmu->timer_enabled = false;
- 
--	spin_unlock_irq(&pmu->lock);
-+	raw_spin_unlock_irq(&pmu->lock);
- }
- 
- void i915_pmu_gt_unparked(struct intel_gt *gt)
-@@ -324,7 +324,7 @@ void i915_pmu_gt_unparked(struct intel_gt *gt)
- 	if (!pmu->registered)
- 		return;
- 
--	spin_lock_irq(&pmu->lock);
-+	raw_spin_lock_irq(&pmu->lock);
- 
- 	/*
- 	 * Re-enable sampling timer when GPU goes active.
-@@ -334,7 +334,7 @@ void i915_pmu_gt_unparked(struct intel_gt *gt)
- 
- 	pmu->unparked |= BIT(gt->info.id);
- 
--	spin_unlock_irq(&pmu->lock);
-+	raw_spin_unlock_irq(&pmu->lock);
- }
- 
- static void
-@@ -740,7 +740,7 @@ static void i915_pmu_enable(struct perf_event *event)
- 	if (bit == -1)
- 		goto update;
- 
--	spin_lock_irqsave(&pmu->lock, flags);
-+	raw_spin_lock_irqsave(&pmu->lock, flags);
- 
- 	/*
- 	 * Update the bitmask of enabled events and increment
-@@ -782,7 +782,7 @@ static void i915_pmu_enable(struct perf_event *event)
- 		engine->pmu.enable_count[sample]++;
- 	}
- 
--	spin_unlock_irqrestore(&pmu->lock, flags);
-+	raw_spin_unlock_irqrestore(&pmu->lock, flags);
- 
- update:
- 	/*
-@@ -803,7 +803,7 @@ static void i915_pmu_disable(struct perf_event *event)
- 	if (bit == -1)
- 		return;
- 
--	spin_lock_irqsave(&pmu->lock, flags);
-+	raw_spin_lock_irqsave(&pmu->lock, flags);
- 
- 	if (is_engine_event(event)) {
- 		u8 sample = engine_event_sample(event);
-@@ -836,7 +836,7 @@ static void i915_pmu_disable(struct perf_event *event)
- 		pmu->timer_enabled &= pmu_needs_timer(pmu);
- 	}
- 
--	spin_unlock_irqrestore(&pmu->lock, flags);
-+	raw_spin_unlock_irqrestore(&pmu->lock, flags);
- }
- 
- static void i915_pmu_event_start(struct perf_event *event, int flags)
-@@ -1154,7 +1154,7 @@ void i915_pmu_register(struct drm_i915_private *i915)
- 	};
- 	int ret = -ENOMEM;
- 
--	spin_lock_init(&pmu->lock);
-+	raw_spin_lock_init(&pmu->lock);
- 	hrtimer_setup(&pmu->timer, i915_sample, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
- 	init_rc6(pmu);
- 
--- 
-2.34.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_17479 -> Patchwork_156925v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156925v1/index.html
+
+Participating hosts (46 -> 45)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_156925v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17479/bat-mtlp-8/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156925v1/bat-mtlp-8/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-3:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17479/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156925v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-9:          [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17479/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156925v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live:
+    - bat-atsm-1:         [DMESG-FAIL][7] ([i915#12061] / [i915#13929]) -> [DMESG-FAIL][8] ([i915#12061] / [i915#14204])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17479/bat-atsm-1/igt@i915_selftest@live.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156925v1/bat-atsm-1/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@mman:
+    - bat-atsm-1:         [DMESG-FAIL][9] ([i915#13929]) -> [DMESG-FAIL][10] ([i915#14204])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17479/bat-atsm-1/igt@i915_selftest@live@mman.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156925v1/bat-atsm-1/igt@i915_selftest@live@mman.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#13929]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929
+  [i915#14204]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_17479 -> Patchwork_156925v1
+
+  CI-20190529: 20190529
+  CI_DRM_17479: 0c721eb082329d9ba1ef257e3cdfa8109ae9de32 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8605: 8605
+  Patchwork_156925v1: 0c721eb082329d9ba1ef257e3cdfa8109ae9de32 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156925v1/index.html
+
+--===============1291541433032430800==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dmc: Fix extra bracket and wrong variable in PIPEDMC error logs</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156925/">https://patchwork.freedesktop.org/series/156925/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156925v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156925v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17479 -&gt; Patchwork_156925v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156925v1/index.html</p>
+<h2>Participating hosts (46 -&gt; 45)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_156925v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17479/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156925v1/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17479/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156925v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17479/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156925v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17479/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156925v1/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@mman:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17479/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156925v1/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17479 -&gt; Patchwork_156925v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17479: 0c721eb082329d9ba1ef257e3cdfa8109ae9de32 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8605: 8605<br />
+  Patchwork_156925v1: 0c721eb082329d9ba1ef257e3cdfa8109ae9de32 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============1291541433032430800==--
