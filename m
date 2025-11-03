@@ -2,72 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB103C2BCBE
-	for <lists+intel-gfx@lfdr.de>; Mon, 03 Nov 2025 13:46:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52DEEC2BC70
+	for <lists+intel-gfx@lfdr.de>; Mon, 03 Nov 2025 13:46:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26C9910E3E1;
-	Mon,  3 Nov 2025 12:46:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DED2C10E3CD;
+	Mon,  3 Nov 2025 12:46:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="YP6f+7nw";
+	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="eoproUjB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com
- [209.85.167.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C1D610E3A9
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Nov 2025 10:31:44 +0000 (UTC)
-Received: by mail-lf1-f46.google.com with SMTP id
- 2adb3069b0e04-59431f57bf6so210552e87.3
- for <intel-gfx@lists.freedesktop.org>; Mon, 03 Nov 2025 02:31:43 -0800 (PST)
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com
+ [209.85.218.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2134F10E3AB
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Nov 2025 10:33:27 +0000 (UTC)
+Received: by mail-ej1-f49.google.com with SMTP id
+ a640c23a62f3a-b6d78062424so839399566b.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 03 Nov 2025 02:33:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=suse.com; s=google; t=1762165902; x=1762770702; darn=lists.freedesktop.org; 
+ d=suse.com; s=google; t=1762166005; x=1762770805; darn=lists.freedesktop.org; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=FoPFhQQS89S0PG9IrFQ4Ih5iU0Zai424+/DcdPiuCSc=;
- b=YP6f+7nwo07487EKDvl7c/BmGP5NZ+3Y2GSmsks5dCKBMnDjli6xfaT32u1o15XQgR
- y1BmmRDEgsI/crrUYwY9tU79c7WN83Ldc2VEchEQpiXopiiQGy56Nttwx/1V//vtJYsj
- E87L4NyJ60/y29b9O4uxuJTkgVoEwHipOKnEI/ZcQMu2tACqbAoC5Wfk6cIone41uLci
- 4w+OFNqO81erF/hJF0Ooe0LsFnP95rauNiAicWptuJjWFA1dB/BOvsERnIsOmcJkrv+8
- N+MXtCwLWqJivoAczYkQudtFoiwNDwFUjspdY4pUkioOreGzqClQjqu9iMS/T2drK3Dy
- /ZLA==
+ bh=kOJ/IBO3oLNySkAjeUQaEpdFOYftnABdhDgKv6rsMUc=;
+ b=eoproUjBwKBPNAfAHeYOWI2cphwhQ2Q/C1Z/vRATxO6gJlmkAH2Lsc0ajx8nsdzhS4
+ zC51HmZS3nE8XFGhF1CB0PEd50xUgu4qw39Km3azcojYgaJVKUKZHZtzskksfNPkPMAg
+ AK5H74sUOJwatGDIx2frcK3n4IKnasdTX0is3Pl+dnX3VVXh+8pAfEatmCofjl+YKaaF
+ OSSX17FJvaYWZ7pIgBbmHQ5ZiXR7Jg8jl+vBccsbsLExw6ntZd6I0VDGn7kyd4MYektL
+ C1lJIKTvMb3ZIr0RWgA6eFOG/CW1c/mEt1Gef1W7Wd60MMocAF2WCmXfMdmxvaBuqsgX
+ 6SDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1762165902; x=1762770702;
+ d=1e100.net; s=20230601; t=1762166005; x=1762770805;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=FoPFhQQS89S0PG9IrFQ4Ih5iU0Zai424+/DcdPiuCSc=;
- b=CucXvUgyR8WQJccOeFmH9Fh5fv1IGmN/1dOoy2pe8+DSxknze2uvs1SNq1+kW5D58K
- sM8X+pO7jTPb5LlP6l3OJQLh4fv9uHImes0mtVtnBzk4zDvYE77imZb4LGFt4A5j10TQ
- nigIg0oVG1w7lvakfUHaXqilRLeRhOM8T5LWDGL2l+S6uu9nzuOu9I6rYQazqGM4Hhz7
- Q6D+xfM2CG+wyO/2L4JvuOkvXWzEjXGmLX7tSZ85pkG90ZIjdj8wuhxwlI/14Zpj5fAO
- TQYVelD3uNUbsCpI9k+QoTM9oNxrRIDruV8WgEveiHlbKo5uu/WqF+OD0MVdG02a9TWa
- u1qQ==
+ bh=kOJ/IBO3oLNySkAjeUQaEpdFOYftnABdhDgKv6rsMUc=;
+ b=H26q5PcQgOymrI0xwn6ulmDWf82zlvSSXbrC+U8XNUB1mKCyirRZliGFvBSwMmh8nL
+ PeztwC9iPA4JSsTkDC24uxbBMdJ+4jMo8hBV+nGmhBJJqwNOpFOgIpAUxvXkOOuIBJOj
+ Uir/x6YxcQv5tJCMgUudTx2tbYj32BwwrLXFv5fTMcA4pDnPVwW+U3DrBFE1bGstLUIr
+ CrmMShCw0pDaif5Z6KLKLAwpTFWrm3dOJFDORfIsTf+hId5uGLfaZ6dmnyeb25tZISdX
+ pqb19oRxtcrI0Yq3uRc3TeZ1O85c0CXYdMQCFJT7wl9WaGLxcAF8Gh46CarTb0ugb9Ii
+ jSYg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVWeZvAsvQIluCrzlVKaJdWXtSfqyHcinO0EZZghxdFRLIL0pv0Sia0jB7m5Rf2tMI5YY/RyYGrLpA=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxiDl3ivaYx/h4aXDEx8w7rK5RfhRmBMs1ozIszEzHGh760VcWy
- 1vQ9tpFaf6T17CmR8biP8L7XXiH6MN0EFCTED6uwT5a3bqeNPFoNanz+/7z5SwA8uuldM17o40g
- 9KY36YBI3LddlhRDPbfDhKeA7mOvo2ptT5t/12RcTWQ==
-X-Gm-Gg: ASbGnct4/LTTK3+TKF1NVHf2RvaGJNZBOMDHU2rbGI2s9qQfs6w1v0pheSAdMQQ4aaz
- fd56OLZGlYsXvVTDsaDBplfU8o4JGeZhYjzvv9S7+ApHsyfPCiqPv3XLujmfCittfcoH3EVEhn8
- PqPmAAto+HQ09M7RBilHEfwQYDRB2kfCj7onqCF7yiu6c6DIOpmTQDJEX5RULfoCYOGr/ENgdeM
- CsuwEZPMTa7Tzfccf+DDYp4JIvEIWSetippQXTY7TeGAFWemnrL2bXbWC9renSK/6h5yW4/0aZR
- W8BdiyhzDIuagLc0lHLIk9vs6fYs
-X-Google-Smtp-Source: AGHT+IEwAU4SOZwUJVarSaQslcnJLXDLRhKZeIYvNp3qfEofTMUe8ZL6Dwbf77J+nSRDOQjf4bHs+Hk1B3ORqp9w7+c=
-X-Received: by 2002:a05:6512:3b9f:b0:594:2f46:3906 with SMTP id
- 2adb3069b0e04-5942f463d1amr413899e87.42.1762165902161; Mon, 03 Nov 2025
- 02:31:42 -0800 (PST)
+ AJvYcCU/D0BUXNq+dsu4n/Q6VYP+ImZEj72z41o9U4wRsg3q37215T6Y1WNwS+7YvGsF9BVNia0cyfRzf2E=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx8jEL0yTp25bPVinmOFY5DqR2GIFToLLl6sgeXN4jJE3O7X9Eb
+ s9kEn8lQNhKGsIVBaOk18dfd2UMPaLox7sdp1MVF03JlDtKgf/PsKEXctSFoW09k/UKj8KrvNbx
+ 6nw9lxya3ftCuqesqCjOvVEV7CkMe1Ip+zxdsPJSEzQ==
+X-Gm-Gg: ASbGncubF+5ycUEAEsURHXmRkB/quU+GGHCw8y0qiKLSsttyCAL5Sp6NHjsoY7PxEqx
+ HbzTqQmQEegYDDNjHs23nRXFXay31osJ8gKKjRhg4wwJ8bIb6L4eqLSHxCA32kVJGCWXQa+qfEz
+ lbWF8YxElb/jeEwVKk7HFRSckrJi2qb/TC0rto3dySyj83HMZ7CrH3wkWNxW0rq1nk4sBVQyqqK
+ gZm7y30t/88E33lcohCPhvmg8+xMwhObKrnNe7gsy8VU3r2W3Fa+i75E8EmQgAkoDngXP6qNEAX
+ PIJH586KT8yEEXsusA==
+X-Google-Smtp-Source: AGHT+IHpCT3s3+uBnbx+aIMiSutrxjkGQNeoToq6J0kcvc+HGBKIO6gpJGl7JMeuoPpFA+c6+/i+1zgolV3NiZNm/q4=
+X-Received: by 2002:a17:906:6a07:b0:b71:1c98:d270 with SMTP id
+ a640c23a62f3a-b711c98ef85mr163236166b.22.1762166005609; Mon, 03 Nov 2025
+ 02:33:25 -0800 (PST)
 MIME-Version: 1.0
 References: <20251031100923.85721-1-marco.crivellari@suse.com>
- <20251031100923.85721-2-marco.crivellari@suse.com>
- <zduzgow2hyvxfzmrhqansber4eeg63av6i533oihvx4ubxdqaz@wu64gw66b4jt>
-In-Reply-To: <zduzgow2hyvxfzmrhqansber4eeg63av6i533oihvx4ubxdqaz@wu64gw66b4jt>
+ <20251031100923.85721-3-marco.crivellari@suse.com>
+ <s7jsq4mbpkpon3stlizr3mc2nnwpvngmzvnqzfbeg252ua6gto@ohb7js3ufmmt>
+In-Reply-To: <s7jsq4mbpkpon3stlizr3mc2nnwpvngmzvnqzfbeg252ua6gto@ohb7js3ufmmt>
 From: Marco Crivellari <marco.crivellari@suse.com>
-Date: Mon, 3 Nov 2025 11:31:31 +0100
-X-Gm-Features: AWmQ_bkkbh1PZ_mUlCEwcGKqGMRPmj0_7LacVUfhPhRpCu1buDmddrltRgzVqeM
-Message-ID: <CAAofZF6EE=grXh8mowNRDcDkL8RwwrvGhawcjGqcEhn5M4M6zQ@mail.gmail.com>
-Subject: Re: [PATCH 1/3] drm/i915: replace use of system_unbound_wq with
- system_dfl_wq
+Date: Mon, 3 Nov 2025 11:33:14 +0100
+X-Gm-Features: AWmQ_bk_JyhXrMnXA1L70qG_7G1mhPIIkUfgB3eygmui2C_xUmOMiFJJ_9B5MgQ
+Message-ID: <CAAofZF43CkrumJ0wy4p197pDzKHGhu7j+Oo5eDghbiwONQNq9g@mail.gmail.com>
+Subject: Re: [PATCH 2/3] drm/i915: replace use of system_wq with
+ system_percpu_wq
 To: Krzysztof Karas <krzysztof.karas@intel.com>
 Cc: linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org, 
  dri-devel@lists.freedesktop.org, Tejun Heo <tj@kernel.org>, 
@@ -98,33 +98,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Krzysztof,
+Hi Krzysztof
 
-On Mon, Nov 3, 2025 at 11:19=E2=80=AFAM Krzysztof Karas
+On Mon, Nov 3, 2025 at 11:30=E2=80=AFAM Krzysztof Karas
 <krzysztof.karas@intel.com> wrote:
->
-> Hi Marco,
-> [...]
-> This commit message is very similar to your previous change:
-> 128ea9f6ccfb6960293ae4212f4f97165e42222d - did you do that
-> intentionally or is this a copy-paste mistake? This is also
-> prevalent in other two patches, so I am curious.
+> you could be a bit more specific with your patch title:
+> "replace use of system_wq with system_percpu_wq in the documentation",
+> so that it is clear there are no functional changes.
 
-Yes it is intentional. Well, the idea was to give a bit of the context
-about the rename of the workqueues, sharing more details in the
-cover letter (where is present also the commit hash you shared).
+Sure, I will do it.
 
-Sorry if this created confusion.
-
-> >
-> > Adding system_dfl_wq to encourage its use when unbound work should be u=
-sed.
-> Please remove this sentence, because this has already been done.
->
-
-Sure, that was not intentional (copy and paste mistake).
-
-Thank you!
+Thanks!
 
 --=20
 
