@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21DF6C2D711
-	for <lists+intel-gfx@lfdr.de>; Mon, 03 Nov 2025 18:21:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75F7BC2D714
+	for <lists+intel-gfx@lfdr.de>; Mon, 03 Nov 2025 18:21:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A876210E486;
-	Mon,  3 Nov 2025 17:21:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 011C710E49C;
+	Mon,  3 Nov 2025 17:21:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OAvo+D0H";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jeYUQSuz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6622810E47C;
- Mon,  3 Nov 2025 17:21:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA06D10E496;
+ Mon,  3 Nov 2025 17:21:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762190465; x=1793726465;
+ t=1762190469; x=1793726469;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=FE1mrWq9OuVp2Ac3cmT9bULjSw7ewcSLTFcRw8rzZuY=;
- b=OAvo+D0HWywgEN2F7VVJGDtwMy4Nce6sBOWuF0AZd1k9FqA8yqZauTwI
- 4sGwCfEd2Yua8x1tcQF1bFT6Fo3dG+YPfyTfs7S1TXl5CHMPnuL8F9k0d
- bdyZ1/zrXMGcnwX3Bpwxts0wNfjW4l7A8Zr/9ver0x6QBkp0N7VPN1YLC
- WXXRYNMYYNyMHmaTgMlLUZS0A00r65fuSm699rDJ+wrKbNlaV7661N2Ee
- I+muC3BlfMhqOAXlsQCec0BjKQ7sD9gYE2f5cXTEt8WRWgPUTS1VBmtaY
- hFZ6+HgvhcFP7WdsvaIK8eNguGLDKKTxMDETh98ohq1UaB6+T7f+GipLs A==;
-X-CSE-ConnectionGUID: 5Rnpefb2RWSWEqT34GDDIA==
-X-CSE-MsgGUID: FoYits7oR92yX7910L6IxQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="64310160"
-X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; d="scan'208";a="64310160"
+ bh=MbReumXGzjSNtbM9VNUE05xU0b7HUIY3kx2nqbBtsQc=;
+ b=jeYUQSuzvCwyf4sAFqCbb1ST4fVrrIvvUyxDxb3PUZTFoGIK3LJ/QnJX
+ lkzSgdwgLLo53vRDntmC5uEF6gvZrzYVLN2tv8NsR4CxeZvPsf2YS/jQw
+ QInKZTWFS7bXWy7XEAYItu8ikBXjo+vsA1J/+nNgSky6Nh2jurGxL97h3
+ K+7wdZnYqYUWzKu4SmK8HJnl8MHbkeB8kWrcFnTkIwlvbia+XWyPvegv1
+ Q9PrGdVR6RXbCVONhCbhs5Sensodl0w2xVaKX/nDxFIVsk2SfRwmHU5Cj
+ kbm6y9FaT+A+fSTwr3zSxNKRB2c9En2cW0nIkoI9nnsqV/wE58CMh0tiw A==;
+X-CSE-ConnectionGUID: L/A89V/ySTqEWnSHod0e8Q==
+X-CSE-MsgGUID: wOLf4EoCQb+x5bKlD+mB0A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="64310167"
+X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; d="scan'208";a="64310167"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2025 09:21:05 -0800
-X-CSE-ConnectionGUID: JrVnheVhSbebD2XvggwqQw==
-X-CSE-MsgGUID: HxLD4FDnTzqXxj572bPOhA==
+ 03 Nov 2025 09:21:08 -0800
+X-CSE-ConnectionGUID: jvHnAdY4R3a8FKzGIjACNQ==
+X-CSE-MsgGUID: HTJANe5dQ+Ol6516gW/Spg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; d="scan'208";a="186606684"
+X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; d="scan'208";a="186606717"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [192.168.1.16])
  ([10.124.220.223])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2025 09:21:01 -0800
+ 03 Nov 2025 09:21:05 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Mon, 03 Nov 2025 14:18:15 -0300
-Subject: [PATCH v3 24/29] drm/i915/display: Handle dedicated external ports
- in intel_encoder_is_tc()
+Date: Mon, 03 Nov 2025 14:18:16 -0300
+Subject: [PATCH v3 25/29] drm/i915/xe3p_lpd: Extend Type-C flow for static
+ DDI allocation
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251103-xe3p_lpd-basic-enabling-v3-24-00e87b510ae7@intel.com>
+Message-Id: <20251103-xe3p_lpd-basic-enabling-v3-25-00e87b510ae7@intel.com>
 References: <20251103-xe3p_lpd-basic-enabling-v3-0-00e87b510ae7@intel.com>
 In-Reply-To: <20251103-xe3p_lpd-basic-enabling-v3-0-00e87b510ae7@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
@@ -64,8 +64,7 @@ Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>, 
  Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>, 
  Shekhar Chauhan <shekhar.chauhan@intel.com>, 
- Vinod Govindapillai <vinod.govindapillai@intel.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>
+ Vinod Govindapillai <vinod.govindapillai@intel.com>
 X-Mailer: b4 0.15-dev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -82,112 +81,273 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Starting with Xe3p_LPD, the VBT has a new field, called in the driver
-"dedicated_external", which tells that a Type-C capable port is
-physically connected to a PHY outside of the Type-C subsystem.  When
-that's the case, the driver must not do the extra Type-C programming for
-that port.  Update intel_encoder_is_tc() to check for that case.
+Xe3p_LPD has a new feature that allows the driver to allocate at runtime
+the DDI (TC ones) port to drive a legacy connection on the Type-C
+subsystem.  This allows better resource utilization, because now there
+is no need to statically reserve ports for legacy connectors on the
+Type-C subsystem.
 
-While at it, add a note to intel_phy_is_tc() to remind us that it is
-about whether the respective port is a Type-C capable port rather than
-the PHY itself.
+That said, our driver is not yet ready for the dynamic allocation.
+Thus, as an incremental step, let's add the logic containing the
+required programming sequence for the allocation, but, instead of
+selecting the first available port, we try so use the 1:1 mapping
+expected by the driver today.
 
-(Maybe it would be a nice idea to rename intel_phy_is_tc()?)
-
-Note that this was handled with a new bool member added to struct
-intel_digital_port instead of having querying the VBT directly because
-VBT memory is freed (intel_bios_driver_remove) before encoder cleanup
-(intel_ddi_encoder_destroy), which would cause an oops to happen when
-the latter calls intel_encoder_is_tc().  This could be fixed by keeping
-VBT data around longer, but that's left for a follow-up work, if deemed
-necessary.
-
-v2:
-  - Drop printing info about dedicated external, now that we are doing
-    it when parsing the VBT. (Jani)
-  - Add a FIXME comment on the code explaining why we need to store
-    dedicated_external in struct intel_digital_port. (Jani)
-
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Shekhar Chauhan <shekhar.chauhan@intel.com>
+Bspec: 68954
+Co-developed-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c           | 11 +++++++++++
- drivers/gpu/drm/i915/display/intel_display.c       | 19 ++++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_display_types.h |  1 +
- 3 files changed, 30 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 733ef4559131..d9aaeafd1570 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -5376,6 +5376,17 @@ void intel_ddi_init(struct intel_display *display,
- 			goto err;
- 	}
+NOTE: This patch is still a WIP. There are some opens to resolve here.
+Nevertheless, I'm sending it here for early feedback.
+
+For the HIP-index stuff, I have a local refactor started and need to
+finish it up and send it.
+
+The other open is about concurrent calls to iom_dp_resource_lock().  It
+is likely that we need to have a software lock to prevent concurrent
+access to IOM_DP_HW_RESOURCE_SEMAPHORE from our driver.
+---
+ drivers/gpu/drm/i915/display/intel_display_regs.h |  20 ++-
+ drivers/gpu/drm/i915/display/intel_tc.c           | 151 +++++++++++++++++++++-
+ 2 files changed, 169 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+index c9f8b90faa42..21600dee2603 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+@@ -2912,6 +2912,25 @@ enum skl_power_gate {
+ #define   DP_PIN_ASSIGNMENT(idx, x)		((x) << ((idx) * 4))
+ /* See enum intel_tc_pin_assignment for the pin assignment field values. */
  
-+	/*
-+	 * FIXME: We currently need to store dedicated_external because devdata
-+	 * does not live long enough for when intel_encoder_is_tc() is called on
-+	 * the unbind path.  This needs to be fixed by making sure that the VBT
-+	 * data is kept long enough, so that
-+	 * intel_bios_encoder_is_dedicated_external() can be called directly
-+	 * from intel_encoder_is_tc().
-+	 */
-+	if (intel_bios_encoder_is_dedicated_external(devdata))
-+		dig_port->dedicated_external = true;
++/*
++ * FIXME: There is also a definition for this register in intel_dkl_phy_regs.h.
++ * We need to consolidate the definitions.
++ */
++#define HIP_INDEX_REG0				_MMIO(0x1010a0)
++#define   HIP_168_INDEX_MASK			REG_GENMASK(3, 0)
++#define   HIP_168_IOM_RES_MGMT			REG_FIELD_PREP(HIP_168_INDEX_MASK, 0x1)
 +
- 	if (intel_encoder_is_tc(encoder)) {
- 		bool is_legacy =
- 			!intel_bios_encoder_supports_typec_usb(devdata) &&
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 25986bd8fbdd..431f7f030a9b 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1800,7 +1800,17 @@ bool intel_phy_is_combo(struct intel_display *display, enum phy phy)
- 		return false;
++#define IOM_DP_HW_RESOURCE_SEMAPHORE		_MMIO(0x168038)
++#define   IOM_DP_HW_SEMLOCK			REG_BIT(31)
++#define   IOM_REQUESTOR_ID_MASK			REG_GENMASK(3, 0)
++#define   IOM_REQUESTOR_ID_DISPLAY_ENGINE	REG_FIELD_PREP(IOM_REQUESTOR_ID_MASK, 0x4)
++
++#define IOM_DP_RESOURCE_MNG			_MMIO(0x16802c)
++#define   IOM_DDI_CONSUMER_SHIFT(tc_port)	((tc_port) * 4)
++#define   IOM_DDI_CONSUMER_MASK(tc_port)	(0xf << IOM_DDI_CONSUMER_SHIFT(tc_port))
++#define   IOM_DDI_CONSUMER(tc_port, x)		((x) << IOM_DDI_CONSUMER_SHIFT(tc_port))
++#define   IOM_DDI_CONSUMER_STATIC_TC(tc_port)	IOM_DDI_CONSUMER(tc_port, 0x8 + (tc_port))
++
+ #define _TCSS_DDI_STATUS_1			0x161500
+ #define _TCSS_DDI_STATUS_2			0x161504
+ #define TCSS_DDI_STATUS(tc)			_MMIO(_PICK_EVEN(tc, \
+@@ -2950,5 +2969,4 @@ enum skl_power_gate {
+ #define   MTL_TRDPRE_MASK		REG_GENMASK(7, 0)
+ 
+ 
+-
+ #endif /* __INTEL_DISPLAY_REGS_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
+index f1ed50be3247..3703834c1eeb 100644
+--- a/drivers/gpu/drm/i915/display/intel_tc.c
++++ b/drivers/gpu/drm/i915/display/intel_tc.c
+@@ -9,6 +9,7 @@
+ 
+ #include "i915_reg.h"
+ #include "intel_atomic.h"
++#include "intel_bios.h"
+ #include "intel_cx0_phy_regs.h"
+ #include "intel_ddi.h"
+ #include "intel_de.h"
+@@ -25,6 +26,9 @@
+ #include "intel_modeset_lock.h"
+ #include "intel_tc.h"
+ 
++#define IOM_DP_RES_SEMAPHORE_LOCK_TIMEOUT_US	10
++#define IOM_DP_RES_SEMAPHORE_RETRY_TIMEOUT_US	10000
++
+ enum tc_port_mode {
+ 	TC_PORT_DISCONNECTED,
+ 	TC_PORT_TBT_ALT,
+@@ -1200,6 +1204,143 @@ static void xelpdp_tc_phy_get_hw_state(struct intel_tc_port *tc)
+ 	__tc_cold_unblock(tc, domain, tc_cold_wref);
  }
  
--/* Prefer intel_encoder_is_tc() */
-+/*
-+ * This function returns true if the DDI port respective to the PHY enumeration
-+ * is a Type-C capable port.
-+ *
-+ * Depending on the VBT, the port might be configured
-+ * as a "dedicated external" port, meaning that actual physical PHY is outside
-+ * of the Type-C subsystem and, as such, not really a "Type-C PHY".
-+ *
-+ * Prefer intel_encoder_is_tc(), especially if you really need to know if we
-+ * are dealing with Type-C connections.
-+ */
- bool intel_phy_is_tc(struct intel_display *display, enum phy phy)
- {
- 	/*
-@@ -1885,6 +1895,13 @@ bool intel_encoder_is_tc(struct intel_encoder *encoder)
- {
- 	struct intel_display *display = to_intel_display(encoder);
- 
-+	if (intel_encoder_is_dig_port(encoder)) {
-+		struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
++static void iom_res_mgmt_prepare_reg_access(struct intel_display *display)
++{
++	/*
++	 * IOM resource management registers live in the 2nd 4KB page of IOM
++	 * address space. So we need to configure HIP_INDEX_REG0 with the
++	 * correct index.
++	 *
++	 * FIXME: We need to have this and dekel PHY implementation using a
++	 * common abstraction to access registers on the HIP-indexed ranges, and
++	 * this function would then be dropped.
++	 */
++	intel_de_rmw(display, HIP_INDEX_REG0,
++		     HIP_168_INDEX_MASK, HIP_168_IOM_RES_MGMT);
++}
 +
-+		if (dig_port->dedicated_external)
-+			return false;
++/*
++ * FIXME: This function also needs to avoid concurrent accesses from the driver
++ * itself, possibly via a software lock.
++ */
++static int iom_dp_resource_lock(struct intel_tc_port *tc)
++{
++	struct intel_display *display = to_intel_display(tc->dig_port);
++	u32 val = IOM_DP_HW_SEMLOCK | IOM_REQUESTOR_ID_DISPLAY_ENGINE;
++	int ret;
++
++	iom_res_mgmt_prepare_reg_access(display);
++	ret = poll_timeout_us(intel_de_write(display, IOM_DP_HW_RESOURCE_SEMAPHORE, val),
++			      (intel_de_read(display, IOM_DP_HW_RESOURCE_SEMAPHORE) & val) == val,
++			      IOM_DP_RES_SEMAPHORE_LOCK_TIMEOUT_US,
++			      IOM_DP_RES_SEMAPHORE_RETRY_TIMEOUT_US, false);
++
++	if (ret)
++		drm_err(display->drm, "Port %s: timeout trying to lock IOM semaphore\n",
++			tc->port_name);
++
++	return ret;
++}
++
++static void iom_dp_resource_unlock(struct intel_tc_port *tc)
++{
++	struct intel_display *display = to_intel_display(tc->dig_port);
++
++	iom_res_mgmt_prepare_reg_access(display);
++	intel_de_write(display, IOM_DP_HW_RESOURCE_SEMAPHORE, IOM_REQUESTOR_ID_DISPLAY_ENGINE);
++}
++
++static bool xe3p_tc_iom_allocate_ddi(struct intel_tc_port *tc, bool allocate)
++{
++	struct intel_display *display = to_intel_display(tc->dig_port);
++	struct intel_digital_port *dig_port = tc->dig_port;
++	enum tc_port tc_port = intel_encoder_to_tc(&dig_port->base);
++	u32 val;
++	u32 consumer;
++	u32 expected_consumer;
++	bool ret;
++
++	if (DISPLAY_VER(display) < 35)
++		return true;
++
++	if (tc->mode != TC_PORT_LEGACY)
++		return true;
++
++	if (!intel_bios_encoder_supports_dyn_port_over_tc(dig_port->base.devdata))
++		return true;
++
++	if (iom_dp_resource_lock(tc))
++		return false;
++
++	val = intel_de_read(display, IOM_DP_RESOURCE_MNG);
++
++	consumer = val & IOM_DDI_CONSUMER_MASK(tc_port);
++	consumer >>= IOM_DDI_CONSUMER_SHIFT(tc_port);
++
++	/*
++	 * Bspec instructs to select first available DDI, but our driver is not
++	 * ready for such dynamic allocation yet. For now, we force a "static"
++	 * allocation: map the physical port (where HPD happens) to the
++	 * encoder's DDI (logical TC port, represented by tc_port).
++	 */
++	expected_consumer = IOM_DDI_CONSUMER_STATIC_TC(tc_port);
++	expected_consumer >>= IOM_DDI_CONSUMER_SHIFT(tc_port);
++
++	if (allocate) {
++		struct intel_encoder *other_encoder;
++
++		/*
++		 * Check if this encoder's DDI is already allocated for another
++		 * physical port, which could have happened prior to the driver
++		 * taking over (e.g. GOP).
++		 */
++		for_each_intel_encoder(display->drm, other_encoder) {
++			enum tc_port other_tc_port = intel_encoder_to_tc(other_encoder);
++			u32 other_consumer;
++
++			if (tc_port == TC_PORT_NONE || other_tc_port == tc_port)
++				continue;
++
++			other_consumer = val & IOM_DDI_CONSUMER_MASK(other_tc_port);
++			other_consumer >>= IOM_DDI_CONSUMER_SHIFT(other_tc_port);
++			if (other_consumer == expected_consumer) {
++				drm_err(display->drm, "Port %s: expected consumer %u already allocated another DDI; IOM_DP_RESOURCE_MNG=0x%08x\n",
++					tc->port_name, expected_consumer, val);
++				ret = false;
++				goto out_resource_unlock;
++			}
++		}
++
++		if (consumer == 0) {
++			/* DDI is free to use, let's allocate it. */
++			val &= ~IOM_DDI_CONSUMER_MASK(tc_port);
++			val |= IOM_DDI_CONSUMER(tc_port, expected_consumer);
++			intel_de_write(display, IOM_DP_RESOURCE_MNG, val);
++			ret = true;
++		} else if (consumer == expected_consumer) {
++			/*
++			 * Nothing to do, as the expected "static" DDI allocation is
++			 * already in place.
++			 */
++			ret = true;
++		} else {
++			drm_err(display->drm, "Port %s: DDI already allocated for consumer %u; IOM_DP_RESOURCE_MNG=0x%08x\n",
++				tc->port_name, consumer, val);
++			ret = false;
++		}
++	} else {
++		drm_WARN_ON(display->drm, consumer != expected_consumer);
++		val &= ~IOM_DDI_CONSUMER_MASK(tc_port);
++		intel_de_write(display, IOM_DP_RESOURCE_MNG, val);
++		ret = true;
 +	}
 +
- 	return intel_phy_is_tc(display, intel_encoder_to_phy(encoder));
- }
++out_resource_unlock:
++	iom_dp_resource_unlock(tc);
++
++	return ret;
++}
++
+ static bool xelpdp_tc_phy_connect(struct intel_tc_port *tc, int required_lanes)
+ {
+ 	tc->lock_wakeref = tc_cold_block(tc);
+@@ -1210,9 +1351,12 @@ static bool xelpdp_tc_phy_connect(struct intel_tc_port *tc, int required_lanes)
+ 		return true;
+ 	}
  
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 00600134bda0..8bf392bc0d5d 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1937,6 +1937,7 @@ struct intel_digital_port {
- 	bool lane_reversal;
- 	bool ddi_a_4_lanes;
- 	bool release_cl2_override;
-+	bool dedicated_external;
- 	u8 max_lanes;
- 	/* Used for DP and ICL+ TypeC/DP and TypeC/HDMI ports. */
- 	enum aux_ch aux_ch;
+-	if (!xelpdp_tc_phy_enable_tcss_power(tc, true))
++	if (!xe3p_tc_iom_allocate_ddi(tc, true))
+ 		goto out_unblock_tccold;
+ 
++	if (!xelpdp_tc_phy_enable_tcss_power(tc, true))
++		goto out_deallocate_ddi;
++
+ 	xelpdp_tc_phy_take_ownership(tc, true);
+ 
+ 	read_pin_configuration(tc);
+@@ -1226,6 +1370,9 @@ static bool xelpdp_tc_phy_connect(struct intel_tc_port *tc, int required_lanes)
+ 	xelpdp_tc_phy_take_ownership(tc, false);
+ 	xelpdp_tc_phy_wait_for_tcss_power(tc, false);
+ 
++out_deallocate_ddi:
++	xe3p_tc_iom_allocate_ddi(tc, false);
++
+ out_unblock_tccold:
+ 	tc_cold_unblock(tc, fetch_and_zero(&tc->lock_wakeref));
+ 
+@@ -1236,6 +1383,8 @@ static void xelpdp_tc_phy_disconnect(struct intel_tc_port *tc)
+ {
+ 	switch (tc->mode) {
+ 	case TC_PORT_LEGACY:
++		xe3p_tc_iom_allocate_ddi(tc, false);
++		fallthrough;
+ 	case TC_PORT_DP_ALT:
+ 		xelpdp_tc_phy_take_ownership(tc, false);
+ 		xelpdp_tc_phy_enable_tcss_power(tc, false);
 
 -- 
 2.51.0
