@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76C2CC2D6E4
+	by mail.lfdr.de (Postfix) with ESMTPS id A2D19C2D6E9
 	for <lists+intel-gfx@lfdr.de>; Mon, 03 Nov 2025 18:20:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A69B810E463;
-	Mon,  3 Nov 2025 17:20:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CD8610E464;
+	Mon,  3 Nov 2025 17:20:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M0I0+x2r";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RmA+Xvha";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 198A310E462;
- Mon,  3 Nov 2025 17:20:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A07D410E464;
+ Mon,  3 Nov 2025 17:20:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762190419; x=1793726419;
+ t=1762190422; x=1793726422;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=rY7s7X2JnWsr2L+cRGZMtmlYGmAai/gVS6+XU6gNTtE=;
- b=M0I0+x2rL8o9lCQhGdB7dXEOKSPQlSERCjq9/mXK9b1T8Hv/skGEkJm5
- vT/gs+a/eoxatuzEcKCvJB1/5jCLyasYyIzBZkGnLhgRzKfFdLFCj2WXa
- Wv3Yiz22kKNpyNApuJJT5fBhS80bzVOh0r0WQvrOS5Uu4+CavjmnD6IF+
- P8iOWoKii9o2rZfCX3FMEnEwlVZbqEpqUQFzPMyf1XB0BFkkU+p6h4RLb
- MfB4YZq3jv9YCzOugQOdq01Un0W64wNzKAfenzljCDJDulEVylmpyAVsf
- 2X4KL1LW4bWeOzsuTR9EefkZ+1yDpLquZCVRXhU0w8MHziOfU9XGsIQMe Q==;
-X-CSE-ConnectionGUID: x1q+8tcERYCONq+CV6hpKQ==
-X-CSE-MsgGUID: uJrICmmES6GNddCCSmysqg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="64310031"
-X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; d="scan'208";a="64310031"
+ bh=7ARLApiv9lGk1yiAzVeyACzKbKQK4a8d5/DQrg41FRg=;
+ b=RmA+XvhaY6JSQJy4tUX68C8g2s3mPFQgo524wRfGhwcdcCm+UsS3BL+X
+ uusY/XeWUDmhJD7isQ8GN2YCTW51VJpTC6sndAKvTQk1mvaKNWN68aoPW
+ RBbkuNWdk25KnwPXodNtQrbr7nmIKh4F0gLVdJHGMTPqowllBMqvVmSuQ
+ /shG0cB1so2DiyLpvCs60UE/JN8RED/ZGf0jD4JgnHPoh5m0PHHWtAF+H
+ lShGLgTujttWzrBPj7VHL2+FaOO4evQFWoylTiZ4em3zP26UOt41xBglM
+ aKO95+32a5ZJbGocxDzBRhZuNR0Z6lv4DHWoB2p8gXFfLaVsgDUnjoBil w==;
+X-CSE-ConnectionGUID: KR0+twuHTUCz8PMPTL/oLA==
+X-CSE-MsgGUID: D8Ot2HngToiiYOuR2iLqdQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="64310036"
+X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; d="scan'208";a="64310036"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2025 09:20:19 -0800
-X-CSE-ConnectionGUID: she20kvrQI+orjrxXKdyiA==
-X-CSE-MsgGUID: VJFxkbysRPyhrojmqJnzVg==
+ 03 Nov 2025 09:20:22 -0800
+X-CSE-ConnectionGUID: wNJDqAJFTBWcs79UvqQXtQ==
+X-CSE-MsgGUID: DotV69fqSRG8ztLhg6E0qw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; d="scan'208";a="186606437"
+X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; d="scan'208";a="186606470"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [192.168.1.16])
  ([10.124.220.223])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2025 09:20:15 -0800
+ 03 Nov 2025 09:20:19 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Mon, 03 Nov 2025 14:18:03 -0300
-Subject: [PATCH v3 12/29] drm/i915/xe3p_lpd: Don't allow odd ypan or ysize
- with semiplanar format
+Date: Mon, 03 Nov 2025 14:18:04 -0300
+Subject: [PATCH v3 13/29] drm/i915/xe3p_lpd: Reload DMC MMIO for pipes C and D
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251103-xe3p_lpd-basic-enabling-v3-12-00e87b510ae7@intel.com>
+Message-Id: <20251103-xe3p_lpd-basic-enabling-v3-13-00e87b510ae7@intel.com>
 References: <20251103-xe3p_lpd-basic-enabling-v3-0-00e87b510ae7@intel.com>
 In-Reply-To: <20251103-xe3p_lpd-basic-enabling-v3-0-00e87b510ae7@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
@@ -81,33 +80,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Juha-pekka Heikkila <juha-pekka.heikkila@intel.com>
+Xe3p_LPD has the same behavior as for Xe3_LPD with respect to DMC
+context data for pipes C and D, which are lost when their power wells
+are disabled.  As such, let's extend the condition for Xe3_LPD in
+need_pipedmc_load_mmio() to also catch Xe3p_LPD.
 
-Disable support for odd panning and size in y direction when running on
-display version 35 and using semiplanar formats.
-
-Bspec: 68903
-Signed-off-by: Juha-pekka Heikkila <juha-pekka.heikkila@intel.com>
+Bspec: 68851
 Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_plane.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dmc.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
-index 505c776c0585..5105e3278bc4 100644
---- a/drivers/gpu/drm/i915/display/intel_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_plane.c
-@@ -1051,6 +1051,9 @@ int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state)
- 		     DISPLAY_VERx100(display) == 3002) &&
- 		     src_x % 2 != 0)
- 			hsub = 2;
-+
-+		if (DISPLAY_VER(display) == 35)
-+			vsub = 2;
- 	} else {
- 		hsub = fb->format->hsub;
- 		vsub = fb->format->vsub;
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index 1b3a9b5608c0..ca70cc4932df 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -718,11 +718,11 @@ static bool need_pipedmc_load_program(struct intel_display *display)
+ static bool need_pipedmc_load_mmio(struct intel_display *display, enum pipe pipe)
+ {
+ 	/*
+-	 * PTL:
++	 * Xe3_LPD/Xe3p_LPD:
+ 	 * - pipe A/B DMC doesn't need save/restore
+ 	 * - pipe C/D DMC is in PG0, needs manual save/restore
+ 	 */
+-	if (DISPLAY_VER(display) == 30)
++	if (IS_DISPLAY_VER(display, 30, 35))
+ 		return pipe >= PIPE_C;
+ 
+ 	/*
 
 -- 
 2.51.0
