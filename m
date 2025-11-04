@@ -2,52 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1686DC30956
-	for <lists+intel-gfx@lfdr.de>; Tue, 04 Nov 2025 11:48:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9A7FC30B49
+	for <lists+intel-gfx@lfdr.de>; Tue, 04 Nov 2025 12:21:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A392210E5BE;
-	Tue,  4 Nov 2025 10:48:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 343CD10E5C3;
+	Tue,  4 Nov 2025 11:21:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a8t60q77";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fRYi6rRi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96E2610E5BE
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Nov 2025 10:48:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B7E610E5C2;
+ Tue,  4 Nov 2025 11:21:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762253306; x=1793789306;
+ t=1762255291; x=1793791291;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=P+hD3GAittFLU+vppgaucgAfJivMcChpC89uAHO12m0=;
- b=a8t60q77c7hgs4laJCsdYV62chzy4jOy2I1oDGQOZIaTAyKN8cUMo2Qn
- FEuyoJ1GKBuQxQksIufy1PDGstJRu1rR02zev+av3YZgVYPgNabJlqhCS
- tAtEVhZP//whczAKqR/MFue8qDquridnSKTdx0TuWcX7KTqIi2zm0pYOZ
- xUzEQjLXGYXmKRyEsa0ti7lbHMyqgA8dp1OsUi5aWZrkpymNG5J/OsqM+
- EkQH0ZIMm/bIZT6tbyuDbaszD7zlu3el/eWo9p1UsKOWSApC2ts9j42IZ
- LcpOntjUQY5th6aYIC99JagfEw0Zb963dFc2ndf5cbOANKTUE1OcJAgEi Q==;
-X-CSE-ConnectionGUID: LZ0RKCoYSGumy0ejVDPAAQ==
-X-CSE-MsgGUID: a+YWjh3ZRgaBG8Jb442N5g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="81748863"
-X-IronPort-AV: E=Sophos;i="6.19,278,1754982000"; d="scan'208";a="81748863"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ bh=PSPNcxz3nvKiC+be6jJbzNEa6xWh62Vt2aiuWofFqY0=;
+ b=fRYi6rRiLjFdwU+4EzleoGDKMQEIZhFiRgrE4MPK3vPr21TOKdtu7qF+
+ zJbJWp60okLYuDLf7eWmAGK3tRrU+f/VDgc8DnYVFdSSfKRFeUgS/yq2/
+ CQzhFd4O8FrBAE+9VfIW3WprX1PM7VT2fWcnCItVBWCQYPFogwEHnu41C
+ tdMw0WNSODz3N3WHpH49Xc86CD0p5GekSTTidwIQVQ7RR0BOYVvGzCdTb
+ qZfjEMAFo+2euJlIxcfpW7pAvHCaZDRWwJi6/eXEWm4WobZQHFphhFy9U
+ 8q7FBgiWXWQJFqE1ZfPtl5EcN563pBviLMbfZCcdWFJfp8io3C0IWMBRQ Q==;
+X-CSE-ConnectionGUID: AV4oBml/QtGRuOnASDwgGQ==
+X-CSE-MsgGUID: ATEMGGgVTWyDekhTOP4STA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="81751029"
+X-IronPort-AV: E=Sophos;i="6.19,279,1754982000"; d="scan'208";a="81751029"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2025 02:48:26 -0800
-X-CSE-ConnectionGUID: 5PxfvaPkRdSCq22+dSoZVA==
-X-CSE-MsgGUID: F6a3mBj2TO2Zew5OPHPL6w==
+ 04 Nov 2025 03:21:30 -0800
+X-CSE-ConnectionGUID: 2rlPQxsnQLu+tPmCBsMo2Q==
+X-CSE-MsgGUID: MjD7O1WfSc6PtA3LcAdIJg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,278,1754982000"; d="scan'208";a="186983841"
-Received: from nitin-super-server.iind.intel.com ([10.190.238.72])
- by fmviesa006.fm.intel.com with ESMTP; 04 Nov 2025 02:48:24 -0800
-From: Nitin Gote <nitin.r.gote@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: andi.shyti@intel.com,
-	Nitin Gote <nitin.r.gote@intel.com>
-Subject: [PATCH] drm/i915/gt: Rename MCFG_MCR_SELECTOR to STEER_SEMAPHORE
-Date: Tue,  4 Nov 2025 16:48:40 +0530
-Message-Id: <20251104111840.2110000-1-nitin.r.gote@intel.com>
-X-Mailer: git-send-email 2.25.1
+X-IronPort-AV: E=Sophos;i="6.19,279,1754982000"; d="scan'208";a="186808752"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.192])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2025 03:21:27 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+ Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Nitin Gote <nitin.r.gote@intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH i-g-t] tests/dmabuf: Avoid soft lockups on slow platforms
+Date: Tue,  4 Nov 2025 12:20:24 +0100
+Message-ID: <20251104112116.432508-2-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.51.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -65,82 +71,180 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The register at offset 0xfd0 was incorrectly named MCFG_MCR_SELECTOR.
-According to the hardware specification (Bspec), this register is
-actually called STEER_SEMAPHORE.
+Certain selftests, while basically correct, may fail on certain platforms.
+E.g., igt@dmabuf@all-test@dma_fence_chain used to complete successfully,
+but on slow machines it triggers soft lockup warnings which taint the
+kernel.
 
-Rename the register definition and update its usage to
-match the official hardware documentation.
+Sometimes, like in the above mentioned case, it's not possible to fix a
+root cause of the issue since it is not recognized as a bug.  To avoid
+ever returning CI bug reports in such cases, allow selftests to be called
+via user provided wrappers that take care of not triggering unavoidable
+failures, e.g. by skipping specific selftests if some conditions are not
+met, or watching their execution and acting upon certain conditions or
+events.
 
-No functional changes.
+With that in place, update the dmabuf test so it, as the first user of the
+new feature, skips the dma_fence_chain selftest if a machine looks too
+slow.  Since that's a hardware agnostic selftest, running it on a limited
+subset of machines seems acceptable, especially when the soft lockups it
+can trigger aren't recognized as bugs on the kernel side.
 
-Bspec: 67113
-
-Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt_mcr.c      | 6 +++---
- drivers/gpu/drm/i915/gt/intel_gt_regs.h     | 3 +--
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 2 +-
- 3 files changed, 5 insertions(+), 6 deletions(-)
+ lib/igt_kmod.c              | 13 +++++++---
+ lib/igt_kmod.h              | 10 ++++++-
+ tests/dmabuf.c              | 52 ++++++++++++++++++++++++++++++++++++-
+ tests/intel/i915_selftest.c |  6 ++---
+ 4 files changed, 73 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
-index c3afa321fe30..2d5ea5568b22 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
-@@ -354,7 +354,7 @@ void intel_gt_mcr_lock(struct intel_gt *gt, unsigned long *flags)
- 		intel_uncore_forcewake_get(gt->uncore, FORCEWAKE_GT);
+diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
+index a10626eedf..68ab4dbd57 100644
+--- a/lib/igt_kmod.c
++++ b/lib/igt_kmod.c
+@@ -1355,7 +1355,8 @@ static const char *unfilter(const char *filter, const char *name)
+ void igt_kselftests(const char *module_name,
+ 		    const char *options,
+ 		    const char *result,
+-		    const char *filter)
++		    const char *filter,
++		    igt_kselftest_wrap_t wrapper)
+ {
+ 	struct igt_ktest tst;
+ 	IGT_LIST_HEAD(tests);
+@@ -1370,10 +1371,16 @@ void igt_kselftests(const char *module_name,
+ 	igt_kselftest_get_tests(tst.kmod, filter, &tests);
+ 	igt_subtest_with_dynamic(filter ?: "all-tests") {
+ 		igt_list_for_each_entry_safe(tl, tn, &tests, link) {
++			const char *dynamic_name = unfilter(filter, tl->name);
+ 			unsigned long taints;
  
- 		err = wait_for(intel_uncore_read_fw(gt->uncore,
--						    MTL_STEER_SEMAPHORE) == 0x1, 100);
-+						    STEER_SEMAPHORE) == 0x1, 100);
- 	}
+-			igt_dynamic_f("%s", unfilter(filter, tl->name))
+-				igt_kselftest_execute(&tst, tl, options, result);
++			igt_dynamic_f("%s", dynamic_name) {
++				if (wrapper)
++					wrapper(dynamic_name, &tst, tl);
++				else
++					igt_kselftest_execute(&tst, tl,
++							      options, result);
++			}
+ 			free(tl);
  
- 	/*
-@@ -393,7 +393,7 @@ void intel_gt_mcr_unlock(struct intel_gt *gt, unsigned long flags)
- 	spin_unlock_irqrestore(&gt->mcr_lock, flags);
+ 			if (igt_kernel_tainted(&taints)) {
+diff --git a/lib/igt_kmod.h b/lib/igt_kmod.h
+index 9050708974..c9700240c9 100644
+--- a/lib/igt_kmod.h
++++ b/lib/igt_kmod.h
+@@ -28,6 +28,13 @@
  
- 	if (GRAPHICS_VER_FULL(gt->i915) >= IP_VER(12, 70)) {
--		intel_uncore_write_fw(gt->uncore, MTL_STEER_SEMAPHORE, 0x1);
-+		intel_uncore_write_fw(gt->uncore, STEER_SEMAPHORE, 0x1);
+ #include "igt_list.h"
  
- 		intel_uncore_forcewake_put(gt->uncore, FORCEWAKE_GT);
- 	}
-@@ -418,7 +418,7 @@ void intel_gt_mcr_lock_sanitize(struct intel_gt *gt)
- 	lockdep_assert_not_held(&gt->mcr_lock);
++struct igt_ktest;
++struct igt_kselftest_list;
++
++typedef int (*igt_kselftest_wrap_t)(const char *dynamic_name,
++				    struct igt_ktest *tst,
++				    struct igt_kselftest_list *tl);
++
+ bool igt_kmod_is_loaded(const char *mod_name);
+ void igt_kmod_list_loaded(void);
  
- 	if (GRAPHICS_VER_FULL(gt->i915) >= IP_VER(12, 70))
--		intel_uncore_write_fw(gt->uncore, MTL_STEER_SEMAPHORE, 0x1);
-+		intel_uncore_write_fw(gt->uncore, STEER_SEMAPHORE, 0x1);
+@@ -79,7 +86,8 @@ void igt_kunit(const char *module_name, const char *name, const char *opts);
+ void igt_kselftests(const char *module_name,
+ 		    const char *module_options,
+ 		    const char *result_option,
+-		    const char *filter);
++		    const char *filter,
++		    igt_kselftest_wrap_t wrapper);
+ 
+ struct igt_ktest {
+ 	struct kmod_module *kmod;
+diff --git a/tests/dmabuf.c b/tests/dmabuf.c
+index 8568bdfb3a..12c2db68f6 100644
+--- a/tests/dmabuf.c
++++ b/tests/dmabuf.c
+@@ -42,7 +42,57 @@
+ 
+ IGT_TEST_DESCRIPTION("Kernel selftests for the dmabuf API");
+ 
++static unsigned int bogomips(void)
++{
++	unsigned int bogomips, ret = 0;
++	char *line = NULL;
++	size_t size = 0;
++	FILE *cpuinfo;
++
++	cpuinfo = fopen("/proc/cpuinfo", "r");
++	if (igt_debug_on(!cpuinfo))
++		return UINT_MAX;
++
++	while (getline(&line, &size, cpuinfo) != -1) {
++		char *colon;
++
++		if (strncmp(line, "bogomips", 8))
++			continue;
++
++		colon = strchr(line, ':');
++		if (igt_debug_on(!colon))
++			bogomips = 0;
++		else
++			bogomips = atoi(colon + 1);
++
++		if (igt_debug_on(!bogomips))
++			break;
++
++		ret += bogomips;
++	}
++	free(line);
++	fclose(cpuinfo);
++
++	return igt_debug_on(!bogomips) ? UINT_MAX : ret;
++}
++
++static int wrapper(const char *dynamic_name,
++		   struct igt_ktest *tst,
++		   struct igt_kselftest_list *tl)
++{
++	/*
++	 * Test case wait-backward of dma_fence_chain selftest can trigger soft
++	 * lockups on slow machines.  Since that slowness is not recognized as
++	 * a bug on the kernel side, the issue is not going to be fixed.  Based
++	 * on analysis of CI results, skip that selftest on machines slower than
++	 * 25000 BogoMIPS to avoid ever returning CI reports on that failure.
++	 */
++	igt_skip_on(!strcmp(dynamic_name, "dma_fence_chain") && bogomips() < 25000);
++
++	return igt_kselftest_execute(tst, tl, NULL, NULL);
++}
++
+ igt_main
+ {
+-	igt_kselftests("dmabuf_selftests", NULL, NULL, NULL);
++	igt_kselftests("dmabuf_selftests", NULL, NULL, NULL, wrapper);
  }
+diff --git a/tests/intel/i915_selftest.c b/tests/intel/i915_selftest.c
+index aa29eb36af..824e6f5b95 100644
+--- a/tests/intel/i915_selftest.c
++++ b/tests/intel/i915_selftest.c
+@@ -646,15 +646,15 @@ igt_main
+ 	igt_assert(snprintf(opts, sizeof(opts),
+ 			    "mock_selftests=-1 disable_display=1 st_filter=%s",
+ 			    env) < sizeof(opts));
+-	igt_kselftests("i915", opts, NULL, "mock");
++	igt_kselftests("i915", opts, NULL, "mock", NULL);
  
- /**
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-index 7421ed18d8d1..2282c1f16f44 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-@@ -62,8 +62,7 @@
- #define GMD_ID_GRAPHICS				_MMIO(0xd8c)
- #define GMD_ID_MEDIA				_MMIO(MTL_MEDIA_GSI_BASE + 0xd8c)
+ 	igt_assert(snprintf(opts, sizeof(opts),
+ 			    "live_selftests=-1 disable_display=1 st_filter=%s",
+ 			    env) < sizeof(opts));
+-	igt_kselftests("i915", opts, "live_selftests", "live");
++	igt_kselftests("i915", opts, "live_selftests", "live", NULL);
  
--#define MCFG_MCR_SELECTOR			_MMIO(0xfd0)
--#define MTL_STEER_SEMAPHORE			_MMIO(0xfd0)
-+#define STEER_SEMAPHORE				_MMIO(0xfd0)
- #define MTL_MCR_SELECTOR			_MMIO(0xfd4)
- #define SF_MCR_SELECTOR				_MMIO(0xfd8)
- #define GEN8_MCR_SELECTOR			_MMIO(0xfdc)
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index ece88c612e27..594730f221b8 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -1405,7 +1405,7 @@ xehp_init_mcr(struct intel_gt *gt, struct i915_wa_list *wal)
- 	 * we'll just steer to a hardcoded "2" since that value will work
- 	 * everywhere.
- 	 */
--	__set_mcr_steering(wal, MCFG_MCR_SELECTOR, 0, 2);
-+	__set_mcr_steering(wal, STEER_SEMAPHORE, 0, 2);
- 	__set_mcr_steering(wal, SF_MCR_SELECTOR, 0, 2);
- 
- 	/*
+ 	igt_assert(snprintf(opts, sizeof(opts),
+ 			    "perf_selftests=-1 disable_display=1 st_filter=%s",
+ 			    env) < sizeof(opts));
+-	igt_kselftests("i915", opts, "perf_selftests", "perf");
++	igt_kselftests("i915", opts, "perf_selftests", "perf", NULL);
+ }
 -- 
-2.25.1
+2.51.1
 
