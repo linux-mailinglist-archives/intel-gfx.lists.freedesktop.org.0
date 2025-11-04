@@ -2,57 +2,85 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17A6BC30480
-	for <lists+intel-gfx@lfdr.de>; Tue, 04 Nov 2025 10:34:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 850DDC30642
+	for <lists+intel-gfx@lfdr.de>; Tue, 04 Nov 2025 11:00:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 211A310E58A;
-	Tue,  4 Nov 2025 09:34:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3135D10E257;
+	Tue,  4 Nov 2025 10:00:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Dh+zTFxG";
+	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="ROFGMuIo";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A565A10E58A;
- Tue,  4 Nov 2025 09:34:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762248876; x=1793784876;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=e6qpbLR/gPpLDN5MPmtpxU979y+z6hyCjrotr0oyOmI=;
- b=Dh+zTFxGI27911aPnvTvYFEykHeCyqj/I5g6Rq0US730dpYzmuMQuJx5
- dVEUAWSgW/jEJBUq+RogTKOF6CeS4kE1yAvuKHKimVATCsw8avAjIJQJS
- uyrhxit5p0rlow4aTfZeWM6sGT4ogZrFfKO1ng1HLOo/gvg4K8iARZ4LX
- YNBjDoIvv9YXTnFf1sV37ElckWvW5wNsSVEGyrqXnN1k4h94ivUeX2sRp
- /G8X5FjG5ITGQhS2Bh1bdiJNyDQj4k3ddCBm5ZWetX6q/qFLC7PWYhmSP
- TPpmcFDBgMQds2HSp2cWtZOZyziXoDODqyzqNn6zqTFjEPKXAWRx2mdip A==;
-X-CSE-ConnectionGUID: KH920C7XTrm++fVssRU9SQ==
-X-CSE-MsgGUID: cfBofvsySRKTvPCyk521gQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="75788331"
-X-IronPort-AV: E=Sophos;i="6.19,278,1754982000"; d="scan'208";a="75788331"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2025 01:34:36 -0800
-X-CSE-ConnectionGUID: qIZrpCQsS3WzSQO7rKbQgg==
-X-CSE-MsgGUID: sXdUTQZ9RpCsUOCXSLLaWQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,278,1754982000"; d="scan'208";a="187558491"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa009.fm.intel.com with ESMTP; 04 Nov 2025 01:34:34 -0800
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com,
-	Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 2/2] drm/i915/ltphy: Return lowest portclock for HDMI from
- reverse algorithm
-Date: Tue,  4 Nov 2025 15:04:25 +0530
-Message-Id: <20251104093425.154941-2-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251104093425.154941-1-suraj.kandpal@intel.com>
-References: <20251104093425.154941-1-suraj.kandpal@intel.com>
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
+ [209.85.128.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C48C810E257
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Nov 2025 10:00:46 +0000 (UTC)
+Received: by mail-wm1-f50.google.com with SMTP id
+ 5b1f17b1804b1-477563bcaacso2832465e9.1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 04 Nov 2025 02:00:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=suse.com; s=google; t=1762250445; x=1762855245; darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=rgopYyeNgZsrt2Y79WHTxulNc0VQoVCMlZy03CyU8+g=;
+ b=ROFGMuIo631MNaBsyQ2j7CUcezviKxN1BWtN6pnKGu6wIuqAdKwsd9dd+LSRWS7vta
+ Jl7nTtCGsFp61UMYmFbxhERncXaMoVYmtwF+5dbRvgCPTtl/n+mZ4cEjSbqlUKa5oUdg
+ 9/G9xK9Of2UyEZPb8EXktbkpbUZ0ORdZ8hY4cx0I4wJrnJylyZumOpJLLr8L7SSLKkfJ
+ 6BJIun6J3wVQXGa/YhIO6hCiuPyGZ6ANXY7bgmCKEeEaLIgjoI/4FTmrpJ9ucx7ea3uz
+ zJR+9/yhMywktFfqAj0RNgyYKPxxWLlYwu7mQtcr2QmY4tCRdW0/DGKrbWDfoS6JA6E9
+ zVQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1762250445; x=1762855245;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=rgopYyeNgZsrt2Y79WHTxulNc0VQoVCMlZy03CyU8+g=;
+ b=R7AMuNhzVqRgWpX/xitfpHHTGCPfMtdqU8G3b5BcUNTL+8caDlhYS6AtDXM5/JPFgJ
+ U0ypDm6LoPOH9p3nASLy5iMF5PJ3Rj+SyajS4DHIZm8xd9UAu4nA1Tp/GBWMmUo6Mome
+ r/66vPFE1J3m24E0yuQXT5Vy9oMwwcPlv1E4/SLpZvGx85RlsnwFVfM7lYD/4GuAD9FM
+ 0rPhxC9YYDexKz5wE/Vprnv6b/nHEH5vryb3Pc/rucPx+zS+WNpME6caZkrMJw03KI5a
+ I5irifaKOtIx8wAK3Qf7PSbW7167grkIB17q7CQ4tRbJr1BPzLFWAl1nz55qxgBvha4i
+ NF5w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU5QI4Boeg1glDj2kIYUvQ4LJThUemcRN9bYx5JeOLFcC6WHsWRH7QEK7XiM+dmn8XOmqXRNMEnxDQ=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzXwz2YAtaJ1RR0EpxKZYEI6BwjtuiBzpnWOf6Yd48NPhneG81a
+ dTskV0aoTk9J5q+PDQjrIrtTqV17rJJgM/MqDsWljA9EZlT/qwgUGBkwkCJvpp+oxFk=
+X-Gm-Gg: ASbGnctbtHOOyEToQ9yXJfTT/iywFlwoVNU4NrbBVsuBqwlVf84szNpgdBvu371IHMF
+ Ydo/salrM6IWn+VwSHBGJr2DhcnvZ8q8l5sBTwn4FgGpfcIPqwtS8ozjGEEUTibNnhmI0a1yYNk
+ fs8OlofXb9sPYWorNKSnGoJ+H4KMM0RZHv8J42C5HPHO8295l0seJJXPzsVoiRbZg0PO7Ydjw7U
+ kuWlVFITmm6QYnDgC4dUDKTyTL0GxtqBHK0sLV1Jb+sP3Ki7q4dy86A0U+O29NdeP+zHJXbqeQj
+ sbFkMH66oL58Z1VLd1/6amhM3KBDhf0+f0lNwT4D2o8gidHaU9BBzhobPSc5FAj7OdiAUyrZK59
+ ycKzhJwFZyJHxDKSwBa28ScswkKuPITtdGBBAG5no944IXuNqkFn/PrC6fBFGC/WpSEwDbCkJXA
+ TfyVVzoISVki+zjzZFNcKP8n7FXoRYG++4KWM=
+X-Google-Smtp-Source: AGHT+IGWKsEYeVin7D/5J78w8s6rqhDLVOG5AJCCtqrz5PPQJufaU8hvNyFs/6YjSt6T2WJtHCvGgQ==
+X-Received: by 2002:a05:600c:5252:b0:471:b5d:2db7 with SMTP id
+ 5b1f17b1804b1-4773086e099mr128405005e9.24.1762250444571; 
+ Tue, 04 Nov 2025 02:00:44 -0800 (PST)
+Received: from localhost.localdomain ([2a00:6d43:105:c401:e307:1a37:2e76:ce91])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-47755942772sm14325865e9.5.2025.11.04.02.00.43
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 04 Nov 2025 02:00:44 -0800 (PST)
+From: Marco Crivellari <marco.crivellari@suse.com>
+To: linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>,
+ Frederic Weisbecker <frederic@kernel.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Marco Crivellari <marco.crivellari@suse.com>,
+ Michal Hocko <mhocko@suse.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Krzysztof Karas <krzysztof.karas@intel.com>
+Subject: [PATCH v3 0/3] replace old wq(s), add WQ_PERCPU to alloc_workqueue
+Date: Tue,  4 Nov 2025 11:00:29 +0100
+Message-ID: <20251104100032.61525-1-marco.crivellari@suse.com>
+X-Mailer: git-send-email 2.51.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,63 +97,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Return the lowest port clock for HDMI when the reverse algorithm
-calculates it to be 0 to avoid errors later but throw a warn.
+Hi,
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+=== Current situation: problems ===
+
+Let's consider a nohz_full system with isolated CPUs: wq_unbound_cpumask is
+set to the housekeeping CPUs, for !WQ_UNBOUND the local CPU is selected.
+
+This leads to different scenarios if a work item is scheduled on an
+isolated CPU where "delay" value is 0 or greater then 0:
+        schedule_delayed_work(, 0);
+
+This will be handled by __queue_work() that will queue the work item on the
+current local (isolated) CPU, while:
+
+        schedule_delayed_work(, 1);
+
+Will move the timer on an housekeeping CPU, and schedule the work there.
+
+Currently if a user enqueue a work item using schedule_delayed_work() the
+used wq is "system_wq" (per-cpu wq) while queue_delayed_work() use
+WORK_CPU_UNBOUND (used when a cpu is not specified). The same applies to
+schedule_work() that is using system_wq and queue_work(), that makes use
+again of WORK_CPU_UNBOUND.
+
+This lack of consistency cannot be addressed without refactoring the API.
+
+=== Recent changes to the WQ API ===
+
+The following, address the recent changes in the Workqueue API:
+
+- commit 128ea9f6ccfb ("workqueue: Add system_percpu_wq and system_dfl_wq")
+- commit 930c2ea566af ("workqueue: Add new WQ_PERCPU flag")
+
+The old workqueues will be removed in a future release cycle.
+
+=== Introduced Changes by this series ===
+
+1) [P 1-2]  Replace uses of system_wq and system_unbound_wq
+
+    system_wq is a per-CPU workqueue, but his name is not clear.
+    system_unbound_wq is to be used when locality is not required.
+
+    Because of that, system_wq has been replaced with system_percpu_wq, and
+    system_unbound_wq has been replaced with system_dfl_wq.
+
+2) [P 3] WQ_PERCPU added to alloc_workqueue()
+
+    This change adds a new WQ_PERCPU flag to explicitly request
+    alloc_workqueue() to be per-cpu when WQ_UNBOUND has not been specified.
+
+
+Thanks!
+
 ---
- drivers/gpu/drm/i915/display/intel_lt_phy.c | 14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
+Changes in 3:
+- Improved commit logs
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index c1177b294013..e6b15bf6445b 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -1675,7 +1675,7 @@ intel_lt_phy_calculate_hdmi_state(struct intel_lt_phy_pll_state *lt_state,
- }
- 
- static int
--intel_lt_phy_calc_hdmi_port_clock(const struct intel_lt_phy_pll_state *lt_state)
-+intel_lt_phy_calc_hdmi_port_clock(const struct intel_crtc_state *crtc_state)
- {
- #define REF_CLK_KHZ 38400
- #define REGVAL(i) (				\
-@@ -1685,6 +1685,9 @@ intel_lt_phy_calc_hdmi_port_clock(const struct intel_lt_phy_pll_state *lt_state)
- 	(lt_state->data[i][0] << 24)		\
- )
- 
-+	const struct intel_lt_phy_pll_state *lt_state =
-+		&crtc_state->dpll_hw_state.ltpll;
-+	struct intel_display *display = to_intel_display(crtc_state);
- 	int clk = 0;
- 	u32 d8, pll_reg_5, pll_reg_3, pll_reg_57, m2div_frac, m2div_int;
- 	u64 temp0, temp1;
-@@ -1727,11 +1730,14 @@ intel_lt_phy_calc_hdmi_port_clock(const struct intel_lt_phy_pll_state *lt_state)
- 	 * frequency = (m2div * refclk_khz / (d8 * 10))
- 	 */
- 	d8 = (pll_reg_57 & REG_GENMASK(14, 7)) >> 7;
-+	if (d8 == 0) {
-+		drm_WARN_ON(display->drm,
-+			    "Invalid port clock using lowest HDMI portclock\n");
-+		return 270000;
-+	}
- 	m2div_int = (pll_reg_3  & REG_GENMASK(14, 5)) >> 5;
- 	temp0 = ((u64)m2div_frac * REF_CLK_KHZ) >> 32;
- 	temp1 = (u64)m2div_int * REF_CLK_KHZ;
--	if (d8 == 0)
--		return 0;
- 
- 	clk = div_u64((temp1 + temp0), d8 * 10);
- 
-@@ -1760,7 +1766,7 @@ intel_lt_phy_calc_port_clock(struct intel_encoder *encoder,
- 				      lt_state->config[0]);
- 		clk = intel_lt_phy_get_dp_clock(rate);
- 	} else {
--		clk = intel_lt_phy_calc_hdmi_port_clock(lt_state);
-+		clk = intel_lt_phy_calc_hdmi_port_clock(crtc_state);
- 	}
- 
- 	return clk;
+Changes in v2:
+- fix typo in patch subject (add instead of added).
+
+- in every patch is also present the specific commit hash about the
+  workqueue API change.
+
+- fixed commit log of P1 (removed "Adding system_dfl_wq...").
+
+- P2: subject changed reflecting the effective change.
+
+- rebased to v6.18-rc4.
+
+
+Marco Crivellari (3):
+  drm/i915: replace use of system_unbound_wq with system_dfl_wq
+  drm/i915: replace use of system_wq with system_percpu_wq in the
+    documentation
+  drm/i915: add WQ_PERCPU to alloc_workqueue users
+
+ drivers/gpu/drm/i915/display/intel_display_driver.c | 4 ++--
+ drivers/gpu/drm/i915/display/intel_display_power.c  | 2 +-
+ drivers/gpu/drm/i915/display/intel_tc.c             | 4 ++--
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c        | 2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c              | 4 ++--
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c           | 4 ++--
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c   | 6 +++---
+ drivers/gpu/drm/i915/i915_active.c                  | 2 +-
+ drivers/gpu/drm/i915/i915_driver.c                  | 5 +++--
+ drivers/gpu/drm/i915/i915_drv.h                     | 2 +-
+ drivers/gpu/drm/i915/i915_sw_fence_work.c           | 2 +-
+ drivers/gpu/drm/i915/i915_vma_resource.c            | 2 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp.c                | 2 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp_irq.c            | 2 +-
+ drivers/gpu/drm/i915/selftests/i915_sw_fence.c      | 2 +-
+ drivers/gpu/drm/i915/selftests/mock_gem_device.c    | 2 +-
+ 16 files changed, 24 insertions(+), 23 deletions(-)
+
 -- 
-2.34.1
+2.51.1
 
