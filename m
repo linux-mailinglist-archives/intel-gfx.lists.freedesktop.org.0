@@ -2,75 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F59CC31604
-	for <lists+intel-gfx@lfdr.de>; Tue, 04 Nov 2025 15:05:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5616BC3169D
+	for <lists+intel-gfx@lfdr.de>; Tue, 04 Nov 2025 15:07:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0526910E5EB;
-	Tue,  4 Nov 2025 14:05:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF2EE10E617;
+	Tue,  4 Nov 2025 14:07:30 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G6dFWCrg";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id CB8CF10E5EB
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Nov 2025 14:05:01 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A2AA41CE0
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Nov 2025 06:04:53 -0800 (PST)
-Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com
- [10.121.207.14])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 33A233F694
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Nov 2025 06:05:01 -0800 (PST)
-Date: Tue, 4 Nov 2025 14:04:54 +0000
-From: Liviu Dudau <liviu.dudau@arm.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-Cc: "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "kernel-list@raspberrypi.com" <kernel-list@raspberrypi.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- "dmitry.baryshkov@oss.qualcomm.com" <dmitry.baryshkov@oss.qualcomm.com>,
- "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- "Murthy, Arun R" <arun.r.murthy@intel.com>,
- "Shankar, Uma" <uma.shankar@intel.com>,
- "Nikula, Jani" <jani.nikula@intel.com>,
- "harry.wentland@amd.com" <harry.wentland@amd.com>,
- "siqueira@igalia.com" <siqueira@igalia.com>,
- "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
- "christian.koenig@amd.com" <christian.koenig@amd.com>,
- "airlied@gmail.com" <airlied@gmail.com>,
- "simona@ffwll.ch" <simona@ffwll.ch>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "mripard@kernel.org" <mripard@kernel.org>,
- "robin.clark@oss.qualcomm.com" <robin.clark@oss.qualcomm.com>,
- "abhinav.kumar@linux.dev" <abhinav.kumar@linux.dev>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- "jessica.zhang@oss.qualcomm.com" <jessica.zhang@oss.qualcomm.com>,
- "sean@poorly.run" <sean@poorly.run>,
- "marijn.suijten@somainline.org" <marijn.suijten@somainline.org>,
- "laurent.pinchart+renesas@ideasonboard.com"
- <laurent.pinchart+renesas@ideasonboard.com>, 
- "mcanal@igalia.com" <mcanal@igalia.com>,
- "dave.stevenson@raspberrypi.com" <dave.stevenson@raspberrypi.com>,
- "tomi.valkeinen+renesas@ideasonboard.com"
- <tomi.valkeinen+renesas@ideasonboard.com>, 
- "kieran.bingham+renesas@ideasonboard.com"
- <kieran.bingham+renesas@ideasonboard.com>, 
- "louis.chauvet@bootlin.com" <louis.chauvet@bootlin.com>
-Subject: Re: [PATCH v2 1/7] drm: writeback: Refactor drm_writeback_connector
- structure
-Message-ID: <aQoIBroBqQc3B-RD@e110455-lin.cambridge.arm.com>
-References: <20251007054528.2900905-1-suraj.kandpal@intel.com>
- <20251007054528.2900905-2-suraj.kandpal@intel.com>
- <aQjDejhzGRYJT614@e110455-lin.cambridge.arm.com>
- <DM3PPF208195D8D5DDD56AA88E006E66AD9E3C4A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1203410E611
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Nov 2025 14:07:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1762265250; x=1793801250;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=7yZxlmC/WXRwtYVSmcNoAN6w+89P/RBAUA9dWaJkbrI=;
+ b=G6dFWCrgmwmhbknGHD9vSEvjgFColbAQBenoJdYNuKjVtH3Ygo5RAH6/
+ /Lk6hkRP5zI7yR+0sITIvndpa68tpNIgjNMYDQcHK5dqtI20wL8qdHoc5
+ n04G1lTvfBBxhzZxs1C7GN59p7Asrh26+VbGX8KqrnO1xKHUc9m6dq9l4
+ PX8x0MOe6GxKHBUP2i8mwMIZIUVq9Z6Kz+WDuVNmCv/MjuBRXw56cucGB
+ SvGfQD1Ta7Xc6Mbalck1kfJyRvMophq/HgRpSOnKdUKFKHQ+hHo6oB1qH
+ Lw3U2iowIpzdmV9NOClK0EfD+Z3m1qfqxK41nE+8xF13HukDxbfFM7XPK Q==;
+X-CSE-ConnectionGUID: w2nRRojUS5CC/RUy9+KqfQ==
+X-CSE-MsgGUID: 5UEJv10uRRC1/wy4igGVcQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="74964264"
+X-IronPort-AV: E=Sophos;i="6.19,279,1754982000"; d="scan'208";a="74964264"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2025 06:07:29 -0800
+X-CSE-ConnectionGUID: svicutQfS/6MsrM9QX8QTA==
+X-CSE-MsgGUID: 4UQNGMegQE2RpXSLd8MGQw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,279,1754982000"; d="scan'208";a="187896803"
+Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
+ by fmviesa010.fm.intel.com with ESMTP; 04 Nov 2025 06:07:26 -0800
+Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1vGHgZ-000RT6-11;
+ Tue, 04 Nov 2025 14:07:05 +0000
+Date: Tue, 4 Nov 2025 22:06:01 +0800
+From: kernel test robot <lkp@intel.com>
+To: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+ balasubramani.vivekanandan@intel.com, matthew.d.roper@intel.com,
+ lucas.demarchi@intel.com, gustavo.sousa@intel.com,
+ clinton.a.taylor@intel.com, matthew.s.atwood@intel.com,
+ dnyaneshwar.bhadane@intel.com, shekhar.chauhan@intel.com,
+ Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
+Subject: Re: [PATCH] drm/i915/pmu: Use raw_spin_lock where ever needed in
+ i915 pmu
+Message-ID: <202511042145.tYp6IjWG-lkp@intel.com>
+References: <20251103185141.854074-1-ravi.kumar.vodapalli@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <DM3PPF208195D8D5DDD56AA88E006E66AD9E3C4A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+In-Reply-To: <20251103185141.854074-1-ravi.kumar.vodapalli@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,289 +76,178 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 04, 2025 at 05:11:25AM +0000, Kandpal, Suraj wrote:
-> > Subject: Re: [PATCH v2 1/7] drm: writeback: Refactor
-> > drm_writeback_connector structure
-> > 
-> > On Tue, Oct 07, 2025 at 11:15:23AM +0530, Suraj Kandpal wrote:
-> > > Some drivers cannot work with the current design where the connector
-> > > is embedded within the drm_writeback_connector such as Intel and some
-> > > drivers that can get it working end up adding a lot of checks all
-> > > around the code to check if it's a writeback conenctor or not, this is
-> > > due to the limitation of inheritance in C.
-> > > To solve this move the drm_writeback_connector within the
-> > > drm_connector and remove the drm_connector base which was in
-> > > drm_writeback_connector. Make this drm_writeback_connector a union
-> > > with hdmi connector to save memory and since a connector can never be
-> > > both writeback and hdmi it should serve us well.
-> > > Do all other required modifications that come with these changes along
-> > > with addition of new function which returns the drm_connector when
-> > > drm_writeback_connector is present.
-> > > Modify drivers using the drm_writeback_connector to allow them to use
-> > > this connector without breaking them.
-> > > The drivers modified here are amd, komeda, mali, vc4, vkms, rcar_du,
-> > > msm
-> > >
-> > > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> > > ---
-> > > V1 -> V2: Use &connector->writeback, make commit message imperative
-> > > (Dmitry)
-> > > ---
-> > >  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  6 +-
-> > > .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  2 +-
-> > > .../drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c  |  8 +--
-> > > .../gpu/drm/arm/display/komeda/komeda_crtc.c  |  6 +-
-> > >  .../gpu/drm/arm/display/komeda/komeda_kms.h   |  6 +-
-> > >  .../arm/display/komeda/komeda_wb_connector.c  |  8 +--
-> > >  drivers/gpu/drm/arm/malidp_crtc.c             |  2 +-
-> > >  drivers/gpu/drm/arm/malidp_drv.h              |  2 +-
-> > >  drivers/gpu/drm/arm/malidp_hw.c               |  6 +-
-> > >  drivers/gpu/drm/arm/malidp_mw.c               |  8 +--
-> > >  drivers/gpu/drm/drm_atomic_uapi.c             |  2 +-
-> > >  drivers/gpu/drm/drm_writeback.c               | 35 ++++++----
-> > 
-> > For the komeda and malidp drivers, as well as for the drm_writeback.c
-> > changes:
-> > 
-> > Reviewed-by: Liviu Dudau <liviu.dudau@arm.com>
-> > 
-> > 
-> > [snip]
-> > 
-> > 
-> > > diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-> > > index 8f34f4b8183d..1b090e6bddc1 100644
-> > > --- a/include/drm/drm_connector.h
-> > > +++ b/include/drm/drm_connector.h
-> > > @@ -1882,6 +1882,61 @@ struct drm_connector_cec {
-> > >  	void *data;
-> > >  };
-> > >
-> > > +/**
-> > > + * struct drm_writeback_connector - DRM writeback connector  */
-> > > +struct drm_writeback_connector {
-> > > +	/**
-> > > +	 * @pixel_formats_blob_ptr:
-> > > +	 *
-> > > +	 * DRM blob property data for the pixel formats list on writeback
-> > > +	 * connectors
-> > > +	 * See also drm_writeback_connector_init()
-> > > +	 */
-> > > +	struct drm_property_blob *pixel_formats_blob_ptr;
-> > > +
-> > > +	/** @job_lock: Protects job_queue */
-> > > +	spinlock_t job_lock;
-> > > +
-> > > +	/**
-> > > +	 * @job_queue:
-> > > +	 *
-> > > +	 * Holds a list of a connector's writeback jobs; the last item is the
-> > > +	 * most recent. The first item may be either waiting for the hardware
-> > > +	 * to begin writing, or currently being written.
-> > > +	 *
-> > > +	 * See also: drm_writeback_queue_job() and
-> > > +	 * drm_writeback_signal_completion()
-> > > +	 */
-> > > +	struct list_head job_queue;
-> > > +
-> > > +	/**
-> > > +	 * @fence_context:
-> > > +	 *
-> > > +	 * timeline context used for fence operations.
-> > > +	 */
-> > > +	unsigned int fence_context;
-> > > +	/**
-> > > +	 * @fence_lock:
-> > > +	 *
-> > > +	 * spinlock to protect the fences in the fence_context.
-> > > +	 */
-> > > +	spinlock_t fence_lock;
-> > > +	/**
-> > > +	 * @fence_seqno:
-> > > +	 *
-> > > +	 * Seqno variable used as monotonic counter for the fences
-> > > +	 * created on the connector's timeline.
-> > > +	 */
-> > > +	unsigned long fence_seqno;
-> > > +	/**
-> > > +	 * @timeline_name:
-> > > +	 *
-> > > +	 * The name of the connector's fence timeline.
-> > > +	 */
-> > > +	char timeline_name[32];
-> > > +};
-> > > +
-> > >  /**
-> > >   * struct drm_connector - central DRM connector control structure
-> > >   *
-> > > @@ -2291,10 +2346,16 @@ struct drm_connector {
-> > >  	 */
-> > >  	struct llist_node free_node;
-> > >
-> > > -	/**
-> > > -	 * @hdmi: HDMI-related variable and properties.
-> > > -	 */
-> > > -	struct drm_connector_hdmi hdmi;
-> > > +	union {
-> > 
-> > This is a surprising choice. Before this patch one had to have a separate
-> > writeback connector besides the HDMI connector. Going forward it looks like
-> > you still need two connectors, one that uses the writeback member and one
-> > that uses the hdmi one. Is that intended?
-> > 
-> > I was expecting that you're going to declare the writeback member next to the
-> > hdmi, without overlap. If you do that, then you also don't need to move the
-> > struct drm_writeback declaration from the header file and it should be enough
-> > to include the drm_writeback.h file.
-> 
-> Hi,
-> Thanks for the review
-> The reason for this came from the discussion on previous patches and was suggested by Dmitry.
-> The idea is that a connector can never be both an HDMI and writeback connector at the same time
-> Hence we save space if we pack them together.
+Hi Ravi,
 
-Hmm, but you can still have all the CEC and HDMI codecs data in that connector,
-which feels strange.  Also, what's the issue with having a connector that has
-both a valid HDMI state and an associated writeback at the same time (i.e.
-don't use the union)? Writing back the memory the output that goes to HDMI is
-valid, right?
+kernel test robot noticed the following build errors:
 
-Maybe that is not something that you considered, but with this patch (without union)
-we can drop the need to have a separate connector just for writeback. We're breaking
-user space compatibility, true, but it feels like a good change to be able to
-attach a writeback to any connector and get its output. The drivers that don't support
-that can reject the commit that attaches the writeback to the existing connector.
+[auto build test ERROR on drm-intel/for-linux-next]
+[also build test ERROR on drm-intel/for-linux-next-fixes drm-tip/drm-tip linus/master v6.18-rc4 next-20251104]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Best regards,
-Liviu
+url:    https://github.com/intel-lab-lkp/linux/commits/Ravi-Kumar-Vodapalli/drm-i915-pmu-Use-raw_spin_lock-where-ever-needed-in-i915-pmu/20251104-025356
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+patch link:    https://lore.kernel.org/r/20251103185141.854074-1-ravi.kumar.vodapalli%40intel.com
+patch subject: [PATCH] drm/i915/pmu: Use raw_spin_lock where ever needed in i915 pmu
+config: x86_64-randconfig-014-20251104 (https://download.01.org/0day-ci/archive/20251104/202511042145.tYp6IjWG-lkp@intel.com/config)
+compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251104/202511042145.tYp6IjWG-lkp@intel.com/reproduce)
 
-> 
-> Regards,
-> Suraj Kandpal
-> 
-> > 
-> > Best regards,
-> > Liviu
-> > 
-> > > +		/**
-> > > +		 * @hdmi: HDMI-related variable and properties.
-> > > +		 */
-> > > +		struct drm_connector_hdmi hdmi;
-> > > +		/**
-> > > +		 * @writeback: Writeback related valriables.
-> > > +		 */
-> > > +		struct drm_writeback_connector writeback;
-> > > +	};
-> > >
-> > >  	/**
-> > >  	 * @hdmi_audio: HDMI codec properties and non-DRM state.
-> > > diff --git a/include/drm/drm_writeback.h b/include/drm/drm_writeback.h
-> > > index 958466a05e60..702141099520 100644
-> > > --- a/include/drm/drm_writeback.h
-> > > +++ b/include/drm/drm_writeback.h
-> > > @@ -15,66 +15,6 @@
-> > >  #include <drm/drm_encoder.h>
-> > >  #include <linux/workqueue.h>
-> > >
-> > > -/**
-> > > - * struct drm_writeback_connector - DRM writeback connector
-> > > - */
-> > > -struct drm_writeback_connector {
-> > > -	/**
-> > > -	 * @base: base drm_connector object
-> > > -	 */
-> > > -	struct drm_connector base;
-> > > -
-> > > -	/**
-> > > -	 * @pixel_formats_blob_ptr:
-> > > -	 *
-> > > -	 * DRM blob property data for the pixel formats list on writeback
-> > > -	 * connectors
-> > > -	 * See also drm_writeback_connector_init()
-> > > -	 */
-> > > -	struct drm_property_blob *pixel_formats_blob_ptr;
-> > > -
-> > > -	/** @job_lock: Protects job_queue */
-> > > -	spinlock_t job_lock;
-> > > -
-> > > -	/**
-> > > -	 * @job_queue:
-> > > -	 *
-> > > -	 * Holds a list of a connector's writeback jobs; the last item is the
-> > > -	 * most recent. The first item may be either waiting for the hardware
-> > > -	 * to begin writing, or currently being written.
-> > > -	 *
-> > > -	 * See also: drm_writeback_queue_job() and
-> > > -	 * drm_writeback_signal_completion()
-> > > -	 */
-> > > -	struct list_head job_queue;
-> > > -
-> > > -	/**
-> > > -	 * @fence_context:
-> > > -	 *
-> > > -	 * timeline context used for fence operations.
-> > > -	 */
-> > > -	unsigned int fence_context;
-> > > -	/**
-> > > -	 * @fence_lock:
-> > > -	 *
-> > > -	 * spinlock to protect the fences in the fence_context.
-> > > -	 */
-> > > -	spinlock_t fence_lock;
-> > > -	/**
-> > > -	 * @fence_seqno:
-> > > -	 *
-> > > -	 * Seqno variable used as monotonic counter for the fences
-> > > -	 * created on the connector's timeline.
-> > > -	 */
-> > > -	unsigned long fence_seqno;
-> > > -	/**
-> > > -	 * @timeline_name:
-> > > -	 *
-> > > -	 * The name of the connector's fence timeline.
-> > > -	 */
-> > > -	char timeline_name[32];
-> > > -};
-> > > -
-> > >  /**
-> > >   * struct drm_writeback_job - DRM writeback job
-> > >   */
-> > > @@ -131,10 +71,10 @@ struct drm_writeback_job {
-> > >  	void *priv;
-> > >  };
-> > >
-> > > -static inline struct drm_writeback_connector *
-> > > -drm_connector_to_writeback(struct drm_connector *connector)
-> > > +static inline struct drm_connector *
-> > > +drm_writeback_to_connector(struct drm_writeback_connector
-> > > +*wb_connector)
-> > >  {
-> > > -	return container_of(connector, struct drm_writeback_connector,
-> > base);
-> > > +	return container_of(wb_connector, struct drm_connector, writeback);
-> > >  }
-> > >
-> > >  int drm_writeback_connector_init(struct drm_device *dev,
-> > > --
-> > > 2.34.1
-> > >
-> > 
-> > --
-> > ====================
-> > | I would like to |
-> > | fix the world,  |
-> > | but they're not |
-> > | giving me the   |
-> >  \ source code!  /
-> >   ---------------
-> >     ¯\_(ツ)_/¯
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202511042145.tYp6IjWG-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/gpu/drm/i915/i915_pmu.c:233:24: error: incompatible pointer types passing 'spinlock_t *' (aka 'struct spinlock *') to parameter of type 'raw_spinlock_t *' (aka 'struct raw_spinlock *') [-Werror,-Wincompatible-pointer-types]
+     233 |         raw_spin_lock_irqsave(&pmu->lock, flags);
+         |                               ^~~~~~~~~~
+   include/linux/spinlock.h:244:34: note: expanded from macro 'raw_spin_lock_irqsave'
+     244 |                 flags = _raw_spin_lock_irqsave(lock);   \
+         |                                                ^~~~
+   include/linux/spinlock_api_smp.h:32:65: note: passing argument to parameter 'lock' here
+      32 | unsigned long __lockfunc _raw_spin_lock_irqsave(raw_spinlock_t *lock)
+         |                                                                 ^
+   drivers/gpu/drm/i915/i915_pmu.c:254:29: error: incompatible pointer types passing 'spinlock_t *' (aka 'struct spinlock *') to parameter of type 'raw_spinlock_t *' (aka 'struct raw_spinlock *') [-Werror,-Wincompatible-pointer-types]
+     254 |         raw_spin_unlock_irqrestore(&pmu->lock, flags);
+         |                                    ^~~~~~~~~~
+   include/linux/spinlock.h:282:31: note: expanded from macro 'raw_spin_unlock_irqrestore'
+     282 |                 _raw_spin_unlock_irqrestore(lock, flags);       \
+         |                                             ^~~~
+   include/linux/spinlock_api_smp.h:43:45: note: passing argument to parameter 'lock' here
+      43 | _raw_spin_unlock_irqrestore(raw_spinlock_t *lock, unsigned long flags)
+         |                                             ^
+   drivers/gpu/drm/i915/i915_pmu.c:305:20: error: incompatible pointer types passing 'spinlock_t *' (aka 'struct spinlock *') to parameter of type 'raw_spinlock_t *' (aka 'struct raw_spinlock *') [-Werror,-Wincompatible-pointer-types]
+     305 |         raw_spin_lock_irq(&pmu->lock);
+         |                           ^~~~~~~~~~
+   include/linux/spinlock.h:274:53: note: expanded from macro 'raw_spin_lock_irq'
+     274 | #define raw_spin_lock_irq(lock)         _raw_spin_lock_irq(lock)
+         |                                                            ^~~~
+   include/linux/spinlock_api_smp.h:29:52: note: passing argument to parameter 'lock' here
+      29 | void __lockfunc _raw_spin_lock_irq(raw_spinlock_t *lock)
+         |                                                    ^
+   drivers/gpu/drm/i915/i915_pmu.c:317:22: error: incompatible pointer types passing 'spinlock_t *' (aka 'struct spinlock *') to parameter of type 'raw_spinlock_t *' (aka 'struct raw_spinlock *') [-Werror,-Wincompatible-pointer-types]
+     317 |         raw_spin_unlock_irq(&pmu->lock);
+         |                             ^~~~~~~~~~
+   include/linux/spinlock.h:277:56: note: expanded from macro 'raw_spin_unlock_irq'
+     277 | #define raw_spin_unlock_irq(lock)       _raw_spin_unlock_irq(lock)
+         |                                                              ^~~~
+   include/linux/spinlock_api_smp.h:41:54: note: passing argument to parameter 'lock' here
+      41 | void __lockfunc _raw_spin_unlock_irq(raw_spinlock_t *lock)      __releases(lock);
+         |                                                      ^
+   drivers/gpu/drm/i915/i915_pmu.c:327:20: error: incompatible pointer types passing 'spinlock_t *' (aka 'struct spinlock *') to parameter of type 'raw_spinlock_t *' (aka 'struct raw_spinlock *') [-Werror,-Wincompatible-pointer-types]
+     327 |         raw_spin_lock_irq(&pmu->lock);
+         |                           ^~~~~~~~~~
+   include/linux/spinlock.h:274:53: note: expanded from macro 'raw_spin_lock_irq'
+     274 | #define raw_spin_lock_irq(lock)         _raw_spin_lock_irq(lock)
+         |                                                            ^~~~
+   include/linux/spinlock_api_smp.h:29:52: note: passing argument to parameter 'lock' here
+      29 | void __lockfunc _raw_spin_lock_irq(raw_spinlock_t *lock)
+         |                                                    ^
+   drivers/gpu/drm/i915/i915_pmu.c:337:22: error: incompatible pointer types passing 'spinlock_t *' (aka 'struct spinlock *') to parameter of type 'raw_spinlock_t *' (aka 'struct raw_spinlock *') [-Werror,-Wincompatible-pointer-types]
+     337 |         raw_spin_unlock_irq(&pmu->lock);
+         |                             ^~~~~~~~~~
+   include/linux/spinlock.h:277:56: note: expanded from macro 'raw_spin_unlock_irq'
+     277 | #define raw_spin_unlock_irq(lock)       _raw_spin_unlock_irq(lock)
+         |                                                              ^~~~
+   include/linux/spinlock_api_smp.h:41:54: note: passing argument to parameter 'lock' here
+      41 | void __lockfunc _raw_spin_unlock_irq(raw_spinlock_t *lock)      __releases(lock);
+         |                                                      ^
+   drivers/gpu/drm/i915/i915_pmu.c:743:24: error: incompatible pointer types passing 'spinlock_t *' (aka 'struct spinlock *') to parameter of type 'raw_spinlock_t *' (aka 'struct raw_spinlock *') [-Werror,-Wincompatible-pointer-types]
+     743 |         raw_spin_lock_irqsave(&pmu->lock, flags);
+         |                               ^~~~~~~~~~
+   include/linux/spinlock.h:244:34: note: expanded from macro 'raw_spin_lock_irqsave'
+     244 |                 flags = _raw_spin_lock_irqsave(lock);   \
+         |                                                ^~~~
+   include/linux/spinlock_api_smp.h:32:65: note: passing argument to parameter 'lock' here
+      32 | unsigned long __lockfunc _raw_spin_lock_irqsave(raw_spinlock_t *lock)
+         |                                                                 ^
+   drivers/gpu/drm/i915/i915_pmu.c:785:29: error: incompatible pointer types passing 'spinlock_t *' (aka 'struct spinlock *') to parameter of type 'raw_spinlock_t *' (aka 'struct raw_spinlock *') [-Werror,-Wincompatible-pointer-types]
+     785 |         raw_spin_unlock_irqrestore(&pmu->lock, flags);
+         |                                    ^~~~~~~~~~
+   include/linux/spinlock.h:282:31: note: expanded from macro 'raw_spin_unlock_irqrestore'
+     282 |                 _raw_spin_unlock_irqrestore(lock, flags);       \
+         |                                             ^~~~
+   include/linux/spinlock_api_smp.h:43:45: note: passing argument to parameter 'lock' here
+      43 | _raw_spin_unlock_irqrestore(raw_spinlock_t *lock, unsigned long flags)
+         |                                             ^
+   drivers/gpu/drm/i915/i915_pmu.c:806:24: error: incompatible pointer types passing 'spinlock_t *' (aka 'struct spinlock *') to parameter of type 'raw_spinlock_t *' (aka 'struct raw_spinlock *') [-Werror,-Wincompatible-pointer-types]
+     806 |         raw_spin_lock_irqsave(&pmu->lock, flags);
+         |                               ^~~~~~~~~~
+   include/linux/spinlock.h:244:34: note: expanded from macro 'raw_spin_lock_irqsave'
+     244 |                 flags = _raw_spin_lock_irqsave(lock);   \
+         |                                                ^~~~
+   include/linux/spinlock_api_smp.h:32:65: note: passing argument to parameter 'lock' here
+      32 | unsigned long __lockfunc _raw_spin_lock_irqsave(raw_spinlock_t *lock)
+         |                                                                 ^
+   drivers/gpu/drm/i915/i915_pmu.c:839:29: error: incompatible pointer types passing 'spinlock_t *' (aka 'struct spinlock *') to parameter of type 'raw_spinlock_t *' (aka 'struct raw_spinlock *') [-Werror,-Wincompatible-pointer-types]
+     839 |         raw_spin_unlock_irqrestore(&pmu->lock, flags);
+         |                                    ^~~~~~~~~~
+   include/linux/spinlock.h:282:31: note: expanded from macro 'raw_spin_unlock_irqrestore'
+     282 |                 _raw_spin_unlock_irqrestore(lock, flags);       \
+         |                                             ^~~~
+   include/linux/spinlock_api_smp.h:43:45: note: passing argument to parameter 'lock' here
+      43 | _raw_spin_unlock_irqrestore(raw_spinlock_t *lock, unsigned long flags)
+         |                                             ^
+   drivers/gpu/drm/i915/i915_pmu.c:1157:2: error: incompatible pointer types passing 'spinlock_t *' (aka 'struct spinlock *') to parameter of type 'raw_spinlock_t *' (aka 'struct raw_spinlock *') [-Werror,-Wincompatible-pointer-types]
+    1157 |         raw_spin_lock_init(&pmu->lock);
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/spinlock.h:108:23: note: expanded from macro 'raw_spin_lock_init'
+     108 |         __raw_spin_lock_init((lock), #lock, &__key, LD_WAIT_SPIN);      \
+         |                              ^~~~~~
+   include/linux/spinlock.h:101:52: note: passing argument to parameter 'lock' here
+     101 |   extern void __raw_spin_lock_init(raw_spinlock_t *lock, const char *name,
+         |                                                    ^
+   11 errors generated.
+
+
+vim +233 drivers/gpu/drm/i915/i915_pmu.c
+
+   217	
+   218	static u64 get_rc6(struct intel_gt *gt)
+   219	{
+   220		struct drm_i915_private *i915 = gt->i915;
+   221		const unsigned int gt_id = gt->info.id;
+   222		struct i915_pmu *pmu = &i915->pmu;
+   223		intel_wakeref_t wakeref;
+   224		unsigned long flags;
+   225		u64 val;
+   226	
+   227		wakeref = intel_gt_pm_get_if_awake(gt);
+   228		if (wakeref) {
+   229			val = __get_rc6(gt);
+   230			intel_gt_pm_put_async(gt, wakeref);
+   231		}
+   232	
+ > 233		raw_spin_lock_irqsave(&pmu->lock, flags);
+   234	
+   235		if (wakeref) {
+   236			store_sample(pmu, gt_id, __I915_SAMPLE_RC6, val);
+   237		} else {
+   238			/*
+   239			 * We think we are runtime suspended.
+   240			 *
+   241			 * Report the delta from when the device was suspended to now,
+   242			 * on top of the last known real value, as the approximated RC6
+   243			 * counter value.
+   244			 */
+   245			val = ktime_since_raw(pmu->sleep_last[gt_id]);
+   246			val += read_sample(pmu, gt_id, __I915_SAMPLE_RC6);
+   247		}
+   248	
+   249		if (val < read_sample(pmu, gt_id, __I915_SAMPLE_RC6_LAST_REPORTED))
+   250			val = read_sample(pmu, gt_id, __I915_SAMPLE_RC6_LAST_REPORTED);
+   251		else
+   252			store_sample(pmu, gt_id, __I915_SAMPLE_RC6_LAST_REPORTED, val);
+   253	
+   254		raw_spin_unlock_irqrestore(&pmu->lock, flags);
+   255	
+   256		return val;
+   257	}
+   258	
 
 -- 
-====================
-| I would like to |
-| fix the world,  |
-| but they're not |
-| giving me the   |
- \ source code!  /
-  ---------------
-    ¯\_(ツ)_/¯
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
