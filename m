@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 019B3C2FF2E
-	for <lists+intel-gfx@lfdr.de>; Tue, 04 Nov 2025 09:36:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8FEBC2FF39
+	for <lists+intel-gfx@lfdr.de>; Tue, 04 Nov 2025 09:36:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4282810E562;
-	Tue,  4 Nov 2025 08:36:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A78B10E569;
+	Tue,  4 Nov 2025 08:36:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="iWHQmrYd";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="fv3MPoO4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A16DB10E566;
- Tue,  4 Nov 2025 08:36:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 085D910E55E;
+ Tue,  4 Nov 2025 08:36:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1762245406;
- bh=ayTfIiXKSdAI7v9LVwmS0rL6yyY/P57eSpD8YoJWyyg=;
+ s=default; t=1762245407;
+ bh=5EyVl++02A6gXmAu1FIdHW+rmMCx4mTCiwsTCNDLiTM=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=iWHQmrYd5b4fxa8XPV73ZI7zoLZtgNYKAX5YmHMdWvXqEi5ViWMs3PHZt72a0xDJe
- le5B1hkiL8fsZebyJusmOkd7cIYNBFkcsLOnoE5NLylv2o65EdobMBAR1sucvAy+rA
- T6HItkxA0qhHwIiI1d4VLocFj/Vaq4r6PktFE27Y4Ryq4rRkQnTk7x86RlgPBGgYQf
- rEwAOlfHCwdOdZrNBXrD4Sxic5HWX2rjIbdLx/uXz+3JoBKSxV8bMA+C4K2iB37B0Z
- iTl5384Zn4cvCASJgc8WbLp5Xbx5z3X8w50fgtV9wQxq+xXBsO5J8o6e2W2ezMOL5C
- RlLNi50vpP9dg==
+ b=fv3MPoO4Dk7QvcADP9IWAkOO2NvEzAymD1cS6A2eFHwKy3LoPg3nWMMWJuwClqs3r
+ 35qmKvICZSjQ2owdbhW9wrwbnKYhQxozAfKBO89mjHQXWGSHE7nIRQEoCIEPrh8obf
+ +4m5FoSPebVKPAoT0vAyfyjt7n3REr1fq+IKK/JxCRIRwo7tvaUkI+uoKI1jlLPmeD
+ l+H90hzm13AJSxsB89wW8vqUxY+qL8U4dYx959KowFMpMm1sOXOT8OkBJko//frjz1
+ y0l485RMadKcH+akRaA+br3jEQCiqgKcB6kZykR9/QnTGtzRVUcG1hXSyUGOYZihfW
+ /gRlZfh1VUtfQ==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
@@ -34,10 +34,10 @@ Cc: linux-rt-devel@lists.linux.dev, Maarten Lankhorst <dev@lankhorst.se>,
  Thomas Gleixner <tglx@linutronix.de>,
  Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
  Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>
-Subject: [PATCH v2 3/7] drm/i915/display: Move vblank put until after critical
- section
-Date: Tue,  4 Nov 2025 09:36:27 +0100
-Message-ID: <20251104083634.670753-4-dev@lankhorst.se>
+Subject: [PATCH v2 4/7] drm/i915/display: Remove locking from
+ intel_vblank_evade critical section
+Date: Tue,  4 Nov 2025 09:36:28 +0100
+Message-ID: <20251104083634.670753-5-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251104083634.670753-1-dev@lankhorst.se>
 References: <20251104083634.670753-1-dev@lankhorst.se>
@@ -58,62 +58,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-drm_crtc_vblank_put may take some locks, this should probably
-not be the first thing we do after entering the time sensitive
-part.
+finish_wait() may take a lock, which means that it can take any amount
+of time. On PREEMPT-RT we should not be taking any lock after disabling
+preemption, so ensure that the completion is done before disabling
+interrupts.
 
-A better place is after programming is completed. Add a flag
-to put the vblank after completion.
-
-In the case of drm_vblank_work_schedule, we may not even need
-to disable the vblank interrupt any more if it takes its own
-reference.
+This also has the benefit of making vblank evasion more deterministic,
+by performing the final vblank check after all locking is done.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/display/intel_cursor.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vblank.c | 35 ++++++++++-----------
+ 1 file changed, 17 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 7aa14348aa6d4..6b3bc8d94e51a 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -816,6 +816,7 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 		to_intel_crtc_state(crtc->base.state);
- 	struct intel_crtc_state *new_crtc_state;
- 	struct intel_vblank_evade_ctx evade;
-+	bool has_vblank = false;
- 	int ret;
+diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+index 2b106ffa3f5f5..3628d2a1b8f38 100644
+--- a/drivers/gpu/drm/i915/display/intel_vblank.c
++++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+@@ -708,6 +708,13 @@ void intel_vblank_evade_init(const struct intel_crtc_state *old_crtc_state,
+ 		evade->min -= vblank_delay;
+ }
  
- 	/*
-@@ -913,6 +914,8 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 	intel_psr_lock(crtc_state);
- 
- 	if (!drm_WARN_ON(display->drm, drm_crtc_vblank_get(&crtc->base))) {
-+		has_vblank = true;
++static inline int vblank_evadable(struct intel_vblank_evade_ctx *evade, int *scanline)
++{
++	*scanline = intel_get_crtc_scanline(evade->crtc);
 +
- 		/*
- 		 * TODO: maybe check if we're still in PSR
- 		 * and skip the vblank evasion entirely?
-@@ -922,8 +925,6 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 		local_irq_disable();
++	return *scanline < evade->min || *scanline > evade->max;
++}
++
+ /* must be called with vblank interrupt already enabled! */
+ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
+ {
+@@ -715,23 +722,22 @@ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
+ 	struct intel_display *display = to_intel_display(crtc);
+ 	long timeout = msecs_to_jiffies_timeout(1);
+ 	wait_queue_head_t *wq = drm_crtc_vblank_waitqueue(&crtc->base);
+-	DEFINE_WAIT(wait);
+ 	int scanline;
  
- 		intel_vblank_evade(&evade);
+ 	if (evade->min <= 0 || evade->max <= 0)
+ 		return 0;
+ 
+-	for (;;) {
+-		/*
+-		 * prepare_to_wait() has a memory barrier, which guarantees
+-		 * other CPUs can see the task state update by the time we
+-		 * read the scanline.
+-		 */
+-		prepare_to_wait(wq, &wait, TASK_UNINTERRUPTIBLE);
++	while (!vblank_evadable(evade, &scanline)) {
++		local_irq_enable();
+ 
+-		scanline = intel_get_crtc_scanline(crtc);
+-		if (scanline < evade->min || scanline > evade->max)
+-			break;
++		DEFINE_WAIT(wait);
++		while (!vblank_evadable(evade, &scanline) && timeout > 0) {
++			prepare_to_wait(wq, &wait, TASK_UNINTERRUPTIBLE);
++			timeout = schedule_timeout(timeout);
++		}
++		finish_wait(wq, &wait);
++
++		local_irq_disable();
+ 
+ 		if (!timeout) {
+ 			drm_dbg_kms(display->drm,
+@@ -740,15 +746,8 @@ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
+ 			break;
+ 		}
+ 
+-		local_irq_enable();
 -
--		drm_crtc_vblank_put(&crtc->base);
- 	} else {
- 		local_irq_disable();
+-		timeout = schedule_timeout(timeout);
+-
+-		local_irq_disable();
  	}
-@@ -939,6 +940,9 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
  
- 	intel_psr_unlock(crtc_state);
- 
-+	if (has_vblank)
-+		drm_crtc_vblank_put(&crtc->base);
-+
- 	if (old_plane_state->ggtt_vma != new_plane_state->ggtt_vma) {
- 		drm_vblank_work_init(&old_plane_state->unpin_work, &crtc->base,
- 				     intel_cursor_unpin_work);
+-	finish_wait(wq, &wait);
+-
+ 	/*
+ 	 * On VLV/CHV DSI the scanline counter would appear to
+ 	 * increment approx. 1/3 of a scanline before start of vblank.
 -- 
 2.51.0
 
