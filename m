@@ -2,60 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06FEAC35EE0
-	for <lists+intel-gfx@lfdr.de>; Wed, 05 Nov 2025 14:55:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FEA0C35F7C
+	for <lists+intel-gfx@lfdr.de>; Wed, 05 Nov 2025 15:08:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4312410E2C5;
-	Wed,  5 Nov 2025 13:55:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBE2810E756;
+	Wed,  5 Nov 2025 14:08:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="QwqSmZ/A";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="4svM2I0o";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TErqigL/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 442 seconds by postgrey-1.36 at gabe;
- Wed, 05 Nov 2025 13:55:06 UTC
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4130310E2C5;
- Wed,  5 Nov 2025 13:55:06 +0000 (UTC)
-Date: Wed, 5 Nov 2025 14:47:40 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1762350462;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=SR+2akXvSUUxdvBx3ePu8fPu5yCstdLDnkHoIlu+nCQ=;
- b=QwqSmZ/ACjLiJGSrcLLMrLyf0wGbWr8vupu0HFpZ1ae44u22MIj+rv5DJGP5ngfj3h0bX0
- vX3ZAmhq3ixTf5IIwl/1PAlWI/fXDEqMXtUPrqx7uzDKFJtEpiR1l5O87iwGdoRqVsWJe0
- 7NwrUr8Qg8LDxlnQHUcEtMU1fBsI2WowoV5cfobRoe4XK/fdy1gMzjZ7fltugKsEQime/b
- Exa4UMe/fMVrz/3DMkthYCb6ycdIf8Zgh5H8EOTqv3CIHuc37FvbNJOK6ON0RcdN1mzHZD
- UC7CUDksepElMp0a/TjFOCVvn+usDB63dQct3hi2u0GOI/5EwjjxPJd5/cjMaA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1762350462;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=SR+2akXvSUUxdvBx3ePu8fPu5yCstdLDnkHoIlu+nCQ=;
- b=4svM2I0ooFXOzGomett6WRsHF4s2h1yLq11m/VKE7hy2xu2e5mgj6Hm3GKuh0N4R2jyHBg
- f3Vqzz+cX0Jnd6Aw==
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-To: Maarten Lankhorst <dev@lankhorst.se>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-rt-devel@lists.linux.dev, Mario Kleiner <mario.kleiner.de@gmail.com>,
- Mike Galbraith <umgwanakikbuti@gmail.com>,
- Thomas Gleixner <tglx@linutronix.de>,
- Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>
-Subject: Re: [PATCH v2 0/7] drm/i915/display: Handle vblank evasion with
- CONFIG_PREEMPT_RT
-Message-ID: <20251105134740.NseZnpeZ@linutronix.de>
-References: <20251104083634.670753-1-dev@lankhorst.se>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D60310E750;
+ Wed,  5 Nov 2025 14:08:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1762351690; x=1793887690;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=LOtcT25SjmlrzeqDgSMux7FXBqFmRPLIbyqTbWulEH8=;
+ b=TErqigL/DdVMiP3tVFvgcLVH0Af16uj6gYv2lpUPFHKvCZBErkspw270
+ zOBkQaSIvRT5r7VaaZzlF2z8s2Mdc0hmCoB4KNStVUpNhZZ/PRPtlnRjJ
+ a9rk8XOk/rQPEH7/lxQxCeMjZGAMaqTDPsoJGFXQGeA71kbTGaMk//IZU
+ 8fbgCPZhmFjJK0OfKtccVirXeMGDfK+XYSG8dF04wVZZJ9Bj89sRAaqgH
+ 7CMd2TuvzsJW/53i142PUzRVzyUW0FT4ZBrIo6qhkDRkFitzUPoI+hhw3
+ IJRj8eozfaJCiNSQYMwMxW2XC/5IWGvmBUZk61KVl3WhUWWnUcQyRSMvR w==;
+X-CSE-ConnectionGUID: vBtblj/mSi6vKaJKCCAWeg==
+X-CSE-MsgGUID: bJLGjaArRUm7ASz++AOW4Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11603"; a="64348183"
+X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="64348183"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2025 06:08:10 -0800
+X-CSE-ConnectionGUID: ou2ehYsQTIu/1fly1KgGDQ==
+X-CSE-MsgGUID: bvCZi/ljRp6v5ak2uw31DA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="191562908"
+Received: from rfrazer-mobl3.amr.corp.intel.com (HELO gjsousa-mobl2.intel.com)
+ ([10.124.221.150])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2025 06:08:08 -0800
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: gustavo.sousa@intel.com
+Subject: [CI 00/17] Reviewed patches from: [PATCH v3 00/29] drm/i915/display:
+ Add initial support for Xe3p_LPD
+Date: Wed,  5 Nov 2025 11:06:49 -0300
+Message-ID: <20251105140651.71713-19-gustavo.sousa@intel.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20251104083634.670753-1-dev@lankhorst.se>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,195 +69,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Thank you for looking into this. I applied this on top of
-drm-intel-next-2025-11-04 for testing.
+This series contains patches from [1] already containing r-b and that can be
+applied while the other patches are still under review.
 
-On 2025-11-04 09:36:24 [+0100], Maarten Lankhorst wrote:
-> There is a critical section between intel_pipe_update_start() and
-> intel_pipe_update_end() where we only program hardware registers,
-> should not take any lock and complete as fast as possible.
->=20
-> The previous approach used to remove the local_irq_enable/disable()
-> in this critical, but that increases the probability that the time
-> sensitive section does not complete in 100 =C2=B5s, potentially causing
-> the hardware to hang.
->=20
-> I went through all the lockdep splats that occurred in CI, and fixed
-> them 1 by 1 until there were none left. This additionally improves
-> latency by not removing any locks in the fastpath.
->=20
-> In intel_de.h the implicit DMC wakelock was added, ideally we can get rid
-> of it, but for now we can simply use the same _fw variants as are
-> needed on i915.
->=20
-> I believe this series is enough to make xe and perhaps good enough to make
-> i915's display RT safe.
+This is being sent for a final CI check before applying them.
 
-I've been playing with it:
-- DRM_XE_DEBUG_GUC ended in a segfault:
-| xe 0000:00:02.0: enabling device (0006 -> 0007)
-| Console: switching to colour dummy device 80x25
-| xe 0000:00:02.0: vgaarb: deactivate vga console
-| xe 0000:00:02.0: [drm] Running in SR-IOV PF mode
-| xe 0000:00:02.0: [drm] Found tigerlake/uy (device ID 9a49) integrated dis=
-play version 12.00 stepping C0
-| xe 0000:00:02.0: vgaarb: VGA decodes changed: olddecodes=3Dio+mem,decodes=
-=3Dnone:owns=3Dmem
-| xe 0000:00:02.0: [drm] Finished loading DMC firmware i915/tgl_dmc_ver2_12=
-=2Ebin (v2.12)
-| xe 0000:00:02.0: [drm] Tile0: GT0: Using GuC firmware from i915/tgl_guc_7=
-0.bin version 70.49.4
-| xe 0000:00:02.0: [drm] Tile0: GT0: Using HuC firmware from i915/tgl_huc.b=
-in version 7.9.3
-| xe 0000:00:02.0: [drm] Tile0: GT0: vcs1 fused off
-| xe 0000:00:02.0: [drm] Tile0: GT0: vcs3 fused off
-| xe 0000:00:02.0: [drm] Tile0: GT0: vcs4 fused off
-| xe 0000:00:02.0: [drm] Tile0: GT0: vcs5 fused off
-| xe 0000:00:02.0: [drm] Tile0: GT0: vcs6 fused off
-| xe 0000:00:02.0: [drm] Tile0: GT0: vcs7 fused off
-| xe 0000:00:02.0: [drm] Tile0: GT0: vecs1 fused off
-| xe 0000:00:02.0: [drm] Tile0: GT0: vecs2 fused off
-| xe 0000:00:02.0: [drm] Tile0: GT0: vecs3 fused off
-| BUG: kernel NULL pointer dereference, address: 0000000000000000
-| #PF: supervisor read access in kernel mode
-| #PF: error_code(0x0000) - not-present page
-| PGD 0 P4D 0
-| Oops: Oops: 0000 [#1] SMP NOPTI
-| CPU: 1 UID: 0 PID: 631 Comm: kworker/u32:9 Tainted: G     U      E       =
-6.18.0-rc1+ #31 PREEMPT_{RT,(lazy)}
-| Tainted: [U]=3DUSER, [E]=3DUNSIGNED_MODULE
-| Hardware name: LENOVO 20TD00GLGE/20TD00GLGE, BIOS R1EET64W(1.64 ) 03/18/2=
-025
-| Workqueue:  drm_sched_run_job_work [gpu_sched]
-| RIP: 0010:stack_depot_save_flags+0x168/0xb00
-| Code: c2 44 31 d0 41 c1 ca 08 44 29 d0 41 89 c0 45 89 c2 44 23 15 82 68 a=
-1 03 49 c1 e2 04 4c 03 15 7f 68 a1 03 65 ff 05 f8 b9 f6 01 <4d> 8b 0a 4d 39=
- ca 75 1c e9 ae  00 00 00 66 66 2e 0f 1f 84 00 00 00
-| RSP: 0018:ffffaa58c1a9f6a8 EFLAGS: 00010282
-| RAX: 0000000006425a49 RBX: 0000000000000001 RCX: 000000000000000e
-| RDX: 000000000000000e RSI: 00000000be7f6f1a RDI: 0000000000000001
-| RBP: ffffaa58c1a9f700 R08: 0000000006425a49 R09: 000000000739c857
-| R10: 0000000000000000 R11: 00000000000025b3 R12: 0000000000004502
-| R13: ffff9c3a8f2b18b8 R14: 0000000000002800 R15: 000000000000000d
-| FS:  0000000000000000(0000) GS:ffff9c3e55884000(0000) knlGS:0000000000000=
-000
-| CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-| CR2: 0000000000000000 CR3: 000000003e854003 CR4: 0000000000f72ef0
-| PKRU: 55555554
-| Call Trace:
-| Call Trace:
-|  <TASK>
-|  fast_req_track+0x58/0xb0 [xe]
-|  h2g_write+0x39f/0x720 [xe]
-|  __guc_ct_send_locked+0x1e4/0x10f0 [xe]
-|  guc_ct_send_locked+0xa4/0x690 [xe]
-|  guc_ct_send+0x74/0x250 [xe]
-|  xe_guc_ct_send+0x19/0x50 [xe]
-|  __register_exec_queue.isra.0+0x7e/0xa0 [xe]
-|  register_exec_queue+0x2f4/0x750 [xe]
-|  guc_exec_queue_run_job+0x4f6/0x8f0 [xe]
-|  drm_sched_run_job_work+0x1ef/0x450 [gpu_sched]
+[1] https://lore.kernel.org/all/20251103-xe3p_lpd-basic-enabling-v3-0-00e87b510ae7@intel.com/
 
-This happens also without the series and without PREEMPT_RT enabled. I
-just to a while to figure this one out on the hardware in question since
-it all just froze=E2=80=A6
+Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 
-Other than that, XE seems fine.
+---
+Ankit Nautiyal (1):
+  drm/i915/xe3p_lpd: Drop support for interlace mode
 
-i915.
-- drm/i915/display: Move vblank put until after critical section
- - intel_vblank_evade() is invoked with irq-off
-   - within its callchain intel_vblank_section_enter() does spin_lock()
-     in I915. XE does nothing so it is fine.
-   - intel_crtc_scanlines_since_frame_timestamp() does a while loop
-     What is the expected/ possible worst case here and when does it happen?
-   While at it, I noticed:
-   local_irq_disable();
-   if (new_plane_state->uapi.visible) {
-           intel_plane_update_noarm(NULL, plane, crtc_state, new_plane_stat=
-e);
-           if (plane->fbc)
-                  intel_fbc_dirty_rect_update_noarm(dsb, plane);
-                     if (!HAS_FBC_DIRTY_RECT(display))
-                         return;
-                     mutex_lock(&fbc->lock); <----
+Gustavo Sousa (7):
+  drm/i915/display: Use braces for if-ladder in intel_bw_init_hw()
+  drm/i915/xe3p_lpd: Add CDCLK table
+  drm/i915/xe3p_lpd: Load DMC firmware
+  drm/i915/xe3p_lpd: Extend Wa_16025573575
+  drm/i915/xe3p_lpd: Reload DMC MMIO for pipes C and D
+  drm/i915/dram: Add field ecc_impacting_de_bw
+  drm/i915/xe3p_lpd: Always apply WaWmMemoryReadLatency
 
-   Haven't checked the callbacks but it feels like a lot of code with
-   disabled interrupts.
+Juha-pekka Heikkila (1):
+  drm/i915/xe3p_lpd: Don't allow odd ypan or ysize with semiplanar
+    format
 
-- The GEM_BUG_ON(!irqs_disabled) in __i915_request_submit()/
-  __i915_request_unsubmit() case bugs/ warnings:
-| WARNING: CPU: 3 PID: 2115 at drivers/gpu/drm/i915/i915_request.c:611 __i9=
-15_request_submit+0x1db/0x1f0 [i915]
-| CPU: 3 UID: 0 PID: 2115 Comm: modprobe Not tainted 6.18.0-rc1+ #17 PREEMP=
-T_{RT,(lazy)}
-| Hardware name: To Be Filled By O.E.M. To Be Filled By O.E.M./Z68 Pro3-M, =
-BIOS P2.30 06/29/2012
-| RIP: 0010:__i915_request_submit+0x1db/0x1f0 [i915]
-| Call Trace:
-|  <TASK>
-|  i915_request_submit+0x29/0x40 [i915]
-|  i9xx_submit_request+0xe/0x70 [i915]
-|  submit_notify+0xc1/0x230 [i915]
-|  __i915_sw_fence_complete+0x88/0x290 [i915]
-|  __engine_park+0x2d2/0x410 [i915]
-|  ____intel_wakeref_put_last+0x25/0x90 [i915]
-|  intel_gt_resume.part.0+0x2ec/0x380 [i915]
-|  intel_gt_init+0x14d/0x3d0 [i915]
-|  i915_gem_init+0x14b/0x290 [i915]
-|  i915_driver_probe+0x74a/0xc10 [i915]
-|  i915_pci_probe+0xd7/0x190 [i915]
-|  local_pci_probe+0x41/0x80
+Luca Coelho (1):
+  drm/i915/wm: don't use method1 in Xe3p_LPD onwards
 
-- The change of irq-enable is not enough:
-| BUG: sleeping function called from invalid context at kernel/locking/spin=
-lock_rt.c:48
-| in_atomic(): 0, irqs_disabled(): 1, non_block: 0, pid: 2115, name: modpro=
-be
-| preempt_count: 0, expected: 0
-| RCU nest depth: 0, expected: 0
-| 4 locks held by modprobe/2115:
-|  #0: ffff99b9425161a0 (&dev->mutex){....}-{4:4}, at: __driver_attach+0xaf=
-/0x1c0
-|  #1: ffffaa224810f6c0 (crtc_ww_class_acquire){+.+.}-{0:0}, at: intel_init=
-ial_commit+0x4c/0x200 [i915]
-|  #2: ffffaa224810f6e8 (crtc_ww_class_mutex){+.+.}-{4:4}, at: intel_initia=
-l_commit+0x4c/0x200 [i915]
-|  #3: ffff99b94a6c9030 (&uncore->lock){+.+.}-{3:3}, at: gen6_write32+0x50/=
-0x290 [i915]
-| irq event stamp: 513344
-| hardirqs last  enabled at (513343): [<ffffffff8ba8d84c>] _raw_spin_unlock=
-_irqrestore+0x4c/0x60
-| hardirqs last disabled at (513344): [<ffffffffc1543646>] intel_pipe_updat=
-e_start+0x216/0x2c0 [i915]
-| softirqs last  enabled at (512766): [<ffffffff8af045cf>] __local_bh_enabl=
-e_ip+0x10f/0x170
-| softirqs last disabled at (512712): [<ffffffffc14dfb6a>] __i915_request_q=
-ueue+0x3a/0x70 [i915]
-| CPU: 3 UID: 0 PID: 2115 Comm: modprobe Tainted: G        W           6.18=
-=2E0-rc1+ #17 PREEMPT_{RT,(lazy)}
-| Tainted: [W]=3DWARN
-| Hardware name: To Be Filled By O.E.M. To Be Filled By O.E.M./Z68 Pro3-M, =
-BIOS P2.30 06/29/2012
-| Call Trace:
-|  <TASK>
-|  dump_stack_lvl+0x68/0x90
-|  __might_resched.cold+0xf0/0x12b
-|  rt_spin_lock+0x5f/0x200
-|  gen6_write32+0x50/0x290 [i915]
-|  ilk_set_pipeconf+0x12d/0x230 [i915]
-|  ilk_color_commit_arm+0x2d/0x70 [i915]
-|  intel_update_crtc+0x15b/0x690 [i915]
-|  intel_commit_modeset_enables+0xa6/0xd0 [i915]
-|  intel_atomic_commit_tail+0xd55/0x19a0 [i915]
-|  intel_atomic_commit+0x25d/0x2a0 [i915]
-|  drm_atomic_commit+0xad/0xe0 [drm]
-|  intel_initial_commit+0x16c/0x200 [i915]
-|  intel_display_driver_probe+0x2e/0x80 [i915]
-|  i915_driver_probe+0x791/0xc10 [i915]
-|  i915_pci_probe+0xd7/0x190 [i915]
+Matt Atwood (1):
+  drm/i915/xe3p_lpd: Update bandwidth parameters
 
-This is the intel_pipe_update_start()/ intel_pipe_update_end() part in inte=
-l_update_crtc().
+Matt Roper (1):
+  drm/i915/xe3p_lpd: Drop north display reset option programming
 
-Sebastian
+Ravi Kumar Vodapalli (1):
+  drm/i915/xe3p_lpd: Adapt to updates on MBUS_CTL/DBUF_CTL registers
+
+Sai Teja Pottumuttu (4):
+  drm/i915/xe3p_lpd: Add Xe3p_LPD display IP features
+  drm/i915/xe3p_lpd: Expand bifield masks dbuf blocks fields
+  drm/i915/xe3p_lpd: Horizontal flip support for linear surfaces
+  drm/i915/xe3p_lpd: Remove gamma,csc bottom color checks
+
+ drivers/gpu/drm/i915/display/intel_bw.c       | 43 +++++++++------
+ drivers/gpu/drm/i915/display/intel_cdclk.c    | 44 +++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_color.c    | 13 ++---
+ drivers/gpu/drm/i915/display/intel_display.c  | 14 ++---
+ .../drm/i915/display/intel_display_device.c   |  1 +
+ .../drm/i915/display/intel_display_power.c    |  3 ++
+ .../gpu/drm/i915/display/intel_display_wa.c   |  3 +-
+ drivers/gpu/drm/i915/display/intel_dmc.c      | 13 +++--
+ drivers/gpu/drm/i915/display/intel_plane.c    |  3 ++
+ .../drm/i915/display/skl_universal_plane.c    |  3 +-
+ .../i915/display/skl_universal_plane_regs.h   | 12 ++---
+ drivers/gpu/drm/i915/display/skl_watermark.c  | 25 +++++++--
+ .../gpu/drm/i915/display/skl_watermark_regs.h | 52 ++++++++++---------
+ drivers/gpu/drm/i915/i915_reg.h               |  1 +
+ drivers/gpu/drm/i915/soc/intel_dram.c         |  4 ++
+ drivers/gpu/drm/i915/soc/intel_dram.h         |  1 +
+ 16 files changed, 166 insertions(+), 69 deletions(-)
+
+-- 
+2.51.0
+
