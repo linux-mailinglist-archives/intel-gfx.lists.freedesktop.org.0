@@ -2,48 +2,170 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C76F1C37C4C
-	for <lists+intel-gfx@lfdr.de>; Wed, 05 Nov 2025 21:42:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 30615C37C58
+	for <lists+intel-gfx@lfdr.de>; Wed, 05 Nov 2025 21:45:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BDC310E79E;
-	Wed,  5 Nov 2025 20:42:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1156410E799;
+	Wed,  5 Nov 2025 20:45:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="CbAU7RTC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nvz66fKA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B26D610E799;
- Wed,  5 Nov 2025 20:42:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1762375374;
- bh=MJdIRIgBNtoB4YPZdmP2xmA43PUkUh5guSsghyJ6vDs=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=CbAU7RTCO8Nh34QAk5sYoB2V3HEAL9no5OLCX2knudIrrswJSazMz68QtrhouArfZ
- Xw2Oc1JrIBHvYIMyGvXDORrW3gS/mZ/LxlIYTxA8tHWy2jfo1cVN4cLOOcYRLYn/1i
- eRrVPHZodGZ3lowqdlI/cdLS3otzyt9n89CqCk3JgjLjV1G3YLeWbWPJrRaJDsqFNc
- ew+GTpb2GcKY4qqM0kvY7AdPmi8nWN1/vpciHXcQQ+29pbGe3U59ueRl02jlGHBC3/
- 5CPClMrE3Lu2RUfpCGpALK5zDDRjRh+oZQaPnphtKcIY39aZv7XV+74HF/MuN40lNs
- LVZC9rkvomYZA==
-Message-ID: <32bbb93a-3606-4488-ac3a-3dcd1fd38304@lankhorst.se>
-Date: Wed, 5 Nov 2025 21:42:53 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/7] drm/i915/display: Handle vblank evasion with
- CONFIG_PREEMPT_RT
-To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-rt-devel@lists.linux.dev, Mario Kleiner <mario.kleiner.de@gmail.com>,
- Mike Galbraith <umgwanakikbuti@gmail.com>,
- Thomas Gleixner <tglx@linutronix.de>, Clark Williams <clrkwllms@kernel.org>,
- Steven Rostedt <rostedt@goodmis.org>
-References: <20251104083634.670753-1-dev@lankhorst.se>
- <20251105134740.NseZnpeZ@linutronix.de>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <20251105134740.NseZnpeZ@linutronix.de>
-Content-Type: text/plain; charset=UTF-8
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CBD610E799
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Nov 2025 20:45:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1762375543; x=1793911543;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=E36R/dcrI4rIYYnl9rts4XVhMG2oiEuLq5S/hmmInbs=;
+ b=Nvz66fKA0sd8UR5yq/dghHmTrKFMpWWNmzC5eSOEFhHGcThidryg46rs
+ i+GgzsSkpunThLPcqlZ84fHN3LsWgvN4kSsX5knVl0ygE4p2XK5CP9ZMG
+ y5CVH+7rfOn77sJINW14OYOqd16VkTEef+qvkGbkEWtSOLqZf/ancPOSD
+ L03KHNW3TbEBVJ9W+Y1R5V94WGF1iAz4K/T7nMpnmT9ri//LPX425+R79
+ kFliv5ot6MKjeANUjqecxfq5an4T8n5LuO9nTT21yYrTVlj5O6C/bMJp2
+ cKNDUrdk+nuABdDl/gK26OTVujWG5KIGgSFzVnMCYkMCFMEs8Lyv6xLS+ Q==;
+X-CSE-ConnectionGUID: BEKQwUW8RXScTZFkOH8K8A==
+X-CSE-MsgGUID: 9SA7OBFTQcSz9aKNvaM0vQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="68154341"
+X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="68154341"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2025 12:45:39 -0800
+X-CSE-ConnectionGUID: OO/fViAsR7ap1pQt7YzySA==
+X-CSE-MsgGUID: ZITyTPCyTNCxM6ef3zeaqQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="187222819"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2025 12:45:38 -0800
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Wed, 5 Nov 2025 12:45:37 -0800
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27 via Frontend Transport; Wed, 5 Nov 2025 12:45:37 -0800
+Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.43) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Wed, 5 Nov 2025 12:45:37 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=XwHfDR44U5BOsMo/Z5zDkSTSOfuDxXL7Y3rxtdXSVfsovQ+//SPq8tWh04a6j9qUHiuGkVRfzer3YshSFhO51hKfbAzNtXh75Z+9hN9nKk2IYS/SZG+gUgrMHjIBraoYKNSXpENYUh9p6dZeMc9YWXkyPoguZcmdAOVIscRRKnvQFvaYGVJwVLKWYElx+ytY91yoLH26BI+MICHS1L57ffRzjdXFFCRkH/+M0HAa2eMWFFZ+1I02DHIKV30Tg27DA0ihhM/KXJVQhGWp8sSWg4rfE7JD2Q/pUcf2dzOrYTTz/uZp7+EaTnkOoU/5Yg8aNjdFTJZK/U4HVB1rRLSvfQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cf6bvYg7BAlcpuyrMITWTyIxQ/ML8lKiq6rSVAumYcI=;
+ b=D9wEQp5mgXVkbNl+gZqmUSHaN1zYZKOayx5jSHqsFa7ALP8IRq891FbJXP6c38G3ahICHpRImANsUkzpIkGZSOp9AAZe24r5BBOUgH2ygxfIGwkImg3h39TlWAPUlG7v3GFk6Rr4caR+rEvNkauD+wq7lF2OIXO6U8PBYkqrUOg9Hs7vd0MTdloQl8LSLv3VE1/UItfoC60JR7N9+0l4npbZQ7YuI4/s4prRB8dIvO90BsM+bfK2OLsUZFjcWIG3Eul87o7coIO4XfZ1yww0P8zY52BPPmhfXQDYNr1NY6vGrFgiDz3wWiOLTeyzjmFcpl8g3daKGgk/xriyjBIsFA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by PH8PR11MB6754.namprd11.prod.outlook.com (2603:10b6:510:1c9::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.7; Wed, 5 Nov
+ 2025 20:45:35 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.9275.013; Wed, 5 Nov 2025
+ 20:45:35 +0000
+Date: Wed, 5 Nov 2025 14:45:32 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+CC: <intel-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH 1/3] drm/i915/dram: Use REG_GENMASK() & co. for the SKL+
+ DIMM regs
+Message-ID: <kdzppzxnvuehepthqzd3aqzwtmxl345jeiqenwf2zk4d3u6mhn@c3zmpcpygow6>
+References: <20251029204215.12292-1-ville.syrjala@linux.intel.com>
+ <20251029204215.12292-2-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"; format=flowed
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251029204215.12292-2-ville.syrjala@linux.intel.com>
+X-ClientProxiedBy: BY5PR16CA0011.namprd16.prod.outlook.com
+ (2603:10b6:a03:1a0::24) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|PH8PR11MB6754:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5d4c613b-3f4b-4c88-8fb8-08de1cac44c0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|7053199007;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?PAuREj3NuRcZFlfxLaLuYAn0xFEYGChwqgTSn7NoQo1DQRmFjamdgq3T7K?=
+ =?iso-8859-1?Q?znzxv7sYuudyRjK9SShqZN8oWmfh4ZvQ2gVUQYtfNjs2q75EutHs7zW1/b?=
+ =?iso-8859-1?Q?8b2LIUM8NMW8zJDHSHLutheNaNqh4PZcPk6K/Zi+f54atSVwGtHLH0Go0a?=
+ =?iso-8859-1?Q?yk0e1LTL8ob0UGykHyDE9HdEM/jvcGdDRfrSp2CrtT3Z1kjaRelt+jK/qM?=
+ =?iso-8859-1?Q?Y+1I1dbFP1vj61x9vTDShX2HLmyMS32358j9nvsvCXGXrRm7AZdna0xvvs?=
+ =?iso-8859-1?Q?q1jBy0EhgSpSUbXPh+64t5eMr8LYGmlEp5wW/t/C766xHZhHbVidNwB6u4?=
+ =?iso-8859-1?Q?c0Zv98DuYJ1VOcaNC2/Hy2e8ini4xa87tHLDXYqvpSIKHzbKDSmbB3bwmA?=
+ =?iso-8859-1?Q?XmCWCQj2CY2o53sTW7jUPctd7vRSS4J5WBpiDybbGHGThpmdnr64S8lvAA?=
+ =?iso-8859-1?Q?G3xKkyaSWizXXTzuUNWxdD3d6b76aJP3Wx8krDszPmGeEuChhVeawabNnR?=
+ =?iso-8859-1?Q?7Lse08oBELaCTI6ie8PX6BGWzXtuBKeIyZV7cfP10Q5vd7l6N4w86ZCkae?=
+ =?iso-8859-1?Q?v4xL08fBzfuTGi7Rh1J2o8DhYbHNEpfEmaPNa/KMip7DENhf839gGRiCx+?=
+ =?iso-8859-1?Q?Iad49NKRVM0spfgntCDT4hMKEujg7aE/uLIxp6S5xMJXjp2EYZ+Ha0QrZQ?=
+ =?iso-8859-1?Q?NoMZWvHmVsS1eCQdQFBk88cWNMbSyu53pmkZXaSNB3AcEggWVt8ec8sTrR?=
+ =?iso-8859-1?Q?4UxxA/72+g+4Z/jDIOHaYt1tpFQ44cRyM8l4HCpDw0lMz6gychqnYXRXC8?=
+ =?iso-8859-1?Q?AY5BMxEKQf5Tltvem+As4t52VmKX0XM5gkiE+0o+DnLBb6mKmuUjOQY9zr?=
+ =?iso-8859-1?Q?DaOofy4aCVGsP8FZUBfPje7nSH9A3ywkIVF0utEwWNaHjz9zEg/voG04E5?=
+ =?iso-8859-1?Q?rX93YhY1ZX04JohD67bX4VlTXY8fbpbJk4waze+51Om9zVVEwh4z0vk2RN?=
+ =?iso-8859-1?Q?9uLMKbJ0hgp9yCEkaq7t3I31GHIrsA/bgL0IiroMtq9WWtn4DTs1U9M2eU?=
+ =?iso-8859-1?Q?b/Tia+OIvbA5zMn8MeL7w8mP8TsgI3jHcWNQyAm7bt+BtAA8nNofjsb7DL?=
+ =?iso-8859-1?Q?0+XjaK937qKAHkxIRexj4SZ0zA4AQeJ2dZt6uWNp9SP2BuzdPWq55JOBEJ?=
+ =?iso-8859-1?Q?KseDWv21Qogw40+XOBd/du+ryC2h1g+bQMBRfDM40zz3H1nSIgkrvVNuqS?=
+ =?iso-8859-1?Q?9EsrZ3fJrFjbQydpmPB1Xf1FswZ9UTzy5GEWhSfbdL124Rbp6KYMV8VRjK?=
+ =?iso-8859-1?Q?IaM0XsyPW6L/QOB8VmoFSWDA3uqKa9a9T7luyQhyE2jl/mQ6LYfI5dwwxY?=
+ =?iso-8859-1?Q?NMHTqu4LSaWm1fTd08OJkQQNGV3hgXPVi2fLWZbudBJtFo49OKtAq7Y0qm?=
+ =?iso-8859-1?Q?6U+8m31tP6Et6NcstEi8gCCexQZDQoiN5Lb4YFNM4teexeLSzwSYxBIPYG?=
+ =?iso-8859-1?Q?8JEEJGlhzx5B0GOFyYBhdO?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(7053199007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?yDuw3mlLC8izPAgfGLC98lEi8y6dMHjvk0LJ/H+g0aUDqf4XS45advxTAr?=
+ =?iso-8859-1?Q?edxJGddenINf+eATKwff7kzQ5fHPrQ+alUGDpRne/CyWy+bFRYU84o/ANU?=
+ =?iso-8859-1?Q?a0K2h3LrGy4r0YqWF6PI+fp1nJKWCP35DwmxrE3nXlHSlkhiOYd13xvOJk?=
+ =?iso-8859-1?Q?KbvCz3R+4Gvr57OUTfkCWxZAog33Ae2OcyhmdeLKTwl33HeV2VEIVvPkqQ?=
+ =?iso-8859-1?Q?O2okFB7HL3FvQI3IZmB6/e7FFAdxA1bkMDU0kxSLJhevjGECxDNll6pvfd?=
+ =?iso-8859-1?Q?caZbwwr944MDlbcdcZkpLPcUnRuYQiGfSSVfRejIl1i4v6T1MfFt2wcey3?=
+ =?iso-8859-1?Q?GyUY/AWthQtu+dDvdyD2EL9kqWee/ONbTmCyxoZ5qXPXLwpmTvcVqucSm5?=
+ =?iso-8859-1?Q?IPj6+isvDn1Pzl7yqsR0Gjzv2LALmftJ48svHlO7xF4qA6BkA4O/aM1tJY?=
+ =?iso-8859-1?Q?eE2c7LeKbLbPEawqJYY+fxp0APJvQ+okDnc0a9d//wFDJJ31hF5neGyuuY?=
+ =?iso-8859-1?Q?My6VZoLAiOjOctyFSuUdkN5Oj20a9B1h+MlNVL+XczOcTfWkCgeBUTeGnd?=
+ =?iso-8859-1?Q?6F3AiDjpHREM3DGDnH20Zkj75jh4H7P6qyVnj0T9E/o00RmIlWytlpwic0?=
+ =?iso-8859-1?Q?OpgY2zX94gYl19wRYkoLlfoEu8csxE2reTjqxsISMhwIH4QpDDtLg6PSau?=
+ =?iso-8859-1?Q?OsyRZ70Jv7r3f5G2fkXg/zc0+m1Uk0JMOurg4rEA0A3m5jHIaK8u12MSRi?=
+ =?iso-8859-1?Q?zZK/wDtrrnDboz5SiuSAHJsavXGciMtote5p0QUvx7VAo0HNjPTPNXt6yY?=
+ =?iso-8859-1?Q?QwvlMArzkjlV40oV76RY8uMbc064buS1bYGTgN2PuTuNYRz0JVOxox/HxQ?=
+ =?iso-8859-1?Q?bAKoqbWid8CXKM3zaeIEA9XcLZmBGhuZ4B2qo2tc0MLZkFo3nd7UNmUhGr?=
+ =?iso-8859-1?Q?ja8lVTKzx4pjGP2Bj3cxU9dB1C+h39SqiS4bkIpxwB/d+7cedaOiiZrGVw?=
+ =?iso-8859-1?Q?GS11oCYC4WkcWDPY8/sCWcL6yQBTaTi8TeRRfQjR5UBuE2xDeuG3IuxjWL?=
+ =?iso-8859-1?Q?mGKjOycsBMdnKhksRUN4R+Fo4x+Xw9b9+CyiUHa39AHAm3n6Mn8vjayviO?=
+ =?iso-8859-1?Q?22L2EzG1Lt+vInXI6M+xCBe1MwAm81v/uKtDNNFeP/NTuPJhLiWnu/KVEN?=
+ =?iso-8859-1?Q?8rZ5BGftaN4ko4zMU4iz4GeYZ2OvpdY76VY9LH8aDT6HqhRhBDpvSJa7SV?=
+ =?iso-8859-1?Q?Wjnm3BFkGVHcEqql1O3aMNSjVcq0hGtkUpHg8pXaOnlWcot9693NsI2eFI?=
+ =?iso-8859-1?Q?z6SEMuquuiRueiJ7JOPsIxv1JjeWAfze3TaMDXFYQ6j10KlbwB4B5Ak4/Y?=
+ =?iso-8859-1?Q?zyY/lnx/5S9+lrrsojA773BQZlSNXTew4lHmmfl7CjY2Bcq4pJ86FnhHDX?=
+ =?iso-8859-1?Q?+ilPSzV78zzlwtQPfOjjhluDLc1nN1aR2vpo34t/Zr+qII11aqLRd05sxE?=
+ =?iso-8859-1?Q?ZmQR9dPjRAmXmqrY/DHBRgCnNV/HGR5d6Q4mQK4TZ489i8GM6huzEfJyEf?=
+ =?iso-8859-1?Q?F3kRaHQn9kccJRowwyKG6XbIXa7R7dOe9yejCQDOGgSAogQvQFGIovpFys?=
+ =?iso-8859-1?Q?biglhfKp0nDtAKRz0MARy3nUtICfYixiOB6wNLCM2DoJejVEZblfzpZQ?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5d4c613b-3f4b-4c88-8fb8-08de1cac44c0
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Nov 2025 20:45:35.1170 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: XD828B6O1WhWp12hXtPaiSSTaeTAfKYnRQo473vxwxt9v6+tbn19e8KQUNeVPHxqivpZuXnFpBacJBYu7s+8ZQlhuLykhEqAiIJ/CjISZ2E=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6754
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,192 +181,13 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hey,
+On Wed, Oct 29, 2025 at 10:42:13PM +0200, Ville Syrjälä wrote:
+>From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>
+>Modernize the SKL/ICL DIMM registers with REG_GENMASK() & co.
+>
+>Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Den 2025-11-05 kl. 14:47, skrev Sebastian Andrzej Siewior:
-> Thank you for looking into this. I applied this on top of
-> drm-intel-next-2025-11-04 for testing.
-> 
-> On 2025-11-04 09:36:24 [+0100], Maarten Lankhorst wrote:
->> There is a critical section between intel_pipe_update_start() and
->> intel_pipe_update_end() where we only program hardware registers,
->> should not take any lock and complete as fast as possible.
->>
->> The previous approach used to remove the local_irq_enable/disable()
->> in this critical, but that increases the probability that the time
->> sensitive section does not complete in 100 Âµs, potentially causing
->> the hardware to hang.
->>
->> I went through all the lockdep splats that occurred in CI, and fixed
->> them 1 by 1 until there were none left. This additionally improves
->> latency by not removing any locks in the fastpath.
->>
->> In intel_de.h the implicit DMC wakelock was added, ideally we can get rid
->> of it, but for now we can simply use the same _fw variants as are
->> needed on i915.
->>
->> I believe this series is enough to make xe and perhaps good enough to make
->> i915's display RT safe.
-> 
-> I've been playing with it:
-> - DRM_XE_DEBUG_GUC ended in a segfault:
-> | xe 0000:00:02.0: enabling device (0006 -> 0007)
-> | Console: switching to colour dummy device 80x25
-> | xe 0000:00:02.0: vgaarb: deactivate vga console
-> | xe 0000:00:02.0: [drm] Running in SR-IOV PF mode
-> | xe 0000:00:02.0: [drm] Found tigerlake/uy (device ID 9a49) integrated display version 12.00 stepping C0
-> | xe 0000:00:02.0: vgaarb: VGA decodes changed: olddecodes=io+mem,decodes=none:owns=mem
-> | xe 0000:00:02.0: [drm] Finished loading DMC firmware i915/tgl_dmc_ver2_12.bin (v2.12)
-> | xe 0000:00:02.0: [drm] Tile0: GT0: Using GuC firmware from i915/tgl_guc_70.bin version 70.49.4
-> | xe 0000:00:02.0: [drm] Tile0: GT0: Using HuC firmware from i915/tgl_huc.bin version 7.9.3
-> | xe 0000:00:02.0: [drm] Tile0: GT0: vcs1 fused off
-> | xe 0000:00:02.0: [drm] Tile0: GT0: vcs3 fused off
-> | xe 0000:00:02.0: [drm] Tile0: GT0: vcs4 fused off
-> | xe 0000:00:02.0: [drm] Tile0: GT0: vcs5 fused off
-> | xe 0000:00:02.0: [drm] Tile0: GT0: vcs6 fused off
-> | xe 0000:00:02.0: [drm] Tile0: GT0: vcs7 fused off
-> | xe 0000:00:02.0: [drm] Tile0: GT0: vecs1 fused off
-> | xe 0000:00:02.0: [drm] Tile0: GT0: vecs2 fused off
-> | xe 0000:00:02.0: [drm] Tile0: GT0: vecs3 fused off
-> | BUG: kernel NULL pointer dereference, address: 0000000000000000
-> | #PF: supervisor read access in kernel mode
-> | #PF: error_code(0x0000) - not-present page
-> | PGD 0 P4D 0
-> | Oops: Oops: 0000 [#1] SMP NOPTI
-> | CPU: 1 UID: 0 PID: 631 Comm: kworker/u32:9 Tainted: G     U      E       6.18.0-rc1+ #31 PREEMPT_{RT,(lazy)}
-> | Tainted: [U]=USER, [E]=UNSIGNED_MODULE
-> | Hardware name: LENOVO 20TD00GLGE/20TD00GLGE, BIOS R1EET64W(1.64 ) 03/18/2025
-> | Workqueue:  drm_sched_run_job_work [gpu_sched]
-> | RIP: 0010:stack_depot_save_flags+0x168/0xb00
-> | Code: c2 44 31 d0 41 c1 ca 08 44 29 d0 41 89 c0 45 89 c2 44 23 15 82 68 a1 03 49 c1 e2 04 4c 03 15 7f 68 a1 03 65 ff 05 f8 b9 f6 01 <4d> 8b 0a 4d 39 ca 75 1c e9 ae  00 00 00 66 66 2e 0f 1f 84 00 00 00
-> | RSP: 0018:ffffaa58c1a9f6a8 EFLAGS: 00010282
-> | RAX: 0000000006425a49 RBX: 0000000000000001 RCX: 000000000000000e
-> | RDX: 000000000000000e RSI: 00000000be7f6f1a RDI: 0000000000000001
-> | RBP: ffffaa58c1a9f700 R08: 0000000006425a49 R09: 000000000739c857
-> | R10: 0000000000000000 R11: 00000000000025b3 R12: 0000000000004502
-> | R13: ffff9c3a8f2b18b8 R14: 0000000000002800 R15: 000000000000000d
-> | FS:  0000000000000000(0000) GS:ffff9c3e55884000(0000) knlGS:0000000000000000
-> | CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> | CR2: 0000000000000000 CR3: 000000003e854003 CR4: 0000000000f72ef0
-> | PKRU: 55555554
-> | Call Trace:
-> | Call Trace:
-> |  <TASK>
-> |  fast_req_track+0x58/0xb0 [xe]
-> |  h2g_write+0x39f/0x720 [xe]
-> |  __guc_ct_send_locked+0x1e4/0x10f0 [xe]
-> |  guc_ct_send_locked+0xa4/0x690 [xe]
-> |  guc_ct_send+0x74/0x250 [xe]
-> |  xe_guc_ct_send+0x19/0x50 [xe]
-> |  __register_exec_queue.isra.0+0x7e/0xa0 [xe]
-> |  register_exec_queue+0x2f4/0x750 [xe]
-> |  guc_exec_queue_run_job+0x4f6/0x8f0 [xe]
-> |  drm_sched_run_job_work+0x1ef/0x450 [gpu_sched]
-> 
-> This happens also without the series and without PREEMPT_RT enabled. I
-> just to a while to figure this one out on the hardware in question since
-> it all just frozeâ€¦
-> 
-> Other than that, XE seems fine.
-> 
-> i915.
-> - drm/i915/display: Move vblank put until after critical section
->  - intel_vblank_evade() is invoked with irq-off
->    - within its callchain intel_vblank_section_enter() does spin_lock()
->      in I915. XE does nothing so it is fine.
->    - intel_crtc_scanlines_since_frame_timestamp() does a while loop
->      What is the expected/ possible worst case here and when does it happen?
-The typical case is no vblank happened between those reads, and returns without looping.
-The worst case is a vblank happening in the hardware during that loop. If that happens, it's retried once.
-PIPE_FRMTMSTMP triggers after every completed frame update. 
-You have to complete the loop exactly once every 16.7 ms at 60 fps to loop forever at exactly the wrong time and then keep hitting it.
-It looks like only a specific output on a few specific platforms are using it.
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
->    While at it, I noticed:
->    local_irq_disable();
->    if (new_plane_state->uapi.visible) {
->            intel_plane_update_noarm(NULL, plane, crtc_state, new_plane_state);
->            if (plane->fbc)
->                   intel_fbc_dirty_rect_update_noarm(dsb, plane);
->                      if (!HAS_FBC_DIRTY_RECT(display))
->                          return;
->                      mutex_lock(&fbc->lock); <----
-> 
-Eek, how did that slip through CI? There should be no lock whatsoever in there since that mutex would blow up on !RT too...
-
->    Haven't checked the callbacks but it feels like a lot of code with
->    disabled interrupts.
-> 
-> - The GEM_BUG_ON(!irqs_disabled) in __i915_request_submit()/
->   __i915_request_unsubmit() case bugs/ warnings:
-> | WARNING: CPU: 3 PID: 2115 at drivers/gpu/drm/i915/i915_request.c:611 __i915_request_submit+0x1db/0x1f0 [i915]
-> | CPU: 3 UID: 0 PID: 2115 Comm: modprobe Not tainted 6.18.0-rc1+ #17 PREEMPT_{RT,(lazy)}
-> | Hardware name: To Be Filled By O.E.M. To Be Filled By O.E.M./Z68 Pro3-M, BIOS P2.30 06/29/2012
-> | RIP: 0010:__i915_request_submit+0x1db/0x1f0 [i915]
-> | Call Trace:
-> |  <TASK>
-> |  i915_request_submit+0x29/0x40 [i915]
-> |  i9xx_submit_request+0xe/0x70 [i915]
-> |  submit_notify+0xc1/0x230 [i915]
-> |  __i915_sw_fence_complete+0x88/0x290 [i915]
-> |  __engine_park+0x2d2/0x410 [i915]
-> |  ____intel_wakeref_put_last+0x25/0x90 [i915]
-> |  intel_gt_resume.part.0+0x2ec/0x380 [i915]
-> |  intel_gt_init+0x14d/0x3d0 [i915]
-> |  i915_gem_init+0x14b/0x290 [i915]
-> |  i915_driver_probe+0x74a/0xc10 [i915]
-> |  i915_pci_probe+0xd7/0x190 [i915]
-> |  local_pci_probe+0x41/0x80
-I didn't apply the i915 specific patches that I saw in the -rt patchset, I only tested the xe display.
-For i915, I did -DNOTRACE to the entire subdirectory to disable tracing on PREEMPT_RT,
-but the other non-display related patches are still needed, did you apply those?
-
-- 0003-drm-i915-Don-t-check-for-atomic-context-on-PREEMPT_R.patch
-(0004 can be droped since upstream commit ed1fbee3debb ("drm/i915: Disable tracepoints for PREEMPT_RT"))
-- 0005-drm-i915-gt-Use-spin_lock_irq-instead-of-local_irq_d.patch
-- 0006-drm-i915-Drop-the-irqs_disabled-check.patch
-- 0007-drm-i915-guc-Consider-also-RCU-depth-in-busy-loop.patch
-
-> - The change of irq-enable is not enough:
-> | BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
-> | in_atomic(): 0, irqs_disabled(): 1, non_block: 0, pid: 2115, name: modprobe
-> | preempt_count: 0, expected: 0
-> | RCU nest depth: 0, expected: 0
-> | 4 locks held by modprobe/2115:
-> |  #0: ffff99b9425161a0 (&dev->mutex){....}-{4:4}, at: __driver_attach+0xaf/0x1c0
-> |  #1: ffffaa224810f6c0 (crtc_ww_class_acquire){+.+.}-{0:0}, at: intel_initial_commit+0x4c/0x200 [i915]
-> |  #2: ffffaa224810f6e8 (crtc_ww_class_mutex){+.+.}-{4:4}, at: intel_initial_commit+0x4c/0x200 [i915]
-> |  #3: ffff99b94a6c9030 (&uncore->lock){+.+.}-{3:3}, at: gen6_write32+0x50/0x290 [i915]
-> | irq event stamp: 513344
-> | hardirqs last  enabled at (513343): [<ffffffff8ba8d84c>] _raw_spin_unlock_irqrestore+0x4c/0x60
-> | hardirqs last disabled at (513344): [<ffffffffc1543646>] intel_pipe_update_start+0x216/0x2c0 [i915]
-> | softirqs last  enabled at (512766): [<ffffffff8af045cf>] __local_bh_enable_ip+0x10f/0x170
-> | softirqs last disabled at (512712): [<ffffffffc14dfb6a>] __i915_request_queue+0x3a/0x70 [i915]
-> | CPU: 3 UID: 0 PID: 2115 Comm: modprobe Tainted: G        W           6.18.0-rc1+ #17 PREEMPT_{RT,(lazy)}
-> | Tainted: [W]=WARN
-> | Hardware name: To Be Filled By O.E.M. To Be Filled By O.E.M./Z68 Pro3-M, BIOS P2.30 06/29/2012
-> | Call Trace:
-> |  <TASK>
-> |  dump_stack_lvl+0x68/0x90
-> |  __might_resched.cold+0xf0/0x12b
-> |  rt_spin_lock+0x5f/0x200
-> |  gen6_write32+0x50/0x290 [i915]
-> |  ilk_set_pipeconf+0x12d/0x230 [i915]
-> |  ilk_color_commit_arm+0x2d/0x70 [i915]
-> |  intel_update_crtc+0x15b/0x690 [i915]
-> |  intel_commit_modeset_enables+0xa6/0xd0 [i915]
-> |  intel_atomic_commit_tail+0xd55/0x19a0 [i915]
-> |  intel_atomic_commit+0x25d/0x2a0 [i915]
-> |  drm_atomic_commit+0xad/0xe0 [drm]
-> |  intel_initial_commit+0x16c/0x200 [i915]
-> |  intel_display_driver_probe+0x2e/0x80 [i915]
-> |  i915_driver_probe+0x791/0xc10 [i915]
-> |  i915_pci_probe+0xd7/0x190 [i915]
-> 
-> This is the intel_pipe_update_start()/ intel_pipe_update_end() part in intel_update_crtc().
-
-From the log it seems ilk_set_pipeconf() needs an update too.
-Can you check if the warnings there go away when you replace intel_de_write() with intel_de_write_fw() and the intel_de_posting_read() with intel_de_read_fw() in ilk_set_pipeconf() and the listed i915 patches from PREEMPT_RT series applied?
-
-Kind regards,
-~Maarten Lankhorst
+Lucas De Marchi
