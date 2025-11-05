@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FEA0C35F7C
-	for <lists+intel-gfx@lfdr.de>; Wed, 05 Nov 2025 15:08:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1ADAC35F7F
+	for <lists+intel-gfx@lfdr.de>; Wed, 05 Nov 2025 15:08:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBE2810E756;
-	Wed,  5 Nov 2025 14:08:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D029A10E750;
+	Wed,  5 Nov 2025 14:08:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TErqigL/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aUYk/XAN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D60310E750;
- Wed,  5 Nov 2025 14:08:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC6CC10E750;
+ Wed,  5 Nov 2025 14:08:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762351690; x=1793887690;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=LOtcT25SjmlrzeqDgSMux7FXBqFmRPLIbyqTbWulEH8=;
- b=TErqigL/DdVMiP3tVFvgcLVH0Af16uj6gYv2lpUPFHKvCZBErkspw270
- zOBkQaSIvRT5r7VaaZzlF2z8s2Mdc0hmCoB4KNStVUpNhZZ/PRPtlnRjJ
- a9rk8XOk/rQPEH7/lxQxCeMjZGAMaqTDPsoJGFXQGeA71kbTGaMk//IZU
- 8fbgCPZhmFjJK0OfKtccVirXeMGDfK+XYSG8dF04wVZZJ9Bj89sRAaqgH
- 7CMd2TuvzsJW/53i142PUzRVzyUW0FT4ZBrIo6qhkDRkFitzUPoI+hhw3
- IJRj8eozfaJCiNSQYMwMxW2XC/5IWGvmBUZk61KVl3WhUWWnUcQyRSMvR w==;
-X-CSE-ConnectionGUID: vBtblj/mSi6vKaJKCCAWeg==
-X-CSE-MsgGUID: bJLGjaArRUm7ASz++AOW4Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11603"; a="64348183"
-X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="64348183"
+ t=1762351691; x=1793887691;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=oQJQspQuQ+TkgRKzi/Yh+f09gZP9buOYKLuQRBdj66w=;
+ b=aUYk/XANOyrfdW4EMg19RF/7QwnVzU/GH59A/fZWBbdcNaAfUVJGFMME
+ d1rNQFKySIQbYrKIp29ZGh72P5Nrjfkeko2df0Rjq9fvrMmE7pNVoJBzl
+ BpSW3thXTHtAyXFjpK3+3h+JhKpKtnmhckBtYBxRJtmlc672xVp68A0Uo
+ r4TBeSqWTSyecvm7PmF6ZVOv53p2KyrpLhtAntpuUR8KR4JFPJIgMLHgp
+ IVDfbh4w2X7M2jyUfPe6GuHLDlTSZt2kuKh71TEVt/qtX7EnNVBcOZMDh
+ 5qsqsjrBhloryU7AdJWAfB0UX2/XzCI2RBfcb2LvzCRL+imyFqvqKIDm4 g==;
+X-CSE-ConnectionGUID: yWWUgASfTvqDN1VyZvEGrg==
+X-CSE-MsgGUID: fNVtx1OqRfGzHk/3jAk6IQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11603"; a="64348190"
+X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="64348190"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2025 06:08:10 -0800
-X-CSE-ConnectionGUID: ou2ehYsQTIu/1fly1KgGDQ==
-X-CSE-MsgGUID: bvCZi/ljRp6v5ak2uw31DA==
+ 05 Nov 2025 06:08:11 -0800
+X-CSE-ConnectionGUID: HnIOqmoBTEesY9T7ze2qOw==
+X-CSE-MsgGUID: roCsfVMRTH+59bn0rqXNjQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="191562908"
+X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="191562927"
 Received: from rfrazer-mobl3.amr.corp.intel.com (HELO gjsousa-mobl2.intel.com)
  ([10.124.221.150])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2025 06:08:08 -0800
+ 05 Nov 2025 06:08:10 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: gustavo.sousa@intel.com
-Subject: [CI 00/17] Reviewed patches from: [PATCH v3 00/29] drm/i915/display:
- Add initial support for Xe3p_LPD
-Date: Wed,  5 Nov 2025 11:06:49 -0300
-Message-ID: <20251105140651.71713-19-gustavo.sousa@intel.com>
+Subject: [CI 01/17] drm/i915/xe3p_lpd: Add Xe3p_LPD display IP features
+Date: Wed,  5 Nov 2025 11:06:50 -0300
+Message-ID: <20251105140651.71713-20-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251105140651.71713-19-gustavo.sousa@intel.com>
+References: <20251105140651.71713-19-gustavo.sousa@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,68 +69,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This series contains patches from [1] already containing r-b and that can be
-applied while the other patches are still under review.
+From: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
 
-This is being sent for a final CI check before applying them.
+Xe3p_LPD (display version 35) is similar to Xe2_LPD with respect to the
+features described by struct intel_display_device_info, so reuse its
+device descriptor.
 
-[1] https://lore.kernel.org/all/20251103-xe3p_lpd-basic-enabling-v3-0-00e87b510ae7@intel.com/
+v2:
+  - Add reference to Bspec 74201. (Shekhar)
 
+Bspec: 74201, 74304
+Signed-off-by: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
+Reviewed-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
+Link: https://patch.msgid.link/20251103-xe3p_lpd-basic-enabling-v3-1-00e87b510ae7@intel.com
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-
 ---
-Ankit Nautiyal (1):
-  drm/i915/xe3p_lpd: Drop support for interlace mode
+ drivers/gpu/drm/i915/display/intel_display_device.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Gustavo Sousa (7):
-  drm/i915/display: Use braces for if-ladder in intel_bw_init_hw()
-  drm/i915/xe3p_lpd: Add CDCLK table
-  drm/i915/xe3p_lpd: Load DMC firmware
-  drm/i915/xe3p_lpd: Extend Wa_16025573575
-  drm/i915/xe3p_lpd: Reload DMC MMIO for pipes C and D
-  drm/i915/dram: Add field ecc_impacting_de_bw
-  drm/i915/xe3p_lpd: Always apply WaWmMemoryReadLatency
-
-Juha-pekka Heikkila (1):
-  drm/i915/xe3p_lpd: Don't allow odd ypan or ysize with semiplanar
-    format
-
-Luca Coelho (1):
-  drm/i915/wm: don't use method1 in Xe3p_LPD onwards
-
-Matt Atwood (1):
-  drm/i915/xe3p_lpd: Update bandwidth parameters
-
-Matt Roper (1):
-  drm/i915/xe3p_lpd: Drop north display reset option programming
-
-Ravi Kumar Vodapalli (1):
-  drm/i915/xe3p_lpd: Adapt to updates on MBUS_CTL/DBUF_CTL registers
-
-Sai Teja Pottumuttu (4):
-  drm/i915/xe3p_lpd: Add Xe3p_LPD display IP features
-  drm/i915/xe3p_lpd: Expand bifield masks dbuf blocks fields
-  drm/i915/xe3p_lpd: Horizontal flip support for linear surfaces
-  drm/i915/xe3p_lpd: Remove gamma,csc bottom color checks
-
- drivers/gpu/drm/i915/display/intel_bw.c       | 43 +++++++++------
- drivers/gpu/drm/i915/display/intel_cdclk.c    | 44 +++++++++++++++-
- drivers/gpu/drm/i915/display/intel_color.c    | 13 ++---
- drivers/gpu/drm/i915/display/intel_display.c  | 14 ++---
- .../drm/i915/display/intel_display_device.c   |  1 +
- .../drm/i915/display/intel_display_power.c    |  3 ++
- .../gpu/drm/i915/display/intel_display_wa.c   |  3 +-
- drivers/gpu/drm/i915/display/intel_dmc.c      | 13 +++--
- drivers/gpu/drm/i915/display/intel_plane.c    |  3 ++
- .../drm/i915/display/skl_universal_plane.c    |  3 +-
- .../i915/display/skl_universal_plane_regs.h   | 12 ++---
- drivers/gpu/drm/i915/display/skl_watermark.c  | 25 +++++++--
- .../gpu/drm/i915/display/skl_watermark_regs.h | 52 ++++++++++---------
- drivers/gpu/drm/i915/i915_reg.h               |  1 +
- drivers/gpu/drm/i915/soc/intel_dram.c         |  4 ++
- drivers/gpu/drm/i915/soc/intel_dram.h         |  1 +
- 16 files changed, 166 insertions(+), 69 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+index 328447a5e5e8..1170afaa8680 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.c
++++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+@@ -1507,6 +1507,7 @@ static const struct {
+ 	{ 20,  0, &xe2_lpd_display },
+ 	{ 30,  0, &xe2_lpd_display },
+ 	{ 30,  2, &wcl_display },
++	{ 35,  0, &xe2_lpd_display },
+ };
+ 
+ static const struct intel_display_device_info *
 -- 
 2.51.0
 
