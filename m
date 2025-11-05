@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79783C35F82
-	for <lists+intel-gfx@lfdr.de>; Wed, 05 Nov 2025 15:08:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87D14C35F88
+	for <lists+intel-gfx@lfdr.de>; Wed, 05 Nov 2025 15:08:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 043D410E755;
-	Wed,  5 Nov 2025 14:08:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1735010E75E;
+	Wed,  5 Nov 2025 14:08:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ApuQ+lMh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hBj2kMwO";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC00710E22E;
- Wed,  5 Nov 2025 14:08:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DB5710E75E;
+ Wed,  5 Nov 2025 14:08:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762351707; x=1793887707;
+ t=1762351711; x=1793887711;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4VIIlLgbqr3MDqxLBtmZLr0rWJ60f3+8APqZJGTmz3E=;
- b=ApuQ+lMhps6fUSO/m7RaF2PfE4G2JqDLTmiTz1c6fQgIyvxzU+TEQl3f
- vc2opLzPwdwNjU+n0jrL++aeDAH5SyPhSLu7WIBHQ3cVNWGGFkc2qIxwd
- HOWUwtEmftr/Z5vCSRUM2VX7KLEM/SZsT1os/G3Bh/VHSw0hGUcqZzSo3
- s/QlsoKh/nijVLQuHAA549EpQdEULbNlJWPjt2hA3ducRZJ2qHCDNmqqK
- 1zlG6OJUIFljo17cnXyuWcJxJcHbWqwD8iG4pUczjEubvgZH4zoFSGPfw
- Ye6IBGfN7FY9umHQCwfOfaP4Y16dxB+31YiqYny5hcg0sqZeAmmcKNgQ8 A==;
-X-CSE-ConnectionGUID: Xme1jY3URVWDxllxAl4UvQ==
-X-CSE-MsgGUID: z2gMLqMRSFG+5Hab2+M81g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11603"; a="64348227"
-X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="64348227"
+ bh=UJtvpTN5WMac+stuXi0Mhm7Bje4cC0pGnPli7M0KSVw=;
+ b=hBj2kMwOrwPQDAAm+mmpFuMRbXp3BbBwGrm3OS963jrS8y7qWkiIGP+M
+ XMuYjLtBhQzqoUzaaROScfxIjTGK3F8mP9/g2Ega1R40RXh0ZeRtUvQh6
+ awsyZTHotybX/nqv9l1rtrI0ZiF+wO/ZmGXx7ZiD2bzH5k3CwgO+XUX1w
+ tZXC6OP8u+Xk28QxzJYVKazvgmEcxeKnO01+MZQb2/dich5qIQ/IwDr6Q
+ LmqxNzWZnK+oOENr1+po6XNQD+Ul3omegq1kSL9EddMCHs56eHIHCc3X+
+ hLyq0lgogCN/Oqlt9vXDhBIUlfSlWz4uNQhe2b95e1WovMTHLmyo8K2Am g==;
+X-CSE-ConnectionGUID: JRIE98ZhSWSyuzF15inyVw==
+X-CSE-MsgGUID: tnh7nQrDTNO47gLNb9h1Eg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11603"; a="64348260"
+X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="64348260"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2025 06:08:14 -0800
-X-CSE-ConnectionGUID: o/rKddMuRxumC/IBd18Zkw==
-X-CSE-MsgGUID: yS8dOSErR4S0HGB/XXDBww==
+ 05 Nov 2025 06:08:16 -0800
+X-CSE-ConnectionGUID: SnJIzDs6QyWxjoegTll6GA==
+X-CSE-MsgGUID: ayYOqHTRQhmwe1BWU0DSMA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="191562937"
+X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="191562942"
 Received: from rfrazer-mobl3.amr.corp.intel.com (HELO gjsousa-mobl2.intel.com)
  ([10.124.221.150])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2025 06:08:13 -0800
+ 05 Nov 2025 06:08:14 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: gustavo.sousa@intel.com
-Subject: [CI 03/17] drm/i915/display: Use braces for if-ladder in
- intel_bw_init_hw()
-Date: Wed,  5 Nov 2025 11:06:52 -0300
-Message-ID: <20251105140651.71713-22-gustavo.sousa@intel.com>
+Subject: [CI 04/17] drm/i915/xe3p_lpd: Update bandwidth parameters
+Date: Wed,  5 Nov 2025 11:06:53 -0300
+Message-ID: <20251105140651.71713-23-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251105140651.71713-19-gustavo.sousa@intel.com>
 References: <20251105140651.71713-19-gustavo.sousa@intel.com>
@@ -70,71 +69,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Looking at the current if-ladder in intel_bw_init_hw(), we see that
-Xe2_HPD contains two entries, differing only for ECC memories.  Let's
-improve readability by using braces and allowing adding extra conditions
-for each case.
+From: Matt Atwood <matthew.s.atwood@intel.com>
+
+Bandwidth parameters for Xe3p_LPD are the same as for Xe3_LPD. Re-use
+them.
+
+Since handling for Xe3_LPD version 30.02 is more like a special case,
+let's use a "== 3002" check for it inside the ">= 30" branch instead of
+adding a new branch for version 35.  That allows us to re-use the ">=
+30" branch for Xe3p_LPD.
 
 v2:
-  - Tweaked commit message, since we are not going to add the ECC case
-    for Xe3p_LPD anymore.
+  - Do not have a special case for ecc_impacting_de_bw, since there are
+    no specific instructions in Bspec for this scenario. (Matt Roper)
+v3:
+  - Re-use the ">= 30" branch in the if-ladder. (Matt Roper)
 
+Bspec: 68859
+Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-Link: https://patch.msgid.link/20251103-xe3p_lpd-basic-enabling-v3-3-00e87b510ae7@intel.com
+Link: https://patch.msgid.link/20251103-xe3p_lpd-basic-enabling-v3-4-00e87b510ae7@intel.com
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bw.c | 29 +++++++++++++------------
- 1 file changed, 15 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bw.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index f97ccc1a96a7..bf37d7a9732e 100644
+index bf37d7a9732e..919b25a5fbac 100644
 --- a/drivers/gpu/drm/i915/display/intel_bw.c
 +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -805,29 +805,30 @@ void intel_bw_init_hw(struct intel_display *display)
+@@ -805,10 +805,11 @@ void intel_bw_init_hw(struct intel_display *display)
  	if (!HAS_DISPLAY(display))
  		return;
  
--	if (DISPLAY_VERx100(display) >= 3002)
-+	if (DISPLAY_VERx100(display) >= 3002) {
- 		tgl_get_bw_info(display, dram_info, &xe3lpd_3002_sa_info);
--	else if (DISPLAY_VER(display) >= 30)
-+	} else if (DISPLAY_VER(display) >= 30) {
- 		tgl_get_bw_info(display, dram_info, &xe3lpd_sa_info);
--	else if (DISPLAY_VERx100(display) >= 1401 && display->platform.dgfx &&
--		 dram_info->type == INTEL_DRAM_GDDR_ECC)
--		xe2_hpd_get_bw_info(display, dram_info, &xe2_hpd_ecc_sa_info);
--	else if (DISPLAY_VERx100(display) >= 1401 && display->platform.dgfx)
--		xe2_hpd_get_bw_info(display, dram_info, &xe2_hpd_sa_info);
--	else if (DISPLAY_VER(display) >= 14)
-+	} else if (DISPLAY_VERx100(display) >= 1401 && display->platform.dgfx) {
-+		if (dram_info->type == INTEL_DRAM_GDDR_ECC)
-+			xe2_hpd_get_bw_info(display, dram_info, &xe2_hpd_ecc_sa_info);
+-	if (DISPLAY_VERx100(display) >= 3002) {
+-		tgl_get_bw_info(display, dram_info, &xe3lpd_3002_sa_info);
+-	} else if (DISPLAY_VER(display) >= 30) {
+-		tgl_get_bw_info(display, dram_info, &xe3lpd_sa_info);
++	if (DISPLAY_VER(display) >= 30) {
++		if (DISPLAY_VERx100(display) == 3002)
++			tgl_get_bw_info(display, dram_info, &xe3lpd_3002_sa_info);
 +		else
-+			xe2_hpd_get_bw_info(display, dram_info, &xe2_hpd_sa_info);
-+	} else if (DISPLAY_VER(display) >= 14) {
- 		tgl_get_bw_info(display, dram_info, &mtl_sa_info);
--	else if (display->platform.dg2)
-+	} else if (display->platform.dg2) {
- 		dg2_get_bw_info(display);
--	else if (display->platform.alderlake_p)
-+	} else if (display->platform.alderlake_p) {
- 		tgl_get_bw_info(display, dram_info, &adlp_sa_info);
--	else if (display->platform.alderlake_s)
-+	} else if (display->platform.alderlake_s) {
- 		tgl_get_bw_info(display, dram_info, &adls_sa_info);
--	else if (display->platform.rocketlake)
-+	} else if (display->platform.rocketlake) {
- 		tgl_get_bw_info(display, dram_info, &rkl_sa_info);
--	else if (DISPLAY_VER(display) == 12)
-+	} else if (DISPLAY_VER(display) == 12) {
- 		tgl_get_bw_info(display, dram_info, &tgl_sa_info);
--	else if (DISPLAY_VER(display) == 11)
-+	} else if (DISPLAY_VER(display) == 11) {
- 		icl_get_bw_info(display, dram_info, &icl_sa_info);
-+	}
- }
- 
- static unsigned int intel_bw_num_active_planes(struct intel_display *display,
++			tgl_get_bw_info(display, dram_info, &xe3lpd_sa_info);
+ 	} else if (DISPLAY_VERx100(display) >= 1401 && display->platform.dgfx) {
+ 		if (dram_info->type == INTEL_DRAM_GDDR_ECC)
+ 			xe2_hpd_get_bw_info(display, dram_info, &xe2_hpd_ecc_sa_info);
 -- 
 2.51.0
 
