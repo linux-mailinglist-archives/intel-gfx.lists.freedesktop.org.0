@@ -2,57 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E5B4C35FA9
-	for <lists+intel-gfx@lfdr.de>; Wed, 05 Nov 2025 15:08:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABBD2C35FAC
+	for <lists+intel-gfx@lfdr.de>; Wed, 05 Nov 2025 15:08:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDB3410E779;
-	Wed,  5 Nov 2025 14:08:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47A1610E76C;
+	Wed,  5 Nov 2025 14:08:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cKHovDkb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HzZg/8pa";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97FE410E766;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCABD10E76B;
  Wed,  5 Nov 2025 14:08:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762351730; x=1793887730;
+ t=1762351731; x=1793887731;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Thd+ZHp/HXN+JoI0ZKv5+Oyq4gJAqzMQcyV9wJvcJMQ=;
- b=cKHovDkbF1CD3zq9fnyAdIBzQguZmXIPiozBsnWMTZiC1hNfthIbpiPA
- YNfsD8ciInXuZGXOy9Omgx+KgY8ovIduvytq0m+MtaZSZMJ1849xbiUJD
- l7r3ONyjTKP56uAjGrytHddRZYMmu234INk5eRkYjIKsmLIJTbrTSmmy8
- EY3GIjfAAoFomPjbRyyVgiQ4XbEZYlGaL7y/tSh/DjvERcm7CQR0AlOMC
- QF6cIvXPSYpEUbRm995h8j9TEAwe8nj3z1kSZwpVegPxKuMpnp5Pj7b70
- vZ2N9On8Bz9vOlBN4bMr4xFqoqIT9Xz5LBtXPm1F8nzGnEZi9gEgpNfti g==;
-X-CSE-ConnectionGUID: NNuyzRB3SKiMdsvWRcEFCQ==
-X-CSE-MsgGUID: 8JcJkbJMTv+vNr+ExnlViw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11603"; a="64348429"
-X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="64348429"
+ bh=AMS5ZKKf3OECTbX3xy/onJAip5tbANuxBk5zf47Nqj8=;
+ b=HzZg/8paB/DSlA5cLn9I2XOD+LwbcQ+fHoNoTeNfMhl7elsFJP3YLAc7
+ ofqPe+lOTUr0DX5Mc6KJd11dPdW96mPUyEDeptNMUBHvEKLzi20L0OFDY
+ Kr0pPT39nLfXLGZbw+NWJzH8vlc6actLKKVsOsHhjyBcjiQhGzRhJkv/8
+ BpaYILfybeNpvtIG9dSKQ/k5t5dxbdQ8PJDyWdfmhklfVHf3ORf+hKfH3
+ FgS7PV0nZWT+f1DBNGJ17kgW9lk6nTNdRo920LKFSA9iuBFW2PKAtLQS+
+ VM2iZPh4RugjCT7p2QTJygyR3pB/N69YhCOvBk0UaA0+YV2Fw1M7xKxxD w==;
+X-CSE-ConnectionGUID: MeEtJKaZRLORNnFsIWYSqA==
+X-CSE-MsgGUID: CaqCCI/+SFablU6l+JGVsQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11603"; a="64348432"
+X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="64348432"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2025 06:08:32 -0800
-X-CSE-ConnectionGUID: VUEbNKK5RdGMcnIBUBQjGg==
-X-CSE-MsgGUID: ebLBIWzrQG6Fu9ie5/OlbQ==
+ 05 Nov 2025 06:08:33 -0800
+X-CSE-ConnectionGUID: NfgJXMpbRd6I7hCXTDOmNQ==
+X-CSE-MsgGUID: nOU9YC1ZTuCLZ1K5tF29vg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="191563017"
+X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="191563024"
 Received: from rfrazer-mobl3.amr.corp.intel.com (HELO gjsousa-mobl2.intel.com)
  ([10.124.221.150])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2025 06:08:31 -0800
+ 05 Nov 2025 06:08:32 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: gustavo.sousa@intel.com
-Subject: [CI 15/17] drm/i915/dram: Add field ecc_impacting_de_bw
-Date: Wed,  5 Nov 2025 11:07:04 -0300
-Message-ID: <20251105140651.71713-34-gustavo.sousa@intel.com>
+Subject: [CI 16/17] drm/i915/xe3p_lpd: Always apply WaWmMemoryReadLatency
+Date: Wed,  5 Nov 2025 11:07:05 -0300
+Message-ID: <20251105140651.71713-35-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251105140651.71713-19-gustavo.sousa@intel.com>
 References: <20251105140651.71713-19-gustavo.sousa@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,104 +70,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Starting with Xe3p_LPD, we now have a new field in MEM_SS_INFO_GLOBAL
-that indicates whether the memory has enabled ECC that limits display
-bandwidth.  Add the field ecc_impacting_de_bw to struct dram_info to
-contain that information and set it appropriately when probing for
-memory info.
+When reading memory latencies for watermark calculations, previous
+display releases instructed to apply an adjustment of adding a certain
+value (e.g. 6us) to all levels when the level 0's memory latency read
+from hardware was zero.
 
-Currently there are no instructions in Bspec on how to handle that case,
-so let's throw a warning if we ever find such a scenario.
+For Xe3p_LPD, the instruction is to always use 6us for level 0 and to
+add that value to the other levels.  Add the necessary code in
+sanitize_wm_latency() so that WaWmMemoryReadLatency is always applied
+for Xe3p_LPD and beyond.
 
 v2:
-  - s/ecc_impacting_de/ecc_impacting_de_bw/ to be more specific. (Matt
-    Atwood)
-  - Add warning if ecc_impacting_de_bw is true, since we currently do
-    not have instructions on how to handle it. (Matt Roper)
+  - Rebased after addition of prep patch "drm/i915/wm: Reorder
+    adjust_wm_latency() for Xe3_LPD" (dropped in v3).
 v3:
-  - Check on ecc_impacting_de_bw for the warning only for Xe3p_LPD and
-    beyond.
-  - Change warning macro from drm_WARN_ON_ONCE() to drm_WARN_ON().
+  - Back to the simpler approach of doing the 'wm[0] = 0' step without
+    modifying the rest of the code, and that inside
+    sanitize_wm_latency(). (Matt Roper, Ville)
 
-Bspec: 69131
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Bspec: 68986, 69126
 Cc: Matt Atwood <matthew.s.atwood@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-Link: https://patch.msgid.link/20251103-xe3p_lpd-basic-enabling-v3-15-00e87b510ae7@intel.com
+Link: https://patch.msgid.link/20251103-xe3p_lpd-basic-enabling-v3-20-00e87b510ae7@intel.com
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bw.c | 9 +++++++++
- drivers/gpu/drm/i915/i915_reg.h         | 1 +
- drivers/gpu/drm/i915/soc/intel_dram.c   | 4 ++++
- drivers/gpu/drm/i915/soc/intel_dram.h   | 1 +
- 4 files changed, 15 insertions(+)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 919b25a5fbac..1f6461be50ef 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -805,6 +805,15 @@ void intel_bw_init_hw(struct intel_display *display)
- 	if (!HAS_DISPLAY(display))
- 		return;
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index c888b0896d89..95941e878bf1 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -3184,6 +3184,13 @@ static void sanitize_wm_latency(struct intel_display *display)
+ 	u16 *wm = display->wm.skl_latency;
+ 	int level, num_levels = display->wm.num_levels;
  
 +	/*
-+	 * Starting with Xe3p_LPD, the hardware tells us whether memory has ECC
-+	 * enabled that would impact display bandwidth.  However, so far there
-+	 * are no instructions in Bspec on how to handle that case.  Let's
-+	 * complain if we ever find such a scenario.
++	 * Xe3p and beyond should ignore level 0's reported latency and
++	 * always apply WaWmMemoryReadLatency logic.
 +	 */
 +	if (DISPLAY_VER(display) >= 35)
-+		drm_WARN_ON(display->drm, dram_info->ecc_impacting_de_bw);
++		wm[0] = 0;
 +
- 	if (DISPLAY_VER(display) >= 30) {
- 		if (DISPLAY_VERx100(display) == 3002)
- 			tgl_get_bw_info(display, dram_info, &xe3lpd_3002_sa_info);
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 354ef75ef6a5..5bf3b4ab2baa 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1233,6 +1233,7 @@
- #define   OROM_OFFSET_MASK			REG_GENMASK(20, 16)
- 
- #define MTL_MEM_SS_INFO_GLOBAL			_MMIO(0x45700)
-+#define   XE3P_ECC_IMPACTING_DE			REG_BIT(12)
- #define   MTL_N_OF_ENABLED_QGV_POINTS_MASK	REG_GENMASK(11, 8)
- #define   MTL_N_OF_POPULATED_CH_MASK		REG_GENMASK(7, 4)
- #define   MTL_DDR_TYPE_MASK			REG_GENMASK(3, 0)
-diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
-index 2e16346a6cc0..3e588762709a 100644
---- a/drivers/gpu/drm/i915/soc/intel_dram.c
-+++ b/drivers/gpu/drm/i915/soc/intel_dram.c
-@@ -686,6 +686,7 @@ static int gen12_get_dram_info(struct drm_i915_private *i915, struct dram_info *
- 
- static int xelpdp_get_dram_info(struct drm_i915_private *i915, struct dram_info *dram_info)
- {
-+	struct intel_display *display = i915->display;
- 	u32 val = intel_uncore_read(&i915->uncore, MTL_MEM_SS_INFO_GLOBAL);
- 
- 	switch (REG_FIELD_GET(MTL_DDR_TYPE_MASK, val)) {
-@@ -724,6 +725,9 @@ static int xelpdp_get_dram_info(struct drm_i915_private *i915, struct dram_info
- 	dram_info->num_qgv_points = REG_FIELD_GET(MTL_N_OF_ENABLED_QGV_POINTS_MASK, val);
- 	/* PSF GV points not supported in D14+ */
- 
-+	if (DISPLAY_VER(display) >= 35)
-+		dram_info->ecc_impacting_de_bw = REG_FIELD_GET(XE3P_ECC_IMPACTING_DE, val);
-+
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/i915/soc/intel_dram.h b/drivers/gpu/drm/i915/soc/intel_dram.h
-index 03a973f1c941..8475ee379daa 100644
---- a/drivers/gpu/drm/i915/soc/intel_dram.h
-+++ b/drivers/gpu/drm/i915/soc/intel_dram.h
-@@ -30,6 +30,7 @@ struct dram_info {
- 	u8 num_channels;
- 	u8 num_qgv_points;
- 	u8 num_psf_gv_points;
-+	bool ecc_impacting_de_bw; /* Only valid from Xe3p_LPD onward. */
- 	bool symmetric_memory;
- 	bool has_16gb_dimms;
- };
+ 	/*
+ 	 * If a level n (n > 1) has a 0us latency, all levels m (m >= n)
+ 	 * need to be disabled. We make sure to sanitize the values out
 -- 
 2.51.0
 
