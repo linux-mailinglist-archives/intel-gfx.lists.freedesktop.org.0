@@ -2,29 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB310C35DDE
-	for <lists+intel-gfx@lfdr.de>; Wed, 05 Nov 2025 14:38:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06FEAC35EE0
+	for <lists+intel-gfx@lfdr.de>; Wed, 05 Nov 2025 14:55:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34D5D10E072;
-	Wed,  5 Nov 2025 13:38:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4312410E2C5;
+	Wed,  5 Nov 2025 13:55:08 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="QwqSmZ/A";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="4svM2I0o";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 321E210E072;
- Wed,  5 Nov 2025 13:38:16 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5941891952246335818=="
+X-Greylist: delayed 442 seconds by postgrey-1.36 at gabe;
+ Wed, 05 Nov 2025 13:55:06 UTC
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4130310E2C5;
+ Wed,  5 Nov 2025 13:55:06 +0000 (UTC)
+Date: Wed, 5 Nov 2025 14:47:40 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1762350462;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=SR+2akXvSUUxdvBx3ePu8fPu5yCstdLDnkHoIlu+nCQ=;
+ b=QwqSmZ/ACjLiJGSrcLLMrLyf0wGbWr8vupu0HFpZ1ae44u22MIj+rv5DJGP5ngfj3h0bX0
+ vX3ZAmhq3ixTf5IIwl/1PAlWI/fXDEqMXtUPrqx7uzDKFJtEpiR1l5O87iwGdoRqVsWJe0
+ 7NwrUr8Qg8LDxlnQHUcEtMU1fBsI2WowoV5cfobRoe4XK/fdy1gMzjZ7fltugKsEQime/b
+ Exa4UMe/fMVrz/3DMkthYCb6ycdIf8Zgh5H8EOTqv3CIHuc37FvbNJOK6ON0RcdN1mzHZD
+ UC7CUDksepElMp0a/TjFOCVvn+usDB63dQct3hi2u0GOI/5EwjjxPJd5/cjMaA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1762350462;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=SR+2akXvSUUxdvBx3ePu8fPu5yCstdLDnkHoIlu+nCQ=;
+ b=4svM2I0ooFXOzGomett6WRsHF4s2h1yLq11m/VKE7hy2xu2e5mgj6Hm3GKuh0N4R2jyHBg
+ f3Vqzz+cX0Jnd6Aw==
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+To: Maarten Lankhorst <dev@lankhorst.se>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-rt-devel@lists.linux.dev, Mario Kleiner <mario.kleiner.de@gmail.com>,
+ Mike Galbraith <umgwanakikbuti@gmail.com>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>
+Subject: Re: [PATCH v2 0/7] drm/i915/display: Handle vblank evasion with
+ CONFIG_PREEMPT_RT
+Message-ID: <20251105134740.NseZnpeZ@linutronix.de>
+References: <20251104083634.670753-1-dev@lankhorst.se>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_Plane_Color_Pipeline_supp?=
- =?utf-8?q?ort_for_Intel_platforms_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Uma Shankar" <uma.shankar@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 05 Nov 2025 13:38:16 -0000
-Message-ID: <176234989619.20785.12274690478113715723@10055242dc62>
-X-Patchwork-Hint: ignore
-References: <20251105123413.2671075-1-uma.shankar@intel.com>
-In-Reply-To: <20251105123413.2671075-1-uma.shankar@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20251104083634.670753-1-dev@lankhorst.se>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,408 +68,198 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5941891952246335818==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thank you for looking into this. I applied this on top of
+drm-intel-next-2025-11-04 for testing.
 
-== Series Details ==
+On 2025-11-04 09:36:24 [+0100], Maarten Lankhorst wrote:
+> There is a critical section between intel_pipe_update_start() and
+> intel_pipe_update_end() where we only program hardware registers,
+> should not take any lock and complete as fast as possible.
+>=20
+> The previous approach used to remove the local_irq_enable/disable()
+> in this critical, but that increases the probability that the time
+> sensitive section does not complete in 100 =C2=B5s, potentially causing
+> the hardware to hang.
+>=20
+> I went through all the lockdep splats that occurred in CI, and fixed
+> them 1 by 1 until there were none left. This additionally improves
+> latency by not removing any locks in the fastpath.
+>=20
+> In intel_de.h the implicit DMC wakelock was added, ideally we can get rid
+> of it, but for now we can simply use the same _fw variants as are
+> needed on i915.
+>=20
+> I believe this series is enough to make xe and perhaps good enough to make
+> i915's display RT safe.
 
-Series: Plane Color Pipeline support for Intel platforms (rev6)
-URL   : https://patchwork.freedesktop.org/series/129811/
-State : failure
+I've been playing with it:
+- DRM_XE_DEBUG_GUC ended in a segfault:
+| xe 0000:00:02.0: enabling device (0006 -> 0007)
+| Console: switching to colour dummy device 80x25
+| xe 0000:00:02.0: vgaarb: deactivate vga console
+| xe 0000:00:02.0: [drm] Running in SR-IOV PF mode
+| xe 0000:00:02.0: [drm] Found tigerlake/uy (device ID 9a49) integrated dis=
+play version 12.00 stepping C0
+| xe 0000:00:02.0: vgaarb: VGA decodes changed: olddecodes=3Dio+mem,decodes=
+=3Dnone:owns=3Dmem
+| xe 0000:00:02.0: [drm] Finished loading DMC firmware i915/tgl_dmc_ver2_12=
+=2Ebin (v2.12)
+| xe 0000:00:02.0: [drm] Tile0: GT0: Using GuC firmware from i915/tgl_guc_7=
+0.bin version 70.49.4
+| xe 0000:00:02.0: [drm] Tile0: GT0: Using HuC firmware from i915/tgl_huc.b=
+in version 7.9.3
+| xe 0000:00:02.0: [drm] Tile0: GT0: vcs1 fused off
+| xe 0000:00:02.0: [drm] Tile0: GT0: vcs3 fused off
+| xe 0000:00:02.0: [drm] Tile0: GT0: vcs4 fused off
+| xe 0000:00:02.0: [drm] Tile0: GT0: vcs5 fused off
+| xe 0000:00:02.0: [drm] Tile0: GT0: vcs6 fused off
+| xe 0000:00:02.0: [drm] Tile0: GT0: vcs7 fused off
+| xe 0000:00:02.0: [drm] Tile0: GT0: vecs1 fused off
+| xe 0000:00:02.0: [drm] Tile0: GT0: vecs2 fused off
+| xe 0000:00:02.0: [drm] Tile0: GT0: vecs3 fused off
+| BUG: kernel NULL pointer dereference, address: 0000000000000000
+| #PF: supervisor read access in kernel mode
+| #PF: error_code(0x0000) - not-present page
+| PGD 0 P4D 0
+| Oops: Oops: 0000 [#1] SMP NOPTI
+| CPU: 1 UID: 0 PID: 631 Comm: kworker/u32:9 Tainted: G     U      E       =
+6.18.0-rc1+ #31 PREEMPT_{RT,(lazy)}
+| Tainted: [U]=3DUSER, [E]=3DUNSIGNED_MODULE
+| Hardware name: LENOVO 20TD00GLGE/20TD00GLGE, BIOS R1EET64W(1.64 ) 03/18/2=
+025
+| Workqueue:  drm_sched_run_job_work [gpu_sched]
+| RIP: 0010:stack_depot_save_flags+0x168/0xb00
+| Code: c2 44 31 d0 41 c1 ca 08 44 29 d0 41 89 c0 45 89 c2 44 23 15 82 68 a=
+1 03 49 c1 e2 04 4c 03 15 7f 68 a1 03 65 ff 05 f8 b9 f6 01 <4d> 8b 0a 4d 39=
+ ca 75 1c e9 ae  00 00 00 66 66 2e 0f 1f 84 00 00 00
+| RSP: 0018:ffffaa58c1a9f6a8 EFLAGS: 00010282
+| RAX: 0000000006425a49 RBX: 0000000000000001 RCX: 000000000000000e
+| RDX: 000000000000000e RSI: 00000000be7f6f1a RDI: 0000000000000001
+| RBP: ffffaa58c1a9f700 R08: 0000000006425a49 R09: 000000000739c857
+| R10: 0000000000000000 R11: 00000000000025b3 R12: 0000000000004502
+| R13: ffff9c3a8f2b18b8 R14: 0000000000002800 R15: 000000000000000d
+| FS:  0000000000000000(0000) GS:ffff9c3e55884000(0000) knlGS:0000000000000=
+000
+| CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+| CR2: 0000000000000000 CR3: 000000003e854003 CR4: 0000000000f72ef0
+| PKRU: 55555554
+| Call Trace:
+| Call Trace:
+|  <TASK>
+|  fast_req_track+0x58/0xb0 [xe]
+|  h2g_write+0x39f/0x720 [xe]
+|  __guc_ct_send_locked+0x1e4/0x10f0 [xe]
+|  guc_ct_send_locked+0xa4/0x690 [xe]
+|  guc_ct_send+0x74/0x250 [xe]
+|  xe_guc_ct_send+0x19/0x50 [xe]
+|  __register_exec_queue.isra.0+0x7e/0xa0 [xe]
+|  register_exec_queue+0x2f4/0x750 [xe]
+|  guc_exec_queue_run_job+0x4f6/0x8f0 [xe]
+|  drm_sched_run_job_work+0x1ef/0x450 [gpu_sched]
 
-== Summary ==
+This happens also without the series and without PREEMPT_RT enabled. I
+just to a while to figure this one out on the hardware in question since
+it all just froze=E2=80=A6
 
-CI Bug Log - changes from CI_DRM_17489 -> Patchwork_129811v6
-====================================================
+Other than that, XE seems fine.
 
-Summary
--------
+i915.
+- drm/i915/display: Move vblank put until after critical section
+ - intel_vblank_evade() is invoked with irq-off
+   - within its callchain intel_vblank_section_enter() does spin_lock()
+     in I915. XE does nothing so it is fine.
+   - intel_crtc_scanlines_since_frame_timestamp() does a while loop
+     What is the expected/ possible worst case here and when does it happen?
+   While at it, I noticed:
+   local_irq_disable();
+   if (new_plane_state->uapi.visible) {
+           intel_plane_update_noarm(NULL, plane, crtc_state, new_plane_stat=
+e);
+           if (plane->fbc)
+                  intel_fbc_dirty_rect_update_noarm(dsb, plane);
+                     if (!HAS_FBC_DIRTY_RECT(display))
+                         return;
+                     mutex_lock(&fbc->lock); <----
 
-  **FAILURE**
+   Haven't checked the callbacks but it feels like a lot of code with
+   disabled interrupts.
 
-  Serious unknown changes coming with Patchwork_129811v6 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_129811v6, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+- The GEM_BUG_ON(!irqs_disabled) in __i915_request_submit()/
+  __i915_request_unsubmit() case bugs/ warnings:
+| WARNING: CPU: 3 PID: 2115 at drivers/gpu/drm/i915/i915_request.c:611 __i9=
+15_request_submit+0x1db/0x1f0 [i915]
+| CPU: 3 UID: 0 PID: 2115 Comm: modprobe Not tainted 6.18.0-rc1+ #17 PREEMP=
+T_{RT,(lazy)}
+| Hardware name: To Be Filled By O.E.M. To Be Filled By O.E.M./Z68 Pro3-M, =
+BIOS P2.30 06/29/2012
+| RIP: 0010:__i915_request_submit+0x1db/0x1f0 [i915]
+| Call Trace:
+|  <TASK>
+|  i915_request_submit+0x29/0x40 [i915]
+|  i9xx_submit_request+0xe/0x70 [i915]
+|  submit_notify+0xc1/0x230 [i915]
+|  __i915_sw_fence_complete+0x88/0x290 [i915]
+|  __engine_park+0x2d2/0x410 [i915]
+|  ____intel_wakeref_put_last+0x25/0x90 [i915]
+|  intel_gt_resume.part.0+0x2ec/0x380 [i915]
+|  intel_gt_init+0x14d/0x3d0 [i915]
+|  i915_gem_init+0x14b/0x290 [i915]
+|  i915_driver_probe+0x74a/0xc10 [i915]
+|  i915_pci_probe+0xd7/0x190 [i915]
+|  local_pci_probe+0x41/0x80
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/index.html
+- The change of irq-enable is not enough:
+| BUG: sleeping function called from invalid context at kernel/locking/spin=
+lock_rt.c:48
+| in_atomic(): 0, irqs_disabled(): 1, non_block: 0, pid: 2115, name: modpro=
+be
+| preempt_count: 0, expected: 0
+| RCU nest depth: 0, expected: 0
+| 4 locks held by modprobe/2115:
+|  #0: ffff99b9425161a0 (&dev->mutex){....}-{4:4}, at: __driver_attach+0xaf=
+/0x1c0
+|  #1: ffffaa224810f6c0 (crtc_ww_class_acquire){+.+.}-{0:0}, at: intel_init=
+ial_commit+0x4c/0x200 [i915]
+|  #2: ffffaa224810f6e8 (crtc_ww_class_mutex){+.+.}-{4:4}, at: intel_initia=
+l_commit+0x4c/0x200 [i915]
+|  #3: ffff99b94a6c9030 (&uncore->lock){+.+.}-{3:3}, at: gen6_write32+0x50/=
+0x290 [i915]
+| irq event stamp: 513344
+| hardirqs last  enabled at (513343): [<ffffffff8ba8d84c>] _raw_spin_unlock=
+_irqrestore+0x4c/0x60
+| hardirqs last disabled at (513344): [<ffffffffc1543646>] intel_pipe_updat=
+e_start+0x216/0x2c0 [i915]
+| softirqs last  enabled at (512766): [<ffffffff8af045cf>] __local_bh_enabl=
+e_ip+0x10f/0x170
+| softirqs last disabled at (512712): [<ffffffffc14dfb6a>] __i915_request_q=
+ueue+0x3a/0x70 [i915]
+| CPU: 3 UID: 0 PID: 2115 Comm: modprobe Tainted: G        W           6.18=
+=2E0-rc1+ #17 PREEMPT_{RT,(lazy)}
+| Tainted: [W]=3DWARN
+| Hardware name: To Be Filled By O.E.M. To Be Filled By O.E.M./Z68 Pro3-M, =
+BIOS P2.30 06/29/2012
+| Call Trace:
+|  <TASK>
+|  dump_stack_lvl+0x68/0x90
+|  __might_resched.cold+0xf0/0x12b
+|  rt_spin_lock+0x5f/0x200
+|  gen6_write32+0x50/0x290 [i915]
+|  ilk_set_pipeconf+0x12d/0x230 [i915]
+|  ilk_color_commit_arm+0x2d/0x70 [i915]
+|  intel_update_crtc+0x15b/0x690 [i915]
+|  intel_commit_modeset_enables+0xa6/0xd0 [i915]
+|  intel_atomic_commit_tail+0xd55/0x19a0 [i915]
+|  intel_atomic_commit+0x25d/0x2a0 [i915]
+|  drm_atomic_commit+0xad/0xe0 [drm]
+|  intel_initial_commit+0x16c/0x200 [i915]
+|  intel_display_driver_probe+0x2e/0x80 [i915]
+|  i915_driver_probe+0x791/0xc10 [i915]
+|  i915_pci_probe+0xd7/0x190 [i915]
 
-Participating hosts (45 -> 44)
-------------------------------
+This is the intel_pipe_update_start()/ intel_pipe_update_end() part in inte=
+l_update_crtc().
 
-  Missing    (1): fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_129811v6:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_module_load@load:
-    - bat-mtlp-9:         [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-mtlp-9/igt@i915_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-mtlp-9/igt@i915_module_load@load.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-dg2-9:          [PASS][3] -> [ABORT][4] +1 other test abort
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-dg2-9/igt@kms_dsc@dsc-basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-dg2-9/igt@kms_dsc@dsc-basic.html
-    - bat-adlp-6:         [PASS][5] -> [ABORT][6] +1 other test abort
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-adlp-6/igt@kms_dsc@dsc-basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-adlp-6/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_dsc@dsc-basic@pipe-d-dp-1:
-    - bat-dg2-9:          [PASS][7] -> [DMESG-WARN][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-dg2-9/igt@kms_dsc@dsc-basic@pipe-d-dp-1.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-dg2-9/igt@kms_dsc@dsc-basic@pipe-d-dp-1.html
-
-  * igt@kms_dsc@dsc-basic@pipe-d-dp-3:
-    - bat-adlp-6:         [PASS][9] -> [DMESG-WARN][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-adlp-6/igt@kms_dsc@dsc-basic@pipe-d-dp-3.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-adlp-6/igt@kms_dsc@dsc-basic@pipe-d-dp-3.html
-
-  * igt@kms_flip@basic-flip-vs-dpms:
-    - bat-arls-6:         [PASS][11] -> [ABORT][12] +1 other test abort
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-arls-6/igt@kms_flip@basic-flip-vs-dpms.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-arls-6/igt@kms_flip@basic-flip-vs-dpms.html
-    - bat-adls-6:         [PASS][13] -> [ABORT][14] +1 other test abort
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-adls-6/igt@kms_flip@basic-flip-vs-dpms.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-adls-6/igt@kms_flip@basic-flip-vs-dpms.html
-    - bat-arls-5:         [PASS][15] -> [ABORT][16] +1 other test abort
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-arls-5/igt@kms_flip@basic-flip-vs-dpms.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-arls-5/igt@kms_flip@basic-flip-vs-dpms.html
-    - bat-arlh-3:         [PASS][17] -> [ABORT][18] +1 other test abort
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-arlh-3/igt@kms_flip@basic-flip-vs-dpms.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-arlh-3/igt@kms_flip@basic-flip-vs-dpms.html
-
-  * igt@kms_flip@basic-flip-vs-dpms@b-edp1:
-    - bat-jsl-1:          [PASS][19] -> [ABORT][20] +1 other test abort
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-jsl-1/igt@kms_flip@basic-flip-vs-dpms@b-edp1.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-jsl-1/igt@kms_flip@basic-flip-vs-dpms@b-edp1.html
-
-  * igt@kms_flip@basic-flip-vs-dpms@b-hdmi-a1:
-    - bat-jsl-5:          [PASS][21] -> [ABORT][22] +1 other test abort
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-jsl-5/igt@kms_flip@basic-flip-vs-dpms@b-hdmi-a1.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-jsl-5/igt@kms_flip@basic-flip-vs-dpms@b-hdmi-a1.html
-
-  * igt@kms_flip@basic-flip-vs-dpms@c-dp1:
-    - bat-adlp-9:         [PASS][23] -> [ABORT][24] +1 other test abort
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-adlp-9/igt@kms_flip@basic-flip-vs-dpms@c-dp1.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-adlp-9/igt@kms_flip@basic-flip-vs-dpms@c-dp1.html
-    - bat-rpls-4:         [PASS][25] -> [ABORT][26] +1 other test abort
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-rpls-4/igt@kms_flip@basic-flip-vs-dpms@c-dp1.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-rpls-4/igt@kms_flip@basic-flip-vs-dpms@c-dp1.html
-
-  * igt@kms_flip@basic-flip-vs-dpms@c-edp1:
-    - bat-mtlp-8:         [PASS][27] -> [ABORT][28] +1 other test abort
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-mtlp-8/igt@kms_flip@basic-flip-vs-dpms@c-edp1.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-mtlp-8/igt@kms_flip@basic-flip-vs-dpms@c-edp1.html
-    - bat-jsl-1:          [PASS][29] -> [DMESG-WARN][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-jsl-1/igt@kms_flip@basic-flip-vs-dpms@c-edp1.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-jsl-1/igt@kms_flip@basic-flip-vs-dpms@c-edp1.html
-    - bat-twl-1:          [PASS][31] -> [ABORT][32] +1 other test abort
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-twl-1/igt@kms_flip@basic-flip-vs-dpms@c-edp1.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-twl-1/igt@kms_flip@basic-flip-vs-dpms@c-edp1.html
-    - bat-rplp-1:         [PASS][33] -> [ABORT][34] +1 other test abort
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-rplp-1/igt@kms_flip@basic-flip-vs-dpms@c-edp1.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-rplp-1/igt@kms_flip@basic-flip-vs-dpms@c-edp1.html
-
-  * igt@kms_flip@basic-flip-vs-dpms@c-hdmi-a1:
-    - bat-jsl-5:          [PASS][35] -> [DMESG-WARN][36]
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-jsl-5/igt@kms_flip@basic-flip-vs-dpms@c-hdmi-a1.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-jsl-5/igt@kms_flip@basic-flip-vs-dpms@c-hdmi-a1.html
-    - fi-tgl-1115g4:      [PASS][37] -> [ABORT][38] +1 other test abort
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/fi-tgl-1115g4/igt@kms_flip@basic-flip-vs-dpms@c-hdmi-a1.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/fi-tgl-1115g4/igt@kms_flip@basic-flip-vs-dpms@c-hdmi-a1.html
-
-  * igt@kms_flip@basic-flip-vs-dpms@c-hdmi-a2:
-    - bat-dg2-11:         [PASS][39] -> [ABORT][40] +1 other test abort
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-dg2-11/igt@kms_flip@basic-flip-vs-dpms@c-hdmi-a2.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-dg2-11/igt@kms_flip@basic-flip-vs-dpms@c-hdmi-a2.html
-    - bat-dg2-14:         [PASS][41] -> [ABORT][42] +1 other test abort
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-dg2-14/igt@kms_flip@basic-flip-vs-dpms@c-hdmi-a2.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-dg2-14/igt@kms_flip@basic-flip-vs-dpms@c-hdmi-a2.html
-    - bat-dg1-7:          [PASS][43] -> [ABORT][44] +1 other test abort
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-dg1-7/igt@kms_flip@basic-flip-vs-dpms@c-hdmi-a2.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-dg1-7/igt@kms_flip@basic-flip-vs-dpms@c-hdmi-a2.html
-
-  * igt@kms_flip@basic-flip-vs-dpms@d-dp1:
-    - bat-adlp-9:         [PASS][45] -> [DMESG-WARN][46]
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-adlp-9/igt@kms_flip@basic-flip-vs-dpms@d-dp1.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-adlp-9/igt@kms_flip@basic-flip-vs-dpms@d-dp1.html
-    - bat-rpls-4:         [PASS][47] -> [DMESG-WARN][48] +2 other tests dmesg-warn
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-rpls-4/igt@kms_flip@basic-flip-vs-dpms@d-dp1.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-rpls-4/igt@kms_flip@basic-flip-vs-dpms@d-dp1.html
-
-  * igt@kms_flip@basic-flip-vs-dpms@d-dp2:
-    - bat-dg2-14:         [PASS][49] -> [DMESG-WARN][50] +2 other tests dmesg-warn
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-dg2-14/igt@kms_flip@basic-flip-vs-dpms@d-dp2.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-dg2-14/igt@kms_flip@basic-flip-vs-dpms@d-dp2.html
-
-  * igt@kms_flip@basic-flip-vs-dpms@d-dp3:
-    - bat-arls-5:         [PASS][51] -> [DMESG-WARN][52]
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-arls-5/igt@kms_flip@basic-flip-vs-dpms@d-dp3.html
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-arls-5/igt@kms_flip@basic-flip-vs-dpms@d-dp3.html
-
-  * igt@kms_flip@basic-flip-vs-dpms@d-edp1:
-    - bat-mtlp-8:         [PASS][53] -> [DMESG-WARN][54]
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-mtlp-8/igt@kms_flip@basic-flip-vs-dpms@d-edp1.html
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-mtlp-8/igt@kms_flip@basic-flip-vs-dpms@d-edp1.html
-    - bat-arlh-3:         [PASS][55] -> [DMESG-WARN][56]
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-arlh-3/igt@kms_flip@basic-flip-vs-dpms@d-edp1.html
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-arlh-3/igt@kms_flip@basic-flip-vs-dpms@d-edp1.html
-    - bat-rplp-1:         [PASS][57] -> [DMESG-WARN][58]
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-rplp-1/igt@kms_flip@basic-flip-vs-dpms@d-edp1.html
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-rplp-1/igt@kms_flip@basic-flip-vs-dpms@d-edp1.html
-
-  * igt@kms_flip@basic-flip-vs-dpms@d-hdmi-a1:
-    - bat-adls-6:         [PASS][59] -> [DMESG-WARN][60]
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-adls-6/igt@kms_flip@basic-flip-vs-dpms@d-hdmi-a1.html
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-adls-6/igt@kms_flip@basic-flip-vs-dpms@d-hdmi-a1.html
-    - fi-tgl-1115g4:      [PASS][61] -> [DMESG-WARN][62]
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/fi-tgl-1115g4/igt@kms_flip@basic-flip-vs-dpms@d-hdmi-a1.html
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/fi-tgl-1115g4/igt@kms_flip@basic-flip-vs-dpms@d-hdmi-a1.html
-
-  * igt@kms_flip@basic-flip-vs-dpms@d-hdmi-a2:
-    - bat-dg2-11:         [PASS][63] -> [DMESG-WARN][64]
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-dg2-11/igt@kms_flip@basic-flip-vs-dpms@d-hdmi-a2.html
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-dg2-11/igt@kms_flip@basic-flip-vs-dpms@d-hdmi-a2.html
-    - bat-arls-6:         [PASS][65] -> [DMESG-WARN][66]
-   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-arls-6/igt@kms_flip@basic-flip-vs-dpms@d-hdmi-a2.html
-   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-arls-6/igt@kms_flip@basic-flip-vs-dpms@d-hdmi-a2.html
-    - bat-dg1-7:          [PASS][67] -> [DMESG-WARN][68]
-   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-dg1-7/igt@kms_flip@basic-flip-vs-dpms@d-hdmi-a2.html
-   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-dg1-7/igt@kms_flip@basic-flip-vs-dpms@d-hdmi-a2.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_129811v6 that come from known issues:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@dmabuf@all-tests@dma_fence_chain:
-    - fi-bsw-n3050:       [ABORT][69] ([i915#12904]) -> [INCOMPLETE][70] ([i915#12904]) +1 other test incomplete
-   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html
-   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html
-
-  
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_17489 -> Patchwork_129811v6
-
-  CI-20190529: 20190529
-  CI_DRM_17489: 8043455e28fb7b8089e55e4390547a4c3d7bd4dc @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8607: 8607
-  Patchwork_129811v6: 8043455e28fb7b8089e55e4390547a4c3d7bd4dc @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/index.html
-
---===============5941891952246335818==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Plane Color Pipeline support for Intel platforms (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129811/">https://patchwork.freedesktop.org/series/129811/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17489 -&gt; Patchwork_129811v6</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_129811v6 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_129811v6, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/index.html</p>
-<h2>Participating hosts (45 -&gt; 44)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_129811v6:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-mtlp-9/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-mtlp-9/igt@i915_module_load@load.html">ABORT</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-dg2-9/igt@kms_dsc@dsc-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-dg2-9/igt@kms_dsc@dsc-basic.html">ABORT</a> +1 other test abort</li>
-<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-adlp-6/igt@kms_dsc@dsc-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-adlp-6/igt@kms_dsc@dsc-basic.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic@pipe-d-dp-1:</p>
-<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-dg2-9/igt@kms_dsc@dsc-basic@pipe-d-dp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-dg2-9/igt@kms_dsc@dsc-basic@pipe-d-dp-1.html">DMESG-WARN</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic@pipe-d-dp-3:</p>
-<ul>
-<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-adlp-6/igt@kms_dsc@dsc-basic@pipe-d-dp-3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-adlp-6/igt@kms_dsc@dsc-basic@pipe-d-dp-3.html">DMESG-WARN</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms:</p>
-<ul>
-<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-arls-6/igt@kms_flip@basic-flip-vs-dpms.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-arls-6/igt@kms_flip@basic-flip-vs-dpms.html">ABORT</a> +1 other test abort</li>
-<li>bat-adls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-adls-6/igt@kms_flip@basic-flip-vs-dpms.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-adls-6/igt@kms_flip@basic-flip-vs-dpms.html">ABORT</a> +1 other test abort</li>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-arls-5/igt@kms_flip@basic-flip-vs-dpms.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-arls-5/igt@kms_flip@basic-flip-vs-dpms.html">ABORT</a> +1 other test abort</li>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-arlh-3/igt@kms_flip@basic-flip-vs-dpms.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-arlh-3/igt@kms_flip@basic-flip-vs-dpms.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@b-edp1:</p>
-<ul>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-jsl-1/igt@kms_flip@basic-flip-vs-dpms@b-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-jsl-1/igt@kms_flip@basic-flip-vs-dpms@b-edp1.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@b-hdmi-a1:</p>
-<ul>
-<li>bat-jsl-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-jsl-5/igt@kms_flip@basic-flip-vs-dpms@b-hdmi-a1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-jsl-5/igt@kms_flip@basic-flip-vs-dpms@b-hdmi-a1.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@c-dp1:</p>
-<ul>
-<li>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-adlp-9/igt@kms_flip@basic-flip-vs-dpms@c-dp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-adlp-9/igt@kms_flip@basic-flip-vs-dpms@c-dp1.html">ABORT</a> +1 other test abort</li>
-<li>bat-rpls-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-rpls-4/igt@kms_flip@basic-flip-vs-dpms@c-dp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-rpls-4/igt@kms_flip@basic-flip-vs-dpms@c-dp1.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@c-edp1:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-mtlp-8/igt@kms_flip@basic-flip-vs-dpms@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-mtlp-8/igt@kms_flip@basic-flip-vs-dpms@c-edp1.html">ABORT</a> +1 other test abort</li>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-jsl-1/igt@kms_flip@basic-flip-vs-dpms@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-jsl-1/igt@kms_flip@basic-flip-vs-dpms@c-edp1.html">DMESG-WARN</a></li>
-<li>bat-twl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-twl-1/igt@kms_flip@basic-flip-vs-dpms@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-twl-1/igt@kms_flip@basic-flip-vs-dpms@c-edp1.html">ABORT</a> +1 other test abort</li>
-<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-rplp-1/igt@kms_flip@basic-flip-vs-dpms@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-rplp-1/igt@kms_flip@basic-flip-vs-dpms@c-edp1.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@c-hdmi-a1:</p>
-<ul>
-<li>bat-jsl-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-jsl-5/igt@kms_flip@basic-flip-vs-dpms@c-hdmi-a1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-jsl-5/igt@kms_flip@basic-flip-vs-dpms@c-hdmi-a1.html">DMESG-WARN</a></li>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/fi-tgl-1115g4/igt@kms_flip@basic-flip-vs-dpms@c-hdmi-a1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/fi-tgl-1115g4/igt@kms_flip@basic-flip-vs-dpms@c-hdmi-a1.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@c-hdmi-a2:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-dg2-11/igt@kms_flip@basic-flip-vs-dpms@c-hdmi-a2.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-dg2-11/igt@kms_flip@basic-flip-vs-dpms@c-hdmi-a2.html">ABORT</a> +1 other test abort</li>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-dg2-14/igt@kms_flip@basic-flip-vs-dpms@c-hdmi-a2.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-dg2-14/igt@kms_flip@basic-flip-vs-dpms@c-hdmi-a2.html">ABORT</a> +1 other test abort</li>
-<li>bat-dg1-7:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-dg1-7/igt@kms_flip@basic-flip-vs-dpms@c-hdmi-a2.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-dg1-7/igt@kms_flip@basic-flip-vs-dpms@c-hdmi-a2.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@d-dp1:</p>
-<ul>
-<li>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-adlp-9/igt@kms_flip@basic-flip-vs-dpms@d-dp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-adlp-9/igt@kms_flip@basic-flip-vs-dpms@d-dp1.html">DMESG-WARN</a></li>
-<li>bat-rpls-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-rpls-4/igt@kms_flip@basic-flip-vs-dpms@d-dp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-rpls-4/igt@kms_flip@basic-flip-vs-dpms@d-dp1.html">DMESG-WARN</a> +2 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@d-dp2:</p>
-<ul>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-dg2-14/igt@kms_flip@basic-flip-vs-dpms@d-dp2.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-dg2-14/igt@kms_flip@basic-flip-vs-dpms@d-dp2.html">DMESG-WARN</a> +2 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@d-dp3:</p>
-<ul>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-arls-5/igt@kms_flip@basic-flip-vs-dpms@d-dp3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-arls-5/igt@kms_flip@basic-flip-vs-dpms@d-dp3.html">DMESG-WARN</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@d-edp1:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-mtlp-8/igt@kms_flip@basic-flip-vs-dpms@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-mtlp-8/igt@kms_flip@basic-flip-vs-dpms@d-edp1.html">DMESG-WARN</a></li>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-arlh-3/igt@kms_flip@basic-flip-vs-dpms@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-arlh-3/igt@kms_flip@basic-flip-vs-dpms@d-edp1.html">DMESG-WARN</a></li>
-<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-rplp-1/igt@kms_flip@basic-flip-vs-dpms@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-rplp-1/igt@kms_flip@basic-flip-vs-dpms@d-edp1.html">DMESG-WARN</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@d-hdmi-a1:</p>
-<ul>
-<li>bat-adls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-adls-6/igt@kms_flip@basic-flip-vs-dpms@d-hdmi-a1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-adls-6/igt@kms_flip@basic-flip-vs-dpms@d-hdmi-a1.html">DMESG-WARN</a></li>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/fi-tgl-1115g4/igt@kms_flip@basic-flip-vs-dpms@d-hdmi-a1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/fi-tgl-1115g4/igt@kms_flip@basic-flip-vs-dpms@d-hdmi-a1.html">DMESG-WARN</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@d-hdmi-a2:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-dg2-11/igt@kms_flip@basic-flip-vs-dpms@d-hdmi-a2.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-dg2-11/igt@kms_flip@basic-flip-vs-dpms@d-hdmi-a2.html">DMESG-WARN</a></li>
-<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-arls-6/igt@kms_flip@basic-flip-vs-dpms@d-hdmi-a2.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-arls-6/igt@kms_flip@basic-flip-vs-dpms@d-hdmi-a2.html">DMESG-WARN</a></li>
-<li>bat-dg1-7:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/bat-dg1-7/igt@kms_flip@basic-flip-vs-dpms@d-hdmi-a2.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/bat-dg1-7/igt@kms_flip@basic-flip-vs-dpms@d-hdmi-a2.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_129811v6 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Warnings</h4>
-<ul>
-<li>igt@dmabuf@all-tests@dma_fence_chain:<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17489/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129811v6/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) +1 other test incomplete</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17489 -&gt; Patchwork_129811v6</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17489: 8043455e28fb7b8089e55e4390547a4c3d7bd4dc @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8607: 8607<br />
-  Patchwork_129811v6: 8043455e28fb7b8089e55e4390547a4c3d7bd4dc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============5941891952246335818==--
+Sebastian
