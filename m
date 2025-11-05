@@ -2,59 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDC44C35FB2
-	for <lists+intel-gfx@lfdr.de>; Wed, 05 Nov 2025 15:08:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 171AAC360C1
+	for <lists+intel-gfx@lfdr.de>; Wed, 05 Nov 2025 15:25:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A21410E773;
-	Wed,  5 Nov 2025 14:08:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AA9910E0A3;
+	Wed,  5 Nov 2025 14:25:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gmWiz9Oq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nbclgd8R";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AF9F10E767;
- Wed,  5 Nov 2025 14:08:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C43C10E0A3;
+ Wed,  5 Nov 2025 14:25:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762351731; x=1793887731;
+ t=1762352743; x=1793888743;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=iAgjtWpbc4ECOxaHPKitjM2KelkcUrNtSxk8dd23HRY=;
- b=gmWiz9OqUL9Xq1+opy3/VHu/Tr9kV2qKL6oG89XACdMgemBNs76RIGWe
- WDyrYc/3N38w1sENTj0Cs3jRsGO8inghntsNC8aiVBpIK2ENntKeVCg3T
- gEoXqOXkFeQk4AIHssu5zf+Yayq1hEg8iw++yRRvNNxhfpA7JPvbLjUeW
- R/ZvKCTjscmMhQCX/RM9AhCqwWa7d9CMqPyf9/TVEVq6KZTmyjQZBBiaz
- 3nzmhZQKafEnlXCLc88S5IncAs18jpJ9J36/BQ7DdFQ0P/qAQ1O4xG+CN
- L6D9YU1i0r2Af0sBeIo2Bl6T8XKmmJmuaDmrWYOxvIBzjCkqaEZ9CfMOn Q==;
-X-CSE-ConnectionGUID: Mof+DP1XQvSuJKx7rUIohQ==
-X-CSE-MsgGUID: 4BcFOyO0SEugYI0eKC4g3g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11603"; a="64348437"
-X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="64348437"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2025 06:08:35 -0800
-X-CSE-ConnectionGUID: 0tXZApCHQTqfmtJWwEIpBA==
-X-CSE-MsgGUID: eBeBTp4iSL6KFBEYYrt+lg==
+ bh=c9zVr1j4zBNxW7hix0PUEHOPbaKWeyAn4WGzk2HIA3k=;
+ b=Nbclgd8ROgDza8fNXFEdxmG8Z1dE+15HuvoH61B8qOS0Ddi/lDTQgQDo
+ DkQxQ9pDalqTWvy9c++dWR0TTSljUOdATjvYkwClJ8ITX30AkWna57ZdN
+ acC9/spawjRzfpDohM+QjdbNRDVvB0RlCnvwJOp5AEr/yjwosMG/eC623
+ hzhRTyBi+CdriJlbQWXeHL3qPlD59hG38LDRcT/PdDYbW6cZ4gc77JF4C
+ SVaOMse+dIxYv+pzVaXxR+nFSHj3OpF7RB6OHroAGVms+UD+5xKQQrN6c
+ NU6vsoJUztJ52y/1f3Du9+sHhEkkqSsE8Ux334wLyEpSW7KLpl8aN3jO4 w==;
+X-CSE-ConnectionGUID: iJSvb0c2SxGKLqGimUZ84g==
+X-CSE-MsgGUID: vmR3et6bRTS+ufWtBz6mng==
+X-IronPort-AV: E=McAfee;i="6800,10657,11603"; a="87095431"
+X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="87095431"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2025 06:25:43 -0800
+X-CSE-ConnectionGUID: zjeKR8uKRyugrvtNvcJ7sg==
+X-CSE-MsgGUID: SgES4gmlSw+5Pto8JV9Z4g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="191563029"
-Received: from rfrazer-mobl3.amr.corp.intel.com (HELO gjsousa-mobl2.intel.com)
- ([10.124.221.150])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2025 06:08:34 -0800
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: gustavo.sousa@intel.com
-Subject: [CI 17/17] drm/i915/xe3p_lpd: Adapt to updates on MBUS_CTL/DBUF_CTL
- registers
-Date: Wed,  5 Nov 2025 11:07:06 -0300
-Message-ID: <20251105140651.71713-36-gustavo.sousa@intel.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251105140651.71713-19-gustavo.sousa@intel.com>
-References: <20251105140651.71713-19-gustavo.sousa@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="187918037"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.2])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2025 06:25:40 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Cc: intel-gfx@lists.freedesktop.org,
+ Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>, Nitin Gote <nitin.r.gote@intel.com>
+Subject: Re: [PATCH i-g-t] tests/dmabuf: Avoid soft lockups on slow platforms
+Date: Wed, 05 Nov 2025 15:25:38 +0100
+Message-ID: <2293646.72vocr9iq0@jkrzyszt-mobl2.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <DE0SBCESZS4Z.1GYDWUUV1N669@intel.com>
+References: <20251104112116.432508-2-janusz.krzysztofik@linux.intel.com>
+ <40055244.10thIPus4b@jkrzyszt-mobl2.ger.corp.intel.com>
+ <DE0SBCESZS4Z.1GYDWUUV1N669@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,146 +76,191 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
+On Wednesday, 5 November 2025 14:10:48 CET Sebastian Brzezinka wrote:
+> On Wed Nov 5, 2025 at 12:52 PM UTC, Janusz Krzysztofik wrote:
+> > Hi Sebastian,
+> >
+> > Thanks for review.
+> >
+> > On Tuesday, 4 November 2025 13:54:30 CET Sebastian Brzezinka wrote:
+> >> Hi Janusz
+> >> On Tue Nov 4, 2025 at 11:20 AM UTC, Janusz Krzysztofik wrote:
+> >> > Certain selftests, while basically correct, may fail on certain=20
+platforms.
+> >> > E.g., igt@dmabuf@all-test@dma_fence_chain used to complete=20
+successfully,
+> >> > but on slow machines it triggers soft lockup warnings which taint the
+> >> > kernel.
+> >> >
+> >> > Sometimes, like in the above mentioned case, it's not possible to fi=
+x a
+> >> > root cause of the issue since it is not recognized as a bug.  To avo=
+id
+> >> > ever returning CI bug reports in such cases, allow selftests to be=20
+called
+> >> > via user provided wrappers that take care of not triggering unavoida=
+ble
+> >> > failures, e.g. by skipping specific selftests if some conditions are=
+=20
+not
+> >> > met, or watching their execution and acting upon certain conditions =
+or
+> >> > events.
+> >> >
+> >> > With that in place, update the dmabuf test so it, as the first user =
+of=20
+the
+> >> > new feature, skips the dma_fence_chain selftest if a machine looks t=
+oo
+> >> > slow.  Since that's a hardware agnostic selftest, running it on a=20
+limited
+> >> > subset of machines seems acceptable, especially when the soft lockup=
+s=20
+it
+> >> > can trigger aren't recognized as bugs on the kernel side.
+> >> >
+> >> > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.co=
+m>
+> >> > ---
+> >> >  lib/igt_kmod.c              | 13 +++++++---
+> >> >  lib/igt_kmod.h              | 10 ++++++-
+> >> >  tests/dmabuf.c              | 52 ++++++++++++++++++++++++++++++++++=
+++-
+> >> >  tests/intel/i915_selftest.c |  6 ++---
+> >> >  4 files changed, 73 insertions(+), 8 deletions(-)
+> >> >
+> >> > diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
+> >> > index a10626eedf..68ab4dbd57 100644
+> >> > --- a/lib/igt_kmod.c
+> >> > +++ b/lib/igt_kmod.c
+> >> > @@ -1355,7 +1355,8 @@ static const char *unfilter(const char *filter=
+,=20
+const char *name)
+> >> >  void igt_kselftests(const char *module_name,
+> >> >  		    const char *options,
+> >> >  		    const char *result,
+> >> > -		    const char *filter)
+> >> > +		    const char *filter,
+> >> > +		    igt_kselftest_wrap_t wrapper)
+> >> >  {
+> >> >  	struct igt_ktest tst;
+> >> >  	IGT_LIST_HEAD(tests);
+> >> > @@ -1370,10 +1371,16 @@ void igt_kselftests(const char *module_name,
+> >> >  	igt_kselftest_get_tests(tst.kmod, filter, &tests);
+> >> >  	igt_subtest_with_dynamic(filter ?: "all-tests") {
+> >> >  		igt_list_for_each_entry_safe(tl, tn, &tests, link) {
+> >> > +			const char *dynamic_name =3D unfilter(filter, tl-
+>name);
+> >> >  			unsigned long taints;
+> >> > =20
+> >> > -			igt_dynamic_f("%s", unfilter(filter, tl->name))
+> >> > -				igt_kselftest_execute(&tst, tl,=20
+options, result);
+> >> > +			igt_dynamic_f("%s", dynamic_name) {
+> >> > +				if (wrapper)
+> >> > +					wrapper(dynamic_name, &tst,=20
+tl);
+> >> > +				else
+> >> > +					igt_kselftest_execute(&tst,=20
+tl,
+> >> > +							     =20
+options, result);
+> >> > +			}
+> >> >  			free(tl);
+> >> > =20
+> >> >  			if (igt_kernel_tainted(&taints)) {
+> >> > diff --git a/lib/igt_kmod.h b/lib/igt_kmod.h
+> >> > index 9050708974..c9700240c9 100644
+> >> > --- a/lib/igt_kmod.h
+> >> > +++ b/lib/igt_kmod.h
+> >> > @@ -28,6 +28,13 @@
+> >> > =20
+> >> >  #include "igt_list.h"
+> >> > =20
+> >> > +struct igt_ktest;
+> >> > +struct igt_kselftest_list;
+> >> I would avoid using this declaration. I=E2=80=99d rather place the fun=
+ction
+> >> pointer declaration lower in the code.
+> >
+> > The above declarations are needed for typedef of the wrapper function t=
+hat=20
+> > follows.  Whether those lines are placed at the top of the header file =
+or=20
+in=20
+> > front of the declaration of a function that uses the latter is a matter=
+ of=20
+> > personal preferences, I believe.  Anyway, I'd like to hear from Kamil=20
+what's=20
+> > his preference here before I change the order.
+> I meant that you can slightly rearrange the code,
+> and the forward declarations will no longer be needed.
 
-Xe3p_LPD updated fields of registers MBUS_CTL and DBUF_CTL to
-accommodate for higher MDCLK:CDCLK ratios.  Update the code to use the
-new fields.
+Neither struct igt_ktest nor struct igt_kselftest_list internals are used=20
+outside of lib/igt_kmod.c, then those structure definitions belong to that=
+=20
+source, not to the header, I believe.  That's why I didn't consider making =
+use=20
+of them, only added forward declarations as needed for those structures,=20
+opaque as they should be.
 
-The field MBUS_TRANSLATION_THROTTLE_MIN_MASK was changed from range
-[15:13] to [16:13].  Since bit 16 is not reserved in previous display
-IPs and already used for something else, we can't simply extend the mask
-definition to include it, but rather define an Xe3p-specific mask and
-select the correct one to use based on the IP version.
+Thanks,
+Janusz
 
-Similarly, DBUF_MIN_TRACKER_STATE_SERVICE_MASK was changed from range
-[18:16] to [20:16]. For the same reasons stated above, it needs a
-Xe3p-specific mask definition.
+>=20
+> ```
+> diff --git a/lib/igt_kmod.h b/lib/igt_kmod.h
+> index c9700240c..5a2ee1576 100644
+> --- a/lib/igt_kmod.h
+> +++ b/lib/igt_kmod.h
+> @@ -28,13 +28,6 @@
+>=20
+> #include "igt_list.h"
+>=20
+> -struct igt_ktest;
+> -struct igt_kselftest_list;
+> -
+> -typedef int (*igt_kselftest_wrap_t)(const char *dynamic_name,
+> -                                   struct igt_ktest *tst,
+> -                                   struct igt_kselftest_list *tl);
+> -
+> bool igt_kmod_is_loaded(const char *mod_name);
+> void igt_kmod_list_loaded(void);
+>=20
+> @@ -83,12 +76,6 @@ int igt_amdgpu_driver_unload(void);
+>=20
+> void igt_kunit(const char *module_name, const char *name, const char *opt=
+s);
+>=20
+> -void igt_kselftests(const char *module_name,
+> -                   const char *module_options,
+> -                   const char *result_option,
+> -                   const char *filter,
+> -                   igt_kselftest_wrap_t wrapper);
+> -
+> struct igt_ktest {
+> 	struct kmod_module *kmod;
+> 	char *module_name;
+> @@ -102,6 +89,16 @@ struct igt_kselftest_list {
+> char param[];
+> };
+> +typedef int (*igt_kselftest_wrap_t)(const char *dynamic_name,
+> +                                   struct igt_ktest *tst,
+> +                                   struct igt_kselftest_list *tl);
+> +
+> +void igt_kselftests(const char *module_name,
+> +                   const char *module_options,
+> +                   const char *result_option,
+> +                   const char *filter,
+> +                   igt_kselftest_wrap_t wrapper);
+> +
+> int igt_ktest_init(struct igt_ktest *tst,
+> 		   const char *module_name);
+> int igt_ktest_begin(struct igt_ktest *tst);
+> ```                                                      =20
+>=20
+>=20
 
-v2:
-  - Keep definitions in the same line (i.e. without line continuation
-    breaks) for better readability. (Jani)
-v3:
-  - Keep mask fields sorted by the upper limit. (Matt)
-  - Extend commit message to indicate why we need Xe3p-specific
-    definitions of the masks instead of just extending the existing
-    ones. (Matt)
 
-Bspec: 68868, 68872
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Signed-off-by: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-Link: https://patch.msgid.link/20251103-xe3p_lpd-basic-enabling-v3-18-00e87b510ae7@intel.com
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
----
- drivers/gpu/drm/i915/display/skl_watermark.c  | 16 ++++--
- .../gpu/drm/i915/display/skl_watermark_regs.h | 52 ++++++++++---------
- 2 files changed, 40 insertions(+), 28 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 95941e878bf1..36a266f882d1 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -3486,7 +3486,10 @@ void intel_dbuf_mdclk_cdclk_ratio_update(struct intel_display *display,
- 	if (!HAS_MBUS_JOINING(display))
- 		return;
- 
--	if (DISPLAY_VER(display) >= 20)
-+	if (DISPLAY_VER(display) >= 35)
-+		intel_de_rmw(display, MBUS_CTL, XE3P_MBUS_TRANSLATION_THROTTLE_MIN_MASK,
-+			     XE3P_MBUS_TRANSLATION_THROTTLE_MIN(ratio - 1));
-+	else if (DISPLAY_VER(display) >= 20)
- 		intel_de_rmw(display, MBUS_CTL, MBUS_TRANSLATION_THROTTLE_MIN_MASK,
- 			     MBUS_TRANSLATION_THROTTLE_MIN(ratio - 1));
- 
-@@ -3497,9 +3500,14 @@ void intel_dbuf_mdclk_cdclk_ratio_update(struct intel_display *display,
- 		    ratio, str_yes_no(joined_mbus));
- 
- 	for_each_dbuf_slice(display, slice)
--		intel_de_rmw(display, DBUF_CTL_S(slice),
--			     DBUF_MIN_TRACKER_STATE_SERVICE_MASK,
--			     DBUF_MIN_TRACKER_STATE_SERVICE(ratio - 1));
-+		if (DISPLAY_VER(display) >= 35)
-+			intel_de_rmw(display, DBUF_CTL_S(slice),
-+				     XE3P_DBUF_MIN_TRACKER_STATE_SERVICE_MASK,
-+				     XE3P_DBUF_MIN_TRACKER_STATE_SERVICE(ratio - 1));
-+		else
-+			intel_de_rmw(display, DBUF_CTL_S(slice),
-+				     DBUF_MIN_TRACKER_STATE_SERVICE_MASK,
-+				     DBUF_MIN_TRACKER_STATE_SERVICE(ratio - 1));
- }
- 
- static void intel_dbuf_mdclk_min_tracker_update(struct intel_atomic_state *state)
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark_regs.h b/drivers/gpu/drm/i915/display/skl_watermark_regs.h
-index c5572fc0e847..abf56ac31105 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark_regs.h
-+++ b/drivers/gpu/drm/i915/display/skl_watermark_regs.h
-@@ -32,16 +32,18 @@
- #define MBUS_BBOX_CTL_S1		_MMIO(0x45040)
- #define MBUS_BBOX_CTL_S2		_MMIO(0x45044)
- 
--#define MBUS_CTL				_MMIO(0x4438C)
--#define   MBUS_JOIN				REG_BIT(31)
--#define   MBUS_HASHING_MODE_MASK		REG_BIT(30)
--#define   MBUS_HASHING_MODE_2x2			REG_FIELD_PREP(MBUS_HASHING_MODE_MASK, 0)
--#define   MBUS_HASHING_MODE_1x4			REG_FIELD_PREP(MBUS_HASHING_MODE_MASK, 1)
--#define   MBUS_JOIN_PIPE_SELECT_MASK		REG_GENMASK(28, 26)
--#define   MBUS_JOIN_PIPE_SELECT(pipe)		REG_FIELD_PREP(MBUS_JOIN_PIPE_SELECT_MASK, pipe)
--#define   MBUS_JOIN_PIPE_SELECT_NONE		MBUS_JOIN_PIPE_SELECT(7)
--#define   MBUS_TRANSLATION_THROTTLE_MIN_MASK	REG_GENMASK(15, 13)
--#define   MBUS_TRANSLATION_THROTTLE_MIN(val)	REG_FIELD_PREP(MBUS_TRANSLATION_THROTTLE_MIN_MASK, val)
-+#define MBUS_CTL					_MMIO(0x4438C)
-+#define   MBUS_JOIN					REG_BIT(31)
-+#define   MBUS_HASHING_MODE_MASK			REG_BIT(30)
-+#define   MBUS_HASHING_MODE_2x2				REG_FIELD_PREP(MBUS_HASHING_MODE_MASK, 0)
-+#define   MBUS_HASHING_MODE_1x4				REG_FIELD_PREP(MBUS_HASHING_MODE_MASK, 1)
-+#define   MBUS_JOIN_PIPE_SELECT_MASK			REG_GENMASK(28, 26)
-+#define   MBUS_JOIN_PIPE_SELECT(pipe)			REG_FIELD_PREP(MBUS_JOIN_PIPE_SELECT_MASK, pipe)
-+#define   MBUS_JOIN_PIPE_SELECT_NONE			MBUS_JOIN_PIPE_SELECT(7)
-+#define   XE3P_MBUS_TRANSLATION_THROTTLE_MIN_MASK	REG_GENMASK(16, 13)
-+#define   XE3P_MBUS_TRANSLATION_THROTTLE_MIN(val)	REG_FIELD_PREP(XE3P_MBUS_TRANSLATION_THROTTLE_MIN_MASK, val)
-+#define   MBUS_TRANSLATION_THROTTLE_MIN_MASK		REG_GENMASK(15, 13)
-+#define   MBUS_TRANSLATION_THROTTLE_MIN(val)		REG_FIELD_PREP(MBUS_TRANSLATION_THROTTLE_MIN_MASK, val)
- 
- /*
-  * The below are numbered starting from "S1" on gen11/gen12, but starting
-@@ -51,20 +53,22 @@
-  * way things will be named by the hardware team going forward, plus it's more
-  * consistent with how most of the rest of our registers are named.
-  */
--#define _DBUF_CTL_S0				0x45008
--#define _DBUF_CTL_S1				0x44FE8
--#define _DBUF_CTL_S2				0x44300
--#define _DBUF_CTL_S3				0x44304
--#define DBUF_CTL_S(slice)			_MMIO(_PICK(slice, \
--							    _DBUF_CTL_S0, \
--							    _DBUF_CTL_S1, \
--							    _DBUF_CTL_S2, \
--							    _DBUF_CTL_S3))
--#define  DBUF_POWER_REQUEST			REG_BIT(31)
--#define  DBUF_POWER_STATE			REG_BIT(30)
--#define  DBUF_TRACKER_STATE_SERVICE_MASK	REG_GENMASK(23, 19)
--#define  DBUF_TRACKER_STATE_SERVICE(x)		REG_FIELD_PREP(DBUF_TRACKER_STATE_SERVICE_MASK, x)
--#define  DBUF_MIN_TRACKER_STATE_SERVICE_MASK	REG_GENMASK(18, 16) /* ADL-P+ */
-+#define _DBUF_CTL_S0					0x45008
-+#define _DBUF_CTL_S1					0x44FE8
-+#define _DBUF_CTL_S2					0x44300
-+#define _DBUF_CTL_S3					0x44304
-+#define DBUF_CTL_S(slice)				_MMIO(_PICK(slice, \
-+								    _DBUF_CTL_S0, \
-+								    _DBUF_CTL_S1, \
-+								    _DBUF_CTL_S2, \
-+								    _DBUF_CTL_S3))
-+#define  DBUF_POWER_REQUEST				REG_BIT(31)
-+#define  DBUF_POWER_STATE				REG_BIT(30)
-+#define  DBUF_TRACKER_STATE_SERVICE_MASK		REG_GENMASK(23, 19)
-+#define  DBUF_TRACKER_STATE_SERVICE(x)			REG_FIELD_PREP(DBUF_TRACKER_STATE_SERVICE_MASK, x)
-+#define  XE3P_DBUF_MIN_TRACKER_STATE_SERVICE_MASK	REG_GENMASK(20, 16)
-+#define  XE3P_DBUF_MIN_TRACKER_STATE_SERVICE(x)		REG_FIELD_PREP(XE3P_DBUF_MIN_TRACKER_STATE_SERVICE_MASK, x)
-+#define  DBUF_MIN_TRACKER_STATE_SERVICE_MASK		REG_GENMASK(18, 16) /* ADL-P+ */
- #define  DBUF_MIN_TRACKER_STATE_SERVICE(x)		REG_FIELD_PREP(DBUF_MIN_TRACKER_STATE_SERVICE_MASK, x) /* ADL-P+ */
- 
- #define MTL_LATENCY_LP0_LP1		_MMIO(0x45780)
--- 
-2.51.0
 
