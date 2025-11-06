@@ -2,58 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B89F3C3A617
-	for <lists+intel-gfx@lfdr.de>; Thu, 06 Nov 2025 11:53:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5858C3A65C
+	for <lists+intel-gfx@lfdr.de>; Thu, 06 Nov 2025 11:56:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C8A010E891;
-	Thu,  6 Nov 2025 10:53:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8225C10E893;
+	Thu,  6 Nov 2025 10:56:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M/O5H5+R";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xsh/yJ4k";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A443A10E88D;
- Thu,  6 Nov 2025 10:53:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34D0010E028;
+ Thu,  6 Nov 2025 10:56:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762426391; x=1793962391;
+ t=1762426582; x=1793962582;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=2/C5ktd02A/6CpLiWfrZ8T3MWg+/L5i2JvIr2/9VPuY=;
- b=M/O5H5+R7YYQ5os8+6y7Qy530j1r6d1D7rBDOoeuc1aQZJqWdLIOZLUD
- i7ij4cp1CBMfAi5xyaqOrpj1WhjezlqSATGewxktI1pN/V92a1icI0Frf
- HO9d1n9WENJUKDktwSPCmBoVZ+CrRah+Y3amU0VWZMWxoTojFRgdZFi1m
- gDbs0Bqd9BJw2xLt22ksvAGAKrf+TQ3VYSyD+hZ54FwHJxbYSwUewXDCg
- eCQd9TFc546JrlP2LP5tRLI+sMLN8ndFZKFTJPQoOr8egk6YlW3BWwwVU
- P91c9dR2WFCUwKPB28QD8JCDuwmui8qYhGSpCh+9PvYWEpTfjZSH3n8f6 Q==;
-X-CSE-ConnectionGUID: IWIzlGgFSvCr5xVzGfCvUg==
-X-CSE-MsgGUID: sTRk9MpwSrelwPv6oylAwg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="64655653"
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="64655653"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 02:53:10 -0800
-X-CSE-ConnectionGUID: ILR1T8xdTE+p+JWNjHHdXQ==
-X-CSE-MsgGUID: tw8fQ4t0Qw6VLPimdE9wUQ==
+ bh=n1kr4pwd8XUC62nUvhg8WQrfPQchISLeSIv95qGlfCY=;
+ b=Xsh/yJ4kyWxMPU+WKMya36bY7ZysRXLaEE6zz+Ro4dVkY4jQ6S92HRXJ
+ mq7haebLO3Uvdo545h4xWC7QR8Xch94An9lzwz3HFHGRBPdqUlQPcrwW6
+ 5xyFOv1BnUDa/U+jIa2KK6DaHo5nrToViRtqMAgQXhfa2z+lIrCbhCgio
+ 8bmrZWLuoOvZ+poiJJ2S/HDh7cf4S8GKVa4pGl77h6oUbZJfsWQWO5U4v
+ IrK2/lFlNEMw0jcmxPK0I7SMeLBPtoyMo8P15Wi9A/56uH4QmejI1it1d
+ bn8DLjFYIdRB4iz9FKbUEapZDdLy2d9hwNTekrBZrqbVfgrX671qqa8D6 A==;
+X-CSE-ConnectionGUID: 1jclwIN8SlinWFFqRNMEtA==
+X-CSE-MsgGUID: t3dPnyLPS7K8I+PXifOx1g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="81962843"
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="81962843"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 02:56:22 -0800
+X-CSE-ConnectionGUID: vlvMD4/ITzSr/3gG3pTMBg==
+X-CSE-MsgGUID: 7uTHwjX1QPKDFX6iGhpy0A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="187672524"
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="191823407"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.65])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 02:53:08 -0800
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 02:56:21 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, Suraj Kandpal <suraj.kandpal@intel.com>,
- Arun R Murthy <arun.r.murthy@intel.com>
-Subject: Re: [PATCH 1/7] drm/i915/cx0: Undo the unjustified timeout change
-In-Reply-To: <20251105190433.16434-2-ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 2/7] drm/i915/cx0: Get rid of XELPDP_MSGBUS_TIMEOUT_FAST_US
+In-Reply-To: <20251105190433.16434-3-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20251105190433.16434-1-ville.syrjala@linux.intel.com>
- <20251105190433.16434-2-ville.syrjala@linux.intel.com>
-Date: Thu, 06 Nov 2025 12:53:05 +0200
-Message-ID: <6a1805606fe7963cc5ee998401a22c6b71476fe0@intel.com>
+ <20251105190433.16434-3-ville.syrjala@linux.intel.com>
+Date: Thu, 06 Nov 2025 12:56:17 +0200
+Message-ID: <5b7ab493f7672659723de362de3684bb8ff8caff@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -75,38 +74,57 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Wed, 05 Nov 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Undo the bogus timeout change to
-> intel_cx0_powerdown_change_sequence(). If this was intentional
-> then it should have been justifie in the commit message.
->
-> This is also now abusing intel_de_wait_custom() in way that
-> prevents future conversion to poll_timeout_us().
->
-> Fixes: fc9be0a10ca4 ("drm/i915/ltphy: Add a wrapper for LT Phy powerdown =
-change sequence")
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> XELPDP_MSGBUS_TIMEOUT_FAST_US looks to be just a obfuscated version
+
+*an
+
+> of the default 2 microsecond fast timeout used by
+> intel_wait_for_register(). get rid of it to make it clear what's going
+> on here.
+
+*Get
+
+Moreover, I don't like timeouts being defined along with what are
+supposed to be register *content* descriptions.
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_cx0_phy.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.c      | 3 +--
+>  drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h | 1 -
+>  2 files changed, 1 insertion(+), 3 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/d=
 rm/i915/display/intel_cx0_phy.c
-> index b3b506d0e040..e7fe974129fe 100644
+> index e7fe974129fe..6f57ad751c9e 100644
 > --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
 > +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> @@ -2830,7 +2830,7 @@ void intel_cx0_powerdown_change_sequence(struct int=
-el_encoder *encoder,
->  	/* Update Timeout Value */
->  	if (intel_de_wait_custom(display, buf_ctl2_reg,
->  				 intel_cx0_get_powerdown_update(lane_mask), 0,
-> -				 XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_US, 2, NULL))
-> +				 XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_US, 0, NULL))
->  		drm_warn(display->drm,
->  			 "PHY %c failed to bring out of Lane reset after %dus.\n",
->  			 phy_name(phy), XELPDP_PORT_RESET_START_TIMEOUT_US);
+> @@ -168,8 +168,7 @@ int intel_cx0_wait_for_ack(struct intel_encoder *enco=
+der,
+>  				 XELPDP_PORT_P2M_MSGBUS_STATUS(display, port, lane),
+>  				 XELPDP_PORT_P2M_RESPONSE_READY,
+>  				 XELPDP_PORT_P2M_RESPONSE_READY,
+> -				 XELPDP_MSGBUS_TIMEOUT_FAST_US,
+> -				 XELPDP_MSGBUS_TIMEOUT_SLOW, val)) {
+> +				 2, XELPDP_MSGBUS_TIMEOUT_SLOW, val)) {
+>  		drm_dbg_kms(display->drm,
+>  			    "PHY %c Timeout waiting for message ACK. Status: 0x%x\n",
+>  			    phy_name(phy), *val);
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/=
+gpu/drm/i915/display/intel_cx0_phy_regs.h
+> index 635b35669348..67c6f06ab9a2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+> @@ -75,7 +75,6 @@
+>  #define   XELPDP_PORT_P2M_ERROR_SET			REG_BIT(15)
+>=20=20
+>  #define XELPDP_MSGBUS_TIMEOUT_SLOW			1
+> -#define XELPDP_MSGBUS_TIMEOUT_FAST_US			2
+>  #define XELPDP_PCLK_PLL_ENABLE_TIMEOUT_US		3200
+>  #define XELPDP_PCLK_PLL_DISABLE_TIMEOUT_US		20
+>  #define XELPDP_PORT_BUF_SOC_READY_TIMEOUT_US		100
 
 --=20
 Jani Nikula, Intel
