@@ -2,52 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E164DC3C00C
-	for <lists+intel-gfx@lfdr.de>; Thu, 06 Nov 2025 16:21:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDD05C3C00F
+	for <lists+intel-gfx@lfdr.de>; Thu, 06 Nov 2025 16:21:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7303E10E920;
-	Thu,  6 Nov 2025 15:21:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8AF6410E923;
+	Thu,  6 Nov 2025 15:21:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ffVEjUMr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aHPUCU6c";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F01110E921;
- Thu,  6 Nov 2025 15:21:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FA5810E923;
+ Thu,  6 Nov 2025 15:21:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762442465; x=1793978465;
+ t=1762442469; x=1793978469;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=RHxo94txnT1CsIGtv4E76vf59n0qaIJ3jEK6MQpYhI4=;
- b=ffVEjUMrTJxtg9d7In5YipWS/ZCXlsjzwdMYZn/6u17jnCBDUE5CTLQh
- 0k2JUClt7H/Pm/OuVMR4kaesvca76Y/fSSv8o4W8l/GbsBX5sTSh2blOc
- U9JcCQTyDZ5/HtB+tthLM5nHOFNwGT7zZS8vHXKN9nyRFp3E5GjfaOpCQ
- pTG12xX78VlzcKEESEB0GdNsLsAFd3gcpeACyhQxksCJ+1ctizRCv3bmj
- 7Xq62MgBD1L59qcUluODnsJrYaYaesaeY1Nbbf4op2dfkhKWDmWJTYg09
- /uSIt68JPiL4/HsXd1XG+qTrAt0JsTo8jvPe/JwPakvXj4Pd+OK7eZBXG A==;
-X-CSE-ConnectionGUID: npxVpDEYRcWGxKIuU67b1Q==
-X-CSE-MsgGUID: FN3mqdfDSim4F7FUqQuZfw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="52149125"
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="52149125"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 07:21:05 -0800
-X-CSE-ConnectionGUID: cX8MRKbUSVWn8Nx0m1TYpw==
-X-CSE-MsgGUID: pCLmYUXwQeqMLLDopO4oHw==
+ bh=sS8S1Yd/u85TnNPwyp36aauwJK/qQ+eLOVbSqIMrdUA=;
+ b=aHPUCU6cEfAjg28RGFFSdXNZMOgID/N4ELq0ubn88Be9x6rhNYLFzh5j
+ 51b9o/2XntEyZGDB5Eu4j9cd+m64UJUe28KhPzEy5W/7lFbLdLbjl7VbL
+ 8AqxUJzDWy3WLx1kejJ72BhyBQfHSoiaZFFOvgKfj/aw1NfygmDbBdNVr
+ gMlhTBs5S5hSUmDHqYxNMof+PyZisdM/gymfoQropKMS2VB7RfewarAHE
+ Z0sc5zuxdVDbFGu8U5mTpyG9mZ+MPSxcNTnge/etVstOK/TjBHG1s6bN6
+ 42fQ2CQA0ai3xYywUZYF8DhBciEKoMdgo3IXDvs01VrFJtKLjtYwgYAzt Q==;
+X-CSE-ConnectionGUID: J7p/yiDSRI6rr7SpSjH6MA==
+X-CSE-MsgGUID: G8K6QveDTXuAAfV/oGlwMQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="75269330"
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="75269330"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 07:21:08 -0800
+X-CSE-ConnectionGUID: ZwZ3m8+pQMSRNpS6H60rIA==
+X-CSE-MsgGUID: drRMI/YZTLygAt8pOV6RnQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="187073032"
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="218535559"
 Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
  ([10.245.244.213])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 07:21:04 -0800
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 07:21:07 -0800
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 03/10] drm/i915/ltphy: Nuke extraneous timeout debugs
-Date: Thu,  6 Nov 2025 17:20:42 +0200
-Message-ID: <20251106152049.21115-4-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 04/10] drm/i915/cx0: Replace
+ XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_US with
+ XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_MS
+Date: Thu,  6 Nov 2025 17:20:43 +0200
+Message-ID: <20251106152049.21115-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20251106152049.21115-1-ville.syrjala@linux.intel.com>
 References: <20251106152049.21115-1-ville.syrjala@linux.intel.com>
@@ -72,108 +74,49 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The actual timeout used isn't particularly interesting, so
-don't print it. Makes the code simpler.
+There was a completely unjustified change to the cx0 powerdown
+timeout, and the way it was done now prevents future conversion
+to poll_timeout_us().
 
-The debugs are also using some random capitalizaton rule.
-Clean that up a bit while at it.
+Assuming there was some reason the bigger timeout let's nuke
+the old short timeout (XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_US)
+nd replace it with the bigger timeout
+(XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_MS).
+
+v2: Go for the longer (ms) timeout in case it actually matters
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_lt_phy.c | 34 ++++++++++-----------
- 1 file changed, 16 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c      | 2 +-
+ drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index af48d6cde226..8ab632965033 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -1180,8 +1180,8 @@ intel_lt_phy_lane_reset(struct intel_encoder *encoder,
- 				 XELPDP_LANE_PCLK_PLL_ACK(0),
- 				 XE3PLPD_MACCLK_TURNON_LATENCY_US,
- 				 XE3PLPD_MACCLK_TURNON_LATENCY_MS, NULL))
--		drm_warn(display->drm, "PHY %c PLL MacCLK assertion Ack not done after %dus.\n",
--			 phy_name(phy), XE3PLPD_MACCLK_TURNON_LATENCY_MS * 1000);
-+		drm_warn(display->drm, "PHY %c PLL MacCLK assertion ack not done\n",
-+			 phy_name(phy));
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index ddc26e383714..e8a96a60fdd6 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -2830,7 +2830,7 @@ void intel_cx0_powerdown_change_sequence(struct intel_encoder *encoder,
+ 	/* Update Timeout Value */
+ 	if (intel_de_wait_custom(display, buf_ctl2_reg,
+ 				 intel_cx0_get_powerdown_update(lane_mask), 0,
+-				 XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_US, 2, NULL))
++				 2, XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_MS, NULL))
+ 		drm_warn(display->drm,
+ 			 "PHY %c failed to bring out of lane reset\n",
+ 			 phy_name(phy));
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+index 635b35669348..62db0fd99f4a 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+@@ -80,7 +80,7 @@
+ #define XELPDP_PCLK_PLL_DISABLE_TIMEOUT_US		20
+ #define XELPDP_PORT_BUF_SOC_READY_TIMEOUT_US		100
+ #define XELPDP_PORT_RESET_START_TIMEOUT_US		5
+-#define XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_US		100
++#define XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_MS		2
+ #define XELPDP_PORT_RESET_END_TIMEOUT			15
+ #define XELPDP_REFCLK_ENABLE_TIMEOUT_US			1
  
- 	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, port),
- 		     XELPDP_FORWARD_CLOCK_UNGATE,
-@@ -1193,15 +1193,14 @@ intel_lt_phy_lane_reset(struct intel_encoder *encoder,
- 	if (intel_de_wait_custom(display, XELPDP_PORT_BUF_CTL2(display, port),
- 				 lane_phy_current_status, 0,
- 				 XE3PLPD_RESET_END_LATENCY_US, 2, NULL))
--		drm_warn(display->drm,
--			 "PHY %c failed to bring out of Lane reset after %dus.\n",
--			 phy_name(phy), XE3PLPD_RESET_END_LATENCY_US);
-+		drm_warn(display->drm, "PHY %c failed to bring out of lane reset\n",
-+			 phy_name(phy));
- 
- 	if (intel_de_wait_custom(display, XELPDP_PORT_BUF_CTL2(display, port),
- 				 lane_phy_pulse_status, lane_phy_pulse_status,
- 				 XE3PLPD_RATE_CALIB_DONE_LATENCY_US, 0, NULL))
--		drm_warn(display->drm, "PHY %c PLL rate not changed after %dus.\n",
--			 phy_name(phy), XE3PLPD_RATE_CALIB_DONE_LATENCY_US);
-+		drm_warn(display->drm, "PHY %c PLL rate not changed\n",
-+			 phy_name(phy));
- 
- 	intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port), lane_phy_pulse_status, 0);
- }
-@@ -1654,8 +1653,8 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
- 		if (intel_de_wait_custom(display, XELPDP_PORT_CLOCK_CTL(display, port),
- 					 XELPDP_LANE_PCLK_PLL_ACK(0), 0,
- 					 XE3PLPD_MACCLK_TURNOFF_LATENCY_US, 0, NULL))
--			drm_warn(display->drm, "PHY %c PLL MacCLK Ack deassertion Timeout after %dus.\n",
--				 phy_name(phy), XE3PLPD_MACCLK_TURNOFF_LATENCY_US);
-+			drm_warn(display->drm, "PHY %c PLL MacCLK ack deassertion timeout\n",
-+				 phy_name(phy));
- 
- 		/*
- 		 * 9. Follow the Display Voltage Frequency Switching - Sequence Before Frequency
-@@ -1675,8 +1674,8 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
- 					 XELPDP_LANE_PCLK_PLL_ACK(0),
- 					 XELPDP_LANE_PCLK_PLL_ACK(0),
- 					 XE3PLPD_MACCLK_TURNON_LATENCY_US, 2, NULL))
--			drm_warn(display->drm, "PHY %c PLL MacCLK Ack assertion Timeout after %dus.\n",
--				 phy_name(phy), XE3PLPD_MACCLK_TURNON_LATENCY_US);
-+			drm_warn(display->drm, "PHY %c PLL MacCLK ack assertion timeout\n",
-+				 phy_name(phy));
- 
- 		/*
- 		 * 13. Ungate the forward clock by setting
-@@ -1703,8 +1702,8 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
- 		if (intel_de_wait_custom(display, XELPDP_PORT_BUF_CTL2(display, port),
- 					 lane_phy_pulse_status, lane_phy_pulse_status,
- 					 XE3PLPD_RATE_CALIB_DONE_LATENCY_US, 2, NULL))
--			drm_warn(display->drm, "PHY %c PLL rate not changed after %dus.\n",
--				 phy_name(phy), XE3PLPD_RATE_CALIB_DONE_LATENCY_US);
-+			drm_warn(display->drm, "PHY %c PLL rate not changed\n",
-+				 phy_name(phy));
- 
- 		/* 17. SW clears PORT_BUF_CTL2 [PHY Pulse Status]. */
- 		intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port),
-@@ -1762,9 +1761,8 @@ void intel_lt_phy_pll_disable(struct intel_encoder *encoder)
- 				 lane_phy_current_status,
- 				 lane_phy_current_status,
- 				 XE3PLPD_RESET_START_LATENCY_US, 0, NULL))
--		drm_warn(display->drm,
--			 "PHY %c failed to reset Lane after %dms.\n",
--			 phy_name(phy), XE3PLPD_RESET_START_LATENCY_US);
-+		drm_warn(display->drm, "PHY %c failed to reset lane\n",
-+			 phy_name(phy));
- 
- 	/* 4. Clear for PHY pulse status on owned PHY lanes. */
- 	intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port),
-@@ -1786,8 +1784,8 @@ void intel_lt_phy_pll_disable(struct intel_encoder *encoder)
- 	if (intel_de_wait_custom(display, XELPDP_PORT_CLOCK_CTL(display, port),
- 				 XELPDP_LANE_PCLK_PLL_ACK(0), 0,
- 				 XE3PLPD_MACCLK_TURNOFF_LATENCY_US, 0, NULL))
--		drm_warn(display->drm, "PHY %c PLL MacCLK Ack deassertion Timeout after %dus.\n",
--			 phy_name(phy), XE3PLPD_MACCLK_TURNOFF_LATENCY_US);
-+		drm_warn(display->drm, "PHY %c PLL MacCLK ack deassertion timeout\n",
-+			 phy_name(phy));
- 
- 	/*
- 	 *  9. Follow the Display Voltage Frequency Switching -
 -- 
 2.49.1
 
