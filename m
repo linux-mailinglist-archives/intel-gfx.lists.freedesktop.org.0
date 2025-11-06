@@ -2,93 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53CFEC3A46E
-	for <lists+intel-gfx@lfdr.de>; Thu, 06 Nov 2025 11:33:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27D7FC3A4C8
+	for <lists+intel-gfx@lfdr.de>; Thu, 06 Nov 2025 11:37:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 812F710E874;
-	Thu,  6 Nov 2025 10:33:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7C1F10E887;
+	Thu,  6 Nov 2025 10:37:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hTtKCeyp";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="CXrRldHz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com
- [209.85.221.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF18210E06B
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Nov 2025 10:33:19 +0000 (UTC)
-Received: by mail-wr1-f42.google.com with SMTP id
- ffacd0b85a97d-3ece1102998so452616f8f.2
- for <intel-gfx@lists.freedesktop.org>; Thu, 06 Nov 2025 02:33:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1762425198; x=1763029998; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=IQipCRpVFfui25dKlyIy/WSGyJHEdXiJ7zhFimN9ZT4=;
- b=hTtKCeypYltiaCN21eZZ2pJqhPrA575aQxu4ISVJssW8+o9WVBb9R6ueGKwf4wazZR
- TqMCZAz+znqD/uxzXbCfC8+9ULonOtU2LdjuAF2G+DOeE1bfNNvJRy053buX0D28pZio
- ip37HvRplg2mJesqtIh40sPTDidKucfmkktQrJoD6UXDhnBMf3SZ92a+fDck0+MQwedr
- bKoCqHgo5Gi55Z6zPmbyZvXyi6irYTtbgRS1uB6hMt5kglb2oBSpn++84m0YDYrOMQkG
- e/nANOaRwT+WPq+WcFGFFze1BCMLMVyyRMoCd0nAArILUJuQc84XJ8vQLAss6m3GtMFo
- wu+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1762425198; x=1763029998;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=IQipCRpVFfui25dKlyIy/WSGyJHEdXiJ7zhFimN9ZT4=;
- b=eairizkozzEMq0sDVJ9nnikwMuDBR9ITnA3INXvH0pW7MLXENs+h2w0xDpjauHLIS4
- /wefiCJCBqb/dGX9lI3I+d/CpLBfJYk+5Y7INdqlXp55pqyolYwmtzV7I31LnxspaT4q
- TNionNT0o8fovfFtGUnayu5wu/lC5MjZDX/bIQudYQmrvSNLBzEir8RhL4aDB6ew5zqc
- 4eCL0zX7aU2yiAB/MGPgjAhvS1+ZqZ3IVyKvgW1lD9CGavKZiikthEPAZJfXuUd/KA5c
- lO3Yb44DXHulCIJi1v35oMHJrrz7LOwSSGPYXpDtrS5Zxl49/6c9c3+kIeC9YKoj4pHW
- jK5A==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUTEM9T2Yc+s/HQq5lrAXATruphFqPKqeAswBDj7LlyG8p36SjTPubzFA8F1U/kYkTfWua0Z3w4G68=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzk3qzVvUt+tS258WadTs43dEinW/+OkZ57jW5ksNFKVS3sN8o0
- in8BlUmpxKQBwErNhMrspigAC3tzz6neTms3e/uz4et8HNdTwtCpsfxn
-X-Gm-Gg: ASbGnct/ea9Kn5rxiIAC4FEaaNaqS7lC1J0Xabx1F7hcb+FBSVCWqif1hYLJJ9l6V9n
- AwpSE3l9wfEs3vXnY/iT97PEOcmgvcy7lpK2Mgqr/EUamHt2jICdq6aF8Qo1B6IYUe2EEtinD5g
- AFlMWDQAYfBiwZQpZeX0d25FNPNGNzymbc4beu6sVuIeu39+lQdf4nO2dPIlTe8R/eC4P9pYqfP
- ztUC8qRv3DcVFYAaHxpPtlXr3O5gvG1yPQYoBp11WdC/UHPJ5crS/blz0EIjTj/YZHjz2AQ5BBw
- u+xgb2ty4xr2OIaDmEU3R8GHWIOBDZE9XsTgdDFpvhq2tfsa7g63un4gL0G7Qz3M5/d2ehOsaBE
- NgpH8dneYwMIAXqP2KvLhtKxBANluR62K1hJuRqAJsa4hTvYP43cou5SAeT2bQeL4f4XT5utvWG
- T+aBQkGfTircinSf6BB7TPTA==
-X-Google-Smtp-Source: AGHT+IFtY317gqE6KkPCPF8CEMqlY4XSqSHpCQgEggJ0wgh6u+xUqljo6I5F0N5V/IXa3Sh4CqPFig==
-X-Received: by 2002:a05:6000:615:b0:429:c9ab:2cb5 with SMTP id
- ffacd0b85a97d-429e32c817emr5341842f8f.2.1762425197999; 
- Thu, 06 Nov 2025 02:33:17 -0800 (PST)
-Received: from archie.me ([210.87.74.117]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-429eb403854sm4173231f8f.5.2025.11.06.02.33.16
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 06 Nov 2025 02:33:17 -0800 (PST)
-Received: by archie.me (Postfix, from userid 1000)
- id 046AC420A685; Thu, 06 Nov 2025 17:33:12 +0700 (WIB)
-Date: Thu, 6 Nov 2025 17:33:12 +0700
-From: Bagas Sanjaya <bagasdotme@gmail.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FE5110E887;
+ Thu,  6 Nov 2025 10:37:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=bEuFMZU9bCseKJUmKXXTmopgNcHGhPkfj40VJHEZmu0=; b=CXrRldHz+7naP6aWLf/T8r9orn
+ ZRfXCU913tKkLTtcN9CHWL73Sd9aq4SUDvfzVgTRSX4ghMbopitbHeXQk/EUZhFK5lQM6QtwdtB0r
+ oAv7/0L5cOSTfTX5MzGzlLFXy9GvjyGSkCHhd8MzPOZ5K9Dr5T3mDt9GH4opTl6TaIIcmzAj5Vg89
+ kIDACHwVrdprWydLpVbGRMxygsmkh6I8q5+nJSyeSaaaPI0740p/6W8M1WNMKIKwI0HzIkVDUur7s
+ /aQ08UmQV8qpPTiNv/mT+dGE056NB/HmWXx3ZpqCQ0tDc1xgHuofWyQbn8/fbjnOwaBB1cEcy4FuZ
+ +7UHOCuQ==;
+Received: from [90.240.106.137] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1vGxMQ-002wIL-O4; Thu, 06 Nov 2025 11:36:58 +0100
+Message-ID: <5180cfc6-1bb0-4447-a399-ec039003f229@igalia.com>
+Date: Thu, 6 Nov 2025 10:36:57 +0000
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/ttm: Fix @alloc_flags description
+To: Bagas Sanjaya <bagasdotme@gmail.com>,
  Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
  Linux Documentation <linux-doc@vger.kernel.org>,
  Linux DRI Development <dri-devel@lists.freedesktop.org>,
  Linux Intel Graphics <intel-gfx@lists.freedesktop.org>
-Cc: Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
+Cc: Christian Koenig <christian.koenig@amd.com>, Huang Rui
+ <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Zack Rusin <zack.rusin@broadcom.com>,
- Stephen Rothwell <sfr@canb.auug.org.au>
-Subject: Re: [PATCH] drm/ttm: Fix @alloc_flags description
-Message-ID: <aQx5aAR3DjengjVt@archie.me>
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Zack Rusin <zack.rusin@broadcom.com>, Stephen Rothwell <sfr@canb.auug.org.au>
 References: <20251106005217.14026-1-bagasdotme@gmail.com>
  <f935574c-67d1-4a7c-bd8e-e9dff7aa97ea@igalia.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="rmZmydHKAYCDjdz2"
-Content-Disposition: inline
-In-Reply-To: <f935574c-67d1-4a7c-bd8e-e9dff7aa97ea@igalia.com>
+ <aQx5aAR3DjengjVt@archie.me>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <aQx5aAR3DjengjVt@archie.me>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,29 +74,18 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
---rmZmydHKAYCDjdz2
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 06/11/2025 10:33, Bagas Sanjaya wrote:
+> On Thu, Nov 06, 2025 at 08:28:15AM +0000, Tvrtko Ursulin wrote:
+>> I assume no one merged it yet to any branch so I can push it to
+>> drm-misc-next?
+> 
+> Of course!
 
-On Thu, Nov 06, 2025 at 08:28:15AM +0000, Tvrtko Ursulin wrote:
-> I assume no one merged it yet to any branch so I can push it to
-> drm-misc-next?
+Pushed, thanks again for fixing it!
 
-Of course!
+Regards,
 
---=20
-An old man doll... just what I always wanted! - Clara
+Tvrtko
 
---rmZmydHKAYCDjdz2
-Content-Type: application/pgp-signature; name=signature.asc
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCaQx5ZAAKCRD2uYlJVVFO
-o6KUAQCdWlX+bS8tZGT/WzXuutPy13eM3ApLgSLVthbWq2XiFAD/dr6KLftQULXk
-HX5cf0yZ85lJ3S9nW+31ZKHhTSUppwM=
-=gYHU
------END PGP SIGNATURE-----
-
---rmZmydHKAYCDjdz2--
