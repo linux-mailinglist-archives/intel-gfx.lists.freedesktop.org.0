@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 743F1C3C012
-	for <lists+intel-gfx@lfdr.de>; Thu, 06 Nov 2025 16:21:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0889FC3C018
+	for <lists+intel-gfx@lfdr.de>; Thu, 06 Nov 2025 16:21:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 102CA10E919;
-	Thu,  6 Nov 2025 15:21:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99F0D10E928;
+	Thu,  6 Nov 2025 15:21:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Dqu+S81y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Osd8KB5L";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C57B310E921;
- Thu,  6 Nov 2025 15:21:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5DEF10E926;
+ Thu,  6 Nov 2025 15:21:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762442473; x=1793978473;
+ t=1762442477; x=1793978477;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/3Qc/gPX5haOKUHGA+TXarmEJ1uuZI40uojSDLg2Q4U=;
- b=Dqu+S81y6bt2EbuyOJ5dmU1kVFOTULY+07dDX+jmQkWcj8kXyCrvaeF+
- pzC8nKIoFqEHTrWW8nPTxBuUnZvB2Lhy46MaqhndAhyfje8ovFxc+Bh6e
- p2bXREMZ0WUkraJ08iYgVqSYaBwq4gwvFB6xOQJ3a1wppCo95GmpJeA8z
- qbVMlth6tDmpUrDKecVyVO3LA+4K+L7lmdEZqgXY1Sni3QTrJ8u96W2rW
- 8gfJOqiyVNqAHB+D4mzH62gG0tDiiB8apHwXu2XfwoO3/9JBXXoX3+X4q
- vrMeBpeEJIOo7KLTuCQCbxWR3diKimbJcgaOBKauWVwUHnJnA/+4kO/8w A==;
-X-CSE-ConnectionGUID: Li/ucBPgRlSIfM+XeKiEpQ==
-X-CSE-MsgGUID: 45fY6htpQTSZRUynnxetwQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="64617700"
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="64617700"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 07:21:12 -0800
-X-CSE-ConnectionGUID: po2wJEQSR/qfZUym4gZoIA==
-X-CSE-MsgGUID: hG0AFuJ5RXGQhsZcsk0JaA==
+ bh=/aCe0XOcAmLFrMvRFx0jasve+/htOGVKRrmakbdYVT8=;
+ b=Osd8KB5LpmOH8+lSU9Wa8RIiIP0oKjPhOXjfi5TY8YN1xx3UCsFSQsX/
+ yB9Fq/7mPiLZVSgpFeE8s4KfuQdz3YZjfX44X7P8m4RHzQbxaRKKIwfL2
+ s9ehtOIGHkdfdCUgNc+s6mfRDiv98eDMMlvGasLJ2awjRUD0kKnWn2TbO
+ 7RPuN87484XdeOYe8lz/+LAouBzUm7W8s7qjWqjMCpJ0H5tn7DKHc4j3X
+ xVA0Zp7odM4rCVW13bmp83JIaT5z1D8R90/hVU8DMwkC3WK4xw5Ahql7N
+ i4cyvOjv66L5p1WV/+PRmHizCGQULQaFMl849pMeBnjHBPbIQAYLZgJMX w==;
+X-CSE-ConnectionGUID: ONIkms3lTIyVj8seMxxM2g==
+X-CSE-MsgGUID: IpDtxOivQeyT27htwYMhKw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="64621180"
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="64621180"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 07:21:17 -0800
+X-CSE-ConnectionGUID: IAOAoivsQWyEAHN4fVAoxg==
+X-CSE-MsgGUID: M3oSppQNRFqiyTwmprdjPQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="211240561"
 Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
  ([10.245.244.213])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 07:21:11 -0800
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 07:21:15 -0800
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v2 05/10] drm/i915/cx0: Get rid of
- XELPDP_MSGBUS_TIMEOUT_FAST_US
-Date: Thu,  6 Nov 2025 17:20:44 +0200
-Message-ID: <20251106152049.21115-6-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 06/10] drm/i915/cx0:
+ s/XELPDP_MSGBUS_TIMEOUT_SLOW/XELPDP_MSGBUS_TIMEOUT_MS/
+Date: Thu,  6 Nov 2025 17:20:45 +0200
+Message-ID: <20251106152049.21115-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20251106152049.21115-1-ville.syrjala@linux.intel.com>
 References: <20251106152049.21115-1-ville.syrjala@linux.intel.com>
@@ -74,44 +73,101 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-XELPDP_MSGBUS_TIMEOUT_FAST_US looks to be just an obfuscated version
-of the default 2 microsecond fast timeout used by
-intel_wait_for_register(). Get rid of it to make it clear what's going
-on here.
+The slow vs. fast timeout stuff is really just an implementation
+detail. Let's not spread that terminology in random timeout defines.
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c      | 3 +--
- drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h | 1 -
- 2 files changed, 1 insertion(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c      | 12 ++++++------
+ drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h |  2 +-
+ drivers/gpu/drm/i915/display/intel_lt_phy.c       |  2 +-
+ 3 files changed, 8 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index e8a96a60fdd6..ddcfdf45bd38 100644
+index ddcfdf45bd38..dd1429fa5028 100644
 --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -168,8 +168,7 @@ int intel_cx0_wait_for_ack(struct intel_encoder *encoder,
+@@ -147,7 +147,7 @@ void intel_cx0_bus_reset(struct intel_encoder *encoder, int lane)
+ 
+ 	if (intel_de_wait_for_clear(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port, lane),
+ 				    XELPDP_PORT_M2P_TRANSACTION_RESET,
+-				    XELPDP_MSGBUS_TIMEOUT_SLOW)) {
++				    XELPDP_MSGBUS_TIMEOUT_MS)) {
+ 		drm_err_once(display->drm,
+ 			     "Failed to bring PHY %c to idle.\n",
+ 			     phy_name(phy));
+@@ -168,7 +168,7 @@ int intel_cx0_wait_for_ack(struct intel_encoder *encoder,
  				 XELPDP_PORT_P2M_MSGBUS_STATUS(display, port, lane),
  				 XELPDP_PORT_P2M_RESPONSE_READY,
  				 XELPDP_PORT_P2M_RESPONSE_READY,
--				 XELPDP_MSGBUS_TIMEOUT_FAST_US,
--				 XELPDP_MSGBUS_TIMEOUT_SLOW, val)) {
-+				 2, XELPDP_MSGBUS_TIMEOUT_SLOW, val)) {
+-				 2, XELPDP_MSGBUS_TIMEOUT_SLOW, val)) {
++				 2, XELPDP_MSGBUS_TIMEOUT_MS, val)) {
  		drm_dbg_kms(display->drm,
  			    "PHY %c Timeout waiting for message ACK. Status: 0x%x\n",
  			    phy_name(phy), *val);
+@@ -215,7 +215,7 @@ static int __intel_cx0_read_once(struct intel_encoder *encoder,
+ 
+ 	if (intel_de_wait_for_clear(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port, lane),
+ 				    XELPDP_PORT_M2P_TRANSACTION_PENDING,
+-				    XELPDP_MSGBUS_TIMEOUT_SLOW)) {
++				    XELPDP_MSGBUS_TIMEOUT_MS)) {
+ 		drm_dbg_kms(display->drm,
+ 			    "PHY %c Timeout waiting for previous transaction to complete. Reset the bus and retry.\n", phy_name(phy));
+ 		intel_cx0_bus_reset(encoder, lane);
+@@ -286,7 +286,7 @@ static int __intel_cx0_write_once(struct intel_encoder *encoder,
+ 
+ 	if (intel_de_wait_for_clear(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port, lane),
+ 				    XELPDP_PORT_M2P_TRANSACTION_PENDING,
+-				    XELPDP_MSGBUS_TIMEOUT_SLOW)) {
++				    XELPDP_MSGBUS_TIMEOUT_MS)) {
+ 		drm_dbg_kms(display->drm,
+ 			    "PHY %c Timeout waiting for previous transaction to complete. Resetting the bus.\n", phy_name(phy));
+ 		intel_cx0_bus_reset(encoder, lane);
+@@ -302,7 +302,7 @@ static int __intel_cx0_write_once(struct intel_encoder *encoder,
+ 
+ 	if (intel_de_wait_for_clear(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port, lane),
+ 				    XELPDP_PORT_M2P_TRANSACTION_PENDING,
+-				    XELPDP_MSGBUS_TIMEOUT_SLOW)) {
++				    XELPDP_MSGBUS_TIMEOUT_MS)) {
+ 		drm_dbg_kms(display->drm,
+ 			    "PHY %c Timeout waiting for write to complete. Resetting the bus.\n", phy_name(phy));
+ 		intel_cx0_bus_reset(encoder, lane);
+@@ -2815,7 +2815,7 @@ void intel_cx0_powerdown_change_sequence(struct intel_encoder *encoder,
+ 	for_each_cx0_lane_in_mask(lane_mask, lane)
+ 		if (intel_de_wait_for_clear(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port, lane),
+ 					    XELPDP_PORT_M2P_TRANSACTION_PENDING,
+-					    XELPDP_MSGBUS_TIMEOUT_SLOW)) {
++					    XELPDP_MSGBUS_TIMEOUT_MS)) {
+ 			drm_dbg_kms(display->drm,
+ 				    "PHY %c Timeout waiting for previous transaction to complete. Reset the bus.\n",
+ 				    phy_name(phy));
 diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-index 62db0fd99f4a..f031de40f6c6 100644
+index f031de40f6c6..715ca004516a 100644
 --- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
 +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-@@ -75,7 +75,6 @@
+@@ -74,7 +74,7 @@
+ #define   XELPDP_PORT_P2M_DATA(val)			REG_FIELD_PREP(XELPDP_PORT_P2M_DATA_MASK, val)
  #define   XELPDP_PORT_P2M_ERROR_SET			REG_BIT(15)
  
- #define XELPDP_MSGBUS_TIMEOUT_SLOW			1
--#define XELPDP_MSGBUS_TIMEOUT_FAST_US			2
+-#define XELPDP_MSGBUS_TIMEOUT_SLOW			1
++#define XELPDP_MSGBUS_TIMEOUT_MS			1
  #define XELPDP_PCLK_PLL_ENABLE_TIMEOUT_US		3200
  #define XELPDP_PCLK_PLL_DISABLE_TIMEOUT_US		20
  #define XELPDP_PORT_BUF_SOC_READY_TIMEOUT_US		100
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+index 8ab632965033..ff5af9c25e6d 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+@@ -1043,7 +1043,7 @@ static int __intel_lt_phy_p2p_write_once(struct intel_encoder *encoder,
+ 
+ 	if (intel_de_wait_for_clear(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port, lane),
+ 				    XELPDP_PORT_P2P_TRANSACTION_PENDING,
+-				    XELPDP_MSGBUS_TIMEOUT_SLOW)) {
++				    XELPDP_MSGBUS_TIMEOUT_MS)) {
+ 		drm_dbg_kms(display->drm,
+ 			    "PHY %c Timeout waiting for previous transaction to complete. Resetting bus.\n",
+ 			    phy_name(phy));
 -- 
 2.49.1
 
