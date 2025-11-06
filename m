@@ -2,61 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD6AAC3B28D
-	for <lists+intel-gfx@lfdr.de>; Thu, 06 Nov 2025 14:19:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6363BC3B372
+	for <lists+intel-gfx@lfdr.de>; Thu, 06 Nov 2025 14:30:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5764F10E8BB;
-	Thu,  6 Nov 2025 13:19:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F87810E8C6;
+	Thu,  6 Nov 2025 13:30:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KnawPbps";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hThUstyS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1F4010E8B7;
- Thu,  6 Nov 2025 13:19:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D1E510E8C2;
+ Thu,  6 Nov 2025 13:30:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762435161; x=1793971161;
+ t=1762435814; x=1793971814;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=z7ivmT0ZPuCRxkTOzSgGdUGzW1oRYlubSxneSU8Kljs=;
- b=KnawPbpsj9+BqeTyxMG83aUGQlitWp+HoPwug+dv6JnghxdJOGqGJ+Lu
- fkoJi4NNWDWqLnxgkmWoQtvWAIbE0AMDfO4LYzMatpoFvajzUImNSZ50q
- q9o6DztzWp7dERvIXNuXQFPEYkS0huewKlI7zeplmus4uelUURIwqaZcV
- F5/F/ZYkiIx7kItKyVRKqI42QJPpTxn9GBh6If89HnCMro+MNuThIF7DI
- 7isliwJDx4A7eAHA2Gs6P0oopQWkDeWx2fez7GKSXIVBrgUlzgxJ8IwMB
- jRIcguwTSUkFqBbZAEfvFCCOzMtwdZbJqlSr5Rx9JxsCHhZH/IlyFyiJB w==;
-X-CSE-ConnectionGUID: LyOSYeDrQcOALGSW4e9YWA==
-X-CSE-MsgGUID: la3eIsB2QuKsaKKkcYaqfA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="75178547"
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="75178547"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 05:19:20 -0800
-X-CSE-ConnectionGUID: V7TAtvDIRbmUyq0gSEP63w==
-X-CSE-MsgGUID: peZNdVTQSdKcD/pUhQ08SA==
+ bh=V/tj6NdVefak47P6FAZ9zb/EK2jKBe/0O10R7zTwP7E=;
+ b=hThUstySvb2UkBCtXc4HQUQ0V3lB6AZFtuBd3D+/ZN61En7Lkl84e1d/
+ +0NovQEmkrUq4HIYWBhXh6bgrMTrLb+MHvjAm1pzOfYy37to423ZHAN98
+ V1GWqTJJO+x8MQ9yzVEQGLAeOHmFXhuQ7sqNiudrY4M2kZjvYSDIj221g
+ 7KsPsv2URxtMbkoRuDJVgYP/YcqWqtNKKHK28V/aCfdUEXS5LRwdU4LIP
+ ZEiS5Lk9XxHHcZSJlIUH5AZjbBgjNejLF8+ndECjfAK4sq5ZXR4g/rwnH
+ rCdYKTtPuKCfWMqUivCF5pIZnzy8ZiVG2dJ88OpzH9bM5w9Pc/oLLCfM9 Q==;
+X-CSE-ConnectionGUID: Ocrt3JtgRUqxuvQhgMPuiw==
+X-CSE-MsgGUID: jD9ji7x+QSetkeZ+OnN1RA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="64609291"
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="64609291"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 05:30:13 -0800
+X-CSE-ConnectionGUID: YQ4pG1BqT0eXTTquTwDrug==
+X-CSE-MsgGUID: f2kponllQGeoAPoLzrAlvA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="191852205"
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="187420652"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.65])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 05:19:18 -0800
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 05:30:11 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- "Kandpal, Suraj" <suraj.kandpal@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 5/7] drm/i915/ltphy: Nuke bogus weird timeouts
-In-Reply-To: <aQyewv447ln68vnL@intel.com>
+To: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: arun.r.murthy@intel.com
+Subject: Re: [PATCH] drm/i915/fbdev: Hold runtime PM ref during fbdev BO
+ creation
+In-Reply-To: <20251106120313.2670852-1-dibin.moolakadan.subrahmanian@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251105190433.16434-1-ville.syrjala@linux.intel.com>
- <20251105190433.16434-6-ville.syrjala@linux.intel.com>
- <f5d014e2b968f6b758a6c96210528b7607675945@intel.com>
- <DM3PPF208195D8D46BC28CDE4965CD063A6E3C2A@DM3PPF208195D8D.namprd11.prod.outlook.com>
- <aQyewv447ln68vnL@intel.com>
-Date: Thu, 06 Nov 2025 15:19:16 +0200
-Message-ID: <46ab856eab5fec27a57ce70fd4c6f454c580432f@intel.com>
+References: <20251106120313.2670852-1-dibin.moolakadan.subrahmanian@intel.com>
+Date: Thu, 06 Nov 2025 15:30:09 +0200
+Message-ID: <b07289038964a4082bf588602f13abb643ae4672@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -75,160 +71,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 06 Nov 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Thu, Nov 06, 2025 at 12:03:28PM +0000, Kandpal, Suraj wrote:
->> > Subject: Re: [PATCH 5/7] drm/i915/ltphy: Nuke bogus weird timeouts
->> >=20
->> > On Wed, 05 Nov 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wro=
-te:
->> > > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> > >
->> > > The LT PHY code is abusing intel_de_wait_custom() in all kinds of
->> > > weird ways. Get rid of the weird slow timeouts. If these are actually
->> > > needed then the fast timeouts should really be specified as the
->> > > default 2 microscond or something.
->> > >
->> > > This will let us eventually nuke intel_de_wait_custom() and convert
->> > > over to poll_timeout_us().
->> > >
->> > > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.co=
-m>
->> >=20
->> > Suraj, any input here?
->> >=20
->> > Reviewed-by: Jani Nikula <jani.nikula@intel.com>
->> >=20
->> > > ---
->> > >  drivers/gpu/drm/i915/display/intel_lt_phy.c      | 11 +++++------
->> > >  drivers/gpu/drm/i915/display/intel_lt_phy_regs.h |  1 -
->> > >  2 files changed, 5 insertions(+), 7 deletions(-)
->> > >
->> > > diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c
->> > > b/drivers/gpu/drm/i915/display/intel_lt_phy.c
->> > > index 6fb68157b322..cc1d6b7a7de4 100644
->> > > --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
->> > > +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
->> > > @@ -1178,10 +1178,9 @@ intel_lt_phy_lane_reset(struct intel_encoder
->> > *encoder,
->> > >  	if (intel_de_wait_custom(display, XELPDP_PORT_CLOCK_CTL(display,
->> > port),
->> > >  				 XELPDP_LANE_PCLK_PLL_ACK(0),
->> > >  				 XELPDP_LANE_PCLK_PLL_ACK(0),
->> > > -				 XE3PLPD_MACCLK_TURNON_LATENCY_US,
->> > > -				 XE3PLPD_MACCLK_TURNON_LATENCY_MS,
->> > NULL))
->> > > +				 XE3PLPD_MACCLK_TURNON_LATENCY_US, 0,
->> > NULL))
->> > >  		drm_warn(display->drm, "PHY %c PLL MacCLK assertion Ack
->> > not done after %dus.\n",
->> > > -			 phy_name(phy),
->> > XE3PLPD_MACCLK_TURNON_LATENCY_MS * 1000);
->> > > +			 phy_name(phy),
->> > XE3PLPD_MACCLK_TURNON_LATENCY_US);
->>=20
->> According to Bspec: 74499
->> Latency can be either 21us for 1ms depending on what port is connected.
->>=20
->>  > >
->> > >  	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, port),
->> > >  		     XELPDP_FORWARD_CLOCK_UNGATE,
->> > > @@ -1192,7 +1191,7 @@ intel_lt_phy_lane_reset(struct intel_encoder
->> > > *encoder,
->> > >
->> > >  	if (intel_de_wait_custom(display, XELPDP_PORT_BUF_CTL2(display,
->> > port),
->> > >  				 lane_phy_current_status, 0,
->> > > -				 XE3PLPD_RESET_END_LATENCY_US, 2, NULL))
->> > > +				 XE3PLPD_RESET_END_LATENCY_US, 0, NULL))
->>=20
->> Bspec : 74499
->> Says 200us but 2ms (1.5ms to be precise) was the actual time we found th=
-e this to work properly
->>=20
->>=20
->> > >  		drm_warn(display->drm,
->> > >  			 "PHY %c failed to bring out of Lane reset after
->> > %dus.\n",
->> > >  			 phy_name(phy),
->> > XE3PLPD_RESET_END_LATENCY_US); @@ -1674,7 +1673,7
->> > > @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
->> > >  		if (intel_de_wait_custom(display,
->> > XELPDP_PORT_CLOCK_CTL(display, port),
->> > >  					 XELPDP_LANE_PCLK_PLL_ACK(0),
->> > >  					 XELPDP_LANE_PCLK_PLL_ACK(0),
->> > > -
->> > XE3PLPD_MACCLK_TURNON_LATENCY_US, 2, NULL))
->> > > +
->> > XE3PLPD_MACCLK_TURNON_LATENCY_US, 0, NULL))
->>=20
->> Ditto here.
->>=20
->> > >  			drm_warn(display->drm, "PHY %c PLL MacCLK Ack
->> > assertion Timeout after %dus.\n",
->> > >  				 phy_name(phy),
->> > XE3PLPD_MACCLK_TURNON_LATENCY_US);
->> > >
->> > > @@ -1702,7 +1701,7 @@ void intel_lt_phy_pll_enable(struct intel_enco=
-der
->> > *encoder,
->> > >  		/* 16. Poll for PORT_BUF_CTL2 register PHY Pulse Status =3D 1
->> > for Owned PHY Lanes. */
->> > >  		if (intel_de_wait_custom(display,
->> > XELPDP_PORT_BUF_CTL2(display, port),
->> > >  					 lane_phy_pulse_status,
->> > lane_phy_pulse_status,
->> > > -
->> > XE3PLPD_RATE_CALIB_DONE_LATENCY_US, 2, NULL))
->> > > +
->> > XE3PLPD_RATE_CALIB_DONE_LATENCY_US, 0, NULL))
->>=20
->> Ditto here.
->> I would suggest giving this a CI run on NVLS before merging this.
+On Thu, 06 Nov 2025, Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrah=
+manian@intel.com> wrote:
+> During fbdev probe, the driver allocates and pins a framebuffer
+> BO (via xe_bo_create_pin_map_novm() =E2=86=92 xe_ggtt_insert_bo()).
+
+Might emphasize this is with the xe driver, since the subject prefix
+says i915.
+
+> Without a runtime PM reference, xe_pm_runtime_get_noresume() warns about
+> missing outer PM protection as below:
 >
-> Since you have some idea why these magic numbers were chosen
-> please redo all of these, and make sure to:
-> - don't use intel_de_wait_custom() unless absolutely necessary
-> - if you need to use intel_de_wait_custom() then either
->   use the default '2,<whatever ms>' or '<whatever us>,0' timeouts
-> - document all the used timeouts. This is especially important
->   when they are not directly specified in bspec
+> 	xe 0000:03:00.0: [drm] Missing outer runtime PM protection
+>
+> Acquire a runtime PM reference before framebuffer allocation to ensure
+> xe_ggtt_insert_bo()  executes  under active runtime PM context.
+>
+> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6350
+>
 
-Yeah, should be intel_de_wait_for_{set,clear}() then probably.
+Superfluous newline.
 
-We should probably change all of those from ms to us units to make them
-more generally useful also for shorter waits.
+Fixes: ?
 
 BR,
-Jni.
+Jani.
 
-
+> Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmani=
+an@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_fbdev.c | 11 +++++++----
+>  1 file changed, 7 insertions(+), 4 deletions(-)
 >
->>=20
->> Regards,
->> Suraj Kandpal
->>=20
->> > >  			drm_warn(display->drm, "PHY %c PLL rate not
->> > changed after %dus.\n",
->> > >  				 phy_name(phy),
->> > XE3PLPD_RATE_CALIB_DONE_LATENCY_US);
->> > >
->> > > diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
->> > > b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
->> > > index 9223487d764e..36abc2bdbd9b 100644
->> > > --- a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
->> > > +++ b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
->> > > @@ -7,7 +7,6 @@
->> > >  #define __INTEL_LT_PHY_REGS_H__
->> > >
->> > >  #define XE3PLPD_MSGBUS_TIMEOUT_FAST_US	500
->> > > -#define XE3PLPD_MACCLK_TURNON_LATENCY_MS	1
->> > >  #define XE3PLPD_MACCLK_TURNON_LATENCY_US	21
->> > >  #define XE3PLPD_MACCLK_TURNOFF_LATENCY_US	1
->> > >  #define XE3PLPD_RATE_CALIB_DONE_LATENCY_US	50
->> >=20
->> > --
->> > Jani Nikula, Intel
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm=
+/i915/display/intel_fbdev.c
+> index e5449c41cfa1..7173bd1cbffd 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> @@ -288,13 +288,18 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_he=
+lper *helper,
+>  		drm_framebuffer_put(&fb->base);
+>  		fb =3D NULL;
+>  	}
+> +
+> +	wakeref =3D intel_display_rpm_get(display);
+> +
+>  	if (!fb || drm_WARN_ON(display->drm, !intel_fb_bo(&fb->base))) {
+>  		drm_dbg_kms(display->drm,
+>  			    "no BIOS fb, allocating a new one\n");
+>=20=20
+>  		fb =3D __intel_fbdev_fb_alloc(display, sizes);
+> -		if (IS_ERR(fb))
+> -			return PTR_ERR(fb);
+> +		if (IS_ERR(fb)) {
+> +			ret =3D PTR_ERR(fb);
+> +			goto out_unlock;
+> +		}
+>  	} else {
+>  		drm_dbg_kms(display->drm, "re-using BIOS fb\n");
+>  		prealloc =3D true;
+> @@ -302,8 +307,6 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_help=
+er *helper,
+>  		sizes->fb_height =3D fb->base.height;
+>  	}
+>=20=20
+> -	wakeref =3D intel_display_rpm_get(display);
+> -
+>  	/* Pin the GGTT vma for our access via info->screen_base.
+>  	 * This also validates that any existing fb inherited from the
+>  	 * BIOS is suitable for own access.
 
 --=20
 Jani Nikula, Intel
