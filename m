@@ -2,61 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05D68C3C02D
-	for <lists+intel-gfx@lfdr.de>; Thu, 06 Nov 2025 16:21:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB31FC3C0F1
+	for <lists+intel-gfx@lfdr.de>; Thu, 06 Nov 2025 16:32:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FB8810E932;
-	Thu,  6 Nov 2025 15:21:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19D9210E926;
+	Thu,  6 Nov 2025 15:32:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XFGGxBOC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W5fl1oia";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D2AD10E932;
- Thu,  6 Nov 2025 15:21:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 555BB10E916;
+ Thu,  6 Nov 2025 15:32:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762442493; x=1793978493;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=r8JLmsKFs6ih8RPC380EKVOxX9KV5J6+IRJRxcEGcU4=;
- b=XFGGxBOCyIZ2RVKWXFDL8bZ+we5DkmrGHAqRF8fVR45NXcjQRvWmvhWH
- NnlRBPovXuahNO0Qr4Oyl4dg26cG7O2XaHXvbzEtvVGT74K1RTzX9d4nY
- 0Tlh+sWeWO490SFLTCSZhsKhi06tj8F9xLKxRnD4/77ESNvr6twWXqkPs
- +VAgiAHSGOw9dez9tB6ITMyN5ADA8f3QKEj80cDnnlLli05+/wBsr5d2J
- iPD5dVQeBkKlToG96Oa0YDzLzZt+XmY2E1YfgLEEVXabNdDrqvdZf6P2L
- LaY+9KkHAuerXVVhuNLrxEi6EVPQqL0ClXYUhzIQbK0ngNbMcTYuO3bIE w==;
-X-CSE-ConnectionGUID: 7qzIc7Z+RW+KZYA3R/qc3Q==
-X-CSE-MsgGUID: uIf9JJV9QgWKB7WA6j4ADw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="75190000"
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="75190000"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 07:21:33 -0800
-X-CSE-ConnectionGUID: lzLva43NQK+b1PheF0C7lw==
-X-CSE-MsgGUID: 7fP9+wgZSYuM4oU80qwpew==
+ t=1762443147; x=1793979147;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=QnqCNiLthrhMgXn60DDwgomjWnVLRAhcLUrontKF2Mk=;
+ b=W5fl1oiaX2uTqWBP/ofjJyO8LW1HHvyU0Od0qzPQBqSfRQQfele9hU6P
+ HYegiXLKQJkW74PU1DqN3/sydOnO/KGkUa+HNNoAEUfg0UHCZJ8NF6VWY
+ q2K1BFmHu+rYbHQUhZleuxUrbc5qNYZF9nWX6n5Xf3tABiG4tIhN6woIb
+ 2q5HrtuxidxlHGaZxEw6MdiXzDbaFv5fGEW/c9eneZaiUhlF6FtMaytbq
+ S8e6wMxl55inFb9j/ArB1y8xkt7Jyk9Py87Zp2zfsC0IQVEidmBCIdWLX
+ x3Laz11k0+2O6/S4+CeYAx6/5/8kbhe+ol/oZZTxKJUbL+Lv0NsG9fAlq Q==;
+X-CSE-ConnectionGUID: nsnUP4v3T4Wc3iuSWVOMJg==
+X-CSE-MsgGUID: rMXfqbiMQoiqP0tJOQ+ytQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="67194009"
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="67194009"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 07:32:27 -0800
+X-CSE-ConnectionGUID: h7WSi0G8SAayBpLYfCaM3g==
+X-CSE-MsgGUID: tY+1+BtKSLi3B1Dm+UVplg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="187444575"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
- ([10.245.244.213])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 07:21:31 -0800
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
-	Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v2 10/10] drm/i915/pmdemand: Use the default 2 usec fast
- polling timeout
-Date: Thu,  6 Nov 2025 17:20:49 +0200
-Message-ID: <20251106152049.21115-11-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.49.1
-In-Reply-To: <20251106152049.21115-1-ville.syrjala@linux.intel.com>
-References: <20251106152049.21115-1-ville.syrjala@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="192953645"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.65])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 07:32:25 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v2 01/10] drm/i915/cx0: Print the correct timeout
+In-Reply-To: <20251106152049.21115-2-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+References: <20251106152049.21115-1-ville.syrjala@linux.intel.com>
+ <20251106152049.21115-2-ville.syrjala@linux.intel.com>
+Date: Thu, 06 Nov 2025 17:32:22 +0200
+Message-ID: <bad3dd77a9c33d941b9112b1e75305cd5e4a4823@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,35 +71,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Thu, 06 Nov 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> intel_cx0_powerdown_change_sequence() uses one timeout,
+> and the pritns another one. Use the same one in both.
 
-For whatever unknown reason the pmdemand code is using a custom
-50 usec fast polling timeout instead of the normal 2 usec
-value. Switch to the standard value to get rid of the special
-case.
+*prints
 
-The eventual aim is to get rid of the fast vs. slow timeout
-entirely and switch over to poll_timeout_us().
+A bit silly considering the next one nukes the whole thing.
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_pmdemand.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
-index f52abd4e2eb0..22d8f720ae7d 100644
---- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
-+++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
-@@ -464,7 +464,7 @@ static void intel_pmdemand_poll(struct intel_display *display)
- 
- 	ret = intel_de_wait_custom(display, XELPDP_INITIATE_PMDEMAND_REQUEST(1),
- 				   XELPDP_PMDEMAND_REQ_ENABLE, 0,
--				   50, timeout_ms, &status);
-+				   2, timeout_ms, &status);
- 
- 	if (ret == -ETIMEDOUT)
- 		drm_err(display->drm,
--- 
-2.49.1
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/d=
+rm/i915/display/intel_cx0_phy.c
+> index b3b506d0e040..21f046576ee3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> @@ -2833,7 +2833,7 @@ void intel_cx0_powerdown_change_sequence(struct int=
+el_encoder *encoder,
+>  				 XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_US, 2, NULL))
+>  		drm_warn(display->drm,
+>  			 "PHY %c failed to bring out of Lane reset after %dus.\n",
+> -			 phy_name(phy), XELPDP_PORT_RESET_START_TIMEOUT_US);
+> +			 phy_name(phy), XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_US);
+>  }
+>=20=20
+>  void intel_cx0_setup_powerdown(struct intel_encoder *encoder)
 
+--=20
+Jani Nikula, Intel
