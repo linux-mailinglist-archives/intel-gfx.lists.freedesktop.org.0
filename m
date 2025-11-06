@@ -2,57 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFF35C3C1F3
-	for <lists+intel-gfx@lfdr.de>; Thu, 06 Nov 2025 16:41:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EBE82C3C214
+	for <lists+intel-gfx@lfdr.de>; Thu, 06 Nov 2025 16:43:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BE6C10E93D;
-	Thu,  6 Nov 2025 15:41:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DF9C10E93C;
+	Thu,  6 Nov 2025 15:43:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Hk/KLhll";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K4zqGMPu";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5800B10E93D;
- Thu,  6 Nov 2025 15:41:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 323C110E939;
+ Thu,  6 Nov 2025 15:43:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762443689; x=1793979689;
+ t=1762443797; x=1793979797;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=gpyblG5CVJYBI7m4yYfPi3oc1QEz2RL2KIshU65e5kY=;
- b=Hk/KLhllNUh52YUbm2YVVai0zxbJ17aDli4aR4JEyv+pzDDaRqSFVytf
- 0xT1qOGf0uk68Fy3DJRfWdFOemPEeuU6EPRaOg5BsEkaZrysS/yD3YEyt
- LQDBB7oh0Cd98+zD6zMV6nmZl2CRNNgzQjyL79k51c9Lrb0r6suGcegwy
- C4FJMjBuzULirZqRy3eu5QShKIi+m776AIDK77EDi0jgUXVud2vutwF9Z
- 1bJj5bG4LU6PjYTDlKQp2dbAu+9qAMeyxpQ5zDbSZUZWEVmxTkYtEobmk
- Gr7Gfj1Lsi6s8qId+eorgvXrcGgB+mhnKNB0Wp9/Ei19VUvi0XqkPygYN Q==;
-X-CSE-ConnectionGUID: hIjFBzm0TZqw9iTTlErBxw==
-X-CSE-MsgGUID: MwYQe+t0QZuxG1IZucWrSQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="63790482"
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="63790482"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 07:41:29 -0800
-X-CSE-ConnectionGUID: KtSu5pcbQQKYDcgXb6ZLjA==
-X-CSE-MsgGUID: WmqW2OtKQMKyyRHRveHgdA==
+ bh=3kV5lMt1Ie4KK6cGy7Hl1D3bv7j6mWnT/9uk9JNIvQw=;
+ b=K4zqGMPuM6hbLI7citpHG4ZbbWFCCSK6gbr2MDKzVv8DutzWUR1RszVz
+ w2gjo+jBSii1YRMKiwBiusboAElVKIVG5URX3srCYDXll6CrEBCRZTFhl
+ +glJoPoUpPpRDA85EZK2gu91j/v1iBUGcO4kEeslsR+JQXzCDo4DSwuVP
+ yQWT2KCinwpkZ3Eaij9LMTDiL1YMLf45bTwiwvp3IjM4hKEdcVmIUZW9X
+ d8qu1w0mPYwUIlmPtpJ+MD52lpa8Ly8CLGIXa5avxeom18jaWraz+PZEn
+ FxdI+xxD0Yyj6wSmN/HIDwvogX/fQ5BOMtMOBtJaqYcMXpEiwtj0LjfeQ w==;
+X-CSE-ConnectionGUID: wrfrek9wQx2TET3NBZxMOQ==
+X-CSE-MsgGUID: LJHaA5GFScCfdDDbEgRmQA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="90053528"
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="90053528"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 07:43:17 -0800
+X-CSE-ConnectionGUID: GWJ5p4GhQXilHDixUNHOrw==
+X-CSE-MsgGUID: k95R+4lmQRONdULwmvzsnQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="191884837"
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="188506153"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.65])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 07:41:27 -0800
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 07:43:15 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 08/10] drm/i915/ltphy: Nuke bogus weird timeouts
-In-Reply-To: <20251106152049.21115-9-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH v2 00/10] drm/i915: Stop the intel_de_wait_custom() abuse
+In-Reply-To: <20251106152049.21115-1-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20251106152049.21115-1-ville.syrjala@linux.intel.com>
- <20251106152049.21115-9-ville.syrjala@linux.intel.com>
-Date: Thu, 06 Nov 2025 17:41:23 +0200
-Message-ID: <8daed3172903a2ed6258641d0dd9f3ff1f6f4b59@intel.com>
+Date: Thu, 06 Nov 2025 17:43:12 +0200
+Message-ID: <e83b667c90f6c4a92b3d67c63a49954bade3da0a@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -74,104 +73,48 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Thu, 06 Nov 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> The LT PHY code is abusing intel_de_wait_custom() in all kinds of weird
-> ways. Get rid of the weird fast timeouts, and just use the slow ones.
-> For consistency with intel_wait_for_register() we'll stick to the
-> default 2 usec fast timeout for all cases.
+> Get rid of all the custom fast vs. slow intel_de_wait_custom()
+> timeouts that have started to spread like a cancer recently.
 >
-> Someone really needs to properly document where all these magic numbers
-> came from...
->
-> This will let us eventually nuke intel_de_wait_custom() and convert
-> over to poll_timeout_us().
->
-> v2: Go for the longer (ms) timeout in case it actually matters
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> The eventual aim is to get rid of the fast vs. slow timeout
+> stuff entirely and switch over to poll_timeout_us()...
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Are you planning on still having intel_de_wait_something_something, or
+do you mean using poll_timeout_us() directly?
 
-> ---
->  drivers/gpu/drm/i915/display/intel_lt_phy.c      | 11 +++++------
->  drivers/gpu/drm/i915/display/intel_lt_phy_regs.h |  7 +++----
->  2 files changed, 8 insertions(+), 10 deletions(-)
+I think I like the intel_de_* wait helpers, but just a coherent small
+set, and everything beyond that should use poll_timeout_us() instead of
+adding obscure helpers for one-off cases.
+
+BR,
+Jani.
+
+
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/dr=
-m/i915/display/intel_lt_phy.c
-> index ff5af9c25e6d..cd4ac9679fc9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-> @@ -1178,8 +1178,7 @@ intel_lt_phy_lane_reset(struct intel_encoder *encod=
-er,
->  	if (intel_de_wait_custom(display, XELPDP_PORT_CLOCK_CTL(display, port),
->  				 XELPDP_LANE_PCLK_PLL_ACK(0),
->  				 XELPDP_LANE_PCLK_PLL_ACK(0),
-> -				 XE3PLPD_MACCLK_TURNON_LATENCY_US,
-> -				 XE3PLPD_MACCLK_TURNON_LATENCY_MS, NULL))
-> +				 2, XE3PLPD_MACCLK_TURNON_LATENCY_MS, NULL))
->  		drm_warn(display->drm, "PHY %c PLL MacCLK assertion ack not done\n",
->  			 phy_name(phy));
->=20=20
-> @@ -1192,13 +1191,13 @@ intel_lt_phy_lane_reset(struct intel_encoder *enc=
-oder,
->=20=20
->  	if (intel_de_wait_custom(display, XELPDP_PORT_BUF_CTL2(display, port),
->  				 lane_phy_current_status, 0,
-> -				 XE3PLPD_RESET_END_LATENCY_US, 2, NULL))
-> +				 2, XE3PLPD_RESET_END_LATENCY_MS, NULL))
->  		drm_warn(display->drm, "PHY %c failed to bring out of lane reset\n",
->  			 phy_name(phy));
->=20=20
->  	if (intel_de_wait_custom(display, XELPDP_PORT_BUF_CTL2(display, port),
->  				 lane_phy_pulse_status, lane_phy_pulse_status,
-> -				 XE3PLPD_RATE_CALIB_DONE_LATENCY_US, 0, NULL))
-> +				 2, XE3PLPD_RATE_CALIB_DONE_LATENCY_MS, NULL))
->  		drm_warn(display->drm, "PHY %c PLL rate not changed\n",
->  			 phy_name(phy));
->=20=20
-> @@ -1673,7 +1672,7 @@ void intel_lt_phy_pll_enable(struct intel_encoder *=
-encoder,
->  		if (intel_de_wait_custom(display, XELPDP_PORT_CLOCK_CTL(display, port),
->  					 XELPDP_LANE_PCLK_PLL_ACK(0),
->  					 XELPDP_LANE_PCLK_PLL_ACK(0),
-> -					 XE3PLPD_MACCLK_TURNON_LATENCY_US, 2, NULL))
-> +					 2, XE3PLPD_MACCLK_TURNON_LATENCY_MS, NULL))
->  			drm_warn(display->drm, "PHY %c PLL MacCLK ack assertion timeout\n",
->  				 phy_name(phy));
->=20=20
-> @@ -1701,7 +1700,7 @@ void intel_lt_phy_pll_enable(struct intel_encoder *=
-encoder,
->  		/* 16. Poll for PORT_BUF_CTL2 register PHY Pulse Status =3D 1 for Owne=
-d PHY Lanes. */
->  		if (intel_de_wait_custom(display, XELPDP_PORT_BUF_CTL2(display, port),
->  					 lane_phy_pulse_status, lane_phy_pulse_status,
-> -					 XE3PLPD_RATE_CALIB_DONE_LATENCY_US, 2, NULL))
-> +					 2, XE3PLPD_RATE_CALIB_DONE_LATENCY_MS, NULL))
->  			drm_warn(display->drm, "PHY %c PLL rate not changed\n",
->  				 phy_name(phy));
->=20=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h b/drivers/g=
-pu/drm/i915/display/intel_lt_phy_regs.h
-> index 9223487d764e..c00a7a8a68dc 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-> @@ -7,13 +7,12 @@
->  #define __INTEL_LT_PHY_REGS_H__
->=20=20
->  #define XE3PLPD_MSGBUS_TIMEOUT_FAST_US	500
-> -#define XE3PLPD_MACCLK_TURNON_LATENCY_MS	1
-> -#define XE3PLPD_MACCLK_TURNON_LATENCY_US	21
-> +#define XE3PLPD_MACCLK_TURNON_LATENCY_MS	2
->  #define XE3PLPD_MACCLK_TURNOFF_LATENCY_US	1
-> -#define XE3PLPD_RATE_CALIB_DONE_LATENCY_US	50
-> +#define XE3PLPD_RATE_CALIB_DONE_LATENCY_MS	1
->  #define XE3PLPD_RESET_START_LATENCY_US	10
->  #define XE3PLPD_PWRDN_TO_RDY_LATENCY_US	4
-> -#define XE3PLPD_RESET_END_LATENCY_US		200
-> +#define XE3PLPD_RESET_END_LATENCY_MS		2
->=20=20
->  /* LT Phy MAC Register */
->  #define LT_PHY_MAC_VDR			_MMIO(0xC00)
+> v2: Drop the extraneous timeout debugs to make it simpler to change them
+>     Use the slow timeout in all cases where we have both slow and fast
+>
+> Ville Syrj=C3=A4l=C3=A4 (10):
+>   drm/i915/cx0: Print the correct timeout
+>   drm/i915/cx0: Nuke extraneous timeout debugs
+>   drm/i915/ltphy: Nuke extraneous timeout debugs
+>   drm/i915/cx0: Replace XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_US with
+>     XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_MS
+>   drm/i915/cx0: Get rid of XELPDP_MSGBUS_TIMEOUT_FAST_US
+>   drm/i915/cx0: s/XELPDP_MSGBUS_TIMEOUT_SLOW/XELPDP_MSGBUS_TIMEOUT_MS/
+>   drm/i915/cx0:
+>     s/XELPDP_PORT_RESET_END_TIMEOUT/XELPDP_PORT_RESET_END_TIMEOUT_US/
+>   drm/i915/ltphy: Nuke bogus weird timeouts
+>   drm/i915/hdcp: Use the default 2 usec fast polling timeout
+>   drm/i915/pmdemand: Use the default 2 usec fast polling timeout
+>
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 52 +++++++++----------
+>  .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  7 ++-
+>  drivers/gpu/drm/i915/display/intel_hdcp.c     |  2 +-
+>  drivers/gpu/drm/i915/display/intel_lt_phy.c   | 47 ++++++++---------
+>  .../gpu/drm/i915/display/intel_lt_phy_regs.h  |  7 ++-
+>  drivers/gpu/drm/i915/display/intel_pmdemand.c |  2 +-
+>  6 files changed, 54 insertions(+), 63 deletions(-)
 
 --=20
 Jani Nikula, Intel
