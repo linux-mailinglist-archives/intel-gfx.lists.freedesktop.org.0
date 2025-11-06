@@ -2,65 +2,108 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23CA7C3B1C2
-	for <lists+intel-gfx@lfdr.de>; Thu, 06 Nov 2025 14:12:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B5D3C3B1C8
+	for <lists+intel-gfx@lfdr.de>; Thu, 06 Nov 2025 14:12:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 773D810E0BD;
-	Thu,  6 Nov 2025 13:12:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 882B510E176;
+	Thu,  6 Nov 2025 13:12:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T9Lmu8H4";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="Qlq4pVBc";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="izRk8c/E";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="Qlq4pVBc";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="izRk8c/E";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1B7E89F63;
- Thu,  6 Nov 2025 13:12:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762434759; x=1793970759;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=+GLuU0A60cse281mH/M5tQE6gf/nQMSgXieb2yzMPbk=;
- b=T9Lmu8H4lbKznGoW8rqeJtku+v9sOb6sGc/58z6ou4qmaOWQIIx3TyDn
- i9anp4TGDkZY55Uv8D5QBgCgkbYcXU16MqL0B1EzOSYOvAcpMO5IgmFyH
- zzm/eCFHufkZwxN7Z+zkF7rzq8dZoSyjq9ErbPxzBoZRCZ+LThworcXf/
- mPbUgdU3KPYYNlwFz1z4Obe9Cdd9cB55yWmT5GQbN4NCTE+5ykDYeVWwP
- /hOzD7VzQAv4mgh8dCKMmsdEpGSv3CFSqsVaLktrSlw2FaULQaGF8Z4Cn
- jIT5xzGfDATBzbUQBN5D0PtfcLCY3AxlWW/JC4vU7jBY79EeGGqnwN75f g==;
-X-CSE-ConnectionGUID: zFUWwJ8EQgO7920gNpDokw==
-X-CSE-MsgGUID: 8UxdPObpRKi5KIsPp77+2w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="64495993"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="64495993"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 05:12:39 -0800
-X-CSE-ConnectionGUID: nuFtKJUdSoGEEk4YqK2QNQ==
-X-CSE-MsgGUID: OtNIluKoTze+GS+Fat+u6g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="218417067"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
- ([10.245.244.213])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 05:12:37 -0800
-Date: Thu, 6 Nov 2025 15:12:34 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88CD510E2CA
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Nov 2025 13:12:47 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 36761211D1;
+ Thu,  6 Nov 2025 13:12:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1762434766; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=isWu4PpB97JLoNaYBzb1FWHFAOrEFn4TSVk457XdxLY=;
+ b=Qlq4pVBcc9PsZUbv//SGMBxmULLGqXz1fDgHLjSb5qcc1fw8sHAOkyQxZJhvAYG3Xui4tI
+ mQOYCLKIIr2eYjkOieRjAGTqu6UE3xZsljVzVi3AqDF0gaeCbslhQAVDOTvInvai6Tc6yy
+ qfy8Eajc+YMsRrlYM0Ge832Ls1WG5Y0=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1762434766;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=isWu4PpB97JLoNaYBzb1FWHFAOrEFn4TSVk457XdxLY=;
+ b=izRk8c/EHRvIW0e5ACbU5Kr4xBKA4UHPslsUsn0tAnGEsFE+CBkA2oCbaqm6yf/3LpBT8L
+ lbnEoS8Q4RzHw8DQ==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1762434766; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=isWu4PpB97JLoNaYBzb1FWHFAOrEFn4TSVk457XdxLY=;
+ b=Qlq4pVBcc9PsZUbv//SGMBxmULLGqXz1fDgHLjSb5qcc1fw8sHAOkyQxZJhvAYG3Xui4tI
+ mQOYCLKIIr2eYjkOieRjAGTqu6UE3xZsljVzVi3AqDF0gaeCbslhQAVDOTvInvai6Tc6yy
+ qfy8Eajc+YMsRrlYM0Ge832Ls1WG5Y0=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1762434766;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=isWu4PpB97JLoNaYBzb1FWHFAOrEFn4TSVk457XdxLY=;
+ b=izRk8c/EHRvIW0e5ACbU5Kr4xBKA4UHPslsUsn0tAnGEsFE+CBkA2oCbaqm6yf/3LpBT8L
+ lbnEoS8Q4RzHw8DQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id C287B139A9;
+ Thu,  6 Nov 2025 13:12:45 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id q5g/Ls2eDGkseAAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 06 Nov 2025 13:12:45 +0000
+Date: Thu, 6 Nov 2025 14:12:44 +0100
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
 Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 5/7] drm/i915/ltphy: Nuke bogus weird timeouts
-Message-ID: <aQyewv447ln68vnL@intel.com>
-References: <20251105190433.16434-1-ville.syrjala@linux.intel.com>
- <20251105190433.16434-6-ville.syrjala@linux.intel.com>
- <f5d014e2b968f6b758a6c96210528b7607675945@intel.com>
- <DM3PPF208195D8D46BC28CDE4965CD063A6E3C2A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-fixes
+Message-ID: <20251106131244.GA155679@2a02-2454-fd5e-fd00-d540-1fd5-75b4-d5e2.dyn6.pyur.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <DM3PPF208195D8D46BC28CDE4965CD063A6E3C2A@DM3PPF208195D8D.namprd11.prod.outlook.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-0.997]; MIME_GOOD(-0.10)[text/plain];
+ MISSING_XM_UA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ MIME_TRACE(0.00)[0:+]; RCPT_COUNT_TWELVE(0.00)[16];
+ FUZZY_RATELIMITED(0.00)[rspamd.com]; ARC_NA(0.00)[];
+ FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:url,imap1.dmz-prg2.suse.org:helo]
+X-Spam-Flag: NO
+X-Spam-Score: -4.30
+X-Spam-Level: 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,145 +119,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Nov 06, 2025 at 12:03:28PM +0000, Kandpal, Suraj wrote:
-> > Subject: Re: [PATCH 5/7] drm/i915/ltphy: Nuke bogus weird timeouts
-> > 
-> > On Wed, 05 Nov 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > >
-> > > The LT PHY code is abusing intel_de_wait_custom() in all kinds of
-> > > weird ways. Get rid of the weird slow timeouts. If these are actually
-> > > needed then the fast timeouts should really be specified as the
-> > > default 2 microscond or something.
-> > >
-> > > This will let us eventually nuke intel_de_wait_custom() and convert
-> > > over to poll_timeout_us().
-> > >
-> > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > 
-> > Suraj, any input here?
-> > 
-> > Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> > 
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_lt_phy.c      | 11 +++++------
-> > >  drivers/gpu/drm/i915/display/intel_lt_phy_regs.h |  1 -
-> > >  2 files changed, 5 insertions(+), 7 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-> > > b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-> > > index 6fb68157b322..cc1d6b7a7de4 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-> > > @@ -1178,10 +1178,9 @@ intel_lt_phy_lane_reset(struct intel_encoder
-> > *encoder,
-> > >  	if (intel_de_wait_custom(display, XELPDP_PORT_CLOCK_CTL(display,
-> > port),
-> > >  				 XELPDP_LANE_PCLK_PLL_ACK(0),
-> > >  				 XELPDP_LANE_PCLK_PLL_ACK(0),
-> > > -				 XE3PLPD_MACCLK_TURNON_LATENCY_US,
-> > > -				 XE3PLPD_MACCLK_TURNON_LATENCY_MS,
-> > NULL))
-> > > +				 XE3PLPD_MACCLK_TURNON_LATENCY_US, 0,
-> > NULL))
-> > >  		drm_warn(display->drm, "PHY %c PLL MacCLK assertion Ack
-> > not done after %dus.\n",
-> > > -			 phy_name(phy),
-> > XE3PLPD_MACCLK_TURNON_LATENCY_MS * 1000);
-> > > +			 phy_name(phy),
-> > XE3PLPD_MACCLK_TURNON_LATENCY_US);
-> 
-> According to Bspec: 74499
-> Latency can be either 21us for 1ms depending on what port is connected.
-> 
->  > >
-> > >  	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, port),
-> > >  		     XELPDP_FORWARD_CLOCK_UNGATE,
-> > > @@ -1192,7 +1191,7 @@ intel_lt_phy_lane_reset(struct intel_encoder
-> > > *encoder,
-> > >
-> > >  	if (intel_de_wait_custom(display, XELPDP_PORT_BUF_CTL2(display,
-> > port),
-> > >  				 lane_phy_current_status, 0,
-> > > -				 XE3PLPD_RESET_END_LATENCY_US, 2, NULL))
-> > > +				 XE3PLPD_RESET_END_LATENCY_US, 0, NULL))
-> 
-> Bspec : 74499
-> Says 200us but 2ms (1.5ms to be precise) was the actual time we found the this to work properly
-> 
-> 
-> > >  		drm_warn(display->drm,
-> > >  			 "PHY %c failed to bring out of Lane reset after
-> > %dus.\n",
-> > >  			 phy_name(phy),
-> > XE3PLPD_RESET_END_LATENCY_US); @@ -1674,7 +1673,7
-> > > @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
-> > >  		if (intel_de_wait_custom(display,
-> > XELPDP_PORT_CLOCK_CTL(display, port),
-> > >  					 XELPDP_LANE_PCLK_PLL_ACK(0),
-> > >  					 XELPDP_LANE_PCLK_PLL_ACK(0),
-> > > -
-> > XE3PLPD_MACCLK_TURNON_LATENCY_US, 2, NULL))
-> > > +
-> > XE3PLPD_MACCLK_TURNON_LATENCY_US, 0, NULL))
-> 
-> Ditto here.
-> 
-> > >  			drm_warn(display->drm, "PHY %c PLL MacCLK Ack
-> > assertion Timeout after %dus.\n",
-> > >  				 phy_name(phy),
-> > XE3PLPD_MACCLK_TURNON_LATENCY_US);
-> > >
-> > > @@ -1702,7 +1701,7 @@ void intel_lt_phy_pll_enable(struct intel_encoder
-> > *encoder,
-> > >  		/* 16. Poll for PORT_BUF_CTL2 register PHY Pulse Status = 1
-> > for Owned PHY Lanes. */
-> > >  		if (intel_de_wait_custom(display,
-> > XELPDP_PORT_BUF_CTL2(display, port),
-> > >  					 lane_phy_pulse_status,
-> > lane_phy_pulse_status,
-> > > -
-> > XE3PLPD_RATE_CALIB_DONE_LATENCY_US, 2, NULL))
-> > > +
-> > XE3PLPD_RATE_CALIB_DONE_LATENCY_US, 0, NULL))
-> 
-> Ditto here.
-> I would suggest giving this a CI run on NVLS before merging this.
+Hi Dave, Sima,
 
-Since you have some idea why these magic numbers were chosen
-please redo all of these, and make sure to:
-- don't use intel_de_wait_custom() unless absolutely necessary
-- if you need to use intel_de_wait_custom() then either
-  use the default '2,<whatever ms>' or '<whatever us>,0' timeouts
-- document all the used timeouts. This is especially important
-  when they are not directly specified in bspec
+this is the PR for drm-misc-fixes. Note that there's a UAPI change in
+one of the nouveau fixes.
 
-> 
-> Regards,
-> Suraj Kandpal
-> 
-> > >  			drm_warn(display->drm, "PHY %c PLL rate not
-> > changed after %dus.\n",
-> > >  				 phy_name(phy),
-> > XE3PLPD_RATE_CALIB_DONE_LATENCY_US);
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-> > > b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-> > > index 9223487d764e..36abc2bdbd9b 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-> > > @@ -7,7 +7,6 @@
-> > >  #define __INTEL_LT_PHY_REGS_H__
-> > >
-> > >  #define XE3PLPD_MSGBUS_TIMEOUT_FAST_US	500
-> > > -#define XE3PLPD_MACCLK_TURNON_LATENCY_MS	1
-> > >  #define XE3PLPD_MACCLK_TURNON_LATENCY_US	21
-> > >  #define XE3PLPD_MACCLK_TURNOFF_LATENCY_US	1
-> > >  #define XE3PLPD_RATE_CALIB_DONE_LATENCY_US	50
-> > 
-> > --
-> > Jani Nikula, Intel
+Best regards
+Thomas
+
+drm-misc-fixes-2025-11-06:
+Short summary of fixes pull:
+
+imagination:
+- kconfig: Fix dependencies
+
+nouveau:
+- Set DMA mask earlier
+- Advertize correct modifiers for GB20x
+
+pixpaper:
+- kconfig: Fix dependencies
+
+sched:
+- Fix deadlock
+The following changes since commit 41dacb39fe79cd2fce42d31fa6658d926489a548:
+
+  Merge tag 'drm-xe-fixes-2025-10-30' of https://gitlab.freedesktop.org/drm/xe/kernel into drm-fixes (2025-10-31 19:11:16 +0100)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-11-06
+
+for you to fetch changes up to b750f5a9d64df6cfe9103c7feb7314694318818d:
+
+  drm/tiny: pixpaper: add explicit dependency on MMU (2025-11-06 13:47:29 +0100)
+
+----------------------------------------------------------------
+Short summary of fixes pull:
+
+imagination:
+- kconfig: Fix dependencies
+
+nouveau:
+- Set DMA mask earlier
+- Advertize correct modifiers for GB20x
+
+pixpaper:
+- kconfig: Fix dependencies
+
+sched:
+- Fix deadlock
+
+----------------------------------------------------------------
+James Jones (2):
+      drm: define NVIDIA DRM format modifiers for GB20x
+      drm/nouveau: Advertise correct modifiers on GB20x
+
+LiangCheng Wang (1):
+      drm/tiny: pixpaper: add explicit dependency on MMU
+
+Matt Coster (1):
+      drm/imagination: Optionally depend on POWER_SEQUENCING
+
+Pierre-Eric Pelloux-Prayer (1):
+      drm/sched: Fix deadlock in drm_sched_entity_kill_jobs_cb
+
+Timur Tabi (1):
+      drm/nouveau: set DMA mask before creating the flush page
+
+ drivers/gpu/drm/imagination/Kconfig              |  1 +
+ drivers/gpu/drm/nouveau/dispnv50/disp.c          |  4 ++-
+ drivers/gpu/drm/nouveau/dispnv50/disp.h          |  1 +
+ drivers/gpu/drm/nouveau/dispnv50/wndw.c          | 24 +++++++++++++++--
+ drivers/gpu/drm/nouveau/dispnv50/wndwca7e.c      | 33 +++++++++++++++++++++++
+ drivers/gpu/drm/nouveau/nvkm/engine/device/pci.c | 24 ++++++++---------
+ drivers/gpu/drm/scheduler/sched_entity.c         | 34 +++++++++++++-----------
+ drivers/gpu/drm/tiny/Kconfig                     |  1 +
+ include/uapi/drm/drm_fourcc.h                    | 23 ++++++++++------
+ 9 files changed, 107 insertions(+), 38 deletions(-)
 
 -- 
-Ville Syrjälä
-Intel
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
