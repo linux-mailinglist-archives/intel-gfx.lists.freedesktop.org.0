@@ -2,67 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2FCEC3B280
-	for <lists+intel-gfx@lfdr.de>; Thu, 06 Nov 2025 14:18:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD6AAC3B28D
+	for <lists+intel-gfx@lfdr.de>; Thu, 06 Nov 2025 14:19:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EC9A10E8BA;
-	Thu,  6 Nov 2025 13:18:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5764F10E8BB;
+	Thu,  6 Nov 2025 13:19:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MbqGBY8h";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KnawPbps";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10A8D10E8B1;
- Thu,  6 Nov 2025 13:18:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1F4010E8B7;
+ Thu,  6 Nov 2025 13:19:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762435137; x=1793971137;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=eG42LuezVAJhiRCoLsiCOy0GU4Ods4xOMnqnjamJeAU=;
- b=MbqGBY8h9l/16NYBbNhYPKrAWNGHmDA19yvwSc9u8i1PyFsp2DKVtruE
- oYhvbSRJmpRGZ6ydPyp33WgPy7ebINQBT5zvzwzSEIFuuAjf6QIe5VOI4
- f8M1TElAsW+V9gIl191kbzOu26KMhxbTQuWNA4OxKzWSLI/hzWADeZXH7
- fo/eWr0HL1+qvLPCAls0bKVXvxZ/0FASBkCuTti4BRHPn+OuiKLDApUI6
- NNSAjAGoh8uQTKsjz4d06hGEmYvJYObBUv6jy2uAiXHhDHXLiEeqfv+Tr
- TD0EAn5DEuXqjaxTyvWUUpaMZCN+PVHYXe2/FW2SjQocQL0kRCIdm7sEl w==;
-X-CSE-ConnectionGUID: dcxVjGmoSMazHCtPFx+mJQ==
-X-CSE-MsgGUID: cxRHVZ8ITkux44WGOHMNrw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="87199499"
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="87199499"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 05:18:57 -0800
-X-CSE-ConnectionGUID: mQ2wvDmGSo+3yKtQjAAPbA==
-X-CSE-MsgGUID: GlyJGNwIQAa8UuK0cxfcJg==
+ t=1762435161; x=1793971161;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=z7ivmT0ZPuCRxkTOzSgGdUGzW1oRYlubSxneSU8Kljs=;
+ b=KnawPbpsj9+BqeTyxMG83aUGQlitWp+HoPwug+dv6JnghxdJOGqGJ+Lu
+ fkoJi4NNWDWqLnxgkmWoQtvWAIbE0AMDfO4LYzMatpoFvajzUImNSZ50q
+ q9o6DztzWp7dERvIXNuXQFPEYkS0huewKlI7zeplmus4uelUURIwqaZcV
+ F5/F/ZYkiIx7kItKyVRKqI42QJPpTxn9GBh6If89HnCMro+MNuThIF7DI
+ 7isliwJDx4A7eAHA2Gs6P0oopQWkDeWx2fez7GKSXIVBrgUlzgxJ8IwMB
+ jRIcguwTSUkFqBbZAEfvFCCOzMtwdZbJqlSr5Rx9JxsCHhZH/IlyFyiJB w==;
+X-CSE-ConnectionGUID: LyOSYeDrQcOALGSW4e9YWA==
+X-CSE-MsgGUID: la3eIsB2QuKsaKKkcYaqfA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="75178547"
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="75178547"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 05:19:20 -0800
+X-CSE-ConnectionGUID: V7TAtvDIRbmUyq0gSEP63w==
+X-CSE-MsgGUID: peZNdVTQSdKcD/pUhQ08SA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="192924822"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.73])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 05:18:53 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org,
- Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- Petri Latvala <adrinael@adrinael.net>,
- Zbigniew =?UTF-8?B?S2VtcGN6ecWEc2tp?= <zbigniew.kempczynski@intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Thomas =?UTF-8?B?SGVsbHN0csO2bQ==?= <thomas.hellstrom@linux.intel.com>,
- Ayaz A Siddiqui <ayaz.siddiqui@intel.com>,
- Ashutosh Dixit <ashutosh.dixit@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: Re: [PATCH i-g-t] tests/gem_lmem_swapping: Suppress output from
- killed oom helpers
-Date: Thu, 06 Nov 2025 14:18:51 +0100
-Message-ID: <2264332.C4sosBPzcN@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20251104164225.473297-2-janusz.krzysztofik@linux.intel.com>
-References: <20251104164225.473297-2-janusz.krzysztofik@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="191852205"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.65])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 05:19:18 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ "Kandpal, Suraj" <suraj.kandpal@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 5/7] drm/i915/ltphy: Nuke bogus weird timeouts
+In-Reply-To: <aQyewv447ln68vnL@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251105190433.16434-1-ville.syrjala@linux.intel.com>
+ <20251105190433.16434-6-ville.syrjala@linux.intel.com>
+ <f5d014e2b968f6b758a6c96210528b7607675945@intel.com>
+ <DM3PPF208195D8D46BC28CDE4965CD063A6E3C2A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+ <aQyewv447ln68vnL@intel.com>
+Date: Thu, 06 Nov 2025 15:19:16 +0200
+Message-ID: <46ab856eab5fec27a57ce70fd4c6f454c580432f@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,75 +75,160 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Sorry for responding to myself, but some self-criticism is needed.
+On Thu, 06 Nov 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Thu, Nov 06, 2025 at 12:03:28PM +0000, Kandpal, Suraj wrote:
+>> > Subject: Re: [PATCH 5/7] drm/i915/ltphy: Nuke bogus weird timeouts
+>> >=20
+>> > On Wed, 05 Nov 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wro=
+te:
+>> > > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> > >
+>> > > The LT PHY code is abusing intel_de_wait_custom() in all kinds of
+>> > > weird ways. Get rid of the weird slow timeouts. If these are actually
+>> > > needed then the fast timeouts should really be specified as the
+>> > > default 2 microscond or something.
+>> > >
+>> > > This will let us eventually nuke intel_de_wait_custom() and convert
+>> > > over to poll_timeout_us().
+>> > >
+>> > > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.co=
+m>
+>> >=20
+>> > Suraj, any input here?
+>> >=20
+>> > Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+>> >=20
+>> > > ---
+>> > >  drivers/gpu/drm/i915/display/intel_lt_phy.c      | 11 +++++------
+>> > >  drivers/gpu/drm/i915/display/intel_lt_phy_regs.h |  1 -
+>> > >  2 files changed, 5 insertions(+), 7 deletions(-)
+>> > >
+>> > > diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c
+>> > > b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+>> > > index 6fb68157b322..cc1d6b7a7de4 100644
+>> > > --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
+>> > > +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+>> > > @@ -1178,10 +1178,9 @@ intel_lt_phy_lane_reset(struct intel_encoder
+>> > *encoder,
+>> > >  	if (intel_de_wait_custom(display, XELPDP_PORT_CLOCK_CTL(display,
+>> > port),
+>> > >  				 XELPDP_LANE_PCLK_PLL_ACK(0),
+>> > >  				 XELPDP_LANE_PCLK_PLL_ACK(0),
+>> > > -				 XE3PLPD_MACCLK_TURNON_LATENCY_US,
+>> > > -				 XE3PLPD_MACCLK_TURNON_LATENCY_MS,
+>> > NULL))
+>> > > +				 XE3PLPD_MACCLK_TURNON_LATENCY_US, 0,
+>> > NULL))
+>> > >  		drm_warn(display->drm, "PHY %c PLL MacCLK assertion Ack
+>> > not done after %dus.\n",
+>> > > -			 phy_name(phy),
+>> > XE3PLPD_MACCLK_TURNON_LATENCY_MS * 1000);
+>> > > +			 phy_name(phy),
+>> > XE3PLPD_MACCLK_TURNON_LATENCY_US);
+>>=20
+>> According to Bspec: 74499
+>> Latency can be either 21us for 1ms depending on what port is connected.
+>>=20
+>>  > >
+>> > >  	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, port),
+>> > >  		     XELPDP_FORWARD_CLOCK_UNGATE,
+>> > > @@ -1192,7 +1191,7 @@ intel_lt_phy_lane_reset(struct intel_encoder
+>> > > *encoder,
+>> > >
+>> > >  	if (intel_de_wait_custom(display, XELPDP_PORT_BUF_CTL2(display,
+>> > port),
+>> > >  				 lane_phy_current_status, 0,
+>> > > -				 XE3PLPD_RESET_END_LATENCY_US, 2, NULL))
+>> > > +				 XE3PLPD_RESET_END_LATENCY_US, 0, NULL))
+>>=20
+>> Bspec : 74499
+>> Says 200us but 2ms (1.5ms to be precise) was the actual time we found th=
+e this to work properly
+>>=20
+>>=20
+>> > >  		drm_warn(display->drm,
+>> > >  			 "PHY %c failed to bring out of Lane reset after
+>> > %dus.\n",
+>> > >  			 phy_name(phy),
+>> > XE3PLPD_RESET_END_LATENCY_US); @@ -1674,7 +1673,7
+>> > > @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
+>> > >  		if (intel_de_wait_custom(display,
+>> > XELPDP_PORT_CLOCK_CTL(display, port),
+>> > >  					 XELPDP_LANE_PCLK_PLL_ACK(0),
+>> > >  					 XELPDP_LANE_PCLK_PLL_ACK(0),
+>> > > -
+>> > XE3PLPD_MACCLK_TURNON_LATENCY_US, 2, NULL))
+>> > > +
+>> > XE3PLPD_MACCLK_TURNON_LATENCY_US, 0, NULL))
+>>=20
+>> Ditto here.
+>>=20
+>> > >  			drm_warn(display->drm, "PHY %c PLL MacCLK Ack
+>> > assertion Timeout after %dus.\n",
+>> > >  				 phy_name(phy),
+>> > XE3PLPD_MACCLK_TURNON_LATENCY_US);
+>> > >
+>> > > @@ -1702,7 +1701,7 @@ void intel_lt_phy_pll_enable(struct intel_enco=
+der
+>> > *encoder,
+>> > >  		/* 16. Poll for PORT_BUF_CTL2 register PHY Pulse Status =3D 1
+>> > for Owned PHY Lanes. */
+>> > >  		if (intel_de_wait_custom(display,
+>> > XELPDP_PORT_BUF_CTL2(display, port),
+>> > >  					 lane_phy_pulse_status,
+>> > lane_phy_pulse_status,
+>> > > -
+>> > XE3PLPD_RATE_CALIB_DONE_LATENCY_US, 2, NULL))
+>> > > +
+>> > XE3PLPD_RATE_CALIB_DONE_LATENCY_US, 0, NULL))
+>>=20
+>> Ditto here.
+>> I would suggest giving this a CI run on NVLS before merging this.
+>
+> Since you have some idea why these magic numbers were chosen
+> please redo all of these, and make sure to:
+> - don't use intel_de_wait_custom() unless absolutely necessary
+> - if you need to use intel_de_wait_custom() then either
+>   use the default '2,<whatever ms>' or '<whatever us>,0' timeouts
+> - document all the used timeouts. This is especially important
+>   when they are not directly specified in bspec
 
-On Tuesday, 4 November 2025 17:42:19 CET Janusz Krzysztofik wrote:
-> Dynamic sub-subtests of smem-oom subtest spawn smem memory hog helper
-> processes which are expected to be killed by OOM killer.  When that
-> happens, a default IGT signal helper inherited from its parent process is
-> now executed inside the helper process.  That leads to a dynamic sub-
-> subtest CRASH result message sent to stdout, followed by a parent subtest
-> SUCCESS result message.  Meanwhile, processing of the dynamic sub-subtest
-> that spawned that helper still continues, and then another set of result
-> messages is submitted on its completion.  As a consequence, ambiguous
-> results from that dynamic sub-subtests and its parent subtest are detected
-> and reported by igt_runner, even if an error code returned by the helper
-> is ignored.
-> 
-> Shut those redundant messages up by installing a custom signal handler
-> that just exists the helper process when killed by the OOM killer, without
-> reporting any IGT results or executing any IGT exit handlers.
-> 
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5493
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> ---
->  tests/intel/gem_lmem_swapping.c | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/tests/intel/gem_lmem_swapping.c b/tests/intel/gem_lmem_swapping.c
-> index 8e0dac42d8..5e11092c04 100644
-> --- a/tests/intel/gem_lmem_swapping.c
-> +++ b/tests/intel/gem_lmem_swapping.c
-> @@ -668,6 +668,11 @@ static void smem_oom_exit_handler(int sig)
->  	(*lmem_done)++;
->  }
->  
-> +static void smem_oom_helper_sig_handler(int sig)
-> +{
-> +	_exit(0);
-> +}
-> +
->  static void test_smem_oom(int i915,
->  			  const intel_ctx_t *ctx,
->  			  struct drm_i915_memory_region_info *region)
-> @@ -706,6 +711,8 @@ static void test_smem_oom(int i915,
->  	while (!READ_ONCE(*lmem_done)) {
->  		igt_fork_helper(&smem_proc) {
->  			igt_fork(child, 1) {
-> +				signal(SIGBUS, smem_oom_helper_sig_handler);
-> +
->  				for (int pass = 0; pass < num_alloc; pass++) {
->  					if (READ_ONCE(*lmem_done))
->  						break;
-> @@ -715,6 +722,8 @@ static void test_smem_oom(int i915,
->  			igt_fork(child, 1) {
->  				int fd = drm_reopen_driver(i915);
->  
-> +				signal(SIGBUS, smem_oom_helper_sig_handler);
+Yeah, should be intel_de_wait_for_{set,clear}() then probably.
 
-While this patch looked to me like resolving the issue when I test tested it, 
-SIGBUS is not a direct indication of a process being killed by OOM killer.  
-More deep analysis is needed.  Please forget this patch.
+We should probably change all of those from ms to us units to make them
+more generally useful also for shorter waits.
 
-Thanks,
-Janusz
-
-> +
->  				for (int pass = 0; pass < num_alloc; pass++) {
->  					if (READ_ONCE(*lmem_done))
->  						break;
-> 
+BR,
+Jni.
 
 
+>
+>>=20
+>> Regards,
+>> Suraj Kandpal
+>>=20
+>> > >  			drm_warn(display->drm, "PHY %c PLL rate not
+>> > changed after %dus.\n",
+>> > >  				 phy_name(phy),
+>> > XE3PLPD_RATE_CALIB_DONE_LATENCY_US);
+>> > >
+>> > > diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
+>> > > b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
+>> > > index 9223487d764e..36abc2bdbd9b 100644
+>> > > --- a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
+>> > > +++ b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
+>> > > @@ -7,7 +7,6 @@
+>> > >  #define __INTEL_LT_PHY_REGS_H__
+>> > >
+>> > >  #define XE3PLPD_MSGBUS_TIMEOUT_FAST_US	500
+>> > > -#define XE3PLPD_MACCLK_TURNON_LATENCY_MS	1
+>> > >  #define XE3PLPD_MACCLK_TURNON_LATENCY_US	21
+>> > >  #define XE3PLPD_MACCLK_TURNOFF_LATENCY_US	1
+>> > >  #define XE3PLPD_RATE_CALIB_DONE_LATENCY_US	50
+>> >=20
+>> > --
+>> > Jani Nikula, Intel
 
-
+--=20
+Jani Nikula, Intel
