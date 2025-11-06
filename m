@@ -2,59 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBE82C3C214
-	for <lists+intel-gfx@lfdr.de>; Thu, 06 Nov 2025 16:43:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79CE3C3C2E0
+	for <lists+intel-gfx@lfdr.de>; Thu, 06 Nov 2025 16:52:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DF9C10E93C;
-	Thu,  6 Nov 2025 15:43:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4F8B10E938;
+	Thu,  6 Nov 2025 15:52:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K4zqGMPu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nPTeAVzF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 323C110E939;
- Thu,  6 Nov 2025 15:43:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 469E610E938;
+ Thu,  6 Nov 2025 15:52:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762443797; x=1793979797;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=3kV5lMt1Ie4KK6cGy7Hl1D3bv7j6mWnT/9uk9JNIvQw=;
- b=K4zqGMPuM6hbLI7citpHG4ZbbWFCCSK6gbr2MDKzVv8DutzWUR1RszVz
- w2gjo+jBSii1YRMKiwBiusboAElVKIVG5URX3srCYDXll6CrEBCRZTFhl
- +glJoPoUpPpRDA85EZK2gu91j/v1iBUGcO4kEeslsR+JQXzCDo4DSwuVP
- yQWT2KCinwpkZ3Eaij9LMTDiL1YMLf45bTwiwvp3IjM4hKEdcVmIUZW9X
- d8qu1w0mPYwUIlmPtpJ+MD52lpa8Ly8CLGIXa5avxeom18jaWraz+PZEn
- FxdI+xxD0Yyj6wSmN/HIDwvogX/fQ5BOMtMOBtJaqYcMXpEiwtj0LjfeQ w==;
-X-CSE-ConnectionGUID: wrfrek9wQx2TET3NBZxMOQ==
-X-CSE-MsgGUID: LJHaA5GFScCfdDDbEgRmQA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="90053528"
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="90053528"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 07:43:17 -0800
-X-CSE-ConnectionGUID: GWJ5p4GhQXilHDixUNHOrw==
-X-CSE-MsgGUID: k95R+4lmQRONdULwmvzsnQ==
+ t=1762444374; x=1793980374;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=qwm0zKAescSS4O7pIqHNqAnkZngQbauRcMO25l7Sjy0=;
+ b=nPTeAVzF/3tgnnqn3bZO7Z3W9QUmJH61BKnHjeERUx9sfzg46FUJx0Eq
+ /rJAu+mI++uLM5WYJDRGYuzs5PHho5hjTrzaeWDu6Ek5vzBQu0NB6gc5r
+ AP2jayOAHC3RabuJ68GZ2sw4gOh2xW+pdE0jAo19KhW1YphnKVU/PyI0j
+ VYdAS4JFIu+m0epdyx5HLpK2DAMKKlWFjVrnCK974ZIgkML04kvdm5lGQ
+ MSoj2dukvG2fsDouD/q9/acBvptj/N39bddaSOwSBxouf81fOG2Hevksi
+ G1xBs3gBgTzS4Xr0AzrvzHkK49V7/bZT0xl0XWIgVbn0gC66q2ocUQiLr w==;
+X-CSE-ConnectionGUID: N9Gai7H3SnCYEs8EJqL1iQ==
+X-CSE-MsgGUID: sHUn2XgOQp6UXhc0n9PbPw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="68445128"
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="68445128"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 07:52:54 -0800
+X-CSE-ConnectionGUID: cO9osaIvTxq7qaXHSChA5Q==
+X-CSE-MsgGUID: Qcg2bEYqQtuRtMminWGAKw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="188506153"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.65])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 07:43:15 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 00/10] drm/i915: Stop the intel_de_wait_custom() abuse
-In-Reply-To: <20251106152049.21115-1-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251106152049.21115-1-ville.syrjala@linux.intel.com>
-Date: Thu, 06 Nov 2025 17:43:12 +0200
-Message-ID: <e83b667c90f6c4a92b3d67c63a49954bade3da0a@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="225037855"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.213])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 07:52:52 -0800
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org,
+	Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH v3 07/10] drm/i915/cx0:
+ s/XELPDP_PORT_RESET_END_TIMEOUT/XELPDP_PORT_RESET_END_TIMEOUT_MS/
+Date: Thu,  6 Nov 2025 17:52:49 +0200
+Message-ID: <20251106155249.2810-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.49.1
+In-Reply-To: <20251106152049.21115-8-ville.syrjala@linux.intel.com>
+References: <20251106152049.21115-8-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,51 +72,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 06 Nov 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Get rid of all the custom fast vs. slow intel_de_wait_custom()
-> timeouts that have started to spread like a cancer recently.
->
-> The eventual aim is to get rid of the fast vs. slow timeout
-> stuff entirely and switch over to poll_timeout_us()...
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Are you planning on still having intel_de_wait_something_something, or
-do you mean using poll_timeout_us() directly?
+Include the units the in the define name for XELPDP_PORT_RESET_END_TIMEOUT
+to make it match all its other counterparts.
 
-I think I like the intel_de_* wait helpers, but just a coherent small
-set, and everything beyond that should use poll_timeout_us() instead of
-adding obscure helpers for one-off cases.
+v2: It's _MS not _US (Jani)
 
-BR,
-Jani.
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c      | 2 +-
+ drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index dd1429fa5028..1551d30ec584 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -2926,7 +2926,7 @@ static void intel_cx0_phy_lane_reset(struct intel_encoder *encoder,
+ 
+ 	if (intel_de_wait_for_clear(display, XELPDP_PORT_BUF_CTL2(display, port),
+ 				    lane_phy_current_status,
+-				    XELPDP_PORT_RESET_END_TIMEOUT))
++				    XELPDP_PORT_RESET_END_TIMEOUT_MS))
+ 		drm_warn(display->drm,
+ 			 "PHY %c failed to bring out of lane reset\n",
+ 			 phy_name(phy));
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+index 715ca004516a..8df5cd5ce418 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+@@ -80,7 +80,7 @@
+ #define XELPDP_PORT_BUF_SOC_READY_TIMEOUT_US		100
+ #define XELPDP_PORT_RESET_START_TIMEOUT_US		5
+ #define XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_MS		2
+-#define XELPDP_PORT_RESET_END_TIMEOUT			15
++#define XELPDP_PORT_RESET_END_TIMEOUT_MS		15
+ #define XELPDP_REFCLK_ENABLE_TIMEOUT_US			1
+ 
+ #define _XELPDP_PORT_BUF_CTL1_LN0_A			0x64004
+-- 
+2.49.1
 
->
-> v2: Drop the extraneous timeout debugs to make it simpler to change them
->     Use the slow timeout in all cases where we have both slow and fast
->
-> Ville Syrj=C3=A4l=C3=A4 (10):
->   drm/i915/cx0: Print the correct timeout
->   drm/i915/cx0: Nuke extraneous timeout debugs
->   drm/i915/ltphy: Nuke extraneous timeout debugs
->   drm/i915/cx0: Replace XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_US with
->     XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_MS
->   drm/i915/cx0: Get rid of XELPDP_MSGBUS_TIMEOUT_FAST_US
->   drm/i915/cx0: s/XELPDP_MSGBUS_TIMEOUT_SLOW/XELPDP_MSGBUS_TIMEOUT_MS/
->   drm/i915/cx0:
->     s/XELPDP_PORT_RESET_END_TIMEOUT/XELPDP_PORT_RESET_END_TIMEOUT_US/
->   drm/i915/ltphy: Nuke bogus weird timeouts
->   drm/i915/hdcp: Use the default 2 usec fast polling timeout
->   drm/i915/pmdemand: Use the default 2 usec fast polling timeout
->
->  drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 52 +++++++++----------
->  .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  7 ++-
->  drivers/gpu/drm/i915/display/intel_hdcp.c     |  2 +-
->  drivers/gpu/drm/i915/display/intel_lt_phy.c   | 47 ++++++++---------
->  .../gpu/drm/i915/display/intel_lt_phy_regs.h  |  7 ++-
->  drivers/gpu/drm/i915/display/intel_pmdemand.c |  2 +-
->  6 files changed, 54 insertions(+), 63 deletions(-)
-
---=20
-Jani Nikula, Intel
