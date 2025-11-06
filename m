@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85362C3C02A
-	for <lists+intel-gfx@lfdr.de>; Thu, 06 Nov 2025 16:21:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05D68C3C02D
+	for <lists+intel-gfx@lfdr.de>; Thu, 06 Nov 2025 16:21:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A28610E930;
-	Thu,  6 Nov 2025 15:21:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FB8810E932;
+	Thu,  6 Nov 2025 15:21:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iURHM/1y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XFGGxBOC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EB9010E930;
- Thu,  6 Nov 2025 15:21:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D2AD10E932;
+ Thu,  6 Nov 2025 15:21:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762442489; x=1793978489;
+ t=1762442493; x=1793978493;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QTkoW5fGY+SXCZlQO9xmCRR5SwSoEIsebI6/bpr9EGY=;
- b=iURHM/1yi9ILIOStJxVmMcheBwSmgSavYElqqYzlhe0dpcWN0THsgCs2
- gicSBA1PZapwh09r41H6SuNFNRb3zeDvBlVkWlFV/fMtkmDmkLM7GOBvn
- DOX+mHovnZPlLMyEO/RGwJIJ0kmXIZQWHLXEoMyoC20RM1H5o/fUxxdya
- G9L+bhW1Q+JOOqZPvEfYNfIyvs/R+ruC2XV2kThukbJeMHtgFEBVxyaQ3
- 2CvaAjZnJQbbb+fMefbR1qpRDpVOMJsQwt5fnsp8aPWdV38s59cuYKDzQ
- 5vgYwbdqAKGTEVJ9pNlVQ1Fs+6J6qw0nrCBABOR/MD4NNLiNVsSZzKSxl Q==;
-X-CSE-ConnectionGUID: w32k1W55Q1Wdi2B0anoHPg==
-X-CSE-MsgGUID: xsQII5jRQ9CrtC2+zjmQZA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="81985557"
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="81985557"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 07:21:29 -0800
-X-CSE-ConnectionGUID: GrTrqVGwSVmwE+pKcL3aTA==
-X-CSE-MsgGUID: im/YpWBFQeO+kVPFYibnaA==
+ bh=r8JLmsKFs6ih8RPC380EKVOxX9KV5J6+IRJRxcEGcU4=;
+ b=XFGGxBOCyIZ2RVKWXFDL8bZ+we5DkmrGHAqRF8fVR45NXcjQRvWmvhWH
+ NnlRBPovXuahNO0Qr4Oyl4dg26cG7O2XaHXvbzEtvVGT74K1RTzX9d4nY
+ 0Tlh+sWeWO490SFLTCSZhsKhi06tj8F9xLKxRnD4/77ESNvr6twWXqkPs
+ +VAgiAHSGOw9dez9tB6ITMyN5ADA8f3QKEj80cDnnlLli05+/wBsr5d2J
+ iPD5dVQeBkKlToG96Oa0YDzLzZt+XmY2E1YfgLEEVXabNdDrqvdZf6P2L
+ LaY+9KkHAuerXVVhuNLrxEi6EVPQqL0ClXYUhzIQbK0ngNbMcTYuO3bIE w==;
+X-CSE-ConnectionGUID: 7qzIc7Z+RW+KZYA3R/qc3Q==
+X-CSE-MsgGUID: uIf9JJV9QgWKB7WA6j4ADw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="75190000"
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="75190000"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 07:21:33 -0800
+X-CSE-ConnectionGUID: lzLva43NQK+b1PheF0C7lw==
+X-CSE-MsgGUID: 7fP9+wgZSYuM4oU80qwpew==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="187625495"
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="187444575"
 Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
  ([10.245.244.213])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 07:21:27 -0800
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 07:21:31 -0800
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v2 09/10] drm/i915/hdcp: Use the default 2 usec fast polling
- timeout
-Date: Thu,  6 Nov 2025 17:20:48 +0200
-Message-ID: <20251106152049.21115-10-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 10/10] drm/i915/pmdemand: Use the default 2 usec fast
+ polling timeout
+Date: Thu,  6 Nov 2025 17:20:49 +0200
+Message-ID: <20251106152049.21115-11-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20251106152049.21115-1-ville.syrjala@linux.intel.com>
 References: <20251106152049.21115-1-ville.syrjala@linux.intel.com>
@@ -74,8 +74,8 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-For whatever unknown reason the HDCP code is using a custom
-10 usec fast polling timeout instead of the normal 2 usec
+For whatever unknown reason the pmdemand code is using a custom
+50 usec fast polling timeout instead of the normal 2 usec
 value. Switch to the standard value to get rid of the special
 case.
 
@@ -85,22 +85,22 @@ entirely and switch over to poll_timeout_us().
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdcp.c | 2 +-
+ drivers/gpu/drm/i915/display/intel_pmdemand.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 7195e8cf671c..d01733b6460e 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -412,7 +412,7 @@ static int intel_hdcp_load_keys(struct intel_display *display)
- 	/* Wait for the keys to load (500us) */
- 	ret = intel_de_wait_custom(display, HDCP_KEY_STATUS,
- 				   HDCP_KEY_LOAD_DONE, HDCP_KEY_LOAD_DONE,
--				   10, 1, &val);
-+				   2, 1, &val);
- 	if (ret)
- 		return ret;
- 	else if (!(val & HDCP_KEY_LOAD_STATUS))
+diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+index f52abd4e2eb0..22d8f720ae7d 100644
+--- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
++++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+@@ -464,7 +464,7 @@ static void intel_pmdemand_poll(struct intel_display *display)
+ 
+ 	ret = intel_de_wait_custom(display, XELPDP_INITIATE_PMDEMAND_REQUEST(1),
+ 				   XELPDP_PMDEMAND_REQ_ENABLE, 0,
+-				   50, timeout_ms, &status);
++				   2, timeout_ms, &status);
+ 
+ 	if (ret == -ETIMEDOUT)
+ 		drm_err(display->drm,
 -- 
 2.49.1
 
