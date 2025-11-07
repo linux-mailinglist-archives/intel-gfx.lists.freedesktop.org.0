@@ -2,115 +2,81 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E5F2C46F76
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BD64C46F77
 	for <lists+intel-gfx@lfdr.de>; Mon, 10 Nov 2025 14:41:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3C4410E3BA;
-	Mon, 10 Nov 2025 13:41:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 146C810E3BB;
+	Mon, 10 Nov 2025 13:41:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=shazbot.org header.i=@shazbot.org header.b="OE/wrqxG";
-	dkim=permerror (0-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="zxzrpVEV";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="LcHLVMO3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fout-a7-smtp.messagingengine.com
- (fout-a7-smtp.messagingengine.com [103.168.172.150])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 156C510E7A9;
- Wed,  5 Nov 2025 20:58:09 +0000 (UTC)
-Received: from phl-compute-06.internal (phl-compute-06.internal [10.202.2.46])
- by mailfout.phl.internal (Postfix) with ESMTP id 3DB02EC012B;
- Wed,  5 Nov 2025 15:58:08 -0500 (EST)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
- by phl-compute-06.internal (MEProxy); Wed, 05 Nov 2025 15:58:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shazbot.org; h=
- cc:cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm2; t=1762376288;
- x=1762462688; bh=bpCzCkKrcUczJBiapWyBhft91LY4ONtBZa3BUBZWi7o=; b=
- OE/wrqxGsiZIWikyNBBjFckOUmtPEs40Alj+a4qmuOo3vw5173Sx2QDctyWe9d24
- HXoVEOyMy57eyGy6gS1VtNHq7zb4XQvD0BNX4pDR0vvCG5uWvBCVvNqHYY3qlEjv
- J1iA1oMYrlI4TCED7nCVec1x6G+I2pgF+PqrsU8px+PY3QmkdwRaUupApUzh9b5s
- qpLH6DLCWnZCE9Xn4iOn0AHa1K8DcA2/CpdhJc/sdYtxGR3nlHVoj62FZI7GXjPl
- nNNPUtRlatgYwGe6BRI1AgWJEWn5ADJEU1uSAlS+RJw1snSvaQ7qrzLdOOt2WqRM
- /tKiqoxv93HTWFEYgVUWUg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1762376288; x=
- 1762462688; bh=bpCzCkKrcUczJBiapWyBhft91LY4ONtBZa3BUBZWi7o=; b=z
- xzrpVEVCflxh+kcu9HbQrmVcwqQ55AVIjZvID/ubhtcbRFJo+ynKUwLLPEYQ9Qa4
- tVMjuhTNOq/c5zmmUb967XCH9HIxuvNSl78HtQy7xF4XbKvOpy6GUL6caBBvljx7
- 6GpKUY26TJO2w0rtoRSHusaNDBqp8ZyBWtsdyJwrlMr9ibzKGQATxarnC8zfI8IQ
- J6ANZotCWrpRDci+JS63M3UCOAhfpzGcF5eb9+mhBMm3bUTgxcXoPjScmq2pcC10
- dYSXDk3Q7ZV/hbTtqSU897ZJBdgdU4C7XCJHepM0HheVjS048xDuGeqMV7r8gzm3
- 0xB4j+LYwsqqtomKYdoeQ==
-X-ME-Sender: <xms:X7oLaboCIWYrewmLsoV4II0VkCTNYhQngGOf71K0pqknQrxE1A6QJA>
- <xme:X7oLae0atiWFsM_Y4WTC0ygHKkYtQo1iVHfafvjHMXBOzujMLGGQ9elBgCwJuXR91
- 5VEB0xUDpXAQZlZd09f-ErfPJBMIs0lwJyw6QhsBSNugBEErZHGAQ>
-X-ME-Received: <xmr:X7oLaceXI6CoSF6DlBhb8Qhu7LcQyZnnz29Gz4M6b23x7zxJ32lFuXdF>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggddukeegledvucetufdoteggodetrf
- dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
- rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
- gurhepfffhvfevuffkjghfgggtgfesthejredttddtvdenucfhrhhomheptehlvgigucgh
- ihhllhhirghmshhonhcuoegrlhgvgiesshhhrgiisghothdrohhrgheqnecuggftrfgrth
- htvghrnhepteetudelgeekieegudegleeuvdffgeehleeivddtfeektdekkeehffehudet
- hffhnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
- hlvgigsehshhgriigsohhtrdhorhhgpdhnsggprhgtphhtthhopeegtddpmhhouggvpehs
- mhhtphhouhhtpdhrtghpthhtohepshhmohhsthgrfhgrsehgohhoghhlvgdrtghomhdprh
- gtphhtthhopehjghhgsehnvhhiughirgdrtghomhdprhgtphhtthhopegrghhorhguvggv
- vheslhhinhhugidrihgsmhdrtghomhdprhgtphhtthhopegrihhrlhhivggusehgmhgrih
- hlrdgtohhmpdhrtghpthhtoheprghlvgigrdifihhllhhirghmshhonhesrhgvughhrght
- rdgtohhmpdhrtghpthhtoheprghnkhhithgrsehnvhhiughirgdrtghomhdprhgtphhtth
- hopegsohhrnhhtrhgrvghgvghrsehlihhnuhigrdhisghmrdgtohhmpdhrtghpthhtohep
- sghrvghtthdrtghrvggvlhgvhiesrghmugdrtghomhdprhgtphhtthhopegurhhiqdguvg
- hvvghlsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
-X-ME-Proxy: <xmx:X7oLaUpsYLbzky4HfYBo4L9AWKo9LiaN-JyDWpw22jO9sgY6A_FHYw>
- <xmx:X7oLaWXOvxYIen10joXg5rvWxjPUTGt5Kk6o0KXmxSbJ3JjlvpOkxw>
- <xmx:X7oLaROT5U5geIv_xpyU6PxpNDjswNgYCGlrh6ZtgQqw3DKC11RHMA>
- <xmx:X7oLaaBAIS7AUXuUXtD-AjFUupFBTZ0GRs4k0JtY6Gpx5M8hwmoqtg>
- <xmx:YLoLaXP9q97srOrCNOYSTjSxeimsXeAsJ-ySUhe4psuHo5t_JOJJOcH0>
-Feedback-ID: i03f14258:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 5 Nov 2025 15:58:05 -0500 (EST)
-Date: Wed, 5 Nov 2025 13:58:04 -0700
-From: Alex Williamson <alex@shazbot.org>
-To: Mostafa Saleh <smostafa@google.com>, Jason Gunthorpe <jgg@nvidia.com>
-Cc: Alexander Gordeev <agordeev@linux.ibm.com>,
- David Airlie <airlied@gmail.com>,
- Alex Williamson <alex.williamson@redhat.com>,
- Ankit Agrawal <ankita@nvidia.com>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- Brett Creeley <brett.creeley@amd.com>, dri-devel@lists.freedesktop.org,
- Eric Auger <eric.auger@redhat.com>, Eric Farman <farman@linux.ibm.com>,
- Giovanni Cabiddu <giovanni.cabiddu@intel.com>,
- Vasily Gorbik <gor@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
- intel-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
+Received: from mail-wr1-f73.google.com (mail-wr1-f73.google.com
+ [209.85.221.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1769710E0F2
+ for <intel-gfx@lists.freedesktop.org>; Fri,  7 Nov 2025 16:43:04 +0000 (UTC)
+Received: by mail-wr1-f73.google.com with SMTP id
+ ffacd0b85a97d-4298da9fc21so445487f8f.1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 07 Nov 2025 08:43:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20230601; t=1762533782; x=1763138582;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:from:subject:message-id
+ :mime-version:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=on8bewL1RI4N4l+sU7wrnJnMvJdHM/hSBq36uJM+rEs=;
+ b=LcHLVMO3X9X9vMAOvIxKOrS2ok+Mv4D1u8pAl96e2TcPF4ealSRzTxJZWUs/+pw9w1
+ 3cjQqnQaO8pNJ/6N8+iaHpWJE6iKD4T0/3wcrto8aZmdhLfPgYTx/ntdvbJprg3gUlb8
+ CFeShzklIcZeMU3gG1Bngy1n1/LVWpx3ZOC+L2e63RfvUpAT9nr4nsi0g5zSAU80EmVN
+ UkR25QdWmc4hh2bAm33Dni8hCZUynEJQWG8TPJ/cjIBqkJspmWEyNuo0Anot/VF9hfES
+ VV2BIsYTbmqtIA5HG0RJI2i90jqZzydBw8IGD7Yy4IIV+yrq9d1KnK/kK1a2NVyJDPdw
+ P8Bw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1762533782; x=1763138582;
+ h=content-transfer-encoding:cc:to:from:subject:message-id
+ :mime-version:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=on8bewL1RI4N4l+sU7wrnJnMvJdHM/hSBq36uJM+rEs=;
+ b=HYfNWeJLVfoBlPz0Y4Enl83LfAbNn4uas3PKI9TINEZE2hjmeqb7yi866XuB5Mce7m
+ +1j7r3rLjTXbESdCV9H6HfeDRISgSHIwcfzqxjOTI/zzFoLMsoVYDlOsu4QDPyGl6BPO
+ oeKrlBS1r3Di2rE0Rx1GEQgHIqTvUpmy9ItroouHBlW6zd49sNIcPs2B2Im3Bsj7ZYHt
+ kK38N7G1kymzrbWVVTkHIWwOx5OaSY6iTh0jN832OjFPDCffVrg8g5OTaahx2ghtxmVQ
+ xdm962MSC8gb/4ALJzwe3dW9YmEXIJhHDpprsknywx45mbZTp11v2KnmjfbPLhCtfTA0
+ cbQw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUxZYCR0ytpk8Mlc7hUo9P7RAFWtF60OrlyCtz9MjJcavXdxVrib5qh/WHgPGznyXRt1w4ufyBWNfY=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yyx/ttZdrTXNl+fXq9B5JhGjN/Iwh79IVUfWye7eUk6f98JX5LL
+ vHnPKAtNRwA3oBWczg5AzEgw2OvxRmzrjrJmEuFbq3TTNfJEeNpC/sZ1wq5ZOqtbsSRRT2W+JA=
+ =
+X-Google-Smtp-Source: AGHT+IErWQ/bAs6sgLKAGNRJ/4CQ20iQCILHo6B+nhBcFHGoZnZeYmzcBl/waJrrk8dDdmr4ZnLdN3g5
+X-Received: from wrzd3.prod.google.com ([2002:a5d:6dc3:0:b0:428:4fa9:ac7d])
+ (user=ardb job=prod-delivery.src-stubby-dispatcher) by
+ 2002:a05:6000:25c7:b0:426:d60f:746f
+ with SMTP id ffacd0b85a97d-42ae5ac329dmr3140724f8f.30.1762533782550; Fri, 07
+ Nov 2025 08:43:02 -0800 (PST)
+Date: Fri,  7 Nov 2025 17:42:41 +0100
+Mime-Version: 1.0
+X-Developer-Key: i=ardb@kernel.org; a=openpgp;
+ fpr=F43D03328115A198C90016883D200E9CA6329909
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2688; i=ardb@kernel.org;
+ h=from:subject; bh=fwiBdr2UguIhUnvRRI7uFyScWi3GAhl3ehVZMRQfNi8=;
+ b=owGbwMvMwCVmkMcZplerG8N4Wi2JIZNPsfETS8sT+bOnqzxSTleu8262DO08KLiGPZ7zEpuqR
+ 7BbP39HKQuDGBeDrJgii8Dsv+92np4oVes8SxZmDisTyBAGLk4BmMgVVoZ/qkd7Dn76GcJq1qrt
+ +mN7veu1Dxn/uqTmP7376OzXF98PNjH8L3QIvnNR8eVcj1u3Clb/+Kx5addtUe/GiMOC95nOxq/
+ dzwAA
+X-Mailer: git-send-email 2.51.2.1041.gc1ab5b90ca-goog
+Message-ID: <20251107164240.2023366-2-ardb+git@google.com>
+Subject: [PATCH] drm/i195: Fix format string truncation warning
+From: Ard Biesheuvel <ardb+git@google.com>
+To: linux-kernel@vger.kernel.org
+Cc: Ard Biesheuvel <ardb@kernel.org>, Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Kevin Tian <kevin.tian@intel.com>, kvm@vger.kernel.org,
- Kirti Wankhede <kwankhede@nvidia.com>, linux-s390@vger.kernel.org,
- Longfang Liu <liulongfang@huawei.com>,
- Matthew Rosato <mjrosato@linux.ibm.com>,
- Nikhil Agarwal <nikhil.agarwal@amd.com>, Nipun Gupta <nipun.gupta@amd.com>,
- Peter Oberparleiter <oberpar@linux.ibm.com>,
- Halil Pasic <pasic@linux.ibm.com>,
- Pranjal Shrivastava <praan@google.com>, qat-linux@intel.com,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
- Shameer Kolothum <skolothumtho@nvidia.com>,
- Sven Schnelle <svens@linux.ibm.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, virtualization@lists.linux.dev,
- Vineeth Vijayan <vneethv@linux.ibm.com>,
- Yishai Hadas <yishaih@nvidia.com>, Zhenyu Wang <zhenyuw.linux@gmail.com>,
- Zhi Wang <zhi.wang.linux@gmail.com>, patches@lists.linux.dev
-Subject: Re: [PATCH 00/22] vfio: Give VFIO_DEVICE_GET_REGION_INFO its own op
-Message-ID: <20251105135804.0cb3b340.alex@shazbot.org>
-In-Reply-To: <aQh7gG3IAEgEaKY_@google.com>
-References: <0-v1-679a6fa27d31+209-vfio_get_region_info_op_jgg@nvidia.com>
- <aQh7gG3IAEgEaKY_@google.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Mon, 10 Nov 2025 13:41:03 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -127,44 +93,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 3 Nov 2025 09:53:04 +0000
-Mostafa Saleh <smostafa@google.com> wrote:
+From: Ard Biesheuvel <ardb@kernel.org>
 
-> On Thu, Oct 23, 2025 at 08:09:14PM -0300, Jason Gunthorpe wrote:
-> > There is alot of duplicated code in the drivers for processing
-> > VFIO_DEVICE_GET_REGION_INFO. Introduce a new op get_region_info_caps()
-> > which provides a struct vfio_info_cap and handles the cap chain logic
-> > to write the caps back to userspace and remove all of this duplication
-> > from drivers.
-> > 
-> > This is done in two steps, the first is a largely mechanical introduction
-> > of the get_region_info(). These patches are best viewed with the diff
-> > option to ignore whitespace (-b) as most of the lines are re-indending
-> > things.
-> > 
-> > Then drivers are updated to remove the duplicate cap related code. Some
-> > drivers are converted to use vfio_info_add_capability() instead of open
-> > coding a version of it.  
-> 
-> The series as a whole looks good.
-> However, I got confused walking through it as almost all non-PCI drivers
-> had to transition to get_region_info then get_region_info_caps then
-> removing get_region_info completely from core code after introducing
-> it in this series.
-> 
-> IMO, the series should start with just consolidating PCI based implementation
-> and then add get_region_info_caps for all drivers at the end.
-> Anyway, no really strong opinion as the final outcome makes sense.
+GCC notices that the 16-byte uabi_name field could theoretically be too
+small for the formatted string if the instance number exceeds 100.
 
-I agree it was a bit indirect to get there, but the result still makes
-sense and I don't think it's worth reworking the series.
+Given that there are apparently ABI concerns here, this is the minimal
+fix that shuts up the compiler without changing the output or the
+maximum length for existing values < 100.
 
-I think Eric has some outstanding naming concerns and Praan noted that
-either a comment or gratuitous kfree(caps.buf) might be worthwhile to
-keep call-outs in check regarding cap buffer leaks.  I don't think we
-have any such cases, but it can't hurt to note the policy at least.
+drivers/gpu/drm/i915/intel_memory_region.c: In function =E2=80=98intel_memo=
+ry_region_create=E2=80=99:
+drivers/gpu/drm/i915/intel_memory_region.c:273:61: error: =E2=80=98%u=E2=80=
+=99 directive output may be truncated writing between 1 and 5 bytes into a =
+region of size between 3 and 11 [-Werror=3Dformat-truncation=3D]
+  273 |         snprintf(mem->uabi_name, sizeof(mem->uabi_name), "%s%u",
+      |                                                             ^~
+drivers/gpu/drm/i915/intel_memory_region.c:273:58: note: directive argument=
+ in the range [0, 65535]
+  273 |         snprintf(mem->uabi_name, sizeof(mem->uabi_name), "%s%u",
+      |                                                          ^~~~~~
+drivers/gpu/drm/i915/intel_memory_region.c:273:9: note: =E2=80=98snprintf=
+=E2=80=99 output between 7 and 19 bytes into a destination of size 16
+  273 |         snprintf(mem->uabi_name, sizeof(mem->uabi_name), "%s%u",
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  274 |                  intel_memory_type_str(type), instance);
+      |                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Otherwise, LGTM.  Should these be addressed as follow-ups rather than a
-re-spin?  Thanks,
+Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
+---
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Tvrtko Ursulin <tursulin@ursulin.net>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Simona Vetter <simona@ffwll.ch>
+Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 
-Alex
+This is unlikely to be the right fix, but sending a wrong patch is
+usually a better way to elicit a response than just sending a bug
+report.
+
+ drivers/gpu/drm/i915/intel_memory_region.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu/drm/i=
+915/intel_memory_region.c
+index 59bd603e6deb..ad4afcf0c58a 100644
+--- a/drivers/gpu/drm/i915/intel_memory_region.c
++++ b/drivers/gpu/drm/i915/intel_memory_region.c
+@@ -271,7 +271,7 @@ intel_memory_region_create(struct drm_i915_private *i91=
+5,
+ 	mem->instance =3D instance;
+=20
+ 	snprintf(mem->uabi_name, sizeof(mem->uabi_name), "%s%u",
+-		 intel_memory_type_str(type), instance);
++		 intel_memory_type_str(type), instance % 100);
+=20
+ 	mutex_init(&mem->objects.lock);
+ 	INIT_LIST_HEAD(&mem->objects.list);
+--=20
+2.51.2.1041.gc1ab5b90ca-goog
+
