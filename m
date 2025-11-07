@@ -2,66 +2,125 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CA9DC4152E
-	for <lists+intel-gfx@lfdr.de>; Fri, 07 Nov 2025 19:45:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BE29C417EB
+	for <lists+intel-gfx@lfdr.de>; Fri, 07 Nov 2025 21:03:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E377E10EB52;
-	Fri,  7 Nov 2025 18:45:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5C4110EB6A;
+	Fri,  7 Nov 2025 20:03:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DraJQlRb";
+	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="QxUKiz8A";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FDB710E085;
- Fri,  7 Nov 2025 18:45:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762541131; x=1794077131;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Y5MoTJ3TiMXTWKdkRAnMqnzqvALvQEknhLusJNdzwK8=;
- b=DraJQlRbqMIkscT9KEHFFZrBinVzAWvVdgeEesOctWVdYwrcz0HxtlO4
- xd+JvV4GpBxqrs6dlqx6IdAwKiU+pFUYExmGOHBT0pXHsm5P1PQU6HMyS
- 7X+54IVjb0/geMNSNTwOOH0tAci9zwp0vw4rTnK4N05eKV487L6gt2n4T
- kd2hnXVay4nY4I4Jc0CNvMvAzKRgf5rXH4Vrnt7f6rmi+Cw2wC0JBP4g+
- 8FoOfNg+cazouNG1ZZ1rza1t5+SNbE/78MFiBhpf+9FQB63bQEoXOsHpa
- FOVLQGfnObVvQPZM1pPG4uET/NKI88IIq8VUgrS/dEZm0xLd9FblAIkL3 A==;
-X-CSE-ConnectionGUID: mWteYfTUQk+5at6n/cMN9w==
-X-CSE-MsgGUID: EVi0Wi+rRgmX2Wa4fCYDWg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11606"; a="68342940"
-X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="68342940"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 10:45:30 -0800
-X-CSE-ConnectionGUID: RYplqaeRS9mln77/j0RyPA==
-X-CSE-MsgGUID: wXaNuPQ6Sg2lC/4n6VlOpA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="188269103"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.106])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 10:45:28 -0800
-Date: Fri, 7 Nov 2025 20:45:26 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 09/10] drm/i915/frontbuffer: Fix intel_frontbuffer
- lifetime handling
-Message-ID: <aQ4-RoNa8rkf4G_D@intel.com>
-References: <20251016185408.22735-1-ville.syrjala@linux.intel.com>
- <20251016185408.22735-10-ville.syrjala@linux.intel.com>
- <3ff7d1d35b1c71b4fdf55fc3b208c8f84bc0f18f@intel.com>
- <694686f8a4bf4af7a7cb1c21859349da9720a44f@intel.com>
- <a631d0f6db1903ae198752a38df47f34815f3c44@intel.com>
- <aQywXhRtluWSFN8P@intel.com>
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
+ [148.163.156.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3F7910EB66;
+ Fri,  7 Nov 2025 20:03:26 +0000 (UTC)
+Received: from pps.filterd (m0353729.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5A7IRRCJ017849;
+ Fri, 7 Nov 2025 20:03:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+ :content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=pp1; bh=MlwdCn
+ aFGrktPrZkCNQFrbLua2RkYHdPYziD8x0BYR4=; b=QxUKiz8ArQqLoUh4q7CjxS
+ UYqvzizlRfauJRpekMYUPkUfP7b5P9Cw2UXE5WN0sOJxhHRia6Dm0q2DbGe5yEQP
+ 5EnHQMBdSPIesSpLd7WJkc492Awt1lTF4BXBBQxkoTRCT9G01T2yqToBcKnywdmA
+ YBYPkdRcIHMVw4Z+yVZn+ML9jOVpcz2v44oLb/GuGOlUzNbt4/drRSmRXPaE4ekw
+ WPi9ILcXb6zyFwwsfgRRNa8gCYy9YBIaopDCmzJfuY7mjWr/y934UUIoI00K4PAP
+ pvdtWthGnnVyskq+Im2quAVr2VQGT494ViI4YxMG/+julqO0z57YF+CMNT01f4Lg
+ ==
+Received: from pps.reinject (localhost [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4a59vuy1xk-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 07 Nov 2025 20:03:17 +0000 (GMT)
+Received: from m0353729.ppops.net (m0353729.ppops.net [127.0.0.1])
+ by pps.reinject (8.18.1.12/8.18.0.8) with ESMTP id 5A7K3GED017710;
+ Fri, 7 Nov 2025 20:03:16 GMT
+Received: from ppma23.wdc07v.mail.ibm.com
+ (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4a59vuy1xg-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 07 Nov 2025 20:03:16 +0000 (GMT)
+Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
+ by ppma23.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 5A7J1iiv009877;
+ Fri, 7 Nov 2025 20:03:14 GMT
+Received: from smtprelay03.dal12v.mail.ibm.com ([172.16.1.5])
+ by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4a5x1kvh7u-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 07 Nov 2025 20:03:14 +0000
+Received: from smtpav04.dal12v.mail.ibm.com (smtpav04.dal12v.mail.ibm.com
+ [10.241.53.103])
+ by smtprelay03.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 5A7K3DRM20775544
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Fri, 7 Nov 2025 20:03:13 GMT
+Received: from smtpav04.dal12v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 8178258056;
+ Fri,  7 Nov 2025 20:03:13 +0000 (GMT)
+Received: from smtpav04.dal12v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 45AFE58062;
+ Fri,  7 Nov 2025 20:03:11 +0000 (GMT)
+Received: from li-479af74c-31f9-11b2-a85c-e4ddee11713b.ibm.com (unknown
+ [9.61.62.231]) by smtpav04.dal12v.mail.ibm.com (Postfix) with ESMTP;
+ Fri,  7 Nov 2025 20:03:11 +0000 (GMT)
+Message-ID: <ef6ccb9f1028a76d69d5769fe69c3632fb91e650.camel@linux.ibm.com>
+Subject: Re: [PATCH v2 12/22] vfio/ccw: Provide a get_region_info op
+From: Eric Farman <farman@linux.ibm.com>
+To: Jason Gunthorpe <jgg@nvidia.com>, Alexander Gordeev
+ <agordeev@linux.ibm.com>, David Airlie <airlied@gmail.com>, Alex
+ Williamson <alex.williamson@redhat.com>, Ankit Agrawal	
+ <ankita@nvidia.com>, Christian Borntraeger <borntraeger@linux.ibm.com>,
+ Brett Creeley <brett.creeley@amd.com>, dri-devel@lists.freedesktop.org,
+ Eric Auger <eric.auger@redhat.com>, Giovanni Cabiddu
+ <giovanni.cabiddu@intel.com>, Vasily Gorbik <gor@linux.ibm.com>, Heiko
+ Carstens <hca@linux.ibm.com>, intel-gfx@lists.freedesktop.org, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, kvm@vger.kernel.org, Kirti Wankhede
+ <kwankhede@nvidia.com>, linux-s390@vger.kernel.org, Longfang Liu
+ <liulongfang@huawei.com>, Matthew Rosato <mjrosato@linux.ibm.com>, Nikhil
+ Agarwal <nikhil.agarwal@amd.com>, Nipun Gupta	 <nipun.gupta@amd.com>, Peter
+ Oberparleiter <oberpar@linux.ibm.com>,
+ Halil Pasic	 <pasic@linux.ibm.com>, qat-linux@intel.com,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
+ Shameer Kolothum <skolothumtho@nvidia.com>, Sven
+ Schnelle <svens@linux.ibm.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, virtualization@lists.linux.dev,
+ Vineeth Vijayan <vneethv@linux.ibm.com>, Yishai Hadas <yishaih@nvidia.com>,
+ Zhenyu Wang <zhenyuw.linux@gmail.com>, Zhi Wang <zhi.wang.linux@gmail.com>
+Cc: Kevin Tian <kevin.tian@intel.com>, patches@lists.linux.dev, Pranjal
+ Shrivastava <praan@google.com>, Mostafa Saleh <smostafa@google.com>
+Date: Fri, 07 Nov 2025 15:03:10 -0500
+In-Reply-To: <12-v2-2a9e24d62f1b+e10a-vfio_get_region_info_op_jgg@nvidia.com>
+References: <12-v2-2a9e24d62f1b+e10a-vfio_get_region_info_op_jgg@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aQywXhRtluWSFN8P@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: twd3gPasuG5jlJ51jwgaLipWtZjUa-uR
+X-Proofpoint-GUID: v5Az1Fgvwvgwv-bJir5W4BMaY1htAMJZ
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTAxMDAyMSBTYWx0ZWRfX9CKkJT6eq6in
+ RCRVM5UkfqXoCe4HDSuk2u0V9ZZdJVT5Ksc8BO5kPa6Ivy1OpN4/4Q3KqcwLeNtz2OFdJfU8mvt
+ 1rSoL378cKtKlEddDTPrGVZE47TqRykJeekFmM6M6S5I2Zd8tcU5olJUfdrLgj3bQ/6FXUEuT4I
+ ZhD33vi2at4z8QKdxXo4AcE2SPTivGlJk1dIU3XIOWF6yE6Mowx0HaqL939adbqU3reISqpW+6m
+ sepSmSlEof8aDfsvE8Q7C9Hh9kQLvo4fbPbdiovaj4bytBJ56sZb7qN4EmrB3wfn83IPcaanOD7
+ SdckGFjvqaR2DXLLS0nsjzroSrxs1XITCkzg66vAhRJ3vnHua7TvSrEvQZyzyZm0nVjPWnbEYgS
+ fS2DIjLbf7MxJwWjjMF2TRdRztyFDw==
+X-Authority-Analysis: v=2.4 cv=U6qfzOru c=1 sm=1 tr=0 ts=690e5085 cx=c_pps
+ a=3Bg1Hr4SwmMryq2xdFQyZA==:117 a=3Bg1Hr4SwmMryq2xdFQyZA==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=QyXUC8HyAAAA:8 a=Ikd4Dj_1AAAA:8 a=VnNF1IyMAAAA:8 a=JUX33S1rtR8i9qNFNIIA:9
+ a=NqO74GWdXPXpGKcKHaDJD/ajO6k=:19 a=QEXdDO2ut3YA:10 a=nl4s5V0KI7Kw-pW0DWrs:22
+ a=pHzHmUro8NiASowvMSCR:22 a=xoEH_sTeL_Rfw54TyV31:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-07_06,2025-11-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 adultscore=0 impostorscore=0 spamscore=0 phishscore=0
+ clxscore=1011 malwarescore=0 lowpriorityscore=0 suspectscore=0
+ priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510240000
+ definitions=main-2511010021
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,66 +136,13 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Nov 06, 2025 at 04:27:42PM +0200, Ville Syrjälä wrote:
-> On Thu, Nov 06, 2025 at 03:48:25PM +0200, Jani Nikula wrote:
-> > On Wed, 29 Oct 2025, Jani Nikula <jani.nikula@intel.com> wrote:
-> > > On Wed, 29 Oct 2025, Jani Nikula <jani.nikula@intel.com> wrote:
-> > >> On Thu, 16 Oct 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > >>> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > >>>
-> > >>> The current attempted split between xe/i915 vs. display
-> > >>> for intel_frontbuffer is a mess:
-> > >>> - the i915 rcu leaks through the interface to the display side
-> > >>> - the obj->frontbuffer write-side is now protected by a display
-> > >>>   specific spinlock even though the actual obj->framebuffer
-> > >>>   pointer lives in a i915 specific structure
-> > >>> - the kref is getting poked directly from both sides
-> > >>> - i915_active is still on the display side
-> > >>>
-> > >>> Clean up the mess by moving everything about the frontbuffer
-> > >>> lifetime management to the i915/xe side:
-> > >>> - the rcu usage is now completely contained in i915
-> > >>> - frontbuffer_lock is moved into i915
-> > >>> - kref is on the i915/xe side (xe needs the refcount as well
-> > >>>   due to intel_frontbuffer_queue_flush()->intel_frontbuffer_ref())
-> > >>> - the bo (and its refcounting) is no longer on the display side
-> > >>> - i915_active is contained in i915
-> > >>>
-> > >>> I was pondering whether we could do this in some kind of smaller
-> > >>> steps, and perhaps we could, but it would probably have to start
-> > >>> with a bunch of reverts (which for sure won't go cleanly anymore).
-> > >>> So not convinced it's worth the hassle.
-> > >>
-> > >> It's a PITA to review, that's for sure. :p
-> > >>
-> > >> I'm not particularly fond of embedding struct intel_frontbuffer inside
-> > >> struct i915_frontbuffer and struct xe_frontbuffer, because it means i915
-> > >> and xe will need to know the struct intel_frontbuffer definition. If we
-> > >> can't live with the embedding long term, we'll probably need opaque
-> > >> pointers back and forth.
-> > >>
-> > >> That said, I think the overall change here is net positive, and makes
-> > >> life much easier. We don't have to fix everything at once, so let's go
-> > >> with this.
-> > >>
-> > >> I didn't spot any obvious issues, but my confidence level with the
-> > >> review is super low. :(
-> > >>
-> > >> I guess the alternatives are to just go with that, trusting CI, or give
-> > >> me more time to review. I'm fine either way, as I can trust you to step
-> > >> up if it goes crashing down. ;)
-> > >
-> > > One approach is to send 1-8 first, get CI, get them merged, and then do
-> > > 9-10 separately, to get separate CI. Maybe? *shrug*
-> > 
-> > Any conclusions on this? Just merge the whole thing as-is rather than
-> > let it go stale...?
-> 
-> I think we could just merge as is. Pretty sure I didn't have any
-> real functional changes in there.
+On Fri, 2025-11-07 at 13:41 -0400, Jason Gunthorpe wrote:
+> Move it out of vfio_ccw_mdev_ioctl() and re-indent it.
+>=20
+> Reviewed-by: Kevin Tian <kevin.tian@intel.com>
+> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+> ---
+>  drivers/s390/cio/vfio_ccw_ops.c | 44 +++++++++++++++++++--------------
+>  1 file changed, 26 insertions(+), 18 deletions(-)
 
-Merged the whole thing. Thanks for the review.
-
--- 
-Ville Syrjälä
-Intel
+Reviewed-by: Eric Farman <farman@linux.ibm.com>
