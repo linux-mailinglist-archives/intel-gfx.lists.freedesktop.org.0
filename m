@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D84D8C413B3
-	for <lists+intel-gfx@lfdr.de>; Fri, 07 Nov 2025 19:11:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BAE31C413B9
+	for <lists+intel-gfx@lfdr.de>; Fri, 07 Nov 2025 19:11:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38AD010EB74;
-	Fri,  7 Nov 2025 18:11:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15E1310EB75;
+	Fri,  7 Nov 2025 18:11:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HHcDGLqM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XqFM0uAC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2165B10EB71;
- Fri,  7 Nov 2025 18:11:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA09610EB75;
+ Fri,  7 Nov 2025 18:11:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762539108; x=1794075108;
+ t=1762539112; x=1794075112;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=j5se8cn/7EpSTqwJVs7BBceOGN5PXhGKhXXWELcCpU4=;
- b=HHcDGLqMmXWi925O+TJDtttGLyVKNtm9r96iiqpZLZyofxnYB2VGbGcm
- EyA2+kv0RBNG7z2JYhoMaaeiBlnTBlvcG0vb9h4aZXD+6Vbfbwlo5F+VB
- 52GGjmKKXJRx6wON7+vgeLgf97Eq2u23T6D3X6y204k8b9Z0mhFkEaezu
- TeHzKXYXKp7QlXc2ipn0CyGxlTei1FPK4/ma98NcZpIXPH884y3es6TSf
- 4oQlbmAn27I8obfgY7r4VJn5hdNc4TzvHHdLU2xde5xRKDklJpH00ANN7
- No5qLeqybz41qUP9sAIkbGKL0s9g+sWvsq6b6L/tsg7ic3OZanAE6smWl w==;
-X-CSE-ConnectionGUID: umyodON7S6u7V83DYdYxMg==
-X-CSE-MsgGUID: xgABTibARqKnR2L2a0D7Sw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11606"; a="64730039"
-X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="64730039"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 10:11:47 -0800
-X-CSE-ConnectionGUID: 1hKaA59hTGWHO5XZXWAERQ==
-X-CSE-MsgGUID: Y2Df4rA4Tmu/AUYs426Q3Q==
+ bh=LM8CZG/5OZGJNYDGcw+gxyUTBdYvD9K3dlEjoMWNwlM=;
+ b=XqFM0uACBjDhnNbGvej22iOi9ATMyWY1hxLM9VYVxxM1nAjpI2ikuxRv
+ kv+4vouiQzNXlj7udcbD4zvoe8rr5p+7PGTrAMvvusT81oHCmnEbH9AnC
+ bXY92Rp0WPmE5Fvmt56dOpW9BMHxkX3/zP+4e9Y7B+Xud7aht3+oVvVDe
+ hfVrW7euikivvXpVZXSmLmk+BZVPfv07PVLggZFQD+Lz5nI2SdJKVys8w
+ 20pyDGTZtEkv99/f+rNQHMpV1/rSuVv63DeZTW1iWZbR3WAYD0OM9d4O3
+ gv5ihHWUvuTDkoZWASTN4Gg+vfD934GUlOsx1/baiL47EZgcJk9BldCIl w==;
+X-CSE-ConnectionGUID: 1IfqeJ65S4KAEDnc0fj9fA==
+X-CSE-MsgGUID: J6s+IXaxR6S0VcnLertwxQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="64619654"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="64619654"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2025 10:11:51 -0800
+X-CSE-ConnectionGUID: JIgteDcATDyrIMWTW5O1UA==
+X-CSE-MsgGUID: rgGTW0A4TbSzGjXpZPoo3w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="193270828"
+X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="187350525"
 Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.106])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 10:11:47 -0800
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2025 10:11:50 -0800
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 4/9] drm/i915: Nuke intel_plane_config.tiling
-Date: Fri,  7 Nov 2025 20:11:21 +0200
-Message-ID: <20251107181126.5743-5-ville.syrjala@linux.intel.com>
+Subject: [PATCH 5/9] drm/i915/fb: Init 'ret' in each error branch in
+ intel_framebuffer_init()
+Date: Fri,  7 Nov 2025 20:11:22 +0200
+Message-ID: <20251107181126.5743-6-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20251107181126.5743-1-ville.syrjala@linux.intel.com>
 References: <20251107181126.5743-1-ville.syrjala@linux.intel.com>
@@ -72,116 +73,75 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Use intel_fb_modifier_to_tiling() to convert the modifier into
-the fence tiling mode during BIOS FB readout, rather than hand
-rolling it. With this we can also stop tracking the tiling mode
-in the intel_plane_config.
+Make the order of things a bit less fragile in
+intel_framebuffer_init() by assinging 'ret' in each
+error branch instead of depending on some earlier
+assignment.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/i9xx_plane.c          |  6 ++----
- drivers/gpu/drm/i915/display/intel_display_types.h |  1 -
- drivers/gpu/drm/i915/display/intel_plane_initial.c | 11 +++++++----
- drivers/gpu/drm/i915/display/skl_universal_plane.c |  2 --
- 4 files changed, 9 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fb.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
-index 559207b23dc3..51ccc6bd5f21 100644
---- a/drivers/gpu/drm/i915/display/i9xx_plane.c
-+++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
-@@ -1188,10 +1188,8 @@ i9xx_get_initial_plane_config(struct intel_crtc *crtc,
- 	val = intel_de_read(display, DSPCNTR(display, i9xx_plane));
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index 2eddccb1bc9e..b34b4961fe1c 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -2234,13 +2234,13 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 	if (ret)
+ 		goto err_frontbuffer_put;
  
- 	if (DISPLAY_VER(display) >= 4) {
--		if (val & DISP_TILED) {
--			plane_config->tiling = I915_TILING_X;
-+		if (val & DISP_TILED)
- 			fb->modifier = I915_FORMAT_MOD_X_TILED;
--		}
- 
- 		if (val & DISP_ROTATE_180)
- 			plane_config->rotation = DRM_MODE_ROTATE_180;
-@@ -1211,7 +1209,7 @@ i9xx_get_initial_plane_config(struct intel_crtc *crtc,
- 				       DSPOFFSET(display, i9xx_plane));
- 		base = intel_de_read(display, DSPSURF(display, i9xx_plane)) & DISP_ADDR_MASK;
- 	} else if (DISPLAY_VER(display) >= 4) {
--		if (plane_config->tiling)
-+		if (fb->modifier == I915_FORMAT_MOD_X_TILED)
- 			offset = intel_de_read(display,
- 					       DSPTILEOFF(display, i9xx_plane));
- 		else
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index dd39e6caa82e..38702a9e0f50 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -726,7 +726,6 @@ struct intel_initial_plane_config {
- 	struct intel_memory_region *mem;
- 	resource_size_t phys_base;
- 	struct i915_vma *vma;
--	unsigned int tiling;
- 	int size;
- 	u32 base;
- 	u8 rotation;
-diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-index 81444e0b3c41..a1de1ec564d1 100644
---- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
-+++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-@@ -133,6 +133,7 @@ initial_plane_vma(struct intel_display *display,
- 	struct drm_mm_node orig_mm = {};
- 	struct i915_vma *vma;
- 	resource_size_t phys_base;
-+	unsigned int tiling;
- 	u32 base, size;
- 	u64 pinctl;
- 
-@@ -179,17 +180,19 @@ initial_plane_vma(struct intel_display *display,
- 	i915_gem_object_set_cache_coherency(obj, HAS_WT(i915) ?
- 					    I915_CACHE_WT : I915_CACHE_NONE);
- 
--	switch (plane_config->tiling) {
-+	tiling = intel_fb_modifier_to_tiling(plane_config->fb->base.modifier);
-+
-+	switch (tiling) {
- 	case I915_TILING_NONE:
- 		break;
- 	case I915_TILING_X:
- 	case I915_TILING_Y:
- 		obj->tiling_and_stride =
- 			plane_config->fb->base.pitches[0] |
--			plane_config->tiling;
-+			tiling;
- 		break;
- 	default:
--		MISSING_CASE(plane_config->tiling);
-+		MISSING_CASE(tiling);
- 		goto err_obj;
+-	ret = -EINVAL;
+ 	if (!drm_any_plane_has_format(display->drm,
+ 				      mode_cmd->pixel_format,
+ 				      mode_cmd->modifier[0])) {
+ 		drm_dbg_kms(display->drm,
+ 			    "unsupported pixel format %p4cc / modifier 0x%llx\n",
+ 			    &mode_cmd->pixel_format, mode_cmd->modifier[0]);
++		ret = -EINVAL;
+ 		goto err_bo_framebuffer_fini;
  	}
  
-@@ -374,7 +377,7 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
- 	plane_state->uapi.crtc_w = fb->width;
- 	plane_state->uapi.crtc_h = fb->height;
+@@ -2251,6 +2251,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 			    mode_cmd->modifier[0] != DRM_FORMAT_MOD_LINEAR ?
+ 			    "tiled" : "linear",
+ 			    mode_cmd->pitches[0], max_stride);
++		ret = -EINVAL;
+ 		goto err_bo_framebuffer_fini;
+ 	}
  
--	if (plane_config->tiling)
-+	if (fb->modifier != DRM_FORMAT_MOD_LINEAR)
- 		dev_priv->preserve_bios_swizzle = true;
+@@ -2259,6 +2260,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 		drm_dbg_kms(display->drm,
+ 			    "plane 0 offset (0x%08x) must be 0\n",
+ 			    mode_cmd->offsets[0]);
++		ret = -EINVAL;
+ 		goto err_bo_framebuffer_fini;
+ 	}
  
- 	plane_state->uapi.fb = fb;
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 7b17d1024502..89c8003ccfe7 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -3090,11 +3090,9 @@ skl_get_initial_plane_config(struct intel_crtc *crtc,
- 		fb->modifier = DRM_FORMAT_MOD_LINEAR;
- 		break;
- 	case PLANE_CTL_TILED_X:
--		plane_config->tiling = I915_TILING_X;
- 		fb->modifier = I915_FORMAT_MOD_X_TILED;
- 		break;
- 	case PLANE_CTL_TILED_Y:
--		plane_config->tiling = I915_TILING_Y;
- 		if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE)
- 			if (DISPLAY_VER(display) >= 14)
- 				fb->modifier = I915_FORMAT_MOD_4_TILED_MTL_RC_CCS;
+@@ -2269,6 +2271,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 
+ 		if (mode_cmd->handles[i] != mode_cmd->handles[0]) {
+ 			drm_dbg_kms(display->drm, "bad plane %d handle\n", i);
++			ret = -EINVAL;
+ 			goto err_bo_framebuffer_fini;
+ 		}
+ 
+@@ -2277,6 +2280,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 			drm_dbg_kms(display->drm,
+ 				    "plane %d pitch (%d) must be at least %u byte aligned\n",
+ 				    i, fb->pitches[i], stride_alignment);
++			ret = -EINVAL;
+ 			goto err_bo_framebuffer_fini;
+ 		}
+ 
+@@ -2287,6 +2291,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 				drm_dbg_kms(display->drm,
+ 					    "ccs aux plane %d pitch (%d) must be %d\n",
+ 					    i, fb->pitches[i], ccs_aux_stride);
++				ret = -EINVAL;
+ 				goto err_bo_framebuffer_fini;
+ 			}
+ 		}
 -- 
 2.49.1
 
