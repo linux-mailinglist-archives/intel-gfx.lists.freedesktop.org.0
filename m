@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3DA5C413C9
+	by mail.lfdr.de (Postfix) with ESMTPS id DF558C413C8
 	for <lists+intel-gfx@lfdr.de>; Fri, 07 Nov 2025 19:12:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A7BC10EB7C;
-	Fri,  7 Nov 2025 18:12:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73B3310EB76;
+	Fri,  7 Nov 2025 18:12:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FLFAXkUM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oB8AMtRP";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59DE7899B3;
- Fri,  7 Nov 2025 18:11:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D7A710EB76;
+ Fri,  7 Nov 2025 18:12:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762539119; x=1794075119;
+ t=1762539123; x=1794075123;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6gNM9v2OLY1JJr34/3FWZAXDRDaoS6jZg1nGktTmBR8=;
- b=FLFAXkUMKGed+qS1g201G1MHQ+3UldemOXo2bXhznql4iJUZl+hiwK0p
- fZgROm4ty9ACcbnwSc5yz5C/hpvFb18E8Avgy5tdUUvMi+DqbQ2TgWI8T
- yUCPSP8rdcNIraj9jb0ySBKJGw9lME6YhBfh8is5TcsctzFvL79MJbEAX
- YcHwWavL+7LNmRgkeITe61hE+yKfMPMIqFQ13N+CoNmwifztuVRMTQAnA
- 6gXeF6v0xq6lSB+Ak1iyHKpgxFhoNU/ib6fGPKHSXmFI+YE9I/auTsle1
- ODgzr04b8AMRXvURW7+vFHgpmjpakdzzbBoZf6XgjVsxRQdsyxxNX/xXA w==;
-X-CSE-ConnectionGUID: Dd00bOXMS/iMbn1/5G2ePA==
-X-CSE-MsgGUID: pI4ZAc24T0KCRyfIjmXI/w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11606"; a="87323773"
-X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="87323773"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 10:11:59 -0800
-X-CSE-ConnectionGUID: rtSvdvZGQP+Za4iMNG8/cw==
-X-CSE-MsgGUID: q0ZwtEiSQSi6R3UX/Ta5Wg==
+ bh=SsAPXCsM78QsKo0lUxd/26IE5TFDQ50wedwhTjcUbcQ=;
+ b=oB8AMtRPl1X835GzcK3XSfbCj6+96IDnWPo4F8yEh+2Ib+IPhptAdUmo
+ mmp8MwOZ/vKhz1ZE5wnshrvGSqfsalZLlq86iVW2Z7Fvd/yVQ3VO5Hz+J
+ KZXU4TA0IsM4Qk2Qij0c+TN678M1JOaKY7VL9JZUu4IyjZiMRU5pelCuO
+ rseOXW/rGYR0SujMx7G5lgB0kgGyG7cpmYravcShLQVyjcM9MvDvXy+/b
+ utEOfdj4InTgdsfLF7ehH5EPHRIgBQvDlNGjIjrZAruAsWtdN5gVagqMC
+ R5R9vWxPvtwypqPIJWhGEIVoQKR7sjiWRv1FI+jNJel3rfW+6pzyT3cuB g==;
+X-CSE-ConnectionGUID: Pal/Rai/SwqMPud7zKQK3g==
+X-CSE-MsgGUID: fPKDudTiR2ahaL7ypWTkIA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11606"; a="52257637"
+X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="52257637"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2025 10:12:03 -0800
+X-CSE-ConnectionGUID: PusUY3rQRyS/5tzC5smn4A==
+X-CSE-MsgGUID: GqYI40ElQ0WDubDgH13PDg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="188262286"
+X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="187822338"
 Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.106])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 10:11:58 -0800
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2025 10:12:02 -0800
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 7/9] drm/i915: Use mode_config->cursor_width for cursor DDB
- allocation
-Date: Fri,  7 Nov 2025 20:11:24 +0200
-Message-ID: <20251107181126.5743-8-ville.syrjala@linux.intel.com>
+Subject: [PATCH 8/9] drm/i915/cursor: Extract intel_cursor_mode_config_init()
+Date: Fri,  7 Nov 2025 20:11:25 +0200
+Message-ID: <20251107181126.5743-9-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20251107181126.5743-1-ville.syrjala@linux.intel.com>
 References: <20251107181126.5743-1-ville.syrjala@linux.intel.com>
@@ -73,37 +72,84 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Replace the hardcoded 256 with mode_config->cursor_width
-when doing the cursor DDB allocation. Currently 256 is correct
-for all SKL+, but this migth change in the future. One less place
-to change should that happen.
+Move the max cursor size initialization into intel_cursor.c
+so that all the platform specific details about cursors are
+concentrated in one file.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_watermark.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_cursor.c     | 17 +++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_cursor.h     |  2 ++
+ .../gpu/drm/i915/display/intel_display_driver.c | 13 ++-----------
+ 3 files changed, 21 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 16d74ab3a2b5..54e9e0be019d 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -635,6 +635,7 @@ skl_cursor_allocation(const struct intel_crtc_state *crtc_state,
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	struct intel_plane *plane = to_intel_plane(crtc_state->uapi.crtc->cursor);
-+	const struct drm_mode_config *mode_config = &display->drm->mode_config;
- 	const struct drm_format_info *info;
- 	struct skl_wm_level wm = {};
- 	int ret, min_ddb_alloc = 0;
-@@ -648,7 +649,7 @@ skl_cursor_allocation(const struct intel_crtc_state *crtc_state,
+diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+index 0367e6fc8de7..8410646a1f95 100644
+--- a/drivers/gpu/drm/i915/display/intel_cursor.c
++++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+@@ -1092,3 +1092,20 @@ intel_cursor_plane_create(struct intel_display *display,
  
- 	info  = drm_get_format_info(display->drm, format, modifier);
+ 	return ERR_PTR(ret);
+ }
++
++void intel_cursor_mode_config_init(struct intel_display *display)
++{
++	struct drm_mode_config *mode_config = &display->drm->mode_config;
++
++	if (display->platform.i845g || display->platform.i865g) {
++		mode_config->cursor_width = display->platform.i845g ? 64 : 512;
++		mode_config->cursor_height = 1023;
++	} else if (display->platform.i830 || display->platform.i85x ||
++		   display->platform.i915g || display->platform.i915gm) {
++		mode_config->cursor_width = 64;
++		mode_config->cursor_height = 64;
++	} else {
++		mode_config->cursor_width = 256;
++		mode_config->cursor_height = 256;
++	}
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_cursor.h b/drivers/gpu/drm/i915/display/intel_cursor.h
+index 65a9e7eb88c2..7c269d7381ad 100644
+--- a/drivers/gpu/drm/i915/display/intel_cursor.h
++++ b/drivers/gpu/drm/i915/display/intel_cursor.h
+@@ -17,4 +17,6 @@ intel_cursor_plane_create(struct intel_display *display,
  
--	ret = skl_compute_wm_params(crtc_state, 256,
-+	ret = skl_compute_wm_params(crtc_state, mode_config->cursor_width,
- 				    info, modifier, DRM_MODE_ROTATE_0,
- 				    crtc_state->pixel_rate, &wp, 0, 0);
- 	drm_WARN_ON(display->drm, ret);
+ void intel_cursor_unpin_work(struct kthread_work *base);
+ 
++void intel_cursor_mode_config_init(struct intel_display *display);
++
+ #endif
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+index 63942ebf46fb..7e000ba3e08b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.c
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+@@ -29,6 +29,7 @@
+ #include "intel_cdclk.h"
+ #include "intel_color.h"
+ #include "intel_crtc.h"
++#include "intel_cursor.h"
+ #include "intel_dbuf_bw.h"
+ #include "intel_display_core.h"
+ #include "intel_display_debugfs.h"
+@@ -148,17 +149,7 @@ static void intel_mode_config_init(struct intel_display *display)
+ 		mode_config->max_height = 2048;
+ 	}
+ 
+-	if (display->platform.i845g || display->platform.i865g) {
+-		mode_config->cursor_width = display->platform.i845g ? 64 : 512;
+-		mode_config->cursor_height = 1023;
+-	} else if (display->platform.i830 || display->platform.i85x ||
+-		   display->platform.i915g || display->platform.i915gm) {
+-		mode_config->cursor_width = 64;
+-		mode_config->cursor_height = 64;
+-	} else {
+-		mode_config->cursor_width = 256;
+-		mode_config->cursor_height = 256;
+-	}
++	intel_cursor_mode_config_init(display);
+ }
+ 
+ static void intel_mode_config_cleanup(struct intel_display *display)
 -- 
 2.49.1
 
