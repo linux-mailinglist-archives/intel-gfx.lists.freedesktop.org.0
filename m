@@ -2,53 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE4FFC4139E
-	for <lists+intel-gfx@lfdr.de>; Fri, 07 Nov 2025 19:11:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 203E1C413A4
+	for <lists+intel-gfx@lfdr.de>; Fri, 07 Nov 2025 19:11:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3ADF110EB69;
-	Fri,  7 Nov 2025 18:11:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F5DB10EB6C;
+	Fri,  7 Nov 2025 18:11:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DH5guWTx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cKW7Wgq6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E43A10EB68;
- Fri,  7 Nov 2025 18:11:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BDD810EB6C;
+ Fri,  7 Nov 2025 18:11:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762539092; x=1794075092;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=yi8XtzjDiSG8Piu6iwaFno6G3eMf55dn7IApEXFhz2w=;
- b=DH5guWTxZXEX21cRPLgJrDLtjnlEat7G3goXqvA4Pj9ZhDHD7pldEi0k
- 0/CV4EzEfUubXYkBGrrjCsiC9tFxgV6sjOUZugNPAlXU+BAI5hL5z8RSw
- j9S69zQStcktzOwEWc9lPOjmPrH7u5J33juvcCxco31Cf5pXAix1yGcWu
- P5NbGoVvzSIq2491AqMXJoMx2emrNV67V8OS7pW/PQ4QorxF6wY+O76fI
- KfXdBGBX13K9Kc3FYkY14dvMrB1g3rvgwBL2AbIdxQnbIxJN8QvBMYUkr
- w0sis7l+OROY0UDDJiOBzl7kSPa3D9Esg4bhVE4NCHimu3sMW4YtnzvKm g==;
-X-CSE-ConnectionGUID: iT8qHmn+QC+c64r9Evp1zA==
-X-CSE-MsgGUID: X8sENP1SQtWqENSb2a1tdw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11606"; a="64574526"
-X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="64574526"
+ t=1762539096; x=1794075096;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=54JjDnj9k9+/FkOH96NEykunhEKL2/W/uNcIxldVYco=;
+ b=cKW7Wgq6ZIz5mENHnCuhKzpXGiqve54wkrc0XUHENN+khe78urADmr8J
+ MPU/WSN5rMaGHbEjUc6PNph5iKO98tbWOqoLHlRLuxjXqPI3LQbWeqOUZ
+ wudND9313MRGDOHnCRmBcCpZMag53CuU31bQoJ2RrptKYe4Ws8kPUO7lS
+ 0f+auyf+BwTejXsLvvVcd1GbU/ULSrfqnBYuy9WC3DlssShIb9ROi4yEy
+ MH0Btj8bXBHMBFBYaP17GF7fLvkzhgVqFQQHkvke4IZYF7OxNoO0xBQqb
+ WqCYYPBTd1sfZC72vhSio7YIDURWYocffsj27ayeUtA2Qtr6Vt3MsZ3BN g==;
+X-CSE-ConnectionGUID: pIin9QpIS5KVeQM+r4BgaQ==
+X-CSE-MsgGUID: UDRnNSNQQI+vd9EMF8ELNA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11606"; a="64574531"
+X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="64574531"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 10:11:31 -0800
-X-CSE-ConnectionGUID: xowdHl0ZRmSTFTfE29E9Lg==
-X-CSE-MsgGUID: gOvYHWMYRc6Riq28s+eD3g==
+ 07 Nov 2025 10:11:36 -0800
+X-CSE-ConnectionGUID: aPUktK1DQZ23JZb22xzTPQ==
+X-CSE-MsgGUID: 327d0Ra8SVGQDWWpwtvUxA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="218754598"
+X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="218754606"
 Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.106])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 10:11:30 -0800
+ 07 Nov 2025 10:11:34 -0800
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 0/9] drm/i915: Further drm_get_format_info() stuff
-Date: Fri,  7 Nov 2025 20:11:17 +0200
-Message-ID: <20251107181126.5743-1-ville.syrjala@linux.intel.com>
+Subject: [PATCH 1/9] drm/i915: Introduce intel_dumb_fb_max_stride()
+Date: Fri,  7 Nov 2025 20:11:18 +0200
+Message-ID: <20251107181126.5743-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
+In-Reply-To: <20251107181126.5743-1-ville.syrjala@linux.intel.com>
+References: <20251107181126.5743-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -70,39 +72,118 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Finish eliminating the expensive extra format info lookups.
+Wrap intel_plane_fb_max_stride() in intel_dumb_fb_max_stride()
+for the purposes of dumb fb creation. I want to change
+intel_plane_fb_max_stride() to take a 'struct drm_format_info'
+instead of the 'u32 pixel_format' so we need an excplicit format
+info lookup in the dumb fb path and I don't really want to have
+that in i915_gem_dumb_create() directly.
 
-And since I ended up strafing the cursor code in the end I included
-a few additional claenups there.
+This makes intel_plane_fb_max_stride() internal to the display
+code again, and thus we can pass in struct intel_display instead
+of struct drm_device.
 
-Ville Syrjälä (9):
-  drm/i915: Introduce intel_dumb_fb_max_stride()
-  drm/i915: Pass drm_format_info into plane->max_stride()
-  drm/i915: Populate fb->format accurately in BIOS FB readout
-  drm/i915: Nuke intel_plane_config.tiling
-  drm/i915/fb: Init 'ret' in each error branch in
-    intel_framebuffer_init()
-  drm/i915/wm: Use drm_get_format_info() in SKL+ cursor DDB allocation
-  drm/i915: Use mode_config->cursor_width for cursor DDB allocation
-  drm/i915/cursor: Extract intel_cursor_mode_config_init()
-  drm/i915/cursor: Initialize 845 vs 865 cursor size separately
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 17 ++++++++++++-----
+ drivers/gpu/drm/i915/display/intel_display.h |  4 +++-
+ drivers/gpu/drm/i915/display/intel_fb.c      |  4 ++--
+ drivers/gpu/drm/i915/gem/i915_gem_create.c   |  4 ++--
+ 4 files changed, 19 insertions(+), 10 deletions(-)
 
- drivers/gpu/drm/i915/display/i9xx_plane.c     | 32 ++++++++-----------
- drivers/gpu/drm/i915/display/i9xx_plane.h     |  5 +--
- drivers/gpu/drm/i915/display/intel_cursor.c   | 28 +++++++++++++---
- drivers/gpu/drm/i915/display/intel_cursor.h   |  2 ++
- drivers/gpu/drm/i915/display/intel_display.c  | 24 ++++++++++----
- drivers/gpu/drm/i915/display/intel_display.h  |  8 +++--
- .../drm/i915/display/intel_display_driver.c   | 13 ++------
- .../drm/i915/display/intel_display_types.h    |  5 ++-
- drivers/gpu/drm/i915/display/intel_fb.c       | 23 +++++++------
- .../drm/i915/display/intel_plane_initial.c    | 11 ++++---
- drivers/gpu/drm/i915/display/intel_sprite.c   | 10 +++---
- .../drm/i915/display/skl_universal_plane.c    | 22 ++++++-------
- drivers/gpu/drm/i915/display/skl_watermark.c  | 15 ++++++---
- drivers/gpu/drm/i915/gem/i915_gem_create.c    |  4 +--
- 14 files changed, 118 insertions(+), 84 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 25986bd8fbdd..c5ce481b26b1 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -547,16 +547,12 @@ void intel_disable_transcoder(const struct intel_crtc_state *old_crtc_state)
+ 		intel_wait_for_pipe_off(old_crtc_state);
+ }
+ 
+-u32 intel_plane_fb_max_stride(struct drm_device *drm,
++u32 intel_plane_fb_max_stride(struct intel_display *display,
+ 			      u32 pixel_format, u64 modifier)
+ {
+-	struct intel_display *display = to_intel_display(drm);
+ 	struct intel_crtc *crtc;
+ 	struct intel_plane *plane;
+ 
+-	if (!HAS_DISPLAY(display))
+-		return 0;
+-
+ 	/*
+ 	 * We assume the primary plane for pipe A has
+ 	 * the highest stride limits of them all,
+@@ -572,6 +568,17 @@ u32 intel_plane_fb_max_stride(struct drm_device *drm,
+ 				 DRM_MODE_ROTATE_0);
+ }
+ 
++u32 intel_dumb_fb_max_stride(struct drm_device *drm,
++			     u32 pixel_format, u64 modifier)
++{
++	struct intel_display *display = to_intel_display(drm);
++
++	if (!HAS_DISPLAY(display))
++		return 0;
++
++	return intel_plane_fb_max_stride(display, pixel_format, modifier);
++}
++
+ void intel_set_plane_visible(struct intel_crtc_state *crtc_state,
+ 			     struct intel_plane_state *plane_state,
+ 			     bool visible)
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index fc2ef92ccf68..9e3fe0bcf62e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -402,8 +402,10 @@ void intel_link_compute_m_n(u16 bpp, int nlanes,
+ 			    int pixel_clock, int link_clock,
+ 			    int bw_overhead,
+ 			    struct intel_link_m_n *m_n);
+-u32 intel_plane_fb_max_stride(struct drm_device *drm,
++u32 intel_plane_fb_max_stride(struct intel_display *display,
+ 			      u32 pixel_format, u64 modifier);
++u32 intel_dumb_fb_max_stride(struct drm_device *drm,
++			     u32 pixel_format, u64 modifier);
+ enum drm_mode_status
+ intel_mode_valid_max_plane_size(struct intel_display *display,
+ 				const struct drm_display_mode *mode,
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index f9e0333e2674..19e3dc008caf 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -1982,7 +1982,7 @@ u32 intel_fb_max_stride(struct intel_display *display,
+ 	 */
+ 	if (DISPLAY_VER(display) < 4 || intel_fb_is_ccs_modifier(modifier) ||
+ 	    intel_fb_modifier_uses_dpt(display, modifier))
+-		return intel_plane_fb_max_stride(display->drm, pixel_format, modifier);
++		return intel_plane_fb_max_stride(display, pixel_format, modifier);
+ 	else if (DISPLAY_VER(display) >= 7)
+ 		return 256 * 1024;
+ 	else
+@@ -1996,7 +1996,7 @@ intel_fb_stride_alignment(const struct drm_framebuffer *fb, int color_plane)
+ 	unsigned int tile_width;
+ 
+ 	if (is_surface_linear(fb, color_plane)) {
+-		unsigned int max_stride = intel_plane_fb_max_stride(display->drm,
++		unsigned int max_stride = intel_plane_fb_max_stride(display,
+ 								    fb->format->format,
+ 								    fb->modifier);
+ 
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c b/drivers/gpu/drm/i915/gem/i915_gem_create.c
+index cd9686a7ded2..189ecdd0a9c1 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
+@@ -194,8 +194,8 @@ i915_gem_dumb_create(struct drm_file *file,
+ 	args->pitch = ALIGN(args->width * cpp, 64);
+ 
+ 	/* align stride to page size so that we can remap */
+-	if (args->pitch > intel_plane_fb_max_stride(dev, format,
+-						    DRM_FORMAT_MOD_LINEAR))
++	if (args->pitch > intel_dumb_fb_max_stride(dev, format,
++						   DRM_FORMAT_MOD_LINEAR))
+ 		args->pitch = ALIGN(args->pitch, 4096);
+ 
+ 	if (args->pitch < args->width)
 -- 
 2.49.1
 
