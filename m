@@ -2,86 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F01CC41A0D
-	for <lists+intel-gfx@lfdr.de>; Fri, 07 Nov 2025 21:48:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35163C41AB0
+	for <lists+intel-gfx@lfdr.de>; Fri, 07 Nov 2025 22:05:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B4E310EB82;
-	Fri,  7 Nov 2025 20:48:55 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin.net header.i=@ursulin.net header.b="rIcU70MQ";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA1FA10EB85;
+	Fri,  7 Nov 2025 21:04:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
- [209.85.128.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 560E910EB82
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Nov 2025 20:48:54 +0000 (UTC)
-Received: by mail-wm1-f51.google.com with SMTP id
- 5b1f17b1804b1-477563bcbbcso5925805e9.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 07 Nov 2025 12:48:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin.net; s=google; t=1762548533; x=1763153333; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=JOrW5Q8xydcVXM43dd9aQAu40I7etAmkHTRU8lGajvI=;
- b=rIcU70MQ6PIcEj/pod8kvPx1EQzzUEDkfpJaykHFeRqtJbVFhBYEd2TbCUtjLYpsmk
- G8Inb2ourGynDGd8MsQVGRbrK8Tx8Bu2wF6XXJeRsWJOs6YuFbyRCkq4gSWCAXs7p1iP
- HfJRrlCaqCmAi3/3qq/VYOgLo7CwRPQsaMDxsn8HQFJsFVZEDXuUqUZU0S2yCoNtoyR6
- /B0jsAxh2ceoBIWSv1Tt8bx9XuVGtV5y4FRpwr8yBBNW8nPamTimCcro+Ac9ETEqsHz7
- 1H7+fKxlEYEggxQH0N9m9oOJoctIkzJUlU3ssd8fQFFt9S+fGLUxf3BzyylRVNZFsECL
- IvmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1762548533; x=1763153333;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=JOrW5Q8xydcVXM43dd9aQAu40I7etAmkHTRU8lGajvI=;
- b=mMsTgXf+NG6YrrFFsVVxlrDvtf/7yZOeNUvhCjy6zvd2ytVXjMlqAngoJw8eM67r6l
- NoSV7cvWsWdoj8bFQhB3I2mv69mRXFCpyshtYQIESkQVMV5Zn7nBh4x/KtMY/1kU9MOd
- WMXvxxndDxsIdSJBJLL0T+Lgc1w3cRE5bfAzm1W/xpbtUyoS2aY9uF7rS4TBv5r2RYJe
- V7gF2upP2joAA43PqRVyXmz+laa7qfTalBWot1gA/i8A6WtT6ZOr8gBQ4Z0Fp0kL+xuE
- eOa+iOMJQPT0gOSwEntDeNQXhJVOMR8p48MqTdTxA1VArjPZJq5068A4kwgeQ/ARBP6w
- Apqg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXO/Z36rbCpDgbD4iHSeOHzaReb6GTjvU61PXDwn0YA78ptHjAjRgdJ9n6hBbO1DjkcbBYmdidWfDs=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxpPfZRdWuuFlVF1fsO27IpX79JFCi++hrh3OUTwXuYnyb2xz//
- LAJpBZbSnHsCf6azyJSZtlVsjRQEjBEi7s9DM5j9JPVaa0W79JoQskyqCr8f23zuAbU=
-X-Gm-Gg: ASbGncu6jz3HJi9T+buyyehN5yx1yxzCcC0Jp8h7AY5V/sKQ01dUh6QlMWmTjDtqISm
- gIqFSnxoxa6Pj1GPwciFoYtZS7WLOOLLhB35QOeX5wDthOqJeLMRZW0LZpcHGQnz146XCVM4r+1
- 4Wcbq3QNjNOHKd4JGIu35zfcwYvcFLirqqbWfDycc2q7Hanoc4nFH7SzZixleFn9i3BlQxA5Aq6
- CP91UxZaUBN3ovQj7WwKMQ/Q7nNpAeirxC33y45X6fAVrTQU6miYZsyp8jtB/B9gZBuu8qnkLaF
- +J8lCbPL7VgK/yAkYjjVU7HXc6ovx95xqYg6s/CO33qtKXQbdtvC6KMJA/uY7SqW0sTzTmXzT1e
- 3yTT1g8QK1oxNtXH8CSQ6dlO+0aJ5VXDF6kpbRqptMSG92IYd2P9xvPc73OBO8DPPZqbH35+feK
- Heh1SiWq2QQ6hM6oZp
-X-Google-Smtp-Source: AGHT+IGa8NQ+H5fu5Ot6rFuuXBzldd5AfEsvjMI89lcmjBY68BYTS+xXWss+yNFMorFaomhESv3lIA==
-X-Received: by 2002:a05:600c:8b4c:b0:46e:4a60:ea2c with SMTP id
- 5b1f17b1804b1-47773293987mr2821745e9.37.1762548532683; 
- Fri, 07 Nov 2025 12:48:52 -0800 (PST)
-Received: from [192.168.0.101] ([90.240.106.137])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-47763b5359esm53398575e9.0.2025.11.07.12.48.51
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 07 Nov 2025 12:48:52 -0800 (PST)
-Message-ID: <14ca1b28-df1d-4065-ad7a-97a3ff81a5a4@ursulin.net>
-Date: Fri, 7 Nov 2025 20:48:51 +0000
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 056F410EB7E;
+ Fri,  7 Nov 2025 21:04:41 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8721301526708826250=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i195: Fix format string truncation warning
-To: Ard Biesheuvel <ardb+git@google.com>, linux-kernel@vger.kernel.org
-Cc: Ard Biesheuvel <ardb@kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20251107164240.2023366-2-ardb+git@google.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <20251107164240.2023366-2-ardb+git@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915=3A_Further_drm?=
+ =?utf-8?q?=5Fget=5Fformat=5Finfo=28=29_stuff?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 07 Nov 2025 21:04:41 -0000
+Message-ID: <176254948101.29335.11982556877316979330@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <20251107181126.5743-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20251107181126.5743-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,75 +37,144 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============8721301526708826250==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 07/11/2025 16:42, Ard Biesheuvel wrote:
-> From: Ard Biesheuvel <ardb@kernel.org>
-> 
-> GCC notices that the 16-byte uabi_name field could theoretically be too
-> small for the formatted string if the instance number exceeds 100.
-> 
-> Given that there are apparently ABI concerns here, this is the minimal
-> fix that shuts up the compiler without changing the output or the
-> maximum length for existing values < 100.
+== Series Details ==
 
-What would be those ABI concerns? I don't immediately see any.
-> drivers/gpu/drm/i915/intel_memory_region.c: In function ‘intel_memory_region_create’:
-> drivers/gpu/drm/i915/intel_memory_region.c:273:61: error: ‘%u’ directive output may be truncated writing between 1 and 5 bytes into a region of size between 3 and 11 [-Werror=format-truncation=]
->    273 |         snprintf(mem->uabi_name, sizeof(mem->uabi_name), "%s%u",
->        |                                                             ^~
-> drivers/gpu/drm/i915/intel_memory_region.c:273:58: note: directive argument in the range [0, 65535]
->    273 |         snprintf(mem->uabi_name, sizeof(mem->uabi_name), "%s%u",
->        |                                                          ^~~~~~
-> drivers/gpu/drm/i915/intel_memory_region.c:273:9: note: ‘snprintf’ output between 7 and 19 bytes into a destination of size 16
->    273 |         snprintf(mem->uabi_name, sizeof(mem->uabi_name), "%s%u",
->        |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->    274 |                  intel_memory_type_str(type), instance);
->        |                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> 
-> Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
-> ---
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Tvrtko Ursulin <tursulin@ursulin.net>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Cc: intel-gfx@lists.freedesktop.org
-> Cc: dri-devel@lists.freedesktop.org
-> 
-> This is unlikely to be the right fix, but sending a wrong patch is
-> usually a better way to elicit a response than just sending a bug
-> report.
-> 
->   drivers/gpu/drm/i915/intel_memory_region.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu/drm/i915/intel_memory_region.c
-> index 59bd603e6deb..ad4afcf0c58a 100644
-> --- a/drivers/gpu/drm/i915/intel_memory_region.c
-> +++ b/drivers/gpu/drm/i915/intel_memory_region.c
-> @@ -271,7 +271,7 @@ intel_memory_region_create(struct drm_i915_private *i915,
->   	mem->instance = instance;
->   
->   	snprintf(mem->uabi_name, sizeof(mem->uabi_name), "%s%u",
-> -		 intel_memory_type_str(type), instance);
-> +		 intel_memory_type_str(type), instance % 100);
-It's a theoretical issue only since there is no hardware with a double 
-digit number of instances.
+Series: drm/i915: Further drm_get_format_info() stuff
+URL   : https://patchwork.freedesktop.org/series/157251/
+State : success
 
-But I guess much prettier fix would be to simply grow the buffer.
+== Summary ==
 
-Also, hm, how come gcc does not find the mem->name vsnprintf from 
-intel_memory_region_set_name?
+CI Bug Log - changes from CI_DRM_17514 -> Patchwork_157251v1
+====================================================
 
-Regards,
+Summary
+-------
 
-Tvrtko
+  **SUCCESS**
 
->   
->   	mutex_init(&mem->objects.lock);
->   	INIT_LIST_HEAD(&mem->objects.list);
+  No regressions found.
 
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157251v1/index.html
+
+Participating hosts (45 -> 44)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_157251v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@load:
+    - bat-mtlp-9:         [PASS][1] -> [DMESG-WARN][2] ([i915#13494])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17514/bat-mtlp-9/igt@i915_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157251v1/bat-mtlp-9/igt@i915_module_load@load.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-9:          [DMESG-FAIL][3] ([i915#12061]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17514/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157251v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#13494]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_17514 -> Patchwork_157251v1
+
+  CI-20190529: 20190529
+  CI_DRM_17514: 4dff427fe8bbfd0bdbf7935d23a2aba0c350ab2d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8613: b542242f5b116e3b554b4068ef5dfa4451075b2b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_157251v1: 4dff427fe8bbfd0bdbf7935d23a2aba0c350ab2d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157251v1/index.html
+
+--===============8721301526708826250==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Further drm_get_format_info() stuff</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157251/">https://patchwork.freedesktop.org/series/157251/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157251v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157251v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17514 -&gt; Patchwork_157251v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157251v1/index.html</p>
+<h2>Participating hosts (45 -&gt; 44)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_157251v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_module_load@load:<ul>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17514/bat-mtlp-9/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157251v1/bat-mtlp-9/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494">i915#13494</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17514/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157251v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17514 -&gt; Patchwork_157251v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17514: 4dff427fe8bbfd0bdbf7935d23a2aba0c350ab2d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8613: b542242f5b116e3b554b4068ef5dfa4451075b2b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_157251v1: 4dff427fe8bbfd0bdbf7935d23a2aba0c350ab2d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============8721301526708826250==--
