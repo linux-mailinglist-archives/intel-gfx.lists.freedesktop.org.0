@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03D7EC42183
-	for <lists+intel-gfx@lfdr.de>; Sat, 08 Nov 2025 01:06:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B1DA0C42186
+	for <lists+intel-gfx@lfdr.de>; Sat, 08 Nov 2025 01:06:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9568E10EBB3;
-	Sat,  8 Nov 2025 00:06:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 575D010EBBB;
+	Sat,  8 Nov 2025 00:06:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FouaUghV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k0NZ0xoN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D61F810EBB8;
- Sat,  8 Nov 2025 00:06:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74A2E10EBBB;
+ Sat,  8 Nov 2025 00:06:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762560407; x=1794096407;
+ t=1762560410; x=1794096410;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=FE1mrWq9OuVp2Ac3cmT9bULjSw7ewcSLTFcRw8rzZuY=;
- b=FouaUghVZ4bQ9bx8HnbX0UOpW09Ipf8kJqou443nwmI/1xGZS+4CJaSt
- 0ZNsSUzg17X9W1RyD5jwl77l9k4wIWFrx5IQHv2/2Lpq6hHk1QYMtzqmT
- AhVBFY1vPB5dcN3TmJSCGLFBVL0SCyN0lwX3SjtBNGvxQ4vW8JW6PF8Oz
- DYU7KAY84FOCCKYSg9NrKEXWNtz1m6zHYk2d0+Dn/hcReXD6A9cPsl7oD
- 152z1MWP57sDx4tgeq9uK4nQW4NG1rcKDTGWZUyezXtpYtl9NycPB/BBx
- lWRnQ9fvGOiymBVSKg0flM4jaMNX65Bv4VHIzg1AdXC6L5sxtZFnIUnb5 w==;
-X-CSE-ConnectionGUID: GioxpYahSZC9xhHAydGaFQ==
-X-CSE-MsgGUID: 4fLEbJUyRl2/zEsz9FhxFQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="64621264"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="64621264"
+ bh=Ux1LnU8D65mX2QDp7191fvr2Srfn9ihGv1dO45iG5nc=;
+ b=k0NZ0xoNQHib8jYtfhHu+z/UH3WL+pNMHmwM4bpOzJvt5090/SK3Ko3M
+ QSPfrdTKqVznBjmMnTh1eFhV8aVTzud73busZNW0oM36e2N0OzbCXopDk
+ 0EQoDSfJwGpjyT0w2uZ4X0m//A4sQB/qquZLN2Yh1KMUpiM/Gy9D7pDU8
+ Swm2NpHHOKnZ44GOd0w9ifI7eUQGIxITab1J7mtiisif2MA3CK5IUcEm2
+ wtGll0N81VcvX2tho2DtfxfmOfEsVBXWIsd4GOnNY4+++AAsCaZG0lTL+
+ Edv4plesBGCVauOyohFYCOm5Uz4S5C4EKThrTZhd+L0Q+WPT7y/YzmfaT w==;
+X-CSE-ConnectionGUID: KcFqJ4M0SLSPFSGGaxbKUg==
+X-CSE-MsgGUID: dZHbStuSRrS0rfmUuXGDiQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="64621266"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="64621266"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 16:06:46 -0800
-X-CSE-ConnectionGUID: 4PBBtLdwTlaoTdebx2Anag==
-X-CSE-MsgGUID: +C+qor8oRD6EMzbXzyhv4w==
+ 07 Nov 2025 16:06:50 -0800
+X-CSE-ConnectionGUID: WwJDSZ4eSr2RHZpchpL/6w==
+X-CSE-MsgGUID: bC99RH8PTmGFcLPDOsHMxA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,288,1754982000"; d="scan'208";a="218822607"
+X-IronPort-AV: E=Sophos;i="6.19,288,1754982000"; d="scan'208";a="218822612"
 Received: from mgerlach-mobl1.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.222.137])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 16:06:43 -0800
+ 07 Nov 2025 16:06:47 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Fri, 07 Nov 2025 21:05:37 -0300
-Subject: [PATCH v4 04/11] drm/i915/display: Handle dedicated external ports
- in intel_encoder_is_tc()
+Date: Fri, 07 Nov 2025 21:05:38 -0300
+Subject: [PATCH v4 05/11] drm/i915/fbc: Add intel_fbc_id_for_pipe()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251107-xe3p_lpd-basic-enabling-v4-4-ab3367f65f15@intel.com>
+Message-Id: <20251107-xe3p_lpd-basic-enabling-v4-5-ab3367f65f15@intel.com>
 References: <20251107-xe3p_lpd-basic-enabling-v4-0-ab3367f65f15@intel.com>
 In-Reply-To: <20251107-xe3p_lpd-basic-enabling-v4-0-ab3367f65f15@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
@@ -64,8 +63,7 @@ Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>, 
  Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>, 
  Shekhar Chauhan <shekhar.chauhan@intel.com>, 
- Vinod Govindapillai <vinod.govindapillai@intel.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>
+ Vinod Govindapillai <vinod.govindapillai@intel.com>
 X-Mailer: b4 0.15-dev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -82,112 +80,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Starting with Xe3p_LPD, the VBT has a new field, called in the driver
-"dedicated_external", which tells that a Type-C capable port is
-physically connected to a PHY outside of the Type-C subsystem.  When
-that's the case, the driver must not do the extra Type-C programming for
-that port.  Update intel_encoder_is_tc() to check for that case.
+We will need to know the FBC id respective to the pipe in other parts of
+the driver. Let's promote the static function skl_fbc_id_for_pipe() to a
+public one named intel_fbc_id_for_pipe().
 
-While at it, add a note to intel_phy_is_tc() to remind us that it is
-about whether the respective port is a Type-C capable port rather than
-the PHY itself.
-
-(Maybe it would be a nice idea to rename intel_phy_is_tc()?)
-
-Note that this was handled with a new bool member added to struct
-intel_digital_port instead of having querying the VBT directly because
-VBT memory is freed (intel_bios_driver_remove) before encoder cleanup
-(intel_ddi_encoder_destroy), which would cause an oops to happen when
-the latter calls intel_encoder_is_tc().  This could be fixed by keeping
-VBT data around longer, but that's left for a follow-up work, if deemed
-necessary.
-
-v2:
-  - Drop printing info about dedicated external, now that we are doing
-    it when parsing the VBT. (Jani)
-  - Add a FIXME comment on the code explaining why we need to store
-    dedicated_external in struct intel_digital_port. (Jani)
-
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Shekhar Chauhan <shekhar.chauhan@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c           | 11 +++++++++++
- drivers/gpu/drm/i915/display/intel_display.c       | 19 ++++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_display_types.h |  1 +
- 3 files changed, 30 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_fbc.c           | 5 +++++
+ drivers/gpu/drm/i915/display/intel_fbc.h           | 2 ++
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 9 ++-------
+ 3 files changed, 9 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 733ef4559131..d9aaeafd1570 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -5376,6 +5376,17 @@ void intel_ddi_init(struct intel_display *display,
- 			goto err;
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index a1e3083022ee..435bfd05109c 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -129,6 +129,11 @@ struct intel_fbc {
+ 	const char *no_fbc_reason;
+ };
  
-+	/*
-+	 * FIXME: We currently need to store dedicated_external because devdata
-+	 * does not live long enough for when intel_encoder_is_tc() is called on
-+	 * the unbind path.  This needs to be fixed by making sure that the VBT
-+	 * data is kept long enough, so that
-+	 * intel_bios_encoder_is_dedicated_external() can be called directly
-+	 * from intel_encoder_is_tc().
-+	 */
-+	if (intel_bios_encoder_is_dedicated_external(devdata))
-+		dig_port->dedicated_external = true;
++enum intel_fbc_id intel_fbc_id_for_pipe(enum pipe pipe)
++{
++	return pipe - PIPE_A + INTEL_FBC_A;
++}
 +
- 	if (intel_encoder_is_tc(encoder)) {
- 		bool is_legacy =
- 			!intel_bios_encoder_supports_typec_usb(devdata) &&
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 25986bd8fbdd..431f7f030a9b 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1800,7 +1800,17 @@ bool intel_phy_is_combo(struct intel_display *display, enum phy phy)
- 		return false;
+ /* plane stride in pixels */
+ static unsigned int intel_fbc_plane_stride(const struct intel_plane_state *plane_state)
+ {
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.h b/drivers/gpu/drm/i915/display/intel_fbc.h
+index 91424563206a..3d02f3fe5630 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.h
++++ b/drivers/gpu/drm/i915/display/intel_fbc.h
+@@ -9,6 +9,7 @@
+ #include <linux/types.h>
+ 
+ enum fb_op_origin;
++enum pipe;
+ struct intel_atomic_state;
+ struct intel_crtc;
+ struct intel_crtc_state;
+@@ -27,6 +28,7 @@ enum intel_fbc_id {
+ 	I915_MAX_FBCS,
+ };
+ 
++enum intel_fbc_id intel_fbc_id_for_pipe(enum pipe pipe);
+ int intel_fbc_atomic_check(struct intel_atomic_state *state);
+ int intel_fbc_min_cdclk(const struct intel_crtc_state *crtc_state);
+ bool intel_fbc_pre_update(struct intel_atomic_state *state,
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index bc55fafe9ce3..275ee2903219 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -439,11 +439,6 @@ static int skl_plane_max_height(const struct drm_framebuffer *fb,
+ 	return 4096;
  }
  
--/* Prefer intel_encoder_is_tc() */
-+/*
-+ * This function returns true if the DDI port respective to the PHY enumeration
-+ * is a Type-C capable port.
-+ *
-+ * Depending on the VBT, the port might be configured
-+ * as a "dedicated external" port, meaning that actual physical PHY is outside
-+ * of the Type-C subsystem and, as such, not really a "Type-C PHY".
-+ *
-+ * Prefer intel_encoder_is_tc(), especially if you really need to know if we
-+ * are dealing with Type-C connections.
-+ */
- bool intel_phy_is_tc(struct intel_display *display, enum phy phy)
+-static enum intel_fbc_id skl_fbc_id_for_pipe(enum pipe pipe)
+-{
+-	return pipe - PIPE_A + INTEL_FBC_A;
+-}
+-
+ static bool skl_plane_has_fbc(struct intel_display *display,
+ 			      enum intel_fbc_id fbc_id, enum plane_id plane_id)
  {
- 	/*
-@@ -1885,6 +1895,13 @@ bool intel_encoder_is_tc(struct intel_encoder *encoder)
+@@ -896,7 +891,7 @@ static void x3p_lpd_plane_update_pixel_normalizer(struct intel_dsb *dsb,
+ 						  bool enable)
  {
- 	struct intel_display *display = to_intel_display(encoder);
+ 	struct intel_display *display = to_intel_display(plane);
+-	enum intel_fbc_id fbc_id = skl_fbc_id_for_pipe(plane->pipe);
++	enum intel_fbc_id fbc_id = intel_fbc_id_for_pipe(plane->pipe);
+ 	u32 val;
  
-+	if (intel_encoder_is_dig_port(encoder)) {
-+		struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-+
-+		if (dig_port->dedicated_external)
-+			return false;
-+	}
-+
- 	return intel_phy_is_tc(display, intel_encoder_to_phy(encoder));
- }
+ 	/* Only HDR planes have pixel normalizer and don't matter if no FBC */
+@@ -2442,7 +2437,7 @@ void icl_link_nv12_planes(struct intel_plane_state *uv_plane_state,
+ static struct intel_fbc *skl_plane_fbc(struct intel_display *display,
+ 				       enum pipe pipe, enum plane_id plane_id)
+ {
+-	enum intel_fbc_id fbc_id = skl_fbc_id_for_pipe(pipe);
++	enum intel_fbc_id fbc_id = intel_fbc_id_for_pipe(pipe);
  
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 00600134bda0..8bf392bc0d5d 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1937,6 +1937,7 @@ struct intel_digital_port {
- 	bool lane_reversal;
- 	bool ddi_a_4_lanes;
- 	bool release_cl2_override;
-+	bool dedicated_external;
- 	u8 max_lanes;
- 	/* Used for DP and ICL+ TypeC/DP and TypeC/HDMI ports. */
- 	enum aux_ch aux_ch;
+ 	if (skl_plane_has_fbc(display, fbc_id, plane_id))
+ 		return display->fbc[fbc_id];
 
 -- 
 2.51.0
