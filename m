@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02AA9C4217A
-	for <lists+intel-gfx@lfdr.de>; Sat, 08 Nov 2025 01:06:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58833C4217D
+	for <lists+intel-gfx@lfdr.de>; Sat, 08 Nov 2025 01:06:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7ABF210EBB4;
-	Sat,  8 Nov 2025 00:06:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E52BD10EBB6;
+	Sat,  8 Nov 2025 00:06:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bqXAGIqF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kDIxhhPD";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DD6E10EBB3;
- Sat,  8 Nov 2025 00:06:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 399BD10EBB5;
+ Sat,  8 Nov 2025 00:06:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762560395; x=1794096395;
+ t=1762560399; x=1794096399;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=RVC2HA1NYQ8aPdebup7wuhdH3KKvSzxM/yMtKReW01M=;
- b=bqXAGIqFOU4BcqMA0cgumV1lvSqkjNoxl//wvTOIwZH5nXTMDs8YGguD
- H/UJ9gDZn93SfJaAd3AKhK27kMryhiqpsH/LerGK/JF68JFTPnX84ma1W
- lKzop6N1xsR0UYKeDZTnKEV06YxM8X5BTMd4xUZ5tWwuIAksmcwzro6vv
- Ct2yJB8jPEdLrk/m1iPdRQCqBTfjzu0GSYyVjc0C2sc/I1FNXh+mpssm1
- IX6XBoAqDfGkmXH1ATuMD5hjVVRsi9ohc9ky2ktkZ4ciKxOCcle/v0vWk
- 7M6GRafjvDGX1FZVQNnHwtcQ0iyvZu0P8pO9AnZLq6E9gxsF0vsEVfbIg A==;
-X-CSE-ConnectionGUID: 5YvOeGnsQf+dz2aku9cvCQ==
-X-CSE-MsgGUID: j7p0QmYiSYe6ig3spC8p8g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="64621254"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="64621254"
+ bh=3/HYq2V4PKwQmay1TN0XPTCm/SAoyW02mhBkL1vKXuY=;
+ b=kDIxhhPDWKOWPtqbZs9Czu7pp5iqHpotjfkK2MYMNslBWnp+V8eU8zmt
+ aY0m5d27oZIduHU0bWgN1KQG3mCY62vFoboHD6uBXyxIFPxBPsoMnpErs
+ yCeesdJrGjUVySucdzXfUjVPeGOIE31Re2j2hKRPCfvf8D+kCmM6aPs9B
+ HFuLruebFRBqvjoqDYw4yGDvgQ1Or6H8IRvhkwYCPsIuNztpMqNR4eLdZ
+ /NBSgwP67IdUjL0rypBAjLnP2o3xbrgGEESBRV3CjV0ZMrX9vHA5IP4DI
+ uwnI5GQs5M7OEih+B6S/SeR9rGvIc119mi5fryDpP9scO8tNWryJ+QO15 g==;
+X-CSE-ConnectionGUID: 1D7R2SErR6GQMwSDSov5SA==
+X-CSE-MsgGUID: E/5V+NMzTfy5H+sNFSbCFQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="64621260"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="64621260"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 16:06:35 -0800
-X-CSE-ConnectionGUID: Ec0sHNiWQK+AiPC0XaqJKQ==
-X-CSE-MsgGUID: RCUUMW8fRuWICEU3F4RuTg==
+ 07 Nov 2025 16:06:39 -0800
+X-CSE-ConnectionGUID: WicixFSQS8OkY/8xjP5m6w==
+X-CSE-MsgGUID: HlMKmX6ETwai+Hnpds3uPA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,288,1754982000"; d="scan'208";a="218822587"
+X-IronPort-AV: E=Sophos;i="6.19,288,1754982000"; d="scan'208";a="218822594"
 Received: from mgerlach-mobl1.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.222.137])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 16:06:32 -0800
+ 07 Nov 2025 16:06:35 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Fri, 07 Nov 2025 21:05:34 -0300
-Subject: [PATCH v4 01/11] drm/i915/wm: Do not make latency values monotonic
- on Xe3 onward
+Date: Fri, 07 Nov 2025 21:05:35 -0300
+Subject: [PATCH v4 02/11] drm/i915/vbt: Add fields dedicated_external and
+ dyn_port_over_tc
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20251107-xe3p_lpd-basic-enabling-v4-1-ab3367f65f15@intel.com>
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251107-xe3p_lpd-basic-enabling-v4-2-ab3367f65f15@intel.com>
 References: <20251107-xe3p_lpd-basic-enabling-v4-0-ab3367f65f15@intel.com>
 In-Reply-To: <20251107-xe3p_lpd-basic-enabling-v4-0-ab3367f65f15@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
@@ -65,7 +65,7 @@ Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
  Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>, 
  Shekhar Chauhan <shekhar.chauhan@intel.com>, 
  Vinod Govindapillai <vinod.govindapillai@intel.com>, 
- =?utf-8?q?Ville_Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+ Jani Nikula <jani.nikula@linux.intel.com>
 X-Mailer: b4 0.15-dev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -82,63 +82,172 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The Windows driver is rejecting non-monotonic ranges latency values for
-Xe3.  Let's make sure that we do not call make_wm_latency_monotonic()
-for Xe3 and beyond.
+VBT version 264 adds new fields associated to Xe3p_LPD's new ways of
+configuring SoC for TC ports and PHYs.  Update the code to match the
+updates in VBT.
 
-Also, because of that, let's add a check at the end of
-adjust_wm_latency() to ensure we raise a warning if the final list of
-latency values is not monotonic.
+The new field dedicated_external is used to represent TC ports that are
+connected to PHYs outside of the Type-C subsystem, meaning that they
+behave like dedicated ports and don't require the extra Type-C
+programming.  In an upcoming change, we will update the driver to take
+this field into consideration when detecting the type of port.
 
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+The new field dyn_port_over_tc is used to inform that the TC port can be
+dynamically allocated for a legacy connector in the Type-C subsystem,
+which is a new feature in Xe3p_LPD.  In upcoming changes, we will use
+that field in order to handle the IOM resource management programming
+required for that.
+
+Note that, when dedicated_external is set, the fields dp_usb_type_c and
+tbt are tagged as "don't care" in the spec, so they should be ignored in
+that case, so also add a sanitization function to take care of forcing
+them to zero when dedicated_external is true.
+
+v2:
+  - Use sanitization function to force dp_usb_type_c and tbt fields to
+    be zero instead of adding a
+    intel_bios_encoder_is_dedicated_external() check in each of their
+    respective accessor functions. (Jani)
+  - Print info about dedicated external ports in print_ddi_port().
+    (Jani)
+
+Bspec: 20124, 68954, 74304
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Shekhar Chauhan <shekhar.chauhan@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_watermark.c | 17 ++++++++++++++++-
- 1 file changed, 16 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_bios.c     | 54 ++++++++++++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_bios.h     |  2 +
+ drivers/gpu/drm/i915/display/intel_vbt_defs.h |  3 +-
+ 3 files changed, 56 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 36a266f882d1..ed55fe84e930 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -3218,6 +3218,18 @@ static void make_wm_latency_monotonic(struct intel_display *display)
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index 852e4d6db8a3..1487d5e5a69d 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -2530,6 +2530,36 @@ intel_bios_encoder_reject_edp_rate(const struct intel_bios_encoder_data *devdata
+ 	return devdata->child.edp_data_rate_override & edp_rate_override_mask(rate);
  }
  
-+static bool is_wm_latency_monotonic(struct intel_display *display)
++static void sanitize_dedicated_external(struct intel_bios_encoder_data *devdata,
++					enum port port)
 +{
-+	u16 *wm = display->wm.skl_latency;
-+	int level, num_levels = display->wm.num_levels;
++	struct intel_display *display = devdata->display;
 +
-+	for (level = 1; level < num_levels; level++)
-+		if (wm[level] < wm[level - 1])
-+			return false;
++	if (!intel_bios_encoder_is_dedicated_external(devdata))
++		return;
 +
-+	return true;
++	/*
++	 * Fields dp_usb_type_c and tbt must be ignored when
++	 * dedicated_external is set.  Since dedicated_external is for
++	 * ports connected to PHYs outside of the Type-C subsystem, it
++	 * is safe to force those fields to zero.
++	 */
++
++	if (devdata->child.dp_usb_type_c) {
++		drm_dbg_kms(display->drm,
++			    "VBT claims Port %c supports USB Type-C, but the port is dedicated external, ignoring\n",
++			    port_name(port));
++		devdata->child.dp_usb_type_c = 0;
++	}
++
++	if (devdata->child.tbt) {
++		drm_dbg_kms(display->drm,
++			    "VBT claims Port %c supports TBT, but the port is dedicated external, ignoring\n",
++			    port_name(port));
++		devdata->child.tbt = 0;
++	}
 +}
 +
- static void
- adjust_wm_latency(struct intel_display *display)
+ static void sanitize_device_type(struct intel_bios_encoder_data *devdata,
+ 				 enum port port)
  {
-@@ -3228,7 +3240,8 @@ adjust_wm_latency(struct intel_display *display)
+@@ -2668,7 +2698,8 @@ static void print_ddi_port(const struct intel_bios_encoder_data *devdata)
+ {
+ 	struct intel_display *display = devdata->display;
+ 	const struct child_device_config *child = &devdata->child;
+-	bool is_dvi, is_hdmi, is_dp, is_edp, is_dsi, is_crt, supports_typec_usb, supports_tbt;
++	bool is_dvi, is_hdmi, is_dp, is_edp, is_dsi, is_crt, supports_typec_usb,
++		supports_tbt, dedicated_external;
+ 	int dp_boost_level, dp_max_link_rate, hdmi_boost_level, hdmi_level_shift, max_tmds_clock;
+ 	enum port port;
  
- 	sanitize_wm_latency(display);
+@@ -2694,6 +2725,12 @@ static void print_ddi_port(const struct intel_bios_encoder_data *devdata)
+ 		    supports_typec_usb, supports_tbt,
+ 		    devdata->dsc != NULL);
  
--	make_wm_latency_monotonic(display);
-+	if (DISPLAY_VER(display) < 30)
-+		make_wm_latency_monotonic(display);
- 
- 	/*
- 	 * WaWmMemoryReadLatency
-@@ -3248,6 +3261,8 @@ adjust_wm_latency(struct intel_display *display)
- 	 */
- 	if (need_16gb_dimm_wa(display))
- 		increase_wm_latency(display, 1);
++	dedicated_external = intel_bios_encoder_is_dedicated_external(devdata);
++	if (dedicated_external)
++		drm_dbg_kms(display->drm,
++			    "Port %c is dedicated external\n",
++			    port_name(port));
 +
-+	drm_WARN_ON(display->drm, !is_wm_latency_monotonic(display));
+ 	hdmi_level_shift = intel_bios_hdmi_level_shift(devdata);
+ 	if (hdmi_level_shift >= 0) {
+ 		drm_dbg_kms(display->drm,
+@@ -2751,6 +2788,7 @@ static void parse_ddi_port(struct intel_bios_encoder_data *devdata)
+ 		return;
+ 	}
+ 
++	sanitize_dedicated_external(devdata, port);
+ 	sanitize_device_type(devdata, port);
+ 	sanitize_hdmi_level_shift(devdata, port);
+ }
+@@ -2778,7 +2816,7 @@ static int child_device_expected_size(u16 version)
+ {
+ 	BUILD_BUG_ON(sizeof(struct child_device_config) < 40);
+ 
+-	if (version > 263)
++	if (version > 264)
+ 		return -ENOENT;
+ 	else if (version >= 263)
+ 		return 44;
+@@ -3723,6 +3761,18 @@ bool intel_bios_encoder_supports_tbt(const struct intel_bios_encoder_data *devda
+ 	return devdata->display->vbt.version >= 209 && devdata->child.tbt;
  }
  
- static void mtl_read_wm_latency(struct intel_display *display)
++bool intel_bios_encoder_is_dedicated_external(const struct intel_bios_encoder_data *devdata)
++{
++	return devdata->display->vbt.version >= 264 &&
++		devdata->child.dedicated_external;
++}
++
++bool intel_bios_encoder_supports_dyn_port_over_tc(const struct intel_bios_encoder_data *devdata)
++{
++	return devdata->display->vbt.version >= 264 &&
++		devdata->child.dyn_port_over_tc;
++}
++
+ bool intel_bios_encoder_lane_reversal(const struct intel_bios_encoder_data *devdata)
+ {
+ 	return devdata && devdata->child.lane_reversal;
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
+index f9e438b2787b..75dff27b4228 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.h
++++ b/drivers/gpu/drm/i915/display/intel_bios.h
+@@ -79,6 +79,8 @@ bool intel_bios_encoder_supports_dp(const struct intel_bios_encoder_data *devdat
+ bool intel_bios_encoder_supports_edp(const struct intel_bios_encoder_data *devdata);
+ bool intel_bios_encoder_supports_typec_usb(const struct intel_bios_encoder_data *devdata);
+ bool intel_bios_encoder_supports_tbt(const struct intel_bios_encoder_data *devdata);
++bool intel_bios_encoder_is_dedicated_external(const struct intel_bios_encoder_data *devdata);
++bool intel_bios_encoder_supports_dyn_port_over_tc(const struct intel_bios_encoder_data *devdata);
+ bool intel_bios_encoder_supports_dsi(const struct intel_bios_encoder_data *devdata);
+ bool intel_bios_encoder_supports_dp_dual_mode(const struct intel_bios_encoder_data *devdata);
+ bool intel_bios_encoder_is_lspcon(const struct intel_bios_encoder_data *devdata);
+diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+index 70e31520c560..57fda5824c9c 100644
+--- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
++++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+@@ -554,7 +554,8 @@ struct child_device_config {
+ 	u8 dvo_function;
+ 	u8 dp_usb_type_c:1;					/* 195+ */
+ 	u8 tbt:1;						/* 209+ */
+-	u8 flags2_reserved:2;					/* 195+ */
++	u8 dedicated_external:1;				/* 264+ */
++	u8 dyn_port_over_tc:1;					/* 264+ */
+ 	u8 dp_port_trace_length:4;				/* 209+ */
+ 	u8 dp_gpio_index;					/* 195+ */
+ 	u16 dp_gpio_pin_num;					/* 195+ */
 
 -- 
 2.51.0
