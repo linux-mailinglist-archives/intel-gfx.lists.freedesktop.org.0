@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 387A5C42189
-	for <lists+intel-gfx@lfdr.de>; Sat, 08 Nov 2025 01:06:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F881C4218C
+	for <lists+intel-gfx@lfdr.de>; Sat, 08 Nov 2025 01:07:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7E6710EBB5;
-	Sat,  8 Nov 2025 00:06:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0961710EBBF;
+	Sat,  8 Nov 2025 00:06:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nPM1YK64";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E6gnZLom";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83E9B10EBB5;
- Sat,  8 Nov 2025 00:06:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2147510EBBA;
+ Sat,  8 Nov 2025 00:06:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762560414; x=1794096414;
+ t=1762560418; x=1794096418;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=5KijbNlmUbt+MlxVqRAWNHKQBAPuDPBSur4yDEPPIUg=;
- b=nPM1YK64Xs5JFVs7kSab1hk8LX1fTk3sGc+pWszed94P9pj6qwcPXRJk
- u7F/PxiNltLVEyqSufM0mmT9bxfiZouAPPKnK5aerCtf1u8GDKHL4uu4Z
- ryzfXMNDsfGCoVdW2guFrVPzqgob0cb2oOdL9XI+FFJ1TVV1TOShi2pNz
- a4ppuzxv/z005D2YioJj8wU/ZetpfaC6uegtQtpjRgM8OuNKnmoye7XMT
- CxzCeRFahVPmOY8XKIYEJ+0hVhXzxgIg1VljbTAD6vIwUpJTtYub8CjHZ
- ipy21g9SjRHhuV698IJphmr9LZaLvkHBjHKRx0k92T2hp5ba61E9UTPfU g==;
-X-CSE-ConnectionGUID: hME662pcSpuJ05aQDSR2yQ==
-X-CSE-MsgGUID: 63Fa3TrrS2CCDUdn4lD/gw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="64621278"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="64621278"
+ bh=68DJ+t67Bnvr9UKAXIXkwqMJXn1usk/AOSwNXsKJnX4=;
+ b=E6gnZLomDLOvx5fXV9YWswBcg+EwRGGiWN1HFBRooPzLDeIqPJxqBsnS
+ uT665aIjakhD+9kA/BpNg2/qgl4v8eo0cI57iIQEjSdcRnDLV9I3mxBKR
+ 9beNR7OFGm26OFt9Z468UKj6Nme3wbi3LpMHd9s5wNGJF51ztKhxoMaj2
+ quSLVOQKgcDPhH3mzMkYaXaQl9rIhHgXwCTfBXHqanC+7TMPxMCFUVvAc
+ aeVM31jIl+p32WM55QxtZbCk1Audg2R5YONXl3cuwiJI0ixP1b6aS+YjQ
+ tet8X2tpAI4CsOdK5/7G2JXl3CUYwWbltEw/iwGOOzNVx0gk3FiO9zfJd Q==;
+X-CSE-ConnectionGUID: XTeW8BywRYOpwq5zlr/3IA==
+X-CSE-MsgGUID: N6chswHASF+AwmB6W0+aCg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="64621281"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="64621281"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 16:06:54 -0800
-X-CSE-ConnectionGUID: gNiYbcqsQL6vjhYaEkd30A==
-X-CSE-MsgGUID: jIhZ35RMQOGTA5skw0hcBQ==
+ 07 Nov 2025 16:06:58 -0800
+X-CSE-ConnectionGUID: /q8qBNiPR9Kz4jH4YyqKoQ==
+X-CSE-MsgGUID: F6WGrcI8SOC8qaqjCNg1Og==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,288,1754982000"; d="scan'208";a="218822629"
+X-IronPort-AV: E=Sophos;i="6.19,288,1754982000"; d="scan'208";a="218822634"
 Received: from mgerlach-mobl1.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.222.137])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 16:06:51 -0800
+ 07 Nov 2025 16:06:55 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Fri, 07 Nov 2025 21:05:39 -0300
-Subject: [PATCH v4 06/11] drm/i915/xe3p_lpd: Handle underrun debug bits
+Date: Fri, 07 Nov 2025 21:05:40 -0300
+Subject: [PATCH v4 07/11] drm/i915/xe3p_lpd: Extend Type-C flow for static
+ DDI allocation
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20251107-xe3p_lpd-basic-enabling-v4-6-ab3367f65f15@intel.com>
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251107-xe3p_lpd-basic-enabling-v4-7-ab3367f65f15@intel.com>
 References: <20251107-xe3p_lpd-basic-enabling-v4-0-ab3367f65f15@intel.com>
 In-Reply-To: <20251107-xe3p_lpd-basic-enabling-v4-0-ab3367f65f15@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
@@ -63,9 +64,7 @@ Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>, 
  Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>, 
  Shekhar Chauhan <shekhar.chauhan@intel.com>, 
- Vinod Govindapillai <vinod.govindapillai@intel.com>, 
- Jani Nikula <jani.nikula@intel.com>, 
- =?utf-8?q?Ville_Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+ Vinod Govindapillai <vinod.govindapillai@intel.com>
 X-Mailer: b4 0.15-dev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -82,263 +81,273 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Xe3p_LPD added several bits containing information that can be relevant
-to debugging FIFO underruns.  Add the logic necessary to handle them
-when reporting underruns.
+Xe3p_LPD has a new feature that allows the driver to allocate at runtime
+the DDI (TC ones) port to drive a legacy connection on the Type-C
+subsystem.  This allows better resource utilization, because now there
+is no need to statically reserve ports for legacy connectors on the
+Type-C subsystem.
 
-This was adapted from the initial patch[1] from Sai Teja Pottumuttu.
+That said, our driver is not yet ready for the dynamic allocation.
+Thus, as an incremental step, let's add the logic containing the
+required programming sequence for the allocation, but, instead of
+selecting the first available port, we try so use the 1:1 mapping
+expected by the driver today.
 
-[1] https://lore.kernel.org/all/20251015-xe3p_lpd-basic-enabling-v1-12-d2d1e26520aa@intel.com/
-
-Bspec: 69111, 69561, 74411, 74412
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Bspec: 68954
+Co-developed-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
-I tested this by adding a change on top of this series that updates
-Xe3p_LPD's CDCLK table to use bad values and I got the following
-messages:
 
-    [  +0.000237] xe 0000:00:02.0: [drm:intel_modeset_verify_crtc [xe]] [CRTC:88:pipe A]
-    [  +0.000674] xe 0000:00:02.0: [drm] *ERROR* CPU pipe A FIFO underrun
-    [  +0.000015] xe 0000:00:02.0: [drm] *ERROR* Pipe A FIFO underrun info: DBUF block not valid on planes: [1]
-    [  +0.000001] xe 0000:00:02.0: [drm] *ERROR* Pipe A FIFO underrun info: DDB empty on planes: [1]
-    [  +0.000001] xe 0000:00:02.0: [drm] *ERROR* Pipe A FIFO underrun info: DBUF below WM0 on planes: [1]
-    [  +0.000004] xe 0000:00:02.0: [drm] *ERROR* Pipe A FIFO underrun info: frame count: 1890, line count: 44
+NOTE: This patch is still a WIP. There are some opens to resolve here.
+Nevertheless, I'm sending it here for early feedback.
+
+For the HIP-index stuff, I have a local refactor started and need to
+finish it up and send it.
+
+The other open is about concurrent calls to iom_dp_resource_lock().  It
+is likely that we need to have a software lock to prevent concurrent
+access to IOM_DP_HW_RESOURCE_SEMAPHORE from our driver.
 ---
- .../gpu/drm/i915/display/intel_display_device.h    |   1 +
- drivers/gpu/drm/i915/display/intel_display_regs.h  |  16 +++
- drivers/gpu/drm/i915/display/intel_fbc_regs.h      |   2 +
- drivers/gpu/drm/i915/display/intel_fifo_underrun.c | 128 +++++++++++++++++++++
- 4 files changed, 147 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display_regs.h |  20 ++-
+ drivers/gpu/drm/i915/display/intel_tc.c           | 151 +++++++++++++++++++++-
+ 2 files changed, 169 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index b559ef43d547..91d8cfac5eff 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -197,6 +197,7 @@ struct intel_display_platforms {
- #define HAS_TRANSCODER(__display, trans)	((DISPLAY_RUNTIME_INFO(__display)->cpu_transcoder_mask & \
- 						  BIT(trans)) != 0)
- #define HAS_UNCOMPRESSED_JOINER(__display)	(DISPLAY_VER(__display) >= 13)
-+#define HAS_UNDERRUN_DBG_INFO(__display)	(DISPLAY_VER(__display) >= 35)
- #define HAS_ULTRAJOINER(__display)	(((__display)->platform.dgfx && \
- 					  DISPLAY_VER(__display) == 14) && HAS_DSC(__display))
- #define HAS_VRR(__display)		(DISPLAY_VER(__display) >= 11)
 diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index 9d71e26a4fa2..89ea0156ee06 100644
+index 89ea0156ee06..0cf7d43ce210 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -882,6 +882,21 @@
- #define   PIPE_MISC2_FLIP_INFO_PLANE_SEL_MASK		REG_GENMASK(2, 0) /* tgl+ */
- #define   PIPE_MISC2_FLIP_INFO_PLANE_SEL(plane_id)	REG_FIELD_PREP(PIPE_MISC2_FLIP_INFO_PLANE_SEL_MASK, (plane_id))
+@@ -2908,6 +2908,25 @@ enum skl_power_gate {
+ #define   DP_PIN_ASSIGNMENT(idx, x)		((x) << ((idx) * 4))
+ /* See enum intel_tc_pin_assignment for the pin assignment field values. */
  
-+#define _UNDERRUN_DBG1_A			0x70064
-+#define _UNDERRUN_DBG1_B			0x71064
-+#define UNDERRUN_DBG1(pipe)			_MMIO_PIPE(pipe, _UNDERRUN_DBG1_A, _UNDERRUN_DBG1_B)
-+#define   UNDERRUN_DBUF_BLOCK_NOT_VALID_MASK	REG_GENMASK(29, 24)
-+#define   UNDERRUN_DDB_EMPTY_MASK		REG_GENMASK(21, 16)
-+#define   UNDERRUN_DBUF_NOT_FILLED_MASK		REG_GENMASK(13, 8)
-+#define   UNDERRUN_BELOW_WM0_MASK		REG_GENMASK(5, 0)
++/*
++ * FIXME: There is also a definition for this register in intel_dkl_phy_regs.h.
++ * We need to consolidate the definitions.
++ */
++#define HIP_INDEX_REG0				_MMIO(0x1010a0)
++#define   HIP_168_INDEX_MASK			REG_GENMASK(3, 0)
++#define   HIP_168_IOM_RES_MGMT			REG_FIELD_PREP(HIP_168_INDEX_MASK, 0x1)
 +
-+#define _UNDERRUN_DBG2_A			0x70068
-+#define _UNDERRUN_DBG2_B			0x71068
-+#define UNDERRUN_DBG2(pipe)			_MMIO_PIPE(pipe, _UNDERRUN_DBG2_A, _UNDERRUN_DBG2_B)
-+#define   UNDERRUN_FRAME_LINE_COUNTERS_FROZEN	REG_BIT(31)
-+#define   UNDERRUN_PIPE_FRAME_COUNT_MASK	REG_GENMASK(30, 20)
-+#define   UNDERRUN_LINE_COUNT_MASK		REG_GENMASK(19, 0)
++#define IOM_DP_HW_RESOURCE_SEMAPHORE		_MMIO(0x168038)
++#define   IOM_DP_HW_SEMLOCK			REG_BIT(31)
++#define   IOM_REQUESTOR_ID_MASK			REG_GENMASK(3, 0)
++#define   IOM_REQUESTOR_ID_DISPLAY_ENGINE	REG_FIELD_PREP(IOM_REQUESTOR_ID_MASK, 0x4)
 +
- #define DPINVGTT				_MMIO(VLV_DISPLAY_BASE + 0x7002c) /* VLV/CHV only */
- #define   DPINVGTT_EN_MASK_CHV				REG_GENMASK(27, 16)
- #define   DPINVGTT_EN_MASK_VLV				REG_GENMASK(23, 16)
-@@ -1416,6 +1431,7 @@
- 
- #define GEN12_DCPR_STATUS_1				_MMIO(0x46440)
- #define  XELPDP_PMDEMAND_INFLIGHT_STATUS		REG_BIT(26)
-+#define  XE3P_UNDERRUN_PKGC				REG_BIT(21)
- 
- #define FUSE_STRAP		_MMIO(0x42014)
- #define   ILK_INTERNAL_GRAPHICS_DISABLE	REG_BIT(31)
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc_regs.h b/drivers/gpu/drm/i915/display/intel_fbc_regs.h
-index b1d0161a3196..77d8321c4fb3 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_fbc_regs.h
-@@ -88,6 +88,8 @@
- #define DPFC_FENCE_YOFF			_MMIO(0x3218)
- #define ILK_DPFC_FENCE_YOFF(fbc_id)	_MMIO_PIPE((fbc_id), 0x43218, 0x43258)
- #define DPFC_CHICKEN			_MMIO(0x3224)
-+#define FBC_DEBUG_STATUS(fbc_id)	_MMIO_PIPE((fbc_id), 0x43220, 0x43260)
-+#define   FBC_UNDERRUN_DECMPR			REG_BIT(27)
- #define ILK_DPFC_CHICKEN(fbc_id)	_MMIO_PIPE((fbc_id), 0x43224, 0x43264)
- #define   DPFC_HT_MODIFY			REG_BIT(31) /* pre-ivb */
- #define   DPFC_NUKE_ON_ANY_MODIFICATION		REG_BIT(23) /* bdw+ */
-diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-index c2ce8461ac9e..8a05b5c5fccd 100644
---- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-+++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-@@ -25,6 +25,8 @@
-  *
-  */
- 
-+#include <linux/seq_buf.h>
++#define IOM_DP_RESOURCE_MNG			_MMIO(0x16802c)
++#define   IOM_DDI_CONSUMER_SHIFT(tc_port)	((tc_port) * 4)
++#define   IOM_DDI_CONSUMER_MASK(tc_port)	(0xf << IOM_DDI_CONSUMER_SHIFT(tc_port))
++#define   IOM_DDI_CONSUMER(tc_port, x)		((x) << IOM_DDI_CONSUMER_SHIFT(tc_port))
++#define   IOM_DDI_CONSUMER_STATIC_TC(tc_port)	IOM_DDI_CONSUMER(tc_port, 0x8 + (tc_port))
 +
- #include <drm/drm_print.h>
+ #define _TCSS_DDI_STATUS_1			0x161500
+ #define _TCSS_DDI_STATUS_2			0x161504
+ #define TCSS_DDI_STATUS(tc)			_MMIO(_PICK_EVEN(tc, \
+@@ -2946,5 +2965,4 @@ enum skl_power_gate {
+ #define   MTL_TRDPRE_MASK		REG_GENMASK(7, 0)
+ 
+ 
+-
+ #endif /* __INTEL_DISPLAY_REGS_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
+index 7e17ca018748..3c333999bbe4 100644
+--- a/drivers/gpu/drm/i915/display/intel_tc.c
++++ b/drivers/gpu/drm/i915/display/intel_tc.c
+@@ -9,6 +9,7 @@
  
  #include "i915_reg.h"
-@@ -34,6 +36,7 @@
- #include "intel_display_trace.h"
- #include "intel_display_types.h"
- #include "intel_fbc.h"
-+#include "intel_fbc_regs.h"
- #include "intel_fifo_underrun.h"
- #include "intel_pch_display.h"
+ #include "intel_atomic.h"
++#include "intel_bios.h"
+ #include "intel_cx0_phy_regs.h"
+ #include "intel_ddi.h"
+ #include "intel_de.h"
+@@ -25,6 +26,9 @@
+ #include "intel_modeset_lock.h"
+ #include "intel_tc.h"
  
-@@ -57,6 +60,118 @@
-  * The code also supports underrun detection on the PCH transcoder.
-  */
- 
-+#define UNDERRUN_DBG1_NUM_PLANES 6
++#define IOM_DP_RES_SEMAPHORE_LOCK_TIMEOUT_US	10
++#define IOM_DP_RES_SEMAPHORE_RETRY_TIMEOUT_US	10000
 +
-+static void read_underrun_dbg1(struct intel_display *display, enum pipe pipe, bool log)
+ enum tc_port_mode {
+ 	TC_PORT_DISCONNECTED,
+ 	TC_PORT_TBT_ALT,
+@@ -1200,6 +1204,143 @@ static void xelpdp_tc_phy_get_hw_state(struct intel_tc_port *tc)
+ 	__tc_cold_unblock(tc, domain, tc_cold_wref);
+ }
+ 
++static void iom_res_mgmt_prepare_reg_access(struct intel_display *display)
 +{
-+	u32 val = intel_de_read(display, UNDERRUN_DBG1(pipe));
-+	struct {
-+		u32 plane_mask;
-+		const char *info;
-+	} masks[] = {
-+		{ REG_FIELD_GET(UNDERRUN_DBUF_BLOCK_NOT_VALID_MASK, val), "DBUF block not valid" },
-+		{ REG_FIELD_GET(UNDERRUN_DDB_EMPTY_MASK, val), "DDB empty" },
-+		{ REG_FIELD_GET(UNDERRUN_DBUF_NOT_FILLED_MASK, val), "DBUF not completely filled" },
-+		{ REG_FIELD_GET(UNDERRUN_BELOW_WM0_MASK, val), "DBUF below WM0" },
-+	};
-+	DECLARE_SEQ_BUF(planes_desc, 32);
++	/*
++	 * IOM resource management registers live in the 2nd 4KB page of IOM
++	 * address space. So we need to configure HIP_INDEX_REG0 with the
++	 * correct index.
++	 *
++	 * FIXME: We need to have this and dekel PHY implementation using a
++	 * common abstraction to access registers on the HIP-indexed ranges, and
++	 * this function would then be dropped.
++	 */
++	intel_de_rmw(display, HIP_INDEX_REG0,
++		     HIP_168_INDEX_MASK, HIP_168_IOM_RES_MGMT);
++}
 +
-+	if (!val)
-+		return;
++/*
++ * FIXME: This function also needs to avoid concurrent accesses from the driver
++ * itself, possibly via a software lock.
++ */
++static int iom_dp_resource_lock(struct intel_tc_port *tc)
++{
++	struct intel_display *display = to_intel_display(tc->dig_port);
++	u32 val = IOM_DP_HW_SEMLOCK | IOM_REQUESTOR_ID_DISPLAY_ENGINE;
++	int ret;
 +
-+	intel_de_write(display, UNDERRUN_DBG1(pipe), val);
++	iom_res_mgmt_prepare_reg_access(display);
++	ret = poll_timeout_us(intel_de_write(display, IOM_DP_HW_RESOURCE_SEMAPHORE, val),
++			      (intel_de_read(display, IOM_DP_HW_RESOURCE_SEMAPHORE) & val) == val,
++			      IOM_DP_RES_SEMAPHORE_LOCK_TIMEOUT_US,
++			      IOM_DP_RES_SEMAPHORE_RETRY_TIMEOUT_US, false);
 +
-+	if (!log)
-+		return;
++	if (ret)
++		drm_err(display->drm, "Port %s: timeout trying to lock IOM semaphore\n",
++			tc->port_name);
 +
-+	for (int i = 0; i < ARRAY_SIZE(masks); i++) {
-+		if (!masks[i].plane_mask)
-+			continue;
++	return ret;
++}
 +
-+		seq_buf_clear(&planes_desc);
++static void iom_dp_resource_unlock(struct intel_tc_port *tc)
++{
++	struct intel_display *display = to_intel_display(tc->dig_port);
 +
-+		for (int j = 0; j < UNDERRUN_DBG1_NUM_PLANES; j++) {
-+			if (!(masks[i].plane_mask & REG_BIT(j)))
++	iom_res_mgmt_prepare_reg_access(display);
++	intel_de_write(display, IOM_DP_HW_RESOURCE_SEMAPHORE, IOM_REQUESTOR_ID_DISPLAY_ENGINE);
++}
++
++static bool xe3p_tc_iom_allocate_ddi(struct intel_tc_port *tc, bool allocate)
++{
++	struct intel_display *display = to_intel_display(tc->dig_port);
++	struct intel_digital_port *dig_port = tc->dig_port;
++	enum tc_port tc_port = intel_encoder_to_tc(&dig_port->base);
++	u32 val;
++	u32 consumer;
++	u32 expected_consumer;
++	bool ret;
++
++	if (DISPLAY_VER(display) < 35)
++		return true;
++
++	if (tc->mode != TC_PORT_LEGACY)
++		return true;
++
++	if (!intel_bios_encoder_supports_dyn_port_over_tc(dig_port->base.devdata))
++		return true;
++
++	if (iom_dp_resource_lock(tc))
++		return false;
++
++	val = intel_de_read(display, IOM_DP_RESOURCE_MNG);
++
++	consumer = val & IOM_DDI_CONSUMER_MASK(tc_port);
++	consumer >>= IOM_DDI_CONSUMER_SHIFT(tc_port);
++
++	/*
++	 * Bspec instructs to select first available DDI, but our driver is not
++	 * ready for such dynamic allocation yet. For now, we force a "static"
++	 * allocation: map the physical port (where HPD happens) to the
++	 * encoder's DDI (logical TC port, represented by tc_port).
++	 */
++	expected_consumer = IOM_DDI_CONSUMER_STATIC_TC(tc_port);
++	expected_consumer >>= IOM_DDI_CONSUMER_SHIFT(tc_port);
++
++	if (allocate) {
++		struct intel_encoder *other_encoder;
++
++		/*
++		 * Check if this encoder's DDI is already allocated for another
++		 * physical port, which could have happened prior to the driver
++		 * taking over (e.g. GOP).
++		 */
++		for_each_intel_encoder(display->drm, other_encoder) {
++			enum tc_port other_tc_port = intel_encoder_to_tc(other_encoder);
++			u32 other_consumer;
++
++			if (tc_port == TC_PORT_NONE || other_tc_port == tc_port)
 +				continue;
 +
-+			if (j == 0)
-+				seq_buf_puts(&planes_desc, "[C]");
-+			else
-+				seq_buf_printf(&planes_desc, "[%d]", j);
++			other_consumer = val & IOM_DDI_CONSUMER_MASK(other_tc_port);
++			other_consumer >>= IOM_DDI_CONSUMER_SHIFT(other_tc_port);
++			if (other_consumer == expected_consumer) {
++				drm_err(display->drm, "Port %s: expected consumer %u already allocated another DDI; IOM_DP_RESOURCE_MNG=0x%08x\n",
++					tc->port_name, expected_consumer, val);
++				ret = false;
++				goto out_resource_unlock;
++			}
 +		}
 +
-+		drm_err(display->drm,
-+			"Pipe %c FIFO underrun info: %s on planes: %s\n",
-+			pipe_name(pipe), masks[i].info, seq_buf_str(&planes_desc));
-+
-+		drm_WARN_ON(display->drm, seq_buf_has_overflowed(&planes_desc));
++		if (consumer == 0) {
++			/* DDI is free to use, let's allocate it. */
++			val &= ~IOM_DDI_CONSUMER_MASK(tc_port);
++			val |= IOM_DDI_CONSUMER(tc_port, expected_consumer);
++			intel_de_write(display, IOM_DP_RESOURCE_MNG, val);
++			ret = true;
++		} else if (consumer == expected_consumer) {
++			/*
++			 * Nothing to do, as the expected "static" DDI allocation is
++			 * already in place.
++			 */
++			ret = true;
++		} else {
++			drm_err(display->drm, "Port %s: DDI already allocated for consumer %u; IOM_DP_RESOURCE_MNG=0x%08x\n",
++				tc->port_name, consumer, val);
++			ret = false;
++		}
++	} else {
++		drm_WARN_ON(display->drm, consumer != expected_consumer);
++		val &= ~IOM_DDI_CONSUMER_MASK(tc_port);
++		intel_de_write(display, IOM_DP_RESOURCE_MNG, val);
++		ret = true;
 +	}
++
++out_resource_unlock:
++	iom_dp_resource_unlock(tc);
++
++	return ret;
 +}
 +
-+static void read_underrun_dbg2(struct intel_display *display, enum pipe pipe, bool log)
-+{
-+	u32 val = intel_de_read(display, UNDERRUN_DBG2(pipe));
-+
-+	if (!(val & UNDERRUN_FRAME_LINE_COUNTERS_FROZEN))
-+		return;
-+
-+	intel_de_write(display, UNDERRUN_DBG2(pipe), UNDERRUN_FRAME_LINE_COUNTERS_FROZEN);
-+
-+	if (log)
-+		drm_err(display->drm,
-+			"Pipe %c FIFO underrun info: frame count: %u, line count: %u\n",
-+			pipe_name(pipe),
-+			REG_FIELD_GET(UNDERRUN_PIPE_FRAME_COUNT_MASK, val),
-+			REG_FIELD_GET(UNDERRUN_LINE_COUNT_MASK, val));
-+}
-+
-+static void read_underrun_dbg_fbc(struct intel_display *display, enum pipe pipe, bool log)
-+{
-+	enum intel_fbc_id fbc_id = intel_fbc_id_for_pipe(pipe);
-+	u32 val = intel_de_read(display, FBC_DEBUG_STATUS(fbc_id));
-+
-+	if (!(val & FBC_UNDERRUN_DECMPR))
-+		return;
-+
-+	intel_de_write(display, FBC_DEBUG_STATUS(fbc_id), FBC_UNDERRUN_DECMPR);
-+
-+	if (log)
-+		drm_err(display->drm,
-+			"Pipe %c FIFO underrun info: FBC decompressing\n",
-+			pipe_name(pipe));
-+}
-+
-+static void read_underrun_dbg_pkgc(struct intel_display *display, bool log)
-+{
-+	u32 val = intel_de_read(display, GEN12_DCPR_STATUS_1);
-+
-+	if (!(val & XE3P_UNDERRUN_PKGC))
-+		return;
-+
-+	/*
-+	 * Note: If there are multiple pipes enabled, only one of them will see
-+	 * XE3P_UNDERRUN_PKGC set.
-+	 */
-+	intel_de_write(display, GEN12_DCPR_STATUS_1, XE3P_UNDERRUN_PKGC);
-+
-+	if (log)
-+		drm_err(display->drm,
-+			"General FIFO underrun info: Package C-state blocking memory\n");
-+}
-+
-+static void read_underrun_dbg_info(struct intel_display *display,
-+				   enum pipe pipe,
-+				   bool log)
-+{
-+	if (!HAS_UNDERRUN_DBG_INFO(display))
-+		return;
-+
-+	read_underrun_dbg1(display, pipe, log);
-+	read_underrun_dbg2(display, pipe, log);
-+	read_underrun_dbg_fbc(display, pipe, log);
-+	read_underrun_dbg_pkgc(display, log);
-+}
-+
- static bool ivb_can_enable_err_int(struct intel_display *display)
+ static bool xelpdp_tc_phy_connect(struct intel_tc_port *tc, int required_lanes)
  {
- 	struct intel_crtc *crtc;
-@@ -262,6 +377,17 @@ static bool __intel_set_cpu_fifo_underrun_reporting(struct intel_display *displa
- 	old = !crtc->cpu_fifo_underrun_disabled;
- 	crtc->cpu_fifo_underrun_disabled = !enable;
- 
-+	/*
-+	 * The debug bits get latched at the time of the FIFO underrun ISR bit
-+	 * getting set.  That means that any existing debug bit that is set when
-+	 * handling a FIFO underrun interrupt has the potential to belong to
-+	 * another underrun event (past or future).  To alleviate this problem,
-+	 * let's clear existing bits before enabling the interrupt, so that at
-+	 * least we don't get information that is too out-of-date.
-+	 */
-+	if (enable && !old)
-+		read_underrun_dbg_info(display, pipe, false);
-+
- 	if (HAS_GMCH(display))
- 		i9xx_set_fifo_underrun_reporting(display, pipe, enable, old);
- 	else if (display->platform.ironlake || display->platform.sandybridge)
-@@ -379,6 +505,8 @@ void intel_cpu_fifo_underrun_irq_handler(struct intel_display *display,
- 		trace_intel_cpu_fifo_underrun(display, pipe);
- 
- 		drm_err(display->drm, "CPU pipe %c FIFO underrun\n", pipe_name(pipe));
-+
-+		read_underrun_dbg_info(display, pipe, true);
+ 	tc->lock_wakeref = tc_cold_block(tc);
+@@ -1210,9 +1351,12 @@ static bool xelpdp_tc_phy_connect(struct intel_tc_port *tc, int required_lanes)
+ 		return true;
  	}
  
- 	intel_fbc_handle_fifo_underrun_irq(display);
+-	if (!xelpdp_tc_phy_enable_tcss_power(tc, true))
++	if (!xe3p_tc_iom_allocate_ddi(tc, true))
+ 		goto out_unblock_tccold;
+ 
++	if (!xelpdp_tc_phy_enable_tcss_power(tc, true))
++		goto out_deallocate_ddi;
++
+ 	xelpdp_tc_phy_take_ownership(tc, true);
+ 
+ 	read_pin_configuration(tc);
+@@ -1226,6 +1370,9 @@ static bool xelpdp_tc_phy_connect(struct intel_tc_port *tc, int required_lanes)
+ 	xelpdp_tc_phy_take_ownership(tc, false);
+ 	xelpdp_tc_phy_wait_for_tcss_power(tc, false);
+ 
++out_deallocate_ddi:
++	xe3p_tc_iom_allocate_ddi(tc, false);
++
+ out_unblock_tccold:
+ 	tc_cold_unblock(tc, fetch_and_zero(&tc->lock_wakeref));
+ 
+@@ -1236,6 +1383,8 @@ static void xelpdp_tc_phy_disconnect(struct intel_tc_port *tc)
+ {
+ 	switch (tc->mode) {
+ 	case TC_PORT_LEGACY:
++		xe3p_tc_iom_allocate_ddi(tc, false);
++		fallthrough;
+ 	case TC_PORT_DP_ALT:
+ 		xelpdp_tc_phy_take_ownership(tc, false);
+ 		xelpdp_tc_phy_enable_tcss_power(tc, false);
 
 -- 
 2.51.0
