@@ -2,60 +2,175 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 978A9C47E43
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Nov 2025 17:19:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2D98C47F7D
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Nov 2025 17:35:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01D0510E481;
-	Mon, 10 Nov 2025 16:19:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 789FE10E44F;
+	Mon, 10 Nov 2025 16:35:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EO0kGMph";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ELZQKrqc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1239E10E47D;
- Mon, 10 Nov 2025 16:19:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B064110E42B;
+ Mon, 10 Nov 2025 16:35:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762791595; x=1794327595;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ztoA21mj7hknjLuPULenTy2/JTs+3LanY+vVH50nH/I=;
- b=EO0kGMphazzQrB/LlEb8UcT6llBmyVwatDsb7v5Wxfjyyduks8Uy560L
- OdTkgXpgfaCTWnb3d0BXEvUcn/mqFlpLwv+t0O7A+YRlIJFaQcKe95Rx0
- zk9qi7VegR5iJJ/j6jQLQ7QxVCeeaMMOKSBUeFoLWRTN34VFNZM7Fjmo6
- Zz6pAl47uZC/r6ZPlFfcnt+tyriBXcyOsMD9MXhQ2hK3Tlj4z+pXT/kg5
- QP7khQPmwjRCMXxFvm+ynfajxHO5/mWvHHrKsR6GqDuDMz8J4YTnB4qu7
- Lw344Lq2i/KvUoWk9VikMPWqMI/mrdby2CsBGmL/SdeffgoNM93NZnJXu w==;
-X-CSE-ConnectionGUID: VK+JjzjOR3ilcWAVrmOo/A==
-X-CSE-MsgGUID: USt/2pEkR/GR8f1ouPoGrw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="64755628"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="64755628"
+ t=1762792511; x=1794328511;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=BgWnPEoGTMXxKMYSi6HknAEffoV+ac66iiCPDgJWy90=;
+ b=ELZQKrqcn4r8GMuKJA+NPpGwxTht3rEAVL5KKGdv5t4VHXB8EIDp2+cT
+ n4Fuv//F5taafnv5kCplBzNFn6yUk9StmDnpiQFPrtaKSLDDCFIhtj8ke
+ JtZCFC7+VtMhcu5/XBrsztrd9US2w5oaBziP0AWaGLqiqDlnFsXQj6+FX
+ NiNXVbKBN+3NgMvfuODWkA/H4PRApNtUWjNd0SLiVcdrGKckI9m8Ax6jw
+ NI8O16/LswZt5H06fGbrRE/d80rb3PyQpV8axqd4E7O5q3etwFtSpsMEH
+ f4cmDtci7m37PEnmUyAjCWGkMsrAnGY1XIzaPGgijuJF82vJdCWwLakD+ w==;
+X-CSE-ConnectionGUID: Py5GwaaJTFyldgTdHSjOZw==
+X-CSE-MsgGUID: TjHAUiLST3+yLQjM0RFWUA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="76192947"
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="76192947"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 08:19:54 -0800
-X-CSE-ConnectionGUID: 8cZdfxFEQ5KmdiFB128YnA==
-X-CSE-MsgGUID: xtOoFcTOQouoC1x+Eu5tOw==
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2025 08:35:10 -0800
+X-CSE-ConnectionGUID: AVvgMl7PS4m/KQ6ooFsHbA==
+X-CSE-MsgGUID: Afq44aUYTyW3YeCcX5Hs5g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="189433883"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.202])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 08:19:51 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jani.nikula@intel.com, ville.syrjala@linux.intel.com,
- Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH 24/24] drm/vblank: clean up debug logging
-Date: Mon, 10 Nov 2025 18:17:42 +0200
-Message-ID: <ac70a7318a7b9d5e25f47e97df4b0fdb8b335e74.1762791343.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1762791343.git.jani.nikula@intel.com>
-References: <cover.1762791343.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="189437458"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2025 08:35:10 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Mon, 10 Nov 2025 08:35:09 -0800
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27 via Frontend Transport; Mon, 10 Nov 2025 08:35:09 -0800
+Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.50) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Mon, 10 Nov 2025 08:35:09 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=YNPCLAJRO2m5xPusC6MrXtc9qNLlIOjfTV/wWgmsxwqoFlH076h9HxqmIO8rRnR35tDXNUfdfUmKt5/JPvjUYLCoKcQzJvrd65W5g5qfj6E4OTm/ombXKwdyVRIb4qwHKbIF5ppSv86Z2ersxnA+3BbEA8QrhLp7aSVLP9rtTAwFtHvAIJn1nKEjZ8sRY/o6gElMELaR2mpW5FPHwsrJRp0c9M/fy1v4Wxzyv2WpLIWLIAALj9aV4k5CYR59NO/IcBgFecTTolX9ZUaozHQjTTScyPe5YBD8VA23b17r1WFnbY7fdFpBV0bLy3BXXbATULao6VAI2FeaeW5LBQoTdw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VLdxGlG0tYkopv4Ms8gmDkTdu88Xnp5U+PEje8KlRkk=;
+ b=KTGWuZk5Ee615tg622r7jg831rzqbOzc5Z3YHvkA7ZPf2oQa9NTFPY8DHX5QihA0N5sy7BoWEp272EG+FIpShX4lWScgW3P7ECtVDlL1rV8oUNA3tiILHsah+QJYfJEvk3kYe89O8MXhCb31GqD/PPIBrOLCiG3CJEbv+UY0FKSBj/stolXy0qclLTELI8MTRL+59l/TCZPmPcTPEOw0uEK1pv0oMNkm7VqWkMimK42C1KEo5tlqxmD49iwMwu8qiSMCWDzNBno3/O0LbVGPBUNli1YSIJ3gQjOdNaE1YAaDhwSPg7Y59DtMZgUlPRZ85bSG2618Gbwoj3qQ2ORW9w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by DM4PR11MB7301.namprd11.prod.outlook.com (2603:10b6:8:10a::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.16; Mon, 10 Nov
+ 2025 16:35:07 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::8dd1:f169:5266:e16e]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::8dd1:f169:5266:e16e%4]) with mapi id 15.20.9298.015; Mon, 10 Nov 2025
+ 16:35:06 +0000
+Date: Mon, 10 Nov 2025 08:35:03 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>, Dnyaneshwar Bhadane
+ <dnyaneshwar.bhadane@intel.com>, Jouni =?iso-8859-1?Q?H=F6gander?=
+ <jouni.hogander@intel.com>, Juha-pekka Heikkila
+ <juha-pekka.heikkila@intel.com>, Luca Coelho <luciano.coelho@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Matt Atwood
+ <matthew.s.atwood@intel.com>, Ravi Kumar Vodapalli
+ <ravi.kumar.vodapalli@intel.com>, Shekhar Chauhan
+ <shekhar.chauhan@intel.com>, Vinod Govindapillai
+ <vinod.govindapillai@intel.com>
+Subject: Re: [PATCH v4 05/11] drm/i915/fbc: Add intel_fbc_id_for_pipe()
+Message-ID: <20251110163503.GD4063759@mdroper-desk1.amr.corp.intel.com>
+References: <20251107-xe3p_lpd-basic-enabling-v4-0-ab3367f65f15@intel.com>
+ <20251107-xe3p_lpd-basic-enabling-v4-5-ab3367f65f15@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20251107-xe3p_lpd-basic-enabling-v4-5-ab3367f65f15@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0050.namprd03.prod.outlook.com
+ (2603:10b6:a03:33e::25) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|DM4PR11MB7301:EE_
+X-MS-Office365-Filtering-Correlation-Id: e4e3db97-3d47-4e00-abf4-08de20771b58
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?zz7oJWfN+6V25VPGHOpY8ygrctpEDuNeTgfEYniDEe5+nCJklpxWOmyddfXf?=
+ =?us-ascii?Q?jQ5o7kQLFsQK7v6qJF59U+F+5vmelBBypzlXZ9V3olQqdqoo754v/Yz7dQqx?=
+ =?us-ascii?Q?aCx5cp+grz/zb1S7BlT78zvWnct6LJ8t0YzN3aoLteSbTWURycGPjRmczl9W?=
+ =?us-ascii?Q?EV+0Ze/9RjAzfQQnrZ4kp1yVl+uK1NS4CmKfCY+TZHNrSW55OoNWee1NxQND?=
+ =?us-ascii?Q?7RQ5/gCsQbd9knWI1CNFNQU2yy2LPMQ/8OcXlYDMtHD2FOb8B1PCH3b4bmP4?=
+ =?us-ascii?Q?m80i+R6qv9siv9UtDdu9qW7m7oRjINZc1FTVwGq63CwvpzGoFpLYp25/tcMP?=
+ =?us-ascii?Q?MBXN1lMthNsL5BkLDevYMHUB6yWFyYTqWjNMHrQltiL7/hqP0wGXrp/bm2Zg?=
+ =?us-ascii?Q?SmNNOnatujpVqO7nZoxWmkMBpYZzzwpG0TXiCn/CNK2yOHtImTcZrwmtSzSN?=
+ =?us-ascii?Q?qYoL8JTqdZjRjKezGiDB/7/OEg9/ah/HM8V/idI1Xr4YcHDVg3fIqDyvMwll?=
+ =?us-ascii?Q?EKW9h64eXs12nfNoMUx2qs0tnR4/sB3YQM11EzpTleRJftCWHmxpcQ26Ym5a?=
+ =?us-ascii?Q?/Yf2nEsFeVy5wFIXw/65WZjc0oIj1snfq77IZO8ZC7c+/qalKSry0BwniBVH?=
+ =?us-ascii?Q?HOtFDnyKewUMLflxKAwVPagNHQHb5JMq5L6IWoYc5LiZkGdx9TdsDqUjzqqO?=
+ =?us-ascii?Q?iu3rSmepbTzCQzAmWVitJPzT5XZVkHwM9j3w99dt4lg41NNxOlpNxGrtV1tb?=
+ =?us-ascii?Q?FvAfYGmjELEp4erfSwSiwWhM7FcpMp5ZzoRbBf3/oHIW59xlbYaaXpQkN1Kx?=
+ =?us-ascii?Q?kd+IMOxrtD/MfZKV9ivOWTr2UMvz+KdgNWSNdUCKmho8kSSRDn5hcrYYZneZ?=
+ =?us-ascii?Q?pMa+bSXoh0dXfNcrVkwWbQvUO76bZ+KhBryzcBkiaM7oeRwCSe/vEkFyYYqq?=
+ =?us-ascii?Q?1AJX244It4ZgrPfmySnJS5t5dGENA4kI6usxUxElWXX+N8dYTv9QYP80kBwe?=
+ =?us-ascii?Q?4t+aIYsqWfM7HMdKwKSO6xpduxzUl13Ez5SnrnnmaK01rU6JsV8NVD66poHQ?=
+ =?us-ascii?Q?rxZv6/51kCjxe8fav15LGpQNVwhoA5O/XEi+OqhQu9CUKSsdkQ4UZR3zGgHk?=
+ =?us-ascii?Q?HX8XrDSRyW55SGmsTlerj1DhDjF4esosWY1kjsdKnixUjWiVCzMwmhxUalxg?=
+ =?us-ascii?Q?mzjS9GFNkGXmibRG3Un3tkrIMh0rUA/4U3yzPSE0tS8UsBZSZXApDJ7SAo4F?=
+ =?us-ascii?Q?9QwsvfRy0bMrzd/nRrEXlNj7WhFkNGeaa+XBnUU56Ba9nTEzSkL7suT63Qyu?=
+ =?us-ascii?Q?hH1PISEsyiWk8YfNEWQB2nEvvWuXRjr8Aio8TC9XQiB479pS3dSQiZuYumzX?=
+ =?us-ascii?Q?jYkYzTlqytbnv1VCJJLLFjhfg1b06g+4cb2Ky9QgQEhIQFqXguepJsBRrDY7?=
+ =?us-ascii?Q?iYmOX4aZpU1EwQH1yByKZ6SgAsZ6LB+p?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?beZNYUhToGQomVBQiIoD+iVqV9anAoUJqBE/KOlF18ja3/WxpkXeMp5TOOQN?=
+ =?us-ascii?Q?LYexq9We1l4S8pY6xYckdkuTJ3//403uVHp64hm6mNurPzivU210zZ/4dimO?=
+ =?us-ascii?Q?Gmca7EXZBG4hZznlUjfER7JtNrPOs54XFORQ+DjUgFJMJ2YaPCE9beftnGM5?=
+ =?us-ascii?Q?j1LxugEeQe3uKs6sefZHOfqBZZxamDeqQnKW9rGkbIlIsFRXAX90GvFIWZBr?=
+ =?us-ascii?Q?I9gGyCKfJaFpAjfn/gndNyJ0AM3mVaWYRQnp2P4xGHhPoiahQlIwSyh1xbRy?=
+ =?us-ascii?Q?Lp4KU7IBqROcPNUqOUk+p+yWHl+Lk4r/kihEvP2NrqT0Jc08S6XrLOc/bzmJ?=
+ =?us-ascii?Q?2rhzJPFQQoNDmtN8NiESm1N8ioAjuHn2stoBPmzW1CjRMeyACpky3Emt66Gq?=
+ =?us-ascii?Q?SBnEOMNjrINivf0e3VXBvcu+0JExtNrD2BN9rW9Euj9UoV+NZMfH1dxYql1y?=
+ =?us-ascii?Q?h5mnfG9JGJFLNbCpBwDQ2pmneUXen4SX+lbqoowACphGQaoqXqZF6+sfwz9c?=
+ =?us-ascii?Q?QHzbI/jFwHQ4Fbet2M5gkPScuGbX4+QOHMdUzBLA2ehx4rvmmzgXFbLnPXxD?=
+ =?us-ascii?Q?hNmnSC5sR0h2CBQ959BP1kPYmSHCi/VJBoz9Hulsg5uL5btJv7OZXVNQE91h?=
+ =?us-ascii?Q?lTfbWNAm7PJwPmlTiUf3aLGFhmzrrMIv6AQUkHfNY6/80Yb9Sd1T17uJSZxm?=
+ =?us-ascii?Q?+v2WdG7CJfDBxL6UBr5CWETKkwBx7lHIfOOeEBg0Y0fa41mtg5+NH9RLNoct?=
+ =?us-ascii?Q?Q2KogK9ISwvvtuq7LfeEra3eK3oQnM9ZkTFX1Qymz/aeTsh4EN8nm4I2v+1/?=
+ =?us-ascii?Q?PBG9q7qy01BdwbidFG4P2I7M7p4SOuF2seGHt/+piIgI7499RCFN9dJtgzwf?=
+ =?us-ascii?Q?z7COM6qRbSzKJcoLmI0K7IF4IL9m6MbUyfTPQgDiRkdPexJuSp3FULCFL5bz?=
+ =?us-ascii?Q?/FwrJgGNe9tNtQso0IJ3nn7wKCZBmAWesLoj3ge90z5GbWMV1e5Cpp1Pj0dM?=
+ =?us-ascii?Q?Uu3+PNXBDn6cONRQzjx8aF8v/Q+fG+2ym+xGlrATbQk65S6CRf0yITVFJdxJ?=
+ =?us-ascii?Q?qCLRdq2PHOibJxBTzY/PufA5Ja3BtgiL1pW+/GJ6Io4fY3aFxn/BUgzuL1aI?=
+ =?us-ascii?Q?G2s5XA51xc8fJ84jd8ZLuQd1n2Fl4y9n2G3MOymkMkDCNx+CKWxAIwQ3LiVM?=
+ =?us-ascii?Q?nh31Srq4ZFJ/81oRpM2f17YZxKbyGY9/rbLMP2XsVqhCSNJUJ1t/m4D+S6Uh?=
+ =?us-ascii?Q?e/EFu7QyvwxlfYTZgHo1lzVpXF6H+iXVkhA3Py3Aaa5zbT1QXd9yO6UOFELa?=
+ =?us-ascii?Q?DN8Z+rKAJC1odCEZytpQLGbIIzH+xF6aooYXDQPzPFVyqh2FGrFCOgdiaCaO?=
+ =?us-ascii?Q?xWh59vV/fxlOtn47mF7uTvEavEUjPl7SsbpWHq2O/NkxF/pwXrcGOp8G7wWs?=
+ =?us-ascii?Q?kdznqdeo/1Xn0sH76L9bZ43OwSopcxmHPS2NZWQ9kDCsGXDtqU3KOF6fG4kc?=
+ =?us-ascii?Q?XAFxkLi+ww7jYFeJ0lzyMS0LxESlAobJbtJitMTQbaCP2VM7yT3VnQrFEKsC?=
+ =?us-ascii?Q?aqRYGaEG1iXbQ7cNOPmcc4XAaccUsgXZFiObZ3Wid8RvkaTisWbEly+v/mSo?=
+ =?us-ascii?Q?dA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e4e3db97-3d47-4e00-abf4-08de20771b58
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2025 16:35:06.7514 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: pOSFw4Sb+2MjxF72OFrygrOca6+pizU74tyZL0m/+MdFCX/hsaVxLJmjPsIAK35922J3IOThFJw3ZVZuYplVateU3tCRff2w1NYbvzoWDOc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB7301
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,332 +186,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use the usual [CRTC:%d:%s] when crtc is available. Start using a new
-uniform [VBLANK:%u] prefix with the pipe when crtc is not
-available. Remove extra line breaks. Use string choice helpers here and
-there. Use %pe to decode error returns.
+On Fri, Nov 07, 2025 at 09:05:38PM -0300, Gustavo Sousa wrote:
+> We will need to know the FBC id respective to the pipe in other parts of
+> the driver. Let's promote the static function skl_fbc_id_for_pipe() to a
+> public one named intel_fbc_id_for_pipe().
+> 
+> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_fbc.c           | 5 +++++
+>  drivers/gpu/drm/i915/display/intel_fbc.h           | 2 ++
+>  drivers/gpu/drm/i915/display/skl_universal_plane.c | 9 ++-------
+>  3 files changed, 9 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+> index a1e3083022ee..435bfd05109c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> @@ -129,6 +129,11 @@ struct intel_fbc {
+>  	const char *no_fbc_reason;
+>  };
+>  
+> +enum intel_fbc_id intel_fbc_id_for_pipe(enum pipe pipe)
+> +{
+> +	return pipe - PIPE_A + INTEL_FBC_A;
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/drm_vblank.c | 109 ++++++++++++++++-------------------
- 1 file changed, 50 insertions(+), 59 deletions(-)
+The existing usage of skl_fbc_id_for_pipe() was to call this function to
+receive a (possibly bogus) FBC ID, and then follow up with a call to
+skl_plane_has_fbc() which had checks to make sure the returned FBC ID
+actually existed on the platform.  So, for example, calling
+skl_fbc_id_for_pipe(PIPE_B) on something like an ICL would return
+INTEL_FBC_B here, but then the subsequent call to skl_plane_has_fbc()
+would realize that there is no FBC_B on that platform and bail out.
+It's only relatively recently (MTL and beyond I think?) that FBC has
+become usable on pipes other than A.
 
-diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-index 7829e64e42b4..5ee132b3a6b5 100644
---- a/drivers/gpu/drm/drm_vblank.c
-+++ b/drivers/gpu/drm/drm_vblank.c
-@@ -27,6 +27,7 @@
- #include <linux/export.h>
- #include <linux/kthread.h>
- #include <linux/moduleparam.h>
-+#include <linux/string_choices.h>
- 
- #include <drm/drm_crtc.h>
- #include <drm/drm_drv.h>
-@@ -347,14 +348,13 @@ static void drm_update_vblank_count(struct drm_vblank_crtc *vblank,
- 		 * frame/field duration.
- 		 */
- 
--		drm_dbg_vbl(dev, "crtc %u: Calculating number of vblanks."
--			    " diff_ns = %lld, framedur_ns = %d)\n",
-+		drm_dbg_vbl(dev, "[VBLANK:%u] Calculating number of vblanks. diff_ns = %lld, framedur_ns = %d)\n",
- 			    pipe, (long long)diff_ns, framedur_ns);
- 
- 		diff = DIV_ROUND_CLOSEST_ULL(diff_ns, framedur_ns);
- 
- 		if (diff == 0 && in_vblank_irq)
--			drm_dbg_vbl(dev, "crtc %u: Redundant vblirq ignored\n",
-+			drm_dbg_vbl(dev, "[VBLANK:%u] Redundant vblirq ignored\n",
- 				    pipe);
- 	} else {
- 		/* some kind of default for drivers w/o accurate vbl timestamping */
-@@ -372,13 +372,12 @@ static void drm_update_vblank_count(struct drm_vblank_crtc *vblank,
- 	 */
- 	if (diff > 1 && (vblank->inmodeset & 0x2)) {
- 		drm_dbg_vbl(dev,
--			    "clamping vblank bump to 1 on crtc %u: diffr=%u"
--			    " due to pre-modeset.\n", pipe, diff);
-+			    "[VBLANK:%u] clamping vblank bump to 1: diffr=%u due to pre-modeset.\n",
-+			    pipe, diff);
- 		diff = 1;
- 	}
- 
--	drm_dbg_vbl(dev, "updating vblank count on crtc %u:"
--		    " current=%llu, diff=%u, hw=%u hw_last=%u\n",
-+	drm_dbg_vbl(dev, "[VBLANK:%u] updating vblank count: current=%llu, diff=%u, hw=%u hw_last=%u\n",
- 		    pipe, (unsigned long long)atomic64_read(&vblank->count),
- 		    diff, cur_vblank, vblank->last);
- 
-@@ -517,7 +516,7 @@ static void vblank_disable_fn(struct timer_list *t)
- 
- 	spin_lock_irqsave(&dev->vbl_lock, irqflags);
- 	if (atomic_read(&vblank->refcount) == 0 && vblank->enabled) {
--		drm_dbg_core(dev, "disabling vblank on crtc %u\n", pipe);
-+		drm_dbg_core(dev, "[VBLANK:%u] disabling vblank\n", pipe);
- 		drm_vblank_disable_and_save(vblank);
- 	}
- 	spin_unlock_irqrestore(&dev->vbl_lock, irqflags);
-@@ -665,8 +664,8 @@ void drm_calc_timestamping_constants(struct drm_crtc *crtc,
- 		if (mode->flags & DRM_MODE_FLAG_INTERLACE)
- 			framedur_ns /= 2;
- 	} else {
--		drm_err(dev, "crtc %u: Can't calculate constants, dotclock = 0!\n",
--			crtc->base.id);
-+		drm_err(dev, "[CRTC:%d:%s] Can't calculate constants, dotclock = 0!\n",
-+			crtc->base.id, crtc->name);
- 	}
- 
- 	vblank->linedur_ns  = linedur_ns;
-@@ -674,11 +673,11 @@ void drm_calc_timestamping_constants(struct drm_crtc *crtc,
- 	drm_mode_copy(&vblank->hwmode, mode);
- 
- 	drm_dbg_core(dev,
--		     "crtc %u: hwmode: htotal %d, vtotal %d, vdisplay %d\n",
--		     crtc->base.id, mode->crtc_htotal,
-+		     "[CRTC:%d:%s] hwmode: htotal %d, vtotal %d, vdisplay %d\n",
-+		     crtc->base.id, crtc->name, mode->crtc_htotal,
- 		     mode->crtc_vtotal, mode->crtc_vdisplay);
--	drm_dbg_core(dev, "crtc %u: clock %d kHz framedur %d linedur %d\n",
--		     crtc->base.id, dotclock, framedur_ns, linedur_ns);
-+	drm_dbg_core(dev, "[CRTC:%d:%s] clock %d kHz framedur %d linedur %d\n",
-+		     crtc->base.id, crtc->name, dotclock, framedur_ns, linedur_ns);
- }
- EXPORT_SYMBOL(drm_calc_timestamping_constants);
- 
-@@ -731,7 +730,8 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 
- 	/* Scanout position query not supported? Should not happen. */
- 	if (!get_scanout_position) {
--		drm_err(dev, "Called from CRTC w/o get_scanout_position()!?\n");
-+		drm_err(dev, "[CRTC:%d:%s] Called from CRTC w/o get_scanout_position()!?\n",
-+			crtc->base.id, crtc->name);
- 		return false;
- 	}
- 
-@@ -744,7 +744,7 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 	 * Happens during initial modesetting of a crtc.
- 	 */
- 	if (mode->crtc_clock == 0) {
--		drm_dbg_core(dev, "crtc %u: Noop due to uninitialized mode.\n",
-+		drm_dbg_core(dev, "[VBLANK:%u] Noop due to uninitialized mode.\n",
- 			     pipe);
- 		drm_WARN_ON_ONCE(dev, drm_drv_uses_atomic_modeset(dev));
- 		return false;
-@@ -769,9 +769,8 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 
- 		/* Return as no-op if scanout query unsupported or failed. */
- 		if (!vbl_status) {
--			drm_dbg_core(dev,
--				     "crtc %u : scanoutpos query failed.\n",
--				     pipe);
-+			drm_dbg_core(dev, "[CRTC:%d:%s] scanoutpos query failed.\n",
-+				     crtc->base.id, crtc->name);
- 			return false;
- 		}
- 
-@@ -785,9 +784,8 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 
- 	/* Noisy system timing? */
- 	if (i == DRM_TIMESTAMP_MAXRETRIES) {
--		drm_dbg_core(dev,
--			     "crtc %u: Noisy timestamp %d us > %d us [%d reps].\n",
--			     pipe, duration_ns / 1000, *max_error / 1000, i);
-+		drm_dbg_core(dev, "[CRTC:%d:%s] Noisy timestamp %d us > %d us [%d reps].\n",
-+			     crtc->base.id, crtc->name, duration_ns / 1000, *max_error / 1000, i);
- 	}
- 
- 	/* Return upper bound of timestamp precision error. */
-@@ -811,9 +809,8 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 	ts_etime = ktime_to_timespec64(etime);
- 	ts_vblank_time = ktime_to_timespec64(*vblank_time);
- 
--	drm_dbg_vbl(dev,
--		    "crtc %u : v p(%d,%d)@ %lld.%06ld -> %lld.%06ld [e %d us, %d rep]\n",
--		    pipe, hpos, vpos,
-+	drm_dbg_vbl(dev, "[CRTC:%d:%s] v p(%d,%d)@ %lld.%06ld -> %lld.%06ld [e %d us, %d rep]\n",
-+		    crtc->base.id, crtc->name, hpos, vpos,
- 		    (u64)ts_etime.tv_sec, ts_etime.tv_nsec / 1000,
- 		    (u64)ts_vblank_time.tv_sec, ts_vblank_time.tv_nsec / 1000,
- 		    duration_ns / 1000, i);
-@@ -1188,7 +1185,7 @@ static int drm_vblank_enable(struct drm_vblank_crtc *vblank)
- 		 * prevent double-accounting of same vblank interval.
- 		 */
- 		ret = __enable_vblank(vblank);
--		drm_dbg_core(dev, "enabling vblank on crtc %u, ret: %d\n",
-+		drm_dbg_core(dev, "[VBLANK:%u] enabling vblank, ret: %d\n",
- 			     pipe, ret);
- 		if (ret) {
- 			atomic_dec(&vblank->refcount);
-@@ -1346,8 +1343,9 @@ void drm_crtc_vblank_off(struct drm_crtc *crtc)
- 	spin_lock_irq(&dev->event_lock);
- 
- 	spin_lock(&dev->vbl_lock);
--	drm_dbg_vbl(dev, "crtc %d, vblank enabled %d, inmodeset %d\n",
--		    pipe, vblank->enabled, vblank->inmodeset);
-+	drm_dbg_vbl(dev, "[CRTC:%d:%s] vblank %s, inmodeset: %s\n",
-+		    crtc->base.id, crtc->name, str_enabled_disabled(vblank->enabled),
-+		    str_yes_no(vblank->inmodeset));
- 
- 	/* Avoid redundant vblank disables without previous
- 	 * drm_crtc_vblank_on(). */
-@@ -1372,9 +1370,8 @@ void drm_crtc_vblank_off(struct drm_crtc *crtc)
- 	list_for_each_entry_safe(e, t, &dev->vblank_event_list, base.link) {
- 		if (e->pipe != pipe)
- 			continue;
--		drm_dbg_core(dev, "Sending premature vblank event on disable: "
--			     "wanted %llu, current %llu\n",
--			     e->sequence, seq);
-+		drm_dbg_core(dev, "[CRTC:%d:%s] Sending premature vblank event on disable: wanted %llu, current %llu\n",
-+			     crtc->base.id, crtc->name, e->sequence, seq);
- 		list_del(&e->base.link);
- 		drm_vblank_put(vblank);
- 		send_vblank_event(dev, e, seq, now);
-@@ -1474,12 +1471,12 @@ void drm_crtc_vblank_on_config(struct drm_crtc *crtc,
- 			       const struct drm_vblank_crtc_config *config)
- {
- 	struct drm_device *dev = crtc->dev;
--	unsigned int pipe = drm_crtc_index(crtc);
- 	struct drm_vblank_crtc *vblank = drm_crtc_vblank_crtc(crtc);
- 
- 	spin_lock_irq(&dev->vbl_lock);
--	drm_dbg_vbl(dev, "crtc %d, vblank enabled %d, inmodeset %d\n",
--		    pipe, vblank->enabled, vblank->inmodeset);
-+	drm_dbg_vbl(dev, "[CRTC:%d:%s] vblank %s, inmodeset: %s\n",
-+		    crtc->base.id, crtc->name, str_enabled_disabled(vblank->enabled),
-+		    str_yes_no(vblank->inmodeset));
- 
- 	vblank->config = *config;
- 
-@@ -1573,8 +1570,8 @@ void drm_crtc_vblank_restore(struct drm_crtc *crtc)
- 		diff = DIV_ROUND_CLOSEST_ULL(diff_ns, framedur_ns);
- 
- 
--	drm_dbg_vbl(dev,
--		    "missed %d vblanks in %lld ns, frame duration=%d ns, hw_diff=%d\n",
-+	drm_dbg_vbl(dev, "[CRTC:%d:%s] missed %d vblanks in %lld ns, frame duration=%d ns, hw_diff=%d\n",
-+		    crtc->base.id, crtc->name,
- 		    diff, diff_ns, framedur_ns, cur_vblank - vblank->last);
- 	vblank->last = (cur_vblank - diff) & max_vblank_count;
- }
-@@ -1631,8 +1628,8 @@ static int drm_queue_vblank_event(struct drm_vblank_crtc *vblank,
- 
- 	seq = drm_vblank_count_and_time(vblank, &now);
- 
--	drm_dbg_core(dev, "event on vblank count %llu, current %llu, crtc %u\n",
--		     req_seq, seq, pipe);
-+	drm_dbg_core(dev, "[VBLANK:%u] event on vblank count %llu, current %llu\n",
-+		     pipe, req_seq, seq);
- 
- 	trace_drm_vblank_event_queued(file_priv, pipe, req_seq);
- 
-@@ -1728,8 +1725,7 @@ int drm_wait_vblank_ioctl(struct drm_device *dev, void *data,
- 	if (vblwait->request.type &
- 	    ~(_DRM_VBLANK_TYPES_MASK | _DRM_VBLANK_FLAGS_MASK |
- 	      _DRM_VBLANK_HIGH_CRTC_MASK)) {
--		drm_dbg_core(dev,
--			     "Unsupported type value 0x%x, supported mask 0x%x\n",
-+		drm_dbg_core(dev, "Unsupported type value 0x%x, supported mask 0x%x\n",
- 			     vblwait->request.type,
- 			     (_DRM_VBLANK_TYPES_MASK | _DRM_VBLANK_FLAGS_MASK |
- 			      _DRM_VBLANK_HIGH_CRTC_MASK));
-@@ -1774,9 +1770,8 @@ int drm_wait_vblank_ioctl(struct drm_device *dev, void *data,
- 
- 	ret = drm_vblank_get(vblank);
- 	if (ret) {
--		drm_dbg_core(dev,
--			     "crtc %d failed to acquire vblank counter, %d\n",
--			     pipe, ret);
-+		drm_dbg_core(dev, "[VBLANK:%u] failed to acquire vblank counter %pe\n",
-+			     pipe, ERR_PTR(ret));
- 		return ret;
- 	}
- 	seq = drm_vblank_count(vblank);
-@@ -1812,8 +1807,8 @@ int drm_wait_vblank_ioctl(struct drm_device *dev, void *data,
- 	if (req_seq != seq) {
- 		int wait;
- 
--		drm_dbg_core(dev, "waiting on vblank count %llu, crtc %u\n",
--			     req_seq, pipe);
-+		drm_dbg_core(dev, "[VBLANK:%d] waiting on vblank count %llu\n",
-+			     pipe, req_seq);
- 		wait = wait_event_interruptible_timeout(vblank->queue,
- 			drm_vblank_passed(drm_vblank_count(vblank), req_seq) ||
- 				      !READ_ONCE(vblank->enabled),
-@@ -1837,10 +1832,10 @@ int drm_wait_vblank_ioctl(struct drm_device *dev, void *data,
- 	if (ret != -EINTR) {
- 		drm_wait_vblank_reply(vblank, &vblwait->reply);
- 
--		drm_dbg_core(dev, "crtc %d returning %u to client\n",
-+		drm_dbg_core(dev, "[VBLANK:%u] returning %u to client\n",
- 			     pipe, vblwait->reply.sequence);
- 	} else {
--		drm_dbg_core(dev, "crtc %d vblank wait interrupted by signal\n",
-+		drm_dbg_core(dev, "[VBLANK:%u] vblank wait interrupted by signal\n",
- 			     pipe);
- 	}
- 
-@@ -1869,8 +1864,8 @@ static void drm_handle_vblank_events(struct drm_vblank_crtc *vblank)
- 		if (!drm_vblank_passed(seq, e->sequence))
- 			continue;
- 
--		drm_dbg_core(dev, "vblank event on %llu, current %llu\n",
--			     e->sequence, seq);
-+		drm_dbg_core(dev, "[VBLANK:%u] vblank event on %llu, current %llu\n",
-+			     pipe, e->sequence, seq);
- 
- 		list_del(&e->base.link);
- 		drm_vblank_put(vblank);
-@@ -1987,7 +1982,6 @@ int drm_crtc_get_sequence_ioctl(struct drm_device *dev, void *data,
- {
- 	struct drm_crtc *crtc;
- 	struct drm_vblank_crtc *vblank;
--	int pipe;
- 	struct drm_crtc_get_sequence *get_seq = data;
- 	ktime_t now;
- 	bool vblank_enabled;
-@@ -2003,8 +1997,6 @@ int drm_crtc_get_sequence_ioctl(struct drm_device *dev, void *data,
- 	if (!crtc)
- 		return -ENOENT;
- 
--	pipe = drm_crtc_index(crtc);
--
- 	vblank = drm_crtc_vblank_crtc(crtc);
- 	vblank_enabled = READ_ONCE(vblank->config.disable_immediate) &&
- 		READ_ONCE(vblank->enabled);
-@@ -2012,9 +2004,8 @@ int drm_crtc_get_sequence_ioctl(struct drm_device *dev, void *data,
- 	if (!vblank_enabled) {
- 		ret = drm_crtc_vblank_get(crtc);
- 		if (ret) {
--			drm_dbg_core(dev,
--				     "crtc %d failed to acquire vblank counter, %d\n",
--				     pipe, ret);
-+			drm_dbg_core(dev, "[CRTC:%d:%s] failed to acquire vblank counter %pe\n",
-+				     crtc->base.id, crtc->name, ERR_PTR(ret));
- 			return ret;
- 		}
- 	}
-@@ -2079,9 +2070,8 @@ int drm_crtc_queue_sequence_ioctl(struct drm_device *dev, void *data,
- 
- 	ret = drm_crtc_vblank_get(crtc);
- 	if (ret) {
--		drm_dbg_core(dev,
--			     "crtc %d failed to acquire vblank counter, %d\n",
--			     pipe, ret);
-+		drm_dbg_core(dev, "[CRTC:%d:%s] failed to acquire vblank counter %pe\n",
-+			     crtc->base.id, crtc->name, ERR_PTR(ret));
- 		goto err_free;
- 	}
- 
-@@ -2166,7 +2156,8 @@ static enum hrtimer_restart drm_vblank_timer_function(struct hrtimer *timer)
- 
- 	ret_overrun = hrtimer_forward_now(&vtimer->timer, interval);
- 	if (ret_overrun != 1)
--		drm_dbg_vbl(dev, "vblank timer overrun\n");
-+		drm_dbg_vbl(dev, "[CRTC:%d:%s] vblank timer overrun\n",
-+			    crtc->base.id, crtc->name);
- 
- 	if (crtc_funcs->handle_vblank_timeout)
- 		succ = crtc_funcs->handle_vblank_timeout(crtc);
+Now that we're promoting this function to be more general, should we
+also adjust the logic so that this function either returns a *valid* FBC
+ID or and error?  Otherwise it may not be apparent to people writing new
+code that the result returned here can't be immediately trusted without
+additional checking.
+
+
+Matt
+
+> +}
+> +
+>  /* plane stride in pixels */
+>  static unsigned int intel_fbc_plane_stride(const struct intel_plane_state *plane_state)
+>  {
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.h b/drivers/gpu/drm/i915/display/intel_fbc.h
+> index 91424563206a..3d02f3fe5630 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.h
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.h
+> @@ -9,6 +9,7 @@
+>  #include <linux/types.h>
+>  
+>  enum fb_op_origin;
+> +enum pipe;
+>  struct intel_atomic_state;
+>  struct intel_crtc;
+>  struct intel_crtc_state;
+> @@ -27,6 +28,7 @@ enum intel_fbc_id {
+>  	I915_MAX_FBCS,
+>  };
+>  
+> +enum intel_fbc_id intel_fbc_id_for_pipe(enum pipe pipe);
+>  int intel_fbc_atomic_check(struct intel_atomic_state *state);
+>  int intel_fbc_min_cdclk(const struct intel_crtc_state *crtc_state);
+>  bool intel_fbc_pre_update(struct intel_atomic_state *state,
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> index bc55fafe9ce3..275ee2903219 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> @@ -439,11 +439,6 @@ static int skl_plane_max_height(const struct drm_framebuffer *fb,
+>  	return 4096;
+>  }
+>  
+> -static enum intel_fbc_id skl_fbc_id_for_pipe(enum pipe pipe)
+> -{
+> -	return pipe - PIPE_A + INTEL_FBC_A;
+> -}
+> -
+>  static bool skl_plane_has_fbc(struct intel_display *display,
+>  			      enum intel_fbc_id fbc_id, enum plane_id plane_id)
+>  {
+> @@ -896,7 +891,7 @@ static void x3p_lpd_plane_update_pixel_normalizer(struct intel_dsb *dsb,
+>  						  bool enable)
+>  {
+>  	struct intel_display *display = to_intel_display(plane);
+> -	enum intel_fbc_id fbc_id = skl_fbc_id_for_pipe(plane->pipe);
+> +	enum intel_fbc_id fbc_id = intel_fbc_id_for_pipe(plane->pipe);
+>  	u32 val;
+>  
+>  	/* Only HDR planes have pixel normalizer and don't matter if no FBC */
+> @@ -2442,7 +2437,7 @@ void icl_link_nv12_planes(struct intel_plane_state *uv_plane_state,
+>  static struct intel_fbc *skl_plane_fbc(struct intel_display *display,
+>  				       enum pipe pipe, enum plane_id plane_id)
+>  {
+> -	enum intel_fbc_id fbc_id = skl_fbc_id_for_pipe(pipe);
+> +	enum intel_fbc_id fbc_id = intel_fbc_id_for_pipe(pipe);
+>  
+>  	if (skl_plane_has_fbc(display, fbc_id, plane_id))
+>  		return display->fbc[fbc_id];
+> 
+> -- 
+> 2.51.0
+> 
+
 -- 
-2.47.3
-
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
