@@ -2,65 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69572C444BE
-	for <lists+intel-gfx@lfdr.de>; Sun, 09 Nov 2025 19:00:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92606C44C40
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Nov 2025 03:24:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E47DB10E259;
-	Sun,  9 Nov 2025 18:00:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51F1A10E28D;
+	Mon, 10 Nov 2025 02:24:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="IEtLrUVt";
+	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="VlFRbZzw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9775310E254
- for <intel-gfx@lists.freedesktop.org>; Sun,  9 Nov 2025 18:00:47 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 462DA40AF7
- for <intel-gfx@lists.freedesktop.org>; Sun,  9 Nov 2025 18:00:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27FFFC4AF0B
- for <intel-gfx@lists.freedesktop.org>; Sun,  9 Nov 2025 18:00:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1762711247;
- bh=ngdJsBUltnXHKi403aGstSmuPBJQqtJoMuxj+Ue+A6Y=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=IEtLrUVtHjEsWm/C8MwdyhFG2iNPErdYRKzlSnY0aHAnuSWvL30RJ8uWSliWKCy66
- kmVOeRm5P53gNocD/3AlaVK4LGuI/bcPlRdwlIoHuE3g8Xaa2p+e9/zA7IybZwuHlA
- dt8PPtdUDmJC5fs/SEvsR/cfKqyN+MfLLPpK9+TK22GzFx6cfENsx2DPpsEC9Hyli1
- iJtrzkI7piY/HfuVhtJcKkoCJCpjNtjY9DO1IUu5UK68f51+vQk3AbZlecPmlD0g5x
- XVbSaJMl0u/OUqVGzC1NuuuG/zSZTIvkAZVfhsbDZ0dE/n7G2C2iCqjGimUdCV7Gkz
- sWypYnNvO6ANw==
-Received: by mail-lj1-f179.google.com with SMTP id
- 38308e7fff4ca-362acd22c78so17294461fa.2
- for <intel-gfx@lists.freedesktop.org>; Sun, 09 Nov 2025 10:00:47 -0800 (PST)
-X-Forwarded-Encrypted: i=1;
- AJvYcCVJOF1RvTTHq1/tcckTUjJHCAQoQv0TnY2LZXKYeki31uXnY90A0PY/x6NNFRHidGGmTpVGe8KXzbc=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwmNyq6m2Srmw3qQbkLeoZRFsCRhGHArBNBaz0eCYApKo+Rqb2H
- xw2VvO2Mv0z4zPoH3ZG45pNVEwhJSn3Ab2w9uMi3pftAuG9MeUY5oEtZFxLnpsti0Czx7O7YQjh
- BN7ebKXyLc0cVSTW5svJNjDroRvlybt8=
-X-Google-Smtp-Source: AGHT+IGzG8az736Ek/PKuPSVq9csQ+w8E7LVXJkHwNGCRjuZKzNqUTVu8H4LC4w4CqlfLzKUtK6ospJSS6Nc+qrcLqg=
-X-Received: by 2002:a05:6512:3b1e:b0:594:4e5f:a224 with SMTP id
- 2adb3069b0e04-5945f1dd5eamr1509661e87.39.1762711245529; Sun, 09 Nov 2025
- 10:00:45 -0800 (PST)
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9442710E28C;
+ Mon, 10 Nov 2025 02:24:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=202503; t=1762741442;
+ bh=LHo9xZyZFl43ehMl0ZMkiYOE3hBiB5Knu4/aMTJbWzw=;
+ h=Date:From:To:Cc:Subject:From;
+ b=VlFRbZzwI7/WjBlY+9GcF0tgWXcTBxo+WNierjsKYvkV/lDydnZm6C99E4klu9lLu
+ t7ElulsefqrylQTfDkrnPzGOi0WTDdXdEKZtOwk5Qo1tIBNPcVtk1mgnsyE9sgj9Zw
+ 512BRgXcwghaNt8ID/4zNOxgR7+0R+5cA2zEMPzu7u+jRuAK70paGINmqhRPC3/DiZ
+ KGf8g+fL8fGzcl1f3+WN7rMbwBqdUeggqW2qWSzZU0PjLqMfvNv4tlLxiGJq7SJBcy
+ VIPR3vabKlTJkvdrojtAP4UumWtRSsfEAn44UEd2n+NEHF8eoEVtLFgCnpSOR9ywx7
+ tAhftMYXDjkrA==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (Client did not present a certificate)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4d4YPt1XDyz4w2R;
+ Mon, 10 Nov 2025 13:24:01 +1100 (AEDT)
+Date: Mon, 10 Nov 2025 13:24:01 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Aswin Venkatesan <aswivenk@qti.qualcomm.com>, Jeff Hugo
+ <jeff.hugo@oss.qualcomm.com>, Jeffrey Hugo <jhugo@codeaurora.org>, Jeffrey
+ Hugo <quic_jhugo@quicinc.com>, Pranjal Ramajor Asha Kanojiya
+ <quic_pkanojiy@quicinc.com>, Troy Hanson <quic_thanson@quicinc.com>,
+ Youssef Samir <youssef.abdulrahman@oss.qualcomm.com>, Zack McKevitt
+ <zachary.mckevitt@oss.qualcomm.com>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
+ Mailing List <linux-next@vger.kernel.org>
+Subject: linux-next: build warnings after merge of the drm-misc tree
+Message-ID: <20251110132401.200d88bd@canb.auug.org.au>
 MIME-Version: 1.0
-References: <20251107164240.2023366-2-ardb+git@google.com>
- <14ca1b28-df1d-4065-ad7a-97a3ff81a5a4@ursulin.net>
-In-Reply-To: <14ca1b28-df1d-4065-ad7a-97a3ff81a5a4@ursulin.net>
-From: Ard Biesheuvel <ardb@kernel.org>
-Date: Sun, 9 Nov 2025 19:00:34 +0100
-X-Gmail-Original-Message-ID: <CAMj1kXEgfykaf9oB4_tuAQqwXDN+NLy_Hb_+RnQmeicVgKt0bA@mail.gmail.com>
-X-Gm-Features: AWmQ_bnvXvdUhRjp81oyBi2v9d3FvXVwwo8Xw1qggdpFOcTX930itimlVJwIpKw
-Message-ID: <CAMj1kXEgfykaf9oB4_tuAQqwXDN+NLy_Hb_+RnQmeicVgKt0bA@mail.gmail.com>
-Subject: Re: [PATCH] drm/i195: Fix format string truncation warning
-To: Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: Ard Biesheuvel <ardb+git@google.com>, linux-kernel@vger.kernel.org, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; boundary="Sig_/r06Vw_PbOst0fgTV7ucR6je";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,85 +63,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, 8 Nov 2025 at 01:27, Tvrtko Ursulin <tursulin@ursulin.net> wrote:
->
->
-> On 07/11/2025 16:42, Ard Biesheuvel wrote:
-> > From: Ard Biesheuvel <ardb@kernel.org>
-> >
-> > GCC notices that the 16-byte uabi_name field could theoretically be too
-> > small for the formatted string if the instance number exceeds 100.
-> >
-> > Given that there are apparently ABI concerns here, this is the minimal
-> > fix that shuts up the compiler without changing the output or the
-> > maximum length for existing values < 100.
->
-> What would be those ABI concerns? I don't immediately see any.
-> > drivers/gpu/drm/i915/intel_memory_region.c: In function =E2=80=98intel_=
-memory_region_create=E2=80=99:
-> > drivers/gpu/drm/i915/intel_memory_region.c:273:61: error: =E2=80=98%u=
-=E2=80=99 directive output may be truncated writing between 1 and 5 bytes i=
-nto a region of size between 3 and 11 [-Werror=3Dformat-truncation=3D]
-> >    273 |         snprintf(mem->uabi_name, sizeof(mem->uabi_name), "%s%u=
-",
-> >        |                                                             ^~
-> > drivers/gpu/drm/i915/intel_memory_region.c:273:58: note: directive argu=
-ment in the range [0, 65535]
-> >    273 |         snprintf(mem->uabi_name, sizeof(mem->uabi_name), "%s%u=
-",
-> >        |                                                          ^~~~~=
-~
-> > drivers/gpu/drm/i915/intel_memory_region.c:273:9: note: =E2=80=98snprin=
-tf=E2=80=99 output between 7 and 19 bytes into a destination of size 16
-> >    273 |         snprintf(mem->uabi_name, sizeof(mem->uabi_name), "%s%u=
-",
-> >        |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~=
-~~
-> >    274 |                  intel_memory_type_str(type), instance);
-> >        |                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> >
-> > Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
-> > ---
-> > Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > Cc: Tvrtko Ursulin <tursulin@ursulin.net>
-> > Cc: David Airlie <airlied@gmail.com>
-> > Cc: Simona Vetter <simona@ffwll.ch>
-> > Cc: intel-gfx@lists.freedesktop.org
-> > Cc: dri-devel@lists.freedesktop.org
-> >
-> > This is unlikely to be the right fix, but sending a wrong patch is
-> > usually a better way to elicit a response than just sending a bug
-> > report.
-> >
-> >   drivers/gpu/drm/i915/intel_memory_region.c | 2 +-
-> >   1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu/d=
-rm/i915/intel_memory_region.c
-> > index 59bd603e6deb..ad4afcf0c58a 100644
-> > --- a/drivers/gpu/drm/i915/intel_memory_region.c
-> > +++ b/drivers/gpu/drm/i915/intel_memory_region.c
-> > @@ -271,7 +271,7 @@ intel_memory_region_create(struct drm_i915_private =
-*i915,
-> >       mem->instance =3D instance;
-> >
-> >       snprintf(mem->uabi_name, sizeof(mem->uabi_name), "%s%u",
-> > -              intel_memory_type_str(type), instance);
-> > +              intel_memory_type_str(type), instance % 100);
-> It's a theoretical issue only since there is no hardware with a double
-> digit number of instances.
->
-> But I guess much prettier fix would be to simply grow the buffer.
->
+--Sig_/r06Vw_PbOst0fgTV7ucR6je
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Whatever works for you - I don't really understand this code anyway.
+Hi all,
 
-> Also, hm, how come gcc does not find the mem->name vsnprintf from
-> intel_memory_region_set_name?
->
+After merging the drm-misc tree, today's linux-next build (htmldocs)
+produced these warnings:
 
-The optimizer works in mysterious ways, I guess. I cannot explain why
-I am the only one seeing this in the first place, but the warning
-seems legit to me.
+Documentation/accel/qaic/aic100.rst:502: ERROR: Unexpected indentation. [do=
+cutils]
+Documentation/accel/qaic/aic100.rst:504: WARNING: Block quote ends without =
+a blank line; unexpected unindent. [docutils]
+
+Introduced by commit
+
+  9675093acea0 ("accel/qaic: Implement basic SSR handling")
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/r06Vw_PbOst0fgTV7ucR6je
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmkRTMEACgkQAVBC80lX
+0Gx0AQf/aMyqvU4OKrj4JQ0OqcT4+SX7cuWhmDfRWeIvq//xRHf+KYZAhpL3W72A
+qZx73EtkizpHtAmgfE6JwpwBrmtT0QkueKYqbrhKHJvgj2W8vDePE4833xSlbyTO
+ymFIPHMC/K0HCpv6/Bj0hECoCYZgTPlm6CWC9/5i80qaIMlEbRbPf5ubDg1udKeD
+Obi6uClvnEPMDjijsAAIvQog88P4grNs6Dc2yutYIYxKkTE+g9sopZ4iRk1ZIPx4
+HhuIPsM86aZZp8SChhPupirtjm1XLBZY1Tuk5MLW956DngQPEnskcoBXPqwl/c+h
+AeeuTXHEGWpqJCk6sOKXiedd22kyTQ==
+=AE2a
+-----END PGP SIGNATURE-----
+
+--Sig_/r06Vw_PbOst0fgTV7ucR6je--
