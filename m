@@ -2,66 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 534DAC467E9
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Nov 2025 13:12:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DEF80C4695B
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Nov 2025 13:28:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F46E10E394;
-	Mon, 10 Nov 2025 12:12:06 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G1omGA0h";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EBE410E381;
+	Mon, 10 Nov 2025 12:28:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2914D10E387;
- Mon, 10 Nov 2025 12:12:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762776725; x=1794312725;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=Gq1Qz9de0zDdr7Qza9fayAQEpXpfGWwvApSfAxEFrck=;
- b=G1omGA0hXOppyDbA6On8JSz01FLJWAggrdfYozTMuPlzwn4YLSKvwQb2
- OpBtrdvAlIjYJZAdp/dCQuI4WyX8ZkuH2qhUTXPxvKG+TWsNBDEuOHD50
- EL+zszhDaJSSbhn1l3h6NIGXbcgMHygAFBvSPH2QPK3JS3Hk4tPL1poWl
- Wji6fMiO6UZSP1fVmGosPSZyaLOWYSxwqLY45wfYIpeO1s93n06P4VV0Q
- Ta/4+UZoC5OTIW6SSRM2P2OyzE2WFcLv5/DlJyqUDqRw9aAX0RPvXBCcF
- ScCYNEyht4+oBCfcsbvzfxybL57FRDvgz2cL3ns2atgYipmhfMTPj22qw A==;
-X-CSE-ConnectionGUID: uksbPI6eTaC66d0iOuJn7w==
-X-CSE-MsgGUID: yceLlf4wTHSdTozkuo5OCA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="64734782"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="64734782"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 04:12:05 -0800
-X-CSE-ConnectionGUID: HH7CDWeHTiWebboaKijKWA==
-X-CSE-MsgGUID: BnoiTsyASuSg/n0lzooiUg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; d="scan'208";a="189379199"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.202])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 04:11:59 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Krzysztof Karas <krzysztof.karas@intel.com>, Marco Crivellari
- <marco.crivellari@suse.com>
-Cc: linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Tejun Heo <tj@kernel.org>, Lai Jiangshan
- <jiangshanlai@gmail.com>, Frederic Weisbecker <frederic@kernel.org>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>, Michal Hocko
- <mhocko@suse.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>
-Subject: Re: [PATCH v3 0/3] replace old wq(s), add WQ_PERCPU to alloc_workqueue
-In-Reply-To: <34ozsv3e6ujs4rn6c2r4nrjcjifgazddy5jecwur6atfcop6vp@bunf3uyofmb4>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251104100032.61525-1-marco.crivellari@suse.com>
- <34ozsv3e6ujs4rn6c2r4nrjcjifgazddy5jecwur6atfcop6vp@bunf3uyofmb4>
-Date: Mon, 10 Nov 2025 14:11:56 +0200
-Message-ID: <aaac1c9b25d0fc2500e67d05948a22d77dcc72e7@intel.com>
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32C5610E381;
+ Mon, 10 Nov 2025 12:27:59 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============9202461969373709643=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/rom=3A_convert_i?=
+ =?utf-8?q?ntel=5From_interfaces_to_struct_drm=5Fdevice_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 10 Nov 2025 12:27:59 -0000
+Message-ID: <176277767920.34675.5499389218197832701@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <20251110112048.2366725-1-jani.nikula@intel.com>
+In-Reply-To: <20251110112048.2366725-1-jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,126 +37,178 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 05 Nov 2025, Krzysztof Karas <krzysztof.karas@intel.com> wrote:
-> Hi Marco,
->
-> thanks for addressing my comments!
->
-> Reviewed-by: Krzysztof Karas <krzysztof.karas@intel.com>
-> on the whole series.
+--===============9202461969373709643==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The series absolutely must go through both i915 and xe CI before
-merging. Krzysztof, can you please make follow through with that?
+== Series Details ==
 
-BR,
-Jani.
+Series: drm/i915/rom: convert intel_rom interfaces to struct drm_device (rev3)
+URL   : https://patchwork.freedesktop.org/series/156400/
+State : success
 
->  
-> Best Regards,
-> Krzysztof
->
-> On 2025-11-04 at 11:00:29 +0100, Marco Crivellari wrote:
->> Hi,
->> 
->> === Current situation: problems ===
->> 
->> Let's consider a nohz_full system with isolated CPUs: wq_unbound_cpumask is
->> set to the housekeeping CPUs, for !WQ_UNBOUND the local CPU is selected.
->> 
->> This leads to different scenarios if a work item is scheduled on an
->> isolated CPU where "delay" value is 0 or greater then 0:
->>         schedule_delayed_work(, 0);
->> 
->> This will be handled by __queue_work() that will queue the work item on the
->> current local (isolated) CPU, while:
->> 
->>         schedule_delayed_work(, 1);
->> 
->> Will move the timer on an housekeeping CPU, and schedule the work there.
->> 
->> Currently if a user enqueue a work item using schedule_delayed_work() the
->> used wq is "system_wq" (per-cpu wq) while queue_delayed_work() use
->> WORK_CPU_UNBOUND (used when a cpu is not specified). The same applies to
->> schedule_work() that is using system_wq and queue_work(), that makes use
->> again of WORK_CPU_UNBOUND.
->> 
->> This lack of consistency cannot be addressed without refactoring the API.
->> 
->> === Recent changes to the WQ API ===
->> 
->> The following, address the recent changes in the Workqueue API:
->> 
->> - commit 128ea9f6ccfb ("workqueue: Add system_percpu_wq and system_dfl_wq")
->> - commit 930c2ea566af ("workqueue: Add new WQ_PERCPU flag")
->> 
->> The old workqueues will be removed in a future release cycle.
->> 
->> === Introduced Changes by this series ===
->> 
->> 1) [P 1-2]  Replace uses of system_wq and system_unbound_wq
->> 
->>     system_wq is a per-CPU workqueue, but his name is not clear.
->>     system_unbound_wq is to be used when locality is not required.
->> 
->>     Because of that, system_wq has been replaced with system_percpu_wq, and
->>     system_unbound_wq has been replaced with system_dfl_wq.
->> 
->> 2) [P 3] WQ_PERCPU added to alloc_workqueue()
->> 
->>     This change adds a new WQ_PERCPU flag to explicitly request
->>     alloc_workqueue() to be per-cpu when WQ_UNBOUND has not been specified.
->> 
->> 
->> Thanks!
->> 
->> ---
->> Changes in 3:
->> - Improved commit logs
->> 
->> Changes in v2:
->> - fix typo in patch subject (add instead of added).
->> 
->> - in every patch is also present the specific commit hash about the
->>   workqueue API change.
->> 
->> - fixed commit log of P1 (removed "Adding system_dfl_wq...").
->> 
->> - P2: subject changed reflecting the effective change.
->> 
->> - rebased to v6.18-rc4.
->> 
->> 
->> Marco Crivellari (3):
->>   drm/i915: replace use of system_unbound_wq with system_dfl_wq
->>   drm/i915: replace use of system_wq with system_percpu_wq in the
->>     documentation
->>   drm/i915: add WQ_PERCPU to alloc_workqueue users
->> 
->>  drivers/gpu/drm/i915/display/intel_display_driver.c | 4 ++--
->>  drivers/gpu/drm/i915/display/intel_display_power.c  | 2 +-
->>  drivers/gpu/drm/i915/display/intel_tc.c             | 4 ++--
->>  drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c        | 2 +-
->>  drivers/gpu/drm/i915/gt/uc/intel_guc.c              | 4 ++--
->>  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c           | 4 ++--
->>  drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c   | 6 +++---
->>  drivers/gpu/drm/i915/i915_active.c                  | 2 +-
->>  drivers/gpu/drm/i915/i915_driver.c                  | 5 +++--
->>  drivers/gpu/drm/i915/i915_drv.h                     | 2 +-
->>  drivers/gpu/drm/i915/i915_sw_fence_work.c           | 2 +-
->>  drivers/gpu/drm/i915/i915_vma_resource.c            | 2 +-
->>  drivers/gpu/drm/i915/pxp/intel_pxp.c                | 2 +-
->>  drivers/gpu/drm/i915/pxp/intel_pxp_irq.c            | 2 +-
->>  drivers/gpu/drm/i915/selftests/i915_sw_fence.c      | 2 +-
->>  drivers/gpu/drm/i915/selftests/mock_gem_device.c    | 2 +-
->>  16 files changed, 24 insertions(+), 23 deletions(-)
->> 
->> -- 
->> 2.51.1
->> 
->
+== Summary ==
 
--- 
-Jani Nikula, Intel
+CI Bug Log - changes from CI_DRM_17520 -> Patchwork_156400v3
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156400v3/index.html
+
+Participating hosts (45 -> 44)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_156400v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@dmabuf@all-tests@dma_fence_chain:
+    - fi-bsw-n3050:       [PASS][1] -> [ABORT][2] ([i915#12904]) +1 other test abort
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17520/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156400v3/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-9:          [DMESG-FAIL][3] ([i915#12061]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17520/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156400v3/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+    - bat-mtlp-9:         [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17520/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156400v3/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live:
+    - bat-atsm-1:         [DMESG-FAIL][7] ([i915#12061] / [i915#13929]) -> [DMESG-FAIL][8] ([i915#12061] / [i915#14204])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17520/bat-atsm-1/igt@i915_selftest@live.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156400v3/bat-atsm-1/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@mman:
+    - bat-atsm-1:         [DMESG-FAIL][9] ([i915#13929]) -> [DMESG-FAIL][10] ([i915#14204])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17520/bat-atsm-1/igt@i915_selftest@live@mman.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156400v3/bat-atsm-1/igt@i915_selftest@live@mman.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+  [i915#13929]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929
+  [i915#14204]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_17520 -> Patchwork_156400v3
+
+  CI-20190529: 20190529
+  CI_DRM_17520: 79a2c90cc53577d9a60abe24251da3de51261aaa @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8616: 862eb176244feac8ee711f381fe1be1fdc6a7ede @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_156400v3: 79a2c90cc53577d9a60abe24251da3de51261aaa @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156400v3/index.html
+
+--===============9202461969373709643==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/rom: convert intel_rom interfaces to struct drm_device (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156400/">https://patchwork.freedesktop.org/series/156400/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156400v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156400v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17520 -&gt; Patchwork_156400v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156400v3/index.html</p>
+<h2>Participating hosts (45 -&gt; 44)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_156400v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@dmabuf@all-tests@dma_fence_chain:<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17520/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156400v3/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) +1 other test abort</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17520/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156400v3/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17520/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156400v3/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17520/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156400v3/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@mman:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17520/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_156400v3/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17520 -&gt; Patchwork_156400v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17520: 79a2c90cc53577d9a60abe24251da3de51261aaa @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8616: 862eb176244feac8ee711f381fe1be1fdc6a7ede @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_156400v3: 79a2c90cc53577d9a60abe24251da3de51261aaa @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============9202461969373709643==--
