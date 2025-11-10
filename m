@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3592DC48555
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Nov 2025 18:29:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB423C48558
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Nov 2025 18:29:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B56F410E4A5;
-	Mon, 10 Nov 2025 17:29:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A7C710E4A9;
+	Mon, 10 Nov 2025 17:29:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y+si4A1M";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BLQPSR8e";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C101E10E4A7;
- Mon, 10 Nov 2025 17:29:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD32D10E4A6;
+ Mon, 10 Nov 2025 17:29:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762795743; x=1794331743;
+ t=1762795748; x=1794331748;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=bNf+/Hyw/2eZoO1eg/Tn4XNFP3BsVd2Pjw32uOKo8Lg=;
- b=Y+si4A1MVL9AtgZy70mpasc7FhaGCY8Dh48R6JR67VZTiZP/JJoyKJRj
- oioxi8EyNrLAPCLKiy9xRaSnAADdCNAV2CLp7LYGgtXurWqHmxfPFVM8k
- dM1gJnQzr7Bo0ZX+y4QTQei6c58lfMFWB9od94FcnNzic9Cks3AQ4yWqv
- +vJRDOtwciVliSvEIbrG9WJWWvyUW7QwuIZo+mcaPLsH5PKIw6uRaFlQv
- aJGCX0uRCdy6Aey+ok9sWNH9CwvxM5JsKZGXksarMCVkeoZ5/MXSTgBhB
- MQiLYwKiwaflZVYOo/LXUaTb/cjwLMt2DR6X94mD5JWZK/HPa2e72qWcY w==;
-X-CSE-ConnectionGUID: HdBrDFvDQni2rgjYQERVMg==
-X-CSE-MsgGUID: J8FCCi67RAmDfJNxfCpSsA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="75143333"
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="75143333"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 09:29:03 -0800
-X-CSE-ConnectionGUID: tkDue5deQbW4ALogRvAFBw==
-X-CSE-MsgGUID: MBxrKO9TSc+ATju5IdWFRw==
+ bh=l6TpetpMmXtG4rb5k30hrFShh9zdCiXo7L/tKS5HSEY=;
+ b=BLQPSR8epkQbD5bZIktcbDp8u3Ix347G4ylJmRgQXoKErQV5O9pdFibs
+ DgXtUJdUXMbEN8+a+7CW+1ASGQm7QxMRyRl74TU6rjB6YNXWqRCyfdE6y
+ fNqmJQ89mPHZ+G2dPBacp55eL0ce3Ln+uVa72r9/ksg/K5vR4+CjsIoJ7
+ WSx4hrUnQM08yrbqcMY/O2MsHeyug9vwxO68r1Befm1XaPG3zKSE6NyYB
+ csJxu4efrmjK+39F+nTT4V8Daop131KUwgiOOVqrQ1SSHrw3ZGeIPGFY4
+ aMNkSWWkm9FsFQTNTt/aa6SfvhbCQk8AzPnwxZ8zqqq20XR72pc+4rHM3 Q==;
+X-CSE-ConnectionGUID: XQ2sPt8bT9Cw0SJr+eQnoA==
+X-CSE-MsgGUID: rLw1bvnvTTi7dzm8yrQepQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="82478054"
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="82478054"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2025 09:29:07 -0800
+X-CSE-ConnectionGUID: V8t0sP4tTHKiG0qIcK9oBA==
+X-CSE-MsgGUID: eI9a5YrEQbWsvx/ubmr2BQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="219383597"
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="192834790"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.30])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 09:29:03 -0800
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2025 09:29:06 -0800
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 15/16] drm/i915/power: Use the intel_de_wait_ms() out value
-Date: Mon, 10 Nov 2025 19:27:54 +0200
-Message-ID: <20251110172756.2132-16-ville.syrjala@linux.intel.com>
+Subject: [PATCH 16/16] drm/i915/dpio: Use the intel_de_wait_ms() out value
+Date: Mon, 10 Nov 2025 19:27:55 +0200
+Message-ID: <20251110172756.2132-17-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20251110172756.2132-1-ville.syrjala@linux.intel.com>
 References: <20251110172756.2132-1-ville.syrjala@linux.intel.com>
@@ -73,40 +73,39 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
 Utilize the 'out_value' output parameter of intel_de_wait_ms()
-isntead of re-readiong the PHY_CONTROL register after polling
-has finished.
+isntead of re-readiong the DPLL/DPIO_PHY_STATUS register after
+polling has finished.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_power_well.c | 6 +++---
+ drivers/gpu/drm/i915/display/intel_dpio_phy.c | 6 +++---
  1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index 8593d2daeaa6..f4f7e73acc87 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -1358,6 +1358,7 @@ static void assert_chv_phy_status(struct intel_display *display)
- 	u32 phy_control = display->power.chv_phy_control;
- 	u32 phy_status = 0;
- 	u32 phy_status_mask = 0xffffffff;
+diff --git a/drivers/gpu/drm/i915/display/intel_dpio_phy.c b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
+index 7b7a0461da36..8027bab2951b 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpio_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
+@@ -1173,6 +1173,7 @@ void vlv_wait_port_ready(struct intel_encoder *encoder,
+ 	struct intel_display *display = to_intel_display(encoder);
+ 	u32 port_mask;
+ 	i915_reg_t dpll_reg;
 +	u32 val;
  
- 	/*
- 	 * The BIOS can leave the PHY is some weird state
-@@ -1446,11 +1447,10 @@ static void assert_chv_phy_status(struct intel_display *display)
- 	 * so the power state can take a while to actually change.
- 	 */
- 	if (intel_de_wait_ms(display, DISPLAY_PHY_STATUS,
--			     phy_status_mask, phy_status, 10, NULL))
-+			     phy_status_mask, phy_status, 10, &val))
- 		drm_err(display->drm,
- 			"Unexpected PHY_STATUS 0x%08x, expected 0x%08x (PHY_CONTROL=0x%08x)\n",
--			intel_de_read(display, DISPLAY_PHY_STATUS) & phy_status_mask,
--			phy_status, display->power.chv_phy_control);
-+			val & phy_status_mask, phy_status, display->power.chv_phy_control);
- }
+ 	switch (encoder->port) {
+ 	default:
+@@ -1193,10 +1194,9 @@ void vlv_wait_port_ready(struct intel_encoder *encoder,
+ 		break;
+ 	}
  
- #undef BITS_SET
+-	if (intel_de_wait_ms(display, dpll_reg, port_mask, expected_mask, 1000, NULL))
++	if (intel_de_wait_ms(display, dpll_reg, port_mask, expected_mask, 1000, &val))
+ 		drm_WARN(display->drm, 1,
+ 			 "timed out waiting for [ENCODER:%d:%s] port ready: got 0x%x, expected 0x%x\n",
+ 			 encoder->base.base.id, encoder->base.name,
+-			 intel_de_read(display, dpll_reg) & port_mask,
+-			 expected_mask);
++			 val & port_mask, expected_mask);
+ }
 -- 
 2.49.1
 
