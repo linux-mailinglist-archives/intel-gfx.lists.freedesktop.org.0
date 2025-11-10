@@ -2,62 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88494C493F6
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Nov 2025 21:32:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 778B3C495D5
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Nov 2025 22:11:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A4DC10E2FA;
-	Mon, 10 Nov 2025 20:31:58 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bRxvcDmZ";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0B1B10E0D1;
+	Mon, 10 Nov 2025 21:11:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 471A610E2FA;
- Mon, 10 Nov 2025 20:31:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762806717; x=1794342717;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=z9+vB1pX9Q+oMHePOEbl5YqXNiFbwEd17utk+QjS8s0=;
- b=bRxvcDmZmGupoc81jTXpquveclGKR/DVCuyRmIprTFrba7qeiPlj1XgP
- 9wrmSfDw/zNMVOngKNPIsoO9q4eXmty8AzYaQrE/GbA+/2YBBLhG920lf
- wY3Xd3nct7Md+biwfR+6tRSR8jWtffFIjkSCj+AEHZTetZFZQVkyURA8q
- wiLAczl7La+KmwLktLMOUHbH0e5zCiSbfeVlcjqFQdqpm21fOkvsu9L2I
- YGbUPxnZVxmUxmLLbybkSTadfGYKsDB0fAo89KU/SK7IMUiCtiGwL7/lK
- djBmcFkWjdpTJfsGBkouA/1ydbsPezh9Vnoi6Bu8tST91VguWfoI2UbEc A==;
-X-CSE-ConnectionGUID: XAUO01qyRUOYOo534mTuug==
-X-CSE-MsgGUID: tqfLBhTBRpyoKXvMX5ejGA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="64070186"
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="64070186"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 12:31:57 -0800
-X-CSE-ConnectionGUID: rAAms1NeTzaZX17Gv8xIjA==
-X-CSE-MsgGUID: lVXJw5YKTx6MkvcGoflRLQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="188939084"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.30])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 12:31:55 -0800
-Date: Mon, 10 Nov 2025 22:31:52 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 4/4] drm/i915/display: shorten the
- intel_display_irq_regs_* function names
-Message-ID: <aRJLuIJlD1wsIBDn@intel.com>
-References: <cover.1762803004.git.jani.nikula@intel.com>
- <ab7b409334ad0b02f531dcacbbad0f7d4a20c6f1.1762803004.git.jani.nikula@intel.com>
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 053D110E0D1;
+ Mon, 10 Nov 2025 21:11:01 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6614564008528488430=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ab7b409334ad0b02f531dcacbbad0f7d4a20c6f1.1762803004.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/vblank=3A_refactoring?=
+ =?utf-8?q?_and_cleanups?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 10 Nov 2025 21:11:01 -0000
+Message-ID: <176280906101.35461.16319849036963540991@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <cover.1762791343.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1762791343.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,242 +37,166 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 10, 2025 at 09:31:39PM +0200, Jani Nikula wrote:
-> Shorten the intel_display_irq_regs_* function names to the underlying
-> function names with a _wl suffix for clarity.
-> 
-> - intel_display_irq_regs_init() -> irq_init_wl()
-> - intel_display_irq_regs_reset() -> irq_reset_wl()
-> - intel_display_irq_regs_assert_irr_is_zero() -> assert_iir_is_zero_wl()
-> 
-> This emphasizes the difference is the wakelock. Platforms without the
-> DMC wakelock mechanism can use the non-wl versions.
+--===============6614564008528488430==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-These things should just get nuked. You already switched to
-intel_de_{read,write}() in the previous patch, and those already
-handle the wakelock stuff for you.
+== Series Details ==
 
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  .../gpu/drm/i915/display/intel_display_irq.c  | 76 +++++++++----------
->  1 file changed, 34 insertions(+), 42 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> index c9e7814479f6..09036cd92558 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> @@ -97,9 +97,8 @@ static void error_init(struct intel_display *display, struct i915_error_regs reg
->  	intel_de_posting_read(display, regs.emr);
->  }
->  
-> -static void
-> -intel_display_irq_regs_init(struct intel_display *display, struct i915_irq_regs regs,
-> -			    u32 imr_val, u32 ier_val)
-> +static void irq_init_wl(struct intel_display *display, struct i915_irq_regs regs,
-> +			u32 imr_val, u32 ier_val)
->  {
->  	intel_dmc_wl_get(display, regs.imr);
->  	intel_dmc_wl_get(display, regs.ier);
-> @@ -112,8 +111,7 @@ intel_display_irq_regs_init(struct intel_display *display, struct i915_irq_regs
->  	intel_dmc_wl_put(display, regs.imr);
->  }
->  
-> -static void
-> -intel_display_irq_regs_reset(struct intel_display *display, struct i915_irq_regs regs)
-> +static void irq_reset_wl(struct intel_display *display, struct i915_irq_regs regs)
->  {
->  	intel_dmc_wl_get(display, regs.imr);
->  	intel_dmc_wl_get(display, regs.ier);
-> @@ -126,8 +124,7 @@ intel_display_irq_regs_reset(struct intel_display *display, struct i915_irq_regs
->  	intel_dmc_wl_put(display, regs.imr);
->  }
->  
-> -static void
-> -intel_display_irq_regs_assert_irr_is_zero(struct intel_display *display, i915_reg_t reg)
-> +static void assert_iir_is_zero_wl(struct intel_display *display, i915_reg_t reg)
->  {
->  	intel_dmc_wl_get(display, reg);
->  
-> @@ -1983,7 +1980,7 @@ static void _vlv_display_irq_reset(struct intel_display *display)
->  
->  	i9xx_pipestat_irq_reset(display);
->  
-> -	intel_display_irq_regs_reset(display, VLV_IRQ_REGS);
-> +	irq_reset_wl(display, VLV_IRQ_REGS);
->  	display->irq.vlv_imr_mask = ~0u;
->  }
->  
-> @@ -2094,7 +2091,7 @@ static void _vlv_display_irq_postinstall(struct intel_display *display)
->  
->  	display->irq.vlv_imr_mask = ~enable_mask;
->  
-> -	intel_display_irq_regs_init(display, VLV_IRQ_REGS, display->irq.vlv_imr_mask, enable_mask);
-> +	irq_init_wl(display, VLV_IRQ_REGS, display->irq.vlv_imr_mask, enable_mask);
->  }
->  
->  void vlv_display_irq_postinstall(struct intel_display *display)
-> @@ -2145,10 +2142,10 @@ void gen8_display_irq_reset(struct intel_display *display)
->  	for_each_pipe(display, pipe)
->  		if (intel_display_power_is_enabled(display,
->  						   POWER_DOMAIN_PIPE(pipe)))
-> -			intel_display_irq_regs_reset(display, GEN8_DE_PIPE_IRQ_REGS(pipe));
-> +			irq_reset_wl(display, GEN8_DE_PIPE_IRQ_REGS(pipe));
->  
-> -	intel_display_irq_regs_reset(display, GEN8_DE_PORT_IRQ_REGS);
-> -	intel_display_irq_regs_reset(display, GEN8_DE_MISC_IRQ_REGS);
-> +	irq_reset_wl(display, GEN8_DE_PORT_IRQ_REGS);
-> +	irq_reset_wl(display, GEN8_DE_MISC_IRQ_REGS);
->  
->  	if (HAS_PCH_SPLIT(display))
->  		ibx_display_irq_reset(display);
-> @@ -2190,18 +2187,18 @@ void gen11_display_irq_reset(struct intel_display *display)
->  	for_each_pipe(display, pipe)
->  		if (intel_display_power_is_enabled(display,
->  						   POWER_DOMAIN_PIPE(pipe)))
-> -			intel_display_irq_regs_reset(display, GEN8_DE_PIPE_IRQ_REGS(pipe));
-> +			irq_reset_wl(display, GEN8_DE_PIPE_IRQ_REGS(pipe));
->  
-> -	intel_display_irq_regs_reset(display, GEN8_DE_PORT_IRQ_REGS);
-> -	intel_display_irq_regs_reset(display, GEN8_DE_MISC_IRQ_REGS);
-> +	irq_reset_wl(display, GEN8_DE_PORT_IRQ_REGS);
-> +	irq_reset_wl(display, GEN8_DE_MISC_IRQ_REGS);
->  
->  	if (DISPLAY_VER(display) >= 14)
-> -		intel_display_irq_regs_reset(display, PICAINTERRUPT_IRQ_REGS);
-> +		irq_reset_wl(display, PICAINTERRUPT_IRQ_REGS);
->  	else
-> -		intel_display_irq_regs_reset(display, GEN11_DE_HPD_IRQ_REGS);
-> +		irq_reset_wl(display, GEN11_DE_HPD_IRQ_REGS);
->  
->  	if (INTEL_PCH_TYPE(display) >= PCH_ICP)
-> -		intel_display_irq_regs_reset(display, SDE_IRQ_REGS);
-> +		irq_reset_wl(display, SDE_IRQ_REGS);
->  }
->  
->  void gen8_irq_power_well_post_enable(struct intel_display *display,
-> @@ -2219,9 +2216,9 @@ void gen8_irq_power_well_post_enable(struct intel_display *display,
->  	}
->  
->  	for_each_pipe_masked(display, pipe, pipe_mask)
-> -		intel_display_irq_regs_init(display, GEN8_DE_PIPE_IRQ_REGS(pipe),
-> -					    display->irq.de_pipe_imr_mask[pipe],
-> -					    ~display->irq.de_pipe_imr_mask[pipe] | extra_ier);
-> +		irq_init_wl(display, GEN8_DE_PIPE_IRQ_REGS(pipe),
-> +			    display->irq.de_pipe_imr_mask[pipe],
-> +			    ~display->irq.de_pipe_imr_mask[pipe] | extra_ier);
->  
->  	spin_unlock_irq(&display->irq.lock);
->  }
-> @@ -2239,7 +2236,7 @@ void gen8_irq_power_well_pre_disable(struct intel_display *display,
->  	}
->  
->  	for_each_pipe_masked(display, pipe, pipe_mask)
-> -		intel_display_irq_regs_reset(display, GEN8_DE_PIPE_IRQ_REGS(pipe));
-> +		irq_reset_wl(display, GEN8_DE_PIPE_IRQ_REGS(pipe));
->  
->  	spin_unlock_irq(&display->irq.lock);
->  
-> @@ -2272,7 +2269,7 @@ static void ibx_irq_postinstall(struct intel_display *display)
->  	else
->  		mask = SDE_GMBUS_CPT;
->  
-> -	intel_display_irq_regs_init(display, SDE_IRQ_REGS, ~mask, 0xffffffff);
-> +	irq_init_wl(display, SDE_IRQ_REGS, ~mask, 0xffffffff);
->  }
->  
->  void valleyview_enable_display_irqs(struct intel_display *display)
-> @@ -2334,7 +2331,7 @@ void ilk_de_irq_postinstall(struct intel_display *display)
->  	}
->  
->  	if (display->platform.haswell) {
-> -		intel_display_irq_regs_assert_irr_is_zero(display, EDP_PSR_IIR);
-> +		assert_iir_is_zero_wl(display, EDP_PSR_IIR);
->  		display_mask |= DE_EDP_PSR_INT_HSW;
->  	}
->  
-> @@ -2345,8 +2342,8 @@ void ilk_de_irq_postinstall(struct intel_display *display)
->  
->  	ibx_irq_postinstall(display);
->  
-> -	intel_display_irq_regs_init(display, DE_IRQ_REGS, display->irq.ilk_de_imr_mask,
-> -				    display_mask | extra_mask);
-> +	irq_init_wl(display, DE_IRQ_REGS, display->irq.ilk_de_imr_mask,
-> +		    display_mask | extra_mask);
->  }
->  
->  static void mtp_irq_postinstall(struct intel_display *display);
-> @@ -2422,11 +2419,10 @@ void gen8_de_irq_postinstall(struct intel_display *display)
->  			if (!intel_display_power_is_enabled(display, domain))
->  				continue;
->  
-> -			intel_display_irq_regs_assert_irr_is_zero(display,
-> -								  TRANS_PSR_IIR(display, trans));
-> +			assert_iir_is_zero_wl(display, TRANS_PSR_IIR(display, trans));
->  		}
->  	} else {
-> -		intel_display_irq_regs_assert_irr_is_zero(display, EDP_PSR_IIR);
-> +		assert_iir_is_zero_wl(display, EDP_PSR_IIR);
->  	}
->  
->  	for_each_pipe(display, pipe) {
-> @@ -2434,23 +2430,20 @@ void gen8_de_irq_postinstall(struct intel_display *display)
->  
->  		if (intel_display_power_is_enabled(display,
->  						   POWER_DOMAIN_PIPE(pipe)))
-> -			intel_display_irq_regs_init(display, GEN8_DE_PIPE_IRQ_REGS(pipe),
-> -						    display->irq.de_pipe_imr_mask[pipe],
-> -						    de_pipe_enables);
-> +			irq_init_wl(display, GEN8_DE_PIPE_IRQ_REGS(pipe),
-> +				    display->irq.de_pipe_imr_mask[pipe],
-> +				    de_pipe_enables);
->  	}
->  
-> -	intel_display_irq_regs_init(display, GEN8_DE_PORT_IRQ_REGS, ~de_port_masked,
-> -				    de_port_enables);
-> -	intel_display_irq_regs_init(display, GEN8_DE_MISC_IRQ_REGS, ~de_misc_masked,
-> -				    de_misc_masked);
-> +	irq_init_wl(display, GEN8_DE_PORT_IRQ_REGS, ~de_port_masked, de_port_enables);
-> +	irq_init_wl(display, GEN8_DE_MISC_IRQ_REGS, ~de_misc_masked, de_misc_masked);
->  
->  	if (IS_DISPLAY_VER(display, 11, 13)) {
->  		u32 de_hpd_masked = 0;
->  		u32 de_hpd_enables = GEN11_DE_TC_HOTPLUG_MASK |
->  				     GEN11_DE_TBT_HOTPLUG_MASK;
->  
-> -		intel_display_irq_regs_init(display, GEN11_DE_HPD_IRQ_REGS, ~de_hpd_masked,
-> -					    de_hpd_enables);
-> +		irq_init_wl(display, GEN11_DE_HPD_IRQ_REGS, ~de_hpd_masked, de_hpd_enables);
->  	}
->  }
->  
-> @@ -2461,17 +2454,16 @@ static void mtp_irq_postinstall(struct intel_display *display)
->  	u32 de_hpd_enables = de_hpd_mask | XELPDP_DP_ALT_HOTPLUG_MASK |
->  			     XELPDP_TBT_HOTPLUG_MASK;
->  
-> -	intel_display_irq_regs_init(display, PICAINTERRUPT_IRQ_REGS, ~de_hpd_mask,
-> -				    de_hpd_enables);
-> +	irq_init_wl(display, PICAINTERRUPT_IRQ_REGS, ~de_hpd_mask, de_hpd_enables);
->  
-> -	intel_display_irq_regs_init(display, SDE_IRQ_REGS, ~sde_mask, 0xffffffff);
-> +	irq_init_wl(display, SDE_IRQ_REGS, ~sde_mask, 0xffffffff);
->  }
->  
->  static void icp_irq_postinstall(struct intel_display *display)
->  {
->  	u32 mask = SDE_GMBUS_ICP;
->  
-> -	intel_display_irq_regs_init(display, SDE_IRQ_REGS, ~mask, 0xffffffff);
-> +	irq_init_wl(display, SDE_IRQ_REGS, ~mask, 0xffffffff);
->  }
->  
->  void gen11_de_irq_postinstall(struct intel_display *display)
-> -- 
-> 2.47.3
+Series: drm/vblank: refactoring and cleanups
+URL   : https://patchwork.freedesktop.org/series/157331/
+State : success
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_17525 -> Patchwork_157331v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157331v1/index.html
+
+Participating hosts (45 -> 40)
+------------------------------
+
+  Missing    (5): fi-snb-2520m fi-pnv-d510 bat-adls-6 bat-dg2-13 fi-skl-6600u 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_157331v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17525/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157331v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
+    - bat-mtlp-9:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17525/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157331v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+    - bat-arls-6:         [PASS][5] -> [DMESG-FAIL][6] ([i915#12061]) +1 other test dmesg-fail
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17525/bat-arls-6/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157331v1/bat-arls-6/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@load:
+    - bat-mtlp-9:         [DMESG-WARN][7] ([i915#13494]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17525/bat-mtlp-9/igt@i915_module_load@load.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157331v1/bat-mtlp-9/igt@i915_module_load@load.html
+
+  * igt@i915_selftest@live:
+    - bat-adlp-11:        [DMESG-WARN][9] ([i915#14872]) -> [PASS][10] +1 other test pass
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17525/bat-adlp-11/igt@i915_selftest@live.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157331v1/bat-adlp-11/igt@i915_selftest@live.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#13494]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494
+  [i915#14872]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14872
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_17525 -> Patchwork_157331v1
+
+  CI-20190529: 20190529
+  CI_DRM_17525: a9792b1ab75123e4aceaba953a89809e745919c6 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8617: 8617
+  Patchwork_157331v1: a9792b1ab75123e4aceaba953a89809e745919c6 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157331v1/index.html
+
+--===============6614564008528488430==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/vblank: refactoring and cleanups</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157331/">https://patchwork.freedesktop.org/series/157331/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157331v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157331v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17525 -&gt; Patchwork_157331v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157331v1/index.html</p>
+<h2>Participating hosts (45 -&gt; 40)</h2>
+<p>Missing    (5): fi-snb-2520m fi-pnv-d510 bat-adls-6 bat-dg2-13 fi-skl-6600u </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_157331v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17525/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157331v1/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17525/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157331v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17525/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157331v1/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_module_load@load:</p>
+<ul>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17525/bat-mtlp-9/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494">i915#13494</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157331v1/bat-mtlp-9/igt@i915_module_load@load.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17525/bat-adlp-11/igt@i915_selftest@live.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14872">i915#14872</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157331v1/bat-adlp-11/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17525 -&gt; Patchwork_157331v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17525: a9792b1ab75123e4aceaba953a89809e745919c6 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8617: 8617<br />
+  Patchwork_157331v1: a9792b1ab75123e4aceaba953a89809e745919c6 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============6614564008528488430==--
