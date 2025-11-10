@@ -2,143 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86D3CC46D50
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Nov 2025 14:18:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83A1DC46FB1
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Nov 2025 14:42:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D09D10E38F;
-	Mon, 10 Nov 2025 13:18:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17A3E10E29F;
+	Mon, 10 Nov 2025 13:42:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="Gjc3UfHy";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="ABNX7bmN";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="TEcL47Rh";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="/DdmTomV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RsZQcLin";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CD7810E392
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 Nov 2025 13:18:57 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id A8AD4337B9;
- Mon, 10 Nov 2025 13:18:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1762780736; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=ljfzBcqH5qpE4v1MruiYtYz4MaLfaGD2t+fulO6F7gw=;
- b=Gjc3UfHyzPz71blN2Ygx2nlvyFy1IMSHPK159oxpOZPNcArqK9j9VL5IKo9ooWm+SRX2Ao
- F/iQOoL/wzjk93KBnc3yczLiPcQzhzaU6l1DwND0bZfFTArGTNmDx41+ipjRRMmf3IDw+2
- aPXJX93VWUsJ25VPR84yP135Ey0AN3Q=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1762780736;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=ljfzBcqH5qpE4v1MruiYtYz4MaLfaGD2t+fulO6F7gw=;
- b=ABNX7bmNwgigbZGsweV0639FJWiESM1Bx5S+nU89ePPR0dyTMFTeHPXwk6TiZ19yqNT9gv
- 70jo25WvfLGf6+BQ==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=TEcL47Rh;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b="/DdmTomV"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1762780733; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=ljfzBcqH5qpE4v1MruiYtYz4MaLfaGD2t+fulO6F7gw=;
- b=TEcL47RhrFDWH0+8KD20ItnaxnXIiV7ej1hpIcd+4sif+q3bEEBvhGN2X6Wb0/EeHqiMzg
- imOs76GEBd3dOg5xGmgbA0Grwfjbo2MQ5xG5OxGf8+/i5cUl3PsdjK0VIVHWZFNLQJ1b6X
- llbhHBjFDtHr2OzygQ4mZm4SkJvoH0g=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1762780733;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=ljfzBcqH5qpE4v1MruiYtYz4MaLfaGD2t+fulO6F7gw=;
- b=/DdmTomVs4KoIzEaLXbAgVmKpShM6TqCJK5UGRMS8HajIwPfh1P67eCXTTArW9F/m/21Pe
- K1MzgWes3mMeXvDQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 6B0CB143F1;
- Mon, 10 Nov 2025 13:18:53 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id gLO0GD3mEWnOSwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Mon, 10 Nov 2025 13:18:53 +0000
-Message-ID: <b85b321f-9ce7-4c1e-910b-01a5265009ef@suse.de>
-Date: Mon, 10 Nov 2025 14:18:52 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] drm/atomic: use drm_crtc_vblank_waitqueue()
-To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D29BE10E29F;
+ Mon, 10 Nov 2025 13:42:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1762782146; x=1794318146;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=GQczp+bmtgkSPK1r3KQkisA0pPkBXYqJAGaQTNc9Uf4=;
+ b=RsZQcLinWU5N5eZZ0G++2kBVy0hzsqnkiXPDnnfQrabb2LImumyo+Mat
+ cK88oE+X1FLNAzPbjPYG0wRAuRg5ap4JY8TNg6nUyPKJDCQMVYdHnnqRk
+ gLHYAc8Udp8nIc5AK47E96g/hMS4huZ7kShagxysIxhsQv9MlwvIR89U8
+ Xn9FPPjb4hFtA9qsIEGIJb4BpadgKQrbGGjmPBf2OG6rJgKtfS6yvRhXy
+ oNzJ8tr/iO/nWyLw80d3KqUXFl5SolCio4GCCz/IuaDbKh0woS9fddys8
+ 3owOLTyrmc/NjlQ2l1lWM/oeZJxio6/8pHyeONFYW/lqUBaIW60RU0ew4 A==;
+X-CSE-ConnectionGUID: T460kdQyQzOtu0soHrWILA==
+X-CSE-MsgGUID: z18CGiwuTiKeoPyu8ajl/A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="75123676"
+X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; d="scan'208";a="75123676"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2025 05:42:25 -0800
+X-CSE-ConnectionGUID: lh9G0KYvRBG8vumlivK8ZQ==
+X-CSE-MsgGUID: 6VfLljQHQtSeQm3D6sdyVg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; d="scan'208";a="219333066"
+Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.202])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2025 05:42:23 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  ville.syrjala@linux.intel.com
+Subject: Re: [PATCH 2/6] drm/atomic: use drm_crtc_vblank_waitqueue()
+In-Reply-To: <b85b321f-9ce7-4c1e-910b-01a5265009ef@suse.de>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <cover.1762513240.git.jani.nikula@intel.com>
  <1097348197acea9110da8baebbbc189890d01660.1762513240.git.jani.nikula@intel.com>
  <29b1cc39-7868-4b15-bac6-7dc97869dbdb@suse.de>
  <a605efb1745f0d2c96ff986fed7bdeeb6226b7ad@intel.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <a605efb1745f0d2c96ff986fed7bdeeb6226b7ad@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Level: 
-X-Spam-Flag: NO
-X-Rspamd-Queue-Id: A8AD4337B9
-X-Rspamd-Action: no action
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-0.996]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- FUZZY_RATELIMITED(0.00)[rspamd.com]; ARC_NA(0.00)[];
- RCVD_TLS_ALL(0.00)[]; MIME_TRACE(0.00)[0:+];
- RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
- SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
- TO_DN_SOME(0.00)[];
- RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- MID_RHS_MATCH_FROM(0.00)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- RCPT_COUNT_FIVE(0.00)[5]; RCVD_COUNT_TWO(0.00)[2];
- TO_MATCH_ENVRCPT_ALL(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo,suse.de:dkim,suse.de:mid,suse.de:email,suse.com:url];
- URIBL_BLOCKED(0.00)[bootlin.com:url,imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo,intel.com:email,suse.com:url,suse.de:dkim,suse.de:mid,suse.de:email];
- DKIM_TRACE(0.00)[suse.de:+]
-X-Spam-Score: -4.51
+ <b85b321f-9ce7-4c1e-910b-01a5265009ef@suse.de>
+Date: Mon, 10 Nov 2025 15:42:21 +0200
+Message-ID: <aaa452c4842b74d0d2a975bf28bda79fda83de10@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,93 +73,15 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi
+On Mon, 10 Nov 2025, Thomas Zimmermann <tzimmermann@suse.de> wrote:
+> Please also merge the rest of the series. These patches are an 
+> improvement to open-coding the access to the fields.
 
-Am 10.11.25 um 13:51 schrieb Jani Nikula:
-> On Mon, 10 Nov 2025, Thomas Zimmermann <tzimmermann@suse.de> wrote:
->> Hi
->>
->> Am 07.11.25 um 12:04 schrieb Jani Nikula:
->>> We have drm_crtc_vblank_waitqueue() to get the wait_queue_head_t pointer
->>> for a vblank. Use it instead of poking at dev->vblank[] directly.
->>>
->>> Due to the macro maze of wait_event_timeout() that uses the address-of
->>> operator on the argument, we have to pass it in with the indirection
->>> operator.
->>>
->>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> Reviewed-by Thomas Zimmermann <tzimmermann@suse.de>
->>
->> But... drm_crtc_vblank_waitqueue() is a terrible interface IMHO, as it
->> exports internal details of the vblank implementation.
->>
->> I wonder if the existing users at [1] and [2] couldn't be replaced with
->> a common vblank helper.
->>
->> And there's drm_wait_one_vblank() [3] and the waiting that's being fixed
->> here [4]. The latter looks like [3] but with multiple CRTC waiting for
->> their next vblank. I'd say this could be a single implementation within
->> the vblank code.
-> I don't disagree, but getting that done is a bit more involved than what
-> I have time for right now. Need to think.
->
-> In the mean time, pushed the drm_crtc_vblank_crtc() related patches in
-> the series, and left the drm_crtc_vblank_waitqueue() ones to simmer.
+Fair. Thanks, pushed now.
 
-Please also merge the rest of the series. These patches are an 
-improvement to open-coding the access to the fields.
+BR,
+Jani.
 
-Best regards
-Thomas
-
->
-> Thanks for the reviews.
->
-> BR,
-> Jani.
->
->
->> [1]
->> https://elixir.bootlin.com/linux/v6.18-rc4/source/drivers/gpu/drm/i915/display/intel_display_rps.c#L73
->> [2]
->> https://elixir.bootlin.com/linux/v6.18-rc4/source/drivers/gpu/drm/i915/display/intel_vblank.c#L715
->> [3]
->> https://elixir.bootlin.com/linux/v6.18-rc4/source/drivers/gpu/drm/drm_vblank.c#L1304
->> [4]
->> https://elixir.bootlin.com/linux/v6.18-rc4/source/drivers/gpu/drm/drm_atomic_helper.c#L1837
->>
->> Best regards
->> Thomas
->>
->>> ---
->>>    drivers/gpu/drm/drm_atomic_helper.c | 4 +++-
->>>    1 file changed, 3 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
->>> index 5a473a274ff0..e641fcf8c568 100644
->>> --- a/drivers/gpu/drm/drm_atomic_helper.c
->>> +++ b/drivers/gpu/drm/drm_atomic_helper.c
->>> @@ -1831,10 +1831,12 @@ drm_atomic_helper_wait_for_vblanks(struct drm_device *dev,
->>>    	}
->>>    
->>>    	for_each_old_crtc_in_state(state, crtc, old_crtc_state, i) {
->>> +		wait_queue_head_t *queue = drm_crtc_vblank_waitqueue(crtc);
->>> +
->>>    		if (!(crtc_mask & drm_crtc_mask(crtc)))
->>>    			continue;
->>>    
->>> -		ret = wait_event_timeout(dev->vblank[i].queue,
->>> +		ret = wait_event_timeout(*queue,
->>>    					 state->crtcs[i].last_vblank_count !=
->>>    						drm_crtc_vblank_count(crtc),
->>>    					 msecs_to_jiffies(100));
 
 -- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
-
-
+Jani Nikula, Intel
