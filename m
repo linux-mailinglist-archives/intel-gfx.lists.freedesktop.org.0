@@ -2,73 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB5A5C482E4
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Nov 2025 18:03:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7012C4851C
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Nov 2025 18:28:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70C9E10E43F;
-	Mon, 10 Nov 2025 17:03:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BA9C10E070;
+	Mon, 10 Nov 2025 17:28:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VP2/4SQc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kLp4TURy";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66A4E10E095;
- Mon, 10 Nov 2025 17:03:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EF9E10E070;
+ Mon, 10 Nov 2025 17:28:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762794232; x=1794330232;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=3X3Taw7XA8iXarLbgxV1J7uvEJsfdApFichhK8e3pA8=;
- b=VP2/4SQc60E7mdKkXLxP39mzw079CdqqSxAPw2Bjj+Ulz1Kx/H4oMgIM
- UoV6gYGaFgFEomnnkfzfrPmc7y2QQFN+0XOysbtJO+GRvlTGJQjOqkjga
- ATQXuWlD12ZpXm2ZtkXYJiVo+rlY2Zdhh1diKWTUVyi+i+MBK/Euo5nMv
- gv6JwZUt3JftcVLl+0U/wOX3jW9MLp6f5NEB+bSQOyJbkqihFaM7Op4qq
- vl0+VQSab/f0gUZrvGdqsitl5hNp9x2S/3z2VeZwPTseKwvb/p5C7epts
- hXjOqwKnPCDxKpk5ZcS57JMvYremzLQY9kOVxUFe9zVqNnYPzl/Gw+b8X Q==;
-X-CSE-ConnectionGUID: HZRQG+dBRHKw9HoUB46L5g==
-X-CSE-MsgGUID: 8tZhfXdlQfWpEreMR8k03w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="75141268"
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="75141268"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 09:03:51 -0800
-X-CSE-ConnectionGUID: fmoklc+xQ1ulPQEyk+fVWQ==
-X-CSE-MsgGUID: mf3HY6CnSz+guFrpo65nYA==
+ t=1762795681; x=1794331681;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=UIa9OQquOYS6eXS2dLQkkItg9XoaQIf8BEgJPnMhXaE=;
+ b=kLp4TURy7mRikS1jfdokJkpNG0npXq3Srxfui8o2Da83/fjEDkts+gn/
+ VVcFNuYvbfHn77XhnposCjnqXa2xAbXlSUYWjlaZcH6REM5PwGNa7+MES
+ MI1uu3HnXELBfxWCUfDX1QzVjxF69SaWq+nF5K65T+/J7LxDvEZ3V4WoK
+ HWO7eN+VuuC3ZUJ9xJEuLFVesJV/WOGyKIn+TQHEqJPlExfIe30m6ucs1
+ Axl5G2SMYdk24egjChm9CMmPYQyqPD/fhxsUTuE+D0uxRgN5NOwAMrZ02
+ 87+ccSGFTbxJSxSQCHJZzYUOLXPslC2ekDSdrcP+5mHhW7xVrnErlntOW Q==;
+X-CSE-ConnectionGUID: BgF4b37UQ4yOnKrI09zlWQ==
+X-CSE-MsgGUID: MBwR3LUhQ7uNOqoJ6r1NWA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="64890948"
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="64890948"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2025 09:28:01 -0800
+X-CSE-ConnectionGUID: StQh4OzQTZunh7UzNHu1kA==
+X-CSE-MsgGUID: bcqHSOFyQSuzX3ujaWjydw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="192980107"
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="188896411"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.30])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 09:03:47 -0800
-Date: Mon, 10 Nov 2025 19:03:44 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
- Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>,
- Juha-pekka Heikkila <juha-pekka.heikkila@intel.com>,
- Luca Coelho <luciano.coelho@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Atwood <matthew.s.atwood@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>,
- Shekhar Chauhan <shekhar.chauhan@intel.com>,
- Vinod Govindapillai <vinod.govindapillai@intel.com>,
- Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH v4 06/11] drm/i915/xe3p_lpd: Handle underrun debug bits
-Message-ID: <aRIa8HC68K7zJOsJ@intel.com>
-References: <20251107-xe3p_lpd-basic-enabling-v4-0-ab3367f65f15@intel.com>
- <20251107-xe3p_lpd-basic-enabling-v4-6-ab3367f65f15@intel.com>
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2025 09:27:59 -0800
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH 00/16] drm/i915/de: Register polling cleanup
+Date: Mon, 10 Nov 2025 19:27:39 +0200
+Message-ID: <20251110172756.2132-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.49.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251107-xe3p_lpd-basic-enabling-v4-6-ab3367f65f15@intel.com>
-X-Patchwork-Hint: comment
+Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,271 +68,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 07, 2025 at 09:05:39PM -0300, Gustavo Sousa wrote:
-> Xe3p_LPD added several bits containing information that can be relevant
-> to debugging FIFO underruns.  Add the logic necessary to handle them
-> when reporting underruns.
-> 
-> This was adapted from the initial patch[1] from Sai Teja Pottumuttu.
-> 
-> [1] https://lore.kernel.org/all/20251015-xe3p_lpd-basic-enabling-v1-12-d2d1e26520aa@intel.com/
-> 
-> Bspec: 69111, 69561, 74411, 74412
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-> ---
-> I tested this by adding a change on top of this series that updates
-> Xe3p_LPD's CDCLK table to use bad values and I got the following
-> messages:
-> 
->     [  +0.000237] xe 0000:00:02.0: [drm:intel_modeset_verify_crtc [xe]] [CRTC:88:pipe A]
->     [  +0.000674] xe 0000:00:02.0: [drm] *ERROR* CPU pipe A FIFO underrun
->     [  +0.000015] xe 0000:00:02.0: [drm] *ERROR* Pipe A FIFO underrun info: DBUF block not valid on planes: [1]
->     [  +0.000001] xe 0000:00:02.0: [drm] *ERROR* Pipe A FIFO underrun info: DDB empty on planes: [1]
->     [  +0.000001] xe 0000:00:02.0: [drm] *ERROR* Pipe A FIFO underrun info: DBUF below WM0 on planes: [1]
->     [  +0.000004] xe 0000:00:02.0: [drm] *ERROR* Pipe A FIFO underrun info: frame count: 1890, line count: 44
-> ---
->  .../gpu/drm/i915/display/intel_display_device.h    |   1 +
->  drivers/gpu/drm/i915/display/intel_display_regs.h  |  16 +++
->  drivers/gpu/drm/i915/display/intel_fbc_regs.h      |   2 +
->  drivers/gpu/drm/i915/display/intel_fifo_underrun.c | 128 +++++++++++++++++++++
->  4 files changed, 147 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-> index b559ef43d547..91d8cfac5eff 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-> @@ -197,6 +197,7 @@ struct intel_display_platforms {
->  #define HAS_TRANSCODER(__display, trans)	((DISPLAY_RUNTIME_INFO(__display)->cpu_transcoder_mask & \
->  						  BIT(trans)) != 0)
->  #define HAS_UNCOMPRESSED_JOINER(__display)	(DISPLAY_VER(__display) >= 13)
-> +#define HAS_UNDERRUN_DBG_INFO(__display)	(DISPLAY_VER(__display) >= 35)
->  #define HAS_ULTRAJOINER(__display)	(((__display)->platform.dgfx && \
->  					  DISPLAY_VER(__display) == 14) && HAS_DSC(__display))
->  #define HAS_VRR(__display)		(DISPLAY_VER(__display) >= 11)
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-> index 9d71e26a4fa2..89ea0156ee06 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-> @@ -882,6 +882,21 @@
->  #define   PIPE_MISC2_FLIP_INFO_PLANE_SEL_MASK		REG_GENMASK(2, 0) /* tgl+ */
->  #define   PIPE_MISC2_FLIP_INFO_PLANE_SEL(plane_id)	REG_FIELD_PREP(PIPE_MISC2_FLIP_INFO_PLANE_SEL_MASK, (plane_id))
->  
-> +#define _UNDERRUN_DBG1_A			0x70064
-> +#define _UNDERRUN_DBG1_B			0x71064
-> +#define UNDERRUN_DBG1(pipe)			_MMIO_PIPE(pipe, _UNDERRUN_DBG1_A, _UNDERRUN_DBG1_B)
-> +#define   UNDERRUN_DBUF_BLOCK_NOT_VALID_MASK	REG_GENMASK(29, 24)
-> +#define   UNDERRUN_DDB_EMPTY_MASK		REG_GENMASK(21, 16)
-> +#define   UNDERRUN_DBUF_NOT_FILLED_MASK		REG_GENMASK(13, 8)
-> +#define   UNDERRUN_BELOW_WM0_MASK		REG_GENMASK(5, 0)
-> +
-> +#define _UNDERRUN_DBG2_A			0x70068
-> +#define _UNDERRUN_DBG2_B			0x71068
-> +#define UNDERRUN_DBG2(pipe)			_MMIO_PIPE(pipe, _UNDERRUN_DBG2_A, _UNDERRUN_DBG2_B)
-> +#define   UNDERRUN_FRAME_LINE_COUNTERS_FROZEN	REG_BIT(31)
-> +#define   UNDERRUN_PIPE_FRAME_COUNT_MASK	REG_GENMASK(30, 20)
-> +#define   UNDERRUN_LINE_COUNT_MASK		REG_GENMASK(19, 0)
-> +
->  #define DPINVGTT				_MMIO(VLV_DISPLAY_BASE + 0x7002c) /* VLV/CHV only */
->  #define   DPINVGTT_EN_MASK_CHV				REG_GENMASK(27, 16)
->  #define   DPINVGTT_EN_MASK_VLV				REG_GENMASK(23, 16)
-> @@ -1416,6 +1431,7 @@
->  
->  #define GEN12_DCPR_STATUS_1				_MMIO(0x46440)
->  #define  XELPDP_PMDEMAND_INFLIGHT_STATUS		REG_BIT(26)
-> +#define  XE3P_UNDERRUN_PKGC				REG_BIT(21)
->  
->  #define FUSE_STRAP		_MMIO(0x42014)
->  #define   ILK_INTERNAL_GRAPHICS_DISABLE	REG_BIT(31)
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc_regs.h b/drivers/gpu/drm/i915/display/intel_fbc_regs.h
-> index b1d0161a3196..77d8321c4fb3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc_regs.h
-> @@ -88,6 +88,8 @@
->  #define DPFC_FENCE_YOFF			_MMIO(0x3218)
->  #define ILK_DPFC_FENCE_YOFF(fbc_id)	_MMIO_PIPE((fbc_id), 0x43218, 0x43258)
->  #define DPFC_CHICKEN			_MMIO(0x3224)
-> +#define FBC_DEBUG_STATUS(fbc_id)	_MMIO_PIPE((fbc_id), 0x43220, 0x43260)
-> +#define   FBC_UNDERRUN_DECMPR			REG_BIT(27)
->  #define ILK_DPFC_CHICKEN(fbc_id)	_MMIO_PIPE((fbc_id), 0x43224, 0x43264)
->  #define   DPFC_HT_MODIFY			REG_BIT(31) /* pre-ivb */
->  #define   DPFC_NUKE_ON_ANY_MODIFICATION		REG_BIT(23) /* bdw+ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-> index c2ce8461ac9e..8a05b5c5fccd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-> @@ -25,6 +25,8 @@
->   *
->   */
->  
-> +#include <linux/seq_buf.h>
-> +
->  #include <drm/drm_print.h>
->  
->  #include "i915_reg.h"
-> @@ -34,6 +36,7 @@
->  #include "intel_display_trace.h"
->  #include "intel_display_types.h"
->  #include "intel_fbc.h"
-> +#include "intel_fbc_regs.h"
->  #include "intel_fifo_underrun.h"
->  #include "intel_pch_display.h"
->  
-> @@ -57,6 +60,118 @@
->   * The code also supports underrun detection on the PCH transcoder.
->   */
->  
-> +#define UNDERRUN_DBG1_NUM_PLANES 6
-> +
-> +static void read_underrun_dbg1(struct intel_display *display, enum pipe pipe, bool log)
-> +{
-> +	u32 val = intel_de_read(display, UNDERRUN_DBG1(pipe));
-> +	struct {
-> +		u32 plane_mask;
-> +		const char *info;
-> +	} masks[] = {
-> +		{ REG_FIELD_GET(UNDERRUN_DBUF_BLOCK_NOT_VALID_MASK, val), "DBUF block not valid" },
-> +		{ REG_FIELD_GET(UNDERRUN_DDB_EMPTY_MASK, val), "DDB empty" },
-> +		{ REG_FIELD_GET(UNDERRUN_DBUF_NOT_FILLED_MASK, val), "DBUF not completely filled" },
-> +		{ REG_FIELD_GET(UNDERRUN_BELOW_WM0_MASK, val), "DBUF below WM0" },
-> +	};
-> +	DECLARE_SEQ_BUF(planes_desc, 32);
-> +
-> +	if (!val)
-> +		return;
-> +
-> +	intel_de_write(display, UNDERRUN_DBG1(pipe), val);
-> +
-> +	if (!log)
-> +		return;
-> +
-> +	for (int i = 0; i < ARRAY_SIZE(masks); i++) {
-> +		if (!masks[i].plane_mask)
-> +			continue;
-> +
-> +		seq_buf_clear(&planes_desc);
-> +
-> +		for (int j = 0; j < UNDERRUN_DBG1_NUM_PLANES; j++) {
-> +			if (!(masks[i].plane_mask & REG_BIT(j)))
-> +				continue;
-> +
-> +			if (j == 0)
-> +				seq_buf_puts(&planes_desc, "[C]");
-> +			else
-> +				seq_buf_printf(&planes_desc, "[%d]", j);
-> +		}
-> +
-> +		drm_err(display->drm,
-> +			"Pipe %c FIFO underrun info: %s on planes: %s\n",
-> +			pipe_name(pipe), masks[i].info, seq_buf_str(&planes_desc));
-> +
-> +		drm_WARN_ON(display->drm, seq_buf_has_overflowed(&planes_desc));
-> +	}
-> +}
-> +
-> +static void read_underrun_dbg2(struct intel_display *display, enum pipe pipe, bool log)
-> +{
-> +	u32 val = intel_de_read(display, UNDERRUN_DBG2(pipe));
-> +
-> +	if (!(val & UNDERRUN_FRAME_LINE_COUNTERS_FROZEN))
-> +		return;
-> +
-> +	intel_de_write(display, UNDERRUN_DBG2(pipe), UNDERRUN_FRAME_LINE_COUNTERS_FROZEN);
-> +
-> +	if (log)
-> +		drm_err(display->drm,
-> +			"Pipe %c FIFO underrun info: frame count: %u, line count: %u\n",
-> +			pipe_name(pipe),
-> +			REG_FIELD_GET(UNDERRUN_PIPE_FRAME_COUNT_MASK, val),
-> +			REG_FIELD_GET(UNDERRUN_LINE_COUNT_MASK, val));
-> +}
-> +
-> +static void read_underrun_dbg_fbc(struct intel_display *display, enum pipe pipe, bool log)
-> +{
-> +	enum intel_fbc_id fbc_id = intel_fbc_id_for_pipe(pipe);
-> +	u32 val = intel_de_read(display, FBC_DEBUG_STATUS(fbc_id));
-> +
-> +	if (!(val & FBC_UNDERRUN_DECMPR))
-> +		return;
-> +
-> +	intel_de_write(display, FBC_DEBUG_STATUS(fbc_id), FBC_UNDERRUN_DECMPR);
-> +
-> +	if (log)
-> +		drm_err(display->drm,
-> +			"Pipe %c FIFO underrun info: FBC decompressing\n",
-> +			pipe_name(pipe));
-> +}
+From: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
 
-FBC code belongs in intel_fbc.c
+Clean up the register polling stuff:
+- rename the current wait stuff to
+  intel_de_wait_{,for_set,for_clear}_ms()
+- introduce intel_de_wait_{,for_set,for_clear}_us()
+- nuke intel_de_wait_custom()
+- change the wakelock stuff to use _fw() instead of
+  hand rolling yet another level of register accessors
+- a few other minor cleanups
 
-> +
-> +static void read_underrun_dbg_pkgc(struct intel_display *display, bool log)
-> +{
-> +	u32 val = intel_de_read(display, GEN12_DCPR_STATUS_1);
-> +
-> +	if (!(val & XE3P_UNDERRUN_PKGC))
-> +		return;
-> +
-> +	/*
-> +	 * Note: If there are multiple pipes enabled, only one of them will see
-> +	 * XE3P_UNDERRUN_PKGC set.
-> +	 */
-> +	intel_de_write(display, GEN12_DCPR_STATUS_1, XE3P_UNDERRUN_PKGC);
-> +
-> +	if (log)
-> +		drm_err(display->drm,
-> +			"General FIFO underrun info: Package C-state blocking memory\n");
-> +}
-> +
-> +static void read_underrun_dbg_info(struct intel_display *display,
-> +				   enum pipe pipe,
-> +				   bool log)
-> +{
-> +	if (!HAS_UNDERRUN_DBG_INFO(display))
-> +		return;
-> +
-> +	read_underrun_dbg1(display, pipe, log);
-> +	read_underrun_dbg2(display, pipe, log);
-> +	read_underrun_dbg_fbc(display, pipe, log);
-> +	read_underrun_dbg_pkgc(display, log);
-> +}
-> +
->  static bool ivb_can_enable_err_int(struct intel_display *display)
->  {
->  	struct intel_crtc *crtc;
-> @@ -262,6 +377,17 @@ static bool __intel_set_cpu_fifo_underrun_reporting(struct intel_display *displa
->  	old = !crtc->cpu_fifo_underrun_disabled;
->  	crtc->cpu_fifo_underrun_disabled = !enable;
->  
-> +	/*
-> +	 * The debug bits get latched at the time of the FIFO underrun ISR bit
-> +	 * getting set.  That means that any existing debug bit that is set when
-> +	 * handling a FIFO underrun interrupt has the potential to belong to
-> +	 * another underrun event (past or future).  To alleviate this problem,
-> +	 * let's clear existing bits before enabling the interrupt, so that at
-> +	 * least we don't get information that is too out-of-date.
-> +	 */
-> +	if (enable && !old)
-> +		read_underrun_dbg_info(display, pipe, false);
-> +
->  	if (HAS_GMCH(display))
->  		i9xx_set_fifo_underrun_reporting(display, pipe, enable, old);
->  	else if (display->platform.ironlake || display->platform.sandybridge)
-> @@ -379,6 +505,8 @@ void intel_cpu_fifo_underrun_irq_handler(struct intel_display *display,
->  		trace_intel_cpu_fifo_underrun(display, pipe);
->  
->  		drm_err(display->drm, "CPU pipe %c FIFO underrun\n", pipe_name(pipe));
-> +
-> +		read_underrun_dbg_info(display, pipe, true);
->  	}
->  
->  	intel_fbc_handle_fifo_underrun_irq(display);
-> 
-> -- 
-> 2.51.0
+After this it should be fairly easy to switch over to
+poll_timeout_us().
+
+Ville Syrj√§l√§ (16):
+  drm/i915/de: Implement register waits one way
+  drm/i915/de: Have intel_de_wait() hand out the final register value
+  drm/i915/de: Include units in intel_de_wait*() function names
+  drm/i915/de: Introduce intel_de_wait_us()
+  drm/i915/de: Use intel_de_wait_us()
+  drm/i915/de: Use intel_de_wait_ms() for the obvious cases
+  drm/i915/de: Nuke intel_de_wait_custom()
+  drm/i915/de: Introduce intel_de_wait_for_{set,clear}_us()
+  drm/i915/de: Use intel_de_wait_for_{set,clear}_us()
+  drm/i915/de: Use intel_de_wait_for_{set,clear}_ms()
+  drm/1915/dpio: Stop using intel_de_wait_fw_ms()
+  drm/u195/de: Replace __intel_de_rmw_nowl() with intel_de_rmw_fw()
+  drm/i915/de: Nuke wakelocks from intel_de_wait_fw_ms()
+  drm/i915/de: Replace __intel_de_wait_for_register_nowl() with
+    intel_de_wait_fw_us_atomic()
+  drm/i915/power: Use the intel_de_wait_ms() out value
+  drm/i915/dpio: Use the intel_de_wait_ms() out value
+
+ drivers/gpu/drm/i915/display/hsw_ips.c        |   4 +-
+ drivers/gpu/drm/i915/display/icl_dsi.c        |  35 +++---
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  30 +++--
+ drivers/gpu/drm/i915/display/intel_crt.c      |  16 +--
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  |  98 ++++++++--------
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  34 +++---
+ drivers/gpu/drm/i915/display/intel_de.h       | 107 +++++++++---------
+ drivers/gpu/drm/i915/display/intel_display.c  |   4 +-
+ .../drm/i915/display/intel_display_power.c    |  14 +--
+ .../i915/display/intel_display_power_well.c   |  42 +++----
+ drivers/gpu/drm/i915/display/intel_dmc_wl.c   |  25 ++--
+ drivers/gpu/drm/i915/display/intel_dp_aux.c   |   6 +-
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c  |  14 +--
+ drivers/gpu/drm/i915/display/intel_dpio_phy.c |  10 +-
+ drivers/gpu/drm/i915/display/intel_dpll.c     |   4 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  27 +++--
+ drivers/gpu/drm/i915/display/intel_fbc.c      |   4 +-
+ drivers/gpu/drm/i915/display/intel_flipq.c    |   8 +-
+ drivers/gpu/drm/i915/display/intel_gmbus.c    |   2 +-
+ drivers/gpu/drm/i915/display/intel_hdcp.c     |  49 ++++----
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |   4 +-
+ drivers/gpu/drm/i915/display/intel_lt_phy.c   |  57 +++++-----
+ drivers/gpu/drm/i915/display/intel_lvds.c     |   6 +-
+ .../gpu/drm/i915/display/intel_pch_display.c  |  12 +-
+ .../gpu/drm/i915/display/intel_pch_refclk.c   |  10 +-
+ drivers/gpu/drm/i915/display/intel_pmdemand.c |  18 +--
+ drivers/gpu/drm/i915/display/intel_psr.c      |  10 +-
+ drivers/gpu/drm/i915/display/intel_sbi.c      |   6 +-
+ drivers/gpu/drm/i915/display/intel_snps_phy.c |   8 +-
+ drivers/gpu/drm/i915/display/intel_tc.c       |   8 +-
+ drivers/gpu/drm/i915/display/intel_vrr.c      |   6 +-
+ drivers/gpu/drm/i915/display/vlv_dsi.c        |  54 ++++-----
+ drivers/gpu/drm/i915/display/vlv_dsi_pll.c    |   8 +-
+ .../drm/xe/compat-i915-headers/intel_uncore.h |  31 ++---
+ 34 files changed, 369 insertions(+), 402 deletions(-)
 
 -- 
-Ville Syrj‰l‰
-Intel
+2.49.1
+
