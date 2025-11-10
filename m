@@ -2,66 +2,130 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AE8FC4583B
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Nov 2025 10:06:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D968C45B23
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Nov 2025 10:45:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D722D10E326;
-	Mon, 10 Nov 2025 09:06:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A641110E370;
+	Mon, 10 Nov 2025 09:45:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EhF4b7PW";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="vKFBokPX";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="3SKvzbsE";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="iGP2qjb8";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="hJPY4cGt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F01C10E326;
- Mon, 10 Nov 2025 09:06:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762765571; x=1794301571;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=sy+86sYBy9f6vcuG082VybEB5fwSXKYjG6sOaZgNuow=;
- b=EhF4b7PWyXZHS0muwW7ORjSsYXA32UzCGfB7ibeoTdNyZ64i3vfu4ZEC
- EWYrujZKcDjOlKbsupssxuluL4040/sJePmaLWHDQGZePI6NTQhVSZdNV
- GE2G5jL0OSCQKn9k2okUiVo7oQwb+3IVdu4E1gXyRT61I7wmZbfTPaN4d
- +YRwp8BW92IokX0zKZvoxWyCy3vaQzQB6cWhtKlm5kK5L3RzmALfv0oxz
- KSr0Xlx8jHxV+8YTHmc8s+F4Esi37rUny/kTbh6d1tpoNOtmaqZdmrvZL
- HjK3eS8CXr9o+AbSx4rGy0ONiC5WswMsDdpdYWgwB+ZVcwZNsGwTWRYxK Q==;
-X-CSE-ConnectionGUID: 87Afn3yUQGyy5gnm68Uq5g==
-X-CSE-MsgGUID: D4NkHUauTg2uRw2ZmF1GZw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11608"; a="87442986"
-X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; d="scan'208";a="87442986"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 01:06:11 -0800
-X-CSE-ConnectionGUID: BcF6LUvJQrStRQciudwu5Q==
-X-CSE-MsgGUID: gjxtygzxSkqd+7toIDHypA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; d="scan'208";a="225879837"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.202])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 01:06:09 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Manna, Animesh" <animesh.manna@intel.com>, "Kandpal, Suraj"
- <suraj.kandpal@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>
-Cc: "Hogander, Jouni" <jouni.hogander@intel.com>
-Subject: RE: [PATCH v2 04/10] drm/i915/alpm: Refactor Auxless wake time
- calculation
-In-Reply-To: <DS0PR11MB80493549C11D2E93AD1E3DA8F9C3A@DS0PR11MB8049.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251103220957.1229608-1-animesh.manna@intel.com>
- <20251103220957.1229608-5-animesh.manna@intel.com>
- <DM3PPF208195D8DA39A8CC8C853DF4CF4FDE3C3A@DM3PPF208195D8D.namprd11.prod.outlook.com>
- <DS0PR11MB80493549C11D2E93AD1E3DA8F9C3A@DS0PR11MB8049.namprd11.prod.outlook.com>
-Date: Mon, 10 Nov 2025 11:06:06 +0200
-Message-ID: <70995298ddf19481ee4e0e052adde739eb3328fe@intel.com>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 469A110E370
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Nov 2025 09:45:00 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id A675E3374D;
+ Mon, 10 Nov 2025 09:44:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1762767899; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=YFzWKGaX4F2o+bi6nQAgmy2GKv+RGrh7+t5j4tYVnRk=;
+ b=vKFBokPXAqWXl7Gf0T5zpidIqgH+V0FQJLz5laYfn5USaHXsxAAPSJt/JJFfV7sYNMTtP/
+ X4zL+phmhLyLxp/iGQQbxj9y6K9Uz0UxP3obFhvWARr/18QONaoo5SVVH1vh0nYmJhbelr
+ AJGkByFY5O7eUXz5ll1zmTxlgYtKoDs=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1762767899;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=YFzWKGaX4F2o+bi6nQAgmy2GKv+RGrh7+t5j4tYVnRk=;
+ b=3SKvzbsEyH/khARldNu9fYlbkxHer7XrEk952al8x+6AjW/uXS2F2OiF7QJh8n/O0LmX2V
+ 4Qh0oEot9yo3mnAA==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1762767898; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=YFzWKGaX4F2o+bi6nQAgmy2GKv+RGrh7+t5j4tYVnRk=;
+ b=iGP2qjb8FYTNfugmYKLAPhi/UqSVpa/BDtNveegLn5VG0xHotjGVNh+V0d8+aBE9Dj0CKL
+ cOjvpGQ6EQcoWSPaE8NaKNv5G054wJfU/3noQ0KAEtlmWDs6OYKB83ig6FNbATa4eJyNCI
+ 3wc66v0BU4ow30F+cPSOv+ZcJq3D+eM=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1762767898;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=YFzWKGaX4F2o+bi6nQAgmy2GKv+RGrh7+t5j4tYVnRk=;
+ b=hJPY4cGtOB1/Hz+lvxX/9aFRHmeQa8dvwrVvOlefXON0ptEUQajcs6d9Cxeg+bqdOoxRMZ
+ 7UnNwSkGOw0HLNAg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 7E46614302;
+ Mon, 10 Nov 2025 09:44:58 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id nhZnHRq0EWl/eAAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Mon, 10 Nov 2025 09:44:58 +0000
+Message-ID: <f1c8e6a6-dfdc-4c84-9eb2-c525e0daa5e8@suse.de>
+Date: Mon, 10 Nov 2025 10:44:58 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] drm/vblank: use drm_crtc_vblank_crtc() in workers
+To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ ville.syrjala@linux.intel.com
+References: <cover.1762513240.git.jani.nikula@intel.com>
+ <f046701a10340c1dcaecb1b52e41dcf2236fded1.1762513240.git.jani.nikula@intel.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <f046701a10340c1dcaecb1b52e41dcf2236fded1.1762513240.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-0.999]; MIME_GOOD(-0.10)[text/plain];
+ FUZZY_RATELIMITED(0.00)[rspamd.com];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; MIME_TRACE(0.00)[0:+];
+ ARC_NA(0.00)[]; TO_DN_SOME(0.00)[]; MID_RHS_MATCH_FROM(0.00)[];
+ RCVD_TLS_ALL(0.00)[];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_HAS_DN(0.00)[]; RCPT_COUNT_FIVE(0.00)[5];
+ FROM_EQ_ENVFROM(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:url, intel.com:email,
+ imap1.dmz-prg2.suse.org:helo, suse.de:mid, suse.de:email]
+X-Spam-Flag: NO
+X-Spam-Score: -4.30
+X-Spam-Level: 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,164 +141,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 07 Nov 2025, "Manna, Animesh" <animesh.manna@intel.com> wrote:
->> -----Original Message-----
->> From: Kandpal, Suraj <suraj.kandpal@intel.com>
->> Sent: Friday, November 7, 2025 9:31 AM
->> To: Manna, Animesh <animesh.manna@intel.com>; intel-
->> gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org; dri-
->> devel@lists.freedesktop.org
->> Cc: Nikula, Jani <jani.nikula@intel.com>; Manna, Animesh
->> <animesh.manna@intel.com>; Hogander, Jouni
->> <jouni.hogander@intel.com>
->> Subject: RE: [PATCH v2 04/10] drm/i915/alpm: Refactor Auxless wake time
->> calculation
->>=20
->> > Subject: [PATCH v2 04/10] drm/i915/alpm: Refactor Auxless wake time
->> > calculation
->> >
->> > Divide the auxless wake time calculation in parts which will help
->> > later to add Xe3p related modification.
->> >
->> > v1: Initial version.
->>=20
->> No need for this you can start off with v2 directly Same for all patches=
- where
->> this has occured
->>=20
->> > v2: Refactor first existing calculation. [Jani]
->> >
->>=20
->> Add Bspec link
->>=20
->> > Cc: Jouni H=C3=B6gander <jouni.hogander@intel.com>
->> > Signed-off-by: Animesh Manna <animesh.manna@intel.com>
->> > ---
->> >  drivers/gpu/drm/i915/display/intel_alpm.c | 37
->> > ++++++++++++++++-------
->> >  1 file changed, 26 insertions(+), 11 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c
->> > b/drivers/gpu/drm/i915/display/intel_alpm.c
->> > index 779718d0c8dd..8d07455a62c2 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_alpm.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
->> > @@ -85,6 +85,26 @@ static int get_lfps_half_cycle_clocks(const struct
->> > intel_crtc_state *crtc_state)
->> >  		1000 / (2 * LFPS_CYCLE_COUNT);
->> >  }
->> >
->> > +static int get_tphy2_p2_to_p0(struct intel_dp *intel_dp) {
->> > +	return 12 * 1000;
->> > +}
->> > +
->> > +static int get_establishment_period(struct intel_dp *intel_dp,
->> > +				    const struct intel_crtc_state *crtc_state) {
->> > +	int port_clock =3D crtc_state->port_clock;
->> > +	int t1 =3D 50 * 1000;
->> > +	int tps4 =3D (252 * 10);
->>=20
->> Where did this * 10 come from?
->
-> The Link Rate Divider (Rate Div) is 10 for 8b/10b and 32
-> 128b/132b. Also please check the next patch for more clarity.
-
-Please separate pure code movement and changes like this.
-
-git show --color-moved on the commit should give you a nice idea what
-code movement looks like. It's a breeze to review when very few things
-change during code movement.
-
-BR,
-Jani.
 
 
+Am 07.11.25 um 12:04 schrieb Jani Nikula:
+> We have drm_crtc_vblank_crtc() to get the struct drm_vblank_crtc pointer
+> for a crtc. Use it instead of poking at dev->vblank[] directly.
+>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
->
->>=20
->> > +	long tml_phy_lock =3D 1000 * 1000 * tps4 / port_clock / 10;
->>=20
->> Why the extra /10 required here also if you had not multiplied tps4 with=
- 10
->> then this wouldn't be required You also removed the comment telling us
->> portclock need to be in 10Kb/s
->
-> Divide by 10 always needed due to unit size of 10kb/sec, earlier both neg=
-ated but for 128b/132b mode rate_div is 32. It will be more clear with next=
- patch where added the changes for 128b/132b.
->
->>=20
->> > +	int tcds, establishment_period;
->> > +
->> > +	tcds =3D (7 + DIV_ROUND_UP(6500, tml_phy_lock) + 1) * tml_phy_lock;
->> > +	establishment_period =3D (SILENCE_PERIOD_TIME + t1 + tcds);
->> > +
->> > +	return establishment_period;
->> > +}
->> > +
->> >  /*
->> >   * AUX-Less Wake Time =3D CEILING( ((PHY P2 to P0) + tLFPS_Period, Ma=
-x+
->> >   * tSilence, Max+ tPHY Establishment + tCDS) / tline) @@ -104,19
->> > +124,14 @@ static int get_lfps_half_cycle_clocks(const struct
->> > intel_crtc_state
->> > *crtc_state)
->> >   * tML_PHY_LOCK =3D TPS4 Length * ( 10 / (Link Rate in MHz) )
->> >   * TPS4 Length =3D 252 Symbols
->> >   */
->> > -static int _lnl_compute_aux_less_wake_time(const struct
->> > intel_crtc_state
->> > *crtc_state)
->> > +static int _lnl_compute_aux_less_wake_time(struct intel_dp *intel_dp,
->> > +					   const struct intel_crtc_state
->>=20
->> I don=E2=80=99t see any justified reason to send intel_dp here
->
-> Its needed in next patch, fix the function prototype here.
->
-> Regards,
-> Animesh
->
->>=20
->> Regards,
->> Suraj Kandpal
->>=20
->> > *crtc_state)
->> >  {
->> > -	int tphy2_p2_to_p0 =3D 12 * 1000;
->> > -	int t1 =3D 50 * 1000;
->> > -	int tps4 =3D 252;
->> > -	/* port_clock is link rate in 10kbit/s units */
->> > -	int tml_phy_lock =3D 1000 * 1000 * tps4 / crtc_state->port_clock;
->> > -	int num_ml_phy_lock =3D 7 + DIV_ROUND_UP(6500, tml_phy_lock) + 1;
->> > -	int t2 =3D num_ml_phy_lock * tml_phy_lock;
->> > -	int tcds =3D 1 * t2;
->> > +	int tphy2_p2_to_p0 =3D get_tphy2_p2_to_p0(intel_dp);
->> > +	int establishment_period =3D get_establishment_period(intel_dp,
->> > +crtc_state);
->> >
->> >  	return DIV_ROUND_UP(tphy2_p2_to_p0 +
->> > get_lfps_cycle_time(crtc_state) +
->> > -			    SILENCE_PERIOD_TIME + t1 + tcds, 1000);
->> > +			    establishment_period, 1000);
->> >  }
->> >
->> >  static int
->> > @@ -128,7 +143,7 @@ _lnl_compute_aux_less_alpm_params(struct
->> intel_dp
->> > *intel_dp,
->> >  		lfps_half_cycle;
->> >
->> >  	aux_less_wake_time =3D
->> > -		_lnl_compute_aux_less_wake_time(crtc_state);
->> > +		_lnl_compute_aux_less_wake_time(intel_dp, crtc_state);
->> >  	aux_less_wake_lines =3D intel_usecs_to_scanlines(&crtc_state-
->> > >hw.adjusted_mode,
->> >  						       aux_less_wake_time);
->> >  	silence_period =3D get_silence_period_symbols(crtc_state);
->> > --
->> > 2.29.0
->
+Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
 
---=20
-Jani Nikula, Intel
+> ---
+>   drivers/gpu/drm/drm_vblank_work.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/drm_vblank_work.c b/drivers/gpu/drm/drm_vblank_work.c
+> index e4e1873f0e1e..70f0199251ea 100644
+> --- a/drivers/gpu/drm/drm_vblank_work.c
+> +++ b/drivers/gpu/drm/drm_vblank_work.c
+> @@ -244,7 +244,7 @@ EXPORT_SYMBOL(drm_vblank_work_flush);
+>   void drm_vblank_work_flush_all(struct drm_crtc *crtc)
+>   {
+>   	struct drm_device *dev = crtc->dev;
+> -	struct drm_vblank_crtc *vblank = &dev->vblank[drm_crtc_index(crtc)];
+> +	struct drm_vblank_crtc *vblank = drm_crtc_vblank_crtc(crtc);
+>   
+>   	spin_lock_irq(&dev->event_lock);
+>   	wait_event_lock_irq(vblank->work_wait_queue,
+
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
+
+
