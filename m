@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB248C493F2
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Nov 2025 21:31:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88494C493F6
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Nov 2025 21:32:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A7D910E2FC;
-	Mon, 10 Nov 2025 20:31:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A4DC10E2FA;
+	Mon, 10 Nov 2025 20:31:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fr7DPEE+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bRxvcDmZ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22E7710E2FC;
- Mon, 10 Nov 2025 20:31:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 471A610E2FA;
+ Mon, 10 Nov 2025 20:31:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762806703; x=1794342703;
+ t=1762806717; x=1794342717;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=X96CHnCv2RbK+WpRj4WawZGXYZtKAFoc7m0aoDfNLM0=;
- b=Fr7DPEE+MQbwP1dpWDBgu56TSlytZs+eVJR2jiLcoiHEBCoKDFzKhM1D
- V91LEIJc+8wy2SXS81Zsh3vI5U5zDid8gSGw4mWOcEPLZ6TQeVvNsdUUh
- tpfDEQpzQiqQfJpH9AWw6bMg7tD+lN5DiGzD86880F3mLBek9DSTzUs/2
- CcGqqVhpFCIBJS2QVgTuq1fbg8hpKNJ88vc0Jo+U9LmhtP0g7whcBpI7q
- 2VBWxxNo5Hip7MSgq5O0Tpq2esvhADDJd3lkzbFWZCz6HdA3dGBOSnZmh
- qo3AbLQKVipyGhvU1a9Z3GB6u4grydLuatQvDHPAN6y9VLbXSBST51JHD Q==;
-X-CSE-ConnectionGUID: DGpuk+HiRFaJbol1AqQxwQ==
-X-CSE-MsgGUID: jpz/CVzoTsC7xwDDPAJ9cA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="68713642"
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="68713642"
+ bh=z9+vB1pX9Q+oMHePOEbl5YqXNiFbwEd17utk+QjS8s0=;
+ b=bRxvcDmZmGupoc81jTXpquveclGKR/DVCuyRmIprTFrba7qeiPlj1XgP
+ 9wrmSfDw/zNMVOngKNPIsoO9q4eXmty8AzYaQrE/GbA+/2YBBLhG920lf
+ wY3Xd3nct7Md+biwfR+6tRSR8jWtffFIjkSCj+AEHZTetZFZQVkyURA8q
+ wiLAczl7La+KmwLktLMOUHbH0e5zCiSbfeVlcjqFQdqpm21fOkvsu9L2I
+ YGbUPxnZVxmUxmLLbybkSTadfGYKsDB0fAo89KU/SK7IMUiCtiGwL7/lK
+ djBmcFkWjdpTJfsGBkouA/1ydbsPezh9Vnoi6Bu8tST91VguWfoI2UbEc A==;
+X-CSE-ConnectionGUID: XAUO01qyRUOYOo534mTuug==
+X-CSE-MsgGUID: tqfLBhTBRpyoKXvMX5ejGA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="64070186"
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="64070186"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 12:31:33 -0800
-X-CSE-ConnectionGUID: 5LULbhH4QZ+hdKGN0rt1Fg==
-X-CSE-MsgGUID: ZAtl8jY0T9KoOPyInK/+5g==
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2025 12:31:57 -0800
+X-CSE-ConnectionGUID: rAAms1NeTzaZX17Gv8xIjA==
+X-CSE-MsgGUID: lVXJw5YKTx6MkvcGoflRLQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="188938966"
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="188939084"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.30])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 12:31:31 -0800
-Date: Mon, 10 Nov 2025 22:31:27 +0200
+ 10 Nov 2025 12:31:55 -0800
+Date: Mon, 10 Nov 2025 22:31:52 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 1/4] drm/{i915,xe}/display: move irq calls to parent
- interface
-Message-ID: <aRJLn_9QFUdbkvgV@intel.com>
+Subject: Re: [PATCH 4/4] drm/i915/display: shorten the
+ intel_display_irq_regs_* function names
+Message-ID: <aRJLuIJlD1wsIBDn@intel.com>
 References: <cover.1762803004.git.jani.nikula@intel.com>
- <9196bbef7c56ae3f0cc06d96ba5caa7eedd21344.1762803004.git.jani.nikula@intel.com>
+ <ab7b409334ad0b02f531dcacbbad0f7d4a20c6f1.1762803004.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <9196bbef7c56ae3f0cc06d96ba5caa7eedd21344.1762803004.git.jani.nikula@intel.com>
+In-Reply-To: <ab7b409334ad0b02f531dcacbbad0f7d4a20c6f1.1762803004.git.jani.nikula@intel.com>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -73,548 +73,236 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 10, 2025 at 09:31:36PM +0200, Jani Nikula wrote:
-> Add an irq parent driver interface for the .enabled and .synchronize
-> calls. This lets us drop the dependency on i915_drv.h and i915_irq.h in
-> a multiple places.
+On Mon, Nov 10, 2025 at 09:31:39PM +0200, Jani Nikula wrote:
+> Shorten the intel_display_irq_regs_* function names to the underlying
+> function names with a _wl suffix for clarity.
+> 
+> - intel_display_irq_regs_init() -> irq_init_wl()
+> - intel_display_irq_regs_reset() -> irq_reset_wl()
+> - intel_display_irq_regs_assert_irr_is_zero() -> assert_iir_is_zero_wl()
+> 
+> This emphasizes the difference is the wakelock. Platforms without the
+> DMC wakelock mechanism can use the non-wl versions.
+
+These things should just get nuked. You already switched to
+intel_de_{read,write}() in the previous patch, and those already
+handle the wakelock stuff for you.
+
 > 
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > ---
->  .../gpu/drm/i915/display/intel_display_irq.c  | 36 +++++++------------
->  .../drm/i915/display/intel_display_power.c    |  5 ++-
->  .../i915/display/intel_display_power_well.c   | 15 +++-----
->  drivers/gpu/drm/i915/display/intel_gmbus.c    |  9 +++--
->  drivers/gpu/drm/i915/display/intel_hotplug.c  |  6 ++--
->  .../gpu/drm/i915/display/intel_lpe_audio.c    |  1 -
->  drivers/gpu/drm/i915/display/intel_pipe_crc.c |  6 ++--
->  drivers/gpu/drm/i915/i915_driver.c            |  1 +
->  drivers/gpu/drm/i915/i915_irq.c               | 16 +++++++++
->  drivers/gpu/drm/i915/i915_irq.h               |  2 ++
->  drivers/gpu/drm/xe/display/ext/i915_irq.c     | 10 ------
->  drivers/gpu/drm/xe/display/xe_display.c       | 18 ++++++++++
->  include/drm/intel/display_parent_interface.h  |  8 +++++
->  13 files changed, 71 insertions(+), 62 deletions(-)
+>  .../gpu/drm/i915/display/intel_display_irq.c  | 76 +++++++++----------
+>  1 file changed, 34 insertions(+), 42 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> index 43b27deb4a26..11bc47d22aa4 100644
+> index c9e7814479f6..09036cd92558 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
 > +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> @@ -5,8 +5,8 @@
->  
->  #include <drm/drm_print.h>
->  #include <drm/drm_vblank.h>
-> +#include <drm/intel/display_parent_interface.h>
->  
-> -#include "i915_drv.h"
->  #include "i915_irq.h"
->  #include "i915_reg.h"
->  #include "icl_dsi_regs.h"
-> @@ -135,7 +135,6 @@ intel_handle_vblank(struct intel_display *display, enum pipe pipe)
->  void ilk_update_display_irq(struct intel_display *display,
->  			    u32 interrupt_mask, u32 enabled_irq_mask)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(display->drm);
->  	u32 new_val;
->  
->  	lockdep_assert_held(&display->irq.lock);
-> @@ -146,7 +145,7 @@ void ilk_update_display_irq(struct intel_display *display,
->  	new_val |= (~enabled_irq_mask & interrupt_mask);
->  
->  	if (new_val != display->irq.ilk_de_imr_mask &&
-> -	    !drm_WARN_ON(display->drm, !intel_irqs_enabled(dev_priv))) {
-> +	    !drm_WARN_ON(display->drm, !display->parent->irq->enabled(display->drm))) {
-
-Can't we keep intel_irqs_enabled()/etc. as wrapper functions instead of
-open coding all that pointer chasing everywhere?
-
->  		display->irq.ilk_de_imr_mask = new_val;
->  		intel_de_write(display, DEIMR, display->irq.ilk_de_imr_mask);
->  		intel_de_posting_read(display, DEIMR);
-> @@ -172,7 +171,6 @@ void ilk_disable_display_irq(struct intel_display *display, u32 bits)
->  void bdw_update_port_irq(struct intel_display *display,
->  			 u32 interrupt_mask, u32 enabled_irq_mask)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(display->drm);
->  	u32 new_val;
->  	u32 old_val;
->  
-> @@ -180,7 +178,7 @@ void bdw_update_port_irq(struct intel_display *display,
->  
->  	drm_WARN_ON(display->drm, enabled_irq_mask & ~interrupt_mask);
->  
-> -	if (drm_WARN_ON(display->drm, !intel_irqs_enabled(dev_priv)))
-> +	if (drm_WARN_ON(display->drm, !display->parent->irq->enabled(display->drm)))
->  		return;
->  
->  	old_val = intel_de_read(display, GEN8_DE_PORT_IMR);
-> @@ -206,14 +204,13 @@ static void bdw_update_pipe_irq(struct intel_display *display,
->  				enum pipe pipe, u32 interrupt_mask,
->  				u32 enabled_irq_mask)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(display->drm);
->  	u32 new_val;
->  
->  	lockdep_assert_held(&display->irq.lock);
->  
->  	drm_WARN_ON(display->drm, enabled_irq_mask & ~interrupt_mask);
->  
-> -	if (drm_WARN_ON(display->drm, !intel_irqs_enabled(dev_priv)))
-> +	if (drm_WARN_ON(display->drm, !display->parent->irq->enabled(display->drm)))
->  		return;
->  
->  	new_val = display->irq.de_pipe_imr_mask[pipe];
-> @@ -249,7 +246,6 @@ void ibx_display_interrupt_update(struct intel_display *display,
->  				  u32 interrupt_mask,
->  				  u32 enabled_irq_mask)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(display->drm);
->  	u32 sdeimr = intel_de_read(display, SDEIMR);
->  
->  	sdeimr &= ~interrupt_mask;
-> @@ -259,7 +255,7 @@ void ibx_display_interrupt_update(struct intel_display *display,
->  
->  	lockdep_assert_held(&display->irq.lock);
->  
-> -	if (drm_WARN_ON(display->drm, !intel_irqs_enabled(dev_priv)))
-> +	if (drm_WARN_ON(display->drm, !display->parent->irq->enabled(display->drm)))
->  		return;
->  
->  	intel_de_write(display, SDEIMR, sdeimr);
-> @@ -323,7 +319,6 @@ u32 i915_pipestat_enable_mask(struct intel_display *display,
->  void i915_enable_pipestat(struct intel_display *display,
->  			  enum pipe pipe, u32 status_mask)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(display->drm);
->  	i915_reg_t reg = PIPESTAT(display, pipe);
->  	u32 enable_mask;
->  
-> @@ -332,7 +327,7 @@ void i915_enable_pipestat(struct intel_display *display,
->  		      pipe_name(pipe), status_mask);
->  
->  	lockdep_assert_held(&display->irq.lock);
-> -	drm_WARN_ON(display->drm, !intel_irqs_enabled(dev_priv));
-> +	drm_WARN_ON(display->drm, !display->parent->irq->enabled(display->drm));
->  
->  	if ((display->irq.pipestat_irq_mask[pipe] & status_mask) == status_mask)
->  		return;
-> @@ -347,7 +342,6 @@ void i915_enable_pipestat(struct intel_display *display,
->  void i915_disable_pipestat(struct intel_display *display,
->  			   enum pipe pipe, u32 status_mask)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(display->drm);
->  	i915_reg_t reg = PIPESTAT(display, pipe);
->  	u32 enable_mask;
->  
-> @@ -356,7 +350,7 @@ void i915_disable_pipestat(struct intel_display *display,
->  		      pipe_name(pipe), status_mask);
->  
->  	lockdep_assert_held(&display->irq.lock);
-> -	drm_WARN_ON(display->drm, !intel_irqs_enabled(dev_priv));
-> +	drm_WARN_ON(display->drm, !display->parent->irq->enabled(display->drm));
->  
->  	if ((display->irq.pipestat_irq_mask[pipe] & status_mask) == 0)
->  		return;
-> @@ -2153,14 +2147,13 @@ void gen11_display_irq_reset(struct intel_display *display)
->  void gen8_irq_power_well_post_enable(struct intel_display *display,
->  				     u8 pipe_mask)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(display->drm);
->  	u32 extra_ier = GEN8_PIPE_VBLANK | GEN8_PIPE_FIFO_UNDERRUN |
->  		gen8_de_pipe_flip_done_mask(display);
->  	enum pipe pipe;
->  
->  	spin_lock_irq(&display->irq.lock);
->  
-> -	if (!intel_irqs_enabled(dev_priv)) {
-> +	if (!display->parent->irq->enabled(display->drm)) {
->  		spin_unlock_irq(&display->irq.lock);
->  		return;
->  	}
-> @@ -2176,12 +2169,11 @@ void gen8_irq_power_well_post_enable(struct intel_display *display,
->  void gen8_irq_power_well_pre_disable(struct intel_display *display,
->  				     u8 pipe_mask)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(display->drm);
->  	enum pipe pipe;
->  
->  	spin_lock_irq(&display->irq.lock);
->  
-> -	if (!intel_irqs_enabled(dev_priv)) {
-> +	if (!display->parent->irq->enabled(display->drm)) {
->  		spin_unlock_irq(&display->irq.lock);
->  		return;
->  	}
-> @@ -2192,7 +2184,7 @@ void gen8_irq_power_well_pre_disable(struct intel_display *display,
->  	spin_unlock_irq(&display->irq.lock);
->  
->  	/* make sure we're done processing display irqs */
-> -	intel_synchronize_irq(dev_priv);
-> +	display->parent->irq->synchronize(display->drm);
+> @@ -97,9 +97,8 @@ static void error_init(struct intel_display *display, struct i915_error_regs reg
+>  	intel_de_posting_read(display, regs.emr);
 >  }
 >  
->  /*
-> @@ -2225,8 +2217,6 @@ static void ibx_irq_postinstall(struct intel_display *display)
+> -static void
+> -intel_display_irq_regs_init(struct intel_display *display, struct i915_irq_regs regs,
+> -			    u32 imr_val, u32 ier_val)
+> +static void irq_init_wl(struct intel_display *display, struct i915_irq_regs regs,
+> +			u32 imr_val, u32 ier_val)
+>  {
+>  	intel_dmc_wl_get(display, regs.imr);
+>  	intel_dmc_wl_get(display, regs.ier);
+> @@ -112,8 +111,7 @@ intel_display_irq_regs_init(struct intel_display *display, struct i915_irq_regs
+>  	intel_dmc_wl_put(display, regs.imr);
+>  }
+>  
+> -static void
+> -intel_display_irq_regs_reset(struct intel_display *display, struct i915_irq_regs regs)
+> +static void irq_reset_wl(struct intel_display *display, struct i915_irq_regs regs)
+>  {
+>  	intel_dmc_wl_get(display, regs.imr);
+>  	intel_dmc_wl_get(display, regs.ier);
+> @@ -126,8 +124,7 @@ intel_display_irq_regs_reset(struct intel_display *display, struct i915_irq_regs
+>  	intel_dmc_wl_put(display, regs.imr);
+>  }
+>  
+> -static void
+> -intel_display_irq_regs_assert_irr_is_zero(struct intel_display *display, i915_reg_t reg)
+> +static void assert_iir_is_zero_wl(struct intel_display *display, i915_reg_t reg)
+>  {
+>  	intel_dmc_wl_get(display, reg);
+>  
+> @@ -1983,7 +1980,7 @@ static void _vlv_display_irq_reset(struct intel_display *display)
+>  
+>  	i9xx_pipestat_irq_reset(display);
+>  
+> -	intel_display_irq_regs_reset(display, VLV_IRQ_REGS);
+> +	irq_reset_wl(display, VLV_IRQ_REGS);
+>  	display->irq.vlv_imr_mask = ~0u;
+>  }
+>  
+> @@ -2094,7 +2091,7 @@ static void _vlv_display_irq_postinstall(struct intel_display *display)
+>  
+>  	display->irq.vlv_imr_mask = ~enable_mask;
+>  
+> -	intel_display_irq_regs_init(display, VLV_IRQ_REGS, display->irq.vlv_imr_mask, enable_mask);
+> +	irq_init_wl(display, VLV_IRQ_REGS, display->irq.vlv_imr_mask, enable_mask);
+>  }
+>  
+>  void vlv_display_irq_postinstall(struct intel_display *display)
+> @@ -2145,10 +2142,10 @@ void gen8_display_irq_reset(struct intel_display *display)
+>  	for_each_pipe(display, pipe)
+>  		if (intel_display_power_is_enabled(display,
+>  						   POWER_DOMAIN_PIPE(pipe)))
+> -			intel_display_irq_regs_reset(display, GEN8_DE_PIPE_IRQ_REGS(pipe));
+> +			irq_reset_wl(display, GEN8_DE_PIPE_IRQ_REGS(pipe));
+>  
+> -	intel_display_irq_regs_reset(display, GEN8_DE_PORT_IRQ_REGS);
+> -	intel_display_irq_regs_reset(display, GEN8_DE_MISC_IRQ_REGS);
+> +	irq_reset_wl(display, GEN8_DE_PORT_IRQ_REGS);
+> +	irq_reset_wl(display, GEN8_DE_MISC_IRQ_REGS);
+>  
+>  	if (HAS_PCH_SPLIT(display))
+>  		ibx_display_irq_reset(display);
+> @@ -2190,18 +2187,18 @@ void gen11_display_irq_reset(struct intel_display *display)
+>  	for_each_pipe(display, pipe)
+>  		if (intel_display_power_is_enabled(display,
+>  						   POWER_DOMAIN_PIPE(pipe)))
+> -			intel_display_irq_regs_reset(display, GEN8_DE_PIPE_IRQ_REGS(pipe));
+> +			irq_reset_wl(display, GEN8_DE_PIPE_IRQ_REGS(pipe));
+>  
+> -	intel_display_irq_regs_reset(display, GEN8_DE_PORT_IRQ_REGS);
+> -	intel_display_irq_regs_reset(display, GEN8_DE_MISC_IRQ_REGS);
+> +	irq_reset_wl(display, GEN8_DE_PORT_IRQ_REGS);
+> +	irq_reset_wl(display, GEN8_DE_MISC_IRQ_REGS);
+>  
+>  	if (DISPLAY_VER(display) >= 14)
+> -		intel_display_irq_regs_reset(display, PICAINTERRUPT_IRQ_REGS);
+> +		irq_reset_wl(display, PICAINTERRUPT_IRQ_REGS);
+>  	else
+> -		intel_display_irq_regs_reset(display, GEN11_DE_HPD_IRQ_REGS);
+> +		irq_reset_wl(display, GEN11_DE_HPD_IRQ_REGS);
+>  
+>  	if (INTEL_PCH_TYPE(display) >= PCH_ICP)
+> -		intel_display_irq_regs_reset(display, SDE_IRQ_REGS);
+> +		irq_reset_wl(display, SDE_IRQ_REGS);
+>  }
+>  
+>  void gen8_irq_power_well_post_enable(struct intel_display *display,
+> @@ -2219,9 +2216,9 @@ void gen8_irq_power_well_post_enable(struct intel_display *display,
+>  	}
+>  
+>  	for_each_pipe_masked(display, pipe, pipe_mask)
+> -		intel_display_irq_regs_init(display, GEN8_DE_PIPE_IRQ_REGS(pipe),
+> -					    display->irq.de_pipe_imr_mask[pipe],
+> -					    ~display->irq.de_pipe_imr_mask[pipe] | extra_ier);
+> +		irq_init_wl(display, GEN8_DE_PIPE_IRQ_REGS(pipe),
+> +			    display->irq.de_pipe_imr_mask[pipe],
+> +			    ~display->irq.de_pipe_imr_mask[pipe] | extra_ier);
+>  
+>  	spin_unlock_irq(&display->irq.lock);
+>  }
+> @@ -2239,7 +2236,7 @@ void gen8_irq_power_well_pre_disable(struct intel_display *display,
+>  	}
+>  
+>  	for_each_pipe_masked(display, pipe, pipe_mask)
+> -		intel_display_irq_regs_reset(display, GEN8_DE_PIPE_IRQ_REGS(pipe));
+> +		irq_reset_wl(display, GEN8_DE_PIPE_IRQ_REGS(pipe));
+>  
+>  	spin_unlock_irq(&display->irq.lock);
+>  
+> @@ -2272,7 +2269,7 @@ static void ibx_irq_postinstall(struct intel_display *display)
+>  	else
+>  		mask = SDE_GMBUS_CPT;
+>  
+> -	intel_display_irq_regs_init(display, SDE_IRQ_REGS, ~mask, 0xffffffff);
+> +	irq_init_wl(display, SDE_IRQ_REGS, ~mask, 0xffffffff);
+>  }
 >  
 >  void valleyview_enable_display_irqs(struct intel_display *display)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(display->drm);
-> -
->  	spin_lock_irq(&display->irq.lock);
->  
->  	if (display->irq.vlv_display_irqs_enabled)
-> @@ -2234,7 +2224,7 @@ void valleyview_enable_display_irqs(struct intel_display *display)
->  
->  	display->irq.vlv_display_irqs_enabled = true;
->  
-> -	if (intel_irqs_enabled(dev_priv)) {
-> +	if (display->parent->irq->enabled(display->drm)) {
->  		_vlv_display_irq_reset(display);
->  		_vlv_display_irq_postinstall(display);
+> @@ -2334,7 +2331,7 @@ void ilk_de_irq_postinstall(struct intel_display *display)
 >  	}
-> @@ -2245,8 +2235,6 @@ void valleyview_enable_display_irqs(struct intel_display *display)
 >  
->  void valleyview_disable_display_irqs(struct intel_display *display)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(display->drm);
-> -
->  	spin_lock_irq(&display->irq.lock);
+>  	if (display->platform.haswell) {
+> -		intel_display_irq_regs_assert_irr_is_zero(display, EDP_PSR_IIR);
+> +		assert_iir_is_zero_wl(display, EDP_PSR_IIR);
+>  		display_mask |= DE_EDP_PSR_INT_HSW;
+>  	}
 >  
->  	if (!display->irq.vlv_display_irqs_enabled)
-> @@ -2254,7 +2242,7 @@ void valleyview_disable_display_irqs(struct intel_display *display)
+> @@ -2345,8 +2342,8 @@ void ilk_de_irq_postinstall(struct intel_display *display)
 >  
->  	display->irq.vlv_display_irqs_enabled = false;
+>  	ibx_irq_postinstall(display);
 >  
-> -	if (intel_irqs_enabled(dev_priv))
-> +	if (display->parent->irq->enabled(display->drm))
->  		_vlv_display_irq_reset(display);
->  out:
->  	spin_unlock_irq(&display->irq.lock);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> index 74fcd9cfe911..7c857291ad4c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -7,11 +7,11 @@
->  #include <linux/string_helpers.h>
->  
->  #include <drm/drm_print.h>
-> +#include <drm/intel/display_parent_interface.h>
->  
->  #include "soc/intel_dram.h"
->  
->  #include "i915_drv.h"
-> -#include "i915_irq.h"
->  #include "i915_reg.h"
->  #include "intel_backlight_regs.h"
->  #include "intel_cdclk.h"
-> @@ -1202,7 +1202,6 @@ static void hsw_assert_cdclk(struct intel_display *display)
->  
->  static void assert_can_disable_lcpll(struct intel_display *display)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(display->drm);
->  	struct intel_crtc *crtc;
->  
->  	for_each_intel_crtc(display->drm, crtc)
-> @@ -1247,7 +1246,7 @@ static void assert_can_disable_lcpll(struct intel_display *display)
->  	 * gen-specific and since we only disable LCPLL after we fully disable
->  	 * the interrupts, the check below should be enough.
->  	 */
-> -	INTEL_DISPLAY_STATE_WARN(display, intel_irqs_enabled(dev_priv),
-> +	INTEL_DISPLAY_STATE_WARN(display, display->parent->irq->enabled(display->drm),
->  				 "IRQs enabled\n");
+> -	intel_display_irq_regs_init(display, DE_IRQ_REGS, display->irq.ilk_de_imr_mask,
+> -				    display_mask | extra_mask);
+> +	irq_init_wl(display, DE_IRQ_REGS, display->irq.ilk_de_imr_mask,
+> +		    display_mask | extra_mask);
 >  }
 >  
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> index eab7019f2252..5ae064bc536a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> @@ -6,9 +6,8 @@
->  #include <linux/iopoll.h>
+>  static void mtp_irq_postinstall(struct intel_display *display);
+> @@ -2422,11 +2419,10 @@ void gen8_de_irq_postinstall(struct intel_display *display)
+>  			if (!intel_display_power_is_enabled(display, domain))
+>  				continue;
 >  
->  #include <drm/drm_print.h>
-> +#include <drm/intel/display_parent_interface.h>
+> -			intel_display_irq_regs_assert_irr_is_zero(display,
+> -								  TRANS_PSR_IIR(display, trans));
+> +			assert_iir_is_zero_wl(display, TRANS_PSR_IIR(display, trans));
+>  		}
+>  	} else {
+> -		intel_display_irq_regs_assert_irr_is_zero(display, EDP_PSR_IIR);
+> +		assert_iir_is_zero_wl(display, EDP_PSR_IIR);
+>  	}
 >  
-> -#include "i915_drv.h"
-> -#include "i915_irq.h"
->  #include "i915_reg.h"
->  #include "intel_backlight_regs.h"
->  #include "intel_combo_phy.h"
-> @@ -628,8 +627,6 @@ static bool hsw_power_well_enabled(struct intel_display *display,
+>  	for_each_pipe(display, pipe) {
+> @@ -2434,23 +2430,20 @@ void gen8_de_irq_postinstall(struct intel_display *display)
 >  
->  static void assert_can_enable_dc9(struct intel_display *display)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(display->drm);
-> -
->  	drm_WARN_ONCE(display->drm,
->  		      (intel_de_read(display, DC_STATE_EN) & DC_STATE_EN_DC9),
->  		      "DC9 already programmed to be enabled.\n");
-> @@ -641,7 +638,7 @@ static void assert_can_enable_dc9(struct intel_display *display)
->  		      intel_de_read(display, HSW_PWR_WELL_CTL2) &
->  		      HSW_PWR_WELL_CTL_REQ(SKL_PW_CTL_IDX_PW_2),
->  		      "Power well 2 on.\n");
-> -	drm_WARN_ONCE(display->drm, intel_irqs_enabled(dev_priv),
-> +	drm_WARN_ONCE(display->drm, display->parent->irq->enabled(display->drm),
->  		      "Interrupts not disabled yet.\n");
+>  		if (intel_display_power_is_enabled(display,
+>  						   POWER_DOMAIN_PIPE(pipe)))
+> -			intel_display_irq_regs_init(display, GEN8_DE_PIPE_IRQ_REGS(pipe),
+> -						    display->irq.de_pipe_imr_mask[pipe],
+> -						    de_pipe_enables);
+> +			irq_init_wl(display, GEN8_DE_PIPE_IRQ_REGS(pipe),
+> +				    display->irq.de_pipe_imr_mask[pipe],
+> +				    de_pipe_enables);
+>  	}
 >  
->  	 /*
-> @@ -655,9 +652,7 @@ static void assert_can_enable_dc9(struct intel_display *display)
+> -	intel_display_irq_regs_init(display, GEN8_DE_PORT_IRQ_REGS, ~de_port_masked,
+> -				    de_port_enables);
+> -	intel_display_irq_regs_init(display, GEN8_DE_MISC_IRQ_REGS, ~de_misc_masked,
+> -				    de_misc_masked);
+> +	irq_init_wl(display, GEN8_DE_PORT_IRQ_REGS, ~de_port_masked, de_port_enables);
+> +	irq_init_wl(display, GEN8_DE_MISC_IRQ_REGS, ~de_misc_masked, de_misc_masked);
 >  
->  static void assert_can_disable_dc9(struct intel_display *display)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(display->drm);
-> -
-> -	drm_WARN_ONCE(display->drm, intel_irqs_enabled(dev_priv),
-> +	drm_WARN_ONCE(display->drm, display->parent->irq->enabled(display->drm),
->  		      "Interrupts not disabled yet.\n");
->  	drm_WARN_ONCE(display->drm,
->  		      intel_de_read(display, DC_STATE_EN) &
-> @@ -1281,12 +1276,10 @@ static void vlv_display_power_well_init(struct intel_display *display)
+>  	if (IS_DISPLAY_VER(display, 11, 13)) {
+>  		u32 de_hpd_masked = 0;
+>  		u32 de_hpd_enables = GEN11_DE_TC_HOTPLUG_MASK |
+>  				     GEN11_DE_TBT_HOTPLUG_MASK;
 >  
->  static void vlv_display_power_well_deinit(struct intel_display *display)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(display->drm);
-> -
->  	valleyview_disable_display_irqs(display);
->  
->  	/* make sure we're done processing display irqs */
-> -	intel_synchronize_irq(dev_priv);
-> +	display->parent->irq->synchronize(display->drm);
->  
->  	vlv_pps_reset_all(display);
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
-> index 82f3a40ecac7..98834cf622d2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_gmbus.c
-> +++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
-> @@ -32,11 +32,11 @@
->  #include <linux/i2c.h>
->  #include <linux/iopoll.h>
->  
-> -#include <drm/drm_print.h>
->  #include <drm/display/drm_hdcp_helper.h>
-> +#include <drm/drm_print.h>
-> +#include <drm/drm_print.h>
-> +#include <drm/intel/display_parent_interface.h>
->  
-> -#include "i915_drv.h"
-> -#include "i915_irq.h"
->  #include "i915_reg.h"
->  #include "intel_de.h"
->  #include "intel_display_regs.h"
-> @@ -391,12 +391,11 @@ intel_gpio_setup(struct intel_gmbus *bus, i915_reg_t gpio_reg)
->  
->  static bool has_gmbus_irq(struct intel_display *display)
->  {
-> -	struct drm_i915_private *i915 = to_i915(display->drm);
->  	/*
->  	 * encoder->shutdown() may want to use GMBUS
->  	 * after irqs have already been disabled.
->  	 */
-> -	return HAS_GMBUS_IRQ(display) && intel_irqs_enabled(i915);
-> +	return HAS_GMBUS_IRQ(display) && display->parent->irq->enabled(display->drm);
+> -		intel_display_irq_regs_init(display, GEN11_DE_HPD_IRQ_REGS, ~de_hpd_masked,
+> -					    de_hpd_enables);
+> +		irq_init_wl(display, GEN11_DE_HPD_IRQ_REGS, ~de_hpd_masked, de_hpd_enables);
+>  	}
 >  }
 >  
->  static int gmbus_wait(struct intel_display *display, u32 status, u32 irq_en)
-> diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
-> index 235706229ffb..a4254d4e9a4a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hotplug.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
-> @@ -26,9 +26,8 @@
+> @@ -2461,17 +2454,16 @@ static void mtp_irq_postinstall(struct intel_display *display)
+>  	u32 de_hpd_enables = de_hpd_mask | XELPDP_DP_ALT_HOTPLUG_MASK |
+>  			     XELPDP_TBT_HOTPLUG_MASK;
 >  
->  #include <drm/drm_print.h>
->  #include <drm/drm_probe_helper.h>
-> +#include <drm/intel/display_parent_interface.h>
+> -	intel_display_irq_regs_init(display, PICAINTERRUPT_IRQ_REGS, ~de_hpd_mask,
+> -				    de_hpd_enables);
+> +	irq_init_wl(display, PICAINTERRUPT_IRQ_REGS, ~de_hpd_mask, de_hpd_enables);
 >  
-> -#include "i915_drv.h"
-> -#include "i915_irq.h"
->  #include "intel_connector.h"
->  #include "intel_display_core.h"
->  #include "intel_display_power.h"
-> @@ -1177,13 +1176,12 @@ bool intel_hpd_schedule_detection(struct intel_display *display)
->  static int i915_hpd_storm_ctl_show(struct seq_file *m, void *data)
+> -	intel_display_irq_regs_init(display, SDE_IRQ_REGS, ~sde_mask, 0xffffffff);
+> +	irq_init_wl(display, SDE_IRQ_REGS, ~sde_mask, 0xffffffff);
+>  }
+>  
+>  static void icp_irq_postinstall(struct intel_display *display)
 >  {
->  	struct intel_display *display = m->private;
-> -	struct drm_i915_private *dev_priv = to_i915(display->drm);
->  	struct intel_hotplug *hotplug = &display->hotplug;
+>  	u32 mask = SDE_GMBUS_ICP;
 >  
->  	/* Synchronize with everything first in case there's been an HPD
->  	 * storm, but we haven't finished handling it in the kernel yet
->  	 */
-> -	intel_synchronize_irq(dev_priv);
-> +	display->parent->irq->synchronize(display->drm);
->  	flush_work(&display->hotplug.dig_port_work);
->  	flush_delayed_work(&display->hotplug.hotplug_work);
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-> index 42284e9928f2..5b41abe1c64d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-> +++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-> @@ -71,7 +71,6 @@
->  #include <drm/drm_print.h>
->  #include <drm/intel/intel_lpe_audio.h>
->  
-> -#include "i915_irq.h"
->  #include "intel_audio_regs.h"
->  #include "intel_de.h"
->  #include "intel_lpe_audio.h"
-> diff --git a/drivers/gpu/drm/i915/display/intel_pipe_crc.c b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
-> index 1f27643412f1..b782f894cce8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_pipe_crc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
-> @@ -29,9 +29,8 @@
->  #include <linux/seq_file.h>
->  
->  #include <drm/drm_print.h>
-> +#include <drm/intel/display_parent_interface.h>
->  
-> -#include "i915_drv.h"
-> -#include "i915_irq.h"
->  #include "intel_atomic.h"
->  #include "intel_de.h"
->  #include "intel_display_irq.h"
-> @@ -658,7 +657,6 @@ void intel_crtc_enable_pipe_crc(struct intel_crtc *crtc)
->  void intel_crtc_disable_pipe_crc(struct intel_crtc *crtc)
->  {
->  	struct intel_display *display = to_intel_display(crtc);
-> -	struct drm_i915_private *dev_priv = to_i915(display->drm);
->  	struct intel_pipe_crc *pipe_crc = &crtc->pipe_crc;
->  	enum pipe pipe = crtc->pipe;
->  
-> @@ -669,5 +667,5 @@ void intel_crtc_disable_pipe_crc(struct intel_crtc *crtc)
->  
->  	intel_de_write(display, PIPE_CRC_CTL(display, pipe), 0);
->  	intel_de_posting_read(display, PIPE_CRC_CTL(display, pipe));
-> -	intel_synchronize_irq(dev_priv);
-> +	display->parent->irq->synchronize(display->drm);
->  }
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index c97b76771917..07715aef62d3 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -741,6 +741,7 @@ static void i915_welcome_messages(struct drm_i915_private *dev_priv)
->  
->  static const struct intel_display_parent_interface parent = {
->  	.rpm = &i915_display_rpm_interface,
-> +	.irq = &i915_display_irq_interface,
->  };
->  
->  const struct intel_display_parent_interface *i915_driver_parent_interface(void)
-> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-> index 1898be4ddc8b..3fe978d4ea53 100644
-> --- a/drivers/gpu/drm/i915/i915_irq.c
-> +++ b/drivers/gpu/drm/i915/i915_irq.c
-> @@ -33,6 +33,7 @@
->  
->  #include <drm/drm_drv.h>
->  #include <drm/drm_print.h>
-> +#include <drm/intel/display_parent_interface.h>
->  
->  #include "display/intel_display_irq.h"
->  #include "display/intel_hotplug.h"
-> @@ -1252,3 +1253,18 @@ void intel_synchronize_hardirq(struct drm_i915_private *i915)
->  {
->  	synchronize_hardirq(to_pci_dev(i915->drm.dev)->irq);
->  }
-> +
-> +static bool _intel_irq_enabled(struct drm_device *drm)
-> +{
-> +	return intel_irqs_enabled(to_i915(drm));
-> +}
-> +
-> +static void _intel_irq_synchronize(struct drm_device *drm)
-> +{
-> +	return intel_synchronize_irq(to_i915(drm));
-> +}
-> +
-> +const struct intel_display_irq_interface i915_display_irq_interface = {
-> +	.enabled = _intel_irq_enabled,
-> +	.synchronize = _intel_irq_synchronize,
-> +};
-> diff --git a/drivers/gpu/drm/i915/i915_irq.h b/drivers/gpu/drm/i915/i915_irq.h
-> index 58789b264575..5c87d6d41c74 100644
-> --- a/drivers/gpu/drm/i915/i915_irq.h
-> +++ b/drivers/gpu/drm/i915/i915_irq.h
-> @@ -51,4 +51,6 @@ void gen2_error_reset(struct intel_uncore *uncore, struct i915_error_regs regs);
->  void gen2_error_init(struct intel_uncore *uncore, struct i915_error_regs regs,
->  		     u32 emr_val);
->  
-> +extern const struct intel_display_irq_interface i915_display_irq_interface;
-> +
->  #endif /* __I915_IRQ_H__ */
-> diff --git a/drivers/gpu/drm/xe/display/ext/i915_irq.c b/drivers/gpu/drm/xe/display/ext/i915_irq.c
-> index 3c6bca66ddab..b198dd1988bb 100644
-> --- a/drivers/gpu/drm/xe/display/ext/i915_irq.c
-> +++ b/drivers/gpu/drm/xe/display/ext/i915_irq.c
-> @@ -73,13 +73,3 @@ void gen2_error_init(struct intel_uncore *uncore, struct i915_error_regs regs,
->  	intel_uncore_write(uncore, regs.emr, emr_val);
->  	intel_uncore_posting_read(uncore, regs.emr);
->  }
-> -
-> -bool intel_irqs_enabled(struct xe_device *xe)
-> -{
-> -	return atomic_read(&xe->irq.enabled);
-> -}
-> -
-> -void intel_synchronize_irq(struct xe_device *xe)
-> -{
-> -	synchronize_irq(to_pci_dev(xe->drm.dev)->irq);
-> -}
-> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-> index 8b0afa270216..e3320d9e6314 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display.c
-> +++ b/drivers/gpu/drm/xe/display/xe_display.c
-> @@ -516,8 +516,26 @@ static void display_device_remove(struct drm_device *dev, void *arg)
->  	intel_display_device_remove(display);
+> -	intel_display_irq_regs_init(display, SDE_IRQ_REGS, ~mask, 0xffffffff);
+> +	irq_init_wl(display, SDE_IRQ_REGS, ~mask, 0xffffffff);
 >  }
 >  
-> +static bool irq_enabled(struct drm_device *drm)
-> +{
-> +	struct xe_device *xe = to_xe_device(drm);
-> +
-> +	return atomic_read(&xe->irq.enabled);
-> +}
-> +
-> +static void irq_synchronize(struct drm_device *drm)
-> +{
-> +	synchronize_irq(to_pci_dev(drm->dev)->irq);
-> +}
-> +
-> +static const struct intel_display_irq_interface xe_display_irq_interface = {
-> +	.enabled = irq_enabled,
-> +	.synchronize = irq_synchronize,
-> +};
-> +
->  static const struct intel_display_parent_interface parent = {
->  	.rpm = &xe_display_rpm_interface,
-> +	.irq = &xe_display_irq_interface,
->  };
->  
->  /**
-> diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/intel/display_parent_interface.h
-> index 26bedc360044..3a008a18eb65 100644
-> --- a/include/drm/intel/display_parent_interface.h
-> +++ b/include/drm/intel/display_parent_interface.h
-> @@ -25,6 +25,11 @@ struct intel_display_rpm_interface {
->  	void (*assert_unblock)(const struct drm_device *drm);
->  };
->  
-> +struct intel_display_irq_interface {
-> +	bool (*enabled)(struct drm_device *drm);
-> +	void (*synchronize)(struct drm_device *drm);
-> +};
-> +
->  /**
->   * struct intel_display_parent_interface - services parent driver provides to display
->   *
-> @@ -40,6 +45,9 @@ struct intel_display_rpm_interface {
->  struct intel_display_parent_interface {
->  	/** @rpm: Runtime PM functions */
->  	const struct intel_display_rpm_interface *rpm;
-> +
-> +	/** @irq: IRQ interface */
-> +	const struct intel_display_irq_interface *irq;
->  };
->  
->  #endif
+>  void gen11_de_irq_postinstall(struct intel_display *display)
 > -- 
 > 2.47.3
 
