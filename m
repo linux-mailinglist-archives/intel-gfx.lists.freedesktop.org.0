@@ -2,64 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91F12C4B901
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Nov 2025 06:44:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70BFDC4B907
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Nov 2025 06:45:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 775AB10E4DF;
-	Tue, 11 Nov 2025 05:43:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6306610E4DA;
+	Tue, 11 Nov 2025 05:45:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KZ4OdpyY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SfPVkeVN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE79110E4DA;
- Tue, 11 Nov 2025 05:43:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE0FA10E4DA;
+ Tue, 11 Nov 2025 05:45:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762839838; x=1794375838;
+ t=1762839949; x=1794375949;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=BYpE/m35LGgYwl0E2+55gTT9NPMzu3+0Eyeccizfskg=;
- b=KZ4OdpyYYh/gRzFpy3k59dkFdeeJUaba08ZUfcS6lgu0/DWkTfWQhNNq
- ivylfcT67qRdsXBHV9QMjnrJsmiIZjG9/TRwmZ/TrW3IEj8D0wN8lO9nd
- 8rptnAQOS1lAzLMpIIgRLVcUPRbERidL0FgU59Hc8TRgg6hw1fUSUOnhn
- 7On3XRTyT/L7sj4S45L+hl8ouqlmXwuJFmWTNakW0QxONIW/WfMVJMgyQ
- DG++JqSuQZ/m6ZeuJC5n+s2oXO7bP9pH32uCUJiuxN50/m7zwFe73HoI0
- u0I+S53kFzYuzO3+e1Nr36h93N1oqbizMKcRb7lRylfE/NGXWYS5zVV+K w==;
-X-CSE-ConnectionGUID: 8bLiaNt3TPCLEWay/pzhIw==
-X-CSE-MsgGUID: 08oZTQkHQguAJLlkhvFr7w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="82524743"
-X-IronPort-AV: E=Sophos;i="6.19,295,1754982000"; d="scan'208";a="82524743"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 21:43:57 -0800
-X-CSE-ConnectionGUID: CSsi+Id6QnOYJBTid9MTSw==
-X-CSE-MsgGUID: OWbVJtAXTQO8qDBgwLo6Xw==
+ bh=AeLoNkjuuE1lYTa9gWUiYiHTodIxpE9tlK2DnFYsvDo=;
+ b=SfPVkeVNlpq3h+yRwz4iAJfEcZKdbssUjppAP954SVUH+cPUwtPAIMsz
+ 49yKTwW3IT9Ooh0dO1VuCgLk1dzTtjxx6LyH5Sk5sDzLNit6EH+WkwhRX
+ ydyIcHI9Dd2XQ5HlfC2DJIP5bCX1Tr0u1LgWVCgvJ6FjHLsSE+EzfPGvy
+ Se+JFKfzq2cmFp1UjfqZkHP2lJZrGl9AO3DieRUxUmXxzJQLO1kGuOfXr
+ ldjEyrZSTldKPo4ryr7lMMz2eBQXVbQ8mhQ8m+jTcHlzKD/0e5Sm2OPWq
+ w01AlMDu3qQj+4ss5rMpjL+biipjr3LVVBvD3q69fwjpC1oLLXPabq03n g==;
+X-CSE-ConnectionGUID: kyxzsG1gQwCI9LAwnOao+w==
+X-CSE-MsgGUID: W3FzIIFPS8CN4PsJ4RSGAw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="68747568"
+X-IronPort-AV: E=Sophos;i="6.19,295,1754982000"; d="scan'208";a="68747568"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2025 21:45:48 -0800
+X-CSE-ConnectionGUID: Lk+S5RXNSEG/aB18mKhCjQ==
+X-CSE-MsgGUID: 9ui1YFdyQkON0azy/NQC7A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,295,1754982000"; d="scan'208";a="194058088"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 21:43:57 -0800
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.19,295,1754982000"; d="scan'208";a="188506961"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2025 21:45:48 -0800
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 10 Nov 2025 21:43:56 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.27; Mon, 10 Nov 2025 21:45:47 -0800
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Mon, 10 Nov 2025 21:43:56 -0800
-Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.29) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Mon, 10 Nov 2025 21:45:47 -0800
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.1) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 10 Nov 2025 21:43:56 -0800
+ 15.2.2562.27; Mon, 10 Nov 2025 21:45:47 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cQp9R/NFDmTrFGoYnrkvn0mXGt+hEAOqB6CcdiNpU7SpzvaVK1M3VyhP2AQHFpHx2dRwTtIWTDoMYWAQ1uIqq7WZzJ59yQ9+hA/ZU1YHf7sJDkhwb3mDqaWsxhM9gkv/ISNwqXiYGhoyAeYEfwQ/oUicZRdCHsxOS2bYqOlbookUrUIVE27YXgr6puoxs+LQ6FGYRGPPwBQVpi7gtSxrS9urbHE95HMfUQ4RPT7q29VcXhndeqrW8Udk6Sw1iTFcxVyfbFISnfKsmtH6LPc1RNhI4IIgLM7wokZmoSBGsrlnSg0sS/1ntneMo2junUu85Q7zRPzTv1/yuUm3fMUBsw==
+ b=NTbFF6tJl3XADX/UCDAaey5fcjpTViNuDqEbUXgN/zZQFl5YUOA/SMAyFJS4B2prRYjmeLNlU8vtmi6klMO0XkmO8br8OIRRKRUafTC853zdc6ObdLqnj8M5+WEGsk3fERrV39Byfotot3iLjkXtS0q0wXbm4kzw7ygo6UE4qsanDOXrLg8lOpbbsTV96kbWLiAerjnn2TZl/D8FuNkoqCLOjMAKjuSfT7oBle5WMbS1+lHmmPTk7Nn8UsOXPY9C+S0/PkdqD2Rf8LsbFn09+4ia+Ea5dTvlWgbEWxnIkzDiFB2r6JdrvS/xJaMwgqjKTp3YJwIoHWat5ULjFWgduw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ne8BPdcTSoR53F+KZD+4mwVInDr2PIg3ofeK7dNM2/A=;
- b=a/MElu2oK6344+WIkB6INObEGyxkQAGmn0OSrt9Azh7woW0ScUjynN3UB578oq+cDPMA2fnTxZiSDg2q1UKwE9UfKdeeQ6o6xS1qm6tjgWy0Z83uNcYQ+PqD+I7l/atDuGkHMcXp9A2HScDCxLGkLlLh9WKROKMXPURbW8wte8MbKwN5aCkYyQ3vVi6Rp87vrfYnbA6sMkp6UvBcInM6GbuRVjnFsGA55q4KAHQ8Al2ZmHY2/hAktuIDqy6yIBTdhrJsnfcT8PHQLrIYoCyVZk9BhHLp7wMIfQ3rd8kUSsYtpnzctHPoUsCCkARvmBicvc8QMWpwJZfm93DHHiZAAw==
+ bh=nkViRpF8Cha+Pb4VuhYxS50RpFcdL9pyWEEBzKnkiJg=;
+ b=W/GuUEJcHluMebcTTuSVllytP4mMSS6sL7bsQbPotiVee0xZdB8KYBYYKIH5h89pSn7JP4X9R5Q9XmXl+G0rsXbXYQGXpsiLI4qChy3VFiMIy8KcNiHg2XRaQEjCr1Ve8aHop+py/Tzvj8yw+DE4msoHJhw7Tgs/K1lxsW3kjbYF3UkDgplpV1pigzFG7fC+oPwFKEhwwI32G61CigX8l6pB4ARGjyjD/SVyXRFr4LdI42epeD3jo7SWQQWArV2bm+rXMs/4+kQ+xvDmltYiYZOJVNQrmANWiho3e72ht1E5BwTAcgp8qUzsXKvFLSMSBn45USAI9tUXQl1kId5aHw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -67,26 +67,26 @@ Received: from IA3PR11MB8937.namprd11.prod.outlook.com (2603:10b6:208:57c::14)
  by SJ0PR11MB6672.namprd11.prod.outlook.com (2603:10b6:a03:44c::10)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.16; Tue, 11 Nov
- 2025 05:43:49 +0000
+ 2025 05:45:45 +0000
 Received: from IA3PR11MB8937.namprd11.prod.outlook.com
  ([fe80::7fcb:5ca0:942b:bfb3]) by IA3PR11MB8937.namprd11.prod.outlook.com
  ([fe80::7fcb:5ca0:942b:bfb3%4]) with mapi id 15.20.9298.015; Tue, 11 Nov 2025
- 05:43:49 +0000
+ 05:45:45 +0000
 From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
 To: "Kahola, Mika" <mika.kahola@intel.com>, "intel-gfx@lists.freedesktop.org"
  <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
  <intel-xe@lists.freedesktop.org>
 CC: "Deak, Imre" <imre.deak@intel.com>, "Kahola, Mika" <mika.kahola@intel.com>
-Subject: RE: [CI 05/32] drm/i915/display: Track the C20 PHY VDR state in the
- PLL state
-Thread-Topic: [CI 05/32] drm/i915/display: Track the C20 PHY VDR state in the
- PLL state
-Thread-Index: AQHcSl7m3NpZWILVNUKRoBLTrIQXcbTtByHg
-Date: Tue, 11 Nov 2025 05:43:49 +0000
-Message-ID: <IA3PR11MB893703926EA8302EA9489F3EE3CFA@IA3PR11MB8937.namprd11.prod.outlook.com>
+Subject: RE: [CI 06/32] drm/i915/display: Move definition of Cx0 PHY functions
+ earlier
+Thread-Topic: [CI 06/32] drm/i915/display: Move definition of Cx0 PHY
+ functions earlier
+Thread-Index: AQHcSlUjCn2BNK8G60e4nc3LiZ+lYbTtB/mg
+Date: Tue, 11 Nov 2025 05:45:45 +0000
+Message-ID: <IA3PR11MB8937429D437348D94F51E0AFE3CFA@IA3PR11MB8937.namprd11.prod.outlook.com>
 References: <20251031103549.173208-1-mika.kahola@intel.com>
- <20251031103549.173208-6-mika.kahola@intel.com>
-In-Reply-To: <20251031103549.173208-6-mika.kahola@intel.com>
+ <20251031103549.173208-7-mika.kahola@intel.com>
+In-Reply-To: <20251031103549.173208-7-mika.kahola@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -95,78 +95,78 @@ authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
 x-ms-traffictypediagnostic: IA3PR11MB8937:EE_|SJ0PR11MB6672:EE_
-x-ms-office365-filtering-correlation-id: 2572aee8-bc43-4631-210a-08de20e54a19
+x-ms-office365-filtering-correlation-id: 6b1bf79c-188c-45a1-b64c-08de20e58f17
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|376014|366016|38070700021;
-x-microsoft-antispam-message-info: =?us-ascii?Q?tngy1+Tt6lpwbGRHUHJgCgN219UdCX+ojujMVtQMdyrimMefB86xNJoNcDEQ?=
- =?us-ascii?Q?BpIXVI65jjY4nVGeC4u9U6M2rSugk1bZfeGEnhRrr327uPMro56Ppbo7gWP/?=
- =?us-ascii?Q?CJRCIEO1qjDrdpmw/cCECToQcHJrDpExQv/x7yIyqIf8KC7rCKy6bJJDLP3c?=
- =?us-ascii?Q?hkcjI52KsWQN7OZ+Ri/oKVTUTiv5dRhB7C8SQdPLaQNNUV68rdZmPo7V6tQE?=
- =?us-ascii?Q?ru5mT0/WKl9NlwHko4HXsTHvaYs1dBIO8Gsx7mfNtMwIg3aR+p1wLTTgtwuE?=
- =?us-ascii?Q?hS8Gh2/80Kccc3IA7xX8L6dUOwgCskAV5eSLmQxVfG/IoGetIGqc2U9D/Afl?=
- =?us-ascii?Q?6ddxibGHTwccmi3cpxSul4+tVpaglhwbsplM5b/huJ3fFmS6hT9p7hxI3CRc?=
- =?us-ascii?Q?wI7GKpM+DNfKI28PK0S7YYsGyBN1FweT4SdP8eSnJd8fS3PodEKlOvqmgvxW?=
- =?us-ascii?Q?MIlfSWDUdfJgh8IDLFe+JN/7HqYI9+2YgZeqdpKuaMdB+utANa/HIT18VmaH?=
- =?us-ascii?Q?sc67bHmh+PEtocFCF4+YhPR7CtjMPOmOhgagPGEL826HqVkaCNGWLmmOG8Ws?=
- =?us-ascii?Q?1g71rjsa+kXOQA6rhdEE9zzMUeDxGEXUxjpxCmjNzW4leezmbDpNgYwU72Zh?=
- =?us-ascii?Q?jDG5u7YCVsP479NxcQnjbcpctB0v0o0323vrBBU3ZnC9I45Cv0wFOetIgdK8?=
- =?us-ascii?Q?b5MuVwmuO5znfzbBC8tKR0uExZu6daYDu05DMKKeGBP1o6TQnpasnWVgkERU?=
- =?us-ascii?Q?3/B8yfoX15mWM8u8FfvSmTmvX3FRsPmYQNA/n+AGwiXhj9J+ukrx2bObLAIU?=
- =?us-ascii?Q?8FuDW7AF3tcLn3eDir6ZbyjIvtJ7eYLcntimqcGP7FwfcAeVqEF/nVY7U7e7?=
- =?us-ascii?Q?I7xi1EpMtDmib88YEdZptk8QJC92WfjShE9z+CrA/UrOVP54nJqKFGWuLk6k?=
- =?us-ascii?Q?5WrY+hd8EoPg7uTf2g+lpC9YqLM27B5b7ZDqfWDwIxoNzoxZb1DzpqeMr45x?=
- =?us-ascii?Q?ZdsWC0x4P+JZ1576q0tWNEBLAmzyBmP32XwSK4OWxVbDICUHm5reahNSB60F?=
- =?us-ascii?Q?aiV1giL7+TqSNb8WYg5gtHxa0k8TtR16ApyM0/RgrfrCXxJyYF8/Z66Zzz0t?=
- =?us-ascii?Q?snY426zBvxXh6jL6+l0yxB8H2ixHqHClqLJ6vlTjBWHfT8/GYwaBDg6Sx1qu?=
- =?us-ascii?Q?IUCH0xGPUJk4jAje9UO9/pB+Up76iIHsCZLEvY/gxV53SaavBKdq57Twr0db?=
- =?us-ascii?Q?WC+DZleHiLqCIz42q3beeofRM9g8QHpxQkNvDkqMF5A07SRVfK5B3yAY/FoH?=
- =?us-ascii?Q?a8H2TEWjjdN2FR2daCB840GnZvTHRdib/lWzuodsZ/N1XjulWTCohuS81/SB?=
- =?us-ascii?Q?lNLWqbYYkYdcqaoAxGFV/orMnI9cNkHZN2hu9seNFqvAIR/bnHtQ4z+hfpLF?=
- =?us-ascii?Q?b8a05cwXv4BO2rH/COkBcv4D29SERX6u0wbN927pYLCT6PuQToVXkVvCP+lg?=
- =?us-ascii?Q?DFjthWc5+FHNiyb4hrn4V6zq3Hs7DpNjeLCl?=
+x-microsoft-antispam: BCL:0; ARA:13230040|366016|376014|1800799024|38070700021;
+x-microsoft-antispam-message-info: =?us-ascii?Q?WdsS1aN7lhFdmzmkoEDNlPIBJSiTCJ7kBFc+tvs/prEKLqtTfBKC5rC73XwZ?=
+ =?us-ascii?Q?XNM5GFyK0aANgX1UQEgnigJrqOmdCBUAny3/ArKJYuXmuSYdKLOa6iUdv4+X?=
+ =?us-ascii?Q?v/rJDXT3HImRMgK1iJMkdLg+EJFMPAFxoTKJbbc7/+FSB1kIKw+hOgVE8yex?=
+ =?us-ascii?Q?9/9aTIKQvjQrBv17YWAN6vdWk9HfDbAe1/bru5MIRuhxRldQrH49fB70qHNv?=
+ =?us-ascii?Q?qB7gwJFT7tOZv2HY+K3aFEQhMyVzoBNiGF+U2H/PaYSPFCLv0kWR6T6xoNiu?=
+ =?us-ascii?Q?h/uS7SCkiR00k/F8H8jsFg++wFDpdcsanUwGMyK4UUFOHVy1dHuQgAbTSqNg?=
+ =?us-ascii?Q?FoBwASPg1Wdfj1kDpk5+3m8sT6pjUqpBGfssqT/mD9IVVOw73AaxB2ksa0HY?=
+ =?us-ascii?Q?PZbOsrcnfUrVhZNZafHiQmTGknEMLvT4eEvL5pS1A1fKVwYMC9deoT19M4yp?=
+ =?us-ascii?Q?kvRaS+Bzc3oh9VBVRVZ9Tp0EUSCzAaII8vK17SGF6QTrEhqhvOQqX692tZlV?=
+ =?us-ascii?Q?NMBq55TTVneekeB6kUNuuQ6X67rqsOzfO33keYQYc9Vx+S8gbLipxSUwpcFx?=
+ =?us-ascii?Q?71f22fuuQVt4KgbH0lmHj7Wsqgh8X5r64AL1/ZOulPs1z66afKKPJfnL1BNW?=
+ =?us-ascii?Q?cRV3i/u1wfh/ODRFi5T7I5RZu48SySPn9GJ4F4jqPU0iZSC4qcL81sqp/OWt?=
+ =?us-ascii?Q?oPbztm50l8ylI60OfyWEnV2vIVmDqezCdl/l7EVlYSGWnH8z1IEk/weNf6Aq?=
+ =?us-ascii?Q?OM0WehVJ+wc3jcMEELSklqMH7vLiwbszTeNAtL9FqQvfrozVex5vmBD7ketD?=
+ =?us-ascii?Q?WdhvEQesMdt+fKowoCk+zj0x2yo74nQjG8Gc59SVJeGyBMUL5o+unOe+x4m/?=
+ =?us-ascii?Q?CQ6Lb5M2JejHY4O16IPcz+OgcWLfLYjXgRWVtGNH4VOULarwcPHz3zkLtsYt?=
+ =?us-ascii?Q?ETXayPCbNhqXjd4TnbVnmZ+6urgu6aBVJnZMfp6xThk2tb8aJ1Y0ifeIbHoG?=
+ =?us-ascii?Q?xDvmrXAt3UwuWJ9utAsx27i9VuWj1vhItC5taBEeIaJ4WWCXyS1aeaZj6Bq4?=
+ =?us-ascii?Q?QdLpNlWTiv70GYGk7SSaXfnxE8dV7pVdEvxYHQgfbmrqLict+RXVUfESM9fT?=
+ =?us-ascii?Q?fMbrGRFcttoMtg0GNDS2i/pM0+Vx6DgpZ/LGzsJ+LATO4XT8ocQFThdSeXc4?=
+ =?us-ascii?Q?h/sJppQ6D0SNP17QdUJk3xpyAYxwMJfwbfEsIBhF8f9ysHYcsVr5j2wm5R+p?=
+ =?us-ascii?Q?ybEGT6D1Q2F5mm0X9j/EQplB/5IkQ1tn3z6G63Ms8IGGyPGL9FFoBfrcVBW+?=
+ =?us-ascii?Q?sR/H6e6ltg7A/V1HeuZWrS2zWTetFYctRe6Cq5iZB4cF+/kybX9r4ZtaSZpo?=
+ =?us-ascii?Q?5zXnaKdzWISEvz5si3eDb1PZcKt1MD4HTWXgVuubApGgoaxDVtD0Ddigd5DH?=
+ =?us-ascii?Q?Tb3Z7jcVxu7xH7lMK866ZFWJx0hBNn69PBpI4O5KPUNNh5nI3s2j1uCxgdCE?=
+ =?us-ascii?Q?PDqOviG5+CNbuVbv+WHCws6bXaHShiyfMkI8?=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:IA3PR11MB8937.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(38070700021); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(366016)(376014)(1800799024)(38070700021); DIR:OUT; SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?fE0ypvre6JiFAVNsa309AHx5TRFtrIQm9fHTwwOjKLUvL5RCUBFhjZwdalia?=
- =?us-ascii?Q?Du/CEitqNlBU11Jrxg1fylvImQ+8YYfh4bfsxXXmA+nNI6ZlGVP7RNag6pYV?=
- =?us-ascii?Q?ich1i1FckF6TRSPzukFGs61pq6eEvXLXmDDgjVgAav1fRd82TkuGYFKH4gFm?=
- =?us-ascii?Q?dKN4PMaAmO5VlJjUw96pcYlJoYK9Aqj+qJuH/vD8XbB0Yam4ygpAjfb5ZSpj?=
- =?us-ascii?Q?b47tTMvbfMTpnABaDGy/BpObKvsZiKUVgNmy/CUjLZHNSQEG5Dc3FUTuT8Pj?=
- =?us-ascii?Q?MNeTncG5RpV7l1f2UpoSa5fJLf/kqE+gy5dPLp+LAFRk/xVH2N/paLCMBi/z?=
- =?us-ascii?Q?js0YMbjfKToAD4+ozQK6x1N3b5LCA+FN5xS9OeNYPt5invjq47eEgiRgCZwy?=
- =?us-ascii?Q?z81TGnrJBx7gTda2MkP1WoS9cf/Lt5ukduZZBWYu0y1EZSL7i43pAtMtx6Vr?=
- =?us-ascii?Q?crJ2//E/BTMoelGK3amG5oKeHWJMHdMsKqKzI6XxPm/AYXiA3GXy0P+/Z1Fs?=
- =?us-ascii?Q?aZw9KHgDrtYaMNFJiESF21ZI1rWB68OO4Og4VDGG90AlW0fwQlry61uPCNTO?=
- =?us-ascii?Q?7CRj9MudrsXN8KIqdLaIvGLTPsyHrDRusgJP6u6SXEQyzvzURlAszmIgoigx?=
- =?us-ascii?Q?PRMZW7DUDicw7UPQOJZf8z51T1H2COsalK+CNmyhpsp8DHpkk6dnzWoxYnYN?=
- =?us-ascii?Q?bZNKHJlJZ5MgT+frFtRPd0zJQT10Jxiso79AazsQ4XD4Wj+fRTQFaEgkbxtm?=
- =?us-ascii?Q?fY8EecmUESnY6Z4T2EvZIofUUdH7I1tdiWguQW5ujS3NdmF20C/MSUG8deI3?=
- =?us-ascii?Q?WdQgN7EM2Cf1jJeuMjeLeAsXJ6lijGB6f4b2Nw9D1fbyucZd23si/sHjB3fm?=
- =?us-ascii?Q?8W1pAqUriUhnpzQsPz71gi6nhDCQTYvtLt3fJQ6BhleVkRIR1A0lgWQol5XR?=
- =?us-ascii?Q?76ncD+8ukq/vAt6KRARcD0ZCsWUexTuFuirxVV4BWra1ycfqIRoWqk0M8Li1?=
- =?us-ascii?Q?kRAF64DOPYrSjkbNwyvBSZLc06gJVciYyr6GRxRe0kxdh1Z72ezyt2fLJkpe?=
- =?us-ascii?Q?XyXtU9bnjEv2WoCrWo/zRZtj5lfVVB7WrGF3kUGSzizyit0cPkFqNqkDYs4Q?=
- =?us-ascii?Q?ulTupHno9dtCw/CT5bbp0+HPsTEMikqF6olyIHdEe3hy/4wlWbxib/vskehs?=
- =?us-ascii?Q?VsvKt6rwtORstMjJDIuRK2tPbBMoZLlQaot/avL5aou0+E8GbiZIOiZhogXX?=
- =?us-ascii?Q?yywIj4dKsbfNCgkUmGGCJYkcZTNe9cyw8Z/c7QKTunUN9nGdH76V6KgzM8Th?=
- =?us-ascii?Q?yaU9sMf51kWj31xRf5LU7Wr5YVX0uPURJT/tTgdlh36zcE0TOG1jAAXsSSiX?=
- =?us-ascii?Q?MnaRtBdSTJa4K3rvEOvfy5lB9KqPU2CI8gSuXP1GwAb2wsrLUiJ/fy1cwvCO?=
- =?us-ascii?Q?x+bT47eKlOXXOtufunbjRdGc8A3P/F6fIp2OI0tJOTthP7Gf+RRIm0LfWzmf?=
- =?us-ascii?Q?LIErLJKZ1TM9C6p1KXH4ysjOBTF2rntBo1JS9pFXqQWCd3SxPdxnQFlJKrZk?=
- =?us-ascii?Q?BEut+B83InqvyzM7zpxwr6+F88hiXeZXjDphppaY?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?vtcHuSBESSI2Q6O/q/Y1c/AwhoQeyqqeG+P9zX7LWhNHX6PT1LsSJc8aITlV?=
+ =?us-ascii?Q?UUnEHrJYDM9WtRZkyWcHEvnUvO+9FROBnScDb2s7eMLdJdENYpNrGj0EKYHv?=
+ =?us-ascii?Q?TQfW8WqJCKS/nLmBHzSjZ4qeEIAJW47wtNCTE8Ci3/5gYWR65dfFKjsFax1m?=
+ =?us-ascii?Q?C0UyPT285WbzN0fg4TVeW9RP9jsiI640bamTQdKZs6kxCIpi+R0w2ihkUWwX?=
+ =?us-ascii?Q?rsgRdqXD2s7ycR9VlUjoTAsW56m2TWHgMIvdbjlBFJ3J155BBNRLBHI2JR5s?=
+ =?us-ascii?Q?BILrQT1gK3zUkxv05vru/a4hmW5fLiYjjrZLPzfX5+0ltaFxR1oCM0bcqkig?=
+ =?us-ascii?Q?Mqs5XqzoIlnqHQkzNnXzWVfkemJogEoNFJim5NTZ1mBu6VvPxQwHsUXGszSa?=
+ =?us-ascii?Q?O+GfI/kHzXAqOxbbsfGtTxbaOfn478WnLUYN1P35WWiBo6Cv6iz1BwZNFdsG?=
+ =?us-ascii?Q?Q3ME9CaiTmLP9i7g5V5DYzxRVLMtn5kKdcBbN8tdaVfeL58FAYvPoQ8h1vEy?=
+ =?us-ascii?Q?YaKcLxYJPNg39ZJUPm0VQDS83x8lvAzzfRVANoOB48ircsRkjRyNFrWK5ki9?=
+ =?us-ascii?Q?jIdt/wi0bOXTAzHZYyT3/uDyuAOD26XuG6Sh6nAwDnbFZuc1tmWHgN9Vq5Q9?=
+ =?us-ascii?Q?PBYEDPVJt5a8N6kHcxCIGuJQ0ajPYzGBQEOfXhlZQRXCC6iX4EDKVhGv7nSx?=
+ =?us-ascii?Q?JRieRLqwgEseD4jrRwxwi5hYEJ5Mm8iU41EjsDztKTKzj4IeS6bdXsZ0zRbq?=
+ =?us-ascii?Q?d8UdqjxCM7qUwUv/qEq0Mbna1lQqoiqG498s0SNDjoppYz+Ho4GMKx5N1SUN?=
+ =?us-ascii?Q?Sp09bAJmpBVu2Gnewt47WXrv++tF8kgmf7qMNYWS6dE0jQs5CqXd2GcY/bsc?=
+ =?us-ascii?Q?i1v6UKPYvC50JqlscmMuWEBVECaiZ32Px4ZpOXMx5qN7eonvGo/kuR7+SYXa?=
+ =?us-ascii?Q?fp911YIhFmyZDTh6aT++yLOJB6HOHRpwO1O+SmTaezIjlPkNlOd/teLYDKHs?=
+ =?us-ascii?Q?h1/6GRBOGl6EC5wJI6+yGo4kuQ0r6loQA2a37CUhvKbmUbvb4oP/AC0CNwbZ?=
+ =?us-ascii?Q?bpaqCLYZE4Rbvcgq+HG7/nUPXRRn1/HJLKEEj1ttu1zpohQLQq4g3f/xd+cO?=
+ =?us-ascii?Q?0OB+5Hfqa1BCw6nr8xideJCGEmrnKYqTe4am4XijzfP0a7fEND6Mr5xFcq3N?=
+ =?us-ascii?Q?68C4lppngdCXQx5UMMu42uk/6GJtvGnA6bJqUVOiDlLsArXXHdqEVMQto9VQ?=
+ =?us-ascii?Q?+J3qMpYfwZ487Vi3sBs0EI8LBP/3mHzoy/ZZ9AMCmyIo8y8Ye3Gq4FUpSXHV?=
+ =?us-ascii?Q?SC97d5k8uQPjZetEB1mNc5rji0heTyj9WFMa5pGrmq+c6r9cMS20P3p1Sw0K?=
+ =?us-ascii?Q?nLYsWLikJw8a7tPZRt0g+FWGrMQ6Dm4ASxMxf8sOJ/2kMonUPBaGCFkGjnrw?=
+ =?us-ascii?Q?Bw1BakstCkC6i4GMOBta336e329Iol0SGOfxbzyc6h9ewQmfZXPKaORYh9RY?=
+ =?us-ascii?Q?orUTkcRdyzBz8yYj/9Z18yBtuEag4hc30nvYfvU8R5d06A+Cuy7IptPSIC1K?=
+ =?us-ascii?Q?ZRaqBT5Qx8ptrb0Xx4uwXxh95u1bSUrpOLaQAKbI?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB8937.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2572aee8-bc43-4631-210a-08de20e54a19
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Nov 2025 05:43:49.5890 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6b1bf79c-188c-45a1-b64c-08de20e58f17
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Nov 2025 05:45:45.3207 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ceWmQ+Di7k07AhmMbzV8YLJpq9y/EZoKXqcw+3NqAcQSZZxeYs9/DtNVuzIvcpobT5M6338Uq9eXUGdnCknohg==
+X-MS-Exchange-CrossTenant-userprincipalname: yDrRCiYdFdfyin37eDIvp675UCdrI4L6PZNfXnCYfzgcLWHnKbhYqKbe+3MLXmiiWVFrUU+ImsHxjz2Btxu5sA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6672
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -184,267 +184,317 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> Subject: [CI 05/32] drm/i915/display: Track the C20 PHY VDR state in the =
-PLL
-> state
+> Subject: [CI 06/32] drm/i915/display: Move definition of Cx0 PHY function=
+s
+> earlier
 >=20
 > From: Imre Deak <imre.deak@intel.com>
 >=20
-> The Cx0 PLL enable programming needs to know if the PLL is in DP or HDMI
-> mode. The PLL manager framework doesn't pass the CRTC state to the PLL's
-> enable hook, so prepare here for the conversion to use the PLL manager fo=
-r
-> Cx0 PHY PLLs by tracking the DP/HDMI mode in the PLL state.
->=20
-> This change has the advantage, that the VDR HW/SW state can be verified
-> now.
->=20
-> A follow up change will convert the PLL enable function to retrieve the
-> DP/HDMI mode parameter from the PLL state.
->=20
-> This also allows dropping the is_dp and port clock params from the
-> intel_c20_pll_program() function, since it can retrieve these now from th=
-e PLL
-> state.
+> Move the definitions of the
+>   intel_c10pll_calc_port_clock()
+>   intel_c20_get_dp_rate()
+>   intel_c20_get_hdmi_rate()
+>   is_hdmi_frl()
+>   is_dp2()
+>   intel_get_c20_custom_width()
+> functions earlier to avoid the forward declarations.
 >=20
 > Signed-off-by: Imre Deak <imre.deak@intel.com>
 > Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+
+LGTM,
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+
 > ---
->  drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 115 +++++++++++++-----
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.h |   5 +
->  2 files changed, 89 insertions(+), 31 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.c | 232 +++++++++----------
+>  1 file changed, 112 insertions(+), 120 deletions(-)
 >=20
 > diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
 > b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> index 0dd367457f93..0ea9c33e4ce3 100644
+> index 0ea9c33e4ce3..949727d3fc6d 100644
 > --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
 > +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> @@ -2362,6 +2362,76 @@ intel_c20_pll_tables_get(const struct
-> intel_crtc_state *crtc_state,
+> @@ -2131,7 +2131,31 @@ static int intel_c10pll_calc_state(struct
+> intel_crtc_state *crtc_state,  }
+>=20
+>  static int intel_c10pll_calc_port_clock(struct intel_encoder *encoder,
+> -					const struct intel_c10pll_state
+> *pll_state);
+> +					const struct intel_c10pll_state
+> *pll_state) {
+> +	unsigned int frac_quot =3D 0, frac_rem =3D 0, frac_den =3D 1;
+> +	unsigned int multiplier, tx_clk_div, hdmi_div, refclk =3D 38400;
+> +	int tmpclk =3D 0;
+> +
+> +	if (pll_state->pll[0] & C10_PLL0_FRACEN) {
+> +		frac_quot =3D pll_state->pll[12] << 8 | pll_state->pll[11];
+> +		frac_rem =3D  pll_state->pll[14] << 8 | pll_state->pll[13];
+> +		frac_den =3D  pll_state->pll[10] << 8 | pll_state->pll[9];
+> +	}
+> +
+> +	multiplier =3D (REG_FIELD_GET8(C10_PLL3_MULTIPLIERH_MASK,
+> pll_state->pll[3]) << 8 |
+> +		      pll_state->pll[2]) / 2 + 16;
+> +
+> +	tx_clk_div =3D REG_FIELD_GET8(C10_PLL15_TXCLKDIV_MASK, pll_state-
+> >pll[15]);
+> +	hdmi_div =3D REG_FIELD_GET8(C10_PLL15_HDMIDIV_MASK, pll_state-
+> >pll[15]);
+> +
+> +	tmpclk =3D DIV_ROUND_CLOSEST_ULL(mul_u32_u32(refclk, (multiplier
+> << 16) + frac_quot) +
+> +				     DIV_ROUND_CLOSEST(refclk * frac_rem,
+> frac_den),
+> +				     10 << (tx_clk_div + 16));
+> +	tmpclk *=3D (hdmi_div ? 2 : 1);
+> +
+> +	return tmpclk;
+> +}
+>=20
+>  static void intel_c10pll_readout_hw_state(struct intel_encoder *encoder,
+>  					  struct intel_cx0pll_state
+> *cx0pll_state) @@ -2362,10 +2386,93 @@ intel_c20_pll_tables_get(const
+> struct intel_crtc_state *crtc_state,
 >  	return NULL;
 >  }
 >=20
-> +static u8 intel_c20_get_dp_rate(u32 clock); static u8
-> +intel_c20_get_hdmi_rate(u32 clock); static bool is_hdmi_frl(u32 clock);
-> +static int intel_get_c20_custom_width(u32 clock, bool dp);
-> +
-> +static void intel_c20_calc_vdr_params(struct intel_c20pll_vdr_state *vdr=
-,
-> bool is_dp,
-> +				      int port_clock)
-> +{
-> +	vdr->custom_width =3D intel_get_c20_custom_width(port_clock,
-> is_dp);
-> +
-> +	vdr->serdes_rate =3D 0;
-> +	vdr->hdmi_rate =3D 0;
-> +
-> +	if (is_dp) {
-> +		vdr->serdes_rate =3D PHY_C20_IS_DP |
-> +
-> PHY_C20_DP_RATE(intel_c20_get_dp_rate(port_clock));
-> +	} else {
-> +		if (is_hdmi_frl(port_clock))
-> +			vdr->serdes_rate =3D PHY_C20_IS_HDMI_FRL;
-> +
-> +		vdr->hdmi_rate =3D intel_c20_get_hdmi_rate(port_clock);
+> -static u8 intel_c20_get_dp_rate(u32 clock); -static u8
+> intel_c20_get_hdmi_rate(u32 clock); -static bool is_hdmi_frl(u32 clock); =
+-
+> static int intel_get_c20_custom_width(u32 clock, bool dp);
+> +static u8 intel_c20_get_dp_rate(u32 clock) {
+> +	switch (clock) {
+> +	case 162000: /* 1.62 Gbps DP1.4 */
+> +		return 0;
+> +	case 270000: /* 2.7 Gbps DP1.4 */
+> +		return 1;
+> +	case 540000: /* 5.4 Gbps DP 1.4 */
+> +		return 2;
+> +	case 810000: /* 8.1 Gbps DP1.4 */
+> +		return 3;
+> +	case 216000: /* 2.16 Gbps eDP */
+> +		return 4;
+> +	case 243000: /* 2.43 Gbps eDP */
+> +		return 5;
+> +	case 324000: /* 3.24 Gbps eDP */
+> +		return 6;
+> +	case 432000: /* 4.32 Gbps eDP */
+> +		return 7;
+> +	case 1000000: /* 10 Gbps DP2.0 */
+> +		return 8;
+> +	case 1350000: /* 13.5 Gbps DP2.0 */
+> +		return 9;
+> +	case 2000000: /* 20 Gbps DP2.0 */
+> +		return 10;
+> +	case 648000: /* 6.48 Gbps eDP*/
+> +		return 11;
+> +	case 675000: /* 6.75 Gbps eDP*/
+> +		return 12;
+> +	default:
+> +		MISSING_CASE(clock);
+> +		return 0;
 > +	}
 > +}
 > +
-> +#define PHY_C20_SERDES_RATE_MASK	(PHY_C20_IS_DP |
-> PHY_C20_DP_RATE_MASK | PHY_C20_IS_HDMI_FRL)
+> +static u8 intel_c20_get_hdmi_rate(u32 clock) {
+> +	if (clock >=3D 25175 && clock <=3D 600000)
+> +		return 0;
 > +
-> +static void intel_c20_readout_vdr_params(struct intel_encoder *encoder,
-> +					 struct intel_c20pll_vdr_state *vdr,
-> bool *cntx) {
-> +	u8 serdes;
-> +
-> +	serdes =3D intel_cx0_read(encoder, INTEL_CX0_LANE0,
-> PHY_C20_VDR_CUSTOM_SERDES_RATE);
-> +	*cntx =3D serdes & PHY_C20_CONTEXT_TOGGLE;
-> +
-> +	vdr->custom_width =3D intel_cx0_read(encoder, INTEL_CX0_LANE0,
-> PHY_C20_VDR_CUSTOM_WIDTH) &
-> +			    PHY_C20_CUSTOM_WIDTH_MASK;
-> +
-> +	vdr->serdes_rate =3D serdes & PHY_C20_SERDES_RATE_MASK;
-> +	if (!(vdr->serdes_rate & PHY_C20_IS_DP))
-> +		vdr->hdmi_rate =3D intel_cx0_read(encoder, INTEL_CX0_LANE0,
-> PHY_C20_VDR_HDMI_RATE) &
-> +				 PHY_C20_HDMI_RATE_MASK;
-> +	else
-> +		vdr->hdmi_rate =3D 0;
+> +	switch (clock) {
+> +	case 300000: /* 3 Gbps */
+> +	case 600000: /* 6 Gbps */
+> +	case 1200000: /* 12 Gbps */
+> +		return 1;
+> +	case 800000: /* 8 Gbps */
+> +		return 2;
+> +	case 1000000: /* 10 Gbps */
+> +		return 3;
+> +	default:
+> +		MISSING_CASE(clock);
+> +		return 0;
+> +	}
 > +}
 > +
-> +static void intel_c20_program_vdr_params(struct intel_encoder *encoder,
-> +					 const struct intel_c20pll_vdr_state
-> *vdr,
-> +					 u8 owned_lane_mask)
+> +static bool is_hdmi_frl(u32 clock)
 > +{
-> +	struct intel_display *display =3D to_intel_display(encoder);
-> +
-> +	drm_WARN_ON(display->drm, vdr->custom_width &
-> ~PHY_C20_CUSTOM_WIDTH_MASK);
-> +	intel_cx0_rmw(encoder, owned_lane_mask,
-> PHY_C20_VDR_CUSTOM_WIDTH,
-> +		      PHY_C20_CUSTOM_WIDTH_MASK, vdr->custom_width,
-> +		      MB_WRITE_COMMITTED);
-> +
-> +	drm_WARN_ON(display->drm, vdr->serdes_rate &
-> ~PHY_C20_SERDES_RATE_MASK);
-> +	intel_cx0_rmw(encoder, owned_lane_mask,
-> PHY_C20_VDR_CUSTOM_SERDES_RATE,
-> +		      PHY_C20_SERDES_RATE_MASK, vdr->serdes_rate,
-> +		      MB_WRITE_COMMITTED);
-> +
-> +	if (vdr->serdes_rate & PHY_C20_IS_DP)
-> +		return;
-> +
-> +	drm_WARN_ON(display->drm, vdr->hdmi_rate &
-> ~PHY_C20_HDMI_RATE_MASK);
-> +	intel_cx0_rmw(encoder, INTEL_CX0_BOTH_LANES,
-> PHY_C20_VDR_HDMI_RATE,
-> +		      PHY_C20_HDMI_RATE_MASK, vdr->hdmi_rate,
-> +		      MB_WRITE_COMMITTED);
+> +	switch (clock) {
+> +	case 300000: /* 3 Gbps */
+> +	case 600000: /* 6 Gbps */
+> +	case 800000: /* 8 Gbps */
+> +	case 1000000: /* 10 Gbps */
+> +	case 1200000: /* 12 Gbps */
+> +		return true;
+> +	default:
+> +		return false;
+> +	}
 > +}
 > +
->  static const struct intel_c20pll_state *  intel_c20_pll_find_table(const=
- struct
-> intel_crtc_state *crtc_state,
->  			 struct intel_encoder *encoder)
-> @@ -2400,19 +2470,26 @@ static int
-> intel_c20pll_calc_state_from_table(struct intel_crtc_state *crtc_stat  st=
-atic int
-> intel_c20pll_calc_state(struct intel_crtc_state *crtc_state,
->  				   struct intel_encoder *encoder)
->  {
-> +	bool is_dp =3D intel_crtc_has_dp_encoder(crtc_state);
->  	int err =3D -ENOENT;
->=20
->  	crtc_state->dpll_hw_state.cx0pll.use_c10 =3D false;
->=20
->  	/* try computed C20 HDMI tables before using consolidated tables */
-> -	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
-> +	if (!is_dp)
->  		/* TODO: Update SSC state for HDMI as well */
->  		err =3D intel_c20_compute_hdmi_tmds_pll(crtc_state);
->=20
->  	if (err)
->  		err =3D intel_c20pll_calc_state_from_table(crtc_state, encoder);
->=20
-> -	return err;
-> +	if (err)
-> +		return err;
+> +static bool is_dp2(u32 clock)
+> +{
+> +	/* DP2.0 clock rates */
+> +	if (clock =3D=3D 1000000 || clock =3D=3D 1350000 || clock  =3D=3D 20000=
+00)
+> +		return true;
 > +
-> +	intel_c20_calc_vdr_params(&crtc_state-
-> >dpll_hw_state.cx0pll.c20.vdr,
-> +				  is_dp, crtc_state->port_clock);
+> +	return false;
+> +}
 > +
-> +	return 0;
+> +static int intel_get_c20_custom_width(u32 clock, bool dp) {
+> +	if (dp && is_dp2(clock))
+> +		return 2;
+> +	else if (is_hdmi_frl(clock))
+> +		return 1;
+> +	else
+> +		return 0;
+> +}
+>=20
+>  static void intel_c20_calc_vdr_params(struct intel_c20pll_vdr_state *vdr=
+, bool
+> is_dp,
+>  				      int port_clock)
+> @@ -2654,84 +2761,6 @@ void intel_cx0pll_dump_hw_state(struct
+> intel_display *display,
+>  		intel_c20pll_dump_hw_state(display, &hw_state->c20);  }
+>=20
+> -static u8 intel_c20_get_dp_rate(u32 clock) -{
+> -	switch (clock) {
+> -	case 162000: /* 1.62 Gbps DP1.4 */
+> -		return 0;
+> -	case 270000: /* 2.7 Gbps DP1.4 */
+> -		return 1;
+> -	case 540000: /* 5.4 Gbps DP 1.4 */
+> -		return 2;
+> -	case 810000: /* 8.1 Gbps DP1.4 */
+> -		return 3;
+> -	case 216000: /* 2.16 Gbps eDP */
+> -		return 4;
+> -	case 243000: /* 2.43 Gbps eDP */
+> -		return 5;
+> -	case 324000: /* 3.24 Gbps eDP */
+> -		return 6;
+> -	case 432000: /* 4.32 Gbps eDP */
+> -		return 7;
+> -	case 1000000: /* 10 Gbps DP2.0 */
+> -		return 8;
+> -	case 1350000: /* 13.5 Gbps DP2.0 */
+> -		return 9;
+> -	case 2000000: /* 20 Gbps DP2.0 */
+> -		return 10;
+> -	case 648000: /* 6.48 Gbps eDP*/
+> -		return 11;
+> -	case 675000: /* 6.75 Gbps eDP*/
+> -		return 12;
+> -	default:
+> -		MISSING_CASE(clock);
+> -		return 0;
+> -	}
+> -}
+> -
+> -static u8 intel_c20_get_hdmi_rate(u32 clock) -{
+> -	if (clock >=3D 25175 && clock <=3D 600000)
+> -		return 0;
+> -
+> -	switch (clock) {
+> -	case 300000: /* 3 Gbps */
+> -	case 600000: /* 6 Gbps */
+> -	case 1200000: /* 12 Gbps */
+> -		return 1;
+> -	case 800000: /* 8 Gbps */
+> -		return 2;
+> -	case 1000000: /* 10 Gbps */
+> -		return 3;
+> -	default:
+> -		MISSING_CASE(clock);
+> -		return 0;
+> -	}
+> -}
+> -
+> -static bool is_dp2(u32 clock)
+> -{
+> -	/* DP2.0 clock rates */
+> -	if (clock =3D=3D 1000000 || clock =3D=3D 1350000 || clock  =3D=3D 20000=
+00)
+> -		return true;
+> -
+> -	return false;
+> -}
+> -
+> -static bool is_hdmi_frl(u32 clock)
+> -{
+> -	switch (clock) {
+> -	case 300000: /* 3 Gbps */
+> -	case 600000: /* 6 Gbps */
+> -	case 800000: /* 8 Gbps */
+> -	case 1000000: /* 10 Gbps */
+> -	case 1200000: /* 12 Gbps */
+> -		return true;
+> -	default:
+> -		return false;
+> -	}
+> -}
+> -
+>  static bool intel_c20_protocol_switch_valid(struct intel_encoder *encode=
+r)  {
+>  	struct intel_digital_port *intel_dig_port =3D enc_to_dig_port(encoder);
+> @@ -2741,16 +2770,6 @@ static bool
+> intel_c20_protocol_switch_valid(struct intel_encoder *encoder)
+>  	return intel_tc_port_in_legacy_mode(intel_dig_port);
 >  }
 >=20
->  int intel_cx0pll_calc_state(struct intel_crtc_state *crtc_state, @@ -248=
-6,8
-> +2563,8 @@ static void intel_c20pll_readout_hw_state(struct intel_encoder
-> *encoder,
->=20
->  	wakeref =3D intel_cx0_phy_transaction_begin(encoder);
->=20
-> -	/* 1. Read current context selection */
-> -	cntx =3D intel_cx0_read(encoder, INTEL_CX0_LANE0,
-> PHY_C20_VDR_CUSTOM_SERDES_RATE) & PHY_C20_CONTEXT_TOGGLE;
-> +	/* 1. Read VDR params and current context selection */
-> +	intel_c20_readout_vdr_params(encoder, &pll_state->vdr, &cntx);
->=20
->  	/* Read Tx configuration */
->  	for (i =3D 0; i < ARRAY_SIZE(pll_state->tx); i++) { @@ -2676,11 +2753,9
-> @@ static int intel_get_c20_custom_width(u32 clock, bool dp)
->=20
+> -static int intel_get_c20_custom_width(u32 clock, bool dp) -{
+> -	if (dp && is_dp2(clock))
+> -		return 2;
+> -	else if (is_hdmi_frl(clock))
+> -		return 1;
+> -	else
+> -		return 0;
+> -}
+> -
 >  static void intel_c20_pll_program(struct intel_display *display,
 >  				  struct intel_encoder *encoder,
-> -				  const struct intel_c20pll_state *pll_state,
-> -				  bool is_dp, int port_clock)
-> +				  const struct intel_c20pll_state *pll_state)
->  {
->  	u8 owned_lane_mask =3D intel_cx0_get_owned_lane_mask(encoder);
-> -	u8 serdes;
->  	bool cntx;
->  	int i;
->=20
-> @@ -2750,30 +2825,8 @@ static void intel_c20_pll_program(struct
+>  				  const struct intel_c20pll_state *pll_state)
+> @@ -2837,33 +2856,6 @@ static void intel_c20_pll_program(struct
 > intel_display *display,
->  	}
+>  		      MB_WRITE_COMMITTED);
+>  }
 >=20
->  	/* 4. Program custom width to match the link protocol */
-> -	intel_cx0_rmw(encoder, owned_lane_mask,
-> PHY_C20_VDR_CUSTOM_WIDTH,
-> -		      PHY_C20_CUSTOM_WIDTH_MASK,
+> -static int intel_c10pll_calc_port_clock(struct intel_encoder *encoder,
+> -					const struct intel_c10pll_state
+> *pll_state)
+> -{
+> -	unsigned int frac_quot =3D 0, frac_rem =3D 0, frac_den =3D 1;
+> -	unsigned int multiplier, tx_clk_div, hdmi_div, refclk =3D 38400;
+> -	int tmpclk =3D 0;
 > -
-> PHY_C20_CUSTOM_WIDTH(intel_get_c20_custom_width(port_clock, is_dp)),
-> -		      MB_WRITE_COMMITTED);
+> -	if (pll_state->pll[0] & C10_PLL0_FRACEN) {
+> -		frac_quot =3D pll_state->pll[12] << 8 | pll_state->pll[11];
+> -		frac_rem =3D  pll_state->pll[14] << 8 | pll_state->pll[13];
+> -		frac_den =3D  pll_state->pll[10] << 8 | pll_state->pll[9];
+> -	}
 > -
->  	/* 5. For DP or 6. For HDMI */
-> -	serdes =3D 0;
-
-With this 4,5 can be under the same multi comment now
-
-Regards,
-Suraj Kandpal
-
+> -	multiplier =3D (REG_FIELD_GET8(C10_PLL3_MULTIPLIERH_MASK,
+> pll_state->pll[3]) << 8 |
+> -		      pll_state->pll[2]) / 2 + 16;
 > -
-> -	if (is_dp)
-> -		serdes =3D PHY_C20_IS_DP |
+> -	tx_clk_div =3D REG_FIELD_GET8(C10_PLL15_TXCLKDIV_MASK, pll_state-
+> >pll[15]);
+> -	hdmi_div =3D REG_FIELD_GET8(C10_PLL15_HDMIDIV_MASK, pll_state-
+> >pll[15]);
 > -
-> PHY_C20_DP_RATE(intel_c20_get_dp_rate(port_clock));
-> -	else if (is_hdmi_frl(port_clock))
-> -		serdes =3D PHY_C20_IS_HDMI_FRL;
+> -	tmpclk =3D DIV_ROUND_CLOSEST_ULL(mul_u32_u32(refclk, (multiplier
+> << 16) + frac_quot) +
+> -				     DIV_ROUND_CLOSEST(refclk * frac_rem,
+> frac_den),
+> -				     10 << (tx_clk_div + 16));
+> -	tmpclk *=3D (hdmi_div ? 2 : 1);
 > -
-> -	intel_cx0_rmw(encoder, owned_lane_mask,
-> PHY_C20_VDR_CUSTOM_SERDES_RATE,
-> -		      PHY_C20_IS_DP | PHY_C20_DP_RATE_MASK |
-> PHY_C20_IS_HDMI_FRL,
-> -		      serdes,
-> -		      MB_WRITE_COMMITTED);
+> -	return tmpclk;
+> -}
 > -
-> -	if (!is_dp)
-> -		intel_cx0_rmw(encoder, INTEL_CX0_BOTH_LANES,
-> PHY_C20_VDR_HDMI_RATE,
-> -			      PHY_C20_HDMI_RATE_MASK,
-> -			      intel_c20_get_hdmi_rate(port_clock),
-> -			      MB_WRITE_COMMITTED);
-> +	intel_c20_program_vdr_params(encoder, &pll_state->vdr,
-> +owned_lane_mask);
->=20
->  	/*
->  	 * 7. Write Vendor specific registers to toggle context setting to load
-> @@ -3098,7 +3151,7 @@ static void __intel_cx0pll_enable(struct
-> intel_encoder *encoder,
->  	if (intel_encoder_is_c10phy(encoder))
->  		intel_c10_pll_program(display, encoder, &pll_state->c10);
->  	else
-> -		intel_c20_pll_program(display, encoder, &pll_state->c20,
-> is_dp, port_clock);
-> +		intel_c20_pll_program(display, encoder, &pll_state->c20);
->=20
->  	/*
->  	 * 6. Program the enabled and disabled owned PHY lane diff --git
-> a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> index f131bdd1c975..43c7200050e9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> @@ -255,6 +255,11 @@ struct intel_c20pll_state {
->  		u16 mplla[10];
->  		u16 mpllb[11];
->  	};
-> +	struct intel_c20pll_vdr_state {
-> +		u8 custom_width;
-> +		u8 serdes_rate;
-> +		u8 hdmi_rate;
-> +	} vdr;
->  };
->=20
->  struct intel_cx0pll_state {
+>  static void intel_program_port_clock_ctl(struct intel_encoder *encoder,
+>  					 const struct intel_cx0pll_state
+> *pll_state,
+>  					 bool is_dp, int port_clock,
 > --
 > 2.34.1
 
