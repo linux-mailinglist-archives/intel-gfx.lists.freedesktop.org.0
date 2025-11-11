@@ -2,62 +2,185 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB4A4C4C201
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Nov 2025 08:34:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08419C4C219
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Nov 2025 08:36:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 627E610E4F1;
-	Tue, 11 Nov 2025 07:34:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9061D10E32D;
+	Tue, 11 Nov 2025 07:36:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VjUEwhhE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="juo1IjWt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFE1410E32D;
- Tue, 11 Nov 2025 07:34:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 534F410E32D;
+ Tue, 11 Nov 2025 07:36:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762846465; x=1794382465;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=htDHVYD8DVHvEVN6KsstFZWmrzyWWVzNqO0IeN06O0w=;
- b=VjUEwhhERqzYllI0watJCeU9AaEjZxQSUBIETEDkEZB0uuyAJQOTDPDI
- n3L2D2nTjpPGV8MIqvPSgkLmvltF9fvx55xwBasGtfXb3zLgsRVuAmELr
- 78EA7xLgEDmMvSjIG/q4ms6SRVYFsAT1pN/CSLvwR+aVgh6NXIt1TXb9T
- 1iXnQQ9D2IrpK0ATj9pkdIAbn2IdM7iykLiLRnJp4VdVlrmr02ILGySfi
- A6y/BVu2Z6bUfTA1s3UXrtiNKBWOEF2Wep+aG2lRvWQDTyBgUqXc6iSnG
- XedzlJDxKrmk9cFuAXskyG4Es64v0ZQIJvCn5AzG3cNJAQ2gm2PyH3m6h A==;
-X-CSE-ConnectionGUID: lsPgCVvfRf6Jp9KJXRGEaQ==
-X-CSE-MsgGUID: G/DuQ5HRTwCoRnlgkz56ig==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="68754362"
-X-IronPort-AV: E=Sophos;i="6.19,295,1754982000"; d="scan'208";a="68754362"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 23:34:25 -0800
-X-CSE-ConnectionGUID: ZUItU43USLO6B04lP/JtYQ==
-X-CSE-MsgGUID: JTxnxF2uSsKl81VlBiUwAA==
+ t=1762846604; x=1794382604;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=8i4BUc6QZvW2dSz1RXmTntPffz4App0HuM/sGPC5/Ps=;
+ b=juo1IjWtk8jNgH9Aao6KgLbFZYDJPWOC1RUHRpR8X15UZkKXGr6qnZ5a
+ 06uR0FEtcTj4JMtN1SydXfAf7pKgHR7s1m4XtiETHfb9lD55/cfI4ErqI
+ wO7XzsU6C+4mTlCTGBYr39rEA5khbIvP7RnzkYiDa40LttK4X6RATR5PT
+ yd/IGd96/dhKETaEz8JmOnSpg2Jy20GM+9U3arRk2aUKIvjFsIayG0Nnr
+ jISHEwnQMvLsPIh87ge8cCqYJHokUi1zqTXF5BTVA7J9ecv7H13PwcI2F
+ xNIyciw7AGrt9z38xVi4Lg/lVYHcC+qC+DZcx91+D1klmXSMZXgKnFyBY w==;
+X-CSE-ConnectionGUID: PtWTKjZ3TeiYfG0aFEt1Yw==
+X-CSE-MsgGUID: PvmfvBo/ThmbtRCSioG8mw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="82534039"
+X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; d="scan'208";a="82534039"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2025 23:36:39 -0800
+X-CSE-ConnectionGUID: ZhnohbXfR0WN0het5gS+mw==
+X-CSE-MsgGUID: JnP96+I7Q1G2B0AR1LoQEw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; d="scan'208";a="194085486"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.239])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 23:34:23 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	ville.syrjala@linux.intel.com
-Subject: [PATCH v2 3/3] drm/{i915,
- xe}/display: move irq calls to parent interface
-Date: Tue, 11 Nov 2025 09:34:04 +0200
-Message-ID: <d0b480c27105b1013153212aafcb06bdf81a8757.1762846363.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1762846363.git.jani.nikula@intel.com>
-References: <cover.1762846363.git.jani.nikula@intel.com>
-MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Type: text/plain; charset=UTF-8
+X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; d="scan'208";a="212286345"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2025 23:36:39 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Mon, 10 Nov 2025 23:36:38 -0800
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27 via Frontend Transport; Mon, 10 Nov 2025 23:36:38 -0800
+Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.53) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Mon, 10 Nov 2025 23:36:38 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=blNTpqorMkPC08vLTnqRZ+ShdbBrMjsUhuefMQrfiHQq6rIzg4eGHyf1WYs4dpb+FTB7g2IoPuJ9w1UR1VkYoYhfJyVBUAY2aBxv9B0mzpEOje4FOi7Wb51tINsA+sdsSRP6Ks1SJvsNteRXATqflUnoh+PwHL3MPfeM5NPIP3jFxoHhx5Pj0XMHvqwRbAsdfxD3Q8y3mUYYHpUxytWty1RRLbszT0aV5TQStwi3w27hsbrzGQSVpETP3ltwVVsdCpgLZ5khCny7WXhKg8QwK7aO9RpMvRXccV++0xxtGIhLI9JjGTkSLQdYwrbJfHuers5dlQ60WkoWZjOxXeLhxQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Kg9cCWcdGcfSvq3b54hj9ddeMAtKdj7rcVOAS7Thayc=;
+ b=opecq7kHhE96Q1IZGrzIOTyc6dQHi7vLqKTQNs2+fP7jrB20vH9B8TUkZZheaX5/jYda4cHm20/hmgxzk5VO7lRKNU2YzuoKdWXhUtgNdEqYu9+SaFwqXWhRphZ28Thh9GwROc6hXUb2jsDWX+38yehY3eJfMVh+4OaV/htXjJ7rFDPRVnElzCmjiFFp60mKwMZTnYA9lBPf67ZxeyHkv9cwh+uCsyKnOOa2GNUzehc6rES9BaHeu/juOM7Z12v/qvDUAvRX5KQ+/9xV3970Ab3pQVwZg2w/2xT3vzHWuvTqWXUXlT4fTrJ58SWXafPxZjwJVdF9L9Qd5Um2JKp0ZA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by SN7PR11MB6602.namprd11.prod.outlook.com (2603:10b6:806:272::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.16; Tue, 11 Nov
+ 2025 07:36:36 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839%7]) with mapi id 15.20.9298.010; Tue, 11 Nov 2025
+ 07:36:36 +0000
+Message-ID: <b23bafff-e027-46d0-af73-6ed631db3f86@intel.com>
+Date: Tue, 11 Nov 2025 13:06:29 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RESEND 00/10] Introduce drm sharpness property
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <nemesa.garg@intel.com>
+References: <20251028120747.3027332-1-ankit.k.nautiyal@intel.com>
+ <aRIuBqnYeIhsemHD@intel.com>
+Content-Language: en-US
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <aRIuBqnYeIhsemHD@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5PR01CA0213.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b0::13) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|SN7PR11MB6602:EE_
+X-MS-Office365-Filtering-Correlation-Id: b152f157-a5df-4677-8d06-08de20f50b28
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?K2VHY214cjhXZ01QMm1TbFB0UG5JZytpQWhOVUd4MFhWaFFiVzMxMzNod2JF?=
+ =?utf-8?B?TDFlMUF6c09zOGYyUERPQ2VORENkNFJJOUVtN2cwcDFBUS9jR1liVjJad3lM?=
+ =?utf-8?B?dkp4QldmajVZVTBEWnpydEZnWVFxd3lPMlFsY1UyREZ4MEE2SElhcElDb0Vs?=
+ =?utf-8?B?dFFpUmdjcU5ycHlkMUNKVSt4dTJzd29CdkFqOFc1cmVhVjltZjVMNnZMZUdV?=
+ =?utf-8?B?VW9xd21POC9OVlZqaG01YU41TmM4NjN6R3hvVXU3Ukg3NlNROUw2eGVmRDZj?=
+ =?utf-8?B?bEJJaVZ1SUdIaTZheDB2ek9Pcm5vZmFTVk9wVGNiMHhSM1BhazJkTURrQlFy?=
+ =?utf-8?B?Zmo2TUE3VEN4UmtiTm9xT3U3RUxjcE5mZXIwbTd4SEtnM2wreWJWQ0w2cVBH?=
+ =?utf-8?B?QmxISmtlYWxvZVlUTWp6OWNMYmVFcjRBK3h1Qzd0MlpONkNUODVrWGlYaE0v?=
+ =?utf-8?B?dWFrUmlwUWdQVHU3QVo0cE8rQjlBM3ZjQzlranZYb1ZxUGc5V3NPWEQ3aUY3?=
+ =?utf-8?B?Q3diZXFkYVB5U3NUWUUrcWh1R2dvakR1TmNOVmxsYzVOZ0ExWWo0dFc3TjRB?=
+ =?utf-8?B?NDdBTXB3TTBabzVyN2krWW9kUWRHNUhHa0xIVmlrQ3hIdE1rMjZZeWZ1YTdR?=
+ =?utf-8?B?aXlnZTFId0NZNXpicURnT1dXL0FONllXVEkwbXNNaU1XM3hzQk1jU1ZMalpJ?=
+ =?utf-8?B?RTVTMXQxOHJQR0JNWWk1dTZWTU43ODA1VlNCU3ZYcVhweHJHdHkwdDhRQmhZ?=
+ =?utf-8?B?UGRuNXdVeE5xRTNPTmpvalpCMFZ0WTRVMndLSEh4NVlTTjJ5V0NNbHFTdjl1?=
+ =?utf-8?B?a3oxZUJuRkRnbXI0R01aMFNpbHNHTy9kMHF1N1NLaUY3TGZiSDBBb1ljS3B6?=
+ =?utf-8?B?UlhYMUloTFBPcUs1dkdYQjAzZldYRlphUTV2dHBmYTEzWE53UGhSZGpOZ2NT?=
+ =?utf-8?B?TkRzS1BrTjJoOXY5aElycWJXTUFhSWJRcmNuY3lBQk5rUzZBKzBLamp0U1VD?=
+ =?utf-8?B?OTUxNTdzVjEwNDVQcnJ4S2dDRmZXWmhZLzRWczZlR0lTd01vWEpseExYNVdR?=
+ =?utf-8?B?VXNRYUNQS2UvUmFkRGx2SENQN3BmN1hrWGdLNnZWYmRPMnlDWkg1UE02ZzVy?=
+ =?utf-8?B?V1lOdWhHUUs2TmltcnY4OVpjSHRHZkRGMExnOGc4ZTJnak5IanpUZ3h3QWhG?=
+ =?utf-8?B?Z09sblFkdnRiOHIxWVVZR2t2Z1I1MjJNaHpKaWxkemM0YzYyOEh6Qm5pKzJm?=
+ =?utf-8?B?bVVZSEliYmE0VHYwK2x4T1VHKzVnVXFPSnBhQ0lBa2kyTDcwb1hRbEE3NDJO?=
+ =?utf-8?B?cytpVmIzVkRXSXA3T3dweDYrQ1hwdE9uakRqNHB4SGNQM0FEWG5EWE1NdVdR?=
+ =?utf-8?B?Tjk2MU83bW1mMnBjakp2d2RieXE0Q2lkYlpTVVVTUWMwbkpHTmVhT1ljemZp?=
+ =?utf-8?B?MmQzOW9lYTJETXFjeWUxQmx3VmhGUTJKR084WkpDUlJhMXNtWkFFTUhlMjFI?=
+ =?utf-8?B?NEFrQkk1VUt1a1J2UUt6SjE3aEhuMDN2aXJUdFlac3JrdFU5anR3RUNlSGJO?=
+ =?utf-8?B?Q1BCSUNtak5QTExSWG8zVWYxNVhLbjJsdHh2bVF4WTB0TWg3QjBTRDNSUWFu?=
+ =?utf-8?B?aUhWeWZtQlJuSlV2aTlyTW1XNGVYU1IrTU5yNzhnRTFobk42aWl2SVNING42?=
+ =?utf-8?B?UFZuSnplTjdmVnRObzVYUjdqVkNvOWs4dnZGOSs2aEF3SUZhVE5uTkxiQWVw?=
+ =?utf-8?B?T3Bnb0dxWjFrQTNiWEYzVlF1R2V1azNZbW9XMGxHQk5FNUpKajd4ZjNMekMy?=
+ =?utf-8?B?eG03cHNVSEpCQVNpMUd0dHFoOW1wendpYzk4ZHlBWU9VQ1VVcVZwVk1mS2M0?=
+ =?utf-8?B?M0kwWmRiRWFHb29vMWVPWURvUkkwblhTN2lTczNtd3o4MXc9PQ==?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cnRhcEVGa1JuWE1LOXBwVy9td0ZXM3ZVMWZIRkF1UkFpdVNHQTRLMUNaeGNj?=
+ =?utf-8?B?LzBXNVhKSXpETytEdndBZFlRSzRjZ0FlWkZMeDFJaXYvV0pyaDdlUG9QQTJi?=
+ =?utf-8?B?ZS91dm5CYUs5RmVuT1ZUQTFkRGhBSGd6RnE1RlFmOFNUM1FMY3R2UEkyZmNK?=
+ =?utf-8?B?MWlaYTNxMXkzZUJvUUZEN0xzdGlWOWpJVzhrYnVCb1MwVW55M2V5ZkYyNXN5?=
+ =?utf-8?B?ZTVsUHhPdDg2QzV3bDR1Uk1GTGFvUzVWY2hNVm1OdkVTMytRSitSQ1NUVmc4?=
+ =?utf-8?B?K1BDM1pXZDdHU2ViUXRhSmNudEpjZTlSYXZFZFE3Vm82STZ0enlvV3NwTXdi?=
+ =?utf-8?B?L0Z3K2RTcnpnUjhNZmZDamJTMzMxWGthdzdUYzJPZTNSazBXeXg3ZlVESWJj?=
+ =?utf-8?B?bVZLMUgrdGRUMlJWV2ZBdW1INENDTTVWSVRxQ0Q2S0w3cjdxNnVhKzc4N2hV?=
+ =?utf-8?B?RHJRSndKMTY1NSt2SFlEQmxpeFdSclkxaTdzSDdSRE1VRFNKVTFNNXlER1dQ?=
+ =?utf-8?B?ZzRZQXBFcEVTenU5VGNWdVhTRWZieTgxNWxGTGlOeWFBS09BMlhNRElGOTNR?=
+ =?utf-8?B?YUU0VzZUczdocGFwemErcDNTNU4ya0tGMGNBSHduMTI2NW9kMTJodmllbnUw?=
+ =?utf-8?B?T2lheGxaOExNckd6UVBiK3VjWFJxMjdJQ0RHc2VhZFpmd241ZVFpS29NSHAw?=
+ =?utf-8?B?SWovclRiYVBjMjVoK0xCdTdEMDZNcWhZOVBUYnVoamhuMWtVellXbGZwejhX?=
+ =?utf-8?B?ZWdaaG14cThwV0ZMT0V3YXhFM25QeWp0MkN2SXZaNGpWTjlaRlRKbFVBdjhz?=
+ =?utf-8?B?dndTdGI4MTl3UEU1aWZ3MFNFeTJ2S1ZqcG5udVBBSSsyRlRlZVBCTUpRT3RZ?=
+ =?utf-8?B?VEpzYkdBSmFpY0dpak9mUzJVWGp4ck1RY0QzK3BENHVicC9odkZqelk2Mzl1?=
+ =?utf-8?B?UjNab2cySFhnVEJyOC9Ca0ZoOTRKK3RFVkYveldxd09UMGlLMktlNk5MM0dL?=
+ =?utf-8?B?dURzYUNDc2REdVBtQ094RnBic3JKZjRYSEhFSUtwTEVicE1KbGt0ZW4xYW1p?=
+ =?utf-8?B?Ym5pQTN6SUVBWXlNMWNUNXNtSHdKVFo3bUxiSmFrb1h5T1NiRjYzRFg3QlQx?=
+ =?utf-8?B?Z1h2Zjd0NjBHS3BOL0V4Mlc1RFNWaTNjdlVBRjJlU3Q1UDRGZG11QXRZdXVs?=
+ =?utf-8?B?RFJ2K1YrQnp3eGgwclJJVHgwRG91NEFLYVRBbVFGN2pTRzNWMlV5OCtVb2J3?=
+ =?utf-8?B?RTZvMXpjL2xtdTNxZEYxMWo1OUd2VTcwd2hNVWc5NlNLaU5ualUwQnJ0VEVL?=
+ =?utf-8?B?ZWgzRkN0ZThrY3p3MFA2bUxSV21rSE1ROU9QVnNjN0NmeC9hRWZhdUo4NTdE?=
+ =?utf-8?B?aTBwNmRSOTVVcytrcXBNOVRTK3kweHN4aGRRZElzenA4VW1vTVRRSmdsOUoz?=
+ =?utf-8?B?K0lFbVlRNVE0endLclpIZmtnRVk3VzlHbldlb3dQbnNjb1pxaU1FOFdCR0NW?=
+ =?utf-8?B?TTZCNnZHdlJLcmltTzVPUENieHBIbEwyMTBBZWtyTzBqT0VBRHhURkptUS9G?=
+ =?utf-8?B?ZG1WV1lzb0ZKckNmUDcrYkpoRmgrQzhZa3lLenJQazAzYlQzVnVUeVNSemFZ?=
+ =?utf-8?B?NWVKK1RTUU5ZZUxubjdRakNjK2xuZ0tac1BsaXRhWjNrQVFFL2FRSVNucFV1?=
+ =?utf-8?B?WFRyZTQxWUFwM0pQYzJNd1FYU09Kck5DaWExbzdHd1NsbWl0eFpleGhjMUtv?=
+ =?utf-8?B?QklTbm1pcXI0c3BwRFlPTnVscHpneGJhYm1aQXhQelFhTzRXUXZMMmVMN1JB?=
+ =?utf-8?B?RVdUYXJBUEZTU1pTYkhGZTRwbThyQ2xEY1p4QmJudkhJZEp4d3h5WEJ6ZWFR?=
+ =?utf-8?B?TDgxOTJKY0NWeWl5d2d1ZEtLSitkQlJhQ1p0eVB2ZXU3a3ZXYklGZjBNT3Ev?=
+ =?utf-8?B?ZzZjRGlueW50cldHYVpOQXR5WlgwNXNNMU5Oa0lkNE50ejRuN3FmbCtQRDNn?=
+ =?utf-8?B?YjFHYy9qUUNKS1c5dVJIUW9rcklFUjhrcktUdG1pc3RtSEQ0cXREbFEvbG1O?=
+ =?utf-8?B?SVh1YklQUWlYdmRHWVUvcXYyYjVwNGxxVVlHNmFmak43Ui9SRUdJYzZ4bjJn?=
+ =?utf-8?B?aCsrOG1jWndzOVJmc0lUMlc2MTR4N1Z6TkdGL29BamNzQ0JZWTBmZWRjZ2ZL?=
+ =?utf-8?B?WHc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b152f157-a5df-4677-8d06-08de20f50b28
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2025 07:36:36.2510 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Dj+gnAIEm2EMi4bZJZpRtd8kBGSjmZgP3gDbn7Fo7Z4pKl8GSZCS2LKCzyFmhCtY7KgA2JP6LcwtW1iKBi6CpIWGTgPhZLD2pzsyRkXY1yU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6602
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,612 +196,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add an irq parent driver interface for the .enabled and .synchronize
-calls. This lets us drop the dependency on i915_drv.h and i915_irq.h in
-multiple places, and subsequently remove the compat i915_irq.h and
-i915_irq.c files along with the display/ext directory from xe
-altogether.
 
-Use intel_irqs_enabled() and intel_synchronize_irq() static wrappers for
-parent interface calls in intel_display_irq.c while chasing the function
-pointers everywhere else. It's still a bit uncertain if we should
-universally have wrappers for the parent interface calls or not.
+On 11/10/2025 11:55 PM, Ville Syrjälä wrote:
+> On Tue, Oct 28, 2025 at 05:37:36PM +0530, Ankit Nautiyal wrote:
+>> This is a resend of the patch series [1] originally submitted by
+>> Nemesa Garg <nemesa.garg@intel.com> to:
+>> - intel-gfx@lists.freedesktop.org
+>> - dri-devel@lists.freedesktop.org
+>> - intel-xe@lists.freedesktop.org
+>>
+>> One of the patches was missed by Patchwork, which caused the xe CI to skip
+>> running tests for the full series. To ensure proper CI coverage and
+>> results, I’ve applied the series on top of the latest tree and regenerated
+>> it using `git format-patch`.
+>>
+>> [1] https://patchwork.freedesktop.org/series/138754/
+>>
+>>
+>> --- Original cover letter follows ---
+>>
+>> Many a times images are blurred or upscaled content is also not as
+>> crisp as original rendered image. Traditional sharpening techniques often
+>> apply a uniform level of enhancement across entire image, which sometimes
+>> result in over-sharpening of some areas and potential loss of natural details.
+>>
+>> Intel has come up with Display Engine based adaptive sharpening filter
+>> with minimal power and performance impact. From LNL onwards, the Display
+>> hardware can use one of the pipe scaler for adaptive sharpness filter.
+>> This can be used for both gaming and non-gaming use cases like photos,
+>> image viewing. It works on a region of pixels depending on the tap size.
+>>
+>> This is an attempt to introduce an adaptive sharpness solution which
+>> helps in improving the image quality. For this new CRTC property is added.
+>> The user can set this property with desired sharpness strength value with
+>> 0-255. A value of 1 representing minimum sharpening strength and 255
+>> representing maximum sharpness strength. A strength value of 0 means no
+>> sharpening or sharpening feature disabled.
+>> It works on a region of pixels depending on the tap size. The coefficients
+>> are used to generate an alpha value which is used to blend the sharpened
+>> image to original image.
+>>
+>> Middleware MR link: https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3665
+>> IGT patchwork link: https://patchwork.freedesktop.org/series/130218/
+>>
+>> Continuing discussions from:  https://patchwork.freedesktop.org/series/129888/
+>>
+>> https://invent.kde.org/plasma/kwin/-/merge_requests/7689
+>> Got ack from kwin maintainer on the UAPI patch.
+>>
+>> Nemesa Garg (10):
+>>    drm/drm_crtc: Introduce sharpness strength property
+>>    drm/i915/display: Introduce HAS_CASF for sharpness support
+>>    drm/i915/display: Add CASF strength and winsize
+>>    drm/i915/display: Add filter lut values
+>>    drm/i915/display: Compute the scaler coefficients
+>>    drm/i915/display: Add and compute scaler parameter
+>>    drm/i915/display: Configure the second scaler
+>>    drm/i915/display: Set and get the casf config
+>>    drm/i915/display: Enable/disable casf
+>>    drm/i915/display: Expose sharpness strength property
+> The i915 part of this needs a rewrite:
+> - it needs to properly integrated into skl_scaler.c
+>    instead of reimplementing half of it
+> - for some reason it's doing stuff in the pre/post
+>    plane update hooks instead of from the vblank evade
+>    critical section, which means the updates won't be
+>    atomic and also can't be executed via DSB
+> - the state computation is in the wrong place. It should
+>    be part of compute_config() but now it's somewhere later
+>    where it's screwing up the prefill stuff again (I can't
+>    land the final prefill fixes now because this laded in the
+>    meantime).
 
-v2: Keep static wrappers in intel_display_irq.c (Ville)
+Thanks Ville for the feedback. I will work with Nemesa to work on the 
+mentioned points.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- .../gpu/drm/i915/display/intel_display_irq.c  | 47 +++++++++----------
- .../drm/i915/display/intel_display_power.c    |  5 +-
- .../i915/display/intel_display_power_well.c   | 15 ++----
- drivers/gpu/drm/i915/display/intel_gmbus.c    |  9 ++--
- drivers/gpu/drm/i915/display/intel_hotplug.c  |  6 +--
- .../gpu/drm/i915/display/intel_lpe_audio.c    |  1 -
- drivers/gpu/drm/i915/display/intel_pipe_crc.c |  6 +--
- drivers/gpu/drm/i915/i915_driver.c            |  1 +
- drivers/gpu/drm/i915/i915_irq.c               | 16 +++++++
- drivers/gpu/drm/i915/i915_irq.h               |  2 +
- drivers/gpu/drm/xe/Makefile                   |  2 -
- .../gpu/drm/xe/compat-i915-headers/i915_irq.h |  6 ---
- drivers/gpu/drm/xe/display/ext/i915_irq.c     | 18 -------
- drivers/gpu/drm/xe/display/xe_display.c       | 18 +++++++
- include/drm/intel/display_parent_interface.h  |  8 ++++
- 15 files changed, 81 insertions(+), 79 deletions(-)
- delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_irq.h
- delete mode 100644 drivers/gpu/drm/xe/display/ext/i915_irq.c
+Regards,
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index 2a92ca6c2f82..c6b1683a367b 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -5,9 +5,8 @@
- 
- #include <drm/drm_print.h>
- #include <drm/drm_vblank.h>
-+#include <drm/intel/display_parent_interface.h>
- 
--#include "i915_drv.h"
--#include "i915_irq.h"
- #include "i915_reg.h"
- #include "icl_dsi_regs.h"
- #include "intel_crtc.h"
-@@ -31,6 +30,16 @@
- #include "intel_psr.h"
- #include "intel_psr_regs.h"
- 
-+static bool intel_irqs_enabled(struct intel_display *display)
-+{
-+	return display->parent->irq->enabled(display->drm);
-+}
-+
-+static void intel_synchronize_irq(struct intel_display *display)
-+{
-+	display->parent->irq->synchronize(display->drm);
-+}
-+
- static void irq_reset(struct intel_display *display, struct i915_irq_regs regs)
- {
- 	intel_de_write(display, regs.imr, 0xffffffff);
-@@ -160,7 +169,6 @@ intel_handle_vblank(struct intel_display *display, enum pipe pipe)
- void ilk_update_display_irq(struct intel_display *display,
- 			    u32 interrupt_mask, u32 enabled_irq_mask)
- {
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	u32 new_val;
- 
- 	lockdep_assert_held(&display->irq.lock);
-@@ -171,7 +179,7 @@ void ilk_update_display_irq(struct intel_display *display,
- 	new_val |= (~enabled_irq_mask & interrupt_mask);
- 
- 	if (new_val != display->irq.ilk_de_imr_mask &&
--	    !drm_WARN_ON(display->drm, !intel_irqs_enabled(dev_priv))) {
-+	    !drm_WARN_ON(display->drm, !intel_irqs_enabled(display))) {
- 		display->irq.ilk_de_imr_mask = new_val;
- 		intel_de_write(display, DEIMR, display->irq.ilk_de_imr_mask);
- 		intel_de_posting_read(display, DEIMR);
-@@ -197,7 +205,6 @@ void ilk_disable_display_irq(struct intel_display *display, u32 bits)
- void bdw_update_port_irq(struct intel_display *display,
- 			 u32 interrupt_mask, u32 enabled_irq_mask)
- {
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	u32 new_val;
- 	u32 old_val;
- 
-@@ -205,7 +212,7 @@ void bdw_update_port_irq(struct intel_display *display,
- 
- 	drm_WARN_ON(display->drm, enabled_irq_mask & ~interrupt_mask);
- 
--	if (drm_WARN_ON(display->drm, !intel_irqs_enabled(dev_priv)))
-+	if (drm_WARN_ON(display->drm, !intel_irqs_enabled(display)))
- 		return;
- 
- 	old_val = intel_de_read(display, GEN8_DE_PORT_IMR);
-@@ -231,14 +238,13 @@ static void bdw_update_pipe_irq(struct intel_display *display,
- 				enum pipe pipe, u32 interrupt_mask,
- 				u32 enabled_irq_mask)
- {
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	u32 new_val;
- 
- 	lockdep_assert_held(&display->irq.lock);
- 
- 	drm_WARN_ON(display->drm, enabled_irq_mask & ~interrupt_mask);
- 
--	if (drm_WARN_ON(display->drm, !intel_irqs_enabled(dev_priv)))
-+	if (drm_WARN_ON(display->drm, !intel_irqs_enabled(display)))
- 		return;
- 
- 	new_val = display->irq.de_pipe_imr_mask[pipe];
-@@ -274,7 +280,6 @@ void ibx_display_interrupt_update(struct intel_display *display,
- 				  u32 interrupt_mask,
- 				  u32 enabled_irq_mask)
- {
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	u32 sdeimr = intel_de_read(display, SDEIMR);
- 
- 	sdeimr &= ~interrupt_mask;
-@@ -284,7 +289,7 @@ void ibx_display_interrupt_update(struct intel_display *display,
- 
- 	lockdep_assert_held(&display->irq.lock);
- 
--	if (drm_WARN_ON(display->drm, !intel_irqs_enabled(dev_priv)))
-+	if (drm_WARN_ON(display->drm, !intel_irqs_enabled(display)))
- 		return;
- 
- 	intel_de_write(display, SDEIMR, sdeimr);
-@@ -348,7 +353,6 @@ u32 i915_pipestat_enable_mask(struct intel_display *display,
- void i915_enable_pipestat(struct intel_display *display,
- 			  enum pipe pipe, u32 status_mask)
- {
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	i915_reg_t reg = PIPESTAT(display, pipe);
- 	u32 enable_mask;
- 
-@@ -357,7 +361,7 @@ void i915_enable_pipestat(struct intel_display *display,
- 		      pipe_name(pipe), status_mask);
- 
- 	lockdep_assert_held(&display->irq.lock);
--	drm_WARN_ON(display->drm, !intel_irqs_enabled(dev_priv));
-+	drm_WARN_ON(display->drm, !intel_irqs_enabled(display));
- 
- 	if ((display->irq.pipestat_irq_mask[pipe] & status_mask) == status_mask)
- 		return;
-@@ -372,7 +376,6 @@ void i915_enable_pipestat(struct intel_display *display,
- void i915_disable_pipestat(struct intel_display *display,
- 			   enum pipe pipe, u32 status_mask)
- {
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	i915_reg_t reg = PIPESTAT(display, pipe);
- 	u32 enable_mask;
- 
-@@ -381,7 +384,7 @@ void i915_disable_pipestat(struct intel_display *display,
- 		      pipe_name(pipe), status_mask);
- 
- 	lockdep_assert_held(&display->irq.lock);
--	drm_WARN_ON(display->drm, !intel_irqs_enabled(dev_priv));
-+	drm_WARN_ON(display->drm, !intel_irqs_enabled(display));
- 
- 	if ((display->irq.pipestat_irq_mask[pipe] & status_mask) == 0)
- 		return;
-@@ -2174,14 +2177,13 @@ void gen11_display_irq_reset(struct intel_display *display)
- void gen8_irq_power_well_post_enable(struct intel_display *display,
- 				     u8 pipe_mask)
- {
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	u32 extra_ier = GEN8_PIPE_VBLANK | GEN8_PIPE_FIFO_UNDERRUN |
- 		gen8_de_pipe_flip_done_mask(display);
- 	enum pipe pipe;
- 
- 	spin_lock_irq(&display->irq.lock);
- 
--	if (!intel_irqs_enabled(dev_priv)) {
-+	if (!intel_irqs_enabled(display)) {
- 		spin_unlock_irq(&display->irq.lock);
- 		return;
- 	}
-@@ -2197,12 +2199,11 @@ void gen8_irq_power_well_post_enable(struct intel_display *display,
- void gen8_irq_power_well_pre_disable(struct intel_display *display,
- 				     u8 pipe_mask)
- {
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	enum pipe pipe;
- 
- 	spin_lock_irq(&display->irq.lock);
- 
--	if (!intel_irqs_enabled(dev_priv)) {
-+	if (!intel_irqs_enabled(display)) {
- 		spin_unlock_irq(&display->irq.lock);
- 		return;
- 	}
-@@ -2213,7 +2214,7 @@ void gen8_irq_power_well_pre_disable(struct intel_display *display,
- 	spin_unlock_irq(&display->irq.lock);
- 
- 	/* make sure we're done processing display irqs */
--	intel_synchronize_irq(dev_priv);
-+	intel_synchronize_irq(display);
- }
- 
- /*
-@@ -2246,8 +2247,6 @@ static void ibx_irq_postinstall(struct intel_display *display)
- 
- void valleyview_enable_display_irqs(struct intel_display *display)
- {
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
--
- 	spin_lock_irq(&display->irq.lock);
- 
- 	if (display->irq.vlv_display_irqs_enabled)
-@@ -2255,7 +2254,7 @@ void valleyview_enable_display_irqs(struct intel_display *display)
- 
- 	display->irq.vlv_display_irqs_enabled = true;
- 
--	if (intel_irqs_enabled(dev_priv)) {
-+	if (intel_irqs_enabled(display)) {
- 		_vlv_display_irq_reset(display);
- 		_vlv_display_irq_postinstall(display);
- 	}
-@@ -2266,8 +2265,6 @@ void valleyview_enable_display_irqs(struct intel_display *display)
- 
- void valleyview_disable_display_irqs(struct intel_display *display)
- {
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
--
- 	spin_lock_irq(&display->irq.lock);
- 
- 	if (!display->irq.vlv_display_irqs_enabled)
-@@ -2275,7 +2272,7 @@ void valleyview_disable_display_irqs(struct intel_display *display)
- 
- 	display->irq.vlv_display_irqs_enabled = false;
- 
--	if (intel_irqs_enabled(dev_priv))
-+	if (intel_irqs_enabled(display))
- 		_vlv_display_irq_reset(display);
- out:
- 	spin_unlock_irq(&display->irq.lock);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 74fcd9cfe911..7c857291ad4c 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -7,11 +7,11 @@
- #include <linux/string_helpers.h>
- 
- #include <drm/drm_print.h>
-+#include <drm/intel/display_parent_interface.h>
- 
- #include "soc/intel_dram.h"
- 
- #include "i915_drv.h"
--#include "i915_irq.h"
- #include "i915_reg.h"
- #include "intel_backlight_regs.h"
- #include "intel_cdclk.h"
-@@ -1202,7 +1202,6 @@ static void hsw_assert_cdclk(struct intel_display *display)
- 
- static void assert_can_disable_lcpll(struct intel_display *display)
- {
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	struct intel_crtc *crtc;
- 
- 	for_each_intel_crtc(display->drm, crtc)
-@@ -1247,7 +1246,7 @@ static void assert_can_disable_lcpll(struct intel_display *display)
- 	 * gen-specific and since we only disable LCPLL after we fully disable
- 	 * the interrupts, the check below should be enough.
- 	 */
--	INTEL_DISPLAY_STATE_WARN(display, intel_irqs_enabled(dev_priv),
-+	INTEL_DISPLAY_STATE_WARN(display, display->parent->irq->enabled(display->drm),
- 				 "IRQs enabled\n");
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index eab7019f2252..5ae064bc536a 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -6,9 +6,8 @@
- #include <linux/iopoll.h>
- 
- #include <drm/drm_print.h>
-+#include <drm/intel/display_parent_interface.h>
- 
--#include "i915_drv.h"
--#include "i915_irq.h"
- #include "i915_reg.h"
- #include "intel_backlight_regs.h"
- #include "intel_combo_phy.h"
-@@ -628,8 +627,6 @@ static bool hsw_power_well_enabled(struct intel_display *display,
- 
- static void assert_can_enable_dc9(struct intel_display *display)
- {
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
--
- 	drm_WARN_ONCE(display->drm,
- 		      (intel_de_read(display, DC_STATE_EN) & DC_STATE_EN_DC9),
- 		      "DC9 already programmed to be enabled.\n");
-@@ -641,7 +638,7 @@ static void assert_can_enable_dc9(struct intel_display *display)
- 		      intel_de_read(display, HSW_PWR_WELL_CTL2) &
- 		      HSW_PWR_WELL_CTL_REQ(SKL_PW_CTL_IDX_PW_2),
- 		      "Power well 2 on.\n");
--	drm_WARN_ONCE(display->drm, intel_irqs_enabled(dev_priv),
-+	drm_WARN_ONCE(display->drm, display->parent->irq->enabled(display->drm),
- 		      "Interrupts not disabled yet.\n");
- 
- 	 /*
-@@ -655,9 +652,7 @@ static void assert_can_enable_dc9(struct intel_display *display)
- 
- static void assert_can_disable_dc9(struct intel_display *display)
- {
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
--
--	drm_WARN_ONCE(display->drm, intel_irqs_enabled(dev_priv),
-+	drm_WARN_ONCE(display->drm, display->parent->irq->enabled(display->drm),
- 		      "Interrupts not disabled yet.\n");
- 	drm_WARN_ONCE(display->drm,
- 		      intel_de_read(display, DC_STATE_EN) &
-@@ -1281,12 +1276,10 @@ static void vlv_display_power_well_init(struct intel_display *display)
- 
- static void vlv_display_power_well_deinit(struct intel_display *display)
- {
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
--
- 	valleyview_disable_display_irqs(display);
- 
- 	/* make sure we're done processing display irqs */
--	intel_synchronize_irq(dev_priv);
-+	display->parent->irq->synchronize(display->drm);
- 
- 	vlv_pps_reset_all(display);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
-index 82f3a40ecac7..98834cf622d2 100644
---- a/drivers/gpu/drm/i915/display/intel_gmbus.c
-+++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
-@@ -32,11 +32,11 @@
- #include <linux/i2c.h>
- #include <linux/iopoll.h>
- 
--#include <drm/drm_print.h>
- #include <drm/display/drm_hdcp_helper.h>
-+#include <drm/drm_print.h>
-+#include <drm/drm_print.h>
-+#include <drm/intel/display_parent_interface.h>
- 
--#include "i915_drv.h"
--#include "i915_irq.h"
- #include "i915_reg.h"
- #include "intel_de.h"
- #include "intel_display_regs.h"
-@@ -391,12 +391,11 @@ intel_gpio_setup(struct intel_gmbus *bus, i915_reg_t gpio_reg)
- 
- static bool has_gmbus_irq(struct intel_display *display)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	/*
- 	 * encoder->shutdown() may want to use GMBUS
- 	 * after irqs have already been disabled.
- 	 */
--	return HAS_GMBUS_IRQ(display) && intel_irqs_enabled(i915);
-+	return HAS_GMBUS_IRQ(display) && display->parent->irq->enabled(display->drm);
- }
- 
- static int gmbus_wait(struct intel_display *display, u32 status, u32 irq_en)
-diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
-index 235706229ffb..a4254d4e9a4a 100644
---- a/drivers/gpu/drm/i915/display/intel_hotplug.c
-+++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
-@@ -26,9 +26,8 @@
- 
- #include <drm/drm_print.h>
- #include <drm/drm_probe_helper.h>
-+#include <drm/intel/display_parent_interface.h>
- 
--#include "i915_drv.h"
--#include "i915_irq.h"
- #include "intel_connector.h"
- #include "intel_display_core.h"
- #include "intel_display_power.h"
-@@ -1177,13 +1176,12 @@ bool intel_hpd_schedule_detection(struct intel_display *display)
- static int i915_hpd_storm_ctl_show(struct seq_file *m, void *data)
- {
- 	struct intel_display *display = m->private;
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	struct intel_hotplug *hotplug = &display->hotplug;
- 
- 	/* Synchronize with everything first in case there's been an HPD
- 	 * storm, but we haven't finished handling it in the kernel yet
- 	 */
--	intel_synchronize_irq(dev_priv);
-+	display->parent->irq->synchronize(display->drm);
- 	flush_work(&display->hotplug.dig_port_work);
- 	flush_delayed_work(&display->hotplug.hotplug_work);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-index 42284e9928f2..5b41abe1c64d 100644
---- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-+++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-@@ -71,7 +71,6 @@
- #include <drm/drm_print.h>
- #include <drm/intel/intel_lpe_audio.h>
- 
--#include "i915_irq.h"
- #include "intel_audio_regs.h"
- #include "intel_de.h"
- #include "intel_lpe_audio.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_pipe_crc.c b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
-index 1f27643412f1..b782f894cce8 100644
---- a/drivers/gpu/drm/i915/display/intel_pipe_crc.c
-+++ b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
-@@ -29,9 +29,8 @@
- #include <linux/seq_file.h>
- 
- #include <drm/drm_print.h>
-+#include <drm/intel/display_parent_interface.h>
- 
--#include "i915_drv.h"
--#include "i915_irq.h"
- #include "intel_atomic.h"
- #include "intel_de.h"
- #include "intel_display_irq.h"
-@@ -658,7 +657,6 @@ void intel_crtc_enable_pipe_crc(struct intel_crtc *crtc)
- void intel_crtc_disable_pipe_crc(struct intel_crtc *crtc)
- {
- 	struct intel_display *display = to_intel_display(crtc);
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	struct intel_pipe_crc *pipe_crc = &crtc->pipe_crc;
- 	enum pipe pipe = crtc->pipe;
- 
-@@ -669,5 +667,5 @@ void intel_crtc_disable_pipe_crc(struct intel_crtc *crtc)
- 
- 	intel_de_write(display, PIPE_CRC_CTL(display, pipe), 0);
- 	intel_de_posting_read(display, PIPE_CRC_CTL(display, pipe));
--	intel_synchronize_irq(dev_priv);
-+	display->parent->irq->synchronize(display->drm);
- }
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index c97b76771917..07715aef62d3 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -741,6 +741,7 @@ static void i915_welcome_messages(struct drm_i915_private *dev_priv)
- 
- static const struct intel_display_parent_interface parent = {
- 	.rpm = &i915_display_rpm_interface,
-+	.irq = &i915_display_irq_interface,
- };
- 
- const struct intel_display_parent_interface *i915_driver_parent_interface(void)
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index 1898be4ddc8b..3fe978d4ea53 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -33,6 +33,7 @@
- 
- #include <drm/drm_drv.h>
- #include <drm/drm_print.h>
-+#include <drm/intel/display_parent_interface.h>
- 
- #include "display/intel_display_irq.h"
- #include "display/intel_hotplug.h"
-@@ -1252,3 +1253,18 @@ void intel_synchronize_hardirq(struct drm_i915_private *i915)
- {
- 	synchronize_hardirq(to_pci_dev(i915->drm.dev)->irq);
- }
-+
-+static bool _intel_irq_enabled(struct drm_device *drm)
-+{
-+	return intel_irqs_enabled(to_i915(drm));
-+}
-+
-+static void _intel_irq_synchronize(struct drm_device *drm)
-+{
-+	return intel_synchronize_irq(to_i915(drm));
-+}
-+
-+const struct intel_display_irq_interface i915_display_irq_interface = {
-+	.enabled = _intel_irq_enabled,
-+	.synchronize = _intel_irq_synchronize,
-+};
-diff --git a/drivers/gpu/drm/i915/i915_irq.h b/drivers/gpu/drm/i915/i915_irq.h
-index 58789b264575..5c87d6d41c74 100644
---- a/drivers/gpu/drm/i915/i915_irq.h
-+++ b/drivers/gpu/drm/i915/i915_irq.h
-@@ -51,4 +51,6 @@ void gen2_error_reset(struct intel_uncore *uncore, struct i915_error_regs regs);
- void gen2_error_init(struct intel_uncore *uncore, struct i915_error_regs regs,
- 		     u32 emr_val);
- 
-+extern const struct intel_display_irq_interface i915_display_irq_interface;
-+
- #endif /* __I915_IRQ_H__ */
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 7b4ca591a4ae..3bf64fdcf93a 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -189,7 +189,6 @@ endif
- 
- # i915 Display compat #defines and #includes
- subdir-ccflags-$(CONFIG_DRM_XE_DISPLAY) += \
--	-I$(src)/display/ext \
- 	-I$(src)/compat-i915-headers \
- 	-I$(srctree)/drivers/gpu/drm/i915/display/ \
- 	-Ddrm_i915_private=xe_device
-@@ -206,7 +205,6 @@ $(obj)/i915-display/%.o: $(srctree)/drivers/gpu/drm/i915/display/%.c FORCE
- 
- # Display code specific to xe
- xe-$(CONFIG_DRM_XE_DISPLAY) += \
--	display/ext/i915_irq.o \
- 	display/intel_bo.o \
- 	display/intel_fb_bo.o \
- 	display/intel_fbdev_fb.o \
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_irq.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_irq.h
-deleted file mode 100644
-index 61707a07f91f..000000000000
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_irq.h
-+++ /dev/null
-@@ -1,6 +0,0 @@
--/* SPDX-License-Identifier: MIT */
--/*
-- * Copyright © 2023 Intel Corporation
-- */
--
--#include "../../i915/i915_irq.h"
-diff --git a/drivers/gpu/drm/xe/display/ext/i915_irq.c b/drivers/gpu/drm/xe/display/ext/i915_irq.c
-deleted file mode 100644
-index 1011c1c754d0..000000000000
---- a/drivers/gpu/drm/xe/display/ext/i915_irq.c
-+++ /dev/null
-@@ -1,18 +0,0 @@
--// SPDX-License-Identifier: MIT
--/*
-- * Copyright © 2023 Intel Corporation
-- */
--
--#include "i915_irq.h"
--#include "i915_reg.h"
--#include "intel_uncore.h"
--
--bool intel_irqs_enabled(struct xe_device *xe)
--{
--	return atomic_read(&xe->irq.enabled);
--}
--
--void intel_synchronize_irq(struct xe_device *xe)
--{
--	synchronize_irq(to_pci_dev(xe->drm.dev)->irq);
--}
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 8b0afa270216..e3320d9e6314 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -516,8 +516,26 @@ static void display_device_remove(struct drm_device *dev, void *arg)
- 	intel_display_device_remove(display);
- }
- 
-+static bool irq_enabled(struct drm_device *drm)
-+{
-+	struct xe_device *xe = to_xe_device(drm);
-+
-+	return atomic_read(&xe->irq.enabled);
-+}
-+
-+static void irq_synchronize(struct drm_device *drm)
-+{
-+	synchronize_irq(to_pci_dev(drm->dev)->irq);
-+}
-+
-+static const struct intel_display_irq_interface xe_display_irq_interface = {
-+	.enabled = irq_enabled,
-+	.synchronize = irq_synchronize,
-+};
-+
- static const struct intel_display_parent_interface parent = {
- 	.rpm = &xe_display_rpm_interface,
-+	.irq = &xe_display_irq_interface,
- };
- 
- /**
-diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/intel/display_parent_interface.h
-index 26bedc360044..3a008a18eb65 100644
---- a/include/drm/intel/display_parent_interface.h
-+++ b/include/drm/intel/display_parent_interface.h
-@@ -25,6 +25,11 @@ struct intel_display_rpm_interface {
- 	void (*assert_unblock)(const struct drm_device *drm);
- };
- 
-+struct intel_display_irq_interface {
-+	bool (*enabled)(struct drm_device *drm);
-+	void (*synchronize)(struct drm_device *drm);
-+};
-+
- /**
-  * struct intel_display_parent_interface - services parent driver provides to display
-  *
-@@ -40,6 +45,9 @@ struct intel_display_rpm_interface {
- struct intel_display_parent_interface {
- 	/** @rpm: Runtime PM functions */
- 	const struct intel_display_rpm_interface *rpm;
-+
-+	/** @irq: IRQ interface */
-+	const struct intel_display_irq_interface *irq;
- };
- 
- #endif
--- 
-2.47.3
+Ankit
 
+
+>>   drivers/gpu/drm/drm_atomic_uapi.c             |   4 +
+>>   drivers/gpu/drm/drm_crtc.c                    |  35 +++
+>>   drivers/gpu/drm/i915/Makefile                 |   1 +
+>>   drivers/gpu/drm/i915/display/intel_casf.c     | 293 ++++++++++++++++++
+>>   drivers/gpu/drm/i915/display/intel_casf.h     |  22 ++
+>>   .../gpu/drm/i915/display/intel_casf_regs.h    |  33 ++
+>>   drivers/gpu/drm/i915/display/intel_crtc.c     |   3 +
+>>   .../drm/i915/display/intel_crtc_state_dump.c  |   5 +
+>>   drivers/gpu/drm/i915/display/intel_display.c  |  37 ++-
+>>   .../drm/i915/display/intel_display_device.h   |   1 +
+>>   .../drm/i915/display/intel_display_types.h    |  15 +
+>>   drivers/gpu/drm/i915/display/skl_scaler.c     |  91 +++++-
+>>   drivers/gpu/drm/i915/display/skl_scaler.h     |   2 +
+>>   drivers/gpu/drm/xe/Makefile                   |   1 +
+>>   include/drm/drm_crtc.h                        |  18 ++
+>>   15 files changed, 548 insertions(+), 13 deletions(-)
+>>   create mode 100644 drivers/gpu/drm/i915/display/intel_casf.c
+>>   create mode 100644 drivers/gpu/drm/i915/display/intel_casf.h
+>>   create mode 100644 drivers/gpu/drm/i915/display/intel_casf_regs.h
+>>
+>> -- 
+>> 2.45.2
