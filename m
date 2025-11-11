@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EF91C4CBB6
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Nov 2025 10:43:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16145C4CC1C
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Nov 2025 10:48:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2468110E52E;
-	Tue, 11 Nov 2025 09:43:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6160610E533;
+	Tue, 11 Nov 2025 09:48:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UAtVgqFC";
+	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="ipoXYAyj";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="RjNwJsoS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3517810E52E;
- Tue, 11 Nov 2025 09:43:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762854183; x=1794390183;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=eH6ACxcuhqMrEulucBWTiTQ41vGqyBcNC48F7slJg38=;
- b=UAtVgqFC9Ki7fgk12tg9eVCa4Vkeg4FFN8+NAbUKH+uAhzEcu7XBY/bh
- S63XtB2DHjYIQLt3KcR34YiGuQW+xTLH3y6Sm058YUg/a35GPEvQATZFU
- /XuzZUyd0TDITZo4hArmh+dcqdOEs3WTcvacIrqcb9U6acUp5GLEH71nY
- aOoF8/TBsju7x7XQ5PI1TE9jNa3bbrJjnspFqcCwXsdfa/zRSXvLT7Uxf
- Bt69uodqvkngk/TzVJTRooG4rDIcVFPMBkiaeemgyeZBeHYfUCic9T8cb
- NV+IqZmIPFh1k1+mtC0y2cbdhpMVrR6o6Di3EeVuf4QHkBxvnT3s9DVEJ Q==;
-X-CSE-ConnectionGUID: UYXr3ssLRpqoIZYCmMtqFg==
-X-CSE-MsgGUID: 7811zXdCQJGx8jB24Apbsw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="68773770"
-X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; d="scan'208";a="68773770"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2025 01:43:03 -0800
-X-CSE-ConnectionGUID: asTvbQW7Tp+A/yTiSm55fw==
-X-CSE-MsgGUID: qiZyAbD8Qwq6r65PUSVXuQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; d="scan'208";a="193175895"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2025 01:43:00 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jouni.hogander@intel.com, ville.syrjala@linux.intel.com,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 4/4] drm/i915/dp: Account for AS_SDP guardband only when
- enabled
-Date: Tue, 11 Nov 2025 15:00:07 +0530
-Message-ID: <20251111093007.3771409-5-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20251111093007.3771409-1-ankit.k.nautiyal@intel.com>
-References: <20251111093007.3771409-1-ankit.k.nautiyal@intel.com>
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB16310E52B;
+ Tue, 11 Nov 2025 09:48:05 +0000 (UTC)
+Date: Tue, 11 Nov 2025 10:47:59 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1762854483;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=RUPk8N8N0fajnspcbCfKKCzQcyP7edfMte98l3Q1XEo=;
+ b=ipoXYAyjp91Nfb7CBlgWlVlWnoajYxUnSFBQMBg8ycaepgegc6av2qBU5AdsztGRMH1Kz4
+ ILwzFZB5aSNXXhplOEybXBmas4+bCFW2qwNdq54ScMbEi6y8vakJw4RzRn8hd5B7wEXYEr
+ HwyG6JI+/NO+vPs4YEx026V4kyTZsl19KHBOIHgO52XbFnq+RWJ9RpldG8wIKZ8HqnNVJl
+ bf5vzKhMjatmOsThgAV3W6Fc6cZymuuxQRjq1F9c+hFUeAbcb3iY+AnGKathXit0TKAF5k
+ mLwn1hIxeLSokqKpGiRFa9Mhg9ks5IKqplSSRiCZwPLgPJn4wcu5fbmi5tymBg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1762854483;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=RUPk8N8N0fajnspcbCfKKCzQcyP7edfMte98l3Q1XEo=;
+ b=RjNwJsoSUpmg58g7J10+HQCv8XxW43yJsRcSXPWVEVD8a5WBmWtCy3lbQF+I/yN2KLP42t
+ eu3FO7yDlKylt1Bw==
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+To: Maarten Lankhorst <dev@lankhorst.se>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-rt-devel@lists.linux.dev, Mario Kleiner <mario.kleiner.de@gmail.com>,
+ Mike Galbraith <umgwanakikbuti@gmail.com>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>
+Subject: Re: [PATCH v2 0/7] drm/i915/display: Handle vblank evasion with
+ CONFIG_PREEMPT_RT
+Message-ID: <20251111094759.Y1Q9-nug@linutronix.de>
+References: <20251104083634.670753-1-dev@lankhorst.se>
+ <20251105134740.NseZnpeZ@linutronix.de>
+ <32bbb93a-3606-4488-ac3a-3dcd1fd38304@lankhorst.se>
+ <20251110160958._fKhNf8i@linutronix.de>
+ <7a370923-d430-4f3a-94b2-1749b452facf@lankhorst.se>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <7a370923-d430-4f3a-94b2-1749b452facf@lankhorst.se>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,39 +70,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently the intel_dp_sdp_min_guardband() accounts for AS_SDP for all
-platforms that support adaptive sync SDP even for configurations where
-it cannot be enabled. Instead account for adaptive sync SDP guardband
-only when it is enabled.
+On 2025-11-10 19:17:46 [+0100], Maarten Lankhorst wrote:
+> Hey,
+Hi Maarten,
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+> I would like to recommend dropping the patch below. The hardware doesn't like being
+> programmed during vblank time, and may lock up or show glitches on the screen,
+> especially at older machines.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 2852a1d9f157..bddf88059005 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -7055,7 +7055,6 @@ int intel_dp_get_lines_for_sdp(const struct intel_crtc_state *crtc_state, u32 ty
- int intel_dp_sdp_min_guardband(const struct intel_crtc_state *crtc_state,
- 			       bool assume_all_enabled)
- {
--	struct intel_display *display = to_intel_display(crtc_state);
- 	int sdp_guardband = 0;
- 
- 	if (assume_all_enabled ||
-@@ -7070,8 +7069,8 @@ int intel_dp_sdp_min_guardband(const struct intel_crtc_state *crtc_state,
- 		sdp_guardband = max(sdp_guardband,
- 				    intel_dp_get_lines_for_sdp(crtc_state, DP_SDP_PPS));
- 
--	if ((assume_all_enabled && HAS_AS_SDP(display)) ||
--	    crtc_state->infoframes.enable & intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC))
-+	if (crtc_state->infoframes.enable &
-+	    intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC))
- 		sdp_guardband = max(sdp_guardband,
- 				    intel_dp_get_lines_for_sdp(crtc_state, DP_SDP_ADAPTIVE_SYNC));
- 
--- 
-2.45.2
+Okay. I did include them for testing as requested. I would keep them in
+the series until we settle on something upstream.
 
+> That's why the whole complicated preparations exist, to be able to complete
+> programming the hardware before the vblank.
+> 
+> I created my series to be able to run that the timing sensitive parts safely without
+> any jitter from locking in between.
+> 
+> I tried running the following series through CI in response:
+> https://patchwork.freedesktop.org/series/157258/ 
+> 
+> After looking at the results and investigating more closely, I think the FBC warning
+> you mentioned is a false positive.
+> 
+> The code either runs in intel_pre_plane_update() when programming the hardware directly,
+> or it gets added to the list of mmio's programmed by the hardware, without the
+> vblank evasion mode active.
+> 
+> Still I would like to clean it up, but it's not as urgent as it was.
+
+Okay. Good.
+If there is anything you want me to test or look at, just le me know.
+
+> Kind regards,
+> ~Maarten Lankhorst
+
+Sebastian
