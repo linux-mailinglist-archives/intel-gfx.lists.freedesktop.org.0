@@ -2,144 +2,168 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 632B1C4C854
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Nov 2025 10:04:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41932C4C8BF
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Nov 2025 10:08:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16C8D10E519;
-	Tue, 11 Nov 2025 09:04:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D656410E51C;
+	Tue, 11 Nov 2025 09:08:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="QEokioa3";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="V1vmD+XM";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="QEokioa3";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="V1vmD+XM";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="E3y4Jczl";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4292D10E51C
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Nov 2025 09:04:17 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 9632A1F456;
- Tue, 11 Nov 2025 09:04:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1762851855; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=4pvAM5O0BgvuO6S3at2SOytfTSZwvJDZO8hboniaESU=;
- b=QEokioa3ceeVxeaNZulMJirrZYQK6fVTj1YJlnWPiioNlmUZBgz0iYCnNJdKMvSL2OEP69
- HHYj+WvwGCpygMRq2Ulat0Ef1cTNfytkuUayNaaFg0+IP5iewAkRBpx6yhr9zPeCsXPgZz
- 3KHJ8Lv3Uqmd72oxbOiO9ZIKFX2ZQWs=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1762851855;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=4pvAM5O0BgvuO6S3at2SOytfTSZwvJDZO8hboniaESU=;
- b=V1vmD+XMXmFApj+0SgZPC2FanfRFJEbkwTAHQo8qEjNMqZdpI+zyWLRcR4xqmuCWpUTCuk
- V+ujyCuNRpqBHRCA==
-Authentication-Results: smtp-out2.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=QEokioa3;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=V1vmD+XM
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1762851855; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=4pvAM5O0BgvuO6S3at2SOytfTSZwvJDZO8hboniaESU=;
- b=QEokioa3ceeVxeaNZulMJirrZYQK6fVTj1YJlnWPiioNlmUZBgz0iYCnNJdKMvSL2OEP69
- HHYj+WvwGCpygMRq2Ulat0Ef1cTNfytkuUayNaaFg0+IP5iewAkRBpx6yhr9zPeCsXPgZz
- 3KHJ8Lv3Uqmd72oxbOiO9ZIKFX2ZQWs=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1762851855;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=4pvAM5O0BgvuO6S3at2SOytfTSZwvJDZO8hboniaESU=;
- b=V1vmD+XMXmFApj+0SgZPC2FanfRFJEbkwTAHQo8qEjNMqZdpI+zyWLRcR4xqmuCWpUTCuk
- V+ujyCuNRpqBHRCA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 6848314892;
- Tue, 11 Nov 2025 09:04:15 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id /UkiGA/8EmkpVQAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Tue, 11 Nov 2025 09:04:15 +0000
-Message-ID: <4bd04e1e-1df7-4826-b846-d250601d8b5e@suse.de>
-Date: Tue, 11 Nov 2025 10:04:14 +0100
-MIME-Version: 1.0
+Received: from SN4PR2101CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11012003.outbound.protection.outlook.com
+ [40.93.195.3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94DA910E51C;
+ Tue, 11 Nov 2025 09:08:52 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kHP+jvaMsjXR4mxZfbNy5NhUXVKDu2iCyp6N7pqKQkwF8vVHcKLIpeRVHD1Ky3vNBe7DMPZfGkJDAADIUn0dHQ4WMm1dk8CR7lF9OTaVSD4E41N1HR/SZlVZiu9tzaPWYyLx2Rc5nOeRM6sb9M1ZZv4ATeAe42hIgZSgMKueIMgqnyIbfukuE/tN7Fsfo/Ep7dJi50J3uIwEZCUFEEUcAny0ubJTwVpfmhjgZECU0ex/mb4Je6MAK6WgPMrjEzyrnMCMWI5mHjX/dVw986K6zS0Li4FSOirNE2l76lJ3dUEIfPjLo86kSOLO8EXhITEpFjmBdggPVwXHSrRxX6iVKA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=HcyfIZMbfq609bzuKWn8McYL+lSFese8BW/xmKHPA4k=;
+ b=tkQ8mZP8C30u84D5Ls916XPg4ZNfSms19kN14oyp80OcySs5NZH6zSHjqUZYJ6AmngDfdK96ngjc3WEetYK0+170WNCmV9IW0t4dm9AIrBb1A4RuoYTLiHkPNTq0dchaEPVIULf9hWSx671zjk6fx2iZgsJMkoNvCTJ47PhOoly6kSaWSWzCMe2WekYn4gzmYCZ6U6jkTH3aCVus7KhQbV+igj7TCm7yPFL7y4hpkBotxzjH5lvdR+Jn5GE5y04Qpjw575ih170x/u+020Q+m6Rc0dQNjeUouU1TDO67k4FlFhmhyQf/FYMjo+O9PjKpdygYyh6bgCL1j2BlIMhgWA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HcyfIZMbfq609bzuKWn8McYL+lSFese8BW/xmKHPA4k=;
+ b=E3y4Jczl5qx8Q5AiPbxXHAzNFkegH5JTbi8UXVgXqvjwQJM4alj337p3mcDISzyUiuIrGNt27zia2odjhJycHawVYnX4qiRw4K2QOWE0fkuxf1SRgh3I0VekK1Vo6xnNM/gue98XZSoN77NVpISOCvZW2gwU8J/jP7pY1z9dGsQ=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by IA0PR12MB7601.namprd12.prod.outlook.com (2603:10b6:208:43b::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.16; Tue, 11 Nov
+ 2025 09:08:49 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%4]) with mapi id 15.20.9298.015; Tue, 11 Nov 2025
+ 09:08:49 +0000
+Message-ID: <c90f155f-44fe-4144-af68-309531392d22@amd.com>
+Date: Tue, 11 Nov 2025 10:08:39 +0100
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 07/24] drm/vblank: pass vlank to
- drm_vblank_get()/_put()/_count()
-To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- ville.syrjala@linux.intel.com
-References: <cover.1762791343.git.jani.nikula@intel.com>
- <0bc4fa981f31122651abc13e5b6b8d92bbc9585a.1762791343.git.jani.nikula@intel.com>
- <6845f801-2105-4500-b088-3f53bbab63ba@suse.de>
- <bb68557c6c473d96cb93681a5eb731ff1dfa9437@intel.com>
+Subject: Re: [PATCH 8/9] drm/amdgpu: Remove driver side BAR release before
+ resize
+To: =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ =?UTF-8?Q?Alex_Benn=C3=A9e?= <alex.bennee@linaro.org>,
+ Simon Richter <Simon.Richter@hogyros.de>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ Bjorn Helgaas <bhelgaas@google.com>, David Airlie <airlied@gmail.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ linux-pci@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Simona Vetter <simona@ffwll.ch>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
+ linux-kernel@vger.kernel.org
+References: <20251028173551.22578-1-ilpo.jarvinen@linux.intel.com>
+ <20251028173551.22578-9-ilpo.jarvinen@linux.intel.com>
 Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <bb68557c6c473d96cb93681a5eb731ff1dfa9437@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20251028173551.22578-9-ilpo.jarvinen@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Level: 
-X-Spam-Flag: NO
-X-Rspamd-Queue-Id: 9632A1F456
-X-Rspamd-Action: no action
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[]; FUZZY_RATELIMITED(0.00)[rspamd.com];
- RCVD_VIA_SMTP_AUTH(0.00)[]; RCVD_TLS_ALL(0.00)[];
- ARC_NA(0.00)[]; MIME_TRACE(0.00)[0:+];
- RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
- SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
- TO_DN_SOME(0.00)[];
- RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- MID_RHS_MATCH_FROM(0.00)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- RCPT_COUNT_FIVE(0.00)[5]; RCVD_COUNT_TWO(0.00)[2];
- TO_MATCH_ENVRCPT_ALL(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:url,intel.com:email,imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo,suse.de:dkim,suse.de:mid,suse.de:email];
- DNSWL_BLOCKED(0.00)[2a07:de40:b281:104:10:150:64:97:from,2a07:de40:b281:106:10:150:64:167:received];
- DKIM_TRACE(0.00)[suse.de:+]
-X-Spam-Score: -4.51
+X-ClientProxiedBy: BN9PR03CA0162.namprd03.prod.outlook.com
+ (2603:10b6:408:f4::17) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|IA0PR12MB7601:EE_
+X-MS-Office365-Filtering-Correlation-Id: d27c20f1-5579-43d9-04c8-08de2101ed3f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|366016|376014|7416014|7053199007|921020; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?TmFvUC9lSW1YV05IZFBUK0JtNkxiWXhsZE1JRzFKTnVJa3hEVEJDbFAvZ3l5?=
+ =?utf-8?B?NnZiSkcva3lLK2szUXZnRjhJcTc0TDBIL0FadTlCa3ZDKzRKVzRvY2kwd3Rh?=
+ =?utf-8?B?aDRjL2s4UGQ5ZjRXK1V2Z3dQKzd1dlI0d2tOcVV0M2dzamVEWUJYVS92ZmxU?=
+ =?utf-8?B?U2V0aU55VTB1b0Z0emRkckNHUlY4MW81RThlNVRsMDRSNzZlUlZmZXoyeUps?=
+ =?utf-8?B?UUF2VmpKdDBGS2Q2NURCWndzRmxXUklVTUp6S21JY1FaYTBIeUR3bXF4M3dB?=
+ =?utf-8?B?aDV0R05SUnBZb0c5MFQvRldwbHJJNWlyRlE2cnJpK092L3ZkLzRTakQzSUF2?=
+ =?utf-8?B?NmZ2aW9uekhBYk5uMnZrT2tFeWxjUFpvUnpjWkZ3L0FWUXpLcy9Ed3FxOEFG?=
+ =?utf-8?B?TFpjaWljakEzV1pZV0VvSFYrSFp4cVY5SXpIa25icHRXTVI1aEM3QlE0Nlp4?=
+ =?utf-8?B?VU81Z0JqeStJbTcrVjIxZ3NMTzhyUldnT0JWYlJJdS9rc3VYUG0vRTBEeS9I?=
+ =?utf-8?B?b25SV3NPSytEdG9BcGM5NzJUeEIvcXhPSGMydkZRU1VwWXBOUXNlZ3FWRUdw?=
+ =?utf-8?B?cDE1cTBvMC9yT1RYTTA0Kzg0c1QvVVZCRGZRNkhrYng3VGNBcnoyZTFrakZO?=
+ =?utf-8?B?bFFENmRUY3Fza09Td3lveFZhVUF2ZWk4Yk5taWQvMFo1RU1hejFZRHJLQ2V1?=
+ =?utf-8?B?UkN1NmFpbjRhN1hDNlcrRkEwNlN4ZzNYaWErcVNqYlNvR3RxNWlXOGJ0UThT?=
+ =?utf-8?B?QnVWcFk4YUdKMytuL2VtaHpiK085SzNuZVFoOTQrUVQ4cnFJekFiaXRJWmlt?=
+ =?utf-8?B?NjBYbUJ2TzYxUXlSTmEwNG5nMFFia0h0d1YrUGhIRFVScW1UU1pjOC9xNWY4?=
+ =?utf-8?B?dlIwTWVBanF6SldPclYrRG1kOUExeUx3blpxbEFkZGN5UEVQZGxtNU1uNUxu?=
+ =?utf-8?B?bUpub05CN01HRzFvRFNjQlFvTmppNG13K0Rjek1hUTl0TVBONnErakVIU2Nx?=
+ =?utf-8?B?Z1RjKzI2eiszaFRSUUx0RzJCODUvcFgxTmNCZWEzMDBFT0ViQjdHUCtqelZu?=
+ =?utf-8?B?RTNMUnhUUGJyUERHNnduV3dVYVVmTW1GZXRxWWFRRTdqYVprUUJvU1Vyd2VR?=
+ =?utf-8?B?QXIzMmxGZjY5K2p4STVzMVVXTjdQQ2pUTEtTTkIzZG5tbStIR3VlZ0FkeWMz?=
+ =?utf-8?B?LzVaTUVISzIrZTkxZWt1aWZxWDN4VnJpQ00yZ1h3MUtUL0NzcUllNGUwUCt6?=
+ =?utf-8?B?Z2lQbzlQK2k0WUlhb2ZBNWFqbWtDNnJwTWFMY0lwVzR4UzN4QzMwV2ZEOWN0?=
+ =?utf-8?B?SlZwNE1JQmRRUXEwSGFpTm93RFhkY0hndzVnN3Urdk53UDlDajlLQS8xYThH?=
+ =?utf-8?B?Y0RJb1hyU1hralI4ZzBkbUFwN0lrbFVtNnZuQml4ZzFGS2hhODlXNnM4b29H?=
+ =?utf-8?B?bnJIcjRQNktXN1h2c1lKNmZ2RnNTY1lLWjhTRzE3bmw1YUN5OG91TUJ5T0RS?=
+ =?utf-8?B?KzkrWENDUjh5Sk96U2N1MGZVK1hIektOQzJSRGxIemMvOHoxTUVLZmZZTm1I?=
+ =?utf-8?B?TGlNd2pVQmFlTUZsREExY2FmQnRXbGZOTFhZODF5eXFpTFJZWkxwb2NlV1li?=
+ =?utf-8?B?c1k4L3FWajdhUzFRS1pQVytWTUU4MW1MTng4K3BZNW00NVVMK0pwbmYrOTlk?=
+ =?utf-8?B?SHQxWWg4TmJSYlBUbGFzc3NFTGVYTU9kVFk4cnc1dytEL0hUMVlKbFd6bFJo?=
+ =?utf-8?B?UHdxRDZQeHJlbTdxMGc0dzR2QlloQzlEQ1FHR1BobjQ3c1dCem54TkNISmpK?=
+ =?utf-8?B?Sm1udzNESkZhTTB5b0c1YVRRU014YWN6TEdZenhkc0NZYUkzMXQ5S3RabmhW?=
+ =?utf-8?B?RjVhemQ2bU1GSXVBQjZsRmZVWk5zbUpwZXRPUE4rUVpVUFRGbVFYRnZFM0oz?=
+ =?utf-8?B?MjdrMC9oN2xDYTVFeFpUNmVzbjdZNmFudXJ5VEtxM2RtQzRwZWx6cW9sRG9j?=
+ =?utf-8?Q?3B7B4V+yI1nKgLY2njTPqjCKeORvJk=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(7416014)(7053199007)(921020);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WWozMFVtdHAybC80UW9DcGt0Zk1GcW1RMXVsRm1HL1NpVGs4QUJ6aWU0NWNK?=
+ =?utf-8?B?NkVqRlBodlJReTFTNjhIVS9PVTJSTFJuV1hnMklQWVlRdWZTT1BremJvcE9F?=
+ =?utf-8?B?VGZHWlJJNnJHS3ZMeHNGOEgwVHl3NGpEd1c4Ym9aMDl3VnZwcTA5S3BxRDBR?=
+ =?utf-8?B?UUJ0eW83WENyMHRNK1kraGxEbCtjUFFuOTVrbTY3TWJjMmducG4zd202K292?=
+ =?utf-8?B?dEpKTFFsdWZ5eENEZlpYeWw5YmU1TGQveHlBbGJXa2VnS3VOV1RwVE8ydUdS?=
+ =?utf-8?B?YUQ2QkxHOHAwcHBzZENDOGM4S0ZKN1ZqVGhQZVAvbmJ0R3ZQTktmWk15Wm5l?=
+ =?utf-8?B?WC9GNHd1TFNwT0h6N1I2UzBNdDljOEtzd2VkTnNhVGpOL1ZKcWtRQVEvb1pD?=
+ =?utf-8?B?NTVNOEw0WEpNbnQ3YXpMV1BXWVptOVZzdG9mQTZsTVhBaXhiWUxSWXc1OWxu?=
+ =?utf-8?B?bGlHMit1ZXY3cHhobGc3NlJEcUxtOFdrQlZTQ09wMnhpaFUwVzNHeE1TUUJ2?=
+ =?utf-8?B?S0NMeWIwbGlUWXczd2VaY084ZWl1bHFJSmZ3YVcycm1HWDMxeTRWRU1VUUN4?=
+ =?utf-8?B?bVFDUWlVbFZIQklpUDEzbnZ1MVNzNk83MnJmQ2tCc204WEhkV0xxenNIMTFw?=
+ =?utf-8?B?V3RGbWM5aDE4N1RraWwwdDE4aFMxVGwvQzRGbWp0MUFzSitTNFRkaytNZWxD?=
+ =?utf-8?B?cGJrK2RrYnMyNDEyazVnUXYxbDBWQmtwMGlGaU1QMFJ5Uy9Obzk5b3VIUDA5?=
+ =?utf-8?B?cWI1SUJhVVNHMnlWWkY1UFBCVFdTcEpJY015bjY5TGNUMkZLRVFFWHVXdFZj?=
+ =?utf-8?B?c2xCN2lpaGFBdTR5WTBYMW9KcWVQK1RDaWU3M0xVRUtJOENpOHFEUGkxTDB1?=
+ =?utf-8?B?aVJ5TFZmdmdJNlNLdzVkR05JNDVNaVlwaUlYUW1DUkZFdVJZZ1U3OGZOaTM5?=
+ =?utf-8?B?M3dDVHdlNTgycEFjanpyQUZPMEdYQlZHd1I5aGRPTTlPUCtGeDZ0OVVXRDBO?=
+ =?utf-8?B?dEc3OXBENkEzYnJvUkNiUisvdXk1QVpjeHZhUTFKS2R4RVIzcUkxckk1WkZM?=
+ =?utf-8?B?dUdCdEJuNjMwOFRpcytXNW9Tcmd1dGNsVjVyMlFDYVlzazNhazhhR3FVSFQ4?=
+ =?utf-8?B?QzErRkpWWWFCR1RSRnRpbHg2aXRmZDhodGJYeVI4eERuNXY4UmRzQTcrbkNX?=
+ =?utf-8?B?ZXVTVm5XUGNmMkwzWnVUTW5JSnFuYVV2OEQ3dy9wZEVoSlFFZHZpS0VMQmF5?=
+ =?utf-8?B?TlVJZ3VVemNpZWs2dTdDZlJ1VUhHeE9GRUM4bUdXYzg2bEtoTjVFaW1MRXNq?=
+ =?utf-8?B?M3B5NGNxZFRXYXFmb3JXTUw4TjB1OUM2OGsvQkpaUVlZaUtDTXNYeUdyQXNm?=
+ =?utf-8?B?RG1QMkRUNVJvOVJ0VFhTckV5c1EyUEVmMnY0cW5aaXRqRHhPRkNIbUpoUzlH?=
+ =?utf-8?B?cFN5SWpNU3pTTmZkdW45cGE2VmEyUEZwMHlLUTI2bStrRElGTmlBdEF4aWFE?=
+ =?utf-8?B?ekcyeFE3ZlpqRXBLd3l4ZGpYbFF3emFmclFLS3JieGE1dGgwc3g4eng0MGZY?=
+ =?utf-8?B?RWNhcDNvRkZ3bjMzMTRKc1VkM1E2YVlvMmpPeGpwbEV1bEkrM3VxRWJkSk01?=
+ =?utf-8?B?WE9qZnVuQjN3STZNNGpxaXprVndhZXhWeUdOZG9ab0ZqQWVlaFAybDkrRW0r?=
+ =?utf-8?B?Q3lXTkMvWDhOQ2dNaG9vRzRhY3FzcEIrU0ZPSDZBM3F5RXBpcG4wbHdoMTdF?=
+ =?utf-8?B?emR2aytyc2JYdmNta0pmRWEzNk5pSDZXM1Z1YzFRd2JLakg0bEE4dXB5MC9y?=
+ =?utf-8?B?YUhuYmNKTnJVTzV6cHFLaU1EK2RNakgxZWg2SGU1ME5jczY0dlRSdnVJakxZ?=
+ =?utf-8?B?WHlHLzZHZHd2bUQyUThlN0l1NjlzN2NRTnhOb083Y3VacGVaYlkyN08vd24y?=
+ =?utf-8?B?bzcwSjllSllSbk0vS3Rtai9Kc280SEd1Nkh1OUs2c2xHZW41MG52WXhUTi9s?=
+ =?utf-8?B?RnRoQVlKR0czd2Y1YTZkeU1PcGtaRjRNQ1NGN2dJWXEyZ0Vtam1qUjBGMWx4?=
+ =?utf-8?B?WkdrdWh0TUVqUnB0RXhXZy81VGVRWHQwQzF2TWRia1lWZHY2ZmVuR0VLaUNN?=
+ =?utf-8?Q?2vjEHyNY7CfU34OjeJZAvVqPy?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d27c20f1-5579-43d9-04c8-08de2101ed3f
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2025 09:08:49.4568 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: TUf5nqsv0+oedqOP4sg8A890Y/0pGXTfo312bVglV1LI+cC5DBxSoz4rI4QJUXL1
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7601
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,377 +179,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi
+Sorry for the late reply I'm really busy at the moment.
 
-Am 11.11.25 um 09:53 schrieb Jani Nikula:
-> On Tue, 11 Nov 2025, Thomas Zimmermann <tzimmermann@suse.de> wrote:
->> s/vlank/vblank in the commit headline
->>
->> Am 10.11.25 um 17:17 schrieb Jani Nikula:
->>> Pass struct drm_vblank_crtc * to drm_vblank_get(), drm_vblank_put(), and
->>> drm_vblank_count(). They'll figure out the vblank pointer as the first
->>> thing anyway, so it's handy to pass it when available. We can also rely
->>> on vblank having a valid pipe, and can reduce the number of checks we
->>> do.
->> I do agree that drm_vblank_crtc should be out go-to structure for these
->> interfaces with wrappers around that do the lookup if necessary.
->>
->>> Add underscore prefixed helpers for using dev/pipe until we've converted
->>> all users to pass in the vblank. Directly convert the call sites that
->>> already have the vblank pointer available.
->>>
->>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->>> ---
->>>    drivers/gpu/drm/drm_internal.h    |  6 +--
->>>    drivers/gpu/drm/drm_vblank.c      | 77 ++++++++++++++++++-------------
->>>    drivers/gpu/drm/drm_vblank_work.c | 12 ++---
->>>    3 files changed, 55 insertions(+), 40 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/drm_internal.h b/drivers/gpu/drm/drm_internal.h
->>> index 5a3bed48ab1f..e9c85c3681f1 100644
->>> --- a/drivers/gpu/drm/drm_internal.h
->>> +++ b/drivers/gpu/drm/drm_internal.h
->>> @@ -101,9 +101,9 @@ static inline bool drm_vblank_passed(u64 seq, u64 ref)
->>>    }
->>>    
->>>    void drm_vblank_disable_and_save(struct drm_device *dev, unsigned int pipe);
->>> -int drm_vblank_get(struct drm_device *dev, unsigned int pipe);
->>> -void drm_vblank_put(struct drm_device *dev, unsigned int pipe);
->>> -u64 drm_vblank_count(struct drm_device *dev, unsigned int pipe);
->>> +int drm_vblank_get(struct drm_vblank_crtc *vblank);
->>> +void drm_vblank_put(struct drm_vblank_crtc *vblank);
->>> +u64 drm_vblank_count(struct drm_vblank_crtc *vblank);
->> Why no call these helpers drm_vblank_crtc_<func>() ? That would avoid
->> the underscored helper and have clear naming guidelines for later such
->> functions.
-> I didn't really pay much attention to it. There's a lot of crtc in the
-> names already, so I guess the convention would then be:
->
-> 	drm_crtc_vblank_*(struct drm_crtc *crtc, ...)
->
-> 	drm_vblank_crtc_*(struct drm_vblank_crtc *vblank, ...)
->
-> No big deal for me to rename if you think that's a good convention.
+On 10/28/25 18:35, Ilpo Järvinen wrote:
+> PCI core handles releasing device's resources and their rollback in
+> case of failure of a BAR resizing operation. Releasing resource prior
+> to calling pci_resize_resource() prevents PCI core from restoring the
+> BARs as they were.
 
-Right. The third pattern would be
+I've intentionally didn't do it this way because at least on AMD HW we could only release the VRAM and doorbell BAR (both 64bit), but not the register BAR (32bit only).
 
-    drm_vblank_*(struct drm_device, int pipe, ...)
+This patch set looks like the right thing in general, but which BARs are now released by pci_resize_resource()?
 
-The implementation would then gradually move towards using 
-drm_vblank_crtc_ where possible. Makes sense to me and would avoid any 
-intermediate helpers.
+If we avoid releasing the 32bit BAR as well then that should work, otherwise we will probably cause problems.
 
-Best regards
-Thomas
+Regards,
+Christian.
 
->
-> The underscored helpers are temporary, and will get removed later in the
-> series. IMO the series is easier to review that way. Of course cleaner
-> if we don't have to add them in the first place.
->
-> BR,
-> Jani.
->
->>>    
->>>    /* drm_vblank_work.c */
->>>    static inline void drm_vblank_flush_worker(struct drm_vblank_crtc *vblank)
->>> diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
->>> index 96dbff63f52d..0ae34f848660 100644
->>> --- a/drivers/gpu/drm/drm_vblank.c
->>> +++ b/drivers/gpu/drm/drm_vblank.c
->>> @@ -384,14 +384,10 @@ static void drm_update_vblank_count(struct drm_device *dev, unsigned int pipe,
->>>    	store_vblank(dev, pipe, diff, t_vblank, cur_vblank);
->>>    }
->>>    
->>> -u64 drm_vblank_count(struct drm_device *dev, unsigned int pipe)
->>> +u64 drm_vblank_count(struct drm_vblank_crtc *vblank)
->>>    {
->>> -	struct drm_vblank_crtc *vblank = drm_vblank_crtc(dev, pipe);
->>>    	u64 count;
->>>    
->>> -	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
->>> -		return 0;
->>> -
->>>    	count = atomic64_read(&vblank->count);
->>>    
->>>    	/*
->>> @@ -406,6 +402,14 @@ u64 drm_vblank_count(struct drm_device *dev, unsigned int pipe)
->>>    	return count;
->>>    }
->>>    
->>> +static u64 _drm_vblank_count(struct drm_device *dev, unsigned int pipe)
->>> +{
->>> +	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
->>> +		return 0;
->>> +
->>> +	return drm_vblank_count(drm_vblank_crtc(dev, pipe));
->>> +}
->>> +
->>>    /**
->>>     * drm_crtc_accurate_vblank_count - retrieve the master vblank counter
->>>     * @crtc: which counter to retrieve
->>> @@ -431,7 +435,7 @@ u64 drm_crtc_accurate_vblank_count(struct drm_crtc *crtc)
->>>    	spin_lock_irqsave(&dev->vblank_time_lock, flags);
->>>    
->>>    	drm_update_vblank_count(dev, pipe, false);
->>> -	vblank = drm_vblank_count(dev, pipe);
->>> +	vblank = _drm_vblank_count(dev, pipe);
->>>    
->>>    	spin_unlock_irqrestore(&dev->vblank_time_lock, flags);
->>>    
->>> @@ -935,7 +939,7 @@ drm_get_last_vbltimestamp(struct drm_device *dev, unsigned int pipe,
->>>     */
->>>    u64 drm_crtc_vblank_count(struct drm_crtc *crtc)
->>>    {
->>> -	return drm_vblank_count(crtc->dev, drm_crtc_index(crtc));
->>> +	return _drm_vblank_count(crtc->dev, drm_crtc_index(crtc));
->>>    }
->>>    EXPORT_SYMBOL(drm_crtc_vblank_count);
->>>    
->>> @@ -1208,18 +1212,16 @@ static int drm_vblank_enable(struct drm_device *dev, unsigned int pipe)
->>>    	return ret;
->>>    }
->>>    
->>> -int drm_vblank_get(struct drm_device *dev, unsigned int pipe)
->>> +int drm_vblank_get(struct drm_vblank_crtc *vblank)
->>>    {
->>> -	struct drm_vblank_crtc *vblank = drm_vblank_crtc(dev, pipe);
->>> +	struct drm_device *dev = vblank->dev;
->>> +	int pipe = vblank->pipe;
->>>    	unsigned long irqflags;
->>>    	int ret = 0;
->>>    
->>>    	if (!drm_dev_has_vblank(dev))
->>>    		return -EINVAL;
->>>    
->>> -	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
->>> -		return -EINVAL;
->>> -
->>>    	spin_lock_irqsave(&dev->vbl_lock, irqflags);
->>>    	/* Going from 0->1 means we have to enable interrupts again */
->>>    	if (atomic_add_return(1, &vblank->refcount) == 1) {
->>> @@ -1235,6 +1237,14 @@ int drm_vblank_get(struct drm_device *dev, unsigned int pipe)
->>>    	return ret;
->>>    }
->>>    
->>> +static int _drm_vblank_get(struct drm_device *dev, unsigned int pipe)
->>> +{
->>> +	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
->>> +		return -EINVAL;
->>> +
->>> +	return drm_vblank_get(drm_vblank_crtc(dev, pipe));
->>> +}
->>> +
->>>    /**
->>>     * drm_crtc_vblank_get - get a reference count on vblank events
->>>     * @crtc: which CRTC to own
->>> @@ -1247,18 +1257,15 @@ int drm_vblank_get(struct drm_device *dev, unsigned int pipe)
->>>     */
->>>    int drm_crtc_vblank_get(struct drm_crtc *crtc)
->>>    {
->>> -	return drm_vblank_get(crtc->dev, drm_crtc_index(crtc));
->>> +	return _drm_vblank_get(crtc->dev, drm_crtc_index(crtc));
->>>    }
->>>    EXPORT_SYMBOL(drm_crtc_vblank_get);
->>>    
->>> -void drm_vblank_put(struct drm_device *dev, unsigned int pipe)
->>> +void drm_vblank_put(struct drm_vblank_crtc *vblank)
->>>    {
->>> -	struct drm_vblank_crtc *vblank = drm_vblank_crtc(dev, pipe);
->>> +	struct drm_device *dev = vblank->dev;
->>>    	int vblank_offdelay = vblank->config.offdelay_ms;
->>>    
->>> -	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
->>> -		return;
->>> -
->>>    	if (drm_WARN_ON(dev, atomic_read(&vblank->refcount) == 0))
->>>    		return;
->>>    
->>> @@ -1274,6 +1281,14 @@ void drm_vblank_put(struct drm_device *dev, unsigned int pipe)
->>>    	}
->>>    }
->>>    
->>> +static void _drm_vblank_put(struct drm_device *dev, unsigned int pipe)
->>> +{
->>> +	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
->>> +		return;
->>> +
->>> +	drm_vblank_put(drm_vblank_crtc(dev, pipe));
->>> +}
->>> +
->>>    /**
->>>     * drm_crtc_vblank_put - give up ownership of vblank events
->>>     * @crtc: which counter to give up
->>> @@ -1284,7 +1299,7 @@ void drm_vblank_put(struct drm_device *dev, unsigned int pipe)
->>>     */
->>>    void drm_crtc_vblank_put(struct drm_crtc *crtc)
->>>    {
->>> -	drm_vblank_put(crtc->dev, drm_crtc_index(crtc));
->>> +	_drm_vblank_put(crtc->dev, drm_crtc_index(crtc));
->>>    }
->>>    EXPORT_SYMBOL(drm_crtc_vblank_put);
->>>    
->>> @@ -1306,20 +1321,20 @@ int drm_crtc_wait_one_vblank(struct drm_crtc *crtc)
->>>    	int ret;
->>>    	u64 last;
->>>    
->>> -	ret = drm_vblank_get(dev, pipe);
->>> +	ret = drm_vblank_get(vblank);
->>>    	if (drm_WARN(dev, ret, "vblank not available on crtc %i, ret=%i\n",
->>>    		     pipe, ret))
->>>    		return ret;
->>>    
->>> -	last = drm_vblank_count(dev, pipe);
->>> +	last = drm_vblank_count(vblank);
->>>    
->>>    	ret = wait_event_timeout(vblank->queue,
->>> -				 last != drm_vblank_count(dev, pipe),
->>> +				 last != drm_vblank_count(vblank),
->>>    				 msecs_to_jiffies(1000));
->>>    
->>>    	drm_WARN(dev, ret == 0, "vblank wait timed out on crtc %i\n", pipe);
->>>    
->>> -	drm_vblank_put(dev, pipe);
->>> +	drm_vblank_put(vblank);
->>>    
->>>    	return ret ? 0 : -ETIMEDOUT;
->>>    }
->>> @@ -1385,7 +1400,7 @@ void drm_crtc_vblank_off(struct drm_crtc *crtc)
->>>    			     "wanted %llu, current %llu\n",
->>>    			     e->sequence, seq);
->>>    		list_del(&e->base.link);
->>> -		drm_vblank_put(dev, pipe);
->>> +		_drm_vblank_put(dev, pipe);
->>>    		send_vblank_event(dev, e, seq, now);
->>>    	}
->>>    
->>> @@ -1661,7 +1676,7 @@ static int drm_queue_vblank_event(struct drm_device *dev, unsigned int pipe,
->>>    
->>>    	e->sequence = req_seq;
->>>    	if (drm_vblank_passed(seq, req_seq)) {
->>> -		drm_vblank_put(dev, pipe);
->>> +		_drm_vblank_put(dev, pipe);
->>>    		send_vblank_event(dev, e, seq, now);
->>>    		vblwait->reply.sequence = seq;
->>>    	} else {
->>> @@ -1678,7 +1693,7 @@ static int drm_queue_vblank_event(struct drm_device *dev, unsigned int pipe,
->>>    	spin_unlock_irq(&dev->event_lock);
->>>    	kfree(e);
->>>    err_put:
->>> -	drm_vblank_put(dev, pipe);
->>> +	_drm_vblank_put(dev, pipe);
->>>    	return ret;
->>>    }
->>>    
->>> @@ -1796,14 +1811,14 @@ int drm_wait_vblank_ioctl(struct drm_device *dev, void *data,
->>>    		return 0;
->>>    	}
->>>    
->>> -	ret = drm_vblank_get(dev, pipe);
->>> +	ret = _drm_vblank_get(dev, pipe);
->>>    	if (ret) {
->>>    		drm_dbg_core(dev,
->>>    			     "crtc %d failed to acquire vblank counter, %d\n",
->>>    			     pipe, ret);
->>>    		return ret;
->>>    	}
->>> -	seq = drm_vblank_count(dev, pipe);
->>> +	seq = _drm_vblank_count(dev, pipe);
->>>    
->>>    	switch (vblwait->request.type & _DRM_VBLANK_TYPES_MASK) {
->>>    	case _DRM_VBLANK_RELATIVE:
->>> @@ -1839,7 +1854,7 @@ int drm_wait_vblank_ioctl(struct drm_device *dev, void *data,
->>>    		drm_dbg_core(dev, "waiting on vblank count %llu, crtc %u\n",
->>>    			     req_seq, pipe);
->>>    		wait = wait_event_interruptible_timeout(vblank->queue,
->>> -			drm_vblank_passed(drm_vblank_count(dev, pipe), req_seq) ||
->>> +			drm_vblank_passed(_drm_vblank_count(dev, pipe), req_seq) ||
->>>    				      !READ_ONCE(vblank->enabled),
->>>    			msecs_to_jiffies(3000));
->>>    
->>> @@ -1869,7 +1884,7 @@ int drm_wait_vblank_ioctl(struct drm_device *dev, void *data,
->>>    	}
->>>    
->>>    done:
->>> -	drm_vblank_put(dev, pipe);
->>> +	_drm_vblank_put(dev, pipe);
->>>    	return ret;
->>>    }
->>>    
->>> @@ -1895,7 +1910,7 @@ static void drm_handle_vblank_events(struct drm_device *dev, unsigned int pipe)
->>>    			     e->sequence, seq);
->>>    
->>>    		list_del(&e->base.link);
->>> -		drm_vblank_put(dev, pipe);
->>> +		_drm_vblank_put(dev, pipe);
->>>    		send_vblank_event(dev, e, seq, now);
->>>    	}
->>>    
->>> diff --git a/drivers/gpu/drm/drm_vblank_work.c b/drivers/gpu/drm/drm_vblank_work.c
->>> index 70f0199251ea..2ef006626d50 100644
->>> --- a/drivers/gpu/drm/drm_vblank_work.c
->>> +++ b/drivers/gpu/drm/drm_vblank_work.c
->>> @@ -58,7 +58,7 @@ void drm_handle_vblank_works(struct drm_vblank_crtc *vblank)
->>>    			continue;
->>>    
->>>    		list_del_init(&work->node);
->>> -		drm_vblank_put(vblank->dev, vblank->pipe);
->>> +		drm_vblank_put(vblank);
->>>    		kthread_queue_work(vblank->worker, &work->base);
->>>    		wake = true;
->>>    	}
->>> @@ -80,7 +80,7 @@ void drm_vblank_cancel_pending_works(struct drm_vblank_crtc *vblank)
->>>    
->>>    	list_for_each_entry_safe(work, next, &vblank->pending_work, node) {
->>>    		list_del_init(&work->node);
->>> -		drm_vblank_put(vblank->dev, vblank->pipe);
->>> +		drm_vblank_put(vblank);
->>>    	}
->>>    
->>>    	wake_up_all(&vblank->work_wait_queue);
->>> @@ -129,7 +129,7 @@ int drm_vblank_work_schedule(struct drm_vblank_work *work,
->>>    		goto out;
->>>    
->>>    	if (list_empty(&work->node)) {
->>> -		ret = drm_vblank_get(dev, vblank->pipe);
->>> +		ret = drm_vblank_get(vblank);
->>>    		if (ret < 0)
->>>    			goto out;
->>>    	} else if (work->count == count) {
->>> @@ -140,7 +140,7 @@ int drm_vblank_work_schedule(struct drm_vblank_work *work,
->>>    	}
->>>    
->>>    	work->count = count;
->>> -	cur_vbl = drm_vblank_count(dev, vblank->pipe);
->>> +	cur_vbl = drm_vblank_count(vblank);
->>>    	passed = drm_vblank_passed(cur_vbl, count);
->>>    	if (passed)
->>>    		drm_dbg_core(dev,
->>> @@ -148,7 +148,7 @@ int drm_vblank_work_schedule(struct drm_vblank_work *work,
->>>    			     vblank->pipe, count, cur_vbl);
->>>    
->>>    	if (!nextonmiss && passed) {
->>> -		drm_vblank_put(dev, vblank->pipe);
->>> +		drm_vblank_put(vblank);
->>>    		ret = kthread_queue_work(vblank->worker, &work->base);
->>>    
->>>    		if (rescheduling) {
->>> @@ -193,7 +193,7 @@ bool drm_vblank_work_cancel_sync(struct drm_vblank_work *work)
->>>    	spin_lock_irq(&dev->event_lock);
->>>    	if (!list_empty(&work->node)) {
->>>    		list_del_init(&work->node);
->>> -		drm_vblank_put(vblank->dev, vblank->pipe);
->>> +		drm_vblank_put(vblank);
->>>    		ret = true;
->>>    	}
->>>    
-
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
-
+> 
+> Remove driver-side release of BARs from the amdgpu driver.
+> 
+> Also remove the driver initiated assignment as pci_resize_resource()
+> should try to assign as much as possible. If the driver side call
+> manages to get more required resources assigned in some scenario, such
+> a problem should be fixed inside pci_resize_resource() instead.
+> 
+> Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 8 +-------
+>  1 file changed, 1 insertion(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> index 7a899fb4de29..65474d365229 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> @@ -1729,12 +1729,8 @@ int amdgpu_device_resize_fb_bar(struct amdgpu_device *adev)
+>  	pci_write_config_word(adev->pdev, PCI_COMMAND,
+>  			      cmd & ~PCI_COMMAND_MEMORY);
+>  
+> -	/* Free the VRAM and doorbell BAR, we most likely need to move both. */
+> +	/* Tear down doorbell as resizing will release BARs */
+>  	amdgpu_doorbell_fini(adev);
+> -	if (adev->asic_type >= CHIP_BONAIRE)
+> -		pci_release_resource(adev->pdev, 2);
+> -
+> -	pci_release_resource(adev->pdev, 0);
+>  
+>  	r = pci_resize_resource(adev->pdev, 0, rbar_size);
+>  	if (r == -ENOSPC)
+> @@ -1743,8 +1739,6 @@ int amdgpu_device_resize_fb_bar(struct amdgpu_device *adev)
+>  	else if (r && r != -ENOTSUPP)
+>  		dev_err(adev->dev, "Problem resizing BAR0 (%d).", r);
+>  
+> -	pci_assign_unassigned_bus_resources(adev->pdev->bus);
+> -
+>  	/* When the doorbell or fb BAR isn't available we have no chance of
+>  	 * using the device.
+>  	 */
 
