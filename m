@@ -2,88 +2,85 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82905C537EF
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Nov 2025 17:46:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CED9FC53855
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Nov 2025 17:54:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD60D10E786;
-	Wed, 12 Nov 2025 16:46:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF5A810E789;
+	Wed, 12 Nov 2025 16:54:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="qdhJ1R9Z";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="A1khDARI";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="qdhJ1R9Z";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="A1khDARI";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="G7TgEqeg";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="SsyNx3Lp";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="LtPmy0gH";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="DAxVn/+h";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B477210E785
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Nov 2025 16:46:44 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56EA710E78A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 Nov 2025 16:54:35 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 6460121CB1;
- Wed, 12 Nov 2025 16:46:43 +0000 (UTC)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id D99FE21C1B;
+ Wed, 12 Nov 2025 16:54:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1762966003; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1762966474; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=dg1u7AJCxw0wPtNYn4gI5lVe6DRjr7+4TDzV0ZkrWwg=;
- b=qdhJ1R9ZXtjKyC4/o51gGpuZHTbepFd83Qb2rzMV4Uq5wXFsrO0aOG4k5phIPn6symZni3
- vh7lLt/Kc2ae5QDQjJ/IE2yrDGetnZIwDLdTpCT9UrmMdJw3Mz4xveuZjnLrSrTyszWonA
- zsxaMzUCs4dQPrUMivXI90EJSaMvnlU=
+ bh=PeWWzh2SfhDhzPEsOiqb2Zg+WwOrRpMSYOa8n/GqIKc=;
+ b=G7TgEqegkqZjQBY4bv/r8HCNxrXV5ErAujSBC6gsyGBkesTgXsVGo0gPq57uiHzU42qFpf
+ YjE/U5f86XajsLnUIVCWTDccAkVpEJ5Jpa7Yj9Df058/dmbHW342FKK3okPuwNmRCDhMSU
+ h0ooJ1j/TN/qwQmDrv+CTXDBADTulyY=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1762966003;
+ s=susede2_ed25519; t=1762966474;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=dg1u7AJCxw0wPtNYn4gI5lVe6DRjr7+4TDzV0ZkrWwg=;
- b=A1khDARI1/JHOyyp102HFfJbF0E4U9FhQh1fKY5lLNDeWA0ZHZZ9qK182Q1uaAWJ8pqWOE
- znt3qzZo04libEBQ==
+ bh=PeWWzh2SfhDhzPEsOiqb2Zg+WwOrRpMSYOa8n/GqIKc=;
+ b=SsyNx3LprQXgZNSk8vuqlfTbnvZh0Dd9DpHeBIdwyR1k1k9ELbs1YF75VRiDYzpe4O7zIF
+ W8BPWlndF3s+7uAA==
 Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=qdhJ1R9Z;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=A1khDARI
+	none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1762966003; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1762966473; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=dg1u7AJCxw0wPtNYn4gI5lVe6DRjr7+4TDzV0ZkrWwg=;
- b=qdhJ1R9ZXtjKyC4/o51gGpuZHTbepFd83Qb2rzMV4Uq5wXFsrO0aOG4k5phIPn6symZni3
- vh7lLt/Kc2ae5QDQjJ/IE2yrDGetnZIwDLdTpCT9UrmMdJw3Mz4xveuZjnLrSrTyszWonA
- zsxaMzUCs4dQPrUMivXI90EJSaMvnlU=
+ bh=PeWWzh2SfhDhzPEsOiqb2Zg+WwOrRpMSYOa8n/GqIKc=;
+ b=LtPmy0gHbqEq3qnTRuj4fyAJb1xvo1LzLQh0FT6Y8I7LnKO+nmo/v/2UblhY/DGw1XBqGA
+ r/7e0f8Gds1zABzl7OKoDgIsmyD1c7inQxBYT9dfo9hXd4Enes4qgFrURlhN+V9QA3upEl
+ gl/5eUOnq1ssB7ydWwVNNNJWZn4CGJA=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1762966003;
+ s=susede2_ed25519; t=1762966473;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=dg1u7AJCxw0wPtNYn4gI5lVe6DRjr7+4TDzV0ZkrWwg=;
- b=A1khDARI1/JHOyyp102HFfJbF0E4U9FhQh1fKY5lLNDeWA0ZHZZ9qK182Q1uaAWJ8pqWOE
- znt3qzZo04libEBQ==
+ bh=PeWWzh2SfhDhzPEsOiqb2Zg+WwOrRpMSYOa8n/GqIKc=;
+ b=DAxVn/+h1K1JDOltkZjjABbZ/oMpTwE2p2q8/n9x7COLsNAh6r+O5BwXSZHaVfcXWi3y9n
+ cDeZBcOxSUcMpUBg==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 34BDA3EA61;
- Wed, 12 Nov 2025 16:46:43 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id AA7593EA61;
+ Wed, 12 Nov 2025 16:54:33 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id tK9wC/O5FGnGPgAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Wed, 12 Nov 2025 16:46:43 +0000
-Message-ID: <d7749c95-32e6-4c89-b63f-6308f621b5a0@suse.de>
-Date: Wed, 12 Nov 2025 17:46:42 +0100
+ by imap1.dmz-prg2.suse.org with ESMTPSA id sdROJ8m7FGk8RgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Wed, 12 Nov 2025 16:54:33 +0000
+Message-ID: <348198aa-9736-4ca9-b476-5d3a020f1c9d@suse.de>
+Date: Wed, 12 Nov 2025 17:54:32 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 22/24] drm/vblank: pass vblank to
- drm_vblank_disable_and_save(), make static
+Subject: Re: [PATCH 23/24] drm/vblank: reduce pipe checks
 To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  ville.syrjala@linux.intel.com
 References: <cover.1762791343.git.jani.nikula@intel.com>
- <586b73b0373bb22c2a59aeff94ddbbe868c879fc.1762791343.git.jani.nikula@intel.com>
+ <472777431de3c0f8a8d43e2ee7a55b3a170d138c.1762791343.git.jani.nikula@intel.com>
 Content-Language: en-US
 From: Thomas Zimmermann <tzimmermann@suse.de>
 Autocrypt: addr=tzimmermann@suse.de; keydata=
@@ -110,32 +107,25 @@ Autocrypt: addr=tzimmermann@suse.de; keydata=
  SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
  Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
  4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <586b73b0373bb22c2a59aeff94ddbbe868c879fc.1762791343.git.jani.nikula@intel.com>
+In-Reply-To: <472777431de3c0f8a8d43e2ee7a55b3a170d138c.1762791343.git.jani.nikula@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Level: 
-X-Spam-Flag: NO
-X-Rspamd-Queue-Id: 6460121CB1
-X-Rspamd-Action: no action
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
  NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
  NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[]; FUZZY_RATELIMITED(0.00)[rspamd.com];
- RCVD_VIA_SMTP_AUTH(0.00)[]; RCVD_TLS_ALL(0.00)[];
- ARC_NA(0.00)[]; MIME_TRACE(0.00)[0:+];
- RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
- TO_DN_SOME(0.00)[];
- RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- MID_RHS_MATCH_FROM(0.00)[];
+ FUZZY_RATELIMITED(0.00)[rspamd.com];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; MIME_TRACE(0.00)[0:+];
+ ARC_NA(0.00)[]; TO_DN_SOME(0.00)[]; MID_RHS_MATCH_FROM(0.00)[];
+ RCVD_TLS_ALL(0.00)[];
  DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- RCPT_COUNT_FIVE(0.00)[5]; RCVD_COUNT_TWO(0.00)[2];
- TO_MATCH_ENVRCPT_ALL(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo,suse.com:url,suse.de:dkim,suse.de:mid,suse.de:email];
- DKIM_TRACE(0.00)[suse.de:+]
-X-Spam-Score: -4.51
+ FROM_HAS_DN(0.00)[]; RCPT_COUNT_FIVE(0.00)[5];
+ FROM_EQ_ENVFROM(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email, suse.de:mid, suse.com:url,
+ imap1.dmz-prg2.suse.org:helo, intel.com:email]
+X-Spam-Flag: NO
+X-Spam-Score: -4.30
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,66 +144,140 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 Am 10.11.25 um 17:17 schrieb Jani Nikula:
-> Use the vblank pointer instead of a dev, pipe pair to simplify code.
+> Now that drm_vblank_crtc() is the only place that indexes dev->vblank[],
+> and its usage has reduced considerably, add the primary pipe
+> out-of-bounds check there, and return NULL. Expect callers to check it
+> and act accordingly.
 >
-> drm_vblank_disable_and_save() is also no longer used outside of
-> drm_vblank.c; make it static while at it.
+> In drm_crtc_vblank_crtc(), warn and return NULL, and let it go boom. If
+> the crtc->pipe is out of bounds, it's a driver error that needs to be
+> fixed.
+>
+> Remove superfluous pipe checks all around.
 >
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
 Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
 
+See my comment below.
+
 > ---
->   drivers/gpu/drm/drm_internal.h | 1 -
->   drivers/gpu/drm/drm_vblank.c   | 8 ++++----
->   2 files changed, 4 insertions(+), 5 deletions(-)
+>   drivers/gpu/drm/drm_vblank.c | 36 +++++++++++++++---------------------
+>   1 file changed, 15 insertions(+), 21 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/drm_internal.h b/drivers/gpu/drm/drm_internal.h
-> index e9c85c3681f1..6a7b53de03a8 100644
-> --- a/drivers/gpu/drm/drm_internal.h
-> +++ b/drivers/gpu/drm/drm_internal.h
-> @@ -100,7 +100,6 @@ static inline bool drm_vblank_passed(u64 seq, u64 ref)
->   	return (seq - ref) <= (1 << 23);
->   }
->   
-> -void drm_vblank_disable_and_save(struct drm_device *dev, unsigned int pipe);
->   int drm_vblank_get(struct drm_vblank_crtc *vblank);
->   void drm_vblank_put(struct drm_vblank_crtc *vblank);
->   u64 drm_vblank_count(struct drm_vblank_crtc *vblank);
 > diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-> index ee9355d5069b..44fb8d225485 100644
+> index 44fb8d225485..7829e64e42b4 100644
 > --- a/drivers/gpu/drm/drm_vblank.c
 > +++ b/drivers/gpu/drm/drm_vblank.c
-> @@ -462,9 +462,9 @@ static void __disable_vblank(struct drm_vblank_crtc *vblank)
->    * are preserved, even if there are any spurious vblank irq's after
->    * disable.
+> @@ -177,13 +177,22 @@ MODULE_PARM_DESC(timestamp_precision_usec, "Max. error on timestamps [usecs]");
+>   static struct drm_vblank_crtc *
+>   drm_vblank_crtc(struct drm_device *dev, unsigned int pipe)
+>   {
+> +	if (pipe >= dev->num_crtcs)
+> +		return NULL;
+> +
+>   	return &dev->vblank[pipe];
+>   }
+>   
+>   struct drm_vblank_crtc *
+>   drm_crtc_vblank_crtc(struct drm_crtc *crtc)
+>   {
+> -	return drm_vblank_crtc(crtc->dev, drm_crtc_index(crtc));
+> +	struct drm_vblank_crtc *vblank;
+> +
+> +	vblank = drm_vblank_crtc(crtc->dev, drm_crtc_index(crtc));
+> +	if (drm_WARN_ON(crtc->dev, !vblank))
+> +		return NULL;
+> +
+> +	return vblank;
+>   }
+>   EXPORT_SYMBOL(drm_crtc_vblank_crtc);
+>   
+> @@ -631,7 +640,6 @@ void drm_calc_timestamping_constants(struct drm_crtc *crtc,
+>   				     const struct drm_display_mode *mode)
+>   {
+>   	struct drm_device *dev = crtc->dev;
+> -	unsigned int pipe = drm_crtc_index(crtc);
+>   	struct drm_vblank_crtc *vblank = drm_crtc_vblank_crtc(crtc);
+>   	int linedur_ns = 0, framedur_ns = 0;
+>   	int dotclock = mode->crtc_clock;
+> @@ -639,9 +647,6 @@ void drm_calc_timestamping_constants(struct drm_crtc *crtc,
+>   	if (!drm_dev_has_vblank(dev))
+>   		return;
+>   
+> -	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
+> -		return;
+> -
+>   	/* Valid dotclock? */
+>   	if (dotclock > 0) {
+>   		int frame_size = mode->crtc_htotal * mode->crtc_vtotal;
+> @@ -724,11 +729,6 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
+>   	int vpos, hpos, i;
+>   	int delta_ns, duration_ns;
+>   
+> -	if (pipe >= dev->num_crtcs) {
+> -		drm_err(dev, "Invalid crtc %u\n", pipe);
+> -		return false;
+> -	}
+> -
+>   	/* Scanout position query not supported? Should not happen. */
+>   	if (!get_scanout_position) {
+>   		drm_err(dev, "Called from CRTC w/o get_scanout_position()!?\n");
+> @@ -1339,9 +1339,6 @@ void drm_crtc_vblank_off(struct drm_crtc *crtc)
+>   	ktime_t now;
+>   	u64 seq;
+>   
+> -	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
+> -		return;
+> -
+>   	/*
+>   	 * Grab event_lock early to prevent vblank work from being scheduled
+>   	 * while we're in the middle of shutting down vblank interrupts
+> @@ -1480,9 +1477,6 @@ void drm_crtc_vblank_on_config(struct drm_crtc *crtc,
+>   	unsigned int pipe = drm_crtc_index(crtc);
+>   	struct drm_vblank_crtc *vblank = drm_crtc_vblank_crtc(crtc);
+>   
+> -	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
+> -		return;
+> -
+>   	spin_lock_irq(&dev->vbl_lock);
+>   	drm_dbg_vbl(dev, "crtc %d, vblank enabled %d, inmodeset %d\n",
+>   		    pipe, vblank->enabled, vblank->inmodeset);
+> @@ -1764,10 +1758,9 @@ int drm_wait_vblank_ioctl(struct drm_device *dev, void *data,
+>   		pipe = pipe_index;
+>   	}
+>   
+> -	if (pipe >= dev->num_crtcs)
+> -		return -EINVAL;
+> -
+>   	vblank = drm_vblank_crtc(dev, pipe);
+> +	if (!vblank)
+> +		return -EINVAL;
+>   
+>   	/* If the counter is currently enabled and accurate, short-circuit
+>   	 * queries to return the cached timestamp of the last vblank.
+> @@ -1902,14 +1895,15 @@ static void drm_handle_vblank_events(struct drm_vblank_crtc *vblank)
 >    */
-> -void drm_vblank_disable_and_save(struct drm_device *dev, unsigned int pipe)
-> +static void drm_vblank_disable_and_save(struct drm_vblank_crtc *vblank)
+>   bool drm_handle_vblank(struct drm_device *dev, unsigned int pipe)
 >   {
 > -	struct drm_vblank_crtc *vblank = drm_vblank_crtc(dev, pipe);
-> +	struct drm_device *dev = vblank->dev;
+> +	struct drm_vblank_crtc *vblank;
 >   	unsigned long irqflags;
+>   	bool disable_irq;
 >   
->   	assert_spin_locked(&dev->vbl_lock);
-> @@ -509,7 +509,7 @@ static void vblank_disable_fn(struct timer_list *t)
->   	spin_lock_irqsave(&dev->vbl_lock, irqflags);
->   	if (atomic_read(&vblank->refcount) == 0 && vblank->enabled) {
->   		drm_dbg_core(dev, "disabling vblank on crtc %u\n", pipe);
-> -		drm_vblank_disable_and_save(dev, pipe);
-> +		drm_vblank_disable_and_save(vblank);
->   	}
->   	spin_unlock_irqrestore(&dev->vbl_lock, irqflags);
->   }
-> @@ -1355,7 +1355,7 @@ void drm_crtc_vblank_off(struct drm_crtc *crtc)
->   	/* Avoid redundant vblank disables without previous
->   	 * drm_crtc_vblank_on(). */
->   	if (drm_core_check_feature(dev, DRIVER_ATOMIC) || !vblank->inmodeset)
-> -		drm_vblank_disable_and_save(dev, pipe);
-> +		drm_vblank_disable_and_save(vblank);
+>   	if (drm_WARN_ON_ONCE(dev, !drm_dev_has_vblank(dev)))
+>   		return false;
 >   
->   	wake_up(&vblank->queue);
+> -	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
+> +	vblank = drm_vblank_crtc(dev, pipe);
+> +	if (drm_WARN_ON(dev, !vblank))
+>   		return false;
+
+This can happen on each interrupt. Rather use drm_WARN_ON_ONCE here.
+
+
 >   
+>   	spin_lock_irqsave(&dev->event_lock, irqflags);
 
 -- 
 --
