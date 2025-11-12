@@ -2,91 +2,89 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBE03C509F5
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Nov 2025 06:32:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B77AC50A07
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Nov 2025 06:39:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E522D10E695;
-	Wed, 12 Nov 2025 05:32:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F4DD10E696;
+	Wed, 12 Nov 2025 05:39:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QKIIiCPI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q1mCF/IS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F18D110E695;
- Wed, 12 Nov 2025 05:32:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3FD410E696;
+ Wed, 12 Nov 2025 05:39:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762925538; x=1794461538;
+ t=1762925984; x=1794461984;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=2YYgf1Z2e8WxLE29bZbDCvfEABF7YvNNM1MnP6qH3dc=;
- b=QKIIiCPIPzf/a2XEjhB4QBTZm7fi8RNskWMfwApkhpiIBk85IB75NxYO
- RZQ35Rrmo5rLn14c/gyQZCnduQWMLmP/lw8TusO/9YSHPMTeX7t3pqySv
- 5D9Qj7u8P3wM443A4i01DvMt/mL8l/HGOXJWIaCzNfWz2pW82B/wLQkqT
- hzpWAMJkYCLaQ7GjMDcxXRseBNaA5RH8zPuQ9jbq7QyRPJGpe80cUsanI
- EE91N7q678TIETsQ9KDoBJTH404mIyhJaNqkFktI7/Hprn9o7p4ewKBhx
- OeODhou9/UInTi1qkbfVh+nedFu5Lkk0QNG5D4XUqt2h6YHEmv0yExJR/ A==;
-X-CSE-ConnectionGUID: a39dTojXRkCKRG0qMyY6JQ==
-X-CSE-MsgGUID: o80wcOwPRfWOu3YbltSnAA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11610"; a="76331663"
-X-IronPort-AV: E=Sophos;i="6.19,298,1754982000"; d="scan'208";a="76331663"
+ bh=q09szbOUmu/BUtcWYy2nWw188pwBqNa3m0PZs/EgNWA=;
+ b=Q1mCF/ISwq0deQH3utphh11jeFflD6Aq4+JUOaj65oX5qdQdLA/dAOel
+ oYg5wgdFD3xY/8n3J0RV+YG7pIWlGpomEeVIXjyrqvW3AaoE+KlBUZEaM
+ +VyB2ExlnKNAyB6wdrrWyh2CA87o3yTOjRDtNwcTnWK0ibLdwk1XKxlYY
+ TaG5LTjwsqkbj7zolG3rFM802J9L/Zm0O0qZEpOlgY4N1vca7UNLNzgl3
+ Cb2qOD60iEcKnj7h5pX3O1BEvg/13aNm1qDe+GxHEwxxMLEkcpGSIQ4s0
+ vW/gFFEtSbsmlsEJhWONwkSXdHjfyMX1cAYRPK7xtPE6mkaEraZ+rv9wi g==;
+X-CSE-ConnectionGUID: R35x0FZRQ/qwQuc7DOb4BQ==
+X-CSE-MsgGUID: ARvAzAhGS6aCHC4u+bLueA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11610"; a="82380211"
+X-IronPort-AV: E=Sophos;i="6.19,298,1754982000"; d="scan'208";a="82380211"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2025 21:32:17 -0800
-X-CSE-ConnectionGUID: j3iKNYtDT7GnLmtgDrtJHw==
-X-CSE-MsgGUID: yq+Sd1VTTfWepvYe+o4Odg==
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2025 21:39:43 -0800
+X-CSE-ConnectionGUID: ZGuUMGNFQem2WSK0qaXxGQ==
+X-CSE-MsgGUID: TJuFJL+iT7erw3uDPfC/6A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,298,1754982000"; d="scan'208";a="194108088"
+X-IronPort-AV: E=Sophos;i="6.19,298,1754982000"; d="scan'208";a="194109756"
 Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
  by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2025 21:32:17 -0800
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ 11 Nov 2025 21:39:43 -0800
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
  fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 11 Nov 2025 21:32:17 -0800
+ 15.2.2562.27; Tue, 11 Nov 2025 21:39:42 -0800
 Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Tue, 11 Nov 2025 21:32:17 -0800
-Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.38) by
+ 15.2.2562.27 via Frontend Transport; Tue, 11 Nov 2025 21:39:42 -0800
+Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.62) by
  edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 11 Nov 2025 21:32:16 -0800
+ 15.2.2562.27; Tue, 11 Nov 2025 21:39:42 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bkOqwJHb6k0oENLBJd/dQ84lp3Ej0qddCw8p7UsS/Qr112owP1Uk1MaQDUVEBrBrPrxOfz0r1oxxAkc1etwXgUtmj6CSuVbeeuyRASnSkfYpscaqVNcO5QAJby2cdaLFyfQp3UVK+AR/t4tpzeg+9/hStersS1CA6Fi+thhZn0y3NZ86IT0dHZVYPYeIculGWTnZEl3uztsq9MjNg4S90sO1tLQbNoAK2bnnVCTlM+eAiJc00DYJGmfAGggyQ7c4QFEQN+EkxI/upU9aG2WCpeo3ZiLxQJLJ8zzX18jiycXhdCnBCtxxYFVjO2cQKtbhMlugG3yO5RXllbLCQcSyJA==
+ b=EDo6LkJrmz62OoLfrVzZSbUC6Ujno/BeQeFdzgzYXQygNmmuv38MrVb1+S0A8+aGRiJu4/myzKp/L0i6KOX4NOfast2ScnLupJrhiftk9nsrGWJMQRQhN3sHqLX0xYAag/YJjMYe5l71OGVJs7qH1Oe3ev3BwSJFrjTVMlrIMzwMJiPpGuHCWtjZ70SfpCWUGApDHDJW6earLhlGJpCKXeiwaQr7T7Q2AvDm+neIRhJ9fQQRrT5xDwfBk7c7EZaswl6/I/Td9GqUrl1Tqb7UfU5FNzzpYLVUKHgvHXeIw7QRtkdOFPFAqyVenAsg5dBnPYv/4DtdnsY+G+zC8/+Rfw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/HUBdbfd/xpaCbeHmQLMI4y3h/N2pt/O5NdQmRbC6OA=;
- b=IpmeUHqoyCUkz4Y8e7km22Q35LFHuhlYa9XdFxBljoUn5Lg1/gYPRYDKJM0BIzztpyzDqP5ll4qXCoO5ZGvM7QRr20ejZz8WXisNqLLfBwfRgQosQMB25YtcSCnNLPgmc/AoHYi9KPcumP1eh0Gb4gAXfUsbe5Iz/dmUeUOvVgbjTpy/mNEJxHzEO1+2iR2yMVvB3USioBFg+zH3/18mWFmiWDSKXpGfKbzLOJDlalYJ+6uDYgC/ZlykmUkfc10pXjTX12Fn4vablV1hoBr2ceN1gPikOAhRWLcGy8csdMdnl3d1HKO+v06/58VG9xINLGphBnAo0i8rHUmVpwF2gA==
+ bh=Cm64nBRPFZR/w6RSjkBV1nr3s9tSQ5Z2N3Q+AUjKRqU=;
+ b=hiKQzfJROQxqMlF3xfZGlqNND1opJgx2GV0/VuE2N6/Qlc1v+btj5VIaPziEgeHugGgWd3LUWMrOcJf8xsfEpyIlcSTpEF3r0Mvd/XEfneEc0/ICdNm9s/+7DErL3Vr0FiBsZSveQV39I3rRWp3sv56ut63vI4WpmIQnjbiz9Hdci+3k+DUQUJpcePiz93EK86Be3YSA63J3o85X0dxGa7rTa5/gxnc3N2Z5FETNVknkTtGRv3ufW6CO++EAJ0hD0u6I8J/Rn5Gr5R09aQg6/NOU7O9Kl0XtKibGW2obc78AMVGMkxjtSO/p4heGMPyM4S5OAJ28BkibfEQnEskqNA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
- (2603:10b6:f:fc00::f13) by CYYPR11MB8406.namprd11.prod.outlook.com
- (2603:10b6:930:ba::13) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:f:fc00::f13) by IA1PR11MB8198.namprd11.prod.outlook.com
+ (2603:10b6:208:453::20) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.15; Wed, 12 Nov
- 2025 05:32:08 +0000
+ 2025 05:39:40 +0000
 Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
  ([fe80::95c9:5973:5297:d3cc]) by DM3PPF208195D8D.namprd11.prod.outlook.com
  ([fe80::95c9:5973:5297:d3cc%4]) with mapi id 15.20.9320.013; Wed, 12 Nov 2025
- 05:32:08 +0000
+ 05:39:40 +0000
 From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
 To: "Kahola, Mika" <mika.kahola@intel.com>, "intel-gfx@lists.freedesktop.org"
  <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
  <intel-xe@lists.freedesktop.org>
-CC: "Kahola, Mika" <mika.kahola@intel.com>, "Deak, Imre" <imre.deak@intel.com>
-Subject: RE: [CI 29/32] drm/i915/display: Add .enable_clock on DDI for MTL+
- platforms
-Thread-Topic: [CI 29/32] drm/i915/display: Add .enable_clock on DDI for MTL+
- platforms
-Thread-Index: AQHcSlaK+IZuVlDmREetaRntt/7XdrTulniA
-Date: Wed, 12 Nov 2025 05:32:08 +0000
-Message-ID: <DM3PPF208195D8D25BDF977D1949D37CD37E3CCA@DM3PPF208195D8D.namprd11.prod.outlook.com>
+CC: "Kahola, Mika" <mika.kahola@intel.com>
+Subject: RE: [CI 32/32] drm/i915/display: Enable dpll framework for MTL+
+Thread-Topic: [CI 32/32] drm/i915/display: Enable dpll framework for MTL+
+Thread-Index: AQHcSlUgaB2HD3B0e0CDfqKXlgyylLTumJCw
+Date: Wed, 12 Nov 2025 05:39:40 +0000
+Message-ID: <DM3PPF208195D8D1F09728621CFE31A60F8E3CCA@DM3PPF208195D8D.namprd11.prod.outlook.com>
 References: <20251031103549.173208-1-mika.kahola@intel.com>
- <20251031103549.173208-30-mika.kahola@intel.com>
-In-Reply-To: <20251031103549.173208-30-mika.kahola@intel.com>
+ <20251031103549.173208-33-mika.kahola@intel.com>
+In-Reply-To: <20251031103549.173208-33-mika.kahola@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -94,80 +92,80 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM3PPF208195D8D:EE_|CYYPR11MB8406:EE_
-x-ms-office365-filtering-correlation-id: 737395b2-f18c-40c4-4368-08de21acd2b3
+x-ms-traffictypediagnostic: DM3PPF208195D8D:EE_|IA1PR11MB8198:EE_
+x-ms-office365-filtering-correlation-id: 1a168bb4-79df-4fc5-04d2-08de21addfde
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|376014|366016|38070700021;
-x-microsoft-antispam-message-info: =?us-ascii?Q?MlAfPnB0sKX53gSvwgf7xcqytU17Ju5lsOyWFCMEF5C9FzJGKe8TAWMhGFz0?=
- =?us-ascii?Q?cbUAZQDg7heisaa2/PnIGYoi2SnipwbHpF25bTnFsMplTggOwGiyJUXK82ai?=
- =?us-ascii?Q?iIXK5Y4VCzFsn0hregqGQDP1ZbtAw2910l+43JqnPVYdSTvKpZ3x0cqf5YjI?=
- =?us-ascii?Q?9CWHSrbnUp/5HchqgFHRDVXjodwxRsLdkqeAn/Fh2nFD2aAhmNnGWupIrodj?=
- =?us-ascii?Q?lLmEO+Fq+9GkPSClWlOZDahs+I7AVYOeotjB+7VHm/vkuX7fFmgbqEmxx91L?=
- =?us-ascii?Q?P934wJq2eP6pc455m7AMRP/PDd+RYM+Kf7RPAsIMP0etmRcmSjlcOb3VS3VK?=
- =?us-ascii?Q?3hNQ3C9Qyzhh3J213rDpA2peMsXZ2vwTmQiukyaVezjwRBJ5wWauO3v5+s9n?=
- =?us-ascii?Q?7Ziw8J6yTAGcoIL7funeblGLXWQer65G/j3SLOfqHygI9XgUyJBMvxp27dZd?=
- =?us-ascii?Q?f6mWaA9mMYgbLRYgj3EQdJYUVVPE1JYbZfieTXwu3EDwZvs1rFsdd/SoWEXw?=
- =?us-ascii?Q?JAHPG6JYclsC00ofXmwEEIhaEoCijD9SE+XFIBpS7HeTZ32ptWdRhCxOi9T3?=
- =?us-ascii?Q?MlWuBlY5vVRwM6TZ32jcMskejVhgNZ4KeO2yFh7wx1AZ5wdEqs/Y16LJpdae?=
- =?us-ascii?Q?OkOFzBVuZwNEG01pcdv1sUJi3dVREhicTTQYAlDFZ5tUj73egz1nfTwO2k8G?=
- =?us-ascii?Q?fpvjC9jCZNCGN3yAIKb3cZi3j0UPmZ8njTSsGcP8ZS1JJogWrDxOgFBSlkgB?=
- =?us-ascii?Q?H7J2TqgcyDfv18Rc9L9dewB3msIzpjOYIeXw5NWu++r5Z+Mx7VYlg447nd+T?=
- =?us-ascii?Q?J7xxSqilRcnLu4WfF3rAlidivutRPDE2W0CB1s/ybdmAVho5uCh6hptaOnRA?=
- =?us-ascii?Q?wG0UYNPkkQC7KQz+kiVhTeiBvF1NFVPgkvzXyv2Z7j/TBVGQNnK4X5njuFIl?=
- =?us-ascii?Q?L34bZ0NwArGxj5gG8nk2OatrP2oNX6Fs7lfx5eftF0ADfAxXu+4shflkEp+B?=
- =?us-ascii?Q?jRzYgDc1ijYR27vwpYzJWXdwE84c5VSeOv21tkat62021b+BHCcejIn3VFIF?=
- =?us-ascii?Q?8+8+jMy5h2B/I6gisTcOKpxIF4N1OUVP6Bkx0nf9ds1re7fD4XP0BMjL8r5L?=
- =?us-ascii?Q?ntSoBpp+HKcEqZfyzKdMXFpCNzqfAyR9Knpn5IkInrRBXaOcl4PhBryZDuqb?=
- =?us-ascii?Q?Zyo5J4fTBvb5wSXxk1pG4jjw6mNu3Mu+W8e6hGBtycY3kNeN1GBIKs3BHKkk?=
- =?us-ascii?Q?A1SzcRyHcpXYgNYdG5UMpOhT50XvnfUGaKvxIqktopz1OOTIhWluI4bUxo9J?=
- =?us-ascii?Q?711rWxhbdUIQBUgjaBGijrk6UdIOe4m2M7t4pQ1K16b2jYuLA0NVQCTOF74C?=
- =?us-ascii?Q?XAAfk8Bp5LDQNjreHjlTKGiMmWSXh8Rkf1uOvxnhzskdUaTsqN1ltuwljeBB?=
- =?us-ascii?Q?qn6ge2arpkYITl09fofsYo7El9honvQpmNtv0ZvFRQZiw9z7pfCMM0NfHW33?=
- =?us-ascii?Q?OIDiu20eDLMkVx9hCQgoMLC8WfR2VqH6A/cX?=
+x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|366016|376014|38070700021;
+x-microsoft-antispam-message-info: =?us-ascii?Q?EEA5t5ZVU4rVfvOcTzI9/7TOjwKaPtvCPmXVcvbDEhQ75H4S6hPSJL/1+oMP?=
+ =?us-ascii?Q?uW4zicwabTivy0v50EwlHDAOZJWLQrKP+3B7iX6jbbvOUm3/f/yTuKwsu9tf?=
+ =?us-ascii?Q?jv54fPQ0hqc7X20HdXLwq0QM2oeL8kp/aRCKMWrNbbYKQl+aVHsHZfjpAX4K?=
+ =?us-ascii?Q?u+AZI4eE7Zke3R0ZEhmN/5pbKDad7ym1INaqLB6Om5k8PtgM1LQTNw2aMp8g?=
+ =?us-ascii?Q?FV+JjzKPGxz1EVVf7QnD0USretpYffxdyqyoxRd3xsqEhzjMrIRmjTlnkobg?=
+ =?us-ascii?Q?TWx0Q+nomJPuUbsWQjPcpF5dSkZBrVGcnXmuNegmG0AVx0O40/k8JAEP7YwZ?=
+ =?us-ascii?Q?Qx6AXSOiQVV2BAH6ylKhQ+mOFVJNWaVw9Txf1NICPtA69ABppNp/nrUpSto7?=
+ =?us-ascii?Q?gl7oEJ39kE2XWcT+4uljZLVBJEqwp+qS5WkOwt6ETKhvl2SlghdkcMD1TgnR?=
+ =?us-ascii?Q?DTJrL74uQml7VvS+EQIIg2FRg3Fm08jCXRHFAM7yb7BxEm1dbKCE52MremAH?=
+ =?us-ascii?Q?YsvtX9UVghHLW62mdxDKtb0LJN2s50H+FzhWsCCa39xcs/kI0fHIiFEMB15t?=
+ =?us-ascii?Q?wkaJTwbutVdXJ5tAhg5rjuo8xRPxouibtE9IgBb+xBdaJKuFfsNmZac7NY99?=
+ =?us-ascii?Q?G8ApL7PNqg44huWyo8ug90Vjn9BOBKK9tLAMHEkRs5jOHdjjqNhiKLCTO6Or?=
+ =?us-ascii?Q?MPvLTFqXlnsjAGdGq5D06+M4m9KRQRyqjg8IhM0MYlbgIfylZ1YgLE+t2pS+?=
+ =?us-ascii?Q?lye7Q/r1zAGx7y7eJvCMQcfxq0VhyXHk0XKIpRQ+Di49gfzrp2ehuMyzC7Oi?=
+ =?us-ascii?Q?BLDIfr2E/CYU4P3zDlVGZE25FZJ/w0/AdLsbCh5viTIpkhYeukxSkxgGSY0V?=
+ =?us-ascii?Q?/MQxPCeTs68Qv/4TJ+1qSwobKjpsiemNt2GYv5rVqOvtqbINpmCEONRpNE85?=
+ =?us-ascii?Q?zi889WSPa4grXKMT7u/mQpM4bn264Yw0nkvdqoJj4B/XhPy/BA5OamGcActT?=
+ =?us-ascii?Q?/Ka0+/M8oHO4z/4y1d++wLDVrQ9fMxOevrw7gQVj7QkTpXFSFjZt7dRGkpo0?=
+ =?us-ascii?Q?/80npsruI5sD3JjjTvPkOMXVJj5gOZV/cQ6oOl6pAk0Trc9+ryqDoCUg+ZTU?=
+ =?us-ascii?Q?NS2E2lu52PDGqZxWelY+p5F1QdLRogmo+9W88T5tPiV7cC1DXN/0jtVYtqwe?=
+ =?us-ascii?Q?selgfDW+JifjXSZNkZysf/AbSjHDDBftGGZvVPHTrABFJ9ogizHmhlNB0m6V?=
+ =?us-ascii?Q?OXDPsAjqUNGYpbuU1ST6TzjstmIqDA+UrXbQeiij0Xg1pQLwkm3FqlxLjKDg?=
+ =?us-ascii?Q?u1nhBwV64ZuRnvgHQqAyX48cIQy4n3yXfvwXBiwRDo0HeIaqwadPPmWPDQGn?=
+ =?us-ascii?Q?Yx/641qWWUgnLtJKXtXsAdtRrw6HP5sDwicrjrzzWUAg4FOfkWla0MtkWP1z?=
+ =?us-ascii?Q?vZYASqT3r67fNgDBGA4vEs8YSQkIIAjCPpnMXl4sTXkAJOEt0mVelScYzNNE?=
+ =?us-ascii?Q?ubbHNyUNe3El5+rOa6lt3IrOzttUeZMujoEQ?=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM3PPF208195D8D.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(38070700021); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(1800799024)(366016)(376014)(38070700021); DIR:OUT; SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?6HzbtmSez0lVpsluzDPJGfam1ELlDQ7VxBXUfBBmYMV0UfPnzee0utyMd0fH?=
- =?us-ascii?Q?8M8FLg9EZ00CqKu/a2G+0f3cMReykThyFPtBtxFHtnR18yJs9ys9ZEnjxkb5?=
- =?us-ascii?Q?pSR5g87Pe87AEH6hI56H/J3pqwI7FzmUBEGAlSOISvb/GxpEQ82jiuRYHjSv?=
- =?us-ascii?Q?JjRZR8uSMIXfrdGZPv95dRtXMGamFoQcKiucVhLcAXWPyKS6DwQjN6L4dJLx?=
- =?us-ascii?Q?NsEJFREIwGAhWxrGfJVJNGu2FgRfKTFGOnsLkKajDFC9RNeye9L/mYwgYXlf?=
- =?us-ascii?Q?edWYv59e7wP2DcfpPCHqC578e0HyU4N3VWPccXS/cEU77wLyHdIbCknh3HDx?=
- =?us-ascii?Q?UI0AIt7pUZ2Z+qkCoRaFqMrXDreQQTz9L/YjgqTKrFipDhwgeDspUddHnyD8?=
- =?us-ascii?Q?ShCygTRRjnSJAbbdEBOTLZSVC1/H2x19Myr6Ybon92IVzP3IY26tzFyUedf2?=
- =?us-ascii?Q?D94q8PoOEzfbIwqXoAaontZK/qqC/f/xDKP4vIk0gRtKSCgbvQbKOpOqZhae?=
- =?us-ascii?Q?g73mPJ3+RjrYGZ5cy7eFo4VD7AuXsqEyPDvQ5QKhP7EPKtVlyS01E6Mq+M3X?=
- =?us-ascii?Q?JIcCJrQ4aI5JwdSiv14mogKUa73gGA0SOsCDsRt7K0mpquJSkElHY6lBqk0j?=
- =?us-ascii?Q?vHwDdlTkNHAERkVPGOR8MhrbvQwYhIr2CHp9woU9/x5EWuCr/jB57m2yuMtl?=
- =?us-ascii?Q?ngdSWoG97CRCDFAaVo4sM+WCzDBSERTsnsJz5pWMjJnnIL+AneyuyilD6/Ai?=
- =?us-ascii?Q?qIE07QwQ2Lrn5xlkzUgoo61b7rsBO7OHCv8SMq4vnIzWp8SKgCv2eOqM3IQn?=
- =?us-ascii?Q?iEqDIBFvOSLb3dWXfYtcTtEZQp3aWCn6iS7nj9SfkqDt9u9neX1eEEHpxPKI?=
- =?us-ascii?Q?y3HxV6yjo9aM/SWQcgbtJCsriMVucSoneX6ADKjoghDx77sw7CxrXtx/JkTX?=
- =?us-ascii?Q?MnvVRP1Lgrs9Mow2NNghv+QyBLFh/8gGIKMO3ZypPZf6Xpbdov7Rw9vB3RF9?=
- =?us-ascii?Q?dSA6cUf4hW6Ypd3EBAFwo1stuGdLn1/0/pPf5W3JnWhr8n09KXYnA86aBHqs?=
- =?us-ascii?Q?1dMGymSOb/SoAcJC9xrS+TZX6RZd3zFWoK8TzCVzqPF3nNtWhgW2NnaiZ692?=
- =?us-ascii?Q?+/SUP18XzgmVRHNmqa8DPsUhem/MxtDeyFdH+5w1jO9LfLEcn8D1yMt3qhR2?=
- =?us-ascii?Q?8heU1sLebkUGrwmL4/aBetRglnDCM7OgE5CYlauDe9fFC9Wern2ble2DVGfV?=
- =?us-ascii?Q?DYc3VZrs7JCYxwEfqf+kdMDXz78FJB8vWQi7Z+RoSjdmFAj/jwsoXrQR8kK6?=
- =?us-ascii?Q?1Td9FkwLIfC178c7tDHAjFcNBkBB2Rf7YZARx79/5Q81aYN8LRy4ZiM7O4fl?=
- =?us-ascii?Q?4JMbvhjuZryqUu1oL+L+Jr9hr6iSkDHjEbipxSc4C5y0Cg+6mlCWfBuSNqjQ?=
- =?us-ascii?Q?HNqlbrj9x3eVnJY5f5bVWW9YoUpWOc/AOAirsLQ/4BEqUOq0H4jlOczw3MD0?=
- =?us-ascii?Q?DT/hi9zagliD54R53FMMd8eZzYn6NHb4/ysybWZOpvFXZpB+NIl36AdQWYQG?=
- =?us-ascii?Q?Osul0yqcd5Me9ZSLuJfLh25mpaj5lfGPt5bINUJm?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Em7rlsLGU0ISbmd3aA1L/0dQkbadgKpjd5uvRdf5gx39danWxIRECTvWmWW+?=
+ =?us-ascii?Q?OsIRR7dQo3CZVRWAhIHNphmvOY0JF+TpeOwDhRD+GGCxzLkIZthoiEMucMBN?=
+ =?us-ascii?Q?JzbB1QFn/XTBjfrHTeLWhxnE0AhWKnDTZgbyoh5q1Wd0PzhdknjBCX4hmuKr?=
+ =?us-ascii?Q?QWQ/HwxRf64Kj1VPJ3lZ5SdpU+KFEqQK56p6ZXJSH29mYPwbLZ3xeycDN+pf?=
+ =?us-ascii?Q?L8/epOutvHahc8FBAXQRfeN4AeqX7ZRowhlpjyhzvnig3zrZvWLmiCZ8G23a?=
+ =?us-ascii?Q?r+GbU2+4rzVzRmSxggm1T1TgAFz/2MYvBq8z/yG1f/ADBhEj5dg8YNSQaajq?=
+ =?us-ascii?Q?egGYT7h7dCKBc5SrGZEAen0sKQqJrX/gQTvFtS65ioLjjhISNcPVtJLn8aSB?=
+ =?us-ascii?Q?uoEldd7pVrfTe6OMpCcFBqhcvdbl3osvRDG9Ftm6ulaogEH8kXaAQUhcc01y?=
+ =?us-ascii?Q?EmHUinj+FovJiIntoMDOlbCy+VMRtfZwJPb9U0tYnQQf2RS5Y0Iyniu3gLwn?=
+ =?us-ascii?Q?UOfjUH7rHf75A3rS6Vw2agKJJG1peAmUE3txFs1Y7lnPJ4QEb/zJd3yebgaW?=
+ =?us-ascii?Q?2xj9dvVeIdDt1dsWgKAbAFjdry2epakIEI5zKNWvvBs8q0xKoTulVkFyqDTs?=
+ =?us-ascii?Q?w4XH0fGcR9NXLEdHUW88wAKulIfuLf5VkbFNdNIo1dElLIAf+4RmUkycJEPN?=
+ =?us-ascii?Q?P+riBaet9cP7f/Y+2cWcfuxpQcF7XUhrqUBgADAHHo00u07AK5p4oRvmrM3i?=
+ =?us-ascii?Q?DSluetk3VO+Fdq9Q9VNxvL+F0L8ONjojFB/T1q9M37yhFlyD8LjBmRMtIrkA?=
+ =?us-ascii?Q?6w3q4zhH0AbDBuS6OVRpbmwO3Y2/jwacy1KyeM/lBBv9bExLa9SRcHX+JHCE?=
+ =?us-ascii?Q?TM51mPp3ZUbOYwLjGJs/YIWiJ0AdM9TiC0Z/xl9+FKM/ozXDwAy269wpC8rJ?=
+ =?us-ascii?Q?/Pw2idN2fwVE3WG/WwRaGEJY4x6Ue27l+i79+7nRvkEIph9sek3mYRrVdELq?=
+ =?us-ascii?Q?0nMiSBB4787KvsyhiIVrDFvV7+qAv0mvWhhSXZobRtpuwIqoIoHI+YEwegoY?=
+ =?us-ascii?Q?+NsBNKzEcETHjOKElLEl2D9P/Z+reKxMEWrCchot19J+342XHE6MuDhX9qxt?=
+ =?us-ascii?Q?mgHNxGqRzf1vYxfGuHNrGsCSa4iN/dZrFoF0sw1uDiGT0kLco/RScmfuVTIN?=
+ =?us-ascii?Q?GJ9Xv2paRw3fkAq8B674+So4G4aPzis99y4NNR/CTEvdKUuaRZ39+t2FPAuQ?=
+ =?us-ascii?Q?N1N6xr/ACUVSmIRPveW5HyfJ8RId3/R7iUxG33QDE4JzXE2hrquBYjpxeXRD?=
+ =?us-ascii?Q?o95avR4/o6kDE1O2WvT/21QuDZKe8s7UCh4oUltHbUd+bhykz7Cnb2/BVPxY?=
+ =?us-ascii?Q?iR4Nrfql7Ab2KKjwQx/HcWJUxdq8naRGK4rbU9toGjd+pBrd8/H0zSfMgDf8?=
+ =?us-ascii?Q?TQ8hKRvZCE+J4xyLrswdzfzX8OOcV0NTVzA3FhdZng/HN4uwRLdG5cuUfN1N?=
+ =?us-ascii?Q?4mblsU43AML+Ilw1dckR3GF+x5aHX7yJzwADVzUu3sQgPkqY/2GPClnpVhoX?=
+ =?us-ascii?Q?IAaGtoV6Q7r3CR6VjyT2IqOzPFA+ugjmJlQ/lZ3S?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: DM3PPF208195D8D.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 737395b2-f18c-40c4-4368-08de21acd2b3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Nov 2025 05:32:08.6199 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1a168bb4-79df-4fc5-04d2-08de21addfde
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Nov 2025 05:39:40.1446 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: RJrJzNfTTtnZeFLOzIAXEVo5ioPBKtiFhjQkDA3tbtwpZwYnqElXHMmyIvKOQh8edARVGD8MYH8lO/MH8YUKFQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR11MB8406
+X-MS-Exchange-CrossTenant-userprincipalname: aDCjy3zDiovbCVVg7EwH7RT1skhmqIXaS9Kp4YIR5JSTipFFuXrfoPEUdd+r6VeuPPmJgqVIgoRqvTi4i3IhxA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB8198
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -184,223 +182,286 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> Subject: [CI 29/32] drm/i915/display: Add .enable_clock on DDI for MTL+
-> platforms
+> Subject: [CI 32/32] drm/i915/display: Enable dpll framework for MTL+
 >=20
-> To enable pll clock on DDI we need to move part of the pll enabling
-> sequence to a ddi clock enabling function.
+> Now that MTL+ platforms are supported by dpll framework we can remove a
+> separate check for hw comparison and rely solely on dpll framework hw
+> comparison.
 >=20
-> Simlilarly, we do the pll disabling sequence.
+> Finally, we have all required hooks in place so we can initialize the PLL
+> manager for MTL+ platforms and remove the redirections to the legacy code
+> paths from the following
+> interfaces:
 
-Avoid using We do , we need keep it imperative with that fixed
-
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Avoid using we
 
 >=20
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> * intel_encoder::clock_enable/disable()
+> * intel_encoder::get_config()
+> * intel_dpll_funcs::get_hw_state()
+> * intel_ddi_update_active_dpll()
+> * pipe_config_pll_mismatch()
+>=20
 > Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 34 +++++++++++++------
-> drivers/gpu/drm/i915/display/intel_cx0_phy.h  |  7 +++-
->  drivers/gpu/drm/i915/display/intel_ddi.c      |  6 ++--
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 25 ++++++++++++++
->  4 files changed, 58 insertions(+), 14 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 10 ------
+>  drivers/gpu/drm/i915/display/intel_ddi.c      | 26 ++--------------
+>  drivers/gpu/drm/i915/display/intel_display.c  | 31 -------------------
+>  drivers/gpu/drm/i915/display/intel_dpll.c     | 23 +-------------
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  5 +--
+>  5 files changed, 6 insertions(+), 89 deletions(-)
 >=20
 > diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
 > b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> index 15ba3522b5b3..b82a1f891eae 100644
+> index 432cdf56a6ed..2005a3a93f74 100644
 > --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
 > +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> @@ -3301,7 +3301,6 @@ static void intel_cx0pll_enable(struct
+> @@ -3456,9 +3456,6 @@ void intel_mtl_pll_enable_clock(struct
 > intel_encoder *encoder,
->  	 * Frequency Change. We handle this step in bxt_set_cdclk().
->  	 */
->=20
-> -	/* TODO: enable TBT-ALT mode */
->  	intel_cx0_phy_transaction_end(encoder, wakeref);  }
->=20
-> @@ -3367,8 +3366,7 @@ static int intel_mtl_tbt_clock_select(struct
-> intel_display *display,
->  	}
->  }
->=20
-> -static void intel_mtl_tbt_pll_enable(struct intel_encoder *encoder,
-> -				     const struct intel_crtc_state *crtc_state)
-> +static void intel_mtl_tbt_pll_enable_clock(struct intel_encoder
-> +*encoder, int port_clock)
->  {
->  	struct intel_display *display =3D to_intel_display(encoder);
->  	enum phy phy =3D intel_encoder_to_phy(encoder); @@ -3382,7
-> +3380,7 @@ static void intel_mtl_tbt_pll_enable(struct intel_encoder
-> *encoder,
->=20
->  	mask =3D XELPDP_DDI_CLOCK_SELECT_MASK(display);
->  	val |=3D XELPDP_DDI_CLOCK_SELECT_PREP(display,
-> -					    intel_mtl_tbt_clock_select(display,
-> crtc_state->port_clock));
-> +					    intel_mtl_tbt_clock_select(display,
-> port_clock));
->=20
->  	mask |=3D XELPDP_FORWARD_CLOCK_UNGATE;
->  	val |=3D XELPDP_FORWARD_CLOCK_UNGATE;
-> @@ -3423,18 +3421,26 @@ static void intel_mtl_tbt_pll_enable(struct
-> intel_encoder *encoder,
->  	 * clock frequency.
->  	 */
->  	intel_de_write(display, DDI_CLK_VALFREQ(encoder->port),
-> -		       crtc_state->port_clock);
-> +		       port_clock);
->  }
->=20
->  void intel_mtl_pll_enable(struct intel_encoder *encoder,
-> -			  const struct intel_crtc_state *crtc_state)
-> +			  struct intel_dpll *pll,
-> +			  const struct intel_dpll_hw_state *dpll_hw_state) {
-> +	intel_cx0pll_enable(encoder, &dpll_hw_state->cx0pll); }
-> +
-> +void intel_mtl_pll_enable_clock(struct intel_encoder *encoder,
-> +				const struct intel_crtc_state *crtc_state)
->  {
->  	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
 >=20
 >  	if (intel_tc_port_in_tbt_alt_mode(dig_port))
-> -		intel_mtl_tbt_pll_enable(encoder, crtc_state);
-> +		intel_mtl_tbt_pll_enable_clock(encoder, crtc_state-
+>  		intel_mtl_tbt_pll_enable_clock(encoder, crtc_state-
 > >port_clock);
->  	else
-> -		intel_cx0pll_enable(encoder, &crtc_state-
-> >dpll_hw_state.cx0pll);
-> +		/* TODO: remove when PLL mgr is in place. */
-> +		intel_mtl_pll_enable(encoder, NULL, &crtc_state-
+> -	else
+> -		/* TODO: remove when PLL mgr is in place. */
+> -		intel_mtl_pll_enable(encoder, NULL, &crtc_state-
 > >dpll_hw_state);
 >  }
 >=20
 >  /*
-> @@ -3550,7 +3556,7 @@ static bool intel_cx0_pll_is_enabled(struct
+> @@ -3624,9 +3621,6 @@ void intel_mtl_pll_disable_clock(struct
 > intel_encoder *encoder)
->  			     intel_cx0_get_pclk_pll_request(lane);
->  }
->=20
-> -static void intel_mtl_tbt_pll_disable(struct intel_encoder *encoder)
-> +static void intel_mtl_tbt_pll_disable_clock(struct intel_encoder
-> +*encoder)
->  {
->  	struct intel_display *display =3D to_intel_display(encoder);
->  	enum phy phy =3D intel_encoder_to_phy(encoder); @@ -3590,13
-> +3596,19 @@ static void intel_mtl_tbt_pll_disable(struct intel_encoder
-> *encoder)  }
->=20
->  void intel_mtl_pll_disable(struct intel_encoder *encoder)
-> +{
-> +	intel_cx0pll_disable(encoder);
-> +}
-> +
-> +void intel_mtl_pll_disable_clock(struct intel_encoder *encoder)
->  {
->  	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
 >=20
 >  	if (intel_tc_port_in_tbt_alt_mode(dig_port))
-> -		intel_mtl_tbt_pll_disable(encoder);
-> +		intel_mtl_tbt_pll_disable_clock(encoder);
->  	else
-> -		intel_cx0pll_disable(encoder);
-> +		/* TODO: remove when PLL mgr is in place. */
-> +		intel_mtl_pll_disable(encoder);
+>  		intel_mtl_tbt_pll_disable_clock(encoder);
+> -	else
+> -		/* TODO: remove when PLL mgr is in place. */
+> -		intel_mtl_pll_disable(encoder);
 >  }
 >=20
 >  enum icl_port_dpll_id
-> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-> b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-> index 13eaf6d280ff..13fa001129f7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-> @@ -17,17 +17,22 @@ struct intel_crtc;
->  struct intel_crtc_state;
->  struct intel_cx0pll_state;
->  struct intel_display;
-> +struct intel_dpll;
->  struct intel_dpll_hw_state;
->  struct intel_encoder;
->  struct intel_hdmi;
+> @@ -3655,10 +3649,6 @@ bool intel_cx0pll_readout_hw_state(struct
+> intel_encoder *encoder,  {
+>  	memset(pll_state, 0, sizeof(*pll_state));
 >=20
->  bool intel_encoder_is_c10phy(struct intel_encoder *encoder);  void
-> intel_mtl_pll_enable(struct intel_encoder *encoder,
-> -			  const struct intel_crtc_state *crtc_state);
-> +			  struct intel_dpll *pll,
-> +			  const struct intel_dpll_hw_state *dpll_hw_state);
->  void intel_mtl_pll_disable(struct intel_encoder *encoder);  enum
-> icl_port_dpll_id  intel_mtl_port_pll_type(struct intel_encoder *encoder,
->  			const struct intel_crtc_state *crtc_state);
-> +void intel_mtl_pll_enable_clock(struct intel_encoder *encoder,
-> +				const struct intel_crtc_state *crtc_state); void
-> +intel_mtl_pll_disable_clock(struct intel_encoder *encoder);
+> -	pll_state->tbt_mode =3D
+> intel_tc_port_in_tbt_alt_mode(enc_to_dig_port(encoder));
+> -	if (pll_state->tbt_mode)
+> -		return true;
+> -
+>  	if (!intel_cx0_pll_is_enabled(encoder))
+>  		return false;
 >=20
->  int intel_cx0pll_calc_state(const struct intel_crtc_state *crtc_state,
->  			    struct intel_encoder *encoder,
 > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
 > b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 870140340342..d0bfa7f397dc 100644
+> index f554921f59a3..7a981b11b029 100644
 > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
 > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -88,6 +88,8 @@
->  #include "skl_scaler.h"
->  #include "skl_universal_plane.h"
+> @@ -3667,8 +3667,7 @@ void intel_ddi_update_active_dpll(struct
+> intel_atomic_state *state,
+>  		intel_atomic_get_new_crtc_state(state, crtc);
+>  	struct intel_crtc *pipe_crtc;
 >=20
-> +struct intel_dpll;
-> +
->  static const u8 index_to_dp_signal_levels[] =3D {
->  	[0] =3D DP_TRAIN_VOLTAGE_SWING_LEVEL_0 |
-> DP_TRAIN_PRE_EMPH_LEVEL_0,
->  	[1] =3D DP_TRAIN_VOLTAGE_SWING_LEVEL_0 |
-> DP_TRAIN_PRE_EMPH_LEVEL_1, @@ -5232,8 +5234,8 @@ void
-> intel_ddi_init(struct intel_display *display,
->  	encoder->pipe_mask =3D ~0;
+> -	/* FIXME: Add MTL pll_mgr */
+> -	if (DISPLAY_VER(display) >=3D 14 || !intel_encoder_is_tc(encoder))
+> +	if (!intel_encoder_is_tc(encoder))
+
+Also if !HAS_LT_PHY check here
+
+Regards,
+Suraj Kandpal
+
+>  		return;
 >=20
+>  	for_each_intel_crtc_in_pipe_mask(display->drm, pipe_crtc, @@ -
+> 4242,19 +4241,6 @@ void intel_ddi_get_clock(struct intel_encoder
+> *encoder,
+>  						     &crtc_state-
+> >dpll_hw_state);  }
+>=20
+> -static void mtl_ddi_get_config(struct intel_encoder *encoder,
+> -			       struct intel_crtc_state *crtc_state)
+> -{
+> -	intel_cx0pll_readout_hw_state(encoder, &crtc_state-
+> >dpll_hw_state.cx0pll);
+> -
+> -	if (crtc_state->dpll_hw_state.cx0pll.tbt_mode)
+> -		crtc_state->port_clock =3D
+> intel_mtl_tbt_calc_port_clock(encoder);
+> -	else
+> -		crtc_state->port_clock =3D
+> intel_cx0pll_calc_port_clock(encoder, &crtc_state->dpll_hw_state.cx0pll);
+> -
+> -	intel_ddi_get_config(encoder, crtc_state);
+> -}
+> -
+>  static bool icl_ddi_tc_pll_is_tbt(const struct intel_dpll *pll)  {
+>  	return pll->info->id =3D=3D DPLL_ID_ICL_TBTPLL; @@ -4301,10 +4287,6
+> @@ static void mtl_ddi_non_tc_phy_get_config(struct intel_encoder
+> *encoder,  {
+>  	struct intel_display *display =3D to_intel_display(encoder);
+>=20
+> -	/* TODO: Remove when the PLL manager is in place. */
+> -	mtl_ddi_get_config(encoder, crtc_state);
+> -	return;
+> -
+>  	mtl_ddi_cx0_get_config(encoder, crtc_state,
+> ICL_PORT_DPLL_DEFAULT,
+>  			       mtl_port_to_pll_id(display, encoder->port));  }
+> @@ -4314,10 +4296,6 @@ static void mtl_ddi_tc_phy_get_config(struct
+> intel_encoder *encoder,  {
+>  	struct intel_display *display =3D to_intel_display(encoder);
+>=20
+> -	/* TODO: Remove when the PLL manager is in place. */
+> -	mtl_ddi_get_config(encoder, crtc_state);
+> -	return;
+> -
+>  	if (intel_tc_port_in_tbt_alt_mode(enc_to_dig_port(encoder)))
+>  		mtl_ddi_cx0_get_config(encoder, crtc_state,
+> ICL_PORT_DPLL_DEFAULT,
+>  				       DPLL_ID_ICL_TBTPLL);
+> @@ -5302,7 +5280,7 @@ void intel_ddi_init(struct intel_display *display,
 >  	if (DISPLAY_VER(display) >=3D 14) {
-> -		encoder->enable_clock =3D intel_mtl_pll_enable;
-> -		encoder->disable_clock =3D intel_mtl_pll_disable;
-> +		encoder->enable_clock =3D intel_mtl_pll_enable_clock;
-> +		encoder->disable_clock =3D intel_mtl_pll_disable_clock;
->  		encoder->port_pll_type =3D intel_mtl_port_pll_type;
->  		encoder->get_config =3D mtl_ddi_get_config;
->  	} else if (display->platform.dg2) {
+>  		encoder->enable_clock =3D intel_mtl_pll_enable_clock;
+>  		encoder->disable_clock =3D intel_mtl_pll_disable_clock;
+> -		encoder->port_pll_type =3D intel_mtl_port_pll_type;
+> +		encoder->port_pll_type =3D icl_ddi_tc_port_pll_type;
+>  		if (intel_encoder_is_tc(encoder))
+>  			encoder->get_config =3D mtl_ddi_tc_phy_get_config;
+>  		else
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> b/drivers/gpu/drm/i915/display/intel_display.c
+> index 2e927d6cd577..5b569ad8157b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -4932,23 +4932,6 @@ pipe_config_pll_mismatch(struct drm_printer *p,
+> bool fastset,
+>  	intel_dpll_dump_hw_state(display, p, b);  }
+>=20
+> -static void
+> -pipe_config_cx0pll_mismatch(struct drm_printer *p, bool fastset,
+> -			    const struct intel_crtc *crtc,
+> -			    const char *name,
+> -			    const struct intel_cx0pll_state *a,
+> -			    const struct intel_cx0pll_state *b)
+> -{
+> -	char *chipname =3D a->use_c10 ? "C10" : "C20";
+> -
+> -	pipe_config_mismatch(p, fastset, crtc, name, chipname);
+> -
+> -	drm_printf(p, "expected:\n");
+> -	intel_cx0pll_dump_hw_state(p, a);
+> -	drm_printf(p, "found:\n");
+> -	intel_cx0pll_dump_hw_state(p, b);
+> -}
+> -
+>  static bool allow_vblank_delay_fastset(const struct intel_crtc_state
+> *old_crtc_state)  {
+>  	struct intel_display *display =3D to_intel_display(old_crtc_state); @@ =
+-
+> 5082,16 +5065,6 @@ intel_pipe_config_compare(const struct
+> intel_crtc_state *current_config,
+>  	} \
+>  } while (0)
+>=20
+> -#define PIPE_CONF_CHECK_PLL_CX0(name) do { \
+> -	if (!intel_cx0pll_compare_hw_state(&current_config->name, \
+> -					   &pipe_config->name)) { \
+> -		pipe_config_cx0pll_mismatch(&p, fastset, crtc,
+> __stringify(name), \
+> -					    &current_config->name, \
+> -					    &pipe_config->name); \
+> -		ret =3D false; \
+> -	} \
+> -} while (0)
+> -
+>  #define PIPE_CONF_CHECK_TIMINGS(name) do {     \
+>  	PIPE_CONF_CHECK_I(name.crtc_hdisplay); \
+>  	PIPE_CONF_CHECK_I(name.crtc_htotal); \ @@ -5315,10 +5288,6 @@
+> intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+>  	if (display->dpll.mgr || HAS_GMCH(display))
+>  		PIPE_CONF_CHECK_PLL(dpll_hw_state);
+>=20
+> -	/* FIXME convert MTL+ platforms over to dpll_mgr */
+> -	if (DISPLAY_VER(display) >=3D 14)
+> -		PIPE_CONF_CHECK_PLL_CX0(dpll_hw_state.cx0pll);
+> -
+>  	PIPE_CONF_CHECK_X(dsi_pll.ctrl);
+>  	PIPE_CONF_CHECK_X(dsi_pll.div);
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c
+> b/drivers/gpu/drm/i915/display/intel_dpll.c
+> index 46ae05976191..f744f61b291a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpll.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+> @@ -1211,27 +1211,6 @@ static int dg2_crtc_compute_clock(struct
+> intel_atomic_state *state,
+>  	return 0;
+>  }
+>=20
+> -static int mtl_crtc_compute_clock(struct intel_atomic_state *state,
+> -				  struct intel_crtc *crtc)
+> -{
+> -	struct intel_crtc_state *crtc_state =3D
+> -		intel_atomic_get_new_crtc_state(state, crtc);
+> -	struct intel_encoder *encoder =3D
+> -		intel_get_crtc_new_encoder(state, crtc_state);
+> -	int ret;
+> -
+> -	ret =3D intel_cx0pll_calc_state(crtc_state, encoder, &crtc_state-
+> >dpll_hw_state);
+> -	if (ret)
+> -		return ret;
+> -
+> -	/* TODO: Do the readback via intel_dpll_compute() */
+> -	crtc_state->port_clock =3D intel_cx0pll_calc_port_clock(encoder,
+> &crtc_state->dpll_hw_state.cx0pll);
+> -
+> -	crtc_state->hw.adjusted_mode.crtc_clock =3D
+> intel_crtc_dotclock(crtc_state);
+> -
+> -	return 0;
+> -}
+> -
+>  static int ilk_fb_cb_factor(const struct intel_crtc_state *crtc_state)  =
+{
+>  	struct intel_display *display =3D to_intel_display(crtc_state); @@ -
+> 1692,7 +1671,7 @@ static int i8xx_crtc_compute_clock(struct
+> intel_atomic_state *state,  }
+>=20
+>  static const struct intel_dpll_global_funcs mtl_dpll_funcs =3D {
+> -	.crtc_compute_clock =3D mtl_crtc_compute_clock,
+> +	.crtc_compute_clock =3D hsw_crtc_compute_clock,
+>  	.crtc_get_dpll =3D hsw_crtc_get_dpll,
+>  };
+>=20
 > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
 > b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> index 6cc85a9a781f..8220ef69f685 100644
+> index ddc763d89aac..77ef6a0419d0 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -4391,7 +4391,32 @@ static int mtl_pll_get_freq(struct intel_display
-> *display,
->  	return intel_cx0pll_calc_port_clock(encoder, &dpll_hw_state-
-> >cx0pll);  }
+> @@ -4558,7 +4558,6 @@ static bool mtl_compare_hw_state(const struct
+> intel_dpll_hw_state *_a,
+>  	return intel_cx0pll_compare_hw_state(a, b);  }
 >=20
-> +static void mtl_pll_enable(struct intel_display *display,
-> +			   struct intel_dpll *pll,
-> +			   const struct intel_dpll_hw_state *dpll_hw_state) {
-> +	struct intel_encoder *encoder =3D get_intel_encoder(display, pll);
-> +
-> +	if (drm_WARN_ON(display->drm, !encoder))
-> +		return;
-> +
-> +	intel_mtl_pll_enable(encoder, pll, dpll_hw_state); }
-> +
-> +static void mtl_pll_disable(struct intel_display *display,
-> +			    struct intel_dpll *pll)
-> +{
-> +	struct intel_encoder *encoder =3D get_intel_encoder(display, pll);
-> +
-> +	if (drm_WARN_ON(display->drm, !encoder))
-> +		return;
-> +
-> +	intel_mtl_pll_disable(encoder);
-> +}
-> +
->  static const struct intel_dpll_funcs mtl_pll_funcs =3D {
-> +	.enable =3D mtl_pll_enable,
-> +	.disable =3D mtl_pll_disable,
->  	.get_hw_state =3D mtl_pll_get_hw_state,
->  	.get_freq =3D mtl_pll_get_freq,
->  };
+> -__maybe_unused
+>  static const struct intel_dpll_mgr mtl_pll_mgr =3D {
+>  	.dpll_info =3D mtl_plls,
+>  	.compute_dplls =3D mtl_compute_dplls,
+> @@ -4584,9 +4583,11 @@ void intel_dpll_init(struct intel_display *display=
+)
+>=20
+>  	mutex_init(&display->dpll.lock);
+>=20
+> -	if (DISPLAY_VER(display) >=3D 14 || display->platform.dg2)
+> +	if (display->platform.dg2)
+>  		/* No shared DPLLs on DG2; port PLLs are part of the PHY */
+>  		dpll_mgr =3D NULL;
+> +	else if (DISPLAY_VER(display) >=3D 14)
+> +		dpll_mgr =3D &mtl_pll_mgr;
+>  	else if (display->platform.alderlake_p)
+>  		dpll_mgr =3D &adlp_pll_mgr;
+>  	else if (display->platform.alderlake_s)
 > --
 > 2.34.1
 
