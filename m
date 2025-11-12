@@ -2,68 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B183DC521F8
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Nov 2025 12:56:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D9F7C522A0
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Nov 2025 13:05:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62FC810E6FD;
-	Wed, 12 Nov 2025 11:56:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C8B010E6FB;
+	Wed, 12 Nov 2025 12:05:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g3S4dT2V";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PMn9wzhS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBFCB10E6F9;
- Wed, 12 Nov 2025 11:56:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762948596; x=1794484596;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=AVUD6eSuWEjv4InZpwk+lcJ+65UeuGzOmw6/FJ3aLZo=;
- b=g3S4dT2VNUSp9jpZH9kYkEnHW/y6EYWFXEXBgrMp71DsO6TLbP7kDdT1
- P8evlI1XZhvq91QQqafFn97Nyuib13Jq64R8ac5JacTQhQ2/0nfyunWU6
- D4CB0noE8n9esTYvDSMr0Y0SWuPb6svLbXydleuBTxFO+jq9VZ1VHOJxU
- itY5m9NJ9v2QDQhZlsotMx7A9AvoZI41mMjycjz6V5H3L8P560ZGTuqpQ
- aHfxSaGXmDxA1oWz66z/1Gj3Jnn0LVNXsUIXt5xhndtO6vkQ7G2KRRyk7
- 7H2R7IEq3+dFC8hNKNADjuOUBnzeebyrM3cWBWq91zSWkQkVsN/lJV16M g==;
-X-CSE-ConnectionGUID: ZhJWEu8+Sfu0Vc/iDgH2Qw==
-X-CSE-MsgGUID: P1srKvFsRPSjlQmB6DuRdg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11610"; a="76467752"
-X-IronPort-AV: E=Sophos;i="6.19,299,1754982000"; d="scan'208";a="76467752"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2025 03:56:36 -0800
-X-CSE-ConnectionGUID: 2LsT2KlWTIy87Mona4VpBA==
-X-CSE-MsgGUID: AvTSvI+aRWu9PcN6/I8sHA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,299,1754982000"; d="scan'208";a="193323520"
-Received: from aschofie-mobl2.amr.corp.intel.com (HELO localhost)
- ([10.124.223.106])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2025 03:56:34 -0800
-Date: Wed, 12 Nov 2025 13:56:31 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 06/24] drm/vblank: prefer drm_crtc_vblank_crtc() over
- drm_vblank_crtc()
-Message-ID: <aRR171myQR6TvTIM@intel.com>
-References: <cover.1762791343.git.jani.nikula@intel.com>
- <2a20632181adc85a737b0a87dce7e753ff8d5b0d.1762791343.git.jani.nikula@intel.com>
- <bcdc1246-d589-4769-b89f-d779ac4984b2@suse.de>
- <acce5e2b3827d8dfa12e571f8a4dfef475f7f232@intel.com>
- <aRNdpcS79vWmeuHL@intel.com>
- <3388028ad51de9b229cc39a24f657e327c14cc2e@intel.com>
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com
+ [209.85.210.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9351A10E701
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 Nov 2025 12:05:53 +0000 (UTC)
+Received: by mail-pf1-f173.google.com with SMTP id
+ d2e1a72fcca58-7a9fb6fccabso621716b3a.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 Nov 2025 04:05:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1762949153; x=1763553953; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=hAV17ofA9MonBCDA8VqIe2NviuUZk8J7FIjpATUadWc=;
+ b=PMn9wzhS6PXhcwlNPzdZ1c9AisClyetTCkAdVG9bQToca+Q+uye68begR0LmUNI6lm
+ nwbl8UieC7fAN60Ge4ZRy0op7XsJxubyzl0G/5tOb9tN9PMcUhnjYqwPmJxN7ItW5mP0
+ XclDLwepAVQRADBUfOZw+Wiu+q1hYvwk2uYAT++kjfJnSLgk6CwYPdtKomoTR5biShED
+ Jdq6j+wLrU3SZZgHoPSE2wCZvTeKXqChBTKZqRirMTLXMYA8uy8dfvt28/UdCpdtQ8Tj
+ /YVkgdE41SrkkGkxJUuXCsr+Wj6ik32rh55kr6FXJc51N6QqlB4XQv0BvNal9tJFqWUX
+ HVpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1762949153; x=1763553953;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=hAV17ofA9MonBCDA8VqIe2NviuUZk8J7FIjpATUadWc=;
+ b=UqpVJfUMJZnKc7neVpH2v4VoMrUQOTmGm/unRlC+RHneVY1utG3/3/sXlpvaadsxZx
+ DPw9/rhnbiZ7XxRCKMpdZ13NFjBwqTfzt2foBRfUvba0m3os3hmVupYkfZ7lhL2og4Bk
+ 52J1mZuS1/lFEwyINeDnBHJok9tczDFuixc4o6JD0un+4TsMkJsjTo4lnywM3c5MC4Ib
+ 8OjMyQBxSjdT2mcVboodNqLuc4Kerkm6+y2RtBWCLUfPwm7/6tKjfJpyHzHR8t5OOd6n
+ BRdKr2OkXsIz3Xb7Lz3hrJP8DTKA39k+MqVVp5UEE9pUGbTVD8m1QevL6yTitLIRC8BG
+ zJjQ==
+X-Gm-Message-State: AOJu0Yz61hWXRf94/mXYB/vEx53EnCIjxj+3HGnbeZh0yfHCbM/S/DLE
+ KghNyVfvyMqkxOnFrUddaHRmavU4TXnmbDf9wMSJfJxP9KZIRnymksL9Sb+khcEV
+X-Gm-Gg: ASbGncuVlfF/jrYcwNIffpwoF4ZNdPU5B921NIntbQR86kSWK0HN3bV1R/7uAPXLinJ
+ c6hoM4R6d+yR5d/ZvWvyaCIqt8oUbZl0RU7aEMJauNRmkG62z1JarSs1HgUFJMI+fvGni6wsRRH
+ hjopwarkcSgtfgYeB8/Sm3iTLHGkOl8lKBGgvlOsygPPwqhAz5lRyxaQpe60UwOGTbDDn5tZA2B
+ IBiZbI2WznPOXOg7H1nbaD6UNF7cuYwnPva3mRkQnAyWMhJHOlEr3PvyraSqfZCt/Rml/bVnoTV
+ 4Ur+7GM1kreX/wNieR33gn0awvXroAIgTNMIynS8TrwihMya8j9IKbItTCh2QJxcKXgVSxyRian
+ K29cxtMezXvLTxIbfG86nmdELz52Gcxthd+CEm0LUae37JRayxGvu715qOEFMbL+TiFCcOAB+dU
+ bHrYbdeQssNQU4okA=
+X-Google-Smtp-Source: AGHT+IGyUDWogT/E0GqaLkZpiyyl5RSOXgSaiVqqbXvdG1UvILXDxE1n6Qq34Gt5+UxLXI2MzZhr0w==
+X-Received: by 2002:a05:6a20:3d1a:b0:2f5:ba02:a2a2 with SMTP id
+ adf61e73a8af0-3590b02abacmr3663208637.36.1762949152676; 
+ Wed, 12 Nov 2025 04:05:52 -0800 (PST)
+Received: from localhost ([192.55.55.42]) by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-7b0ccb5c674sm18196352b3a.59.2025.11.12.04.05.51
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 12 Nov 2025 04:05:52 -0800 (PST)
+From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Subject: [PATCH 0/1] Switch to use kernel standard fault injection in i915
+Date: Wed, 12 Nov 2025 14:05:29 +0200
+Message-ID: <20251112120530.448802-1-juhapekka.heikkila@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <3388028ad51de9b229cc39a24f657e327c14cc2e@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,42 +84,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Nov 12, 2025 at 10:26:15AM +0200, Jani Nikula wrote:
-> On Tue, 11 Nov 2025, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> > On Tue, Nov 11, 2025 at 10:43:15AM +0200, Jani Nikula wrote:
-> >> On Tue, 11 Nov 2025, Thomas Zimmermann <tzimmermann@suse.de> wrote:
-> >> > Am 10.11.25 um 17:17 schrieb Jani Nikula:
-> >> >> Use the higher level function where crtc is available.
-> >> >>
-> >> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> >> >
-> >> > Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
-> >> >
-> >> > Is there a long-term plan to replace drm_vblank_crtc() entirely? 
-> >> > Otherwise this looks a bit pointless.
-> >> 
-> >> Well, almost entirely. There are a few cases (plus the one that Ville
-> >> mentioned later in the series) that need to operate on dev + pipe
-> >> alone. The main point is that when you have a crtc and use that for the
-> >> source of pipe, you don't have to do range checks on the pipe. This
-> >> becomes gradually more evident in the series.
-> >
-> > I've actaully been thinking about doing the exact opposite.
-> > Ie. switch drm_vblank.c over to drm_vblank_crtc completely.
-> >
-> > That is one of those things that might help with implementing
-> > pipe/crtc virtualization in i915. We basically want all interrupt
-> > stuff (including vblanks) to be tied to our hardware pipes and
-> > not the uapi drm_crtc. So we'd make drm_vblank_crtc==pipe, and
-> > introduce some kind of dynamic drm_crtc<->drm_vblank_crtc mapping
-> > for the uapi facing parts of drm_vblank.c...
-> 
-> Ugh, so you're saying the series at hand is counter-productive?
+Here taken out calls to i915_inject_probe_failure and changed to use
+ALLOW_ERROR_INJECTION for the same functions.
 
-No, I think it's fine for the most part. The only worry would be
-anything that starts to depend on drm_crtc rather than drm_vblank_crtc,
-but I don't think you had a lot of that.
+Below functions are dropped from testing since I couldn't hit those
+at module bind time, testing these would just fail the tests.
+To include these in test would need to find way to cause resetting in i915
+which would trigger these:
+
+intel_gvt_init
+intel_wopcm_init
+intel_uc_fw_upload
+intel_gt_init with expected -EIO (-EINVAL is tested)
+lrc_init_wa_ctx
+intel_huc_auth
+guc_check_version_range
+intel_uc_fw_fetch
+uc_fw_xfer
+__intel_uc_reset_hw
+guc_enable_communication
+uc_init_wopcm
+..and all stages of __force_fw_fetch_failures
+
+This is resend of the last version just to get igt changes tested.
+
+/Juha-Pekka
+
+Test-with: 20251111194936.444955-1-juhapekka.heikkila@gmail.com
+
+Juha-Pekka Heikkila (1):
+  drm/i915: switch to use kernel standard error injection
+
+ .../gpu/drm/i915/display/intel_connector.c    | 14 +----
+ .../drm/i915/display/intel_display_driver.c   |  5 +-
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  4 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c            |  9 +--
+ drivers/gpu/drm/i915/gt/intel_gt_print.h      |  5 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c           |  4 --
+ drivers/gpu/drm/i915/gt/intel_wopcm.c         |  3 -
+ drivers/gpu/drm/i915/gt/intel_wopcm.h         |  1 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |  8 +--
+ drivers/gpu/drm/i915/gt/uc/intel_huc.c        |  4 --
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c         | 17 +-----
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      | 60 +------------------
+ drivers/gpu/drm/i915/i915_driver.c            | 12 +---
+ drivers/gpu/drm/i915/i915_params.c            |  5 --
+ drivers/gpu/drm/i915/i915_params.h            |  1 -
+ drivers/gpu/drm/i915/i915_pci.c               |  6 +-
+ drivers/gpu/drm/i915/i915_utils.c             | 30 +---------
+ drivers/gpu/drm/i915/i915_utils.h             | 22 +------
+ drivers/gpu/drm/i915/intel_gvt.c              |  3 -
+ drivers/gpu/drm/i915/intel_uncore.c           |  4 +-
+ 20 files changed, 18 insertions(+), 199 deletions(-)
 
 -- 
-Ville Syrjälä
-Intel
+2.43.0
+
