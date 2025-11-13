@@ -2,55 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E389C56515
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Nov 2025 09:40:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADC45C5651B
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Nov 2025 09:41:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D42A010E64E;
-	Thu, 13 Nov 2025 08:40:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47B4010E76E;
+	Thu, 13 Nov 2025 08:41:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MXyT7B3t";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gogByJ5k";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17EB910E64E;
- Thu, 13 Nov 2025 08:40:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0F5A10E66C;
+ Thu, 13 Nov 2025 08:41:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763023254; x=1794559254;
+ t=1763023281; x=1794559281;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=drevdN8dGvQxX2skbIrP387eUqOLSXvJslVjEbn/zBg=;
- b=MXyT7B3tHIUgHJEuYlkjuho12lvjilM41l4xEJhfD0EkGtBXyXUk65XE
- 6gL2PcjxDJ5nfIMIz4CvP5It1WAlSN7PngJN0MzqRI7rBxRhbUea0nEq0
- awxxOHfXQgMoa5WZkyVqXvcAYN1ud5V9k0jWGdoUrL6NcqkxyxI6l1+RV
- Fe3+QUcWzrffjPO1vyTwdQiBw4ZTBrxXYIsWvXE+GZzcXJh8FxHTiiKz0
- sIBg7vU210I/tgWPQgN96uhlf/iQRhXPZ2SIUL66D/zZRwZ9yFCoc6Vmi
- xW3CmEoajQEEodMYen3sJ2RlffSy5hVk7TqV9u/WZ46kAOtGCjeAuEVRL A==;
-X-CSE-ConnectionGUID: AI9fbbZdTLWmbkFB6G2FDA==
-X-CSE-MsgGUID: LwgYR+R3QZmCKqP+kayuYw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11611"; a="75707622"
-X-IronPort-AV: E=Sophos;i="6.19,301,1754982000"; d="scan'208";a="75707622"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2025 00:40:53 -0800
-X-CSE-ConnectionGUID: NUq6N5xySTi+erNK+DJqSg==
-X-CSE-MsgGUID: MRYebsfwQ8SLm2hEI7Q6mw==
+ bh=sxuW4ruSnpfN3E6Q1bB7A7+7aLm/uE5p04SK2qLCSEw=;
+ b=gogByJ5kPfiEt5HuDknQrD29D+StjYKijuAjrl+QHFDi010A7GhqWZkr
+ fT3T0dyEllHcRYlFJtDiqKDwaCpHU+ZDZWtiteEuo1Tn4svRcPi1hAWho
+ 8efLeET0QFEYFphsIv5zSrvF98ha0IEgv0IRiGITDsGjCX538AQ1YpxXh
+ vZT5tVOJ3VrNGc0KSd3ktsCMaXGYeWZeK3jy0R0u3KtLyoOeqmdOu2ooP
+ oUWu/3wopSwRe/ryr55cPIoNySTM0c09Z7qLLTjoTA+UY2TzeaJylU7JZ
+ LUzlm1tuqsaAmR2p4GnXn1QDbJ5lQjnSngwJKXZhS9bj1FEsAP3NvcbnV w==;
+X-CSE-ConnectionGUID: yB69k/XmS5eZtY7A7Rc1WA==
+X-CSE-MsgGUID: 8Ap55XC3TvicZAIFwfy4zw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11611"; a="64303255"
+X-IronPort-AV: E=Sophos;i="6.19,301,1754982000"; d="scan'208";a="64303255"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2025 00:41:17 -0800
+X-CSE-ConnectionGUID: uTUhQ1OQSA+fl8GgO2sruA==
+X-CSE-MsgGUID: zgi+/RSMSMuN89FoO7+mQg==
 X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,301,1754982000"; d="scan'208";a="194617883"
 Received: from aotchere-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.135])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2025 00:40:52 -0800
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2025 00:41:15 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/xe: remove stale runtime_pm member
-In-Reply-To: <aRTh7OPupcEh1qW2@intel.com>
+Subject: Re: [PATCH] drm/i915/ltphy: include intel_display_utils.h instead
+ of i915_utils.h
+In-Reply-To: <aRTiJdbO8fnW8cIv@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251112185547.172113-1-jani.nikula@intel.com>
- <aRTh7OPupcEh1qW2@intel.com>
-Date: Thu, 13 Nov 2025 10:40:49 +0200
-Message-ID: <20777272c8c439d25e1ecf92669f621f6074fee4@intel.com>
+References: <20251112181342.107911-1-jani.nikula@intel.com>
+ <aRTiJdbO8fnW8cIv@intel.com>
+Date: Thu, 13 Nov 2025 10:41:12 +0200
+Message-ID: <eaaceb6a48feb978edf06b94762a7270170723ec@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -69,41 +71,41 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Wed, 12 Nov 2025, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Wed, Nov 12, 2025 at 08:55:47PM +0200, Jani Nikula wrote:
->> This has become unused and unnecessary. Remove.
->
-> \o/
->
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> (trusting more your compiler than my eyes)
-
-Thanks, pushed via drm-intel-next as there's more to come in this area.
-
-BR,
-Jani.
-
-
->
+> On Wed, Nov 12, 2025 at 08:13:42PM +0200, Jani Nikula wrote:
+>> Display code stopped using i915_utils.h in favour of
+>> intel_display_utils.h. Fix recent additions.
 >> 
 >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+Thanks, pushed.
+
+>
 >> ---
->>  drivers/gpu/drm/xe/xe_device_types.h | 3 ---
->>  1 file changed, 3 deletions(-)
+>>  drivers/gpu/drm/i915/display/intel_lt_phy.c | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
 >> 
->> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
->> index 7baf15f51575..0b2fa7c56d38 100644
->> --- a/drivers/gpu/drm/xe/xe_device_types.h
->> +++ b/drivers/gpu/drm/xe/xe_device_types.h
->> @@ -656,9 +656,6 @@ struct xe_device {
->>  	 */
->>  	u32 edram_size_mb;
+>> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+>> index bebd7488aab9..a67eb4f7f897 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+>> @@ -6,7 +6,6 @@
+>>  #include <drm/drm_print.h>
 >>  
->> -	/* To shut up runtime pm macros.. */
->> -	struct xe_runtime_pm {} runtime_pm;
->> -
->>  	struct intel_uncore {
->>  		spinlock_t lock;
->>  	} uncore;
+>>  #include "i915_reg.h"
+>> -#include "i915_utils.h"
+>>  #include "intel_cx0_phy.h"
+>>  #include "intel_cx0_phy_regs.h"
+>>  #include "intel_ddi.h"
+>> @@ -14,6 +13,7 @@
+>>  #include "intel_de.h"
+>>  #include "intel_display.h"
+>>  #include "intel_display_types.h"
+>> +#include "intel_display_utils.h"
+>>  #include "intel_dpll_mgr.h"
+>>  #include "intel_hdmi.h"
+>>  #include "intel_lt_phy.h"
 >> -- 
 >> 2.47.3
 >> 
