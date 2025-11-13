@@ -2,61 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CB80C57C32
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Nov 2025 14:45:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D325EC57CBF
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Nov 2025 14:53:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 901B210E81A;
-	Thu, 13 Nov 2025 13:45:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CCE310E821;
+	Thu, 13 Nov 2025 13:53:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n1Dq4+zL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="apZ+pJhQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7050010E81A;
- Thu, 13 Nov 2025 13:45:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7330F10E81E;
+ Thu, 13 Nov 2025 13:53:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763041556; x=1794577556;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=SXxeYl3K4pd/sn2w5+b8MuZTbmcl6AJwJpgwdKOVvJ0=;
- b=n1Dq4+zLUXUcBn/tqcL4QrR5m4CefQFwVG1yDsFPs4awma9rYYazlpB5
- rJQvuJxqPJiU3h/kDomjD1O2Qo7OYaH5s0/7lNSPVul5VcmzK/vVm+qOn
- uBIcB7IF7niMALRRFgFzlkh4qbe57nSVcizYYxqLM2B1Sw+SPLvsvAvpd
- Fz2OH6cx7VzYVbbnzSyuzNp0OxuKlXdqKYdS8S2I4mzXrSRFlB5lw7DGo
- j4SUURmSwiGO88FdLSyFOwGU3LIVAi2FZg2eRZ2lreWPzV3F5w1NRcJ9L
- QTRmQcE0TupIaRU5KMjUGHQJH984CSasGeRnzGz/T04xWfFwasYDqLH4H g==;
-X-CSE-ConnectionGUID: S/E3pUAQRaSz5OJXioQ2YQ==
-X-CSE-MsgGUID: 1H28LFLZShuEDqieVM/nfg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="67722222"
-X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="67722222"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2025 05:45:56 -0800
-X-CSE-ConnectionGUID: TO0Sl+liQUS/2k3xl65rLA==
-X-CSE-MsgGUID: RDqikSdKThSvlYM9BlDYiA==
+ t=1763042016; x=1794578016;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=lZpXgiQnwshrvkDsHf035xYELMg4Bm6MKUOn+IYJ8VI=;
+ b=apZ+pJhQAPhgf162ck6lfn2hSuVvsW+kesRVf3ddWI0vqD+C1gNrZJnH
+ pnNGaxg5DTJJzg9nEjC9PbVzFTfmGdkvaeeODYV5XFE9jeJAINRTGCfM1
+ aJJR1Rc72Z7+KlsP6iZG/Kx5Rgz9ldYWYDnf0V7GhhKqJQwaeEXHaK60X
+ M+d+j6iTQVF84z/znGK1AzHmOYC6G3P49aDJir5utQdxrx24ZzhDPx1FN
+ Of5sjYVy9FIoIs7hlzYag8uwTA+y5K0q85nct1a4qkrSANcwyHhtyeY/N
+ 3DQGhjfZFUIclw2R+RqhphFAu9dc/0OR6B7rKu6MYZN0e5wjrIgxO5KIQ A==;
+X-CSE-ConnectionGUID: gsGq5wmuS6eaTIJ+/p9lOA==
+X-CSE-MsgGUID: GYgwU5HcSrKP9eg6yIT8Ag==
+X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="76224300"
+X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="76224300"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2025 05:53:31 -0800
+X-CSE-ConnectionGUID: I31ZybrbQ5GpkUzAB65lxg==
+X-CSE-MsgGUID: jE3cK3y3TKeh+lCrV0reQQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="189684763"
-Received: from aotchere-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.135])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2025 05:45:54 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.81])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2025 05:53:29 -0800
+Date: Thu, 13 Nov 2025 15:53:27 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  uma.shankar@intel.com
-Subject: Re: [PATCH 5/8] drm/i915/dram: convert to struct intel_display
-In-Reply-To: <aRXfqt3OMWs6emKW@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: Re: [PATCH] drm/i915: move intel_gmch.[ch] from soc/ to display/
+Message-ID: <aRXi1-qchpRzONMd@intel.com>
 References: <cover.1763027774.git.jani.nikula@intel.com>
- <cc7e5fe8a73296dae9fd162c51fbcbd3b7e52147.1763027774.git.jani.nikula@intel.com>
- <aRXfqt3OMWs6emKW@intel.com>
-Date: Thu, 13 Nov 2025 15:45:51 +0200
-Message-ID: <e4f348f5d56fbd015b682ff90c15c93e35a5cba3@intel.com>
+ <20251113133751.696625-1-jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251113133751.696625-1-jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,20 +72,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 13 Nov 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> I was wondering if we have any situations here where the display
-> vs. graphics ver differs, but can't immediately think of anything
-> that would go wrong here. So seems fine.
+On Thu, Nov 13, 2025 at 03:37:50PM +0200, Jani Nikula wrote:
+> The sole user of the remaining functions in intel_gmch.[ch] is in
+> display. Move them under display.
+> 
+> This allows us to remove the compat soc/intel_gmch.h from xe.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/Makefile                           | 5 +----
+>  drivers/gpu/drm/i915/{soc => display}/intel_gmch.c      | 3 +--
+>  drivers/gpu/drm/i915/{soc => display}/intel_gmch.h      | 0
+>  drivers/gpu/drm/i915/display/intel_vga.c                | 3 +--
+>  drivers/gpu/drm/xe/compat-i915-headers/soc/intel_gmch.h | 6 ------
+>  5 files changed, 3 insertions(+), 14 deletions(-)
+>  rename drivers/gpu/drm/i915/{soc => display}/intel_gmch.c (95%)
+>  rename drivers/gpu/drm/i915/{soc => display}/intel_gmch.h (100%)
+>  delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/soc/intel_gmch.h
+> 
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 90588d5bb908..98822c98d960 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -57,10 +57,6 @@ i915-y += \
+>  	vlv_iosf_sb.o \
+>  	vlv_suspend.o
+>  
+> -# core peripheral code
+> -i915-y += \
+> -	soc/intel_gmch.o
+> -
+>  # core library code
+>  i915-y += \
+>  	i915_memcpy.o \
+> @@ -280,6 +276,7 @@ i915-y += \
+>  	display/intel_flipq.o \
+>  	display/intel_frontbuffer.o \
+>  	display/intel_global_state.o \
+> +	display/intel_gmch.o \
 
-Ditto. Fingers crossed. ;)
+I think I'd just stick the stuff into intel_vga.c since 
+that's where the vgaarb registration is as well.
 
-> I think we should land https://patchwork.freedesktop.org/series/156793/
-> before this one though, just in case we late discover that we need
-> a stable backport of it.
+>  	display/intel_hdcp.o \
+>  	display/intel_hdcp_gsc.o \
+>  	display/intel_hdcp_gsc_message.o \
+> diff --git a/drivers/gpu/drm/i915/soc/intel_gmch.c b/drivers/gpu/drm/i915/display/intel_gmch.c
+> similarity index 95%
+> rename from drivers/gpu/drm/i915/soc/intel_gmch.c
+> rename to drivers/gpu/drm/i915/display/intel_gmch.c
+> index 30f489417064..7797c7341047 100644
+> --- a/drivers/gpu/drm/i915/soc/intel_gmch.c
+> +++ b/drivers/gpu/drm/i915/display/intel_gmch.c
+> @@ -9,9 +9,8 @@
+>  #include <drm/drm_print.h>
+>  #include <drm/intel/i915_drm.h>
+>  
+> -#include "../display/intel_display_core.h" /* FIXME */
+> -
+>  #include "i915_drv.h"
+> +#include "intel_display_core.h"
+>  #include "intel_gmch.h"
+>  #include "intel_pci_config.h"
+>  
+> diff --git a/drivers/gpu/drm/i915/soc/intel_gmch.h b/drivers/gpu/drm/i915/display/intel_gmch.h
+> similarity index 100%
+> rename from drivers/gpu/drm/i915/soc/intel_gmch.h
+> rename to drivers/gpu/drm/i915/display/intel_gmch.h
+> diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/i915/display/intel_vga.c
+> index 6e125564db34..91ba17965ee3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vga.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vga.c
+> @@ -11,10 +11,9 @@
+>  #include <drm/drm_print.h>
+>  #include <video/vga.h>
+>  
+> -#include "soc/intel_gmch.h"
+> -
+>  #include "intel_de.h"
+>  #include "intel_display.h"
+> +#include "intel_gmch.h"
+>  #include "intel_vga.h"
+>  #include "intel_vga_regs.h"
+>  
+> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/soc/intel_gmch.h b/drivers/gpu/drm/xe/compat-i915-headers/soc/intel_gmch.h
+> deleted file mode 100644
+> index 33c5257b3a71..000000000000
+> --- a/drivers/gpu/drm/xe/compat-i915-headers/soc/intel_gmch.h
+> +++ /dev/null
+> @@ -1,6 +0,0 @@
+> -/* SPDX-License-Identifier: MIT */
+> -/*
+> - * Copyright © 2023 Intel Corporation
+> - */
+> -
+> -#include "../../../i915/soc/intel_gmch.h"
+> -- 
+> 2.47.3
 
-Ack.
-
-
---=20
-Jani Nikula, Intel
+-- 
+Ville Syrjälä
+Intel
