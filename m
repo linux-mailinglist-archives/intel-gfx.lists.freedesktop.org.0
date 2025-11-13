@@ -2,71 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADA6BC58D40
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Nov 2025 17:46:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F1C5C58E86
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Nov 2025 17:56:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1465A10E8D3;
-	Thu, 13 Nov 2025 16:46:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EF8E10E8CB;
+	Thu, 13 Nov 2025 16:56:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NQiFBPPP";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="FRtlNmSL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0C5810E8CA;
- Thu, 13 Nov 2025 16:46:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763052379; x=1794588379;
- h=from:date:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=leNjymy4IrsrANo98enac3hyuX+efgKo4NeKdRrW9AI=;
- b=NQiFBPPPs2hCM+e7usm/nYuB7JRaNrRB7avfEhvNX7ruX21sW5lGL1SG
- 0/XPzwI4QQkWRw2srm+Ay5Rg5k+UFhA6tKQzP1VUasVYcdqpTmZ8aIkrB
- tN7YQXufe9cG7z1hBYYpUmSbtzFP6N8Axu08jZ59XmH6I8OWSy3VBfFHk
- bOmNYd0OLglGQJVdgyvHR6bu3HmRMGJtPVBDjCZEgG0NsHejqjQC2XVsb
- 6mDAkdTvJ60qFzqAMrSdcIchl2QdlPGOOTvfS14TrQmAbHZA/+zK3yMfe
- +g3Md/LIfNG1XLkeOoEhsYN5cozZjCMYECuTq+pWYWFy2Z1e3PIr0yXVu A==;
-X-CSE-ConnectionGUID: PCqnRTj2RYCMRStfxT1wrA==
-X-CSE-MsgGUID: OSHJYDJZRNKa3qBoHAjIZw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="65046353"
-X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="65046353"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2025 08:46:18 -0800
-X-CSE-ConnectionGUID: 2B04FgYhRlyg4sFFreNVog==
-X-CSE-MsgGUID: nZE32FcgT+egbvXjO9RXJg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="220365848"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.164])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2025 08:46:11 -0800
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Thu, 13 Nov 2025 18:46:07 +0200 (EET)
-To: Bjorn Helgaas <bhelgaas@google.com>
-cc: =?ISO-8859-15?Q?Alex_Benn=E9e?= <alex.bennee@linaro.org>, 
- Simon Richter <Simon.Richter@hogyros.de>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, 
- David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- linux-pci@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Simona Vetter <simona@ffwll.ch>, Tvrtko Ursulin <tursulin@ursulin.net>, 
- =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>, 
- =?ISO-8859-15?Q?Thomas_Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, 
- =?ISO-8859-2?Q?Micha=B3_Winiarski?= <michal.winiarski@intel.com>, 
- LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 06/11] PCI: Fix restoring BARs on BAR resize rollback
- path
-In-Reply-To: <20251113162628.5946-7-ilpo.jarvinen@linux.intel.com>
-Message-ID: <ba725a72-7863-3dd2-6ba2-ff2259229bbe@linux.intel.com>
-References: <20251113162628.5946-1-ilpo.jarvinen@linux.intel.com>
- <20251113162628.5946-7-ilpo.jarvinen@linux.intel.com>
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 332DE10E1B0;
+ Thu, 13 Nov 2025 16:56:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1763053007;
+ bh=1+FQxddv+Gv2SejLN2zY1r/1JVvqwZUYXTD9m8oYsAw=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=FRtlNmSLHDA/2Nv2mbXWXq2mTvHGE8tGj6zoETOXwrXJdjTpd31Xl6ief8OS/Xw4W
+ pA3FD1SGX24pFlTRJQtxD4eCRgHK77nVFLKP6M8jOjfdc/JXW04hxEGKhr63ZbmyRN
+ XDysbkSZ3wauE8MowoZAJEnobj4x4BTyEv9EEQ543kTlq1FqyxHvUS5+jN/vvHiYIj
+ a44S+S+VYspJmIlyCczIc86MMMwf4eRTaPIdXP2io/GNYx1aIs0o5SK8+QmJusqQCb
+ 2QLtkOqRzdRr2e/BP0w2m/TL2UM0Zs9geH7XtyuwJLaCRed2dGh9CXP2Mx2Ks6UDHt
+ FXtlSeU/MMzoQ==
+Received: from [IPV6:2a01:e0a:5e3:6100:7aed:fe0e:8590:cbaa] (unknown
+ [IPv6:2a01:e0a:5e3:6100:7aed:fe0e:8590:cbaa])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ (Authenticated sender: loicmolinari)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id B311A17E04D6;
+ Thu, 13 Nov 2025 17:56:46 +0100 (CET)
+Message-ID: <7961866c-8809-4e8f-a070-484962964f41@collabora.com>
+Date: Thu, 13 Nov 2025 17:56:46 +0100
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323328-64272619-1763052367=:1464"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 06/11] drm/v3d: Use huge tmpfs mountpoint helpers
+To: Boris Brezillon <boris.brezillon@collabora.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Rob Herring <robh@kernel.org>,
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Melissa Wen <mwen@igalia.com>, =?UTF-8?Q?Ma=C3=ADra_Canal?=
+ <mcanal@igalia.com>, Hugh Dickins <hughd@google.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Andrew Morton <akpm@linux-foundation.org>, Al Viro
+ <viro@zeniv.linux.org.uk>, =?UTF-8?Q?Miko=C5=82aj_Wasiak?=
+ <mikolaj.wasiak@intel.com>, Christian Brauner <brauner@kernel.org>,
+ Nitin Gote <nitin.r.gote@intel.com>, Andi Shyti
+ <andi.shyti@linux.intel.com>, Jonathan Corbet <corbet@lwn.net>,
+ Christopher Healy <healych@amazon.com>, Matthew Wilcox
+ <willy@infradead.org>, Bagas Sanjaya <bagasdotme@gmail.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-mm@kvack.org,
+ linux-doc@vger.kernel.org, kernel@collabora.com
+References: <20251110155000.2936-1-loic.molinari@collabora.com>
+ <20251110155000.2936-7-loic.molinari@collabora.com>
+ <20251112102507.66060e30@fedora>
+Content-Language: fr
+From: =?UTF-8?Q?Lo=C3=AFc_Molinari?= <loic.molinari@collabora.com>
+Organization: Collabora Ltd
+In-Reply-To: <20251112102507.66060e30@fedora>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,436 +85,256 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+On 12/11/2025 10:25, Boris Brezillon wrote:
+> On Mon, 10 Nov 2025 16:49:54 +0100
+> Loïc Molinari <loic.molinari@collabora.com> wrote:
+> 
+>> Make use of the new drm_gem_huge_mnt_create() and
+>> drm_gem_has_huge_mnt() helpers to avoid code duplication. Now that
+>> it's just a few lines long, the single function in v3d_gemfs.c is
+>> moved into v3d_gem.c.
+>>
+>> v3:
+>> - use huge tmpfs mountpoint in drm_device
+>> - move v3d_gemfs.c into v3d_gem.c
+>>
+>> v4:
+>> - clean up mountpoint creation error handling
+>>
+>> v5:
+>> - fix CONFIG_TRANSPARENT_HUGEPAGE check
+>> - use drm_gem_has_huge_mnt() helper
+>>
+>> Signed-off-by: Loïc Molinari <loic.molinari@collabora.com>
+>> ---
+>>   drivers/gpu/drm/v3d/Makefile    |  3 +-
+>>   drivers/gpu/drm/v3d/v3d_bo.c    |  5 ++-
+>>   drivers/gpu/drm/v3d/v3d_drv.c   |  2 +-
+>>   drivers/gpu/drm/v3d/v3d_drv.h   | 11 +-----
+>>   drivers/gpu/drm/v3d/v3d_gem.c   | 27 ++++++++++++--
+>>   drivers/gpu/drm/v3d/v3d_gemfs.c | 62 ---------------------------------
+>>   6 files changed, 30 insertions(+), 80 deletions(-)
+>>   delete mode 100644 drivers/gpu/drm/v3d/v3d_gemfs.c
+>>
+>> diff --git a/drivers/gpu/drm/v3d/Makefile b/drivers/gpu/drm/v3d/Makefile
+>> index fcf710926057..b7d673f1153b 100644
+>> --- a/drivers/gpu/drm/v3d/Makefile
+>> +++ b/drivers/gpu/drm/v3d/Makefile
+>> @@ -13,8 +13,7 @@ v3d-y := \
+>>   	v3d_trace_points.o \
+>>   	v3d_sched.o \
+>>   	v3d_sysfs.o \
+>> -	v3d_submit.o \
+>> -	v3d_gemfs.o
+>> +	v3d_submit.o
+>>   
+>>   v3d-$(CONFIG_DEBUG_FS) += v3d_debugfs.o
+>>   
+>> diff --git a/drivers/gpu/drm/v3d/v3d_bo.c b/drivers/gpu/drm/v3d/v3d_bo.c
+>> index d9547f5117b9..99c6a775d18b 100644
+>> --- a/drivers/gpu/drm/v3d/v3d_bo.c
+>> +++ b/drivers/gpu/drm/v3d/v3d_bo.c
+>> @@ -114,7 +114,7 @@ v3d_bo_create_finish(struct drm_gem_object *obj)
+>>   	if (IS_ERR(sgt))
+>>   		return PTR_ERR(sgt);
+>>   
+>> -	if (!v3d->gemfs)
+>> +	if (!drm_gem_has_huge_mnt(obj->dev))
+>>   		align = SZ_4K;
+>>   	else if (obj->size >= SZ_1M)
+>>   		align = SZ_1M;
+>> @@ -150,12 +150,11 @@ struct v3d_bo *v3d_bo_create(struct drm_device *dev, struct drm_file *file_priv,
+>>   			     size_t unaligned_size)
+>>   {
+>>   	struct drm_gem_shmem_object *shmem_obj;
+>> -	struct v3d_dev *v3d = to_v3d_dev(dev);
+>>   	struct v3d_bo *bo;
+>>   	int ret;
+>>   
+>>   	shmem_obj = drm_gem_shmem_create_with_mnt(dev, unaligned_size,
+>> -						  v3d->gemfs);
+>> +						  dev->huge_mnt);
+> 
+> I thought you needed some kind of drm_gem_huge_mnt() helper to cover
+> for the fact drm_device::huge_mnt does not exist if
+> CONFIG_TRANSPARENT_HUGEPAGE=n.
 
---8323328-64272619-1763052367=:1464
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: QUOTED-PRINTABLE
+Ah right. For this one in v8, I've just added a temporary ifdef that 
+gets removed in the next commit while getting rif of the *_with_mnt 
+functions.
 
-On Thu, 13 Nov 2025, Ilpo J=C3=A4rvinen wrote:
+> 
+>>   	if (IS_ERR(shmem_obj))
+>>   		return ERR_CAST(shmem_obj);
+>>   	bo = to_v3d_bo(&shmem_obj->base);
+>> diff --git a/drivers/gpu/drm/v3d/v3d_drv.c b/drivers/gpu/drm/v3d/v3d_drv.c
+>> index e8a46c8bad8a..30b55a00eeda 100644
+>> --- a/drivers/gpu/drm/v3d/v3d_drv.c
+>> +++ b/drivers/gpu/drm/v3d/v3d_drv.c
+>> @@ -107,7 +107,7 @@ static int v3d_get_param_ioctl(struct drm_device *dev, void *data,
+>>   		args->value = v3d->perfmon_info.max_counters;
+>>   		return 0;
+>>   	case DRM_V3D_PARAM_SUPPORTS_SUPER_PAGES:
+>> -		args->value = !!v3d->gemfs;
+>> +		args->value = drm_gem_has_huge_mnt(dev);
+>>   		return 0;
+>>   	case DRM_V3D_PARAM_GLOBAL_RESET_COUNTER:
+>>   		mutex_lock(&v3d->reset_lock);
+>> diff --git a/drivers/gpu/drm/v3d/v3d_drv.h b/drivers/gpu/drm/v3d/v3d_drv.h
+>> index 1884686985b8..99a39329bb85 100644
+>> --- a/drivers/gpu/drm/v3d/v3d_drv.h
+>> +++ b/drivers/gpu/drm/v3d/v3d_drv.h
+>> @@ -158,11 +158,6 @@ struct v3d_dev {
+>>   	struct drm_mm mm;
+>>   	spinlock_t mm_lock;
+>>   
+>> -	/*
+>> -	 * tmpfs instance used for shmem backed objects
+>> -	 */
+>> -	struct vfsmount *gemfs;
+>> -
+>>   	struct work_struct overflow_mem_work;
+>>   
+>>   	struct v3d_queue_state queue[V3D_MAX_QUEUES];
+>> @@ -569,6 +564,7 @@ extern const struct dma_fence_ops v3d_fence_ops;
+>>   struct dma_fence *v3d_fence_create(struct v3d_dev *v3d, enum v3d_queue q);
+>>   
+>>   /* v3d_gem.c */
+>> +extern bool super_pages;
+>>   int v3d_gem_init(struct drm_device *dev);
+>>   void v3d_gem_destroy(struct drm_device *dev);
+>>   void v3d_reset_sms(struct v3d_dev *v3d);
+>> @@ -576,11 +572,6 @@ void v3d_reset(struct v3d_dev *v3d);
+>>   void v3d_invalidate_caches(struct v3d_dev *v3d);
+>>   void v3d_clean_caches(struct v3d_dev *v3d);
+>>   
+>> -/* v3d_gemfs.c */
+>> -extern bool super_pages;
+>> -void v3d_gemfs_init(struct v3d_dev *v3d);
+>> -void v3d_gemfs_fini(struct v3d_dev *v3d);
+>> -
+>>   /* v3d_submit.c */
+>>   void v3d_job_cleanup(struct v3d_job *job);
+>>   void v3d_job_put(struct v3d_job *job);
+>> diff --git a/drivers/gpu/drm/v3d/v3d_gem.c b/drivers/gpu/drm/v3d/v3d_gem.c
+>> index 5a180dc6c452..f316f67364d2 100644
+>> --- a/drivers/gpu/drm/v3d/v3d_gem.c
+>> +++ b/drivers/gpu/drm/v3d/v3d_gem.c
+>> @@ -259,6 +259,30 @@ v3d_invalidate_caches(struct v3d_dev *v3d)
+>>   	v3d_invalidate_slices(v3d, 0);
+>>   }
+>>   
+>> +static void
+>> +v3d_huge_mnt_init(struct v3d_dev *v3d)
+>> +{
+>> +	int err = 0;
+>> +
+>> +	/*
+>> +	 * By using a huge shmemfs mountpoint when the user wants to
+>> +	 * enable Super Pages, we can pass in mount flags that better
+>> +	 * match our usecase.
+>> +	 */
+>> +
+>> +	if (IS_ENABLED(CONFIG_TRANSPARENT_HUGEPAGE) && super_pages)
+>> +		err = drm_gem_huge_mnt_create(&v3d->drm, "within_size");
+>> +
+>> +	if (drm_gem_has_huge_mnt(&v3d->drm))
+>> +		drm_info(&v3d->drm, "Using Transparent Hugepages\n");
+>> +	else if (err)
+>> +		drm_warn(&v3d->drm, "Can't use Transparent Hugepages (%d)\n",
+>> +			 err);
+>> +	else
+>> +		drm_notice(&v3d->drm,
+>> +			   "Transparent Hugepage support is recommended for optimal performance on this platform!\n");
+>> +}
+>> +
+>>   int
+>>   v3d_gem_init(struct drm_device *dev)
+>>   {
+>> @@ -310,7 +334,7 @@ v3d_gem_init(struct drm_device *dev)
+>>   	v3d_init_hw_state(v3d);
+>>   	v3d_mmu_set_page_table(v3d);
+>>   
+>> -	v3d_gemfs_init(v3d);
+>> +	v3d_huge_mnt_init(v3d);
+>>   
+>>   	ret = v3d_sched_init(v3d);
+>>   	if (ret) {
+>> @@ -330,7 +354,6 @@ v3d_gem_destroy(struct drm_device *dev)
+>>   	enum v3d_queue q;
+>>   
+>>   	v3d_sched_fini(v3d);
+>> -	v3d_gemfs_fini(v3d);
+>>   
+>>   	/* Waiting for jobs to finish would need to be done before
+>>   	 * unregistering V3D.
+>> diff --git a/drivers/gpu/drm/v3d/v3d_gemfs.c b/drivers/gpu/drm/v3d/v3d_gemfs.c
+>> deleted file mode 100644
+>> index bf351fc0d488..000000000000
+>> --- a/drivers/gpu/drm/v3d/v3d_gemfs.c
+>> +++ /dev/null
+>> @@ -1,62 +0,0 @@
+>> -// SPDX-License-Identifier: GPL-2.0+
+>> -/* Copyright (C) 2024 Raspberry Pi */
+>> -
+>> -#include <linux/fs.h>
+>> -#include <linux/mount.h>
+>> -#include <linux/fs_context.h>
+>> -
+>> -#include <drm/drm_print.h>
+>> -
+>> -#include "v3d_drv.h"
+>> -
+>> -void v3d_gemfs_init(struct v3d_dev *v3d)
+>> -{
+>> -	struct file_system_type *type;
+>> -	struct fs_context *fc;
+>> -	struct vfsmount *gemfs;
+>> -	int ret;
+>> -
+>> -	/*
+>> -	 * By creating our own shmemfs mountpoint, we can pass in
+>> -	 * mount flags that better match our usecase. However, we
+>> -	 * only do so on platforms which benefit from it.
+>> -	 */
+>> -	if (!IS_ENABLED(CONFIG_TRANSPARENT_HUGEPAGE))
+>> -		goto err;
+>> -
+>> -	/* The user doesn't want to enable Super Pages */
+>> -	if (!super_pages)
+>> -		goto err;
+>> -
+>> -	type = get_fs_type("tmpfs");
+>> -	if (!type)
+>> -		goto err;
+>> -
+>> -	fc = fs_context_for_mount(type, SB_KERNMOUNT);
+>> -	if (IS_ERR(fc))
+>> -		goto err;
+>> -	ret = vfs_parse_fs_string(fc, "source", "tmpfs");
+>> -	if (!ret)
+>> -		ret = vfs_parse_fs_string(fc, "huge", "within_size");
+>> -	if (!ret)
+>> -		gemfs = fc_mount_longterm(fc);
+>> -	put_fs_context(fc);
+>> -	if (ret)
+>> -		goto err;
+>> -
+>> -	v3d->gemfs = gemfs;
+>> -	drm_info(&v3d->drm, "Using Transparent Hugepages\n");
+>> -
+>> -	return;
+>> -
+>> -err:
+>> -	v3d->gemfs = NULL;
+>> -	drm_notice(&v3d->drm,
+>> -		   "Transparent Hugepage support is recommended for optimal performance on this platform!\n");
+>> -}
+>> -
+>> -void v3d_gemfs_fini(struct v3d_dev *v3d)
+>> -{
+>> -	if (v3d->gemfs)
+>> -		kern_unmount(v3d->gemfs);
+>> -}
+> 
 
-> BAR resize operation is implemented in the pci_resize_resource() and
-> pbus_reassign_bridge_resources() functions. pci_resize_resource() can
-> be called either from __resource_resize_store() from sysfs or directly
-> by the driver for the Endpoint Device.
->=20
-> The pci_resize_resource() requires that caller has released the device
-> resources that share the bridge window with the BAR to be resized as
-> otherwise the bridge window is pinned in place and cannot be changed.
->=20
-> pbus_reassign_bridge_resources() implement rollback of the resources if
-> the resize operation fails, but rollback is performed only for the
-> bridge windows. Because releasing the device resources are done by the
-> caller of the BAR resize interface, these functions performing the BAR
-> resize do not have access to the device resources as they were before
-> the resize.
->=20
-> pbus_reassign_bridge_resources() could try to
-> __pci_bridge_assign_resources() after rolling back the bridge windows
-> as they were, however, it will not guarantee the resource are assigned
-> due to differences how FW and the kernel may want to assign the
-> resources (alignment of the start address and tail).
->=20
-> In order to perform rollback robustly, the BAR resize interface has to
-> be altered to also release the device resources that share the bridge
-> window with the BAR to be resized.
->=20
-> Also, remove restoring from the entries failed list as saved list
-> should now contain both the bridge windows and device resources so
-> the extra restore is duplicated work.
->=20
-> Some drivers (currently only amdgpu) want to prevent releasing some
-> resources. Add exclude_bars param to pci_resize_resource() and make
-> amdgpu to pass its register BAR (BAR 5) which should never be released
-> during resize operation. Normally 64-bit prefetchable resources do not
-> share bridge window with it as the register BAR (32-bit only) but there
-> are various fallbacks in the resource assignment logic which may make
-> the resources to share the bridge window in rare cases.
->=20
-> This change (together with the driver side changes) is to counter the
-> resource releases that had to be done to prevent resource tree
-> corruption in the ("PCI: Release assigned resource before restoring
-> them") change. As such, it likely restores functionality in cases where
-> device resources were released to avoid resource tree conflicts which
-> appeared to be "working" when such conflicts were not correctly
-> detected by the kernel.
->=20
-> Link: https://lore.kernel.org/linux-pci/f9a8c975-f5d3-4dd2-988e-4371a1433=
-a60@hogyros.de/
-> Link: https://lore.kernel.org/linux-pci/874irqop6b.fsf@draig.linaro.org/
-> Reported-by: Simon Richter <Simon.Richter@hogyros.de>
-> Reported-by: Alex Benn=C3=A9e <alex.bennee@linaro.org>
-> Signed-off-by: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |   2 +-
->  drivers/gpu/drm/i915/gt/intel_region_lmem.c |   2 +-
->  drivers/gpu/drm/xe/xe_vram.c                |   2 +-
->  drivers/pci/pci-sysfs.c                     |  17 +---
->  drivers/pci/pci.h                           |   4 +-
->  drivers/pci/setup-bus.c                     | 100 +++++++++++++++-----
->  drivers/pci/setup-res.c                     |  23 ++---
->  include/linux/pci.h                         |   3 +-
->  8 files changed, 91 insertions(+), 62 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm=
-/amd/amdgpu/amdgpu_device.c
-> index 7a899fb4de29..4e241836ae68 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -1736,7 +1736,7 @@ int amdgpu_device_resize_fb_bar(struct amdgpu_devic=
-e *adev)
-> =20
->  =09pci_release_resource(adev->pdev, 0);
-> =20
-> -=09r =3D pci_resize_resource(adev->pdev, 0, rbar_size);
-> +=09r =3D pci_resize_resource(adev->pdev, 0, rbar_size, 1 << 5);
->  =09if (r =3D=3D -ENOSPC)
->  =09=09dev_info(adev->dev,
->  =09=09=09 "Not enough PCI address space for a large BAR.");
-> diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/dr=
-m/i915/gt/intel_region_lmem.c
-> index 51bb27e10a4f..7699e8fcf5ed 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-> @@ -37,7 +37,7 @@ _resize_bar(struct drm_i915_private *i915, int resno, r=
-esource_size_t size)
-> =20
->  =09_release_bars(pdev);
-> =20
-> -=09ret =3D pci_resize_resource(pdev, resno, bar_size);
-> +=09ret =3D pci_resize_resource(pdev, resno, bar_size, 0);
->  =09if (ret) {
->  =09=09drm_info(&i915->drm, "Failed to resize BAR%d to %dM (%pe)\n",
->  =09=09=09 resno, 1 << bar_size, ERR_PTR(ret));
-> diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
-> index b44ebf50fedb..00dd027057df 100644
-> --- a/drivers/gpu/drm/xe/xe_vram.c
-> +++ b/drivers/gpu/drm/xe/xe_vram.c
-> @@ -36,7 +36,7 @@ _resize_bar(struct xe_device *xe, int resno, resource_s=
-ize_t size)
->  =09if (pci_resource_len(pdev, resno))
->  =09=09pci_release_resource(pdev, resno);
-> =20
-> -=09ret =3D pci_resize_resource(pdev, resno, bar_size);
-> +=09ret =3D pci_resize_resource(pdev, resno, bar_size, 0);
->  =09if (ret) {
->  =09=09drm_info(&xe->drm, "Failed to resize BAR%d to %dM (%pe). Consider =
-enabling 'Resizable BAR' support in your BIOS\n",
->  =09=09=09 resno, 1 << bar_size, ERR_PTR(ret));
-> diff --git a/drivers/pci/pci-sysfs.c b/drivers/pci/pci-sysfs.c
-> index 9d6f74bd95f8..2a1b5456c2dc 100644
-> --- a/drivers/pci/pci-sysfs.c
-> +++ b/drivers/pci/pci-sysfs.c
-> @@ -1599,18 +1599,13 @@ static ssize_t __resource_resize_store(struct dev=
-ice *dev, int n,
->  {
->  =09struct pci_dev *pdev =3D to_pci_dev(dev);
->  =09struct pci_bus *bus =3D pdev->bus;
-> -=09struct resource *b_win, *res;
->  =09unsigned long size;
-> -=09int ret, i;
-> +=09int ret;
->  =09u16 cmd;
-> =20
->  =09if (kstrtoul(buf, 0, &size) < 0)
->  =09=09return -EINVAL;
-> =20
-> -=09b_win =3D pbus_select_window(bus, pci_resource_n(pdev, n));
-> -=09if (!b_win)
-> -=09=09return -EINVAL;
-> -
->  =09device_lock(dev);
->  =09if (dev->driver || pci_num_vf(pdev)) {
->  =09=09ret =3D -EBUSY;
-> @@ -1632,15 +1627,7 @@ static ssize_t __resource_resize_store(struct devi=
-ce *dev, int n,
-> =20
->  =09pci_remove_resource_files(pdev);
-> =20
-> -=09pci_dev_for_each_resource(pdev, res, i) {
-> -=09=09if (i >=3D PCI_BRIDGE_RESOURCES)
-> -=09=09=09break;
-> -
-> -=09=09if (b_win =3D=3D pbus_select_window(bus, res))
-> -=09=09=09pci_release_resource(pdev, i);
-> -=09}
-> -
-> -=09ret =3D pci_resize_resource(pdev, n, size);
-> +=09ret =3D pci_resize_resource(pdev, n, size, 0);
-> =20
->  =09pci_assign_unassigned_bus_resources(bus);
-> =20
-> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
-> index bf1a577e9623..9893ea12d1f2 100644
-> --- a/drivers/pci/pci.h
-> +++ b/drivers/pci/pci.h
-> @@ -421,8 +421,10 @@ enum pci_bar_type {
->  struct device *pci_get_host_bridge_device(struct pci_dev *dev);
->  void pci_put_host_bridge_device(struct device *dev);
-> =20
-> +void pci_resize_resource_set_size(struct pci_dev *dev, int resno, int si=
-ze);
-> +int pci_do_resource_release_and_resize(struct pci_dev *dev, int resno, i=
-nt size,
-> +=09=09=09=09       int exclude_bars);
->  unsigned int pci_rescan_bus_bridge_resize(struct pci_dev *bridge);
-> -int pbus_reassign_bridge_resources(struct pci_bus *bus, struct resource =
-*res);
->  int __must_check pci_reassign_resource(struct pci_dev *dev, int i, resou=
-rce_size_t add_size, resource_size_t align);
-> =20
->  int pci_configure_extended_tags(struct pci_dev *dev, void *ign);
-> diff --git a/drivers/pci/setup-bus.c b/drivers/pci/setup-bus.c
-> index 51f5e5a80b54..7e268960954b 100644
-> --- a/drivers/pci/setup-bus.c
-> +++ b/drivers/pci/setup-bus.c
-> @@ -2420,18 +2420,16 @@ EXPORT_SYMBOL_GPL(pci_assign_unassigned_bridge_re=
-sources);
->   * release it when possible. If the bridge window contains assigned
->   * resources, it cannot be released.
->   */
-> -int pbus_reassign_bridge_resources(struct pci_bus *bus, struct resource =
-*res)
-> +static int pbus_reassign_bridge_resources(struct pci_bus *bus, struct re=
-source *res,
-> +=09=09=09=09=09  struct list_head *saved)
->  {
->  =09unsigned long type =3D res->flags;
->  =09struct pci_dev_resource *dev_res;
->  =09struct pci_dev *bridge =3D NULL;
-> -=09LIST_HEAD(saved);
->  =09LIST_HEAD(added);
->  =09LIST_HEAD(failed);
->  =09unsigned int i;
-> -=09int ret;
-> -
-> -=09down_read(&pci_bus_sem);
-> +=09int ret =3D 0;
-> =20
->  =09while (!pci_is_root_bus(bus)) {
->  =09=09bridge =3D bus->self;
-> @@ -2443,9 +2441,9 @@ int pbus_reassign_bridge_resources(struct pci_bus *=
-bus, struct resource *res)
-> =20
->  =09=09/* Ignore BARs which are still in use */
->  =09=09if (!res->child) {
-> -=09=09=09ret =3D add_to_list(&saved, bridge, res, 0, 0);
-> +=09=09=09ret =3D add_to_list(saved, bridge, res, 0, 0);
->  =09=09=09if (ret)
-> -=09=09=09=09goto cleanup;
-> +=09=09=09=09return ret;
-> =20
->  =09=09=09pci_release_resource(bridge, i);
->  =09=09} else {
-> @@ -2468,34 +2466,78 @@ int pbus_reassign_bridge_resources(struct pci_bus=
- *bus, struct resource *res)
->  =09=09free_list(&added);
-> =20
->  =09if (!list_empty(&failed)) {
-> -=09=09if (pci_required_resource_failed(&failed, type)) {
-> +=09=09if (pci_required_resource_failed(&failed, type))
->  =09=09=09ret =3D -ENOSPC;
-> -=09=09=09goto cleanup;
-> -=09=09}
-> -=09=09/* Only resources with unrelated types failed (again) */
->  =09=09free_list(&failed);
-> +=09=09if (ret)
-> +=09=09=09return ret;
-> +
-> +=09=09/* Only resources with unrelated types failed (again) */
->  =09}
-> =20
-> -=09list_for_each_entry(dev_res, &saved, list) {
-> +=09list_for_each_entry(dev_res, saved, list) {
->  =09=09struct pci_dev *dev =3D dev_res->dev;
-> =20
->  =09=09/* Skip the bridge we just assigned resources for */
->  =09=09if (bridge =3D=3D dev)
->  =09=09=09continue;
-> =20
-> +=09=09if (!dev->subordinate)
-> +=09=09=09continue;
-> +
->  =09=09pci_setup_bridge(dev->subordinate);
->  =09}
-> =20
-> -=09free_list(&saved);
-> -=09up_read(&pci_bus_sem);
->  =09return 0;
-> +}
-> =20
-> -cleanup:
-> -=09/* Restore size and flags */
-> -=09list_for_each_entry(dev_res, &failed, list)
-> -=09=09restore_dev_resource(dev_res);
-> -=09free_list(&failed);
-> +int pci_do_resource_release_and_resize(struct pci_dev *pdev, int resno, =
-int size,
-> +=09=09=09=09       int exclude_bars)
-> +{
-> +=09struct resource *res =3D pci_resource_n(pdev, resno);
-> +=09struct pci_dev_resource *dev_res;
-> +=09struct pci_bus *bus =3D pdev->bus;
-> +=09struct resource *b_win, *r;
-> +=09LIST_HEAD(saved);
-> +=09unsigned int i;
-> +=09int ret =3D 0;
-> +
-> +=09b_win =3D pbus_select_window(bus, res);
-> +=09if (!b_win)
-> +=09=09return -EINVAL;
-> +
-> +=09pci_dev_for_each_resource(pdev, r, i) {
-> +=09=09if (i >=3D PCI_BRIDGE_RESOURCES)
-> +=09=09=09break;
-> +
-> +=09=09if (exclude_bars & BIT(i))
-> +=09=09=09continue;
-> =20
-> +=09=09if (b_win !=3D pbus_select_window(bus, r))
-> +=09=09=09continue;
-> +
-> +=09=09ret =3D add_to_list(&saved, pdev, r, 0, 0);
-> +=09=09if (ret)
-> +=09=09=09goto restore;
-> +=09=09pci_release_resource(pdev, i);
-> +=09}
-> +
-> +=09pci_resize_resource_set_size(pdev, resno, size);
-> +
-> +=09if (!bus->self)
-> +=09=09goto out;
-> +
-> +=09down_read(&pci_bus_sem);
-> +=09ret =3D pbus_reassign_bridge_resources(bus, res, &saved);
-> +=09if (ret)
-> +=09=09goto restore;
-> +
-> +out:
-> +=09up_read(&pci_bus_sem);
-> +=09free_list(&saved);
-> +=09return ret;
-> +
-> +restore:
->  =09/* Revert to the old configuration */
->  =09list_for_each_entry(dev_res, &saved, list) {
->  =09=09struct resource *res =3D dev_res->res;
-> @@ -2510,13 +2552,21 @@ int pbus_reassign_bridge_resources(struct pci_bus=
- *bus, struct resource *res)
-> =20
->  =09=09restore_dev_resource(dev_res);
-> =20
-> -=09=09pci_claim_resource(dev, i);
-> -=09=09pci_setup_bridge(dev->subordinate);
-> -=09}
-> -=09up_read(&pci_bus_sem);
-> -=09free_list(&saved);
-> +=09=09ret =3D pci_claim_resource(dev, i);
-> +=09=09if (ret)
-> +=09=09=09continue;
-> =20
-> -=09return ret;
-> +=09=09if (i < PCI_BRIDGE_RESOURCES) {
-> +=09=09=09const char *res_name =3D pci_resource_name(dev, i);
-> +
-> +=09=09=09pci_update_resource(dev, i);
-> +=09=09=09pci_info(dev, "%s %pR: old value restored\n",
-> +=09=09=09=09 res_name, res);
-> +=09=09}
-> +=09=09if (dev->subordinate)
-> +=09=09=09pci_setup_bridge(dev->subordinate);
-> +=09}
-> +=09goto out;
->  }
-> =20
->  void pci_assign_unassigned_bus_resources(struct pci_bus *bus)
-> diff --git a/drivers/pci/setup-res.c b/drivers/pci/setup-res.c
-> index 3d0b0b3f60c4..e4486d7030c0 100644
-> --- a/drivers/pci/setup-res.c
-> +++ b/drivers/pci/setup-res.c
-> @@ -444,8 +444,7 @@ static bool pci_resize_is_memory_decoding_enabled(str=
-uct pci_dev *dev,
->  =09return cmd & PCI_COMMAND_MEMORY;
->  }
-> =20
-> -static void pci_resize_resource_set_size(struct pci_dev *dev, int resno,
-> -=09=09=09=09=09 int size)
-> +void pci_resize_resource_set_size(struct pci_dev *dev, int resno, int si=
-ze)
->  {
->  =09resource_size_t res_size =3D pci_rebar_size_to_bytes(size);
->  =09struct resource *res =3D pci_resource_n(dev, resno);
-> @@ -456,9 +455,9 @@ static void pci_resize_resource_set_size(struct pci_d=
-ev *dev, int resno,
->  =09resource_set_size(res, res_size);
->  }
-> =20
-> -int pci_resize_resource(struct pci_dev *dev, int resno, int size)
-> +int pci_resize_resource(struct pci_dev *dev, int resno, int size,
-> +=09=09=09int exclude_bars)
->  {
-> -=09struct resource *res =3D pci_resource_n(dev, resno);
->  =09struct pci_host_bridge *host;
->  =09int old, ret;
->  =09u32 sizes;
-> @@ -468,10 +467,6 @@ int pci_resize_resource(struct pci_dev *dev, int res=
-no, int size)
->  =09if (host->preserve_config)
->  =09=09return -ENOTSUPP;
-> =20
-> -=09/* Make sure the resource isn't assigned before resizing it. */
-> -=09if (!(res->flags & IORESOURCE_UNSET))
-> -=09=09return -EBUSY;
-> -
->  =09if (pci_resize_is_memory_decoding_enabled(dev, resno))
->  =09=09return -EBUSY;
-> =20
-> @@ -490,19 +485,13 @@ int pci_resize_resource(struct pci_dev *dev, int re=
-sno, int size)
->  =09if (ret)
->  =09=09return ret;
-> =20
-> -=09pci_resize_resource_set_size(dev, resno, size);
-> -
-> -=09/* Check if the new config works by trying to assign everything. */
-> -=09if (dev->bus->self) {
-> -=09=09ret =3D pbus_reassign_bridge_resources(dev->bus, res);
-> -=09=09if (ret)
-> -=09=09=09goto error_resize;
-> -=09}
-> +=09ret =3D pci_do_resource_release_and_resize(dev, resno, size, exclude_=
-bars);
-> +=09if (ret)
-> +=09=09goto error_resize;
->  =09return 0;
-> =20
->  error_resize:
->  =09pci_rebar_set_size(dev, resno, old);
-> -=09pci_resize_resource_set_size(dev, resno, old);
->  =09return ret;
->  }
->  EXPORT_SYMBOL(pci_resize_resource);
-> diff --git a/include/linux/pci.h b/include/linux/pci.h
-> index d1fdf81fbe1e..cc58abbd2b20 100644
-> --- a/include/linux/pci.h
-> +++ b/include/linux/pci.h
-> @@ -1428,7 +1428,8 @@ static inline int pci_rebar_bytes_to_size(u64 bytes=
-)
->  }
-> =20
->  u32 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar);
-> -int __must_check pci_resize_resource(struct pci_dev *dev, int i, int siz=
-e);
-> +int __must_check pci_resize_resource(struct pci_dev *dev, int i, int siz=
-e,
-> +=09=09=09=09     int exlucde_bars);
-
-It seems I managed to mistype this in the prototype, please let me know if=
-=20
-you want me to send v3 addressing this and the other comments.
-
---=20
- i.
-
---8323328-64272619-1763052367=:1464--
