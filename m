@@ -2,61 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 574FCC585C0
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Nov 2025 16:26:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53548C58820
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Nov 2025 16:53:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3584010E86C;
-	Thu, 13 Nov 2025 15:26:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4AE8410E872;
+	Thu, 13 Nov 2025 15:53:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ag8u3Vs0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QFzxWkSK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F10F510E86A;
- Thu, 13 Nov 2025 15:26:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4597D10E86E;
+ Thu, 13 Nov 2025 15:53:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763047573; x=1794583573;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=nVutEir/78QEUpTgIW92+1nEis9mVpguv3YlFmHT9+M=;
- b=ag8u3Vs09a78zrUtCqy+3iaOEFADW/ghsfCSELPvLbuQeOJ1anEeeIMZ
- 4vmokw6yfOoWbGGgGUb4bxQ6KVhNcx9GGL6Y4+wd+DU2Dpr77Sh8fLARy
- xX9rJmTNYOkfEtJbgGSKCF9iF+ONq+Y56Z++mjJdJaSHdYQOx3BT/Oo64
- 7JtMzOSlMLC0xXo4kfk+tdJ58dE/RHxAaJIvYCykQgCHzvI/X9vqOBA/i
- 3UPHgkraFdsw10GU9yKhtccMTTtXdGBi8SfiKlAhtsX2qCtsSIXNKiql9
- cWwT7vdjeMx0FZTQB9Y2hq9TweSMoQt1AbRIKd0lXKPi6RS2O2MPTPIAs w==;
-X-CSE-ConnectionGUID: EyGqhyz4Rtut3/Xej8N91g==
-X-CSE-MsgGUID: zDy5VvjuQrKKVHZmyqtM8A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="64333675"
-X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="64333675"
+ t=1763049221; x=1794585221;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=ePMDDV/UcEF+aYyrhHE/LGjhKltznZJVITRU9GAn8Fc=;
+ b=QFzxWkSKf8uET7gDGp8w1GWK5NqC9pIH6LhSX0CYtpdGRhTvAwDf7AQe
+ dgzzUs7o8ViDXlloJK/c7t2rAK0Yn5w35GxShUqGbxvlk7y6pvb09/TRJ
+ ogCn59SrAu6G0Of5lLN3CgNKHTYySUUO/4EqY0hR0t+k50RbjpM7KJlum
+ o+InUxXLn4/FdwtiLfG0xCyt1Al21nC7jLgaHh8RH56btvPGf2izZnS7N
+ vea8xhrqWhUhmLw3fou075LH6cBw5F9HVVo024/7pP0DkfptnIFXbV7BY
+ QYLOJfULajW5Qv6qZSjgI/jeQ3I3me5nD2CsWYM5H27ohkM0goYoZoH9A g==;
+X-CSE-ConnectionGUID: Acsc+7sISGqLBQGWGPfD5A==
+X-CSE-MsgGUID: uocIfRcSQ8iFEkS0TC0fMg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="76592768"
+X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="76592768"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2025 07:26:13 -0800
-X-CSE-ConnectionGUID: 8reecLHBQXOuQBvVE8TBEQ==
-X-CSE-MsgGUID: jglhJrL5SjSMYkZtKxoX1w==
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2025 07:53:40 -0800
+X-CSE-ConnectionGUID: wGK8JpAqTY+ehdpuoS43dw==
+X-CSE-MsgGUID: CbHDPh1XR4W4WuUKl4Y7MA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="189168972"
+X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="189175584"
 Received: from aotchere-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.135])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2025 07:26:11 -0800
+ 13 Nov 2025 07:53:37 -0800
 From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- uma.shankar@intel.com
-Subject: Re: [PATCH] drm/i915/gmch: find bridge device locally
-In-Reply-To: <aRX0aqq9p9vVJep6@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1763027774.git.jani.nikula@intel.com>
- <20251113133806.696869-1-jani.nikula@intel.com>
- <aRX0aqq9p9vVJep6@intel.com>
-Date: Thu, 13 Nov 2025 17:26:08 +0200
-Message-ID: <5368b8ef955fb7615cc35458ff8ce4ee2dbc3c30@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: Maarten Lankhorst <dev@lankhorst.se>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Subject: [PATCH v2] drm/i915/display: stop using the configurable fence timeout
+Date: Thu, 13 Nov 2025 17:53:32 +0200
+Message-ID: <20251113155332.789554-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20251112155612.8320-1-jani.nikula@intel.com>
+References: <20251112155612.8320-1-jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,113 +72,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 13 Nov 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Thu, Nov 13, 2025 at 03:38:06PM +0200, Jani Nikula wrote:
->> We don't really need the cached i915->gmch.pdev reference. Look up the
->> bridge device locally, and remove the final dependency on struct
->> drm_i915_private and i915_drv.h.
->>=20
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_gmch.c | 25 ++++++++++++++++-------
->>  1 file changed, 18 insertions(+), 7 deletions(-)
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_gmch.c b/drivers/gpu/drm=
-/i915/display/intel_gmch.c
->> index 475f2b6ce39e..9bf36f02a062 100644
->> --- a/drivers/gpu/drm/i915/display/intel_gmch.c
->> +++ b/drivers/gpu/drm/i915/display/intel_gmch.c
->> @@ -9,7 +9,6 @@
->>  #include <drm/drm_print.h>
->>  #include <drm/intel/i915_drm.h>
->>=20=20
->> -#include "i915_drv.h"
->>  #include "intel_display_core.h"
->>  #include "intel_display_types.h"
->>  #include "intel_gmch.h"
->> @@ -17,18 +16,26 @@
->>=20=20
->>  static int intel_gmch_vga_set_state(struct intel_display *display, bool=
- enable_decode)
->>  {
->> -	struct drm_i915_private *i915 =3D to_i915(display->drm);
->> -	struct pci_dev *bridge =3D i915->gmch.pdev;
->> +	struct pci_dev *pdev =3D to_pci_dev(display->drm->dev);
->> +	struct pci_dev *bridge;
->>  	unsigned int reg =3D DISPLAY_VER(display) >=3D 6 ? SNB_GMCH_CTRL : INT=
-EL_GMCH_CTRL;
->>  	u16 gmch_ctrl;
->> +	int ret =3D 0;
->> +
->> +	bridge =3D pci_get_domain_bus_and_slot(pci_domain_nr(pdev->bus), 0, PC=
-I_DEVFN(0, 0));
->> +	if (!bridge) {
->> +		drm_err(display->drm, "bridge device not found\n");
->> +		return -EIO;
->> +	}
->>=20=20
->>  	if (pci_read_config_word(bridge, reg, &gmch_ctrl)) {
->
-> I think you could just use pci_bus_{read,write}_config_word() and then
-> you don't need the pci_dev reference. That's what I've used in the
-> overlay workaround code as well.
+i915 has the Kconfig option DRM_I915_FENCE_TIMEOUT, defaulting to 10
+seconds. xe doesn't use it, instead defaulting to
+MAX_SCHEDULE_TIMEOUT. Unify the behaviour by switching to
+dma_fence_wait() which defaults to MAX_SCHEDULE_TIMEOUT.
 
-Oh, neat, seems cleaner.
+As dma_fence_wait() returns 0 when the fence was signaled, update the
+return value check.
 
-> I was pondering how this even works on discrete GPUs, but there it
-> seems the GPU PCI device is devfn=3D0.0 sitting on its own bus. So it
-> seems that it should work. Well, work in the sense that it accesses
-> the correct register. But in reality this code is complete nonsense
-> as this register is locked by the BIOS and so can't actually be
-> written by the driver.
->
-> The alternative approach would be to use the actual GPU PCI device
-> on SNB+ since the GGC register is also mirrored there (and I think
-> also mirrored in MCHBAR, so we could also use MMIO to access it
-> instead). I suppose it's technically the mirror that we're accessing
-> on dGPUs here always. On integrated we could choose to use either one.
+v2: Use dma_fence_wait(), fix return value check (Maarten)
 
-I'm just trying to dodge *that* specific part of the mess during the
-refactoring! ;D
+Reviewed-by: Maarten Lankhorst <dev@lankhorst.se>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-BR,
-Jani.
+---
 
->
->>  		drm_err(display->drm, "failed to read control word\n");
->> -		return -EIO;
->> +		ret =3D -EIO;
->> +		goto out;
->>  	}
->>=20=20
->>  	if (!!(gmch_ctrl & INTEL_GMCH_VGA_DISABLE) =3D=3D !enable_decode)
->> -		return 0;
->> +		goto out;
->>=20=20
->>  	if (enable_decode)
->>  		gmch_ctrl &=3D ~INTEL_GMCH_VGA_DISABLE;
->> @@ -37,10 +44,14 @@ static int intel_gmch_vga_set_state(struct intel_dis=
-play *display, bool enable_d
->>=20=20
->>  	if (pci_write_config_word(bridge, reg, gmch_ctrl)) {
->>  		drm_err(display->drm, "failed to write control word\n");
->> -		return -EIO;
->> +		ret =3D -EIO;
->> +		goto out;
->>  	}
->>=20=20
->> -	return 0;
->> +out:
->> +	pci_dev_put(bridge);
->> +
->> +	return ret;
->>  }
->>=20=20
->>  unsigned int intel_gmch_vga_set_decode(struct pci_dev *pdev, bool enabl=
-e_decode)
->> --=20
->> 2.47.3
+I am not sure about all the implications here. I'm just wondering if we
+need to go through all the trouble of adding an interface to query this
+from the parent driver.
+---
+ drivers/gpu/drm/i915/display/intel_display.c  |  7 ++-----
+ .../drm/xe/compat-i915-headers/i915_config.h  | 19 -------------------
+ 2 files changed, 2 insertions(+), 24 deletions(-)
+ delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_config.h
 
---=20
-Jani Nikula, Intel
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 069967114bd9..18d2f326d7f4 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -49,7 +49,6 @@
+ #include "g4x_dp.h"
+ #include "g4x_hdmi.h"
+ #include "hsw_ips.h"
+-#include "i915_config.h"
+ #include "i915_drv.h"
+ #include "i915_reg.h"
+ #include "i9xx_plane.h"
+@@ -7160,7 +7159,6 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
+ 
+ static void intel_atomic_commit_fence_wait(struct intel_atomic_state *intel_state)
+ {
+-	struct drm_i915_private *i915 = to_i915(intel_state->base.dev);
+ 	struct drm_plane *plane;
+ 	struct drm_plane_state *new_plane_state;
+ 	long ret;
+@@ -7168,9 +7166,8 @@ static void intel_atomic_commit_fence_wait(struct intel_atomic_state *intel_stat
+ 
+ 	for_each_new_plane_in_state(&intel_state->base, plane, new_plane_state, i) {
+ 		if (new_plane_state->fence) {
+-			ret = dma_fence_wait_timeout(new_plane_state->fence, false,
+-						     i915_fence_timeout(i915));
+-			if (ret <= 0)
++			ret = dma_fence_wait(new_plane_state->fence, false);
++			if (ret < 0)
+ 				break;
+ 
+ 			dma_fence_put(new_plane_state->fence);
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_config.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_config.h
+deleted file mode 100644
+index e835bea08d1b..000000000000
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_config.h
++++ /dev/null
+@@ -1,19 +0,0 @@
+-/* SPDX-License-Identifier: MIT */
+-/*
+- * Copyright © 2023 Intel Corporation
+- */
+-
+-#ifndef __I915_CONFIG_H__
+-#define __I915_CONFIG_H__
+-
+-#include <linux/sched.h>
+-
+-struct drm_i915_private;
+-
+-static inline unsigned long
+-i915_fence_timeout(const struct drm_i915_private *i915)
+-{
+-	return MAX_SCHEDULE_TIMEOUT;
+-}
+-
+-#endif /* __I915_CONFIG_H__ */
+-- 
+2.47.3
+
