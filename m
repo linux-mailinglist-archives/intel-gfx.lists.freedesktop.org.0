@@ -2,29 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE308C59C47
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Nov 2025 20:34:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 526F3C5A085
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Nov 2025 22:01:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24B9B10E92B;
-	Thu, 13 Nov 2025 19:34:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D8BD10E93F;
+	Thu, 13 Nov 2025 21:01:14 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="bTpdnjky";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0E0E10E92B;
- Thu, 13 Nov 2025 19:34:07 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9E9910E93F;
+ Thu, 13 Nov 2025 21:01:13 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 8A79B440C4;
+ Thu, 13 Nov 2025 21:01:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 496EDC4CEFB;
+ Thu, 13 Nov 2025 21:01:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1763067673;
+ bh=D3kautNBX7VHVPxLlPAzlmTDnxHyydHklCkRChinAyQ=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:From;
+ b=bTpdnjky/7MCB/iFzjyK5M0y5opSt/cCYv4pnRkBE5UmQv9ww8SxC6wRdatRUKoZ4
+ 3wxv6DBOILB5LDPnVp80+6TbkEuEKHzwLP/u/l20D3iMRM3huZYvNJPsLwW+kPbSdl
+ PE0pbkUlDTDoLNx+3whvnslxuYur0X9iONuYXad64Ye4hNogw6MjU4gDu4rbfTDjGR
+ aYZY3glOwqDGUi3h2PkIxgQGibPMCcehySTzPaDTwLaDQPwoaZI5JWV14G0rPRIBwX
+ vcYycL4RHepuBRnELvOyIG/TNeGLd7eBO06oIsyzE5TqxbjU9EZybRzrPqcieQ7Zko
+ pDBc36To+lo1w==
+Date: Thu, 13 Nov 2025 15:01:12 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+ Alex =?utf-8?Q?Benn=C3=A9e?= <alex.bennee@linaro.org>,
+ Simon Richter <Simon.Richter@hogyros.de>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ amd-gfx@lists.freedesktop.org, David Airlie <airlied@gmail.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ linux-pci@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Simona Vetter <simona@ffwll.ch>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>,
+ LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 06/11] PCI: Fix restoring BARs on BAR resize rollback
+ path
+Message-ID: <20251113210112.GA2314791@bhelgaas>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_PCI=3A_Resizable_BAR_impr?=
- =?utf-8?q?ovements_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 13 Nov 2025 19:34:07 -0000
-Message-ID: <176306244771.52219.6049417280837099808@10055242dc62>
-X-Patchwork-Hint: ignore
-References: <20251113180053.27944-1-ilpo.jarvinen@linux.intel.com>
-In-Reply-To: <20251113180053.27944-1-ilpo.jarvinen@linux.intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ba725a72-7863-3dd2-6ba2-ff2259229bbe@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,27 +68,17 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Nov 13, 2025 at 06:46:07PM +0200, Ilpo Järvinen wrote:
+> On Thu, 13 Nov 2025, Ilpo Järvinen wrote:
 
-Series: PCI: Resizable BAR improvements (rev5)
-URL   : https://patchwork.freedesktop.org/series/154362/
-State : failure
+> > -int __must_check pci_resize_resource(struct pci_dev *dev, int i, int size);
+> > +int __must_check pci_resize_resource(struct pci_dev *dev, int i, int size,
+> > +				     int exlucde_bars);
+> 
+> It seems I managed to mistype this in the prototype, please let me know if 
+> you want me to send v3 addressing this and the other comments.
 
-== Summary ==
-
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/154362/revisions/5/mbox/ not applied
-Applying: PCI: Move Resizable BAR code to rebar.c
-error: sha1 information is lacking or useless (drivers/pci/pci.h).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 PCI: Move Resizable BAR code to rebar.c
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-Build failed, no error log produced
-
-
+Fixed this one, thanks.
