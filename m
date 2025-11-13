@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C792BC56B79
+	by mail.lfdr.de (Postfix) with ESMTPS id EC450C56B7A
 	for <lists+intel-gfx@lfdr.de>; Thu, 13 Nov 2025 10:58:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF53210E17E;
-	Thu, 13 Nov 2025 09:58:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA2E310E1A5;
+	Thu, 13 Nov 2025 09:58:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Tlm7ajT8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HVJtfTt3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79D7B10E168;
- Thu, 13 Nov 2025 09:58:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADB1B10E351;
+ Thu, 13 Nov 2025 09:58:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763027897; x=1794563897;
+ t=1763027901; x=1794563901;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZEFSHepjpyQFGQzylG8NLpl+uy6vZKVzY97qCl/X0Ck=;
- b=Tlm7ajT8JlvRmNsu+6KiI3CHkYeJKfG9fTEl2S+6odgEF8d3sS1mYynO
- 1Hp8JJzu8eOJjxifsNrDLNB2UlqkZoiPB/kRg6RQVBQ0VdnWyRpfT9bmW
- MZmDOONaJeMO8qKuvhdNCgK9qKluDIv7g6cok8/BuYeKvhNrJH/B5yTZh
- BHX86TK8/+3oNhSXphj6/RgArYKFtv65pUrX293IUDbXrEFlKdFNMjRTs
- sD1Q04CmcQfcOUyXGNgnD7hM7MRLhWNPhztNzOG0Zav29X1Kx1UVILf+Z
- cCA5QvSRdPQPrs15LC3O4pUchfjPJHYd13LNLFbpmJmQq8msCKoGNK01j Q==;
-X-CSE-ConnectionGUID: 4kgwo0tjSZWTT2rYLNKg6w==
-X-CSE-MsgGUID: wyA7QrUPTXWuvtPO9JUAFA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11611"; a="75418410"
-X-IronPort-AV: E=Sophos;i="6.19,301,1754982000"; d="scan'208";a="75418410"
+ bh=CJrrVn+dOy4deTOif+wpY2NI0cLy3p8JFRDX4BhIKHs=;
+ b=HVJtfTt3YODDv1Urc+BQQJv5WXD+Q9k6yrCgvt36+U0rQxZ1rm2mf9jp
+ b2RnQiP9wFvY2+MqdRt2twBXhcsgkYLTv00BJaAjHge+37EkUDNTRlAlG
+ CCYnLkDwlpU+aOcoNpXlHha8Mw1XjLoi07ykGvu0uMWkoJHLM2sd0sN2V
+ I6QrMDxG1ao6JCt9Zd5x6zNkekpwWTZoohQCnwe3hmMvdwRqyl/G+iBaJ
+ W1Qwu19qxrkQcliOnwku5AsEDkFvF0nBq1js/2esnqNB+WKU37qSWApTl
+ XIY2TtveLvsUvj5mi6FUaxhW2J/gjbtdACTZ6P5ETeroQLUEFTrDPQjzs A==;
+X-CSE-ConnectionGUID: tdPPmUTTQIaictK5sTLNTA==
+X-CSE-MsgGUID: QG1REAuzQcOSPXhZmOxG6g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11611"; a="75418416"
+X-IronPort-AV: E=Sophos;i="6.19,301,1754982000"; d="scan'208";a="75418416"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2025 01:58:16 -0800
-X-CSE-ConnectionGUID: nMtih5OzThSmf88oItIKnw==
-X-CSE-MsgGUID: owEBTkFLR4K5CCw3v8NBMA==
+ 13 Nov 2025 01:58:21 -0800
+X-CSE-ConnectionGUID: gP0OpP2dQqiZ3j5Falf4fQ==
+X-CSE-MsgGUID: fmNJ2UU+QueIj1W+TTdDdA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,301,1754982000"; d="scan'208";a="189732349"
+X-IronPort-AV: E=Sophos;i="6.19,301,1754982000"; d="scan'208";a="189732366"
 Received: from aotchere-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.135])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2025 01:58:14 -0800
+ 13 Nov 2025 01:58:18 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com, uma.shankar@intel.com
-Subject: [PATCH 1/8] drm/i915/edram: extract i915_edram.[ch] for edram
- detection
-Date: Thu, 13 Nov 2025 11:57:58 +0200
-Message-ID: <25d2f68e87361357f8ebb21aead0189fe56c330d.1763027774.git.jani.nikula@intel.com>
+Subject: [PATCH 2/8] drm/i915: split out i915_freq.[ch]
+Date: Thu, 13 Nov 2025 11:57:59 +0200
+Message-ID: <c43293b96f9e32d8b5b03ab40ec30e5f53887ee1.1763027774.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1763027774.git.jani.nikula@intel.com>
 References: <cover.1763027774.git.jani.nikula@intel.com>
@@ -72,198 +71,226 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-While edram detection ostensibly belongs with the rest of the dram stuff
-in soc/intel_dram.c, it's only required by i915 core, not
-display. Extract it to a separate i915_edram.[ch] file.
+The i915 core only needs three rather specific functions from
+soc/intel_dram.[ch]: i9xx_fsb_freq(), ilk_fsb_freq(), and
+ilk_mem_freq(). Add new i915_freq.[ch] and duplicate those functions for
+i915 to reduce the dependency on soc/ code.
 
-This allows us to drop the edram_size_mb member from struct xe_device.
+Wile duplication in general is bad, here it's a tradeoff to simplify the
+i915, xe and display interactions.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/Makefile         |  1 +
- drivers/gpu/drm/i915/i915_driver.c    |  3 +-
- drivers/gpu/drm/i915/i915_edram.c     | 44 +++++++++++++++++++++++++++
- drivers/gpu/drm/i915/i915_edram.h     | 11 +++++++
- drivers/gpu/drm/i915/soc/intel_dram.c | 36 ----------------------
- drivers/gpu/drm/i915/soc/intel_dram.h |  1 -
- drivers/gpu/drm/xe/xe_device_types.h  |  6 ----
- 7 files changed, 58 insertions(+), 44 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/i915_edram.c
- create mode 100644 drivers/gpu/drm/i915/i915_edram.h
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ .../gpu/drm/i915/gt/intel_gt_clock_utils.c    |   4 +-
+ drivers/gpu/drm/i915/gt/intel_rps.c           |   6 +-
+ drivers/gpu/drm/i915/i915_freq.c              | 111 ++++++++++++++++++
+ drivers/gpu/drm/i915/i915_freq.h              |  13 ++
+ 5 files changed, 130 insertions(+), 5 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/i915_freq.c
+ create mode 100644 drivers/gpu/drm/i915/i915_freq.h
 
 diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 7c89e5e0a277..b620ae316e92 100644
+index b620ae316e92..6d72bbb724fa 100644
 --- a/drivers/gpu/drm/i915/Makefile
 +++ b/drivers/gpu/drm/i915/Makefile
-@@ -27,6 +27,7 @@ i915-y += \
- 	i915_config.o \
+@@ -28,6 +28,7 @@ i915-y += \
  	i915_driver.o \
  	i915_drm_client.o \
-+	i915_edram.o \
+ 	i915_edram.o \
++	i915_freq.o \
  	i915_getparam.o \
  	i915_ioctl.o \
  	i915_irq.o \
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index c97b76771917..f55e65e7dd4d 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -93,6 +93,7 @@
- #include "i915_driver.h"
- #include "i915_drm_client.h"
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c b/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c
+index c90b35881a26..aecd120972ea 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c
+@@ -4,12 +4,12 @@
+  */
+ 
  #include "i915_drv.h"
-+#include "i915_edram.h"
- #include "i915_file_private.h"
- #include "i915_getparam.h"
- #include "i915_hwmon.h"
-@@ -492,7 +493,7 @@ static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
- 	}
++#include "i915_freq.h"
+ #include "i915_reg.h"
+ #include "intel_gt.h"
+ #include "intel_gt_clock_utils.h"
+ #include "intel_gt_print.h"
+ #include "intel_gt_regs.h"
+-#include "soc/intel_dram.h"
  
- 	/* needs to be done before ggtt probe */
--	intel_dram_edram_detect(dev_priv);
-+	i915_edram_detect(dev_priv);
+ static u32 read_reference_ts_freq(struct intel_uncore *uncore)
+ {
+@@ -148,7 +148,7 @@ static u32 gen4_read_clock_frequency(struct intel_uncore *uncore)
+ 	 *
+ 	 * Testing on actual hardware has shown there is no /16.
+ 	 */
+-	return DIV_ROUND_CLOSEST(intel_fsb_freq(uncore->i915), 4) * 1000;
++	return DIV_ROUND_CLOSEST(i9xx_fsb_freq(uncore->i915), 4) * 1000;
+ }
  
- 	ret = i915_set_dma_info(dev_priv);
- 	if (ret)
-diff --git a/drivers/gpu/drm/i915/i915_edram.c b/drivers/gpu/drm/i915/i915_edram.c
+ static u32 read_clock_frequency(struct intel_uncore *uncore)
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+index b01c837ab646..e1c1e6f3cd7b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.c
++++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+@@ -9,9 +9,9 @@
+ 
+ #include "display/intel_display_rps.h"
+ #include "display/vlv_clock.h"
+-#include "soc/intel_dram.h"
+ 
+ #include "i915_drv.h"
++#include "i915_freq.h"
+ #include "i915_irq.h"
+ #include "i915_reg.h"
+ #include "i915_wait_util.h"
+@@ -284,8 +284,8 @@ static void gen5_rps_init(struct intel_rps *rps)
+ 	u32 rgvmodectl;
+ 	int c_m, i;
+ 
+-	fsb_freq = intel_fsb_freq(i915);
+-	mem_freq = intel_mem_freq(i915);
++	fsb_freq = ilk_fsb_freq(i915);
++	mem_freq = ilk_mem_freq(i915);
+ 
+ 	if (fsb_freq <= 3200000)
+ 		c_m = 0;
+diff --git a/drivers/gpu/drm/i915/i915_freq.c b/drivers/gpu/drm/i915/i915_freq.c
 new file mode 100644
-index 000000000000..5818ec396d1e
+index 000000000000..9bdaea34aef9
 --- /dev/null
-+++ b/drivers/gpu/drm/i915/i915_edram.c
-@@ -0,0 +1,44 @@
++++ b/drivers/gpu/drm/i915/i915_freq.c
+@@ -0,0 +1,111 @@
 +// SPDX-License-Identifier: MIT
 +/* Copyright © 2025 Intel Corporation */
 +
 +#include <drm/drm_print.h>
 +
 +#include "i915_drv.h"
-+#include "i915_edram.h"
-+#include "i915_reg.h"
++#include "i915_freq.h"
++#include "intel_mchbar_regs.h"
 +
-+static u32 gen9_edram_size_mb(struct drm_i915_private *i915, u32 cap)
++unsigned int i9xx_fsb_freq(struct drm_i915_private *i915)
 +{
-+	static const u8 ways[8] = { 4, 8, 12, 16, 16, 16, 16, 16 };
-+	static const u8 sets[4] = { 1, 1, 2, 2 };
-+
-+	return EDRAM_NUM_BANKS(cap) *
-+		ways[EDRAM_WAYS_IDX(cap)] *
-+		sets[EDRAM_SETS_IDX(cap)];
-+}
-+
-+void i915_edram_detect(struct drm_i915_private *i915)
-+{
-+	u32 edram_cap = 0;
-+
-+	if (!(IS_HASWELL(i915) || IS_BROADWELL(i915) || GRAPHICS_VER(i915) >= 9))
-+		return;
-+
-+	edram_cap = intel_uncore_read_fw(&i915->uncore, HSW_EDRAM_CAP);
-+
-+	/* NB: We can't write IDICR yet because we don't have gt funcs set up */
-+
-+	if (!(edram_cap & EDRAM_ENABLED))
-+		return;
++	u32 fsb;
 +
 +	/*
-+	 * The needed capability bits for size calculation are not there with
-+	 * pre gen9 so return 128MB always.
++	 * Note that this only reads the state of the FSB
++	 * straps, not the actual FSB frequency. Some BIOSen
++	 * let you configure each independently. Ideally we'd
++	 * read out the actual FSB frequency but sadly we
++	 * don't know which registers have that information,
++	 * and all the relevant docs have gone to bit heaven :(
 +	 */
-+	if (GRAPHICS_VER(i915) < 9)
-+		i915->edram_size_mb = 128;
-+	else
-+		i915->edram_size_mb = gen9_edram_size_mb(i915, edram_cap);
++	fsb = intel_uncore_read(&i915->uncore, CLKCFG) & CLKCFG_FSB_MASK;
 +
-+	drm_info(&i915->drm, "Found %uMB of eDRAM\n", i915->edram_size_mb);
++	if (IS_PINEVIEW(i915) || IS_MOBILE(i915)) {
++		switch (fsb) {
++		case CLKCFG_FSB_400:
++			return 400000;
++		case CLKCFG_FSB_533:
++			return 533333;
++		case CLKCFG_FSB_667:
++			return 666667;
++		case CLKCFG_FSB_800:
++			return 800000;
++		case CLKCFG_FSB_1067:
++			return 1066667;
++		case CLKCFG_FSB_1333:
++			return 1333333;
++		default:
++			MISSING_CASE(fsb);
++			return 1333333;
++		}
++	} else {
++		switch (fsb) {
++		case CLKCFG_FSB_400_ALT:
++			return 400000;
++		case CLKCFG_FSB_533:
++			return 533333;
++		case CLKCFG_FSB_667:
++			return 666667;
++		case CLKCFG_FSB_800:
++			return 800000;
++		case CLKCFG_FSB_1067_ALT:
++			return 1066667;
++		case CLKCFG_FSB_1333_ALT:
++			return 1333333;
++		case CLKCFG_FSB_1600_ALT:
++			return 1600000;
++		default:
++			MISSING_CASE(fsb);
++			return 1333333;
++		}
++	}
 +}
-diff --git a/drivers/gpu/drm/i915/i915_edram.h b/drivers/gpu/drm/i915/i915_edram.h
++
++unsigned int ilk_fsb_freq(struct drm_i915_private *i915)
++{
++	u16 fsb;
++
++	fsb = intel_uncore_read16(&i915->uncore, CSIPLL0) & 0x3ff;
++
++	switch (fsb) {
++	case 0x00c:
++		return 3200000;
++	case 0x00e:
++		return 3733333;
++	case 0x010:
++		return 4266667;
++	case 0x012:
++		return 4800000;
++	case 0x014:
++		return 5333333;
++	case 0x016:
++		return 5866667;
++	case 0x018:
++		return 6400000;
++	default:
++		drm_dbg(&i915->drm, "unknown fsb frequency 0x%04x\n", fsb);
++		return 0;
++	}
++}
++
++unsigned int ilk_mem_freq(struct drm_i915_private *i915)
++{
++	u16 ddrpll;
++
++	ddrpll = intel_uncore_read16(&i915->uncore, DDRMPLL1);
++	switch (ddrpll & 0xff) {
++	case 0xc:
++		return 800000;
++	case 0x10:
++		return 1066667;
++	case 0x14:
++		return 1333333;
++	case 0x18:
++		return 1600000;
++	default:
++		drm_dbg(&i915->drm, "unknown memory frequency 0x%02x\n",
++			ddrpll & 0xff);
++		return 0;
++	}
++}
+diff --git a/drivers/gpu/drm/i915/i915_freq.h b/drivers/gpu/drm/i915/i915_freq.h
 new file mode 100644
-index 000000000000..8319422ace9d
+index 000000000000..53b0ecb95440
 --- /dev/null
-+++ b/drivers/gpu/drm/i915/i915_edram.h
-@@ -0,0 +1,11 @@
++++ b/drivers/gpu/drm/i915/i915_freq.h
+@@ -0,0 +1,13 @@
 +/* SPDX-License-Identifier: MIT */
 +/* Copyright © 2025 Intel Corporation */
 +
-+#ifndef __I915_DRAM_H__
-+#define __I915_DRAM_H__
++#ifndef __I915_FREQ_H__
++#define __I915_FREQ_H__
 +
 +struct drm_i915_private;
 +
-+void i915_edram_detect(struct drm_i915_private *i915);
++unsigned int i9xx_fsb_freq(struct drm_i915_private *i915);
++unsigned int ilk_fsb_freq(struct drm_i915_private *i915);
++unsigned int ilk_mem_freq(struct drm_i915_private *i915);
 +
-+#endif /* __I915_DRAM_H__ */
-diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
-index 3e588762709a..2a21d1cf0476 100644
---- a/drivers/gpu/drm/i915/soc/intel_dram.c
-+++ b/drivers/gpu/drm/i915/soc/intel_dram.c
-@@ -785,39 +785,3 @@ const struct dram_info *intel_dram_info(struct drm_device *drm)
- 
- 	return i915->dram_info;
- }
--
--static u32 gen9_edram_size_mb(struct drm_i915_private *i915, u32 cap)
--{
--	static const u8 ways[8] = { 4, 8, 12, 16, 16, 16, 16, 16 };
--	static const u8 sets[4] = { 1, 1, 2, 2 };
--
--	return EDRAM_NUM_BANKS(cap) *
--		ways[EDRAM_WAYS_IDX(cap)] *
--		sets[EDRAM_SETS_IDX(cap)];
--}
--
--void intel_dram_edram_detect(struct drm_i915_private *i915)
--{
--	u32 edram_cap = 0;
--
--	if (!(IS_HASWELL(i915) || IS_BROADWELL(i915) || GRAPHICS_VER(i915) >= 9))
--		return;
--
--	edram_cap = intel_uncore_read_fw(&i915->uncore, HSW_EDRAM_CAP);
--
--	/* NB: We can't write IDICR yet because we don't have gt funcs set up */
--
--	if (!(edram_cap & EDRAM_ENABLED))
--		return;
--
--	/*
--	 * The needed capability bits for size calculation are not there with
--	 * pre gen9 so return 128MB always.
--	 */
--	if (GRAPHICS_VER(i915) < 9)
--		i915->edram_size_mb = 128;
--	else
--		i915->edram_size_mb = gen9_edram_size_mb(i915, edram_cap);
--
--	drm_info(&i915->drm, "Found %uMB of eDRAM\n", i915->edram_size_mb);
--}
-diff --git a/drivers/gpu/drm/i915/soc/intel_dram.h b/drivers/gpu/drm/i915/soc/intel_dram.h
-index 8475ee379daa..58aaf2f91afe 100644
---- a/drivers/gpu/drm/i915/soc/intel_dram.h
-+++ b/drivers/gpu/drm/i915/soc/intel_dram.h
-@@ -35,7 +35,6 @@ struct dram_info {
- 	bool has_16gb_dimms;
- };
- 
--void intel_dram_edram_detect(struct drm_i915_private *i915);
- int intel_dram_detect(struct drm_i915_private *i915);
- unsigned int intel_fsb_freq(struct drm_i915_private *i915);
- unsigned int intel_mem_freq(struct drm_i915_private *i915);
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 0b2fa7c56d38..a072c020b84b 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -650,12 +650,6 @@ struct xe_device {
- 	 */
- 	const struct dram_info *dram_info;
- 
--	/*
--	 * edram size in MB.
--	 * Cannot be determined by PCIID. You must always read a register.
--	 */
--	u32 edram_size_mb;
--
- 	struct intel_uncore {
- 		spinlock_t lock;
- 	} uncore;
++#endif /* __I915_FREQ_H__ */
 -- 
 2.47.3
 
