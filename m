@@ -2,73 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4087C59569
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Nov 2025 19:03:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E00BC5963E
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Nov 2025 19:12:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D581810E91F;
-	Thu, 13 Nov 2025 18:03:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9F2810E918;
+	Thu, 13 Nov 2025 18:12:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X45YUh3w";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="i0CbDAF6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3027D10E91C;
- Thu, 13 Nov 2025 18:03:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763057015; x=1794593015;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=d+MXZ4DY1vw/qz4xqKxtxsAAGCa9o+jzDmGdXpGbA0I=;
- b=X45YUh3wQCUPgQJC29oDCFxEV+xpKBuXoKGpAsTgOoLteAJNIB6aA/Nu
- tqezzy2IUa1gsIoEVgZlDYGrhpFytm4X8s8uE0yQq8L3Rik+BI2/SLavm
- N+Uj1n7SidYknUzogBNU64T140pRcrxEFX21ggrWIPkBN3rmp0w6Au9YV
- r90HB2eFVR79/RLSzIAVehwnrMeWzneWuok81QQCtJmCZz79WUxqCKa78
- 0m7KYHQWZgBDmrT7ZNbyPi/PCxLVpNfH/MMMJ2dUSOX+MbNvbD+PXwrz+
- SteaEgzIPF4buluVBkVSEcz+rbIT3TNL9+oAZwVYGMMTMvwe22PbnOBBI Q==;
-X-CSE-ConnectionGUID: igoaKlFeQqu/gJ2ABlk8iA==
-X-CSE-MsgGUID: +IoblAnYSNiXqJDByyMVcw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="65186451"
-X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="65186451"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2025 10:03:34 -0800
-X-CSE-ConnectionGUID: 4jHij2NnTPunN/MfNXLzSQ==
-X-CSE-MsgGUID: T9yigM35Qiyv2xnabZItlg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="194001432"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.164])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2025 10:03:27 -0800
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To: linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
- =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- "Michael J . Ruhl" <mjruhl@habana.ai>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- linux-kernel@vger.kernel.org
-Cc: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Subject: [PATCH v4 11/11] PCI: Convert BAR sizes bitmasks to u64
-Date: Thu, 13 Nov 2025 20:00:53 +0200
-Message-Id: <20251113180053.27944-12-ilpo.jarvinen@linux.intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20251113180053.27944-1-ilpo.jarvinen@linux.intel.com>
-References: <20251113180053.27944-1-ilpo.jarvinen@linux.intel.com>
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30EA110E907;
+ Thu, 13 Nov 2025 18:12:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1763057523;
+ bh=eggkhC6mk5737Q6dXVCr1HI04S4YU8Wm2zybbQQ4foA=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=i0CbDAF6pCbWEMlJpLb//tNQ6Yv1i+dHQZGVPCJnVkweoEGmlw48d5tZDmSxx333M
+ nt4GoO0PyuP0bNbEwDVNY98cz438MWKbbxMjCD7dmmefRgQpXVVnQ321Rz9W4WBxr9
+ hD6NU3aIKykDFuGCJs028cshFoa/0CsSJCbdMtxLP+mtf94jPIFPj5LS8mnmIvR5fB
+ VrmSy0RLe/MFKL5HKfC7rc6/pcdLWGaZinio6jRZGnk50KKHbPwVoPEHabv3b9fBOs
+ x+gim+uMWamOOdj/T5PsKDWrMKn3cf9SwpobDBglRpuOtLPfsW2D8s5CBr4bNlbnV2
+ BuHRmPPV7+XRQ==
+Received: from fedora (unknown [IPv6:2a01:e0a:2c:6930:d919:a6e:5ea1:8a9f])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
+ server-digest SHA256) (No client certificate requested)
+ (Authenticated sender: bbrezillon)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id 9222917E127F;
+ Thu, 13 Nov 2025 19:12:02 +0100 (CET)
+Date: Thu, 13 Nov 2025 19:11:58 +0100
+From: Boris Brezillon <boris.brezillon@collabora.com>
+To: =?UTF-8?B?TG/Dr2M=?= Molinari <loic.molinari@collabora.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Rob Herring <robh@kernel.org>,
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Melissa Wen <mwen@igalia.com>, =?UTF-8?B?TWHDrXJh?= Canal
+ <mcanal@igalia.com>, Hugh Dickins <hughd@google.com>, Baolin Wang
+ <baolin.wang@linux.alibaba.com>, Andrew Morton <akpm@linux-foundation.org>,
+ Al Viro <viro@zeniv.linux.org.uk>, =?UTF-8?B?TWlrb8WCYWo=?= Wasiak
+ <mikolaj.wasiak@intel.com>, Christian Brauner <brauner@kernel.org>, Nitin
+ Gote <nitin.r.gote@intel.com>, Andi Shyti <andi.shyti@linux.intel.com>,
+ Jonathan Corbet <corbet@lwn.net>, Christopher Healy <healych@amazon.com>,
+ Matthew Wilcox <willy@infradead.org>, Bagas Sanjaya <bagasdotme@gmail.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-mm@kvack.org,
+ linux-doc@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCH v8 07/11] drm/gem: Get rid of *_with_mnt helpers
+Message-ID: <20251113191158.43328c47@fedora>
+In-Reply-To: <20251113170008.79587-8-loic.molinari@collabora.com>
+References: <20251113170008.79587-1-loic.molinari@collabora.com>
+ <20251113170008.79587-8-loic.molinari@collabora.com>
+Organization: Collabora
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,99 +79,290 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PCIe r7.0, sec 7.8.6, defines resizable BAR sizes beyond the currently
-supported maximum of 128TB, which will require more than u32 to store the
-entire bitmask.
+On Thu, 13 Nov 2025 18:00:03 +0100
+Lo=C3=AFc Molinari <loic.molinari@collabora.com> wrote:
 
-Convert Resizable BAR related functions to use u64 bitmask for BAR sizes to
-make the typing more future-proof.
+> drm_gem_object_init_with_mnt() and drm_gem_shmem_create_with_mnt() can
+> be removed now that the drivers use the new drm_gem_huge_mnt_create()
+> and drm_gem_has_huge_mnt() helpers.
+>=20
+> v5:
+> - use drm_gem_has_huge_mnt() helper
+> - compile out shmem_file_setup_with_mnt() call in builds with
+>   CONFIG_TRANSPARENT_HUGEPAGE=3Dn
+>=20
+> Signed-off-by: Lo=C3=AFc Molinari <loic.molinari@collabora.com>
+> Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
+> ---
+>  drivers/gpu/drm/drm_gem.c              | 38 ++++++++------------------
+>  drivers/gpu/drm/drm_gem_shmem_helper.c | 38 ++++++--------------------
+>  drivers/gpu/drm/v3d/v3d_bo.c           |  5 ----
+>  include/drm/drm_gem.h                  |  3 --
+>  include/drm/drm_gem_shmem_helper.h     |  3 --
+>  5 files changed, 20 insertions(+), 67 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+> index bbca2ab9e9a5..1b0b5813acef 100644
+> --- a/drivers/gpu/drm/drm_gem.c
+> +++ b/drivers/gpu/drm/drm_gem.c
+> @@ -171,31 +171,33 @@ drm_gem_init(struct drm_device *dev)
+>  }
+> =20
+>  /**
+> - * drm_gem_object_init_with_mnt - initialize an allocated shmem-backed G=
+EM
+> - * object in a given shmfs mountpoint
+> + * drm_gem_object_init - initialize an allocated shmem-backed GEM object
+>   *
+>   * @dev: drm_device the object should be initialized for
+>   * @obj: drm_gem_object to initialize
+>   * @size: object size
+> - * @gemfs: tmpfs mount where the GEM object will be created. If NULL, use
+> - * the usual tmpfs mountpoint (`shm_mnt`).
+>   *
+>   * Initialize an already allocated GEM object of the specified size with
+> - * shmfs backing store.
+> + * shmfs backing store. A huge mountpoint can be used by calling
+> + * drm_gem_huge_mnt_create() beforehand.
+>   */
+> -int drm_gem_object_init_with_mnt(struct drm_device *dev,
+> -				 struct drm_gem_object *obj, size_t size,
+> -				 struct vfsmount *gemfs)
+> +int drm_gem_object_init(struct drm_device *dev, struct drm_gem_object *o=
+bj,
+> +			size_t size)
+>  {
+>  	struct file *filp;
+> =20
+>  	drm_gem_private_object_init(dev, obj, size);
+> =20
+> -	if (gemfs)
+> -		filp =3D shmem_file_setup_with_mnt(gemfs, "drm mm object", size,
+> +#ifdef CONFIG_TRANSPARENT_HUGEPAGE
+> +	if (drm_gem_has_huge_mnt(dev))
+> +		filp =3D shmem_file_setup_with_mnt(dev->huge_mnt,
+> +						 "drm mm object", size,
+>  						 VM_NORESERVE);
+>  	else
+>  		filp =3D shmem_file_setup("drm mm object", size, VM_NORESERVE);
+> +#else
+> +	filp =3D shmem_file_setup("drm mm object", size, VM_NORESERVE);
+> +#endif
 
-The support for the larger BAR sizes themselves is not added at this point.
+I keep thinking it'd be simpler with a drm_gem_get_huge_mnt() helper:
 
-Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
-Reviewed-by: Christian König <christian.koenig@amd.com>
----
- drivers/gpu/drm/xe/xe_vram.c | 2 +-
- drivers/pci/iov.c            | 2 +-
- drivers/pci/pci-sysfs.c      | 2 +-
- drivers/pci/rebar.c          | 4 ++--
- include/linux/pci.h          | 2 +-
- 5 files changed, 6 insertions(+), 6 deletions(-)
+static inline struct vfsmount *
+drm_gem_get_huge_mnt(struct drm_device *dev)
+{
+#ifdef CONFIG_TRANSPARENT_HUGEPAGE
+	return dev->huge_mnt;
+#else
+	return NULL;
+#endif
+}
 
-diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
-index 524469f8a4bd..10f8a73e190b 100644
---- a/drivers/gpu/drm/xe/xe_vram.c
-+++ b/drivers/gpu/drm/xe/xe_vram.c
-@@ -69,7 +69,7 @@ static void resize_vram_bar(struct xe_device *xe)
- 
- 		if (!pci_rebar_size_supported(pdev, LMEM_BAR, rebar_size)) {
- 			drm_info(&xe->drm,
--				 "Requested size: %lluMiB is not supported by rebar sizes: 0x%x. Leaving default: %lluMiB\n",
-+				 "Requested size: %lluMiB is not supported by rebar sizes: 0x%llx. Leaving default: %lluMiB\n",
- 				 (u64)pci_rebar_size_to_bytes(rebar_size) >> 20,
- 				 pci_rebar_get_possible_sizes(pdev, LMEM_BAR),
- 				 (u64)current_size >> 20);
-diff --git a/drivers/pci/iov.c b/drivers/pci/iov.c
-index 71ed85d38508..00784a60ba80 100644
---- a/drivers/pci/iov.c
-+++ b/drivers/pci/iov.c
-@@ -1367,7 +1367,7 @@ EXPORT_SYMBOL_GPL(pci_iov_vf_bar_set_size);
- u32 pci_iov_vf_bar_get_sizes(struct pci_dev *dev, int resno, int num_vfs)
- {
- 	u64 vf_len = pci_resource_len(dev, resno);
--	u32 sizes;
-+	u64 sizes;
- 
- 	if (!num_vfs)
- 		return 0;
-diff --git a/drivers/pci/pci-sysfs.c b/drivers/pci/pci-sysfs.c
-index 2a1b5456c2dc..cb512bf0df7c 100644
---- a/drivers/pci/pci-sysfs.c
-+++ b/drivers/pci/pci-sysfs.c
-@@ -1587,7 +1587,7 @@ static ssize_t __resource_resize_show(struct device *dev, int n, char *buf)
- 	pci_config_pm_runtime_get(pdev);
- 
- 	ret = sysfs_emit(buf, "%016llx\n",
--			 (u64)pci_rebar_get_possible_sizes(pdev, n));
-+			 pci_rebar_get_possible_sizes(pdev, n));
- 
- 	pci_config_pm_runtime_put(pdev);
- 
-diff --git a/drivers/pci/rebar.c b/drivers/pci/rebar.c
-index d85d458c7007..8f7af3053cd8 100644
---- a/drivers/pci/rebar.c
-+++ b/drivers/pci/rebar.c
-@@ -105,7 +105,7 @@ static int pci_rebar_find_pos(struct pci_dev *pdev, int bar)
-  * Return: A bitmask of possible sizes (bit 0=1MB, bit 31=128TB), or %0 if
-  *	   BAR isn't resizable.
-  */
--u32 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar)
-+u64 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar)
- {
- 	int pos;
- 	u32 cap;
-@@ -155,7 +155,7 @@ EXPORT_SYMBOL_GPL(pci_rebar_size_supported);
-  */
- int pci_rebar_get_max_size(struct pci_dev *pdev, int bar)
- {
--	u32 sizes;
-+	u64 sizes;
- 
- 	sizes = pci_rebar_get_possible_sizes(pdev, bar);
- 	if (!sizes)
-diff --git a/include/linux/pci.h b/include/linux/pci.h
-index 898bc3a4e8e7..4b7f4c08b5c7 100644
---- a/include/linux/pci.h
-+++ b/include/linux/pci.h
-@@ -1423,7 +1423,7 @@ int pci_release_resource(struct pci_dev *dev, int resno);
- /* Resizable BAR related routines */
- int pci_rebar_bytes_to_size(u64 bytes);
- resource_size_t pci_rebar_size_to_bytes(int size);
--u32 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar);
-+u64 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar);
- bool pci_rebar_size_supported(struct pci_dev *pdev, int bar, int size);
- int pci_rebar_get_max_size(struct pci_dev *pdev, int bar);
- int __must_check pci_resize_resource(struct pci_dev *dev, int i, int size,
--- 
-2.39.5
+so we can avoid those #ifdef CONFIG_TRANSPARENT_HUGEPAGE in a few other
+places.
+
+For this one that would give you something like:
+
+	if (drm_gem_get_huge_mnt(dev))
+		filp =3D shmem_file_setup_with_mnt(drm_gem_get_huge_mnt(dev),
+						 "drm mm object", size,
+						 VM_NORESERVE);
+	else
+		filp =3D shmem_file_setup("drm mm object", size, VM_NORESERVE);
+
+> =20
+>  	if (IS_ERR(filp))
+>  		return PTR_ERR(filp);
+> @@ -204,22 +206,6 @@ int drm_gem_object_init_with_mnt(struct drm_device *=
+dev,
+> =20
+>  	return 0;
+>  }
+> -EXPORT_SYMBOL(drm_gem_object_init_with_mnt);
+> -
+> -/**
+> - * drm_gem_object_init - initialize an allocated shmem-backed GEM object
+> - * @dev: drm_device the object should be initialized for
+> - * @obj: drm_gem_object to initialize
+> - * @size: object size
+> - *
+> - * Initialize an already allocated GEM object of the specified size with
+> - * shmfs backing store.
+> - */
+> -int drm_gem_object_init(struct drm_device *dev, struct drm_gem_object *o=
+bj,
+> -			size_t size)
+> -{
+> -	return drm_gem_object_init_with_mnt(dev, obj, size, NULL);
+> -}
+>  EXPORT_SYMBOL(drm_gem_object_init);
+> =20
+>  /**
+> diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/drm=
+_gem_shmem_helper.c
+> index 81f4ac7cb8f6..43a80f3fcfd9 100644
+> --- a/drivers/gpu/drm/drm_gem_shmem_helper.c
+> +++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
+> @@ -50,7 +50,7 @@ static const struct drm_gem_object_funcs drm_gem_shmem_=
+funcs =3D {
+>  };
+> =20
+>  static int __drm_gem_shmem_init(struct drm_device *dev, struct drm_gem_s=
+hmem_object *shmem,
+> -				size_t size, bool private, struct vfsmount *gemfs)
+> +				size_t size, bool private)
+>  {
+>  	struct drm_gem_object *obj =3D &shmem->base;
+>  	int ret =3D 0;
+> @@ -62,7 +62,7 @@ static int __drm_gem_shmem_init(struct drm_device *dev,=
+ struct drm_gem_shmem_obj
+>  		drm_gem_private_object_init(dev, obj, size);
+>  		shmem->map_wc =3D false; /* dma-buf mappings use always writecombine */
+>  	} else {
+> -		ret =3D drm_gem_object_init_with_mnt(dev, obj, size, gemfs);
+> +		ret =3D drm_gem_object_init(dev, obj, size);
+>  	}
+>  	if (ret) {
+>  		drm_gem_private_object_fini(obj);
+> @@ -103,13 +103,12 @@ static int __drm_gem_shmem_init(struct drm_device *=
+dev, struct drm_gem_shmem_obj
+>   */
+>  int drm_gem_shmem_init(struct drm_device *dev, struct drm_gem_shmem_obje=
+ct *shmem, size_t size)
+>  {
+> -	return __drm_gem_shmem_init(dev, shmem, size, false, NULL);
+> +	return __drm_gem_shmem_init(dev, shmem, size, false);
+>  }
+>  EXPORT_SYMBOL_GPL(drm_gem_shmem_init);
+> =20
+>  static struct drm_gem_shmem_object *
+> -__drm_gem_shmem_create(struct drm_device *dev, size_t size, bool private,
+> -		       struct vfsmount *gemfs)
+> +__drm_gem_shmem_create(struct drm_device *dev, size_t size, bool private)
+>  {
+>  	struct drm_gem_shmem_object *shmem;
+>  	struct drm_gem_object *obj;
+> @@ -129,7 +128,7 @@ __drm_gem_shmem_create(struct drm_device *dev, size_t=
+ size, bool private,
+>  		obj =3D &shmem->base;
+>  	}
+> =20
+> -	ret =3D __drm_gem_shmem_init(dev, shmem, size, private, gemfs);
+> +	ret =3D __drm_gem_shmem_init(dev, shmem, size, private);
+>  	if (ret) {
+>  		kfree(obj);
+>  		return ERR_PTR(ret);
+> @@ -150,31 +149,10 @@ __drm_gem_shmem_create(struct drm_device *dev, size=
+_t size, bool private,
+>   */
+>  struct drm_gem_shmem_object *drm_gem_shmem_create(struct drm_device *dev=
+, size_t size)
+>  {
+> -	return __drm_gem_shmem_create(dev, size, false, NULL);
+> +	return __drm_gem_shmem_create(dev, size, false);
+>  }
+>  EXPORT_SYMBOL_GPL(drm_gem_shmem_create);
+> =20
+> -/**
+> - * drm_gem_shmem_create_with_mnt - Allocate an object with the given siz=
+e in a
+> - * given mountpoint
+> - * @dev: DRM device
+> - * @size: Size of the object to allocate
+> - * @gemfs: tmpfs mount where the GEM object will be created
+> - *
+> - * This function creates a shmem GEM object in a given tmpfs mountpoint.
+> - *
+> - * Returns:
+> - * A struct drm_gem_shmem_object * on success or an ERR_PTR()-encoded ne=
+gative
+> - * error code on failure.
+> - */
+> -struct drm_gem_shmem_object *drm_gem_shmem_create_with_mnt(struct drm_de=
+vice *dev,
+> -							   size_t size,
+> -							   struct vfsmount *gemfs)
+> -{
+> -	return __drm_gem_shmem_create(dev, size, false, gemfs);
+> -}
+> -EXPORT_SYMBOL_GPL(drm_gem_shmem_create_with_mnt);
+> -
+>  /**
+>   * drm_gem_shmem_release - Release resources associated with a shmem GEM=
+ object.
+>   * @shmem: shmem GEM object
+> @@ -861,7 +839,7 @@ drm_gem_shmem_prime_import_sg_table(struct drm_device=
+ *dev,
+>  	size_t size =3D PAGE_ALIGN(attach->dmabuf->size);
+>  	struct drm_gem_shmem_object *shmem;
+> =20
+> -	shmem =3D __drm_gem_shmem_create(dev, size, true, NULL);
+> +	shmem =3D __drm_gem_shmem_create(dev, size, true);
+>  	if (IS_ERR(shmem))
+>  		return ERR_CAST(shmem);
+> =20
+> @@ -909,7 +887,7 @@ struct drm_gem_object *drm_gem_shmem_prime_import_no_=
+map(struct drm_device *dev,
+> =20
+>  	size =3D PAGE_ALIGN(attach->dmabuf->size);
+> =20
+> -	shmem =3D __drm_gem_shmem_create(dev, size, true, NULL);
+> +	shmem =3D __drm_gem_shmem_create(dev, size, true);
+>  	if (IS_ERR(shmem)) {
+>  		ret =3D PTR_ERR(shmem);
+>  		goto fail_detach;
+> diff --git a/drivers/gpu/drm/v3d/v3d_bo.c b/drivers/gpu/drm/v3d/v3d_bo.c
+> index 3bc714ea6392..d3b68ee05dbb 100644
+> --- a/drivers/gpu/drm/v3d/v3d_bo.c
+> +++ b/drivers/gpu/drm/v3d/v3d_bo.c
+> @@ -153,12 +153,7 @@ struct v3d_bo *v3d_bo_create(struct drm_device *dev,=
+ struct drm_file *file_priv,
+>  	struct v3d_bo *bo;
+>  	int ret;
+> =20
+> -#ifdef CONFIG_TRANSPARENT_HUGEPAGE
+> -	shmem_obj =3D drm_gem_shmem_create_with_mnt(dev, unaligned_size,
+> -						  dev->huge_mnt);
+> -#else
+>  	shmem_obj =3D drm_gem_shmem_create(dev, unaligned_size);
+> -#endif
+>  	if (IS_ERR(shmem_obj))
+>  		return ERR_CAST(shmem_obj);
+>  	bo =3D to_v3d_bo(&shmem_obj->base);
+> diff --git a/include/drm/drm_gem.h b/include/drm/drm_gem.h
+> index 58fa1e6b9773..75276a12208e 100644
+> --- a/include/drm/drm_gem.h
+> +++ b/include/drm/drm_gem.h
+> @@ -529,9 +529,6 @@ void drm_gem_object_release(struct drm_gem_object *ob=
+j);
+>  void drm_gem_object_free(struct kref *kref);
+>  int drm_gem_object_init(struct drm_device *dev,
+>  			struct drm_gem_object *obj, size_t size);
+> -int drm_gem_object_init_with_mnt(struct drm_device *dev,
+> -				 struct drm_gem_object *obj, size_t size,
+> -				 struct vfsmount *gemfs);
+>  void drm_gem_private_object_init(struct drm_device *dev,
+>  				 struct drm_gem_object *obj, size_t size);
+>  void drm_gem_private_object_fini(struct drm_gem_object *obj);
+> diff --git a/include/drm/drm_gem_shmem_helper.h b/include/drm/drm_gem_shm=
+em_helper.h
+> index 589f7bfe7506..6b6478f5ca24 100644
+> --- a/include/drm/drm_gem_shmem_helper.h
+> +++ b/include/drm/drm_gem_shmem_helper.h
+> @@ -109,9 +109,6 @@ struct drm_gem_shmem_object {
+> =20
+>  int drm_gem_shmem_init(struct drm_device *dev, struct drm_gem_shmem_obje=
+ct *shmem, size_t size);
+>  struct drm_gem_shmem_object *drm_gem_shmem_create(struct drm_device *dev=
+, size_t size);
+> -struct drm_gem_shmem_object *drm_gem_shmem_create_with_mnt(struct drm_de=
+vice *dev,
+> -							   size_t size,
+> -							   struct vfsmount *gemfs);
+>  void drm_gem_shmem_release(struct drm_gem_shmem_object *shmem);
+>  void drm_gem_shmem_free(struct drm_gem_shmem_object *shmem);
+> =20
 
