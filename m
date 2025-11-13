@@ -2,64 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C933C5A434
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Nov 2025 23:02:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A996C5A437
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Nov 2025 23:03:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20F8210E950;
-	Thu, 13 Nov 2025 22:02:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE5CE10E203;
+	Thu, 13 Nov 2025 22:02:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ksyw0TVp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qv6PzYel";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 074C210E200;
- Thu, 13 Nov 2025 22:02:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D79B10E200;
+ Thu, 13 Nov 2025 22:02:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763071337; x=1794607337;
+ t=1763071373; x=1794607373;
  h=content-transfer-encoding:in-reply-to:references:subject:
  from:cc:to:date:message-id:mime-version;
- bh=BLQMt5dGNv4PPqPK8/XYTF3MXIz2DLSfI0S/zKD9Mic=;
- b=Ksyw0TVpkijyZQtFPqMYUkSz6LUAyabtcc57OtOi0+nLRCtsEHhQYnf6
- nAC5Bt87Z69+eQlHI5Z+eYBhZ0ECRz5Av5dntaSq+dKHtMERjLZqa/sCo
- +gX8b70yiAVtpwrD9qodu6+pjWgg+8Xs/RbRn6stTBGFlJzoYGfaFTU0a
- BrWSHYGz2R3pV0MdokZ3QvxYxorUs6WgJVVl0GF1g8ZvIG+754jekb65M
- LcmGS0k7SHoHWiULUF4Bckq4ohh2LEIpAZDKy34EFeoK3U9ocY4XlmXv2
- +JFXO/9XIkQLPJUJenY0wQzTZ3OMf5t4eF0pOl6d384T0Yv/OS9MbLteR g==;
-X-CSE-ConnectionGUID: DieWfg+7QQG45x3EeUfGEg==
-X-CSE-MsgGUID: Q4dyxAKtSKW4pZO9sw8dYg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="65049166"
-X-IronPort-AV: E=Sophos;i="6.19,303,1754982000"; d="scan'208";a="65049166"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2025 14:02:17 -0800
-X-CSE-ConnectionGUID: BfZKwcJRTZOM6JtTNaCckA==
-X-CSE-MsgGUID: 0wTBrqq/RXGpmD9IfdABUg==
+ bh=3xO7i2XNWdd/khEiUMtF6DIKiCMW6d0+/1Re3AkG87o=;
+ b=Qv6PzYelrEg3vjeedK07lkOL1I5WYGCqNejGrR+Dz7LS9+AixSxKk/I+
+ 2dEBbyKSWHgamdvhy8WOh7RD4QMdT3G2k94FuK3PzAs6XwWrYI9MiCaED
+ NM4hDh9dXqPE6CA4kMwT61GLwq3I2uaJXKBs4pTHp1kDr9iTy4rTiC1ar
+ DQNOyESJKKsTUQQwUNgKju3Co7jvDXZNxFDLzPhvOmeghkZ2XAbEARK37
+ w1Z8+UYscoUCEiaxlXLpHLkMD3brz7bzBrjSyf+QCXy/m+YFQ5HMKjRIF
+ tIxB+KxhHnLDiW+XdPnwVxxx8ensExQYd+Sl0z8HbHi8QgFZF9QzMG+Ab A==;
+X-CSE-ConnectionGUID: NOXBDSC7QK+m7D3jeinWnA==
+X-CSE-MsgGUID: z1NxqrPpQqO19m6u+lYwpg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="65259678"
+X-IronPort-AV: E=Sophos;i="6.19,303,1754982000"; d="scan'208";a="65259678"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2025 14:02:53 -0800
+X-CSE-ConnectionGUID: pHXHqAzhQESCPOuJ9u9ErQ==
+X-CSE-MsgGUID: 3lGUtYjkQJ+zVrTP6JYeJw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,303,1754982000"; d="scan'208";a="189250165"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2025 14:02:16 -0800
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.19,303,1754982000"; d="scan'208";a="213018112"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2025 14:02:53 -0800
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 13 Nov 2025 14:02:15 -0800
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.2.2562.27; Thu, 13 Nov 2025 14:02:52 -0800
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Thu, 13 Nov 2025 14:02:15 -0800
-Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.35) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Thu, 13 Nov 2025 14:02:52 -0800
+Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.48) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 13 Nov 2025 14:02:15 -0800
+ 15.2.2562.27; Thu, 13 Nov 2025 14:02:52 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=N9aZLA93Iy2E8e6zUzVk7FFw9ey0b33ejdnFIjXVJJVrz8j7t4E7YBX/ULDlQFtN/R8gIFvTbsXvny68hcGT3vPEFrsJc6Yf32mAnw+FpQz0Olky7VfZrmy4bWxGYJhrSJcLL5NhhGLKM0+m0gZD6zncGiERWD8q4G2LGtLyB9Lr5zrH3ddGMqlpG6xqJcqwBHF0cSw9YDJzUYGA/95Ub83zLI7WOH1nW2UITG48UCOViSEaPLLpgZrPlyrn2eI9hyOA19Rudc+2lRB9rWjUUw357eRUV3ZQinAkK9FpcMmbBKzuiV0nL+I4mWIFwbpIaEIegDZv11VllWaeYkzaZg==
+ b=lLK+GzT7vLuw9QVmhetGCeJQEBBLhIpNm6FpJ/PalM/9YqcPkspGrmqbB8O70Qjhr6cHKTw2O9NTylsA+t63+00QnK7o2gmeqCWL56JA6cDMjIKdZmX2SVd1vf808Vg4/pa0IIACFiBO6iYJviz7f1HCZ+ArgqozPnhFGlM6bpWzjhQv232ORXvm0phjg5AoiB01HyfvKXZZmGzmsMdiGUjkcF8kRwdxLGTV4Xm7oPqN0/GWDvzHNelbqsh29L0DAQ0Rawcl/M9KMT3HFH7/gWvETYS/siRntYrykZMIT/JOvcrIZISupdLeyfmwth4OnLM3Y0KDr4GRDlPELb/9vQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=elgPYPHboKMRlSLRezA+iDR0SjDDXHb9MW5tIZ+9Ijs=;
- b=emz6jlxb6NtNATDyF9PC727n8JoocdSduRfVyZdHkz46haZ0JznaWiimESA2eWSwYlf4nJDHqGQGNShzXSdRWklnoKf42yZoL0ce7FcCi2oSYcSZ87TqKtu9IQpGfpVyKBjcF/SC4SRZNmd+QQqM9Nx9mYjX7NUSGv+kGXx3kyGWkZ6cxMo77Gcn0l9HK93FGAHbVLqkt95rwMb49c+42P7NOLN4qQ8cnsBA+BSwT5uLOUC45miihGsm7Smhapi6432VxVea7vjODqCVd96gDIyysvgNh5MD8EnJdJWbufZj6zR2bIbikdEk+GVRX4Izxc6QlvrSiHJ9xeUQrPTrKg==
+ bh=2zx5uHHIX87C9aYxsS52LXq+AFsGt3dapO4gQw1VLGA=;
+ b=xvLWeMa1C32ZlGb0SLUNcwkCGBPob43obyo4oTJHwXFxcZ161nIfTJO+UcDkqAC0bIWGUiahacFTGLrwu0cLcxrHG42rHNtxP3FcY8ohBszj9njmL7XL5P1S7CV72Znr5PBcJxxxPfwJXZUcP/gnGoEhGTG3vkoUgWmTj+LgD3BKwrbOElTuY+BjuTJm0Op/kRvq/4kh5vT8pB6HVaZK86y64rV0hioN7XIo8vMjwCHPzQWmSE6p3I02LzaquHLe/KZaECIiRWv43CgcYBBwRhRmkaTYL3fLBtQEY2/Q5gY6HFbai87fsrnD9mIvba/lZXDP+JbKelSXPDg2Teon0A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,18 +69,19 @@ Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
  by PH8PR11MB6802.namprd11.prod.outlook.com (2603:10b6:510:1ca::19)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.17; Thu, 13 Nov
- 2025 22:02:13 +0000
+ 2025 22:02:50 +0000
 Received: from PH8PR11MB8287.namprd11.prod.outlook.com
  ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
  ([fe80::7e8b:2e5:8ce4:2350%7]) with mapi id 15.20.9320.013; Thu, 13 Nov 2025
- 22:02:13 +0000
+ 22:02:50 +0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <aRSze0s8p4Qi6OVM@ideak-desk>
+In-Reply-To: <aRS0vlGbTdn9m8dm@ideak-desk>
 References: <20251107-xe3p_lpd-basic-enabling-v4-0-ab3367f65f15@intel.com>
- <20251107-xe3p_lpd-basic-enabling-v4-3-ab3367f65f15@intel.com>
- <aRSze0s8p4Qi6OVM@ideak-desk>
-Subject: Re: [PATCH v4 03/11] drm/i915/power: Use intel_encoder_is_tc()
+ <20251107-xe3p_lpd-basic-enabling-v4-4-ab3367f65f15@intel.com>
+ <aRS0vlGbTdn9m8dm@ideak-desk>
+Subject: Re: [PATCH v4 04/11] drm/i915/display: Handle dedicated external
+ ports in intel_encoder_is_tc()
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 CC: <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
  "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>, Dnyaneshwar Bhadane
@@ -91,103 +92,103 @@ CC: <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
  <matthew.s.atwood@intel.com>, Matt Roper <matthew.d.roper@intel.com>, "Ravi
  Kumar Vodapalli" <ravi.kumar.vodapalli@intel.com>, Shekhar Chauhan
  <shekhar.chauhan@intel.com>, Vinod Govindapillai
- <vinod.govindapillai@intel.com>, Suraj Kandpal <suraj.kandpal@intel.com>
+ <vinod.govindapillai@intel.com>, Jani Nikula <jani.nikula@linux.intel.com>
 To: Imre Deak <imre.deak@intel.com>
-Date: Thu, 13 Nov 2025 19:01:47 -0300
-Message-ID: <176307130705.3698.3321577844550044367@intel.com>
+Date: Thu, 13 Nov 2025 19:02:24 -0300
+Message-ID: <176307134407.3698.3084464246962047280@intel.com>
 User-Agent: alot/0.12.dev22+g972188619
-X-ClientProxiedBy: BY3PR04CA0005.namprd04.prod.outlook.com
- (2603:10b6:a03:217::10) To PH8PR11MB8287.namprd11.prod.outlook.com
+X-ClientProxiedBy: BYAPR05CA0087.namprd05.prod.outlook.com
+ (2603:10b6:a03:e0::28) To PH8PR11MB8287.namprd11.prod.outlook.com
  (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|PH8PR11MB6802:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0b42c7de-efa0-4626-98e1-08de23004c64
+X-MS-Office365-Filtering-Correlation-Id: 496ec1bb-3019-444c-dbdc-08de2300625f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?cUMrdkU3T3EzR3kyZUZWUXZUTEtEWWlrd0FHNW8yM2paT1pDbTEwRXczbGp0?=
- =?utf-8?B?ZnJXNVdoU1JSZEIrRy9LRzM3SGdUV2FkZXBMQk1wbTV4TS9UdDZRc2M4ZzBm?=
- =?utf-8?B?bjVib3lTREJRMzMyVm5QNWVRcXRHOTdBays5OWR2UWhqRmZHbTVkVklaaStV?=
- =?utf-8?B?RkQ5R1Z5TktRd1o2QkhzZW1aR3MyZ1UvRFdqWWNCSWhkOTZTamgyT2Q1b1VI?=
- =?utf-8?B?aTRNREpwaEo2aXdWY0ZmRFVqWC9YNUFJek4rNXMyV1BiLys1Z1JCYXJ2bmZy?=
- =?utf-8?B?R2Z1NTBpMkdhYXZTbHkzNUZiNzNCVC93cnB0Vk1TMS9GUkdGcFBHS2FUSEJx?=
- =?utf-8?B?YkhEV2c1ZElBWlJQOWliK05NZE02aFlmQmhEUHlONkNIZG9maFd6U3RMeDlv?=
- =?utf-8?B?NTBienJZVUNkc0ZNcS9pSTU5MXFnSmxlcGpnanJHODJGSlVtMHJaWjZsdk5l?=
- =?utf-8?B?cU04MnJxRG56R3ZpVHlOS2tlZW1WS1grUnhhSWNLdE93NjQvRWx1NTRUREx0?=
- =?utf-8?B?OEFvNXhYVS85RVlCdGt1aTlmRVlkQXd4Z1lRbEJLdkJlZ0tZOTFvbTFmLzVK?=
- =?utf-8?B?ZXNZcjQ0QnpaMlZhQmJVMGdPRjdCYjJJaWZSZXVTdHp3RVcvS1dnN1hReHBX?=
- =?utf-8?B?bnNnRzZlbTVSQkpGKzR5NjUvV1Znc2RRZ0IraWNiN3AwTjlMcU9uNGJOTC91?=
- =?utf-8?B?Z2xzUUREa2tiNDdNZEhzQXZ4K09wUkVBMHVmdlQ1c2VuT0JlQ1JBMTcvaXZj?=
- =?utf-8?B?WTlXQk9zVmFhTlJhcENwbDhsOHBTTzQza1JIWkc1bWVSQzlMS0JmaS8xNXNJ?=
- =?utf-8?B?VmJjbnd4K29qZTBmTjYrTE4xNVE5cEtjNTVvSWtGRFZqTGpUTVRmOGRKVjQ3?=
- =?utf-8?B?czAyd01xREhBRkRtUDAzR3FKQjJzWjdRU3AzeTNpV21FUEJDYVFDNjhldFpS?=
- =?utf-8?B?dDZJS2RzOEdaTHRPYlc1d1VuZldaOHdwbnFhQlRFRWZoRjRBVlh4aFB2Ykpk?=
- =?utf-8?B?cEM5enpWaDlWOGNNUXpicUpac2ZjVC9WQmZXZk9KVnQrdHJQMUtTcmdhSU5M?=
- =?utf-8?B?d3c4eFJha0h6SWpucU1hUFNuTmNXK0VsZlh4Zkw2UWlqQjg2TjhCTzZLcHNw?=
- =?utf-8?B?WWxmZWJnMWdiNjlSWnZIR0YrVllHT0oxMGFyQU9tb3J1bXZvNS92eFFIYmFI?=
- =?utf-8?B?SFNnRjdSYWo5U1BPVndWTkxQNjZCQzNtMHhZbUN5MHlPK1N5aXdQMGlxVm5x?=
- =?utf-8?B?WE5IK2pzSnJYTkU1TDVmalJKRm5KQzhKbW04WHRwVFd3LzdhTStQVjhiT3hz?=
- =?utf-8?B?OHJmbWtGTllEekg5ak01eVJuRnJnL1EyMk1QazZWd0RBUEhubzVMUWdPdVNL?=
- =?utf-8?B?V1drdkpmdHpFRS8vTlBkUVhVQVZnanJ3ekNUQkRCQ2pHdGhMR3NPTVYxNVRD?=
- =?utf-8?B?TTRiSG1yTWNibUh0ZVFoSUd0S1NUSTRtU2k5aEVTTDM1YkpWRHJKc2xVa1BV?=
- =?utf-8?B?S1JYbVk4T1Z4bGtLbU9PQVdob3ZIb3B0ekR4OGRPWHQ0eDA3Mm16cTVXOVlE?=
- =?utf-8?B?akZkc1VBajdDbUJ2TG5DNXYxR1hYM2RzTEk2WDhMMDdad1Y1d3E3bjRvaHdZ?=
- =?utf-8?B?M255VmNmT3BnazIvbGowU25tZS82UGJQVllIelB4a1Eybm5qd0g1eGxKR2dM?=
- =?utf-8?B?T1g5emhGK0VGWkhMeTN1ZWoyY0pHem0xc0pXRHFiNFNhelRHb2FpTzY1QVkr?=
- =?utf-8?B?NVhaSWxJQkdjaEx1SmpDdklMeHU5MnRETjU4NDJkS0Y2NC9iUDF2bmVrSzVk?=
- =?utf-8?B?MzBIUzREM3ArSnJMaUJDL3NKeFNqUVc1Sm00R1ExbGd3a1JiQVVzYjBrc0cv?=
- =?utf-8?B?UU9oR1VuQ1M2QktyRVdkQUFFc2tyRHNTWUw2RnF2TEQ3VlJ2aVYrdDlaWTdY?=
- =?utf-8?Q?CUJUCFDFTvLNKMaQkVnB/ci2WhAL9SwF?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?OENYSURuM2ZyRWtNUEhCbUxJTUtuVllGSGVkODl2VnNKVlUzN3EwYmdoaVQw?=
+ =?utf-8?B?MVdlV0RTYWgxaUgyRGVlams4Uy9NclBxTlZ4MnU1SWNDUXRScEcvUFJSRnk4?=
+ =?utf-8?B?UjdZeTFBZ2x5ZDFQQzlJRWwvU2V1YUxlVnB2d0tNRWRUb3phYVlHZ09mVmMv?=
+ =?utf-8?B?ZHljNGRZcFU5bG5Hdytmei91N1VXVktlNTNxRTVXSzBHOEtOK1VOa1N1aDhQ?=
+ =?utf-8?B?ZWxJTDI2RC9ibFJ4NDI2VHRTUU1hRVlWUFhkL2FsZlRpcHJNYU9ENEgzOVVw?=
+ =?utf-8?B?dFgvTTN5SHgvOWRmb0FPLzVJcm5QODhnRUdUWTJkQ0duWDZpWFpPMzBMMFZT?=
+ =?utf-8?B?Sk91QTBYOXMvNEh1Sy85N3FTblVTRUprcTFCVXlmS29wUDJDQkY2Y1dhdllC?=
+ =?utf-8?B?TEVkMXpBdHlYd3VISXI5NE5ZVUtzc01oWkF3dHY3aXR1emFjU29IZ1p1T0xo?=
+ =?utf-8?B?TXc4VFhGZEZPVkwwVUhEZ21yNGZMb2psRW12cmJUNkZHYTQ2TlJXWEVXaWpj?=
+ =?utf-8?B?WEcza2ZFOHk2QnZkblZ2ZDNNbTZ3QzM1TG9DZDYxaEJlZjVqNFFDajFuSmpC?=
+ =?utf-8?B?MlVXU3NsZENiK3JOTElrREVjNTQ5S2xvT3hUWHlFZjAyOFJOKzkrT3I2aElq?=
+ =?utf-8?B?YnFJUFFRRFFjbndiU0Z3T25kZjZ0UkllVFEwNjBXM04rVG1jcTdsamdnOHdO?=
+ =?utf-8?B?QW4xZTZHaUxNRnBsbW13M29rdU9hZzEwUDVmbE1mMG9sRUtHeVJFTEtoNllD?=
+ =?utf-8?B?V1Yra20zbHIveUp6c3RxdW5sa0RTcWk0ak1JbGlkMjUrZkczSXFUMEE5RXpF?=
+ =?utf-8?B?Q3Q3em9kTUg2WVNodUYrWm0xY0pKMnpJYVZ0OFY4Z2svMW0vcHNBRGtBNTl3?=
+ =?utf-8?B?UDBQQ2daUTdnZDIrMHNmSHVXOVRYOU5CeFRRenZMdXU5Zno3WUFHaGsxRERP?=
+ =?utf-8?B?RFdKa1ovckJDY0N3SE9HYnNvdDE3K0VPOUZrRXpiUVp5WEVuTitrNXFhTXEr?=
+ =?utf-8?B?K3VJbHA3b3YwYlJiblYyRnU4Y2pTd3o1aVk0d2FKWE5IalNKTE5rekU3dG1T?=
+ =?utf-8?B?bU56aWxOSlhUczdnQ08relhiL2trOFMyQThTcEMxYytaRU01ODIxQ3lDMHE2?=
+ =?utf-8?B?WTRNQ2YvOHdqWWNsZ0REb1VPb0FKeGlpRFAzM0cwdXRoN3NEQkYyd3psZ0tI?=
+ =?utf-8?B?TlErWDI5Qkc2Qy84ZzVaeUJYRmdRUGliMzhrb29POHZrZUdSMFNXUFhka2ln?=
+ =?utf-8?B?Smd1WnpiZDRoblRKZkQ4dWljcEF4S0NJZk5UZW4wUnBpeENkV2d1ZnNCYndT?=
+ =?utf-8?B?VlFGeUdIU2MyZ1Vsb0pyOVVmbHBLamE0UVZvUVMrV3VsSGpNcVRrbFhhRFBB?=
+ =?utf-8?B?bTlOK2tTRllia2VvMlZZMEtWRnE1cEJ6dzlYaXY5ZVNnYnkvUWl6L1FxMUZ3?=
+ =?utf-8?B?TmxmcWVLNjh2TXNVdU1USzZBSmxYU1VaR2ZsT1JKR2REb21XK2hFS0tLbXJm?=
+ =?utf-8?B?ZGxpU3NXUWRtSGQweXd0N0JhMnh3eFdRTGk0cE81STlXKzF4dXlpdUJWZjFj?=
+ =?utf-8?B?MTNoYURyWXk0WXFtSTh0NXUxVDg2NTU4Z0NKZ3FxbUdGSGJzZTE3VjREOVB3?=
+ =?utf-8?B?TC8zcnN6L0lvN1hPYzRpZllFZUp2aUI3OGRzQ0RGbUdqWGt4REVZejZMZUpG?=
+ =?utf-8?B?T1NHSXpsZ1dOem9lUytCUjcrMnRNU3hGWDRzaEhVdzZrbjdkdzN0OERtV2lY?=
+ =?utf-8?B?NXliQ2hGYTBjSERmcGtIc2x1bngwMktob0p3cUNtRGZhbHZjL0FFbmRZYTlE?=
+ =?utf-8?B?cm1COW8zaGFIeVFLbW0rMUZkRW4zemN4TmhudldTTjVjd3MwQ1Z2YTZLc2NW?=
+ =?utf-8?B?aHNraDZhWEJrTzQ1aE9qbFhweHc0RHFFS3hhV202eGU0M3V4YnhTci85NnZU?=
+ =?utf-8?Q?Vn0ZS6QjD7cao9LCinDH2tl6ECv64NSr?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SHdVd24rd0ZmZVBsY3dqbGdaT2toeWJWT1RtalRWZEhpME9qa010ZUhmTTlq?=
- =?utf-8?B?bEVqV0NQSE9XbWcvRE1RZWM3SVpoL3hScUZ1eFlNWjJ6MnFCa2dkL0k2YzdN?=
- =?utf-8?B?R2Q4ZDFGaWkzWTZvdjdSUHJjblZCRlh4V2FhRkJEM3NsQ3I3MzF5SnpRcFl0?=
- =?utf-8?B?dHBqVnF2Y0RFTUx5bEFMTjBZMGh5UXY4Q043cG9GNHV6MDhmd1NtZVNhMDY4?=
- =?utf-8?B?QUtuOTJxWkV3REVCYTFQTEt2RmJqakh5SHRTYjg3cUIxMTljY1pqaXV0L0I2?=
- =?utf-8?B?RUxZcG1qSzlGbGNBcE1oTVZvNDZzT2NEdVlmZGQ3eVF2aTFrbnVieFh5aUdu?=
- =?utf-8?B?cVp3a0d5dXpscWErT2Fuczhndm1kYVhYc3M4NGo4RDZpMmhLZUhBYkdXS1ZN?=
- =?utf-8?B?UXpMQTFYcHFIVTRzZlcybHlOVHpSYUtVVksvRWp4QjlqdUNYYWxYVDVTRHZ2?=
- =?utf-8?B?Q3lEODQ2S2VBYS8xT2crMU5mSURYL3BVU0JoNTlLUGdqYnFKQkZwVnFGUDZS?=
- =?utf-8?B?dExONU9tQ2lRSitnOUY0dzVXNGJrUy9hcmpJajhKKzd5MkcxdjFCYnhXMTZp?=
- =?utf-8?B?TWZmamZBSWdHUnJ4N0Q3M3pGSDZRUmpXKzZLVk4xc1lCLzZ4cTZjR0FtYUlG?=
- =?utf-8?B?ckluWHRKQ2kvSkJKR1dpM2JtQi9ubUo1SnZnRG5SUU41OEkwTWtqcGZKV0Ny?=
- =?utf-8?B?eE1xcFNLTnIvSTI5Mnh6bE5VcVZDQlZjVDFLZmRUTE1rN1V0ZEpoVXlGWW1D?=
- =?utf-8?B?YVdYTkhqdVp0TEFkRnJmNTZya20zVzhzMjhnWjlsb2QyaXdjMWV0TWRyWHNQ?=
- =?utf-8?B?U3dTZGdYdG9BU3p4MUR3ZXdVa2JWeFk2ZTdkNFFYTk8rTVBlNEFzcHRLckts?=
- =?utf-8?B?elRWUXFzZkxVK3h3anRQT1Z5RHpGOERvQUg1ZkdJbGxhZDdqeGR4YlRoNVZl?=
- =?utf-8?B?c014KzVuMGdDeGZTNXd4UzhVN3NZSG1OTjNXdTgwaS9KWUhEY2JKMklOMUtE?=
- =?utf-8?B?SE9LSnNpVk5aaUw2bk9SS09MQlVKQ0Z3RVd5ZTdDcU1zTDNqcURMeUlLYmx2?=
- =?utf-8?B?enhERnQvRWdaYS9ObU5yUndUTU5uR2M4UWtwWWc3OWVkRDVHeDNNQlo1cTdO?=
- =?utf-8?B?U2NEakMyZExXZXZtMXJiSSs5VXlUMzUxTTFwQUdYRzE2UjI5T2tMa1N3S2xy?=
- =?utf-8?B?MVB3NS9HNVMrNG9tWUVKb1VQaU9WZ1RKMi84Ni8zZWNOdGFYOVVvR2V3MTZF?=
- =?utf-8?B?R2VpQVp0SWU5NzdlZXhRVC8ya1doVjNsdUJoVWhqRnVVdXVNZTVYeWVuenkv?=
- =?utf-8?B?bmxON2J1TFQwOG5DWXNib0NkNHRRN2RlaUgxc0hHNHhsUTg4RlI2czBQUmFT?=
- =?utf-8?B?YWVQblZjZlRBY0c0bWh0WUp3NkFEYzdab1E1cGE3ZWtjVXo1TlpkNGlMaDFa?=
- =?utf-8?B?NDEzZ0NlYlU4Z0tMTDcrckRkdm5uV21BVHVLU1VnYSt2VkFXZDgxZlBRWjdy?=
- =?utf-8?B?aUNIT2xEK1pmd3JjWUpKSmRwMnh2VmlxUWNSdVR1Tzl4SkR3UmlneGNEOVky?=
- =?utf-8?B?dE5Beis2K3MrQkdkNThuVFc1RnhLUUJ5RWpjRzNWTmZvMEFmODlxejN4dnR5?=
- =?utf-8?B?SnA4YUtLTEdSWm9Iam5VSlpCaVQybnJTZENYK21sTFJ2N1gzTHl3VkZ6QW05?=
- =?utf-8?B?Nzh2encrWnZ1T0hIbTdhd24yMDVNZXB5eVJ0VUwzMStpMldoMU83MVUrREVr?=
- =?utf-8?B?R1ZQeDBMekswQVRLdktBT05mNzN0dnk3ZXpmU1ZTNnNaSmJxZE0vSXNkaCtx?=
- =?utf-8?B?REZQcHQyRVRiTkRxL0g2S3pJZnlCMnJkeGZVb1hNWVJhL0dIUjhLSCtuU2ln?=
- =?utf-8?B?MjFlc0pOZ3MzSklNcWppclpPRldKclJHSnFGWmhOV1dIREltcmdsRjZ0OWZK?=
- =?utf-8?B?dGc2SzNrV0M0TlVaUVROWE40Z0NsZEhxR3kwL1dNaTNSRWZJdUo0eVhlVkJq?=
- =?utf-8?B?ZnNFYWYvSEZFdGNWUFJGUFE5MVVMMTg0czIxWU8rbllQSTFnN3c0SmtobEFY?=
- =?utf-8?B?WFA5SjhxUDNWUnJVMFdFUlFoNVVUZ3krQ2hESjg3TkZ3cXBHbUVHUHRrbUFM?=
- =?utf-8?B?YXdURXBTU2NneEcwRkVqcC8zZTNIeDNoOE4wTlRxNUZOd3N3VklqbElZZDI2?=
- =?utf-8?B?aUE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0b42c7de-efa0-4626-98e1-08de23004c64
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OG03cWlKNGltMjdlRE83RkRJb0g5bzJrUE45VlQ3ZCtvakZ3T1lkVkNvQkFO?=
+ =?utf-8?B?dk1QZ1NTYjV1SURuRURMYTNWQkE5NWU5VTlXYkphQzNuVzFLTm13RUcwUWJD?=
+ =?utf-8?B?M2h4UVo2TnkzQXFqVUJpMnJSQTZrd2UwOHdwWlVGeFUxcmx2cFZtTFpIeERk?=
+ =?utf-8?B?MlYzY211TWYvY3U5ZWpidWZ5eGcvUnFuR3g2TlhYZk1VL3B5S1hmaWNNYjJX?=
+ =?utf-8?B?TGdWRmEzWE85cVpjdVVTMS9HNytCUEVmRVcyYnRRUWNCNXJiZmR6ZDluaTl1?=
+ =?utf-8?B?NUhsdUlvc0lTU3EwMmM4d1RTLzE3akZZR1FUTlZZSHZxOStzSTVCaEpXc3pq?=
+ =?utf-8?B?cmhNT210eUVGZTNySlhWajJvemQ1Y0NVUFFmOE4yWUs4eWhqMFVWWFl2S1oy?=
+ =?utf-8?B?VFpUdFRiRTBtU2ZjUGF3dFNLcGxHZG1Jb1RvU1dvRTg0RnZjOUxVZHplczZO?=
+ =?utf-8?B?Q0YweHRuNHlIelpseFFpL1huNTBwVWhQSW5mSEVTd0ZHYnA3N3NwUG9QZjRj?=
+ =?utf-8?B?cU5OR0pVVjhycmJsa0h1MmdpekZLcU5sOHdSMjZXazBaS3RjVGw5MXI0WCtM?=
+ =?utf-8?B?b2FXeE1MUzRkRFZZRnN2VTVWVDh6UTJoaXdpeithc2dPTTV0T09UeTlhcU5z?=
+ =?utf-8?B?NGFPbGxsUWVVNWlxRER6THYzSTJuZWVBSnJWT2k2QStHMUplbFBKc0NqbXpJ?=
+ =?utf-8?B?WStaZ2h4Nm5YVng4dis3MXVTM2VPL3hiUjRnNEZZb3Rvc04wcDZoMnpzbGR5?=
+ =?utf-8?B?ZGFEZnl0L2RTYW1QNENtOUZSRlQ5TjJuRGIwc0pWTC9ZOUhYMjlSOW0vT1Ux?=
+ =?utf-8?B?NXE5dFN4UkM1cjBRTkdDQVVteDZLa1U1WTBMNDZQRVZTaDlZYS82L1VlbDBl?=
+ =?utf-8?B?ekE1YWh4RmdvMVc3SVF1T096QUhZTVorbDJDendFSGdDQXJqc1V6eTNYbm1r?=
+ =?utf-8?B?YllLSTNPQm5aNzZHNUxrYXZKSVNkSXV5YUU2ckl3RDBoZnFGUTNWMjlGSHU1?=
+ =?utf-8?B?eTFrZ0UxM2FDUThuTXBRUHRyYUU0MnZEb0d3SnJjMHlFTUdmMXNmQ05BcVhO?=
+ =?utf-8?B?c3BFYnBNU0lwU2tHV1B5WEZoajJ6bGhPeUlwazNhMjR6QmxnQkNQaFBsbXBJ?=
+ =?utf-8?B?TVdONytCK3N2dXVkOXE1amlhOGJuRXgrdjEwU0JJOW5RZzgwWmt2M0w1OHR5?=
+ =?utf-8?B?WW0vVHB6ZXJlcFR4RGtxTngraEFoS0RYaE5DRVVZSHJBN2M0QVhvOXMvR0tl?=
+ =?utf-8?B?Z2h3NVFTNm5pc1JMaWpzZ3FLTWJ4K0tZUktWNlZGMGdReXBjVkpHdXE2Nlhn?=
+ =?utf-8?B?OXZnTWxiTUhzSmNPdUV3eXNXS1JBRnFtTVBwQlhFVXk2NjR6dTdEMUwxeGJm?=
+ =?utf-8?B?a2Z4NlQvUWRPVFZ4RzNBR0lHR0h0YWVSZmptczN4dytWbFZLb3ovQWJSQlRi?=
+ =?utf-8?B?RXhZaFlNbUx1MnZOcTl5Um5MR3UvenJwR2ZTRlMrVHEwOXR6OUNXS3FuZXBa?=
+ =?utf-8?B?TkNISFZSNVk0cFNWTnNVSGhWdERKSjNIcno1UlFheS9vVUVxb1pZYXdITEFF?=
+ =?utf-8?B?bDdLdkg5MmRtbWdSWGc3L2ZtUVRiTmdSOW82VXVNYWR3TFdiUTA3TjEyejM5?=
+ =?utf-8?B?Q0dwU0ZHeTNCZElsdWdWd2VyZzVzZGxjZ1JYMDY5VXNUbjJlb3VidmFIWlZF?=
+ =?utf-8?B?Zm9mb2ExYVF0djFEOVRrWUxLVW1zTVNJaVlyeGdzWGpnbXZERUFjaDZXSkl5?=
+ =?utf-8?B?NHhyTkhhR1lVN01Vd0pyVG5jL3pySFpUTjdiMzFOU2RHc045RDBOeHRwWFpW?=
+ =?utf-8?B?UU95alV6UExWbzdsaENTZzBzNEl1TnBBNlpKbTk4a1lLenYvNXpxWlFoSGw0?=
+ =?utf-8?B?SDhoL2VaR2pORStkUHd3eTQ1K3NzdGFnYXdaSyt6NVVBUW11Y3ZMQ1Q5YlNY?=
+ =?utf-8?B?VU9CNkhrSVlvVENUOFRJRDZUOUxxTU5xRVdLS3VPdDJoWlh1bE82a2p0dlhM?=
+ =?utf-8?B?a280MTVSOVVvY0NsVXZ5bTFNTGp6NGpjNjA0ZUI2U0c3bnh0WWk0UXhHS01S?=
+ =?utf-8?B?M2lpK0t5S1lqcmU1NnIxZHU2ZTBQdXUxcXlpN2JMN2NSMzFZZkRJZmxkMnNM?=
+ =?utf-8?B?bmxKdVhva3BwT0lKVkNZc2ZkK0FIcytpdnBKS0xzYzdUS2x5UDNubDNsaHcx?=
+ =?utf-8?B?dFE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 496ec1bb-3019-444c-dbdc-08de2300625f
 X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2025 22:02:12.8189 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2025 22:02:49.2893 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qIUqOZtR8TrssQVgn9JuX4xhItmK62cVSCyyzQSvmOeJo5TLK+6sNpQPEusAecrD1UDIAFRTlAzfPGNgHfB04g==
+X-MS-Exchange-CrossTenant-UserPrincipalName: q+cnX/SQqjV4UowsrSx6sKM8P2brdmCYdZr8AcgQLMJGRxP6vlhrQUMnYfnwZPlbWOEnTEoPMcv+i3H+YeRfcQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6802
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -205,129 +206,143 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Imre Deak (2025-11-12 13:19:07-03:00)
->On Fri, Nov 07, 2025 at 09:05:36PM -0300, Gustavo Sousa wrote:
->> Starting with Xe3p_LPD, when intel_phy_is_tc() returns true, it does
->> not necessarily mean that the port is connected to a PHY in the Type-C
->> subsystem.  The reason is that there is now a VBT field called
->> dedicated_external that will indicate that a Type-C capable port is
->> connected to a (most likely) combo/dedicated PHY.  When that's the case,
->> we must not do the extra programming required for Type-C connections.
+Quoting Imre Deak (2025-11-12 13:24:30-03:00)
+>On Fri, Nov 07, 2025 at 09:05:37PM -0300, Gustavo Sousa wrote:
+>> Starting with Xe3p_LPD, the VBT has a new field, called in the driver
+>> "dedicated_external", which tells that a Type-C capable port is
+>> physically connected to a PHY outside of the Type-C subsystem.  When
+>> that's the case, the driver must not do the extra Type-C programming for
+>> that port.  Update intel_encoder_is_tc() to check for that case.
 >>=20
->> In an upcoming change, we will modify intel_encoder_is_tc() to take the
->> VBT field dedicated_external into consideration.  Update
->> intel_display_power_well.c to use that function instead of
->> intel_phy_is_tc().
+>> While at it, add a note to intel_phy_is_tc() to remind us that it is
+>> about whether the respective port is a Type-C capable port rather than
+>> the PHY itself.
 >>=20
->> Note that, even though icl_aux_power_well_{enable,disable} are not part
->> of Xe3p_LPD's display paths, we modify them anyway for uniformity.
+>> (Maybe it would be a nice idea to rename intel_phy_is_tc()?)
 >>=20
+>> Note that this was handled with a new bool member added to struct
+>> intel_digital_port instead of having querying the VBT directly because
+>> VBT memory is freed (intel_bios_driver_remove) before encoder cleanup
+>> (intel_ddi_encoder_destroy), which would cause an oops to happen when
+>> the latter calls intel_encoder_is_tc().  This could be fixed by keeping
+>> VBT data around longer, but that's left for a follow-up work, if deemed
+>> necessary.
+>>=20
+>> v2:
+>>   - Drop printing info about dedicated external, now that we are doing
+>>     it when parsing the VBT. (Jani)
+>>   - Add a FIXME comment on the code explaining why we need to store
+>>     dedicated_external in struct intel_digital_port. (Jani)
+>>=20
+>> Cc: Jani Nikula <jani.nikula@linux.intel.com>
 >> Cc: Shekhar Chauhan <shekhar.chauhan@intel.com>
->> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 >> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 >> ---
->>  .../drm/i915/display/intel_display_power_well.c    | 26 +++++++++++++++=
--------
->>  1 file changed, 18 insertions(+), 8 deletions(-)
+>>  drivers/gpu/drm/i915/display/intel_ddi.c           | 11 +++++++++++
+>>  drivers/gpu/drm/i915/display/intel_display.c       | 19 +++++++++++++++=
++++-
+>>  drivers/gpu/drm/i915/display/intel_display_types.h |  1 +
+>>  3 files changed, 30 insertions(+), 1 deletion(-)
 >>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/d=
-rivers/gpu/drm/i915/display/intel_display_power_well.c
->> index eab7019f2252..1485fc65ab87 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
->> @@ -258,8 +258,9 @@ aux_ch_to_digital_port(struct intel_display *display=
+>> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/=
+i915/display/intel_ddi.c
+>> index 733ef4559131..d9aaeafd1570 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> @@ -5376,6 +5376,17 @@ void intel_ddi_init(struct intel_display *display=
 ,
->>          return NULL;
+>>                          goto err;
+>>          }
+>> =20
+>> +        /*
+>> +         * FIXME: We currently need to store dedicated_external because=
+ devdata
+>> +         * does not live long enough for when intel_encoder_is_tc() is =
+called on
+>> +         * the unbind path.  This needs to be fixed by making sure that=
+ the VBT
+>> +         * data is kept long enough, so that
+>> +         * intel_bios_encoder_is_dedicated_external() can be called dir=
+ectly
+>> +         * from intel_encoder_is_tc().
+>> +         */
+>> +        if (intel_bios_encoder_is_dedicated_external(devdata))
+>> +                dig_port->dedicated_external =3D true;
+>> +
+>>          if (intel_encoder_is_tc(encoder)) {
+>>                  bool is_legacy =3D
+>>                          !intel_bios_encoder_supports_typec_usb(devdata)=
+ &&
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/=
+drm/i915/display/intel_display.c
+>> index 25986bd8fbdd..431f7f030a9b 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> @@ -1800,7 +1800,17 @@ bool intel_phy_is_combo(struct intel_display *dis=
+play, enum phy phy)
+>>                  return false;
 >>  }
 >> =20
->> -static enum phy icl_aux_pw_to_phy(struct intel_display *display,
->> -                                  const struct i915_power_well *power_w=
-ell)
->> +static struct intel_encoder *
->> +icl_aux_pw_to_encoder(struct intel_display *display,
->> +                      const struct i915_power_well *power_well)
+>> -/* Prefer intel_encoder_is_tc() */
+>> +/*
+>> + * This function returns true if the DDI port respective to the PHY enu=
+meration
+>> + * is a Type-C capable port.
+>> + *
+>> + * Depending on the VBT, the port might be configured
+>> + * as a "dedicated external" port, meaning that actual physical PHY is =
+outside
+>> + * of the Type-C subsystem and, as such, not really a "Type-C PHY".
+>> + *
+>> + * Prefer intel_encoder_is_tc(), especially if you really need to know =
+if we
+>> + * are dealing with Type-C connections.
+>> + */
+>>  bool intel_phy_is_tc(struct intel_display *display, enum phy phy)
 >>  {
->>          enum aux_ch aux_ch =3D icl_aux_pw_to_ch(power_well);
->>          struct intel_digital_port *dig_port =3D aux_ch_to_digital_port(=
-display, aux_ch);
->> @@ -271,7 +272,15 @@ static enum phy icl_aux_pw_to_phy(struct intel_disp=
-lay *display,
->>           * as HDMI-only and routed to a combo PHY, the encoder either w=
-on't be
->>           * present at all or it will not have an aux_ch assigned.
->>           */
->> -        return dig_port ? intel_encoder_to_phy(&dig_port->base) : PHY_N=
-ONE;
->> +        return dig_port ? &dig_port->base : NULL;
->> +}
->> +
->> +static enum phy icl_aux_pw_to_phy(struct intel_display *display,
->> +                                  const struct i915_power_well *power_w=
-ell)
->> +{
->> +        struct intel_encoder *encoder =3D icl_aux_pw_to_encoder(display=
-, power_well);
->> +
->> +        return encoder ? intel_encoder_to_phy(encoder) : PHY_NONE;
->>  }
->> =20
->>  static void hsw_wait_for_power_well_enable(struct intel_display *displa=
-y,
->> @@ -570,9 +579,9 @@ static void
->>  icl_aux_power_well_enable(struct intel_display *display,
->>                            struct i915_power_well *power_well)
+>>          /*
+>> @@ -1885,6 +1895,13 @@ bool intel_encoder_is_tc(struct intel_encoder *en=
+coder)
 >>  {
->> -        enum phy phy =3D icl_aux_pw_to_phy(display, power_well);
->> +        struct intel_encoder *encoder =3D icl_aux_pw_to_encoder(display=
-, power_well);
+>>          struct intel_display *display =3D to_intel_display(encoder);
 >> =20
->> -        if (intel_phy_is_tc(display, phy))
->> +        if (encoder && intel_encoder_is_tc(encoder))
+>> +        if (intel_encoder_is_dig_port(encoder)) {
+>> +                struct intel_digital_port *dig_port =3D enc_to_dig_port=
+(encoder);
 >
->Adding an icl_aux_pw_is_tc_phy(display, power_well) helper would
->simplify things avoiding the need to retrieve the encoder.
+>Just dig_port =3D enc_to_dig_port(encoder); ... if (dig_port &&
+>dig_port->dedicated_external) would be simpler and would be also more
+>consistent wrt. MST encoders.
 
 Ack.
+
+Thanks!
 
 --
 Gustavo Sousa
 
 >
->>                  return icl_tc_phy_aux_power_well_enable(display, power_=
-well);
->>          else if (display->platform.icelake)
->>                  return icl_combo_phy_aux_power_well_enable(display,
->> @@ -585,9 +594,9 @@ static void
->>  icl_aux_power_well_disable(struct intel_display *display,
->>                             struct i915_power_well *power_well)
->>  {
->> -        enum phy phy =3D icl_aux_pw_to_phy(display, power_well);
->> +        struct intel_encoder *encoder =3D icl_aux_pw_to_encoder(display=
-, power_well);
+>> +
+>> +                if (dig_port->dedicated_external)
+>> +                        return false;
+>> +        }
+>> +
+>>          return intel_phy_is_tc(display, intel_encoder_to_phy(encoder));
+>>  }
 >> =20
->> -        if (intel_phy_is_tc(display, phy))
->> +        if (encoder && intel_encoder_is_tc(encoder))
->>                  return hsw_power_well_disable(display, power_well);
->>          else if (display->platform.icelake)
->>                  return icl_combo_phy_aux_power_well_disable(display,
->> @@ -1849,10 +1858,11 @@ tgl_tc_cold_off_power_well_is_enabled(struct int=
-el_display *display,
->>  static void xelpdp_aux_power_well_enable(struct intel_display *display,
->>                                           struct i915_power_well *power_=
-well)
->>  {
->> +        struct intel_encoder *encoder =3D icl_aux_pw_to_encoder(display=
-, power_well);
->>          enum aux_ch aux_ch =3D i915_power_well_instance(power_well)->xe=
-lpdp.aux_ch;
->>          enum phy phy =3D icl_aux_pw_to_phy(display, power_well);
->> =20
->> -        if (intel_phy_is_tc(display, phy))
->> +        if (encoder && intel_encoder_is_tc(encoder))
->>                  icl_tc_port_assert_ref_held(display, power_well,
->>                                              aux_ch_to_digital_port(disp=
-lay, aux_ch));
->> =20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/driver=
+s/gpu/drm/i915/display/intel_display_types.h
+>> index 00600134bda0..8bf392bc0d5d 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+>> @@ -1937,6 +1937,7 @@ struct intel_digital_port {
+>>          bool lane_reversal;
+>>          bool ddi_a_4_lanes;
+>>          bool release_cl2_override;
+>> +        bool dedicated_external;
+>>          u8 max_lanes;
+>>          /* Used for DP and ICL+ TypeC/DP and TypeC/HDMI ports. */
+>>          enum aux_ch aux_ch;
 >>=20
 >> --=20
 >> 2.51.0
