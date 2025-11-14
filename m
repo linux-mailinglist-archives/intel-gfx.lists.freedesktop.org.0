@@ -2,174 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F246C5D1AF
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Nov 2025 13:28:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADD88C5D2C3
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Nov 2025 13:49:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01DDC10EA58;
-	Fri, 14 Nov 2025 12:28:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35E4410EA61;
+	Fri, 14 Nov 2025 12:49:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Squhuafq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="az1xF04J";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0E5D10EA57;
- Fri, 14 Nov 2025 12:28:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6363C10EA60;
+ Fri, 14 Nov 2025 12:49:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763123304; x=1794659304;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=PHwd09TD3kPbdUocIg5imi8VkBmviVWLdmRsDqB0qME=;
- b=Squhuafq/V+qe9r2B/Lr9WHYRuYOYOH0t+gjGHzg6VwjUpIk5HxJxnOA
- Zo4jRmG4ZmBpS9FxaH1/8gOLKGx4NkN7VF4SWH4NqHUUSCPxJ5pBSy69d
- rcxai1CtcOgoJ2KXbBXyzlQ5tHffr5QtACg3MKdyPM9kx6KmlIxV9Vj7y
- LzXUBD0zDAoKVcnbOEjjHNJXcupg+f0yKTXgcN6s4EGPLSJnOy5Pct6OR
- GgOSc0JOXa34spkaZeHYSIhqaBpKXPj0tp8t0wcx+cqF2L8SY1ZFKmgOp
- 8RSi6i90AkOiMGNcqjSD8V2EfzMpM5BzB6d/2PEND/7ElFoN4ZzGBFIbc A==;
-X-CSE-ConnectionGUID: cwlzqvgLRx+Ee/9Uq7eHHw==
-X-CSE-MsgGUID: fjaFE3/DToO7hvWmEbIYPg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="64924206"
-X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; d="scan'208";a="64924206"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2025 04:28:24 -0800
-X-CSE-ConnectionGUID: 4fb236hkQAalZZ3latm+Iw==
-X-CSE-MsgGUID: Ho3BhARBTkKsLzEjgICcsw==
+ t=1763124542; x=1794660542;
+ h=from:date:to:cc:subject:in-reply-to:message-id:
+ references:mime-version:content-id;
+ bh=Vs1j3k+egiqigYTw8Bu/0q6YTfCwbX01X7FAVLFuegQ=;
+ b=az1xF04JkPFUQN9wzHn0L40lBXzwLzwlvSTrglLM5DYUqMUpURrpegS1
+ h1xug+Sdq71gA6MPbj+bt9JEbBzrRwwPJpNGTdYZQOy7XOw+5MsBJhEZ/
+ 6/Ifuq6rJ7lNnIJFMM4t6EGGtbZYJIZ3A5bqAWhMmGy2nj/DaGVvvoXKD
+ vdCPfwVEuW6H+kpkk+TNLDNKUSHuBVPaV2+MGIAts0FjuhREVD0AHHA5Q
+ lGaxr14Ivok5WAOwkHMwnLts+KzKI1qWORlNLLmNZKK1RotuUG7e0P3Ph
+ l7Z9L1iH9Q6A1TzR7Qn1P82pBn/kgrubKAdDLqdUTWtVNTJ4qVmIzBfAQ A==;
+X-CSE-ConnectionGUID: AM5z1+OMS3OgFiv6YtHB/Q==
+X-CSE-MsgGUID: 5t4aBq6oRSenMWjnQHUPlQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="65120323"
+X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; d="scan'208";a="65120323"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2025 04:48:55 -0800
+X-CSE-ConnectionGUID: U6d+MCYmTIq1xaNsEtxY+Q==
+X-CSE-MsgGUID: KpimQk4BTG+luBVtzfZkPA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; d="scan'208";a="193877131"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2025 04:28:23 -0800
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Fri, 14 Nov 2025 04:28:22 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Fri, 14 Nov 2025 04:28:22 -0800
-Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.68) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Fri, 14 Nov 2025 04:28:22 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=h/ZhxrCIS7Aq7gTTUdtxpGFT1YJ6owmcEbqJNzrGQ8faRlXGpure9aeaFAQbhwUIbQSWWyKWtvTIQ0a3ulyE3l0IKDdHUUbfb9IfvOfRxb8owef50hJ78ka1pmtOQEAq5Nz9io5/vYuZhdf6/CYkPn06Lb1ZjaR3RVyaRWeC3GXFjLyAdVll4IAi86tCNOd7CyN+CriLerzRhWYtaTH+fAhdC+G+26bcWBL+Qm2+2+dnums4WGZKQvKcGVUWOwaqTapeGRZITlBcyG+sKKY271iCWYy/XAmMkecUvRkXWuSIj9MOpg/CAM85ly3CYyN1uIKBu7S9NIgwMDBaeOj1og==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pISbrPJEOYQwmFIG1nHUkcVyZniQFN8lFHWQM3UTR+Y=;
- b=s9vNPjPd8q7czx1LnMySOmtXZ/3LNCB6ItoyNXGjUI4A+pyR1ketkgocv51PvNjSQ6ADbrZqASJ684IbDUerjfvNl7mVxAi/i33WCI7QJDesQ3RKP051qWjejuEH3/rNh6XURabSsqrq0oDpoEnipumyEQHs6wfLIu1uX/LaPBoMNlLoGHeyNWOAB1eYWg0Tn+LqqsL3kJnCIlV2z8DbkhKloG0Sv/82HMUu3EPZqCSpxcPduYvTFh8eH8VbZXNPhe5BJsi0UofJmjsifr8Si+NyoXm4EJrBasmstwi8aaWbGh41TeBFtj+8ExMgT9fPOjbw1STvTauUKMOAuSJzyw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB6360.namprd11.prod.outlook.com (2603:10b6:8:bd::12) by
- PH0PR11MB5125.namprd11.prod.outlook.com (2603:10b6:510:3e::15) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9320.18; Fri, 14 Nov 2025 12:28:20 +0000
-Received: from DM4PR11MB6360.namprd11.prod.outlook.com
- ([fe80::8648:3a6b:af5c:b6e6]) by DM4PR11MB6360.namprd11.prod.outlook.com
- ([fe80::8648:3a6b:af5c:b6e6%4]) with mapi id 15.20.9320.018; Fri, 14 Nov 2025
- 12:28:20 +0000
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "Joshi, Kunal1" <kunal1.joshi@intel.com>, "Nikula, Jani"
- <jani.nikula@intel.com>, "De Marchi, Lucas" <lucas.demarchi@intel.com>,
- "Roper, Matthew D" <matthew.d.roper@intel.com>
-Subject: RE: [PATCH v2] drm/i915/fbc: Apply wa_15018326506
-Thread-Topic: [PATCH v2] drm/i915/fbc: Apply wa_15018326506
-Thread-Index: AQHcUwk0RPDW9ev6pkGsmCiYV/I2s7TyHg7A
-Date: Fri, 14 Nov 2025 12:28:20 +0000
-Message-ID: <DM4PR11MB636043DACE0AD596AF086132F4CAA@DM4PR11MB6360.namprd11.prod.outlook.com>
-References: <20251111124606.402380-1-vinod.govindapillai@intel.com>
-In-Reply-To: <20251111124606.402380-1-vinod.govindapillai@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB6360:EE_|PH0PR11MB5125:EE_
-x-ms-office365-filtering-correlation-id: bb215fef-71dc-4900-2851-08de23794c0b
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|38070700021|7053199007; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?D1L6k+fOEHv4tm2eB8sRFLz29D9Y/Negc/haJ9fWryp8hRLvZzjw450HycZ/?=
- =?us-ascii?Q?DhUl3whnxCBOS8ugPyHtbOV4f622aBO4UrwIsoTx7GLjhvSe6/P+XwaZIuDe?=
- =?us-ascii?Q?JrBuVWKmImIFe9LCCsL0eQEtr/zqKFe4L8Qjwl+SJxR3VPOfKPN4SNLD3vNa?=
- =?us-ascii?Q?pzEQQYI8ZZMhtacFthSi394uaT84wdWaR8JjirvV//igmHU+qrifY5A6oB/W?=
- =?us-ascii?Q?EwWnEM6Os9xuevWyCs6U4g2Y6B0sKrdoIPDlao7pI14J0aZB+c9dBPGir3AR?=
- =?us-ascii?Q?4rgwByPpvffxeA0oKqdDcci7KXbMYDnDcDAjdu7ldNm9g2BIl8i49FJhUadQ?=
- =?us-ascii?Q?iUwAW8jQJG0RHiu1U0zKg4PEaB4qK4vUoPqlFr+z/J9BTEan4eg3TH7MX5Qa?=
- =?us-ascii?Q?rr8OqQ9zLCYpv3ENPsVdABuNbYKgk6EDInpdwClW+d8CVjVNBLKokpa/6ChK?=
- =?us-ascii?Q?Z2w9BJ23pB/uyoIRzIRCxWflxuAEo2lHZADquE4mYZvl+WhFrxl73g85Bmc0?=
- =?us-ascii?Q?oqo+Jv6EMLFd4CbUFIY+cEbDoZD5pBE9PXQF5wU6XNxYW9wZeCv71Eq2TAXF?=
- =?us-ascii?Q?O0bA9IT1mtpU/2oKltMvD0/PR3RNSo8LzaVVBj6rsWNXix/trJp/Q7EJHXG/?=
- =?us-ascii?Q?iAjUq35k70Qb0yJyyKP/3mkh8SgyjtSQekrJcNJHukYu5iAKHRyRNvvMsN5v?=
- =?us-ascii?Q?btezEHxrhRBCbv3EpMXAjCBSRdwdDTNHcpAqwd1Ohcf6Z2l/WgF+TdH6yrpd?=
- =?us-ascii?Q?RWS+YkmOhsHZ69hvb9P8lOprDntXJ1ezGsmCgbZerVGWf2xcFxQ+WkAFMvB6?=
- =?us-ascii?Q?BTSbvhpI4vAQdTpEwSB2PnsKEyo4wTCby6TUERPUW44glqjI7kXr/xWpo21k?=
- =?us-ascii?Q?ysOed7d1RagitskaMykfvWSsOwjIarGyTYfA3bP++GuP2shs4s1cKuqdlrD/?=
- =?us-ascii?Q?681qC5RjqrNE2bDEOpdGU8r3WxiOWCw/UppXT/65jO1a9ix/lQcDSKh3Z8Kj?=
- =?us-ascii?Q?hIxoOBCdTbZEcXbHfJn4fFHUryh1hPt+gvRUR1XZ7q+VdTX0ahIWmIWnImVy?=
- =?us-ascii?Q?5V+otGQ1Wu5C25kJU2PjA7J3OheMWePXRa8svFb0y1DV0/980tINTQ7NrRjY?=
- =?us-ascii?Q?3kuj6nrq2thYBqwHIUz/ufMjaVbKJJ7smgSVS3ZLEsHW/MkfrDJ0hQ/7Z2pb?=
- =?us-ascii?Q?4ndHRmo3KMyhNlBv/lZbtE4SxiyG6htVeP1E3S12A+4EeyGj3VdIjHjvzFwx?=
- =?us-ascii?Q?ivDsX4VK/GhMY6OArpWJ3TIWgE+39lgsTJKZ3tJp8Shi5xFpqi4qJYUG8B8a?=
- =?us-ascii?Q?+y8OyKk7shRZ9djxqoqGVRW8JapI89vj5oi+gtm3QY7LOcJmstIBbgXD3AoV?=
- =?us-ascii?Q?EHWT+OF3q1fT+/xRE2ilKFS3UgUfqe+LK6j7eE207Qku4IcF9bJ/fEumINXA?=
- =?us-ascii?Q?baAAGmJZwnAtqYD8rBtacyhFBnIOzHTfkiGmknXp/ZGXkWklDeC54VkP77m/?=
- =?us-ascii?Q?Z0yLFfWx3kKmh8A7QenyZujtzy+AryaJer7p?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB6360.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(38070700021)(7053199007); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?wURQbdkDa4cydjXmV/XpnyWQcSSqZL5m/1vaKFPSjapYc2wkjp5pS9mYhIUG?=
- =?us-ascii?Q?sPsF+GCkWI0S/7WeGkXMW4WrNjQdE3bJ16nB9xfFtwgHIodZO4ahf87F6tuV?=
- =?us-ascii?Q?mXv9/bRO/Ks4TqWo453FqWvxoHl4JrmgiblJhhne7Ua6dF+bgTmQhsrVAPPU?=
- =?us-ascii?Q?D45lkM1FC2iX0yinDgpBJuGh3lB+PuFqUrKrY3/0s0wa2EXOS7hrpmeAqaWc?=
- =?us-ascii?Q?lJVanp23+TGritF05J4q7WgZqGhRGR2djgJsV2wQunsQyCyRFlt6P/6WxDaL?=
- =?us-ascii?Q?N63gjciIZ/W+fzqAvkyDaUllfw9aHOG2JKtOMcx5eqeV0pdP6VCHy+4xgsUn?=
- =?us-ascii?Q?KHA2nAgbEke+L9s2zEpf6t7vO8XHuUVt47YTAzwm/VusBQBl6W3T0q1sFwxa?=
- =?us-ascii?Q?eaTGEh5sJFFI4VKEtt21PjumM/n02xw5H1Ko1c9H+soZezKeyQPb48boPEO0?=
- =?us-ascii?Q?1u9hn9s2zp0SUnrO24hLDaLAJ/OMGlVCqwCu3eMJroxhylGAgo502DxlwRrO?=
- =?us-ascii?Q?mnd3EhZVvZbC0k9mCWn0lLYBdduLAxbgBSqT+QahAiDxJRr7uAzO2CQsY5ME?=
- =?us-ascii?Q?fRR6PvY+e7FpYci4UI7tZqtWcbeYBIDJm6pI+HHLoEvzr94ea1VrnQHE6ONM?=
- =?us-ascii?Q?NDGA4B8/AZh+IQ3Bz+5Xb5bp+E4hCnvb2dB3fRlmOKxkwq0F2Y4dUOGv6F6z?=
- =?us-ascii?Q?u1hMmf0f+6TzI7C+1GEK7M2ytdt/pFpX0zOMX+t9Zt74jukP939ILdis8rMh?=
- =?us-ascii?Q?UAgy+Ecso2MxlfrCD62bW6/6xaTYi165XXYqiVAesAB7uqPy4nOqSvMnklyQ?=
- =?us-ascii?Q?/tgS3387yvZPeUZHr5Hxljt6XUPpNu69Bjd8zL0k9q8qba9NzQb7iGD6e1pc?=
- =?us-ascii?Q?f6L+vyfZFRb4kgbFDTQ4cllOpOD/ZXjdqKRs4/a4Uyeob3yMevhHWSZ9QZe3?=
- =?us-ascii?Q?uKYXExxMoQf4MVeSbDy2AVyDXf71Uo6gKsPO4qKKsqXN3+42ZhQZD+8Q8zYk?=
- =?us-ascii?Q?9IXbwa986HDhJuD60j4/R/+Kr3EjDDqWZ1AM2TWLUG6mfxxmUwNZfg7xd3j1?=
- =?us-ascii?Q?3lUfcFsNRhaQYAyjeZ5hfd9kDHpLa1cdZSzpPDOermMbE4guH1tAX4rjurpK?=
- =?us-ascii?Q?QEIHyy3raGkN8KS2L2AXYQb3YeIutM75vbr+Bd2RNNZS7oaNSKJOpIb0J2GS?=
- =?us-ascii?Q?1K28C6nswkx/og9nPn9vLZ97oLPqVCJPgdDlNL1pcKijM8kyzhoLRCAEuzkA?=
- =?us-ascii?Q?jI7P+T9VPlLUxA+mH8O+zySlTPEnZiaGooWz49G085Te7ce9baEOwsTHP6rP?=
- =?us-ascii?Q?jKq00w1Wu7LuUlBPpuTEw9abnJIZ+neOiL7bj0qZYy1+Rck769sdScaJPXPE?=
- =?us-ascii?Q?8kR5AAdi4Ux1SGI0Ksu469rYm2+OeSb+UqpSeVlEoNq86VqzN201YKGO3F5u?=
- =?us-ascii?Q?DsUbrIwb89Dp7N9gCyEKf26L/O9OyCdbfZhARScIvJuqzwCANCDq7887noLx?=
- =?us-ascii?Q?FOCjY1yD0X0Dko2+LpP/Vm8x70lDPWHPqoF6s4RXE6K6J7KNURi6nSlS6heB?=
- =?us-ascii?Q?E62Gwby+a/PWa6U9dZLR2GkRx3RYF4+RRLSBxcFY?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; d="scan'208";a="189616838"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.31])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2025 04:48:50 -0800
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Fri, 14 Nov 2025 14:48:46 +0200 (EET)
+To: =?ISO-8859-15?Q?Alex_Benn=E9e?= <alex.bennee@linaro.org>
+cc: Simon Richter <Simon.Richter@hogyros.de>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, 
+ Bjorn Helgaas <bhelgaas@google.com>, David Airlie <airlied@gmail.com>, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ linux-pci@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Simona Vetter <simona@ffwll.ch>, Tvrtko Ursulin <tursulin@ursulin.net>, 
+ =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>, 
+ =?ISO-8859-15?Q?Thomas_Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, 
+ =?ISO-8859-2?Q?Micha=B3_Winiarski?= <michal.winiarski@intel.com>
+Subject: Re: [PATCH v2 00/11] PCI: BAR resizing fix/rework
+In-Reply-To: <87jyzsq0nr.fsf@draig.linaro.org>
+Message-ID: <7321c165-e38b-6016-54b0-48fcdfdaa199@linux.intel.com>
+References: <20251113162628.5946-1-ilpo.jarvinen@linux.intel.com>
+ <87jyzsq0nr.fsf@draig.linaro.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6360.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bb215fef-71dc-4900-2851-08de23794c0b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Nov 2025 12:28:20.6409 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 0ZHB66V0QpLyjcYMOi4ab6BZZ07ADoHOgZ0gz6avrmUimtkFQNLvD2HnC/iTClOmrjWz3XacAtgi5eh6Gv/oNg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5125
-X-OriginatorOrg: intel.com
+Content-Type: multipart/mixed; BOUNDARY="8323328-860166094-1763122538=:1008"
+Content-ID: <8d7e8208-1885-0d8b-a6cf-f1895a519fae@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -185,87 +80,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
+--8323328-860166094-1763122538=:1008
+Content-Type: text/plain; CHARSET=ISO-8859-15
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-ID: <01e8aae0-c24c-7924-0748-50421fa6d7ac@linux.intel.com>
 
-> -----Original Message-----
-> From: Govindapillai, Vinod <vinod.govindapillai@intel.com>
-> Sent: Tuesday, November 11, 2025 6:16 PM
-> To: intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
-> Cc: Govindapillai, Vinod <vinod.govindapillai@intel.com>; Shankar, Uma
-> <uma.shankar@intel.com>; Joshi, Kunal1 <kunal1.joshi@intel.com>; Nikula, =
-Jani
-> <jani.nikula@intel.com>; De Marchi, Lucas <lucas.demarchi@intel.com>; Rop=
-er,
-> Matthew D <matthew.d.roper@intel.com>
-> Subject: [PATCH v2] drm/i915/fbc: Apply wa_15018326506
->=20
-> Disable FBC in bmg as per the wa recommendation.
->=20
-> v2: use the bmg platform instead of a specific stepping
+On Fri, 14 Nov 2025, Alex Benn=E9e wrote:
 
-Acked-by: Uma Shankar <uma.shankar@intel.com>
+> Ilpo J=E4rvinen <ilpo.jarvinen@linux.intel.com> writes:
+>=20
+> > Hi all,
+> >
+> > Thanks to issue reports from Simon Richter and Alex Benn=E9e, I
+> > discovered BAR resize rollback can corrupt the resource tree. As fixing
+> > corruption requires avoiding overlapping resource assignments, the
+> > correct fix can unfortunately results in worse user experience, what
+> > appeared to be "working" previously might no longer do so. Thus, I had
+> > to do a larger rework to pci_resize_resource() in order to properly
+> > restore resource states as it was prior to BAR resize.
+> <snip>
+> >
+> > base-commit: 3a8660878839faadb4f1a6dd72c3179c1df56787
+>=20
+> Ahh I have applied to 6.18-rc5 with minor conflicts and can verify that
+> on my AVA the AMD GPU shows up again and I can run inference jobs
+> against it. So for that case:
+>=20
+> Tested-by: Alex Benn=E9e <alex.bennee@linaro.org>
 
-> Bspec: 74212
-> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_wa.c |  2 ++
-> drivers/gpu/drm/i915/display/intel_display_wa.h |  1 +
->  drivers/gpu/drm/i915/display/intel_fbc.c        | 10 ++++++++++
->  3 files changed, 13 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c
-> b/drivers/gpu/drm/i915/display/intel_display_wa.c
-> index e38e5e87877c..b2e71fa61c0a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_wa.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-> @@ -70,6 +70,8 @@ bool __intel_display_wa(struct intel_display *display, =
-enum
-> intel_display_wa wa,
->  		return DISPLAY_VER(display) =3D=3D 13;
->  	case INTEL_DISPLAY_WA_22014263786:
->  		return IS_DISPLAY_VERx100(display, 1100, 1400);
-> +	case INTEL_DISPLAY_WA_15018326506:
-> +		return display->platform.battlemage;
->  	default:
->  		drm_WARN(display->drm, 1, "Missing Wa number: %s\n", name);
->  		break;
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h
-> b/drivers/gpu/drm/i915/display/intel_display_wa.h
-> index 3644e8e2b724..f648b00cb97d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_wa.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-> @@ -26,6 +26,7 @@ enum intel_display_wa {
->  	INTEL_DISPLAY_WA_16025573575,
->  	INTEL_DISPLAY_WA_14011503117,
->  	INTEL_DISPLAY_WA_22014263786,
-> +	INTEL_DISPLAY_WA_15018326506,
->  };
->=20
->  bool __intel_display_wa(struct intel_display *display, enum intel_displa=
-y_wa wa,
-> const char *name); diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c
-> b/drivers/gpu/drm/i915/display/intel_fbc.c
-> index a1e3083022ee..16cd99db2978 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -1521,6 +1521,16 @@ static int intel_fbc_check_plane(struct
-> intel_atomic_state *state,
->  		return 0;
->  	}
->=20
-> +	/*
-> +	 * wa_15018326506:
-> +	 * Fixes: Underrun during media decode
-> +	 * Workaround: Do not enable FBC
-> +	 */
-> +	if (intel_display_wa(display, 15018326506)) {
-> +		plane_state->no_fbc_reason =3D "Wa_15018326506";
-> +		return 0;
-> +	}
-> +
->  	/* WaFbcTurnOffFbcWhenHyperVisorIsUsed:skl,bxt */
->  	if (intel_display_vtd_active(display) &&
->  	    (display->platform.skylake || display->platform.broxton)) {
-> --
-> 2.43.0
+Thanks for testing! (And saving me the effort of backporting to 6.17 :-))
 
+I'd be interested to see the dmesg with this series applied just to check=
+=20
+there isn't anything else I should still look at (even if it now appears=20
+to work).
+
+You seemed to have only a few io resource assignment failures to occur=20
+during BAR resize which might be the reason the kernel thought rollback=20
+is necessary (so AFAICT, the rollback likely was entirely unnecessary as=20
+the mem resources did assign successfully).
+
+I made the resize to ignore unrelated (reoccuring) io resource failures in=
+=20
+the commit 31af09b3eaf3 ("PCI: Fix failure detection during resource=20
+resize"), but that might not have been backported to 6.15 you took the log=
+=20
+from (in the initial report). So kernel might not even do rollback at all=
+=20
+with 6.18-rc5.
+
+--=20
+ i.
+--8323328-860166094-1763122538=:1008--
