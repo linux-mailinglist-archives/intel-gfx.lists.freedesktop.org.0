@@ -2,58 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DB28C5EE22
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Nov 2025 19:36:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91DB4C64561
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Nov 2025 14:23:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 700BB10E268;
-	Fri, 14 Nov 2025 18:35:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0D7C10E396;
+	Mon, 17 Nov 2025 13:23:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="NUj8JeRA";
+	dkim=pass (1024-bit key; unprotected) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="arM0DeMj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2C8D10E25C;
- Fri, 14 Nov 2025 18:35:58 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 54E3B4172C;
- Fri, 14 Nov 2025 18:35:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14213C19425;
- Fri, 14 Nov 2025 18:35:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1763145358;
- bh=oWD8GTV+Nt3ZDSChcU4v7mGij5MGJoOoxHwMCFXuXA8=;
- h=Date:From:To:Cc:Subject:In-Reply-To:From;
- b=NUj8JeRAJvue2hVfQfL1xMquhbeBz8n0pg9EV+VKjv2aEJkcKPkdyJiHVQjZFgpLP
- qbGqUddaPYUzwwjZ5wNCpe9+o98YW5GodaXsW/JhBz+8SZfkDS7tpcqaVy9XEtSmgV
- jwiYPdmUgPuOR92HVdp9pYc/B/kW8cNSx5Sb+7OFU66kjWHNcEb37kZ2ybylyT6Xle
- QbchwTEsD0Flp9RCXEPuscrMweq2nJrqVYlJ3bfKBr+s3HPuFjyS9NZl3LOlzmcrBx
- Uj9FbktzRB+9LAdFIP4btjaFBfmbi5PB+YgKIKIooxYJxJozM8uUMEV/ha+VjF8D0I
- 2vgnnISFAVVjA==
-Date: Fri, 14 Nov 2025 12:35:56 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Alex =?utf-8?Q?Benn=C3=A9e?= <alex.bennee@linaro.org>
-Cc: Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
- Simon Richter <Simon.Richter@hogyros.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- amd-gfx@lists.freedesktop.org, Bjorn Helgaas <bhelgaas@google.com>,
- David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- linux-pci@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Simona Vetter <simona@ffwll.ch>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>
-Subject: Re: [PATCH v2 00/11] PCI: BAR resizing fix/rework
-Message-ID: <20251114183556.GA2334513@bhelgaas>
+Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com
+ [157.90.84.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28F5810E26F;
+ Fri, 14 Nov 2025 18:43:44 +0000 (UTC)
+Received: from [192.168.42.116] (pd9e597c7.dip0.t-ipconnect.de
+ [217.229.151.199]) (Authenticated sender: wse@tuxedocomputers.com)
+ by mail.tuxedocomputers.com (Postfix) with ESMTPSA id 983CA2FC0055;
+ Fri, 14 Nov 2025 19:43:41 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
+ s=default; t=1763145822;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=wIh2yxRQ6myZOupH3MgrEF6f57VtS9hajQqNYl8br/0=;
+ b=arM0DeMjR4Pa23wxqYQ/czrRnMyTd8G97pRqUlcd1nYHX7DaGbj5OxGL6nmKNQj9+ZmPTj
+ bFxTUip51zrk2hcLEoyd3ihwCHgeGobPvx2r3AdyaNs2v/LfMwC6Zsn0D2uHSReCTOtBwy
+ kw+EJ96EhoJzWvnrtFzOHMqXnzBcQ68=
+Authentication-Results: mail.tuxedocomputers.com;
+ auth=pass smtp.auth=wse@tuxedocomputers.com
+ smtp.mailfrom=wse@tuxedocomputers.com
+Message-ID: <2531c69c-2b56-40db-8344-62a4613b2641@tuxedocomputers.com>
+Date: Fri, 14 Nov 2025 19:43:41 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87jyzsq0nr.fsf@draig.linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/1] drm/i915/display: Add quirk to force backlight type
+ on some TUXEDO devices
+To: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
+ joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ simona@ffwll.ch
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+References: <20250411171756.142777-1-wse@tuxedocomputers.com>
+ <20250411171756.142777-2-wse@tuxedocomputers.com>
+Content-Language: en-US
+From: Werner Sembach <wse@tuxedocomputers.com>
+In-Reply-To: <20250411171756.142777-2-wse@tuxedocomputers.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Mon, 17 Nov 2025 13:23:35 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,31 +67,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 14, 2025 at 12:06:00PM +0000, Alex Bennée wrote:
-> Ilpo Järvinen <ilpo.jarvinen@linux.intel.com> writes:
-> 
-> > Hi all,
-> >
-> > Thanks to issue reports from Simon Richter and Alex Bennée, I
-> > discovered BAR resize rollback can corrupt the resource tree. As fixing
-> > corruption requires avoiding overlapping resource assignments, the
-> > correct fix can unfortunately results in worse user experience, what
-> > appeared to be "working" previously might no longer do so. Thus, I had
-> > to do a larger rework to pci_resize_resource() in order to properly
-> > restore resource states as it was prior to BAR resize.
+Am 11.04.25 um 17:55 schrieb Werner Sembach:
 > <snip>
-> >
-> > base-commit: 3a8660878839faadb4f1a6dd72c3179c1df56787
-> 
-> Ahh I have applied to 6.18-rc5 with minor conflicts and can verify that
-> on my AVA the AMD GPU shows up again and I can run inference jobs
-> against it. So for that case:
-> 
-> Tested-by: Alex Bennée <alex.bennee@linaro.org>
+> -	switch (display->params.enable_dpcd_backlight) {
+> +	enable_dpcd_backlight = display->params.enable_dpcd_backlight;
+> +	if (enable_dpcd_backlight == INTEL_DP_AUX_BACKLIGHT_AUTO &&
+> +	    intel_has_quirk(display, QUIRK_AUO_12701_21229_ENABLE_DPCD_BACKLIGHT)) {
+> +		pnl_id = drm_edid_get_panel_id(panel->fixed_edid);
+> +		if (pnl_id == drm_edid_encode_panel_id('A', 'U', 'O', 0x319d) ||
+> +		    pnl_id == drm_edid_encode_panel_id('A', 'U', 'O', 0x52ed))
 
-Thanks, Alex!  I added your Tested-by to this series, except for these
-which I don't think are relevant for you:
+So I looked into this patch again to build a v2 and found "static const struct 
+intel_dpcd_quirk intel_dpcd_quirks[]" in 
+drivers/gpu/drm/i915/display/intel_quirks.c which sounds like it can select 
+quirks based on panels, making this pnl_id check obsolete.
 
-  drm/xe: Remove driver side BAR release before resize
-  drm/i915: Remove driver side BAR release before resize
+But I now wasted half a day trying to find out how I can get the SINK_OUI and 
+SINK_DEVICE_ID out of a device.
 
+Is there some way to read that from sysfs or debugfs?
+
+> <snip>
