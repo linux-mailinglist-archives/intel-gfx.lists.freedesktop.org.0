@@ -2,67 +2,193 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD823C5CAB9
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Nov 2025 11:50:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0104FC5CC67
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Nov 2025 12:11:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B83DC10EA3A;
-	Fri, 14 Nov 2025 10:50:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A02310EA40;
+	Fri, 14 Nov 2025 11:11:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nu+HoEA1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UWDSAk4m";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1968D10EA37;
- Fri, 14 Nov 2025 10:50:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27F1410EA3F;
+ Fri, 14 Nov 2025 11:11:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763117411; x=1794653411;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=t5GPbNuiZnVYZMKk4/no/WvqklymJuMiguXnLXGdvbM=;
- b=Nu+HoEA1b08w5GQU4kFv45ZlOd9Na2NcBvm25X9L1mt3n1s490JvYj0w
- x2hn16A8gwCo/bBaKJqW3IPI5KM+i63juv6diqDeTbzKrSe5S3cLr1MB1
- UIO35MFGIO3mcM43GDlC4LC++pSyEBLwF8Izdjr5CELBtoOK4WS3G+HfC
- WqdahzjOwSCbzQM/FRtFqcHZHSM+XLnkhxzEIMv/X+a/lHbEbqjPsIcwP
- AuSNKLpfOrz/7Dl1nJMrWOVMRsn4vV99J02u/H3xRmlmSIfcwR5HxMorE
- yCeVNJC+Gon6t0hQUy9Vjyeble8egcw9ckHtmQgzY5DnbKtNLI+rryD5M w==;
-X-CSE-ConnectionGUID: W7mk+H/TT5aZH+70+x2+eA==
-X-CSE-MsgGUID: XKeXJ4OVSNqLAmxi92+aJg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="65245552"
-X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; d="scan'208";a="65245552"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2025 02:50:10 -0800
-X-CSE-ConnectionGUID: yIB268TLRw6nGQOLMyfrzA==
-X-CSE-MsgGUID: eRDdfUSwThKd+UGCmC7vMg==
+ t=1763118711; x=1794654711;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=Fr/ktlUYqLzqJTnx00IGhG0nFr4th3+LEx1N0vuJZBQ=;
+ b=UWDSAk4mb/halRzLVsnrKZPCKyblFVjnPIoAZd5JPu06F5KnopgUsJci
+ X1oY8b8F9H7xIcUWK5jqjECtHhp63wwFstiNJC2zNe2/mTiDmavk20NYX
+ IBEa3B/xyLYm/JKUbD9+JyBQfZMgeb73NyAN4AMMmdDOAiAIhne5Yr4Lj
+ 2zjMA7LYT2iYHud66jTnk/+pZAyv9JF8dYWWkrNPofKwpIBoOO0lZkbzz
+ Wvhj+N1uXztmZHybz2P+qiMqP5kdMqfzaB9p4miZR2dgPLEmbOYOFt1gR
+ uqCN1DaqRF1HK+Gc+Tn7B03V3FtdbX9iKIqUvfuS1qX3KjoUD7dzddNJy g==;
+X-CSE-ConnectionGUID: tLTlAcEjQeuDWUJCIDMVZw==
+X-CSE-MsgGUID: RYddNbJTS7el4dO6iph52w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="68836549"
+X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; d="scan'208";a="68836549"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2025 03:11:51 -0800
+X-CSE-ConnectionGUID: pQLprVxESraIm+AjSS9GwQ==
+X-CSE-MsgGUID: /9phf0XGRtST3LshDRkquQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; d="scan'208";a="194735714"
-Received: from abityuts-desk.ger.corp.intel.com (HELO fedora)
- ([10.245.245.253])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2025 02:50:06 -0800
-Date: Fri, 14 Nov 2025 11:49:57 +0100
-From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-xe-next
-Message-ID: <aRcJOrisG2qPbucE@fedora>
+X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; d="scan'208";a="189953598"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2025 03:11:51 -0800
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Fri, 14 Nov 2025 03:11:50 -0800
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27 via Frontend Transport; Fri, 14 Nov 2025 03:11:50 -0800
+Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.59) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Fri, 14 Nov 2025 03:11:50 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=uPbn1CwJXmMTgPS39gd/VqIT2nysqnWrBYJ4+ZivHgBT7ha+CByFzgD6radETFdf3FQykdEdIK0jXgGqFZb3d94a2dOFlpgZ7xWBEFR+UsBZutoM7GUlcOsE10ROdZI7ul7DQ57Rxs4h75g7IjkGzH22B9xjQ9qQuXF/STjTPp3vHhdsAkynsIiuytQJs9eFK++PKQ/4AOyM+DP/pElDi1FmtAJ9nNBTB8GBDmPaMaqr0MGtv/1VY3jLACfTLJIu2ZYkP5VoNHCAZppqX84mwLMlhVF+7ow2BuTmAHGR6Jow9rKHIjKxhbfNNHLjGwcI9c5nqdB7rGehjMW1nGUE4g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Fr/ktlUYqLzqJTnx00IGhG0nFr4th3+LEx1N0vuJZBQ=;
+ b=rM/JtkTPR4WUqp6ylmD1csH13JkkRAadIls+1ixlfOa9zMPWOferpTomGKaPrzOUTE1SGoZLJns0igG30Ox30T9Ps7YPkaRnWJt4sF7j9hky8ZPMTowmDn2781tcptCaBGqxtO04jWjumkxSHSQOx00Kw54x1MKDcYCVgUtYYCUdDp9MOUliCNl9+PVIU0j2hTAuDIUD0y6YJ2AYfeQ5/HPHSN1Wu2s7n4Z1mLIwpJ14S6MS+85CbEfjxnDs40Z3M4HzagxSqxB+LE6PXHaPtXoKiWAwJdwBk3PwzoBqbIVW9UwZ6oN99R84AO8RmNuATftuqMnlOrzDdZvQ7JnZMw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DS4PPF69154114F.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::28) by DM4PR11MB6501.namprd11.prod.outlook.com
+ (2603:10b6:8:88::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.17; Fri, 14 Nov
+ 2025 11:11:41 +0000
+Received: from DS4PPF69154114F.namprd11.prod.outlook.com
+ ([fe80::6aaa:cb72:c6c6:5720]) by DS4PPF69154114F.namprd11.prod.outlook.com
+ ([fe80::6aaa:cb72:c6c6:5720%7]) with mapi id 15.20.9320.018; Fri, 14 Nov 2025
+ 11:11:41 +0000
+From: "Kahola, Mika" <mika.kahola@intel.com>
+To: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+CC: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>, "Shankar, Uma"
+ <uma.shankar@intel.com>, "Joshi, Kunal1" <kunal1.joshi@intel.com>, "Nikula,
+ Jani" <jani.nikula@intel.com>, "De Marchi, Lucas" <lucas.demarchi@intel.com>, 
+ "Roper, Matthew D" <matthew.d.roper@intel.com>
+Subject: RE: [PATCH v2] drm/i915/fbc: Apply wa_15018326506
+Thread-Topic: [PATCH v2] drm/i915/fbc: Apply wa_15018326506
+Thread-Index: AQHcUwk4ER0O/gp0cEOE2ObmFjN7R7TyCD2w
+Date: Fri, 14 Nov 2025 11:11:40 +0000
+Message-ID: <DS4PPF69154114F6A219010EF7F227D5E68EFCAA@DS4PPF69154114F.namprd11.prod.outlook.com>
+References: <20251111124606.402380-1-vinod.govindapillai@intel.com>
+In-Reply-To: <20251111124606.402380-1-vinod.govindapillai@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS4PPF69154114F:EE_|DM4PR11MB6501:EE_
+x-ms-office365-filtering-correlation-id: d18cfa81-2dcf-44f8-85cf-08de236e9661
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|38070700021|7053199007; 
+x-microsoft-antispam-message-info: =?utf-8?B?Uk9VbXQ0VHJXN055QWIweFlIR1JXVDBOMGxUeEtIclRnR1Y2VEhwNUNybHd4?=
+ =?utf-8?B?bHBTdHg0K1ZrU2dac0NFWGZaMTdDeVpwbWxVK0tvbytqUnRJM0Y2eVFNQVYw?=
+ =?utf-8?B?dmYvNU5zb250MmtjbVlvb2xEaDVvV2NlUURWQjJ1YS9QQmtOUEkxUnY1NStU?=
+ =?utf-8?B?b0Rzd0FvMEpsMUR6d1JWb0pDd0w2dWovcStLeEthRkFSOFMySkZFYm1ZTEd4?=
+ =?utf-8?B?WG5zaHRpUFQxOUxGeThxclNEbW5tTkRjT3EzOWJ6OWJ6WnVPMTBWVGJLOXp5?=
+ =?utf-8?B?NGpGTHltaTZEUmh4YXhyQXFmZTUxWVdHZ0srUnFBendnRHdqS2o1aXdvMTJ0?=
+ =?utf-8?B?ZXRON0NXOW1jeUJMOWEwM1BxQnNnVDhLUGZuRVRDWDdFc0ZuSFJtVzVidmph?=
+ =?utf-8?B?VnZtRnJmTTNFZWZGaUpCSWRuTEtjTUVTZlJJN010dG5OdHFnZzFRUmxFTFN2?=
+ =?utf-8?B?d2F2Y1dqdFJJMm5iWVdjbzB4M0Q5dGRmai9LVnNSR05oeVArWERGd3gvT3Vq?=
+ =?utf-8?B?elc2K3pLVEZmbzZxeFV3WGtKZVhFOUoydjZ5NlZVSEp4REFQY21LR3ZYK0hP?=
+ =?utf-8?B?aWtwRUdtUHpFdGhZQ0ZFRDNERExHbXFvQjBjaGNBSEY1N21WRy84OCs2OFdw?=
+ =?utf-8?B?bzIxdmlxb1dnVC95SktLaHVJQWMzNWhZY2lURFNrYUlqSlZLMUJxRW5ORmVO?=
+ =?utf-8?B?UTZ0aXl3NHBiMEhPdXZKREE0MHNQbTZiNkNoemVDRU0wQWk3VmNCeENETnVq?=
+ =?utf-8?B?R0MwUnNETFVNWTNBMFh1OUdTaEltSlRvV0pveUI3NkJYSU5yK2RtTGRodk9P?=
+ =?utf-8?B?SWJjOE9HYUM0anZUVitxNTV1OENUZFVhT0tzKzIwYnI3ODdzRko1UnhtZFVl?=
+ =?utf-8?B?dE1UeGl4bjdxZlUrbXdGQitQUm5tTzk5bFlrVzA1ejh6T2E0UFdpb0RLUEFj?=
+ =?utf-8?B?MlRDdXhlN0xGYnF6dW80SFZtVGxoMi83WktLTHFiWTRLK2ZmczRLMnQyTTlV?=
+ =?utf-8?B?ZXpNaE9DbjlrUmozWGNiaWVOeHFQTFRmOXRlTlQyc0JzRVVxMmFoaWxaWWZk?=
+ =?utf-8?B?R0JKL1l5WEx5Z3E1VDJxZ1FjaldDc2Z1dFRvZFpCRmpEbE9KV21VNVJZN1ZF?=
+ =?utf-8?B?ak55dWdRZ0Nua3VFTHdzSnFpWXJOWmtDdCtVK0pNdStBMTJ4RU5Lb2JDNU4w?=
+ =?utf-8?B?YnVXYzhEeXdyU1JraUtGSXZ6Q21PVmYvVzNoOWtuT00vKzFyWVdURVhhQ3NR?=
+ =?utf-8?B?NTA4WHhEZ1F5WEhYMndTU0p0Vi81QnRHemRVTldqdEkvankxUU9TZit4cWY0?=
+ =?utf-8?B?dHMxS2J6Y3g5MGpPc2U2MnRVUGNDWFoxR3RmQnI4MGNXQ29yaXJsWkJFK0RD?=
+ =?utf-8?B?bFIwOGgzMHNxVVlRYTYzQWJPUnZ3eTdlVTdIbkdyMEhBNUhTaTc1REtPMHlh?=
+ =?utf-8?B?ZUd2YlN2cGhkSm9oQU1vQTFYQTNtWTB0OHJlSlNDYy9Xc0lyZjc2OW1xMFQz?=
+ =?utf-8?B?bTV1Nkp2R21uSW1yR2hVR1Q2b0cwaThhMldsejl6eHpIVjhuSEZ0YTQzMEtN?=
+ =?utf-8?B?Sjk4di9Pb1dManJFaVAvb2xybXFGeml5eXpQK201c3VXeTJSZnE1emZTNGl5?=
+ =?utf-8?B?aEdjdjdPbmIra0VKeHJPQVBZaVBIYlE4WGd0Y3YyWHpYL2xuNXFUdVFZYmNB?=
+ =?utf-8?B?aFVpZFgyR0Zwc3JnUm5ITmpFSEhxSmg1NU9zSTA5dDhZK0VPb1hXK2VNVnUz?=
+ =?utf-8?B?K2RvNDhDeDNjY1lnTzdydEFkNlFUY1JVWktZMzBTN0xvSVk5VzVwTXI5cTdB?=
+ =?utf-8?B?SWh6dXphREtoazIyMVgySTR5aW9UWkdWSTNIUWhKMC8yQVBZa3p4WFJqRE9Y?=
+ =?utf-8?B?NUZ3WmhOeGRmSWpObVo4SVdZRWNET0FrRWYwc2E3a29vTkxqRFdLQjR5Tnds?=
+ =?utf-8?B?eEhKdHFZcU9oN3I4TmFxQWptUklQR2NiY3JkdFA4VGY0aUFGNHlxVVRXU1Zr?=
+ =?utf-8?B?bnN5QzJiUE9GOGc0T2FNREJ0ZzRmeTE0a0ExTFBhaVdkS1RoWXJZMlRNUVRy?=
+ =?utf-8?Q?4FBjdE?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS4PPF69154114F.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(38070700021)(7053199007); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?TnZvZVN0U1FENHc4K01hWDFadU9WY052dTUrcDRocnpUYnY4ZXRVOXR4Z2p0?=
+ =?utf-8?B?cHBKSjZTUUdaTXhkUFFkNndzeTVtNmZUbUU3eDA3K1dINEZlOFZ1ZG5tVml2?=
+ =?utf-8?B?MXpNNEd6TWZoSHZzamFsTWlQUTRNSFhFc1ZlQzFGVVZiWG00Z1psWENQcVAr?=
+ =?utf-8?B?M0JVSWZCeVE5a1d0U2FWeWxBd29hUDI0Rk02am1sbDA1SVVZdGlQMWpMdzd3?=
+ =?utf-8?B?RTBHWi95MVhpMG4yOGJDVXMydFppU25pT0djWm9tUzlyMk0wUUxqTFRjd2N1?=
+ =?utf-8?B?VUZMUzY5VlRhSHl1dnd2SGE5bElIZG9TbmdsS1NjUlE0UEpkd3RJRDhiK2xD?=
+ =?utf-8?B?QkZmczc2Z09iN2E0OHFmWEVQNTRHNUNVby9pWW5CQnpYaFVaRGlvSWdSNGVV?=
+ =?utf-8?B?SXhPM21LSVRsQi9nQzJwMmo0TzgrYWxBdlVieTRqK2hkdFZhL1QwUUV1aHFw?=
+ =?utf-8?B?M0xlM1QxcWxpWXJLMEExZC84MkR3a3ZXRmEveDduV1lLdmZhM1lpcU1ZdUsx?=
+ =?utf-8?B?RFFJa1Z3NzlUd0w4ak1UME1TbUZMSVRzRG9pNEVKeW1zdndXcmdNNkxNZWND?=
+ =?utf-8?B?NXZCWm1OaGNjNWpvbDh6NGZOSGg3NWlWYXlEYVhKVHFxb2VwT3c4N3lBN0Yw?=
+ =?utf-8?B?MGRCREh5R2NjUlQwNW1YRnNpaVlvSnF4dTNJbWY2MmZOWnR2eHpRZEloZ1ps?=
+ =?utf-8?B?VVpERjFYc2NEVlVsdVMrRzZBSjBONXo5WUFEakJEdFJOL2ZBK21LVEVzUngx?=
+ =?utf-8?B?dGFraHZiaE9jN09mV0dmdjJ3L2oxZ3c0WXVNdUxacmNocWdaMUVYZCswWWQw?=
+ =?utf-8?B?bysrSmFaRXdtci9ReHRhSDRiOHpkREhCNkJjSmRXNjhkOHVaTGpRZEE5L1cx?=
+ =?utf-8?B?ODlPNG5lalo0clRGNFpwdDB6WW4rYjhxc2tRVktvRHh6RnRZbWpORnFYSGkr?=
+ =?utf-8?B?UCtaREx6SXJuQ2tDcFVWbUtBR1gyTXpYS1BmdHc5NGs2d2JwZTdRa1lkRzEr?=
+ =?utf-8?B?a2VpMGcvMlJ5dFJacXowdGtWdExUcmU2ZVVLQUdXakZLQWh1VGE1N1lyY1I0?=
+ =?utf-8?B?TGlyQW51c0pJcEFra0U3T3FNbVhtSGRHYjA2RHJtb2psQlUzTmpiTkNWVFVR?=
+ =?utf-8?B?TVpPZEUvTUFtZCtsdmxJRUlXMHdhVzQvSWxlcDlsRWlQQm5vcmZsQURmUU45?=
+ =?utf-8?B?UlFDc2l6ZVRyRkF4YWJKZnlJUExUYkwybkl2dHRKeDMxOWxxa0VuazJVb2Ro?=
+ =?utf-8?B?SDg1UVFIcTd5dTNtSmVYcEZER01Pd0lJOHVwNG5zcno3dkI1RWh1cVEwM1p0?=
+ =?utf-8?B?bk5MNlZMQXpTNWtVRjFTOFJyWkJxM203Sm5qTXZHYVI2ay8vL3NrYlFrRGg0?=
+ =?utf-8?B?Y0x3M3dRY1Q4endzYUNnSE5hbm44R3FBUmhxVUhJbklsWjZmVlU0VVBSYUts?=
+ =?utf-8?B?Q3p5RGpWY3JjK0ljUVhRbVZaR3BZZWcxNXFnWklhMnhqU0kzNm4rRFhlLzgz?=
+ =?utf-8?B?NGV5S052cVJJOVNpa3B0WjJjZThQaElrd2ZkdVN2NWplc09wZ0ZCT3NnMnhj?=
+ =?utf-8?B?RlNMejI4bnBKL3FsWUUwMnQvWk8xc3JlOUVmdEpFRW5tblIrNXFQcHZ2dUp2?=
+ =?utf-8?B?UUdqWXNZSFA5aWM5aUUreHBBcjNSTTRKbkF1TG9kb0s1OFh1R1A1NVpmZGdI?=
+ =?utf-8?B?cVJrWXZwMno4by9sUkZ2aVZ2bzlyaFVRRFF3aXdFcFhYZGJVdGNMWloza1g1?=
+ =?utf-8?B?TmpPcWFqN2MxcXZpN3pFT2hscG83bDJrLzBUM1Jkd0tZTXlIR1IyWCtVcjNR?=
+ =?utf-8?B?WmwvSXVVZEpJbVhXZXhPZUR3bVVkNnIwUWtjTjBvWWV6QTM4bHhSeWZOZ3JW?=
+ =?utf-8?B?ZDJXSzd0Yks2cmNmQXF3M01LakZvNjVXWHhUdDBhc2taUHZDT214NE9zQUhU?=
+ =?utf-8?B?YUxFYkhLU1Y5cDFrZmdLRnUyQmpxZ0Yxd1dSeGJUazM2WENsYnZPeGs1MjBn?=
+ =?utf-8?B?a3RKdEZYenhWK0RIMmc4emZjTnZDa0FDdVlJMWJlZG9iV2I3TmZYb0FGYkZo?=
+ =?utf-8?B?Njg1VHVFdzRmTVpnZEthMDFreW1DMDZvMU9kVXh2UVBGSUdaZ291YUh4VDJ6?=
+ =?utf-8?Q?tEht6FM9jzKShNhsXbyTPRAco?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS4PPF69154114F.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d18cfa81-2dcf-44f8-85cf-08de236e9661
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Nov 2025 11:11:40.8907 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: HEQU+YVifxpdMMgHFu2jpKd6qcn/19NveCdmR3t65VtP/xnI4kiy6mA7Ei7cJbS8l/F2ka5RoVjDD3O0L13ZIA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6501
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,341 +204,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Simona
-
-This is the last feature drm-xe-next PR towards 6.19.
-
-Note that the PR of 25-11-05 was never pulled, so this one
-incorporates that one as well. Please let me know if you want
-this done another way.
-
-Thanks,
-Thomas
-
-drm-xe-next-2025-11-14:
-UAPI Changes:
-
-Limit number of jobs per exec queue (Shuicheng)
-Add sriov_admin sysfs tree (Michal)
-
-Driver Changes:
-
-Fix an uninitialized value (Thomas)
-Expose a residency counter through debugfs (Mohammed Thasleem)
-Workaround enabling and improvement (Tapani, Tangudu)
-More Crescent Island-specific support (Sk Anirban, Lucas)
-PAT entry dump improvement (Xin)
-Inline gt_reset in the worker (Lucas)
-Synchronize GT reset with device unbind (Balasubramani)
-Do clean shutdown also when using flr (Jouni)
-Fix serialization on burst of unbinds (Matt Brost)
-Pagefault Refactor (Matt Brost)
-Remove some unused code (Gwan-gyeong)
-Avoid TOCTOU when montoring throttle reasons (Lucas)
-Add/extend workaround (Nitin)
-SRIOV migration work / plumbing (Michal Wajdeczko, Michal Winiarski, Lukasz)
-Drop debug flag requirement for VF resource fixup
-Fix MTL vm_max_level (Rodrigo)
-Changes around TILE_ADDR_RANGE for platform compatibility
-(Fei, Lucas)
-Add runtime registers for GFX ver >= 35 (Piotr)
-Kerneldoc fix (Kriish)
-Rework pcode error mapping (Lucas)
-Allow lockdown the PF (Michal)
-Eliminate GUC code caching of some frequency values (Sk)
-Improvements around forcewake referencing (Matt Roper)
-The following changes since commit 4504e780689245f01bee6ee4c19c74051bd87593:
-
-  drm/xe/pf: Access VF's register using dedicated MMIO view (2025-10-27 17:22:18 +0100)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-2025-11-14
-
-for you to fetch changes up to 6bcb180f6f4585554cefbe8c412aa8879b15f07a:
-
-  drm/xe/oa: Store forcewake reference in stream structure (2025-11-13 14:05:51 -0800)
-
-----------------------------------------------------------------
-UAPI Changes:
-
-Limit number of jobs per exec queue (Shuicheng)
-Add sriov_admin sysfs tree (Michal)
-
-Driver Changes:
-
-Fix an uninitialized value (Thomas)
-Expose a residency counter through debugfs (Mohammed Thasleem)
-Workaround enabling and improvement (Tapani, Tangudu)
-More Crescent Island-specific support (Sk Anirban, Lucas)
-PAT entry dump improvement (Xin)
-Inline gt_reset in the worker (Lucas)
-Synchronize GT reset with device unbind (Balasubramani)
-Do clean shutdown also when using flr (Jouni)
-Fix serialization on burst of unbinds (Matt Brost)
-Pagefault Refactor (Matt Brost)
-Remove some unused code (Gwan-gyeong)
-Avoid TOCTOU when montoring throttle reasons (Lucas)
-Add/extend workaround (Nitin)
-SRIOV migration work / plumbing (Michal Wajdeczko, Michal Winiarski, Lukasz)
-Drop debug flag requirement for VF resource fixup
-Fix MTL vm_max_level (Rodrigo)
-Changes around TILE_ADDR_RANGE for platform compatibility
-(Fei, Lucas)
-Add runtime registers for GFX ver >= 35 (Piotr)
-Kerneldoc fix (Kriish)
-Rework pcode error mapping (Lucas)
-Allow lockdown the PF (Michal)
-Eliminate GUC code caching of some frequency values (Sk)
-Improvements around forcewake referencing (Matt Roper)
-
-----------------------------------------------------------------
-Balasubramani Vivekanandan (2):
-      drm/xe/gt: Synchronize GT reset with device unbind
-      drm/xe/guc: Synchronize Dead CT worker with unbind
-
-Fei Yang (1):
-      drm/xe: Use SG_TILE_ADDR_RANGE instead of TILE_ADDR_RANGE
-
-Gwan-gyeong Mun (1):
-      drm/xe: Remove never used code in xe_vm_create()
-
-Jouni Högander (1):
-      drm/xe: Do clean shutdown also when using flr
-
-Kriish Sharma (1):
-      drm/xe: fix kernel-doc function name mismatch in xe_pm.c
-
-Lucas De Marchi (10):
-      drm/xe/gt_throttle: Tidy up perf reasons reading
-      drm/xe/gt_throttle: Always read and mask
-      drm/xe/gt_throttle: Add throttle_to_gt()
-      drm/xe/gt_throttle: Tidy up attribute definition
-      drm/xe: Improve freq and throttle documentation
-      drm/xe/gt_throttle: Drop individual show functions
-      drm/xe: Inline gt_reset in the worker
-      drm/xe/gt_throttle: Avoid TOCTOU when monitoring reasons
-      drm/xe/vram: Move forcewake down to get_flat_ccs_offset()
-      drm/xe/pcode: Rework error mapping
-
-Lukasz Laguna (2):
-      drm/xe/pf: Add helper to retrieve VF's LMEM object
-      drm/xe/migrate: Add function to copy of VRAM data in chunks
-
-Matt Roper (3):
-      drm/xe/forcewake: Improve kerneldoc
-      drm/xe/eustall: Store forcewake reference in stream structure
-      drm/xe/oa: Store forcewake reference in stream structure
-
-Matthew Brost (13):
-      drm/xe: Enforce correct user fence signaling order using
-      drm/xe: Attach last fence to TLB invalidation job queues
-      drm/xe: Decouple bind queue last fence from TLB invalidations
-      drm/xe: Skip TLB invalidation waits in page fault binds
-      drm/xe: Disallow input fences on zero batch execs and zero binds
-      drm/xe: Remove last fence dependency check from binds and execs
-      drm/xe: Stub out new pagefault layer
-      drm/xe: Implement xe_pagefault_init
-      drm/xe: Implement xe_pagefault_reset
-      drm/xe: Implement xe_pagefault_handler
-      drm/xe: Implement xe_pagefault_queue_work
-      drm/xe: Add xe_guc_pagefault layer
-      drm/xe: Remove unused GT page fault code
-
-Michal Wajdeczko (22):
-      drm/xe/pf: Prepare sysfs for SR-IOV admin attributes
-      drm/xe/pf: Take RPM during calls to SR-IOV attr.store()
-      drm/xe/pf: Add _locked variants of the VF EQ config functions
-      drm/xe/pf: Add _locked variants of the VF PT config functions
-      drm/xe/pf: Allow change PF and VFs EQ/PT using sysfs
-      drm/xe/pf: Relax report helper to accept PF in bulk configs
-      drm/xe/pf: Fix signature of internal config helpers
-      drm/xe/pf: Add functions to bulk configure EQ/PT on GT
-      drm/xe/pf: Add functions to bulk provision EQ/PT
-      drm/xe/pf: Allow bulk change all VFs EQ/PT using sysfs
-      drm/xe/pf: Add functions to provision scheduling priority
-      drm/xe/pf: Allow bulk change all VFs priority using sysfs
-      drm/xe/pf: Allow change PF scheduling priority using sysfs
-      drm/xe/pf: Promote xe_pci_sriov_get_vf_pdev
-      drm/xe/pf: Add sysfs device symlinks to enabled VFs
-      drm/xe/pf: Allow to stop the VF using sysfs
-      drm/xe/pf: Add documentation for sriov_admin attributes
-      drm/xe/pf: Use migration-friendly context IDs auto-provisioning
-      drm/xe/pf: Use migration-friendly doorbells auto-provisioning
-      drm/xe/tests: Add KUnit tests for PF fair provisioning
-      drm/xe/pf: Allow to lockdown the PF using custom guard
-      drm/xe/pf: Use migration-friendly GGTT auto-provisioning
-
-Michał Winiarski (23):
-      drm/xe/vf: Enable VF resource fixup unconditionally
-      drm/xe/pf: Remove GuC version check for migration support
-      drm/xe: Move migration support to device-level struct
-      drm/xe/pf: Convert control state to bitmap
-      drm/xe/pf: Add save/restore control state stubs and connect to debugfs
-      drm/xe/pf: Add data structures and handlers for migration rings
-      drm/xe/pf: Add helpers for migration data packet allocation / free
-      drm/xe/pf: Add support for encap/decap of bitstream to/from packet
-      drm/xe/pf: Add minimalistic migration descriptor
-      drm/xe/pf: Expose VF migration data size over debugfs
-      drm/xe: Add sa/guc_buf_cache sync interface
-      drm/xe: Allow the caller to pass guc_buf_cache size
-      drm/xe/pf: Increase PF GuC Buffer Cache size and use it for VF migration
-      drm/xe/pf: Remove GuC migration data save/restore from GT debugfs
-      drm/xe/pf: Don't save GuC VF migration data on pause
-      drm/xe/pf: Switch VF migration GuC save/restore to struct migration data
-      drm/xe/pf: Handle GuC migration data as part of PF control
-      drm/xe/pf: Add helpers for VF GGTT migration data handling
-      drm/xe/pf: Handle GGTT migration data as part of PF control
-      drm/xe/pf: Handle MMIO migration data as part of PF control
-      drm/xe/pf: Handle VRAM migration data as part of PF control
-      drm/xe/pf: Add wait helper for VF FLR
-      drm/intel/bmg: Allow device ID usage with single-argument macros
-
-Mohammed Thasleem (1):
-      drm/xe/xe_debugfs: Expose G7 package state residency counter through debugfs
-
-Nitin Gote (1):
-      drm/xe/xe3lpg: Extend Wa_15016589081 for xe3lpg
-
-Piotr Piórkowski (1):
-      drm/xe/pf: Add runtime registers for GFX ver >= 35
-
-Rodrigo Vivi (1):
-      drm/xe: Fix MTL vm_max_level
-
-Shuicheng Lin (1):
-      drm/xe: Limit number of jobs per exec queue
-
-Sk Anirban (3):
-      drm/xe/cri: Add new performance limit reasons bits
-      drm/xe/guc: Eliminate RPe caching for SLPC parameter handling
-      drm/xe/guc: Eliminate RPa frequency caching
-
-Tangudu Tilak Tirumalesh (1):
-      drm/xe/xe3: Extend wa_14023061436
-
-Tapani Pälli (1):
-      drm/xe/xe3: Apply wa_14024997852
-
-Thomas Hellström (1):
-      drm/xe: Fix uninitialized return value from xe_validation_guard()
-
-Xin Wang (1):
-      drm/xe: highlight reserved PAT entries in dump output
-
- .../ABI/testing/sysfs-driver-intel-xe-sriov        |  159 +++
- Documentation/gpu/xe/xe_gt_freq.rst                |    3 +
- drivers/gpu/drm/xe/Makefile                        |    6 +-
- drivers/gpu/drm/xe/regs/xe_gt_regs.h               |   14 +-
- drivers/gpu/drm/xe/regs/xe_pmt.h                   |    1 +
- drivers/gpu/drm/xe/regs/xe_regs.h                  |    2 +
- .../gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c |  208 ++++
- drivers/gpu/drm/xe/xe_debugfs.c                    |    1 +
- drivers/gpu/drm/xe/xe_device.c                     |   23 +-
- drivers/gpu/drm/xe/xe_device_types.h               |   11 +
- drivers/gpu/drm/xe/xe_eu_stall.c                   |    8 +-
- drivers/gpu/drm/xe/xe_exec.c                       |   14 +-
- drivers/gpu/drm/xe/xe_exec_queue.c                 |  124 ++-
- drivers/gpu/drm/xe/xe_exec_queue.h                 |   23 +-
- drivers/gpu/drm/xe/xe_exec_queue_types.h           |   17 +
- drivers/gpu/drm/xe/xe_force_wake_types.h           |   26 +-
- drivers/gpu/drm/xe/xe_ggtt.c                       |  104 ++
- drivers/gpu/drm/xe/xe_ggtt.h                       |    3 +
- drivers/gpu/drm/xe/xe_ggtt_types.h                 |    2 +
- drivers/gpu/drm/xe/xe_gt.c                         |   44 +-
- drivers/gpu/drm/xe/xe_gt_freq.c                    |   30 +-
- drivers/gpu/drm/xe/xe_gt_pagefault.c               |  679 ------------
- drivers/gpu/drm/xe/xe_gt_pagefault.h               |   19 -
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c         |  351 +++++-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h         |   16 +
- drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c        |  650 +++++++++++-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_control.h        |   10 +
- drivers/gpu/drm/xe/xe_gt_sriov_pf_control_types.h  |   34 +-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c        |   47 -
- drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c      | 1112 +++++++++++++++-----
- drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.h      |   46 +-
- .../gpu/drm/xe/xe_gt_sriov_pf_migration_types.h    |   34 +-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c        |   21 +-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h          |    5 +-
- drivers/gpu/drm/xe/xe_gt_throttle.c                |  375 +++----
- drivers/gpu/drm/xe/xe_gt_types.h                   |   65 --
- drivers/gpu/drm/xe/xe_guard.h                      |  119 +++
- drivers/gpu/drm/xe/xe_guc.c                        |   13 +-
- drivers/gpu/drm/xe/xe_guc_buf.c                    |   57 +-
- drivers/gpu/drm/xe/xe_guc_buf.h                    |    2 +
- drivers/gpu/drm/xe/xe_guc_ct.c                     |    9 +-
- drivers/gpu/drm/xe/xe_guc_pagefault.c              |   95 ++
- drivers/gpu/drm/xe/xe_guc_pagefault.h              |   15 +
- drivers/gpu/drm/xe/xe_guc_pc.c                     |  100 +-
- drivers/gpu/drm/xe/xe_guc_pc_types.h               |    4 -
- drivers/gpu/drm/xe/xe_migrate.c                    |  142 ++-
- drivers/gpu/drm/xe/xe_migrate.h                    |   16 +
- drivers/gpu/drm/xe/xe_oa.c                         |   54 +-
- drivers/gpu/drm/xe/xe_oa_types.h                   |   11 +
- drivers/gpu/drm/xe/xe_pagefault.c                  |  445 ++++++++
- drivers/gpu/drm/xe/xe_pagefault.h                  |   19 +
- drivers/gpu/drm/xe/xe_pagefault_types.h            |  136 +++
- drivers/gpu/drm/xe/xe_pat.c                        |   15 +-
- drivers/gpu/drm/xe/xe_pat.h                        |    5 +
- drivers/gpu/drm/xe/xe_pci.c                        |    2 +-
- drivers/gpu/drm/xe/xe_pci_sriov.c                  |   62 +-
- drivers/gpu/drm/xe/xe_pci_sriov.h                  |    1 +
- drivers/gpu/drm/xe/xe_pcode.c                      |   40 +-
- drivers/gpu/drm/xe/xe_pcode_api.h                  |    6 -
- drivers/gpu/drm/xe/xe_pm.c                         |    2 +-
- drivers/gpu/drm/xe/xe_pt.c                         |   80 +-
- drivers/gpu/drm/xe/xe_reg_whitelist.c              |    7 +
- drivers/gpu/drm/xe/xe_sa.c                         |   21 +
- drivers/gpu/drm/xe/xe_sa.h                         |    1 +
- drivers/gpu/drm/xe/xe_sched_job.c                  |   19 +-
- drivers/gpu/drm/xe/xe_sched_job.h                  |    1 -
- drivers/gpu/drm/xe/xe_sriov_packet.c               |  520 +++++++++
- drivers/gpu/drm/xe/xe_sriov_packet.h               |   30 +
- drivers/gpu/drm/xe/xe_sriov_packet_types.h         |   75 ++
- drivers/gpu/drm/xe/xe_sriov_pf.c                   |  107 ++
- drivers/gpu/drm/xe/xe_sriov_pf.h                   |    4 +
- drivers/gpu/drm/xe/xe_sriov_pf_control.c           |  128 +++
- drivers/gpu/drm/xe/xe_sriov_pf_control.h           |    5 +
- drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c           |  131 +++
- drivers/gpu/drm/xe/xe_sriov_pf_helpers.h           |   16 +
- drivers/gpu/drm/xe/xe_sriov_pf_migration.c         |  342 ++++++
- drivers/gpu/drm/xe/xe_sriov_pf_migration.h         |   29 +
- drivers/gpu/drm/xe/xe_sriov_pf_migration_types.h   |   37 +
- drivers/gpu/drm/xe/xe_sriov_pf_provision.c         |  284 +++++
- drivers/gpu/drm/xe/xe_sriov_pf_provision.h         |   14 +
- drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c             |  647 ++++++++++++
- drivers/gpu/drm/xe/xe_sriov_pf_sysfs.h             |   16 +
- drivers/gpu/drm/xe/xe_sriov_pf_types.h             |   21 +
- drivers/gpu/drm/xe/xe_sriov_vf.c                   |    8 -
- drivers/gpu/drm/xe/xe_svm.c                        |    3 +-
- drivers/gpu/drm/xe/xe_sync.c                       |   95 +-
- drivers/gpu/drm/xe/xe_sync.h                       |    3 +
- drivers/gpu/drm/xe/xe_sync_types.h                 |    3 +
- drivers/gpu/drm/xe/xe_tlb_inval_job.c              |   31 +-
- drivers/gpu/drm/xe/xe_tlb_inval_job.h              |    5 +-
- drivers/gpu/drm/xe/xe_trace.h                      |   23 +
- drivers/gpu/drm/xe/xe_validation.h                 |    8 +-
- drivers/gpu/drm/xe/xe_vm.c                         |  101 +-
- drivers/gpu/drm/xe/xe_vm_types.h                   |    6 +-
- drivers/gpu/drm/xe/xe_vram.c                       |   26 +-
- drivers/gpu/drm/xe/xe_wa.c                         |    7 +
- include/drm/intel/pciids.h                         |    2 +-
- 97 files changed, 6762 insertions(+), 1751 deletions(-)
- create mode 100644 Documentation/ABI/testing/sysfs-driver-intel-xe-sriov
- create mode 100644 drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c
- delete mode 100644 drivers/gpu/drm/xe/xe_gt_pagefault.c
- delete mode 100644 drivers/gpu/drm/xe/xe_gt_pagefault.h
- create mode 100644 drivers/gpu/drm/xe/xe_guard.h
- create mode 100644 drivers/gpu/drm/xe/xe_guc_pagefault.c
- create mode 100644 drivers/gpu/drm/xe/xe_guc_pagefault.h
- create mode 100644 drivers/gpu/drm/xe/xe_pagefault.c
- create mode 100644 drivers/gpu/drm/xe/xe_pagefault.h
- create mode 100644 drivers/gpu/drm/xe/xe_pagefault_types.h
- create mode 100644 drivers/gpu/drm/xe/xe_sriov_packet.c
- create mode 100644 drivers/gpu/drm/xe/xe_sriov_packet.h
- create mode 100644 drivers/gpu/drm/xe/xe_sriov_packet_types.h
- create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_migration.c
- create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_migration.h
- create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_migration_types.h
- create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
- create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_sysfs.h
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBJbnRlbC1nZnggPGludGVsLWdm
+eC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4gT24gQmVoYWxmIE9mIFZpbm9kIEdvdmlu
+ZGFwaWxsYWkNCj4gU2VudDogVHVlc2RheSwgMTEgTm92ZW1iZXIgMjAyNSAxNC40Ng0KPiBUbzog
+aW50ZWwteGVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOyBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnDQo+IENjOiBHb3ZpbmRhcGlsbGFpLCBWaW5vZCA8dmlub2QuZ292aW5kYXBpbGxhaUBp
+bnRlbC5jb20+OyBTaGFua2FyLCBVbWEgPHVtYS5zaGFua2FyQGludGVsLmNvbT47IEpvc2hpLCBL
+dW5hbDENCj4gPGt1bmFsMS5qb3NoaUBpbnRlbC5jb20+OyBOaWt1bGEsIEphbmkgPGphbmkubmlr
+dWxhQGludGVsLmNvbT47IERlIE1hcmNoaSwgTHVjYXMgPGx1Y2FzLmRlbWFyY2hpQGludGVsLmNv
+bT47IFJvcGVyLCBNYXR0aGV3DQo+IEQgPG1hdHRoZXcuZC5yb3BlckBpbnRlbC5jb20+DQo+IFN1
+YmplY3Q6IFtQQVRDSCB2Ml0gZHJtL2k5MTUvZmJjOiBBcHBseSB3YV8xNTAxODMyNjUwNg0KPiAN
+Cj4gRGlzYWJsZSBGQkMgaW4gYm1nIGFzIHBlciB0aGUgd2EgcmVjb21tZW5kYXRpb24uDQo+IA0K
+PiB2MjogdXNlIHRoZSBibWcgcGxhdGZvcm0gaW5zdGVhZCBvZiBhIHNwZWNpZmljIHN0ZXBwaW5n
+DQo+IA0KPiBCc3BlYzogNzQyMTINCg0KV0Egd29ya3MgZm9yIGFsbCBzdGVwcGluZ3MuIA0KDQpM
+R1RNLA0KUmV2aWV3ZWQtYnk6IE1pa2EgS2Fob2xhIDxtaWthLmthaG9sYUBpbnRlbC5jb20+DQoN
+Cj4gU2lnbmVkLW9mZi1ieTogVmlub2QgR292aW5kYXBpbGxhaSA8dmlub2QuZ292aW5kYXBpbGxh
+aUBpbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kaXNwbGF5X3dhLmMgfCAgMiArKyAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kaXNwbGF5X3dhLmggfCAgMSArDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2ZiYy5jICAgICAgICB8IDEwICsrKysrKysrKysNCj4gIDMgZmlsZXMgY2hhbmdlZCwgMTMg
+aW5zZXJ0aW9ucygrKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZGlzcGxheV93YS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9kaXNwbGF5X3dhLmMNCj4gaW5kZXggZTM4ZTVlODc4NzdjLi5iMmU3MWZhNjFjMGEgMTAw
+NjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV93
+YS5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV93
+YS5jDQo+IEBAIC03MCw2ICs3MCw4IEBAIGJvb2wgX19pbnRlbF9kaXNwbGF5X3dhKHN0cnVjdCBp
+bnRlbF9kaXNwbGF5ICpkaXNwbGF5LCBlbnVtIGludGVsX2Rpc3BsYXlfd2Egd2EsDQo+ICAJCXJl
+dHVybiBESVNQTEFZX1ZFUihkaXNwbGF5KSA9PSAxMzsNCj4gIAljYXNlIElOVEVMX0RJU1BMQVlf
+V0FfMjIwMTQyNjM3ODY6DQo+ICAJCXJldHVybiBJU19ESVNQTEFZX1ZFUngxMDAoZGlzcGxheSwg
+MTEwMCwgMTQwMCk7DQo+ICsJY2FzZSBJTlRFTF9ESVNQTEFZX1dBXzE1MDE4MzI2NTA2Og0KPiAr
+CQlyZXR1cm4gZGlzcGxheS0+cGxhdGZvcm0uYmF0dGxlbWFnZTsNCj4gIAlkZWZhdWx0Og0KPiAg
+CQlkcm1fV0FSTihkaXNwbGF5LT5kcm0sIDEsICJNaXNzaW5nIFdhIG51bWJlcjogJXNcbiIsIG5h
+bWUpOw0KPiAgCQlicmVhazsNCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZGlzcGxheV93YS5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9kaXNwbGF5X3dhLmgNCj4gaW5kZXggMzY0NGU4ZTJiNzI0Li5mNjQ4YjAwY2I5N2QgMTAw
+NjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV93
+YS5oDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV93
+YS5oDQo+IEBAIC0yNiw2ICsyNiw3IEBAIGVudW0gaW50ZWxfZGlzcGxheV93YSB7DQo+ICAJSU5U
+RUxfRElTUExBWV9XQV8xNjAyNTU3MzU3NSwNCj4gIAlJTlRFTF9ESVNQTEFZX1dBXzE0MDExNTAz
+MTE3LA0KPiAgCUlOVEVMX0RJU1BMQVlfV0FfMjIwMTQyNjM3ODYsDQo+ICsJSU5URUxfRElTUExB
+WV9XQV8xNTAxODMyNjUwNiwNCj4gIH07DQo+IA0KPiAgYm9vbCBfX2ludGVsX2Rpc3BsYXlfd2Eo
+c3RydWN0IGludGVsX2Rpc3BsYXkgKmRpc3BsYXksIGVudW0gaW50ZWxfZGlzcGxheV93YSB3YSwg
+Y29uc3QgY2hhciAqbmFtZSk7IGRpZmYgLS1naXQNCj4gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2ZiYy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9m
+YmMuYw0KPiBpbmRleCBhMWUzMDgzMDIyZWUuLjE2Y2Q5OWRiMjk3OCAxMDA2NDQNCj4gLS0tIGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmMuYw0KPiArKysgYi9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5jDQo+IEBAIC0xNTIxLDYgKzE1MjEsMTYg
+QEAgc3RhdGljIGludCBpbnRlbF9mYmNfY2hlY2tfcGxhbmUoc3RydWN0IGludGVsX2F0b21pY19z
+dGF0ZSAqc3RhdGUsDQo+ICAJCXJldHVybiAwOw0KPiAgCX0NCj4gDQo+ICsJLyoNCj4gKwkgKiB3
+YV8xNTAxODMyNjUwNjoNCj4gKwkgKiBGaXhlczogVW5kZXJydW4gZHVyaW5nIG1lZGlhIGRlY29k
+ZQ0KPiArCSAqIFdvcmthcm91bmQ6IERvIG5vdCBlbmFibGUgRkJDDQo+ICsJICovDQo+ICsJaWYg
+KGludGVsX2Rpc3BsYXlfd2EoZGlzcGxheSwgMTUwMTgzMjY1MDYpKSB7DQo+ICsJCXBsYW5lX3N0
+YXRlLT5ub19mYmNfcmVhc29uID0gIldhXzE1MDE4MzI2NTA2IjsNCj4gKwkJcmV0dXJuIDA7DQo+
+ICsJfQ0KPiArDQo+ICAJLyogV2FGYmNUdXJuT2ZmRmJjV2hlbkh5cGVyVmlzb3JJc1VzZWQ6c2ts
+LGJ4dCAqLw0KPiAgCWlmIChpbnRlbF9kaXNwbGF5X3Z0ZF9hY3RpdmUoZGlzcGxheSkgJiYNCj4g
+IAkgICAgKGRpc3BsYXktPnBsYXRmb3JtLnNreWxha2UgfHwgZGlzcGxheS0+cGxhdGZvcm0uYnJv
+eHRvbikpIHsNCj4gLS0NCj4gMi40My4wDQoNCg==
