@@ -2,56 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21293C5F328
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Nov 2025 21:14:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46100C5F32B
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Nov 2025 21:14:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 912EB10E261;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E18C610EAF5;
 	Fri, 14 Nov 2025 20:14:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dPKjXD6B";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cSEyn/Ll";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C79A10E261
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Nov 2025 20:14:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BCC510E261
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Nov 2025 20:14:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763151295; x=1794687295;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=MHoFMA5dnirrqStWZQPU4msOqAEHpbzpsrSL0IHRHog=;
- b=dPKjXD6Bcd0R3pmHWE2xgYEbV4YLHg1P1GWrGfn/zNCpsuR83vwhpUwr
- rnJgZ5I0SbA3mR5ubxN5gzcRo/ro/9gdWvlgpOdPqho4GCU7c2ncuo26Z
- CaJ14f54+nH1TR/iahXgg/2S5fusTNmAL31GndV8bxDAALUjhfC5Rh/wv
- zKgTNHuWbRH/PCyeMJhxepT3rbodwTRSEppYDnUa5oPw2p+TSizV0KwHA
- KAv151unsgAF64b9uizVaBYK6Z/moqHPNN7F7xBwhTYv4vr1FMKN9FX0f
- H9Mg0ytwZHHp0qve5gDJsWTQPIWuSrVPkUmUbUUBeeU5QfuIcNLIA2Uqd A==;
-X-CSE-ConnectionGUID: AlCS6gByTzCcFg0ceNeEGA==
-X-CSE-MsgGUID: IYL50kKjS9Sj23XAOaCqUQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="65188075"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="65188075"
+ t=1763151296; x=1794687296;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=0g1vMXc0ioeDilr3M3Aw/rjip87V8r2ssHMJACjNFmo=;
+ b=cSEyn/LlgwwENnUhYKh3K1T2jl450c5C4O5Za+P85nK44dJ23A+e8oEn
+ m8To88md/bWs+AlLy2pZaLEq6L3l+H2s+FB7gNqiA49ldpD2PGvq5oEC7
+ DzMWtt19K1vcwHVeh79CxfUHdIO1UUmyvgWHmwf3XBQ/zrHEbNSNWXCqP
+ B1Mw9/c1gAVLuT9oJE+V2EzjZcioQBDmVAEv5fAl0zkyTw6wg9ptvMybd
+ u/yqgcZ8rJjR6hAf37dOlBYLCBTq5q1wI4trwLuMpHWvXnIJ1uq+piXqs
+ /HNe3ZTqUHd8oO33CJPlsB7Lhs7AxCnsRuYSoqxEzz4z1u8+Sc+i6xwd0 g==;
+X-CSE-ConnectionGUID: x9qhTrvwQECfXtdAq/S67g==
+X-CSE-MsgGUID: segN94F+RQigIsLtXL7uog==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="65188078"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="65188078"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2025 12:14:54 -0800
-X-CSE-ConnectionGUID: HgBy+Pf4QNODKSPL3M6IrQ==
-X-CSE-MsgGUID: v51YB09PTjKcpTmZtGZW7Q==
+ 14 Nov 2025 12:14:56 -0800
+X-CSE-ConnectionGUID: bU+BI0cgQGSpdK4JHQzAIA==
+X-CSE-MsgGUID: HiOYdG3ZQUKAPMNShBXmGA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; d="scan'208";a="189147994"
+X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; d="scan'208";a="189147997"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2025 12:14:54 -0800
+ 14 Nov 2025 12:14:56 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: gregkh@linuxfoundation.org,
  Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alexander Usyskin <alexander.usyskin@intel.com>,
- Alan Previn <alan.previn.teres.alexis@intel.com>
-Subject: [PATCH v3 0/2] Check if CSME is available before initializing PXP
-Date: Fri, 14 Nov 2025 12:14:32 -0800
-Message-ID: <20251114201431.1135031-4-daniele.ceraolospurio@intel.com>
+ Alexander Usyskin <alexander.usyskin@intel.com>
+Subject: [PATCH v3 1/2] mei: me: Export the PCI ID list
+Date: Fri, 14 Nov 2025 12:14:33 -0800
+Message-ID: <20251114201431.1135031-5-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251114201431.1135031-4-daniele.ceraolospurio@intel.com>
+References: <20251114201431.1135031-4-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -69,42 +69,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-To support PXP, i915 needs to interface with CSME, which is done via the
-component interface. However, BIOS/Coreboot can hide the CSME device,
-which leads to i915 timing out waiting for the component to bind. While
-PXP failing to initialize is a supported scenario (and there are several
-possible ways for it to happen), the particular case where the CSME is
-not available at all is something we can easily detect in the driver
-and therefore avoid entirely, which means userspace doesn't need to
-handle the error in this case.
+The intel GFX drivers (i915/xe) interface with the ME device for some of
+their features (e.g. PXP, HDCP) via the component interface. Given that
+the ME device can be hidden by BIOS/Coreboot, the GFX drivers need a
+way to check if the device is available before attempting to bind the
+component, otherwise they'll go ahead and initialize features that will
+never work.
+The simplest way to check if the ME device is available is to check the
+available devices against the PCI ID list of the mei_me driver. To avoid
+duplication, this patch exports the list, so that it can be used directly
+from the GFX drivers.
 
-Given that mei_me owns the CSME and already has a list of possible PCI
-IDs for the device, we can export that and use it in the i915 driver
-to perform the device availability check.
-
-The plan is to merge both patches via the drm-intel tree.
-
-v2: move the pci_dev_present check to i915, so that mei doesn't need to
-care about locking. Also clarify why i915 does not require any locking.
-
-v3: export the pci_id list directly from the mei driver instead of using
-a wrapper function.
-
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Alexander Usyskin <alexander.usyskin@intel.com>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
 Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-
-Daniele Ceraolo Spurio (2):
-  mei: me: Export the PCI ID list
-  drm/i915/pxp: Do not support PXP if CSME is not available
-
- drivers/gpu/drm/i915/pxp/intel_pxp.c | 25 +++++++++++++++++++++++++
- drivers/misc/mei/pci-me.c            | 12 +++++++++++-
- include/linux/mei_me.h               | 15 +++++++++++++++
- 3 files changed, 51 insertions(+), 1 deletion(-)
+---
+ drivers/misc/mei/pci-me.c | 12 +++++++++++-
+ include/linux/mei_me.h    | 15 +++++++++++++++
+ 2 files changed, 26 insertions(+), 1 deletion(-)
  create mode 100644 include/linux/mei_me.h
 
+diff --git a/drivers/misc/mei/pci-me.c b/drivers/misc/mei/pci-me.c
+index b017ff29dbd1..632756f9da66 100644
+--- a/drivers/misc/mei/pci-me.c
++++ b/drivers/misc/mei/pci-me.c
+@@ -18,6 +18,7 @@
+ #include <linux/pm_runtime.h>
+ 
+ #include <linux/mei.h>
++#include <linux/mei_me.h>
+ 
+ #include "mei_dev.h"
+ #include "client.h"
+@@ -25,7 +26,7 @@
+ #include "hw-me.h"
+ 
+ /* mei_pci_tbl - PCI Device ID Table */
+-static const struct pci_device_id mei_me_pci_tbl[] = {
++const struct pci_device_id mei_me_pci_tbl[] = {
+ 	{MEI_PCI_DEVICE(MEI_DEV_ID_82946GZ, MEI_ME_ICH_CFG)},
+ 	{MEI_PCI_DEVICE(MEI_DEV_ID_82G35, MEI_ME_ICH_CFG)},
+ 	{MEI_PCI_DEVICE(MEI_DEV_ID_82Q965, MEI_ME_ICH_CFG)},
+@@ -135,6 +136,15 @@ static const struct pci_device_id mei_me_pci_tbl[] = {
+ 
+ MODULE_DEVICE_TABLE(pci, mei_me_pci_tbl);
+ 
++/*
++ * Other drivers (e.g., i915, xe) interface with the ME device for some of their
++ * features (e.g., PXP, HDCP). However, the ME device can be unplugged via the
++ * pci subsystem or hidden by BIOS/coreboot, so those drivers might want to
++ * check if the device is available before initializing those features. To
++ * allow them to perform such a check, we export the list of ME device IDs.
++ */
++EXPORT_SYMBOL_GPL(mei_me_pci_tbl);
++
+ #ifdef CONFIG_PM
+ static inline void mei_me_set_pm_domain(struct mei_device *dev);
+ static inline void mei_me_unset_pm_domain(struct mei_device *dev);
+diff --git a/include/linux/mei_me.h b/include/linux/mei_me.h
+new file mode 100644
+index 000000000000..48fd913a3d95
+--- /dev/null
++++ b/include/linux/mei_me.h
+@@ -0,0 +1,15 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Copyright (c) 2025, Intel Corporation. All rights reserved.
++ */
++
++#ifndef _LINUX_MEI_ME_H
++#define _LINUX_MEI_ME_H
++
++#include <linux/pci.h>
++
++#if IS_ENABLED(CONFIG_INTEL_MEI_ME)
++extern const struct pci_device_id mei_me_pci_tbl[];
++#endif
++
++#endif /* _LINUX_MEI_ME_H */
 -- 
 2.43.0
 
