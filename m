@@ -2,74 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 234E5C5E84B
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Nov 2025 18:21:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 419FAC5EDB9
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Nov 2025 19:27:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8DD810EACC;
-	Fri, 14 Nov 2025 17:21:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AC2C10EAE3;
+	Fri, 14 Nov 2025 18:27:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="aZEWjh2W";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="hTdhkQKU";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D694F10E184;
- Fri, 14 Nov 2025 17:21:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1763140888;
- bh=oj7XvIjYe1pE+bYy9IlB8i4bQFjMilLPQjx7YB4+1fA=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=aZEWjh2Wv997fvjzfjYyiNTQsFctnvqof5bgUkdK3o3MvxxU3L95EO36ZFtvaekJS
- bZAOmQW3lf4woB4mnn3aD5fFsnOqaiwBr6Unx6D28n/OhmaUMcto0pQ09uGJFMv32Q
- THqCeF0gelYBNeFeiWVOPdzmBRhLCKoGCqx90SlnQw4cIoeNxTu3IEmqa7QDlKImSY
- AYkUwTK58gic2wO1WcZDsdSqxvedDR/kGjwS6x3W8gdDro4c+P5vsMEAtppXec2FjI
- QazQ6Ew3Qv4PS3ZhA2FcGOa8jYwJWTS2znHOiR3JtY/3AXrMIoI9xYNIna7rXnbfkb
- 13A8uW35xzEEA==
-Received: from [IPV6:2a01:e0a:5e3:6100:7aed:fe0e:8590:cbaa] (unknown
- [IPv6:2a01:e0a:5e3:6100:7aed:fe0e:8590:cbaa])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- (Authenticated sender: loicmolinari)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id 59A9117E01EB;
- Fri, 14 Nov 2025 18:21:27 +0100 (CET)
-Message-ID: <95ce7e6d-a2f3-4dff-adaf-22455f78a836@collabora.com>
-Date: Fri, 14 Nov 2025 18:21:17 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 06/11] drm/v3d: Use huge tmpfs mountpoint helpers
-To: Boris Brezillon <boris.brezillon@collabora.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A16210E257;
+ Fri, 14 Nov 2025 18:27:41 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id BE55560188;
+ Fri, 14 Nov 2025 18:27:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50B82C4CEF1;
+ Fri, 14 Nov 2025 18:27:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1763144860;
+ bh=cYXp6vTHKD4+5HKyKDsS0LI6yssoViJnuOJ6XQWYNp4=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:From;
+ b=hTdhkQKUi+PzhqiZrzsNxYV1ZF5i4s0dFL6ShBnirq9JvKqzo9WAtxlC9K4xNqREZ
+ jMGFeVLCfm1GpAMgDDxYAhrOiDpRjmb0u2p8xMH3jLfpdHiGDgrjkPSTtOccX39msM
+ QM0WIB+6+G1UIPFetlm0KsaA/yfiESW8bp2goJmd2NZ5COFKDrpjYKw4uvMvLEOPiT
+ mjfAYyUCSTgc6Fqf4hyEBUlOChgPM8dgsfooBUkuXLZTBnJT9yFRS0GEX9IsPhlSUA
+ lguFbUfMC0HYHxc/aswttWcArBbW3HbO2hNr+04smAX5GEmhFnLZUl8dAI8bL4J4X1
+ fUo+3KX2gZjNA==
+Date: Fri, 14 Nov 2025 12:27:39 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Alex =?utf-8?Q?Benn=C3=A9e?= <alex.bennee@linaro.org>
+Cc: Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
+ Simon Richter <Simon.Richter@hogyros.de>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ amd-gfx@lists.freedesktop.org, Bjorn Helgaas <bhelgaas@google.com>,
+ David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Rob Herring <robh@kernel.org>,
- Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
- Melissa Wen <mwen@igalia.com>, =?UTF-8?Q?Ma=C3=ADra_Canal?=
- <mcanal@igalia.com>, Hugh Dickins <hughd@google.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Andrew Morton <akpm@linux-foundation.org>, Al Viro
- <viro@zeniv.linux.org.uk>, =?UTF-8?Q?Miko=C5=82aj_Wasiak?=
- <mikolaj.wasiak@intel.com>, Christian Brauner <brauner@kernel.org>,
- Nitin Gote <nitin.r.gote@intel.com>, Andi Shyti
- <andi.shyti@linux.intel.com>, Jonathan Corbet <corbet@lwn.net>,
- Christopher Healy <healych@amazon.com>, Matthew Wilcox
- <willy@infradead.org>, Bagas Sanjaya <bagasdotme@gmail.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-mm@kvack.org,
- linux-doc@vger.kernel.org, kernel@collabora.com
-References: <20251114170303.2800-1-loic.molinari@collabora.com>
- <20251114170303.2800-7-loic.molinari@collabora.com>
- <20251114181144.51b44c8b@fedora>
-Content-Language: fr
-From: =?UTF-8?Q?Lo=C3=AFc_Molinari?= <loic.molinari@collabora.com>
-Organization: Collabora Ltd
-In-Reply-To: <20251114181144.51b44c8b@fedora>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ linux-pci@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Simona Vetter <simona@ffwll.ch>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>
+Subject: Re: [PATCH v2 00/11] PCI: BAR resizing fix/rework
+Message-ID: <20251114182739.GA2332823@bhelgaas>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <87pl9lot9r.fsf@draig.linaro.org>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,98 +69,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 14/11/2025 18:11, Boris Brezillon wrote:
-> On Fri, 14 Nov 2025 18:02:57 +0100
-> Loïc Molinari <loic.molinari@collabora.com> wrote:
+On Fri, Nov 14, 2025 at 09:30:56AM +0000, Alex Bennée wrote:
+> Ilpo Järvinen <ilpo.jarvinen@linux.intel.com> writes:
 > 
->> Make use of the new drm_gem_huge_mnt_create() and
->> drm_gem_get_huge_mnt() helpers to avoid code duplication. Now that
->> it's just a few lines long, the single function in v3d_gemfs.c is
->> moved into v3d_gem.c.
->>
->> v3:
->> - use huge tmpfs mountpoint in drm_device
->> - move v3d_gemfs.c into v3d_gem.c
->>
->> v4:
->> - clean up mountpoint creation error handling
->>
->> v5:
->> - fix CONFIG_TRANSPARENT_HUGEPAGE check
->> - use drm_gem_has_huge_mnt() helper
->>
->> v8:
->> - don't access huge_mnt field with CONFIG_TRANSPARENT_HUGEPAGE=n
->>
->> v9:
->> - replace drm_gem_has_huge_mnt() by drm_gem_get_huge_mnt()
->>
->> Signed-off-by: Loïc Molinari <loic.molinari@collabora.com>
->> ---
->>   drivers/gpu/drm/v3d/Makefile    |  3 +-
->>   drivers/gpu/drm/v3d/v3d_bo.c    |  9 +++--
->>   drivers/gpu/drm/v3d/v3d_drv.c   |  2 +-
->>   drivers/gpu/drm/v3d/v3d_drv.h   | 11 +-----
->>   drivers/gpu/drm/v3d/v3d_gem.c   | 27 ++++++++++++--
->>   drivers/gpu/drm/v3d/v3d_gemfs.c | 62 ---------------------------------
->>   6 files changed, 34 insertions(+), 80 deletions(-)
->>   delete mode 100644 drivers/gpu/drm/v3d/v3d_gemfs.c
->>
->> diff --git a/drivers/gpu/drm/v3d/Makefile b/drivers/gpu/drm/v3d/Makefile
->> index fcf710926057..b7d673f1153b 100644
->> --- a/drivers/gpu/drm/v3d/Makefile
->> +++ b/drivers/gpu/drm/v3d/Makefile
->> @@ -13,8 +13,7 @@ v3d-y := \
->>   	v3d_trace_points.o \
->>   	v3d_sched.o \
->>   	v3d_sysfs.o \
->> -	v3d_submit.o \
->> -	v3d_gemfs.o
->> +	v3d_submit.o
->>   
->>   v3d-$(CONFIG_DEBUG_FS) += v3d_debugfs.o
->>   
->> diff --git a/drivers/gpu/drm/v3d/v3d_bo.c b/drivers/gpu/drm/v3d/v3d_bo.c
->> index d9547f5117b9..211578abf9b6 100644
->> --- a/drivers/gpu/drm/v3d/v3d_bo.c
->> +++ b/drivers/gpu/drm/v3d/v3d_bo.c
->> @@ -114,7 +114,7 @@ v3d_bo_create_finish(struct drm_gem_object *obj)
->>   	if (IS_ERR(sgt))
->>   		return PTR_ERR(sgt);
->>   
->> -	if (!v3d->gemfs)
->> +	if (!drm_gem_get_huge_mnt(obj->dev))
->>   		align = SZ_4K;
->>   	else if (obj->size >= SZ_1M)
->>   		align = SZ_1M;
->> @@ -150,12 +150,15 @@ struct v3d_bo *v3d_bo_create(struct drm_device *dev, struct drm_file *file_priv,
->>   			     size_t unaligned_size)
->>   {
->>   	struct drm_gem_shmem_object *shmem_obj;
->> -	struct v3d_dev *v3d = to_v3d_dev(dev);
->>   	struct v3d_bo *bo;
->>   	int ret;
->>   
->> +#ifdef CONFIG_TRANSPARENT_HUGEPAGE
->>   	shmem_obj = drm_gem_shmem_create_with_mnt(dev, unaligned_size,
->> -						  v3d->gemfs);
->> +						  dev->huge_mnt);
->> +#else
->> +	shmem_obj = drm_gem_shmem_create(dev, unaligned_size);
->> +#endif
+> > Hi all,
+> >
+> > Thanks to issue reports from Simon Richter and Alex Bennée, I
+> > discovered BAR resize rollback can corrupt the resource tree. As fixing
+> > corruption requires avoiding overlapping resource assignments, the
+> > correct fix can unfortunately results in worse user experience, what
+> > appeared to be "working" previously might no longer do so. Thus, I had
+> > to do a larger rework to pci_resize_resource() in order to properly
+> > restore resource states as it was prior to BAR resize.
+> >
+> > This rework has been on my TODO list anyway but it wasn't the highest
+> > prio item until pci_resize_resource() started to cause regressions due
+> > to other resource assignment algorithm changes.
 > 
-> Why not drop the ifdef and go for
+> Thanks I'll have a look.
 > 
-> 	shmem_obj = drm_gem_shmem_create_with_mnt(dev,
-> 						  unaligned_size,
-> 						  drm_gem_get_huge_mnt(obj->dev));
-> 
-> ?
+> Where does this apply? At least v6.17 doesn't seem to have
+> pbus_reassign_bridge_resources which 4/11 is trying to tweak.
 
-Oops, I overlooked that one.
+This is based on v6.18-rc1 and is applied here:
 
-> 
->>   	if (IS_ERR(shmem_obj))
->>   		return ERR_CAST(shmem_obj);
->>   	bo = to_v3d_bo(&shmem_obj->base);
+  https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git/log/?h=resource
 
+I expect some conflicts with d30203739be7 ("drm/xe: Move rebar to be
+done earlier"), which appeared in v6.18-rc2, and possibly with other
+DRM changes planned for v6.19.
+
+Bjorn
