@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE1E8C5C903
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Nov 2025 11:27:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B007C5C906
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Nov 2025 11:27:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5172F10EA2E;
-	Fri, 14 Nov 2025 10:27:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C701910EA2D;
+	Fri, 14 Nov 2025 10:27:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Cs+TBvs2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WFjlrroQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9BE410EA29;
- Fri, 14 Nov 2025 10:27:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C71C710EA2D;
+ Fri, 14 Nov 2025 10:27:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763116034; x=1794652034;
+ t=1763116039; x=1794652039;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=0KAmGahAPNHuTv++H4X5hZUDtxp+b9rfDjPvjh3mfBA=;
- b=Cs+TBvs2JJ+y0TUXuF5Dgw4JfVc/U4nEMAn6pVoQRQzhNqyNPs6sdnP2
- 8r2VZbXgPuAIynYdf94ZE9aWdQdfutvzh7HeJldzrdNx1voEL0uoc4tG0
- wRjD57SoH/cnKcl8Zq432z6Qs2XJ2oSXcBqdkxweiPzJUefW6mAYnPlMB
- xlzGGouuWZcxGYyA43vU3LuPbUx8bhKX0dYt6/FYxeK9iwZfHbFmSjHUx
- sigEhID2dMhCerrRwxyBLjpkc4kJG6GyAuLIdh3ZvszakV8gepAEAK+SR
- +EPoslKbpXMP2Njfw2pmjRW/A3gtQRBzmLjTgnYUrNpVZ5AMJxSQGmBUG A==;
-X-CSE-ConnectionGUID: mUzddAM9R3GhUM3hpu06Gg==
-X-CSE-MsgGUID: 7Eq7MCfMTGCl8TnykCb/sg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="87855753"
-X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; d="scan'208";a="87855753"
+ bh=NUkg8az56x2T8gTgchXh0YUvKLuyDGcWpvAg5NybWe4=;
+ b=WFjlrroQTiWoCLIeA31jPcjngX/aLEn7Zk9AIhvTxaz6kZ3H1YHY/6YH
+ ZW6xOB442IowwsZRXFS7o1lL1xguN+cFjOp+PNbWYaoOV/l23U1tVw1xp
+ txTXJuK5S/7/GnJcwsnfbZeDz7oCuzn7SiUlkS+BZk/34WdxKIoCmzIra
+ GOGVFZwx5FvaDo3rI4AexYRXFlPAj+INIFY+HNrPwYNEMv/z8uMXzaZgo
+ YXYeOAm1PeRyRRqkzcUxTTesoaKv0FYlVUydFklkenm/0bbTNvfTDc5tK
+ pqSR6zoKtnDoIzQxgOhLY0LTAaCeWAXc3rcn7TUD5OGVUiRrN/YVlviVJ Q==;
+X-CSE-ConnectionGUID: j/RmCQbqRvKkf7HKIZghSw==
+X-CSE-MsgGUID: WCb53LeyR8GCEol66Itp6A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="87855756"
+X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; d="scan'208";a="87855756"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2025 02:27:14 -0800
-X-CSE-ConnectionGUID: lHLg6kmCTTypeEXOO7iaBA==
-X-CSE-MsgGUID: 7CmnC4ZaT0a5nAhlTW44nQ==
+ 14 Nov 2025 02:27:19 -0800
+X-CSE-ConnectionGUID: B+Tv8yvYQeuwjtOdtE156Q==
+X-CSE-MsgGUID: DcZXQdvdTHSd9apRUC6heA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; d="scan'208";a="189041706"
+X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; d="scan'208";a="189041747"
 Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.202])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2025 02:27:12 -0800
+ 14 Nov 2025 02:27:17 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [PATCH 04/10] drm/i915: add .vgpu_active to parent interface
-Date: Fri, 14 Nov 2025 12:26:43 +0200
-Message-ID: <b89bdfeb42207d62f49af7ab633a761bb279565c.1763115899.git.jani.nikula@intel.com>
+Subject: [PATCH 05/10] drm/i915: add .fence_support_legacy to parent interface
+Date: Fri, 14 Nov 2025 12:26:44 +0200
+Message-ID: <ee77882f46d6f68893337801439609bec2f08e9f.1763115899.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1763115899.git.jani.nikula@intel.com>
 References: <cover.1763115899.git.jani.nikula@intel.com>
@@ -72,177 +72,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add .vgpu_active() to display parent interface, removing more
-dependencies on struct drm_i915_private, i915_drv.h, and i915_vgpu.h.
+Add .fence_support_legacy() to display parent interface, removing more
+dependencies on struct drm_i915_private, i915_drv.h, and
+gt/intel_gt_types.h.
 
-This also allows us to remove the xe compat i915_vgpu.h.
+This allows us to remove the xe compat gt/intel_gt_types.h.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crtc.c      |  6 ++----
- drivers/gpu/drm/i915/display/intel_fbc.c       |  5 ++---
- drivers/gpu/drm/i915/display/intel_parent.c    |  5 +++++
- drivers/gpu/drm/i915/display/intel_parent.h    |  2 ++
- drivers/gpu/drm/i915/i915_driver.c             |  6 ++++++
- .../gpu/drm/xe/compat-i915-headers/i915_vgpu.h | 18 ------------------
- include/drm/intel/display_parent_interface.h   |  3 +++
- 7 files changed, 20 insertions(+), 25 deletions(-)
- delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_vgpu.h
+ drivers/gpu/drm/i915/display/intel_fbc.c              |  8 ++------
+ drivers/gpu/drm/i915/display/intel_parent.c           |  5 +++++
+ drivers/gpu/drm/i915/display/intel_parent.h           |  2 ++
+ drivers/gpu/drm/i915/i915_driver.c                    |  6 ++++++
+ .../drm/xe/compat-i915-headers/gt/intel_gt_types.h    | 11 -----------
+ include/drm/intel/display_parent_interface.h          |  3 +++
+ 6 files changed, 18 insertions(+), 17 deletions(-)
+ delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gt/intel_gt_types.h
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 9d2a23c96c61..153ff4b4b52c 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -13,8 +13,6 @@
- #include <drm/drm_vblank.h>
- #include <drm/drm_vblank_work.h>
- 
--#include "i915_drv.h"
--#include "i915_vgpu.h"
- #include "i9xx_plane.h"
- #include "icl_dsi.h"
- #include "intel_atomic.h"
-@@ -28,6 +26,7 @@
- #include "intel_drrs.h"
- #include "intel_dsi.h"
- #include "intel_fifo_underrun.h"
-+#include "intel_parent.h"
- #include "intel_pipe_crc.h"
- #include "intel_plane.h"
- #include "intel_psr.h"
-@@ -671,7 +670,6 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
- 	int scanline_end = intel_get_crtc_scanline(crtc);
- 	u32 end_vbl_count = intel_crtc_get_vblank_counter(crtc);
- 	ktime_t end_vbl_time = ktime_get();
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 
- 	drm_WARN_ON(display->drm, new_crtc_state->use_dsb);
- 
-@@ -737,7 +735,7 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
- 
- 	local_irq_enable();
- 
--	if (intel_vgpu_active(dev_priv))
-+	if (intel_parent_vgpu_active(display))
- 		goto out;
- 
- 	if (crtc->debug.start_vbl_count &&
 diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 437d2fda20a7..ab0bcea5aa89 100644
+index ab0bcea5aa89..8c56c87d00a9 100644
 --- a/drivers/gpu/drm/i915/display/intel_fbc.c
 +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -50,7 +50,6 @@
- #include "gt/intel_gt_types.h"
+@@ -47,9 +47,6 @@
  
- #include "i915_drv.h"
--#include "i915_vgpu.h"
+ #include "gem/i915_gem_stolen.h"
+ 
+-#include "gt/intel_gt_types.h"
+-
+-#include "i915_drv.h"
  #include "i915_vma.h"
  #include "i9xx_plane_regs.h"
  #include "intel_de.h"
-@@ -64,6 +63,7 @@
- #include "intel_fbc.h"
+@@ -64,6 +61,7 @@
  #include "intel_fbc_regs.h"
  #include "intel_frontbuffer.h"
-+#include "intel_parent.h"
+ #include "intel_parent.h"
++#include "intel_step.h"
  
  #define for_each_fbc_id(__display, __fbc_id) \
  	for ((__fbc_id) = INTEL_FBC_A; (__fbc_id) < I915_MAX_FBCS; (__fbc_id)++) \
-@@ -1485,7 +1485,6 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
- 				 struct intel_plane *plane)
- {
- 	struct intel_display *display = to_intel_display(state->base.dev);
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	struct intel_plane_state *plane_state =
- 		intel_atomic_get_new_plane_state(state, plane);
- 	const struct drm_framebuffer *fb = plane_state->hw.fb;
-@@ -1501,7 +1500,7 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
- 		return 0;
- 	}
+@@ -267,9 +265,7 @@ static u16 intel_fbc_override_cfb_stride(const struct intel_plane_state *plane_s
  
--	if (intel_vgpu_active(i915)) {
-+	if (intel_parent_vgpu_active(display)) {
- 		plane_state->no_fbc_reason = "VGPU active";
- 		return 0;
- 	}
+ static bool intel_fbc_has_fences(struct intel_display *display)
+ {
+-	struct drm_i915_private __maybe_unused *i915 = to_i915(display->drm);
+-
+-	return intel_gt_support_legacy_fencing(to_gt(i915));
++	return intel_parent_fence_support_legacy(display);
+ }
+ 
+ static u32 i8xx_fbc_ctl(struct intel_fbc *fbc)
 diff --git a/drivers/gpu/drm/i915/display/intel_parent.c b/drivers/gpu/drm/i915/display/intel_parent.c
-index 375713f6f411..3786fd42827d 100644
+index 3786fd42827d..3dd31852e2e1 100644
 --- a/drivers/gpu/drm/i915/display/intel_parent.c
 +++ b/drivers/gpu/drm/i915/display/intel_parent.c
-@@ -31,3 +31,8 @@ void intel_parent_irq_synchronize(struct intel_display *display)
+@@ -36,3 +36,8 @@ bool intel_parent_vgpu_active(struct intel_display *display)
  {
- 	display->parent->irq->synchronize(display->drm);
+ 	return display->parent->vgpu_active && display->parent->vgpu_active(display->drm);
  }
 +
-+bool intel_parent_vgpu_active(struct intel_display *display)
++bool intel_parent_fence_support_legacy(struct intel_display *display)
 +{
-+	return display->parent->vgpu_active && display->parent->vgpu_active(display->drm);
++	return display->parent->fence_support_legacy && display->parent->fence_support_legacy(display->drm);
 +}
 diff --git a/drivers/gpu/drm/i915/display/intel_parent.h b/drivers/gpu/drm/i915/display/intel_parent.h
-index 3ade493f1008..222c95836d35 100644
+index 222c95836d35..fc6799db0361 100644
 --- a/drivers/gpu/drm/i915/display/intel_parent.h
 +++ b/drivers/gpu/drm/i915/display/intel_parent.h
-@@ -11,4 +11,6 @@ struct intel_display;
- bool intel_parent_irq_enabled(struct intel_display *display);
- void intel_parent_irq_synchronize(struct intel_display *display);
+@@ -13,4 +13,6 @@ void intel_parent_irq_synchronize(struct intel_display *display);
  
-+bool intel_parent_vgpu_active(struct intel_display *display);
+ bool intel_parent_vgpu_active(struct intel_display *display);
+ 
++bool intel_parent_fence_support_legacy(struct intel_display *display);
 +
  #endif /* __INTEL_PARENT_H__ */
 diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 07715aef62d3..f21f1919a225 100644
+index f21f1919a225..814b430de960 100644
 --- a/drivers/gpu/drm/i915/i915_driver.c
 +++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -739,9 +739,15 @@ static void i915_welcome_messages(struct drm_i915_private *dev_priv)
- 			 "DRM_I915_DEBUG_RUNTIME_PM enabled\n");
+@@ -744,10 +744,16 @@ static bool vgpu_active(struct drm_device *drm)
+ 	return intel_vgpu_active(to_i915(drm));
  }
  
-+static bool vgpu_active(struct drm_device *drm)
++static bool fence_support_legacy(struct drm_device *drm)
 +{
-+	return intel_vgpu_active(to_i915(drm));
++	return intel_gt_support_legacy_fencing(to_gt(to_i915(drm)));
 +}
 +
  static const struct intel_display_parent_interface parent = {
  	.rpm = &i915_display_rpm_interface,
  	.irq = &i915_display_irq_interface,
-+	.vgpu_active = vgpu_active,
+ 	.vgpu_active = vgpu_active,
++	.fence_support_legacy = fence_support_legacy,
  };
  
  const struct intel_display_parent_interface *i915_driver_parent_interface(void)
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vgpu.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_vgpu.h
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gt/intel_gt_types.h b/drivers/gpu/drm/xe/compat-i915-headers/gt/intel_gt_types.h
 deleted file mode 100644
-index 4931c7198f13..000000000000
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vgpu.h
+index c15806d6c4f7..000000000000
+--- a/drivers/gpu/drm/xe/compat-i915-headers/gt/intel_gt_types.h
 +++ /dev/null
-@@ -1,18 +0,0 @@
+@@ -1,11 +0,0 @@
 -/* SPDX-License-Identifier: MIT */
 -/*
 - * Copyright © 2023 Intel Corporation
 - */
 -
--#ifndef _I915_VGPU_H_
--#define _I915_VGPU_H_
+-#ifndef __INTEL_GT_TYPES__
+-#define __INTEL_GT_TYPES__
 -
--#include <linux/types.h>
+-#define intel_gt_support_legacy_fencing(gt) 0
 -
--struct drm_i915_private;
--
--static inline bool intel_vgpu_active(struct drm_i915_private *i915)
--{
--	return false;
--}
--
--#endif /* _I915_VGPU_H_ */
+-#endif
 diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/intel/display_parent_interface.h
-index 3a008a18eb65..f3834f36ce74 100644
+index f3834f36ce74..11767adb0083 100644
 --- a/include/drm/intel/display_parent_interface.h
 +++ b/include/drm/intel/display_parent_interface.h
-@@ -48,6 +48,9 @@ struct intel_display_parent_interface {
+@@ -51,6 +51,9 @@ struct intel_display_parent_interface {
  
- 	/** @irq: IRQ interface */
- 	const struct intel_display_irq_interface *irq;
+ 	/** @vgpu_active: Is vGPU active? Optional. */
+ 	bool (*vgpu_active)(struct drm_device *drm);
 +
-+	/** @vgpu_active: Is vGPU active? Optional. */
-+	bool (*vgpu_active)(struct drm_device *drm);
++	/** @fence_support_legacy: Support legacy fencing? Optional. */
++	bool (*fence_support_legacy)(struct drm_device *drm);
  };
  
  #endif
