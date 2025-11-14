@@ -2,66 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 032E4C5D483
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Nov 2025 14:14:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A7DCC5D4A1
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Nov 2025 14:16:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6900710EA6B;
-	Fri, 14 Nov 2025 13:14:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B70210EA6E;
+	Fri, 14 Nov 2025 13:16:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VX+uGZuu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lWRSZh28";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0582410EA6A;
- Fri, 14 Nov 2025 13:14:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9602D10EA6F;
+ Fri, 14 Nov 2025 13:16:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763126082; x=1794662082;
- h=message-id:date:mime-version:from:to:cc:subject:
- content-transfer-encoding;
- bh=fcDlBYHV1yi1svKwHJ0Q6H1VuZR5E8ZL+wyrMnfsPXw=;
- b=VX+uGZuuoG/ybAGBbpZzDxbv2uaDFMtxNgAA2TDUzFD1IwUYhbLKc2BI
- +b6Gt2vukRMvrkkHeUg2WbXbO44m3f1A9jS59TLIXMb4caZkER8DWFfUz
- sAGK/xRuyk5e3SKWzbAkcVLiLnUlT2YZKMehgyDigEcidjdYsbcS7QJ9l
- jwxyoQggqQjXzHQ5szDKQ2MrJlQnrAv8nawCcmKAzXvUKdzru0VEskJpv
- QThH/OdJeZRF2OwihUsf2n7M4U0C2daoAIM3FugsW9pdqeGmzbyEihlNg
- Zemmc/3o70KHqoelhrhEBowuHQvr9rB4LtmGxYUm+xm/Z+Iqr2YhBHku+ g==;
-X-CSE-ConnectionGUID: hLYOwp5GRdqJuSivvbSN1w==
-X-CSE-MsgGUID: 6pqD8IIgQg2oGMwIQaD8xA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="65256595"
-X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; d="scan'208";a="65256595"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2025 05:14:41 -0800
-X-CSE-ConnectionGUID: vcbPGiORT1Gcl529lhmUWw==
-X-CSE-MsgGUID: y3uXgfb5QFS7Brfp7hyU5Q==
+ t=1763126217; x=1794662217;
+ h=from:date:to:cc:subject:in-reply-to:message-id:
+ references:mime-version:content-id;
+ bh=RzE25d2d9v/fSEKhDggTlj9ePRKiOdKbPr8EKVUlmfU=;
+ b=lWRSZh28kbdAhx35m7IzI6O2Yq9HE+5FH2Bck8SSc4IJqSXa3lT1SgPA
+ AxkUigOMGFPM1noQlmsurIi2Rerqir9ROGu8OSZyKYjjA+QS7yu9o6o36
+ kfKUOOqjTOsXTeaPxYkxTggWfle+3u71wZ9H5SaqeDL50ZA9yO+Vl7+WI
+ RYXkIAxYDUozE+mdZtVyPiLZLPcta1rR/UNP2hJtnJzlhnmuN1XtD61O0
+ MVfbm44rnP4BDQ7s3m0l/YjVIUU4uOTNHPLN/AWDn9FiIIGp7F5Or7GvM
+ DHYOYqDXOSKZxo1PrGN0uPq2YUTEMHXB4dQfcxepM0zUYUjnIOUJbrWIg Q==;
+X-CSE-ConnectionGUID: 3E+wznmcSzqgF6qmUvEkww==
+X-CSE-MsgGUID: xpxBI64OSP+zE47J5qUnAg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="82612788"
+X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; d="scan'208";a="82612788"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2025 05:16:56 -0800
+X-CSE-ConnectionGUID: tLpJ9J04REWyET8TY8pkSQ==
+X-CSE-MsgGUID: vAIfT8BCT2iy+wMU147Rzg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; d="scan'208";a="194219476"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO [10.245.244.65])
- ([10.245.244.65])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2025 05:14:37 -0800
-Message-ID: <1ad3ea69-d029-4a21-8b3d-6b264b1b2a30@linux.intel.com>
-Date: Fri, 14 Nov 2025 14:14:35 +0100
+X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; d="scan'208";a="189620457"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.31])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2025 05:16:51 -0800
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Fri, 14 Nov 2025 15:16:48 +0200 (EET)
+To: =?ISO-8859-15?Q?Alex_Benn=E9e?= <alex.bennee@linaro.org>
+cc: Simon Richter <Simon.Richter@hogyros.de>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, 
+ Bjorn Helgaas <bhelgaas@google.com>, David Airlie <airlied@gmail.com>, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ linux-pci@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Simona Vetter <simona@ffwll.ch>, Tvrtko Ursulin <tursulin@ursulin.net>, 
+ =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>, 
+ =?ISO-8859-15?Q?Thomas_Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, 
+ =?ISO-8859-2?Q?Micha=B3_Winiarski?= <michal.winiarski@intel.com>, 
+ LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 08/11] drm/xe: Remove driver side BAR release before
+ resize
+In-Reply-To: <87ecq0pxos.fsf@draig.linaro.org>
+Message-ID: <3dd004b8-6710-e73b-fad9-d7685d2de5cc@linux.intel.com>
+References: <20251113162628.5946-1-ilpo.jarvinen@linux.intel.com>
+ <20251113162628.5946-9-ilpo.jarvinen@linux.intel.com>
+ <87ecq0pxos.fsf@draig.linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
- <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: [PULL] drm-misc-next
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/mixed; BOUNDARY="8323328-10488022-1763126168=:1008"
+Content-ID: <17787d87-d6d0-c4a6-d47c-0de46448de3d@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,269 +83,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Simona,
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-Here the belated pull request for v6.19.
-I did write it, but then forgot to submit it, so some fixes from nouveau,
-ivpu and amdxdna got lucky enough to be added too!
+--8323328-10488022-1763126168=:1008
+Content-Type: text/plain; CHARSET=ISO-8859-15
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-ID: <1f479a4d-2c67-db3b-3dd7-09632eef6845@linux.intel.com>
 
-Kind regards,
-~Maarten Lankhorst
+On Fri, 14 Nov 2025, Alex Benn=E9e wrote:
 
-drm-misc-next-2025-11-14-1:
-drm-misc-next for v6.19:
+> Ilpo J=E4rvinen <ilpo.jarvinen@linux.intel.com> writes:
+>=20
+> > PCI core handles releasing device's resources and their rollback in
+> > case of failure of a BAR resizing operation. Releasing resource prior
+> > to calling pci_resize_resource() prevents PCI core from restoring the
+> > BARs as they were.
+> >
+> > Remove driver-side release of BARs from the xe driver.
+> >
+> > Signed-off-by: Ilpo J=E4rvinen <ilpo.jarvinen@linux.intel.com>
+> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_vram.c | 3 ---
+> >  1 file changed, 3 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.=
+c
+> > index 00dd027057df..5aacab9358a4 100644
+> > --- a/drivers/gpu/drm/xe/xe_vram.c
+> > +++ b/drivers/gpu/drm/xe/xe_vram.c
+> > @@ -33,9 +33,6 @@ _resize_bar(struct xe_device *xe, int resno, resource=
+_size_t size)
+> >  =09int bar_size =3D pci_rebar_bytes_to_size(size);
+> >  =09int ret;
+> > =20
+> > -=09if (pci_resource_len(pdev, resno))
+> > -=09=09pci_release_resource(pdev, resno);
+> > -
+> >  =09ret =3D pci_resize_resource(pdev, resno, bar_size, 0);
+> >  =09if (ret) {
+> >  =09=09drm_info(&xe->drm, "Failed to resize BAR%d to %dM (%pe). Conside=
+r enabling 'Resizable BAR' support in your BIOS\n",
+>=20
+> This didn't apply, I assume due to a clash with:
+>=20
+>   d30203739be79 (drm/xe: Move rebar to be done earlier)
 
-UAPI Changes:
-- Add sysfs entries, coredump support and uevents to QAIC.
-- Add fdinfo memory statistics to ivpu.
+The xe driver changes do not matter if you using only amdgpu.
 
-Cross-subsystem Changes:
-- Handle stub fence initialization during module init.
-- Stop using system_wq in scheduler and drivers.
+We know those xe changes in the drm tree conflict as the need for this=20
+BAR resizing rework was not know when the xe changes were made. The=20
+resolution is just to remove the release_bars() function from xe driver=20
+completely as BAR releasing prior to resize is now handled by=20
+pci_resize_resource().
 
-Core Changes:
-- Documentation updates to ttm, vblank.
-- Add EDID quirk for sharp panel.
-- Use drm_crtc_vblank_(crtc,waitqueue) more in core and drivers.
-
-Driver Changes:
-- Small updates and fixes to panfrost, amdxdna, vmwgfx, ast, ivpu.
-- Handle preemption in amdxdna.
-- Add PM support to qaic.
-- Huge refactor of sun4i's layer code to decouple plane code from output
-  and improve support for DE33.
-- Add larger page and compression support to nouveau.
-The following changes since commit e237dfe70867f02de223e36340fe5f8b0fe0eada:
-
-  Merge tag 'drm-misc-next-2025-11-05-1' of https://gitlab.freedesktop.org/drm/misc/kernel into drm-next (2025-11-07 12:41:26 +1000)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2025-11-14-1
-
-for you to fetch changes up to ca2583412306ceda9304a7c4302fd9efbf43e963:
-
-  accel/amdxdna: Fix deadlock between context destroy and job timeout (2025-11-13 09:10:43 -0800)
-
-----------------------------------------------------------------
-drm-misc-next for v6.19:
-
-UAPI Changes:
-- Add sysfs entries, coredump support and uevents to QAIC.
-- Add fdinfo memory statistics to ivpu.
-
-Cross-subsystem Changes:
-- Handle stub fence initialization during module init.
-- Stop using system_wq in scheduler and drivers.
-
-Core Changes:
-- Documentation updates to ttm, vblank.
-- Add EDID quirk for sharp panel.
-- Use drm_crtc_vblank_(crtc,waitqueue) more in core and drivers.
-
-Driver Changes:
-- Small updates and fixes to panfrost, amdxdna, vmwgfx, ast, ivpu.
-- Handle preemption in amdxdna.
-- Add PM support to qaic.
-- Huge refactor of sun4i's layer code to decouple plane code from output
-  and improve support for DE33.
-- Add larger page and compression support to nouveau.
-
-----------------------------------------------------------------
-Ajye Huang (1):
-      drm/edid: add 6 bpc quirk to the Sharp LQ116M1JW10
-
-Akash Goel (1):
-      drm/panthor: Fix potential memleak of vma structure
-
-Bagas Sanjaya (3):
-      drm/ttm: Fix @alloc_flags description
-      accel/qaic: Separate DBC_STATE_* definition list
-      accel/qaic: Format DBC states table in sysfs ABI documentation
-
-Ben Skeggs (2):
-      drm/nouveau/mmu/gp100: Remove unused/broken support for compression
-      drm/nouveau/mmu/tu102: Add support for compressed kinds
-
-Chintan Patel (1):
-      drm/vblank: Increase timeout in drm_wait_one_vblank()
-
-Christian König (1):
-      dma-buf: rework stub fence initialisation v2
-
-Jani Nikula (6):
-      drm/vblank: use drm_crtc_vblank_crtc() in workers
-      drm/tidss: use drm_crtc_vblank_crtc()
-      drm/vmwgfx: use drm_crtc_vblank_crtc()
-      drm/gma500: use drm_crtc_vblank_crtc()
-      drm/atomic: use drm_crtc_vblank_waitqueue()
-      drm/msm: use drm_crtc_vblank_waitqueue()
-
-Jayesh Choudhary (2):
-      drm/tidss: Remove max_pclk_khz and min_pclk_khz from tidss display features
-      drm/tidss: Move OLDI mode validation to OLDI bridge mode_valid hook
-
-Jeff Hugo (1):
-      accel/qaic: Implement basic SSR handling
-
-Jernej Skrabec (30):
-      drm/sun4i: mixer: Fix up DE33 channel macros
-      drm/sun4i: mixer: Remove ccsc cfg for >= DE3
-      drm/sun4i: de2: Initialize layer fields earlier
-      drm/sun4i: ui_layer: Move check from update to check callback
-      drm/sun4i: vi_layer: Move check from update to check callback
-      drm/sun4i: layers: Make atomic commit functions void
-      drm/sun4i: Move blender config from layers to mixer
-      drm/sun4i: ui layer: Write attributes in one go
-      drm/sun4i: vi layer: Write attributes in one go
-      drm/sun4i: mixer: Move layer enabling to atomic_update
-      drm/sun4i: de2/de3: Simplify CSC config interface
-      drm/sun4i: csc: Simplify arguments with taking plane state
-      drm/sun4i: de2/de3: Move plane type determination to mixer
-      drm/sun4i: ui_layer: Change index meaning
-      drm/sun4i: layer: move num of planes calc out of layer code
-      drm/sun4i: ui_layer: use layer struct instead of multiple args
-      drm/sun4i: vi_layer: use layer struct instead of multiple args
-      drm/sun4i: ui_scaler: use layer instead of mixer for args
-      drm/sun4i: vi_scaler: use layer instead of mixer for args
-      drm/sun4i: layers: Make regmap for layers configurable
-      drm/sun4i: csc: use layer arg instead of mixer
-      drm/sun4i: layers: add physical index arg
-      drm/sun4i: vi_scaler: Update DE33 base calculation
-      drm/sun4i: mixer: Convert heuristics to quirk
-      drm/sun4i: ui_scaler: drop sanity checks
-      drm/sun4i: mixer: Add quirk for number of VI scalers
-      drm/sun4i: mixer: split out layer config
-      drm/sun4i: layer: replace mixer with layer struct
-      drm/sun4i: vi_scaler: Find mixer from crtc
-      drm/sun4i: Nuke mixer pointer from layer code
-
-Jocelyn Falempe (1):
-      drm/ast: Handle framebuffer from dma-buf
-
-Karol Wachowski (3):
-      accel/ivpu: Add fdinfo support for memory statistics
-      accel/ivpu: Count only resident buffers in memory utilization
-      accel/ivpu: Fix warning due to undefined CONFIG_PROC_FS
-
-Lad Prabhakar (1):
-      dt-bindings: display: renesas,rzg2l-du: Add support for RZ/V2N SoC
-
-Lizhi Hou (5):
-      accel/amdxdna: Support preemption requests
-      accel/amdxdna: Fix dma_fence leak when job is canceled
-      accel/amdxdna: Treat power-off failure as unrecoverable error
-      accel/amdxdna: Clear mailbox interrupt register during channel creation
-      accel/amdxdna: Fix deadlock between context destroy and job timeout
-
-Maarten Lankhorst (1):
-      Merge remote-tracking branch 'drm/drm-next' into drm-misc-next
-
-Marco Crivellari (1):
-      drm/sched: Replace use of system_wq with system_percpu_wq
-
-Mary Guillemard (2):
-      drm/nouveau/uvmm: Prepare for larger pages
-      drm/nouveau/uvmm: Allow larger pages
-
-Mohamed Ahmed (1):
-      drm/nouveau/drm: Bump the driver version to 1.4.1 to report new features
-
-Pranjal Ramajor Asha Kanojiya (2):
-      accel/qaic: Add DMA Bridge Channel(DBC) sysfs and uevents
-      accel/qaic: Collect crashdump from SSR channel
-
-Randy Dunlap (1):
-      drm/panfrost: fix UAPI kernel-doc warnings
-
-Thomas Zimmermann (3):
-      drm/vblank: Fix kernel docs for vblank timer
-      drm/vmwgfx: Set surface-framebuffer GEM objects
-      drm/imx/ipuv3: Fix dumb-buffer allocation for non-RGB formats
-
-Timur Tabi (1):
-      drm/nouveau: fully define nvfw_hs_load_header_v2
-
-Youssef Samir (1):
-      accel/qaic: Add support for PM callbacks
-
-Zack McKevitt (1):
-      accel/qaic: Add qaic_ prefix to irq_polling_work
-
- Documentation/ABI/stable/sysfs-driver-qaic         |  19 +
- Documentation/accel/qaic/aic100.rst                |  25 +-
- .../bindings/display/renesas,rzg2l-du.yaml         |   3 +
- drivers/accel/amdxdna/aie2_ctx.c                   |   7 +-
- drivers/accel/amdxdna/aie2_message.c               |  95 +++
- drivers/accel/amdxdna/aie2_msg_priv.h              |   3 +
- drivers/accel/amdxdna/aie2_pci.c                   |  63 ++
- drivers/accel/amdxdna/aie2_pci.h                   |   8 +
- drivers/accel/amdxdna/aie2_smu.c                   |  10 +
- drivers/accel/amdxdna/amdxdna_ctx.c                |   1 +
- drivers/accel/amdxdna/amdxdna_ctx.h                |  17 +
- drivers/accel/amdxdna/amdxdna_mailbox.c            |   1 +
- drivers/accel/amdxdna/amdxdna_pci_drv.c            |   3 +-
- drivers/accel/amdxdna/npu4_regs.c                  |   4 +
- drivers/accel/ivpu/ivpu_drv.c                      |   6 +
- drivers/accel/ivpu/ivpu_gem.c                      |  12 +
- drivers/accel/ivpu/ivpu_gem.h                      |   5 +
- drivers/accel/ivpu/ivpu_sysfs.c                    |   3 +-
- drivers/accel/qaic/Kconfig                         |   1 +
- drivers/accel/qaic/Makefile                        |   2 +
- drivers/accel/qaic/qaic.h                          |  40 +-
- drivers/accel/qaic/qaic_control.c                  |   2 +
- drivers/accel/qaic/qaic_data.c                     |  66 +-
- drivers/accel/qaic/qaic_drv.c                      | 116 ++-
- drivers/accel/qaic/qaic_ssr.c                      | 815 +++++++++++++++++++++
- drivers/accel/qaic/qaic_ssr.h                      |  17 +
- drivers/accel/qaic/qaic_sysfs.c                    | 109 +++
- drivers/accel/qaic/qaic_timesync.c                 |   9 +
- drivers/accel/qaic/qaic_timesync.h                 |   3 +
- drivers/dma-buf/dma-fence.c                        |  32 +-
- drivers/gpu/drm/ast/ast_mode.c                     |  11 +-
- drivers/gpu/drm/drm_atomic_helper.c                |   4 +-
- drivers/gpu/drm/drm_edid.c                         |   3 +
- drivers/gpu/drm/drm_vblank.c                       |   4 +-
- drivers/gpu/drm/drm_vblank_work.c                  |   2 +-
- drivers/gpu/drm/gma500/psb_irq.c                   |  36 +-
- drivers/gpu/drm/imx/ipuv3/imx-drm-core.c           |  16 +-
- drivers/gpu/drm/msm/disp/mdp4/mdp4_crtc.c          |   3 +-
- drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c          |   3 +-
- drivers/gpu/drm/nouveau/include/nvfw/hs.h          |   4 +-
- drivers/gpu/drm/nouveau/nouveau_drv.h              |   4 +-
- drivers/gpu/drm/nouveau/nouveau_uvmm.c             | 102 ++-
- drivers/gpu/drm/nouveau/nouveau_uvmm.h             |   1 +
- drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.c |  67 +-
- drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp10b.c |   4 +-
- drivers/gpu/drm/panthor/panthor_mmu.c              |  18 +-
- drivers/gpu/drm/scheduler/sched_main.c             |   2 +-
- drivers/gpu/drm/sun4i/sun8i_csc.c                  | 125 ++--
- drivers/gpu/drm/sun4i/sun8i_csc.h                  |  16 +-
- drivers/gpu/drm/sun4i/sun8i_mixer.c                | 217 ++++--
- drivers/gpu/drm/sun4i/sun8i_mixer.h                |  65 +-
- drivers/gpu/drm/sun4i/sun8i_ui_layer.c             | 195 ++---
- drivers/gpu/drm/sun4i/sun8i_ui_layer.h             |   7 +-
- drivers/gpu/drm/sun4i/sun8i_ui_scaler.c            |  44 +-
- drivers/gpu/drm/sun4i/sun8i_ui_scaler.h            |   4 +-
- drivers/gpu/drm/sun4i/sun8i_vi_layer.c             | 244 +++---
- drivers/gpu/drm/sun4i/sun8i_vi_layer.h             |   7 +-
- drivers/gpu/drm/sun4i/sun8i_vi_scaler.c            |  51 +-
- drivers/gpu/drm/sun4i/sun8i_vi_scaler.h            |   6 +-
- drivers/gpu/drm/tidss/tidss_crtc.c                 |   3 +-
- drivers/gpu/drm/tidss/tidss_dispc.c                |  93 +--
- drivers/gpu/drm/tidss/tidss_dispc.h                |   3 -
- drivers/gpu/drm/tidss/tidss_drv.h                  |   2 +
- drivers/gpu/drm/tidss/tidss_oldi.c                 |  22 +
- drivers/gpu/drm/ttm/ttm_device.c                   |   2 +-
- drivers/gpu/drm/ttm/ttm_pool.c                     |   2 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_kms.c                |   3 +
- drivers/gpu/drm/vmwgfx/vmwgfx_vkms.c               |   6 +-
- include/drm/ttm/ttm_device.h                       |   2 +-
- include/drm/ttm/ttm_pool.h                         |   2 +-
- include/uapi/drm/amdxdna_accel.h                   |  16 +-
- include/uapi/drm/panfrost_drm.h                    | 118 ++-
- 72 files changed, 2323 insertions(+), 713 deletions(-)
- create mode 100644 Documentation/ABI/stable/sysfs-driver-qaic
- create mode 100644 drivers/accel/qaic/qaic_ssr.c
- create mode 100644 drivers/accel/qaic/qaic_ssr.h
- create mode 100644 drivers/accel/qaic/qaic_sysfs.c
+--=20
+ i.
+--8323328-10488022-1763126168=:1008--
