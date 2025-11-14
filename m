@@ -2,29 +2,95 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97A4FC5CFFB
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Nov 2025 13:04:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03DD9C64564
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Nov 2025 14:23:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01C2010EA49;
-	Fri, 14 Nov 2025 12:03:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E98F10E3BB;
+	Mon, 17 Nov 2025 13:23:39 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="GRWwBapB";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1517310EA49;
- Fri, 14 Nov 2025 12:03:57 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3424050228327538354=="
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com
+ [209.85.221.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4602610EA4A
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Nov 2025 12:06:03 +0000 (UTC)
+Received: by mail-wr1-f47.google.com with SMTP id
+ ffacd0b85a97d-42b31507ed8so1524121f8f.1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Nov 2025 04:06:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1763121962; x=1763726762; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:user-agent
+ :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=K95f3YlNhCQTt8GtlNX0mi3FKRnBks4BFfnVQ8YE34o=;
+ b=GRWwBapBrsxyfWgLaEjXF8spVlM9bDDnz3HdGDFO3FHhgE1LDolctkWZq1IxKS/stu
+ tuZR4kLKlHC0QUzpidKgCHTnvo33QBacxT2y1r5gW/N2+ESeLqncQz9VzowdW+SL9kg5
+ UkpCAzy9QZk55YJ58XvouEZbyRgEE8jIvP/vK0ipV3DzpPAKwNEGkZ+yNDV5vaLioP2l
+ DpQd7DNsoNT35RuLFcumfFsHyOhOZ8gqBsATGdKDOzjs2alKdyh1ShiGryvFKFrgszG+
+ fI257YBRnEwlpOF5kulu4b7ctr8okk5Fw58EIDkiCncGJMwjxHNM99r/socuJXcIoldT
+ A1YA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1763121962; x=1763726762;
+ h=content-transfer-encoding:mime-version:message-id:date:user-agent
+ :references:in-reply-to:subject:cc:to:from:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=K95f3YlNhCQTt8GtlNX0mi3FKRnBks4BFfnVQ8YE34o=;
+ b=Rw4U3amrS3FeJ/iugEtyQmuB+82wUfDKwoEfTw0BJHuPjwWPh+4lXyJmNTn2HPJybi
+ Gpoq4KrWW2NoDNib2UuCiD26FJll3W9XwsFr7Rp4afKsdhz9fVf3YKgTh8MG2aH44cUN
+ CAwLXlTf92iXo9cOd14UYKfpGLScSlg5aR7za7fB0OG0E4CdyXRyiuC4pxuR9rPBgypz
+ ZXivqRVBgfmyDCGqrxuWFvF3JX3SXhZA0O2LizELl7LcslDafsqLNWQeUtcX2v3IcYBE
+ kKiLwEY6hJo8M1pmbVY/cyINkdXLGgbNMW8DyF8UoPIdeFFTDmnLw5IZ0FGldjDK5jsh
+ 8TQQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV8ZIm+cNv/MGd7PuUU6Wp5p/75CMuDmC/hr4p1wVi3CdDlubz1hybt+IVUjw8hIFk89ZANg3pgBfM=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzOK71I2wnsIkZ4DE0MaLyxGt8OdB01MluKljBr0yfq9ulTgD0Y
+ oRnCfel/JVZWxbsQuYXbLCzhWIPHW8ILZ6Nkw8v9mmhdpmMR8sgVHIPPtC3LBlnH1v4=
+X-Gm-Gg: ASbGncuO4bBmp1qcdAqoVpFNNCI2f38J0/BQn9phO3YixPKBdtmXCjvbk2qb93MKrlI
+ 9JGUQUT1LDwmsmKcknLzB57xIungRBflcfQlvKXP3vaGhOALygxzQz1IhvBVqz4jSyt3x0UldTY
+ gIzqBrq9B5rzm2HNi8KXH9S4bfAhzm9Ib5g/ZokaY6hoSTHdM10TqFllEwGPUPPrFxkurVRrsvF
+ 2eBf42sctz1HZobL4Xkl9j8+OGjq/dTMpKA6ZYiBCRWJyCk9A8W+bCYXD1CKdlCCf0+0nh3hdZU
+ H5Vq+iba7vQ8DH+Juc20OmxVwQpOPfFyNXIggAthKiFfJPFWQqUGEVeZpxJxAYPzyj9QeuY5NMU
+ AAFi7oZ0q4zmFuZhTrIfdvet2lCULAtGRv+37kl9REfs6QRgQtQt/J+s5Xwe2asflKySYU1fgpV
+ Br
+X-Google-Smtp-Source: AGHT+IHE8wmfBLRimraz6qGrkqAB1kcfDLmC9Ei9799tyFpwTbyC2bx5mJA0Z5MS/+tIuTgQ7sZknA==
+X-Received: by 2002:a05:6000:25c8:b0:429:c851:69bc with SMTP id
+ ffacd0b85a97d-42b59342f3fmr1891458f8f.8.1763121961723; 
+ Fri, 14 Nov 2025 04:06:01 -0800 (PST)
+Received: from draig.lan ([185.126.160.19]) by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-42b53f206e2sm9569035f8f.41.2025.11.14.04.06.00
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 14 Nov 2025 04:06:00 -0800 (PST)
+Received: from draig (localhost [IPv6:::1])
+ by draig.lan (Postfix) with ESMTP id 1D11A5F820;
+ Fri, 14 Nov 2025 12:06:00 +0000 (GMT)
+From: =?utf-8?Q?Alex_Benn=C3=A9e?= <alex.bennee@linaro.org>
+To: Ilpo =?utf-8?Q?J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Cc: Simon Richter <Simon.Richter@hogyros.de>,  Lucas De Marchi
+ <lucas.demarchi@intel.com>,  Alex Deucher <alexander.deucher@amd.com>,
+ amd-gfx@lists.freedesktop.org,  Bjorn Helgaas <bhelgaas@google.com>,
+ David Airlie <airlied@gmail.com>,  dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org,  intel-xe@lists.freedesktop.org,  Jani
+ Nikula <jani.nikula@linux.intel.com>,  Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>,  linux-pci@vger.kernel.org,  Rodrigo
+ Vivi <rodrigo.vivi@intel.com>,  Simona Vetter <simona@ffwll.ch>,  Tvrtko
+ Ursulin <tursulin@ursulin.net>,  Christian =?utf-8?Q?K=C3=B6nig?=
+ <christian.koenig@amd.com>,  Thomas =?utf-8?Q?Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>,  =?utf-8?Q?Micha=C5=82?= Winiarski
+ <michal.winiarski@intel.com>
+Subject: Re: [PATCH v2 00/11] PCI: BAR resizing fix/rework
+In-Reply-To: <20251113162628.5946-1-ilpo.jarvinen@linux.intel.com> ("Ilpo
+ =?utf-8?Q?J=C3=A4rvinen=22's?= message of "Thu, 13 Nov 2025 18:26:17
+ +0200")
+References: <20251113162628.5946-1-ilpo.jarvinen@linux.intel.com>
+User-Agent: mu4e 1.12.14-dev2; emacs 30.1
+Date: Fri, 14 Nov 2025 12:06:00 +0000
+Message-ID: <87jyzsq0nr.fsf@draig.linaro.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915=3A_call_irq_and_?=
- =?utf-8?q?rps_through_the_parent_interface?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 14 Nov 2025 12:03:57 -0000
-Message-ID: <176312183707.55609.14260196042562738685@10055242dc62>
-X-Patchwork-Hint: ignore
-References: <cover.1763115899.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1763115899.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 17 Nov 2025 13:23:35 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,128 +103,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3424050228327538354==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com> writes:
 
-== Series Details ==
+> Hi all,
+>
+> Thanks to issue reports from Simon Richter and Alex Benn=C3=A9e, I
+> discovered BAR resize rollback can corrupt the resource tree. As fixing
+> corruption requires avoiding overlapping resource assignments, the
+> correct fix can unfortunately results in worse user experience, what
+> appeared to be "working" previously might no longer do so. Thus, I had
+> to do a larger rework to pci_resize_resource() in order to properly
+> restore resource states as it was prior to BAR resize.
+<snip>
+>
+> base-commit: 3a8660878839faadb4f1a6dd72c3179c1df56787
 
-Series: drm/i915: call irq and rps through the parent interface
-URL   : https://patchwork.freedesktop.org/series/157575/
-State : success
+Ahh I have applied to 6.18-rc5 with minor conflicts and can verify that
+on my AVA the AMD GPU shows up again and I can run inference jobs
+against it. So for that case:
 
-== Summary ==
+Tested-by: Alex Benn=C3=A9e <alex.bennee@linaro.org>
 
-CI Bug Log - changes from CI_DRM_17547 -> Patchwork_157575v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157575v1/index.html
-
-Participating hosts (44 -> 43)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_157575v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-6:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17547/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157575v1/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_17547 -> Patchwork_157575v1
-
-  CI-20190529: 20190529
-  CI_DRM_17547: 09454f8115d510182b41dd65a887e1eca1bce610 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8623: 8623
-  Patchwork_157575v1: 09454f8115d510182b41dd65a887e1eca1bce610 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157575v1/index.html
-
---===============3424050228327538354==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: call irq and rps through the parent interface</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157575/">https://patchwork.freedesktop.org/series/157575/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157575v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157575v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17547 -&gt; Patchwork_157575v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157575v1/index.html</p>
-<h2>Participating hosts (44 -&gt; 43)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_157575v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17547/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157575v1/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17547 -&gt; Patchwork_157575v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17547: 09454f8115d510182b41dd65a887e1eca1bce610 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8623: 8623<br />
-  Patchwork_157575v1: 09454f8115d510182b41dd65a887e1eca1bce610 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============3424050228327538354==--
+--=20
+Alex Benn=C3=A9e
+Virtualisation Tech Lead @ Linaro
