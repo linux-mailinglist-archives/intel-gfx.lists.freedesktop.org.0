@@ -2,58 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 615D5C5DA8E
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Nov 2025 15:45:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1627C5DB46
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Nov 2025 15:58:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A79C910EA99;
-	Fri, 14 Nov 2025 14:45:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9991A10EA9F;
+	Fri, 14 Nov 2025 14:58:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Sh+QzbPJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JZ0TVwPc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 643AC10EA99;
- Fri, 14 Nov 2025 14:45:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 001E010EA9F;
+ Fri, 14 Nov 2025 14:58:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763131521; x=1794667521;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=9Y8dZ/7rvEOVHM5+qu2aTusO1WNtaPO9j/0jQNvbVt4=;
- b=Sh+QzbPJ3Chu4HHN6YdWFmaEH1OM0QUOtza8/ZokcPXCHfD3OrizxoQ5
- uM+ylzDMI89xPvaRxpzHn7RQa+MdgypOJsv9B1B3nDpHOSOwsXcnjludX
- LrE14rmzcXNYlE/ZfMcEhV6OyHiMum4iDrcK5UBOMhwi7EjjnbVyhLYyC
- qCfn5T+sCz4UMI8plW4CCd9+UkUi2IIB+v61o4JbZL6NelTf8IIxch3kC
- Gxfvfu6jDn7+OFdlu37l/CBAC/ZaltwlOwn03M1EoJhtExMwT9X1xT3xd
- o6UcJRS+I84Cj7LKqmj7OkAJXpDPZqzqpXdqMsiaAoRylmm3yyPcwkLsg g==;
-X-CSE-ConnectionGUID: wUmwbD4+QF+Y4X/kmdNNgw==
-X-CSE-MsgGUID: SpVeQKs8TuKG3amhg4DK9Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11613"; a="76687337"
-X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; d="scan'208";a="76687337"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2025 06:45:20 -0800
-X-CSE-ConnectionGUID: 5VfAgc6zRWe6xSAROJPOqA==
-X-CSE-MsgGUID: SEQC6nvnQGOoAD2uumMbXg==
+ t=1763132311; x=1794668311;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=H6Oe1e9h85q6IsWrH0rvgE1SKI1y3G3eAN2+Dtv96Ww=;
+ b=JZ0TVwPcHCPxWlW496NSxhp9qUpFC2JohMS+AALszK9g9l4yQeh7IbBj
+ JD3Mg5TuIkFFnN7XVv4OUy4n40OD79g6NozYG35QNEkpETzXjtjucXWnc
+ a+jt96426Xoq/mXfMMpkcrqvBKiYuGuRiRbvNmAjDmdR51UwcXBHWeLbf
+ OaJukNxnrRSqaM4Lwhv1trNK3EvLlPkzEEfcW9Rwp3yg+CaoMErPPYBsf
+ djsX3KJbK7DDOEgECYSncS9ADg1d30xur2PXcFDJiWuqI/De3j/8OIDxx
+ Uyo0i6w+th9/fys/Bro0yBuW1V0qZ0cTWgymm4yBc9bLMD/+lXkmX5hxv w==;
+X-CSE-ConnectionGUID: D8Vy8v+mSVmZs34RiNnlcQ==
+X-CSE-MsgGUID: R5A6EUS5TCGIyqQNKdHKwg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11613"; a="64432292"
+X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; d="scan'208";a="64432292"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2025 06:58:30 -0800
+X-CSE-ConnectionGUID: AxLrQGdtTJmYecx+XNL7BA==
+X-CSE-MsgGUID: KY0pkXaKQPy7EyDn2NHoLQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; d="scan'208";a="189635410"
+X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; d="scan'208";a="189987392"
 Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.202])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2025 06:45:18 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: Re: [PATCH v3 1/2] drm/i915/ltphy: Implement HDMI Algo for Pll state
-In-Reply-To: <20251110061940.545183-1-suraj.kandpal@intel.com>
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2025 06:58:26 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, Oded
+ Gabbay <ogabbay@kernel.org>, Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-next
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251110061940.545183-1-suraj.kandpal@intel.com>
-Date: Fri, 14 Nov 2025 16:45:15 +0200
-Message-ID: <845e531ed52cf5cc331f3f383b9477f571e25259@intel.com>
+Date: Fri, 14 Nov 2025 16:58:23 +0200
+Message-ID: <b131309bb7310ab749f1770aa6e36fa8d6a82fa5@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,456 +75,282 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 10 Nov 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> Implement the HDMI Algorithm to dynamically create LT PHY state
-> based on the port clock provided.
 
-I know this has been merged already... because I encountered it while
-trying to write a pull request changelog.
+Hi Dave & Sima -
 
-I have no idea what the commit is supposed to do based on the commit
-message alone. Yes, I can (and now have) looked at the code, but please
-be more elaborate in the commit messages.
+Final drm-intel feature pull request for v6.19.
 
-For patch 2, I read the code and I still don't know what it's doing, and
-what the fallback is, or why.
 
+drm-intel-next-2025-11-14:
+drm/i915 feature pull #2 for v6.19:
+
+Features and functionality:
+- Add initial display support for Xe3p_LPD, display version 35 (Sai Teja, M=
+att
+  R, Gustavo, Matt A, Ankit, Juha-pekka, Luca, Ravi Kumar)
+- Compute LT PHY HDMI params when port clock not in predefined tables (Sura=
+j)
+
+Refactoring and cleanups:
+- Refactor intel_frontbuffer split between i915, xe, and display (Ville)
+- Clean up intel_de_wait_custom() usage (Ville)
+- Unify display register polling interfaces (Ville)
+- Finish removal of the expensive format info lookups (Ville)
+- Cursor code cleanups (Ville)
+- Convert intel_rom interfaces to struct drm_device (Jani)
+
+Fixes:
+- Fix uninitialized variable in DSI exec packet (Jonathan)
+- Fix PIPEDMC logging (Alok Tiwari)
+- Fix PSR pipe to vblank conversion (Jani)
+- Fix intel_frontbuffer lifetime handling (Ville)
+- Disable Panel Replay on DP MST for the time being (Imre)
+
+Merges:
+- Backmerge drm-next to get the drm_print.h changes (Jani)
 
 BR,
 Jani.
 
+The following changes since commit e237dfe70867f02de223e36340fe5f8b0fe0eada:
 
+  Merge tag 'drm-misc-next-2025-11-05-1' of https://gitlab.freedesktop.org/=
+drm/misc/kernel into drm-next (2025-11-07 12:41:26 +1000)
 
+are available in the Git repository at:
 
->
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->
-> v1 -> v2:
-> -Add new macro functions and definitions for address assignment(Ankit)
-> -Introduce a structure lt_phy_param for code readability (Ankit)
->
-> v2 ->v3:
-> -Seprate out param calulation wherever possible (Ankit)
-> -Modify Macro to accept pll_reg (Ankit)
->
->  drivers/gpu/drm/i915/display/intel_lt_phy.c   | 345 +++++++++++++++++-
->  drivers/gpu/drm/i915/display/intel_lt_phy.h   |   3 +
->  .../gpu/drm/i915/display/intel_lt_phy_regs.h  |  16 +
->  3 files changed, 362 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-> index af48d6cde226..d88dbfbe97b1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-> @@ -31,6 +31,32 @@
->  #define INTEL_LT_PHY_BOTH_LANES		(INTEL_LT_PHY_LANE1 |\
->  					 INTEL_LT_PHY_LANE0)
->  #define MODE_DP				3
-> +#define Q32_TO_INT(x)	((x) >> 32)
-> +#define Q32_TO_FRAC(x)	((x) & 0xFFFFFFFF)
-> +#define DCO_MIN_FREQ_MHZ	11850
-> +#define REF_CLK_KHZ	38400
-> +#define TDC_RES_MULTIPLIER	10000000ULL
-> +
-> +struct phy_param_t {
-> +	u32 val;
-> +	u32 addr;
-> +};
-> +
-> +struct lt_phy_params {
-> +	struct phy_param_t pll_reg4;
-> +	struct phy_param_t pll_reg3;
-> +	struct phy_param_t pll_reg5;
-> +	struct phy_param_t pll_reg57;
-> +	struct phy_param_t lf;
-> +	struct phy_param_t tdc;
-> +	struct phy_param_t ssc;
-> +	struct phy_param_t bias2;
-> +	struct phy_param_t bias_trim;
-> +	struct phy_param_t dco_med;
-> +	struct phy_param_t dco_fine;
-> +	struct phy_param_t ssc_inj;
-> +	struct phy_param_t surv_bonus;
-> +};
->  
->  static const struct intel_lt_phy_pll_state xe3plpd_lt_dp_rbr = {
->  	.clock = 162000,
-> @@ -1356,10 +1382,322 @@ intel_lt_phy_pll_is_ssc_enabled(struct intel_crtc_state *crtc_state,
->  	return false;
->  }
->  
-> +static u64 mul_q32_u32(u64 a_q32, u32 b)
-> +{
-> +	u64 p0, p1, carry, result;
-> +	u64 x_hi = a_q32 >> 32;
-> +	u64 x_lo = a_q32 & 0xFFFFFFFFULL;
-> +
-> +	p0 = x_lo * (u64)b;
-> +	p1 = x_hi * (u64)b;
-> +	carry = p0 >> 32;
-> +	result = (p1 << 32) + (carry << 32) + (p0 & 0xFFFFFFFFULL);
-> +
-> +	return result;
-> +}
-> +
-> +static bool
-> +calculate_target_dco_and_loop_cnt(u32 frequency_khz, u64 *target_dco_mhz, u32 *loop_cnt)
-> +{
-> +	u32 ppm_value = 1;
-> +	u32 dco_min_freq = DCO_MIN_FREQ_MHZ;
-> +	u32 dco_max_freq = 16200;
-> +	u32 dco_min_freq_low = 10000;
-> +	u32 dco_max_freq_low = 12000;
-> +	u64 val = 0;
-> +	u64 refclk_khz = REF_CLK_KHZ;
-> +	u64 m2div = 0;
-> +	u64 val_with_frac = 0;
-> +	u64 ppm = 0;
-> +	u64 temp0 = 0, temp1, scale;
-> +	int ppm_cnt, dco_count, y;
-> +
-> +	for (ppm_cnt = 0; ppm_cnt < 5; ppm_cnt++) {
-> +		ppm_value = ppm_cnt == 2 ? 2 : 1;
-> +		for (dco_count = 0; dco_count < 2; dco_count++) {
-> +			if (dco_count == 1) {
-> +				dco_min_freq = dco_min_freq_low;
-> +				dco_max_freq = dco_max_freq_low;
-> +			}
-> +			for (y = 2; y <= 255; y += 2) {
-> +				val = div64_u64((u64)y * frequency_khz, 200);
-> +				m2div = div64_u64(((u64)(val) << 32), refclk_khz);
-> +				m2div = mul_q32_u32(m2div, 500);
-> +				val_with_frac = mul_q32_u32(m2div, refclk_khz);
-> +				val_with_frac = div64_u64(val_with_frac, 500);
-> +				temp1 = Q32_TO_INT(val_with_frac);
-> +				temp0 = (temp1 > val) ? (temp1 - val) :
-> +					(val - temp1);
-> +				ppm = div64_u64(temp0, val);
-> +				if (temp1 >= dco_min_freq &&
-> +				    temp1 <= dco_max_freq &&
-> +				    ppm < ppm_value) {
-> +					/* Round to two places */
-> +					scale = (1ULL << 32) / 100;
-> +					temp0 = DIV_ROUND_UP_ULL(val_with_frac,
-> +								 scale);
-> +					*target_dco_mhz = temp0 * scale;
-> +					*loop_cnt = y;
-> +					return true;
-> +				}
-> +			}
-> +		}
-> +	}
-> +
-> +	return false;
-> +}
-> +
-> +static void set_phy_vdr_addresses(struct lt_phy_params *p, int pll_type)
-> +{
-> +	p->pll_reg4.addr = PLL_REG_ADDR(PLL_REG4_ADDR, pll_type);
-> +	p->pll_reg3.addr = PLL_REG_ADDR(PLL_REG3_ADDR, pll_type);
-> +	p->pll_reg5.addr = PLL_REG_ADDR(PLL_REG5_ADDR, pll_type);
-> +	p->pll_reg57.addr = PLL_REG_ADDR(PLL_REG57_ADDR, pll_type);
-> +	p->lf.addr = PLL_REG_ADDR(PLL_LF_ADDR, pll_type);
-> +	p->tdc.addr = PLL_REG_ADDR(PLL_TDC_ADDR, pll_type);
-> +	p->ssc.addr = PLL_REG_ADDR(PLL_SSC_ADDR, pll_type);
-> +	p->bias2.addr = PLL_REG_ADDR(PLL_BIAS2_ADDR, pll_type);
-> +	p->bias_trim.addr = PLL_REG_ADDR(PLL_BIAS_TRIM_ADDR, pll_type);
-> +	p->dco_med.addr = PLL_REG_ADDR(PLL_DCO_MED_ADDR, pll_type);
-> +	p->dco_fine.addr = PLL_REG_ADDR(PLL_DCO_FINE_ADDR, pll_type);
-> +	p->ssc_inj.addr = PLL_REG_ADDR(PLL_SSC_INJ_ADDR, pll_type);
-> +	p->surv_bonus.addr = PLL_REG_ADDR(PLL_SURV_BONUS_ADDR, pll_type);
-> +}
-> +
-> +static void compute_ssc(struct lt_phy_params *p, u32 ana_cfg)
-> +{
-> +	int ssc_stepsize = 0;
-> +	int ssc_steplen = 0;
-> +	int ssc_steplog = 0;
-> +
-> +	p->ssc.val = (1 << 31) | (ana_cfg << 24) | (ssc_steplog << 16) |
-> +		(ssc_stepsize << 8) | ssc_steplen;
-> +}
-> +
-> +static void compute_bias2(struct lt_phy_params *p)
-> +{
-> +	u32 ssc_en_local = 0;
-> +	u64 dynctrl_ovrd_en = 0;
-> +
-> +	p->bias2.val = (dynctrl_ovrd_en << 31) | (ssc_en_local << 30) |
-> +		(1 << 23) | (1 << 24) | (32 << 16) | (1 << 8);
-> +}
-> +
-> +static void compute_tdc(struct lt_phy_params *p, u64 tdc_fine)
-> +{
-> +	u32 settling_time = 15;
-> +	u32 bias_ovr_en = 1;
-> +	u32 coldstart = 1;
-> +	u32 true_lock = 2;
-> +	u32 early_lock = 1;
-> +	u32 lock_ovr_en = 1;
-> +	u32 lock_thr = tdc_fine ? 3 : 5;
-> +	u32 unlock_thr = tdc_fine ? 5 : 11;
-> +
-> +	p->tdc.val = (u32)((2 << 30) + (settling_time << 16) + (bias_ovr_en << 15) +
-> +		    (lock_ovr_en << 14) + (coldstart << 12) + (true_lock << 10) +
-> +		    (early_lock << 8) + (unlock_thr << 4) + lock_thr);
-> +}
-> +
-> +static void compute_dco_med(struct lt_phy_params *p)
-> +{
-> +	u32 cselmed_en = 0;
-> +	u32 cselmed_dyn_adj = 0;
-> +	u32 cselmed_ratio = 39;
-> +	u32 cselmed_thr = 8;
-> +
-> +	p->dco_med.val = (cselmed_en << 31) + (cselmed_dyn_adj << 30) +
-> +		(cselmed_ratio << 24) + (cselmed_thr << 21);
-> +}
-> +
-> +static void compute_dco_fine(struct lt_phy_params *p, u32 dco_12g)
-> +{
-> +	u32 dco_fine0_tune_2_0 = 0;
-> +	u32 dco_fine1_tune_2_0 = 0;
-> +	u32 dco_fine2_tune_2_0 = 0;
-> +	u32 dco_fine3_tune_2_0 = 0;
-> +	u32 dco_dith0_tune_2_0 = 0;
-> +	u32 dco_dith1_tune_2_0 = 0;
-> +
-> +	dco_fine0_tune_2_0 = dco_12g ? 4 : 3;
-> +	dco_fine1_tune_2_0 = 2;
-> +	dco_fine2_tune_2_0 = dco_12g ? 2 : 1;
-> +	dco_fine3_tune_2_0 = 5;
-> +	dco_dith0_tune_2_0 = dco_12g ? 4 : 3;
-> +	dco_dith1_tune_2_0 = 2;
-> +
-> +	p->dco_fine.val = (dco_dith1_tune_2_0 << 19)
-> +		+ (dco_dith0_tune_2_0 << 16)
-> +		+ (dco_fine3_tune_2_0 << 11)
-> +		+ (dco_fine2_tune_2_0 << 8)
-> +		+ (dco_fine1_tune_2_0 << 3)
-> +		+ dco_fine0_tune_2_0;
-> +}
-> +
-> +int
-> +intel_lt_phy_calculate_hdmi_state(struct intel_lt_phy_pll_state *lt_state,
-> +				  u32 frequency_khz)
-> +{
-> +#define DATA_ASSIGN(i, pll_reg)	\
-> +	do {			\
-> +		lt_state->data[i][0] = (u8)((((pll_reg).val) & 0xFF000000) >> 24); \
-> +		lt_state->data[i][1] = (u8)((((pll_reg).val) & 0x00FF0000) >> 16); \
-> +		lt_state->data[i][2] = (u8)((((pll_reg).val) & 0x0000FF00) >> 8); \
-> +		lt_state->data[i][3] = (u8)((((pll_reg).val) & 0x000000FF));	\
-> +	} while (0)
-> +#define ADDR_ASSIGN(i, pll_reg)	\
-> +	do {			\
-> +		lt_state->addr_msb[i] = ((pll_reg).addr >> 8) & 0xFF;	\
-> +		lt_state->addr_lsb[i] = (pll_reg).addr & 0xFF;		\
-> +	} while (0)
-> +
-> +	bool found = false;
-> +	struct lt_phy_params p;
-> +	u32 dco_fmin = DCO_MIN_FREQ_MHZ;
-> +	u64 refclk_khz = REF_CLK_KHZ;
-> +	u64 m2div = 0;
-> +	u64 target_dco_mhz = 0;
-> +	u64 tdc_fine;
-> +	u64 tdc_targetcnt;
-> +	u64 feedfwd_gain;
-> +	u64 feedfwd_cal_en;
-> +	u64 tdc_res = 30;
-> +	u32 prop_coeff;
-> +	u32 int_coeff;
-> +	u32 ndiv = 1;
-> +	u32 m1div = 1;
-> +	u32 m2div_int;
-> +	u32 m2div_frac;
-> +	u32 frac_en;
-> +	u32 ana_cfg;
-> +	u32 loop_cnt = 0;
-> +	u32 gain_ctrl = 2;
-> +	u32 refclk_mhz_int = 38;
-> +	u32 postdiv = 0;
-> +	u32 d6_new = 0;
-> +	u32 dco_12g = 0;
-> +	u32 pll_type = 0;
-> +	u32 d1 = 2;
-> +	u32 d3 = 5;
-> +	u32 d5 = 0;
-> +	u32 d6 = 0;
-> +	u32 d7;
-> +	u32 d8 = 0;
-> +	u32 d4 = 0;
-> +	u32 bonus_7_0 = 0;
-> +	u32 csel2fo = 11;
-> +	u32 csel2fo_ovrd_en = 1;
-> +	u64 temp0, temp1, temp2, temp3;
-> +
-> +	p.surv_bonus.val = (bonus_7_0 << 16);
-> +	p.pll_reg4.val = (refclk_mhz_int << 17) +
-> +		(ndiv << 9) + (1 << 4);
-> +	p.bias_trim.val = (csel2fo_ovrd_en << 30) + (csel2fo << 24);
-> +	p.ssc_inj.val = 0;
-> +	found = calculate_target_dco_and_loop_cnt(frequency_khz, &target_dco_mhz, &loop_cnt);
-> +	if (!found)
-> +		return -EINVAL;
-> +
-> +	m2div = div64_u64(target_dco_mhz, (refclk_khz * ndiv * m1div));
-> +	m2div = mul_q32_u32(m2div, 1000);
-> +	if (Q32_TO_INT(m2div) > 511)
-> +		return -EINVAL;
-> +
-> +	m2div_int = (u32)Q32_TO_INT(m2div);
-> +	m2div_frac = (u32)(Q32_TO_FRAC(m2div));
-> +	frac_en = (m2div_frac > 0) ? 1 : 0;
-> +
-> +	if (frac_en > 0)
-> +		tdc_res = 70;
-> +	else
-> +		tdc_res = 36;
-> +	tdc_fine = tdc_res > 50 ? 1 : 0;
-> +	temp0 = tdc_res * 40 * 11;
-> +	temp1 = div64_u64(((4 * TDC_RES_MULTIPLIER) + temp0) * 500, temp0 * refclk_khz);
-> +	temp2 = div64_u64(temp0 * refclk_khz, 1000);
-> +	temp3 = div64_u64(((8 * TDC_RES_MULTIPLIER) + temp2), temp2);
-> +	tdc_targetcnt = tdc_res < 50 ? (int)(temp1) : (int)(temp3);
-> +	tdc_targetcnt = (int)(tdc_targetcnt / 2);
-> +	temp0 = mul_q32_u32(target_dco_mhz, tdc_res);
-> +	temp0 >>= 32;
-> +	feedfwd_gain = (m2div_frac > 0) ? div64_u64(m1div * TDC_RES_MULTIPLIER, temp0) : 0;
-> +	feedfwd_cal_en = frac_en;
-> +
-> +	temp0 = (u32)Q32_TO_INT(target_dco_mhz);
-> +	prop_coeff = (temp0 >= dco_fmin) ? 3 : 4;
-> +	int_coeff = (temp0 >= dco_fmin) ? 7 : 8;
-> +	ana_cfg = (temp0 >= dco_fmin) ? 8 : 6;
-> +	dco_12g = (temp0 >= dco_fmin) ? 0 : 1;
-> +
-> +	if (temp0 > 12960)
-> +		d7 = 10;
-> +	else
-> +		d7 = 8;
-> +
-> +	d8 = loop_cnt / 2;
-> +	d4 = d8 * 2;
-> +
-> +	/* Compute pll_reg3,5,57 & lf */
-> +	p.pll_reg3.val = (u32)((d4 << 21) + (d3 << 18) + (d1 << 15) + (m2div_int << 5));
-> +	p.pll_reg5.val = m2div_frac;
-> +	postdiv = (d5 == 0) ? 9 : d5;
-> +	d6_new = (d6 == 0) ? 40 : d6;
-> +	p.pll_reg57.val = (d7 << 24) + (postdiv << 15) + (d8 << 7) + d6_new;
-> +	p.lf.val = (u32)((frac_en << 31) + (1 << 30) + (frac_en << 29) +
-> +		   (feedfwd_cal_en << 28) + (tdc_fine << 27) +
-> +		   (gain_ctrl << 24) + (feedfwd_gain << 16) +
-> +		   (int_coeff << 12) + (prop_coeff << 8) + tdc_targetcnt);
-> +
-> +	/* Compute ssc / bias2 */
-> +	compute_ssc(&p, ana_cfg);
-> +	compute_bias2(&p);
-> +
-> +	/* Compute tdc/dco_med */
-> +	compute_tdc(&p, tdc_fine);
-> +	compute_dco_med(&p);
-> +
-> +	/* Compute dcofine */
-> +	compute_dco_fine(&p, dco_12g);
-> +
-> +	pll_type = ((frequency_khz == 10000) || (frequency_khz == 20000) ||
-> +		    (frequency_khz == 2500) || (dco_12g == 1)) ? 0 : 1;
-> +	set_phy_vdr_addresses(&p, pll_type);
-> +
-> +	lt_state->config[0] = 0x84;
-> +	lt_state->config[1] = 0x2d;
-> +	ADDR_ASSIGN(0, p.pll_reg4);
-> +	ADDR_ASSIGN(1, p.pll_reg3);
-> +	ADDR_ASSIGN(2, p.pll_reg5);
-> +	ADDR_ASSIGN(3, p.pll_reg57);
-> +	ADDR_ASSIGN(4, p.lf);
-> +	ADDR_ASSIGN(5, p.tdc);
-> +	ADDR_ASSIGN(6, p.ssc);
-> +	ADDR_ASSIGN(7, p.bias2);
-> +	ADDR_ASSIGN(8, p.bias_trim);
-> +	ADDR_ASSIGN(9, p.dco_med);
-> +	ADDR_ASSIGN(10, p.dco_fine);
-> +	ADDR_ASSIGN(11, p.ssc_inj);
-> +	ADDR_ASSIGN(12, p.surv_bonus);
-> +	DATA_ASSIGN(0, p.pll_reg4);
-> +	DATA_ASSIGN(1, p.pll_reg3);
-> +	DATA_ASSIGN(2, p.pll_reg5);
-> +	DATA_ASSIGN(3, p.pll_reg57);
-> +	DATA_ASSIGN(4, p.lf);
-> +	DATA_ASSIGN(5, p.tdc);
-> +	DATA_ASSIGN(6, p.ssc);
-> +	DATA_ASSIGN(7, p.bias2);
-> +	DATA_ASSIGN(8, p.bias_trim);
-> +	DATA_ASSIGN(9, p.dco_med);
-> +	DATA_ASSIGN(10, p.dco_fine);
-> +	DATA_ASSIGN(11, p.ssc_inj);
-> +	DATA_ASSIGN(12, p.surv_bonus);
-> +
-> +	return 0;
-> +}
-> +
->  static int
->  intel_lt_phy_calc_hdmi_port_clock(const struct intel_lt_phy_pll_state *lt_state)
->  {
-> -#define REF_CLK_KHZ 38400
->  #define REGVAL(i) (				\
->  	(lt_state->data[i][3])		|	\
->  	(lt_state->data[i][2] << 8)	|	\
-> @@ -1472,7 +1810,10 @@ intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
->  		}
->  	}
->  
-> -	/* TODO: Add a function to compute the data for HDMI TMDS*/
-> +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
-> +		return intel_lt_phy_calculate_hdmi_state(&crtc_state->dpll_hw_state.ltpll,
-> +							 crtc_state->port_clock);
-> +	}
->  
->  	return -EINVAL;
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-> index a538d4c69210..b7911acd7dcd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lt_phy.h
-> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-> @@ -35,6 +35,9 @@ void intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
->  				       struct intel_lt_phy_pll_state *pll_state);
->  void intel_lt_phy_pll_state_verify(struct intel_atomic_state *state,
->  				   struct intel_crtc *crtc);
-> +int
-> +intel_lt_phy_calculate_hdmi_state(struct intel_lt_phy_pll_state *lt_state,
-> +				  u32 frequency_khz);
->  void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
->  			      const struct intel_crtc_state *crtc_state);
->  void intel_xe3plpd_pll_disable(struct intel_encoder *encoder);
-> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-> index 9223487d764e..dc7b7679cd06 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-> @@ -72,4 +72,20 @@
->  #define XE3PLPD_PORT_P2M_MSGBUS_STATUS_P2P(port, lane)	 _XE3PLPD_PORT_P2M_MSGBUS_STATUS_P2P(__xe2lpd_port_idx(port), \
->  											    lane)
->  #define   XE3LPD_PORT_P2M_ADDR_MASK			REG_GENMASK(11, 0)
-> +
-> +#define PLL_REG4_ADDR		0x8510
-> +#define PLL_REG3_ADDR		0x850C
-> +#define PLL_REG5_ADDR		0x8514
-> +#define PLL_REG57_ADDR		0x85E4
-> +#define PLL_LF_ADDR		0x860C
-> +#define PLL_TDC_ADDR		0x8610
-> +#define PLL_SSC_ADDR		0x8614
-> +#define PLL_BIAS2_ADDR		0x8618
-> +#define PLL_BIAS_TRIM_ADDR	0x8648
-> +#define PLL_DCO_MED_ADDR	0x8640
-> +#define PLL_DCO_FINE_ADDR	0x864C
-> +#define PLL_SSC_INJ_ADDR	0x8624
-> +#define PLL_SURV_BONUS_ADDR	0x8644
-> +#define PLL_TYPE_OFFSET		0x200
-> +#define PLL_REG_ADDR(base, pll_type)		((pll_type) ? (base) + PLL_TYPE_OFFSET : (base))
->  #endif /* __INTEL_LT_PHY_REGS_H__ */
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-next-20=
+25-11-14
 
--- 
+for you to fetch changes up to b84befa3126634d78e31260f538453d534742908:
+
+  drm/i915/display: Add default case to mipi_exec_send_packet (2025-11-13 1=
+2:02:47 +0200)
+
+----------------------------------------------------------------
+drm/i915 feature pull #2 for v6.19:
+
+Features and functionality:
+- Add initial display support for Xe3p_LPD, display version 35 (Sai Teja, M=
+att
+  R, Gustavo, Matt A, Ankit, Juha-pekka, Luca, Ravi Kumar)
+- Compute LT PHY HDMI params when port clock not in predefined tables (Sura=
+j)
+
+Refactoring and cleanups:
+- Refactor intel_frontbuffer split between i915, xe, and display (Ville)
+- Clean up intel_de_wait_custom() usage (Ville)
+- Unify display register polling interfaces (Ville)
+- Finish removal of the expensive format info lookups (Ville)
+- Cursor code cleanups (Ville)
+- Convert intel_rom interfaces to struct drm_device (Jani)
+
+Fixes:
+- Fix uninitialized variable in DSI exec packet (Jonathan)
+- Fix PIPEDMC logging (Alok Tiwari)
+- Fix PSR pipe to vblank conversion (Jani)
+- Fix intel_frontbuffer lifetime handling (Ville)
+- Disable Panel Replay on DP MST for the time being (Imre)
+
+Merges:
+- Backmerge drm-next to get the drm_print.h changes (Jani)
+
+----------------------------------------------------------------
+Alok Tiwari (1):
+      drm/i915/dmc: Fix extra bracket and wrong variable in PIPEDMC error l=
+ogs
+
+Ankit Nautiyal (1):
+      drm/i915/xe3p_lpd: Drop support for interlace mode
+
+Gustavo Sousa (7):
+      drm/i915/display: Use braces for if-ladder in intel_bw_init_hw()
+      drm/i915/xe3p_lpd: Add CDCLK table
+      drm/i915/xe3p_lpd: Load DMC firmware
+      drm/i915/xe3p_lpd: Extend Wa_16025573575
+      drm/i915/xe3p_lpd: Reload DMC MMIO for pipes C and D
+      drm/i915/dram: Add field ecc_impacting_de_bw
+      drm/i915/xe3p_lpd: Always apply WaWmMemoryReadLatency
+
+Imre Deak (1):
+      drm/i915/dp_mst: Disable Panel Replay
+
+Jani Nikula (5):
+      drm/i915/psr: fix pipe to vblank conversion
+      Merge drm/drm-next into drm-intel-next
+      drm/i915/rom: convert intel_rom interfaces to struct drm_device
+      drm/i915/ltphy: include intel_display_utils.h instead of i915_utils.h
+      drm/xe: remove stale runtime_pm member
+
+Jonathan Cavitt (1):
+      drm/i915/display: Add default case to mipi_exec_send_packet
+
+Juha-pekka Heikkila (1):
+      drm/i915/xe3p_lpd: Don't allow odd ypan or ysize with semiplanar form=
+at
+
+Luca Coelho (1):
+      drm/i915/wm: don't use method1 in Xe3p_LPD onwards
+
+Matt Atwood (1):
+      drm/i915/xe3p_lpd: Update bandwidth parameters
+
+Matt Roper (1):
+      drm/i915/xe3p_lpd: Drop north display reset option programming
+
+Ravi Kumar Vodapalli (1):
+      drm/i915/xe3p_lpd: Adapt to updates on MBUS_CTL/DBUF_CTL registers
+
+Sai Teja Pottumuttu (4):
+      drm/i915/xe3p_lpd: Add Xe3p_LPD display IP features
+      drm/i915/xe3p_lpd: Expand bifield masks dbuf blocks fields
+      drm/i915/xe3p_lpd: Horizontal flip support for linear surfaces
+      drm/i915/xe3p_lpd: Remove gamma,csc bottom color checks
+
+Suraj Kandpal (2):
+      drm/i915/ltphy: Implement HDMI Algo for Pll state
+      drm/i915/ltphy: Return lowest portclock for HDMI from reverse algorit=
+hm
+
+Ville Syrj=C3=A4l=C3=A4 (44):
+      drm/i915/overlay: Drop the DIRTYFB flush
+      drm/i915/overlay: Switch to intel_frontbuffer_flip()
+      drm/i915/frontbuffer: Nuke intel_frontbuffer_flip_{prepare,complete}()
+      drm/i915/frontbuffer: Turn intel_bo_flush_if_display() into a frontbu=
+ffer operation
+      drm/i915/frontbuffer: Handle the dirtyfb cache flush inside intel_fro=
+ntbuffer_flush()
+      drm/i915/frontbuffer: Split fb_tracking.lock into two
+      drm/i915/frontbuffer: Extract intel_frontbuffer_ref()
+      drm/i915/frontbuffer: Add intel_frontbuffer::display
+      drm/i915/frontbuffer: Fix intel_frontbuffer lifetime handling
+      drm/i915/gem: s/i915_gem_object_get_frontbuffer/i915_gem_object_front=
+buffer_lookup/
+      drm/i915/cx0: Nuke extraneous timeout debugs
+      drm/i915/ltphy: Nuke extraneous timeout debugs
+      drm/i915/cx0: Replace XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_US with XE=
+LPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_MS
+      drm/i915/cx0: Get rid of XELPDP_MSGBUS_TIMEOUT_FAST_US
+      drm/i915/cx0: s/XELPDP_MSGBUS_TIMEOUT_SLOW/XELPDP_MSGBUS_TIMEOUT_MS/
+      drm/i915/cx0: s/XELPDP_PORT_RESET_END_TIMEOUT/XELPDP_PORT_RESET_END_T=
+IMEOUT_MS/
+      drm/i915/ltphy: Nuke bogus weird timeouts
+      drm/i915/hdcp: Use the default 2 usec fast polling timeout
+      drm/i915/pmdemand: Use the default 2 usec fast polling timeout
+      drm/i915/de: Implement register waits one way
+      drm/i915/de: Have intel_de_wait() hand out the final register value
+      drm/i915/de: Include units in intel_de_wait*() function names
+      drm/i915/de: Introduce intel_de_wait_us()
+      drm/i915/de: Use intel_de_wait_us()
+      drm/i915/de: Use intel_de_wait_ms() for the obvious cases
+      drm/i915/de: Nuke intel_de_wait_custom()
+      drm/i915/de: Introduce intel_de_wait_for_{set,clear}_us()
+      drm/i915/de: Use intel_de_wait_for_{set,clear}_us()
+      drm/i915/de: Use intel_de_wait_for_{set,clear}_ms()
+      drm/1915/dpio: Stop using intel_de_wait_fw_ms()
+      drm/i915/de: Replace __intel_de_rmw_nowl() with intel_de_rmw_fw()
+      drm/i915/de: Nuke wakelocks from intel_de_wait_fw_ms()
+      drm/i915/de: Replace __intel_de_wait_for_register_nowl() with intel_d=
+e_wait_fw_us_atomic()
+      drm/i915/power: Use the intel_de_wait_ms() out value
+      drm/i915/dpio: Use the intel_de_wait_ms() out value
+      drm/i915: Introduce intel_dumb_fb_max_stride()
+      drm/i915: Pass drm_format_info into plane->max_stride()
+      drm/i915: Populate fb->format accurately in BIOS FB readout
+      drm/i915: Nuke intel_plane_config.tiling
+      drm/i915/fb: Init 'ret' in each error branch in intel_framebuffer_ini=
+t()
+      drm/i915/wm: Use drm_get_format_info() in SKL+ cursor DDB allocation
+      drm/i915: Use mode_config->cursor_width for cursor DDB allocation
+      drm/i915/cursor: Extract intel_cursor_mode_config_init()
+      drm/i915/cursor: Initialize 845 vs 865 cursor size separately
+
+ drivers/gpu/drm/i915/Makefile                      |   1 +
+ drivers/gpu/drm/i915/display/hsw_ips.c             |   4 +-
+ drivers/gpu/drm/i915/display/i9xx_plane.c          |  32 +-
+ drivers/gpu/drm/i915/display/i9xx_plane.h          |   5 +-
+ drivers/gpu/drm/i915/display/icl_dsi.c             |  35 +-
+ drivers/gpu/drm/i915/display/intel_bios.c          |   6 +-
+ drivers/gpu/drm/i915/display/intel_bo.c            |  40 +-
+ drivers/gpu/drm/i915/display/intel_bo.h            |   8 +-
+ drivers/gpu/drm/i915/display/intel_bw.c            |  43 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.c         |  74 +++-
+ drivers/gpu/drm/i915/display/intel_color.c         |  13 +-
+ drivers/gpu/drm/i915/display/intel_crt.c           |  16 +-
+ drivers/gpu/drm/i915/display/intel_cursor.c        |  28 +-
+ drivers/gpu/drm/i915/display/intel_cursor.h        |   2 +
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c       | 134 +++----
+ drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h  |   7 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c           |  34 +-
+ drivers/gpu/drm/i915/display/intel_de.h            | 143 +++----
+ drivers/gpu/drm/i915/display/intel_display.c       |  42 +-
+ drivers/gpu/drm/i915/display/intel_display.h       |   8 +-
+ drivers/gpu/drm/i915/display/intel_display_core.h  |   5 +-
+ .../gpu/drm/i915/display/intel_display_debugfs.c   |   3 -
+ .../gpu/drm/i915/display/intel_display_device.c    |   1 +
+ .../gpu/drm/i915/display/intel_display_driver.c    |  13 +-
+ drivers/gpu/drm/i915/display/intel_display_power.c |  17 +-
+ .../drm/i915/display/intel_display_power_well.c    |  42 +-
+ drivers/gpu/drm/i915/display/intel_display_types.h |   5 +-
+ drivers/gpu/drm/i915/display/intel_display_wa.c    |   3 +-
+ drivers/gpu/drm/i915/display/intel_dmc.c           |  19 +-
+ drivers/gpu/drm/i915/display/intel_dmc_wl.c        |  25 +-
+ drivers/gpu/drm/i915/display/intel_dp_aux.c        |   6 +-
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c       |  14 +-
+ drivers/gpu/drm/i915/display/intel_dpio_phy.c      |  10 +-
+ drivers/gpu/drm/i915/display/intel_dpll.c          |   4 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c      |  27 +-
+ drivers/gpu/drm/i915/display/intel_dsi_vbt.c       |   3 +
+ drivers/gpu/drm/i915/display/intel_fb.c            |  24 +-
+ drivers/gpu/drm/i915/display/intel_fbc.c           |   4 +-
+ drivers/gpu/drm/i915/display/intel_flipq.c         |   8 +-
+ drivers/gpu/drm/i915/display/intel_frontbuffer.c   | 155 ++------
+ drivers/gpu/drm/i915/display/intel_frontbuffer.h   |  18 +-
+ drivers/gpu/drm/i915/display/intel_gmbus.c         |   2 +-
+ drivers/gpu/drm/i915/display/intel_hdcp.c          |  49 ++-
+ drivers/gpu/drm/i915/display/intel_hdmi.c          |   4 +-
+ drivers/gpu/drm/i915/display/intel_lt_phy.c        | 441 +++++++++++++++++=
++---
+ drivers/gpu/drm/i915/display/intel_lt_phy.h        |   3 +
+ drivers/gpu/drm/i915/display/intel_lt_phy_regs.h   |  23 +-
+ drivers/gpu/drm/i915/display/intel_lvds.c          |   6 +-
+ drivers/gpu/drm/i915/display/intel_overlay.c       |   6 +-
+ drivers/gpu/drm/i915/display/intel_pch_display.c   |  12 +-
+ drivers/gpu/drm/i915/display/intel_pch_refclk.c    |  10 +-
+ drivers/gpu/drm/i915/display/intel_plane.c         |   3 +
+ drivers/gpu/drm/i915/display/intel_plane_initial.c |  11 +-
+ drivers/gpu/drm/i915/display/intel_pmdemand.c      |  18 +-
+ drivers/gpu/drm/i915/display/intel_psr.c           |  17 +-
+ drivers/gpu/drm/i915/display/intel_sbi.c           |   6 +-
+ drivers/gpu/drm/i915/display/intel_snps_phy.c      |   8 +-
+ drivers/gpu/drm/i915/display/intel_sprite.c        |  10 +-
+ drivers/gpu/drm/i915/display/intel_tc.c            |   8 +-
+ drivers/gpu/drm/i915/display/intel_vrr.c           |   6 +-
+ drivers/gpu/drm/i915/display/skl_universal_plane.c |  25 +-
+ .../drm/i915/display/skl_universal_plane_regs.h    |  12 +-
+ drivers/gpu/drm/i915/display/skl_watermark.c       |  40 +-
+ drivers/gpu/drm/i915/display/skl_watermark_regs.h  |  52 +--
+ drivers/gpu/drm/i915/display/vlv_dsi.c             |  54 +--
+ drivers/gpu/drm/i915/display/vlv_dsi_pll.c         |   8 +-
+ drivers/gpu/drm/i915/gem/i915_gem_create.c         |   4 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object.c         |  16 +-
+ .../gpu/drm/i915/gem/i915_gem_object_frontbuffer.c | 103 +++++
+ .../gpu/drm/i915/gem/i915_gem_object_frontbuffer.h |  54 +--
+ drivers/gpu/drm/i915/gem/i915_gem_object_types.h   |   2 +-
+ drivers/gpu/drm/i915/i915_drv.h                    |   2 +
+ drivers/gpu/drm/i915/i915_gem.c                    |   2 +
+ drivers/gpu/drm/i915/i915_reg.h                    |   1 +
+ drivers/gpu/drm/i915/i915_vma.c                    |   8 +-
+ drivers/gpu/drm/i915/soc/intel_dram.c              |   4 +
+ drivers/gpu/drm/i915/soc/intel_dram.h              |   1 +
+ drivers/gpu/drm/i915/soc/intel_rom.c               |   7 +-
+ drivers/gpu/drm/i915/soc/intel_rom.h               |   6 +-
+ drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h  |   2 -
+ .../gpu/drm/xe/compat-i915-headers/intel_uncore.h  |  31 +-
+ drivers/gpu/drm/xe/display/intel_bo.c              |  60 ++-
+ drivers/gpu/drm/xe/xe_device_types.h               |   3 -
+ 83 files changed, 1347 insertions(+), 874 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.c
+
+--=20
 Jani Nikula, Intel
