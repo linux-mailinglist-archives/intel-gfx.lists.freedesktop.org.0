@@ -2,74 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F23C5C5E6B5
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Nov 2025 18:03:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E6CEC5E76F
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Nov 2025 18:11:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31C3810EAEC;
-	Fri, 14 Nov 2025 17:03:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5265B10EAD6;
+	Fri, 14 Nov 2025 17:11:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="M8S8xBJE";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="iO5UYGYr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com
  [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9C7D10EAD9;
- Fri, 14 Nov 2025 17:03:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E52D210EAD6;
+ Fri, 14 Nov 2025 17:11:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1763139798;
- bh=40WG8/2e61IMWsDRpUFUHulUyBgQPDILQimEoI6b3o0=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=M8S8xBJEF6NP0G6uCcL4pzPuSLINAukvQRezI3HLi/ICTZ6C6p+HUpJ5DhYf9vM9J
- exc023mnPyW00DCZMTpHmT/UVdl4iNXruk/yTVBmSKhW2Hiw1F/jtWEkk2ajyqjuTI
- res1Ab9odYCMy8hC1Twov3Ge7/dNJQIj4h+kpIbHUmM8OVVm3Z9IKAaeuG+I6m7PTw
- C5mu6hvd8dzfamQ4S9gIM4W0YhCvD1AIZKi67gAcbmBH8q/sk/KYNjYp2dt2EP38Gq
- Tqkoi3qGgKJQAvLhRkqeQK/uc+OkRlR9rWlHd9D+/8Fq6VaUvoUhFYFR3+yGsQFrwk
- qUKwbWO52pcCw==
-Received: from debian-rockchip-rock5b-rk3588.. (unknown
- [IPv6:2a01:e0a:5e3:6100:826d:bc07:e98c:84a])
+ s=mail; t=1763140310;
+ bh=WlbXwYIISbc9OIhLL3wAoAgqK0p6o8kpKTuAtUHBtw0=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=iO5UYGYreCQecXg4Cf7etlTDF+O+an0YK++LVDcKAgJ4mGZnEV6zcqe2ZpNckJyNL
+ bVAHVrKEvGWrvd2zu2ZnxInpBqi8GOkGZkEq7zoFMxsScHD/Bx9x/PEnzfJqra/F9W
+ +cT6OKCbmlnOPSZQI/IMuRRXfSzKVIrJ3wBomNEXCnblZzjFAS/2GevNrLmBDatZUE
+ WBuNyfpg1nV2FRCxk6dZuxFanfvcnEQdMhIKuDhrrvykrUTywnqjID/cm/Xn/GJa82
+ 1bOt+WNJh1GXksFSohsIy5WA71wVXhYwe8QLxWUoAs2dCI9boQDhCo+t5mIB/ECm+z
+ zD6ls0I09fXKg==
+Received: from fedora (unknown [IPv6:2a01:e0a:2c:6930:d919:a6e:5ea1:8a9f])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- (Authenticated sender: loicmolinari)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id 9494817E0927;
- Fri, 14 Nov 2025 18:03:17 +0100 (CET)
-From: =?UTF-8?q?Lo=C3=AFc=20Molinari?= <loic.molinari@collabora.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
- Liviu Dudau <liviu.dudau@arm.com>, Melissa Wen <mwen@igalia.com>,
- =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>,
- Hugh Dickins <hughd@google.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- =?UTF-8?q?Lo=C3=AFc=20Molinari?= <loic.molinari@collabora.com>,
- Al Viro <viro@zeniv.linux.org.uk>,
- =?UTF-8?q?Miko=C5=82aj=20Wasiak?= <mikolaj.wasiak@intel.com>,
- Christian Brauner <brauner@kernel.org>,
- Nitin Gote <nitin.r.gote@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>, Jonathan Corbet <corbet@lwn.net>,
- Christopher Healy <healych@amazon.com>,
- Matthew Wilcox <willy@infradead.org>, Bagas Sanjaya <bagasdotme@gmail.com>
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
+ server-digest SHA256) (No client certificate requested)
+ (Authenticated sender: bbrezillon)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id 4768617E12D5;
+ Fri, 14 Nov 2025 18:11:49 +0100 (CET)
+Date: Fri, 14 Nov 2025 18:11:44 +0100
+From: Boris Brezillon <boris.brezillon@collabora.com>
+To: =?UTF-8?B?TG/Dr2M=?= Molinari <loic.molinari@collabora.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Rob Herring <robh@kernel.org>,
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Melissa Wen <mwen@igalia.com>, =?UTF-8?B?TWHDrXJh?= Canal
+ <mcanal@igalia.com>, Hugh Dickins <hughd@google.com>, Baolin Wang
+ <baolin.wang@linux.alibaba.com>, Andrew Morton <akpm@linux-foundation.org>,
+ Al Viro <viro@zeniv.linux.org.uk>, =?UTF-8?B?TWlrb8WCYWo=?= Wasiak
+ <mikolaj.wasiak@intel.com>, Christian Brauner <brauner@kernel.org>, Nitin
+ Gote <nitin.r.gote@intel.com>, Andi Shyti <andi.shyti@linux.intel.com>,
+ Jonathan Corbet <corbet@lwn.net>, Christopher Healy <healych@amazon.com>,
+ Matthew Wilcox <willy@infradead.org>, Bagas Sanjaya <bagasdotme@gmail.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, linux-mm@kvack.org,
  linux-doc@vger.kernel.org, kernel@collabora.com
-Subject: [PATCH v9 11/11] Documentation/gpu/drm-mm: Add THP paragraph to GEM
- mapping section
-Date: Fri, 14 Nov 2025 18:03:02 +0100
-Message-ID: <20251114170303.2800-12-loic.molinari@collabora.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20251114170303.2800-1-loic.molinari@collabora.com>
+Subject: Re: [PATCH v9 06/11] drm/v3d: Use huge tmpfs mountpoint helpers
+Message-ID: <20251114181144.51b44c8b@fedora>
+In-Reply-To: <20251114170303.2800-7-loic.molinari@collabora.com>
 References: <20251114170303.2800-1-loic.molinari@collabora.com>
+ <20251114170303.2800-7-loic.molinari@collabora.com>
+Organization: Collabora
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,58 +79,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add a paragraph to the GEM objects mapping section explaining how
-transparent huge pages are handled by GEM.
+On Fri, 14 Nov 2025 18:02:57 +0100
+Lo=C3=AFc Molinari <loic.molinari@collabora.com> wrote:
 
-v4:
-- fix wording after huge_pages handler removal
+> Make use of the new drm_gem_huge_mnt_create() and
+> drm_gem_get_huge_mnt() helpers to avoid code duplication. Now that
+> it's just a few lines long, the single function in v3d_gemfs.c is
+> moved into v3d_gem.c.
+>=20
+> v3:
+> - use huge tmpfs mountpoint in drm_device
+> - move v3d_gemfs.c into v3d_gem.c
+>=20
+> v4:
+> - clean up mountpoint creation error handling
+>=20
+> v5:
+> - fix CONFIG_TRANSPARENT_HUGEPAGE check
+> - use drm_gem_has_huge_mnt() helper
+>=20
+> v8:
+> - don't access huge_mnt field with CONFIG_TRANSPARENT_HUGEPAGE=3Dn
+>=20
+> v9:
+> - replace drm_gem_has_huge_mnt() by drm_gem_get_huge_mnt()
+>=20
+> Signed-off-by: Lo=C3=AFc Molinari <loic.molinari@collabora.com>
+> ---
+>  drivers/gpu/drm/v3d/Makefile    |  3 +-
+>  drivers/gpu/drm/v3d/v3d_bo.c    |  9 +++--
+>  drivers/gpu/drm/v3d/v3d_drv.c   |  2 +-
+>  drivers/gpu/drm/v3d/v3d_drv.h   | 11 +-----
+>  drivers/gpu/drm/v3d/v3d_gem.c   | 27 ++++++++++++--
+>  drivers/gpu/drm/v3d/v3d_gemfs.c | 62 ---------------------------------
+>  6 files changed, 34 insertions(+), 80 deletions(-)
+>  delete mode 100644 drivers/gpu/drm/v3d/v3d_gemfs.c
+>=20
+> diff --git a/drivers/gpu/drm/v3d/Makefile b/drivers/gpu/drm/v3d/Makefile
+> index fcf710926057..b7d673f1153b 100644
+> --- a/drivers/gpu/drm/v3d/Makefile
+> +++ b/drivers/gpu/drm/v3d/Makefile
+> @@ -13,8 +13,7 @@ v3d-y :=3D \
+>  	v3d_trace_points.o \
+>  	v3d_sched.o \
+>  	v3d_sysfs.o \
+> -	v3d_submit.o \
+> -	v3d_gemfs.o
+> +	v3d_submit.o
+> =20
+>  v3d-$(CONFIG_DEBUG_FS) +=3D v3d_debugfs.o
+> =20
+> diff --git a/drivers/gpu/drm/v3d/v3d_bo.c b/drivers/gpu/drm/v3d/v3d_bo.c
+> index d9547f5117b9..211578abf9b6 100644
+> --- a/drivers/gpu/drm/v3d/v3d_bo.c
+> +++ b/drivers/gpu/drm/v3d/v3d_bo.c
+> @@ -114,7 +114,7 @@ v3d_bo_create_finish(struct drm_gem_object *obj)
+>  	if (IS_ERR(sgt))
+>  		return PTR_ERR(sgt);
+> =20
+> -	if (!v3d->gemfs)
+> +	if (!drm_gem_get_huge_mnt(obj->dev))
+>  		align =3D SZ_4K;
+>  	else if (obj->size >=3D SZ_1M)
+>  		align =3D SZ_1M;
+> @@ -150,12 +150,15 @@ struct v3d_bo *v3d_bo_create(struct drm_device *dev=
+, struct drm_file *file_priv,
+>  			     size_t unaligned_size)
+>  {
+>  	struct drm_gem_shmem_object *shmem_obj;
+> -	struct v3d_dev *v3d =3D to_v3d_dev(dev);
+>  	struct v3d_bo *bo;
+>  	int ret;
+> =20
+> +#ifdef CONFIG_TRANSPARENT_HUGEPAGE
+>  	shmem_obj =3D drm_gem_shmem_create_with_mnt(dev, unaligned_size,
+> -						  v3d->gemfs);
+> +						  dev->huge_mnt);
+> +#else
+> +	shmem_obj =3D drm_gem_shmem_create(dev, unaligned_size);
+> +#endif
 
-v6:
-- fix wording after map_pages handler removal
+Why not drop the ifdef and go for
 
-Signed-off-by: Loïc Molinari <loic.molinari@collabora.com>
-Reviewed-by: Bagas Sanjaya <bagasdotme@gmail.com>
----
- Documentation/gpu/drm-mm.rst | 22 +++++++++++++++++-----
- 1 file changed, 17 insertions(+), 5 deletions(-)
+	shmem_obj =3D drm_gem_shmem_create_with_mnt(dev,
+						  unaligned_size,
+						  drm_gem_get_huge_mnt(obj->dev));
 
-diff --git a/Documentation/gpu/drm-mm.rst b/Documentation/gpu/drm-mm.rst
-index d55751cad67c..d69eab0b4093 100644
---- a/Documentation/gpu/drm-mm.rst
-+++ b/Documentation/gpu/drm-mm.rst
-@@ -290,15 +290,27 @@ The open and close operations must update the GEM object reference
- count. Drivers can use the drm_gem_vm_open() and drm_gem_vm_close() helper
- functions directly as open and close handlers.
- 
--The fault operation handler is responsible for mapping individual pages
--to userspace when a page fault occurs. Depending on the memory
--allocation scheme, drivers can allocate pages at fault time, or can
--decide to allocate memory for the GEM object at the time the object is
--created.
-+The fault operation handler is responsible for mapping pages to
-+userspace when a page fault occurs. Depending on the memory allocation
-+scheme, drivers can allocate pages at fault time, or can decide to
-+allocate memory for the GEM object at the time the object is created.
- 
- Drivers that want to map the GEM object upfront instead of handling page
- faults can implement their own mmap file operation handler.
- 
-+In order to reduce page table overhead, if the internal shmem mountpoint
-+"shm_mnt" is configured to use transparent huge pages (for builds with
-+CONFIG_TRANSPARENT_HUGEPAGE enabled) and if the shmem backing store
-+managed to allocate a huge page for a faulty address, the fault handler
-+will first attempt to insert that huge page into the VMA before falling
-+back to individual page insertion. mmap() user address alignment for GEM
-+objects is handled by providing a custom get_unmapped_area file
-+operation which forwards to the shmem backing store. For most drivers,
-+which don't create a huge mountpoint by default or through a module
-+parameter, transparent huge pages can be enabled by either setting the
-+"transparent_hugepage_shmem" kernel parameter or the
-+"/sys/kernel/mm/transparent_hugepage/shmem_enabled" sysfs knob.
-+
- For platforms without MMU the GEM core provides a helper method
- drm_gem_dma_get_unmapped_area(). The mmap() routines will call this to get a
- proposed address for the mapping.
--- 
-2.47.3
+?
 
+>  	if (IS_ERR(shmem_obj))
+>  		return ERR_CAST(shmem_obj);
+>  	bo =3D to_v3d_bo(&shmem_obj->base);
