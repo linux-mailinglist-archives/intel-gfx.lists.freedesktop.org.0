@@ -2,64 +2,97 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B922C637C4
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Nov 2025 11:19:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDC5FC637D9
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Nov 2025 11:19:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B345B10E335;
-	Mon, 17 Nov 2025 10:19:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54C3010E344;
+	Mon, 17 Nov 2025 10:19:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X0Wdmvzo";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="OS9DoS97";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D23610E335;
- Mon, 17 Nov 2025 10:19:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763374765; x=1794910765;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=PCJleoQJ7kNNK4RhfKz4IgKRPFtwGeZQEjBjnIBOZYM=;
- b=X0Wdmvzo7zP3uypCnnWvZDHV/BQCLP8+ekBiWvfWHll45lWarLKocZw5
- dtrP117hmOxx2fMFeDWjHvJ/S49UCXFHIFGOpK3cadimruxHN+XCF5f9E
- kRmm1Nj93eK1B5crZMKHKFbv6/a42LlcIheb3lz3TVTDrixLRqI6gE2yu
- CvZKNK7q0r+JS0YFKzcurQo6BI2fymN5nl5l8sz3nuaMPLQQ12JTalIeS
- p0JH/90vjC6A9jS4unpsHXplCZZ01Y8Z4GhqXm2ywf6T4z2n8wGBm/IWm
- bV17mKdWbO9erKFyXqBxOs+vjpKjxD8nJLvlIhYMV3hwFwBSbxEllNAfl g==;
-X-CSE-ConnectionGUID: HJDxiaZuQ9aBdz2E1QUNyw==
-X-CSE-MsgGUID: KjfXBDO7SViiB1obGyQo7A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11615"; a="64373365"
-X-IronPort-AV: E=Sophos;i="6.19,311,1754982000"; d="scan'208";a="64373365"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2025 02:19:24 -0800
-X-CSE-ConnectionGUID: 9QyNFrfvTquJ0IPlM3c1Xw==
-X-CSE-MsgGUID: 3YhNZn72S06ymNPcXfRwYQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,311,1754982000"; d="scan'208";a="194869380"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.42])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2025 02:19:22 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: imre.deak@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, Ankit
- K Nautiyal <ankit.k.nautiyal@intel.com>, Arun R Murthy
- <arun.r.murthy@intel.com>
-Subject: Re: [PATCH] drm/display/dp_mst: Add protection against 0 vcpi
-In-Reply-To: <aRr0MJbOaHXMXEtO@ideak-desk>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251113043918.716367-1-suraj.kandpal@intel.com>
- <aRWU-ovOdSRUQI-B@ideak-desk>
- <689e22d69f7ad9be4f4a78b5194d8c4965be8ca8@intel.com>
- <DM3PPF208195D8D4E9B5E427A947CB14523E3C9A@DM3PPF208195D8D.namprd11.prod.outlook.com>
- <aRr0MJbOaHXMXEtO@ideak-desk>
-Date: Mon, 17 Nov 2025 12:19:18 +0200
-Message-ID: <2804e0989a1251c4223aeb64b1220e0b01ba66ef@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB4C810E33F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 17 Nov 2025 10:19:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1763374786;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=8Sj1yzB+yodW9emJVWyrm3VZBnBWrcQvlOUnMxJLYhU=;
+ b=OS9DoS97KJsLJmOgYU2KOk1Bb4T1/5hfso1cZCcgCeEeQ3sOt5JncVcPstd8WXPJTURA86
+ YOQ6eMmS/omQaufM8nLj7sfNJLTGB1oSixKe7uRdgVzFcjjcc/AWROxdzOB4/F0M85legT
+ MjFcVThLqdEtX3xudDVBF9DRkB2o8A0=
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
+ [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-677-8QCdGNEIMXObrSGr5vi_Vw-1; Mon, 17 Nov 2025 05:19:42 -0500
+X-MC-Unique: 8QCdGNEIMXObrSGr5vi_Vw-1
+X-Mimecast-MFC-AGG-ID: 8QCdGNEIMXObrSGr5vi_Vw_1763374781
+Received: by mail-wr1-f70.google.com with SMTP id
+ ffacd0b85a97d-429c76c8a1bso2451078f8f.0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 17 Nov 2025 02:19:41 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1763374781; x=1763979581;
+ h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+ :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=8Sj1yzB+yodW9emJVWyrm3VZBnBWrcQvlOUnMxJLYhU=;
+ b=Zlt1ZXyqDwuI32Sj9jvEmoKQHBBB6EcJ1JEge0NXzfndxQF2Eay8Mb5IgtYYTT67JT
+ MQv0MoT2h9uiz2n8Ec9fpsJbGBscMkukjmKOjdFNYVu2QlepQDfZSSHbzx0ZvQNVlkpg
+ Nb5kU41/mJ5mjQPv33cVr1EbJnaANPO0nSnavn0nEJkeGoGz03v/m5HcCRY0Wk8/jfVn
+ 1H869frUuzrUsSfJNPI2A3Fb6/rK1kDmPjauKVXHJIJOCteBXbj3omo1X4g7Y0dioZNl
+ SUN0BINkwye2Pws5BmFx0xCcH2hROONgRpTCpDC2yza4wZXGlJAd5UIvDS2vAt+jftDA
+ 17Ig==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWtw2tJADol0Pn8HKUOH1v9YGYDbhrTTjLULTMq+mcXwhSOYxPs8iS7nJlH84rXnf19WTUc2yIQqgo=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyFKgv9G1tP3qN0F7jruTm0DlGzQDPeMqeLzZ8VcllTI5r4mW1T
+ 5Yxba5PqHuzgPuhI5fIyqvak5cIivYcsqU5RajKETjUkgnQtwQjiFQUC/2E/UFKNLnYP0CQ2i9k
+ xYUSlTRRmr2+/iqzHhf10JqnEHJDGzYWcJ2n4DuLhqtSYz9Odxb+krlBPYhdh7+w06DNQ4Q==
+X-Gm-Gg: ASbGncuSHuD9OTGDBAQdI7ZppaFOP3nMC89BGI9EC/N2oMf77MP8dUykmpKU7v2i76p
+ X3wHAdv4myixWeRqeAxz5r5n6x98t0JS91XIKKKnjghq1aebBnVOXG7nFz2/B5nm5S27/NvGz+h
+ A2fEmZ8KiAe4OVwwVfbJxKE1+bqMyf7UHNUyWaaY9PJsdYDv7puPbkvIXBUlcY2vAQ3SpMwDStz
+ xhvQSHmWdzznhAdBAlnvUKqV3tKO5lCDhEBlgGm2A01iY09YhPeBQ1hEeUb4e7lqDgxSPqC52rH
+ 6lRdTkFzIKWpmk9Pj48Trc6LCtvqq7hOlOtR43P/2jljbvMRx0EUAqng194fL8XeQ81O/i1q3yk
+ LaZN/3Mki2jKpPOuuHeSJX4jSeE797Mt/RmzO/Idu
+X-Received: by 2002:a5d:5f47:0:b0:427:9e6:3a64 with SMTP id
+ ffacd0b85a97d-42b593847f2mr10779162f8f.47.1763374780929; 
+ Mon, 17 Nov 2025 02:19:40 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHuLJzRkeZwRTSmYiDMNFB5b9Y04M5/X3K0AsCLwjmRlR2lS/HTXuIsn1n38y2t71o3SspdXw==
+X-Received: by 2002:a5d:5f47:0:b0:427:9e6:3a64 with SMTP id
+ ffacd0b85a97d-42b593847f2mr10779119f8f.47.1763374780429; 
+ Mon, 17 Nov 2025 02:19:40 -0800 (PST)
+Received: from localhost ([195.166.127.210]) by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-42b53f0b8d6sm26377484f8f.28.2025.11.17.02.19.39
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 17 Nov 2025 02:19:39 -0800 (PST)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>, airlied@gmail.com,
+ simona@ffwll.ch, linux@armlinux.org.uk, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, inki.dae@samsung.com, sw0312.kim@samsung.com,
+ kyungmin.park@samsung.com, patrik.r.jakobsson@gmail.com,
+ jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
+ robin.clark@oss.qualcomm.com, lumag@kernel.org, abhinav.kumar@linux.dev,
+ sean@poorly.run, marijn.suijten@somainline.org,
+ tomi.valkeinen@ideasonboard.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, thierry.reding@gmail.com, mperttunen@nvidia.com,
+ jonathanh@nvidia.com
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>
+Subject: Re: [PATCH v2] drm/fb-helper: Allocate and release fb_info in
+ single place
+In-Reply-To: <20251027081245.80262-1-tzimmermann@suse.de>
+References: <20251027081245.80262-1-tzimmermann@suse.de>
+Date: Mon, 17 Nov 2025 11:19:38 +0100
+Message-ID: <87ikf9kll1.fsf@ocarina.mail-host-address-is-not-set>
 MIME-Version: 1.0
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: Y37QVQW2BKxI0svzPA605K0V7i2eXZrnBwIX8AP7WGM_1763374781
+X-Mimecast-Originator: redhat.com
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -76,132 +109,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 17 Nov 2025, Imre Deak <imre.deak@intel.com> wrote:
-> On Mon, Nov 17, 2025 at 07:09:38AM +0200, Suraj Kandpal wrote:
->> > -----Original Message-----
->> > From: Jani Nikula <jani.nikula@linux.intel.com>
->> > Sent: Thursday, November 13, 2025 9:55 PM
->> > To: Deak, Imre <imre.deak@intel.com>; Kandpal, Suraj
->> > <suraj.kandpal@intel.com>
->> > Cc: dri-devel@lists.freedesktop.org; intel-xe@lists.freedesktop.org; intel-
->> > gfx@lists.freedesktop.org; Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>;
->> > Murthy, Arun R <arun.r.murthy@intel.com>
->> > Subject: Re: [PATCH] drm/display/dp_mst: Add protection against 0 vcpi
->> > 
->> > On Thu, 13 Nov 2025, Imre Deak <imre.deak@intel.com> wrote:
->> > > On Thu, Nov 13, 2025 at 10:09:19AM +0530, Suraj Kandpal wrote:
->> > >> When releasing a timeslot there is a slight chance we may end up with
->> > >> the wrong payload mask due to overflow if the delayed_destroy_work
->> > >> ends up coming into play after a DP 2.1 monitor gets disconnected
->> > >> which causes vcpi to become 0 then we try to make the payload =
->> > >> ~BIT(vcpi - 1) which is a negative shift.
->> > >>
->> > >> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
->> > >> ---
->> > >>  drivers/gpu/drm/display/drm_dp_mst_topology.c | 4 +++-
->> > >>  1 file changed, 3 insertions(+), 1 deletion(-)
->> > >>
->> > >> diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c
->> > >> b/drivers/gpu/drm/display/drm_dp_mst_topology.c
->> > >> index 64e5c176d5cc..3cf1eafcfcb5 100644
->> > >> --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
->> > >> +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
->> > >> @@ -4531,6 +4531,7 @@ int drm_dp_atomic_release_time_slots(struct
->> > drm_atomic_state *state,
->> > >>  	struct drm_dp_mst_atomic_payload *payload;
->> > >>  	struct drm_connector_state *old_conn_state, *new_conn_state;
->> > >>  	bool update_payload = true;
->> > >> +	int bit;
->> > >>
->> > >>  	old_conn_state = drm_atomic_get_old_connector_state(state, port-
->> > >connector);
->> > >>  	if (!old_conn_state->crtc)
->> > >> @@ -4572,7 +4573,8 @@ int drm_dp_atomic_release_time_slots(struct
->> > drm_atomic_state *state,
->> > >>  	if (!payload->delete) {
->> > >>  		payload->pbn = 0;
->> > >>  		payload->delete = true;
->> > >> -		topology_state->payload_mask &= ~BIT(payload->vcpi - 1);
->> > >> +		bit = payload->vcpi ? payload->vcpi - 1 : 0;
->> > >> +		topology_state->payload_mask &= ~BIT(bit);
->> > >
->> > > This looks wrong, clearing the bit for an unrelated payload.
->> > 
->> > Agreed.
->> > 
->> > The logs have, among other things,
->> > 
->> > <7> [515.138211] xe 0000:03:00.0: [drm:intel_dp_sink_set_dsc_decompression
->> > [xe]] Failed to enable sink decompression state
->> > 
->> > <7> [515.193484] xe 0000:03:00.0: [drm:drm_dp_add_payload_part1
->> > [drm_display_helper]] VCPI 0 for port ffff888126ce9000 not in topology, not
->> > creating a payload to remote
->> > 
->> > <7> [515.194671] xe 0000:03:00.0: [drm:drm_dp_add_payload_part2
->> > [drm_display_helper]] Part 1 of payload creation for DP-5 failed, skipping part 2
->> > 
->> > <7> [515.347331] xe 0000:03:00.0: [drm:drm_dp_remove_payload_part1
->> > [drm_display_helper]] Payload for VCPI 0 not in topology, not sending remove
->> > 
->> > So it's no wonder the port's not in topology and everything fails. We obviously
->> > need to skip payload_mask updates when the VCPI is 0, but that's just a
->> > symptom of other stuff going wrong first. Perhaps we could do with some
->> > earlier error handling too?
->> 
->> Yes I agree the question is how high will the error handling needs to be added.
->> A lot of weird things going on here.
->>
->> 1st one is how is it finding a payload which we do not create while we
->> call destroy function
->>
->> 2nd how is VCPI with id 0 possible from what I see VCPI are 1 at least
->> that's what I gather from drm_dp_mst_atomic_check_payload_alloc_limits.So what
->> are we missing when we create a payload?
->>
->> Imre, Jani any idea still new to how payload creation work so am I
->> missing something.
+Thomas Zimmermann <tzimmermann@suse.de> writes:
+
+Hello Thomas,
+
+> Move the calls to drm_fb_helper_alloc_info() from drivers into a
+> single place in fbdev helpers. Allocates struct fb_info for a new
+> framebuffer device. Then call drm_fb_helper_single_fb_probe() to
+> create an fbdev screen buffer. Also release the instance on errors
+> by calling drm_fb_helper_release_info().
 >
-> A VCPI ID will be assigned to a payload during an atomic commit only if
-> the corresponding MST connector is still connected. If the MST connector
-> gets disconnected by the time of the atomic commit - as in the above
-> case - no VCPI ID will assigned and the allocation table in the branch
-> device cannot be updated either for the payload, as indicated by the
-> above payload creation/removal failed messages.
+> Simplifies the code and fixes the error cleanup for some of the
+> drivers.
 >
-> I think the fix should be not to clear the VCPI ID if it's 0. Valid VCPI
-> IDs start from 1.
-
-Agreed. As I said above, "We obviously need to skip payload_mask updates
-when the VCPI is 0".
-
-But there are *also* a bunch of other things going wrong before that,
-but we plunge on. Should we do something about that?
-
-BR,
-Jani.
-
-
-
-
+> Regular release of the struct fb_info instance still happens in
+> drm_fb_helper_fini() as before.
 >
->> Regards
->> Suraj Kandpal 
->> 
->> > BR,
->> > Jani.
->> > 
->> > 
->> > >
->> > >>  	}
->> > >>
->> > >>  	return 0;
->> > >> --
->> > >> 2.34.1
->> > >>
->> > 
->> > --
->> > Jani Nikula, Intel
+> v2:
+> - remove error rollback in driver implementations (kernel test robot)
+> - initialize info in TTM implementation (kernel test robot)
+>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> ---
+
+It simplifies the drivers' code indeed.
+
+Acked-by: Javier Martinez Canillas <javierm@redhat.com>
 
 -- 
-Jani Nikula, Intel
+Best regards,
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
+
