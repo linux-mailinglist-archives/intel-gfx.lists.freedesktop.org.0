@@ -2,182 +2,81 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00388C65A10
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Nov 2025 18:58:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 38EBAC79BA0
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Nov 2025 14:52:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3877F10E0E4;
-	Mon, 17 Nov 2025 17:58:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8515F10E890;
+	Fri, 21 Nov 2025 13:52:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lLMry1QO";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="I6ZwQ/aP";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10DFD10E0E4;
- Mon, 17 Nov 2025 17:58:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763402292; x=1794938292;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- in-reply-to:mime-version;
- bh=W+AbXLVHJQy0cpFa19Gt6XhQjkbE8hzE4dRLJ4tKMIM=;
- b=lLMry1QOoa48cvo8CJO1TsZEZDpRvZFkw4PQeim5EVBh5zChFAW0TX4x
- n57WY7/974/UUAiAGzST688BYy83gDpEP/gGq0AftTiM2zUwLUPPlX1be
- 0OeMgYr+V5aWvhOSFkOugrXkUMUXmd7qcBEM2nijxDnWAFZ0zOTfxtZWs
- QZ33zPTH9PHJbL/bczkHohmEikFUMy+FNlrJRPO8/X3fmgU8h7CD1H14O
- AL1zKIxBhv1EiBdT3HOtkWR0JUxSLfPzNmhFdFw5PH2Zlfh9aAtbNIqb+
- IHeDr3Vdk9a0LZBzIzTGiEqYRazaVvsVBdSyLcNzJ+iI/FPj2xpirYaz0 g==;
-X-CSE-ConnectionGUID: 8lPJ9dEjQEy/8sd2FDW96Q==
-X-CSE-MsgGUID: z0lTPmv3RrOpuWwYRmtghg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11616"; a="90886867"
-X-IronPort-AV: E=Sophos;i="6.19,312,1754982000"; d="scan'208";a="90886867"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2025 09:58:12 -0800
-X-CSE-ConnectionGUID: AzrM8T+yRbm62eBzZ86kSw==
-X-CSE-MsgGUID: UmOhnKrvSFax87LIQ5Uz9Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,312,1754982000"; d="scan'208";a="221175253"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2025 09:58:11 -0800
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 17 Nov 2025 09:58:11 -0800
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Mon, 17 Nov 2025 09:58:11 -0800
-Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.39) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 17 Nov 2025 09:58:10 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=e48xKOOJnBVdwKnxUfB8sA2/VuWZ5izwRyYInYPmer+15j3EvtnBTiV9GaM2lhfsfRnOY+F9nc0RmKplZoauwunjaq9sqRqoawAL93STs6Ht4omfSqqc+jX9xRT/NlUbymOrnMNv1PGjfjaypkBeY8HY8MYQw8iTlBG/sat9J1Da1eT7iY3Vob2BW1t4lg6B9V8XZnYPREw9busp3/+IKg1XXBhazzZr3LLgJgS3bvaHwUrBK6ACwbICHwBSSXJaqtsql2gSSLg4xx/Kd5LNBvXY01IrEKuumnbzw3TNUjLk/DGApTcHXo1IQnLqx4chQkWd+fjbhMdzQg46se4H3Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pbSgdfyaIY9UFmc2zQhMBJ2UwqL0drCbXCSpXiicbI8=;
- b=I3AyOYcHKO3DjiaT0/Y3Dw1WzzGYzatPaCmi00AtjutIMDCRQ1o/M/NuCoUtknpCznBUbpJXYgW1+IWiMp0aTu4x2qBiykpxcWJHNMCRsQjXi0MHuG61QEZUleGIB6r7C8H3BqBcx41RzZmxbvsHQc1eMcFFZAV1uY70bo9JUWblt/T1s06eqJvONdAD/PFCbfU+oURvhzKVy/LdxpM9mCFXKSn72cmxvm2MyqXCbGb5nJDgj/ksgzjcKtjES/IYpARjb2Rtg2oXSORLRFRCik7oKufbpZzlR0Hyp8zp1rj/3Ogzwi5jGTiXIdqOr823kUtq/YpZS9N/QzOe7mSsKg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
- by BL1PR11MB6002.namprd11.prod.outlook.com (2603:10b6:208:386::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.22; Mon, 17 Nov
- 2025 17:58:07 +0000
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::8900:d137:e757:ac9f%3]) with mapi id 15.20.9320.021; Mon, 17 Nov 2025
- 17:58:07 +0000
-Date: Mon, 17 Nov 2025 19:58:00 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-CC: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>, "Ankit
- Nautiyal" <ankit.k.nautiyal@intel.com>, Dnyaneshwar Bhadane
- <dnyaneshwar.bhadane@intel.com>, Juha-pekka Heikkila
- <juha-pekka.heikkila@intel.com>, Luca Coelho <luciano.coelho@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, Matt Atwood
- <matthew.s.atwood@intel.com>, Matt Roper <matthew.d.roper@intel.com>, "Ravi
- Kumar Vodapalli" <ravi.kumar.vodapalli@intel.com>, Shekhar Chauhan
- <shekhar.chauhan@intel.com>, Vinod Govindapillai
- <vinod.govindapillai@intel.com>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v4 07/11] drm/i915/xe3p_lpd: Extend Type-C flow for
- static DDI allocation
-Message-ID: <aRtiKDZAsYyNYoqw@ideak-desk>
-References: <20251107-xe3p_lpd-basic-enabling-v4-0-ab3367f65f15@intel.com>
- <20251107-xe3p_lpd-basic-enabling-v4-7-ab3367f65f15@intel.com>
- <aRTJq2h7ic7EcpL6@ideak-desk>
- <176314958906.3698.11640605946760436324@intel.com>
- <aRfL-CWPYR6gC6F6@ideak-desk> <aRfV2MuICSW1jR4I@ideak-desk>
- <176339175784.5989.15280881790145867529@intel.com>
- <aRs8nFHQ-syeq4SB@ideak-desk>
- <176340023109.5989.13935406990721055950@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <176340023109.5989.13935406990721055950@intel.com>
-X-ClientProxiedBy: LO2P265CA0224.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:b::20) To SJ0PR11MB4845.namprd11.prod.outlook.com
- (2603:10b6:a03:2d1::10)
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74EEF10E11E
+ for <intel-gfx@lists.freedesktop.org>; Mon, 17 Nov 2025 19:12:56 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1763406742; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=NCWTdtNC+fisIP93dT1WS7aZCKPch5isOjwAm1kMLYx4OASt3MsYJJDzkvwtV4vzvflS1UiqNH/02h5lqAMYPb/lx4I0Q5wdI/hSvBQL3mhxjBFdQp/SFIhui/cd4MF/mOP1jxTWqTy5Qf/ExmpX/dz2am7/Mz2PIvbRxcVLmiw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1763406742;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=fREpGjj4BJlCO6CnTMTzXHt6Fc6B8v1Yc8bWL/JsKdc=; 
+ b=QEpILz31RCkDOWoad3CTM5dI/yfff0j/51IlCReQI8R6qumGrkn8IQjtv0LNScvppPvMzUBMDXZwQv0wqmUHKvY3aoOrMXzkxZ+1nYFW7SYzymXqYzIvJeOYYynZSi9Ex8ez9Ip7XDL7yY592g2Y4PPk5nX4opprbnJV+2daea0=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+ dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1763406742; 
+ s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+ h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+ bh=fREpGjj4BJlCO6CnTMTzXHt6Fc6B8v1Yc8bWL/JsKdc=;
+ b=I6ZwQ/aPmG9kNPGaoep3dNYxPg8K1Oc14TM1KkA+xWQahOblNgyU/+F4silCzKjZ
+ k/f54GpIoYuBFxGdhQLoPm5FyVqnVxBpgjD1QBvqD/EKWAq2EaFJ1Be3ThOVi3hHcqu
+ NXTyG+lDlLz6julVZ6IHx/q8d5jkiyat1FT72NKc=
+Received: by mx.zohomail.com with SMTPS id 1763406739664491.33357196874965;
+ Mon, 17 Nov 2025 11:12:19 -0800 (PST)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Subject: [PATCH v4 00/10] Add new general DRM property "color format"
+Date: Mon, 17 Nov 2025 20:11:44 +0100
+Message-Id: <20251117-color-format-v4-0-0ded72bd1b00@collabora.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|BL1PR11MB6002:EE_
-X-MS-Office365-Filtering-Correlation-Id: a7411726-a032-4c9c-d5b3-08de2602dd22
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0; ARA:13230040|10070799003|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?EHhJSEvVfToFFvUBtbBp7Oc3dVwZ2J0MSdVxHcxJj2CV74/0sYKxeKI3d51o?=
- =?us-ascii?Q?7gfMvV90lB3ukADiUGFM5c4A3jQdrKIdWH9pAJrVIKmxSVtXCf5kyfYJ/yg8?=
- =?us-ascii?Q?6g8KDkVdTRdDTxbSWDINaGbL5O1JDadujGyCpw2neg4A+3os1exEpPr4Huk1?=
- =?us-ascii?Q?EORlpYwKjjDYbZgCKT0Rv1PnKv9rWtOb4WqdrAVGaSacp6K2L7ygWduND181?=
- =?us-ascii?Q?ynXcQb1zzeUAfNAwjzKiZ8Yb/XxaTSgTrEKmoH5ERTkQQCo8PNxhxVd0XhWs?=
- =?us-ascii?Q?Me92365iODx367IrO4kAXgxZEGX4oitZm5BYUeSByXMXSjN3ftHEtXWpR6Rd?=
- =?us-ascii?Q?TCf11qZPqZEunB6scuUMAEaud7PfCau5W+83I2vLXDXXrt/iY8irmiezyV99?=
- =?us-ascii?Q?JrDf6XwCUIdXafKkLTuUFpM6dNaqu6nDi3pweM+jFkO3ALv7PbJoWpUegLDS?=
- =?us-ascii?Q?N23S56goQ7LieQG12FCpdr1ghq2hU9utNaCAth5dfO1BPvKWtvMJquT+PIth?=
- =?us-ascii?Q?LUZhNRsKZezW3UVmKnVYSCpTFWuASAF5lB3ISjDbRFKRpnIhDB9PqCa+V23s?=
- =?us-ascii?Q?rvzAIyMXwMsjmROIItdQDWoat/7d612PlxZZ9pArm929IxDEQg4O0gzQx++5?=
- =?us-ascii?Q?XVubM5LtmjgKxJ+C3eRev1pwNerLAyuh2vrWnV2D99cQc5JLRXdA/KXufyJO?=
- =?us-ascii?Q?CoKcvTqUZa4KoANqTwqNcAArro0eTi/0ZKhw5RG5wLK3ubGU69itCxg2ywKV?=
- =?us-ascii?Q?u1F9V4D6NEIn0XfVFBtVoczMHNSQcQKo9tYTKFP43REZBG3ipf9gZK/cKFRv?=
- =?us-ascii?Q?m7jq3t+Kmz/8yaKD/UUCJZtAOH6O1yMqjrxHDB7UsRSjtndw1LXB/5y7dreN?=
- =?us-ascii?Q?zlC6/CPvVLViWYtCpjJSqJI8c+NYOWmRGxyKe+4olGdAedOp8+yv/vlJqIJ6?=
- =?us-ascii?Q?sdeAO6rQD6OOReZl942Y6YktK4Jza0jjxBfIO5F+IZy+7nmpEacHlmkBwVeO?=
- =?us-ascii?Q?pH/LX5j9YpysLkprjj0EMfNNkR+zp8XclsEaLVrwaeC9AGRlEMochDLXJpEV?=
- =?us-ascii?Q?eFJqxlYFp4lIG+zdH7tpfGmhCuVqx1lLi6aZ+4Q0rSKzKcHaVcjatK0IW2Vc?=
- =?us-ascii?Q?wiLhKk1z2EBf4Wc95kieR4XVIOmRSEmKnjuhIgbUp/CsXGxGhY97aMKq5TEm?=
- =?us-ascii?Q?nQOoyO9xTXcJ3SxAM/hMcc7tw0+Y5DRBD9UwXMlgaZ+b16M8yL5B37rWVW2M?=
- =?us-ascii?Q?zHVfOG5GCxvGrQ0Di0TgXvfaN4vyg/2MoqW9LNZVgIdphJHPgpSzglRTdCoP?=
- =?us-ascii?Q?dfhIJVfhHQOlOB3wfUUCu+gTUb7jetgwsJZ2c7+VsbD9K9MNFgu6txHggapb?=
- =?us-ascii?Q?fsCb521F0e6UovoVEBdHkyAohtsOLpnD3AvfLzp/eudI/2kuP1rML3sOd0K6?=
- =?us-ascii?Q?gRAJ7ojhsj4w15Ql7teWMtEHSuC4dwAi?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(10070799003)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?BDmmNsJmXbSdcFWW+9xsO4eQrq7vq47JaEmAef8YHuMyGaoSRVk9Xfp9rQq2?=
- =?us-ascii?Q?twISsn7RahwjEOjT5yMpCmkTm/3b7Djx+uNHj+FN347Ay7Eh1oX5T2D6a6ZE?=
- =?us-ascii?Q?YF9lDbdvUtMVk7eQ8FRft0/RKp7n2xNLJ8i+xCyyqrpq16G0J8RH5MeurjeP?=
- =?us-ascii?Q?QvO1W2lZSmGrn95RqQit0/Seyxp7PrOxRWAi7iLs4enu2wU4QYwUo+puYVjQ?=
- =?us-ascii?Q?FIk4l9bcK7Dc0ptlTmWMj//cjPI7KH57W6vLxF+GPY1H3rCdzApwnic9tp0/?=
- =?us-ascii?Q?1HyeAk6rex7i5cySYwHo0OFJxtp6MhhU0mlvv4jaEcYvFM44XbO2l9Gbi8j3?=
- =?us-ascii?Q?RyKdsrucqGAc4tarCvg3LWEkcDNHZTQ+wwTO/v1er6d/TlxjyNrpxA6g2HE5?=
- =?us-ascii?Q?UO/nbtBqq3V9MTooslHQMJhxjtK50UUb0uCzWw56TTbwPGC8vAW1HErDlEfL?=
- =?us-ascii?Q?KdZXfKXVWd3Wvy5tkXqgxNzCVK3eIGumNeDMIZlO274SgrNh9NpL+6GLpUNt?=
- =?us-ascii?Q?ZfppU6l/rm7pHdgyGGRpFbrbkTStuVCK47TJJAvkGeseCv2hmtv7lxfMogGh?=
- =?us-ascii?Q?pvU1RjM09zMK9pldxUX8RSRXUv+9lLaUi3lq4+/9K4xQ1yyBSKI23qPvtEob?=
- =?us-ascii?Q?6E36+zXobBIQwl7zV9qhRytxrsvrGjC3dVG88id/Ye8eG7HjkOfdTdozoR8F?=
- =?us-ascii?Q?G8f/qMiatqBT1ac8d//9vsQjI/pNrb6/30Xlnu7qio10mT0NyLMRZ52nj0cO?=
- =?us-ascii?Q?dnvrxYxG1Wa07y9sK+PC9eetLlnk2wwqN0k5QYfAp9eZRuKFCmXeqRGTB8Ex?=
- =?us-ascii?Q?YdKOMod9cHGTpyzAZFMs04hBwtVmccgCnvh45H8BERGBXwP8ZIeXeA/7ILEz?=
- =?us-ascii?Q?U2UiOqAf0UwuEpjcol6kHSpfxJdladpRvcqo0iHeA2Zo8stQLtjKsr4IZl2j?=
- =?us-ascii?Q?snhhajonoE1ahxcKw16UFnieeyRgJTWO+z8jsDnBcddA3lyvIXTr/LjQNGMo?=
- =?us-ascii?Q?uwGExHTuirYcPg+SVobTi+TmpOBFkhwUYNGXeWX5sVYwyM3NA+0aSCVFzUCm?=
- =?us-ascii?Q?xYOdpUex/hdi5q2ZkzxEzhUNIuoYQw5L3cVw+bqsY/GeS+vnby19S8MULdl6?=
- =?us-ascii?Q?iES+13+wjFJUbRUO0bTdES0Du84bxsQsWSLJXJz2mAWAOw/9/kyLzGCCwHJt?=
- =?us-ascii?Q?VzkOBxxSnem4422jCZ8KU+Uu3yIwrbpHy29+9lG6+YYLww8pLVhflSzwbg3f?=
- =?us-ascii?Q?OyUr64CoW8YGrV3kLU4ZRKf/bnXlm6qwWnkaDAyD3t+KNDAuSNJHCN8krUqX?=
- =?us-ascii?Q?k28pFZghkXnPVrT/J/I2w6+67svOKzTtNX0ClgfwUQmI4cuwC6TlHvMjxA99?=
- =?us-ascii?Q?qJGZn1TzDxVkVT347TSkKU+/2UDK35HtlsnKYqKGbFYA66PxbGDQbvZ/l1QM?=
- =?us-ascii?Q?i0S+/qxIZKCNjgvIxMr2VhQsAMFFE4NkU+mcVouPjjU/4DgDQoovQZRr/9xi?=
- =?us-ascii?Q?72Q2UdRpwL+PY4Mkty689Q/P0a8N5HhDfv8kEtY51UBxpCIUxAz1hgIURkHG?=
- =?us-ascii?Q?qkDtJGIkv97m9XLc+NKEc61zncSnA0hw75EvnoE4NHqbmrJyggAqLqmsYVnK?=
- =?us-ascii?Q?HcIuPmo7dMlVf/lmz2deO3+hj/hRhmkrcGYtYw1F+/sj?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a7411726-a032-4c9c-d5b3-08de2602dd22
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2025 17:58:07.6724 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bx5eDYkiZwJb2ikCqIgZZGhseZpdk/8p3Ba7jV9BgC9gTbnYWbgTkxE3KK3/zdF9JkAp+OR4hOnAiR/kgnOO7Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB6002
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHBzG2kC/z2OwQqDMBAFf0VybiQxthpP/Y/iIeqmBoxpN1EE8
+ d+72NLj8HjD7CwCOoisyXaGsLrowkxQXjLWj2Z+AncDMStEcZWiqHkfpoDcBvQm8VLbgZaukrV
+ idHkhWLedukdLbDF4nkYE85cILaVUolI6L7W6ccm9QbfEfJ3McCf7ZLqAJu+D/xkR3gt1pa+Wd
+ SYCVXjvUpPNsCV+tklZsfY4Pk6wnlHRAAAA
+X-Change-ID: 20251028-color-format-49fd202b7183
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Sandy Huang <hjc@rock-chips.com>, 
+ =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Andy Yan <andy.yan@rock-chips.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>
+Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+ Werner Sembach <wse@tuxedocomputers.com>, 
+ Andri Yngvason <andri@yngvason.is>, Marius Vlad <marius.vlad@collabora.com>, 
+ Derek Foreman <derek.foreman@collabora.com>
+X-Mailer: b4 0.14.3
+X-Mailman-Approved-At: Fri, 21 Nov 2025 13:52:13 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -190,133 +89,173 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 17, 2025 at 02:23:51PM -0300, Gustavo Sousa wrote:
-> Quoting Imre Deak (2025-11-17 12:17:48-03:00)
-> >On Mon, Nov 17, 2025 at 12:02:37PM -0300, Gustavo Sousa wrote:
-> >> [...]
-> >> >> > >> +        if (iom_dp_resource_lock(tc))
-> >> >> > >> +                return false;
-> >> >> > >> +
-> >> >> > >> +        val = intel_de_read(display, IOM_DP_RESOURCE_MNG);
-> >> >> > >> +
-> >> >> > >> +        consumer = val & IOM_DDI_CONSUMER_MASK(tc_port);
-> >> >> > >> +        consumer >>= IOM_DDI_CONSUMER_SHIFT(tc_port);
-> >> >> > >> +
-> >> >> > >> +        /*
-> >> >> > >> +         * Bspec instructs to select first available DDI, but our driver is not
-> >> >> > >> +         * ready for such dynamic allocation yet. For now, we force a "static"
-> >> >> > >> +         * allocation: map the physical port (where HPD happens) to the
-> >> >> > >> +         * encoder's DDI (logical TC port, represented by tc_port).
-> >> >> > >> +         */
-> >> >> > >> +        expected_consumer = IOM_DDI_CONSUMER_STATIC_TC(tc_port);
-> >> >> > >> +        expected_consumer >>= IOM_DDI_CONSUMER_SHIFT(tc_port);
-> >> >> 
-> >> >> One more thing occured to me: why can't this allocate any free DDI? IOW
-> >> >> does the address of DDI_BUF_CTL (aka DDI_CTL_DE) used for tc_port depend
-> >> >> on which DDI gets allocated (or is there any other dependency on which
-> >> >> DDI got allocated)? AFAICS there is no such dependency and the above
-> >> >> address would be DDI_BUF_CTL(encoder->port) regardless of the allocated
-> >> >> DDI. In that case any free DDI could be allocated here.
-> >> >
-> >> >Ok, checking this again, DDI_BUF_CTL etc. DDI register addresses will
-> >> >depend on the allocated DDI. So nvm the above, the mapping needs to
-> >> >stay 1:1 for now until all the DDI reg accesses are converted to index
-> >> >the registers with the allocated DDI index.
-> >> 
-> >> As far as I understand this, especially after talking with Windows
-> >> folks, the allocated DDI will define the port index for the whole
-> >> programming, including the registers used to program the PHY - and the
-> >> hardware would take care of routing to the correct PHY.
-> >
-> >Correct, that's how I also understood it after "checking this again".
-> >
-> >> Thus, it appears we would need to do the allocation at hotplug time,
-> >> like saying "this PHY will be driven by DDI x".
-> >
-> >To clarify, if the mapping is 1:1, as in this patch, the allocation can
-> >be done statically during driver loading as discussed earlier. This is
-> >the only way it will work atm, because the DDI allocation cannot fail
-> >during runtime.
-> 
-> Two scenarios that come to mind about doing this on probe time:
-> 
->   1) The driver could be loaded with nothing yet attached to the legacy
->      connector.  However, I believe the TCSS doesn't require the
->      connector to be attached for the allocation to work.  So, we are
->      probably fine here.
-> 
->   2) If the legacy connector is never used during the driver's lifetime,
->      we are basically holding a resource that could have been used by a
->      DP-alt/TBT connection.
+Hello,
 
-Yes, this is also the way how things work at the moment: a legacy
-connector reserves a DDI whether or not a sink will be connected to it.
-I think keeping that existing behavior for now is what makes sense.
+this is a follow-up to
+https://lore.kernel.org/all/20250911130739.4936-1-marius.vlad@collabora.com/
+which in of itself is a follow-up to
+https://lore.kernel.org/dri-devel/20240115160554.720247-1-andri@yngvason.is/ where
+a new DRM connector property has been added allowing users to
+force a particular color format.
 
-> For the dynamic feature (to be implemented in the future), how to you
-> see this?
-> 
->   1) Should we allocate the DDI at HPD time and fail report the
->      connector as disconnected on failure?
->   2) Should we allocate the DDI as part of the atomic check phase and
->      fail the modeset if we can't do it?
->   3) Should we allocate the DDI as part of the atomic tail (hardware
->      commit) and raise errors if the allocation fails?
+That in turn was actually also a follow-up from Werner Sembach's posted at
+https://lore.kernel.org/dri-devel/20210630151018.330354-1-wse@tuxedocomputers.com/
 
-I think the only way for enabling the dynamic allocation of DDIs is to
-do that whenever the PHY is used, i.e. when the PHY is connected via
-intel_tc_port_lock() or intel_tc_port_get_link(). That's because even
-AUX transfers for a detection need an allocated DDI. This is what the
-patch is currently doing, however, that can be done only once the
-remapping of a connector/encoder -> allocated DDI is in place and the
-driver can also handle a modeset on a legacy connector for which the DDI
-allocation fails.
+As the number of cooks have reached critical mass, I'm hoping I'll be
+the last person to touch this particular series.
 
-> Another question: once we implement the dynamic feature, this "allocate
-> on probe time" thing will have to go away, right? 
+We have an implementation in Weston at
+https://gitlab.freedesktop.org/wayland/weston/-/merge_requests/1825 that
+adds support for this property. This patch series has been tested
+against that MR on i915 (HDMI, DP), amdgpu (HDMI, DP) and on rockchip
+(HDMI).
 
-The allocation would simply have to moved back to happen during
-connecting the PHY.
+You can also manually test this with modetest like so, but beware that
+this is a non-atomic invocation, so testing YUV420 like this will result
+in weird outcomes if only some of the modes support YUV420:
 
-> In that case, we would basically suffer the same runtime risks that we
-> would be trying to avoid, no?
+  $ modetest -s 115:1920x1080-60@NV12 -w 115:'color format':4
 
-No, then the driver will be able to handle a modeset for a legacy
-connector without a DDI allocated to it.
+where 115 is the connector ID and '4' is the enum value for a particular
+color format.
 
-> Perhaps I'm missing something, but, if not: I wonder if doing the
-> "allocate on probe time" thing is really worth implementing, since it
-> will be a "temporary" thing that would be reverted later.  In that case,
-> we could try implementing the static allocation in the same place where
-> dynamic allocation would happen.
+General notes on the approach taken by me: instead of silently switching
+to a different format than was explicitly requested, or even worse,
+outputting something to the sink the sink doesn't support, bubble up an
+error to userspace instead. "color format" is a "I want this" type
+property, not a "force this" type property, i.e. the kernel will respect
+the limits imposed by the hardware.
 
-I still think for now it makes sense to implement the allocate on probe
-time thing, which is simple enough and provides what we have now (legacy
-connectors keep a DDI reserved). Adding support for dynamic DDI
-allocations will allow enabling 3 TBT DP tunnels instead of the current
-2 DP tunnels for instance, but this requires a lot of changes affecting
-current platforms as well. I think moving back the allocation to happen
-during connecting the PHY - when the changes for that are in place -
-would be also simple.
+I'm not sure if my drm_bridge change actually achieves what I want in a
+more complex bridge setup. I'd need to either come up with a virtual
+bridge to test these scenarios, or spend some time making a flat flex
+cable adapter for the DSI-HDMI bridge board I have here. Before I invest
+too much time into either of those, I'd like to get some feedback on
+this approach however.
 
-> >> One of the reasons I think we can't allocate a free DDI at the moment is
-> >> that the driver is expecting a 1:1 static mapping for HPD interations.
-> >> We will neeed to make the driver aware of the mapping in order to use
-> >> the correct encoder when handling HPD events.
-> >
-> >Again clarifying, that the above is true only for legacy connectors. IOW
-> >for a TBT/DP-alt connector, where IOM does the DDI allocation, the HPD
-> >IRQ delivered to the driver will be already according to the allocated
-> >DDI. That is those connectors are _different_ wrt. to the mapping
-> >requirement than the dynamic legacy connectors, for those TBT/DP-alt
-> >connectors the DDI registers will be accessed based on the
-> >tc_port/encoder->port to which the HPD IRQ is delivered.
-> 
-> That's my understanding as well.
-> 
-> --
-> Gustavo Sousa
+Things I've tested:
+- HDMI (YCbCr 4:4:4 + RGB + Auto) on RK3588
+- HDMI + DP (YCbCr 4:4:4, YCbCr 4:2:0, RGB, Auto) on Intel N97 (i915)
+  DP-MST is untested, but I expect it to work the same.
+- HDMI (YCbCr 4:4:4, YCbCr 4:2:2, YCbCr 4:2:0, RGB, Auto) + DP (YCbCr
+  4:4:4, RGB, Auto) on an AMD Radeon RX 550 (amdgpu). DP-MST is
+  untested.
+
+Changes in v4:
+- Rebase onto next-20251117
+- Get rid of HDMI_COLORSPACE_AUTO
+- Split hdmi_compute_config change into separate patch
+- Add missing symbol export for color_format_to_hdmi_colorspace to fix
+  builds in certain configurations
+- Drop "drm: Pass supported color formats straight onto drm_bridge"
+- Make dw-hdmi-qp set the platform data's supported color formats as
+  the bridge's supported HDMI color formats
+- drm_hdmi_state_helper: pass requested color format to
+  hdmi_compute_format_bpc if set.
+- drm_bridge: limit the bus formats to those explicitly requested with
+  the color format property during the atomic bridge check call,
+  specifically in drm_atomic_bridge_chain_select_bus_fmts.
+- i915: Remove INTEL_OUTPUT_FORMAT_AUTO, as automatic format selection
+  does not need to involve the hardware state
+- i915: Deduplicate ntel_output_format_to_drm_color_format code by
+  moving it as a static inline __pure function into a shared header
+- i915: rework logic in HDMI, DP and DP-MST output config functions to
+  remove redundant locals, simplify execution flow, and return an error
+  to userspace if an explicit color_format request can't be satisfied.
+- i915: assign myself as the author and make the others Co-developers,
+  so that they don't get the blame for any of my bugs.
+- amdgpu: refactor fill_stream_properties_from_drm_display_mode to
+  improve readability and ensure that impossible color format requests
+  get bubbled up to userspace as errors
+- amdgpu: don't pick YUV444 over RGB.
+- amdgpu: assign authorship to myself, with others as Co-developers, as
+  logic was modified and the blame should fall on me
+- dw_hdmi_qp-rockchip: set the supported color formats platform data
+  member
+- rockchip: remove drm property registration for rk3066_hdmi and
+  inno_hdmi. None of the platforms that use these use vop2 as the
+  video output processor.
+- Link to v3: https://lore.kernel.org/all/20250911130739.4936-1-marius.vlad@collabora.com/
+
+Changes in v3 by mvlad compared to Andri's v2 series:
+- renamed the property to just 'color format'
+- the property is added dynamically similar to the Colorspace property
+- a key point from previous comments was that drivers should advertise
+  the color formats they support and userspace would query EDID and
+  perform an intersection from those color formats which users can
+  further use. With this patch set each driver that adds this property
+  has such list of hard-coded color formats, but fundamentally the idea
+  is that driver can query the HW and do that on its own. The
+  infrastructure is now in place to allow to do that
+- by default the 'AUTO' color format is set. With this patch series that
+  has been introduced as a fallback to RGB. Drivers could further
+  customize this behavour and could perform additional checks on the sink
+  to pick another suitable color format they'd like for AUTO
+- drm_bridge bridge code has been improved to allow initialization with
+  the same color formats list as the DRM connector property. Similarly, bpc
+  pick-up now takes the color format into consideration when deciding
+  which bpc to choose from
+- The new DRM color format re-uses HDMI_COLORPSACE enum and provides an
+  enum translations between the two to avoid touching all other drivers that
+  use HDMI_COLORPSACE enum. I believe at this point that this allows the
+  least amount of disruption and avoids a massive bike shedding around
+  that part
+- a rockchip implementation has been by my colleague Derek Foreman
+- YUV444 color format has been added in i915
+- address comment about "Remove unnecessary SIGNAL_TYPE_HDMI_TYPE_A
+  check" where aconnector might be invalid
+- Link to v2: https://lore.kernel.org/dri-devel/20240115160554.720247-1-andri@yngvason.is/
+
+Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+---
+Andri Yngvason (1):
+      drm: Add new general DRM property "color format"
+
+Derek Foreman (1):
+      drm/rockchip: Implement "color format" DRM property
+
+Marius Vlad (1):
+      drm: Add enum conversion from/to HDMI_COLORSPACE to DRM_COLOR_FORMAT
+
+Nicolas Frattaroli (6):
+      drm/bridge: Act on the DRM color format property
+      drm/bridge: dw-hdmi-qp: Set bridge supported_formats
+      drm/rockchip: dw_hdmi_qp: Set supported_formats platdata
+      drm/display: hdmi-state-helper: Act on color format DRM property
+      drm/i915: Implement the "color format" DRM property
+      drm/amdgpu: Implement "color format" DRM property
+
+Werner Sembach (1):
+      drm/amd/display: Remove unnecessary SIGNAL_TYPE_HDMI_TYPE_A check
+
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  |  93 ++++++++--
+ .../amd/display/amdgpu_dm/amdgpu_dm_mst_types.c    |  14 ++
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c       |   5 +
+ drivers/gpu/drm/display/drm_hdmi_state_helper.c    |   8 +-
+ drivers/gpu/drm/drm_atomic_helper.c                |   5 +
+ drivers/gpu/drm/drm_atomic_uapi.c                  |   4 +
+ drivers/gpu/drm/drm_bridge.c                       |  57 ++++++
+ drivers/gpu/drm/drm_connector.c                    | 198 +++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_connector.c     |  19 ++
+ drivers/gpu/drm/i915/display/intel_connector.h     |   2 +
+ drivers/gpu/drm/i915/display/intel_display_types.h |  15 ++
+ drivers/gpu/drm/i915/display/intel_dp.c            |  42 ++++-
+ drivers/gpu/drm/i915/display/intel_dp.h            |   4 +
+ drivers/gpu/drm/i915/display/intel_dp_mst.c        |  37 +++-
+ drivers/gpu/drm/i915/display/intel_hdmi.c          |  40 ++++-
+ drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c     |  27 +++
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c       |  46 +++++
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.h       |   2 +
+ include/drm/drm_connector.h                        |  57 +++++-
+ 19 files changed, 637 insertions(+), 38 deletions(-)
+---
+base-commit: d1d18879e01e4c9efcb85a96d188a8e4326136dd
+change-id: 20251028-color-format-49fd202b7183
+
+Best regards,
+-- 
+Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+
