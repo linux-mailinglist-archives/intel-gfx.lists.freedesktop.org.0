@@ -2,137 +2,171 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B168C6177B
-	for <lists+intel-gfx@lfdr.de>; Sun, 16 Nov 2025 16:32:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CC60C625C4
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Nov 2025 06:00:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37CD810E0D4;
-	Sun, 16 Nov 2025 15:32:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4D6410E178;
+	Mon, 17 Nov 2025 04:59:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="STV1aCeq";
-	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="NhmzmGtL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f8VvvRg7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 958B710E07F
- for <intel-gfx@lists.freedesktop.org>; Sun, 16 Nov 2025 15:32:08 +0000 (UTC)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 5AG9ZVoQ797821
- for <intel-gfx@lists.freedesktop.org>; Sun, 16 Nov 2025 15:32:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=qcppdkim1; bh=brXB1Y/LPVXbRpByEO14Lypc
- 5NwpFVTcCsuQsNLy+W4=; b=STV1aCeqitSSB1V44tB0l1zmgK/7jDhruQaVos81
- EssOg08VRmId+HKWwnbjmu1A0oxPC5Ot0Oyvyo87OOJHticVG/YB653NVBPtYm9d
- UMItP9V/wSh+4E91LFlEQhJNuVhFvVTS+/bfsvX8obshzPQA/diigqQyXgEmYa+2
- zxXYJ2F40o0rqOYznjpqhDid9v6g18id9gJ19enQV+cFgUdkWcy+0mxpFb239eHs
- p3aVsMkvNCq6kwdAPk3OKLUDSbymiPKKYAioD2H3p7O3WWKAQeMEmM52tSJ1CZTR
- ylI817cj5MU9L4CVRhwrC+CcUAq4YwWU/UgKqZenuQxUbw==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
- [209.85.222.197])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4aejk1j973-1
- (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <intel-gfx@lists.freedesktop.org>; Sun, 16 Nov 2025 15:32:07 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id
- af79cd13be357-8b2e2342803so274500185a.3
- for <intel-gfx@lists.freedesktop.org>; Sun, 16 Nov 2025 07:32:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1763307127; x=1763911927;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=brXB1Y/LPVXbRpByEO14Lypc5NwpFVTcCsuQsNLy+W4=;
- b=NhmzmGtLKRT9CdGTvxFtVLRUqgTTYxe+8DLpyMskAvnTLRMSd8SBRL4LUFIwVPNlvE
- u0KFaCZ9Up/3usT6sMLMjYQCsCsqiUoK+s4Ha+LRxkfq4TddqwUtikodpyEgLL2iGI9Q
- 94toYt/cR66WS9BFUNZNHDqeQ5sro3qyN6vMXsdkPJ96FnBLR5aF8HdusXGKkl+0CEjB
- GDhbQPzfZQc1KOzRp0z6R6TWxY1k9iRqq/Ls/zlgE/wNW3ComSvE/4TW+FxMYddawv5U
- Cn/4rEyJKcYqP0dtOdeYpo4c5hNTByH8waff0IP4RieWRW79Dhn7k5HgDmt9JYYJMObc
- Zj8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1763307127; x=1763911927;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=brXB1Y/LPVXbRpByEO14Lypc5NwpFVTcCsuQsNLy+W4=;
- b=VPOaR1yp/0dJ7+JPpk72jC6tGbCY1v5JqYQyjUv+Km0T6aH5P0573kxClnwQxY3320
- LuLlU+6tf71tpAKpCa+J/v11IBzmVnKAcxbQbrSI0Hozx0mDpWUm3hbb5QceOx5n/7SC
- lvqEtnHSOxd0AiP3mLghBW93e7FYVWGdSI3ieWCRFuc5tKVmTHTr2RpubxStz8VeQakP
- qhD290EQh6tbMrgZbkkonwQYRWpZSsD2EtInhJtGQDQwEQNNKZmZDdAuZSeXxclUYThZ
- ClivkcwAbhGedDkFu+e3G1RLJsPsuDQ0YFVL6sNZVpv3uXOlbTsnFIebH13JXBx5d3sy
- 9spg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXQuM99vuA9D+wTxIDLYF2Ti+H+sbJK19opbQUVrrk8vqIJ42dbxd1IzCW+maJHhNNYM75/zqRlARE=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzqIyncdhbzHmz28IeYqbImHBISFzJ7OmIZtYAY+zT+yKdNNmj0
- qKcCCOc3H4rXjnyC443bCESwBUYbb2q+svowbwq32pyxckKP4WxdpzX4JcWt8B27ghItfFbnFpQ
- bC1khWer4cu7hwUZbDyM0sFAf3znIUa/dyFn0B/XjispooKJlJSd9kgS91sYjrq34EImP0uI=
-X-Gm-Gg: ASbGnctS5Z153c86mW6BFvHMW4CISegcVhR3GiBJJO6kkF/PESML81kTZW2urjoEq0i
- HZ5KTcUUYT90hb3nx+M+a9FBYwujDiGUmTKGBHp3OjqksNssOeUpqflIwzUjF2AvQCM/jFvfIPd
- l8B3ywLy8F9pOTy8Bp69FIlwDqYv5ZMgpsHqwFFPSgZ2wmfZEGodEXFipwDWyi3QYbbXdWPisf4
- 5whBC/hgWINUn9oWTxtdvqtAujBNQ+P3TZI6IgGIHbDsxwBXUdY1DsQXc0SSHWpzdo1iNKv8g39
- PxGnmlpX5pbJBAaV+MiHN8/Lw+rmxeNXvJOECud20W5/5Xo93lwaTfAjniWwqOxEPhNdtangezq
- j82QG361pi/SLyJ82RChUkrRxIX56NqXyro3qmBkwda07z8SgR1Sr6s4jei9MItY1wSdv3APLWG
- kZGNvBnvMfRA8C
-X-Received: by 2002:ac8:7dd6:0:b0:4eb:a3fe:53d with SMTP id
- d75a77b69052e-4edf2177a96mr137561061cf.79.1763307126913; 
- Sun, 16 Nov 2025 07:32:06 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHLhJkaOMAE2symS5kOW15WypsaRmGyogTqDdNGkh+5TTdpKm+0QEXmKB8gHRw7DCEiCrhb5w==
-X-Received: by 2002:ac8:7dd6:0:b0:4eb:a3fe:53d with SMTP id
- d75a77b69052e-4edf2177a96mr137560551cf.79.1763307126391; 
- Sun, 16 Nov 2025 07:32:06 -0800 (PST)
-Received: from umbar.lan
- (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
- [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-595804003a4sm2483875e87.59.2025.11.16.07.32.05
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 16 Nov 2025 07:32:05 -0800 (PST)
-Date: Sun, 16 Nov 2025 17:32:03 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Vignesh Raman <vignesh.raman@collabora.com>
-Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
- helen.fornazier@gmail.com, airlied@gmail.com, simona.vetter@ffwll.ch,
- lumag@kernel.org, robdclark@gmail.com, robin.clark@oss.qualcomm.com,
- guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com,
- valentine.burley@collabora.com, linux-mediatek@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org,
- amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] drm/ci: uprev mesa
-Message-ID: <2obhppq6a4ercfnhvm42tbbgh3xut4lz66fc4j7mpev5oxxno7@dydu2wysmgvi>
-References: <20251114030056.1139570-1-vignesh.raman@collabora.com>
- <20251114030056.1139570-2-vignesh.raman@collabora.com>
- <prjwrsepfc3b6ozhue5cp66khlcvdrpvpy6jkk23edncmi4l3y@oiddmamgg3mx>
- <42v64xdsaqug5yy76yel4tukh6wkt2tp237vlnpteabyl5qjo5@iigtgujvecwc>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B56E310E009;
+ Mon, 17 Nov 2025 04:59:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1763355596; x=1794891596;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=UE+ljYGE2nbfLj4oq6k4xv/v4ijaaEq0uSSKKope+aY=;
+ b=f8VvvRg7iDbFNYz+PrdfvOPPKQ6YSxaq+scu60CGcwdVSrqj8VXp1E+H
+ bJ4KfB/UzRueKL06+QgiiltXPjYEqV/QCbqUQVmjCvyEHT7smDWwckWja
+ ZyATq0xvtzee/0M3sQ6+V9uIQBhooUXWm1DPjqN2wLk7UYtHqUjF139UC
+ J0OwYJR2gbPIF9Zd49JLv9/KAmamRMGAs8URvHqb3BJaBfqjkj8/+O0kW
+ W0jkxo9W+cC7t2F3PY6DsaeGenJlybWJzOioBMCQYcW7wWa7FAubNOoId
+ QtZ8ZS04uOg3qWc9WzpjSU3q0K+tS67Xws883UjSdazJbeRN+ISUfi5O7 g==;
+X-CSE-ConnectionGUID: E7dLPYGLTBWVCbvnoGoDlA==
+X-CSE-MsgGUID: kRHVeAjmSaWLrSeegGbd+Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11615"; a="67953879"
+X-IronPort-AV: E=Sophos;i="6.19,310,1754982000"; d="scan'208";a="67953879"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2025 20:59:55 -0800
+X-CSE-ConnectionGUID: aW/fgs4bShSuVEvmjGpJzg==
+X-CSE-MsgGUID: AK+js+6wTq+TzDHoqlAUlQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,310,1754982000"; d="scan'208";a="190007010"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2025 20:59:55 -0800
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Sun, 16 Nov 2025 20:59:54 -0800
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27 via Frontend Transport; Sun, 16 Nov 2025 20:59:54 -0800
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.36) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Sun, 16 Nov 2025 20:59:54 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=XS25V9m5FIIDQxOhk6YzYWN4H+PW5VuxMKEt2fBF3RJyeG5D4RMpD/EAudbJq8NaQKX3MyWBjsYnulT+/L5cuzbwsY5Ba5a0LhJ+nN7YNMMfXb3jqs2OzBF6mHBnCEuE0/p7YXPAkFelb2cf7T5pRM6UZEd2CjdEITd/P6t7Y6lWnob24o+Kgvi87aDd6Y8RjX5xfCwuy6xDanuRqXl9R/f+9e0rJYTtwNj5I+9rTREnBwD2HQ0AwWjVjM8etWG3Axf7+YV5NrbVMxg4zYLJXL3XnQiEhyF1HBqnJIOH4ueDQR1/HlIP4g9uo61idU7xTplzy1thDD5Vkk116O1ZYQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iWuO31PzjDfhsAqTYy+aWqTEThPejhjxRsKRELpuh/c=;
+ b=E4sCxVmU27X1eTofGnETgGltbpWioG5U1eVFQqR2WDzcpi6yY4PLx3T473ZSyZX5Ji29PbxoYU/Vqy5oYu5tdMOvYRgJTcfw4L782v0fvlSDbHIlzRYSWV6rTUcKhcrIAc0y6U/XTEaEplA96PpPcEsYqoyQLPmknK+0hExiSH4DUEl6bNi6BCID6BxOJsyYqiP2kv6LGfWRxrzGTbap1N2NWTa1prrsg8BqxJoMiA8XjMejziRozpjsv8kYMnnRNYT7QOXfOfG29vmygF9ch0LG3TFbi0T8lnw58UHSupsTrt33Wd2HKmaVOYkt/vS5PEwA30D6RYp6kTne86vIpw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
+ (2603:10b6:f:fc00::f13) by IA1PR11MB6076.namprd11.prod.outlook.com
+ (2603:10b6:208:3d4::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.16; Mon, 17 Nov
+ 2025 04:59:47 +0000
+Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
+ ([fe80::95c9:5973:5297:d3cc]) by DM3PPF208195D8D.namprd11.prod.outlook.com
+ ([fe80::95c9:5973:5297:d3cc%6]) with mapi id 15.20.9320.021; Mon, 17 Nov 2025
+ 04:59:46 +0000
+From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+CC: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Subject: RE: [PATCH v3 1/2] drm/i915/ltphy: Implement HDMI Algo for Pll state
+Thread-Topic: [PATCH v3 1/2] drm/i915/ltphy: Implement HDMI Algo for Pll state
+Thread-Index: AQHcUgocdI8dI1irVUWIg/YvzdUNy7TyRn+AgAQSgBA=
+Date: Mon, 17 Nov 2025 04:59:46 +0000
+Message-ID: <DM3PPF208195D8DBF586052D735DAE77BDDE3C9A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+References: <20251110061940.545183-1-suraj.kandpal@intel.com>
+ <845e531ed52cf5cc331f3f383b9477f571e25259@intel.com>
+In-Reply-To: <845e531ed52cf5cc331f3f383b9477f571e25259@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM3PPF208195D8D:EE_|IA1PR11MB6076:EE_
+x-ms-office365-filtering-correlation-id: c0776958-d18f-4b7d-fb94-08de25962158
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|376014|1800799024|366016|38070700021;
+x-microsoft-antispam-message-info: =?us-ascii?Q?+yGBnzjzygCTGdqqu2xu7QXZh3cjL4KCn5RFlEqTJTEMqxPhVphSms+gpRwV?=
+ =?us-ascii?Q?FfVHIqtTvTKy8Z9U/mjO1l3jVFfZDpWGd2qCcCvf6wn6Btsl//JwDgThHVMQ?=
+ =?us-ascii?Q?GBvEzqpEyxgIJ5zG2CmO1cUmKDfhWgfKT3KKo4F03Fcu/fjXYtPyt++SBDXF?=
+ =?us-ascii?Q?T55ZLq9cCNmaoLYjDv/M7kwMjZPgxngsQa7b9SQd1Ti3FCSnq+eYzHXUkRo6?=
+ =?us-ascii?Q?cO9a0s/MGuvRH8XxDXcoGx6uC4oKZIH4Y3jRnZQWbkBkx+wU3bjrWSazAybU?=
+ =?us-ascii?Q?ZB8PwoHYIFvCpPTYpr0zsLJBK2KoEP70UmyHb4e18pFHeTNQOJYEHPJ7ttOf?=
+ =?us-ascii?Q?3c4P4/EHVBgQcsX9N9gA709DqiNdQyukkMrEMTEAt/j/PU2JjrTyULu+PinL?=
+ =?us-ascii?Q?Vk32DUL1YvRIrEf6eUR+9QAeZqWrziVVRw8evTZ39xMzkH6jFED9YXdb7edr?=
+ =?us-ascii?Q?U/YbVITWbHIfhPplXpFSDkDVv+Dbq/fLXoIpOvW0cHguI1z4X912V7Hs8nuQ?=
+ =?us-ascii?Q?ULAKLdHKmobA3zd+0oL/V9ZhlAWrw9IoMz94MU5697MZ3G+r7X32/yj0hfkK?=
+ =?us-ascii?Q?jIQDEoYcNFK2/uk3eGmsFAJNQ404HiypymZqi9NhxFmyd/hIXCFlChW+PNdp?=
+ =?us-ascii?Q?VIB9RvLTUNJCmFTsOZhc6PUjpF3dMEl+jPSDQM9a0Iq13M0gTHOQ0cHikyxz?=
+ =?us-ascii?Q?dAJSKUYEU6qkMWXaXBndrfxut6K64KKlNi9Qy4B7Vxg207mEStN0aQjBfWjg?=
+ =?us-ascii?Q?+WTLi362dm7Gynqk9sGVMCESUNjDSGjbEWZIHjIEUJRlCoda8ms1WKeS/DA3?=
+ =?us-ascii?Q?Gf+eyXFA6xrsjiFNWIrce704JkvSbHJpBEtS7B0sgmfyMcp8MCg7NiITxyES?=
+ =?us-ascii?Q?AY/kCbSWmEX5ywOKVHAp0j8l9R/r2oU3xkCkcljGRINRq6NS2knWVkH1KAMG?=
+ =?us-ascii?Q?aKpdwFVQBYJSjjFoVb321K7EZLAC/RGdw6/WGb9gX4FGz8Y7uRKpRMGSXP8O?=
+ =?us-ascii?Q?P7hheGgagl5rE0IVjhPHdFksOP18UAkXMqlIIWC0Nt4A80R2uPiPmFe4uXoh?=
+ =?us-ascii?Q?jIRpAhiU5Kw9M11vZUsX2eJiZL1OqDNLxPUqvsp+SRXB5DH5Cy0Qr8ZhvgDN?=
+ =?us-ascii?Q?56dT+B0tWFkD/75jYjoOlQ3pIYIMnBWBLWUte480Tp5CehvyZmPe8+94nTRP?=
+ =?us-ascii?Q?6qL7Gok7wcj0WaWkdiCf5vZ9TXg6f+oPSj/8OPV9QYnhwdmFgm6ZWkyIp3uA?=
+ =?us-ascii?Q?Cs4qsxgr+Hh2/v4XGvrdDu7JHagx6jixaeX0hMvzV3jlmkUuKsPFpj1UDJcT?=
+ =?us-ascii?Q?Mtt7OrVeOHK/vW9TuzCoFGfeaxJk3GB1ur5uzzm54Xjoj07KlY9kXBhIxGyr?=
+ =?us-ascii?Q?QobRsAZMxAxrzv1iTaoz5BjpFIk9Fn6Ll72m5Euglk7a/qhXvJ65MLefvnFy?=
+ =?us-ascii?Q?fDd4A6zcR1nDQRJIYI5IiG7XfwA0L+ezpURH6qVLlUSMYtp9Dyy0lBhTCqwd?=
+ =?us-ascii?Q?FflDfLYjhxWDcetSbzfJV+rsHsLD9Rj2w3Yj?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM3PPF208195D8D.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(38070700021); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?oeYPHqlniq7XgYE9xsqsiDfs6V+7zkmatzV8VQfYctvhRMCWVD/NvjhRqzw+?=
+ =?us-ascii?Q?yzETDgN9Gv6WCEvggphj9bVjJr0CYjAXLfhotCAdrHBdkOz6LL0I0KX6a/V/?=
+ =?us-ascii?Q?eSG2lgfTM2lQR4TWxQOoxZ+E+Y9DTu4z+rTIHp7yqbe+K6duJgMGhG0xM5+7?=
+ =?us-ascii?Q?rVmwHH23qg+3ZOpPm7bobMuXKEqCGhLX4NoyaC/pgFAXSjwZZ9UezqFQPAVf?=
+ =?us-ascii?Q?eexQHnNXIkyKKN4yo+N6q/M2aeYNEbus9+L5zKmtlR0PapDOApKNQjN3Wrsd?=
+ =?us-ascii?Q?036vkOudBcfCy9YiYoEI5Fr54GYgcCi1TkuDnTnIS4X+j67311k4hXqaXTKK?=
+ =?us-ascii?Q?Quje2OQNYvys2u1FNY5JbAVVaRh1x+iugAY6d+aE+i+dt1OZRRpOTUV7jLPS?=
+ =?us-ascii?Q?TOD6ovNqdXxpoownI2cOCn/m6gyvp8y+6ST1xfrmqMJ9bd/HSWsoHxm7qkIT?=
+ =?us-ascii?Q?n612BjGdoHsxhMLgrQ2LCC4tZqH52kklY3OxzP0hJ4lJ3qGUGLgdY3curQuQ?=
+ =?us-ascii?Q?NWEEgAf/T0CURQ1BxvPZhDZH18O+NTa3Eo1wSHyetBlXF7Q4LYMocD/KWbOk?=
+ =?us-ascii?Q?+8nGXHJYy2bvYRWDWRikEfmg9TcTtghwtIr1n54VSrxV6ZEjwK2GILuaZTm7?=
+ =?us-ascii?Q?qwEOECuvwoVKf9zzWdxJh01btX2c1VDjtbHQ9jAbuyeNZo1IOTp2j/T20kuF?=
+ =?us-ascii?Q?gv7EErDZv+EaDPiXOpIt5PGrGhKlg7sR1FYA2LektDCXVrXUenGqfjFhP+7G?=
+ =?us-ascii?Q?mTpdvmN02oGB5AvvrXKQEZEzLd07df8DreeXTOT79KmXRAX3Yu1Ft0z9hnH0?=
+ =?us-ascii?Q?61ezq3dxWYrgqfaUuYFo7CzN9vdM8v5D6KHjv55eHwhhulZsmii759GovKco?=
+ =?us-ascii?Q?TM/Rk/RZlHEyAyHZ+9s1Inyulw4NaktUpft5HQ671dYddz74zTFl8eDzayRA?=
+ =?us-ascii?Q?Xif6AqldN1zXE91sfwyqhRJQwuwfNvVnTsSm3PHQsU2ciSgFieG5QnQaYVPe?=
+ =?us-ascii?Q?FZyQXzJhOZ7HPFSfoGHzlRd7SKGj0m2IG9QLJJZhu0eTJ73uuktwsyB7Xd4N?=
+ =?us-ascii?Q?/hBtmtGrJeG+VdDzeUnxTbuFuf8VDc2wEIstelE4ADSwah+zdjpz0pRT2Srm?=
+ =?us-ascii?Q?KtrDKU6xMjqBbIpStzEhBF39Sybk/6Ds0EIuzCcuLLhCnf91hSkLK5e+MSUs?=
+ =?us-ascii?Q?elSnHrItvssYe/WZ+bvxj6QbqIEujL+V0arf7mxwbh+VWUWYcFs04GN5ozGV?=
+ =?us-ascii?Q?XdFiNa6EagHwN0vKU1B9GZvUR459nLXd/7pLB32PSK23gwY+mZ7nASyNRuUp?=
+ =?us-ascii?Q?bkV6JgTWaE7xwDwzbmRYXXPms7Ew46Sum8RUeZAXzfsYJDmj0KX5Hzrh7YO6?=
+ =?us-ascii?Q?s9iInDP2wCdjxCpR+exee7ZWVDQOJbmvPk0iQ+gKAGExXDZrF5mwOVpfklUu?=
+ =?us-ascii?Q?aL8LS4rn7dTiSNEwxQ25OmEJi3LTN8Ih+34MuWnbyW8gt3ShDiCr0E0JALhG?=
+ =?us-ascii?Q?BSij9w5yOJx3AROGeLXus3vGqnMwM8SPE9Yq6f5qrmweDTelkymEyaSEkpUj?=
+ =?us-ascii?Q?jti56laptNjfMqpcYGeQX/5Vba56Awv1j5LhZaw/?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <42v64xdsaqug5yy76yel4tukh6wkt2tp237vlnpteabyl5qjo5@iigtgujvecwc>
-X-Proofpoint-GUID: VihK5DhzSp8mSwsAR2L6qJ-yyudz4lr_
-X-Authority-Analysis: v=2.4 cv=OpZCCi/t c=1 sm=1 tr=0 ts=6919ee77 cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=e5mUnYsNAAAA:8 a=EUspDBNiAAAA:8 a=QX4gbG5DAAAA:8 a=zodt2Hv4yxvvtHnNIosA:9
- a=CjuIK1q_8ugA:10 a=IoWCM6iH3mJn3m4BftBB:22 a=Vxmtnl_E_bksehYqCbjh:22
- a=AbAUZ8qAyYyZVLSsDulk:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE2MDEyOSBTYWx0ZWRfXwfzjn0hsv8Cg
- RCLpBK0NI/zz1kc/kwvOGY7NMr0R8CLtg1AD9ej85rd8QPToSl/A8Srzm7gOWhSdGvo98pmlJFv
- bonO+wsX9wVJ6khv8lciyem6t1OWU4ka0PBoxbADxiHk08ryvn0Mmb1/MHxS495KRZA/FCBuIa2
- pPT03mMlySmci5qbwkLC9KkRjZTluRdYGE2ms06Hk7jl+UmkarBIolAaXNzjei7Ob6s0tKTphu+
- Nb35ZbiKtGrvgU1MPNzWft1mPydsn/dp7wk93QmJKRufmaQbHOQgHQA45t9zOYGvsUJE8bbRRFY
- piRFoVjxsUYD7A234yrPFLcBjML10DjXt7gv4mhETvzBhmo3/LaEoXw5gIU+l6yTTbmNUP8bUuJ
- 1BrUidDHiOJU1EcvEH0ie5GHjZ8XXw==
-X-Proofpoint-ORIG-GUID: VihK5DhzSp8mSwsAR2L6qJ-yyudz4lr_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-16_06,2025-11-13_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 adultscore=0 phishscore=0 impostorscore=0 clxscore=1015
- lowpriorityscore=0 bulkscore=0 spamscore=0 malwarescore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511160129
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM3PPF208195D8D.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c0776958-d18f-4b7d-fb94-08de25962158
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Nov 2025 04:59:46.7405 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 7FnyMecjVwepoRbW0cMXiGEqmhKRBnypYxa7BDfWzpe0kE3r32K/5AsSD4p3vMJ09jVtC1sIZBusBnZpoyXbVA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6076
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,70 +182,506 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Nov 15, 2025 at 05:55:17AM +0200, Dmitry Baryshkov wrote:
-> On Sat, Nov 15, 2025 at 02:44:56AM +0200, Dmitry Baryshkov wrote:
-> > On Fri, Nov 14, 2025 at 08:30:50AM +0530, Vignesh Raman wrote:
-> > > Uprev mesa to adapt to the latest changes in Mesa CI, including support
-> > > for firmware via LAVA overlays, removal of the python-artifacts job,
-> > > split container and build rules, use lava-job-submitter container,
-> > > and various misc fixes.
-> > > 
-> > > Co-developed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> > > Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
-> > > ---
-> > >  drivers/gpu/drm/ci/build.yml         |  22 +++---
-> > >  drivers/gpu/drm/ci/container.yml     |  28 ++++++--
-> > >  drivers/gpu/drm/ci/gitlab-ci.yml     |  95 ++++++++++++++++++++-----
-> > >  drivers/gpu/drm/ci/igt_runner.sh     |   4 +-
-> > >  drivers/gpu/drm/ci/image-tags.yml    |  22 +++---
-> > >  drivers/gpu/drm/ci/lava-submit.sh    | 101 +++++++++++++--------------
-> > >  drivers/gpu/drm/ci/static-checks.yml |   1 +
-> > >  drivers/gpu/drm/ci/test.yml          |  18 +++--
-> > >  8 files changed, 186 insertions(+), 105 deletions(-)
-> > > 
-> > 
-> > Thanks a lot for taking care of it!
-> > 
-> > 
-> > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> 
-> Hmm, this causes a lot of failures, see [1] (note, the run is not
-> finished yet):
-> - On some platforms (msm, rk3399, mt8173) the
->   core_setmaster@master-drop-set-root test fails. On other it seems to
->   work correctly
-> - sm8350 seems to have some issues with this uprev, it cant' finish the
->   jobs at all
-> - mt8173 and rockchip:rk3399 seem to have other test failures too
-
-I have fixed most of the fallouts, see [2]. But ideally this should be
-split into two parts: fix before mesa uprev (I think some of them are
-already there), uprev mesa, applying necessary fixes and then enable apq
-jobs.
-
-At this point I have no idea what's wrong with MT8183. Most likely it
-needs either a DT fix or a driver fix. The driver fails to probe because
-it can't build a sensible component chain.
-
-On i915 several tests kill the hardware, making it timeout all remaining
-tests in a bad way.
-
-BTW: I see that for some of the drivers we skip the absolute majority of
-the tests. What are we actually testing on those?
-
-> 
-> Could you please update fails / flakes tor all the affected platforms?
-> Also I'm really interested in the master-drop-set tests. Why do they
-> fail on some of the platforms, but not on all? This seems to be some
-> infrastructure-related issue, since exactly the same kernel with the
-> same IGT passes those tests (at least on msm hardware).
-> 
-> [1] https://gitlab.freedesktop.org/drm/msm/-/pipelines/1547684
-
-[2] https://gitlab.freedesktop.org/lumag/msm/-/commits/msm-next-lumag-db820c
 
 
--- 
-With best wishes
-Dmitry
+> -----Original Message-----
+> From: Jani Nikula <jani.nikula@linux.intel.com>
+> Sent: Friday, November 14, 2025 8:15 PM
+> To: Kandpal, Suraj <suraj.kandpal@intel.com>; intel-
+> xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
+> Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Kandpal, Suraj
+> <suraj.kandpal@intel.com>
+> Subject: Re: [PATCH v3 1/2] drm/i915/ltphy: Implement HDMI Algo for Pll
+> state
+>=20
+> On Mon, 10 Nov 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> > Implement the HDMI Algorithm to dynamically create LT PHY state based
+> > on the port clock provided.
+>=20
+> I know this has been merged already... because I encountered it while try=
+ing
+> to write a pull request changelog.
+>=20
+> I have no idea what the commit is supposed to do based on the commit
+> message alone. Yes, I can (and now have) looked at the code, but please b=
+e
+> more elaborate in the commit messages.
+>=20
+> For patch 2, I read the code and I still don't know what it's doing, and =
+what
+> the fallback is, or why.
+
+Sure will be more descriptive with the commit messages going forward.
+For the second patch the idea was to not have a hang because of divide by 0=
+ error when
+port clock is returned as 0. Hence we return the lowest HDMI clock. We anyw=
+ays have warning in
+place which will tell us something has gone wrong.
+
+Regards,
+Suraj Kandpal
+
+>=20
+>=20
+> BR,
+> Jani.
+>=20
+>=20
+>=20
+>=20
+> >
+> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> > ---
+> >
+> > v1 -> v2:
+> > -Add new macro functions and definitions for address assignment(Ankit)
+> > -Introduce a structure lt_phy_param for code readability (Ankit)
+> >
+> > v2 ->v3:
+> > -Seprate out param calulation wherever possible (Ankit) -Modify Macro
+> > to accept pll_reg (Ankit)
+> >
+> >  drivers/gpu/drm/i915/display/intel_lt_phy.c   | 345 +++++++++++++++++-
+> >  drivers/gpu/drm/i915/display/intel_lt_phy.h   |   3 +
+> >  .../gpu/drm/i915/display/intel_lt_phy_regs.h  |  16 +
+> >  3 files changed, 362 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> > b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> > index af48d6cde226..d88dbfbe97b1 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> > @@ -31,6 +31,32 @@
+> >  #define INTEL_LT_PHY_BOTH_LANES		(INTEL_LT_PHY_LANE1 |\
+> >  					 INTEL_LT_PHY_LANE0)
+> >  #define MODE_DP				3
+> > +#define Q32_TO_INT(x)	((x) >> 32)
+> > +#define Q32_TO_FRAC(x)	((x) & 0xFFFFFFFF)
+> > +#define DCO_MIN_FREQ_MHZ	11850
+> > +#define REF_CLK_KHZ	38400
+> > +#define TDC_RES_MULTIPLIER	10000000ULL
+> > +
+> > +struct phy_param_t {
+> > +	u32 val;
+> > +	u32 addr;
+> > +};
+> > +
+> > +struct lt_phy_params {
+> > +	struct phy_param_t pll_reg4;
+> > +	struct phy_param_t pll_reg3;
+> > +	struct phy_param_t pll_reg5;
+> > +	struct phy_param_t pll_reg57;
+> > +	struct phy_param_t lf;
+> > +	struct phy_param_t tdc;
+> > +	struct phy_param_t ssc;
+> > +	struct phy_param_t bias2;
+> > +	struct phy_param_t bias_trim;
+> > +	struct phy_param_t dco_med;
+> > +	struct phy_param_t dco_fine;
+> > +	struct phy_param_t ssc_inj;
+> > +	struct phy_param_t surv_bonus;
+> > +};
+> >
+> >  static const struct intel_lt_phy_pll_state xe3plpd_lt_dp_rbr =3D {
+> >  	.clock =3D 162000,
+> > @@ -1356,10 +1382,322 @@ intel_lt_phy_pll_is_ssc_enabled(struct
+> intel_crtc_state *crtc_state,
+> >  	return false;
+> >  }
+> >
+> > +static u64 mul_q32_u32(u64 a_q32, u32 b) {
+> > +	u64 p0, p1, carry, result;
+> > +	u64 x_hi =3D a_q32 >> 32;
+> > +	u64 x_lo =3D a_q32 & 0xFFFFFFFFULL;
+> > +
+> > +	p0 =3D x_lo * (u64)b;
+> > +	p1 =3D x_hi * (u64)b;
+> > +	carry =3D p0 >> 32;
+> > +	result =3D (p1 << 32) + (carry << 32) + (p0 & 0xFFFFFFFFULL);
+> > +
+> > +	return result;
+> > +}
+> > +
+> > +static bool
+> > +calculate_target_dco_and_loop_cnt(u32 frequency_khz, u64
+> > +*target_dco_mhz, u32 *loop_cnt) {
+> > +	u32 ppm_value =3D 1;
+> > +	u32 dco_min_freq =3D DCO_MIN_FREQ_MHZ;
+> > +	u32 dco_max_freq =3D 16200;
+> > +	u32 dco_min_freq_low =3D 10000;
+> > +	u32 dco_max_freq_low =3D 12000;
+> > +	u64 val =3D 0;
+> > +	u64 refclk_khz =3D REF_CLK_KHZ;
+> > +	u64 m2div =3D 0;
+> > +	u64 val_with_frac =3D 0;
+> > +	u64 ppm =3D 0;
+> > +	u64 temp0 =3D 0, temp1, scale;
+> > +	int ppm_cnt, dco_count, y;
+> > +
+> > +	for (ppm_cnt =3D 0; ppm_cnt < 5; ppm_cnt++) {
+> > +		ppm_value =3D ppm_cnt =3D=3D 2 ? 2 : 1;
+> > +		for (dco_count =3D 0; dco_count < 2; dco_count++) {
+> > +			if (dco_count =3D=3D 1) {
+> > +				dco_min_freq =3D dco_min_freq_low;
+> > +				dco_max_freq =3D dco_max_freq_low;
+> > +			}
+> > +			for (y =3D 2; y <=3D 255; y +=3D 2) {
+> > +				val =3D div64_u64((u64)y * frequency_khz,
+> 200);
+> > +				m2div =3D div64_u64(((u64)(val) << 32),
+> refclk_khz);
+> > +				m2div =3D mul_q32_u32(m2div, 500);
+> > +				val_with_frac =3D mul_q32_u32(m2div,
+> refclk_khz);
+> > +				val_with_frac =3D div64_u64(val_with_frac,
+> 500);
+> > +				temp1 =3D Q32_TO_INT(val_with_frac);
+> > +				temp0 =3D (temp1 > val) ? (temp1 - val) :
+> > +					(val - temp1);
+> > +				ppm =3D div64_u64(temp0, val);
+> > +				if (temp1 >=3D dco_min_freq &&
+> > +				    temp1 <=3D dco_max_freq &&
+> > +				    ppm < ppm_value) {
+> > +					/* Round to two places */
+> > +					scale =3D (1ULL << 32) / 100;
+> > +					temp0 =3D
+> DIV_ROUND_UP_ULL(val_with_frac,
+> > +								 scale);
+> > +					*target_dco_mhz =3D temp0 * scale;
+> > +					*loop_cnt =3D y;
+> > +					return true;
+> > +				}
+> > +			}
+> > +		}
+> > +	}
+> > +
+> > +	return false;
+> > +}
+> > +
+> > +static void set_phy_vdr_addresses(struct lt_phy_params *p, int
+> > +pll_type) {
+> > +	p->pll_reg4.addr =3D PLL_REG_ADDR(PLL_REG4_ADDR, pll_type);
+> > +	p->pll_reg3.addr =3D PLL_REG_ADDR(PLL_REG3_ADDR, pll_type);
+> > +	p->pll_reg5.addr =3D PLL_REG_ADDR(PLL_REG5_ADDR, pll_type);
+> > +	p->pll_reg57.addr =3D PLL_REG_ADDR(PLL_REG57_ADDR, pll_type);
+> > +	p->lf.addr =3D PLL_REG_ADDR(PLL_LF_ADDR, pll_type);
+> > +	p->tdc.addr =3D PLL_REG_ADDR(PLL_TDC_ADDR, pll_type);
+> > +	p->ssc.addr =3D PLL_REG_ADDR(PLL_SSC_ADDR, pll_type);
+> > +	p->bias2.addr =3D PLL_REG_ADDR(PLL_BIAS2_ADDR, pll_type);
+> > +	p->bias_trim.addr =3D PLL_REG_ADDR(PLL_BIAS_TRIM_ADDR,
+> pll_type);
+> > +	p->dco_med.addr =3D PLL_REG_ADDR(PLL_DCO_MED_ADDR, pll_type);
+> > +	p->dco_fine.addr =3D PLL_REG_ADDR(PLL_DCO_FINE_ADDR, pll_type);
+> > +	p->ssc_inj.addr =3D PLL_REG_ADDR(PLL_SSC_INJ_ADDR, pll_type);
+> > +	p->surv_bonus.addr =3D PLL_REG_ADDR(PLL_SURV_BONUS_ADDR,
+> pll_type); }
+> > +
+> > +static void compute_ssc(struct lt_phy_params *p, u32 ana_cfg) {
+> > +	int ssc_stepsize =3D 0;
+> > +	int ssc_steplen =3D 0;
+> > +	int ssc_steplog =3D 0;
+> > +
+> > +	p->ssc.val =3D (1 << 31) | (ana_cfg << 24) | (ssc_steplog << 16) |
+> > +		(ssc_stepsize << 8) | ssc_steplen;
+> > +}
+> > +
+> > +static void compute_bias2(struct lt_phy_params *p) {
+> > +	u32 ssc_en_local =3D 0;
+> > +	u64 dynctrl_ovrd_en =3D 0;
+> > +
+> > +	p->bias2.val =3D (dynctrl_ovrd_en << 31) | (ssc_en_local << 30) |
+> > +		(1 << 23) | (1 << 24) | (32 << 16) | (1 << 8); }
+> > +
+> > +static void compute_tdc(struct lt_phy_params *p, u64 tdc_fine) {
+> > +	u32 settling_time =3D 15;
+> > +	u32 bias_ovr_en =3D 1;
+> > +	u32 coldstart =3D 1;
+> > +	u32 true_lock =3D 2;
+> > +	u32 early_lock =3D 1;
+> > +	u32 lock_ovr_en =3D 1;
+> > +	u32 lock_thr =3D tdc_fine ? 3 : 5;
+> > +	u32 unlock_thr =3D tdc_fine ? 5 : 11;
+> > +
+> > +	p->tdc.val =3D (u32)((2 << 30) + (settling_time << 16) + (bias_ovr_en=
+ <<
+> 15) +
+> > +		    (lock_ovr_en << 14) + (coldstart << 12) + (true_lock << 10)
+> +
+> > +		    (early_lock << 8) + (unlock_thr << 4) + lock_thr); }
+> > +
+> > +static void compute_dco_med(struct lt_phy_params *p) {
+> > +	u32 cselmed_en =3D 0;
+> > +	u32 cselmed_dyn_adj =3D 0;
+> > +	u32 cselmed_ratio =3D 39;
+> > +	u32 cselmed_thr =3D 8;
+> > +
+> > +	p->dco_med.val =3D (cselmed_en << 31) + (cselmed_dyn_adj << 30) +
+> > +		(cselmed_ratio << 24) + (cselmed_thr << 21); }
+> > +
+> > +static void compute_dco_fine(struct lt_phy_params *p, u32 dco_12g) {
+> > +	u32 dco_fine0_tune_2_0 =3D 0;
+> > +	u32 dco_fine1_tune_2_0 =3D 0;
+> > +	u32 dco_fine2_tune_2_0 =3D 0;
+> > +	u32 dco_fine3_tune_2_0 =3D 0;
+> > +	u32 dco_dith0_tune_2_0 =3D 0;
+> > +	u32 dco_dith1_tune_2_0 =3D 0;
+> > +
+> > +	dco_fine0_tune_2_0 =3D dco_12g ? 4 : 3;
+> > +	dco_fine1_tune_2_0 =3D 2;
+> > +	dco_fine2_tune_2_0 =3D dco_12g ? 2 : 1;
+> > +	dco_fine3_tune_2_0 =3D 5;
+> > +	dco_dith0_tune_2_0 =3D dco_12g ? 4 : 3;
+> > +	dco_dith1_tune_2_0 =3D 2;
+> > +
+> > +	p->dco_fine.val =3D (dco_dith1_tune_2_0 << 19)
+> > +		+ (dco_dith0_tune_2_0 << 16)
+> > +		+ (dco_fine3_tune_2_0 << 11)
+> > +		+ (dco_fine2_tune_2_0 << 8)
+> > +		+ (dco_fine1_tune_2_0 << 3)
+> > +		+ dco_fine0_tune_2_0;
+> > +}
+> > +
+> > +int
+> > +intel_lt_phy_calculate_hdmi_state(struct intel_lt_phy_pll_state *lt_st=
+ate,
+> > +				  u32 frequency_khz)
+> > +{
+> > +#define DATA_ASSIGN(i, pll_reg)	\
+> > +	do {			\
+> > +		lt_state->data[i][0] =3D (u8)((((pll_reg).val) & 0xFF000000) >>
+> 24); \
+> > +		lt_state->data[i][1] =3D (u8)((((pll_reg).val) & 0x00FF0000) >>
+> 16); \
+> > +		lt_state->data[i][2] =3D (u8)((((pll_reg).val) & 0x0000FF00) >> 8);
+> \
+> > +		lt_state->data[i][3] =3D (u8)((((pll_reg).val) & 0x000000FF));
+> 	\
+> > +	} while (0)
+> > +#define ADDR_ASSIGN(i, pll_reg)	\
+> > +	do {			\
+> > +		lt_state->addr_msb[i] =3D ((pll_reg).addr >> 8) & 0xFF;	\
+> > +		lt_state->addr_lsb[i] =3D (pll_reg).addr & 0xFF;		\
+> > +	} while (0)
+> > +
+> > +	bool found =3D false;
+> > +	struct lt_phy_params p;
+> > +	u32 dco_fmin =3D DCO_MIN_FREQ_MHZ;
+> > +	u64 refclk_khz =3D REF_CLK_KHZ;
+> > +	u64 m2div =3D 0;
+> > +	u64 target_dco_mhz =3D 0;
+> > +	u64 tdc_fine;
+> > +	u64 tdc_targetcnt;
+> > +	u64 feedfwd_gain;
+> > +	u64 feedfwd_cal_en;
+> > +	u64 tdc_res =3D 30;
+> > +	u32 prop_coeff;
+> > +	u32 int_coeff;
+> > +	u32 ndiv =3D 1;
+> > +	u32 m1div =3D 1;
+> > +	u32 m2div_int;
+> > +	u32 m2div_frac;
+> > +	u32 frac_en;
+> > +	u32 ana_cfg;
+> > +	u32 loop_cnt =3D 0;
+> > +	u32 gain_ctrl =3D 2;
+> > +	u32 refclk_mhz_int =3D 38;
+> > +	u32 postdiv =3D 0;
+> > +	u32 d6_new =3D 0;
+> > +	u32 dco_12g =3D 0;
+> > +	u32 pll_type =3D 0;
+> > +	u32 d1 =3D 2;
+> > +	u32 d3 =3D 5;
+> > +	u32 d5 =3D 0;
+> > +	u32 d6 =3D 0;
+> > +	u32 d7;
+> > +	u32 d8 =3D 0;
+> > +	u32 d4 =3D 0;
+> > +	u32 bonus_7_0 =3D 0;
+> > +	u32 csel2fo =3D 11;
+> > +	u32 csel2fo_ovrd_en =3D 1;
+> > +	u64 temp0, temp1, temp2, temp3;
+> > +
+> > +	p.surv_bonus.val =3D (bonus_7_0 << 16);
+> > +	p.pll_reg4.val =3D (refclk_mhz_int << 17) +
+> > +		(ndiv << 9) + (1 << 4);
+> > +	p.bias_trim.val =3D (csel2fo_ovrd_en << 30) + (csel2fo << 24);
+> > +	p.ssc_inj.val =3D 0;
+> > +	found =3D calculate_target_dco_and_loop_cnt(frequency_khz,
+> &target_dco_mhz, &loop_cnt);
+> > +	if (!found)
+> > +		return -EINVAL;
+> > +
+> > +	m2div =3D div64_u64(target_dco_mhz, (refclk_khz * ndiv * m1div));
+> > +	m2div =3D mul_q32_u32(m2div, 1000);
+> > +	if (Q32_TO_INT(m2div) > 511)
+> > +		return -EINVAL;
+> > +
+> > +	m2div_int =3D (u32)Q32_TO_INT(m2div);
+> > +	m2div_frac =3D (u32)(Q32_TO_FRAC(m2div));
+> > +	frac_en =3D (m2div_frac > 0) ? 1 : 0;
+> > +
+> > +	if (frac_en > 0)
+> > +		tdc_res =3D 70;
+> > +	else
+> > +		tdc_res =3D 36;
+> > +	tdc_fine =3D tdc_res > 50 ? 1 : 0;
+> > +	temp0 =3D tdc_res * 40 * 11;
+> > +	temp1 =3D div64_u64(((4 * TDC_RES_MULTIPLIER) + temp0) * 500,
+> temp0 * refclk_khz);
+> > +	temp2 =3D div64_u64(temp0 * refclk_khz, 1000);
+> > +	temp3 =3D div64_u64(((8 * TDC_RES_MULTIPLIER) + temp2), temp2);
+> > +	tdc_targetcnt =3D tdc_res < 50 ? (int)(temp1) : (int)(temp3);
+> > +	tdc_targetcnt =3D (int)(tdc_targetcnt / 2);
+> > +	temp0 =3D mul_q32_u32(target_dco_mhz, tdc_res);
+> > +	temp0 >>=3D 32;
+> > +	feedfwd_gain =3D (m2div_frac > 0) ? div64_u64(m1div *
+> TDC_RES_MULTIPLIER, temp0) : 0;
+> > +	feedfwd_cal_en =3D frac_en;
+> > +
+> > +	temp0 =3D (u32)Q32_TO_INT(target_dco_mhz);
+> > +	prop_coeff =3D (temp0 >=3D dco_fmin) ? 3 : 4;
+> > +	int_coeff =3D (temp0 >=3D dco_fmin) ? 7 : 8;
+> > +	ana_cfg =3D (temp0 >=3D dco_fmin) ? 8 : 6;
+> > +	dco_12g =3D (temp0 >=3D dco_fmin) ? 0 : 1;
+> > +
+> > +	if (temp0 > 12960)
+> > +		d7 =3D 10;
+> > +	else
+> > +		d7 =3D 8;
+> > +
+> > +	d8 =3D loop_cnt / 2;
+> > +	d4 =3D d8 * 2;
+> > +
+> > +	/* Compute pll_reg3,5,57 & lf */
+> > +	p.pll_reg3.val =3D (u32)((d4 << 21) + (d3 << 18) + (d1 << 15) +
+> (m2div_int << 5));
+> > +	p.pll_reg5.val =3D m2div_frac;
+> > +	postdiv =3D (d5 =3D=3D 0) ? 9 : d5;
+> > +	d6_new =3D (d6 =3D=3D 0) ? 40 : d6;
+> > +	p.pll_reg57.val =3D (d7 << 24) + (postdiv << 15) + (d8 << 7) + d6_new=
+;
+> > +	p.lf.val =3D (u32)((frac_en << 31) + (1 << 30) + (frac_en << 29) +
+> > +		   (feedfwd_cal_en << 28) + (tdc_fine << 27) +
+> > +		   (gain_ctrl << 24) + (feedfwd_gain << 16) +
+> > +		   (int_coeff << 12) + (prop_coeff << 8) + tdc_targetcnt);
+> > +
+> > +	/* Compute ssc / bias2 */
+> > +	compute_ssc(&p, ana_cfg);
+> > +	compute_bias2(&p);
+> > +
+> > +	/* Compute tdc/dco_med */
+> > +	compute_tdc(&p, tdc_fine);
+> > +	compute_dco_med(&p);
+> > +
+> > +	/* Compute dcofine */
+> > +	compute_dco_fine(&p, dco_12g);
+> > +
+> > +	pll_type =3D ((frequency_khz =3D=3D 10000) || (frequency_khz =3D=3D 2=
+0000) ||
+> > +		    (frequency_khz =3D=3D 2500) || (dco_12g =3D=3D 1)) ? 0 : 1;
+> > +	set_phy_vdr_addresses(&p, pll_type);
+> > +
+> > +	lt_state->config[0] =3D 0x84;
+> > +	lt_state->config[1] =3D 0x2d;
+> > +	ADDR_ASSIGN(0, p.pll_reg4);
+> > +	ADDR_ASSIGN(1, p.pll_reg3);
+> > +	ADDR_ASSIGN(2, p.pll_reg5);
+> > +	ADDR_ASSIGN(3, p.pll_reg57);
+> > +	ADDR_ASSIGN(4, p.lf);
+> > +	ADDR_ASSIGN(5, p.tdc);
+> > +	ADDR_ASSIGN(6, p.ssc);
+> > +	ADDR_ASSIGN(7, p.bias2);
+> > +	ADDR_ASSIGN(8, p.bias_trim);
+> > +	ADDR_ASSIGN(9, p.dco_med);
+> > +	ADDR_ASSIGN(10, p.dco_fine);
+> > +	ADDR_ASSIGN(11, p.ssc_inj);
+> > +	ADDR_ASSIGN(12, p.surv_bonus);
+> > +	DATA_ASSIGN(0, p.pll_reg4);
+> > +	DATA_ASSIGN(1, p.pll_reg3);
+> > +	DATA_ASSIGN(2, p.pll_reg5);
+> > +	DATA_ASSIGN(3, p.pll_reg57);
+> > +	DATA_ASSIGN(4, p.lf);
+> > +	DATA_ASSIGN(5, p.tdc);
+> > +	DATA_ASSIGN(6, p.ssc);
+> > +	DATA_ASSIGN(7, p.bias2);
+> > +	DATA_ASSIGN(8, p.bias_trim);
+> > +	DATA_ASSIGN(9, p.dco_med);
+> > +	DATA_ASSIGN(10, p.dco_fine);
+> > +	DATA_ASSIGN(11, p.ssc_inj);
+> > +	DATA_ASSIGN(12, p.surv_bonus);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> >  static int
+> >  intel_lt_phy_calc_hdmi_port_clock(const struct intel_lt_phy_pll_state
+> > *lt_state)  { -#define REF_CLK_KHZ 38400
+> >  #define REGVAL(i) (				\
+> >  	(lt_state->data[i][3])		|	\
+> >  	(lt_state->data[i][2] << 8)	|	\
+> > @@ -1472,7 +1810,10 @@ intel_lt_phy_pll_calc_state(struct
+> intel_crtc_state *crtc_state,
+> >  		}
+> >  	}
+> >
+> > -	/* TODO: Add a function to compute the data for HDMI TMDS*/
+> > +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
+> > +		return intel_lt_phy_calculate_hdmi_state(&crtc_state-
+> >dpll_hw_state.ltpll,
+> > +							 crtc_state-
+> >port_clock);
+> > +	}
+> >
+> >  	return -EINVAL;
+> >  }
+> > diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h
+> > b/drivers/gpu/drm/i915/display/intel_lt_phy.h
+> > index a538d4c69210..b7911acd7dcd 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_lt_phy.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
+> > @@ -35,6 +35,9 @@ void intel_lt_phy_pll_readout_hw_state(struct
+> intel_encoder *encoder,
+> >  				       struct intel_lt_phy_pll_state *pll_state);
+> void
+> > intel_lt_phy_pll_state_verify(struct intel_atomic_state *state,
+> >  				   struct intel_crtc *crtc);
+> > +int
+> > +intel_lt_phy_calculate_hdmi_state(struct intel_lt_phy_pll_state *lt_st=
+ate,
+> > +				  u32 frequency_khz);
+> >  void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
+> >  			      const struct intel_crtc_state *crtc_state);  void
+> > intel_xe3plpd_pll_disable(struct intel_encoder *encoder); diff --git
+> > a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
+> > b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
+> > index 9223487d764e..dc7b7679cd06 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
+> > @@ -72,4 +72,20 @@
+> >  #define XE3PLPD_PORT_P2M_MSGBUS_STATUS_P2P(port, lane)
+> _XE3PLPD_PORT_P2M_MSGBUS_STATUS_P2P(__xe2lpd_port_idx(port), \
+> >
+> 		    lane)
+> >  #define   XE3LPD_PORT_P2M_ADDR_MASK
+> 	REG_GENMASK(11, 0)
+> > +
+> > +#define PLL_REG4_ADDR		0x8510
+> > +#define PLL_REG3_ADDR		0x850C
+> > +#define PLL_REG5_ADDR		0x8514
+> > +#define PLL_REG57_ADDR		0x85E4
+> > +#define PLL_LF_ADDR		0x860C
+> > +#define PLL_TDC_ADDR		0x8610
+> > +#define PLL_SSC_ADDR		0x8614
+> > +#define PLL_BIAS2_ADDR		0x8618
+> > +#define PLL_BIAS_TRIM_ADDR	0x8648
+> > +#define PLL_DCO_MED_ADDR	0x8640
+> > +#define PLL_DCO_FINE_ADDR	0x864C
+> > +#define PLL_SSC_INJ_ADDR	0x8624
+> > +#define PLL_SURV_BONUS_ADDR	0x8644
+> > +#define PLL_TYPE_OFFSET		0x200
+> > +#define PLL_REG_ADDR(base, pll_type)		((pll_type) ? (base) +
+> PLL_TYPE_OFFSET : (base))
+> >  #endif /* __INTEL_LT_PHY_REGS_H__ */
+>=20
+> --
+> Jani Nikula, Intel
