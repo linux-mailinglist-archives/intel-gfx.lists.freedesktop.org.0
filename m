@@ -2,54 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DB87C63197
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Nov 2025 10:16:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75239C631A0
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Nov 2025 10:16:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B506A10E30F;
-	Mon, 17 Nov 2025 09:16:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F357A10E055;
+	Mon, 17 Nov 2025 09:16:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PVpUOemI";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="npx1dpfW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1ACB310E1A2;
- Mon, 17 Nov 2025 09:16:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32F66895CA;
+ Mon, 17 Nov 2025 09:16:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763370983; x=1794906983;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=0i5WXo4yz6wtXgdZxFv7DLfF39WGAmKhgUmpbtRSwQM=;
- b=PVpUOemIKiWJjFECB4UAF16vPYdlCe6atwvwghZPX53QbJh3n4QGhU+0
- jz8Zuc6stcnTmg9+mIZPRgIfrxoabhKbUDAvjoc4ZzqK01e/ZWPsZIeWo
- ALgCOjnjw9Fzl72fm7CQ332fmlNIpeSNfQKI0Ar0HtoAHqT7cPTtqlgQH
- F5hrFB3ISfLHmruWdnyPD9ZInbsp+szHHV75Bq+wsGrrMdpNaw4LJFUGI
- 7cHhz3Z1bVSLKhYAg7JX7HMR/q1eT4Yl6vgkSrvuUEqV5OO8+rXEbKt5N
- HUtlmSjtdlt0bXT/3xruk6FE6SABDR5A3KV7q2j6L+GWeCBal3MSGlifd A==;
-X-CSE-ConnectionGUID: Jx1+1pX4T4K3U1nHJFDbUA==
-X-CSE-MsgGUID: 4A9/yyB2Qm+ieJrLAK/3cg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11615"; a="68985773"
-X-IronPort-AV: E=Sophos;i="6.19,311,1754982000"; d="scan'208";a="68985773"
+ t=1763370987; x=1794906987;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=xhT3OIvOolOuD5K1OPi5bXEcNCuLopx33kRlgi/T3QY=;
+ b=npx1dpfWgLHSAepGG9NyndxLbeoNizvQUXjODG3bUCltykEE5jYFdjnv
+ n2pNnbpSZaBZ2EkjrMIMthhA2EIZFDs/g78MckW5lxk/iDzU8SGaGhrN4
+ wTIfHO8tptrJHQwgR/N4m2BEqh4HizwDaKRNTEJolcbNriRFueT8Lgwh+
+ KCnw0UzPhqUlzfxXSgPLR5bYhe45pasRI7wjAyhJMFT7ZsrSV8xQbHQjq
+ WuoXw52dCpCXkKuB/CoF487/3XNXOCj56zIhjd0n4RJ6aNqBofGO9K+81
+ Ais7kTp9+drADO7LVB474X5yi5O7Gt5C48noINAm8eUScTuqbvMQbzlCA w==;
+X-CSE-ConnectionGUID: HsZjUeDZSXm1JIVB5pUFLg==
+X-CSE-MsgGUID: zHk9zJlIS3y1YpEKiTNNkA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11615"; a="68985774"
+X-IronPort-AV: E=Sophos;i="6.19,311,1754982000"; d="scan'208";a="68985774"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2025 01:16:23 -0800
-X-CSE-ConnectionGUID: 8j8nWsZtRueKWQNvgxwzUw==
-X-CSE-MsgGUID: 7eKyXlnYSfamr/1clreNNQ==
+ 17 Nov 2025 01:16:27 -0800
+X-CSE-ConnectionGUID: Or2VoD+AQ7SdrFs3Q6HFNw==
+X-CSE-MsgGUID: Rm9fvTntQZ2vjyTDBVlWow==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,311,1754982000"; d="scan'208";a="190840281"
+X-IronPort-AV: E=Sophos;i="6.19,311,1754982000"; d="scan'208";a="190840290"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.42])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2025 01:16:21 -0800
+ 17 Nov 2025 01:16:25 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [CI 00/10] drm/i915: call irq and rps through the parent interface
-Date: Mon, 17 Nov 2025 11:16:07 +0200
-Message-ID: <cover.1763370930.git.jani.nikula@intel.com>
+Cc: jani.nikula@intel.com,
+	Ville Syrjala <ville.syrjala@linux.intel.com>
+Subject: [CI 01/10] drm/{i915,
+ xe}/display: duplicate gen2 irq/error init/reset in display irq
+Date: Mon, 17 Nov 2025 11:16:08 +0200
+Message-ID: <296d74731cce57ab7534c57969d3146294adda57.1763370931.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <cover.1763370930.git.jani.nikula@intel.com>
+References: <cover.1763370930.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -69,66 +73,254 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Resend of [1] with the latest & reviewed patches for CI. I think my
-replies to the series got patchwork all confused, and rightly so. ;)
+Duplicate gen2_irq_reset(), gen2_assert_iir_is_zero(), gen2_irq_init(),
+gen2_error_reset(), and gen2_error_init() in intel_display_irq.c.
 
-BR,
-Jani.
+This allows us to drop the duplicates from xe, and prepares for future
+cleanups. Although duplication is undesirable in general, in this case
+the local duplicates lead to a cleaner end result.
 
+There's a slight wrinkle in gen2_assert_iir_is_zero(). We need to use
+non-device based logging until we pass in struct intel_display in a
+separate change.
 
-[1] https://lore.kernel.org/r/cover.1763115899.git.jani.nikula@intel.com
+v2:
+- Keep xe compat stuff due to series reorder and rebase
+- Keep the WARN as regular WARN
+- Rename the functions in the same go
 
-Jani Nikula (10):
-  drm/{i915,xe}/display: duplicate gen2 irq/error init/reset in display
-    irq
-  drm/i915/display: convert the display irq interfaces to struct
-    intel_display
-  drm/{i915,xe}/display: move irq calls to parent interface
-  drm/i915: add .vgpu_active to parent interface
-  drm/i915: add .has_fenced_regions to parent interface
-  drm/i915/rps: store struct dma_fence in struct wait_rps_boost
-  drm/i915/rps: call RPS functions via the parent interface
-  drm/i915/rps: postpone i915 fence check to boost
-  drm/i915: add .fence_priority_display to parent interface
-  drm/xe/rps: build RPS as part of xe
+Suggested-by: Ville Syrjala <ville.syrjala@linux.intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
- drivers/gpu/drm/i915/Makefile                 |   1 +
- drivers/gpu/drm/i915/display/intel_crtc.c     |   6 +-
- .../gpu/drm/i915/display/intel_display_irq.c  | 191 +++++++++---------
- .../drm/i915/display/intel_display_power.c    |   5 +-
- .../i915/display/intel_display_power_well.c   |  15 +-
- .../gpu/drm/i915/display/intel_display_rps.c  |  31 +--
- .../gpu/drm/i915/display/intel_display_rps.h  |  21 --
- drivers/gpu/drm/i915/display/intel_fbc.c      |  13 +-
- drivers/gpu/drm/i915/display/intel_gmbus.c    |   6 +-
- drivers/gpu/drm/i915/display/intel_hotplug.c  |   6 +-
- .../gpu/drm/i915/display/intel_lpe_audio.c    |   1 -
- drivers/gpu/drm/i915/display/intel_parent.c   |  72 +++++++
- drivers/gpu/drm/i915/display/intel_parent.h   |  26 +++
- drivers/gpu/drm/i915/display/intel_pipe_crc.c |   6 +-
- drivers/gpu/drm/i915/display/intel_plane.c    |   5 +-
- drivers/gpu/drm/i915/gt/intel_rps.c           |  34 ++++
- drivers/gpu/drm/i915/gt/intel_rps.h           |   2 +
- drivers/gpu/drm/i915/i915_driver.c            |  22 ++
- drivers/gpu/drm/i915/i915_irq.c               |  16 ++
- drivers/gpu/drm/i915/i915_irq.h               |   2 +
- drivers/gpu/drm/xe/Makefile                   |   6 +-
- .../compat-i915-headers/gem/i915_gem_object.h |  13 --
- .../compat-i915-headers/gt/intel_gt_types.h   |  11 -
- .../gpu/drm/xe/compat-i915-headers/i915_irq.h |   6 -
- .../drm/xe/compat-i915-headers/i915_vgpu.h    |  18 --
- drivers/gpu/drm/xe/display/ext/i915_irq.c     |  85 --------
- drivers/gpu/drm/xe/display/xe_display.c       |  18 ++
- include/drm/intel/display_parent_interface.h  |  27 +++
- 28 files changed, 356 insertions(+), 309 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_parent.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_parent.h
- delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
- delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gt/intel_gt_types.h
- delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_irq.h
- delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_vgpu.h
- delete mode 100644 drivers/gpu/drm/xe/display/ext/i915_irq.c
+---
 
+Note: 'git show --color-moved' helps review
+---
+ .../gpu/drm/i915/display/intel_display_irq.c  | 82 +++++++++++++++++--
+ drivers/gpu/drm/xe/display/ext/i915_irq.c     | 67 ---------------
+ 2 files changed, 73 insertions(+), 76 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+index 43b27deb4a26..acfaff13c3ba 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_irq.c
++++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+@@ -33,6 +33,72 @@
+ #include "intel_psr_regs.h"
+ #include "intel_uncore.h"
+ 
++static void irq_reset(struct intel_uncore *uncore, struct i915_irq_regs regs)
++{
++	intel_uncore_write(uncore, regs.imr, 0xffffffff);
++	intel_uncore_posting_read(uncore, regs.imr);
++
++	intel_uncore_write(uncore, regs.ier, 0);
++
++	/* IIR can theoretically queue up two events. Be paranoid. */
++	intel_uncore_write(uncore, regs.iir, 0xffffffff);
++	intel_uncore_posting_read(uncore, regs.iir);
++	intel_uncore_write(uncore, regs.iir, 0xffffffff);
++	intel_uncore_posting_read(uncore, regs.iir);
++}
++
++/*
++ * We should clear IMR at preinstall/uninstall, and just check at postinstall.
++ */
++static void assert_iir_is_zero(struct intel_uncore *uncore, i915_reg_t reg)
++{
++	u32 val = intel_uncore_read(uncore, reg);
++
++	if (val == 0)
++		return;
++
++	WARN(1,
++		 "Interrupt register 0x%x is not zero: 0x%08x\n",
++		 i915_mmio_reg_offset(reg), val);
++	intel_uncore_write(uncore, reg, 0xffffffff);
++	intel_uncore_posting_read(uncore, reg);
++	intel_uncore_write(uncore, reg, 0xffffffff);
++	intel_uncore_posting_read(uncore, reg);
++}
++
++static void irq_init(struct intel_uncore *uncore, struct i915_irq_regs regs,
++		     u32 imr_val, u32 ier_val)
++{
++	assert_iir_is_zero(uncore, regs.iir);
++
++	intel_uncore_write(uncore, regs.ier, ier_val);
++	intel_uncore_write(uncore, regs.imr, imr_val);
++	intel_uncore_posting_read(uncore, regs.imr);
++}
++
++static void error_reset(struct intel_uncore *uncore, struct i915_error_regs regs)
++{
++	intel_uncore_write(uncore, regs.emr, 0xffffffff);
++	intel_uncore_posting_read(uncore, regs.emr);
++
++	intel_uncore_write(uncore, regs.eir, 0xffffffff);
++	intel_uncore_posting_read(uncore, regs.eir);
++	intel_uncore_write(uncore, regs.eir, 0xffffffff);
++	intel_uncore_posting_read(uncore, regs.eir);
++}
++
++static void error_init(struct intel_uncore *uncore, struct i915_error_regs regs,
++		       u32 emr_val)
++{
++	intel_uncore_write(uncore, regs.eir, 0xffffffff);
++	intel_uncore_posting_read(uncore, regs.eir);
++	intel_uncore_write(uncore, regs.eir, 0xffffffff);
++	intel_uncore_posting_read(uncore, regs.eir);
++
++	intel_uncore_write(uncore, regs.emr, emr_val);
++	intel_uncore_posting_read(uncore, regs.emr);
++}
++
+ static void
+ intel_display_irq_regs_init(struct intel_display *display, struct i915_irq_regs regs,
+ 			    u32 imr_val, u32 ier_val)
+@@ -41,7 +107,7 @@ intel_display_irq_regs_init(struct intel_display *display, struct i915_irq_regs
+ 	intel_dmc_wl_get(display, regs.ier);
+ 	intel_dmc_wl_get(display, regs.iir);
+ 
+-	gen2_irq_init(to_intel_uncore(display->drm), regs, imr_val, ier_val);
++	irq_init(to_intel_uncore(display->drm), regs, imr_val, ier_val);
+ 
+ 	intel_dmc_wl_put(display, regs.iir);
+ 	intel_dmc_wl_put(display, regs.ier);
+@@ -55,7 +121,7 @@ intel_display_irq_regs_reset(struct intel_display *display, struct i915_irq_regs
+ 	intel_dmc_wl_get(display, regs.ier);
+ 	intel_dmc_wl_get(display, regs.iir);
+ 
+-	gen2_irq_reset(to_intel_uncore(display->drm), regs);
++	irq_reset(to_intel_uncore(display->drm), regs);
+ 
+ 	intel_dmc_wl_put(display, regs.iir);
+ 	intel_dmc_wl_put(display, regs.ier);
+@@ -67,7 +133,7 @@ intel_display_irq_regs_assert_irr_is_zero(struct intel_display *display, i915_re
+ {
+ 	intel_dmc_wl_get(display, reg);
+ 
+-	gen2_assert_iir_is_zero(to_intel_uncore(display->drm), reg);
++	assert_iir_is_zero(to_intel_uncore(display->drm), reg);
+ 
+ 	intel_dmc_wl_put(display, reg);
+ }
+@@ -1918,8 +1984,7 @@ static void _vlv_display_irq_reset(struct intel_display *display)
+ 	else
+ 		intel_de_write(display, DPINVGTT, DPINVGTT_STATUS_MASK_VLV);
+ 
+-	gen2_error_reset(to_intel_uncore(display->drm),
+-			 VLV_ERROR_REGS);
++	error_reset(to_intel_uncore(display->drm), VLV_ERROR_REGS);
+ 
+ 	i915_hotplug_interrupt_update_locked(display, 0xffffffff, 0);
+ 	intel_de_rmw(display, PORT_HOTPLUG_STAT(display), 0, 0);
+@@ -2014,8 +2079,7 @@ static void _vlv_display_irq_postinstall(struct intel_display *display)
+ 			       DPINVGTT_STATUS_MASK_VLV |
+ 			       DPINVGTT_EN_MASK_VLV);
+ 
+-	gen2_error_init(to_intel_uncore(display->drm),
+-			VLV_ERROR_REGS, ~vlv_error_mask());
++	error_init(to_intel_uncore(display->drm), VLV_ERROR_REGS, ~vlv_error_mask());
+ 
+ 	pipestat_mask = PIPE_CRC_DONE_INTERRUPT_STATUS;
+ 
+@@ -2054,7 +2118,7 @@ static void ibx_display_irq_reset(struct intel_display *display)
+ 	if (HAS_PCH_NOP(display))
+ 		return;
+ 
+-	gen2_irq_reset(to_intel_uncore(display->drm), SDE_IRQ_REGS);
++	irq_reset(to_intel_uncore(display->drm), SDE_IRQ_REGS);
+ 
+ 	if (HAS_PCH_CPT(display) || HAS_PCH_LPT(display))
+ 		intel_de_write(display, SERR_INT, 0xffffffff);
+@@ -2064,7 +2128,7 @@ void ilk_display_irq_reset(struct intel_display *display)
+ {
+ 	struct intel_uncore *uncore = to_intel_uncore(display->drm);
+ 
+-	gen2_irq_reset(uncore, DE_IRQ_REGS);
++	irq_reset(uncore, DE_IRQ_REGS);
+ 	display->irq.ilk_de_imr_mask = ~0u;
+ 
+ 	if (DISPLAY_VER(display) == 7)
+diff --git a/drivers/gpu/drm/xe/display/ext/i915_irq.c b/drivers/gpu/drm/xe/display/ext/i915_irq.c
+index 3c6bca66ddab..1011c1c754d0 100644
+--- a/drivers/gpu/drm/xe/display/ext/i915_irq.c
++++ b/drivers/gpu/drm/xe/display/ext/i915_irq.c
+@@ -7,73 +7,6 @@
+ #include "i915_reg.h"
+ #include "intel_uncore.h"
+ 
+-void gen2_irq_reset(struct intel_uncore *uncore, struct i915_irq_regs regs)
+-{
+-	intel_uncore_write(uncore, regs.imr, 0xffffffff);
+-	intel_uncore_posting_read(uncore, regs.imr);
+-
+-	intel_uncore_write(uncore, regs.ier, 0);
+-
+-	/* IIR can theoretically queue up two events. Be paranoid. */
+-	intel_uncore_write(uncore, regs.iir, 0xffffffff);
+-	intel_uncore_posting_read(uncore, regs.iir);
+-	intel_uncore_write(uncore, regs.iir, 0xffffffff);
+-	intel_uncore_posting_read(uncore, regs.iir);
+-}
+-
+-/*
+- * We should clear IMR at preinstall/uninstall, and just check at postinstall.
+- */
+-void gen2_assert_iir_is_zero(struct intel_uncore *uncore, i915_reg_t reg)
+-{
+-	struct xe_device *xe = container_of(uncore, struct xe_device, uncore);
+-	u32 val = intel_uncore_read(uncore, reg);
+-
+-	if (val == 0)
+-		return;
+-
+-	drm_WARN(&xe->drm, 1,
+-		 "Interrupt register 0x%x is not zero: 0x%08x\n",
+-		 i915_mmio_reg_offset(reg), val);
+-	intel_uncore_write(uncore, reg, 0xffffffff);
+-	intel_uncore_posting_read(uncore, reg);
+-	intel_uncore_write(uncore, reg, 0xffffffff);
+-	intel_uncore_posting_read(uncore, reg);
+-}
+-
+-void gen2_irq_init(struct intel_uncore *uncore, struct i915_irq_regs regs,
+-		   u32 imr_val, u32 ier_val)
+-{
+-	gen2_assert_iir_is_zero(uncore, regs.iir);
+-
+-	intel_uncore_write(uncore, regs.ier, ier_val);
+-	intel_uncore_write(uncore, regs.imr, imr_val);
+-	intel_uncore_posting_read(uncore, regs.imr);
+-}
+-
+-void gen2_error_reset(struct intel_uncore *uncore, struct i915_error_regs regs)
+-{
+-	intel_uncore_write(uncore, regs.emr, 0xffffffff);
+-	intel_uncore_posting_read(uncore, regs.emr);
+-
+-	intel_uncore_write(uncore, regs.eir, 0xffffffff);
+-	intel_uncore_posting_read(uncore, regs.eir);
+-	intel_uncore_write(uncore, regs.eir, 0xffffffff);
+-	intel_uncore_posting_read(uncore, regs.eir);
+-}
+-
+-void gen2_error_init(struct intel_uncore *uncore, struct i915_error_regs regs,
+-		     u32 emr_val)
+-{
+-	intel_uncore_write(uncore, regs.eir, 0xffffffff);
+-	intel_uncore_posting_read(uncore, regs.eir);
+-	intel_uncore_write(uncore, regs.eir, 0xffffffff);
+-	intel_uncore_posting_read(uncore, regs.eir);
+-
+-	intel_uncore_write(uncore, regs.emr, emr_val);
+-	intel_uncore_posting_read(uncore, regs.emr);
+-}
+-
+ bool intel_irqs_enabled(struct xe_device *xe)
+ {
+ 	return atomic_read(&xe->irq.enabled);
 -- 
 2.47.3
 
