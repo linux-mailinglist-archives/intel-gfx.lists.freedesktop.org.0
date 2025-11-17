@@ -2,77 +2,81 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89CB4C79B7E
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Nov 2025 14:52:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 375ADC66285
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Nov 2025 21:56:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16F2710E888;
-	Fri, 21 Nov 2025 13:52:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37F2410E1D2;
+	Mon, 17 Nov 2025 20:56:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="EZq9WaAC";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="b1OBhXmZ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47AD210E1CA
- for <intel-gfx@lists.freedesktop.org>; Mon, 17 Nov 2025 19:13:41 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1763406806; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=Z21pBSIEKUkTOJiB5hdGRgDrSUkip71Dp0v3zMyBa/QIV91Bd45ohaf2V25lHpjAFmJHncl76IBuNmkhzZGhIySDuo8NpWckdf43wSSTDwYbxBpobQrQ0eCc70k6STIuxKvZmsIe13NUrOIiOKK3rMgiGUwB8x+yVlIWzWlkhXk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1763406806;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=Gs1lZySDkGpqwXxYZoOAuegaRpnGsTAvT6lpT/qhmRM=; 
- b=cpYIuOBubqMBGCEVmD8BaEQzteCMEQ0+il35O/s8LJ5DUQNuwg8JeEkpfT5tICHbVUDfAHiX7vcmZqAkPhV+8tJJzLz8FqHpSFmstFY1oLNde4Vwq+tVCI3vJo+b4/m5fhQSmrSJOEOvXOEUKrDBCRpYhliRzW7xHwgcIZ8/APk=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1763406806; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
- bh=Gs1lZySDkGpqwXxYZoOAuegaRpnGsTAvT6lpT/qhmRM=;
- b=EZq9WaACwM6nu+4207zjZ7BFLwIjrwdMyzWM0XlkTylKaYIqvf2uzfCzyI6nDfne
- iyyXiO/WxV665oIWV+zsMZ4XXeYKTTO9yDhTPabVp4RTUEqBuBhlj5W5u6y4ODqPWAT
- bAV3r+G3+tEMNB8rcuRWOCVuH2ry8WOtrCKrBhKg=
-Received: by mx.zohomail.com with SMTPS id 1763406804770398.6739711663877;
- Mon, 17 Nov 2025 11:13:24 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Mon, 17 Nov 2025 20:11:54 +0100
-Subject: [PATCH v4 10/10] drm/rockchip: Implement "color format" DRM property
+Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com
+ [209.85.222.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 307FF10E1D2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 17 Nov 2025 20:56:53 +0000 (UTC)
+Received: by mail-qk1-f177.google.com with SMTP id
+ af79cd13be357-8b2ec756de0so134623985a.3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 17 Nov 2025 12:56:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1763413012; x=1764017812; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=ISU+0z8/4+zmWNh+iSGO9mIjr0yYVY3n2sP2TXlPC+k=;
+ b=b1OBhXmZhyQNJPSgO30nDtD5Vg+8vCjHXr3tS9vOCIrGr+JIVZ52G3dlw0WkhplUhg
+ IVVG7HGOLG4ffgQNj7xj4foqwXKJWq8gUoTzojSKw+rvLcdHpd37KTUXTWJr0G/at6ou
+ KOp9VDGK2Fr0KP8BVHgg97oweuL0zJlOf29sxVMis5eyHBCWwmO/99l2yZDDaHEUqDsE
+ rYDazSeprY7AFJoF62DsOpLT/Rqb+AIg/dkDlAqkOSD1ETqJsEHAEiVSVwPih+7nnwqB
+ 6W8f71euXyPGXGJJaQtSjvcX/yiL50bFoqvDvkraxEbfrevlWqxKjFSYWyoh/qFMlk+d
+ E5bA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1763413012; x=1764017812;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=ISU+0z8/4+zmWNh+iSGO9mIjr0yYVY3n2sP2TXlPC+k=;
+ b=XcjuLKkkeY9s8u2YqNxilDFa9EsUgQRfR8KzbQ7tKLUvSRCqU9qF+iHlXCJzZmqeJq
+ pFYn2EuuL9Lh4P00l+XUduQo9ElOD4WlDZVwE+YFpjyndPMKFQkU3EOov2F0ThxmxrFO
+ unXAljkw4UB1KA8CrNo6sCquLktsWrwPZXC3X8Q7I+ijXu9XROwv8T6tAKt3SgRZIGN4
+ 1czPEsMXyKKbenK9YHWwbETZPk3J/Az/Ll6OuqkTBZLSPMa97gM2IwyKvlUUzL2FhA81
+ kBMAu/kg3g+r9qZZqw9CzavkJslRphD2U5USo1SixnGkMcw6PCxbvTbbfgkZYtBh6Oe+
+ iZTQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVkFezewRQ8opwPKyCJVozPnyZosbiKAGFkgnJbqT9vUGvg2JP1H8/I0whilTMRqqGwRpIDBtTma3k=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwbKLsDIORNjnaMzDsZ2kaDaQEz8rcB32nxBuu535LesYaVde6k
+ u81+FqozcvtHY6O8SWRaRKlhxiMlu8b4iyCH7UBrSPMqrMFzJMgaQ76+Lt9d4/Ojd1GDdJKQeFa
+ 968koO6BvnPOK1B48W4XWGFTQRMl+E5o=
+X-Gm-Gg: ASbGncvTLzaebRmGPc4ZQkM5y0HHszujvlLlLSMbso7nj1aC4+u4aQoPdCXcmnu7Ih8
+ oR1r3lQHPpIc2NwHVz4DyzcTgbc9klGuH7GE7JXezUDJVca6ftcNdoiwsUENKRCGgWlBwxpOwZi
+ 4RJhEjhD/SOMuQUO+0n4MIDhfwEQ5oewt4k9RdF+V83XREW8uy9IQBGz/0togCRl8ELNnBYN8NW
+ yTwzMOZgpZOe8i1wmRuPK8Gp71OfwX/m7fHrmwhnic9R9Qh5iBcp8+kxY+GZvJWT0IeWw==
+X-Google-Smtp-Source: AGHT+IGD4QU1lMs4EaP4WuNY124UzZwJ6lDT6UoQH9dwZiAPGyRG8CtxXsuaQdtK38GikpdlutqP+jZGa5s7dbsUMQg=
+X-Received: by 2002:a05:620a:458b:b0:8b1:5f62:a5d5 with SMTP id
+ af79cd13be357-8b2c31da139mr1822873385a.62.1763413011907; Mon, 17 Nov 2025
+ 12:56:51 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251117-color-format-v4-10-0ded72bd1b00@collabora.com>
-References: <20251117-color-format-v4-0-0ded72bd1b00@collabora.com>
-In-Reply-To: <20251117-color-format-v4-0-0ded72bd1b00@collabora.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>, 
- Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, 
+References: <aRcJOrisG2qPbucE@fedora>
+In-Reply-To: <aRcJOrisG2qPbucE@fedora>
+From: Dave Airlie <airlied@gmail.com>
+Date: Tue, 18 Nov 2025 06:56:40 +1000
+X-Gm-Features: AWmQ_bmMemlRqfWPvp8z_uNqJUS6z3cdQzNjt6szUhfijLFDWUsRY0stdd7FNpg
+Message-ID: <CAPM=9tyYymc6g-9S33PCzFj5__nsaFvKm3PZuWwvJg0b1O7MrQ@mail.gmail.com>
+Subject: Re: [PULL] drm-xe-next
+To: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+Cc: Simona Vetter <simona.vetter@ffwll.ch>,
  Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
- Derek Foreman <derek.foreman@collabora.com>, 
- Marius Vlad <marius.vlad@collabora.com>
-X-Mailer: b4 0.14.3
-X-Mailman-Approved-At: Fri, 21 Nov 2025 13:52:13 +0000
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Oded Gabbay <ogabbay@kernel.org>, Lucas De Marchi <lucas.demarchi@intel.com>, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,113 +92,365 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Derek Foreman <derek.foreman@collabora.com>
+On Fri, 14 Nov 2025 at 20:50, Thomas Hellstrom
+<thomas.hellstrom@linux.intel.com> wrote:
+>
+> Hi Dave, Simona
+>
+> This is the last feature drm-xe-next PR towards 6.19.
+>
+> Note that the PR of 25-11-05 was never pulled, so this one
+> incorporates that one as well. Please let me know if you want
+> this done another way.
 
-Register the color format property in the dw_hdmi_qp-rockchip driver,
-and act on requested format changes as part of the connector state in
-the vop2 video output driver.
+Just for future reference, just let me know I've missed one in the
+next one, and treat them as separate, as I'll just go back and do them
+in order.
 
-Signed-off-by: Derek Foreman <derek.foreman@collabora.com>
-Signed-off-by: Marius Vlad <marius.vlad@collabora.com>
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
----
- drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c |  3 ++
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.c   | 46 ++++++++++++++++++++++++++
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.h   |  2 ++
- 3 files changed, 51 insertions(+)
+This is fine this time, I just edited out the overlap from the commit msg.
 
-diff --git a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-index 7c294751de19..7028166fdace 100644
---- a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-+++ b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-@@ -635,6 +635,9 @@ static int dw_hdmi_qp_rockchip_bind(struct device *dev, struct device *master,
- 		return dev_err_probe(hdmi->dev, PTR_ERR(connector),
- 				     "Failed to init bridge connector\n");
- 
-+	if (!drm_mode_create_hdmi_color_format_property(connector, supported_colorformats))
-+		drm_connector_attach_color_format_property(connector);
-+
- 	return drm_connector_attach_encoder(connector, encoder);
- }
- 
-diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-index 498df0ce4680..2fc9b21c5522 100644
---- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-+++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-@@ -1549,6 +1549,50 @@ static void vop2_dither_setup(struct drm_crtc *crtc, u32 *dsp_ctrl)
- 				DITHER_DOWN_ALLEGRO);
- }
- 
-+static void vop2_bcsh_config(struct drm_crtc *crtc, struct vop2_video_port *vp)
-+{
-+	struct drm_connector_list_iter conn_iter;
-+	struct drm_connector *connector;
-+	u32 format = 0;
-+	enum drm_colorspace colorspace = 0;
-+	u32 val = 0;
-+
-+	drm_connector_list_iter_begin(crtc->dev, &conn_iter);
-+	drm_for_each_connector_iter(connector, &conn_iter) {
-+		if (!(crtc->state->connector_mask & drm_connector_mask(connector)))
-+			continue;
-+
-+		format = connector->state->color_format;
-+		colorspace = connector->state->colorspace;
-+		break;
-+	}
-+	drm_connector_list_iter_end(&conn_iter);
-+
-+	if (format == DRM_COLOR_FORMAT_YCBCR420 ||
-+	    format == DRM_COLOR_FORMAT_YCBCR444 ||
-+	    format == DRM_COLOR_FORMAT_YCBCR422) {
-+		val = RK3568_VP_BCSH_CTRL__BCSH_R2Y_EN | BIT(7);
-+
-+		switch (colorspace) {
-+		case DRM_MODE_COLORIMETRY_BT2020_RGB:
-+		case DRM_MODE_COLORIMETRY_BT2020_YCC:
-+			val |= BIT(7) | BIT(6);
-+			break;
-+		case DRM_MODE_COLORIMETRY_BT709_YCC:
-+			val |= BIT(6);
-+			break;
-+		default:
-+			break;
-+		}
-+		if (colorspace == DRM_MODE_COLORIMETRY_BT2020_RGB ||
-+		    colorspace == DRM_MODE_COLORIMETRY_BT2020_YCC)
-+			val |= BIT(6);
-+	}
-+
-+	vop2_vp_write(vp, RK3568_VP_BCSH_CTRL, val);
-+	vop2_vp_write(vp, RK3568_VP_BCSH_COLOR_BAR, 0);
-+}
-+
- static void vop2_post_config(struct drm_crtc *crtc)
- {
- 	struct vop2_video_port *vp = to_vop2_video_port(crtc);
-@@ -1600,6 +1644,8 @@ static void vop2_post_config(struct drm_crtc *crtc)
- 	}
- 
- 	vop2_vp_write(vp, RK3568_VP_DSP_BG, 0);
-+
-+	vop2_bcsh_config(crtc, vp);
- }
- 
- static int us_to_vertical_line(struct drm_display_mode *mode, int us)
-diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
-index 9124191899ba..33fdc9d8d819 100644
---- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
-+++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
-@@ -637,6 +637,8 @@ enum dst_factor_mode {
- 
- #define RK3568_REG_CFG_DONE__GLB_CFG_DONE_EN		BIT(15)
- 
-+#define RK3568_VP_BCSH_CTRL__BCSH_R2Y_EN		BIT(4)
-+
- #define RK3568_VP_DSP_CTRL__STANDBY			BIT(31)
- #define RK3568_VP_DSP_CTRL__DSP_LUT_EN			BIT(28)
- #define RK3568_VP_DSP_CTRL__DITHER_DOWN_MODE		BIT(20)
+Dave.
 
--- 
-2.51.2
-
+>
+> Thanks,
+> Thomas
+>
+> drm-xe-next-2025-11-14:
+> UAPI Changes:
+>
+> Limit number of jobs per exec queue (Shuicheng)
+> Add sriov_admin sysfs tree (Michal)
+>
+> Driver Changes:
+>
+> Fix an uninitialized value (Thomas)
+> Expose a residency counter through debugfs (Mohammed Thasleem)
+> Workaround enabling and improvement (Tapani, Tangudu)
+> More Crescent Island-specific support (Sk Anirban, Lucas)
+> PAT entry dump improvement (Xin)
+> Inline gt_reset in the worker (Lucas)
+> Synchronize GT reset with device unbind (Balasubramani)
+> Do clean shutdown also when using flr (Jouni)
+> Fix serialization on burst of unbinds (Matt Brost)
+> Pagefault Refactor (Matt Brost)
+> Remove some unused code (Gwan-gyeong)
+> Avoid TOCTOU when montoring throttle reasons (Lucas)
+> Add/extend workaround (Nitin)
+> SRIOV migration work / plumbing (Michal Wajdeczko, Michal Winiarski, Luka=
+sz)
+> Drop debug flag requirement for VF resource fixup
+> Fix MTL vm_max_level (Rodrigo)
+> Changes around TILE_ADDR_RANGE for platform compatibility
+> (Fei, Lucas)
+> Add runtime registers for GFX ver >=3D 35 (Piotr)
+> Kerneldoc fix (Kriish)
+> Rework pcode error mapping (Lucas)
+> Allow lockdown the PF (Michal)
+> Eliminate GUC code caching of some frequency values (Sk)
+> Improvements around forcewake referencing (Matt Roper)
+> The following changes since commit 4504e780689245f01bee6ee4c19c74051bd875=
+93:
+>
+>   drm/xe/pf: Access VF's register using dedicated MMIO view (2025-10-27 1=
+7:22:18 +0100)
+>
+> are available in the Git repository at:
+>
+>   https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-2025-=
+11-14
+>
+> for you to fetch changes up to 6bcb180f6f4585554cefbe8c412aa8879b15f07a:
+>
+>   drm/xe/oa: Store forcewake reference in stream structure (2025-11-13 14=
+:05:51 -0800)
+>
+> ----------------------------------------------------------------
+> UAPI Changes:
+>
+> Limit number of jobs per exec queue (Shuicheng)
+> Add sriov_admin sysfs tree (Michal)
+>
+> Driver Changes:
+>
+> Fix an uninitialized value (Thomas)
+> Expose a residency counter through debugfs (Mohammed Thasleem)
+> Workaround enabling and improvement (Tapani, Tangudu)
+> More Crescent Island-specific support (Sk Anirban, Lucas)
+> PAT entry dump improvement (Xin)
+> Inline gt_reset in the worker (Lucas)
+> Synchronize GT reset with device unbind (Balasubramani)
+> Do clean shutdown also when using flr (Jouni)
+> Fix serialization on burst of unbinds (Matt Brost)
+> Pagefault Refactor (Matt Brost)
+> Remove some unused code (Gwan-gyeong)
+> Avoid TOCTOU when montoring throttle reasons (Lucas)
+> Add/extend workaround (Nitin)
+> SRIOV migration work / plumbing (Michal Wajdeczko, Michal Winiarski, Luka=
+sz)
+> Drop debug flag requirement for VF resource fixup
+> Fix MTL vm_max_level (Rodrigo)
+> Changes around TILE_ADDR_RANGE for platform compatibility
+> (Fei, Lucas)
+> Add runtime registers for GFX ver >=3D 35 (Piotr)
+> Kerneldoc fix (Kriish)
+> Rework pcode error mapping (Lucas)
+> Allow lockdown the PF (Michal)
+> Eliminate GUC code caching of some frequency values (Sk)
+> Improvements around forcewake referencing (Matt Roper)
+>
+> ----------------------------------------------------------------
+> Balasubramani Vivekanandan (2):
+>       drm/xe/gt: Synchronize GT reset with device unbind
+>       drm/xe/guc: Synchronize Dead CT worker with unbind
+>
+> Fei Yang (1):
+>       drm/xe: Use SG_TILE_ADDR_RANGE instead of TILE_ADDR_RANGE
+>
+> Gwan-gyeong Mun (1):
+>       drm/xe: Remove never used code in xe_vm_create()
+>
+> Jouni H=C3=B6gander (1):
+>       drm/xe: Do clean shutdown also when using flr
+>
+> Kriish Sharma (1):
+>       drm/xe: fix kernel-doc function name mismatch in xe_pm.c
+>
+> Lucas De Marchi (10):
+>       drm/xe/gt_throttle: Tidy up perf reasons reading
+>       drm/xe/gt_throttle: Always read and mask
+>       drm/xe/gt_throttle: Add throttle_to_gt()
+>       drm/xe/gt_throttle: Tidy up attribute definition
+>       drm/xe: Improve freq and throttle documentation
+>       drm/xe/gt_throttle: Drop individual show functions
+>       drm/xe: Inline gt_reset in the worker
+>       drm/xe/gt_throttle: Avoid TOCTOU when monitoring reasons
+>       drm/xe/vram: Move forcewake down to get_flat_ccs_offset()
+>       drm/xe/pcode: Rework error mapping
+>
+> Lukasz Laguna (2):
+>       drm/xe/pf: Add helper to retrieve VF's LMEM object
+>       drm/xe/migrate: Add function to copy of VRAM data in chunks
+>
+> Matt Roper (3):
+>       drm/xe/forcewake: Improve kerneldoc
+>       drm/xe/eustall: Store forcewake reference in stream structure
+>       drm/xe/oa: Store forcewake reference in stream structure
+>
+> Matthew Brost (13):
+>       drm/xe: Enforce correct user fence signaling order using
+>       drm/xe: Attach last fence to TLB invalidation job queues
+>       drm/xe: Decouple bind queue last fence from TLB invalidations
+>       drm/xe: Skip TLB invalidation waits in page fault binds
+>       drm/xe: Disallow input fences on zero batch execs and zero binds
+>       drm/xe: Remove last fence dependency check from binds and execs
+>       drm/xe: Stub out new pagefault layer
+>       drm/xe: Implement xe_pagefault_init
+>       drm/xe: Implement xe_pagefault_reset
+>       drm/xe: Implement xe_pagefault_handler
+>       drm/xe: Implement xe_pagefault_queue_work
+>       drm/xe: Add xe_guc_pagefault layer
+>       drm/xe: Remove unused GT page fault code
+>
+> Michal Wajdeczko (22):
+>       drm/xe/pf: Prepare sysfs for SR-IOV admin attributes
+>       drm/xe/pf: Take RPM during calls to SR-IOV attr.store()
+>       drm/xe/pf: Add _locked variants of the VF EQ config functions
+>       drm/xe/pf: Add _locked variants of the VF PT config functions
+>       drm/xe/pf: Allow change PF and VFs EQ/PT using sysfs
+>       drm/xe/pf: Relax report helper to accept PF in bulk configs
+>       drm/xe/pf: Fix signature of internal config helpers
+>       drm/xe/pf: Add functions to bulk configure EQ/PT on GT
+>       drm/xe/pf: Add functions to bulk provision EQ/PT
+>       drm/xe/pf: Allow bulk change all VFs EQ/PT using sysfs
+>       drm/xe/pf: Add functions to provision scheduling priority
+>       drm/xe/pf: Allow bulk change all VFs priority using sysfs
+>       drm/xe/pf: Allow change PF scheduling priority using sysfs
+>       drm/xe/pf: Promote xe_pci_sriov_get_vf_pdev
+>       drm/xe/pf: Add sysfs device symlinks to enabled VFs
+>       drm/xe/pf: Allow to stop the VF using sysfs
+>       drm/xe/pf: Add documentation for sriov_admin attributes
+>       drm/xe/pf: Use migration-friendly context IDs auto-provisioning
+>       drm/xe/pf: Use migration-friendly doorbells auto-provisioning
+>       drm/xe/tests: Add KUnit tests for PF fair provisioning
+>       drm/xe/pf: Allow to lockdown the PF using custom guard
+>       drm/xe/pf: Use migration-friendly GGTT auto-provisioning
+>
+> Micha=C5=82 Winiarski (23):
+>       drm/xe/vf: Enable VF resource fixup unconditionally
+>       drm/xe/pf: Remove GuC version check for migration support
+>       drm/xe: Move migration support to device-level struct
+>       drm/xe/pf: Convert control state to bitmap
+>       drm/xe/pf: Add save/restore control state stubs and connect to debu=
+gfs
+>       drm/xe/pf: Add data structures and handlers for migration rings
+>       drm/xe/pf: Add helpers for migration data packet allocation / free
+>       drm/xe/pf: Add support for encap/decap of bitstream to/from packet
+>       drm/xe/pf: Add minimalistic migration descriptor
+>       drm/xe/pf: Expose VF migration data size over debugfs
+>       drm/xe: Add sa/guc_buf_cache sync interface
+>       drm/xe: Allow the caller to pass guc_buf_cache size
+>       drm/xe/pf: Increase PF GuC Buffer Cache size and use it for VF migr=
+ation
+>       drm/xe/pf: Remove GuC migration data save/restore from GT debugfs
+>       drm/xe/pf: Don't save GuC VF migration data on pause
+>       drm/xe/pf: Switch VF migration GuC save/restore to struct migration=
+ data
+>       drm/xe/pf: Handle GuC migration data as part of PF control
+>       drm/xe/pf: Add helpers for VF GGTT migration data handling
+>       drm/xe/pf: Handle GGTT migration data as part of PF control
+>       drm/xe/pf: Handle MMIO migration data as part of PF control
+>       drm/xe/pf: Handle VRAM migration data as part of PF control
+>       drm/xe/pf: Add wait helper for VF FLR
+>       drm/intel/bmg: Allow device ID usage with single-argument macros
+>
+> Mohammed Thasleem (1):
+>       drm/xe/xe_debugfs: Expose G7 package state residency counter throug=
+h debugfs
+>
+> Nitin Gote (1):
+>       drm/xe/xe3lpg: Extend Wa_15016589081 for xe3lpg
+>
+> Piotr Pi=C3=B3rkowski (1):
+>       drm/xe/pf: Add runtime registers for GFX ver >=3D 35
+>
+> Rodrigo Vivi (1):
+>       drm/xe: Fix MTL vm_max_level
+>
+> Shuicheng Lin (1):
+>       drm/xe: Limit number of jobs per exec queue
+>
+> Sk Anirban (3):
+>       drm/xe/cri: Add new performance limit reasons bits
+>       drm/xe/guc: Eliminate RPe caching for SLPC parameter handling
+>       drm/xe/guc: Eliminate RPa frequency caching
+>
+> Tangudu Tilak Tirumalesh (1):
+>       drm/xe/xe3: Extend wa_14023061436
+>
+> Tapani P=C3=A4lli (1):
+>       drm/xe/xe3: Apply wa_14024997852
+>
+> Thomas Hellstr=C3=B6m (1):
+>       drm/xe: Fix uninitialized return value from xe_validation_guard()
+>
+> Xin Wang (1):
+>       drm/xe: highlight reserved PAT entries in dump output
+>
+>  .../ABI/testing/sysfs-driver-intel-xe-sriov        |  159 +++
+>  Documentation/gpu/xe/xe_gt_freq.rst                |    3 +
+>  drivers/gpu/drm/xe/Makefile                        |    6 +-
+>  drivers/gpu/drm/xe/regs/xe_gt_regs.h               |   14 +-
+>  drivers/gpu/drm/xe/regs/xe_pmt.h                   |    1 +
+>  drivers/gpu/drm/xe/regs/xe_regs.h                  |    2 +
+>  .../gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c |  208 ++++
+>  drivers/gpu/drm/xe/xe_debugfs.c                    |    1 +
+>  drivers/gpu/drm/xe/xe_device.c                     |   23 +-
+>  drivers/gpu/drm/xe/xe_device_types.h               |   11 +
+>  drivers/gpu/drm/xe/xe_eu_stall.c                   |    8 +-
+>  drivers/gpu/drm/xe/xe_exec.c                       |   14 +-
+>  drivers/gpu/drm/xe/xe_exec_queue.c                 |  124 ++-
+>  drivers/gpu/drm/xe/xe_exec_queue.h                 |   23 +-
+>  drivers/gpu/drm/xe/xe_exec_queue_types.h           |   17 +
+>  drivers/gpu/drm/xe/xe_force_wake_types.h           |   26 +-
+>  drivers/gpu/drm/xe/xe_ggtt.c                       |  104 ++
+>  drivers/gpu/drm/xe/xe_ggtt.h                       |    3 +
+>  drivers/gpu/drm/xe/xe_ggtt_types.h                 |    2 +
+>  drivers/gpu/drm/xe/xe_gt.c                         |   44 +-
+>  drivers/gpu/drm/xe/xe_gt_freq.c                    |   30 +-
+>  drivers/gpu/drm/xe/xe_gt_pagefault.c               |  679 ------------
+>  drivers/gpu/drm/xe/xe_gt_pagefault.h               |   19 -
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c         |  351 +++++-
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h         |   16 +
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c        |  650 +++++++++++-
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_control.h        |   10 +
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_control_types.h  |   34 +-
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c        |   47 -
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c      | 1112 ++++++++++++++=
++-----
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.h      |   46 +-
+>  .../gpu/drm/xe/xe_gt_sriov_pf_migration_types.h    |   34 +-
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c        |   21 +-
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h          |    5 +-
+>  drivers/gpu/drm/xe/xe_gt_throttle.c                |  375 +++----
+>  drivers/gpu/drm/xe/xe_gt_types.h                   |   65 --
+>  drivers/gpu/drm/xe/xe_guard.h                      |  119 +++
+>  drivers/gpu/drm/xe/xe_guc.c                        |   13 +-
+>  drivers/gpu/drm/xe/xe_guc_buf.c                    |   57 +-
+>  drivers/gpu/drm/xe/xe_guc_buf.h                    |    2 +
+>  drivers/gpu/drm/xe/xe_guc_ct.c                     |    9 +-
+>  drivers/gpu/drm/xe/xe_guc_pagefault.c              |   95 ++
+>  drivers/gpu/drm/xe/xe_guc_pagefault.h              |   15 +
+>  drivers/gpu/drm/xe/xe_guc_pc.c                     |  100 +-
+>  drivers/gpu/drm/xe/xe_guc_pc_types.h               |    4 -
+>  drivers/gpu/drm/xe/xe_migrate.c                    |  142 ++-
+>  drivers/gpu/drm/xe/xe_migrate.h                    |   16 +
+>  drivers/gpu/drm/xe/xe_oa.c                         |   54 +-
+>  drivers/gpu/drm/xe/xe_oa_types.h                   |   11 +
+>  drivers/gpu/drm/xe/xe_pagefault.c                  |  445 ++++++++
+>  drivers/gpu/drm/xe/xe_pagefault.h                  |   19 +
+>  drivers/gpu/drm/xe/xe_pagefault_types.h            |  136 +++
+>  drivers/gpu/drm/xe/xe_pat.c                        |   15 +-
+>  drivers/gpu/drm/xe/xe_pat.h                        |    5 +
+>  drivers/gpu/drm/xe/xe_pci.c                        |    2 +-
+>  drivers/gpu/drm/xe/xe_pci_sriov.c                  |   62 +-
+>  drivers/gpu/drm/xe/xe_pci_sriov.h                  |    1 +
+>  drivers/gpu/drm/xe/xe_pcode.c                      |   40 +-
+>  drivers/gpu/drm/xe/xe_pcode_api.h                  |    6 -
+>  drivers/gpu/drm/xe/xe_pm.c                         |    2 +-
+>  drivers/gpu/drm/xe/xe_pt.c                         |   80 +-
+>  drivers/gpu/drm/xe/xe_reg_whitelist.c              |    7 +
+>  drivers/gpu/drm/xe/xe_sa.c                         |   21 +
+>  drivers/gpu/drm/xe/xe_sa.h                         |    1 +
+>  drivers/gpu/drm/xe/xe_sched_job.c                  |   19 +-
+>  drivers/gpu/drm/xe/xe_sched_job.h                  |    1 -
+>  drivers/gpu/drm/xe/xe_sriov_packet.c               |  520 +++++++++
+>  drivers/gpu/drm/xe/xe_sriov_packet.h               |   30 +
+>  drivers/gpu/drm/xe/xe_sriov_packet_types.h         |   75 ++
+>  drivers/gpu/drm/xe/xe_sriov_pf.c                   |  107 ++
+>  drivers/gpu/drm/xe/xe_sriov_pf.h                   |    4 +
+>  drivers/gpu/drm/xe/xe_sriov_pf_control.c           |  128 +++
+>  drivers/gpu/drm/xe/xe_sriov_pf_control.h           |    5 +
+>  drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c           |  131 +++
+>  drivers/gpu/drm/xe/xe_sriov_pf_helpers.h           |   16 +
+>  drivers/gpu/drm/xe/xe_sriov_pf_migration.c         |  342 ++++++
+>  drivers/gpu/drm/xe/xe_sriov_pf_migration.h         |   29 +
+>  drivers/gpu/drm/xe/xe_sriov_pf_migration_types.h   |   37 +
+>  drivers/gpu/drm/xe/xe_sriov_pf_provision.c         |  284 +++++
+>  drivers/gpu/drm/xe/xe_sriov_pf_provision.h         |   14 +
+>  drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c             |  647 ++++++++++++
+>  drivers/gpu/drm/xe/xe_sriov_pf_sysfs.h             |   16 +
+>  drivers/gpu/drm/xe/xe_sriov_pf_types.h             |   21 +
+>  drivers/gpu/drm/xe/xe_sriov_vf.c                   |    8 -
+>  drivers/gpu/drm/xe/xe_svm.c                        |    3 +-
+>  drivers/gpu/drm/xe/xe_sync.c                       |   95 +-
+>  drivers/gpu/drm/xe/xe_sync.h                       |    3 +
+>  drivers/gpu/drm/xe/xe_sync_types.h                 |    3 +
+>  drivers/gpu/drm/xe/xe_tlb_inval_job.c              |   31 +-
+>  drivers/gpu/drm/xe/xe_tlb_inval_job.h              |    5 +-
+>  drivers/gpu/drm/xe/xe_trace.h                      |   23 +
+>  drivers/gpu/drm/xe/xe_validation.h                 |    8 +-
+>  drivers/gpu/drm/xe/xe_vm.c                         |  101 +-
+>  drivers/gpu/drm/xe/xe_vm_types.h                   |    6 +-
+>  drivers/gpu/drm/xe/xe_vram.c                       |   26 +-
+>  drivers/gpu/drm/xe/xe_wa.c                         |    7 +
+>  include/drm/intel/pciids.h                         |    2 +-
+>  97 files changed, 6762 insertions(+), 1751 deletions(-)
+>  create mode 100644 Documentation/ABI/testing/sysfs-driver-intel-xe-sriov
+>  create mode 100644 drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.=
+c
+>  delete mode 100644 drivers/gpu/drm/xe/xe_gt_pagefault.c
+>  delete mode 100644 drivers/gpu/drm/xe/xe_gt_pagefault.h
+>  create mode 100644 drivers/gpu/drm/xe/xe_guard.h
+>  create mode 100644 drivers/gpu/drm/xe/xe_guc_pagefault.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_guc_pagefault.h
+>  create mode 100644 drivers/gpu/drm/xe/xe_pagefault.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_pagefault.h
+>  create mode 100644 drivers/gpu/drm/xe/xe_pagefault_types.h
+>  create mode 100644 drivers/gpu/drm/xe/xe_sriov_packet.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_sriov_packet.h
+>  create mode 100644 drivers/gpu/drm/xe/xe_sriov_packet_types.h
+>  create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_migration.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_migration.h
+>  create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_migration_types.h
+>  create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_sysfs.h
