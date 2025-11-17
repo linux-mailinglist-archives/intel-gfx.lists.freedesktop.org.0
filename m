@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2B68C63A92
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Nov 2025 11:59:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41172C63A98
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Nov 2025 11:59:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AEB310E354;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DED610E355;
 	Mon, 17 Nov 2025 10:59:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ef+wzxwb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R3zmHIpx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5065E10E355;
- Mon, 17 Nov 2025 10:59:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFE3010E355;
+ Mon, 17 Nov 2025 10:59:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763377153; x=1794913153;
+ t=1763377154; x=1794913154;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Wwka4fLpeugZrn3cnWuon+Rge0B8mGJEE7n7sXUKPmk=;
- b=Ef+wzxwbVKidyhK6Fvpt9smgV3IGR1Ovq/bFbsL8xYghNw2j89NQaGW0
- EYOh8InvCLeY4lgjEBkS1fWVY149DDln33AFniEMjTvLiRN724LQbl4sS
- 19X1Od2zv3wXxkg/oeFVCCFGhaenjIIGuSHh0a+nk0/t04BCphlac99Qb
- nBsnBCOZm3JFuCU2AI8FwJBLlnQJzcWJu7Lc6VB6JqF7vVU5jonesewz5
- uUR9gobTz1+gMsBpXImou94e5ElSTbAo9PeLvbPiseypTYStQX9r6we7P
- 2bOcXAWsV9iJuFniPWlrs/lwrjbPrNZ3FfiwkLznfd6ZBUmfflRb0BIbo w==;
-X-CSE-ConnectionGUID: Lc4SujrgQkCffQ8TUsfXOQ==
-X-CSE-MsgGUID: 0hcMf7sdTVGDQAaCmt+4Jw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11615"; a="76475361"
-X-IronPort-AV: E=Sophos;i="6.19,311,1754982000"; d="scan'208";a="76475361"
+ bh=6c0KBauH/luHyRV1wjw7G0VDZpSNFHQROHdf3pMEnrs=;
+ b=R3zmHIpxdfcehNGtKPSFCDBSWHT4bujsV5wKchhHhP4uV3uRWlTbdVmG
+ jp8z/3/wVkOiDCXVCUwZJPvXNwNk4Uo6+FxRi+z8JMge0mVYyfJ7l4Pvn
+ 2Q05KDsUbsU2dusoVcvYzwsgsPbRbDz0XgqusuvMVimh+gPSXBiLU0qv0
+ ePgM4eECpPV+I0kuHXXCDuZvVSGMvtwBtO2uosJzdkWfGaVa5a8NBmn9V
+ RCtnXa2KhFuynRP0rbTAKp6jhujqjsD9nyrvt0GTH3FTZ05t7VJpQZ+UZ
+ Vw/a/zOHhlDllsLIkz871RZw8QhiCiyYeea2YS42UlYJqw+hEBMtnSHpM w==;
+X-CSE-ConnectionGUID: yIZEY/xYTgWQuCBFHNYIHQ==
+X-CSE-MsgGUID: abwkVz08T/6d8m+Dp0536g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11615"; a="76475367"
+X-IronPort-AV: E=Sophos;i="6.19,311,1754982000"; d="scan'208";a="76475367"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2025 02:59:13 -0800
-X-CSE-ConnectionGUID: V+LP7cF1SBSljydAYvj3Wg==
-X-CSE-MsgGUID: KxpHurChRRS+Rx1r9CEjGQ==
+ 17 Nov 2025 02:59:14 -0800
+X-CSE-ConnectionGUID: csbML4m+Q26n/144AYD19g==
+X-CSE-MsgGUID: x2AZnDPmRWmvu/ZcdMUPzA==
 X-ExtLoop1: 1
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa003.fm.intel.com with ESMTP; 17 Nov 2025 02:59:11 -0800
+ by fmviesa003.fm.intel.com with ESMTP; 17 Nov 2025 02:59:13 -0800
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Imre Deak <imre.deak@intel.com>, Mika Kahola <mika.kahola@intel.com>,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v2 09/32] drm/i915/cx0: Sanitize C10 PHY PLL SSC register setup
-Date: Mon, 17 Nov 2025 12:45:39 +0200
-Message-Id: <20251117104602.2363671-10-mika.kahola@intel.com>
+Subject: [PATCH v2 10/32] drm/i915/cx0: Read out the Cx0 PHY SSC enabled state
+Date: Mon, 17 Nov 2025 12:45:40 +0200
+Message-Id: <20251117104602.2363671-11-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251117104602.2363671-1-mika.kahola@intel.com>
 References: <20251117104602.2363671-1-mika.kahola@intel.com>
@@ -69,45 +69,83 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Imre Deak <imre.deak@intel.com>
 
-Define the C10 PLL SSC register range via macros, so the HW/SW state of
-these register can be verified by a follow-up change, reusing these
-macros.
+Read out the C10, C20 PHY PLLs SSC enabled state, so the PLL HW/SW state
+verification can check this state as well.
+
+C10 PHY PLLs program some PLL registers zeroed out for the non-SSC case,
+while programming non-zero values to the same registers for the SSC
+case, so check that these PLL registers being zero or non-zero matches
+the PLL's overall SSC-enabled state (stored in the
+intel_c10pll_state::ssc_enabled flag).
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 25 ++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 2ab93d02fdf1..f190762e4871 100644
+index f190762e4871..4562e47042d2 100644
 --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2059,6 +2059,9 @@ static void intel_cx0pll_update_ssc(struct intel_encoder *encoder,
- 	}
- }
+@@ -2062,6 +2062,12 @@ static void intel_cx0pll_update_ssc(struct intel_encoder *encoder,
+ #define C10_PLL_SSC_REG_START_IDX	4
+ #define C10_PLL_SSC_REG_COUNT		5
  
-+#define C10_PLL_SSC_REG_START_IDX	4
-+#define C10_PLL_SSC_REG_COUNT		5
++static bool intel_c10pll_ssc_enabled(const struct intel_c10pll_state *pll_state)
++{
++	return memchr_inv(&pll_state->pll[C10_PLL_SSC_REG_START_IDX],
++			  0, sizeof(pll_state->pll[0]) * C10_PLL_SSC_REG_COUNT);
++}
 +
  static void intel_c10pll_update_pll(struct intel_encoder *encoder,
  				    struct intel_cx0pll_state *pll_state)
  {
-@@ -2068,8 +2071,11 @@ static void intel_c10pll_update_pll(struct intel_encoder *encoder,
- 	if (pll_state->ssc_enabled)
- 		return;
- 
--	drm_WARN_ON(display->drm, ARRAY_SIZE(pll_state->c10.pll) < 9);
--	for (i = 4; i < 9; i++)
-+	drm_WARN_ON(display->drm, ARRAY_SIZE(pll_state->c10.pll) <
-+				  C10_PLL_SSC_REG_START_IDX + C10_PLL_SSC_REG_COUNT);
-+	for (i = C10_PLL_SSC_REG_START_IDX;
-+	     i < C10_PLL_SSC_REG_START_IDX + C10_PLL_SSC_REG_COUNT;
-+	     i++)
- 		pll_state->c10.pll[i] = 0;
+@@ -2193,10 +2199,20 @@ static int readout_enabled_lane_count(struct intel_encoder *encoder)
+ 	return enabled_tx_lane_count;
  }
  
++static bool readout_ssc_state(struct intel_encoder *encoder, bool is_mpll_b)
++{
++	struct intel_display *display = to_intel_display(encoder);
++
++	return intel_de_read(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port)) &
++		(is_mpll_b ? XELPDP_SSC_ENABLE_PLLB : XELPDP_SSC_ENABLE_PLLA);
++}
++
+ static void intel_c10pll_readout_hw_state(struct intel_encoder *encoder,
+ 					  struct intel_cx0pll_state *cx0pll_state)
+ {
+ 	struct intel_c10pll_state *pll_state = &cx0pll_state->c10;
++	struct intel_display *display = to_intel_display(encoder);
++	enum phy phy = intel_encoder_to_phy(encoder);
+ 	u8 lane = INTEL_CX0_LANE0;
+ 	intel_wakeref_t wakeref;
+ 	int i;
+@@ -2222,6 +2238,13 @@ static void intel_c10pll_readout_hw_state(struct intel_encoder *encoder,
+ 	intel_cx0_phy_transaction_end(encoder, wakeref);
+ 
+ 	pll_state->clock = intel_c10pll_calc_port_clock(encoder, pll_state);
++
++	cx0pll_state->ssc_enabled = readout_ssc_state(encoder, true);
++	drm_WARN(display->drm,
++		 cx0pll_state->ssc_enabled != intel_c10pll_ssc_enabled(pll_state),
++		 "PHY %c: SSC enabled state (%s), doesn't match PLL configuration (%s)\n",
++		 phy_name(phy), str_yes_no(cx0pll_state->ssc_enabled),
++		 intel_c10pll_ssc_enabled(pll_state) ? "SSC-enabled" : "SSC-disabled");
+ }
+ 
+ static void intel_c10_pll_program(struct intel_display *display,
+@@ -2753,6 +2776,8 @@ static void intel_c20pll_readout_hw_state(struct intel_encoder *encoder,
+ 	pll_state->clock = intel_c20pll_calc_port_clock(encoder, pll_state);
+ 
+ 	intel_cx0_phy_transaction_end(encoder, wakeref);
++
++	cx0pll_state->ssc_enabled = readout_ssc_state(encoder, intel_c20phy_use_mpllb(pll_state));
+ }
+ 
+ static void intel_c20pll_dump_hw_state(struct intel_display *display,
 -- 
 2.34.1
 
