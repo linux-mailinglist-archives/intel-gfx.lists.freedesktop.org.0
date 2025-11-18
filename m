@@ -2,64 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20641C6B75B
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Nov 2025 20:34:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB596C79B82
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Nov 2025 14:52:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 034F110E1F2;
-	Tue, 18 Nov 2025 19:34:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EED4E10E886;
+	Fri, 21 Nov 2025 13:52:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AZBZ/prs";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="UTV8MhzG";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF56910E1E9;
- Tue, 18 Nov 2025 19:34:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763494449; x=1795030449;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=UOyi9fwKFK5kXkNNtmT0G5IrdNQQSjQKI8iw+MQ2u0c=;
- b=AZBZ/prsB12t41PjRcXhEwpNYiKRZlQ1uwkl+IMG2+nSZ9c75+JbayA6
- RTNhgspzbz0BqvF62nfhVIsD2b4vVRlZXXNVXUlOTorVMNxMbgV3ajXeA
- jhyC5+7sP7Hdd559kN2diL7gcyv7ENLP1YnUxNUWqkOsCt5W+hcbfyBSj
- GLb1p+EN8ElwJYANfeZbtUvaZsKt82VRwNnW9d3MBajt4mMW3PYOr8ILz
- SCJ8RliDU3b4kozuS6eMnNIa29RsqCGGI24s1Nk28Ht22oyNCxwn++Doh
- E/ud5GQvhI8jbNH9F6p6RU8C9tF9TAVBCME3CkCwwD5/gnZDLUuEGoXrg w==;
-X-CSE-ConnectionGUID: Ynq/S0elRDik77rI4qyDrQ==
-X-CSE-MsgGUID: bDtDHhThSjeOMyU2uvxIGg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11617"; a="64728493"
-X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="64728493"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2025 11:34:09 -0800
-X-CSE-ConnectionGUID: IKoJ9HRESke1WPMhWMuyNg==
-X-CSE-MsgGUID: 2fLwIpJ2T9iS5m/4qkqU9g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="221755264"
-Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.245.187])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2025 11:34:07 -0800
-Date: Tue, 18 Nov 2025 21:34:03 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2] drm/i915/display: change pipe order for platforms
- with big joiner
-Message-ID: <aRzKK_fxBHnpjp-w@intel.com>
-References: <20251118095801.2248786-1-jani.nikula@intel.com>
- <20251118133758.2373008-1-jani.nikula@intel.com>
- <0989b7647aef0c1dfacbdd302e5b3720d3a558c4@intel.com>
- <aRyvdsdmuS7LvI1F@intel.com>
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E82610E504;
+ Tue, 18 Nov 2025 20:00:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1763496009;
+ bh=Ouz3sykA6NZWtw6Ox5elkRDV5HgOt7b0f0GP8Kov1EI=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=UTV8MhzGZCT6pEbkvadKMx88eRgkHh/BuJwjL7ViFkX8GYKo/Kklgll2xVBXkZlQF
+ ZBDDmOe+RdQMe08+xVVPmYlsa3GF5Lw/PjdGBsKdTsYqoZJV/wQ9Zh0YMyPvEGzo7Y
+ axSvCTEV+OYbBjghz5nybkVV2zcXM6sAxV4Umijn2BdAvXKVbgA3DCf2VDs3YT9YOT
+ LYz8OowQRHgsRHjB2iaR0yuFmK+CgnHMkfF4uwNYt4ueo9cu20LqAY4W3Y9sm4j8EH
+ Rwdm06n+iHYdq08roCIF3rHHZD3K+D9QZinZRYCgC5ADRTB0V3+J9sPvmlujWxP5QR
+ HP+nOID4xnnpQ==
+Received: from [192.168.1.90] (unknown [82.79.138.145])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: cristicc)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id C39BF17E0610;
+ Tue, 18 Nov 2025 21:00:08 +0100 (CET)
+Message-ID: <3863e0e5-677b-4225-9854-3ee420828275@collabora.com>
+Date: Tue, 18 Nov 2025 22:00:08 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aRyvdsdmuS7LvI1F@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 05/10] drm/bridge: dw-hdmi-qp: Set bridge
+ supported_formats
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
+ <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>
+Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+References: <20251117-color-format-v4-0-0ded72bd1b00@collabora.com>
+ <20251117-color-format-v4-5-0ded72bd1b00@collabora.com>
+Content-Language: en-US
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <20251117-color-format-v4-5-0ded72bd1b00@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Fri, 21 Nov 2025 13:52:12 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,71 +83,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 18, 2025 at 07:40:06PM +0200, Ville Syrjälä wrote:
-> On Tue, Nov 18, 2025 at 03:43:35PM +0200, Jani Nikula wrote:
-> > On Tue, 18 Nov 2025, Jani Nikula <jani.nikula@intel.com> wrote:
-> > > When big joiner is enabled, it reserves the adjacent pipe as the
-> > > secondary pipe. This happens without the user space knowing, and
-> > > subsequent attempts at using the CRTC with that pipe will fail. If the
-> > > user space does not have a coping mechanism, i.e. trying another pipe,
-> > > this leads to a black screen.
-> > >
-> > > If the platform allows joining A+B, map the CRTCs to pipes in order A,
-> > > C, B, and D to trick userspace to using pipes that are more likely to be
-> > > available for joining.
-> > >
-> > > Although there are currently no platforms with more than four pipes, add
-> > > a fallback for initializing the rest of the pipes to not miss them.
-> > >
-> > > v2: Also remove WARN_ON()
-> > 
-> > There's still this in intel_atomic_check_joiner():
-> > 
-> > 		/*
-> > 		 * The state copy logic assumes the primary crtc gets processed
-> > 		 * before the secondary crtc during the main compute_config loop.
-> > 		 * This works because the crtcs are created in pipe order,
-> > 		 * and the hardware requires primary pipe < secondary pipe as well.
-> > 		 * Should that change we need to rethink the logic.
-> > 		 */
-> > 		if (WARN_ON(drm_crtc_index(&primary_crtc->base) >
-> > 			    drm_crtc_index(&secondary_crtc->base)))
-> > 			return -EINVAL;
-> > 
-> > This still works for A+B and C+D joining, but will fail loudly for B+C
-> > joining.
-> > 
-> > Ideas?
+Hi Nicolas,
+
+On 11/17/25 9:11 PM, Nicolas Frattaroli wrote:
+> The drm_bridge "supported_formats" member stores a bitmask of supported
+> HDMI output formats if the bridge is in fact an HDMI bridge.
 > 
-> Hmm, I think I got rid of that requirement semi-accidentally in
-> commit 3a5e09d82f97 ("drm/i915: Fix intel_modeset_pipe_config_late() for
-> bigjoiner")
+> However, until now, the synopsys dw-hdmi-qp driver did not set this
+> member in the bridge it creates.
 > 
-> So it looks to me like we can just drop that check entirely.
+> Set it based on the platform data's supported_formats member, and
+> default to BIT(HDMI_COLORSPACE_RGB) if it's absent, which preserves the
+> previous behaviour.
+> 
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> ---
+>  drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
+> index fe4c026280f0..cf888236bd65 100644
+> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
+> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
+> @@ -1269,6 +1269,11 @@ struct dw_hdmi_qp *dw_hdmi_qp_bind(struct platform_device *pdev,
+>  		dev_warn(dev, "Set ref_clk_rate to vendor default\n");
+>  	}
+>  
+> +	if (plat_data->supported_formats)
+> +		hdmi->bridge.supported_formats = plat_data->supported_formats;
 
-After some pondering we might have a bit of problem with 
-the for_each_intel_crtc*() stuff. At least during
-the hardware programming phase we'd like those to walk the
-crtcs in pipe order but currently they use the crtc index
-order.
+This duplicates a change already introduced via commit 1ff27c5929ab
+("drm/bridge: dw-hdmi-qp: Handle platform supported formats and color depth").
 
-Say we have a commit with pipes A+B,C. Currently we do
-everything in the C->B->A or A->B->C order. Thus the joined
-pipe A+B are always updated back-to-back, giving us the best
-chance to get an atomic update across them. With the shuffling
-pipe C will now sneak in between A and B, making it less likely
-that the updates on A and B will happen on the same frame.
+> +	else
+> +		hdmi->bridge.supported_formats = BIT(HDMI_COLORSPACE_RGB);
 
-So I'm thinking we probably want to change all the 
-for_each_intel_crtc*() macros to use the pipe order as well.
-Either that or we need to review each use case and rewrite
-the important ones to use the pipe order.
+And this one looks redundant as well, since RGB is supposed to be mandatory:
+supported_formats defaults to RGB in drm_bridge_connector_init() if there's no
+HDMI bridge in the pipeline overriding it, while drmm_connector_hdmi_init()
+errors out if supported_formats is unset or doesn't advertise RGB.
 
-for_each_pipe_crtc_modeset_{disable,enable}() are fortunately
-already immune to crtc shuffling. Those absolutely have to use
-the correct pipe order or else we'd completely screw up the
-joiner programming sequence during modesets.
+Hence I think this patch can be dropped.
 
--- 
-Ville Syrjälä
-Intel
+Regards,
+Cristian
+
