@@ -2,57 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFAFEC68AAA
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Nov 2025 10:58:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC23EC68D5C
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Nov 2025 11:30:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DF6210E477;
-	Tue, 18 Nov 2025 09:58:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C0B510E09A;
+	Tue, 18 Nov 2025 10:30:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H+swUE3L";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AxNytdSz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45EC610E477;
- Tue, 18 Nov 2025 09:58:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DC2E10E09A;
+ Tue, 18 Nov 2025 10:30:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763459887; x=1794995887;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=iAbwEicWcdHDyZNakz9s9Nge993fYFa6wVMr/sCodZE=;
- b=H+swUE3L8cC6c/v4nvasWPIM9K2HKWlgykcI9bEUlFoS94XnQh4exvL7
- 3cgdHEzx/CjRYxZMrLdTnSadZpR7FYUAZ+mUrwHDKnBfMA9pY0Un4nx/W
- xQbjg16h+AGjQgM7yFPNQDJc96sPE1QILusVSW9He7QdNsC7yYClI3uRP
- IdPSxteynjS4x/v7WgpSoYLnirHI5l2jqvdCWTO3cS3E/2F71wfROQdDn
- QTqvXvB+mehTNAi7yovLCZ8a+O4DqxVQvPWubIGCLUsdVad04jhgYfSLk
- 7ItQrXHQlrLf6kk1Bow0ty+3KjqX6IADe2Fl0U/JmJjpWBstN/pvcc0KD w==;
-X-CSE-ConnectionGUID: cEBuTnM5Qket6xxx3/tHYg==
-X-CSE-MsgGUID: Ux2anW/2RGaLFPCGYrsAmg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11616"; a="65181696"
-X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="65181696"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2025 01:58:07 -0800
-X-CSE-ConnectionGUID: Lm2oLlflQSC1kp0TM9j4hw==
-X-CSE-MsgGUID: Ngod81FhRde+bA+EKWfedw==
+ t=1763461827; x=1794997827;
+ h=message-id:date:mime-version:cc:subject:to:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=DTg8HSKzYhYc0UtMmYZCJi3aMiMc+Fd+bbHdFH316qI=;
+ b=AxNytdSz3ALqbGKyAHvDbSBt8NdoaoBgRQN3Q1N5w0rrZTyanUtJvnMg
+ 7/ZTlJgdYyWB5+omlQo+dd7QVB65cGAnDe4hHVKGZv/m0RzyoycBQ48ch
+ nPpTwO1IzivzqQbO3ti7SZkTSHfhlhVIaTo/AaJfyu6iHeEbdIs6aiNTx
+ D4ipXXlUf6BH1gibpEQnJOSnuhcE0w42bkG6Rup5qIG3tIidfs0OxB6ZW
+ rKSIm/sqVwZatkp1EnPCElYf8po/Msj5YSXlJbaMUS/g6Cj0g0/vRdwR9
+ 6N4bMRH29GNMtOHrZnLNXUX4P1v1Jm24Ra+99eYmDuEYSdCK1LwLKDPJ0 g==;
+X-CSE-ConnectionGUID: +4WBN05SSYOwZpAjaxAYlA==
+X-CSE-MsgGUID: nRSPs/YqRgWX55RWM1ebSA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11616"; a="88128947"
+X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="88128947"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2025 02:30:26 -0800
+X-CSE-ConnectionGUID: 2KIIYLXgTnO3OAIN6h0/kw==
+X-CSE-MsgGUID: H6wIoaj/Rs2vN/Qk3Ug+wQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="195029802"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.125])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2025 01:58:05 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH] drm/i915/display: change pipe order for platforms with big
- joiner
-Date: Tue, 18 Nov 2025 11:58:01 +0200
-Message-ID: <20251118095801.2248786-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
+X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="190947256"
+Received: from blu2-mobl.ccr.corp.intel.com (HELO [10.124.246.21])
+ ([10.124.246.21])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2025 02:30:24 -0800
+Message-ID: <da9af809-9248-4cc4-ae4a-e64a03e43c13@linux.intel.com>
+Date: Tue, 18 Nov 2025 18:30:22 +0800
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Cc: baolu.lu@linux.intel.com,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>,
+ "Saarinen, Jani" <jani.saarinen@intel.com>, matthew.auld@intel.com,
+ iommu@lists.linux.dev
+Subject: Re: REGRESSION on linux-next (next-20251106)
+To: Jason Gunthorpe <jgg@nvidia.com>,
+ "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+References: <4f15cf3b-6fad-4cd8-87e5-6d86c0082673@intel.com>
+ <20251118012944.GA60885@nvidia.com>
+Content-Language: en-US
+From: Baolu Lu <baolu.lu@linux.intel.com>
+In-Reply-To: <20251118012944.GA60885@nvidia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,72 +78,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When big joiner is enabled, it reserves the adjacent pipe as the
-secondary pipe. This happens without the user space knowing, and
-subsequent attempts at using the CRTC with that pipe will fail. If the
-user space does not have a coping mechanism, i.e. trying another pipe,
-this leads to a black screen.
+On 11/18/2025 9:29 AM, Jason Gunthorpe wrote:
+> On Mon, Nov 10, 2025 at 12:06:30PM +0530, Borah, Chaitanya Kumar wrote:
+>> Hello Jason,
+>>
+>> Hope you are doing well. I am Chaitanya from the linux graphics team in
+>> Intel.
+>>
+>> This mail is regarding a regression we are seeing in our CI runs[1] on
+>> linux-next repository.
+>>
+>> Since the version next-20251106 [2], we are seeing our tests timing out
+>> presumably caused by a GPU Hang.
+>>
+>> `````````````````````````````````````````````````````````````````````````````````
+>> <6> [490.872058] i915 0000:00:02.0: [drm] Got hung context on vcs0 with
+>> active request 939:2 [0x1004] not yet started
+>> <6> [490.875244] i915 0000:00:02.0: [drm] GPU HANG: ecode 12:4:baffffff
+>> <7> [496.424189] i915 0000:00:02.0: [drm:intel_guc_context_reset_process_msg
+>> [i915]] GT1: GUC: Got context reset notification: 0x1004 on vcs0, exiting =
+>> no, banned = no
+>> <6> [496.921551] i915 0000:00:02.0: [drm] Got hung context on vcs0 with
+>> active request 939:2 [0x1004] not yet started
+>> <6> [496.924799] i915 0000:00:02.0: [drm] GPU HANG: ecode 12:4:baffffff
+>> <4> [499.946641] [IGT] Per-test timeout exceeded. Killing the current test
+>> with SIGQUIT.
+>> `````````````````````````````````````````````````````````````````````````````````
+>> Details log can be found in [3].
+> Chaitanya, can you check these two debugging patches:
+> 
+> https://github.com/jgunthorpe/linux/commits/for-borah
+> 
+> 10635ad3ff26a0 DEBUGGING: Force flush the whole cpu cache for the page table on every map operation
+> 2789602b882499 DEBUGGING: Force flush the whole iotlb on every map operation
+> 
+> Please run a test with each of them applied*individually* and report
+> back what changes in the test. The "cpu cache" one may oops or
+> something, we are just looking to see if it gets past the error Kevin
+> pointed to:
+> 
+> <7>[   67.231149] [IGT] gem_exec_gttfill: starting subtest basic
+> [..]
+> <5>[   68.824598] i915 0000:00:02.0: Using 46-bit DMA addresses
+> <3>[   68.825482] i915 0000:00:02.0: [drm]*ERROR* GT0: GUC: CT: Failed to process request 6000 (-EOPNOTSUPP)
+> 
+> I could not test these patches so they may not work at all..
 
-If the platform allows joining A+B, map the CRTCs to pipes in order A,
-C, B, and D to trick userspace to using pipes that are more likely to be
-available for joining.
+I applied and tested both debugging patches separately, but the failures
+persist. And I also tried to flush all TLB caches by adding
+flush_tlb_all() in the iommu mapping path. It doesn't help either.
 
-Although there are currently no platforms with more than four pipes, add
-a fallback for initializing the rest of the pipes to not miss them.
+diff --git a/drivers/iommu/intel/iommu.c b/drivers/iommu/intel/iommu.c
+index 2d2f64ce2bc6..59a00235032b 100644
+--- a/drivers/iommu/intel/iommu.c
++++ b/drivers/iommu/intel/iommu.c
+@@ -3484,6 +3484,8 @@ static int intel_iommu_iotlb_sync_map(struct 
+iommu_domain *domain,
+  {
+         struct dmar_domain *dmar_domain = to_dmar_domain(domain);
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-
----
-
-Let's see what breaks...
----
- .../drm/i915/display/intel_display_driver.c   | 26 ++++++++++++++++++-
- 1 file changed, 25 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index 7e000ba3e08b..83aad727017b 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -452,6 +452,7 @@ bool intel_display_driver_check_access(struct intel_display *display)
- /* part #2: call after irq install, but before gem init */
- int intel_display_driver_probe_nogem(struct intel_display *display)
- {
-+	u8 pipe_mask = U8_MAX;
- 	enum pipe pipe;
- 	int ret;
- 
-@@ -470,7 +471,30 @@ int intel_display_driver_probe_nogem(struct intel_display *display)
- 		    INTEL_NUM_PIPES(display),
- 		    INTEL_NUM_PIPES(display) > 1 ? "s" : "");
- 
--	for_each_pipe(display, pipe) {
-+	/*
-+	 * If we have a joiner that can join A+B, expose the pipes in order A,
-+	 * C, B, D to trick user space into using pipes that are more likely to
-+	 * be available for both a) user space if pipe B has been reserved for
-+	 * the joiner, and b) the joiner if pipe A doesn't need the joiner.
-+	 *
-+	 * Fall back to normal initialization for the remaining pipes, if any.
-+	 */
-+	if (HAS_BIGJOINER(display) && DISPLAY_VER(display) >= 12) {
-+		enum pipe pipe_order[] = { PIPE_A, PIPE_C, PIPE_B, PIPE_D };
-+		int i;
++       flush_tlb_all();
 +
-+		for (i = 0; i < ARRAY_SIZE(pipe_order); i++) {
-+			pipe = pipe_order[i];
-+
-+			ret = intel_crtc_init(display, pipe);
-+			if (ret)
-+				goto err_mode_config;
-+
-+			pipe_mask &= ~BIT(pipe);
-+		}
-+	}
-+
-+	for_each_pipe_masked(display, pipe, pipe_mask) {
- 		ret = intel_crtc_init(display, pipe);
- 		if (ret)
- 			goto err_mode_config;
--- 
-2.47.3
+         if (dmar_domain->iotlb_sync_map)
+                 cache_tag_flush_range_np(dmar_domain, iova, iova + size 
+- 1);
 
+Thanks,
+baolu
