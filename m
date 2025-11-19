@@ -2,58 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F062C70B5E
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Nov 2025 19:53:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 525FFC70B61
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Nov 2025 19:53:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9959D10E683;
-	Wed, 19 Nov 2025 18:53:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DED8A10E688;
+	Wed, 19 Nov 2025 18:53:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="chuUxBf9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Su3syzyG";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22FB710E67C;
- Wed, 19 Nov 2025 18:53:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4B6210E689;
+ Wed, 19 Nov 2025 18:53:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763578406; x=1795114406;
+ t=1763578411; x=1795114411;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=b1Aw1ZfEIOvtAc/PHUGWv4wOOOobrYfcwHg8Vc4mQ5s=;
- b=chuUxBf96Cyn0/WOKBSkYhaiB1Bt/lSIYp4oWijkARswZMRYRFCLPhUF
- Z2rdUt4nEXcfK1hop39By2AWexeS1DNuaV/m3DM8rvQ7nk7pGKX29JL09
- KwjTsjWP/Jlw1brg8fIo3gFArkPle27ndCEG85BjxOU/eQWZkEnXJuSIH
- 3oZvzRtq3JBbhDInfvBAN4zFt6dh5Z/fo7LYdhBWip8k5G0bQsbOL9ut/
- m9V7ZJSTY/cRur2VV3GyqPjsD8QBzPVp6DxmrUZi8DFdNml3A0jaDGVb3
- m9GR+skh1ZH7kLpIgej4avQZBnBJvJm/1UB5pdrDdKatjfePXoejdqoor A==;
-X-CSE-ConnectionGUID: Rzu5rnp0SNuG/I0C3V4o0Q==
-X-CSE-MsgGUID: SfVardy5SbC0az5kJdUjCg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11618"; a="65672351"
-X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; d="scan'208";a="65672351"
+ bh=wroKjEttzOaEzOWrvo1xkV1OxHMG6bWsXM9fK/B2+RA=;
+ b=Su3syzyGC5Srfn7reHrWuqnIFNJx73CTPsf/tVRyn3+Z6w7Y/uF96oDd
+ HEoRHt1l5Y/S2xquS3RRDhEPcugKgfmtd5F9EcOwwYIakjuM5+CcSfnHm
+ zV3Hq8zfK+IiTXjCvEa4l+KGXqAkB0rfpF3aAEsgR5cOIS3RkOM9mWBGL
+ u6S306OeewOgh0e/aqIv5xFXIa5U06f9F6l0g3kupjXthyooMDB/wAcVg
+ xQm7hAu87b6WJI6wDGAnUX9f2YAZsIEAvPynMeu2DpRa0iyBIr1urydgZ
+ AX3Ulwn/cX3tjYPfmlOnltNtGqQnudjvs9JHVbPW4GK9yYI6m8Tl6U8/B g==;
+X-CSE-ConnectionGUID: 8UDsVZr4SZyaj+P2O1iEDQ==
+X-CSE-MsgGUID: VTC1Br6mRD+gZ3w8/J2sOQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11618"; a="65672362"
+X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; d="scan'208";a="65672362"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2025 10:53:26 -0800
-X-CSE-ConnectionGUID: 7TItPjB3R2qprXL5XWy4WQ==
-X-CSE-MsgGUID: hsQ7g6PfQW2yW+lHIIUffg==
+ 19 Nov 2025 10:53:30 -0800
+X-CSE-ConnectionGUID: DdDiL2IBQI65GnFZuotu5w==
+X-CSE-MsgGUID: 2lintlWKRky2jYVxLjoC1g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; d="scan'208";a="196279699"
+X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; d="scan'208";a="196279719"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.187])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2025 10:53:24 -0800
+ 19 Nov 2025 10:53:29 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH v2 06/13] drm/i915: move dram_info to struct intel_display
-Date: Wed, 19 Nov 2025 20:52:45 +0200
-Message-ID: <cbbca93003952ea24ae60e66d79d901dba78ccd8.1763578288.git.jani.nikula@intel.com>
+Subject: [PATCH v2 07/13] drm/i915: move intel_rom.[ch] from soc/ to display/
+Date: Wed, 19 Nov 2025 20:52:46 +0200
+Message-ID: <352ec255a6e9b81c7d1e35d8fbf7018d4049d4d3.1763578288.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1763578288.git.jani.nikula@intel.com>
 References: <cover.1763578288.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,105 +71,122 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With all of dram code under display, also move dram_info to struct
-intel_display.
+The sole user of intel_rom.[ch] has always been in display. Move them
+under display.
 
-This further cleans up struct xe_device from display related members.
+This allows us to remove the compat soc/intel_rom.h from xe, as well as
+the Makefile rules to build anything from soc/.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_core.h | 4 ++++
- drivers/gpu/drm/i915/display/intel_dram.c         | 7 ++-----
- drivers/gpu/drm/i915/i915_drv.h                   | 3 ---
- drivers/gpu/drm/xe/xe_device_types.h              | 2 --
- 4 files changed, 6 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/Makefile                          |  4 ++--
+ drivers/gpu/drm/i915/display/intel_bios.c              |  3 +--
+ drivers/gpu/drm/i915/{soc => display}/intel_rom.c      |  0
+ drivers/gpu/drm/i915/{soc => display}/intel_rom.h      |  0
+ drivers/gpu/drm/xe/Makefile                            | 10 +---------
+ drivers/gpu/drm/xe/compat-i915-headers/soc/intel_rom.h |  6 ------
+ 6 files changed, 4 insertions(+), 19 deletions(-)
+ rename drivers/gpu/drm/i915/{soc => display}/intel_rom.c (100%)
+ rename drivers/gpu/drm/i915/{soc => display}/intel_rom.h (100%)
+ delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/soc/intel_rom.h
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 9b8414b77c15..9b36654b593d 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -394,6 +394,10 @@ struct intel_display {
- 		u32 mmio_base;
- 	} dsi;
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index 838c8e58e4a2..12f948f0062c 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -58,8 +58,7 @@ i915-y += \
  
-+	struct {
-+		const struct dram_info *info;
-+	} dram;
-+
- 	struct {
- 		/* list of fbdev register on this device */
- 		struct intel_fbdev *fbdev;
-diff --git a/drivers/gpu/drm/i915/display/intel_dram.c b/drivers/gpu/drm/i915/display/intel_dram.c
-index 3dfcc7938740..b078fd9fe3c0 100644
---- a/drivers/gpu/drm/i915/display/intel_dram.c
-+++ b/drivers/gpu/drm/i915/display/intel_dram.c
-@@ -817,7 +817,6 @@ static int xelpdp_get_dram_info(struct intel_display *display, struct dram_info
+ # core peripheral code
+ i915-y += \
+-	soc/intel_gmch.o \
+-	soc/intel_rom.o
++	soc/intel_gmch.o
  
- int intel_dram_detect(struct intel_display *display)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	struct dram_info *dram_info;
- 	int ret;
+ # core library code
+ i915-y += \
+@@ -303,6 +302,7 @@ i915-y += \
+ 	display/intel_pmdemand.o \
+ 	display/intel_psr.o \
+ 	display/intel_quirks.o \
++	display/intel_rom.o \
+ 	display/intel_sbi.o \
+ 	display/intel_sprite.o \
+ 	display/intel_sprite_uapi.o \
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index 4b41068e9e35..a639c5eb3245 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -34,14 +34,13 @@
+ #include <drm/drm_fixed.h>
+ #include <drm/drm_print.h>
  
-@@ -828,7 +827,7 @@ int intel_dram_detect(struct intel_display *display)
- 	if (!dram_info)
- 		return -ENOMEM;
- 
--	i915->dram_info = dram_info;
-+	display->dram.info = dram_info;
- 
- 	if (DISPLAY_VER(display) >= 14)
- 		ret = xelpdp_get_dram_info(display, dram_info);
-@@ -865,7 +864,5 @@ int intel_dram_detect(struct intel_display *display)
-  */
- const struct dram_info *intel_dram_info(struct intel_display *display)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
+-#include "soc/intel_rom.h"
 -
--	return i915->dram_info;
-+	return display->dram.info;
- }
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 5381a934a671..96af7776bee5 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -60,7 +60,6 @@
- #include "intel_step.h"
- #include "intel_uncore.h"
+ #include "intel_display.h"
+ #include "intel_display_core.h"
+ #include "intel_display_rpm.h"
+ #include "intel_display_types.h"
+ #include "intel_display_utils.h"
+ #include "intel_gmbus.h"
++#include "intel_rom.h"
  
--struct dram_info;
- struct drm_i915_clock_gating_funcs;
- struct intel_display;
- struct intel_pxp;
-@@ -279,8 +278,6 @@ struct drm_i915_private {
- 	u32 suspend_count;
- 	struct vlv_s0ix_state *vlv_s0ix_state;
+ #define _INTEL_BIOS_PRIVATE
+ #include "intel_vbt_defs.h"
+diff --git a/drivers/gpu/drm/i915/soc/intel_rom.c b/drivers/gpu/drm/i915/display/intel_rom.c
+similarity index 100%
+rename from drivers/gpu/drm/i915/soc/intel_rom.c
+rename to drivers/gpu/drm/i915/display/intel_rom.c
+diff --git a/drivers/gpu/drm/i915/soc/intel_rom.h b/drivers/gpu/drm/i915/display/intel_rom.h
+similarity index 100%
+rename from drivers/gpu/drm/i915/soc/intel_rom.h
+rename to drivers/gpu/drm/i915/display/intel_rom.h
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 85642340a8fa..9331212117a1 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -195,11 +195,6 @@ subdir-ccflags-$(CONFIG_DRM_XE_DISPLAY) += \
+ 	-I$(srctree)/drivers/gpu/drm/i915/display/ \
+ 	-Ddrm_i915_private=xe_device
  
--	const struct dram_info *dram_info;
+-# Rule to build SOC code shared with i915
+-$(obj)/i915-soc/%.o: $(srctree)/drivers/gpu/drm/i915/soc/%.c FORCE
+-	$(call cmd,force_checksrc)
+-	$(call if_changed_rule,cc_o_c)
 -
- 	struct intel_runtime_pm runtime_pm;
+ # Rule to build display code shared with i915
+ $(obj)/i915-display/%.o: $(srctree)/drivers/gpu/drm/i915/display/%.c FORCE
+ 	$(call cmd,force_checksrc)
+@@ -222,10 +217,6 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+ 	display/xe_stolen.o \
+ 	display/xe_tdf.o
  
- 	struct i915_perf perf;
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index a072c020b84b..6ce3247d1bd8 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -35,7 +35,6 @@
- #define TEST_VM_OPS_ERROR
- #endif
- 
--struct dram_info;
- struct intel_display;
- struct intel_dg_nvm_dev;
- struct xe_ggtt;
-@@ -648,7 +647,6 @@ struct xe_device {
- 	 * drm_i915_private during build. After cleanup these should go away,
- 	 * migrating to the right sub-structs
- 	 */
--	const struct dram_info *dram_info;
- 
- 	struct intel_uncore {
- 		spinlock_t lock;
+-# SOC code shared with i915
+-xe-$(CONFIG_DRM_XE_DISPLAY) += \
+-	i915-soc/intel_rom.o
+-
+ # Display code shared with i915
+ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+ 	i915-display/icl_dsi.o \
+@@ -312,6 +303,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+ 	i915-display/intel_psr.o \
+ 	i915-display/intel_qp_tables.o \
+ 	i915-display/intel_quirks.o \
++	i915-display/intel_rom.o \
+ 	i915-display/intel_snps_hdmi_pll.o \
+ 	i915-display/intel_snps_phy.o \
+ 	i915-display/intel_tc.o \
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/soc/intel_rom.h b/drivers/gpu/drm/xe/compat-i915-headers/soc/intel_rom.h
+deleted file mode 100644
+index 05cbfb697b2b..000000000000
+--- a/drivers/gpu/drm/xe/compat-i915-headers/soc/intel_rom.h
++++ /dev/null
+@@ -1,6 +0,0 @@
+-/* SPDX-License-Identifier: MIT */
+-/*
+- * Copyright © 2024 Intel Corporation
+- */
+-
+-#include "../../../i915/soc/intel_rom.h"
 -- 
 2.47.3
 
