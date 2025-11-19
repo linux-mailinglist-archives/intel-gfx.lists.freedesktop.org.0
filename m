@@ -2,55 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1EBBC6E2A7
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E471C6E2A4
 	for <lists+intel-gfx@lfdr.de>; Wed, 19 Nov 2025 12:13:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2383910E5E8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0808210E5DF;
 	Wed, 19 Nov 2025 11:13:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aat0fJ4W";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QFp5Ff9V";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A4E010E5DE;
- Wed, 19 Nov 2025 11:13:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1E1C10E5E7;
+ Wed, 19 Nov 2025 11:13:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763550796; x=1795086796;
+ t=1763550798; x=1795086798;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4y8t/uHHhgcqUFS20O7driq4UDwMNE8L/DtNngGFgT8=;
- b=aat0fJ4WYmj3iz+4DUA6olXfzfAd/7bXaQlie2HEbpE1fI6jQGcKKj7b
- D5oFMN4qGZ1Ev+NGaQMCuRH4p/1Zz0ygfJXIaJf+oMPO31QXzXQUPwFbs
- Wx28FAPxoNMeTI58/N8zOD7ZyFBSh3f+sVrNKFrg/I2Bu7e4i31TwwK74
- TMg9Cp4aEV9PU4hFxgrlbhZl6iUTyH0rqkixrJy0HQ9T6I2UKe32csaTm
- jDgs+1qsGefi4H9iizR3n2tFdjshvBAmC120AEPG6gn6NtVn1078GrdVC
- qT0jDuSCAG2uFnSlTmoIcHx3vvU6oyjdXpyRgi6kRU/68mzbWcGI7dseN g==;
-X-CSE-ConnectionGUID: yHRDHxp6SAyypwPGm7lOaw==
-X-CSE-MsgGUID: FDx7h+LMQ1Oh0HRdeI5SVA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11617"; a="88241623"
-X-IronPort-AV: E=Sophos;i="6.19,315,1754982000"; d="scan'208";a="88241623"
+ bh=zkMYoq/Q0BFSBigGA46xdb53hY4N2YGQdVNNQNDYvd4=;
+ b=QFp5Ff9V8Ns+D7p92LdoA5Hp7vWQthVjgtaMt7U2GALy3tiT8Oc0063+
+ P1GvbExSeN+5sCIm5Lm66JV9o/tSbvYtGKcLwXqDyjklV3EH7/WafIZDs
+ 43irwsrAZjUlmot9W9EPruOsl1OVrs7gF3Knf3H1S+GjfL2ZgN224nAJw
+ cEFQlJu5NV5gl2l3NZeHF/Tvrs5Q6r+Xjpbom9KUcLE5pQqaj/+EWCXiN
+ 7MsgQ0WmAJIT0FWXJ5SNdo5D3lXPYNAtduzj07ZJqcmF1rABgcPWJcU0c
+ lgz7GMn6W34McjXDm0YSQ/h/bTRmnITIS2EhUepdQBebKW637g0ujrmtO A==;
+X-CSE-ConnectionGUID: OSP0eZliRrCa98+ggaJm7w==
+X-CSE-MsgGUID: Zf87+zJ8RkiIxL/GORTCkA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11617"; a="88241625"
+X-IronPort-AV: E=Sophos;i="6.19,315,1754982000"; d="scan'208";a="88241625"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2025 03:13:16 -0800
-X-CSE-ConnectionGUID: g0HgK3ZGQbuiYfyHu7A7Fg==
-X-CSE-MsgGUID: RLLsfjx0TcWDs0ebz7qEtQ==
+ 19 Nov 2025 03:13:18 -0800
+X-CSE-ConnectionGUID: pm4Arg7CTWWBNgBFLQRA/A==
+X-CSE-MsgGUID: rEGW3ovdTG6FShBqAW4kHg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,315,1754982000"; d="scan'208";a="191816425"
+X-IronPort-AV: E=Sophos;i="6.19,315,1754982000"; d="scan'208";a="191816436"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.203])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2025 03:13:14 -0800
+ 19 Nov 2025 03:13:16 -0800
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org,
  Kamil Konieczny <kamil.konieczny@linux.intel.com>,
  Krzysztof Karas <krzysztof.karas@intel.com>,
  Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Subject: [PATCH i-g-t 2/3] tests/intel/gem_eio: Convert stress subtests to
- dynamic
-Date: Wed, 19 Nov 2025 11:57:21 +0100
-Message-ID: <20251119111205.1297907-7-janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH i-g-t 3/3] tests/intel/gem_eio: Avoid skips in stress subtests
+Date: Wed, 19 Nov 2025 11:57:22 +0100
+Message-ID: <20251119111205.1297907-8-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.51.1
 In-Reply-To: <20251119111205.1297907-5-janusz.krzysztofik@linux.intel.com>
 References: <20251119111205.1297907-5-janusz.krzysztofik@linux.intel.com>
@@ -71,75 +70,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-These subtests used to succeed silently if we were not able to collect
-enough measurements for median value calculation in a predetermined time
-period.  We've fixed that issue to some extent by extending those time
-periods to a maximum limited only by per-test timeout used in CI, and
-returning skips if that still occurs to short.  However, since those
-subtests exercise each physical engine one after another, we can limit the
-impact of the CI per-test timeout by converting them to dynamic, so each
-engine is exercised in a separate dynamic sub-subtest that gets its own
-per-test timeout slot.  Go for it.
+Now that the subtests have been converted to dymamic, and each dynamic
+sub-subtest gets its own pre-test timeout slot, avoid skips on too few
+measurements collected within a presumed time limit by still extending
+that limit, now with no risk of per-test timeout expiration.
 
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15178
 Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 ---
- tests/intel/gem_eio.c | 29 ++++++++++++++++-------------
- 1 file changed, 16 insertions(+), 13 deletions(-)
+ tests/intel/gem_eio.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/tests/intel/gem_eio.c b/tests/intel/gem_eio.c
-index b9c4cdc436..5981ae4d71 100644
+index 5981ae4d71..16dbb57a04 100644
 --- a/tests/intel/gem_eio.c
 +++ b/tests/intel/gem_eio.c
-@@ -995,22 +995,25 @@ static void reset_stress(int fd, uint64_t ahnd, const intel_ctx_t *ctx0,
-  */
- static void test_reset_stress(int fd, unsigned int flags)
- {
--	const intel_ctx_t *ctx0 = context_create_safe(fd);
--	uint64_t ahnd = get_reloc_ahnd(fd, ctx0->id);
--
- 	for_each_physical_ring(e, fd) {
--		struct intel_execution_engine2 engine;
-+		const intel_ctx_t *ctx0 = NULL;
-+		uint64_t ahnd = 0;
+@@ -931,7 +931,7 @@ static void reset_stress(int fd, uint64_t ahnd, const intel_ctx_t *ctx0,
+ 	gem_write(fd, obj.handle, 0, &bbe, sizeof(bbe));
  
--		engine = gem_eb_flags_to_engine(eb_ring(e));
-+		igt_dynamic(e->name) {
-+			struct intel_execution_engine2 engine;
- 
--		if (gem_engine_can_block_ggtt_binder(fd, &engine))
--			continue;
-+			engine = gem_eb_flags_to_engine(eb_ring(e));
-+			igt_skip_on(gem_engine_can_block_ggtt_binder(fd, &engine));
- 
--		reset_stress(fd, ahnd, ctx0, e->name, eb_ring(e), flags);
--	}
-+			ctx0 = context_create_safe(fd);
-+			ahnd = get_reloc_ahnd(fd, ctx0->id);
- 
--	intel_ctx_destroy(fd, ctx0);
--	put_ahnd(ahnd);
-+			reset_stress(fd, ahnd, ctx0, e->name, eb_ring(e), flags);
-+		}
-+
-+		put_ahnd(ahnd);
-+		intel_ctx_destroy(fd, ctx0);
-+	}
- }
- 
- /*
-@@ -1154,10 +1157,10 @@ igt_main
- 			igt_require(gem_has_contexts(fd));
- 		}
- 
--		igt_subtest("reset-stress")
-+		igt_subtest_with_dynamic("reset-stress")
- 			test_reset_stress(fd, 0);
- 
--		igt_subtest("unwedge-stress")
-+		igt_subtest_with_dynamic("unwedge-stress")
- 			test_reset_stress(fd, TEST_WEDGE);
- 	}
- 
+ 	igt_stats_init(&stats);
+-	igt_until_timeout(20) {
++	igt_until_timeout(30) {
+ 		const intel_ctx_t *ctx = context_create_safe(fd);
+ 		igt_spin_t *hang;
+ 		unsigned int i;
 -- 
 2.51.1
 
