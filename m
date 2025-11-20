@@ -2,57 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38153C74A5C
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Nov 2025 15:49:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 80445C74AA1
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Nov 2025 15:53:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC60510E75E;
-	Thu, 20 Nov 2025 14:49:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05E4810E763;
+	Thu, 20 Nov 2025 14:53:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D4haGhHZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TliSlvmx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2208910E2A9;
- Thu, 20 Nov 2025 14:49:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7689310E763;
+ Thu, 20 Nov 2025 14:53:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763650156; x=1795186156;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=lFyZY6LPNtjX76oiKyculILB37UJIe/X7PqOyoqT41E=;
- b=D4haGhHZPDvJyGDlsEHvlTd6QQLnsJoOLtGomjs58gjSbd9bI1O1w2Xg
- gMxHMLSZy4wN9yj1YkcYTN0XPdN3weO4AYO8ojqQ4e0WWRk0lrQP0j3xX
- 4PC4pIDcyXwICTK7TXOPiUPgHDrLUbLi3+0Cd7/6W5IcIjZtHpUqDpKNz
- tE+QxyfNUJe01wmzqVHB93ZPPRzr69FZ/shKBblrULUMIBcn5rn9V8+sm
- J4KH+czZoOEcfgy4QfChb1XoBBMiDl2WaysAOK+K97eTkAca3hadI49kD
- vzB0z8UMMD0G3G4pD9pG6Tw+siZ+8o4nx6PsvhFgv6YmIuj9zM5qvO+Re A==;
-X-CSE-ConnectionGUID: tUTj83sZS4+5ioPsMSW3jQ==
-X-CSE-MsgGUID: OtUITxI3TomLwQZAhwij2g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11619"; a="65652324"
-X-IronPort-AV: E=Sophos;i="6.20,213,1758610800"; d="scan'208";a="65652324"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2025 06:49:15 -0800
-X-CSE-ConnectionGUID: lUk+tnyZSR2cp30HrzPKpA==
-X-CSE-MsgGUID: xQ5GvflkSuK1WFERPwQ1qg==
+ t=1763650403; x=1795186403;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=A53gM0VQuToK1jhI0e4o+wPaI7RV3327DVqZXXNAP3Q=;
+ b=TliSlvmx4mcVFx7CcsRhLyN3TIModCbAfQV8km7hfGekIxbtK19U5Vcm
+ 6WD5Dpv+SMg0zK0vv942vx7QHhFsZJ7k2xrekVJH1VZhOlKg3nAdqPqt6
+ z9ct78W0g4QDpc2PD4+VK0ZanteIpeys3Y0WW1SogxpxaX/rsyz+FCn1V
+ xuz/xnwCCpaB2FywY4GsadHBBsWb8v43kLFRpm1cu/FLFF54EGZbBbB24
+ 6fNQxOivtvbZmX2MwwcFCABnx6XOJmOTaDIyFnV4bh2xziWJsDTIQxI4C
+ k2tox1p/l2yjqomsLIK3S8rPjZp9s+oaVN8Af+etpCIwfOEHQ2IzgF5wg A==;
+X-CSE-ConnectionGUID: nIbZS/FwQzS0HL94ct+cNQ==
+X-CSE-MsgGUID: YypoK64OTZGAtj3CJHqX6g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11619"; a="77080720"
+X-IronPort-AV: E=Sophos;i="6.20,213,1758610800"; d="scan'208";a="77080720"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2025 06:53:22 -0800
+X-CSE-ConnectionGUID: JTcC2CIWR8KIlZ31VkjezA==
+X-CSE-MsgGUID: Or8MRcklSL+F63xIws0gLQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,213,1758610800"; d="scan'208";a="190669402"
+X-IronPort-AV: E=Sophos;i="6.20,213,1758610800"; d="scan'208";a="191413120"
 Received: from inaky-mobl1.amr.corp.intel.com (HELO localhost)
  ([10.245.244.92])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2025 06:49:15 -0800
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm/i915: Walk crtcs in pipe order
-Date: Thu, 20 Nov 2025 16:49:10 +0200
-Message-ID: <20251120144910.13028-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.49.1
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2025 06:53:20 -0800
+Date: Thu, 20 Nov 2025 16:53:16 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v3] drm/i915/display: change pipe allocation order for
+ discrete platforms
+Message-ID: <aR8rXMvxITI2VINk@intel.com>
+References: <20251119153321.2640969-1-jani.nikula@intel.com>
+ <aR39Rlq9kENqpBEl@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <aR39Rlq9kENqpBEl@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,272 +73,159 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
+On Wed, Nov 19, 2025 at 07:24:22PM +0200, Ville Syrj‰l‰ wrote:
+> On Wed, Nov 19, 2025 at 05:33:21PM +0200, Jani Nikula wrote:
+> > When big joiner is enabled, it reserves the adjacent pipe as the
+> > secondary pipe. This happens without the user space knowing, and
+> > subsequent attempts at using the CRTC with that pipe will fail. If the
+> > user space does not have a coping mechanism, i.e. trying another CRTC,
+> > this leads to a black screen.
+> > 
+> > Try to reduce the impact of the problem on discrete platforms by mapping
+> > the CRTCs to pipes in order A, C, B, and D. If the user space reserves
+> > CRTCs in order, this should trick it to using pipes that are more likely
+> > to be available for and after joining.
+> > 
+> > Limit this to discrete platforms, which have four pipes, and no eDP, a
+> > combination that should benefit the most with least drawbacks.
+> > 
+> > Although there are currently no platforms with more than four pipes, add
+> > a fallback for initializing the rest of the pipes to not miss them.
+> > 
+> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> > 
+> > ---
+> > 
+> > v2: Also remove WARN_ON()
+> > 
+> > v3: Limit to discrete
+> > 
+> > There are a number of issues in IGT with assuming CRTC index == pipe, at
+> > least with CRC and vblank waits. With them being used a lot in tests, we
+> > won't get enough test coverage until they're fixed.
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_crtc.c     |  2 --
+> >  .../drm/i915/display/intel_display_driver.c   | 26 ++++++++++++++++++-
+> >  2 files changed, 25 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+> > index 9d2a23c96c61..11e58d07ddef 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+> > @@ -394,8 +394,6 @@ int intel_crtc_init(struct intel_display *display, enum pipe pipe)
+> >  
+> >  	cpu_latency_qos_add_request(&crtc->vblank_pm_qos, PM_QOS_DEFAULT_VALUE);
+> >  
+> > -	drm_WARN_ON(display->drm, drm_crtc_index(&crtc->base) != crtc->pipe);
+> > -
+> >  	if (HAS_CASF(display))
+> >  		drm_crtc_create_sharpness_strength_property(&crtc->base);
+> >  
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> > index 7e000ba3e08b..b5c9cdf14a43 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> > @@ -452,6 +452,7 @@ bool intel_display_driver_check_access(struct intel_display *display)
+> >  /* part #2: call after irq install, but before gem init */
+> >  int intel_display_driver_probe_nogem(struct intel_display *display)
+> >  {
+> > +	u8 pipe_mask = U8_MAX;
+> >  	enum pipe pipe;
+> >  	int ret;
+> >  
+> > @@ -470,7 +471,30 @@ int intel_display_driver_probe_nogem(struct intel_display *display)
+> >  		    INTEL_NUM_PIPES(display),
+> >  		    INTEL_NUM_PIPES(display) > 1 ? "s" : "");
+> >  
+> > -	for_each_pipe(display, pipe) {
+> > +	/*
+> > +	 * Expose the pipes in order A, C, B, D on discrete platforms to trick
+> > +	 * user space into using pipes that are more likely to be available for
+> > +	 * both a) user space if pipe B has been reserved for the joiner, and b)
+> > +	 * the joiner if pipe A doesn't need the joiner.
+> > +	 *
+> > +	 * Fall back to normal initialization for the remaining pipes, if any.
+> > +	 */
+> > +	if (HAS_BIGJOINER(display) && display->platform.dgfx) {
+> 
+> uncompressed joiner is also a thing.
+> 
+> > +		enum pipe pipe_order[] = { PIPE_A, PIPE_C, PIPE_B, PIPE_D };
+> > +		int i;
+> > +
+> > +		for (i = 0; i < ARRAY_SIZE(pipe_order); i++) {
+> > +			pipe = pipe_order[i];
+> > +
+> > +			ret = intel_crtc_init(display, pipe);
+> > +			if (ret)
+> > +				goto err_mode_config;
+> > +
+> > +			pipe_mask &= ~BIT(pipe);
+> > +		}
+> > +	}
+> 
+> I was thinking it might be easier to just do the B<->C swap inside
+> intel_crtc_init(). Kinda similar how we we already do the plane
+> A<->B swap in intel_primary_plane_create(). But I guess the
+> loop here would become a bit more confusing since it would have
+> to iterate all possible pipes and not just the ones present in
+> the runtime info pipe_mask.
 
-Currently our crtcs are registered in pipe order, and thus
-all the for_intel_crtc*() iterators walk the crtcs in pipe
-order. There are a bunch of places that more or less depend
-on that. Eg. during plane updates and such we want joined
-pipes to be processed back-to-back to give a better chance
-of an atomic update across the whole set.
-
-When we start to register crtcs in a different order we don't
-want to change the order in which the pipes get handled.
-Decouple the for_each_intel_crtc*() iterators from the crtc
-registration order by using a separate list which will be
-sorted by the pipe rather than the crtc index.
-
-We could priobably use a simple array or something, but that
-would require some kind of extra iterator variable for the
-macros, and thus would require a lot more changes. Using
-a linked list keeps the fallout minimal. We can look at
-using a more optimal data structure later.
-
-I also added this extra junk to the atomic state iterators:
-"(__i) = drm_crtc_index(&(crtc)->base), (void)(__i)"
-even though the macro itself no longer needs the "__i" iterator.
-This in case the "__i" is used by the caller, and to
-avoid compiler warnings if it's completely unused now.
-
-Signed-off-by: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_crtc.c     | 20 +++++
- drivers/gpu/drm/i915/display/intel_display.h  | 90 ++++++++-----------
- .../gpu/drm/i915/display/intel_display_core.h |  3 +
- .../drm/i915/display/intel_display_driver.c   |  1 +
- .../drm/i915/display/intel_display_types.h    |  1 +
- drivers/gpu/drm/xe/display/xe_display.c       |  1 +
- 6 files changed, 64 insertions(+), 52 deletions(-)
+Gave this a quick try and I don't think it looks all that bad.
+Shrug.
 
 diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 153ff4b4b52c..7ebbde716238 100644
+index 7ebbde716238..9279c76216ca 100644
 --- a/drivers/gpu/drm/i915/display/intel_crtc.c
 +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -209,6 +209,8 @@ static struct intel_crtc *intel_crtc_alloc(void)
- 	crtc->base.state = &crtc_state->uapi;
- 	crtc->config = crtc_state;
- 
-+	INIT_LIST_HEAD(&crtc->pipe_head);
-+
- 	return crtc;
+@@ -326,6 +326,21 @@ static void add_crtc_to_pipe_list(struct intel_display *display, struct intel_cr
+ 	list_add_tail(&crtc->pipe_head, &display->pipe_list);
  }
  
-@@ -222,6 +224,8 @@ static void intel_crtc_destroy(struct drm_crtc *_crtc)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(_crtc);
- 
-+	list_del(&crtc->pipe_head);
-+
- 	cpu_latency_qos_remove_request(&crtc->vblank_pm_qos);
- 
- 	drm_crtc_cleanup(&crtc->base);
-@@ -308,6 +312,20 @@ static const struct drm_crtc_funcs i8xx_crtc_funcs = {
- 	.get_vblank_timestamp = intel_crtc_get_vblank_timestamp,
- };
- 
-+static void add_crtc_to_pipe_list(struct intel_display *display, struct intel_crtc *crtc)
++static enum pipe reorder_pipe(struct intel_display *display, enum pipe pipe)
 +{
-+	struct intel_crtc *iter;
++	if (!display->platform.dgfx)
++		return pipe;
 +
-+	list_for_each_entry(iter, &display->pipe_list, pipe_head) {
-+		if (iter->pipe > crtc->pipe) {
-+			list_add_tail(&crtc->pipe_head, &iter->pipe_head);
-+			return;
-+		}
++	switch (pipe) {
++	case PIPE_B:
++		return PIPE_C;
++	case PIPE_C:
++		return PIPE_B;
++	default:
++		return pipe;
 +	}
-+
-+	list_add_tail(&crtc->pipe_head, &display->pipe_list);
 +}
 +
  int intel_crtc_init(struct intel_display *display, enum pipe pipe)
  {
  	struct intel_plane *primary, *cursor;
-@@ -398,6 +416,8 @@ int intel_crtc_init(struct intel_display *display, enum pipe pipe)
- 	if (HAS_CASF(display))
- 		drm_crtc_create_sharpness_strength_property(&crtc->base);
+@@ -333,6 +348,11 @@ int intel_crtc_init(struct intel_display *display, enum pipe pipe)
+ 	struct intel_crtc *crtc;
+ 	int sprite, ret;
  
-+	add_crtc_to_pipe_list(display, crtc);
++	pipe = reorder_pipe(display, pipe);
 +
- 	return 0;
- 
- fail:
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index bcc6ccb69d2b..ac83d4f09bb9 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -238,22 +238,23 @@ enum phy_fia {
- 			    base.head)					\
- 		for_each_if((intel_plane)->pipe == (intel_crtc)->pipe)
- 
--#define for_each_intel_crtc(dev, intel_crtc)				\
--	list_for_each_entry(intel_crtc,					\
--			    &(dev)->mode_config.crtc_list,		\
--			    base.head)
-+#define for_each_intel_crtc(dev, crtc) \
-+	list_for_each_entry((crtc), \
-+			    &to_intel_display(dev)->pipe_list, \
-+			    pipe_head)
- 
--#define for_each_intel_crtc_in_pipe_mask(dev, intel_crtc, pipe_mask)	\
--	list_for_each_entry(intel_crtc,					\
--			    &(dev)->mode_config.crtc_list,		\
--			    base.head)					\
--		for_each_if((pipe_mask) & BIT(intel_crtc->pipe))
-+#define for_each_intel_crtc_reverse(dev, crtc) \
-+	list_for_each_entry_reverse((crtc), \
-+				    &to_intel_display(dev)->pipe_list, \
-+				    pipe_head)
- 
--#define for_each_intel_crtc_in_pipe_mask_reverse(dev, intel_crtc, pipe_mask)	\
--	list_for_each_entry_reverse((intel_crtc),				\
--				    &(dev)->mode_config.crtc_list,		\
--				    base.head)					\
--		for_each_if((pipe_mask) & BIT((intel_crtc)->pipe))
-+#define for_each_intel_crtc_in_pipe_mask(dev, crtc, pipe_mask) \
-+	for_each_intel_crtc((dev), (crtc)) \
-+		for_each_if((pipe_mask) & BIT((crtc)->pipe))
++	if ((DISPLAY_RUNTIME_INFO(display)->pipe_mask & BIT(pipe)) == 0)
++		return 0;
 +
-+#define for_each_intel_crtc_in_pipe_mask_reverse(dev, crtc, pipe_mask) \
-+	for_each_intel_crtc_reverse((dev), (crtc)) \
-+		for_each_if((pipe_mask) & BIT((crtc)->pipe))
- 
- #define for_each_intel_encoder(dev, intel_encoder)		\
- 	list_for_each_entry(intel_encoder,			\
-@@ -295,14 +296,6 @@ enum phy_fia {
- 	     (__i)++) \
- 		for_each_if(plane)
- 
--#define for_each_old_intel_crtc_in_state(__state, crtc, old_crtc_state, __i) \
--	for ((__i) = 0; \
--	     (__i) < (__state)->base.dev->mode_config.num_crtc && \
--		     ((crtc) = to_intel_crtc((__state)->base.crtcs[__i].ptr), \
--		      (old_crtc_state) = to_intel_crtc_state((__state)->base.crtcs[__i].old_state), 1); \
--	     (__i)++) \
--		for_each_if(crtc)
--
- #define for_each_new_intel_plane_in_state(__state, plane, new_plane_state, __i) \
- 	for ((__i) = 0; \
- 	     (__i) < (__state)->base.dev->mode_config.num_total_plane && \
-@@ -311,22 +304,6 @@ enum phy_fia {
- 	     (__i)++) \
- 		for_each_if(plane)
- 
--#define for_each_new_intel_crtc_in_state(__state, crtc, new_crtc_state, __i) \
--	for ((__i) = 0; \
--	     (__i) < (__state)->base.dev->mode_config.num_crtc && \
--		     ((crtc) = to_intel_crtc((__state)->base.crtcs[__i].ptr), \
--		      (new_crtc_state) = to_intel_crtc_state((__state)->base.crtcs[__i].new_state), 1); \
--	     (__i)++) \
--		for_each_if(crtc)
--
--#define for_each_new_intel_crtc_in_state_reverse(__state, crtc, new_crtc_state, __i) \
--	for ((__i) = (__state)->base.dev->mode_config.num_crtc - 1; \
--	     (__i) >= 0  && \
--	     ((crtc) = to_intel_crtc((__state)->base.crtcs[__i].ptr), \
--	      (new_crtc_state) = to_intel_crtc_state((__state)->base.crtcs[__i].new_state), 1); \
--	     (__i)--) \
--		for_each_if(crtc)
--
- #define for_each_oldnew_intel_plane_in_state(__state, plane, old_plane_state, new_plane_state, __i) \
- 	for ((__i) = 0; \
- 	     (__i) < (__state)->base.dev->mode_config.num_total_plane && \
-@@ -336,23 +313,32 @@ enum phy_fia {
- 	     (__i)++) \
- 		for_each_if(plane)
- 
-+#define for_each_old_intel_crtc_in_state(__state, crtc, old_crtc_state, __i) \
-+	for_each_intel_crtc((__state)->base.dev, (crtc)) \
-+		for_each_if(((__i) = drm_crtc_index(&(crtc)->base), (void)(__i), \
-+			     (old_crtc_state) = intel_atomic_get_old_crtc_state((__state), (crtc))))
-+
-+#define for_each_new_intel_crtc_in_state(__state, crtc, new_crtc_state, __i) \
-+	for_each_intel_crtc((__state)->base.dev, (crtc)) \
-+		for_each_if(((__i) = drm_crtc_index(&(crtc)->base), (void)(__i), \
-+			     (new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc))))
-+
-+#define for_each_new_intel_crtc_in_state_reverse(__state, crtc, new_crtc_state, __i) \
-+	for_each_intel_crtc_reverse((__state)->base.dev, (crtc)) \
-+		for_each_if(((__i) = drm_crtc_index(&(crtc)->base), (void)(__i), \
-+			     (new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc))))
-+
- #define for_each_oldnew_intel_crtc_in_state(__state, crtc, old_crtc_state, new_crtc_state, __i) \
--	for ((__i) = 0; \
--	     (__i) < (__state)->base.dev->mode_config.num_crtc && \
--		     ((crtc) = to_intel_crtc((__state)->base.crtcs[__i].ptr), \
--		      (old_crtc_state) = to_intel_crtc_state((__state)->base.crtcs[__i].old_state), \
--		      (new_crtc_state) = to_intel_crtc_state((__state)->base.crtcs[__i].new_state), 1); \
--	     (__i)++) \
--		for_each_if(crtc)
-+	for_each_intel_crtc((__state)->base.dev, (crtc)) \
-+		for_each_if(((__i) = drm_crtc_index(&(crtc)->base), (void)(__i), \
-+			     (old_crtc_state) = intel_atomic_get_old_crtc_state((__state), (crtc)), \
-+			     (new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc))))
- 
- #define for_each_oldnew_intel_crtc_in_state_reverse(__state, crtc, old_crtc_state, new_crtc_state, __i) \
--	for ((__i) = (__state)->base.dev->mode_config.num_crtc - 1; \
--	     (__i) >= 0  && \
--	     ((crtc) = to_intel_crtc((__state)->base.crtcs[__i].ptr), \
--	      (old_crtc_state) = to_intel_crtc_state((__state)->base.crtcs[__i].old_state), \
--	      (new_crtc_state) = to_intel_crtc_state((__state)->base.crtcs[__i].new_state), 1); \
--	     (__i)--) \
--		for_each_if(crtc)
-+	for_each_intel_crtc_reverse((__state)->base.dev, (crtc)) \
-+		for_each_if(((__i) = drm_crtc_index(&(crtc)->base), (void)(__i), \
-+			     (old_crtc_state) = intel_atomic_get_old_crtc_state((__state), (crtc)), \
-+			     (new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc))))
- 
- #define intel_atomic_crtc_state_for_each_plane_state( \
- 		  plane, plane_state, \
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 9b8414b77c15..4f4d5c314394 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -294,6 +294,9 @@ struct intel_display {
- 	/* Parent, or core, driver functions exposed to display */
- 	const struct intel_display_parent_interface *parent;
- 
-+	/* list of all intel_crtcs sorted by pipe */
-+	struct list_head pipe_list;
-+
- 	/* Display functions */
- 	struct {
- 		/* Top level crtc-ish functions */
+ 	crtc = intel_crtc_alloc();
+ 	if (IS_ERR(crtc))
+ 		return PTR_ERR(crtc);
 diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index 7e000ba3e08b..32726906e550 100644
+index 32726906e550..cd30c6f18bb5 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -119,6 +119,7 @@ static void intel_mode_config_init(struct intel_display *display)
+@@ -471,7 +471,7 @@ int intel_display_driver_probe_nogem(struct intel_display *display)
+ 		    INTEL_NUM_PIPES(display),
+ 		    INTEL_NUM_PIPES(display) > 1 ? "s" : "");
  
- 	drm_mode_config_init(display->drm);
- 	INIT_LIST_HEAD(&display->global.obj_list);
-+	INIT_LIST_HEAD(&display->pipe_list);
- 
- 	mode_config->min_width = 0;
- 	mode_config->min_height = 0;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 38702a9e0f50..1c2bd9445795 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1441,6 +1441,7 @@ struct intel_flipq {
- 
- struct intel_crtc {
- 	struct drm_crtc base;
-+	struct list_head pipe_head;
- 	enum pipe pipe;
- 	/*
- 	 * Whether the crtc and the connected output pipeline is active. Implies
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index e3320d9e6314..cfcbc7dd8638 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -22,6 +22,7 @@
- #include "intel_audio.h"
- #include "intel_bw.h"
- #include "intel_display.h"
-+#include "intel_display_core.h"
- #include "intel_display_device.h"
- #include "intel_display_driver.h"
- #include "intel_display_irq.h"
--- 
-2.49.1
+-	for_each_pipe(display, pipe) {
++	for (pipe = PIPE_A; pipe < I915_MAX_PIPES; pipe++) {
+ 		ret = intel_crtc_init(display, pipe);
+ 		if (ret)
+ 			goto err_mode_config;
 
+-- 
+Ville Syrj‰l‰
+Intel
