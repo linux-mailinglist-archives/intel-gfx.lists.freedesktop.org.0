@@ -2,102 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEE63C73399
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Nov 2025 10:40:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D870DC73821
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Nov 2025 11:43:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8580810E732;
-	Thu, 20 Nov 2025 09:39:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin.net header.i=@ursulin.net header.b="qGRNUEkN";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 749BE10E73B;
+	Thu, 20 Nov 2025 10:43:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com
- [209.85.128.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A831010E732
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Nov 2025 09:39:58 +0000 (UTC)
-Received: by mail-wm1-f46.google.com with SMTP id
- 5b1f17b1804b1-4779a637712so4230515e9.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Nov 2025 01:39:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin.net; s=google; t=1763631597; x=1764236397; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=U6D2T/swrfGwwYIubUbU67Re0aJ0OQCaQcEzYhgb7k8=;
- b=qGRNUEkNMv2FpLcoQvXcgdzJ/Qj506HtgwWlY/X0gzEFtLVjNfYIfxZHUefnMUxciN
- AeWQCOhe0ZfJSRdiS/eWgYE+foSJ1Ey4LuRcyYEamDgapvSrBSXaCHTXr9sp8iQmBDW7
- 0ewLBTdCeABaoTmSsJwkXjWxTOMHtnm4hUO+dnn/yG9sFqcI3pi/GnnKFc5wWqSX3zwX
- KAutA1CDqElpaH4g3TnM+3J87g11na2ktzbEb+oKHxz0kCntGwVhmmS2qHn0hZjvMzFd
- z1gm23LXMaiqXWBWfP30/4woqhoVHvit8nVVv0OucYilJQqlHeyAT6jboQicphCAFIPQ
- 82bA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1763631597; x=1764236397;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=U6D2T/swrfGwwYIubUbU67Re0aJ0OQCaQcEzYhgb7k8=;
- b=Fnr4EqNq9u8sU8NxUBu4auOtL4cGXsTJZinnI42Id4E4hxR46wRjW9kCGitq7RnLY7
- S4IraMaSGML8zFSiwtvNBz0ylLSuVkzyIBs7/qqtfRUy1g6nRSGMyM3yCXMw2IORD+qC
- v3bfahTdglCoG6xboolLE2bUR5nv6kRt38giGLjy8iy9UVf/602LGHqR+ZPm5k0teBwf
- fWk39Gu3vUjCaqK7e1mojrBVOufNMRKufRC4CSeGG144dtZ35IRBPnBoTp1wtQOCAkXa
- 2rWO0tAFkGIAnta+erilCt5dfaz0+VbWIxtn7P6sLdP+/HA4umQk1aG2oW53LlfvfsiU
- EOyg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWaMSGm6yaH1iU1WcNaMls6OVspPnHEHgg/VgWCM+4+TPK+XZrsdJ1wIUVnQ2mZi/xeOsYOzbkYTmc=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwEi0rFc0BV7tnrIf2sE7+5V8H+Oqw/fsqKhkikRRcV96dkFsoD
- EjZcr9DIFTEGxY99L4Os1GB3G2+71B5C1rUgPTXyQzQM6lOMawUh4v0PzPGiuaPQbX8=
-X-Gm-Gg: ASbGncu41xoMcWrWNuY6HnjzaEIaQkHZPkaTk7GEulG07h4ILRzhEmzstyGOn+hyDMm
- eXt5BigXVQunAqnzlNbPoetUq46z2XnqV687qG6B06A2H8DtPRtC5dsiM7Ln753maIsvNJ/C7Fe
- 3E05i3MtNJGmmean1a3NYc3bWLn/aLLQzHKpxujtgOLlh/v5fiQOgKFoRVrUrjEbBfIdU9Xzx/k
- 9ILY3XJyisGOeN4U941/awMZGnOlSNmoJeE3w/n821IJv/K+Jg3AZogiJe6JSaRRxinn9PQmFm0
- mP4xr1JzVNy40Ebk+MYnbQyqUV6h52iABanUan+/ATeN5A7kTbwo4MGZuWBh3xY+kJteU0ZPDMb
- 5aeojy90qQqLxnQU5bdrj4lAQMQlVCccFEPIi3I6OWsYQE/j2DdrcFRTLW/xOR6NrnZTfc4XfEK
- kSBejYmypTeXqWNBNkfiPfpGLp1xg/ijsR4+UeIl3PBEM=
-X-Google-Smtp-Source: AGHT+IGOpmCt7r6aMgv0PofyN+s+ybvbGGWrGxrluj7E2hm4OOsNHntjgzS2fQRDmHRVqJS0JlWLYQ==
-X-Received: by 2002:a05:600c:3550:b0:477:75eb:a643 with SMTP id
- 5b1f17b1804b1-477b9ddd8c4mr18898435e9.4.1763631596107; 
- Thu, 20 Nov 2025 01:39:56 -0800 (PST)
-Received: from [192.168.0.101] ([90.240.106.137])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-477b0ffd37bsm100308375e9.3.2025.11.20.01.39.54
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 20 Nov 2025 01:39:55 -0800 (PST)
-Message-ID: <75cf65a0-8967-4e39-8bfe-aa284f8242b3@ursulin.net>
-Date: Thu, 20 Nov 2025 09:39:54 +0000
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFAF110E73B;
+ Thu, 20 Nov 2025 10:43:44 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0804218837884551189=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 06/11] drm/v3d: Use huge tmpfs mountpoint helpers
-To: =?UTF-8?Q?Lo=C3=AFc_Molinari?= <loic.molinari@collabora.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
- Liviu Dudau <liviu.dudau@arm.com>, Melissa Wen <mwen@igalia.com>,
- =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
- Hugh Dickins <hughd@google.com>, Baolin Wang
- <baolin.wang@linux.alibaba.com>, Andrew Morton <akpm@linux-foundation.org>,
- Al Viro <viro@zeniv.linux.org.uk>, =?UTF-8?Q?Miko=C5=82aj_Wasiak?=
- <mikolaj.wasiak@intel.com>, Christian Brauner <brauner@kernel.org>,
- Nitin Gote <nitin.r.gote@intel.com>, Andi Shyti
- <andi.shyti@linux.intel.com>, Jonathan Corbet <corbet@lwn.net>,
- Christopher Healy <healych@amazon.com>, Matthew Wilcox
- <willy@infradead.org>, Bagas Sanjaya <bagasdotme@gmail.com>
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-mm@kvack.org,
- linux-doc@vger.kernel.org, kernel@collabora.com
-References: <20251114170303.2800-1-loic.molinari@collabora.com>
- <20251114170303.2800-7-loic.molinari@collabora.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <20251114170303.2800-7-loic.molinari@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_Switch_to_use_kernel_stan?=
+ =?utf-8?q?dard_fault_injection_in_i915_=28rev15=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 20 Nov 2025 10:43:44 -0000
+Message-ID: <176363542484.13267.7423287685198260607@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251119153257.570726-1-juhapekka.heikkila@gmail.com>
+In-Reply-To: <20251119153257.570726-1-juhapekka.heikkila@gmail.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,270 +37,213 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============0804218837884551189==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 14/11/2025 17:02, Loïc Molinari wrote:
-> Make use of the new drm_gem_huge_mnt_create() and
-> drm_gem_get_huge_mnt() helpers to avoid code duplication. Now that
-> it's just a few lines long, the single function in v3d_gemfs.c is
-> moved into v3d_gem.c.
-> 
-> v3:
-> - use huge tmpfs mountpoint in drm_device
-> - move v3d_gemfs.c into v3d_gem.c
-> 
-> v4:
-> - clean up mountpoint creation error handling
-> 
-> v5:
-> - fix CONFIG_TRANSPARENT_HUGEPAGE check
-> - use drm_gem_has_huge_mnt() helper
-> 
-> v8:
-> - don't access huge_mnt field with CONFIG_TRANSPARENT_HUGEPAGE=n
-> 
-> v9:
-> - replace drm_gem_has_huge_mnt() by drm_gem_get_huge_mnt()
-> 
-> Signed-off-by: Loïc Molinari <loic.molinari@collabora.com>
-> ---
->   drivers/gpu/drm/v3d/Makefile    |  3 +-
->   drivers/gpu/drm/v3d/v3d_bo.c    |  9 +++--
->   drivers/gpu/drm/v3d/v3d_drv.c   |  2 +-
->   drivers/gpu/drm/v3d/v3d_drv.h   | 11 +-----
->   drivers/gpu/drm/v3d/v3d_gem.c   | 27 ++++++++++++--
->   drivers/gpu/drm/v3d/v3d_gemfs.c | 62 ---------------------------------
->   6 files changed, 34 insertions(+), 80 deletions(-)
->   delete mode 100644 drivers/gpu/drm/v3d/v3d_gemfs.c
-> 
-> diff --git a/drivers/gpu/drm/v3d/Makefile b/drivers/gpu/drm/v3d/Makefile
-> index fcf710926057..b7d673f1153b 100644
-> --- a/drivers/gpu/drm/v3d/Makefile
-> +++ b/drivers/gpu/drm/v3d/Makefile
-> @@ -13,8 +13,7 @@ v3d-y := \
->   	v3d_trace_points.o \
->   	v3d_sched.o \
->   	v3d_sysfs.o \
-> -	v3d_submit.o \
-> -	v3d_gemfs.o
-> +	v3d_submit.o
->   
->   v3d-$(CONFIG_DEBUG_FS) += v3d_debugfs.o
->   
-> diff --git a/drivers/gpu/drm/v3d/v3d_bo.c b/drivers/gpu/drm/v3d/v3d_bo.c
-> index d9547f5117b9..211578abf9b6 100644
-> --- a/drivers/gpu/drm/v3d/v3d_bo.c
-> +++ b/drivers/gpu/drm/v3d/v3d_bo.c
-> @@ -114,7 +114,7 @@ v3d_bo_create_finish(struct drm_gem_object *obj)
->   	if (IS_ERR(sgt))
->   		return PTR_ERR(sgt);
->   
-> -	if (!v3d->gemfs)
-> +	if (!drm_gem_get_huge_mnt(obj->dev))
->   		align = SZ_4K;
->   	else if (obj->size >= SZ_1M)
->   		align = SZ_1M;
-> @@ -150,12 +150,15 @@ struct v3d_bo *v3d_bo_create(struct drm_device *dev, struct drm_file *file_priv,
->   			     size_t unaligned_size)
->   {
->   	struct drm_gem_shmem_object *shmem_obj;
-> -	struct v3d_dev *v3d = to_v3d_dev(dev);
->   	struct v3d_bo *bo;
->   	int ret;
->   
-> +#ifdef CONFIG_TRANSPARENT_HUGEPAGE
->   	shmem_obj = drm_gem_shmem_create_with_mnt(dev, unaligned_size,
-> -						  v3d->gemfs);
-> +						  dev->huge_mnt);
-> +#else
-> +	shmem_obj = drm_gem_shmem_create(dev, unaligned_size);
-> +#endif
+== Series Details ==
 
-Don't you want to use the same pattern not requiring #ifdef as you did 
-in i915?
+Series: Switch to use kernel standard fault injection in i915 (rev15)
+URL   : https://patchwork.freedesktop.org/series/155765/
+State : success
 
-The rest looks good to me on a glance. Only functional change appears to 
-be that you are adding a new error message, scrolling down..
+== Summary ==
 
->   	if (IS_ERR(shmem_obj))
->   		return ERR_CAST(shmem_obj);
->   	bo = to_v3d_bo(&shmem_obj->base);
-> diff --git a/drivers/gpu/drm/v3d/v3d_drv.c b/drivers/gpu/drm/v3d/v3d_drv.c
-> index e8a46c8bad8a..8faa9382846f 100644
-> --- a/drivers/gpu/drm/v3d/v3d_drv.c
-> +++ b/drivers/gpu/drm/v3d/v3d_drv.c
-> @@ -107,7 +107,7 @@ static int v3d_get_param_ioctl(struct drm_device *dev, void *data,
->   		args->value = v3d->perfmon_info.max_counters;
->   		return 0;
->   	case DRM_V3D_PARAM_SUPPORTS_SUPER_PAGES:
-> -		args->value = !!v3d->gemfs;
-> +		args->value = !!drm_gem_get_huge_mnt(dev);
->   		return 0;
->   	case DRM_V3D_PARAM_GLOBAL_RESET_COUNTER:
->   		mutex_lock(&v3d->reset_lock);
-> diff --git a/drivers/gpu/drm/v3d/v3d_drv.h b/drivers/gpu/drm/v3d/v3d_drv.h
-> index 1884686985b8..99a39329bb85 100644
-> --- a/drivers/gpu/drm/v3d/v3d_drv.h
-> +++ b/drivers/gpu/drm/v3d/v3d_drv.h
-> @@ -158,11 +158,6 @@ struct v3d_dev {
->   	struct drm_mm mm;
->   	spinlock_t mm_lock;
->   
-> -	/*
-> -	 * tmpfs instance used for shmem backed objects
-> -	 */
-> -	struct vfsmount *gemfs;
-> -
->   	struct work_struct overflow_mem_work;
->   
->   	struct v3d_queue_state queue[V3D_MAX_QUEUES];
-> @@ -569,6 +564,7 @@ extern const struct dma_fence_ops v3d_fence_ops;
->   struct dma_fence *v3d_fence_create(struct v3d_dev *v3d, enum v3d_queue q);
->   
->   /* v3d_gem.c */
-> +extern bool super_pages;
->   int v3d_gem_init(struct drm_device *dev);
->   void v3d_gem_destroy(struct drm_device *dev);
->   void v3d_reset_sms(struct v3d_dev *v3d);
-> @@ -576,11 +572,6 @@ void v3d_reset(struct v3d_dev *v3d);
->   void v3d_invalidate_caches(struct v3d_dev *v3d);
->   void v3d_clean_caches(struct v3d_dev *v3d);
->   
-> -/* v3d_gemfs.c */
-> -extern bool super_pages;
-> -void v3d_gemfs_init(struct v3d_dev *v3d);
-> -void v3d_gemfs_fini(struct v3d_dev *v3d);
-> -
->   /* v3d_submit.c */
->   void v3d_job_cleanup(struct v3d_job *job);
->   void v3d_job_put(struct v3d_job *job);
-> diff --git a/drivers/gpu/drm/v3d/v3d_gem.c b/drivers/gpu/drm/v3d/v3d_gem.c
-> index 5a180dc6c452..62532a89dd14 100644
-> --- a/drivers/gpu/drm/v3d/v3d_gem.c
-> +++ b/drivers/gpu/drm/v3d/v3d_gem.c
-> @@ -259,6 +259,30 @@ v3d_invalidate_caches(struct v3d_dev *v3d)
->   	v3d_invalidate_slices(v3d, 0);
->   }
->   
-> +static void
-> +v3d_huge_mnt_init(struct v3d_dev *v3d)
-> +{
-> +	int err = 0;
-> +
-> +	/*
-> +	 * By using a huge shmemfs mountpoint when the user wants to
-> +	 * enable Super Pages, we can pass in mount flags that better
-> +	 * match our usecase.
-> +	 */
-> +
-> +	if (IS_ENABLED(CONFIG_TRANSPARENT_HUGEPAGE) && super_pages)
-> +		err = drm_gem_huge_mnt_create(&v3d->drm, "within_size");
-> +
-> +	if (drm_gem_get_huge_mnt(&v3d->drm))
-> +		drm_info(&v3d->drm, "Using Transparent Hugepages\n");
-> +	else if (err)
-> +		drm_warn(&v3d->drm, "Can't use Transparent Hugepages (%d)\n",
-> +			 err);
+CI Bug Log - changes from CI_DRM_17573 -> Patchwork_155765v15
+====================================================
 
-.. here, but that looks acceptable to me.
+Summary
+-------
 
-Regards,
+  **SUCCESS**
 
-Tvrtko
+  No regressions found.
 
-> +	else
-> +		drm_notice(&v3d->drm,
-> +			   "Transparent Hugepage support is recommended for optimal performance on this platform!\n");
-> +}
-> +
->   int
->   v3d_gem_init(struct drm_device *dev)
->   {
-> @@ -310,7 +334,7 @@ v3d_gem_init(struct drm_device *dev)
->   	v3d_init_hw_state(v3d);
->   	v3d_mmu_set_page_table(v3d);
->   
-> -	v3d_gemfs_init(v3d);
-> +	v3d_huge_mnt_init(v3d);
->   
->   	ret = v3d_sched_init(v3d);
->   	if (ret) {
-> @@ -330,7 +354,6 @@ v3d_gem_destroy(struct drm_device *dev)
->   	enum v3d_queue q;
->   
->   	v3d_sched_fini(v3d);
-> -	v3d_gemfs_fini(v3d);
->   
->   	/* Waiting for jobs to finish would need to be done before
->   	 * unregistering V3D.
-> diff --git a/drivers/gpu/drm/v3d/v3d_gemfs.c b/drivers/gpu/drm/v3d/v3d_gemfs.c
-> deleted file mode 100644
-> index bf351fc0d488..000000000000
-> --- a/drivers/gpu/drm/v3d/v3d_gemfs.c
-> +++ /dev/null
-> @@ -1,62 +0,0 @@
-> -// SPDX-License-Identifier: GPL-2.0+
-> -/* Copyright (C) 2024 Raspberry Pi */
-> -
-> -#include <linux/fs.h>
-> -#include <linux/mount.h>
-> -#include <linux/fs_context.h>
-> -
-> -#include <drm/drm_print.h>
-> -
-> -#include "v3d_drv.h"
-> -
-> -void v3d_gemfs_init(struct v3d_dev *v3d)
-> -{
-> -	struct file_system_type *type;
-> -	struct fs_context *fc;
-> -	struct vfsmount *gemfs;
-> -	int ret;
-> -
-> -	/*
-> -	 * By creating our own shmemfs mountpoint, we can pass in
-> -	 * mount flags that better match our usecase. However, we
-> -	 * only do so on platforms which benefit from it.
-> -	 */
-> -	if (!IS_ENABLED(CONFIG_TRANSPARENT_HUGEPAGE))
-> -		goto err;
-> -
-> -	/* The user doesn't want to enable Super Pages */
-> -	if (!super_pages)
-> -		goto err;
-> -
-> -	type = get_fs_type("tmpfs");
-> -	if (!type)
-> -		goto err;
-> -
-> -	fc = fs_context_for_mount(type, SB_KERNMOUNT);
-> -	if (IS_ERR(fc))
-> -		goto err;
-> -	ret = vfs_parse_fs_string(fc, "source", "tmpfs");
-> -	if (!ret)
-> -		ret = vfs_parse_fs_string(fc, "huge", "within_size");
-> -	if (!ret)
-> -		gemfs = fc_mount_longterm(fc);
-> -	put_fs_context(fc);
-> -	if (ret)
-> -		goto err;
-> -
-> -	v3d->gemfs = gemfs;
-> -	drm_info(&v3d->drm, "Using Transparent Hugepages\n");
-> -
-> -	return;
-> -
-> -err:
-> -	v3d->gemfs = NULL;
-> -	drm_notice(&v3d->drm,
-> -		   "Transparent Hugepage support is recommended for optimal performance on this platform!\n");
-> -}
-> -
-> -void v3d_gemfs_fini(struct v3d_dev *v3d)
-> -{
-> -	if (v3d->gemfs)
-> -		kern_unmount(v3d->gemfs);
-> -}
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v15/index.html
 
+Participating hosts (45 -> 41)
+------------------------------
+
+  Missing    (4): bat-mtlp-8 fi-kbl-guc fi-snb-2520m bat-mtlp-6 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_155765v15 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-11:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17573/bat-dg2-11/igt@i915_selftest@live@workarounds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v15/bat-dg2-11/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_hdmi_inject@inject-audio:
+    - fi-tgl-1115g4:      [PASS][3] -> [FAIL][4] ([i915#14867])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17573/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v15/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-adlp-6:         [DMESG-WARN][5] ([i915#13890]) -> [PASS][6] +78 other tests pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17573/bat-adlp-6/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v15/bat-adlp-6/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17573/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v15/bat-arls-5/igt@i915_selftest@live@workarounds.html
+    - bat-dg2-9:          [DMESG-FAIL][9] ([i915#12061]) -> [PASS][10] +1 other test pass
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17573/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v15/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+    - bat-mtlp-9:         [DMESG-FAIL][11] ([i915#12061]) -> [PASS][12] +1 other test pass
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17573/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v15/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live:
+    - bat-atsm-1:         [DMESG-FAIL][13] ([i915#12061] / [i915#14204]) -> [DMESG-FAIL][14] ([i915#12061] / [i915#13929])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17573/bat-atsm-1/igt@i915_selftest@live.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v15/bat-atsm-1/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@mman:
+    - bat-atsm-1:         [DMESG-FAIL][15] ([i915#14204]) -> [DMESG-FAIL][16] ([i915#13929])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17573/bat-atsm-1/igt@i915_selftest@live@mman.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v15/bat-atsm-1/igt@i915_selftest@live@mman.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#13890]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13890
+  [i915#13929]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929
+  [i915#14204]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204
+  [i915#14867]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14867
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8635 -> IGTPW_14079
+  * Linux: CI_DRM_17573 -> Patchwork_155765v15
+
+  CI-20190529: 20190529
+  CI_DRM_17573: 9e9925b18a12a6226ec09a7ff19af83470b4534b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGTPW_14079: b2a8f975bbd5430a29e6007179fd6b4764528f52 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8635: 8635
+  Patchwork_155765v15: 9e9925b18a12a6226ec09a7ff19af83470b4534b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v15/index.html
+
+--===============0804218837884551189==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Switch to use kernel standard fault injection in i915 (rev15)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155765/">https://patchwork.freedesktop.org/series/155765/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v15/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v15/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17573 -&gt; Patchwork_155765v15</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v15/index.html</p>
+<h2>Participating hosts (45 -&gt; 41)</h2>
+<p>Missing    (4): bat-mtlp-8 fi-kbl-guc fi-snb-2520m bat-mtlp-6 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_155765v15 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17573/bat-dg2-11/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v15/bat-dg2-11/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdmi_inject@inject-audio:</p>
+<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17573/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v15/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14867">i915#14867</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17573/bat-adlp-6/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13890">i915#13890</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v15/bat-adlp-6/igt@i915_pm_rpm@module-reload.html">PASS</a> +78 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17573/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v15/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17573/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v15/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17573/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v15/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17573/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v15/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@mman:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17573/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v15/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8635 -&gt; IGTPW_14079</li>
+<li>Linux: CI_DRM_17573 -&gt; Patchwork_155765v15</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17573: 9e9925b18a12a6226ec09a7ff19af83470b4534b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGTPW_14079: b2a8f975bbd5430a29e6007179fd6b4764528f52 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8635: 8635<br />
+  Patchwork_155765v15: 9e9925b18a12a6226ec09a7ff19af83470b4534b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============0804218837884551189==--
