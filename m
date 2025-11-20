@@ -2,71 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B109C75267
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Nov 2025 16:54:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6C2CC75423
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Nov 2025 17:12:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D897F10E77F;
-	Thu, 20 Nov 2025 15:54:31 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Jlbg60rD";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B92D10E550;
+	Thu, 20 Nov 2025 16:12:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16FA410E550;
- Thu, 20 Nov 2025 15:54:30 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 8C5EC442C6;
- Thu, 20 Nov 2025 15:54:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCA87C4CEF1;
- Thu, 20 Nov 2025 15:54:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1763654069;
- bh=03wWAsaF2p66SA+8tzLL46Iahcv1zn29Tz5R4bnU5cU=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Jlbg60rDJnba7Ff0KTxPv2DPwljI87BGbXxW78s1405lTXn1j/RsPhWbbr3YQNPUM
- ne1J21WQeFM31F374+o9av6JukMFAPr4xtj2n5/T5JtJWmq8KHlzUGiiya3MzHazti
- iAY54xqr3CPTsEwXfAEhQrPSjppkSdk3h5LhBGb69UC2lkBlCCm0FHb2v3IZimqg2e
- MesnRnvc6o8sfLCXADjE94dmCljtYeTBr9VDxqt9ZYAS/9Z1EplMHopGIyDEabbIpM
- 6uVOYGt2uBLsfIGU3jyEbmUg0ZipPBbQLIdkYkaKmdP2bvpLJZQaz38jzzF7vTYiWE
- x17Q1RmsQ5SKQ==
-Date: Thu, 20 Nov 2025 16:54:25 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
- Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, kernel@collabora.com, 
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v4 07/10] drm/display: hdmi-state-helper: Act on color
- format DRM property
-Message-ID: <nbrdnftrsybpowsu2f6me3jumdeodg45x4quouzlzd5jo7xrux@4pny3aiverzn>
-References: <20251117-color-format-v4-0-0ded72bd1b00@collabora.com>
- <20251117-color-format-v4-7-0ded72bd1b00@collabora.com>
- <4wt5dbvseauo2bvi66ohtk445zsfjtpjwgvochwwlyk4uugcmy@5ubwtkxyy2ax>
- <7179523.lOV4Wx5bFT@workhorse>
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 586AA10E778;
+ Thu, 20 Nov 2025 16:12:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8804851414029421424=="
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="4alnfwchsomlml4z"
-Content-Disposition: inline
-In-Reply-To: <7179523.lOV4Wx5bFT@workhorse>
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915=3A_Walk_crtcs_in?=
+ =?utf-8?q?_pipe_order?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 20 Nov 2025 16:12:34 -0000
+Message-ID: <176365515435.14563.18137845127688825564@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251120144910.13028-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20251120144910.13028-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,97 +37,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---4alnfwchsomlml4z
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v4 07/10] drm/display: hdmi-state-helper: Act on color
- format DRM property
+--===============8804851414029421424==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Wed, Nov 19, 2025 at 01:41:18PM +0100, Nicolas Frattaroli wrote:
-> On Wednesday, 19 November 2025 10:09:12 Central European Standard Time Ma=
-xime Ripard wrote:
-> > Hi,
-> >=20
-> > On Mon, Nov 17, 2025 at 08:11:51PM +0100, Nicolas Frattaroli wrote:
-> > > With the introduction of the "color format" DRM property, which allows
-> > > userspace to request a specific color format, the HDMI state helper
-> > > should implement this.
-> > >=20
-> > > Implement it by checking whether the property is set and set to
-> > > something other than auto. If so, pass the requested color format, and
-> > > otherwise set RGB.
-> > >=20
-> > > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > > ---
-> > >  drivers/gpu/drm/display/drm_hdmi_state_helper.c | 8 +++++++-
-> > >  1 file changed, 7 insertions(+), 1 deletion(-)
-> > >=20
-> > > diff --git a/drivers/gpu/drm/display/drm_hdmi_state_helper.c b/driver=
-s/gpu/drm/display/drm_hdmi_state_helper.c
-> > > index a561f124be99..add0d51fce33 100644
-> > > --- a/drivers/gpu/drm/display/drm_hdmi_state_helper.c
-> > > +++ b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
-> > > @@ -650,9 +650,15 @@ hdmi_compute_config(const struct drm_connector *=
-connector,
-> > >  				       conn_state->max_bpc,
-> > >  				       8, connector->max_bpc);
-> > >  	int ret;
-> > > +	enum hdmi_colorspace hdmi_colorspace;
-> > > +
-> > > +	if (conn_state->color_format && conn_state->color_format !=3D DRM_C=
-OLOR_FORMAT_AUTO)
-> > > +		hdmi_colorspace =3D color_format_to_hdmi_colorspace(conn_state->co=
-lor_format);
-> > > +	else
-> > > +		hdmi_colorspace =3D HDMI_COLORSPACE_RGB;
-> > > =20
-> > >  	ret =3D hdmi_compute_format_bpc(connector, conn_state, mode, max_bp=
-c,
-> > > -				      HDMI_COLORSPACE_RGB);
-> > > +				      hdmi_colorspace);
-> >=20
-> > I don't think we want the fallback to yuv420 for anything but auto, so
->=20
-> Okay. Changing all the non-hdmi-state-helper drivers (amdgpu, i915)
-> to do this as well would require some more work however, especially
-> in the case of amdgpu where the code flow is not always obvious.
+== Series Details ==
 
-Yeah, I think we want to be consistent here, the whole point of the HDMI
-state helpers was to be consistently consistent with Intel's behaviour
-anyway :)
+Series: drm/i915: Walk crtcs in pipe order
+URL   : https://patchwork.freedesktop.org/series/157851/
+State : success
 
-> > I'd rather have something like
-> >=20
-> > if (conn_state->color_format !=3D DRM_COLOR_FORMAT_AUTO)
-> >    return hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc,
-> >                                   color_format_to_hdmi_colorspace(conn_=
-state->color_format))
-> >=20
-> > We'll also need unit tests.
->=20
-> Sure, am I guessing correctly that they'd go in
-> drm_hdmi_state_helper_test.c?
+== Summary ==
 
-Yes
+CI Bug Log - changes from CI_DRM_17575 -> Patchwork_157851v1
+====================================================
 
-Maxime
+Summary
+-------
 
---4alnfwchsomlml4z
-Content-Type: application/pgp-signature; name="signature.asc"
+  **SUCCESS**
 
------BEGIN PGP SIGNATURE-----
+  No regressions found.
 
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaR85rAAKCRAnX84Zoj2+
-dv6UAX9b0ty0vhrPxBcqaoWJddkNvIG7owUS7e5lljmKMtX9SeDNbFLRDL44gdvr
-YZMxKF4Bf08i85DvKTyHG/luF+TnRXuESfkJdU9q1iykKJz21hcyXghzIupe9hKW
-0WFpzuh7CA==
-=NkNa
------END PGP SIGNATURE-----
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157851v1/index.html
 
---4alnfwchsomlml4z--
+Participating hosts (45 -> 44)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_157851v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17575/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157851v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_17575 -> Patchwork_157851v1
+
+  CI-20190529: 20190529
+  CI_DRM_17575: 13909978d70fc4ded88b778a313b68ad86ba881a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8635: 8635
+  Patchwork_157851v1: 13909978d70fc4ded88b778a313b68ad86ba881a @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157851v1/index.html
+
+--===============8804851414029421424==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Walk crtcs in pipe order</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157851/">https://patchwork.freedesktop.org/series/157851/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157851v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157851v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17575 -&gt; Patchwork_157851v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157851v1/index.html</p>
+<h2>Participating hosts (45 -&gt; 44)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_157851v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17575/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157851v1/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17575 -&gt; Patchwork_157851v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17575: 13909978d70fc4ded88b778a313b68ad86ba881a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8635: 8635<br />
+  Patchwork_157851v1: 13909978d70fc4ded88b778a313b68ad86ba881a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============8804851414029421424==--
