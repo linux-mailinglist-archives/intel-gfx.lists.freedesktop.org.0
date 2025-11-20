@@ -2,119 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8164C74C63
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Nov 2025 16:13:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B109C75267
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Nov 2025 16:54:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E50A10E774;
-	Thu, 20 Nov 2025 15:13:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D897F10E77F;
+	Thu, 20 Nov 2025 15:54:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="cpwKhtPE";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="+J0hEc9P";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="cpwKhtPE";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="+J0hEc9P";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Jlbg60rD";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2A7710E774
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Nov 2025 15:13:11 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 690C41F441;
- Thu, 20 Nov 2025 15:13:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1763651590; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=Ial72GLszEleezwa1Z30bChDpXZLG7wGDUUVENhegr0=;
- b=cpwKhtPEWGDtq0OINKW2wGBc2pnD3luRGpED17Q8jhbxSIFfRwZpXl/kQQHcRYbaV+WuT+
- lrrQSboi4F4iTdUWvvOyZS9ve5o9ck9aS2WVswIIIRCxCGY9ml+vhJrHPRbuzwQR2gc9vT
- i9U6blzByK9qOQQYP8dLfoRg1XoB6c4=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1763651590;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=Ial72GLszEleezwa1Z30bChDpXZLG7wGDUUVENhegr0=;
- b=+J0hEc9PPn5QqRe1cqbc8hg/Jkpm4udxWT9FKlPeKOaeSXKzp7ffXHqBjJpvUk3hPDlXYY
- 82xAmusaMFVc4gDA==
-Authentication-Results: smtp-out2.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=cpwKhtPE;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=+J0hEc9P
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1763651590; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=Ial72GLszEleezwa1Z30bChDpXZLG7wGDUUVENhegr0=;
- b=cpwKhtPEWGDtq0OINKW2wGBc2pnD3luRGpED17Q8jhbxSIFfRwZpXl/kQQHcRYbaV+WuT+
- lrrQSboi4F4iTdUWvvOyZS9ve5o9ck9aS2WVswIIIRCxCGY9ml+vhJrHPRbuzwQR2gc9vT
- i9U6blzByK9qOQQYP8dLfoRg1XoB6c4=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1763651590;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=Ial72GLszEleezwa1Z30bChDpXZLG7wGDUUVENhegr0=;
- b=+J0hEc9PPn5QqRe1cqbc8hg/Jkpm4udxWT9FKlPeKOaeSXKzp7ffXHqBjJpvUk3hPDlXYY
- 82xAmusaMFVc4gDA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id EAE083EA61;
- Thu, 20 Nov 2025 15:13:09 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id Cj2iNwUwH2lNcwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 20 Nov 2025 15:13:09 +0000
-Date: Thu, 20 Nov 2025 16:13:08 +0100
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16FA410E550;
+ Thu, 20 Nov 2025 15:54:30 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 8C5EC442C6;
+ Thu, 20 Nov 2025 15:54:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCA87C4CEF1;
+ Thu, 20 Nov 2025 15:54:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1763654069;
+ bh=03wWAsaF2p66SA+8tzLL46Iahcv1zn29Tz5R4bnU5cU=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=Jlbg60rDJnba7Ff0KTxPv2DPwljI87BGbXxW78s1405lTXn1j/RsPhWbbr3YQNPUM
+ ne1J21WQeFM31F374+o9av6JukMFAPr4xtj2n5/T5JtJWmq8KHlzUGiiya3MzHazti
+ iAY54xqr3CPTsEwXfAEhQrPSjppkSdk3h5LhBGb69UC2lkBlCCm0FHb2v3IZimqg2e
+ MesnRnvc6o8sfLCXADjE94dmCljtYeTBr9VDxqt9ZYAS/9Z1EplMHopGIyDEabbIpM
+ 6uVOYGt2uBLsfIGU3jyEbmUg0ZipPBbQLIdkYkaKmdP2bvpLJZQaz38jzzF7vTYiWE
+ x17Q1RmsQ5SKQ==
+Date: Thu, 20 Nov 2025 16:54:25 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>, 
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
  Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <20251120151308.GA589436@linux.fritz.box>
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
+ Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, kernel@collabora.com, 
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v4 07/10] drm/display: hdmi-state-helper: Act on color
+ format DRM property
+Message-ID: <nbrdnftrsybpowsu2f6me3jumdeodg45x4quouzlzd5jo7xrux@4pny3aiverzn>
+References: <20251117-color-format-v4-0-0ded72bd1b00@collabora.com>
+ <20251117-color-format-v4-7-0ded72bd1b00@collabora.com>
+ <4wt5dbvseauo2bvi66ohtk445zsfjtpjwgvochwwlyk4uugcmy@5ubwtkxyy2ax>
+ <7179523.lOV4Wx5bFT@workhorse>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="4alnfwchsomlml4z"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 690C41F441
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[]; MIME_TRACE(0.00)[0:+];
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
- RCPT_COUNT_TWELVE(0.00)[16];
- RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
- FUZZY_RATELIMITED(0.00)[rspamd.com]; ARC_NA(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]; TO_DN_SOME(0.00)[];
- RCVD_COUNT_TWO(0.00)[2]; FROM_EQ_ENVFROM(0.00)[];
- FROM_HAS_DN(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- MISSING_XM_UA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- RCVD_TLS_ALL(0.00)[]; DKIM_TRACE(0.00)[suse.de:+];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,
- imap1.dmz-prg2.suse.org:rdns, suse.com:url, suse.de:dkim]
-X-Rspamd-Action: no action
-X-Spam-Flag: NO
-X-Spam-Score: -4.51
-X-Spam-Level: 
+In-Reply-To: <7179523.lOV4Wx5bFT@workhorse>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -130,81 +82,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
 
-here's the PR for drm-misc-fixes.
+--4alnfwchsomlml4z
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v4 07/10] drm/display: hdmi-state-helper: Act on color
+ format DRM property
+MIME-Version: 1.0
 
-Best regards
-Thomas
+On Wed, Nov 19, 2025 at 01:41:18PM +0100, Nicolas Frattaroli wrote:
+> On Wednesday, 19 November 2025 10:09:12 Central European Standard Time Ma=
+xime Ripard wrote:
+> > Hi,
+> >=20
+> > On Mon, Nov 17, 2025 at 08:11:51PM +0100, Nicolas Frattaroli wrote:
+> > > With the introduction of the "color format" DRM property, which allows
+> > > userspace to request a specific color format, the HDMI state helper
+> > > should implement this.
+> > >=20
+> > > Implement it by checking whether the property is set and set to
+> > > something other than auto. If so, pass the requested color format, and
+> > > otherwise set RGB.
+> > >=20
+> > > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> > > ---
+> > >  drivers/gpu/drm/display/drm_hdmi_state_helper.c | 8 +++++++-
+> > >  1 file changed, 7 insertions(+), 1 deletion(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/display/drm_hdmi_state_helper.c b/driver=
+s/gpu/drm/display/drm_hdmi_state_helper.c
+> > > index a561f124be99..add0d51fce33 100644
+> > > --- a/drivers/gpu/drm/display/drm_hdmi_state_helper.c
+> > > +++ b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
+> > > @@ -650,9 +650,15 @@ hdmi_compute_config(const struct drm_connector *=
+connector,
+> > >  				       conn_state->max_bpc,
+> > >  				       8, connector->max_bpc);
+> > >  	int ret;
+> > > +	enum hdmi_colorspace hdmi_colorspace;
+> > > +
+> > > +	if (conn_state->color_format && conn_state->color_format !=3D DRM_C=
+OLOR_FORMAT_AUTO)
+> > > +		hdmi_colorspace =3D color_format_to_hdmi_colorspace(conn_state->co=
+lor_format);
+> > > +	else
+> > > +		hdmi_colorspace =3D HDMI_COLORSPACE_RGB;
+> > > =20
+> > >  	ret =3D hdmi_compute_format_bpc(connector, conn_state, mode, max_bp=
+c,
+> > > -				      HDMI_COLORSPACE_RGB);
+> > > +				      hdmi_colorspace);
+> >=20
+> > I don't think we want the fallback to yuv420 for anything but auto, so
+>=20
+> Okay. Changing all the non-hdmi-state-helper drivers (amdgpu, i915)
+> to do this as well would require some more work however, especially
+> in the case of amdgpu where the code flow is not always obvious.
 
-drm-misc-fixes-2025-11-20:
-Short summary of fixes pull:
+Yeah, I think we want to be consistent here, the whole point of the HDMI
+state helpers was to be consistently consistent with Intel's behaviour
+anyway :)
 
-atomic:
-- Return error codes on failed blob creation for planes
+> > I'd rather have something like
+> >=20
+> > if (conn_state->color_format !=3D DRM_COLOR_FORMAT_AUTO)
+> >    return hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc,
+> >                                   color_format_to_hdmi_colorspace(conn_=
+state->color_format))
+> >=20
+> > We'll also need unit tests.
+>=20
+> Sure, am I guessing correctly that they'd go in
+> drm_hdmi_state_helper_test.c?
 
-nouveau:
-- Fix memory leak
+Yes
 
-tegra:
-- Fix device ref counting
-- Fix pid ref counting
-- Revert booting on Pixel C
-The following changes since commit 6a23ae0a96a600d1d12557add110e0bb6e32730c:
+Maxime
 
-  Linux 6.18-rc6 (2025-11-16 14:25:38 -0800)
+--4alnfwchsomlml4z
+Content-Type: application/pgp-signature; name="signature.asc"
 
-are available in the Git repository at:
+-----BEGIN PGP SIGNATURE-----
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-11-20
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaR85rAAKCRAnX84Zoj2+
+dv6UAX9b0ty0vhrPxBcqaoWJddkNvIG7owUS7e5lljmKMtX9SeDNbFLRDL44gdvr
+YZMxKF4Bf08i85DvKTyHG/luF+TnRXuESfkJdU9q1iykKJz21hcyXghzIupe9hKW
+0WFpzuh7CA==
+=NkNa
+-----END PGP SIGNATURE-----
 
-for you to fetch changes up to cead55e24cf9e092890cf51c0548eccd7569defa:
-
-  drm/plane: Fix create_in_format_blob() return value (2025-11-19 19:37:04 +0200)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
-atomic:
-- Return error codes on failed blob creation for planes
-
-nouveau:
-- Fix memory leak
-
-tegra:
-- Fix device ref counting
-- Fix pid ref counting
-- Revert booting on Pixel C
-
-----------------------------------------------------------------
-Diogo Ivo (1):
-      Revert "drm/tegra: dsi: Clear enable register if powered by bootloader"
-
-Ma Ke (1):
-      drm/tegra: dc: Fix reference leak in tegra_dc_couple()
-
-Nam Cao (1):
-      nouveau/firmware: Add missing kfree() of nvkm_falcon_fw::boot
-
-Prateek Agarwal (1):
-      drm/tegra: Add call to put_pid()
-
-Thomas Zimmermann (1):
-      Merge drm/drm-fixes into drm-misc-fixes
-
-Ville Syrjälä (1):
-      drm/plane: Fix create_in_format_blob() return value
-
- drivers/gpu/drm/drm_plane.c              | 4 ++--
- drivers/gpu/drm/nouveau/nvkm/falcon/fw.c | 2 ++
- drivers/gpu/drm/tegra/dc.c               | 1 +
- drivers/gpu/drm/tegra/dsi.c              | 9 ---------
- drivers/gpu/drm/tegra/uapi.c             | 7 +++++--
- 5 files changed, 10 insertions(+), 13 deletions(-)
-
--- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
+--4alnfwchsomlml4z--
