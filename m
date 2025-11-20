@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13DF4C7290C
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Nov 2025 08:19:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BBA26C7290F
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Nov 2025 08:19:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78B2510E6FB;
-	Thu, 20 Nov 2025 07:19:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3582C10E6F9;
+	Thu, 20 Nov 2025 07:19:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KPxV5jFR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ndmI4c1n";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B95E10E6FE;
- Thu, 20 Nov 2025 07:19:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A35410E702;
+ Thu, 20 Nov 2025 07:19:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763623173; x=1795159173;
+ t=1763623175; x=1795159175;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zdG+3zQsWTlN9uV/7yE871CSlHOr1PnGyuEVO7DLInI=;
- b=KPxV5jFRhFLd1hnILiuhfE6R4e2FmQjziANSsrLooejgWltdAI7IGkGF
- gCf+amG4Lrc1bvRqfb3obTK51lEwLwHzT+FQ1yGw2/VGblAVMOoI9sl3h
- Sdb1yTXrf3n5PpNwJHc/lacSNY2dVnaD2E0bWV/aaHMCrvEOhNj98TYEj
- SBz5iphhNQqdNNun6+4rXUUOSnHNbxwO2ilXrbZXI6CnZUBCV6kNVOvit
- Vutfrv0AsFiNXEHgsjR2jGhy+RJfT1EtUnrP6So6r/TqeMbdUT87n7PzQ
- pE+bNv5NpGrohCP3nmcw93Z/kfDJmebsRvXSdNHP0nHyJzYpbVJEc4dca A==;
-X-CSE-ConnectionGUID: 9Xc24rECQaiq6c5kGJSKEQ==
-X-CSE-MsgGUID: vYd0spA0TwOW9Wn16KyqOQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11618"; a="65559107"
-X-IronPort-AV: E=Sophos;i="6.19,317,1754982000"; d="scan'208";a="65559107"
+ bh=xN0azXn9NlG+KtFX6KYwAWV7Kb+KzO2ZDbRo6NYde10=;
+ b=ndmI4c1nBowaBwuvUkr56K0Szpvlj6ykfuWOJLll3qvvYJUqEijZBI4T
+ tCkGD+VJxogWHBxzn7ZQ5Gu5pZxmDJ6g1rPAcQI2p54IExPkdu20rZMJf
+ mLdWFSMdOHHC5LFHZKjWBFofgRM33JCUTerNEl9brr/+JUKODwcZ6AHvh
+ OrxaybSIsiBJYntJizzxqedc0nSm+gIbYydvs+P7eouJ8BT8YfDlCm1va
+ LXMpOoRVsvnpCTCQKdMrAf3mGnY9Ti7GZuSAs9btLLxvjyp06ue62hvUp
+ r+T6kP4j10MfnXFw+4g+enmYFyoqPfzKvIYnifrOFG0/kMCUccB7AFRMK Q==;
+X-CSE-ConnectionGUID: UK9gj81eS5a6uXZmakEv3w==
+X-CSE-MsgGUID: RwA19qg7TWie5UdVZ9T64w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11618"; a="65559108"
+X-IronPort-AV: E=Sophos;i="6.19,317,1754982000"; d="scan'208";a="65559108"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2025 23:19:33 -0800
-X-CSE-ConnectionGUID: 5w9g634hRy+YwAyaZjk4ng==
-X-CSE-MsgGUID: zF+gq0T4RoWFSm01WJBfdQ==
+ 19 Nov 2025 23:19:35 -0800
+X-CSE-ConnectionGUID: 7akZPH66TsGB8/zieAIimg==
+X-CSE-MsgGUID: nxNB+8rRTGW05sXYyPSnmg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,317,1754982000"; d="scan'208";a="191073652"
+X-IronPort-AV: E=Sophos;i="6.19,317,1754982000"; d="scan'208";a="191073685"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2025 23:19:31 -0800
+ 19 Nov 2025 23:19:33 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 08/11] drm/i915/dp: Rework pipe joiner logic in compute_config
-Date: Thu, 20 Nov 2025 12:36:36 +0530
-Message-ID: <20251120070640.727040-9-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 09/11] drm/i915/vdsc: Account for DSC slice overhead in
+ intel_vdsc_min_cdclk()
+Date: Thu, 20 Nov 2025 12:36:37 +0530
+Message-ID: <20251120070640.727040-10-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20251120070640.727040-1-ankit.k.nautiyal@intel.com>
 References: <20251120070640.727040-1-ankit.k.nautiyal@intel.com>
@@ -68,108 +69,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently, the number of joined pipes are determined early in the flow,
-which limits flexibility for accounting DSC slice overhead. To address
-this, recompute the joined pipe count during DSC configuration.
+When DSC is enabled on a pipe, the pipe pixel rate input to the
+CDCLK frequency and pipe joining calculation needs an adjustment to
+account for compression overhead "bubbles" added at each horizontal
+slice boundary.
 
-Refactor intel_dp_dsc_compute_config() to iterate over joiner candidates
-and select the minimal joiner configuration that satisfies the mode
-requirements. This prepares the logic for future changes that will
-consider DSC slice overhead.
+Account for this overhead while computing min cdclk required for DSC.
 
+Bspec:68912
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 70 +++++++++++++++++++++++--
- 1 file changed, 65 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vdsc.c | 45 +++++++++++++++++++++--
+ 1 file changed, 41 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index cc8011eaea6a..275f2f820110 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2466,11 +2466,12 @@ bool intel_dp_needs_8b10b_fec(const struct intel_crtc_state *crtc_state,
- 	return dsc_enabled_on_crtc || intel_dsc_enabled_on_link(crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+index 0e727fc5e80c..31b59e9491a3 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+@@ -1050,15 +1050,52 @@ void intel_vdsc_state_dump(struct drm_printer *p, int indent,
+ 	drm_dsc_dump_config(p, indent, &crtc_state->dsc.config);
  }
  
--int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
--				struct intel_crtc_state *pipe_config,
--				struct drm_connector_state *conn_state,
--				const struct link_config_limits *limits,
--				int timeslots)
 +static
-+int _intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
-+				 struct intel_crtc_state *pipe_config,
-+				 struct drm_connector_state *conn_state,
-+				 const struct link_config_limits *limits,
-+				 int timeslots)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	const struct intel_connector *connector =
-@@ -2571,6 +2572,65 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- 	return 0;
- }
- 
-+int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
-+				struct intel_crtc_state *crtc_state,
-+				struct drm_connector_state *conn_state,
-+				const struct link_config_limits *limits,
-+				int timeslots)
++int intel_dsc_get_pixel_rate_with_dsc_bubbles(int pixel_rate, int htotal,
++					      int dsc_horizontal_slices)
 +{
-+	struct intel_display *display = to_intel_display(intel_dp);
-+	const struct intel_connector *connector = to_intel_connector(conn_state->connector);
-+	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+	int max_dotclk = display->cdclk.max_dotclk_freq;
-+	int target_clock = adjusted_mode->clock;
-+	int num_joined_pipes;
-+	int ret = -EINVAL;
-+	int i;
++	int dsc_slice_factor_x100;
++	int dsc_slice_bubbles;
 +
-+	for (i = 0; i < ARRAY_SIZE(joiner_candidates); i++) {
-+		enum joiner_type joiner = joiner_candidates[i];
++	if (!htotal)
++		return 0;
 +
-+		if (joiner == FORCED_JOINER) {
-+			if (!connector->force_joined_pipes)
-+				continue;
-+			num_joined_pipes = connector->force_joined_pipes;
-+		} else {
-+			num_joined_pipes = 1 << joiner;
-+		}
++	dsc_slice_bubbles = 14 * dsc_horizontal_slices;
++	dsc_slice_factor_x100 = (100 * htotal + dsc_slice_bubbles) / htotal;
 +
-+		if ((joiner >= NO_JOINER && !intel_dp_has_joiner(intel_dp)) ||
-+		    (joiner == BIG_JOINER && !HAS_BIGJOINER(display)) ||
-+		    (joiner == ULTRA_JOINER && !HAS_ULTRAJOINER(display))) {
-+			ret = -EINVAL;
-+			break;
-+		}
-+
-+		if (adjusted_mode->hdisplay > num_joined_pipes * intel_dp_hdisplay_limit(display))
-+			continue;
-+
-+		if (num_joined_pipes > 1)
-+			crtc_state->joiner_pipes = GENMASK(crtc->pipe + num_joined_pipes - 1,
-+							   crtc->pipe);
-+
-+		ret = _intel_dp_dsc_compute_config(intel_dp, crtc_state,
-+						   conn_state, limits, timeslots);
-+		if (ret < 0)
-+			continue;
-+
-+		max_dotclk *= num_joined_pipes;
-+
-+		if (target_clock <= max_dotclk)
-+			return ret;
-+
-+		ret = -EINVAL;
-+	}
-+
-+	crtc_state->joiner_pipes = 0;
-+
-+	return ret;
++	return (dsc_slice_factor_x100 * pixel_rate) / 100;
 +}
 +
- static int
- dsc_throughput_quirk_max_bpp_x16(const struct intel_connector *connector,
- 				 const struct intel_crtc_state *crtc_state)
++static
++int pixel_rate_with_dsc_bubbles(const struct intel_crtc_state *crtc_state, int pixel_rate)
++{
++	struct intel_display *display = to_intel_display(crtc_state);
++	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
++	const struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
++	int dsc_horizontal_slices;
++
++	if (drm_WARN_ON(display->drm, !vdsc_cfg->slice_width))
++		return 0;
++
++	dsc_horizontal_slices = vdsc_cfg->pic_width / vdsc_cfg->slice_width;
++
++	return intel_dsc_get_pixel_rate_with_dsc_bubbles(pixel_rate,
++							 adjusted_mode->crtc_htotal,
++							 dsc_horizontal_slices);
++}
++
+ int intel_vdsc_min_cdclk(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+ 	int num_vdsc_instances = intel_dsc_get_num_vdsc_instances(crtc_state);
++	int pixel_rate;
+ 	int min_cdclk;
+ 
+ 	if (!crtc_state->dsc.compression_enable)
+ 		return 0;
+ 
++	pixel_rate = pixel_rate_with_dsc_bubbles(crtc_state, crtc_state->pixel_rate);
++
+ 	/*
+ 	 * When we decide to use only one VDSC engine, since
+ 	 * each VDSC operates with 1 ppc throughput, pixel clock
+@@ -1066,7 +1103,7 @@ int intel_vdsc_min_cdclk(const struct intel_crtc_state *crtc_state)
+ 	 * If there 2 VDSC engines, then pixel clock can't be higher than
+ 	 * VDSC clock(cdclk) * 2 and so on.
+ 	 */
+-	min_cdclk = DIV_ROUND_UP(crtc_state->pixel_rate, num_vdsc_instances);
++	min_cdclk = DIV_ROUND_UP(pixel_rate, num_vdsc_instances);
+ 
+ 	if (crtc_state->joiner_pipes) {
+ 		int pixel_clock = intel_dp_mode_to_fec_clock(crtc_state->hw.adjusted_mode.clock);
+@@ -1084,9 +1121,9 @@ int intel_vdsc_min_cdclk(const struct intel_crtc_state *crtc_state)
+ 		 * => CDCLK >= compressed_bpp * Pixel clock  / 2 * Bigjoiner Interface bits
+ 		 */
+ 		int bigjoiner_interface_bits = DISPLAY_VER(display) >= 14 ? 36 : 24;
+-		int min_cdclk_bj =
+-			(fxp_q4_to_int_roundup(crtc_state->dsc.compressed_bpp_x16) *
+-			 pixel_clock) / (2 * bigjoiner_interface_bits);
++		int adjusted_pixel_rate = pixel_rate_with_dsc_bubbles(crtc_state, pixel_clock);
++		int min_cdclk_bj = (fxp_q4_to_int_roundup(crtc_state->dsc.compressed_bpp_x16) *
++				   adjusted_pixel_rate) / (2 * bigjoiner_interface_bits);
+ 
+ 		min_cdclk = max(min_cdclk, min_cdclk_bj);
+ 	}
 -- 
 2.45.2
 
