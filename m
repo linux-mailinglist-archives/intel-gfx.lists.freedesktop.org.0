@@ -2,73 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48E85C732CC
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Nov 2025 10:32:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EEE63C73399
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Nov 2025 10:40:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4576710E72C;
-	Thu, 20 Nov 2025 09:31:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8580810E732;
+	Thu, 20 Nov 2025 09:39:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin.net header.i=@ursulin.net header.b="Q+RjuTYZ";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin.net header.i=@ursulin.net header.b="qGRNUEkN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com
- [209.85.221.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37CD310E72C
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Nov 2025 09:31:57 +0000 (UTC)
-Received: by mail-wr1-f53.google.com with SMTP id
- ffacd0b85a97d-42b47f662a0so798116f8f.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Nov 2025 01:31:57 -0800 (PST)
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com
+ [209.85.128.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A831010E732
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Nov 2025 09:39:58 +0000 (UTC)
+Received: by mail-wm1-f46.google.com with SMTP id
+ 5b1f17b1804b1-4779a637712so4230515e9.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Nov 2025 01:39:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin.net; s=google; t=1763631116; x=1764235916; darn=lists.freedesktop.org;
+ d=ursulin.net; s=google; t=1763631597; x=1764236397; darn=lists.freedesktop.org;
  h=content-transfer-encoding:in-reply-to:from:content-language
  :references:cc:to:subject:user-agent:mime-version:date:message-id
  :from:to:cc:subject:date:message-id:reply-to;
- bh=fqAzN+uhziH1nFW2iIiQXSt/9jzfbA+V2CT1GLLLYig=;
- b=Q+RjuTYZgP74ZrRQnuVOVYVMwCpTi+NK7ktfKP97iVf9jFE/1/Te/QSsjk7wVanUzo
- qFJAN1dBUIjLb70yIFlPfpi7HSdfoFsmCSRLACQ2H2380vBYJRqANBOLLuwHDnHOW9bX
- ntwGjWHmxYdxBpjC0qzDGujgUtfu2KcG1MliAlpb0Iv9ewbkZwkWj4n7fIPE8/ZXS6tx
- qR9VlAapDSYqmpKHxY2tqL1FlUaiBXH7easR1WbrKsf/Coj26tjZamZepjJnx5O3SxQZ
- paWTX0FxnImJR+V2jdLXb31mpUMfrUHU+46TvrgghZu+3Jhp2uy56eIoNAVa3Z0ZokF9
- TTcQ==
+ bh=U6D2T/swrfGwwYIubUbU67Re0aJ0OQCaQcEzYhgb7k8=;
+ b=qGRNUEkNMv2FpLcoQvXcgdzJ/Qj506HtgwWlY/X0gzEFtLVjNfYIfxZHUefnMUxciN
+ AeWQCOhe0ZfJSRdiS/eWgYE+foSJ1Ey4LuRcyYEamDgapvSrBSXaCHTXr9sp8iQmBDW7
+ 0ewLBTdCeABaoTmSsJwkXjWxTOMHtnm4hUO+dnn/yG9sFqcI3pi/GnnKFc5wWqSX3zwX
+ KAutA1CDqElpaH4g3TnM+3J87g11na2ktzbEb+oKHxz0kCntGwVhmmS2qHn0hZjvMzFd
+ z1gm23LXMaiqXWBWfP30/4woqhoVHvit8nVVv0OucYilJQqlHeyAT6jboQicphCAFIPQ
+ 82bA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1763631116; x=1764235916;
+ d=1e100.net; s=20230601; t=1763631597; x=1764236397;
  h=content-transfer-encoding:in-reply-to:from:content-language
  :references:cc:to:subject:user-agent:mime-version:date:message-id
  :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=fqAzN+uhziH1nFW2iIiQXSt/9jzfbA+V2CT1GLLLYig=;
- b=Sst2Zu1JENvK9/yMH+PndDLCdaNeYJmS23w3JDbe9ZGKx7CxbYJa5LmFITtwm6+XiG
- epne1iu1LtYjQgTW61SFa6tio7p+wlXDyShHCXoLHxOSN0OvrGaBmEIhl5aaRAGLJLMv
- 3Nbm4n0k2SS22/HujPhwJn9MhkWbEprqPDDoo/Dohi011KF19zcHtsaZTbt4iXmtrgeE
- +MjvfeifEFD+9nIVWobYhO0I/CwB8Y0lHVf4hQcOO01/DHGEKNmN99VL6mEfWqv9le/T
- uPE2SKSv/MMsw0WIIjn5CXJo9MNUGJZgUh5yHb3hqumX7ESgkxz41v8Oe/ZxjNBqq803
- 4Ntw==
+ bh=U6D2T/swrfGwwYIubUbU67Re0aJ0OQCaQcEzYhgb7k8=;
+ b=Fnr4EqNq9u8sU8NxUBu4auOtL4cGXsTJZinnI42Id4E4hxR46wRjW9kCGitq7RnLY7
+ S4IraMaSGML8zFSiwtvNBz0ylLSuVkzyIBs7/qqtfRUy1g6nRSGMyM3yCXMw2IORD+qC
+ v3bfahTdglCoG6xboolLE2bUR5nv6kRt38giGLjy8iy9UVf/602LGHqR+ZPm5k0teBwf
+ fWk39Gu3vUjCaqK7e1mojrBVOufNMRKufRC4CSeGG144dtZ35IRBPnBoTp1wtQOCAkXa
+ 2rWO0tAFkGIAnta+erilCt5dfaz0+VbWIxtn7P6sLdP+/HA4umQk1aG2oW53LlfvfsiU
+ EOyg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCU+mqJ6CbBqN93fMxowJS7dlVeUZOaNDXswNT0O3pwc8cBCtSQv87YA9rtOd84OPIm9mpGgjY/+Cl8=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxA6U4QzWR7GIuS8wEfQjyf3HIJVpxczoDMpKudzOGIdFzxA6ur
- 0SW+BhoJv22J/MSkAaSXMldEAW58MY//BL0bvGQnCdgZjLRRFGF0ICA6wR8jBtfOtlY=
-X-Gm-Gg: ASbGnct5YNRT2TNiGlW98N9jFJhn1bNJeJTQbXTeoLQy5l96zjcU15gaPv2sp7fY79R
- W4o64kl/SoVbX/CJmaxjmm+3ezs54C830T5bglk8w+Lz14fRXU4xnslz6TaZOWUwqcFUwqt+lv3
- FHPkw1LKJpMsSDC0gQqlMicvlCJEjQwGHghkvFr+IATaJVWXECwQjvxQt5PCZ7Cx3DuRRvxrF09
- JMdl5dFfYVvmigZheX7xQWjUcIcr3cePmlCzYLLLtkbEP672JGTwU5LruDgC0jwciZx26pp8dDF
- /m/OU8WflWW2bTS4e9S5VgG8hCPay8Mp3fNKGnynATNXARUuOrphjs4svHKc54Ritx9p+eAiKAt
- ++pHzbCTQ+wuqVMf+OLVyyjGnctNRIwWPh5dfrKz3VwJLWf/T2Zs02j92Ch8p9fW5Cci6vfbYM8
- 5ci8p6MfuWY3u39DIL6253W1Ol5Wtp1frN
-X-Google-Smtp-Source: AGHT+IFofUXdITOIuOkWXI5exYrEDPWRBJLEZCKD9E2oxWKfdypUIfwK6ij9knD1h1VBV36aBdBTXQ==
-X-Received: by 2002:adf:eb0c:0:b0:42b:3aa8:ff9f with SMTP id
- ffacd0b85a97d-42cba7c4d7fmr1465005f8f.28.1763631114510; 
- Thu, 20 Nov 2025 01:31:54 -0800 (PST)
+ AJvYcCWaMSGm6yaH1iU1WcNaMls6OVspPnHEHgg/VgWCM+4+TPK+XZrsdJ1wIUVnQ2mZi/xeOsYOzbkYTmc=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwEi0rFc0BV7tnrIf2sE7+5V8H+Oqw/fsqKhkikRRcV96dkFsoD
+ EjZcr9DIFTEGxY99L4Os1GB3G2+71B5C1rUgPTXyQzQM6lOMawUh4v0PzPGiuaPQbX8=
+X-Gm-Gg: ASbGncu41xoMcWrWNuY6HnjzaEIaQkHZPkaTk7GEulG07h4ILRzhEmzstyGOn+hyDMm
+ eXt5BigXVQunAqnzlNbPoetUq46z2XnqV687qG6B06A2H8DtPRtC5dsiM7Ln753maIsvNJ/C7Fe
+ 3E05i3MtNJGmmean1a3NYc3bWLn/aLLQzHKpxujtgOLlh/v5fiQOgKFoRVrUrjEbBfIdU9Xzx/k
+ 9ILY3XJyisGOeN4U941/awMZGnOlSNmoJeE3w/n821IJv/K+Jg3AZogiJe6JSaRRxinn9PQmFm0
+ mP4xr1JzVNy40Ebk+MYnbQyqUV6h52iABanUan+/ATeN5A7kTbwo4MGZuWBh3xY+kJteU0ZPDMb
+ 5aeojy90qQqLxnQU5bdrj4lAQMQlVCccFEPIi3I6OWsYQE/j2DdrcFRTLW/xOR6NrnZTfc4XfEK
+ kSBejYmypTeXqWNBNkfiPfpGLp1xg/ijsR4+UeIl3PBEM=
+X-Google-Smtp-Source: AGHT+IGOpmCt7r6aMgv0PofyN+s+ybvbGGWrGxrluj7E2hm4OOsNHntjgzS2fQRDmHRVqJS0JlWLYQ==
+X-Received: by 2002:a05:600c:3550:b0:477:75eb:a643 with SMTP id
+ 5b1f17b1804b1-477b9ddd8c4mr18898435e9.4.1763631596107; 
+ Thu, 20 Nov 2025 01:39:56 -0800 (PST)
 Received: from [192.168.0.101] ([90.240.106.137])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-42cb7f2e460sm4293066f8f.7.2025.11.20.01.31.53
+ 5b1f17b1804b1-477b0ffd37bsm100308375e9.3.2025.11.20.01.39.54
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 20 Nov 2025 01:31:53 -0800 (PST)
-Message-ID: <fee6476e-3168-4f4f-ae2f-3ef65fe209b0@ursulin.net>
-Date: Thu, 20 Nov 2025 09:31:53 +0000
+ Thu, 20 Nov 2025 01:39:55 -0800 (PST)
+Message-ID: <75cf65a0-8967-4e39-8bfe-aa284f8242b3@ursulin.net>
+Date: Thu, 20 Nov 2025 09:39:54 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 05/11] drm/i915: Use huge tmpfs mountpoint helpers
+Subject: Re: [PATCH v9 06/11] drm/v3d: Use huge tmpfs mountpoint helpers
 To: =?UTF-8?Q?Lo=C3=AFc_Molinari?= <loic.molinari@collabora.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
@@ -92,10 +92,10 @@ Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, linux-mm@kvack.org,
  linux-doc@vger.kernel.org, kernel@collabora.com
 References: <20251114170303.2800-1-loic.molinari@collabora.com>
- <20251114170303.2800-6-loic.molinari@collabora.com>
+ <20251114170303.2800-7-loic.molinari@collabora.com>
 Content-Language: en-GB
 From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <20251114170303.2800-6-loic.molinari@collabora.com>
+In-Reply-To: <20251114170303.2800-7-loic.molinari@collabora.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -117,159 +117,205 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On 14/11/2025 17:02, Loïc Molinari wrote:
 > Make use of the new drm_gem_huge_mnt_create() and
 > drm_gem_get_huge_mnt() helpers to avoid code duplication. Now that
-> it's just a few lines long, the single function in i915_gemfs.c is
-> moved into v3d_gem_shmem.c.
+> it's just a few lines long, the single function in v3d_gemfs.c is
+> moved into v3d_gem.c.
 > 
 > v3:
 > - use huge tmpfs mountpoint in drm_device
-> - move i915_gemfs.c into i915_gem_shmem.c
+> - move v3d_gemfs.c into v3d_gem.c
 > 
 > v4:
 > - clean up mountpoint creation error handling
 > 
 > v5:
+> - fix CONFIG_TRANSPARENT_HUGEPAGE check
 > - use drm_gem_has_huge_mnt() helper
 > 
-> v7:
-> - include <drm/drm_print.h> in i915_gem_shmem.c
-> 
 > v8:
-> - keep logging notice message with CONFIG_TRANSPARENT_HUGEPAGE=n
 > - don't access huge_mnt field with CONFIG_TRANSPARENT_HUGEPAGE=n
 > 
 > v9:
 > - replace drm_gem_has_huge_mnt() by drm_gem_get_huge_mnt()
-> - remove useless ternary op test in selftests/huge_pages.c
 > 
 > Signed-off-by: Loïc Molinari <loic.molinari@collabora.com>
 > ---
->   drivers/gpu/drm/i915/Makefile                 |  3 +-
->   drivers/gpu/drm/i915/gem/i915_gem_shmem.c     | 48 +++++++++----
->   drivers/gpu/drm/i915/gem/i915_gemfs.c         | 71 -------------------
->   drivers/gpu/drm/i915/gem/i915_gemfs.h         | 14 ----
->   .../gpu/drm/i915/gem/selftests/huge_pages.c   | 16 +++--
->   drivers/gpu/drm/i915/i915_drv.h               |  5 --
->   6 files changed, 47 insertions(+), 110 deletions(-)
->   delete mode 100644 drivers/gpu/drm/i915/gem/i915_gemfs.c
->   delete mode 100644 drivers/gpu/drm/i915/gem/i915_gemfs.h
+>   drivers/gpu/drm/v3d/Makefile    |  3 +-
+>   drivers/gpu/drm/v3d/v3d_bo.c    |  9 +++--
+>   drivers/gpu/drm/v3d/v3d_drv.c   |  2 +-
+>   drivers/gpu/drm/v3d/v3d_drv.h   | 11 +-----
+>   drivers/gpu/drm/v3d/v3d_gem.c   | 27 ++++++++++++--
+>   drivers/gpu/drm/v3d/v3d_gemfs.c | 62 ---------------------------------
+>   6 files changed, 34 insertions(+), 80 deletions(-)
+>   delete mode 100644 drivers/gpu/drm/v3d/v3d_gemfs.c
 > 
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index 84ec79b64960..b5a8c0a6b747 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -169,8 +169,7 @@ gem-y += \
->   	gem/i915_gem_ttm_move.o \
->   	gem/i915_gem_ttm_pm.o \
->   	gem/i915_gem_userptr.o \
-> -	gem/i915_gem_wait.o \
-> -	gem/i915_gemfs.o
-> +	gem/i915_gem_wait.o
->   i915-y += \
->   	$(gem-y) \
->   	i915_active.o \
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> index 26dda55a07ff..15c2c6fde2ac 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> @@ -9,14 +9,16 @@
->   #include <linux/uio.h>
+> diff --git a/drivers/gpu/drm/v3d/Makefile b/drivers/gpu/drm/v3d/Makefile
+> index fcf710926057..b7d673f1153b 100644
+> --- a/drivers/gpu/drm/v3d/Makefile
+> +++ b/drivers/gpu/drm/v3d/Makefile
+> @@ -13,8 +13,7 @@ v3d-y := \
+>   	v3d_trace_points.o \
+>   	v3d_sched.o \
+>   	v3d_sysfs.o \
+> -	v3d_submit.o \
+> -	v3d_gemfs.o
+> +	v3d_submit.o
 >   
->   #include <drm/drm_cache.h>
-> +#include <drm/drm_gem.h>
-> +#include <drm/drm_print.h>
+>   v3d-$(CONFIG_DEBUG_FS) += v3d_debugfs.o
 >   
->   #include "gem/i915_gem_region.h"
->   #include "i915_drv.h"
->   #include "i915_gem_object.h"
->   #include "i915_gem_tiling.h"
-> -#include "i915_gemfs.h"
->   #include "i915_scatterlist.h"
->   #include "i915_trace.h"
-> +#include "i915_utils.h"
+> diff --git a/drivers/gpu/drm/v3d/v3d_bo.c b/drivers/gpu/drm/v3d/v3d_bo.c
+> index d9547f5117b9..211578abf9b6 100644
+> --- a/drivers/gpu/drm/v3d/v3d_bo.c
+> +++ b/drivers/gpu/drm/v3d/v3d_bo.c
+> @@ -114,7 +114,7 @@ v3d_bo_create_finish(struct drm_gem_object *obj)
+>   	if (IS_ERR(sgt))
+>   		return PTR_ERR(sgt);
 >   
->   /*
->    * Move folios to appropriate lru and release the batch, decrementing the
-> @@ -497,6 +499,7 @@ static int __create_shmem(struct drm_i915_private *i915,
->   			  resource_size_t size)
+> -	if (!v3d->gemfs)
+> +	if (!drm_gem_get_huge_mnt(obj->dev))
+>   		align = SZ_4K;
+>   	else if (obj->size >= SZ_1M)
+>   		align = SZ_1M;
+> @@ -150,12 +150,15 @@ struct v3d_bo *v3d_bo_create(struct drm_device *dev, struct drm_file *file_priv,
+>   			     size_t unaligned_size)
 >   {
->   	unsigned long flags = VM_NORESERVE;
-> +	struct vfsmount *huge_mnt;
->   	struct file *filp;
+>   	struct drm_gem_shmem_object *shmem_obj;
+> -	struct v3d_dev *v3d = to_v3d_dev(dev);
+>   	struct v3d_bo *bo;
+>   	int ret;
 >   
->   	drm_gem_private_object_init(&i915->drm, obj, size);
-> @@ -515,9 +518,9 @@ static int __create_shmem(struct drm_i915_private *i915,
->   	if (BITS_PER_LONG == 64 && size > MAX_LFS_FILESIZE)
->   		return -E2BIG;
+> +#ifdef CONFIG_TRANSPARENT_HUGEPAGE
+>   	shmem_obj = drm_gem_shmem_create_with_mnt(dev, unaligned_size,
+> -						  v3d->gemfs);
+> +						  dev->huge_mnt);
+> +#else
+> +	shmem_obj = drm_gem_shmem_create(dev, unaligned_size);
+> +#endif
+
+Don't you want to use the same pattern not requiring #ifdef as you did 
+in i915?
+
+The rest looks good to me on a glance. Only functional change appears to 
+be that you are adding a new error message, scrolling down..
+
+>   	if (IS_ERR(shmem_obj))
+>   		return ERR_CAST(shmem_obj);
+>   	bo = to_v3d_bo(&shmem_obj->base);
+> diff --git a/drivers/gpu/drm/v3d/v3d_drv.c b/drivers/gpu/drm/v3d/v3d_drv.c
+> index e8a46c8bad8a..8faa9382846f 100644
+> --- a/drivers/gpu/drm/v3d/v3d_drv.c
+> +++ b/drivers/gpu/drm/v3d/v3d_drv.c
+> @@ -107,7 +107,7 @@ static int v3d_get_param_ioctl(struct drm_device *dev, void *data,
+>   		args->value = v3d->perfmon_info.max_counters;
+>   		return 0;
+>   	case DRM_V3D_PARAM_SUPPORTS_SUPER_PAGES:
+> -		args->value = !!v3d->gemfs;
+> +		args->value = !!drm_gem_get_huge_mnt(dev);
+>   		return 0;
+>   	case DRM_V3D_PARAM_GLOBAL_RESET_COUNTER:
+>   		mutex_lock(&v3d->reset_lock);
+> diff --git a/drivers/gpu/drm/v3d/v3d_drv.h b/drivers/gpu/drm/v3d/v3d_drv.h
+> index 1884686985b8..99a39329bb85 100644
+> --- a/drivers/gpu/drm/v3d/v3d_drv.h
+> +++ b/drivers/gpu/drm/v3d/v3d_drv.h
+> @@ -158,11 +158,6 @@ struct v3d_dev {
+>   	struct drm_mm mm;
+>   	spinlock_t mm_lock;
 >   
-> -	if (i915->mm.gemfs)
-> -		filp = shmem_file_setup_with_mnt(i915->mm.gemfs, "i915", size,
-> -						 flags);
-> +	huge_mnt = drm_gem_get_huge_mnt(&i915->drm);
-> +	if (huge_mnt)
-> +		filp = shmem_file_setup_with_mnt(huge_mnt, "i915", size, flags);
->   	else
->   		filp = shmem_file_setup("i915", size, flags);
->   	if (IS_ERR(filp))
-> @@ -644,21 +647,40 @@ i915_gem_object_create_shmem_from_data(struct drm_i915_private *i915,
+> -	/*
+> -	 * tmpfs instance used for shmem backed objects
+> -	 */
+> -	struct vfsmount *gemfs;
+> -
+>   	struct work_struct overflow_mem_work;
 >   
->   static int init_shmem(struct intel_memory_region *mem)
->   {
-> -	i915_gemfs_init(mem->i915);
-> -	intel_memory_region_set_name(mem, "system");
-> +	struct drm_i915_private *i915 = mem->i915;
+>   	struct v3d_queue_state queue[V3D_MAX_QUEUES];
+> @@ -569,6 +564,7 @@ extern const struct dma_fence_ops v3d_fence_ops;
+>   struct dma_fence *v3d_fence_create(struct v3d_dev *v3d, enum v3d_queue q);
 >   
-> -	return 0; /* We have fallback to the kernel mnt if gemfs init failed. */
-> -}
-> +	/*
-> +	 * By creating our own shmemfs mountpoint, we can pass in
-> +	 * mount flags that better match our usecase.
-> +	 *
-> +	 * One example, although it is probably better with a per-file
-> +	 * control, is selecting huge page allocations ("huge=within_size").
-> +	 * However, we only do so on platforms which benefit from it, or to
-> +	 * offset the overhead of iommu lookups, where with latter it is a net
-> +	 * win even on platforms which would otherwise see some performance
-> +	 * regressions such a slow reads issue on Broadwell and Skylake.
-> +	 */
+>   /* v3d_gem.c */
+> +extern bool super_pages;
+>   int v3d_gem_init(struct drm_device *dev);
+>   void v3d_gem_destroy(struct drm_device *dev);
+>   void v3d_reset_sms(struct v3d_dev *v3d);
+> @@ -576,11 +572,6 @@ void v3d_reset(struct v3d_dev *v3d);
+>   void v3d_invalidate_caches(struct v3d_dev *v3d);
+>   void v3d_clean_caches(struct v3d_dev *v3d);
 >   
-> -static int release_shmem(struct intel_memory_region *mem)
-> -{
-> -	i915_gemfs_fini(mem->i915);
-> -	return 0;
-> +	if (GRAPHICS_VER(i915) < 11 && !i915_vtd_active(i915))
-> +		goto no_thp;
-> +
-> +	drm_gem_huge_mnt_create(&i915->drm, "within_size");
-> +	if (drm_gem_get_huge_mnt(&i915->drm))
-> +		drm_info(&i915->drm, "Using Transparent Hugepages\n");
-> +	else
-> +		drm_notice(&i915->drm,
-> +			   "Transparent Hugepage support is recommended for optimal performance%s\n",
-> +			   GRAPHICS_VER(i915) >= 11 ? " on this platform!" :
-> +						      " when IOMMU is enabled!");
-> +
-> + no_thp:
-> +	intel_memory_region_set_name(mem, "system");
-> +
-> +	return 0; /* We have fallback to the kernel mnt if huge mnt failed. */
+> -/* v3d_gemfs.c */
+> -extern bool super_pages;
+> -void v3d_gemfs_init(struct v3d_dev *v3d);
+> -void v3d_gemfs_fini(struct v3d_dev *v3d);
+> -
+>   /* v3d_submit.c */
+>   void v3d_job_cleanup(struct v3d_job *job);
+>   void v3d_job_put(struct v3d_job *job);
+> diff --git a/drivers/gpu/drm/v3d/v3d_gem.c b/drivers/gpu/drm/v3d/v3d_gem.c
+> index 5a180dc6c452..62532a89dd14 100644
+> --- a/drivers/gpu/drm/v3d/v3d_gem.c
+> +++ b/drivers/gpu/drm/v3d/v3d_gem.c
+> @@ -259,6 +259,30 @@ v3d_invalidate_caches(struct v3d_dev *v3d)
+>   	v3d_invalidate_slices(v3d, 0);
 >   }
 >   
->   static const struct intel_memory_region_ops shmem_region_ops = {
->   	.init = init_shmem,
-> -	.release = release_shmem,
->   	.init_object = shmem_object_init,
->   };
+> +static void
+> +v3d_huge_mnt_init(struct v3d_dev *v3d)
+> +{
+> +	int err = 0;
+> +
+> +	/*
+> +	 * By using a huge shmemfs mountpoint when the user wants to
+> +	 * enable Super Pages, we can pass in mount flags that better
+> +	 * match our usecase.
+> +	 */
+> +
+> +	if (IS_ENABLED(CONFIG_TRANSPARENT_HUGEPAGE) && super_pages)
+> +		err = drm_gem_huge_mnt_create(&v3d->drm, "within_size");
+> +
+> +	if (drm_gem_get_huge_mnt(&v3d->drm))
+> +		drm_info(&v3d->drm, "Using Transparent Hugepages\n");
+> +	else if (err)
+> +		drm_warn(&v3d->drm, "Can't use Transparent Hugepages (%d)\n",
+> +			 err);
+
+.. here, but that looks acceptable to me.
+
+Regards,
+
+Tvrtko
+
+> +	else
+> +		drm_notice(&v3d->drm,
+> +			   "Transparent Hugepage support is recommended for optimal performance on this platform!\n");
+> +}
+> +
+>   int
+>   v3d_gem_init(struct drm_device *dev)
+>   {
+> @@ -310,7 +334,7 @@ v3d_gem_init(struct drm_device *dev)
+>   	v3d_init_hw_state(v3d);
+>   	v3d_mmu_set_page_table(v3d);
 >   
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gemfs.c b/drivers/gpu/drm/i915/gem/i915_gemfs.c
+> -	v3d_gemfs_init(v3d);
+> +	v3d_huge_mnt_init(v3d);
+>   
+>   	ret = v3d_sched_init(v3d);
+>   	if (ret) {
+> @@ -330,7 +354,6 @@ v3d_gem_destroy(struct drm_device *dev)
+>   	enum v3d_queue q;
+>   
+>   	v3d_sched_fini(v3d);
+> -	v3d_gemfs_fini(v3d);
+>   
+>   	/* Waiting for jobs to finish would need to be done before
+>   	 * unregistering V3D.
+> diff --git a/drivers/gpu/drm/v3d/v3d_gemfs.c b/drivers/gpu/drm/v3d/v3d_gemfs.c
 > deleted file mode 100644
-> index 1f1290214031..000000000000
-> --- a/drivers/gpu/drm/i915/gem/i915_gemfs.c
+> index bf351fc0d488..000000000000
+> --- a/drivers/gpu/drm/v3d/v3d_gemfs.c
 > +++ /dev/null
-> @@ -1,71 +0,0 @@
-> -// SPDX-License-Identifier: MIT
-> -/*
-> - * Copyright © 2017 Intel Corporation
-> - */
+> @@ -1,62 +0,0 @@
+> -// SPDX-License-Identifier: GPL-2.0+
+> -/* Copyright (C) 2024 Raspberry Pi */
 > -
 > -#include <linux/fs.h>
 > -#include <linux/mount.h>
@@ -277,11 +323,9 @@ On 14/11/2025 17:02, Loïc Molinari wrote:
 > -
 > -#include <drm/drm_print.h>
 > -
-> -#include "i915_drv.h"
-> -#include "i915_gemfs.h"
-> -#include "i915_utils.h"
+> -#include "v3d_drv.h"
 > -
-> -void i915_gemfs_init(struct drm_i915_private *i915)
+> -void v3d_gemfs_init(struct v3d_dev *v3d)
 > -{
 > -	struct file_system_type *type;
 > -	struct fs_context *fc;
@@ -290,20 +334,14 @@ On 14/11/2025 17:02, Loïc Molinari wrote:
 > -
 > -	/*
 > -	 * By creating our own shmemfs mountpoint, we can pass in
-> -	 * mount flags that better match our usecase.
-> -	 *
-> -	 * One example, although it is probably better with a per-file
-> -	 * control, is selecting huge page allocations ("huge=within_size").
-> -	 * However, we only do so on platforms which benefit from it, or to
-> -	 * offset the overhead of iommu lookups, where with latter it is a net
-> -	 * win even on platforms which would otherwise see some performance
-> -	 * regressions such a slow reads issue on Broadwell and Skylake.
+> -	 * mount flags that better match our usecase. However, we
+> -	 * only do so on platforms which benefit from it.
 > -	 */
-> -
-> -	if (GRAPHICS_VER(i915) < 11 && !i915_vtd_active(i915))
-> -		return;
-> -
 > -	if (!IS_ENABLED(CONFIG_TRANSPARENT_HUGEPAGE))
+> -		goto err;
+> -
+> -	/* The user doesn't want to enable Super Pages */
+> -	if (!super_pages)
 > -		goto err;
 > -
 > -	type = get_fs_type("tmpfs");
@@ -322,139 +360,20 @@ On 14/11/2025 17:02, Loïc Molinari wrote:
 > -	if (ret)
 > -		goto err;
 > -
-> -	i915->mm.gemfs = gemfs;
-> -	drm_info(&i915->drm, "Using Transparent Hugepages\n");
+> -	v3d->gemfs = gemfs;
+> -	drm_info(&v3d->drm, "Using Transparent Hugepages\n");
+> -
 > -	return;
 > -
 > -err:
-> -	drm_notice(&i915->drm,
-> -		   "Transparent Hugepage support is recommended for optimal performance%s\n",
-> -		   GRAPHICS_VER(i915) >= 11 ? " on this platform!" :
-> -					      " when IOMMU is enabled!");
+> -	v3d->gemfs = NULL;
+> -	drm_notice(&v3d->drm,
+> -		   "Transparent Hugepage support is recommended for optimal performance on this platform!\n");
 > -}
 > -
-> -void i915_gemfs_fini(struct drm_i915_private *i915)
+> -void v3d_gemfs_fini(struct v3d_dev *v3d)
 > -{
-> -	kern_unmount(i915->mm.gemfs);
+> -	if (v3d->gemfs)
+> -		kern_unmount(v3d->gemfs);
 > -}
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gemfs.h b/drivers/gpu/drm/i915/gem/i915_gemfs.h
-> deleted file mode 100644
-> index 16d4333c9a4e..000000000000
-> --- a/drivers/gpu/drm/i915/gem/i915_gemfs.h
-> +++ /dev/null
-> @@ -1,14 +0,0 @@
-> -/* SPDX-License-Identifier: MIT */
-> -/*
-> - * Copyright © 2017 Intel Corporation
-> - */
-> -
-> -#ifndef __I915_GEMFS_H__
-> -#define __I915_GEMFS_H__
-> -
-> -struct drm_i915_private;
-> -
-> -void i915_gemfs_init(struct drm_i915_private *i915);
-> -void i915_gemfs_fini(struct drm_i915_private *i915);
-> -
-> -#endif
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-> index bd08605a1611..28aef75630a2 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-> @@ -1316,7 +1316,7 @@ typedef struct drm_i915_gem_object *
->   
->   static inline bool igt_can_allocate_thp(struct drm_i915_private *i915)
->   {
-> -	return i915->mm.gemfs && has_transparent_hugepage();
-> +	return !!drm_gem_get_huge_mnt(&i915->drm);
->   }
->   
->   static struct drm_i915_gem_object *
-> @@ -1761,7 +1761,9 @@ static int igt_tmpfs_fallback(void *arg)
->   	struct drm_i915_private *i915 = arg;
->   	struct i915_address_space *vm;
->   	struct i915_gem_context *ctx;
-> -	struct vfsmount *gemfs = i915->mm.gemfs;
-> +#ifdef CONFIG_TRANSPARENT_HUGEPAGE
-> +	struct vfsmount *huge_mnt = i915->drm.huge_mnt;
-> +#endif
->   	struct drm_i915_gem_object *obj;
->   	struct i915_vma *vma;
->   	struct file *file;
-> @@ -1782,10 +1784,12 @@ static int igt_tmpfs_fallback(void *arg)
->   	/*
->   	 * Make sure that we don't burst into a ball of flames upon falling back
->   	 * to tmpfs, which we rely on if on the off-chance we encounter a failure
-> -	 * when setting up gemfs.
-> +	 * when setting up a huge mountpoint.
->   	 */
->   
-> -	i915->mm.gemfs = NULL;
-> +#ifdef CONFIG_TRANSPARENT_HUGEPAGE
-> +	i915->drm.huge_mnt = NULL;
-> +#endif
->   
->   	obj = i915_gem_object_create_shmem(i915, PAGE_SIZE);
->   	if (IS_ERR(obj)) {
-> @@ -1819,7 +1823,9 @@ static int igt_tmpfs_fallback(void *arg)
->   out_put:
->   	i915_gem_object_put(obj);
->   out_restore:
-> -	i915->mm.gemfs = gemfs;
-> +#ifdef CONFIG_TRANSPARENT_HUGEPAGE
-> +	i915->drm.huge_mnt = huge_mnt;
-> +#endif
 
-Apart from this layering violation in the selftest, this version looks 
-good to me. I am just wondering if we could somehow improve this aspect. 
-I was thinking a self-test builds only special version of 
-i915_gem_object_create_shmem. Call chain is deep but there are flags 
-passed on:
-
-i915_gem_object_create_shmem
-   i915_gem_object_create_region
-     __i915_gem_object_create_region
-       err = mem->ops->init_object(
-
-So we could add a new helper like:
-
-selftests_create_shmem
-   i915_gem_object_create_region(...flags = 
-I915_BO_ALLOC_SELFTESTS_NOTHP...)
-
-And in __create_shmem we just make it:
-
-...
-huge_mnt = drm_gem_get_huge_mnt(&i915->drm) &&
-if (IS_ENABLED(..SELFTESTS..) &&
-     (flags & I915_BO_ALLOC_SELFTESTS_NOTHP))
-	huge_mnt = NULL;
-...
-
-It would avoid the ifdef and needing to play games with the DRM internals.
-
-How does that sound to you?
-
-Regards,
-
-Tvrtko
-
->   
->   	i915_vm_put(vm);
->   out:
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 95f9ddf22ce4..93a5af3de334 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -141,11 +141,6 @@ struct i915_gem_mm {
->   	 */
->   	atomic_t free_count;
->   
-> -	/**
-> -	 * tmpfs instance used for shmem backed objects
-> -	 */
-> -	struct vfsmount *gemfs;
-> -
->   	struct intel_memory_region *regions[INTEL_REGION_UNKNOWN];
->   
->   	struct notifier_block oom_notifier;
