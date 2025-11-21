@@ -2,66 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B9F0C78378
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Nov 2025 10:46:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E06DEC78841
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Nov 2025 11:30:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DBEF10E807;
-	Fri, 21 Nov 2025 09:46:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7495A10E84B;
+	Fri, 21 Nov 2025 10:30:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BdObhguZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mofjgAAG";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F84210E133;
- Fri, 21 Nov 2025 09:46:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D669C10E84B;
+ Fri, 21 Nov 2025 10:30:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763718399; x=1795254399;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=qAYRXDP3YxcNC7GNhMYVfpJnXpiA3jEZmGW3pib3VS8=;
- b=BdObhguZkwwRsVUjHuNr7gWFvIfzgEUQbwTPK/3P+VJO98E0o6HF80tg
- 2KZrUAlzj7MUa4gnh3md6XMZ5fW9YVbKv+xjFeeqVYwrfv+e+MpO23cmS
- bpTweLlEa77dMoDIgXZrcJPgDCcGepYDHVfuUSlS/t/2bh7sMajl5GxGM
- XWgaTNDhUmYNatk2xOkRyhSLNosHERJX0cyy97QXvp7qqpMdS21G/E7uq
- nUg25rAHbuwxwlwT5o3hCGP+8mmrV7LyeWRdoXlznEqMYxwKZS3/qvUiz
- LOyfphnqlctqhDaCt9Ggl9Xn4K33ewuWOC1ghaf/G+P5af7CS9vs3o9cD w==;
-X-CSE-ConnectionGUID: UQWe4BZSQk6yJj6Yw389oA==
-X-CSE-MsgGUID: 2nKz1I5hRMiKvmLGSwiVEg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11619"; a="77276438"
-X-IronPort-AV: E=Sophos;i="6.20,215,1758610800"; d="scan'208";a="77276438"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2025 01:46:39 -0800
-X-CSE-ConnectionGUID: NuRQ+670QAyo3mH1T6plGw==
-X-CSE-MsgGUID: NYY+zMblQP2C7VcHKL/Njw==
+ t=1763721011; x=1795257011;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=PFk6zOL2oO8RIG1++OADRnO1MzLea1XCw4mskQlSgvY=;
+ b=mofjgAAGQZk4xUDZvKC7i2rGi1NPIK+ytGE/k37a4pFQLJt2BWXqkcfv
+ UGSrWhWTLaHfPhBDyJLBu172gVGmQOH4k0PgRIlCXEtvj9pCMwX7GV+gO
+ N5BtJj3f6wh3iCjHVmf9AWgj9rNmjfSx60+0hiiBGLIcNcyHwjUjzUnTM
+ 5XUHlwxfoxbKiktSA/12VGKSuwDpqCY0Xv8XkXz1GONInTetE4F5kUmvb
+ TnkUauE7qtaAV4qPf71xV6y2hR70cx4txGg8Xjk/4pqG86EcIuIGaYh8c
+ UUOqXV8iXxZ8tCygDbWYB+d1IrbjBfqDtAFiUSfIbgx2EcZpWIgPvDo8d A==;
+X-CSE-ConnectionGUID: yHsS3iusQrOtfXMfIIZbFw==
+X-CSE-MsgGUID: tlr224/MT1GcXiV0ndjeDQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11619"; a="65745372"
+X-IronPort-AV: E=Sophos;i="6.20,215,1758610800"; d="scan'208";a="65745372"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2025 02:30:11 -0800
+X-CSE-ConnectionGUID: 4zp7Xsc6RAaG2y4/ua1GQg==
+X-CSE-MsgGUID: uQGu9QHaTCi5pd672tepEg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,215,1758610800"; d="scan'208";a="191440131"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO fedora) ([10.245.245.9])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2025 01:46:35 -0800
-Date: Fri, 21 Nov 2025 10:46:24 +0100
-From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-xe-next-fixes
-Message-ID: <aSA08EW9JMU3LkIu@fedora>
+X-IronPort-AV: E=Sophos;i="6.20,215,1758610800"; d="scan'208";a="190867475"
+Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.86])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2025 02:30:09 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v2 13/13] drm/xe/vga: use the same
+ intel_gmch_vga_set_decode() as i915
+In-Reply-To: <2bkiopdfnvb7clswdyxugft55za25esifpji35mjcmxv7qjctn@2v6het7sh7f4>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1763578288.git.jani.nikula@intel.com>
+ <f4121e6c70bac6c26ef3cf51aaf72822f2cb2d54.1763578288.git.jani.nikula@intel.com>
+ <2bkiopdfnvb7clswdyxugft55za25esifpji35mjcmxv7qjctn@2v6het7sh7f4>
+Date: Fri, 21 Nov 2025 12:30:03 +0200
+Message-ID: <4cd82f1b10776abd6b78da078d5444c8099802a0@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,42 +71,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Simona
+On Thu, 20 Nov 2025, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Wed, Nov 19, 2025 at 08:52:52PM +0200, Jani Nikula wrote:
+>>Drop the #ifdef I915, and use the same intel_gmch_vga_set_decode() for
+>>both i915 and xe.
+>
+> I hope this doesn't regress our display side on other archs. We are very
+> close to having display working, but this messing with VGA is likely to
+> break it.
+>
+> See "drm/i915/display: Stop touching vga on post enable", which is
+> needed for xe to use a DG2/BMG with a raspberry pi (+pci/resources
+> branch + a few other patches).
 
-This week's drm-xe-next-fixes PR for drm-next.
+I'm feeling confident [1] that the patch at hand does not have similar
+issues. This is about VGA arbitration on the PCI bridge, not about
+actually poking at VGA registers.
 
-drm-xe-next-fixes-2025-11-21:
-Driver Changes:
-- A couple of SR-IOV fixes (Michal Winiarski)
-- Fix a potential UAF (Sanjay)
+I went ahead and merged the series. If there are any ill effects with
+the last patch, we can revert with a low bar.
 
-The following changes since commit f0ded972d37150f9f889de75c9eecc5cb0730013:
 
-  Merge tag 'drm-rust-next-2025-11-18' of https://gitlab.freedesktop.org/drm/rust/kernel into drm-next (2025-11-20 10:44:50 +1000)
+BR,
+Jani.
 
-are available in the Git repository at:
 
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-fixes-2025-11-21
 
-for you to fetch changes up to dcb171931954c51a1a7250d558f02b8f36570783:
+[1] https://en.wikipedia.org/wiki/Dunning%E2%80%93Kruger_effect
 
-  drm/xe/oa: Fix potential UAF in xe_oa_add_config_ioctl() (2025-11-21 08:41:04 +0100)
 
-----------------------------------------------------------------
-Driver Changes:
-- A couple of SR-IOV fixes (Michal Winiarski)
-- Fix a potential UAF (Sanjay)
-
-----------------------------------------------------------------
-Michał Winiarski (3):
-      drm/xe/pf: Fix kernel-doc warning in migration_save_consume
-      drm/xe/pf: Drop the VF VRAM BO reference on successful restore
-      drm/xe/pf: Check for fence error on VRAM save/restore
-
-Sanjay Yadav (1):
-      drm/xe/oa: Fix potential UAF in xe_oa_add_config_ioctl()
-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c | 11 +++++++++++
- drivers/gpu/drm/xe/xe_oa.c                    |  8 +++++---
- drivers/gpu/drm/xe/xe_sriov_pf_migration.c    |  2 --
- 3 files changed, 16 insertions(+), 5 deletions(-)
+-- 
+Jani Nikula, Intel
