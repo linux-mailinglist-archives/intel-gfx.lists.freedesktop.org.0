@@ -2,54 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 101D5C78C30
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Nov 2025 12:22:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 30727C78C63
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Nov 2025 12:25:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98A1110E861;
-	Fri, 21 Nov 2025 11:22:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B781410E851;
+	Fri, 21 Nov 2025 11:25:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W2ODcQpE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fT2TSgjw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A3BE10E861;
- Fri, 21 Nov 2025 11:22:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FD2010E851;
+ Fri, 21 Nov 2025 11:25:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763724128; x=1795260128;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=IfgCr2A0AW2+if39k67kAV3A8HQEz9YVxlUOeIAyfRY=;
- b=W2ODcQpEzsOGg9BvvcfcC2KJGF5OZb2UQBbH59hhsp7JLUuU7nf1h6rv
- PbuyP/g/emiSnSC6aVyfjzVQnTD6TibFe1JTjQvYXNxeLNbfutKGxk3Xp
- KMV5V62WNck5Q8cAaX5D/SF66vY1n0V/xIsngQIUqyStezWXxC8OoT0yC
- 7qYcs1YGaMpSgJ1FR7/rAIwQJNgOYaGNodBMOMzi156pljfcWjaO0LDMA
- JtXt5y+l4IzGxzpQe2AvFKs1aOmWaH0DZlQi6hYyqX+QvU9MCX6uIyKe4
- ll/6F4EUATByKhEx14VdKistKxkEc0AyZeFtioDc9AZ8ecpRc7gMVmqUM Q==;
-X-CSE-ConnectionGUID: EVreqvPZQCaOJES4F/HWYA==
-X-CSE-MsgGUID: knEPcaTYTXyRde1bFxwmjQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11619"; a="65760223"
-X-IronPort-AV: E=Sophos;i="6.20,215,1758610800"; d="scan'208";a="65760223"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2025 03:22:08 -0800
-X-CSE-ConnectionGUID: EM3pr0/HQDKnvDcZXFCktg==
-X-CSE-MsgGUID: 825A4xGeQs2a/6Ou/mDquA==
+ t=1763724335; x=1795260335;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=wsEpRhTSYpVJYzyIqAI2D4wJGfeLeduB6Fp8NKJH/Fs=;
+ b=fT2TSgjwKg4qHLjxz62sBpbQR1qFni00JfSwVucziojNgmQLDOulIv1u
+ dKK0HvBodHx/tCxjHDt3PjOkzJy9ATH6TllASPKDWRy1wnMZUZicCdg6f
+ cwzO0KRtRxZ/gPSF/fD7y1jR6m6Vhzw2qHyORKrTqBlu/h0TMyM2u0PIj
+ h9UDEFv7QskKOmZ0kGTZ75PFGkivZjPYuffiuR4jv9U/uStJTlPrDHB+e
+ hRO80u9pso6XH8FSVsA3/IWBjfsPDqb7l96JbOtuNYB6ATkPyI0WLYdiT
+ M7KYACbM61P+WVLCB9oxI5/rsbTrLs5H5IdzsVRsi2n/i5TyVRDtTxFQg w==;
+X-CSE-ConnectionGUID: XY5MgEweTKepMXH40bP3Kw==
+X-CSE-MsgGUID: 85qUg71JTyiD1NO7p5wXcA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11619"; a="65693597"
+X-IronPort-AV: E=Sophos;i="6.20,215,1758610800"; d="scan'208";a="65693597"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2025 03:25:35 -0800
+X-CSE-ConnectionGUID: v/pNJhO8T3GsWXCBn5oOvw==
+X-CSE-MsgGUID: Go/Q455CS8iOOT9DNjfh6A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,215,1758610800"; d="scan'208";a="191917125"
+X-IronPort-AV: E=Sophos;i="6.20,215,1758610800"; d="scan'208";a="215031515"
 Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.86])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2025 03:22:05 -0800
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2025 03:25:32 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 1/2] drm/i915/cdclk: drop i915_drv.h include
-Date: Fri, 21 Nov 2025 13:21:59 +0200
-Message-ID: <20251121112200.3435099-1-jani.nikula@intel.com>
+Cc: jani.nikula@intel.com,
+	Luca Coelho <luciano.coelho@intel.com>
+Subject: [PATCH 2/2] drm/i915: use struct drm_device for clock gating funcs
+Date: Fri, 21 Nov 2025 13:22:00 +0200
+Message-ID: <20251121112200.3435099-2-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20251121112200.3435099-1-jani.nikula@intel.com>
+References: <20251121112200.3435099-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
@@ -68,33 +71,192 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-intel_cdclk.c no longer needs i915_drv.h. Drop it.
+While we want to refactor intel_clock_gating.[ch] and likely move a lot
+of display related code to display, start off with a little intermediate
+change to use struct drm_device in the interface instead of struct
+drm_i915_private, to allow us to drop another dependency on i915_drv.h
+and struct drm_i915_private.
 
+Cc: Luca Coelho <luciano.coelho@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display_power.c |  4 +---
+ drivers/gpu/drm/i915/display/intel_display_reset.c |  5 ++---
+ drivers/gpu/drm/i915/i915_driver.c                 |  4 ++--
+ drivers/gpu/drm/i915/i915_gem.c                    |  4 ++--
+ drivers/gpu/drm/i915/intel_clock_gating.c          | 10 +++++++---
+ drivers/gpu/drm/i915/intel_clock_gating.h          |  6 +++---
+ drivers/gpu/drm/i915/vlv_suspend.c                 |  2 +-
+ 7 files changed, 18 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 5c90e53b4e46..69a79ccdd1ba 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -29,7 +29,6 @@
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 08db9bbbfcb1..346cf3cf2903 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -1415,8 +1415,6 @@ static void hsw_enable_pc8(struct intel_display *display)
+ 
+ static void hsw_disable_pc8(struct intel_display *display)
+ {
+-	struct drm_i915_private __maybe_unused *dev_priv = to_i915(display->drm);
+-
+ 	drm_dbg_kms(display->drm, "Disabling package C8+\n");
+ 
+ 	hsw_restore_lcpll(display);
+@@ -1424,7 +1422,7 @@ static void hsw_disable_pc8(struct intel_display *display)
+ 
+ 	/* Many display registers don't survive PC8+ */
+ #ifdef I915 /* FIXME */
+-	intel_clock_gating_init(dev_priv);
++	intel_clock_gating_init(display->drm);
+ #endif
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.c b/drivers/gpu/drm/i915/display/intel_display_reset.c
+index 03e8c68d2913..d00ef5bdcbda 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_reset.c
++++ b/drivers/gpu/drm/i915/display/intel_display_reset.c
+@@ -6,13 +6,13 @@
+ #include <drm/drm_atomic_helper.h>
  #include <drm/drm_print.h>
  
- #include "hsw_ips.h"
 -#include "i915_drv.h"
- #include "i915_reg.h"
- #include "intel_atomic.h"
- #include "intel_audio.h"
-@@ -46,6 +45,7 @@
- #include "intel_pcode.h"
- #include "intel_plane.h"
- #include "intel_psr.h"
-+#include "intel_step.h"
- #include "intel_vdsc.h"
- #include "skl_watermark.h"
- #include "skl_watermark_regs.h"
+ #include "intel_clock_gating.h"
+ #include "intel_cx0_phy.h"
+ #include "intel_display_core.h"
+ #include "intel_display_driver.h"
+ #include "intel_display_reset.h"
+ #include "intel_display_types.h"
++#include "intel_display_utils.h"
+ #include "intel_hotplug.h"
+ #include "intel_pps.h"
+ 
+@@ -79,7 +79,6 @@ bool intel_display_reset_prepare(struct intel_display *display,
+ 
+ void intel_display_reset_finish(struct intel_display *display, bool test_only)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	struct drm_modeset_acquire_ctx *ctx = &display->restore.reset_ctx;
+ 	struct drm_atomic_state *state;
+ 	int ret;
+@@ -107,7 +106,7 @@ void intel_display_reset_finish(struct intel_display *display, bool test_only)
+ 		 */
+ 		intel_pps_unlock_regs_wa(display);
+ 		intel_display_driver_init_hw(display);
+-		intel_clock_gating_init(i915);
++		intel_clock_gating_init(display->drm);
+ 		intel_cx0_pll_power_save_wa(display);
+ 		intel_hpd_init(display);
+ 
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 2e837865f829..db0dd25f734d 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -263,7 +263,7 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
+ 
+ 	intel_irq_init(dev_priv);
+ 	intel_display_driver_early_probe(display);
+-	intel_clock_gating_hooks_init(dev_priv);
++	intel_clock_gating_hooks_init(&dev_priv->drm);
+ 
+ 	intel_detect_preproduction_hw(dev_priv);
+ 
+@@ -1276,7 +1276,7 @@ static int i915_drm_resume(struct drm_device *dev)
+ 
+ 	intel_display_driver_init_hw(display);
+ 
+-	intel_clock_gating_init(dev_priv);
++	intel_clock_gating_init(&dev_priv->drm);
+ 
+ 	if (intel_display_device_present(display))
+ 		intel_display_driver_resume_access(display);
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index 4c82c9544b93..b40d4d88de01 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -1184,7 +1184,7 @@ int i915_gem_init(struct drm_i915_private *dev_priv)
+ 	 *
+ 	 * FIXME: break up the workarounds and apply them at the right time!
+ 	 */
+-	intel_clock_gating_init(dev_priv);
++	intel_clock_gating_init(&dev_priv->drm);
+ 
+ 	for_each_gt(gt, dev_priv, i) {
+ 		ret = intel_gt_init(gt);
+@@ -1235,7 +1235,7 @@ int i915_gem_init(struct drm_i915_private *dev_priv)
+ 		/* Minimal basic recovery for KMS */
+ 		ret = i915_ggtt_enable_hw(dev_priv);
+ 		i915_ggtt_resume(to_gt(dev_priv)->ggtt);
+-		intel_clock_gating_init(dev_priv);
++		intel_clock_gating_init(&dev_priv->drm);
+ 	}
+ 
+ 	i915_gem_drain_freed_objects(dev_priv);
+diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
+index 175a240ac848..7336934bb934 100644
+--- a/drivers/gpu/drm/i915/intel_clock_gating.c
++++ b/drivers/gpu/drm/i915/intel_clock_gating.c
+@@ -709,8 +709,10 @@ static void i830_init_clock_gating(struct drm_i915_private *i915)
+ 			   _MASKED_BIT_ENABLE(MEM_DISPLAY_B_TRICKLE_FEED_DISABLE));
+ }
+ 
+-void intel_clock_gating_init(struct drm_i915_private *i915)
++void intel_clock_gating_init(struct drm_device *drm)
+ {
++	struct drm_i915_private *i915 = to_i915(drm);
++
+ 	i915->clock_gating_funcs->init_clock_gating(i915);
+ }
+ 
+@@ -749,15 +751,17 @@ CG_FUNCS(nop);
+ 
+ /**
+  * intel_clock_gating_hooks_init - setup the clock gating hooks
+- * @i915: device private
++ * @drm: drm device
+  *
+  * Setup the hooks that configure which clocks of a given platform can be
+  * gated and also apply various GT and display specific workarounds for these
+  * platforms. Note that some GT specific workarounds are applied separately
+  * when GPU contexts or batchbuffers start their execution.
+  */
+-void intel_clock_gating_hooks_init(struct drm_i915_private *i915)
++void intel_clock_gating_hooks_init(struct drm_device *drm)
+ {
++	struct drm_i915_private *i915 = to_i915(drm);
++
+ 	if (IS_DG2(i915))
+ 		i915->clock_gating_funcs = &dg2_clock_gating_funcs;
+ 	else if (IS_COFFEELAKE(i915) || IS_COMETLAKE(i915))
+diff --git a/drivers/gpu/drm/i915/intel_clock_gating.h b/drivers/gpu/drm/i915/intel_clock_gating.h
+index 5b4e4c55b2c2..3a4b443d9b8b 100644
+--- a/drivers/gpu/drm/i915/intel_clock_gating.h
++++ b/drivers/gpu/drm/i915/intel_clock_gating.h
+@@ -6,9 +6,9 @@
+ #ifndef __INTEL_CLOCK_GATING_H__
+ #define __INTEL_CLOCK_GATING_H__
+ 
+-struct drm_i915_private;
++struct drm_device;
+ 
+-void intel_clock_gating_init(struct drm_i915_private *i915);
+-void intel_clock_gating_hooks_init(struct drm_i915_private *i915);
++void intel_clock_gating_init(struct drm_device *drm);
++void intel_clock_gating_hooks_init(struct drm_device *drm);
+ 
+ #endif /* __INTEL_CLOCK_GATING_H__ */
+diff --git a/drivers/gpu/drm/i915/vlv_suspend.c b/drivers/gpu/drm/i915/vlv_suspend.c
+index 221e4c0b2c58..bace7b38329b 100644
+--- a/drivers/gpu/drm/i915/vlv_suspend.c
++++ b/drivers/gpu/drm/i915/vlv_suspend.c
+@@ -453,7 +453,7 @@ int vlv_resume_prepare(struct drm_i915_private *dev_priv, bool rpm_resume)
+ 	vlv_check_no_gt_access(dev_priv);
+ 
+ 	if (rpm_resume)
+-		intel_clock_gating_init(dev_priv);
++		intel_clock_gating_init(&dev_priv->drm);
+ 
+ 	return ret;
+ }
 -- 
 2.47.3
 
