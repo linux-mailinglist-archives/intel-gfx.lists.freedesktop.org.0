@@ -2,61 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E554C78C9F
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Nov 2025 12:28:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AA1EC790FE
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Nov 2025 13:51:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31F2010E85E;
-	Fri, 21 Nov 2025 11:28:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0358610E274;
+	Fri, 21 Nov 2025 12:51:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ER/WV2Jd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eAgxtLOJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D145A10E85B;
- Fri, 21 Nov 2025 11:28:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D730710E274;
+ Fri, 21 Nov 2025 12:51:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763724492; x=1795260492;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=LWVMt0ovtY5AMwjAiSem0hjn1msuImQrWP20ZY8w3WI=;
- b=ER/WV2JdJLlmCrbjSLPeKFteZxCuTvic1AzCwmqAG0CVmEpyFV9fNW8M
- VLNDditgofHUKdvk44Rg7tUyiKvLIiM+QIxtxHVGBBaAgDjS9+oRrxTaR
- J4bsaaSuTP1IByU5U4k0HD+WpT9iWohBweiFyvBRN8PFrDpD8C+Bt5Lfx
- rcJNzwVkECZXfLZ4COEZN/SV5A5/apROcxlVUiQtdc5dSKeCwuavJ5cbm
- Wbs5ypd09wmLhh3Thb4DU3toHZihmapdaufI4P+MO5q1351M8qGjfNlkF
- znVvQ53LlKc5OZal6lWQf/WrL1Iy1q3O+Een/7f71q1qevH+CRgTuBVla Q==;
-X-CSE-ConnectionGUID: hdzfM50JR/a4rWB+mqONEg==
-X-CSE-MsgGUID: AH4jdZkVQVC2nTtRsIPj0w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11619"; a="65693878"
-X-IronPort-AV: E=Sophos;i="6.20,215,1758610800"; d="scan'208";a="65693878"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2025 03:28:11 -0800
-X-CSE-ConnectionGUID: Wy6Ern4uSSaj6o7zu2Y67w==
-X-CSE-MsgGUID: +LCP3lkVTyGzMAtxzEpLKA==
+ t=1763729473; x=1795265473;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=doekcq7gRdChHxh9npBjBShMPvAw6Ml4/UZwBUM374w=;
+ b=eAgxtLOJdApAj7QmStEVT+/FkyBNalLPcQUAiWSNrPFrO8RMxosEcai9
+ nzUrXJ2lxa3T+EkYPeMgV3d9jjj8Zx6m+Z+l0S5oagtkpFHx7KqE1ivkR
+ 9EBh7E63FfNbI+ERwlpRsUS1z0hEGnQ7iq75nQau7wyrqibGWD3nDKRJn
+ A2ewzlYuHr7WRGdA/qYMCKkzoXzlKGmAlXkKixiIoTrcgnzwyXrNO/zaO
+ 88ANrE0FU07kM5QS10OGfoFDRiy91ynGy1kAWbqxd6N10Aa0i9WDvaFna
+ BIfNddxdKDCT733f8XTON10o/VOJmTKUxHMop2KNNcbRm7QjlQcy0tR/a g==;
+X-CSE-ConnectionGUID: Fq136eWVTrmSPlAuJSWSBA==
+X-CSE-MsgGUID: LWxePIZZTR2EaKh94kg6Jw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11619"; a="76504115"
+X-IronPort-AV: E=Sophos;i="6.20,215,1758610800"; d="scan'208";a="76504115"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2025 04:51:12 -0800
+X-CSE-ConnectionGUID: pmao4ePlTDy57vgqFW+5Og==
+X-CSE-MsgGUID: g38xKqrCR1SLG5oy8POERw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,215,1758610800"; d="scan'208";a="191353234"
+X-IronPort-AV: E=Sophos;i="6.20,215,1758610800"; d="scan'208";a="196149400"
 Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.86])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2025 03:28:09 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>, Mika Kahola
- <mika.kahola@intel.com>
-Subject: Re: [PATCH 3/5] drm/i915/cx0: Use intel_port_to_tc() instead of
- open coding it
-In-Reply-To: <20251120172358.1282765-3-imre.deak@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251120172358.1282765-1-imre.deak@intel.com>
- <20251120172358.1282765-3-imre.deak@intel.com>
-Date: Fri, 21 Nov 2025 13:28:03 +0200
-Message-ID: <beaa8835608335700c0a1026e0406e715887b799@intel.com>
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2025 04:51:11 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 0/5] drm/i915/display: switch from intel_wakeref_t to struct
+ ref_tracker *
+Date: Fri, 21 Nov 2025 14:51:00 +0200
+Message-ID: <cover.1763729370.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-Content-Type: text/plain
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,38 +69,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 20 Nov 2025, Imre Deak <imre.deak@intel.com> wrote:
-> USe intel_port_to_tc() in mtl_port_to_pll_id(), instead of open coding
-> the same.
+Under the hood, intel_wakeref_t is just struct ref_tracker *. Use the
+actual underlying type both for clarity (we *are* using intel_wakeref_t
+as a pointer though it doesn't look like one) and to help i915, xe and
+display coexistence without custom types.
 
-Patch 1 just open coded it. Why have this back and forth instead of
-starting off with patch 2 that directly fixes the issue? It's not like
-we need to backport any of this anywhere.
+Reduce intel_wakeref_t usage a bit first by declaring the variables
+within the with_*() macros.
 
-BR,
-Jani.
 
->
-> Cc: Suraj Kandpal <suraj.kandpal@intel.com>
-> Cc: Mika Kahola <mika.kahola@intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> index 8ae8cc7ad79d3..e0e5e5f65d193 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -206,7 +206,7 @@ enum intel_dpll_id icl_tc_port_to_pll_id(enum tc_port tc_port)
->  enum intel_dpll_id mtl_port_to_pll_id(struct intel_display *display, enum port port)
->  {
->  	if (port >= PORT_TC1)
-> -		return icl_tc_port_to_pll_id(port - PORT_TC1 + TC_PORT_1);
-> +		return icl_tc_port_to_pll_id(intel_port_to_tc(display, port));
->  
->  	switch (port) {
->  	case PORT_A:
+Jani Nikula (5):
+  drm/i915/pps: drop wakeref parameter from with_intel_pps_lock()
+  drm/i915/pps: convert intel_wakeref_t to struct ref_tracker *
+  drm/i915/power: drop wakeref parameter from
+    with_intel_display_power*()
+  drm/i915/power: convert intel_wakeref_t to struct ref_tracker *
+  drm/{i915,xe}/display: drop intel_wakeref.h usage
+
+ drivers/gpu/drm/i915/display/g4x_dp.c         |  5 +-
+ drivers/gpu/drm/i915/display/g4x_hdmi.c       |  2 +-
+ drivers/gpu/drm/i915/display/i9xx_plane.c     |  2 +-
+ drivers/gpu/drm/i915/display/icl_dsi.c        |  4 +-
+ drivers/gpu/drm/i915/display/intel_audio.c    |  6 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  4 +-
+ drivers/gpu/drm/i915/display/intel_cmtg.c     |  3 +-
+ drivers/gpu/drm/i915/display/intel_crt.c      |  6 +-
+ drivers/gpu/drm/i915/display/intel_cursor.c   |  4 +-
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 18 +++---
+ drivers/gpu/drm/i915/display/intel_ddi.c      | 16 ++---
+ drivers/gpu/drm/i915/display/intel_display.c  | 23 +++----
+ .../gpu/drm/i915/display/intel_display_core.h |  2 +-
+ .../drm/i915/display/intel_display_debugfs.c  |  2 +-
+ .../drm/i915/display/intel_display_power.c    | 29 +++++----
+ .../drm/i915/display/intel_display_power.h    | 45 +++++++------
+ .../drm/i915/display/intel_display_types.h    |  6 +-
+ drivers/gpu/drm/i915/display/intel_dmc.c      |  2 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |  3 +-
+ drivers/gpu/drm/i915/display/intel_dp_aux.c   |  4 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 18 +++---
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  4 +-
+ drivers/gpu/drm/i915/display/intel_dsi.h      |  7 ++-
+ drivers/gpu/drm/i915/display/intel_gmbus.c    |  4 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |  4 +-
+ drivers/gpu/drm/i915/display/intel_hotplug.c  |  2 +-
+ drivers/gpu/drm/i915/display/intel_lt_phy.c   | 14 ++---
+ drivers/gpu/drm/i915/display/intel_lvds.c     |  2 +-
+ .../drm/i915/display/intel_modeset_setup.c    |  2 +-
+ drivers/gpu/drm/i915/display/intel_pipe_crc.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_pps.c      | 63 ++++++-------------
+ drivers/gpu/drm/i915/display/intel_pps.h      | 14 +++--
+ drivers/gpu/drm/i915/display/intel_sprite.c   |  6 +-
+ drivers/gpu/drm/i915/display/intel_tc.c       | 40 +++++-------
+ drivers/gpu/drm/i915/display/intel_vdsc.c     |  2 +-
+ .../drm/i915/display/skl_universal_plane.c    |  2 +-
+ drivers/gpu/drm/i915/display/skl_watermark.c  |  2 +-
+ drivers/gpu/drm/i915/display/vlv_dsi.c        |  2 +-
+ .../xe/compat-i915-headers/intel_wakeref.h    | 10 ---
+ drivers/gpu/drm/xe/display/xe_display_rpm.c   |  3 +
+ 40 files changed, 177 insertions(+), 212 deletions(-)
+ delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_wakeref.h
 
 -- 
-Jani Nikula, Intel
+2.47.3
+
