@@ -2,183 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCDD1C801E0
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Nov 2025 12:09:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21527C80334
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Nov 2025 12:27:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 397C810E21B;
-	Mon, 24 Nov 2025 11:09:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4CD910E21F;
+	Mon, 24 Nov 2025 11:27:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d1dL0khu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iCnOvMTB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0014910E218;
- Mon, 24 Nov 2025 11:09:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F30210E224;
+ Mon, 24 Nov 2025 11:27:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763982594; x=1795518594;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=ZdcR2OIGgSz1dBjt7EyL3sgF66Qy4Nlw8PycF1/U/GA=;
- b=d1dL0khuXWlTbPCjJbKgvGMurfUHn2mjRNLTyEor70IB8Oy/KQzrJPsk
- ey3zgQB6fNcK72G68uJl2fjGms3OA7NSqr0fuVDjmv4Rt2yM1igrQ8qcS
- dFutX/kmI2q+/ur1gKR2ofZFvkQJTQZmattVm1vJ6NPKAKkO9sn6RVtpf
- 272wFPi/ylmWq4xrTBTv/wSKxK4wTWgIr5ygARzTKKNxFOtO0cmW7gvvV
- z3sPycAc2WiBg/UO7nC1v+1ok0xLxIJps3AGO6VC4l1f92rIo+Ubj+zRV
- FXJNviCfk4EuAcBoMjnR/1oh90AUyuk7lUvbRSVTIPGiopme9f0kcPePY g==;
-X-CSE-ConnectionGUID: AqySBqAiSUOxkdM8O/K1uw==
-X-CSE-MsgGUID: 3bQ21e1QSLOObdr1olrVxA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11622"; a="65160736"
-X-IronPort-AV: E=Sophos;i="6.20,222,1758610800"; d="scan'208";a="65160736"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2025 03:09:53 -0800
-X-CSE-ConnectionGUID: IepFt+dOSeWBWZQv8rluXA==
-X-CSE-MsgGUID: /4fuZwDqR6aeEYP1JoY8JQ==
+ t=1763983673; x=1795519673;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=1hZoxVmO+RWG7iPACSKTSSKq4FkXB+wfaUmvAtIZ1J4=;
+ b=iCnOvMTBTPFmW0D2Hjh1IPFp1Fd9amISG0qkw/VE5thTysSkdmB/joI7
+ /SzgctoaO0OBUphQLoiM86N/bPPaY8oegb3Hy30zjlZwrob5OjWf1ejd+
+ KQNYbkURkG05ydMyO7ak6T8K93JvMjBBFHDOhsg/9ADD8Sg5TPW2n7f6F
+ ykEZl2h6qyZDVpOl9PHzEzHNcdYnU9+PFy20zeBUWMp9T/i0DNGOTPnMd
+ LKfa++9W5tgwOMAsG/JwnnRHoKhJXmErEbmMmBbB+2UH8pCMjgQgWauFq
+ pkZK2hhfM1tkdmt5hQg767F9iIxUZxJU2pN2gvu6nUuTuYpWVQQvMMPsg g==;
+X-CSE-ConnectionGUID: 6XqtyyLMRW2uAbkbY3lMsg==
+X-CSE-MsgGUID: By8AeAaqSqqM+1qC+1jIEw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11622"; a="69834215"
+X-IronPort-AV: E=Sophos;i="6.20,222,1758610800"; d="scan'208";a="69834215"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2025 03:27:52 -0800
+X-CSE-ConnectionGUID: RPo7zffmRyGEVEtWisL3eg==
+X-CSE-MsgGUID: ODiaBaBrSkKxU5vw8HSI1Q==
 X-ExtLoop1: 1
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2025 03:09:53 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Mon, 24 Nov 2025 03:09:53 -0800
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Mon, 24 Nov 2025 03:09:53 -0800
-Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.44) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 24 Nov 2025 03:09:53 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JbMNtwZZrzH72S0/GIjfL2mQKMlBzWRPEmtTq+RLIkiyKvG+cqZI0Gs+JPKjQ4mI9OASDmyBtIIqkhOPgAdZyHLFNCvDvhGl9tpSWyNlOYymaGV38jpD6BoLiRHYOOZMtNXOb0Jp2UBs2mR/HeJ7XrT92oCIctRNGN6NhiC1TruT4byoHFeM7glKoPcAt+mD4wrvZux8j/DCozbGegjQdpqbCcuOSv/BqwB3ziCN2i5YXjVhGf9avTb63+B5uTz+MzNbNroli2yDvc9p5QwVH9nSCgTDEgE7kmUxobFxNKCjAOTf8eAp6kVUenCsSY3d9TuPPM+bmzQltCSgSGIpAA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WEfcf/rRh8GL50TnkgkTlIQbQ6IAv9WKC3VVzmUNwn0=;
- b=bbl4yrqGUfh8YL5+H3DB01IxTlryNwwObBxwHrr3spTvcI/XUg+NsFWaSmEuMjxOmFb0UFbqA/BHpAHX9c/n+rH/XFhADn5w3d6QaZzyyumpjBhc1Xh3WteqBGTC6ZTtgvuPKlYcvuDarfOlA8vfMm++JD3T1N0IvJBVlTJT9k09myKabwvRceyBN0xHHwoz4usFp5nIGghlVTpvVTHRsoEpnjNC8JVYTr+ppUpH+ftClkCCLvHfNG4qo0B7/TCL6NAJUvCcOjkocAVmBVtjutGjRXnYz88e4DUQEETqSbOYzLmvwRw5/hJOWEk8D4KxIZkADjt8/BdL09gEvyFTgA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by CH0PR11MB5217.namprd11.prod.outlook.com (2603:10b6:610:e0::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.17; Mon, 24 Nov
- 2025 11:09:51 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839%7]) with mapi id 15.20.9343.011; Mon, 24 Nov 2025
- 11:09:51 +0000
-Message-ID: <313381a1-6195-4ea5-a25c-0f34d6a57bfb@intel.com>
-Date: Mon, 24 Nov 2025 16:39:43 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/display: Check number of scalers for casf
-To: Nemesa Garg <nemesa.garg@intel.com>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>
-References: <20251124084629.3322714-1-nemesa.garg@intel.com>
-Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <20251124084629.3322714-1-nemesa.garg@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5P287CA0095.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1d4::16) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+X-IronPort-AV: E=Sophos;i="6.20,222,1758610800"; d="scan'208";a="196477409"
+Received: from krybak-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.177])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2025 03:27:48 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Vinod Govindapillai <vinod.govindapillai@intel.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: vinod.govindapillai@intel.com, matthew.d.roper@intel.com,
+ gustavo.sousa@intel.com, ville.syrjala@intel.com
+Subject: Re: [PATCH v3 2/2] drm/i915/xe3p_lpd: Enable display use of system
+ cache for FBC
+In-Reply-To: <20251123160127.142599-3-vinod.govindapillai@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251123160127.142599-1-vinod.govindapillai@intel.com>
+ <20251123160127.142599-3-vinod.govindapillai@intel.com>
+Date: Mon, 24 Nov 2025 13:27:45 +0200
+Message-ID: <6cc198e5fcb237dd7e97baa65efc997001ce0079@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|CH0PR11MB5217:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3246b50c-8d5f-4d5a-f2c1-08de2b49fc28
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?VEFCZXpERzYzR1VZSkM0RG8xdjJSTjRxa3hITG1YeEFOYVRzdWZlRTkrVktQ?=
- =?utf-8?B?cSs1TGpzQXhaV1FOOGJzTHNwMXJjcks1TUpZYm42akNreTJlTlBrRnRZRmUx?=
- =?utf-8?B?Nk0xV1p0K1NaQW1Sci9iMVR0b3B5TDRiTm9mWVJKNVk3TkYza1ZJeWlPUXlj?=
- =?utf-8?B?K0pWOG1xZWkzUWp2eTdSRHo5WDNuT3FjSGZiTWw1d3NpeFJsbHdXTDJvL2pI?=
- =?utf-8?B?RkNXb29VNkkzMWdiSENjZmIydlJGTHZtdW8zZjZWdStob3VYb2tNTS9ZK2E4?=
- =?utf-8?B?VXlBekhmNnI4WmdpSFFpUmd6cDZJa0o0MHZFRC9hOGtjQ0Y2dmk5MW90L0tQ?=
- =?utf-8?B?SE5xV0ZpazdEcTdCVzZRMWJ4cUpWMXR0ZDdscFFFbzdweXgybEpLQlhGYW1D?=
- =?utf-8?B?MWZySjh5RzJrSWlaZ3dpZmFIaDhIK2lXNXpEYk5SUGxTME1YYWZNOXhLRzlk?=
- =?utf-8?B?RitIVDIyVi8xb09mdjdKTWFRclJHai9oVi93V01IRGdDKzZLd3NiSER0UUUy?=
- =?utf-8?B?aHNWS0VBV3ViWGNYd0lwY0FaN3RSYWM5b0c5Mm9tTU9kVjN3M2IwNXZ1ZFNE?=
- =?utf-8?B?TUFUOTBHc29mTFhsUXNFbXVNWW9TVk5xM2VlWnpZcHZwbDBscFpzS094dGda?=
- =?utf-8?B?dTVKdUd5NmFlaGdKZzkyd0R4UUVrMFVRYi81dHhGQlVNQ21FREMrMTh1Y0dY?=
- =?utf-8?B?Nk5kRFFkcFhsZXVGUUI3NjNuWEVrY0lpZTlkWkc4WldnUVkxOE9mOU05WVN4?=
- =?utf-8?B?NEoyMTFBZE04MC9lc2Z3dkhEVFEzdndXaU9RcjRrSTNmdUozL1NhK1RHenI5?=
- =?utf-8?B?eUhyMXM4bnZpNUdtSm5DSGhNa0pKeS83V0ZQOTJuZEttYUtRTnJ2OGNpME9n?=
- =?utf-8?B?K1BxMnhtK01BN2Z0MTFYd1FGR3BzbU5VejdLdE0wZEc2TnlJVzdSYmdmV28y?=
- =?utf-8?B?NE5XYUF6eW1nUGM5cDdyejUrZHhyQWsyU2xEUEVJdTIvVlVnbThRaXozNVp2?=
- =?utf-8?B?Y2c0Z3duZytDQ0owMTVuS08wSVEra0NWV1hZcHBRT1JjYW0rdVRLQUxTSVRW?=
- =?utf-8?B?cGVrY2piRmlGU2JXZzJPaHFiVmxtOGJrVFl0UWxMdEx1UFBwcUdnRXp3cENv?=
- =?utf-8?B?dm5rcWt1RXZWWHQyU2xnc0JRdEd4ZXdVQ202aEswQkpkckRkUjBESTN3SEJl?=
- =?utf-8?B?ZW5XcmF6RFBENE9GcUZjWjMwaGZsbUZPVjVRVC9mTnIyUEFLUUlOamo1VVd4?=
- =?utf-8?B?NDRWQ2FicVU2TGlXRUpKUXg0NWVmMlRpVG43M1pYUXRpV3ZJQzlTaVR3ejRy?=
- =?utf-8?B?UHRGK2lhUXRZVWpGY2xUVkJNV0o5d2dIdFVBZWYyL1d2VkZkWkV3N3V1T0xl?=
- =?utf-8?B?TFdXQmJFQk1RL2dLSHF2dmVjdkVGSkk4aVpXVk9raW1xSkdPVzlSWnFVUXpu?=
- =?utf-8?B?WlV6S1c1ZGxEVGNWOVBkV2hqR25ZVmNMQUtrMFRtRmE3K29aRXR5anN4alUw?=
- =?utf-8?B?eUZ2emdsNG1HdkFsNTg3R3ZmQ1BXczFIL0JUM3Z1K1YvZVBIVGwwREEwZWVo?=
- =?utf-8?B?L2FqbXAyLzRSMVBRVGxwRjYyWjZEOWRPV1c2djNEeHlIMGx3K2RDcWlScHN2?=
- =?utf-8?B?NXFVTkhRckxSWVZrSVFnNXFVUlNnam5xTGc5eC81clVIbkRUUEFiTEx1RU13?=
- =?utf-8?B?K0xscHVsdFR3NGlSa3VHcVRxMUphUGpCbTlZT1puUEpKa09TSytjUFd6Rkk1?=
- =?utf-8?B?aUNOS3F4ZVBWWDd0OGdOZlhQcmZiTHJFWEVydk9rMnU4dkdmRGZuR1NVbUxp?=
- =?utf-8?B?ZkVvZWlDeWlqZ0QxdEFyV0txSTQwdG9yVHR2a3l5K2kwelpIY0p5Q0FFNTBK?=
- =?utf-8?B?V1F6MGwveERUY3pHbEd2VzJRNHdkaEVsdEloMk5lNUxoRFU5b2dsNDBvTFJt?=
- =?utf-8?Q?eYrl8rdBSvrmKuHMQmp1gh3v1OT7sqiz?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VlZSbEdnOXBXZG5MY280R0FLeEIyNTlzRUU3MkF6dTdzV3haWFI4NlE1UElQ?=
- =?utf-8?B?aU4zQ2RWUnVCNllENXpMTDk1QzhHV3Z6dzZ3dTc1c3BJblNWMys5eCtLQ05p?=
- =?utf-8?B?YisvNENPQno1dFFkWStRZ3o5STZkSVFmcVIyK2IzQXc5ZzNVUmdxMy90SU9t?=
- =?utf-8?B?OUtYSEhLQW5OdWsxNXl5ZUN1WVBUNklGMFBNY2t6L2lqcGwrbVh3SWo3MmpJ?=
- =?utf-8?B?dHQrdnB1cDkvUXd5WnBWbHdrQUdkK0t0bWY0UnRlaG5vR0dUY3ZuTXl3VVo4?=
- =?utf-8?B?MGtwTjNNRnR0cUE3UzNLekNtWFBtYWZ0ZEU1b24veDZydDlDclUxUS9zcWpq?=
- =?utf-8?B?QTFPWVJFN1lXTGJFcXF2TWRZR3gwa1o2RXkvMTV3cFIyVVlsdXpwanVMNk1Y?=
- =?utf-8?B?aXFqOXVxK2hjYjFON1VPUm5kL2FnVXFNQWk0bk01UkJDVVQyUUFpY0JVV2F2?=
- =?utf-8?B?bVNKTmtDM0xyMUtKN3hYRjNwYlkrU29uanliRVpxMEE5ZEVFcjNEbWdIOExv?=
- =?utf-8?B?RXJXSnVHZHVscnRnUWdCNHB1VDk2elZRTkVnQWtkdVdRM05zcCtwOVRRS09m?=
- =?utf-8?B?WG91bVlDUVV2UmMvR3BEaTQ2ZnZza1l0R0p2VjJ6aVlsRnFsby9Wa2VzTnBl?=
- =?utf-8?B?SG05ZGY0MXpDSkQwSURlNmo1OEdNaHArTDJvaVloUjBGVGRXNC8zZi9BSGRL?=
- =?utf-8?B?MDNpalJ6dWs4Z3VPSUYzMEtxZ0p5d2NaTGpCazBVemd1VWdKOERxWW0yais0?=
- =?utf-8?B?aUR1Qys0cXdob0ZpZkNFS0pGQ3grOW1QaDN4djFQVE5Jc0EyV24vQ0ZXUi96?=
- =?utf-8?B?MW1QaFMvdUFKY1dsOFhDOXhKejRwS2JvYmFtU09GaEwwcjdBR1NTbXNEN0l4?=
- =?utf-8?B?YVlkUUkxaWZlWVdEb09McWZQRFA2VnduU3dCY3E3eHdpMEpUckRWL3pRenQ0?=
- =?utf-8?B?dUE4UXU4emtUKzVLVXJ0dERwZWtISnJEczFmMTZaL0EyTHgxVGV2RGZEMEFM?=
- =?utf-8?B?azMxYjFZRUMyK2hLQnBNTHAzZ0lvdjJwdjRJSGhUZGMwRG5HZkpIUmcrNmhj?=
- =?utf-8?B?RG5OMmh5MXBKUTl5UEpic3J5ZVMxdzFTUFMwb3p6MDloRDhla3o1d0pMZ2Z4?=
- =?utf-8?B?MWR2UXpITzRUSWtURndzbWYyeWRKNmtXaWVmTXBTZXpwSTBuc2xhMG5oZzBR?=
- =?utf-8?B?NjA3ZlBsSXJMeE0wTjROdDd5WE8vMGhRd1RTbTRncHNuTGtONUVhUGk0UzV3?=
- =?utf-8?B?cE1WQ3cvME1qM3lRcWVkN09kYkVvSUx4Y2h0NS9TM29RalJZV1hvcDJ3ZWJ3?=
- =?utf-8?B?THlwTTJXVGlaYzRTU0s2K2tQc3JWYTZTUXUwMGhzTkFIYVUvWDAzUTBady9D?=
- =?utf-8?B?UGJUcTB1bS9BMUpEeVBGUk16Nkh4cDI3T1BybFo1aElhQ3oxbTNKTzVQbzR2?=
- =?utf-8?B?UzB1TnBFcEl1RVhHKzVsd0V2S1VrSnpWTzIxelVDcGUrOWI0WmVXU0dmMTdx?=
- =?utf-8?B?ZDY5V2grQ2RuVXY2WFRnYlhjQWpxQTQzRFozVzJYNm1IelVDT01ocjJENWRj?=
- =?utf-8?B?bEZaSVYwRXhQNUF3aDA5WXc5eng1VFcra1hsVnRKZ2VCWUNlMlFMQTZGclZP?=
- =?utf-8?B?bUtLUFlTNmd6WnBZbGhQY3FVTVlxZjBJN3A2c1EycTZIdkdHajFsaGQ2UWpq?=
- =?utf-8?B?OUVndTBqMnh5dzBiaFVoNWtxL3ErditRSHZzdnNBajVrLzJ0SHdna1VsUXk5?=
- =?utf-8?B?cStTVFhQVkdiVklneUlJeG1XRlNVK2YwVjRqRXYrQ1diTjJJNDcwbnJsNW1o?=
- =?utf-8?B?TW9mUUFyczFackNnZHYzVlFueVRmWW81d0tCRDlwWGNxR0UxTVQwUy8rdmgz?=
- =?utf-8?B?c2xNZnJWY25PWU5CRlhWVHNVRkxvNndPeE4xa1NCMnVkMCtmTXhSa3lsd2s2?=
- =?utf-8?B?WkluK3ZiNzl1ckxZYlpzMUFyZHRLalc4YzlFTTNMYlIrbHhQM1c0bVhUU1JI?=
- =?utf-8?B?TkF6ZEJmSlFYYklwZ1V5RWJpbisxSmRTQVAyaEFDVmM4eGd5eVdKa2xWcWww?=
- =?utf-8?B?Q1RiQU1nYVpjS0h0a2Y1bXp6UjAxeExiZDVXMDlkOWtsZEo2MFdGSkg0Q3Fa?=
- =?utf-8?B?Tkx3ZmRGK1Q2VVpTZWhLMVBmb0xHNlV5QXZuU1pqdHpwNVZ6b1RjK2VNSUhq?=
- =?utf-8?B?anc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3246b50c-8d5f-4d5a-f2c1-08de2b49fc28
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2025 11:09:51.3351 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nubMhuh2e1gyJ5g0+4xFrqWdeci2R7jFg605RwtzfHuzt8fh09YR6hm6wxK4dYlUFTtf71mlkUgLlSmvH+H+MTqmZKus+7mBBICaNOnYfl4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5217
-X-OriginatorOrg: intel.com
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -194,44 +72,308 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 11/24/2025 2:16 PM, Nemesa Garg wrote:
-> Before exposing the property check if the number of scalers
-> is 2 as casf needs second scaler. If not then dont expose the
-> property.
-
-
-We are not checking if num_scalers == 2. So the commit message is a bit 
-misleading.
-
-Need bit more context:
-
-CASF requires the second scaler for sharpness. Skip creating the 
-'SHARPNESS_STRENGTH' property when num_scalers <= 1.
-
-Also, it would be good to align the commit message with this explanation.
-
-
-Regards,
-
-Ankit
-
+On Sun, 23 Nov 2025, Vinod Govindapillai <vinod.govindapillai@intel.com> wrote:
+> One of the FBC instances can utilize the reserved area of SoC
+> level cache for the fbc transactions to benefit reduced memory
+> system power especially in idle scenarios. Reserved area of the
+> system cache can be assigned to an fbc instance by configuring
+> the cacheability configuration register with offset of the
+> compressed frame buffer in stolen memoty of that fbc. There is
+> a limit to this reserved area which is programmable and for
+> xe3p_lpd the limit is defined as 2MB.
 >
-> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+> v2: - better to track fbc sys cache usage from intel_display level,
+>       sanitize the cacheability config register on probe (Matt)
+>     - limit this for integrated graphics solutions, confirmed that
+>       no default value set for cache range by hw (Gustavo)
+>
+> v3: - changes related to the use of fbc substruct in intel_display
+>     - use intel_de_write() instead of intel_rmw() by hardcoding the
+>       default value fields
+>
+
+I think overall the implementation feels a bit overwhelming. I mean
+there are so many functions, so many checks, to the point of being
+excessive.
+
+Some comments inline.
+
+> Bspec: 68881, 74722
+> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 > ---
->   drivers/gpu/drm/i915/display/intel_crtc.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../gpu/drm/i915/display/intel_display_core.h |  3 +
+>  .../drm/i915/display/intel_display_device.h   |  1 +
+>  drivers/gpu/drm/i915/display/intel_fbc.c      | 93 +++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_fbc_regs.h | 10 ++
+>  4 files changed, 107 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-> index 153ff4b4b52c..963e6c7d75b8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> @@ -395,7 +395,7 @@ int intel_crtc_init(struct intel_display *display, enum pipe pipe)
->   
->   	drm_WARN_ON(display->drm, drm_crtc_index(&crtc->base) != crtc->pipe);
->   
-> -	if (HAS_CASF(display))
-> +	if (HAS_CASF(display) && crtc->num_scalers > 1)
->   		drm_crtc_create_sharpness_strength_property(&crtc->base);
->   
->   	return 0;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+> index 58325f530670..f557c9293d33 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+> @@ -400,6 +400,9 @@ struct intel_display {
+>  
+>  	struct {
+>  		struct intel_fbc *instances[I915_MAX_FBCS];
+> +
+> +		/* xe3p_lpd+ : FBC instance utlizing the system cache */
+
+Please no space before :, *utilizing
+
+> +		enum intel_fbc_id sys_cache_id;
+>  	} fbc;
+>  
+>  	struct {
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+> index b559ef43d547..b74cb69ccc85 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+> @@ -173,6 +173,7 @@ struct intel_display_platforms {
+>  #define HAS_DSC_MST(__display)		(DISPLAY_VER(__display) >= 12 && HAS_DSC(__display))
+>  #define HAS_FBC(__display)		(DISPLAY_RUNTIME_INFO(__display)->fbc_mask != 0)
+>  #define HAS_FBC_DIRTY_RECT(__display)	(DISPLAY_VER(__display) >= 30)
+> +#define HAS_FBC_SYS_CACHE(__display)	(DISPLAY_VER(__display) >= 35 && !(__display)->platform.dgfx)
+>  #define HAS_FPGA_DBG_UNCLAIMED(__display)	(DISPLAY_INFO(__display)->has_fpga_dbg)
+>  #define HAS_FW_BLC(__display)		(DISPLAY_VER(__display) >= 3)
+>  #define HAS_GMBUS_BURST_READ(__display)	(DISPLAY_VER(__display) >= 10 || (__display)->platform.kabylake)
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+> index dcdfcff80de3..d7e913792518 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> @@ -71,6 +71,10 @@
+>  	for_each_fbc_id((__display), (__fbc_id)) \
+>  		for_each_if((__fbc) = (__display)->fbc.instances[(__fbc_id)])
+>  
+> +#define SYS_CACHE_FBC_INSTANCE_NONE			I915_MAX_FBCS
+> +#define IS_SYS_CACHE_FBC_INSTANCE_NONE(__display)	((__display)->fbc.sys_cache_id == SYS_CACHE_FBC_INSTANCE_NONE)
+
+The only user of this has !IS_SYS_CACHE_FBC_INSTANCE_NONE(display)
+i.e. "if not none".
+
+Would be more useful to check if it's "set" or "valid", and avoid the
+double negative. And use a shorter name. Maybe a static inline function.
+
+But I'm not even sure the display->fbc.sys_cache_id needs to be
+abstracted away. It's not a complicated thing, and, more importantly,
+it's all within the same file. If outside access was needed, yes,
+abstract, but here, not convinced.
+
+Maybe:
+
+	if (fbc_sys_cache_id_valid(display->fbc.sys_cache_id))
+
+I also don't think *all* of these functions should be prefixed with
+xe3p_lpd_ because that's a monster, and makes all of this difficult to
+read.
+
+> +#define IS_SYS_CACHE_FBC_INSTANCE_EQUALS(__display, id)	((__display)->fbc.sys_cache_id == (id))
+
+I think this feels cumbersome. Why not just check
+
+	if (display->fbc.sys_cache_id == id)
+
+inline, and it's obvious?
+
+> +
+>  struct intel_fbc_funcs {
+>  	void (*activate)(struct intel_fbc *fbc);
+>  	void (*deactivate)(struct intel_fbc *fbc);
+> @@ -941,6 +945,79 @@ static void intel_fbc_program_workarounds(struct intel_fbc *fbc)
+>  		fbc_compressor_clkgate_disable_wa(fbc, true);
+>  }
+>  
+> +static void xe3p_lpd_fbc_set_sys_cache_fbc_id(struct intel_display *display,
+> +					      enum intel_fbc_id fbc_id)
+> +{
+> +	display->fbc.sys_cache_id = fbc_id;
+> +}
+
+Again, I'm not sure if this function is really needed. Just inline?
+
+> +
+> +static void xe3p_lpd_fbc_commit_sys_cache_usage(struct intel_display *display,
+> +						u32 reg)
+> +{
+> +	intel_de_write(display, XE3P_LPD_FBC_SYS_CACHE_USAGE_CFG, reg);
+> +}
+
+Not sure if this is needed. Just inline?
+
+> +
+> +static int xe3p_lpd_fbc_get_cache_limit(void)
+> +{
+> +	/* Default 2MB for xe3p_lpd */
+> +	return 2 * 1024 * 1024;
+> +}
+
+Ditto. Especially odd how this multiplies and the user the divides by 64
+* 1024.
+
+> +
+> +static void xe3p_lpd_fbc_clear_sys_cache_usage(struct intel_display *display)
+> +{
+> +	/* Clear all the fields except the default fields */
+> +	u32 default_fields = FBC_SYS_CACHE_READ_ENABLE;
+> +
+> +	xe3p_lpd_fbc_commit_sys_cache_usage(display, default_fields);
+> +
+> +	/* Mark that no FBC instance utilize the system cache */
+> +	xe3p_lpd_fbc_set_sys_cache_fbc_id(display, SYS_CACHE_FBC_INSTANCE_NONE);
+> +}
+
+My point above is that this function only calls wrappers and really does
+nothing itself. It's too many layers for a simple thing.
+
+fbc_sys_cache_disable()?
+
+> +
+> +static void xe3p_lpd_fbc_set_sys_cache_usage(const struct intel_fbc *fbc)
+> +{
+> +	struct intel_display *display = fbc->display;
+> +	/* limit to be configured to the register in 64k byte chunks */
+> +	int range = xe3p_lpd_fbc_get_cache_limit() / (64 * 1024);
+> +	/* offset to be configured to the register in 4K byte chunks */
+> +	int offset = i915_gem_stolen_node_offset(fbc->compressed_fb) / (4 * 1024);
+> +	/* Cache read enable is enabled by default */
+> +	u32 usage = FBC_SYS_CACHE_TAG_USE_RES_SPACE |
+> +		    FBC_SYS_CACHEABLE_RANGE(range) |
+> +		    FBC_SYS_CACHE_START_BASE(offset) |
+> +		    FBC_SYS_CACHE_READ_ENABLE;
+> +
+> +	lockdep_assert_held(&fbc->lock);
+> +
+> +	xe3p_lpd_fbc_commit_sys_cache_usage(display, usage);
+> +
+> +	xe3p_lpd_fbc_set_sys_cache_fbc_id(display, fbc->id);
+> +}
+
+Ditto.
+
+fbc_sys_cache_enable()?
+
+> +
+> +static void xe3p_lpd_fbc_update_sys_cache_usage(const struct intel_fbc *fbc,
+> +						bool set)
+> +{
+> +	struct intel_display *display = fbc->display;
+> +
+> +	lockdep_assert_held(&fbc->lock);
+> +
+> +	/* system cache for fbc already reserved */
+> +	if (set && !IS_SYS_CACHE_FBC_INSTANCE_NONE(display))
+> +		return;
+> +
+> +	/* cannot clear if "fbc" did not reserve the cache */
+> +	if (!set && !IS_SYS_CACHE_FBC_INSTANCE_EQUALS(display, fbc->id))
+> +		return;
+> +
+> +	if (set)
+> +		xe3p_lpd_fbc_set_sys_cache_usage(fbc);
+> +	else
+> +		xe3p_lpd_fbc_clear_sys_cache_usage(display);
+> +
+> +	drm_dbg_kms(display->drm, "System cacheability usage for FBC[%d] %s\n",
+> +		    fbc->id, set ? "configured" : "cleared");
+> +}
+
+Most of this function is two separate paths based on the parameter. I
+think it would benefit from actually being two separate functions. So
+why not just merge this with xe3p_lpd_fbc_set_sys_cache_usage() and
+xe3p_lpd_fbc_clear_sys_cache_usage()?
+
+> +
+>  static void __intel_fbc_cleanup_cfb(struct intel_fbc *fbc)
+>  {
+>  	if (WARN_ON(intel_fbc_hw_is_active(fbc)))
+> @@ -967,6 +1044,9 @@ void intel_fbc_cleanup(struct intel_display *display)
+>  
+>  		kfree(fbc);
+>  	}
+> +
+> +	if (HAS_FBC_SYS_CACHE(display))
+> +		xe3p_lpd_fbc_clear_sys_cache_usage(display);
+
+I don't think this should check for HAS_FBC_SYS_CACHE(). I think
+internally the function being called should check if sys cache has been
+set. And make sure it's only set on where it's available.
+
+>  }
+>  
+>  static bool i8xx_fbc_stride_is_valid(const struct intel_plane_state *plane_state)
+> @@ -1780,6 +1860,9 @@ static void __intel_fbc_disable(struct intel_fbc *fbc)
+>  
+>  	__intel_fbc_cleanup_cfb(fbc);
+>  
+> +	if (HAS_FBC_SYS_CACHE(display))
+> +		xe3p_lpd_fbc_update_sys_cache_usage(fbc, false);
+> +
+
+Ditto. I'm also not sure why some places call the version with params,
+and some others the version without params.
+
+>  	/* wa_18038517565 Enable DPFC clock gating after FBC disable */
+>  	if (display->platform.dg2 || DISPLAY_VER(display) >= 14)
+>  		fbc_compressor_clkgate_disable_wa(fbc, false);
+> @@ -1972,6 +2055,9 @@ static void __intel_fbc_enable(struct intel_atomic_state *state,
+>  
+>  	intel_fbc_program_workarounds(fbc);
+>  	intel_fbc_program_cfb(fbc);
+> +
+> +	if (HAS_FBC_SYS_CACHE(display))
+> +		xe3p_lpd_fbc_update_sys_cache_usage(fbc, true);
+
+xe3p_lpd_fbc_update_sys_cache_usage() is the function that should check
+for HAS_FBC_SYS_CACHE() in one place.
+
+Well, maybe it should be renamed fbc_sys_cache_enable().
+
+>  }
+>  
+>  /**
+> @@ -2212,6 +2298,9 @@ void intel_fbc_init(struct intel_display *display)
+>  
+>  	for_each_fbc_id(display, fbc_id)
+>  		display->fbc.instances[fbc_id] = intel_fbc_create(display, fbc_id);
+> +
+> +	/* Mark that no FBC instance is using the system cache */
+> +	xe3p_lpd_fbc_set_sys_cache_fbc_id(display, SYS_CACHE_FBC_INSTANCE_NONE);
+>  }
+>  
+>  /**
+> @@ -2231,6 +2320,10 @@ void intel_fbc_sanitize(struct intel_display *display)
+>  		if (intel_fbc_hw_is_active(fbc))
+>  			intel_fbc_hw_deactivate(fbc);
+>  	}
+> +
+> +	/* Ensure the sys cache usage register gets cleared */
+> +	if (HAS_FBC_SYS_CACHE(display))
+> +		xe3p_lpd_fbc_clear_sys_cache_usage(display);
+
+Ditto about checking for valid sys cache inside, not
+HAS_FBC_SYS_CACHE().
+
+>  }
+>  
+>  static int intel_fbc_debugfs_status_show(struct seq_file *m, void *unused)
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc_regs.h b/drivers/gpu/drm/i915/display/intel_fbc_regs.h
+> index b1d0161a3196..d2d889fa4bed 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc_regs.h
+> @@ -126,4 +126,14 @@
+>  #define   FBC_REND_NUKE			REG_BIT(2)
+>  #define   FBC_REND_CACHE_CLEAN		REG_BIT(1)
+>  
+> +#define XE3P_LPD_FBC_SYS_CACHE_USAGE_CFG	_MMIO(0x1344E0)
+> +#define   FBC_SYS_CACHE_START_BASE_MASK		REG_GENMASK(31, 16)
+> +#define   FBC_SYS_CACHE_START_BASE(base)	REG_FIELD_PREP(FBC_SYS_CACHE_START_BASE_MASK, (base))
+> +#define   FBC_SYS_CACHEABLE_RANGE_MASK		REG_GENMASK(15, 4)
+> +#define   FBC_SYS_CACHEABLE_RANGE(range)	REG_FIELD_PREP(FBC_SYS_CACHEABLE_RANGE_MASK, (range))
+> +#define   FBC_SYS_CACHE_TAG_MASK		REG_GENMASK(3, 2)
+> +#define   FBC_SYS_CACHE_TAG_DONT_CACHE		REG_FIELD_PREP(FBC_SYS_CACHE_TAG_MASK, 0)
+> +#define   FBC_SYS_CACHE_TAG_USE_RES_SPACE	REG_FIELD_PREP(FBC_SYS_CACHE_TAG_MASK, 3)
+> +#define   FBC_SYS_CACHE_READ_ENABLE		REG_BIT(0)
+> +
+>  #endif /* __INTEL_FBC_REGS__ */
+
+-- 
+Jani Nikula, Intel
