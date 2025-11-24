@@ -2,62 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62B2AC827C3
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Nov 2025 22:09:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63D1CC827C6
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Nov 2025 22:10:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8968710E25F;
-	Mon, 24 Nov 2025 21:09:27 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H4mNNwPj";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2ACD10E042;
+	Mon, 24 Nov 2025 21:10:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E02910E042;
- Mon, 24 Nov 2025 21:09:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764018566; x=1795554566;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=XDicwOE9ADTo2fIIuKfziUK2O34jEaXh3sJoek1yggM=;
- b=H4mNNwPjVUGrH564ei3LK+nE+K8e/8wLK2IbFmzCwAEA97qbVHTrDZv0
- rnLkKZIGFoWCl1T0PXZm2HXjKa2SrWOYz2lgpabtue2VyY1njmvU9y7CZ
- oSbtrndxqKu35SYPOLnfG6G/4sXoHGTF2Mm0epEwZ25tvIr9VmOk1Y/Pm
- 6v3UdqbkxbqXTtVSrqo/XdoR9PGzb36/okVXpOFOKToiCVurIL51NfANO
- J1arEExnxedi1e3QAkYuLyk4eAFW7o9PD71Z5SLHI8mHoQlDHHS7/y6AS
- EpPl6eycXwLskZXrtwDiqGAdA6lPpp4J/Q48U3t3jG1hr6AVIvjIP3j9Z w==;
-X-CSE-ConnectionGUID: qOv7GucWTxWpEF9uVOVYYg==
-X-CSE-MsgGUID: Uqg0atuRTM+dNwrQXF1yHA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="65032145"
-X-IronPort-AV: E=Sophos;i="6.20,223,1758610800"; d="scan'208";a="65032145"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2025 13:09:25 -0800
-X-CSE-ConnectionGUID: FhJG5L4sQG2HANurK/oL8Q==
-X-CSE-MsgGUID: GiwhY4YBS9WTSTz35HeZHA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,223,1758610800"; d="scan'208";a="191705903"
-Received: from dnelso2-mobl.amr.corp.intel.com (HELO localhost)
- ([10.124.222.165])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2025 13:09:22 -0800
-Date: Mon, 24 Nov 2025 23:07:46 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Cc: Nemesa Garg <nemesa.garg@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/display: Check number of scalers for casf
-Message-ID: <aSTJIoHSCRuomRFk@intel.com>
-References: <20251124084629.3322714-1-nemesa.garg@intel.com>
- <313381a1-6195-4ea5-a25c-0f34d6a57bfb@intel.com>
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C35B10E042;
+ Mon, 24 Nov 2025 21:10:29 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7613384874613887451=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <313381a1-6195-4ea5-a25c-0f34d6a57bfb@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1?=
+ =?utf-8?q?/2=5D_drm/i915/cdclk=3A_drop_i915=5Fdrv=2Eh_include?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 24 Nov 2025 21:10:29 -0000
+Message-ID: <176401862950.22750.11001618062328100306@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251121112200.3435099-1-jani.nikula@intel.com>
+In-Reply-To: <20251121112200.3435099-1-jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,56 +37,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 24, 2025 at 04:39:43PM +0530, Nautiyal, Ankit K wrote:
-> 
-> On 11/24/2025 2:16 PM, Nemesa Garg wrote:
-> > Before exposing the property check if the number of scalers
-> > is 2 as casf needs second scaler. If not then dont expose the
-> > property.
-> 
-> 
-> We are not checking if num_scalers == 2. So the commit message is a bit 
-> misleading.
-> 
-> Need bit more context:
-> 
-> CASF requires the second scaler for sharpness. Skip creating the 
-> 'SHARPNESS_STRENGTH' property when num_scalers <= 1.
+--===============7613384874613887451==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Does it really need two scalers always, or just when the first scaler
-is doing actual scaling/etc?
+== Series Details ==
 
-> 
-> Also, it would be good to align the commit message with this explanation.
-> 
-> 
-> Regards,
-> 
-> Ankit
-> 
-> >
-> > Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/display/intel_crtc.c | 2 +-
-> >   1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-> > index 153ff4b4b52c..963e6c7d75b8 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> > @@ -395,7 +395,7 @@ int intel_crtc_init(struct intel_display *display, enum pipe pipe)
-> >   
-> >   	drm_WARN_ON(display->drm, drm_crtc_index(&crtc->base) != crtc->pipe);
-> >   
-> > -	if (HAS_CASF(display))
-> > +	if (HAS_CASF(display) && crtc->num_scalers > 1)
-> >   		drm_crtc_create_sharpness_strength_property(&crtc->base);
-> >   
-> >   	return 0;
+Series: series starting with [1/2] drm/i915/cdclk: drop i915_drv.h include
+URL   : https://patchwork.freedesktop.org/series/157901/
+State : success
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_17579 -> Patchwork_157901v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157901v1/index.html
+
+Participating hosts (45 -> 44)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_157901v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17579/bat-mtlp-8/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157901v1/bat-mtlp-8/igt@i915_selftest@live.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [DMESG-FAIL][3] ([i915#12061]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17579/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157901v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_17579 -> Patchwork_157901v1
+
+  CI-20190529: 20190529
+  CI_DRM_17579: ed157ca0caebebe3af6d38ca0fb64a403c84ce77 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8636: 254cd102396ff95d61f2ebe49fc09128878bf483 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_157901v1: ed157ca0caebebe3af6d38ca0fb64a403c84ce77 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157901v1/index.html
+
+--===============7613384874613887451==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915/cdclk: drop i915_drv.h include</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157901/">https://patchwork.freedesktop.org/series/157901/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157901v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157901v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17579 -&gt; Patchwork_157901v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157901v1/index.html</p>
+<h2>Participating hosts (45 -&gt; 44)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_157901v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live:<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17579/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157901v1/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17579/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157901v1/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17579 -&gt; Patchwork_157901v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17579: ed157ca0caebebe3af6d38ca0fb64a403c84ce77 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8636: 254cd102396ff95d61f2ebe49fc09128878bf483 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_157901v1: ed157ca0caebebe3af6d38ca0fb64a403c84ce77 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============7613384874613887451==--
