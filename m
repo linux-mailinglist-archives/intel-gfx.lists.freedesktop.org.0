@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C639C81466
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Nov 2025 16:16:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8442AC8145D
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Nov 2025 16:16:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BECC910E248;
-	Mon, 24 Nov 2025 15:16:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8ED8E89A4E;
+	Mon, 24 Nov 2025 15:16:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from out28-195.mail.aliyun.com (out28-195.mail.aliyun.com
- [115.124.28.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67E8910E1CF;
- Mon, 24 Nov 2025 06:56:18 +0000 (UTC)
+Received: from out28-170.mail.aliyun.com (out28-170.mail.aliyun.com
+ [115.124.28.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BB2310E1D0;
+ Mon, 24 Nov 2025 06:56:51 +0000 (UTC)
 Received: from aliyun.com(mailfrom:zhangzhijie@bosc.ac.cn
- fp:SMTPD_---.fUO4C3w_1763967375 cluster:ay29) by smtp.aliyun-inc.com;
- Mon, 24 Nov 2025 14:56:16 +0800
+ fp:SMTPD_---.fUP6XUZ_1763967407 cluster:ay29) by smtp.aliyun-inc.com;
+ Mon, 24 Nov 2025 14:56:48 +0800
 From: zhangzhijie <zhangzhijie@bosc.ac.cn>
 To: jani.nikula@linux.intel.com, jeff@jeffgeerling.com, zhangzhijie@bosc.ac.cn,
  wangran@bosc.ac.cn, zhangjian@bosc.ac.cn, daniel@ffwll.ch,
  rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com,
  tursulin@ursulin.net, airlied@gmail.com, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+ linux-kernel@vger.kernel.org, guoyaxing@bosc.ac.cn
 Subject: [PATCH v2] i915: Support Intel GPU porting on any non-x86 system.
-Date: Mon, 24 Nov 2025 14:56:12 +0800
-Message-Id: <20251124065612.1920389-1-zhangzhijie@bosc.ac.cn>
+Date: Mon, 24 Nov 2025 14:56:45 +0800
+Message-Id: <20251124065645.1920632-1-zhangzhijie@bosc.ac.cn>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
