@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55A9DC826C6
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Nov 2025 21:41:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 797B1C8273E
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Nov 2025 21:56:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFD4C10E259;
-	Mon, 24 Nov 2025 20:41:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D38B810E0ED;
+	Mon, 24 Nov 2025 20:56:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10CCC10E25A;
- Mon, 24 Nov 2025 20:41:12 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7723049891422310086=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D786310E0ED;
+ Mon, 24 Nov 2025 20:56:12 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_Move_PSR/Panel_Replay_sin?=
- =?utf-8?q?k_data_into_intel=5Fconnector?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_drm/i915/display=3A_switc?=
+ =?utf-8?q?h_from_intel=5Fwakeref=5Ft_to_struct_ref=5Ftracker_*?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 24 Nov 2025 20:41:12 -0000
-Message-ID: <176401687206.21836.10056712891634443242@a3b018990fe9>
+Date: Mon, 24 Nov 2025 20:56:12 -0000
+Message-ID: <176401777287.21836.16802123058959008554@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20251121111655.164830-1-jouni.hogander@intel.com>
-In-Reply-To: <20251121111655.164830-1-jouni.hogander@intel.com>
+References: <cover.1763729370.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1763729370.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,143 +41,26 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7723049891422310086==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Move PSR/Panel Replay sink data into intel_connector
-URL   : https://patchwork.freedesktop.org/series/157899/
-State : success
+Series: drm/i915/display: switch from intel_wakeref_t to struct ref_tracker *
+URL   : https://patchwork.freedesktop.org/series/157906/
+State : failure
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_17579 -> Patchwork_157899v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157899v1/index.html
-
-Participating hosts (45 -> 44)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_157899v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17579/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157899v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-    - bat-dg2-14:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17579/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157899v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-5:         [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17579/bat-arls-5/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157899v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/157906/revisions/1/mbox/ not applied
+Applying: drm/i915/pps: drop wakeref parameter from with_intel_pps_lock()
+Applying: drm/i915/pps: convert intel_wakeref_t to struct ref_tracker *
+Applying: drm/i915/power: drop wakeref parameter from with_intel_display_power*()
+Applying: drm/i915/power: convert intel_wakeref_t to struct ref_tracker *
+error: sha1 information is lacking or useless (drivers/gpu/drm/i915/display/intel_display.c).
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0004 drm/i915/power: convert intel_wakeref_t to struct ref_tracker *
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+Build failed, no error log produced
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_17579 -> Patchwork_157899v1
-
-  CI-20190529: 20190529
-  CI_DRM_17579: ed157ca0caebebe3af6d38ca0fb64a403c84ce77 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8636: 254cd102396ff95d61f2ebe49fc09128878bf483 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_157899v1: ed157ca0caebebe3af6d38ca0fb64a403c84ce77 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157899v1/index.html
-
---===============7723049891422310086==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Move PSR/Panel Replay sink data into intel_connector</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157899/">https://patchwork.freedesktop.org/series/157899/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157899v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157899v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17579 -&gt; Patchwork_157899v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157899v1/index.html</p>
-<h2>Participating hosts (45 -&gt; 44)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_157899v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17579/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157899v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17579/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157899v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17579/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157899v1/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17579 -&gt; Patchwork_157899v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17579: ed157ca0caebebe3af6d38ca0fb64a403c84ce77 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8636: 254cd102396ff95d61f2ebe49fc09128878bf483 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_157899v1: ed157ca0caebebe3af6d38ca0fb64a403c84ce77 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============7723049891422310086==--
