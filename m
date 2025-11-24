@@ -2,64 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04BD1C8237E
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Nov 2025 20:03:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93037C826A6
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Nov 2025 21:33:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4328B10E2C3;
-	Mon, 24 Nov 2025 19:03:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Uqo14Mnf";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id EECB910E257;
+	Mon, 24 Nov 2025 20:33:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A736710E260;
- Mon, 24 Nov 2025 19:03:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764011022; x=1795547022;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=cu/eMg6PFMhrIdRF5tf9+n8bqehM2Ng0DLuxLQIICLs=;
- b=Uqo14MnfSWF1qMmSf/7z1IGS4JPqcdTeJNliqocMpLtw8nHs6YKx72RH
- N1k5ykZY34ZGVZbAdh7L7ZcLb95/l4URFG2he/5qrm6pGVlghx6uVQr1y
- xCOm3B9uiM7+pQpX8qVNT7yYf3x3P5Sd0mL3Ek6l8Zhgbm6l7fmiU24Go
- uciQ0w9kFbAzhGLOP1EDP0RZxSSi9ZcbpbVPPxjqmtdvUkoINADxd/3G3
- PWSEBxQZOSXu3jXKYXM0QnfUbd8VKllRyqm7C5rWGKNySAQrpiXTpb+o8
- 62WIiLphFpTNhE3nxEOKKzKpO3h/ocHpqqUkqznOkYXZUgwQOaqRwSwc/ g==;
-X-CSE-ConnectionGUID: H8VcPHO2RpyPueVdPWtyaA==
-X-CSE-MsgGUID: d/cTy/UHQe6CWjd527yrHw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="68611227"
-X-IronPort-AV: E=Sophos;i="6.20,223,1758610800"; d="scan'208";a="68611227"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2025 11:03:41 -0800
-X-CSE-ConnectionGUID: vR7Tx6QRQvWlwNH2gq9Wfg==
-X-CSE-MsgGUID: aLWZpi1tRAuJguMgbFaIvA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,223,1758610800"; d="scan'208";a="193212210"
-Received: from dnelso2-mobl.amr.corp.intel.com (HELO localhost)
- ([10.124.222.165])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2025 11:03:40 -0800
-Date: Mon, 24 Nov 2025 21:03:37 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/display: Stop touching vga on post enable
-Message-ID: <aSSsCdAUF206QySm@intel.com>
-References: <20251119-ioport-v1-1-ec43f1e12c49@intel.com>
- <aR4zAKLW0CZttPfi@intel.com>
- <p5nf5oxagtpoil4iv4xdwria22v5kg5lwkuy3hhzpvm5xd6pdc@ggzlv6v2kyvi>
- <aSD0DpGKeOCF1LUZ@intel.com>
- <udz3nrp4b4fe3jnpoc2fhg7sy3oh5thtzany25yc5zjcva33ey@vh4hh2sdrivy>
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4C6510E257;
+ Mon, 24 Nov 2025 20:33:05 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8550753954354705437=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <udz3nrp4b4fe3jnpoc2fhg7sy3oh5thtzany25yc5zjcva33ey@vh4hh2sdrivy>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_fbcon=3A_Reschedule_curso?=
+ =?utf-8?q?r_worker_if_try_lock_fails_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 24 Nov 2025 20:33:05 -0000
+Message-ID: <176401638579.21836.7988730599258020634@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251121083138.468339-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20251121083138.468339-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,127 +37,178 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 21, 2025 at 07:46:05PM -0600, Lucas De Marchi wrote:
-> On Sat, Nov 22, 2025 at 01:21:50AM +0200, Ville Syrjälä wrote:
-> >On Wed, Nov 19, 2025 at 10:28:20PM -0600, Lucas De Marchi wrote:
-> >> On Thu, Nov 20, 2025 at 02:41:22AM +0200, Ville Syrjälä wrote:
-> >> >On Wed, Nov 19, 2025 at 12:04:38PM -0800, Lucas De Marchi wrote:
-> >> >> Touching VGA_MIS_W goes back to commit f9dcb0dfee98 ("drm/i915: touch
-> >> >> VGA MSR after we enable the power well"). That case doesn't seem to be
-> >> >> reproduced anymore, even considering that the unclaimed accesses are now
-> >> >> printed with debug log level. Also note that the original issue was
-> >> >> reproduced with vgacon, but that is not used anymore on x86 when booted
-> >> >> with EFI.
-> >> >>
-> >> >> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> >> >> ---
-> >> >> WIP to drop the VGA accesses and allow xe driver to be used with
-> >> >> non-x86 platforms. There are multiple patches floating around, some
-> >> >> disabling code for non-x86, some disabling for !CONFIG_VGA_CONSOLE.
-> >> >>
-> >> >> For this v1, I think the entire workaround can be removed. Sending it
-> >> >> for CI while I look into the other cases.
-> >> >
-> >> >I think this would need to be tested on a machine that has a
-> >> >second VGA card in it to make the the iGPU doesn't end up eating
-> >> >the VGA memory accesses when they should be going to the other
-> >> >card.
-> >> >
-> >> >I was perusing the CPU/chipset docs for this a bit, in the hopes
-> >> >of finding some sane way to turn off VGA decoding for the iGPU.
-> >> >Alas no such luck. According to the docs the iGPU always has the
-> >> >highest decode priority, and the accesses won't get forwarded
-> >> >to PCIe/DMI/PCI if the iGPU grabs them.
-> >> >
-> >> >IIRC the docs say that the reset state for the VGA memory decode
-> >> >should be "off". But I don't think that's quite true given that
-> >> >we had to add this workaround.
-> >>
-> >> confused... What are you are saying seems to be something about
-> >> the vga accesses in intel_vga_disable().
-> >>
-> >> commit f9dcb0dfee98 ("drm/i915: touch VGA MSR after we enable the power well")
-> >> describes it as:
-> >>
-> >> 	- 1 igpu with eDP + HDMI
-> >> 	- after power well is enabled/disabled, drop the drm, and unbind
-> >> 	  vtcon (note it's not unbinding the module). Note that it's not
-> >> 	  about unbinding the module.
-> >>
-> >> And that was caused by our printk from inside the irq handler causing
-> >> things to be printed via vgacon and that generating an interrupt that
-> >> print something again, creating a loop. I'm not sure what platform that
-> >> was about back in 2013, but looking around at the code I suppose it was
-> >> Ironlake and in the irq handler calling intel_uncore_check_errors().
-> >
-> >It was hsw or bdw. Earlier platforms don't have power wells.
-> >
-> >>
-> >> 12 years later we have a few different things:
-> >>
-> >> 	- I don't see us handling intel_uncore_check_errors() the way we
-> >> 	  were before, inside the irq handler. It seems commit
-> >> 	  7571494004d8 ("drm/i915: Do one shot unclaimed mmio detection
-> >> 	  less frequently") moved it out from the irq path (it makes
-> >> 	  sense not printing to the console from inside the irq handler)
-> >
-> >On some platforms there is an actual error interrupt that
-> >gets triggered by unclaimed mmio acceses.
-> >
-> >> 	- vgacon is not really used anymore. If it was only this, we
-> >> 	  could add a check and do it conditionally, but to me it seems
-> >> 	  we can completely drop this
-> >
-> >It's not really only about vgacon. If anyone actually wants VGA
-> >memory accesses to go to some external GPU then the iGPU has to
-> >be told to not claim them. And that can only be done by poking
-> >that particular VGA register.
-> 
-> but here we are *not* disabling the decoding.
+--===============8550753954354705437==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The reset value has VGA memory deocding disabled.
+== Series Details ==
 
-> We are reading the
-> register and writing the same value back:
-> 
-> 	outb(inb(VGA_MIS_R), VGA_MIS_W);
-> 
-> I guess you're talking about bit 1? If that is needed on a platform
-> we are supposed to enable/disable it on the callback from the vgaarb
-> rather than here. That would make vga_get(pdev, ...) to actually select
-> the device.  So for igpu it would write 0 to that bit when disabling.
-> 
-> This specific path was added in the commit mentioned above to allow
-> access to register 0x3D5, that is used by vgacon, without causing
-> unclaimed registers.
+Series: fbcon: Reschedule cursor worker if try lock fails (rev3)
+URL   : https://patchwork.freedesktop.org/series/119060/
+State : success
 
-Ah I remembered it being about the VGA memory somehow. But I guess
-it might be about the the MDA vs. CGA selection. I guess when it
-comes out of reset it's in MDA mode and that apparently causes it
-to not claim the CGA range accesses.
+== Summary ==
 
-Hmm, but the documented reset value indeed has MDA selected, so
-I'm not sure how writing the same value back fixes aything then
-(assuming the docs are correct).
+CI Bug Log - changes from CI_DRM_17579 -> Patchwork_119060v3
+====================================================
 
-I can't actually figure out from the CPU docs how the MDA decoding
-happens :/
+Summary
+-------
 
-> To me that indicates more a bug in the unclaimed
-> register detection on that platform rather than something we need to carry
-> forward. Particularly because on later platforms we actually don't
-> have an interrupt on unclaimed registers.
-> 
-> An alternative to not break anything would be to check for dgfx or
-> a suitable gen that doesn't have such interrupt. From bspec 4248 it
-> seems to be since BDW. Would that be better?
+  **SUCCESS**
 
-Someone should actually reverse engineer this properly before we
-go implementing random things.
+  No regressions found.
 
--- 
-Ville Syrjälä
-Intel
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119060v3/index.html
+
+Participating hosts (45 -> 44)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_119060v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_pm_rpm@basic-rte:
+    - bat-rpls-4:         [PASS][1] -> [DMESG-WARN][2] ([i915#13400])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17579/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119060v3/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [DMESG-FAIL][3] ([i915#12061]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17579/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119060v3/bat-arls-5/igt@i915_selftest@live@workarounds.html
+    - bat-mtlp-9:         [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17579/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119060v3/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live:
+    - bat-atsm-1:         [DMESG-FAIL][7] ([i915#12061] / [i915#13929]) -> [DMESG-FAIL][8] ([i915#12061] / [i915#14204])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17579/bat-atsm-1/igt@i915_selftest@live.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119060v3/bat-atsm-1/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@mman:
+    - bat-atsm-1:         [DMESG-FAIL][9] ([i915#13929]) -> [DMESG-FAIL][10] ([i915#14204])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17579/bat-atsm-1/igt@i915_selftest@live@mman.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119060v3/bat-atsm-1/igt@i915_selftest@live@mman.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#13400]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13400
+  [i915#13929]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929
+  [i915#14204]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_17579 -> Patchwork_119060v3
+
+  CI-20190529: 20190529
+  CI_DRM_17579: ed157ca0caebebe3af6d38ca0fb64a403c84ce77 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8636: 254cd102396ff95d61f2ebe49fc09128878bf483 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_119060v3: ed157ca0caebebe3af6d38ca0fb64a403c84ce77 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119060v3/index.html
+
+--===============8550753954354705437==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>fbcon: Reschedule cursor worker if try lock fails (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/119060/">https://patchwork.freedesktop.org/series/119060/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119060v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119060v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17579 -&gt; Patchwork_119060v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119060v3/index.html</p>
+<h2>Participating hosts (45 -&gt; 44)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_119060v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_pm_rpm@basic-rte:<ul>
+<li>bat-rpls-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17579/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119060v3/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13400">i915#13400</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17579/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119060v3/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17579/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119060v3/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17579/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119060v3/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@mman:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17579/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119060v3/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17579 -&gt; Patchwork_119060v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17579: ed157ca0caebebe3af6d38ca0fb64a403c84ce77 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8636: 254cd102396ff95d61f2ebe49fc09128878bf483 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_119060v3: ed157ca0caebebe3af6d38ca0fb64a403c84ce77 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============8550753954354705437==--
