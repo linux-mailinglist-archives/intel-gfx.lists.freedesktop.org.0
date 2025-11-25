@@ -2,107 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B46EC86FB6
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Nov 2025 21:17:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8028AC87353
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Nov 2025 22:19:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7564310E45E;
-	Tue, 25 Nov 2025 20:17:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BDED10E06D;
+	Tue, 25 Nov 2025 21:19:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kRwaym21";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rboqtdm1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com
- [209.85.222.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 641AB10E462
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Nov 2025 20:17:38 +0000 (UTC)
-Received: by mail-qk1-f172.google.com with SMTP id
- af79cd13be357-8b2f0f9e4cbso17133485a.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Nov 2025 12:17:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1764101857; x=1764706657; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=i5xbOi/JRw9fbDfoOPiueWSD+D+pBvn2T4pJf+V+WQY=;
- b=kRwaym21FR0SDpPU70BAAqnxMrHy7RIHn6StgkrEhagptorXLlxzjFe3aWKPri9d+o
- CHlEm60F5+j0I0nnalgxQtzmObrJLmOIa92M1ottCqgsFr7/5fUFDGiovAWyfloC0a5o
- Ch3io8v9X1EX4sZDdxkzDEH3d43CXskX0e+DDoKw+iqgq5CZISY7M9GYoBPvzU7Gjh/U
- wxq7TQIl9ta9fFtqEq/FRtxVaLriZ8ylAZcR6Sx3U+3kZfd09Hv7Np3riG8i6zMqWMBl
- BLa5vUBz163EYHdlUl06JbHN91AL5byDfpDES+lX5To6LiJNcyLxiwAoZ1LY/DSL1kDE
- j2eA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1764101857; x=1764706657;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=i5xbOi/JRw9fbDfoOPiueWSD+D+pBvn2T4pJf+V+WQY=;
- b=pV2dAaQNtM7ebyfoMu8lBrGmj6pSMwqRMt5CYmU+XSnZYqTh2WO0HAlv8GLwix2KsF
- djqckuLHcxfxiRtc3SgZX7mJAXhpbIeJj+qUIpOdCDqhkbD4vroSEWv5AUkSBu0xzE0R
- zLGfiQlxk0KJG8nRqy/ygCbEdbYld+tWEEPLD8j7WxqRCdrCmGsBgEVHhe/jx8eXI0pa
- nuW+zHGP9nftL8ZG+bjuO5aQChE4pCGTrV7oAtTu+kL5rZP1ttDpmnYLoTydORWJqAG9
- /Ane8a8Jx2OsGAsHvu6m3h47oPJD5Yt728sGj21Q3qpKGvI/1s252E1gbuZkcvsijARv
- 23gQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUOzrnoX7qXtp8hmK0H9zm9uvdBpOBs+uk3kdx3N1wf9PtCqlQGFGR7/uhvbtyBmMti6ieCqV03vvk=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyqm/ElmontL3Ys38cA2ts1isXxlrxPpFs33gG6GvPdIh0OI/SZ
- eug8i1NJmGM1wr0ACm1hrU8vRCCOzp6+ZIbM1i33YNnk80mOsnE1NGl/gDn1t0fEyQbFP211PfZ
- l5G6MoGi4x1dkJ643cNB0nk+ibyH1Q2I=
-X-Gm-Gg: ASbGncsRdqYHbgnGe7V13fn0r/Y+U80GkMlPBBfw8Rw2I/1mtXGxXc9xQjO8LrBjgIY
- NHR2xHktJELVm4mlNfD+ygaqfrtdoPxYYXt66A2N4ZowrjcbXhADcaSY9iyy7BiVc0V/NjC5Ukq
- TwIYSIuYyRm0WajU31f0/xeLiqcRg/qoPtgBhs6h+6dQVqlc3DgH6Ty/H1MbDGzVcwPp9wgiX6m
- srYLPh+E6U/sgplrAGuYjrjRU7DS+IH1EAbmIW4o7YJ3sdGWDSCWknfPY6QoOn4H3Hj61AVbZ+C
- uHAl
-X-Google-Smtp-Source: AGHT+IHkFdHWZaY4LOLQkKFmHBql2cXu9IqsP0TX4ELpOPpCajUvQgW7eqKX4cHfwlYxtJIqgi3EGKK4Y8sqki2XcH8=
-X-Received: by 2002:a05:620a:6910:b0:8b2:faa3:5639 with SMTP id
- af79cd13be357-8b33bc68daamr2220226285a.11.1764101856982; Tue, 25 Nov 2025
- 12:17:36 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AB7210E06D;
+ Tue, 25 Nov 2025 21:19:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1764105573; x=1795641573;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=g5pRQNhMWRixXv8WkJ1H8OQKa/VbOnTAUtUr0YrPf18=;
+ b=Rboqtdm1gUwPz5+fuDLBrMDupznKhcg60BOAFzAEiqAgHKxqtDD/mIWh
+ 0eZ1zNdhmhjixRw8TuGgjZNObcPlldIOXqJBxflh3SRJ9GCNDuZcW5yRX
+ bf4wKAbCI2Km8cQO4D3lALeVvHNN+WDshmd2hEHDnALZpsl4QQItuJhsk
+ IaMdPWrzBwk5y98zIULKFGNzoAlERpBEpBUvxnVs28aaqW5nQAV9kscoT
+ yxl2e88Judq2HE01mBlYYCDfPhZd5xj6TJhZ+3oYC+LQzAtEgZNTou/N4
+ MYvri1JQVswZWGBT41w3W5xitI8gqN6D3FfnJaqWqaaUznw4FiJBBR3sl Q==;
+X-CSE-ConnectionGUID: lkQSPJXBQQCzajwAnJoHaA==
+X-CSE-MsgGUID: bbl+mNHxQK2chuYa8weMFw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11624"; a="76757831"
+X-IronPort-AV: E=Sophos;i="6.20,226,1758610800"; d="scan'208";a="76757831"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2025 13:19:32 -0800
+X-CSE-ConnectionGUID: MxqFJBufSkWgARvRtWyyGg==
+X-CSE-MsgGUID: r9WP4rb8RpKnNyLeO4n6EA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,226,1758610800"; d="scan'208";a="197875134"
+Received: from bkammerd-mobl.amr.corp.intel.com (HELO localhost)
+ ([10.124.222.230])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2025 13:19:30 -0800
+Date: Tue, 25 Nov 2025 23:19:27 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 2/4] drm/i915/psr: Perform vblank evasion on async flip
+ as well for PSR
+Message-ID: <aSYdX7eGVOMapiJ7@intel.com>
+References: <20251125063253.328023-1-jouni.hogander@intel.com>
+ <20251125063253.328023-3-jouni.hogander@intel.com>
 MIME-Version: 1.0
-References: <20251124234432.1988476-1-joelagnelf@nvidia.com>
- <f73e4536-ec89-4625-96d4-6fa42018e4e4@amd.com>
- <CAPM=9twe3xcVBgrNCT+1_pGECPL-ry_aA2dxBwbKVeai4+S7AQ@mail.gmail.com>
- <24d4f02b-8ecd-4512-a1f0-ba41684ede1d@amd.com>
- <dfc50417-66ce-44ce-b607-917d678c5631@nvidia.com>
- <9f433dee-7ad9-4d0f-8ac1-e67deb409b70@amd.com>
- <CAPM=9tyN_A3oEyQZCOWaLO1orO6oKX0ZukJHR7cFy12Go+7d=A@mail.gmail.com>
- <cc0db376-6cff-45d7-b3a3-d13be664700f@amd.com>
-In-Reply-To: <cc0db376-6cff-45d7-b3a3-d13be664700f@amd.com>
-From: Dave Airlie <airlied@gmail.com>
-Date: Wed, 26 Nov 2025 06:17:25 +1000
-X-Gm-Features: AWmQ_bl_uhqER-0YSILUF1BfRs5LdG2TEdIVo4_rhtDFefamEG9auPeZIzRmvoQ
-Message-ID: <CAPM=9tx5neQ=TbmK+2eAO=O-XW_67VhOGO-791kqyVDJEpTA+w@mail.gmail.com>
-Subject: Re: [PATCH] gpu: Move DRM buddy allocator one level up
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: John Hubbard <jhubbard@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
- linux-kernel@vger.kernel.org, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, 
- Alex Deucher <alexander.deucher@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>, 
- Matthew Auld <matthew.auld@intel.com>, Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Helge Deller <deller@gmx.de>, Danilo Krummrich <dakr@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, 
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Trevor Gross <tmgross@umich.edu>, Alistair Popple <apopple@nvidia.com>,
- Timur Tabi <ttabi@nvidia.com>, 
- Edwin Peer <epeer@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
- nouveau@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org, 
- linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-fbdev@vger.kernel.org, Zhi Wang <zhiw@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251125063253.328023-3-jouni.hogander@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -118,80 +73,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 25 Nov 2025 at 19:15, Christian K=C3=B6nig <christian.koenig@amd.co=
-m> wrote:
->
-> On 11/25/25 10:08, Dave Airlie wrote:
-> > On Tue, 25 Nov 2025 at 18:11, Christian K=C3=B6nig <christian.koenig@am=
-d.com> wrote:
-> >>
-> >> On 11/25/25 08:59, John Hubbard wrote:
-> >>> On 11/24/25 11:54 PM, Christian K=C3=B6nig wrote:
-> >>>> On 11/25/25 08:49, Dave Airlie wrote:
-> >>>>> On Tue, 25 Nov 2025 at 17:45, Christian K=C3=B6nig <christian.koeni=
-g@amd.com> wrote:
-> >>> ...
-> >>>> My question is why exactly is nova separated into nova-core and nova=
--drm? That doesn't seem to be necessary in the first place.
-> >>>>
-> >>> The idea is that nova-core allows building up a separate software sta=
-ck for
-> >>> VFIO, without pulling in any DRM-specific code that a hypervisor (for=
- example)
-> >>> wouldn't need. That makes for a smaller, more security-auditable set =
-of code
-> >>> for that case.
-> >>
-> >> Well that is the same argument used by some AMD team to maintain a sep=
-arate out of tree hypervisor for nearly a decade.
-> >>
-> >> Additional to that the same argument has also been used to justify the=
- KFD node as alternative API to DRM for compute.
-> >>
-> >> Both cases have proven to be extremely bad ideas.
-> >>
-> >> Background is that except for all the legacy stuff the DRM API is actu=
-ally very well thought through and it is actually quite hard to come up wit=
-h something similarly well.
-> >>
-> >
-> > Well you just answered your own question, why is AMD maintaining GIM
-> > instead of solving this upstream with a split model? the nova-core/drm
-> > split would be perfect for GIM.
->
-> No, it won't.
->
-> We have the requirement to work with GEM objects and DMA-buf file descrip=
-tors in the hypervisor as well.
->
-> And my suspicion is that you end up with the same requirements in nova as=
- well in which case you end up interchanging handles with DRM as well.
->
-> We have seen the same for KFD and it turned out to be an absolutely horri=
-ble interaction.
->
-> > kfd was a terrible idea, and we don't intend to offer userspace
-> > multiple APIs with nova, nova-drm will be the primary userspace API
-> > provider. nova-core will not provide userspace API, it will provide an
-> > API to nova-drm and an API to the vgpu driver which will provide it's
-> > own userspace API without graphics or compute, just enough to setup
-> > VFs.
->
-> Ok, then why do you need nova-core in the first place? E.g. where should =
-be the vgpu driver and what interface does it provide?
+On Tue, Nov 25, 2025 at 08:32:51AM +0200, Jouni Högander wrote:
+> PSR2_MAN_TRK_CTL[SF Continuous full frame] is sampled on the rising edge of
+> delayed vblank. SW must ensure this bit is not changing around that. Due to
+> this PSR2 Selective Fetch needs vblank evasion.
+> 
+> Currently vblank evasion is not done on async flip. Perform it in case
+> required by PSR.
+> 
+> Bspec: 50424
+> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_crtc.c | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+> index 153ff4b4b52c..42c4ce07f8c0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+> @@ -433,7 +433,8 @@ static bool intel_crtc_needs_vblank_work(const struct intel_crtc_state *crtc_sta
+>  		(intel_crtc_needs_color_update(crtc_state) &&
+>  		 !HAS_DOUBLE_BUFFERED_LUT(display)) &&
+>  		!intel_color_uses_dsb(crtc_state) &&
+> -		!crtc_state->use_dsb;
+> +		!crtc_state->use_dsb &&
+> +		!crtc_state->do_async_flip;
+>  }
+>  
+>  static void intel_crtc_vblank_work(struct kthread_work *base)
+> @@ -539,7 +540,8 @@ void intel_pipe_update_start(struct intel_atomic_state *state,
+>  	if (new_crtc_state->do_async_flip) {
+>  		intel_crtc_prepare_vblank_event(new_crtc_state,
+>  						&crtc->flip_done_event);
+> -		return;
+> +		if (!intel_psr_needs_evasion(new_crtc_state))
+> +			return;
 
-The ask is for a driver for cloud providers to run on their
-hypervisors that does just enough to manage the VFs through VFIO
-without having a complete drm driver or any drm infrastructure loaded.
+I don't think we want hack this into such low level code. We
+anyway convert the first async flip to a sync flip (see
+intel_plane_do_async_flip()), so that's when you should disable
+selective fetch, and keep it disabled afterwards as long as
+async flips are being requested for the plane by userspace.
 
-The nice pictures are here
-https://lore.kernel.org/all/20250903221111.3866249-1-zhiw@nvidia.com/
+The problem is that uapi.async_flip is ephemeral, so you can't
+just check for that. I think what we need is a way to track
+which planes have been requested to do async flips. We almost 
+have that with the async_flip_planes bitmask, and I think we
+can make it do exactly what we want by just dropping the
+need_async_flip_toggle_wa check from 
+intel_plane_atomic_calc_changes(). That should be safe since
+all places that currently use the bitmask also check for
+need_async_flip_toggle_wa.
 
-You will only be loading one of nova-drm or the vfio driver at least
-in supported systems, depending on the GPU configuration, whether we
-allow users to do things like that isn't well decided.
+The alternative would be to track the uapi async flip requests
+in a separate bitmask. That might be a bit more optimal in that
+we wouldn't clear the bit from there when some other plane
+or the pipe itself needs a sync update while the plane is already
+performing async flips. But not having that just means you'll
+end up toggling selective fetch back on and the off again when
+a sync update intervenes a stream of async flips.
 
-So far I haven't heard anything about needing dma-buf interactions at
-that level, and maybe Zhi has more insight into the future there.
+Oh, and needs_async_flip_vtd_wa() should probably also use
+the bitmask rather than looking at uapi.async_flip.
 
-Dave.
+>  	}
+>  
+>  	if (intel_crtc_needs_vblank_work(new_crtc_state))
+> -- 
+> 2.43.0
+
+-- 
+Ville Syrjälä
+Intel
