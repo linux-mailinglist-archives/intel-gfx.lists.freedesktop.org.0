@@ -2,62 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11CBEC84653
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Nov 2025 11:13:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60EB3C846DE
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Nov 2025 11:20:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 334C110E2C9;
-	Tue, 25 Nov 2025 10:13:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E256189A1E;
+	Tue, 25 Nov 2025 10:20:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xg/TmswG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qey0Jlyc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8089A10E2C9;
- Tue, 25 Nov 2025 10:13:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E5B089A1E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Nov 2025 10:20:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764065614; x=1795601614;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=921xprs6Fa4MPSX9LPDqw2a8EX9uZzQeRjXibHFCHdY=;
- b=Xg/TmswGvdPhwGyeBxCwLw67X5FX2JFdx9Wb6TeO5RpcA05fRfNvFLpD
- bAvubOHsHFfJ766Pcx7A39zOj+XYkrGY6Ee0D0rbTOkxBh4ABk0ZoVqKa
- SJpUO/AA1f1J+KogqcKzBT8oCp1D7rS9P7zX8ClV+hLmIJ6FEO941DVA+
- SL97VD2uK8xXd2k0hO/H1N5ZgB6HK5wo/RVLzkv4SNeM7OoLLc8YCIYVG
- qwdzstT57x8lQ49aKbFVrjSdLx4z8BIVIry/CBk2wg4iJkCSVl6aAY2uD
- JewE3aWjhc9YJEfc+eXvXMHaP0gOogVNuGueY1FLGkkGn9hP3kGQuq53G Q==;
-X-CSE-ConnectionGUID: 3VQarLmgQuaeAypLqY9Wrw==
-X-CSE-MsgGUID: gxkEZdeeSJCJzW+7q9ujeg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="76403268"
-X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="76403268"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2025 02:13:34 -0800
-X-CSE-ConnectionGUID: GgkUBcs3RjeC9Q78ZqF1nA==
-X-CSE-MsgGUID: goI1OC01RL+ti6UQEX7yaQ==
+ t=1764066005; x=1795602005;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=yNBIgOBUOBIPISj8718OBAb/v+uW2tU9rDv0MBmYncQ=;
+ b=Qey0JlycNufwOBQmHQAD7srX4DV5xR6AkoXLCf7UOcA7fKVFa0gZLO5h
+ 0Xrj9s1iH9deyAf46pNBbuXI1he1fVw4Bns0y7EObyzjUNikobx8hv61/
+ OvF772qJIqAHviET9u83gtzOKjtYVp0fMcd2R02VcpfbimJu9rNQ9R2o1
+ IG7E38qidddn3xyNGv1h6iKiChXVAaLbqZ3sabuhcqIvMfgdWEOwiCb8T
+ o3yhg6oUrb3VPbymCpsaGf5BquzFJU2TSNfUWJ8+2h9BtIgvpjvE/cYn8
+ 6SbuFXW+2vKuRhjuuDxs9ERzLLVHrOUUmXLtSuOVaPZs8nlyTlWpQIDyj Q==;
+X-CSE-ConnectionGUID: 7wUDUPumRCa/bF71wPtnDg==
+X-CSE-MsgGUID: 6ZAj6uGHRSGYiaOll92kkw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="65080608"
+X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="65080608"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2025 02:20:05 -0800
+X-CSE-ConnectionGUID: F7kj0mvzR8aP0S1iUhP4Ig==
+X-CSE-MsgGUID: 7Jg7hExRQhWtCeIzunXmtg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="192232536"
-Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.213])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2025 02:13:29 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: ZhangZhiJie <zhangzhijie@bosc.ac.cn>, jeff@jeffgeerling.com,
- wangran@bosc.ac.cn, zhangjian@bosc.ac.cn, daniel@ffwll.ch,
- rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com,
- tursulin@ursulin.net, airlied@gmail.com, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, guoyaxing@bosc.ac.cn
-Subject: Re: [PATCH v2] i915: Support Intel GPU porting on any non-x86 system.
-In-Reply-To: <1657dccb-3d03-420a-9ffa-5601ae212fd9@bosc.ac.cn>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251124065645.1920632-1-zhangzhijie@bosc.ac.cn>
- <bac7a05b799309fe2c269232e70e82f86a8e2811@intel.com>
- <1657dccb-3d03-420a-9ffa-5601ae212fd9@bosc.ac.cn>
-Date: Tue, 25 Nov 2025 12:13:25 +0200
-Message-ID: <58728a8ae8f0a3e92be203a9296d120fd12da8d5@intel.com>
+X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="193032562"
+Received: from naresh-nuc8i7beh.iind.intel.com (HELO
+ nkumarg-desk.iind.intel.com) ([10.190.216.171])
+ by fmviesa009.fm.intel.com with ESMTP; 25 Nov 2025 02:20:03 -0800
+From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: naresh.kumar.g@intel.com,
+	Michal.Wajdeczko@intel.com
+Subject: [V6 PATCH] Due to SLA agreement between PF and VFs,
+ multi CCS mode can't be enabled when VFs are already enabled.
+ Similarly, enabling VFs must be blocked when multi CCS mode enabled.
+Date: Tue, 25 Nov 2025 15:43:46 +0530
+Message-ID: <20251125101345.2324973-2-naresh.kumar.g@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,103 +68,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 25 Nov 2025, ZhangZhiJie <zhangzhijie@bosc.ac.cn> wrote:
-> On 2025/11/24 20:24, Jani Nikula wrote:
->> On Mon, 24 Nov 2025, zhangzhijie <zhangzhijie@bosc.ac.cn> wrote:
->>> inb/outb speccial wire not support on other ARCH.
->>> Should detect whether arch platform support or not.
->> 
->> Seems to me it inb/outb depend on CONFIG_HAS_IOPORT. Which arch are you
->> talking about specifically?
->
-> riscv , has CONFIG_HAS_IOPORT.  is using for serial, GPIO., etc.
+v2:
+- function xe_device_is_vf_enabled has been refactored to
+  xe_sriov_pf_has_vfs_enabled and moved to xe_sriov_pf_helper.h.
+- The code now distinctly checks for SR-IOV VF mode and
+  SR-IOV PF with VFs enabled.
+- Log messages have been updated to explicitly state the current mode.
+- The function xe_multi_ccs_mode_enabled is moved to xe_device.h
 
-What is the actual failure mode you see?
+v3: Described missed arg documentation for xe_sriov_pf_has_vfs_enabled
 
-Does it build?
+v4:
+- sysfs interface for CCS mode is not initialized
+  when operating in SRIOV VF Mode.
+- xe_sriov_pf_has_vfs_enabled() check is sufficient while CCS mode
+  enablement.
+- remove unnecessary comments as flow is self explanatory.
 
-BR,
-Jani.
+v5:(review comments from Michal)
+- Add xe device level CCS mode block with mutex lock and CCS mode state
+- necessesary functions to manage ccs mode state to provide strict mutual
+  exclusive support b/w CCS mode & SRIOV VF enabling
 
+v6:
+- Re modeled implementation based on lockdown the PF using custom guard
+  supported functions by Michal
 
+Signed-off-by: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_ccs_mode.c | 47 ++++++++++++++++++++++++-----
+ 1 file changed, 39 insertions(+), 8 deletions(-)
 
->
-> Thanks.
-> BR.
-> ZhiJie
->> 
->>> Signed-off-by: zhangzhijie <zhangzhijie@bosc.ac.cn>
->>> ---
->>>   drivers/gpu/drm/i915/display/intel_vga.c | 27 ++++++++++++++++++------
->>>   1 file changed, 20 insertions(+), 7 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/i915/display/intel_vga.c
->>> index 6e125564db34..d5d6c4ba6434 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_vga.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_vga.c
->>> @@ -41,6 +41,15 @@ static bool has_vga_pipe_sel(struct intel_display *display)
->>>   	return DISPLAY_VER(display) < 7;
->>>   }
->>>   
->>> +static bool intel_arch_support_vga_pm(struct intel_display *display)
->>> +{
->>> +#if defined(CONFIG_X86) || defined(CONFIG_X86_64)
->>> +	return true;
->>> +#else
->>> +	return false;
->>> +#endif
->>> +}
->>> +
->>>   /* Disable the VGA plane that we never use */
->>>   void intel_vga_disable(struct intel_display *display)
->>>   {
->>> @@ -66,11 +75,13 @@ void intel_vga_disable(struct intel_display *display)
->>>   
->>>   	/* WaEnableVGAAccessThroughIOPort:ctg,elk,ilk,snb,ivb,vlv,hsw */
->>>   	vga_get_uninterruptible(pdev, VGA_RSRC_LEGACY_IO);
->>> -	outb(0x01, VGA_SEQ_I);
->>> -	sr1 = inb(VGA_SEQ_D);
->>> -	outb(sr1 | VGA_SR01_SCREEN_OFF, VGA_SEQ_D);
->>> -	vga_put(pdev, VGA_RSRC_LEGACY_IO);
->>> -	udelay(300);
->>> +	if (likely(intel_arch_support_vga_pm(display))) {
->> 
->> As a rule of thumb, please do not use likely/unlikely, at all.
->> 
->> Here, intel_arch_support_vga_pm() is evaluated at build time, and the
->> likely has no functional value, only dubious documentation value.
->> 
->>> +		outb(0x01, VGA_SEQ_I);
->>> +		sr1 = inb(VGA_SEQ_D);
->>> +		outb(sr1 | VGA_SR01_SCREEN_OFF, VGA_SEQ_D);
->>> +		vga_put(pdev, VGA_RSRC_LEGACY_IO);
->> 
->> Both or neither get/put need to be inside the branch. Now you only get,
->> never put, on non-x86.
->> 
->> BR,
->> Jani.
->> 
->>> +		udelay(300);
->>> +	}
->>>   
->>>   	intel_de_write(display, vga_reg, VGA_DISP_DISABLE);
->>>   	intel_de_posting_read(display, vga_reg);
->>> @@ -91,8 +102,10 @@ void intel_vga_reset_io_mem(struct intel_display *display)
->>>   	 * and error messages.
->>>   	 */
->>>   	vga_get_uninterruptible(pdev, VGA_RSRC_LEGACY_IO);
->>> -	outb(inb(VGA_MIS_R), VGA_MIS_W);
->>> -	vga_put(pdev, VGA_RSRC_LEGACY_IO);
->>> +	if (likely(intel_arch_support_vga_pm(display))) {
->>> +		outb(inb(VGA_MIS_R), VGA_MIS_W);
->>> +		vga_put(pdev, VGA_RSRC_LEGACY_IO);
->>> +	}
->>>   }
->>>   
->>>   int intel_vga_register(struct intel_display *display)
->> 
->
-
+diff --git a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
+index 50fffc9ebf62..495bf517a6d3 100644
+--- a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
++++ b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
+@@ -13,6 +13,7 @@
+ #include "xe_gt_sysfs.h"
+ #include "xe_mmio.h"
+ #include "xe_sriov.h"
++#include "xe_sriov_pf_helpers.h"
+ 
+ static void __xe_gt_apply_ccs_mode(struct xe_gt *gt, u32 num_engines)
+ {
+@@ -108,6 +109,30 @@ ccs_mode_show(struct device *kdev,
+ 	return sysfs_emit(buf, "%u\n", gt->ccs_mode);
+ }
+ 
++static int xe_gt_prepare_ccs_mode_enabling(struct xe_device *xe,
++					   struct xe_gt *gt)
++{
++	/*
++	 * The arm guard is only activated during CCS mode enabling,
++	 * and this shuould happen when CCS mode is in default mode.
++	 * lockdown arm guard ensures there is no VFS enabling
++	 * as CCS mode enabling in progress/enabled.
++	 */
++	if (!(gt->ccs_mode > 1))
++		return xe_sriov_pf_arm_guard(xe, &xe->sriov.pf.guard_vfs_enabling,
++					     true, NULL);
++	return 0;
++}
++
++static void xe_gt_finish_ccs_mode_enabling(struct xe_device *xe,
++					   struct xe_gt *gt)
++{
++	/* disarm the guard, if CCS mode is reverted to default */
++	if (!(gt->ccs_mode > 1))
++		xe_sriov_pf_disarm_guard(xe, &xe->sriov.pf.guard_vfs_enabling,
++					 true, NULL);
++}
++
+ static ssize_t
+ ccs_mode_store(struct device *kdev, struct device_attribute *attr,
+ 	       const char *buff, size_t count)
+@@ -117,15 +142,13 @@ ccs_mode_store(struct device *kdev, struct device_attribute *attr,
+ 	u32 num_engines, num_slices;
+ 	int ret;
+ 
+-	if (IS_SRIOV(xe)) {
+-		xe_gt_dbg(gt, "Can't change compute mode when running as %s\n",
+-			  xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
+-		return -EOPNOTSUPP;
+-	}
++	ret = xe_gt_prepare_ccs_mode_enabling(xe, gt);
++	if (ret)
++		return ret;
+ 
+ 	ret = kstrtou32(buff, 0, &num_engines);
+ 	if (ret)
+-		return ret;
++		goto err;
+ 
+ 	/*
+ 	 * Ensure number of engines specified is valid and there is an
+@@ -135,7 +158,8 @@ ccs_mode_store(struct device *kdev, struct device_attribute *attr,
+ 	if (!num_engines || num_engines > num_slices || num_slices % num_engines) {
+ 		xe_gt_dbg(gt, "Invalid compute config, %d engines %d slices\n",
+ 			  num_engines, num_slices);
+-		return -EINVAL;
++		ret = -EINVAL;
++		goto err;
+ 	}
+ 
+ 	/* CCS mode can only be updated when there are no drm clients */
+@@ -143,7 +167,8 @@ ccs_mode_store(struct device *kdev, struct device_attribute *attr,
+ 	if (!list_empty(&xe->drm.filelist)) {
+ 		mutex_unlock(&xe->drm.filelist_mutex);
+ 		xe_gt_dbg(gt, "Rejecting compute mode change as there are active drm clients\n");
+-		return -EBUSY;
++		ret = -EBUSY;
++		goto err;
+ 	}
+ 
+ 	if (gt->ccs_mode != num_engines) {
+@@ -155,7 +180,13 @@ ccs_mode_store(struct device *kdev, struct device_attribute *attr,
+ 
+ 	mutex_unlock(&xe->drm.filelist_mutex);
+ 
++	xe_gt_finish_ccs_mode_enabling(xe, gt);
++
+ 	return count;
++err:
++	xe_gt_finish_ccs_mode_enabling(xe, gt);
++
++	return ret;
+ }
+ 
+ static DEVICE_ATTR_RW(ccs_mode);
 -- 
-Jani Nikula, Intel
+2.43.0
+
