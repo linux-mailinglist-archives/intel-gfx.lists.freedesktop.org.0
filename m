@@ -2,42 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 288EDC852DA
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Nov 2025 14:28:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB9C2C852A4
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Nov 2025 14:24:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4FD410E196;
-	Tue, 25 Nov 2025 13:28:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 522FF10E173;
+	Tue, 25 Nov 2025 13:24:50 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kil26AsQ";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 596 seconds by postgrey-1.36 at gabe;
- Tue, 25 Nov 2025 13:28:49 UTC
-Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D329C10E196
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Nov 2025 13:28:49 +0000 (UTC)
-Received: from [IPV6:2400:2410:b120:f200:a1f3:73da:3a04:160d] (unknown
- [IPv6:2400:2410:b120:f200:a1f3:73da:3a04:160d])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (Client did not present a certificate)
- by psionic.psi5.com (Postfix) with ESMTPSA id A8FED3F11B;
- Tue, 25 Nov 2025 14:18:46 +0100 (CET)
-Message-ID: <7bd66c59-7101-4e79-9c45-8c3417a4284f@hogyros.de>
-Date: Tue, 25 Nov 2025 22:18:43 +0900
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5876A10E173;
+ Tue, 25 Nov 2025 13:24:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1764077089; x=1795613089;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=f3fdsgV5Px4JP6iPDepdVdpHbOVeAuzPmw10sLTzGZI=;
+ b=Kil26AsQ5OE/QnnfUNk3RKFax190p4v2AYA4ZgUrSk38RxvXO6tmMQHk
+ R7w1cb5Sk+jopA6xyGZtSu8jQBep1hmn/i+HMUg9U1mHCjK6Qf1im2OZB
+ QJ65Ygq2P2twm9s/MZYp/0zPb4qIB0btK6q3ax0BQTDbbndBH8iO3gIen
+ OD1eGAy7SzXqEKQNRaXCktwN5+LXH+1MrwpukS0hw9HwvTD/yTPBxhvYK
+ k+5OQMgEAYSFEMBSQi8gCIkepS14qaQLFYlljfKwqBhHb8LGxtWzCM6Lr
+ EU/jGPrdmpsaF/1o3yIBsv4y/3aDftCBxiKWm93WCS/7g2Npf3KfEBLaX A==;
+X-CSE-ConnectionGUID: EUNgtWzPT4iMVA5EPgZ6RA==
+X-CSE-MsgGUID: rYhEYQu1QsOmyuFB5x2seQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="77461429"
+X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="77461429"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2025 05:24:48 -0800
+X-CSE-ConnectionGUID: ZtwJ8p5RSvWENYR/MlDCVA==
+X-CSE-MsgGUID: tzjwI2KlRa6sFPi6Vx00pQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="192520909"
+Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.213])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2025 05:24:47 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH v2 0/5] drm/i915/display: switch from intel_wakeref_t to
+ struct ref_tracker *
+Date: Tue, 25 Nov 2025 15:24:38 +0200
+Message-ID: <cover.1764076995.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] i915: Support Intel GPU porting on any non-x86 system.
-To: zhangzhijie <zhangzhijie@bosc.ac.cn>, jani.nikula@linux.intel.com,
- jeff@jeffgeerling.com, wangran@bosc.ac.cn, zhangjian@bosc.ac.cn,
- daniel@ffwll.ch, rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com,
- tursulin@ursulin.net, airlied@gmail.com, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, guoyaxing@bosc.ac.cn
-References: <20251124065645.1920632-1-zhangzhijie@bosc.ac.cn>
-Content-Language: en-US
-From: Simon Richter <Simon.Richter@hogyros.de>
-In-Reply-To: <20251124065645.1920632-1-zhangzhijie@bosc.ac.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,45 +70,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+v2 of [1] fixing it for CONFIG_DRM_I915_DEBUG_RUNTIME_PM=n.
 
-On 11/24/25 3:56 PM, zhangzhijie wrote:
+[1] https://lore.kernel.org/r/cover.1763729370.git.jani.nikula@intel.com
 
- > inb/outb speccial wire not support on other ARCH.
- > Should detect whether arch platform support or not.
 
-These platforms still have inb/outb definitions though that do 
-something. https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1824 
-has a few cases where this goes wrong.
+Jani Nikula (5):
+  drm/i915/pps: drop wakeref parameter from with_intel_pps_lock()
+  drm/i915/pps: convert intel_wakeref_t to struct ref_tracker *
+  drm/i915/power: drop wakeref parameter from
+    with_intel_display_power*()
+  drm/i915/power: convert intel_wakeref_t to struct ref_tracker *
+  drm/{i915,xe}/display: drop intel_wakeref.h usage
 
-There are also a few Intel chipsets that also allow MMIO accesses to VGA 
-registers. Whether there is an intersection of chipsets that allow it, 
-and chipsets where that is useful is another question though.
+ drivers/gpu/drm/i915/display/g4x_dp.c         |  5 +-
+ drivers/gpu/drm/i915/display/g4x_hdmi.c       |  2 +-
+ drivers/gpu/drm/i915/display/i9xx_plane.c     |  2 +-
+ drivers/gpu/drm/i915/display/icl_dsi.c        |  4 +-
+ drivers/gpu/drm/i915/display/intel_audio.c    |  6 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  4 +-
+ drivers/gpu/drm/i915/display/intel_cmtg.c     |  3 +-
+ drivers/gpu/drm/i915/display/intel_crt.c      |  6 +-
+ drivers/gpu/drm/i915/display/intel_cursor.c   |  4 +-
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 18 +++---
+ drivers/gpu/drm/i915/display/intel_ddi.c      | 16 ++---
+ drivers/gpu/drm/i915/display/intel_display.c  | 23 +++----
+ .../gpu/drm/i915/display/intel_display_core.h |  2 +-
+ .../drm/i915/display/intel_display_debugfs.c  |  2 +-
+ .../drm/i915/display/intel_display_power.c    | 26 ++++----
+ .../drm/i915/display/intel_display_power.h    | 48 ++++++++------
+ .../drm/i915/display/intel_display_types.h    |  6 +-
+ drivers/gpu/drm/i915/display/intel_dmc.c      |  2 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |  3 +-
+ drivers/gpu/drm/i915/display/intel_dp_aux.c   |  4 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 18 +++---
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  4 +-
+ drivers/gpu/drm/i915/display/intel_dsi.h      |  7 ++-
+ drivers/gpu/drm/i915/display/intel_gmbus.c    |  4 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |  4 +-
+ drivers/gpu/drm/i915/display/intel_hotplug.c  |  2 +-
+ drivers/gpu/drm/i915/display/intel_lt_phy.c   | 14 ++---
+ drivers/gpu/drm/i915/display/intel_lvds.c     |  2 +-
+ .../drm/i915/display/intel_modeset_setup.c    |  2 +-
+ drivers/gpu/drm/i915/display/intel_pipe_crc.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_pps.c      | 63 ++++++-------------
+ drivers/gpu/drm/i915/display/intel_pps.h      | 14 +++--
+ drivers/gpu/drm/i915/display/intel_sprite.c   |  6 +-
+ drivers/gpu/drm/i915/display/intel_tc.c       | 40 +++++-------
+ drivers/gpu/drm/i915/display/intel_vdsc.c     |  2 +-
+ .../drm/i915/display/skl_universal_plane.c    |  2 +-
+ drivers/gpu/drm/i915/display/skl_watermark.c  |  2 +-
+ drivers/gpu/drm/i915/display/vlv_dsi.c        |  2 +-
+ .../xe/compat-i915-headers/intel_wakeref.h    | 10 ---
+ drivers/gpu/drm/xe/display/xe_display_rpm.c   |  3 +
+ 40 files changed, 177 insertions(+), 212 deletions(-)
+ delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_wakeref.h
 
- >   	vga_get_uninterruptible(pdev, VGA_RSRC_LEGACY_IO);
-
-This function really should check if inb/outb will address pdev after 
-the function returns, and return an error if not, then the accesses here 
-and in the power well code could be conditional on this, and it would be 
-generic.
-
-For this, the vgaarb code would need to check that the bridges on the 
-way up have accepted the VGA forwarding bit (i.e. read back after 
-writing it), and there probably should be a mechanism for the bridge 
-between PCI(e) and the platform bus, so systems with multiple PCI(e) 
-domains can also be handled.
-
-E.g. on POWER, there are global variables "isa_io_base" and 
-"pci_io_base", and it is assumed that these point to a place that 
-generates IO accesses from MMIO, but this assumption is not actually 
-verified, and I can pretty much guarantee that it's wrong if the PCIe 
-bus in question is not even attached to the first socket.
-
-Just checking that upstream bridges accept the VGA bit while vgaarb 
-switches decoding over would solve all of my problems though, because 
-the root bridge doesn't, so that would be a quick way of inhibiting 
-these accesses. It might work for you too, just try setting the bit 
-manually with setpci and check if it sticks.
-
-    Simon
+-- 
+2.47.3
 
