@@ -2,30 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EF2EC86159
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Nov 2025 18:01:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3B89C862C3
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Nov 2025 18:17:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79F6210E559;
-	Tue, 25 Nov 2025 17:01:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE29610E454;
+	Tue, 25 Nov 2025 17:17:53 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GRcSd/f4";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBB0A10E559;
- Tue, 25 Nov 2025 17:01:31 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4302732851312688384=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5A7B10E410;
+ Tue, 25 Nov 2025 17:17:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1764091072; x=1795627072;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ykJWMfvr1+uZWHd+Szj3FepUTTxGroPib27B6HBQq2Q=;
+ b=GRcSd/f4esR7fZxUqNCnR+rtr0AnNKI7Suv03XPw9OK+YjBTS1oviFXS
+ TwHMnkyG2fTOcv0npwQmPRCocqcJPqzEtK8tMKl+YBMT6DQWZc+xqq4p8
+ 2spTeJDbIICQaOXsnvY2GUMMv2W9KHiVU/EIWyzRQ8OvTFKg7mpv38QFk
+ OB87OhRnCQ92fKKBt3o3JY6cCCryA6yD/j2IurThE1bFKVzlVDV+u52KK
+ Y7ZG5TobjWUEcAyjGQH5IVyOipsUAh4RuT5zuAtL4r+R/gQMKUUQ695Hu
+ uzKHmY2pxe7RpqnLHdd2XRIRrLWLkA52eX50kRMOZDvqgTqQXJ1bQwZkK A==;
+X-CSE-ConnectionGUID: fGBQPzjZTzyvKShyUTbOAg==
+X-CSE-MsgGUID: Ja47Llg/SUSzpuiBhPN4oQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11624"; a="77593426"
+X-IronPort-AV: E=Sophos;i="6.20,226,1758610800"; d="scan'208";a="77593426"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2025 09:17:52 -0800
+X-CSE-ConnectionGUID: OG0S6HlwRSiVjSVB4EUvPA==
+X-CSE-MsgGUID: L0ymc5utSwaS0LF/3b1DOg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,226,1758610800"; d="scan'208";a="197807393"
+Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.213])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2025 09:17:49 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+	Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH 0/2] drm/i915/hdcp: call HDCP GSC hook via parent interface
+Date: Tue, 25 Nov 2025 19:17:42 +0200
+Message-ID: <cover.1764090990.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/gem=3A_NULL-init?=
- =?utf-8?q?ialize_the_eb-=3Evma=5B=5D=2Evma_pointers_in_gem=5Fdo=5Fexecbuffe?=
- =?utf-8?q?r?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Krzysztof Niemiec" <krzysztof.niemiec@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 25 Nov 2025 17:01:31 -0000
-Message-ID: <176409009175.25800.15642197776117292924@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251125133337.26483-2-krzysztof.niemiec@intel.com>
-In-Reply-To: <20251125133337.26483-2-krzysztof.niemiec@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,142 +67,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4302732851312688384==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Move more stuff to the parent interface. HDCP GSC is different for both
+i915 and xe, add it to the interface.
 
-== Series Details ==
+Jani Nikula (2):
+  drm/i915/hdcp: move i915 specific HDCP GSC implementation to i915
+  drm/{i915,xe}/hdcp: use parent interface for HDCP GSC calls
 
-Series: drm/i915/gem: NULL-initialize the eb->vma[].vma pointers in gem_do_execbuffer
-URL   : https://patchwork.freedesktop.org/series/158036/
-State : success
+ drivers/gpu/drm/i915/Makefile                 |  5 +-
+ drivers/gpu/drm/i915/display/intel_hdcp.c     |  4 +-
+ drivers/gpu/drm/i915/display/intel_hdcp_gsc.h | 22 ------
+ .../drm/i915/display/intel_hdcp_gsc_message.c | 78 +++++++++----------
+ drivers/gpu/drm/i915/display/intel_parent.c   | 24 ++++++
+ drivers/gpu/drm/i915/display/intel_parent.h   | 10 +++
+ drivers/gpu/drm/i915/i915_driver.c            |  2 +
+ .../intel_hdcp_gsc.c => i915_hdcp_gsc.c}      | 22 ++++--
+ drivers/gpu/drm/i915/i915_hdcp_gsc.h          |  9 +++
+ drivers/gpu/drm/xe/display/xe_display.c       |  2 +
+ drivers/gpu/drm/xe/display/xe_hdcp_gsc.c      | 25 ++++--
+ drivers/gpu/drm/xe/display/xe_hdcp_gsc.h      |  9 +++
+ include/drm/intel/display_parent_interface.h  | 13 ++++
+ 13 files changed, 143 insertions(+), 82 deletions(-)
+ delete mode 100644 drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
+ rename drivers/gpu/drm/i915/{display/intel_hdcp_gsc.c => i915_hdcp_gsc.c} (89%)
+ create mode 100644 drivers/gpu/drm/i915/i915_hdcp_gsc.h
+ create mode 100644 drivers/gpu/drm/xe/display/xe_hdcp_gsc.h
 
-== Summary ==
+-- 
+2.47.3
 
-CI Bug Log - changes from CI_DRM_17585 -> Patchwork_158036v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158036v1/index.html
-
-Participating hosts (45 -> 44)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_158036v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17585/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158036v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-tgl-1115g4:      [PASS][3] -> [FAIL][4] ([i915#14867])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17585/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158036v1/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#14867]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14867
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_17585 -> Patchwork_158036v1
-
-  CI-20190529: 20190529
-  CI_DRM_17585: d9ba358798b03eaf5d1a49598b568c635ec4a192 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8637: 730ee3dfb26f8d7891fc240b0132a08c5bc7b949 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_158036v1: d9ba358798b03eaf5d1a49598b568c635ec4a192 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158036v1/index.html
-
---===============4302732851312688384==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gem: NULL-initialize the eb-&gt;vma[].vma pointers in gem_do_execbuffer</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158036/">https://patchwork.freedesktop.org/series/158036/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158036v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158036v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17585 -&gt; Patchwork_158036v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158036v1/index.html</p>
-<h2>Participating hosts (45 -&gt; 44)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_158036v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17585/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158036v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17585/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158036v1/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14867">i915#14867</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17585 -&gt; Patchwork_158036v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17585: d9ba358798b03eaf5d1a49598b568c635ec4a192 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8637: 730ee3dfb26f8d7891fc240b0132a08c5bc7b949 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_158036v1: d9ba358798b03eaf5d1a49598b568c635ec4a192 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============4302732851312688384==--
