@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11A77C852A7
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Nov 2025 14:24:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E78B9C852AA
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Nov 2025 14:24:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A200F10E3EF;
-	Tue, 25 Nov 2025 13:24:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BB8B10E3F1;
+	Tue, 25 Nov 2025 13:24:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YNHTGB05";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JUnvWY9L";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F8F910E3E0;
- Tue, 25 Nov 2025 13:24:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A11AC10E3ED;
+ Tue, 25 Nov 2025 13:24:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764077093; x=1795613093;
+ t=1764077097; x=1795613097;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4Q/q+lBA585XlrdWkiSBht5XMwy+meWk1mktTZFJWFY=;
- b=YNHTGB05SRpT65GfSCjdwDYtAA0WtoSS25O7Z0nhkTJ85mMWN1+q0qXQ
- ob35Y4V0vuulL7phG9CmWi2jYW4+GurZrT8BIAS6tu5g30t4zGDfGdHGF
- OfdUjL+Qv+j5ONvz5weNVPTM2IZZGJcsIgQqty5FPDSi4px/Y/Wb6FJl4
- 8I1JKn027cBb82HKJjw041RSe5pLKiGsKNEW9GChK5AUJHDZ8/ylS/892
- ZKzUvoKlGQW2RmcRTPIDel++GO26tDtbyfxtOKd+6iwflYIN59fDwd8n0
- lzZSvAJaxE5pMqsVS4W1P96EWHM//Qj+QYJA5cp1G+tyMvfB725KfEpen w==;
-X-CSE-ConnectionGUID: Kvu4vfbkQv2rqOHJephjPg==
-X-CSE-MsgGUID: GHUmRto1RXukluT9r9YyAA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="77461449"
-X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="77461449"
+ bh=rVG3bKD3dxaoaPRD90ax0jMqBhxYFtYbIuc99zYgiYI=;
+ b=JUnvWY9LbmtMS/UZw4tCYqSuAHBzfFklq673d7rlLriZDAXA7wpizORp
+ JkwjHA+ISsItynaZrKmo1DgW5b1m1P4W7HuEgImHGPaJRFa7OnzS7M/Fn
+ 49m2RjqDPwAeQWitI01YIFSU16Yi5A3UPtJkoUkS96eROUFFCz4adPYgo
+ ciYLMlCrSHG6/5IhHg1C8zWzW+TkUCRid+YcyGytf+PI4IpzAMDkuS3jf
+ ufsYt0Yaju6psx71r3hsMtu+7gU1/KMjmZt/NCIKZK85R7V3rhTK53R3L
+ lSiJA/nIygkOZh2QJsazd7q3uMskrs7FssnD/OwjQGtgHlvgX7CdAG/4C Q==;
+X-CSE-ConnectionGUID: kf/HraZhRUioxhfY4fEn0g==
+X-CSE-MsgGUID: RitRF0DyT2WSsYUwoNUSdQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="77461465"
+X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="77461465"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2025 05:24:53 -0800
-X-CSE-ConnectionGUID: C/g//mpLSpKoLn2ZHFbu+w==
-X-CSE-MsgGUID: TgfezbaZSmGBopxuL0u+EQ==
+ 25 Nov 2025 05:24:57 -0800
+X-CSE-ConnectionGUID: Gr/Dw2HdQiqBS2rZD9zIbQ==
+X-CSE-MsgGUID: DWWW/yx+TbSvBiPj7oJScw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="192520918"
+X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="192520932"
 Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.213])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2025 05:24:51 -0800
+ 25 Nov 2025 05:24:56 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH v2 1/5] drm/i915/pps: drop wakeref parameter from
- with_intel_pps_lock()
-Date: Tue, 25 Nov 2025 15:24:39 +0200
-Message-ID: <f45a77708108dc4b606d732c1b011aa08fab72b5.1764076995.git.jani.nikula@intel.com>
+Subject: [PATCH v2 2/5] drm/i915/pps: convert intel_wakeref_t to struct
+ ref_tracker *
+Date: Tue, 25 Nov 2025 15:24:40 +0200
+Message-ID: <e7afaea1a609485f91669a7d3c5d3fde0e0dbf8b.1764076995.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1764076995.git.jani.nikula@intel.com>
 References: <cover.1764076995.git.jani.nikula@intel.com>
@@ -72,278 +72,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add another level of macro abstraction, and declare the wakeref within
-the for loop using __UNIQUE_ID. This allows us to drop a bunch of
-boilerplate declarations and parameter passing.
+Under the hood, intel_wakeref_t is just struct ref_tracker *. Use the
+actual underlying type both for clarity (we *are* using intel_wakeref_t
+as a pointer though it doesn't look like one) and to help i915, xe and
+display coexistence without custom types.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/g4x_dp.c    |  3 +-
- drivers/gpu/drm/i915/display/intel_pps.c | 56 +++++++-----------------
- drivers/gpu/drm/i915/display/intel_pps.h |  7 ++-
- 3 files changed, 22 insertions(+), 44 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp_aux.c | 2 +-
+ drivers/gpu/drm/i915/display/intel_pps.c    | 7 +++----
+ drivers/gpu/drm/i915/display/intel_pps.h    | 9 ++++-----
+ 3 files changed, 8 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
-index a3ff21b2f69f..27f4c55d7484 100644
---- a/drivers/gpu/drm/i915/display/g4x_dp.c
-+++ b/drivers/gpu/drm/i915/display/g4x_dp.c
-@@ -684,12 +684,11 @@ static void intel_enable_dp(struct intel_atomic_state *state,
- 	struct intel_display *display = to_intel_display(state);
- 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
- 	u32 dp_reg = intel_de_read(display, intel_dp->output_reg);
--	intel_wakeref_t wakeref;
- 
- 	if (drm_WARN_ON(display->drm, dp_reg & DP_PORT_EN))
- 		return;
- 
--	with_intel_pps_lock(intel_dp, wakeref) {
-+	with_intel_pps_lock(intel_dp) {
- 		if (display->platform.valleyview || display->platform.cherryview)
- 			vlv_pps_port_enable_unlocked(encoder, pipe_config);
- 
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+index 809799f63e32..38e03f3efac5 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+@@ -246,7 +246,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+ 	u32 aux_clock_divider;
+ 	enum intel_display_power_domain aux_domain;
+ 	intel_wakeref_t aux_wakeref;
+-	intel_wakeref_t pps_wakeref = NULL;
++	struct ref_tracker *pps_wakeref = NULL;
+ 	int i, ret, recv_bytes;
+ 	int try, clock = 0;
+ 	u32 status;
 diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-index 25692a547764..34376255b85c 100644
+index 34376255b85c..b217ec7aa758 100644
 --- a/drivers/gpu/drm/i915/display/intel_pps.c
 +++ b/drivers/gpu/drm/i915/display/intel_pps.c
-@@ -697,12 +697,10 @@ static void wait_panel_power_cycle(struct intel_dp *intel_dp)
- 
- void intel_pps_wait_power_cycle(struct intel_dp *intel_dp)
- {
--	intel_wakeref_t wakeref;
--
- 	if (!intel_dp_is_edp(intel_dp))
- 		return;
- 
--	with_intel_pps_lock(intel_dp, wakeref)
-+	with_intel_pps_lock(intel_dp)
- 		wait_panel_power_cycle(intel_dp);
+@@ -67,10 +67,10 @@ static const char *pps_name(struct intel_dp *intel_dp)
+ 	return "PPS <invalid>";
  }
  
-@@ -811,14 +809,13 @@ bool intel_pps_vdd_on_unlocked(struct intel_dp *intel_dp)
- void intel_pps_vdd_on(struct intel_dp *intel_dp)
+-intel_wakeref_t intel_pps_lock(struct intel_dp *intel_dp)
++struct ref_tracker *intel_pps_lock(struct intel_dp *intel_dp)
  {
  	struct intel_display *display = to_intel_display(intel_dp);
 -	intel_wakeref_t wakeref;
- 	bool vdd;
- 
- 	if (!intel_dp_is_edp(intel_dp))
- 		return;
- 
- 	vdd = false;
--	with_intel_pps_lock(intel_dp, wakeref)
-+	with_intel_pps_lock(intel_dp)
- 		vdd = intel_pps_vdd_on_unlocked(intel_dp);
- 	INTEL_DISPLAY_STATE_WARN(display, !vdd, "[ENCODER:%d:%s] %s VDD already requested on\n",
- 				 dp_to_dig_port(intel_dp)->base.base.base.id,
-@@ -873,8 +870,6 @@ static void intel_pps_vdd_off_sync_unlocked(struct intel_dp *intel_dp)
- 
- void intel_pps_vdd_off_sync(struct intel_dp *intel_dp)
- {
--	intel_wakeref_t wakeref;
--
- 	if (!intel_dp_is_edp(intel_dp))
- 		return;
- 
-@@ -883,7 +878,7 @@ void intel_pps_vdd_off_sync(struct intel_dp *intel_dp)
- 	 * vdd might still be enabled due to the delayed vdd off.
- 	 * Make sure vdd is actually turned off here.
- 	 */
--	with_intel_pps_lock(intel_dp, wakeref)
-+	with_intel_pps_lock(intel_dp)
- 		intel_pps_vdd_off_sync_unlocked(intel_dp);
- }
- 
-@@ -892,9 +887,8 @@ static void edp_panel_vdd_work(struct work_struct *__work)
- 	struct intel_pps *pps = container_of(to_delayed_work(__work),
- 					     struct intel_pps, panel_vdd_work);
- 	struct intel_dp *intel_dp = container_of(pps, struct intel_dp, pps);
--	intel_wakeref_t wakeref;
- 
--	with_intel_pps_lock(intel_dp, wakeref) {
-+	with_intel_pps_lock(intel_dp) {
- 		if (!intel_dp->pps.want_panel_vdd)
- 			intel_pps_vdd_off_sync_unlocked(intel_dp);
- 	}
-@@ -952,12 +946,10 @@ void intel_pps_vdd_off_unlocked(struct intel_dp *intel_dp, bool sync)
- 
- void intel_pps_vdd_off(struct intel_dp *intel_dp)
- {
--	intel_wakeref_t wakeref;
--
- 	if (!intel_dp_is_edp(intel_dp))
- 		return;
- 
--	with_intel_pps_lock(intel_dp, wakeref)
-+	with_intel_pps_lock(intel_dp)
- 		intel_pps_vdd_off_unlocked(intel_dp, false);
- }
- 
-@@ -1026,12 +1018,10 @@ void intel_pps_on_unlocked(struct intel_dp *intel_dp)
- 
- void intel_pps_on(struct intel_dp *intel_dp)
- {
--	intel_wakeref_t wakeref;
--
- 	if (!intel_dp_is_edp(intel_dp))
- 		return;
- 
--	with_intel_pps_lock(intel_dp, wakeref)
-+	with_intel_pps_lock(intel_dp)
- 		intel_pps_on_unlocked(intel_dp);
- }
- 
-@@ -1082,12 +1072,10 @@ void intel_pps_off_unlocked(struct intel_dp *intel_dp)
- 
- void intel_pps_off(struct intel_dp *intel_dp)
- {
--	intel_wakeref_t wakeref;
--
- 	if (!intel_dp_is_edp(intel_dp))
- 		return;
- 
--	with_intel_pps_lock(intel_dp, wakeref)
-+	with_intel_pps_lock(intel_dp)
- 		intel_pps_off_unlocked(intel_dp);
- }
- 
-@@ -1095,7 +1083,6 @@ void intel_pps_off(struct intel_dp *intel_dp)
- void intel_pps_backlight_on(struct intel_dp *intel_dp)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
--	intel_wakeref_t wakeref;
++	struct ref_tracker *wakeref;
  
  	/*
- 	 * If we enable the backlight right away following a panel power
-@@ -1105,7 +1092,7 @@ void intel_pps_backlight_on(struct intel_dp *intel_dp)
- 	 */
- 	wait_backlight_on(intel_dp);
- 
--	with_intel_pps_lock(intel_dp, wakeref) {
-+	with_intel_pps_lock(intel_dp) {
- 		i915_reg_t pp_ctrl_reg = _pp_ctrl_reg(intel_dp);
- 		u32 pp;
- 
-@@ -1121,12 +1108,11 @@ void intel_pps_backlight_on(struct intel_dp *intel_dp)
- void intel_pps_backlight_off(struct intel_dp *intel_dp)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
--	intel_wakeref_t wakeref;
- 
- 	if (!intel_dp_is_edp(intel_dp))
- 		return;
- 
--	with_intel_pps_lock(intel_dp, wakeref) {
-+	with_intel_pps_lock(intel_dp) {
- 		i915_reg_t pp_ctrl_reg = _pp_ctrl_reg(intel_dp);
- 		u32 pp;
- 
-@@ -1149,11 +1135,10 @@ void intel_pps_backlight_power(struct intel_connector *connector, bool enable)
- {
- 	struct intel_display *display = to_intel_display(connector);
- 	struct intel_dp *intel_dp = intel_attached_dp(connector);
--	intel_wakeref_t wakeref;
- 	bool is_enabled;
- 
- 	is_enabled = false;
--	with_intel_pps_lock(intel_dp, wakeref)
-+	with_intel_pps_lock(intel_dp)
- 		is_enabled = ilk_get_pp_control(intel_dp) & EDP_BLC_ENABLE;
- 	if (is_enabled == enable)
- 		return;
-@@ -1251,9 +1236,7 @@ void vlv_pps_pipe_init(struct intel_dp *intel_dp)
- /* Call on all DP, not just eDP */
- void vlv_pps_pipe_reset(struct intel_dp *intel_dp)
- {
--	intel_wakeref_t wakeref;
--
--	with_intel_pps_lock(intel_dp, wakeref)
-+	with_intel_pps_lock(intel_dp)
- 		intel_dp->pps.vlv_active_pipe = vlv_active_pipe(intel_dp);
+ 	 * See vlv_pps_reset_all() why we need a power domain reference here.
+@@ -81,8 +81,7 @@ intel_wakeref_t intel_pps_lock(struct intel_dp *intel_dp)
+ 	return wakeref;
  }
  
-@@ -1329,9 +1312,7 @@ void vlv_pps_port_disable(struct intel_encoder *encoder,
- {
- 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
- 
--	intel_wakeref_t wakeref;
--
--	with_intel_pps_lock(intel_dp, wakeref)
-+	with_intel_pps_lock(intel_dp)
- 		intel_dp->pps.vlv_active_pipe = INVALID_PIPE;
- }
- 
-@@ -1362,10 +1343,9 @@ static void pps_vdd_init(struct intel_dp *intel_dp)
- 
- bool intel_pps_have_panel_power_or_vdd(struct intel_dp *intel_dp)
- {
--	intel_wakeref_t wakeref;
- 	bool have_power = false;
- 
--	with_intel_pps_lock(intel_dp, wakeref) {
-+	with_intel_pps_lock(intel_dp) {
- 		have_power = edp_have_panel_power(intel_dp) ||
- 			     edp_have_panel_vdd(intel_dp);
- 	}
-@@ -1692,12 +1672,11 @@ static void pps_init_registers(struct intel_dp *intel_dp, bool force_disable_vdd
- void intel_pps_encoder_reset(struct intel_dp *intel_dp)
+-intel_wakeref_t intel_pps_unlock(struct intel_dp *intel_dp,
+-				 intel_wakeref_t wakeref)
++struct ref_tracker *intel_pps_unlock(struct intel_dp *intel_dp, struct ref_tracker *wakeref)
  {
  	struct intel_display *display = to_intel_display(intel_dp);
--	intel_wakeref_t wakeref;
- 
- 	if (!intel_dp_is_edp(intel_dp))
- 		return;
- 
--	with_intel_pps_lock(intel_dp, wakeref) {
-+	with_intel_pps_lock(intel_dp) {
- 		/*
- 		 * Reinit the power sequencer also on the resume path, in case
- 		 * BIOS did something nasty with it.
-@@ -1716,7 +1695,6 @@ void intel_pps_encoder_reset(struct intel_dp *intel_dp)
- 
- bool intel_pps_init(struct intel_dp *intel_dp)
- {
--	intel_wakeref_t wakeref;
- 	bool ret;
- 
- 	intel_dp->pps.initializing = true;
-@@ -1724,7 +1702,7 @@ bool intel_pps_init(struct intel_dp *intel_dp)
- 
- 	pps_init_timestamps(intel_dp);
- 
--	with_intel_pps_lock(intel_dp, wakeref) {
-+	with_intel_pps_lock(intel_dp) {
- 		ret = pps_initial_setup(intel_dp);
- 
- 		pps_init_delays(intel_dp);
-@@ -1760,9 +1738,7 @@ static void pps_init_late(struct intel_dp *intel_dp)
- 
- void intel_pps_init_late(struct intel_dp *intel_dp)
- {
--	intel_wakeref_t wakeref;
--
--	with_intel_pps_lock(intel_dp, wakeref) {
-+	with_intel_pps_lock(intel_dp) {
- 		/* Reinit delays after per-panel info has been parsed from VBT */
- 		pps_init_late(intel_dp);
  
 diff --git a/drivers/gpu/drm/i915/display/intel_pps.h b/drivers/gpu/drm/i915/display/intel_pps.h
-index c83007152f07..ad5c458ccdaf 100644
+index ad5c458ccdaf..f7c96d75be45 100644
 --- a/drivers/gpu/drm/i915/display/intel_pps.h
 +++ b/drivers/gpu/drm/i915/display/intel_pps.h
-@@ -20,8 +20,11 @@ struct intel_encoder;
- intel_wakeref_t intel_pps_lock(struct intel_dp *intel_dp);
- intel_wakeref_t intel_pps_unlock(struct intel_dp *intel_dp, intel_wakeref_t wakeref);
+@@ -8,20 +8,19 @@
  
--#define with_intel_pps_lock(dp, wf)						\
--	for ((wf) = intel_pps_lock(dp); (wf); (wf) = intel_pps_unlock((dp), (wf)))
-+#define __with_intel_pps_lock(dp, wf) \
-+	for (intel_wakeref_t (wf) = intel_pps_lock(dp); (wf); (wf) = intel_pps_unlock((dp), (wf)))
-+
-+#define with_intel_pps_lock(dp) \
-+	__with_intel_pps_lock((dp), __UNIQUE_ID(wakeref))
+ #include <linux/types.h>
  
- void intel_pps_backlight_on(struct intel_dp *intel_dp);
- void intel_pps_backlight_off(struct intel_dp *intel_dp);
+-#include "intel_wakeref.h"
+-
+ enum pipe;
+ struct intel_connector;
+ struct intel_crtc_state;
+ struct intel_display;
+ struct intel_dp;
+ struct intel_encoder;
++struct ref_tracker;
+ 
+-intel_wakeref_t intel_pps_lock(struct intel_dp *intel_dp);
+-intel_wakeref_t intel_pps_unlock(struct intel_dp *intel_dp, intel_wakeref_t wakeref);
++struct ref_tracker *intel_pps_lock(struct intel_dp *intel_dp);
++struct ref_tracker *intel_pps_unlock(struct intel_dp *intel_dp, struct ref_tracker *wakeref);
+ 
+ #define __with_intel_pps_lock(dp, wf) \
+-	for (intel_wakeref_t (wf) = intel_pps_lock(dp); (wf); (wf) = intel_pps_unlock((dp), (wf)))
++	for (struct ref_tracker *(wf) = intel_pps_lock(dp); (wf); (wf) = intel_pps_unlock((dp), (wf)))
+ 
+ #define with_intel_pps_lock(dp) \
+ 	__with_intel_pps_lock((dp), __UNIQUE_ID(wakeref))
 -- 
 2.47.3
 
