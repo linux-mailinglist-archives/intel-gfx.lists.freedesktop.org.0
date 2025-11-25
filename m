@@ -2,29 +2,107 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A402C86F8D
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Nov 2025 21:14:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B46EC86FB6
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Nov 2025 21:17:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C25010E45C;
-	Tue, 25 Nov 2025 20:14:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7564310E45E;
+	Tue, 25 Nov 2025 20:17:39 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kRwaym21";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFA0710E45E;
- Tue, 25 Nov 2025 20:14:46 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4420674902351185403=="
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com
+ [209.85.222.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 641AB10E462
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Nov 2025 20:17:38 +0000 (UTC)
+Received: by mail-qk1-f172.google.com with SMTP id
+ af79cd13be357-8b2f0f9e4cbso17133485a.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Nov 2025 12:17:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1764101857; x=1764706657; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=i5xbOi/JRw9fbDfoOPiueWSD+D+pBvn2T4pJf+V+WQY=;
+ b=kRwaym21FR0SDpPU70BAAqnxMrHy7RIHn6StgkrEhagptorXLlxzjFe3aWKPri9d+o
+ CHlEm60F5+j0I0nnalgxQtzmObrJLmOIa92M1ottCqgsFr7/5fUFDGiovAWyfloC0a5o
+ Ch3io8v9X1EX4sZDdxkzDEH3d43CXskX0e+DDoKw+iqgq5CZISY7M9GYoBPvzU7Gjh/U
+ wxq7TQIl9ta9fFtqEq/FRtxVaLriZ8ylAZcR6Sx3U+3kZfd09Hv7Np3riG8i6zMqWMBl
+ BLa5vUBz163EYHdlUl06JbHN91AL5byDfpDES+lX5To6LiJNcyLxiwAoZ1LY/DSL1kDE
+ j2eA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1764101857; x=1764706657;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=i5xbOi/JRw9fbDfoOPiueWSD+D+pBvn2T4pJf+V+WQY=;
+ b=pV2dAaQNtM7ebyfoMu8lBrGmj6pSMwqRMt5CYmU+XSnZYqTh2WO0HAlv8GLwix2KsF
+ djqckuLHcxfxiRtc3SgZX7mJAXhpbIeJj+qUIpOdCDqhkbD4vroSEWv5AUkSBu0xzE0R
+ zLGfiQlxk0KJG8nRqy/ygCbEdbYld+tWEEPLD8j7WxqRCdrCmGsBgEVHhe/jx8eXI0pa
+ nuW+zHGP9nftL8ZG+bjuO5aQChE4pCGTrV7oAtTu+kL5rZP1ttDpmnYLoTydORWJqAG9
+ /Ane8a8Jx2OsGAsHvu6m3h47oPJD5Yt728sGj21Q3qpKGvI/1s252E1gbuZkcvsijARv
+ 23gQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUOzrnoX7qXtp8hmK0H9zm9uvdBpOBs+uk3kdx3N1wf9PtCqlQGFGR7/uhvbtyBmMti6ieCqV03vvk=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yyqm/ElmontL3Ys38cA2ts1isXxlrxPpFs33gG6GvPdIh0OI/SZ
+ eug8i1NJmGM1wr0ACm1hrU8vRCCOzp6+ZIbM1i33YNnk80mOsnE1NGl/gDn1t0fEyQbFP211PfZ
+ l5G6MoGi4x1dkJ643cNB0nk+ibyH1Q2I=
+X-Gm-Gg: ASbGncsRdqYHbgnGe7V13fn0r/Y+U80GkMlPBBfw8Rw2I/1mtXGxXc9xQjO8LrBjgIY
+ NHR2xHktJELVm4mlNfD+ygaqfrtdoPxYYXt66A2N4ZowrjcbXhADcaSY9iyy7BiVc0V/NjC5Ukq
+ TwIYSIuYyRm0WajU31f0/xeLiqcRg/qoPtgBhs6h+6dQVqlc3DgH6Ty/H1MbDGzVcwPp9wgiX6m
+ srYLPh+E6U/sgplrAGuYjrjRU7DS+IH1EAbmIW4o7YJ3sdGWDSCWknfPY6QoOn4H3Hj61AVbZ+C
+ uHAl
+X-Google-Smtp-Source: AGHT+IHkFdHWZaY4LOLQkKFmHBql2cXu9IqsP0TX4ELpOPpCajUvQgW7eqKX4cHfwlYxtJIqgi3EGKK4Y8sqki2XcH8=
+X-Received: by 2002:a05:620a:6910:b0:8b2:faa3:5639 with SMTP id
+ af79cd13be357-8b33bc68daamr2220226285a.11.1764101856982; Tue, 25 Nov 2025
+ 12:17:36 -0800 (PST)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_gpu=3A_Move_DRM_buddy_all?=
- =?utf-8?q?ocator_one_level_up?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Joel Fernandes" <joelagnelf@nvidia.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 25 Nov 2025 20:14:46 -0000
-Message-ID: <176410168697.27008.2363390210914498596@a3b018990fe9>
-X-Patchwork-Hint: ignore
 References: <20251124234432.1988476-1-joelagnelf@nvidia.com>
-In-Reply-To: <20251124234432.1988476-1-joelagnelf@nvidia.com>
+ <f73e4536-ec89-4625-96d4-6fa42018e4e4@amd.com>
+ <CAPM=9twe3xcVBgrNCT+1_pGECPL-ry_aA2dxBwbKVeai4+S7AQ@mail.gmail.com>
+ <24d4f02b-8ecd-4512-a1f0-ba41684ede1d@amd.com>
+ <dfc50417-66ce-44ce-b607-917d678c5631@nvidia.com>
+ <9f433dee-7ad9-4d0f-8ac1-e67deb409b70@amd.com>
+ <CAPM=9tyN_A3oEyQZCOWaLO1orO6oKX0ZukJHR7cFy12Go+7d=A@mail.gmail.com>
+ <cc0db376-6cff-45d7-b3a3-d13be664700f@amd.com>
+In-Reply-To: <cc0db376-6cff-45d7-b3a3-d13be664700f@amd.com>
+From: Dave Airlie <airlied@gmail.com>
+Date: Wed, 26 Nov 2025 06:17:25 +1000
+X-Gm-Features: AWmQ_bl_uhqER-0YSILUF1BfRs5LdG2TEdIVo4_rhtDFefamEG9auPeZIzRmvoQ
+Message-ID: <CAPM=9tx5neQ=TbmK+2eAO=O-XW_67VhOGO-791kqyVDJEpTA+w@mail.gmail.com>
+Subject: Re: [PATCH] gpu: Move DRM buddy allocator one level up
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: John Hubbard <jhubbard@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
+ linux-kernel@vger.kernel.org, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>,
+ Jonathan Corbet <corbet@lwn.net>, 
+ Alex Deucher <alexander.deucher@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>, 
+ Matthew Auld <matthew.auld@intel.com>, Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Helge Deller <deller@gmx.de>, Danilo Krummrich <dakr@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, 
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Trevor Gross <tmgross@umich.edu>, Alistair Popple <apopple@nvidia.com>,
+ Timur Tabi <ttabi@nvidia.com>, 
+ Edwin Peer <epeer@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
+ nouveau@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org, 
+ linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ linux-fbdev@vger.kernel.org, Zhi Wang <zhiw@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,173 +115,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4420674902351185403==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 25 Nov 2025 at 19:15, Christian K=C3=B6nig <christian.koenig@amd.co=
+m> wrote:
+>
+> On 11/25/25 10:08, Dave Airlie wrote:
+> > On Tue, 25 Nov 2025 at 18:11, Christian K=C3=B6nig <christian.koenig@am=
+d.com> wrote:
+> >>
+> >> On 11/25/25 08:59, John Hubbard wrote:
+> >>> On 11/24/25 11:54 PM, Christian K=C3=B6nig wrote:
+> >>>> On 11/25/25 08:49, Dave Airlie wrote:
+> >>>>> On Tue, 25 Nov 2025 at 17:45, Christian K=C3=B6nig <christian.koeni=
+g@amd.com> wrote:
+> >>> ...
+> >>>> My question is why exactly is nova separated into nova-core and nova=
+-drm? That doesn't seem to be necessary in the first place.
+> >>>>
+> >>> The idea is that nova-core allows building up a separate software sta=
+ck for
+> >>> VFIO, without pulling in any DRM-specific code that a hypervisor (for=
+ example)
+> >>> wouldn't need. That makes for a smaller, more security-auditable set =
+of code
+> >>> for that case.
+> >>
+> >> Well that is the same argument used by some AMD team to maintain a sep=
+arate out of tree hypervisor for nearly a decade.
+> >>
+> >> Additional to that the same argument has also been used to justify the=
+ KFD node as alternative API to DRM for compute.
+> >>
+> >> Both cases have proven to be extremely bad ideas.
+> >>
+> >> Background is that except for all the legacy stuff the DRM API is actu=
+ally very well thought through and it is actually quite hard to come up wit=
+h something similarly well.
+> >>
+> >
+> > Well you just answered your own question, why is AMD maintaining GIM
+> > instead of solving this upstream with a split model? the nova-core/drm
+> > split would be perfect for GIM.
+>
+> No, it won't.
+>
+> We have the requirement to work with GEM objects and DMA-buf file descrip=
+tors in the hypervisor as well.
+>
+> And my suspicion is that you end up with the same requirements in nova as=
+ well in which case you end up interchanging handles with DRM as well.
+>
+> We have seen the same for KFD and it turned out to be an absolutely horri=
+ble interaction.
+>
+> > kfd was a terrible idea, and we don't intend to offer userspace
+> > multiple APIs with nova, nova-drm will be the primary userspace API
+> > provider. nova-core will not provide userspace API, it will provide an
+> > API to nova-drm and an API to the vgpu driver which will provide it's
+> > own userspace API without graphics or compute, just enough to setup
+> > VFs.
+>
+> Ok, then why do you need nova-core in the first place? E.g. where should =
+be the vgpu driver and what interface does it provide?
 
-== Series Details ==
+The ask is for a driver for cloud providers to run on their
+hypervisors that does just enough to manage the VFs through VFIO
+without having a complete drm driver or any drm infrastructure loaded.
 
-Series: gpu: Move DRM buddy allocator one level up
-URL   : https://patchwork.freedesktop.org/series/158061/
-State : success
+The nice pictures are here
+https://lore.kernel.org/all/20250903221111.3866249-1-zhiw@nvidia.com/
 
-== Summary ==
+You will only be loading one of nova-drm or the vfio driver at least
+in supported systems, depending on the GPU configuration, whether we
+allow users to do things like that isn't well decided.
 
-CI Bug Log - changes from CI_DRM_17587 -> Patchwork_158061v1
-====================================================
+So far I haven't heard anything about needing dma-buf interactions at
+that level, and maybe Zhi has more insight into the future there.
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158061v1/index.html
-
-Participating hosts (45 -> 44)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_158061v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17587/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158061v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-6:         [DMESG-FAIL][3] ([i915#12061]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17587/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158061v1/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live:
-    - bat-atsm-1:         [DMESG-FAIL][5] ([i915#12061] / [i915#14204]) -> [DMESG-FAIL][6] ([i915#12061] / [i915#13929])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17587/bat-atsm-1/igt@i915_selftest@live.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158061v1/bat-atsm-1/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@mman:
-    - bat-atsm-1:         [DMESG-FAIL][7] ([i915#14204]) -> [DMESG-FAIL][8] ([i915#13929])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17587/bat-atsm-1/igt@i915_selftest@live@mman.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158061v1/bat-atsm-1/igt@i915_selftest@live@mman.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#13929]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929
-  [i915#14204]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_17587 -> Patchwork_158061v1
-
-  CI-20190529: 20190529
-  CI_DRM_17587: 5c99707b435e49589d1274e8f5d908c4e335f8e9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8638: 72d5c74eb3cf46af2f46daba8109d84c3dd19363 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_158061v1: 5c99707b435e49589d1274e8f5d908c4e335f8e9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158061v1/index.html
-
---===============4420674902351185403==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>gpu: Move DRM buddy allocator one level up</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158061/">https://patchwork.freedesktop.org/series/158061/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158061v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158061v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17587 -&gt; Patchwork_158061v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158061v1/index.html</p>
-<h2>Participating hosts (45 -&gt; 44)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_158061v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17587/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158061v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17587/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158061v1/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17587/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158061v1/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@mman:</p>
-<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17587/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158061v1/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17587 -&gt; Patchwork_158061v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17587: 5c99707b435e49589d1274e8f5d908c4e335f8e9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8638: 72d5c74eb3cf46af2f46daba8109d84c3dd19363 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_158061v1: 5c99707b435e49589d1274e8f5d908c4e335f8e9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============4420674902351185403==--
+Dave.
