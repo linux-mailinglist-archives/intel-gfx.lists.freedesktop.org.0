@@ -2,60 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCAB5C852B7
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Nov 2025 14:25:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44A0FC85307
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Nov 2025 14:34:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 559C410E3F6;
-	Tue, 25 Nov 2025 13:25:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EE3210E3F9;
+	Tue, 25 Nov 2025 13:34:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qbu+0IU3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TWTH3QfP";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C885E10E3F6;
- Tue, 25 Nov 2025 13:25:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 233FD10E3ED;
+ Tue, 25 Nov 2025 13:34:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764077111; x=1795613111;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=P26is+AzXjN7E6TYpkRRvfAG82Wo5+4LpxAeylqYqzQ=;
- b=Qbu+0IU3BkQspa/4objhSdnoE2eOyTYeWFRDH402Q/Lq8r5KM127fMpM
- /3Ywg/Akf8pFXeLNgM3+GoD6d6DGzJJC4Gwj1lzfMRHAI8bJudVyWyWC8
- 9n1NigSITRkvMSCnh+x2wXHqmE/Cqs7fDnsK4eMO383lgJwSTUF4TMwJG
- I4xUTE0zsqJ+b2N2QdiWFodw1iv0jRB97bJr1S2n3g6TGmVPWjZlKW/x/
- tek2497AjUtV2by4c97gix8PGZLAI6Almq/GXaJkuYtnkiEJQzrCV0//M
- zhTkqqGNfkXYaehr2I7qVGl9fG3K2LO5AfvO24ZRl57T8S2u6E9iCdkgn w==;
-X-CSE-ConnectionGUID: 7+E68lWGQcyd+LOx9F+kKw==
-X-CSE-MsgGUID: r7wZXl1cT/eoIVSJNgn6Pw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="53662863"
-X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="53662863"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2025 05:25:11 -0800
-X-CSE-ConnectionGUID: yGomD0jsTeGRj7Mz9F6Jsg==
-X-CSE-MsgGUID: 0ssy+pD3SjiIKHLfK8748w==
+ t=1764077657; x=1795613657;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ncAmHFRwrd1NdZKJ+0cTeRDuglxHsodpfVMuecLUaUE=;
+ b=TWTH3QfPB/KM5lR/Izrmrr6IoHT9L2in0EBpWW0yRlPv/LhCPzevmNfT
+ fPuvbCRuIZEOvw6z+44CRHSXCeuL0tWSFM3MK7FM+3nSRE5V85f+y8XPI
+ E0LfR0Kjcn6wDiIt+AjqEzSCEi40K4gfCaFDkIdLYC4RdQYZG/9KUyvPt
+ Hg2fFpmymi5Q9L+5SLvrUwNkSHtNfla9M8AFTgioZc2g5uvmfm+cUDguv
+ PbKYq6LHiPZZuoOIUTfgvudhtYL/o5V5sXUvyp8nhoqevlO1LgwwccZJt
+ wmY1s/OrnJ6jFP/OcRc4955ZOHG31dD7Vrg564qFEGFLGrYk9gFfbLHhL g==;
+X-CSE-ConnectionGUID: zwc/ISENT4eCe1sHBxN8aQ==
+X-CSE-MsgGUID: zDEaxDTxTwKPsS5hxjtyXA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="65984731"
+X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="65984731"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2025 05:34:16 -0800
+X-CSE-ConnectionGUID: kPttoz08R2qsbry/5BzHAA==
+X-CSE-MsgGUID: P21qfUWyRSKjOvqQfWbRYA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="197117953"
-Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.213])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2025 05:25:10 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH v2 5/5] drm/{i915,xe}/display: drop intel_wakeref.h usage
-Date: Tue, 25 Nov 2025 15:24:43 +0200
-Message-ID: <3599d0ec168d7ce7030582706acba66b616ab9f3.1764076995.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1764076995.git.jani.nikula@intel.com>
-References: <cover.1764076995.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="192726793"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.245.246.222])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2025 05:34:12 -0800
+From: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+To: dri-devel@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: stable@vger.kernel.org,
+ =?UTF-8?q?=EA=B9=80=EA=B0=95=EB=AF=BC?= <km.kim1503@gmail.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+Subject: [PATCH] drm/i915/gem: NULL-initialize the eb->vma[].vma pointers in
+ gem_do_execbuffer
+Date: Tue, 25 Nov 2025 14:33:38 +0100
+Message-ID: <20251125133337.26483-2-krzysztof.niemiec@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,78 +76,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Drop the display dependency on intel_wakeref.h header. The contract in
-the parent interface is that -ENOENT means there's no tracking. It
-doesn't actually require us to use a shared macro for it. Duplicate the
-macro in the few places that need this instead of inlining, primarily
-for documentation reasons.
+Initialize eb->vma[].vma pointers to NULL when the eb structure is first
+set up.
 
-This allows us to remove the xe compat intel_wakeref.h header.
+During the execution of eb_lookup_vmas(), the eb->vma array is
+successively filled up with struct eb_vma objects. This process includes
+calling eb_add_vma(), which might fail; however, even in the event of
+failure, eb->vma[i].vma is set for the currently processed buffer.
 
-v2: Define INTEL_WAKEREF_DEF in intel_display_power.h
+If eb_add_vma() fails, eb_lookup_vmas() returns with an error, which
+prompts a call to eb_release_vmas() to clean up the mess. Since
+eb_lookup_vmas() might fail during processing any (possibly not first)
+buffer, eb_release_vmas() checks whether a buffer's vma is NULL to know
+at what point did the lookup function fail.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+In eb_lookup_vmas(), eb->vma[i].vma is set to NULL if either the helper
+function eb_lookup_vma() or eb_validate_vma() fails. eb->vma[i+1].vma is
+set to NULL in case i915_gem_object_userptr_submit_init() fails; the
+current one needs to be cleaned up by eb_release_vmas() at this point,
+so the next one is set. If eb_add_vma() fails, neither the current nor
+the next vma is nullified, which is a source of a NULL deref bug
+described in [1].
+
+When entering eb_lookup_vmas(), the vma pointers are set to the slab
+poison value, instead of NULL. This doesn't matter for the actual
+lookup, since it gets overwritten anyway, however the eb_release_vmas()
+function only recognizes NULL as the stopping value, hence the pointers
+are being nullified as they go in case of intermediate failure. This
+patch changes the approach to filling them all with NULL at the start
+instead, rather than handling that manually during failure.
+
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15062
+Fixes: 544460c33821 ("drm/i915: Multi-BB execbuf")
+Reported-by: Gangmin Kim <km.kim1503@gmail.com>
+Cc: <stable@vger.kernel.org> # 5.16.x
+Signed-off-by: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_power.h     | 5 +++--
- drivers/gpu/drm/xe/compat-i915-headers/intel_wakeref.h | 6 ------
- drivers/gpu/drm/xe/display/xe_display_rpm.c            | 4 +++-
- 3 files changed, 6 insertions(+), 9 deletions(-)
- delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_wakeref.h
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 27 ++++++-------------
+ 1 file changed, 8 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-index 6f8d921b4482..d616d5d09cbe 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-@@ -9,8 +9,6 @@
- #include <linux/mutex.h>
- #include <linux/workqueue.h>
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index b057c2fa03a4..02120203af55 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -951,13 +951,13 @@ static int eb_lookup_vmas(struct i915_execbuffer *eb)
+ 		vma = eb_lookup_vma(eb, eb->exec[i].handle);
+ 		if (IS_ERR(vma)) {
+ 			err = PTR_ERR(vma);
+-			goto err;
++			return err;
+ 		}
  
--#include "intel_wakeref.h"
+ 		err = eb_validate_vma(eb, &eb->exec[i], vma);
+ 		if (unlikely(err)) {
+ 			i915_vma_put(vma);
+-			goto err;
++			return err;
+ 		}
+ 
+ 		err = eb_add_vma(eb, &current_batch, i, vma);
+@@ -966,19 +966,8 @@ static int eb_lookup_vmas(struct i915_execbuffer *eb)
+ 
+ 		if (i915_gem_object_is_userptr(vma->obj)) {
+ 			err = i915_gem_object_userptr_submit_init(vma->obj);
+-			if (err) {
+-				if (i + 1 < eb->buffer_count) {
+-					/*
+-					 * Execbuffer code expects last vma entry to be NULL,
+-					 * since we already initialized this entry,
+-					 * set the next value to NULL or we mess up
+-					 * cleanup handling.
+-					 */
+-					eb->vma[i + 1].vma = NULL;
+-				}
 -
- enum aux_ch;
- enum port;
- struct i915_power_well;
-@@ -19,6 +17,9 @@ struct intel_encoder;
- struct ref_tracker;
- struct seq_file;
++			if (err)
+ 				return err;
+-			}
  
-+/* -ENOENT means we got the ref, but there's no tracking */
-+#define INTEL_WAKEREF_DEF ERR_PTR(-ENOENT)
-+
- /*
-  * Keep the pipe, transcoder, port (DDI_LANES,DDI_IO,AUX) domain instances
-  * consecutive, so that the pipe,transcoder,port -> power domain macros
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_wakeref.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_wakeref.h
-deleted file mode 100644
-index 910a8a60da64..000000000000
---- a/drivers/gpu/drm/xe/compat-i915-headers/intel_wakeref.h
-+++ /dev/null
-@@ -1,6 +0,0 @@
--/* SPDX-License-Identifier: MIT */
--/*
-- * Copyright © 2023 Intel Corporation
-- */
+ 			eb->vma[i].flags |= __EXEC_OBJECT_USERPTR_INIT;
+ 			eb->args->flags |= __EXEC_USERPTR_USED;
+@@ -986,10 +975,6 @@ static int eb_lookup_vmas(struct i915_execbuffer *eb)
+ 	}
+ 
+ 	return 0;
 -
--#define INTEL_WAKEREF_DEF ERR_PTR(-ENOENT)
-diff --git a/drivers/gpu/drm/xe/display/xe_display_rpm.c b/drivers/gpu/drm/xe/display/xe_display_rpm.c
-index 9416ec784e39..b3db40035499 100644
---- a/drivers/gpu/drm/xe/display/xe_display_rpm.c
-+++ b/drivers/gpu/drm/xe/display/xe_display_rpm.c
-@@ -5,11 +5,13 @@
+-err:
+-	eb->vma[i].vma = NULL;
+-	return err;
+ }
  
- #include "intel_display_core.h"
- #include "intel_display_rpm.h"
--#include "intel_wakeref.h"
- #include "xe_device.h"
- #include "xe_device_types.h"
- #include "xe_pm.h"
+ static int eb_lock_vmas(struct i915_execbuffer *eb)
+@@ -3362,6 +3347,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+ 	struct sync_file *out_fence = NULL;
+ 	int out_fence_fd = -1;
+ 	int err;
++	int i;
  
-+/* -ENOENT means we got the ref, but there's no tracking */
-+#define INTEL_WAKEREF_DEF ERR_PTR(-ENOENT)
+ 	BUILD_BUG_ON(__EXEC_INTERNAL_FLAGS & ~__I915_EXEC_ILLEGAL_FLAGS);
+ 	BUILD_BUG_ON(__EXEC_OBJECT_INTERNAL_FLAGS &
+@@ -3375,7 +3361,10 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+ 
+ 	eb.exec = exec;
+ 	eb.vma = (struct eb_vma *)(exec + args->buffer_count + 1);
+-	eb.vma[0].vma = NULL;
 +
- static struct ref_tracker *xe_display_rpm_get(const struct drm_device *drm)
- {
- 	return xe_pm_runtime_resume_and_get(to_xe_device(drm)) ? INTEL_WAKEREF_DEF : NULL;
++	for (i = 0; i < args->buffer_count; i++)
++		eb.vma[i].vma = NULL;
++
+ 	eb.batch_pool = NULL;
+ 
+ 	eb.invalid_flags = __EXEC_OBJECT_UNKNOWN_FLAGS;
 -- 
-2.47.3
+2.45.2
 
