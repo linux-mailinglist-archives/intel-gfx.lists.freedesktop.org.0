@@ -2,55 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9792FC89756
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Nov 2025 12:11:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4B4AC89759
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Nov 2025 12:11:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2ACCE10E5AC;
-	Wed, 26 Nov 2025 11:11:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 315E310E5B1;
+	Wed, 26 Nov 2025 11:11:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Cui8V6aS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UsYpMKlh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10D2B10E5AA;
- Wed, 26 Nov 2025 11:11:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26B1710E5AD;
+ Wed, 26 Nov 2025 11:11:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764155498; x=1795691498;
+ t=1764155503; x=1795691503;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=btvIkVS7s62umHan9KcUtHbwPxkTx57p/IvVZ+W7V6g=;
- b=Cui8V6aSx2auti6orKRlrpcnYOL6vSXoEV3UNlg5eYseopjlEcSbDa2N
- gVcLqziv5FkqZc+Z7vWpQo4yxNLTgBi9OBB/UD7J/mzPXLm6gxFjpcqE8
- ZNLapRTtRi4Q1sqZZmdZFytjdqm0s8snNNEcDSNXC9cT5GKrKRV3NvFBE
- 4uTxhnl33tZbMIdSEm41iHXfkBNTODmF+b3WRERIOd6mAeDLm7Tp8KlGs
- fyl7qQaSGRvFwimRPMfuUnAoxuY2YHxzFmp96UHYUHLV7/WjVtrvNKfRU
- lMPcNeIrXeHF9UP7XaqzTke+/xkcmDShA0UKX5eQNtqSmP50/O0lwNdCh g==;
-X-CSE-ConnectionGUID: sMwD9+uRSmyFTaSKowd68Q==
-X-CSE-MsgGUID: Jp++SoSnREKWhakeJzlxHA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11624"; a="66349651"
-X-IronPort-AV: E=Sophos;i="6.20,228,1758610800"; d="scan'208";a="66349651"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ bh=3C/faLy91vKsvaCjZ/monszBbKaa+f2c1VahrrMCD2w=;
+ b=UsYpMKlhq2Duu0RkO5x3aUhcPa9xE9cpoMaapG6TKsEjs/RbVL7G9tem
+ ThzqSmbhxAXfRb1rqYDI+GKEv03AqnT0orKCZv9SMsqJ+k2W2XHSI6DRn
+ 12YwyunV+z+Pmj57trO/38uHjhpl3m4TSWvYISuZR89RfP66tYJhK25yh
+ 8bDR3+vkkQZaz5IdrE/Tt25rcunIqBkZzOEwLMRpe9yNXSF6NgGIe8CJE
+ iFDT4T1AmBp5Li/4wOyiC6MRoSA7QFIu0nme+lDoZROoEnhG6Lp5uaMp8
+ 4Pt+fSgi1wO3kGeafGV6xOvEhmdKLTZk99D1y/WkK8ADhQ8xHyUfRiSQY g==;
+X-CSE-ConnectionGUID: cmPEP3I+T9qx6yx+kbKbWQ==
+X-CSE-MsgGUID: /T57svbuQ+idT35/MZw59A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11624"; a="66349666"
+X-IronPort-AV: E=Sophos;i="6.20,228,1758610800"; d="scan'208";a="66349666"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2025 03:11:38 -0800
-X-CSE-ConnectionGUID: ubpX925WSQ+ifm7yAzvw0w==
-X-CSE-MsgGUID: RpZlqkDhQrKJbh5Vn2lUHw==
+ 26 Nov 2025 03:11:43 -0800
+X-CSE-ConnectionGUID: G5YIUxzoTNaPmWg1mKbMTg==
+X-CSE-MsgGUID: nZaGFrY+SJGvboLL+JCvEQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,228,1758610800"; d="scan'208";a="197860851"
+X-IronPort-AV: E=Sophos;i="6.20,228,1758610800"; d="scan'208";a="197404483"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.1])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2025 03:11:35 -0800
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2025 03:11:41 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [RESEND 2/4] drm/{i915,
- xe}/dsb: allocate struct intel_dsb_buffer dynamically
-Date: Wed, 26 Nov 2025 13:11:21 +0200
-Message-ID: <af94dc06c55a866efa9105ae0a8d244e4c6b17ab.1764155417.git.jani.nikula@intel.com>
+Subject: [RESEND 3/4] drm/{i915,xe}/dsb: make struct intel_dsb_buffer opaque
+Date: Wed, 26 Nov 2025 13:11:22 +0200
+Message-ID: <08a8a7745042afcffa647f82ae23ebbeda0234c9.1764155417.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1764155417.git.jani.nikula@intel.com>
 References: <cover.1764155417.git.jani.nikula@intel.com>
@@ -73,320 +72,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Prepare for hiding the struct intel_dsb_buffer implementation details
-from the generic DSB code.
+Move the definitions of struct intel_dsb_buffer to the driver specific
+files, hiding the implementation details from the shared DSB code.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dsb.c      | 42 ++++++++++---------
- .../gpu/drm/i915/display/intel_dsb_buffer.c   | 34 +++++++++++----
- .../gpu/drm/i915/display/intel_dsb_buffer.h   |  3 +-
- drivers/gpu/drm/xe/display/xe_dsb_buffer.c    | 28 ++++++++++---
- 4 files changed, 72 insertions(+), 35 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dsb_buffer.c | 6 ++++++
+ drivers/gpu/drm/i915/display/intel_dsb_buffer.h | 8 +-------
+ drivers/gpu/drm/xe/display/xe_dsb_buffer.c      | 6 ++++++
+ 3 files changed, 13 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 6d546f9ff316..ec2a3fb171ab 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -26,7 +26,7 @@
- struct intel_dsb {
- 	enum intel_dsb_id id;
- 
--	struct intel_dsb_buffer dsb_buf;
-+	struct intel_dsb_buffer *dsb_buf;
- 	struct intel_crtc *crtc;
- 
- 	/*
-@@ -211,10 +211,10 @@ static void intel_dsb_dump(struct intel_dsb *dsb)
- 	for (i = 0; i < ALIGN(dsb->free_pos, 64 / 4); i += 4)
- 		drm_dbg_kms(display->drm,
- 			    " 0x%08x: 0x%08x 0x%08x 0x%08x 0x%08x\n", i * 4,
--			    intel_dsb_buffer_read(&dsb->dsb_buf, i),
--			    intel_dsb_buffer_read(&dsb->dsb_buf, i + 1),
--			    intel_dsb_buffer_read(&dsb->dsb_buf, i + 2),
--			    intel_dsb_buffer_read(&dsb->dsb_buf, i + 3));
-+			    intel_dsb_buffer_read(dsb->dsb_buf, i),
-+			    intel_dsb_buffer_read(dsb->dsb_buf, i + 1),
-+			    intel_dsb_buffer_read(dsb->dsb_buf, i + 2),
-+			    intel_dsb_buffer_read(dsb->dsb_buf, i + 3));
- 	drm_dbg_kms(display->drm, "}\n");
- }
- 
-@@ -231,12 +231,12 @@ unsigned int intel_dsb_size(struct intel_dsb *dsb)
- 
- unsigned int intel_dsb_head(struct intel_dsb *dsb)
- {
--	return intel_dsb_buffer_ggtt_offset(&dsb->dsb_buf);
-+	return intel_dsb_buffer_ggtt_offset(dsb->dsb_buf);
- }
- 
- static unsigned int intel_dsb_tail(struct intel_dsb *dsb)
- {
--	return intel_dsb_buffer_ggtt_offset(&dsb->dsb_buf) + intel_dsb_size(dsb);
-+	return intel_dsb_buffer_ggtt_offset(dsb->dsb_buf) + intel_dsb_size(dsb);
- }
- 
- static void intel_dsb_ins_align(struct intel_dsb *dsb)
-@@ -263,8 +263,8 @@ static void intel_dsb_emit(struct intel_dsb *dsb, u32 ldw, u32 udw)
- 	dsb->ins[0] = ldw;
- 	dsb->ins[1] = udw;
- 
--	intel_dsb_buffer_write(&dsb->dsb_buf, dsb->free_pos++, dsb->ins[0]);
--	intel_dsb_buffer_write(&dsb->dsb_buf, dsb->free_pos++, dsb->ins[1]);
-+	intel_dsb_buffer_write(dsb->dsb_buf, dsb->free_pos++, dsb->ins[0]);
-+	intel_dsb_buffer_write(dsb->dsb_buf, dsb->free_pos++, dsb->ins[1]);
- }
- 
- static bool intel_dsb_prev_ins_is_write(struct intel_dsb *dsb,
-@@ -335,13 +335,13 @@ void intel_dsb_reg_write_indexed(struct intel_dsb *dsb,
- 
- 	/* Update the count */
- 	dsb->ins[0]++;
--	intel_dsb_buffer_write(&dsb->dsb_buf, dsb->ins_start_offset + 0,
-+	intel_dsb_buffer_write(dsb->dsb_buf, dsb->ins_start_offset + 0,
- 			       dsb->ins[0]);
- 
--	intel_dsb_buffer_write(&dsb->dsb_buf, dsb->free_pos++, val);
-+	intel_dsb_buffer_write(dsb->dsb_buf, dsb->free_pos++, val);
- 	/* if number of data words is odd, then the last dword should be 0.*/
- 	if (dsb->free_pos & 0x1)
--		intel_dsb_buffer_write(&dsb->dsb_buf, dsb->free_pos, 0);
-+		intel_dsb_buffer_write(dsb->dsb_buf, dsb->free_pos, 0);
- }
- 
- void intel_dsb_reg_write(struct intel_dsb *dsb,
-@@ -521,7 +521,7 @@ static void intel_dsb_align_tail(struct intel_dsb *dsb)
- 	aligned_tail = ALIGN(tail, CACHELINE_BYTES);
- 
- 	if (aligned_tail > tail)
--		intel_dsb_buffer_memset(&dsb->dsb_buf, dsb->free_pos, 0,
-+		intel_dsb_buffer_memset(dsb->dsb_buf, dsb->free_pos, 0,
- 					aligned_tail - tail);
- 
- 	dsb->free_pos = aligned_tail / 4;
-@@ -541,7 +541,7 @@ static void intel_dsb_gosub_align(struct intel_dsb *dsb)
- 	 * "Ensure GOSUB is not placed in cacheline QW slot 6 or 7 (numbered 0-7)"
- 	 */
- 	if (aligned_tail - tail <= 2 * 8)
--		intel_dsb_buffer_memset(&dsb->dsb_buf, dsb->free_pos, 0,
-+		intel_dsb_buffer_memset(dsb->dsb_buf, dsb->free_pos, 0,
- 					aligned_tail - tail);
- 
- 	dsb->free_pos = aligned_tail / 4;
-@@ -606,14 +606,14 @@ void intel_dsb_gosub_finish(struct intel_dsb *dsb)
- 	 */
- 	intel_dsb_noop(dsb, 8);
- 
--	intel_dsb_buffer_flush_map(&dsb->dsb_buf);
-+	intel_dsb_buffer_flush_map(dsb->dsb_buf);
- }
- 
- void intel_dsb_finish(struct intel_dsb *dsb)
- {
- 	intel_dsb_align_tail(dsb);
- 
--	intel_dsb_buffer_flush_map(&dsb->dsb_buf);
-+	intel_dsb_buffer_flush_map(dsb->dsb_buf);
- }
- 
- static u32 dsb_error_int_status(struct intel_display *display)
-@@ -888,7 +888,7 @@ void intel_dsb_wait(struct intel_dsb *dsb)
- 			      !is_busy,
- 			      100, 1000, false);
- 	if (ret) {
--		u32 offset = intel_dsb_buffer_ggtt_offset(&dsb->dsb_buf);
-+		u32 offset = intel_dsb_buffer_ggtt_offset(dsb->dsb_buf);
- 
- 		intel_de_write_fw(display, DSB_CTRL(pipe, dsb->id),
- 				  DSB_ENABLE | DSB_HALT);
-@@ -934,6 +934,7 @@ struct intel_dsb *intel_dsb_prepare(struct intel_atomic_state *state,
- 				    unsigned int max_cmds)
- {
- 	struct intel_display *display = to_intel_display(state);
-+	struct intel_dsb_buffer *dsb_buf;
- 	struct ref_tracker *wakeref;
- 	struct intel_dsb *dsb;
- 	unsigned int size;
-@@ -953,9 +954,12 @@ struct intel_dsb *intel_dsb_prepare(struct intel_atomic_state *state,
- 	/* ~1 qword per instruction, full cachelines */
- 	size = ALIGN(max_cmds * 8, CACHELINE_BYTES);
- 
--	if (!intel_dsb_buffer_create(display->drm, &dsb->dsb_buf, size))
-+	dsb_buf = intel_dsb_buffer_create(display->drm, size);
-+	if (IS_ERR(dsb_buf))
- 		goto out_put_rpm;
- 
-+	dsb->dsb_buf = dsb_buf;
-+
- 	intel_display_rpm_put(display, wakeref);
- 
- 	dsb->id = dsb_id;
-@@ -988,7 +992,7 @@ struct intel_dsb *intel_dsb_prepare(struct intel_atomic_state *state,
-  */
- void intel_dsb_cleanup(struct intel_dsb *dsb)
- {
--	intel_dsb_buffer_cleanup(&dsb->dsb_buf);
-+	intel_dsb_buffer_cleanup(dsb->dsb_buf);
- 	kfree(dsb);
- }
- 
 diff --git a/drivers/gpu/drm/i915/display/intel_dsb_buffer.c b/drivers/gpu/drm/i915/display/intel_dsb_buffer.c
-index 1eafcb2dedcb..fc1f0e6031ba 100644
+index fc1f0e6031ba..50faf3869b6c 100644
 --- a/drivers/gpu/drm/i915/display/intel_dsb_buffer.c
 +++ b/drivers/gpu/drm/i915/display/intel_dsb_buffer.c
-@@ -31,48 +31,66 @@ void intel_dsb_buffer_memset(struct intel_dsb_buffer *dsb_buf, u32 idx, u32 val,
- 	memset(&dsb_buf->cmd_buf[idx], val, size);
- }
+@@ -9,6 +9,12 @@
+ #include "i915_vma.h"
+ #include "intel_dsb_buffer.h"
  
--bool intel_dsb_buffer_create(struct drm_device *drm, struct intel_dsb_buffer *dsb_buf, size_t size)
-+struct intel_dsb_buffer *intel_dsb_buffer_create(struct drm_device *drm, size_t size)
++struct intel_dsb_buffer {
++	u32 *cmd_buf;
++	struct i915_vma *vma;
++	size_t buf_size;
++};
++
+ u32 intel_dsb_buffer_ggtt_offset(struct intel_dsb_buffer *dsb_buf)
  {
- 	struct drm_i915_private *i915 = to_i915(drm);
-+	struct intel_dsb_buffer *dsb_buf;
- 	struct drm_i915_gem_object *obj;
- 	struct i915_vma *vma;
- 	u32 *buf;
-+	int ret;
-+
-+	dsb_buf = kzalloc(sizeof(*dsb_buf), GFP_KERNEL);
-+	if (!dsb_buf)
-+		return ERR_PTR(-ENOMEM);
- 
- 	if (HAS_LMEM(i915)) {
- 		obj = i915_gem_object_create_lmem(i915, PAGE_ALIGN(size),
- 						  I915_BO_ALLOC_CONTIGUOUS);
--		if (IS_ERR(obj))
--			return false;
-+		if (IS_ERR(obj)) {
-+			ret = PTR_ERR(obj);
-+			goto err;
-+		}
- 	} else {
- 		obj = i915_gem_object_create_internal(i915, PAGE_ALIGN(size));
--		if (IS_ERR(obj))
--			return false;
-+		if (IS_ERR(obj)) {
-+			ret = PTR_ERR(obj);
-+			goto err;
-+		}
- 
- 		i915_gem_object_set_cache_coherency(obj, I915_CACHE_NONE);
- 	}
- 
- 	vma = i915_gem_object_ggtt_pin(obj, NULL, 0, 0, 0);
- 	if (IS_ERR(vma)) {
-+		ret = PTR_ERR(vma);
- 		i915_gem_object_put(obj);
--		return false;
-+		goto err;
- 	}
- 
- 	buf = i915_gem_object_pin_map_unlocked(vma->obj, I915_MAP_WC);
- 	if (IS_ERR(buf)) {
-+		ret = PTR_ERR(buf);
- 		i915_vma_unpin_and_release(&vma, I915_VMA_RELEASE_MAP);
--		return false;
-+		goto err;
- 	}
- 
- 	dsb_buf->vma = vma;
- 	dsb_buf->cmd_buf = buf;
- 	dsb_buf->buf_size = size;
- 
--	return true;
-+	return dsb_buf;
-+
-+err:
-+	kfree(dsb_buf);
-+
-+	return ERR_PTR(ret);
- }
- 
- void intel_dsb_buffer_cleanup(struct intel_dsb_buffer *dsb_buf)
- {
- 	i915_vma_unpin_and_release(&dsb_buf->vma, I915_VMA_RELEASE_MAP);
-+	kfree(dsb_buf);
- }
- 
- void intel_dsb_buffer_flush_map(struct intel_dsb_buffer *dsb_buf)
+ 	return i915_ggtt_offset(dsb_buf->vma);
 diff --git a/drivers/gpu/drm/i915/display/intel_dsb_buffer.h b/drivers/gpu/drm/i915/display/intel_dsb_buffer.h
-index 496ece42b4a1..2cf639fae47a 100644
+index 2cf639fae47a..d746c872e0c7 100644
 --- a/drivers/gpu/drm/i915/display/intel_dsb_buffer.h
 +++ b/drivers/gpu/drm/i915/display/intel_dsb_buffer.h
-@@ -21,8 +21,7 @@ u32 intel_dsb_buffer_ggtt_offset(struct intel_dsb_buffer *dsb_buf);
- void intel_dsb_buffer_write(struct intel_dsb_buffer *dsb_buf, u32 idx, u32 val);
- u32 intel_dsb_buffer_read(struct intel_dsb_buffer *dsb_buf, u32 idx);
- void intel_dsb_buffer_memset(struct intel_dsb_buffer *dsb_buf, u32 idx, u32 val, size_t size);
--bool intel_dsb_buffer_create(struct drm_device *drm, struct intel_dsb_buffer *dsb_buf,
--			     size_t size);
-+struct intel_dsb_buffer *intel_dsb_buffer_create(struct drm_device *drm, size_t size);
- void intel_dsb_buffer_cleanup(struct intel_dsb_buffer *dsb_buf);
- void intel_dsb_buffer_flush_map(struct intel_dsb_buffer *dsb_buf);
+@@ -9,13 +9,7 @@
+ #include <linux/types.h>
  
+ struct drm_device;
+-struct i915_vma;
+-
+-struct intel_dsb_buffer {
+-	u32 *cmd_buf;
+-	struct i915_vma *vma;
+-	size_t buf_size;
+-};
++struct intel_dsb_buffer;
+ 
+ u32 intel_dsb_buffer_ggtt_offset(struct intel_dsb_buffer *dsb_buf);
+ void intel_dsb_buffer_write(struct intel_dsb_buffer *dsb_buf, u32 idx, u32 val);
 diff --git a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-index 1bbebc0313c8..ee7717b1980f 100644
+index ee7717b1980f..d55858705106 100644
 --- a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
 +++ b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-@@ -31,15 +31,23 @@ void intel_dsb_buffer_memset(struct intel_dsb_buffer *dsb_buf, u32 idx, u32 val,
- 	iosys_map_memset(&dsb_buf->vma->bo->vmap, idx * 4, val, size);
- }
+@@ -9,6 +9,12 @@
+ #include "xe_device.h"
+ #include "xe_device_types.h"
  
--bool intel_dsb_buffer_create(struct drm_device *drm, struct intel_dsb_buffer *dsb_buf, size_t size)
-+struct intel_dsb_buffer *intel_dsb_buffer_create(struct drm_device *drm, size_t size)
++struct intel_dsb_buffer {
++	u32 *cmd_buf;
++	struct i915_vma *vma;
++	size_t buf_size;
++};
++
+ u32 intel_dsb_buffer_ggtt_offset(struct intel_dsb_buffer *dsb_buf)
  {
- 	struct xe_device *xe = to_xe_device(drm);
-+	struct intel_dsb_buffer *dsb_buf;
- 	struct xe_bo *obj;
- 	struct i915_vma *vma;
-+	int ret;
-+
-+	dsb_buf = kzalloc(sizeof(*dsb_buf), GFP_KERNEL);
-+	if (!dsb_buf)
-+		return ERR_PTR(-ENOMEM);
- 
- 	vma = kzalloc(sizeof(*vma), GFP_KERNEL);
--	if (!vma)
--		return false;
-+	if (!vma) {
-+		ret = -ENOMEM;
-+		goto err_vma;
-+	}
- 
- 	/* Set scanout flag for WC mapping */
- 	obj = xe_bo_create_pin_map_novm(xe, xe_device_get_root_tile(xe),
-@@ -48,21 +56,29 @@ bool intel_dsb_buffer_create(struct drm_device *drm, struct intel_dsb_buffer *ds
- 					XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
- 					XE_BO_FLAG_SCANOUT | XE_BO_FLAG_GGTT, false);
- 	if (IS_ERR(obj)) {
--		kfree(vma);
--		return false;
-+		ret = PTR_ERR(obj);
-+		goto err_pin_map;
- 	}
- 
- 	vma->bo = obj;
- 	dsb_buf->vma = vma;
- 	dsb_buf->buf_size = size;
- 
--	return true;
-+	return dsb_buf;
-+
-+err_pin_map:
-+	kfree(vma);
-+err_vma:
-+	kfree(dsb_buf);
-+
-+	return ERR_PTR(ret);
- }
- 
- void intel_dsb_buffer_cleanup(struct intel_dsb_buffer *dsb_buf)
- {
- 	xe_bo_unpin_map_no_vm(dsb_buf->vma->bo);
- 	kfree(dsb_buf->vma);
-+	kfree(dsb_buf);
- }
- 
- void intel_dsb_buffer_flush_map(struct intel_dsb_buffer *dsb_buf)
+ 	return xe_bo_ggtt_addr(dsb_buf->vma->bo);
 -- 
 2.47.3
 
