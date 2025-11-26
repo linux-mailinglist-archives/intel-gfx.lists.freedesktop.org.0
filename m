@@ -2,61 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FB45C8975C
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Nov 2025 12:11:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0F1AC97A30
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Dec 2025 14:39:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A66C10E5A2;
-	Wed, 26 Nov 2025 11:11:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDB9D10E3F3;
+	Mon,  1 Dec 2025 13:39:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J3OivqFN";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="YloxW97u";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 974FA10E5A2;
- Wed, 26 Nov 2025 11:11:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764155508; x=1795691508;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=T6QSdd9im9TwtM6pJnF79OwFNgjEqF5MU1rz9rGCVZk=;
- b=J3OivqFNREsUJo+wv29qjECGEESAejc3ddIxUgiS+pvCejzaT9NhSNu0
- ygMsDs1uFj3EJrz7FYA5JiwFq/rhR5PKZpD7G6EC60zjupHYv3hnRNyPU
- im4fWEsdYh4dofuByHhrSRdS9i66relKsOBnt4a3mlAyFo7aypUcWgwrb
- oGsZ5GyXov3YNfjgudEhftDmVCWbKPNy3CQNmmZ9nxR6q8rHjixTr2IUq
- msxNNregNAEr+sgFgRMphLovyEJznPML2dsDS1NiedA3Wi3jJGn7NaJnh
- A3OiREOfxyyyBMWKy7MAQepzOkJOHRUmLscGuUeM/CzGDXTs9uGpIKtDX g==;
-X-CSE-ConnectionGUID: sq5g8aL9QjSnXDtHw8K9RQ==
-X-CSE-MsgGUID: dsaxvi04SSGgdV1Zh92eBA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11624"; a="66349682"
-X-IronPort-AV: E=Sophos;i="6.20,228,1758610800"; d="scan'208";a="66349682"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2025 03:11:48 -0800
-X-CSE-ConnectionGUID: g044VjtcR7ecVSsN0ysCTw==
-X-CSE-MsgGUID: 7rzbBv0nQX6aCwche6/ScQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,228,1758610800"; d="scan'208";a="197404490"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.1])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2025 03:11:46 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	ville.syrjala@linux.intel.com
-Subject: [RESEND 4/4] drm/xe/dsb: drop the unnecessary struct i915_vma
-Date: Wed, 26 Nov 2025 13:11:23 +0200
-Message-ID: <f0bba09d2f185fe3e7f3b803036f036d845a8cc4.1764155417.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1764155417.git.jani.nikula@intel.com>
-References: <cover.1764155417.git.jani.nikula@intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24B6910E137;
+ Wed, 26 Nov 2025 13:20:02 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id C390C43804;
+ Wed, 26 Nov 2025 13:20:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88A38C113D0;
+ Wed, 26 Nov 2025 13:19:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1764163201;
+ bh=Sxi/6Q4jvM2wf7pGd7IQAsQCeNxuHVhX9VsDta4LQiA=;
+ h=From:To:Cc:Subject:Date:From;
+ b=YloxW97ukkemiEAEPPhT3JNEHRNsVszBesyclyxTRy/EnrWClbK0bOMKoj3DfHXYz
+ qoI4/w2RckPGF92iCtRSt0iYnXyoM8Tc88E/i3SGDnoJAVqj1KaIxoqV/t0KumtfHg
+ 7eQHOasX20pp/F4RF8CDvu7tYubl2WDsVGsRbqWeXsn9htX/5681mjms4g1PWtPT9m
+ Z0H73pNH42qhH97McsOJran19ljL/9/E989x8UdZfitpJSEVz95DcX/Dbty5lKKfmz
+ D63AVLSZR/MJ4CnCHUZ4j/BSbAPPTzStWNmNcKA9dSOgRtNbeK2KIECPRkfHhReJzG
+ QTlTTkRMr0uGg==
+From: Philipp Stanner <phasta@kernel.org>
+To: Sumit Semwal <sumit.semwal@linaro.org>,
+ Gustavo Padovan <gustavo@padovan.org>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ Philipp Stanner <phasta@kernel.org>
+Subject: [PATCH 0/6] dma-fence: Remove return code of dma_fence_signal() et al.
+Date: Wed, 26 Nov 2025 14:19:09 +0100
+Message-ID: <20251126131914.149445-2-phasta@kernel.org>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 01 Dec 2025 13:39:28 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,117 +75,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now that struct intel_dsb_buffer is opaque, it can be made unique to
-both drivers, and we can drop the unnecessary struct i915_vma part. Only
-the struct xe_bo part is needed.
+Barely anyone uses dma_fence_signal()'s (and similar functions') return
+code. Checking it is pretty much useless anyways, because what are you
+going to do if a fence was already signal it? Unsignal it and signal it
+again? ;p
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/xe/display/xe_dsb_buffer.c | 28 +++++++---------------
- 1 file changed, 8 insertions(+), 20 deletions(-)
+Removing the return code simplifies the API and makes it easier for me
+to sit on top with Rust DmaFence.
 
-diff --git a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-index d55858705106..fa0acb11eaad 100644
---- a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-+++ b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-@@ -3,7 +3,6 @@
-  * Copyright 2023, Intel Corporation.
-  */
- 
--#include "i915_vma.h"
- #include "intel_dsb_buffer.h"
- #include "xe_bo.h"
- #include "xe_device.h"
-@@ -11,30 +10,30 @@
- 
- struct intel_dsb_buffer {
- 	u32 *cmd_buf;
--	struct i915_vma *vma;
-+	struct xe_bo *bo;
- 	size_t buf_size;
- };
- 
- u32 intel_dsb_buffer_ggtt_offset(struct intel_dsb_buffer *dsb_buf)
- {
--	return xe_bo_ggtt_addr(dsb_buf->vma->bo);
-+	return xe_bo_ggtt_addr(dsb_buf->bo);
- }
- 
- void intel_dsb_buffer_write(struct intel_dsb_buffer *dsb_buf, u32 idx, u32 val)
- {
--	iosys_map_wr(&dsb_buf->vma->bo->vmap, idx * 4, u32, val);
-+	iosys_map_wr(&dsb_buf->bo->vmap, idx * 4, u32, val);
- }
- 
- u32 intel_dsb_buffer_read(struct intel_dsb_buffer *dsb_buf, u32 idx)
- {
--	return iosys_map_rd(&dsb_buf->vma->bo->vmap, idx * 4, u32);
-+	return iosys_map_rd(&dsb_buf->bo->vmap, idx * 4, u32);
- }
- 
- void intel_dsb_buffer_memset(struct intel_dsb_buffer *dsb_buf, u32 idx, u32 val, size_t size)
- {
- 	WARN_ON(idx > (dsb_buf->buf_size - size) / sizeof(*dsb_buf->cmd_buf));
- 
--	iosys_map_memset(&dsb_buf->vma->bo->vmap, idx * 4, val, size);
-+	iosys_map_memset(&dsb_buf->bo->vmap, idx * 4, val, size);
- }
- 
- struct intel_dsb_buffer *intel_dsb_buffer_create(struct drm_device *drm, size_t size)
-@@ -42,19 +41,12 @@ struct intel_dsb_buffer *intel_dsb_buffer_create(struct drm_device *drm, size_t
- 	struct xe_device *xe = to_xe_device(drm);
- 	struct intel_dsb_buffer *dsb_buf;
- 	struct xe_bo *obj;
--	struct i915_vma *vma;
- 	int ret;
- 
- 	dsb_buf = kzalloc(sizeof(*dsb_buf), GFP_KERNEL);
- 	if (!dsb_buf)
- 		return ERR_PTR(-ENOMEM);
- 
--	vma = kzalloc(sizeof(*vma), GFP_KERNEL);
--	if (!vma) {
--		ret = -ENOMEM;
--		goto err_vma;
--	}
--
- 	/* Set scanout flag for WC mapping */
- 	obj = xe_bo_create_pin_map_novm(xe, xe_device_get_root_tile(xe),
- 					PAGE_ALIGN(size),
-@@ -66,15 +58,12 @@ struct intel_dsb_buffer *intel_dsb_buffer_create(struct drm_device *drm, size_t
- 		goto err_pin_map;
- 	}
- 
--	vma->bo = obj;
--	dsb_buf->vma = vma;
-+	dsb_buf->bo = obj;
- 	dsb_buf->buf_size = size;
- 
- 	return dsb_buf;
- 
- err_pin_map:
--	kfree(vma);
--err_vma:
- 	kfree(dsb_buf);
- 
- 	return ERR_PTR(ret);
-@@ -82,14 +71,13 @@ struct intel_dsb_buffer *intel_dsb_buffer_create(struct drm_device *drm, size_t
- 
- void intel_dsb_buffer_cleanup(struct intel_dsb_buffer *dsb_buf)
- {
--	xe_bo_unpin_map_no_vm(dsb_buf->vma->bo);
--	kfree(dsb_buf->vma);
-+	xe_bo_unpin_map_no_vm(dsb_buf->bo);
- 	kfree(dsb_buf);
- }
- 
- void intel_dsb_buffer_flush_map(struct intel_dsb_buffer *dsb_buf)
- {
--	struct xe_device *xe = dsb_buf->vma->bo->tile->xe;
-+	struct xe_device *xe = dsb_buf->bo->tile->xe;
- 
- 	/*
- 	 * The memory barrier here is to ensure coherency of DSB vs MMIO,
+Philipp Stanner (6):
+  dma-buf/dma-fence: Add dma_fence_test_signaled_flag()
+  amd/amdkfd: Ignore return code of dma_fence_signal()
+  drm/gpu/xe: Ignore dma_fenc_signal() return code
+  dma-buf: Don't misuse dma_fence_signal()
+  drm/ttm: Remove return check of dma_fence_signal()
+  dma-buf/dma-fence: Remove return code of signaling-functions
+
+ drivers/dma-buf/dma-fence.c                   | 59 ++++++-------------
+ drivers/dma-buf/st-dma-fence.c                |  7 +--
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c      |  5 +-
+ .../gpu/drm/ttm/tests/ttm_bo_validate_test.c  |  3 +-
+ drivers/gpu/drm/xe/xe_hw_fence.c              |  5 +-
+ include/linux/dma-fence.h                     | 33 ++++++++---
+ 6 files changed, 53 insertions(+), 59 deletions(-)
+
 -- 
-2.47.3
+2.49.0
 
