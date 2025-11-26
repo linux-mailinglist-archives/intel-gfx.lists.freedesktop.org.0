@@ -2,67 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D27FC97A59
-	for <lists+intel-gfx@lfdr.de>; Mon, 01 Dec 2025 14:39:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DEA0BC8A0DA
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Nov 2025 14:32:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9B4C10E40F;
-	Mon,  1 Dec 2025 13:39:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 696D510E60D;
+	Wed, 26 Nov 2025 13:32:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ixu2iZTZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nEO8235T";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C471D10E5F1;
- Wed, 26 Nov 2025 13:20:40 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id AAFEF44381;
- Wed, 26 Nov 2025 13:20:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 732D8C116B1;
- Wed, 26 Nov 2025 13:20:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1764163240;
- bh=2pw/MJl6LY/oCnTL3+ZydHGGLHEVdvEQCODhNg8b1NQ=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=ixu2iZTZtYLH17YMkWe3wgu1khWIu1Btj2ZXZ0yppvuSfVrDVJwz4hvsSE5lbhvLv
- v+ExMAHWV1q4rJG+OCiWwImm3OoF+GHOxZCug5HdXMdNdSxwXRx+cQJ3rHZMTZ/vLH
- 2nWKlIQOPYQfdFZ3Wu8eot2tUTBqKV7TKLo+zR2DwReVr051qui5adYQ12uI9mEjmM
- 8CcZyLymsWhgqA7HdvfILFC+ahuAbLzJLvxgL1mlD1MUhHZUMNCf/hHgiqmZEIe+Io
- gEuLpALwLvhJStMxBEKR4CYPvoexnFADl4gwHHolqjWk7HyVtuXg3BuMihjZi8waxF
- Ww+QKUEf7OKaw==
-From: Philipp Stanner <phasta@kernel.org>
-To: Sumit Semwal <sumit.semwal@linaro.org>,
- Gustavo Padovan <gustavo@padovan.org>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- Philipp Stanner <phasta@kernel.org>
-Subject: [PATCH 6/6] dma-buf/dma-fence: Remove return code of
- signaling-functions
-Date: Wed, 26 Nov 2025 14:19:15 +0100
-Message-ID: <20251126131914.149445-8-phasta@kernel.org>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20251126131914.149445-2-phasta@kernel.org>
-References: <20251126131914.149445-2-phasta@kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A70310E60D;
+ Wed, 26 Nov 2025 13:32:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1764163977; x=1795699977;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=jjY67Zny3prCyZ4PamPGEIAIUR23KzeKjJHK6SiunZ4=;
+ b=nEO8235TGlsVL2g72E0cI7VkUjVAunxi0z4ZNsN4Q1oZ2nT6sK5HyIrT
+ fuAXY9k6RQsyFBL+kskgjTi1+lv70mKRVdAHR3/U8r53ydetH9ZdIHe94
+ E1oHK5doKstbC/ghYLpdPcfUuDejIJWlcKhLAQy5pt8HMOLysP2OlAemT
+ p0Tqn2nv1U67xlQYVEzyvlKoIZyyy9Cdtp5u9L8ItWwHIp+txqD7zX3NN
+ K3i96w06Q9X9VUFpLaL12xPkV5/ZnUOgLMCauFC5vdw7vj09grr6z9EUy
+ qip5fsAqLwNeVLDYMA2dS0zvzI2w6YSbgFZfJO3Bs6h2O0uezPrExee1k w==;
+X-CSE-ConnectionGUID: NB9siRyZT46ZArRY+sk5Cw==
+X-CSE-MsgGUID: XYybmTDHTnGHlVCONWkSZg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11624"; a="65201906"
+X-IronPort-AV: E=Sophos;i="6.20,228,1758610800"; d="scan'208";a="65201906"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2025 05:32:57 -0800
+X-CSE-ConnectionGUID: TtBH1hKdQ9WYJ3B055b9kw==
+X-CSE-MsgGUID: LyqRw8WhSjSMxHPHs68ODg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,228,1758610800"; d="scan'208";a="193175365"
+Received: from lkp-server01.sh.intel.com (HELO 4664bbef4914) ([10.239.97.150])
+ by fmviesa008.fm.intel.com with ESMTP; 26 Nov 2025 05:32:55 -0800
+Received: from kbuild by 4664bbef4914 with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1vOFdd-000000002w5-3P1Z;
+ Wed, 26 Nov 2025 13:32:53 +0000
+Date: Wed, 26 Nov 2025 21:32:12 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+ Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
+Subject: Re: [PATCH 1/4] drm/i915/psr: Add helper for checking if vblank
+ evasion is needed by PSR
+Message-ID: <202511262156.H5YJpnc5-lkp@intel.com>
+References: <20251125063253.328023-2-jouni.hogander@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 01 Dec 2025 13:39:28 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251125063253.328023-2-jouni.hogander@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,151 +72,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-All functions used for signaling a fence return an error code whose sole
-purpose is to tell whether a fence was already signaled.
+Hi Jouni,
 
-This is racy and has been used by almost no party in the kernel, and the
-few users have been removed in preceding cleanup commits.
+kernel test robot noticed the following build warnings:
 
-Turn all signaling-functions into void-functions.
+[auto build test WARNING on next-20251124]
+[cannot apply to drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip v6.18-rc7 v6.18-rc6 v6.18-rc5 linus/master v6.18-rc7]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Suggested-by: Christian König <christian.koenig@amd.com>
-Signed-off-by: Philipp Stanner <phasta@kernel.org>
----
- drivers/dma-buf/dma-fence.c | 40 ++++++++++---------------------------
- include/linux/dma-fence.h   |  9 ++++-----
- 2 files changed, 14 insertions(+), 35 deletions(-)
+url:    https://github.com/intel-lab-lkp/linux/commits/Jouni-H-gander/drm-i915-psr-Add-helper-for-checking-if-vblank-evasion-is-needed-by-PSR/20251125-143352
+base:   next-20251124
+patch link:    https://lore.kernel.org/r/20251125063253.328023-2-jouni.hogander%40intel.com
+patch subject: [PATCH 1/4] drm/i915/psr: Add helper for checking if vblank evasion is needed by PSR
+config: x86_64-randconfig-003-20251126 (https://download.01.org/0day-ci/archive/20251126/202511262156.H5YJpnc5-lkp@intel.com/config)
+compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251126/202511262156.H5YJpnc5-lkp@intel.com/reproduce)
 
-diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
-index 25117a906846..bed8d0c27217 100644
---- a/drivers/dma-buf/dma-fence.c
-+++ b/drivers/dma-buf/dma-fence.c
-@@ -360,11 +360,8 @@ void __dma_fence_might_wait(void)
-  *
-  * Unlike dma_fence_signal_timestamp(), this function must be called with
-  * &dma_fence.lock held.
-- *
-- * Returns 0 on success and a negative error value when @fence has been
-- * signalled already.
-  */
--int dma_fence_signal_timestamp_locked(struct dma_fence *fence,
-+void dma_fence_signal_timestamp_locked(struct dma_fence *fence,
- 				      ktime_t timestamp)
- {
- 	struct dma_fence_cb *cur, *tmp;
-@@ -373,7 +370,7 @@ int dma_fence_signal_timestamp_locked(struct dma_fence *fence,
- 	lockdep_assert_held(fence->lock);
- 
- 	if (unlikely(dma_fence_test_signaled_flag(fence)))
--		return -EINVAL;
-+		return;
- 
- 	/* Stash the cb_list before replacing it with the timestamp */
- 	list_replace(&fence->cb_list, &cb_list);
-@@ -386,8 +383,6 @@ int dma_fence_signal_timestamp_locked(struct dma_fence *fence,
- 		INIT_LIST_HEAD(&cur->node);
- 		cur->func(fence, cur);
- 	}
--
--	return 0;
- }
- EXPORT_SYMBOL(dma_fence_signal_timestamp_locked);
- 
-@@ -402,23 +397,17 @@ EXPORT_SYMBOL(dma_fence_signal_timestamp_locked);
-  * can only go from the unsignaled to the signaled state and not back, it will
-  * only be effective the first time. Set the timestamp provided as the fence
-  * signal timestamp.
-- *
-- * Returns 0 on success and a negative error value when @fence has been
-- * signalled already.
-  */
--int dma_fence_signal_timestamp(struct dma_fence *fence, ktime_t timestamp)
-+void dma_fence_signal_timestamp(struct dma_fence *fence, ktime_t timestamp)
- {
- 	unsigned long flags;
--	int ret;
- 
- 	if (WARN_ON(!fence))
--		return -EINVAL;
-+		return;
- 
- 	spin_lock_irqsave(fence->lock, flags);
--	ret = dma_fence_signal_timestamp_locked(fence, timestamp);
-+	dma_fence_signal_timestamp_locked(fence, timestamp);
- 	spin_unlock_irqrestore(fence->lock, flags);
--
--	return ret;
- }
- EXPORT_SYMBOL(dma_fence_signal_timestamp);
- 
-@@ -434,13 +423,10 @@ EXPORT_SYMBOL(dma_fence_signal_timestamp);
-  *
-  * Unlike dma_fence_signal(), this function must be called with &dma_fence.lock
-  * held.
-- *
-- * Returns 0 on success and a negative error value when @fence has been
-- * signalled already.
-  */
--int dma_fence_signal_locked(struct dma_fence *fence)
-+void dma_fence_signal_locked(struct dma_fence *fence)
- {
--	return dma_fence_signal_timestamp_locked(fence, ktime_get());
-+	dma_fence_signal_timestamp_locked(fence, ktime_get());
- }
- EXPORT_SYMBOL(dma_fence_signal_locked);
- 
-@@ -453,28 +439,22 @@ EXPORT_SYMBOL(dma_fence_signal_locked);
-  * dma_fence_add_callback(). Can be called multiple times, but since a fence
-  * can only go from the unsignaled to the signaled state and not back, it will
-  * only be effective the first time.
-- *
-- * Returns 0 on success and a negative error value when @fence has been
-- * signalled already.
-  */
--int dma_fence_signal(struct dma_fence *fence)
-+void dma_fence_signal(struct dma_fence *fence)
- {
- 	unsigned long flags;
--	int ret;
- 	bool tmp;
- 
- 	if (WARN_ON(!fence))
--		return -EINVAL;
-+		return;
- 
- 	tmp = dma_fence_begin_signalling();
- 
- 	spin_lock_irqsave(fence->lock, flags);
--	ret = dma_fence_signal_timestamp_locked(fence, ktime_get());
-+	dma_fence_signal_timestamp_locked(fence, ktime_get());
- 	spin_unlock_irqrestore(fence->lock, flags);
- 
- 	dma_fence_end_signalling(tmp);
--
--	return ret;
- }
- EXPORT_SYMBOL(dma_fence_signal);
- 
-diff --git a/include/linux/dma-fence.h b/include/linux/dma-fence.h
-index 19972f5d176f..188f7641050f 100644
---- a/include/linux/dma-fence.h
-+++ b/include/linux/dma-fence.h
-@@ -364,11 +364,10 @@ static inline void dma_fence_end_signalling(bool cookie) {}
- static inline void __dma_fence_might_wait(void) {}
- #endif
- 
--int dma_fence_signal(struct dma_fence *fence);
--int dma_fence_signal_locked(struct dma_fence *fence);
--int dma_fence_signal_timestamp(struct dma_fence *fence, ktime_t timestamp);
--int dma_fence_signal_timestamp_locked(struct dma_fence *fence,
--				      ktime_t timestamp);
-+void dma_fence_signal(struct dma_fence *fence);
-+void dma_fence_signal_locked(struct dma_fence *fence);
-+void dma_fence_signal_timestamp(struct dma_fence *fence, ktime_t timestamp);
-+void dma_fence_signal_timestamp_locked(struct dma_fence *fence, ktime_t timestamp);
- signed long dma_fence_default_wait(struct dma_fence *fence,
- 				   bool intr, signed long timeout);
- int dma_fence_add_callback(struct dma_fence *fence,
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202511262156.H5YJpnc5-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/gpu/drm/i915/display/intel_psr.c:4550:2: warning: variable 'intel_dp' is used uninitialized whenever 'for' loop exits because its condition is false [-Wsometimes-uninitialized]
+    4550 |         for_each_intel_encoder_mask_with_psr(display->drm, encoder,
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    4551 |                                              crtc_state->uapi.encoder_mask) {
+         |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/display/intel_display.h:271:2: note: expanded from macro 'for_each_intel_encoder_mask_with_psr'
+     271 |         list_for_each_entry((intel_encoder), &(dev)->mode_config.encoder_list, base.head) \
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/list.h:783:7: note: expanded from macro 'list_for_each_entry'
+     783 |              !list_entry_is_head(pos, head, member);                    \
+         |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/display/intel_psr.c:4556:9: note: uninitialized use occurs here
+    4556 |         return intel_dp->psr.psr2_sel_fetch_enabled;
+         |                ^~~~~~~~
+   drivers/gpu/drm/i915/display/intel_psr.c:4550:2: note: remove the condition if it is always true
+    4550 |         for_each_intel_encoder_mask_with_psr(display->drm, encoder,
+         |         ^
+   drivers/gpu/drm/i915/display/intel_display.h:271:2: note: expanded from macro 'for_each_intel_encoder_mask_with_psr'
+     271 |         list_for_each_entry((intel_encoder), &(dev)->mode_config.encoder_list, base.head) \
+         |         ^
+   include/linux/list.h:783:7: note: expanded from macro 'list_for_each_entry'
+     783 |              !list_entry_is_head(pos, head, member);                    \
+         |              ^
+   drivers/gpu/drm/i915/display/intel_psr.c:4548:27: note: initialize the variable 'intel_dp' to silence this warning
+    4548 |         struct intel_dp *intel_dp;
+         |                                  ^
+         |                                   = NULL
+   1 warning generated.
+
+
+vim +4550 drivers/gpu/drm/i915/display/intel_psr.c
+
+  4543	
+  4544	bool intel_psr_needs_evasion(const struct intel_crtc_state *crtc_state)
+  4545	{
+  4546		struct intel_display *display = to_intel_display(crtc_state);
+  4547		struct intel_encoder *encoder;
+  4548		struct intel_dp *intel_dp;
+  4549	
+> 4550		for_each_intel_encoder_mask_with_psr(display->drm, encoder,
+
 -- 
-2.49.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
