@@ -2,97 +2,95 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C68FFC8BB9F
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Nov 2025 20:56:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0EE0C8BC14
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Nov 2025 21:03:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA97C10E68D;
-	Wed, 26 Nov 2025 19:56:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CC8E10E675;
+	Wed, 26 Nov 2025 20:03:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oKN41Foq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UaPCXgk5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22F0510E6AB;
- Wed, 26 Nov 2025 19:56:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22B7C10E675;
+ Wed, 26 Nov 2025 20:03:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764186969; x=1795722969;
+ t=1764187433; x=1795723433;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=z3DaoPbyGFAKIAveC9PIwnF6wr314KEjDYs8SYZClUU=;
- b=oKN41Foqmj/fwlMrKtNJ1an8CN8hQ1SkkLUh+Uf48vnscxg9t7f8vNWB
- AwXsjVxJ9pO6BgBAtPKp1r5gYqZZsdReSSg86sjGPpIiHodJiByEyeT+H
- lS8LuT7CFMlIoSaeT5Ae+ceug6R8Ik8wW29kMYthFCG7fugNxrocPe8Gw
- nLPELsY9FVZht1ixnEw0Q7UurARsfdkjPUS0fYNqw84kjMVRYpUxJvBmV
- +nPU4mInefF9KQV9Jg6cHH0eUNtxDFtK07hq3gHBfaJhwX6MwLGL0SYFY
- qQLPMtWX0uBtkHgSgF8a35kfMfRV8+ZIWa/fdtxtXdqQV+KSx9C2iOApg A==;
-X-CSE-ConnectionGUID: 63tUUKoXTfSAFvfALfxcGA==
-X-CSE-MsgGUID: 8AVBTSMMRYusWA1yzqiCiA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="83840891"
-X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="83840891"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2025 11:56:07 -0800
-X-CSE-ConnectionGUID: o/Hs8CRvT3+t+3/pmf25oQ==
-X-CSE-MsgGUID: EYc68MedTxuVvg8e4jPTPA==
+ bh=0ryM6I77VOfsFazK2q2WRcK+Z69Mp0Ka5nXMapxMOzU=;
+ b=UaPCXgk5v3AYMx2YYNgT6Kg5D97wOrzNaUzzpribDzeDQHtRC1eF3Svp
+ Mf70ZhJpsNw/mLn7cz34T+gb1s1oC7SLQMkcXqJkPVZLJ/M972XG+CwQM
+ XMid5a4eAB2DU9Diqm+Bb0lpyY0GcsAgSvUXPZqv8XqcICTjWZsTWRaM9
+ lFvOERxPJvw6b9cD31hWkiu5fMgR8w67AteOxrVWhkDm9+LnCL2802pPN
+ GmnFtXSyM6jHbMS5erxiqC8QG1JG3g3Y6Xt11D5F+qlrLbpoO3aHssrxZ
+ 6mmPS+fZyQ86aszfZ33M1t+tmKt1QA2+6XIPtSKJd4s+YFWWbEiho1lvm g==;
+X-CSE-ConnectionGUID: BU83aM7OTX+e6WXXA4C5YQ==
+X-CSE-MsgGUID: OmQ5QZaoQdmUYjFGll95XQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="68827915"
+X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="68827915"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2025 12:03:53 -0800
+X-CSE-ConnectionGUID: wvJ1YNMyTT6WxMnQ7OwkBQ==
+X-CSE-MsgGUID: B5cM1KOkTb2PABKHZrBCmA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="216384311"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2025 11:56:05 -0800
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="193056790"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2025 12:03:52 -0800
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Wed, 26 Nov 2025 11:56:05 -0800
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.29; Wed, 26 Nov 2025 12:03:51 -0800
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Wed, 26 Nov 2025 11:56:05 -0800
-Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.10) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.29 via Frontend Transport; Wed, 26 Nov 2025 12:03:51 -0800
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.20) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Wed, 26 Nov 2025 11:56:04 -0800
+ 15.2.2562.29; Wed, 26 Nov 2025 12:03:51 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=j66f1Ko53LXjEKqqR0vQWLxWtB2zq2SAmNsVZxuP/q2g1ANPd34pvpGCDZXUwD+pAC4hJ5zlPENBuJtq+LOrKR+2bICrtwVbCpjeTUEwqlYx8U2KkxAPBjdJkB4Ldan74+byfLx02Qhi3OYbDmatI623t0E0kPO1PlcIywvNZ6hIklr7mMdK1Qq1s/gAl3H5tqnIX+1EG2lSQkBgjC5ZIY8p+GJS1lP+IbjtPTY0kPKrWtEy7p8nQw4jlvB/HwdOje1Bwm/CJqPG090W3UcWxbzUMu2EWp3+XPGQ1/h8b3ByC2+7HBBppPnkGoCF5xnNZxJACtfU8d66S8prVZ/S/w==
+ b=K8vKrdW+0D+VHimin0kmiiCBMttEF2jdqnqLGI2yN0Jvnjfhvr4caOAtK8f6764l7uHeBDJhAk9zWleMR9URbpvwexL7V/20BMr+Lsjl+BM8yQtLvpGYIP54AyVxotpVeKhGFZIx00RWwrdJrqveTOUiVVr3NDZXSQ/D/Mvc0/ks+YuPLRoW2zPjBb5c19COp9hI576UyfEC2zZPL7AAIx9zjSPJguz/AT4W5/Av3TbzWvRwiAyT4d240yeTHFoNdTXn+JG/vE45ZMuS1m9GkjB8DfoacvRPK2W+OXXltQH0EZU8Mm5STNmH/aVr6NvqEequIrCujF10g90VNDcgTg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=l35tYIlE6IDQvDjZHJIQr75XmMsVamtkQF6q8Ndyjy8=;
- b=mG0eveEdJL7pDsTXaWmtoq69I5EYICfWurIBgO3JWMZKMV/CJxS8dauNLiGptTDB64rtH+s43G6GacCCgLCR8yXKp0LwDPoeriOEHNlaHlZrS0PylgZbwGxndBPnTaDAfahxf9jsTleDm2qUIr6WtzFKUCbeNpZWkl7FK/CxVLpq/IbLDrw+I6vmBWXFRk6X1VjteBTkT4jvAdquwT6neBm3pesU0h6FgPXzBIJRM3vlwhzUPEpnlYp0v1md/evLggII22RmrGddMF94VrHrv7VZnpThpueMBKPx4GP/A3C1aFV8gGpMrV4R17f2sIP5RTqHiZaDH+/p+nrb8TeWJw==
+ bh=vi3UBWfXn+1X+KefEmPxTSYHUn7it8gbKOBvbgUDN2Q=;
+ b=KeqKsDuOky7y7kd3KS/NPj/7B56Yb6KByUGXFwMdATr98Gdd+vnNNmDtVZlJwuew596c/DsZfP66q3LKZLCRGPfbGifNZZEQ4ycSk91aOtg5I8DoXbv4ziNWb4PIkX8CU+oY6q1h3l91fSmfIXVWB7ycU3LS83yIV4W2ltcZaXYxwluYcswElPnx0p4i1YUHXQ5kfFB9JbIykttQvmZz/y+dksRBZJzHU9xNLbd3i54Rpw4M97FAMfFu4yDrx52tthVhbXLN2vpBm1WWosr7RfpwEfR7U9CxArc8hDhUsUnXgmzCjTLIv77wX+3yP8fA5dSt7+AoSrpUO+805+aXVg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from DM4PR11MB6360.namprd11.prod.outlook.com (2603:10b6:8:bd::12) by
- CH3PR11MB8096.namprd11.prod.outlook.com (2603:10b6:610:155::21) with
+ SA1PR11MB8489.namprd11.prod.outlook.com (2603:10b6:806:3a9::13) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.11; Wed, 26 Nov
- 2025 19:56:02 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.12; Wed, 26 Nov
+ 2025 20:03:47 +0000
 Received: from DM4PR11MB6360.namprd11.prod.outlook.com
  ([fe80::8648:3a6b:af5c:b6e6]) by DM4PR11MB6360.namprd11.prod.outlook.com
  ([fe80::8648:3a6b:af5c:b6e6%4]) with mapi id 15.20.9366.009; Wed, 26 Nov 2025
- 19:56:02 +0000
+ 20:03:46 +0000
 From: "Shankar, Uma" <uma.shankar@intel.com>
-To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-CC: Maarten Lankhorst <dev@lankhorst.se>, "intel-gfx@lists.freedesktop.org"
+To: Maarten Lankhorst <dev@lankhorst.se>, "intel-gfx@lists.freedesktop.org"
  <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>, "linux-rt-devel@lists.linux.dev"
- <linux-rt-devel@lists.linux.dev>, Mario Kleiner <mario.kleiner.de@gmail.com>, 
- Mike Galbraith <umgwanakikbuti@gmail.com>, Thomas Gleixner
- <tglx@linutronix.de>, Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>
-Subject: RE: [PATCH v2 2/7] drm/i915/display: Use intel_de_write_fw in
- intel_pipe_fastset
-Thread-Topic: [PATCH v2 2/7] drm/i915/display: Use intel_de_write_fw in
- intel_pipe_fastset
-Thread-Index: AQHcTWY1yWfvSF63uUSMAhwOOG89ErUFd4mggAAHXwCAAAJtYA==
-Date: Wed, 26 Nov 2025 19:56:02 +0000
-Message-ID: <DM4PR11MB6360D148BD7067E0BF59656AF4DEA@DM4PR11MB6360.namprd11.prod.outlook.com>
+ <intel-xe@lists.freedesktop.org>
+CC: "linux-rt-devel@lists.linux.dev" <linux-rt-devel@lists.linux.dev>, "Mario
+ Kleiner" <mario.kleiner.de@gmail.com>, Mike Galbraith
+ <umgwanakikbuti@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, "Sebastian
+ Andrzej Siewior" <bigeasy@linutronix.de>, Clark Williams
+ <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>
+Subject: RE: [PATCH v2 4/7] drm/i915/display: Remove locking from
+ intel_vblank_evade critical section
+Thread-Topic: [PATCH v2 4/7] drm/i915/display: Remove locking from
+ intel_vblank_evade critical section
+Thread-Index: AQHcTWY10nz1b1Cw7kizcYMyCEg4YLUFgvJA
+Date: Wed, 26 Nov 2025 20:03:46 +0000
+Message-ID: <DM4PR11MB63604FC52C88FCDE1176FA25F4DEA@DM4PR11MB6360.namprd11.prod.outlook.com>
 References: <20251104083634.670753-1-dev@lankhorst.se>
- <20251104083634.670753-3-dev@lankhorst.se>
- <DM4PR11MB63609A43C9B11091A5FB41EFF4DEA@DM4PR11MB6360.namprd11.prod.outlook.com>
- <aSdYPKUJgbe84G1M@intel.com>
-In-Reply-To: <aSdYPKUJgbe84G1M@intel.com>
+ <20251104083634.670753-5-dev@lankhorst.se>
+In-Reply-To: <20251104083634.670753-5-dev@lankhorst.se>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -100,82 +98,82 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB6360:EE_|CH3PR11MB8096:EE_
-x-ms-office365-filtering-correlation-id: b3a5e921-d946-483e-5c4d-08de2d25d3b8
+x-ms-traffictypediagnostic: DM4PR11MB6360:EE_|SA1PR11MB8489:EE_
+x-ms-office365-filtering-correlation-id: 5ed37bcf-67f7-47a1-f622-08de2d26e8b6
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|366016|1800799024|376014|38070700021;
-x-microsoft-antispam-message-info: =?iso-8859-1?Q?23dCcyWy6DLJB9HaNaAhderje5+wpNC/xz1fECtTvIihZC1orVO6usooyO?=
- =?iso-8859-1?Q?a60xTY3NjTUtDrjVNs2TFgmExoO+u8JbJd7wta26Yv8TSb4+z8HWXfLQwq?=
- =?iso-8859-1?Q?71ROSWkVkMzu6X24gkDVeIo5Vqmf5sPjeahBAEzJpWSwH8fbUvybgsq8pP?=
- =?iso-8859-1?Q?iRQHlK99tp9Sx5+aD+UbFcco7i3004mc1aGeIxgcHdlbjbo7QFLX+cjhcG?=
- =?iso-8859-1?Q?1M1LbJcoKMtQg5ny2mlaU7DDZ7Vm5K+fcGrj/Kb7iLl4M6femAkzKU8wqm?=
- =?iso-8859-1?Q?sWC5PjpDrU8J/EEA/SghCVWJulhyzhwKMbTurB2UVz1cd9ZFEnGQ+L9MnC?=
- =?iso-8859-1?Q?zVnMPHb7AKRIl186yARspJX+4j2ICwsAYyai4oq1rhvZrh6N2QfD3vLoYH?=
- =?iso-8859-1?Q?GOHqS/DdZysKqvvyo0BINa9fq1uNJQrLh0iMGhRbBYQ/8cF7uMEEP69tC0?=
- =?iso-8859-1?Q?vn+6sI/ArRj83vakd5VAGPDHY2vsJYgkojwIYzqdYm0wYxpDWd0fIFo1+U?=
- =?iso-8859-1?Q?BqWGFkpm+rIfRugO6yzbRTgFu1/5d32t4EfzxRKpCsaWLkkMSGGMzsg83h?=
- =?iso-8859-1?Q?XsLpDO6MC/k4N5GxxOrJ/K5SW9yi5Q2NL4onICtFzCHwwCOGiZxjbCRYrd?=
- =?iso-8859-1?Q?qngGPplAHg9G+5gynQ5zQ55uTE51BKQhqW83QRtDfxA4Iby+UGtLe1X8/4?=
- =?iso-8859-1?Q?1LaGuVZz8cpenCxtNaJ6at2gm9IlrJUbO9XOY+HUNTypCKd/yiJp170+fS?=
- =?iso-8859-1?Q?oCZHptHVoPKlO5lXYdFXxfnQnmkmRV1Rb1oWELAX5+mgzHi5QYSVo7z01d?=
- =?iso-8859-1?Q?tx8HB4aAlojAxjGEzWEaHuBsbJsrYmLNgZcO5ckh6mjx7UhptJhKQHV3kn?=
- =?iso-8859-1?Q?RZZU13ZSi5DfpF9dMX5UdwN6gLdEjQ7MGsuFsWEXfx1UH+W2tNn41hPbce?=
- =?iso-8859-1?Q?vShzxqwIioWggW5TwXY6Lo9VOCDVcVXcOQyEpKS2iJnJD2I+9FYeElwtA0?=
- =?iso-8859-1?Q?jkkn4mn8OWHOvdPYDVjRQiyy2D908Q6tOzEWx8mZ7lLBbwPGWWXddrq6cr?=
- =?iso-8859-1?Q?v7WLaTMzGkbiomrlzWw2NVWrWeYyqFLy3Sb89DyL5VQ/IuEcTeqGcSuZuA?=
- =?iso-8859-1?Q?SoNFpM4rBC4BBJLdKsVYxPh1r1atIgRkqmys0vtAd8etMnj109UPUTqGVh?=
- =?iso-8859-1?Q?+P/b3G+zrumctsGF+K/3xJTeHS6pgfJ1PrRgZlXfdUjcLkYDQIzmlwKhHW?=
- =?iso-8859-1?Q?L7/PvoE/WWi2jrZf1eR7du4TGK8VpHea988e0e9enwqdYgV6zrrGgzPMu/?=
- =?iso-8859-1?Q?nXD4DUJtXUEOjc/jcSLSkSNY14MH+BRBXjzoDiFqcLXJECofJ9gKV/6ScT?=
- =?iso-8859-1?Q?0xAe9sowWUKfRjqSBUERZH2YVeutmkbj9gnwfExeoEZyWCcCb3dGjFChur?=
- =?iso-8859-1?Q?slHfZOkb3Bqv51zQXP2y4L12iMIGHepDr1lmyOhXNTf+XeVeej1tnk4dol?=
- =?iso-8859-1?Q?nCMqKXeojCpXwMxqgbhS/DZ38JzmeRFmnXQBe19LigxkZptuDt/85lHHOh?=
- =?iso-8859-1?Q?BY5tFL/9zLE/vbUCCabPULRfDANf?=
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|376014|7416014|1800799024|38070700021; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?4bTLLJYuOiXD1bGG/sjt9DNcG1kd2WCF7vkQORvpjfa3oOcebwmz6RBCuuGK?=
+ =?us-ascii?Q?OlZRwwITN2K6fbFKxpD1oPlRc2iqLW+27TyjgKH04I3Srp01MzFLs+YlLl6k?=
+ =?us-ascii?Q?lY8bexY7YTUvXFO0i5AMYWpTgNXBnMkoXnXLdJBUT+vl0VozYZqaNoM/aNSu?=
+ =?us-ascii?Q?Z10Q2mhuz7xuCn6hGEnqsH6q5qNiEdI0dbTU7Wmg6fpEPG8V8Jrv3sMlkX3z?=
+ =?us-ascii?Q?AE2goO+T8oKH+fIBNwj7+B7wM8/ZgeAUSotrROLJx6F0o57dNlKGs918K+LM?=
+ =?us-ascii?Q?cj9CKpG3fkEBQx+8n3RRHqQUHL2GHLAgc2RDkpxzEzn+OPBcwjukyFeYqt7A?=
+ =?us-ascii?Q?Y6xLkbeo7agS4su4zWK62rWkmcxkCGMEtZHS2Fr0oUAZnKykBJ0lg7kEsntg?=
+ =?us-ascii?Q?4JUlnV5qHynd36xIlB/sxsXDSKj5lski4sRSOwEa5P4JpakOtrNQdYPZUEIW?=
+ =?us-ascii?Q?fwVVzuf8sVCjCvfEwHsq5ArbRA9m7Pj8GXse9kkpFjuSG3+XFhgNyj7IoRbe?=
+ =?us-ascii?Q?zhL7f7HAh0uK0g6wPXlnTRVW+Kz+tjETp0/7wh/nz1ug8mqBw3+XSwyig7ym?=
+ =?us-ascii?Q?uz9oTyNuPDG6bNcstAkWa/MLhwbihkDR107TstETmdzyquZ69A9pX8Gu0J9c?=
+ =?us-ascii?Q?0PbDncJLEo5c6GNXAGhdwGTbhn8zGdmB13Cyg0uAC73NuzA204nW8KWHbiBR?=
+ =?us-ascii?Q?y7+rvhiyoqiEPMzax0Ay+J7wBuNZVf8eMUpbYEms/f52B8ogeLroOtR+ijOB?=
+ =?us-ascii?Q?yvRE4kPOq53R0Q4JzWIkaXpfIHjW4KoOQJ8liZ/84ZX3iDy6zNSFdjohXbmZ?=
+ =?us-ascii?Q?zYZUuUX75jyxaAqLqim9Etkr0BKaCK72pAFsnhQRSeDQVTXU4s4dhrN/BIgl?=
+ =?us-ascii?Q?fF+9/UuQfBOA1V/hILaIDgzHLsIYzoO4AqjDoeXDiNuYqGx6tiworrR3G3K7?=
+ =?us-ascii?Q?fmHpxJxZdvL2zH/z/XDnVOBCSnleeQg0LGFaTG49BuICgDjTU5VCvpmbsojw?=
+ =?us-ascii?Q?jHMEb76uSAvyvI1CVz9val6oQACaQqIJjoWy3fYyRtSqPG71bVso0EFWpWiK?=
+ =?us-ascii?Q?aF+ZAAQBKQ/vlPjeWAaea/hSwFr6jufcEp4hfzcLTtRnfYnho83t00swYkHl?=
+ =?us-ascii?Q?5kKUnsztvywaChGZhuPjbK24u0J3vP+UyOeHpkjrCAYfCW75tpsicZLUByNH?=
+ =?us-ascii?Q?R+fqAcqGIxkluGG2jb4R6h72Yd9bT5R+ctVzAqBLJwlE4H/ivDr3VoR57qyW?=
+ =?us-ascii?Q?tpwDLfQY8xSXo1cOqpeeWZ182MXnu4xgmZHy+V6wEgMhOBmyHB4uIbeFaVbg?=
+ =?us-ascii?Q?K/4MnCTV/omrK6xzX4FNKy64xQTHLUZVrcQgNtaNME08GH134CV8naZSOncu?=
+ =?us-ascii?Q?YReousYfDvSN4ZTgT+ibMNQ2CP/+JEj7ogt8oBOXRHLs4MZ+V20A5609NmxF?=
+ =?us-ascii?Q?L7db7r2eddDhkqwoA8yu6Nzt91rAYgXvTw/ao1E9S4mKQ6tCgWUnpmKURMi7?=
+ =?us-ascii?Q?DuY0NrmFQ7GppAAtIEocP2wYxl8IvBl+YRg9?=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM4PR11MB6360.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(38070700021); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(366016)(376014)(7416014)(1800799024)(38070700021); DIR:OUT;
+ SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?MV/2NdV10DraxPzfdBgiP4r5Yj9H2zw3AgWd6jkpRiNJBTYHiooYD580vV?=
- =?iso-8859-1?Q?tMxgRBVzZ0at22nWVgjdtFR1VS1FZs1J76hkCwR8/SgAOXvCmQpfCtiph7?=
- =?iso-8859-1?Q?Hh35J9aKRB5HgQpmn2LoWs67KfK5jzb5ENAvD08bOWup7DXucaRunemXYE?=
- =?iso-8859-1?Q?vWJMbN+qPyU/ZEsJthDFi3hWczjzsNhrj2Gyp2PijlvAC3csvrfHnikhvy?=
- =?iso-8859-1?Q?pZcZdOAUTIkdlZh5pR20Vlr0SXeOGfpojwQpS+aP4B1iznuB5CJz76ziOL?=
- =?iso-8859-1?Q?spKjiFSqjf+N8BoB/DoVV/XwvDeSajeiw/ZnnhqfK4W5H1XjouxCRKkQ/w?=
- =?iso-8859-1?Q?iQiyqqyWrNjeQiwLlF2Vw9k+SvmkDLIylZ/HdZLI0IbzNxJy2SiOKjVkcs?=
- =?iso-8859-1?Q?XnJ5nRAxIa9bhptBasgSHJNBq6LXA1CoITmrhMzkeDdGsjW9hthnhryBfF?=
- =?iso-8859-1?Q?OaaWzzj0Is6BpJ0v088uBejzgJrwU+ea7u6FRgqZqqcTjqc1i1+0OWiaCH?=
- =?iso-8859-1?Q?3vElG4HH6diWKAFJOXcQmXMO580uGIWukGue50FJOxOIefiZE0ltyOyAgh?=
- =?iso-8859-1?Q?tleoow9wOcrOOkyizvjdpVucNeuDNcLhhuhaf4ZNADQa4axglrYP0sPE/S?=
- =?iso-8859-1?Q?szlTWgSnpPE05/OfsK6Mmm46PMFT61GojVwMq9BlB+M73lmq15XVjtCnEE?=
- =?iso-8859-1?Q?4tSypFteWoOUvfOvVL0OpgK1LNgVhKXXao5mn0T4AI6pl6+vjocnxB/Pnm?=
- =?iso-8859-1?Q?W5sAiHeaR5l8coUUkhBbZX1Jza+BwoLY4PM/5UlFmKdqaNpggXUdvD4w9+?=
- =?iso-8859-1?Q?GGvG7dkrR3ArqG3/japFK5vP3mtzRlNY+n3n2oF0h8Af7e88G0E3C3mUk2?=
- =?iso-8859-1?Q?ZPyLEa+uq/q6fzcp+5ECvJorTt9345qkVggtx7r+mVlTpzLGm3Qj09IyA1?=
- =?iso-8859-1?Q?EdPZFbAOKownOIjV0JPInk1cdt7Cn0WJyPdDZnhwDdmxedfPzBRa/4R106?=
- =?iso-8859-1?Q?lmqw7ct+JHj0vTsGlCqf3PkmFqJ6ntJ63i6y3q9wbzcaZLnUrGFMMlOly5?=
- =?iso-8859-1?Q?yb+r8PiW+DkPL0YtoAn+Vj6H7TJ45mJHEAWfP1oGVZX8LHM5aahnnGmr1h?=
- =?iso-8859-1?Q?0L4hZUavSO3hBbIRilEEeDmCCqCpK2YzcXv4rwXr/htORrd2nm4iFqq9pW?=
- =?iso-8859-1?Q?93yAsMzjbRqxTHm9kVzcx5VPnYmhfCNx5Id+GtZJbbdrIm7kO0iZJdryBz?=
- =?iso-8859-1?Q?P+N7qOrZ+hPNGGAv5YUUHvcAMUN0aMSg99b83HDug4YvwTVhbVHBivhfFj?=
- =?iso-8859-1?Q?GBynmqCZfQ8djQVG7c6yukvnmQYIRd+9cSg9eVarPGnHrpligv4vjIjKB7?=
- =?iso-8859-1?Q?5kq7Ov32/H+wuy0kr5ERwj7tIkG6f13t850jr8UQmatpo4w359c78222O8?=
- =?iso-8859-1?Q?jMNLt/FMT1palLRzFIgOx4j/ZsCqivv8il+BlJiPjOPxFWVgUy4zaAT12D?=
- =?iso-8859-1?Q?QIX6VacmnVX617r6YINdkIcStDALEc3mTQ/KeZWUe1Xsq6WvXGl9z+XMdy?=
- =?iso-8859-1?Q?cRi+iE7O28XNJC5hunpn+R/eRzBRfwAz47b9LD9CRNiYowKRr9HidO/djn?=
- =?iso-8859-1?Q?mObN86Y4JJPMHa+rCx750+qopq6+0Mx68x?=
-Content-Type: text/plain; charset="iso-8859-1"
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?624eR3LebtMYwCKH6eM3QK1Jpzm1+oi7ji5ODYiMg3zx+NfVtfpSPSFfjda4?=
+ =?us-ascii?Q?PdJoEaSYi4DoO60jaiX0vV+1540nrSdIePGLKgE4HhOl9LxG7MiF23BrMHyj?=
+ =?us-ascii?Q?oTrhG6h9MlTqEmtJCK6Vwi+pNXViMNuuNe6Dn3MotH1hiG5umnLmkDns608T?=
+ =?us-ascii?Q?YOByXEbHsRtTh4Htj5TjFV0G5mvKzMJ1JFDpIk2U75ukPC6vFzagyQxxjfQ/?=
+ =?us-ascii?Q?BYf+VXMNfl9iI6KMt1UICwux8zBwQu2OnRKDUIVMrDppD7Q8lKrqeU5wrlvf?=
+ =?us-ascii?Q?NPoGkF5SfpFHRorVru9fM538Z2a9hPtZucovRUN9lI7j3KcWw6bAHwlEXkjA?=
+ =?us-ascii?Q?i5ob2Ugamro3Ia4iFb6QyxAm8zIXhy2mT4JlHRwYh0qrlYmpe7Fym8YJdm1u?=
+ =?us-ascii?Q?NFacM8LheUBXHEwhdKA/IOPczmWsKP+7SefKJ6+zW9YGo+xbDijYlZS7ZYOF?=
+ =?us-ascii?Q?WYVVk3yfeR+gMuhsdmf170+1FzqHK1MwQ22uPeV+LoIhvlmertyG0YvbDAkT?=
+ =?us-ascii?Q?mcdVmzFE/3C+6YCf/OCAAv9oeDAJn0C46f8tBq0BrSCI8Vs0PK8SetH6nlh+?=
+ =?us-ascii?Q?R2WxiR1z/QBreWOd/M1+7xRZpg5OCnua02r37UBZnQq2qFiLCJfkY6OWNwmo?=
+ =?us-ascii?Q?DrFhtKr7aHl9nbkRe6msTmdi/mCICSbf/dO104TCJh3tyEFwrENdf2fsWu2H?=
+ =?us-ascii?Q?cmqp++s3c9WzFS9ZB3SMqVjpwb8ahEEuVF/FLoHbqnC1tPZr6SgTgwpbfWuu?=
+ =?us-ascii?Q?CZc5fslVlRO5++W7T+eZe2vUApeDGuCdJS+lNfoGzaRBYEXCfHFVeOyQeS41?=
+ =?us-ascii?Q?fcFpjafCXDj7FkjqsdugK63QAHZXmWbuvDqmi0j2jom/+OIqIktDjzg76QeY?=
+ =?us-ascii?Q?chMUyCpff63ROsEaVVRkELFPBJ6NYcc4zBfaE3zQ28H1MYdsEmB6pMnu6giI?=
+ =?us-ascii?Q?8ntNxsmwT/qJdKekKfLM0Hw5Qm2QUDUO+prj9HqcSJ95bTx9jMB8XcJD1hTa?=
+ =?us-ascii?Q?4kJypHdjCGaPSr1Qwj9JH6R6kRReZI/4VR+H5m5Dhma41E5Bc7abzZW00fnD?=
+ =?us-ascii?Q?nxbVVymQg+nQ/0rL6T+9zpEPXGZxhWUOhoOgNYG4ulo98h+hXQdwZ/NgJmV6?=
+ =?us-ascii?Q?vMT0J4iI/a4n5KQ7/0jXqMtkObsaQ5A2o9IYvJ20fSO5S7Ez6jaWpjc8Dye9?=
+ =?us-ascii?Q?FvH2WLGM5PVvFv3Y6UhCAUcUVHhVpBBOex7lh+q42okrijIAwePQ/NsET/Th?=
+ =?us-ascii?Q?os4V9gwmC2+bSo6576sdz9r55LqPmDMobx76lcESMp0EtUmtn82MEGJLBSR7?=
+ =?us-ascii?Q?vvetFtDFGjhvtp1m9zPUY7JeyoTatMJbdQl6a2RohwbDpriBat4qCkG/L3pu?=
+ =?us-ascii?Q?JfSMWt4A/lMOaCL1yUcbT/tN+C+WAnq2koBJWZE8cWJGA8TIhvu2Qvf8eTin?=
+ =?us-ascii?Q?VEv0tMcvgYqwuX82DhuaI2KkB0owow2pZL0gJnSULPOgXU9TJsO4rreYQ+Jb?=
+ =?us-ascii?Q?KxMb92QwGjoPLHP7Cy5NHDrRYkif0GhOwPYC7wICDEm0nrRZjjooqQXoDMPW?=
+ =?us-ascii?Q?k/tJ+3rXpWPKzU5Ej5v3fTwtq3neWfUCpiMFp7mO?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6360.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b3a5e921-d946-483e-5c4d-08de2d25d3b8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Nov 2025 19:56:02.1533 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5ed37bcf-67f7-47a1-f622-08de2d26e8b6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Nov 2025 20:03:46.9057 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: /BIbBIZxlatzqqdAVNq7fPz0c4WukQwBeV92fX1bpGWf/mhufQu04h8p0knEunnVrHaXEddbtzJJD+uLTsi6UQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8096
+X-MS-Exchange-CrossTenant-userprincipalname: TDSMC2Ug4veg5hGmef4Q9SqKYlZnjP0uWXy+VvWqMEyBsUL82/yvLje7pBPSInqFlxdtwMCxfWWjcvS9Xrtj1w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8489
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -195,305 +193,116 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 > -----Original Message-----
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Sent: Thursday, November 27, 2025 1:13 AM
-> To: Shankar, Uma <uma.shankar@intel.com>
-> Cc: Maarten Lankhorst <dev@lankhorst.se>; intel-gfx@lists.freedesktop.org=
-;
-> intel-xe@lists.freedesktop.org; linux-rt-devel@lists.linux.dev; Mario Kle=
-iner
-> <mario.kleiner.de@gmail.com>; Mike Galbraith <umgwanakikbuti@gmail.com>;
-> Thomas Gleixner <tglx@linutronix.de>; Sebastian Andrzej Siewior
-> <bigeasy@linutronix.de>; Clark Williams <clrkwllms@kernel.org>; Steven
-> Rostedt <rostedt@goodmis.org>
-> Subject: Re: [PATCH v2 2/7] drm/i915/display: Use intel_de_write_fw in
-> intel_pipe_fastset
+> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Maar=
+ten
+> Lankhorst
+> Sent: Tuesday, November 4, 2025 2:06 PM
+> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+> Cc: linux-rt-devel@lists.linux.dev; Maarten Lankhorst <dev@lankhorst.se>;=
+ Mario
+> Kleiner <mario.kleiner.de@gmail.com>; Mike Galbraith
+> <umgwanakikbuti@gmail.com>; Thomas Gleixner <tglx@linutronix.de>; Sebasti=
+an
+> Andrzej Siewior <bigeasy@linutronix.de>; Clark Williams
+> <clrkwllms@kernel.org>; Steven Rostedt <rostedt@goodmis.org>
+> Subject: [PATCH v2 4/7] drm/i915/display: Remove locking from
+> intel_vblank_evade critical section
 >=20
-> On Wed, Nov 26, 2025 at 07:19:47PM +0000, Shankar, Uma wrote:
-> >
-> >
-> > > -----Original Message-----
-> > > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf
-> > > Of Maarten Lankhorst
-> > > Sent: Tuesday, November 4, 2025 2:06 PM
-> > > To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> > > Cc: linux-rt-devel@lists.linux.dev; Maarten Lankhorst
-> > > <dev@lankhorst.se>; Mario Kleiner <mario.kleiner.de@gmail.com>; Mike
-> > > Galbraith <umgwanakikbuti@gmail.com>; Thomas Gleixner
-> > > <tglx@linutronix.de>; Sebastian Andrzej Siewior
-> > > <bigeasy@linutronix.de>; Clark Williams <clrkwllms@kernel.org>;
-> > > Steven Rostedt <rostedt@goodmis.org>
-> > > Subject: [PATCH v2 2/7] drm/i915/display: Use intel_de_write_fw in
-> > > intel_pipe_fastset
-> > >
-> > > intel_set_pipe_src_size(), hsw_set_linetime_wm(),
-> > > intel_cpu_transcoder_set_m1_n1() and
-> > > intel_set_transcoder_timings_lrr()
-> > > are called from an atomic context on PREEMPT_RT, and should be using
-> > > the _fw functions.
-> >
-> > This could be ok but we need to be sure that all are called with power =
-domains
-> up.
-> > I think would be safe to keep this under RT check so that we don't end
-> > up breaking any generic non RT usecase.
+> finish_wait() may take a lock, which means that it can take any amount of=
+ time.
+> On PREEMPT-RT we should not be taking any lock after disabling preemption=
+, so
+> ensure that the completion is done before disabling interrupts.
 >=20
-> When removing the locks from register accesses one needs to consider what
-> platforms the code runs on, what other register are on the same cacheline=
-, and
-> whether they can be accessed in parallel. If there is something there the=
-n we may
-> not be able to remove the locks.
+> This also has the benefit of making vblank evasion more deterministic, by
+> performing the final vblank check after all locking is done.
 >=20
-> That's assuming the "system hangs when same cacheline is accessed from
-> multiple cpus" issue is real for display registers, and I'm actually not =
-100% it is.
-> But we'd need to run some tests on the affected systems
-> (~ivb/hsw) to get any kind of confidence here. IIRC some old intel_gpu_to=
-p thhat
-> directly poked the registers was very good at hitting it on hsw at least,=
- so that
-> would be a decent starting point.
+> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+> ---
+>  drivers/gpu/drm/i915/display/intel_vblank.c | 35 ++++++++++-----------
+>  1 file changed, 17 insertions(+), 18 deletions(-)
 >=20
-> Anyways, I'm going to be replacing the uncore lock with a display specifi=
-c lock
-> soonish, and I suppose I can just make that a raw spinlock to appease RT.
+> diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c
+> b/drivers/gpu/drm/i915/display/intel_vblank.c
+> index 2b106ffa3f5f5..3628d2a1b8f38 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vblank.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+> @@ -708,6 +708,13 @@ void intel_vblank_evade_init(const struct
+> intel_crtc_state *old_crtc_state,
+>  		evade->min -=3D vblank_delay;
+>  }
+>=20
+> +static inline int vblank_evadable(struct intel_vblank_evade_ctx *evade,
+> +int *scanline) {
+> +	*scanline =3D intel_get_crtc_scanline(evade->crtc);
+> +
+> +	return *scanline < evade->min || *scanline > evade->max; }
+> +
+>  /* must be called with vblank interrupt already enabled! */  int
+> intel_vblank_evade(struct intel_vblank_evade_ctx *evade)  { @@ -715,23 +7=
+22,22
+> @@ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
+>  	struct intel_display *display =3D to_intel_display(crtc);
+>  	long timeout =3D msecs_to_jiffies_timeout(1);
+>  	wait_queue_head_t *wq =3D drm_crtc_vblank_waitqueue(&crtc->base);
+> -	DEFINE_WAIT(wait);
+>  	int scanline;
+>=20
+>  	if (evade->min <=3D 0 || evade->max <=3D 0)
+>  		return 0;
+>=20
+> -	for (;;) {
+> -		/*
+> -		 * prepare_to_wait() has a memory barrier, which guarantees
+> -		 * other CPUs can see the task state update by the time we
+> -		 * read the scanline.
+> -		 */
+> -		prepare_to_wait(wq, &wait, TASK_UNINTERRUPTIBLE);
+> +	while (!vblank_evadable(evade, &scanline)) {
+> +		local_irq_enable();
+>=20
+> -		scanline =3D intel_get_crtc_scanline(crtc);
+> -		if (scanline < evade->min || scanline > evade->max)
+> -			break;
+> +		DEFINE_WAIT(wait);
+> +		while (!vblank_evadable(evade, &scanline) && timeout > 0) {
 
-Thanks Ville, yeah I am also not confident to switch to the fw version. Eve=
-n if we have
-to try this should be made limited to RT cases, where we can contain and st=
-abilize as
-we test and find out any issues.
+Not sure if doing the scanline check with interrupts on is ok. The scanline=
+s can move
+if we get interrupted or what happens if we get a vblank interrupt. Looks v=
+ulnerable to race.
 
-> >
-> > @Ville Syrj=E4l=E4 Any thoughts on this ?
-> >
-> > Regards,
-> > Uma Shankar
-> >
-> > > This likely prevents a deadlock on i915.
-> > >
-> > > Again noticed when trying to disable preemption in vblank evasion:
-> > > <3> BUG: sleeping function called from invalid context at
-> > > kernel/locking/spinlock_rt.c:48 <3> in_atomic(): 1, irqs_disabled(): =
-0,
-> non_block:
-> > > 0, pid: 1505, name: kms_cursor_lega <3> preempt_count: 1, expected:
-> > > 0 <3> RCU nest depth: 0, expected: 0 <4> 4 locks held by
-> kms_cursor_lega/1505:
-> > > <4>  #0: ffffc90003c6f988 (crtc_ww_class_acquire){+.+.}-{0:0}, at:
-> > > drm_mode_atomic_ioctl+0x13b/0xe90 <4>  #1: ffffc90003c6f9b0
-> > > (crtc_ww_class_mutex){+.+.}-{3:3}, at:
-> > > drm_mode_atomic_ioctl+0x13b/0xe90 <4>
-> > > #2: ffff888135b838b8 (&intel_dp->psr.lock){+.+.}-{3:3}, at:
-> > > intel_psr_lock+0xc5/0xf0 [xe] <4>  #3: ffff88812607bbc0
-> > > (&wl->lock){+.+.}-{2:2},
-> > > at: intel_dmc_wl_get+0x3c/0x140 [xe]
-> > > <4> CPU: 6 UID: 0 PID: 1505 Comm: kms_cursor_lega Tainted: G     U
-> > > 6.18.0-rc3-lgci-xe-xe-pw-156729v1+ #1 PREEMPT_{RT,(lazy)} <4>
-> > > Tainted: [U]=3DUSER <4> Hardware name: Intel Corporation Panther Lake
-> > > Client Platform/PTL-UH LP5
-> > > T3 RVP1, BIOS PTLPFWI1.R00.3383.D02.2509240621 09/24/2025 <4> Call
-> Trace:
-> > > <4>  <TASK>
-> > > <4>  dump_stack_lvl+0xc1/0xf0
-> > > <4>  dump_stack+0x10/0x20
-> > > <4>  __might_resched+0x174/0x260
-> > > <4>  rt_spin_lock+0x63/0x200
-> > > <4>  ? intel_dmc_wl_get+0x3c/0x140 [xe] <4>
-> > > intel_dmc_wl_get+0x3c/0x140 [xe] <4>
-> > > intel_set_pipe_src_size+0x89/0xe0 [xe] <4>
-> > > intel_update_crtc+0x3c1/0x950 [xe] <4>  ?
-> > > intel_pre_update_crtc+0x258/0x400 [xe] <4>
-> > > skl_commit_modeset_enables+0x217/0x720 [xe] <4>
-> > > intel_atomic_commit_tail+0xd4e/0x1af0 [xe] <4>  ?
-> > > lock_release+0xce/0x2a0 <4>
-> > > intel_atomic_commit+0x2e5/0x330 [xe] <4>  ?
-> > > intel_atomic_commit+0x2e5/0x330 [xe] <4>  drm_atomic_commit+0xaf/0xf0
-> <4>  ?
-> > > __pfx___drm_printfn_info+0x10/0x10
-> > > <4>  drm_mode_atomic_ioctl+0xbd5/0xe90 <4>  ?
-> > > lock_acquire+0xc4/0x2e0 <4>  ? __pfx_drm_mode_atomic_ioctl+0x10/0x10
-> > > <4>  drm_ioctl_kernel+0xb6/0x120
-> > > <4>  drm_ioctl+0x2d7/0x5a0
-> > > <4>  ? __pfx_drm_mode_atomic_ioctl+0x10/0x10
-> > > <4>  ? rt_spin_unlock+0xa0/0x140
-> > > <4>  ? __pm_runtime_resume+0x53/0x90 <4>  xe_drm_ioctl+0x56/0x90
-> > > [xe] <4>  __x64_sys_ioctl+0xa8/0x110 <4>  ? lock_acquire+0xc4/0x2e0
-> > > <4>  x64_sys_call+0x1144/0x26a0 <4>  do_syscall_64+0x93/0xae0 <4>  ?
-> > > lock_release+0xce/0x2a0 <4>  ? __task_pid_nr_ns+0xd9/0x270 <4>  ?
-> > > do_syscall_64+0x1b7/0xae0 <4>  ? find_held_lock+0x31/0x90 <4>  ?
-> > > __task_pid_nr_ns+0xcf/0x270 <4>  ? __lock_acquire+0x43e/0x2860 <4>
-> > > ? __task_pid_nr_ns+0xd9/0x270 <4>  ? lock_acquire+0xc4/0x2e0 <4>  ?
-> > > find_held_lock+0x31/0x90 <4>  ? __task_pid_nr_ns+0xcf/0x270 <4>  ?
-> > > lock_release+0xce/0x2a0 <4>  ? __task_pid_nr_ns+0xd9/0x270 <4>  ?
-> > > do_syscall_64+0x1b7/0xae0 <4>  ? do_syscall_64+0x1b7/0xae0 <4>
-> > > entry_SYSCALL_64_after_hwframe+0x76/0x7e
-> > >
-> > > Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_display.c | 36 ++++++++++--------=
---
-> > >  drivers/gpu/drm/i915/display/intel_vrr.c     | 16 ++++-----
-> > >  2 files changed, 26 insertions(+), 26 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> > > b/drivers/gpu/drm/i915/display/intel_display.c
-> > > index 42ec787986666..1bff1148fe9d7 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > @@ -1573,9 +1573,9 @@ static void hsw_set_linetime_wm(const struct
-> > > intel_crtc_state *crtc_state)
-> > >  	struct intel_display *display =3D to_intel_display(crtc_state);
-> > >  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> > >
-> > > -	intel_de_write(display, WM_LINETIME(crtc->pipe),
-> > > -		       HSW_LINETIME(crtc_state->linetime) |
-> > > -		       HSW_IPS_LINETIME(crtc_state->ips_linetime));
-> > > +	intel_de_write_fw(display, WM_LINETIME(crtc->pipe),
-> > > +			  HSW_LINETIME(crtc_state->linetime) |
-> > > +			  HSW_IPS_LINETIME(crtc_state->ips_linetime));
-> > >  }
-> > >
-> > >  static void hsw_set_frame_start_delay(const struct intel_crtc_state
-> > > *crtc_state) @@ -2543,14 +2543,14 @@ void intel_set_m_n(struct
-> intel_display *display,
-> > >  		   i915_reg_t data_m_reg, i915_reg_t data_n_reg,
-> > >  		   i915_reg_t link_m_reg, i915_reg_t link_n_reg)  {
-> > > -	intel_de_write(display, data_m_reg, TU_SIZE(m_n->tu) | m_n->data_m)=
-;
-> > > -	intel_de_write(display, data_n_reg, m_n->data_n);
-> > > -	intel_de_write(display, link_m_reg, m_n->link_m);
-> > > +	intel_de_write_fw(display, data_m_reg, TU_SIZE(m_n->tu) | m_n-
-> > > >data_m);
-> > > +	intel_de_write_fw(display, data_n_reg, m_n->data_n);
-> > > +	intel_de_write_fw(display, link_m_reg, m_n->link_m);
-> > >  	/*
-> > >  	 * On BDW+ writing LINK_N arms the double buffered update
-> > >  	 * of all the M/N registers, so it must be written last.
-> > >  	 */
-> > > -	intel_de_write(display, link_n_reg, m_n->link_n);
-> > > +	intel_de_write_fw(display, link_n_reg, m_n->link_n);
-> > >  }
-> > >
-> > >  bool intel_cpu_transcoder_has_m2_n2(struct intel_display *display,
-> > > @@ -2737,9
-> > > +2737,9 @@ static void intel_set_transcoder_timings_lrr(const struct
-> > > intel_crtc_state *crtc
-> > >  	}
-> > >
-> > >  	if (DISPLAY_VER(display) >=3D 13) {
-> > > -		intel_de_write(display,
-> > > -			       TRANS_SET_CONTEXT_LATENCY(display,
-> > > cpu_transcoder),
-> > > -			       crtc_state->set_context_latency);
-> > > +		intel_de_write_fw(display,
-> > > +				  TRANS_SET_CONTEXT_LATENCY(display,
-> > > cpu_transcoder),
-> > > +				  crtc_state->set_context_latency);
-> > >
-> > >  		/*
-> > >  		 * VBLANK_START not used by hw, just clear it @@ -2755,9
-> > > +2755,9 @@ static void intel_set_transcoder_timings_lrr(const struct
-> > > intel_crtc_state *crtc
-> > >  	 * The hardware actually ignores TRANS_VBLANK.VBLANK_END in DP
-> > > mode.
-> > >  	 * But let's write it anyway to keep the state checker happy.
-> > >  	 */
-> > > -	intel_de_write(display, TRANS_VBLANK(display, cpu_transcoder),
-> > > -		       VBLANK_START(crtc_vblank_start - 1) |
-> > > -		       VBLANK_END(crtc_vblank_end - 1));
-> > > +	intel_de_write_fw(display, TRANS_VBLANK(display, cpu_transcoder),
-> > > +			  VBLANK_START(crtc_vblank_start - 1) |
-> > > +			  VBLANK_END(crtc_vblank_end - 1));
-> > >  	/*
-> > >  	 * For platforms that always use VRR Timing Generator, the
-> > > VTOTAL.Vtotal
-> > >  	 * bits are not required. Since the support for these bits is
-> > > going to @@ -
-> > > 2771,9 +2771,9 @@ static void intel_set_transcoder_timings_lrr(const
-> > > struct intel_crtc_state *crtc
-> > >  	 * The double buffer latch point for TRANS_VTOTAL
-> > >  	 * is the transcoder's undelayed vblank.
-> > >  	 */
-> > > -	intel_de_write(display, TRANS_VTOTAL(display, cpu_transcoder),
-> > > -		       VACTIVE(crtc_vdisplay - 1) |
-> > > -		       VTOTAL(crtc_vtotal - 1));
-> > > +	intel_de_write_fw(display, TRANS_VTOTAL(display, cpu_transcoder),
-> > > +			  VACTIVE(crtc_vdisplay - 1) |
-> > > +			  VTOTAL(crtc_vtotal - 1));
-> > >
-> > >  	intel_vrr_set_fixed_rr_timings(crtc_state);
-> > >  	intel_vrr_transcoder_enable(crtc_state);
-> > > @@ -2790,8 +2790,8 @@ static void intel_set_pipe_src_size(const
-> > > struct intel_crtc_state *crtc_state)
-> > >  	/* pipesrc controls the size that is scaled from, which should
-> > >  	 * always be the user's requested size.
-> > >  	 */
-> > > -	intel_de_write(display, PIPESRC(display, pipe),
-> > > -		       PIPESRC_WIDTH(width - 1) | PIPESRC_HEIGHT(height -
-> > > 1));
-> > > +	intel_de_write_fw(display, PIPESRC(display, pipe),
-> > > +			  PIPESRC_WIDTH(width - 1) | PIPESRC_HEIGHT(height
-> > > - 1));
-> > >  }
-> > >
-> > >  static bool intel_pipe_is_interlaced(const struct intel_crtc_state
-> > > *crtc_state) diff -- git a/drivers/gpu/drm/i915/display/intel_vrr.c
-> > > b/drivers/gpu/drm/i915/display/intel_vrr.c
-> > > index 00cbc126fb366..2e19673697fa4 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> > > @@ -300,12 +300,12 @@ void intel_vrr_set_fixed_rr_timings(const
-> > > struct intel_crtc_state *crtc_state)
-> > >  	if (!intel_vrr_possible(crtc_state))
-> > >  		return;
-> > >
-> > > -	intel_de_write(display, TRANS_VRR_VMIN(display, cpu_transcoder),
-> > > -		       intel_vrr_fixed_rr_hw_vmin(crtc_state) - 1);
-> > > -	intel_de_write(display, TRANS_VRR_VMAX(display, cpu_transcoder),
-> > > -		       intel_vrr_fixed_rr_hw_vmax(crtc_state) - 1);
-> > > -	intel_de_write(display, TRANS_VRR_FLIPLINE(display, cpu_transcoder)=
-,
-> > > -		       intel_vrr_fixed_rr_hw_flipline(crtc_state) - 1);
-> > > +	intel_de_write_fw(display, TRANS_VRR_VMIN(display, cpu_transcoder),
-> > > +			  intel_vrr_fixed_rr_hw_vmin(crtc_state) - 1);
-> > > +	intel_de_write_fw(display, TRANS_VRR_VMAX(display, cpu_transcoder),
-> > > +			  intel_vrr_fixed_rr_hw_vmax(crtc_state) - 1);
-> > > +	intel_de_write_fw(display, TRANS_VRR_FLIPLINE(display,
-> > > cpu_transcoder),
-> > > +			  intel_vrr_fixed_rr_hw_flipline(crtc_state) - 1);
-> > >  }
-> > >
-> > >  static
-> > > @@ -693,7 +693,7 @@ static void intel_vrr_tg_enable(const struct
-> > > intel_crtc_state *crtc_state,
-> > >  	enum transcoder cpu_transcoder =3D crtc_state->cpu_transcoder;
-> > >  	u32 vrr_ctl;
-> > >
-> > > -	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder),
-> > > TRANS_PUSH_EN);
-> > > +	intel_de_write_fw(display, TRANS_PUSH(display, cpu_transcoder),
-> > > +TRANS_PUSH_EN);
-> > >
-> > >  	vrr_ctl =3D VRR_CTL_VRR_ENABLE | trans_vrr_ctl(crtc_state);
-> > >
-> > > @@ -705,7 +705,7 @@ static void intel_vrr_tg_enable(const struct
-> > > intel_crtc_state *crtc_state,
-> > >  	if (cmrr_enable)
-> > >  		vrr_ctl |=3D VRR_CTL_CMRR_ENABLE;
-> > >
-> > > -	intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
-> > > vrr_ctl);
-> > > +	intel_de_write_fw(display, TRANS_VRR_CTL(display, cpu_transcoder),
-> > > +vrr_ctl);
-> > >  }
-> > >
-> > >  static void intel_vrr_tg_disable(const struct intel_crtc_state
-> > > *old_crtc_state)
-> > > --
-> > > 2.51.0
+I will try to check this further and get back.
+
+Regards,
+Uma Shankar
+
+> +			prepare_to_wait(wq, &wait, TASK_UNINTERRUPTIBLE);
+> +			timeout =3D schedule_timeout(timeout);
+> +		}
+> +		finish_wait(wq, &wait);
+> +
+> +		local_irq_disable();
 >=20
+>  		if (!timeout) {
+>  			drm_dbg_kms(display->drm,
+> @@ -740,15 +746,8 @@ int intel_vblank_evade(struct intel_vblank_evade_ctx
+> *evade)
+>  			break;
+>  		}
+>=20
+> -		local_irq_enable();
+> -
+> -		timeout =3D schedule_timeout(timeout);
+> -
+> -		local_irq_disable();
+>  	}
+>=20
+> -	finish_wait(wq, &wait);
+> -
+>  	/*
+>  	 * On VLV/CHV DSI the scanline counter would appear to
+>  	 * increment approx. 1/3 of a scanline before start of vblank.
 > --
-> Ville Syrj=E4l=E4
-> Intel
+> 2.51.0
+
