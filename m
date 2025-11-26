@@ -2,29 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24393C89220
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Nov 2025 10:55:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 02FDDC89314
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Nov 2025 11:10:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4F1B10E596;
-	Wed, 26 Nov 2025 09:55:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B58710E59C;
+	Wed, 26 Nov 2025 10:10:53 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="BTGwNJiY";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B469D10E596;
- Wed, 26 Nov 2025 09:55:31 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6651132219710710252=="
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C338A10E57B;
+ Wed, 26 Nov 2025 10:10:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1764151849;
+ bh=ecJ1vGlyPj6hsCofjHA7b6XDNSRT7xhJLj2BkLxAf6M=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=BTGwNJiYhH0pw6GB3bsWRZFrAfxZlQsY1XcuEL3zlNWjVHArUqmwi2Hmr9H0spuYR
+ ZZLN8ys30zhBHkvnwuv0MKYs3j2MayURZg1nfvQj5Y4SfOLRj6Pez/y7IfBn1pylM1
+ cJqj73uPzEbF1Bw70LjOzOLA1MpiTPezmO1B5FvasUQqo+0u9dm8piYmTyL/ParorP
+ Bsp8pqlHveaqQfQR8+cI2S2sRFvucsZrCuUUbiIE0g79lQfF7L74VOl3eJ0IHL+lNs
+ X2GqZWDiZ+gtHSazhxFkL8ABfWHWgkf5YvUXT39/hblLTtJvYreeuprfcmj/tGpnHI
+ /WoTfM4zP4pHA==
+Received: from fedora (unknown [IPv6:2a01:e0a:2c:6930:d919:a6e:5ea1:8a9f])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
+ server-digest SHA256) (No client certificate requested)
+ (Authenticated sender: bbrezillon)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id E4EC417E10E9;
+ Wed, 26 Nov 2025 11:10:47 +0100 (CET)
+Date: Wed, 26 Nov 2025 11:10:43 +0100
+From: Boris Brezillon <boris.brezillon@collabora.com>
+To: =?UTF-8?B?TG/Dr2M=?= Molinari <loic.molinari@collabora.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Rob Herring <robh@kernel.org>,
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Melissa Wen <mwen@igalia.com>, =?UTF-8?B?TWHDrXJh?= Canal
+ <mcanal@igalia.com>, Hugh Dickins <hughd@google.com>, Baolin Wang
+ <baolin.wang@linux.alibaba.com>, Andrew Morton <akpm@linux-foundation.org>,
+ Al Viro <viro@zeniv.linux.org.uk>, =?UTF-8?B?TWlrb8WCYWo=?= Wasiak
+ <mikolaj.wasiak@intel.com>, Christian Brauner <brauner@kernel.org>, Nitin
+ Gote <nitin.r.gote@intel.com>, Andi Shyti <andi.shyti@linux.intel.com>,
+ Jonathan Corbet <corbet@lwn.net>, Christopher Healy <healych@amazon.com>,
+ Matthew Wilcox <willy@infradead.org>, Bagas Sanjaya <bagasdotme@gmail.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-mm@kvack.org,
+ linux-doc@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCH v9 09/11] drm/panthor: Improve IOMMU map/unmap debugging
+ logs
+Message-ID: <20251126111043.145e1aa2@fedora>
+In-Reply-To: <20251114170303.2800-10-loic.molinari@collabora.com>
+References: <20251114170303.2800-1-loic.molinari@collabora.com>
+ <20251114170303.2800-10-loic.molinari@collabora.com>
+Organization: Collabora
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915/display=3A_Check?=
- =?utf-8?q?_number_of_scalers_for_casf_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nemesa Garg" <nemesa.garg@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 26 Nov 2025 09:55:31 -0000
-Message-ID: <176415093173.29053.10302065371011053524@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251124084629.3322714-1-nemesa.garg@intel.com>
-In-Reply-To: <20251124084629.3322714-1-nemesa.garg@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,221 +77,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6651132219710710252==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, 14 Nov 2025 18:03:00 +0100
+Lo=C3=AFc Molinari <loic.molinari@collabora.com> wrote:
 
-== Series Details ==
+> Log the number of pages and their sizes actually mapped/unmapped by
+> the IOMMU page table driver. Since a map/unmap op is often split in
+> several ops depending on the underlying scatter/gather table, add the
+> start address and the total size to the debugging logs in order to
+> help understand which batch an op is part of.
+>=20
+> Signed-off-by: Lo=C3=AFc Molinari <loic.molinari@collabora.com>
+> Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
 
-Series: drm/i915/display: Check number of scalers for casf (rev2)
-URL   : https://patchwork.freedesktop.org/series/157955/
-State : failure
+Just queued this specific patch to drm-misc-next since it had no
+external deps. Make sure you rebase before preparing your v10.
 
-== Summary ==
+> ---
+>  drivers/gpu/drm/panthor/panthor_mmu.c | 19 ++++++++++++++-----
+>  1 file changed, 14 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/panthor/panthor_mmu.c b/drivers/gpu/drm/pant=
+hor/panthor_mmu.c
+> index 58fead90533a..32410713c61c 100644
+> --- a/drivers/gpu/drm/panthor/panthor_mmu.c
+> +++ b/drivers/gpu/drm/panthor/panthor_mmu.c
+> @@ -918,10 +918,9 @@ static int panthor_vm_unmap_pages(struct panthor_vm =
+*vm, u64 iova, u64 size)
+>  {
+>  	struct panthor_device *ptdev =3D vm->ptdev;
+>  	struct io_pgtable_ops *ops =3D vm->pgtbl_ops;
+> +	u64 start_iova =3D iova;
+>  	u64 offset =3D 0;
+> =20
+> -	drm_dbg(&ptdev->base, "unmap: as=3D%d, iova=3D%llx, len=3D%llx", vm->as=
+.id, iova, size);
+> -
+>  	while (offset < size) {
+>  		size_t unmapped_sz =3D 0, pgcount;
+>  		size_t pgsize =3D get_pgsize(iova + offset, size - offset, &pgcount);
+> @@ -936,6 +935,12 @@ static int panthor_vm_unmap_pages(struct panthor_vm =
+*vm, u64 iova, u64 size)
+>  			panthor_vm_flush_range(vm, iova, offset + unmapped_sz);
+>  			return  -EINVAL;
+>  		}
+> +
+> +		drm_dbg(&ptdev->base,
+> +			"unmap: as=3D%d, iova=3D0x%llx, sz=3D%llu, va=3D0x%llx, pgcnt=3D%zu, =
+pgsz=3D%zu",
+> +			vm->as.id, start_iova, size, iova + offset,
+> +			unmapped_sz / pgsize, pgsize);
+> +
+>  		offset +=3D unmapped_sz;
+>  	}
+> =20
+> @@ -951,6 +956,7 @@ panthor_vm_map_pages(struct panthor_vm *vm, u64 iova,=
+ int prot,
+>  	struct scatterlist *sgl;
+>  	struct io_pgtable_ops *ops =3D vm->pgtbl_ops;
+>  	u64 start_iova =3D iova;
+> +	u64 start_size =3D size;
+>  	int ret;
+> =20
+>  	if (!size)
+> @@ -970,15 +976,18 @@ panthor_vm_map_pages(struct panthor_vm *vm, u64 iov=
+a, int prot,
+>  		len =3D min_t(size_t, len, size);
+>  		size -=3D len;
+> =20
+> -		drm_dbg(&ptdev->base, "map: as=3D%d, iova=3D%llx, paddr=3D%pad, len=3D=
+%zx",
+> -			vm->as.id, iova, &paddr, len);
+> -
+>  		while (len) {
+>  			size_t pgcount, mapped =3D 0;
+>  			size_t pgsize =3D get_pgsize(iova | paddr, len, &pgcount);
+> =20
+>  			ret =3D ops->map_pages(ops, iova, paddr, pgsize, pgcount, prot,
+>  					     GFP_KERNEL, &mapped);
+> +
+> +			drm_dbg(&ptdev->base,
+> +				"map: as=3D%d, iova=3D0x%llx, sz=3D%llu, va=3D0x%llx, pa=3D%pad, pgc=
+nt=3D%zu, pgsz=3D%zu",
+> +				vm->as.id, start_iova, start_size, iova, &paddr,
+> +				mapped / pgsize, pgsize);
+> +
+>  			iova +=3D mapped;
+>  			paddr +=3D mapped;
+>  			len -=3D mapped;
 
-CI Bug Log - changes from CI_DRM_17588 -> Patchwork_157955v2
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_157955v2 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_157955v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157955v2/index.html
-
-Participating hosts (44 -> 43)
-------------------------------
-
-  Additional (1): fi-ivb-3770 
-  Missing    (2): fi-glk-j4005 fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_157955v2:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-arlh-3:         [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17588/bat-arlh-3/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157955v2/bat-arlh-3/igt@i915_pm_rpm@module-reload.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_157955v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-6:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17588/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157955v2/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-b-vga-1:
-    - fi-ivb-3770:        NOTRUN -> [SKIP][5] +24 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157955v2/fi-ivb-3770/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-b-vga-1.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [DMESG-FAIL][6] ([i915#12061]) -> [PASS][7] +1 other test pass
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17588/bat-mtlp-8/igt@i915_selftest@live.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157955v2/bat-mtlp-8/igt@i915_selftest@live.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live:
-    - bat-atsm-1:         [DMESG-FAIL][8] ([i915#12061] / [i915#14204]) -> [DMESG-FAIL][9] ([i915#12061] / [i915#13929])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17588/bat-atsm-1/igt@i915_selftest@live.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157955v2/bat-atsm-1/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@mman:
-    - bat-atsm-1:         [DMESG-FAIL][10] ([i915#14204]) -> [DMESG-FAIL][11] ([i915#13929])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17588/bat-atsm-1/igt@i915_selftest@live@mman.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157955v2/bat-atsm-1/igt@i915_selftest@live@mman.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#13929]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929
-  [i915#14204]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_17588 -> Patchwork_157955v2
-
-  CI-20190529: 20190529
-  CI_DRM_17588: 8052b0ba2e97387477c22ba816fabca9a4728aae @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8638: 72d5c74eb3cf46af2f46daba8109d84c3dd19363 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_157955v2: 8052b0ba2e97387477c22ba816fabca9a4728aae @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157955v2/index.html
-
---===============6651132219710710252==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Check number of scalers for casf (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157955/">https://patchwork.freedesktop.org/series/157955/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157955v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157955v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17588 -&gt; Patchwork_157955v2</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_157955v2 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_157955v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157955v2/index.html</p>
-<h2>Participating hosts (44 -&gt; 43)</h2>
-<p>Additional (1): fi-ivb-3770 <br />
-  Missing    (2): fi-glk-j4005 fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_157955v2:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_pm_rpm@module-reload:<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17588/bat-arlh-3/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157955v2/bat-arlh-3/igt@i915_pm_rpm@module-reload.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_157955v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17588/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157955v2/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-b-vga-1:</p>
-<ul>
-<li>fi-ivb-3770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157955v2/fi-ivb-3770/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-b-vga-1.html">SKIP</a> +24 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live:<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17588/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157955v2/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17588/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157955v2/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@mman:</p>
-<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17588/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157955v2/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17588 -&gt; Patchwork_157955v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17588: 8052b0ba2e97387477c22ba816fabca9a4728aae @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8638: 72d5c74eb3cf46af2f46daba8109d84c3dd19363 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_157955v2: 8052b0ba2e97387477c22ba816fabca9a4728aae @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============6651132219710710252==--
