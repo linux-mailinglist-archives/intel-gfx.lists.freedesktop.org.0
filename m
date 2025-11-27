@@ -2,56 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F5ABC8D790
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Nov 2025 10:16:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53A74C8D793
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Nov 2025 10:16:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97D5010E7BC;
-	Thu, 27 Nov 2025 09:16:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1F5010E7C1;
+	Thu, 27 Nov 2025 09:16:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GieoQH9i";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ibc/G4E+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C68610E7B5;
- Thu, 27 Nov 2025 09:15:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F03710E7BE;
+ Thu, 27 Nov 2025 09:16:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764234958; x=1795770958;
+ t=1764234960; x=1795770960;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yVrMESJFfKyAw6FLzoatL/DYGZ0EbJqTqozojG8PQjo=;
- b=GieoQH9ircMBcLs5vgYRXPUt3KveWPr0hddRmZfgv2xNjbxhJM8VbY4s
- nZFb6gqTk3KahHEvagVBWR8NrWaPF4oGsy/COhitWkg6EPOxTBEnbaICx
- vkbhcbQEJkCrwC8pa3QvFuvCG/JFgx1YnzBLjbVaKOGF7nvL/X03IsTDq
- LgSqY8Z1u0DbPljQ2lXlDKBWjD4eINDOjZE/ci/ZB0Fde4MOnpCn0blRC
- Q3a5OwJcNQ8f123l7ps6ETQAxxe+NRkpSl92+OYjjCqZxAQfDGlmw0pvw
- PLRAbLIn1pmHTBmB6BOn1r8qw5GYDpBvGqVbcZ4gBVUY63Hi8UJjrS5UH Q==;
-X-CSE-ConnectionGUID: mntvDZgbTMy7tPahj2p62w==
-X-CSE-MsgGUID: 7V0cs5H+QdOf77CXNjEN5Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="77642324"
-X-IronPort-AV: E=Sophos;i="6.20,230,1758610800"; d="scan'208";a="77642324"
+ bh=tjaB5Vv4HiUW2PETwi4pBUMMPWDc0Bj7jt2urju/JYE=;
+ b=Ibc/G4E+cDdlZLDbrRt6wdjuFKwhjAhr0pjQveJwiHGfk5YmwYskhoOg
+ K440lXNvd9paCF27cmL6sJf/yy0Tl7z8tZJRykH+rISz9etl9Tq0/sUi6
+ C+Io1xhDuSoVonRGYSK6EL0HvCh7NbGeh4Za3W+R7F99W51bmmlR1lJ4d
+ NA230VziiVX9s++IBndnT9jhxwPCjiv8n8AN1a9TQyptRFVLjrhndPBH/
+ +YJQXDfd8UCX392dLCJ7CbmyELkIGHBk28Pg2/aN1IFaibdQu+KHVe/vN
+ ZuQN9SNzxJL4yEfn7Dt1VgoUschRds7X3x7ygdGeaBhG2GUWzJg80EYpJ w==;
+X-CSE-ConnectionGUID: UGFIQIjzRRiY4NY6eNVs2g==
+X-CSE-MsgGUID: 6lRxSdTuSZGAXgmuwWgSYg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="77642326"
+X-IronPort-AV: E=Sophos;i="6.20,230,1758610800"; d="scan'208";a="77642326"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2025 01:15:58 -0800
-X-CSE-ConnectionGUID: Nr0S5EbGTYew29YcmZAWYg==
-X-CSE-MsgGUID: wzN2Ssm9S1WfXcIWYVr6JA==
+ 27 Nov 2025 01:16:00 -0800
+X-CSE-ConnectionGUID: 9YYBwkkiQD6V8xu7/yxG+Q==
+X-CSE-MsgGUID: yI+irY4NTiuYVfJQ8cGh2w==
 X-ExtLoop1: 1
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by fmviesa003.fm.intel.com with ESMTP; 27 Nov 2025 01:15:57 -0800
+ by fmviesa003.fm.intel.com with ESMTP; 27 Nov 2025 01:15:59 -0800
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, mitulkumar.ajitkumar.golani@intel.com,
  ankit.k.nautiyal@intel.com, ville.syrjala@linux.intel.com
-Subject: [PATCH v9 02/17] drm/i915/dmc: Add pipe dmc registers and bits for DC
- Balance
-Date: Thu, 27 Nov 2025 14:45:59 +0530
-Message-ID: <20251127091614.648791-3-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH v9 03/17] drm/i915/vrr: Add VRR DC balance registers
+Date: Thu, 27 Nov 2025 14:46:00 +0530
+Message-ID: <20251127091614.648791-4-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20251127091614.648791-1-mitulkumar.ajitkumar.golani@intel.com>
 References: <20251127091614.648791-1-mitulkumar.ajitkumar.golani@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,106 +66,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
-Add pipe dmc registers and  access bits for DC Balance params
-configuration and enablement.
+Add VRR register offsets and bits to access DC Balance configuration.
 
 --v2:
-- Separate register definitions for transcoder and
-pipe dmc. (Ankit)
-- Use MMIO pipe macros instead of transcoder ones. (Ankit)
-- Remove dev_priv use. (Jani, Nikula)
+- Separate register definitions. (Ankit)
+- Remove usage of dev_priv. (Jani, Nikula)
 
 --v3:
-- Add all register address, from capital alphabet to small. (Ankit)
-- Add EVT CTL registers.
-- Add co-author tag.
-- Add event flag for Triggering DC Balance.
+- Convert register address offset, from capital to small. (Ankit)
+- Move mask bits near to register offsets. (Ankit)
 
 --v4:
-- Add DCB Flip count and balance reset registers.
+- Use _MMIO_TRANS wherever possible. (Jani)
 
 --v5:
-- Correct macro usage for flip count. (Ankit)
-- Use register offset in lower case.
+- Added LIVE Value registers for VMAX and FLIPLINE as provided by DMC fw
+- For pipe B it is temporary and expected to change later once finalised.
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--v6:
+- Add live value registers for DCB VMAX/FLIPLINE.
+
+--v7:
+- Correct commit message file. (Jani Nikula)
+- Add bits in highest to lowest order. (Jani Nikula)
+
+--v8:
+- Register/bitfields indentation changes as per i915_reg.h
+mentioned format (Jani, Ankit)
+
+--v9:
+- Remove comment. (Ankit)
+
 Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc_regs.h | 60 +++++++++++++++++++
- 1 file changed, 60 insertions(+)
+ drivers/gpu/drm/i915/display/intel_vrr_regs.h | 68 +++++++++++++++++++
+ 1 file changed, 68 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-index c5aa49921cb9..38e342b45af0 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-@@ -584,4 +584,64 @@ enum pipedmc_event_id {
- #define PTL_PIPEDMC_EXEC_TIME_LINES(start_mmioaddr) _MMIO((start_mmioaddr) + 0x6b8)
- #define PTL_PIPEDMC_END_OF_EXEC_GB(start_mmioaddr) _MMIO((start_mmioaddr) + 0x6c0)
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr_regs.h b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
+index ba9b9215dc11..427ada0d3973 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
+@@ -8,6 +8,73 @@
  
-+#define _PIPEDMC_DCB_CTL_A			0x5f1a0
-+#define _PIPEDMC_DCB_CTL_B			0x5f5a0
-+#define PIPEDMC_DCB_CTL(pipe)			_MMIO_PIPE((pipe), _PIPEDMC_DCB_CTL_A,\
-+							   _PIPEDMC_DCB_CTL_B)
-+#define  PIPEDMC_ADAPTIVE_DCB_ENABLE		REG_BIT(31)
+ #include "intel_display_reg_defs.h"
+ 
++#define _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_A	0x604d4
++#define _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_B	0x614d4
++#define TRANS_VRR_DCB_ADJ_FLIPLINE_CFG(trans)	_MMIO_TRANS(trans, \
++							    _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_A, \
++							    _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_B)
++#define  VRR_DCB_ADJ_FLIPLINE_CNT_MASK		REG_GENMASK(31, 24)
++#define  VRR_DCB_ADJ_FLIPLINE_MASK		REG_GENMASK(19, 0)
++#define  VRR_DCB_ADJ_FLIPLINE(flipline)		REG_FIELD_PREP(VRR_DCB_ADJ_FLIPLINE_MASK, \
++							       (flipline))
 +
-+#define _PIPEDMC_DCB_VBLANK_A			0x5f1bc
-+#define _PIPEDMC_DCB_VBLANK_B			0x5f5bc
-+#define PIPEDMC_DCB_VBLANK(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_DCB_VBLANK_A,\
-+							   _PIPEDMC_DCB_VBLANK_B)
++#define _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_LIVE_A		0x90700
++#define _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_LIVE_B		0x98700
++#define TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_LIVE(trans)	_MMIO_TRANS(trans, \
++								    _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_LIVE_A, \
++								    _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_LIVE_B)
 +
-+#define _PIPEDMC_DCB_SLOPE_A			0x5f1b8
-+#define _PIPEDMC_DCB_SLOPE_B			0x5f5b8
-+#define PIPEDMC_DCB_SLOPE(pipe)			_MMIO_PIPE((pipe), _PIPEDMC_DCB_SLOPE_A,\
-+							   _PIPEDMC_DCB_SLOPE_B)
++#define _TRANS_VRR_DCB_ADJ_VMAX_CFG_A		0x604d8
++#define _TRANS_VRR_DCB_ADJ_VMAX_CFG_B		0x614d8
++#define TRANS_VRR_DCB_ADJ_VMAX_CFG(trans)	_MMIO_TRANS(trans, \
++							    _TRANS_VRR_DCB_ADJ_VMAX_CFG_A, \
++							    _TRANS_VRR_DCB_ADJ_VMAX_CFG_B)
++#define  VRR_DCB_ADJ_VMAX_CNT_MASK		REG_GENMASK(31, 24)
++#define  VRR_DCB_ADJ_VMAX_MASK			REG_GENMASK(19, 0)
++#define  VRR_DCB_ADJ_VMAX(vmax)			REG_FIELD_PREP(VRR_DCB_ADJ_VMAX_MASK, (vmax))
 +
-+#define _PIPEDMC_DCB_GUARDBAND_A		0x5f1b4
-+#define _PIPEDMC_DCB_GUARDBAND_B		0x5f5b4
-+#define PIPEDMC_DCB_GUARDBAND(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_DCB_GUARDBAND_A,\
-+							   _PIPEDMC_DCB_GUARDBAND_B)
++#define _TRANS_VRR_DCB_ADJ_VMAX_CFG_LIVE_A	0x906f8
++#define _TRANS_VRR_DCB_ADJ_VMAX_CFG_LIVE_B	0x986f8
++#define TRANS_VRR_DCB_ADJ_VMAX_CFG_LIVE(trans)	_MMIO_TRANS(trans, \
++							    _TRANS_VRR_DCB_ADJ_VMAX_CFG_LIVE_A, \
++							    _TRANS_VRR_DCB_ADJ_VMAX_CFG_LIVE_B)
 +
-+#define _PIPEDMC_DCB_MAX_INCREASE_A		0x5f1ac
-+#define _PIPEDMC_DCB_MAX_INCREASE_B		0x5f5ac
-+#define PIPEDMC_DCB_MAX_INCREASE(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_DCB_MAX_INCREASE_A,\
-+							   _PIPEDMC_DCB_MAX_INCREASE_B)
++#define _TRANS_VRR_DCB_FLIPLINE_A		0x60418
++#define _TRANS_VRR_DCB_FLIPLINE_B		0x61418
++#define TRANS_VRR_DCB_FLIPLINE(trans)		_MMIO_TRANS(trans, \
++							    _TRANS_VRR_DCB_FLIPLINE_A, \
++							    _TRANS_VRR_DCB_FLIPLINE_B)
++#define  VRR_DCB_FLIPLINE_MASK			REG_GENMASK(19, 0)
++#define  VRR_DCB_FLIPLINE(flipline)		REG_FIELD_PREP(VRR_DCB_FLIPLINE_MASK, \
++							       (flipline))
 +
-+#define _PIPEDMC_DCB_MAX_DECREASE_A		0x5f1b0
-+#define _PIPEDMC_DCB_MAX_DECREASE_B		0x5f5b0
-+#define PIPEDMC_DCB_MAX_DECREASE(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_DCB_MAX_DECREASE_A,\
-+							   _PIPEDMC_DCB_MAX_DECREASE_B)
++#define _TRANS_VRR_DCB_FLIPLINE_LIVE_A		0x906fc
++#define _TRANS_VRR_DCB_FLIPLINE_LIVE_B		0x986fc
++#define TRANS_VRR_DCB_FLIPLINE_LIVE(trans)	_MMIO_TRANS(trans, \
++							    _TRANS_VRR_DCB_FLIPLINE_LIVE_A, \
++							    _TRANS_VRR_DCB_FLIPLINE_LIVE_B)
 +
-+#define _PIPEDMC_DCB_VMIN_A			0x5f1a4
-+#define _PIPEDMC_DCB_VMIN_B			0x5f5a4
-+#define PIPEDMC_DCB_VMIN(pipe)			_MMIO_PIPE((pipe), _PIPEDMC_DCB_VMIN_A,\
-+							   _PIPEDMC_DCB_VMIN_B)
++#define _TRANS_VRR_DCB_VMAX_A			0x60414
++#define _TRANS_VRR_DCB_VMAX_B			0x61414
++#define TRANS_VRR_DCB_VMAX(trans)		_MMIO_TRANS(trans, \
++							     _TRANS_VRR_DCB_VMAX_A, \
++							     _TRANS_VRR_DCB_VMAX_B)
++#define  VRR_DCB_VMAX_MASK			REG_GENMASK(19, 0)
++#define  VRR_DCB_VMAX(vmax)			REG_FIELD_PREP(VRR_DCB_VMAX_MASK, (vmax))
 +
-+#define _PIPEDMC_DCB_VMAX_A			0x5f1a8
-+#define _PIPEDMC_DCB_VMAX_B			0x5f5a8
-+#define PIPEDMC_DCB_VMAX(pipe)			_MMIO_PIPE((pipe), _PIPEDMC_DCB_VMAX_A,\
-+							   _PIPEDMC_DCB_VMAX_B)
++#define _TRANS_VRR_DCB_VMAX_LIVE_A		0x906f4
++#define _TRANS_VRR_DCB_VMAX_LIVE_B		0x986f4
++#define TRANS_VRR_DCB_VMAX_LIVE(trans)		_MMIO_TRANS(trans, \
++							    _TRANS_VRR_DCB_VMAX_LIVE_A, \
++							    _TRANS_VRR_DCB_VMAX_LIVE_B)
 +
-+#define _PIPEDMC_DCB_DEBUG_A			0x5f1c0
-+#define _PIPEDMC_DCB_DEBUG_B			0x5f5c0
-+#define PIPEDMC_DCB_DEBUG(pipe)			_MMIO_PIPE(pipe, _PIPEDMC_DCB_DEBUG_A,\
-+							   _PIPEDMC_DCB_DEBUG_B)
++#define _TRANS_ADAPTIVE_SYNC_DCB_CTL_A		0x604c0
++#define _TRANS_ADAPTIVE_SYNC_DCB_CTL_B		0x614c0
++#define TRANS_ADAPTIVE_SYNC_DCB_CTL(trans)	_MMIO_TRANS(trans, \
++							     _TRANS_ADAPTIVE_SYNC_DCB_CTL_A, \
++							     _TRANS_ADAPTIVE_SYNC_DCB_CTL_B)
++#define  ADAPTIVE_SYNC_COUNTER_EN		REG_BIT(31)
 +
-+#define _PIPEDMC_EVT_CTL_3_A			0x5f040
-+#define _PIPEDMC_EVT_CTL_3_B			0x5f440
-+#define PIPEDMC_EVT_CTL_3(pipe)			_MMIO_PIPE(pipe, _PIPEDMC_EVT_CTL_3_A,\
-+							   _PIPEDMC_EVT_CTL_3_B)
-+
-+#define _PIPEDMC_DCB_FLIP_COUNT_A		0x906a4
-+#define _PIPEDMC_DCB_FLIP_COUNT_B		0x986a4
-+#define PIPEDMC_DCB_FLIP_COUNT(pipe)		_MMIO_PIPE(pipe, _PIPEDMC_DCB_FLIP_COUNT_A,\
-+							   _PIPEDMC_DCB_FLIP_COUNT_B)
-+
-+#define _PIPEDMC_DCB_BALANCE_RESET_A		0x906a8
-+#define _PIPEDMC_DCB_BALANCE_RESET_B		0x986a8
-+#define PIPEDMC_DCB_BALANCE_RESET(pipe)		_MMIO_PIPE(pipe, _PIPEDMC_DCB_BALANCE_RESET_A,\
-+							   _PIPEDMC_DCB_BALANCE_RESET_B)
- #endif /* __INTEL_DMC_REGS_H__ */
+ #define _TRANS_VRR_CTL_A			0x60420
+ #define _TRANS_VRR_CTL_B			0x61420
+ #define _TRANS_VRR_CTL_C			0x62420
+@@ -19,6 +86,7 @@
+ #define   VRR_CTL_CMRR_ENABLE			REG_BIT(27)
+ #define   VRR_CTL_PIPELINE_FULL_MASK		REG_GENMASK(10, 3)
+ #define   VRR_CTL_PIPELINE_FULL(x)		REG_FIELD_PREP(VRR_CTL_PIPELINE_FULL_MASK, (x))
++#define   VRR_CTL_DCB_ADJ_ENABLE		REG_BIT(28)
+ #define   VRR_CTL_PIPELINE_FULL_OVERRIDE	REG_BIT(0)
+ #define   XELPD_VRR_CTL_VRR_GUARDBAND_MASK	REG_GENMASK(15, 0)
+ #define   XELPD_VRR_CTL_VRR_GUARDBAND(x)	REG_FIELD_PREP(XELPD_VRR_CTL_VRR_GUARDBAND_MASK, (x))
 -- 
 2.48.1
 
