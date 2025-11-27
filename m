@@ -2,53 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62AACC8DBAB
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Nov 2025 11:20:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95C79C8DAF6
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Nov 2025 11:06:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D991110E809;
-	Thu, 27 Nov 2025 10:20:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31C2310E807;
+	Thu, 27 Nov 2025 10:06:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="la0SHrPr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZMA2aF3Q";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 955A910E80E;
- Thu, 27 Nov 2025 10:20:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C16F10E807;
+ Thu, 27 Nov 2025 10:06:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764238851; x=1795774851;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ZzHUBGN1VFguLHVaAo/QngF2ato47wi5Fy4aJz5eFc0=;
- b=la0SHrPryTJmf+uTbe2zyBw9RRb4qmlEyCGRWNy2uMsbdv3ANFXZgeEo
- JtVEsIR5kE5NGtfbKaLWZwrFQH1naWHpYVz8LXzyQRVd9MialeIqs4OfD
- mdzzRNNwBXGojP9ksCTlkgDi9mzFtjwu7hJ1kl/3GfD0BfBvJwYL6hOFR
- G3FVAnfmlHe7iuerTcK6Bm5oTh436sDqE+oQgg9rq83yeM+S1r7xZOoPI
- DulDZWY0uyx0CAz5ocdkhwjIF1VTk9fVwHxAeOXZfvrMIL7H6k42IO2PA
- QK3Y8fvIpviDNOJ4yHkBCOea6a1dFOG3f92nYkPXTSaz5VBSwjzwIwci/ Q==;
-X-CSE-ConnectionGUID: UcH7j8d2Q26tJPJmrmEpPA==
-X-CSE-MsgGUID: P627qOaRR6mP+EYTu3djBg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="65470209"
-X-IronPort-AV: E=Sophos;i="6.20,230,1758610800"; d="scan'208";a="65470209"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2025 02:20:51 -0800
-X-CSE-ConnectionGUID: MEh1p7OgQvSiuLEp0Vr/Ow==
-X-CSE-MsgGUID: k2bAcksTSXuOcSO4+P7jug==
+ t=1764237968; x=1795773968;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=dajGMcF5ciAeIRmfVpam5zQkcGfClTk8GVSC0Dv6WCA=;
+ b=ZMA2aF3QNCFsMzQAZw6D4WBr+zy/OCzBzrgmV4VyhgKaWnyxNd2Mfy2T
+ ylnnmW56ZUVEAmFoWn+TwnBLpc3uc4ks/Km2gN9WigLwcUm2Y6VzryefF
+ 9s9K3ss4C00B94/+Ah5CMgPafQFg/uE/XgV8WH2G2HQ3ZA+nVVFoUbFlr
+ UYZtfZ2DABVCMcnnHTV+oKoPjEizIYDle6RO8Zhu3mP07bek60QSHcx3d
+ UPugCLmaFwP9dX5fwKA7api4YPPt/afXdxoBmXTQP2FMiy1TAhV77XDh2
+ E8J/yqFte0jFiXYVW9aRkm7ZMhkA39DmDn17KaQbIiOL10rrLo/07LHOZ g==;
+X-CSE-ConnectionGUID: KvlbAKV5QhuoQNK3ICIL2Q==
+X-CSE-MsgGUID: tocjrd2vTC+ke+dLp287OA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="66358795"
+X-IronPort-AV: E=Sophos;i="6.20,230,1758610800"; d="scan'208";a="66358795"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2025 02:06:07 -0800
+X-CSE-ConnectionGUID: Y85IV73DSIufn/YRPWnwQw==
+X-CSE-MsgGUID: nDseewuzShyFvp9hgSzXCw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,230,1758610800"; d="scan'208";a="197353313"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by orviesa003.jf.intel.com with ESMTP; 27 Nov 2025 02:20:50 -0800
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Subject: [Core-for-CI] Revert "power: always freeze efivarfs"
-Date: Thu, 27 Nov 2025 15:34:00 +0530
-Message-Id: <20251127100400.1372221-1-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
+X-IronPort-AV: E=Sophos;i="6.20,230,1758610800"; d="scan'208";a="216545577"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.49])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2025 02:06:04 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ stable@vger.kernel.org, =?UTF-8?B?6rmA6rCV66+8?= <km.kim1503@gmail.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>
+Subject: Re: [PATCH] drm/i915/gem: NULL-initialize the eb->vma[].vma pointers
+ in gem_do_execbuffer
+Date: Thu, 27 Nov 2025 11:06:02 +0100
+Message-ID: <1835827.4herOUoSWf@jkrzyszt-mobl2.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <qylrctylmtj6qzibfpbapwpb77ut7gzckgg2wpc3gv56kl46m2@hyio7hcsj6vy>
+References: <20251125133337.26483-2-krzysztof.niemiec@intel.com>
+ <4423188.Fh7cpCN91P@jkrzyszt-mobl2.ger.corp.intel.com>
+ <qylrctylmtj6qzibfpbapwpb77ut7gzckgg2wpc3gv56kl46m2@hyio7hcsj6vy>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,136 +79,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit a3f8f8662771285511ae26c4c8d3ba1cd22159b9.
+On Wednesday, 26 November 2025 18:28:55 CET Krzysztof Niemiec wrote:
+> On 2025-11-25 at 19:06:32 GMT, Janusz Krzysztofik wrote:
+> > Re-sending because of my response unintentionally HTML formatted, with correct 
+> > email address of Tvrtko by the way.
+> > 
+> > 
+> > Hi Krzysztof,
+> > 
+> > On Tuesday, 25 November 2025 14:33:38 CET Krzysztof Niemiec wrote:
+> > > Initialize eb->vma[].vma pointers to NULL when the eb structure is first
+> > > set up.
+> > > 
+> > > During the execution of eb_lookup_vmas(), the eb->vma array is
+> > > successively filled up with struct eb_vma objects. This process includes
+> > > calling eb_add_vma(), which might fail; however, even in the event of
+> > > failure, eb->vma[i].vma is set for the currently processed buffer.
+> > > 
+> > > If eb_add_vma() fails, eb_lookup_vmas() returns with an error, which
+> > > prompts a call to eb_release_vmas() to clean up the mess. Since
+> > > eb_lookup_vmas() might fail during processing any (possibly not first)
+> > > buffer, eb_release_vmas() checks whether a buffer's vma is NULL to know
+> > > at what point did the lookup function fail.
+> > > 
+> > > In eb_lookup_vmas(), eb->vma[i].vma is set to NULL if either the helper
+> > > function eb_lookup_vma() or eb_validate_vma() fails. eb->vma[i+1].vma is
+> > > set to NULL in case i915_gem_object_userptr_submit_init() fails; the
+> > > current one needs to be cleaned up by eb_release_vmas() at this point,
+> > > so the next one is set. If eb_add_vma() fails, neither the current nor
+> > > the next vma is nullified, which is a source of a NULL deref bug
+> > > described in [1].
+> > > 
+> > > When entering eb_lookup_vmas(), the vma pointers are set to the slab
+> > > poison value, instead of NULL. 
+> > 
+> > 
+> > Your commit description still doesn't answer my question why the whole memory 
+> > area allocated to the table of VMAs is not initialized to 0 on allocation, 
+> > only left populated with poison values.
+> > 
+> 
+> Becuase kvmalloc_array() is used. [1]
+> 
+> I guess one could swap it to a call to kvcalloc() or something similar;
+> the thing is that the call actually handles both allocations of
+> exec_list2 and the eb_vma array, the former doesn't need to be
+> zero-initialized, the latter technically also doesn't but it simplifies
+> error paths (and fixes the linked bug). I'm not sure if a
+> zero-initializing *alloc() would be more readable or not here.
 
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15317
-References: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15341
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
----
- fs/efivarfs/super.c      |  1 -
- fs/super.c               | 13 +++----------
- include/linux/fs.h       |  3 +--
- kernel/power/hibernate.c |  9 ++++++---
- kernel/power/suspend.c   |  3 ++-
- 5 files changed, 12 insertions(+), 17 deletions(-)
+To my taste, zeroing on allocation would be a more clean solution.
 
-diff --git a/fs/efivarfs/super.c b/fs/efivarfs/super.c
-index 6de97565d5f7..1f4d8ce56667 100644
---- a/fs/efivarfs/super.c
-+++ b/fs/efivarfs/super.c
-@@ -533,7 +533,6 @@ static struct file_system_type efivarfs_type = {
- 	.init_fs_context = efivarfs_init_fs_context,
- 	.kill_sb = efivarfs_kill_sb,
- 	.parameters = efivarfs_parameters,
--	.fs_flags = FS_POWER_FREEZE,
- };
- 
- static __init int efivarfs_init(void)
-diff --git a/fs/super.c b/fs/super.c
-index 277b84e5c279..5bab94fb7e03 100644
---- a/fs/super.c
-+++ b/fs/super.c
-@@ -1183,14 +1183,11 @@ static inline bool get_active_super(struct super_block *sb)
- 
- static const char *filesystems_freeze_ptr = "filesystems_freeze";
- 
--static void filesystems_freeze_callback(struct super_block *sb, void *freeze_all_ptr)
-+static void filesystems_freeze_callback(struct super_block *sb, void *unused)
- {
- 	if (!sb->s_op->freeze_fs && !sb->s_op->freeze_super)
- 		return;
- 
--	if (freeze_all_ptr && !(sb->s_type->fs_flags & FS_POWER_FREEZE))
--		return;
--
- 	if (!get_active_super(sb))
- 		return;
- 
-@@ -1204,13 +1201,9 @@ static void filesystems_freeze_callback(struct super_block *sb, void *freeze_all
- 	deactivate_super(sb);
- }
- 
--void filesystems_freeze(bool freeze_all)
-+void filesystems_freeze(void)
- {
--	void *freeze_all_ptr = NULL;
--
--	if (freeze_all)
--		freeze_all_ptr = &freeze_all;
--	__iterate_supers(filesystems_freeze_callback, freeze_all_ptr,
-+	__iterate_supers(filesystems_freeze_callback, NULL,
- 			 SUPER_ITER_UNLOCKED | SUPER_ITER_REVERSE);
- }
- 
-diff --git a/include/linux/fs.h b/include/linux/fs.h
-index dd3b57cfadee..6abc3bb2939d 100644
---- a/include/linux/fs.h
-+++ b/include/linux/fs.h
-@@ -2689,7 +2689,6 @@ struct file_system_type {
- #define FS_ALLOW_IDMAP         32      /* FS has been updated to handle vfs idmappings. */
- #define FS_MGTIME		64	/* FS uses multigrain timestamps */
- #define FS_LBS			128	/* FS supports LBS */
--#define FS_POWER_FREEZE		256	/* Always freeze on suspend/hibernate */
- #define FS_RENAME_DOES_D_MOVE	32768	/* FS will handle d_move() during rename() internally. */
- 	int (*init_fs_context)(struct fs_context *);
- 	const struct fs_parameter_spec *parameters;
-@@ -3608,7 +3607,7 @@ extern void drop_super_exclusive(struct super_block *sb);
- extern void iterate_supers(void (*f)(struct super_block *, void *), void *arg);
- extern void iterate_supers_type(struct file_system_type *,
- 			        void (*)(struct super_block *, void *), void *);
--void filesystems_freeze(bool freeze_all);
-+void filesystems_freeze(void);
- void filesystems_thaw(void);
- 
- extern int dcache_dir_open(struct inode *, struct file *);
-diff --git a/kernel/power/hibernate.c b/kernel/power/hibernate.c
-index 26e45f86b955..53166ef86ba4 100644
---- a/kernel/power/hibernate.c
-+++ b/kernel/power/hibernate.c
-@@ -821,7 +821,8 @@ int hibernate(void)
- 		goto Restore;
- 
- 	ksys_sync_helper();
--	filesystems_freeze(filesystem_freeze_enabled);
-+	if (filesystem_freeze_enabled)
-+		filesystems_freeze();
- 
- 	error = freeze_processes();
- 	if (error)
-@@ -927,7 +928,8 @@ int hibernate_quiet_exec(int (*func)(void *data), void *data)
- 	if (error)
- 		goto restore;
- 
--	filesystems_freeze(filesystem_freeze_enabled);
-+	if (filesystem_freeze_enabled)
-+		filesystems_freeze();
- 
- 	error = freeze_processes();
- 	if (error)
-@@ -1077,7 +1079,8 @@ static int software_resume(void)
- 	if (error)
- 		goto Restore;
- 
--	filesystems_freeze(filesystem_freeze_enabled);
-+	if (filesystem_freeze_enabled)
-+		filesystems_freeze();
- 
- 	pm_pr_dbg("Preparing processes for hibernation restore.\n");
- 	error = freeze_processes();
-diff --git a/kernel/power/suspend.c b/kernel/power/suspend.c
-index 3d4ebedad69f..b4ca17c2fecf 100644
---- a/kernel/power/suspend.c
-+++ b/kernel/power/suspend.c
-@@ -375,7 +375,8 @@ static int suspend_prepare(suspend_state_t state)
- 	if (error)
- 		goto Restore;
- 
--	filesystems_freeze(filesystem_freeze_enabled);
-+	if (filesystem_freeze_enabled)
-+		filesystems_freeze();
- 	trace_suspend_resume(TPS("freeze_processes"), 0, true);
- 	error = suspend_freeze_processes();
- 	trace_suspend_resume(TPS("freeze_processes"), 0, false);
--- 
-2.25.1
+But, while being at it, please have a still closer look, especially at these 
+two statements:
+
+at drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:i915_gem_execbuffer2_ioctl():3588
+
+	/* Allocate extra slots for use by the command parser */
+	exec2_list = kvmalloc_array(count + 2, eb_element_size(),
+			       __GFP_NOWARN | GFP_KERNEL);
+
+at drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:i915_gem_do_execbuffer():3354
+
+	eb.vma = (struct eb_vma *)(exec + args->buffer_count + 1);
+
+Why do we allocate space for 2 tables of count size plus 2 extra pairs of 
+their elements, but then place the second table at count + 1 offset, leaving 
+space for only one extra element of the first type?
+
+Looking at git history, there was a couple of excessively complex patches and 
+reverts that apparently introduced that discrepancy.  Unfortunately, none of 
+them, with exception of the one that introduced the above shown inline 
+comment, provided a clear justification why we need to switch from 1 to 2 or 
+vice versa.
+
+Anyway, depending on how that extra space is actually used by the command 
+parser, we may or may not get into troubles with that, so we should better fix 
+it, I believe.
+
+Thanks,
+Janusz
+
+> 
+> Thanks
+> Krzysztof
+> 
+> [1] https://elixir.bootlin.com/linux/v6.17.9/source/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c#L3586
+> 
+> > Thanks,
+> > Janusz
+> 
+
+
+
 
