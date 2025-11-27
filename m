@@ -2,69 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01F31C8DFA5
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Nov 2025 12:21:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B663CC8E0B6
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Nov 2025 12:28:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A27510E00A;
-	Thu, 27 Nov 2025 11:21:19 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="et3QpFXE";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29BC810E05D;
+	Thu, 27 Nov 2025 11:28:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64A4B10E00A;
- Thu, 27 Nov 2025 11:21:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764242478; x=1795778478;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=wVBm+5KWupaATaDiiobiNvx07HtguyZruwuj7nyVaT8=;
- b=et3QpFXE6MKeWDsYVArB0XZQyI/SL26FLkL75tVPNKGBynwI0Lf/M8E6
- EjfSvTEKTQBGI7CcQUTm/1H/XPflkjlp+i35xKg+2WL8yw60Su6u2sLhe
- b4wWpRlTGmvvKZ86Q7ybwjUXsHzgPp5eOy8SMGOp3jngYGp2u6k3yjBsn
- TcP4x6nwwYUeSF8jU0qfLq+oZpbU7GhoJ8ivs63WHHqzvO8JSCJqt4IVZ
- JE50qVlcdUvB/YYzpCt7ny9WGXkrem7nx0+1OpcMl7f0BrtTuTEipXv++
- o1b+Glc/+rFPUSES8Fal1cdGUKCDlj6VMn25D8576pQEn48EaDIz6kc0V g==;
-X-CSE-ConnectionGUID: euCsbpp+RH+Exjg/m3xAPA==
-X-CSE-MsgGUID: +eTwKG07QX2s8Xq/AVGGJw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="53855879"
-X-IronPort-AV: E=Sophos;i="6.20,231,1758610800"; d="scan'208";a="53855879"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2025 03:21:17 -0800
-X-CSE-ConnectionGUID: vCT+vODPRkqbm+sph1dshw==
-X-CSE-MsgGUID: 0WBxLg1QTYWiepMHeKHr/A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,231,1758610800"; d="scan'208";a="193431310"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.49])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2025 03:21:14 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- stable@vger.kernel.org, =?UTF-8?B?6rmA6rCV66+8?= <km.kim1503@gmail.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>
-Subject: Re: [PATCH] drm/i915/gem: NULL-initialize the eb->vma[].vma pointers
- in gem_do_execbuffer
-Date: Thu, 27 Nov 2025 12:21:11 +0100
-Message-ID: <4085794.qgXdJBQaxk@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <24917431ff16a8464b89b1314e02201172cc3fde@intel.com>
-References: <20251125133337.26483-2-krzysztof.niemiec@intel.com>
- <1835827.4herOUoSWf@jkrzyszt-mobl2.ger.corp.intel.com>
- <24917431ff16a8464b89b1314e02201172cc3fde@intel.com>
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D67A10E047;
+ Thu, 27 Nov 2025 11:28:44 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3375048005432924170=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_Revert_=22power=3A_always?=
+ =?utf-8?q?_freeze_efivarfs=22?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 27 Nov 2025 11:28:44 -0000
+Message-ID: <176424292431.33971.8503602451767943249@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251127100400.1372221-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20251127100400.1372221-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,40 +37,219 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thursday, 27 November 2025 11:46:05 CET Jani Nikula wrote:
-> On Thu, 27 Nov 2025, Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com> wrote:
-> > To my taste, zeroing on allocation would be a more clean solution.
-> 
-> IIUC there are micro optimizations to not clear on allocation when you
-> don't strictly have to...
-> 
-> I'm not advocating one or the other approach, just stating what I
-> believe is the reason.
+--===============3375048005432924170==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-OK, good to hear there is still someone who is able to recall what the reason 
-could be when no hints can be found in git history nor inline comments.
+== Series Details ==
 
-If that's the case, but we agree on pre-zeroing only the sub-area dedicated to 
-the vma table rather than doing that on failure and limited to one element 
-that follows the one that failed, as Krzysztof initially proposed, then I'd 
-vote for restoring memset() that was dropped with commit 170fa29b14fad ("drm/
-i915: Simplify eb_lookup_vmas()").  In any case, a clarification (in commit 
-description or inline comment) on why we chose one solutions and not the 
-another wouldn't hurt.
+Series: Revert "power: always freeze efivarfs"
+URL   : https://patchwork.freedesktop.org/series/158163/
+State : failure
 
-Thanks,
-Janusz
+== Summary ==
 
-> 
-> 
-> BR,
-> Jani.
-> 
-> 
+CI Bug Log - changes from CI_DRM_17595 -> Patchwork_158163v1
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_158163v1 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_158163v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158163v1/index.html
+
+Participating hosts (45 -> 44)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_158163v1:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@gem_exec_store@basic:
+    - bat-dg2-14:         [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-dg2-14/igt@gem_exec_store@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158163v1/bat-dg2-14/igt@gem_exec_store@basic.html
+
+  * igt@gem_linear_blits@basic:
+    - fi-kbl-8809g:       [PASS][3] -> [INCOMPLETE][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/fi-kbl-8809g/igt@gem_linear_blits@basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158163v1/fi-kbl-8809g/igt@gem_linear_blits@basic.html
+
+  * igt@kms_addfb_basic (NEW):
+    - bat-arlh-3:         NOTRUN -> [INCOMPLETE][5]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158163v1/bat-arlh-3/igt@kms_addfb_basic.html
+
+  * igt@kms_force_connector_basic@force-edid:
+    - fi-kbl-guc:         [PASS][6] -> [INCOMPLETE][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/fi-kbl-guc/igt@kms_force_connector_basic@force-edid.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158163v1/fi-kbl-guc/igt@kms_force_connector_basic@force-edid.html
+
+  
+New tests
+---------
+
+  New tests have been introduced between CI_DRM_17595 and Patchwork_158163v1:
+
+### New IGT tests (1) ###
+
+  * igt@kms_addfb_basic:
+    - Statuses : 1 incomplete(s)
+    - Exec time: [0.0] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_158163v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live:
+    - bat-jsl-1:          [PASS][8] -> [DMESG-FAIL][9] ([i915#13774]) +1 other test dmesg-fail
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-jsl-1/igt@i915_selftest@live.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158163v1/bat-jsl-1/igt@i915_selftest@live.html
+
+  
+  [i915#13774]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13774
 
 
+Build changes
+-------------
+
+  * Linux: CI_DRM_17595 -> Patchwork_158163v1
+
+  CI-20190529: 20190529
+  CI_DRM_17595: e7a767430515c3a6e8aee91c2a68cba8b06fe884 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8639: 2ce563031e6b2ec91479f6af8c326d25c15bdb26 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_158163v1: e7a767430515c3a6e8aee91c2a68cba8b06fe884 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158163v1/index.html
+
+--===============3375048005432924170==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Revert &quot;power: always freeze efivarfs&quot;</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158163/">https://patchwork.freedesktop.org/series/158163/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158163v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158163v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17595 -&gt; Patchwork_158163v1</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_158163v1 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_158163v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158163v1/index.html</p>
+<h2>Participating hosts (45 -&gt; 44)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_158163v1:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@gem_exec_store@basic:</p>
+<ul>
+<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-dg2-14/igt@gem_exec_store@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158163v1/bat-dg2-14/igt@gem_exec_store@basic.html">INCOMPLETE</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_linear_blits@basic:</p>
+<ul>
+<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/fi-kbl-8809g/igt@gem_linear_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158163v1/fi-kbl-8809g/igt@gem_linear_blits@basic.html">INCOMPLETE</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic (NEW):</p>
+<ul>
+<li>bat-arlh-3:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158163v1/bat-arlh-3/igt@kms_addfb_basic.html">INCOMPLETE</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-edid:</p>
+<ul>
+<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/fi-kbl-guc/igt@kms_force_connector_basic@force-edid.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158163v1/fi-kbl-guc/igt@kms_force_connector_basic@force-edid.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>New tests</h2>
+<p>New tests have been introduced between CI_DRM_17595 and Patchwork_158163v1:</p>
+<h3>New IGT tests (1)</h3>
+<ul>
+<li>igt@kms_addfb_basic:<ul>
+<li>Statuses : 1 incomplete(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_158163v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live:<ul>
+<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-jsl-1/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158163v1/bat-jsl-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13774">i915#13774</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17595 -&gt; Patchwork_158163v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17595: e7a767430515c3a6e8aee91c2a68cba8b06fe884 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8639: 2ce563031e6b2ec91479f6af8c326d25c15bdb26 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_158163v1: e7a767430515c3a6e8aee91c2a68cba8b06fe884 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============3375048005432924170==--
