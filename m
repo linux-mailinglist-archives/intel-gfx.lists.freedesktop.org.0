@@ -2,81 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E8F9C8CCEE
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Nov 2025 05:44:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C98D7C8CE02
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Nov 2025 06:40:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A8D010E13B;
-	Thu, 27 Nov 2025 04:44:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="lem1Ozhk";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 324FB10E74C;
+	Thu, 27 Nov 2025 05:40:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com
- [209.85.210.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E1DE10E13B
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Nov 2025 04:44:10 +0000 (UTC)
-Received: by mail-pf1-f170.google.com with SMTP id
- d2e1a72fcca58-7aa9be9f03aso350261b3a.2
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Nov 2025 20:44:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1764218650; x=1764823450; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:to
- :from:sender:from:to:cc:subject:date:message-id:reply-to;
- bh=x7BjBMa+JRnqZfeT1IW4v+bUgZq+0v2oxPOk5e1+Mak=;
- b=lem1OzhkBAiWKL7o9KfeSHO0pJok02NzV9I8Lo0P5xhkB5CU1zMnWwHdTNHBUntidA
- nkFqV2jkN9QDLlwCYl/lkKLoV+6DnGTsBZTBLTc/NsWyc7kkEo0RJo0+oUQr2kA/1B2u
- 9nQyOz9XOKm5jPlLfMlTSL32q+LSOL7F9mXAFnKEJPZs9o98xwNmy7QcQH+Fq9f3YDFn
- 7DAQcWKFcPfLV0VaRUkhAplPq6Yo75e6SvQnqmGadOkyRAs+BoLtXe4VDMGvxrgyOIZI
- OKX5t4dLVdGCGcMxs0fKdumDfxqOqmgnhUE3h2/zr0kui14GArbpw5BJrz/5DQFURfjW
- RJGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1764218650; x=1764823450;
- h=content-transfer-encoding:mime-version:message-id:date:subject:to
- :from:sender:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=x7BjBMa+JRnqZfeT1IW4v+bUgZq+0v2oxPOk5e1+Mak=;
- b=OskIx7BkkQuojXUYJrq4VSzWN9hA1n70bN7tye2JVOTwgyZHIAuDdJIfTeQWU2lbjZ
- CmERcu5iLjyFFxPDRoNMWF/9K3oRDIZdASY3cJNmoo7BIbk4yFJ1X026dypnVRJu4I2Z
- WvrzsuBjektpz9XpMqRx6FE8I6YJhaUvOXcpswf2rBcFTmDam5ODwe1j3MGhlKI+2Uu2
- YSLTPGmSwpS4+9wkDqoYX7cGC22LZS902xK45AOAEhj1rE1tFJ50Yk7dEoqjoUk6SCmW
- v4CsgqyUTYwRql1ZRdduaBWWn7R1rCrjIw3ogS8KKUlHXZ5A+49nCWHktcfzbBHMUdes
- RiCA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXceMF9KDk7XSqCTUIRLvXSdYznWkKr6tbJnrkk/mosMGQEoR8SyE+xMJprzAYH6j3GBtwYRhBBgnM=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzwdMiJhawPJGi7uk0M3ggefdg+3KbRiSU4yWTmsxC98NnE/i2G
- pBlU3B+IpTSVOknjHKitejayVeGV8KTJ8mWwNyH7D/jtp6cnzQpR5Y0A
-X-Gm-Gg: ASbGncsNZnYdHfM2nuTQg+jf/UDpnF7DzRnmAcXNlbd9/3LZJ6yiGj2Lrwqh+A5lMKV
- oZ2aSMVSK81VEjMjNZQ6JItZhA9+qgq7ePxz0fGIsSbCSF4meFw7SHSot4hhlQhyD+Yuyq3RuUO
- rFwtHX2NnEiyGqdbaoHpd1VyWbs5ZvMNF6GgCfnU+xFrVVBSiNUDKhE2qdFEV3ykwBJwNKH4c/K
- ABnJ4ka0mFLlrr4PmXVENBQ/hLg/VpOz7eR6NYZWF1F2/TBLY64qlq7POArMUp6tkfiJB/NS7+5
- ENCtZRPVwLg5h0dqm2BnbvJvfqMrzeaqkqO/0CfYsDsbqWYBtfgwdOF1uw7RYiYWhK+2DRr5G0q
- ApIb0bd04wvywo+pRIz88bGPHencJhYudfEMOQ/dO0RYNXnBCTfCZtdr3qLBUVVxYFDwJnJrmZi
- 6MznqakQqipoR1QLHWNcH9bDXWFeESKbeqTdg8I+q9
-X-Google-Smtp-Source: AGHT+IGzwx8XxKIfrZDVhykQGzSqr62sGMg9gUipriPRuelgVcksceVllUvwkK7+tgeHc5shxjATTQ==
-X-Received: by 2002:a05:6a00:2e9e:b0:7b2:1fb0:6da0 with SMTP id
- d2e1a72fcca58-7c58e602d9dmr26604730b3a.28.1764218649685; 
- Wed, 26 Nov 2025 20:44:09 -0800 (PST)
-Received: from localhost (211-75-139-220.hinet-ip.hinet.net. [211.75.139.220])
- by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-7d150b6853bsm313375b3a.14.2025.11.26.20.44.08
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 26 Nov 2025 20:44:09 -0800 (PST)
-From: "Chia-Lin Kao (AceLan)" <acelan.kao@canonical.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/i915/dp: Add byte-by-byte fallback for broken USB-C
- adapters
-Date: Thu, 27 Nov 2025 12:44:06 +0800
-Message-ID: <20251127044406.618543-1-acelan.kao@canonical.com>
-X-Mailer: git-send-email 2.43.0
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EA3B10E16C;
+ Thu, 27 Nov 2025 05:40:05 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7955915985019764689=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_Add_byte-b?=
+ =?utf-8?q?y-byte_fallback_for_broken_USB-C_adapters?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chia-Lin Kao (AceLan)" <acelan.kao@canonical.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 27 Nov 2025 05:40:05 -0000
+Message-ID: <176422200518.30433.2601080908260904363@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251127044406.618543-1-acelan.kao@canonical.com>
+In-Reply-To: <20251127044406.618543-1-acelan.kao@canonical.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,86 +37,207 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Some USB-C hubs and adapters have buggy firmware where multi-byte AUX
-reads from DPCD address 0x00000 consistently timeout, while single-byte
-reads from the same address work correctly.
+--===============7955915985019764689==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Known affected devices that exhibit this issue:
-- Lenovo USB-C to VGA adapter (VIA VL817 chipset)
-  idVendor=17ef, idProduct=7217
-- Dell DA310 USB-C mobile adapter hub
-  idVendor=413c, idProduct=c010
+== Series Details ==
 
-Analysis of the failure pattern shows:
-- Single-byte probes to 0xf0000 (LTTPR) succeed
-- Single-byte probes to 0x00102 (TRAINING_AUX_RD_INTERVAL) succeed
-- 15-byte reads from 0x00000 (DPCD capabilities) timeout with -ETIMEDOUT
-- Retrying does not help - the failure is consistent across all attempts
+Series: drm/i915/dp: Add byte-by-byte fallback for broken USB-C adapters
+URL   : https://patchwork.freedesktop.org/series/158146/
+State : success
 
-The issue appears to be a firmware bug in the AUX transaction handling
-that specifically affects multi-byte reads from the base DPCD address.
+== Summary ==
 
-Add a fallback mechanism that attempts byte-by-byte reading when the
-normal multi-byte drm_dp_read_dpcd_caps() fails. This workaround only
-activates for adapters that fail the standard read path, ensuring no
-impact on correctly functioning hardware.
+CI Bug Log - changes from CI_DRM_17595 -> Patchwork_158146v1
+====================================================
 
-The byte-by-byte read uses drm_dp_dpcd_readb() to read each of the 15
-DPCD capability bytes individually, working around the firmware bug
-while maintaining compatibility with all other adapters.
+Summary
+-------
 
-Tested with:
-- Lenovo USB-C to VGA adapter (VIA VL817) - now works with fallback
-- Dell DA310 USB-C hub - now works with fallback
-- Dell/Analogix Slimport adapter - continues to work with normal path
+  **SUCCESS**
 
-Signed-off-by: Chia-Lin Kao (AceLan) <acelan.kao@canonical.com>
----
- .../drm/i915/display/intel_dp_link_training.c | 21 ++++++++++++++++++-
- 1 file changed, 20 insertions(+), 1 deletion(-)
+  No regressions found.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index aad5fe14962f..738a5bb4adb3 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -213,6 +213,7 @@ static int intel_dp_init_lttpr(struct intel_dp *intel_dp, const u8 dpcd[DP_RECEI
- int intel_dp_read_dprx_caps(struct intel_dp *intel_dp, u8 dpcd[DP_RECEIVER_CAP_SIZE])
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
-+	int ret, i;
- 
- 	if (intel_dp_is_edp(intel_dp))
- 		return 0;
-@@ -226,7 +227,25 @@ int intel_dp_read_dprx_caps(struct intel_dp *intel_dp, u8 dpcd[DP_RECEIVER_CAP_S
- 				      DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV))
- 			return -EIO;
- 
--	if (drm_dp_read_dpcd_caps(&intel_dp->aux, dpcd))
-+	ret = drm_dp_read_dpcd_caps(&intel_dp->aux, dpcd);
-+	if (ret == 0)
-+		return 0;
-+
-+	/*
-+	 * Workaround for USB-C hubs/adapters with buggy firmware that fail
-+	 * multi-byte AUX reads from DPCD address 0x00000 but work with
-+	 * single-byte reads. Known affected devices:
-+	 * - Lenovo USB-C to VGA adapter (VIA VL817, idVendor=17ef, idProduct=7217)
-+	 * - Dell DA310 USB-C hub (idVendor=413c, idProduct=c010)
-+	 * Read the DPCD capabilities byte-by-byte as a fallback.
-+	 */
-+	for (i = 0; i < DP_RECEIVER_CAP_SIZE; i++) {
-+		ret = drm_dp_dpcd_readb(&intel_dp->aux, DP_DPCD_REV + i, &dpcd[i]);
-+		if (ret < 0)
-+			return -EIO;
-+	}
-+
-+	if (dpcd[DP_DPCD_REV] == 0)
- 		return -EIO;
- 
- 	return 0;
--- 
-2.43.0
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158146v1/index.html
 
+Participating hosts (45 -> 43)
+------------------------------
+
+  Missing    (2): fi-glk-j4005 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_158146v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-3:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158146v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - bat-dg2-8:          [DMESG-FAIL][3] ([i915#12061]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-dg2-8/igt@i915_selftest@live.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158146v1/bat-dg2-8/igt@i915_selftest@live.html
+    - bat-arlh-2:         [INCOMPLETE][5] ([i915#14837]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-arlh-2/igt@i915_selftest@live.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158146v1/bat-arlh-2/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@guc_hang:
+    - bat-arlh-2:         [INCOMPLETE][7] ([i915#15275]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-arlh-2/igt@i915_selftest@live@guc_hang.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158146v1/bat-arlh-2/igt@i915_selftest@live@guc_hang.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [DMESG-FAIL][9] ([i915#12061]) -> [PASS][10] +1 other test pass
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158146v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
+    - bat-mtlp-9:         [DMESG-FAIL][11] ([i915#12061]) -> [PASS][12] +1 other test pass
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158146v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live:
+    - bat-atsm-1:         [DMESG-FAIL][13] ([i915#12061] / [i915#13929]) -> [DMESG-FAIL][14] ([i915#12061] / [i915#14204])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-atsm-1/igt@i915_selftest@live.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158146v1/bat-atsm-1/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@mman:
+    - bat-atsm-1:         [DMESG-FAIL][15] ([i915#13929]) -> [DMESG-FAIL][16] ([i915#14204])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-atsm-1/igt@i915_selftest@live@mman.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158146v1/bat-atsm-1/igt@i915_selftest@live@mman.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#13929]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929
+  [i915#14204]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204
+  [i915#14837]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14837
+  [i915#15275]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15275
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_17595 -> Patchwork_158146v1
+
+  CI-20190529: 20190529
+  CI_DRM_17595: e7a767430515c3a6e8aee91c2a68cba8b06fe884 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8639: 2ce563031e6b2ec91479f6af8c326d25c15bdb26 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_158146v1: e7a767430515c3a6e8aee91c2a68cba8b06fe884 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158146v1/index.html
+
+--===============7955915985019764689==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dp: Add byte-by-byte fallback for broken USB-C adapters</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158146/">https://patchwork.freedesktop.org/series/158146/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158146v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158146v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17595 -&gt; Patchwork_158146v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158146v1/index.html</p>
+<h2>Participating hosts (45 -&gt; 43)</h2>
+<p>Missing    (2): fi-glk-j4005 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_158146v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158146v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-dg2-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158146v1/bat-dg2-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-arlh-2/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14837">i915#14837</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158146v1/bat-arlh-2/igt@i915_selftest@live.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@guc_hang:</p>
+<ul>
+<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-arlh-2/igt@i915_selftest@live@guc_hang.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15275">i915#15275</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158146v1/bat-arlh-2/igt@i915_selftest@live@guc_hang.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158146v1/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158146v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158146v1/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@mman:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158146v1/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17595 -&gt; Patchwork_158146v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17595: e7a767430515c3a6e8aee91c2a68cba8b06fe884 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8639: 2ce563031e6b2ec91479f6af8c326d25c15bdb26 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_158146v1: e7a767430515c3a6e8aee91c2a68cba8b06fe884 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============7955915985019764689==--
