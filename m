@@ -2,57 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61D0CC8D79C
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Nov 2025 10:16:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E113C97A53
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Dec 2025 14:39:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE2ED10E7C6;
-	Thu, 27 Nov 2025 09:16:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 957FC10E41A;
+	Mon,  1 Dec 2025 13:39:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q1F4pe7L";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="oMA0l5GF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67E9B10E7BE;
- Thu, 27 Nov 2025 09:16:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764234962; x=1795770962;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=1fnd9wylmlb4DM6BrZIfa9B3OjBFiIrneohqhPv8Ncc=;
- b=Q1F4pe7LlrxdPIv1/PBGCe+ZyAHcS/MtFlvoUT7SGquyVXZWF6RlVAw/
- LYj2D6P2oXv58qyx8WzFGGq18PrJcu/b71UdlKPMgpExY4+gcP+EpOHHc
- Kl6vf9J9IUS0KS+alfo0hd3CwGFeeF1wCZdZtlOUKcsiWZFav7RhYvlKS
- QS3ZVRoFKSu36+KX9TP2LfX8m3dshXEcg6S6ChL0b+BRqajZWP2gcM+/d
- AqyB0vzPP3v/XyovK3olpn5e9BMs29fhtJBaamox2JGTeLQeNPkTcZrI2
- vbb+oCP/B/6rzls+z0SKmu6jZBVbHudX6eADvj9swkbV1sxr3DBtbXwAQ w==;
-X-CSE-ConnectionGUID: F2cgOGrMSiqB4MuUmxLd/w==
-X-CSE-MsgGUID: A3N8dCkDS7WpjVyDwL/ZMw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="77642328"
-X-IronPort-AV: E=Sophos;i="6.20,230,1758610800"; d="scan'208";a="77642328"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2025 01:16:02 -0800
-X-CSE-ConnectionGUID: vUSTTNoUQTOwFc9FCuUBCA==
-X-CSE-MsgGUID: 5kXg9oqmSgyFhMQmRXD4Xw==
-X-ExtLoop1: 1
-Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by fmviesa003.fm.intel.com with ESMTP; 27 Nov 2025 01:16:01 -0800
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, mitulkumar.ajitkumar.golani@intel.com,
- ankit.k.nautiyal@intel.com, ville.syrjala@linux.intel.com
-Subject: [PATCH v9 04/17] drm/i915/vrr: Add functions to read out vmin/vmax
- stuff
-Date: Thu, 27 Nov 2025 14:46:01 +0530
-Message-ID: <20251127091614.648791-5-mitulkumar.ajitkumar.golani@intel.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20251127091614.648791-1-mitulkumar.ajitkumar.golani@intel.com>
-References: <20251127091614.648791-1-mitulkumar.ajitkumar.golani@intel.com>
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6980010E7D1;
+ Thu, 27 Nov 2025 09:16:16 +0000 (UTC)
+Received: from smtp202.mailbox.org (smtp202.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::202])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dH9ld1kxhz9tZ4;
+ Thu, 27 Nov 2025 10:16:13 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1764234973; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=XFgdH560T3YiZGXpnSavHS2fNWjlZmWfX61HED3oDlY=;
+ b=oMA0l5GF20+89bOALj2AZEzZ3KIYCQ0sQV3nKIuCRZQwgA60GoBHIUvo5JRwMguBCc9aZn
+ F5inZjQemfWXADIy+1xs76rtlYJFo92RNRet6w4peIdc++GW6ttRGWxsCSXZqLLJ1K10VW
+ QLkDmrkejRTh1VxfNJZ4pklrXpAKF9HotuRSmTJqVuPBFkros9P2+ivH/W1otk+mQpr0t9
+ mnTm79fYRIiStVef/JAOqBwscFVop7s6hLDvpyU/Arc28NFYHaNpXsDjbYT9vMO0+bOAVO
+ gzwkxgjeZWdYc3mg70heVVNEMMx2BkFm+1Edzdqkw9Qv9hGCakXTyIbg4+8BCQ==
+Message-ID: <35189892c0cb774155e2012d41371b4d3f8e7d0f.camel@mailbox.org>
+Subject: Re: [PATCH 1/6] dma-buf/dma-fence: Add dma_fence_test_signaled_flag()
+From: Philipp Stanner <phasta@mailbox.org>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Matthew
+ Brost <matthew.brost@intel.com>, Philipp Stanner <phasta@kernel.org>
+Cc: Sumit Semwal <sumit.semwal@linaro.org>, Gustavo Padovan
+ <gustavo@padovan.org>, Felix Kuehling <Felix.Kuehling@amd.com>, Alex
+ Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>,  Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui
+ <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,  Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Lucas De
+ Marchi <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,  linaro-mm-sig@lists.linaro.org,
+ linux-kernel@vger.kernel.org,  amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org,  intel-xe@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Date: Thu, 27 Nov 2025 10:16:01 +0100
+In-Reply-To: <f1864f6d-8403-406d-81a0-00a71495cae8@amd.com>
+References: <20251126131914.149445-2-phasta@kernel.org>
+ <20251126131914.149445-3-phasta@kernel.org>
+ <aSctt3QFiEIB61Gr@lstrano-desk.jf.intel.com>
+ <aScxGDYeNeN1WYja@lstrano-desk.jf.intel.com>
+ <f1864f6d-8403-406d-81a0-00a71495cae8@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: bgpghhhhrg9u5u445qr6ka3upg67j9jx
+X-MBO-RS-ID: a7092e291bad71bbc06
+X-Mailman-Approved-At: Mon, 01 Dec 2025 13:39:28 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,122 +80,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Thu, 2025-11-27 at 09:11 +0100, Christian K=C3=B6nig wrote:
+> On 11/26/25 17:55, Matthew Brost wrote:
+> > On Wed, Nov 26, 2025 at 08:41:27AM -0800, Matthew Brost wrote:
+> > > On Wed, Nov 26, 2025 at 02:19:10PM +0100, Philipp Stanner wrote:
+> > > > The dma_fence framework checks at many places whether the signaled =
+flag
+> > > > of a fence is already set. The code can be simplified and made more
+> > > > readable by providing a helper function for that.
+> > > >=20
+> > > > Add dma_fence_test_signaled_flag(), which only checks whether a fen=
+ce is
+> > > > signaled. Use it internally.
+> > > >=20
+> > > > Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> > > > Signed-off-by: Philipp Stanner <phasta@kernel.org>
+> > >=20
+> > > This is a nice cleanp:
+> > > Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+> > >=20
+> > > > ---
+> > > > =C2=A0drivers/dma-buf/dma-fence.c | 19 +++++++++----------
+> > > > =C2=A0include/linux/dma-fence.h=C2=A0=C2=A0 | 24 ++++++++++++++++++=
+++++--
+> > > > =C2=A02 files changed, 31 insertions(+), 12 deletions(-)
+> > > >=20
+> > > > diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fenc=
+e.c
+> > > > index 39e6f93dc310..25117a906846 100644
+> > > > --- a/drivers/dma-buf/dma-fence.c
+> > > > +++ b/drivers/dma-buf/dma-fence.c
+> > > > @@ -372,8 +372,7 @@ int dma_fence_signal_timestamp_locked(struct dm=
+a_fence *fence,
+> > > > =C2=A0
+> > > > =C2=A0	lockdep_assert_held(fence->lock);
+> > > > =C2=A0
+> > > > -	if (unlikely(test_and_set_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
+> > > > -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &fence->flags)))
+> >=20
+> > I need to read a little better, I think this change isn't quite right.
+> > The original code is test and set, the updated code is test only (i.e.,
+> > you are missing the set step). So maybe just leave this line as is.
+>=20
+> Oh, good point! I've totally missed that as well.
 
-Calculate delayed vblank start position with the help of added
-vmin/vmax stuff for next frame and final computation.
+Oh dear; I also just saw it when opening the mail client ._.
 
---v2:
-- Correct Author details.
+>=20
+> But that means that this patch set hasn't even been smoke tested.
 
---v3:
-- Separate register details from this  patch.
+I've built it and did some basic testing with my Nouveau system. Any
+suggestions? Do you have a CI that one can trigger?
 
---v4:
-- Add mask macros.
-
---v5:
-- As live prefix params indicate timings for current frame,
-read just _live prefix values instead of next frame timings as
-done previously.
-- Squash Refactor vrr params patch.
-
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vrr.c | 56 ++++++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_vrr.h |  5 +++
- 2 files changed, 61 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index b92c42fde937..7f0ead192777 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -261,6 +261,12 @@ static int intel_vrr_hw_value(const struct intel_crtc_state *crtc_state,
- 		return value - crtc_state->set_context_latency;
- }
- 
-+static int intel_vrr_vblank_start(const struct intel_crtc_state *crtc_state,
-+				  int vmin_vmax)
-+{
-+	return intel_vrr_hw_value(crtc_state, vmin_vmax) - crtc_state->vrr.guardband;
-+}
-+
- /*
-  * For fixed refresh rate mode Vmin, Vmax and Flipline all are set to
-  * Vtotal value.
-@@ -898,3 +904,53 @@ int intel_vrr_vmin_safe_window_end(const struct intel_crtc_state *crtc_state)
- 	return intel_vrr_vmin_vblank_start(crtc_state) -
- 	       crtc_state->set_context_latency;
- }
-+
-+int intel_vrr_dcb_vmin_vblank_start_next(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-+	u32 tmp = 0;
-+
-+	tmp = intel_de_read(display, TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_LIVE(cpu_transcoder));
-+
-+	if (REG_FIELD_GET(VRR_DCB_ADJ_FLIPLINE_CNT_MASK, tmp) == 0)
-+		return -1;
-+
-+	return intel_vrr_vblank_start(crtc_state, VRR_DCB_ADJ_FLIPLINE(tmp) + 1);
-+}
-+
-+int intel_vrr_dcb_vmax_vblank_start_next(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-+	u32 tmp = 0;
-+
-+	tmp = intel_de_read(display, TRANS_VRR_DCB_ADJ_VMAX_CFG_LIVE(cpu_transcoder));
-+
-+	if (REG_FIELD_GET(VRR_DCB_ADJ_VMAX_CNT_MASK, tmp) == 0)
-+		return -1;
-+
-+	return intel_vrr_vblank_start(crtc_state, VRR_DCB_ADJ_VMAX(tmp) + 1);
-+}
-+
-+int intel_vrr_dcb_vmin_vblank_start_final(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-+	u32 tmp = 0;
-+
-+	tmp = intel_de_read(display, TRANS_VRR_DCB_FLIPLINE_LIVE(cpu_transcoder));
-+
-+	return intel_vrr_vblank_start(crtc_state, VRR_DCB_FLIPLINE(tmp) + 1);
-+}
-+
-+int intel_vrr_dcb_vmax_vblank_start_final(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-+	u32 tmp = 0;
-+
-+	tmp = intel_de_read(display, TRANS_VRR_DCB_VMAX_LIVE(cpu_transcoder));
-+
-+	return intel_vrr_vblank_start(crtc_state, VRR_DCB_VMAX(tmp) + 1);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
-index bc9044621635..66fb9ad846f2 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.h
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.h
-@@ -43,4 +43,9 @@ bool intel_vrr_always_use_vrr_tg(struct intel_display *display);
- int intel_vrr_safe_window_start(const struct intel_crtc_state *crtc_state);
- int intel_vrr_vmin_safe_window_end(const struct intel_crtc_state *crtc_state);
- 
-+int intel_vrr_dcb_vmin_vblank_start_next(const struct intel_crtc_state *crtc_state);
-+int intel_vrr_dcb_vmax_vblank_start_next(const struct intel_crtc_state *crtc_state);
-+int intel_vrr_dcb_vmin_vblank_start_final(const struct intel_crtc_state *crtc_state);
-+int intel_vrr_dcb_vmax_vblank_start_final(const struct intel_crtc_state *crtc_state);
-+
- #endif /* __INTEL_VRR_H__ */
--- 
-2.48.1
-
+Thx
+P.
