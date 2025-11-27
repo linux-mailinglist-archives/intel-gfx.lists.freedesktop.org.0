@@ -2,55 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25572C8E248
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Nov 2025 12:55:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A3A3C8E24B
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Nov 2025 12:55:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82AE510E751;
-	Thu, 27 Nov 2025 11:55:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89F8C10E76F;
+	Thu, 27 Nov 2025 11:55:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IXDPYIZy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k1wpxD82";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F20310E716;
- Thu, 27 Nov 2025 11:55:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D345510E698;
+ Thu, 27 Nov 2025 11:55:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764244500; x=1795780500;
+ t=1764244504; x=1795780504;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=hvrmkeF4Jk6siCfKvoza8IlwA+ilO0Za+IO588XnLEQ=;
- b=IXDPYIZyJS5lc6YRQwuxmwpaB9e6h8lIXhdL/EKZ3hSzUsRSUaILjJDa
- zrfoqmKGadHUZGm63hKS/vwBvMG9p0MeOb+1hj+zRbFncnqOzgfvxqhIB
- 5xNrU212j+Iafc1jnNsAt/SUZSgrOdD/iFaZOhv7mTtDME8YzR63dh41l
- GMwKPl9XBADs7wOhhYi0bkDzcqmjuzvLNidGFg/CYfQ/+TZtB2F4ExoJg
- kSlnTsYa0nwIUaKtgmmVK79NwpkRCptvrN66vmr4D77zE3oM2FYSV27Uj
- dczJqlznw9jFay3RtJXITpWFxjvzRa7/1NVEX3B9lKgRQrFiro7+PmDCk A==;
-X-CSE-ConnectionGUID: g9h6noT9SRq+jkWppixBkQ==
-X-CSE-MsgGUID: XrYsGWEHTbukk/dI8HdSAg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="83682769"
-X-IronPort-AV: E=Sophos;i="6.20,231,1758610800"; d="scan'208";a="83682769"
+ bh=nGbkGE6jRLTXi6oCNYjKew2CLzieC/4qwpzFF1Xx8V8=;
+ b=k1wpxD82hQuPg9r8ux6w9cUNCr/f10BfGXK6CXUq3jEeg4ldsssmA0mb
+ 50XtAV96bFI3XltGfvfYpNhNy+P/itPTwyh5ejtr08Z9fXvFvtC4AqJxD
+ jCJJ7BSnjFKqnhacQALjkFlFAJWandPmsVUZ1OO9rD+asprNrXXWejlzc
+ v+/qL4na+/sDyG08xRu2i2HaFDtmR3WMPVXCVfc39m2+wSpPdSKDXNG9N
+ Ak7V4tZGRlANrzIb0ghdX5zqBTpJAZ3R0SmT359yQDEIPXF7K2RTr79v4
+ 9RyCwA+4GToaRwqmgk7dYoq+Vq78iyxq9N77OPSwBYcRpe/Nnp0Gj0f4+ w==;
+X-CSE-ConnectionGUID: PlvWE9TkTtiswCoShGWkSw==
+X-CSE-MsgGUID: 0ubulitVTs6mg5Xarcyn1Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="83682773"
+X-IronPort-AV: E=Sophos;i="6.20,231,1758610800"; d="scan'208";a="83682773"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2025 03:55:00 -0800
-X-CSE-ConnectionGUID: GdHrXYO0SRKy5vZRDqYfOw==
-X-CSE-MsgGUID: cAI2VcOJTnCFyIQD7TM14A==
+ 27 Nov 2025 03:55:03 -0800
+X-CSE-ConnectionGUID: G+JPkSzaQfCXznAX7a4DnA==
+X-CSE-MsgGUID: iArVyvMGTc+T2F7scVnvzQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,231,1758610800"; d="scan'208";a="224167909"
+X-IronPort-AV: E=Sophos;i="6.20,231,1758610800"; d="scan'208";a="224167917"
 Received: from klitkey1-mobl1.ger.corp.intel.com (HELO
  vgovind2-mobl4.intel.com) ([10.245.245.244])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2025 03:54:58 -0800
+ 27 Nov 2025 03:55:01 -0800
 From: Vinod Govindapillai <vinod.govindapillai@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: vinod.govindapillai@intel.com, matthew.d.roper@intel.com,
  gustavo.sousa@intel.com, ville.syrjala@intel.com, jani.nikula@intel.com
-Subject: [PATCH v4 2/3] drm/i915/xe3p_lpd: Enable display use of system cache
- for FBC
-Date: Thu, 27 Nov 2025 13:53:48 +0200
-Message-ID: <20251127115349.249120-3-vinod.govindapillai@intel.com>
+Subject: [PATCH v4 3/3] drm/i915/fbc: Apply Wa_14025769978
+Date: Thu, 27 Nov 2025 13:53:49 +0200
+Message-ID: <20251127115349.249120-4-vinod.govindapillai@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251127115349.249120-1-vinod.govindapillai@intel.com>
 References: <20251127115349.249120-1-vinod.govindapillai@intel.com>
@@ -73,230 +72,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-One of the FBC instances can utilize the reserved area of SoC
-level cache for the fbc transactions to benefit reduced memory
-system power especially in idle scenarios. Reserved area of the
-system cache can be assigned to an fbc instance by configuring
-the cacheability configuration register with offset of the
-compressed frame buffer in stolen memoty of that fbc. There is
-a limit to this reserved area which is programmable and for
-xe3p_lpd the limit is defined as 2MB.
+Disable cache read setting in the cacheability configuration
+register as per the wa recommendation
 
-v2: - better to track fbc sys cache usage from intel_display level,
-      sanitize the cacheability config register on probe (Matt)
-    - limit this for integrated graphics solutions, confirmed that
-      no default value set for cache range by hw (Gustavo)
-
-v3: - changes related to the use of fbc substruct in intel_display
-    - use intel_de_write() instead of intel_rmw() by hardcoding the
-      default value fields
-
-v4: - protect sys cache config accesses, sys cache usage status in
-      debugfs per fbc instance (Jani)
-
-Bspec: 68881, 74722
+Bspec: 79482, 74722, 68881
 Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_core.h |  6 ++
- .../drm/i915/display/intel_display_device.h   |  1 +
- drivers/gpu/drm/i915/display/intel_fbc.c      | 86 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_fbc_regs.h | 10 +++
- 4 files changed, 103 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display_wa.c |  2 ++
+ drivers/gpu/drm/i915/display/intel_display_wa.h |  1 +
+ drivers/gpu/drm/i915/display/intel_fbc.c        | 10 ++++++++--
+ 3 files changed, 11 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 58325f530670..3e4bde7fa205 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -400,6 +400,12 @@ struct intel_display {
+diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
+index b2e71fa61c0a..a00af39f7538 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_wa.c
++++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
+@@ -72,6 +72,8 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
+ 		return IS_DISPLAY_VERx100(display, 1100, 1400);
+ 	case INTEL_DISPLAY_WA_15018326506:
+ 		return display->platform.battlemage;
++	case INTEL_DISPLAY_WA_14025769978:
++		return DISPLAY_VER(display) == 35;
+ 	default:
+ 		drm_WARN(display->drm, 1, "Missing Wa number: %s\n", name);
+ 		break;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
+index f648b00cb97d..a68c0bb7e516 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_wa.h
++++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
+@@ -27,6 +27,7 @@ enum intel_display_wa {
+ 	INTEL_DISPLAY_WA_14011503117,
+ 	INTEL_DISPLAY_WA_22014263786,
+ 	INTEL_DISPLAY_WA_15018326506,
++	INTEL_DISPLAY_WA_14025769978,
+ };
  
- 	struct {
- 		struct intel_fbc *instances[I915_MAX_FBCS];
-+
-+		/* xe3p_lpd+: FBC instance utilizing the system cache */
-+		struct sys_cache_cfg {
-+			struct mutex lock;
-+			enum intel_fbc_id id;
-+		} sys_cache;
- 	} fbc;
- 
- 	struct {
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index b559ef43d547..b74cb69ccc85 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -173,6 +173,7 @@ struct intel_display_platforms {
- #define HAS_DSC_MST(__display)		(DISPLAY_VER(__display) >= 12 && HAS_DSC(__display))
- #define HAS_FBC(__display)		(DISPLAY_RUNTIME_INFO(__display)->fbc_mask != 0)
- #define HAS_FBC_DIRTY_RECT(__display)	(DISPLAY_VER(__display) >= 30)
-+#define HAS_FBC_SYS_CACHE(__display)	(DISPLAY_VER(__display) >= 35 && !(__display)->platform.dgfx)
- #define HAS_FPGA_DBG_UNCLAIMED(__display)	(DISPLAY_INFO(__display)->has_fpga_dbg)
- #define HAS_FW_BLC(__display)		(DISPLAY_VER(__display) >= 3)
- #define HAS_GMBUS_BURST_READ(__display)	(DISPLAY_VER(__display) >= 10 || (__display)->platform.kabylake)
+ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa, const char *name);
 diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index dcdfcff80de3..85978196b607 100644
+index 85978196b607..84a1ab0bd418 100644
 --- a/drivers/gpu/drm/i915/display/intel_fbc.c
 +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -71,6 +71,8 @@
- 	for_each_fbc_id((__display), (__fbc_id)) \
- 		for_each_if((__fbc) = (__display)->fbc.instances[(__fbc_id)])
+@@ -951,8 +951,14 @@ static void fbc_sys_cache_update_config(struct intel_display *display, u32 reg,
  
-+#define FBC_SYS_CACHE_ID_NONE	I915_MAX_FBCS
-+
- struct intel_fbc_funcs {
- 	void (*activate)(struct intel_fbc *fbc);
- 	void (*deactivate)(struct intel_fbc *fbc);
-@@ -941,6 +943,69 @@ static void intel_fbc_program_workarounds(struct intel_fbc *fbc)
- 		fbc_compressor_clkgate_disable_wa(fbc, true);
- }
+ 	lockdep_assert_held(&display->fbc.sys_cache.lock);
  
-+static void fbc_sys_cache_update_config(struct intel_display *display, u32 reg,
-+					enum intel_fbc_id id)
-+{
-+	if (!HAS_FBC_SYS_CACHE(display))
-+		return;
-+
-+	lockdep_assert_held(&display->fbc.sys_cache.lock);
-+
-+	/* Cache read enable is set by default */
-+	reg |= FBC_SYS_CACHE_READ_ENABLE;
-+
-+	intel_de_write(display, XE3P_LPD_FBC_SYS_CACHE_USAGE_CFG, reg);
-+
-+	display->fbc.sys_cache.id = id;
-+}
-+
-+static void fbc_sys_cache_disable(const struct intel_fbc *fbc)
-+{
-+	struct intel_display *display = fbc->display;
-+	struct sys_cache_cfg *sys_cache = &display->fbc.sys_cache;
-+
-+	mutex_lock(&sys_cache->lock);
-+	/* clear only if "fbc" reserved the cache */
-+	if (sys_cache->id == fbc->id)
-+		fbc_sys_cache_update_config(display, 0, FBC_SYS_CACHE_ID_NONE);
-+	mutex_unlock(&sys_cache->lock);
-+}
-+
-+static int fbc_sys_cache_limit(struct intel_display *display)
-+{
-+	/* Default 2MB for xe3p_lpd */
-+	if (DISPLAY_VER(display) == 35)
-+		return 2 * 1024 * 1024;
-+
-+	return 0;
-+}
-+
-+static void fbc_sys_cache_enable(const struct intel_fbc *fbc)
-+{
-+	struct intel_display *display = fbc->display;
-+	struct sys_cache_cfg *sys_cache = &display->fbc.sys_cache;
-+	int range, offset;
-+	u32 cfg;
-+
-+	if (!HAS_FBC_SYS_CACHE(display))
-+		return;
-+
-+	/* limit to be configured to the register in 64k byte chunks */
-+	range = fbc_sys_cache_limit(display) / (64 * 1024);
-+
-+	/* offset to be configured to the register in 4K byte chunks */
-+	offset = i915_gem_stolen_node_offset(fbc->compressed_fb) / (4 * 1024);
-+
-+	cfg = FBC_SYS_CACHE_TAG_USE_RES_SPACE | FBC_SYS_CACHEABLE_RANGE(range) |
-+	      FBC_SYS_CACHE_START_BASE(offset);
-+
-+	mutex_lock(&sys_cache->lock);
-+	/* update sys cache config only if sys cache is unassigned */
-+	if (sys_cache->id == FBC_SYS_CACHE_ID_NONE)
-+		fbc_sys_cache_update_config(display, cfg, fbc->id);
-+	mutex_unlock(&sys_cache->lock);
-+}
-+
- static void __intel_fbc_cleanup_cfb(struct intel_fbc *fbc)
- {
- 	if (WARN_ON(intel_fbc_hw_is_active(fbc)))
-@@ -967,6 +1032,11 @@ void intel_fbc_cleanup(struct intel_display *display)
+-	/* Cache read enable is set by default */
+-	reg |= FBC_SYS_CACHE_READ_ENABLE;
++	/*
++	 * Wa_14025769978:
++	 * Fixes: SoC hardware issue in read caching
++	 * Workaround: disable cache read setting which is enabled by default.
++	 */
++	if (!intel_display_wa(display, 14025769978))
++		/* Cache read enable is set by default */
++		reg |= FBC_SYS_CACHE_READ_ENABLE;
  
- 		kfree(fbc);
- 	}
-+
-+	mutex_lock(&display->fbc.sys_cache.lock);
-+	drm_WARN_ON(display->drm,
-+		    display->fbc.sys_cache.id != FBC_SYS_CACHE_ID_NONE);
-+	mutex_unlock(&display->fbc.sys_cache.lock);
- }
+ 	intel_de_write(display, XE3P_LPD_FBC_SYS_CACHE_USAGE_CFG, reg);
  
- static bool i8xx_fbc_stride_is_valid(const struct intel_plane_state *plane_state)
-@@ -1780,6 +1850,8 @@ static void __intel_fbc_disable(struct intel_fbc *fbc)
- 
- 	__intel_fbc_cleanup_cfb(fbc);
- 
-+	fbc_sys_cache_disable(fbc);
-+
- 	/* wa_18038517565 Enable DPFC clock gating after FBC disable */
- 	if (display->platform.dg2 || DISPLAY_VER(display) >= 14)
- 		fbc_compressor_clkgate_disable_wa(fbc, false);
-@@ -1972,6 +2044,8 @@ static void __intel_fbc_enable(struct intel_atomic_state *state,
- 
- 	intel_fbc_program_workarounds(fbc);
- 	intel_fbc_program_cfb(fbc);
-+
-+	fbc_sys_cache_enable(fbc);
- }
- 
- /**
-@@ -2212,6 +2286,10 @@ void intel_fbc_init(struct intel_display *display)
- 
- 	for_each_fbc_id(display, fbc_id)
- 		display->fbc.instances[fbc_id] = intel_fbc_create(display, fbc_id);
-+
-+	mutex_lock(&display->fbc.sys_cache.lock);
-+	display->fbc.sys_cache.id = FBC_SYS_CACHE_ID_NONE;
-+	mutex_unlock(&display->fbc.sys_cache.lock);
- }
- 
- /**
-@@ -2231,6 +2309,9 @@ void intel_fbc_sanitize(struct intel_display *display)
- 		if (intel_fbc_hw_is_active(fbc))
- 			intel_fbc_hw_deactivate(fbc);
- 	}
-+
-+	/* Ensure the sys cache usage config is clear as well */
-+	fbc_sys_cache_update_config(display, 0, FBC_SYS_CACHE_ID_NONE);
- }
- 
- static int intel_fbc_debugfs_status_show(struct seq_file *m, void *unused)
-@@ -2249,6 +2330,11 @@ static int intel_fbc_debugfs_status_show(struct seq_file *m, void *unused)
- 		seq_puts(m, "FBC enabled\n");
- 		seq_printf(m, "Compressing: %s\n",
- 			   str_yes_no(intel_fbc_is_compressing(fbc)));
-+
-+		mutex_lock(&display->fbc.sys_cache.lock);
-+		seq_printf(m, "Using system cache: %s\n",
-+			   str_yes_no(display->fbc.sys_cache.id == fbc->id));
-+		mutex_unlock(&display->fbc.sys_cache.lock);
- 	} else {
- 		seq_printf(m, "FBC disabled: %s\n", fbc->no_fbc_reason);
- 	}
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc_regs.h b/drivers/gpu/drm/i915/display/intel_fbc_regs.h
-index b1d0161a3196..d2d889fa4bed 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_fbc_regs.h
-@@ -126,4 +126,14 @@
- #define   FBC_REND_NUKE			REG_BIT(2)
- #define   FBC_REND_CACHE_CLEAN		REG_BIT(1)
- 
-+#define XE3P_LPD_FBC_SYS_CACHE_USAGE_CFG	_MMIO(0x1344E0)
-+#define   FBC_SYS_CACHE_START_BASE_MASK		REG_GENMASK(31, 16)
-+#define   FBC_SYS_CACHE_START_BASE(base)	REG_FIELD_PREP(FBC_SYS_CACHE_START_BASE_MASK, (base))
-+#define   FBC_SYS_CACHEABLE_RANGE_MASK		REG_GENMASK(15, 4)
-+#define   FBC_SYS_CACHEABLE_RANGE(range)	REG_FIELD_PREP(FBC_SYS_CACHEABLE_RANGE_MASK, (range))
-+#define   FBC_SYS_CACHE_TAG_MASK		REG_GENMASK(3, 2)
-+#define   FBC_SYS_CACHE_TAG_DONT_CACHE		REG_FIELD_PREP(FBC_SYS_CACHE_TAG_MASK, 0)
-+#define   FBC_SYS_CACHE_TAG_USE_RES_SPACE	REG_FIELD_PREP(FBC_SYS_CACHE_TAG_MASK, 3)
-+#define   FBC_SYS_CACHE_READ_ENABLE		REG_BIT(0)
-+
- #endif /* __INTEL_FBC_REGS__ */
 -- 
 2.43.0
 
