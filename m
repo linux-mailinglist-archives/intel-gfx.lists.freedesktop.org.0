@@ -2,65 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2D2BC9032D
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Nov 2025 22:41:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94B32C9042E
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Nov 2025 23:02:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21C1610E8A0;
-	Thu, 27 Nov 2025 21:41:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1549010E822;
+	Thu, 27 Nov 2025 22:02:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Gov4Gva5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZtmYcs2j";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A50FA10E853;
- Thu, 27 Nov 2025 21:41:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5850F10E822;
+ Thu, 27 Nov 2025 22:02:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764279660; x=1795815660;
+ t=1764280942; x=1795816942;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=WnN83mCaafJox+zBKDVGUYk7Inwux9T4I2nQLsrJr5U=;
- b=Gov4Gva57JBXwKxLWFVETkEPli7qLcwho3qXUQITaWf6cZJ2l3TUg7Yj
- nZZ1IkGAO5LcXEvpksS4FzGdlvRZjnNPCasRNbCmTPiIxHvMqn8WQtQ/+
- xuDm/2thnsQIug+T2W0ctvTVzk5favQ+Sd6Iy8OcQRmR0JC9BQ17xysda
- XNIdln3Ja8OTayZg/2rF9x8F3eFDKYATxc/VGH+9b4VBUoxm2bWH+lBnu
- jecQq+4QMdacNHW4eogcjeUok3IaZfTXM3TmbMMdVUNUDmCZpB+UnWCz+
- bcBd6/Oiertwk5sDgfARouXvUprhyyswOApojdmliogBbHdYpQgpuNjw+ Q==;
-X-CSE-ConnectionGUID: dsE3diVgT2KvSGAmMKtYAw==
-X-CSE-MsgGUID: 6rb8kzHgQ0y6VPMda3ZC9g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11626"; a="66285056"
-X-IronPort-AV: E=Sophos;i="6.20,232,1758610800"; d="scan'208";a="66285056"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2025 13:41:00 -0800
-X-CSE-ConnectionGUID: Uv65/nuDSWisXOcygyCIKw==
-X-CSE-MsgGUID: Ok4RRYFYTAecC+KLOTwRaw==
+ bh=aPLG3TTU72yV8b/UXlahUVqgS/iG7Aw9mTC9c/gajlw=;
+ b=ZtmYcs2jOknY+wAZL7HaobDFnfXz+fdOx6k1bht/A9FJHcAGEIgxdrwv
+ hZy3hiqXo4f1mRyrFmq429Koi7GWRI3pt77yAPfYOFpYxE+TtC8oI6xwX
+ aV+UpSQ2whXtdLPVigKkNbjrBQ5UZLkFK4Uwa7MojsIOhm1RywYzX2bnj
+ 161qh6lECJzn6wG8pndpsgBpEzJ/cAlVRIISXM00SsvD++aqOha0P9iYc
+ T1CniYSjmt6+B6S7y4/rOmd8+60srhdMkiDwGXF80u+TrXvm7tcALO1it
+ 2pUxMMK+02I0ZLn8WfhwnHfZf0ViVWyHHCcQHpbPjVlOlKrytD2xSizFs Q==;
+X-CSE-ConnectionGUID: N5aYB3r4SZ6/NvKr5sP4+A==
+X-CSE-MsgGUID: u1uD0TzASXahy/sYyjna5Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11626"; a="76955164"
+X-IronPort-AV: E=Sophos;i="6.20,232,1758610800"; d="scan'208";a="76955164"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2025 14:02:22 -0800
+X-CSE-ConnectionGUID: yhuObwsfR+yhf17yCa7EhA==
+X-CSE-MsgGUID: nxlHoQu3SXONi50lRO/gYg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,232,1758610800"; d="scan'208";a="192439915"
+X-IronPort-AV: E=Sophos;i="6.20,232,1758610800"; d="scan'208";a="198425072"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.140])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2025 13:40:57 -0800
-Date: Thu, 27 Nov 2025 23:40:54 +0200
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2025 14:02:15 -0800
+Date: Fri, 28 Nov 2025 00:02:12 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Chia-Lin Kao (AceLan)" <acelan.kao@canonical.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] drm/i915/dp: Add byte-by-byte fallback for broken USB-C
- adapters
-Message-ID: <aSjFZhZQLVb7czsh@intel.com>
-References: <20251127044406.618543-1-acelan.kao@canonical.com>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH 2/4] drm/i915/psr: Perform vblank evasion on async flip
+ as well for PSR
+Message-ID: <aSjKZA17cooYM9Uv@intel.com>
+References: <20251125063253.328023-1-jouni.hogander@intel.com>
+ <20251125063253.328023-3-jouni.hogander@intel.com>
+ <aSYdX7eGVOMapiJ7@intel.com>
+ <dbaa6e77740c23604420d9ff5031cddc4bd37108.camel@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251127044406.618543-1-acelan.kao@canonical.com>
+In-Reply-To: <dbaa6e77740c23604420d9ff5031cddc4bd37108.camel@intel.com>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -78,95 +76,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Nov 27, 2025 at 12:44:06PM +0800, Chia-Lin Kao (AceLan) wrote:
-> Some USB-C hubs and adapters have buggy firmware where multi-byte AUX
-> reads from DPCD address 0x00000 consistently timeout, while single-byte
-> reads from the same address work correctly.
+On Thu, Nov 27, 2025 at 10:57:09AM +0000, Hogander, Jouni wrote:
+> On Tue, 2025-11-25 at 23:19 +0200, Ville Syrjälä wrote:
+> > On Tue, Nov 25, 2025 at 08:32:51AM +0200, Jouni Högander wrote:
+> > > PSR2_MAN_TRK_CTL[SF Continuous full frame] is sampled on the rising
+> > > edge of
+> > > delayed vblank. SW must ensure this bit is not changing around
+> > > that. Due to
+> > > this PSR2 Selective Fetch needs vblank evasion.
+> > > 
+> > > Currently vblank evasion is not done on async flip. Perform it in
+> > > case
+> > > required by PSR.
+> > > 
+> > > Bspec: 50424
+> > > Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_crtc.c | 6 ++++--
+> > >  1 file changed, 4 insertions(+), 2 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c
+> > > b/drivers/gpu/drm/i915/display/intel_crtc.c
+> > > index 153ff4b4b52c..42c4ce07f8c0 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+> > > @@ -433,7 +433,8 @@ static bool intel_crtc_needs_vblank_work(const
+> > > struct intel_crtc_state *crtc_sta
+> > >  		(intel_crtc_needs_color_update(crtc_state) &&
+> > >  		 !HAS_DOUBLE_BUFFERED_LUT(display)) &&
+> > >  		!intel_color_uses_dsb(crtc_state) &&
+> > > -		!crtc_state->use_dsb;
+> > > +		!crtc_state->use_dsb &&
+> > > +		!crtc_state->do_async_flip;
+> > >  }
+> > >  
+> > >  static void intel_crtc_vblank_work(struct kthread_work *base)
+> > > @@ -539,7 +540,8 @@ void intel_pipe_update_start(struct
+> > > intel_atomic_state *state,
+> > >  	if (new_crtc_state->do_async_flip) {
+> > >  		intel_crtc_prepare_vblank_event(new_crtc_state,
+> > >  						&crtc-
+> > > >flip_done_event);
+> > > -		return;
+> > > +		if (!intel_psr_needs_evasion(new_crtc_state))
+> > > +			return;
+> > 
+> > I don't think we want hack this into such low level code. We
+> > anyway convert the first async flip to a sync flip (see
+> > intel_plane_do_async_flip()), so that's when you should disable
+> > selective fetch, and keep it disabled afterwards as long as
+> > async flips are being requested for the plane by userspace.
 > 
-> Known affected devices that exhibit this issue:
-> - Lenovo USB-C to VGA adapter (VIA VL817 chipset)
->   idVendor=17ef, idProduct=7217
-> - Dell DA310 USB-C mobile adapter hub
->   idVendor=413c, idProduct=c010
+> Isn't async flip always initiated by user space (uapi.async_flip == 1)?
+> Are you concerned on this sequence:
 > 
-> Analysis of the failure pattern shows:
-> - Single-byte probes to 0xf0000 (LTTPR) succeed
-> - Single-byte probes to 0x00102 (TRAINING_AUX_RD_INTERVAL) succeed
-> - 15-byte reads from 0x00000 (DPCD capabilities) timeout with -ETIMEDOUT
-> - Retrying does not help - the failure is consistent across all attempts
+> 1. async flip on primary plane (full frame update)
+> 2. normal flip on secondary plane (selective fetch/update)
+> 3. async flip on primary plane (full frame update)
+> 
+> Is there some problem in performing selective fetch/update on step 2?
+> Please note that we are not disabling PSR2 at step 2. We are just
+> performing 1 selective fetch/update in between there.
 
-I thought we changed that to the more sensible 16 bytes.
-Anyone know what happened to that patch?
+That selective update may pull in planes that are doing async flips
+currently, and I'm certain we don't have the code to update the state
+tracking to indicate that they're no longer in, what I like to think
+as, "async flip mode". I suppose the distinction might not matter
+too much for these platforms (assuming has_sel_fetch and
+need_async_flip_toggle_wa don't overlap), but we should still keep
+the code consistent to make it easier to understand.
 
-Anyways, does 16 bytes work better than 15 bytes?
-
-> 
-> The issue appears to be a firmware bug in the AUX transaction handling
-> that specifically affects multi-byte reads from the base DPCD address.
-> 
-> Add a fallback mechanism that attempts byte-by-byte reading when the
-> normal multi-byte drm_dp_read_dpcd_caps() fails. This workaround only
-> activates for adapters that fail the standard read path, ensuring no
-> impact on correctly functioning hardware.
-> 
-> The byte-by-byte read uses drm_dp_dpcd_readb() to read each of the 15
-> DPCD capability bytes individually, working around the firmware bug
-> while maintaining compatibility with all other adapters.
-> 
-> Tested with:
-> - Lenovo USB-C to VGA adapter (VIA VL817) - now works with fallback
-> - Dell DA310 USB-C hub - now works with fallback
-> - Dell/Analogix Slimport adapter - continues to work with normal path
-> 
-> Signed-off-by: Chia-Lin Kao (AceLan) <acelan.kao@canonical.com>
-> ---
->  .../drm/i915/display/intel_dp_link_training.c | 21 ++++++++++++++++++-
->  1 file changed, 20 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> index aad5fe14962f..738a5bb4adb3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> @@ -213,6 +213,7 @@ static int intel_dp_init_lttpr(struct intel_dp *intel_dp, const u8 dpcd[DP_RECEI
->  int intel_dp_read_dprx_caps(struct intel_dp *intel_dp, u8 dpcd[DP_RECEIVER_CAP_SIZE])
->  {
->  	struct intel_display *display = to_intel_display(intel_dp);
-> +	int ret, i;
->  
->  	if (intel_dp_is_edp(intel_dp))
->  		return 0;
-> @@ -226,7 +227,25 @@ int intel_dp_read_dprx_caps(struct intel_dp *intel_dp, u8 dpcd[DP_RECEIVER_CAP_S
->  				      DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV))
->  			return -EIO;
->  
-> -	if (drm_dp_read_dpcd_caps(&intel_dp->aux, dpcd))
-> +	ret = drm_dp_read_dpcd_caps(&intel_dp->aux, dpcd);
-> +	if (ret == 0)
-> +		return 0;
-> +
-> +	/*
-> +	 * Workaround for USB-C hubs/adapters with buggy firmware that fail
-> +	 * multi-byte AUX reads from DPCD address 0x00000 but work with
-> +	 * single-byte reads. Known affected devices:
-> +	 * - Lenovo USB-C to VGA adapter (VIA VL817, idVendor=17ef, idProduct=7217)
-> +	 * - Dell DA310 USB-C hub (idVendor=413c, idProduct=c010)
-> +	 * Read the DPCD capabilities byte-by-byte as a fallback.
-> +	 */
-> +	for (i = 0; i < DP_RECEIVER_CAP_SIZE; i++) {
-> +		ret = drm_dp_dpcd_readb(&intel_dp->aux, DP_DPCD_REV + i, &dpcd[i]);
-> +		if (ret < 0)
-> +			return -EIO;
-> +	}
-
-Doing this in i915 specific code doesn't make sense.
-
-> +
-> +	if (dpcd[DP_DPCD_REV] == 0)
->  		return -EIO;
->  
->  	return 0;
-> -- 
-> 2.43.0
+I suppose you could handle it correctly by clearing async_flip_planes
+in appropriate places, but I still don't like adding yet another
+special case to the commit codepaths. I think that code is
+complex enough already.
 
 -- 
 Ville Syrjälä
