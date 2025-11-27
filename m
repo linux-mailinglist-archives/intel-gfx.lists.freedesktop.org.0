@@ -2,29 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3D7DC8F3E6
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Nov 2025 16:22:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11D7AC97A1E
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Dec 2025 14:39:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A80610E797;
-	Thu, 27 Nov 2025 15:22:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4023010E3E5;
+	Mon,  1 Dec 2025 13:39:30 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="rJBnWCwd";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60C4810E797;
- Thu, 27 Nov 2025 15:22:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0978988236956644804=="
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4121610E815;
+ Thu, 27 Nov 2025 15:43:43 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::102])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4dHLLg5Mnxz9v0b;
+ Thu, 27 Nov 2025 16:43:39 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1764258219; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=T8BebGp6817BarcOhYkOTFKpNtGZhH0Hzg/x4d8jTPI=;
+ b=rJBnWCwdjqhyXax+vj9jEdfvvNHmHBKxf4Vx01UM2VZR/M8uhzUla8075dSW3u3MUThOFq
+ UWPLNvuVWnYgUi3hZGxb/HuABbU5m8EYXT11ECG736HnrLFHM9gj58Y2/oMWek3lAugwCc
+ UlPh9rJ1VYSTVlC5FfoNsxxDV43GeHaJGexjJpfdR6vz0zxTn096zYv3GisOcvElyWLmZ/
+ 5xd4OUXnH6yJXZ9MpWXgXBMU6Sy9EMyG7fCbspCKodX1QSuQ/Isi+unePiiija3oVnnr/e
+ bpgsIo8xtw8Q2BsyLHjNH7xFDCju7gwS1rE468ebDHd3/vbbZo4wBsxwOz8XRg==
+Message-ID: <5c69f4849cb3d9dc087c303a33ba385925e126eb.camel@mailbox.org>
+Subject: Re: [PATCH 2/6] amd/amdkfd: Ignore return code of dma_fence_signal()
+From: Philipp Stanner <phasta@mailbox.org>
+To: "Kuehling, Felix" <felix.kuehling@amd.com>, Christian
+ =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, phasta@kernel.org,
+ Sumit Semwal <sumit.semwal@linaro.org>, Gustavo Padovan
+ <gustavo@padovan.org>, Alex Deucher <alexander.deucher@amd.com>, David
+ Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,  Matthew Brost
+ <matthew.brost@intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>
+Cc: linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org, 
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, rust-for-linux@vger.kernel.org
+Date: Thu, 27 Nov 2025 16:43:28 +0100
+In-Reply-To: <39263b3b-3574-43ae-aec1-73fe39e29f10@amd.com>
+References: <20251126131914.149445-2-phasta@kernel.org>
+ <20251126131914.149445-4-phasta@kernel.org>
+ <cef83fed-5994-4c77-962c-9c7aac9f7306@amd.com>
+ <d46f753e660694ab46c65409a5e43f050b7eb2d9.camel@mailbox.org>
+ <b1c3dd51-1ba9-4036-b964-8e9f4350bbee@amd.com>
+ <39263b3b-3574-43ae-aec1-73fe39e29f10@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/=7Bi915=2Cxe=7D/dsb?=
- =?utf-8?q?=3A_refactor_DSB_buffer_allocation_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 27 Nov 2025 15:22:04 -0000
-Message-ID: <176425692439.36001.15015665252055481761@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <cover.1764155417.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1764155417.git.jani.nikula@intel.com>
+X-MBO-RS-META: guh68fw61fno75gu3xahdopeu8c9fbtb
+X-MBO-RS-ID: ca2c12074ac69eba2f0
+X-Mailman-Approved-At: Mon, 01 Dec 2025 13:39:28 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,143 +82,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
+Reply-To: phasta@kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0978988236956644804==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 2025-11-27 at 10:08 -0500, Kuehling, Felix wrote:
+> On 2025-11-27 04:55, Christian K=C3=B6nig wrote:
+> > On 11/27/25 10:48, Philipp Stanner wrote:
+> > >=20
 
-== Series Details ==
+[=E2=80=A6]
 
-Series: drm/{i915,xe}/dsb: refactor DSB buffer allocation (rev4)
-URL   : https://patchwork.freedesktop.org/series/154591/
-State : success
+> > > The issue now is that dma_fence_signal()'s return code is actually no=
+n-
+> > > racy, because check + bit-set are protected by lock.
+> > >=20
+> > > Christian's new spinlock series would add a lock function for fences:
+> > > https://lore.kernel.org/dri-devel/20251113145332.16805-5-christian.ko=
+enig@amd.com/
+> > >=20
+> > >=20
+> > > So I suppose this should work:
+> > >=20
+> > > dma_fence_lock_irqsave(ef, flags);
+> > > if (dma_fence_test_signaled_flag(ef)) {
+> > > 	dma_fence_unlock_irqrestore(ef, flags);
+> > > 	return true;
+> > > }
+> > > dma_fence_signal_locked(ef);
+> > > dma_fence_unlock_irqrestore(ef, flags);
+> > >=20
+> > > return false;
+> > >=20
+> > >=20
+> > > + some cosmetic adjustments for the boolean of course.
+> > >=20
+> > >=20
+> > > Would that fly and be reasonable? @Felix, Christian.
+> > I was just about to reply with the same idea when your mail arrived.
+>=20
+> I agree as well. The important feature is that we need to test and=20
+> signal the fence atomically. It may even make sense to add a function
+> for that "dma_fence_test_and_signal" that preserves the original=20
+> behaviour of dma_fence_signal. ;)
 
-== Summary ==
+Fine by me if the maintainer agrees
 
-CI Bug Log - changes from CI_DRM_17596 -> Patchwork_154591v4
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154591v4/index.html
-
-Participating hosts (45 -> 43)
-------------------------------
-
-  Missing    (2): fi-kbl-guc fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_154591v4 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-11:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17596/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154591v4/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-9:         [DMESG-FAIL][3] ([i915#12061]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17596/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154591v4/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_17596 -> Patchwork_154591v4
-
-  CI-20190529: 20190529
-  CI_DRM_17596: 943d0e69375e5a9030238a697f7d850af0549000 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8640: 789fdb010b4222b96496672d8295b8ae8fbde9e7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_154591v4: 943d0e69375e5a9030238a697f7d850af0549000 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154591v4/index.html
-
---===============0978988236956644804==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/{i915,xe}/dsb: refactor DSB buffer allocation (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154591/">https://patchwork.freedesktop.org/series/154591/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154591v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154591v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17596 -&gt; Patchwork_154591v4</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154591v4/index.html</p>
-<h2>Participating hosts (45 -&gt; 43)</h2>
-<p>Missing    (2): fi-kbl-guc fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_154591v4 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17596/bat-dg2-11/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154591v4/bat-dg2-11/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17596/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_154591v4/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17596 -&gt; Patchwork_154591v4</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17596: 943d0e69375e5a9030238a697f7d850af0549000 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8640: 789fdb010b4222b96496672d8295b8ae8fbde9e7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_154591v4: 943d0e69375e5a9030238a697f7d850af0549000 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============0978988236956644804==--
+P.
