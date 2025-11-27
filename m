@@ -2,183 +2,81 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C538EC8C648
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Nov 2025 00:56:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E8F9C8CCEE
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Nov 2025 05:44:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99DCD10E6A8;
-	Wed, 26 Nov 2025 23:56:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A8D010E13B;
+	Thu, 27 Nov 2025 04:44:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SI8SKfGn";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="lem1Ozhk";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC3F210E674;
- Wed, 26 Nov 2025 23:56:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764201399; x=1795737399;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=QUQ2KK290uKhGm1gUSaA8wi1HFdZunmQMewtvc+ENQI=;
- b=SI8SKfGnhvydpFLSofmdB+ZLlUyM95CGfuSL8b0xJMSo/jg+Pkh4tPS6
- ef099qIl9FMkgyklT6CcaorLWuCtspBGsSV153Lsp9FCja60EN/Q8Mece
- JzwR6mwftrcb6VCQ8y7ruuXjDrcamPRJ2cuxMmjKdKq8wuXaqL2m7mubF
- nWuKUuuan84WXGHMK+qbTSep0Chh07Pj73UyHfT6nd5ApvBfVKXAUavUa
- c+17AZ4KU6DOAwqqyr+GDuMUySdfi3iHIrlJYD2G2HoIoi8tYJa76SpBT
- 1xnVay8Utb2/skcbExVETPozxhSCv6bJW4CGwQDe2tYJa21fy33dUe+Yr g==;
-X-CSE-ConnectionGUID: k4jKG1ZGSX6211q7aFle1g==
-X-CSE-MsgGUID: ChZNc4WhRZG/X0bhi6Iw6Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="69869677"
-X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="69869677"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2025 15:56:39 -0800
-X-CSE-ConnectionGUID: SiwNzYeWTGuvVU08l6D2Sg==
-X-CSE-MsgGUID: C7C8D0LoT7Sry7nPcgd3NQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="230355014"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2025 15:56:39 -0800
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Wed, 26 Nov 2025 15:56:38 -0800
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Wed, 26 Nov 2025 15:56:38 -0800
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.11) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Wed, 26 Nov 2025 15:56:38 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=h2VPHBm8ZaWidBS5GhxRVFKxwXYLN9ff3wfrES5FUPneiU27CEqUcuTbCtZYkbYGuN4VubS9l0tzJvgQwU2lwzQzRbJl375bVV9GyK8HfhACRiwF9s2QcTZ28ZdflcJqDjjpUpuZ9kY2zv0Sp4u64hipcEgZYU5XCZuT/rpi3+LbXotqDG3jibDh8elMjjri6tUd69kGtsWHbcExDWBRqN+RyJZ+ujVfsRaL7PS/zxWNvCF49tXsldH7nF/cNeuCN62SvUWX6KOpwDOJwjZ4BnPj5p7tn9nPE9Ve2ie2HxapcAI6Dg9hrcUaq54w6zmVmwmbTh+p7ws2IZTDqP35Kg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=73y+pZa2e4N9HKv0LTqEJOc54RuhhPPMLajbtwv8prQ=;
- b=EhnWWjnPJ43qFN/1jmqg0u6Z+QEhpE0atnZb+uSZvDYJzBIPPMjp0W9xfnoOWzBlvGVwhH9/rqt/6zJQhTWw0rncCgufvRyHsFyf3LQq/uDDiiSoGQyy6EXBLwRV5tapglAOBo8R8IYeZ1dTCLwJHDzqLWpiNR0gp5BDk0cgW95OmG9wKug1MD4IrfY4u/w/lI50kG7kRFiNdPP2Q2/3iXjMQ+NlXDFPxILtc3aERMBYcg4Q7eEKlQ2HZ5LpSYzPYFc2G08Pw9I9QgrjTmT2bkYgcs00LIsrCY5EXKSYl+yCUoO/FxdQ4RrgB/lL9oH1YPZCr17BJvG50702R2QiYA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by PH8PR11MB8105.namprd11.prod.outlook.com (2603:10b6:510:254::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.17; Wed, 26 Nov
- 2025 23:56:36 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%7]) with mapi id 15.20.9366.009; Wed, 26 Nov 2025
- 23:56:35 +0000
-Date: Wed, 26 Nov 2025 15:56:32 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: Andi Shyti <andi.shyti@kernel.org>
-CC: Philipp Stanner <phasta@kernel.org>, Sumit Semwal
- <sumit.semwal@linaro.org>, Gustavo Padovan <gustavo@padovan.org>, Christian
- =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Felix Kuehling
- <Felix.Kuehling@amd.com>, Alex Deucher <alexander.deucher@amd.com>, "David
- Airlie" <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- "Matthew Auld" <matthew.auld@intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Lucas De Marchi
- <lucas.demarchi@intel.com>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>, <linux-media@vger.kernel.org>,
- <dri-devel@lists.freedesktop.org>, <linaro-mm-sig@lists.linaro.org>,
- <linux-kernel@vger.kernel.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <rust-for-linux@vger.kernel.org>
-Subject: Re: [PATCH 3/6] drm/gpu/xe: Ignore dma_fenc_signal() return code
-Message-ID: <aSeTsINKklqqJyIs@lstrano-desk.jf.intel.com>
-References: <20251126131914.149445-2-phasta@kernel.org>
- <20251126131914.149445-5-phasta@kernel.org>
- <nrrk4kug6a42fztx7ryuz5bk6uy7roiszjhiivlvtrw3uvunps@wn44moyetzff>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <nrrk4kug6a42fztx7ryuz5bk6uy7roiszjhiivlvtrw3uvunps@wn44moyetzff>
-X-ClientProxiedBy: MW4P222CA0017.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:303:114::22) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com
+ [209.85.210.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E1DE10E13B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Nov 2025 04:44:10 +0000 (UTC)
+Received: by mail-pf1-f170.google.com with SMTP id
+ d2e1a72fcca58-7aa9be9f03aso350261b3a.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Nov 2025 20:44:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1764218650; x=1764823450; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:sender:from:to:cc:subject:date:message-id:reply-to;
+ bh=x7BjBMa+JRnqZfeT1IW4v+bUgZq+0v2oxPOk5e1+Mak=;
+ b=lem1OzhkBAiWKL7o9KfeSHO0pJok02NzV9I8Lo0P5xhkB5CU1zMnWwHdTNHBUntidA
+ nkFqV2jkN9QDLlwCYl/lkKLoV+6DnGTsBZTBLTc/NsWyc7kkEo0RJo0+oUQr2kA/1B2u
+ 9nQyOz9XOKm5jPlLfMlTSL32q+LSOL7F9mXAFnKEJPZs9o98xwNmy7QcQH+Fq9f3YDFn
+ 7DAQcWKFcPfLV0VaRUkhAplPq6Yo75e6SvQnqmGadOkyRAs+BoLtXe4VDMGvxrgyOIZI
+ OKX5t4dLVdGCGcMxs0fKdumDfxqOqmgnhUE3h2/zr0kui14GArbpw5BJrz/5DQFURfjW
+ RJGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1764218650; x=1764823450;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:sender:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=x7BjBMa+JRnqZfeT1IW4v+bUgZq+0v2oxPOk5e1+Mak=;
+ b=OskIx7BkkQuojXUYJrq4VSzWN9hA1n70bN7tye2JVOTwgyZHIAuDdJIfTeQWU2lbjZ
+ CmERcu5iLjyFFxPDRoNMWF/9K3oRDIZdASY3cJNmoo7BIbk4yFJ1X026dypnVRJu4I2Z
+ WvrzsuBjektpz9XpMqRx6FE8I6YJhaUvOXcpswf2rBcFTmDam5ODwe1j3MGhlKI+2Uu2
+ YSLTPGmSwpS4+9wkDqoYX7cGC22LZS902xK45AOAEhj1rE1tFJ50Yk7dEoqjoUk6SCmW
+ v4CsgqyUTYwRql1ZRdduaBWWn7R1rCrjIw3ogS8KKUlHXZ5A+49nCWHktcfzbBHMUdes
+ RiCA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXceMF9KDk7XSqCTUIRLvXSdYznWkKr6tbJnrkk/mosMGQEoR8SyE+xMJprzAYH6j3GBtwYRhBBgnM=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzwdMiJhawPJGi7uk0M3ggefdg+3KbRiSU4yWTmsxC98NnE/i2G
+ pBlU3B+IpTSVOknjHKitejayVeGV8KTJ8mWwNyH7D/jtp6cnzQpR5Y0A
+X-Gm-Gg: ASbGncsNZnYdHfM2nuTQg+jf/UDpnF7DzRnmAcXNlbd9/3LZJ6yiGj2Lrwqh+A5lMKV
+ oZ2aSMVSK81VEjMjNZQ6JItZhA9+qgq7ePxz0fGIsSbCSF4meFw7SHSot4hhlQhyD+Yuyq3RuUO
+ rFwtHX2NnEiyGqdbaoHpd1VyWbs5ZvMNF6GgCfnU+xFrVVBSiNUDKhE2qdFEV3ykwBJwNKH4c/K
+ ABnJ4ka0mFLlrr4PmXVENBQ/hLg/VpOz7eR6NYZWF1F2/TBLY64qlq7POArMUp6tkfiJB/NS7+5
+ ENCtZRPVwLg5h0dqm2BnbvJvfqMrzeaqkqO/0CfYsDsbqWYBtfgwdOF1uw7RYiYWhK+2DRr5G0q
+ ApIb0bd04wvywo+pRIz88bGPHencJhYudfEMOQ/dO0RYNXnBCTfCZtdr3qLBUVVxYFDwJnJrmZi
+ 6MznqakQqipoR1QLHWNcH9bDXWFeESKbeqTdg8I+q9
+X-Google-Smtp-Source: AGHT+IGzwx8XxKIfrZDVhykQGzSqr62sGMg9gUipriPRuelgVcksceVllUvwkK7+tgeHc5shxjATTQ==
+X-Received: by 2002:a05:6a00:2e9e:b0:7b2:1fb0:6da0 with SMTP id
+ d2e1a72fcca58-7c58e602d9dmr26604730b3a.28.1764218649685; 
+ Wed, 26 Nov 2025 20:44:09 -0800 (PST)
+Received: from localhost (211-75-139-220.hinet-ip.hinet.net. [211.75.139.220])
+ by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-7d150b6853bsm313375b3a.14.2025.11.26.20.44.08
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 26 Nov 2025 20:44:09 -0800 (PST)
+From: "Chia-Lin Kao (AceLan)" <acelan.kao@canonical.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/i915/dp: Add byte-by-byte fallback for broken USB-C
+ adapters
+Date: Thu, 27 Nov 2025 12:44:06 +0800
+Message-ID: <20251127044406.618543-1-acelan.kao@canonical.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH8PR11MB8105:EE_
-X-MS-Office365-Filtering-Correlation-Id: 724dad7e-3641-4d53-a184-08de2d476ec2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?pS1xDnB3XsOp8KYNPtvU72l6CDHkAPrbGQDgRV2/FgwYHII69ZI5/hD8KmvJ?=
- =?us-ascii?Q?egPLluGkMc28EByFJhyJlGIEAhwGxW2L/QTB1NnuHhyJ90D9UZtISDXV0zhc?=
- =?us-ascii?Q?DzhGbusaEgioZEaD0sjss1VWRxT4z1f1RueNcYVk1W1dywNkn9urK0vJIzWi?=
- =?us-ascii?Q?NJBZh111lCjZvINM2M14fxtfuogSJ8LY0w8yV1ioMyUirqDjgiHB+PufNAUv?=
- =?us-ascii?Q?2Qt7w39LdKUEYROVmDLvQdLzWKmcpUF4OdsOnnzrKgoG7YSZuUjQnD2tfPyv?=
- =?us-ascii?Q?zlKtazRyMkbFg1xqS6kmDh3SgkmYRSP3ULtLA0P3mPBJx+41wNWptzcL5QrE?=
- =?us-ascii?Q?SszGfnEibleT+XlQGfU0HL0AUGNvZLhybPcXonDThAcjm+2U8nK4vx7qRWJw?=
- =?us-ascii?Q?jForqTNC0iXJIHp7esQW3HZTOeE8CLMWdGzPLc2VT93BIS0wnpQGgGlLkpCa?=
- =?us-ascii?Q?gTX9uXBxVREwU/NuzK4TOTApsgA89UlpcJfYk2BXdjin8kjFyhaZvj5DMaH2?=
- =?us-ascii?Q?+fVliRMsaZl3A/5IfrYAuSXn2BHElkedobZmmJyMsMnpvGqeEWmw5QO3TIYT?=
- =?us-ascii?Q?gOm3Ant0HprYtr7+P5A+omk87pvGjPkHKYgUIhUqI03V5gBGHXAgNT/85ROn?=
- =?us-ascii?Q?0L19AYN90TKN/J4qCO7rzgwnmIhw8T4vULiysuzgs+mTZnyLJU69GQpUaLZ+?=
- =?us-ascii?Q?U+BZWj74uGWXxPE9SaPr8rM38vLOIRhf8pPDmlpi/oqBfU5ldfNRjbo6MDfL?=
- =?us-ascii?Q?sG6WXanUGd2fgb1DUWCDSe8a0O3wVmbAj9D9rbxhvgWlSjzLBRpiY6pobaAC?=
- =?us-ascii?Q?mpjBwmzFreixU5Vc7/SeYrnG7H96LmSxKXH/MMyJJvtIPKMO6W5o0e3yBP4d?=
- =?us-ascii?Q?O1mm7nYVFx2gmtf93NzrHFczgk1YX99rPKfPuolLYSU8fR2Mq1A2+Gja7gjj?=
- =?us-ascii?Q?gPner593q06S65YCMs6VjSMCWiWCazuAgLaFpSw0eeMRcxul7bpzcRY4NxvS?=
- =?us-ascii?Q?WjaxXlfg3tLJOFTRAlhsyxdlSoAJZnHupfUrXkIq7lkZ2p2xjDJrhdBBWuKI?=
- =?us-ascii?Q?1wCxwA1na5VG1VfSAUux6Yk9of1r6mgKYB/tMydozPYv6Po9g216DHvplGFg?=
- =?us-ascii?Q?oxEFRdMFoMv5lNG5n500Pi07hDFnfeAhtGX4q9Svs2HzQ6KutFzGlhwq/lOa?=
- =?us-ascii?Q?iEFCYyDXIUasRH7wcAHtIsXSeoAnnkaxMRQWZGwHp2h0Y+ohajH6r9+vE7pk?=
- =?us-ascii?Q?GNzzTnE5RBjSi5eOddGqqZF/V+eKKGTOoupEbf/INP5Wc+08XeJiMTqUAXhY?=
- =?us-ascii?Q?lpp8o/9bl4IwvhaEhHEUUIHE8PBi+ZeUqDx4amX9j1zwou712V4x1Yap5DaE?=
- =?us-ascii?Q?h8N6z6KBD6LHx4J8cNRROeP6gy4CgxZ3/S/N6rkgFn6mY3k6VNQhCOU/9hRd?=
- =?us-ascii?Q?1+7vth+DuXpbjjBr2MQ5WRFoMrtXwsvT?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?EFCSRSvQzfx6i4i0rMTakbbArWEwRKQGvfpyNYhWXAdyzQ86HPxgrNXq1Hy2?=
- =?us-ascii?Q?Gb2KgqAbbCbuDB6ftAcOpkm17gpdHZPtkfpr1u4GtAI42jCgcv/1aFUGRBN7?=
- =?us-ascii?Q?LvnmqL4AXQ4bUvzkZ4iaOZqZpatyyhNU+yAnu4gAhSTXUkzHtBqpIKmbCQFl?=
- =?us-ascii?Q?ZZA8ZDX7SGyNU4sbaCG7R33Xwf0jo2fPP0AcCOlRgkeJ9k35Qud2pXv9XgtF?=
- =?us-ascii?Q?zq3C1dMura4p0YnbjorpGE06xlCx5qJRqLZYPXL509VFP6sZ8Pn1yb1xA70t?=
- =?us-ascii?Q?WO10Bwxjic8WTI1HIDzKONYwfLqrTbiue3alAxWflszTBj8sK6HKy0XG5j2N?=
- =?us-ascii?Q?ABHCl5Ba4km8O4zXYiAZ8GNZkkGDO7biaey7oxkSGTsaoxRxYq3tDfeIs8J3?=
- =?us-ascii?Q?divTjZkBS1Yx1ns8nExaWd8LBD1RaUnE8Ph5F4cFacuup8p+M6I5GphG3m90?=
- =?us-ascii?Q?eLNH/JAUEk8cu8KpRQYQtj5kAEkF/BRh1RBcafnOyh0Aax6yQjjsDbs33ore?=
- =?us-ascii?Q?EMUtAeilMspNTKVkcOgK0r4IkUYzOswVmo0cvtVqxtBBmoLG+zRWlJMLvSXT?=
- =?us-ascii?Q?NY7dhFfkvJUjKaZ5dJRPtFKnuA5YAD+3Ousf/W35wtV4WZRBoBGUOhpYNlpk?=
- =?us-ascii?Q?UYHfzTV86KGdHwRCnpZEXAFCIgLJy9XJ5fONphO5wQx2/HaJBaGkqdHxNMm1?=
- =?us-ascii?Q?x5Qd/9bwUpthAQ7XqqdQgTBMPy7af0WevgxTv+4mDfE0eLhCELrYdG43f785?=
- =?us-ascii?Q?LBf5BoQrHuq2CVeKC4TRM8xDTGhFESD71LiHcjuNxaQ/L3GWb2LBgq27NI4t?=
- =?us-ascii?Q?T6xditbojWjgIHW1UQyqzZ9MJsUj0ijCtQEDt+ZszivMSh4FVOi0mLxSuLa2?=
- =?us-ascii?Q?XRBxlxZGhzjbAr2PBKwbQ7X2GvNOrxprigBWGMBfWlWqQQe3oQ0wzwf0uwrJ?=
- =?us-ascii?Q?upvZRTvcGEm2NLPkDov6cy0fZErIQ/jMzyalZccEjtJcLGiVANbBGo5hZIPg?=
- =?us-ascii?Q?PorIeIi64LaadBtnF6ittLJh2xr8D8fokj3jD9zj+14HxiCFDdzW390PKxKf?=
- =?us-ascii?Q?O8fWk5GHUvEC4zXhm8AaDBfLkjzVqyc9nZqy0+ocDKrSDJvU6D3cKC5SeOkM?=
- =?us-ascii?Q?Uqymy6w5l8StJh/S8WfHN3cHZVPhIDw57HysNjJjGicPiHpb/KfOgEY5+gso?=
- =?us-ascii?Q?vTFoIATSO062bCFaDhncgVz+sQEli+I4OsdpxeoGu3dABa3EITvOCfOte3ea?=
- =?us-ascii?Q?wtXan6VIviunAwOW6UYmVb1MBTcEDvSEKm6iQkLgkW/6E3yPqoZ9cNbHcuu4?=
- =?us-ascii?Q?uoEivBMxP+K0Wm4QkKQqOlf8XwRZyKcihxCXrNfay6n0dzBftwz7+5daEtE7?=
- =?us-ascii?Q?gHRRC7jkoVfwFBS0nRQNFy5Hyr3xSUfHuL29b3ylelvvbeo0M0imbG2gLXmu?=
- =?us-ascii?Q?NlQR/hEqZVAO0MqKW+UGZrjXNPkaOJPyaJPMBNIHBMMvwCXHGgl2sUZ33HCu?=
- =?us-ascii?Q?mgh1bK7tjKWXrnfrgLZKh46ZdsdSjRPa2dFT7rMIWv1u++wUV9SanNt1ICHY?=
- =?us-ascii?Q?FthMbo9VPzvYr+q6YtABo3CWMj8yXDFauu73iGS1vWhAh/2KgMrviBGqSeyl?=
- =?us-ascii?Q?pg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 724dad7e-3641-4d53-a184-08de2d476ec2
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2025 23:56:35.8807 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wSDe0OF4NypabCwOEfS+K51f0leyoniHbec65FefVr/Bl7ra1g+WFlvuVdRWwHQLU/p8ifk43++Gw3Tb39TpMA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB8105
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -194,45 +92,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Nov 26, 2025 at 11:56:57PM +0100, Andi Shyti wrote:
-> Hi Philipp,
-> 
-> in the subject /dma_fenc_signal/dma_fence_signal/
-> 
-> > @@ -85,7 +85,6 @@ void xe_hw_fence_irq_finish(struct xe_hw_fence_irq *irq)
-> >  {
-> >  	struct xe_hw_fence *fence, *next;
-> >  	unsigned long flags;
-> > -	int err;
-> >  	bool tmp;
-> >  
-> >  	if (XE_WARN_ON(!list_empty(&irq->pending))) {
-> > @@ -93,9 +92,9 @@ void xe_hw_fence_irq_finish(struct xe_hw_fence_irq *irq)
-> >  		spin_lock_irqsave(&irq->lock, flags);
-> >  		list_for_each_entry_safe(fence, next, &irq->pending, irq_link) {
-> >  			list_del_init(&fence->irq_link);
-> > -			err = dma_fence_signal_locked(&fence->dma);
-> 
-> why don't we do
-> 
-> XE_WARN_ON(dma_fence_signal_locked(..))
-> 
+Some USB-C hubs and adapters have buggy firmware where multi-byte AUX
+reads from DPCD address 0x00000 consistently timeout, while single-byte
+reads from the same address work correctly.
 
-IIRC the above statement can compile out. So the patch looks correct to me.
+Known affected devices that exhibit this issue:
+- Lenovo USB-C to VGA adapter (VIA VL817 chipset)
+  idVendor=17ef, idProduct=7217
+- Dell DA310 USB-C mobile adapter hub
+  idVendor=413c, idProduct=c010
 
-Matt
+Analysis of the failure pattern shows:
+- Single-byte probes to 0xf0000 (LTTPR) succeed
+- Single-byte probes to 0x00102 (TRAINING_AUX_RD_INTERVAL) succeed
+- 15-byte reads from 0x00000 (DPCD capabilities) timeout with -ETIMEDOUT
+- Retrying does not help - the failure is consistent across all attempts
 
-> instead?
-> 
-> Andi
-> 
-> > +			XE_WARN_ON(dma_fence_test_signaled_flag(&fence->dma));
-> > +			dma_fence_signal_locked(&fence->dma);
-> >  			dma_fence_put(&fence->dma);
-> > -			XE_WARN_ON(err);
-> >  		}
-> >  		spin_unlock_irqrestore(&irq->lock, flags);
-> >  		dma_fence_end_signalling(tmp);
-> > -- 
-> > 2.49.0
-> > 
+The issue appears to be a firmware bug in the AUX transaction handling
+that specifically affects multi-byte reads from the base DPCD address.
+
+Add a fallback mechanism that attempts byte-by-byte reading when the
+normal multi-byte drm_dp_read_dpcd_caps() fails. This workaround only
+activates for adapters that fail the standard read path, ensuring no
+impact on correctly functioning hardware.
+
+The byte-by-byte read uses drm_dp_dpcd_readb() to read each of the 15
+DPCD capability bytes individually, working around the firmware bug
+while maintaining compatibility with all other adapters.
+
+Tested with:
+- Lenovo USB-C to VGA adapter (VIA VL817) - now works with fallback
+- Dell DA310 USB-C hub - now works with fallback
+- Dell/Analogix Slimport adapter - continues to work with normal path
+
+Signed-off-by: Chia-Lin Kao (AceLan) <acelan.kao@canonical.com>
+---
+ .../drm/i915/display/intel_dp_link_training.c | 21 ++++++++++++++++++-
+ 1 file changed, 20 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+index aad5fe14962f..738a5bb4adb3 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+@@ -213,6 +213,7 @@ static int intel_dp_init_lttpr(struct intel_dp *intel_dp, const u8 dpcd[DP_RECEI
+ int intel_dp_read_dprx_caps(struct intel_dp *intel_dp, u8 dpcd[DP_RECEIVER_CAP_SIZE])
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
++	int ret, i;
+ 
+ 	if (intel_dp_is_edp(intel_dp))
+ 		return 0;
+@@ -226,7 +227,25 @@ int intel_dp_read_dprx_caps(struct intel_dp *intel_dp, u8 dpcd[DP_RECEIVER_CAP_S
+ 				      DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV))
+ 			return -EIO;
+ 
+-	if (drm_dp_read_dpcd_caps(&intel_dp->aux, dpcd))
++	ret = drm_dp_read_dpcd_caps(&intel_dp->aux, dpcd);
++	if (ret == 0)
++		return 0;
++
++	/*
++	 * Workaround for USB-C hubs/adapters with buggy firmware that fail
++	 * multi-byte AUX reads from DPCD address 0x00000 but work with
++	 * single-byte reads. Known affected devices:
++	 * - Lenovo USB-C to VGA adapter (VIA VL817, idVendor=17ef, idProduct=7217)
++	 * - Dell DA310 USB-C hub (idVendor=413c, idProduct=c010)
++	 * Read the DPCD capabilities byte-by-byte as a fallback.
++	 */
++	for (i = 0; i < DP_RECEIVER_CAP_SIZE; i++) {
++		ret = drm_dp_dpcd_readb(&intel_dp->aux, DP_DPCD_REV + i, &dpcd[i]);
++		if (ret < 0)
++			return -EIO;
++	}
++
++	if (dpcd[DP_DPCD_REV] == 0)
+ 		return -EIO;
+ 
+ 	return 0;
+-- 
+2.43.0
+
