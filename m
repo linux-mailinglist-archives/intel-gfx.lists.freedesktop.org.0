@@ -2,68 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95C79C8DAF6
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Nov 2025 11:06:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F361C8DB44
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Nov 2025 11:14:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31C2310E807;
-	Thu, 27 Nov 2025 10:06:08 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZMA2aF3Q";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6B5810E009;
+	Thu, 27 Nov 2025 10:14:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C16F10E807;
- Thu, 27 Nov 2025 10:06:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764237968; x=1795773968;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=dajGMcF5ciAeIRmfVpam5zQkcGfClTk8GVSC0Dv6WCA=;
- b=ZMA2aF3QNCFsMzQAZw6D4WBr+zy/OCzBzrgmV4VyhgKaWnyxNd2Mfy2T
- ylnnmW56ZUVEAmFoWn+TwnBLpc3uc4ks/Km2gN9WigLwcUm2Y6VzryefF
- 9s9K3ss4C00B94/+Ah5CMgPafQFg/uE/XgV8WH2G2HQ3ZA+nVVFoUbFlr
- UYZtfZ2DABVCMcnnHTV+oKoPjEizIYDle6RO8Zhu3mP07bek60QSHcx3d
- UPugCLmaFwP9dX5fwKA7api4YPPt/afXdxoBmXTQP2FMiy1TAhV77XDh2
- E8J/yqFte0jFiXYVW9aRkm7ZMhkA39DmDn17KaQbIiOL10rrLo/07LHOZ g==;
-X-CSE-ConnectionGUID: KvlbAKV5QhuoQNK3ICIL2Q==
-X-CSE-MsgGUID: tocjrd2vTC+ke+dLp287OA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="66358795"
-X-IronPort-AV: E=Sophos;i="6.20,230,1758610800"; d="scan'208";a="66358795"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2025 02:06:07 -0800
-X-CSE-ConnectionGUID: Y85IV73DSIufn/YRPWnwQw==
-X-CSE-MsgGUID: nDseewuzShyFvp9hgSzXCw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,230,1758610800"; d="scan'208";a="216545577"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.49])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2025 02:06:04 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- stable@vger.kernel.org, =?UTF-8?B?6rmA6rCV66+8?= <km.kim1503@gmail.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>
-Subject: Re: [PATCH] drm/i915/gem: NULL-initialize the eb->vma[].vma pointers
- in gem_do_execbuffer
-Date: Thu, 27 Nov 2025 11:06:02 +0100
-Message-ID: <1835827.4herOUoSWf@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <qylrctylmtj6qzibfpbapwpb77ut7gzckgg2wpc3gv56kl46m2@hyio7hcsj6vy>
-References: <20251125133337.26483-2-krzysztof.niemiec@intel.com>
- <4423188.Fh7cpCN91P@jkrzyszt-mobl2.ger.corp.intel.com>
- <qylrctylmtj6qzibfpbapwpb77ut7gzckgg2wpc3gv56kl46m2@hyio7hcsj6vy>
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1369310E009;
+ Thu, 27 Nov 2025 10:14:05 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8743066997543828462=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_Enable/Disable_DC_balance?=
+ =?utf-8?q?_along_with_VRR_DSB?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 27 Nov 2025 10:14:05 -0000
+Message-ID: <176423844507.34580.14339722827913344778@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251127091614.648791-1-mitulkumar.ajitkumar.golani@intel.com>
+In-Reply-To: <20251127091614.648791-1-mitulkumar.ajitkumar.golani@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,100 +37,225 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wednesday, 26 November 2025 18:28:55 CET Krzysztof Niemiec wrote:
-> On 2025-11-25 at 19:06:32 GMT, Janusz Krzysztofik wrote:
-> > Re-sending because of my response unintentionally HTML formatted, with correct 
-> > email address of Tvrtko by the way.
-> > 
-> > 
-> > Hi Krzysztof,
-> > 
-> > On Tuesday, 25 November 2025 14:33:38 CET Krzysztof Niemiec wrote:
-> > > Initialize eb->vma[].vma pointers to NULL when the eb structure is first
-> > > set up.
-> > > 
-> > > During the execution of eb_lookup_vmas(), the eb->vma array is
-> > > successively filled up with struct eb_vma objects. This process includes
-> > > calling eb_add_vma(), which might fail; however, even in the event of
-> > > failure, eb->vma[i].vma is set for the currently processed buffer.
-> > > 
-> > > If eb_add_vma() fails, eb_lookup_vmas() returns with an error, which
-> > > prompts a call to eb_release_vmas() to clean up the mess. Since
-> > > eb_lookup_vmas() might fail during processing any (possibly not first)
-> > > buffer, eb_release_vmas() checks whether a buffer's vma is NULL to know
-> > > at what point did the lookup function fail.
-> > > 
-> > > In eb_lookup_vmas(), eb->vma[i].vma is set to NULL if either the helper
-> > > function eb_lookup_vma() or eb_validate_vma() fails. eb->vma[i+1].vma is
-> > > set to NULL in case i915_gem_object_userptr_submit_init() fails; the
-> > > current one needs to be cleaned up by eb_release_vmas() at this point,
-> > > so the next one is set. If eb_add_vma() fails, neither the current nor
-> > > the next vma is nullified, which is a source of a NULL deref bug
-> > > described in [1].
-> > > 
-> > > When entering eb_lookup_vmas(), the vma pointers are set to the slab
-> > > poison value, instead of NULL. 
-> > 
-> > 
-> > Your commit description still doesn't answer my question why the whole memory 
-> > area allocated to the table of VMAs is not initialized to 0 on allocation, 
-> > only left populated with poison values.
-> > 
-> 
-> Becuase kvmalloc_array() is used. [1]
-> 
-> I guess one could swap it to a call to kvcalloc() or something similar;
-> the thing is that the call actually handles both allocations of
-> exec_list2 and the eb_vma array, the former doesn't need to be
-> zero-initialized, the latter technically also doesn't but it simplifies
-> error paths (and fixes the linked bug). I'm not sure if a
-> zero-initializing *alloc() would be more readable or not here.
+--===============8743066997543828462==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-To my taste, zeroing on allocation would be a more clean solution.
+== Series Details ==
 
-But, while being at it, please have a still closer look, especially at these 
-two statements:
+Series: Enable/Disable DC balance along with VRR DSB
+URL   : https://patchwork.freedesktop.org/series/158156/
+State : failure
 
-at drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:i915_gem_execbuffer2_ioctl():3588
+== Summary ==
 
-	/* Allocate extra slots for use by the command parser */
-	exec2_list = kvmalloc_array(count + 2, eb_element_size(),
-			       __GFP_NOWARN | GFP_KERNEL);
+CI Bug Log - changes from CI_DRM_17595 -> Patchwork_158156v1
+====================================================
 
-at drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:i915_gem_do_execbuffer():3354
+Summary
+-------
 
-	eb.vma = (struct eb_vma *)(exec + args->buffer_count + 1);
+  **FAILURE**
 
-Why do we allocate space for 2 tables of count size plus 2 extra pairs of 
-their elements, but then place the second table at count + 1 offset, leaving 
-space for only one extra element of the first type?
+  Serious unknown changes coming with Patchwork_158156v1 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_158156v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-Looking at git history, there was a couple of excessively complex patches and 
-reverts that apparently introduced that discrepancy.  Unfortunately, none of 
-them, with exception of the one that introduced the above shown inline 
-comment, provided a clear justification why we need to switch from 1 to 2 or 
-vice versa.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158156v1/index.html
 
-Anyway, depending on how that extra space is actually used by the command 
-parser, we may or may not get into troubles with that, so we should better fix 
-it, I believe.
+Participating hosts (45 -> 44)
+------------------------------
 
-Thanks,
-Janusz
+  Missing    (1): fi-snb-2520m 
 
-> 
-> Thanks
-> Krzysztof
-> 
-> [1] https://elixir.bootlin.com/linux/v6.17.9/source/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c#L3586
-> 
-> > Thanks,
-> > Janusz
-> 
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_158156v1:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@gem_tiled_pread_basic:
+    - fi-kbl-guc:         [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/fi-kbl-guc/igt@gem_tiled_pread_basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158156v1/fi-kbl-guc/igt@gem_tiled_pread_basic.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_158156v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-14:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158156v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_hdmi_inject@inject-audio:
+    - fi-tgl-1115g4:      [PASS][5] -> [FAIL][6] ([i915#14867])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158156v1/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - bat-dg2-8:          [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-dg2-8/igt@i915_selftest@live.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158156v1/bat-dg2-8/igt@i915_selftest@live.html
+    - bat-arlh-2:         [INCOMPLETE][9] ([i915#14837]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-arlh-2/igt@i915_selftest@live.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158156v1/bat-arlh-2/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@guc_hang:
+    - bat-arlh-2:         [INCOMPLETE][11] ([i915#15275]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-arlh-2/igt@i915_selftest@live@guc_hang.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158156v1/bat-arlh-2/igt@i915_selftest@live@guc_hang.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [DMESG-FAIL][13] ([i915#12061]) -> [PASS][14] +1 other test pass
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158156v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
+    - bat-mtlp-6:         [DMESG-FAIL][15] ([i915#12061]) -> [PASS][16] +1 other test pass
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158156v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#14837]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14837
+  [i915#14867]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14867
+  [i915#15275]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15275
 
 
+Build changes
+-------------
+
+  * Linux: CI_DRM_17595 -> Patchwork_158156v1
+
+  CI-20190529: 20190529
+  CI_DRM_17595: e7a767430515c3a6e8aee91c2a68cba8b06fe884 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8639: 2ce563031e6b2ec91479f6af8c326d25c15bdb26 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_158156v1: e7a767430515c3a6e8aee91c2a68cba8b06fe884 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158156v1/index.html
+
+--===============8743066997543828462==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Enable/Disable DC balance along with VRR DSB</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158156/">https://patchwork.freedesktop.org/series/158156/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158156v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158156v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17595 -&gt; Patchwork_158156v1</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_158156v1 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_158156v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158156v1/index.html</p>
+<h2>Participating hosts (45 -&gt; 44)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_158156v1:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@gem_tiled_pread_basic:<ul>
+<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/fi-kbl-guc/igt@gem_tiled_pread_basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158156v1/fi-kbl-guc/igt@gem_tiled_pread_basic.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_158156v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158156v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdmi_inject@inject-audio:</p>
+<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158156v1/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14867">i915#14867</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-dg2-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158156v1/bat-dg2-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-arlh-2/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14837">i915#14837</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158156v1/bat-arlh-2/igt@i915_selftest@live.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@guc_hang:</p>
+<ul>
+<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-arlh-2/igt@i915_selftest@live@guc_hang.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15275">i915#15275</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158156v1/bat-arlh-2/igt@i915_selftest@live@guc_hang.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158156v1/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158156v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17595 -&gt; Patchwork_158156v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17595: e7a767430515c3a6e8aee91c2a68cba8b06fe884 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8639: 2ce563031e6b2ec91479f6af8c326d25c15bdb26 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_158156v1: e7a767430515c3a6e8aee91c2a68cba8b06fe884 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============8743066997543828462==--
