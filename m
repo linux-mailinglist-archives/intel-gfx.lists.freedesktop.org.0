@@ -2,29 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4975EC8E782
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Nov 2025 14:30:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B06EFC8E800
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Nov 2025 14:37:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3D7510E6CC;
-	Thu, 27 Nov 2025 13:30:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAD5210E723;
+	Thu, 27 Nov 2025 13:37:25 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="CeKkfLKK";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CD7810E613;
- Thu, 27 Nov 2025 13:30:38 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E11A510E6DA;
+ Thu, 27 Nov 2025 13:37:23 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id D198360141;
+ Thu, 27 Nov 2025 13:37:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83865C4CEF8;
+ Thu, 27 Nov 2025 13:37:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1764250642;
+ bh=I4PdYzRN+MTqsZDHBCDDkw07FlKUWJA4d9AsRMAWLio=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=CeKkfLKKq6G2UJMAEwwq2lg7VIxz8nzuVel8G7pTAuyH6g3qCqjQ8JbVJCTgKB5Am
+ NCMVptKu378LkF7MM+L9dGF3qY6Pju+zikBlcD/BNdZgkdfPZcfhSndlNaMDRlZfcd
+ cIGOWkJaxaMGt6jRIXFnZd6JLo27vPLyU9BlbPlkZ/1fRNDi0nsotRreRw8EWTltxZ
+ WRA5KtbghLMHzz8Q81GXthn0Ikzfp+vFn20tyCC121ThWqzKt3GgD3JdXjuE4s3EAM
+ JkIKVKDFSw2nhbiITA524q66FbPbAuvlxU+b07DAfBkefVMCGnTnrhW26qvWO3Vhme
+ 0YABbqiV2F/nA==
+Date: Thu, 27 Nov 2025 14:37:17 +0100
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: Philipp Stanner <phasta@kernel.org>, 
+ Sumit Semwal <sumit.semwal@linaro.org>, Gustavo Padovan <gustavo@padovan.org>, 
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>, 
+ Matthew Auld <matthew.auld@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org
+Subject: Re: [PATCH 3/6] drm/gpu/xe: Ignore dma_fenc_signal() return code
+Message-ID: <q2kvwmnxomqlcx7zgvlvyhupduytfubcu5vghuf6ztrdaq55pb@gq4tg7qughun>
+References: <20251126131914.149445-2-phasta@kernel.org>
+ <20251126131914.149445-5-phasta@kernel.org>
+ <nrrk4kug6a42fztx7ryuz5bk6uy7roiszjhiivlvtrw3uvunps@wn44moyetzff>
+ <aSeTsINKklqqJyIs@lstrano-desk.jf.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_drm/i915/display=3A_Enabl?=
- =?utf-8?q?e_system_cache_support_for_FBC_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 27 Nov 2025 13:30:38 -0000
-Message-ID: <176425023830.35615.13752367534792589223@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251127115349.249120-1-vinod.govindapillai@intel.com>
-In-Reply-To: <20251127115349.249120-1-vinod.govindapillai@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aSeTsINKklqqJyIs@lstrano-desk.jf.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,28 +74,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Matt,
 
-Series: drm/i915/display: Enable system cache support for FBC (rev3)
-URL   : https://patchwork.freedesktop.org/series/157945/
-State : failure
+On Wed, Nov 26, 2025 at 03:56:32PM -0800, Matthew Brost wrote:
+> On Wed, Nov 26, 2025 at 11:56:57PM +0100, Andi Shyti wrote:
+> > > @@ -85,7 +85,6 @@ void xe_hw_fence_irq_finish(struct xe_hw_fence_irq *irq)
+> > > @@ -93,9 +92,9 @@ void xe_hw_fence_irq_finish(struct xe_hw_fence_irq *irq)
+> > >  		spin_lock_irqsave(&irq->lock, flags);
+> > >  		list_for_each_entry_safe(fence, next, &irq->pending, irq_link) {
+> > >  			list_del_init(&fence->irq_link);
+> > > -			err = dma_fence_signal_locked(&fence->dma);
+> > 
+> > why don't we do
+> > 
+> > XE_WARN_ON(dma_fence_signal_locked(..))
+> > 
+> 
+> IIRC the above statement can compile out. So the patch looks correct to me.
 
-== Summary ==
+you have defined XE_WARN_ON as WARN_ON that should always
+evaluate the content and, depending on the configuration, it
+prints the logs or not.
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/157945/revisions/3/mbox/ not applied
-Applying: drm/i915/display: Use a sub-struct for fbc operations in intel_display
-Applying: drm/i915/xe3p_lpd: Enable display use of system cache for FBC
-error: git diff header lacks filename information when removing 1 leading pathname component (line 2)
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0002 drm/i915/xe3p_lpd: Enable display use of system cache for FBC
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-Build failed, no error log produced
+What I don't like from this patch is that we end up checking
+twice for the DMA_FENCE_FLAG_SIGNALED_BIT bit.
 
-
+Thanks,
+Andi
