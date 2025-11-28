@@ -2,58 +2,83 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DAE9C9140F
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Nov 2025 09:41:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A2FFC914FA
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Nov 2025 09:53:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B91910E465;
-	Fri, 28 Nov 2025 08:41:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 92EFE10E734;
+	Fri, 28 Nov 2025 08:53:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OJcZn52b";
+	dkim=pass (1024-bit key; unprotected) header.d=huawei.com header.i=@huawei.com header.b="SCrmvzLM";
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b="SCrmvzLM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3C9710E465
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Nov 2025 08:41:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764319286; x=1795855286;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=aEkxrHaqg+pO/3xje7eq9+DVukCbqJO/UrxTQexHoDo=;
- b=OJcZn52bvYdYK2+9F7hAJJo2pZsjm/3akHarRAtfB6tpyuKuuWS+T8sS
- v+nqtVxTtI2FwUJq8D6E6MQkMOfNUi4fBbdUvsxz+s0jSNui8483sJa8v
- Y37wJU/bIwdLiJTDpHwMiqJ+C5Wlqx5usBTFNrVStuYirmZNJa3JO3h2g
- QMdMAnFVm8r19ZtmSwzIxM3PtEfrIn6M3PizIu5xjjLUwAU7kni/GGivd
- FM2ktQ6qQnyeIWnQ3dNP5eakg3uaewkPkwfmVr1/K+JT/gSnKSvcpz6CN
- wrkaVEVIoQbXLOoyE+tNydtHD9pnaQhlJ0XauZLvX9NASPah5clED/PAb Q==;
-X-CSE-ConnectionGUID: MDmRZiVZT6q92fQz5e+lWA==
-X-CSE-MsgGUID: 4hUJC673SbuaKq5+gUbpIg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11626"; a="68945289"
-X-IronPort-AV: E=Sophos;i="6.20,232,1758610800"; d="scan'208";a="68945289"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2025 00:41:24 -0800
-X-CSE-ConnectionGUID: vqTm//vNSOylGg5ESLlywA==
-X-CSE-MsgGUID: DJ+0OjBgSnqsvj4E6dbdDw==
-X-ExtLoop1: 1
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.83])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2025 00:41:21 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: =?utf-8?B?15PXoNeZ15DXnCDXodeZ16DXmQ==?= <danielsinai0808@gmail.com>,
- intel-gfx@lists.freedesktop.org
-Subject: Re: Question about the GTDRIVER_MAILBOX_DATA0 register in Gen 12.0
- (Tiger Lake)
-In-Reply-To: <CADusC6XGSRY8snhf32xY8eT_P2PGp72Ne=-C3TOC=0CqkeKNVA@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <CADusC6XGSRY8snhf32xY8eT_P2PGp72Ne=-C3TOC=0CqkeKNVA@mail.gmail.com>
-Date: Fri, 28 Nov 2025 10:41:18 +0200
-Message-ID: <70da0a931679e4ef5cfdd6864db9a5e33b9192d3@intel.com>
+Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D88910E734;
+ Fri, 28 Nov 2025 08:53:02 +0000 (UTC)
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+ c=relaxed/relaxed; q=dns/txt; h=From;
+ bh=ayeORpzjOdSu5Dq1+NuiLmYPQmPfa5NTJ2zt1jOYWc0=;
+ b=SCrmvzLMmh6Hd3DbJ/bqPri2/8mw7SfJDmO30i3bxLYDUfybVvkPFlzScb2MrwDTA6IWJSRe0
+ BjeVqsKYP1cC+EJXe43rfWBYkvZkMo7W3WUoLgDNT2q7hJ/JmNpgA0fH/VdXxsex6QKEJjVTrgJ
+ 3qtEaJqxro70/djqoli5NKU=
+Received: from canpmsgout12.his.huawei.com (unknown [172.19.92.144])
+ by szxga01-in.huawei.com (SkyGuard) with ESMTPS id 4dHn9M37nTz1BGDF;
+ Fri, 28 Nov 2025 16:52:07 +0800 (CST)
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+ c=relaxed/relaxed; q=dns/txt; h=From;
+ bh=ayeORpzjOdSu5Dq1+NuiLmYPQmPfa5NTJ2zt1jOYWc0=;
+ b=SCrmvzLMmh6Hd3DbJ/bqPri2/8mw7SfJDmO30i3bxLYDUfybVvkPFlzScb2MrwDTA6IWJSRe0
+ BjeVqsKYP1cC+EJXe43rfWBYkvZkMo7W3WUoLgDNT2q7hJ/JmNpgA0fH/VdXxsex6QKEJjVTrgJ
+ 3qtEaJqxro70/djqoli5NKU=
+Received: from mail.maildlp.com (unknown [172.19.163.44])
+ by canpmsgout12.his.huawei.com (SkyGuard) with ESMTPS id 4dHn7T5BYYznTY7;
+ Fri, 28 Nov 2025 16:50:29 +0800 (CST)
+Received: from dggpemf500015.china.huawei.com (unknown [7.185.36.143])
+ by mail.maildlp.com (Postfix) with ESMTPS id 0AB451401F4;
+ Fri, 28 Nov 2025 16:52:54 +0800 (CST)
+Received: from [10.67.121.110] (10.67.121.110) by
+ dggpemf500015.china.huawei.com (7.185.36.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.11; Fri, 28 Nov 2025 16:52:51 +0800
+Subject: Re: [PATCH v2 02/22] vfio/hisi: Convert to the get_region_info op
+To: Alex Williamson <alex@shazbot.org>
+CC: Jason Gunthorpe <jgg@nvidia.com>, Alexander Gordeev
+ <agordeev@linux.ibm.com>, David Airlie <airlied@gmail.com>, Alex Williamson
+ <alex.williamson@redhat.com>, Ankit Agrawal <ankita@nvidia.com>, Christian
+ Borntraeger <borntraeger@linux.ibm.com>, Brett Creeley
+ <brett.creeley@amd.com>, <dri-devel@lists.freedesktop.org>, Eric Auger
+ <eric.auger@redhat.com>, Eric Farman <farman@linux.ibm.com>, Giovanni Cabiddu
+ <giovanni.cabiddu@intel.com>, Vasily Gorbik <gor@linux.ibm.com>, Heiko
+ Carstens <hca@linux.ibm.com>, <intel-gfx@lists.freedesktop.org>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, <kvm@vger.kernel.org>, Kirti Wankhede
+ <kwankhede@nvidia.com>, <linux-s390@vger.kernel.org>, Matthew Rosato
+ <mjrosato@linux.ibm.com>, Nikhil Agarwal <nikhil.agarwal@amd.com>, Nipun
+ Gupta <nipun.gupta@amd.com>, Peter Oberparleiter <oberpar@linux.ibm.com>,
+ Halil Pasic <pasic@linux.ibm.com>, <qat-linux@intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>, Shameer Kolothum
+ <skolothumtho@nvidia.com>, Sven Schnelle <svens@linux.ibm.com>, Tvrtko
+ Ursulin <tursulin@ursulin.net>, <virtualization@lists.linux.dev>, Vineeth
+ Vijayan <vneethv@linux.ibm.com>, Yishai Hadas <yishaih@nvidia.com>, Zhenyu
+ Wang <zhenyuw.linux@gmail.com>, Zhi Wang <zhi.wang.linux@gmail.com>, Kevin
+ Tian <kevin.tian@intel.com>, <patches@lists.linux.dev>, Pranjal Shrivastava
+ <praan@google.com>, Mostafa Saleh <smostafa@google.com>
+References: <2-v2-2a9e24d62f1b+e10a-vfio_get_region_info_op_jgg@nvidia.com>
+ <b5ffda6e-d8e9-5f02-69b3-e9f1a0901f90@huawei.com>
+ <20251123194535.42acb382@shazbot.org>
+From: liulongfang <liulongfang@huawei.com>
+Message-ID: <9cdadb2d-579f-f86a-ac4e-a15c792506aa@huawei.com>
+Date: Fri, 28 Nov 2025 16:52:35 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20251123194535.42acb382@shazbot.org>
+Content-Type: text/plain; charset="gbk"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.67.121.110]
+X-ClientProxiedBy: kwepems100001.china.huawei.com (7.221.188.238) To
+ dggpemf500015.china.huawei.com (7.185.36.143)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,32 +94,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 28 Nov 2025, =D7=93=D7=A0=D7=99=D7=90=D7=9C =D7=A1=D7=99=D7=A0=D7=
-=99 <danielsinai0808@gmail.com> wrote:
-> I cannot seem to find the definition and/or the address of the-
-> GTDRIVER_MAILBOX_DATA0 register in the PRM, this is true with the latest
-> version of the PRM for that generation.
-> I've used multiple search tools including the advanced search in Adobe
-> acrobat reader and the recoll program.
-> Judging by the definitions for 'GTDRIVER_MAILBOX_DATA1',
-> and 'GTDRIVER_MAILBOX_INTERFACE', there seems to be a 4 byte gap
-> between them where the register could be.
-> I also looked in the Linux kernel (specifically, I found definitions:
-> 'GEN6_PCODE_DATA' and 'GEN6_PCODE_DATA1' in i915_regs.h under-
-> /drivers/gpu/drm/i915), it seems to also hint at the register being there.
+On 2025/11/24 10:45, Alex Williamson wrote:
+> On Mon, 24 Nov 2025 09:39:58 +0800
+> liulongfang <liulongfang@huawei.com> wrote:
+> 
+>> On 2025/11/8 1:41, Jason Gunthorpe wrote:
+>>> Change the function signature of hisi_acc_vfio_pci_ioctl()
+>>> and re-indent it.
+>>>
+>>> Reviewed-by: Kevin Tian <kevin.tian@intel.com>
+>>> Acked-by: Pranjal Shrivastava <praan@google.com>
+>>> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+>>> ---
+>>>  .../vfio/pci/hisilicon/hisi_acc_vfio_pci.c    | 57 +++++++++----------
+>>>  1 file changed, 27 insertions(+), 30 deletions(-)
+>>>
+>>> diff --git a/drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c b/drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c
+>>> index fde33f54e99ec5..899db4d742a010 100644
+>>> --- a/drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c
+>>> +++ b/drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c
+>>> @@ -1324,43 +1324,39 @@ static ssize_t hisi_acc_vfio_pci_read(struct vfio_device *core_vdev,
+>>>  	return vfio_pci_core_read(core_vdev, buf, new_count, ppos);
+>>>  }
+>>>  
+>>> -static long hisi_acc_vfio_pci_ioctl(struct vfio_device *core_vdev, unsigned int cmd,
+>>> -				    unsigned long arg)
+>>> +static int hisi_acc_vfio_ioctl_get_region(struct vfio_device *core_vdev,
+>>> +					  struct vfio_region_info __user *arg)
+>>>  {
+>>> -	if (cmd == VFIO_DEVICE_GET_REGION_INFO) {
+>>> -		struct vfio_pci_core_device *vdev =
+>>> -			container_of(core_vdev, struct vfio_pci_core_device, vdev);
+>>> -		struct pci_dev *pdev = vdev->pdev;
+>>> -		struct vfio_region_info info;
+>>> -		unsigned long minsz;
+>>> +	struct vfio_pci_core_device *vdev =
+>>> +		container_of(core_vdev, struct vfio_pci_core_device, vdev);
+>>> +	struct pci_dev *pdev = vdev->pdev;
+>>> +	struct vfio_region_info info;
+>>> +	unsigned long minsz;
+>>>  
+>>> -		minsz = offsetofend(struct vfio_region_info, offset);
+>>> +	minsz = offsetofend(struct vfio_region_info, offset);
+>>>  
+>>> -		if (copy_from_user(&info, (void __user *)arg, minsz))
+>>> -			return -EFAULT;
+>>> +	if (copy_from_user(&info, arg, minsz))
+>>> +		return -EFAULT;
+>>>  
+>>> -		if (info.argsz < minsz)
+>>> -			return -EINVAL;
+>>> +	if (info.argsz < minsz)
+>>> +		return -EINVAL;
+>>>  
+>>> -		if (info.index == VFIO_PCI_BAR2_REGION_INDEX) {
+>>> -			info.offset = VFIO_PCI_INDEX_TO_OFFSET(info.index);
+>>> +	if (info.index != VFIO_PCI_BAR2_REGION_INDEX)
+>>> +		return vfio_pci_ioctl_get_region_info(core_vdev, arg);
+>>>  
+>>> -			/*
+>>> -			 * ACC VF dev BAR2 region consists of both functional
+>>> -			 * register space and migration control register space.
+>>> -			 * Report only the functional region to Guest.
+>>> -			 */
+>>> -			info.size = pci_resource_len(pdev, info.index) / 2;
+>>> +	info.offset = VFIO_PCI_INDEX_TO_OFFSET(info.index);
+>>>  
+>>
+>> Please adapt based on the latest code in the Next branch.
+>> Code updates have already been made here.
+> 
+> I resolved this on commit, please verify in the vfio next branch.
+> Thanks,
 >
-> However, because this is my first time doing anything like this,
-> I wanted to make sure, Is this actually where the register is located?
-> If it's located somewhere else, where is it?
 
-What are you trying to accomplish?
+On the next branch, the code after your adaptation modifications is correct.
 
-See also https://en.wikipedia.org/wiki/XY_problem
+Thanks.
+Longfang!
 
-
-BR,
-Jani.
-
-
---=20
-Jani Nikula, Intel
+> Alex
+> .
+> 
