@@ -2,166 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42C0FC92929
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Nov 2025 17:24:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79FE5C92E45
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Nov 2025 19:19:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4031D10E08D;
-	Fri, 28 Nov 2025 16:24:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4ED810E8B3;
+	Fri, 28 Nov 2025 18:19:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UZURWYk5";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="WSWsz7T/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C6D210E17F
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Nov 2025 16:24:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764347059; x=1795883059;
- h=from:to:subject:date:message-id:in-reply-to:references:
- content-transfer-encoding:mime-version;
- bh=35pev+1KtVYQym3mus9VuaENZlb8YYTHfgRGvoLVCMI=;
- b=UZURWYk5IkAqTwPyD/9+A0YaDN3TZoZvXVehdx6zMXMQuEOVcjslnNxh
- +rxLAtLR18vwcxpboVeFawmoi1wIW5sqrJpoTMQk3S/UtpJKEeqqKL/B8
- q5N28ZfGffUKPmFWRUdmZBHnvWLNObW5CWsXHHyqQnMjmgdyoLFwpj+1T
- 1/QI+Cw2UZvNhCb3wp6zv+06Qk+QFYGFrRS5Y/yqXIHglO+4Jklijj64N
- funckljJReTO5AqWESNBaL5pW3Tn42S2b43hyuO16vyfSxFSMhsl1cBIF
- I0JTMGgHY45HxlLKlwh3lFNWUZuhVeW9X++eBDC5wRnaR6UUnAvK0lNxl Q==;
-X-CSE-ConnectionGUID: BTbdRJtdSVGSek5XtRH5Ww==
-X-CSE-MsgGUID: uVwypiSCTKW6HQBsT55frA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11626"; a="66269019"
-X-IronPort-AV: E=Sophos;i="6.20,234,1758610800"; d="scan'208";a="66269019"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2025 08:24:19 -0800
-X-CSE-ConnectionGUID: euj9NdjETCmuiFnZ9Pr0ww==
-X-CSE-MsgGUID: 80maJlx0QUCahUK6eCuK3w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,234,1758610800"; d="scan'208";a="193922553"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2025 08:24:19 -0800
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Fri, 28 Nov 2025 08:24:18 -0800
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Fri, 28 Nov 2025 08:24:18 -0800
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.65)
- by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Fri, 28 Nov 2025 08:24:18 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xeynh+ZCBHzD90BrZtkO/CC51YX2x02xNrR7yyvB8eyo50FVL767klVhsweCR4/r0gDDj7FpJ5Vb04oBrUTDwkfjSbP/7j8tBWtbJusyNQClReDO8SNDV+XCj81BGwLv4FxGA63Z7a2LGXkWVmowDoOwoLrV4O3gcZlwUyY+kaRWVL17s1FfiyXHJ2vfipUZuJPgCSB4+yWJaqQTLBTc0FsxlGwRGatvKeQUAUQL20mFGfeVV0f0C7mfrZH+ONLL417VU7IqsZM4xFRLUq+8hPBeBxk3tKS0tgZGXj6Kd5UL2oclvkKX13r393C4QsjjnbxnWgYnrH2OF29dK8mlMQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8wse/9+e+0betlOdC7C94Fs7WSMSZz14uUXn8BG/7F8=;
- b=mfQeiuBZf/0sesSOq+7UOKBqXrK94GcB8eIP9orOC9LTkURVgzBIimuF0ThAXtUAd0BgiTZTuMZ5ZbpgkbqJp7LPwvucvYiwn5v3xgKTfCL/O0l68XcQtIONrz7HndPQBQe1Rje6mYQf+hwBbV1L0iptyuOiFGWcxTfIutdn+4hw13lv6Kk51A5+hnNoSzAbSvtPPItzDV9huT5l7BtIF+gF558GVihSd/CbYpOjUyB+Y0jK/0gGlmyLne0tZiZmp+TL2uOEG+wueEEro2Qg6nW4x2YZVq0/Ot98uoFqkFFcyUEZL5LmcLgxfr8Waldlvmox8pMSHV192gKgSuaP3A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
- by PH7PR11MB8504.namprd11.prod.outlook.com (2603:10b6:510:2fe::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.15; Fri, 28 Nov
- 2025 16:21:09 +0000
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::8900:d137:e757:ac9f%3]) with mapi id 15.20.9366.012; Fri, 28 Nov 2025
- 16:21:09 +0000
-From: Imre Deak <imre.deak@intel.com>
-To: <intel-gfx@lists.freedesktop.org>
-Subject: [CI 09/50] drm/i915/dp: Use the effective data rate for DP compressed
- BW calculation
-Date: Fri, 28 Nov 2025 18:20:50 +0200
-Message-ID: <20251128162050.1600107-1-imre.deak@intel.com>
-X-Mailer: git-send-email 2.49.1
-In-Reply-To: <20251127175023.1522538-1-imre.deak@intel.com>
-References: <20251127175023.1522538-1-imre.deak@intel.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: LO0P265CA0009.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:355::20) To SJ0PR11MB4845.namprd11.prod.outlook.com
- (2603:10b6:a03:2d1::10)
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75FAE10E8B3;
+ Fri, 28 Nov 2025 18:19:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1764353945;
+ bh=D5R1R40lbideVzmASkbHJ+gHLI9Htdhg6MTSqRr2Qzk=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=WSWsz7T/sjVOoTY/5nfXwZRHu4rhkNDL6DITqGjsmhgwx2hz6hSZAE6ctMOlnxnJF
+ sNXxWZpdtwjuSyYyXpJjJsWQHzlBP9gr2NMAFsuLkz4nkUo7ZkNxbotLciH7qjoMiu
+ a5Jg3BwHxG8zejOGDy7gle6vZvDHWSf2TGd1JXgr/XVXpcjI7tWU1A2KzG+ZG8Kt8P
+ P5OLAuPoFNWq6/2+Rr3Nw5+0eEIz/j/Qt0KADYHVQ9M8EyeAAJEfvwxI3EjivQA6uF
+ pLqciabzg+8vJB6ZKhUg8xveL+owX+GAjrQfdk+M21Hxo19z318Glzqmp/Ihy4+65w
+ dt66CVMfQ7AYg==
+Received: from [IPV6:2a01:e0a:5e3:6100:7aed:fe0e:8590:cbaa] (unknown
+ [IPv6:2a01:e0a:5e3:6100:7aed:fe0e:8590:cbaa])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ (Authenticated sender: loicmolinari)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id 0701417E06C3;
+ Fri, 28 Nov 2025 19:19:03 +0100 (CET)
+Message-ID: <411f7b0f-858c-4486-8819-c01b29cc123a@collabora.com>
+Date: Fri, 28 Nov 2025 19:19:03 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|PH7PR11MB8504:EE_
-X-MS-Office365-Filtering-Correlation-Id: 46c3b140-9fd6-4bb6-4d85-08de2e9a239a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0; ARA:13230040|366016|376014|1800799024|10070799003;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?X4PM/UbDwf1LnmhkAnCnIIv5MoqyvPguwug/fQFCd7paQqsVpzIzp+M0I8Cw?=
- =?us-ascii?Q?ILI45n8QqLODVq8KmHZxhcKm4wHfRNiSWYcS7GjEYUlue8YaagsHTU20iwu1?=
- =?us-ascii?Q?xoxaSa2X0pszsMFyzIwF9n5UDuY+fQWk0U+u3BjZgWc42X03n0+4OE6oTvTj?=
- =?us-ascii?Q?cnOu18G/e67zwoYxtnYiMZxwxVun+81rXXn/FczNXP+B0AthYzaQry9Q7wsr?=
- =?us-ascii?Q?2gbIfmrDe57LkUZRd0snSSziYrnwkc1+MD0AEJwso7UpGf5KG4JMdN3IwdrN?=
- =?us-ascii?Q?JEYOsG1X9rjL4sxFmYzNZYyzlPski3Q5xzFHc4wyOEzq2vHu/snziq591OpN?=
- =?us-ascii?Q?rDw636QHoO0DHPLTuvYBc4voXIML0YFtWRYG4v9ICO455dROeRdDzLfib9C5?=
- =?us-ascii?Q?g60pHhpsGb7FhppVAodf342havap+4jpFk4W0FN5oEFjiaQR9hmSpSW0nf+h?=
- =?us-ascii?Q?Sff18icH3mmp4ZLcLHVVgwYsp1kWkUDYIybpII3XYpNGWkvylfDkfh/tg25j?=
- =?us-ascii?Q?afwyEAJmUYWVFRC45sZxACxCVhgQffag0L04PwB1undnGCVvnN1r7Arj0OiD?=
- =?us-ascii?Q?D9Ixb4fSyjJL6tYy9KUF3XlEEcCNsVNeTV0KT1SwCHNonNW1FmdkgoIvVHHS?=
- =?us-ascii?Q?rKlQLjs998yiJQ9/ageOfW79XJO8rfwh2NcZDSJw0vn3yOElXcjPHZfKIMuE?=
- =?us-ascii?Q?WJrLByqll4BPGr+F2tg5/jvnYdaSMpAx4BvPp1nLU74qwuF0LF/OKAWm1cIn?=
- =?us-ascii?Q?aTk6voZw2Q7FRQdl/53spej6uEKoE7WANZh9dn3FxixLc/U/VqPpqG9JXPPU?=
- =?us-ascii?Q?z59mxrS9xKt/AnzkFiUzq2Jl2cfHzqqJQLRHIVBhw2854P+rRrYmE5bywN9v?=
- =?us-ascii?Q?DbubKgPve4HgdCu5wbeCOJyyYUsduNCUHupsQmif1ON+YjbeKfpEXiYAyLWm?=
- =?us-ascii?Q?rJtpt5avARSCPbnVPt0AQWognJvxSZcRn2Yfr/t3ZgVtkNeWm5dkuYRj8l6+?=
- =?us-ascii?Q?BOl/9Sjomi8L72QyRRiCsedtvDKTVnQbZ0drKQP7CRdQ3weJWB/Zw2nkc3GW?=
- =?us-ascii?Q?b57VxAVfPJqSciQcB4Tk9bhspk2sJWnQdHDbdMqNdv8TlpIUWYlsFxg43kcO?=
- =?us-ascii?Q?lcbIeS/jAxlpND4HBsHkZ+g4BeTEgMPJXdaTM6BWtLGGwrshnX/etv5vV6N8?=
- =?us-ascii?Q?n1RqjNuKjZ/fSoXg+r/ssAiYbZNSs35V0qtVnD6C5DEODl4574UlFXP9yLA8?=
- =?us-ascii?Q?+HWkqoC9cXyRD3uQ+RzQKzot7OimvmFq8Blz8WuA/a9Ik05B4D5XF7Uc4nax?=
- =?us-ascii?Q?5ky+kdmfCgJqgWukKLul1G+uI1x6f0ifbkajysO6hUEvy7tF7BGh9rmQCUfz?=
- =?us-ascii?Q?BbOt+rX7ykI1D1gHGhx+2ROzkb0EWCaKAXnuxy5xJfcNITtXTUTzIEZP+lbP?=
- =?us-ascii?Q?Gr38wlMPUQhpNtL1Z9tQfv0t6vqlLBQr?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(10070799003); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?1t73n8un8prLh1EieJ0pwoGIkrFyRgrb/MlWW61qtGZYmsOSdF9he06ItLhj?=
- =?us-ascii?Q?UJpfneSn/58x32WOfIgzfeuAdy6qU1Hjjoo3C7GVDtnEFPV5bcmGtqb6Wvs0?=
- =?us-ascii?Q?5oF2/Z1OP8LGq2zckIaVuu/a6yxHt3Zh1M2nLS3zkFWKb59H2zgt0tS9WNP5?=
- =?us-ascii?Q?b5WRWjSvjRD2BZJL5eFZ0515cVTIpuS5xVJ4PUHt63Hzlh0DCE71SQrL6Xh4?=
- =?us-ascii?Q?mr5ej2++nbx3N8S+aYFOmMq9pjv1WCHqqLfmYT/vgzYEQpRhn1W9NkZY0ANF?=
- =?us-ascii?Q?XR6ittHFucmZH1w/WraBkOSUeFrh23f56VyLIZShKKSTiQRP7A7gmva9g2K5?=
- =?us-ascii?Q?zS0YkkqykRlhCGDtr50zSU7Pg1t7hP/IORPI9HzWmrukS3XaPUsInpAsfRgl?=
- =?us-ascii?Q?7ZIRkCknj6GGPXFnEbz3n0qWgVGjo+P1qxw4b4igtiUWiGnCOobMVldhBI9p?=
- =?us-ascii?Q?FrtGAMnRQXgenl3OnspUBAvmV6G9zv6pI6dGLt9iDoI0lZqDuQ/zziL4fac5?=
- =?us-ascii?Q?4Cuee9G8ghiHfksTfVum8WMW3uQToN3XzWO6GcX6zZQxOYq4HBFZUXovlGgU?=
- =?us-ascii?Q?Ts9VrNAyShUnR2bMYXtemgh1NSY0RflKLGV7N45kx2Br5JdXMe2GPpIQ+Chf?=
- =?us-ascii?Q?prvH2BzXkXbXT+S7J74mMkf9j26OWkkBp4JTT1+BeV+biaQWlUW0tX2ctPm9?=
- =?us-ascii?Q?3qQvA4o7OJihXehQS/gV3EeWCYIoQfqC/PgVUHvLcaDs1ALuyBl+0g092f0e?=
- =?us-ascii?Q?bsTIOuztN7KRlgG1PWPSQEZ0vA4vu3L2Af0YBCMWXl8aFI1q79eAItTUh5FP?=
- =?us-ascii?Q?1C4cUnaHTKGQ1+D0GE/TAfYhIdYr7rY49RtJYDOvvLelbHC8bodovWumNnwq?=
- =?us-ascii?Q?c49AevQwBoELngSwfjP1dIfbN973QMKxDwgwSO0nraw2LRVQyRnk10QLMK9E?=
- =?us-ascii?Q?7rYCRvf5DS/rTqrAbEImQgl/W0ZqpmP8z4X8kQASTuUW9JedkNuQAtGrM2pT?=
- =?us-ascii?Q?CRIqgIoybqXze5meKQhaO1hiJTvQ4oVYP/WsDWO8pjxeiNJidPIVA7/W4o9C?=
- =?us-ascii?Q?oOpetjhGpwbEVX+Bjfsswz9VB/e+wvP+30K6QOLNygY4diQ2NgmUg7uW8WqH?=
- =?us-ascii?Q?/xogLUJiEL315gtV5iSqEyVOPmJmLlw40swtxE313AoDlEn0tQ/aPiaryD9A?=
- =?us-ascii?Q?I9wBsbuW2FMnd1yIGznqZqGpqR7bSynzzx7zThxQOSkMqzWYga/cLG7VHmWI?=
- =?us-ascii?Q?wpaXyQE5cS03Krlo8dceW8vxT0Mqin+/3DXeJVAUfTE0AwNIvJybWEumRDUb?=
- =?us-ascii?Q?njfCmNMuOEAMy5JhHrSr67HGOn/+4XTLfPHPIQ9Eovq5lmPXZpTyq0oXO6pG?=
- =?us-ascii?Q?dAGnpKxOIvstg6wT1ZUmXgc9kefH4ko81yhUc6MmhzYiqK2fNL11F/2XNhUt?=
- =?us-ascii?Q?YnPXXN2C422yA9l9uMWmHf2grIOqrEOXBYKaRQoBAPFXxTzp2vipRKzHYccY?=
- =?us-ascii?Q?7KMi9WnbMZNhc45GZTDJSsQ3eSpzXn/LNV7ggGL4VGH2q93yWmzysF0zShaG?=
- =?us-ascii?Q?V+DoiyHwP3bGVMV9dDG8Jk65nwyCciPfN0AKBLty6RXE4rjN94d0v7Q1/M4R?=
- =?us-ascii?Q?KXXNvntMLRg/lhIYwZcmy2LvEQ0BfWnjOeum+qkoEqwV?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 46c3b140-9fd6-4bb6-4d85-08de2e9a239a
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Nov 2025 16:21:09.3030 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7/rFnR3N29IATpk1RJ4ZLO6U41SI4bB7dxHvllUTbsEnXrXMsEWLBtImHhFPMOi6U0RSozgttbOIO6/MY7a/UQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB8504
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 06/11] drm/v3d: Use huge tmpfs mountpoint helpers
+To: Tvrtko Ursulin <tursulin@ursulin.net>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
+ Liviu Dudau <liviu.dudau@arm.com>, Melissa Wen <mwen@igalia.com>,
+ =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
+ Hugh Dickins <hughd@google.com>, Baolin Wang
+ <baolin.wang@linux.alibaba.com>, Andrew Morton <akpm@linux-foundation.org>,
+ Al Viro <viro@zeniv.linux.org.uk>, =?UTF-8?Q?Miko=C5=82aj_Wasiak?=
+ <mikolaj.wasiak@intel.com>, Christian Brauner <brauner@kernel.org>,
+ Nitin Gote <nitin.r.gote@intel.com>, Andi Shyti
+ <andi.shyti@linux.intel.com>, Jonathan Corbet <corbet@lwn.net>,
+ Christopher Healy <healych@amazon.com>, Matthew Wilcox
+ <willy@infradead.org>, Bagas Sanjaya <bagasdotme@gmail.com>
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-mm@kvack.org,
+ linux-doc@vger.kernel.org, kernel@collabora.com
+References: <20251114170303.2800-1-loic.molinari@collabora.com>
+ <20251114170303.2800-7-loic.molinari@collabora.com>
+ <75cf65a0-8967-4e39-8bfe-aa284f8242b3@ursulin.net>
+Content-Language: fr
+From: =?UTF-8?Q?Lo=C3=AFc_Molinari?= <loic.molinari@collabora.com>
+Organization: Collabora Ltd
+In-Reply-To: <75cf65a0-8967-4e39-8bfe-aa284f8242b3@ursulin.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -177,68 +85,275 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use intel_dp_effective_data_rate() to calculate the required link BW for
-compressed streams on non-UHBR DP-SST links. This ensures that the BW is
-calculated the same way for all DP output types and DSC/non-DSC modes,
-during mode validation as well as during state computation.
+On 20/11/2025 10:39, Tvrtko Ursulin wrote:
+> 
+> On 14/11/2025 17:02, Loïc Molinari wrote:
+>> Make use of the new drm_gem_huge_mnt_create() and
+>> drm_gem_get_huge_mnt() helpers to avoid code duplication. Now that
+>> it's just a few lines long, the single function in v3d_gemfs.c is
+>> moved into v3d_gem.c.
+>>
+>> v3:
+>> - use huge tmpfs mountpoint in drm_device
+>> - move v3d_gemfs.c into v3d_gem.c
+>>
+>> v4:
+>> - clean up mountpoint creation error handling
+>>
+>> v5:
+>> - fix CONFIG_TRANSPARENT_HUGEPAGE check
+>> - use drm_gem_has_huge_mnt() helper
+>>
+>> v8:
+>> - don't access huge_mnt field with CONFIG_TRANSPARENT_HUGEPAGE=n
+>>
+>> v9:
+>> - replace drm_gem_has_huge_mnt() by drm_gem_get_huge_mnt()
+>>
+>> Signed-off-by: Loïc Molinari <loic.molinari@collabora.com>
+>> ---
+>>   drivers/gpu/drm/v3d/Makefile    |  3 +-
+>>   drivers/gpu/drm/v3d/v3d_bo.c    |  9 +++--
+>>   drivers/gpu/drm/v3d/v3d_drv.c   |  2 +-
+>>   drivers/gpu/drm/v3d/v3d_drv.h   | 11 +-----
+>>   drivers/gpu/drm/v3d/v3d_gem.c   | 27 ++++++++++++--
+>>   drivers/gpu/drm/v3d/v3d_gemfs.c | 62 ---------------------------------
+>>   6 files changed, 34 insertions(+), 80 deletions(-)
+>>   delete mode 100644 drivers/gpu/drm/v3d/v3d_gemfs.c
+>>
+>> diff --git a/drivers/gpu/drm/v3d/Makefile b/drivers/gpu/drm/v3d/Makefile
+>> index fcf710926057..b7d673f1153b 100644
+>> --- a/drivers/gpu/drm/v3d/Makefile
+>> +++ b/drivers/gpu/drm/v3d/Makefile
+>> @@ -13,8 +13,7 @@ v3d-y := \
+>>       v3d_trace_points.o \
+>>       v3d_sched.o \
+>>       v3d_sysfs.o \
+>> -    v3d_submit.o \
+>> -    v3d_gemfs.o
+>> +    v3d_submit.o
+>>   v3d-$(CONFIG_DEBUG_FS) += v3d_debugfs.o
+>> diff --git a/drivers/gpu/drm/v3d/v3d_bo.c b/drivers/gpu/drm/v3d/v3d_bo.c
+>> index d9547f5117b9..211578abf9b6 100644
+>> --- a/drivers/gpu/drm/v3d/v3d_bo.c
+>> +++ b/drivers/gpu/drm/v3d/v3d_bo.c
+>> @@ -114,7 +114,7 @@ v3d_bo_create_finish(struct drm_gem_object *obj)
+>>       if (IS_ERR(sgt))
+>>           return PTR_ERR(sgt);
+>> -    if (!v3d->gemfs)
+>> +    if (!drm_gem_get_huge_mnt(obj->dev))
+>>           align = SZ_4K;
+>>       else if (obj->size >= SZ_1M)
+>>           align = SZ_1M;
+>> @@ -150,12 +150,15 @@ struct v3d_bo *v3d_bo_create(struct drm_device 
+>> *dev, struct drm_file *file_priv,
+>>                    size_t unaligned_size)
+>>   {
+>>       struct drm_gem_shmem_object *shmem_obj;
+>> -    struct v3d_dev *v3d = to_v3d_dev(dev);
+>>       struct v3d_bo *bo;
+>>       int ret;
+>> +#ifdef CONFIG_TRANSPARENT_HUGEPAGE
+>>       shmem_obj = drm_gem_shmem_create_with_mnt(dev, unaligned_size,
+>> -                          v3d->gemfs);
+>> +                          dev->huge_mnt);
+>> +#else
+>> +    shmem_obj = drm_gem_shmem_create(dev, unaligned_size);
+>> +#endif
+> 
+> Don't you want to use the same pattern not requiring #ifdef as you did 
+> in i915?
 
-This approach also allows for accounting with BW overhead due to DSC,
-FEC being enabled on a link. Acounting for these will be added by
-follow-up changes.
+Yes, I'm going to propose a v10 doing so.
 
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 27 +++++++++++++++----------
- 1 file changed, 16 insertions(+), 11 deletions(-)
+> The rest looks good to me on a glance. Only functional change appears to 
+> be that you are adding a new error message, scrolling down..
+> 
+>>       if (IS_ERR(shmem_obj))
+>>           return ERR_CAST(shmem_obj);
+>>       bo = to_v3d_bo(&shmem_obj->base);
+>> diff --git a/drivers/gpu/drm/v3d/v3d_drv.c b/drivers/gpu/drm/v3d/ 
+>> v3d_drv.c
+>> index e8a46c8bad8a..8faa9382846f 100644
+>> --- a/drivers/gpu/drm/v3d/v3d_drv.c
+>> +++ b/drivers/gpu/drm/v3d/v3d_drv.c
+>> @@ -107,7 +107,7 @@ static int v3d_get_param_ioctl(struct drm_device 
+>> *dev, void *data,
+>>           args->value = v3d->perfmon_info.max_counters;
+>>           return 0;
+>>       case DRM_V3D_PARAM_SUPPORTS_SUPER_PAGES:
+>> -        args->value = !!v3d->gemfs;
+>> +        args->value = !!drm_gem_get_huge_mnt(dev);
+>>           return 0;
+>>       case DRM_V3D_PARAM_GLOBAL_RESET_COUNTER:
+>>           mutex_lock(&v3d->reset_lock);
+>> diff --git a/drivers/gpu/drm/v3d/v3d_drv.h b/drivers/gpu/drm/v3d/ 
+>> v3d_drv.h
+>> index 1884686985b8..99a39329bb85 100644
+>> --- a/drivers/gpu/drm/v3d/v3d_drv.h
+>> +++ b/drivers/gpu/drm/v3d/v3d_drv.h
+>> @@ -158,11 +158,6 @@ struct v3d_dev {
+>>       struct drm_mm mm;
+>>       spinlock_t mm_lock;
+>> -    /*
+>> -     * tmpfs instance used for shmem backed objects
+>> -     */
+>> -    struct vfsmount *gemfs;
+>> -
+>>       struct work_struct overflow_mem_work;
+>>       struct v3d_queue_state queue[V3D_MAX_QUEUES];
+>> @@ -569,6 +564,7 @@ extern const struct dma_fence_ops v3d_fence_ops;
+>>   struct dma_fence *v3d_fence_create(struct v3d_dev *v3d, enum 
+>> v3d_queue q);
+>>   /* v3d_gem.c */
+>> +extern bool super_pages;
+>>   int v3d_gem_init(struct drm_device *dev);
+>>   void v3d_gem_destroy(struct drm_device *dev);
+>>   void v3d_reset_sms(struct v3d_dev *v3d);
+>> @@ -576,11 +572,6 @@ void v3d_reset(struct v3d_dev *v3d);
+>>   void v3d_invalidate_caches(struct v3d_dev *v3d);
+>>   void v3d_clean_caches(struct v3d_dev *v3d);
+>> -/* v3d_gemfs.c */
+>> -extern bool super_pages;
+>> -void v3d_gemfs_init(struct v3d_dev *v3d);
+>> -void v3d_gemfs_fini(struct v3d_dev *v3d);
+>> -
+>>   /* v3d_submit.c */
+>>   void v3d_job_cleanup(struct v3d_job *job);
+>>   void v3d_job_put(struct v3d_job *job);
+>> diff --git a/drivers/gpu/drm/v3d/v3d_gem.c b/drivers/gpu/drm/v3d/ 
+>> v3d_gem.c
+>> index 5a180dc6c452..62532a89dd14 100644
+>> --- a/drivers/gpu/drm/v3d/v3d_gem.c
+>> +++ b/drivers/gpu/drm/v3d/v3d_gem.c
+>> @@ -259,6 +259,30 @@ v3d_invalidate_caches(struct v3d_dev *v3d)
+>>       v3d_invalidate_slices(v3d, 0);
+>>   }
+>> +static void
+>> +v3d_huge_mnt_init(struct v3d_dev *v3d)
+>> +{
+>> +    int err = 0;
+>> +
+>> +    /*
+>> +     * By using a huge shmemfs mountpoint when the user wants to
+>> +     * enable Super Pages, we can pass in mount flags that better
+>> +     * match our usecase.
+>> +     */
+>> +
+>> +    if (IS_ENABLED(CONFIG_TRANSPARENT_HUGEPAGE) && super_pages)
+>> +        err = drm_gem_huge_mnt_create(&v3d->drm, "within_size");
+>> +
+>> +    if (drm_gem_get_huge_mnt(&v3d->drm))
+>> +        drm_info(&v3d->drm, "Using Transparent Hugepages\n");
+>> +    else if (err)
+>> +        drm_warn(&v3d->drm, "Can't use Transparent Hugepages (%d)\n",
+>> +             err);
+> 
+> .. here, but that looks acceptable to me.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index aa55a81a9a9bf..4044bdbceaef5 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2025,15 +2025,19 @@ static bool intel_dp_dsc_supports_format(const struct intel_connector *connector
- 	return drm_dp_dsc_sink_supports_format(connector->dp.dsc_dpcd, sink_dsc_format);
- }
- 
--static bool is_bw_sufficient_for_dsc_config(int dsc_bpp_x16, u32 link_clock,
--					    u32 lane_count, u32 mode_clock,
--					    enum intel_output_format output_format,
--					    int timeslots)
-+static bool is_bw_sufficient_for_dsc_config(struct intel_dp *intel_dp,
-+					    int link_clock, int lane_count,
-+					    int mode_clock, int mode_hdisplay,
-+					    int dsc_slice_count, int link_bpp_x16,
-+					    unsigned long bw_overhead_flags)
- {
--	u32 available_bw, required_bw;
-+	int available_bw;
-+	int required_bw;
- 
--	available_bw = (link_clock * lane_count * timeslots * 16)  / 8;
--	required_bw = dsc_bpp_x16 * (intel_dp_mode_to_fec_clock(mode_clock));
-+	available_bw = intel_dp_max_link_data_rate(intel_dp, link_clock, lane_count);
-+	required_bw = intel_dp_link_required(link_clock, lane_count,
-+					     mode_clock, mode_hdisplay,
-+					     link_bpp_x16, bw_overhead_flags);
- 
- 	return available_bw >= required_bw;
- }
-@@ -2081,11 +2085,12 @@ static int dsc_compute_link_config(struct intel_dp *intel_dp,
- 				if (ret)
- 					continue;
- 			} else {
--				if (!is_bw_sufficient_for_dsc_config(dsc_bpp_x16, link_rate,
--								     lane_count,
-+				if (!is_bw_sufficient_for_dsc_config(intel_dp,
-+								     link_rate, lane_count,
- 								     adjusted_mode->crtc_clock,
--								     pipe_config->output_format,
--								     timeslots))
-+								     adjusted_mode->hdisplay,
-+								     pipe_config->dsc.slice_count,
-+								     dsc_bpp_x16, 0))
- 					continue;
- 			}
- 
--- 
-2.49.1
+It logs a warning instead of the notice below in case of error at huge 
+mounpoint creation. Looks acceptable to me too. I'd be happy to get the 
+point of view of a V3D maintainer as well here.
+
+Regards,
+
+Loïc
+
+> Regards,
+> 
+> Tvrtko
+> 
+>> +    else
+>> +        drm_notice(&v3d->drm,
+>> +               "Transparent Hugepage support is recommended for 
+>> optimal performance on this platform!\n");
+>> +}
+>> +
+>>   int
+>>   v3d_gem_init(struct drm_device *dev)
+>>   {
+>> @@ -310,7 +334,7 @@ v3d_gem_init(struct drm_device *dev)
+>>       v3d_init_hw_state(v3d);
+>>       v3d_mmu_set_page_table(v3d);
+>> -    v3d_gemfs_init(v3d);
+>> +    v3d_huge_mnt_init(v3d);
+>>       ret = v3d_sched_init(v3d);
+>>       if (ret) {
+>> @@ -330,7 +354,6 @@ v3d_gem_destroy(struct drm_device *dev)
+>>       enum v3d_queue q;
+>>       v3d_sched_fini(v3d);
+>> -    v3d_gemfs_fini(v3d);
+>>       /* Waiting for jobs to finish would need to be done before
+>>        * unregistering V3D.
+>> diff --git a/drivers/gpu/drm/v3d/v3d_gemfs.c b/drivers/gpu/drm/v3d/ 
+>> v3d_gemfs.c
+>> deleted file mode 100644
+>> index bf351fc0d488..000000000000
+>> --- a/drivers/gpu/drm/v3d/v3d_gemfs.c
+>> +++ /dev/null
+>> @@ -1,62 +0,0 @@
+>> -// SPDX-License-Identifier: GPL-2.0+
+>> -/* Copyright (C) 2024 Raspberry Pi */
+>> -
+>> -#include <linux/fs.h>
+>> -#include <linux/mount.h>
+>> -#include <linux/fs_context.h>
+>> -
+>> -#include <drm/drm_print.h>
+>> -
+>> -#include "v3d_drv.h"
+>> -
+>> -void v3d_gemfs_init(struct v3d_dev *v3d)
+>> -{
+>> -    struct file_system_type *type;
+>> -    struct fs_context *fc;
+>> -    struct vfsmount *gemfs;
+>> -    int ret;
+>> -
+>> -    /*
+>> -     * By creating our own shmemfs mountpoint, we can pass in
+>> -     * mount flags that better match our usecase. However, we
+>> -     * only do so on platforms which benefit from it.
+>> -     */
+>> -    if (!IS_ENABLED(CONFIG_TRANSPARENT_HUGEPAGE))
+>> -        goto err;
+>> -
+>> -    /* The user doesn't want to enable Super Pages */
+>> -    if (!super_pages)
+>> -        goto err;
+>> -
+>> -    type = get_fs_type("tmpfs");
+>> -    if (!type)
+>> -        goto err;
+>> -
+>> -    fc = fs_context_for_mount(type, SB_KERNMOUNT);
+>> -    if (IS_ERR(fc))
+>> -        goto err;
+>> -    ret = vfs_parse_fs_string(fc, "source", "tmpfs");
+>> -    if (!ret)
+>> -        ret = vfs_parse_fs_string(fc, "huge", "within_size");
+>> -    if (!ret)
+>> -        gemfs = fc_mount_longterm(fc);
+>> -    put_fs_context(fc);
+>> -    if (ret)
+>> -        goto err;
+>> -
+>> -    v3d->gemfs = gemfs;
+>> -    drm_info(&v3d->drm, "Using Transparent Hugepages\n");
+>> -
+>> -    return;
+>> -
+>> -err:
+>> -    v3d->gemfs = NULL;
+>> -    drm_notice(&v3d->drm,
+>> -           "Transparent Hugepage support is recommended for optimal 
+>> performance on this platform!\n");
+>> -}
+>> -
+>> -void v3d_gemfs_fini(struct v3d_dev *v3d)
+>> -{
+>> -    if (v3d->gemfs)
+>> -        kern_unmount(v3d->gemfs);
+>> -}
+> 
 
