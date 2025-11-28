@@ -2,83 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A2FFC914FA
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Nov 2025 09:53:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43897C91709
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Nov 2025 10:28:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92EFE10E734;
-	Fri, 28 Nov 2025 08:53:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E23310E125;
+	Fri, 28 Nov 2025 09:28:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=huawei.com header.i=@huawei.com header.b="SCrmvzLM";
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b="SCrmvzLM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bROiYvLl";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D88910E734;
- Fri, 28 Nov 2025 08:53:02 +0000 (UTC)
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
- c=relaxed/relaxed; q=dns/txt; h=From;
- bh=ayeORpzjOdSu5Dq1+NuiLmYPQmPfa5NTJ2zt1jOYWc0=;
- b=SCrmvzLMmh6Hd3DbJ/bqPri2/8mw7SfJDmO30i3bxLYDUfybVvkPFlzScb2MrwDTA6IWJSRe0
- BjeVqsKYP1cC+EJXe43rfWBYkvZkMo7W3WUoLgDNT2q7hJ/JmNpgA0fH/VdXxsex6QKEJjVTrgJ
- 3qtEaJqxro70/djqoli5NKU=
-Received: from canpmsgout12.his.huawei.com (unknown [172.19.92.144])
- by szxga01-in.huawei.com (SkyGuard) with ESMTPS id 4dHn9M37nTz1BGDF;
- Fri, 28 Nov 2025 16:52:07 +0800 (CST)
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
- c=relaxed/relaxed; q=dns/txt; h=From;
- bh=ayeORpzjOdSu5Dq1+NuiLmYPQmPfa5NTJ2zt1jOYWc0=;
- b=SCrmvzLMmh6Hd3DbJ/bqPri2/8mw7SfJDmO30i3bxLYDUfybVvkPFlzScb2MrwDTA6IWJSRe0
- BjeVqsKYP1cC+EJXe43rfWBYkvZkMo7W3WUoLgDNT2q7hJ/JmNpgA0fH/VdXxsex6QKEJjVTrgJ
- 3qtEaJqxro70/djqoli5NKU=
-Received: from mail.maildlp.com (unknown [172.19.163.44])
- by canpmsgout12.his.huawei.com (SkyGuard) with ESMTPS id 4dHn7T5BYYznTY7;
- Fri, 28 Nov 2025 16:50:29 +0800 (CST)
-Received: from dggpemf500015.china.huawei.com (unknown [7.185.36.143])
- by mail.maildlp.com (Postfix) with ESMTPS id 0AB451401F4;
- Fri, 28 Nov 2025 16:52:54 +0800 (CST)
-Received: from [10.67.121.110] (10.67.121.110) by
- dggpemf500015.china.huawei.com (7.185.36.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.11; Fri, 28 Nov 2025 16:52:51 +0800
-Subject: Re: [PATCH v2 02/22] vfio/hisi: Convert to the get_region_info op
-To: Alex Williamson <alex@shazbot.org>
-CC: Jason Gunthorpe <jgg@nvidia.com>, Alexander Gordeev
- <agordeev@linux.ibm.com>, David Airlie <airlied@gmail.com>, Alex Williamson
- <alex.williamson@redhat.com>, Ankit Agrawal <ankita@nvidia.com>, Christian
- Borntraeger <borntraeger@linux.ibm.com>, Brett Creeley
- <brett.creeley@amd.com>, <dri-devel@lists.freedesktop.org>, Eric Auger
- <eric.auger@redhat.com>, Eric Farman <farman@linux.ibm.com>, Giovanni Cabiddu
- <giovanni.cabiddu@intel.com>, Vasily Gorbik <gor@linux.ibm.com>, Heiko
- Carstens <hca@linux.ibm.com>, <intel-gfx@lists.freedesktop.org>, Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, <kvm@vger.kernel.org>, Kirti Wankhede
- <kwankhede@nvidia.com>, <linux-s390@vger.kernel.org>, Matthew Rosato
- <mjrosato@linux.ibm.com>, Nikhil Agarwal <nikhil.agarwal@amd.com>, Nipun
- Gupta <nipun.gupta@amd.com>, Peter Oberparleiter <oberpar@linux.ibm.com>,
- Halil Pasic <pasic@linux.ibm.com>, <qat-linux@intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>, Shameer Kolothum
- <skolothumtho@nvidia.com>, Sven Schnelle <svens@linux.ibm.com>, Tvrtko
- Ursulin <tursulin@ursulin.net>, <virtualization@lists.linux.dev>, Vineeth
- Vijayan <vneethv@linux.ibm.com>, Yishai Hadas <yishaih@nvidia.com>, Zhenyu
- Wang <zhenyuw.linux@gmail.com>, Zhi Wang <zhi.wang.linux@gmail.com>, Kevin
- Tian <kevin.tian@intel.com>, <patches@lists.linux.dev>, Pranjal Shrivastava
- <praan@google.com>, Mostafa Saleh <smostafa@google.com>
-References: <2-v2-2a9e24d62f1b+e10a-vfio_get_region_info_op_jgg@nvidia.com>
- <b5ffda6e-d8e9-5f02-69b3-e9f1a0901f90@huawei.com>
- <20251123194535.42acb382@shazbot.org>
-From: liulongfang <liulongfang@huawei.com>
-Message-ID: <9cdadb2d-579f-f86a-ac4e-a15c792506aa@huawei.com>
-Date: Fri, 28 Nov 2025 16:52:35 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C28710E04A;
+ Fri, 28 Nov 2025 09:27:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1764322080; x=1795858080;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=/r6RjDuNcXDKMMbDxjuEaoS7gB+TVKKlBItFUbAaEgU=;
+ b=bROiYvLlPc6yUXPR1G8xDYjWfZYGZTb226ox6jmbtnzpVcipRZbH2FkN
+ +eb9ecWWdkF4buEz6q4Kv0YvCZvOJESjK0tGwnZCRcJh/vOUo1DXu97zf
+ HpOMQl4QeF1JDxwi2wD7tmgWmM892Y1kt6f+mpH/urzRVlIpaYWqOLtEf
+ bHD8BmEUmb23U4dQRrSm3XdsSCL6ZnnAFzbtKPJpV5u4r+XGarabl3VdO
+ prRDO1jMbmGBt9ED0IhVFvmH4LHq9O80FuTO3gyZvSTTeappObB/DF/oO
+ rpL7KrOt9dhJYokwbhTh89HkK90bByFzP1e68Gojr39Kejdnwy3BXwSkE Q==;
+X-CSE-ConnectionGUID: bdPbBaKgRG+nwF7PXgBrXA==
+X-CSE-MsgGUID: f+9/BcbyTiuUHE7BexS8fA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11626"; a="77460365"
+X-IronPort-AV: E=Sophos;i="6.20,232,1758610800"; d="scan'208";a="77460365"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Nov 2025 01:27:59 -0800
+X-CSE-ConnectionGUID: EOXnuR1XTdWOdR3bDY7k2Q==
+X-CSE-MsgGUID: bPMI93eOS3+q/AqXd0gXQA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,232,1758610800"; d="scan'208";a="193862341"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.83])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Nov 2025 01:27:57 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: RE: [PATCH 1/2] drm/i915/hdcp: move i915 specific HDCP GSC
+ implementation to i915
+In-Reply-To: <DM3PPF208195D8D6748F2A492BB93672716E3DCA@DM3PPF208195D8D.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1764090990.git.jani.nikula@intel.com>
+ <d362b256934c6c739d9decda717df2dbc3752481.1764090990.git.jani.nikula@intel.com>
+ <DM3PPF208195D8D6748F2A492BB93672716E3DCA@DM3PPF208195D8D.namprd11.prod.outlook.com>
+Date: Fri, 28 Nov 2025 11:27:54 +0200
+Message-ID: <d0e81ef460c5ab25b053f38cfa0c3b77f797efd5@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20251123194535.42acb382@shazbot.org>
-Content-Type: text/plain; charset="gbk"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.67.121.110]
-X-ClientProxiedBy: kwepems100001.china.huawei.com (7.221.188.238) To
- dggpemf500015.china.huawei.com (7.185.36.143)
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,85 +71,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2025/11/24 10:45, Alex Williamson wrote:
-> On Mon, 24 Nov 2025 09:39:58 +0800
-> liulongfang <liulongfang@huawei.com> wrote:
-> 
->> On 2025/11/8 1:41, Jason Gunthorpe wrote:
->>> Change the function signature of hisi_acc_vfio_pci_ioctl()
->>> and re-indent it.
->>>
->>> Reviewed-by: Kevin Tian <kevin.tian@intel.com>
->>> Acked-by: Pranjal Shrivastava <praan@google.com>
->>> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
->>> ---
->>>  .../vfio/pci/hisilicon/hisi_acc_vfio_pci.c    | 57 +++++++++----------
->>>  1 file changed, 27 insertions(+), 30 deletions(-)
->>>
->>> diff --git a/drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c b/drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c
->>> index fde33f54e99ec5..899db4d742a010 100644
->>> --- a/drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c
->>> +++ b/drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c
->>> @@ -1324,43 +1324,39 @@ static ssize_t hisi_acc_vfio_pci_read(struct vfio_device *core_vdev,
->>>  	return vfio_pci_core_read(core_vdev, buf, new_count, ppos);
->>>  }
->>>  
->>> -static long hisi_acc_vfio_pci_ioctl(struct vfio_device *core_vdev, unsigned int cmd,
->>> -				    unsigned long arg)
->>> +static int hisi_acc_vfio_ioctl_get_region(struct vfio_device *core_vdev,
->>> +					  struct vfio_region_info __user *arg)
->>>  {
->>> -	if (cmd == VFIO_DEVICE_GET_REGION_INFO) {
->>> -		struct vfio_pci_core_device *vdev =
->>> -			container_of(core_vdev, struct vfio_pci_core_device, vdev);
->>> -		struct pci_dev *pdev = vdev->pdev;
->>> -		struct vfio_region_info info;
->>> -		unsigned long minsz;
->>> +	struct vfio_pci_core_device *vdev =
->>> +		container_of(core_vdev, struct vfio_pci_core_device, vdev);
->>> +	struct pci_dev *pdev = vdev->pdev;
->>> +	struct vfio_region_info info;
->>> +	unsigned long minsz;
->>>  
->>> -		minsz = offsetofend(struct vfio_region_info, offset);
->>> +	minsz = offsetofend(struct vfio_region_info, offset);
->>>  
->>> -		if (copy_from_user(&info, (void __user *)arg, minsz))
->>> -			return -EFAULT;
->>> +	if (copy_from_user(&info, arg, minsz))
->>> +		return -EFAULT;
->>>  
->>> -		if (info.argsz < minsz)
->>> -			return -EINVAL;
->>> +	if (info.argsz < minsz)
->>> +		return -EINVAL;
->>>  
->>> -		if (info.index == VFIO_PCI_BAR2_REGION_INDEX) {
->>> -			info.offset = VFIO_PCI_INDEX_TO_OFFSET(info.index);
->>> +	if (info.index != VFIO_PCI_BAR2_REGION_INDEX)
->>> +		return vfio_pci_ioctl_get_region_info(core_vdev, arg);
->>>  
->>> -			/*
->>> -			 * ACC VF dev BAR2 region consists of both functional
->>> -			 * register space and migration control register space.
->>> -			 * Report only the functional region to Guest.
->>> -			 */
->>> -			info.size = pci_resource_len(pdev, info.index) / 2;
->>> +	info.offset = VFIO_PCI_INDEX_TO_OFFSET(info.index);
->>>  
->>
->> Please adapt based on the latest code in the Next branch.
->> Code updates have already been made here.
-> 
-> I resolved this on commit, please verify in the vfio next branch.
-> Thanks,
+On Fri, 28 Nov 2025, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
+>> Subject: [PATCH 1/2] drm/i915/hdcp: move i915 specific HDCP GSC
+>> implementation to i915
+>> 
+>> The HDCP GSC implementation is different for both i915 and xe. Move the
+>> i915 specific implementation from display to i915 core.
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 >
+> LGTM,
+> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-On the next branch, the code after your adaptation modifications is correct.
+Thanks, series pushed to din.
 
-Thanks.
-Longfang!
+BR,
+Jani.
 
-> Alex
-> .
-> 
+
+-- 
+Jani Nikula, Intel
