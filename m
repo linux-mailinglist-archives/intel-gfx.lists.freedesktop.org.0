@@ -2,62 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4357C9177F
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Nov 2025 10:36:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9058C91CA1
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Nov 2025 12:29:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC0A610E769;
-	Fri, 28 Nov 2025 09:36:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EECDD10E8E1;
+	Fri, 28 Nov 2025 11:28:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SMza8Vmp";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="hSJg941e";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8431C10E761;
- Fri, 28 Nov 2025 09:36:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764322574; x=1795858574;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=tmqd5lZzE7kvbODrectWGuDw9BvnBlRahwGFmpUyCwo=;
- b=SMza8Vmp6BAaeQmZ4Cxvc3X3Jd+Q6Uti8Oe87LApEz4GmtFDzUsFdxDd
- ljcJaUqZ29jA7OKEEVHRGp5I+U54wcSbyzkK444+SZJDGA+/gMR44oSd2
- 6B83U6fsM6+bKB57buzQyzW5ihPGS2oLoIBpL6YhK90yNJIf3OWSiwt/V
- zoRQm0U7OEoyxa/LX+Gj6N7Fg2uW80YCH+Q6yLhgiJ56g23PsDFQ5mHud
- ibgj4uFPsvapuLU4vO/wnPjFmL+J6sZqwltCihHJ324EsER8LkRjShDsQ
- 3APXYElQYSYuhqWrMldFzKcL05PUujvVmTGUdAaHf+syP2V15HNRMAvce A==;
-X-CSE-ConnectionGUID: NDMPcmyJQq2u3VyavkHtMQ==
-X-CSE-MsgGUID: myU8M/tERWmmuV8I6PWe1g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11626"; a="53921677"
-X-IronPort-AV: E=Sophos;i="6.20,232,1758610800"; d="scan'208";a="53921677"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2025 01:36:14 -0800
-X-CSE-ConnectionGUID: r0jLwzNoSQqrQrrxJrYp3w==
-X-CSE-MsgGUID: UIW5WRm9REygXzRsOhflEA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,232,1758610800"; d="scan'208";a="224375579"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.83])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2025 01:36:13 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Manna, Animesh" <animesh.manna@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Cc: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
-Subject: RE: [RESEND 1/4] drm/{i915, xe}/dsb: make {intel, xe}_dsb_buffer.c
- independent of display
-In-Reply-To: <PH7PR11MB803500F399EADA5703EF35A5F9DFA@PH7PR11MB8035.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1764155417.git.jani.nikula@intel.com>
- <a8cee08e8c36c2cf84cb9cda1b9f318db76710af.1764155417.git.jani.nikula@intel.com>
- <PH7PR11MB803500F399EADA5703EF35A5F9DFA@PH7PR11MB8035.namprd11.prod.outlook.com>
-Date: Fri, 28 Nov 2025 11:36:10 +0200
-Message-ID: <2fdae13525af9b3882bb4d7558a44d201395c472@intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C9E810E052;
+ Fri, 28 Nov 2025 11:28:54 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id D6A1240166;
+ Fri, 28 Nov 2025 11:28:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B0E4C4CEF1;
+ Fri, 28 Nov 2025 11:28:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1764329333;
+ bh=vRbKmq6ux/J8YlL9fr1lPyCP/8rOPoCqpNayoF8hR8Y=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=hSJg941euWXznuq6k82SNu2s445C9U617HvuTsdq9KTS7AmRHxg76QM4g01FcPpVi
+ C7rzCxt8w/8YrJxZvN5H+a8th6lpB8qVL+JgeDnoWjjRIzTISCgfblKPGwKQ3Z/tBj
+ T2RBd+qaZGik9ibWWYrLqPYJa9gLIWqPsH1CYINhMAfO8vrizAR1Ai/WRoX48Ab4kw
+ b8jMOGTivKA6P+9beHDi59e32i2D81S16ojiIVR3eLJMHlwbMA29SFhujDpUI+wnUd
+ Q4c0zz2D6rGPKJ/GazdkhLBXhkN76LrLonuS43xsnIY/g1+Aub/jD/NXz6C0zZO+Sa
+ waoiIZFMgazhQ==
+Date: Fri, 28 Nov 2025 12:28:50 +0100
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>, 
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>, 
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Subject: Re: [PATCH v2] drm/i915/selftests: Defer signalling the request fence
+Message-ID: <os3g7uhmiksfasf6fv7aczkt3a3ab5r3znol5gj24gxhno5sj7@ftsi6bbopz5w>
+References: <20251029143501.42998-2-krzysztof.niemiec@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251029143501.42998-2-krzysztof.niemiec@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,30 +61,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 27 Nov 2025, "Manna, Animesh" <animesh.manna@intel.com> wrote:
->> -----Original Message-----
->> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Jani
->> Nikula
->> Sent: Wednesday, November 26, 2025 4:41 PM
->> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
->> Cc: Nikula, Jani <jani.nikula@intel.com>; ville.syrjala@linux.intel.com
->> Subject: [RESEND 1/4] drm/{i915, xe}/dsb: make {intel, xe}_dsb_buffer.c
->> independent of display
->> 
->> The DSB buffer implementation is really independent of display. Pass
->> struct drm_device instead of struct intel_crtc to
->> intel_dsb_buffer_create(), and drop the intel_display_types.h include.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> LGTM.
-> Reviewed-by: Animesh Manna <animesh.manna@intel.com>
+Hi Krzysztof,
 
-Thanks, series pushed to din.
+Sorry, I haven't replied to you in v1, but my concerns still
+remain and they are not adressed here.
 
-BR,
-Jani.
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14808
+> Signed-off-by: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+> ---
+>  drivers/gpu/drm/i915/selftests/i915_active.c | 15 ++++++++++++---
+>  1 file changed, 12 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/selftests/i915_active.c b/drivers/gpu/drm/i915/selftests/i915_active.c
+> index 0d89d70b9c36..a82a56c3eeb6 100644
+> --- a/drivers/gpu/drm/i915/selftests/i915_active.c
+> +++ b/drivers/gpu/drm/i915/selftests/i915_active.c
+> @@ -74,15 +74,25 @@ static struct live_active *__live_alloc(struct drm_i915_private *i915)
+>  	return active;
+>  }
+>  
+> +static struct i915_sw_fence *submit;
+> +static struct delayed_work __live_submit_work;
+> +
+> +static void __live_submit_work_handler(struct work_struct *work)
+> +{
+> +	i915_sw_fence_commit(submit);
+> +	heap_fence_put(submit);
+> +}
+> +
+>  static struct live_active *
+>  __live_active_setup(struct drm_i915_private *i915)
+>  {
+>  	struct intel_engine_cs *engine;
+> -	struct i915_sw_fence *submit;
+>  	struct live_active *active;
+>  	unsigned int count = 0;
+>  	int err = 0;
+>  
+> +	INIT_DELAYED_WORK(&__live_submit_work, __live_submit_work_handler);
+> +
+>  	active = __live_alloc(i915);
+>  	if (!active)
+>  		return ERR_PTR(-ENOMEM);
+> @@ -132,8 +142,7 @@ __live_active_setup(struct drm_i915_private *i915)
+>  	}
+>  
+>  out:
+> -	i915_sw_fence_commit(submit);
+> -	heap_fence_put(submit);
+> +	schedule_delayed_work(&__live_submit_work, msecs_to_jiffies(500));
 
+Where does the 500 ms delay come from? How long will this work
+run?  Could it overlap with the next test execution? If so, what
+happens to the global variables?
 
--- 
-Jani Nikula, Intel
+Please ensure everything is cleaned up before exiting the test.
+Embed the global state in a per test structure that is torn down
+at the end of the test. I do not want to leave any stray work or
+state behind.
+
+Even if it looks fine, this is a house of cards and easy to
+break.
+
+Sorry, this patch is not ready to go.
+
+Andi
+
+>  	if (err) {
+>  		__live_put(active);
+>  		active = ERR_PTR(err);
+> -- 
+> 2.45.2
+> 
