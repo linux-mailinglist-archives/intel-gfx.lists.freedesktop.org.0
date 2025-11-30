@@ -2,58 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 680DEC954C8
-	for <lists+intel-gfx@lfdr.de>; Sun, 30 Nov 2025 21:45:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BB43C97A47
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Dec 2025 14:39:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73E7710E285;
-	Sun, 30 Nov 2025 20:45:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E104910E04C;
+	Mon,  1 Dec 2025 13:39:34 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=runbox.com header.i=@runbox.com header.b="mFrPq+wX";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from relay.hostedemail.com (smtprelay0017.hostedemail.com
- [216.40.44.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBE9A10E285
- for <intel-gfx@lists.freedesktop.org>; Sun, 30 Nov 2025 20:45:49 +0000 (UTC)
-Received: from omf09.hostedemail.com (a10.router.float.18 [10.200.18.1])
- by unirelay09.hostedemail.com (Postfix) with ESMTP id 5F44D885EE;
- Sun, 30 Nov 2025 20:36:52 +0000 (UTC)
-Received: from [HIDDEN] (Authenticated sender: rostedt@goodmis.org) by
- omf09.hostedemail.com (Postfix) with ESMTPA id D93152002E; 
- Sun, 30 Nov 2025 20:36:47 +0000 (UTC)
-Date: Sun, 30 Nov 2025 15:36:46 -0500
-From: Steven Rostedt <rostedt@goodmis.org>
+X-Greylist: delayed 3720 seconds by postgrey-1.36 at gabe;
+ Mon, 01 Dec 2025 00:11:50 UTC
+Received: from mailtransmit04.runbox.com (mailtransmit04.runbox.com
+ [185.226.149.37])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F89110E296
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Dec 2025 00:11:50 +0000 (UTC)
+Received: from mailtransmit02.runbox ([10.9.9.162] helo=aibo.runbox.com)
+ by mailtransmit04.runbox.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.93)
+ (envelope-from <david.laight@runbox.com>)
+ id 1vPqXs-0067c4-Is; Mon, 01 Dec 2025 00:09:32 +0100
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=runbox.com; 
+ s=selector2;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+ References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date;
+ bh=v/S2j3lvoVofj+NHzuY+rgCTCXBDYm4Z6flk9aF4pmQ=; b=mFrPq+wXEaIoygFF9DHa4zLG3L
+ TyqZ63LxHSpAHU/YMdp+Q6uRww/6Rro4MG75ng3EP2g/2YovW2KntIhIfi6G+JO/52OnzRNGqa7R4
+ 2SGYb/AId7BQUF6qt3rY/Z1R4rEYxdA/lfkROXhLh0cAAXh1gv8NdJYHRa/M1dKg9knqdqylfsUKK
+ 1UiT4/cfp+81OXx7n/5+RZXW+sbnCLVNIuakvoXf+/9BBeh7qp7A+idVLbLeGdK0mYrA1i8qoSSWK
+ kb0nyGd7g06G/zQIELdQiSRl88kvzkKM4fsfuBjNIjJbLBEtvZG6+QFQBwDi8vdLE3pNIG0mqEoYw
+ KEGKE1OA==;
+Received: from [10.9.9.72] (helo=submission01.runbox)
+ by mailtransmit02.runbox with esmtp (Exim 4.86_2)
+ (envelope-from <david.laight@runbox.com>)
+ id 1vPqXq-0007xb-5s; Mon, 01 Dec 2025 00:09:30 +0100
+Received: by submission01.runbox with esmtpsa [Authenticated ID (1493616)]
+ (TLS1.2:ECDHE_SECP256R1__RSA_SHA256__AES_256_GCM:256) (Exim 4.93)
+ id 1vPqXo-0065vo-KU; Mon, 01 Dec 2025 00:09:28 +0100
+Date: Sun, 30 Nov 2025 23:09:25 +0000
+From: david laight <david.laight@runbox.com>
 To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Yury Norov <yury.norov@gmail.com>, Masami Hiramatsu
- <mhiramat@kernel.org>, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Randy Dunlap <rdunlap@infradead.org>, Ingo Molnar <mingo@kernel.org>, Jani
- Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Petr Pavlu <petr.pavlu@suse.com>,
- Daniel Gomez <da.gomez@kernel.org>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>, Andrew Morton
+Cc: Yury Norov <yury.norov@gmail.com>, Steven Rostedt <rostedt@goodmis.org>,
+ Masami Hiramatsu <mhiramat@kernel.org>, Mathieu Desnoyers
+ <mathieu.desnoyers@efficios.com>, Randy Dunlap <rdunlap@infradead.org>,
+ Ingo Molnar <mingo@kernel.org>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, Petr Pavlu
+ <petr.pavlu@suse.com>, Daniel Gomez <da.gomez@kernel.org>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, Andrew Morton
  <akpm@linux-foundation.org>, linux-kernel@vger.kernel.org,
  intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-modules@vger.kernel.org, linux-trace-kernel@vger.kernel.org
 Subject: Re: [PATCH 3/3] tracing: move tracing declarations from kernel.h to
  a dedicated header
-Message-ID: <20251130153646.37c0f206@robin>
+Message-ID: <20251130230925.376b5377@pumpkin>
 In-Reply-To: <aSyertuRRX9Czvyz@smile.fi.intel.com>
 References: <20251129195304.204082-1-yury.norov@gmail.com>
  <20251129195304.204082-4-yury.norov@gmail.com>
  <aStX3242e3mo5H05@smile.fi.intel.com> <aSyJ83v7EEAPHXeU@yury>
  <aSyertuRRX9Czvyz@smile.fi.intel.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-redhat-linux-gnu)
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Server: rspamout07
-X-Rspamd-Queue-Id: D93152002E
-X-Stat-Signature: emoy5i7jyturr38iswa7m8iegunpfw4y
-X-Spam-Status: No, score=1.90
-X-Session-Marker: 726F737465647440676F6F646D69732E6F7267
-X-Session-ID: U2FsdGVkX19VbNQ8aaUl89ew+dcEFHzm3JZ+fR+fLt0=
-X-HE-Tag: 1764535007-409658
-X-HE-Meta: U2FsdGVkX1+mHN6v5qz698KSTLFJ4ss46awhzMue1opGr3sX3KNrOdJ3ETfjwJ0xNflGGEq7OgoBZdGyMwRG6C6iaV4ze0Jzty/JptVlt2S2HFbM7oSa0ErI73HYvbbXSWoo7MgdOQ8T2jL5dCkLXTHvE7ZV+Ex4pk+cJhRs+1Tbov99LCHBd7rChvXhFfvnUODQwadfLYVFS3fvLMBk9BkPMm+KXgUY+TpGjE40GuAqJZRCpKaSoYrp9iCG/ZMz6D5s1xp9Ml7QdIJWMAezHX008pc9EIqJEUkuSjgk6ypsvu5OrjVfRFd3bwMb/deirlj9HboFRsEmuxjpfkeKB4BQhHxVpkcF
+X-Mailman-Approved-At: Mon, 01 Dec 2025 13:39:28 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,8 +106,14 @@ Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
 > Please, add a summary of this to it. It will be much clearer and based on it
 > I agree with your judgement.
 
-Agreed. Please update the change log stating that the tracing code in
-kernel.h is only used for quick debugging purposes and is not used for
-the normal tracing utilities.
+It is worth checking whether the files get included anyway, and whether it
+really makes that much difference.
 
--- Steve
+Fiddling with kernel.h and extracting small 'leaf' headers from it is also
+unlikely to make a big difference.
+
+Try adding a syntax error to (say) sys/ioctl.h and see where it is included
+from the first time - I suspect you'll be surprised.
+Working on that include list might be more fruitful (in reducing build times).
+
+	David
