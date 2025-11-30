@@ -2,61 +2,95 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEC9DC94BB0
-	for <lists+intel-gfx@lfdr.de>; Sun, 30 Nov 2025 07:19:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D839C952FF
+	for <lists+intel-gfx@lfdr.de>; Sun, 30 Nov 2025 18:42:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FCAF10E00B;
-	Sun, 30 Nov 2025 06:19:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C37010E267;
+	Sun, 30 Nov 2025 17:42:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="1O+ufe3I";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="GvpNvrV2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [198.137.202.133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A39D10E00B;
- Sun, 30 Nov 2025 06:19:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
- Message-ID:Sender:Reply-To:Content-ID:Content-Description;
- bh=rt2H3+YsV1Ah/Ev8lx7nrZ/yC+yGTNlGyhpvY/Czsfc=; b=1O+ufe3IOodReZZFEuh/XWgceb
- lPyYSG94S/HbBkwa0ugXvuXTGFRNx62ihA4+4zF66T1SH3PtF38wEx79Qcb07iEM8VLJKUwZ2ESdW
- H1VQ0KUJkgmiqv0RGf0GIi4majQmZCE/Rivw2IlQDzuVnY75lsFlgwXeWhqpej3nUOvxnaFfoQGi0
- EqfoGhX/mctk9lM7RulWQ9FJFlM9wo3CqqGyNN9P1hPjiNR8W4RuNrJ7/q1f/BUdAWMpLO9KAXh5+
- sjCwzMBAhznoebLFF6BWLxYgvZCmvFXTdZ5Y/b1USDwWngoDT7I9PYA4w34QtLlQx8ZYUmEtNoLr+
- BoQXh9ag==;
-Received: from [50.53.43.113] (helo=[192.168.254.34])
- by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
- id 1vPamP-000000025XT-3zu4; Sun, 30 Nov 2025 06:19:30 +0000
-Message-ID: <e0d34a20-7547-4788-8449-95fcd5588434@infradead.org>
-Date: Sat, 29 Nov 2025 22:19:29 -0800
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] kernel.h: move VERIFY_OCTAL_PERMISSIONS() to sysfs.h
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- "Yury Norov (NVIDIA)" <yury.norov@gmail.com>
-Cc: Steven Rostedt <rostedt@goodmis.org>,
+Received: from mail-yx1-f52.google.com (mail-yx1-f52.google.com
+ [74.125.224.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00B5210E1A0
+ for <intel-gfx@lists.freedesktop.org>; Sun, 30 Nov 2025 17:42:36 +0000 (UTC)
+Received: by mail-yx1-f52.google.com with SMTP id
+ 956f58d0204a3-640f2c9ccbdso2649121d50.1
+ for <intel-gfx@lists.freedesktop.org>; Sun, 30 Nov 2025 09:42:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1764524556; x=1765129356; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=haLVYkWZOmKHtpHDbk/b7m3f6L/rKnHvLY96AT2R3kQ=;
+ b=GvpNvrV2kPOdAF6F0Gfg6I1st6gbKXuEyfYwZJWUTOJBXgVZL3+l1rva70wJtaxnUb
+ gnev2blzc0IHC7TquZCMPejP5LS7QzbF7X1ywYtGOyYBDIno2sJTC+OyzE/+/z7szE0/
+ aacbJbAwZJBHshzHA/Tg2PNNh07+jOJvKZ8gT6I4YIlUZ244piz6s1DKP5Uad3uBdm4J
+ QqE/4vcgJULXU0cH0aExEzFZ8lVOH7z34XB9qxJRF8XGE7lKSXYKqvPay0ONJ0XThulA
+ AoTQ53+v1ysElZWuK1ZndfdDnUS6L4Omiq+3wtgAo6DgdOid3XZhTX9f7tyjoBujGqdE
+ lCGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1764524556; x=1765129356;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=haLVYkWZOmKHtpHDbk/b7m3f6L/rKnHvLY96AT2R3kQ=;
+ b=fElTEYHgAXsA2AKvGTcfXhI5HJWpG9pjnTBpwffmZdroO1Z6KmIxsEJNjs65ZUeuue
+ hWEMAI2PFcq5NKKLizD1PZqc+yYOcKO+ojYSOlAWRtNLA+dETRdUtx6bCPRS/u89CNov
+ mh9fZ9tz0Z9G1V40wXEyRArf0pQN3rbb7VZ45r26R68U/8PoKiaw46q7nX3UAWPsvjoE
+ 20VGle7Nv+PTBX1SuoK/D/hWlnOfZVtzdryeBC70vHOjJQaRqYMW2o1bimsSIecjF7kC
+ C4VSEVoMjs3pLmCONncwieYXVz5QQXaPUi8h3nwBw5ufwDJ4rlBxn7F4Azd2It+SFcbb
+ x1lA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU8tyFqQBG9D64oI5x/H0xX3WSXrn8lV/Go4AM2zv/vv6f39OYce62Ea9lHQP+VTqyKVKp3mhKqIf8=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy+NYFEMwyTxx/hAj+p3fSaJfTr6nKrY9PW82rysQRN9yvAYyZR
+ Aa0odkyQEqfxpTa8bmzYRHk9WHxWVtj1EyUTa94/0CKHtTbygujIgmzA
+X-Gm-Gg: ASbGnctdMVzD1qdiAUP+VvziE30B/GbVZEvNZodr44ZjwxA+GSFz0zZ/cauZsyQbtkR
+ sD8X1EbEGoAwwYv+wIhZ6O4N3XKPyr89StTGJHYOWKKUu83Xte3G6cgkrgs9XxhF10jXN3CPo2o
+ y7904xJL3DS4kIdaXHCPWbB2gevvCbtjCI2LjwtbsjmuSzuTR6QX8bWgwLEtkN8zDr5BE6Ddy5v
+ C/dhPf/aW5szDjQdGEGCFTbiQo519yfPKtZMfYasgFbki0bjp4d2Fdt2yq2euFT921vJtg9CKCY
+ /6S7WtX5+a67Nx+SBMPsielOkNx9KhaoPvKQiHbel0Sv1MLz7AQlafP+/T3wL7c4ldLu7B/36tT
+ j3D732Cy3gm4Ip+H0MklKmnt94K7M5SIQ0UCBRCOKfMOREO0pgcK13jVle//1RZqDOypsuDcIUP
+ iBuqd4L/U=
+X-Google-Smtp-Source: AGHT+IGF0tX2hZjw3AGlknQ4v+/l0LWFo5zB2gFptAlJjQKMRQgk4Vh85OcdRysXZbzgzlA3JZDqcQ==
+X-Received: by 2002:a05:690e:14c4:b0:63f:b2ca:80e1 with SMTP id
+ 956f58d0204a3-6432913f51dmr15585557d50.0.1764524555929; 
+ Sun, 30 Nov 2025 09:42:35 -0800 (PST)
+Received: from localhost ([2601:346:0:79bd:b42b:4ad9:10af:cabc])
+ by smtp.gmail.com with ESMTPSA id
+ 956f58d0204a3-6433c443ce5sm3870009d50.12.2025.11.30.09.42.35
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 30 Nov 2025 09:42:35 -0800 (PST)
+Date: Sun, 30 Nov 2025 12:42:35 -0500
+From: Yury Norov <yury.norov@gmail.com>
+To: Randy Dunlap <rdunlap@infradead.org>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Steven Rostedt <rostedt@goodmis.org>,
  Masami Hiramatsu <mhiramat@kernel.org>,
  Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
  Ingo Molnar <mingo@kernel.org>, Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Petr Pavlu <petr.pavlu@suse.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Petr Pavlu <petr.pavlu@suse.com>,
  Daniel Gomez <da.gomez@kernel.org>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>, linux-kernel@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-modules@vger.kernel.org, linux-trace-kernel@vger.kernel.org
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Danilo Krummrich <dakr@kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-modules@vger.kernel.org,
+ linux-trace-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] kernel.h: move VERIFY_OCTAL_PERMISSIONS() to sysfs.h
+Message-ID: <aSyCC7TQoGgTn2rT@yury>
 References: <20251129195304.204082-1-yury.norov@gmail.com>
  <20251129195304.204082-3-yury.norov@gmail.com>
  <aStWkK6exUj9YEC1@smile.fi.intel.com>
-Content-Language: en-US
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <aStWkK6exUj9YEC1@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+ <e0d34a20-7547-4788-8449-95fcd5588434@infradead.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e0d34a20-7547-4788-8449-95fcd5588434@infradead.org>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,48 +106,184 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 11/29/25 12:24 PM, Andy Shevchenko wrote:
-> On Sat, Nov 29, 2025 at 02:53:01PM -0500, Yury Norov (NVIDIA) wrote:
->> The macro is related to sysfs, but is defined in kernel.h. Move it to
->> the proper header, and unload the generic kernel.h.
+On Sat, Nov 29, 2025 at 10:19:29PM -0800, Randy Dunlap wrote:
 > 
-> Tough guy :-)
-> I hope it builds well in your case.
 > 
-> FWIW,
-> https://lore.kernel.org/lkml/20220603172101.49950-1-andriy.shevchenko@linux.intel.com/
-> https://lore.kernel.org/lkml/20240212115500.2078463-1-max.kellermann@ionos.com/
-> https://lore.kernel.org/lkml/20240215093646.3265823-1-max.kellermann@ionos.com/
+> On 11/29/25 12:24 PM, Andy Shevchenko wrote:
+> > On Sat, Nov 29, 2025 at 02:53:01PM -0500, Yury Norov (NVIDIA) wrote:
+> >> The macro is related to sysfs, but is defined in kernel.h. Move it to
+> >> the proper header, and unload the generic kernel.h.
+> > 
+> > Tough guy :-)
+> > I hope it builds well in your case.
+> > 
+> > FWIW,
+> > https://lore.kernel.org/lkml/20220603172101.49950-1-andriy.shevchenko@linux.intel.com/
+> > https://lore.kernel.org/lkml/20240212115500.2078463-1-max.kellermann@ionos.com/
+> > https://lore.kernel.org/lkml/20240215093646.3265823-1-max.kellermann@ionos.com/
+> > 
+> > Assuming it builds in allmodconfig, allyesconfig on x86_32/64 and arm/64
+> > Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 > 
-> Assuming it builds in allmodconfig, allyesconfig on x86_32/64 and arm/64
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> I don't build allyesconfigs any more (final? linking takes too long).
+> It builds successfully for arm64 allmodconfig, arm allmodconfig,
+> i386 allmodconfig, and x86_64 allmodconfig.
+> 
+> And the source files that use VERIFY_OCTAL_PERMISSIONS() all build successfully
+> (which means that they possibly include <linux/sysfs.h> indirectly, i.e.,
+> by luck). There aren't many of them, so I checked:
+> 
+> arch/arc/kernel/perf_event.c:	arc_pmu->attr[j].attr.attr.mode = VERIFY_OCTAL_PERMISSIONS(0444);
+> INDIRECT
+> drivers/edac/thunderx_edac.c:	.mode = VERIFY_OCTAL_PERMISSIONS(_mode),		    \
+> INDIRECT
+> drivers/media/platform/amphion/vpu_dbg.c:		    VERIFY_OCTAL_PERMISSIONS(0644),
+> INDIRECT
+> drivers/soc/aspeed/aspeed-uart-routing.c:	 .mode = VERIFY_OCTAL_PERMISSIONS(0644) },	\
+> INDIRECT
+> fs/xfs/xfs_error.c:		 .mode = VERIFY_OCTAL_PERMISSIONS(S_IWUSR | S_IRUGO) },	\
+> INDIRECT
+> include/linux/moduleparam.h:	    VERIFY_OCTAL_PERMISSIONS(perm), level, flags, { arg } }
+> INDIRECT
+> 
+> so all of them got lucky. :)
+> 
+> Acked-by: Randy Dunlap <rdunlap@infradead.org>
+> Tested-by: Randy Dunlap <rdunlap@infradead.org>
 
-I don't build allyesconfigs any more (final? linking takes too long).
-It builds successfully for arm64 allmodconfig, arm allmodconfig,
-i386 allmodconfig, and x86_64 allmodconfig.
+Thanks, Randy.
 
-And the source files that use VERIFY_OCTAL_PERMISSIONS() all build successfully
-(which means that they possibly include <linux/sysfs.h> indirectly, i.e.,
-by luck). There aren't many of them, so I checked:
+This series was tested by 0-day and LKP. 0-day runs allyesconfig, as
+far as I know. It only sends email in case of errors. LKP is OK, find
+the report below.
 
-arch/arc/kernel/perf_event.c:	arc_pmu->attr[j].attr.attr.mode = VERIFY_OCTAL_PERMISSIONS(0444);
-INDIRECT
-drivers/edac/thunderx_edac.c:	.mode = VERIFY_OCTAL_PERMISSIONS(_mode),		    \
-INDIRECT
-drivers/media/platform/amphion/vpu_dbg.c:		    VERIFY_OCTAL_PERMISSIONS(0644),
-INDIRECT
-drivers/soc/aspeed/aspeed-uart-routing.c:	 .mode = VERIFY_OCTAL_PERMISSIONS(0644) },	\
-INDIRECT
-fs/xfs/xfs_error.c:		 .mode = VERIFY_OCTAL_PERMISSIONS(S_IWUSR | S_IRUGO) },	\
-INDIRECT
-include/linux/moduleparam.h:	    VERIFY_OCTAL_PERMISSIONS(perm), level, flags, { arg } }
-INDIRECT
+All but XFS include it via linux/module.h -> linux/moduleparam.h path.
+XFS has a linkage layer: xfs.h -> xfs_linux.h-> linux/module.h, so
+it's pretty much the same.
 
-so all of them got lucky. :)
+I think, module.h inclusion path is OK for this macro and definitely
+better than kernel.h. Notice, none of them, except for vgpu_dbg,
+include kernel.h directly.
 
-Acked-by: Randy Dunlap <rdunlap@infradead.org>
-Tested-by: Randy Dunlap <rdunlap@infradead.org>
--- 
-~Randy
+Thanks,
+Yury
+
+tree/branch: https://github.com/norov/linux stack_magic
+branch HEAD: d8dffbf7bce40e2fbfe077f9c9f4a3471786666f  tracing: move tracing declarations from kernel.h to a dedicated header
+
+elapsed time: 1669m
+
+configs tested: 103
+configs skipped: 2
+
+The following configs have been built successfully.
+More configs may be tested in the coming days.
+
+tested configs:
+alpha                   allnoconfig    gcc-15.1.0
+alpha                     defconfig    gcc-15.1.0
+arc                     allnoconfig    gcc-15.1.0
+arc                       defconfig    gcc-15.1.0
+arc         randconfig-001-20251128    gcc-8.5.0
+arc         randconfig-002-20251128    gcc-15.1.0
+arm                     allnoconfig    clang-22
+arm           am200epdkit_defconfig    gcc-15.1.0
+arm             aspeed_g5_defconfig    gcc-15.1.0
+arm         randconfig-001-20251128    gcc-14.3.0
+arm         randconfig-002-20251128    gcc-8.5.0
+arm         randconfig-003-20251128    clang-22
+arm         randconfig-004-20251128    clang-17
+arm               s3c6400_defconfig    gcc-15.1.0
+arm                 u8500_defconfig    gcc-15.1.0
+arm64                   allnoconfig    gcc-15.1.0
+arm64       randconfig-001-20251129    clang-22
+arm64       randconfig-002-20251129    clang-22
+arm64       randconfig-003-20251129    gcc-8.5.0
+arm64       randconfig-004-20251129    clang-22
+csky                    allnoconfig    gcc-15.1.0
+csky        randconfig-001-20251129    gcc-15.1.0
+csky        randconfig-002-20251129    gcc-15.1.0
+hexagon                 allnoconfig    clang-22
+hexagon     randconfig-001-20251129    clang-22
+hexagon     randconfig-002-20251129    clang-22
+i386                    allnoconfig    gcc-14
+i386        randconfig-001-20251129    gcc-14
+i386        randconfig-002-20251129    gcc-12
+i386        randconfig-003-20251129    clang-20
+i386        randconfig-004-20251129    gcc-14
+i386        randconfig-005-20251129    clang-20
+i386        randconfig-006-20251129    clang-20
+i386        randconfig-007-20251129    gcc-14
+i386        randconfig-011-20251129    clang-20
+i386        randconfig-012-20251129    gcc-13
+i386        randconfig-013-20251129    clang-20
+i386        randconfig-014-20251129    clang-20
+i386        randconfig-015-20251129    gcc-14
+loongarch               allnoconfig    clang-22
+loongarch                 defconfig    clang-19
+loongarch   randconfig-001-20251129    gcc-15.1.0
+loongarch   randconfig-002-20251129    gcc-14.3.0
+m68k                    allnoconfig    gcc-15.1.0
+m68k                      defconfig    gcc-15.1.0
+microblaze              allnoconfig    gcc-15.1.0
+microblaze                defconfig    gcc-15.1.0
+mips                    allnoconfig    gcc-15.1.0
+nios2                   allnoconfig    gcc-11.5.0
+nios2                     defconfig    gcc-11.5.0
+nios2       randconfig-001-20251129    gcc-11.5.0
+nios2       randconfig-002-20251129    gcc-11.5.0
+openrisc                allnoconfig    gcc-15.1.0
+openrisc                  defconfig    gcc-15.1.0
+parisc                  allnoconfig    gcc-15.1.0
+parisc                    defconfig    gcc-15.1.0
+parisc      generic-64bit_defconfig    gcc-15.1.0
+parisc      randconfig-001-20251128    gcc-14.3.0
+parisc      randconfig-002-20251128    gcc-15.1.0
+parisc64                  defconfig    gcc-15.1.0
+powerpc                 allnoconfig    gcc-15.1.0
+powerpc            pcm030_defconfig    clang-22
+powerpc     randconfig-001-20251128    gcc-11.5.0
+powerpc     randconfig-002-20251128    clang-22
+powerpc64   randconfig-001-20251128    clang-22
+powerpc64   randconfig-002-20251128    gcc-8.5.0
+riscv                   allnoconfig    gcc-15.1.0
+riscv                     defconfig    clang-22
+s390                    allnoconfig    clang-22
+s390                      defconfig    clang-22
+sh                      allnoconfig    gcc-15.1.0
+sh                        defconfig    gcc-15.1.0
+sparc                   allnoconfig    gcc-15.1.0
+sparc                     defconfig    gcc-15.1.0
+sparc       randconfig-001-20251129    gcc-8.5.0
+sparc       randconfig-002-20251129    gcc-8.5.0
+sparc64                   defconfig    clang-20
+sparc64     randconfig-001-20251129    gcc-8.5.0
+sparc64     randconfig-002-20251129    gcc-14.3.0
+um                      allnoconfig    clang-22
+um                        defconfig    clang-22
+um                   i386_defconfig    gcc-14
+um          randconfig-001-20251129    clang-22
+um          randconfig-002-20251129    gcc-14
+um                 x86_64_defconfig    clang-22
+x86_64                  allnoconfig    clang-20
+x86_64                    defconfig    gcc-14
+x86_64      randconfig-011-20251129    gcc-14
+x86_64      randconfig-012-20251129    gcc-14
+x86_64      randconfig-013-20251129    gcc-14
+x86_64      randconfig-014-20251129    clang-20
+x86_64      randconfig-015-20251129    gcc-12
+x86_64      randconfig-016-20251129    clang-20
+x86_64      randconfig-071-20251129    gcc-14
+x86_64      randconfig-072-20251129    clang-20
+x86_64      randconfig-073-20251129    gcc-14
+x86_64      randconfig-074-20251129    gcc-12
+x86_64      randconfig-075-20251129    gcc-14
+x86_64      randconfig-076-20251129    gcc-14
+xtensa                  allnoconfig    gcc-15.1.0
+xtensa      randconfig-001-20251129    gcc-10.5.0
+xtensa      randconfig-002-20251129    gcc-14.3.0
+xtensa          xip_kc705_defconfig    gcc-15.1.0
+
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
