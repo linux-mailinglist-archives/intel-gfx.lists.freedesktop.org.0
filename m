@@ -2,53 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEADFC9608D
-	for <lists+intel-gfx@lfdr.de>; Mon, 01 Dec 2025 08:40:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8685C960C6
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Dec 2025 08:47:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A531A10E0AE;
-	Mon,  1 Dec 2025 07:40:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E89F10E2E2;
+	Mon,  1 Dec 2025 07:46:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="EHYXEo/w";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Uf6CRoZA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com
- [136.143.188.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E596F10E0AE
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Dec 2025 07:40:36 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1764574835; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=WCnlhziMQKp5iFMEMICnHZqYYOLmIyhcXzTcNCEiMfnrKnsjd/mvyB0/ljaLbgUyfdHV5aTk3gdkydrx/7FMelHVZBroxQSAWmT0EUwB1ECuAdOp8MHUVPTmqgvQRzuoTrXY1LN0tcULtZ5ay6Wb1ut8vHmoKTd7qta/4TRBsw0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1764574835;
- h=Content-Type:Content-Transfer-Encoding:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To:Cc;
- bh=vAR26bqthkak+RzVdohu+m6qN+v5iGeZzca85vFunVU=; 
- b=SAEEBG4AKDgCwSAXe6KOa8MGSLQyC77HnOxlx4XE28oaYMaPlP+64VllhQGArfm2BxRSi3Pugxfh8E3G0X0v3Q6I3ZI5tmrXwvsw8EkRpzSn4y+YgWKAjLvXS81gTg8bhKEFoFbY0tRS05RUvq2NYjEr3RNrO+Qhz0iUHSswAUs=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1764574835; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:To:To:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To:Cc;
- bh=vAR26bqthkak+RzVdohu+m6qN+v5iGeZzca85vFunVU=;
- b=EHYXEo/wVA7erY81vjw/e7+PFYCWHNP/gDUkOFtsHlR4PyuNWybif7VolsNQWnc6
- jRZbE17TqfzJzd/CGtPXHKp+U0rKg/eg4MpNscEFbBBCcfduDi3tNWcgiMmI+9IeNh4
- UuNXQISbapBkXSfjyI+aZaBRE5nnTmT4J7gQmZEo=
-Received: by mx.zohomail.com with SMTPS id 176457483432081.2685506901521;
- Sun, 30 Nov 2025 23:40:34 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: Re: =?UTF-8?B?4pyX?= Fi.CI.CHECKPATCH: warning for Add new general DRM
- property "color format" (rev2)
-Date: Mon, 01 Dec 2025 08:40:31 +0100
-Message-ID: <5077723.31r3eYUQgx@workhorse>
-In-Reply-To: <176436598285.39153.14578789056730747031@a3b018990fe9>
-References: <20251128-color-format-v5-0-63e82f1db1e1@collabora.com>
- <176436598285.39153.14578789056730747031@a3b018990fe9>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F65E10E2E9;
+ Mon,  1 Dec 2025 07:46:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1764575218; x=1796111218;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=1dWpF5m0U65JFwuXFMqq8W9BWW9b9OZm7ada94xLxCw=;
+ b=Uf6CRoZAr+4wAOSWID2vSdJLQHl1Oo6/Dm51a+8te8z3GaWFWmIN4TTE
+ qRcOWkLyCkXAyOp0RbV3Dgtbsx/FMTF8flDZzAYa4GYVZc7nbnS0oP2qO
+ KjOnSomTOruMRuqiPsa05P6PxvgVPUAv4vGmWf3f4Qu28AaI9I49MndBR
+ mb0+bvLhP3Y7HCfxT4HkxXfVGRYrIaJr2JWwCf6Qs/SNAbd3B86ed+CG9
+ RTKUlMz8Gz42TYSAgE1lvGkg0Zh42GLjAP5Gp+DyRaPM4m0riVXf8z5Z4
+ 0AKNSO50+JuFrYKD49hrFwyywGTfspXog1u27qfz0N1bWdPLblRq+t2I/ A==;
+X-CSE-ConnectionGUID: v5VV72N1QzCo6oao3iaZkQ==
+X-CSE-MsgGUID: 7fabzNIKRPqSMP/fhW49cg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11629"; a="70117560"
+X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="70117560"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2025 23:46:57 -0800
+X-CSE-ConnectionGUID: mwQgID8jR7ixSawycaiLdw==
+X-CSE-MsgGUID: Ev7FdPzsSbizWUmwi+UbdQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="193997252"
+Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.132])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2025 23:46:50 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Yury Norov (NVIDIA)" <yury.norov@gmail.com>, Steven Rostedt
+ <rostedt@goodmis.org>, Masami Hiramatsu <mhiramat@kernel.org>, Mathieu
+ Desnoyers <mathieu.desnoyers@efficios.com>, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>, Randy Dunlap <rdunlap@infradead.org>,
+ Ingo Molnar <mingo@kernel.org>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Petr Pavlu <petr.pavlu@suse.com>,
+ Daniel Gomez <da.gomez@kernel.org>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Danilo Krummrich <dakr@kernel.org>, Andrew Morton
+ <akpm@linux-foundation.org>, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-modules@vger.kernel.org, linux-trace-kernel@vger.kernel.org
+Cc: "Yury Norov (NVIDIA)" <yury.norov@gmail.com>
+Subject: Re: [PATCH 1/3] kernel.h: drop STACK_MAGIC macro
+In-Reply-To: <20251129195304.204082-2-yury.norov@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251129195304.204082-1-yury.norov@gmail.com>
+ <20251129195304.204082-2-yury.norov@gmail.com>
+Date: Mon, 01 Dec 2025 09:46:47 +0200
+Message-ID: <d854dadd78a43f589399e967def37a0eda3655c2@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,51 +81,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Friday, 28 November 2025 22:39:42 Central European Standard Time Patchwork wrote:
-> == Series Details ==
-> 
-> Series: Add new general DRM property "color format" (rev2)
-> URL   : https://patchwork.freedesktop.org/series/157910/
-> State : warning
+On Sat, 29 Nov 2025, "Yury Norov (NVIDIA)" <yury.norov@gmail.com> wrote:
+> The macro is only used by i915. Move it to a local header and drop from
+> the kernel.h.
+>
+> Signed-off-by: Yury Norov (NVIDIA) <yury.norov@gmail.com>
+> ---
+>  drivers/gpu/drm/i915/i915_utils.h | 2 ++
+>  include/linux/kernel.h            | 2 --
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
+> index a0c892e4c40d..6c197e968305 100644
+> --- a/drivers/gpu/drm/i915/i915_utils.h
+> +++ b/drivers/gpu/drm/i915/i915_utils.h
 
-I will fix most of these (I guess the CI uses a different checkpatch
-preset than b4 prep --check, had only one of these) but there's
-three that I won't address because they're stupid:
+i915_utils.h is on a diet itself. STACK_MAGIC is only used in selftests,
+please put this in i915_selftest.h.
 
-> 
-> == Summary ==
-> 
-> [snip]
-> b979329d91af drm/bridge: Act on the DRM color format property
-> -:73: WARNING:ENOTSUPP: ENOTSUPP is not a SUSV4 error code, prefer EOPNOTSUPP
-> #73: FILE: drivers/gpu/drm/drm_bridge.c:1182:
-> +			ret = -ENOTSUPP;
-> 
-> total: 0 errors, 1 warnings, 0 checks, 57 lines checked
+I guess also need to include that from gt/selftest_ring_submission.c,
+the only one that uses STACK_MAGIC but doesn't include i915_selftest.h.
 
-The whole point of using -ENOTSUPP here is that it's the same return
-code as other branches in drm_atomic_bridge_chain_select_bus_fmts
-already take, and the caller already handles.
-
-> [snip]
-> 943216634f10 drm/tests: hdmi: Add tests for the color_format property
-> -:90: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-> #90: FILE: drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c:2036:
-> +	priv = drm_kunit_helper_connector_hdmi_init_with_edid_funcs(test,
-> +				BIT(HDMI_COLORSPACE_RGB) |
-> [snip]
-> -:133: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-> #133: FILE: drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c:2079:
-> +	priv = drm_kunit_helper_connector_hdmi_init_with_edid_funcs(test,
-> +				BIT(HDMI_COLORSPACE_RGB) |
-> 
-> total: 0 errors, 0 warnings, 4 checks, 150 lines checked
-> 
-
-This is a big "no" from me. I'm not going to align stuff to the
-opening brace when function names are so long they take up almost
-the entire line, and it seems every other invocation in this file
-agrees with me here.
+BR,
+Jani.
 
 
+> @@ -32,6 +32,8 @@
+>  #include <linux/workqueue.h>
+>  #include <linux/sched/clock.h>
+>  
+> +#define STACK_MAGIC	0xdeadbeef
+> +
+>  #ifdef CONFIG_X86
+>  #include <asm/hypervisor.h>
+>  #endif
+> diff --git a/include/linux/kernel.h b/include/linux/kernel.h
+> index 5b46924fdff5..61d63c57bc2d 100644
+> --- a/include/linux/kernel.h
+> +++ b/include/linux/kernel.h
+> @@ -40,8 +40,6 @@
+>  
+>  #include <uapi/linux/kernel.h>
+>  
+> -#define STACK_MAGIC	0xdeadbeef
+> -
+>  struct completion;
+>  struct user;
 
+-- 
+Jani Nikula, Intel
