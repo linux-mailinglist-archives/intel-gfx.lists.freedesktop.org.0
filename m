@@ -2,29 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E112C95B79
-	for <lists+intel-gfx@lfdr.de>; Mon, 01 Dec 2025 06:31:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A672AC95DCB
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Dec 2025 07:35:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29A6610E29F;
-	Mon,  1 Dec 2025 05:31:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8247D10E2A3;
+	Mon,  1 Dec 2025 06:35:51 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fC4cc7bf";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75AA210E112;
- Mon,  1 Dec 2025 05:31:33 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2926188730943668386=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 146FD10E0FE;
+ Mon,  1 Dec 2025 06:35:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1764570951; x=1796106951;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=VYP0Elv2ZIOROHX/iKjc/+z0N573FL9GQDv5aufWjgg=;
+ b=fC4cc7bfydCzXn+pbubl7Bna8ongSBeEkQwHy15ogYmw5xW74IAp0TdO
+ mv9dMxy0qPlazpDBbfnn2Z9xonSGlrx7btskVgiS3EMhBmCZtD0P6lSx9
+ vflh/WyMdUr6x0CtyfHSjV4fzLC+bY4aHbCdYx7UirvAJsPfGz3yfZ+DK
+ BetxTJJgW+bgEi+EDQebb/xicDMK4vG2i0isrDRx6ErPr3BtFoZG0sW95
+ IVNlAy9EzU7VK92IV4ZRwOtCYa75gQ1JaasV70CBdpMpWCFbfLZ4oPJlo
+ K2XFChz9c0NgFitMeWW4QJEmrW2lgzNQpllf5O03IBFCnUB0vyG+nnLUQ A==;
+X-CSE-ConnectionGUID: GiCQUfQ9ShSkscnoyNcP/Q==
+X-CSE-MsgGUID: fYLhqZ60SkuQd8p1bRL+0A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11629"; a="66663156"
+X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="66663156"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2025 22:35:50 -0800
+X-CSE-ConnectionGUID: Dq9Pi6/KRf+UphAmabWKCA==
+X-CSE-MsgGUID: fPzA+dXtQUuGeDNpKyHR8A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="193806053"
+Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
+ by orviesa009.jf.intel.com with ESMTP; 30 Nov 2025 22:34:58 -0800
+From: Uma Shankar <uma.shankar@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: chaitanya.kumar.borah@intel.com, ville.syrjala@linux.intel.com,
+ pekka.paalanen@collabora.com, contact@emersion.fr, harry.wentland@amd.com,
+ mwen@igalia.com, jadahl@redhat.com, sebastian.wick@redhat.com,
+ swati2.sharma@intel.com, alex.hung@amd.com, jani.nikula@intel.com,
+ suraj.kandpal@intel.com, Uma Shankar <uma.shankar@intel.com>,
+ Joshua Ashton <joshua@froggi.es>,
+ =?UTF-8?q?Michel=20D=C3=A4nzer?= <mdaenzer@redhat.com>,
+ Xaver Hugl <xaver.hugl@gmail.com>,
+ Victoria Brekenfeld <victoria@system76.com>, Sima <daniel@ffwll.ch>,
+ Liviu Dudau <Liviu.Dudau@arm.com>
+Subject: [v7 00/15] Plane Color Pipeline support for Intel platforms
+Date: Mon,  1 Dec 2025 12:16:40 +0530
+Message-ID: <20251201064655.3579280-1-uma.shankar@intel.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Enabl?=
- =?utf-8?q?e_system_cache_support_for_FBC_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 01 Dec 2025 05:31:33 -0000
-Message-ID: <176456709347.41243.5091905343048314446@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251127115349.249120-1-vinod.govindapillai@intel.com>
-In-Reply-To: <20251127115349.249120-1-vinod.govindapillai@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,187 +72,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2926188730943668386==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This series intends to add support for Plane Color Management for
+Intel platforms. This is based on the design which has been agreed
+upon by the community. Series implementing the design for generic
+DRM core has been sent out by Alex Hung and Harry Wentland and is
+merged to upstream tree:
+https://patchwork.freedesktop.org/series/152970/
 
-== Series Details ==
+IGT Changes to validate the same have been implemented and can be found
+below:
+https://patchwork.freedesktop.org/series/150455/
 
-Series: drm/i915/display: Enable system cache support for FBC (rev4)
-URL   : https://patchwork.freedesktop.org/series/157945/
-State : success
+Follow On work:
+Changes for Multi Segmented/PWL LUT's will be taken up in a separate
+series to align with implementation of basic color pipeline first in
+upstream. This is as per agreement and alignment in Hackfest discussion.
 
-== Summary ==
+Changes in v7:
+   - Review comments addressed (Jani, Suraj)
+   - Rebased on AMD series for core API's
+   - Some fixes
 
-CI Bug Log - changes from CI_DRM_17605 -> Patchwork_157945v4
-====================================================
+Changes in v6:
+   - Remove Multi Segmented LUT implementations. This will be taken up
+     as a separate series.
+   - Code Refactoring and review comments addressed (Jani, Suraj, Simon)
+   - Propogate Plane Color changes to crtc state
+   - Fix DSB programming for Luts
+   - Add 3D Lut support
+   - Plane color callbacks updated to TGL+
+   - Rebase on AMD's Color series v12 version
 
-Summary
--------
+Changes in v5:
+   - Exposing CTM as 3x4 instead of 3x3 using post offsets.
+   - Exposing single segmented 1D LUT color op along with multi
+     segmented lut in 2 different color pipelines
+   - Add helper to extract LUT data from 32 bit samples
+   - Enable uapi to hardware state copy in driver
+   - Add DSB support to program color Luts 
+   - Fix some miscellaneous issues
 
-  **SUCCESS**
+Changes in v4:
+  - Rebase
 
-  No regressions found.
+Changes in v3:
+   - Rebase on latest plane color pipeline series (v7) from AMD
+   - Update documentation for 3x3 CTM colorop (Dmitry)
+   - Fix documentation for multi segmented 1D lut (Dmitry)
+   - Squash changes for 1d LUT helpers (Dmitry)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157945v4/index.html
+Changes in v2:
+   - Add documentation for hardware capability detection for segmented luts
+   - Add documentation for lut computation in userspace based on
+     hardware caps
+   - Update drm_color_lut_range data structure and handling
+   - Enhance the structure to avoid ambiguity and cater to varying
+     hardware implementations of 1D Lut blocks
+   - Replace drm_color_lut_ext with drm_color_lut32
+   - Change namespace for drm_color_lut_range flags (Sebastien)
+   - Program super fine post csc gamma lut segment for Intel hardware
 
-Participating hosts (45 -> 44)
-------------------------------
+Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: Pekka Paalanen <pekka.paalanen@collabora.com>
+Cc: Simon Ser <contact@emersion.fr>
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Melissa Wen <mwen@igalia.com>
+Cc: Jonas Ådahl <jadahl@redhat.com>
+Cc: Sebastian Wick <sebastian.wick@redhat.com>
+Cc: Joshua Ashton <joshua@froggi.es>
+Cc: Michel Dänzer <mdaenzer@redhat.com>
+Cc: Xaver Hugl <xaver.hugl@gmail.com>
+Cc: Victoria Brekenfeld <victoria@system76.com>
+Cc: Sima <daniel@ffwll.ch>
+Cc: Liviu Dudau <Liviu.Dudau@arm.com>
+Cc: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Cc: Swati Sharma <swati2.sharma@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
 
-  Missing    (1): fi-snb-2520m 
+Chaitanya Kumar Borah (8):
+  drm/i915/display: Add identifiers for driver specific blocks
+  drm/i915: Add intel_color_op
+  drm/i915/color: Add helper to create intel colorop
+  drm/i915/color: Create a transfer function color pipeline
+  drm/i915/color: Add framework to program CSC
+  drm/i915/color: Preserve sign bit when int_bits is Zero
+  drm/i915/display: Add registers for 3D LUT
+  drm/i915/color: Add 3D LUT to color pipeline
 
-Known issues
-------------
+Uma Shankar (7):
+  drm/i915/color: Add plane CTM callback for D12 and beyond
+  drm/i915: Add register definitions for Plane Degamma
+  drm/i915: Add register definitions for Plane Post CSC
+  drm/i915/color: Add framework to program PRE/POST CSC LUT
+  drm/i915/color: Program Pre-CSC registers
+  drm/i915/xelpd: Program Plane Post CSC Registers
+  drm/i915/color: Enable Plane Color Pipelines
 
-  Here are the changes found in Patchwork_157945v4 that come from known issues:
+ drivers/gpu/drm/i915/Makefile                 |   2 +
+ drivers/gpu/drm/i915/display/intel_color.c    | 336 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_color.h    |   8 +-
+ .../drm/i915/display/intel_color_pipeline.c   | 116 ++++++
+ .../drm/i915/display/intel_color_pipeline.h   |  14 +
+ .../gpu/drm/i915/display/intel_color_regs.h   |  29 ++
+ drivers/gpu/drm/i915/display/intel_colorop.c  |  35 ++
+ drivers/gpu/drm/i915/display/intel_colorop.h  |  15 +
+ drivers/gpu/drm/i915/display/intel_display.c  |   5 +-
+ .../drm/i915/display/intel_display_limits.h   |   9 +
+ .../drm/i915/display/intel_display_types.h    |   9 +
+ drivers/gpu/drm/i915/display/intel_plane.c    |  55 +++
+ .../drm/i915/display/skl_universal_plane.c    |  21 ++
+ .../i915/display/skl_universal_plane_regs.h   | 115 ++++++
+ drivers/gpu/drm/xe/Makefile                   |   2 +
+ 15 files changed, 769 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_color_pipeline.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_color_pipeline.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_colorop.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_colorop.h
 
-### IGT changes ###
+-- 
+2.50.1
 
-#### Issues hit ####
-
-  * igt@dmabuf@all-tests@dma_fence_chain:
-    - bat-twl-2:          NOTRUN -> [SKIP][1] ([i915#15249])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157945v4/bat-twl-2/igt@dmabuf@all-tests@dma_fence_chain.html
-
-  * igt@gem_flink_basic@bad-open:
-    - bat-adls-6:         [PASS][2] -> [INCOMPLETE][3] ([i915#15352])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17605/bat-adls-6/igt@gem_flink_basic@bad-open.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157945v4/bat-adls-6/igt@gem_flink_basic@bad-open.html
-
-  * igt@i915_hangman@error-state-basic:
-    - fi-glk-j4005:       [PASS][4] -> [INCOMPLETE][5] ([i915#15350])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17605/fi-glk-j4005/igt@i915_hangman@error-state-basic.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157945v4/fi-glk-j4005/igt@i915_hangman@error-state-basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@reset:
-    - bat-twl-2:          [ABORT][6] ([i915#14365]) -> [PASS][7] +1 other test pass
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17605/bat-twl-2/igt@i915_selftest@live@reset.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157945v4/bat-twl-2/igt@i915_selftest@live@reset.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-9:          [DMESG-FAIL][8] ([i915#12061]) -> [PASS][9] +1 other test pass
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17605/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157945v4/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-    - bat-dg2-14:         [DMESG-FAIL][10] ([i915#12061]) -> [PASS][11] +1 other test pass
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17605/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157945v4/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#14365]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14365
-  [i915#15249]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15249
-  [i915#15350]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15350
-  [i915#15352]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15352
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_17605 -> Patchwork_157945v4
-
-  CI-20190529: 20190529
-  CI_DRM_17605: e1c1b3e03e356d1e20432dcb0d38ad44d5e92670 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8644: 069c5ee6eb658181e7264883c6c4fba41fc917a4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_157945v4: e1c1b3e03e356d1e20432dcb0d38ad44d5e92670 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157945v4/index.html
-
---===============2926188730943668386==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Enable system cache support for FBC (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157945/">https://patchwork.freedesktop.org/series/157945/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157945v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157945v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17605 -&gt; Patchwork_157945v4</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157945v4/index.html</p>
-<h2>Participating hosts (45 -&gt; 44)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_157945v4 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests@dma_fence_chain:</p>
-<ul>
-<li>bat-twl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157945v4/bat-twl-2/igt@dmabuf@all-tests@dma_fence_chain.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15249">i915#15249</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_flink_basic@bad-open:</p>
-<ul>
-<li>bat-adls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17605/bat-adls-6/igt@gem_flink_basic@bad-open.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157945v4/bat-adls-6/igt@gem_flink_basic@bad-open.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15352">i915#15352</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_hangman@error-state-basic:</p>
-<ul>
-<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17605/fi-glk-j4005/igt@i915_hangman@error-state-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157945v4/fi-glk-j4005/igt@i915_hangman@error-state-basic.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15350">i915#15350</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@reset:</p>
-<ul>
-<li>bat-twl-2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17605/bat-twl-2/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14365">i915#14365</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157945v4/bat-twl-2/igt@i915_selftest@live@reset.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17605/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157945v4/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17605/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157945v4/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17605 -&gt; Patchwork_157945v4</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17605: e1c1b3e03e356d1e20432dcb0d38ad44d5e92670 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8644: 069c5ee6eb658181e7264883c6c4fba41fc917a4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_157945v4: e1c1b3e03e356d1e20432dcb0d38ad44d5e92670 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============2926188730943668386==--
