@@ -2,70 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F236C9BC31
-	for <lists+intel-gfx@lfdr.de>; Tue, 02 Dec 2025 15:23:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B141AC98245
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Dec 2025 16:56:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F73510E66A;
-	Tue,  2 Dec 2025 14:23:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 127AD10E42D;
+	Mon,  1 Dec 2025 15:56:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="sBbSHmzs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QIs7hGHM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B13510E412;
- Mon,  1 Dec 2025 15:53:35 +0000 (UTC)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4dKpND1qYnz9sSq;
- Mon,  1 Dec 2025 16:53:32 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1764604412; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=eGqYb67ev6KtdX+YTXDxiPnVVJgPnz1zCF5EHXt4hqo=;
- b=sBbSHmzsi3wPuWYFAAsh7dTsB5/2BthPcSteomaBpjOOXqjRl4JVBPb/opZ+0TvekWfWh6
- kkrhVaI5rHlsptkCOOV1cEZ+1Vk+ont6Rbwmv+8a8aCIMhACUF9VPbT2CaCITeqRij/2/r
- oH2zKPUBjgeXVl0q3fmw/SMlM1xCI1nLQuAbHnv2USqCf+waiCIjoR+lAAn7YbTh6E0CON
- /sEKdCwDOW3RiLQr5wGRrqkI2ZosLT1xcI3/LP/R7DrfLIjoeJQ1PveMpvTCwtzC6ZEWew
- MSsck3FBtmzJ65blZyfmgt2caSH/5QIFj8wSQdMiEOTCnuVWVIHlwC/zRTJiWQ==
-Message-ID: <247185f833edd075cd4aac8c39ac8ae5b5aabe07.camel@mailbox.org>
-Subject: Re: [PATCH v2 2/8] dma-buf/dma-fence: Add dma_fence_check_and_signal()
-From: Philipp Stanner <phasta@mailbox.org>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
- phasta@kernel.org, Sumit Semwal <sumit.semwal@linaro.org>, Gustavo Padovan
- <gustavo@padovan.org>, Felix Kuehling <Felix.Kuehling@amd.com>, Alex
- Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>,  Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui
- <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,  Matthew Brost
- <matthew.brost@intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Lucas De Marchi
- <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>
-Cc: linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Date: Mon, 01 Dec 2025 16:53:25 +0100
-In-Reply-To: <93a4f4e4-af7a-4c84-a7a2-5db785f2a5a8@amd.com>
-References: <20251201105011.19386-2-phasta@kernel.org>
- <20251201105011.19386-4-phasta@kernel.org>
- <80554ed2-4454-489b-873f-533d68c8d2ae@amd.com>
- <2a9c83b4a428bb3cc993499c39d0da01f9563278.camel@mailbox.org>
- <93a4f4e4-af7a-4c84-a7a2-5db785f2a5a8@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F75910E425;
+ Mon,  1 Dec 2025 15:56:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1764604577; x=1796140577;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=8CatreM/H388Bg/dh303kBgixcSKi5WU0xRXH7oS0t4=;
+ b=QIs7hGHMMZU9BHrhFyTakmkpLDd8gyoC6rWrphBbPRB+MVR1Ev/iwu0s
+ 4spG3tlIN0L27hTb0Ylms3+U49NWePwgL9Tb0kDCLykYBRaXYHKOJ8IYm
+ k9i4Do/CfweXZsak52laJzrrhPf7Ig5fgC3mNOPgS0ZcebAP02p/Hegey
+ OIlFNhxtkQAvSoumaa2G83Uf6Y4xdn4N9/IijRszg64rH1kAoFfwgULKL
+ ZLjN/9953xsk6c3t8JQTBE7dPV2q58dAMf6XXjIffLIB/EURvBJqGHiFm
+ GBDlmv751qjdr06ObZNjOSaxNEmRVB3Q7I2jCL24Mgl1W0sHwGODHyi4u A==;
+X-CSE-ConnectionGUID: CDqaDdlySUG5TEzwFTIY6Q==
+X-CSE-MsgGUID: f6pg6ko5QxWbMKXSOJ7eSg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11629"; a="70160483"
+X-IronPort-AV: E=Sophos;i="6.20,241,1758610800"; d="scan'208";a="70160483"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2025 07:56:12 -0800
+X-CSE-ConnectionGUID: CX2Kz1p6Sy+4umqmhp2Ogg==
+X-CSE-MsgGUID: 8YWDxro4St+V5obqHT2sGA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,241,1758610800"; d="scan'208";a="193766495"
+Received: from lkp-server01.sh.intel.com (HELO 4664bbef4914) ([10.239.97.150])
+ by fmviesa007.fm.intel.com with ESMTP; 01 Dec 2025 07:56:10 -0800
+Received: from kbuild by 4664bbef4914 with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1vQ6Fz-000000008tD-2CkX;
+ Mon, 01 Dec 2025 15:56:07 +0000
+Date: Mon, 1 Dec 2025 23:55:38 +0800
+From: kernel test robot <lkp@intel.com>
+To: Uma Shankar <uma.shankar@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev, chaitanya.kumar.borah@intel.com,
+ ville.syrjala@linux.intel.com, pekka.paalanen@collabora.com,
+ contact@emersion.fr, harry.wentland@amd.com, mwen@igalia.com,
+ jadahl@redhat.com, sebastian.wick@redhat.com,
+ swati2.sharma@intel.com, alex.hung@amd.com, jani.nikula@intel.com,
+ suraj.kandpal@intel.com, Uma Shankar <uma.shankar@intel.com>
+Subject: Re: [v7 04/15] drm/i915/color: Create a transfer function color
+ pipeline
+Message-ID: <202512012314.C2mdxzIy-lkp@intel.com>
+References: <20251201064655.3579280-5-uma.shankar@intel.com>
 MIME-Version: 1.0
-X-MBO-RS-ID: 1308e1c837b3c1f5430
-X-MBO-RS-META: ijujsb3wwab53aghs3jk89kkrxiqj4um
-X-Mailman-Approved-At: Tue, 02 Dec 2025 14:23:18 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251201064655.3579280-5-uma.shankar@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,43 +73,156 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2025-12-01 at 16:20 +0100, Christian K=C3=B6nig wrote:
-> On 12/1/25 14:55, Philipp Stanner wrote:
-> > On Mon, 2025-12-01 at 14:23 +0100, Christian K=C3=B6nig wrote:
-> > > On 12/1/25 11:50, Philipp Stanner wrote:
-> > > > The overwhelming majority of users of dma_fence signaling functions
-> > > > don't care about whether the fence had already been signaled by som=
-eone
-> > > >=20
-> >=20
+Hi Uma,
 
-[=E2=80=A6]
+kernel test robot noticed the following build errors:
 
-> > >=20
-> > > > +{
-> > > > +	unsigned long flags;
-> > > > +	bool ret;
-> > > > +
-> > > > +	spin_lock_irqsave(fence->lock, flags);
-> > > > +	ret =3D dma_fence_check_and_signal_locked(fence);
-> > > > +	spin_unlock_irqrestore(fence->lock, flags);
-> > >=20
-> > > Could this use guard(fence->lock, flags) ?
-> >=20
-> > guard? You mean a lockdep guard? Do you have a pointer to someplace in
-> > dma_fence who does what you mean / want?
->=20
-> E.g. like guard(spinlock_irqsave)(&fence->lock);
+[auto build test ERROR on next-20251201]
+[also build test ERROR on linus/master v6.18]
+[cannot apply to drm-xe/drm-xe-next drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip v6.18 v6.18-rc7 v6.18-rc6]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Uma-Shankar/drm-i915-display-Add-identifiers-for-driver-specific-blocks/20251201-150245
+base:   next-20251201
+patch link:    https://lore.kernel.org/r/20251201064655.3579280-5-uma.shankar%40intel.com
+patch subject: [v7 04/15] drm/i915/color: Create a transfer function color pipeline
+config: i386-buildonly-randconfig-006-20251201 (https://download.01.org/0day-ci/archive/20251201/202512012314.C2mdxzIy-lkp@intel.com/config)
+compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251201/202512012314.C2mdxzIy-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202512012314.C2mdxzIy-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from drivers/gpu/drm/i915/display/intel_colorop.h:9,
+                    from drivers/gpu/drm/i915/display/intel_color_pipeline.c:5:
+   drivers/gpu/drm/i915/display/intel_display_types.h:1989:28: error: field 'base' has incomplete type
+    1989 |         struct drm_colorop base;
+         |                            ^~~~
+   drivers/gpu/drm/i915/display/intel_color_pipeline.c: In function '_intel_color_pipeline_plane_init':
+>> drivers/gpu/drm/i915/display/intel_color_pipeline.c:25:15: error: implicit declaration of function 'drm_plane_colorop_curve_1d_lut_init' [-Wimplicit-function-declaration]
+      25 |         ret = drm_plane_colorop_curve_1d_lut_init(dev, &colorop->base, plane,
+         |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/gpu/drm/i915/display/intel_color_pipeline.c:27:51: error: 'DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR' undeclared (first use in this function)
+      27 |                                                   DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
+         |                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/display/intel_color_pipeline.c:27:51: note: each undeclared identifier is reported only once for each function it appears in
+>> drivers/gpu/drm/i915/display/intel_color_pipeline.c:28:51: error: 'DRM_COLOROP_FLAG_ALLOW_BYPASS' undeclared (first use in this function)
+      28 |                                                   DRM_COLOROP_FLAG_ALLOW_BYPASS);
+         |                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/gpu/drm/i915/display/intel_color_pipeline.c:40:15: error: implicit declaration of function 'drm_plane_colorop_ctm_3x4_init' [-Wimplicit-function-declaration]
+      40 |         ret = drm_plane_colorop_ctm_3x4_init(dev, &colorop->base, plane,
+         |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/gpu/drm/i915/display/intel_color_pipeline.c:45:9: error: implicit declaration of function 'drm_colorop_set_next_property'; did you mean 'drm_connector_set_tile_property'? [-Wimplicit-function-declaration]
+      45 |         drm_colorop_set_next_property(prev_op, &colorop->base);
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         |         drm_connector_set_tile_property
+   drivers/gpu/drm/i915/display/intel_color_pipeline.c: In function 'intel_color_pipeline_plane_init':
+>> drivers/gpu/drm/i915/display/intel_color_pipeline.c:92:16: error: 'struct drm_plane' has no member named 'color_pipeline_property'; did you mean 'color_encoding_property'?
+      92 |         plane->color_pipeline_property = prop;
+         |                ^~~~~~~~~~~~~~~~~~~~~~~
+         |                color_encoding_property
 
 
-Hmm, but why?
-It's obvious to all readers that I do spin_unlock_irqrestore() here.
-It's very simple code, lock, 1 line, unlock. What would the guard
-improve?
+vim +/drm_plane_colorop_curve_1d_lut_init +25 drivers/gpu/drm/i915/display/intel_color_pipeline.c
 
+   > 5	#include "intel_colorop.h"
+     6	#include "intel_color_pipeline.h"
+     7	#include "intel_de.h"
+     8	#include "intel_display_types.h"
+     9	#include "skl_universal_plane.h"
+    10	
+    11	#define MAX_COLOR_PIPELINES 2
+    12	#define PLANE_DEGAMMA_SIZE 128
+    13	#define PLANE_GAMMA_SIZE 32
+    14	
+    15	static
+    16	int _intel_color_pipeline_plane_init(struct drm_plane *plane, struct drm_prop_enum_list *list)
+    17	{
+    18		struct intel_colorop *colorop;
+    19		struct drm_device *dev = plane->dev;
+    20		int ret;
+    21		struct drm_colorop *prev_op;
+    22	
+    23		colorop = intel_colorop_create(INTEL_PLANE_CB_PRE_CSC_LUT);
+    24	
+  > 25		ret = drm_plane_colorop_curve_1d_lut_init(dev, &colorop->base, plane,
+    26							  PLANE_DEGAMMA_SIZE,
+  > 27							  DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
+  > 28							  DRM_COLOROP_FLAG_ALLOW_BYPASS);
+    29	
+    30		if (ret)
+    31			return ret;
+    32	
+    33		list->type = colorop->base.base.id;
+    34		list->name = kasprintf(GFP_KERNEL, "Color Pipeline %d", colorop->base.base.id);
+    35	
+    36		/* TODO: handle failures and clean up */
+    37		prev_op = &colorop->base;
+    38	
+    39		colorop = intel_colorop_create(INTEL_PLANE_CB_CSC);
+  > 40		ret = drm_plane_colorop_ctm_3x4_init(dev, &colorop->base, plane,
+    41						     DRM_COLOROP_FLAG_ALLOW_BYPASS);
+    42		if (ret)
+    43			return ret;
+    44	
+  > 45		drm_colorop_set_next_property(prev_op, &colorop->base);
+    46		prev_op = &colorop->base;
+    47	
+    48		colorop = intel_colorop_create(INTEL_PLANE_CB_POST_CSC_LUT);
+    49		ret = drm_plane_colorop_curve_1d_lut_init(dev, &colorop->base, plane,
+    50							  PLANE_GAMMA_SIZE,
+    51							  DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
+    52							  DRM_COLOROP_FLAG_ALLOW_BYPASS);
+    53		if (ret)
+    54			return ret;
+    55	
+    56		drm_colorop_set_next_property(prev_op, &colorop->base);
+    57	
+    58		return 0;
+    59	}
+    60	
+    61	int intel_color_pipeline_plane_init(struct drm_plane *plane)
+    62	{
+    63		struct drm_device *dev = plane->dev;
+    64		struct intel_display *display = to_intel_display(dev);
+    65		struct drm_property *prop;
+    66		struct drm_prop_enum_list pipelines[MAX_COLOR_PIPELINES];
+    67		int len = 0;
+    68		int ret;
+    69	
+    70		/* Currently expose pipeline only for HDR planes */
+    71		if (!icl_is_hdr_plane(display, to_intel_plane(plane)->id))
+    72			return 0;
+    73	
+    74		/* Add "Bypass" (i.e. NULL) pipeline */
+    75		pipelines[len].type = 0;
+    76		pipelines[len].name = "Bypass";
+    77		len++;
+    78	
+    79		/* Add pipeline consisting of transfer functions */
+    80		ret = _intel_color_pipeline_plane_init(plane, &pipelines[len]);
+    81		if (ret)
+    82			return ret;
+    83		len++;
+    84	
+    85		/* Create COLOR_PIPELINE property and attach */
+    86		prop = drm_property_create_enum(dev, DRM_MODE_PROP_ATOMIC,
+    87						"COLOR_PIPELINE",
+    88						pipelines, len);
+    89		if (!prop)
+    90			return -ENOMEM;
+    91	
+  > 92		plane->color_pipeline_property = prop;
 
-P.
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
