@@ -2,54 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37FEFC9891C
-	for <lists+intel-gfx@lfdr.de>; Mon, 01 Dec 2025 18:43:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08CC6C98A64
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Dec 2025 19:06:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0923F10E438;
-	Mon,  1 Dec 2025 17:43:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F5E010E440;
+	Mon,  1 Dec 2025 18:06:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="O2mkU5pi";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="f4PUV0hS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72C9E10E437;
- Mon,  1 Dec 2025 17:43:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1764611004;
- bh=BxsDMISbQaxID58sHXEnj5BiEwpTY+LpadDzPx4lhb4=;
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D45310E440;
+ Mon,  1 Dec 2025 18:06:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1764612372;
+ bh=orbc3nuJhRBtP9HgFH/P7FPSU37dWjp236YX9cJ7qE8=;
  h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=O2mkU5piUNT4OBKWPiULKjn7UM17dn4aArrm5TYlYkGumURqjrmfpE1UHNxMHlh3X
- qT/vnpiEl5JysI5RNJVlB0vRkKElSV9IZ9RPS4/rbY+Hi+AZms6M8SWN40UwkYrU5U
- ZKYAcdRLSnkJdT9C4Qewb4WV9WGrYmRyMt6eBd2FmS/lVrPfBgYSW3vuscKeRh0YGj
- Iy2Rw1QqJ+3zdpBahYpjxnMhTTT2IC6nWRR8y/NVy7sdl4ALwvhWMGwSCtFPICmuwa
- t4Fy4un+OwPLxAQ2lhJI8OXBkY4FvfLIvjFfsxCG5Cg4db9Qe+leETRoP0rSpyISg3
- olBJUoPSjOlzw==
-Message-ID: <e3cbdd41-951b-4e4d-9d47-3e0cb1a9fb45@lankhorst.se>
-Date: Mon, 1 Dec 2025 18:43:20 +0100
+ b=f4PUV0hSvnZmXOb2ZWccPOP5NEDYIGqGFgBkNrbZyFaHM7AR8XkGmUCu6OnkAodFA
+ lj5NCIdmHu1VugxhaE8lMbzPaT6HbXdt5WZnd5bt3N42gHcTYxhDWAzN9HVwBIwjOs
+ wdh52nnjvww3IORZATNTc/QuBF4ZPRL+RPQm7US6QnUUen3lLtN6Dv1IYOTdi4dcWS
+ AiGsuJvFHisXkpA/o+9Kz0ReKG5F2tmIUDUJW25d4tnP+kt56w/AIqTphtfRva/KiA
+ u6FWll/izQjWEpNlUNWFGTrJo9QZHfBgL6O4c1OlNQ0vK4YGvQYfqiR60p6q1ijFoC
+ QluNngkMsJeTA==
+Received: from [IPV6:2a01:e0a:5e3:6100:7aed:fe0e:8590:cbaa] (unknown
+ [IPv6:2a01:e0a:5e3:6100:7aed:fe0e:8590:cbaa])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ (Authenticated sender: loicmolinari)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id DD47317E1157;
+ Mon,  1 Dec 2025 19:06:11 +0100 (CET)
+Message-ID: <e2102c82-6b8f-4f6e-80ea-ee185bb1e52e@collabora.com>
+Date: Mon, 1 Dec 2025 19:06:11 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/7] drm/i915/display: Use intel_de_write_fw in
- intel_pipe_fastset
-To: "Shankar, Uma" <uma.shankar@intel.com>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "linux-rt-devel@lists.linux.dev" <linux-rt-devel@lists.linux.dev>,
- Mario Kleiner <mario.kleiner.de@gmail.com>,
- Mike Galbraith <umgwanakikbuti@gmail.com>,
- Thomas Gleixner <tglx@linutronix.de>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>
-References: <20251104083634.670753-1-dev@lankhorst.se>
- <20251104083634.670753-3-dev@lankhorst.se>
- <DM4PR11MB63609A43C9B11091A5FB41EFF4DEA@DM4PR11MB6360.namprd11.prod.outlook.com>
- <aSdYPKUJgbe84G1M@intel.com>
- <DM4PR11MB6360D148BD7067E0BF59656AF4DEA@DM4PR11MB6360.namprd11.prod.outlook.com>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <DM4PR11MB6360D148BD7067E0BF59656AF4DEA@DM4PR11MB6360.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH v10 01/10] drm/shmem-helper: Simplify page offset
+ calculation in fault handler
+To: Boris Brezillon <boris.brezillon@collabora.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Rob Herring <robh@kernel.org>,
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Melissa Wen <mwen@igalia.com>, =?UTF-8?Q?Ma=C3=ADra_Canal?=
+ <mcanal@igalia.com>, Hugh Dickins <hughd@google.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Andrew Morton <akpm@linux-foundation.org>, Al Viro
+ <viro@zeniv.linux.org.uk>, =?UTF-8?Q?Miko=C5=82aj_Wasiak?=
+ <mikolaj.wasiak@intel.com>, Christian Brauner <brauner@kernel.org>,
+ Nitin Gote <nitin.r.gote@intel.com>, Andi Shyti
+ <andi.shyti@linux.intel.com>, Jonathan Corbet <corbet@lwn.net>,
+ Christopher Healy <healych@amazon.com>, Matthew Wilcox
+ <willy@infradead.org>, Bagas Sanjaya <bagasdotme@gmail.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-mm@kvack.org,
+ linux-doc@vger.kernel.org, kernel@collabora.com
+References: <20251128185252.3092-1-loic.molinari@collabora.com>
+ <20251128185252.3092-2-loic.molinari@collabora.com>
+ <20251201090507.1ee10c65@fedora>
+Content-Language: fr
+From: =?UTF-8?Q?Lo=C3=AFc_Molinari?= <loic.molinari@collabora.com>
+Organization: Collabora Ltd
+In-Reply-To: <20251201090507.1ee10c65@fedora>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,73 +86,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hey,
+Hi Boris,
 
-Den 2025-11-26 kl. 20:56, skrev Shankar, Uma:
+On 01/12/2025 09:05, Boris Brezillon wrote:
+> On Fri, 28 Nov 2025 19:52:43 +0100
+> Loïc Molinari <loic.molinari@collabora.com> wrote:
 > 
+>> For a fault at address addr, the page offset is
+>>    page_offset = (vmf->address - vma->vm_start) >> PAGE_SHIFT
+>>                = ((addr & PAGE_MASK) - vma->vm_start) >> PAGE_SHIFT
+>> 	      = (addr - vma->vm_start) >> PAGE_SHIFT
+>>
+>> Since the faulty logical page offset based on VMA is
+>>    vmf->pgoff = vma->vm_pgoff + ((addr - vma->vm_start) >> PAGE_SHIFT)
+>>
+>> We can slightly simplify the calculation using
+>>    page_offset = vmf->pgoff - vma->vm_pgoff
+>>
+>> Signed-off-by: Loïc Molinari <loic.molinari@collabora.com>
 > 
->> -----Original Message-----
->> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
->> Sent: Thursday, November 27, 2025 1:13 AM
->> To: Shankar, Uma <uma.shankar@intel.com>
->> Cc: Maarten Lankhorst <dev@lankhorst.se>; intel-gfx@lists.freedesktop.org;
->> intel-xe@lists.freedesktop.org; linux-rt-devel@lists.linux.dev; Mario Kleiner
->> <mario.kleiner.de@gmail.com>; Mike Galbraith <umgwanakikbuti@gmail.com>;
->> Thomas Gleixner <tglx@linutronix.de>; Sebastian Andrzej Siewior
->> <bigeasy@linutronix.de>; Clark Williams <clrkwllms@kernel.org>; Steven
->> Rostedt <rostedt@goodmis.org>
->> Subject: Re: [PATCH v2 2/7] drm/i915/display: Use intel_de_write_fw in
->> intel_pipe_fastset
->>
->> On Wed, Nov 26, 2025 at 07:19:47PM +0000, Shankar, Uma wrote:
->>>
->>>
->>>> -----Original Message-----
->>>> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf
->>>> Of Maarten Lankhorst
->>>> Sent: Tuesday, November 4, 2025 2:06 PM
->>>> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
->>>> Cc: linux-rt-devel@lists.linux.dev; Maarten Lankhorst
->>>> <dev@lankhorst.se>; Mario Kleiner <mario.kleiner.de@gmail.com>; Mike
->>>> Galbraith <umgwanakikbuti@gmail.com>; Thomas Gleixner
->>>> <tglx@linutronix.de>; Sebastian Andrzej Siewior
->>>> <bigeasy@linutronix.de>; Clark Williams <clrkwllms@kernel.org>;
->>>> Steven Rostedt <rostedt@goodmis.org>
->>>> Subject: [PATCH v2 2/7] drm/i915/display: Use intel_de_write_fw in
->>>> intel_pipe_fastset
->>>>
->>>> intel_set_pipe_src_size(), hsw_set_linetime_wm(),
->>>> intel_cpu_transcoder_set_m1_n1() and
->>>> intel_set_transcoder_timings_lrr()
->>>> are called from an atomic context on PREEMPT_RT, and should be using
->>>> the _fw functions.
->>>
->>> This could be ok but we need to be sure that all are called with power domains
->> up.
->>> I think would be safe to keep this under RT check so that we don't end
->>> up breaking any generic non RT usecase.
->>
->> When removing the locks from register accesses one needs to consider what
->> platforms the code runs on, what other register are on the same cacheline, and
->> whether they can be accessed in parallel. If there is something there then we may
->> not be able to remove the locks.
->>
->> That's assuming the "system hangs when same cacheline is accessed from
->> multiple cpus" issue is real for display registers, and I'm actually not 100% it is.
->> But we'd need to run some tests on the affected systems
->> (~ivb/hsw) to get any kind of confidence here. IIRC some old intel_gpu_top thhat
->> directly poked the registers was very good at hitting it on hsw at least, so that
->> would be a decent starting point.
->>
->> Anyways, I'm going to be replacing the uncore lock with a display specific lock
->> soonish, and I suppose I can just make that a raw spinlock to appease RT.
+> Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
 > 
-> Thanks Ville, yeah I am also not confident to switch to the fw version. Even if we have
-> to try this should be made limited to RT cases, where we can contain and stabilize as
-> we test and find out any issues.
-> Direct poking of registers requires root privileges, so that should not be something we have to worry about. It's not something required by any driver.
+> One nit below
+> 
+>> ---
+>>   drivers/gpu/drm/drm_gem_shmem_helper.c | 4 ++--
+>>   1 file changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/drm_gem_shmem_helper.c
+>> index dc94a27710e5..be89be1c804c 100644
+>> --- a/drivers/gpu/drm/drm_gem_shmem_helper.c
+>> +++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
+>> @@ -577,8 +577,8 @@ static vm_fault_t drm_gem_shmem_fault(struct vm_fault *vmf)
+>>   	struct page *page;
+>>   	pgoff_t page_offset;
+>>   
+>> -	/* We don't use vmf->pgoff since that has the fake offset */
+>> -	page_offset = (vmf->address - vma->vm_start) >> PAGE_SHIFT;
+>> +	/* Offset to faulty address in the VMA (without the fake offset). */
+> 
+> It's weird to say "without the fake offset" here, because IIUC, both
+> vmf->pgoff and vma->vm_pgoff contain the fake offset. And that's fine,
+> the problem really is when one of the subtraction operand is not
+> relative to the fake offset.
 
-The specific calls are called during modeset, fastset and pageflip, and by design there is no chance of those racing with each other. They're serialized between each other.
+Yes, both values contain the fake offset. vma->vm_pgoff is the actual 
+fake offset (mmap offset in the GEM context). vmf->pgoff is the fake 
+offset added to the offset we're looking for (offset from start of VMA 
+to faulty address). So the difference just gets rid of it, hence the 
+precision, but now that I read it again after a few weeks, it's a bit 
+misleading so I'll just remove it.
 
-Kind regards,
-~Maarten Lankhorst
+Regards,
+Loïc
+
+>> +	page_offset = vmf->pgoff - vma->vm_pgoff;
+>>   
+>>   	dma_resv_lock(shmem->base.resv, NULL);
+>>   
+> 
+
