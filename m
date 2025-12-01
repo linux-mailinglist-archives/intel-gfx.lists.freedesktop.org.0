@@ -2,65 +2,174 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B141AC98245
-	for <lists+intel-gfx@lfdr.de>; Mon, 01 Dec 2025 16:56:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48623C982C7
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Dec 2025 17:07:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 127AD10E42D;
-	Mon,  1 Dec 2025 15:56:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C17810E425;
+	Mon,  1 Dec 2025 16:07:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QIs7hGHM";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="5mntMMkr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F75910E425;
- Mon,  1 Dec 2025 15:56:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764604577; x=1796140577;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=8CatreM/H388Bg/dh303kBgixcSKi5WU0xRXH7oS0t4=;
- b=QIs7hGHMMZU9BHrhFyTakmkpLDd8gyoC6rWrphBbPRB+MVR1Ev/iwu0s
- 4spG3tlIN0L27hTb0Ylms3+U49NWePwgL9Tb0kDCLykYBRaXYHKOJ8IYm
- k9i4Do/CfweXZsak52laJzrrhPf7Ig5fgC3mNOPgS0ZcebAP02p/Hegey
- OIlFNhxtkQAvSoumaa2G83Uf6Y4xdn4N9/IijRszg64rH1kAoFfwgULKL
- ZLjN/9953xsk6c3t8JQTBE7dPV2q58dAMf6XXjIffLIB/EURvBJqGHiFm
- GBDlmv751qjdr06ObZNjOSaxNEmRVB3Q7I2jCL24Mgl1W0sHwGODHyi4u A==;
-X-CSE-ConnectionGUID: CDqaDdlySUG5TEzwFTIY6Q==
-X-CSE-MsgGUID: f6pg6ko5QxWbMKXSOJ7eSg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11629"; a="70160483"
-X-IronPort-AV: E=Sophos;i="6.20,241,1758610800"; d="scan'208";a="70160483"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2025 07:56:12 -0800
-X-CSE-ConnectionGUID: CX2Kz1p6Sy+4umqmhp2Ogg==
-X-CSE-MsgGUID: 8YWDxro4St+V5obqHT2sGA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,241,1758610800"; d="scan'208";a="193766495"
-Received: from lkp-server01.sh.intel.com (HELO 4664bbef4914) ([10.239.97.150])
- by fmviesa007.fm.intel.com with ESMTP; 01 Dec 2025 07:56:10 -0800
-Received: from kbuild by 4664bbef4914 with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1vQ6Fz-000000008tD-2CkX;
- Mon, 01 Dec 2025 15:56:07 +0000
-Date: Mon, 1 Dec 2025 23:55:38 +0800
-From: kernel test robot <lkp@intel.com>
-To: Uma Shankar <uma.shankar@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, chaitanya.kumar.borah@intel.com,
- ville.syrjala@linux.intel.com, pekka.paalanen@collabora.com,
- contact@emersion.fr, harry.wentland@amd.com, mwen@igalia.com,
- jadahl@redhat.com, sebastian.wick@redhat.com,
- swati2.sharma@intel.com, alex.hung@amd.com, jani.nikula@intel.com,
- suraj.kandpal@intel.com, Uma Shankar <uma.shankar@intel.com>
-Subject: Re: [v7 04/15] drm/i915/color: Create a transfer function color
- pipeline
-Message-ID: <202512012314.C2mdxzIy-lkp@intel.com>
-References: <20251201064655.3579280-5-uma.shankar@intel.com>
+Received: from CY3PR05CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11013065.outbound.protection.outlook.com
+ [40.93.201.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED43010E41E;
+ Mon,  1 Dec 2025 16:07:04 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=GenN8atZcE+DMn42Gn9j2E/RHzFVnDsGa2JxleKbINBbayqk0AwuMzdcvczKnvqA/VyWQyLSpb0mh/CDkrTlobZq9c5hVC5mIu3TCptNoh4RbeFT/HQSE5to0myWc4Kv9B92VHBnUqvorkYxyOgHe/sRX01QhJKqFL0XydoVhlq0Hz0ucsE/Av1yMugfttfXe887dDUUVjzU/Pc2TOjOA1By0irVAuIpeaGV5dNZMwHfJI2DJ6rjpKSQifYWmy1+fYQNFdwbvAZMisTLSDqbG9tcocTWjfvmqKdC1k/DVeAkpRR+l/OayOupLBDuUe3RjQLKDfoCce1UJJ0qAiHL9g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ouIssKKDOoHdi0CVRAJL89xLAvumwbYjDt6EQnkoXa0=;
+ b=nRQKjXF76IIv6YAVpoQHX3Xq2upeRKbS23Ln2TYiBFApMIx/jnZGd8ffS+1ucGfaHPKLApgE/aWl5+rd4d1OdvOh/4GCXZc3Bhdxj5Z1GMtKKPaPgifZ8pKLfI3TsrZA56QWiBEfJ8Z5Wcz9vFvQSI9EZBdYaHtRZ3J3T/SdQ94lC+wE/bTXv07D++on6/Aj2w1Vv8q6q00HgoiJlXMnywncH9+sjr2YtHGLmXUu4hUoqZclwDdSx+fvEY84d8HiiauGY0rofgPt6bmxAE2lyxfMShEJ+mnSTscFw23/Ag964QBkjy5Rh7M+DsdP9s2MOe59fpD2fza954PseKKmPg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ouIssKKDOoHdi0CVRAJL89xLAvumwbYjDt6EQnkoXa0=;
+ b=5mntMMkrn4j9m6+20VjNVp9XQ8FmsYJ2uS/PvumcyyZFChoO37WIvYdsCa8Ijmch/EnU8/kshui4kAnU7NUyYzFK8r0icDKF3nIBXulVn6lERVC778rSN6efsxpGaJJON3zCyQzEI6tPHi+5zw1zMUCf2WlfFeLKm6szh5BGwTg=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by SA1PR12MB9491.namprd12.prod.outlook.com (2603:10b6:806:458::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Mon, 1 Dec
+ 2025 16:07:02 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%4]) with mapi id 15.20.9366.012; Mon, 1 Dec 2025
+ 16:07:01 +0000
+Message-ID: <4121e5a3-2fde-4867-96a4-bf06e2c7150d@amd.com>
+Date: Mon, 1 Dec 2025 17:06:52 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/8] dma-buf/dma-fence: Add dma_fence_check_and_signal()
+To: phasta@kernel.org, Sumit Semwal <sumit.semwal@linaro.org>,
+ Gustavo Padovan <gustavo@padovan.org>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+References: <20251201105011.19386-2-phasta@kernel.org>
+ <20251201105011.19386-4-phasta@kernel.org>
+ <80554ed2-4454-489b-873f-533d68c8d2ae@amd.com>
+ <2a9c83b4a428bb3cc993499c39d0da01f9563278.camel@mailbox.org>
+ <93a4f4e4-af7a-4c84-a7a2-5db785f2a5a8@amd.com>
+ <8eaab4c04fad84bde279ee2cd228fac4f84c5184.camel@mailbox.org>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <8eaab4c04fad84bde279ee2cd228fac4f84c5184.camel@mailbox.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR4P281CA0362.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:f8::14) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251201064655.3579280-5-uma.shankar@intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SA1PR12MB9491:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3b40eb6e-2e91-4238-6eef-08de30f3a972
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|7416014|1800799024|921020|7053199007; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Tm9HNzZDbHhTOGUxUUlKalIzaFpPc3Z4bGhBZlhyWmh3Y3RGcmRWWDN6Tjc5?=
+ =?utf-8?B?UDJNeHNSR2laV2FVREhuQ3NuVi8weVpxYkt5RmVvY2l4VUE2eGhjVDFlUWlF?=
+ =?utf-8?B?eWtXR1pOTENEVUU3VnY0RHZpWkl3Zm1DRUxuRjltSXJNNkMxS05hSlRkMzIv?=
+ =?utf-8?B?ZE1QRXk5U3R1amtYTkFVNDFYOWhNMDBPTXVBbWkvN2F2VGNQVTAxeUdhSjRT?=
+ =?utf-8?B?eEt0QWY3eGNJQnpRYU9iaFBSN25mUHE5NTRFdXF4dGhidjFoYitBVnNPTW5N?=
+ =?utf-8?B?R1RoaUJiUnEzMmhwMUlwLzl1ZkF2K09mVy9QMXV4MTRlcFJtdHhieklrQmpL?=
+ =?utf-8?B?NXF0cWpjZks2MlRrUjZ6QmlmTm5jOWN6alo3Z1MzZmhMUjN3dWJ5bXdDbEVt?=
+ =?utf-8?B?OW5IUVk0dmRrY2JlcVA2clpBWElSK1dPcjVXQnRnSll2UTdVT1BTeDhkQlhn?=
+ =?utf-8?B?MFhjN0JmTnNBN1g4ZXJLUGRxczFMUmxUZkUrTEk4Y0RuVEowTFlIL0hBZ3l4?=
+ =?utf-8?B?TW9pNk92dXZscHZrOXQ3VHBmNlBOeU9vTGVhUitpT29UUGt1NHZmU2VtTUhv?=
+ =?utf-8?B?bC9BaGFERnV5eWxoZ0RjNDVVSWRIYkhScDAxWkUwT1ZYdjBQSnJTcFp1VnFu?=
+ =?utf-8?B?U0FjbEdnd21JNlcvUFlyQzVFdGRTRmsyNDBrYlNlVkdyaVNRNktobk9xamJP?=
+ =?utf-8?B?WC90M0dqbjljK1ZwYnFwOHZXcE9lWDVGU0FpSlVtMEtHZFk5ekFlUmxSNG45?=
+ =?utf-8?B?OGhRV2xJZ3NRZUdjeTVabkFvQkVuUHg5MlVkZi9vYjArTmIzNjJlR3dISVNp?=
+ =?utf-8?B?aHIwdkFTUU12ODZ4YXRRNVlYZlNkazBic25SNy8ydUNVT3JZb3drTlFEcE1T?=
+ =?utf-8?B?REZORnlvZjNsOFVVTkUxL2hQN3RtWUd3VytNSjlqYjRBUmk1M1BvRFVDTloz?=
+ =?utf-8?B?OXUvdmFDSlZheHIrQWo2dkFLaFdmdmZIVHNZWmpEMktzbGc5U0dsMitpZVhL?=
+ =?utf-8?B?T0FuMU9HSDBpQnR3M1lhaGh4b2VxVVl1NXM1Wk9peVpzVmZDQjBqQ0NTWVNC?=
+ =?utf-8?B?SmFiT2p2T3BYQUFHK2t5dGQxWm5RZ1FESDQvbU5jajlUalpZMmRXb1ArTkFM?=
+ =?utf-8?B?cGNuTVlvNzNrZittTUprd3ZVOFpFWFVUSjNlaEQrYXhuM01pbEp2a2VtVHJC?=
+ =?utf-8?B?M2o3QVBYRkpHczBrOWpoQ3FUUUtYTmxWNnBReXJMQWlhVmcrRmtPbjJkUm1W?=
+ =?utf-8?B?Ny9mbmZoMUR2dUtTQXF6N2s3REdhU1JnTnNYM2hkNTlNSkd2eE9mRUtFTzNz?=
+ =?utf-8?B?UjFyMmdwTnc0U3RyUXRZZCtQaU1kazgraUlCSGtubmIwazIzeEJHZzJnRGph?=
+ =?utf-8?B?eXByUEN6K2pPZnVMRWkveFl6OUNNa2FSZ1ZVRHhkRXRKTXk1TzVqdFBWQXVi?=
+ =?utf-8?B?cjRBYXhxcklyb2ZGK1JzQitlaDZsUFhkTEQ3a2hpUm9mZnE1MVVXekwxcC83?=
+ =?utf-8?B?azJJY3JxT1FJTXVXYnd4OXFXUUthWmduS0dyK29ENE5relZTdGc5Zkp3S0to?=
+ =?utf-8?B?K2V4ejkxMURmY1pjc2FHZm9YYTZRKytaQXE4TUZiREtVU3ZoTHJpRlp2aWhT?=
+ =?utf-8?B?V1ZRK3JvcEJMVWhlVC8xc05ncS80YkI2em85SFNDbmpWOXhWeXRMeUtjTWp5?=
+ =?utf-8?B?NWJPakVONVZESVUwQkxpcmtKbnBBMU4xVnVDRDhNTnZ3dEI0VUM2YW82bkNG?=
+ =?utf-8?B?M1QzazZod1ZyeFJJNTJlSFNOV05FdXpsL0ZsSEwyWHZ6b2p3RFVQWUZkQWpG?=
+ =?utf-8?B?eUZNUVNhbjFhTlRGWjJ0RmpTWHpYQnhodnc2RVVMNUw0VDAvNHVJUTJ1Nmsr?=
+ =?utf-8?B?ODN1MWQyWnJDSEpFa0h3aHlqdG5hTVFzSDNFd1ZtN3pLamsrQ2N0TmhSYnVE?=
+ =?utf-8?B?d0pydnQ1QmsxdkxxdTczaHEzT1djNFFNZ0FmK0s5Q3RpZ2lWWFpRQzBYWkZI?=
+ =?utf-8?Q?ApG231yFW5xb3wa+eOLzyzMo8aO/wA=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(7416014)(1800799024)(921020)(7053199007);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VnF1WTBib21rZ01IeWRyV3NRMXJUT0xEdTN2cmoxV21EbDZ2d0ttTUlkcUdj?=
+ =?utf-8?B?Y1pqZVlPUjBhT2FuZm5kVHdMNlgrZVFxNkQwY2g1WE1iSnRLN243VmdZWE5G?=
+ =?utf-8?B?N2cvdStEaGxvL1k4aDlPRTVCTWtDR05DK0JDUFBWd0taWjhZbDZYNDFnMFYx?=
+ =?utf-8?B?V2IzNnNUcVJXMi9hNzh2YnVmc1FxSitRakJBYXJqVVBXUk1PWmpZQjRPajBH?=
+ =?utf-8?B?WEcvQkZVMitJMEZJVTcvWENLSHBmK1BFWWo5SUdUVmNGMm5vN3B6TENpWngy?=
+ =?utf-8?B?WVRCMlhySmQ1QWNlZXZYR2tSS1lPWDFJRzk4NUxwVUVXRGxWa0Z3WE1GZFdG?=
+ =?utf-8?B?OEkvTDRkWTdWMURNeDR5dUkzUXBKa1I4cEh4WnpmY29OSmNKa0Y2WGNGaC9P?=
+ =?utf-8?B?MVA2M3ZRYllwTGJyNWpwOXhmWmZtUWtpZXdWU0J3enNMVEJ5a3VlM0EwSXlz?=
+ =?utf-8?B?OVliZldYV0c0WXJOVkVldnFCWUovMmJRY3VsVHdhVTJTbHNXbVE1ZXFMMlZL?=
+ =?utf-8?B?ZCtGMEZaYlZId3pvdEZFeitYOXlPK3c2d0ZuQkl0Mm5CTzVsRGcyd0t2TC9w?=
+ =?utf-8?B?dUV3MDZaOHZJZFNhdm9BTWlhTmJLRmZQTUhnYk1lQzN5WTA3MVREQktKM09k?=
+ =?utf-8?B?Rm9BMGprTWhOKzgzMUQrWTV0MzkreHJ0RFFUWFZnM004NytmNzAyVkhTOGVE?=
+ =?utf-8?B?ZEc2eGpKSTViT0pBMFpYbzE4Q2laSEYrOGlEd3c0NCt3c3M0TkRxMHV5eWJN?=
+ =?utf-8?B?enFIQ1ljdkZRUGc3ciswOVVCaEZaSmhBNkxUcnRyY3B1M0xLUkU4YXA0eUk1?=
+ =?utf-8?B?YWRmeFdSejk4MXJOMXZ0RVdjcXdKdFJtNVVSZzN1R3NFcDRCRFM3M09lVzhQ?=
+ =?utf-8?B?YWtxeUw1MXBkNVVJMUJXNFRIcVpsRHZ5ZUdCVS8zQUJ1V3JKVk9zcXNEaS9w?=
+ =?utf-8?B?K1EwbVNGekhCck02dTJYVStvMERHL2h1dWphUVd1R1MxUEdPVml2SDZBQ09B?=
+ =?utf-8?B?d0pwSDk5TStTYThUOGxETzUzUWt5bS9lRkFvVXZxZnJzM0hiK05CM0pZcjc3?=
+ =?utf-8?B?OE1PZWpvNDZTWjQzOVgzT3FLV1g4Mm1xUGZ1c0FNT1dhSzk0RVZRQThCUDlG?=
+ =?utf-8?B?WDRrcXduQUlNYk4vc0ZqbWd2Snc5WEZRNGh3alllK0xrUjBJM01TZE9VRS9k?=
+ =?utf-8?B?RG8wZzVvUHZPTFAzQmRSMVRYZzBkKzJVVlFPWnNET0RXeTVIb0JIaHlpMlhB?=
+ =?utf-8?B?TFV5QmREVUQwUlkxZ001elRyc25IZm1obEcwZXpuQXR1KzJta01DZThiKzFV?=
+ =?utf-8?B?aGlUZXllOUgyUzNudEZiQzlsWE5aaWJNSnQwaEF0R0xCTy82STQwa3lnYVds?=
+ =?utf-8?B?b1Y0ZHVib0NTZXBDTDVxOWhSWVd5YXpLMkNPRUhIUDRjdTRmZEZsZUYzV3pl?=
+ =?utf-8?B?V1h3eENQQmNZK2gwL2pXUVl3bmtSN1hhVDBFWVU4RXlVbEE5R3dFeThvRzMx?=
+ =?utf-8?B?Y3pDaEFKdlU5R1ZhME04TzREbU14dHpQNXFsYkpwMFU4RzFtdzE4M3lWbUZG?=
+ =?utf-8?B?enlyREN3SktGVEkvbDZkSjRjMnBZU08vYjlVT1JpZFdSVVlsdVlZTVVZQlY3?=
+ =?utf-8?B?TmdZOU1nWEZJN0ZiSTNQaFlYOE9OdkE3blVJMFNOSFNoZ01LV1dBQkk4OXMw?=
+ =?utf-8?B?RTlCYUxpMUl3MEhVWnFVeGRqbjI2SnhWUHZwRldSOGVyazNiQkI0SHYxSHdB?=
+ =?utf-8?B?dHBMS1BoTkE1T3JjNUdIZ2piMTExQUxFTW1ZV253QmRkM2pzUFFNN0o0azRF?=
+ =?utf-8?B?Tm5QWHljV3hJMW1zU1ZOT2xxM3htcXdyYy9qczRSZ0FGVnQ0Y3BSWDBNSWVC?=
+ =?utf-8?B?aEJTNGpYcGx3WU5lT003eWVFam1ITkV6ZUpHRVlnRFd5TDhsZ2NUZ0g2VmlR?=
+ =?utf-8?B?K2FMaHBSOXQ0SE56cE04Mkx3K3lpOFpZWURuRkhaVWJud0VvamlmSndGdFFZ?=
+ =?utf-8?B?SmxkbVN3dG4xYVFXTFlWdlh4eW9OMVdyLzlqUTg3Yld3Nk1PZ25jOEY2ZFY4?=
+ =?utf-8?B?T293RXNxZ1VJeEY3WTZNMEFTK0NPTzJiYzVvaGx6ZjVGSHFIby8zNUlIUEg2?=
+ =?utf-8?Q?quWBAr5UTWFMoA+1pe9zzUIaZ?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3b40eb6e-2e91-4238-6eef-08de30f3a972
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2025 16:07:01.4027 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: t9RT8gbc2oQbenl5tySk1VeajNNhaO1QhuecTDrIff+GbCyZ9XZnA61OXId6wi3R
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB9491
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,153 +185,178 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Uma,
+On 12/1/25 16:34, Philipp Stanner wrote:
+> On Mon, 2025-12-01 at 16:20 +0100, Christian König wrote:
+>> On 12/1/25 14:55, Philipp Stanner wrote:
+>>> On Mon, 2025-12-01 at 14:23 +0100, Christian König wrote:
+>>>> On 12/1/25 11:50, Philipp Stanner wrote:
+>>>>> The overwhelming majority of users of dma_fence signaling functions
+>>>>> don't care about whether the fence had already been signaled by someone
+>>>>> else. Therefore, the return code shall be removed from those functions.
+>>>>>
+>>>>> For the few users who rely on the check, a new, specialized function
+>>>>> shall be provided.
+>>>>>
+>>>>> Add dma_fence_check_and_signal(), which signals a fence if it had not
+>>>>> yet been signaled, and informs the user about that.
+>>>>>
+>>>>> Add a counter part, dma_fence_check_and_signal_locked(), which doesn't
+>>>>> take the spinlock.
+>>>>>
+>>>>> Signed-off-by: Philipp Stanner <phasta@kernel.org>
+>>>>> ---
+>>>>>  drivers/dma-buf/dma-fence.c | 44 +++++++++++++++++++++++++++++++++++++
+>>>>>  include/linux/dma-fence.h   |  2 ++
+>>>>>  2 files changed, 46 insertions(+)
+>>>>>
+>>>>> diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
+>>>>> index 96d72ffc0750..146de62887cf 100644
+>>>>> --- a/drivers/dma-buf/dma-fence.c
+>>>>> +++ b/drivers/dma-buf/dma-fence.c
+>>>>> @@ -445,6 +445,50 @@ int dma_fence_signal_locked(struct dma_fence *fence)
+>>>>>  }
+>>>>>  EXPORT_SYMBOL(dma_fence_signal_locked);
+>>>>>  
+>>>>> +/**
+>>>>> + * dma_fence_check_and_signal_locked - signal the fence if it's not yet signaled
+>>>>> + * @fence: the fence to check and signal
+>>>>> + *
+>>>>> + * Checks whether a fence was signaled and signals it if it was not yet signaled.
+>>>>> + *
+>>>>> + * Unlike dma_fence_check_and_signal(), this function must be called with
+>>>>> + * &struct dma_fence.lock being held.
+>>>>> + *
+>>>>> + * Return: true if fence has been signaled already, false otherwise.
+>>>>> + */
+>>>>> +bool dma_fence_check_and_signal_locked(struct dma_fence *fence)
+>>>>
+>>>> I'm seriously considering to nuke all the unlocked variants of dma_fence functions and just make it mandatory for callers to grab the lock manually.
+>>>>
+>>>
+>>> You mean "nuke the *locked* variants.
+>>
+>> Sorry, that wasn't specific enough.
+>>
+>> What I meant was making the locked variants the default instead of the unlocked ones.
+> 
+> Well, no :D
+> 
+> What you want to do is:
+> - Delete / deprecate the *locked* variants
+> - Force all users to take the fence lock manually, then use the (now
+> all unlocked) dma fence functions.
+> 
+> ACK?
 
-kernel test robot noticed the following build errors:
+I'm sick with cold/flu like symptoms at the moment, but that sounds mixed up to me (but maybe I should get a bit sleep first).
 
-[auto build test ERROR on next-20251201]
-[also build test ERROR on linus/master v6.18]
-[cannot apply to drm-xe/drm-xe-next drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip v6.18 v6.18-rc7 v6.18-rc6]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+>>
+>>>
+>>> Why, though? Aren't they enough for most users?
+>>> I suppose you have all those subtle races in mind..
+>>
+>> Yeah, exactly that.
+>>
+>>>
+>>>>> +{
+>>>>> +	bool ret;
+>>>>> +
+>>>>> +	ret = dma_fence_test_signaled_flag(fence);
+>>>>> +	dma_fence_signal_locked(fence);
+>>>>> +
+>>>>> +	return ret;
+>>>>> +}
+>>>>> +EXPORT_SYMBOL(dma_fence_check_and_signal_locked);
+>>>>> +
+>>>>> +/**
+>>>>> + * dma_fence_check_and_signal - signal the fence if it's not yet signaled
+>>>>> + * @fence: the fence to check and signal
+>>>>> + *
+>>>>> + * Checks whether a fence was signaled and signals it if it was not yet signaled.
+>>>>> + * All this is done in a race-free manner.
+>>>>> + *
+>>>>> + * Return: true if fence has been signaled already, false otherwise.
+>>>>> + */
+>>>>> +bool dma_fence_check_and_signal(struct dma_fence *fence)
+>>>>
+>>>> So I think we should name this one here dma_fence_check_and_signal_unlocked() and drop the postfix from the locked variant.
+>>>
+>>> postfix?
+>>>
+>>> Well, now, IDK. Can't we, for this series, keep the _locked() variant
+>>> so that it's congruent with all the other dma_fence code?
+>>
+>> Good point. That thought was not really related to this series here.
+> 
+> OK, then let's progress with this here for now.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Uma-Shankar/drm-i915-display-Add-identifiers-for-driver-specific-blocks/20251201-150245
-base:   next-20251201
-patch link:    https://lore.kernel.org/r/20251201064655.3579280-5-uma.shankar%40intel.com
-patch subject: [v7 04/15] drm/i915/color: Create a transfer function color pipeline
-config: i386-buildonly-randconfig-006-20251201 (https://download.01.org/0day-ci/archive/20251201/202512012314.C2mdxzIy-lkp@intel.com/config)
-compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251201/202512012314.C2mdxzIy-lkp@intel.com/reproduce)
+Works for me, give me a day to go over it again and review it.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202512012314.C2mdxzIy-lkp@intel.com/
+Regards,
+Christian.
 
-All errors (new ones prefixed by >>):
+> 
+> 
+> P.
+> 
+>>
+>>>
+>>> And then later if you want to force manual locking you can add that
+>>> kernel-wide in a separate series, since it'll be a discussion-worthy,
+>>> bigger chunk of work.
+>>>
+>>> That's cleaner, and my series here won't prevent that once merged.
+>>>
+>>>>
+>>>>> +{
+>>>>> +	unsigned long flags;
+>>>>> +	bool ret;
+>>>>> +
+>>>>> +	spin_lock_irqsave(fence->lock, flags);
+>>>>> +	ret = dma_fence_check_and_signal_locked(fence);
+>>>>> +	spin_unlock_irqrestore(fence->lock, flags);
+>>>>
+>>>> Could this use guard(fence->lock, flags) ?
+>>>
+>>> guard? You mean a lockdep guard? Do you have a pointer to someplace in
+>>> dma_fence who does what you mean / want?
+>>
+>> E.g. like guard(spinlock_irqsave)(&fence->lock);
+>>
+>> Regards,
+>> Christian.
+>>
+>>>
+>>>
+>>> P.
+>>>
+>>>>
+>>>> Regards,
+>>>> Christian.
+>>>>
+>>>>> +
+>>>>> +	return ret;
+>>>>> +}
+>>>>> +EXPORT_SYMBOL(dma_fence_check_and_signal);
+>>>>> +
+>>>>>  /**
+>>>>>   * dma_fence_signal - signal completion of a fence
+>>>>>   * @fence: the fence to signal
+>>>>> diff --git a/include/linux/dma-fence.h b/include/linux/dma-fence.h
+>>>>> index 19972f5d176f..0504afe52c2a 100644
+>>>>> --- a/include/linux/dma-fence.h
+>>>>> +++ b/include/linux/dma-fence.h
+>>>>> @@ -365,6 +365,8 @@ static inline void __dma_fence_might_wait(void) {}
+>>>>>  #endif
+>>>>>  
+>>>>>  int dma_fence_signal(struct dma_fence *fence);
+>>>>> +bool dma_fence_check_and_signal(struct dma_fence *fence);
+>>>>> +bool dma_fence_check_and_signal_locked(struct dma_fence *fence);
+>>>>>  int dma_fence_signal_locked(struct dma_fence *fence);
+>>>>>  int dma_fence_signal_timestamp(struct dma_fence *fence, ktime_t timestamp);
+>>>>>  int dma_fence_signal_timestamp_locked(struct dma_fence *fence,
+>>>>
+>>>
+>>
+> 
 
-   In file included from drivers/gpu/drm/i915/display/intel_colorop.h:9,
-                    from drivers/gpu/drm/i915/display/intel_color_pipeline.c:5:
-   drivers/gpu/drm/i915/display/intel_display_types.h:1989:28: error: field 'base' has incomplete type
-    1989 |         struct drm_colorop base;
-         |                            ^~~~
-   drivers/gpu/drm/i915/display/intel_color_pipeline.c: In function '_intel_color_pipeline_plane_init':
->> drivers/gpu/drm/i915/display/intel_color_pipeline.c:25:15: error: implicit declaration of function 'drm_plane_colorop_curve_1d_lut_init' [-Wimplicit-function-declaration]
-      25 |         ret = drm_plane_colorop_curve_1d_lut_init(dev, &colorop->base, plane,
-         |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/gpu/drm/i915/display/intel_color_pipeline.c:27:51: error: 'DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR' undeclared (first use in this function)
-      27 |                                                   DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
-         |                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_color_pipeline.c:27:51: note: each undeclared identifier is reported only once for each function it appears in
->> drivers/gpu/drm/i915/display/intel_color_pipeline.c:28:51: error: 'DRM_COLOROP_FLAG_ALLOW_BYPASS' undeclared (first use in this function)
-      28 |                                                   DRM_COLOROP_FLAG_ALLOW_BYPASS);
-         |                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/gpu/drm/i915/display/intel_color_pipeline.c:40:15: error: implicit declaration of function 'drm_plane_colorop_ctm_3x4_init' [-Wimplicit-function-declaration]
-      40 |         ret = drm_plane_colorop_ctm_3x4_init(dev, &colorop->base, plane,
-         |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/gpu/drm/i915/display/intel_color_pipeline.c:45:9: error: implicit declaration of function 'drm_colorop_set_next_property'; did you mean 'drm_connector_set_tile_property'? [-Wimplicit-function-declaration]
-      45 |         drm_colorop_set_next_property(prev_op, &colorop->base);
-         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-         |         drm_connector_set_tile_property
-   drivers/gpu/drm/i915/display/intel_color_pipeline.c: In function 'intel_color_pipeline_plane_init':
->> drivers/gpu/drm/i915/display/intel_color_pipeline.c:92:16: error: 'struct drm_plane' has no member named 'color_pipeline_property'; did you mean 'color_encoding_property'?
-      92 |         plane->color_pipeline_property = prop;
-         |                ^~~~~~~~~~~~~~~~~~~~~~~
-         |                color_encoding_property
-
-
-vim +/drm_plane_colorop_curve_1d_lut_init +25 drivers/gpu/drm/i915/display/intel_color_pipeline.c
-
-   > 5	#include "intel_colorop.h"
-     6	#include "intel_color_pipeline.h"
-     7	#include "intel_de.h"
-     8	#include "intel_display_types.h"
-     9	#include "skl_universal_plane.h"
-    10	
-    11	#define MAX_COLOR_PIPELINES 2
-    12	#define PLANE_DEGAMMA_SIZE 128
-    13	#define PLANE_GAMMA_SIZE 32
-    14	
-    15	static
-    16	int _intel_color_pipeline_plane_init(struct drm_plane *plane, struct drm_prop_enum_list *list)
-    17	{
-    18		struct intel_colorop *colorop;
-    19		struct drm_device *dev = plane->dev;
-    20		int ret;
-    21		struct drm_colorop *prev_op;
-    22	
-    23		colorop = intel_colorop_create(INTEL_PLANE_CB_PRE_CSC_LUT);
-    24	
-  > 25		ret = drm_plane_colorop_curve_1d_lut_init(dev, &colorop->base, plane,
-    26							  PLANE_DEGAMMA_SIZE,
-  > 27							  DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
-  > 28							  DRM_COLOROP_FLAG_ALLOW_BYPASS);
-    29	
-    30		if (ret)
-    31			return ret;
-    32	
-    33		list->type = colorop->base.base.id;
-    34		list->name = kasprintf(GFP_KERNEL, "Color Pipeline %d", colorop->base.base.id);
-    35	
-    36		/* TODO: handle failures and clean up */
-    37		prev_op = &colorop->base;
-    38	
-    39		colorop = intel_colorop_create(INTEL_PLANE_CB_CSC);
-  > 40		ret = drm_plane_colorop_ctm_3x4_init(dev, &colorop->base, plane,
-    41						     DRM_COLOROP_FLAG_ALLOW_BYPASS);
-    42		if (ret)
-    43			return ret;
-    44	
-  > 45		drm_colorop_set_next_property(prev_op, &colorop->base);
-    46		prev_op = &colorop->base;
-    47	
-    48		colorop = intel_colorop_create(INTEL_PLANE_CB_POST_CSC_LUT);
-    49		ret = drm_plane_colorop_curve_1d_lut_init(dev, &colorop->base, plane,
-    50							  PLANE_GAMMA_SIZE,
-    51							  DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
-    52							  DRM_COLOROP_FLAG_ALLOW_BYPASS);
-    53		if (ret)
-    54			return ret;
-    55	
-    56		drm_colorop_set_next_property(prev_op, &colorop->base);
-    57	
-    58		return 0;
-    59	}
-    60	
-    61	int intel_color_pipeline_plane_init(struct drm_plane *plane)
-    62	{
-    63		struct drm_device *dev = plane->dev;
-    64		struct intel_display *display = to_intel_display(dev);
-    65		struct drm_property *prop;
-    66		struct drm_prop_enum_list pipelines[MAX_COLOR_PIPELINES];
-    67		int len = 0;
-    68		int ret;
-    69	
-    70		/* Currently expose pipeline only for HDR planes */
-    71		if (!icl_is_hdr_plane(display, to_intel_plane(plane)->id))
-    72			return 0;
-    73	
-    74		/* Add "Bypass" (i.e. NULL) pipeline */
-    75		pipelines[len].type = 0;
-    76		pipelines[len].name = "Bypass";
-    77		len++;
-    78	
-    79		/* Add pipeline consisting of transfer functions */
-    80		ret = _intel_color_pipeline_plane_init(plane, &pipelines[len]);
-    81		if (ret)
-    82			return ret;
-    83		len++;
-    84	
-    85		/* Create COLOR_PIPELINE property and attach */
-    86		prop = drm_property_create_enum(dev, DRM_MODE_PROP_ATOMIC,
-    87						"COLOR_PIPELINE",
-    88						pipelines, len);
-    89		if (!prop)
-    90			return -ENOMEM;
-    91	
-  > 92		plane->color_pipeline_property = prop;
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
