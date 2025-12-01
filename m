@@ -2,59 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FB3BC973E0
-	for <lists+intel-gfx@lfdr.de>; Mon, 01 Dec 2025 13:25:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B12D8C97425
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Dec 2025 13:28:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAECC10E3C5;
-	Mon,  1 Dec 2025 12:25:55 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SvWLEg39";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FDD310E3C8;
+	Mon,  1 Dec 2025 12:28:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D17F610E3B4;
- Mon,  1 Dec 2025 12:25:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764591953; x=1796127953;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=5qMl/gWIH4cW23j6HCcluHfCPYMP/d1MPPhyFxOZtr0=;
- b=SvWLEg39u8bT6ZSyMwbtRyoLh8Kry4z8+oOG5oYlAXIDCbOdHc47sTUW
- 2p8p883ueW88bLFAeFeecoNZWIVVveo5AIN6akRTzVuz51jwic3FUdSQV
- tn90Mls7XFDssb7wqsn9K6jtmeR0KgSmbwoMoufI0vYrEJWJrvJWxJj6H
- zPZ6WGbK1KGtgGwwyaCiXK3YxXHUt3VnYoOOJTW8r2igmaZmlbYZifSiE
- NFCCq+u6CoIPefN/7VYJBqdZ7sBZOD8ZUl1yZ5ZrjLFBTVkBDN9tzP98h
- 96szPiIBCwUqQvvoxltSptJaTxW0tymQKchMhSdvEAzHDAwTk/ZcmDvjV Q==;
-X-CSE-ConnectionGUID: fVS39mOARlqAnL+mZoD8VQ==
-X-CSE-MsgGUID: q9wG3o61QnefJIFu97nV9w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11629"; a="84132236"
-X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="84132236"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2025 04:25:53 -0800
-X-CSE-ConnectionGUID: ehQf2X6kQa6EI7iqtP4Nfw==
-X-CSE-MsgGUID: /iKbDohLRLG2sPLaog1yBg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="193184323"
-Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.132])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2025 04:25:51 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Luca Coelho <luca@coelho.fi>, intel-gfx@lists.freedesktop.org,
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4950810E3C8;
+ Mon,  1 Dec 2025 12:28:39 +0000 (UTC)
+Received: from mobile-access-d98cd5-49.dhcp.inet.fi ([217.140.213.49]
+ helo=[192.168.8.139])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
+ id 1vQ318-00000000VZF-1VIr; Mon, 01 Dec 2025 14:28:37 +0200
+Message-ID: <cbddae082c6c67ee58cb9195709d28ece9d5aa4a.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org, 
  intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 4/5] drm/i915/power: convert intel_wakeref_t to
- struct ref_tracker *
-In-Reply-To: <20d6e9910f0a7faf3ed14e37db0ff0860a17e017.camel@coelho.fi>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Date: Mon, 01 Dec 2025 14:28:25 +0200
+In-Reply-To: <df42724a6e39eec45cf126f175866e88b0b33f0d@intel.com>
 References: <cover.1764076995.git.jani.nikula@intel.com>
  <f182bd26d5f9a00e843246d4aac8b25ff7531c51.1764076995.git.jani.nikula@intel.com>
  <20d6e9910f0a7faf3ed14e37db0ff0860a17e017.camel@coelho.fi>
-Date: Mon, 01 Dec 2025 14:25:48 +0200
-Message-ID: <df42724a6e39eec45cf126f175866e88b0b33f0d@intel.com>
+ <df42724a6e39eec45cf126f175866e88b0b33f0d@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-7 
 MIME-Version: 1.0
-Content-Type: text/plain
+X-Spam-Checker-Version: SpamAssassin 4.0.2 (2025-08-27) on farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+ autolearn=ham autolearn_force=no version=4.0.2
+Subject: Re: [PATCH v2 4/5] drm/i915/power: convert intel_wakeref_t to
+ struct ref_tracker *
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,44 +52,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 01 Dec 2025, Luca Coelho <luca@coelho.fi> wrote:
-> On Tue, 2025-11-25 at 15:24 +0200, Jani Nikula wrote:
->> diff --git a/drivers/gpu/drm/xe/display/xe_display_rpm.c b/drivers/gpu/drm/xe/display/xe_display_rpm.c
->> index 340f65884812..9416ec784e39 100644
->> --- a/drivers/gpu/drm/xe/display/xe_display_rpm.c
->> +++ b/drivers/gpu/drm/xe/display/xe_display_rpm.c
->> @@ -5,6 +5,7 @@
->>  
->>  #include "intel_display_core.h"
->>  #include "intel_display_rpm.h"
->> +#include "intel_wakeref.h"
->
-> Just to be sure this is not a stray change, why did you add it here?
+On Mon, 2025-12-01 at 14:25 +0200, Jani Nikula wrote:
+> On Mon, 01 Dec 2025, Luca Coelho <luca@coelho.fi> wrote:
+> > On Tue, 2025-11-25 at 15:24 +0200, Jani Nikula wrote:
+> > > diff --git a/drivers/gpu/drm/xe/display/xe_display_rpm.c b/drivers/gp=
+u/drm/xe/display/xe_display_rpm.c
+> > > index 340f65884812..9416ec784e39 100644
+> > > --- a/drivers/gpu/drm/xe/display/xe_display_rpm.c
+> > > +++ b/drivers/gpu/drm/xe/display/xe_display_rpm.c
+> > > @@ -5,6 +5,7 @@
+> > > =20
+> > >  #include "intel_display_core.h"
+> > >  #include "intel_display_rpm.h"
+> > > +#include "intel_wakeref.h"
+> >=20
+> > Just to be sure this is not a stray change, why did you add it here?
+>=20
+> I was pretty sure it was required, maybe depending on some kconfig,
+> because the include is being removed in some other places, but I can't
+> reproduce the fail now.
+>=20
+> I'd say not a huge problem because it's being removed in the next patch
+> no matter what.
 
-I was pretty sure it was required, maybe depending on some kconfig,
-because the include is being removed in some other places, but I can't
-reproduce the fail now.
+Makes sense.  Thanks for the clarification. :)
 
-I'd say not a huge problem because it's being removed in the next patch
-no matter what.
-
-BR,
-Jani.
-
-
->
->
->>  #include "xe_device.h"
->>  #include "xe_device_types.h"
->>  #include "xe_pm.h"
->
-> Regardless:
->
-> Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
->
-> --
-> Cheers,
-> Luca.
-
--- 
-Jani Nikula, Intel
+--
+Cheers,
+Luca.
