@@ -2,64 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8DF1C98164
-	for <lists+intel-gfx@lfdr.de>; Mon, 01 Dec 2025 16:45:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F236C9BC31
+	for <lists+intel-gfx@lfdr.de>; Tue, 02 Dec 2025 15:23:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CE4A10E40E;
-	Mon,  1 Dec 2025 15:45:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F73510E66A;
+	Tue,  2 Dec 2025 14:23:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g0yH6fU/";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="sBbSHmzs";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74E7810E409;
- Mon,  1 Dec 2025 15:45:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764603915; x=1796139915;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=ihd+OynkBI3LvrViK4UW6HYIHLMlvRpHhZbmAdKbktE=;
- b=g0yH6fU/wsv3ye73sEcX5cWW0bmFJ41uuAAvL2RrZy3V0MtUn3kxdw85
- 1c89BYMpZBoBwmGvMoIcEbgAQkgHkjtr8prbOalgXb+qYXHBJJ/lQwJWo
- rcZQVpWt/Gs9sXAMfnfANgSuoFT4974S3e6JZCoHzEtKiGHR1y4i4OIqS
- IyomeRPtZXla/AtFEDJZ98Nd7ivz+8UDHg0WRIOYatKPtTNxM0sQ11Ig6
- UOCfW5+d130pfASlwlQl+u83K7z/1aQAnWMhiKkQIQW73LTu4cLdIlL1o
- smhL+FvIFIsKrkoBBHSbM1bFP7prXhy1xYDtYvk4x+VVjnNfOrDhosrPh g==;
-X-CSE-ConnectionGUID: C3rBnLdvSLyPq5fS+lWwkA==
-X-CSE-MsgGUID: MbVUQyKZQ4SVAoppWOclpg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11629"; a="66709461"
-X-IronPort-AV: E=Sophos;i="6.20,241,1758610800"; d="scan'208";a="66709461"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2025 07:45:15 -0800
-X-CSE-ConnectionGUID: KL2GTH2XQcGFh5jbS6aywQ==
-X-CSE-MsgGUID: l9FOx2pNThORGj2iPEE/Pg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,241,1758610800"; d="scan'208";a="194096174"
-Received: from lkp-server01.sh.intel.com (HELO 4664bbef4914) ([10.239.97.150])
- by orviesa007.jf.intel.com with ESMTP; 01 Dec 2025 07:45:09 -0800
-Received: from kbuild by 4664bbef4914 with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1vQ65L-000000008sv-0xtH;
- Mon, 01 Dec 2025 15:45:07 +0000
-Date: Mon, 1 Dec 2025 23:45:05 +0800
-From: kernel test robot <lkp@intel.com>
-To: Uma Shankar <uma.shankar@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, chaitanya.kumar.borah@intel.com,
- ville.syrjala@linux.intel.com, pekka.paalanen@collabora.com,
- contact@emersion.fr, harry.wentland@amd.com, mwen@igalia.com,
- jadahl@redhat.com, sebastian.wick@redhat.com,
- swati2.sharma@intel.com, alex.hung@amd.com, jani.nikula@intel.com,
- suraj.kandpal@intel.com, Uma Shankar <uma.shankar@intel.com>
-Subject: Re: [v7 05/15] drm/i915/color: Add framework to program CSC
-Message-ID: <202512012301.V42g2qYb-lkp@intel.com>
-References: <20251201064655.3579280-6-uma.shankar@intel.com>
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B13510E412;
+ Mon,  1 Dec 2025 15:53:35 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4dKpND1qYnz9sSq;
+ Mon,  1 Dec 2025 16:53:32 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1764604412; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=eGqYb67ev6KtdX+YTXDxiPnVVJgPnz1zCF5EHXt4hqo=;
+ b=sBbSHmzsi3wPuWYFAAsh7dTsB5/2BthPcSteomaBpjOOXqjRl4JVBPb/opZ+0TvekWfWh6
+ kkrhVaI5rHlsptkCOOV1cEZ+1Vk+ont6Rbwmv+8a8aCIMhACUF9VPbT2CaCITeqRij/2/r
+ oH2zKPUBjgeXVl0q3fmw/SMlM1xCI1nLQuAbHnv2USqCf+waiCIjoR+lAAn7YbTh6E0CON
+ /sEKdCwDOW3RiLQr5wGRrqkI2ZosLT1xcI3/LP/R7DrfLIjoeJQ1PveMpvTCwtzC6ZEWew
+ MSsck3FBtmzJ65blZyfmgt2caSH/5QIFj8wSQdMiEOTCnuVWVIHlwC/zRTJiWQ==
+Message-ID: <247185f833edd075cd4aac8c39ac8ae5b5aabe07.camel@mailbox.org>
+Subject: Re: [PATCH v2 2/8] dma-buf/dma-fence: Add dma_fence_check_and_signal()
+From: Philipp Stanner <phasta@mailbox.org>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
+ phasta@kernel.org, Sumit Semwal <sumit.semwal@linaro.org>, Gustavo Padovan
+ <gustavo@padovan.org>, Felix Kuehling <Felix.Kuehling@amd.com>, Alex
+ Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>,  Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui
+ <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,  Matthew Brost
+ <matthew.brost@intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>
+Cc: linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Date: Mon, 01 Dec 2025 16:53:25 +0100
+In-Reply-To: <93a4f4e4-af7a-4c84-a7a2-5db785f2a5a8@amd.com>
+References: <20251201105011.19386-2-phasta@kernel.org>
+ <20251201105011.19386-4-phasta@kernel.org>
+ <80554ed2-4454-489b-873f-533d68c8d2ae@amd.com>
+ <2a9c83b4a428bb3cc993499c39d0da01f9563278.camel@mailbox.org>
+ <93a4f4e4-af7a-4c84-a7a2-5db785f2a5a8@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251201064655.3579280-6-uma.shankar@intel.com>
+X-MBO-RS-ID: 1308e1c837b3c1f5430
+X-MBO-RS-META: ijujsb3wwab53aghs3jk89kkrxiqj4um
+X-Mailman-Approved-At: Tue, 02 Dec 2025 14:23:18 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,114 +78,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Uma,
+On Mon, 2025-12-01 at 16:20 +0100, Christian K=C3=B6nig wrote:
+> On 12/1/25 14:55, Philipp Stanner wrote:
+> > On Mon, 2025-12-01 at 14:23 +0100, Christian K=C3=B6nig wrote:
+> > > On 12/1/25 11:50, Philipp Stanner wrote:
+> > > > The overwhelming majority of users of dma_fence signaling functions
+> > > > don't care about whether the fence had already been signaled by som=
+eone
+> > > >=20
+> >=20
 
-kernel test robot noticed the following build errors:
+[=E2=80=A6]
 
-[auto build test ERROR on next-20251201]
-[cannot apply to drm-xe/drm-xe-next drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip v6.18 v6.18-rc7 v6.18-rc6 linus/master v6.18]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Uma-Shankar/drm-i915-display-Add-identifiers-for-driver-specific-blocks/20251201-150245
-base:   next-20251201
-patch link:    https://lore.kernel.org/r/20251201064655.3579280-6-uma.shankar%40intel.com
-patch subject: [v7 05/15] drm/i915/color: Add framework to program CSC
-config: x86_64-randconfig-012-20251201 (https://download.01.org/0day-ci/archive/20251201/202512012301.V42g2qYb-lkp@intel.com/config)
-compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251201/202512012301.V42g2qYb-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202512012301.V42g2qYb-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/gpu/drm/i915/display/intel_colorop.h:9,
-                    from drivers/gpu/drm/i915/display/intel_plane.c:52:
-   drivers/gpu/drm/i915/display/intel_display_types.h:1993:28: error: field 'base' has incomplete type
-    1993 |         struct drm_colorop base;
-         |                            ^~~~
-   drivers/gpu/drm/i915/display/intel_plane.c: In function 'intel_plane_color_copy_uapi_to_hw_state':
-   drivers/gpu/drm/i915/display/intel_plane.c:367:41: error: 'struct drm_plane_state' has no member named 'color_pipeline'
-     367 |         iter_colorop = plane_state->uapi.color_pipeline;
-         |                                         ^
-   drivers/gpu/drm/i915/display/intel_plane.c:370:17: error: implicit declaration of function 'for_each_new_colorop_in_state'; did you mean 'for_each_new_crtc_in_state'? [-Wimplicit-function-declaration]
-     370 |                 for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
-         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-         |                 for_each_new_crtc_in_state
-   drivers/gpu/drm/i915/display/intel_plane.c:370:84: error: expected ';' before '{' token
-     370 |                 for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
-         |                                                                                    ^~
-         |                                                                                    ;
->> drivers/gpu/drm/i915/display/intel_plane.c:360:35: error: unused variable 'blob' [-Werror=unused-variable]
-     360 |         struct drm_property_blob *blob;
-         |                                   ^~~~
->> drivers/gpu/drm/i915/display/intel_plane.c:359:31: error: unused variable 'intel_colorop' [-Werror=unused-variable]
-     359 |         struct intel_colorop *intel_colorop;
-         |                               ^~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_plane.c: At top level:
->> drivers/gpu/drm/i915/display/intel_plane.c:341:1: error: 'intel_plane_colorop_replace_blob' defined but not used [-Werror=unused-function]
-     341 | intel_plane_colorop_replace_blob(struct intel_plane_state *plane_state,
-         | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   cc1: all warnings being treated as errors
+> > >=20
+> > > > +{
+> > > > +	unsigned long flags;
+> > > > +	bool ret;
+> > > > +
+> > > > +	spin_lock_irqsave(fence->lock, flags);
+> > > > +	ret =3D dma_fence_check_and_signal_locked(fence);
+> > > > +	spin_unlock_irqrestore(fence->lock, flags);
+> > >=20
+> > > Could this use guard(fence->lock, flags) ?
+> >=20
+> > guard? You mean a lockdep guard? Do you have a pointer to someplace in
+> > dma_fence who does what you mean / want?
+>=20
+> E.g. like guard(spinlock_irqsave)(&fence->lock);
 
 
-vim +/blob +360 drivers/gpu/drm/i915/display/intel_plane.c
+Hmm, but why?
+It's obvious to all readers that I do spin_unlock_irqrestore() here.
+It's very simple code, lock, 1 line, unlock. What would the guard
+improve?
 
-   339	
-   340	static bool
- > 341	intel_plane_colorop_replace_blob(struct intel_plane_state *plane_state,
-   342					 struct intel_colorop *intel_colorop,
-   343					 struct drm_property_blob *blob)
-   344	{
-   345		if (intel_colorop->id == INTEL_PLANE_CB_CSC)
-   346			return drm_property_replace_blob(&plane_state->hw.ctm, blob);
-   347	
-   348		return false;
-   349	}
-   350	
-   351	static void
-   352	intel_plane_color_copy_uapi_to_hw_state(struct intel_plane_state *plane_state,
-   353						const struct intel_plane_state *from_plane_state,
-   354						struct intel_crtc *crtc)
-   355	{
-   356		struct drm_colorop *iter_colorop, *colorop;
-   357		struct drm_colorop_state *new_colorop_state;
-   358		struct drm_atomic_state *state = plane_state->uapi.state;
- > 359		struct intel_colorop *intel_colorop;
- > 360		struct drm_property_blob *blob;
-   361		int i = 0;
-   362		struct intel_atomic_state *intel_atomic_state = to_intel_atomic_state(state);
-   363		struct intel_crtc_state *new_crtc_state = intel_atomic_state ?
-   364			intel_atomic_get_new_crtc_state(intel_atomic_state, crtc) : NULL;
-   365		bool changed = false;
-   366	
-   367		iter_colorop = plane_state->uapi.color_pipeline;
-   368	
-   369		while (iter_colorop) {
- > 370			for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
-   371				if (new_colorop_state->colorop == iter_colorop) {
-   372					blob = new_colorop_state->bypass ? NULL : new_colorop_state->data;
-   373					intel_colorop = to_intel_colorop(colorop);
-   374					changed |= intel_plane_colorop_replace_blob(plane_state,
-   375										    intel_colorop,
-   376										    blob);
-   377				}
-   378			}
-   379			iter_colorop = iter_colorop->next;
-   380		}
-   381	
-   382		if (new_crtc_state && changed)
-   383			new_crtc_state->plane_color_changed = true;
-   384	}
-   385	
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+P.
