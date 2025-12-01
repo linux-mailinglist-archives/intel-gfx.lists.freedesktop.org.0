@@ -2,52 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18131C97C9C
-	for <lists+intel-gfx@lfdr.de>; Mon, 01 Dec 2025 15:13:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B545C97D4B
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Dec 2025 15:22:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2708210E3FC;
-	Mon,  1 Dec 2025 14:13:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3417610E3E4;
+	Mon,  1 Dec 2025 14:22:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="gPPNTZZp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B0dVMBgE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07BCE10E3FC;
- Mon,  1 Dec 2025 14:13:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1764598396;
- bh=1nkqSC0wNwR0rPdu30G4UPJ4xAY8what6wXy8xY49Fk=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=gPPNTZZpHgNFam1wKG6o6d3bF4N1JY457es94STH1sv3zD3wZJNKMGHMw4jPYKPRV
- Uoi82Y8paAtR2M005wcBnNHP09keEtM3vrmE3/pr3bnzwVFoz7w1Ulp9QRNWMETBpi
- +hoKnIQwuyFC5ARmmZXPXJvzbh7Y28MzjZ7K3B9lFWjDOGzZu34pYun++BhNMPCS5m
- zCBNdGZGZ+dB/ox8McewaWS5j78x1x4it4u+S8VD1mEv7j8laIDK+NV5hO7TqsozKz
- DkqdDCpxDnFY6H12Z0vJ3fd1ZT03Xq7jDPV/s/ZqKoucjRjFVoH9OnbDyXAZwNMsH/
- Tr0onoRf+UDCQ==
-Message-ID: <c47fc4e3-79b9-4a57-95cc-aaeb608b3435@lankhorst.se>
-Date: Mon, 1 Dec 2025 15:13:15 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DFE810E2B9;
+ Mon,  1 Dec 2025 14:22:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1764598923; x=1796134923;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=n3Dp5GLmrKfysZMBJHMWpL6GCub8YBOyNrqyFvRytHg=;
+ b=B0dVMBgEcPTcWvBT+6xKECPEjWzJmYKNKnXLTJBBjRpaq0TtnZZc07s7
+ BzB4un1xCMJcJ0t9EO779Nz1V5kWKxjBNFls4jQd7MdQt4s35koNooLAC
+ 9f6EiMfHwjzB+LXVBStRSBczyELhdst7GfYPACVpvTdX1qKiVIwTfFsbr
+ yjbi0r4WxwsIoaVbG0xelWrj2F+PiuqEgcdCVVEZhIeLwLzMk9kHQkeSx
+ 5puje3DVY5UrO8n7O5T/kvU/U02W9hTLUvAsksYb6/TwQTiauWdvVITEa
+ RMyNjf8SaMx9dr0G4G9qsEg8br4BOcUcLSkVxQTbA2ysqcuMRDDfqls6x w==;
+X-CSE-ConnectionGUID: x3NDKQepT+uZjX/bRXCEKw==
+X-CSE-MsgGUID: K61ThVxBRi+yAFgmc3ItnA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11629"; a="83930474"
+X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="83930474"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2025 06:22:02 -0800
+X-CSE-ConnectionGUID: +j1YOhCXRuWkPkryA7iL3A==
+X-CSE-MsgGUID: s3vVmGQaQdaz8163i6kEww==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="193907437"
+Received: from lkp-server01.sh.intel.com (HELO 4664bbef4914) ([10.239.97.150])
+ by orviesa009.jf.intel.com with ESMTP; 01 Dec 2025 06:21:57 -0800
+Received: from kbuild by 4664bbef4914 with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1vQ4mp-000000008oz-27CC;
+ Mon, 01 Dec 2025 14:21:55 +0000
+Date: Mon, 1 Dec 2025 22:21:47 +0800
+From: kernel test robot <lkp@intel.com>
+To: Uma Shankar <uma.shankar@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev, chaitanya.kumar.borah@intel.com,
+ ville.syrjala@linux.intel.com, pekka.paalanen@collabora.com,
+ contact@emersion.fr, harry.wentland@amd.com, mwen@igalia.com,
+ jadahl@redhat.com, sebastian.wick@redhat.com,
+ swati2.sharma@intel.com, alex.hung@amd.com, jani.nikula@intel.com,
+ suraj.kandpal@intel.com, Uma Shankar <uma.shankar@intel.com>
+Subject: Re: [v7 02/15] drm/i915: Add intel_color_op
+Message-ID: <202512012214.cxi2Gair-lkp@intel.com>
+References: <20251201064655.3579280-3-uma.shankar@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/7] drm/i915/display: Remove locking from
- intel_vblank_evade critical section
-To: "Shankar, Uma" <uma.shankar@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Cc: "linux-rt-devel@lists.linux.dev" <linux-rt-devel@lists.linux.dev>,
- Mario Kleiner <mario.kleiner.de@gmail.com>,
- Mike Galbraith <umgwanakikbuti@gmail.com>,
- Thomas Gleixner <tglx@linutronix.de>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>
-References: <20251104083634.670753-1-dev@lankhorst.se>
- <20251104083634.670753-5-dev@lankhorst.se>
- <DM4PR11MB63604FC52C88FCDE1176FA25F4DEA@DM4PR11MB6360.namprd11.prod.outlook.com>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <DM4PR11MB63604FC52C88FCDE1176FA25F4DEA@DM4PR11MB6360.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251201064655.3579280-3-uma.shankar@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,99 +75,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hey Uma,
+Hi Uma,
 
-Den 2025-11-26 kl. 21:03, skrev Shankar, Uma:
-> 
-> 
->> -----Original Message-----
->> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Maarten
->> Lankhorst
->> Sent: Tuesday, November 4, 2025 2:06 PM
->> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
->> Cc: linux-rt-devel@lists.linux.dev; Maarten Lankhorst <dev@lankhorst.se>; Mario
->> Kleiner <mario.kleiner.de@gmail.com>; Mike Galbraith
->> <umgwanakikbuti@gmail.com>; Thomas Gleixner <tglx@linutronix.de>; Sebastian
->> Andrzej Siewior <bigeasy@linutronix.de>; Clark Williams
->> <clrkwllms@kernel.org>; Steven Rostedt <rostedt@goodmis.org>
->> Subject: [PATCH v2 4/7] drm/i915/display: Remove locking from
->> intel_vblank_evade critical section
->>
->> finish_wait() may take a lock, which means that it can take any amount of time.
->> On PREEMPT-RT we should not be taking any lock after disabling preemption, so
->> ensure that the completion is done before disabling interrupts.
->>
->> This also has the benefit of making vblank evasion more deterministic, by
->> performing the final vblank check after all locking is done.
->>
->> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
->> ---
->>  drivers/gpu/drm/i915/display/intel_vblank.c | 35 ++++++++++-----------
->>  1 file changed, 17 insertions(+), 18 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c
->> b/drivers/gpu/drm/i915/display/intel_vblank.c
->> index 2b106ffa3f5f5..3628d2a1b8f38 100644
->> --- a/drivers/gpu/drm/i915/display/intel_vblank.c
->> +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
->> @@ -708,6 +708,13 @@ void intel_vblank_evade_init(const struct
->> intel_crtc_state *old_crtc_state,
->>  		evade->min -= vblank_delay;
->>  }
->>
->> +static inline int vblank_evadable(struct intel_vblank_evade_ctx *evade,
->> +int *scanline) {
->> +	*scanline = intel_get_crtc_scanline(evade->crtc);
->> +
->> +	return *scanline < evade->min || *scanline > evade->max; }
->> +
->>  /* must be called with vblank interrupt already enabled! */  int
->> intel_vblank_evade(struct intel_vblank_evade_ctx *evade)  { @@ -715,23 +722,22
->> @@ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
->>  	struct intel_display *display = to_intel_display(crtc);
->>  	long timeout = msecs_to_jiffies_timeout(1);
->>  	wait_queue_head_t *wq = drm_crtc_vblank_waitqueue(&crtc->base);
->> -	DEFINE_WAIT(wait);
->>  	int scanline;
->>
->>  	if (evade->min <= 0 || evade->max <= 0)
->>  		return 0;
->>
->> -	for (;;) {
->> -		/*
->> -		 * prepare_to_wait() has a memory barrier, which guarantees
->> -		 * other CPUs can see the task state update by the time we
->> -		 * read the scanline.
->> -		 */
->> -		prepare_to_wait(wq, &wait, TASK_UNINTERRUPTIBLE);
->> +	while (!vblank_evadable(evade, &scanline)) {
->> +		local_irq_enable();
->>
->> -		scanline = intel_get_crtc_scanline(crtc);
->> -		if (scanline < evade->min || scanline > evade->max)
->> -			break;
->> +		DEFINE_WAIT(wait);
->> +		while (!vblank_evadable(evade, &scanline) && timeout > 0) {
-> 
-> Not sure if doing the scanline check with interrupts on is ok. The scanlines can move
-> if we get interrupted or what happens if we get a vblank interrupt. Looks vulnerable to race.
-> 
-> I will try to check this further and get back.
+kernel test robot noticed the following build errors:
 
-There is a double check here to make it safe:
+[auto build test ERROR on next-20251201]
+[also build test ERROR on linus/master v6.18]
+[cannot apply to drm-xe/drm-xe-next drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip v6.18 v6.18-rc7 v6.18-rc6]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-while (!vblank_evade()) {
-	drop locks();
+url:    https://github.com/intel-lab-lkp/linux/commits/Uma-Shankar/drm-i915-display-Add-identifiers-for-driver-specific-blocks/20251201-150245
+base:   next-20251201
+patch link:    https://lore.kernel.org/r/20251201064655.3579280-3-uma.shankar%40intel.com
+patch subject: [v7 02/15] drm/i915: Add intel_color_op
+config: i386-buildonly-randconfig-006-20251201 (https://download.01.org/0day-ci/archive/20251201/202512012214.cxi2Gair-lkp@intel.com/config)
+compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251201/202512012214.cxi2Gair-lkp@intel.com/reproduce)
 
-	while (!vblank_evadable())
-		wait();
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202512012214.cxi2Gair-lkp@intel.com/
 
-	re-acquire locks();
-}
+All error/warnings (new ones prefixed by >>):
 
-Even if the middle vblank evadable is unsafe, and it has to be to be able to wait, we re-check after acquiring locks.
-We must do so there anyway since the locking acquire can add any amount of latency as well.
+   In file included from drivers/gpu/drm/i915/display/intel_colorop.h:9,
+                    from drivers/gpu/drm/i915/display/intel_colorop.c:5:
+   drivers/gpu/drm/i915/display/intel_display_types.h:1989:28: error: field 'base' has incomplete type
+    1989 |         struct drm_colorop base;
+         |                            ^~~~
+   In file included from include/linux/container_of.h:5,
+                    from include/linux/plist.h:76,
+                    from include/linux/pm_qos.h:15,
+                    from drivers/gpu/drm/i915/display/intel_display_types.h:29:
+   drivers/gpu/drm/i915/display/intel_colorop.c: In function 'to_intel_colorop':
+>> include/linux/compiler_types.h:552:27: error: expression in static assertion is not an integer
+     552 | #define __same_type(a, b) __builtin_types_compatible_p(typeof(a), typeof(b))
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/build_bug.h:78:56: note: in definition of macro '__static_assert'
+      78 | #define __static_assert(expr, msg, ...) _Static_assert(expr, msg)
+         |                                                        ^~~~
+   include/linux/container_of.h:21:9: note: in expansion of macro 'static_assert'
+      21 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+         |         ^~~~~~~~~~~~~
+   include/linux/container_of.h:21:23: note: in expansion of macro '__same_type'
+      21 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+         |                       ^~~~~~~~~~~
+   drivers/gpu/drm/i915/display/intel_colorop.c:9:16: note: in expansion of macro 'container_of'
+       9 |         return container_of(colorop, struct intel_colorop, base);
+         |                ^~~~~~~~~~~~
+>> drivers/gpu/drm/i915/display/intel_colorop.c:10:1: warning: control reaches end of non-void function [-Wreturn-type]
+      10 | }
+         | ^
 
-Kind regards,
-Maarten Lankhorst
 
+vim +10 drivers/gpu/drm/i915/display/intel_colorop.c
+
+     6	
+     7	struct intel_colorop *to_intel_colorop(struct drm_colorop *colorop)
+     8	{
+     9		return container_of(colorop, struct intel_colorop, base);
+  > 10	}
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
