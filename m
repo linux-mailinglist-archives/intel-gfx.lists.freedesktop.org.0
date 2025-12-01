@@ -2,61 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 794CAC96FDF
-	for <lists+intel-gfx@lfdr.de>; Mon, 01 Dec 2025 12:33:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA231C97093
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Dec 2025 12:36:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1780010E3AC;
-	Mon,  1 Dec 2025 11:33:08 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QhrzySbH";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id E033110E39E;
+	Mon,  1 Dec 2025 11:36:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CA2210E3AF;
- Mon,  1 Dec 2025 11:33:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764588787; x=1796124787;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=VUUViv/t04hXV5XLzYXypv7loGN48K1kOpdHxHpmY9w=;
- b=QhrzySbHSLSAeg6WbY19hLtkU86wdubADDpuP15IaGn2VZZNNsF9JcqF
- 5tXwTErFvU1z7QsZtlWfqkzHpS6c0P+zZR4rPZwZ7e7WMAEs89LVFAmqU
- k3z7eEheDaMvgzkebR7uYvxXaK6VPZQdL8j+3M1uhcs0Fizu82m7bECs/
- 7r5LjSPzJz/dtBr2Em1v77r4oShqo+k9AlggCgZHVC2lzxxEGUU5ZoDgE
- Vtdintg3T8k5RjIokBh56A6DWaVBid0DgnhXLw0ohQ476i++S3aY1KiTx
- i7l2DFGkBJ/JX6IomU+bUehIQYPlumVSvfCgCAnfMoMhEAeOGKerQ/m6P Q==;
-X-CSE-ConnectionGUID: O9z2LUocSY+MyWyGNxKkFw==
-X-CSE-MsgGUID: ia8KFeVlQlyazr1j/fmBFQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11629"; a="66558464"
-X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="66558464"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2025 03:33:07 -0800
-X-CSE-ConnectionGUID: VWN/geDdTp6ktA91L4p0wg==
-X-CSE-MsgGUID: OPpiR4ekRyek6BtGDh7jug==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="198251900"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO
- jhogande-mobl3.intel.com) ([10.245.246.122])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2025 03:33:06 -0800
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v2 3/3] drm/i915/psr: Allow async flip when Selective Fetch
- enabled
-Date: Mon,  1 Dec 2025 13:32:48 +0200
-Message-ID: <20251201113248.617347-4-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251201113248.617347-1-jouni.hogander@intel.com>
-References: <20251201113248.617347-1-jouni.hogander@intel.com>
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9420010E3AF;
+ Mon,  1 Dec 2025 11:36:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_Selective_Fetch_and_async?=
+ =?utf-8?q?_flip_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 01 Dec 2025 11:36:31 -0000
+Message-ID: <176458899160.41875.3585671270755695170@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251201113248.617347-1-jouni.hogander@intel.com>
+In-Reply-To: <20251201113248.617347-1-jouni.hogander@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,37 +37,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now as Selective Fetch is performing full frame update on async flip and
-vblank evasion is done as needed we can allow async flip even when
-Selective Fetch is enabled.
+== Series Details ==
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 8 --------
- 1 file changed, 8 deletions(-)
+Series: Selective Fetch and async flip (rev2)
+URL   : https://patchwork.freedesktop.org/series/158003/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 04f5c488f399..a8a3e8000187 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -6017,14 +6017,6 @@ static int intel_async_flip_check_uapi(struct intel_atomic_state *state,
- 		return -EINVAL;
- 	}
- 
--	/* FIXME: selective fetch should be disabled for async flips */
--	if (new_crtc_state->enable_psr2_sel_fetch) {
--		drm_dbg_kms(display->drm,
--			    "[CRTC:%d:%s] async flip disallowed with PSR2 selective fetch\n",
--			    crtc->base.base.id, crtc->base.name);
--		return -EINVAL;
--	}
--
- 	for_each_oldnew_intel_plane_in_state(state, plane, old_plane_state,
- 					     new_plane_state, i) {
- 		if (plane->pipe != crtc->pipe)
--- 
-2.43.0
+== Summary ==
+
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/158003/revisions/2/mbox/ not applied
+Applying: drm/i915/psr: Set plane id bit in crtc_state->async_flip_planes for PSR
+Applying: drm/i915/psr: Perform full frame update on async flip
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/display/intel_psr.c
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/i915/display/intel_psr.c
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/display/intel_psr.c
+error: Failed to merge in the changes.
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0002 drm/i915/psr: Perform full frame update on async flip
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+Build failed, no error log produced
+
 
