@@ -2,69 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBFDDC96108
-	for <lists+intel-gfx@lfdr.de>; Mon, 01 Dec 2025 09:05:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B306C96114
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Dec 2025 09:06:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D36F10E0E1;
-	Mon,  1 Dec 2025 08:05:15 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="l8LYok3j";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id F306010E2F8;
+	Mon,  1 Dec 2025 08:06:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E1E210E0E1;
- Mon,  1 Dec 2025 08:05:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1764576312;
- bh=AOGaPCVrzkgZmmb9BtWGyYN/DIDoq1iWanmV0V1M44s=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=l8LYok3jpLm4g5fxltRSyH6uFrGONRIfd8dZNss7W921eaCZVbddag1SUJJ9+x7Wd
- v4jor1LAPe/fKVE9AcxvzBGC2VwaE8g/VpjBxLKiQi5W0r8vZcWESYAYIHXKVIaGV4
- FOCBkOSXwNk6ZibxuXsqbQ/F4eYg5pHmIjf3i9p6r5WX4iPhwO5WprDZEtBEtLU/OP
- ZDyOt/iNXXvL9teGdKTw8GJpWlCD1NnRePubQyLZJGvi7o8aa4MgYkPthTMYqmD4uL
- BTg5xy7sU5rxtxk6+cG3PqB7WTOB7An6zJT//b4QsD4O37HcF2ZtRPpKKOyhgMIysK
- VvT6wnLQQemZg==
-Received: from fedora (unknown [IPv6:2a01:e0a:2c:6930:d919:a6e:5ea1:8a9f])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
- server-digest SHA256) (No client certificate requested)
- (Authenticated sender: bbrezillon)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id 5A3C517E0020;
- Mon,  1 Dec 2025 09:05:11 +0100 (CET)
-Date: Mon, 1 Dec 2025 09:05:07 +0100
-From: Boris Brezillon <boris.brezillon@collabora.com>
-To: =?UTF-8?B?TG/Dr2M=?= Molinari <loic.molinari@collabora.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Rob Herring <robh@kernel.org>,
- Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
- Melissa Wen <mwen@igalia.com>, =?UTF-8?B?TWHDrXJh?= Canal
- <mcanal@igalia.com>, Hugh Dickins <hughd@google.com>, Baolin Wang
- <baolin.wang@linux.alibaba.com>, Andrew Morton <akpm@linux-foundation.org>,
- Al Viro <viro@zeniv.linux.org.uk>, =?UTF-8?B?TWlrb8WCYWo=?= Wasiak
- <mikolaj.wasiak@intel.com>, Christian Brauner <brauner@kernel.org>, Nitin
- Gote <nitin.r.gote@intel.com>, Andi Shyti <andi.shyti@linux.intel.com>,
- Jonathan Corbet <corbet@lwn.net>, Christopher Healy <healych@amazon.com>,
- Matthew Wilcox <willy@infradead.org>, Bagas Sanjaya <bagasdotme@gmail.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-mm@kvack.org,
- linux-doc@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCH v10 01/10] drm/shmem-helper: Simplify page offset
- calculation in fault handler
-Message-ID: <20251201090507.1ee10c65@fedora>
-In-Reply-To: <20251128185252.3092-2-loic.molinari@collabora.com>
-References: <20251128185252.3092-1-loic.molinari@collabora.com>
- <20251128185252.3092-2-loic.molinari@collabora.com>
-Organization: Collabora
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-redhat-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16ADB10E2F5;
+ Mon,  1 Dec 2025 08:06:21 +0000 (UTC)
+Received: from mobile-access-d98cd5-49.dhcp.inet.fi ([217.140.213.49]
+ helo=[192.168.8.139])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
+ id 1vPyvJ-00000000V5c-0id3; Mon, 01 Dec 2025 10:06:18 +0200
+Message-ID: <5023c3918fbc4e21984c4d35c059ef80792c4413.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Date: Mon, 01 Dec 2025 10:06:16 +0200
+In-Reply-To: <f45a77708108dc4b606d732c1b011aa08fab72b5.1764076995.git.jani.nikula@intel.com>
+References: <cover.1764076995.git.jani.nikula@intel.com>
+ <f45a77708108dc4b606d732c1b011aa08fab72b5.1764076995.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-7 
+MIME-Version: 1.0
+X-Spam-Checker-Version: SpamAssassin 4.0.2 (2025-08-27) on farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+ autolearn=ham autolearn_force=no version=4.0.2
+Subject: Re: [PATCH v2 1/5] drm/i915/pps: drop wakeref parameter from
+ with_intel_pps_lock()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,51 +50,308 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 28 Nov 2025 19:52:43 +0100
-Lo=C3=AFc Molinari <loic.molinari@collabora.com> wrote:
-
-> For a fault at address addr, the page offset is
->   page_offset =3D (vmf->address - vma->vm_start) >> PAGE_SHIFT
->               =3D ((addr & PAGE_MASK) - vma->vm_start) >> PAGE_SHIFT
-> 	      =3D (addr - vma->vm_start) >> PAGE_SHIFT
+On Tue, 2025-11-25 at 15:24 +0200, Jani Nikula wrote:
+> Add another level of macro abstraction, and declare the wakeref within
+> the for loop using __UNIQUE_ID. This allows us to drop a bunch of
+> boilerplate declarations and parameter passing.
 >=20
-> Since the faulty logical page offset based on VMA is
->   vmf->pgoff =3D vma->vm_pgoff + ((addr - vma->vm_start) >> PAGE_SHIFT)
->=20
-> We can slightly simplify the calculation using
->   page_offset =3D vmf->pgoff - vma->vm_pgoff
->=20
-> Signed-off-by: Lo=C3=AFc Molinari <loic.molinari@collabora.com>
-
-Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
-
-One nit below
-
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > ---
->  drivers/gpu/drm/drm_gem_shmem_helper.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  drivers/gpu/drm/i915/display/g4x_dp.c    |  3 +-
+>  drivers/gpu/drm/i915/display/intel_pps.c | 56 +++++++-----------------
+>  drivers/gpu/drm/i915/display/intel_pps.h |  7 ++-
+>  3 files changed, 22 insertions(+), 44 deletions(-)
 >=20
-> diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/drm=
-_gem_shmem_helper.c
-> index dc94a27710e5..be89be1c804c 100644
-> --- a/drivers/gpu/drm/drm_gem_shmem_helper.c
-> +++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
-> @@ -577,8 +577,8 @@ static vm_fault_t drm_gem_shmem_fault(struct vm_fault=
- *vmf)
->  	struct page *page;
->  	pgoff_t page_offset;
+> diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915=
+/display/g4x_dp.c
+> index a3ff21b2f69f..27f4c55d7484 100644
+> --- a/drivers/gpu/drm/i915/display/g4x_dp.c
+> +++ b/drivers/gpu/drm/i915/display/g4x_dp.c
+> @@ -684,12 +684,11 @@ static void intel_enable_dp(struct intel_atomic_sta=
+te *state,
+>  	struct intel_display *display =3D to_intel_display(state);
+>  	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+>  	u32 dp_reg =3D intel_de_read(display, intel_dp->output_reg);
+> -	intel_wakeref_t wakeref;
 > =20
-> -	/* We don't use vmf->pgoff since that has the fake offset */
-> -	page_offset =3D (vmf->address - vma->vm_start) >> PAGE_SHIFT;
-> +	/* Offset to faulty address in the VMA (without the fake offset). */
-
-It's weird to say "without the fake offset" here, because IIUC, both
-vmf->pgoff and vma->vm_pgoff contain the fake offset. And that's fine,
-the problem really is when one of the subtraction operand is not
-relative to the fake offset.
-
-> +	page_offset =3D vmf->pgoff - vma->vm_pgoff;
+>  	if (drm_WARN_ON(display->drm, dp_reg & DP_PORT_EN))
+>  		return;
 > =20
->  	dma_resv_lock(shmem->base.resv, NULL);
+> -	with_intel_pps_lock(intel_dp, wakeref) {
+> +	with_intel_pps_lock(intel_dp) {
+>  		if (display->platform.valleyview || display->platform.cherryview)
+>  			vlv_pps_port_enable_unlocked(encoder, pipe_config);
 > =20
+> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i=
+915/display/intel_pps.c
+> index 25692a547764..34376255b85c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pps.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
+> @@ -697,12 +697,10 @@ static void wait_panel_power_cycle(struct intel_dp =
+*intel_dp)
+> =20
+>  void intel_pps_wait_power_cycle(struct intel_dp *intel_dp)
+>  {
+> -	intel_wakeref_t wakeref;
+> -
+>  	if (!intel_dp_is_edp(intel_dp))
+>  		return;
+> =20
+> -	with_intel_pps_lock(intel_dp, wakeref)
+> +	with_intel_pps_lock(intel_dp)
+>  		wait_panel_power_cycle(intel_dp);
+>  }
+> =20
+> @@ -811,14 +809,13 @@ bool intel_pps_vdd_on_unlocked(struct intel_dp *int=
+el_dp)
+>  void intel_pps_vdd_on(struct intel_dp *intel_dp)
+>  {
+>  	struct intel_display *display =3D to_intel_display(intel_dp);
+> -	intel_wakeref_t wakeref;
+>  	bool vdd;
+> =20
+>  	if (!intel_dp_is_edp(intel_dp))
+>  		return;
+> =20
+>  	vdd =3D false;
+> -	with_intel_pps_lock(intel_dp, wakeref)
+> +	with_intel_pps_lock(intel_dp)
+>  		vdd =3D intel_pps_vdd_on_unlocked(intel_dp);
+>  	INTEL_DISPLAY_STATE_WARN(display, !vdd, "[ENCODER:%d:%s] %s VDD already=
+ requested on\n",
+>  				 dp_to_dig_port(intel_dp)->base.base.base.id,
+> @@ -873,8 +870,6 @@ static void intel_pps_vdd_off_sync_unlocked(struct in=
+tel_dp *intel_dp)
+> =20
+>  void intel_pps_vdd_off_sync(struct intel_dp *intel_dp)
+>  {
+> -	intel_wakeref_t wakeref;
+> -
+>  	if (!intel_dp_is_edp(intel_dp))
+>  		return;
+> =20
+> @@ -883,7 +878,7 @@ void intel_pps_vdd_off_sync(struct intel_dp *intel_dp=
+)
+>  	 * vdd might still be enabled due to the delayed vdd off.
+>  	 * Make sure vdd is actually turned off here.
+>  	 */
+> -	with_intel_pps_lock(intel_dp, wakeref)
+> +	with_intel_pps_lock(intel_dp)
+>  		intel_pps_vdd_off_sync_unlocked(intel_dp);
+>  }
+> =20
+> @@ -892,9 +887,8 @@ static void edp_panel_vdd_work(struct work_struct *__=
+work)
+>  	struct intel_pps *pps =3D container_of(to_delayed_work(__work),
+>  					     struct intel_pps, panel_vdd_work);
+>  	struct intel_dp *intel_dp =3D container_of(pps, struct intel_dp, pps);
+> -	intel_wakeref_t wakeref;
+> =20
+> -	with_intel_pps_lock(intel_dp, wakeref) {
+> +	with_intel_pps_lock(intel_dp) {
+>  		if (!intel_dp->pps.want_panel_vdd)
+>  			intel_pps_vdd_off_sync_unlocked(intel_dp);
+>  	}
+> @@ -952,12 +946,10 @@ void intel_pps_vdd_off_unlocked(struct intel_dp *in=
+tel_dp, bool sync)
+> =20
+>  void intel_pps_vdd_off(struct intel_dp *intel_dp)
+>  {
+> -	intel_wakeref_t wakeref;
+> -
+>  	if (!intel_dp_is_edp(intel_dp))
+>  		return;
+> =20
+> -	with_intel_pps_lock(intel_dp, wakeref)
+> +	with_intel_pps_lock(intel_dp)
+>  		intel_pps_vdd_off_unlocked(intel_dp, false);
+>  }
+> =20
+> @@ -1026,12 +1018,10 @@ void intel_pps_on_unlocked(struct intel_dp *intel=
+_dp)
+> =20
+>  void intel_pps_on(struct intel_dp *intel_dp)
+>  {
+> -	intel_wakeref_t wakeref;
+> -
+>  	if (!intel_dp_is_edp(intel_dp))
+>  		return;
+> =20
+> -	with_intel_pps_lock(intel_dp, wakeref)
+> +	with_intel_pps_lock(intel_dp)
+>  		intel_pps_on_unlocked(intel_dp);
+>  }
+> =20
+> @@ -1082,12 +1072,10 @@ void intel_pps_off_unlocked(struct intel_dp *inte=
+l_dp)
+> =20
+>  void intel_pps_off(struct intel_dp *intel_dp)
+>  {
+> -	intel_wakeref_t wakeref;
+> -
+>  	if (!intel_dp_is_edp(intel_dp))
+>  		return;
+> =20
+> -	with_intel_pps_lock(intel_dp, wakeref)
+> +	with_intel_pps_lock(intel_dp)
+>  		intel_pps_off_unlocked(intel_dp);
+>  }
+> =20
+> @@ -1095,7 +1083,6 @@ void intel_pps_off(struct intel_dp *intel_dp)
+>  void intel_pps_backlight_on(struct intel_dp *intel_dp)
+>  {
+>  	struct intel_display *display =3D to_intel_display(intel_dp);
+> -	intel_wakeref_t wakeref;
+> =20
+>  	/*
+>  	 * If we enable the backlight right away following a panel power
+> @@ -1105,7 +1092,7 @@ void intel_pps_backlight_on(struct intel_dp *intel_=
+dp)
+>  	 */
+>  	wait_backlight_on(intel_dp);
+> =20
+> -	with_intel_pps_lock(intel_dp, wakeref) {
+> +	with_intel_pps_lock(intel_dp) {
+>  		i915_reg_t pp_ctrl_reg =3D _pp_ctrl_reg(intel_dp);
+>  		u32 pp;
+> =20
+> @@ -1121,12 +1108,11 @@ void intel_pps_backlight_on(struct intel_dp *inte=
+l_dp)
+>  void intel_pps_backlight_off(struct intel_dp *intel_dp)
+>  {
+>  	struct intel_display *display =3D to_intel_display(intel_dp);
+> -	intel_wakeref_t wakeref;
+> =20
+>  	if (!intel_dp_is_edp(intel_dp))
+>  		return;
+> =20
+> -	with_intel_pps_lock(intel_dp, wakeref) {
+> +	with_intel_pps_lock(intel_dp) {
+>  		i915_reg_t pp_ctrl_reg =3D _pp_ctrl_reg(intel_dp);
+>  		u32 pp;
+> =20
+> @@ -1149,11 +1135,10 @@ void intel_pps_backlight_power(struct intel_conne=
+ctor *connector, bool enable)
+>  {
+>  	struct intel_display *display =3D to_intel_display(connector);
+>  	struct intel_dp *intel_dp =3D intel_attached_dp(connector);
+> -	intel_wakeref_t wakeref;
+>  	bool is_enabled;
+> =20
+>  	is_enabled =3D false;
+> -	with_intel_pps_lock(intel_dp, wakeref)
+> +	with_intel_pps_lock(intel_dp)
+>  		is_enabled =3D ilk_get_pp_control(intel_dp) & EDP_BLC_ENABLE;
+>  	if (is_enabled =3D=3D enable)
+>  		return;
+> @@ -1251,9 +1236,7 @@ void vlv_pps_pipe_init(struct intel_dp *intel_dp)
+>  /* Call on all DP, not just eDP */
+>  void vlv_pps_pipe_reset(struct intel_dp *intel_dp)
+>  {
+> -	intel_wakeref_t wakeref;
+> -
+> -	with_intel_pps_lock(intel_dp, wakeref)
+> +	with_intel_pps_lock(intel_dp)
+>  		intel_dp->pps.vlv_active_pipe =3D vlv_active_pipe(intel_dp);
+>  }
+> =20
+> @@ -1329,9 +1312,7 @@ void vlv_pps_port_disable(struct intel_encoder *enc=
+oder,
+>  {
+>  	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+> =20
+> -	intel_wakeref_t wakeref;
+> -
+> -	with_intel_pps_lock(intel_dp, wakeref)
+> +	with_intel_pps_lock(intel_dp)
+>  		intel_dp->pps.vlv_active_pipe =3D INVALID_PIPE;
+>  }
+> =20
+> @@ -1362,10 +1343,9 @@ static void pps_vdd_init(struct intel_dp *intel_dp=
+)
+> =20
+>  bool intel_pps_have_panel_power_or_vdd(struct intel_dp *intel_dp)
+>  {
+> -	intel_wakeref_t wakeref;
+>  	bool have_power =3D false;
+> =20
+> -	with_intel_pps_lock(intel_dp, wakeref) {
+> +	with_intel_pps_lock(intel_dp) {
+>  		have_power =3D edp_have_panel_power(intel_dp) ||
+>  			     edp_have_panel_vdd(intel_dp);
+>  	}
+> @@ -1692,12 +1672,11 @@ static void pps_init_registers(struct intel_dp *i=
+ntel_dp, bool force_disable_vdd
+>  void intel_pps_encoder_reset(struct intel_dp *intel_dp)
+>  {
+>  	struct intel_display *display =3D to_intel_display(intel_dp);
+> -	intel_wakeref_t wakeref;
+> =20
+>  	if (!intel_dp_is_edp(intel_dp))
+>  		return;
+> =20
+> -	with_intel_pps_lock(intel_dp, wakeref) {
+> +	with_intel_pps_lock(intel_dp) {
+>  		/*
+>  		 * Reinit the power sequencer also on the resume path, in case
+>  		 * BIOS did something nasty with it.
+> @@ -1716,7 +1695,6 @@ void intel_pps_encoder_reset(struct intel_dp *intel=
+_dp)
+> =20
+>  bool intel_pps_init(struct intel_dp *intel_dp)
+>  {
+> -	intel_wakeref_t wakeref;
+>  	bool ret;
+> =20
+>  	intel_dp->pps.initializing =3D true;
+> @@ -1724,7 +1702,7 @@ bool intel_pps_init(struct intel_dp *intel_dp)
+> =20
+>  	pps_init_timestamps(intel_dp);
+> =20
+> -	with_intel_pps_lock(intel_dp, wakeref) {
+> +	with_intel_pps_lock(intel_dp) {
+>  		ret =3D pps_initial_setup(intel_dp);
+> =20
+>  		pps_init_delays(intel_dp);
+> @@ -1760,9 +1738,7 @@ static void pps_init_late(struct intel_dp *intel_dp=
+)
+> =20
+>  void intel_pps_init_late(struct intel_dp *intel_dp)
+>  {
+> -	intel_wakeref_t wakeref;
+> -
+> -	with_intel_pps_lock(intel_dp, wakeref) {
+> +	with_intel_pps_lock(intel_dp) {
+>  		/* Reinit delays after per-panel info has been parsed from VBT */
+>  		pps_init_late(intel_dp);
+> =20
+> diff --git a/drivers/gpu/drm/i915/display/intel_pps.h b/drivers/gpu/drm/i=
+915/display/intel_pps.h
+> index c83007152f07..ad5c458ccdaf 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pps.h
+> +++ b/drivers/gpu/drm/i915/display/intel_pps.h
+> @@ -20,8 +20,11 @@ struct intel_encoder;
+>  intel_wakeref_t intel_pps_lock(struct intel_dp *intel_dp);
+>  intel_wakeref_t intel_pps_unlock(struct intel_dp *intel_dp, intel_wakere=
+f_t wakeref);
+> =20
+> -#define with_intel_pps_lock(dp, wf)						\
+> -	for ((wf) =3D intel_pps_lock(dp); (wf); (wf) =3D intel_pps_unlock((dp),=
+ (wf)))
+> +#define __with_intel_pps_lock(dp, wf) \
+> +	for (intel_wakeref_t (wf) =3D intel_pps_lock(dp); (wf); (wf) =3D intel_=
+pps_unlock((dp), (wf)))
+> +
+> +#define with_intel_pps_lock(dp) \
+> +	__with_intel_pps_lock((dp), __UNIQUE_ID(wakeref))
+> =20
+>  void intel_pps_backlight_on(struct intel_dp *intel_dp);
+>  void intel_pps_backlight_off(struct intel_dp *intel_dp);
 
+Nice!
+
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+
+--
+Cheers,
+Luca.
