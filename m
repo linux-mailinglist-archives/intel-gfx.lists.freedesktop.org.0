@@ -2,29 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47EB0C97C4B
-	for <lists+intel-gfx@lfdr.de>; Mon, 01 Dec 2025 15:06:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 18131C97C9C
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Dec 2025 15:13:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8A1210E3EE;
-	Mon,  1 Dec 2025 14:06:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2708210E3FC;
+	Mon,  1 Dec 2025 14:13:19 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="gPPNTZZp";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 292C310E3EE;
- Mon,  1 Dec 2025 14:06:01 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8978474137211525123=="
+Received: from lankhorst.se (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07BCE10E3FC;
+ Mon,  1 Dec 2025 14:13:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1764598396;
+ bh=1nkqSC0wNwR0rPdu30G4UPJ4xAY8what6wXy8xY49Fk=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=gPPNTZZpHgNFam1wKG6o6d3bF4N1JY457es94STH1sv3zD3wZJNKMGHMw4jPYKPRV
+ Uoi82Y8paAtR2M005wcBnNHP09keEtM3vrmE3/pr3bnzwVFoz7w1Ulp9QRNWMETBpi
+ +hoKnIQwuyFC5ARmmZXPXJvzbh7Y28MzjZ7K3B9lFWjDOGzZu34pYun++BhNMPCS5m
+ zCBNdGZGZ+dB/ox8McewaWS5j78x1x4it4u+S8VD1mEv7j8laIDK+NV5hO7TqsozKz
+ DkqdDCpxDnFY6H12Z0vJ3fd1ZT03Xq7jDPV/s/ZqKoucjRjFVoH9OnbDyXAZwNMsH/
+ Tr0onoRf+UDCQ==
+Message-ID: <c47fc4e3-79b9-4a57-95cc-aaeb608b3435@lankhorst.se>
+Date: Mon, 1 Dec 2025 15:13:15 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_Switch_to_use_kernel_stan?=
- =?utf-8?q?dard_fault_injection_in_i915_=28rev16=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 01 Dec 2025 14:06:01 -0000
-Message-ID: <176459796116.44391.9648404325418130875@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251201130559.731361-1-juhapekka.heikkila@gmail.com>
-In-Reply-To: <20251201130559.731361-1-juhapekka.heikkila@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/7] drm/i915/display: Remove locking from
+ intel_vblank_evade critical section
+To: "Shankar, Uma" <uma.shankar@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: "linux-rt-devel@lists.linux.dev" <linux-rt-devel@lists.linux.dev>,
+ Mario Kleiner <mario.kleiner.de@gmail.com>,
+ Mike Galbraith <umgwanakikbuti@gmail.com>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>
+References: <20251104083634.670753-1-dev@lankhorst.se>
+ <20251104083634.670753-5-dev@lankhorst.se>
+ <DM4PR11MB63604FC52C88FCDE1176FA25F4DEA@DM4PR11MB6360.namprd11.prod.outlook.com>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <DM4PR11MB63604FC52C88FCDE1176FA25F4DEA@DM4PR11MB6360.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,178 +60,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8978474137211525123==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hey Uma,
 
-== Series Details ==
+Den 2025-11-26 kl. 21:03, skrev Shankar, Uma:
+> 
+> 
+>> -----Original Message-----
+>> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Maarten
+>> Lankhorst
+>> Sent: Tuesday, November 4, 2025 2:06 PM
+>> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+>> Cc: linux-rt-devel@lists.linux.dev; Maarten Lankhorst <dev@lankhorst.se>; Mario
+>> Kleiner <mario.kleiner.de@gmail.com>; Mike Galbraith
+>> <umgwanakikbuti@gmail.com>; Thomas Gleixner <tglx@linutronix.de>; Sebastian
+>> Andrzej Siewior <bigeasy@linutronix.de>; Clark Williams
+>> <clrkwllms@kernel.org>; Steven Rostedt <rostedt@goodmis.org>
+>> Subject: [PATCH v2 4/7] drm/i915/display: Remove locking from
+>> intel_vblank_evade critical section
+>>
+>> finish_wait() may take a lock, which means that it can take any amount of time.
+>> On PREEMPT-RT we should not be taking any lock after disabling preemption, so
+>> ensure that the completion is done before disabling interrupts.
+>>
+>> This also has the benefit of making vblank evasion more deterministic, by
+>> performing the final vblank check after all locking is done.
+>>
+>> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_vblank.c | 35 ++++++++++-----------
+>>  1 file changed, 17 insertions(+), 18 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c
+>> b/drivers/gpu/drm/i915/display/intel_vblank.c
+>> index 2b106ffa3f5f5..3628d2a1b8f38 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_vblank.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+>> @@ -708,6 +708,13 @@ void intel_vblank_evade_init(const struct
+>> intel_crtc_state *old_crtc_state,
+>>  		evade->min -= vblank_delay;
+>>  }
+>>
+>> +static inline int vblank_evadable(struct intel_vblank_evade_ctx *evade,
+>> +int *scanline) {
+>> +	*scanline = intel_get_crtc_scanline(evade->crtc);
+>> +
+>> +	return *scanline < evade->min || *scanline > evade->max; }
+>> +
+>>  /* must be called with vblank interrupt already enabled! */  int
+>> intel_vblank_evade(struct intel_vblank_evade_ctx *evade)  { @@ -715,23 +722,22
+>> @@ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
+>>  	struct intel_display *display = to_intel_display(crtc);
+>>  	long timeout = msecs_to_jiffies_timeout(1);
+>>  	wait_queue_head_t *wq = drm_crtc_vblank_waitqueue(&crtc->base);
+>> -	DEFINE_WAIT(wait);
+>>  	int scanline;
+>>
+>>  	if (evade->min <= 0 || evade->max <= 0)
+>>  		return 0;
+>>
+>> -	for (;;) {
+>> -		/*
+>> -		 * prepare_to_wait() has a memory barrier, which guarantees
+>> -		 * other CPUs can see the task state update by the time we
+>> -		 * read the scanline.
+>> -		 */
+>> -		prepare_to_wait(wq, &wait, TASK_UNINTERRUPTIBLE);
+>> +	while (!vblank_evadable(evade, &scanline)) {
+>> +		local_irq_enable();
+>>
+>> -		scanline = intel_get_crtc_scanline(crtc);
+>> -		if (scanline < evade->min || scanline > evade->max)
+>> -			break;
+>> +		DEFINE_WAIT(wait);
+>> +		while (!vblank_evadable(evade, &scanline) && timeout > 0) {
+> 
+> Not sure if doing the scanline check with interrupts on is ok. The scanlines can move
+> if we get interrupted or what happens if we get a vblank interrupt. Looks vulnerable to race.
+> 
+> I will try to check this further and get back.
 
-Series: Switch to use kernel standard fault injection in i915 (rev16)
-URL   : https://patchwork.freedesktop.org/series/155765/
-State : success
+There is a double check here to make it safe:
 
-== Summary ==
+while (!vblank_evade()) {
+	drop locks();
 
-CI Bug Log - changes from CI_DRM_17612 -> Patchwork_155765v16
-====================================================
+	while (!vblank_evadable())
+		wait();
 
-Summary
--------
+	re-acquire locks();
+}
 
-  **SUCCESS**
+Even if the middle vblank evadable is unsafe, and it has to be to be able to wait, we re-check after acquiring locks.
+We must do so there anyway since the locking acquire can add any amount of latency as well.
 
-  No regressions found.
+Kind regards,
+Maarten Lankhorst
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v16/index.html
-
-Participating hosts (44 -> 43)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_155765v16 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17612/bat-mtlp-8/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v16/bat-mtlp-8/igt@i915_selftest@live.html
-    - bat-jsl-1:          [PASS][3] -> [DMESG-FAIL][4] ([i915#13774]) +1 other test dmesg-fail
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17612/bat-jsl-1/igt@i915_selftest@live.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v16/bat-jsl-1/igt@i915_selftest@live.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@sanitycheck:
-    - bat-apl-1:          [DMESG-WARN][5] ([i915#13735]) -> [PASS][6] +77 other tests pass
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17612/bat-apl-1/igt@i915_selftest@live@sanitycheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v16/bat-apl-1/igt@i915_selftest@live@sanitycheck.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-9:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17612/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v16/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-    - bat-arls-6:         [DMESG-FAIL][9] ([i915#12061]) -> [PASS][10] +1 other test pass
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17612/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v16/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_pm_rpm@basic-pci-d3-state:
-    - bat-apl-1:          [DMESG-WARN][11] ([i915#13735] / [i915#180]) -> [PASS][12] +49 other tests pass
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17612/bat-apl-1/igt@kms_pm_rpm@basic-pci-d3-state.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v16/bat-apl-1/igt@kms_pm_rpm@basic-pci-d3-state.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#13735]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735
-  [i915#13774]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13774
-  [i915#180]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_17612 -> Patchwork_155765v16
-
-  CI-20190529: 20190529
-  CI_DRM_17612: 7f7b6cfa09ab1155b3e92ccfb7ae4bbfd41fec0c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8645: 8645
-  Patchwork_155765v16: 7f7b6cfa09ab1155b3e92ccfb7ae4bbfd41fec0c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v16/index.html
-
---===============8978474137211525123==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Switch to use kernel standard fault injection in i915 (rev16)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155765/">https://patchwork.freedesktop.org/series/155765/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v16/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v16/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17612 -&gt; Patchwork_155765v16</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v16/index.html</p>
-<h2>Participating hosts (44 -&gt; 43)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_155765v16 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live:<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17612/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v16/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17612/bat-jsl-1/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v16/bat-jsl-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13774">i915#13774</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@sanitycheck:</p>
-<ul>
-<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17612/bat-apl-1/igt@i915_selftest@live@sanitycheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735">i915#13735</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v16/bat-apl-1/igt@i915_selftest@live@sanitycheck.html">PASS</a> +77 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17612/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v16/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17612/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v16/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17612/bat-apl-1/igt@kms_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735">i915#13735</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180">i915#180</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_155765v16/bat-apl-1/igt@kms_pm_rpm@basic-pci-d3-state.html">PASS</a> +49 other tests pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17612 -&gt; Patchwork_155765v16</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17612: 7f7b6cfa09ab1155b3e92ccfb7ae4bbfd41fec0c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8645: 8645<br />
-  Patchwork_155765v16: 7f7b6cfa09ab1155b3e92ccfb7ae4bbfd41fec0c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============8978474137211525123==--
