@@ -2,194 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B83E8C9A75F
-	for <lists+intel-gfx@lfdr.de>; Tue, 02 Dec 2025 08:35:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39396C9A768
+	for <lists+intel-gfx@lfdr.de>; Tue, 02 Dec 2025 08:36:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC10010E54C;
-	Tue,  2 Dec 2025 07:35:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC92A10E55D;
+	Tue,  2 Dec 2025 07:36:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R/oCgWa3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OO9m1bfo";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EFD110E54C;
- Tue,  2 Dec 2025 07:35:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B17A810E55C;
+ Tue,  2 Dec 2025 07:36:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764660925; x=1796196925;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=NrYB3/QIvvfE7zewmbuv+z9cLkUVnCMWp/XW4EAxK1M=;
- b=R/oCgWa3EcDDZ3ueyey5yGaTL2BCRHJIIEgwfmtjYnuE3wZxrOqQ8cBK
- SaZiQch8mydz5wQUARXMPdoNewB15bozVRZO9yE9vjRt51wGykkJ+/XxD
- zgXzegbOaPa0jnuDrgzMkQMwtOHJeJlYQ5J+YTPo1wfyhe0ugFceyqSsv
- L03N1cUx8O3fcDJaM3GwXqiPxl3gOYNwMcI4/3I7imGH7ZhET7OoibE81
- VlyKSjzeblbk5xKIAGH7RJsTsdAwyEyf2xR9BhSX/4nkjyN1o+GlJFzP3
- VfmLWbFeCGV57DtEfPiHv/vREuHVXsCWxwlCmvEwKB7QILp9MJp2DMaxT w==;
-X-CSE-ConnectionGUID: 3ckoykl4TPyAjW0PlqTyJw==
-X-CSE-MsgGUID: eEzJP/oBS+OVc1N5NsVt0w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11630"; a="76938349"
-X-IronPort-AV: E=Sophos;i="6.20,242,1758610800"; d="scan'208";a="76938349"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2025 23:35:24 -0800
-X-CSE-ConnectionGUID: vLpafMGVSDqmnTlHTLUe3g==
-X-CSE-MsgGUID: 2bpKD4K7RfKBLC1NFAxocA==
+ t=1764660973; x=1796196973;
+ h=message-id:date:mime-version:from:to:cc:subject:
+ content-transfer-encoding;
+ bh=baMs+qwTMlTP82tUYXqH+qiq6upvNswF93Gp85GMRv4=;
+ b=OO9m1bfoX3L39nScTzk0KiftHRYuwuX3TqX2IwkPOR8HuBQCWJO8R8dz
+ /lhYsyjLB+IN1px0aEXsqqvZYJsBQp+DUVVC61KFEARVExQEPsZxbhB1d
+ Ykr3HG2GoLSd6ostQfHo2mKOMIfDsuJKc45Cum4h/oTJIGdNoDdH3GHKm
+ GsRPyRUOkbtcEHrHGf2Zs+PRUS3XjXgAw065Lyw71mnZfi/HGCKB2CS3j
+ kb3HF2VNwk+2H60dkW3SqI37BUIIBEYAsNg644ZyQtoXw1EnzsN95TiAm
+ hMLySgYyKjiE/OEsowp6UV/sRoXLxim/ldM6BDWCzZUgsdQFFMJ6Gk5B0 Q==;
+X-CSE-ConnectionGUID: +14ex74IR2CcYTLmBYD7tA==
+X-CSE-MsgGUID: rgKHquUbRRGbzS0oa9ji/g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11630"; a="89267730"
+X-IronPort-AV: E=Sophos;i="6.20,242,1758610800"; d="scan'208";a="89267730"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2025 23:36:13 -0800
+X-CSE-ConnectionGUID: Lsg29YX8Rnm/Gw+hnagyVg==
+X-CSE-MsgGUID: gPH3HgK+SRSabRjbMSzdVA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,242,1758610800"; d="scan'208";a="195114017"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2025 23:35:23 -0800
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Mon, 1 Dec 2025 23:35:23 -0800
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Mon, 1 Dec 2025 23:35:23 -0800
-Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.33) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Mon, 1 Dec 2025 23:35:23 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DULIiXD+RnNSk+TEuVBuEvD94/9L4k7mT3U5sonZsl7lWQeqFzgtmImGbP0Qe9T1yu7s6pRyYmWSbSiqasPQIraLbooaXXGVybXVYhMsDbJTC3H5H9+1jR7xmBIFtVcEXG42iivhi0pRJpu0DwqWcsCKyzSMBt1n4BvJBHGXJfRtX4/p8LbBMRUV5SVzTuQcLgFV3cnzGSEZAVRjq9GXrRmLgcrCjaGlOzj+ma/FIDhC5lcYaV4VgiASYaiSnDMn9iFVifEeU8arrMMsYbNQXrS+enTvYqiee3Rr2a/XtJ2njfO6/PCB8W+YOEEkVyEoDt1hhZ+XfayKuV34SHGdag==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NrYB3/QIvvfE7zewmbuv+z9cLkUVnCMWp/XW4EAxK1M=;
- b=XH/8bieXhbGqLk0SuQIrwWLvLzSqowUNd/lmJFTKutXG3VbbqCim7of2L2OisPria95puKA0E4Tt7CO2aD2l64n4Wpno5lx8yLZGfTKNiVE2fscbwf0zxxDypUubgJsrheS3pos/bNSKDsm2kb1dBiI5Uq17isvWcv6w6PVgM7uanFRcaGF9d2Rt+1J92lXXhkWEGW7/OGsAoxFBpU+o/WYQV7zFugWLT33DjWWGOeJEW4m3o5pPwC6nA5/Osn4n2rgpEaM/5mzs4iDN/UNZN8fy96te7Xb8aT6dNhVx7D8Q17d0JEiuxlsclLSmaAiZ8Lo8P/YNv/T1eIapwEcPJA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from IA1PR11MB6348.namprd11.prod.outlook.com (2603:10b6:208:3af::16)
- by MN0PR11MB6231.namprd11.prod.outlook.com (2603:10b6:208:3c4::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Tue, 2 Dec
- 2025 07:35:20 +0000
-Received: from IA1PR11MB6348.namprd11.prod.outlook.com
- ([fe80::4db5:b0d9:b6b3:bb52]) by IA1PR11MB6348.namprd11.prod.outlook.com
- ([fe80::4db5:b0d9:b6b3:bb52%4]) with mapi id 15.20.9388.003; Tue, 2 Dec 2025
- 07:35:20 +0000
-From: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
-Subject: RE: [PATCH v9 13/17] drm/i915/display: Wait for VRR PUSH status update
-Thread-Topic: [PATCH v9 13/17] drm/i915/display: Wait for VRR PUSH status
- update
-Thread-Index: AQHcX36CdrIrJjm50U6eQLNd/nwepbUIFQwAgAXoOMA=
-Date: Tue, 2 Dec 2025 07:35:20 +0000
-Message-ID: <IA1PR11MB634866D489649379E9EE74CEB2D8A@IA1PR11MB6348.namprd11.prod.outlook.com>
-References: <20251127091614.648791-1-mitulkumar.ajitkumar.golani@intel.com>
- <20251127091614.648791-14-mitulkumar.ajitkumar.golani@intel.com>
- <3d24eced-5cdf-45b7-b5a0-f0b2d47ab3cd@intel.com>
-In-Reply-To: <3d24eced-5cdf-45b7-b5a0-f0b2d47ab3cd@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA1PR11MB6348:EE_|MN0PR11MB6231:EE_
-x-ms-office365-filtering-correlation-id: b61d1aec-5992-46dc-0fdf-08de31755901
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|7053199007|38070700021; 
-x-microsoft-antispam-message-info: =?utf-8?B?U0JhbHowQzJMTTR0d1FDWFBscHdRVjNmV0ttalVWdmZSWElrZnZoaXdjck1U?=
- =?utf-8?B?QWNETTFVWVFuaGJrdXhiQUJIMGx2Z2trM3lJVnNkK1ErNEZCRFRwUzVEOFZl?=
- =?utf-8?B?Uzd0OHJTSHU5NVk3NWMvWEJqZzl2ZFpROUhNeDBqK0xZbk4zQWVzVnhZbDFj?=
- =?utf-8?B?WEN2SGMrNFA4OUNOS0V0TDRRajB4a0wzMzBVbExjbzRFcVBiUTZ5K0VobTc5?=
- =?utf-8?B?azdFK2ZYUGJpTU54cnBtS2JuejVQWlVsNHFxd0JWUEJNeUprS1A0Sk9NYlZP?=
- =?utf-8?B?cGZkWVU0Z1RhSk9JTldmWlRaV1F5Ny9nQTFMUUkrYWh5VElsaTBuOGRFY1Zr?=
- =?utf-8?B?MHp2Q1ArVTI2QW1JRVFRRURHUUVVSXlLTUl0STA0TXFubVJNTmFiWUJnMXVw?=
- =?utf-8?B?R3JqZFJyejFTUkFKNy9iUXNQa1JHbythTTBWbHRoc3h5SUk0cWFqQ1MvSFpV?=
- =?utf-8?B?Q3RMUCtZWFZqODZhVnYvVjFGNkR4NEltL0NsRVpMeGVJeTVFZUpjUTY5SlZh?=
- =?utf-8?B?RmVMRzRDMGM5enZYeUFaWHhjbXJIaGRzeFVRT2RZZnlONFdtMUxlRGVnTUxj?=
- =?utf-8?B?TVdaZXJWL0FvWS9wekdJanJxSVFvdlIveis0SE9DMXB2QUUxL1ZMTHB6UzlR?=
- =?utf-8?B?UUZrNzluMnQwYm9Pdlp1N1BqNEx4Y3h6SWxBdXhOZ1BuZERsUS91bzg5YXVh?=
- =?utf-8?B?RTdJcUFEMXRva0JDK25OU1dtRVhQWmR4RGViVkFvOURINDFsbm9DTGNGZ2tH?=
- =?utf-8?B?OTB3VWN2K0V5MFlscjNpNEVnNWpqaXAvejVNZUo5WHozY2pRSlpMb0dxNSt6?=
- =?utf-8?B?VWx6ZkxHcnkvVGkwL2FDRFRBYjQyV0w1ekFsRnZqOEZ5TG9CMDFEdGhOdDc5?=
- =?utf-8?B?cG8wTGM5L05PNWZkZi9IT0NTQit2U1dEaWJzTmp2c0I4UXpRdjRrWDVRVEN1?=
- =?utf-8?B?ODRVUVhheXZsdzdEcnNNczBWclZKbWtVRmova0dpaCtJcEJyNVRIazFJcDBM?=
- =?utf-8?B?WllXQmd6c0ZtV1hIMVBVRE9BV3F5KzZMRlRvaXpYdVdXeklZVjhta1FweGxs?=
- =?utf-8?B?TVNScUNTSEhFWDZWTUdlQjZJZGZiME05TFErWStrUjUrZFB5VGxNT1JWU2hF?=
- =?utf-8?B?TWNYTmVPMWtlZUpyTHhHd1NmVUdYbTltdklVYmVPb2EvU3A0VWJ2MFpKeHpI?=
- =?utf-8?B?Z0ZaMHhRcktlUUNobXBId1dEMGRvTTR6MGN3bEh1MXdScnFNb21QV0tRdjNk?=
- =?utf-8?B?YS9UMTNEcC9iZXBWNUhKOTFzL2NSOVNUaFFhbk9PR2FyaXBGRGpEY3p3TE5F?=
- =?utf-8?B?dUFDK05ZN2RzSlJvYTdhckVVQVdieFczSVMxNzFycGJxSzlqOEd6Yk5XSDZz?=
- =?utf-8?B?aXZoVWxiOHJXWCs0bXQ2TTY2eFBlZHJ3MExxMmZvWGJOMDhmb1ZrVmJSLzd1?=
- =?utf-8?B?ZWkrYXRsdkREN2lmMUJNd05GUEloZ0M1V29qdTJvQmFGaEpCdUFwcGdLM2Q3?=
- =?utf-8?B?WWxzc1hCY1VYanFXbCt1YUp5b1laNE1Ea0piRXduYm1Ib2FnQ3pBd05KQWNN?=
- =?utf-8?B?NEFSZGJYQTltdGlvamw2eVZ4OXJCQWZialVibC9FZGs3QWhocjFBUWVTc05l?=
- =?utf-8?B?aFhoeXJ2QWpTZFZWOWJHQy85cXIvUXRYakhQU0ZrOWVpOEwzMFlXODRUelNV?=
- =?utf-8?B?dlk0cDZvMXhMcHZ4bkUxbXNsT1FJdlRJUE9IbEdCWHFHSFRvVHlubVp6YVVI?=
- =?utf-8?B?cC9VOXFzN2Q0L2YxZGsxWkpvSkZFL3IxWEhEWU9FRXgxN1o2bnB4cjdOTll4?=
- =?utf-8?B?d2FyUW1YemV4UWxEZDRyd1dIQVBBQ0R3QTB6VHpOMW40aTdBN2hBWFQzK2Ix?=
- =?utf-8?B?OUUxeW42endScmozdnUwazVmYk0rS0tSV2hCR0lDeDB1SVBDL0tCRGFITTRu?=
- =?utf-8?B?a3RhamNhYmFlaWJFZkhXZnFkNU55cG1LSDVMSHgvd3EyOVBwUDZ0MUZ0TEhP?=
- =?utf-8?B?VVVsNVBiZHh2RWlNNlpLV3UvMWRvc1ZIK1Z2WngxWGt0MmhZTTRMbzhoT2VD?=
- =?utf-8?Q?gpy7Me?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA1PR11MB6348.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(7053199007)(38070700021); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?bXQrTlIyWmpWdGNGRTJabmkxelhaU2d5ZWc2VUF3U2tNbms3SHpMVU02K2JD?=
- =?utf-8?B?a1R3ZVEwNW5nNmRzTG9QSFB4Z3FWTTVvZEpGQWEzZWxtdFhwUEd0NGZpZUoy?=
- =?utf-8?B?aDhEamdGdFhVM1JwcHpSS0J4OXBGN2V3MytoRU9UU2wvUThrU3pKTEFmTTQ4?=
- =?utf-8?B?cHRybG8xTXU3VjRqL2dSc0VjUTAyenhaK2RhSzFwMWxpS3hIUVhaR2VubnFh?=
- =?utf-8?B?VlpJSlluOFlJRlFjN1BhWVFxSVpDWW44em9UdWQwV2o3OXRtb3lqUU43bUhw?=
- =?utf-8?B?RzNtc1F1UWQwejE0UEF4RXpYN2JubWxrRmZQbUQ1MVVtaklJYmM1ajVIK0U3?=
- =?utf-8?B?dnQ0bHd5YmZuQUxObDc0TngxdHpTNDNCYldkSXdwdVpTK3RJV1ZwR01KQVNq?=
- =?utf-8?B?Rit5bndiZDR1NERkT282SzlUZ2xpem42Q2wyeThjaWhiL2QrTWZVREpPK0dP?=
- =?utf-8?B?SWhkSzVJK0hmVXYramVjWHFoQm8rL2F3ZTFubE5nVVNPd2dnTUZHWUYzK2FP?=
- =?utf-8?B?Zjk0QlRvWXFtR0FDcHVPSnJtbjlCa04vQlFmVXhPY2ZOWXIwMERFNjBhM0Ux?=
- =?utf-8?B?TUt2MEdldWNLSGlGRkdLblYzWkJ3VWowZFhlME93cnFla0JJVGlrVzNPc29s?=
- =?utf-8?B?dnB2UlppRWlDWHRlOUpZcTZTaVRXOFU5YzNOaEFCelhkcFdDZEdEQzVQb3RF?=
- =?utf-8?B?dkFjNW1hdTMrbDEzZktWQzZWeFYrbHo5VWRranNiLzhwbm5zbmFiWERhZER1?=
- =?utf-8?B?TElRTWxpY0R1YmZqQjVPc2NaTzl5S0Y1dTZIZjdDeXJORmZNeE1mWjd0VWUy?=
- =?utf-8?B?N2JXaGRwdUNoVFJ4UFNRQ0FUKzJCWU9CRmFyWU00a290c0E3eEg3dStzdmwr?=
- =?utf-8?B?Yk9JVjN1MVplNjU3QjZPbnR4YWg4MlNlK3pkSHJHVXBTTDY0bC9ra3FxQitz?=
- =?utf-8?B?eG1kTlE2M1pmZmI1S3RYdlR1cXUvU1pWeXk5Uys2MzVibkpVaDhVU1JLVUxL?=
- =?utf-8?B?aHk4Y2RnSGNGTk9mWDFBeUVpWFduZG1KbzZLeDdRQ1lKaDdrMkdWV2ZsbHcy?=
- =?utf-8?B?TSsrTkFxc0JoTGxndWtaWkR0U0VsdEh0ajU2Tm9vNzRDYmhLZEJJalo3TG1P?=
- =?utf-8?B?NnA2N3JjUTVqSkNBdnVHMGZLb2NCSENuTG1ydTd0K1diWlFuczVyMk1naVBJ?=
- =?utf-8?B?SFNBbTM5M29KTGhFUjlXNnBkdkxNTGlmTlNFejVERFJlczlWWlVrR1hHOTdo?=
- =?utf-8?B?a3Z2a3BEcGo3SFFLMjh1YjI2b3JERFYwMjdzNFVRWFBQK1RhelJ6djh0clNB?=
- =?utf-8?B?Ums4cGMra3RwTDltZ24wSklWNGNpSFZDeDNDQy9sYVZ4ZzFkRmF1VUFpbzJR?=
- =?utf-8?B?SHYvVVl0SUxWb0VVcDdtS1Y4NFM4RXZheFdGY2lmUk9oNE1rR1FJY3dGei9O?=
- =?utf-8?B?Y0pKRnBNNkhCWXJOQ1I0OWk3ZG1ZUDdibUtFOGNoRzQxMndudjVFVGl3eTZI?=
- =?utf-8?B?dzFobFlVZUNOQTRqQ1htWmpuTHphNE4veHVBcXlISGlCNTNoOTlrcEhRcXJw?=
- =?utf-8?B?cXpaWE14bmprYjFuZEhpWkhTOFdYaEkydDZkZkNrb1lkcEFhcmc0Vy9teHVm?=
- =?utf-8?B?L0RSa0I3LzBDdnlHU0Y0UWh4dCtDRGtOUUR2WDBHYzJ0eThWakdnZUJERDY0?=
- =?utf-8?B?SW85RkdlR2xZSVFFditmM1c1THFsVjBMdGI3T0dtNFNTWkVXc05oK2tyTEo5?=
- =?utf-8?B?YkhSa2tzcVNOK0VVZ2xSOHRyQVlwb28zRnhsdTl0OUZsaFh1eW9mQVoxa1BT?=
- =?utf-8?B?MndkemNPM1R6NHJBTTNTVHJGTzdXQkU0dWdKekRFL2RML3dkSGlOeUltQ1dK?=
- =?utf-8?B?dVJZc2diYXh5RklHWDZveVorUmRveGZIWVdxekZhaHhCV0xHeXhhd0pyYUhN?=
- =?utf-8?B?TGRDSHh5bEpGT3ZHdUFrQ2M5RXNETkliMmtKRm11Ti9tZEJGRkFDc1A3a1BV?=
- =?utf-8?B?Y0xaVnhFWUIyR0NkVDg3TVdWZTEzZDQ4UEltZWJTUU1nbHRRb0JOeFdCRjlF?=
- =?utf-8?B?RTJIQUlFUHpHNUZlQzB0OGlhblBDUWorNmlvWFliL1dRcVJSWk1ONmxwaXUr?=
- =?utf-8?B?eE1oazNYbWZCdnJKS0pTQWJXZEptYndwTnhoS3k2VndueURXV0tWWHF3UjB2?=
- =?utf-8?Q?KOEj2wNIiXtQ1EmzwVtbUS4=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=Sophos;i="6.20,242,1758610800"; d="scan'208";a="199246662"
+Received: from inaky-mobl1.amr.corp.intel.com (HELO [10.245.244.103])
+ ([10.245.244.103])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2025 23:36:09 -0800
+Message-ID: <aa5cbd50-7676-4a59-bbed-e8428af86804@linux.intel.com>
+Date: Tue, 2 Dec 2025 08:35:58 +0100
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6348.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b61d1aec-5992-46dc-0fdf-08de31755901
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Dec 2025 07:35:20.6736 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ew+oywfDiRGsa74f0ylVQG1mrqqvP1MIJdDeTyLJ4rDm2L+CyIKEU+OoWOhnbySqVwbrat17FXPctgcgWTON0ik0/7I9MjssdWe6drpkaEF6xOLdkzQDMKMGWjtbqxqW
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6231
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
+Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
+ <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: [PULL] drm-misc-next
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -205,54 +77,457 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogTmF1dGl5YWwsIEFua2l0
-IEsgPGFua2l0LmsubmF1dGl5YWxAaW50ZWwuY29tPg0KPiBTZW50OiAyOCBOb3ZlbWJlciAyMDI1
-IDE4OjUyDQo+IFRvOiBHb2xhbmksIE1pdHVsa3VtYXIgQWppdGt1bWFyIDxtaXR1bGt1bWFyLmFq
-aXRrdW1hci5nb2xhbmlAaW50ZWwuY29tPjsNCj4gaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZw0KPiBDYzogaW50ZWwteGVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOyB2aWxsZS5zeXJqYWxh
-QGxpbnV4LmludGVsLmNvbQ0KPiBTdWJqZWN0OiBSZTogW1BBVENIIHY5IDEzLzE3XSBkcm0vaTkx
-NS9kaXNwbGF5OiBXYWl0IGZvciBWUlIgUFVTSCBzdGF0dXMNCj4gdXBkYXRlDQo+IA0KPiANCj4g
-T24gMTEvMjcvMjAyNSAyOjQ2IFBNLCBNaXR1bCBHb2xhbmkgd3JvdGU6DQo+ID4gQWZ0ZXIgVlJS
-IFB1c2ggaXMgc2VudCwgbmVlZCB0byB3YWl0IHRpbGwgZmxpcGxpbmUgZGVjaXNpb24gYm91bmRh
-cnkNCj4gPiB0byBnZXQgUHVzaCBiaXQgdG8gZ2V0IGNsZWFyZWQuDQo+ID4NCj4gPiAtLXYyOg0K
-PiA+IC0gQWRqdXN0IGRlbGF5cyB0byB2cnIgdm1pbiB2YmxhbmsgZGVsYXlzLiAoQW5raXQpDQo+
-ID4NCj4gPiAtLXYzOg0KPiA+IC0gQ2hhbmdlIGludGVsX3Zycl92bWluX3NhZmVfd2luZG93X2Vu
-ZCgpIHNvIHRoYXQNCj4gPiBpbnRlbF9kc2Jfd2FpdF9mb3JfZGVsYXllZF92YmxhbmsoKSB1c2Vz
-IGNvcnJlY3QgZGVsYXkuIChBbmtpdCkNCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IE1pdHVsIEdv
-bGFuaSA8bWl0dWxrdW1hci5haml0a3VtYXIuZ29sYW5pQGludGVsLmNvbT4NCj4gPiAtLS0NCj4g
-PiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdnJyLmMgfCAxNyArKysrKysr
-KysrKysrKystLQ0KPiA+ICAgMSBmaWxlIGNoYW5nZWQsIDE1IGluc2VydGlvbnMoKyksIDIgZGVs
-ZXRpb25zKC0pDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF92cnIuYw0KPiA+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF92cnIuYw0KPiA+IGluZGV4IDExZjA2YTViODU0YS4uZTVjZmYzODkyY2IxIDEwMDY0NA0KPiA+
-IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdnJyLmMNCj4gPiArKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Zyci5jDQo+ID4gQEAgLTEwODEs
-MTAgKzEwODEsMjMgQEAgaW50IGludGVsX3Zycl9zYWZlX3dpbmRvd19zdGFydChjb25zdCBzdHJ1
-Y3QNCj4gaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkNCj4gPiAgIAkJcmV0dXJuIGNydGNf
-c3RhdGUtPmh3LmFkanVzdGVkX21vZGUuY3J0Y192ZGlzcGxheTsNCj4gPiAgIH0NCj4gPg0KPiA+
-ICtzdGF0aWMgaW50DQo+ID4gK2ludGVsX3Zycl9kY2Jfdm1pbl92Ymxhbmtfc3RhcnQoY29uc3Qg
-c3RydWN0IGludGVsX2NydGNfc3RhdGUNCj4gPiArKmNydGNfc3RhdGUpIHsNCj4gPiArCXJldHVy
-biAoaW50ZWxfdnJyX2RjYl92bWluX3ZibGFua19zdGFydF9uZXh0KGNydGNfc3RhdGUpIDwgMCkg
-Pw0KPiA+ICsJCWludGVsX3Zycl9kY2Jfdm1pbl92Ymxhbmtfc3RhcnRfZmluYWwoY3J0Y19zdGF0
-ZSkgOg0KPiA+ICsJCWludGVsX3Zycl9kY2Jfdm1pbl92Ymxhbmtfc3RhcnRfbmV4dChjcnRjX3N0
-YXRlKTsNCj4gPiArfQ0KPiA+ICsNCj4gPiAgIGludCBpbnRlbF92cnJfdm1pbl9zYWZlX3dpbmRv
-d19lbmQoY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUNCj4gKmNydGNfc3RhdGUpDQo+ID4g
-ICB7DQo+ID4gLQlyZXR1cm4gaW50ZWxfdnJyX3ZtaW5fdmJsYW5rX3N0YXJ0KGNydGNfc3RhdGUp
-IC0NCj4gPiAtCSAgICAgICBjcnRjX3N0YXRlLT5zZXRfY29udGV4dF9sYXRlbmN5Ow0KPiA+ICsJ
-aWYgKGNydGNfc3RhdGUtPnZyci5kY19iYWxhbmNlLmVuYWJsZSkgew0KPiA+ICsJCXJldHVybiBp
-bnRlbF92cnJfZGNiX3ZtaW5fdmJsYW5rX3N0YXJ0KGNydGNfc3RhdGUpIC0NCj4gPiArCQkJY3J0
-Y19zdGF0ZS0+c2V0X2NvbnRleHRfbGF0ZW5jeTsNCj4gPiArCX0gZWxzZSB7DQo+ID4gKwkJcmV0
-dXJuIGludGVsX3Zycl92bWluX3ZibGFua19zdGFydChjcnRjX3N0YXRlKSAtDQo+ID4gKwkJCWNy
-dGNfc3RhdGUtPnNldF9jb250ZXh0X2xhdGVuY3k7DQo+ID4gKwl9DQo+ID4gICB9DQo+IA0KPiAN
-Cj4gVGhpcyBjYW4gYmUgc2ltcGxpZmllZCB0bzoNCj4gDQo+ICDCoGludCBpbnRlbF92cnJfdm1p
-bl9zYWZlX3dpbmRvd19lbmQoY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUNCj4gKmNydGNf
-c3RhdGUpDQo+ICDCoHsNCj4gIMKgIMKgIGludCB2bWluX3ZibGFua19zdGFydCA9IGNydGNfc3Rh
-dGUtPnZyci5kY19iYWxhbmNlLmVuYWJsZSA/DQo+ICDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCBp
-bnRlbF92cnJfZGNiX3ZtaW5fdmJsYW5rX3N0YXJ0KGNydGNfc3RhdGUpIDoNCj4gIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIGludGVsX3Zycl92bWluX3ZibGFua19zdGFydChjcnRjX3N0YXRlKTsN
-Cj4gDQo+ICDCoCDCoCByZXR1cm4gdm1pbl92Ymxhbmtfc3RhcnQgLSBjcnRjX3N0YXRlLT5zZXRf
-Y29udGV4dF9sYXRlbmN5Ow0KPiAgwqB9DQoNClN1cmUsIEkgd2lsbCBzaW1wbGlmeSB0aGlzIGZ1
-bmN0aW9uIGluIG5leHQgcmV2aXNpb24gYmFzZWQgb24gc3VnZ2VzdGlvbi4NCg0KVGhhbmtzDQo+
-IA0KPiBSZWdhcmRzLA0KPiANCj4gQW5raXQNCj4gDQo+ID4NCj4gPiAgIGludCBpbnRlbF92cnJf
-ZGNiX3ZtaW5fdmJsYW5rX3N0YXJ0X25leHQoY29uc3Qgc3RydWN0DQo+ID4gaW50ZWxfY3J0Y19z
-dGF0ZSAqY3J0Y19zdGF0ZSkNCg==
+Hi Dave, Simona,
+
+To allow weston 15 to finalize, I was asked to send another pull request to pull in the drm colorop support.
+So here's another pull request, up to the point where all drm colorop support is added!
+
+Kind regards,
+~Maarten Lankhorst
+
+drm-misc-next-2025-12-01-1:
+Extra drm-misc-next for v6.19-rc1:
+
+UAPI Changes:
+- Add support for drm colorop pipeline.
+- Add COLOR PIPELINE plane property.
+- Add DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE.
+
+Cross-subsystem Changes:
+- Attempt to use higher order mappings in system heap allocator.
+- Always taint kernel with sw-sync.
+
+Core Changes:
+- Small fixes to drm/gem.
+- Support emergency restore to drm-client.
+- Allocate and release fb_info in single place.
+- Rework ttm pipelined eviction fence handling.
+
+Driver Changes:
+- Support the drm color pipeline in vkms, amdgfx.
+- Add NVJPG driver for tegra.
+- Assorted small fixes and updates to rockchip, bridge/dw-hdmi-qp,
+  panthor.
+- Add ASL CS5263 DP-to-HDMI simple bridge.
+- Add and improve support for G LD070WX3-SL01 MIPI DSI, Samsung LTL106AL0,
+  Samsung LTL106AL01, Raystar RFF500F-AWH-DNN, Winstar WF70A8SYJHLNGA,
+  Wanchanglong w552946aaa, Samsung SOFEF00, Lenovo X13s panel.
+- Add support for it66122 to it66121.
+- Support mali-G1 gpu in panthor.
+The following changes since commit ca2583412306ceda9304a7c4302fd9efbf43e963:
+
+  accel/amdxdna: Fix deadlock between context destroy and job timeout (2025-11-13 09:10:43 -0800)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2025-12-01
+
+for you to fetch changes up to b1ea3babb67dcb8b0881c2ab49dfba88b1445856:
+
+  drm/panel-edp: Add CSW MNE007QB3-1 (2025-12-01 09:47:05 -0800)
+
+----------------------------------------------------------------
+Extra drm-misc-next for v6.19-rc1:
+
+UAPI Changes:
+- Add support for drm colorop pipeline.
+- Add COLOR PIPELINE plane property.
+- Add DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE.
+
+Cross-subsystem Changes:
+- Attempt to use higher order mappings in system heap allocator.
+- Always taint kernel with sw-sync.
+
+Core Changes:
+- Small fixes to drm/gem.
+- Support emergency restore to drm-client.
+- Allocate and release fb_info in single place.
+- Rework ttm pipelined eviction fence handling.
+
+Driver Changes:
+- Support the drm color pipeline in vkms, amdgfx.
+- Add NVJPG driver for tegra.
+- Assorted small fixes and updates to rockchip, bridge/dw-hdmi-qp,
+  panthor.
+- Add ASL CS5263 DP-to-HDMI simple bridge.
+- Add and improve support for G LD070WX3-SL01 MIPI DSI, Samsung LTL106AL0,
+  Samsung LTL106AL01, Raystar RFF500F-AWH-DNN, Winstar WF70A8SYJHLNGA,
+  Wanchanglong w552946aaa, Samsung SOFEF00, Lenovo X13s panel.
+- Add support for it66122 to it66121.
+- Support mali-G1 gpu in panthor.
+
+----------------------------------------------------------------
+Abhishek Rajput (1):
+      drm/panel: jadard-jd9365da-h3: Use dev_err_probe() instead of DRM_DEV_ERROR() during probing
+
+Akash Goel (1):
+      drm/panthor: Avoid adding of kernel BOs to extobj list
+
+Alex Hung (18):
+      drm/colorop: Add destroy functions for color pipeline
+      drm/colorop: define a new macro for_each_new_colorop_in_state
+      drm/amd/display: Skip color pipeline initialization for cursor plane
+      drm/amd/display: Add support for sRGB EOTF in DEGAM block
+      drm/amd/display: Add support for sRGB Inverse EOTF in SHAPER block
+      drm/amd/display: Add support for sRGB EOTF in BLND block
+      drm/colorop: Add 1D Curve Custom LUT type
+      drm/amd/display: add shaper and blend colorops for 1D Curve Custom LUT
+      drm/amd/display: add 3x4 matrix colorop
+      drm/colorop: Add multiplier type
+      drm/amd/display: add multiplier colorop
+      drm/amd/display: Swap matrix and multiplier
+      drm/colorop: Add 3D LUT support to color pipeline
+      drm/amd/display: add 3D LUT colorop
+      drm/amd/display: Ensure 3D LUT for color pipeline
+      drm/amd/display: Disable CRTC degamma when color pipeline is enabled
+      drm/colorop: Add DRM_COLOROP_1D_CURVE_GAMMA22 to 1D Curve
+      drm/amd/display: Enable support for Gamma 2.2
+
+Andy Yan (1):
+      drm/rockchip: vop2: Use OVL_LAYER_SEL configuration instead of use win_mask calculate used layers
+
+Ashley Smith (2):
+      drm/panthor: Make the timeout per-queue instead of per-job
+      drm/panthor: Reset queue slots if termination fails
+
+Barry Song (1):
+      dma-buf: system_heap: use larger contiguous mappings instead of per-page mmap
+
+Boris Brezillon (14):
+      drm/panthor: Always wait after sending a command to an AS
+      drm/panthor: Kill lock_region()
+      drm/panthor: Recover from panthor_gpu_flush_caches() failures
+      drm/panthor: Add support for atomic page table updates
+      drm/panthor: Make panthor_vm_[un]map_pages() more robust
+      drm/panthor: Relax a check in panthor_sched_pre_reset()
+      drm/panthor: Simplify group idleness tracking
+      drm/panthor: Don't try to enable extract events
+      drm/panthor: Fix the full_tick check
+      drm/panthor: Fix the group priority rotation logic
+      drm/panthor: Fix immediate ticking on a disabled tick
+      drm/panthor: Fix the logic that decides when to stop ticking
+      drm/panthor: Make sure we resume the tick when new jobs are submitted
+      drm/panthor: Kill panthor_sched_immediate_tick()
+
+Casey Connolly (2):
+      drm/panel: sofef00: Add prepare_prev_first flag to drm_panel
+      drm/panel: sofef00: Initialise at 50% brightness
+
+Chaitanya Kumar Borah (1):
+      drm: Add helper to extract lut from struct drm_color_lut32
+
+Chaoyi Chen (2):
+      dt-bindings: ili9881c: Add compatible string for Wanchanglong w552946aaa
+      drm/panel: ilitek-ili9881d: Add support for Wanchanglong W552946AAA panel
+
+Christian König (2):
+      dma-buf/sw-sync: always taint the kernel when sw-sync is used
+      dma-buf: cleanup dma_fence_describe v3
+
+Cristian Ciocaltea (7):
+      dt-bindings: display: rk3588-dw-hdmi-qp: Add frl-enable-gpios property
+      drm/rockchip: dw_hdmi_qp: Fixup usage of enable_gpio member in main struct
+      drm/rockchip: vop2: Check bpc before switching DCLK source
+      drm/bridge: dw-hdmi-qp: Handle platform supported formats and color depth
+      drm/rockchip: dw_hdmi_qp: Switch to phy_configure()
+      drm/rockchip: dw_hdmi_qp: Use bit macros for RK3576 regs
+      drm/rockchip: dw_hdmi_qp: Add high color depth support
+
+Damon Ding (1):
+      drm/rockchip: analogix_dp: Use dev_err_probe() instead of DRM_DEV_ERROR() during probing
+
+Daniel Thompson (1):
+      drm/edp-panel: Add touchscreen panel used by Lenovo X13s
+
+David Heidelberg (9):
+      dt-bindings: panel: Convert Samsung SOFEF00 DDIC into standalone yaml
+      drm/panel: sofef00: Clean up panel description after s6e3fc2x01 removal
+      drm/panel: sofef00: Handle all regulators
+      drm/panel: sofef00: Split sending commands to the enable/disable functions
+      drm/panel: sofef00: Introduce page macro
+      drm/panel: sofef00: Introduce compatible which includes the panel name
+      drm/panel: sofef00: Simplify get_modes
+      drm/panel: sofef00: Mark the LPM mode always-on
+      drm/panel: sofef00: Non-continuous mode and video burst are supported
+
+Diogo Ivo (1):
+      drm/tegra: Add NVJPG driver
+
+Dmitry Osipenko (1):
+      drm/rockchip: Set VOP for the DRM DMA device
+
+Ettore Chimenti (3):
+      dt-bindings: vendor-prefixes: Add ASL Xiamen Technology
+      dt-bindings: display: bridge: simple: document the ASL CS5263 DP-to-HDMI bridge
+      drm/bridge: simple: add ASL CS5263 DP-to-HDMI bridge
+
+Fabio Estevam (3):
+      dt-bindings: vendor-prefixes: Add Raystar Optronics, Inc
+      dt-bindings: display: simple: Add Raystar RFF500F-AWH-DNN panel
+      drm/panel: simple: Add Raystar RFF500F-AWH-DNN panel entry
+
+Harry Wentland (29):
+      drm: Add helper for conversion from signed-magnitude
+      drm/vkms: Add kunit tests for VKMS LUT handling
+      drm/doc/rfc: Describe why prescriptive color pipeline is needed
+      drm/colorop: Introduce new drm_colorop mode object
+      drm/colorop: Add TYPE property
+      drm/colorop: Add 1D Curve subtype
+      drm/colorop: Add BYPASS property
+      drm/colorop: Add NEXT property
+      drm/colorop: Add atomic state print for drm_colorop
+      drm/plane: Add COLOR PIPELINE property
+      drm/colorop: Introduce DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE
+      Documentation/gpu: document drm_colorop
+      drm/vkms: Add enumerated 1D curve colorop
+      drm/vkms: Add kunit tests for linear and sRGB LUTs
+      drm/colorop: Add 3x4 CTM type
+      drm/vkms: Use s32 for internal color pipeline precision
+      drm/vkms: add 3x4 matrix in color pipeline
+      drm/tests: Add a few tests around drm_fixed.h
+      drm/vkms: Add tests for CTM handling
+      drm/colorop: pass plane_color_pipeline client cap to atomic check
+      drm/amd/display: Ignore deprecated props when plane_color_pipeline set
+      drm/amd/display: Add bypass COLOR PIPELINE
+      drm/colorop: Add PQ 125 EOTF and its inverse
+      drm/amd/display: Enable support for PQ 125 EOTF and Inverse
+      drm/colorop: add BT2020/BT709 OETF and Inverse OETF
+      drm/amd/display: Add support for BT.709 and BT.2020 TFs
+      drm/colorop: Define LUT_1D interpolation
+      drm/colorop: allow non-bypass colorops
+      drm/amd/display: Add AMD color pipeline doc
+
+Josua Mayer (3):
+      dt-bindings: display: panel: ronbo,rb070d30: panel-common ref
+      dt-bindings: panel: lvds: add Winstar WF70A8SYJHLNGA
+      drm/panel: ronbo-rb070d30: fix warning with gpio controllers that sleep
+
+Karunika Choo (8):
+      drm/panthor: Add arch-specific panthor_hw binding
+      drm/panthor: Add architecture-specific function operations
+      drm/panthor: Introduce panthor_pwr API and power control framework
+      drm/panthor: Implement L2 power on/off via PWR_CONTROL
+      drm/panthor: Implement soft reset via PWR_CONTROL
+      drm/panthor: Support GLB_REQ.STATE field for Mali-G1 GPUs
+      drm/panthor: Support 64-bit endpoint_req register for Mali-G1
+      drm/panthor: Add support for Mali-G1 GPUs
+
+Langyan Ye (1):
+      drm/panel-edp: Add CSW MNE007QB3-1
+
+Louis Chauvet (2):
+      drm/vkms: Pass plane_cfg to plane initialization
+      drm/vkms: Add config for default plane pipeline
+
+Loïc Molinari (1):
+      drm/panthor: Improve IOMMU map/unmap debugging logs
+
+Maud Spierings (2):
+      dt-bindings: display: bridge: simple: document the Parade PS185HDM DP-to-HDMI bridge
+      drm/bridge: simple: add the Parade PS185HDM DP-to-HDMI bridge
+
+Mikko Perttunen (1):
+      gpu: host1x: Syncpoint interrupt performance optimization
+
+Nishanth Menon (5):
+      dt-bindings: display: bridge: it66121: Add compatible string for IT66122
+      drm/bridge: it66121: Drop ftrace like dev_dbg() prints
+      drm/bridge: it66121: Sort the compatibles
+      drm/bridge: it66121: Use vid/pid to detect the type of chip
+      drm/bridge: it66121: Add minimal it66122 support
+
+Pierre-Eric Pelloux-Prayer (2):
+      drm/ttm: rework pipelined eviction fence handling
+      drm/amdgpu: use ttm_resource_manager_cleanup
+
+Steven Price (1):
+      drm/gem: Correct error condition in drm_gem_objects_lookup
+
+Suraj Kandpal (1):
+      drm/display/dp_mst: Add protection against 0 vcpi
+
+Svyatoslav Ryhel (6):
+      drm/tegra: dsi: Make SOL delay calculation mode independent
+      drm/tegra: dsi: Calculate packet parameters for video mode
+      dt-bindings: display: panel: properly document LG LD070WX3 panel
+      gpu/drm: panel: add support for LG LD070WX3-SL01 MIPI DSI panel
+      dt-bindings: display: panel: document Samsung LTL106AL01 simple panel
+      gpu/drm: panel: simple-panel: add Samsung LTL106AL01 LVDS panel support
+
+Thomas Zimmermann (7):
+      drm/client: Pass force parameter to client restore
+      drm/client: Support emergency restore via sysrq for all clients
+      drm/client: log: Implement struct drm_client_funcs.restore
+      drm/fb-helper: Allocate and release fb_info in single place
+      drm/ast: Move cursor format conversion into helper function
+      drm/ast: Support cursor buffers objects in I/O memory
+      drm/ast: Wrap cursor framebuffer access in drm_gem_fb_begin/end_cpu_access()
+
+Tvrtko Ursulin (2):
+      drm/gem: Use vmemdup_array_user in drm_gem_objects_lookup
+      drm/panic: Report invalid or unsupported panic modes
+
+Uma Shankar (1):
+      drm: Add Enhanced LUT precision structure
+
+ .../bindings/display/bridge/ite,it66121.yaml       |   1 +
+ .../bindings/display/bridge/simple-bridge.yaml     |   2 +
+ .../bindings/display/panel/ilitek,ili9881c.yaml    |   1 +
+ .../bindings/display/panel/lg,ld070wx3-sl01.yaml   |  60 ++
+ .../bindings/display/panel/panel-lvds.yaml         |   2 +
+ .../bindings/display/panel/panel-simple-dsi.yaml   |  27 +-
+ .../bindings/display/panel/panel-simple.yaml       |   4 +
+ .../bindings/display/panel/ronbo,rb070d30.yaml     |  14 +-
+ .../bindings/display/panel/samsung,sofef00.yaml    |  79 ++
+ .../rockchip/rockchip,rk3588-dw-hdmi-qp.yaml       |  11 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |   4 +
+ Documentation/gpu/drm-kms.rst                      |  15 +
+ Documentation/gpu/rfc/color_pipeline.rst           | 378 ++++++++++
+ Documentation/gpu/rfc/index.rst                    |   3 +
+ MAINTAINERS                                        |   7 +
+ drivers/dma-buf/dma-fence.c                        |  20 +-
+ drivers/dma-buf/heaps/system_heap.c                |  33 +-
+ drivers/dma-buf/sw_sync.c                          |   4 +
+ drivers/gpu/drm/Makefile                           |   4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c            |   6 +-
+ drivers/gpu/drm/amd/display/amdgpu_dm/Makefile     |   3 +-
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  |   4 +
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_color.c    | 768 ++++++++++++++++++-
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c  | 209 ++++++
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.h  |  36 +
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c |  26 +-
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c    |  39 +
+ drivers/gpu/drm/armada/armada_fbdev.c              |  12 +-
+ drivers/gpu/drm/ast/ast_cursor.c                   |  83 ++-
+ drivers/gpu/drm/bridge/ite-it66121.c               |  68 +-
+ drivers/gpu/drm/bridge/simple-bridge.c             |  10 +
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c       |  11 +-
+ drivers/gpu/drm/clients/drm_fbdev_client.c         |   6 +-
+ drivers/gpu/drm/clients/drm_log.c                  |  13 +
+ drivers/gpu/drm/display/drm_dp_mst_topology.c      |   3 +-
+ drivers/gpu/drm/drm_atomic.c                       | 167 ++++-
+ drivers/gpu/drm/drm_atomic_helper.c                |  12 +
+ drivers/gpu/drm/drm_atomic_state_helper.c          |   5 +
+ drivers/gpu/drm/drm_atomic_uapi.c                  | 156 ++++
+ drivers/gpu/drm/drm_client.c                       |   1 +
+ drivers/gpu/drm/drm_client_event.c                 |   4 +-
+ drivers/gpu/drm/drm_client_sysrq.c                 |  65 ++
+ drivers/gpu/drm/drm_color_mgmt.c                   |  43 ++
+ drivers/gpu/drm/drm_colorop.c                      | 599 +++++++++++++++
+ drivers/gpu/drm/drm_connector.c                    |   1 +
+ drivers/gpu/drm/drm_crtc_internal.h                |   1 +
+ drivers/gpu/drm/drm_drv.c                          |   3 +
+ drivers/gpu/drm/drm_fb_helper.c                    | 108 +--
+ drivers/gpu/drm/drm_fbdev_dma.c                    |  12 +-
+ drivers/gpu/drm/drm_fbdev_shmem.c                  |  12 +-
+ drivers/gpu/drm/drm_fbdev_ttm.c                    |  12 +-
+ drivers/gpu/drm/drm_file.c                         |   2 +-
+ drivers/gpu/drm/drm_gem.c                          |  16 +-
+ drivers/gpu/drm/drm_internal.h                     |  11 +
+ drivers/gpu/drm/drm_ioctl.c                        |   7 +
+ drivers/gpu/drm/drm_mode_config.c                  |   7 +
+ drivers/gpu/drm/drm_mode_object.c                  |  18 +
+ drivers/gpu/drm/drm_panic.c                        |  77 +-
+ drivers/gpu/drm/drm_plane.c                        |  59 ++
+ drivers/gpu/drm/exynos/exynos_drm_fbdev.c          |   9 +-
+ drivers/gpu/drm/gma500/fbdev.c                     |  12 +-
+ drivers/gpu/drm/i915/display/intel_fbdev.c         |   9 +-
+ drivers/gpu/drm/msm/msm_fbdev.c                    |   9 +-
+ drivers/gpu/drm/omapdrm/omap_fbdev.c               |   9 +-
+ drivers/gpu/drm/panel/Kconfig                      |  20 +-
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-edp.c                  |   2 +
+ drivers/gpu/drm/panel/panel-ilitek-ili9881c.c      | 225 ++++++
+ drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c   |  21 +-
+ drivers/gpu/drm/panel/panel-lg-ld070wx3.c          | 184 +++++
+ drivers/gpu/drm/panel/panel-ronbo-rb070d30.c       |   8 +-
+ drivers/gpu/drm/panel/panel-samsung-sofef00.c      | 105 ++-
+ drivers/gpu/drm/panel/panel-simple.c               |  92 ++-
+ drivers/gpu/drm/panthor/Makefile                   |   1 +
+ drivers/gpu/drm/panthor/panthor_device.c           |  18 +-
+ drivers/gpu/drm/panthor/panthor_device.h           |   8 +
+ drivers/gpu/drm/panthor/panthor_fw.c               | 131 +++-
+ drivers/gpu/drm/panthor/panthor_fw.h               |  32 +-
+ drivers/gpu/drm/panthor/panthor_gem.c              |   6 +-
+ drivers/gpu/drm/panthor/panthor_gpu.c              |  31 +-
+ drivers/gpu/drm/panthor/panthor_gpu.h              |   1 +
+ drivers/gpu/drm/panthor/panthor_hw.c               | 107 ++-
+ drivers/gpu/drm/panthor/panthor_hw.h               |  47 +-
+ drivers/gpu/drm/panthor/panthor_mmu.c              | 297 ++++----
+ drivers/gpu/drm/panthor/panthor_pwr.c              | 549 ++++++++++++++
+ drivers/gpu/drm/panthor/panthor_pwr.h              |  23 +
+ drivers/gpu/drm/panthor/panthor_regs.h             |  79 ++
+ drivers/gpu/drm/panthor/panthor_sched.c            | 509 ++++++++-----
+ drivers/gpu/drm/radeon/radeon_fbdev.c              |  13 +-
+ drivers/gpu/drm/rockchip/analogix_dp-rockchip.c    |  31 +-
+ drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c     | 120 ++-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c        |   3 +
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c       |  56 +-
+ drivers/gpu/drm/rockchip/rockchip_vop2_reg.c       |  49 +-
+ drivers/gpu/drm/tegra/Makefile                     |   1 +
+ drivers/gpu/drm/tegra/drm.c                        |   2 +
+ drivers/gpu/drm/tegra/drm.h                        |   1 +
+ drivers/gpu/drm/tegra/dsi.c                        |  59 +-
+ drivers/gpu/drm/tegra/fbdev.c                      |   9 +-
+ drivers/gpu/drm/tegra/nvjpg.c                      | 330 +++++++++
+ drivers/gpu/drm/tests/Makefile                     |   3 +-
+ drivers/gpu/drm/tests/drm_fixp_test.c              |  71 ++
+ drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c   |  11 +-
+ drivers/gpu/drm/ttm/tests/ttm_resource_test.c      |   5 +-
+ drivers/gpu/drm/ttm/ttm_bo.c                       |  47 +-
+ drivers/gpu/drm/ttm/ttm_bo_util.c                  |  38 +-
+ drivers/gpu/drm/ttm/ttm_resource.c                 |  31 +-
+ drivers/gpu/drm/vkms/Makefile                      |   4 +-
+ drivers/gpu/drm/vkms/tests/Makefile                |   3 +-
+ drivers/gpu/drm/vkms/tests/vkms_color_test.c       | 414 +++++++++++
+ drivers/gpu/drm/vkms/tests/vkms_config_test.c      |  47 +-
+ drivers/gpu/drm/vkms/vkms_colorop.c                | 120 +++
+ drivers/gpu/drm/vkms/vkms_composer.c               | 135 +++-
+ drivers/gpu/drm/vkms/vkms_composer.h               |  28 +
+ drivers/gpu/drm/vkms/vkms_config.c                 |   7 +-
+ drivers/gpu/drm/vkms/vkms_config.h                 |  28 +-
+ drivers/gpu/drm/vkms/vkms_drv.c                    |   8 +-
+ drivers/gpu/drm/vkms/vkms_drv.h                    |  12 +-
+ drivers/gpu/drm/vkms/vkms_luts.c                   | 811 +++++++++++++++++++++
+ drivers/gpu/drm/vkms/vkms_luts.h                   |  12 +
+ drivers/gpu/drm/vkms/vkms_output.c                 |   6 +-
+ drivers/gpu/drm/vkms/vkms_plane.c                  |   9 +-
+ drivers/gpu/host1x/dev.c                           |   9 +
+ drivers/gpu/host1x/dev.h                           |   3 +
+ drivers/gpu/host1x/hw/intr_hw.c                    |  56 +-
+ include/drm/bridge/dw_hdmi_qp.h                    |   4 +
+ include/drm/drm_atomic.h                           | 111 +++
+ include/drm/drm_atomic_uapi.h                      |   3 +
+ include/drm/drm_client.h                           |   8 +-
+ include/drm/drm_client_event.h                     |   4 +-
+ include/drm/drm_color_mgmt.h                       |  29 +
+ include/drm/drm_colorop.h                          | 464 ++++++++++++
+ include/drm/drm_device.h                           |   8 +
+ include/drm/drm_fb_helper.h                        |  20 +-
+ include/drm/drm_file.h                             |   7 +
+ include/drm/drm_fixed.h                            |  17 +
+ include/drm/drm_mode_config.h                      |  18 +
+ include/drm/drm_plane.h                            |  19 +
+ include/drm/ttm/ttm_resource.h                     |  29 +-
+ include/uapi/drm/amdgpu_drm.h                      |   9 -
+ include/uapi/drm/drm.h                             |  15 +
+ include/uapi/drm/drm_mode.h                        | 134 ++++
+ 142 files changed, 8315 insertions(+), 1085 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/lg,ld070wx3-sl01.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/panel/samsung,sofef00.yaml
+ create mode 100644 Documentation/gpu/rfc/color_pipeline.rst
+ create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c
+ create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.h
+ create mode 100644 drivers/gpu/drm/drm_client_sysrq.c
+ create mode 100644 drivers/gpu/drm/drm_colorop.c
+ create mode 100644 drivers/gpu/drm/panel/panel-lg-ld070wx3.c
+ create mode 100644 drivers/gpu/drm/panthor/panthor_pwr.c
+ create mode 100644 drivers/gpu/drm/panthor/panthor_pwr.h
+ create mode 100644 drivers/gpu/drm/tegra/nvjpg.c
+ create mode 100644 drivers/gpu/drm/tests/drm_fixp_test.c
+ create mode 100644 drivers/gpu/drm/vkms/tests/vkms_color_test.c
+ create mode 100644 drivers/gpu/drm/vkms/vkms_colorop.c
+ create mode 100644 drivers/gpu/drm/vkms/vkms_composer.h
+ create mode 100644 drivers/gpu/drm/vkms/vkms_luts.c
+ create mode 100644 drivers/gpu/drm/vkms/vkms_luts.h
+ create mode 100644 include/drm/drm_colorop.h
