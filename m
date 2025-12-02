@@ -2,104 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D36BC9B3ED
-	for <lists+intel-gfx@lfdr.de>; Tue, 02 Dec 2025 12:01:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60874C9B913
+	for <lists+intel-gfx@lfdr.de>; Tue, 02 Dec 2025 14:19:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49E8710E055;
-	Tue,  2 Dec 2025 11:01:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin.net header.i=@ursulin.net header.b="fGtOvL0x";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAA3010E009;
+	Tue,  2 Dec 2025 13:19:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com
- [209.85.221.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2932610E055
- for <intel-gfx@lists.freedesktop.org>; Tue,  2 Dec 2025 11:01:09 +0000 (UTC)
-Received: by mail-wr1-f47.google.com with SMTP id
- ffacd0b85a97d-42e2e50c233so1157196f8f.3
- for <intel-gfx@lists.freedesktop.org>; Tue, 02 Dec 2025 03:01:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin.net; s=google; t=1764673268; x=1765278068; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=3pXRkvL+3EKC42zHA7TH8eep1dhxLz7bXYCNktMuQXQ=;
- b=fGtOvL0xEU3iWyYkmby4skYMbBPnP+Fd9EihLRLIdj3Ac80ydF+7xdsO/7LTKgDnVT
- ZodMI8BN67nPIgZZ7AlSy0OJTV3QBajQZ9iYnKdHiZLX8D+0ab65NiUZuIhvZ1yP0y8h
- EQ+w7gXgYfbXUoazKpTbWZqmzmM8t+GDXb29nFe21morPLSc0Sh1w/N0acsTnUakHmPd
- I/FXunkfmPl8vxgHXMkX2QaEXyb9iYGWKJC8ksk4OHEjCtAMNVJCM0TnFZutEoRa6GBb
- Kw6PKpbIrWEMF0B8MN0tS67wAIPs63weWSIbu5Xz3wTGhioKg7yIPA8NkNUN8pj4I0En
- R+8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1764673268; x=1765278068;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=3pXRkvL+3EKC42zHA7TH8eep1dhxLz7bXYCNktMuQXQ=;
- b=CZcEHJRKJeZqO8RQDF7IUDrPptEMdj8HbFikEwSu3aUjH6H7wSj2i/lBF1/uQfVERq
- vPrXKJLMuMDm1pEv5sULRNFxU/6WLxAj7q7FFlajm7P/Reg73x33FYPzL5Wdar+w76HS
- ojbCR396Z2xmONKUoSHMXHWL6izNcrf52NNm5V6VT2T/VdLpE7yo1z80FrRfox9ghWWf
- VJ0C7Bz6KsXaE2fsC2AxCocVRnXZOgpD6MrJopN2tvqycaZbA+TVkkVnFEX8WUqb9xs+
- 9XL3LrKx7TGG3/W6Jbth/iuwgNsvOUOF4DF3icj4epGXLDjbHEi1eJcAOEwiPuv0b740
- AIIA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWgcPqvSnXD4q88j8P/UA7BzRT9EuPrAcFgI40rZz+jcKUrsFzEpXemnXOQsqq8A5uVPLrdKVFJapU=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwGii5U1sHlBAl8x75ftPLLN/EawC3wiokb25BMMFIPYy+u5M0Q
- iVQzzkWCs2ZtFv91KGKboTf8hXn43noU/F79fiFOsfXc5UMrmpG7nGURidTdizAi7Mg=
-X-Gm-Gg: ASbGncvU+Wy4ZEHq+7ddJGR//OvtrU29ZLg/AeMEy/91qWLcEbhZyxsgrDT90BTCJ0B
- m/yZtbvuqeMXMkPR6KsJWKKj2OE7tSz/7otxpPNNFirHaXuigHH1RPws73WnCC9GEjfaepOMNrF
- x9ZwIikiQn57Y/kVznWvhPjxNf+CajwY5XEQCLy6td/9odWalj6zj8ISo2+7JeP99uAzqsFRX/l
- x/gufKRWv4J0ArHxydITlvZMkHfIk4wYo7UgNrKsFvv22ddmu0QB/GCdKYnhd/Nvsaghtv2aO8R
- VipFOj4aE6e5EJ9/VjH6aiCRJ0Juw0EZg0ruqUzALeMvqv3qGgzA++xtT8ulUcN/iKUAUpjZcFx
- a/xI9R5rE/PihlOM/D8OkZe/ofAq367oqtZKSRUv5yU3Rec3/AUOnhaTuU3jxQ3a64sckD041PL
- lrixjl4ZheIcIOL7pRtZ4tUXDSH+h4j0XJ
-X-Google-Smtp-Source: AGHT+IFAG5uHEhKGtESUOPxceOxz41Vbw8T+eCL6cDBq81BKt4lQ3T8lUorv36zH1Q8hKyeWit7L/g==
-X-Received: by 2002:a05:6000:4012:b0:428:5673:11e0 with SMTP id
- ffacd0b85a97d-42cc1d1999dmr46866026f8f.40.1764673266852; 
- Tue, 02 Dec 2025 03:01:06 -0800 (PST)
-Received: from [192.168.0.101] ([90.240.106.137])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-42e1c5d6049sm33688483f8f.10.2025.12.02.03.01.05
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 02 Dec 2025 03:01:05 -0800 (PST)
-Message-ID: <0a233d0d-17a2-4f5b-85bb-a33451ec6e9f@ursulin.net>
-Date: Tue, 2 Dec 2025 11:01:04 +0000
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34F6110E009;
+ Tue,  2 Dec 2025 13:19:40 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2166366528472854517=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 05/11] drm/i915: Use huge tmpfs mountpoint helpers
-To: =?UTF-8?Q?Lo=C3=AFc_Molinari?= <loic.molinari@collabora.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
- Liviu Dudau <liviu.dudau@arm.com>, Melissa Wen <mwen@igalia.com>,
- =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
- Hugh Dickins <hughd@google.com>, Baolin Wang
- <baolin.wang@linux.alibaba.com>, Andrew Morton <akpm@linux-foundation.org>,
- Al Viro <viro@zeniv.linux.org.uk>, =?UTF-8?Q?Miko=C5=82aj_Wasiak?=
- <mikolaj.wasiak@intel.com>, Christian Brauner <brauner@kernel.org>,
- Nitin Gote <nitin.r.gote@intel.com>, Andi Shyti
- <andi.shyti@linux.intel.com>, Jonathan Corbet <corbet@lwn.net>,
- Christopher Healy <healych@amazon.com>, Matthew Wilcox
- <willy@infradead.org>, Bagas Sanjaya <bagasdotme@gmail.com>
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-mm@kvack.org,
- linux-doc@vger.kernel.org, kernel@collabora.com
-References: <20251114170303.2800-1-loic.molinari@collabora.com>
- <20251114170303.2800-6-loic.molinari@collabora.com>
- <fee6476e-3168-4f4f-ae2f-3ef65fe209b0@ursulin.net>
- <240d0dce-bbc4-4c82-9f9f-7f4625da8315@collabora.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <240d0dce-bbc4-4c82-9f9f-7f4625da8315@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_Selective_Fetch_and_async?=
+ =?utf-8?q?_flip_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 02 Dec 2025 13:19:40 -0000
+Message-ID: <176468158020.50139.4811281910844869476@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251201132457.624358-1-jouni.hogander@intel.com>
+In-Reply-To: <20251201132457.624358-1-jouni.hogander@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,474 +37,156 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============2166366528472854517==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 28/11/2025 18:41, Loïc Molinari wrote:
-> On 20/11/2025 10:31, Tvrtko Ursulin wrote:
->>
->> On 14/11/2025 17:02, Loïc Molinari wrote:
->>> Make use of the new drm_gem_huge_mnt_create() and
->>> drm_gem_get_huge_mnt() helpers to avoid code duplication. Now that
->>> it's just a few lines long, the single function in i915_gemfs.c is
->>> moved into v3d_gem_shmem.c.
->>>
->>> v3:
->>> - use huge tmpfs mountpoint in drm_device
->>> - move i915_gemfs.c into i915_gem_shmem.c
->>>
->>> v4:
->>> - clean up mountpoint creation error handling
->>>
->>> v5:
->>> - use drm_gem_has_huge_mnt() helper
->>>
->>> v7:
->>> - include <drm/drm_print.h> in i915_gem_shmem.c
->>>
->>> v8:
->>> - keep logging notice message with CONFIG_TRANSPARENT_HUGEPAGE=n
->>> - don't access huge_mnt field with CONFIG_TRANSPARENT_HUGEPAGE=n
->>>
->>> v9:
->>> - replace drm_gem_has_huge_mnt() by drm_gem_get_huge_mnt()
->>> - remove useless ternary op test in selftests/huge_pages.c
->>>
->>> Signed-off-by: Loïc Molinari <loic.molinari@collabora.com>
->>> ---
->>>   drivers/gpu/drm/i915/Makefile                 |  3 +-
->>>   drivers/gpu/drm/i915/gem/i915_gem_shmem.c     | 48 +++++++++----
->>>   drivers/gpu/drm/i915/gem/i915_gemfs.c         | 71 -------------------
->>>   drivers/gpu/drm/i915/gem/i915_gemfs.h         | 14 ----
->>>   .../gpu/drm/i915/gem/selftests/huge_pages.c   | 16 +++--
->>>   drivers/gpu/drm/i915/i915_drv.h               |  5 --
->>>   6 files changed, 47 insertions(+), 110 deletions(-)
->>>   delete mode 100644 drivers/gpu/drm/i915/gem/i915_gemfs.c
->>>   delete mode 100644 drivers/gpu/drm/i915/gem/i915_gemfs.h
->>>
->>> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/ 
->>> Makefile
->>> index 84ec79b64960..b5a8c0a6b747 100644
->>> --- a/drivers/gpu/drm/i915/Makefile
->>> +++ b/drivers/gpu/drm/i915/Makefile
->>> @@ -169,8 +169,7 @@ gem-y += \
->>>       gem/i915_gem_ttm_move.o \
->>>       gem/i915_gem_ttm_pm.o \
->>>       gem/i915_gem_userptr.o \
->>> -    gem/i915_gem_wait.o \
->>> -    gem/i915_gemfs.o
->>> +    gem/i915_gem_wait.o
->>>   i915-y += \
->>>       $(gem-y) \
->>>       i915_active.o \
->>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/ 
->>> drm/i915/gem/i915_gem_shmem.c
->>> index 26dda55a07ff..15c2c6fde2ac 100644
->>> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
->>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
->>> @@ -9,14 +9,16 @@
->>>   #include <linux/uio.h>
->>>   #include <drm/drm_cache.h>
->>> +#include <drm/drm_gem.h>
->>> +#include <drm/drm_print.h>
->>>   #include "gem/i915_gem_region.h"
->>>   #include "i915_drv.h"
->>>   #include "i915_gem_object.h"
->>>   #include "i915_gem_tiling.h"
->>> -#include "i915_gemfs.h"
->>>   #include "i915_scatterlist.h"
->>>   #include "i915_trace.h"
->>> +#include "i915_utils.h"
->>>   /*
->>>    * Move folios to appropriate lru and release the batch, 
->>> decrementing the
->>> @@ -497,6 +499,7 @@ static int __create_shmem(struct drm_i915_private 
->>> *i915,
->>>                 resource_size_t size)
->>>   {
->>>       unsigned long flags = VM_NORESERVE;
->>> +    struct vfsmount *huge_mnt;
->>>       struct file *filp;
->>>       drm_gem_private_object_init(&i915->drm, obj, size);
->>> @@ -515,9 +518,9 @@ static int __create_shmem(struct drm_i915_private 
->>> *i915,
->>>       if (BITS_PER_LONG == 64 && size > MAX_LFS_FILESIZE)
->>>           return -E2BIG;
->>> -    if (i915->mm.gemfs)
->>> -        filp = shmem_file_setup_with_mnt(i915->mm.gemfs, "i915", size,
->>> -                         flags);
->>> +    huge_mnt = drm_gem_get_huge_mnt(&i915->drm);
->>> +    if (huge_mnt)
->>> +        filp = shmem_file_setup_with_mnt(huge_mnt, "i915", size, 
->>> flags);
->>>       else
->>>           filp = shmem_file_setup("i915", size, flags);
->>>       if (IS_ERR(filp))
->>> @@ -644,21 +647,40 @@ i915_gem_object_create_shmem_from_data(struct 
->>> drm_i915_private *i915,
->>>   static int init_shmem(struct intel_memory_region *mem)
->>>   {
->>> -    i915_gemfs_init(mem->i915);
->>> -    intel_memory_region_set_name(mem, "system");
->>> +    struct drm_i915_private *i915 = mem->i915;
->>> -    return 0; /* We have fallback to the kernel mnt if gemfs init 
->>> failed. */
->>> -}
->>> +    /*
->>> +     * By creating our own shmemfs mountpoint, we can pass in
->>> +     * mount flags that better match our usecase.
->>> +     *
->>> +     * One example, although it is probably better with a per-file
->>> +     * control, is selecting huge page allocations 
->>> ("huge=within_size").
->>> +     * However, we only do so on platforms which benefit from it, or to
->>> +     * offset the overhead of iommu lookups, where with latter it is 
->>> a net
->>> +     * win even on platforms which would otherwise see some performance
->>> +     * regressions such a slow reads issue on Broadwell and Skylake.
->>> +     */
->>> -static int release_shmem(struct intel_memory_region *mem)
->>> -{
->>> -    i915_gemfs_fini(mem->i915);
->>> -    return 0;
->>> +    if (GRAPHICS_VER(i915) < 11 && !i915_vtd_active(i915))
->>> +        goto no_thp;
->>> +
->>> +    drm_gem_huge_mnt_create(&i915->drm, "within_size");
->>> +    if (drm_gem_get_huge_mnt(&i915->drm))
->>> +        drm_info(&i915->drm, "Using Transparent Hugepages\n");
->>> +    else
->>> +        drm_notice(&i915->drm,
->>> +               "Transparent Hugepage support is recommended for 
->>> optimal performance%s\n",
->>> +               GRAPHICS_VER(i915) >= 11 ? " on this platform!" :
->>> +                              " when IOMMU is enabled!");
->>> +
->>> + no_thp:
->>> +    intel_memory_region_set_name(mem, "system");
->>> +
->>> +    return 0; /* We have fallback to the kernel mnt if huge mnt 
->>> failed. */
->>>   }
->>>   static const struct intel_memory_region_ops shmem_region_ops = {
->>>       .init = init_shmem,
->>> -    .release = release_shmem,
->>>       .init_object = shmem_object_init,
->>>   };
->>> diff --git a/drivers/gpu/drm/i915/gem/i915_gemfs.c b/drivers/gpu/drm/ 
->>> i915/gem/i915_gemfs.c
->>> deleted file mode 100644
->>> index 1f1290214031..000000000000
->>> --- a/drivers/gpu/drm/i915/gem/i915_gemfs.c
->>> +++ /dev/null
->>> @@ -1,71 +0,0 @@
->>> -// SPDX-License-Identifier: MIT
->>> -/*
->>> - * Copyright © 2017 Intel Corporation
->>> - */
->>> -
->>> -#include <linux/fs.h>
->>> -#include <linux/mount.h>
->>> -#include <linux/fs_context.h>
->>> -
->>> -#include <drm/drm_print.h>
->>> -
->>> -#include "i915_drv.h"
->>> -#include "i915_gemfs.h"
->>> -#include "i915_utils.h"
->>> -
->>> -void i915_gemfs_init(struct drm_i915_private *i915)
->>> -{
->>> -    struct file_system_type *type;
->>> -    struct fs_context *fc;
->>> -    struct vfsmount *gemfs;
->>> -    int ret;
->>> -
->>> -    /*
->>> -     * By creating our own shmemfs mountpoint, we can pass in
->>> -     * mount flags that better match our usecase.
->>> -     *
->>> -     * One example, although it is probably better with a per-file
->>> -     * control, is selecting huge page allocations 
->>> ("huge=within_size").
->>> -     * However, we only do so on platforms which benefit from it, or to
->>> -     * offset the overhead of iommu lookups, where with latter it is 
->>> a net
->>> -     * win even on platforms which would otherwise see some performance
->>> -     * regressions such a slow reads issue on Broadwell and Skylake.
->>> -     */
->>> -
->>> -    if (GRAPHICS_VER(i915) < 11 && !i915_vtd_active(i915))
->>> -        return;
->>> -
->>> -    if (!IS_ENABLED(CONFIG_TRANSPARENT_HUGEPAGE))
->>> -        goto err;
->>> -
->>> -    type = get_fs_type("tmpfs");
->>> -    if (!type)
->>> -        goto err;
->>> -
->>> -    fc = fs_context_for_mount(type, SB_KERNMOUNT);
->>> -    if (IS_ERR(fc))
->>> -        goto err;
->>> -    ret = vfs_parse_fs_string(fc, "source", "tmpfs");
->>> -    if (!ret)
->>> -        ret = vfs_parse_fs_string(fc, "huge", "within_size");
->>> -    if (!ret)
->>> -        gemfs = fc_mount_longterm(fc);
->>> -    put_fs_context(fc);
->>> -    if (ret)
->>> -        goto err;
->>> -
->>> -    i915->mm.gemfs = gemfs;
->>> -    drm_info(&i915->drm, "Using Transparent Hugepages\n");
->>> -    return;
->>> -
->>> -err:
->>> -    drm_notice(&i915->drm,
->>> -           "Transparent Hugepage support is recommended for optimal 
->>> performance%s\n",
->>> -           GRAPHICS_VER(i915) >= 11 ? " on this platform!" :
->>> -                          " when IOMMU is enabled!");
->>> -}
->>> -
->>> -void i915_gemfs_fini(struct drm_i915_private *i915)
->>> -{
->>> -    kern_unmount(i915->mm.gemfs);
->>> -}
->>> diff --git a/drivers/gpu/drm/i915/gem/i915_gemfs.h b/drivers/gpu/drm/ 
->>> i915/gem/i915_gemfs.h
->>> deleted file mode 100644
->>> index 16d4333c9a4e..000000000000
->>> --- a/drivers/gpu/drm/i915/gem/i915_gemfs.h
->>> +++ /dev/null
->>> @@ -1,14 +0,0 @@
->>> -/* SPDX-License-Identifier: MIT */
->>> -/*
->>> - * Copyright © 2017 Intel Corporation
->>> - */
->>> -
->>> -#ifndef __I915_GEMFS_H__
->>> -#define __I915_GEMFS_H__
->>> -
->>> -struct drm_i915_private;
->>> -
->>> -void i915_gemfs_init(struct drm_i915_private *i915);
->>> -void i915_gemfs_fini(struct drm_i915_private *i915);
->>> -
->>> -#endif
->>> diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/ 
->>> drivers/gpu/drm/i915/gem/selftests/huge_pages.c
->>> index bd08605a1611..28aef75630a2 100644
->>> --- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
->>> +++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
->>> @@ -1316,7 +1316,7 @@ typedef struct drm_i915_gem_object *
->>>   static inline bool igt_can_allocate_thp(struct drm_i915_private *i915)
->>>   {
->>> -    return i915->mm.gemfs && has_transparent_hugepage();
->>> +    return !!drm_gem_get_huge_mnt(&i915->drm);
->>>   }
->>>   static struct drm_i915_gem_object *
->>> @@ -1761,7 +1761,9 @@ static int igt_tmpfs_fallback(void *arg)
->>>       struct drm_i915_private *i915 = arg;
->>>       struct i915_address_space *vm;
->>>       struct i915_gem_context *ctx;
->>> -    struct vfsmount *gemfs = i915->mm.gemfs;
->>> +#ifdef CONFIG_TRANSPARENT_HUGEPAGE
->>> +    struct vfsmount *huge_mnt = i915->drm.huge_mnt;
->>> +#endif
->>>       struct drm_i915_gem_object *obj;
->>>       struct i915_vma *vma;
->>>       struct file *file;
->>> @@ -1782,10 +1784,12 @@ static int igt_tmpfs_fallback(void *arg)
->>>       /*
->>>        * Make sure that we don't burst into a ball of flames upon 
->>> falling back
->>>        * to tmpfs, which we rely on if on the off-chance we encounter 
->>> a failure
->>> -     * when setting up gemfs.
->>> +     * when setting up a huge mountpoint.
->>>        */
->>> -    i915->mm.gemfs = NULL;
->>> +#ifdef CONFIG_TRANSPARENT_HUGEPAGE
->>> +    i915->drm.huge_mnt = NULL;
->>> +#endif
->>>       obj = i915_gem_object_create_shmem(i915, PAGE_SIZE);
->>>       if (IS_ERR(obj)) {
->>> @@ -1819,7 +1823,9 @@ static int igt_tmpfs_fallback(void *arg)
->>>   out_put:
->>>       i915_gem_object_put(obj);
->>>   out_restore:
->>> -    i915->mm.gemfs = gemfs;
->>> +#ifdef CONFIG_TRANSPARENT_HUGEPAGE
->>> +    i915->drm.huge_mnt = huge_mnt;
->>> +#endif
->>
->> Apart from this layering violation in the selftest, this version looks 
->> good to me. I am just wondering if we could somehow improve this 
->> aspect. I was thinking a self-test builds only special version of 
->> i915_gem_object_create_shmem. Call chain is deep but there are flags 
->> passed on:
->>
->> i915_gem_object_create_shmem
->>    i915_gem_object_create_region
->>      __i915_gem_object_create_region
->>        err = mem->ops->init_object(
->>
->> So we could add a new helper like:
->>
->> selftests_create_shmem
->>    i915_gem_object_create_region(...flags = 
->> I915_BO_ALLOC_SELFTESTS_NOTHP...)
->>
->> And in __create_shmem we just make it:
->>
->> ...
->> huge_mnt = drm_gem_get_huge_mnt(&i915->drm) &&
->> if (IS_ENABLED(..SELFTESTS..) &&
->>      (flags & I915_BO_ALLOC_SELFTESTS_NOTHP))
->>      huge_mnt = NULL;
->> ...
->>
->> It would avoid the ifdef and needing to play games with the DRM 
->> internals.
->>
->> How does that sound to you?
-> 
-> That sounds better to me but I'm not very familiar with the i915 testing 
-> process. Would you be ready to accept the currect ifdef'd version for 
-> now and let me take a better look at that proposal later for a follow-up 
-> patch series?
+== Series Details ==
 
-I would rather we do it in one go. I assume you are compile testing the 
-i915 part? I so, would you be happy to integrate something like this in 
-your patch (adjusted for your changes):
+Series: Selective Fetch and async flip (rev4)
+URL   : https://patchwork.freedesktop.org/series/158003/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h 
-b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-index 465ce94aee76..4dbd61280c93 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-@@ -348,12 +348,14 @@ struct drm_i915_gem_object {
-   */
-  #define I915_BO_ALLOC_GPU_ONLY	  BIT(6)
-  #define I915_BO_ALLOC_CCS_AUX	  BIT(7)
-+#define I915_BO_ALLOC_NOTHP 	  BIT(8)
-  /*
-   * Object is allowed to retain its initial data and will not be 
-cleared on first
-   * access if used along with I915_BO_ALLOC_USER. This is mainly to keep
-   * preallocated framebuffer data intact while transitioning it to 
-i915drmfb.
-   */
--#define I915_BO_PREALLOC	  BIT(8)
-+#define I915_BO_PREALLOC	  BIT(9)
-+
-  #define I915_BO_ALLOC_FLAGS (I915_BO_ALLOC_CONTIGUOUS | \
-  			     I915_BO_ALLOC_VOLATILE | \
-  			     I915_BO_ALLOC_CPU_CLEAR | \
-@@ -362,10 +364,12 @@ struct drm_i915_gem_object {
-  			     I915_BO_ALLOC_PM_EARLY | \
-  			     I915_BO_ALLOC_GPU_ONLY | \
-  			     I915_BO_ALLOC_CCS_AUX | \
-+			     I915_BO_ALLOC_NOTHP | \
-  			     I915_BO_PREALLOC)
--#define I915_BO_READONLY          BIT(9)
--#define I915_TILING_QUIRK_BIT     10 /* unknown swizzling; do not 
-release! */
--#define I915_BO_PROTECTED         BIT(11)
-+#define I915_BO_READONLY          BIT(10)
-+#define I915_TILING_QUIRK_BIT     11 /* unknown swizzling; do not 
-release! */
-+#define I915_BO_PROTECTED         BIT(12)
-+
-  	/**
-  	 * @mem_flags - Mutable placement-related flags
-  	 *
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c 
-b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-index 26dda55a07ff..a1e876ce7bb9 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-@@ -494,7 +494,8 @@ const struct drm_i915_gem_object_ops 
-i915_gem_shmem_ops = {
+== Summary ==
 
-  static int __create_shmem(struct drm_i915_private *i915,
-  			  struct drm_gem_object *obj,
--			  resource_size_t size)
-+			  resource_size_t size,
-+			  unsigned int flags)
-  {
-  	unsigned long flags = VM_NORESERVE;
-  	struct file *filp;
-@@ -515,7 +516,7 @@ static int __create_shmem(struct drm_i915_private *i915,
-  	if (BITS_PER_LONG == 64 && size > MAX_LFS_FILESIZE)
-  		return -E2BIG;
+CI Bug Log - changes from CI_DRM_17618 -> Patchwork_158003v4
+====================================================
 
--	if (i915->mm.gemfs)
-+	if (!(flags & I915_BO_ALLOC_NOTHP) && i915->mm.gemfs)
-  		filp = shmem_file_setup_with_mnt(i915->mm.gemfs, "i915", size,
-  						 flags);
-  	else
-@@ -548,7 +549,7 @@ static int shmem_object_init(struct 
-intel_memory_region *mem,
-  	gfp_t mask;
-  	int ret;
+Summary
+-------
 
--	ret = __create_shmem(i915, &obj->base, size);
-+	ret = __create_shmem(i915, &obj->base, size, flags);
-  	if (ret)
-  		return ret;
+  **SUCCESS**
 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c 
-b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-index bd08605a1611..c296af381007 100644
---- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-@@ -1787,7 +1787,8 @@ static int igt_tmpfs_fallback(void *arg)
+  No regressions found.
 
-  	i915->mm.gemfs = NULL;
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158003v4/index.html
 
--	obj = i915_gem_object_create_shmem(i915, PAGE_SIZE);
-+	obj = i915_gem_object_create_region(i915->mm.regions[INTEL_REGION_SMEM],
-+					    PAGE_SIZE, 0, I915_BO_ALLOC_NOTHP);
-  	if (IS_ERR(obj)) {
-  		err = PTR_ERR(obj);
-  		goto out_restore;
+Participating hosts (40 -> 39)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_158003v4 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17618/bat-mtlp-8/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158003v4/bat-mtlp-8/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17618/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158003v4/bat-arls-5/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-3:         [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17618/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158003v4/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
 
 
-If it compiles I would take that and will handle any CI fall out.
+Build changes
+-------------
 
-Regards,
+  * Linux: CI_DRM_17618 -> Patchwork_158003v4
 
-Tvrtko
+  CI-20190529: 20190529
+  CI_DRM_17618: 4ffeb1fd1362e2148a7ada498cbaef7b1de27867 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8647: 8647
+  Patchwork_158003v4: 4ffeb1fd1362e2148a7ada498cbaef7b1de27867 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158003v4/index.html
+
+--===============2166366528472854517==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
-> Regards,
-> 
-> Loïc
-> 
->> Regards,
->>
->> Tvrtko
->>
->>>       i915_vm_put(vm);
->>>   out:
->>> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/ 
->>> i915_drv.h
->>> index 95f9ddf22ce4..93a5af3de334 100644
->>> --- a/drivers/gpu/drm/i915/i915_drv.h
->>> +++ b/drivers/gpu/drm/i915/i915_drv.h
->>> @@ -141,11 +141,6 @@ struct i915_gem_mm {
->>>        */
->>>       atomic_t free_count;
->>> -    /**
->>> -     * tmpfs instance used for shmem backed objects
->>> -     */
->>> -    struct vfsmount *gemfs;
->>> -
->>>       struct intel_memory_region *regions[INTEL_REGION_UNKNOWN];
->>>       struct notifier_block oom_notifier;
-> 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Selective Fetch and async flip (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158003/">https://patchwork.freedesktop.org/series/158003/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158003v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158003v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17618 -&gt; Patchwork_158003v4</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158003v4/index.html</p>
+<h2>Participating hosts (40 -&gt; 39)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_158003v4 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17618/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158003v4/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17618/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158003v4/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17618/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158003v4/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17618 -&gt; Patchwork_158003v4</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17618: 4ffeb1fd1362e2148a7ada498cbaef7b1de27867 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8647: 8647<br />
+  Patchwork_158003v4: 4ffeb1fd1362e2148a7ada498cbaef7b1de27867 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============2166366528472854517==--
