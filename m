@@ -2,56 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2EABC9A77A
-	for <lists+intel-gfx@lfdr.de>; Tue, 02 Dec 2025 08:36:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9696BC9A77D
+	for <lists+intel-gfx@lfdr.de>; Tue, 02 Dec 2025 08:36:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 556EA10E56E;
-	Tue,  2 Dec 2025 07:36:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FB0F10E56F;
+	Tue,  2 Dec 2025 07:36:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n3qe9Wm/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QKCiASTz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A651210E56A;
- Tue,  2 Dec 2025 07:36:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6DC610E56F;
+ Tue,  2 Dec 2025 07:36:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764661000; x=1796197000;
+ t=1764661004; x=1796197004;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=EJXtMuzPjKoCIqIv6XVAMvf8RtgQ/p5jsWczsN2z7d4=;
- b=n3qe9Wm/W/wh1dz6hOS+4rQdJ+vr+p+Lp72p3xWyXr3SFJsc49blTYjD
- QHdp/j9BPi3q1uELcU6SOhARzGv45kLcNeTXpxLTAMZcEyp8T8VuVj5kG
- FK9p62mIdHRxhDwD9cONrOOT46Ls6Jx382JWBOL1tmVdXaB1oCpN09Pvo
- +kUBh9zFLVVoChiSjMXvopAyig+RgJyvkqNtULShci2+0Xx4rvYaGl43t
- RJS4GZ7kIzceLAsvds7aY1xLCtIBMkqkVyj8HdpW2HFi2iO37nbsQuNpD
- FL91EQJuLsk8gOaStQDgxyVAs9ZrNfHWY9A9NmHGyE45N/xnH8aNueTVY w==;
-X-CSE-ConnectionGUID: BCaq4ClsT/yyH3i+kySITQ==
-X-CSE-MsgGUID: lOAGVom8RseLSN5EY/iBgg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11630"; a="84219198"
-X-IronPort-AV: E=Sophos;i="6.20,242,1758610800"; d="scan'208";a="84219198"
+ bh=yVrMESJFfKyAw6FLzoatL/DYGZ0EbJqTqozojG8PQjo=;
+ b=QKCiASTzuDmLGtqT6dI/+62DlGDXl4sXYVt0r8oHR3iR3QOflC+b8CGV
+ JQJsYqC8iZ7NRqj6xUaiW7DeGBJha/bM9dokgub98Ig8kkv4Vg9pUnmZh
+ C0wCEKCRoEtkEjHPyk49BgDnRrhM+FHTc1gLy7STq55Mx4OkHBitpqSPK
+ 5exRK+26ZevPuZfIAeriVF7H5fU58HWvHTiKAVMInIvx8Cw866f9NmUrM
+ DW/ty9maXoaYVXuYH2zN4Iktw2Oo7GQkG9zALXvacpP4aD6ruLN5Yu8KI
+ 0sWW1I4Binm4YhWTESDSqoDnuLsSuGY3lwlDs5wJeCbY0CQdY0aMnFMto w==;
+X-CSE-ConnectionGUID: UtF5/PDSRT+0dTOTCdWSmQ==
+X-CSE-MsgGUID: hsF8HvukQ++4BnsRZSyKIw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11630"; a="84219205"
+X-IronPort-AV: E=Sophos;i="6.20,242,1758610800"; d="scan'208";a="84219205"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2025 23:36:40 -0800
-X-CSE-ConnectionGUID: FftHJm/dRuyJnoEEampdug==
-X-CSE-MsgGUID: IofDIimXQSKwnYKHNh3A3A==
+ 01 Dec 2025 23:36:43 -0800
+X-CSE-ConnectionGUID: EHVDc8scQ0acBxjn+OkqgA==
+X-CSE-MsgGUID: U4HCIuRYT1G7znuJMWkiHw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,242,1758610800"; d="scan'208";a="198504732"
+X-IronPort-AV: E=Sophos;i="6.20,242,1758610800"; d="scan'208";a="198504755"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa003.jf.intel.com with ESMTP; 01 Dec 2025 23:36:39 -0800
+ by orviesa003.jf.intel.com with ESMTP; 01 Dec 2025 23:36:41 -0800
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, mitulkumar.ajitkumar.golani@intel.com,
  ankit.k.nautiyal@intel.com, ville.syrjala@linux.intel.com,
  uma.shankar@intel.com, jani.nikula@intel.com
-Subject: [PATCH v10 01/17] drm/i915/display: Add source param for dc balance
-Date: Tue,  2 Dec 2025 13:06:36 +0530
-Message-ID: <20251202073659.926838-2-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH v10 02/17] drm/i915/dmc: Add pipe dmc registers and bits for
+ DC Balance
+Date: Tue,  2 Dec 2025 13:06:37 +0530
+Message-ID: <20251202073659.926838-3-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20251202073659.926838-1-mitulkumar.ajitkumar.golani@intel.com>
 References: <20251202073659.926838-1-mitulkumar.ajitkumar.golani@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,33 +70,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add source param for dc balance enablement.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+Add pipe dmc registers and  access bits for DC Balance params
+configuration and enablement.
 
 --v2:
-- Arrange in alphabetic order. (Ankit)
-- Update name. (Ankit)
+- Separate register definitions for transcoder and
+pipe dmc. (Ankit)
+- Use MMIO pipe macros instead of transcoder ones. (Ankit)
+- Remove dev_priv use. (Jani, Nikula)
 
 --v3:
-- Commit message update. (Ankit)
+- Add all register address, from capital alphabet to small. (Ankit)
+- Add EVT CTL registers.
+- Add co-author tag.
+- Add event flag for Triggering DC Balance.
 
+--v4:
+- Add DCB Flip count and balance reset registers.
+
+--v5:
+- Correct macro usage for flip count. (Ankit)
+- Use register offset in lower case.
+
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_device.h | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/i915/display/intel_dmc_regs.h | 60 +++++++++++++++++++
+ 1 file changed, 60 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index b559ef43d547..7ad49e9529f2 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -200,6 +200,7 @@ struct intel_display_platforms {
- #define HAS_ULTRAJOINER(__display)	(((__display)->platform.dgfx && \
- 					  DISPLAY_VER(__display) == 14) && HAS_DSC(__display))
- #define HAS_VRR(__display)		(DISPLAY_VER(__display) >= 11)
-+#define HAS_VRR_DC_BALANCE(__display)	(DISPLAY_VER(__display) >= 30)
- #define INTEL_NUM_PIPES(__display)	(hweight8(DISPLAY_RUNTIME_INFO(__display)->pipe_mask))
- #define OVERLAY_NEEDS_PHYSICAL(__display)	(DISPLAY_INFO(__display)->overlay_needs_physical)
- #define SUPPORTS_TV(__display)		(DISPLAY_INFO(__display)->supports_tv)
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
+index c5aa49921cb9..38e342b45af0 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
+@@ -584,4 +584,64 @@ enum pipedmc_event_id {
+ #define PTL_PIPEDMC_EXEC_TIME_LINES(start_mmioaddr) _MMIO((start_mmioaddr) + 0x6b8)
+ #define PTL_PIPEDMC_END_OF_EXEC_GB(start_mmioaddr) _MMIO((start_mmioaddr) + 0x6c0)
+ 
++#define _PIPEDMC_DCB_CTL_A			0x5f1a0
++#define _PIPEDMC_DCB_CTL_B			0x5f5a0
++#define PIPEDMC_DCB_CTL(pipe)			_MMIO_PIPE((pipe), _PIPEDMC_DCB_CTL_A,\
++							   _PIPEDMC_DCB_CTL_B)
++#define  PIPEDMC_ADAPTIVE_DCB_ENABLE		REG_BIT(31)
++
++#define _PIPEDMC_DCB_VBLANK_A			0x5f1bc
++#define _PIPEDMC_DCB_VBLANK_B			0x5f5bc
++#define PIPEDMC_DCB_VBLANK(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_DCB_VBLANK_A,\
++							   _PIPEDMC_DCB_VBLANK_B)
++
++#define _PIPEDMC_DCB_SLOPE_A			0x5f1b8
++#define _PIPEDMC_DCB_SLOPE_B			0x5f5b8
++#define PIPEDMC_DCB_SLOPE(pipe)			_MMIO_PIPE((pipe), _PIPEDMC_DCB_SLOPE_A,\
++							   _PIPEDMC_DCB_SLOPE_B)
++
++#define _PIPEDMC_DCB_GUARDBAND_A		0x5f1b4
++#define _PIPEDMC_DCB_GUARDBAND_B		0x5f5b4
++#define PIPEDMC_DCB_GUARDBAND(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_DCB_GUARDBAND_A,\
++							   _PIPEDMC_DCB_GUARDBAND_B)
++
++#define _PIPEDMC_DCB_MAX_INCREASE_A		0x5f1ac
++#define _PIPEDMC_DCB_MAX_INCREASE_B		0x5f5ac
++#define PIPEDMC_DCB_MAX_INCREASE(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_DCB_MAX_INCREASE_A,\
++							   _PIPEDMC_DCB_MAX_INCREASE_B)
++
++#define _PIPEDMC_DCB_MAX_DECREASE_A		0x5f1b0
++#define _PIPEDMC_DCB_MAX_DECREASE_B		0x5f5b0
++#define PIPEDMC_DCB_MAX_DECREASE(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_DCB_MAX_DECREASE_A,\
++							   _PIPEDMC_DCB_MAX_DECREASE_B)
++
++#define _PIPEDMC_DCB_VMIN_A			0x5f1a4
++#define _PIPEDMC_DCB_VMIN_B			0x5f5a4
++#define PIPEDMC_DCB_VMIN(pipe)			_MMIO_PIPE((pipe), _PIPEDMC_DCB_VMIN_A,\
++							   _PIPEDMC_DCB_VMIN_B)
++
++#define _PIPEDMC_DCB_VMAX_A			0x5f1a8
++#define _PIPEDMC_DCB_VMAX_B			0x5f5a8
++#define PIPEDMC_DCB_VMAX(pipe)			_MMIO_PIPE((pipe), _PIPEDMC_DCB_VMAX_A,\
++							   _PIPEDMC_DCB_VMAX_B)
++
++#define _PIPEDMC_DCB_DEBUG_A			0x5f1c0
++#define _PIPEDMC_DCB_DEBUG_B			0x5f5c0
++#define PIPEDMC_DCB_DEBUG(pipe)			_MMIO_PIPE(pipe, _PIPEDMC_DCB_DEBUG_A,\
++							   _PIPEDMC_DCB_DEBUG_B)
++
++#define _PIPEDMC_EVT_CTL_3_A			0x5f040
++#define _PIPEDMC_EVT_CTL_3_B			0x5f440
++#define PIPEDMC_EVT_CTL_3(pipe)			_MMIO_PIPE(pipe, _PIPEDMC_EVT_CTL_3_A,\
++							   _PIPEDMC_EVT_CTL_3_B)
++
++#define _PIPEDMC_DCB_FLIP_COUNT_A		0x906a4
++#define _PIPEDMC_DCB_FLIP_COUNT_B		0x986a4
++#define PIPEDMC_DCB_FLIP_COUNT(pipe)		_MMIO_PIPE(pipe, _PIPEDMC_DCB_FLIP_COUNT_A,\
++							   _PIPEDMC_DCB_FLIP_COUNT_B)
++
++#define _PIPEDMC_DCB_BALANCE_RESET_A		0x906a8
++#define _PIPEDMC_DCB_BALANCE_RESET_B		0x986a8
++#define PIPEDMC_DCB_BALANCE_RESET(pipe)		_MMIO_PIPE(pipe, _PIPEDMC_DCB_BALANCE_RESET_A,\
++							   _PIPEDMC_DCB_BALANCE_RESET_B)
+ #endif /* __INTEL_DMC_REGS_H__ */
 -- 
 2.48.1
 
