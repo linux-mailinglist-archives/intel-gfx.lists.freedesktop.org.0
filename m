@@ -2,57 +2,78 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C2A1C9A7AA
-	for <lists+intel-gfx@lfdr.de>; Tue, 02 Dec 2025 08:37:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63B9DC9A7B0
+	for <lists+intel-gfx@lfdr.de>; Tue, 02 Dec 2025 08:37:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1F3E10E59F;
-	Tue,  2 Dec 2025 07:37:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9120B10E5A0;
+	Tue,  2 Dec 2025 07:37:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lokTkt7b";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="btz0WYEE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4141910E59E;
- Tue,  2 Dec 2025 07:37:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A915910E5A0;
+ Tue,  2 Dec 2025 07:37:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764661041; x=1796197041;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=2YX5OiL8FKTDiCeLwlJds1B3vqrRj9QhLw8Rq2teEqs=;
- b=lokTkt7b23hiO7mcZ/7SP+ANDYqOQZ6s8Swzh4U0GO9A2HJLDqmx3nJQ
- DweCrMbzBV+PeiKrHE2mVtbCSdIFkFXru92pjuxQGneUndO6EsKwTsXBX
- VyMtazKncOlI++Vf6q0PrRS3ZS8vzSaDPeLFCbd8ieZ7rA/MoratpjXrv
- hA51sMol+crh4AAwzW/C5YDB9meDCiPJKKFGcjHa6OcIQhC/uVI4kRjmk
- azqr+4VYo5b56Iq1d9UXExn5uaI9dMDjvGDnIOKv1joqKaEKkwbcXHv9r
- 2EhcIoxLYPL8KOOLGcgS0Mk2VTrAzdOZjGxMkvAx49ojY88SHzYxm9c9B g==;
-X-CSE-ConnectionGUID: KMnf9r0rQ6idhegZjVRxjg==
-X-CSE-MsgGUID: VHNl54MhT7+eJT8y6Qx+gA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11630"; a="84219282"
-X-IronPort-AV: E=Sophos;i="6.20,242,1758610800"; d="scan'208";a="84219282"
+ t=1764661047; x=1796197047;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=dpaBgaXtJH3szD/lMO34UVn3hJPCUmClZoyBvobwS6s=;
+ b=btz0WYEEWyBpFxtY+90pCGitbgCQpojoOtkoaKOHuSJ5/DKQrQ4JtCAh
+ lKSygUs8dlosYLGPt4MjFsf8oLpB4Uwxeib1rXwzFyiXH2riArWAjja20
+ a7Qo1MughmUDwDHux5VznDg6LE1FFm2eLG7Fo9u7vcKZ1utRdzy6wOWQQ
+ VxWj1vfukPKu8gE/X1DrbZhiQH5TrpuRTny9K61fXU79Rlzp0ZwTL3rPX
+ d3/Sbui1dFlx2BwtSUXC3OqgWQC5Y8C4Kcpu6Aaw8255sWniDfXfZOUQZ
+ DA9ddz0VXdI2PfICjA0ZSi03obj4z/AeWxBiP0BqyFgTOVSW9+zGd4PKr Q==;
+X-CSE-ConnectionGUID: dv1ZCZ2+QJaNV0qcN+tL8w==
+X-CSE-MsgGUID: o5yY0melSk6e5Xjf05O6CA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11630"; a="84219292"
+X-IronPort-AV: E=Sophos;i="6.20,242,1758610800"; d="scan'208";a="84219292"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2025 23:37:21 -0800
-X-CSE-ConnectionGUID: mUgcNjK4RnqQaErq6u/t/g==
-X-CSE-MsgGUID: vm3kq2NTQH+ANoeF2Qbupg==
+ 01 Dec 2025 23:37:27 -0800
+X-CSE-ConnectionGUID: 44r/V27uQ+OX+jTsikvq0Q==
+X-CSE-MsgGUID: LH6LluTOTwivvfv8Aejv7Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,242,1758610800"; d="scan'208";a="198504937"
-Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa003.jf.intel.com with ESMTP; 01 Dec 2025 23:37:19 -0800
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, mitulkumar.ajitkumar.golani@intel.com,
- ankit.k.nautiyal@intel.com, ville.syrjala@linux.intel.com,
- uma.shankar@intel.com, jani.nikula@intel.com
-Subject: [PATCH v10 17/17] drm/i915/vrr: Enable DC Balance
-Date: Tue,  2 Dec 2025 13:06:52 +0530
-Message-ID: <20251202073659.926838-18-mitulkumar.ajitkumar.golani@intel.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20251202073659.926838-1-mitulkumar.ajitkumar.golani@intel.com>
-References: <20251202073659.926838-1-mitulkumar.ajitkumar.golani@intel.com>
+X-IronPort-AV: E=Sophos;i="6.20,242,1758610800"; d="scan'208";a="198504967"
+Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.91])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2025 23:37:22 -0800
+Date: Tue, 2 Dec 2025 09:37:20 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Yury Norov <yury.norov@gmail.com>
+Cc: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+ Steven Rostedt <rostedt@goodmis.org>,
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Randy Dunlap <rdunlap@infradead.org>, Ingo Molnar <mingo@kernel.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Petr Pavlu <petr.pavlu@suse.com>,
+ Daniel Gomez <da.gomez@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Danilo Krummrich <dakr@kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-modules@vger.kernel.org,
+ linux-trace-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] kernel.h: drop STACK_MAGIC macro
+Message-ID: <aS6XMMeSDyrYMmWE@smile.fi.intel.com>
+References: <20251129195304.204082-1-yury.norov@gmail.com>
+ <20251129195304.204082-2-yury.norov@gmail.com>
+ <3e7ddbea-978f-44f7-abdd-7319908fd83c@kernel.org>
+ <aS5T9-1z7PK32q9R@yury>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <aS5T9-1z7PK32q9R@yury>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,76 +89,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Enable DC Balance from vrr compute config and related hw flag.
-Also to add pipe restrictions along with this.
+On Mon, Dec 01, 2025 at 09:50:31PM -0500, Yury Norov wrote:
+> On Mon, Dec 01, 2025 at 10:38:01AM +0100, Christophe Leroy (CS GROUP) wrote:
+> > Le 29/11/2025 à 20:53, Yury Norov (NVIDIA) a écrit :
 
---v2:
-- Use dc balance check instead of source restriction.
---v3:
-- Club pipe restriction check with dc balance enablement. (Ankit)
+...
 
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vrr.c | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+> You can check commit 4914d770dec4 in this project:
+> 
+> https://archive.org/details/git-history-of-linux
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index ba8b3c664e70..db74744ddb31 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -399,6 +399,7 @@ intel_vrr_dc_balance_compute_config(struct intel_crtc_state *crtc_state)
- 	crtc_state->vrr.dc_balance.vblank_target =
- 		DIV_ROUND_UP((crtc_state->vrr.vmax - crtc_state->vrr.vmin) *
- 			     DCB_BLANK_TARGET, 100);
-+	crtc_state->vrr.dc_balance.enable = true;
- }
- 
- void
-@@ -789,6 +790,7 @@ intel_vrr_enable_dc_balancing(const struct intel_crtc_state *crtc_state)
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	enum pipe pipe = crtc->pipe;
-+	u32 vrr_ctl = intel_de_read(display, TRANS_VRR_CTL(display, cpu_transcoder));
- 
- 	if (!crtc_state->vrr.dc_balance.enable)
- 		return;
-@@ -827,6 +829,9 @@ intel_vrr_enable_dc_balancing(const struct intel_crtc_state *crtc_state)
- 	intel_de_write(display, TRANS_ADAPTIVE_SYNC_DCB_CTL(cpu_transcoder),
- 		       ADAPTIVE_SYNC_COUNTER_EN);
- 	intel_pipedmc_dcb_enable(NULL, crtc);
-+
-+	vrr_ctl |= VRR_CTL_DCB_ADJ_ENABLE;
-+	intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder), vrr_ctl);
- }
- 
- static void
-@@ -836,6 +841,7 @@ intel_vrr_disable_dc_balancing(const struct intel_crtc_state *old_crtc_state)
- 	enum transcoder cpu_transcoder = old_crtc_state->cpu_transcoder;
- 	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
- 	enum pipe pipe = crtc->pipe;
-+	u32 vrr_ctl = intel_de_read(display, TRANS_VRR_CTL(display, cpu_transcoder));
- 
- 	if (!old_crtc_state->vrr.dc_balance.enable)
- 		return;
-@@ -858,6 +864,9 @@ intel_vrr_disable_dc_balancing(const struct intel_crtc_state *old_crtc_state)
- 	intel_de_write(display, TRANS_VRR_DCB_ADJ_FLIPLINE_CFG(cpu_transcoder), 0);
- 	intel_de_write(display, TRANS_VRR_DCB_VMAX(cpu_transcoder), 0);
- 	intel_de_write(display, TRANS_VRR_DCB_FLIPLINE(cpu_transcoder), 0);
-+
-+	vrr_ctl &= ~VRR_CTL_DCB_ADJ_ENABLE;
-+	intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder), vrr_ctl);
- }
- 
- static void intel_vrr_tg_enable(const struct intel_crtc_state *crtc_state,
-@@ -963,7 +972,7 @@ void intel_vrr_get_dc_balance_config(struct intel_crtc_state *crtc_state)
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	enum pipe pipe = crtc->pipe;
- 
--	if (!HAS_VRR_DC_BALANCE(display))
-+	if (!intel_vrr_dc_balance_possible(crtc_state))
- 		return;
- 
- 	reg_val = intel_de_read(display, PIPEDMC_DCB_VMIN(pipe));
+Side note: we have history/history.git tree on kernel.org, and,
+if anyone wants to check, it is handy.
+
+Each of the history tree has its own pros and cons:
+https://stackoverflow.com/a/51901211/2511795
+
 -- 
-2.48.1
+With Best Regards,
+Andy Shevchenko
+
 
