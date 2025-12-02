@@ -2,73 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4AE3C9BC3A
-	for <lists+intel-gfx@lfdr.de>; Tue, 02 Dec 2025 15:23:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2500FC9B024
+	for <lists+intel-gfx@lfdr.de>; Tue, 02 Dec 2025 11:00:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8C0410E66D;
-	Tue,  2 Dec 2025 14:23:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2098F10E5E9;
+	Tue,  2 Dec 2025 10:00:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="il/eUsMM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BicRvcFP";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B73710E59E;
- Tue,  2 Dec 2025 09:19:32 +0000 (UTC)
-Received: from smtp2.mailbox.org (smtp2.mailbox.org
- [IPv6:2001:67c:2050:b231:465::2])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4dLFb41cf3z9spF;
- Tue,  2 Dec 2025 10:19:28 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1764667168; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=q8Y1OU0Q+Bol5U/MPFfzGP28CcuUiYKdthv47THRxek=;
- b=il/eUsMMmTGh9GD/DnjHcdipYrZx4Bnp/W8SmT4Rhvtieu4WLMXE1QfRoapTjZMjPj7LRI
- o//dVBIiqL677W9dpkG9++H2ZzgSgq2h2nzdvIVmUoQFBcImTdC/IdaqyXM8Y3cdFeU3kN
- 4Syh4pa0m6+RY5Imt5wIsyTRyZLDWvTyVS3qgj2Mf0D8EaL2/oFyDiamW9Iqx4LLl7FWf9
- AyGH79vdedTAdp35ypPh/hoj03z/jMSl7PQ4unIaR8UDe18AdJk+ctcnCLzxTRpHe4FIaa
- BorrZ0RWQlO3JziTfJ7cbwRDMw4Ku8uCWL/+APW5Ut2KoA8e93mAwYi3N0KX/A==
-Message-ID: <d7956d8e8401f7dd9951d93752a74d2f8f660830.camel@mailbox.org>
-Subject: Re: [PATCH v2 2/8] dma-buf/dma-fence: Add dma_fence_check_and_signal()
-From: Philipp Stanner <phasta@mailbox.org>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
- phasta@kernel.org, Sumit Semwal <sumit.semwal@linaro.org>, Gustavo Padovan
- <gustavo@padovan.org>, Felix Kuehling <Felix.Kuehling@amd.com>, Alex
- Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>,  Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui
- <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,  Matthew Brost
- <matthew.brost@intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Lucas De Marchi
- <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>
-Cc: linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Date: Tue, 02 Dec 2025 10:19:09 +0100
-In-Reply-To: <07cd6a0c-9975-48ef-bb2e-5e53a042888e@amd.com>
-References: <20251201105011.19386-2-phasta@kernel.org>
- <20251201105011.19386-4-phasta@kernel.org>
- <80554ed2-4454-489b-873f-533d68c8d2ae@amd.com>
- <2a9c83b4a428bb3cc993499c39d0da01f9563278.camel@mailbox.org>
- <93a4f4e4-af7a-4c84-a7a2-5db785f2a5a8@amd.com>
- <247185f833edd075cd4aac8c39ac8ae5b5aabe07.camel@mailbox.org>
- <07cd6a0c-9975-48ef-bb2e-5e53a042888e@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EF8810E5C6;
+ Tue,  2 Dec 2025 10:00:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1764669618; x=1796205618;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=D0j1gEvbbCCRyRtUHyGTsC/11iPhFotjjvN0AuTTkzU=;
+ b=BicRvcFPRMsBrQ1w187Q6eHDshitA4L7+CzlXXD8DzlyuIO2EQY8W8QP
+ c7570wQ912Ebpqv5QO91Qy+5Z9t/aMgQD2sLjcK3uD9Sd1IPZQCCDElQP
+ lB81aDjwKLm9FkQP0/OiuXf2puhL0Qf/YzyrXgWT/26jPImqgMpjjnOAc
+ QKSz4gYqVAW3VaiDm+eAjFCxdiSMGL8TaKZWugTW3vTGowqVDD3HPc2Kj
+ yx6QmudGAGzCqG2XYQ4a2tnrvhbngEEi0sJznKubJ21jmRVv1OPvu67SC
+ H2M40ab7b8O1g96rNaBEpa6Ptn7BsbUS//fbqiRfnwo0YnxWYoi7XaMyD Q==;
+X-CSE-ConnectionGUID: 887OUqVsQ2e8HmEhiahl9A==
+X-CSE-MsgGUID: UzIa4VSBTfGZbGgGVlsc2Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11630"; a="66574204"
+X-IronPort-AV: E=Sophos;i="6.20,242,1758610800"; d="scan'208";a="66574204"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2025 02:00:18 -0800
+X-CSE-ConnectionGUID: RzKcmpgFQ9Oks/CDAnJkYw==
+X-CSE-MsgGUID: Ka2J04MYQfqUSO2qUhre3Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,242,1758610800"; d="scan'208";a="225303836"
+Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.182])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2025 02:00:16 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/xe/compat: remove unused i915_active.h and
+ i915_active_types.h
+In-Reply-To: <aS3RCI6ctO2ytM5E@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251201171050.2145833-1-jani.nikula@intel.com>
+ <aS3RCI6ctO2ytM5E@intel.com>
+Date: Tue, 02 Dec 2025 12:00:13 +0200
+Message-ID: <373293864b4aef87e916633068c9bb8006d1196e@intel.com>
 MIME-Version: 1.0
-X-MBO-RS-ID: 27d8c8638880777556e
-X-MBO-RS-META: 33hpokdgbkw758zqyymwdksfr37hc4fg
-X-Mailman-Approved-At: Tue, 02 Dec 2025 14:23:18 +0000
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,74 +67,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2025-12-01 at 17:08 +0100, Christian K=C3=B6nig wrote:
-> On 12/1/25 16:53, Philipp Stanner wrote:
-> > On Mon, 2025-12-01 at 16:20 +0100, Christian K=C3=B6nig wrote:
-> > > On 12/1/25 14:55, Philipp Stanner wrote:
-> > > > On Mon, 2025-12-01 at 14:23 +0100, Christian K=C3=B6nig wrote:
-> > > > > On 12/1/25 11:50, Philipp Stanner wrote:
-> > > > > > The overwhelming majority of users of dma_fence signaling funct=
-ions
-> > > > > > don't care about whether the fence had already been signaled by=
- someone
-> > > > > >=20
-> > > >=20
-> >=20
-> > [=E2=80=A6]
-> >=20
-> > > > >=20
-> > > > > > +{
-> > > > > > +	unsigned long flags;
-> > > > > > +	bool ret;
-> > > > > > +
-> > > > > > +	spin_lock_irqsave(fence->lock, flags);
-> > > > > > +	ret =3D dma_fence_check_and_signal_locked(fence);
-> > > > > > +	spin_unlock_irqrestore(fence->lock, flags);
-> > > > >=20
-> > > > > Could this use guard(fence->lock, flags) ?
-> > > >=20
-> > > > guard? You mean a lockdep guard? Do you have a pointer to someplace=
- in
-> > > > dma_fence who does what you mean / want?
-> > >=20
-> > > E.g. like guard(spinlock_irqsave)(&fence->lock);
-> >=20
-> >=20
-> > Hmm, but why?
-> > It's obvious to all readers that I do spin_unlock_irqrestore() here.
-> > It's very simple code, lock, 1 line, unlock. What would the guard
-> > improve?
->=20
-> Well you can save using the local variables.
->=20
-> So this:
->=20
-> 	unsigned long flags;
-> 	bool ret;
->=20
-> 	spin_lock_irqsave(fence->lock, flags);
-> 	ret =3D dma_fence_check_and_signal_locked(fence);
-> 	spin_unlock_irqrestore(fence->lock, flags);
->=20
-> 	return ret;
->=20
-> Becomes just:
->=20
-> 	guard(spinlock_irqsave)(&fence->lock);
-> 	return dma_fence_check_and_signal_locked(fence);
+On Mon, 01 Dec 2025, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Mon, Dec 01, 2025 at 07:10:50PM +0200, Jani Nikula wrote:
+>> Commit 965930962a41 ("drm/i915/frontbuffer: Fix intel_frontbuffer
+>> lifetime handling") dropped the last xe display users of the
+>> headers. They're still used in intel_overlay.c, but it's not built as
+>> part of xe.
+>
+> indeed, this patch moved the used ones to inside i915/gem...
+>
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Mhm, I guess I agree that __cleanup is a cool new feature that can be
-useful at many places. But in this case I think it's actually less
-readable and doesn't really give lots of advantages. And don't I have
-to use a DEFINE_GUARD or DEFINE_FREE in the first place?
+Thanks, pushed to din.
 
-If it's your maintainer preference, I can look into that though..
-
-P.
+BR,
+Jani.
 
 
-
+-- 
+Jani Nikula, Intel
