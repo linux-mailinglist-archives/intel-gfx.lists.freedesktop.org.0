@@ -2,83 +2,84 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54EB5C9A9B3
-	for <lists+intel-gfx@lfdr.de>; Tue, 02 Dec 2025 09:05:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BA6EC9AA77
+	for <lists+intel-gfx@lfdr.de>; Tue, 02 Dec 2025 09:21:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6ECB10E180;
-	Tue,  2 Dec 2025 08:05:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B1AD10E5AB;
+	Tue,  2 Dec 2025 08:20:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JGoX+WqP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X+zf4ALF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBD1110E061;
- Tue,  2 Dec 2025 08:05:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F42810E590;
+ Tue,  2 Dec 2025 08:20:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764662702; x=1796198702;
+ t=1764663631; x=1796199631;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=OrbA1FFpVzzWSrZePr1RisAsu3JU23R33T5sc44qL0w=;
- b=JGoX+WqPF9bn3JyhdWKjIGLkgWN5CS3lwVHs+jqabeP9WO4kl44hWXKv
- XZu9rIKcLpMT4GWp8Q/6QZHXpzOsUGeQkr2LzzFQwys5vVKVoRY4/ueuY
- nB8SJlrI5AojZN/o813VAEdLG/qbddOG/ApCS5raVW54z4jIyT01ywusq
- 1zYnwAMcUX1FEIt6ikEGsXUg3E4eSb8TobV0+50Sfo+9pW4LwzuNe9fU5
- j2dB3sDh7sDdAxj8a9C+10hjBVGpvV1SShvhMrBUXcTSZZvb3igrA1SYi
- oZGJlQZo48FzZw4HHxrBTaWBecM71HGD7JrHMQg0G7rkbITeLWymCyjTZ w==;
-X-CSE-ConnectionGUID: ao6z8SwEQ7S94be+ZPRbiQ==
-X-CSE-MsgGUID: G+V/sv2RSjucqBvuYUxL5A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11630"; a="66787712"
-X-IronPort-AV: E=Sophos;i="6.20,242,1758610800"; d="scan'208";a="66787712"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2025 00:05:01 -0800
-X-CSE-ConnectionGUID: onPLdpqmStWLhK/r+ltImA==
-X-CSE-MsgGUID: WR8t1F5BQ726ooHAdfGEyQ==
+ bh=vcJvZ9N6z92218wsemWsBTAuPvEYfI8eqSxh+n/2xN0=;
+ b=X+zf4ALFW8+du764jjwt80AWusf2QtFbDC/Eo5MI2LWVadG3M9uJqrsS
+ K6v44KBab6SOnyeJiuvgfhZ65y+RSd9tvzsKvnhTY6PUmHesUqkcaLQsW
+ WpjtmQ72XKJh+0kCzrmkU3/F6F5RkCuHJ7dKJ2C7rwVTffaOUW2/pP+Ie
+ fyBZMElXXOO/jhq91Bvfi/RBtxY4zQl3bIlvcssj4CF68+gjSNItp4vLh
+ hbINBgIy1sem3iK0DW+exkhHJKUW+vBCjaYdC1NR5QpgG4ZiTkYbbTdz+
+ St8xu3VcPhHImhVVloSwWGiJXF4L6merLBlGQNE3zeuCD+agfqL+Np7im w==;
+X-CSE-ConnectionGUID: QEJaVvcRRa2uTEnI3L/bKg==
+X-CSE-MsgGUID: I8HQf0MBRFy+B9Kp0MYV+g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11630"; a="78087744"
+X-IronPort-AV: E=Sophos;i="6.20,242,1758610800"; d="scan'208";a="78087744"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2025 00:20:30 -0800
+X-CSE-ConnectionGUID: +rGf7cFBT/2RGV6qQdpDLg==
+X-CSE-MsgGUID: IS4UdFO9Rmqk0DKNwIqwHw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,242,1758610800"; d="scan'208";a="217646573"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2025 00:05:01 -0800
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Tue, 2 Dec 2025 00:05:00 -0800
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+X-IronPort-AV: E=Sophos;i="6.20,242,1758610800"; d="scan'208";a="199262663"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2025 00:20:29 -0800
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Tue, 2 Dec 2025 00:05:00 -0800
-Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.23) by
+ 15.2.2562.29; Tue, 2 Dec 2025 00:20:29 -0800
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29 via Frontend Transport; Tue, 2 Dec 2025 00:20:29 -0800
+Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.70) by
  edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Tue, 2 Dec 2025 00:05:00 -0800
+ 15.2.2562.29; Tue, 2 Dec 2025 00:20:28 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Xt1Y/a9PmSzkn4oOLNfSULv/lv45SZ9PFCGhTxGGsbu28tIVicEqBVdv/0QrD0S11m+B4G/V8TwMDM8LLozd4ovljxnPmk9ntkSWLFn7oJ4xoRiOjA0muezPCNRgwAcI0gttGIoRH6icfmWSsxeQSQX03Ydznh0I9kwEfFOH7Igt4gGBbGmI4Rm/EU9/2FlVgRQKN+QT/IOYCgYqf/4PWpLjydTQsSphAqSLGagMzm542McjBPqsQKTxDXYZX+cxeG2Mt+6gbPxWskS6j5Rp126nePdjxky6d1pDYcVAKYpg0IzCEcoQv3KelusDlZrnIdAvGaTIEsgIgZZ4omdU9Q==
+ b=XZSodV7mLAjHc4Si2bzdMHoyVVlF+fdDeb5Ul4kqtiWOqPf78r4hwPHV/iCjGdzflmLT1UwyXh7998zjABurYpKlJm7gtKOeF/Kpx3LigdOQ9/2N6FJD7fw9GLRUERcXLY25WRYgvA1u02d2QqsPHc7WSuZBirg76ANPbIe2d46gWeDAuj5l+bBP+Ha29evNPjo/+blVdCcj7e0eRq5TycOZS1Hfx4mTmY3Mby7avp9slRGVrkngG/+1pNFmXNlLa0mpzJl6/0pg/sS4soa17pCflA9nAB9Pc5Z11yt/YxmYqu18d6WDWiZYl4UNbdWvjyuu2us4pkl5td5rySSPwQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YvgVRynjcpYApcahVGPt2yrYgbbqSCxAEB1sOhkU9+o=;
- b=DppEDlygxnJkwC4VfGkVXdKwsoun30HyuIKnyqARfcgUhm+sUvskHtJHl4NEVcJotSpiFNm8Ovs/WXYuUCIT2ToqmNwkPMP6lBNNFsCIAspim4pOyG8OxyiYW+sh87J5y80a/Noq7ZPUd/HLezaKwZW5q3q1tsrRUaGEVGH3N3EDOeY8JippAgSD7NnaiQSDAGnkNd0+08E29kerjNMei+SB/++nU8rMIOO+Dufx/NlSGu5VWaXQhPrXQy7nDuCFK5u8DDBZOYpFO0lSqQz5qrjbTWJe020wvOmmjZ7QGz9t5QzWr4tsJVQ/JOdX2ZSaPBGRR5mePCBhym1+zhK27A==
+ bh=inZY+hj58Zh2x2iC2Fq+26CaOWeAro+1+QJIKOeAhCk=;
+ b=J0yZhdujfKr11d8LAd3dsy0wkiHb66o5gIQB4HCPRfK1lieU7SIZylYLko/NIEaqgaNAbIHLqv1lLG9Lyu19BuW6b5WO68tpOUN8IbVGT0JADgptlWpxUbBNrEc9NCLeFpyxYEnsTVn8xuYfU31StaMCSy3YBTJeNs+QBBuwS/TUJvWNC4H7ROqzWPIGAJqvg0auqaaKMOYe7bRpV/VyZy2Y0seOTj/luelLT9zgMy2lAxAUZdu6AwY0y73IVfzfgsmyIIo5+lehJ8M6FNbOYv0MNy9rwq04mf0z+x7W83UZyvHMQ3rDMwNC8hED/f4cNdcSMfkkNpYk/6cx7nDobg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from SJ1PR11MB6129.namprd11.prod.outlook.com (2603:10b6:a03:488::12)
- by CY8PR11MB7315.namprd11.prod.outlook.com (2603:10b6:930:9e::15)
+ by DM3PPF7D18F34A1.namprd11.prod.outlook.com (2603:10b6:f:fc00::f32)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Tue, 2 Dec
- 2025 08:04:58 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.9; Tue, 2 Dec
+ 2025 08:20:21 +0000
 Received: from SJ1PR11MB6129.namprd11.prod.outlook.com
  ([fe80::21c3:4b36:8cc5:b525]) by SJ1PR11MB6129.namprd11.prod.outlook.com
  ([fe80::21c3:4b36:8cc5:b525%5]) with mapi id 15.20.9388.003; Tue, 2 Dec 2025
- 08:04:58 +0000
-Message-ID: <d1270854-6085-4d28-96ed-1eb3d107e393@intel.com>
-Date: Tue, 2 Dec 2025 13:34:46 +0530
+ 08:20:20 +0000
+Message-ID: <b2864e72-6e2e-426b-8bab-855ec55a8a78@intel.com>
+Date: Tue, 2 Dec 2025 13:50:08 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [v7, 01/15] drm/i915/display: Add identifiers for driver specific
- blocks
+Subject: Re: [v7,04/15] drm/i915/color: Create a transfer function color
+ pipeline
+Content-Language: en-GB
 To: "Murthy, Arun R" <arun.r.murthy@intel.com>, Uma Shankar
  <uma.shankar@intel.com>, <intel-gfx@lists.freedesktop.org>,
  <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
@@ -86,106 +87,105 @@ CC: <ville.syrjala@linux.intel.com>, <pekka.paalanen@collabora.com>,
  <contact@emersion.fr>, <harry.wentland@amd.com>, <mwen@igalia.com>,
  <jadahl@redhat.com>, <sebastian.wick@redhat.com>, <swati2.sharma@intel.com>,
  <alex.hung@amd.com>, <jani.nikula@intel.com>, <suraj.kandpal@intel.com>
-References: <20251201064655.3579280-2-uma.shankar@intel.com>
- <045b308b-c5ab-4ad2-b25e-3fbda2b14590@intel.com>
-Content-Language: en-GB
+References: <20251201064655.3579280-5-uma.shankar@intel.com>
+ <a0e0f7ea-8fc0-44a0-9b32-0538bff42601@intel.com>
 From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-In-Reply-To: <045b308b-c5ab-4ad2-b25e-3fbda2b14590@intel.com>
+In-Reply-To: <a0e0f7ea-8fc0-44a0-9b32-0538bff42601@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0027.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:17a::17) To DM4PR11MB6141.namprd11.prod.outlook.com
+X-ClientProxiedBy: MA0P287CA0001.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:d9::6) To DM4PR11MB6141.namprd11.prod.outlook.com
  (2603:10b6:8:b3::13)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PR11MB6129:EE_|CY8PR11MB7315:EE_
-X-MS-Office365-Filtering-Correlation-Id: 23949e6d-ffb6-4f33-4da9-08de31797bb8
+X-MS-TrafficTypeDiagnostic: SJ1PR11MB6129:EE_|DM3PPF7D18F34A1:EE_
+X-MS-Office365-Filtering-Correlation-Id: f725828f-af23-4d86-8842-08de317ba167
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?bWlwZG0wYWpEd2hOd2hrRmlTOGo5MVpGUVZFV1I5NkZ0L1FtcGlyenVnWnZG?=
- =?utf-8?B?cnU1UGVaaHhZaC91aGhxbmh1a0taa1cydHJJbHhwZFdjWFlvSFR1VFJ0WitW?=
- =?utf-8?B?SmdWa3NhWE5BM24yQ1RkSWJGMGVFdGNlZTNxM0ZsM3R3SS84SjJuK3QrY2RI?=
- =?utf-8?B?N0k1WmVWTTMrZFpPWWxmN1lXREhKemtCTldSTkZXU2hvS096OERidkVjcmps?=
- =?utf-8?B?aGpyaEtkYjNScDRGY2FkNDNlNkF0cXA1aTlvb0pkQ2hvS2dFVm1NaU1mWHh6?=
- =?utf-8?B?ak1HcEhSZWM2TERPZnBHSVZJODNwRnNwQ3BJcWs2UFI0M2g4TllMM0VkUzFJ?=
- =?utf-8?B?QmN4OE1hNVJQeVdOelgvM3dOMVlYMkFJSldUcW8wRVkrZTN6SlUrWDAxM05R?=
- =?utf-8?B?aEQzQXIwQlY5eVBjcmVuQVN6VnFpMkpBanFUMDRLQVg1TGdRQ3V2NTF2dGNp?=
- =?utf-8?B?VnBCaEQ5RW9saktLNFBoV0V6WkpIRW9lcUdDdEJkSThtcThKWm91djVCSFgz?=
- =?utf-8?B?a2VqSGt0Y2pFVWgwdHVQYXByajhCL3NlcENnM0RmYjgzTlBKbnIzRmxsTDBL?=
- =?utf-8?B?YkdyYmU4UU9qRGdPNjZpdWJvZjhkK2tGVU9EVG1HaUFPd09iN1pSYkxiLzVQ?=
- =?utf-8?B?YjVtUFZEajZ0M0lGU0xJd3Z2UnEvMk9hSDJvOVFySkNyTnduMXJuR1dCWTBu?=
- =?utf-8?B?Q1B2R3ZLM2E3bVJJdGZkbVlFUHdsTFowN2VBZWlyVUFCeGhvbjZOZng3Mmwy?=
- =?utf-8?B?N3ZGVHB2OGxLelIxMTJFY0xMUnZXRzJrdWRhemhWL1JFaWVKZWtKczVlQVN3?=
- =?utf-8?B?Zmp4QUFwOFd1MlhNcEV3ZWFNdVRJM1JrdVJmSERTa0lySE1uU0xKZUFyN0FC?=
- =?utf-8?B?SkdWUnMvMFhqd0huU05mSUJ1d3NwZWRKSmdQcEwxaG9ZY0M2T0VSS2V2NTA1?=
- =?utf-8?B?c0E0WWVlUVNWaDBUeS8ybzRydFcxdVg4c3VuUThYV2VySGU1MW9yU3padDlY?=
- =?utf-8?B?cTBVamVERkYrWVJXWmk2UFFLTG50S1RTTk0wM052S09WU0QwSFhBUk1UVnh0?=
- =?utf-8?B?bzVSU2dyQW9xS2VIMVdMNEt4L3Y3SWswV3h0Ui9XdTVJbE9JWEZDS3FtRUFQ?=
- =?utf-8?B?VURjZUltZGhuMGtjRmhpTmRibHcxUkh5REwwTzRzeXE1OHhrYVM3ME1nclZs?=
- =?utf-8?B?R04rbmdSTEZZdG1ZcGlUZ2xQK200TzB2eWlzWVdiL1NBZ2hXNk1ROVRjUnJI?=
- =?utf-8?B?MEkwc2Z4VW1MeEloT2xSUnpJWjhPYURUZTUzU3ZmOUtwVVZmanlpTFpmckZr?=
- =?utf-8?B?a2paQjBPdWIxSkVYQ3ZKeHdhYUE1U0pkcHVId2plK2w0ZmtlOHZJVDF1ZTFH?=
- =?utf-8?B?SWZRcktHMGtmTzNXQ0ZIQ2hnVW1qOVJuaERwcGRIQlE1dmIxV1JpelcrRUU4?=
- =?utf-8?B?OE5zMnBMSThUVDdUV1k0cU9odlhmMDhIejkwOHg4UDVkQ3BUQThKMDlTYXNG?=
- =?utf-8?B?eDd1Z3RZWmsrTDZFZ01Mb1pZZFdJQVRCblNJOHVJczZUYlFRT2cwMlVsd0dQ?=
- =?utf-8?B?eEFXN2lRWjFqelZNQlpkcVViYmtVK1ZieXNFVGNwUnI0SGhCQWxsay9rV2Zy?=
- =?utf-8?B?b3hlREdIUWNIR3N1Vmx6eXFpQjJHSEIwVS8vNzBEaVlZTlp0dnM5bThLaTZx?=
- =?utf-8?B?SWpHQzQvQzBDMVFaZlg2VTRjNkJacFBHditSYlBiTEh1c1B5REp0V3g3NEt0?=
- =?utf-8?B?Um1UbndsRjV0WjRTeVBmdGR1SjdHVktaRTJmeEdoS05Wc041VUd5ZmFzNFov?=
- =?utf-8?B?aWhBYXgxNTlNOGhEdkV4RVlPVWNCdEg4WWpDVXpieTJqWEpBT2ZyUUdqckpa?=
- =?utf-8?B?L3UwNktraE1wSk1uL05jVEZITFVaMTd1K1gwOHNkaHZTSG50dEhzVVFwNE9a?=
- =?utf-8?Q?OG0+wZdBJw4Drlj1dsmH3igv1rbK/0+C?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|7416014|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?L3IrNHNMUEMrWC9neEhCOEJqUllsMlhtTDRFRURkbFVrL2tCQVNkc1N6V0FX?=
+ =?utf-8?B?aHU4cFJGbVZma1huRDlaZGx4c01GM1B1L0tqWE5ZT3pBN3U0V0xWZ0dYQVB6?=
+ =?utf-8?B?TXpqVnV1SDhNRXprcC9PKzkzeEhSOFAxU01RQSs5bnhjdFY5am1NT2tSZ2Zx?=
+ =?utf-8?B?RVJvRzdjVlFKbkgybnpxQ3ZRdW1Odi9mRk5xc1d3VUQ1UWFiblIzR2lwbGxQ?=
+ =?utf-8?B?U0UwMzY4M0JtRWQ0NmpZREttcjM3K09IOGtEcC9lZWhXRTBLU2pnd0dpTk92?=
+ =?utf-8?B?TlZIYm9YU1Zqci9va3Z0SVBzb3hUK2hGRnBHcWV0SDhuQmE4aEVwUlpMaEVO?=
+ =?utf-8?B?OVRvbmdrWHR0bUJoVllYZU5KbXNaNkZuaitUMXZiYSt1Ym5tZGNXbTRYbzNS?=
+ =?utf-8?B?UmV5NkROdHB1VXlXUUZQcDJxQjZEaVBwRUFDbEJvUjFXeldQMDlMb2pzL3M2?=
+ =?utf-8?B?cEpIdHg0V2h2K3IzTXEyTnRzd1ExT1Z1OGpINlVvdzhIQWFwOGR5MGN1VnZJ?=
+ =?utf-8?B?NUZjL3lHUXAwd1hkZi94K0VkYjVVdDZSWDRvQlJlMVpLUWYyaVZLdlpkTzRC?=
+ =?utf-8?B?SzY3UDVGRUp6M1FQZFJ0a0lPUndtSnJCdytNWFpQSG50NUpidTA0VGJHUjV6?=
+ =?utf-8?B?V1A0YXdqT1NabXFxckNacmo3cTh4VXQ0MDNraTRycDEwT2xzMWJFbDdPWlNX?=
+ =?utf-8?B?MW8yRW05YVZDSW5pc1RHckhpNThpVnhsR3h4di9TQ0psbXZPT2dtWkR5K0VJ?=
+ =?utf-8?B?MDl2RGZTQ1orOGJGbW5UQXg2THNWV09oVUpsSFJCeURIVng0SytWZml4eDhM?=
+ =?utf-8?B?SHprNWM5MmFQa1k0bHNRcmxsQXNMZzdvUDdVbGxWWU9yVlF0dktsRkJDbVRn?=
+ =?utf-8?B?cFBUQnp2OUw3K2RsY3JkRFRMcytOcWMzSEVjTjlITjliZ0NzTlRGdGZOamtK?=
+ =?utf-8?B?UWVHRk1oWUNqSHNlaUd5Y1pjUXZVSVN0WVJac0thb2ZtdU1sYU4yWnRETzRZ?=
+ =?utf-8?B?Y2VyQkROZVlMSzEzMWxhanU3aHRYVTZUdGdUa2x5TmwwTDNRd2R2eUkxd0hC?=
+ =?utf-8?B?MG1sazBZeW82dmJPaldOWXNRSTBBaGJndUx4L2ZzMmN3aXVmNkU4ckFJUjhL?=
+ =?utf-8?B?bVhLNUIzT1lTSEVyR0hJTTJ4dkJlcnZ1dGVzUWpXODNLWXRhWldNejdlcXRP?=
+ =?utf-8?B?WGsxcElkK29lYTdLZjV2ZWRJQnFyQ3dsVlhTTnJyV2VWbTF5Y24xeUNXc09i?=
+ =?utf-8?B?aEJTWTI2em9lV0V5UG1YYTUxbFpCaVRBSzZsREFPd1pIU3g0UXVvTkJCc1Fn?=
+ =?utf-8?B?L1pKRXJMK250bG5QdDdvWFMxYVpFeFB2UTZ3ZjFJL0ZsTFRuYTdhaW5yOUNn?=
+ =?utf-8?B?eXpqZDAzUWx6LzcrNmt1cGd2TDJZZVN0Zm1mRnZScW5tdUdHU3hFMTFDekdY?=
+ =?utf-8?B?OVZkZ3p2ankrb0gzYXNhZG9HRzZ0Q0tvZ2N3Rkx5Um5vOCtFN2Q4V0l1MGR1?=
+ =?utf-8?B?REhla09SMHF5RG1JVC9FRDVKdk1VbGxLZ0lVQXkwZWxoQVlJejgraDdJZEtp?=
+ =?utf-8?B?Q0F6RmR1djR6RS9JUmRndjFuL1UwRWdQOHV4MlNFNUJtc0EyNEZQSndaTlRp?=
+ =?utf-8?B?TW1MUWVqQm4vY3FqMHlnL0VIbmFRRmtFMFBoUUpWQXByOGhGTHk0M3IraVVJ?=
+ =?utf-8?B?cWdPcWcxRjJTaGdoS0lrS3NtclkyRnVqNGlOeDJSU3NOa01SQndPeFE0ZVlS?=
+ =?utf-8?B?QWlEVWlTM1dza0l0TGo1TUJ1bU9XUkN4MU0vUTBUQS9PUUJtTFM0U1hWV3g2?=
+ =?utf-8?B?ZUpZY3RxcEpVdHBydXNZbGdJWDdxd25PUHEzRXh0Y2RnQldoTkRPL3RNYjNT?=
+ =?utf-8?B?ajIybkY1ckx0ZEpBWlh1QVEwOHc4Vk05N0dYMTMxdXJSYWJvOU5ldlVabGgy?=
+ =?utf-8?Q?U3opK8kBzPgtB/TacmxMhxSqRnSUTlrV?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SJ1PR11MB6129.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(366016)(7416014)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SmdHRVh3Y05ZQmt0MWppSzRCb3cxS3RIczNKaTV3N09FdEZKb1J2TUNqT2py?=
- =?utf-8?B?ekhLUE9MM0c2YjNTTjhmN2M5ZGRnd005UzlGY0JMRnFvaXJUM0UyYnlMbzZ2?=
- =?utf-8?B?ME82TjVEU0hvZk54WFRCc0Y4WlIzOTI3V3JkOVhaU3lDYmFCTWNpV3JYMlNH?=
- =?utf-8?B?ckt3d1dUVEplTkVVa2QyZTcwQ0dzcXVZNUJuMlY4U1A4ZTNjSXVya1VheHBm?=
- =?utf-8?B?eGVZZ2lMd1Y5RWV6OEFMTVI4dnJQV3ErbXlwS3JlemlMcENTQU5Bc05FcWNI?=
- =?utf-8?B?MDFDMlhDaTZJTkJqOUNpN1RncDZOTVNXd0xMVjY4Y3VBVkZ4Nzc5UkdtdytX?=
- =?utf-8?B?akZxcFBONk1TT055ditGYVpmUkoxYk45KzNuY244aGN1OVZpRVAxWHFPSzdM?=
- =?utf-8?B?U2EvMFZVNW1NdWdrZHdDN04xRHBSRFBOL0tPTU5PZkR4blU4NjV0aStJdTNn?=
- =?utf-8?B?MDZLMk1EdWIwUHZMdk12UCthVExIMGh1eEpiWndycXhQR2FuMzNadEYzaDhT?=
- =?utf-8?B?TXlTL3RBNDRkMHlCYnZzZzFMY2tRQ0wvTFZlMXZVZUZ1aEFtZ3BYZ29GL0xR?=
- =?utf-8?B?alpkcDFlOVk1UWJ3dEhqQ0ZyU24zbHNyL2hPWHlBejVmQnNyTW03RU9IbG5r?=
- =?utf-8?B?MWl2dHE2NFRKTkpLUlVrakMzeWdKbHJzaG1pNzVreVg3MzQxcW9YWmd1bFpj?=
- =?utf-8?B?NXJnRVp2L2R1NVU4czFSTHVJRGJRN1cxT3ZWMmt2RVBRZDhrVmdNbE1lamxq?=
- =?utf-8?B?VElzZ2xFTmRMa0JZUU9WSElyMmxta2x0MFpvL2dBM3pKanFqWldISEpwMTUz?=
- =?utf-8?B?Nk9QYnJ4L0Zhby8zWDRRN2VtQnlzRmprK240S2QyeEJHVjlHU2ZHeTAwTWV1?=
- =?utf-8?B?eEhNUXh2d3NUdjNxTWFMVFNDenN3aEczYmNDcDRESW82Z3p1NlJMTTZ1eTVv?=
- =?utf-8?B?eS9JRVc1a2tKRlFFVkNTUmpkK1hzTnRJVEh4dWFTcG5GUnE0Ry9JM0JBcWZZ?=
- =?utf-8?B?R0lrS255bnZKMzEydksvMHBJcTUrTGtib0xUMHRjN1N5YS9NRkQ0aWVodVZK?=
- =?utf-8?B?WWtnRk4raFdyVTlrZmNOZllwNlF4cjFLajhtSEpNQmdmQkhZRitwQURWYnFF?=
- =?utf-8?B?dDdjV09OZzJndW81MTl2N2oxRHNKN0VSdDR6NW5Oa3k5UVNhN09NSFRnY29N?=
- =?utf-8?B?TjV2bjNEaUp5T3ArMGVBTFZTTmhldlhYSHZHQlZPRWtobWg4UWdlVEFiZWlP?=
- =?utf-8?B?R0M3OGNQSHlla0VBVEd4VEUwakErK04wZFZxSUp4N01nOUlMdXRzUFFqYWlv?=
- =?utf-8?B?UjhMMURxUW9Ya1ZIVElzekhkejRodFdmYUk0SjFWY0c4ZTZEWTFvVU1xbFZo?=
- =?utf-8?B?UmlMVGkwU0w5cW4zTkFTWitVSnBRRCtuZUVsa3pLZXVIQVM2dVNQb3RLc1Fv?=
- =?utf-8?B?NXVWTUQ0K05VMm96VjlzN1hQTXJ2b2dNNjRiMEkwSVhCaElZaEUzU1luaVNS?=
- =?utf-8?B?OTlIbmVGbHlvZ1FwMWNUTnpEakJ6bHlBQWh4djJyY1JhNWZwUDhIQjNhRk9m?=
- =?utf-8?B?Q0tKcWh5bGdKRXQxT2V0ajgxa2N3cTJCYTErVkR4TkJNeFVEYVF5cTZ0aWpH?=
- =?utf-8?B?OW5XR1g3UU9VbGdIbldmYXdzTlp4WGk3TE5uS1NaTldpVm5EajNpc2ZRYnN4?=
- =?utf-8?B?YkpBK3RlVVFWZUFOUE56T1g2cnhFZEZ3ZVliM082S0d2VWY4MXhCSEZlM2lR?=
- =?utf-8?B?TEpWM0dpcDB0elRXWDBaRzZ6V1Y0WjVGQWRhK2lxRnlmamdiTFhuc3N2S1hy?=
- =?utf-8?B?MmlpOENkWGhVY2tLd1dkZW5vMlluSEIydCtpTGlPVThPY0d2bk1JbjVRWFNp?=
- =?utf-8?B?UW5QSFJPanNkN2N3OVhVbWVoTkdFRzh3d05RdzYzZjBiZXEvUWtJUHNsU1Jz?=
- =?utf-8?B?Nmp5Ulp0NENPWndZSlFaQUhIQVQ4c0pkSG5KSlUyUm5NU1E1ZjIxVjlIVmxH?=
- =?utf-8?B?YWFuaFpoRmpZcnVvY3ZUbzNmUUlnVjdhejQxQ3VZdkVNTGxOZzJmZWRrZEw5?=
- =?utf-8?B?RzVKUnZiOEFsenpYL1JYZXZmbXFSU1J1VWlkU3Vzb1hpdEd3TGdMeWxZejZr?=
- =?utf-8?B?bmdUcWNFVk9GZE56T0R0NHJ0UEQwV3FkcHd4NzZtOENLZGFJeUJRcHJzeU9U?=
- =?utf-8?Q?t1AFTZFfjakN1u4IGfdUgxo=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 23949e6d-ffb6-4f33-4da9-08de31797bb8
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SmVSTzRwa0xTd2RBWjcrZWYwZ2xSS2M2RlYwWGRvWjNPQm5aZlBVMmJXVTRG?=
+ =?utf-8?B?Smk1RTV1S3o1NFZJTWNINytNdHlRSlBRb0ZvNkRaM2RtNGIvNmFNNGNHYnI2?=
+ =?utf-8?B?aWp5d3dXanhzWm9tR3d4U1NiMXQzaEtqVlVwMkduOXpBV2F0Z001QWptNmEz?=
+ =?utf-8?B?MVpyekdvUGZldHF5YUd2eC9lUGpVM1FBNkV4YXRPWmRVRmxrVjA3U1RIRkhR?=
+ =?utf-8?B?amFqdmE0ZmI5Zm95OEI4SGtkTDZCUkt5VHoxVGp1SitTVzdDTnFjNE1OaGp2?=
+ =?utf-8?B?YnBpYlQrN3JQNE1CSnpHT2hVcVhDUGpWT1R0Q1AyQ0E3SFlKQVF4RFUxN29X?=
+ =?utf-8?B?ZnZpaVhuVTdENzYxell4SCtLLzJoVkJEeHhOd3Z6RlIrRElFakVUeG5BeEx0?=
+ =?utf-8?B?WUd5N3Y3MlVENmg5enFlbFpmWkJnclRodWVJYi9XZkl0eSsxcTR5R1htYTlP?=
+ =?utf-8?B?SUZPcjlmUGZ1eEJoWURjTDRwWCszc3A3QVJDTnRvLys5M0ErVnVjUFgycnky?=
+ =?utf-8?B?dStBdEJzeWFyVWJPWU9EdnFpK1l2TlVTNjFDZ2ZiNW9tVGZuUWEwZk9uaDJU?=
+ =?utf-8?B?ZzZRbFZ1ZlRYL0JwUUNlMjZHQ2UzOGNRTVVickJXaklFcXV6cERCbENzRzdE?=
+ =?utf-8?B?L3lnYXVmRjJmU09SMUZaT1lqeWpFZjdOdGtoTk0xOGIwL1hzVi9vYkNnRUZI?=
+ =?utf-8?B?TTVtWEdEZ1ViUys1akl4ZUFqS2tFeHI1aXFTREwrL1NBSDdseFdXYnZPNlNq?=
+ =?utf-8?B?U2xHdkJCSWZ0eE43TlNmTFBFSk9HVHZjQVYzUDNQNGYvcDlFRnJ4VGdRam5q?=
+ =?utf-8?B?LzdLdmNjTGx4Tzc4UHpTRWVwSHlXN1c4L29VU3VGblJGdVBUWnVHQ2R4a1dO?=
+ =?utf-8?B?Zm43YnRvNnJ3SlBiMHVFVW04U2ZJbkpTSmFwQzlzSU0xcG9ZVWRDWHlHNkxy?=
+ =?utf-8?B?NFd2NEhoQUxmaHZ4QmlwTCtsUmwwbkxtaTdpbTQzZ1E2Q3EwV1BjVEJ1OHY3?=
+ =?utf-8?B?WGY2dFN5WFlLUnBLbGc1eU9XWlpuOVRkZWdnSFJDbUlQeC9FeXVaUEJLemti?=
+ =?utf-8?B?RTY2cmk1RkY1enByR1lMQWY5VVAzUU01QVhkZ1NiWWFPU21FTGUxSmVWZkw2?=
+ =?utf-8?B?ZzUzVkhsc0w4ZWx4SFBBSHlXYzlYUDBYditzeGtGc3V4ek5VSDVsMkdoUnlp?=
+ =?utf-8?B?UzR6WWFjWkJuYzVta1g4WkNQcmFrcnVNUE5FcExiNkJCSHdTdWdTbEM5VnNy?=
+ =?utf-8?B?V3Q0VVdQSXRYcTVoc3dQOG5aYXFYNmlKbEVMUWdsckpvUGh1eXBjK0NhQXVk?=
+ =?utf-8?B?TklQcmdmNUY2STIxRmlrUW1oNjJXTEJPd0VnT21tYUc4YlZXTkNoMlFSYmls?=
+ =?utf-8?B?YS9EOXBYbWRtS2ltazRtNDJDNjd6TThCZ0dpTUFWOVVVbG5JN0lkQmFtdEQy?=
+ =?utf-8?B?ZG15NFU5WVBPUDlwVDA3ZjZMM2FBSkRvOW9YcXpUbVAzUkhwRnM4Ym9KaW0w?=
+ =?utf-8?B?Y1F5YTRmSE16UGJSelNsUXdaYmo1eHpmVkxNM2R0UjdXekpmcnQ5SHNrTGtl?=
+ =?utf-8?B?V2poeU42ckY5cWdSRGFFQ2ZXSkdlVlIzMVRJSTJVNU8wRVdRUHNKeUhaZjZi?=
+ =?utf-8?B?ejFSR3d4eVpBRXFkclpUVTZNdkdxVnlER2dKR2QyY2NNak9pWEJCYlB6VXpn?=
+ =?utf-8?B?Wnk3NDVjaTdmNGxacGtRc0krRkxsRVI2b3BNUHAzQS9oNi9ySlZVV2NUTjM0?=
+ =?utf-8?B?NVVOTHk0eEdKK2M4NFpjd3E5TlUzN1FORmo1RnhRSitKQVdtK0tEdGt4dytG?=
+ =?utf-8?B?NnNOK2lWVWYzWU05WGFIWnE5SHBZNWJiblA1RE0wRmg1SjdSMzFvM3BZbC9X?=
+ =?utf-8?B?eXg3MVhZS1A3TXVzZXpHMUxOL1JIT2FXRHZrNGx6T0dJdGNURGdSdzdoWlIy?=
+ =?utf-8?B?Zmk3NnB1VXlsaVBIR0ZJZ1FELzkxSTZlbVNadGFqM2xhWWxDNTdNTEhXZWZv?=
+ =?utf-8?B?bEVZSlJHSWFmUU9DQ1ZpSXBtRFR5c2RZb2hEVStjUTdaejBRQ2locStkdTRa?=
+ =?utf-8?B?QnBBVk05dnBNMUlRaWlNSWlERndOZWFYOWkrbmhPOE5zN0MzZkl0bjNBZTM4?=
+ =?utf-8?B?c3l6bW1Sd1ZUNFR5a3NRdk9LdVFiVHdZaGc0cUU3SUVKSlIxSldPZHRKaTU4?=
+ =?utf-8?Q?QErG04T+MMOQ/7W9/RDWgsw=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: f725828f-af23-4d86-8842-08de317ba167
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6141.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2025 08:04:58.0911 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2025 08:20:20.1489 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Gg1i9Kzat2q/37EDGQkfvovquxZ3Qoqo7pLCmB7ROvtGRgPJrOUlnvxvR6S2KAt9NSdCHXeeG0Zzzqbz7Myj+pQ/vOOxR8DMVUWwMfsS2kw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7315
+X-MS-Exchange-CrossTenant-UserPrincipalName: U8Fc9apvQoybpD6ubXRRsWobXUNcqo14IYRGTzriZV2tXhVfj/DlBjqfAkJj+sfXZX7NjSxmL7WqmeXJIXBVsoS7WYLbMVG+oWCuZGOupbo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPF7D18F34A1
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -204,59 +204,152 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 
-On 12/2/2025 1:12 PM, Murthy, Arun R wrote:
+On 12/2/2025 1:26 PM, Murthy, Arun R wrote:
+> 
 > On 01-12-2025 12:16, Uma Shankar wrote:
 >> From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 >>
->> Add macros to identify intel specific color blocks. It will help
->> in mapping drm_color_ops to intel color HW blocks
+>> Add a color pipeline with three colorops in the sequence
 >>
->> v2:- Prefix enums with INTEL_* (Jani, Suraj)
->>     - Remove unnecessary comments (Jani)
->>     - Commit message improvements (Suraj)
+>>          1D LUT - 3x4 CTM - 1D LUT
 >>
->> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
->> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+>> This pipeline can be used to do any color space conversion or HDR
+>> tone mapping
+>>
+>> v2: Change namespace to drm_plane_colorop*
+>> v3: Use simpler/pre-existing colorops for first iteration
+>> v4:
+>>   - s/*_tf_*/*_color_* (Jani)
+>>   - Refactor to separate files (Jani)
+>>   - Add missing space in comment (Suraj)
+>>   - Consolidate patch that adds/attaches pipeline property
+>> v5:
+>>   - Limit MAX_COLOR_PIPELINES to 2.(Suraj)
+>>     Increase it as and when we add more pipelines.
+>>   - Remove redundant initialization code (Suraj)
+>>
 >> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+>> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+>> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 >> ---
->>   drivers/gpu/drm/i915/display/intel_display_limits.h | 8 ++++++++
->>   1 file changed, 8 insertions(+)
+>>   drivers/gpu/drm/i915/Makefile                 |  1 +
+>>   .../drm/i915/display/intel_color_pipeline.c   | 97 +++++++++++++++++++
+>>   .../drm/i915/display/intel_color_pipeline.h   | 13 +++
+>>   drivers/gpu/drm/xe/Makefile                   |  1 +
+>>   4 files changed, 112 insertions(+)
+>>   create mode 100644 drivers/gpu/drm/i915/display/intel_color_pipeline.c
+>>   create mode 100644 drivers/gpu/drm/i915/display/intel_color_pipeline.h
 >>
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_limits.h b/ 
->> drivers/gpu/drm/i915/display/intel_display_limits.h
->> index f0fa27e365ab..55fd574ba313 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_limits.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_limits.h
->> @@ -138,4 +138,12 @@ enum hpd_pin {
->>       HPD_NUM_PINS
->>   };
->> +enum intel_color_block {
+>> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/ 
+>> Makefile
+>> index 7c19d5345d88..ca5c69d1cb08 100644
+>> --- a/drivers/gpu/drm/i915/Makefile
+>> +++ b/drivers/gpu/drm/i915/Makefile
+>> @@ -241,6 +241,7 @@ i915-y += \
+>>       display/intel_cmtg.o \
+>>       display/intel_color.o \
+>>       display/intel_colorop.o \
+>> +    display/intel_color_pipeline.o \
+>>       display/intel_combo_phy.o \
+>>       display/intel_connector.o \
+>>       display/intel_crtc.o \
+>> diff --git a/drivers/gpu/drm/i915/display/intel_color_pipeline.c b/ 
+>> drivers/gpu/drm/i915/display/intel_color_pipeline.c
+>> new file mode 100644
+>> index 000000000000..1415f94dd3e3
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/i915/display/intel_color_pipeline.c
+>> @@ -0,0 +1,97 @@
+>> +// SPDX-License-Identifier: MIT
+>> +/*
+>> + * Copyright © 2025 Intel Corporation
+>> + */
+>> +#include "intel_colorop.h"
+>> +#include "intel_color_pipeline.h"
+>> +#include "intel_de.h"
+>> +#include "intel_display_types.h"
+>> +#include "skl_universal_plane.h"
+>> +
+>> +#define MAX_COLOR_PIPELINES 2
+> Should this be same as INTEL_CB_MAX defined in intel_display_limits.h ?
+>> +#define PLANE_DEGAMMA_SIZE 128
+>> +#define PLANE_GAMMA_SIZE 32
+>> +
+>> +static
+>> +int _intel_color_pipeline_plane_init(struct drm_plane *plane, struct 
+>> drm_prop_enum_list *list)
+>> +{
+>> +    struct intel_colorop *colorop;
+>> +    struct drm_device *dev = plane->dev;
+>> +    int ret;
+>> +    struct drm_colorop *prev_op;
+>> +
+>> +    colorop = intel_colorop_create(INTEL_PLANE_CB_PRE_CSC_LUT);
+>> +
+>> +    ret = drm_plane_colorop_curve_1d_lut_init(dev, &colorop->base, 
+>> plane,
+>> +                          PLANE_DEGAMMA_SIZE,
+>> +                          DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
+>> +                          DRM_COLOROP_FLAG_ALLOW_BYPASS);
+>> +
+>> +    if (ret)
+>> +        return ret;
+>> +
+>> +    list->type = colorop->base.base.id;
+>> +    list->name = kasprintf(GFP_KERNEL, "Color Pipeline %d", colorop- 
+>> >base.base.id);
+>> +
+>> +    /* TODO: handle failures and clean up */
+>> +    prev_op = &colorop->base;
+>> +
+>> +    colorop = intel_colorop_create(INTEL_PLANE_CB_CSC);
+>> +    ret = drm_plane_colorop_ctm_3x4_init(dev, &colorop->base, plane,
+>> +                         DRM_COLOROP_FLAG_ALLOW_BYPASS);
+>> +    if (ret)
+>> +        return ret;
+>> +
+>> +    drm_colorop_set_next_property(prev_op, &colorop->base);
+>> +    prev_op = &colorop->base;
+>> +
+>> +    colorop = intel_colorop_create(INTEL_PLANE_CB_POST_CSC_LUT);
+>> +    ret = drm_plane_colorop_curve_1d_lut_init(dev, &colorop->base, 
+>> plane,
+>> +                          PLANE_GAMMA_SIZE,
+>> +                          DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
+>> +                          DRM_COLOROP_FLAG_ALLOW_BYPASS);
+>> +    if (ret)
+>> +        return ret;
+>> +
+>> +    drm_colorop_set_next_property(prev_op, &colorop->base);
+>> +
+>> +    return 0;
+>> +}
+>> +
+>> +int intel_color_pipeline_plane_init(struct drm_plane *plane)
+>> +{
+>> +    struct drm_device *dev = plane->dev;
+>> +    struct intel_display *display = to_intel_display(dev);
+>> +    struct drm_property *prop;
+>> +    struct drm_prop_enum_list pipelines[MAX_COLOR_PIPELINES];
+>> +    int len = 0;
+>> +    int ret;
+>> +
+>> +    /* Currently expose pipeline only for HDR planes */
+>> +    if (!icl_is_hdr_plane(display, to_intel_plane(plane)->id))
+>> +        return 0;
+>> +
+>> +    /* Add "Bypass" (i.e. NULL) pipeline */
+>> +    pipelines[len].type = 0;
+>> +    pipelines[len].name = "Bypass";
+>> +    len++;
+> Code for creating Bypass and COLOR_PIPELINE property is there in 
+> drm_core and is exported as drm_plane_create_color_pipeline_property()
 > 
-> Can this be intel_plane_color_block/pipeline as we get a new block/ 
-> pipeline for crtc which can later be named as intel_crtc_color_block/ 
-> pipeline
+> Can this function be used to avoid code duplication?
 
-I had given it a thought but we don't really need a different enum 
-because all the intel_colorop code is agnostic to which object it is 
-attached to. Otherwise we have to create plane and crtc specific colorop 
-functions without much need of it. So, I envision it as a single colorop 
-enum type serving both plane and crtc but with appropriate prefix.
+Makes sense. Would be added in the next version.
 
-enum intel_color_block {
-/* Plane color blocks */
-         INTEL_PLANE_CB_PRE_CSC_LUT,
-         INTEL_PLANE_CB_CSC,
-         INTEL_PLANE_CB_POST_CSC_LUT,
-         INTEL_PLANE_CB_3DLUT,
-
-/* CRTC color blocks */
-	INTEL_CRTC_CB_PRE_CSC_LUT,
-	...
-
-         INTEL_CB_MAX
-};
-
-==
+Regards
 Chaitanya
 
 > 
@@ -264,12 +357,56 @@ Chaitanya
 > Arun R Murthy
 > -------------------
 > 
->> +    INTEL_PLANE_CB_PRE_CSC_LUT,
->> +    INTEL_PLANE_CB_CSC,
->> +    INTEL_PLANE_CB_POST_CSC_LUT,
 >> +
->> +    INTEL_CB_MAX
->> +};
+>> +    /* Add pipeline consisting of transfer functions */
+>> +    ret = _intel_color_pipeline_plane_init(plane, &pipelines[len]);
+>> +    if (ret)
+>> +        return ret;
+>> +    len++;
 >> +
->>   #endif /* __INTEL_DISPLAY_LIMITS_H__ */
+>> +    /* Create COLOR_PIPELINE property and attach */
+>> +    prop = drm_property_create_enum(dev, DRM_MODE_PROP_ATOMIC,
+>> +                    "COLOR_PIPELINE",
+>> +                    pipelines, len);
+>> +    if (!prop)
+>> +        return -ENOMEM;
+>> +
+>> +    plane->color_pipeline_property = prop;
+>> +
+>> +    drm_object_attach_property(&plane->base, prop, 0);
+>> +
+>> +    return 0;
+>> +}
+>> diff --git a/drivers/gpu/drm/i915/display/intel_color_pipeline.h b/ 
+>> drivers/gpu/drm/i915/display/intel_color_pipeline.h
+>> new file mode 100644
+>> index 000000000000..7f1d32bc9202
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/i915/display/intel_color_pipeline.h
+>> @@ -0,0 +1,13 @@
+>> +/* SPDX-License-Identifier: MIT */
+>> +/*
+>> + * Copyright © 2025 Intel Corporation
+>> + */
+>> +
+>> +#ifndef __INTEL_COLOR_PIPELINE_H__
+>> +#define __INTEL_COLOR_PIPELINE_H__
+>> +
+>> +struct drm_plane;
+>> +
+>> +int intel_color_pipeline_plane_init(struct drm_plane *plane);
+>> +
+>> +#endif /* __INTEL_COLOR_PIPELINE_H__ */
+>> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+>> index 3420725c4ba8..89f922d745ba 100644
+>> --- a/drivers/gpu/drm/xe/Makefile
+>> +++ b/drivers/gpu/drm/xe/Makefile
+>> @@ -235,6 +235,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+>>       i915-display/intel_cmtg.o \
+>>       i915-display/intel_color.o \
+>>       i915-display/intel_colorop.o \
+>> +    i915-display/intel_color_pipeline.o \
+>>       i915-display/intel_combo_phy.o \
+>>       i915-display/intel_connector.o \
+>>       i915-display/intel_crtc.o \
 
