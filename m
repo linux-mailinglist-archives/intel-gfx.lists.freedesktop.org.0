@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FD52C9EB66
-	for <lists+intel-gfx@lfdr.de>; Wed, 03 Dec 2025 11:32:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25C25C9EB69
+	for <lists+intel-gfx@lfdr.de>; Wed, 03 Dec 2025 11:32:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B578F10E75A;
-	Wed,  3 Dec 2025 10:32:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA86310E77D;
+	Wed,  3 Dec 2025 10:32:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Vc86+zyy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="drsSr0m6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEE2910E77D;
- Wed,  3 Dec 2025 10:31:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5DDF10E778;
+ Wed,  3 Dec 2025 10:32:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764757920; x=1796293920;
+ t=1764757922; x=1796293922;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tmwGRpdz/lB9eVbgy29bgn1B6xBMV7ybsAmCmN2dOBs=;
- b=Vc86+zyyYEaN+mExOWl9I4nSg856vfhHBDYZSkte0XT3VUqT60LIRkA3
- 9JngUUZFBaoMw72IQcPFZoBxTbCA+qsY5Ber24acxLkeYPVXb0rg76YLy
- y5ZRn849PMuk6je1/DvTJKo5JVTUoTuOXqC9BYjktF42aO5PSirHRkKyT
- XUNNzspfqLiBXn+ZTxFVkwM+vTmY+YP/pwke1cF3gK+6w4oamy+oleKHZ
- cW/rOq2NITw4yfG0UtzO5bGEFqt/LMpjhHOsqR39OBw4vB2KWR6JWssoA
- y/i6ese+hUGkRAtOw8c9t3A9RIn7Txp1ePWY4GmePYL6qef1bEw0luYKh w==;
-X-CSE-ConnectionGUID: +zny9Pi1RmWrDECHXoUpkw==
-X-CSE-MsgGUID: DQxs4kgnS4m5DuiEcL3bqA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="66912126"
-X-IronPort-AV: E=Sophos;i="6.20,245,1758610800"; d="scan'208";a="66912126"
+ bh=cVOJ3gpTCArZy4ysFOEZaaLxP9t8wx0gZYw5sKCLKmI=;
+ b=drsSr0m6A8ErzAyzXv8X9qg8eJOgdwyH3emOgVj5EJqPsWiUad/ut47I
+ 7ef5DzC64ePzytq3AjdV+MFPxrZKZnyTH1kwEtgZcNMuJ/gnc3kmxyjpB
+ j8Ktxr2cgL+TAwjhS84cT+/Fh6sElGejMf/G9oZhHlBnfHrC62MQKx+2J
+ fKkwgvsiQ11jR0ELa9sBM0zUoC5/dgKKhoC+gUlkHmcweVZgznKj9mWEb
+ vbct7HAMg4sLwQUV2/lxBCb+UzevGwL9ISlVKgFtNsNnDZI6UFfefclvQ
+ cS53Ib8FlUC6/6yiSsBCtxgEkxvd9g2Z7HsPH+EQIfnAKjQJVKVLCgFW+ Q==;
+X-CSE-ConnectionGUID: ErQ+Q9jcS8aNYEZbr9Npcg==
+X-CSE-MsgGUID: tziAhfVATgS7szgKBdM8DA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="66912127"
+X-IronPort-AV: E=Sophos;i="6.20,245,1758610800"; d="scan'208";a="66912127"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2025 02:32:00 -0800
-X-CSE-ConnectionGUID: NZmq6rHhTM+aM9gkuYFwlA==
-X-CSE-MsgGUID: xM5v64PQTCurjvpBMtR8Yw==
+ 03 Dec 2025 02:32:02 -0800
+X-CSE-ConnectionGUID: dw4d7hW1QXCtdzSscOsqyQ==
+X-CSE-MsgGUID: UOvfMG/YQ7iAZtA+K4Izbg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,245,1758610800"; d="scan'208";a="194657411"
+X-IronPort-AV: E=Sophos;i="6.20,245,1758610800"; d="scan'208";a="194657431"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO
  jhogande-mobl3.intel.com) ([10.245.246.208])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2025 02:31:58 -0800
+ 03 Dec 2025 02:32:00 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: imre.deak@intel.com,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v2 6/8] drm/i915/psr: Move Panel Replay DSC sink support data
+Subject: [PATCH v2 7/8] drm/i915/psr: Move sink PSR and Panel Replay booleans
  to intel_connector
-Date: Wed,  3 Dec 2025 12:31:32 +0200
-Message-ID: <20251203103134.1054430-7-jouni.hogander@intel.com>
+Date: Wed,  3 Dec 2025 12:31:33 +0200
+Message-ID: <20251203103134.1054430-8-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251203103134.1054430-1-jouni.hogander@intel.com>
 References: <20251203103134.1054430-1-jouni.hogander@intel.com>
@@ -74,144 +74,223 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 As a preparation for MST Panel Replay we need to move Panel Replay sink
-related data into intel_connector. Move Panel Replay DSC sink support data
-as well into intel_connector.
+related data into intel_connector. Move sink support booleans as well
+into intel_connector. Generally this is more correct place for this data so
+move PSR versions as well.
+
+Still sink_support and sink_panel_replay_support are kept to keep CAN_PSR
+and CAN_PANEL_REPLAY macros. Plan is to keep them that way as they are
+widely used from patch where connector is not available.
+
+Later we might want to clear intel_dp->psr.sink_panel_replay_support if any
+of the devices in branch is not supporting Panel Replay (mst).
+
+v2:
+  - commit message updated
+  - Extra w/s removed
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Imre Deak <imre.deak@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_types.h   | 15 ++++++++-------
- drivers/gpu/drm/i915/display/intel_dp.c          |  2 +-
- drivers/gpu/drm/i915/display/intel_psr.c         | 16 ++++++++--------
- 3 files changed, 17 insertions(+), 16 deletions(-)
+ .../drm/i915/display/intel_display_types.h    |  7 ++-
+ drivers/gpu/drm/i915/display/intel_dp.c       |  3 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      | 44 +++++++++++--------
+ 3 files changed, 32 insertions(+), 22 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 659bd62f0ad18..b5641698db695 100644
+index b5641698db695..fb1c8b2d3979f 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_types.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -509,6 +509,12 @@ struct intel_hdcp {
- 	bool force_hdcp14;
- };
- 
-+enum intel_panel_replay_dsc_support {
-+	INTEL_DP_PANEL_REPLAY_DSC_NOT_SUPPORTED,
-+	INTEL_DP_PANEL_REPLAY_DSC_FULL_FRAME_ONLY,
-+	INTEL_DP_PANEL_REPLAY_DSC_SELECTIVE_UPDATE,
-+};
-+
- struct intel_connector {
- 	struct drm_connector base;
- 	/*
-@@ -566,6 +572,8 @@ struct intel_connector {
+@@ -572,6 +572,8 @@ struct intel_connector {
  			u8 dpcd[DP_PANEL_REPLAY_CAP_SIZE];
  #define INTEL_PR_DPCD_INDEX(pr_dpcd_register)	((pr_dpcd_register) - DP_PANEL_REPLAY_CAP_SUPPORT)
  
-+			enum intel_panel_replay_dsc_support dsc_support;
++			bool support;
++			bool su_support;
+ 			enum intel_panel_replay_dsc_support dsc_support;
+ 
+ 			u16 su_w_granularity;
+@@ -581,6 +583,9 @@ struct intel_connector {
+ 		struct {
+ 			u8 dpcd[EDP_PSR_RECEIVER_CAP_SIZE];
+ 
++			bool support;
++			bool su_support;
 +
  			u16 su_w_granularity;
  			u16 su_y_granularity;
- 		} panel_replay_caps;
-@@ -969,12 +977,6 @@ struct intel_csc_matrix {
- 	u16 postoff[3];
- };
- 
--enum intel_panel_replay_dsc_support {
--	INTEL_DP_PANEL_REPLAY_DSC_NOT_SUPPORTED,
--	INTEL_DP_PANEL_REPLAY_DSC_FULL_FRAME_ONLY,
--	INTEL_DP_PANEL_REPLAY_DSC_SELECTIVE_UPDATE,
--};
--
- struct scaler_filter_coeff {
- 	u16 sign;
- 	u16 exp;
-@@ -1746,7 +1748,6 @@ struct intel_psr {
+ 		} psr_caps;
+@@ -1731,7 +1736,6 @@ struct intel_psr {
+ 	bool active;
+ 	struct work_struct work;
+ 	unsigned int busy_frontbuffer_bits;
+-	bool sink_psr2_support;
+ 	bool link_standby;
+ 	bool sel_update_enabled;
+ 	bool psr2_sel_fetch_enabled;
+@@ -1747,7 +1751,6 @@ struct intel_psr {
+ 	u16 su_y_granularity;
  	bool source_panel_replay_support;
  	bool sink_panel_replay_support;
- 	bool sink_panel_replay_su_support;
--	enum intel_panel_replay_dsc_support sink_panel_replay_dsc_support;
+-	bool sink_panel_replay_su_support;
  	bool panel_replay_enabled;
  	u32 dc3co_exitline;
  	u32 dc3co_exit_delay;
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 3838835e7e7eb..8c5ddf0b09d25 100644
+index 8c5ddf0b09d25..4419954867455 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -6059,7 +6059,7 @@ intel_dp_detect(struct drm_connector *_connector,
+@@ -6058,7 +6058,8 @@ intel_dp_detect(struct drm_connector *_connector,
+ 		memset(connector->dp.panel_replay_caps.dpcd, 0,
  		       sizeof(connector->dp.panel_replay_caps.dpcd));
  		intel_dp->psr.sink_panel_replay_support = false;
- 		intel_dp->psr.sink_panel_replay_su_support = false;
--		intel_dp->psr.sink_panel_replay_dsc_support =
-+		connector->dp.panel_replay_caps.dsc_support =
+-		intel_dp->psr.sink_panel_replay_su_support = false;
++		connector->dp.panel_replay_caps.support = false;
++		connector->dp.panel_replay_caps.su_support = false;
+ 		connector->dp.panel_replay_caps.dsc_support =
  			INTEL_DP_PANEL_REPLAY_DSC_NOT_SUPPORTED;
  
- 		intel_dp_mst_disconnect(intel_dp);
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 5fc2279cb8b7f..1d3864405c850 100644
+index 1d3864405c850..c01e06f9cf643 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -643,13 +643,13 @@ static void _panel_replay_init_dpcd(struct intel_dp *intel_dp, struct intel_conn
- 		_panel_replay_compute_su_granularity(connector);
+@@ -634,11 +634,12 @@ static void _panel_replay_init_dpcd(struct intel_dp *intel_dp, struct intel_conn
+ 		}
  	}
  
--	intel_dp->psr.sink_panel_replay_dsc_support = compute_pr_dsc_support(connector);
-+	connector->dp.panel_replay_caps.dsc_support = compute_pr_dsc_support(connector);
++	connector->dp.panel_replay_caps.support = true;
+ 	intel_dp->psr.sink_panel_replay_support = true;
+ 
+ 	if (connector->dp.panel_replay_caps.dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_SUPPORT)] &
+ 	    DP_PANEL_REPLAY_SU_SUPPORT) {
+-		intel_dp->psr.sink_panel_replay_su_support = true;
++		connector->dp.panel_replay_caps.su_support = true;
+ 
+ 		_panel_replay_compute_su_granularity(connector);
+ 	}
+@@ -647,7 +648,7 @@ static void _panel_replay_init_dpcd(struct intel_dp *intel_dp, struct intel_conn
  
  	drm_dbg_kms(display->drm,
  		    "Panel replay %sis supported by panel (in DSC mode: %s)\n",
- 		    intel_dp->psr.sink_panel_replay_su_support ?
+-		    intel_dp->psr.sink_panel_replay_su_support ?
++		    connector->dp.panel_replay_caps.su_support ?
  		    "selective_update " : "",
--		    panel_replay_dsc_support_str(intel_dp->psr.sink_panel_replay_dsc_support));
-+		    panel_replay_dsc_support_str(connector->dp.panel_replay_caps.dsc_support));
+ 		    panel_replay_dsc_support_str(connector->dp.panel_replay_caps.dsc_support));
  }
- 
- static void _psr_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector)
-@@ -1651,7 +1651,7 @@ static bool intel_sel_update_config_valid(struct intel_crtc_state *crtc_state,
- 			goto unsupported;
- 
- 		if (intel_dsc_enabled_on_link(crtc_state) &&
--		    intel_dp->psr.sink_panel_replay_dsc_support !=
-+		    connector->dp.panel_replay_caps.dsc_support !=
- 		    INTEL_DP_PANEL_REPLAY_DSC_SELECTIVE_UPDATE) {
- 			drm_dbg_kms(display->drm,
- 				    "Selective update with Panel Replay not enabled because it's not supported with DSC\n");
-@@ -1748,7 +1748,7 @@ static bool _panel_replay_compute_config(struct intel_crtc_state *crtc_state,
+@@ -680,7 +681,9 @@ static void _psr_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *co
+ 		return;
  	}
  
- 	if (intel_dsc_enabled_on_link(crtc_state) &&
--	    intel_dp->psr.sink_panel_replay_dsc_support ==
-+	    connector->dp.panel_replay_caps.dsc_support ==
- 	    INTEL_DP_PANEL_REPLAY_DSC_NOT_SUPPORTED) {
- 		drm_dbg_kms(display->drm,
- 			    "Panel Replay not enabled because it's not supported with DSC\n");
-@@ -1833,6 +1833,7 @@ void intel_psr_compute_config(struct intel_dp *intel_dp,
- 			      struct drm_connector_state *conn_state)
++	connector->dp.psr_caps.support = true;
+ 	intel_dp->psr.sink_support = true;
++
+ 	intel_dp->psr.sink_sync_latency =
+ 		intel_dp_get_sink_sync_latency(intel_dp);
+ 
+@@ -700,13 +703,13 @@ static void _psr_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *co
+ 		 * Y-coordinate requirement panels we would need to enable
+ 		 * GTC first.
+ 		 */
+-		intel_dp->psr.sink_psr2_support = y_req &&
++		connector->dp.psr_caps.su_support = y_req &&
+ 			intel_alpm_aux_wake_supported(intel_dp);
+ 		drm_dbg_kms(display->drm, "PSR2 %ssupported\n",
+-			    intel_dp->psr.sink_psr2_support ? "" : "not ");
++			    connector->dp.psr_caps.su_support ? "" : "not ");
+ 	}
+ 
+-	if (intel_dp->psr.sink_psr2_support)
++	if (connector->dp.psr_caps.su_support)
+ 		_psr_compute_su_granularity(intel_dp, connector);
+ }
+ 
+@@ -1514,14 +1517,16 @@ static bool alpm_config_valid(struct intel_dp *intel_dp,
+ }
+ 
+ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
+-				    struct intel_crtc_state *crtc_state)
++				    struct intel_crtc_state *crtc_state,
++				    struct drm_connector_state *conn_state)
  {
  	struct intel_display *display = to_intel_display(intel_dp);
 +	struct intel_connector *connector = to_intel_connector(conn_state->connector);
- 	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+ 	int crtc_hdisplay = crtc_state->hw.adjusted_mode.crtc_hdisplay;
+ 	int crtc_vdisplay = crtc_state->hw.adjusted_mode.crtc_vdisplay;
+ 	int psr_max_h = 0, psr_max_v = 0, max_bpp = 0;
  
- 	if (!psr_global_enabled(intel_dp)) {
-@@ -1864,9 +1865,8 @@ void intel_psr_compute_config(struct intel_dp *intel_dp,
+-	if (!intel_dp->psr.sink_psr2_support || display->params.enable_psr == 1)
++	if (!connector->dp.psr_caps.su_support || display->params.enable_psr == 1)
+ 		return false;
+ 
+ 	/* JSL and EHL only supports eDP 1.3 */
+@@ -1634,7 +1639,8 @@ static bool intel_sel_update_config_valid(struct intel_crtc_state *crtc_state,
+ 		goto unsupported;
  	}
  
- 	/* Only used for state verification. */
--	crtc_state->panel_replay_dsc_support = intel_dp->psr.sink_panel_replay_dsc_support;
--	crtc_state->has_panel_replay = _panel_replay_compute_config(crtc_state,
--								    conn_state);
-+	crtc_state->panel_replay_dsc_support = connector->dp.panel_replay_caps.dsc_support;
-+	crtc_state->has_panel_replay = _panel_replay_compute_config(crtc_state, conn_state);
+-	if (!crtc_state->has_panel_replay && !intel_psr2_config_valid(intel_dp, crtc_state))
++	if (!crtc_state->has_panel_replay && !intel_psr2_config_valid(intel_dp, crtc_state,
++								      conn_state))
+ 		goto unsupported;
  
- 	crtc_state->has_psr = crtc_state->has_panel_replay ? true :
- 		_psr_compute_config(intel_dp, crtc_state, conn_state);
-@@ -4134,7 +4134,7 @@ static void intel_psr_sink_capability(struct intel_dp *intel_dp,
- 	seq_printf(m, ", Panel Replay Selective Update = %s",
- 		   str_yes_no(psr->sink_panel_replay_su_support));
- 	seq_printf(m, ", Panel Replay DSC support = %s",
--		   panel_replay_dsc_support_str(psr->sink_panel_replay_dsc_support));
-+		   panel_replay_dsc_support_str(connector->dp.panel_replay_caps.dsc_support));
- 	if (connector->dp.panel_replay_caps.dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_SUPPORT)] &
- 	    DP_PANEL_REPLAY_EARLY_TRANSPORT_SUPPORT)
+ 	if (!_compute_psr2_sdp_prior_scanline_indication(intel_dp, crtc_state)) {
+@@ -1647,7 +1653,7 @@ static bool intel_sel_update_config_valid(struct intel_crtc_state *crtc_state,
+ 		if (DISPLAY_VER(display) < 14)
+ 			goto unsupported;
+ 
+-		if (!intel_dp->psr.sink_panel_replay_su_support)
++		if (!connector->dp.panel_replay_caps.su_support)
+ 			goto unsupported;
+ 
+ 		if (intel_dsc_enabled_on_link(crtc_state) &&
+@@ -1736,6 +1742,9 @@ static bool _panel_replay_compute_config(struct intel_crtc_state *crtc_state,
+ 	if (!CAN_PANEL_REPLAY(intel_dp))
+ 		return false;
+ 
++	if (!connector->dp.panel_replay_caps.support)
++		return false;
++
+ 	if (!panel_replay_global_enabled(intel_dp)) {
+ 		drm_dbg_kms(display->drm, "Panel Replay disabled by flag\n");
+ 		return false;
+@@ -4117,22 +4126,19 @@ psr_source_status(struct intel_dp *intel_dp, struct seq_file *m)
+ 	seq_printf(m, "Source PSR/PanelReplay status: %s [0x%08x]\n", status, val);
+ }
+ 
+-static void intel_psr_sink_capability(struct intel_dp *intel_dp,
+-				      struct intel_connector *connector,
++static void intel_psr_sink_capability(struct intel_connector *connector,
+ 				      struct seq_file *m)
+ {
+-	struct intel_psr *psr = &intel_dp->psr;
+-
+ 	seq_printf(m, "Sink support: PSR = %s",
+-		   str_yes_no(psr->sink_support));
++		   str_yes_no(connector->dp.psr_caps.support));
+ 
+-	if (psr->sink_support)
++	if (connector->dp.psr_caps.support)
+ 		seq_printf(m, " [0x%02x]", connector->dp.psr_caps.dpcd[0]);
+ 	if (connector->dp.psr_caps.dpcd[0] == DP_PSR2_WITH_Y_COORD_ET_SUPPORTED)
  		seq_printf(m, " (Early Transport)");
+-	seq_printf(m, ", Panel Replay = %s", str_yes_no(psr->sink_panel_replay_support));
++	seq_printf(m, ", Panel Replay = %s", str_yes_no(connector->dp.panel_replay_caps.support));
+ 	seq_printf(m, ", Panel Replay Selective Update = %s",
+-		   str_yes_no(psr->sink_panel_replay_su_support));
++		   str_yes_no(connector->dp.panel_replay_caps.su_support));
+ 	seq_printf(m, ", Panel Replay DSC support = %s",
+ 		   panel_replay_dsc_support_str(connector->dp.panel_replay_caps.dsc_support));
+ 	if (connector->dp.panel_replay_caps.dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_SUPPORT)] &
+@@ -4183,9 +4189,9 @@ static int intel_psr_status(struct seq_file *m, struct intel_dp *intel_dp,
+ 	bool enabled;
+ 	u32 val, psr2_ctl;
+ 
+-	intel_psr_sink_capability(intel_dp, connector, m);
++	intel_psr_sink_capability(connector, m);
+ 
+-	if (!(psr->sink_support || psr->sink_panel_replay_support))
++	if (!(connector->dp.psr_caps.support || connector->dp.panel_replay_caps.support))
+ 		return 0;
+ 
+ 	wakeref = intel_display_rpm_get(display);
 -- 
 2.43.0
 
