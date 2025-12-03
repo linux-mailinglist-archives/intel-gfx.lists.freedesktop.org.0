@@ -2,62 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C31E2C9F1D0
-	for <lists+intel-gfx@lfdr.de>; Wed, 03 Dec 2025 14:22:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FF8DC9F259
+	for <lists+intel-gfx@lfdr.de>; Wed, 03 Dec 2025 14:34:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51A4B10E7E0;
-	Wed,  3 Dec 2025 13:22:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4067B10E7E1;
+	Wed,  3 Dec 2025 13:34:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TmQ9gfuH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jr8eXVt2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7B5110E7DF;
- Wed,  3 Dec 2025 13:22:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D8CC10E123;
+ Wed,  3 Dec 2025 13:34:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764768142; x=1796304142;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=RS69TQmrEXqb1bk1NT8uSkrCj8EqwfEt70MvG1e+nPg=;
- b=TmQ9gfuH4MDhoF1v8hFMGJAcKeSfuK2ozYvVZXXmCQGNvryAZ4h+6MNU
- eTo1KPNiymiYmpp96q4c1ACPARXEeJlMOObTtteZRfwConZcL0viQMzqm
- FVlE0ceIa+k1xhxEX5xvuz67RSJP733EUL/wGZxH2hP/l6tDiM49eAQYP
- YjJVD74ngCkBwKRfEkVPOwm/vRab9c80+lcEgXOWyIzqZaIrRbD09KS5t
- yXZmHm1rWpcgfs5ytIkrqY7jrxuyDc6fzPwbiSV01mSrsqkgPf6FYzR38
- M1dXbalE88eEe8dlFvlvpCEBxQMX6jYTt/IspEyKHatRC+KVCPqHbnt8W Q==;
-X-CSE-ConnectionGUID: WmuDkTk6Th2DNz6i6qyL8g==
-X-CSE-MsgGUID: Ysw4jmEoRamTmSDG21rQ8Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="77867579"
-X-IronPort-AV: E=Sophos;i="6.20,245,1758610800"; d="scan'208";a="77867579"
+ t=1764768865; x=1796304865;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=uIwKU4z0XFz0x3nPc31cD73tNxK9Ux33rmyKxojLqlo=;
+ b=Jr8eXVt2VT+RxaY0/3ZjdU68gjpJMJNXwpv9aEEGP7Nhcb3TgiZdYA2e
+ GVkJvz3SQL0Zt88GgrTKhnnQjwHrJouVd07RFopzRMJ3r6PTRA8le2PtS
+ 8eAB7zlHPSFqUfNA9L58TRX1eBYZgEX4KOXdEPVTv3nsc2rQgsz+CHQ2J
+ t4/4/Dyrhgq2dKCuCRmZIb/377oEiTpGJg1/O93XZA1wjMitSEICl60nK
+ KEJfYMAP5gZg4yyeaAxSqgURkWpChUDRWWJz07kfGin/c/HgSSZCnZAXL
+ OjBt0m9HhdsR2Wgu5FZ0cd9ajgYLnjBYvdy0trGhvYMZO1x6Lb8a4hzgW A==;
+X-CSE-ConnectionGUID: BLF8DsPTTW2BVwZS3lXcsA==
+X-CSE-MsgGUID: KLMgUCRrR1GK2187uzFGLA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="77868625"
+X-IronPort-AV: E=Sophos;i="6.20,246,1758610800"; d="scan'208";a="77868625"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2025 05:22:21 -0800
-X-CSE-ConnectionGUID: VybHBlPbR7+QxMi5c/unYw==
-X-CSE-MsgGUID: HX/ePatgRD6PD5bcKlD6gA==
+ 03 Dec 2025 05:34:25 -0800
+X-CSE-ConnectionGUID: X/LGW7UvTeukrck5Kx1Prg==
+X-CSE-MsgGUID: Uyj04tfgS76mM+P5yLmVYA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,245,1758610800"; d="scan'208";a="194573231"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.70])
+X-IronPort-AV: E=Sophos;i="6.20,246,1758610800"; d="scan'208";a="194574716"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.226])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2025 05:22:20 -0800
-Date: Wed, 3 Dec 2025 15:22:17 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v3 2/3] drm/i915/psr: Perform full frame update on async
- flip
-Message-ID: <aTA5icuJ6UeHdH6g@intel.com>
-References: <20251201132457.624358-1-jouni.hogander@intel.com>
- <20251201132457.624358-3-jouni.hogander@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251201132457.624358-3-jouni.hogander@intel.com>
-X-Patchwork-Hint: comment
+ 03 Dec 2025 05:34:22 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
+ brauner@kernel.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Saarinen,  Jani" <jani.saarinen@intel.com>, "Kurmi, Suresh Kumar"
+ <suresh.kumar.kurmi@intel.com>, Thorsten Leemhuis
+ <regressions@leemhuis.info>, Ville =?utf-8?B?U3lyasOkbMOk?=
+ <ville.syrjala@linux.intel.com>
+Subject: Re: BISECTED REGRESSION on v6.18 (was: REGRESSION on drm-tip)
+In-Reply-To: <03c013c0-be12-42ab-91d1-f87395c890e3@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <03c013c0-be12-42ab-91d1-f87395c890e3@intel.com>
+Date: Wed, 03 Dec 2025 15:34:19 +0200
+Message-ID: <c711e3ac455a552c130851d7a45916a3ac992390@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,252 +74,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Dec 01, 2025 at 03:24:56PM +0200, Jouni Högander wrote:
-> According to bspec selective fetch is not supported with async flips and
-> instructing full frame update on async flip.
-> 
-> v3:
->   - rebase
->   - fix old_crtc_state->pipe_srcsz_early_tpt
->   - fix using intel_atomic_get_new_crtc_state
-> v2:
->   - check also crtc_state->async_flip_planes in
->     psr2_sel_fetch_plane_state_supported
-> 
-> Bspec: 55229
-> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_psr.c | 72 ++++++++++++++----------
->  1 file changed, 41 insertions(+), 31 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> index 15ef3b6caad6..53cf292247d7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -2728,13 +2728,20 @@ intel_psr2_sel_fetch_et_alignment(struct intel_atomic_state *state,
->   * Plane scaling and rotation is not supported by selective fetch and both
->   * properties can change without a modeset, so need to be check at every
->   * atomic commit.
-> + *
-> + * If plane was having async flip previously we can't use selective
-> + * fetch as we don't know if the flip is completed.
->   */
-> -static bool psr2_sel_fetch_plane_state_supported(const struct intel_plane_state *plane_state)
-> +static bool psr2_sel_fetch_plane_state_supported(const struct intel_crtc_state *old_crtc_state,
-> +						 const struct intel_plane_state *plane_state)
->  {
-> +	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
-> +
->  	if (plane_state->uapi.dst.y1 < 0 ||
->  	    plane_state->uapi.dst.x1 < 0 ||
->  	    plane_state->scaler_id >= 0 ||
-> -	    plane_state->hw.rotation != DRM_MODE_ROTATE_0)
-> +	    plane_state->hw.rotation != DRM_MODE_ROTATE_0 ||
-> +	    old_crtc_state->async_flip_planes & plane->id)
+On Thu, 27 Nov 2025, "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com> wrote:
+> Hello Christian,
+>
+> This is Chaitanya (again!).
+>
+> This mail is regarding another regression we are seeing in our CI 
+> runs[1] on drm-tip (with both xe and i915).
 
-Why are you looking at the old crtc state? There should be nothing of
-interest to us there.
+Referring to drm-tip is downplaying the problem. The bisected regression
+is in v6.18 release. It's breaking suspend/resume across a lot of
+platforms on two drivers, i915 and xe.
 
->  		return false;
->  
->  	return true;
-> @@ -2749,7 +2756,8 @@ static bool psr2_sel_fetch_plane_state_supported(const struct intel_plane_state
->   */
->  static bool psr2_sel_fetch_pipe_state_supported(const struct intel_crtc_state *crtc_state)
->  {
-> -	if (crtc_state->scaler_state.scaler_id >= 0)
-> +	if (crtc_state->scaler_state.scaler_id >= 0 ||
-> +	    crtc_state->uapi.async_flip)
+a3f8f8662771 ("power: always freeze efivarfs")
 
-I think just checking crtc_state->async_flip_planes!=0 here should be
-sufficient. The rest of the patch seems unnecessary.
+As far as regressions go, it's pretty bad. Please prioritize.
 
-On a related note, someone should add a new igt that does async flips
-while eg. the cursor is enabled and overlapping the plane doing the
-async flips. That's basically how I noticed the problem in the first
-place (with Xorg), so would be good to have an igt to make sure we
-don't break this in the future.
 
->  		return false;
->  
->  	return true;
-> @@ -2808,24 +2816,25 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->  				struct intel_crtc *crtc)
->  {
->  	struct intel_display *display = to_intel_display(state);
-> -	struct intel_crtc_state *crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
-> +	struct intel_crtc_state *new_crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
-> +	struct intel_crtc_state *old_crtc_state = intel_atomic_get_old_crtc_state(state, crtc);
->  	struct intel_plane_state *new_plane_state, *old_plane_state;
->  	struct intel_plane *plane;
->  	bool full_update = false, cursor_in_su_area = false;
->  	int i, ret;
->  
-> -	if (!crtc_state->enable_psr2_sel_fetch)
-> +	if (!new_crtc_state->enable_psr2_sel_fetch)
->  		return 0;
->  
-> -	if (!psr2_sel_fetch_pipe_state_supported(crtc_state)) {
-> +	if (!psr2_sel_fetch_pipe_state_supported(new_crtc_state)) {
->  		full_update = true;
->  		goto skip_sel_fetch_set_loop;
->  	}
->  
-> -	crtc_state->psr2_su_area.x1 = 0;
-> -	crtc_state->psr2_su_area.y1 = -1;
-> -	crtc_state->psr2_su_area.x2 = drm_rect_width(&crtc_state->pipe_src);
-> -	crtc_state->psr2_su_area.y2 = -1;
-> +	new_crtc_state->psr2_su_area.x1 = 0;
-> +	new_crtc_state->psr2_su_area.y1 = -1;
-> +	new_crtc_state->psr2_su_area.x2 = drm_rect_width(&new_crtc_state->pipe_src);
-> +	new_crtc_state->psr2_su_area.y2 = -1;
->  
->  	/*
->  	 * Calculate minimal selective fetch area of each plane and calculate
-> @@ -2838,14 +2847,14 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->  		struct drm_rect src, damaged_area = { .x1 = 0, .y1 = -1,
->  						      .x2 = INT_MAX };
->  
-> -		if (new_plane_state->hw.crtc != crtc_state->uapi.crtc)
-> +		if (new_plane_state->hw.crtc != new_crtc_state->uapi.crtc)
->  			continue;
->  
->  		if (!new_plane_state->uapi.visible &&
->  		    !old_plane_state->uapi.visible)
->  			continue;
->  
-> -		if (!psr2_sel_fetch_plane_state_supported(new_plane_state)) {
-> +		if (!psr2_sel_fetch_plane_state_supported(old_crtc_state, new_plane_state)) {
->  			full_update = true;
->  			break;
->  		}
-> @@ -2861,23 +2870,23 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->  			if (old_plane_state->uapi.visible) {
->  				damaged_area.y1 = old_plane_state->uapi.dst.y1;
->  				damaged_area.y2 = old_plane_state->uapi.dst.y2;
-> -				clip_area_update(&crtc_state->psr2_su_area, &damaged_area,
-> -						 &crtc_state->pipe_src);
-> +				clip_area_update(&new_crtc_state->psr2_su_area, &damaged_area,
-> +						 &new_crtc_state->pipe_src);
->  			}
->  
->  			if (new_plane_state->uapi.visible) {
->  				damaged_area.y1 = new_plane_state->uapi.dst.y1;
->  				damaged_area.y2 = new_plane_state->uapi.dst.y2;
-> -				clip_area_update(&crtc_state->psr2_su_area, &damaged_area,
-> -						 &crtc_state->pipe_src);
-> +				clip_area_update(&new_crtc_state->psr2_su_area, &damaged_area,
-> +						 &new_crtc_state->pipe_src);
->  			}
->  			continue;
->  		} else if (new_plane_state->uapi.alpha != old_plane_state->uapi.alpha) {
->  			/* If alpha changed mark the whole plane area as damaged */
->  			damaged_area.y1 = new_plane_state->uapi.dst.y1;
->  			damaged_area.y2 = new_plane_state->uapi.dst.y2;
-> -			clip_area_update(&crtc_state->psr2_su_area, &damaged_area,
-> -					 &crtc_state->pipe_src);
-> +			clip_area_update(&new_crtc_state->psr2_su_area, &damaged_area,
-> +					 &new_crtc_state->pipe_src);
->  			continue;
->  		}
->  
-> @@ -2893,7 +2902,8 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->  		damaged_area.x1 += new_plane_state->uapi.dst.x1 - src.x1;
->  		damaged_area.x2 += new_plane_state->uapi.dst.x1 - src.x1;
->  
-> -		clip_area_update(&crtc_state->psr2_su_area, &damaged_area, &crtc_state->pipe_src);
-> +		clip_area_update(&new_crtc_state->psr2_su_area, &damaged_area,
-> +				 &new_crtc_state->pipe_src);
->  	}
->  
->  	/*
-> @@ -2902,7 +2912,7 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->  	 * should identify cases where this happens and fix the area
->  	 * calculation for those.
->  	 */
-> -	if (crtc_state->psr2_su_area.y1 == -1) {
-> +	if (new_crtc_state->psr2_su_area.y1 == -1) {
->  		drm_info_once(display->drm,
->  			      "Selective fetch area calculation failed in pipe %c\n",
->  			      pipe_name(crtc->pipe));
-> @@ -2912,7 +2922,7 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->  	if (full_update)
->  		goto skip_sel_fetch_set_loop;
->  
-> -	intel_psr_apply_su_area_workarounds(crtc_state);
-> +	intel_psr_apply_su_area_workarounds(new_crtc_state);
->  
->  	ret = drm_atomic_add_affected_planes(&state->base, &crtc->base);
->  	if (ret)
-> @@ -2926,7 +2936,7 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->  	 */
->  	intel_psr2_sel_fetch_et_alignment(state, crtc, &cursor_in_su_area);
->  
-> -	intel_psr2_sel_fetch_pipe_alignment(crtc_state);
-> +	intel_psr2_sel_fetch_pipe_alignment(new_crtc_state);
->  
->  	/*
->  	 * Now that we have the pipe damaged area check if it intersect with
-> @@ -2937,11 +2947,11 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->  		struct drm_rect *sel_fetch_area, inter;
->  		struct intel_plane *linked = new_plane_state->planar_linked_plane;
->  
-> -		if (new_plane_state->hw.crtc != crtc_state->uapi.crtc ||
-> +		if (new_plane_state->hw.crtc != new_crtc_state->uapi.crtc ||
->  		    !new_plane_state->uapi.visible)
->  			continue;
->  
-> -		inter = crtc_state->psr2_su_area;
-> +		inter = new_crtc_state->psr2_su_area;
->  		sel_fetch_area = &new_plane_state->psr2_sel_fetch_area;
->  		if (!drm_rect_intersect(&inter, &new_plane_state->uapi.dst)) {
->  			sel_fetch_area->y1 = -1;
-> @@ -2951,12 +2961,12 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->  			 * disable it
->  			 */
->  			if (drm_rect_height(&old_plane_state->psr2_sel_fetch_area) > 0)
-> -				crtc_state->update_planes |= BIT(plane->id);
-> +				new_crtc_state->update_planes |= BIT(plane->id);
->  
->  			continue;
->  		}
->  
-> -		if (!psr2_sel_fetch_plane_state_supported(new_plane_state)) {
-> +		if (!psr2_sel_fetch_plane_state_supported(old_crtc_state, new_plane_state)) {
->  			full_update = true;
->  			break;
->  		}
-> @@ -2964,7 +2974,7 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->  		sel_fetch_area = &new_plane_state->psr2_sel_fetch_area;
->  		sel_fetch_area->y1 = inter.y1 - new_plane_state->uapi.dst.y1;
->  		sel_fetch_area->y2 = inter.y2 - new_plane_state->uapi.dst.y1;
-> -		crtc_state->update_planes |= BIT(plane->id);
-> +		new_crtc_state->update_planes |= BIT(plane->id);
->  
->  		/*
->  		 * Sel_fetch_area is calculated for UV plane. Use
-> @@ -2981,14 +2991,14 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->  			linked_sel_fetch_area = &linked_new_plane_state->psr2_sel_fetch_area;
->  			linked_sel_fetch_area->y1 = sel_fetch_area->y1;
->  			linked_sel_fetch_area->y2 = sel_fetch_area->y2;
-> -			crtc_state->update_planes |= BIT(linked->id);
-> +			new_crtc_state->update_planes |= BIT(linked->id);
->  		}
->  	}
->  
->  skip_sel_fetch_set_loop:
-> -	psr2_man_trk_ctl_calc(crtc_state, full_update);
-> -	crtc_state->pipe_srcsz_early_tpt =
-> -		psr2_pipe_srcsz_early_tpt_calc(crtc_state, full_update);
-> +	psr2_man_trk_ctl_calc(new_crtc_state, full_update);
-> +	new_crtc_state->pipe_srcsz_early_tpt =
-> +		psr2_pipe_srcsz_early_tpt_calc(new_crtc_state, full_update);
->  	return 0;
->  }
->  
-> -- 
-> 2.43.0
+BR,
+Jani.
+
+
+
+>
+> `````````````````````````````````````````````````````````````````````````````````
+> <4> [157.687644] ------------[ cut here ]------------
+> <4> [157.687768] WARNING: CPU: 5 PID: 2277 at kernel/freezer.c:139 
+> __set_task_frozen+0x7f/0xb0
+> ...
+> <4> [157.687923] PKRU: 55555554
+> <4> [157.687924] Call Trace:
+> <4> [157.687925]  <TASK>
+> <4> [157.687926]  ? __pfx___set_task_frozen+0x10/0x10
+> <4> [157.687929]  task_call_func+0x6d/0x120
+> <4> [157.687932]  ? cgroup_freezing+0x89/0x200
+> <4> [157.687937]  freeze_task+0x98/0x100
+> <4> [157.687940]  try_to_freeze_tasks+0xd2/0x440
+> <4> [157.687946]  freeze_processes+0x56/0xd0
+> <4> [157.687948]  hibernate+0x129/0x4a0
+> <4> [157.687951]  state_store+0xd3/0xe0
+> <4> [157.687954]  kobj_attr_store+0x12/0x40
+> <4> [157.687959]  sysfs_kf_write+0x4d/0x80
+> <4> [157.687963]  kernfs_fop_write_iter+0x188/0x240
+> <4> [157.687967]  vfs_write+0x283/0x540
+> <4> [157.687969]  ? free_to_partial_list+0x46d/0x640
+> <4> [157.687976]  ksys_write+0x6f/0xf0
+> <4> [157.687980]  __x64_sys_write+0x19/0x30
+> <4> [157.687982]  x64_sys_call+0x79/0x26a0
+> <4> [157.687984]  do_syscall_64+0x93/0xd60
+> <4> [157.687987]  ? putname+0x65/0x90
+> <4> [157.687990]  ? kmem_cache_free+0x553/0x680
+> <4> [157.687995]  ? putname+0x65/0x90
+> <4> [157.687997]  ? putname+0x65/0x90
+> <4> [157.687999]  ? do_sys_openat2+0x8b/0xd0
+> <4> [157.688003]  ? __x64_sys_openat+0x54/0xa0
+> <4> [157.688007]  ? do_syscall_64+0x1b7/0xd60
+> <4> [157.688009]  ? __fput+0x1bf/0x2f0
+> <4> [157.688012]  ? fput_close_sync+0x3d/0xa0
+> <4> [157.688015]  ? __x64_sys_close+0x3e/0x90
+> <4> [157.688017]  ? do_syscall_64+0x1b7/0xd60
+> <4> [157.688019]  ? putname+0x65/0x90
+> <4> [157.688021]  ? putname+0x65/0x90
+> <4> [157.688023]  ? do_sys_openat2+0x8b/0xd0
+> <4> [157.688024]  ? __fput+0x1bf/0x2f0
+> <4> [157.688028]  ? __x64_sys_openat+0x54/0xa0
+> <4> [157.688032]  ? do_syscall_64+0x1b7/0xd60
+> <4> [157.688034]  ? do_syscall_64+0x1b7/0xd60
+> <4> [157.688036]  ? irqentry_exit+0x77/0xb0
+> <4> [157.688038]  ? exc_page_fault+0xbd/0x2c0
+> <4> [157.688042]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+> <4> [157.688044] RIP: 0033:0x72523c91c574
+> `````````````````````````````````````````````````````````````````````````````````
+> Details log can be found in [2].
+>
+> After bisecting the tree, the following patch [3] seems to be the first 
+> "bad" commit
+>
+> `````````````````````````````````````````````````````````````````````````````````````````````````````````
+> commit a3f8f8662771285511ae26c4c8d3ba1cd22159b9
+> Author: Christian Brauner <brauner@kernel.org>
+> Date:   Wed Nov 5 14:39:45 2025 +0100
+>
+>      power: always freeze efivarfs
+> `````````````````````````````````````````````````````````````````````````````````````````````````````````
+>
+> We also verified that if we revert the patch the issue is not seen.
+>
+> Could you please check why the patch causes this regression and provide 
+> a fix if necessary?
+>
+> Thank you.
+>
+> Regards
+>
+> Chaitanya
+>
+> [1]
+> https://intel-gfx-ci.01.org/tree/drm-tip/index.html?testfilter=suspend
+> [2]
+> https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17595/shard-mtlp-6/igt@gem_exec_suspend@basic-s4-devices.html
+> [3] 
+> https://gitlab.com/freedesktop-mirror/drm-tip/-/commit/a3f8f8662771285511ae26c4c8d3ba1cd22159b9
 
 -- 
-Ville Syrjälä
-Intel
+Jani Nikula, Intel
