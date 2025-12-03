@@ -2,67 +2,91 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11FA5C9FB8D
-	for <lists+intel-gfx@lfdr.de>; Wed, 03 Dec 2025 16:56:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 01A3AC9FE9A
+	for <lists+intel-gfx@lfdr.de>; Wed, 03 Dec 2025 17:23:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99AC210E7FF;
-	Wed,  3 Dec 2025 15:56:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25AFF10E824;
+	Wed,  3 Dec 2025 16:23:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z3Qz8/Pm";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YQk3yGBl";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F4DA10E7FF;
- Wed,  3 Dec 2025 15:56:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764777363; x=1796313363;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Qn3g9jAZVfezkhBb2odQ1Z9POZVrb2xL2cdUr5dG530=;
- b=Z3Qz8/PmwJnwoZ1pLoAYT6Aes8LKpQdARmJv1a70bDQ8WUEHz1Xl+4jV
- T8bQnBTe9rDmWnzdlFMnf/kCikEvR1VdVPJiSxKXT2gevasoDD6wZk9yR
- Kto4zbFmQ0Q8cP8f5XnQGE8pTf6ES67xxBv3Mz8euWG41oP7N0pNjKNYZ
- gXLTkFymQ8KVhx5riZUeQ7cKenVxDADwHEwUPGBQk3sl1TFXfefeKJLIE
- Yf1ZwkDD0s1rHa26IHPpl/TQJa9KdYF1G6+bji0eySCqTP/noZIi72PQN
- LKehe/oqRNDcRiq9YWI5oOnHV+ktwu4+bnI0Pq/61k9pKTSIRlgLtQiWY g==;
-X-CSE-ConnectionGUID: oHTSBGnORC6ga3aRG2do9Q==
-X-CSE-MsgGUID: fE92f38kTNWawOX2a97NAg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="78240788"
-X-IronPort-AV: E=Sophos;i="6.20,246,1758610800"; d="scan'208";a="78240788"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2025 07:56:03 -0800
-X-CSE-ConnectionGUID: VdHcTcXeQ/qaJCtNF5T7+Q==
-X-CSE-MsgGUID: 5cwI8oX4ReOYfnLduKoNtQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,246,1758610800"; d="scan'208";a="199143191"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.70])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2025 07:56:01 -0800
-Date: Wed, 3 Dec 2025 17:55:58 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH v3 2/3] drm/i915/psr: Perform full frame update on async
- flip
-Message-ID: <aTBdjlMn1WAQqtYb@intel.com>
-References: <20251201132457.624358-1-jouni.hogander@intel.com>
- <20251201132457.624358-3-jouni.hogander@intel.com>
- <aTA5icuJ6UeHdH6g@intel.com>
- <ccbbcdf01c45dba368a8b98cd1fc19ffc90aa0f1.camel@intel.com>
- <aTBSYy78qNjFoOOt@intel.com>
- <d1465eae2faf7545fbb16e8038b802f981606274.camel@intel.com>
+Received: from mail-yx1-f41.google.com (mail-yx1-f41.google.com
+ [74.125.224.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F273210E152
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Dec 2025 16:23:31 +0000 (UTC)
+Received: by mail-yx1-f41.google.com with SMTP id
+ 956f58d0204a3-640d8b78608so5333424d50.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 03 Dec 2025 08:23:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1764779011; x=1765383811; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=mNK//JpS9hirQN90oXpJD1gUxWiQ6E+9iQMheM4lBcw=;
+ b=YQk3yGBlaA2g2nKFit0VdCvlASg08QsskANuQEMEN3CnOXIpKVp7VGiXSWmG1uHrtP
+ Y3NTy9zYbFoDbC/SbjJ914+c96RiShtPNvAB694PVJP63xA3GeR9EoVuQcL6dTGQVF2C
+ F0urlF6OXkx7ZTIVSviO8SRBwyidB5n9bgdiVfR0VNMZmuUxlpw6YrnjiHmFmcbHsvud
+ G37KgX6ur8j/PLWUxWdSEaES1xF0/PC1j3QYtsnb0ENJgVX7q0qUaIF2NVgXQopus9lV
+ uG2s0xTTbpmaZg7jg913AyqA4IldbdBr6OiTtLT6ZTl8ZH6RcIG+BXvCXdtHyQiK0miu
+ 2Z4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1764779011; x=1765383811;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=mNK//JpS9hirQN90oXpJD1gUxWiQ6E+9iQMheM4lBcw=;
+ b=eDaHWlQQibHUvWu9c9mMOSfvRjXMs1z3CSgPJupwKEYFTJ/Xcsxz/ILbvGNqOP86Bx
+ BqaaB+L+twAlvii9cnSevY4qbdsiUVJf8nrLzHTRDRwWJeZ4FXSrGQOKbpsT5VRTVapm
+ zWc2PbWSI0vh6SH79mi46irPatFmOWBbuziBXBsKdTmgXo/bp7QXxOQC5KDG3hEkcpa4
+ L4jsUUe1OGbVg/8hloBHeywWG2BnPbnY4WghnxWv91kijto9Clo2pQnpJ5mJo+qLttpV
+ CA9AheYJmFoJ5cAgFs35E2fej+c564fYtG5yX7c9TQcSIobO/dJbJZxUd4kIC0zPdq/4
+ R92w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX9nHPnENETKBbjQtcb5T1n6fY+SKPZ/RiY2KyGgdcNm2zcRt258b/Ibsr04o5gpi2bKCrm2ebE+sA=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz3uvghyHCbHO9EZ3b7OT2IvS1YI6Q/eYayGZrmf6ta6O3/JniF
+ FiDS7RTgwmlJ50C4f2ff0JQ4cEhGrPjdMGc6gDfVf/wtPtHU9lo6B5jw
+X-Gm-Gg: ASbGncsJOsFRBGx06GRxsAJZ3cdPL3Z9ruEiI+lHNZwpDKDz8iwYSqzWl6xRCQz53cp
+ 3isUpBtSf0Olf3VIanywU1fpaBnyAweXXPQdlBwLjWW1/j7nvtpekHtQ68fwsFlpxRQ1OzMfH69
+ XeFwwaywEzigQ6P7OxIwHlPsPBtkCYKX+Dx72QUhlf4SQU4FEeIzVcLv/A0txzlMcd+UOwIQUVj
+ gxqmA/dn3d57hkZTq52RxgY9gBvZmhp5nDi64as6/dX2IMT0+4anh0VMhgstHzmhi2V15JB1iG7
+ IRLCzZIYqRC6qLRMWf2/c7UrhFfe3sTQ04LW59fFTMItWnfv11nczWJXgh53KmvB+o1+S7cj46z
+ zJbH+e4QbrKH7TPSzqH6nrPwo3S/B9O7KmiE+X/GbkyWRXc9SPJfsHEwDzpS3hPChSyiID0b34l
+ c1IHbSI1s=
+X-Google-Smtp-Source: AGHT+IFbqbKS7r+NlCXK/8J98hJM3a/US0gzPftZwuaa3JUY2EfeVswum0kC2L5AoZFpIWqi7rzeVg==
+X-Received: by 2002:a05:690e:e8d:b0:63f:af64:ae5a with SMTP id
+ 956f58d0204a3-6443704b94amr2258748d50.58.1764779011007; 
+ Wed, 03 Dec 2025 08:23:31 -0800 (PST)
+Received: from localhost ([2601:346:0:79bd:3422:8bf9:97bc:b085])
+ by smtp.gmail.com with ESMTPSA id
+ 00721157ae682-78ad0d3f600sm75866767b3.9.2025.12.03.08.23.30
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 03 Dec 2025 08:23:30 -0800 (PST)
+From: "Yury Norov (NVIDIA)" <yury.norov@gmail.com>
+To: Steven Rostedt <rostedt@goodmis.org>,
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Christophe Leroy <chleroy@kernel.org>,
+ Randy Dunlap <rdunlap@infradead.org>, Ingo Molnar <mingo@kernel.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ David Laight <david.laight@runbox.com>, Petr Pavlu <petr.pavlu@suse.com>,
+ Andi Shyti <andi.shyti@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Daniel Gomez <da.gomez@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Danilo Krummrich <dakr@kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-modules@vger.kernel.org, linux-trace-kernel@vger.kernel.org
+Cc: "Yury Norov (NVIDIA)" <yury.norov@gmail.com>
+Subject: [PATCH v2 0/4] Unload linux/kernel.h
+Date: Wed,  3 Dec 2025 11:23:21 -0500
+Message-ID: <20251203162329.280182-1-yury.norov@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <d1465eae2faf7545fbb16e8038b802f981606274.camel@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,145 +102,156 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 03, 2025 at 03:13:11PM +0000, Hogander, Jouni wrote:
-> On Wed, 2025-12-03 at 17:08 +0200, Ville Syrjälä wrote:
-> > On Wed, Dec 03, 2025 at 01:58:23PM +0000, Hogander, Jouni wrote:
-> > > On Wed, 2025-12-03 at 15:22 +0200, Ville Syrjälä wrote:
-> > > > On Mon, Dec 01, 2025 at 03:24:56PM +0200, Jouni Högander wrote:
-> > > > > According to bspec selective fetch is not supported with async
-> > > > > flips and
-> > > > > instructing full frame update on async flip.
-> > > > > 
-> > > > > v3:
-> > > > >   - rebase
-> > > > >   - fix old_crtc_state->pipe_srcsz_early_tpt
-> > > > >   - fix using intel_atomic_get_new_crtc_state
-> > > > > v2:
-> > > > >   - check also crtc_state->async_flip_planes in
-> > > > >     psr2_sel_fetch_plane_state_supported
-> > > > > 
-> > > > > Bspec: 55229
-> > > > > Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/i915/display/intel_psr.c | 72 ++++++++++++++--
-> > > > > ----
-> > > > > ----
-> > > > >  1 file changed, 41 insertions(+), 31 deletions(-)
-> > > > > 
-> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c
-> > > > > b/drivers/gpu/drm/i915/display/intel_psr.c
-> > > > > index 15ef3b6caad6..53cf292247d7 100644
-> > > > > --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> > > > > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> > > > > @@ -2728,13 +2728,20 @@
-> > > > > intel_psr2_sel_fetch_et_alignment(struct
-> > > > > intel_atomic_state *state,
-> > > > >   * Plane scaling and rotation is not supported by selective
-> > > > > fetch
-> > > > > and both
-> > > > >   * properties can change without a modeset, so need to be
-> > > > > check at
-> > > > > every
-> > > > >   * atomic commit.
-> > > > > + *
-> > > > > + * If plane was having async flip previously we can't use
-> > > > > selective
-> > > > > + * fetch as we don't know if the flip is completed.
-> > > > >   */
-> > > > > -static bool psr2_sel_fetch_plane_state_supported(const struct
-> > > > > intel_plane_state *plane_state)
-> > > > > +static bool psr2_sel_fetch_plane_state_supported(const struct
-> > > > > intel_crtc_state *old_crtc_state,
-> > > > > +						 const struct
-> > > > > intel_plane_state *plane_state)
-> > > > >  {
-> > > > > +	struct intel_plane *plane =
-> > > > > to_intel_plane(plane_state-
-> > > > > > uapi.plane);
-> > > > > +
-> > > > >  	if (plane_state->uapi.dst.y1 < 0 ||
-> > > > >  	    plane_state->uapi.dst.x1 < 0 ||
-> > > > >  	    plane_state->scaler_id >= 0 ||
-> > > > > -	    plane_state->hw.rotation != DRM_MODE_ROTATE_0)
-> > > > > +	    plane_state->hw.rotation != DRM_MODE_ROTATE_0 ||
-> > > > > +	    old_crtc_state->async_flip_planes & plane->id)
-> > > > 
-> > > > Why are you looking at the old crtc state? There should be
-> > > > nothing of
-> > > > interest to us there.
-> > > 
-> > > To continue keeping CFF bit set if previous update was async flip.
-> > > This
-> > > is how I understood it (please correct):
-> > > 
-> > > 0. syncronous update
-> > > 
-> > > 1. async_flip:
-> > >    new_crtc_state->async_flip_planes != 0
-> > >    old_crtc_state->async_flip_planes == 0
-> > >    crtc_state->uapi.async_flip == true)
-> > >    -> full frame update
-> > > 
-> > > 2. async_flip:
-> > >    new_crtc_state->async_flip_planes != 0
-> > >    old_crtc_state->async_flip_planes != 0
-> > >    crtc_state->uapi.async_flip == true
-> > >    -> full frame update
-> > > 
-> > > 3. syncronous update
-> > >    new_crtc_state->async_flip_planes == 0
-> > >    old_crtc_state->async_flip_planes != 0
-> > >    crtc_state->uapi.async_flip == false
-> > >    -> full frame update
-> > > 
-> > > 4. syncronous update
-> > >    new_crtc_state->async_flip_planes == 0
-> > >    old_crtc_state->async_flip_planes == 0
-> > >    crtc_state->uapi.async_flip == false
-> > >    -> selective update
-> > > 
-> > > > 
-> > > > >  		return false;
-> > > > >  
-> > > > >  	return true;
-> > > > > @@ -2749,7 +2756,8 @@ static bool
-> > > > > psr2_sel_fetch_plane_state_supported(const struct
-> > > > > intel_plane_state
-> > > > >   */
-> > > > >  static bool psr2_sel_fetch_pipe_state_supported(const struct
-> > > > > intel_crtc_state *crtc_state)
-> > > > >  {
-> > > > > -	if (crtc_state->scaler_state.scaler_id >= 0)
-> > > > > +	if (crtc_state->scaler_state.scaler_id >= 0 ||
-> > > > > +	    crtc_state->uapi.async_flip)
-> > > > 
-> > > > I think just checking crtc_state->async_flip_planes!=0 here
-> > > > should be
-> > > > sufficient.
-> > > 
-> > > I'm doing this to handle step 1. above. Alternatively I could check
-> > > both new_crtc_state->async_flip_planes and old_crtc_state-
-> > > > async_flip_planes. When using crtc_state->uapi.async_flip I can
-> > > > decide
-> > > earlier.
-> > > 
-> > > > The rest of the patch seems unnecessary.
-> > > 
-> > > No need to handle selective update where planes having pending
-> > > async
-> > > flip are not involved?
-> > 
-> > There won't be pending flips of any kind. We whole CRTC commit queue
-> > is handled in a strict FIFO order (apart from the legacy cursor
-> > special case).
-> > 
-> 
-> Ok, so it's not possible to take in new CRTC commit before async flip
-> is completed?
+kernel.h hosts declarations that can be placed better.
 
-More or less. The new request can come in before that, but it won't
-be commited to the hardware until the previous one has finished.
+Testing (0-Day):
+alpha                               defconfig    gcc-15.1.0
+arc                                 defconfig    gcc-15.1.0
+arc                   randconfig-001-20251202    gcc-8.5.0
+arc                   randconfig-002-20251202    gcc-12.5.0
+arm                                 defconfig    clang-22
+arm                   randconfig-001-20251202    clang-17
+arm                   randconfig-002-20251202    clang-22
+arm                   randconfig-003-20251202    clang-22
+arm                   randconfig-004-20251202    gcc-14.3.0
+arm                       spear13xx_defconfig    gcc-15.1.0
+arm64                               defconfig    gcc-15.1.0
+arm64                 randconfig-001-20251202    clang-22
+arm64                 randconfig-002-20251202    clang-22
+arm64                 randconfig-003-20251202    clang-16
+arm64                 randconfig-004-20251202    clang-22
+csky                                defconfig    gcc-15.1.0
+csky                  randconfig-001-20251202    gcc-13.4.0
+csky                  randconfig-002-20251202    gcc-15.1.0
+hexagon                             defconfig    clang-22
+hexagon               randconfig-001-20251202    clang-22
+hexagon               randconfig-002-20251202    clang-22
+i386                             allmodconfig    gcc-14
+i386                             allyesconfig    gcc-14
+i386        buildonly-randconfig-001-20251202    clang-20
+i386        buildonly-randconfig-002-20251202    gcc-14
+i386        buildonly-randconfig-003-20251202    clang-20
+i386        buildonly-randconfig-004-20251202    clang-20
+i386        buildonly-randconfig-005-20251202    clang-20
+i386        buildonly-randconfig-006-20251202    gcc-14
+i386                                defconfig    clang-20
+i386                  randconfig-001-20251202    clang-20
+i386                  randconfig-002-20251202    gcc-14
+i386                  randconfig-003-20251202    gcc-14
+i386                  randconfig-004-20251202    clang-20
+i386                  randconfig-005-20251202    gcc-14
+i386                  randconfig-006-20251202    clang-20
+i386                  randconfig-007-20251202    clang-20
+i386                  randconfig-011-20251202    clang-20
+i386                  randconfig-012-20251202    clang-20
+i386                  randconfig-013-20251202    gcc-14
+i386                  randconfig-014-20251202    gcc-14
+i386                  randconfig-015-20251202    gcc-14
+i386                  randconfig-016-20251202    clang-20
+i386                  randconfig-017-20251202    clang-20
+loongarch                           defconfig    clang-19
+loongarch             randconfig-001-20251202    gcc-15.1.0
+loongarch             randconfig-002-20251202    clang-22
+m68k                                defconfig    gcc-15.1.0
+microblaze                       allyesconfig    gcc-15.1.0
+microblaze                          defconfig    gcc-15.1.0
+nios2                         10m50_defconfig    gcc-11.5.0
+nios2                            allmodconfig    gcc-11.5.0
+nios2                             allnoconfig    gcc-11.5.0
+nios2                               defconfig    gcc-11.5.0
+nios2                 randconfig-001-20251202    gcc-8.5.0
+nios2                 randconfig-002-20251202    gcc-8.5.0
+openrisc                         allmodconfig    gcc-15.1.0
+openrisc                          allnoconfig    gcc-15.1.0
+openrisc                            defconfig    gcc-15.1.0
+parisc                            allnoconfig    gcc-15.1.0
+parisc                           allyesconfig    gcc-15.1.0
+parisc                              defconfig    gcc-15.1.0
+parisc                generic-32bit_defconfig    gcc-15.1.0
+parisc                randconfig-001-20251202    gcc-9.5.0
+parisc                randconfig-002-20251202    gcc-15.1.0
+parisc64                            defconfig    gcc-15.1.0
+powerpc                          allmodconfig    gcc-15.1.0
+powerpc                           allnoconfig    gcc-15.1.0
+powerpc               randconfig-001-20251202    clang-22
+powerpc               randconfig-002-20251202    gcc-10.5.0
+powerpc64             randconfig-001-20251202    clang-22
+powerpc64             randconfig-002-20251202    clang-22
+riscv                             allnoconfig    gcc-15.1.0
+riscv                               defconfig    clang-22
+riscv                    nommu_k210_defconfig    clang-22
+riscv                 randconfig-001-20251202    gcc-9.5.0
+riscv                 randconfig-002-20251202    clang-22
+s390                              allnoconfig    clang-22
+s390                                defconfig    clang-22
+s390                  randconfig-001-20251202    clang-17
+s390                  randconfig-002-20251202    gcc-13.4.0
+sh                                allnoconfig    gcc-15.1.0
+sh                                  defconfig    gcc-15.1.0
+sh                    randconfig-001-20251202    gcc-15.1.0
+sh                    randconfig-002-20251202    gcc-12.5.0
+sh                          rsk7269_defconfig    gcc-15.1.0
+sh                     sh7710voipgw_defconfig    gcc-15.1.0
+sparc                             allnoconfig    gcc-15.1.0
+sparc                               defconfig    gcc-15.1.0
+sparc                 randconfig-001-20251202    gcc-8.5.0
+sparc                 randconfig-002-20251202    gcc-8.5.0
+sparc64                          allmodconfig    clang-22
+sparc64                             defconfig    clang-20
+sparc64               randconfig-001-20251202    gcc-8.5.0
+sparc64               randconfig-002-20251202    gcc-10.5.0
+um                                allnoconfig    clang-22
+um                                  defconfig    clang-22
+um                             i386_defconfig    gcc-14
+um                    randconfig-001-20251202    clang-17
+um                    randconfig-002-20251202    gcc-14
+um                           x86_64_defconfig    clang-22
+x86_64                           allmodconfig    clang-20
+x86_64                            allnoconfig    clang-20
+x86_64                           allyesconfig    clang-20
+x86_64      buildonly-randconfig-001-20251202    gcc-14
+x86_64      buildonly-randconfig-002-20251202    gcc-14
+x86_64      buildonly-randconfig-003-20251202    clang-20
+x86_64      buildonly-randconfig-004-20251202    gcc-13
+x86_64      buildonly-randconfig-005-20251202    gcc-14
+x86_64      buildonly-randconfig-006-20251202    gcc-13
+x86_64                              defconfig    gcc-14
+x86_64                randconfig-011-20251202    clang-20
+x86_64                randconfig-012-20251202    gcc-13
+x86_64                randconfig-013-20251202    gcc-14
+x86_64                randconfig-014-20251202    clang-20
+x86_64                randconfig-015-20251202    clang-20
+x86_64                randconfig-016-20251202    clang-20
+x86_64                          rhel-9.4-rust    clang-20
+xtensa                            allnoconfig    gcc-15.1.0
+xtensa                randconfig-001-20251202    gcc-11.5.0
+xtensa                randconfig-002-20251202    gcc-11.5.0
+
+v1: https://lore.kernel.org/all/20251129195304.204082-1-yury.norov@gmail.com/
+v2: 
+ - more historical context for STACK_MAGIC removal (Christophe);
+ - place STACK_MAGIC in i915_selftest.h (Jan);
+ - new patch #2: moduleparam: include required headers explicitly (Petr);
+ - align Documentation/filesystems/sysfs.rst (Andy);
+ - more motivation for linux/tracing.h (Andy, Steven);
+
+Yury Norov (NVIDIA) (4):
+  kernel.h: drop STACK_MAGIC macro
+  moduleparam: include required headers explicitly
+  kernel.h: move VERIFY_OCTAL_PERMISSIONS() to sysfs.h
+  tracing: move tracing declarations from kernel.h to a dedicated header
+
+ Documentation/filesystems/sysfs.rst           |   2 +-
+ MAINTAINERS                                   |   1 +
+ .../drm/i915/gt/selftest_ring_submission.c    |   1 +
+ drivers/gpu/drm/i915/i915_selftest.h          |   2 +
+ include/linux/kernel.h                        | 209 +-----------------
+ include/linux/moduleparam.h                   |   7 +-
+ include/linux/sysfs.h                         |  13 ++
+ include/linux/tracing.h                       | 203 +++++++++++++++++
+ 8 files changed, 228 insertions(+), 210 deletions(-)
+ create mode 100644 include/linux/tracing.h
 
 -- 
-Ville Syrjälä
-Intel
+2.43.0
+
