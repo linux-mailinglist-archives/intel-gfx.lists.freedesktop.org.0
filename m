@@ -2,44 +2,97 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E132CA2062
-	for <lists+intel-gfx@lfdr.de>; Thu, 04 Dec 2025 01:14:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B878ACA22CA
+	for <lists+intel-gfx@lfdr.de>; Thu, 04 Dec 2025 03:29:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F3D110E162;
-	Thu,  4 Dec 2025 00:13:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CE0710E831;
+	Thu,  4 Dec 2025 02:29:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="G0WgOBpQ";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hPMDm4W3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8050C10E162
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Dec 2025 00:13:57 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 8D57260176;
- Thu,  4 Dec 2025 00:13:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A84AC4CEF5;
- Thu,  4 Dec 2025 00:13:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1764807236;
- bh=QYBp7Dgo/eb9G8/N3QqB+6w0/y1YhATq/0UvwBEb9pk=;
- h=Date:From:To:Cc:Subject:From;
- b=G0WgOBpQQkfGSXUnNZwXlUtoZITjX2U1D1+s8TQc2QxgPf+ciYP8xD0OOTFFw9afj
- HeyjIskoUSgQrEThfyG/BtHqXTCtRJZHSWJJsNpHf9EdCJtagJJi8DuvQr3dPuzscE
- F874D9CWWZ4EbdeuEHAirpfl/ciTtY2BrcMfdX3afo1beHyFHDuWl/mrsp/DZpAL0U
- OZ8AhAnQe9AAoHbLPFcPiE7emY8d/BLbfcYXhjmZWQjOLQ4rqLSBowdx4Riv+nTWRr
- n8h66Q1NowTXiBbDsyHB3Osd+c59A0/Sk/ysnUgvpWhSvgi6cU9ebXxQ0sFY7GRIsU
- ittQP5p08UIpA==
-Date: Wed, 3 Dec 2025 17:13:52 -0700
-From: Nathan Chancellor <nathan@kernel.org>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Sasha Levin <sashal@kernel.org>
-Cc: stable@vger.kernel.org, intel-gfx@lists.freedesktop.org
-Subject: Apply fc7bf4c0d65a342b29fe38c332db3fe900b481b9 to 5.15
-Message-ID: <20251204001352.GB468348@ax162>
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com
+ [209.85.210.169])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50BFF10E1AB
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Dec 2025 02:29:42 +0000 (UTC)
+Received: by mail-pf1-f169.google.com with SMTP id
+ d2e1a72fcca58-7bb710d1d1dso596141b3a.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 03 Dec 2025 18:29:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1764815382; x=1765420182; darn=lists.freedesktop.org;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:mail-followup-to:message-id:subject:cc:to
+ :from:date:sender:from:to:cc:subject:date:message-id:reply-to;
+ bh=nbfVTq9KBWsmp1ChHIp5kh8RBkVe/heJoRGFGHla1nE=;
+ b=hPMDm4W3E7BId8Vt0lOcF3xi6I+TfEvw3T/JpsmV4UZRufpOghmxlUEOhW+yLWiCHn
+ +T+AQw4V3yQY4MaD/w1pVKANREPWw1du41crTaHKC0Fqrp96vO9lxAzHqO2bj5pH7rJn
+ bu70KOhn44Jh1YuPMpiP/hM7MjhdfsWfB5Y0HYt+2sGuawlBvGWv76E6rxsdx3PMDk1q
+ /mzSHtXgCz53RGG3eTegQ3+Jpf9aYfi4CU4wrnatu1ojdFUk7VUbRcQBu/xUgjL1LEDy
+ SnNpWNhAykHWLrMRUB5VXqMhEkRtcFEJNCTRY4t47gH79hMl4H8tEzzTi41KBk6SlzqC
+ nTUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1764815382; x=1765420182;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:mail-followup-to:message-id:subject:cc:to
+ :from:date:sender:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=nbfVTq9KBWsmp1ChHIp5kh8RBkVe/heJoRGFGHla1nE=;
+ b=JTUyOWcOX5DMKq0dQAEFM2K40JxQMo2jNJyiiwqUrvrWBHx9HBycg7cvehc5+tCM1I
+ 9P1tREXVCIWrJg9g+yjxAlKYKo3pcis1DEe46de1RYz2Ni5zrwaGp2k1Gb2QNacItKlF
+ UD20Oy84r2orxqmD+9QyJF6g8nHhWSJfx50pOgDSgnMuUpgA/a0XOnZ1YW2qhhDcBIvQ
+ Rn6QUddC4oOXhulf4cqhG1m/8JkRTIR5SGAxjWrahvoQXT9JYYy9N3BXkfRve0g0b3wv
+ 402diGDpHoaKFBRTqkNHGKD1kpdgCN3h+LnoglVzGL65Kvx+Q3jzWf1/kfQZn31Pta+M
+ D6dg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX6SgC5KODSsN2Qw3XKRhMfnPIXRAWPMzrlsrMY8/WZn+8RxRS9UHUe6gCt1QJb/S6G5GcnU9PYRXg=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yzb/ZkO9zYuII1PSxrTSi8Xi7cDpNxfhrpJD81jVnZChntSEbSx
+ aLDxh3TpnGdoNOxmEv8OCOrSUd2/+UJ5SBzOiOQUupVAaAkvtpo10W5U
+X-Gm-Gg: ASbGnctwAULPNEz9PVNtczO5DLAmCFO0OqDlMjESqbEq6UmKUu1YAb3kUqDiv+wt0Tk
+ nvBaXIqe1btbE5vWNHaWalNW+ITxiQ1pgYKEx0B4fw6TjuYon8ycyfnwTnUs6rumkm2yepM8jv2
+ t5haSYXjwQnWAOi8kiiFgwICFUz+J+LtZpsEsHQ7CtnLOR40xIOHtO2QzpBYKUTzhSLpAXDLYPD
+ jUpnAopyAagDye+zf2gPQQN1PkQpX0b416QL9h3P/PUnLGDvGkt6o2n677MU+HQOLqEid/XCU4U
+ b9KrL/Vj19+n1pqPxXMZF8a9ySRE7kCO4habVM80+zbjPkgR5FoPLx+hs0TDY7YsHdzoudral/g
+ nVWHj2Z/wRD2PabLzOigF5C8rAHIKGp69AK8+64p1AVwKjtUdfCKGk3oHSy+GkrVHO3SgFCEiea
+ fdR7T/Kmz8KEIUuha5slbDpawgBSFocx5ln6zo1t5qw/lgyK7OtGs=
+X-Google-Smtp-Source: AGHT+IFCeBy2y/CfEswHeFQ8PNewc7BH40l5HKVg8Zae9UGj70Zf3r7S53EITpLfFSzUJLeHLUcr5A==
+X-Received: by 2002:a05:6a20:244d:b0:35d:8881:e6bb with SMTP id
+ adf61e73a8af0-36403797f3cmr1771400637.22.1764815381665; 
+ Wed, 03 Dec 2025 18:29:41 -0800 (PST)
+Received: from localhost (211-75-139-220.hinet-ip.hinet.net. [211.75.139.220])
+ by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-7e2adc5bf17sm314210b3a.38.2025.12.03.18.29.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 03 Dec 2025 18:29:40 -0800 (PST)
+Date: Thu, 4 Dec 2025 10:29:37 +0800
+From: "Chia-Lin Kao (AceLan)" <acelan.kao@canonical.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] drm/i915/dp: Add byte-by-byte fallback for broken USB-C
+ adapters
+Message-ID: <7klzod4x5e2mpz4bwdfoyvien4whsp7r2mvykvbuhfczczp3f4@iuszbs4p7yag>
+Mail-Followup-To: "Chia-Lin Kao (AceLan)" <acelan.kao@canonical.com>, 
+ Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+References: <20251127044406.618543-1-acelan.kao@canonical.com>
+ <aSjFZhZQLVb7czsh@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aSjFZhZQLVb7czsh@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,32 +108,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi stable folks,
+On Thu, Nov 27, 2025 at 11:40:54PM +0200, Ville Syrjälä wrote:
+> On Thu, Nov 27, 2025 at 12:44:06PM +0800, Chia-Lin Kao (AceLan) wrote:
+> > Some USB-C hubs and adapters have buggy firmware where multi-byte AUX
+> > reads from DPCD address 0x00000 consistently timeout, while single-byte
+> > reads from the same address work correctly.
+> > 
+> > Known affected devices that exhibit this issue:
+> > - Lenovo USB-C to VGA adapter (VIA VL817 chipset)
+> >   idVendor=17ef, idProduct=7217
+> > - Dell DA310 USB-C mobile adapter hub
+> >   idVendor=413c, idProduct=c010
+> > 
+> > Analysis of the failure pattern shows:
+> > - Single-byte probes to 0xf0000 (LTTPR) succeed
+> > - Single-byte probes to 0x00102 (TRAINING_AUX_RD_INTERVAL) succeed
+> > - 15-byte reads from 0x00000 (DPCD capabilities) timeout with -ETIMEDOUT
+> > - Retrying does not help - the failure is consistent across all attempts
+> 
+> I thought we changed that to the more sensible 16 bytes.
+> Anyone know what happened to that patch?
+> 
+> Anyways, does 16 bytes work better than 15 bytes?
+Change DP_RECEIVER_CAP_SIZE from 15 to 16 and it doesn't help.
+I can see it tried to read 16 bytes but it still timed out.
 
-Please apply commit fc7bf4c0d65a ("drm/i915/selftests: Fix inconsistent
-IS_ERR and PTR_ERR") to 5.15, where it resolves a couple of instances of
--Wuninitialized with clang-21 or newer that were introduced by commit
-cdb35d1ed6d2 ("drm/i915/gem: Migrate to system at dma-buf attach time
-(v7)") in 5.15.
+> 
+> > 
+> > The issue appears to be a firmware bug in the AUX transaction handling
+> > that specifically affects multi-byte reads from the base DPCD address.
+> > 
+> > Add a fallback mechanism that attempts byte-by-byte reading when the
+> > normal multi-byte drm_dp_read_dpcd_caps() fails. This workaround only
+> > activates for adapters that fail the standard read path, ensuring no
+> > impact on correctly functioning hardware.
+> > 
+> > The byte-by-byte read uses drm_dp_dpcd_readb() to read each of the 15
+> > DPCD capability bytes individually, working around the firmware bug
+> > while maintaining compatibility with all other adapters.
+> > 
+> > Tested with:
+> > - Lenovo USB-C to VGA adapter (VIA VL817) - now works with fallback
+> > - Dell DA310 USB-C hub - now works with fallback
+> > - Dell/Analogix Slimport adapter - continues to work with normal path
+> > 
+> > Signed-off-by: Chia-Lin Kao (AceLan) <acelan.kao@canonical.com>
+> > ---
+> >  .../drm/i915/display/intel_dp_link_training.c | 21 ++++++++++++++++++-
+> >  1 file changed, 20 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > index aad5fe14962f..738a5bb4adb3 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > @@ -213,6 +213,7 @@ static int intel_dp_init_lttpr(struct intel_dp *intel_dp, const u8 dpcd[DP_RECEI
+> >  int intel_dp_read_dprx_caps(struct intel_dp *intel_dp, u8 dpcd[DP_RECEIVER_CAP_SIZE])
+> >  {
+> >  	struct intel_display *display = to_intel_display(intel_dp);
+> > +	int ret, i;
+> >  
+> >  	if (intel_dp_is_edp(intel_dp))
+> >  		return 0;
+> > @@ -226,7 +227,25 @@ int intel_dp_read_dprx_caps(struct intel_dp *intel_dp, u8 dpcd[DP_RECEIVER_CAP_S
+> >  				      DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV))
+> >  			return -EIO;
+> >  
+> > -	if (drm_dp_read_dpcd_caps(&intel_dp->aux, dpcd))
+> > +	ret = drm_dp_read_dpcd_caps(&intel_dp->aux, dpcd);
+> > +	if (ret == 0)
+> > +		return 0;
+> > +
+> > +	/*
+> > +	 * Workaround for USB-C hubs/adapters with buggy firmware that fail
+> > +	 * multi-byte AUX reads from DPCD address 0x00000 but work with
+> > +	 * single-byte reads. Known affected devices:
+> > +	 * - Lenovo USB-C to VGA adapter (VIA VL817, idVendor=17ef, idProduct=7217)
+> > +	 * - Dell DA310 USB-C hub (idVendor=413c, idProduct=c010)
+> > +	 * Read the DPCD capabilities byte-by-byte as a fallback.
+> > +	 */
+> > +	for (i = 0; i < DP_RECEIVER_CAP_SIZE; i++) {
+> > +		ret = drm_dp_dpcd_readb(&intel_dp->aux, DP_DPCD_REV + i, &dpcd[i]);
+> > +		if (ret < 0)
+> > +			return -EIO;
+> > +	}
+> 
+> Doing this in i915 specific code doesn't make sense.
+Right, I'll move the workaround to the drm driver, and submit v2.
 
-  In file included from drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c:329:
-  drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c:105:18: error: variable 'dmabuf' is uninitialized when used here [-Werror,-Wuninitialized]
-    105 |                        PTR_ERR(dmabuf));
-        |                                ^~~~~~
-  drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c:94:24: note: initialize the variable 'dmabuf' to silence this warning
-     94 |         struct dma_buf *dmabuf;
-        |                               ^
-        |                                = NULL
-  drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c:161:18: error: variable 'dmabuf' is uninitialized when used here [-Werror,-Wuninitialized]
-    161 |                        PTR_ERR(dmabuf));
-        |                                ^~~~~~
-  drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c:149:24: note: initialize the variable 'dmabuf' to silence this warning
-    149 |         struct dma_buf *dmabuf;
-        |                               ^
-        |                                = NULL
-
-It applies and builds cleanly for me. If there are any issues, please
-let me know.
-
-Cheers,
-Nathan
+> 
+> > +
+> > +	if (dpcd[DP_DPCD_REV] == 0)
+> >  		return -EIO;
+> >  
+> >  	return 0;
+> > -- 
+> > 2.43.0
+> 
+> -- 
+> Ville Syrjälä
+> Intel
