@@ -2,62 +2,134 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64E13CA3BC2
-	for <lists+intel-gfx@lfdr.de>; Thu, 04 Dec 2025 14:12:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 302C4CA3BFF
+	for <lists+intel-gfx@lfdr.de>; Thu, 04 Dec 2025 14:16:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB2E110E8E5;
-	Thu,  4 Dec 2025 13:12:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0E3F10E965;
+	Thu,  4 Dec 2025 13:15:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WX/maE16";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="VzQveYd1";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="dx+/jkRf";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="KWZDBNV4";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="fkbxmvST";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCC2810E8E5;
- Thu,  4 Dec 2025 13:12:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764853957; x=1796389957;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=yzn+1AsUQDR+KiSTZy0JHTsAPzWFCcJC6z8twIpEGQE=;
- b=WX/maE16kxKVjugWQA59jmNldFEyhXQuZrvQot7sIcnzeYqM4wph96Ne
- 5oK/zN4NQ5sRD0FT+/YKUWORTRcagqY8eloYi3kSn9FLOmczUHzCFbGI1
- gciVcRmgci52hpOEnELUrd57YbL1iS+lHZ9MXuhRA3AXs/6nPHkD6xLdb
- tvvdaQSSKKXS9Unjcs72R6Blot7fWjbUyhkxAWQ2erzfEIrj6GpR1WBSE
- qU+iMm0trHaxbqqaIHVmbIrnrzvshRQMlYToDfERbXjVbz9PuPjR78dCD
- 6HBk+2VlRffBVoxBCUdFXN6LW0j346ztgWI+TguvPGN+hyM/FWtmi2xVy Q==;
-X-CSE-ConnectionGUID: q7Ay7nU7R5SWXDATCfOx9Q==
-X-CSE-MsgGUID: EiqXjjSSQYKlGwc50D9tcA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11632"; a="92349288"
-X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; d="scan'208";a="92349288"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2025 05:12:37 -0800
-X-CSE-ConnectionGUID: dFrp0SgFT6GFEkd5wv3Kqw==
-X-CSE-MsgGUID: /a4KhDnpR4myWSVclzK9gA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; d="scan'208";a="194796921"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.11])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2025 05:12:36 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F01610E963
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Dec 2025 13:15:55 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id E08F93394B;
+ Thu,  4 Dec 2025 13:15:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1764854154; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=SLx3+2gQO0ISByykXR9GORUvL9N+ozNTCtKPnJRx1zo=;
+ b=VzQveYd133D5BU8dGaltQRc3D3beQNQWazlO13yeD1ekomtjmT6AYQACoZKeMIViOdHYg/
+ ysyQGs94pnCHugXd3woM/mL7flbQrzAhxB3rmSOiMxuvcYMhEeS/7iL6NhYJ9f1QF3RYfQ
+ tNP3caYBgZt00hXIGGMCcl0GwNDlOKk=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1764854154;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=SLx3+2gQO0ISByykXR9GORUvL9N+ozNTCtKPnJRx1zo=;
+ b=dx+/jkRf0nfngFO3rt5l6vg2Dql67LjutBDbecidq6KTl4lZ+kLwgR4rjbA/2bl7fBMMMn
+ 7YdDFG5/+VHmtEAg==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1764854153; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=SLx3+2gQO0ISByykXR9GORUvL9N+ozNTCtKPnJRx1zo=;
+ b=KWZDBNV4cUR/61T3PHJ/vtVuydjV8sgAtR0Aik7BxfQtmBgLJ2+XMvPzuzRZHlppWRnNyv
+ XxnxQzghEjEev2blItuVuupxcjFIh0qm9GX5h/sAnEYjEgWe9dhFbCMFp/g0gl/2HcHH/S
+ Yv9BLd4pb7T39/5uxUQSjYHJB9V8Hxo=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1764854153;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=SLx3+2gQO0ISByykXR9GORUvL9N+ozNTCtKPnJRx1zo=;
+ b=fkbxmvSTBUjtH8NM+G+crUxks364aqMKkTxjCA97QUGSLOywAiOXWGGY4WBvREscUb90VN
+ m+7gKTbfkQI3HOBg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id BFC363EA63;
+ Thu,  4 Dec 2025 13:15:53 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id 5bNhLYmJMWlCIgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 04 Dec 2025 13:15:53 +0000
+Message-ID: <bb9d728c-fc30-432a-b1d9-d9da3fc2bbbc@suse.de>
+Date: Thu, 4 Dec 2025 14:15:53 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v2 00/25] drm/vblank: refactoring and cleanups
-In-Reply-To: <bc51a369-5420-41c4-b377-9cceab297da9@suse.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com
 References: <cover.1764845757.git.jani.nikula@intel.com>
  <9bcf199f-f83b-4ffe-8498-315b13e52d4c@suse.de>
  <a6d77ee74e3d93d7cd2a4019e092a3bcd97eaa49@intel.com>
  <31e8b266-c3c3-4073-b7ce-1fe2aecb5180@suse.de>
  <bc51a369-5420-41c4-b377-9cceab297da9@suse.de>
-Date: Thu, 04 Dec 2025 15:12:32 +0200
-Message-ID: <ed850fb377eefb178e7324c198fe076471eec082@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain
+ <ed850fb377eefb178e7324c198fe076471eec082@intel.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <ed850fb377eefb178e7324c198fe076471eec082@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Flag: NO
+X-Spam-Score: -4.29
+X-Spam-Level: 
+X-Spamd-Result: default: False [-4.29 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.19)[-0.947]; MIME_GOOD(-0.10)[text/plain];
+ FUZZY_RATELIMITED(0.00)[rspamd.com];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; MIME_TRACE(0.00)[0:+];
+ ARC_NA(0.00)[]; TO_DN_SOME(0.00)[]; MID_RHS_MATCH_FROM(0.00)[];
+ RCVD_TLS_ALL(0.00)[];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_HAS_DN(0.00)[]; RCPT_COUNT_THREE(0.00)[4];
+ FROM_EQ_ENVFROM(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:url, imap1.dmz-prg2.suse.org:helo,
+ suse.de:email, suse.de:mid]
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,20 +145,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 04 Dec 2025, Thomas Zimmermann <tzimmermann@suse.de> wrote:
-> And another thing I noticed is that this series didn't go to dri-devel.
+Hi
 
-*facepalm*
+Am 04.12.25 um 14:12 schrieb Jani Nikula:
+> On Thu, 04 Dec 2025, Thomas Zimmermann <tzimmermann@suse.de> wrote:
+>> And another thing I noticed is that this series didn't go to dri-devel.
+> *facepalm*
 
-Should I just resend the entire series?
+Happens :)
 
->> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+>
+> Should I just resend the entire series?
 
-Thanks a lot for the reviews, and sorry about the goof-ups.
+I'd include the r-bs and send it as v3 to dri-devel and the others.
 
-BR,
-Jani.
+Best regards
+Thomas
 
+>
+>>> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Thanks a lot for the reviews, and sorry about the goof-ups.
+>
+> BR,
+> Jani.
+>
+>
 
 -- 
-Jani Nikula, Intel
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
+
+
