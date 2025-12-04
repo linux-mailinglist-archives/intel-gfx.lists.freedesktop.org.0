@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FCACCA355D
-	for <lists+intel-gfx@lfdr.de>; Thu, 04 Dec 2025 11:58:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF85ACA3560
+	for <lists+intel-gfx@lfdr.de>; Thu, 04 Dec 2025 11:58:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CECD10E923;
-	Thu,  4 Dec 2025 10:58:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46CC210E926;
+	Thu,  4 Dec 2025 10:58:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hTifbwJ2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KIlwdrxd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B81B10E923;
- Thu,  4 Dec 2025 10:58:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16DA710E925;
+ Thu,  4 Dec 2025 10:58:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764845886; x=1796381886;
+ t=1764845891; x=1796381891;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=7tRzDjly9ayEiizg1rHgxaxzRNj3SFectyVgo3EZjHE=;
- b=hTifbwJ2DsFIgd1g9LEppWvsAiHKEpoQpk0TCoJBZx3BA2D8yKFRor1B
- kPwQrBRs20/vicmnQOr4Z2fgWCP8Lh8WXibnKpgSLhO15ahutPlZtE4/w
- ySetg6ZKCfgmUUbxIkbQuGMfz7xIX0YmUz1uXW0uyjiWXsEzqr8eCSJgA
- 64WtQwHGZTrSJiKqwWiIwrDl0Q8LQw5RkVpj5WDDS46DkmXvAeQdXmBCm
- IKIkS9h0U9wetgprGvSaEmXn+EAMgmZb9Xi81YRYzVJNwKNBEubG9cs46
- oV9NVYYLYaKmCXzCP5FPT5wCvPnpfUFOqbMpdW3BfPaO3sP4gbqkWCLW3 g==;
-X-CSE-ConnectionGUID: lXGDzmWfQvCakMqgKnBscQ==
-X-CSE-MsgGUID: NcqgJJkDQQmSvheckE5YDA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="78326975"
-X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; d="scan'208";a="78326975"
+ bh=E6m5xMdtokxQfk/FVLzPIfWQaWb9e8R7HJTb6T1Evd4=;
+ b=KIlwdrxd4U6ZyYlVTobs+YaT3VZkehX47nAKhNxOs6W7j5xVgKxeJp7A
+ E7HZjMLEWnnkPQ4LB/9FBTxugEinJujvrFZgag1QSquptaSKj5MzFYMp+
+ d2R7usyRz4o6uSyqR2qeGd7/Q1uglMnu6dQxhv2fpmHbYME0yTpfE4hTG
+ 1dH7r/nNgfUeGTX7CWtDQitEJHMlalNVAuYnqJZqyGdz0Kl/Ujm0Q15pH
+ hf1vLfSEDDXMV4YT9e5BsiYYrrXmx6dNGFor9J/DKMJLkGpJxq3njRTU2
+ UMxeZmHHqATLeXrINU+kDF2xMDfWfiBbJ93rKmLdfeh//ATraC4vv+yoX A==;
+X-CSE-ConnectionGUID: yNDRaL4jTaSjEgV2KsWhXA==
+X-CSE-MsgGUID: WUAs1uzsQyO1CFmp1lKw9g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="78326981"
+X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; d="scan'208";a="78326981"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2025 02:58:05 -0800
-X-CSE-ConnectionGUID: Hskssd0DRQyz8ipdyhOmFA==
-X-CSE-MsgGUID: Trl4i/g6T0CsEaCtbsHd8A==
+ 04 Dec 2025 02:58:11 -0800
+X-CSE-ConnectionGUID: XxIBvzALQI2vSY5dqW4VDA==
+X-CSE-MsgGUID: d5EO3zk5TEuJzIYkTHsWhg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; d="scan'208";a="195064568"
+X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; d="scan'208";a="195064576"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.11])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2025 02:58:03 -0800
+ 04 Dec 2025 02:58:08 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: tzimmermann@suse.de, ville.syrjala@linux.intel.com,
  Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v2 01/25] drm/vblank: Unexport drm_wait_one_vblank()
-Date: Thu,  4 Dec 2025 12:57:29 +0200
-Message-ID: <cb584b0666704e14b79091bbf48984b5c881456c.1764845757.git.jani.nikula@intel.com>
+Subject: [PATCH v2 02/25] drm/vblank: remove drm_wait_one_vblank() completely
+Date: Thu,  4 Dec 2025 12:57:30 +0200
+Message-ID: <3702f44f3efde90c97f5d321204ce4163241b8ff.1764845757.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1764845757.git.jani.nikula@intel.com>
 References: <cover.1764845757.git.jani.nikula@intel.com>
@@ -72,62 +72,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Thomas Zimmermann <tzimmermann@suse.de>
+There's really no need for the extra static function at all.
 
-Make drm_wait_on_vblank() static. The function is an internal interface
-and not invoked directly by drivers.
-
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/drm_vblank.c | 14 +-------------
- include/drm/drm_vblank.h     |  1 -
- 2 files changed, 1 insertion(+), 14 deletions(-)
+ drivers/gpu/drm/drm_vblank.c | 25 +++++++++++--------------
+ 1 file changed, 11 insertions(+), 14 deletions(-)
 
 diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-index 32d013c5c8fc..c15d6d9d0082 100644
+index c15d6d9d0082..1d12836e3d80 100644
 --- a/drivers/gpu/drm/drm_vblank.c
 +++ b/drivers/gpu/drm/drm_vblank.c
-@@ -1286,18 +1286,7 @@ void drm_crtc_vblank_put(struct drm_crtc *crtc)
+@@ -1286,8 +1286,18 @@ void drm_crtc_vblank_put(struct drm_crtc *crtc)
  }
  EXPORT_SYMBOL(drm_crtc_vblank_put);
  
--/**
-- * drm_wait_one_vblank - wait for one vblank
-- * @dev: DRM device
-- * @pipe: CRTC index
-- *
-- * This waits for one vblank to pass on @pipe, using the irq driver interfaces.
-- * It is a failure to call this when the vblank irq for @pipe is disabled, e.g.
-- * due to lack of driver support or because the crtc is off.
-- *
-- * This is the legacy version of drm_crtc_wait_one_vblank().
-- */
--void drm_wait_one_vblank(struct drm_device *dev, unsigned int pipe)
-+static void drm_wait_one_vblank(struct drm_device *dev, unsigned int pipe)
+-static void drm_wait_one_vblank(struct drm_device *dev, unsigned int pipe)
++/**
++ * drm_crtc_wait_one_vblank - wait for one vblank
++ * @crtc: DRM crtc
++ *
++ * This waits for one vblank to pass on @crtc, using the irq driver interfaces.
++ * It is a failure to call this when the vblank irq for @crtc is disabled, e.g.
++ * due to lack of driver support or because the crtc is off.
++ */
++void drm_crtc_wait_one_vblank(struct drm_crtc *crtc)
  {
++	struct drm_device *dev = crtc->dev;
++	int pipe = drm_crtc_index(crtc);
  	struct drm_vblank_crtc *vblank = drm_vblank_crtc(dev, pipe);
  	int ret;
-@@ -1321,7 +1310,6 @@ void drm_wait_one_vblank(struct drm_device *dev, unsigned int pipe)
+ 	u64 last;
+@@ -1310,19 +1320,6 @@ static void drm_wait_one_vblank(struct drm_device *dev, unsigned int pipe)
  
  	drm_vblank_put(dev, pipe);
  }
--EXPORT_SYMBOL(drm_wait_one_vblank);
+-
+-/**
+- * drm_crtc_wait_one_vblank - wait for one vblank
+- * @crtc: DRM crtc
+- *
+- * This waits for one vblank to pass on @crtc, using the irq driver interfaces.
+- * It is a failure to call this when the vblank irq for @crtc is disabled, e.g.
+- * due to lack of driver support or because the crtc is off.
+- */
+-void drm_crtc_wait_one_vblank(struct drm_crtc *crtc)
+-{
+-	drm_wait_one_vblank(crtc->dev, drm_crtc_index(crtc));
+-}
+ EXPORT_SYMBOL(drm_crtc_wait_one_vblank);
  
  /**
-  * drm_crtc_wait_one_vblank - wait for one vblank
-diff --git a/include/drm/drm_vblank.h b/include/drm/drm_vblank.h
-index ffa564d79638..94ee09b48895 100644
---- a/include/drm/drm_vblank.h
-+++ b/include/drm/drm_vblank.h
-@@ -302,7 +302,6 @@ bool drm_handle_vblank(struct drm_device *dev, unsigned int pipe);
- bool drm_crtc_handle_vblank(struct drm_crtc *crtc);
- int drm_crtc_vblank_get(struct drm_crtc *crtc);
- void drm_crtc_vblank_put(struct drm_crtc *crtc);
--void drm_wait_one_vblank(struct drm_device *dev, unsigned int pipe);
- void drm_crtc_wait_one_vblank(struct drm_crtc *crtc);
- void drm_crtc_vblank_off(struct drm_crtc *crtc);
- void drm_crtc_vblank_reset(struct drm_crtc *crtc);
 -- 
 2.47.3
 
