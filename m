@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEAD3CA3596
-	for <lists+intel-gfx@lfdr.de>; Thu, 04 Dec 2025 11:59:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C780CA359C
+	for <lists+intel-gfx@lfdr.de>; Thu, 04 Dec 2025 11:59:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57BF610E950;
-	Thu,  4 Dec 2025 10:59:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4BF710E957;
+	Thu,  4 Dec 2025 10:59:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EULyf1XG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EiRoEO0B";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A3DB10E94D;
- Thu,  4 Dec 2025 10:59:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FA2310E952;
+ Thu,  4 Dec 2025 10:59:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764845965; x=1796381965;
+ t=1764845970; x=1796381970;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=g6oW3202SVA7O8J8qqCzNrJiNxAY1IGglv9YFNhBk4c=;
- b=EULyf1XG/ZDmlqOblP/HCYZqiXYDmyHdPH2pKOO4O+qkdGzt1Oj4MDPW
- CqTnnvkb8tbhXQuamSQISMWBcPdmaP/k9xS+nrmqN0UDTGZjlvoBdvaGW
- 7InDnUA/C35nN9gc6+SeAzB82vlKm+AdeRhlFi8RfrQgfAZ9AzHablxJi
- VW9ljfaImjhXusMSCIGDhsMkMHLZuDG5sLmgthcFxKSWePGchyHO8D4X9
- 737PiF/++qKw+8YSyGoinhRjbwvxbYvrNsettpTtRadB8sKePPo5/u0+a
- 5uTtaIJ/73e79NbGhfWM/PpSYSY5bjNHU6dHv9s6PvR1akBQZL3wNrvyi g==;
-X-CSE-ConnectionGUID: jNCaHHz1SwequxhGRGj9cQ==
-X-CSE-MsgGUID: mshYAmfWRmuTkq0K0q9/WA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="69456193"
-X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; d="scan'208";a="69456193"
+ bh=Ymkgrj4x+emK0WdRjHvtdVYyT1/vIwYkrNpUt8fui7Y=;
+ b=EiRoEO0BudYzC6j5wTIuQ1MjK8aT66KTna/HuQYzU+eK2K8jwtID4ve1
+ IlTpLVrlsm63iNgYMCV2t6Oi2NV0I/uWIgAxYkcoRLAXIT6ueGymOfAyN
+ oaxe2dnqouphmyGnYU8uQt11/iC2wdCeFn3Qm7XAnKJzjK6F8ScZe8yoZ
+ A/hdgImlIj5J2XumxBt29XJfOlX+JF3D8lvfyFjjy781Uc1N7wGNBGFC7
+ B1spgjF+iEYJ2X2D51Eu7e5lJ0oh6XYAssZuLtJTTWL9CCEdBTEwt8+UQ
+ c2MnWBIyfCH5v65DU/xZ0y9twvGI6/ZqlxtqfC0ZqgIRn/lpK+/ONISMc A==;
+X-CSE-ConnectionGUID: c2sUh1drSSet95BY3tagow==
+X-CSE-MsgGUID: ZiB/br/wQjunhuYYjliDug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="69456195"
+X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; d="scan'208";a="69456195"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2025 02:59:25 -0800
-X-CSE-ConnectionGUID: sCEuZHCsRiOdxBjD5JspwA==
-X-CSE-MsgGUID: 7B9gvqYJTrGOteL1Lw55Jg==
+ 04 Dec 2025 02:59:30 -0800
+X-CSE-ConnectionGUID: Mq221CHXReySWs7wdzFDQA==
+X-CSE-MsgGUID: um00KT17QkKF04s1USt0UQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; d="scan'208";a="225627576"
+X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; d="scan'208";a="225627585"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.11])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2025 02:59:22 -0800
+ 04 Dec 2025 02:59:28 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: tzimmermann@suse.de, ville.syrjala@linux.intel.com,
  Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v2 16/25] drm/vblank: pass vblank to store_vblank()
-Date: Thu,  4 Dec 2025 12:57:44 +0200
-Message-ID: <5397e90ef5a66947a004f08dae20cfac3f215521.1764845757.git.jani.nikula@intel.com>
+Subject: [PATCH v2 17/25] drm/vblank: pass vblank to drm_vblank_enable()
+Date: Thu,  4 Dec 2025 12:57:45 +0200
+Message-ID: <6c38180a7aa38652f838e25ac82d02daeac31224.1764845757.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1764845757.git.jani.nikula@intel.com>
 References: <cover.1764845757.git.jani.nikula@intel.com>
@@ -72,65 +72,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use the vblank pointer instead of a dev, pipe pair to simplify
-code. Rename to drm_vblank_crtc_store().
-
-v2: Rename (Thomas)
+Use the vblank pointer instead of a dev, pipe pair to simplify code.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/drm_vblank.c | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/drm_vblank.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-index ed4a589c408f..81224946df9d 100644
+index 81224946df9d..e4c8af7fb5db 100644
 --- a/drivers/gpu/drm/drm_vblank.c
 +++ b/drivers/gpu/drm/drm_vblank.c
-@@ -188,11 +188,11 @@ drm_crtc_vblank_crtc(struct drm_crtc *crtc)
+@@ -1165,9 +1165,10 @@ static int __enable_vblank(struct drm_device *dev, unsigned int pipe)
+ 	return -EINVAL;
  }
- EXPORT_SYMBOL(drm_crtc_vblank_crtc);
  
--static void store_vblank(struct drm_device *dev, unsigned int pipe,
--			 u32 vblank_count_inc,
--			 ktime_t t_vblank, u32 last)
-+static void drm_vblank_crtc_store(struct drm_vblank_crtc *vblank,
-+				  u32 vblank_count_inc,
-+				  ktime_t t_vblank, u32 last)
+-static int drm_vblank_enable(struct drm_device *dev, unsigned int pipe)
++static int drm_vblank_enable(struct drm_vblank_crtc *vblank)
  {
 -	struct drm_vblank_crtc *vblank = drm_vblank_crtc(dev, pipe);
 +	struct drm_device *dev = vblank->dev;
++	unsigned int pipe = vblank->pipe;
+ 	int ret = 0;
  
- 	assert_spin_locked(&dev->vblank_time_lock);
+ 	assert_spin_locked(&dev->vbl_lock);
+@@ -1207,7 +1208,6 @@ static int drm_vblank_enable(struct drm_device *dev, unsigned int pipe)
+ int drm_vblank_crtc_get(struct drm_vblank_crtc *vblank)
+ {
+ 	struct drm_device *dev = vblank->dev;
+-	int pipe = vblank->pipe;
+ 	unsigned long irqflags;
+ 	int ret = 0;
  
-@@ -277,7 +277,7 @@ static void drm_vblank_crtc_reset_timestamp(struct drm_vblank_crtc *vblank)
- 	 * +1 to make sure user will never see the same
- 	 * vblank counter value before and after a modeset
+@@ -1217,7 +1217,7 @@ int drm_vblank_crtc_get(struct drm_vblank_crtc *vblank)
+ 	spin_lock_irqsave(&dev->vbl_lock, irqflags);
+ 	/* Going from 0->1 means we have to enable interrupts again */
+ 	if (atomic_add_return(1, &vblank->refcount) == 1) {
+-		ret = drm_vblank_enable(dev, pipe);
++		ret = drm_vblank_enable(vblank);
+ 	} else {
+ 		if (!vblank->enabled) {
+ 			atomic_dec(&vblank->refcount);
+@@ -1499,7 +1499,7 @@ void drm_crtc_vblank_on_config(struct drm_crtc *crtc,
+ 	 * user wishes vblank interrupts to be enabled all the time.
  	 */
--	store_vblank(dev, pipe, 1, t_vblank, cur_vblank);
-+	drm_vblank_crtc_store(vblank, 1, t_vblank, cur_vblank);
- 
- 	spin_unlock(&dev->vblank_time_lock);
+ 	if (atomic_read(&vblank->refcount) != 0 || !vblank->config.offdelay_ms)
+-		drm_WARN_ON(dev, drm_vblank_enable(dev, pipe));
++		drm_WARN_ON(dev, drm_vblank_enable(vblank));
+ 	spin_unlock_irq(&dev->vbl_lock);
  }
-@@ -384,7 +384,7 @@ static void drm_vblank_crtc_update_count(struct drm_vblank_crtc *vblank,
- 	if (!rc && !in_vblank_irq)
- 		t_vblank = 0;
- 
--	store_vblank(dev, pipe, diff, t_vblank, cur_vblank);
-+	drm_vblank_crtc_store(vblank, diff, t_vblank, cur_vblank);
- }
- 
- u64 drm_vblank_crtc_count(struct drm_vblank_crtc *vblank)
-@@ -395,8 +395,8 @@ u64 drm_vblank_crtc_count(struct drm_vblank_crtc *vblank)
- 
- 	/*
- 	 * This read barrier corresponds to the implicit write barrier of the
--	 * write seqlock in store_vblank(). Note that this is the only place
--	 * where we need an explicit barrier, since all other access goes
-+	 * write seqlock in drm_vblank_crtc_store(). Note that this is the only
-+	 * place where we need an explicit barrier, since all other access goes
- 	 * through drm_vblank_crtc_count_and_time(), which already has the
- 	 * required read barrier curtesy of the read seqlock.
- 	 */
+ EXPORT_SYMBOL(drm_crtc_vblank_on_config);
 -- 
 2.47.3
 
