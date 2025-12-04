@@ -2,68 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D29ECA54FF
-	for <lists+intel-gfx@lfdr.de>; Thu, 04 Dec 2025 21:29:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 590D3CA4057
+	for <lists+intel-gfx@lfdr.de>; Thu, 04 Dec 2025 15:32:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 750C510E8F3;
-	Thu,  4 Dec 2025 20:29:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8EBF610E1E6;
+	Thu,  4 Dec 2025 14:32:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="B8+o1niV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EXPRQVum";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C206E10E029;
- Thu,  4 Dec 2025 14:10:36 +0000 (UTC)
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dMby10gV1z9tV8;
- Thu,  4 Dec 2025 15:10:33 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1764857433; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=ETFPcwGc/J2gqxbT5eNzy5JQ7vh5rybLlhQczEy0HVs=;
- b=B8+o1niVzxQD7p2rFN3T9F93gW94B6fyBYvTVWNbzRp9/C8r5mhaT1J1aETTXwAwnh7tzE
- zmpFQQ/DeaZ5t6zd9AmJk5Mhar5qihcJqpcqZk1qFLr6WImByk/iA39iQoyXLtBTxQT5TY
- iYfiggT/0Zi9qF/iYFKoTBHGv18jC83gNUUXz79P5Vz6p8NY8DWX7Eb4NkBb26haaNgNRk
- BKI8JM/cc0X/flp4oSoFnR0NAktiaBUZRQBUsXPf/CGQkcOObo0/v3DGftTe6PTX2l8eBV
- RB6zemkjeNOAAi7TgMACkk42o2kDGraRnxK5hMUj9ORbOkPQ2sgbLJFadbZ21A==
-Message-ID: <53354e12b55d7c558b4418d876598641d862737f.camel@mailbox.org>
-Subject: Re: [PATCH 0/6] dma-fence: Remove return code of dma_fence_signal()
- et al.
-From: Philipp Stanner <phasta@mailbox.org>
-To: Philipp Stanner <phasta@kernel.org>, Sumit Semwal
- <sumit.semwal@linaro.org>,  Gustavo Padovan <gustavo@padovan.org>,
- Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Felix
- Kuehling <Felix.Kuehling@amd.com>, Alex Deucher
- <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>, Simona
- Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, Joonas
- Lahtinen <joonas.lahtinen@linux.intel.com>,  Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui
- <ray.huang@amd.com>,  Matthew Auld <matthew.auld@intel.com>, Matthew Brost
- <matthew.brost@intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Lucas De Marchi
- <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>
-Cc: linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Date: Thu, 04 Dec 2025 15:10:11 +0100
-In-Reply-To: <20251201105011.19386-2-phasta@kernel.org>
-References: <20251201105011.19386-2-phasta@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AFEF10E1E6;
+ Thu,  4 Dec 2025 14:32:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1764858762; x=1796394762;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=AP+tFOFMb7tLHdR6H8tQy5rxpRtj1oXkbLSuBwdS758=;
+ b=EXPRQVumvM69LwKEAA7j37BGrjZh4YoZTzI04oFq1qd/PzgZvHm7xZp3
+ N6AFWa+0OVnpjWBJ7mXae/pZxfSodgVBhDO2TcQAooJXsV4W5XmqCr78M
+ WA51azaGny2oTFc7sZaBem0QB1gPul0c+uf05eHGN2iNVjAiEadwvVZic
+ hLnrLhEsn5ibwEl/Lm8mLaQQMV9DUs8O04KHn9ihER+JdA81+6UxPuhx5
+ qtgrBccIpWa6q0NAu9xbZ0ObvdSqdNn/xOl8QzwUDF9r5ILIjqu6Otbce
+ 3ma26MvZhT0YtXKibe9W5ItvdiAyYz+pMKbKxXFjs+vn17KobVj0eqGA8 Q==;
+X-CSE-ConnectionGUID: lQDzzsPmSQ+roy72v9Mciw==
+X-CSE-MsgGUID: WPBp+FT9Th61wZzSIM48BA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11632"; a="66599476"
+X-IronPort-AV: E=Sophos;i="6.20,249,1758610800"; d="scan'208";a="66599476"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2025 06:32:41 -0800
+X-CSE-ConnectionGUID: Kb0Tg2uaRrqRrAeKo55MvA==
+X-CSE-MsgGUID: o/HYBJF1SoqZG9jKqGaf/A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,249,1758610800"; d="scan'208";a="195424634"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.11])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2025 06:32:39 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH] drm/i915/crtc: move crtc initialization loop to intel_crtc.c
+Date: Thu,  4 Dec 2025 16:32:35 +0200
+Message-ID: <20251204143235.3138973-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-X-MBO-RS-ID: b1b04ac58f4f528a2cf
-X-MBO-RS-META: xix6kpmj83m8hwiqzjwsu31pur87u4tw
-X-Mailman-Approved-At: Thu, 04 Dec 2025 20:29:30 +0000
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,74 +66,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2025-12-01 at 11:50 +0100, Philipp Stanner wrote:
-> Tested this with dma_buf selftests and drm_sched tests.
->=20
-> Changes in v2:
-> =C2=A0 - Fix bug and don't turn the kernel into a smoking pile of ashes b=
-y
-> =C2=A0=C2=A0=C2=A0 not setting the signaled-bit=E2=80=A6
-> =C2=A0 - Add functions (dma_fence_check_and_signal()) preserving the old
-> =C2=A0=C2=A0=C2=A0 behavior of dma_fence_signal() & Co. (Felix)
-> =C2=A0 - Use those new functions in amdkfd, xe, ttm and st-dma-fence.
-> =C2=A0 - Be a bit less aggressive and keep the git-diff smaller.
-> =C2=A0 - Add a patch using the flag-helper in Xe. (Matthew)
->=20
-> Barely anyone uses dma_fence_signal()'s (and similar functions') return
-> code. Checking it is pretty much useless anyways, because what are you
-> going to do if a fence was already signal it? Unsignal it and signal it
-> again? ;p
->=20
-> Removing the return code simplifies the API and makes it easier for me
-> to sit on top with Rust DmaFence.
->=20
-> Philipp Stanner (8):
-> =C2=A0 dma-buf/dma-fence: Add dma_fence_test_signaled_flag()
-> =C2=A0 dma-buf/dma-fence: Add dma_fence_check_and_signal()
-> =C2=A0 amd/amdkfd: Use dma_fence_check_and_signal()
-> =C2=A0 drm/xe: Use dma_fence_check_and_signal_locked()
-> =C2=A0 dma-buf: Don't misuse dma_fence_signal()
-> =C2=A0 drm/ttm: Use dma_fence_check_and_signal()
-> =C2=A0 dma-buf/dma-fence: Remove return code of signaling-functions
+intel_display_driver_probe_nogem() is too high of an abstraction level
+to be looping and initializing individual CRTCs. Move this to
+intel_crtc.c and repurpose intel_crtc_init() to initialize all
+CRTCs. Make the original a static __intel_crtc_init() for ininitializing
+a single CRTC.
 
-Applied those 7 patches to drm-misc-next. Had to do a tiny rebase
-because 033559473dd3b55558b535aa37b8848c207b5cbb is not yet in drm-
-misc-next (dma-fence series was based on master at first, which
-contains that commit).
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-> =C2=A0 drm/xe: Use dma_fence_test_signaled_flag()
+---
 
-Left for Matthow to pick up whenever he wishes.
+This is prep for doing [1] in a nicer way, without divulging the details
+at the high level.
 
+[1] https://lore.kernel.org/r/20251119153321.2640969-1-jani.nikula@intel.com
+---
+ drivers/gpu/drm/i915/display/intel_crtc.c     | 19 ++++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_crtc.h     |  2 +-
+ .../drm/i915/display/intel_display_driver.c   | 13 +++----------
+ 3 files changed, 22 insertions(+), 12 deletions(-)
 
-P.
-
->=20
-> =C2=A0drivers/dma-buf/dma-fence.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 100=
- +++++++++++-------
-> =C2=A0drivers/dma-buf/st-dma-fence.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 4 +-
-> =C2=A0drivers/gpu/drm/amd/amdkfd/kfd_process.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 |=C2=A0=C2=A0 6 +-
-> =C2=A0.../gpu/drm/ttm/tests/ttm_bo_validate_test.c=C2=A0 |=C2=A0=C2=A0 2 =
-+-
-> =C2=A0drivers/gpu/drm/xe/xe_exec_queue.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 9 +-
-> =C2=A0drivers/gpu/drm/xe/xe_hw_fence.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 4 +-
-> =C2=A0drivers/gpu/drm/xe/xe_pt.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- |=C2=A0=C2=A0 3 +-
-> =C2=A0drivers/gpu/drm/xe/xe_sched_job.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
-> =C2=A0include/linux/dma-fence.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 |=C2=A0 35 ++++--
-> =C2=A09 files changed, 102 insertions(+), 63 deletions(-)
->=20
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index 5e1e02c8d9d4..778ebc5095c3 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -308,7 +308,7 @@ static const struct drm_crtc_funcs i8xx_crtc_funcs = {
+ 	.get_vblank_timestamp = intel_crtc_get_vblank_timestamp,
+ };
+ 
+-int intel_crtc_init(struct intel_display *display, enum pipe pipe)
++static int __intel_crtc_init(struct intel_display *display, enum pipe pipe)
+ {
+ 	struct intel_plane *primary, *cursor;
+ 	const struct drm_crtc_funcs *funcs;
+@@ -406,6 +406,23 @@ int intel_crtc_init(struct intel_display *display, enum pipe pipe)
+ 	return ret;
+ }
+ 
++int intel_crtc_init(struct intel_display *display)
++{
++	enum pipe pipe;
++	int ret;
++
++	drm_dbg_kms(display->drm, "%d display pipe%s available.\n",
++		    INTEL_NUM_PIPES(display), str_plural(INTEL_NUM_PIPES(display)));
++
++	for_each_pipe(display, pipe) {
++		ret = __intel_crtc_init(display, pipe);
++		if (ret)
++			return ret;
++	}
++
++	return 0;
++}
++
+ int intel_crtc_get_pipe_from_crtc_id_ioctl(struct drm_device *dev, void *data,
+ 					   struct drm_file *file)
+ {
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.h b/drivers/gpu/drm/i915/display/intel_crtc.h
+index 07917e8a9ae3..12507b51ee77 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.h
++++ b/drivers/gpu/drm/i915/display/intel_crtc.h
+@@ -37,7 +37,7 @@ void intel_crtc_arm_vblank_event(struct intel_crtc_state *crtc_state);
+ void intel_crtc_prepare_vblank_event(struct intel_crtc_state *crtc_state,
+ 				     struct drm_pending_vblank_event **event);
+ u32 intel_crtc_max_vblank_count(const struct intel_crtc_state *crtc_state);
+-int intel_crtc_init(struct intel_display *display, enum pipe pipe);
++int intel_crtc_init(struct intel_display *display);
+ int intel_crtc_get_pipe_from_crtc_id_ioctl(struct drm_device *dev, void *data,
+ 					   struct drm_file *file_priv);
+ struct intel_crtc_state *intel_crtc_state_alloc(struct intel_crtc *crtc);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+index 7e000ba3e08b..e282b533d5b6 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.c
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+@@ -452,7 +452,6 @@ bool intel_display_driver_check_access(struct intel_display *display)
+ /* part #2: call after irq install, but before gem init */
+ int intel_display_driver_probe_nogem(struct intel_display *display)
+ {
+-	enum pipe pipe;
+ 	int ret;
+ 
+ 	if (!HAS_DISPLAY(display))
+@@ -466,15 +465,9 @@ int intel_display_driver_probe_nogem(struct intel_display *display)
+ 
+ 	intel_gmbus_setup(display);
+ 
+-	drm_dbg_kms(display->drm, "%d display pipe%s available.\n",
+-		    INTEL_NUM_PIPES(display),
+-		    INTEL_NUM_PIPES(display) > 1 ? "s" : "");
+-
+-	for_each_pipe(display, pipe) {
+-		ret = intel_crtc_init(display, pipe);
+-		if (ret)
+-			goto err_mode_config;
+-	}
++	ret = intel_crtc_init(display);
++	if (ret)
++		goto err_mode_config;
+ 
+ 	intel_plane_possible_crtcs_init(display);
+ 	intel_dpll_init(display);
+-- 
+2.47.3
 
