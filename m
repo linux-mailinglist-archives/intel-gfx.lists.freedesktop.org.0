@@ -2,61 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E654ACA4C00
-	for <lists+intel-gfx@lfdr.de>; Thu, 04 Dec 2025 18:24:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FF35CA4F8C
+	for <lists+intel-gfx@lfdr.de>; Thu, 04 Dec 2025 19:43:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43C0B10E930;
-	Thu,  4 Dec 2025 17:24:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B546910E9B6;
+	Thu,  4 Dec 2025 18:43:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TMazpR1P";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jnPOXPQ4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2229F10E99A;
- Thu,  4 Dec 2025 17:24:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0CF210E9AE;
+ Thu,  4 Dec 2025 18:43:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764869080; x=1796405080;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Qv2Tmbb4DZUj89PfLykZFmPqDI+1EtFIgdO/5DLdu6s=;
- b=TMazpR1PsDfYWDnx+o4/P7uFCIjVcjt83eJDldSmU1FeH4HdD4mKnrLT
- OgXkG1QWCiO/agu/q28NRHkAmNSVXOIyifufuIfNvw2Mg8c+JXPeTg3rp
- tC4jQqTpVfiYFLMVBkalvbJTWGtpQycnoNec2Tm6kDs5YN3O8iwQoalAI
- h8+WRwDN5PnhYQlSTFAeSpdPqmV/TqaWFVuLJ6zOfV/negFkqda7AsI3/
- qWgkUwXP9t4MGkOG7V33y51KHzB1VwOmL23QJ4zRoaRgj0qm2OW0AqhJo
- RaSOqZ76RIhdsH/Y0agEEWAK+BVLz+wBtLZQx7u/t5ZWRTuS+w32+N+1B g==;
-X-CSE-ConnectionGUID: 6cC9XnbnQ6Kz1JAgWV/MYA==
-X-CSE-MsgGUID: IT2XHgxRQHy2r2p0P2bc1Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11632"; a="67060925"
-X-IronPort-AV: E=Sophos;i="6.20,249,1758610800"; d="scan'208";a="67060925"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2025 09:24:39 -0800
-X-CSE-ConnectionGUID: xY0UvEWuR8itkwZr40+T+A==
-X-CSE-MsgGUID: 4oOGSSOsSp+Vfh4tbHVnlg==
+ t=1764873789; x=1796409789;
+ h=from:to:cc:subject:date:message-id:mime-version;
+ bh=kS0+xIYDW4uCqa90sLt2/Ms3bVD90W/+NVaOrLOItGY=;
+ b=jnPOXPQ4ttcIr8J0vjBsZXN7DHqXgtXUhZhLFzbiYmt6QrSohCNzwW/E
+ vOWi/kvSDiOYVdx6j+OcRjl+arD37MD2XYKF8ZFx9w+UF4+MLBy9M/Nn9
+ dPjG/GchDx6M76e1QiGVKre7L7zLSE432rNKYvkI6a6Np1Z3LEKnove3b
+ xl8krg+i0D18lnpX5aezHVo59UuiXPwjkhWxFz/F1iRU9/YYJhqcN6P5O
+ hz5n+mTYxhW3xDRc43VcrjZ4MySnIVoHvv8guzHj1+PKwkrNJ+bkb+NSO
+ kojNfKB9oxygUUz2sOAwda0kub/AgFaOuvsJmFxB01upAq8b4P2HP8RSB g==;
+X-CSE-ConnectionGUID: /rkYsPpeQ1OY9YH6p4FbTg==
+X-CSE-MsgGUID: 0ZxEWXiRRae43ZkFO5LTwA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11632"; a="77227298"
+X-IronPort-AV: E=Sophos;i="6.20,249,1758610800"; d="scan'208";a="77227298"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2025 10:43:08 -0800
+X-CSE-ConnectionGUID: 1Qw9mYmOTiuLbLUi1t2Vhw==
+X-CSE-MsgGUID: +RikuINhQqGWozXNQbUTng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,249,1758610800"; d="scan'208";a="200169586"
+X-IronPort-AV: E=Sophos;i="6.20,249,1758610800"; d="scan'208";a="194131395"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.11])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2025 09:24:37 -0800
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2025 10:43:02 -0800
 From: Jani Nikula <jani.nikula@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 4/4] drm/{i915, xe}/stolen: make insert_node, area_address,
- area_size optional
-Date: Thu,  4 Dec 2025 19:24:07 +0200
-Message-ID: <cc4c4f354467c44309bb7ef7dce25b46074cdf94.1764868989.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1764868989.git.jani.nikula@intel.com>
-References: <cover.1764868989.git.jani.nikula@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>, 
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, Oded
+ Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dim-tools@lists.freedesktop.org, "Shankar, Uma" <uma.shankar@intel.com>,
+ "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+Subject: [PULL] topic/drm-intel-plane-color-pipeline for v6.19
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Date: Thu, 04 Dec 2025 20:42:58 +0200
+Message-ID: <e7129c6afd6208719d2f5124da86e810505e7a7b@intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,136 +74,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since the stolen memory hooks are function pointers, make some of them
-optional instead of having to define them for xe.
 
-insert_node, area_address, and area_size are only needed on platforms
-not supported by xe.
+Hi Dave & Sima -
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_parent.c  | 10 ++++++++
- drivers/gpu/drm/xe/display/xe_stolen.c       | 27 --------------------
- include/drm/intel/display_parent_interface.h |  6 ++---
- 3 files changed, 13 insertions(+), 30 deletions(-)
+Similar to the late drm-misc-next pull request [1] for the color
+pipeline support, here's the implementation for i915 and xe display, in
+a topic branch based on drm-next.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_parent.c b/drivers/gpu/drm/i915/display/intel_parent.c
-index 49cb64ca8c4c..d16163007545 100644
---- a/drivers/gpu/drm/i915/display/intel_parent.c
-+++ b/drivers/gpu/drm/i915/display/intel_parent.c
-@@ -17,6 +17,7 @@
-  * function pointer interface.
-  */
- 
-+#include <drm/drm_print.h>
- #include <drm/intel/display_parent_interface.h>
- 
- #include "intel_display_core.h"
-@@ -89,6 +90,9 @@ int intel_parent_stolen_insert_node_in_range(struct intel_display *display,
- int intel_parent_stolen_insert_node(struct intel_display *display, struct intel_stolen_node *node, u64 size,
- 				    unsigned int align)
- {
-+	if (drm_WARN_ON_ONCE(display->drm, !display->parent->stolen->insert_node))
-+		return -ENODEV;
-+
- 	return display->parent->stolen->insert_node(node, size, align);
- }
- 
-@@ -116,11 +120,17 @@ u32 intel_parent_stolen_node_offset(struct intel_display *display, struct intel_
- 
- u64 intel_parent_stolen_area_address(struct intel_display *display)
- {
-+	if (drm_WARN_ON_ONCE(display->drm, !display->parent->stolen->area_address))
-+		return 0;
-+
- 	return display->parent->stolen->area_address(display->drm);
- }
- 
- u64 intel_parent_stolen_area_size(struct intel_display *display)
- {
-+	if (drm_WARN_ON_ONCE(display->drm, !display->parent->stolen->area_size))
-+		return 0;
-+
- 	return display->parent->stolen->area_size(display->drm);
- }
- 
-diff --git a/drivers/gpu/drm/xe/display/xe_stolen.c b/drivers/gpu/drm/xe/display/xe_stolen.c
-index cc7aec7db76c..12771709183a 100644
---- a/drivers/gpu/drm/xe/display/xe_stolen.c
-+++ b/drivers/gpu/drm/xe/display/xe_stolen.c
-@@ -43,14 +43,6 @@ static int xe_stolen_insert_node_in_range(struct intel_stolen_node *node, u64 si
- 	return err;
- }
- 
--static int xe_stolen_insert_node(struct intel_stolen_node *node, u64 size, unsigned int align)
--{
--	/* Not used on xe */
--	WARN_ON(1);
--
--	return -ENODEV;
--}
--
- static void xe_stolen_remove_node(struct intel_stolen_node *node)
- {
- 	xe_bo_unpin_map_no_vm(node->bo);
-@@ -77,22 +69,6 @@ static u64 xe_stolen_node_offset(const struct intel_stolen_node *node)
- 	return res.start;
- }
- 
--/* Used for < gen4. These are not supported by Xe */
--static u64 xe_stolen_area_address(struct drm_device *drm)
--{
--	WARN_ON(1);
--
--	return 0;
--}
--
--/* Used for gen9 specific WA. Gen9 is not supported by Xe */
--static u64 xe_stolen_area_size(struct drm_device *drm)
--{
--	WARN_ON(1);
--
--	return 0;
--}
--
- static u64 xe_stolen_node_address(const struct intel_stolen_node *node)
- {
- 	struct xe_device *xe = node->xe;
-@@ -126,13 +102,10 @@ static void xe_stolen_node_free(const struct intel_stolen_node *node)
- 
- const struct intel_display_stolen_interface xe_display_stolen_interface = {
- 	.insert_node_in_range = xe_stolen_insert_node_in_range,
--	.insert_node = xe_stolen_insert_node,
- 	.remove_node = xe_stolen_remove_node,
- 	.initialized = xe_stolen_initialized,
- 	.node_allocated = xe_stolen_node_allocated,
- 	.node_offset = xe_stolen_node_offset,
--	.area_address = xe_stolen_area_address,
--	.area_size = xe_stolen_area_size,
- 	.node_address = xe_stolen_node_address,
- 	.node_size = xe_stolen_node_size,
- 	.node_alloc = xe_stolen_node_alloc,
-diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/intel/display_parent_interface.h
-index f590e846464d..cc13b2ce1324 100644
---- a/include/drm/intel/display_parent_interface.h
-+++ b/include/drm/intel/display_parent_interface.h
-@@ -51,13 +51,13 @@ struct intel_display_rps_interface {
- struct intel_display_stolen_interface {
- 	int (*insert_node_in_range)(struct intel_stolen_node *node, u64 size,
- 				    unsigned int align, u64 start, u64 end);
--	int (*insert_node)(struct intel_stolen_node *node, u64 size, unsigned int align);
-+	int (*insert_node)(struct intel_stolen_node *node, u64 size, unsigned int align); /* Optional */
- 	void (*remove_node)(struct intel_stolen_node *node);
- 	bool (*initialized)(struct drm_device *drm);
- 	bool (*node_allocated)(const struct intel_stolen_node *node);
- 	u64 (*node_offset)(const struct intel_stolen_node *node);
--	u64 (*area_address)(struct drm_device *drm);
--	u64 (*area_size)(struct drm_device *drm);
-+	u64 (*area_address)(struct drm_device *drm); /* Optional */
-+	u64 (*area_size)(struct drm_device *drm); /* Optional */
- 	u64 (*node_address)(const struct intel_stolen_node *node);
- 	u64 (*node_size)(const struct intel_stolen_node *node);
- 	struct intel_stolen_node *(*node_alloc)(struct drm_device *drm);
+BR,
+Jani.
+
+
+[1] https://lore.kernel.org/r/aa5cbd50-7676-4a59-bbed-e8428af86804@linux.intel.com
+
+
+topic/drm-intel-plane-color-pipeline-2025-12-04:
+drm/i915 topic pull request for v6.19:
+
+Features and functionality:
+- Add plane color management support (Uma, Chaitanya)
+
+BR,
+Jani.
+
+The following changes since commit 0692602defb0c273f80dec9c564ca50726404aca:
+
+  Merge tag 'amd-drm-next-6.19-2025-12-02' of https://gitlab.freedesktop.org/agd5f/linux into drm-next (2025-12-03 09:43:49 +1000)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/topic/drm-intel-plane-color-pipeline-2025-12-04
+
+for you to fetch changes up to 860daa4b0d09a398a0ac9ae6fe67efd73a275968:
+
+  drm/i915/color: Enable Plane Color Pipelines (2025-12-04 19:44:36 +0200)
+
+----------------------------------------------------------------
+drm/i915 topic pull request for v6.19:
+
+Features and functionality:
+- Add plane color management support (Uma, Chaitanya)
+
+----------------------------------------------------------------
+Chaitanya Kumar Borah (8):
+      drm/i915/display: Add identifiers for driver specific blocks
+      drm/i915: Add intel_color_op
+      drm/i915/color: Add helper to create intel colorop
+      drm/i915/color: Create a transfer function color pipeline
+      drm/i915/color: Add framework to program CSC
+      drm/i915/color: Preserve sign bit when int_bits is Zero
+      drm/i915/color: Add registers for 3D LUT
+      drm/i915/color: Add 3D LUT to color pipeline
+
+Uma Shankar (7):
+      drm/i915/color: Add plane CTM callback for D12 and beyond
+      drm/i915: Add register definitions for Plane Degamma
+      drm/i915: Add register definitions for Plane Post CSC
+      drm/i915/color: Add framework to program PRE/POST CSC LUT
+      drm/i915/color: Program Pre-CSC registers
+      drm/i915/color: Program Plane Post CSC Registers
+      drm/i915/color: Enable Plane Color Pipelines
+
+ drivers/gpu/drm/i915/Makefile                      |   2 +
+ drivers/gpu/drm/i915/display/intel_color.c         | 335 +++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_color.h         |   8 +-
+ .../gpu/drm/i915/display/intel_color_pipeline.c    |  99 ++++++
+ .../gpu/drm/i915/display/intel_color_pipeline.h    |  14 +
+ drivers/gpu/drm/i915/display/intel_color_regs.h    |  29 ++
+ drivers/gpu/drm/i915/display/intel_colorop.c       |  35 +++
+ drivers/gpu/drm/i915/display/intel_colorop.h       |  15 +
+ drivers/gpu/drm/i915/display/intel_display.c       |   5 +-
+ .../gpu/drm/i915/display/intel_display_limits.h    |   9 +
+ drivers/gpu/drm/i915/display/intel_display_types.h |   9 +
+ drivers/gpu/drm/i915/display/intel_plane.c         |  55 ++++
+ drivers/gpu/drm/i915/display/skl_universal_plane.c |  21 ++
+ .../drm/i915/display/skl_universal_plane_regs.h    | 115 +++++++
+ drivers/gpu/drm/xe/Makefile                        |   2 +
+ 15 files changed, 751 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_color_pipeline.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_color_pipeline.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_colorop.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_colorop.h
+
 -- 
-2.47.3
-
+Jani Nikula, Intel
