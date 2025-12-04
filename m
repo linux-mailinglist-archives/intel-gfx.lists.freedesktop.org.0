@@ -2,61 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DC72CA35C4
-	for <lists+intel-gfx@lfdr.de>; Thu, 04 Dec 2025 12:00:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A45F2CA3723
+	for <lists+intel-gfx@lfdr.de>; Thu, 04 Dec 2025 12:30:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D25910E967;
-	Thu,  4 Dec 2025 11:00:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 957BA10E925;
+	Thu,  4 Dec 2025 11:30:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P1QEiq9y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UUkw8q1x";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1201110E968;
- Thu,  4 Dec 2025 11:00:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7726410E943;
+ Thu,  4 Dec 2025 11:30:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764846014; x=1796382014;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=XdVy47vNvAd0nur66iz+qNcBi0cppkHGrnqYbDg4uYQ=;
- b=P1QEiq9ywXXyo/nFexNcUKk1/zMVjUaEoqD6vEepLbNXibU427LPCE37
- TFvojfSoptYgmuN1eKVcGR8C1YGWOio310+TLfRlxoISPuPE+XdNmsAC3
- xLji9u+agroSyoVAXQU+1+XpVAEbJfsQvXJGc9KeJg3mLBxo/gGt0u36l
- YEhk4mEJvwQbSWra+yS7KF65em5Gl/TVDsEHwmUpoxelQVdzS5hQ470WA
- wBusvml0Khfd/fh45rx587SWTMTGw95vzYfmNX5Nsey1VnLO9fEE6daNq
- vvv+evdSafn7owydydXE3xG0lcRwCuodMbD0PbqMJZDJkwkWY9E69fdj1 Q==;
-X-CSE-ConnectionGUID: G7By616YQHSm2qtQHepUBA==
-X-CSE-MsgGUID: meI3Ji5ORMuTsIjxIO7YRQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="84255749"
-X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; d="scan'208";a="84255749"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2025 03:00:13 -0800
-X-CSE-ConnectionGUID: IOCmJk+1TGO/Irnw4G6l3A==
-X-CSE-MsgGUID: esQyPMRiSNWGu5RecNb9WQ==
+ t=1764847834; x=1796383834;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=D0l9gtT8mdPrjBEpLLTAq2Mfr4JEZv9nEfbaayguj+s=;
+ b=UUkw8q1xTFFAv7hcQU9JLw2FYvwC52XMftfTWKDaTt8yL7xdLdI7bFb5
+ Y99Ex88mpzz19z2pnDzKhpCMn8YbyCUAE470z0NpK5919Qns7uirXhdbA
+ rMh3fLxvGkDI+gWx8/gghECRkv8saKQgC41VN2l4xp1lwMD98G0RaekyQ
+ gbNIvWNUuLvgNPw3pxsmahCxpAuhqbDFycwcNn6IGlXyQX/QeoGbn47AW
+ bupFAVi0xdPbAKnbUJjYRTJHl2Ii/ALDvCvVTQ5MEE5WMylM7S7Ok7KI5
+ WP3Ts7bCNrB64NET5R8YO97RwWqMP4XQ5eIFv5jSyQ0s8QrqOTWBSaciB g==;
+X-CSE-ConnectionGUID: 4uXbV3tSTlmbgZAvQbz6ow==
+X-CSE-MsgGUID: LWHXsDpIRTi2JArMvnAjqA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="66796306"
+X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; d="scan'208";a="66796306"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2025 03:30:33 -0800
+X-CSE-ConnectionGUID: JUWMXRFnSyaO0+bJ9zqH2A==
+X-CSE-MsgGUID: aFqby5KlQ/G80DxOi72TQw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; d="scan'208";a="195763010"
+X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; d="scan'208";a="232295373"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.11])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2025 03:00:12 -0800
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2025 03:30:31 -0800
 From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: tzimmermann@suse.de, ville.syrjala@linux.intel.com,
- Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v2 25/25] drm/vblank: clean up debug logging
-Date: Thu,  4 Dec 2025 12:57:53 +0200
-Message-ID: <cbe3f07d5d95ad0aaa38e6423f9aea8cc6923a5c.1764845757.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1764845757.git.jani.nikula@intel.com>
-References: <cover.1764845757.git.jani.nikula@intel.com>
+To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Mohammed Thasleem <mohammed.thasleem@intel.com>, stable@vger.kernel.org
+Subject: Re: [PATCH] drm/i915/dmc: fix an unlikely NULL pointer deference at
+ probe
+In-Reply-To: <aTATMrp6oysYUecR@ideak-desk>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251202183950.2450315-1-jani.nikula@intel.com>
+ <aS9ZGmXG_n0IXv-N@ideak-desk> <aS9bj8RRYYc01Rzs@ideak-desk>
+ <43c4d7f0d9fe4ba6acac828306b41d612dd4f085@intel.com>
+ <aTATMrp6oysYUecR@ideak-desk>
+Date: Thu, 04 Dec 2025 13:30:27 +0200
+Message-ID: <7bfb6dabe5bf83028f695d4d248597b721ce0e0c@intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,332 +73,170 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use the usual [CRTC:%d:%s] when crtc is available. Start using a new
-uniform [VBLANK:%u] prefix with the pipe when crtc is not
-available. Remove extra line breaks. Use string choice helpers here and
-there. Use %pe to decode error returns.
+On Wed, 03 Dec 2025, Imre Deak <imre.deak@intel.com> wrote:
+> On Wed, Dec 03, 2025 at 10:13:44AM +0200, Jani Nikula wrote:
+>> On Tue, 02 Dec 2025, Imre Deak <imre.deak@intel.com> wrote:
+>> > On Tue, Dec 02, 2025 at 11:24:42PM +0200, Imre Deak wrote:
+>> >> On Tue, Dec 02, 2025 at 08:39:50PM +0200, Jani Nikula wrote:
+>> >> > intel_dmc_update_dc6_allowed_count() oopses when DMC hasn't been
+>> >> > initialized, and dmc is thus NULL.
+>> >> > 
+>> >> > That would be the case when the call path is
+>> >> > intel_power_domains_init_hw() -> {skl,bxt,icl}_display_core_init() ->
+>> >> > gen9_set_dc_state() -> intel_dmc_update_dc6_allowed_count(), as
+>> >> > intel_power_domains_init_hw() is called *before* intel_dmc_init().
+>> >> > 
+>> >> > However, gen9_set_dc_state() calls intel_dmc_update_dc6_allowed_count()
+>> >> > conditionally, depending on the current and target DC states. At probe,
+>> >> > the target is disabled, but if DC6 is enabled, the function is called,
+>> >> > and an oops follows. Apparently it's quite unlikely that DC6 is enabled
+>> >> > at probe, as we haven't seen this failure mode before.
+>> >> > 
+>> >> > Add NULL checks and switch the dmc->display references to just display.
+>> >> > 
+>> >> > Fixes: 88c1f9a4d36d ("drm/i915/dmc: Create debugfs entry for dc6 counter")
+>> >> > Cc: Mohammed Thasleem <mohammed.thasleem@intel.com>
+>> >> > Cc: Imre Deak <imre.deak@intel.com>
+>> >> > Cc: <stable@vger.kernel.org> # v6.16+
+>> >> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> >> > 
+>> >> > ---
+>> >> > 
+>> >> > Rare case, but this may also throw off the rc6 counting in debugfs when
+>> >> > it does happen.
+>> >> 
+>> >> Yes, I missed the case where the driver is being loaded while DC6 is
+>> >> enabled, this is what happens for the reporter:
+>> >> 
+>> >> i915 0000:00:04.0: [drm] *ERROR* DC state mismatch (0x0 -> 0x2)
+>> >> 
+>> >> That's odd, as DC6 requires the DMC firmware, which - if it's indeed
+>> >> loaded by BIOS for instance - will be overwritten by the driver, not a
+>> >> well specified sequence (even though the driver is trying to handle it
+>> >> correctly by disabling any active firmware handler).
+>> >> 
+>> >> But as you pointed out this would also throw off the cooked-up DC6
+>> >> counter tracking,
+>> >
+>> > Actually the patch would keep the counter working, as the counter
+>> > wouldn't be updated in the dmc==NULL case. However I still think the
+>> > correct fix would be to check the correct DC state, which from the POV
+>> > of the counter tracking is the driver's version of the state, not the HW
+>> > state.
+>> 
+>> One thing I failed to mention is that this happens in a KASAN run in
+>> QEMU. So I'm kind of not surprised we haven't hit this before. And it
+>> impacts the deductions about the DC state.
+>
+> Ok, it's strange why QEMU decides to initialize the DC_STATE_EN register
+> to a non-zero value then. But in any case the driver should handle it.
+>
+>> I'm not quite sure what exactly you're suggesting, maybe a draft patch
+>> would communicate the idea better than plain English? ;)
+>
+> intel_dmc_get_dc6_allowed_count() still needs to check for dmc==NULL, as
+> the debugfs entry can be read at any point. With that, what I meant is:
+>
+> in gen9_set_dc_state():
+> ...
+> -       dc6_was_enabled = val & DC_STATE_EN_UPTO_DC6;
+> +       dc6_was_enabled = power_domains->dc_state & DC_STATE_EN_UPTO_DC6;
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/drm_vblank.c | 109 ++++++++++++++++-------------------
- 1 file changed, 50 insertions(+), 59 deletions(-)
+I still don't understand why we can trust our own value rather than
+what's in the hardware in this case.
 
-diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-index ba16981a5b1e..653ee422e697 100644
---- a/drivers/gpu/drm/drm_vblank.c
-+++ b/drivers/gpu/drm/drm_vblank.c
-@@ -27,6 +27,7 @@
- #include <linux/export.h>
- #include <linux/kthread.h>
- #include <linux/moduleparam.h>
-+#include <linux/string_choices.h>
- 
- #include <drm/drm_crtc.h>
- #include <drm/drm_drv.h>
-@@ -347,14 +348,13 @@ static void drm_vblank_crtc_update_count(struct drm_vblank_crtc *vblank,
- 		 * frame/field duration.
- 		 */
- 
--		drm_dbg_vbl(dev, "crtc %u: Calculating number of vblanks."
--			    " diff_ns = %lld, framedur_ns = %d)\n",
-+		drm_dbg_vbl(dev, "[VBLANK:%u] Calculating number of vblanks. diff_ns = %lld, framedur_ns = %d)\n",
- 			    pipe, (long long)diff_ns, framedur_ns);
- 
- 		diff = DIV_ROUND_CLOSEST_ULL(diff_ns, framedur_ns);
- 
- 		if (diff == 0 && in_vblank_irq)
--			drm_dbg_vbl(dev, "crtc %u: Redundant vblirq ignored\n",
-+			drm_dbg_vbl(dev, "[VBLANK:%u] Redundant vblirq ignored\n",
- 				    pipe);
- 	} else {
- 		/* some kind of default for drivers w/o accurate vbl timestamping */
-@@ -372,13 +372,12 @@ static void drm_vblank_crtc_update_count(struct drm_vblank_crtc *vblank,
- 	 */
- 	if (diff > 1 && (vblank->inmodeset & 0x2)) {
- 		drm_dbg_vbl(dev,
--			    "clamping vblank bump to 1 on crtc %u: diffr=%u"
--			    " due to pre-modeset.\n", pipe, diff);
-+			    "[VBLANK:%u] clamping vblank bump to 1: diffr=%u due to pre-modeset.\n",
-+			    pipe, diff);
- 		diff = 1;
- 	}
- 
--	drm_dbg_vbl(dev, "updating vblank count on crtc %u:"
--		    " current=%llu, diff=%u, hw=%u hw_last=%u\n",
-+	drm_dbg_vbl(dev, "[VBLANK:%u] updating vblank count: current=%llu, diff=%u, hw=%u hw_last=%u\n",
- 		    pipe, (unsigned long long)atomic64_read(&vblank->count),
- 		    diff, cur_vblank, vblank->last);
- 
-@@ -517,7 +516,7 @@ static void vblank_disable_fn(struct timer_list *t)
- 
- 	spin_lock_irqsave(&dev->vbl_lock, irqflags);
- 	if (atomic_read(&vblank->refcount) == 0 && vblank->enabled) {
--		drm_dbg_core(dev, "disabling vblank on crtc %u\n", pipe);
-+		drm_dbg_core(dev, "[VBLANK:%u] disabling vblank\n", pipe);
- 		drm_vblank_crtc_disable_and_save(vblank);
- 	}
- 	spin_unlock_irqrestore(&dev->vbl_lock, irqflags);
-@@ -665,8 +664,8 @@ void drm_calc_timestamping_constants(struct drm_crtc *crtc,
- 		if (mode->flags & DRM_MODE_FLAG_INTERLACE)
- 			framedur_ns /= 2;
- 	} else {
--		drm_err(dev, "crtc %u: Can't calculate constants, dotclock = 0!\n",
--			crtc->base.id);
-+		drm_err(dev, "[CRTC:%d:%s] Can't calculate constants, dotclock = 0!\n",
-+			crtc->base.id, crtc->name);
- 	}
- 
- 	vblank->linedur_ns  = linedur_ns;
-@@ -674,11 +673,11 @@ void drm_calc_timestamping_constants(struct drm_crtc *crtc,
- 	drm_mode_copy(&vblank->hwmode, mode);
- 
- 	drm_dbg_core(dev,
--		     "crtc %u: hwmode: htotal %d, vtotal %d, vdisplay %d\n",
--		     crtc->base.id, mode->crtc_htotal,
-+		     "[CRTC:%d:%s] hwmode: htotal %d, vtotal %d, vdisplay %d\n",
-+		     crtc->base.id, crtc->name, mode->crtc_htotal,
- 		     mode->crtc_vtotal, mode->crtc_vdisplay);
--	drm_dbg_core(dev, "crtc %u: clock %d kHz framedur %d linedur %d\n",
--		     crtc->base.id, dotclock, framedur_ns, linedur_ns);
-+	drm_dbg_core(dev, "[CRTC:%d:%s] clock %d kHz framedur %d linedur %d\n",
-+		     crtc->base.id, crtc->name, dotclock, framedur_ns, linedur_ns);
- }
- EXPORT_SYMBOL(drm_calc_timestamping_constants);
- 
-@@ -730,7 +729,8 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 
- 	/* Scanout position query not supported? Should not happen. */
- 	if (!get_scanout_position) {
--		drm_err(dev, "Called from CRTC w/o get_scanout_position()!?\n");
-+		drm_err(dev, "[CRTC:%d:%s] Called from CRTC w/o get_scanout_position()!?\n",
-+			crtc->base.id, crtc->name);
- 		return false;
- 	}
- 
-@@ -746,7 +746,7 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 	 * Happens during initial modesetting of a crtc.
- 	 */
- 	if (mode->crtc_clock == 0) {
--		drm_dbg_core(dev, "crtc %u: Noop due to uninitialized mode.\n",
-+		drm_dbg_core(dev, "[VBLANK:%u] Noop due to uninitialized mode.\n",
- 			     pipe);
- 		drm_WARN_ON_ONCE(dev, drm_drv_uses_atomic_modeset(dev));
- 		return false;
-@@ -771,9 +771,8 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 
- 		/* Return as no-op if scanout query unsupported or failed. */
- 		if (!vbl_status) {
--			drm_dbg_core(dev,
--				     "crtc %u : scanoutpos query failed.\n",
--				     pipe);
-+			drm_dbg_core(dev, "[CRTC:%d:%s] scanoutpos query failed.\n",
-+				     crtc->base.id, crtc->name);
- 			return false;
- 		}
- 
-@@ -787,9 +786,8 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 
- 	/* Noisy system timing? */
- 	if (i == DRM_TIMESTAMP_MAXRETRIES) {
--		drm_dbg_core(dev,
--			     "crtc %u: Noisy timestamp %d us > %d us [%d reps].\n",
--			     pipe, duration_ns / 1000, *max_error / 1000, i);
-+		drm_dbg_core(dev, "[CRTC:%d:%s] Noisy timestamp %d us > %d us [%d reps].\n",
-+			     crtc->base.id, crtc->name, duration_ns / 1000, *max_error / 1000, i);
- 	}
- 
- 	/* Return upper bound of timestamp precision error. */
-@@ -813,9 +811,8 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 	ts_etime = ktime_to_timespec64(etime);
- 	ts_vblank_time = ktime_to_timespec64(*vblank_time);
- 
--	drm_dbg_vbl(dev,
--		    "crtc %u : v p(%d,%d)@ %lld.%06ld -> %lld.%06ld [e %d us, %d rep]\n",
--		    pipe, hpos, vpos,
-+	drm_dbg_vbl(dev, "[CRTC:%d:%s] v p(%d,%d)@ %lld.%06ld -> %lld.%06ld [e %d us, %d rep]\n",
-+		    crtc->base.id, crtc->name, hpos, vpos,
- 		    (u64)ts_etime.tv_sec, ts_etime.tv_nsec / 1000,
- 		    (u64)ts_vblank_time.tv_sec, ts_vblank_time.tv_nsec / 1000,
- 		    duration_ns / 1000, i);
-@@ -1190,7 +1187,7 @@ static int drm_vblank_enable(struct drm_vblank_crtc *vblank)
- 		 * prevent double-accounting of same vblank interval.
- 		 */
- 		ret = __enable_vblank(vblank);
--		drm_dbg_core(dev, "enabling vblank on crtc %u, ret: %d\n",
-+		drm_dbg_core(dev, "[VBLANK:%u] enabling vblank, ret: %d\n",
- 			     pipe, ret);
- 		if (ret) {
- 			atomic_dec(&vblank->refcount);
-@@ -1349,8 +1346,9 @@ void drm_crtc_vblank_off(struct drm_crtc *crtc)
- 	spin_lock_irq(&dev->event_lock);
- 
- 	spin_lock(&dev->vbl_lock);
--	drm_dbg_vbl(dev, "crtc %d, vblank enabled %d, inmodeset %d\n",
--		    pipe, vblank->enabled, vblank->inmodeset);
-+	drm_dbg_vbl(dev, "[CRTC:%d:%s] vblank %s, inmodeset: %s\n",
-+		    crtc->base.id, crtc->name, str_enabled_disabled(vblank->enabled),
-+		    str_yes_no(vblank->inmodeset));
- 
- 	/* Avoid redundant vblank disables without previous
- 	 * drm_crtc_vblank_on(). */
-@@ -1375,9 +1373,8 @@ void drm_crtc_vblank_off(struct drm_crtc *crtc)
- 	list_for_each_entry_safe(e, t, &dev->vblank_event_list, base.link) {
- 		if (e->pipe != pipe)
- 			continue;
--		drm_dbg_core(dev, "Sending premature vblank event on disable: "
--			     "wanted %llu, current %llu\n",
--			     e->sequence, seq);
-+		drm_dbg_core(dev, "[CRTC:%d:%s] Sending premature vblank event on disable: wanted %llu, current %llu\n",
-+			     crtc->base.id, crtc->name, e->sequence, seq);
- 		list_del(&e->base.link);
- 		drm_vblank_crtc_put(vblank);
- 		send_vblank_event(dev, e, seq, now);
-@@ -1477,12 +1474,12 @@ void drm_crtc_vblank_on_config(struct drm_crtc *crtc,
- 			       const struct drm_vblank_crtc_config *config)
- {
- 	struct drm_device *dev = crtc->dev;
--	unsigned int pipe = drm_crtc_index(crtc);
- 	struct drm_vblank_crtc *vblank = drm_crtc_vblank_crtc(crtc);
- 
- 	spin_lock_irq(&dev->vbl_lock);
--	drm_dbg_vbl(dev, "crtc %d, vblank enabled %d, inmodeset %d\n",
--		    pipe, vblank->enabled, vblank->inmodeset);
-+	drm_dbg_vbl(dev, "[CRTC:%d:%s] vblank %s, inmodeset: %s\n",
-+		    crtc->base.id, crtc->name, str_enabled_disabled(vblank->enabled),
-+		    str_yes_no(vblank->inmodeset));
- 
- 	vblank->config = *config;
- 
-@@ -1576,8 +1573,8 @@ void drm_crtc_vblank_restore(struct drm_crtc *crtc)
- 		diff = DIV_ROUND_CLOSEST_ULL(diff_ns, framedur_ns);
- 
- 
--	drm_dbg_vbl(dev,
--		    "missed %d vblanks in %lld ns, frame duration=%d ns, hw_diff=%d\n",
-+	drm_dbg_vbl(dev, "[CRTC:%d:%s] missed %d vblanks in %lld ns, frame duration=%d ns, hw_diff=%d\n",
-+		    crtc->base.id, crtc->name,
- 		    diff, diff_ns, framedur_ns, cur_vblank - vblank->last);
- 	vblank->last = (cur_vblank - diff) & max_vblank_count;
- }
-@@ -1634,8 +1631,8 @@ static int drm_vblank_crtc_queue_event(struct drm_vblank_crtc *vblank,
- 
- 	seq = drm_vblank_crtc_count_and_time(vblank, &now);
- 
--	drm_dbg_core(dev, "event on vblank count %llu, current %llu, crtc %u\n",
--		     req_seq, seq, pipe);
-+	drm_dbg_core(dev, "[VBLANK:%u] event on vblank count %llu, current %llu\n",
-+		     pipe, req_seq, seq);
- 
- 	trace_drm_vblank_event_queued(file_priv, pipe, req_seq);
- 
-@@ -1731,8 +1728,7 @@ int drm_wait_vblank_ioctl(struct drm_device *dev, void *data,
- 	if (vblwait->request.type &
- 	    ~(_DRM_VBLANK_TYPES_MASK | _DRM_VBLANK_FLAGS_MASK |
- 	      _DRM_VBLANK_HIGH_CRTC_MASK)) {
--		drm_dbg_core(dev,
--			     "Unsupported type value 0x%x, supported mask 0x%x\n",
-+		drm_dbg_core(dev, "Unsupported type value 0x%x, supported mask 0x%x\n",
- 			     vblwait->request.type,
- 			     (_DRM_VBLANK_TYPES_MASK | _DRM_VBLANK_FLAGS_MASK |
- 			      _DRM_VBLANK_HIGH_CRTC_MASK));
-@@ -1777,9 +1773,8 @@ int drm_wait_vblank_ioctl(struct drm_device *dev, void *data,
- 
- 	ret = drm_vblank_crtc_get(vblank);
- 	if (ret) {
--		drm_dbg_core(dev,
--			     "crtc %d failed to acquire vblank counter, %d\n",
--			     pipe, ret);
-+		drm_dbg_core(dev, "[VBLANK:%u] failed to acquire vblank counter %pe\n",
-+			     pipe, ERR_PTR(ret));
- 		return ret;
- 	}
- 	seq = drm_vblank_crtc_count(vblank);
-@@ -1815,8 +1810,8 @@ int drm_wait_vblank_ioctl(struct drm_device *dev, void *data,
- 	if (req_seq != seq) {
- 		int wait;
- 
--		drm_dbg_core(dev, "waiting on vblank count %llu, crtc %u\n",
--			     req_seq, pipe);
-+		drm_dbg_core(dev, "[VBLANK:%d] waiting on vblank count %llu\n",
-+			     pipe, req_seq);
- 		wait = wait_event_interruptible_timeout(vblank->queue,
- 			drm_vblank_passed(drm_vblank_crtc_count(vblank), req_seq) ||
- 				      !READ_ONCE(vblank->enabled),
-@@ -1840,10 +1835,10 @@ int drm_wait_vblank_ioctl(struct drm_device *dev, void *data,
- 	if (ret != -EINTR) {
- 		drm_vblank_crtc_wait_reply(vblank, &vblwait->reply);
- 
--		drm_dbg_core(dev, "crtc %d returning %u to client\n",
-+		drm_dbg_core(dev, "[VBLANK:%u] returning %u to client\n",
- 			     pipe, vblwait->reply.sequence);
- 	} else {
--		drm_dbg_core(dev, "crtc %d vblank wait interrupted by signal\n",
-+		drm_dbg_core(dev, "[VBLANK:%u] vblank wait interrupted by signal\n",
- 			     pipe);
- 	}
- 
-@@ -1872,8 +1867,8 @@ static void drm_vblank_crtc_handle_events(struct drm_vblank_crtc *vblank)
- 		if (!drm_vblank_passed(seq, e->sequence))
- 			continue;
- 
--		drm_dbg_core(dev, "vblank event on %llu, current %llu\n",
--			     e->sequence, seq);
-+		drm_dbg_core(dev, "[VBLANK:%u] vblank event on %llu, current %llu\n",
-+			     pipe, e->sequence, seq);
- 
- 		list_del(&e->base.link);
- 		drm_vblank_crtc_put(vblank);
-@@ -1990,7 +1985,6 @@ int drm_crtc_get_sequence_ioctl(struct drm_device *dev, void *data,
- {
- 	struct drm_crtc *crtc;
- 	struct drm_vblank_crtc *vblank;
--	int pipe;
- 	struct drm_crtc_get_sequence *get_seq = data;
- 	ktime_t now;
- 	bool vblank_enabled;
-@@ -2006,8 +2000,6 @@ int drm_crtc_get_sequence_ioctl(struct drm_device *dev, void *data,
- 	if (!crtc)
- 		return -ENOENT;
- 
--	pipe = drm_crtc_index(crtc);
--
- 	vblank = drm_crtc_vblank_crtc(crtc);
- 	vblank_enabled = READ_ONCE(vblank->config.disable_immediate) &&
- 		READ_ONCE(vblank->enabled);
-@@ -2015,9 +2007,8 @@ int drm_crtc_get_sequence_ioctl(struct drm_device *dev, void *data,
- 	if (!vblank_enabled) {
- 		ret = drm_crtc_vblank_get(crtc);
- 		if (ret) {
--			drm_dbg_core(dev,
--				     "crtc %d failed to acquire vblank counter, %d\n",
--				     pipe, ret);
-+			drm_dbg_core(dev, "[CRTC:%d:%s] failed to acquire vblank counter %pe\n",
-+				     crtc->base.id, crtc->name, ERR_PTR(ret));
- 			return ret;
- 		}
- 	}
-@@ -2082,9 +2073,8 @@ int drm_crtc_queue_sequence_ioctl(struct drm_device *dev, void *data,
- 
- 	ret = drm_crtc_vblank_get(crtc);
- 	if (ret) {
--		drm_dbg_core(dev,
--			     "crtc %d failed to acquire vblank counter, %d\n",
--			     pipe, ret);
-+		drm_dbg_core(dev, "[CRTC:%d:%s] failed to acquire vblank counter %pe\n",
-+			     crtc->base.id, crtc->name, ERR_PTR(ret));
- 		goto err_free;
- 	}
- 
-@@ -2169,7 +2159,8 @@ static enum hrtimer_restart drm_vblank_timer_function(struct hrtimer *timer)
- 
- 	ret_overrun = hrtimer_forward_now(&vtimer->timer, interval);
- 	if (ret_overrun != 1)
--		drm_dbg_vbl(dev, "vblank timer overrun\n");
-+		drm_dbg_vbl(dev, "[CRTC:%d:%s] vblank timer overrun\n",
-+			    crtc->base.id, crtc->name);
- 
- 	if (crtc_funcs->handle_vblank_timeout)
- 		succ = crtc_funcs->handle_vblank_timeout(crtc);
+For resume, we even call gen9_sanitize_dc_state(), but not for probe.
+
+> ...
+>
+> in intel_dmc_get_dc6_allowed_count():
+> ...
+>         if (DISPLAY_VER(display) < 14)
+>                 return false;
+>  
+> +       if (!dmc) {
+> +               *count = 0;
+> +               return true;
+> +       }
+> +
+
+This seems neat but is overkill. dmc is never NULL here, but I added the
+check for completeness.
+
+It's the intel_dmc_update_dc6_allowed_count() that's more fragile, and I
+want that to have the !dmc check, instead of relying on the subtle
+dependency on power_domains->dc_state.
+
+>         mutex_lock(&power_domains->lock);
+> -       dc6_enabled = intel_de_read(display, DC_STATE_EN) &
+> -                     DC_STATE_EN_UPTO_DC6;
+> +       dc6_enabled = power_domains->dc_state & DC_STATE_EN_UPTO_DC6;
+> ...
+>
+>> Anyway, I think "not oopsing" is a lot better than "inaccurate DC
+>> counters in debugfs".
+>
+> Agreed, the above would ensure both.
+>
+>> 
+>> BR,
+>> Jani.
+>> 
+>> 
+>> >
+>> >> so could instead the counter update depend on the
+>> >> driver's DC state instead of the HW state? I.e. set
+>> >> gen9_set_dc_state()/dc6_was_enabled,
+>> >> intel_dmc_get_dc6_allowed_count()/dc6_enable if power_domains->dc_state
+>> >> says that DC6 was indeed enabled by the driver (instead of checking the
+>> >> HW state).
+>> >> 
+>> >> That would fix the reporter's oops when calling
+>> >> intel_dmc_update_dc6_allowed_count(start_tracking=false), by not calling
+>> >> it if the driver hasn't actually enabled DC6 and it would also keep the
+>> >> DC6 counter tracking correct.
+>> >> 
+>> >> intel_dmc_update_dc6_allowed_count(start_tracking=true) would be also
+>> >> guaranteed to be called only once the firmware is loaded, as until that
+>> >> point enabling DC6 is blocked (by holding a reference on the DC_off
+>> >> power well).
+>> >> 
+>> >> > ---
+>> >> >  drivers/gpu/drm/i915/display/intel_dmc.c | 6 +++---
+>> >> >  1 file changed, 3 insertions(+), 3 deletions(-)
+>> >> > 
+>> >> > diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+>> >> > index 2fb6fec6dc99..169bbbc91f6d 100644
+>> >> > --- a/drivers/gpu/drm/i915/display/intel_dmc.c
+>> >> > +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+>> >> > @@ -1570,10 +1570,10 @@ void intel_dmc_update_dc6_allowed_count(struct intel_display *display,
+>> >> >  	struct intel_dmc *dmc = display_to_dmc(display);
+>> >> >  	u32 dc5_cur_count;
+>> >> >  
+>> >> > -	if (DISPLAY_VER(dmc->display) < 14)
+>> >> > +	if (!dmc || DISPLAY_VER(display) < 14)
+>> >> >  		return;
+>> >> >  
+>> >> > -	dc5_cur_count = intel_de_read(dmc->display, DG1_DMC_DEBUG_DC5_COUNT);
+>> >> > +	dc5_cur_count = intel_de_read(display, DG1_DMC_DEBUG_DC5_COUNT);
+>> >> >  
+>> >> >  	if (!start_tracking)
+>> >> >  		dmc->dc6_allowed.count += dc5_cur_count - dmc->dc6_allowed.dc5_start;
+>> >> > @@ -1587,7 +1587,7 @@ static bool intel_dmc_get_dc6_allowed_count(struct intel_display *display, u32 *
+>> >> >  	struct intel_dmc *dmc = display_to_dmc(display);
+>> >> >  	bool dc6_enabled;
+>> >> >  
+>> >> > -	if (DISPLAY_VER(display) < 14)
+>> >> > +	if (!dmc || DISPLAY_VER(display) < 14)
+>> >> >  		return false;
+>> >> >  
+>> >> >  	mutex_lock(&power_domains->lock);
+>> >> > -- 
+>> >> > 2.47.3
+>> >> > 
+>> 
+>> -- 
+>> Jani Nikula, Intel
+
 -- 
-2.47.3
-
+Jani Nikula, Intel
