@@ -2,55 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06561CA359F
-	for <lists+intel-gfx@lfdr.de>; Thu, 04 Dec 2025 11:59:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05578CA35A5
+	for <lists+intel-gfx@lfdr.de>; Thu, 04 Dec 2025 11:59:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82C3110E953;
-	Thu,  4 Dec 2025 10:59:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 92A7310E959;
+	Thu,  4 Dec 2025 10:59:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ngg28+fu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qfms3rko";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2103610E953;
- Thu,  4 Dec 2025 10:59:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3042510E932;
+ Thu,  4 Dec 2025 10:59:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764845975; x=1796381975;
+ t=1764845981; x=1796381981;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=WJfnO/JZSBx5uqcfPjaFhVqEco88SbFQqVtINQ0+QQM=;
- b=ngg28+fuj+mz2zO20WMccrNUiz6J/rHCT5uwW2nslGRgTyrQkai2rGD1
- sdJrcDd6EAZsL+fUtSlA6jkpxao8NUESSfQ7XHh9Hh+SLr7Vh43bjRoQ1
- ZYHunZasjSLXfk3+zVD9YVWWd4LFMfVfN4VBF9hCsDIrBGeXGQqtVZsWD
- r0eOFLxi/vraNagx5jE5EJKqPvEfucysPx+gzty3m0yCKxxll6JhKwVME
- rtmDew1VlxsB0ye9cgYcY+hmr7g3VB2gR8Cuptvj5P6EReOWKCRtG3vel
- 7NBVuSvb7axuA0lJL+wb1Y6sOGIyDnZVf9mw0IOaDxlcDo1oaoQvRMemh Q==;
-X-CSE-ConnectionGUID: KtqdKF01SreXUAClknD78g==
-X-CSE-MsgGUID: AN6HBpWJR6aC5kS8LBPb8A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="69456203"
-X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; d="scan'208";a="69456203"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2025 02:59:35 -0800
-X-CSE-ConnectionGUID: NZ/LJ/GyRMSDj5n/rQm20w==
-X-CSE-MsgGUID: ZCS5ql8hS8ms84Cds72mGw==
+ bh=LOktGYqKx3Nx8MvZ+WGnitpL5SbjKCEbM85k9+7B6Bs=;
+ b=Qfms3rkonj/j1RHZszQJMnDMgIW48ladfAr7irVNdbIUupJmqErX0D54
+ klr++bq9vUS7b7d5EV+22cuwfBwQqXZGT3BHeCEqcQqhEKc3zeHGB2ZDA
+ Rb56+3DeHx7kH8VMSyFl4kflSZNwKzQAcoSrIgbBKJ6fDXw6Yst14I/jo
+ 8zGZ0lovQN57Li3dcSBkPv2PWwZ2N+f0guB6OU2Xz+qCGcp+QXzlAU3Zw
+ CZGHpjJpx3kddM8cTMlNjkBR+KoAx3UpFWSha1tdHE+2J9PDOEw7k9/C9
+ KMSORuQh1Hxr9kQhrJE0hpwr76VoieVjg76csZ5Y7vi8jW+fZfx8UOJlH A==;
+X-CSE-ConnectionGUID: MCaG1aqsTYCssjys0xqywg==
+X-CSE-MsgGUID: 7e8oWKTSR6qjDb30pCZ1xQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="78327068"
+X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; d="scan'208";a="78327068"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2025 02:59:41 -0800
+X-CSE-ConnectionGUID: AWh2+BRBSUmOX3taOSmp9Q==
+X-CSE-MsgGUID: UnMELEdyQtuOaSXArfD6jw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; d="scan'208";a="225627596"
+X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; d="scan'208";a="195064765"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.11])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2025 02:59:33 -0800
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2025 02:59:38 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: tzimmermann@suse.de, ville.syrjala@linux.intel.com,
  Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v2 18/25] drm/vblank: merge drm_vblank_restore() into
- drm_crtc_vblank_restore()
-Date: Thu,  4 Dec 2025 12:57:46 +0200
-Message-ID: <d7f7e3937dcd5045023fd4c7b28efaa6ef94dffa.1764845757.git.jani.nikula@intel.com>
+Subject: [PATCH v2 19/25] drm/vblank: add drm_crtc_from_vblank() helper
+Date: Thu,  4 Dec 2025 12:57:47 +0200
+Message-ID: <53a69066dfb1977083b6797e1d7a751118c05aed.1764845757.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1764845757.git.jani.nikula@intel.com>
 References: <cover.1764845757.git.jani.nikula@intel.com>
@@ -73,102 +72,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The extra function serves no useful purpose.
-
-This allows us to drop another superfluous pipe check warning.
+We have a handful of places where we need to get the crtc from the
+vblank. Add a small helper for it.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/drm_vblank.c | 57 +++++++++++++++---------------------
- 1 file changed, 23 insertions(+), 34 deletions(-)
+ drivers/gpu/drm/drm_vblank.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-index e4c8af7fb5db..ad44fea4ff67 100644
+index ad44fea4ff67..d43165ee594a 100644
 --- a/drivers/gpu/drm/drm_vblank.c
 +++ b/drivers/gpu/drm/drm_vblank.c
-@@ -1527,23 +1527,41 @@ void drm_crtc_vblank_on(struct drm_crtc *crtc)
+@@ -188,6 +188,11 @@ drm_crtc_vblank_crtc(struct drm_crtc *crtc)
  }
- EXPORT_SYMBOL(drm_crtc_vblank_on);
+ EXPORT_SYMBOL(drm_crtc_vblank_crtc);
  
--static void drm_vblank_restore(struct drm_device *dev, unsigned int pipe)
-+/**
-+ * drm_crtc_vblank_restore - estimate missed vblanks and update vblank count.
-+ * @crtc: CRTC in question
-+ *
-+ * Power manamement features can cause frame counter resets between vblank
-+ * disable and enable. Drivers can use this function in their
-+ * &drm_crtc_funcs.enable_vblank implementation to estimate missed vblanks since
-+ * the last &drm_crtc_funcs.disable_vblank using timestamps and update the
-+ * vblank counter.
-+ *
-+ * Note that drivers must have race-free high-precision timestamping support,
-+ * i.e.  &drm_crtc_funcs.get_vblank_timestamp must be hooked up and
-+ * &drm_vblank_crtc_config.disable_immediate must be set to indicate the
-+ * time-stamping functions are race-free against vblank hardware counter
-+ * increments.
-+ */
-+void drm_crtc_vblank_restore(struct drm_crtc *crtc)
++static struct drm_crtc *drm_crtc_from_vblank(struct drm_vblank_crtc *vblank)
++{
++	return drm_crtc_from_index(vblank->dev, vblank->pipe);
++}
++
+ static void drm_vblank_crtc_store(struct drm_vblank_crtc *vblank,
+ 				  u32 vblank_count_inc,
+ 				  ktime_t t_vblank, u32 last)
+@@ -1608,7 +1613,7 @@ static int drm_vblank_crtc_queue_event(struct drm_vblank_crtc *vblank,
+ 	e->event.vbl.user_data = vblwait->request.signal;
+ 	e->event.vbl.crtc_id = 0;
+ 	if (drm_core_check_feature(dev, DRIVER_MODESET)) {
+-		struct drm_crtc *crtc = drm_crtc_from_index(dev, pipe);
++		struct drm_crtc *crtc = drm_crtc_from_vblank(vblank);
+ 
+ 		if (crtc)
+ 			e->event.vbl.crtc_id = crtc->base.id;
+@@ -1858,7 +1863,7 @@ static void drm_vblank_crtc_handle_events(struct drm_vblank_crtc *vblank)
  {
-+	struct drm_device *dev = crtc->dev;
-+	unsigned int pipe = drm_crtc_index(crtc);
-+	struct drm_vblank_crtc *vblank = drm_crtc_vblank_crtc(crtc);
- 	ktime_t t_vblank;
--	struct drm_vblank_crtc *vblank;
- 	int framedur_ns;
- 	u64 diff_ns;
- 	u32 cur_vblank, diff = 1;
- 	int count = DRM_TIMESTAMP_MAXRETRIES;
- 	u32 max_vblank_count = drm_max_vblank_count(dev, pipe);
- 
--	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
--		return;
-+	drm_WARN_ON_ONCE(dev, !crtc->funcs->get_vblank_timestamp);
-+	drm_WARN_ON_ONCE(dev, vblank->inmodeset);
-+	drm_WARN_ON_ONCE(dev, !vblank->config.disable_immediate);
- 
- 	assert_spin_locked(&dev->vbl_lock);
- 	assert_spin_locked(&dev->vblank_time_lock);
- 
--	vblank = drm_vblank_crtc(dev, pipe);
- 	drm_WARN_ONCE(dev,
- 		      drm_debug_enabled(DRM_UT_VBL) && !vblank->framedur_ns,
- 		      "Cannot compute missed vblanks without frame duration\n");
-@@ -1564,35 +1582,6 @@ static void drm_vblank_restore(struct drm_device *dev, unsigned int pipe)
- 		    diff, diff_ns, framedur_ns, cur_vblank - vblank->last);
- 	vblank->last = (cur_vblank - diff) & max_vblank_count;
- }
--
--/**
-- * drm_crtc_vblank_restore - estimate missed vblanks and update vblank count.
-- * @crtc: CRTC in question
-- *
-- * Power manamement features can cause frame counter resets between vblank
-- * disable and enable. Drivers can use this function in their
-- * &drm_crtc_funcs.enable_vblank implementation to estimate missed vblanks since
-- * the last &drm_crtc_funcs.disable_vblank using timestamps and update the
-- * vblank counter.
-- *
-- * Note that drivers must have race-free high-precision timestamping support,
-- * i.e.  &drm_crtc_funcs.get_vblank_timestamp must be hooked up and
-- * &drm_vblank_crtc_config.disable_immediate must be set to indicate the
-- * time-stamping functions are race-free against vblank hardware counter
-- * increments.
-- */
--void drm_crtc_vblank_restore(struct drm_crtc *crtc)
--{
--	struct drm_device *dev = crtc->dev;
--	unsigned int pipe = drm_crtc_index(crtc);
--	struct drm_vblank_crtc *vblank = drm_vblank_crtc(dev, pipe);
--
--	drm_WARN_ON_ONCE(dev, !crtc->funcs->get_vblank_timestamp);
--	drm_WARN_ON_ONCE(dev, vblank->inmodeset);
--	drm_WARN_ON_ONCE(dev, !vblank->config.disable_immediate);
--
--	drm_vblank_restore(dev, pipe);
--}
- EXPORT_SYMBOL(drm_crtc_vblank_restore);
- 
- static int drm_vblank_crtc_queue_event(struct drm_vblank_crtc *vblank,
+ 	struct drm_device *dev = vblank->dev;
+ 	unsigned int pipe = vblank->pipe;
+-	struct drm_crtc *crtc = drm_crtc_from_index(dev, pipe);
++	struct drm_crtc *crtc = drm_crtc_from_vblank(vblank);
+ 	bool high_prec = false;
+ 	struct drm_pending_vblank_event *e, *t;
+ 	ktime_t now;
 -- 
 2.47.3
 
