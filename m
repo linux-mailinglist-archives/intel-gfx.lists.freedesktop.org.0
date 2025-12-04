@@ -2,54 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9DF6CA348E
-	for <lists+intel-gfx@lfdr.de>; Thu, 04 Dec 2025 11:47:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2864DCA3491
+	for <lists+intel-gfx@lfdr.de>; Thu, 04 Dec 2025 11:48:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F1D710E91A;
-	Thu,  4 Dec 2025 10:47:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3A0A10E91D;
+	Thu,  4 Dec 2025 10:47:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QoklsNmm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KdYcBvL+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A182410E91A;
- Thu,  4 Dec 2025 10:47:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E262210E91D;
+ Thu,  4 Dec 2025 10:47:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764845277; x=1796381277;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=yIsVJ8jQ72fQ6Xgd+au9cVT3e8xDk6Sgh93LqR7q4ak=;
- b=QoklsNmmv3xg0XioZpkg/m5VLzOLmknNW1A5pJYVWBqPYSLJiUyMY7jR
- WPpYimK2sl+01sABAVLavAiZDuBQTu7RTpy/hTfx76hSTmK0jzf7PvaHV
- 2SRDrdzNAyvxPl916FUWgYlzjVPFhxfJ/yifAwX0yvLKmTDAA51kR+UV3
- GjrFUeykM0kGUbyYmI3qH9Tn1uUYFOFHCF7owMKgx4SsyYHWCRTyj0Ffu
- jkOArmhNQcxT/Ly7TAxPneBHJlGH9MdiX9SLr4MJv1WA69zejjbxay2oy
- YSxMw4mg17rkFt0tT2nvQlYY+8NHX3FnGGqOIjTcP9l7+nSTpoXoQpXdR g==;
-X-CSE-ConnectionGUID: LKv+LV4gTFqbUj92KAeRMA==
-X-CSE-MsgGUID: 8DbXCs1jQmCzVSH9gy5TkQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="66901793"
-X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; d="scan'208";a="66901793"
+ t=1764845279; x=1796381279;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=wLOLUoQdSiaoObdO1wZiQU88+Cj6CCJO9xojPMlCn7Y=;
+ b=KdYcBvL+yd7C8JTbhC1mUuwuGJRKjUFvU37LIc8JVclBzZuFf2jy4ttD
+ w3npWWKNtkV3iPZ7e1Gly1M7x0u8OnDd64XMwpY8xPF6Rao2+kk7+5RFl
+ J/N2Nkb2gn1ztSdJsjRWIjSjz5cK3O3V48reTCQEhU4sglEHKzjNV9np1
+ zGgyWAMFChNvWrQ5qeiR82XQ/d5HxoT0WXFt9LToZmBkTRyWSODABGuPT
+ P4XDs+u3eovyJU8LWfBXg6dsZj4az4sR7TxOyuEZE0ossCSzwULddzIP9
+ 2SQohElxPkY+ZQ+PzYrB6GfOsBJDdL+UMwxUdStUKjbqOg+68v9cG24Jr w==;
+X-CSE-ConnectionGUID: LF2iSEtMTDynBV2o1MmS6w==
+X-CSE-MsgGUID: +e9wQRNrTkiLTDBkL3vOiQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="66901796"
+X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; d="scan'208";a="66901796"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2025 02:47:56 -0800
-X-CSE-ConnectionGUID: 1m6u6t7nSdOFMqElrPpIJQ==
-X-CSE-MsgGUID: my8sqXzbTMiz1GtXV0p4BQ==
+ 04 Dec 2025 02:47:59 -0800
+X-CSE-ConnectionGUID: 8zum8YD2QyugMV5zVDRJkw==
+X-CSE-MsgGUID: I0hce+lOTlSDWHZwoD3fgQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; d="scan'208";a="194018689"
+X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; d="scan'208";a="194018702"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO
  jhogande-mobl3.intel.com) ([10.245.246.248])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2025 02:47:54 -0800
+ 04 Dec 2025 02:47:56 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v3 0/8] Move PSR/Panel Replay sink data into intel_connector
-Date: Thu,  4 Dec 2025 12:47:25 +0200
-Message-ID: <20251204104733.1106145-1-jouni.hogander@intel.com>
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
+ Imre Deak <imre.deak@intel.com>
+Subject: [PATCH v3 1/8] drm/i915/psr: Add panel granularity information into
+ intel_connector
+Date: Thu,  4 Dec 2025 12:47:26 +0200
+Message-ID: <20251204104733.1106145-2-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251204104733.1106145-1-jouni.hogander@intel.com>
+References: <20251204104733.1106145-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -69,52 +73,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a preparation patch set for MST Panel Replay.
+As a preparation for MST Panel Replay implementation add psr_caps and
+panel_replay_caps structures into intel_connector. These are supposed to
+contain all sink information related to PSR and Panel Replay.
 
-In case of MST Panel Replay we may have several CRTCs on single
-pipe. There CRTCs representing virtual devices within e.g. docking
-station. All these virtual devices has their own DPCD registers
-containing their Panel Replay capability information. These needs to
-be taken into account when computing used Panel Replay state. Due to
-this we can't continue having only sink capabilities stored in struct
-intel_dp.
+As a first step in moving Panel Replay and PSR sink data add panel
+granularity information into these newly added caps structures.
 
-This patch set is moving Panel Replay capabilities into struct
-intel_connector to make them available for Panel Replay CRTC state
-computation.
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+Reviewed-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_types.h | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-v3:
-  - use cpu_to_le16 for default granularity values
-v2:
-  - use __le16 for two byte values in dpcd
-  - use sizeof instead of hardcoded size in reading dpcd
-  - drop unnecessarily passing intel_dp pointer
-  - inline simple helpers 
-  - use intel_dp_attached_dp instead of passing as a parameter
-  - move pr/psr_dpcd into *_caps substruct
-  - add FIXME
-  - extra w/s removed
-
-Jouni Högander (8):
-  drm/i915/psr: Add panel granularity information into intel_connector
-  drm/i915/psr: Use SU granularity information available in
-    intel_connector
-  drm/i915/psr: Compute Panel Replay/Adaptive Sync coexistence behavior
-  drm/i915/psr: Move pr_dpcd and psr_dpcd to intel_connector
-  drm/i915/psr: Clear pr_dpcd as well on disconnect
-  drm/i915/psr: Move Panel Replay DSC sink support data to
-    intel_connector
-  drm/i915/psr: Move sink PSR and Panel Replay booleans to
-    intel_connector
-  drm/i915/psr: Move sink_sync_latency to intel_connector
-
- drivers/gpu/drm/i915/display/intel_alpm.c     |   6 +-
- .../drm/i915/display/intel_display_types.h    |  45 ++-
- drivers/gpu/drm/i915/display/intel_dp.c       |  17 +-
- drivers/gpu/drm/i915/display/intel_psr.c      | 302 +++++++++---------
- drivers/gpu/drm/i915/display/intel_psr.h      |   2 +-
- 5 files changed, 207 insertions(+), 165 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index f8f7bc956214b..82f1aac22d50d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -561,6 +561,16 @@ struct intel_connector {
+ 			} overall_throughput;
+ 			int max_line_width;
+ 		} dsc_branch_caps;
++
++		struct {
++			u16 su_w_granularity;
++			u16 su_y_granularity;
++		} panel_replay_caps;
++
++		struct {
++			u16 su_w_granularity;
++			u16 su_y_granularity;
++		} psr_caps;
+ 	} dp;
+ 
+ 	struct {
 -- 
 2.43.0
 
