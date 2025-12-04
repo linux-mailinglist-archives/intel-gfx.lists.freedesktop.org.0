@@ -2,60 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A63D4CA34AC
-	for <lists+intel-gfx@lfdr.de>; Thu, 04 Dec 2025 11:48:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07E3BCA3557
+	for <lists+intel-gfx@lfdr.de>; Thu, 04 Dec 2025 11:58:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32A7310E92C;
-	Thu,  4 Dec 2025 10:48:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2362210E920;
+	Thu,  4 Dec 2025 10:58:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MPJDlwa3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="atBqGlAp";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EB9C10E92C;
- Thu,  4 Dec 2025 10:48:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF33410E1D0;
+ Thu,  4 Dec 2025 10:57:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764845294; x=1796381294;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=aMJtyC5VY0K92FQfbYL8nFJnVG3YUPMWVZBm10T2/4M=;
- b=MPJDlwa3t+N0t7RQKokDpabIwrCqv1AWahLUdttUg2v0pr/VsgMP1LHz
- ymqP0+O1/cKs5QYHiM1g8nH14yT7ZHafh2nurW83hC3rOnlFGs4uYmPdy
- vbr+RXpd8Jfa07/uN5JXUXtv9j11zZQ3Jnflaa5uOBfpKraCRSPgw++Sm
- wEQNOWh9fz581nLhJJyg6bL5Xq6NmyqsXzanI4hunmaL2hQQClw6ndP6c
- xxsG5OR8j+R9uTwlZv8y/C5UgkKWOG/vBzsU+t54y+vkSrPwc3SEUQQK4
- i2PuJAmHF6paVIW5LtpkpgFUJG8LVbGGmr4Zvc27po1BqlgcPJ0hKeUUr Q==;
-X-CSE-ConnectionGUID: 5lOuGtjKTA2zSxu96RSTAg==
-X-CSE-MsgGUID: /V6bH2EgQ3eW7Au2gkY2QA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="66901822"
-X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; d="scan'208";a="66901822"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2025 02:48:14 -0800
-X-CSE-ConnectionGUID: uPmBf4oxR9md8PEewjySBg==
-X-CSE-MsgGUID: DvGENVeXSBOGtw6843e3gw==
+ t=1764845880; x=1796381880;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=xdItkNscJAkndEAMwIfHGvD6+s3HUR7E2E0y8M6YuMM=;
+ b=atBqGlAp7CnSevdPX54/1iGSBIBTdaP1hpl5gOtlQ81mvIGCVMsBaQIS
+ v57jBCwRphliQYO1sZTnCvXTKqpn2tC/flxhMCHU7EuNZGR55v8KSPiGn
+ Ywf84a89O25a3IiHAu97K98AUbHqIAZr1ryf9qOY+HGJQu7BxQT8zxeRN
+ J+h4g4uSeoHbxqYbgNsb9VpvM23AelbuQGmsMgSuxVRL32NScezw0tnvP
+ wS+L+ZwG7lEgWYKstSrPP3vu66rXJbBxW2fg3YCLWh0xMBFti3LPHlVWN
+ sD4q0fCIN+R2vVtcDjBBLpuNpS4JHeOVW0nrAvWAKjgU6SX8lkYVmtyxN Q==;
+X-CSE-ConnectionGUID: cqrJUByZTqiJgpuVEdm8oQ==
+X-CSE-MsgGUID: 25szQGSvT5aaQZk0jc7pww==
+X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="78326963"
+X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; d="scan'208";a="78326963"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2025 02:58:00 -0800
+X-CSE-ConnectionGUID: WxryBZQ7TZiMUSXutRfR3w==
+X-CSE-MsgGUID: M6ymE+9nT6yAwpKyOKFOZQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; d="scan'208";a="194018798"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO
- jhogande-mobl3.intel.com) ([10.245.246.248])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2025 02:48:12 -0800
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; d="scan'208";a="195064560"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.11])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2025 02:57:57 -0800
+From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
- Imre Deak <imre.deak@intel.com>
-Subject: [PATCH v3 8/8] drm/i915/psr: Move sink_sync_latency to intel_connector
-Date: Thu,  4 Dec 2025 12:47:33 +0200
-Message-ID: <20251204104733.1106145-9-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251204104733.1106145-1-jouni.hogander@intel.com>
-References: <20251204104733.1106145-1-jouni.hogander@intel.com>
+Cc: tzimmermann@suse.de, ville.syrjala@linux.intel.com,
+ Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH v2 00/25] drm/vblank: refactoring and cleanups
+Date: Thu,  4 Dec 2025 12:57:28 +0200
+Message-ID: <cover.1764845757.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,73 +70,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As everything else related to PSR and Panel Replay capabilities are moved
-into intel_connector move sink_sync_latency as well.
+v2 of [1], hopefully addressing all review comments.
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_types.h | 3 ++-
- drivers/gpu/drm/i915/display/intel_psr.c           | 8 ++++----
- 2 files changed, 6 insertions(+), 5 deletions(-)
+BR,
+Jani.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index fb1c8b2d3979f..90821019eaa13 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -588,6 +588,8 @@ struct intel_connector {
- 
- 			u16 su_w_granularity;
- 			u16 su_y_granularity;
-+
-+			u8 sync_latency;
- 		} psr_caps;
- 	} dp;
- 
-@@ -1742,7 +1744,6 @@ struct intel_psr {
- 	bool psr2_sel_fetch_cff_enabled;
- 	bool su_region_et_enabled;
- 	bool req_psr2_sdp_prior_scanline;
--	u8 sink_sync_latency;
- 	ktime_t last_entry_attempt;
- 	ktime_t last_exit;
- 	bool sink_not_reliable;
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 515eac6fd3556..2a378a5adc599 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -684,8 +684,7 @@ static void _psr_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *co
- 	connector->dp.psr_caps.support = true;
- 	intel_dp->psr.sink_support = true;
- 
--	intel_dp->psr.sink_sync_latency =
--		intel_dp_get_sink_sync_latency(intel_dp);
-+	connector->dp.psr_caps.sync_latency = intel_dp_get_sink_sync_latency(intel_dp);
- 
- 	if (DISPLAY_VER(display) >= 9 &&
- 	    connector->dp.psr_caps.dpcd[0] >= DP_PSR2_WITH_Y_COORD_IS_SUPPORTED) {
-@@ -910,7 +909,7 @@ static u8 psr_compute_idle_frames(struct intel_dp *intel_dp)
- 	 * off-by-one issue that HW has in some cases.
- 	 */
- 	idle_frames = max(6, connector->panel.vbt.psr.idle_frames);
--	idle_frames = max(idle_frames, intel_dp->psr.sink_sync_latency + 1);
-+	idle_frames = max(idle_frames, connector->dp.psr_caps.sync_latency + 1);
- 
- 	if (drm_WARN_ON(display->drm, idle_frames > 0xf))
- 		idle_frames = 0xf;
-@@ -1005,10 +1004,11 @@ static int psr2_block_count(struct intel_dp *intel_dp)
- 
- static u8 frames_before_su_entry(struct intel_dp *intel_dp)
- {
-+	struct intel_connector *connector = intel_dp->attached_connector;
- 	u8 frames_before_su_entry;
- 
- 	frames_before_su_entry = max_t(u8,
--				       intel_dp->psr.sink_sync_latency + 1,
-+				       connector->dp.psr_caps.sync_latency + 1,
- 				       2);
- 
- 	/* Entry setup frames must be at least 1 less than frames before SU entry */
+
+[1] https://lore.kernel.org/r/cover.1762791343.git.jani.nikula@intel.com
+
+
+Jani Nikula (24):
+  drm/vblank: remove drm_wait_one_vblank() completely
+  drm/vblank: remove superfluous pipe check
+  drm/vblank: add return value to drm_crtc_wait_one_vblank()
+  drm/vblank: limit vblank variable scope to atomic
+  drm/vblank: use the drm_vblank_crtc() and drm_crtc_vblank_crtc()
+    helpers more
+  drm/vblank: prefer drm_crtc_vblank_crtc() over drm_vblank_crtc()
+  drm/vblank: pass vlank to drm_vblank_get()/_put()/_count()
+  drm/vblank: pass vblank to drm_update_vblank_count()
+  drm/vblank: pass vblank to drm_handle_vblank_events()
+  drm/vblank: use the vblank based interfaces more
+  drm/vblank: pass vblank to drm_queue_vblank_event()
+  drm/vblank: pass vblank to drm_wait_vblank_reply()
+  drm/vblank: pass vblank to drm_vblank_count_and_time()
+  drm/vblank: pass vblank to drm_reset_vblank_timestamp()
+  drm/vblank: pass vblank to store_vblank()
+  drm/vblank: pass vblank to drm_vblank_enable()
+  drm/vblank: merge drm_vblank_restore() into drm_crtc_vblank_restore()
+  drm/vblank: add drm_crtc_from_vblank() helper
+  drm/vblank: pass vblank to __get_vblank_counter() and
+    drm_max_vblank_count()
+  drm/vblank: pass vblank to __{enable,disable}_vblank()
+  drm/vblank: pass vblank to drm_get_last_vbltimestamp()
+  drm/vblank: pass vblank to drm_vblank_disable_and_save(), make static
+  drm/vblank: reduce pipe checks
+  drm/vblank: clean up debug logging
+
+Thomas Zimmermann (1):
+  drm/vblank: Unexport drm_wait_one_vblank()
+
+ drivers/gpu/drm/drm_internal.h    |   7 +-
+ drivers/gpu/drm/drm_vblank.c      | 533 ++++++++++++++----------------
+ drivers/gpu/drm/drm_vblank_work.c |  12 +-
+ include/drm/drm_vblank.h          |   3 +-
+ 4 files changed, 257 insertions(+), 298 deletions(-)
+
 -- 
-2.43.0
+2.47.3
 
