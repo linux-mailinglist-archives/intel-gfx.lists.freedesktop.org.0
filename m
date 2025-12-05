@@ -2,61 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50B47CA72A6
-	for <lists+intel-gfx@lfdr.de>; Fri, 05 Dec 2025 11:30:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79389CA73ED
+	for <lists+intel-gfx@lfdr.de>; Fri, 05 Dec 2025 11:48:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D198F10EAB1;
-	Fri,  5 Dec 2025 10:30:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2025B10EAB3;
+	Fri,  5 Dec 2025 10:48:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xmq02f3/";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="kygavMHd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47AE010EAB1;
- Fri,  5 Dec 2025 10:30:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764930656; x=1796466656;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Qv2Tmbb4DZUj89PfLykZFmPqDI+1EtFIgdO/5DLdu6s=;
- b=Xmq02f3/DyTi9G5mxldUC0Z1QUw546VDd3ESClQNwD3INFktFMV630Lz
- 0/Fauszz70a88tXJ2BeHxCPH7UkVUILlskoAw13rJSwcbdMB9yrEdhywR
- tj9XuB7mB0/7zz+1oQT2L2bWTjN/2ftv0I+RMxzYYxuSkQGKbsrDrR/35
- Oqf/7OJGXqt3cKCao1vuMhHpl4kgEsjaRye3OoeGiTGhrxtLzrRKKMcKz
- DY80c6Z1IRnB0WVj58v2w/KNcGCUqtQp27APQqyNtbnlObNhAVLDMoaaO
- copPm1lmHtFzFYm/uvK+5IpEwQ5+PJP+axWpWurIvi7h7P22dNtt2Rxp6 Q==;
-X-CSE-ConnectionGUID: DWQC0NgFQaGt0ddRKmnFCQ==
-X-CSE-MsgGUID: zjOqmFkEQ0K7bJFQk0moSA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11632"; a="67001181"
-X-IronPort-AV: E=Sophos;i="6.20,251,1758610800"; d="scan'208";a="67001181"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2025 02:30:55 -0800
-X-CSE-ConnectionGUID: TthiBZ0LSG62vhti+agQOg==
-X-CSE-MsgGUID: MWWvnPRYRKWoWGlgg2+pdA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,251,1758610800"; d="scan'208";a="194562971"
-Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.65])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2025 02:30:54 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH v2 4/4] drm/{i915, xe}/stolen: make insert_node, area_address,
- area_size optional
-Date: Fri,  5 Dec 2025 12:30:30 +0200
-Message-ID: <0dbb460e8bd1df29df98862d08fcdfda03912673.1764930576.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1764930576.git.jani.nikula@intel.com>
-References: <cover.1764930576.git.jani.nikula@intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EB2510EAB3
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Dec 2025 10:48:22 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id B215B43D77
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Dec 2025 10:48:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92072C16AAE
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Dec 2025 10:48:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1764931701;
+ bh=QrVPt4Rxcp5PJlz/4VQYZo3jOoVJw3nhAYdeqrRCFCo=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=kygavMHdGYcnNJwm7lC5NjROC5pP0NUKpXqK7Biz8BNaDHF+0CPygieWyfbS3q7DN
+ oKTTSOV9634ZYMVY54gz3iRLFGDllRsrK1PeT2OhLcnl/0tCi8Kd5446OtixdIr6Dn
+ Y7dhhTkaJvUJ/TzPdrubJcM/RHUXJ6diHiNGqw/V9KcDC6L2NUUTOvN0E8Trgrg6Sh
+ z+qPqgHVWbXK1et/HCZ4B/ZEvNwVH6d3CW7IEzQPPbuNqYKMsAt42n4ThED9T1DbnU
+ CXyllON5ve7thGsh7B4peZZ477Sf6uv17HRHrj+D6Mhz7f0g4pMFs1G9CVTQoCCz3x
+ 5INTrFB6KUIIA==
+Received: by mail-lf1-f53.google.com with SMTP id
+ 2adb3069b0e04-597d712c0a7so1902451e87.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 05 Dec 2025 02:48:21 -0800 (PST)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVlAV6/Dfu//3CaKhmRFuXzb+OkzcJYCU+VtlASQmDMr2BpGA9tufHii/ou/ZdJrHcYptxTMQZLmQs=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx23+OXIakq3e7Bq8UqUvhhY9DvMjc4CSVjteHs9KB1eh9SJ2X+
+ agw8a7kGpcbHJbBuQ5fhovM5/tcoNg/RhWmEUE9LxD8Otfvk5ADiRRGSQdo5x7noJH8iI+AgwnS
+ dH4VoFO8H82fz8MDF31rXbaYxbxDAJNI=
+X-Google-Smtp-Source: AGHT+IEvHnCA+35+G6qlMWnRT7CH/vPSRAST3MqD//tEb30hADZ6yX50ERhnDFtFtQnWsYNiQfDyt1oAgXxg3Q1ZC9k=
+X-Received: by 2002:a05:6512:110a:b0:595:83f5:c33e with SMTP id
+ 2adb3069b0e04-597d3f0a173mr3538191e87.11.1764931699972; Fri, 05 Dec 2025
+ 02:48:19 -0800 (PST)
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+References: <20251107164240.2023366-2-ardb+git@google.com>
+ <14ca1b28-df1d-4065-ad7a-97a3ff81a5a4@ursulin.net>
+ <CAMj1kXEgfykaf9oB4_tuAQqwXDN+NLy_Hb_+RnQmeicVgKt0bA@mail.gmail.com>
+In-Reply-To: <CAMj1kXEgfykaf9oB4_tuAQqwXDN+NLy_Hb_+RnQmeicVgKt0bA@mail.gmail.com>
+From: Ard Biesheuvel <ardb@kernel.org>
+Date: Fri, 5 Dec 2025 11:48:08 +0100
+X-Gmail-Original-Message-ID: <CAMj1kXFLaOZMXsUsvrshkwhvJSWm3V_iZB3n1rga=Q6zwrVY_g@mail.gmail.com>
+X-Gm-Features: AWmQ_bk_CANQh0NNSJOV7Yugs37HbMZjFdhS2AogpPPGzBgRa7uP_idIjjwmhaA
+Message-ID: <CAMj1kXFLaOZMXsUsvrshkwhvJSWm3V_iZB3n1rga=Q6zwrVY_g@mail.gmail.com>
+Subject: Re: [PATCH] drm/i195: Fix format string truncation warning
+To: Tvrtko Ursulin <tursulin@ursulin.net>
+Cc: Ard Biesheuvel <ardb+git@google.com>, linux-kernel@vger.kernel.org, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,136 +77,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since the stolen memory hooks are function pointers, make some of them
-optional instead of having to define them for xe.
+On Sun, 9 Nov 2025 at 19:00, Ard Biesheuvel <ardb@kernel.org> wrote:
+>
+> On Sat, 8 Nov 2025 at 01:27, Tvrtko Ursulin <tursulin@ursulin.net> wrote:
+> >
+> >
+> > On 07/11/2025 16:42, Ard Biesheuvel wrote:
+> > > From: Ard Biesheuvel <ardb@kernel.org>
+> > >
+> > > GCC notices that the 16-byte uabi_name field could theoretically be t=
+oo
+> > > small for the formatted string if the instance number exceeds 100.
+> > >
+> > > Given that there are apparently ABI concerns here, this is the minima=
+l
+> > > fix that shuts up the compiler without changing the output or the
+> > > maximum length for existing values < 100.
+> >
+> > What would be those ABI concerns? I don't immediately see any.
+> > > drivers/gpu/drm/i915/intel_memory_region.c: In function =E2=80=98inte=
+l_memory_region_create=E2=80=99:
+> > > drivers/gpu/drm/i915/intel_memory_region.c:273:61: error: =E2=80=98%u=
+=E2=80=99 directive output may be truncated writing between 1 and 5 bytes i=
+nto a region of size between 3 and 11 [-Werror=3Dformat-truncation=3D]
+> > >    273 |         snprintf(mem->uabi_name, sizeof(mem->uabi_name), "%s=
+%u",
+> > >        |                                                             =
+^~
+> > > drivers/gpu/drm/i915/intel_memory_region.c:273:58: note: directive ar=
+gument in the range [0, 65535]
+> > >    273 |         snprintf(mem->uabi_name, sizeof(mem->uabi_name), "%s=
+%u",
+> > >        |                                                          ^~~=
+~~~
+> > > drivers/gpu/drm/i915/intel_memory_region.c:273:9: note: =E2=80=98snpr=
+intf=E2=80=99 output between 7 and 19 bytes into a destination of size 16
+> > >    273 |         snprintf(mem->uabi_name, sizeof(mem->uabi_name), "%s=
+%u",
+> > >        |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~=
+~~~~
+> > >    274 |                  intel_memory_type_str(type), instance);
+> > >        |                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> > >
+> > > Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
+> > > ---
+> > > Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> > > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > Cc: Tvrtko Ursulin <tursulin@ursulin.net>
+> > > Cc: David Airlie <airlied@gmail.com>
+> > > Cc: Simona Vetter <simona@ffwll.ch>
+> > > Cc: intel-gfx@lists.freedesktop.org
+> > > Cc: dri-devel@lists.freedesktop.org
+> > >
+> > > This is unlikely to be the right fix, but sending a wrong patch is
+> > > usually a better way to elicit a response than just sending a bug
+> > > report.
+> > >
+> > >   drivers/gpu/drm/i915/intel_memory_region.c | 2 +-
+> > >   1 file changed, 1 insertion(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu=
+/drm/i915/intel_memory_region.c
+> > > index 59bd603e6deb..ad4afcf0c58a 100644
+> > > --- a/drivers/gpu/drm/i915/intel_memory_region.c
+> > > +++ b/drivers/gpu/drm/i915/intel_memory_region.c
+> > > @@ -271,7 +271,7 @@ intel_memory_region_create(struct drm_i915_privat=
+e *i915,
+> > >       mem->instance =3D instance;
+> > >
+> > >       snprintf(mem->uabi_name, sizeof(mem->uabi_name), "%s%u",
+> > > -              intel_memory_type_str(type), instance);
+> > > +              intel_memory_type_str(type), instance % 100);
+> > It's a theoretical issue only since there is no hardware with a double
+> > digit number of instances.
+> >
+> > But I guess much prettier fix would be to simply grow the buffer.
+> >
+>
 
-insert_node, area_address, and area_size are only needed on platforms
-not supported by xe.
+OK, so something like
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_parent.c  | 10 ++++++++
- drivers/gpu/drm/xe/display/xe_stolen.c       | 27 --------------------
- include/drm/intel/display_parent_interface.h |  6 ++---
- 3 files changed, 13 insertions(+), 30 deletions(-)
+--- a/drivers/gpu/drm/i915/intel_memory_region.h
++++ b/drivers/gpu/drm/i915/intel_memory_region.h
+@@ -72,7 +72,7 @@ struct intel_memory_region {
+        u16 instance;
+        enum intel_region_id id;
+        char name[16];
+-       char uabi_name[16];
++       char uabi_name[20];
+        bool private; /* not for userspace */
 
-diff --git a/drivers/gpu/drm/i915/display/intel_parent.c b/drivers/gpu/drm/i915/display/intel_parent.c
-index 49cb64ca8c4c..d16163007545 100644
---- a/drivers/gpu/drm/i915/display/intel_parent.c
-+++ b/drivers/gpu/drm/i915/display/intel_parent.c
-@@ -17,6 +17,7 @@
-  * function pointer interface.
-  */
- 
-+#include <drm/drm_print.h>
- #include <drm/intel/display_parent_interface.h>
- 
- #include "intel_display_core.h"
-@@ -89,6 +90,9 @@ int intel_parent_stolen_insert_node_in_range(struct intel_display *display,
- int intel_parent_stolen_insert_node(struct intel_display *display, struct intel_stolen_node *node, u64 size,
- 				    unsigned int align)
- {
-+	if (drm_WARN_ON_ONCE(display->drm, !display->parent->stolen->insert_node))
-+		return -ENODEV;
-+
- 	return display->parent->stolen->insert_node(node, size, align);
- }
- 
-@@ -116,11 +120,17 @@ u32 intel_parent_stolen_node_offset(struct intel_display *display, struct intel_
- 
- u64 intel_parent_stolen_area_address(struct intel_display *display)
- {
-+	if (drm_WARN_ON_ONCE(display->drm, !display->parent->stolen->area_address))
-+		return 0;
-+
- 	return display->parent->stolen->area_address(display->drm);
- }
- 
- u64 intel_parent_stolen_area_size(struct intel_display *display)
- {
-+	if (drm_WARN_ON_ONCE(display->drm, !display->parent->stolen->area_size))
-+		return 0;
-+
- 	return display->parent->stolen->area_size(display->drm);
- }
- 
-diff --git a/drivers/gpu/drm/xe/display/xe_stolen.c b/drivers/gpu/drm/xe/display/xe_stolen.c
-index cc7aec7db76c..12771709183a 100644
---- a/drivers/gpu/drm/xe/display/xe_stolen.c
-+++ b/drivers/gpu/drm/xe/display/xe_stolen.c
-@@ -43,14 +43,6 @@ static int xe_stolen_insert_node_in_range(struct intel_stolen_node *node, u64 si
- 	return err;
- }
- 
--static int xe_stolen_insert_node(struct intel_stolen_node *node, u64 size, unsigned int align)
--{
--	/* Not used on xe */
--	WARN_ON(1);
--
--	return -ENODEV;
--}
--
- static void xe_stolen_remove_node(struct intel_stolen_node *node)
- {
- 	xe_bo_unpin_map_no_vm(node->bo);
-@@ -77,22 +69,6 @@ static u64 xe_stolen_node_offset(const struct intel_stolen_node *node)
- 	return res.start;
- }
- 
--/* Used for < gen4. These are not supported by Xe */
--static u64 xe_stolen_area_address(struct drm_device *drm)
--{
--	WARN_ON(1);
--
--	return 0;
--}
--
--/* Used for gen9 specific WA. Gen9 is not supported by Xe */
--static u64 xe_stolen_area_size(struct drm_device *drm)
--{
--	WARN_ON(1);
--
--	return 0;
--}
--
- static u64 xe_stolen_node_address(const struct intel_stolen_node *node)
- {
- 	struct xe_device *xe = node->xe;
-@@ -126,13 +102,10 @@ static void xe_stolen_node_free(const struct intel_stolen_node *node)
- 
- const struct intel_display_stolen_interface xe_display_stolen_interface = {
- 	.insert_node_in_range = xe_stolen_insert_node_in_range,
--	.insert_node = xe_stolen_insert_node,
- 	.remove_node = xe_stolen_remove_node,
- 	.initialized = xe_stolen_initialized,
- 	.node_allocated = xe_stolen_node_allocated,
- 	.node_offset = xe_stolen_node_offset,
--	.area_address = xe_stolen_area_address,
--	.area_size = xe_stolen_area_size,
- 	.node_address = xe_stolen_node_address,
- 	.node_size = xe_stolen_node_size,
- 	.node_alloc = xe_stolen_node_alloc,
-diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/intel/display_parent_interface.h
-index f590e846464d..cc13b2ce1324 100644
---- a/include/drm/intel/display_parent_interface.h
-+++ b/include/drm/intel/display_parent_interface.h
-@@ -51,13 +51,13 @@ struct intel_display_rps_interface {
- struct intel_display_stolen_interface {
- 	int (*insert_node_in_range)(struct intel_stolen_node *node, u64 size,
- 				    unsigned int align, u64 start, u64 end);
--	int (*insert_node)(struct intel_stolen_node *node, u64 size, unsigned int align);
-+	int (*insert_node)(struct intel_stolen_node *node, u64 size, unsigned int align); /* Optional */
- 	void (*remove_node)(struct intel_stolen_node *node);
- 	bool (*initialized)(struct drm_device *drm);
- 	bool (*node_allocated)(const struct intel_stolen_node *node);
- 	u64 (*node_offset)(const struct intel_stolen_node *node);
--	u64 (*area_address)(struct drm_device *drm);
--	u64 (*area_size)(struct drm_device *drm);
-+	u64 (*area_address)(struct drm_device *drm); /* Optional */
-+	u64 (*area_size)(struct drm_device *drm); /* Optional */
- 	u64 (*node_address)(const struct intel_stolen_node *node);
- 	u64 (*node_size)(const struct intel_stolen_node *node);
- 	struct intel_stolen_node *(*node_alloc)(struct drm_device *drm);
--- 
-2.47.3
+        struct {
 
+
+
+> > Also, hm, how come gcc does not find the mem->name vsnprintf from
+> > intel_memory_region_set_name?
+> >
+>
+
+AFAICT, intel_memory_region_set_name() is never called with a format
+string that could produce more than 15/16 bytes of output.
