@@ -2,74 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92471CA6D9A
-	for <lists+intel-gfx@lfdr.de>; Fri, 05 Dec 2025 10:12:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 86F4DCA6DE3
+	for <lists+intel-gfx@lfdr.de>; Fri, 05 Dec 2025 10:19:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A74710EA8F;
-	Fri,  5 Dec 2025 09:12:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1945D10E0C6;
+	Fri,  5 Dec 2025 09:19:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="RzhskPBD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TdXoqtC7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86C7F10EA89;
- Fri,  5 Dec 2025 09:12:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1764925952;
- bh=gYX/y+Q9NsyC9DrjRWsLnYa/A4w67M9CU3SA88eKex4=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=RzhskPBD2kPI53nxPhn8+DV9ztXVPXIG9YWLxyu/uxrbda88SOMuiUdTJpq1X/icu
- MGW98cw5rSin9flg9xLG3TW2+bH9ymVPRg3Y+s1B5SvmcWZB4dfU6pciXYb8wYfhD8
- JxhqYchHJeYevq5tatQ/SjHa0mlzTn6eJU373JBpjAA7qNsmcn4TnVb7+q16et/1WJ
- 9QtyyZQlEhvnOC5bOjIzNoBf7CX6zeeetwnyvY2AGW8om2drW/ynnqzYWEO/xBRKH8
- LwjNwKKsWaW8F6HJSGb9iG7uItQThYBOpwzVpDl56P1Nx7CSxSPfr4aK7JyUcDuebF
- hNpR5+H2vg37w==
-Received: from debian-rockchip-rock5b-rk3588.. (unknown
- [IPv6:2a01:e0a:5e3:6100:826d:bc07:e98c:84a])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- (Authenticated sender: loicmolinari)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id 54B8C17E1428;
- Fri,  5 Dec 2025 10:12:31 +0100 (CET)
-From: =?UTF-8?q?Lo=C3=AFc=20Molinari?= <loic.molinari@collabora.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
- Liviu Dudau <liviu.dudau@arm.com>, Melissa Wen <mwen@igalia.com>,
- =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>,
- Hugh Dickins <hughd@google.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- =?UTF-8?q?Lo=C3=AFc=20Molinari?= <loic.molinari@collabora.com>,
- Al Viro <viro@zeniv.linux.org.uk>,
- =?UTF-8?q?Miko=C5=82aj=20Wasiak?= <mikolaj.wasiak@intel.com>,
- Christian Brauner <brauner@kernel.org>,
- Nitin Gote <nitin.r.gote@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>, Jonathan Corbet <corbet@lwn.net>,
- Christopher Healy <healych@amazon.com>,
- Matthew Wilcox <willy@infradead.org>, Bagas Sanjaya <bagasdotme@gmail.com>
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-mm@kvack.org,
- linux-doc@vger.kernel.org, kernel@collabora.com
-Subject: [PATCH v12 10/10] Documentation/gpu/drm-mm: Add THP paragraph to GEM
- mapping section
-Date: Fri,  5 Dec 2025 10:12:16 +0100
-Message-ID: <20251205091216.150968-11-loic.molinari@collabora.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20251205091216.150968-1-loic.molinari@collabora.com>
-References: <20251205091216.150968-1-loic.molinari@collabora.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D383D10EA99;
+ Fri,  5 Dec 2025 09:19:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1764926392; x=1796462392;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=wwzwDFE0Oav7RbHopqjvoGVoiGkggDph9jlLZoVykhk=;
+ b=TdXoqtC7VxulqGmpTyeisTh3Fw0N920EF5ggXIdwSr9/pOuX7lE0ctnp
+ QSwfKXKz7xuQAe8RpfEgQerrQ/PaxLU/gVgmp23M0DSYoDv3kidb06nlK
+ KYTphLe4iuJYpBQe3ONQwmFjp32VfS42VQaVAGwb4FhQCxP9+zz08nDaD
+ lbboT8Wjm/3b8S6E0dPiZYB4vW1l7bCcUTSE7niLQef7JeRAzTy23CxbI
+ SnzHsSfQ46mXE1rM1nhCLeIyEDLSaqEwkZhbwKyRTY70Q5KXqMMYFnOfC
+ yxZQ4srSH0Xt9JNf9CbTNi4YUmtYtd4FE82smmSoPTiWrH3sjOvnPormP A==;
+X-CSE-ConnectionGUID: OVQSCUb8QcavNz19ZQSGJw==
+X-CSE-MsgGUID: Qgy18kXtTGm3l9i7/w+70w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11632"; a="78311080"
+X-IronPort-AV: E=Sophos;i="6.20,251,1758610800"; d="scan'208";a="78311080"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2025 01:19:51 -0800
+X-CSE-ConnectionGUID: nVYdhaERQH+NW9ghT7HNmA==
+X-CSE-MsgGUID: PEmCm1B+SQaGM4WETMcBEA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,251,1758610800"; d="scan'208";a="195683841"
+Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.65])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2025 01:19:49 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Subject: Re: [Core-for-CI] fs: PM: Fix reverse check in
+ filesystems_freeze_callback()
+In-Reply-To: <20251203135551.2629298-1-chaitanya.kumar.borah@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251203135551.2629298-1-chaitanya.kumar.borah@intel.com>
+Date: Fri, 05 Dec 2025 11:19:47 +0200
+Message-ID: <198639d260d9cf69ccbda984cee6d2494306bdb9@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,79 +68,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add a paragraph to the GEM Objects Creation section about the
-drm_gem_huge_mnt_create() helper and to the GEM objects mapping
-section explaining how transparent huge pages are handled by GEM.
+On Wed, 03 Dec 2025, Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
+> From: "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>
+>
+> The freeze_all_ptr check in filesystems_freeze_callback() introduced by
+> commit a3f8f8662771 ("power: always freeze efivarfs") is reverse which
+> quite confusingly causes all file systems to be frozen when
+> filesystem_freeze_enabled is false.
+>
+> On my systems it causes the WARN_ON_ONCE() in __set_task_frozen() to
+> trigger, most likely due to an attempt to freeze a file system that is
+> not ready for that.
+>
+> Add a logical negation to the check in question to reverse it as
+> appropriate.
+>
+> Fixes: a3f8f8662771 ("power: always freeze efivarfs")
+> Cc: 6.18+ <stable@vger.kernel.org> # 6.18+
+> Link: https://lore.kernel.org/linux-pm/12788397.O9o76ZdvQC@rafael.j.wysocki/
+> References: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15341
+> Signed-off-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+> Reviewed-by: Jan Kara <jack@suse.cz>
+> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 
-v4:
-- fix wording after huge_pages handler removal
+Thanks, pushed to topic/core-for-CI.
 
-v6:
-- fix wording after map_pages handler removal
+BR,
+Jani.
 
-v11:
-- mention drm_gem_huge_mnt_create() helper
-- add Boris and Maíra R-bs
+> ---
+>  fs/super.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/fs/super.c b/fs/super.c
+> index 277b84e5c279..4c79f170ac0d 100644
+> --- a/fs/super.c
+> +++ b/fs/super.c
+> @@ -1188,7 +1188,7 @@ static void filesystems_freeze_callback(struct super_block *sb, void *freeze_all
+>  	if (!sb->s_op->freeze_fs && !sb->s_op->freeze_super)
+>  		return;
+>  
+> -	if (freeze_all_ptr && !(sb->s_type->fs_flags & FS_POWER_FREEZE))
+> +	if (!freeze_all_ptr && !(sb->s_type->fs_flags & FS_POWER_FREEZE))
+>  		return;
+>  
+>  	if (!get_active_super(sb))
 
-Signed-off-by: Loïc Molinari <loic.molinari@collabora.com>
-Reviewed-by: Bagas Sanjaya <bagasdotme@gmail.com>
-Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
-Reviewed-by: Maíra Canal <mcanal@igalia.com>
----
- Documentation/gpu/drm-mm.rst | 29 +++++++++++++++++++++++------
- 1 file changed, 23 insertions(+), 6 deletions(-)
-
-diff --git a/Documentation/gpu/drm-mm.rst b/Documentation/gpu/drm-mm.rst
-index d55751cad67c..f22433470c76 100644
---- a/Documentation/gpu/drm-mm.rst
-+++ b/Documentation/gpu/drm-mm.rst
-@@ -155,7 +155,12 @@ drm_gem_object_init() will create an shmfs file of the
- requested size and store it into the struct :c:type:`struct
- drm_gem_object <drm_gem_object>` filp field. The memory is
- used as either main storage for the object when the graphics hardware
--uses system memory directly or as a backing store otherwise.
-+uses system memory directly or as a backing store otherwise. Drivers
-+can call drm_gem_huge_mnt_create() to create, mount and use a huge
-+shmem mountpoint instead of the default one ('shm_mnt'). For builds
-+with CONFIG_TRANSPARENT_HUGEPAGE enabled, further calls to
-+drm_gem_object_init() will let shmem allocate huge pages when
-+possible.
- 
- Drivers are responsible for the actual physical pages allocation by
- calling shmem_read_mapping_page_gfp() for each page.
-@@ -290,15 +295,27 @@ The open and close operations must update the GEM object reference
- count. Drivers can use the drm_gem_vm_open() and drm_gem_vm_close() helper
- functions directly as open and close handlers.
- 
--The fault operation handler is responsible for mapping individual pages
--to userspace when a page fault occurs. Depending on the memory
--allocation scheme, drivers can allocate pages at fault time, or can
--decide to allocate memory for the GEM object at the time the object is
--created.
-+The fault operation handler is responsible for mapping pages to
-+userspace when a page fault occurs. Depending on the memory allocation
-+scheme, drivers can allocate pages at fault time, or can decide to
-+allocate memory for the GEM object at the time the object is created.
- 
- Drivers that want to map the GEM object upfront instead of handling page
- faults can implement their own mmap file operation handler.
- 
-+In order to reduce page table overhead, if the internal shmem mountpoint
-+"shm_mnt" is configured to use transparent huge pages (for builds with
-+CONFIG_TRANSPARENT_HUGEPAGE enabled) and if the shmem backing store
-+managed to allocate a huge page for a faulty address, the fault handler
-+will first attempt to insert that huge page into the VMA before falling
-+back to individual page insertion. mmap() user address alignment for GEM
-+objects is handled by providing a custom get_unmapped_area file
-+operation which forwards to the shmem backing store. For most drivers,
-+which don't create a huge mountpoint by default or through a module
-+parameter, transparent huge pages can be enabled by either setting the
-+"transparent_hugepage_shmem" kernel parameter or the
-+"/sys/kernel/mm/transparent_hugepage/shmem_enabled" sysfs knob.
-+
- For platforms without MMU the GEM core provides a helper method
- drm_gem_dma_get_unmapped_area(). The mmap() routines will call this to get a
- proposed address for the mapping.
 -- 
-2.47.3
-
+Jani Nikula, Intel
