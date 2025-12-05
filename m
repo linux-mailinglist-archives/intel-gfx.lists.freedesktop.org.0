@@ -2,57 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86F4DCA6DE3
-	for <lists+intel-gfx@lfdr.de>; Fri, 05 Dec 2025 10:19:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C197FCA71C1
+	for <lists+intel-gfx@lfdr.de>; Fri, 05 Dec 2025 11:14:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1945D10E0C6;
-	Fri,  5 Dec 2025 09:19:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9900B10EAA3;
+	Fri,  5 Dec 2025 10:14:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TdXoqtC7";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="c6aukXFr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D383D10EA99;
- Fri,  5 Dec 2025 09:19:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764926392; x=1796462392;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=wwzwDFE0Oav7RbHopqjvoGVoiGkggDph9jlLZoVykhk=;
- b=TdXoqtC7VxulqGmpTyeisTh3Fw0N920EF5ggXIdwSr9/pOuX7lE0ctnp
- QSwfKXKz7xuQAe8RpfEgQerrQ/PaxLU/gVgmp23M0DSYoDv3kidb06nlK
- KYTphLe4iuJYpBQe3ONQwmFjp32VfS42VQaVAGwb4FhQCxP9+zz08nDaD
- lbboT8Wjm/3b8S6E0dPiZYB4vW1l7bCcUTSE7niLQef7JeRAzTy23CxbI
- SnzHsSfQ46mXE1rM1nhCLeIyEDLSaqEwkZhbwKyRTY70Q5KXqMMYFnOfC
- yxZQ4srSH0Xt9JNf9CbTNi4YUmtYtd4FE82smmSoPTiWrH3sjOvnPormP A==;
-X-CSE-ConnectionGUID: OVQSCUb8QcavNz19ZQSGJw==
-X-CSE-MsgGUID: Qgy18kXtTGm3l9i7/w+70w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11632"; a="78311080"
-X-IronPort-AV: E=Sophos;i="6.20,251,1758610800"; d="scan'208";a="78311080"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2025 01:19:51 -0800
-X-CSE-ConnectionGUID: nVYdhaERQH+NW9ghT7HNmA==
-X-CSE-MsgGUID: PEmCm1B+SQaGM4WETMcBEA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,251,1758610800"; d="scan'208";a="195683841"
-Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.65])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2025 01:19:49 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Subject: Re: [Core-for-CI] fs: PM: Fix reverse check in
- filesystems_freeze_callback()
-In-Reply-To: <20251203135551.2629298-1-chaitanya.kumar.borah@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251203135551.2629298-1-chaitanya.kumar.borah@intel.com>
-Date: Fri, 05 Dec 2025 11:19:47 +0200
-Message-ID: <198639d260d9cf69ccbda984cee6d2494306bdb9@intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F185910EAA2;
+ Fri,  5 Dec 2025 10:14:10 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id AF4F54094C;
+ Fri,  5 Dec 2025 10:14:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07BCFC4CEF1;
+ Fri,  5 Dec 2025 10:14:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1764929650;
+ bh=uqmaKn2YAoPCEwU3lt/DOzGMJaeICdMag9HeB0Eqa/s=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=c6aukXFrjWMtkH7Zz8bsPVi1AqO5Q2iTCcSeCUST0OnCjsIAkni3Kxt8iG5+ezTsl
+ /P5EmRhFiyD2LHvJ66rAEvJuZxxDv2to5edbMOFsgEJdX2YtjxFwG0j4uZVmL/WN2d
+ Eg9zUxSRe6htJ61mpiNyeAg5FfjisKBod55xsFaGuy4l4cGCOLasV1gdniAOUPQZtK
+ QpqW7eYflOdkFQ+S47Tk5iGAccy0GRnQ3aTaUkPxKdz9A3pNEpkKi9YirrrU/r2bJP
+ +BAOwoRFxJ5QGQI2f+kMTnZ9rOrGEUohoq4r+ILrF5qf7PhRHEs3fDPGMHmYmm4tku
+ i/5nItSqvQgZw==
+Date: Fri, 5 Dec 2025 11:14:06 +0100
+From: Christian Brauner <brauner@kernel.org>
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Saarinen,
+ Jani" <jani.saarinen@intel.com>, 
+ "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: Re: REGRESSION on drm-tip
+Message-ID: <20251205-unachtsam-eilzug-78faa5949861@brauner>
+References: <03c013c0-be12-42ab-91d1-f87395c890e3@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <03c013c0-be12-42ab-91d1-f87395c890e3@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,51 +60,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 03 Dec 2025, Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
-> From: "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>
->
-> The freeze_all_ptr check in filesystems_freeze_callback() introduced by
-> commit a3f8f8662771 ("power: always freeze efivarfs") is reverse which
-> quite confusingly causes all file systems to be frozen when
-> filesystem_freeze_enabled is false.
->
-> On my systems it causes the WARN_ON_ONCE() in __set_task_frozen() to
-> trigger, most likely due to an attempt to freeze a file system that is
-> not ready for that.
->
-> Add a logical negation to the check in question to reverse it as
-> appropriate.
->
-> Fixes: a3f8f8662771 ("power: always freeze efivarfs")
-> Cc: 6.18+ <stable@vger.kernel.org> # 6.18+
-> Link: https://lore.kernel.org/linux-pm/12788397.O9o76ZdvQC@rafael.j.wysocki/
-> References: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15341
-> Signed-off-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
-> Reviewed-by: Jan Kara <jack@suse.cz>
-> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+On Thu, Nov 27, 2025 at 11:55:54AM +0530, Borah, Chaitanya Kumar wrote:
+> Hello Christian,
+> 
+> This is Chaitanya (again!).
+> 
+> This mail is regarding another regression we are seeing in our CI runs[1] on
+> drm-tip (with both xe and i915).
+> 
+> `````````````````````````````````````````````````````````````````````````````````
+> <4> [157.687644] ------------[ cut here ]------------
+> <4> [157.687768] WARNING: CPU: 5 PID: 2277 at kernel/freezer.c:139
+> __set_task_frozen+0x7f/0xb0
+> ...
+> <4> [157.687923] PKRU: 55555554
+> <4> [157.687924] Call Trace:
+> <4> [157.687925]  <TASK>
+> <4> [157.687926]  ? __pfx___set_task_frozen+0x10/0x10
+> <4> [157.687929]  task_call_func+0x6d/0x120
+> <4> [157.687932]  ? cgroup_freezing+0x89/0x200
+> <4> [157.687937]  freeze_task+0x98/0x100
+> <4> [157.687940]  try_to_freeze_tasks+0xd2/0x440
+> <4> [157.687946]  freeze_processes+0x56/0xd0
+> <4> [157.687948]  hibernate+0x129/0x4a0
+> <4> [157.687951]  state_store+0xd3/0xe0
+> <4> [157.687954]  kobj_attr_store+0x12/0x40
+> <4> [157.687959]  sysfs_kf_write+0x4d/0x80
+> <4> [157.687963]  kernfs_fop_write_iter+0x188/0x240
+> <4> [157.687967]  vfs_write+0x283/0x540
+> <4> [157.687969]  ? free_to_partial_list+0x46d/0x640
+> <4> [157.687976]  ksys_write+0x6f/0xf0
+> <4> [157.687980]  __x64_sys_write+0x19/0x30
+> <4> [157.687982]  x64_sys_call+0x79/0x26a0
+> <4> [157.687984]  do_syscall_64+0x93/0xd60
+> <4> [157.687987]  ? putname+0x65/0x90
+> <4> [157.687990]  ? kmem_cache_free+0x553/0x680
+> <4> [157.687995]  ? putname+0x65/0x90
+> <4> [157.687997]  ? putname+0x65/0x90
+> <4> [157.687999]  ? do_sys_openat2+0x8b/0xd0
+> <4> [157.688003]  ? __x64_sys_openat+0x54/0xa0
+> <4> [157.688007]  ? do_syscall_64+0x1b7/0xd60
+> <4> [157.688009]  ? __fput+0x1bf/0x2f0
+> <4> [157.688012]  ? fput_close_sync+0x3d/0xa0
+> <4> [157.688015]  ? __x64_sys_close+0x3e/0x90
+> <4> [157.688017]  ? do_syscall_64+0x1b7/0xd60
+> <4> [157.688019]  ? putname+0x65/0x90
+> <4> [157.688021]  ? putname+0x65/0x90
+> <4> [157.688023]  ? do_sys_openat2+0x8b/0xd0
+> <4> [157.688024]  ? __fput+0x1bf/0x2f0
+> <4> [157.688028]  ? __x64_sys_openat+0x54/0xa0
+> <4> [157.688032]  ? do_syscall_64+0x1b7/0xd60
+> <4> [157.688034]  ? do_syscall_64+0x1b7/0xd60
+> <4> [157.688036]  ? irqentry_exit+0x77/0xb0
+> <4> [157.688038]  ? exc_page_fault+0xbd/0x2c0
+> <4> [157.688042]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+> <4> [157.688044] RIP: 0033:0x72523c91c574
+> `````````````````````````````````````````````````````````````````````````````````
+> Details log can be found in [2].
+> 
+> After bisecting the tree, the following patch [3] seems to be the first
+> "bad" commit
+> 
+> `````````````````````````````````````````````````````````````````````````````````````````````````````````
+> commit a3f8f8662771285511ae26c4c8d3ba1cd22159b9
+> Author: Christian Brauner <brauner@kernel.org>
+> Date:   Wed Nov 5 14:39:45 2025 +0100
+> 
+>     power: always freeze efivarfs
+> `````````````````````````````````````````````````````````````````````````````````````````````````````````
+> 
+> We also verified that if we revert the patch the issue is not seen.
+> 
+> Could you please check why the patch causes this regression and provide a
+> fix if necessary?
 
-Thanks, pushed to topic/core-for-CI.
-
-BR,
-Jani.
-
-> ---
->  fs/super.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/fs/super.c b/fs/super.c
-> index 277b84e5c279..4c79f170ac0d 100644
-> --- a/fs/super.c
-> +++ b/fs/super.c
-> @@ -1188,7 +1188,7 @@ static void filesystems_freeze_callback(struct super_block *sb, void *freeze_all
->  	if (!sb->s_op->freeze_fs && !sb->s_op->freeze_super)
->  		return;
->  
-> -	if (freeze_all_ptr && !(sb->s_type->fs_flags & FS_POWER_FREEZE))
-> +	if (!freeze_all_ptr && !(sb->s_type->fs_flags & FS_POWER_FREEZE))
->  		return;
->  
->  	if (!get_active_super(sb))
-
--- 
-Jani Nikula, Intel
+I'm going to send a fix for this to Linus today. Thanks!
+Rafael has sent me fix earlier this week.
