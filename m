@@ -2,53 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94E6CCA71C8
-	for <lists+intel-gfx@lfdr.de>; Fri, 05 Dec 2025 11:14:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA07CCA72A0
+	for <lists+intel-gfx@lfdr.de>; Fri, 05 Dec 2025 11:30:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F04D10EAA0;
-	Fri,  5 Dec 2025 10:14:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 425AC10EAA8;
+	Fri,  5 Dec 2025 10:30:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BzsbXOSO";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f45N6HGo";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 351F910EAA0;
- Fri,  5 Dec 2025 10:14:43 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 1D65B40579;
- Fri,  5 Dec 2025 10:14:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B663C4CEF1;
- Fri,  5 Dec 2025 10:14:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1764929683;
- bh=pJuRMZQhgNQxmUcx+UYfxc7CgrRn/9RzNX0VCF3bk2s=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=BzsbXOSOIjlU9Bp4fmujj3nmZLeb2AVKe4vqgfxxaKuXzSHQseO9SeLz3DMJzJg7n
- PNZZpxolmae/HiWDTUlzf8jGlecD8ErGBX8FXEUAYZq7qx+6NOfIeFmsvKi8MpJ16h
- imhf8bpQHo5EUr33OAbiAbOMCO2ziKUsRT3sCrMAnGVyuNnCEYrkhKSoAKrAgeLTia
- yH+9uELn6aL4cxXZbxXBS/IR7hX5sbLvHj0ZI64PlfYebYnzRW9xQfRZLxMX9x/Coe
- 9TNQJBw8qDqbG2YCmo2yUSmBdk8WPSaRkGkuy+R8aRz+arnF9sWMRpDTk553OleE8g
- npe+uREsRYpdQ==
-Date: Fri, 5 Dec 2025 11:14:38 +0100
-From: Christian Brauner <brauner@kernel.org>
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-Cc: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Saarinen,
- Jani" <jani.saarinen@intel.com>, 
- "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: Re: REGRESSION on drm-tip
-Message-ID: <20251205-crashtest-korrektiv-64a8b21aa39f@brauner>
-References: <03c013c0-be12-42ab-91d1-f87395c890e3@intel.com>
- <aSjY8et1QDyvFq9x@intel.com>
- <860117f0-d8b1-4f4b-8448-d8fd83634c4f@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D94D10E98C;
+ Fri,  5 Dec 2025 10:30:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1764930650; x=1796466650;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=QhRYnDCEYUKSkARTxqUdT+Lq9rupR6nM90JRSylsTxY=;
+ b=f45N6HGoFSrDWtOeKJXXoWgBnplgbYMn0ohcxgAR5az/PC9+ysJuo2TY
+ EXtv9fty023mk3ibd9Eqq/u/lY4uwoYAnUv/ze8Xl76fuSDH8nIb0Kyq3
+ yDr0FsIICU7Q967ylhMtJEM8AM4MZyUTclJhywf1Jfj9ZDfk6KNW20uuE
+ q7gCPQ4thjtsHe4NjsfXXNx8qOsT4Ts80L32bP/knqHtie4/RcU+q7tlf
+ /hjmeWaMdGPPTtBkhjV+E8vMnGhSWJzk/XC0G55pNN+cozTN7Ys4KIX7U
+ ioIWdMn3Xtlaam46i3f/ukhY4/RvtppJ6EVT0Fx5agXn77cux5PkWPfnb A==;
+X-CSE-ConnectionGUID: R1jZj1JBSDSbGauNc7QB8g==
+X-CSE-MsgGUID: uYat/kSCRfOFrkWZqHpzFQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11632"; a="67001162"
+X-IronPort-AV: E=Sophos;i="6.20,251,1758610800"; d="scan'208";a="67001162"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2025 02:30:39 -0800
+X-CSE-ConnectionGUID: LMaujSziQ6yA0OpGBHQ3tQ==
+X-CSE-MsgGUID: WGgOATVfStueNSKruMbGtA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,251,1758610800"; d="scan'208";a="194562859"
+Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.65])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2025 02:30:34 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH v2 0/4] drm/{i915,
+ xe}: migrate stolen interface to parent interface, cleanups
+Date: Fri,  5 Dec 2025 12:30:26 +0200
+Message-ID: <cover.1764930576.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <860117f0-d8b1-4f4b-8448-d8fd83634c4f@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,25 +70,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 28, 2025 at 01:16:44PM +0530, Borah, Chaitanya Kumar wrote:
-> 
-> 
-> On 11/28/2025 4:34 AM, Ville Syrjälä wrote:
-> > > `````````````````````````````````````````````````````````````````````````````````````````````````````````
-> > > commit a3f8f8662771285511ae26c4c8d3ba1cd22159b9
-> > > Author: Christian Brauner<brauner@kernel.org>
-> > > Date:   Wed Nov 5 14:39:45 2025 +0100
-> > > 
-> > >       power: always freeze efivarfs
-> > -       if (freeze_all_ptr && !(sb->s_type->fs_flags & FS_POWER_FREEZE))
-> > +	if (!freeze_all_ptr && !(sb->s_type->fs_flags & FS_POWER_FREEZE))
-> > 
-> > ?
-> 
-> This change helps.
-> @Christian do you plan to send out a fix for it?
-> 
-> Thank you Ville for pointing it out.
+v2 of [1], converting one more call that had appeared in the mean time.
 
-Yes, it's in vfs.fixes. I'll send it today.
-> 
+
+[1] https://lore.kernel.org/r/cover.1764868989.git.jani.nikula@intel.com
+
+Jani Nikula (4):
+  drm/i915/fbc: let to_intel_display() do its generic magic
+  drm/xe/stolen: unify interface with i915
+  drm/{i915,xe}/stolen: move stolen memory handling to display parent
+    interface
+  drm/{i915,xe}/stolen: make insert_node, area_address, area_size
+    optional
+
+ drivers/gpu/drm/i915/display/intel_fbc.c      | 105 +++++++++---------
+ drivers/gpu/drm/i915/display/intel_parent.c   |  76 +++++++++++++
+ drivers/gpu/drm/i915/display/intel_parent.h   |  19 ++++
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c    |  52 ++++++---
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.h    |  23 +---
+ drivers/gpu/drm/i915/i915_driver.c            |   1 +
+ .../compat-i915-headers/gem/i915_gem_stolen.h |  40 -------
+ drivers/gpu/drm/xe/display/xe_display.c       |   4 +-
+ drivers/gpu/drm/xe/display/xe_stolen.c        |  62 +++++------
+ drivers/gpu/drm/xe/display/xe_stolen.h        |   9 ++
+ include/drm/intel/display_parent_interface.h  |  20 ++++
+ 11 files changed, 243 insertions(+), 168 deletions(-)
+ delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
+ create mode 100644 drivers/gpu/drm/xe/display/xe_stolen.h
+
+-- 
+2.47.3
+
