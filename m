@@ -2,29 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13F00CAB039
-	for <lists+intel-gfx@lfdr.de>; Sun, 07 Dec 2025 02:34:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC1FECAB604
+	for <lists+intel-gfx@lfdr.de>; Sun, 07 Dec 2025 15:16:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF90210E324;
-	Sun,  7 Dec 2025 01:34:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DA1E10E193;
+	Sun,  7 Dec 2025 14:16:48 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="oa4+297g";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5327510E324;
- Sun,  7 Dec 2025 01:34:16 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E45E810E17D;
+ Sun,  7 Dec 2025 14:16:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=K3hLLRx50FbBBzirdBaadwngiwkvt/UqddVt7E+U/8c=; b=oa4+297g+2UCGCayvz+uQ6E/zz
+ UOsO6P11PLgH2c/+veGq5tA+GRJKMlr7CL9h4HgI8zMI9tiBwhK/v0g7EKdCzc5E/A397PFsMVtak
+ pHkVnTh2JUU0Jd1TAv7WiVTa395zPVKQP3RYAchyME9IVr7OliVuEMbOMl5aFqDMhvpzwSTtt4yUl
+ UhIILV89Dk3ch/lhPnF9bxXMzlA+C9PuILvgT6PN9gvFSBlvhlccibnC6DiE1v0HaD9e73m21xe9i
+ Gnq0JdHIUX0jPrI76jJ/9mXVLZs/b8MKBE9shzv9EOeZCBNA4dDQ8bq+8VfX9OhEmWV4XfEwTkIlo
+ 9DWQG4fA==;
+Received: from [187.36.210.68] (helo=[192.168.1.103])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1vSFYH-009l3a-0M; Sun, 07 Dec 2025 15:15:53 +0100
+Message-ID: <a3586baa-2403-43f9-a692-da3e79482cbb@igalia.com>
+Date: Sun, 7 Dec 2025 11:15:40 -0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_drm/xe/sriov=3A_Add_suppo?=
- =?utf-8?q?rt_for_enabling_scheduler_groups?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Sun, 07 Dec 2025 01:34:16 -0000
-Message-ID: <176507125633.64349.17659656086761759318@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251206230356.3600292-13-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20251206230356.3600292-13-daniele.ceraolospurio@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v13 07/10] drm/gem: Get rid of *_with_mnt helpers
+To: =?UTF-8?Q?Lo=C3=AFc_Molinari?= <loic.molinari@collabora.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Boris Brezillon <boris.brezillon@collabora.com>,
+ Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
+ Liviu Dudau <liviu.dudau@arm.com>, Melissa Wen <mwen@igalia.com>,
+ Hugh Dickins <hughd@google.com>, Baolin Wang
+ <baolin.wang@linux.alibaba.com>, Andrew Morton <akpm@linux-foundation.org>,
+ Al Viro <viro@zeniv.linux.org.uk>, =?UTF-8?Q?Miko=C5=82aj_Wasiak?=
+ <mikolaj.wasiak@intel.com>, Christian Brauner <brauner@kernel.org>,
+ Nitin Gote <nitin.r.gote@intel.com>, Andi Shyti
+ <andi.shyti@linux.intel.com>, Jonathan Corbet <corbet@lwn.net>,
+ Christopher Healy <healych@amazon.com>, Matthew Wilcox
+ <willy@infradead.org>, Bagas Sanjaya <bagasdotme@gmail.com>
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-mm@kvack.org,
+ linux-doc@vger.kernel.org, kernel@collabora.com
+References: <20251205182231.194072-1-loic.molinari@collabora.com>
+ <20251205182231.194072-8-loic.molinari@collabora.com>
+From: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
+Content-Language: en-US
+In-Reply-To: <20251205182231.194072-8-loic.molinari@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,27 +77,245 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Loïc,
 
-Series: drm/xe/sriov: Add support for enabling scheduler groups
-URL   : https://patchwork.freedesktop.org/series/158615/
-State : failure
+On 05/12/25 15:22, Loïc Molinari wrote:
+> drm_gem_object_init_with_mnt() and drm_gem_shmem_create_with_mnt() can
+> be removed now that the drivers use the new drm_gem_huge_mnt_create()
+> and drm_gem_get_huge_mnt() helpers.
+> 
+> v5:
+> - use drm_gem_has_huge_mnt() helper
+> - compile out shmem_file_setup_with_mnt() call in builds with
+>    CONFIG_TRANSPARENT_HUGEPAGE=n
+> 
+> v9:
+> - replace drm_gem_has_huge_mnt() with drm_gem_get_huge_mnt()
+> 
+> Signed-off-by: Loïc Molinari <loic.molinari@collabora.com>
+> Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
 
-== Summary ==
+Reviewed-by: Maíra Canal <mcanal@igalia.com>
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/158615/revisions/1/mbox/ not applied
-Applying: drm/xe/sriov: Add support for enabling scheduler groups
-error: sha1 information is lacking or useless (drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 drm/xe/sriov: Add support for enabling scheduler groups
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-Build failed, no error log produced
+Best Regards,
+- Maíra
 
+> ---
+>   drivers/gpu/drm/drm_gem.c              | 37 +++++++------------------
+>   drivers/gpu/drm/drm_gem_shmem_helper.c | 38 ++++++--------------------
+>   drivers/gpu/drm/v3d/v3d_bo.c           |  3 +-
+>   include/drm/drm_gem.h                  |  3 --
+>   include/drm/drm_gem_shmem_helper.h     |  3 --
+>   5 files changed, 19 insertions(+), 65 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+> index 32dddb23e211..6021c4087a08 100644
+> --- a/drivers/gpu/drm/drm_gem.c
+> +++ b/drivers/gpu/drm/drm_gem.c
+> @@ -171,29 +171,28 @@ drm_gem_init(struct drm_device *dev)
+>   }
+>   
+>   /**
+> - * drm_gem_object_init_with_mnt - initialize an allocated shmem-backed GEM
+> - * object in a given shmfs mountpoint
+> + * drm_gem_object_init - initialize an allocated shmem-backed GEM object
+>    *
+>    * @dev: drm_device the object should be initialized for
+>    * @obj: drm_gem_object to initialize
+>    * @size: object size
+> - * @gemfs: tmpfs mount where the GEM object will be created. If NULL, use
+> - * the usual tmpfs mountpoint (`shm_mnt`).
+>    *
+>    * Initialize an already allocated GEM object of the specified size with
+> - * shmfs backing store.
+> + * shmfs backing store. A huge mountpoint can be used by calling
+> + * drm_gem_huge_mnt_create() beforehand.
+>    */
+> -int drm_gem_object_init_with_mnt(struct drm_device *dev,
+> -				 struct drm_gem_object *obj, size_t size,
+> -				 struct vfsmount *gemfs)
+> +int drm_gem_object_init(struct drm_device *dev, struct drm_gem_object *obj,
+> +			size_t size)
+>   {
+> +	struct vfsmount *huge_mnt;
+>   	struct file *filp;
+>   
+>   	drm_gem_private_object_init(dev, obj, size);
+>   
+> -	if (gemfs)
+> -		filp = shmem_file_setup_with_mnt(gemfs, "drm mm object", size,
+> -						 VM_NORESERVE);
+> +	huge_mnt = drm_gem_get_huge_mnt(dev);
+> +	if (huge_mnt)
+> +		filp = shmem_file_setup_with_mnt(huge_mnt, "drm mm object",
+> +						 size, VM_NORESERVE);
+>   	else
+>   		filp = shmem_file_setup("drm mm object", size, VM_NORESERVE);
+>   
+> @@ -204,22 +203,6 @@ int drm_gem_object_init_with_mnt(struct drm_device *dev,
+>   
+>   	return 0;
+>   }
+> -EXPORT_SYMBOL(drm_gem_object_init_with_mnt);
+> -
+> -/**
+> - * drm_gem_object_init - initialize an allocated shmem-backed GEM object
+> - * @dev: drm_device the object should be initialized for
+> - * @obj: drm_gem_object to initialize
+> - * @size: object size
+> - *
+> - * Initialize an already allocated GEM object of the specified size with
+> - * shmfs backing store.
+> - */
+> -int drm_gem_object_init(struct drm_device *dev, struct drm_gem_object *obj,
+> -			size_t size)
+> -{
+> -	return drm_gem_object_init_with_mnt(dev, obj, size, NULL);
+> -}
+>   EXPORT_SYMBOL(drm_gem_object_init);
+>   
+>   /**
+> diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/drm_gem_shmem_helper.c
+> index e67216cbb469..f8bcd1b0eb32 100644
+> --- a/drivers/gpu/drm/drm_gem_shmem_helper.c
+> +++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
+> @@ -50,7 +50,7 @@ static const struct drm_gem_object_funcs drm_gem_shmem_funcs = {
+>   };
+>   
+>   static int __drm_gem_shmem_init(struct drm_device *dev, struct drm_gem_shmem_object *shmem,
+> -				size_t size, bool private, struct vfsmount *gemfs)
+> +				size_t size, bool private)
+>   {
+>   	struct drm_gem_object *obj = &shmem->base;
+>   	int ret = 0;
+> @@ -62,7 +62,7 @@ static int __drm_gem_shmem_init(struct drm_device *dev, struct drm_gem_shmem_obj
+>   		drm_gem_private_object_init(dev, obj, size);
+>   		shmem->map_wc = false; /* dma-buf mappings use always writecombine */
+>   	} else {
+> -		ret = drm_gem_object_init_with_mnt(dev, obj, size, gemfs);
+> +		ret = drm_gem_object_init(dev, obj, size);
+>   	}
+>   	if (ret) {
+>   		drm_gem_private_object_fini(obj);
+> @@ -103,13 +103,12 @@ static int __drm_gem_shmem_init(struct drm_device *dev, struct drm_gem_shmem_obj
+>    */
+>   int drm_gem_shmem_init(struct drm_device *dev, struct drm_gem_shmem_object *shmem, size_t size)
+>   {
+> -	return __drm_gem_shmem_init(dev, shmem, size, false, NULL);
+> +	return __drm_gem_shmem_init(dev, shmem, size, false);
+>   }
+>   EXPORT_SYMBOL_GPL(drm_gem_shmem_init);
+>   
+>   static struct drm_gem_shmem_object *
+> -__drm_gem_shmem_create(struct drm_device *dev, size_t size, bool private,
+> -		       struct vfsmount *gemfs)
+> +__drm_gem_shmem_create(struct drm_device *dev, size_t size, bool private)
+>   {
+>   	struct drm_gem_shmem_object *shmem;
+>   	struct drm_gem_object *obj;
+> @@ -129,7 +128,7 @@ __drm_gem_shmem_create(struct drm_device *dev, size_t size, bool private,
+>   		obj = &shmem->base;
+>   	}
+>   
+> -	ret = __drm_gem_shmem_init(dev, shmem, size, private, gemfs);
+> +	ret = __drm_gem_shmem_init(dev, shmem, size, private);
+>   	if (ret) {
+>   		kfree(obj);
+>   		return ERR_PTR(ret);
+> @@ -150,31 +149,10 @@ __drm_gem_shmem_create(struct drm_device *dev, size_t size, bool private,
+>    */
+>   struct drm_gem_shmem_object *drm_gem_shmem_create(struct drm_device *dev, size_t size)
+>   {
+> -	return __drm_gem_shmem_create(dev, size, false, NULL);
+> +	return __drm_gem_shmem_create(dev, size, false);
+>   }
+>   EXPORT_SYMBOL_GPL(drm_gem_shmem_create);
+>   
+> -/**
+> - * drm_gem_shmem_create_with_mnt - Allocate an object with the given size in a
+> - * given mountpoint
+> - * @dev: DRM device
+> - * @size: Size of the object to allocate
+> - * @gemfs: tmpfs mount where the GEM object will be created
+> - *
+> - * This function creates a shmem GEM object in a given tmpfs mountpoint.
+> - *
+> - * Returns:
+> - * A struct drm_gem_shmem_object * on success or an ERR_PTR()-encoded negative
+> - * error code on failure.
+> - */
+> -struct drm_gem_shmem_object *drm_gem_shmem_create_with_mnt(struct drm_device *dev,
+> -							   size_t size,
+> -							   struct vfsmount *gemfs)
+> -{
+> -	return __drm_gem_shmem_create(dev, size, false, gemfs);
+> -}
+> -EXPORT_SYMBOL_GPL(drm_gem_shmem_create_with_mnt);
+> -
+>   /**
+>    * drm_gem_shmem_release - Release resources associated with a shmem GEM object.
+>    * @shmem: shmem GEM object
+> @@ -851,7 +829,7 @@ drm_gem_shmem_prime_import_sg_table(struct drm_device *dev,
+>   	size_t size = PAGE_ALIGN(attach->dmabuf->size);
+>   	struct drm_gem_shmem_object *shmem;
+>   
+> -	shmem = __drm_gem_shmem_create(dev, size, true, NULL);
+> +	shmem = __drm_gem_shmem_create(dev, size, true);
+>   	if (IS_ERR(shmem))
+>   		return ERR_CAST(shmem);
+>   
+> @@ -899,7 +877,7 @@ struct drm_gem_object *drm_gem_shmem_prime_import_no_map(struct drm_device *dev,
+>   
+>   	size = PAGE_ALIGN(attach->dmabuf->size);
+>   
+> -	shmem = __drm_gem_shmem_create(dev, size, true, NULL);
+> +	shmem = __drm_gem_shmem_create(dev, size, true);
+>   	if (IS_ERR(shmem)) {
+>   		ret = PTR_ERR(shmem);
+>   		goto fail_detach;
+> diff --git a/drivers/gpu/drm/v3d/v3d_bo.c b/drivers/gpu/drm/v3d/v3d_bo.c
+> index 3ee8d9c36d92..c4316b768b3d 100644
+> --- a/drivers/gpu/drm/v3d/v3d_bo.c
+> +++ b/drivers/gpu/drm/v3d/v3d_bo.c
+> @@ -153,8 +153,7 @@ struct v3d_bo *v3d_bo_create(struct drm_device *dev, struct drm_file *file_priv,
+>   	struct v3d_bo *bo;
+>   	int ret;
+>   
+> -	shmem_obj = drm_gem_shmem_create_with_mnt(dev, unaligned_size,
+> -						  drm_gem_get_huge_mnt(dev));
+> +	shmem_obj = drm_gem_shmem_create(dev, unaligned_size);
+>   	if (IS_ERR(shmem_obj))
+>   		return ERR_CAST(shmem_obj);
+>   	bo = to_v3d_bo(&shmem_obj->base);
+> diff --git a/include/drm/drm_gem.h b/include/drm/drm_gem.h
+> index 97b5fca8966d..cca815dc87f3 100644
+> --- a/include/drm/drm_gem.h
+> +++ b/include/drm/drm_gem.h
+> @@ -529,9 +529,6 @@ void drm_gem_object_release(struct drm_gem_object *obj);
+>   void drm_gem_object_free(struct kref *kref);
+>   int drm_gem_object_init(struct drm_device *dev,
+>   			struct drm_gem_object *obj, size_t size);
+> -int drm_gem_object_init_with_mnt(struct drm_device *dev,
+> -				 struct drm_gem_object *obj, size_t size,
+> -				 struct vfsmount *gemfs);
+>   void drm_gem_private_object_init(struct drm_device *dev,
+>   				 struct drm_gem_object *obj, size_t size);
+>   void drm_gem_private_object_fini(struct drm_gem_object *obj);
+> diff --git a/include/drm/drm_gem_shmem_helper.h b/include/drm/drm_gem_shmem_helper.h
+> index 589f7bfe7506..6b6478f5ca24 100644
+> --- a/include/drm/drm_gem_shmem_helper.h
+> +++ b/include/drm/drm_gem_shmem_helper.h
+> @@ -109,9 +109,6 @@ struct drm_gem_shmem_object {
+>   
+>   int drm_gem_shmem_init(struct drm_device *dev, struct drm_gem_shmem_object *shmem, size_t size);
+>   struct drm_gem_shmem_object *drm_gem_shmem_create(struct drm_device *dev, size_t size);
+> -struct drm_gem_shmem_object *drm_gem_shmem_create_with_mnt(struct drm_device *dev,
+> -							   size_t size,
+> -							   struct vfsmount *gemfs);
+>   void drm_gem_shmem_release(struct drm_gem_shmem_object *shmem);
+>   void drm_gem_shmem_free(struct drm_gem_shmem_object *shmem);
+>   
 
