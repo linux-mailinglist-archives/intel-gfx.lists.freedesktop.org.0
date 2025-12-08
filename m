@@ -2,57 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19F30CADFF4
-	for <lists+intel-gfx@lfdr.de>; Mon, 08 Dec 2025 19:28:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EF3ACAE0D6
+	for <lists+intel-gfx@lfdr.de>; Mon, 08 Dec 2025 20:11:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 951A110E4DA;
-	Mon,  8 Dec 2025 18:28:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kUF6+h8J";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89B1710E3B4;
+	Mon,  8 Dec 2025 19:11:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 687FF10E4DC;
- Mon,  8 Dec 2025 18:28:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765218483; x=1796754483;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=qwEo7Ew+2eYXGU1jv2S66ypCxKYjYN4ntlSJPrVQd/U=;
- b=kUF6+h8JtCOGzCebwyszoFly3JSLiqiWW+fYAqInNYNWOpUxWlPDMZGd
- DuexK67Rxv2jtwy+QrISbSppVRkjmsFbYQsgRk94Ac7yaXPt3p47WGgCI
- JpJVby6hWXrWnLWllV69EMaS+3vk2r1fa1AEwc/cD6+cD5R37S/ue1Jwj
- 1Q+98F2t1F33d8zyjzY7x0w+GQx9tVxM9FW3GM5QDCcfZaqfE4Cn3Thqr
- ptLwdvovY/c6xtIBdnXfAGTGJ1TWeczkdI/Hbk850d6rP7KeUxHm58hDy
- sDxrII8VZaG2ChRM1POxg+sH+xpLRY/99rdUWl2XrcCAzpiLnzf43kDIC Q==;
-X-CSE-ConnectionGUID: 2rb3RuHsRp6Pxy1YKfPPeQ==
-X-CSE-MsgGUID: bTyjwcTAQsawgl42SUUuqA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11635"; a="67099970"
-X-IronPort-AV: E=Sophos;i="6.20,256,1758610800"; d="scan'208";a="67099970"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2025 10:27:59 -0800
-X-CSE-ConnectionGUID: fOLzVDJQQhm6jdhqIAsWWQ==
-X-CSE-MsgGUID: 6lXGBnMuQ/qc7jrJFAlj0A==
-X-ExtLoop1: 1
-Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.245.89])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2025 10:27:57 -0800
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 19/19] drm/i915: Document the GMCH_CTRL register a bit
-Date: Mon,  8 Dec 2025 20:26:37 +0200
-Message-ID: <20251208182637.334-20-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.51.2
-In-Reply-To: <20251208182637.334-1-ville.syrjala@linux.intel.com>
-References: <20251208182637.334-1-ville.syrjala@linux.intel.com>
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFA1910E3B4;
+ Mon,  8 Dec 2025 19:11:22 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_drm/i915/vga=3A_Try_to_so?=
+ =?utf-8?q?rt_out_the_VGA_decode_mess?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 08 Dec 2025 19:11:22 -0000
+Message-ID: <176522108284.67190.14315825912610298837@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251208182637.334-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20251208182637.334-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,51 +37,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-The actual GMCH_CRTL lives in the host bridge aka. device 0),
-but device 2 has a read-only mirror on i85x/i865+. Docuemnent
-that fact.
+Series: drm/i915/vga: Try to sort out the VGA decode mess
+URL   : https://patchwork.freedesktop.org/series/158651/
+State : failure
 
-Also remove the ancient tales about where the defines are used.
-Those haven't been true in a long time.
+== Summary ==
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- include/drm/intel/i915_drm.h | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
+Error: make failed
+  CALL    scripts/checksyscalls.sh
+  DESCEND objtool
+  INSTALL libsubcmd_headers
+  CC      drivers/pci/pci-sysfs.o
+In file included from ./include/linux/vgaarb.h:15,
+                 from drivers/pci/pci-sysfs.c:28:
+./include/video/vga.h:489:1: error: expected identifier or ‘(’ before ‘?’ token
+  489 | ?
+      | ^
+make[4]: *** [scripts/Makefile.build:287: drivers/pci/pci-sysfs.o] Error 1
+make[3]: *** [scripts/Makefile.build:556: drivers/pci] Error 2
+make[2]: *** [scripts/Makefile.build:556: drivers] Error 2
+make[1]: *** [/home/kbuild2/kernel/Makefile:2010: .] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
+Build failed, no error log produced
 
-diff --git a/include/drm/intel/i915_drm.h b/include/drm/intel/i915_drm.h
-index c633ce62f2bf..8eee23f94e26 100644
---- a/include/drm/intel/i915_drm.h
-+++ b/include/drm/intel/i915_drm.h
-@@ -39,11 +39,11 @@ bool i915_gpu_turbo_disable(void);
- extern struct resource intel_graphics_stolen_res;
- 
- /*
-- * The Bridge device's PCI config space has information about the
-- * fb aperture size and the amount of pre-reserved memory.
-- * This is all handled in the intel-gtt.ko module. i915.ko only
-- * cares about the vga bit for the vga arbiter.
-+ * The Bridge device's (device 0) PCI config space has information
-+ * about the fb aperture size and the amount of pre-reserved memory.
-  */
-+
-+/* device 2 has a read-only mirror */
- #define SNB_GMCH_CTRL		0x50
- #define   SNB_GMCH_GGMS_SHIFT	8 /* GTT Graphics Memory Size */
- #define   SNB_GMCH_GGMS_MASK	0x3
-@@ -54,6 +54,7 @@ extern struct resource intel_graphics_stolen_res;
- #define   BDW_GMCH_GMS_SHIFT	8
- #define   BDW_GMCH_GMS_MASK	0xff
- 
-+/* device 2 has a read-only mirror from i85x/i865 onwards */
- #define I830_GMCH_CTRL			0x52
- #define   I830_GMCH_GMS_MASK		(0x7 << 4)
- #define   I830_GMCH_GMS_LOCAL		(0x1 << 4)
--- 
-2.51.2
 
