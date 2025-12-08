@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F62FCADFC4
-	for <lists+intel-gfx@lfdr.de>; Mon, 08 Dec 2025 19:27:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A589CADFC7
+	for <lists+intel-gfx@lfdr.de>; Mon, 08 Dec 2025 19:27:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71AEF10E2B6;
-	Mon,  8 Dec 2025 18:27:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C5D910E4BB;
+	Mon,  8 Dec 2025 18:27:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DlL3QGSH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EicblbfR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E670510E2B6;
- Mon,  8 Dec 2025 18:27:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D63A10E477;
+ Mon,  8 Dec 2025 18:27:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765218422; x=1796754422;
+ t=1765218426; x=1796754426;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1XbsSS0wwD2CzaztAMAe/6eQdHaTEsWEUkT+23FaUbw=;
- b=DlL3QGSHQd/0GeSKqWhuV8ndgeszChDbg0ICLPpXinNqtjRPRxaePfnj
- az0o1fdbPTen+ndpTuPJeimTNOts+YZBO12w5FN3tTn7UaQceiTLLqsjl
- 5fTVeoSH59tDPQvK/0xSTUtIHCoTBY7eZdgvwfxla45EoA2JTBfeNL4/p
- xj8LscGB4GknFyGPDE4FX3NdNCU6XSlRhmeLd6CXE+IBLn+LF25BFdmst
- lb8YI68rraV6Dgu1oufqflT9MokYo2N3G2U7BwBRd2C9j721yHUIN9eVp
- trjx8vSRqXCOvEoR+I6yzhH8Ge8WuLk1hCj4Umx2kJgiqMnIdQjJrUslX w==;
-X-CSE-ConnectionGUID: axw2Q62XTdaNc/SZteNQTQ==
-X-CSE-MsgGUID: Hyqa33dCRLyedjOquM99VA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11636"; a="67051258"
-X-IronPort-AV: E=Sophos;i="6.20,259,1758610800"; d="scan'208";a="67051258"
+ bh=OOWGX9Oh3GogryKDZ+WlRplLtkYHdJ8lgXpId1xdpQA=;
+ b=EicblbfRlBYA4ZrE050QBLso1lPH06/0j1IQ8w1NOp5w2h9fc++oVITF
+ /I2/dkKGDRghWptGd4LTlGP38P2ZSVIPdzaTUejNt2VYCbi2dYAu9RVWR
+ DDBTjeWgT5dBhbHN+dW3FfPLPd1bfy5t1yy1IOaUMxRwaDHcQa4Fm1vBS
+ NPTohytKYn1Zccd5B3/t1hG+FVo0+z8dU546/fjOt509RmaXHFkLnEn25
+ waM5VJREXsJvj5pQOdSwYlZKPT7njgO6qVrTUQC0dnr8EOpZXP8blQaM3
+ 3YzfeG7C22r0xOJRwztWWQ+x3wEhyoEnwvR1u/dGIVJ9m7VYZNV+cXGt5 A==;
+X-CSE-ConnectionGUID: 9KsTtISwTlGXrek9Dl3fEg==
+X-CSE-MsgGUID: OckHi0u5RkW/u9uHZjUt6g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11636"; a="67051262"
+X-IronPort-AV: E=Sophos;i="6.20,259,1758610800"; d="scan'208";a="67051262"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2025 10:27:02 -0800
-X-CSE-ConnectionGUID: 6kQ02g32TZWvlMsMc8fbXQ==
-X-CSE-MsgGUID: Du1OdHYkT4G3oLWPRVGc/g==
+ 08 Dec 2025 10:27:05 -0800
+X-CSE-ConnectionGUID: KaGpm0iuSPexVmZRMFiJ5w==
+X-CSE-MsgGUID: 46pq2aKkRsC2C+f+dSQehA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,259,1758610800"; d="scan'208";a="196460406"
+X-IronPort-AV: E=Sophos;i="6.20,259,1758610800"; d="scan'208";a="196460443"
 Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.245.89])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2025 10:27:00 -0800
+ 08 Dec 2025 10:27:04 -0800
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 05/19] drm/i915/vga: Don't touch VGA registers if VGA decode
- is fully disabled
-Date: Mon,  8 Dec 2025 20:26:23 +0200
-Message-ID: <20251208182637.334-6-ville.syrjala@linux.intel.com>
+Subject: [PATCH 06/19] drm/i915/vga: Clean up VGA registers even if VGA plane
+ is disabled
+Date: Mon,  8 Dec 2025 20:26:24 +0200
+Message-ID: <20251208182637.334-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.51.2
 In-Reply-To: <20251208182637.334-1-ville.syrjala@linux.intel.com>
 References: <20251208182637.334-1-ville.syrjala@linux.intel.com>
@@ -72,74 +72,79 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-On some systems the BIOS will disable the VGA decode logic in the
-iGPU (via GMCH_CTRL) when an external GPU is used as the primary
-VGA device. In that case the iGPU will never claim any VGA register
-accesses, and any access we do will in fact end up on the external
-GPU. Don't go poking around in the other GPUs registers.
+Turns out at least some systems (eg. HSW Lenovo ThinKCentre E73)
+confgiure the VGA registers even when booting in UEFI mode. So
+in order to avoid any issues with the MSR register we should
+clean up the VGA registers anyway.
 
-Note that (at least on the g4x board where I tested this) the BIOS
-forgets to set the VGACNTR VGA_DISP_DISABLE bit, and the reset
-value for said bit is 0. That apparently prevents the pipes from
-running, so we must still remember to set the bit, despite the VGA
-plane was never actually enabled. On more modern platforms (hsw+
-maybe?) the reset value for VGACNTR was changed to have
-VGA_DISP_DISABLE already set.
+For now this mostly avoids the potential for unclaimed register
+acceses due to the power well vs. MDA/CGA selection. But this
+will become more important soon as we'll start to rely on the
+MSR register to control VGA memory decode as well.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vga.c | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+ drivers/gpu/drm/i915/display/intel_vga.c | 40 ++++++++++++++++--------
+ 1 file changed, 27 insertions(+), 13 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/i915/display/intel_vga.c
-index 84fd5475d336..744812260ae3 100644
+index 744812260ae3..6a19fb242248 100644
 --- a/drivers/gpu/drm/i915/display/intel_vga.c
 +++ b/drivers/gpu/drm/i915/display/intel_vga.c
-@@ -23,6 +23,18 @@ static unsigned int intel_gmch_ctrl_reg(struct intel_display *display)
- 	return DISPLAY_VER(display) >= 6 ? SNB_GMCH_CTRL : INTEL_GMCH_CTRL;
- }
- 
-+static bool intel_vga_decode_is_enabled(struct intel_display *display)
-+{
-+	struct pci_dev *pdev = to_pci_dev(display->drm->dev);
-+	u16 gmch_ctrl = 0;
-+
-+	if (pci_bus_read_config_word(pdev->bus, PCI_DEVFN(0, 0),
-+				     intel_gmch_ctrl_reg(display), &gmch_ctrl))
-+		return false;
-+
-+	return !(gmch_ctrl & INTEL_GMCH_VGA_DISABLE);
-+}
-+
- static i915_reg_t intel_vga_cntrl_reg(struct intel_display *display)
+@@ -63,7 +63,6 @@ void intel_vga_disable(struct intel_display *display)
  {
- 	if (display->platform.valleyview || display->platform.cherryview)
-@@ -55,6 +67,17 @@ void intel_vga_disable(struct intel_display *display)
+ 	struct pci_dev *pdev = to_pci_dev(display->drm->dev);
+ 	i915_reg_t vga_reg = intel_vga_cntrl_reg(display);
+-	enum pipe pipe;
  	u8 msr, sr1;
  	u32 tmp;
  
-+	if (!intel_vga_decode_is_enabled(display)) {
-+		drm_dbg_kms(display->drm, "VGA decode is disabled\n");
+@@ -79,18 +78,33 @@ void intel_vga_disable(struct intel_display *display)
+ 	}
+ 
+ 	tmp = intel_de_read(display, vga_reg);
+-	if (tmp & VGA_DISP_DISABLE)
+-		return;
+-
+-	if (display->platform.cherryview)
+-		pipe = REG_FIELD_GET(VGA_PIPE_SEL_MASK_CHV, tmp);
+-	else if (has_vga_pipe_sel(display))
+-		pipe = REG_FIELD_GET(VGA_PIPE_SEL_MASK, tmp);
+-	else
+-		pipe = PIPE_A;
+-
+-	drm_dbg_kms(display->drm, "Disabling VGA plane on pipe %c\n",
+-		    pipe_name(pipe));
++
++	if ((tmp & VGA_DISP_DISABLE) == 0) {
++		enum pipe pipe;
++
++		if (display->platform.cherryview)
++			pipe = REG_FIELD_GET(VGA_PIPE_SEL_MASK_CHV, tmp);
++		else if (has_vga_pipe_sel(display))
++			pipe = REG_FIELD_GET(VGA_PIPE_SEL_MASK, tmp);
++		else
++			pipe = PIPE_A;
++
++		drm_dbg_kms(display->drm, "Disabling VGA plane on pipe %c\n",
++			    pipe_name(pipe));
++	} else {
++		drm_dbg_kms(display->drm, "VGA plane is disabled\n");
 +
 +		/*
-+		 * On older hardware VGA_DISP_DISABLE defaults to 0, but
-+		 * it *must* be set or else the pipe will be completely
-+		 * stuck (at least on g4x).
++		 * Unfortunately at least some BIOSes (eg. HSW Lenovo
++		 * ThinkCentre E73) set up the VGA registers even when
++		 * in UEFI mode with the VGA plane disabled. So we need to
++		 * always clean up the mess for iGPUs. For discrete GPUs we
++		 * don't really care about the state of the VGA registers
++		 * since all VGA accesses can be blocked via the bridge.
 +		 */
-+		goto reset_vgacntr;
++		if (display->platform.dgfx)
++			goto reset_vgacntr;
 +	}
-+
- 	tmp = intel_de_read(display, vga_reg);
- 	if (tmp & VGA_DISP_DISABLE)
- 		return;
-@@ -96,6 +119,7 @@ void intel_vga_disable(struct intel_display *display)
  
- 	udelay(300);
- 
-+reset_vgacntr:
- 	intel_de_write(display, vga_reg, VGA_DISP_DISABLE);
- 	intel_de_posting_read(display, vga_reg);
- }
+ 	/* WaEnableVGAAccessThroughIOPort:ctg,elk,ilk,snb,ivb,vlv,hsw */
+ 	vga_get_uninterruptible(pdev, VGA_RSRC_LEGACY_IO);
 -- 
 2.51.2
 
