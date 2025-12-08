@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B287CADFE8
-	for <lists+intel-gfx@lfdr.de>; Mon, 08 Dec 2025 19:27:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B99ACADFEB
+	for <lists+intel-gfx@lfdr.de>; Mon, 08 Dec 2025 19:27:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEF6C10E4CE;
-	Mon,  8 Dec 2025 18:27:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FB8110E4D1;
+	Mon,  8 Dec 2025 18:27:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EGDdBeoo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZR3IYzPb";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2BE910E4CD;
- Mon,  8 Dec 2025 18:27:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EDE110E4CF;
+ Mon,  8 Dec 2025 18:27:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765218462; x=1796754462;
+ t=1765218467; x=1796754467;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dW/QRRFmrn5ormvvLSllur/HSYGc/Lc6QyvhCVK0PRA=;
- b=EGDdBeoogw5wFjY4p5pPYYoy8KH5w7q0U7LAOPQmAxBE82VDEncnTQh3
- PbGmiGyHvpVW1sm6P6LLB5PLVcjUcb7KShtxsZBnVv6NTUKotI4s6TNIQ
- f/f0hBXYl/3YAY0m0PBuNPL1NRoo93sCjd8lBdTRH5mt9JlWhitiacXpP
- k/CBa7gpmozIde+zOzaTrTcHyZXlw/BUxo0bcs/YM4i99/38rQUfQn/0p
- /I3zg9WctLPlUT/xLkIi5hDEHLIstkrwOOqYveB7cxJdBFuTELbL1EGI3
- G1YpjmOWxukenRegQiJK0I1+B0iej2tjnKQNbNLxCb89LYqPQ2UmdcuR/ g==;
-X-CSE-ConnectionGUID: 1k2PKXRrTgKU73L7ZbC42w==
-X-CSE-MsgGUID: IJ7kAgP9SzuunyAqivjn7Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11636"; a="67129569"
-X-IronPort-AV: E=Sophos;i="6.20,259,1758610800"; d="scan'208";a="67129569"
+ bh=vk+NCp/pM0HND/7txIJtacyOIvS6R8TU0jqjBxHz9ao=;
+ b=ZR3IYzPbhmXdRFyh0+0ejiPZnyQztlh8pjtnDl9RJO2jR3mnVzu3A2r4
+ 6WI5fByJZ/qAcEozteT2R8cm7wN1/JAEdB+yqkOCVoytk65t1r+R11e1h
+ 8dzuicDNDJMBUFgGfysZDpHAb/hm6WRh+Rc7ZRSxKvR30K0ZWLPioyyK3
+ gHk3ATieApEuk4ly8V5kUE8U7wQlkRpb3xGHkefuOcO6FWBvrhKKinO8c
+ 51dPQY8YS717ujjmSP2dhuyQr8fYPfkXXj1Y9/QSQ4UbCYrlnw2vvq6Ur
+ S95xGSYnHdL9OyatvLNXrQdm91+laTG96CnzEDBJ+9feTMD8kARx//LcW g==;
+X-CSE-ConnectionGUID: NQaTjSc7R6+LL9Qe2iMaiQ==
+X-CSE-MsgGUID: /UeNRKdvS4qdFFgf86IuUw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11636"; a="67129575"
+X-IronPort-AV: E=Sophos;i="6.20,259,1758610800"; d="scan'208";a="67129575"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2025 10:27:42 -0800
-X-CSE-ConnectionGUID: p5enkJQHRuWWF46AdhKOww==
-X-CSE-MsgGUID: xuiW0vjJR7iS4gQEnVHwUA==
+ 08 Dec 2025 10:27:47 -0800
+X-CSE-ConnectionGUID: 5gWtc+IgTV2lDnzUJ2YNrQ==
+X-CSE-MsgGUID: CcHKjDpLSu2UxBNGpxKEWQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,259,1758610800"; d="scan'208";a="196014515"
+X-IronPort-AV: E=Sophos;i="6.20,259,1758610800"; d="scan'208";a="196014528"
 Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.245.89])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2025 10:27:41 -0800
+ 08 Dec 2025 10:27:45 -0800
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 15/19] drm/i915/crt: Use IS0_R instead of VGA_MIS_W
-Date: Mon,  8 Dec 2025 20:26:33 +0200
-Message-ID: <20251208182637.334-16-ville.syrjala@linux.intel.com>
+Subject: [PATCH 16/19] drm/i915/crt: Extract intel_crt_sense_above_threshold()
+Date: Mon,  8 Dec 2025 20:26:34 +0200
+Message-ID: <20251208182637.334-17-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.51.2
 In-Reply-To: <20251208182637.334-1-ville.syrjala@linux.intel.com>
 References: <20251208182637.334-1-ville.syrjala@linux.intel.com>
@@ -71,37 +71,67 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Use the proper IS0_R name for the VGA input status register 0, instead
-of using the VGA_MIS_W alias which is meant for write accesses to the
-same address. Yes, VGA registers are weird.
+Extract the CRT sense check into a helper instead of repeating
+the same thing twice.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crt.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_crt.c | 16 +++++++++-------
+ 1 file changed, 9 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
-index dedc26f6a2b2..6f216ba887bc 100644
+index 6f216ba887bc..b71a8d97cdbb 100644
 --- a/drivers/gpu/drm/i915/display/intel_crt.c
 +++ b/drivers/gpu/drm/i915/display/intel_crt.c
-@@ -738,7 +738,7 @@ intel_crt_load_detect(struct intel_crt *crt, enum pipe pipe)
+@@ -693,6 +693,11 @@ static bool intel_crt_detect_ddc(struct drm_connector *connector)
+ 	return ret;
+ }
+ 
++static bool intel_crt_sense_above_threshold(struct intel_display *display)
++{
++	return intel_vga_read(display, VGA_IS0_R, true) & (1 << 4);
++}
++
+ static enum drm_connector_status
+ intel_crt_load_detect(struct intel_crt *crt, enum pipe pipe)
+ {
+@@ -704,7 +709,6 @@ intel_crt_load_detect(struct intel_crt *crt, enum pipe pipe)
+ 	u32 vsample;
+ 	u32 vblank, vblank_start, vblank_end;
+ 	u32 dsl;
+-	u8 st00;
+ 	enum drm_connector_status status;
+ 
+ 	drm_dbg_kms(display->drm, "starting load-detect on CRT\n");
+@@ -738,8 +742,8 @@ intel_crt_load_detect(struct intel_crt *crt, enum pipe pipe)
  		 * border color for Color info.
  		 */
  		intel_crtc_wait_for_next_vblank(intel_crtc_for_pipe(display, pipe));
--		st00 = intel_vga_read(display, VGA_MIS_W, true);
-+		st00 = intel_vga_read(display, VGA_IS0_R, true);
- 		status = ((st00 & (1 << 4)) != 0) ?
+-		st00 = intel_vga_read(display, VGA_IS0_R, true);
+-		status = ((st00 & (1 << 4)) != 0) ?
++
++		status = intel_crt_sense_above_threshold(display) ?
  			connector_status_connected :
  			connector_status_disconnected;
-@@ -786,7 +786,7 @@ intel_crt_load_detect(struct intel_crt *crt, enum pipe pipe)
+ 
+@@ -779,15 +783,13 @@ intel_crt_load_detect(struct intel_crt *crt, enum pipe pipe)
+ 		while ((dsl = intel_de_read(display, PIPEDSL(display, pipe))) <= vsample)
+ 			;
+ 		/*
+-		 * Watch ST00 for an entire scanline
++		 * Watch sense for an entire scanline
+ 		 */
+ 		detect = 0;
+ 		count = 0;
  		do {
  			count++;
- 			/* Read the ST00 VGA status register */
--			st00 = intel_vga_read(display, VGA_MIS_W, true);
-+			st00 = intel_vga_read(display, VGA_IS0_R, true);
- 			if (st00 & (1 << 4))
+-			/* Read the ST00 VGA status register */
+-			st00 = intel_vga_read(display, VGA_IS0_R, true);
+-			if (st00 & (1 << 4))
++			if (intel_crt_sense_above_threshold(display))
  				detect++;
  		} while ((intel_de_read(display, PIPEDSL(display, pipe)) == dsl));
+ 
 -- 
 2.51.2
 
