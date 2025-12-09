@@ -2,61 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE81BCB0437
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Dec 2025 15:24:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA94BCB046E
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Dec 2025 15:27:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0183910E619;
-	Tue,  9 Dec 2025 14:24:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAA7B10E639;
+	Tue,  9 Dec 2025 14:27:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lIkmgLBZ";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="SRtov+Un";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBA2710E61B;
- Tue,  9 Dec 2025 14:24:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765290243; x=1796826243;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=/ID4vRny/vKU2A0rxemD72OUI4rMIef8GB8tp7a5oE0=;
- b=lIkmgLBZZH4SU21LYVU5feLK4TxT6UQuYYOKfpTexCF27tDyFb9s44u+
- lDuJP0WtEPpGVRV3kP+t7UtS1srEewrosdLHzFRmto/LpbqPzG+CEqjN5
- 30lKQXgfqXcgwGaJBp+VTngpRjgCd9KyjZteUPoRHAaMUNCJhBb+KtT4v
- e8tXn1EBQG1G644VmGp+RfAqKM0NV0HGYYWZA2kTfEN55jwOMrInYqk7N
- KKd0hrqvVxp5psP6fTMKndpUj5R2Xiui+YdKuvxdoX5VG1z/GaMdTAIqY
- oBjcIrSV682UtfexbSeqIZ27/VjtgQY2OGAVfKyuyilEMClFb+DDvhUTA A==;
-X-CSE-ConnectionGUID: KO3KLzk1TwSCTx+U+xBFMQ==
-X-CSE-MsgGUID: NJqXuvUsSpeEtmdp8AdlUg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="84656963"
-X-IronPort-AV: E=Sophos;i="6.20,261,1758610800"; d="scan'208";a="84656963"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 06:24:03 -0800
-X-CSE-ConnectionGUID: Acaf7oPfRcCuXW3HkujCeQ==
-X-CSE-MsgGUID: 2aPPXhFnTuywvlb35PT9mw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,261,1758610800"; d="scan'208";a="227270711"
-Received: from mwiniars-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.154])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 06:24:00 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: tzimmermann@suse.de, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, jani.nikula@intel.com
-Subject: [PATCH 7/7] drm/vblank: prefer drm_crtc_vblank_crtc() over
- drm_vblank_crtc()
-Date: Tue,  9 Dec 2025 16:23:15 +0200
-Message-ID: <29a29e746bc90c824d4f2bd15e42817dd7d0b199.1765290097.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1765290097.git.jani.nikula@intel.com>
-References: <cover.1765290097.git.jani.nikula@intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E73E10E616;
+ Tue,  9 Dec 2025 14:27:31 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 7476843A63;
+ Tue,  9 Dec 2025 14:27:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0555C4CEF5;
+ Tue,  9 Dec 2025 14:27:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1765290451;
+ bh=+lPRgnywG6DZojNgtg/w1EUgAWRizPCecjzEhDomM3s=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=SRtov+UnCMmffLoCrIS4i3rDRT4jcz+QLcw3NrHCLRnXPGNf1byxWeiSl2eogVxma
+ r+raXHakZJMJsgoqW9kr6R9waCWB6qY/4XMqZcOj4R6RjgNeuWG+f2Lm9aEZlBfUCw
+ KLHcoeYAyfv8VBvC9vYuxQvaoIWXIALfwKGFIp9wbP+aZFbbiHk/6IPUm6K/i5QmoX
+ kKf3umBTwAhvT4a0ULSXFhXNQgEkVkbKlGKh2mWA+megTCQe8ul02RMn63lBaCpYrr
+ He+mCx0tE1uAYY/8j8ydJaUSmAqRiF+FASTPOsNDzACALIBR0q/Gpm7h9RqDKk1dFh
+ ZKfL+LRCT6e9A==
+Date: Tue, 9 Dec 2025 15:27:28 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>, 
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
+ Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Dmitry Baryshkov <lumag@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Rob Herring <robh@kernel.org>, kernel@collabora.com,
+ amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v5 04/17] drm/bridge: Act on the DRM color format property
+Message-ID: <20251209-smart-oarfish-of-wind-0c1c8b@houat>
+References: <20251128-color-format-v5-0-63e82f1db1e1@collabora.com>
+ <20251128-color-format-v5-4-63e82f1db1e1@collabora.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="6swa32l4wvcewsqj"
+Content-Disposition: inline
+In-Reply-To: <20251128-color-format-v5-4-63e82f1db1e1@collabora.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,38 +81,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use the higher level function where crtc is available.
 
-v2: Rebase
+--6swa32l4wvcewsqj
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v5 04/17] drm/bridge: Act on the DRM color format property
+MIME-Version: 1.0
 
-Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/drm_vblank.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Hi,
 
-diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-index a86561c4b999..498fc91450e6 100644
---- a/drivers/gpu/drm/drm_vblank.c
-+++ b/drivers/gpu/drm/drm_vblank.c
-@@ -731,7 +731,7 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 	}
- 
- 	if (drm_drv_uses_atomic_modeset(dev)) {
--		struct drm_vblank_crtc *vblank = drm_vblank_crtc(dev, pipe);
-+		struct drm_vblank_crtc *vblank = drm_crtc_vblank_crtc(crtc);
- 
- 		mode = &vblank->hwmode;
- 	} else {
-@@ -1304,7 +1304,7 @@ int drm_crtc_wait_one_vblank(struct drm_crtc *crtc)
- {
- 	struct drm_device *dev = crtc->dev;
- 	int pipe = drm_crtc_index(crtc);
--	struct drm_vblank_crtc *vblank = drm_vblank_crtc(dev, pipe);
-+	struct drm_vblank_crtc *vblank = drm_crtc_vblank_crtc(crtc);
- 	int ret;
- 	u64 last;
- 
--- 
-2.47.3
+On Fri, Nov 28, 2025 at 10:05:40PM +0100, Nicolas Frattaroli wrote:
+> The new DRM color format property allows userspace to request a specific
+> color format on a connector. In turn, this fills the connector state's
+> color_format member to switch color formats.
+>=20
+> Make drm_bridges consider the color_format set in the connector state
+> during the atomic bridge check. Specifically, reject any output bus
+> formats that do not correspond to the requested color format.
+>=20
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> ---
+>  drivers/gpu/drm/drm_bridge.c | 45 ++++++++++++++++++++++++++++++++++++++=
+++++++
+>  1 file changed, 45 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
+> index 8f355df883d8..8aac9747f35e 100644
+> --- a/drivers/gpu/drm/drm_bridge.c
+> +++ b/drivers/gpu/drm/drm_bridge.c
+> @@ -1052,6 +1052,47 @@ static int select_bus_fmt_recursive(struct drm_bri=
+dge *first_bridge,
+>  	return ret;
+>  }
+> =20
+> +static bool __pure bus_format_is_color_fmt(u32 bus_fmt, enum drm_color_f=
+ormat fmt)
+> +{
+> +	if (fmt =3D=3D DRM_COLOR_FORMAT_AUTO)
+> +		return true;
+> +
+> +	switch (bus_fmt) {
+> +	case MEDIA_BUS_FMT_FIXED:
+> +		return true;
+> +	case MEDIA_BUS_FMT_RGB888_1X24:
+> +	case MEDIA_BUS_FMT_RGB101010_1X30:
+> +	case MEDIA_BUS_FMT_RGB121212_1X36:
+> +	case MEDIA_BUS_FMT_RGB161616_1X48:
+> +		return fmt =3D=3D DRM_COLOR_FORMAT_RGB444;
+> +	case MEDIA_BUS_FMT_YUV8_1X24:
+> +	case MEDIA_BUS_FMT_YUV10_1X30:
+> +	case MEDIA_BUS_FMT_YUV12_1X36:
+> +	case MEDIA_BUS_FMT_YUV16_1X48:
+> +		return fmt =3D=3D DRM_COLOR_FORMAT_YCBCR444;
+> +	case MEDIA_BUS_FMT_UYVY8_1X16:
+> +	case MEDIA_BUS_FMT_VYUY8_1X16:
+> +	case MEDIA_BUS_FMT_YUYV8_1X16:
+> +	case MEDIA_BUS_FMT_YVYU8_1X16:
+> +	case MEDIA_BUS_FMT_UYVY10_1X20:
+> +	case MEDIA_BUS_FMT_YUYV10_1X20:
+> +	case MEDIA_BUS_FMT_VYUY10_1X20:
+> +	case MEDIA_BUS_FMT_YVYU10_1X20:
+> +	case MEDIA_BUS_FMT_UYVY12_1X24:
+> +	case MEDIA_BUS_FMT_VYUY12_1X24:
+> +	case MEDIA_BUS_FMT_YUYV12_1X24:
+> +	case MEDIA_BUS_FMT_YVYU12_1X24:
+> +		return fmt =3D=3D DRM_COLOR_FORMAT_YCBCR422;
+> +	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
+> +	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
+> +	case MEDIA_BUS_FMT_UYYVYY12_0_5X36:
+> +	case MEDIA_BUS_FMT_UYYVYY16_0_5X48:
+> +		return fmt =3D=3D DRM_COLOR_FORMAT_YCBCR420;
+> +	default:
+> +		return false;
+> +	}
+> +}
+> +
+>  /*
+>   * This function is called by &drm_atomic_bridge_chain_check() just befo=
+re
+>   * calling &drm_bridge_funcs.atomic_check() on all elements of the chain.
+> @@ -1137,6 +1178,10 @@ drm_atomic_bridge_chain_select_bus_fmts(struct drm=
+_bridge *bridge,
+>  	}
+> =20
+>  	for (i =3D 0; i < num_out_bus_fmts; i++) {
+> +		if (!bus_format_is_color_fmt(out_bus_fmts[i], conn_state->color_format=
+)) {
+> +			ret =3D -ENOTSUPP;
+> +			continue;
+> +		}
 
+Sorry, I'm struggling a bit to understand how this would work if a bridge b=
+oth supports the bus
+format selection and HDMI state helpers? Can you expand on it?
+
+Maxime
+
+--6swa32l4wvcewsqj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaTgx0AAKCRAnX84Zoj2+
+dn+pAXoCEBIzb4PrpgMd2asQag4DZBJm2omA/DY2ArLCM7xiNnTD+fG+t5BxdhGx
+GQRfoUIBfAgis2VsEMDW4zY+ZyEGiWuYG8gnFhPFvpM4lZ57Re+WJ6smQKDAUbwk
+gtuqKr0cjA==
+=HGyp
+-----END PGP SIGNATURE-----
+
+--6swa32l4wvcewsqj--
