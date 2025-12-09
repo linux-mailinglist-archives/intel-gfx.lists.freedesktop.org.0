@@ -2,57 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E508ACAFB8F
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Dec 2025 12:11:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 794AECAFB9E
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Dec 2025 12:14:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AA5210E1CB;
-	Tue,  9 Dec 2025 11:11:58 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kZwt58nZ";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81F4E10E1CF;
+	Tue,  9 Dec 2025 11:14:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F36510E1CB;
- Tue,  9 Dec 2025 11:11:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765278716; x=1796814716;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=a40wswZeVsBn9T05EDsMZAGGxr1cNEf1S6fAEl57t5k=;
- b=kZwt58nZ4svgEd3Aplvu4IN3jm3S0o3c+eZwV8F3bIiCfHfui6BDhEFB
- 2tai04HlmaR4eBgs0eZ26BJZk3/sr46k0ksHLB3Stl+AzW0ANTbHnGmRz
- NU0BTryXzJn+h3Foc10en1TZpL3JQZG/yXYrHCymA5jqozKcQF7tRFj/S
- JZTAfIAgyI5OS97/mnM7MKfFuX6Me3hsmopF0oIIF9YtAEyE7g2gqCcmo
- yE8Gzm1Gs4sg4cCVeFWI9V1g8YuuSowurEFva7eK8aapePKJwHL9ZsYBw
- rb+KOhMc7jwvzm9gG57p2OoEKHYSY63ow/xHFaEEF0Ff+Kiq5ur3f6052 w==;
-X-CSE-ConnectionGUID: tphFwNN/Tv6uFiLuIQyhkQ==
-X-CSE-MsgGUID: t5y5o9+HRi+izdjKjT7qCw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11636"; a="78593107"
-X-IronPort-AV: E=Sophos;i="6.20,261,1758610800"; d="scan'208";a="78593107"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 03:11:56 -0800
-X-CSE-ConnectionGUID: TWqDxPrnQ7SYqvW+NPO0iQ==
-X-CSE-MsgGUID: k0aj+h6yTlKKxL/jP43p5A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,261,1758610800"; d="scan'208";a="233582943"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.245.194])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 03:11:55 -0800
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm/i915/pc8: Add parent interface for PC8 forcewake tricks
-Date: Tue,  9 Dec 2025 13:11:50 +0200
-Message-ID: <20251209111150.16853-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.51.2
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5F4E10E1CF;
+ Tue,  9 Dec 2025 11:14:18 +0000 (UTC)
+Received: from mobile-access-5d6aa7-235.dhcp.inet.fi ([93.106.167.235]
+ helo=[192.168.8.139])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
+ id 1vSvfa-00000000ggh-1BCQ; Tue, 09 Dec 2025 13:14:16 +0200
+Message-ID: <3a330b829308ca2ec6de8cffac890ee6e3cd95e7.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+Date: Tue, 09 Dec 2025 13:14:13 +0200
+In-Reply-To: <aTfxqfQ72KLZLGnz@ideak-desk>
+References: <20251127175023.1522538-1-imre.deak@intel.com>
+ <20251127175023.1522538-4-imre.deak@intel.com>
+ <a1dff2ea30fe3d2f25bab96da1963e8a308eb3c0.camel@coelho.fi>
+ <aTfxqfQ72KLZLGnz@ideak-desk>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-7 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+X-Spam-Checker-Version: SpamAssassin 4.0.2 (2025-08-27) on farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+ autolearn=ham autolearn_force=no version=4.0.2
+Subject: Re: [PATCH 03/50] drm/i915/dp: Fix DSC sink's slice count
+ capability check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,198 +53,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Tue, 2025-12-09 at 11:53 +0200, Imre Deak wrote:
+> On Tue, Dec 09, 2025 at 10:51:10AM +0200, Luca Coelho wrote:
+> > On Thu, 2025-11-27 at 19:49 +0200, Imre Deak wrote:
+> > > A DSC sink supporting DSC slice count N, not necessarily supports sli=
+ce
+> > > counts less than N. Hence the driver should check the sink's support =
+for
+> > > a particular slice count before using that slice count, fix
+> > > intel_dp_dsc_get_slice_count() accordingly.
+> > >=20
+> > > Cc: dri-devel@lists.freedesktop.org
+> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_dp.c | 18 +++++++++++++-----
+> > >  1 file changed, 13 insertions(+), 5 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/dr=
+m/i915/display/intel_dp.c
+> > > index 0ec82fcbcf48e..6d232c15a0b5a 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > > @@ -1013,6 +1013,8 @@ u8 intel_dp_dsc_get_slice_count(const struct in=
+tel_connector *connector,
+> > >  				int num_joined_pipes)
+> > >  {
+> > >  	struct intel_display *display =3D to_intel_display(connector);
+> > > +	u32 sink_slice_count_mask =3D
+> > > +		drm_dp_dsc_sink_slice_count_mask(connector->dp.dsc_dpcd, false);
+> > >  	u8 min_slice_count, i;
+> > >  	int max_slice_width;
+> > >  	int tp_rgb_yuv444;
+> > > @@ -1084,9 +1086,9 @@ u8 intel_dp_dsc_get_slice_count(const struct in=
+tel_connector *connector,
+> > >  		    (!HAS_DSC_3ENGINES(display) || num_joined_pipes !=3D 4))
+> > >  			continue;
+> > > =20
+> > > -		if (test_slice_count >
+> > > -		    drm_dp_dsc_sink_max_slice_count(connector->dp.dsc_dpcd, false)=
+)
+> > > -			break;
+> > > +		if (!(drm_dp_dsc_slice_count_to_mask(test_slice_count) &
+> > > +		      sink_slice_count_mask))
+> > > +			continue;
+> > > =20
+> > >  		 /*
+> > >  		  * Bigjoiner needs small joiner to be enabled.
+> > > @@ -1103,8 +1105,14 @@ u8 intel_dp_dsc_get_slice_count(const struct i=
+ntel_connector *connector,
+> > >  			return test_slice_count;
+> > >  	}
+> > > =20
+> > > -	drm_dbg_kms(display->drm, "Unsupported Slice Count %d\n",
+> > > -		    min_slice_count);
+> > > +	/* Print slice count 1,2,4,..24 if bit#0,1,3,..23 is set in the mas=
+k. */
+> > > +	sink_slice_count_mask <<=3D 1;
+> > > +	drm_dbg_kms(display->drm,
+> > > +		    "[CONNECTOR:%d:%s] Unsupported slice count (min: %d, sink supp=
+orted: %*pbl)\n",
+> > > +		    connector->base.base.id, connector->base.name,
+> > > +		    min_slice_count,
+> > > +		    (int)BITS_PER_TYPE(sink_slice_count_mask), &sink_slice_count_m=
+ask);
+> > > +
+> > >  	return 0;
+> > >  }
+> > >=20
+> >=20
+> > I think this patch could be squashed into the previous one.  IMHO it
+> > makes it a bit easier to see how those functions defined in the
+> > previous patch would be used.
+>=20
+> The practice I follow is to keep the DRM core and driver changes in
+> separate patches. At least one reason for that is that the DRM core
+> patches may need to be applied to the DRM core trees separately.
 
-We use forcewake to prevent the SoC from actually entering
-PC8 while performing the PC8 disable sequence. Hide that
-behind a new parent interface to eliminate the naked
-forcewake/uncore usage from the display power code.
+Oh, of course, makes 100% sense.  I overlooked this point.
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/Makefile                 |  1 +
- .../drm/i915/display/intel_display_power.c    |  8 ++---
- drivers/gpu/drm/i915/display/intel_parent.c   | 10 +++++++
- drivers/gpu/drm/i915/display/intel_parent.h   |  3 ++
- drivers/gpu/drm/i915/i915_display_pc8.c       | 30 +++++++++++++++++++
- drivers/gpu/drm/i915/i915_display_pc8.h       |  9 ++++++
- drivers/gpu/drm/i915/i915_driver.c            |  2 ++
- include/drm/intel/display_parent_interface.h  |  8 +++++
- 8 files changed, 67 insertions(+), 4 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/i915_display_pc8.c
- create mode 100644 drivers/gpu/drm/i915/i915_display_pc8.h
-
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 175bd99e1d0d..b57e51d626b1 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -76,6 +76,7 @@ i915-$(CONFIG_PERF_EVENTS) += \
- 
- # core display adaptation
- i915-y += \
-+	i915_display_pc8.o \
- 	i915_hdcp_gsc.o
- 
- # "Graphics Technology" (aka we talk to the gpu)
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 9f323c39d798..47042a4c3a30 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -1339,10 +1339,10 @@ static void hsw_restore_lcpll(struct intel_display *display)
- 		return;
- 
- 	/*
--	 * Make sure we're not on PC8 state before disabling PC8, otherwise
--	 * we'll hang the machine. To prevent PC8 state, just enable force_wake.
-+	 * Make sure we're not on PC8 state before disabling
-+	 * PC8, otherwise we'll hang the machine.
- 	 */
--	intel_uncore_forcewake_get(&dev_priv->uncore, FORCEWAKE_ALL);
-+	intel_parent_pc8_block(display);
- 
- 	if (val & LCPLL_POWER_DOWN_ALLOW) {
- 		val &= ~LCPLL_POWER_DOWN_ALLOW;
-@@ -1372,7 +1372,7 @@ static void hsw_restore_lcpll(struct intel_display *display)
- 				"Switching back to LCPLL failed\n");
- 	}
- 
--	intel_uncore_forcewake_put(&dev_priv->uncore, FORCEWAKE_ALL);
-+	intel_parent_pc8_unblock(display);
- 
- 	intel_update_cdclk(display);
- 	intel_cdclk_dump_config(display, &display->cdclk.hw, "Current CDCLK");
-diff --git a/drivers/gpu/drm/i915/display/intel_parent.c b/drivers/gpu/drm/i915/display/intel_parent.c
-index 2ea310cc3509..9201d506c851 100644
---- a/drivers/gpu/drm/i915/display/intel_parent.c
-+++ b/drivers/gpu/drm/i915/display/intel_parent.c
-@@ -56,6 +56,16 @@ void intel_parent_irq_synchronize(struct intel_display *display)
- 	display->parent->irq->synchronize(display->drm);
- }
- 
-+void intel_parent_pc8_block(struct intel_display *display)
-+{
-+	display->parent->pc8->block(display->drm);
-+}
-+
-+void intel_parent_pc8_unblock(struct intel_display *display)
-+{
-+	display->parent->pc8->unblock(display->drm);
-+}
-+
- bool intel_parent_rps_available(struct intel_display *display)
- {
- 	return display->parent->rps;
-diff --git a/drivers/gpu/drm/i915/display/intel_parent.h b/drivers/gpu/drm/i915/display/intel_parent.h
-index 8f91a6f75c53..974a016ab3be 100644
---- a/drivers/gpu/drm/i915/display/intel_parent.h
-+++ b/drivers/gpu/drm/i915/display/intel_parent.h
-@@ -22,6 +22,9 @@ void intel_parent_hdcp_gsc_context_free(struct intel_display *display,
- bool intel_parent_irq_enabled(struct intel_display *display);
- void intel_parent_irq_synchronize(struct intel_display *display);
- 
-+void intel_parent_pc8_block(struct intel_display *display);
-+void intel_parent_pc8_unblock(struct intel_display *display);
-+
- bool intel_parent_rps_available(struct intel_display *display);
- void intel_parent_rps_boost_if_not_started(struct intel_display *display, struct dma_fence *fence);
- void intel_parent_rps_mark_interactive(struct intel_display *display, bool interactive);
-diff --git a/drivers/gpu/drm/i915/i915_display_pc8.c b/drivers/gpu/drm/i915/i915_display_pc8.c
-new file mode 100644
-index 000000000000..443935d282e3
---- /dev/null
-+++ b/drivers/gpu/drm/i915/i915_display_pc8.c
-@@ -0,0 +1,30 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright 2025, Intel Corporation.
-+ */
-+
-+#include <drm/drm_print.h>
-+#include <drm/intel/display_parent_interface.h>
-+
-+#include "i915_drv.h"
-+#include "intel_uncore.h"
-+
-+static void i915_display_pc8_block(struct drm_device *drm)
-+{
-+	struct intel_uncore *uncore = &to_i915(drm)->uncore;
-+
-+	/* to prevent PC8 state, just enable force_wake */
-+	intel_uncore_forcewake_get(uncore, FORCEWAKE_ALL);
-+}
-+
-+static void i915_display_pc8_unblock(struct drm_device *drm)
-+{
-+	struct intel_uncore *uncore = &to_i915(drm)->uncore;
-+
-+	intel_uncore_forcewake_put(uncore, FORCEWAKE_ALL);
-+}
-+
-+const struct intel_display_pc8_interface i915_display_pc8_interface = {
-+	.block = i915_display_pc8_block,
-+	.unblock = i915_display_pc8_unblock,
-+};
-diff --git a/drivers/gpu/drm/i915/i915_display_pc8.h b/drivers/gpu/drm/i915/i915_display_pc8.h
-new file mode 100644
-index 000000000000..717f313d2a21
---- /dev/null
-+++ b/drivers/gpu/drm/i915/i915_display_pc8.h
-@@ -0,0 +1,9 @@
-+/* SPDX-License-Identifier: MIT */
-+/* Copyright © 2025 Intel Corporation */
-+
-+#ifndef __I915_DISPLAY_PC8_H__
-+#define __I915_DISPLAY_PC8_H__
-+
-+extern const struct intel_display_pc8_interface i915_display_pc8_interface;
-+
-+#endif /* __I915_DISPLAY_PC8_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index d98839427ef9..723cb424b2ba 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -89,6 +89,7 @@
- #include "pxp/intel_pxp_pm.h"
- 
- #include "i915_debugfs.h"
-+#include "i915_display_pc8.h"
- #include "i915_driver.h"
- #include "i915_drm_client.h"
- #include "i915_drv.h"
-@@ -761,6 +762,7 @@ static const struct intel_display_parent_interface parent = {
- 	.hdcp = &i915_display_hdcp_interface,
- 	.rpm = &i915_display_rpm_interface,
- 	.irq = &i915_display_irq_interface,
-+	.pc8 = &i915_display_pc8_interface,
- 	.rps = &i915_display_rps_interface,
- 	.vgpu_active = vgpu_active,
- 	.has_fenced_regions = has_fenced_regions,
-diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/intel/display_parent_interface.h
-index 61d1b22adc83..af43b213eafa 100644
---- a/include/drm/intel/display_parent_interface.h
-+++ b/include/drm/intel/display_parent_interface.h
-@@ -41,6 +41,11 @@ struct intel_display_irq_interface {
- 	void (*synchronize)(struct drm_device *drm);
- };
- 
-+struct intel_display_pc8_interface {
-+	void (*block)(struct drm_device *drm);
-+	void (*unblock)(struct drm_device *drm);
-+};
-+
- struct intel_display_rps_interface {
- 	void (*boost_if_not_started)(struct dma_fence *fence);
- 	void (*mark_interactive)(struct drm_device *drm, bool interactive);
-@@ -69,6 +74,9 @@ struct intel_display_parent_interface {
- 	/** @irq: IRQ interface */
- 	const struct intel_display_irq_interface *irq;
- 
-+	/** @pc8: PC8 interface */
-+	const struct intel_display_pc8_interface *pc8;
-+
- 	/** @rpm: RPS interface. Optional. */
- 	const struct intel_display_rps_interface *rps;
- 
--- 
-2.51.2
-
+--
+Cheers,
+Luca.
