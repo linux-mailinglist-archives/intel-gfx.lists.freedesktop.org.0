@@ -2,52 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E565CAFD7A
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Dec 2025 13:00:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62E62CAFE0A
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Dec 2025 13:13:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83D9A10E086;
-	Tue,  9 Dec 2025 12:00:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4F2310E532;
+	Tue,  9 Dec 2025 12:13:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Mi+A3qIx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O6id0bRX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC5CC10E086;
- Tue,  9 Dec 2025 12:00:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=tfJlFpXrx8uZTFsLV7jzG9dwjgvhwiYY7C789DLX5pk=; b=Mi+A3qIxt3y0MH2KLf5BbtvcZQ
- GDMat6SHUepoeiFr2FsfFmdgFW7B34+RMe987iPWBvkW/uDM9zUZ5OWVU1cLN/BHSUNQau3jPOTxG
- QyMlXmZA8uIraS+e3+gO8Gr0axP8WSILRUtYOUxz2dhp+FnTUKOe+EeRl9VRgtHeJouG8KKKSm1NB
- 8XNktyuq6RLv+dR6pjlyvPcaj9q/eFH8QW1eBTIV2LYFEVKMzelZEcLDopYIJ/sozis3YeY72rGf6
- aeR+B8W/WnduqQLkuXOmDQtdtsdJLqEm8NrS/4Bc7LowQzYOJ/baCM+ORqHwEnmMx/e2qDT8dp0zn
- t5Iht2Yw==;
-Received: from [86.33.28.86] (helo=localhost)
- by fanzine2.igalia.com with utf8esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vSwOS-00AUR4-V1; Tue, 09 Dec 2025 13:00:37 +0100
-From: Tvrtko Ursulin <tursulin@igalia.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
- Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Subject: [PATCH] drm/i915/display: Detect AuxCCS support via display parent
- interface
-Date: Tue,  9 Dec 2025 13:00:34 +0100
-Message-ID: <20251209120034.9143-1-tursulin@igalia.com>
-X-Mailer: git-send-email 2.52.0
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A920F10E527;
+ Tue,  9 Dec 2025 12:13:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1765282432; x=1796818432;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=kh6HYTm74cdOtpmOoOXIF0/xMyumcv5bGmTHKKglhuI=;
+ b=O6id0bRX+BDRhyv6yC6BFo+HI7OtX4qiezd8HK4JeMt6DwfIIUwuaB71
+ McqoXoJ8PHbxP+a8ktAG6mRITj/VX4MRvZ5neQK7A0MyHb4+n+3nLYQR0
+ X+ab8kd3AbwM13BAWzz4QuZhQOaGo5PCeIxzq1WDB7bMQ+OzbZ4t/HgXN
+ LZQipHcqgZb1GpxupHkzRFvAKLcM8KZK/IvQBUggpghxuEhHb8uyTaE7D
+ 4IygRiGdwU/DuCv/2wXo0l31qhAw2nSPAmTxIEkp8LjY7KX8Kfgy2zYWw
+ a/kAq+X6RwyTjuXu7s0qMyccYmpvJLbUXzzv6LPs67Rd2m5dPE93yH2eh w==;
+X-CSE-ConnectionGUID: +4Knk2F1TtePC9mVGE0oWw==
+X-CSE-MsgGUID: MsjAgF4OS+CIUAWs/Whbbg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="92712093"
+X-IronPort-AV: E=Sophos;i="6.20,261,1758610800"; d="scan'208";a="92712093"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2025 04:13:52 -0800
+X-CSE-ConnectionGUID: QgEimjDuRqu9vtYg0UgREQ==
+X-CSE-MsgGUID: 2LL7H1t2Thec/d+xtqJSQQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,261,1758610800"; d="scan'208";a="195981247"
+Received: from mwiniars-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.154])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2025 04:13:51 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/pc8: Add parent interface for PC8 forcewake
+ tricks
+In-Reply-To: <20251209111150.16853-1-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251209111150.16853-1-ville.syrjala@linux.intel.com>
+Date: Tue, 09 Dec 2025 14:13:47 +0200
+Message-ID: <1d8e29c0684013d60529c28247ee6b4ce4510901@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,183 +71,237 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+On Tue, 09 Dec 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> We use forcewake to prevent the SoC from actually entering
+> PC8 while performing the PC8 disable sequence. Hide that
+> behind a new parent interface to eliminate the naked
+> forcewake/uncore usage from the display power code.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/Makefile                 |  1 +
+>  .../drm/i915/display/intel_display_power.c    |  8 ++---
+>  drivers/gpu/drm/i915/display/intel_parent.c   | 10 +++++++
+>  drivers/gpu/drm/i915/display/intel_parent.h   |  3 ++
+>  drivers/gpu/drm/i915/i915_display_pc8.c       | 30 +++++++++++++++++++
+>  drivers/gpu/drm/i915/i915_display_pc8.h       |  9 ++++++
+>  drivers/gpu/drm/i915/i915_driver.c            |  2 ++
+>  include/drm/intel/display_parent_interface.h  |  8 +++++
+>  8 files changed, 67 insertions(+), 4 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/i915_display_pc8.c
+>  create mode 100644 drivers/gpu/drm/i915/i915_display_pc8.h
+>
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 175bd99e1d0d..b57e51d626b1 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -76,6 +76,7 @@ i915-$(CONFIG_PERF_EVENTS) +=3D \
+>=20=20
+>  # core display adaptation
+>  i915-y +=3D \
+> +	i915_display_pc8.o \
+>  	i915_hdcp_gsc.o
+>=20=20
+>  # "Graphics Technology" (aka we talk to the gpu)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers=
+/gpu/drm/i915/display/intel_display_power.c
+> index 9f323c39d798..47042a4c3a30 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -1339,10 +1339,10 @@ static void hsw_restore_lcpll(struct intel_displa=
+y *display)
+>  		return;
+>=20=20
+>  	/*
+> -	 * Make sure we're not on PC8 state before disabling PC8, otherwise
+> -	 * we'll hang the machine. To prevent PC8 state, just enable force_wake.
+> +	 * Make sure we're not on PC8 state before disabling
+> +	 * PC8, otherwise we'll hang the machine.
+>  	 */
+> -	intel_uncore_forcewake_get(&dev_priv->uncore, FORCEWAKE_ALL);
+> +	intel_parent_pc8_block(display);
+>=20=20
+>  	if (val & LCPLL_POWER_DOWN_ALLOW) {
+>  		val &=3D ~LCPLL_POWER_DOWN_ALLOW;
+> @@ -1372,7 +1372,7 @@ static void hsw_restore_lcpll(struct intel_display =
+*display)
+>  				"Switching back to LCPLL failed\n");
+>  	}
+>=20=20
+> -	intel_uncore_forcewake_put(&dev_priv->uncore, FORCEWAKE_ALL);
+> +	intel_parent_pc8_unblock(display);
+>=20=20
+>  	intel_update_cdclk(display);
+>  	intel_cdclk_dump_config(display, &display->cdclk.hw, "Current CDCLK");
+> diff --git a/drivers/gpu/drm/i915/display/intel_parent.c b/drivers/gpu/dr=
+m/i915/display/intel_parent.c
+> index 2ea310cc3509..9201d506c851 100644
+> --- a/drivers/gpu/drm/i915/display/intel_parent.c
+> +++ b/drivers/gpu/drm/i915/display/intel_parent.c
+> @@ -56,6 +56,16 @@ void intel_parent_irq_synchronize(struct intel_display=
+ *display)
+>  	display->parent->irq->synchronize(display->drm);
+>  }
+>=20=20
+> +void intel_parent_pc8_block(struct intel_display *display)
+> +{
+> +	display->parent->pc8->block(display->drm);
+> +}
+> +
+> +void intel_parent_pc8_unblock(struct intel_display *display)
+> +{
+> +	display->parent->pc8->unblock(display->drm);
+> +}
 
-Whether AuxCCS can be properly supported depends on the support both from
-the display side and non-display side of the driver.
+I think I'd like either:
 
-Let us therefore allow for the non-display part to be queried via the
-display parent interface.
+- A substruct is mandatory, always initialized by parent, will never be
+  NULL, and there are no checks here.
 
-The new interface replaces the HAS_AUX_CCS macro and we also remove the
-FIXME from skl_universal_plane_create since now the xe will not advertise
-the AuxCCS caps to start with so they do not need to be removed after
-enumeration.
+- A substruct is optional, may be initialized by parent, may be NULL,
+  and there's a NULL check here.
 
-Also, by removing this build specific FIXME we come a step closer to fully
-de-coupling display and non-display.
+I think it makes the interface easier to reason about. Even if I
+understand that this particular interface will only be called for
+platforms supported by i915.
 
-The existing HAS_AUX_CCS gets renamed to HAS_AUX_DIST since it is still
-required for determining the need for PLANE_AUX_DIST programming.
+So this should have the display->parent->pc8 !=3D NULL check, and
+"optional" mentioned in display_parent_interface.h.
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
-Cc: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Acked-by: Jani Nikula <jani.nikula@intel.com> # v1
----
-v2:
- * Rename HAS_AUX_CCS to HAS_AUX_DIST and keep using for PLANE_AUX_DIST
-   programming. (Ville)
----
- drivers/gpu/drm/i915/display/intel_display_device.h |  2 +-
- drivers/gpu/drm/i915/display/intel_fb.c             |  3 ++-
- drivers/gpu/drm/i915/display/intel_parent.c         |  5 +++++
- drivers/gpu/drm/i915/display/intel_parent.h         |  2 ++
- drivers/gpu/drm/i915/display/skl_universal_plane.c  |  9 ++-------
- drivers/gpu/drm/i915/i915_driver.c                  | 10 ++++++++++
- include/drm/intel/display_parent_interface.h        |  3 +++
- 7 files changed, 25 insertions(+), 9 deletions(-)
+> +
+>  bool intel_parent_rps_available(struct intel_display *display)
+>  {
+>  	return display->parent->rps;
+> diff --git a/drivers/gpu/drm/i915/display/intel_parent.h b/drivers/gpu/dr=
+m/i915/display/intel_parent.h
+> index 8f91a6f75c53..974a016ab3be 100644
+> --- a/drivers/gpu/drm/i915/display/intel_parent.h
+> +++ b/drivers/gpu/drm/i915/display/intel_parent.h
+> @@ -22,6 +22,9 @@ void intel_parent_hdcp_gsc_context_free(struct intel_di=
+splay *display,
+>  bool intel_parent_irq_enabled(struct intel_display *display);
+>  void intel_parent_irq_synchronize(struct intel_display *display);
+>=20=20
+> +void intel_parent_pc8_block(struct intel_display *display);
+> +void intel_parent_pc8_unblock(struct intel_display *display);
+> +
+>  bool intel_parent_rps_available(struct intel_display *display);
+>  void intel_parent_rps_boost_if_not_started(struct intel_display *display=
+, struct dma_fence *fence);
+>  void intel_parent_rps_mark_interactive(struct intel_display *display, bo=
+ol interactive);
+> diff --git a/drivers/gpu/drm/i915/i915_display_pc8.c b/drivers/gpu/drm/i9=
+15/i915_display_pc8.c
+> new file mode 100644
+> index 000000000000..443935d282e3
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/i915_display_pc8.c
+> @@ -0,0 +1,30 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright 2025, Intel Corporation.
+> + */
+> +
+> +#include <drm/drm_print.h>
+> +#include <drm/intel/display_parent_interface.h>
+> +
+> +#include "i915_drv.h"
+> +#include "intel_uncore.h"
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 11c2b2883f35..50b2e9ae2c18 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -149,7 +149,7 @@ struct intel_display_platforms {
- #define HAS_4TILE(__display)		((__display)->platform.dg2 || DISPLAY_VER(__display) >= 14)
- #define HAS_ASYNC_FLIPS(__display)	(DISPLAY_VER(__display) >= 5)
- #define HAS_AS_SDP(__display)		(DISPLAY_VER(__display) >= 13)
--#define HAS_AUX_CCS(__display)		(IS_DISPLAY_VER(__display, 9, 12) || (__display)->platform.alderlake_p || (__display)->platform.meteorlake)
-+#define HAS_AUX_DIST(__display)		(IS_DISPLAY_VER(__display, 9, 12) || (__display)->platform.alderlake_p || (__display)->platform.meteorlake)
- #define HAS_BIGJOINER(__display)	(DISPLAY_VER(__display) >= 11 && HAS_DSC(__display))
- #define HAS_CASF(__display)		(DISPLAY_VER(__display) >= 20)
- #define HAS_CDCLK_CRAWL(__display)	(DISPLAY_INFO(__display)->has_cdclk_crawl)
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index b34b4961fe1c..5b8e02ca2faf 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -21,6 +21,7 @@
- #include "intel_fb_bo.h"
- #include "intel_frontbuffer.h"
- #include "intel_panic.h"
-+#include "intel_parent.h"
- #include "intel_plane.h"
- 
- #define check_array_bounds(display, a, i) drm_WARN_ON((display)->drm, (i) >= ARRAY_SIZE(a))
-@@ -558,7 +559,7 @@ static bool plane_has_modifier(struct intel_display *display,
- 	 * where supported.
- 	 */
- 	if (intel_fb_is_ccs_modifier(md->modifier) &&
--	    HAS_AUX_CCS(display) != !!md->ccs.packed_aux_planes)
-+	    intel_parent_has_auxccs(display) != !!md->ccs.packed_aux_planes)
- 		return false;
- 
- 	if (md->modifier == I915_FORMAT_MOD_4_TILED_BMG_CCS &&
-diff --git a/drivers/gpu/drm/i915/display/intel_parent.c b/drivers/gpu/drm/i915/display/intel_parent.c
-index 2ea310cc3509..7a55def19836 100644
---- a/drivers/gpu/drm/i915/display/intel_parent.c
-+++ b/drivers/gpu/drm/i915/display/intel_parent.c
-@@ -94,3 +94,8 @@ void intel_parent_fence_priority_display(struct intel_display *display, struct d
- 	if (display->parent->fence_priority_display)
- 		display->parent->fence_priority_display(fence);
- }
-+
-+bool intel_parent_has_auxccs(struct intel_display *display)
-+{
-+	return display->parent->has_auxccs && display->parent->has_auxccs(display->drm);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_parent.h b/drivers/gpu/drm/i915/display/intel_parent.h
-index 8f91a6f75c53..f34ee81ed7a1 100644
---- a/drivers/gpu/drm/i915/display/intel_parent.h
-+++ b/drivers/gpu/drm/i915/display/intel_parent.h
-@@ -33,4 +33,6 @@ bool intel_parent_has_fenced_regions(struct intel_display *display);
- 
- void intel_parent_fence_priority_display(struct intel_display *display, struct dma_fence *fence);
- 
-+bool intel_parent_has_auxccs(struct intel_display *display);
-+
- #endif /* __INTEL_PARENT_H__ */
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 6cd94f400e3f..40148d225410 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -22,6 +22,7 @@
- #include "intel_fbc.h"
- #include "intel_frontbuffer.h"
- #include "intel_panic.h"
-+#include "intel_parent.h"
- #include "intel_plane.h"
- #include "intel_psr.h"
- #include "intel_psr_regs.h"
-@@ -1602,7 +1603,7 @@ icl_plane_update_noarm(struct intel_dsb *dsb,
- 	}
- 
- 	/* FLAT CCS doesn't need to program AUX_DIST */
--	if (HAS_AUX_CCS(display))
-+	if (HAS_AUX_DIST(display))
- 		intel_de_write_dsb(display, dsb, PLANE_AUX_DIST(pipe, plane_id),
- 				   skl_plane_aux_dist(plane_state, color_plane));
- 
-@@ -2972,12 +2973,6 @@ skl_universal_plane_create(struct intel_display *display,
- 	else
- 		caps = skl_plane_caps(display, pipe, plane_id);
- 
--	/* FIXME: xe has problems with AUX */
--	if (!IS_ENABLED(I915) && HAS_AUX_CCS(display))
--		caps &= ~(INTEL_PLANE_CAP_CCS_RC |
--			  INTEL_PLANE_CAP_CCS_RC_CC |
--			  INTEL_PLANE_CAP_CCS_MC);
--
- 	modifiers = intel_fb_plane_get_modifiers(display, caps);
- 
- 	ret = drm_universal_plane_init(display->drm, &plane->base,
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index d98839427ef9..59e396a74ca4 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -757,6 +757,15 @@ static void fence_priority_display(struct dma_fence *fence)
- 		i915_gem_fence_wait_priority_display(fence);
- }
- 
-+static bool has_auxccs(struct drm_device *drm)
-+{
-+	struct drm_i915_private *i915 = to_i915(drm);
-+
-+	return IS_GRAPHICS_VER(i915, 9, 12) ||
-+	       IS_ALDERLAKE_P(i915) ||
-+	       IS_METEORLAKE(i915);
-+}
-+
- static const struct intel_display_parent_interface parent = {
- 	.hdcp = &i915_display_hdcp_interface,
- 	.rpm = &i915_display_rpm_interface,
-@@ -765,6 +774,7 @@ static const struct intel_display_parent_interface parent = {
- 	.vgpu_active = vgpu_active,
- 	.has_fenced_regions = has_fenced_regions,
- 	.fence_priority_display = fence_priority_display,
-+	.has_auxccs = has_auxccs,
- };
- 
- const struct intel_display_parent_interface *i915_driver_parent_interface(void)
-diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/intel/display_parent_interface.h
-index 61d1b22adc83..0d79f3c189c3 100644
---- a/include/drm/intel/display_parent_interface.h
-+++ b/include/drm/intel/display_parent_interface.h
-@@ -80,6 +80,9 @@ struct intel_display_parent_interface {
- 
- 	/** @fence_priority_display: Set display priority. Optional. */
- 	void (*fence_priority_display)(struct dma_fence *fence);
-+
-+	/** @has_auxcss: Are AuxCCS formats supported by the parent. Optional. */
-+	bool (*has_auxccs)(struct drm_device *drm);
- };
- 
- #endif
--- 
-2.52.0
+For completeness, I think this should include i915_display_pc8.h. I'm a
+bit surprised the compilers only warn about non-static functions without
+declarations, not about non-static variables.
 
+> +
+> +static void i915_display_pc8_block(struct drm_device *drm)
+> +{
+> +	struct intel_uncore *uncore =3D &to_i915(drm)->uncore;
+> +
+> +	/* to prevent PC8 state, just enable force_wake */
+> +	intel_uncore_forcewake_get(uncore, FORCEWAKE_ALL);
+> +}
+> +
+> +static void i915_display_pc8_unblock(struct drm_device *drm)
+> +{
+> +	struct intel_uncore *uncore =3D &to_i915(drm)->uncore;
+> +
+> +	intel_uncore_forcewake_put(uncore, FORCEWAKE_ALL);
+> +}
+> +
+> +const struct intel_display_pc8_interface i915_display_pc8_interface =3D {
+> +	.block =3D i915_display_pc8_block,
+> +	.unblock =3D i915_display_pc8_unblock,
+> +};
+> diff --git a/drivers/gpu/drm/i915/i915_display_pc8.h b/drivers/gpu/drm/i9=
+15/i915_display_pc8.h
+> new file mode 100644
+> index 000000000000..717f313d2a21
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/i915_display_pc8.h
+> @@ -0,0 +1,9 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/* Copyright =C2=A9 2025 Intel Corporation */
+> +
+> +#ifndef __I915_DISPLAY_PC8_H__
+> +#define __I915_DISPLAY_PC8_H__
+> +
+> +extern const struct intel_display_pc8_interface i915_display_pc8_interfa=
+ce;
+> +
+> +#endif /* __I915_DISPLAY_PC8_H__ */
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i9=
+15_driver.c
+> index d98839427ef9..723cb424b2ba 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -89,6 +89,7 @@
+>  #include "pxp/intel_pxp_pm.h"
+>=20=20
+>  #include "i915_debugfs.h"
+> +#include "i915_display_pc8.h"
+>  #include "i915_driver.h"
+>  #include "i915_drm_client.h"
+>  #include "i915_drv.h"
+> @@ -761,6 +762,7 @@ static const struct intel_display_parent_interface pa=
+rent =3D {
+>  	.hdcp =3D &i915_display_hdcp_interface,
+>  	.rpm =3D &i915_display_rpm_interface,
+>  	.irq =3D &i915_display_irq_interface,
+> +	.pc8 =3D &i915_display_pc8_interface,
+>  	.rps =3D &i915_display_rps_interface,
+>  	.vgpu_active =3D vgpu_active,
+>  	.has_fenced_regions =3D has_fenced_regions,
+> diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/i=
+ntel/display_parent_interface.h
+> index 61d1b22adc83..af43b213eafa 100644
+> --- a/include/drm/intel/display_parent_interface.h
+> +++ b/include/drm/intel/display_parent_interface.h
+> @@ -41,6 +41,11 @@ struct intel_display_irq_interface {
+>  	void (*synchronize)(struct drm_device *drm);
+>  };
+>=20=20
+> +struct intel_display_pc8_interface {
+> +	void (*block)(struct drm_device *drm);
+> +	void (*unblock)(struct drm_device *drm);
+> +};
+> +
+>  struct intel_display_rps_interface {
+>  	void (*boost_if_not_started)(struct dma_fence *fence);
+>  	void (*mark_interactive)(struct drm_device *drm, bool interactive);
+> @@ -69,6 +74,9 @@ struct intel_display_parent_interface {
+>  	/** @irq: IRQ interface */
+>  	const struct intel_display_irq_interface *irq;
+>=20=20
+> +	/** @pc8: PC8 interface */
+
+I think this should have "Optional" in there.
+
+> +	const struct intel_display_pc8_interface *pc8;
+> +
+>  	/** @rpm: RPS interface. Optional. */
+>  	const struct intel_display_rps_interface *rps;
+
+--=20
+Jani Nikula, Intel
