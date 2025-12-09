@@ -2,59 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6166CAF390
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Dec 2025 08:55:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C591CAF3AD
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Dec 2025 09:01:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DDE810E48D;
-	Tue,  9 Dec 2025 07:55:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA6F210E48B;
+	Tue,  9 Dec 2025 08:01:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n69H1H8n";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PjjbE9ho";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E1CD10E130;
- Tue,  9 Dec 2025 07:55:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71E7510E48B
+ for <intel-gfx@lists.freedesktop.org>; Tue,  9 Dec 2025 08:01:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765266954; x=1796802954;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=A1HIcdmWtfzAS7KpurWrGbFWv6G4WU0ghfbCpDlh3hE=;
- b=n69H1H8nMQc/mJKo3C78x3jnm7qppTIdXfQmz+GN0vBFRY9JWfXP2D1o
- /LVtE95ZtFppqAz51x3vEMEgAQ1h9RSw4z1rRQW+Qda4lZXfgTpJfoDtX
- 8RR6t0oz7hbPsE7pjD5eQ+w03/svXTVe5laX9D6qZCpQC0CEYUW9DV9ns
- mIYAWveSWgpXLZimE2e1ILLwES1VVBAu7bmjMnt/PSjEDscm5GwMTG2cB
- 16AsA3y50NVtC0jXSiZAuzHQqNZmH/Svbb92Sit7x9s3oNnWHMz91aCX8
- e51EpML/uBoE0Na7oyyKLwKoa1I3In79qEWmQ/2DYedB/QoZuxHBbgMKF w==;
-X-CSE-ConnectionGUID: awHbVfwKTVm8/2Z/RWNynQ==
-X-CSE-MsgGUID: 6nzwv2eTRCiNCvbkb7hisQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11636"; a="54760899"
-X-IronPort-AV: E=Sophos;i="6.20,260,1758610800"; d="scan'208";a="54760899"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2025 23:55:53 -0800
-X-CSE-ConnectionGUID: PJkouwWZSJSPp2YwcBQ0nw==
-X-CSE-MsgGUID: XkInklW/RQSPyvXaLOQBYA==
+ t=1765267260; x=1796803260;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=0i0t+fXtrR742ErZR9sdstAyycvG7rjQvub61Y3IxLw=;
+ b=PjjbE9hoBTSG8NxoCiqK7y+VjXZCMw5iMEjRY5NVG5IbGaHcEOc13oFc
+ P7XWd9YqsreQ2GRvksqAwu8f+qiB+EKjtFRMbCNAK+yF62RpgB59d0rTQ
+ 0h3dA+VZPO4PwsBDWrIQSnmUZS9Q5H0WXl1CSko64IARlKdhhbp8xexl0
+ ixfCUdWbrpxJwz4Est2yjN5JCgIhq4/vLdG/b4ZX2Jxj1ulPRA0ppTBBn
+ zJbeesPalQC9Cq2GYxqbl2q7uI5iB+KHFe64EAyceAaDe7O2hN/hLAgeC
+ iUMZroKScdri2Wk2N0utIll8YWb+jBCA5DcgP942gsL8uPNINUGuZ4kl/ w==;
+X-CSE-ConnectionGUID: ycTD54O7Q2u6prqg2D6BtQ==
+X-CSE-MsgGUID: rYjXNN7jSiSYQ1g0ASy67g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11636"; a="84627316"
+X-IronPort-AV: E=Sophos;i="6.20,260,1758610800"; d="scan'208";a="84627316"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2025 00:00:59 -0800
+X-CSE-ConnectionGUID: igrm1nvVRruEpw/M4157pA==
+X-CSE-MsgGUID: 6N8G6sR+RO6VMAysMof6ng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,260,1758610800"; d="scan'208";a="196449741"
+X-IronPort-AV: E=Sophos;i="6.20,260,1758610800"; d="scan'208";a="200602719"
 Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.245.89])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2025 23:55:51 -0800
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, Helge Deller <deller@gmx.de>,
- linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH v2 14/19] video/vga: Add VGA_IS0_R
-Date: Tue,  9 Dec 2025 09:55:49 +0200
-Message-ID: <20251209075549.14051-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.51.2
-In-Reply-To: <20251208182637.334-15-ville.syrjala@linux.intel.com>
-References: <20251208182637.334-15-ville.syrjala@linux.intel.com>
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2025 00:00:58 -0800
+Date: Tue, 9 Dec 2025 10:00:55 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Krzysztof Karas <krzysztof.karas@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: Re: [PATCH v5 3/3] drm: Avoid undefined behavior on u16
+ multiplication in drm_crtc_vblank_helper_get_vblank_timestamp_internal()
+Message-ID: <aTfXN-N8apskuGLE@intel.com>
+References: <20251204143827.111428-1-krzysztof.karas@intel.com>
+ <20251204143827.111428-4-krzysztof.karas@intel.com>
+ <aTcHvk1QhPNfKT89@intel.com>
+ <rn5ehfx4ujqwm3kbu3ryvtayinmmfbgdzaithxbkrrsg2onbco@nw4bkwywhrws>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <rn5ehfx4ujqwm3kbu3ryvtayinmmfbgdzaithxbkrrsg2onbco@nw4bkwywhrws>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,35 +77,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
+On Tue, Dec 09, 2025 at 07:47:09AM +0000, Krzysztof Karas wrote:
+> Hi Ville,
+> 
+> On 2025-12-08 at 19:15:42 +0200, Ville Syrj‰l‰ wrote:
+> > On Thu, Dec 04, 2025 at 02:38:27PM +0000, Krzysztof Karas wrote:
+> > > vpos (int) field multiplied by crtc_htotal (u16) may cause
+> > > implicit promotion of the latter and overflow the result causing
+> > > undefined behavior.
+> > 
+> > How is that undefined?
+> Good question. It is well defined in C standard to wrap silently
+> to fit in the new type, so operations may complete. I think this
+> might have been caused by working with static analyzer at the
+> time, which imprinted word "undefined" in my brain, so it made
+> sense to use it here as well.
+> 
+> I believe "unexpected" may better describe the problem.
+> I'll change that in the v6 of this series.
 
-Add a proper name for the "Input status register 0" IO address.
-Currently we have some code that does read addressed using the
-aliasing VGA_MSR_W define, making it unclear what register we're
-actually reading.
+If you really want it then at least make it a (int) to match the 
+other types in the expression. But personally I'd just drop the whole
+thing since this is just normal C, and this does nothing to avoid any
+overflows (which there won't be anyway unless some other code is super
+buggy and returns nonsense hpos/vpos values).
 
-v2: Remove stray '?'
-
-Cc: Helge Deller <deller@gmx.de>
-Cc: linux-fbdev@vger.kernel.org
-Cc: dri-devel@lists.freedesktop.org
-Signed-off-by: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
----
- include/video/vga.h | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/include/video/vga.h b/include/video/vga.h
-index 468764d6727a..2f13c371800b 100644
---- a/include/video/vga.h
-+++ b/include/video/vga.h
-@@ -46,6 +46,7 @@
- #define VGA_MIS_R   	0x3CC	/* Misc Output Read Register */
- #define VGA_MIS_W   	0x3C2	/* Misc Output Write Register */
- #define VGA_FTC_R	0x3CA	/* Feature Control Read Register */
-+#define VGA_IS0_R	0x3C2	/* Input Status Register 0 */
- #define VGA_IS1_RC  	0x3DA	/* Input Status Register 1 - color emulation */
- #define VGA_IS1_RM  	0x3BA	/* Input Status Register 1 - mono emulation */
- #define VGA_PEL_D   	0x3C9	/* PEL Data Register */
 -- 
-2.51.2
-
+Ville Syrj‰l‰
+Intel
