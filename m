@@ -2,63 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 841BCCAFE32
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Dec 2025 13:17:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3278CAFE89
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Dec 2025 13:23:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B3FB10E53D;
-	Tue,  9 Dec 2025 12:17:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63AC910E527;
+	Tue,  9 Dec 2025 12:23:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HIkNes1e";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="leqeUdhY";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AEAC910E537;
- Tue,  9 Dec 2025 12:17:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3502410E1D4;
+ Tue,  9 Dec 2025 12:23:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765282641; x=1796818641;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=aQAZdDtZrbRRFTEcTyZCSchEVdmGdZghUlwq74MIjxg=;
- b=HIkNes1e4pwFUvjhq/G+W/bmaKcuVGk0xwoIl65EeKMlQPGjNSKSBVrw
- awrGSgZ+Pmm1kBOOR74yPSpEJk1xedSjVQHfbWy8u0EbWWPd2FxWlsfyi
- 0MqbSGnp2Tzm1ySFqdz/wXg6Hre+7Edmo3krL2foZjFwaO3rcYsZ0DZaf
- iQhkkbKiYb418YN178pFuF6ouGatiUYuSI0VbwWsIAk0Aghv4eWhODKOs
- f1ToFswCDl1yUM48bHwhzq0J4EED9hwZEauSOzrenkfR6U33Eaf5qREvY
- JqesuNSexQDljhdq8I3pxfuRnnsmi3IcrcYwJe2mMH9g5N90ZoZbGQZKr A==;
-X-CSE-ConnectionGUID: XLhk1/yXTtyeFeIVAV4Kdw==
-X-CSE-MsgGUID: DEuCUCxWQCKg2WzhG/7JXg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="67313637"
-X-IronPort-AV: E=Sophos;i="6.20,261,1758610800"; d="scan'208";a="67313637"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 04:17:21 -0800
-X-CSE-ConnectionGUID: jWZrKqyuSAKPVpsziV3afA==
-X-CSE-MsgGUID: SxJ7SO7dTgqn0ucIKR/x/A==
+ t=1765283001; x=1796819001;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=d8g17ZYzvzf1n8aZ9+joBLZXwI+hnPAIEpuRgYc3+R4=;
+ b=leqeUdhYHj2JGfZm2ralt0naYaADPb4a8vNTIcYGXYMMpV/KTbgLYow1
+ YSnzNsOIn4ZdFKU/HOo6fDMGUm+FyUyUQ71pxObjuLDVIH6Sg+TEiZSly
+ qZ/+eh1T/PIOJW/VVQSs9nNoaMXRyuOVxkczd3+7OKb3zfiKqxVdDxa9K
+ PUhQmcD3TtQWFBiT4gap+V6V3WtREeczYf3uJH3kcsw0h8NgXSv81o2F/
+ Oll8xXhj9jbuT3eHLSCC/VzmU93Dp6gZytVuEHe+6G6YvF7xsRP/zUD8a
+ MBixmvxAxBTRMgwB+/ok96ishg/WNJJDOe+oMgRMaadF1eLd13l2xiTZC g==;
+X-CSE-ConnectionGUID: TAdIv8RWTg+79vmU+jY+ZQ==
+X-CSE-MsgGUID: 0J+geZDVTWKc3uqOuviPag==
+X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="71083538"
+X-IronPort-AV: E=Sophos;i="6.20,261,1758610800"; d="scan'208";a="71083538"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2025 04:23:20 -0800
+X-CSE-ConnectionGUID: 1OjCR6IgSrWZku8fTZfz5w==
+X-CSE-MsgGUID: AStveApoTg639QtEqMrx6A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,261,1758610800"; d="scan'208";a="233595349"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.245.194])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 04:17:20 -0800
-Date: Tue, 9 Dec 2025 14:17:16 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 07/19] drm/i915/vga: Avoid VGA arbiter during
- intel_vga_disable() for iGPUs
-Message-ID: <aTgTTD7Yha80zRmy@intel.com>
-References: <20251208182637.334-1-ville.syrjala@linux.intel.com>
- <20251208182637.334-8-ville.syrjala@linux.intel.com>
- <753969c83db9890a3556088630c9f079c584280a@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <753969c83db9890a3556088630c9f079c584280a@intel.com>
-X-Patchwork-Hint: comment
+X-IronPort-AV: E=Sophos;i="6.20,261,1758610800"; d="scan'208";a="226881518"
+Received: from mwiniars-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.154])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2025 04:23:19 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/pc8: Add parent interface for PC8 forcewake
+ tricks
+In-Reply-To: <1d8e29c0684013d60529c28247ee6b4ce4510901@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251209111150.16853-1-ville.syrjala@linux.intel.com>
+ <1d8e29c0684013d60529c28247ee6b4ce4510901@intel.com>
+Date: Tue, 09 Dec 2025 14:23:16 +0200
+Message-ID: <ef28f6205ab5973ec7fe5c771b4037fbebdc9ec8@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,130 +72,266 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Dec 09, 2025 at 12:35:15PM +0200, Jani Nikula wrote:
-> On Mon, 08 Dec 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > Avoid using the VGA arbiter during intel_vga_get() for iGPUs because
-> > that will clobber the VGA routing for whatever external GPU is the
-> > current VGA device. That will cause all reads from VGA memory to
-> > come back as 0xff/white, and thus we get a white rectangle on screen
-> > when the external GPU switches from vgacon to fbcon.
-> >
-> > The iGPU has the highest VGA decode priority so it will steal all
-> > VGA register accesses whenever its IO decoding is enabled. We'll only
-> > keep the IO decode enabled for a short time so hopefully we don't
-> > end up eating too many unrelated VGA register accesses.
-> >
-> > For discrete GPUs we need all the bridges to have their VGA forwarding
-> > bits correctly configured so we can't really avoid the VGA arbiter
-> > there. Although we only do this stuff on dGPUs when the VGA plane was
-> > actaully enabled, so the dGPU should be the current VGA device
-> > and thus have VGA routed to it already anyway.
-> >
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Again, I'll take your word for it.
-> 
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
+On Tue, 09 Dec 2025, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> On Tue, 09 Dec 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+>> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>>
+>> We use forcewake to prevent the SoC from actually entering
+>> PC8 while performing the PC8 disable sequence. Hide that
+>> behind a new parent interface to eliminate the naked
+>> forcewake/uncore usage from the display power code.
+>>
+>> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/Makefile                 |  1 +
+>>  .../drm/i915/display/intel_display_power.c    |  8 ++---
+>>  drivers/gpu/drm/i915/display/intel_parent.c   | 10 +++++++
+>>  drivers/gpu/drm/i915/display/intel_parent.h   |  3 ++
+>>  drivers/gpu/drm/i915/i915_display_pc8.c       | 30 +++++++++++++++++++
+>>  drivers/gpu/drm/i915/i915_display_pc8.h       |  9 ++++++
+>>  drivers/gpu/drm/i915/i915_driver.c            |  2 ++
+>>  include/drm/intel/display_parent_interface.h  |  8 +++++
+>>  8 files changed, 67 insertions(+), 4 deletions(-)
+>>  create mode 100644 drivers/gpu/drm/i915/i915_display_pc8.c
+>>  create mode 100644 drivers/gpu/drm/i915/i915_display_pc8.h
+>>
+>> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefi=
+le
+>> index 175bd99e1d0d..b57e51d626b1 100644
+>> --- a/drivers/gpu/drm/i915/Makefile
+>> +++ b/drivers/gpu/drm/i915/Makefile
+>> @@ -76,6 +76,7 @@ i915-$(CONFIG_PERF_EVENTS) +=3D \
+>>=20=20
+>>  # core display adaptation
+>>  i915-y +=3D \
+>> +	i915_display_pc8.o \
+>>  	i915_hdcp_gsc.o
+>>=20=20
+>>  # "Graphics Technology" (aka we talk to the gpu)
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/driver=
+s/gpu/drm/i915/display/intel_display_power.c
+>> index 9f323c39d798..47042a4c3a30 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+>> @@ -1339,10 +1339,10 @@ static void hsw_restore_lcpll(struct intel_displ=
+ay *display)
+>>  		return;
+>>=20=20
+>>  	/*
+>> -	 * Make sure we're not on PC8 state before disabling PC8, otherwise
+>> -	 * we'll hang the machine. To prevent PC8 state, just enable force_wak=
+e.
+>> +	 * Make sure we're not on PC8 state before disabling
+>> +	 * PC8, otherwise we'll hang the machine.
+>>  	 */
+>> -	intel_uncore_forcewake_get(&dev_priv->uncore, FORCEWAKE_ALL);
+>> +	intel_parent_pc8_block(display);
+>>=20=20
+>>  	if (val & LCPLL_POWER_DOWN_ALLOW) {
+>>  		val &=3D ~LCPLL_POWER_DOWN_ALLOW;
+>> @@ -1372,7 +1372,7 @@ static void hsw_restore_lcpll(struct intel_display=
+ *display)
+>>  				"Switching back to LCPLL failed\n");
+>>  	}
+>>=20=20
+>> -	intel_uncore_forcewake_put(&dev_priv->uncore, FORCEWAKE_ALL);
+>> +	intel_parent_pc8_unblock(display);
+>>=20=20
+>>  	intel_update_cdclk(display);
+>>  	intel_cdclk_dump_config(display, &display->cdclk.hw, "Current CDCLK");
+>> diff --git a/drivers/gpu/drm/i915/display/intel_parent.c b/drivers/gpu/d=
+rm/i915/display/intel_parent.c
+>> index 2ea310cc3509..9201d506c851 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_parent.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_parent.c
+>> @@ -56,6 +56,16 @@ void intel_parent_irq_synchronize(struct intel_displa=
+y *display)
+>>  	display->parent->irq->synchronize(display->drm);
+>>  }
+>>=20=20
+>> +void intel_parent_pc8_block(struct intel_display *display)
+>> +{
+>> +	display->parent->pc8->block(display->drm);
+>> +}
+>> +
+>> +void intel_parent_pc8_unblock(struct intel_display *display)
+>> +{
+>> +	display->parent->pc8->unblock(display->drm);
+>> +}
 >
+> I think I'd like either:
+>
+> - A substruct is mandatory, always initialized by parent, will never be
+>   NULL, and there are no checks here.
+>
+> - A substruct is optional, may be initialized by parent, may be NULL,
+>   and there's a NULL check here.
+>
+> I think it makes the interface easier to reason about. Even if I
+> understand that this particular interface will only be called for
+> platforms supported by i915.
+>
+> So this should have the display->parent->pc8 !=3D NULL check, and
+> "optional" mentioned in display_parent_interface.h.
 
-After sleeping on this, I think the proper thing would be to
-change the VGA arbiter to be able to restore the previous VGA
-routing after the put(). But that'll be quite a bit of work,
-so this seems fine for now.
+Oh, I also used this in [1]:
 
-> 
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_vga.c | 54 ++++++++++++++++++++++--
-> >  1 file changed, 50 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/i915/display/intel_vga.c
-> > index 6a19fb242248..a2a1c33d053e 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_vga.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_vga.c
-> > @@ -58,11 +58,58 @@ static bool has_vga_pipe_sel(struct intel_display *display)
-> >  	return DISPLAY_VER(display) < 7;
-> >  }
-> >  
-> > +static bool intel_pci_set_io_decode(struct pci_dev *pdev, bool enable)
-> > +{
-> > +	u16 old = 0, cmd;
-> > +
-> > +	pci_read_config_word(pdev, PCI_COMMAND, &old);
-> > +	cmd = old & ~PCI_COMMAND_IO;
-> > +	if (enable)
-> > +		cmd |= PCI_COMMAND_IO;
-> > +	pci_write_config_word(pdev, PCI_COMMAND, cmd);
-> > +
-> > +	return old & PCI_COMMAND_IO;
-> > +}
-> > +
-> > +static bool intel_vga_get(struct intel_display *display)
-> > +{
-> > +	struct pci_dev *pdev = to_pci_dev(display->drm->dev);
-> > +
-> > +	/* WaEnableVGAAccessThroughIOPort:ctg+ */
-> > +
-> > +	/*
-> > +	 * Bypass the VGA arbiter on the iGPU and just enable
-> > +	 * IO decode by hand. This avoids clobbering the VGA
-> > +	 * routing for an external GPU when it's the current
-> > +	 * VGA device, and thus prevents the all 0xff/white
-> > +	 * readout from VGA memory when taking over from vgacon.
-> > +	 *
-> > +	 * The iGPU has the highest VGA decode priority so it will
-> > +	 * grab any VGA IO access when IO decode is enabled, regardless
-> > +	 * of how any other VGA routing bits are configured.
-> > +	 */
-> > +	if (display->platform.dgfx)
-> > +		vga_get_uninterruptible(pdev, VGA_RSRC_LEGACY_IO);
-> > +
-> > +	return intel_pci_set_io_decode(pdev, true);
-> > +}
-> > +
-> > +static void intel_vga_put(struct intel_display *display, bool io_decode)
-> > +{
-> > +	struct pci_dev *pdev = to_pci_dev(display->drm->dev);
-> > +
-> > +	/* see intel_vga_get() */
-> > +	intel_pci_set_io_decode(pdev, io_decode);
-> > +
-> > +	if (display->platform.dgfx)
-> > +		vga_put(pdev, VGA_RSRC_LEGACY_IO);
-> > +}
-> > +
-> >  /* Disable the VGA plane that we never use */
-> >  void intel_vga_disable(struct intel_display *display)
-> >  {
-> > -	struct pci_dev *pdev = to_pci_dev(display->drm->dev);
-> >  	i915_reg_t vga_reg = intel_vga_cntrl_reg(display);
-> > +	bool io_decode;
-> >  	u8 msr, sr1;
-> >  	u32 tmp;
-> >  
-> > @@ -106,8 +153,7 @@ void intel_vga_disable(struct intel_display *display)
-> >  			goto reset_vgacntr;
-> >  	}
-> >  
-> > -	/* WaEnableVGAAccessThroughIOPort:ctg,elk,ilk,snb,ivb,vlv,hsw */
-> > -	vga_get_uninterruptible(pdev, VGA_RSRC_LEGACY_IO);
-> > +	io_decode = intel_vga_get(display);
-> >  
-> >  	outb(0x01, VGA_SEQ_I);
-> >  	sr1 = inb(VGA_SEQ_D);
-> > @@ -129,7 +175,7 @@ void intel_vga_disable(struct intel_display *display)
-> >  	msr &= ~VGA_MIS_COLOR;
-> >  	outb(msr, VGA_MIS_W);
-> >  
-> > -	vga_put(pdev, VGA_RSRC_LEGACY_IO);
-> > +	intel_vga_put(display, io_decode);
-> >  
-> >  	udelay(300);
-> 
-> -- 
-> Jani Nikula, Intel
+  int intel_parent_stolen_insert_node(struct intel_display *display, struct=
+ intel_stolen_node *node, u64 size,
+				     unsigned int align)
+  {
+ +	if (drm_WARN_ON_ONCE(display->drm, !display->parent->stolen->insert_node=
+))
+ +		return -ENODEV;
+ +
+	 return display->parent->stolen->insert_node(node, size, align);
+  }
 
--- 
-Ville Syrjälä
-Intel
+It's optional, but using it when it's not there gives a warning splat.
+
+
+BR,
+Jani.
+
+
+[1] https://lore.kernel.org/r/0dbb460e8bd1df29df98862d08fcdfda03912673.1764=
+930576.git.jani.nikula@intel.com
+
+
+>
+>> +
+>>  bool intel_parent_rps_available(struct intel_display *display)
+>>  {
+>>  	return display->parent->rps;
+>> diff --git a/drivers/gpu/drm/i915/display/intel_parent.h b/drivers/gpu/d=
+rm/i915/display/intel_parent.h
+>> index 8f91a6f75c53..974a016ab3be 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_parent.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_parent.h
+>> @@ -22,6 +22,9 @@ void intel_parent_hdcp_gsc_context_free(struct intel_d=
+isplay *display,
+>>  bool intel_parent_irq_enabled(struct intel_display *display);
+>>  void intel_parent_irq_synchronize(struct intel_display *display);
+>>=20=20
+>> +void intel_parent_pc8_block(struct intel_display *display);
+>> +void intel_parent_pc8_unblock(struct intel_display *display);
+>> +
+>>  bool intel_parent_rps_available(struct intel_display *display);
+>>  void intel_parent_rps_boost_if_not_started(struct intel_display *displa=
+y, struct dma_fence *fence);
+>>  void intel_parent_rps_mark_interactive(struct intel_display *display, b=
+ool interactive);
+>> diff --git a/drivers/gpu/drm/i915/i915_display_pc8.c b/drivers/gpu/drm/i=
+915/i915_display_pc8.c
+>> new file mode 100644
+>> index 000000000000..443935d282e3
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/i915/i915_display_pc8.c
+>> @@ -0,0 +1,30 @@
+>> +// SPDX-License-Identifier: MIT
+>> +/*
+>> + * Copyright 2025, Intel Corporation.
+>> + */
+>> +
+>> +#include <drm/drm_print.h>
+>> +#include <drm/intel/display_parent_interface.h>
+>> +
+>> +#include "i915_drv.h"
+>> +#include "intel_uncore.h"
+>
+> For completeness, I think this should include i915_display_pc8.h. I'm a
+> bit surprised the compilers only warn about non-static functions without
+> declarations, not about non-static variables.
+>
+>> +
+>> +static void i915_display_pc8_block(struct drm_device *drm)
+>> +{
+>> +	struct intel_uncore *uncore =3D &to_i915(drm)->uncore;
+>> +
+>> +	/* to prevent PC8 state, just enable force_wake */
+>> +	intel_uncore_forcewake_get(uncore, FORCEWAKE_ALL);
+>> +}
+>> +
+>> +static void i915_display_pc8_unblock(struct drm_device *drm)
+>> +{
+>> +	struct intel_uncore *uncore =3D &to_i915(drm)->uncore;
+>> +
+>> +	intel_uncore_forcewake_put(uncore, FORCEWAKE_ALL);
+>> +}
+>> +
+>> +const struct intel_display_pc8_interface i915_display_pc8_interface =3D=
+ {
+>> +	.block =3D i915_display_pc8_block,
+>> +	.unblock =3D i915_display_pc8_unblock,
+>> +};
+>> diff --git a/drivers/gpu/drm/i915/i915_display_pc8.h b/drivers/gpu/drm/i=
+915/i915_display_pc8.h
+>> new file mode 100644
+>> index 000000000000..717f313d2a21
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/i915/i915_display_pc8.h
+>> @@ -0,0 +1,9 @@
+>> +/* SPDX-License-Identifier: MIT */
+>> +/* Copyright =C2=A9 2025 Intel Corporation */
+>> +
+>> +#ifndef __I915_DISPLAY_PC8_H__
+>> +#define __I915_DISPLAY_PC8_H__
+>> +
+>> +extern const struct intel_display_pc8_interface i915_display_pc8_interf=
+ace;
+>> +
+>> +#endif /* __I915_DISPLAY_PC8_H__ */
+>> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i=
+915_driver.c
+>> index d98839427ef9..723cb424b2ba 100644
+>> --- a/drivers/gpu/drm/i915/i915_driver.c
+>> +++ b/drivers/gpu/drm/i915/i915_driver.c
+>> @@ -89,6 +89,7 @@
+>>  #include "pxp/intel_pxp_pm.h"
+>>=20=20
+>>  #include "i915_debugfs.h"
+>> +#include "i915_display_pc8.h"
+>>  #include "i915_driver.h"
+>>  #include "i915_drm_client.h"
+>>  #include "i915_drv.h"
+>> @@ -761,6 +762,7 @@ static const struct intel_display_parent_interface p=
+arent =3D {
+>>  	.hdcp =3D &i915_display_hdcp_interface,
+>>  	.rpm =3D &i915_display_rpm_interface,
+>>  	.irq =3D &i915_display_irq_interface,
+>> +	.pc8 =3D &i915_display_pc8_interface,
+>>  	.rps =3D &i915_display_rps_interface,
+>>  	.vgpu_active =3D vgpu_active,
+>>  	.has_fenced_regions =3D has_fenced_regions,
+>> diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/=
+intel/display_parent_interface.h
+>> index 61d1b22adc83..af43b213eafa 100644
+>> --- a/include/drm/intel/display_parent_interface.h
+>> +++ b/include/drm/intel/display_parent_interface.h
+>> @@ -41,6 +41,11 @@ struct intel_display_irq_interface {
+>>  	void (*synchronize)(struct drm_device *drm);
+>>  };
+>>=20=20
+>> +struct intel_display_pc8_interface {
+>> +	void (*block)(struct drm_device *drm);
+>> +	void (*unblock)(struct drm_device *drm);
+>> +};
+>> +
+>>  struct intel_display_rps_interface {
+>>  	void (*boost_if_not_started)(struct dma_fence *fence);
+>>  	void (*mark_interactive)(struct drm_device *drm, bool interactive);
+>> @@ -69,6 +74,9 @@ struct intel_display_parent_interface {
+>>  	/** @irq: IRQ interface */
+>>  	const struct intel_display_irq_interface *irq;
+>>=20=20
+>> +	/** @pc8: PC8 interface */
+>
+> I think this should have "Optional" in there.
+>
+>> +	const struct intel_display_pc8_interface *pc8;
+>> +
+>>  	/** @rpm: RPS interface. Optional. */
+>>  	const struct intel_display_rps_interface *rps;
+
+--=20
+Jani Nikula, Intel
