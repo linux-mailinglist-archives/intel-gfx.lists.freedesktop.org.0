@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 517E2CAFA1C
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Dec 2025 11:27:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C2A0FCAFA1F
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Dec 2025 11:28:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA89910E4EF;
-	Tue,  9 Dec 2025 10:27:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59C8A10E4F4;
+	Tue,  9 Dec 2025 10:28:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kLtmbU3M";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QlBHaViw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40E8610E4F4;
- Tue,  9 Dec 2025 10:27:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6A1910E1C7;
+ Tue,  9 Dec 2025 10:28:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765276052; x=1796812052;
+ t=1765276086; x=1796812086;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=LkimtB4pt32awQd4VA8JIxnHSSNazIZYepDgs9Kr+Vk=;
- b=kLtmbU3MzozcsfDbimET2hqLI22Dn/n26hkDf7LlqDR5raanmsNIviJ2
- XoFTFNi2BEUGqlfyeFZUUjrdi/qqs6929f5SOllc4oldGr4fqOQn8JSuc
- tpMg412lihLTJcu2JHu9nmxU8P4bsBGR21cBi0cFruQ8ynl1m+5awz/J7
- q64S0QpLX+rBPtigGIMEIpc+CrRe8B/pz41wKOOpwbWE6+gXtLKKMufVM
- wnVG9Hyk+5XkaylTbPiVmqTqVEIF66fyklgxdhZr5KCc1cdaWUnAFwd2D
- VjHWZJG+y14kNG+SizQhrA4Ss8VpnlwlhBHG+SxeTVJEPip6mvRx3RYXb Q==;
-X-CSE-ConnectionGUID: tA8vGHBXSH6oiGg/SWN+EA==
-X-CSE-MsgGUID: 8ilmXp0cQR6i4NYMk0rvpA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11636"; a="89882620"
-X-IronPort-AV: E=Sophos;i="6.20,261,1758610800"; d="scan'208";a="89882620"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 02:27:29 -0800
-X-CSE-ConnectionGUID: rq8B7l9jSWunMMGVroU47w==
-X-CSE-MsgGUID: gxAvWATiShCGQgOby1f6HA==
+ bh=UkkEA6WZdhUJJKiGs+vhu3BW5vggN+9J01cE4p9sGYs=;
+ b=QlBHaViwQNLyBNL+0hXakQc9gIfJmtygWDQK61CTD+m3hi4Pofj6Julr
+ KpIaJEzlSB0A1o5Vxq0oWo3SrYhYisEJiY2HshzWkuKXfvD3tR4sJvMTi
+ CqHm1qJg/3Qol41F/At8RjkMxsX0jSBJizKfTH9okq7fXDhhZbGXaoyD4
+ 3/KhBtQRCa+VzQJ7RiqW2w/iLe70hYzixAi3oJOT0stIeKah1HhuWodAg
+ WUYemJLo7RyLsCFiGlhGobboA3vS2CfkX3DeJZMGhnT8j7Pl+m6yPjIN0
+ ixtqQ6+TnszIw+6BptZ+tTc1yJm/Eho03/ssaG7vfrg9xXv2rq3xoDMvU A==;
+X-CSE-ConnectionGUID: igr3swyqQFW9cDbgl27ILg==
+X-CSE-MsgGUID: UjDr+kqpQqW1xElQyfwtIA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11636"; a="67190783"
+X-IronPort-AV: E=Sophos;i="6.20,261,1758610800"; d="scan'208";a="67190783"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2025 02:28:06 -0800
+X-CSE-ConnectionGUID: M6n/+aguRk+xgW41/cfyxg==
+X-CSE-MsgGUID: PquZUkjlRQSlKBdDs9p5mA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,261,1758610800"; d="scan'208";a="226859763"
+X-IronPort-AV: E=Sophos;i="6.20,261,1758610800"; d="scan'208";a="233572374"
 Received: from mwiniars-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.154])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 02:27:27 -0800
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2025 02:28:04 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 03/19] drm/i915/power: Remove i915_power_well_desc::has_vga
-In-Reply-To: <20251208182637.334-4-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 04/19] drm/i915/vga: Extract intel_gmch_ctrl_reg()
+In-Reply-To: <20251208182637.334-5-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20251208182637.334-1-ville.syrjala@linux.intel.com>
- <20251208182637.334-4-ville.syrjala@linux.intel.com>
-Date: Tue, 09 Dec 2025 12:27:23 +0200
-Message-ID: <0b6b86ffbf0fda49957f936513111e1579968e48@intel.com>
+ <20251208182637.334-5-ville.syrjala@linux.intel.com>
+Date: Tue, 09 Dec 2025 12:28:01 +0200
+Message-ID: <77bdcd1a4125dadf1200b400948929fb9815c801@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -74,181 +74,63 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Mon, 08 Dec 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> We no longer have any need for the has_vga flag in the
-> display power well descriptor. Get rid of it.
+> Extract the GMCH_CTLR register offset determination into a helper
+> rather than using a local varaible. I'll be needing this in another
+> function soon.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  .../gpu/drm/i915/display/intel_display_power_map.c  | 13 -------------
->  .../gpu/drm/i915/display/intel_display_power_well.c |  5 ++---
->  .../gpu/drm/i915/display/intel_display_power_well.h |  2 --
->  3 files changed, 2 insertions(+), 18 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_vga.c | 12 +++++++++---
+>  1 file changed, 9 insertions(+), 3 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/dri=
-vers/gpu/drm/i915/display/intel_display_power_map.c
-> index 9b49952994ce..638d971a3a6c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-> @@ -112,7 +112,6 @@ static const struct i915_power_well_desc hsw_power_we=
-lls_main[] =3D {
->  				.id =3D HSW_DISP_PW_GLOBAL),
->  		),
->  		.ops =3D &hsw_power_well_ops,
-> -		.has_vga =3D true,
->  	},
->  };
+> diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/i=
+915/display/intel_vga.c
+> index 39c68aec647b..84fd5475d336 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vga.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vga.c
+> @@ -18,6 +18,11 @@
+>  #include "intel_vga.h"
+>  #include "intel_vga_regs.h"
 >=20=20
-> @@ -146,7 +145,6 @@ static const struct i915_power_well_desc bdw_power_we=
-lls_main[] =3D {
->  				.id =3D HSW_DISP_PW_GLOBAL),
->  		),
->  		.ops =3D &hsw_power_well_ops,
-> -		.has_vga =3D true,
->  		.irq_pipe_mask =3D BIT(PIPE_B) | BIT(PIPE_C),
->  	},
->  };
-> @@ -390,7 +388,6 @@ static const struct i915_power_well_desc skl_power_we=
-lls_main[] =3D {
->  				.id =3D SKL_DISP_PW_2),
->  		),
->  		.ops =3D &hsw_power_well_ops,
-> -		.has_vga =3D true,
->  		.irq_pipe_mask =3D BIT(PIPE_B) | BIT(PIPE_C),
->  		.has_fuses =3D true,
->  	}, {
-> @@ -469,7 +466,6 @@ static const struct i915_power_well_desc bxt_power_we=
-lls_main[] =3D {
->  				.id =3D SKL_DISP_PW_2),
->  		),
->  		.ops =3D &hsw_power_well_ops,
-> -		.has_vga =3D true,
->  		.irq_pipe_mask =3D BIT(PIPE_B) | BIT(PIPE_C),
->  		.has_fuses =3D true,
->  	}, {
-> @@ -572,7 +568,6 @@ static const struct i915_power_well_desc glk_power_we=
-lls_main[] =3D {
->  				.id =3D SKL_DISP_PW_2),
->  		),
->  		.ops =3D &hsw_power_well_ops,
-> -		.has_vga =3D true,
->  		.irq_pipe_mask =3D BIT(PIPE_B) | BIT(PIPE_C),
->  		.has_fuses =3D true,
->  	}, {
-> @@ -748,7 +743,6 @@ static const struct i915_power_well_desc icl_power_we=
-lls_main[] =3D {
->  				.id =3D ICL_DISP_PW_3),
->  		),
->  		.ops =3D &hsw_power_well_ops,
-> -		.has_vga =3D true,
->  		.irq_pipe_mask =3D BIT(PIPE_B),
->  		.has_fuses =3D true,
->  	}, {
-> @@ -914,7 +908,6 @@ static const struct i915_power_well_desc tgl_power_we=
-lls_main[] =3D {
->  				.id =3D ICL_DISP_PW_3),
->  		),
->  		.ops =3D &hsw_power_well_ops,
-> -		.has_vga =3D true,
->  		.irq_pipe_mask =3D BIT(PIPE_B),
->  		.has_fuses =3D true,
->  	}, {
-> @@ -1071,7 +1064,6 @@ static const struct i915_power_well_desc rkl_power_=
-wells_main[] =3D {
->  		),
->  		.ops =3D &hsw_power_well_ops,
->  		.irq_pipe_mask =3D BIT(PIPE_B),
-> -		.has_vga =3D true,
->  		.has_fuses =3D true,
->  	}, {
->  		.instances =3D &I915_PW_INSTANCES(
-> @@ -1166,7 +1158,6 @@ static const struct i915_power_well_desc dg1_power_=
-wells_main[] =3D {
->  		),
->  		.ops =3D &hsw_power_well_ops,
->  		.irq_pipe_mask =3D BIT(PIPE_B),
-> -		.has_vga =3D true,
->  		.has_fuses =3D true,
->  	}, {
->  		.instances =3D &I915_PW_INSTANCES(
-> @@ -1325,7 +1316,6 @@ static const struct i915_power_well_desc xelpd_powe=
-r_wells_main[] =3D {
->  				.id =3D SKL_DISP_PW_2),
->  		),
->  		.ops =3D &hsw_power_well_ops,
-> -		.has_vga =3D true,
->  		.has_fuses =3D true,
->  	}, {
->  		.instances =3D &I915_PW_INSTANCES(
-> @@ -1482,7 +1472,6 @@ static const struct i915_power_well_desc xelpdp_pow=
-er_wells_main[] =3D {
->  				.id =3D SKL_DISP_PW_2),
->  		),
->  		.ops =3D &hsw_power_well_ops,
-> -		.has_vga =3D true,
->  		.has_fuses =3D true,
->  	}, {
->  		.instances =3D &I915_PW_INSTANCES(
-> @@ -1649,7 +1638,6 @@ static const struct i915_power_well_desc xe3lpd_pow=
-er_wells_main[] =3D {
->  				.id =3D SKL_DISP_PW_2),
->  		),
->  		.ops =3D &hsw_power_well_ops,
-> -		.has_vga =3D true,
->  		.has_fuses =3D true,
->  	}, {
->  		.instances =3D &I915_PW_INSTANCES(
-> @@ -1722,7 +1710,6 @@ static const struct i915_power_well_desc wcl_power_=
-wells_main[] =3D {
->  				.id =3D SKL_DISP_PW_2),
->  		),
->  		.ops =3D &hsw_power_well_ops,
-> -		.has_vga =3D true,
->  		.has_fuses =3D true,
->  	}, {
->  		.instances =3D &I915_PW_INSTANCES(
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/dr=
-ivers/gpu/drm/i915/display/intel_display_power_well.c
-> index 52b20118ace6..68f293c3ac01 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> @@ -202,7 +202,7 @@ int intel_power_well_refcount(struct i915_power_well =
-*power_well)
->   * requesting it to be enabled.
->   */
->  static void hsw_power_well_post_enable(struct intel_display *display,
-> -				       u8 irq_pipe_mask, bool has_vga)
-> +				       u8 irq_pipe_mask)
+> +static unsigned int intel_gmch_ctrl_reg(struct intel_display *display)
+> +{
+> +	return DISPLAY_VER(display) >=3D 6 ? SNB_GMCH_CTRL : INTEL_GMCH_CTRL;
+> +}
+> +
+>  static i915_reg_t intel_vga_cntrl_reg(struct intel_display *display)
 >  {
->  	if (irq_pipe_mask)
->  		gen8_irq_power_well_post_enable(display, irq_pipe_mask);
-> @@ -415,8 +415,7 @@ static void hsw_power_well_enable(struct intel_displa=
-y *display,
+>  	if (display->platform.valleyview || display->platform.cherryview)
+> @@ -98,10 +103,10 @@ void intel_vga_disable(struct intel_display *display)
+>  static int intel_gmch_vga_set_state(struct intel_display *display, bool =
+enable_decode)
+>  {
+>  	struct pci_dev *pdev =3D to_pci_dev(display->drm->dev);
+> -	unsigned int reg =3D DISPLAY_VER(display) >=3D 6 ? SNB_GMCH_CTRL : INTE=
+L_GMCH_CTRL;
+>  	u16 gmch_ctrl;
+>=20=20
+> -	if (pci_bus_read_config_word(pdev->bus, PCI_DEVFN(0, 0), reg, &gmch_ctr=
+l)) {
+> +	if (pci_bus_read_config_word(pdev->bus, PCI_DEVFN(0, 0),
+> +				     intel_gmch_ctrl_reg(display), &gmch_ctrl)) {
+>  		drm_err(display->drm, "failed to read control word\n");
+>  		return -EIO;
 >  	}
+> @@ -114,7 +119,8 @@ static int intel_gmch_vga_set_state(struct intel_disp=
+lay *display, bool enable_d
+>  	else
+>  		gmch_ctrl |=3D INTEL_GMCH_VGA_DISABLE;
 >=20=20
->  	hsw_power_well_post_enable(display,
-> -				   power_well->desc->irq_pipe_mask,
-> -				   power_well->desc->has_vga);
-> +				   power_well->desc->irq_pipe_mask);
->  }
->=20=20
->  static void hsw_power_well_disable(struct intel_display *display,
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.h b/dr=
-ivers/gpu/drm/i915/display/intel_display_power_well.h
-> index ec8e508d0593..8f5524da2d06 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power_well.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.h
-> @@ -103,8 +103,6 @@ struct i915_power_well_desc {
->  	 * the well enabled.
->  	 */
->  	u16 fixed_enable_delay:1;
-> -	/* The pw is backing the VGA functionality */
-> -	u16 has_vga:1;
->  	u16 has_fuses:1;
->  	/*
->  	 * The pw is for an ICL+ TypeC PHY port in
+> -	if (pci_bus_write_config_word(pdev->bus, PCI_DEVFN(0, 0), reg, gmch_ctr=
+l)) {
+> +	if (pci_bus_write_config_word(pdev->bus, PCI_DEVFN(0, 0),
+> +				      intel_gmch_ctrl_reg(display), gmch_ctrl)) {
+>  		drm_err(display->drm, "failed to write control word\n");
+>  		return -EIO;
+>  	}
 
 --=20
 Jani Nikula, Intel
