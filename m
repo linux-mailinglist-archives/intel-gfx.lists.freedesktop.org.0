@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA9AFCAFAF7
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Dec 2025 11:52:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F608CAFAFD
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Dec 2025 11:53:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 710E010E505;
-	Tue,  9 Dec 2025 10:52:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1DC010E506;
+	Tue,  9 Dec 2025 10:53:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xw412yuv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LR5xgHxt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FD1D10E504;
- Tue,  9 Dec 2025 10:52:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D78E410E504;
+ Tue,  9 Dec 2025 10:53:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765277533; x=1796813533;
+ t=1765277628; x=1796813628;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=i4f5m0Uf/3l7e9MBwU5PN9K2S4CyadWhFoFyMc78ydk=;
- b=Xw412yuvBbn2FExZmMjTjjPnOEI2/+KzKRe+0KG8eW8oZoTVjD7aHM+C
- uWMpJ31Kg80WOPgc+YJ7PioCYXXMwzKUlZS12ew6DpfpfWyR/FFTmGNKA
- RbXmHpxvjO9pkV24kzRVe5sNE4ewcO6SzNuWRys2Hat0ageo2TGXXXzFz
- DWtDVcvcI41F0qq5GwEDxAeJ4hxyPtsFB7DYHz2lj0SSYbAbsMiGLZY90
- 6Is0F4JJwArlPAxneRBrAHN1vBROdqpwrxo7oIb/3oSNTEu3GxG9ypBXp
- 3VO7H/uJ7GTUTP58PzLnUSl0halN64E7iM9ZVIzlKANQJyXlhbhsgRTMM A==;
-X-CSE-ConnectionGUID: fQBAnOODSc2S/ze4kuGuoQ==
-X-CSE-MsgGUID: MMt5GOa2Q6ei0puiCBtvfw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11636"; a="66412698"
-X-IronPort-AV: E=Sophos;i="6.20,261,1758610800"; d="scan'208";a="66412698"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 02:52:12 -0800
-X-CSE-ConnectionGUID: dRJCU6T0TSa9E6ROc9mlrw==
-X-CSE-MsgGUID: 4anRQerVTxSZaVWdlnGgNw==
+ bh=ohGTuCLS+XCcyaXkD42TTQtpb14ksLYCwZ2gRz78WVc=;
+ b=LR5xgHxtidC6wO4inF5bId+PJTacTPouDssTRU04K4l+g9Qp6ppi/CDh
+ Cj0umZBLNXhQh9Wudq5pcYlmDCA4myHHJ8wFVqsZlXum5Od+sNQt8zAF0
+ d78t7NTfiwebhUODF+YPDFz641uYMXMQKL7kzb1fGlHcI2MEjGPVjjvj3
+ I9dURtL4vb96g5MRUcW8sSCkCg8cWEHMftbCM4L6qvlHtzLfkeLfVL0Wc
+ fWUlgmBiE4GvaH1EktQX8UixQtJ8P9EmxoWBVDx0Wm/qHn2FbGbMPqltT
+ slwXydNze0mZldwKcr7cZ+sKDM8PpUDkBMlN07PkWS/V0NIVrr6VK/0PP w==;
+X-CSE-ConnectionGUID: d1A2d2MBSlqpbdW1hBaTfA==
+X-CSE-MsgGUID: FNBtH/W/SOeo95cm+GW8kA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11636"; a="92706168"
+X-IronPort-AV: E=Sophos;i="6.20,261,1758610800"; d="scan'208";a="92706168"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2025 02:53:47 -0800
+X-CSE-ConnectionGUID: RX9i3RsmRSq5NggITzj6Pg==
+X-CSE-MsgGUID: 3kBudJ4XQv2Norv8Of96ag==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,261,1758610800"; d="scan'208";a="201117498"
+X-IronPort-AV: E=Sophos;i="6.20,261,1758610800"; d="scan'208";a="196210139"
 Received: from mwiniars-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.154])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 02:52:11 -0800
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2025 02:53:45 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 12/19] drm/i915/vga: Introduce intel_vga_{read,write}()
-In-Reply-To: <20251208182637.334-13-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 13/19] drm/i915/vga: Use MMIO for VGA registers on pre-g4x
+In-Reply-To: <20251208182637.334-14-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20251208182637.334-1-ville.syrjala@linux.intel.com>
- <20251208182637.334-13-ville.syrjala@linux.intel.com>
-Date: Tue, 09 Dec 2025 12:52:07 +0200
-Message-ID: <d19af77c05c8e56ba3d450e21f5e77379ed9e51f@intel.com>
+ <20251208182637.334-14-ville.syrjala@linux.intel.com>
+Date: Tue, 09 Dec 2025 12:53:42 +0200
+Message-ID: <269fc4773ae53374b2851b6a467b31e04ffa0dc4@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -74,150 +74,113 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Mon, 08 Dec 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> VGA register are rather special since they either get accessed
-> via the global IO addresses, or possibly through MMIO on
-> pre-g4x platforms. Wrap all VGA register accesses in
-> intel_vga_{read,write}() to make it obvious where they get
-> accessed.
+> On pre-g4x VGA registers are accessible via MMIO. Make use of
+> it so that we can avoid dealing with the VGA arbiter.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_crt.c      |  6 +++--
->  drivers/gpu/drm/i915/display/intel_crt_regs.h |  2 --
->  drivers/gpu/drm/i915/display/intel_vga.c      | 27 +++++++++++++++----
->  drivers/gpu/drm/i915/display/intel_vga.h      |  3 +++
->  4 files changed, 29 insertions(+), 9 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_vga.c | 33 ++++++++++++++++--------
+>  1 file changed, 22 insertions(+), 11 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i=
-915/display/intel_crt.c
-> index 5f9a03877ea9..dedc26f6a2b2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crt.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crt.c
-> @@ -33,6 +33,7 @@
->  #include <drm/drm_edid.h>
->  #include <drm/drm_print.h>
->  #include <drm/drm_probe_helper.h>
-> +#include <video/vga.h>
->=20=20
->  #include "intel_connector.h"
->  #include "intel_crt.h"
-> @@ -55,6 +56,7 @@
->  #include "intel_pch_display.h"
->  #include "intel_pch_refclk.h"
->  #include "intel_pfit.h"
-> +#include "intel_vga.h"
->=20=20
->  /* Here's the desired hotplug mode */
->  #define ADPA_HOTPLUG_BITS (ADPA_CRT_HOTPLUG_ENABLE |			\
-> @@ -736,7 +738,7 @@ intel_crt_load_detect(struct intel_crt *crt, enum pip=
-e pipe)
->  		 * border color for Color info.
->  		 */
->  		intel_crtc_wait_for_next_vblank(intel_crtc_for_pipe(display, pipe));
-> -		st00 =3D intel_de_read8(display, _VGA_MSR_WRITE);
-> +		st00 =3D intel_vga_read(display, VGA_MIS_W, true);
->  		status =3D ((st00 & (1 << 4)) !=3D 0) ?
->  			connector_status_connected :
->  			connector_status_disconnected;
-> @@ -784,7 +786,7 @@ intel_crt_load_detect(struct intel_crt *crt, enum pip=
-e pipe)
->  		do {
->  			count++;
->  			/* Read the ST00 VGA status register */
-> -			st00 =3D intel_de_read8(display, _VGA_MSR_WRITE);
-> +			st00 =3D intel_vga_read(display, VGA_MIS_W, true);
->  			if (st00 & (1 << 4))
->  				detect++;
->  		} while ((intel_de_read(display, PIPEDSL(display, pipe)) =3D=3D dsl));
-> diff --git a/drivers/gpu/drm/i915/display/intel_crt_regs.h b/drivers/gpu/=
-drm/i915/display/intel_crt_regs.h
-> index 571a67ae9afa..9a93020b9a7e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crt_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_crt_regs.h
-> @@ -45,6 +45,4 @@
->  #define   ADPA_VSYNC_ACTIVE_HIGH		REG_BIT(4)
->  #define   ADPA_HSYNC_ACTIVE_HIGH		REG_BIT(3)
->=20=20
-> -#define _VGA_MSR_WRITE _MMIO(0x3c2)
-> -
->  #endif /* __INTEL_CRT_REGS_H__ */
 > diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/i=
 915/display/intel_vga.c
-> index e51451966f72..c1942520c765 100644
+> index c1942520c765..9e1f3ab632d5 100644
 > --- a/drivers/gpu/drm/i915/display/intel_vga.c
 > +++ b/drivers/gpu/drm/i915/display/intel_vga.c
-> @@ -140,6 +140,22 @@ static void intel_vga_put(struct intel_display *disp=
-lay, bool io_decode)
->  		vga_put(pdev, VGA_RSRC_LEGACY_IO);
+> @@ -58,6 +58,12 @@ static bool has_vga_pipe_sel(struct intel_display *dis=
+play)
+>  	return DISPLAY_VER(display) < 7;
 >  }
 >=20=20
-> +u8 intel_vga_read(struct intel_display *display, u16 reg, bool mmio)
+> +static bool has_vga_mmio_access(struct intel_display *display)
 > +{
-> +	if (mmio)
-> +		return intel_de_read8(display, _MMIO(reg));
-> +	else
-> +		return inb(reg);
+> +	/* WaEnableVGAAccessThroughIOPort:ctg+ */
+> +	return DISPLAY_VER(display) < 5 && !display->platform.g4x;
 > +}
 > +
-> +static void intel_vga_write(struct intel_display *display, u16 reg, u8 v=
-al, bool mmio)
-> +{
-> +	if (mmio)
-> +		intel_de_write8(display, _MMIO(reg), val);
-> +	else
-> +		outb(val, reg);
-> +}
-> +
->  /* Disable the VGA plane that we never use */
->  void intel_vga_disable(struct intel_display *display)
+>  static bool intel_pci_has_vga_io_decode(struct pci_dev *pdev)
 >  {
-> @@ -193,11 +209,12 @@ void intel_vga_disable(struct intel_display *displa=
+>  	u16 cmd =3D 0;
+> @@ -106,11 +112,12 @@ static bool intel_pci_bridge_set_vga(struct pci_dev=
+ *pdev, bool enable)
+>  	return old & PCI_BRIDGE_CTL_VGA;
+>  }
+>=20=20
+> -static bool intel_vga_get(struct intel_display *display)
+> +static bool intel_vga_get(struct intel_display *display, bool mmio)
+>  {
+>  	struct pci_dev *pdev =3D to_pci_dev(display->drm->dev);
+>=20=20
+> -	/* WaEnableVGAAccessThroughIOPort:ctg+ */
+> +	if (mmio)
+> +		return false;
+>=20=20
+>  	/*
+>  	 * Bypass the VGA arbiter on the iGPU and just enable
+> @@ -129,10 +136,13 @@ static bool intel_vga_get(struct intel_display *dis=
+play)
+>  	return intel_pci_set_io_decode(pdev, true);
+>  }
+>=20=20
+> -static void intel_vga_put(struct intel_display *display, bool io_decode)
+> +static void intel_vga_put(struct intel_display *display, bool io_decode,=
+ bool mmio)
+>  {
+>  	struct pci_dev *pdev =3D to_pci_dev(display->drm->dev);
+>=20=20
+> +	if (mmio)
+> +		return;
+> +
+>  	/* see intel_vga_get() */
+>  	intel_pci_set_io_decode(pdev, io_decode);
+>=20=20
+> @@ -161,6 +171,7 @@ void intel_vga_disable(struct intel_display *display)
+>  {
+>  	struct pci_dev *pdev =3D to_pci_dev(display->drm->dev);
+>  	i915_reg_t vga_reg =3D intel_vga_cntrl_reg(display);
+> +	bool mmio =3D has_vga_mmio_access(display);
+>  	bool io_decode;
+>  	u8 msr, sr1;
+>  	u32 tmp;
+> @@ -205,16 +216,16 @@ void intel_vga_disable(struct intel_display *displa=
 y)
+>  			goto reset_vgacntr;
+>  	}
 >=20=20
->  	drm_WARN_ON(display->drm, !intel_pci_has_vga_io_decode(pdev));
+> -	io_decode =3D intel_vga_get(display);
+> +	io_decode =3D intel_vga_get(display, mmio);
 >=20=20
-> -	outb(0x01, VGA_SEQ_I);
-> -	sr1 =3D inb(VGA_SEQ_D);
-> -	outb(sr1 | VGA_SR01_SCREEN_OFF, VGA_SEQ_D);
-> +	intel_vga_write(display, VGA_SEQ_I, 0x01, false);
-> +	sr1 =3D intel_vga_read(display, VGA_SEQ_D, false);
-> +	sr1 |=3D VGA_SR01_SCREEN_OFF;
-> +	intel_vga_write(display, VGA_SEQ_D, sr1, false);
+> -	drm_WARN_ON(display->drm, !intel_pci_has_vga_io_decode(pdev));
+> +	drm_WARN_ON(display->drm, !mmio && !intel_pci_has_vga_io_decode(pdev));
 >=20=20
-> -	msr =3D inb(VGA_MIS_R);
-> +	msr =3D intel_vga_read(display, VGA_MIS_R, false);
+> -	intel_vga_write(display, VGA_SEQ_I, 0x01, false);
+> -	sr1 =3D intel_vga_read(display, VGA_SEQ_D, false);
+> +	intel_vga_write(display, VGA_SEQ_I, 0x01, mmio);
+> +	sr1 =3D intel_vga_read(display, VGA_SEQ_D, mmio);
+>  	sr1 |=3D VGA_SR01_SCREEN_OFF;
+> -	intel_vga_write(display, VGA_SEQ_D, sr1, false);
+> +	intel_vga_write(display, VGA_SEQ_D, sr1, mmio);
+>=20=20
+> -	msr =3D intel_vga_read(display, VGA_MIS_R, false);
+> +	msr =3D intel_vga_read(display, VGA_MIS_R, mmio);
 >  	/*
 >  	 * Always disable VGA memory decode for iGPU so that
 >  	 * intel_vga_set_decode() doesn't need to access VGA registers.
-> @@ -217,7 +234,7 @@ void intel_vga_disable(struct intel_display *display)
+> @@ -234,9 +245,9 @@ void intel_vga_disable(struct intel_display *display)
 >  	 * RMbus NoClaim errors.
 >  	 */
 >  	msr &=3D ~VGA_MIS_COLOR;
-> -	outb(msr, VGA_MIS_W);
-> +	intel_vga_write(display, VGA_MIS_W, msr, false);
+> -	intel_vga_write(display, VGA_MIS_W, msr, false);
+> +	intel_vga_write(display, VGA_MIS_W, msr, mmio);
 >=20=20
->  	intel_vga_put(display, io_decode);
+> -	intel_vga_put(display, io_decode);
+> +	intel_vga_put(display, io_decode, mmio);
 >=20=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_vga.h b/drivers/gpu/drm/i=
-915/display/intel_vga.h
-> index 80084265c6cd..72131cb536cd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vga.h
-> +++ b/drivers/gpu/drm/i915/display/intel_vga.h
-> @@ -6,8 +6,11 @@
->  #ifndef __INTEL_VGA_H__
->  #define __INTEL_VGA_H__
->=20=20
-> +#include <linux/types.h>
-> +
->  struct intel_display;
->=20=20
-> +u8 intel_vga_read(struct intel_display *display, u16 reg, bool mmio);
->  void intel_vga_reset_io_mem(struct intel_display *display);
->  void intel_vga_disable(struct intel_display *display);
->  void intel_vga_register(struct intel_display *display);
+>  	/*
+>  	 * Inform the arbiter about VGA memory decode being disabled so
 
 --=20
 Jani Nikula, Intel
