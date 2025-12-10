@@ -2,85 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 006A5CB27A1
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Dec 2025 10:02:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32A5ACB2925
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Dec 2025 10:35:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7DEE10E6A3;
-	Wed, 10 Dec 2025 09:02:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E2B610E6BA;
+	Wed, 10 Dec 2025 09:35:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin.net header.i=@ursulin.net header.b="XZw4yrkf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cLdR+ipE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com
- [209.85.218.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55F1F10E259
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Dec 2025 09:02:15 +0000 (UTC)
-Received: by mail-ej1-f41.google.com with SMTP id
- a640c23a62f3a-b725ead5800so869600166b.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Dec 2025 01:02:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin.net; s=google; t=1765357334; x=1765962134; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=xXnWbapp9PXjn/qW3sEg1u/vI1S0SiiO/T23XvrD4H4=;
- b=XZw4yrkfWaqy9smPMtoS1h82XBziD/qGzx8+tAFQCE4O3iNyqohCP8JuhoCCEw2MW4
- RhvS48oVzpbJAuM6tgCJHaZMRrnWkH9A61GLQjeCAgMuD9fa6WQ9fKXhsyptIEy2O11I
- B3wKTrMoj6v1IF+LjIA9zSgxkOdsdyXj3chqqXfGfBFdit1wT1JaP+qlYy999F6IkttK
- ISH2mBKzLU3fiwL4PeEoWcDLi06tN1vLOyLlk1UXTSZChk0BYhd36LgwZFzjSHHkdmqK
- y2VNnFLxUd9qdlZrcZ1Rd9p0m0MFfU4U+X2WBMsKn2UhjScr3EZGiwEUkD4eQ4/+zsvI
- tbNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1765357334; x=1765962134;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=xXnWbapp9PXjn/qW3sEg1u/vI1S0SiiO/T23XvrD4H4=;
- b=O4fhr9XVFxhktFMZWXk628InpSUZTdXAivhbDKXq33N2F29O1NhhKAAoG1PTuyAxYK
- /d6rGq5fqU7+GIULXDdcPncOO08GuKubwIp2xIYTEiKwqQNuXLRJAjmLc3udNCAVpmIc
- cFJIq8Ama5CPrNmiGlp+6HT92uOKaclfnCQpph3TtsLwNjY4Wup2z8qeF55Ynh0+NlbY
- L2Vhmx9He5WyMIq5siPrLCKayK36bW+vSQGIrBjkTVqmM2E8gxZBDgmEJzwhtZSuMaVx
- XDAo9vUUMaJYZroyxxkZ4iZGXlgs/d4Wl/Vn0Ntz/F9DK1qHEKkhygAacrQPeRWjI6Il
- sCLA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVZNCSzIOAs53diHIan5Eke+IAU6+/GKNpgyi2juD3SXPRuV0mtvCer878MCr3/lPWhhQKv5sztCn0=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy8BbcpwJ//dxW1cXhJfORsHiRZTvjkHLpqN2RB6P8OFDGr2Blo
- 5YJSZaqx1QM+mWvF2l4SfPetwFWC3QPlbx41I2XygtrsKUxMxL1LMY94bJw/pnqNdVU=
-X-Gm-Gg: ASbGnctPJAOWQi7ePH1RW0hJWx9ZmD3jabcWJWaV/A/dK/WeAUH5UaHM3eghDVNA87k
- nujz586UPAPaExeHH0uuLSKb0jNFzWESW/0c9dvw860QoFxBz/wkLJraBMu/6LROVzqcd8Y/uuI
- N98Q1c4AJkZsjI757b1e5IbafjZ2z+Rnu9wJfLTvO6Fapfd5DFLQUAxKDNllqbd/lsrYK+ohcq4
- ULOpX8NCv1qRoI2fzlK/HbT3KFt/0eirKPQ0QGqjZ+eHitUhZbAY3SDdVbr0WDsKdJhjPfC9qym
- 5fHS2V4Nb/Y9krtSzpn7Mz4sB02BS7w+LoCBBUZxdLsJ1Z7XiYkYPvPuPi2CfN940r+JPJFKDOr
- 16nTy0ZvbYuFJ8hwAWnEFatdi47l1WRo+MNrPjA/DoaWbXm7UV0m4wXgRLJXUXx2v6gTKZiAUJ6
- sxfrBmpLdzNs8p6RtN0S2Puh2Zlc6O
-X-Google-Smtp-Source: AGHT+IEmeLV71Z7y5QMe+POFiLZHzevvzQ3eqtZjpTDq0W+44jnLU4wSWAzmylLqdOpU8Uy2oE+T2w==
-X-Received: by 2002:a17:907:9707:b0:b3f:3570:3405 with SMTP id
- a640c23a62f3a-b7ce84d6133mr152065966b.34.1765357333496; 
- Wed, 10 Dec 2025 01:02:13 -0800 (PST)
-Received: from [192.168.1.83] ([86.33.28.86]) by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-b79f4975c56sm1610197266b.33.2025.12.10.01.02.12
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 10 Dec 2025 01:02:12 -0800 (PST)
-Message-ID: <157afb23-6852-4f04-a247-ac89b18a6a4f@ursulin.net>
-Date: Wed, 10 Dec 2025 10:02:11 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95C1810E6B6;
+ Wed, 10 Dec 2025 09:35:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1765359329; x=1796895329;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=zOZQlT4rxvyk0d1ao+ABfEzCrvi59RKp74O1nGwZt6Y=;
+ b=cLdR+ipEN6lkmo6NH3VTCG9E5LcwzgIelFDliQgj7lKwEMwkPr+ZSh+c
+ sWThPLUP+EOLY6spUvpKllKhNRNFZSfYOaaPn26zjoodPHZ9EQv2vOyNA
+ CEvpfQFnr66mpULVtSMQHzyOEopxFL3OhViomQxk6gPIAX6husj7VUKpT
+ lsQ47TMWrv4RxC1RgtgYlH8k9KeimpNoflybJP7ml2uPdCAbUQCxQJ2O5
+ J1uk6aIvYxOrZS7NUn21LeFvmWh8GZ5UmNCRDEU1lTntI4SiERRq+HgPw
+ uhFWmDRS7a41XbFMmrBpNa0GecXoEmkYzu7NGkB4WX193NTa7i6NMOysJ Q==;
+X-CSE-ConnectionGUID: squckPtIREWsCs/gdiMb7A==
+X-CSE-MsgGUID: r4St4wL6QvmEHa8EfpL0sw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="78439380"
+X-IronPort-AV: E=Sophos;i="6.20,263,1758610800"; d="scan'208";a="78439380"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2025 01:35:28 -0800
+X-CSE-ConnectionGUID: wVS3WJZTQ/yQIOM+h4fZMA==
+X-CSE-MsgGUID: 1qjda8zcTSW+nocuSeN1Cw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,263,1758610800"; d="scan'208";a="200964287"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.207])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2025 01:35:21 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>, Alex
+ Deucher <alexander.deucher@amd.com>, Christian =?utf-8?Q?K=C3=B6nig?=
+ <christian.koenig@amd.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Joonas
+ Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Lucas De Marchi <lucas.demarchi@intel.com>, Thomas
+ =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ uma.shankar@intel.com,
+ chaitanya.kumar.borah@intel.com, suraj.kandpal@intel.com
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Arun R
+ Murthy <arun.r.murthy@intel.com>
+Subject: Re: [PATCH [RESEND] v9 02/20] drm: Define histogram structures
+ exposed to user
+In-Reply-To: <20251202-dpst-v9-2-f2abb2ca2465@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251202-dpst-v9-0-f2abb2ca2465@intel.com>
+ <20251202-dpst-v9-2-f2abb2ca2465@intel.com>
+Date: Wed, 10 Dec 2025 11:35:17 +0200
+Message-ID: <cd27649875c6df08a1e1ff880a5343613d5bd96d@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: Regression on drm-tip (CI_DRM_17644)
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
- loic.molinari@collabora.com
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Nikula, Jani" <jani.nikula@intel.com>,
- "Saarinen, Jani" <jani.saarinen@intel.com>,
- "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>
-References: <d73adfa8-d61b-46b3-9385-dde53d8db8ad@intel.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <d73adfa8-d61b-46b3-9385-dde53d8db8ad@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,113 +83,122 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, 02 Dec 2025, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+> Display Histogram is an array of bins and can be generated in many ways
+> referred to as modes.
+> Ex: HSV max(RGB), Wighted RGB etc.
+>
+> Understanding the histogram data format(Ex: HSV max(RGB))
+> Histogram is just the pixel count.
+> For a maximum resolution of 10k (10240 x 4320 = 44236800)
+> 25 bits should be sufficient to represent this along with a buffer of 7
+> bits(future use) u32 is being considered.
+> max(RGB) can be 255 i.e 0xFF 8 bit, considering the most significant 5
+> bits, hence 32 bins.
+> Below mentioned algorithm illustrates the histogram generation in
+> hardware.
+>
+> hist[32] = {0};
+> for (i = 0; i < resolution; i++) {
+> 	bin = max(RGB[i]);
+> 	bin = bin >> 3;	/* consider the most significant bits */
+> 	hist[bin]++;
+> }
+> If the entire image is Red color then max(255,0,0) is 255 so the pixel
+> count of each pixels will be placed in the last bin. Hence except
+> hist[31] all other bins will have a value zero.
+> Generated histogram in this case would be hist[32] = {0,0,....44236800}
+>
+> Description of the structures, properties defined are documented in the
+> header file include/uapi/drm/drm_mode.h
+>
+> v8: Added doc for HDR planes, removed reserved variables (Dmitry)
+>
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> ---
+>  include/uapi/drm/drm_mode.h | 65 +++++++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 65 insertions(+)
+>
+> diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
+> index cbbbfc1dfe2b806c641c720b0215e825e350bd03..aa24fef15da708f3e6804d07ffae5b0312dfdce0 100644
+> --- a/include/uapi/drm/drm_mode.h
+> +++ b/include/uapi/drm/drm_mode.h
+> @@ -1545,6 +1545,71 @@ struct drm_mode_closefb {
+>  	__u32 pad;
+>  };
+>  
+> +/**
+> + * enum drm_mode_histogram
+> + *
+> + * @DRM_MODE_HISTOGRAM_HSV_MAX_RGB:
+> + * Maximum resolution at present 10k, 10240x4320 = 44236800
+> + * can be denoted in 25bits. With an additional 7 bits in buffer each bin
+> + * can be a u32 value.
+> + * For SDL, Maximum value of max(RGB) is 255, so max 255 bins.
+> + * If the most significant 5 bits are considered, then bins = 2^5
+> + * will be 32 bins.
+> + * For HDR, maximum value of max(RGB) is 65535, so max 65535 bins.
+> + * For illustration consider a full RED image of 10k resolution considering all
+> + * 8 bits histogram would look like hist[255] = {0,0,....44236800} with SDR
+> + * plane similarly with HDR the same would look like hist[65535] =
+> + * {0,0,0,....44236800}
+> + */
+> +enum drm_mode_histogram {
+> +	DRM_MODE_HISTOGRAM_HSV_MAX_RGB = 0x01,
+> +};
+> +
+> +/**
+> + * struct drm_histogram_caps
+> + *
+> + * @histogram_mode: histogram generation modes, defined in the
+> + *		    enum drm_mode_histogram
+> + * @bins_count: number of bins for a chosen histogram mode. For illustration
+> + *		refer the above defined histogram mode.
+> + */
+> +struct drm_histogram_caps {
+> +	__u32 histogram_mode;
+> +	__u32 bins_count;
+> +};
+> +
+> +/**
+> + * struct drm_histogram_config
+> + *
+> + * @hist_mode_data: address to the histogram mode specific data if any
+> + * @nr_hist_mode_data: number of elements pointed by the address in
+> + *		       hist_mode_data
+> + * @hist_mode: histogram mode(HSV max(RGB), RGB, LUMA etc)
+> + * @enable: flag to enable/disable histogram
+> + */
+> +struct drm_histogram_config {
+> +	__u64 hist_mode_data;
+> +	__u32 nr_hist_mode_data;
+> +	enum drm_mode_histogram hist_mode;
+> +	bool enable;
 
-On 10/12/2025 09:25, Borah, Chaitanya Kumar wrote:
-> Hello Loïc,
->
-> Hope you are doing well. I am Chaitanya from the linux graphics team 
-> in Intel.
->
-> This mail is regarding a regression we are seeing in our CI runs[1] on
-> drm-tip repository.
->
-> Since the version CI_DRM_17644, we are seeing the following regression
->
-> ````````````````````````````````````````````````````````````````````````````````` 
->
-> <4> [392.386571] ------------[ cut here ]------------
-> <2> [392.386578] kernel BUG at 
-> drivers/gpu/drm/i915/gem/i915_gem_region.c:49!
-> <4> [392.386597] Oops: invalid opcode: 0000 [#1] SMP NOPTI
-> <4> [392.386604] CPU: 0 UID: 0 PID: 5710 Comm: i915_selftest Tainted: 
-> G S   U  W    L      6.18.0-CI_DRM_17644-g20a0f6f7ed00+ #1
-> ...
-> <4> [392.387153] RSP: 0018:ffffc9000142f740 EFLAGS: 00010246
-> <4> [392.387158] RAX: 0000000000000000 RBX: ffff8882427b8000 RCX: 
-> 0000000000000000
-> <4> [392.387162] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 
-> 0000000000000000
-> <4> [392.387165] RBP: ffffc9000142f770 R08: 0000000000000000 R09: 
-> 0000000000000000
-> <4> [392.387168] R10: 0000000000000000 R11: 0000000000000000 R12: 
-> ffff888144dcb800
-> <4> [392.387170] R13: ffff8881412b8a40 R14: 0000000000000100 R15: 
-> ffff8882427b8000
-> <4> [392.387173] FS:  0000702699044940(0000) GS:ffff8888dc8ea000(0000) 
-> knlGS:0000000000000000
-> <4> [392.387177] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> <4> [392.387180] CR2: 000058e25b5beef3 CR3: 00000001412d7000 CR4: 
-> 0000000000352ef0
-> <4> [392.387183] Call Trace:
-> <4> [392.387186]  <TASK>
-> <4> [392.387191]  i915_gem_object_create_region+0x1e/0x30 [i915]
-> <4> [392.387663]  igt_tmpfs_fallback+0xaf/0x3c0 [i915]
-> <4> [392.388109]  __i915_subtests+0xb8/0x250 [i915]
-> <4> [392.388557]  ? __pfx___i915_live_teardown+0x10/0x10 [i915]
-> <4> [392.388981]  ? __pfx___i915_live_setup+0x10/0x10 [i915]
-> <4> [392.389405]  ? _printk+0x57/0x80
-> <4> [392.389413] i915_gem_huge_page_live_selftests+0xac/0xe0 [i915]
-> <4> [392.389835]  __run_selftests+0xc5/0x220 [i915]
-> <4> [392.390263]  i915_live_selftests+0xaa/0x130 [i915]
-> <4> [392.390688]  i915_pci_probe+0x11b/0x220 [i915]
->
-> ````````````````````````````````````````````````````````````````````````````````` 
->
-> Details log can be found in [2].
->
-> After bisecting the tree, the following patch [3] seems to be the 
-> first "bad" commit
->
-> ````````````````````````````````````````````````````````````````````````````````````````````````````````` 
->
-> commit a8a9a590221c1959716277d4b13fe658816afc0e
-> Author: Loïc Molinari <loic.molinari@collabora.com>
-> Date:   Fri Dec 5 19:22:26 2025 +0100
->
->     drm/i915: Use huge tmpfs mountpoint helpers
-> ````````````````````````````````````````````````````````````````````````````````````````````````````````` 
->
->
-> We also verified that if we revert the patch the issue is not seen.
->
-> Could you please check why the patch causes this regression and 
-> provide a fix if necessary?
+enums for sure can't be used in UABI structs, and I don't think bools
+either.
 
-My bad actually. This should fix it:
+> +};
+> +
+> +/**
+> + * struct drm_histogram
+> + *
+> + * @config: histogram configuration data pointed by struct drm_histogram_config
+> + * @data_ptr: pointer to the array of histogram.
+> + *	      Histogram is an array of bins. Data format for each bin depends
+> + *	      on the histogram mode. Refer to the above histogram modes for
+> + *	      more information.
+> + * @nr_elements: number of bins in the histogram.
+> + */
+> +struct drm_histogram {
+> +	struct drm_histogram_config config;
+> +	__u64 data_ptr;
+> +	__u32 nr_elements;
+> +};
+> +
+>  #if defined(__cplusplus)
+>  }
+>  #endif
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h 
-b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-index 00f0b0ead053..969f6ea2b855 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-@@ -363,6 +363,7 @@ struct drm_i915_gem_object {
-                              I915_BO_ALLOC_PM_EARLY | \
-                              I915_BO_ALLOC_GPU_ONLY | \
-                              I915_BO_ALLOC_CCS_AUX | \
-+                            I915_BO_ALLOC_NOTHP | \
-                              I915_BO_PREALLOC)
-  #define I915_BO_READONLY          BIT(10)
-  #define I915_TILING_QUIRK_BIT     11 /* unknown swizzling; do not 
-release! */
-
-Loic would you mind sending a proper patch with Fixes: etc please?
-
-Regards,
-
-Tvrtko
-
->
-> Thank you.
->
-> Regards
->
-> Chaitanya
->
-> [1]
-> https://intel-gfx-ci.01.org/tree/drm-tip/combined-alt.html?
-> [2]
-> https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17644/bat-jsl-5/igt@i915_selftest@live@hugepages.html#dmesg-warnings394 
->
-> [3] 
-> https://cgit.freedesktop.org/drm-tip/commit/?id=a8a9a590221c1959716277d4b13fe658816afc0e
-
+-- 
+Jani Nikula, Intel
