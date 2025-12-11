@@ -2,191 +2,135 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D869FCB5A10
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Dec 2025 12:24:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DD18CB5CC1
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Dec 2025 13:24:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63D5910E058;
-	Thu, 11 Dec 2025 11:24:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4338C10E7E5;
+	Thu, 11 Dec 2025 12:23:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j6OasHmT";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="xInG9bcH";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF27310E058;
- Thu, 11 Dec 2025 11:24:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765452289; x=1796988289;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=L97Z1ZsEO8p3NMSyiIS62t6PtIBJm6xz/HxQKG/7Vb8=;
- b=j6OasHmTHC6xK20v7S12kCyI16KZtfIU2eEIX9zS8w8Z00zDageLnpwP
- eHaK62pPHXP98/BCsYtXu80wNka4wLrU4EVoQDqwABdPymwqykbDswAen
- G2k6vkv5mpeX8wjWbf2R1lectljcRSHr82GKDtvQpuhKfztCTIebp7v5m
- f4aP1qOiBg0whdSwsNgMM2QeZcyA/rLdF3NabDE+ZAkAQJ5cSnAN1ZcVl
- Pg9V5zhS6S1uZr44819LWK2+Rwt7RABW4H0RRBGNSfB9G3u3y0njKlwb5
- JdNi5ccr0i7O9cTV83FofAoSu/h8f4PtLX95ONe0fjwPJG9/lUjbTeJ7w g==;
-X-CSE-ConnectionGUID: sFVW6pJPQTWr7EuLWFkSCg==
-X-CSE-MsgGUID: c/fKo4WbSJ+oK68r7rvO6A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11638"; a="71277581"
-X-IronPort-AV: E=Sophos;i="6.20,265,1758610800"; d="scan'208";a="71277581"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2025 03:24:48 -0800
-X-CSE-ConnectionGUID: 2pTPHAHJRumYarQyYgA2Tw==
-X-CSE-MsgGUID: q8K49DyTR2W+0wj4G9Wg2Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,265,1758610800"; d="scan'208";a="220141974"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2025 03:24:48 -0800
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Thu, 11 Dec 2025 03:24:47 -0800
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Thu, 11 Dec 2025 03:24:47 -0800
-Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.67) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Thu, 11 Dec 2025 03:24:47 -0800
+Received: from CY3PR05CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11013043.outbound.protection.outlook.com
+ [40.93.201.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6209E10E0A3;
+ Thu, 11 Dec 2025 12:23:56 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Tra2AYrY0FTJ2E/mCwmKzW5HMK7FiDRBxHot/wBv+zj8pmL+/7T0NMpuz1J2qVcq3RLdNzuy1+uxnjUjqroD8x+9AyHIjQYp/IRXpOrfNepDXDgfEIZlMEXRm//L/kWYCM5XLUhruYxIiyXGVEJx33fSoBB7A8ByFw03CiT2GbrzvyMGgF5NM1CKifbLk8/t7ISU6RI601+UMMR3dzsb7jdjIAD04vIpnZWGpjJNj8evWpofD8u5qkgA8Vha+/wk+90L3l8zlVEWH/cVt6rZPnQZwdD0OdCFogFXeyH+RNeiIW0DneNLvAPe3meISbxt4zxap9Zl32yZVJ6YE44nBA==
+ b=CuchIyg4M77vZV1h+GFiFXl/PUqPBM4zTh1uepTlL3gSim/LsIK+uKx1reAedJS24i36tPy7fvtjciJIi3+ByTFnYmeZo17ekHweVtFykkXbXi7mBULf/uZKs1cUSrVLuG2vK0CSNyHn+vlw2W+cV9xQEI4OQJ1QExV+b8xSJS64+Ri0+ha2052H3D4OGSSqyrmR1WTtrlymmfBOuv/BCPY5eHkuQa2TWcJ5MhwnJYJfzep2YK2EWRkWz09xEQcY2QJhts63WYYQWhrskVu/Hsud4fkjjVWQcFlF/j9mSk3ck6SelxW8DVjhHrlAtUrVYp1eWDcYNqj6w7G16eia6g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QY97rjXZjIEYivzK8eUULJHOPSpfmHpWHN8axuplIaA=;
- b=dimaknyTMhwFymBNBjJkA24iTKy3pplF3AD1jUQM+h98qL0oDhKjKU6LQfCIVeWUPUeBe5ALAGSOrQNjPSzbi1LpurBKS2ABdVB6SZj1v6va1KRnhcZAbLqc6UDnftWMiOh2Q8CjWx3f0WAfefjl8jku3aJnc52ckIXVzQd0qH5RlVuOmrHsEiTMSQncWFA7sQQScR6oJ2TY89m2NG9vVLz9D/ZWHwoH6hFu7yIDTRVxK7zcajwiHcoNh+PuQYv6eOgCO8HldI7i9xs7E45sIer8Fh2ttWLITQ9/98PKu206Ye3XmczNcN+EmPAEc+TL1NE2Oa1gyMsiZqbJu75XrA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CO1PR11MB5057.namprd11.prod.outlook.com (2603:10b6:303:6c::15)
- by CH2PR11MB8815.namprd11.prod.outlook.com (2603:10b6:610:284::10)
+ bh=KP1bSQRfUYDyCP1VNIj4KdjaL55XsMo3LdfLGoxhYCI=;
+ b=IE3MwZRIknj2YuKL9suUsa3BJaN+H2/XPK0jegOxPiXERIqGVjtay8KyUc7cJ8o4rzEUn33k8HNfJAblfxTnwnSbRfc2WCtZHOQmHKFWiXNP0JNBXRe1L8MObiApix63LfGTVwl2nnpDMWCTScyzR3YT11p6znsUjaBgjN+cqR7KRNzlrrYBffBxpv+9hxGg+JLeqTKKowvcl+an6/GXsv/Npn7FROUNhz1283Vb1tFVgkDSzrwTdpTWh1iEFGkIMlgmr23GJ+hJqi/Xh8HwgMdXwKzIujmxTf0xx/w+tcotWCUK7WNoX9YKjecRVkDh2QjUNzEbd7ApoCZBsL8bhg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=intel.com smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KP1bSQRfUYDyCP1VNIj4KdjaL55XsMo3LdfLGoxhYCI=;
+ b=xInG9bcHcLfv3mp87ZTkJXxPzOBxtqCC+axfOP67rBiLXLkI8uQeXfVk4mNtzYtM207scYeUKZFjZbsaD76QdE5eNjWmFguOQWvINeRiaXExWhlehrHsOeK0KTtfJHZxygVdnMfxWk68p0lWQ9nhlgQ5k5HA84+MhEYwZ8WDnt8=
+Received: from BLAPR03CA0020.namprd03.prod.outlook.com (2603:10b6:208:32b::25)
+ by MW3PR12MB4428.namprd12.prod.outlook.com (2603:10b6:303:57::15)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.10; Thu, 11 Dec
- 2025 11:24:45 +0000
-Received: from CO1PR11MB5057.namprd11.prod.outlook.com
- ([fe80::3b75:a8d2:464e:30cc]) by CO1PR11MB5057.namprd11.prod.outlook.com
- ([fe80::3b75:a8d2:464e:30cc%3]) with mapi id 15.20.9412.005; Thu, 11 Dec 2025
- 11:24:44 +0000
-Date: Thu, 11 Dec 2025 11:24:31 +0000
-From: Krzysztof Karas <krzysztof.karas@intel.com>
-To: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
-CC: <dri-devel@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <stable@vger.kernel.org>, =?utf-8?B?6rmA6rCV66+8?= <km.kim1503@gmail.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Chris Wilson
- <chris.p.wilson@linux.intel.com>, Andi Shyti <andi.shyti@linux.intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>, Jani Nikula
- <jani.nikula@linux.intel.com>, Sebastian Brzezinka
- <sebastian.brzezinka@intel.com>
-Subject: Re: [PATCH v3] drm/i915/gem: Zero-initialize the eb.vma array in
- i915_gem_do_execbuffer()
-Message-ID: <ezfzff7burfabd2b4ofna5pmue2m64zn3gin2uyefnk7fczizk@f52nhwgfliyh>
-"Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316"
-References: <20251210165659.29349-3-krzysztof.niemiec@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20251210165659.29349-3-krzysztof.niemiec@intel.com>
-X-ClientProxiedBy: TL2P290CA0002.ISRP290.PROD.OUTLOOK.COM
- (2603:1096:950:2::12) To CO1PR11MB5057.namprd11.prod.outlook.com
- (2603:10b6:303:6c::15)
+ 2025 12:23:51 +0000
+Received: from BL6PEPF00022571.namprd02.prod.outlook.com
+ (2603:10b6:208:32b:cafe::e2) by BLAPR03CA0020.outlook.office365.com
+ (2603:10b6:208:32b::25) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9388.16 via Frontend Transport; Thu,
+ 11 Dec 2025 12:23:52 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BL6PEPF00022571.mail.protection.outlook.com (10.167.249.39) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9412.4 via Frontend Transport; Thu, 11 Dec 2025 12:23:51 +0000
+Received: from arun-nv33.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Thu, 11 Dec
+ 2025 06:23:48 -0600
+From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+To: <christian.koenig@amd.com>, <matthew.auld@intel.com>,
+ <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+CC: <alexander.deucher@amd.com>, Arunpravin Paneer Selvam
+ <Arunpravin.PaneerSelvam@amd.com>
+Subject: [RFC PATCH] drm/buddy: Optimize large alignment handling to avoid
+ unnecessary splits
+Date: Thu, 11 Dec 2025 17:53:19 +0530
+Message-ID: <20251211122319.2054-1-Arunpravin.PaneerSelvam@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PR11MB5057:EE_|CH2PR11MB8815:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5359104e-f3a8-4727-ee0f-08de38a7e2a4
+X-MS-TrafficTypeDiagnostic: BL6PEPF00022571:EE_|MW3PR12MB4428:EE_
+X-MS-Office365-Filtering-Correlation-Id: 63212c96-b05c-41b7-fbb6-08de38b024c3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?YTFLcGtTNWNUZWlRbU5jSUx5Vk1kRWRIbDlHeFp6dkJub2ZJRFptbnBsN3c5?=
- =?utf-8?B?WjJMUXRuVE5wbC9PMmFYUzRjZVJuSUJWLy93cy9TREdnTjRQMk0vSGMxT08v?=
- =?utf-8?B?KzlWNjRub0ZyUnkyODJRZytzSEtJZXlNWWoyeTByYnNQcGI1QW9LUy9acUts?=
- =?utf-8?B?Tk9uaWhqSFRIMzJBU29wOVR0a2NEcE5hMzQvMlp5c1ROclNkTnFpQjNFaTZo?=
- =?utf-8?B?R3JiYnE2RlRzY09YQkd2cU1qZ3NpKzJVaHVDN25QdGJvQVVldFBGRnQwMExn?=
- =?utf-8?B?MTc3VGVieGRERWMwb3NkTWNlSWFBdmJjMFVGWk1oTThPSWZLVWx6eWdrVUxq?=
- =?utf-8?B?a2tJZG1tY0Q0YkxlejkranZOa0VhSXU0L2w0QWcwN0FMajlZc2Rqb1NVY1Fx?=
- =?utf-8?B?YVVOY1ZrT1NKZk1sTWErM2Z6Zk1KcHJIYjRtQitpUjE1emcwM0FwNEh1TGl0?=
- =?utf-8?B?VUdXaVFEeVlRVDNJYXhrakpDbFpDNi8yUldEc05DY25CZklvY2RRcTN2TXVw?=
- =?utf-8?B?MmJsamhxQnZYUVdtd2w0NjNuYm8vQ1Z5Yyt5Q1J6MzRtV2haSm9tWnAwSENl?=
- =?utf-8?B?dVduNjAvZFRtQW9VOUhsT0xBejRWc0pjZXdLYlZxbkpzSEF5RFN2Z2pLaENG?=
- =?utf-8?B?andnOHBoNlB1Y1I1N3lYMS9veGZ0TkNPRWdoQlJBQzFSSWhaUVpSWUgzcnZY?=
- =?utf-8?B?U3ExMlBYMWt4K1czS2VzUVVhVzhlcVF0dlorS2JqbXl6VnFDdkxiMGM0WXZP?=
- =?utf-8?B?UHFYRHFoMjZRalpYMVVoK3VCem13clNpSjJEMzdyeWVTS2tOM1dLckV2RTVI?=
- =?utf-8?B?OEdBeVJFOGozT20zZlRidHhiUVdSUVRpYmM1WUFTUjdydEVLdDFUc1lucU1F?=
- =?utf-8?B?TTBSWUIvS0JyVm41Ulpucy9UNkx1dnpFaDVOaWNOM0pBSUxnTkFiWUFzOEZt?=
- =?utf-8?B?Q24wekZNQTQ2K2pYU1NnQXhPZnRqS1N3UTJLbjJYTnJHSm9mNlRJMlhlbnNN?=
- =?utf-8?B?SnlGME9Pa2hVNmxSQnhoZUozQ2FaanJ0TVRjSjBwaXlzeGZlSWFlM2Q3QnBo?=
- =?utf-8?B?SnRCOFRRS3dOUk9JdDFmTm93Q0V2a0dVeFJOUUxsMU5pdURXcGRacUVTNFdv?=
- =?utf-8?B?d3RFZUdxL3lhd25pV2RiNGlhMHoyOTZmTXNpb05QRVU1di9PR2NtaWdpcEkw?=
- =?utf-8?B?UmdTbXRmZVJpNzM5TzdqZm1rbUNiYXhwS3BVUHRHZG52RXhTODcxRzR5eXZQ?=
- =?utf-8?B?R1VGRi9yLytWNllnVjNWNHRueTkwMmhDT1BpRTk5L2FQVVozaTlkRmppY205?=
- =?utf-8?B?SmtIYzZhVDJjZHZ4cUpxZlFMMlh3aFhaWVdqekJOb0ZUY0VOVCs0cUh0TmV2?=
- =?utf-8?B?OWk4blhKdm9Vby9iV1NsbUc2RDVEcFRZRXhINHY2ZEI0YkhsVDltYUplNjFI?=
- =?utf-8?B?RkZGRzVuaG10R3dKZnZWK1hmTVFNTkFlWTNGWjk0V3h5aTZ2YTVlaXhFdTgw?=
- =?utf-8?B?eU9aZGVBT2ZnR0NTU1pBTlBNTDRvZnp3TzEvb3oxcHhoUTYvV05HM2FKa3Nu?=
- =?utf-8?B?SHFXNXowZkYzWmFrc0dkTE45R0NuQVFLUEtCVEtYL3pVdzVCTEovbjNoUEJE?=
- =?utf-8?B?VUxYaGVoVDdDTTQ5MG1kcnZBN3ZZaXM4MHYvZWhMdnJNUS9PWUd6eGZiWjIv?=
- =?utf-8?B?YTFQRVVFQk9mZXdUeTF1N01TTTV3NjRxTXNHdkFBazFzS25nQWRlSW5YdUtk?=
- =?utf-8?B?T0dqV3pweE1hRXNMak81NTlUU0k5TXQrSDdyK0d5WnpWck4rSm9YQ09saGlo?=
- =?utf-8?B?Qjl0N2JrTzVGR3FsSGhWK1FJdjYwelFUTTRPQUNnUjRxK005RDlQU09wamdZ?=
- =?utf-8?B?Y1Y4enkrVTJQL1BoZUU0Y3d1Mmd4b0JraHFiSFNpUnluVDRXais0Q3hKWWN4?=
- =?utf-8?Q?cTdvmRMGljH8pJYDrlkDro0y7uZ3tPAR?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO1PR11MB5057.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bTJqZWVoOG95aXRjL2hTL0VEUzl1N05uM1loZWFvUW5YaDVWaTN2cHQ2aXBI?=
- =?utf-8?B?TUdRbjFxTjBXVHloNXIwdkgvbHVCdGhjV0JROWNqcmJuR2lWRnJXZldsSlZR?=
- =?utf-8?B?TU10djFEeHZWUHlRSFM5WitoVW1Vb3YweGdmZ1hValA1MlBIUGcyMkFiQkJ3?=
- =?utf-8?B?UzA1OWtHMm1UMkl2MWlnRUpsRFJQZmQ3QzF1RlB3QUVvVFRJcTFFQWFwdkVT?=
- =?utf-8?B?T002VDZaMkY0NHJwallaNTM0SSs5dkkxSEk5ekZ1UmNPLythT1BPTmMvUHhm?=
- =?utf-8?B?aXhlcnR6Ni96YjdTUVl2OFRENm1rSXp6QUhnanI5MUcwR3dMbFZuTGVWWURO?=
- =?utf-8?B?KzNPcnNzZDNGM1hZWXNsVDF0WDM3MW4rc0wzM2N6dHlWaERFWjgwUXl5akZC?=
- =?utf-8?B?NG5DTlNEWVA3dWlWWENKMGpBeXdHYVJhRkdoRDlLQ1d0eTVFNllkTUVZYk1K?=
- =?utf-8?B?RkdKUTQ5aWlhQnVURXVvVEpMT2JQR3BvNXI4R2RLMU9DRzVNcHRoeWw5WkNP?=
- =?utf-8?B?eU1vMFR2MEtndkV1bVE5dHZZbTRWUWYrZVNHM1FjOERkbVo5bk9rS1JNOVJK?=
- =?utf-8?B?YmRMd2l4WUdKWVg5UXNJWjloWDNjOHk1dlRHTVVOVE5OeVhoWjRIMktnUnRu?=
- =?utf-8?B?UXNWdFk4c2dCbSt5bHEwbzRQYXJnZTB3WUFEekR1MzRGRld0bVk0V0lzM2lz?=
- =?utf-8?B?R2JNTGhqK1pmVVhhSkM3MUlGaXRvTHU4MHB1MkpzR0NiVG0rUC9Zd0dNVkYz?=
- =?utf-8?B?YndqNGZDaVJvcnhSaTJ4TU5rc2dqVWRxcU9OZnhpVm5yWFpaMi90UmpZaUJY?=
- =?utf-8?B?UzI3cjZodkJlR3VIVDlqbGxmNGRsZzdHYTdWTUx6czRBcHAra3ZjdU1BNUw3?=
- =?utf-8?B?QmlBNkFGMUF6TXkzUkFYQkgxMUhjaGxKUGFCZS8wMml3NFRrUjJ3OHJQajls?=
- =?utf-8?B?Yi9ZNEJvcFZQUzdFTnFGUGdBU2trdmJ0bTdTSDJTL2EzK1Z5U2UzUDlFSDhj?=
- =?utf-8?B?T0xUMXNMUWFHOCtBYXF2d28xMHd0UmcyVzJZcEdZQkJla3d4OFNBeitGZ05M?=
- =?utf-8?B?WFQ5NUoySGFsZis1L1NKM0VtWXRseXBlVituRkxzNGJpY1BlLy9NUWhtWUNN?=
- =?utf-8?B?V2JuVEZ0NjJmMUVPbkVTUVFrb0NFWFA0d1JYbWttWUZncUxGbmt6bWtNRGQz?=
- =?utf-8?B?aXVxaGNKUWVOcHRNbFc5TlF0cjlDMndIS0FFSnQ1NzdMaDhBbFVCVE1CcGw2?=
- =?utf-8?B?d0J5T0x4YTBlcXNCYzlPT2R3eW9IcGtyUk5va0ZIckx3K1M5N2g4aHNlNHRL?=
- =?utf-8?B?ZGdxQmNrMlpkdklWajZUbXV3UGhQUE1xL1VmTUlWUHdVRG9CNytRbFdpT3B0?=
- =?utf-8?B?dlR1eWYrbEZtdURnS2Q0eEFWZGNjcmZLTzhxSzJiYktDN0czdXpjM0hTZmhw?=
- =?utf-8?B?dzVaaUhrRGFqUWRKc3pIY2tOaSs5aDladUh2aDZzWHYzRzQ0QzRTaTJkSmU3?=
- =?utf-8?B?VjNrUnlUNzhmSnducGQ4WmdFcVg4ejFXNi9tRmI5a2lKMkl0eHB0bXZibTdX?=
- =?utf-8?B?NEI3RXh3aURHUFp0Mm1VSDFVZVNYVmkzbGZqSWZlMzVxdmxKTFE3SXR0V3NZ?=
- =?utf-8?B?TXFGeTJ2c3pNcmUxaEVMZVpJSDhJZ2Q3RGlvbVJYL1ROTHR6Yy9uWjlvWFg2?=
- =?utf-8?B?QW4yRS9sY1VqRGQ4a0d3T1BGeGpGWGxHa0kyVWVML2RheDErUkVUT0lwdTNP?=
- =?utf-8?B?M21SaHlZbGxUQUZCakJvbHRZeUJyRy9rMHQxaFkzS1N2WXNETVByeCtxdXgw?=
- =?utf-8?B?ei9pNG14QUNSTTdZaDQ5TnFjMXhnZE1hZHdqbHZuT09qWkkzWkVkanBCeFBW?=
- =?utf-8?B?MFhITEd3S1ZDYUVwTHN0eXJZd2NYaE51L1VJNEZ5MjNwVEM5SDFINWdvTk5q?=
- =?utf-8?B?SDE5MDFXWlRPczZhUnNiV3Q1Q2FRdFJQWG5ReURWN1A5VmM1MmltemtnQ0dW?=
- =?utf-8?B?eTM4T2dORmNGK1NuVDI5ZSswSEE0STA3V2c3QlFEUUM2MG5PVURhWS8rL0NE?=
- =?utf-8?B?UUYrbTFTUW4wRnhJS3o3RG9nelY0VGc5UFFyc21ZS21xR1MzdWQwMmRZZzhT?=
- =?utf-8?B?L01xODg5Z1pWTmVjWVpFT1h1b1E4NHlEVTA1bzB1NTE4SzAvM3FuenNiV3J4?=
- =?utf-8?B?OXc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5359104e-f3a8-4727-ee0f-08de38a7e2a4
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5057.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2025 11:24:44.8692 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hRVKp9wnAgws766eF9AW3d+yGfZOyevgx7y5Flx23IoxkDaZ8iBIeywK+2UzzopwwU1ajP9/Gk8wbbzO/XzmggkAArqu2+L/9uHu/x+LIfQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR11MB8815
-X-OriginatorOrg: intel.com
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700013|376014|82310400026|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?QXY1eHBTTkkwa3dNNzEyMmY5bFpnMGtLdjRBdWMrdXNRZ2w2NmtTTlE0WEh3?=
+ =?utf-8?B?R3YwOEt4T1FGQ2haVENYbDhaejNrWU1HbGhxblpVb1JBVy9odGRLYVBqa0R6?=
+ =?utf-8?B?SFN2WFgwaUhPNXRCbW8yMmtkN2lIQnZlS3R6L3h0akdwNlovY0orVTUzMmVa?=
+ =?utf-8?B?RWRuZGxpbE9YaXEwWVR1T2Zyb3ozVm12ZkJNZHB4bUF4ODJmVDhWWjJDS1JS?=
+ =?utf-8?B?OXBoTlNyTzBhRWZYazc1YWxtNWdaSnNkRHgxSFh0bjNHT0RCREJQMk1KR1VB?=
+ =?utf-8?B?WHFCRFZJU2F5dVNaQmg2U1JxWEJpNWd3YitWY2F2OUJ1MTN0d2FtYkZ0TUJ1?=
+ =?utf-8?B?a25SdWMzNGxhT2NOdWhCakFNSmZsQTNKUnNtVWxIVDNhc3d6WW41aUVMSTZZ?=
+ =?utf-8?B?YjBZQXhEZi8rSm5GRmlJeHdMT3IwaXhHam8wZTRmdHZFVTdlQ25hYnJacTFJ?=
+ =?utf-8?B?TTJWYm05TXMrM1NYVHdzNjVrTHk1Ukx2UldKWUJUKzJDalJMaXI3bVYwdnpi?=
+ =?utf-8?B?ejlnK1ZPbFQzZWgvYkZrV0NTaUZ3OTdsYXZqME9jczZ1OWxoQ1lraXRNWEp5?=
+ =?utf-8?B?dlR0bmVRWkczelNobzNpbFZNaE5CL21meUx1ZzVFSTJOMXR3eVE5d1EyTHRI?=
+ =?utf-8?B?UkRxd1VVckxFckYvYjNUOGEwUHF2bUppTHJxQ0R0bkNTbEI1OHJNS0VvNTdF?=
+ =?utf-8?B?b0VSQ3FMRjhBT1hhb3BobXV1UTROQm9DYmt1cWk0NHFkNTFvTVh4VlNYRGVl?=
+ =?utf-8?B?c3J0MEg4THN1bGFrU2x4MDdqc3FpVHU2aGVDNVZVaDlmRTBFMlhxMUR4RHpB?=
+ =?utf-8?B?ekVrY2Rtbmw3SldMdi9ZaGVQdC9OUG56RE9IZE15aTFJVWlCRmZQYnNBanYx?=
+ =?utf-8?B?SkkwWU5ZZDNrT05uZE1MWWxCdmtDN0lvN0liYWN5SWlqUllpem1HakVGY2ox?=
+ =?utf-8?B?ZGVydlh2V2hRSU9DcXVsRlVQbDZneHFYSVJyYzFYVStvQmRVVVlEdHp5Y2Jy?=
+ =?utf-8?B?WlBpZkkwWkl4RHpxLy8ybDFPVmZ1WlVQWVZqWXdwU0pmZ1MrOUdqaHd3Z0RH?=
+ =?utf-8?B?ZTRkM296NTlxeENrQkQ4VlV2OEx2dkxYM0V1aDMySGl6MUFObCtIRUFJZmdQ?=
+ =?utf-8?B?V01EeUlCWU1NbjdXdVR2aENTajlmTlAzVHFkaGxvMFp2d3RaOEZPdnhqR3hF?=
+ =?utf-8?B?UHZrdHN0WHNIVlRlZS9Dcm9TY3lBQjl5NWtKOS9OSkJabEI0Q1VEVFhjSkYz?=
+ =?utf-8?B?eTBDSGNnQm9YZVJnclFoV0d2Wk5UL1VEUGtTdk5LODR0TUtWallsdHorNnhS?=
+ =?utf-8?B?dEJZdUdBQVVTZUJzdFNzTkhUdE1hWnRUZUtEclBRaVBVY2QyQkF2TURvU1BN?=
+ =?utf-8?B?Mi9TQzFvdHF5WlVySkRQZ3VOa2I5WkFaSkZzemVNMGhjZHoyTWh2NXVQaVZL?=
+ =?utf-8?B?OWtWR0U0bjVoQTNscWE0bzZEellpUjJTdkdaSUlITW5tUytyVmdDTkh2L3o0?=
+ =?utf-8?B?V3p2WW43U0lEVmltTlZnK1pacnFPZ3grOXlLdnZVSFhiZUpKWDhJSElYTE5K?=
+ =?utf-8?B?eS9WZEFWM214elhWK05WaXlyWU5OMjhkbWJXdmNOR3o3WGpheVhMczVXUzJ3?=
+ =?utf-8?B?cnYrT0twc1U3OGg2YnhzTzdRRWMvaUJydFlDNWpDTURkOGRzR1N6SWdqNDFu?=
+ =?utf-8?B?UmdiY1lSN2R1em03YU1UY1U4WEI4RHBlVHJtL2Z1ajNsQUV3QkZMOXF4QXNw?=
+ =?utf-8?B?N1RCTVRMYkVaVjdERXJ0d0VPdzNRSkZ2b1htVFFWRytDb3hRbDdpWGJ2MDdi?=
+ =?utf-8?B?ZE84Sm5hb3pqc00vTGh0Y25YcVg5RTVFZDU5cllQTHYvdVdXTUVvQ29jeVg4?=
+ =?utf-8?B?K2cxTGRYTFpqQUVGbFN4VCtwVzAyTittb0xCajUrZWJTRHhrNnplRFBCNjF1?=
+ =?utf-8?B?dnRvdHh4VzByenF0ODAzdytQSElBMXhJazlBaFpDY0FPU0I3Q0xvZnpYeldU?=
+ =?utf-8?B?Mk5XeGZtQjlFRG5uNTdML0VKYnRyZGJwQk1DYjRicTk1NE9Td1RBQkxIT3Qv?=
+ =?utf-8?B?K3dycHVnb3ExQnZlUUxETjV4MWxJTUJ1eHlXL1A2U0NJdGZhZTk4cEtiT2dR?=
+ =?utf-8?Q?3N5o=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2025 12:23:51.4971 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 63212c96-b05c-41b7-fbb6-08de38b024c3
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF00022571.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4428
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -202,49 +146,312 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Krzysztof,
+Large alignment requests previously forced the allocator to search by
+alignment order, causing large free blocks to be split even when a
+smaller aligned range existed within them. This patch switches the
+search to prioritize the requested size and uses an augmented RB-tree
+field (subtree_max_alignment) to efficiently locate blocks that satisfy
+both size and alignment. This prevents unnecessary block splitting and
+significantly reduces fragmentation.
 
-[...]
+A practical example is the VKCTS test
+dEQP-VK.memory.allocation.basic.size_8KiB.reverse.count_4000, which
+allocates 8 KiB buffers with a 256 KiB alignment. Previously, these
+requests caused the allocator to split large blocks despite having
+smaller aligned portions within them that could satisfy the allocation.
+The new design now identifies and allocates from these portions,
+avoiding unnecessary splitting.
 
-> @@ -3375,7 +3360,9 @@ i915_gem_do_execbuffer(struct drm_device *dev,
->  
->  	eb.exec = exec;
->  	eb.vma = (struct eb_vma *)(exec + args->buffer_count + 1);
-> -	eb.vma[0].vma = NULL;
-> +
-> +	memset(eb.vma, 0x00, args->buffer_count * sizeof(struct eb_vma));
-> +
->  	eb.batch_pool = NULL;
->  
->  	eb.invalid_flags = __EXEC_OBJECT_UNKNOWN_FLAGS;
-> @@ -3584,7 +3571,16 @@ i915_gem_execbuffer2_ioctl(struct drm_device *dev, void *data,
->  	if (err)
->  		return err;
->  
-> -	/* Allocate extra slots for use by the command parser */
-> +	/*
-> +	 * Allocate extra slots for use by the command parser.
-> +	 *
-> +	 * Note that this allocation handles two different arrays (the
-> +	 * exec2_list array, and the eventual eb.vma array introduced in
-> +	 * i915_gem_do_execubuffer()), that reside in virtually contiguous
-> +	 * memory. Also note that the allocation doesn't fill the area with
-> +	 * zeros (the first part doesn't need to be), but the second part only
-> +	 * is explicitly zeroed later in i915_gem_do_execbuffer().
-I get the gist of this comment, but I think you could reword the
-last sentence:
-"Also note that the allocation doesn't fill the area with zeros,
-because it is unnecessary for exec2_list array, and eb.vma is
-explicitly zeroed later in i915_gem_do_execbuffer()."
+Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+Suggested-by: Christian König <christian.koenig@amd.com>
+---
+ drivers/gpu/drm/drm_buddy.c | 205 +++++++++++++++++++++++++++++++++---
+ include/drm/drm_buddy.h     |   3 +
+ 2 files changed, 191 insertions(+), 17 deletions(-)
 
-> +	 */
->  	exec2_list = kvmalloc_array(count + 2, eb_element_size(),
->  				    __GFP_NOWARN | GFP_KERNEL);
->  	if (exec2_list == NULL) {
-> -- 
-> 2.45.2
-> 
-
+diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+index f2c92902e4a3..f749814bb270 100644
+--- a/drivers/gpu/drm/drm_buddy.c
++++ b/drivers/gpu/drm/drm_buddy.c
+@@ -23,6 +23,18 @@ static struct kmem_cache *slab_blocks;
+ #define for_each_free_tree(tree) \
+ 	for ((tree) = 0; (tree) < DRM_BUDDY_MAX_FREE_TREES; (tree)++)
+ 
++static unsigned int drm_buddy_min_offset_or_size_order(struct drm_buddy_block *block)
++{
++	return min_t(unsigned int,
++		     __ffs(drm_buddy_block_offset(block)),
++		     drm_buddy_block_order(block));
++}
++
++RB_DECLARE_CALLBACKS_MAX(static, drm_buddy_augment_cb,
++			 struct drm_buddy_block, rb,
++			 unsigned int, subtree_max_alignment,
++			 drm_buddy_min_offset_or_size_order);
++
+ static struct drm_buddy_block *drm_block_alloc(struct drm_buddy *mm,
+ 					       struct drm_buddy_block *parent,
+ 					       unsigned int order,
+@@ -40,6 +52,9 @@ static struct drm_buddy_block *drm_block_alloc(struct drm_buddy *mm,
+ 	block->header |= order;
+ 	block->parent = parent;
+ 
++	block->subtree_max_alignment =
++		drm_buddy_min_offset_or_size_order(block);
++
+ 	RB_CLEAR_NODE(&block->rb);
+ 
+ 	BUG_ON(block->header & DRM_BUDDY_HEADER_UNUSED);
+@@ -76,26 +91,32 @@ static bool rbtree_is_empty(struct rb_root *root)
+ 	return RB_EMPTY_ROOT(root);
+ }
+ 
+-static bool drm_buddy_block_offset_less(const struct drm_buddy_block *block,
+-					const struct drm_buddy_block *node)
+-{
+-	return drm_buddy_block_offset(block) < drm_buddy_block_offset(node);
+-}
+-
+-static bool rbtree_block_offset_less(struct rb_node *block,
+-				     const struct rb_node *node)
+-{
+-	return drm_buddy_block_offset_less(rbtree_get_free_block(block),
+-					   rbtree_get_free_block(node));
+-}
+-
+ static void rbtree_insert(struct drm_buddy *mm,
+ 			  struct drm_buddy_block *block,
+ 			  enum drm_buddy_free_tree tree)
+ {
+-	rb_add(&block->rb,
+-	       &mm->free_trees[tree][drm_buddy_block_order(block)],
+-	       rbtree_block_offset_less);
++	struct rb_node **link, *parent = NULL;
++	struct drm_buddy_block *node;
++	struct rb_root *root;
++	unsigned int order;
++
++	order = drm_buddy_block_order(block);
++
++	root = &mm->free_trees[tree][order];
++	link = &root->rb_node;
++
++	while (*link) {
++		parent = *link;
++		node = rbtree_get_free_block(parent);
++
++		if (drm_buddy_block_offset(block) < drm_buddy_block_offset(node))
++			link = &parent->rb_left;
++		else
++			link = &parent->rb_right;
++	}
++
++	rb_link_node(&block->rb, parent, link);
++	rb_insert_augmented(&block->rb, root, &drm_buddy_augment_cb);
+ }
+ 
+ static void rbtree_remove(struct drm_buddy *mm,
+@@ -108,7 +129,7 @@ static void rbtree_remove(struct drm_buddy *mm,
+ 	tree = get_block_tree(block);
+ 	root = &mm->free_trees[tree][order];
+ 
+-	rb_erase(&block->rb, root);
++	rb_erase_augmented(&block->rb, root, &drm_buddy_augment_cb);
+ 	RB_CLEAR_NODE(&block->rb);
+ }
+ 
+@@ -596,6 +617,88 @@ static bool block_incompatible(struct drm_buddy_block *block, unsigned int flags
+ 	return needs_clear != drm_buddy_block_is_clear(block);
+ }
+ 
++static bool drm_buddy_subtree_can_satisfy(struct rb_node *node,
++					  unsigned int alignment)
++{
++	struct drm_buddy_block *block;
++
++	if (!node)
++		return false;
++
++	block = rbtree_get_free_block(node);
++	return block->subtree_max_alignment >= alignment;
++}
++
++static struct drm_buddy_block *
++drm_buddy_find_block_aligned(struct drm_buddy *mm,
++			     enum drm_buddy_free_tree tree,
++			     unsigned int order,
++			     unsigned int tmp,
++			     unsigned int alignment,
++			     unsigned long flags)
++{
++	struct rb_root *root = &mm->free_trees[tree][tmp];
++	struct rb_node *rb = root->rb_node;
++
++	/* Try to find a block of the requested size that is already aligned */
++	while (rb) {
++		struct drm_buddy_block *block = rbtree_get_free_block(rb);
++		struct rb_node *left_node = rb->rb_left, *right_node = rb->rb_right;
++
++		if (left_node) {
++			if (drm_buddy_subtree_can_satisfy(left_node, alignment)) {
++				rb = left_node;
++				continue;
++			}
++		}
++
++		if (drm_buddy_block_order(block) >= order &&
++		    __ffs(drm_buddy_block_offset(block)) >= alignment)
++			return block;
++
++		if (right_node) {
++			if (drm_buddy_subtree_can_satisfy(right_node, alignment)) {
++				rb = right_node;
++				continue;
++			}
++		}
++
++		break;
++	}
++
++	if (tmp < max(order, alignment))
++		return NULL;
++
++	/* If none found, look for a larger block that can satisfy the alignment */
++	rb = root->rb_node;
++	while (rb) {
++		struct drm_buddy_block *block = rbtree_get_free_block(rb);
++		struct rb_node *left_node = rb->rb_left, *right_node = rb->rb_right;
++
++		if (left_node) {
++			if (drm_buddy_subtree_can_satisfy(left_node, alignment)) {
++				rb = left_node;
++				continue;
++			}
++		}
++
++		if (drm_buddy_block_order(block) >= max(order, alignment) &&
++		    drm_buddy_min_offset_or_size_order(block) >= alignment)
++			return block;
++
++		if (right_node) {
++			if (drm_buddy_subtree_can_satisfy(right_node, alignment)) {
++				rb = right_node;
++				continue;
++			}
++		}
++
++		break;
++	}
++
++	return NULL;
++}
++
+ static struct drm_buddy_block *
+ __alloc_range_bias(struct drm_buddy *mm,
+ 		   u64 start, u64 end,
+@@ -798,6 +901,69 @@ alloc_from_freetree(struct drm_buddy *mm,
+ 	return ERR_PTR(err);
+ }
+ 
++static int drm_buddy_offset_aligned_allocation(struct drm_buddy *mm,
++					       u64 size,
++					       u64 min_block_size,
++					       unsigned long flags,
++					       struct list_head *blocks)
++{
++	struct drm_buddy_block *block = NULL;
++	unsigned int order, tmp, alignment;
++	enum drm_buddy_free_tree tree;
++	unsigned long pages;
++
++	alignment = ilog2(min_block_size);
++	pages = size >> ilog2(mm->chunk_size);
++	order = fls(pages) - 1;
++
++	tree = (flags & DRM_BUDDY_CLEAR_ALLOCATION) ?
++		DRM_BUDDY_CLEAR_TREE : DRM_BUDDY_DIRTY_TREE;
++
++	for (tmp = order; tmp <= mm->max_order; ++tmp) {
++		block = drm_buddy_find_block_aligned(mm, tree, order,
++						     tmp, alignment, flags);
++		if (!block) {
++			tree = (tree == DRM_BUDDY_CLEAR_TREE) ?
++				DRM_BUDDY_DIRTY_TREE : DRM_BUDDY_CLEAR_TREE;
++			block = drm_buddy_find_block_aligned(mm, tree, order,
++							     tmp, alignment, flags);
++		}
++
++		if (block)
++			break;
++	}
++
++	if (!block)
++		return -ENOSPC;
++
++	while (drm_buddy_block_order(block) > order) {
++		unsigned int child_order = drm_buddy_block_order(block) - 1;
++		struct drm_buddy_block *left, *right;
++		int r;
++
++		r = split_block(mm, block);
++		if (r)
++			return r;
++
++		left  = block->left;
++		right = block->right;
++
++		if (child_order >= alignment)
++			block = right;
++		else
++			block = left;
++	}
++
++	mark_allocated(mm, block);
++	mm->avail -= drm_buddy_block_size(mm, block);
++	if (drm_buddy_block_is_clear(block))
++		mm->clear_avail -= drm_buddy_block_size(mm, block);
++	kmemleak_update_trace(block);
++	list_add_tail(&block->link, blocks);
++
++	return 0;
++}
++
+ static int __alloc_range(struct drm_buddy *mm,
+ 			 struct list_head *dfs,
+ 			 u64 start, u64 size,
+@@ -1147,6 +1313,11 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+ 		min_block_size = size;
+ 	/* Align size value to min_block_size */
+ 	} else if (!IS_ALIGNED(size, min_block_size)) {
++		if (min_block_size > size && is_power_of_2(size))
++			return drm_buddy_offset_aligned_allocation(mm, size,
++								   min_block_size,
++								   flags,
++								   blocks);
+ 		size = round_up(size, min_block_size);
+ 	}
+ 
+diff --git a/include/drm/drm_buddy.h b/include/drm/drm_buddy.h
+index d7891d08f67a..da6a40fb4763 100644
+--- a/include/drm/drm_buddy.h
++++ b/include/drm/drm_buddy.h
+@@ -11,6 +11,7 @@
+ #include <linux/slab.h>
+ #include <linux/sched.h>
+ #include <linux/rbtree.h>
++#include <linux/rbtree_augmented.h>
+ 
+ #include <drm/drm_print.h>
+ 
+@@ -60,6 +61,8 @@ struct drm_buddy_block {
+ 	};
+ 
+ 	struct list_head tmp_link;
++
++	unsigned int subtree_max_alignment;
+ };
+ 
+ /* Order-zero must be at least SZ_4K */
 -- 
-Best Regards,
-Krzysztof
+2.34.1
+
