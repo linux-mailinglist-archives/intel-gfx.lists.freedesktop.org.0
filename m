@@ -2,66 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12B42CB622A
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Dec 2025 15:04:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ED64CB623C
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Dec 2025 15:06:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA1A810E825;
-	Thu, 11 Dec 2025 14:04:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7206910E720;
+	Thu, 11 Dec 2025 14:05:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CXRN+6cS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XeFJagqT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 262D289C7F;
- Thu, 11 Dec 2025 14:04:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68D6610E720;
+ Thu, 11 Dec 2025 14:05:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765461876; x=1796997876;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=8rju0sIOdUgAVxzoAbCeZb5Ok9k0o3hFXh44STEZKGM=;
- b=CXRN+6cSTH1D+KJe+ukAUlH+LR9AEfhJwjGHyyZvbslibjapaPjfmAXx
- 2uDhR1ANYGJv+jd04NWu8sWrIYIbJlXgPVvNRbpezgD+oIvclQhCXcpoL
- zzGBrIPRVJmvyvgz6oQpEPsEnx8RsYFpPVA1xI+4LyRo138kKGU5PFQ+/
- GUSO5/GfSCeev2YlXwY4Rs07xkt2NbSDxVvjz5sxh2zxKt5wQTDXkUywU
- x90Itwzq4utGZwg+hlqu0mS7gFCN+ocryF5SYCo4zoqm8RiH0MyoZ9GzC
- dkIiBW7cfj2GHBxBezCSnZNEf6LbEZFVLHVtZFZgqX7wcCu69UKjfRv0u w==;
-X-CSE-ConnectionGUID: LzqqKQxuSqe0L3ACfCAS8Q==
-X-CSE-MsgGUID: /F/7K3xOQz6D3PcIVEyugQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11639"; a="67176536"
-X-IronPort-AV: E=Sophos;i="6.21,141,1763452800"; d="scan'208";a="67176536"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2025 06:04:35 -0800
-X-CSE-ConnectionGUID: 0+WJemQkSdSqfEjt8Uhsyw==
-X-CSE-MsgGUID: pK9oDWMoQViNHqcsPOBK5g==
+ t=1765461956; x=1796997956;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=dzXHVkwC/M9NRU1IUfVXSf2jXX10b2DrCsYDrW/bCBE=;
+ b=XeFJagqTC338aYsBrBL3ICEXk2vBcz0U+ZP7hwYP+mk/q/0SSSulkX1c
+ SPRX6PihjKmUBp7Rnf4TN8a3RjHmurBV3hw0yjPezHO5QV7b63sgNxh1N
+ seWzTdJ3vbmopHygpwSR6Hta+1IbqFS4OSAvbydbt0yk/6AMGtv90apM/
+ xeEFv3tQca9+6jEjxPvq56u27XUdlZGw9am8DMqe2/sDw05PIfIj15m8i
+ 67wcFN0x74rI0sqLONw7aMAdpF7eYPOiTWfR+7gMI2cNQt7p2RWN71kyX
+ 7pDVTfFGr6d+meJJneMgXpSF8Y/n/qjq0PMTiCz9ZCwrR+y7sSfQs/D4z w==;
+X-CSE-ConnectionGUID: CHCqlKDwQ1Gd27cLM8yzzQ==
+X-CSE-MsgGUID: ijC6Ci8TR4eId4vLaZ8pcg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11639"; a="70024310"
+X-IronPort-AV: E=Sophos;i="6.21,141,1763452800"; d="scan'208";a="70024310"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2025 06:05:56 -0800
+X-CSE-ConnectionGUID: ZCBkKRKbTiOh3hkRTKb4rw==
+X-CSE-MsgGUID: wdnlf7YcS6G5swgkblAQgw==
 X-ExtLoop1: 1
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.254])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2025 06:04:31 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- stable@vger.kernel.org, =?UTF-8?B?6rmA6rCV66+8?= <km.kim1503@gmail.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-Subject: Re: [PATCH v3] drm/i915/gem: Zero-initialize the eb.vma array in
- i915_gem_do_execbuffer()
-Date: Thu, 11 Dec 2025 15:04:29 +0100
-Message-ID: <2468170.UQZUX1FTLU@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <ezfzff7burfabd2b4ofna5pmue2m64zn3gin2uyefnk7fczizk@f52nhwgfliyh>
-References: <20251210165659.29349-3-krzysztof.niemiec@intel.com>
- <ezfzff7burfabd2b4ofna5pmue2m64zn3gin2uyefnk7fczizk@f52nhwgfliyh>
+X-IronPort-AV: E=Sophos;i="6.21,141,1763452800"; d="scan'208";a="227460341"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2025 06:05:55 -0800
+Date: Thu, 11 Dec 2025 15:05:52 +0100
+From: Raag Jadav <raag.jadav@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Maarten Lankhorst <dev@lankhorst.se>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 2/2] drm/i915/display: Fix intel_lpe_audio_irq_handler
+ for PREEMPT-RT
+Message-ID: <aTrPwDcYsMMJhSPv@black.igk.intel.com>
+References: <20251209151319.494640-3-dev@lankhorst.se>
+ <20251209151319.494640-4-dev@lankhorst.se>
+ <f9641fa9298cf52efbde5d41014470f2355e3551@intel.com>
+ <cb0c9201-74f9-43c5-8177-5b5b77851973@lankhorst.se>
+ <e0ba6a112e0150731a23934109e1419d07e526e2@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e0ba6a112e0150731a23934109e1419d07e526e2@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,60 +73,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thursday, 11 December 2025 12:24:31 CET Krzysztof Karas wrote:
-> Hi Krzysztof,
+On Thu, Dec 11, 2025 at 10:47:01AM +0200, Jani Nikula wrote:
+> On Wed, 10 Dec 2025, Maarten Lankhorst <dev@lankhorst.se> wrote:
+> > Hey,
+> >
+> > Just needs a typo fixed, Matthew Brost also commented that the second I915 here should be PREEMPT-RT instead.
 > 
-> [...]
+> The commit message does not say what is being done here, and why.
 > 
-> > @@ -3375,7 +3360,9 @@ i915_gem_do_execbuffer(struct drm_device *dev,
-> >  
-> >  	eb.exec = exec;
-> >  	eb.vma = (struct eb_vma *)(exec + args->buffer_count + 1);
-> > -	eb.vma[0].vma = NULL;
-> > +
-> > +	memset(eb.vma, 0x00, args->buffer_count * sizeof(struct eb_vma));
-> > +
-> >  	eb.batch_pool = NULL;
-> >  
-> >  	eb.invalid_flags = __EXEC_OBJECT_UNKNOWN_FLAGS;
-> > @@ -3584,7 +3571,16 @@ i915_gem_execbuffer2_ioctl(struct drm_device *dev, void *data,
-> >  	if (err)
-> >  		return err;
-> >  
-> > -	/* Allocate extra slots for use by the command parser */
-> > +	/*
-> > +	 * Allocate extra slots for use by the command parser.
-> > +	 *
-> > +	 * Note that this allocation handles two different arrays (the
-> > +	 * exec2_list array, and the eventual eb.vma array introduced in
-> > +	 * i915_gem_do_execubuffer()), that reside in virtually contiguous
-> > +	 * memory. Also note that the allocation doesn't fill the area with
-> > +	 * zeros (the first part doesn't need to be), but the second part only
-> > +	 * is explicitly zeroed later in i915_gem_do_execbuffer().
-> I get the gist of this comment, but I think you could reword the
-> last sentence:
-> "Also note that the allocation doesn't fill the area with zeros,
-> because it is unnecessary for exec2_list array, and eb.vma is
-> explicitly zeroed later in i915_gem_do_execbuffer()."
-
-My preferred wording would look something like this:
-
-Also note that the allocation intentionally doesn't fill the area with 
-zeros since the exec2_list array part is then fully overwritten with a 
-copy of user data before use.  However, the eb.vma array part is still 
-expected to be initialized as needed by its user.
-
-Thanks,
-Janusz
-
+> "no need for backporting"?
 > 
-> > +	 */
-> >  	exec2_list = kvmalloc_array(count + 2, eb_element_size(),
-> >  				    __GFP_NOWARN | GFP_KERNEL);
-> >  	if (exec2_list == NULL) {
+> "this is only useful for i915"?
 > 
+> *what* "doesn't compile with PREEMPT-RT enabled"?
 > 
+> Nobody's going to understand what any of this means if a bisect/blame
+> lands here a couple of years from now, even if it's an apparently simple
+> change.
 
+I've been looking at some of the AMD patches and found the template
+to be much useful.
 
+Subject: [WHAT]
 
+Commit message:
+[WHY]
 
+[HOW]
+
+Not a hard mandate but worth thinking in this direction?
+
+Raag
+
+> > Den 2025-12-10 kl. 09:56, skrev Jani Nikula:
+> >> On Tue, 09 Dec 2025, Maarten Lankhorst <dev@lankhorst.se> wrote:
+> >>> No need for backporting, this is only useful for i915,
+> >>> and it doesn't compile with I915 enabled.
+> >> 
+> >> Please elaborate. There's just riddles here.
+> >> 
+> >> BR,
+> >> Jani.
+> >> 
+> >>>
+> >>> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+> >>> ---
+> >>>  drivers/gpu/drm/i915/display/intel_lpe_audio.c | 2 +-
+> >>>  1 file changed, 1 insertion(+), 1 deletion(-)
+> >>>
+> >>> diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+> >>> index 5b41abe1c64d5..172c0062237eb 100644
+> >>> --- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+> >>> +++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+> >>> @@ -262,7 +262,7 @@ void intel_lpe_audio_irq_handler(struct intel_display *display)
+> >>>  	if (!HAS_LPE_AUDIO(display))
+> >>>  		return;
+> >>>  
+> >>> -	ret = generic_handle_irq(display->audio.lpe.irq);
+> >>> +	ret = generic_handle_irq_safe(display->audio.lpe.irq);
+> >>>  	if (ret)
+> >>>  		drm_err_ratelimited(display->drm,
+> >>>  				    "error handling LPE audio irq: %d\n", ret);
+> >> 
+> >
+> 
+> -- 
+> Jani Nikula, Intel
