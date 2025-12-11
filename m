@@ -2,65 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2D39CB633A
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Dec 2025 15:34:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B0F7ECB634C
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Dec 2025 15:36:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CF9510E2E1;
-	Thu, 11 Dec 2025 14:34:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E514110E82A;
+	Thu, 11 Dec 2025 14:36:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RK2clUKg";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="ckx07Zxv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D99510E2E1;
- Thu, 11 Dec 2025 14:34:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765463688; x=1796999688;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=6i5NU6XjPxXUvnqqnjni0H51gbQz9EUAbNeZ2KwNTGY=;
- b=RK2clUKg3jxPa+sLnJbCf5jcxOLGjYltkZu5E2R/EXIRKB4KDC6ZX/ue
- v0hfQtanb+54I25Dr/lhUMbMzXch0gmjpYwND4KG9VMOVou+ySbgKYFYA
- brZ1PcNsqez6bZDFrty3etlNKy8rd9QgDdlgmKRdhT0akBWSl5Mt9mg66
- 8Q10nUx7MnWEXtTacbG7mBeKsIT/sSzn5qD1sBWNQnEPXuHUW66iz3YBa
- ZXasonLOU8C2xcWYnOUh5RiO/eJ8RnLXovwEzcQg9LLa1qOe22fm+6uN3
- 8+KdikU5x3c6+7pvxYJiJd+6P1t/QEAwyYEuf2ZiylKAMeum+85ZvM/T7 A==;
-X-CSE-ConnectionGUID: kJ9BQlHSTW2htN6dadHOIg==
-X-CSE-MsgGUID: DxS9JImaR7mHtmPPL1fNFA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11639"; a="84855402"
-X-IronPort-AV: E=Sophos;i="6.21,141,1763452800"; d="scan'208";a="84855402"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2025 06:34:47 -0800
-X-CSE-ConnectionGUID: 1cHOALioSEaa5beKHC6XOg==
-X-CSE-MsgGUID: w52OmYxhQ+eQ2Sn9qJ9HWA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,141,1763452800"; d="scan'208";a="227464444"
-Received: from mwiniars-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.251])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2025 06:34:46 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Raag Jadav <raag.jadav@intel.com>
-Cc: Maarten Lankhorst <dev@lankhorst.se>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 2/2] drm/i915/display: Fix intel_lpe_audio_irq_handler
- for PREEMPT-RT
-In-Reply-To: <aTrPwDcYsMMJhSPv@black.igk.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20251209151319.494640-3-dev@lankhorst.se>
- <20251209151319.494640-4-dev@lankhorst.se>
- <f9641fa9298cf52efbde5d41014470f2355e3551@intel.com>
- <cb0c9201-74f9-43c5-8177-5b5b77851973@lankhorst.se>
- <e0ba6a112e0150731a23934109e1419d07e526e2@intel.com>
- <aTrPwDcYsMMJhSPv@black.igk.intel.com>
-Date: Thu, 11 Dec 2025 16:34:42 +0200
-Message-ID: <23cc04865c6f8aa4c3bf31a0c0c5e088a31084bd@intel.com>
+Received: from lankhorst.se (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C08D10E82A;
+ Thu, 11 Dec 2025 14:36:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1765463758;
+ bh=KjJyYZXS5w/90m6sboJIUnxN21swsqeAlbXxq94pxBg=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=ckx07ZxvTz3aEHHw7Yj/3EICiyAglE+mehmQwxKF3T37UNXU3iIM5UGArJjFex+qa
+ RvYFx5geBXNtPR+My928gYobNO5LpIoIMBg5qXRKgmwTrEK79S8/ArzIVe6tE+isYS
+ iYCJH1nXSfxzv8rUNhXmkCFJJ5UiVOL+IEs3EtGw9Je8+vKseQuVdZPKdVEd16tI6B
+ FoHaL82XXNRbvSWq+XnkqbE6alOPxASjgF5JX6cGIBUWFpRacptvkJmN9I0HG/NC/d
+ 6CyQevzXdZ469Ov9uqpZ7YjMXspAp4SwDnWyFVVHpD04RAUYf2l1LAc9LiJZue+I3g
+ qvsKg56xBMzOA==
+Message-ID: <e3fcf1ce-e194-42b5-865d-0b9d6669cfe6@lankhorst.se>
+Date: Thu, 11 Dec 2025 15:35:57 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/7] drm/i915/display: Use intel_de_write_fw in
+ intel_pipe_fastset
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ "Shankar, Uma" <uma.shankar@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "linux-rt-devel@lists.linux.dev" <linux-rt-devel@lists.linux.dev>,
+ Mario Kleiner <mario.kleiner.de@gmail.com>,
+ Mike Galbraith <umgwanakikbuti@gmail.com>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>
+References: <20251104083634.670753-1-dev@lankhorst.se>
+ <20251104083634.670753-3-dev@lankhorst.se>
+ <DM4PR11MB63609A43C9B11091A5FB41EFF4DEA@DM4PR11MB6360.namprd11.prod.outlook.com>
+ <aSdYPKUJgbe84G1M@intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <aSdYPKUJgbe84G1M@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,26 +65,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 11 Dec 2025, Raag Jadav <raag.jadav@intel.com> wrote:
-> I've been looking at some of the AMD patches and found the template
-> to be much useful.
->
-> Subject: [WHAT]
->
-> Commit message:
-> [WHY]
->
-> [HOW]
->
-> Not a hard mandate but worth thinking in this direction?
+Hey,
 
-Yeah, that's what you're basically supposed to do, but I hate having
-those template things stay in the commit messages. They're not
-necessary.
+Den 2025-11-26 kl. 20:42, skrev Ville Syrjälä:
+> On Wed, Nov 26, 2025 at 07:19:47PM +0000, Shankar, Uma wrote:
+>>
+>>
+>>> -----Original Message-----
+>>> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Maarten
+>>> Lankhorst
+>>> Sent: Tuesday, November 4, 2025 2:06 PM
+>>> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+>>> Cc: linux-rt-devel@lists.linux.dev; Maarten Lankhorst <dev@lankhorst.se>; Mario
+>>> Kleiner <mario.kleiner.de@gmail.com>; Mike Galbraith
+>>> <umgwanakikbuti@gmail.com>; Thomas Gleixner <tglx@linutronix.de>; Sebastian
+>>> Andrzej Siewior <bigeasy@linutronix.de>; Clark Williams
+>>> <clrkwllms@kernel.org>; Steven Rostedt <rostedt@goodmis.org>
+>>> Subject: [PATCH v2 2/7] drm/i915/display: Use intel_de_write_fw in
+>>> intel_pipe_fastset
+>>>
+>>> intel_set_pipe_src_size(), hsw_set_linetime_wm(),
+>>> intel_cpu_transcoder_set_m1_n1() and intel_set_transcoder_timings_lrr()
+>>> are called from an atomic context on PREEMPT_RT, and should be using the _fw
+>>> functions.
+>>
+>> This could be ok but we need to be sure that all are called with power domains up.
+>> I think would be safe to keep this under RT check so that we don't end up breaking any
+>> generic non RT usecase.
+> 
+> When removing the locks from register accesses one needs to consider
+> what platforms the code runs on, what other register are on the same
+> cacheline, and whether they can be accessed in parallel. If there is
+> something there then we may not be able to remove the locks.
+> 
+> That's assuming the "system hangs when same cacheline is accessed from
+> multiple cpus" issue is real for display registers, and I'm actually
+> not 100% it is. But we'd need to run some tests on the affected systems
+> (~ivb/hsw) to get any kind of confidence here. IIRC some old
+> intel_gpu_top thhat directly poked the registers was very good at
+> hitting it on hsw at least, so that would be a decent starting point.
+> 
+> Anyways, I'm going to be replacing the uncore lock with a display
+> specific lock soonish, and I suppose I can just make that a raw
+> spinlock to appease RT.
 
-BR,
-Jani.
 
+You're correct about the cacheline problem!
 
--- 
-Jani Nikula, Intel
+We shouldn't be having a race in those specific registers though. On the current
+kernel they would likely hang the system if the _fw variants are not taken, as it
+means the uncore lock would be taken twice.
+
+This means the fastset path is already broken on systems requiring uncore lock, and
+this simply fixes it instead.
+
+Kind regards,
+~Maarten Lankhorst
