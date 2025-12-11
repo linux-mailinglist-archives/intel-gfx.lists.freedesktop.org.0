@@ -2,39 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B40DFCB673E
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Dec 2025 17:28:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 001E0CB6741
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Dec 2025 17:28:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D03A10E834;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CECF10E838;
 	Thu, 11 Dec 2025 16:28:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="LYeUhjvv";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="IpmhDRrA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2B1810E834;
- Thu, 11 Dec 2025 16:28:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35C8610E834;
+ Thu, 11 Dec 2025 16:28:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1765470522;
- bh=UxJaBhAGDmBBMJMexKicUT6L56bLBPUSvYkGsfeI4yY=;
- h=From:To:Cc:Subject:Date:From;
- b=LYeUhjvvCzhwge+R5F9G6jYVxNGIIKqQ/3oMY3fvWIyZTdUw32ZbTTPeSrA3o2eRF
- cNZGEGC3KkHih13oPuTJ78c44z2t2/Rl2rM2XY//bvN1GPI4I0dDHttGws8XnAY25+
- xhuQrIFROGq1+7+el3ftSmq6tyvvlROx2QMFwrRH6k4YVXQS1bRN6rT6/G/2sx0OyF
- tNKEjCyaEE0vWbWoNERDZ935f+5rvXkGCplIOoQ9fHUkByV9iAlV1zHBKBUDlXrTwj
- MpTK5dpD/wTCbtlgDOSqVrF606uUweqFx+R3EaxEkkAVcKIvYXZh5LSXVM1cKYEvpJ
- NaX0dtvpFQOlw==
+ s=default; t=1765470523;
+ bh=Bne1RUVyYhtMfwYqK3Ip48zVZdJr+u55XTL2YPV9fWw=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=IpmhDRrA/3kpNVtLBsYXI+eTbNM0Vb1xqQ5+NAorQtKjSeIuP6Ejg1XKThgVa+ZKH
+ oD8GIeOMYQIfjk6F0AecPeJoqRMs449rBSJ/kQ3ElfQQai+tbytF1d04RM8V9Yfhw0
+ aaLDnff4hLayloPGO+ljfNksJs0T9NclIRbWEDOyUiZGqY7srMtVnXfjS87WC0zOBC
+ GPgJfVL9JKDNGiPgo36EoLvHmhcuUSoKSD1mt5Hv6ytWGD8AChWLyPLs6uxiWziwbp
+ 4oI34MLuPz51Qyiabj9GPeDQHFnlwDXkv7OFeSkmSu+QHQKoIbNrUZU9AfC0Ylbqk7
+ aUgxxP6+JWJJA==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH 0/9] drm/i915/display: All fixes for PREEMPT-RT that I have
- collected so far.
-Date: Thu, 11 Dec 2025 17:19:23 +0100
-Message-ID: <20251211161923.843758-11-dev@lankhorst.se>
+ Maarten Lankhorst <dev@lankhorst.se>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH 1/9] drm/i915/display: Fix intel_lpe_audio_irq_handler for
+ PREEMPT-RT
+Date: Thu, 11 Dec 2025 17:19:24 +0100
+Message-ID: <20251211161923.843758-12-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251211161923.843758-11-dev@lankhorst.se>
+References: <20251211161923.843758-11-dev@lankhorst.se>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -52,37 +55,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-I believe those patches, together with commit 3efadf028783 ("drm/me/gsc:
-mei interrupt top half should be in irq disabled context") that is in
-drm-xe-next, are enough for making PREEMPT_RT basic functionality work
-on xe without problems.
+The LPE audio interrupt comes from the i915 interrupt handler. It
+should be in irq disabled context.
 
-There are still some issues specific to PREEMPT-RT, like on how to handle
-vblank interrupt, but I do not believe it should be a blocker for merging the
-series.
+With PREEMPT_RT enabled, the IRQ handler is threaded.
+Because intel_lpe_audio_irq_handler() may be called in threaded IRQ context,
+generic_handle_irq_safe API disables the interrupts before calling LPE's
+interrupt top half handler.
 
-Maarten Lankhorst (9):
-  drm/i915/display: Fix intel_lpe_audio_irq_handler for PREEMPT-RT
-  drm/i915/display: Make get_vblank_counter use intel_de_read_fw()
-  drm/i915/display: Use intel_de_write_fw in intel_pipe_fastset
-  drm/i915/display: Make set_pipeconf use the fw variants
-  drm/i915/display: Move vblank put until after critical section
-  drm/i915/display: Remove locking from intel_vblank_evade critical
-    section
-  drm/i915/display: Handle vlv dsi workaround in scanline_in_safe_range
-    too
-  drm/i915/display: Make icl_dsi_frame_update use _fw too
-  drm/i915/display: Enable interrupts earlier on PREEMPT_RT
+This fixes braswell audio issues with RT enabled.
 
- drivers/gpu/drm/i915/display/icl_dsi.c        |  4 +-
- drivers/gpu/drm/i915/display/intel_crtc.c     | 10 +++
- drivers/gpu/drm/i915/display/intel_cursor.c   |  8 ++-
- drivers/gpu/drm/i915/display/intel_display.c  | 46 +++++++-------
- .../gpu/drm/i915/display/intel_lpe_audio.c    |  2 +-
- drivers/gpu/drm/i915/display/intel_vblank.c   | 63 +++++++++----------
- drivers/gpu/drm/i915/display/intel_vrr.c      | 16 ++---
- 7 files changed, 79 insertions(+), 70 deletions(-)
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_lpe_audio.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+index 5b41abe1c64d5..172c0062237eb 100644
+--- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+@@ -262,7 +262,7 @@ void intel_lpe_audio_irq_handler(struct intel_display *display)
+ 	if (!HAS_LPE_AUDIO(display))
+ 		return;
+ 
+-	ret = generic_handle_irq(display->audio.lpe.irq);
++	ret = generic_handle_irq_safe(display->audio.lpe.irq);
+ 	if (ret)
+ 		drm_err_ratelimited(display->drm,
+ 				    "error handling LPE audio irq: %d\n", ret);
 -- 
 2.51.0
 
