@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E50ACB9219
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Dec 2025 16:29:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88FE2CB921C
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Dec 2025 16:29:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A41A610E8C4;
-	Fri, 12 Dec 2025 15:29:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AE1110E8D0;
+	Fri, 12 Dec 2025 15:29:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KwNOOTWU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HeDtWjjK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 188BD10E8C4;
- Fri, 12 Dec 2025 15:29:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B148910E8D0;
+ Fri, 12 Dec 2025 15:29:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765553357; x=1797089357;
+ t=1765553361; x=1797089361;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=azANfVyhU4td3NcmB2+wFoKT3qwmQkJ9ihQKzTIlh9A=;
- b=KwNOOTWUUD8HziTG+6dgluWX2dl0XPzXCOD0KsxOTnHPqAKlg9Au/iJW
- q3RIy8slDGAH9fJ3j9NjKdlQUk/lOpqWaCvDF4cP2qBudoqFhbq+hPKGX
- wKGEU8RaZavueVG/5gY/f5jG1/b5mP44DxeTf+vsKe8Mqc+lGKxwvXMUr
- QNNKhNi0R60TpqrwWoXtkLLiZMNb06hs56R2XhGoxQQoX0gaFGAWCgL1N
- azs9d2R3SvRXU3JdbJfEEuyY0pnh2fX0YuLB0cABdpajUHNOdb8sUDxqa
- +6KeB3dw1/59+0gbLvAJgKkvQdMZhmSb8GXVMCMtlll/kqEdBgUAcdqgw Q==;
-X-CSE-ConnectionGUID: Yi5qRAtaQECZBTOgWH/l8Q==
-X-CSE-MsgGUID: iRKuSzlpSKmfILrP7dDp7Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11640"; a="67716384"
-X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="67716384"
+ bh=qOhS8uOLEBvL2e08/qc6AViV6EuzKEaAp3rNEnK1SXM=;
+ b=HeDtWjjKgqw8rGMGw/rXOaiN/qvNmmE2tvRbMOAVt+ppF5bZkAFVphmV
+ 3AS/12xeMlgKK+6GW1ywAYovbZCHYMy4OYerZbAeICfOgj9Hb3YswUmFd
+ CW9H6u62RsyMFDujfTFX7KHSQuGJdsn+23zI+LmZFHnIurs5nhysXAyFu
+ unqAk3aK7aKoKswKA2DD5kYvACzsmoMmGLgyrmzKRaRH75BHrb06RZWMK
+ KyduzEo/Zln0K0NLyVshUw4mSotKME0hDo2GxX4t1HUC6+8PgOJ+3aGle
+ uuF1M0/JY/QNXnp8z8f23mx+BJsYNTMR8CcwSFQm9KkRUa/03SaTRTqCs g==;
+X-CSE-ConnectionGUID: 9mlb5CW1TvWD01KFnq9Z/Q==
+X-CSE-MsgGUID: Yo1gcFOIQ3CFv8lm+Gz+3A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11640"; a="67716386"
+X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="67716386"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2025 07:29:17 -0800
-X-CSE-ConnectionGUID: eU4SGVKXQli82WWZnoNGXQ==
-X-CSE-MsgGUID: 8SS0dHKIQvukDVq7LnuCwQ==
+ 12 Dec 2025 07:29:21 -0800
+X-CSE-ConnectionGUID: ObS7dIu/TeWIivtplbwOsw==
+X-CSE-MsgGUID: 1Lvp8dKwRTusOcjpJvi3qA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="197935068"
+X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="197935069"
 Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
  ([10.245.245.152])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2025 07:29:15 -0800
+ 12 Dec 2025 07:29:19 -0800
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 07/13] drm/i915: Extract intel_dsb_supported()
-Date: Fri, 12 Dec 2025 17:28:41 +0200
-Message-ID: <20251212152847.13679-8-ville.syrjala@linux.intel.com>
+Subject: [PATCH 08/13] drm/i915: Use intel_dsb_supported() to determine
+ 'use_dsb'
+Date: Fri, 12 Dec 2025 17:28:42 +0200
+Message-ID: <20251212152847.13679-9-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.51.2
 In-Reply-To: <20251212152847.13679-1-ville.syrjala@linux.intel.com>
 References: <20251212152847.13679-1-ville.syrjala@linux.intel.com>
@@ -72,60 +73,31 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Extract the "do we have a DSB and should be use it?" check
-into a helper. This mirrors intel_flipq_supported() and should
-help unify the logic around selecting the codepath which will
-be used to perform the commit (mmio vs. DSB. vs. flip queue).
+Currently we calculate crtc_state->use_dsb by simply assuming
+that DSB is available, and then falling back to MMIO when the
+actual DSB buffer allocation fails.
+
+This is somewhat confusing, and doesn't match how the flip queue
+counterpart (use_flipq) is calculated.  Check whether DSB is
+available ahead of time, just like we in the flip queue case.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dsb.c | 13 +++++++++----
- drivers/gpu/drm/i915/display/intel_dsb.h |  1 +
- 2 files changed, 10 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index ec2a3fb171ab..ab176cb4e4bd 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -915,6 +915,14 @@ void intel_dsb_wait(struct intel_dsb *dsb)
- 			  dsb_error_int_status(display) | DSB_PROG_INT_STATUS);
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 9c6d3ecdb589..3081dc8d86da 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7283,6 +7283,7 @@ static void intel_atomic_dsb_prepare(struct intel_atomic_state *state,
+ 		!intel_crtc_needs_color_update(new_crtc_state);
  
-+bool intel_dsb_supported(struct intel_display *display)
-+{
-+	if (!display->params.enable_dsb)
-+		return false;
-+
-+	return HAS_DSB(display);
-+}
-+
- /**
-  * intel_dsb_prepare() - Allocate, pin and map the DSB command buffer.
-  * @state: the atomic state
-@@ -939,10 +947,7 @@ struct intel_dsb *intel_dsb_prepare(struct intel_atomic_state *state,
- 	struct intel_dsb *dsb;
- 	unsigned int size;
- 
--	if (!HAS_DSB(display))
--		return NULL;
--
--	if (!display->params.enable_dsb)
-+	if (!intel_dsb_supported(display))
- 		return NULL;
- 
- 	dsb = kzalloc(sizeof(*dsb), GFP_KERNEL);
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h b/drivers/gpu/drm/i915/display/intel_dsb.h
-index 2f31f2c1d0c5..e97a44c72f7a 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.h
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.h
-@@ -26,6 +26,7 @@ enum intel_dsb_id {
- 	I915_MAX_DSBS,
- };
- 
-+bool intel_dsb_supported(struct intel_display *display);
- unsigned int intel_dsb_size(struct intel_dsb *dsb);
- unsigned int intel_dsb_head(struct intel_dsb *dsb);
- struct intel_dsb *intel_dsb_prepare(struct intel_atomic_state *state,
+ 	new_crtc_state->use_dsb =
++		intel_dsb_supported(display) &&
+ 		!new_crtc_state->use_flipq &&
+ 		!new_crtc_state->do_async_flip &&
+ 		(DISPLAY_VER(display) >= 20 || !new_crtc_state->has_psr) &&
 -- 
 2.51.2
 
