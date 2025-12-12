@@ -2,66 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E973CB90E8
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Dec 2025 16:09:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E494CB916E
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Dec 2025 16:20:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF10C10E07B;
-	Fri, 12 Dec 2025 15:08:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NYU34fpw";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id A54E210E839;
+	Fri, 12 Dec 2025 15:20:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F12BA10E07B;
- Fri, 12 Dec 2025 15:08:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765552139; x=1797088139;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=HnGdM6nX9FdHQsZj25d0Xh7SqYJyE+86qlBS+1claN4=;
- b=NYU34fpwYiNo8ybBMXUBOuxKG/9nTZy6sWGkMgSmwE3APbgVvBEpCZfW
- g2T2fbi4pWFcl6oufq9cw46kHBIZvmpCF8Dq8n15BGI8jFpos4WgRbpFC
- mrdA3zYzSKpLGxxTQYKirHvU5o6WJqUzV/5NmCEKHTjlWZEVOGMOswXIB
- x9JTyloJtGmnyZj8FnmHVHeOK9Is2Y07vKQdTK3DqQWIF++fMiccxFWiy
- D17aq9aph5CnAzmjRFqjp/UKgr/zn5mObQFVHc92oyPCxcWqGo1DjClgR
- ahZPWCbsopnRC12uZYunBoEZZ896TwW2SCEKzpPECSqHFdUm99Y7QR0gQ w==;
-X-CSE-ConnectionGUID: Wr2h7J0KRnmEuOGmjOiLUg==
-X-CSE-MsgGUID: 1j+fj0LGQTansKfx5BI4yw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11640"; a="67715297"
-X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="67715297"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2025 07:08:59 -0800
-X-CSE-ConnectionGUID: si564PKyQtyESubsp7L6kQ==
-X-CSE-MsgGUID: Ol0cD7cTSu6ik9/e5j6QGA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="196857950"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
- ([10.245.245.152])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2025 07:08:55 -0800
-Date: Fri, 12 Dec 2025 17:08:52 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Uma Shankar <uma.shankar@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, chaitanya.kumar.borah@intel.com,
- pekka.paalanen@collabora.com, contact@emersion.fr,
- harry.wentland@amd.com, mwen@igalia.com, jadahl@redhat.com,
- sebastian.wick@redhat.com, swati2.sharma@intel.com,
- alex.hung@amd.com, jani.nikula@intel.com, suraj.kandpal@intel.com
-Subject: Re: [v8 14/15] drm/i915/color: Add 3D LUT to color pipeline
-Message-ID: <aTwwBMKUp5AYmFTN@intel.com>
-References: <20251203085211.3663374-1-uma.shankar@intel.com>
- <20251203085211.3663374-15-uma.shankar@intel.com>
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A988610E8D0;
+ Fri, 12 Dec 2025 15:20:24 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5458350427266921494=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251203085211.3663374-15-uma.shankar@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/=7Bi915=2Cxe=7D=3A_cl?=
+ =?utf-8?q?ean_up_parent_interface_definitions?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 12 Dec 2025 15:20:24 -0000
+Message-ID: <176555282467.81112.3610829948217750839@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <cover.1765548786.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1765548786.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,91 +37,211 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 03, 2025 at 02:22:10PM +0530, Uma Shankar wrote:
-> From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-> 
-> Add helpers to program the 3D LUT registers and arm them.
-> 
-> LUT_3D_READY in LUT_3D_CLT is cleared off by the HW once
-> the LUT buffer is loaded into it's internal working RAM.
-> So by the time we try to load/commit new values, we expect
-> it to be cleared off. If not, log an error and return
-> without writing new values. Do it only when writing with MMIO.
-> There is no way to read register within DSB execution.
-> 
-> v2:
-> - Add information regarding LUT_3D_READY to commit message (Jani)
-> - Log error instead of a drm_warn and return without committing changes
->   if 3DLUT HW is not ready to accept new values.
-> - Refactor intel_color_crtc_has_3dlut()
->   Also remove Gen10 check (Suraj)
-> v3:
-> - Addressed review comments (Suraj)
-> 
-> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_color.c    | 78 +++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_color.h    |  4 +
->  .../drm/i915/display/intel_color_pipeline.c   | 29 +++++--
->  .../drm/i915/display/intel_color_pipeline.h   |  3 +-
->  .../drm/i915/display/intel_display_limits.h   |  1 +
->  .../drm/i915/display/intel_display_types.h    |  2 +-
->  drivers/gpu/drm/i915/display/intel_plane.c    |  2 +
->  7 files changed, 112 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-> index 08f3b5b47b8e..e7950655434b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_color.c
-> +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> @@ -4062,6 +4062,52 @@ xelpd_plane_load_luts(struct intel_dsb *dsb, const struct intel_plane_state *pla
->  		xelpd_program_plane_post_csc_lut(dsb, plane_state);
->  }
->  
-> +static u32 glk_3dlut_10(const struct drm_color_lut32 *color)
-> +{
-> +	return REG_FIELD_PREP(LUT_3D_DATA_RED_MASK, drm_color_lut32_extract(color->red, 10)) |
-> +		REG_FIELD_PREP(LUT_3D_DATA_GREEN_MASK, drm_color_lut32_extract(color->green, 10)) |
-> +		REG_FIELD_PREP(LUT_3D_DATA_BLUE_MASK, drm_color_lut32_extract(color->blue, 10));
-> +}
-> +
-> +static void glk_load_lut_3d(struct intel_dsb *dsb,
-> +			    struct intel_crtc *crtc,
-> +			    const struct drm_property_blob *blob)
-> +{
-> +	struct intel_display *display = to_intel_display(crtc->base.dev);
-> +	const struct drm_color_lut32 *lut = blob->data;
-> +	int i, lut_size = drm_color_lut32_size(blob);
-> +	enum pipe pipe = crtc->pipe;
-> +
-> +	if (!dsb && intel_de_read(display, LUT_3D_CTL(pipe)) & LUT_3D_READY) {
-> +		drm_err(display->drm, "[CRTC:%d:%s] 3D LUT not ready, not loading LUTs\n",
-> +			crtc->base.base.id, crtc->base.name);
-> +		return;
+--===============5458350427266921494==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Just ran into this while perusing the code...
+== Series Details ==
 
-This check could be implemented exactly like intel_vrr_check_push_sent()
-so that it works for both the DSB and non-DSB paths. The 'return' should
-just get nuked IMO.
+Series: drm/{i915,xe}: clean up parent interface definitions
+URL   : https://patchwork.freedesktop.org/series/158861/
+State : failure
 
-> +void intel_color_plane_commit_arm(struct intel_dsb *dsb,
-> +				  const struct intel_plane_state *plane_state)
-> +{
-> +	struct intel_display *display = to_intel_display(plane_state);
-> +	struct intel_crtc *crtc = to_intel_crtc(plane_state->uapi.crtc);
-> +
-> +	if (crtc && intel_color_crtc_has_3dlut(display, crtc->pipe))
-> +		glk_lut_3d_commit(dsb, crtc, !!plane_state->hw.lut_3d);
-                                              ^^^^^^^^^^^^
+== Summary ==
 
-And this looks like a pretty major fail. Why is the 3D LUT stored in
-the *plane* state when it's a pipe level thing?
+CI Bug Log - changes from CI_DRM_17670 -> Patchwork_158861v1
+====================================================
 
--- 
-Ville Syrjälä
-Intel
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_158861v1 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_158861v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158861v1/index.html
+
+Participating hosts (43 -> 41)
+------------------------------
+
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_158861v1:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live:
+    - fi-hsw-4770:        [PASS][1] -> [INCOMPLETE][2] +1 other test incomplete
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17670/fi-hsw-4770/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158861v1/fi-hsw-4770/igt@i915_selftest@live.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_158861v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-3:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17670/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158861v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-14:         [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17670/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158861v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+    - bat-mtlp-9:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17670/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158861v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live:
+    - bat-atsm-1:         [DMESG-FAIL][9] ([i915#12061] / [i915#13929]) -> [DMESG-FAIL][10] ([i915#12061] / [i915#14204])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17670/bat-atsm-1/igt@i915_selftest@live.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158861v1/bat-atsm-1/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@mman:
+    - bat-atsm-1:         [DMESG-FAIL][11] ([i915#13929]) -> [DMESG-FAIL][12] ([i915#14204])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17670/bat-atsm-1/igt@i915_selftest@live@mman.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158861v1/bat-atsm-1/igt@i915_selftest@live@mman.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#13929]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929
+  [i915#14204]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_17670 -> Patchwork_158861v1
+
+  CI-20190529: 20190529
+  CI_DRM_17670: 39f65c105d5b1af093f9df6f3dc688a642f96456 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8664: 28cc709ad89c0ef569569f19f4772d4cca354963 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_158861v1: 39f65c105d5b1af093f9df6f3dc688a642f96456 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158861v1/index.html
+
+--===============5458350427266921494==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/{i915,xe}: clean up parent interface definitions</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158861/">https://patchwork.freedesktop.org/series/158861/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158861v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158861v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17670 -&gt; Patchwork_158861v1</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_158861v1 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_158861v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158861v1/index.html</p>
+<h2>Participating hosts (43 -&gt; 41)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_158861v1:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live:<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17670/fi-hsw-4770/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158861v1/fi-hsw-4770/igt@i915_selftest@live.html">INCOMPLETE</a> +1 other test incomplete</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_158861v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17670/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158861v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17670/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158861v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17670/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158861v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17670/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158861v1/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@mman:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17670/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158861v1/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17670 -&gt; Patchwork_158861v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17670: 39f65c105d5b1af093f9df6f3dc688a642f96456 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8664: 28cc709ad89c0ef569569f19f4772d4cca354963 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_158861v1: 39f65c105d5b1af093f9df6f3dc688a642f96456 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============5458350427266921494==--
