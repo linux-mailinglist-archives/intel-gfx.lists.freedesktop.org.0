@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA264CB8F13
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Dec 2025 15:14:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3E77CB8F16
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Dec 2025 15:14:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F3CB10E7FB;
-	Fri, 12 Dec 2025 14:14:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52A9610E553;
+	Fri, 12 Dec 2025 14:14:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZPNAFhQJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cIh6MHdk";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D95610E7E2;
- Fri, 12 Dec 2025 14:14:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DD8F10E835;
+ Fri, 12 Dec 2025 14:14:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765548868; x=1797084868;
+ t=1765548878; x=1797084878;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=v+u18aPqXRUV21fyaWyLut7zgQAAXgxhdqocKV+L9uE=;
- b=ZPNAFhQJAdxYAayBlZIc2dK1sv/6SMYTxtTtUj2XyVD6j7Mal/ReXCPl
- jjnqfgFL6NeNKX37LwtkJ43N2qUKJPb10uZ9sOMGuw5KaY4KDxkY6yi95
- 4rRQjUNbBecelxpYSzO27Ou2nA5xRkJvAmXR/f934u7eJ78ZrYHNXBUVH
- iwO4ycGVyunuWE0ZTpaEtC6U1pAckx+EsUbS83pSUcC7bWqaSJn5T99OM
- NOVPghytUCp8ifKCBL5NHhtNg50AN3AGO0RYLl8HcbxsJQ5S3yVU/XHhV
- 799zx5AHxQm15ZqiR20GH+xuBckDLaSjPk8rqgbf7TPFeVYZYUehveX0C w==;
-X-CSE-ConnectionGUID: cMLkhT21TsqiVgKTmXgXyA==
-X-CSE-MsgGUID: bwtmqgwcS2i984gJYEgfzQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11640"; a="78189074"
-X-IronPort-AV: E=Sophos;i="6.21,143,1763452800"; d="scan'208";a="78189074"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2025 06:14:28 -0800
-X-CSE-ConnectionGUID: EoYbZeA1Raygxi+v5x8jCg==
-X-CSE-MsgGUID: zoOIXAfySq6L497lbZx8VQ==
+ bh=BG/5bTMjrBvfL1rBypZa3+9huG0aMGzeVEuFBgGcBxs=;
+ b=cIh6MHdkB2Rq7qCcgdjeA5nraPozMKB5o9anLXkGF9QYaD3yT9PPd3TW
+ WmMNJO7k7lkhyM36l7RHAEu5Gd+hNcPrwiC6hjAFkiNdCULLCFetaS++8
+ VvyOZufarvlLuKfIECt1d0YBSt0BE0XjNYkdKyG6FSPM0lFqHG+cu4IbI
+ D/13vnKVF+BYTG1XnsfjkJ6OVTf7oohd8l3fytIuG1eZFObubqUew7jg1
+ TyHb7vZYK2ikNf1wHpUbgMA1rH4RDQReFuGzKRNfoRfRfRnjozFB7CpN7
+ uSCeDkfX0OyUqDgKSzTSBiR4gfZ55sKMPlzy5bmDlz9EI+UAH/VGlirnv g==;
+X-CSE-ConnectionGUID: O4DhRTTnQPi+ujXpssCtYw==
+X-CSE-MsgGUID: L/A6J/ghSnCuCYNxfFsryg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11640"; a="71396201"
+X-IronPort-AV: E=Sophos;i="6.21,143,1763452800"; d="scan'208";a="71396201"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2025 06:14:38 -0800
+X-CSE-ConnectionGUID: TIQ4aCcxRnengS+HBc4gvQ==
+X-CSE-MsgGUID: V4KsgNmFTFye7ayJy57sUw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,143,1763452800"; d="scan'208";a="197164671"
+X-IronPort-AV: E=Sophos;i="6.21,143,1763452800"; d="scan'208";a="196708808"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.39])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2025 06:14:24 -0800
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2025 06:14:35 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com,
 	jani.nikula@intel.com
-Subject: [PATCH 1/6] drm/intel: fix parent interface kernel-doc
-Date: Fri, 12 Dec 2025 16:14:04 +0200
-Message-ID: <b293e25aa00418908e67576e8adcab325319705a.1765548786.git.jani.nikula@intel.com>
+Subject: [PATCH 2/6] drm/intel: group individual funcs in parent interface
+Date: Fri, 12 Dec 2025 16:14:05 +0200
+Message-ID: <4305b09a93ce2c8ca83bf1fbb3cc7ef5a29d1567.1765548786.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1765548786.git.jani.nikula@intel.com>
 References: <cover.1765548786.git.jani.nikula@intel.com>
@@ -72,35 +72,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Fix some typos in the kernel-doc.
+There are a handful of function pointers that don't really warrant a
+dedicated sub-struct for the functionality. Group all of them together
+in a single anonymous sub-struct.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+
 ---
- include/drm/intel/display_parent_interface.h | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+
+'git show -w' is easy to review
+---
+ include/drm/intel/display_parent_interface.h | 19 +++++++++++--------
+ 1 file changed, 11 insertions(+), 8 deletions(-)
 
 diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/intel/display_parent_interface.h
-index 477ee9e735f9..87e26ee0ecbf 100644
+index 87e26ee0ecbf..5d4b9dc837d9 100644
 --- a/include/drm/intel/display_parent_interface.h
 +++ b/include/drm/intel/display_parent_interface.h
-@@ -97,7 +97,7 @@ struct intel_display_parent_interface {
- 	/** @panic: Panic interface */
- 	const struct intel_display_panic_interface *panic;
- 
--	/** @rpm: RPS interface. Optional. */
-+	/** @rps: RPS interface. Optional. */
- 	const struct intel_display_rps_interface *rps;
- 
+@@ -103,17 +103,20 @@ struct intel_display_parent_interface {
  	/** @stolen: Stolen memory. */
-@@ -112,7 +112,7 @@ struct intel_display_parent_interface {
- 	/** @fence_priority_display: Set display priority. Optional. */
- 	void (*fence_priority_display)(struct dma_fence *fence);
+ 	const struct intel_display_stolen_interface *stolen;
  
--	/** @has_auxcss: Are AuxCCS formats supported by the parent. Optional. */
-+	/** @has_auxccs: Are AuxCCS formats supported by the parent. Optional. */
- 	bool (*has_auxccs)(struct drm_device *drm);
+-	/** @vgpu_active: Is vGPU active? Optional. */
+-	bool (*vgpu_active)(struct drm_device *drm);
++	/* Generic independent functions */
++	struct {
++		/** @vgpu_active: Is vGPU active? Optional. */
++		bool (*vgpu_active)(struct drm_device *drm);
+ 
+-	/** @has_fenced_regions: Support legacy fencing? Optional. */
+-	bool (*has_fenced_regions)(struct drm_device *drm);
++		/** @has_fenced_regions: Support legacy fencing? Optional. */
++		bool (*has_fenced_regions)(struct drm_device *drm);
+ 
+-	/** @fence_priority_display: Set display priority. Optional. */
+-	void (*fence_priority_display)(struct dma_fence *fence);
++		/** @fence_priority_display: Set display priority. Optional. */
++		void (*fence_priority_display)(struct dma_fence *fence);
+ 
+-	/** @has_auxccs: Are AuxCCS formats supported by the parent. Optional. */
+-	bool (*has_auxccs)(struct drm_device *drm);
++		/** @has_auxccs: Are AuxCCS formats supported by the parent. Optional. */
++		bool (*has_auxccs)(struct drm_device *drm);
++	};
  };
  
+ #endif
 -- 
 2.47.3
 
