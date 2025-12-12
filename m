@@ -2,53 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDF4DCB91FE
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Dec 2025 16:28:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D764CB9201
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Dec 2025 16:28:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0C6E10E581;
-	Fri, 12 Dec 2025 15:28:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2429310E7D4;
+	Fri, 12 Dec 2025 15:28:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nyHGPa7R";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cqvtPkyW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F29B410E350;
- Fri, 12 Dec 2025 15:28:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3418A10E7B9;
+ Fri, 12 Dec 2025 15:28:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765553332; x=1797089332;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=PE/Qsnhnxrd70ID36048cNhAqSYYEbsqSjN6I4dvUmU=;
- b=nyHGPa7RmHvyb+2vBlfvMO65FO3emt6KZaFYhu1/Nw0iPHT3huobzwkm
- TYR8Y/OF4ZWkecEyhBF0g8bWrlcPdVa0WRqp9SKYDgChXPXDyK+UYe6Ld
- tWUgYdVaFeEB5Zmdh33oS5sDxOf9QWzzGtB2pMnHTn9uA39tBbpiLTohk
- gCtumr7esHxh6G+avCo1HuN7qSG/4H91Z4LvtlTIbmhr32ADgfK+JXh+9
- a79Pg5i+erpsjIYkYUmplApshWuDTrZNLEq5JJmRU+1GOlaT3zF7IM2r2
- w0lKKZRKvLPj4PevEYF5LvOZ5lSbb8Nvo1p2udg2Px9mE/WSDFovN7ESH A==;
-X-CSE-ConnectionGUID: VNOj/mtBRpejoqZH/vUyRg==
-X-CSE-MsgGUID: s5R/pFQdTtCuEweBxYQ+IA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11640"; a="67716367"
-X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="67716367"
+ t=1765553336; x=1797089336;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=A9mXamkE9lYCvlmDq076Qh/BlSa2MRxmYxCEryNtX1I=;
+ b=cqvtPkyWgSUW60Pi2thsTaFPOTmF/p0OOdWcU4E3lBQ90uShOYj4c2cO
+ GxQX8eBQKN0FJ7AdNm2KTjkYSxe9e6M1wEeMiA2A2jpqrYaqyExS2qSjp
+ TI0lgIBDOJmx1oyOX+hHD6NaRARmcMKLQDLz9cl7vDgdGjvF+uYr2u7RK
+ DenFiJAuVGKa7nVYvMCkrQx45T2msc9XtphEPrOd83XYVuiifiiwAU5IP
+ lDOvn6bGOOTJRNpz2mGnlGtYUO8Q9DWwhSi0eODZp2KHUTbv5WKrXqlHK
+ i3M8zsP4bpMxAvcEcBRx1ADMWBNJT+wTk9zoo3Xia6nS8bjCn278VL14s w==;
+X-CSE-ConnectionGUID: /nq/qr3gStajHxqj9LaMUQ==
+X-CSE-MsgGUID: WcPESyuhQ02cDfPETbxaUQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11640"; a="67716370"
+X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="67716370"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2025 07:28:52 -0800
-X-CSE-ConnectionGUID: Wn9n8Mp0QjGchPSAK98BrA==
-X-CSE-MsgGUID: 5hxR8iM8RM2BzGroJtsGnQ==
+ 12 Dec 2025 07:28:55 -0800
+X-CSE-ConnectionGUID: +Wg8CVO7S/6EqLZne/W9rw==
+X-CSE-MsgGUID: gAPHp9NmTVC9mScPEFjJcQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="197935023"
+X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="197935038"
 Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
  ([10.245.245.152])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2025 07:28:50 -0800
+ 12 Dec 2025 07:28:54 -0800
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 00/13] drm/i915: Some DSB/flipq stuff
-Date: Fri, 12 Dec 2025 17:28:34 +0200
-Message-ID: <20251212152847.13679-1-ville.syrjala@linux.intel.com>
+Subject: [PATCH 01/13] drm/i915/flipq: Don't initialize flip queue on pre-LNL
+Date: Fri, 12 Dec 2025 17:28:35 +0200
+Message-ID: <20251212152847.13679-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.51.2
+In-Reply-To: <20251212152847.13679-1-ville.syrjala@linux.intel.com>
+References: <20251212152847.13679-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -70,39 +72,28 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Some fixed and cleanups to the DSB/flipq stuff. The main
-thing is consolidating the use_dsb/flipq booleans into
-a more sensibler commit type enum.
+We only support flip queue on LNL+. Don't initialize the flip queue
+stuff on pre-LNL to avoid leaving confusing debug messages in dmesg.
 
-Ville Syrjälä (13):
-  drm/i915/flipq: Don't initialize flip queue on pre-LNL
-  drm/i915: Give up on DSB/flip queue if we fail to allocate the color
-    DSB buffer
-  drm/i915: Clear crtc_state->use_flipq initially
-  drm/i915: Warn about use_flip==true in MMIO commit codepaths
-  drm/i915: Refine vblank evasion DSB check
-  drm/i915: Make intel_crtc_needs_vblank_work() easier on the eye
-  drm/i915: Extract intel_dsb_supported()
-  drm/i915: Use intel_dsb_supported() to determine 'use_dsb'
-  drm/i915: Extract commit_dsb_max_cmds()
-  drm/i915: Introduce enum intel_commit_type
-  drm/i915: Carve intel_atomic_commit_type() up a bit
-  drm/i915/dsb: Add tracepoints for DSB commit
-  drm/i915/dsb: Add tracepoints for flip queue
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_flipq.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
- drivers/gpu/drm/i915/display/intel_atomic.c   |   2 +-
- drivers/gpu/drm/i915/display/intel_color.c    |   7 +-
- drivers/gpu/drm/i915/display/intel_crtc.c     |  13 +-
- drivers/gpu/drm/i915/display/intel_display.c  | 135 +++++++++++-------
- .../drm/i915/display/intel_display_trace.h    | 111 ++++++++++++++
- .../drm/i915/display/intel_display_types.h    |   8 +-
- drivers/gpu/drm/i915/display/intel_dmc.c      |   3 +
- drivers/gpu/drm/i915/display/intel_dsb.c      |  18 ++-
- drivers/gpu/drm/i915/display/intel_dsb.h      |   1 +
- drivers/gpu/drm/i915/display/intel_flipq.c    |  10 +-
- drivers/gpu/drm/i915/display/intel_vblank.c   |   6 +-
- 11 files changed, 245 insertions(+), 69 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_flipq.c b/drivers/gpu/drm/i915/display/intel_flipq.c
+index 1e9550cb66a3..a07b3ec4242c 100644
+--- a/drivers/gpu/drm/i915/display/intel_flipq.c
++++ b/drivers/gpu/drm/i915/display/intel_flipq.c
+@@ -129,6 +129,9 @@ void intel_flipq_init(struct intel_display *display)
+ {
+ 	struct intel_crtc *crtc;
+ 
++	if (DISPLAY_VER(display) < 20)
++		return;
++
+ 	intel_dmc_wait_fw_load(display);
+ 
+ 	for_each_intel_crtc(display->drm, crtc)
 -- 
 2.51.2
 
