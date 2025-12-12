@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE5C4CB9213
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Dec 2025 16:29:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65A33CB9216
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Dec 2025 16:29:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BFA510E5BA;
-	Fri, 12 Dec 2025 15:29:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 047CD10E8C0;
+	Fri, 12 Dec 2025 15:29:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f1Uffi0l";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d1DWwsV1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D581A10E8C5;
- Fri, 12 Dec 2025 15:29:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FD2510E8C0;
+ Fri, 12 Dec 2025 15:29:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765553350; x=1797089350;
+ t=1765553354; x=1797089354;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=7MJOIKDRrkiuFVl4DLxy90HAC/WoGvFuCz18/14t0Tc=;
- b=f1Uffi0ludnhCbBtNCiQ8nDG8OOPcNoG4VBR19/r89KlS8FWT4+AapDO
- c2ohjxY535qFe2FUkzQavyXffTQ8vqNqF2Nx7VgPW6HwG+mZ5YdfPnRqL
- zVsbmaiuOQLE/d3gC+GaOmrE+j24AbNowTxwaIbXwfE8T2I+a7GBZPvw2
- BG7QRia2xk+FgEqI9vZjxywq5R3saHMtrekSU9ZTXKOHJbrOouY1EemhX
- O9+32QGyNnhhL+F+hYu5nUzhU8Ja4M1ptZMM4Gr86ZEAsO0uAXb0agSMc
- BD8IyaI/GBuiNZYZxYDyAeHwOMLDEcUcxB4KdK2ORCiK8Krrdm0aZZhK+ w==;
-X-CSE-ConnectionGUID: ps16SoDKTqG+SkbOw0GexA==
-X-CSE-MsgGUID: 0zKz6ufCTDWzik8pxNQdrg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11640"; a="67716381"
-X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="67716381"
+ bh=CSGcUOQVT/8ESreHDHKm5SLVsw785MNfDctgxtSXtW8=;
+ b=d1DWwsV1ZDpOaR+mhV8s1mX412woJK2vMMZmvu5ngQhy0+wYuWpag6Vf
+ ugWHA03uZdHj7D2mAEu5AExcpy5xwCC8I9smLqfn0zOoxHy3SuCZu3mMt
+ jH20tKH5VUd8rKnbOMt5M9DV2H74O+iEm1+LWo2cdMOy34zjthyq3Utzt
+ uvx+Dq+2LTCNjclVPAPE8iz/s03cFbTHc9QtxN4jRXVgETgu4IpEdL/Yt
+ 460u5y/EljYXxqmdxK8UZ1pYgkNmgzCvhyfHulXZ/a+hXp3/Y7WhAMsZG
+ E5v2hPP9IJjOZ8V1uoKKpMgxfQyYJe3lGk3bxzXuiyDbtpLcId4FU4sA0 A==;
+X-CSE-ConnectionGUID: 4JpaNGb5RmyJwFDzyQiUAA==
+X-CSE-MsgGUID: 0sbciDQARQeXkE9obJlaMg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11640"; a="67716382"
+X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="67716382"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2025 07:29:10 -0800
-X-CSE-ConnectionGUID: PsWzZr9sRDu5z/FxKr6YVg==
-X-CSE-MsgGUID: pf6p8r8gQKO+3OtXEec0EA==
+ 12 Dec 2025 07:29:14 -0800
+X-CSE-ConnectionGUID: wpn7LzfTTa6CJDHvl6zAyg==
+X-CSE-MsgGUID: zTcDI06pTlS+vAO8Mjko/w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="197935053"
+X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="197935066"
 Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
  ([10.245.245.152])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2025 07:29:08 -0800
+ 12 Dec 2025 07:29:12 -0800
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 05/13] drm/i915: Refine vblank evasion DSB check
-Date: Fri, 12 Dec 2025 17:28:39 +0200
-Message-ID: <20251212152847.13679-6-ville.syrjala@linux.intel.com>
+Subject: [PATCH 06/13] drm/i915: Make intel_crtc_needs_vblank_work() easier on
+ the eye
+Date: Fri, 12 Dec 2025 17:28:40 +0200
+Message-ID: <20251212152847.13679-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.51.2
 In-Reply-To: <20251212152847.13679-1-ville.syrjala@linux.intel.com>
 References: <20251212152847.13679-1-ville.syrjala@linux.intel.com>
@@ -72,37 +73,39 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Use intel_color_uses_chained_dsb() rather than intel_color_uses_dsb()
-when deciding whether to evade the undelayed vblank/SCL in the mmio
-based commit path.
+We will never use the vblank worker based LUT update path on
+hardware with double buffered LUTs. Split that check out from
+the semi-illegble mess in intel_crtc_needs_vblank_work()
+so that it's clear what's happening.
 
-A non-chained DSB will not wait for the undelayed vblank/safe window
-before starting execution, and the LUT itself will be double buffered
-in this case. Thus we only need to evade the delayed vblank.
+The rest of the checks in that mess are more about dynamic
+runtime state, so keeping those together makes some sense.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vblank.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_crtc.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index 671f357c6563..01f96efd00c5 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -700,10 +700,10 @@ void intel_vblank_evade_init(const struct intel_crtc_state *old_crtc_state,
- 	 * undelayed vblank, so with seamless M/N and LRR we must evade
- 	 * both vblanks.
- 	 *
--	 * DSB execution waits for the transcoder's undelayed vblank,
--	 * hence we must kick off the commit before that.
-+	 * Chained DSB execution waits for the transcoder's undelayed
-+	 * vblank, hence we must kick off the commit before that.
- 	 */
--	if (intel_color_uses_dsb(new_crtc_state) ||
-+	if (intel_color_uses_chained_dsb(new_crtc_state) ||
- 	    new_crtc_state->update_m_n || new_crtc_state->update_lrr)
- 		evade->min -= vblank_delay;
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index 1b5b73f643bc..6dadffc63988 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -444,11 +444,13 @@ static bool intel_crtc_needs_vblank_work(const struct intel_crtc_state *crtc_sta
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+ 
++	if (HAS_DOUBLE_BUFFERED_LUT(display))
++		return false;
++
+ 	return crtc_state->hw.active &&
++		intel_crtc_needs_color_update(crtc_state) &&
+ 		!crtc_state->preload_luts &&
+ 		!intel_crtc_needs_modeset(crtc_state) &&
+-		(intel_crtc_needs_color_update(crtc_state) &&
+-		 !HAS_DOUBLE_BUFFERED_LUT(display)) &&
+ 		!intel_color_uses_dsb(crtc_state);
  }
+ 
 -- 
 2.51.2
 
