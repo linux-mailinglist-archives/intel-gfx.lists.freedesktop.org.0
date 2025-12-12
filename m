@@ -2,193 +2,75 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0553CB8FAD
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Dec 2025 15:39:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98073CB8FC8
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Dec 2025 15:45:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A917A10E8E5;
-	Fri, 12 Dec 2025 14:39:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20CD510E31D;
+	Fri, 12 Dec 2025 14:45:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C1eBFDYY";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="WEURroe4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C3C010E8E5;
- Fri, 12 Dec 2025 14:39:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765550362; x=1797086362;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-id:content-transfer-encoding:mime-version;
- bh=B9m7Un4AaewvX9oaVm1/voqtH+qyYuwsTf286Gl71z4=;
- b=C1eBFDYYUEpvPRRNAgJXkJM4KVrLIi2Uxnhw3cSIpMRjy+nZ1PxRMyi8
- Je/yJAD4HF/oy8lY98JIEzXQPUER1/NRo/TxhNI7E1I6bMmnbZpck65UD
- Op0bKV/GiFkdO6LAdKEtDr/wa3GD4tYcW0NRPgoM168SOpHTaPzxgQIYO
- E4+o6qFF/bRa1J8AA/zuBdMXftPGqthotwPNJ0vYsjB2e5XUW59PFVFZZ
- 7g9IlXCEz+Ic8DBUxsKtjkIxmmqJgMT8MQf1w2fVQtJUW5re9kf3TbfFC
- 42ALCsmmMjMBD61yLkbKLBGIds6F0U6sWV7+2v6Q/ajOoHf3zewu9Tsxf Q==;
-X-CSE-ConnectionGUID: wO+aO0W5To2lp1UgAwYOVQ==
-X-CSE-MsgGUID: ljwXbjirRfCwrC8FpLXP/w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11640"; a="67710956"
-X-IronPort-AV: E=Sophos;i="6.21,143,1763452800"; d="scan'208";a="67710956"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2025 06:39:21 -0800
-X-CSE-ConnectionGUID: 43wbzEbcTFmBU+EbEf2ZXg==
-X-CSE-MsgGUID: 31OC6yoeSDOYEho3b9kI6Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,143,1763452800"; d="scan'208";a="202022612"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2025 06:39:20 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Fri, 12 Dec 2025 06:39:19 -0800
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Fri, 12 Dec 2025 06:39:19 -0800
-Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.55) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Fri, 12 Dec 2025 06:39:19 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=TKY3T+DfpCiF+Yd8DUE6NaLkkTsaR7Jb7n2s7ZYZ2ml9wXLeAQmE1zAS8j7XWrhY4xrO4CG8v1D8KrlsXf708sNnh8fX+zhKKAXVF6WK4BHCANLRL6TVyILzfcVaSjOY80SV/GPHJToKqIMRBe0W9SjrxXv+tJq/jLVffPCoNlw20+XtpvXjGAsYpVCOG2D57ff4rNPSa8YVz+2XwZhLr4zvzQ73eyfXwbS9ChqLrFC6JJKUTzM17Q86RWaPj86HQyvNkHQ6RTIEMn2Vh/8/GYcy+FIcoUVOgbW2vMwxsi48HqPOr1Cl+5/U4Uz4cWmsDFiL1LTKDVA5ZX7n8ti1fQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=B9m7Un4AaewvX9oaVm1/voqtH+qyYuwsTf286Gl71z4=;
- b=cizeoevAN5BQHU3XzmAgmG4YFxQGSAmwC+hGRXZHB4yM2BXOJugn2K/x2XpMBwLDJPE6/j1PgAzn8I5FzVSum6tSsyH7DE/57g4G9ibWQv5h2zh+sXe+wa0frSJGzVt42rmQHsWzxnORWXe58NLyRBzehN8Gd0lGXNPK12gzh4WoSep/hmEuMBlRmHRCSlFOOQXWDu2Hd/PlmJSlhoFxTdTmqCS/Wqv80lkjJHJw6Ib8WcOP6IBx0bwo/cU7v19qPbLbCBk2VjyCXjKsMn+Cau7V8wrjZAKsK5YcyQcc6URtEiiXPX0o+FeTMZT8l9utWiwGfFjbFpzF3aK+PAO6Rg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CY8PR11MB7777.namprd11.prod.outlook.com (2603:10b6:930:71::14)
- by DM3PPF5AD378C3B.namprd11.prod.outlook.com (2603:10b6:f:fc00::f24)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.6; Fri, 12 Dec
- 2025 14:39:11 +0000
-Received: from CY8PR11MB7777.namprd11.prod.outlook.com
- ([fe80::60a1:eab8:65ee:6bb8]) by CY8PR11MB7777.namprd11.prod.outlook.com
- ([fe80::60a1:eab8:65ee:6bb8%6]) with mapi id 15.20.9412.005; Fri, 12 Dec 2025
- 14:39:11 +0000
-From: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
-To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Deak,
- Imre" <imre.deak@intel.com>
-Subject: Re: [PATCH 29/50] drm/i915/dp: Use helpers to align min/max
- compressed BPPs
-Thread-Topic: [PATCH 29/50] drm/i915/dp: Use helpers to align min/max
- compressed BPPs
-Thread-Index: AQHcX+7DnniL05PttUWhuh3XSDbShrUeKkiA
-Date: Fri, 12 Dec 2025 14:39:11 +0000
-Message-ID: <bb2a928bd59ad57da38b72832cb9b1f0eb71cc84.camel@intel.com>
-References: <20251127175023.1522538-1-imre.deak@intel.com>
- <20251127175023.1522538-30-imre.deak@intel.com>
-In-Reply-To: <20251127175023.1522538-30-imre.deak@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.52.3-0ubuntu1.1 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CY8PR11MB7777:EE_|DM3PPF5AD378C3B:EE_
-x-ms-office365-filtering-correlation-id: 957d32f2-4af0-42a7-d6c7-08de398c370b
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|376014|366016|38070700021;
-x-microsoft-antispam-message-info: =?utf-8?B?ZDQxakxXUjZIRDRQamF6eVVyQXpDa2taVHJUeUQ3WWxzM3JyUHdYZFo2QTdl?=
- =?utf-8?B?WnlTNjk3UUpnVzhGeEhOVUlTVXFmMFNmdExVeCtNQ0I2WkQwOHRjQmZwOGQr?=
- =?utf-8?B?NEE5dzhNZmppSWxadCs3eDFmYmN3WDBQbXJROGtxd1JneTVMWDhkckNZOWF1?=
- =?utf-8?B?VTQwZm5IdjRHNjZGaDh6SjJUTVRMM090eXA0UkM2dm1YdmJiTjF1R2lER1RV?=
- =?utf-8?B?eEdoTkhCU05IUEJwYk4wSkkzWGt4VE1KTTZMUmRnZ3ZnbTlSMnFkdnNwbm1w?=
- =?utf-8?B?aWlNTklsM2VxWEVlWWtURHcyQjlJeUFMSGZXUXB0YlNadHJyMmtUR2k2NWt3?=
- =?utf-8?B?b0VKdHhEZjFJZGVmNUJrOVdaTUlqREFpUkRFK09wdHJ3UVc1VjVqazN1cjIy?=
- =?utf-8?B?bTNPQklrRG1kcGsxbUNXWmFuNWtRaGRuQjN0NTlNVXlnd04rTFltdTgwSmdW?=
- =?utf-8?B?b0lmZUV2TEJrOWpVSWpHTkRIRm9KUjNrNTgrU2Z6L0VwTFhnMlJ0U3hVK3U0?=
- =?utf-8?B?a2x0aklCQld4UXVrYjFhLzFQbHAvQ0RQbXZlRFYzcUdwYVZVRm1UR0JsaVhq?=
- =?utf-8?B?T3hMQXhUdWFiQi92eG0wbWhBeDVnL0Q0bVZyNDREbjRTaWNid0JaYndxQlZu?=
- =?utf-8?B?OG5sK2M0YjVNZjc5NHExNVg4R3FqQWhGSVNHQVI1elZ3TWFRcUZ0OXV4Mjhj?=
- =?utf-8?B?cnVpeVFZTG1ieHY3QnNpbjJnYnFoZER6NHNxcmRyZVQvNVlwK1NydWxkMGZM?=
- =?utf-8?B?aHh3aXl6MmZEQkZIcGZqWDRRbFBVbTFPSlhPcHVMc2p3NnVyTjRSZDFzYVp5?=
- =?utf-8?B?YnlFL2dXaFNBS2pKZDQxbHErZURQM016d1NmV2lZTWVHOHBLUUlwN05jT2hw?=
- =?utf-8?B?UWV1anVLYTBqNDRZR1FSaFdjbHhNUmZsRGJTdHN4ZVlveEo2T0tGNUNNOU5m?=
- =?utf-8?B?NFNuMDlKSjVObjBjejM3MFlLTzdNSmkrWU90YWwwYWNtaDE0ZU16d2Z0dWU0?=
- =?utf-8?B?MTFUV0I3UURaSXBOcXVLS01QdEdWWWVjY2tlWW1BOEliN1RLTHV5U2E1bHln?=
- =?utf-8?B?VlJ2QWlBZFY0Mkk3dllYdHdkUU9kd21VdUpXZHRwTm5SV2ZQUGR5eDdva3Zv?=
- =?utf-8?B?b21wd2Z3ZFhqTFNZQmpOMFptNFlsaTJrZjhWa0JIdmloVy96SnhKT2FTZlp5?=
- =?utf-8?B?SjYrc1Qyb25HR3hEVitSVWJ0aDdSQ2M2bjgxTTJ4aE80b29zMHFITEgrT0Q3?=
- =?utf-8?B?dzMxTm81akV5Y2pDZGpHQ0ZyVVU3L1hsTzAxVm04SXBRQUhxWkRpeVd4NWZk?=
- =?utf-8?B?Q2p6OC81aW5RbEh0V0wrbWN4QWFGVmd6eEUycGhjc3dRUEpJSld2L1ZsazJH?=
- =?utf-8?B?TDZzYkxXaVhwYXY3bUxtWjVOTHptSGpyTWUrSVlYQUNvZGkyQ0tnUjc4eFNB?=
- =?utf-8?B?QitpaGhLOTI5c3RkTm9JcHBESy82ckNMN0pkSUtUSGNLTWMzTk5tRFNpeFV2?=
- =?utf-8?B?SEp2KzE3NEVwS2VERnQ2MkdsOGJONTZBUTNhZzRra3NSQlAvUjhjVWFsVjBT?=
- =?utf-8?B?MGtqM0d5Tm5wTTFqS1dHNk1nL3hHemdRSGpvdk5KY0hqNlJaalhhZFZPbDk1?=
- =?utf-8?B?amhxZmpwMm5ZUGJ4Rms2cDRBWjFWcUMvL3d3RXpVZmt3RUk5bFRlOTNCcE5r?=
- =?utf-8?B?OXQzSm40aTdzTHRTNU91K1N5bkZ3enRjRnczZmpwazdqdnRleGxhdkVLbm1a?=
- =?utf-8?B?ZXljN2lVdXUvL3R0bjV4eitjWHVBdS9tMGlMT3hLN1lmY1phMU4zYTJCSjFa?=
- =?utf-8?B?emFhbDR3NWVJSEF6cm90WDNvaEpuR0dQWkJYMmpKbUVkcmZPWUt5MzljMXV1?=
- =?utf-8?B?bkJQYVZhbm5PTUMzdzlsTFZvVFAvZUtSZlppeGhVZHdpNTdBa3RQa1RseXFN?=
- =?utf-8?B?ekdqYWNnRUNFS0xFeFRTaGJXQ2VVY0JweGtCV2RqcW1ac3h6cTZsWkVtaXFj?=
- =?utf-8?B?eWRwQjd3T0RWaGhRV0NWYUlDaHpUaGlwRWFHK1ZjSDRqSy9OWHFWckFvQ1Mx?=
- =?utf-8?Q?fI4DkG?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY8PR11MB7777.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(38070700021); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?UXhXd04vUmtPMTJYWHlBZWJzRkpRc2lVdkdkNTZhZGg0cGJlSkcyRnY5Z2Vq?=
- =?utf-8?B?K3drZ1ZQaVcyWVJ2SjRWTjdRa3JCcEJ0dFBTczYrbWR1MHZPU3hyWTdNZE5s?=
- =?utf-8?B?bnB3akFaNHNVdDlJMFg4QTVQNGxYMXhjTjZhbFNBaDZ0SDd2TXAxZlIxbnN5?=
- =?utf-8?B?Mm11aHJHdHBrUzY3ajh4bldQNkJRak56U1IzK2V4emRvalcveXkyU1Zibmtn?=
- =?utf-8?B?Um1LeDgxNUJhblVtQkFxWGFKV1NnS1pmZmVBYnpjTU1GQTI3em1ZYmtESkVq?=
- =?utf-8?B?THo5OGVYM0krUG9jdE1ZcldFa1Z5b0k3UzhKNm1lN0psM3hrL01IcC9VWERS?=
- =?utf-8?B?dXlqZE5WOGJacVphV3hGQVprZi8rcm50WFk0dFVVc3J2NDZGeXJPc0hZMUNh?=
- =?utf-8?B?b3dDdDJhK0lrRitxbGpuWlFIbW5yNTEvWUUyS1JwVDRCakgwSWxLMHFXVEJu?=
- =?utf-8?B?dGswdkdWL3QxOXlXMndDMVVhc2tHb3Nyc1pScURnMnFZY3V0SXRlTU9xblZV?=
- =?utf-8?B?SzBySkpybEp4L3FhSlBwbzRTYU5rdzlZdDZnbnR4eWtmaGlEVklLc2lsQXRm?=
- =?utf-8?B?cThUekMwL1VzaDJOaHQ1TGlDUzl4cXVEeUlGL3BhdHZOWW1aMDk4TEZTdS9a?=
- =?utf-8?B?M1p0RndyNmZpVHpGbjlObFJwdUpEaGRIU1RSQnh2bEJpMEltQkVFbUxlaXFJ?=
- =?utf-8?B?b3NQUk5Nb2E5RjRkNDZPM0xDWHR2OSs0RExWRkhRMDk2ekZiTmRYV1czcG91?=
- =?utf-8?B?K2dXdXlUKzdxL2JTdUQ5cXB5b1d6RDRLOWg4bkFwdzZaVEpGbmNMK3QwbUZB?=
- =?utf-8?B?NHdMR0p3NDRtWm5iS1FQVExEMUdpTkxTUUhzNzBaMS9FM1RTUEVabGtrUjUy?=
- =?utf-8?B?aUFQVUxRMjkxTThFYXRjMzhyd1VBdVJqNEtPeUVLZ0h3ZkZTM1VLRDhId2li?=
- =?utf-8?B?Y2dQS0sxd0daOVVIQmZMbXM2ZkFTSXNFZXpJTHhUZW9zb2UrL1hIUUVDMHdM?=
- =?utf-8?B?UWsweTdsK2dSOUl4SnNXWEJhUjhuR0pkbHU1QjFVaWZBYzVBNkZqVE1PY29j?=
- =?utf-8?B?bVZucGlxd2FLNVdOZFJNaWNWa1hOUXMvUHordVlIYVhRMzl2SHVvQWZyTUxy?=
- =?utf-8?B?eGVtVFZEbmNHdjhtQmY4cHFQTitCTExYTkJrTzRHRS9Qd3p0M0FoMjMzWWpu?=
- =?utf-8?B?TW91Qyt0c1BldzFqODJSUmk3V3o2R09GbitiNVBWZDkxYkRPVlJVVHY2aGlI?=
- =?utf-8?B?YlcyUE9NNjJTRUdyWm90amE3d0hBUHNNcmFObWV0ZG5ud0ZIczVLeXpNVUtL?=
- =?utf-8?B?bXkvVE1hWkpDRU9SUTU5bHVkWVRhKzVyVFFWNFUrUVd0UjVjN2FPcFQraVpl?=
- =?utf-8?B?RUJvVGljUjhOOEZLdHZQeERmVnVLOHNMa3Z0cFhBd29HWWhhWWtzaGNlNTFC?=
- =?utf-8?B?RGx5RSt0UGdPS042UlNKem1jVEVGcnhkN1ZReFZjT3BUTS9jSmdJUlJiN0xk?=
- =?utf-8?B?Y0t4TFcvd3pDeG84RERWT1hQQ2V1dGdrZTB3YjVoMlNVS1VITDdQdmpNb3h4?=
- =?utf-8?B?ZDBmTTk0eGZOYi9WbjhkTTltZXBGYm5yejAzSkNmdXRmSEVJa0pRbGMvNE9m?=
- =?utf-8?B?U1pQN21ZNXFNNmNmVlBCdkNFTWRXWXQ1dTduVGVvNHFuL2haWVFKaHNUd1g3?=
- =?utf-8?B?LzJWcDI1eU9mQkZpYTBMWU5QU2F2L1Nlcm1Sbkh1ZXFJZDE1enU5b3Z0SjRM?=
- =?utf-8?B?aTdwVjg2ZUhrZUpmMExhOUtaNnBKR0l4OVBWengyUDFWMzRFWERsQ1gyZDkw?=
- =?utf-8?B?eFZyMGtuQm9pcC94TGNEMkZKUWlBUjBhdzdDWkNUaDhwUkM4NHIrVjBSWUFx?=
- =?utf-8?B?Ykl1VWRyM2laclp1ZVdqcE1TMXowc1QzdFRsSkpaTXRTL0w3TjFHN2dEV00x?=
- =?utf-8?B?Z24xemFCMDQ2UUpabkpLai9uSFE5MHIyRS9aS1lwbkRXS3hpaTBCNjVlMkM0?=
- =?utf-8?B?TndJQkZRM0dxdnl3aEFYS3d0WmVsb1l6azE4YTNEOHhzcEovYjZxSDVYZ0RE?=
- =?utf-8?B?RXNhN1BZUWRpWTlwbHU4dEdTWXFXblhpVmVXMW4zTnNDV2xCT3MwcWc4YVp4?=
- =?utf-8?B?ZkdkY2RRRFFRRXBaOWR0NmRONTI4NTZVcTNJNXBEejJsL3VaRmFZSnhKajA2?=
- =?utf-8?Q?wFERbVqenTrPRPy0NOJ4/ww=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <E448E93AD2A7D24D977EF5071D8B1C09@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D494510E248;
+ Fri, 12 Dec 2025 14:45:27 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1765550718; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=mLYsCPIEoEc8Cr72RwqmUED2y0IXBvLk3iq9bbiio6n2klgz6hEBIjz3kpqd7wHuZ1YcxGGeQqUFqba6E2wOQcQ0M8Rgk4paK7ECbcW9QBMJ4ywUee3U/WxHzRfjNuGcJ79pi5vf6nZKpSzvCn6BsHTi2aBvt3oAH3vjdPB/cy4=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1765550718;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=yLCbjxHd3JePZY9d0bk2dJVpott5rtOluFwDLG0JMHY=; 
+ b=Pw0qhXc+MK5uCnO8utL49AHHfFeDH/mN7oFHwYjWNA8NY/s7/oDtaJdZhYdFEm65T3KtvOf2afds8WXu2hEEGVBeFfzk8XYskr5oPbgxuX54KM0JJp9Y3Z/21IbOO8AVLW0SvFZv8Ye0ad2TOM5S4kI5IZ0drHpvh8MDFJUnyvo=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+ dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1765550718; 
+ s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+ h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+ bh=yLCbjxHd3JePZY9d0bk2dJVpott5rtOluFwDLG0JMHY=;
+ b=WEURroe4KzFmp3qtxUJtYQ2//qLd5ebc0POtVGlpLyhvI+2Ddi4KiJCUnFY8q9Me
+ Ge2SGeJTmZkER1OsM1YUb2VMBkAN4a829RqFOmBWG/WYSSOu97vwoWQ7oURVV1Yqg2Q
+ ousABi9E/4SBqBnjXpfnbZSmw3bsoWCXUFHXAw4Q=
+Received: by mx.zohomail.com with SMTPS id 17655507158241002.007523871685;
+ Fri, 12 Dec 2025 06:45:15 -0800 (PST)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Sandy Huang <hjc@rock-chips.com>,
+ Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ kernel@collabora.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v5 04/17] drm/bridge: Act on the DRM color format property
+Date: Fri, 12 Dec 2025 15:45:05 +0100
+Message-ID: <2747638.atdPhlSkOF@workhorse>
+In-Reply-To: <20251212-hidden-armored-mule-66dd32@penduick>
+References: <20251128-color-format-v5-0-63e82f1db1e1@collabora.com>
+ <3772903.e9J7NaK4W3@workhorse> <20251212-hidden-armored-mule-66dd32@penduick>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR11MB7777.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 957d32f2-4af0-42a7-d6c7-08de398c370b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Dec 2025 14:39:11.4259 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: TVNz4MJo1kiW661231q9fOjm7DYp/poDx62mw9oaxk4IZWfuchh9fvJT4gBXuaQxLbV0pkq7tkk8+NTj4gbpag+ESyl+/ET3WIQJmiWqLGc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPF5AD378C3B
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -204,64 +86,254 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAyMDI1LTExLTI3IGF0IDE5OjUwICswMjAwLCBJbXJlIERlYWsgd3JvdGU6DQo+IFRo
-ZSBtaW5pbXVtL21heGltdW0gY29tcHJlc3NlZCBCUFAgdmFsdWVzIGFyZSBhbGlnbmVkL2JvdW5k
-ZWQgaW4NCj4gaW50ZWxfZHBfY29tcHV0ZV9saW5rX2JwcF9saW1pdHMoKSB0byB0aGUgY29ycmVz
-cG9uZGluZyBzb3VyY2UNCj4gbGltaXRzLg0KPiBUaGUgbWluaW11bSBjb21wcmVzc2VkIEJQUCB2
-YWx1ZSBkb2Vzbid0IGNoYW5nZSBhZnRlcndhcmRzLCBzbyBubw0KPiBuZWVkDQo+IHRvIGFsaWdu
-IGl0IGFnYWluLCByZW1vdmUgdGhhdC4NCj4gDQo+IFRoZSBtYXhpbXVtIGNvbXByZXNzZWQgQlBQ
-LCB3aGljaCBkZXBlbmRzIG9uIHRoZSBwaXBlIEJQUCB2YWx1ZSBzdGlsbA0KPiBuZWVkcyB0byBi
-ZSBhbGlnbmVkLCBzaW5jZSB0aGUgcGlwZSBCUFAgdmFsdWUgY291bGQgY2hhbmdlIGFmdGVyIHRo
-ZQ0KPiBhYm92ZSBsaW1pdHMgd2VyZSBjb21wdXRlZCwgdmlhIGludGVsX2RwX2ZvcmNlX2RzY19w
-aXBlX2JwcCgpLiBVc2UNCj4gdGhlDQo+IGNvcnJlc3BvbmRpbmcgaGVscGVyIGZvciB0aGlzIGFs
-aWdubWVudCBpbnN0ZWFkIG9mIG9wZW4tY29kaW5nIHRoZQ0KPiBzYW1lLg0KPiANCj4gU2lnbmVk
-LW9mZi1ieTogSW1yZSBEZWFrIDxpbXJlLmRlYWtAaW50ZWwuY29tPg0KPiAtLS0NCj4gwqBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMgfCAyMyArKysrKy0tLS0tLS0tLS0t
-LS0tLS0tLQ0KPiDCoDEgZmlsZSBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKyksIDE4IGRlbGV0aW9u
-cygtKQ0KPiANCg0KUmV2aWV3ZWQtYnk6IFZpbm9kIEdvdmluZGFwaWxsYWkgPHZpbm9kLmdvdmlu
-ZGFwaWxsYWlAaW50ZWwuY29tPg0KDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2RwLmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2RwLmMNCj4gaW5kZXggOGI2MDE5OTRiYjEzOC4uZTM1MTc3NGY1MDhkYiAxMDA2NDQNCj4g
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jDQo+ICsrKyBiL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYw0KPiBAQCAtMjIxNywyMCArMjIx
-NywxNSBAQCBzdGF0aWMgaW50IGRzY19jb21wdXRlX2NvbXByZXNzZWRfYnBwKHN0cnVjdA0KPiBp
-bnRlbF9kcCAqaW50ZWxfZHAsDQo+IMKgCXN0cnVjdCBpbnRlbF9kaXNwbGF5ICpkaXNwbGF5ID0g
-dG9faW50ZWxfZGlzcGxheShpbnRlbF9kcCk7DQo+IMKgCWNvbnN0IHN0cnVjdCBpbnRlbF9jb25u
-ZWN0b3IgKmNvbm5lY3RvciA9DQo+IHRvX2ludGVsX2Nvbm5lY3Rvcihjb25uX3N0YXRlLT5jb25u
-ZWN0b3IpOw0KPiDCoAlpbnQgbWluX2JwcF94MTYsIG1heF9icHBfeDE2LCBicHBfc3RlcF94MTY7
-DQo+IC0JaW50IGxpbmtfYnBwX3gxNjsNCj4gwqAJaW50IGJwcF94MTY7DQo+IMKgCWludCByZXQ7
-DQo+IMKgDQo+ICsJbWluX2JwcF94MTYgPSBsaW1pdHMtPmxpbmsubWluX2JwcF94MTY7DQo+IMKg
-CW1heF9icHBfeDE2ID0gbGltaXRzLT5saW5rLm1heF9icHBfeDE2Ow0KPiDCoAlicHBfc3RlcF94
-MTYgPSBpbnRlbF9kcF9kc2NfYnBwX3N0ZXBfeDE2KGNvbm5lY3Rvcik7DQo+IMKgDQo+IC0JLyog
-Q29tcHJlc3NlZCBCUFAgc2hvdWxkIGJlIGxlc3MgdGhhbiB0aGUgSW5wdXQgRFNDIGJwcCAqLw0K
-PiAtCWxpbmtfYnBwX3gxNiA9DQo+IGludGVsX2RwX291dHB1dF9mb3JtYXRfbGlua19icHBfeDE2
-KHBpcGVfY29uZmlnLT5vdXRwdXRfZm9ybWF0LA0KPiBwaXBlX2JwcCk7DQo+IC0JbWF4X2JwcF94
-MTYgPSBtaW4obWF4X2JwcF94MTYsIGxpbmtfYnBwX3gxNiAtIGJwcF9zdGVwX3gxNik7DQo+IC0N
-Cj4gLQlkcm1fV0FSTl9PTihkaXNwbGF5LT5kcm0sICFpc19wb3dlcl9vZl8yKGJwcF9zdGVwX3gx
-NikpOw0KPiAtCW1pbl9icHBfeDE2ID0gcm91bmRfdXAobGltaXRzLT5saW5rLm1pbl9icHBfeDE2
-LA0KPiBicHBfc3RlcF94MTYpOw0KPiAtCW1heF9icHBfeDE2ID0gcm91bmRfZG93bihtYXhfYnBw
-X3gxNiwgYnBwX3N0ZXBfeDE2KTsNCj4gKwltYXhfYnBwX3gxNiA9IGFsaWduX21heF9jb21wcmVz
-c2VkX2JwcF94MTYoY29ubmVjdG9yLA0KPiBwaXBlX2NvbmZpZy0+b3V0cHV0X2Zvcm1hdCwNCj4g
-KwkJCQkJCcKgwqAgcGlwZV9icHAsDQo+IG1heF9icHBfeDE2KTsNCj4gwqANCj4gwqAJZm9yIChi
-cHBfeDE2ID0gbWF4X2JwcF94MTY7IGJwcF94MTYgPj0gbWluX2JwcF94MTY7IGJwcF94MTYNCj4g
-LT0gYnBwX3N0ZXBfeDE2KSB7DQo+IMKgCQlpZiAoIWludGVsX2RwX2RzY192YWxpZF9jb21wcmVz
-c2VkX2JwcChpbnRlbF9kcCwNCj4gYnBwX3gxNikpDQo+IEBAIC0yMzQ2LDggKzIzNDEsNiBAQCBz
-dGF0aWMgaW50DQo+IGludGVsX2VkcF9kc2NfY29tcHV0ZV9waXBlX2JwcChzdHJ1Y3QgaW50ZWxf
-ZHAgKmludGVsX2RwLA0KPiDCoAlzdHJ1Y3QgaW50ZWxfY29ubmVjdG9yICpjb25uZWN0b3IgPQ0K
-PiDCoAkJdG9faW50ZWxfY29ubmVjdG9yKGNvbm5fc3RhdGUtPmNvbm5lY3Rvcik7DQo+IMKgCWlu
-dCBwaXBlX2JwcCwgZm9yY2VkX2JwcDsNCj4gLQlpbnQgZHNjX21pbl9icHA7DQo+IC0JaW50IGRz
-Y19tYXhfYnBwOw0KPiDCoA0KPiDCoAlmb3JjZWRfYnBwID0gaW50ZWxfZHBfZm9yY2VfZHNjX3Bp
-cGVfYnBwKGludGVsX2RwLCBsaW1pdHMpOw0KPiDCoA0KPiBAQCAtMjM2NywxNSArMjM2MCw5IEBA
-IHN0YXRpYyBpbnQNCj4gaW50ZWxfZWRwX2RzY19jb21wdXRlX3BpcGVfYnBwKHN0cnVjdCBpbnRl
-bF9kcCAqaW50ZWxfZHAsDQo+IMKgCXBpcGVfY29uZmlnLT5wb3J0X2Nsb2NrID0gbGltaXRzLT5t
-YXhfcmF0ZTsNCj4gwqAJcGlwZV9jb25maWctPmxhbmVfY291bnQgPSBsaW1pdHMtPm1heF9sYW5l
-X2NvdW50Ow0KPiDCoA0KPiAtCWRzY19taW5fYnBwID0gZnhwX3E0X3RvX2ludF9yb3VuZHVwKGxp
-bWl0cy0NCj4gPmxpbmsubWluX2JwcF94MTYpOw0KPiAtDQo+IC0JZHNjX21heF9icHAgPSBmeHBf
-cTRfdG9faW50KGxpbWl0cy0+bGluay5tYXhfYnBwX3gxNik7DQo+IC0NCj4gLQkvKiBDb21wcmVz
-c2VkIEJQUCBzaG91bGQgYmUgbGVzcyB0aGFuIHRoZSBJbnB1dCBEU0MgYnBwICovDQo+IC0JZHNj
-X21heF9icHAgPSBtaW4oZHNjX21heF9icHAsIHBpcGVfYnBwIC0gMSk7DQo+IC0NCj4gwqAJcGlw
-ZV9jb25maWctPmRzYy5jb21wcmVzc2VkX2JwcF94MTYgPQ0KPiAtCQlmeHBfcTRfZnJvbV9pbnQo
-bWF4KGRzY19taW5fYnBwLCBkc2NfbWF4X2JwcCkpOw0KPiArCQlhbGlnbl9tYXhfY29tcHJlc3Nl
-ZF9icHBfeDE2KGNvbm5lY3RvciwgcGlwZV9jb25maWctDQo+ID5vdXRwdXRfZm9ybWF0LA0KPiAr
-CQkJCQnCoMKgwqDCoCBwaXBlX2JwcCwgbGltaXRzLQ0KPiA+bGluay5tYXhfYnBwX3gxNik7DQo+
-IMKgDQo+IMKgCXBpcGVfY29uZmlnLT5waXBlX2JwcCA9IHBpcGVfYnBwOw0KPiDCoA0KDQo=
+On Friday, 12 December 2025 10:50:26 Central European Standard Time Maxime Ripard wrote:
+> On Thu, Dec 11, 2025 at 08:34:22PM +0100, Nicolas Frattaroli wrote:
+> > On Tuesday, 9 December 2025 15:27:28 Central European Standard Time Maxime Ripard wrote:
+> > > On Fri, Nov 28, 2025 at 10:05:40PM +0100, Nicolas Frattaroli wrote:
+> > > > The new DRM color format property allows userspace to request a specific
+> > > > color format on a connector. In turn, this fills the connector state's
+> > > > color_format member to switch color formats.
+> > > > 
+> > > > Make drm_bridges consider the color_format set in the connector state
+> > > > during the atomic bridge check. Specifically, reject any output bus
+> > > > formats that do not correspond to the requested color format.
+> > > > 
+> > > > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> > > > ---
+> > > >  drivers/gpu/drm/drm_bridge.c | 45 ++++++++++++++++++++++++++++++++++++++++++++
+> > > >  1 file changed, 45 insertions(+)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
+> > > > index 8f355df883d8..8aac9747f35e 100644
+> > > > --- a/drivers/gpu/drm/drm_bridge.c
+> > > > +++ b/drivers/gpu/drm/drm_bridge.c
+> > > > @@ -1052,6 +1052,47 @@ static int select_bus_fmt_recursive(struct drm_bridge *first_bridge,
+> > > >  	return ret;
+> > > >  }
+> > > >  
+> > > > +static bool __pure bus_format_is_color_fmt(u32 bus_fmt, enum drm_color_format fmt)
+> > > > +{
+> > > > +	if (fmt == DRM_COLOR_FORMAT_AUTO)
+> > > > +		return true;
+> > > > +
+> > > > +	switch (bus_fmt) {
+> > > > +	case MEDIA_BUS_FMT_FIXED:
+> > > > +		return true;
+> > > > +	case MEDIA_BUS_FMT_RGB888_1X24:
+> > > > +	case MEDIA_BUS_FMT_RGB101010_1X30:
+> > > > +	case MEDIA_BUS_FMT_RGB121212_1X36:
+> > > > +	case MEDIA_BUS_FMT_RGB161616_1X48:
+> > > > +		return fmt == DRM_COLOR_FORMAT_RGB444;
+> > > > +	case MEDIA_BUS_FMT_YUV8_1X24:
+> > > > +	case MEDIA_BUS_FMT_YUV10_1X30:
+> > > > +	case MEDIA_BUS_FMT_YUV12_1X36:
+> > > > +	case MEDIA_BUS_FMT_YUV16_1X48:
+> > > > +		return fmt == DRM_COLOR_FORMAT_YCBCR444;
+> > > > +	case MEDIA_BUS_FMT_UYVY8_1X16:
+> > > > +	case MEDIA_BUS_FMT_VYUY8_1X16:
+> > > > +	case MEDIA_BUS_FMT_YUYV8_1X16:
+> > > > +	case MEDIA_BUS_FMT_YVYU8_1X16:
+> > > > +	case MEDIA_BUS_FMT_UYVY10_1X20:
+> > > > +	case MEDIA_BUS_FMT_YUYV10_1X20:
+> > > > +	case MEDIA_BUS_FMT_VYUY10_1X20:
+> > > > +	case MEDIA_BUS_FMT_YVYU10_1X20:
+> > > > +	case MEDIA_BUS_FMT_UYVY12_1X24:
+> > > > +	case MEDIA_BUS_FMT_VYUY12_1X24:
+> > > > +	case MEDIA_BUS_FMT_YUYV12_1X24:
+> > > > +	case MEDIA_BUS_FMT_YVYU12_1X24:
+> > > > +		return fmt == DRM_COLOR_FORMAT_YCBCR422;
+> > > > +	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
+> > > > +	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
+> > > > +	case MEDIA_BUS_FMT_UYYVYY12_0_5X36:
+> > > > +	case MEDIA_BUS_FMT_UYYVYY16_0_5X48:
+> > > > +		return fmt == DRM_COLOR_FORMAT_YCBCR420;
+> > > > +	default:
+> > > > +		return false;
+> > > > +	}
+> > > > +}
+> > > > +
+> > > >  /*
+> > > >   * This function is called by &drm_atomic_bridge_chain_check() just before
+> > > >   * calling &drm_bridge_funcs.atomic_check() on all elements of the chain.
+> > > > @@ -1137,6 +1178,10 @@ drm_atomic_bridge_chain_select_bus_fmts(struct drm_bridge *bridge,
+> > > >  	}
+> > > >  
+> > > >  	for (i = 0; i < num_out_bus_fmts; i++) {
+> > > > +		if (!bus_format_is_color_fmt(out_bus_fmts[i], conn_state->color_format)) {
+> > > > +			ret = -ENOTSUPP;
+> > > > +			continue;
+> > > > +		}
+> > > 
+> > > Sorry, I'm struggling a bit to understand how this would work if a bridge both supports the bus
+> > > format selection and HDMI state helpers? Can you expand on it?
+> > 
+> > I have very little idea of whether this makes conceptual sense.
+> 
+> .. I wasn't asking you if it makes sense, I was asking you to explain
+> how you wanted it to work.
+> 
+> > The hope is that by working backwards from the last bridge and only
+> > accepting either fixed formats or something that corresponds to the
+> > target color format, we don't claim that a setup can do a colour
+> > format if the whole bridge chain isn't able to do it.
+> > 
+> > Of course, format conversions along the bridge chain where one
+> > input format can be converted to a set of output formats by some
+> > bridge will throw a massive wrench into this. And this is all
+> > assuming that the bus format is in any way related to the color
+> > format that will be sent out on the wire.
+> 
+> I'm not really concerned about this. As we move more and more bridges to
+> the state helpers, we can always fix it, but it needs at the very least
+> to document how you envision the whole thing to work, and ideally have
+> bunch of tests to make sure it still does.
+
+Where should I document the intended behavior? A code comment here is
+probably not visible to people implementing new bridge drivers, so I
+imagine there's a place in the docs?
+
+On the drm-kms docs page, I see:
+
+  Note that currently the bridge chaining and interactions with
+  connectors and panels are still in-flux and not really fully
+  sorted out yet.
+
+Which means maybe adding a sub-heading for DRM bridge there might
+make sense.
+
+For a complete solution, it should probably do a graph traversal
+starting from the last bridge's output format, and then looking
+to reach the first bridge output format in the chain in any way
+possible over a DAG where edges connect from input formats of
+the next bridge to the output formats of the previous bridge,
+and the output format of each bridge connects to whichever
+of its input formats can convert to this output format.
+
+Here's a diagram of what I mean:
+
+    .-----------------------------------.
+    |       SoC Video Processor         |
+    |-----------------------------------|
+    | out rgb | out yuv444 | out yuv420 |
+    '---------|------------|------------'
+        ^
+        |
+    .---------|------.
+    | in  rgb |      |
+    |---------| MIPI |
+    |    ^    | DSI  |
+    |    |    | TX   |
+    |---------|      |
+    | out rgb |      |
+    '---------|------'
+        ^
+        |
+        '----------.
+                    |
+    .----------|---------|-----------|----------------------------.
+    |          | in  rgb | in yuv444 |               |            |
+    |----------|---------|-----------|---------------|   BOB'S    |
+    |              ^   ^    ^  ^                     |  BARGAIN   |
+    |              |   |    |  '--------------.      |  MIPI DSI  |
+    |    .---------'   |    '----.            |      |  TO HDMI   |
+    |    |          .--'         |            |      |  BRIDGE    |
+    |---------|------------|------------|------------|            |
+    | out rgb | out yuv444 | out yuv422 | out yuv420 |            |
+    '---------|------------|------------|------------|------------'
+        ^           ^            ^
+        |           |            |
+    .---------|------------|------------.
+    | in  rgb | in  yuv444 | in  yuv422 |
+    |-----------------------------------|
+    |          HDMI CONNECTOR           |
+    '-----------------------------------'
+
+In this case, the MIPI DSI to HDMI bridge isn't very good so it can
+only convert YUV444 to YUV422 and YUV420, despite being able to
+convert RGB to YUV444 as well. The important bit is that there is
+a path back from "out yuv444" on the "HDMI CONNECTOR" all the way
+to the "SoC Video Processor", even though the processor's only going
+to be outputting RGB. So setting color_format to yuv444 should be
+possible in this case.
+
+My current code doesn't handle this case. It only works if bridges
+that convert can convert to any of their output formats regardless
+of the input format. Additionally, I don't think I'd have a good
+time if the SoC's video output processor sets the bus format to
+"fixed", because if everyone along the chain says they can do
+fixed formats then the output is going to claim it can do anything,
+which isn't the case.
+
+> 
+> > In practice, I don't have any hardware where whatever counts as
+> > a "bridge" is an actually more involved setup than just the TX
+> > controller. I tried looking into getting a board with one of the
+> > supported DSI-to-HDMI bridge chips so I can at least test how it
+> > would work in such a scenario, and I got one, but I'd need to make
+> > my own flat flex PCB to adapt it to the pinout of my SBC's DSI
+> > port.
+> > 
+> > So yeah I don't know how it's supposed to work, I just know this
+> > works for the case I'm working with, and any more complex case
+> > is literally unobtanium hardware which I'm not going to bother
+> > blowing days on maybe making a cable for when I'm already touching
+> > three different GPU drivers here and the intel-gfx-ci is screaming
+> > into my inbox about vague failures in unrelated codepaths in its
+> > native language, Klingon.
+> 
+> That's uncalled for.
+> 
+> > Which is all to say: is there a virtual drm bridge driver that
+> > exists, where I can set what formats it supports on the input
+> > and on the output, so that I can actually get a feel for how this
+> > is conceptually supposed to work without needing special hardware?
+> 
+> If your question is "do we have a way to replicate and test an arbitrary
+> setup to check how it behaves?", then yes, we do, it's what we're doing
+> in kunit. But you don't seem too fond of those.
+
+Okay, I will look into virtual bridge tests in kunit.
+
+> 
+> > Better yet: do you have a specific setup in mind where you know
+> > this approach does not work?
+> 
+> Look. I was asking a genuine question. If you want to get all defensive
+> about it, go ahead. But sending a series implementing something with a
+> lot of history, complex interactions, etc. and then expecting it to be a
+> breeze that will get merged in a few revisions is not going to work.
+> 
+> Pushing back when asked to follow our documented rules, or being
+> dismissive when asked design questions is not going to help you push
+> this forward. If anything, and because it's complex, the more tests you
+> add the better because we A) know it works in a specific set of cases,
+> and B) know it will still work going forward.
+> 
+> I'm sure you know what you're doing, but so do we.
+
+I worked under the assumption that the general vagueness of the
+questions were part of some elaborate dt-bindings-esque hazing
+ritual, and not that I was literally the first person to try and
+specify how drm bridge bus format selection should work. I apologise
+for my tone in light of that.
+
+I'm not convinced unit tests that test whether a single pre-defined
+mode is valid, as the existing mode_valid one does, have any value
+though. I'll comply however and add another with a yuv420-only mode,
+and another with a yuv420-also mode. My criticism is that in a
+scenario like this where "working" vs "broken" is highly dependent
+on the result based on the input data, the coverage of taken code
+branches is mostly irrelevant, and the real information comes from
+comprehensive testing of a wide set of inputs with attention paid
+to edge cases, verifying that they match the expected outputs.
+
+Kind regards,
+Nicolas Frattaroli
+
+> 
+> Maxime
+> 
+
+
+
+
