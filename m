@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59ECBCB8F86
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Dec 2025 15:35:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94B74CB8F7A
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Dec 2025 15:35:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D46910E8C9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8E7010E8C8;
 	Fri, 12 Dec 2025 14:35:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="UbRmcME/";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="iWBSAfIj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0483110E8BF;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AF9710E8BC;
  Fri, 12 Dec 2025 14:35:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1765550118;
- bh=4eZA4vQcAGDaA2XtZ/pzJMwTCFwPUJ2QS96uCj634kI=;
+ s=default; t=1765550119;
+ bh=/784ao3MxOjrVb9P1WuxtDwJbvPFFwS9FKnsm7dVOEM=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=UbRmcME/M1zdfKRTYckuFw8LzFIJmZpwqg9FFzLeVgPYdLxrgTG2YaC5PZtCKYW80
- eZlGoH2bkgcQ45OSNUXTZ4ZavRPxjUoPOOSNRLFVoMK8j+CjUkXTtnsYFlXFJCIp27
- 2NOEQT/H45a4/ADyogC29pA2wvlWd1+wff8+bMiJ8HLeyIi1EJZUhqze7cIM85Ci7B
- q0Uu+ERPXDUpHCyKgxs+LMrGtoFXMdZogCfdd0o8WgkeYw0iuUpGTVgA6dRKS9vDti
- i0Zob+7IFboO6mPfKQVUCxeNShvq9iQf1+uNa62YhYUtft130DNqgl+MrwTTeYVpYS
- Dv0q/SMHfi2KA==
+ b=iWBSAfIjE1pg+S5OFbMC2pZzewaClIbo4MOoMqdXt7Uz37NIktc5/bVtvVDV4jY2O
+ SAFfK6HX1PRsNcOn2T/zrWViwJkl61RYI5Ghbw6FxnUCuT5PGmJpvH0CHUb+RRt1ku
+ lh0ZAxOtZVtUNEv/I+/h5s+C6vTkCCduIpZBBbIECW9zEZK3RLGhQjHCIcXBoQoJtO
+ tXf5eA/zR74WtnWutMkxn0Qk1uZkFSFwEVAg4jZI7GGBoZLZkcE4QSoxhh0mZHPtin
+ 3tjMrtWcDTr2DuELX776YoeNleHSMCqkX1RjdE/TQurTM4T+bU1fhTg6I3XspWtYiZ
+ goIrblycZdSmQ==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org,
  Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
  Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v2 08/12] drm/i915/display: Make icl_dsi_frame_update use _fw
- too
-Date: Fri, 12 Dec 2025 15:35:12 +0100
-Message-ID: <20251212143504.973839-22-dev@lankhorst.se>
+Subject: [PATCH v2 09/12] drm/i915/display: Enable interrupts earlier on
+ PREEMPT_RT
+Date: Fri, 12 Dec 2025 15:35:13 +0100
+Message-ID: <20251212143504.973839-23-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251212143504.973839-14-dev@lankhorst.se>
 References: <20251212143504.973839-14-dev@lankhorst.se>
@@ -54,29 +54,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Don't use the dmc lock inside the vblank critical section,
-not even as last call.
+The last part of the vblank evasion is about updating bookkeeping,
+not programming hardware registers.
+
+The interrupts cannot stay disabled here on PREEMPT_RT since the
+spinlocks get converted to mutexes.
+
+There's still a small race in VRR that needs to be addressed, and
+in the other worst case there is a delay of a vblank completion if
+the vblank is fired and we schedule on the next vblank, this needs
+to be addressed separately.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/display/icl_dsi.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_crtc.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index dac781f546617..adcd74f855f41 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -243,8 +243,8 @@ void icl_dsi_frame_update(struct intel_crtc_state *crtc_state)
- 	else
- 		return;
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index 778ebc5095c38..93e58c12ac994 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -703,6 +703,14 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
+ 	    intel_crtc_has_type(new_crtc_state, INTEL_OUTPUT_DSI))
+ 		icl_dsi_frame_update(new_crtc_state);
  
--	intel_de_rmw(display, DSI_CMD_FRMCTL(port), 0,
--		     DSI_FRAME_UPDATE_REQUEST);
-+	intel_de_rmw_fw(display, DSI_CMD_FRMCTL(port), 0,
-+			DSI_FRAME_UPDATE_REQUEST);
- }
++#if IS_ENABLED(CONFIG_PREEMPT_RT)
++	/*
++	 * Timing sensitive register writing completed, non-deterministic
++	 * locking from here on out.
++	 */
++	local_irq_enable();
++#endif
++
+ 	/* We're still in the vblank-evade critical section, this can't race.
+ 	 * Would be slightly nice to just grab the vblank count and arm the
+ 	 * event outside of the critical section - the spinlock might spin for a
+@@ -750,7 +758,9 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
+ 	if (!state->base.legacy_cursor_update)
+ 		intel_vrr_send_push(NULL, new_crtc_state);
  
- static void dsi_program_swing_and_deemphasis(struct intel_encoder *encoder)
++#if !IS_ENABLED(CONFIG_PREEMPT_RT)
+ 	local_irq_enable();
++#endif
+ 
+ 	if (intel_parent_vgpu_active(display))
+ 		goto out;
 -- 
 2.51.0
 
