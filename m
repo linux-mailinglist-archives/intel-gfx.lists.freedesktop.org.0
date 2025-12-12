@@ -2,103 +2,193 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0BA0CB8582
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Dec 2025 09:58:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA28FCB8689
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Dec 2025 10:17:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D51910E5A0;
-	Fri, 12 Dec 2025 08:58:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C18C10E579;
+	Fri, 12 Dec 2025 09:17:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="CoiAr4vV";
-	dkim=pass (2048-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="lRQnuVe4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZIVtk5UI";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73F2A10E5A0
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Dec 2025 08:58:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1765529922;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=3OOl1KO64zmLiW61+N6ESdQ47YbE4y382fLZJzrbSBQ=;
- b=CoiAr4vVwIQxUGfNOBPVmMA/sw3cpSa5q2e6bsSk9y3S5hx6fgdxhBCwU3AwVYNOaUxA/W
- eXRdWw+y4hEnhMsAF6oekVIJSoiOgd4Fvo/10eyLN5cuQuacGnPdQDzr4pVWW7GT/Cx/Mp
- w8OIA41GhWWOwsj2Y2Y4/ZfN2PZUPq0=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-630-B53jRk7OMLCdUs0xXZzJAw-1; Fri, 12 Dec 2025 03:58:39 -0500
-X-MC-Unique: B53jRk7OMLCdUs0xXZzJAw-1
-X-Mimecast-MFC-AGG-ID: B53jRk7OMLCdUs0xXZzJAw_1765529918
-Received: by mail-wm1-f70.google.com with SMTP id
- 5b1f17b1804b1-4775d8428e8so7230775e9.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Dec 2025 00:58:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=redhat.com; s=google; t=1765529918; x=1766134718; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=3OOl1KO64zmLiW61+N6ESdQ47YbE4y382fLZJzrbSBQ=;
- b=lRQnuVe4/x0fMslbIOIM1dbgvdlVfwogc9+xBgnM0RinICKCyldGjG1PPPFuZRgvZ3
- iHI3V0jJZGgz40AX22BcIJiEqZWV9cWirDRML6be65n9VmHM72Qk8ZLAqQ4JQvJUiX70
- /dJJhNsxTK97Qnno5xVx31B4kOM/UYyzotLFCWzvI4arGwRkxcOsYe4s+3FahiqSLLy3
- Yx2NOzDQ/l7S8zXyNssvVxemo4VeFTUduzszKkCbiIxZiYcy/6LNh/oz5JJxaYe9rOJN
- TmnudSR/z2Z0LXRJA/Xk4ncJru6ccKmAI6dj+/jsA2Geal0eVkZIu0ihBHCAqU9hDzlf
- eQMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1765529918; x=1766134718;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=3OOl1KO64zmLiW61+N6ESdQ47YbE4y382fLZJzrbSBQ=;
- b=qb+NokXrEPwvNNbyvsGMXBM5bEtj8egEBz9+fRD2txoQ7W6Uih77y9PvTnlTn9zb3N
- NcwzTn9LLA2I126BlLedUaGQ/MMaDhFQcWLUWYoz5C/CshV/7ovoqKBRqFw108Q1gRGd
- aBLPSCwAzFEqmMrPRMYhHytpOrRAo3H8hnZOlf9JovIKxyfqLzCKXVDjNsXHzqsQJJyf
- kYQR89wRrovnyPpLkL6Koge63KgIpal5wApi+KM2pbAjWynz/NgC4MCyKTq1cOAaQuZ2
- WbDao7f5eYMTPt+SCq2KoVy1isI+9M4u3GnbQu7wE4/q1cXu4hg/IT0UWBXYh3Q1xmj8
- QAlg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUBEEzO16JxKTkEstIxiTLuhBpzeWAkve7Bb3sFuesJ6kqO93I+XYaY3f/Od+3UK83cN0Eba8Fihbw=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzn1lG9r4E8n8joGOyL4IXV8PyfZbGevJih0lN1mU8JQQAO5Kyk
- giG8FrM41U1LcjiYcDOCmcuOJ5YhBDqfHA5yPOQU3rQEC1702IAk91bbWDH0A/BhiR73Pb4TP05
- utL+20bkq/UTQB0FOLyIRFYZenx6wfQ6UpltisxsvcxewodhjAusJ0rkrAYYsK+zVL/mP1w==
-X-Gm-Gg: AY/fxX7upfZ5kWd4GCqyynTWXMhwtaWQACEsr8yVFecnHRme3oG1UJsicMBKv2yImxL
- KMkYdW1CrPchTgS60cRa8U5+EMRT6hmB7P5r63zDkf033GA194Ra6Uet1KEZIK0KaoADLMK8FTy
- bQ8iUXWFvjZ8TOjDWFIQ3DsDRI42x30Ig9S0LHNF2oKFABCnerDuc4WufFnI+tObqWNcDTQjksT
- asVs2qP9HhD5qwpPXt0URAJNWEq9Ah8IhtAogZa6W1daT6FL/P9S1bSuwC0XcnrpV50oCZJyIno
- wxvF7HoJBC0K7eyRCu4xCdNjyC51gRylgAk97tHlIh5Dy/mfrR1/nadJJmmIfzmKckFT5hefX7m
- HsTgK
-X-Received: by 2002:a05:600c:a40e:b0:477:b734:8c52 with SMTP id
- 5b1f17b1804b1-47a900bd6cfmr7723055e9.14.1765529917682; 
- Fri, 12 Dec 2025 00:58:37 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IH3JXRc3h+O8u1zjrMyTE89J5hyP/hmb4XogIOQ7L6CxCbB2I3JXsuZeZwCc2dBBAQ9gkXx2g==
-X-Received: by 2002:a05:600c:a40e:b0:477:b734:8c52 with SMTP id
- 5b1f17b1804b1-47a900bd6cfmr7722815e9.14.1765529917191; 
- Fri, 12 Dec 2025 00:58:37 -0800 (PST)
-Received: from localhost ([82.66.159.240]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-47a8f32f7easm8364805e9.0.2025.12.12.00.58.36
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 12 Dec 2025 00:58:36 -0800 (PST)
-Date: Fri, 12 Dec 2025 09:58:35 +0100
-From: Maxime Ripard <mripard@redhat.com>
-To: Dave Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-next
-Message-ID: <20251212-spectacular-agama-of-abracadabra-aaef32@penduick>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D7CA10E579;
+ Fri, 12 Dec 2025 09:17:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1765531075; x=1797067075;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-id:content-transfer-encoding:mime-version;
+ bh=D0Sx3F7jYLRW2ZdEgJB6FdgGlu6X7ScBPBzUSEA0gSw=;
+ b=ZIVtk5UIbiozjrWmLLeGqY3ovRUBzWs76TBetNRMvPs4/cZsf7gEiF1m
+ +z6wxQI/c2bCuaz3+KgGv5mgVkNg5wF1IG1cI/u6JDha2D/bd7MQMETR/
+ NZ/UuKqflZckFtUgPwpmyydZzf5tZuptNHYUDF2TWnESCGmdulvc+UNI9
+ UjvkfzLnp+FLB1ZAzIotwMBxNgim4VQJ27fakTtQONXJDf15B5WOuTwgj
+ +wk0ijxqRu7Vsid4y1GJ6F5bvOrL5qhRud3ck/H8tQCnIizUnltOaiq/9
+ nNAzcQQsZ8DOT+LMivZ/INg4soqqdtq+44oQ+q3ZMBkgSAbuy4Nmexr4D A==;
+X-CSE-ConnectionGUID: 7nZEifHQTiyv1tHRGIHR0g==
+X-CSE-MsgGUID: MdGfszJ+SPCj75frHUyVjA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11639"; a="78887349"
+X-IronPort-AV: E=Sophos;i="6.21,143,1763452800"; d="scan'208";a="78887349"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2025 01:17:55 -0800
+X-CSE-ConnectionGUID: dSnJ9sXJRzOkwcS7fm/Qdw==
+X-CSE-MsgGUID: OGxs87IRQomIcYSijYMNCw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,143,1763452800"; d="scan'208";a="196796784"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2025 01:17:54 -0800
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Fri, 12 Dec 2025 01:17:54 -0800
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29 via Frontend Transport; Fri, 12 Dec 2025 01:17:54 -0800
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.19)
+ by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Fri, 12 Dec 2025 01:17:54 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=OU56uALocO/2df96t/2tA8Sdb6UC4dT6cvQjHhvolvtMGAc/jWp+dRaEwxqbTXJymlIlz1OdXEiQF/xkVp6D5ZTMT4yGZvtNdMXuJq4eB/jVLt3AzFtyYu925R7+HYlzV2iK0bu2owx8Rxj0tv27EMRcBpeTz0kSEbLOWAL+yiYq+DSB9qqQHki073BEvXTGNMpGBS9STTNiOVMGCK0jH1VJHX+9oi5j3WucF5UI5idF+UBXYnJAH/Fa2qGiRLjLDFF0r0Ov8vxLvTywC7BSEjR+luW3p9Dg5qmJFmWkmS5m3DnmniMMIBMDoo1Mn57MoeOBCEtKaC07MH/+738uAQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=D0Sx3F7jYLRW2ZdEgJB6FdgGlu6X7ScBPBzUSEA0gSw=;
+ b=at39Az4NEUVbq2+M9nXeyPgsFdkExfQiOhbifRqP4NAKnm47UmmSUZbIAPRNmTpXcdsowg06sGN+An2l6lu1TnxWDubBEu3/iyKohICReOHXGxN5G4rPZO8xPcSTua1mxP9WmK7AZcsI0rqDx/TcdPmJqOGOVOvb70KCGWh0ilIFdZ+4GXVBS0Ff/EheDcHp4K3X2X9Zp1ibVb6W6xYMH4WsweUUIiu/eSMaLErWccxXMGKtFY789G/St+VwGr2CJ5M1cSKV6NqhFQK9+lPVqgin9WjVAcQzxHKqewkc/w0bVcX9U5FyHQHbxtd9MHl0ZVm6bORERk4HHQeeJ0OaQw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from CY8PR11MB7777.namprd11.prod.outlook.com (2603:10b6:930:71::14)
+ by MN2PR11MB4566.namprd11.prod.outlook.com (2603:10b6:208:24e::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.12; Fri, 12 Dec
+ 2025 09:17:52 +0000
+Received: from CY8PR11MB7777.namprd11.prod.outlook.com
+ ([fe80::60a1:eab8:65ee:6bb8]) by CY8PR11MB7777.namprd11.prod.outlook.com
+ ([fe80::60a1:eab8:65ee:6bb8%6]) with mapi id 15.20.9412.005; Fri, 12 Dec 2025
+ 09:17:52 +0000
+From: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
+To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Deak,
+ Imre" <imre.deak@intel.com>
+Subject: Re: [PATCH 21/50] drm/i915/dp: Align min/max compressed BPPs when
+ calculating BPP limits
+Thread-Topic: [PATCH 21/50] drm/i915/dp: Align min/max compressed BPPs when
+ calculating BPP limits
+Thread-Index: AQHcX8ejx41zF/fi1USRdCB50oF+FbUd0NAA
+Date: Fri, 12 Dec 2025 09:17:52 +0000
+Message-ID: <7a0168cf31e6ce73aaf6d43b85ab22c0608467ca.camel@intel.com>
+References: <20251127175023.1522538-1-imre.deak@intel.com>
+ <20251127175023.1522538-22-imre.deak@intel.com>
+In-Reply-To: <20251127175023.1522538-22-imre.deak@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.52.3-0ubuntu1.1 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CY8PR11MB7777:EE_|MN2PR11MB4566:EE_
+x-ms-office365-filtering-correlation-id: 5d747655-6f92-4fe5-0d56-08de395f53ed
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|366016|376014|38070700021;
+x-microsoft-antispam-message-info: =?utf-8?B?Y2ZlcjBNb0ZwTE8rUzVyclpndThBK0daVUpJWjVSRW9wRFVqUXJBQk92N09s?=
+ =?utf-8?B?Nk1FWUZRTHdubXVhRmlBTkFRUTk2U091YkcvdWxFYktZT2R0QnVrY3FXQjhY?=
+ =?utf-8?B?Y2RpZHd1RzJyMzd2UnloNExnVWFhYU1CSEZlZlFlaWxhM0FKOVc5U2pJSEFh?=
+ =?utf-8?B?UHpDeXJGMm96bzN2WmZlTWdFTk5ONlFDbDFOaFRaNjdxNXVXVGU3WG03Zk9z?=
+ =?utf-8?B?NHhLc2xKeEU2aFIyakJCdHBNUDdmRCswU3g3Nlk3Nmt5cWJaWlJRQk1GQzFw?=
+ =?utf-8?B?RjVjUlVzUmdCU1lzeklDV3VoSEFoR2g5UFNCOFd1SG8wdDJaNW1UUUpTOHQ3?=
+ =?utf-8?B?RjdORUdrOGNRQmhya3V0dkFBWllDeUdUQ3RhSEZ0Q0NOTDVYTW9NZlZPdEJM?=
+ =?utf-8?B?dU0rdmo2WVdyNEJiTlRKWWtCR1NhdEdFaUJjSEpseFBUazl1Wi9CazZlYW9I?=
+ =?utf-8?B?eDZGaDdUeFpwL2J0MDNrS01KMHlkRHRjMUsvUjZ1bVFteEtWQ1hpMUVDK0o0?=
+ =?utf-8?B?dlNqb0s5d1h5WU02UnRCUkVVbGtwN041c1ZzQWJvK2o3YWFHRFBNL1JCbjNz?=
+ =?utf-8?B?bUIxbUhHM0E5TFd2ZEV5TlNQRXhTRTB0N3RlaDFTMmp4N2NMSUVHZDlURjgv?=
+ =?utf-8?B?amVna0dVQ0lDUDZPdmlVMHdXVTdKTEFaL1lCdG5tOGhnaU9SMDRSazhHa3pB?=
+ =?utf-8?B?ZG1HNktKbTNQY3A3ZmhYYjBEbVduQTEvdzlnVEVCSmxCNVhKTTZEUXlYeHNJ?=
+ =?utf-8?B?Z00vRDdacWp1SkpLQTIxY1ZLWmtiUkNGbmMxaXpveFRMejM4WHc5bVdDZFNy?=
+ =?utf-8?B?Mm9BUjhKdy93VUpwc1ZyazZIVnIwMXI0eDhRZnQvaHpmYXIrTllMWWo4aER0?=
+ =?utf-8?B?OUU1Q2hPZmNIdVovR3NIUU5KdGRyRXlIQ2crOTloVmUrc29ZT2dYS0ZUeW5W?=
+ =?utf-8?B?SkhIVGNHbFhLYmszRUxBRDFpeWJUVUJBekt6aDVvcklUaDNmVGVJcUYvS2pq?=
+ =?utf-8?B?YVVpRURkRXVHTVdMRzNUczlZYnhhSFZSVk5sU281eFFicXc1Ni9oR0U1Umcw?=
+ =?utf-8?B?OVgzUTVnRkZXMzRuU2JFcjZnYkhJQ3NwNW9WbWlsR2krYTZuRmZ0WjJBc0Nx?=
+ =?utf-8?B?SmxxUjlYdmFWOHR5WmVXcXhwaFRjWFlFK3Y3VDh3TUxzYUlMa1FxN0l0a2pG?=
+ =?utf-8?B?dnZNekVxU3ZUcTNiUUZ4ZXEwOXNQSlZoVE5hRVpwWE9OU0tkekxzSWcyMXB1?=
+ =?utf-8?B?QjBCaUFkTTdlRlk0VFp0L1NqNkpFazlDOGQ2WmRXbjRoWlJ4ZzNmVktsRFZl?=
+ =?utf-8?B?TnY5V3EvdEZ0T1VwWm5CYnF4cEZncktWdjJDdEtvUXNKSGNLZmxmRE1XdUw2?=
+ =?utf-8?B?K1NGR0U4a0hmZVJSdDgvYlB4UEVYb1hPMmRiaGVzTCs0Z3hXdGlWYmZKQVly?=
+ =?utf-8?B?MElVRmd3MlN3MlVoV1R2UW04bFQxeG91N0gxNlVreUlEWDdjaml5d2hsNS9m?=
+ =?utf-8?B?UmZHM1lPQXR4VStHQ1hMSzE3aFVyYWtwVU1GRjQ4a04ya2U0NlRYdVNZMS9r?=
+ =?utf-8?B?SGRseWIwQktyR3B4UUJxTVlmWWtnR0VUbVR4Y0dFSFZQVEZIR2VUa2IrdHNl?=
+ =?utf-8?B?eDZpd09jMUhVakF1QUM1K1hIQWI5K3BCVjFxdG5PNDdOTGVCeDlyQmtJQWVv?=
+ =?utf-8?B?TTd1Uzd4SzVKSXJKSno1UGpyQ2RaVG5lSUhlenlia2szYS9PWWF2WGRGeE9R?=
+ =?utf-8?B?a01OanR5UVY0VDBzTTNyUW9oUmxjS0J3OWM0QWtJSU9lZGVlT0t3dEtuQVZR?=
+ =?utf-8?B?QUNZTnJpWHpqR2l5U3dNVmJsVUNudTVMMkZtcDFPZEJHckV2djFIckJybEhL?=
+ =?utf-8?B?NGVFTzlvTUZUbmFjVWw3ZVQ1L0lCMW42SG4rYUNEUWl2NzRROTdIcTlZOTc2?=
+ =?utf-8?B?bGhtN0pTL3c3VC9GVU5wWkxteDQvbE1OL1VpM0thRzd4azd5bmNsQ1UzeTM0?=
+ =?utf-8?B?VlpRSC8wZTlVTzI5eDNYbzNQRHkrMWNUS21YazBiWHl5TmtWTEk4Y2FScG5L?=
+ =?utf-8?Q?kfy/dL?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY8PR11MB7777.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(38070700021); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?VW44Y1FqNWtWTlh3cDFnNzFkVlhqTFIrWjBmOXZidFpHdzdLSkd4U2tadlNi?=
+ =?utf-8?B?WWtoNVgybUpCRUVPZVRwWnRST21tcllGd2FWa3BhbGg2aExSdTNVWWh6V0kx?=
+ =?utf-8?B?Vk1wZmZ3REI0Zmg2SXp5Um4zQVptbXFwMldmWHhHd28yekY4SEtUT1h0aDBE?=
+ =?utf-8?B?S0IxN2FucS9ydFJLb2RKRlJlQVFPOFg0MVJ0VS9RaCtSUkRZZEI5SWJObFVi?=
+ =?utf-8?B?THdwZXNzRDVvdm1UOEVaNExIR1FRcHZjRkUvaDd0TytpcHZwVElYUi96SDVU?=
+ =?utf-8?B?YS90dGRBNUtpY2xtclJnaWQ1R2JEcFJzOHhOZkJMK1lPNzlpQ2MwdzJtRWYx?=
+ =?utf-8?B?d1RCTFk0MEZFUGp6RWthL3ppS1d4Y21XMDRicVNtejY3YmlRcEsxQytVbmNY?=
+ =?utf-8?B?TmxHeW1BZ0twb2dRbkcrUzZHVmJvVkxhU0V1ODI2amdkZjg4YTgyYTB3U2hm?=
+ =?utf-8?B?ZDQzWm8rSk1BWmI3eWVnRFBhN08rZHpNMng4TkxQSExud3BEQ3pla1R1SjhC?=
+ =?utf-8?B?OTlKMDliSDBtaFlTUGtxT0RtRU4vUEtCUStqbFUxRnJhcGhNRnhsLzBYMWtV?=
+ =?utf-8?B?S2ZkK2NXaVA3Vk9YbWd5MDkwU1dMQTBrck5JaFp1Zmh0M2l2S2ZSUFBBUWpq?=
+ =?utf-8?B?WGVMRElWNEpiRy9RUnBFS0tUVU82eE9lNWlQclRqWWxORWdManBKWHBQRXlO?=
+ =?utf-8?B?bExKRGR0NHFHazFrMmpYa2ZleG01VHRtRkpYVnNMODVmSDlxOWNXUElaZUJU?=
+ =?utf-8?B?WGFMV21WS05CK2tFRk4vNkIxUk5VT3hqT2phUXNnT1N2bGJZem15blNwS1RD?=
+ =?utf-8?B?ajhZVzh5VWc1YllVZW9HYVBCNG56TG9rQVVEZEo5YjlFZ1lBU1ZBT3FSN0NB?=
+ =?utf-8?B?Vit1eHhzZkVuZmhmMUZ5RTkrRzlJUE9vNTNQRWxZeFRlTFlzT0I5Q211ZWlX?=
+ =?utf-8?B?WnBROVVUam5WcFdsMUJvS3lMblgwNi9wTFM2QmxxK0RPWFU3UmxwRk9FeW1I?=
+ =?utf-8?B?cGg5QXhOVURMd1dhRkRjVFQxUjNMZEh6NFE0ei9Ob0ZURUhobHJQV2lXSEg3?=
+ =?utf-8?B?VDZYeS9JVTd3MUhUYVAyR1VVK3hmODU3QnhLQXNKakNpMEJtOW9LSklyUWhD?=
+ =?utf-8?B?dWE1amRWSnVCUy8wS2RFWW1lOUV3Z0ROWkVvY0ZMWWkyV3gyNVZiV3BQV1VK?=
+ =?utf-8?B?SW15bFl6QkdZMHBJRUJvTlRoZXZ5K2gwOWs1WFJwQUNYRWh5R2VHYXhybXR3?=
+ =?utf-8?B?aCtEVWQ0SXB2SkthZDhJZXdTWktxbG9JOFdCQmY3UFlKKzVvd2s1cjVXRk54?=
+ =?utf-8?B?dEVIWXJWbUR2RXFzSjIyY29lcmh4UWFpbjVMQzZPYlhBYkdlR3BzQ1l0NER3?=
+ =?utf-8?B?ZzdObEovUW11QmcyU1ExK0FQR1RYTENjcFRuU2loRU96L2YvS3BqVjZTTjlq?=
+ =?utf-8?B?UnN0NGNLNXJhcGtOTGJJYlhtaHdlV3dweDZYZG5GR3duck4zZzJWcmpBT0Zz?=
+ =?utf-8?B?VERUbUZFOHdDTXl3M1Y3dGdDa05DVVZyVWh6aDBQNEdvVEowdnNoQlNTU1hh?=
+ =?utf-8?B?SFgvN3h4RmVMVnRDNVpUSDFQWWZRZWswU0UwQitKazdZTW1DR0phcFh1SDN3?=
+ =?utf-8?B?aTB2M3FSZi9SYjdPRkF5dTlpTXhGSnZaRitlOTA3VmVRU3VtaDNBalprTzY0?=
+ =?utf-8?B?VGtNcVBNalRQZzdVZU1NY1dUeXErRVJ4MS9DaERTdjdKbVAzWCtuMVFPdE1K?=
+ =?utf-8?B?OVhsaWNmNFVDVVRsSW4wWkMvTDFhQVpmT0tjRFBBSi9YcFVTN3J6VjJ6b2xh?=
+ =?utf-8?B?RFh4TTRmNHpMSjg1V0ZjR291bUJJMTNkS3F4YndQbHJjNldoM2UvV1p1MlpY?=
+ =?utf-8?B?Q0dJSGI5UnNEeWd5L1c4T0lidUNoVWIzZnJGUFdMSE0xaGNONVhnRzFYclFT?=
+ =?utf-8?B?QkNXbDE3Z2g5R0dCcVI4Z1I1VS9EWDQzK3dETG5yRXRzUHNBMXlMUkpNVy9D?=
+ =?utf-8?B?QWJ3cU5mdVliQnFPZGs1ZTlmZGFpV24ybnEvS1ZpNUpwZHF1N2s4aE9JcmJp?=
+ =?utf-8?B?ZUNoTkNlWWpPeStCYUNmbU5razlEMkN1bkhkTkFGL2x3dGdpNTNkWFVQVXBD?=
+ =?utf-8?B?Qk1QN1ZzVDk1NXpEOVlJbG5UcnE4N1RSSHd3WEhYZXpyYW5QeitVeHZXK254?=
+ =?utf-8?Q?ygcrJg1hP8puFAH1Fg0IRck=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <15E34B2D8BA98448AF72941F440443A0@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="sces6ytv4ypvenxt"
-Content-Disposition: inline
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY8PR11MB7777.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5d747655-6f92-4fe5-0d56-08de395f53ed
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Dec 2025 09:17:52.5565 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: MxwLTvPFvTF/DK9WtHEAZ91rFgT/l4G2s3TfoOwW9Y+P6TOQM6kR8UeZNkKv1Qoiv9UDrSLQXPJpzQ9S4G+e4LueLnL4MM3agRrmP0i1GIM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4566
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,376 +204,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---sces6ytv4ypvenxt
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: [PULL] drm-misc-next
-MIME-Version: 1.0
-
-Hi Dave, Sima,
-
-Here's the first drm-misc-next PR, a bit ahead of time to make next week
-easier.
-
-Thanks!
-Maxime
-
-drm-misc-next-2025-12-12:
-drm-misc-next for 6.19:
-
-UAPI Changes:
-
-  - panfrost: Add PANFROST_BO_SYNC ioctl
-  - panthor: Add PANTHOR_BO_SYNC ioctl
-
-Core Changes:
-
-  - atomic: Add drm_device pointer to drm_private_obj
-  - bridge: Introduce drm_bridge_unplug, drm_bridge_enter, and
-    drm_bridge_exit
-  - dma-buf: Improve sg_table debugging
-  - dma-fence: Add new helpers, and use them when needed
-  - dp_mst: Avoid out-of-bounds access with VCPI=3D=3D0
-  - gem: Reduce page table overhead with transparent huge pages
-  - panic: Report invalid panic modes
-  - sched: Add TODO entries
-  - ttm: Various cleanups
-  - vblank: Various refactoring and cleanups
-
-  - Kconfig cleanups
-  - Removed support for kdb
-
-Driver Changes:
-
-  - amdxdna: Fix race conditions at suspend, Improve handling of zero
-    tail pointers, Fix cu_idx being overwritten during command setup
-  - ast: Support imported cursor buffers
-  -
-  - panthor: Enable timestamp propagation, Multiple improvements and
-    fixes to improve the overall robustness, notably of the scheduler.
-
-  - panels:
-    - panel-edp: Support for CSW MNE007QB3-1, AUO B140HAN06.4, AUO B140QAX0=
-1.H
-The following changes since commit db2bad93fe206c95808b7a164a29424791728752:
-
-  drm/amd/display: Enable support for Gamma 2.2 (2025-11-26 23:09:44 +0100)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-202=
-5-12-12
-
-for you to fetch changes up to 470cb09a2936d3c1ff8aeff46e3c14dcc4314e9b:
-
-  drm/plane: Fix IS_ERR() vs NULL bug drm_plane_create_color_pipeline_prope=
-rty() (2025-12-11 17:39:15 +0100)
-
-----------------------------------------------------------------
-drm-misc-next for 6.19:
-
-UAPI Changes:
-
-  - panfrost: Add PANFROST_BO_SYNC ioctl
-  - panthor: Add PANTHOR_BO_SYNC ioctl
-
-Core Changes:
-
-  - atomic: Add drm_device pointer to drm_private_obj
-  - bridge: Introduce drm_bridge_unplug, drm_bridge_enter, and
-    drm_bridge_exit
-  - dma-buf: Improve sg_table debugging
-  - dma-fence: Add new helpers, and use them when needed
-  - dp_mst: Avoid out-of-bounds access with VCPI=3D=3D0
-  - gem: Reduce page table overhead with transparent huge pages
-  - panic: Report invalid panic modes
-  - sched: Add TODO entries
-  - ttm: Various cleanups
-  - vblank: Various refactoring and cleanups
-
-  - Kconfig cleanups
-  - Removed support for kdb
-
-Driver Changes:
-
-  - amdxdna: Fix race conditions at suspend, Improve handling of zero
-    tail pointers, Fix cu_idx being overwritten during command setup
-  - ast: Support imported cursor buffers
-  -
-  - panthor: Enable timestamp propagation, Multiple improvements and
-    fixes to improve the overall robustness, notably of the scheduler.
-
-  - panels:
-    - panel-edp: Support for CSW MNE007QB3-1, AUO B140HAN06.4, AUO B140QAX0=
-1.H
-
-----------------------------------------------------------------
-Akash Goel (1):
-      drm/panthor: Remove redundant call to disable the MCU
-
-Alexey Klimov (1):
-      gpu/panel-edp: add AUO panel entry for B140HAN06.4
-
-Ashley Smith (1):
-      drm/panthor: Enable timestamp propagation
-
-Boris Brezillon (26):
-      drm/panthor: Always wait after sending a command to an AS
-      drm/panthor: Kill lock_region()
-      drm/panthor: Recover from panthor_gpu_flush_caches() failures
-      drm/panthor: Add support for atomic page table updates
-      drm/panthor: Make panthor_vm_[un]map_pages() more robust
-      drm/panthor: Relax a check in panthor_sched_pre_reset()
-      drm/panthor: Simplify group idleness tracking
-      drm/panthor: Don't try to enable extract events
-      drm/panthor: Fix the full_tick check
-      drm/panthor: Fix the group priority rotation logic
-      drm/panthor: Fix immediate ticking on a disabled tick
-      drm/panthor: Fix the logic that decides when to stop ticking
-      drm/panthor: Make sure we resume the tick when new jobs are submitted
-      drm/panthor: Kill panthor_sched_immediate_tick()
-      drm/panthor: Drop a WARN_ON() in group_free_queue()
-      drm/panthor: Make sure caches are flushed/invalidated when an AS is r=
-ecycled
-      drm/panthor: Unlock the locked region before disabling an AS
-      drm/panthor: Provide a custom dma_buf implementation
-      drm/panthor: Fix panthor_gpu_coherency_set()
-      drm/panthor: Expose the selected coherency protocol to the UMD
-      drm/panthor: Add a PANTHOR_BO_SYNC ioctl
-      drm/panthor: Add an ioctl to query BO flags
-      drm/panfrost: Provide a custom dma_buf implementation
-      drm/panfrost: Expose the selected coherency protocol to the UMD
-      drm/panfrost: Add an ioctl to query BO flags
-      drm/gem: Fix builds with CONFIG_MMU=3Dn
-
-Chia-I Wu (1):
-      drm/panthor: fix queue_reset_timeout_locked
-
-Christian K=F6nig (3):
-      dma-buf: replace "#if" with just "if"
-      dma-buf: improve sg_table debugging hack v4
-      dma-buf: enable DMABUF_DEBUG by default on DEBUG kernels
-
-Dan Carpenter (1):
-      drm/plane: Fix IS_ERR() vs NULL bug drm_plane_create_color_pipeline_p=
-roperty()
-
-Eslam Khafagy (1):
-      drm: pl111: replace dev_* print functions with drm_* variants
-
-Faith Ekstrand (4):
-      drm/panthor: Bump the driver version to 1.7
-      drm/panfrost: Add a PANFROST_SYNC_BO ioctl
-      drm/panfrost: Add flag to map GEM object Write-Back Cacheable
-      drm/panfrost: Bump the driver version to 1.6
-
-Jani Nikula (10):
-      drm/hyperv: move Kconfig under driver directory
-      drm/vgem: move Kconfig under driver directory
-      drm/Kconfig: move generic Kconfig options above drivers
-      drm/Kconfig: sort driver Kconfig source list
-      drm/vblank: remove drm_wait_one_vblank() completely
-      drm/vblank: remove superfluous pipe check
-      drm/vblank: add return value to drm_crtc_wait_one_vblank()
-      drm/vblank: limit vblank variable scope to atomic
-      drm/vblank: use the drm_vblank_crtc() and drm_crtc_vblank_crtc() help=
-ers more
-      drm/vblank: prefer drm_crtc_vblank_crtc() over drm_vblank_crtc()
-
-Langyan Ye (1):
-      drm/panel-edp: Add CSW MNE007QB3-1
-
-Lizhi Hou (4):
-      accel/amdxdna: Poll MPNPU_PWAITMODE after requesting firmware suspend
-      accel/amdxdna: Fix tail-pointer polling in mailbox_get_msg()
-      accel/amdxdna: Fix race condition when checking rpm_on
-      accel/amdxdna: Fix cu_idx being cleared by memset() during command se=
-tup
-
-Lo=EFc Molinari (12):
-      drm/shmem-helper: Simplify page offset calculation in fault handler
-      drm/shmem-helper: Map huge pages in fault handler
-      drm/gem: Introduce drm_gem_get_unmapped_area() fop
-      drm/gem: Add huge tmpfs mountpoint helpers
-      drm/i915: Use huge tmpfs mountpoint helpers
-      drm/v3d: Use huge tmpfs mountpoint helpers
-      drm/gem: Get rid of *_with_mnt helpers
-      drm/panthor: Introduce huge tmpfs mountpoint option
-      drm/panfrost: Introduce huge tmpfs mountpoint option
-      Documentation/gpu/drm-mm: Add THP paragraph to GEM mapping section
-      drm/panthor: Add flag to map GEM object Write-Back Cacheable
-      drm/i915: Fix BO alloc flags
-
-Luca Ceresoli (2):
-      drm/bridge: add drm_bridge_unplug() and drm_bridge_enter/exit()
-      drm/bridge: ti-sn65dsi83: protect device resources on unplug
-
-Maxime Ripard (1):
-      drm/atomic: Add dev pointer to drm_private_obj
-
-Philipp Stanner (9):
-      drm/todo: Add section with task for GPU scheduler
-      drm/todo: Add entry for unlocked drm/sched rq readers
-      dma-buf/dma-fence: Add dma_fence_test_signaled_flag()
-      dma-buf/dma-fence: Add dma_fence_check_and_signal()
-      amd/amdkfd: Use dma_fence_check_and_signal()
-      drm/xe: Use dma_fence_check_and_signal_locked()
-      dma-buf: Don't misuse dma_fence_signal()
-      drm/ttm: Use dma_fence_check_and_signal()
-      dma-buf/dma-fence: Remove return code of signaling-functions
-
-Suraj Kandpal (1):
-      drm/display/dp_mst: Add protection against 0 vcpi
-
-Thomas Zimmermann (9):
-      drm/ast: Move cursor format conversion into helper function
-      drm/ast: Support cursor buffers objects in I/O memory
-      drm/ast: Wrap cursor framebuffer access in drm_gem_fb_begin/end_cpu_a=
-ccess()
-      drm/amdgpu: Do not implement mode_set_base_atomic callback
-      drm/nouveau: Do not implement mode_set_base_atomic callback
-      drm/radeon: Do not implement mode_set_base_atomic callback
-      drm/fbdev-helper: Remove drm_fb_helper_debug_enter/_leave()
-      fbcon: Remove fb_debug_enter/_leave from struct fb_ops
-      drm/vblank: Unexport drm_wait_one_vblank()
-
-Tvrtko Ursulin (5):
-      drm/panic: Report invalid or unsupported panic modes
-      drm/ttm: Make ttm_bo_init_validate safe against ttm_operation_ctx re-=
-ordering
-      drm/ttm: Resource cannot be NULL in ttm_resource_intersects
-      drm/ttm: Tidy ttm_operation_ctx initialization
-      drm/ttm: Tidy usage of local variables a little bit
-
-Val Packett (1):
-      drm/panel-edp: Add AUO B140QAX01.H panel
-
- Documentation/gpu/drm-mm.rst                     |  29 ++-
- Documentation/gpu/todo.rst                       |  45 ++++
- Documentation/process/debugging/kgdb.rst         |  28 --
- drivers/accel/amdxdna/aie2_message.c             |  18 +-
- drivers/accel/amdxdna/aie2_pci.c                 |   2 +-
- drivers/accel/amdxdna/aie2_pci.h                 |   3 +
- drivers/accel/amdxdna/aie2_pm.c                  |  17 +-
- drivers/accel/amdxdna/aie2_psp.c                 |  15 ++
- drivers/accel/amdxdna/aie2_smu.c                 |  27 +-
- drivers/accel/amdxdna/amdxdna_mailbox.c          |  19 +-
- drivers/accel/amdxdna/amdxdna_pci_drv.h          |   1 -
- drivers/accel/amdxdna/amdxdna_pm.c               |  22 +-
- drivers/accel/amdxdna/npu1_regs.c                |   2 +
- drivers/accel/amdxdna/npu2_regs.c                |   2 +
- drivers/accel/amdxdna/npu4_regs.c                |   2 +
- drivers/accel/amdxdna/npu5_regs.c                |   2 +
- drivers/accel/amdxdna/npu6_regs.c                |   2 +
- drivers/dma-buf/Kconfig                          |   2 +-
- drivers/dma-buf/dma-buf.c                        |  77 ++++--
- drivers/dma-buf/dma-fence.c                      | 100 +++++---
- drivers/dma-buf/st-dma-fence.c                   |   4 +-
- drivers/gpu/drm/Kconfig                          | 213 +++++----------
- drivers/gpu/drm/amd/amdgpu/dce_v10_0.c           |  35 +--
- drivers/gpu/drm/amd/amdgpu/dce_v6_0.c            |  35 +--
- drivers/gpu/drm/amd/amdgpu/dce_v8_0.c            |  35 +--
- drivers/gpu/drm/amd/amdkfd/kfd_process.c         |   6 +-
- drivers/gpu/drm/ast/ast_cursor.c                 |  83 ++++--
- drivers/gpu/drm/bridge/ti-sn65dsi83.c            |  86 +++++--
- drivers/gpu/drm/display/drm_dp_mst_topology.c    |   3 +-
- drivers/gpu/drm/drm_atomic.c                     |   1 +
- drivers/gpu/drm/drm_bridge.c                     |  62 +++++
- drivers/gpu/drm/drm_fb_helper.c                  | 108 --------
- drivers/gpu/drm/drm_gem.c                        | 204 +++++++++++----
- drivers/gpu/drm/drm_gem_shmem_helper.c           |  79 +++---
- drivers/gpu/drm/drm_panic.c                      |  77 +++++-
- drivers/gpu/drm/drm_plane.c                      |   4 +-
- drivers/gpu/drm/drm_vblank.c                     |  52 ++--
- drivers/gpu/drm/hyperv/Kconfig                   |  14 +
- drivers/gpu/drm/i915/Makefile                    |   3 +-
- drivers/gpu/drm/i915/gem/i915_gem_object_types.h |  10 +-
- drivers/gpu/drm/i915/gem/i915_gem_shmem.c        |  58 +++--
- drivers/gpu/drm/i915/gem/i915_gemfs.c            |  71 -----
- drivers/gpu/drm/i915/gem/i915_gemfs.h            |  14 -
- drivers/gpu/drm/i915/gem/selftests/huge_pages.c  |  15 +-
- drivers/gpu/drm/i915/i915_drv.h                  |   5 -
- drivers/gpu/drm/nouveau/dispnv04/crtc.c          |  24 +-
- drivers/gpu/drm/panel/panel-edp.c                |   3 +
- drivers/gpu/drm/panfrost/panfrost_device.c       |   3 +
- drivers/gpu/drm/panfrost/panfrost_device.h       |   1 +
- drivers/gpu/drm/panfrost/panfrost_drv.c          | 107 +++++++-
- drivers/gpu/drm/panfrost/panfrost_drv.h          |   9 +
- drivers/gpu/drm/panfrost/panfrost_gem.c          | 257 +++++++++++++++++++
- drivers/gpu/drm/panfrost/panfrost_gem.h          |  12 +
- drivers/gpu/drm/panfrost/panfrost_gpu.c          |  26 +-
- drivers/gpu/drm/panfrost/panfrost_regs.h         |  10 +-
- drivers/gpu/drm/panthor/panthor_device.c         |  13 +-
- drivers/gpu/drm/panthor/panthor_drv.c            |  87 ++++++-
- drivers/gpu/drm/panthor/panthor_drv.h            |   9 +
- drivers/gpu/drm/panthor/panthor_fw.c             |   4 +-
- drivers/gpu/drm/panthor/panthor_gem.c            | 258 ++++++++++++++++++-
- drivers/gpu/drm/panthor/panthor_gem.h            |   8 +
- drivers/gpu/drm/panthor/panthor_gpu.c            |  21 +-
- drivers/gpu/drm/panthor/panthor_mmu.c            | 314 +++++++++++++------=
-----
- drivers/gpu/drm/panthor/panthor_sched.c          | 252 +++++++++---------
- drivers/gpu/drm/pl111/pl111_display.c            |   4 +-
- drivers/gpu/drm/pl111/pl111_drv.c                |  29 ++-
- drivers/gpu/drm/pl111/pl111_nomadik.c            |   4 +-
- drivers/gpu/drm/pl111/pl111_nomadik.h            |   4 +-
- drivers/gpu/drm/pl111/pl111_versatile.c          |  53 ++--
- drivers/gpu/drm/pl111/pl111_versatile.h          |   2 +-
- drivers/gpu/drm/radeon/atombios_crtc.c           |  74 ++----
- drivers/gpu/drm/radeon/radeon_legacy_crtc.c      |  23 +-
- drivers/gpu/drm/radeon/radeon_mode.h             |  10 +-
- drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c |   2 +-
- drivers/gpu/drm/ttm/ttm_bo.c                     |  64 ++---
- drivers/gpu/drm/ttm/ttm_bo_util.c                |  57 ++--
- drivers/gpu/drm/ttm/ttm_bo_vm.c                  |  12 +-
- drivers/gpu/drm/ttm/ttm_device.c                 |   5 +-
- drivers/gpu/drm/ttm/ttm_pool.c                   |  26 +-
- drivers/gpu/drm/ttm/ttm_resource.c               |  14 +-
- drivers/gpu/drm/ttm/ttm_tt.c                     |   2 +-
- drivers/gpu/drm/v3d/Makefile                     |   3 +-
- drivers/gpu/drm/v3d/v3d_bo.c                     |   6 +-
- drivers/gpu/drm/v3d/v3d_drv.c                    |   2 +-
- drivers/gpu/drm/v3d/v3d_drv.h                    |  11 +-
- drivers/gpu/drm/v3d/v3d_gem.c                    |  21 +-
- drivers/gpu/drm/v3d/v3d_gemfs.c                  |  62 -----
- drivers/gpu/drm/vgem/Kconfig                     |   9 +
- drivers/gpu/drm/xe/xe_hw_fence.c                 |   4 +-
- drivers/video/fbdev/core/fbcon.c                 |  24 --
- drivers/video/fbdev/core/fbcon.h                 |   1 -
- include/drm/drm_atomic.h                         |   5 +
- include/drm/drm_bridge.h                         |  12 +
- include/drm/drm_device.h                         |  15 ++
- include/drm/drm_fb_helper.h                      |  21 --
- include/drm/drm_gem.h                            |  45 +++-
- include/drm/drm_gem_shmem_helper.h               |   3 -
- include/drm/drm_modeset_helper_vtables.h         |  23 --
- include/drm/drm_vblank.h                         |   3 +-
- include/linux/dma-fence.h                        |  35 ++-
- include/linux/fb.h                               |   4 -
- include/uapi/drm/panfrost_drm.h                  |  76 +++++-
- include/uapi/drm/panthor_drm.h                   | 157 +++++++++++-
- 103 files changed, 2546 insertions(+), 1491 deletions(-)
- create mode 100644 drivers/gpu/drm/hyperv/Kconfig
- delete mode 100644 drivers/gpu/drm/i915/gem/i915_gemfs.c
- delete mode 100644 drivers/gpu/drm/i915/gem/i915_gemfs.h
- create mode 100644 drivers/gpu/drm/panfrost/panfrost_drv.h
- create mode 100644 drivers/gpu/drm/panthor/panthor_drv.h
- delete mode 100644 drivers/gpu/drm/v3d/v3d_gemfs.c
- create mode 100644 drivers/gpu/drm/vgem/Kconfig
-
---sces6ytv4ypvenxt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaTvZOwAKCRAnX84Zoj2+
-dlexAYCcSc/B9LtsrZtZD3dDtHqbQwYji+tAfPy14jms6zlvziKkjBfltZPQqBEh
-kkwyQJwBfAm6KEdsuuPGhjJ8C6NW+Lx4QOzgLNMp9nKHVzcyoPM5IT16AoSzMVsA
-zp+9oGSqyQ==
-=KAYi
------END PGP SIGNATURE-----
-
---sces6ytv4ypvenxt--
-
+T24gVGh1LCAyMDI1LTExLTI3IGF0IDE5OjQ5ICswMjAwLCBJbXJlIERlYWsgd3JvdGU6DQo+IEFs
+aWduIHRoZSBtaW5pbXVtL21heGltdW0gRFNDIGNvbXByZXNzZWQgQlBQcyB0byB0aGUgY29ycmVz
+cG9uZGluZw0KPiBzb3VyY2UgY29tcHJlc3NlZCBCUFAgbGltaXRzIGFscmVhZHkgd2hlbiBjb21w
+dXRpbmcgdGhlIEJQUCBsaW1pdHMuDQo+IFRoaXMNCj4gYWxpZ25tZW50IGlzIGFsc28gcGVyZm9y
+bWVkIGxhdGVyIGR1cmluZyBzdGF0ZSBjb21wdXRhdGlvbiwgaG93ZXZlcg0KPiB0aGVyZSBpcyBu
+byByZWFzb24gdG8gaW5pdGlhbGl6ZSB0aGUgbGltaXRzIHRvIGFuIHVuYWxpZ25lZC9pbmNvcnJl
+Y3QNCj4gdmFsdWUuDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBJbXJlIERlYWsgPGltcmUuZGVha0Bp
+bnRlbC5jb20+DQo+IC0tLQ0KPiDCoGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+ZHAuYyB8IDU3DQo+ICsrKysrKysrKysrKysrKysrKysrKysrKysNCj4gwqAxIGZpbGUgY2hhbmdl
+ZCwgNTcgaW5zZXJ0aW9ucygrKQ0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+ZGlzcGxheS9pbnRlbF9kcC5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kcC5jDQo+IGluZGV4IGU3YTQyYzllNGZlZjEuLjgwMWU4ZmQ2YjIyOWUgMTAwNjQ0DQo+IC0t
+LSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYw0KPiArKysgYi9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMNCj4gQEAgLTg2Nyw2ICs4NjcsMjAg
+QEAgc21hbGxfam9pbmVyX3JhbV9zaXplX2JpdHMoc3RydWN0IGludGVsX2Rpc3BsYXkNCj4gKmRp
+c3BsYXkpDQo+IMKgCQlyZXR1cm4gNjE0NCAqIDg7DQo+IMKgfQ0KPiDCoA0KPiArc3RhdGljIGlu
+dCBhbGlnbl9taW5fdmVzYV9jb21wcmVzc2VkX2JwcF94MTYoaW50IG1pbl9saW5rX2JwcF94MTYp
+DQo+ICt7DQo+ICsJaW50IGk7DQo+ICsNCj4gKwlmb3IgKGkgPSAwOyBpIDwgQVJSQVlfU0laRSh2
+YWxpZF9kc2NfYnBwKTsgaSsrKSB7DQo+ICsJCWludCB2ZXNhX2JwcF94MTYgPQ0KPiBmeHBfcTRf
+ZnJvbV9pbnQodmFsaWRfZHNjX2JwcFtpXSk7DQo+ICsNCj4gKwkJaWYgKHZlc2FfYnBwX3gxNiA+
+PSBtaW5fbGlua19icHBfeDE2KQ0KPiArCQkJcmV0dXJuIHZlc2FfYnBwX3gxNjsNCj4gKwl9DQo+
+ICsNCj4gKwlyZXR1cm4gMDsNCj4gK30NCj4gKw0KPiDCoHN0YXRpYyBpbnQgYWxpZ25fbWF4X3Zl
+c2FfY29tcHJlc3NlZF9icHBfeDE2KGludCBtYXhfbGlua19icHBfeDE2KQ0KPiDCoHsNCj4gwqAJ
+aW50IGk7DQo+IEBAIC0yMjYxLDYgKzIyNzUsNDAgQEAgYm9vbCBpbnRlbF9kcF9kc2NfdmFsaWRf
+Y29tcHJlc3NlZF9icHAoc3RydWN0DQo+IGludGVsX2RwICppbnRlbF9kcCwgaW50IGJwcF94MTYp
+DQo+IMKgCXJldHVybiBhbGlnbl9tYXhfdmVzYV9jb21wcmVzc2VkX2JwcF94MTYoYnBwX3gxNikg
+PT0NCj4gYnBwX3gxNjsNCj4gwqB9DQo+IMKgDQo+ICtzdGF0aWMgaW50IGFsaWduX21pbl9jb21w
+cmVzc2VkX2JwcF94MTYoY29uc3Qgc3RydWN0IGludGVsX2Nvbm5lY3Rvcg0KPiAqY29ubmVjdG9y
+LCBpbnQgbWluX2JwcF94MTYpDQo+ICt7DQo+ICsJc3RydWN0IGludGVsX2Rpc3BsYXkgKmRpc3Bs
+YXkgPSB0b19pbnRlbF9kaXNwbGF5KGNvbm5lY3Rvcik7DQo+ICsNCj4gKwlpZiAoRElTUExBWV9W
+RVIoZGlzcGxheSkgPj0gMTMpIHsNCj4gKwkJaW50IGJwcF9zdGVwX3gxNiA9DQo+IGludGVsX2Rw
+X2RzY19icHBfc3RlcF94MTYoY29ubmVjdG9yKTsNCj4gKw0KPiArCQlkcm1fV0FSTl9PTihkaXNw
+bGF5LT5kcm0sDQo+ICFpc19wb3dlcl9vZl8yKGJwcF9zdGVwX3gxNikpOw0KPiArDQo+ICsJCXJl
+dHVybiByb3VuZF91cChtaW5fYnBwX3gxNiwgYnBwX3N0ZXBfeDE2KTsNCj4gKwl9IGVsc2Ugew0K
+PiArCQlyZXR1cm4NCj4gYWxpZ25fbWluX3Zlc2FfY29tcHJlc3NlZF9icHBfeDE2KG1pbl9icHBf
+eDE2KTsNCj4gKwl9DQo+ICt9DQo+ICsNCj4gK3N0YXRpYyBpbnQgYWxpZ25fbWF4X2NvbXByZXNz
+ZWRfYnBwX3gxNihjb25zdCBzdHJ1Y3QgaW50ZWxfY29ubmVjdG9yDQo+ICpjb25uZWN0b3IsDQo+
+ICsJCQkJCWVudW0gaW50ZWxfb3V0cHV0X2Zvcm1hdA0KPiBvdXRwdXRfZm9ybWF0LA0KPiArCQkJ
+CQlpbnQgcGlwZV9icHAsIGludA0KPiBtYXhfYnBwX3gxNikNCj4gK3sNCj4gKwlzdHJ1Y3QgaW50
+ZWxfZGlzcGxheSAqZGlzcGxheSA9IHRvX2ludGVsX2Rpc3BsYXkoY29ubmVjdG9yKTsNCj4gKwlp
+bnQgbGlua19icHBfeDE2ID0NCj4gaW50ZWxfZHBfb3V0cHV0X2Zvcm1hdF9saW5rX2JwcF94MTYo
+b3V0cHV0X2Zvcm1hdCwgcGlwZV9icHApOw0KPiArCWludCBicHBfc3RlcF94MTYgPSBpbnRlbF9k
+cF9kc2NfYnBwX3N0ZXBfeDE2KGNvbm5lY3Rvcik7DQo+ICsNCj4gKwltYXhfYnBwX3gxNiA9IG1p
+bihtYXhfYnBwX3gxNiwgbGlua19icHBfeDE2IC0gYnBwX3N0ZXBfeDE2KTsNCj4gKw0KPiArCWlm
+IChESVNQTEFZX1ZFUihkaXNwbGF5KSA+PSAxMykgew0KPiArCQlkcm1fV0FSTl9PTihkaXNwbGF5
+LT5kcm0sDQo+ICFpc19wb3dlcl9vZl8yKGJwcF9zdGVwX3gxNikpOw0KPiArDQo+ICsJCXJldHVy
+biByb3VuZF9kb3duKG1heF9icHBfeDE2LCBicHBfc3RlcF94MTYpOw0KPiArCX0gZWxzZSB7DQo+
+ICsJCXJldHVybg0KPiBhbGlnbl9tYXhfdmVzYV9jb21wcmVzc2VkX2JwcF94MTYobWF4X2JwcF94
+MTYpOw0KPiArCX0NCg0Kd2VsbC4uIHJldHVybiBhbGlnbl9tYXhfdmVzYV9jb21wcmVzc2VkX2Jw
+cF94MTYoLi4uKSBjb3VsZCBiZSBwbGFjZWQNCndpdGhvdXQgImVsc2UgbG9vcCIgYXMgd2VsbCBo
+ZXJlIGFuZCBhYm92ZS4gDQoNClJldmlld2VkLWJ5OiBWaW5vZCBHb3ZpbmRhcGlsbGFpIDx2aW5v
+ZC5nb3ZpbmRhcGlsbGFpQGludGVsLmNvbT4NCg0KPiArfQ0KPiArDQo+IMKgLyoNCj4gwqAgKiBG
+aW5kIHRoZSBtYXggY29tcHJlc3NlZCBCUFAgd2UgY2FuIGZpbmQgYSBsaW5rIGNvbmZpZ3VyYXRp
+b24gZm9yLg0KPiBUaGUgQlBQcyB0bw0KPiDCoCAqIHRyeSBkZXBlbmQgb24gdGhlIHNvdXJjZSAo
+cGxhdGZvcm0pIGFuZCBzaW5rLg0KPiBAQCAtMjYzOSw2ICsyNjg3LDkgQEAgaW50ZWxfZHBfY29t
+cHV0ZV9jb25maWdfbGlua19icHBfbGltaXRzKHN0cnVjdA0KPiBpbnRlbF9kcCAqaW50ZWxfZHAs
+DQo+IMKgCQlkc2NfbWluX2JwcCA9IG1heChkc2Nfc3JjX21pbl9icHAsDQo+IGRzY19zaW5rX21p
+bl9icHApOw0KPiDCoAkJbGltaXRzLT5saW5rLm1pbl9icHBfeDE2ID0NCj4gZnhwX3E0X2Zyb21f
+aW50KGRzY19taW5fYnBwKTsNCj4gwqANCj4gKwkJbGltaXRzLT5saW5rLm1pbl9icHBfeDE2ID0N
+Cj4gKwkJCWFsaWduX21pbl9jb21wcmVzc2VkX2JwcF94MTYoY29ubmVjdG9yLA0KPiBsaW1pdHMt
+PmxpbmsubWluX2JwcF94MTYpOw0KPiArDQo+IMKgCQlkc2Nfc3JjX21heF9icHAgPQ0KPiBkc2Nf
+c3JjX21heF9jb21wcmVzc2VkX2JwcChpbnRlbF9kcCk7DQo+IMKgCQlqb2luZXJfbWF4X2JwcCA9
+DQo+IMKgCQkJZ2V0X21heF9jb21wcmVzc2VkX2JwcF93aXRoX2pvaW5lcihkaXNwbGF5LA0KPiBA
+QCAtMjY2Myw2ICsyNzE0LDEyIEBAIGludGVsX2RwX2NvbXB1dGVfY29uZmlnX2xpbmtfYnBwX2xp
+bWl0cyhzdHJ1Y3QNCj4gaW50ZWxfZHAgKmludGVsX2RwLA0KPiDCoAkJCQnCoMKgwqAgY29ubmVj
+dG9yLT5iYXNlLmJhc2UuaWQsDQo+IGNvbm5lY3Rvci0+YmFzZS5uYW1lLA0KPiDCoAkJCQnCoMKg
+wqAgRlhQX1E0X0FSR1MobWF4X2xpbmtfYnBwX3gxNikpOw0KPiDCoAkJfQ0KPiArDQo+ICsJCW1h
+eF9saW5rX2JwcF94MTYgPQ0KPiArCQkJYWxpZ25fbWF4X2NvbXByZXNzZWRfYnBwX3gxNihjb25u
+ZWN0b3IsDQo+ICsJCQkJCQnCoMKgwqDCoCBjcnRjX3N0YXRlLQ0KPiA+b3V0cHV0X2Zvcm1hdCwN
+Cj4gKwkJCQkJCcKgwqDCoMKgIGxpbWl0cy0NCj4gPnBpcGUubWF4X2JwcCwNCj4gKwkJCQkJCcKg
+wqDCoMKgDQo+IG1heF9saW5rX2JwcF94MTYpOw0KPiDCoAl9DQo+IMKgDQo+IMKgCWxpbWl0cy0+
+bGluay5tYXhfYnBwX3gxNiA9IG1heF9saW5rX2JwcF94MTY7DQoNCg==
