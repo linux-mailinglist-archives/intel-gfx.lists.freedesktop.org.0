@@ -2,56 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AEB8CBA7E5
-	for <lists+intel-gfx@lfdr.de>; Sat, 13 Dec 2025 10:59:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A17BDCBA875
+	for <lists+intel-gfx@lfdr.de>; Sat, 13 Dec 2025 12:20:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BBA410E11E;
-	Sat, 13 Dec 2025 09:59:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0D0410E094;
+	Sat, 13 Dec 2025 11:20:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hglVM12Q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QKNx7RWi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10D7310E11E;
- Sat, 13 Dec 2025 09:59:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E6DD10E094;
+ Sat, 13 Dec 2025 11:20:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765619971; x=1797155971;
+ t=1765624835; x=1797160835;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=8GOIjRocUiEIWyd+eL5zJJo2Xo7vkZH3TwnWoiwRtno=;
- b=hglVM12QiHt+o6wJC5eqNmyB6xTWTa/Nfnbcxb2Nv99OtrpESkiLCrob
- 8gUq86GBVyK/hncSd1W9uzc6PzFQhriO4JNh83eBi76RFpdZ8UJKZrvVZ
- l56W5s+M60vEM2waDWThnYyujBqJCf8WvGIkZ0iL+xia9j91C9JzIgzJs
- k+8osJRwt9FfFaRTE96P6j/DvRL9eTkT2PBl8FY5CiOLL5sGSh7xGuR+L
- RDtbyJOH7PMrXc5u6PfxxP0SbxZGP9yo5pL/hsE4ko3nMEIvsTPi9wYS8
- mDayBzlW6pbPY9TRXha7Vty5pM9aa71I7W55ChouSVMVGEbcyyjdfIyK2 w==;
-X-CSE-ConnectionGUID: MI/LG0D5SzWCyasbqTQzAw==
-X-CSE-MsgGUID: acEyFF5JTpCYuehM3K/g9g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11640"; a="71455430"
-X-IronPort-AV: E=Sophos;i="6.21,146,1763452800"; d="scan'208";a="71455430"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2025 01:59:30 -0800
-X-CSE-ConnectionGUID: OnnAYDYNSViihYV4UYhH6A==
-X-CSE-MsgGUID: PnQDvqAAQPecxV+uk+al8Q==
+ bh=PnBicRCA92laoSvPT50Y5NeQix7Zxgj4DC8ex4ufvjY=;
+ b=QKNx7RWi8Gz3c4eXpTqHXhtL2yD3k9isgzaXot+NG9bfkgyYR0sxuzqx
+ 7SYhF8CRvgRG+ERNLGzrXBGI+ap/fUgKf6Tr4FUauwEP87X5zYLkBzGOT
+ AsJSkvMG7r5DZLRhfuWby/03VVI7yKPz9BctbhJQTvzSQmz/eZ11ObtXI
+ WBNUTKHU81AdfSAn3DU35DWhnxIA2zLtUXrkReUxfD0VlWkcjrqJHNwGE
+ HXUvhU+kY8yJVM12/r2+SGVfvb3o85oa3LYrmwjNNMxiBxKGj0qn6jQ9S
+ YkXwJkxw2ewKXhnsw+vUIAX5GR6sAoD4Fcj1vELGwgH05ILaRrf5Rw4Hg A==;
+X-CSE-ConnectionGUID: m8usXscdQW64X2AHzz7EaA==
+X-CSE-MsgGUID: 5yM1dPz/QziEloRHxNRkpg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11640"; a="78979787"
+X-IronPort-AV: E=Sophos;i="6.21,146,1763452800"; d="scan'208";a="78979787"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2025 03:20:35 -0800
+X-CSE-ConnectionGUID: WqlFSmu/R0+571l1uNoY8A==
+X-CSE-MsgGUID: Z5hUUSW1TCSoaPu4g3hSRA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,146,1763452800"; d="scan'208";a="197353574"
+X-IronPort-AV: E=Sophos;i="6.21,146,1763452800"; d="scan'208";a="201478719"
 Received: from lkp-server01.sh.intel.com (HELO d335e3c6db51) ([10.239.97.150])
- by orviesa008.jf.intel.com with ESMTP; 13 Dec 2025 01:59:28 -0800
+ by orviesa003.jf.intel.com with ESMTP; 13 Dec 2025 03:20:34 -0800
 Received: from kbuild by d335e3c6db51 with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1vUMPN-000000007TV-3hxF;
- Sat, 13 Dec 2025 09:59:25 +0000
-Date: Sat, 13 Dec 2025 17:59:05 +0800
+ (envelope-from <lkp@intel.com>) id 1vUNfq-000000007Xd-3Y80;
+ Sat, 13 Dec 2025 11:20:30 +0000
+Date: Sat, 13 Dec 2025 19:19:34 +0800
 From: kernel test robot <lkp@intel.com>
 To: Maarten Lankhorst <dev@lankhorst.se>, intel-xe@lists.freedesktop.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- intel-gfx@lists.freedesktop.org,
+Cc: oe-kbuild-all@lists.linux.dev, intel-gfx@lists.freedesktop.org,
  Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
  Maarten Lankhorst <dev@lankhorst.se>
 Subject: Re: [CI-ONLY PATCH v2 11/12] PREEMPT_RT injection
-Message-ID: <202512131724.vg8wGsP4-lkp@intel.com>
+Message-ID: <202512131847.zWdP8WbV-lkp@intel.com>
 References: <20251212143504.973839-25-dev@lankhorst.se>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
@@ -87,70 +86,58 @@ url:    https://github.com/intel-lab-lkp/linux/commits/Maarten-Lankhorst/drm-i91
 base:   https://gitlab.freedesktop.org/drm/tip.git drm-tip
 patch link:    https://lore.kernel.org/r/20251212143504.973839-25-dev%40lankhorst.se
 patch subject: [CI-ONLY PATCH v2 11/12] PREEMPT_RT injection
-config: i386-buildonly-randconfig-005-20251213 (https://download.01.org/0day-ci/archive/20251213/202512131724.vg8wGsP4-lkp@intel.com/config)
-compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251213/202512131724.vg8wGsP4-lkp@intel.com/reproduce)
+config: x86_64-buildonly-randconfig-005-20251213 (https://download.01.org/0day-ci/archive/20251213/202512131847.zWdP8WbV-lkp@intel.com/config)
+compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251213/202512131847.zWdP8WbV-lkp@intel.com/reproduce)
 
 If you fix the issue in a separate patch/commit (i.e. not just a new version of
 the same patch/commit), kindly add following tags
 | Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202512131724.vg8wGsP4-lkp@intel.com/
+| Closes: https://lore.kernel.org/oe-kbuild-all/202512131847.zWdP8WbV-lkp@intel.com/
 
 All errors (new ones prefixed by >>):
 
->> drivers/gpu/drm/ttm/tests/ttm_bo_test.c:225:13: error: incompatible pointer types passing 'struct rt_mutex *' to parameter of type 'struct mutex *' [-Werror,-Wincompatible-pointer-types]
-     225 |         mutex_lock(&bo->base.resv->lock.base);
-         |                    ^~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/mutex.h:168:44: note: expanded from macro 'mutex_lock'
-     168 | #define mutex_lock(lock) mutex_lock_nested(lock, 0)
-         |                                            ^~~~
-   include/linux/mutex.h:160:45: note: passing argument to parameter 'lock' here
-     160 | extern void mutex_lock_nested(struct mutex *lock, unsigned int subclass);
+   In file included from <command-line>:
+   In function 'alloc_kmem_cache_cpus',
+       inlined from 'do_kmem_cache_create' at mm/slub.c:8625:7:
+>> include/linux/compiler_types.h:602:45: error: call to '__compiletime_assert_751' declared with attribute error: BUILD_BUG_ON failed: PERCPU_DYNAMIC_EARLY_SIZE < NR_KMALLOC_TYPES * KMALLOC_SHIFT_HIGH * sizeof(struct kmem_cache_cpu)
+     602 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
          |                                             ^
-   drivers/gpu/drm/ttm/tests/ttm_bo_test.c:231:15: error: incompatible pointer types passing 'struct rt_mutex *' to parameter of type 'struct mutex *' [-Werror,-Wincompatible-pointer-types]
-     231 |         mutex_unlock(&bo->base.resv->lock.base);
-         |                      ^~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/mutex.h:224:40: note: passing argument to parameter 'lock' here
-     224 | extern void mutex_unlock(struct mutex *lock);
-         |                                        ^
-   2 errors generated.
+   include/linux/compiler_types.h:583:25: note: in definition of macro '__compiletime_assert'
+     583 |                         prefix ## suffix();                             \
+         |                         ^~~~~~
+   include/linux/compiler_types.h:602:9: note: in expansion of macro '_compiletime_assert'
+     602 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+         |         ^~~~~~~~~~~~~~~~~~~
+   include/linux/build_bug.h:39:37: note: in expansion of macro 'compiletime_assert'
+      39 | #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
+         |                                     ^~~~~~~~~~~~~~~~~~
+   include/linux/build_bug.h:50:9: note: in expansion of macro 'BUILD_BUG_ON_MSG'
+      50 |         BUILD_BUG_ON_MSG(condition, "BUILD_BUG_ON failed: " #condition)
+         |         ^~~~~~~~~~~~~~~~
+   mm/slub.c:7657:9: note: in expansion of macro 'BUILD_BUG_ON'
+    7657 |         BUILD_BUG_ON(PERCPU_DYNAMIC_EARLY_SIZE <
+         |         ^~~~~~~~~~~~
 
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for I2C_K1
-   Depends on [n]: I2C [=y] && HAS_IOMEM [=y] && (ARCH_SPACEMIT || COMPILE_TEST [=y]) && OF [=n]
-   Selected by [y]:
-   - MFD_SPACEMIT_P1 [=y] && HAS_IOMEM [=y] && (ARCH_SPACEMIT || COMPILE_TEST [=y]) && I2C [=y]
 
+vim +/__compiletime_assert_751 +602 include/linux/compiler_types.h
 
-vim +225 drivers/gpu/drm/ttm/tests/ttm_bo_test.c
-
-995279d280d1ef5 Karolina Stolarek 2023-11-29  210  
-995279d280d1ef5 Karolina Stolarek 2023-11-29  211  static void ttm_bo_reserve_interrupted(struct kunit *test)
-995279d280d1ef5 Karolina Stolarek 2023-11-29  212  {
-995279d280d1ef5 Karolina Stolarek 2023-11-29  213  	struct ttm_buffer_object *bo;
-995279d280d1ef5 Karolina Stolarek 2023-11-29  214  	struct task_struct *task;
-995279d280d1ef5 Karolina Stolarek 2023-11-29  215  	int err;
-995279d280d1ef5 Karolina Stolarek 2023-11-29  216  
-588c4c8d58c413b Karolina Stolarek 2024-06-12  217  	bo = ttm_bo_kunit_init(test, test->priv, BO_SIZE, NULL);
-995279d280d1ef5 Karolina Stolarek 2023-11-29  218  
-995279d280d1ef5 Karolina Stolarek 2023-11-29  219  	task = kthread_create(threaded_ttm_bo_reserve, bo, "ttm-bo-reserve");
-995279d280d1ef5 Karolina Stolarek 2023-11-29  220  
-995279d280d1ef5 Karolina Stolarek 2023-11-29  221  	if (IS_ERR(task))
-995279d280d1ef5 Karolina Stolarek 2023-11-29  222  		KUNIT_FAIL(test, "Couldn't create ttm bo reserve task\n");
-995279d280d1ef5 Karolina Stolarek 2023-11-29  223  
-995279d280d1ef5 Karolina Stolarek 2023-11-29  224  	/* Take a lock so the threaded reserve has to wait */
-995279d280d1ef5 Karolina Stolarek 2023-11-29 @225  	mutex_lock(&bo->base.resv->lock.base);
-995279d280d1ef5 Karolina Stolarek 2023-11-29  226  
-995279d280d1ef5 Karolina Stolarek 2023-11-29  227  	wake_up_process(task);
-995279d280d1ef5 Karolina Stolarek 2023-11-29  228  	msleep(20);
-995279d280d1ef5 Karolina Stolarek 2023-11-29  229  	err = kthread_stop(task);
-995279d280d1ef5 Karolina Stolarek 2023-11-29  230  
-995279d280d1ef5 Karolina Stolarek 2023-11-29  231  	mutex_unlock(&bo->base.resv->lock.base);
-995279d280d1ef5 Karolina Stolarek 2023-11-29  232  
-995279d280d1ef5 Karolina Stolarek 2023-11-29  233  	KUNIT_ASSERT_EQ(test, err, -ERESTARTSYS);
-995279d280d1ef5 Karolina Stolarek 2023-11-29  234  }
-995279d280d1ef5 Karolina Stolarek 2023-11-29  235  #endif /* IS_BUILTIN(CONFIG_DRM_TTM_KUNIT_TEST) */
-995279d280d1ef5 Karolina Stolarek 2023-11-29  236  
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  588  
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  589  #define _compiletime_assert(condition, msg, prefix, suffix) \
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  590  	__compiletime_assert(condition, msg, prefix, suffix)
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  591  
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  592  /**
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  593   * compiletime_assert - break build and emit msg if condition is false
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  594   * @condition: a compile-time constant condition to check
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  595   * @msg:       a message to emit if condition is false
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  596   *
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  597   * In tradition of POSIX assert, this macro will break the build if the
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  598   * supplied condition is *false*, emitting the supplied error message if the
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  599   * compiler has support to do so.
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  600   */
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  601  #define compiletime_assert(condition, msg) \
+eb5c2d4b45e3d2 Will Deacon 2020-07-21 @602  	_compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  603  
 
 -- 
 0-DAY CI Kernel Test Service
