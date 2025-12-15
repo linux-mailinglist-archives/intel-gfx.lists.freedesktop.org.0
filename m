@@ -2,85 +2,85 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 066F9CBF872
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Dec 2025 20:24:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA76ACBF86E
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Dec 2025 20:24:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3F2A10E4F8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C81EF10E4F9;
 	Mon, 15 Dec 2025 19:24:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BWicSmp0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hYtv3w78";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6C2510E4EE;
- Mon, 15 Dec 2025 19:24:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0633C10E4F6;
+ Mon, 15 Dec 2025 19:24:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765826656; x=1797362656;
+ t=1765826657; x=1797362657;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=LUdgR6iFtQgqJd1UJf4+/8k/mJtG0LhpmhJSczW1H9s=;
- b=BWicSmp0GpZSR63ulShMkG2UXK3o5H4YOVxiHDj8aGBW7+CGhQ8RSFzg
- IYu+/mMd0bTsN2CUoqGi8XJm6N3yrOay1fJ1dQZkzzzzhAdWI+LGaD9w8
- XKpd3O5nPnZ0PVgyChUPY4EJjUE/ltJEy+CtJkQk0til7/geQzZ5lH6kO
- X+b65KMd7QTXpGr+fdhSoUbOUm9GDGelApoCEDYTH1AxADBLCA2wOUq7Q
- x391BXpAFn9L7m0mtWyHZ1/XPe9lwyy4v8wOvglhpZeMucPlxb/TJPPrO
- V0ftOVIb/a/EvKHwrhCh30jQuImZOxNAhZ8q+7MeGs96+OfZOhxxfQjI9 w==;
-X-CSE-ConnectionGUID: Chi+a00JRZSxwRoJ0JAxRw==
-X-CSE-MsgGUID: +ssF4B9YRu2iqDSUGZMo9w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11643"; a="85150023"
-X-IronPort-AV: E=Sophos;i="6.21,151,1763452800"; d="scan'208";a="85150023"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2025 11:24:16 -0800
-X-CSE-ConnectionGUID: ro/a5XBZSn+fXWAfEzuz2g==
-X-CSE-MsgGUID: 2+Yi3NkLTha4rHPwieclRw==
+ bh=Q6ssvN1tqz9OKts3+vZV6pG07UTsjYUNIWsimii0x2U=;
+ b=hYtv3w78m0sTr5iPP+9F0uwzTr/shksbwqEKPzUWqkoEj2O9MHOkVeFb
+ mKEE0v8rXAaMkZFOAcxBxRb9CzHAp1594q3Vm3qSnLUFHmjCvA2Mi891K
+ rkmHIgJxYlVgmC+4RIbs6+ih0h1nJIA64cZScxpJku65GgwqGGSCtln2C
+ Cwu0oPPjSUzUEgkuXtzFyoQOeHK83beIhqDnOZuZC0QfaOLIwJ7j2aQtO
+ xnPHOu6q0Tz6+EXfVQ+3r6au4M49lzprATFhcIJ3ijXIDe3jXVsvyMzAq
+ uRLdhZ8wCQesERGgOCAJwOPg4aLJBAFQQhYXPRguuthFKIBtjdkKK7QP7 w==;
+X-CSE-ConnectionGUID: xgO55eETTrCRqd/62yGezw==
+X-CSE-MsgGUID: 5f+S2Hm1QbKaYZEf1vqujQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11643"; a="79106244"
+X-IronPort-AV: E=Sophos;i="6.21,151,1763452800"; d="scan'208";a="79106244"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2025 11:24:17 -0800
+X-CSE-ConnectionGUID: VYacr3E/RJqTvqMWCiXR2g==
+X-CSE-MsgGUID: DIpahDrNRn6wGkzK7hVErg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,151,1763452800"; d="scan'208";a="197079264"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2025 11:24:15 -0800
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.21,151,1763452800"; d="scan'208";a="201987022"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2025 11:24:16 -0800
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Mon, 15 Dec 2025 11:24:14 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.2.2562.29; Mon, 15 Dec 2025 11:24:16 -0800
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Mon, 15 Dec 2025 11:24:14 -0800
-Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.52) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.29 via Frontend Transport; Mon, 15 Dec 2025 11:24:16 -0800
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.43) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Mon, 15 Dec 2025 11:24:14 -0800
+ 15.2.2562.29; Mon, 15 Dec 2025 11:24:16 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vEezuV0DKozBRYTfITEVlKYtVQfl3NBxUBJoWlzjC/K68wXXNS0RrYbiPQZBtYbEo9sY4NKTp3RkG3Y+WzOC7jRTJ321Og/nj783WlJ+6z31XoEMJ53jmF80UWZlIE5sXP4Cjr/6Ujt91r9CCYltLF6xf0zVCb52ERC9GpxPFVSdCNCNsM8tdLJ1fCoN95VvjZMrQ4nGACanTbJ9Soo61ohYwpfmGk1ZyuGCZ6vab3Yh3xTkWH015gMVodLZmDqN4OLG6Zv5lrxOwGfPLh2sXkGPQv0JTjaYXjOAizOcWaG+ngrkM10cXakBGnDIUjrSwrgrv51TCdq7Lvr4O8tmPA==
+ b=bzwbQBcWs4hUOROfe8ZYchZ9VrHViQVONwrvZNyqLwxNoJZHV7xzGaJlLMj8r8RuiDXQapzdlqWVNqfCAycfF4/uuPfUpDsKeS6/Mfs+ShPopgwjm7wde8xbKMORlbUCoTJ1JXTLLHmPdMFiejJQbe6pjr1TmRHQmFBk+fHe0s6ZVF7Q5gxcTSHKPFxhpGXLpdElUWpzSWSLNFUMiOTXzejTXi//cmvqj5JVjqae/CDzHb4ROeen7kYfLOFKidzmlVGnunu8vsWXush5SsKEO1YFagnEYuzhdJYP4MI2wn++BLOVWdrpJwQO4KsQ66x7Wqhd9oiN2Kz0ysDmC9aPGw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=N9DAq4V/IB0oMufNa6mmSd5cX4qjxhNN1JMmkrAu2AI=;
- b=g07SOSsghemoGQH67WIr7Tw9RhbAbFlHIivFavzpmHfvOrKEtjbAK/ivIdOPagJUgz9vuztF147ocFFE/LAtPvs/jujXaaoCVZSCOT1I51iu8p/nD4txX4Lds3OYReDC7Pl/HkkkqxjgZ5i6Xso5oy5jhUTDr5GxJRjkpKUG0aBvHmgRq3HNunSjIasgOQmU264Gd0mUdjbO1lf0QHROQ41lKZArz8X4oNT9rUPGmXuNNPzP9bUOy+enV+P4BU07L/FeH4aw+jyNzYM2KzKlIDtMNUyvoMwMAn01naGLuzjS0IxNo5xr1wZlXat7/xQheCC7UwFmJ+5Iaujt+tvoeQ==
+ bh=3ViWtyTt3sgllAvxH2pA4dpfrbK2MaQaLOfZYgIJwZg=;
+ b=lRo7fxVrDBaBfhLhrLtPrgidVJU8DoDXBXv7XPYpYvTDb7fGdjy9hujQzRUZ1ihDEXa74NzZPQW0WDvFHc5+DAbACDPRUJ/w6ii2wgEBsRcc+aRfpNlnViy0Zh7uhA3yVM8VG6ozjWFQGsE2CNngvFh8T0za/TEpTp8dZh6fnMNzLw1adfcj8taa2OP9VH3969TLIzcJhq5K4WPrIOry1BeSj87yJWgTserwLq4Klvf/9jEM1MjSu34pV8z1dqJB7RSdIpGusThftb16qCLbDsnL38SDndExkGtl1jRTafe1/TWad+f3vWKbAMvwWuFzSHhMjXE0CD+NvHVyF3QASA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
- by PH0PR11MB5128.namprd11.prod.outlook.com (2603:10b6:510:39::17)
+ by PH0PR11MB5112.namprd11.prod.outlook.com (2603:10b6:510:3b::18)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.13; Mon, 15 Dec
- 2025 19:24:12 +0000
+ 2025 19:24:14 +0000
 Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
  ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
  ([fe80::8900:d137:e757:ac9f%3]) with mapi id 15.20.9412.011; Mon, 15 Dec 2025
- 19:24:12 +0000
+ 19:24:14 +0000
 From: Imre Deak <imre.deak@intel.com>
 To: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
 CC: Luca Coelho <luciano.coelho@intel.com>
-Subject: [PATCH 07/16] drm/i915/dp: Fix BW check in
- is_bw_sufficient_for_dsc_config()
-Date: Mon, 15 Dec 2025 21:23:47 +0200
-Message-ID: <20251215192357.172201-8-imre.deak@intel.com>
+Subject: [PATCH 08/16] drm/i915/dp: Use the effective data rate for DP BW
+ calculation
+Date: Mon, 15 Dec 2025 21:23:48 +0200
+Message-ID: <20251215192357.172201-9-imre.deak@intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20251215192357.172201-1-imre.deak@intel.com>
 References: <20251215192357.172201-1-imre.deak@intel.com>
@@ -91,77 +91,77 @@ X-ClientProxiedBy: LO4P265CA0093.GBRP265.PROD.OUTLOOK.COM
  (2603:10b6:a03:2d1::10)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|PH0PR11MB5128:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5678517c-dede-4aa7-a3f2-08de3c0f8755
+X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|PH0PR11MB5112:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5993a2e6-3bda-42f3-547b-08de3c0f8832
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0; ARA:13230040|366016|376014|1800799024|10070799003;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?EpUpk8E4HlsEySnqelsUGa4SJfPj8C0dS0mAvVJBTLVGvbUFYMNvCEd0gd3x?=
- =?us-ascii?Q?4QQMovlR+4HfG5sj6cji6naUIMDZEDnQWopNVkt84nRF8xLx+h94akoQdeCw?=
- =?us-ascii?Q?ppy44hpEkXRZbbQJeykly6e5ApTVqlcI8Bu49uMmsbVruJcP+2OpXNxFA9rO?=
- =?us-ascii?Q?+ZNIDj2NLGNxF6Ai772SdFD8sANc5qhY8PlfnTlFN9+siIfSSkwxng/h12E+?=
- =?us-ascii?Q?3qnn4DoSC7FTRH4TEVvpgbrAxmNp3uSwa1Cxbm27AQtZEaTe83nCvQkzWU4u?=
- =?us-ascii?Q?0y5wTyR47rzufgmu1e5ndvYn7t4yvk6p0kwvOAquBkIeaUkk4KwlG718hXDX?=
- =?us-ascii?Q?/fjvKIieWXCeUc8iWyxa3DGbDE+E1cJwJN3UNHB5HylpmTXkXBCweUq9QmjH?=
- =?us-ascii?Q?zSWsdV8gL/AnRJufVc5213D0sUXCNvUEQjS0BV7D5/q4gypJZDHGuDA727Ki?=
- =?us-ascii?Q?QW3fKOTtxRFcaDUmne6YumTK5IVFvrcMx7S+XmNtLKzWn+Yjli26tG6unmf+?=
- =?us-ascii?Q?XVwSuNExDbe3W4JmjQHPMVhDLVPCJTBYzulnZO2Tuw28Kki7zeeo4vry/bKi?=
- =?us-ascii?Q?MPhYH3y8eyrkNeP4m5fw3oESunOXJlgdgnz5Lpcyz3FfAqyB95j1AVFYXpXw?=
- =?us-ascii?Q?+DfPNOfHuGSzMNMgM02iBcNn0wwk8kpFW/1pgi4qi2PYxmhxp951QToOwaaA?=
- =?us-ascii?Q?Q4hft/f+tCpjKrKqUmIzRCjQmFvpSRiGK/IE7Q6ASSL+DW87qn7QvO90VPqo?=
- =?us-ascii?Q?vG16toCVaoe/2i+pIIRjGuPfaItniouwFl2ZEwuCYY10wXkbCe+4YzAxMSMg?=
- =?us-ascii?Q?DuJxSUD9UINPKDHXavdzo60PXyk02cq04WFf3OKMScidmgs5ti/RB9MtE+zG?=
- =?us-ascii?Q?Nrl8+VSFoNIcaLfSIAJIpHI+kx+Z93kYxuQyRYg3mwX2Mk2S5lgWj9o7fUjW?=
- =?us-ascii?Q?2g9URRZ+WGVKsVGbJF5KtwirzdkVg6P55cZZdPi7zm4zaqE8hrNkImcIUylL?=
- =?us-ascii?Q?ThCuLWP/KoZ0oeApUwD5dkUEuu4OTVi6AfRgcBCxEfIfUszzsxmZEWUTJjXH?=
- =?us-ascii?Q?mypHOaiXjkyEz0YF+Y0jgtWRYSklq2PMg0Eh3cqsTBSM19R981xOnBeKlXsb?=
- =?us-ascii?Q?yjPHVpYijuHatkZuLm40Prv4kNnqGhykgFHoH9FI/0S1cVRoGnyoDG587UUX?=
- =?us-ascii?Q?c6/nlGV9YfkSyVx+7gB27rEw84VTcFlM2PPR5qYT+AaQmAaWflhBCaLl/6V+?=
- =?us-ascii?Q?NxiEWxKNA882iGnuAfQ8Gm8dMRhtNKYZTkpz8gBOGDpQTzqZ7FCtKy7PlH9a?=
- =?us-ascii?Q?H2XFRvnc46mF8lcy9jddKGrUiPCzXLsVv3EQtSFBSi8IVufJW3BiJY9w45Yi?=
- =?us-ascii?Q?wsqSmwQezmDaXyrfVjep6XfreNoNvqp6K0ShctmQMJdmibeQs96ShZipNg+h?=
- =?us-ascii?Q?tlgJ+kMI4psqlHRYauSkA3j85K1zhhDj?=
+X-Microsoft-Antispam: BCL:0; ARA:13230040|376014|10070799003|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?4Zczc6pFmX+jRjmjsfzo+FjyUHL0DDksizQQrLXSn5R7EP6PgO6JnyG5DVHC?=
+ =?us-ascii?Q?PsUUXiEvfEB20anEfIJWKAvBwcQEbB9Of8Z84ai5/KxygrlkII48Yu9XIKvh?=
+ =?us-ascii?Q?7zPs3GsbOO+a7RfTLTOnF8hAdXK96EIzRZy1xccgs6Xcs7/yZuhNOJ1osOvy?=
+ =?us-ascii?Q?cybtsGe88IfVaifrskcTNemiGF0v6e3fBjYO/sQLrsc+FAr7WZ2bxS+OhaAO?=
+ =?us-ascii?Q?bj2q6Yu+8mu8B/6LeOcQHli6v4FdXa1UIk6nHlF8wjfO3y28BUNfsghjbQ1T?=
+ =?us-ascii?Q?w2mcAFMevpJ6YxNZfhevb/2kuxumeGwJl1kZCnkH+Rd42fgdz2KZuJdOt126?=
+ =?us-ascii?Q?WUGjzmbnoBq1M8yReVw/x6zUxzDsXBfnEEeKlFOeKWbfixkgsl+f/jsEsZ5b?=
+ =?us-ascii?Q?74KF/Dypo2CZvrA74EYD4FNhU3yQANyE66peSFF3ycLgOB0symz1G0hI4xsz?=
+ =?us-ascii?Q?uqLHBYz1wvKiFySgelskb8I9ZkOTIDJQiqIzL9EozD5vZzN2i3l29KurzWD+?=
+ =?us-ascii?Q?tUBrdMN7aG3wuiBTEQD9t5f7oNjJS5Nww0iZ5jXPSA86wCiJbFffBRgWNEnQ?=
+ =?us-ascii?Q?aOiBAbNJI6anf+FriYMZotNnfq1bivQp4GWrHhsFqpha8/kWvTXJCuphUc0R?=
+ =?us-ascii?Q?gtWpy188OivQEEn/WZU8XHT6NIE5sscmE1TWCcF89jrnxVcYiSx0MNbKCjwY?=
+ =?us-ascii?Q?u9dk5NWTwRh9vtBUIFGZ34ke5G9mBw4yaiR+it465ncEmxWIaceL+Kq1XXW3?=
+ =?us-ascii?Q?VVuM7b/2QgAuy7dO1O9HNJ0WRGPGwM9UN131dioG/ZUYAjZSly0hqrykj+Bp?=
+ =?us-ascii?Q?L+c+2jt0JIeyj4XcFa/cS6lS0VEsT6p9FRamkGDgIkDq1dZsH+Q5PqTXlp6C?=
+ =?us-ascii?Q?1pNphH3vglLNbQDxQBhozfJqmdNMOE11JFxjA73xLLjcjgyxBkTD2aUcxizz?=
+ =?us-ascii?Q?5qjZPGXnhg8nJ4+Zlt1TO4pT9EMM7S4NFcnFnw6sha97ZQSKjdGRjtke8gT0?=
+ =?us-ascii?Q?lXcNvyatcbaOe3TM+OUUl6yjA/MSezuEJFLSvTALE+n5mX+QqpAfNWkAo699?=
+ =?us-ascii?Q?qx6atobghnp/7SUZkTZ9+CZc56IFioodBsWkwj01vcQQoU7l101iDSfQ9moM?=
+ =?us-ascii?Q?DEB1rezbYpGpMe5Pu3s3mEuuuCSZUuRNcTyRt60eB2GCF6uCxQNdu2gmUriZ?=
+ =?us-ascii?Q?yvHT7m7xh1TR9UP+2TlX790ZKrzJ5NUwv+9AwR8EsuvKbz8EI9zrZYFJX31N?=
+ =?us-ascii?Q?kAR4hCjeW6o55I8s5OKQZrpjnO4jwc9NILWDBjtm+9M8v7hbdmcmug+HifAH?=
+ =?us-ascii?Q?UX9wmEZxvS9aWtjo5QotTtVc/G/kXb/8jM29FMqB+b/Z2LowQSdLegxCfDho?=
+ =?us-ascii?Q?IKahK2zTIg1cPVdE36kMs5zEiarO7K/IRnhsXhQcN3/C7HGi2qBWvSsuR2zS?=
+ =?us-ascii?Q?agek/MCTUkPcKlslFZYlSjMy06JfEuxv?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(10070799003); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(376014)(10070799003)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?6/9xhgyIrGX71tp9iN/eiQc3I77O14biX3SGOM/2XNz++Ul8Cx/bb6GHj9p3?=
- =?us-ascii?Q?uo+lYYWG5j3Lrv81p4P7pDRjddmwbWx9QYDEpr++jVqD4abptm+KKE4h459E?=
- =?us-ascii?Q?6hcuy5/PyvTQdzJVmMYJ+SEjTgCREcgDHVhY+47XIJAPS9b8tM2Qg0NFWtjD?=
- =?us-ascii?Q?34/M0ZLoaNkYAERHKDssGHKBDQignKtmN9RNRTcWvntiZCkh7lkKUB03YMTs?=
- =?us-ascii?Q?GNcLwPZ5VMdMtdCxlST0NzQHLL2/B+E9TG9LmeLdLZLPkqKjiqNrK/Qi7VQz?=
- =?us-ascii?Q?1S1KWsljRkQgCORz58cfeXKk3qF6i0PogGAhfNl0Ja4rznkjZVkGBPvZu1hO?=
- =?us-ascii?Q?LDzNTuGLjmR2XG+knVgMN1DvcvWziHSMF1hn9x9gwi5r/wMveP+Bq0EJ8iVq?=
- =?us-ascii?Q?RTmq9KlFWFdSvPkxSRAlqpuv6xxE8LeMmVzRHL2Q56ZGUXW0hRYWFHqwK6LQ?=
- =?us-ascii?Q?CgvGZvcE6tcNQPjsGqzkokTq4W573aBgX8mR8SxJIlsAlPce6md5Vqtlaekq?=
- =?us-ascii?Q?B2wz4vWWsGHYfLwOREPi47NphPMU+VYjaMVO9QEnBAPWS3x4OTLhVCr6pTNQ?=
- =?us-ascii?Q?QLU0EilzAmCH/qy6n/xkoM389gypiDfIGMxyDh5F1CZx7VELgig4BBwpCS8t?=
- =?us-ascii?Q?pEgvnJX799tefTwYReTH8SYBqTSwIwBxPP6NiWYf09q7ULDpwqbCWDyOBcpl?=
- =?us-ascii?Q?OY1mCKmT4y+ED8gvpQUufZquO/zyRMPJujdyfkXedOH4JLgH34OxT92j7dQe?=
- =?us-ascii?Q?xOPVi6vqP1ER/UYQJ1JWAxI+YX6nK1qFzawdlEgs5SAPN0G1V8gJNfSXIo3j?=
- =?us-ascii?Q?p9hXmZXS6Et8zqgZ+JN8GWD1mGgIUAsTigkcv59a2mH4UBLWq5FZRyCfeHUV?=
- =?us-ascii?Q?xd8hloJKTKmuZwPoioembaUxVLHUTG4b9/L3JDlW2CwwfZZW8u7HRQ94J5M6?=
- =?us-ascii?Q?elMQmREoe0FP6Sgk0ufH6YHinWYEFe1i4qItI+uAYNj3JehyGHZJy335kYnT?=
- =?us-ascii?Q?3uuteCJMuGC2Z8svBk0abTY1lO5y1EwjX2qpCGpj27wvom+gHBfwWnNM3XaW?=
- =?us-ascii?Q?13Ggac567F//qH5Q1kJCJFfzQAZJISiavn/TAVmeKLy/wke2wNRMSPKhX45o?=
- =?us-ascii?Q?jTwvuxJxO7VbzLts3MnFv0lnWEY00DMczd1NjEoQmDIXjlU/xK1J5Hu/W3uv?=
- =?us-ascii?Q?ISTe7V8O152kLwZfdCwLsJKHkssR8c+O8N9dJT8e6DZL3GZrNvZNzWAUXVUW?=
- =?us-ascii?Q?RCkgfsE+NpRJR8Y93lqwyJuGlTYu80feYncmu6GEzV5YDDBuRqA3Gu+ogn3N?=
- =?us-ascii?Q?46c0rmjCkuO29c7AkMIylLsUegVsv7P5ShLMDGrVlPr0H1fAxNA81fxCEVVi?=
- =?us-ascii?Q?Wnhz04JVlusXv6tazR1NoHQVF9Zf3Xl1YFEBR6TjxL5HW67mCtSZZs9IalWh?=
- =?us-ascii?Q?wwSA+O74Co0O1O/z0W0NpvUY+AfuGXqHgQi11wnjmTXJbsXXPWQ92ep1byhq?=
- =?us-ascii?Q?h5mLJ8JGR7jVN+Sx/eBt9b8FePfu8zbcKHGKs/7t86NElnEzSkuhQKuTjj8H?=
- =?us-ascii?Q?Rf/FtlqXExycseRICX4MWNY97rIcwUPl6jHU4IOFoGRc4UG17zULQTAjgF1V?=
- =?us-ascii?Q?SfpsIRT3Cw1d126121pQviEkgYWo5FFrCLwUV2c1SES5?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5678517c-dede-4aa7-a3f2-08de3c0f8755
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?iP2S30F4dQYqhSb8BBD+0Tu+STD9SckDsTfdjKNIC1bfbbrEPiGWvU/igPQr?=
+ =?us-ascii?Q?i1yveLvGSfz+Y1rnCoxf4/LvE/pfJZ5BqJWMdqoBxSmoWVZvwH3xW/1ScUDK?=
+ =?us-ascii?Q?/sZzvulbbw5Pbn5nvQeLyz4ExFHMcJ1MNaABy8VJiEED7PzwWDqWTgY5d/2G?=
+ =?us-ascii?Q?jGvwXmBwqf0Da9dZ9uunMOO3MC38m9fxhjDbBq/HyYZl/mWjD9bcKygdFNUc?=
+ =?us-ascii?Q?ISA3UWZ/MAd8jds5nX8o4qiCpSt2DQ/0r1BwdYKjCZvq7E+fvgWTC7/WTCZj?=
+ =?us-ascii?Q?qNMxKBxlbrLFV3Z4ObgIcPxwsptqeg8MqFwlUVVJkAESDK5oxrB0j4PBNYg3?=
+ =?us-ascii?Q?3NQepeuv4+l3W8FpUXEby1MDGmKXtmYARC5tRd++rfmb2Kl7P/malZszELyz?=
+ =?us-ascii?Q?CJLw7Le+Wtdm1vDFG37+mTJns10sGl0ytqShLi2kHHoFwmxlDA/DnDP2mVTi?=
+ =?us-ascii?Q?AaCxIyNpcD+wrOBtozsseL0ADZ8weZ141zZ5nrbgKCaLcHhOSEEvxvfnxezi?=
+ =?us-ascii?Q?Q75zvnjL4zbCgUKk1+KDrHgkjmseyqwZqUPNVsIL8/L0SXrPMMLQH78XF7h7?=
+ =?us-ascii?Q?FLi1WSpI5DNA81Ovhg7hlBBfOUgrzMgjfjffDBUvswPYqBMG8xDCXAQQWqZb?=
+ =?us-ascii?Q?BP+kVMgaVV4aB+aYJ1rQfZLk/BwUkdKqkIPSzNkWLyrz7xnGyrJIk9R4BSFk?=
+ =?us-ascii?Q?epiv22VKtVCKZUQ+bxLUSm8bIX6nQ6CYkWm9IoVTYhYAtgpuiQsAsFHe6EDy?=
+ =?us-ascii?Q?+PUPc0AQardknIKjCEVlESpSwCxaiVaelyAosXD7N4hwzt0/09UHAsPqyFaI?=
+ =?us-ascii?Q?rld59FahK/7A3pf88PufZwCvQGrjYKCvAijBFeQEbLTDdrUnWnC3ytyaYtA7?=
+ =?us-ascii?Q?9yXjgIjYAwND+4awYzM7SEt69YyN8Wgc5cj+qqHpbp1/+Jgw9LbrJAEVnTkz?=
+ =?us-ascii?Q?aQ9T2lnBzhBHMQaZTcgKfQpiPPxkDEqK6Ed8olXElRLBSH+2e/LtSDUrduTm?=
+ =?us-ascii?Q?YbAZphocow6nS5bSHBa+VcQ2V1PAepwbT2ms4VSCY2pKqNjOVMlZ2iWwJ5Au?=
+ =?us-ascii?Q?xLD3hGQ8J/nD0Zaebj35uMs8MzGSqkb6/0mNVwFyRMPccORIx4uT0af5xwx1?=
+ =?us-ascii?Q?4RTJg8WnOhLv5720Q7puOIZGaOpiDu1sizmuF4wvS7MA3+GTphhnDzd7/NwZ?=
+ =?us-ascii?Q?shytJMgIl/qjNn76AA71NNyWAAYJI0ycknV9KpAnmM8Q5W7/vERQMhGqaCz9?=
+ =?us-ascii?Q?OUrBCM8+X2Cd4yDoPwpTbt4/QxMC7Zd6nIsiSYQn1+u+bENs5RnfVBveEV4G?=
+ =?us-ascii?Q?9Nw/QPplQcGhi5ElnZbOOiVwsbpdle7D+3Q+x0OkKTBDtN+Mh5Rd6orRMOQl?=
+ =?us-ascii?Q?ke3Ukb4OWf+LTuZGKxYMRdeqilU6Z58SQtByGzh8bm9uFQ6h4/PJzDwj852i?=
+ =?us-ascii?Q?09hE60eVlt9yikkvcyltC+yzThr/tLxwM6BpIL1PQKKnlHnAUMklJJIweDRW?=
+ =?us-ascii?Q?o6WjO+VO3MaxyPEXLmFNzVq8A/rfjP7pB0DE8ARKbimrY6kniohIboT5hHXw?=
+ =?us-ascii?Q?9U7/89zSB95pvY9+a/6n8qcLJgXcvxNvc/HBjrI6AUy09+2rekcnpdg/5rJ6?=
+ =?us-ascii?Q?IdL69TARWgi/3s4EeU6I1tGtG3vwuccFO21QFoQuY9mH?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5993a2e6-3bda-42f3-547b-08de3c0f8832
 X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2025 19:24:12.8456 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2025 19:24:14.1984 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 66EyYKlNGqnvV+m4HCQyr3Wcbd7JwJUZ006D3Z5ID1rEdxVImLAJYiXaMovs/0u8Yw7Trhugp10IiNxQt+IA0A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5128
+X-MS-Exchange-CrossTenant-UserPrincipalName: U1A8GTghpieUX8hbZgVlADh0EUIQ5QklQ1Obk4Ecgf6a9aL2WBqG/RA7T2iwpMQolk+i0/Ug8TlheHM5oPUL+A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5112
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -178,28 +178,165 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-is_bw_sufficient_for_dsc_config() should return true if the required BW
-equals the available BW, make it so.
+Use intel_dp_effective_data_rate() to calculate the required link BW for
+eDP, DP-SST and MST links. This ensures that the BW is calculated the
+same way for all DP output types, during mode validation as well as
+during state computation. This approach also allows for accounting with
+BW overheads due to the SSC, DSC, FEC being enabled on a link, as well
+as due to the MST symbol alignment on the link. Accounting for these
+overheads will be added by follow-up changes.
+
+This way also computes the stream BW on a UHBR link correctly, using the
+corresponding symbol size to effective data size ratio (i.e. ~97% link
+BW utilization for UHBR vs. only ~80% for non-UHBR).
 
 Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dp.c       | 40 +++++++++++--------
+ drivers/gpu/drm/i915/display/intel_dp.h       |  4 +-
+ .../drm/i915/display/intel_dp_link_training.c |  4 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |  4 +-
+ 4 files changed, 33 insertions(+), 19 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index a9f0485dbe646..ec4f64090a77b 100644
+index ec4f64090a77b..2a9652dab2e54 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2029,7 +2029,7 @@ static bool is_bw_sufficient_for_dsc_config(int dsc_bpp_x16, u32 link_clock,
- 	available_bw = (link_clock * lane_count * timeslots * 16)  / 8;
- 	required_bw = dsc_bpp_x16 * (intel_dp_mode_to_fec_clock(mode_clock));
- 
--	return available_bw > required_bw;
-+	return available_bw >= required_bw;
+@@ -453,15 +453,15 @@ int intel_dp_link_bw_overhead(int link_clock, int lane_count, int hdisplay,
+ /*
+  * The required data bandwidth for a mode with given pixel clock and bpp. This
+  * is the required net bandwidth independent of the data bandwidth efficiency.
+- *
+- * TODO: check if callers of this functions should use
+- * intel_dp_effective_data_rate() instead.
+  */
+-int
+-intel_dp_link_required(int pixel_clock, int bpp)
++int intel_dp_link_required(int link_clock, int lane_count,
++			   int mode_clock, int mode_hdisplay,
++			   int link_bpp_x16, unsigned long bw_overhead_flags)
+ {
+-	/* pixel_clock is in kHz, divide bpp by 8 for bit to Byte conversion */
+-	return DIV_ROUND_UP(pixel_clock * bpp, 8);
++	int bw_overhead = intel_dp_link_bw_overhead(link_clock, lane_count, mode_hdisplay,
++						    0, link_bpp_x16, bw_overhead_flags);
++
++	return intel_dp_effective_data_rate(mode_clock, link_bpp_x16, bw_overhead);
  }
  
- static int dsc_compute_link_config(struct intel_dp *intel_dp,
+ /**
+@@ -1531,7 +1531,9 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+ 	max_rate = intel_dp_max_link_data_rate(intel_dp, max_link_clock, max_lanes);
+ 
+ 	link_bpp_x16 = intel_dp_mode_min_link_bpp_x16(connector, mode);
+-	mode_rate = intel_dp_link_required(target_clock, fxp_q4_to_int_roundup(link_bpp_x16));
++	mode_rate = intel_dp_link_required(max_link_clock, max_lanes,
++					   target_clock, mode->hdisplay,
++					   link_bpp_x16, 0);
+ 
+ 	if (intel_dp_has_dsc(connector)) {
+ 		int pipe_bpp;
+@@ -1838,7 +1840,7 @@ intel_dp_compute_link_config_wide(struct intel_dp *intel_dp,
+ 				  const struct link_config_limits *limits)
+ {
+ 	int bpp, i, lane_count, clock = intel_dp_mode_clock(pipe_config, conn_state);
+-	int mode_rate, link_rate, link_avail;
++	int link_rate, link_avail;
+ 
+ 	for (bpp = fxp_q4_to_int(limits->link.max_bpp_x16);
+ 	     bpp >= fxp_q4_to_int(limits->link.min_bpp_x16);
+@@ -1846,8 +1848,6 @@ intel_dp_compute_link_config_wide(struct intel_dp *intel_dp,
+ 		int link_bpp_x16 =
+ 			intel_dp_output_format_link_bpp_x16(pipe_config->output_format, bpp);
+ 
+-		mode_rate = intel_dp_link_required(clock, fxp_q4_to_int_roundup(link_bpp_x16));
+-
+ 		for (i = 0; i < intel_dp->num_common_rates; i++) {
+ 			link_rate = intel_dp_common_rate(intel_dp, i);
+ 			if (link_rate < limits->min_rate ||
+@@ -1857,11 +1857,17 @@ intel_dp_compute_link_config_wide(struct intel_dp *intel_dp,
+ 			for (lane_count = limits->min_lane_count;
+ 			     lane_count <= limits->max_lane_count;
+ 			     lane_count <<= 1) {
++				const struct drm_display_mode *adjusted_mode =
++					&pipe_config->hw.adjusted_mode;
++				int mode_rate =
++					intel_dp_link_required(link_rate, lane_count,
++							       clock, adjusted_mode->hdisplay,
++							       link_bpp_x16, 0);
++
+ 				link_avail = intel_dp_max_link_data_rate(intel_dp,
+ 									 link_rate,
+ 									 lane_count);
+ 
+-
+ 				if (mode_rate <= link_avail) {
+ 					pipe_config->lane_count = lane_count;
+ 					pipe_config->pipe_bpp = bpp;
+@@ -2724,11 +2730,13 @@ int intel_dp_config_required_rate(const struct intel_crtc_state *crtc_state)
+ {
+ 	const struct drm_display_mode *adjusted_mode =
+ 		&crtc_state->hw.adjusted_mode;
+-	int bpp = crtc_state->dsc.compression_enable ?
+-		fxp_q4_to_int_roundup(crtc_state->dsc.compressed_bpp_x16) :
+-		crtc_state->pipe_bpp;
++	int link_bpp_x16 = crtc_state->dsc.compression_enable ?
++		crtc_state->dsc.compressed_bpp_x16 :
++		fxp_q4_from_int(crtc_state->pipe_bpp);
+ 
+-	return intel_dp_link_required(adjusted_mode->crtc_clock, bpp);
++	return intel_dp_link_required(crtc_state->port_clock, crtc_state->lane_count,
++				      adjusted_mode->crtc_clock, adjusted_mode->hdisplay,
++				      link_bpp_x16, 0);
+ }
+ 
+ bool intel_dp_joiner_needs_dsc(struct intel_display *display,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+index d7f9410129f49..30eebb8cad6d2 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.h
++++ b/drivers/gpu/drm/i915/display/intel_dp.h
+@@ -119,7 +119,9 @@ bool intel_dp_source_supports_tps4(struct intel_display *display);
+ 
+ int intel_dp_link_bw_overhead(int link_clock, int lane_count, int hdisplay,
+ 			      int dsc_slice_count, int bpp_x16, unsigned long flags);
+-int intel_dp_link_required(int pixel_clock, int bpp);
++int intel_dp_link_required(int link_clock, int lane_count,
++			   int mode_clock, int mode_hdisplay,
++			   int link_bpp_x16, unsigned long bw_overhead_flags);
+ int intel_dp_effective_data_rate(int pixel_clock, int bpp_x16,
+ 				 int bw_overhead);
+ int intel_dp_max_link_data_rate(struct intel_dp *intel_dp,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+index aad5fe14962f9..54c585c59b900 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+@@ -1195,7 +1195,9 @@ static bool intel_dp_can_link_train_fallback_for_edp(struct intel_dp *intel_dp,
+ 		intel_panel_preferred_fixed_mode(intel_dp->attached_connector);
+ 	int mode_rate, max_rate;
+ 
+-	mode_rate = intel_dp_link_required(fixed_mode->clock, 18);
++	mode_rate = intel_dp_link_required(link_rate, lane_count,
++					   fixed_mode->clock, fixed_mode->hdisplay,
++					   fxp_q4_from_int(18), 0);
+ 	max_rate = intel_dp_max_link_data_rate(intel_dp, link_rate, lane_count);
+ 	if (mode_rate > max_rate)
+ 		return false;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index c1058b4a85d02..e4dd6b4ca0512 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -1489,7 +1489,9 @@ mst_connector_mode_valid_ctx(struct drm_connector *_connector,
+ 
+ 	max_rate = intel_dp_max_link_data_rate(intel_dp,
+ 					       max_link_clock, max_lanes);
+-	mode_rate = intel_dp_link_required(mode->clock, min_bpp);
++	mode_rate = intel_dp_link_required(max_link_clock, max_lanes,
++					   mode->clock, mode->hdisplay,
++					   fxp_q4_from_int(min_bpp), 0);
+ 
+ 	/*
+ 	 * TODO:
 -- 
 2.49.1
 
