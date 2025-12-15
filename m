@@ -2,62 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1358FCBDAD5
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Dec 2025 13:03:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A08F5CBDB3A
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Dec 2025 13:08:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEED910E3F8;
-	Mon, 15 Dec 2025 12:03:14 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JIGdFLl0";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23FB310E3AA;
+	Mon, 15 Dec 2025 12:08:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 765ED89D56;
- Mon, 15 Dec 2025 12:03:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765800193; x=1797336193;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ozKUF7eNY0QPa+yES6PcH5XsVJDrbyaiHTWXMzQ7gyU=;
- b=JIGdFLl0+KxFETitWS7rHWkI/+KuaSi3bGzG/IliQRYluOCQqFqPeOV0
- 6bBF8LyPofb5DKkybTvbANYveKTFgxw/0gq5SmodG1T0p3P+0w8tnyHow
- FecbdiD/7iG50TXA7d/BMYcsDoL4U3GjcHtScUhDLSap61RFzvLwyZZTt
- 3WzXFOKSJYfPNCRW7ton+SFjwynTqL5911FmUqEfm7kzuvyb6BRCiT89d
- Hrr4lmnH+sIAJgdYisiTZ9StKdoQB7utRmkoAMCNm/IwfBDK9dWLb+y7b
- I5KsdF3X1fwLESLHEToEIB8+Pc+mSyfqUotxGrFpnXdtQsEVbk8XVSvcU w==;
-X-CSE-ConnectionGUID: bmjQSsCVSoS+qDpeN9l8fQ==
-X-CSE-MsgGUID: bUQVIqECRAeaySuGKO0r1g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11642"; a="85110693"
-X-IronPort-AV: E=Sophos;i="6.21,150,1763452800"; d="scan'208";a="85110693"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2025 04:03:13 -0800
-X-CSE-ConnectionGUID: k0FsacDCSFGCqmEEcUTOOA==
-X-CSE-MsgGUID: RaNv+ci5Srq5d9SoSQnWuQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,150,1763452800"; d="scan'208";a="198223354"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.106])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2025 04:03:11 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: Re: [PATCH 5/5] drm/i915/gvt/display_helpers: Cast argument to enum
- pipe for pipe-offset macro
-In-Reply-To: <20251215111842.2099789-6-ankit.k.nautiyal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20251215111842.2099789-1-ankit.k.nautiyal@intel.com>
- <20251215111842.2099789-6-ankit.k.nautiyal@intel.com>
-Date: Mon, 15 Dec 2025 14:03:08 +0200
-Message-ID: <9498ecce59866b5fac5410fa9d75c6d7d5a0e11e@intel.com>
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A41910E1F8;
+ Mon, 15 Dec 2025 12:08:08 +0000 (UTC)
+Received: from mobile-access-5d6aa7-235.dhcp.inet.fi ([93.106.167.235]
+ helo=[192.168.8.139])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
+ id 1vV7Mz-00000000p2Y-1RX0; Mon, 15 Dec 2025 14:08:06 +0200
+Message-ID: <20c7439d3635514785e107b589569e659938f5d4.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Date: Mon, 15 Dec 2025 14:08:04 +0200
+In-Reply-To: <aT_4ZsaerMLKqdEb@ideak-desk>
+References: <20251127175023.1522538-1-imre.deak@intel.com>
+ <20251127175023.1522538-16-imre.deak@intel.com>
+ <b99036ffc22bc31bdecff2b57a6a630dd941c634.camel@coelho.fi>
+ <aT_4ZsaerMLKqdEb@ideak-desk>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-7 
 MIME-Version: 1.0
-Content-Type: text/plain
+X-Spam-Checker-Version: SpamAssassin 4.0.2 (2025-08-27) on farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+ autolearn=ham autolearn_force=no version=4.0.2
+Subject: Re: [PATCH 15/50] drm/i915/dp: Factor out
+ align_max_vesa_compressed_bpp_x16()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,51 +52,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 15 Dec 2025, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
-> TRANSCONF() expands via _MMIO_PIPE2, i.e., it uses pipe-based addressing.
-> In GVT, some call sites pass an enum transcoder to TRANSCONF(), which now
-> routes through INTEL_DISPLAY_DEVICE_PIPE_OFFSET() and ultimately calls
-> intel_display_device_pipe_offset(), whose parameter type is enum pipe.
->
-> This results in -Werror=enum-conversion.
->
-> To address this, cast the index to enum pipe in the GVT-side macro
-> override.
->
-> This works for all cases as TRANSCODER_{A,B,C,D} all have 1:1 mapping to
-> PIPE_{A,B,C,D} except for TRANSCODER_EDP.
->
-> There is one place which uses TRANSCONF() with TRANSCODER_EDP, which
-> appears to be incorrect. In any case, the cast preserves the previous
-> behaviour.
+On Mon, 2025-12-15 at 14:00 +0200, Imre Deak wrote:
+> On Mon, Dec 15, 2025 at 09:49:45AM +0200, Luca Coelho wrote:
+> > On Thu, 2025-11-27 at 19:49 +0200, Imre Deak wrote:
+> > > Factor out align_max_vesa_compressed_bpp_x16(), also used later for
+> > > computing the maximum DSC compressed BPP limit.
+> > >=20
+> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_dp.c | 35 ++++++++++++++---------=
+--
+> > >  1 file changed, 20 insertions(+), 15 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/dr=
+m/i915/display/intel_dp.c
+> > > index dcb9bc11e677b..3111758578d6c 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > > @@ -867,10 +867,23 @@ small_joiner_ram_size_bits(struct intel_display=
+ *display)
+> > >  		return 6144 * 8;
+> > >  }
+> > > =20
+> > > +static int align_max_vesa_compressed_bpp_x16(int max_link_bpp_x16)
+> > > +{
+> > > +	int i;
+> > > +
+> > > +	for (i =3D ARRAY_SIZE(valid_dsc_bpp) - 1; i >=3D 0; i--) {
+> > > +		int vesa_bpp_x16 =3D fxp_q4_from_int(valid_dsc_bpp[i]);
+> >=20
+> > Any reason why you're doing the loop from the end to the beginning,
+> > instead of the more natural from 0 to the end?
+>=20
+> Yes. The values in valid_dsc_bpp[] are stored in increasing order, so to
+> find the maximum value <=3D the passed-in limit, the natural iteration
+> order is from the end of the array.
 
-Maybe the question to ask is if TRANSCONF() using _MMIO_PIPE2() is
-correct or not?
+I don't really see how this affects anything functionally and by
+"natural" I meant for the person reading the code.  I had to think a
+bit deeper when reviewing this loop because it's not the "for (i =3D 0; i
+< ARRAY_SIZE(...); i++)" format I'm mostly used to.
 
-BR,
-Jani.
+Anyway, another nitpick with not functional issues, so:
 
->
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/gvt/display_helpers.h | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gvt/display_helpers.h b/drivers/gpu/drm/i915/gvt/display_helpers.h
-> index d11ebb03b946..fb75cc9f97cc 100644
-> --- a/drivers/gpu/drm/i915/gvt/display_helpers.h
-> +++ b/drivers/gpu/drm/i915/gvt/display_helpers.h
-> @@ -21,8 +21,8 @@ struct display;
->  #ifdef INTEL_DISPLAY_DEVICE_PIPE_OFFSET
->  #undef INTEL_DISPLAY_DEVICE_PIPE_OFFSET
->  #endif
-> -#define INTEL_DISPLAY_DEVICE_PIPE_OFFSET(display, pipe) \
-> -	intel_display_device_pipe_offset((display), (pipe))
-> +#define INTEL_DISPLAY_DEVICE_PIPE_OFFSET(display, idx) \
-> +	intel_display_device_pipe_offset((display), (enum pipe)(idx))
->  
->  #ifdef INTEL_DISPLAY_DEVICE_TRANS_OFFSET
->  #undef INTEL_DISPLAY_DEVICE_TRANS_OFFSET
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
--- 
-Jani Nikula, Intel
+--
+Cheers,
+Luca.
+
+
+
+> > I think this is clearer and less prone to mistakes:
+> >=20
+> > 	for (i =3D 0; i < ARRAY_SIZE(valid_dsc_bpp); i++) {...}
+> >=20
+> >=20
+> > > +
+> > > +		if (vesa_bpp_x16 <=3D max_link_bpp_x16)
+> > > +			return vesa_bpp_x16;
+> > > +	}
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > >  static u32 intel_dp_dsc_nearest_valid_bpp(struct intel_display *disp=
+lay, u32 bpp, u32 pipe_bpp)
+> > >  {
+> > >  	u32 bits_per_pixel =3D bpp;
+> > > -	int i;
+> > > =20
+> > >  	/* Error out if the max bpp is less than smallest allowed valid bpp=
+ */
+> > >  	if (bits_per_pixel < valid_dsc_bpp[0]) {
+> > > @@ -899,15 +912,13 @@ static u32 intel_dp_dsc_nearest_valid_bpp(struc=
+t intel_display *display, u32 bpp
+> > >  		}
+> > >  		bits_per_pixel =3D min_t(u32, bits_per_pixel, 27);
+> > >  	} else {
+> > > +		int link_bpp_x16 =3D fxp_q4_from_int(bits_per_pixel);
+> > > +
+> > >  		/* Find the nearest match in the array of known BPPs from VESA */
+> > > -		for (i =3D 0; i < ARRAY_SIZE(valid_dsc_bpp) - 1; i++) {
+> > > -			if (bits_per_pixel < valid_dsc_bpp[i + 1])
+> > > -				break;
+> > > -		}
+> > > -		drm_dbg_kms(display->drm, "Set dsc bpp from %d to VESA %d\n",
+> > > -			    bits_per_pixel, valid_dsc_bpp[i]);
+> > > +		link_bpp_x16 =3D align_max_vesa_compressed_bpp_x16(link_bpp_x16);
+> > > =20
+> > > -		bits_per_pixel =3D valid_dsc_bpp[i];
+> > > +		drm_WARN_ON(display->drm, fxp_q4_to_frac(link_bpp_x16));
+> > > +		bits_per_pixel =3D fxp_q4_to_int(link_bpp_x16);
+> > >  	}
+> > > =20
+> > >  	return bits_per_pixel;
+> > > @@ -2219,7 +2230,6 @@ int intel_dp_dsc_bpp_step_x16(const struct inte=
+l_connector *connector)
+> > >  bool intel_dp_dsc_valid_compressed_bpp(struct intel_dp *intel_dp, in=
+t bpp_x16)
+> > >  {
+> > >  	struct intel_display *display =3D to_intel_display(intel_dp);
+> > > -	int i;
+> > > =20
+> > >  	if (DISPLAY_VER(display) >=3D 13) {
+> > >  		if (intel_dp->force_dsc_fractional_bpp_en && !fxp_q4_to_frac(bpp_x=
+16))
+> > > @@ -2231,12 +2241,7 @@ bool intel_dp_dsc_valid_compressed_bpp(struct =
+intel_dp *intel_dp, int bpp_x16)
+> > >  	if (fxp_q4_to_frac(bpp_x16))
+> > >  		return false;
+> > > =20
+> > > -	for (i =3D 0; i < ARRAY_SIZE(valid_dsc_bpp); i++) {
+> > > -		if (fxp_q4_to_int(bpp_x16) =3D=3D valid_dsc_bpp[i])
+> > > -			return true;
+> > > -	}
+> > > -
+> > > -	return false;
+> > > +	return align_max_vesa_compressed_bpp_x16(bpp_x16) =3D=3D bpp_x16;
+> > >  }
+> > > =20
+> > >  /*
