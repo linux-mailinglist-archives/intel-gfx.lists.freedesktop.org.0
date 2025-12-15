@@ -2,192 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17DE8CBD013
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Dec 2025 09:43:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50AAECBD671
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Dec 2025 11:46:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 902E988EFE;
-	Mon, 15 Dec 2025 08:43:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D5D910E26E;
+	Mon, 15 Dec 2025 10:46:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dIojckYc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PyXsbZRe";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C340788EFE;
- Mon, 15 Dec 2025 08:43:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B33C510E26E;
+ Mon, 15 Dec 2025 10:46:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765788202; x=1797324202;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=dVVzkP9N/ydhklpppTLy01QLTJGFU7wIEPGOplmvDUA=;
- b=dIojckYcEBcH04U3Jhowj46kKe1MeYmQVRkwebVFiieJiBVDGctVy/S1
- UmFYJBZ5UzHltr2M40oSfXEdn6B2Knozf6Sed7e6fJHZunugoOhvKSeMR
- 2c4oOvyoSfL3Y77ss4sVZaqVAE4kWU+nL3+QjGR4WZXTFnGDsCJW5OnkA
- 9FnVek9Bb/RAYP9EjlWj+XfUtEg20zw938h8Rp/nvZOb0bJVuBnn8uvIX
- hKX4XUWAxfCpnncQtoqQtlqnMyEHFrHSUGaiIWDStK9nSJpHjOnlciPCp
- RyTstfaEUfrfRIEw6bBK/6OKf9+ClM2uYx3iI0JKmFdlhq8OixFmlwmC5 g==;
-X-CSE-ConnectionGUID: AOzCKGTZQnK8qnxYIfH4Lw==
-X-CSE-MsgGUID: tn1HDToiRWmD3RHmHNe4Yw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11642"; a="78800240"
-X-IronPort-AV: E=Sophos;i="6.21,150,1763452800"; d="scan'208";a="78800240"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2025 00:43:22 -0800
-X-CSE-ConnectionGUID: sElr31KGReC5F/6IGKd28A==
-X-CSE-MsgGUID: mXOs+vXZQCOban7n5xPF8g==
+ t=1765795590; x=1797331590;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Bk15fFQaaNzeTwIC9795mFTycSNqNCgufGv6rxPBva8=;
+ b=PyXsbZRe0wexDDlcF2aWGjndv/eQrSM8Bdfc3Q/GlnEsFqOhocYNZF3u
+ i/2EON2ibTop3s5tzY/wWH4FA9EenOElcrh5Ue3Qps5OgTRGdHp25nGrj
+ i2SFfvHchiKuhowFndVRc9NU7RF0RiX9S9tygy1DROXYsQdx8etCtr2Vv
+ nWMPrDm2xcEJ6Ljy91CZIECxLim+YDuInkjZlmtgLJsyLIdHPHH3tgwMH
+ WjWfVZu72Tu7qaXS4t1ZXYxE0oBtRUGXHdejcNWeu0f5DbU4/Q530UwZk
+ 7MIMWpSLnUGV7fOH1H4OStnPvD8HZXLOkgsheNr9UCnFA7HyOa8iDNaAS Q==;
+X-CSE-ConnectionGUID: cFh8EmROSAqefWlcqaQ2RQ==
+X-CSE-MsgGUID: A559Iw7hQRCNEBDCfX9oJg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11642"; a="55258318"
+X-IronPort-AV: E=Sophos;i="6.21,150,1763452800"; d="scan'208";a="55258318"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2025 02:46:29 -0800
+X-CSE-ConnectionGUID: VTvqYNBUSx6AZXQyYR1e+A==
+X-CSE-MsgGUID: eyUgr191R++dzMUJ7Zp7cQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,150,1763452800"; d="scan'208";a="196932219"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2025 00:43:21 -0800
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Mon, 15 Dec 2025 00:43:20 -0800
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Mon, 15 Dec 2025 00:43:20 -0800
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.42) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Mon, 15 Dec 2025 00:43:19 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WdyGTuudYVrCp8xFvCVI4B7AFagX6JPf8uOH31yM56sHP5R9adBhhvrmFif6uKVY858yq2r7ZTLywLxml2hRU8xBFF5h0aZoGIgYtZkz9ckp8TdwMULAAN0YKlW5o1c2ZCIFnya2yaBS583jW5sxy1XqG+Ejn0Z2FUDEBHpQ5uoCMiQvn+wUH+dJcWni/Z9fsFi9u9L7hfeuHNHO3EO94wWN4heJhKyy8clxLr5V8YKFtiXoUkKXU2+16y4gVAGxCk/mJLqIxZ9onTp133KTVRXZLS3SU7BjOXOsgWrx2bVz+SavKP+WKGTfE8amsUa6SX2g3ekFUD/wIlKMeZ4nqQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bHuWdZhHVrYuXZgxkenxMtX62PTlWvatke8MKaHIMqI=;
- b=rnHPmbxir+PmuqzsxA0gCUY2LCH0Yo5Uh26U3/TbvANReJgvjDdR8ar3NWJMuw2afZaPIGbD0n0itWwNWlaf0+SwRLD7ZRJdadvtV/ZWsAG2QylphMxUkZyzkpewb1gJllzR27iHqD8JEo332ZgIHjsaMs1U/tu02ZdLob9vHIrwNRNfsNw7iXM/zzpXlIyD4sJKIHU/5Zzz3Mb5upxk97ZX2euCMvR8Q+Iq1DWVDnRRJBmJwrvlKsJfSt9XSwOGM94r36UAYd8ypVlpwdEQD34jw9N35L4yVO/z/vyIuesXOz+NtqydXMvSJh3HZAJo1UPwXZc30iBAoZcnlpDeug==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com (2603:10b6:a03:488::12)
- by DM3PR11MB8669.namprd11.prod.outlook.com (2603:10b6:0:14::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9412.13; Mon, 15 Dec 2025 08:43:17 +0000
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::21c3:4b36:8cc5:b525]) by SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::21c3:4b36:8cc5:b525%5]) with mapi id 15.20.9412.011; Mon, 15 Dec 2025
- 08:43:17 +0000
-Message-ID: <31921238-6621-40d5-94b5-8ba3e5f9d40c@intel.com>
-Date: Mon, 15 Dec 2025 14:13:08 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [v8 14/15] drm/i915/color: Add 3D LUT to color pipeline
-Content-Language: en-GB
-To: Simon Ser <contact@emersion.fr>
-CC: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, "Uma
- Shankar" <uma.shankar@intel.com>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <pekka.paalanen@collabora.com>, <harry.wentland@amd.com>, <mwen@igalia.com>,
- <jadahl@redhat.com>, <sebastian.wick@redhat.com>, <swati2.sharma@intel.com>,
- <alex.hung@amd.com>, <jani.nikula@intel.com>, <suraj.kandpal@intel.com>
-References: <20251203085211.3663374-1-uma.shankar@intel.com>
- <20251203085211.3663374-15-uma.shankar@intel.com>
- <aTwwBMKUp5AYmFTN@intel.com> <f24364ad-a861-4fcd-93ab-3230a6b3299b@intel.com>
- <k4mMdQv6X-RIzc4veUD5pP2oD1KGp1Tx6ifJM6S8W3nrowRPz275vsfcNUHeflvxZaISPaM_e861Q-1rO1jnV8bNNmOdPJ3tyS3GVbnpbao=@emersion.fr>
-From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-In-Reply-To: <k4mMdQv6X-RIzc4veUD5pP2oD1KGp1Tx6ifJM6S8W3nrowRPz275vsfcNUHeflvxZaISPaM_e861Q-1rO1jnV8bNNmOdPJ3tyS3GVbnpbao=@emersion.fr>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5P287CA0111.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1b5::6) To SJ1PR11MB6129.namprd11.prod.outlook.com
- (2603:10b6:a03:488::12)
+X-IronPort-AV: E=Sophos;i="6.21,150,1763452800"; d="scan'208";a="228764455"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.107])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2025 02:46:26 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+Cc: stable@vger.kernel.org, =?UTF-8?B?6rmA6rCV66+8?= <km.kim1503@gmail.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+Subject: Re: [PATCH v4] drm/i915/gem: Zero-initialize the eb.vma array in
+ i915_gem_do_execbuffer
+Date: Mon, 15 Dec 2025 11:46:24 +0100
+Message-ID: <84087946.yqcDRGjS6z@jkrzyszt-mobl2.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20251212150611.18757-2-krzysztof.niemiec@intel.com>
+References: <20251212150611.18757-2-krzysztof.niemiec@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PR11MB6129:EE_|DM3PR11MB8669:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1f0411d2-5858-47ba-e146-08de3bb5fe33
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|7416014|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?NkthVGFESC8yMDk3R1krZmMzdVFleWF3WlJhWjRWekgxMzJocS9qY2phMytu?=
- =?utf-8?B?L2U3eVpzV0hieDFKamYyL1lhNjl5aE11d0tPeGtwNjEzWUVHZ0hUbHpKQmpM?=
- =?utf-8?B?N2dkdTZ0U0MrdEFqRlJLLzhkbUhiRDFxUDBzSmFWbG1adEl6RUFxRzhrdFJu?=
- =?utf-8?B?RlhaYWJScE15TE1BZlFEQjlTSVF6ai9rRXp3Ym5YWHJEYjZPdTNWaUVTWWJJ?=
- =?utf-8?B?NzNvREJkRzM2UU8yTGp5QXNybG02ZDVYWk9ZN0I3VHJVRGdNYnRtcTZFcGFv?=
- =?utf-8?B?QWhSTXFEaTNCb2d1MWZva3FvL1pZQ1lRR1pJdS84cm9INmw0QkdZVy9tRDcx?=
- =?utf-8?B?c1BqQ0tXYmluNXQvYjB4SXNoTjU3cjdWSXdjWkZJYng2R05nOEJmZG1zN1JH?=
- =?utf-8?B?N3oySmVrQ3pveUVPQ2o2bGJsZ3doekN3aCtYZ2FvNE1lcmdDeVBib0YzaGVE?=
- =?utf-8?B?eS85YVBYRVY2YXFNUEJPQzVXb3lQTFZlV0xKcGFmQ0R1NWlyUW5TWDFKbFJO?=
- =?utf-8?B?ZWJKZ3ptQ0JKaFpDNWpsWUg5Vko2M200RVhTT3ZvSHdBOVFpeFRlQzlpVUEr?=
- =?utf-8?B?L3JRRzBjc3hLMERpT24rUjdIT0U0R0hVOG9xTHZaWWdVTXVudjdCWW9JVkk3?=
- =?utf-8?B?bXRHQkh0a1cwTDFRMUFrenF4aXlKbnNZNDdtMkJCeUMvUGNJYXBDcUE2ZmxB?=
- =?utf-8?B?RDJkcWxjWE5SekNqZGVhYjBaTlQwTkp1clVuQS8xdktaYmw3akZEM05VR013?=
- =?utf-8?B?TmRBS3ZSVFF1UWNnOHl5TXdsYWZQSWRHNWxxUXZBWEVpWHRVN1hRWFdEN1pu?=
- =?utf-8?B?OXBUaVBFcWNuWDc2YXljdmZrS0IvWHFHVnIyRjVLSVNRTXlRNjNuM3YvY2pJ?=
- =?utf-8?B?bGNXTUVaSldoNjZvajNHUGJXbVp5Rkw2Z2pnRDNEb0YvQXlrZ2s2ZURscEVD?=
- =?utf-8?B?bzdjMWZaSFJpVnB3VUtIcnV0Y1M5dW5uWU41Q0lITVlvVGJRcTMwRnBXRk9h?=
- =?utf-8?B?N3lRTWdOcHVYNlc3TnFOYW1ZR2tyajhuZWhqNWFITHR4a29Lelg3eU1rdkxU?=
- =?utf-8?B?VDhld05VTXlMSjh3ZEk2ZzJjR3daaE1UczVoNkgwWFBLVm9hM2I4V3Bpd3Vm?=
- =?utf-8?B?Y1kycitUMVVUZUZpUlF0NzJsWFRGckdtMS9VRXhmK0dLeDI0dzZBbEhqNVly?=
- =?utf-8?B?bitIU0lCcFovMjl0clVZZStFM2ZPOCtSNlhUM0dBalFXaFB4QkVsb0V1M25R?=
- =?utf-8?B?ck5PQUlnYU83TTdxelplQ1U3Y3RqWmNDTE93UkRna2JYeHpkL3VQeDZUckVJ?=
- =?utf-8?B?YldFT24zcE5FVTl2MEdKRkU1VGV5VjV1b25CZnFQME9ZNTZHMURRWW1GQmJk?=
- =?utf-8?B?VDkwaHVuUTdpRjREVHBickRaMzc1ZzcyL3Z0QXJyTkN4a3p1VVRZTXA3OEFj?=
- =?utf-8?B?QXp0RjczN0tHUEVzdkJFYWF4aDRaRERWd3hXeEZUd3NVVGhDMmJEb2V1VXpR?=
- =?utf-8?B?Qk91Qm9peWh3SUs3NVRESlRsSTdVZERNNkJ6Z0xrWjZDSjFadWZjQnlrM1Z3?=
- =?utf-8?B?dFFzak5yaExZdm02R0Mxbloxd21LRC80UU9EZHZLNHlGdXhCaWNJcUt5SmZz?=
- =?utf-8?B?N2MrcEQ0STJjaGQ5dU5JSHF1Sk5hSUYveTBtb1VtVU9KRTZIQzFua0pWeC90?=
- =?utf-8?B?U2syVitxVEE4WUFUOHlybzhWTkRiWHhVZU5PUm02ZlZiS3hiaml6VXAwamd0?=
- =?utf-8?B?NGlra2tEYStoaUxUWUpWSGFUaks2cHZTVVZJcXlxUFljMy9CdnNjNlFCVU5O?=
- =?utf-8?B?L1NWSVF3b1pycWl1VVlYUytlU2Mydmt1OEhKWmFONWlLMjhta0xpa0t6STRI?=
- =?utf-8?B?RlNzMlU2N1owSnRpTTJQaVQyUm1pL0RqUDhqN0xQdFJlY0xFTXBZekhwR09h?=
- =?utf-8?Q?LwhDYGRZDFS7AYrw85bxHHCrbD8uSOK9?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ1PR11MB6129.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(7416014)(366016)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RjhDUzBNQWF1RUFndUpSZnJIQ0tQV2RPZTFGb0Q0YzJHeXNyQ1NQbjFoSEww?=
- =?utf-8?B?dVg2b09TL0t1MVgyMzUzMDBLVjU3ejJHUm9zOHZhVlpkOGFmVVFEQThtM1p6?=
- =?utf-8?B?bm1pcHRkVEc2b2FFTUpTMkZYVVhEay9IbG5FYmhHeFBRbWpUeUMvN3BoZEhL?=
- =?utf-8?B?VHdLazFNU01GTlo3NjdQTnN2ZUIzN1Y0MDgrWG90cWlIQ04rRzhmQTFYK1c3?=
- =?utf-8?B?RlhLTnNoR0pBWFBWbTJUcEU5VkcwcEtQeHJiZjlKNWQ2ZVNTWFZiQnB5OWJR?=
- =?utf-8?B?THBoQkdtWlZidUh4OUVETDdhZGkxOXJRSEpTbTEyU3FiWE9rc1RuN05wbFlo?=
- =?utf-8?B?c1NuanBqcHFqUWJ1bTBWSlJZZjNqRXppZ2xwQzNIUmFZMk5rbkJLUk9lWmUz?=
- =?utf-8?B?cGxqd0VpSWxNMVBUeXY0NWxLUkZrZzZaNGE2MDdWSmRrTHpENDNNVGpSWFRy?=
- =?utf-8?B?VjhRQTh4UEd6bGpQRGZUeUpFQlBWL0xJa1RYdkhJejI3WE91ZWZ2R0E2MUpl?=
- =?utf-8?B?QnowZVh2NWhiK09MN2tUTGNkN0lQTENIbGdDcmxFcjFvanBNeXB0YTFwd21y?=
- =?utf-8?B?OWdNUnRVd0NyNERTaWIvS2k2RGhjUVN1b0lGRjJBTHl3UW9lSEdMMkRjSWIv?=
- =?utf-8?B?MWpjOCtYN21Eb2pGU3FyeHBmU2xmYW9HVm55WFNpTW1LTWNLcnFHcXRqZ0tR?=
- =?utf-8?B?V3FxbERUNC9oU21oNTVZaDJiL2pqVlRPMWwreWFkbmEzc3F3MHg3dC9CVmZM?=
- =?utf-8?B?dkFXOTFxVVFYZHdoSHAwNGZ2ZURtZ2tGdkRETzVKcVlNUWVZWHI5RGJUdmF2?=
- =?utf-8?B?VFViZi9HNUQzclRHZFhQb0w4bFA3MWZ0dmNKd0xjOGhVdTMweU9DZExhQytI?=
- =?utf-8?B?d3lTd1FIajNiVFpxRTB4UUNPN0JWMHlzUnZhQUU0UTM5RHFBRXhQTWNBekVi?=
- =?utf-8?B?bTBtbTFYT0lNZGxaRXJlRGJNc1BUZjYwcldwdWVYVlcvSW5WQzg3SXRQWFVI?=
- =?utf-8?B?RUxieVhGY09uM3NVWGNQSklUZ05lVDZ6ODE1cFFEWElsb1pzOTVzR2g1NVdi?=
- =?utf-8?B?SWNWM3hhZ2s4OVR2MjRQek9xTXNIY2RyQjc5bmVtTnMvcSt5N25zaUMvREM1?=
- =?utf-8?B?Vy9QZ1ptYUxlRDloVUR6US9qc1Z6d1V0VTMzdmliNTh2TzZZTEpVNlhOZS82?=
- =?utf-8?B?K2Y5N0ZpckxvMlU2L0hpZ0M1RjdyclNUYVlaVFRpMGlVTGVBMXBjeHBUUVRJ?=
- =?utf-8?B?YzEyWDdmWFJZZ0R4SlhEVG9nWVo0OHoyR1ZoZ0ovWHVUUHkxK1FtVEJ2UGNS?=
- =?utf-8?B?ZURHdXU4MEFoNmpMM044MEIrVFRKdCtyVVQvQzY1eEtQTmhwV2FXcW5Udnd6?=
- =?utf-8?B?MUIycVVlVVByMDNzMHErTVBGczdoU0hBYXR1bVRyczdhS3ZZSXNHc1JRL3hl?=
- =?utf-8?B?MHcvbWU4WkhST1RRQ3A1WDE5OERWS2FzM3FhRTVvL0hQdnowVXc5TTRSeXQz?=
- =?utf-8?B?VnNpd3R2NnhjSjVLdmx4Z3dXUXgrRjhJa21IRWFjQWVtdjk0bHlsQmRkbmVV?=
- =?utf-8?B?ZGFzWW8wcllkZUdNWStMUHozakE2L0dyZDI3ZEg0aDVTaGdGcW1SdlNaelNj?=
- =?utf-8?B?SHkwK3UyZWpkbGxHbnNZb3lOYk9MTEV5Vmt5eVhLeG9uYjJ3bDFSSjNheGRO?=
- =?utf-8?B?NUxmR2xQeTFKZXp3NjYrYTMyaHMwWkdXdkVXSDMrYW5VOFZZbVdCUWRZaEkw?=
- =?utf-8?B?QnpXY1J2aGg0SmdSNXljV2ltS1QySC9tOHMyVy8zQ2g5TGJ4SzcyQUZhUHZl?=
- =?utf-8?B?U1dFcDBjN1N5RXR4ZjhFODg2SkVQUjRsaTJEZjk2Ly9XckpSVml3czJFaWdV?=
- =?utf-8?B?KzdJUGZkWnAwK0dtWXh1eGJlVGk1VW8ydHRmQVZ6Uzd4TTNNSTJ4VmEyTEN1?=
- =?utf-8?B?OTM0MGYxMjVJOFM4SFlzcHpHcXljblJ4dzVmMHgzMzlxMCtHN21SdlBaNTlw?=
- =?utf-8?B?OUdLenVOSHY3enEvbC9MREpIalpXaTFmbzRGZ2Q5TitRSjFMZFM3blBGOGRo?=
- =?utf-8?B?M3ROL3h2Y1Y3OUU1dXJTR213VzJJMExzamdnS1ZOT1dRZTdFVXhlZXMwblNJ?=
- =?utf-8?B?UnFvOTY2TEpQc2NqaDRNZktpbTgvdmRlNTR3dG1CVnR5NEtUcnhEcUVXdnJn?=
- =?utf-8?Q?32T/WPDErSOqEfyERJxZx5I=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1f0411d2-5858-47ba-e146-08de3bb5fe33
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6129.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2025 08:43:17.5934 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pRSPLEgCIDBYyzt7IItEhuZBu0BWhR7xmc4uoJEEDu5to3GPZXrwQKiqjycopvEJdXZidjGJQUD5xMqqqGoqIZcNy6136VP5zXna7UnZepQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PR11MB8669
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -203,59 +78,158 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 12/12/2025 11:55 PM, Simon Ser wrote:
-> On Friday, December 12th, 2025 at 18:47, Borah, Chaitanya Kumar <chaitanya.kumar.borah@intel.com> wrote:
+On Friday, 12 December 2025 16:06:12 CET Krzysztof Niemiec wrote:
+> Initialize the eb.vma array with values of 0 when the eb structure is
+> first set up. In particular, this sets the eb->vma[i].vma pointers to
+> NULL, simplifying cleanup and getting rid of the bug described below.
 > 
->>>> +void intel_color_plane_commit_arm(struct intel_dsb *dsb,
->>>> + const struct intel_plane_state *plane_state)
->>>> +{
->>>> + struct intel_display *display = to_intel_display(plane_state);
->>>> + struct intel_crtc *crtc = to_intel_crtc(plane_state->uapi.crtc);
->>>> +
->>>> + if (crtc && intel_color_crtc_has_3dlut(display, crtc->pipe))
->>>> + glk_lut_3d_commit(dsb, crtc, !!plane_state->hw.lut_3d);
->>>> ^^^^^^^^^^^^
->>>
->>> And this looks like a pretty major fail. Why is the 3D LUT stored in
->>> the plane state when it's a pipe level thing?
->>
->> With DISPLAY_VER(display) >= 35, 3DLUT can be attached to a plane.
->>
->> (Bits[23:22] in 3DLUT_CTL). This is the only way we are exposing the HW
->> to the userspace right now (through the new plane color pipeline uapi).
->> Therefore, it lies in the plane state.
->>
->> However, there are (soonish)plans to adopt the color pipeline for crtcs
->> too. Once that happens, it needs to be handled a bit more carefully. A
->> potential approach is to allow userspace to program the block with a
->> first come first served semantics and fail the commit if it tries to set
->> 3DLUT both on plane and crtc in the same commit.
+> During the execution of eb_lookup_vmas(), the eb->vma array is
+> successively filled up with struct eb_vma objects. This process includes
+> calling eb_add_vma(), which might fail; however, even in the event of
+> failure, eb->vma[i].vma is set for the currently processed buffer.
 > 
-> The plane 3D LUT must only be used before blending. Any pipe-level
-> post-blending 3D LUT hardware block is not suitable to implement plane
-> colorops.
+> If eb_add_vma() fails, eb_lookup_vmas() returns with an error, which
+> prompts a call to eb_release_vmas() to clean up the mess. Since
+> eb_lookup_vmas() might fail during processing any (possibly not first)
+> buffer, eb_release_vmas() checks whether a buffer's vma is NULL to know
+> at what point did the lookup function fail.
+> 
+> In eb_lookup_vmas(), eb->vma[i].vma is set to NULL if either the helper
+> function eb_lookup_vma() or eb_validate_vma() fails. eb->vma[i+1].vma is
+> set to NULL in case i915_gem_object_userptr_submit_init() fails; the
+> current one needs to be cleaned up by eb_release_vmas() at this point,
+> so the next one is set. If eb_add_vma() fails, neither the current nor
+> the next vma is nullified, which is a source of a NULL deref bug
+> described in [1].
+> 
+> When entering eb_lookup_vmas(), the vma pointers are set to the slab
+> poison value, instead of NULL. This doesn't matter for the actual
+> lookup, since it gets overwritten anyway, however the eb_release_vmas()
+> function only recognizes NULL as the stopping value, hence the pointers
+> are being nullified as they go in case of intermediate failure. This
+> patch changes the approach to filling them all with NULL at the start
+> instead, rather than handling that manually during failure.
+> 
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15062
+> Fixes: 544460c33821 ("drm/i915: Multi-BB execbuf")
+> Reported-by: Gangmin Kim <km.kim1503@gmail.com>
+> Cc: <stable@vger.kernel.org> # 5.16.x
+> Signed-off-by: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
 
-Same 3D LUT block is shared across pipe and planes. When we do end up 
-implementing the pipe color pipeline we would like the 3DLUT exposed at 
-the pipe stage too.
+Reviewed-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 
-However, there is no good way to do it in the current color pipeline 
-UAPI (atleast that I know of). One suggestion from Harry (discussed in 
-the hackfest) was to list the pipelines in order of preference of the 
-driver.
+> ---
+> I messed up the continuity in previous revisions; the original patch
+> was sent as [1], and the first revision (which I didn't mark as v2 due
+> to the title change) was sent as [2].
+> 
+> This is the full current changelog:
+> 
+> v4:
+>    - delete an empty line (Janusz), reword the comment a bit (Krzysztof,
+>      Janusz)
+> v3:
+>    - use memset() to fill the entire eb.vma array with zeros instead of
+>    looping through the elements (Janusz)
+>    - add a comment clarifying the mechanism of the initial allocation (Janusz)
+>    - change the commit log again, including title
+>    - rearrange the tags to keep checkpatch happy
+> v2:
+>    - set the eb->vma[i].vma pointers to NULL during setup instead of
+>      ad-hoc at failure (Janusz)
+>    - romanize the reporter's name (Andi, offline)
+>    - change the commit log, including title
+> 
+> [1] https://patchwork.freedesktop.org/series/156832/
+> [2] https://patchwork.freedesktop.org/series/158036/
+> 
+>  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 37 +++++++++----------
+>  1 file changed, 17 insertions(+), 20 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index b057c2fa03a4..348023d13668 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -951,13 +951,13 @@ static int eb_lookup_vmas(struct i915_execbuffer *eb)
+>  		vma = eb_lookup_vma(eb, eb->exec[i].handle);
+>  		if (IS_ERR(vma)) {
+>  			err = PTR_ERR(vma);
+> -			goto err;
+> +			return err;
+>  		}
+>  
+>  		err = eb_validate_vma(eb, &eb->exec[i], vma);
+>  		if (unlikely(err)) {
+>  			i915_vma_put(vma);
+> -			goto err;
+> +			return err;
+>  		}
+>  
+>  		err = eb_add_vma(eb, &current_batch, i, vma);
+> @@ -966,19 +966,8 @@ static int eb_lookup_vmas(struct i915_execbuffer *eb)
+>  
+>  		if (i915_gem_object_is_userptr(vma->obj)) {
+>  			err = i915_gem_object_userptr_submit_init(vma->obj);
+> -			if (err) {
+> -				if (i + 1 < eb->buffer_count) {
+> -					/*
+> -					 * Execbuffer code expects last vma entry to be NULL,
+> -					 * since we already initialized this entry,
+> -					 * set the next value to NULL or we mess up
+> -					 * cleanup handling.
+> -					 */
+> -					eb->vma[i + 1].vma = NULL;
+> -				}
+> -
+> +			if (err)
+>  				return err;
+> -			}
+>  
+>  			eb->vma[i].flags |= __EXEC_OBJECT_USERPTR_INIT;
+>  			eb->args->flags |= __EXEC_USERPTR_USED;
+> @@ -986,10 +975,6 @@ static int eb_lookup_vmas(struct i915_execbuffer *eb)
+>  	}
+>  
+>  	return 0;
+> -
+> -err:
+> -	eb->vma[i].vma = NULL;
+> -	return err;
+>  }
+>  
+>  static int eb_lock_vmas(struct i915_execbuffer *eb)
+> @@ -3375,7 +3360,8 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+>  
+>  	eb.exec = exec;
+>  	eb.vma = (struct eb_vma *)(exec + args->buffer_count + 1);
+> -	eb.vma[0].vma = NULL;
+> +	memset(eb.vma, 0x00, args->buffer_count * sizeof(struct eb_vma));
+> +
+>  	eb.batch_pool = NULL;
+>  
+>  	eb.invalid_flags = __EXEC_OBJECT_UNKNOWN_FLAGS;
+> @@ -3584,7 +3570,18 @@ i915_gem_execbuffer2_ioctl(struct drm_device *dev, void *data,
+>  	if (err)
+>  		return err;
+>  
+> -	/* Allocate extra slots for use by the command parser */
+> +	/*
+> +	 * Allocate extra slots for use by the command parser.
+> +	 *
+> +	 * Note that this allocation handles two different arrays (the
+> +	 * exec2_list array, and the eventual eb.vma array introduced in
+> +	 * i915_gem_do_execubuffer()), that reside in virtually contiguous
+> +	 * memory. Also note that the allocation intentionally doesn't fill the
+> +	 * area with zeros (because the exec2_list part doesn't need to be, as
+> +	 * it's immediately overwritten by user data a few lines below).
+> +	 * However, the eb.vma part is explicitly zeroed later in
+> +	 * i915_gem_do_execbuffer().
+> +	 */
+>  	exec2_list = kvmalloc_array(count + 2, eb_element_size(),
+>  				    __GFP_NOWARN | GFP_KERNEL);
+>  	if (exec2_list == NULL) {
+> 
 
-Considering we prefer the pre-blend 3DLUT over a post blend one, it 
-would mean that we *don't* expose the 3DLUT on the first pipeline on the 
-crtc but do it in the second one. (I am not sure how well it scales though)
 
-I have considered other solutions like introducing a new property say 
-"muxed" which could be used with Bypass to indicate if the current color 
-block is being used in another part of the pipeline.
 
-Suggestions are welcome.
-
-==
-Chaitanya
 
