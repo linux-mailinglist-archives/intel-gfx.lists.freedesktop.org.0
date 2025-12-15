@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0003CBEA72
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Dec 2025 16:29:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4246BCBEA78
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Dec 2025 16:29:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3965310E5FE;
-	Mon, 15 Dec 2025 15:29:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB42C10E602;
+	Mon, 15 Dec 2025 15:29:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HoS48CKw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gBqjxK/B";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71B8B10E5FE;
- Mon, 15 Dec 2025 15:29:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABD3F10E602;
+ Mon, 15 Dec 2025 15:29:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765812579; x=1797348579;
+ t=1765812583; x=1797348583;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=hJUbmy+yHzvCtP4yl0+FCZPUPI+9YNKzvJuUn7VGsiY=;
- b=HoS48CKwlMZ1yqVEqcoDTJpnEPQS4GlwsxKOch4TM4sHN64sWeOSnPAr
- gDMDYr3D6gmAtz+o4G3jyR5UnaLoBPVMo7K40jcz+wIwkg3OujoBmaUsT
- bSG4q+hV1jUBKbwCfhjzB+xT05CcMe01QgpB78Wh9Ep3G7kFSzIK1vTsG
- UnXSXLWb4FtHP/Jsj8LxBaB0xpdeRzScUUKuBI1HgvZVDbarrPFFnqOpg
- md4X9t3rCFChzDwYHMhSL5at/fzIeHCNwjOZfnErmNdZL7/oBmrbX0Os0
- 4WAQpw+T4AnnEsivdC4ehJphynMMJ/vQV8UtRUQBSL7WJ69Y+6sbu4hFg Q==;
-X-CSE-ConnectionGUID: 7TPZ2o1vQSC4FJC3pdJXhQ==
-X-CSE-MsgGUID: 6I80+inWQpG/ooaZnVyauw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11643"; a="78026591"
-X-IronPort-AV: E=Sophos;i="6.21,151,1763452800"; d="scan'208";a="78026591"
+ bh=RozmOpEz/DbtLJT4ofIUjllFj4AnnXB+392A6NgSZzE=;
+ b=gBqjxK/Bz67V0ib5YuBX4Cbps6xWNZYG2USxL4Bt3fWY7X7xP1Kc1S+d
+ TlbIr7Cw9mLP8wdPreuHs+QBqHbSotTtwLD8FhOS4zQOPchALuLzfXoBw
+ 66HNHVH9gZRAR6QDq1ZLWvk0Uy8dO18mfQAeHfcsN1oGnQt5sYNSn5Buf
+ i3wpEVmzoSrsiiWNjIFvcJXEYR0eEpDMUzLV4hBYwBXvxQqUeOQ97UHjt
+ gbhQ3pbR4Cw30ZFwMD6nkpjnMHDuSoo4BXjJWcDg8t54V2vsYrZTgR3fI
+ /euVHHO5LPMVguRfDulNR/MQOevdg2C38jdhiwx2SpbmxwUt9uka2ChTS g==;
+X-CSE-ConnectionGUID: YJHkp/yXTV2wTP9pZ6svCg==
+X-CSE-MsgGUID: 1Y3yNOxDQGeDG5KdIfrfKg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11643"; a="78026597"
+X-IronPort-AV: E=Sophos;i="6.21,151,1763452800"; d="scan'208";a="78026597"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2025 07:29:38 -0800
-X-CSE-ConnectionGUID: USoyPHPyR76RJFxET45SOw==
-X-CSE-MsgGUID: V5nmR78TQGiMXGJ5zv9IfA==
+ 15 Dec 2025 07:29:43 -0800
+X-CSE-ConnectionGUID: E0reXG6KT4K8bHKgfIa8/g==
+X-CSE-MsgGUID: pkSA0BHoSjOqjBNUxXFD1A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,151,1763452800"; d="scan'208";a="198252611"
+X-IronPort-AV: E=Sophos;i="6.21,151,1763452800"; d="scan'208";a="198252617"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.106])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2025 07:29:36 -0800
+ 15 Dec 2025 07:29:41 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 14/15] drm/{i915,
- xe}: pass struct drm_device instead of drm_device to ->alloc_obj
-Date: Mon, 15 Dec 2025 17:28:28 +0200
-Message-ID: <7a40381be6d98dc0916a5447be5dd6cba86cfd0a.1765812266.git.jani.nikula@intel.com>
+Subject: [PATCH 15/15] drm/i915: drop dependency on struct intel_display from
+ i915 initial plane
+Date: Mon, 15 Dec 2025 17:28:29 +0200
+Message-ID: <58d7605a16b360080921ff2af7120b6da2eb042d.1765812266.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1765812266.git.jani.nikula@intel.com>
 References: <cover.1765812266.git.jani.nikula@intel.com>
@@ -72,109 +72,171 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The initial plane parent interface ->alloc_obj hook no longer needs the
-crtc for anything. Pass struct drm_device instead.
+The i915 core initial plane handling doesn't actually need struct
+intel_display for anything. Switch to i915 specific data structures in
+i915 core code.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_initial_plane.c | 7 +++----
- drivers/gpu/drm/i915/i915_initial_plane.c          | 5 ++---
- drivers/gpu/drm/xe/display/xe_initial_plane.c      | 7 ++-----
- include/drm/intel/display_parent_interface.h       | 2 +-
- 4 files changed, 8 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/i915/i915_initial_plane.c | 43 +++++++++--------------
+ 1 file changed, 17 insertions(+), 26 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_initial_plane.c b/drivers/gpu/drm/i915/display/intel_initial_plane.c
-index e4d6aa438e66..ee545c033da6 100644
---- a/drivers/gpu/drm/i915/display/intel_initial_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_initial_plane.c
-@@ -47,10 +47,9 @@ intel_reuse_initial_plane_obj(struct intel_crtc *this,
+diff --git a/drivers/gpu/drm/i915/i915_initial_plane.c b/drivers/gpu/drm/i915/i915_initial_plane.c
+index de90ca69e0bb..7fb52d81f7b6 100644
+--- a/drivers/gpu/drm/i915/i915_initial_plane.c
++++ b/drivers/gpu/drm/i915/i915_initial_plane.c
+@@ -7,8 +7,6 @@
+ #include <drm/intel/display_parent_interface.h>
+ 
+ #include "display/intel_crtc.h"
+-#include "display/intel_display.h"
+-#include "display/intel_display_core.h"
+ #include "display/intel_display_types.h"
+ #include "display/intel_fb.h"
+ #include "gem/i915_gem_lmem.h"
+@@ -23,11 +21,9 @@ static void i915_initial_plane_vblank_wait(struct drm_crtc *crtc)
  }
  
- static struct drm_gem_object *
--intel_alloc_initial_plane_obj(struct intel_crtc *crtc,
-+intel_alloc_initial_plane_obj(struct intel_display *display,
- 			      struct intel_initial_plane_config *plane_config)
+ static enum intel_memory_type
+-initial_plane_memory_type(struct intel_display *display)
++initial_plane_memory_type(struct drm_i915_private *i915)
  {
--	struct intel_display *display = to_intel_display(crtc);
- 	struct intel_framebuffer *fb = plane_config->fb;
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+-
+-	if (display->platform.dgfx)
++	if (IS_DGFX(i915))
+ 		return INTEL_MEMORY_LOCAL;
+ 	else if (HAS_LMEMBAR_SMEM_STOLEN(i915))
+ 		return INTEL_MEMORY_STOLEN_LOCAL;
+@@ -36,10 +32,9 @@ initial_plane_memory_type(struct intel_display *display)
+ }
  
- 	switch (fb->base.modifier) {
-@@ -65,7 +64,7 @@ intel_alloc_initial_plane_obj(struct intel_crtc *crtc,
+ static bool
+-initial_plane_phys(struct intel_display *display,
++initial_plane_phys(struct drm_i915_private *i915,
+ 		   struct intel_initial_plane_config *plane_config)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
+ 	struct intel_memory_region *mem;
+ 	enum intel_memory_type mem_type;
+@@ -47,10 +42,10 @@ initial_plane_phys(struct intel_display *display,
+ 	dma_addr_t dma_addr;
+ 	u32 base;
+ 
+-	mem_type = initial_plane_memory_type(display);
++	mem_type = initial_plane_memory_type(i915);
+ 	mem = intel_memory_region_by_type(i915, mem_type);
+ 	if (!mem) {
+-		drm_dbg_kms(display->drm,
++		drm_dbg_kms(&i915->drm,
+ 			    "Initial plane memory region (type %s) not initialized\n",
+ 			    intel_memory_type_str(mem_type));
+ 		return false;
+@@ -61,27 +56,24 @@ initial_plane_phys(struct intel_display *display,
+ 	dma_addr = intel_ggtt_read_entry(&ggtt->vm, base, &is_present, &is_local);
+ 
+ 	if (!is_present) {
+-		drm_err(display->drm,
+-			"Initial plane FB PTE not present\n");
++		drm_err(&i915->drm, "Initial plane FB PTE not present\n");
+ 		return false;
+ 	}
+ 
+ 	if (intel_memory_type_is_local(mem->type) != is_local) {
+-		drm_err(display->drm,
+-			"Initial plane FB PTE unsuitable for %s\n",
++		drm_err(&i915->drm, "Initial plane FB PTE unsuitable for %s\n",
+ 			mem->region.name);
+ 		return false;
+ 	}
+ 
+ 	if (dma_addr < mem->region.start || dma_addr > mem->region.end) {
+-		drm_err(display->drm,
++		drm_err(&i915->drm,
+ 			"Initial plane programming using invalid range, dma_addr=%pa (%s [%pa-%pa])\n",
+ 			&dma_addr, mem->region.name, &mem->region.start, &mem->region.end);
+ 		return false;
+ 	}
+ 
+-	drm_dbg(display->drm,
+-		"Using dma_addr=%pa, based on initial plane programming\n",
++	drm_dbg(&i915->drm, "Using dma_addr=%pa, based on initial plane programming\n",
+ 		&dma_addr);
+ 
+ 	plane_config->phys_base = dma_addr - mem->region.start;
+@@ -91,10 +83,9 @@ initial_plane_phys(struct intel_display *display,
+ }
+ 
+ static struct i915_vma *
+-initial_plane_vma(struct intel_display *display,
++initial_plane_vma(struct drm_i915_private *i915,
+ 		  struct intel_initial_plane_config *plane_config)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	struct intel_memory_region *mem;
+ 	struct drm_i915_gem_object *obj;
+ 	struct drm_mm_node orig_mm = {};
+@@ -107,7 +98,7 @@ initial_plane_vma(struct intel_display *display,
+ 	if (plane_config->size == 0)
+ 		return NULL;
+ 
+-	if (!initial_plane_phys(display, plane_config))
++	if (!initial_plane_phys(i915, plane_config))
+ 		return NULL;
+ 
+ 	phys_base = plane_config->phys_base;
+@@ -126,7 +117,7 @@ initial_plane_vma(struct intel_display *display,
+ 	if (IS_ENABLED(CONFIG_FRAMEBUFFER_CONSOLE) &&
+ 	    mem == i915->mm.stolen_region &&
+ 	    size * 2 > i915->dsm.usable_size) {
+-		drm_dbg_kms(display->drm, "Initial FB size exceeds half of stolen, discarding\n");
++		drm_dbg_kms(&i915->drm, "Initial FB size exceeds half of stolen, discarding\n");
  		return NULL;
  	}
  
--	return display->parent->initial_plane->alloc_obj(&crtc->base, plane_config);
-+	return display->parent->initial_plane->alloc_obj(display->drm, plane_config);
- }
+@@ -134,7 +125,7 @@ initial_plane_vma(struct intel_display *display,
+ 					       I915_BO_ALLOC_USER |
+ 					       I915_BO_PREALLOC);
+ 	if (IS_ERR(obj)) {
+-		drm_dbg_kms(display->drm, "Failed to preallocate initial FB in %s\n",
++		drm_dbg_kms(&i915->drm, "Failed to preallocate initial FB in %s\n",
+ 			    mem->region.name);
+ 		return NULL;
+ 	}
+@@ -214,7 +205,7 @@ initial_plane_vma(struct intel_display *display,
+ 	if (drm_mm_node_allocated(&orig_mm))
+ 		drm_mm_remove_node(&orig_mm);
  
- static void
-@@ -88,7 +87,7 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
- 	if (!plane_config->fb)
- 		return;
+-	drm_dbg_kms(display->drm,
++	drm_dbg_kms(&i915->drm,
+ 		    "Initial plane fb bound to 0x%x in the ggtt (original 0x%x)\n",
+ 		    i915_ggtt_offset(vma), plane_config->base);
  
--	if (intel_alloc_initial_plane_obj(crtc, plane_config)) {
-+	if (intel_alloc_initial_plane_obj(display, plane_config)) {
- 		fb = &plane_config->fb->base;
- 		vma = plane_config->vma;
- 	} else {
-diff --git a/drivers/gpu/drm/i915/i915_initial_plane.c b/drivers/gpu/drm/i915/i915_initial_plane.c
-index 40d4f990f23c..de90ca69e0bb 100644
---- a/drivers/gpu/drm/i915/i915_initial_plane.c
-+++ b/drivers/gpu/drm/i915/i915_initial_plane.c
-@@ -228,11 +228,10 @@ initial_plane_vma(struct intel_display *display,
- }
- 
- static struct drm_gem_object *
--i915_alloc_initial_plane_obj(struct drm_crtc *_crtc,
-+i915_alloc_initial_plane_obj(struct drm_device *drm,
+@@ -231,12 +222,12 @@ static struct drm_gem_object *
+ i915_alloc_initial_plane_obj(struct drm_device *drm,
  			     struct intel_initial_plane_config *plane_config)
  {
--	struct intel_crtc *crtc = to_intel_crtc(_crtc);
--	struct intel_display *display = to_intel_display(crtc);
-+	struct intel_display *display = to_intel_display(drm);
+-	struct intel_display *display = to_intel_display(drm);
++	struct drm_i915_private *i915 = to_i915(drm);
  	struct drm_mode_fb_cmd2 mode_cmd = {};
  	struct drm_framebuffer *fb = &plane_config->fb->base;
  	struct i915_vma *vma;
-diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-index 9999bc07743b..4cfeafcc158d 100644
---- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
-+++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-@@ -14,8 +14,6 @@
  
- #include "i915_vma.h"
- #include "intel_crtc.h"
--#include "intel_display.h"
--#include "intel_display_core.h"
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
- #include "intel_fb.h"
-@@ -122,11 +120,10 @@ initial_plane_bo(struct xe_device *xe,
- }
+-	vma = initial_plane_vma(display, plane_config);
++	vma = initial_plane_vma(i915, plane_config);
+ 	if (!vma)
+ 		return NULL;
  
- static struct drm_gem_object *
--xe_alloc_initial_plane_obj(struct drm_crtc *_crtc,
-+xe_alloc_initial_plane_obj(struct drm_device *drm,
- 			   struct intel_initial_plane_config *plane_config)
- {
--	struct intel_crtc *crtc = to_intel_crtc(_crtc);
--	struct xe_device *xe = to_xe_device(crtc->base.dev);
-+	struct xe_device *xe = to_xe_device(drm);
- 	struct drm_mode_fb_cmd2 mode_cmd = { 0 };
- 	struct drm_framebuffer *fb = &plane_config->fb->base;
- 	struct xe_bo *bo;
-diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/intel/display_parent_interface.h
-index 040a014b49ce..b3acb6e49ed8 100644
---- a/include/drm/intel/display_parent_interface.h
-+++ b/include/drm/intel/display_parent_interface.h
-@@ -33,7 +33,7 @@ struct intel_display_hdcp_interface {
+@@ -250,7 +241,7 @@ i915_alloc_initial_plane_obj(struct drm_device *drm,
+ 	if (intel_framebuffer_init(to_intel_framebuffer(fb),
+ 				   intel_bo_to_drm_bo(vma->obj),
+ 				   fb->format, &mode_cmd)) {
+-		drm_dbg_kms(display->drm, "intel fb init failed\n");
++		drm_dbg_kms(&i915->drm, "intel fb init failed\n");
+ 		goto err_vma;
+ 	}
  
- struct intel_display_initial_plane_interface {
- 	void (*vblank_wait)(struct drm_crtc *crtc);
--	struct drm_gem_object *(*alloc_obj)(struct drm_crtc *crtc, struct intel_initial_plane_config *plane_config);
-+	struct drm_gem_object *(*alloc_obj)(struct drm_device *drm, struct intel_initial_plane_config *plane_config);
- 	int (*setup)(struct drm_plane_state *plane_state, struct intel_initial_plane_config *plane_config,
- 		     struct drm_framebuffer *fb, struct i915_vma *vma);
- 	void (*config_fini)(struct intel_initial_plane_config *plane_configs);
 -- 
 2.47.3
 
