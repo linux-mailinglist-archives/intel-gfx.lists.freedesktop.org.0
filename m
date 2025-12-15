@@ -2,63 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D448CCBE4B7
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Dec 2025 15:33:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9558CBEA39
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Dec 2025 16:28:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 703FB10E518;
-	Mon, 15 Dec 2025 14:33:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C9BE10E42D;
+	Mon, 15 Dec 2025 15:28:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I1797WpY";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MEhWf0EA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1198A10E510;
- Mon, 15 Dec 2025 14:33:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0588D10E42D;
+ Mon, 15 Dec 2025 15:28:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765809212; x=1797345212;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Gk981fOsNYh4j+GZdg4gwbIs4ohC0dEZ5ROMr1q2JrI=;
- b=I1797WpYC3YMSDd59Q80r6VG/rfZhk95Juq+iXwj5nVo8cCLJC66xpuq
- YjrbkBBThY606mtR3p+roLvMMtdBCJpcDYKTB3hPEIRweHl9jmgmwwOHu
- Riqkz4OHeGFSZ/r4tj7J2pB8d36bK8ivuRo6hbqKu7u0bnU2So4yB3BzF
- SMoIP6FGY6nGt1WEky5GK+HENWpvs4uizv6AfUOaSjbcdfSLVY9i7wyqT
- qokLY7u9uIGNH6lXi68t2cdWZCTxA/f1kHdBH8sM2G+HifA2dZsOGPSLM
- f/zsZ222mhP/Itw4KE9NoXZvfNsQJ2f8LhDokzpeIYFdEF5vr2dR2vN8R A==;
-X-CSE-ConnectionGUID: y3MgcwPiTZOUbhoJQiK0FQ==
-X-CSE-MsgGUID: pttwY/I6SAOz1Rzpx6mR/w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11643"; a="55273995"
-X-IronPort-AV: E=Sophos;i="6.21,150,1763452800"; d="scan'208";a="55273995"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2025 06:33:31 -0800
-X-CSE-ConnectionGUID: EygTmeXZQByM+mkeyjwg5Q==
-X-CSE-MsgGUID: pDduKXY+RF6oo2OzX6+Jig==
+ t=1765812516; x=1797348516;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=nQFwTvIO535G8ngNY9l8UV5DB2xIhYPRukXxTLMNSKo=;
+ b=MEhWf0EAKHCh/l0oi+Z+yQuVq8D+OHkEOKHdwedSMmtXjceqth+pnIuI
+ VIT3sX/3SfNzHlhE8lIZu1gRqyKn1/CFiGPR1OnNpraELD+YTjsj20H1L
+ l/f9x23u8DbDx0OlGi0RKxRGcSeMeNNRS1B+iOhs6/QWcu7pj+Pdagh/b
+ JgF+APk2Ygye8hQT94Hx/kYI7yjYtW2QkkSz+T9XuboRpiqh6N5J0rRVN
+ SM7mvYAbXqWkxtRpMTse7P82mhrVWxQ4R82AqRYTbg+Kxlu3nmnyohrwh
+ aaZMGYGrOzhVNwaidZOCTjjNQnWsKN4qAFVPlU7AhRHSb62YaZqH8nLab w==;
+X-CSE-ConnectionGUID: 85E0b0w2RSqC6LG36bBBRA==
+X-CSE-MsgGUID: A7hDvOpwRAeE/60JA7yhjA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11643"; a="78354292"
+X-IronPort-AV: E=Sophos;i="6.21,151,1763452800"; d="scan'208";a="78354292"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2025 07:28:36 -0800
+X-CSE-ConnectionGUID: D4Wa081DR2enqx2KqA3PJw==
+X-CSE-MsgGUID: //+j2KIVRC+T3x6XtGcgPg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,150,1763452800"; d="scan'208";a="228389697"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO [10.245.244.135])
- ([10.245.244.135])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2025 06:33:30 -0800
-Message-ID: <994e8936-a1ed-4254-880c-056d36942ce0@linux.intel.com>
-Date: Mon, 15 Dec 2025 15:33:26 +0100
+X-IronPort-AV: E=Sophos;i="6.21,151,1763452800"; d="scan'208";a="201931592"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.106])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2025 07:28:33 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 00/15] drm/{i915,
+ xe}: clean up and deduplicate initial plane handling
+Date: Mon, 15 Dec 2025 17:28:14 +0200
+Message-ID: <cover.1765812266.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC] drm: unwind drm device registration upon error
-To: Krzysztof Karas <krzysztof.karas@intel.com>,
- dri-devel@lists.freedesktop.org
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>, 
- intel-gfx@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>, 
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>
-References: <oi563j5djez5facxbrmkkyy7hvtb6lijurrebxffqqjfxhjjnu@7f7mrbufdcbv>
-Content-Language: en-US
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <oi563j5djez5facxbrmkkyy7hvtb6lijurrebxffqqjfxhjjnu@7f7mrbufdcbv>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,73 +70,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hey,
+The i915 and xe initial plane handling deviate at a too high level,
+leading to lots of duplication between the two. This series starts to
+clean it up by moving it to display parent interface, and deduplicating
+piecemeal.
 
-Den 2025-12-08 kl. 13:09, skrev Krzysztof Karas:
-> The drm device registration is done via drm_dev_register().
-> This function attempts to undo some of the initiatlization steps
-> under err_unload and err_minors labels, but this process is
-> incomplete - debugfs entries remain and the dev->registered flag
-> is still set to true.
-> 
-> On the other hand, drm_dev_unregister() tries to tear down
-> everything that was initialized during registration step.
-> This is confusing when considering a failure in
-> drm_dev_register(), because not all steps will be undone
-> before returning, so it is unclear whether a call to
-> drm_dev_unregister() is a requirement or not.
-> 
-> What is more, during the drm device registration client sysrqs
-> are added only when drm_dev_register() is sure to complete
-> without failures, but drm_client_sysrq_unregister() gets called
-> every time during drm_dev_unregister() and prints warning 
-> messages whenever the caller attempts to clean up unsuccessful
-> registration with immediate unregistration.
-> 
-> Amend the problem by removing debugfs entries and setting
-> "registered" flag to false upon error in drm_dev_register().
-> 
-> Signed-off-by: Krzysztof Karas <krzysztof.karas@intel.com>
-> ---
-> I noticed that some drivers use drm_dev_unregister() whenever
-> a call to drm_dev_register() and many do not. It is also a bit
-> confusing to me why drm_dev_register() does not completely
-> unwind all the initialization steps it performs, which leaves
-> me wondering if drm_dev_unregister() is required on the error
-> path or not.
-> 
-> The WARN_ON introduced in 6915190a50e8f7cf13dcbe534b02845be533b60a
-> exposed this problem, because previously there were no
-> notifications from these functions, so I noticed this mismatch
-> only thanks to the warnings.
-> 
-> I think the other way to solve this would be to require an
-> unregister call for each register call, but that would mean a
-> series of changes for the callers that currently do the cleanup
-> in their own way.
-> ---
->  drivers/gpu/drm/drm_drv.c | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> index 2915118436ce..a502110696a3 100644
-> --- a/drivers/gpu/drm/drm_drv.c
-> +++ b/drivers/gpu/drm/drm_drv.c
-> @@ -1119,6 +1119,8 @@ int drm_dev_register(struct drm_device *dev, unsigned long flags)
->  	drm_minor_unregister(dev, DRM_MINOR_ACCEL);
->  	drm_minor_unregister(dev, DRM_MINOR_PRIMARY);
->  	drm_minor_unregister(dev, DRM_MINOR_RENDER);
-> +	drm_debugfs_dev_fini(dev);
-> +	dev->registered = false;
->  out_unlock:
->  	if (drm_dev_needs_global_mutex(dev))
->  		mutex_unlock(&drm_global_mutex);
+This is intentionally done in small chunks to ease review and catch
+regressions (hopefully none).
 
-I'm not convinced anything should depend on dev->registered being set to false, as we should only free the struct afterwards, but clearing out drm_debugfs would be a a good step.
+There's still more to be done, e.g. it's pointless to have both i915 and
+xe call intel_framebuffer_init(), but there's some error path stuff to
+figure out before doing this. And I ran out of steam a bit, and the
+series got pretty long already.
 
-All in all looks sane.
+Anyway, by reducing duplication, the series highlights the differences
+between i915 and xe.
 
-Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+BR,
+Jani.
 
-Kind regards,
-~Maarten Lankhorst
+
+Jani Nikula (15):
+  drm/i915: move display/intel_plane_initial.c to i915_initial_plane.c
+  drm/xe/display: rename xe_plane_initial.c to xe_initial_plane.c
+  drm/i915: rename intel_plane_initial.h to intel_initial_plane.h
+  drm/{i915,xe}: move initial plane calls to parent interface
+  drm/{i915,xe}: deduplicate intel_initial_plane_config() between i915
+    and xe
+  drm/{i915,xe}: deduplicate plane_config_fini() between i915 and xe
+  drm/{i915,xe}: start deduplicating intel_find_initial_plane_obj()
+    between i915 and xe
+  drm/i915: return plane_state from intel_reuse_initial_plane_obj()
+  drm/xe: return plane_state from intel_reuse_initial_plane_obj()
+  drm/i915: further deduplicate intel_find_initial_plane_obj()
+  drm/{i915,xe}: deduplicate intel_alloc_initial_plane_obj() FB modifier
+    checks
+  drm/{i915,xe}: deduplicate initial plane setup
+  drm/{i915,xe}: pass struct drm_plane_state instead of struct drm_crtc
+    to ->setup
+  drm/{i915,xe}: pass struct drm_device instead of drm_device to
+    ->alloc_obj
+  drm/i915: drop dependency on struct intel_display from i915 initial
+    plane
+
+ drivers/gpu/drm/i915/Makefile                 |   3 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |   8 +-
+ .../drm/i915/display/intel_display_driver.c   |   2 +-
+ .../drm/i915/display/intel_initial_plane.c    | 193 ++++++++
+ ..._plane_initial.h => intel_initial_plane.h} |   6 +-
+ .../drm/i915/display/intel_plane_initial.c    | 442 ------------------
+ drivers/gpu/drm/i915/i915_driver.c            |   2 +
+ drivers/gpu/drm/i915/i915_initial_plane.c     | 290 ++++++++++++
+ drivers/gpu/drm/i915/i915_initial_plane.h     |   9 +
+ drivers/gpu/drm/xe/Makefile                   |   3 +-
+ drivers/gpu/drm/xe/display/xe_display.c       |   2 +
+ drivers/gpu/drm/xe/display/xe_initial_plane.c | 189 ++++++++
+ drivers/gpu/drm/xe/display/xe_initial_plane.h |   9 +
+ drivers/gpu/drm/xe/display/xe_plane_initial.c | 321 -------------
+ include/drm/intel/display_parent_interface.h  |  17 +
+ 15 files changed, 723 insertions(+), 773 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_initial_plane.c
+ rename drivers/gpu/drm/i915/display/{intel_plane_initial.h => intel_initial_plane.h} (60%)
+ delete mode 100644 drivers/gpu/drm/i915/display/intel_plane_initial.c
+ create mode 100644 drivers/gpu/drm/i915/i915_initial_plane.c
+ create mode 100644 drivers/gpu/drm/i915/i915_initial_plane.h
+ create mode 100644 drivers/gpu/drm/xe/display/xe_initial_plane.c
+ create mode 100644 drivers/gpu/drm/xe/display/xe_initial_plane.h
+ delete mode 100644 drivers/gpu/drm/xe/display/xe_plane_initial.c
+
+-- 
+2.47.3
+
