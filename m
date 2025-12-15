@@ -2,60 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AB23CBEA42
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Dec 2025 16:28:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C4C7CBEA45
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Dec 2025 16:28:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 960B210E5EA;
-	Mon, 15 Dec 2025 15:28:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A58B10E5E9;
+	Mon, 15 Dec 2025 15:28:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LJ8q82Xk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UHdnZNoR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8476D10E5E2;
- Mon, 15 Dec 2025 15:28:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 415A210E5EC;
+ Mon, 15 Dec 2025 15:28:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765812525; x=1797348525;
+ t=1765812529; x=1797348529;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=wv7SLBiGJSDVjZ1/cW7ne/GpIrkkUNTqq55hwSZDZrM=;
- b=LJ8q82XkUW/NuXLlnbvNUjpx615p2FclFqgHOS4CsloDnIAlE9lFoeb9
- fsBGKf8EiWqnkZerclypXuu0caou2huRzEYXE6q8DCxdKCQIKqmF8UAeE
- T/mdHknZgTBNyEIoBAmPFn4sI0If9aVaiyfkMf5LKdVL0/zyrYgbNqp4R
- 1Y24JerapGsPywIVNO3qaSHnBlUZEKwphfkT0O/fne0PmrNl/7V2uzVZs
- BJuHXn2Av9RkpLkwibgoexnPDPy8MXid0oCFCUu7l+tIPrDtyK1iKono+
- MGX0gUVv9aioZ2QWhXz+XUjfoCzXIVzoVrvIWQ7YYsC0GwXeu5EsJ6hSM A==;
-X-CSE-ConnectionGUID: vR18EGJJSeOcRTaHF6RDBg==
-X-CSE-MsgGUID: f3HnrQJHStWJsq11Nw+F5A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11643"; a="78354323"
-X-IronPort-AV: E=Sophos;i="6.21,151,1763452800"; d="scan'208";a="78354323"
+ bh=S6GR38pKGVSeUcH66u32SEc/QbaBIkWgyDCh8Q13PO4=;
+ b=UHdnZNoRkEFnCeMZw+R4IpKSHv6Z5eaZhAAn45RV8/jsQml5cX3W9cgU
+ M36yZ4z+z4WkMWnjDCCLxlpaNMBH8+HCyjMahikibvkhcjbt+ejF7i/Wy
+ frGhi3dKq850U87UBcy9EPXCyaetUT0Nu7eCCGPCvkcnhTDZrE3ESHkbm
+ vHWFY1AKBlqFr79SdVOHFyE1Mg6HtTCnm1+vVfF5sdPSPTaiVRZr+lYzI
+ QpcoSlou4lG++vEIX1FfLuLasl9ZU4FLy+ZQ/YfgcO4b2jpNk6GlPUNap
+ wPBTRUV91yHhPTZEAC2KdTxcK1cXOJFaPGW8fQUAx32fhUlfBcpf2U+/0 g==;
+X-CSE-ConnectionGUID: eBqjQiKtS2y570SEFWUSAQ==
+X-CSE-MsgGUID: MFtYX59TQsal7Kl++mDTNA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11643"; a="78354342"
+X-IronPort-AV: E=Sophos;i="6.21,151,1763452800"; d="scan'208";a="78354342"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2025 07:28:44 -0800
-X-CSE-ConnectionGUID: 5oDX5zfKThiuwN4u+mr9Kg==
-X-CSE-MsgGUID: FyUIkI/gQUigxd6ZtB34gA==
+ 15 Dec 2025 07:28:49 -0800
+X-CSE-ConnectionGUID: /KXYB7moS0OkyW1LC2en8g==
+X-CSE-MsgGUID: urYwgc8yRguDKUwLWbLAew==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,151,1763452800"; d="scan'208";a="201931616"
+X-IronPort-AV: E=Sophos;i="6.21,151,1763452800"; d="scan'208";a="201931629"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.106])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2025 07:28:42 -0800
+ 15 Dec 2025 07:28:47 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 02/15] drm/xe/display: rename xe_plane_initial.c to
- xe_initial_plane.c
-Date: Mon, 15 Dec 2025 17:28:16 +0200
-Message-ID: <62eb56fe348a8fe7c17333d784192da701367cc7.1765812266.git.jani.nikula@intel.com>
+Subject: [PATCH 03/15] drm/i915: rename intel_plane_initial.h to
+ intel_initial_plane.h
+Date: Mon, 15 Dec 2025 17:28:17 +0200
+Message-ID: <32c2d68a9ae7d2262ad2c63e873e522e67bc78df.1765812266.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1765812266.git.jani.nikula@intel.com>
 References: <cover.1765812266.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,33 +73,168 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Follow i915 with the more naturally flowing naming.
+Follow the more naturally flowing naming. Rename both the header and the
+vblank wait function.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile                                     | 2 +-
- .../drm/xe/display/{xe_plane_initial.c => xe_initial_plane.c}   | 0
- 2 files changed, 1 insertion(+), 1 deletion(-)
- rename drivers/gpu/drm/xe/display/{xe_plane_initial.c => xe_initial_plane.c} (100%)
+ drivers/gpu/drm/i915/display/intel_display.c              | 8 ++++----
+ drivers/gpu/drm/i915/display/intel_display_driver.c       | 2 +-
+ .../{intel_plane_initial.h => intel_initial_plane.h}      | 6 +++---
+ drivers/gpu/drm/i915/i915_initial_plane.c                 | 6 +++---
+ drivers/gpu/drm/xe/display/xe_initial_plane.c             | 6 +++---
+ 5 files changed, 14 insertions(+), 14 deletions(-)
+ rename drivers/gpu/drm/i915/display/{intel_plane_initial.h => intel_initial_plane.h} (60%)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 7f08b4cd91d6..84fd9f88f63d 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -217,8 +217,8 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	display/xe_dsb_buffer.o \
- 	display/xe_fb_pin.o \
- 	display/xe_hdcp_gsc.o \
-+	display/xe_initial_plane.o \
- 	display/xe_panic.o \
--	display/xe_plane_initial.o \
- 	display/xe_stolen.o \
- 	display/xe_tdf.o
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 9c6d3ecdb589..a29a12bcec0b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -100,6 +100,7 @@
+ #include "intel_frontbuffer.h"
+ #include "intel_hdmi.h"
+ #include "intel_hotplug.h"
++#include "intel_initial_plane.h"
+ #include "intel_link_bw.h"
+ #include "intel_lt_phy.h"
+ #include "intel_lvds.h"
+@@ -113,7 +114,6 @@
+ #include "intel_pfit.h"
+ #include "intel_pipe_crc.h"
+ #include "intel_plane.h"
+-#include "intel_plane_initial.h"
+ #include "intel_pmdemand.h"
+ #include "intel_pps.h"
+ #include "intel_psr.h"
+@@ -639,7 +639,7 @@ void intel_plane_disable_noatomic(struct intel_crtc *crtc,
+ 	if ((crtc_state->active_planes & ~BIT(PLANE_CURSOR)) == 0 &&
+ 	    hsw_ips_disable(crtc_state)) {
+ 		crtc_state->ips_enabled = false;
+-		intel_plane_initial_vblank_wait(crtc);
++		intel_initial_plane_vblank_wait(crtc);
+ 	}
  
-diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-similarity index 100%
-rename from drivers/gpu/drm/xe/display/xe_plane_initial.c
-rename to drivers/gpu/drm/xe/display/xe_initial_plane.c
+ 	/*
+@@ -653,7 +653,7 @@ void intel_plane_disable_noatomic(struct intel_crtc *crtc,
+ 	 */
+ 	if (HAS_GMCH(display) &&
+ 	    intel_set_memory_cxsr(display, false))
+-		intel_plane_initial_vblank_wait(crtc);
++		intel_initial_plane_vblank_wait(crtc);
+ 
+ 	/*
+ 	 * Gen2 reports pipe underruns whenever all planes are disabled.
+@@ -663,7 +663,7 @@ void intel_plane_disable_noatomic(struct intel_crtc *crtc,
+ 		intel_set_cpu_fifo_underrun_reporting(display, crtc->pipe, false);
+ 
+ 	intel_plane_disable_arm(NULL, plane, crtc_state);
+-	intel_plane_initial_vblank_wait(crtc);
++	intel_initial_plane_vblank_wait(crtc);
+ }
+ 
+ unsigned int
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+index e282b533d5b6..b471e230fcb1 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.c
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+@@ -54,11 +54,11 @@
+ #include "intel_hdcp.h"
+ #include "intel_hotplug.h"
+ #include "intel_hti.h"
++#include "intel_initial_plane.h"
+ #include "intel_modeset_lock.h"
+ #include "intel_modeset_setup.h"
+ #include "intel_opregion.h"
+ #include "intel_overlay.h"
+-#include "intel_plane_initial.h"
+ #include "intel_pmdemand.h"
+ #include "intel_pps.h"
+ #include "intel_psr.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.h b/drivers/gpu/drm/i915/display/intel_initial_plane.h
+similarity index 60%
+rename from drivers/gpu/drm/i915/display/intel_plane_initial.h
+rename to drivers/gpu/drm/i915/display/intel_initial_plane.h
+index 5c315acda210..5f9a347be8f0 100644
+--- a/drivers/gpu/drm/i915/display/intel_plane_initial.h
++++ b/drivers/gpu/drm/i915/display/intel_initial_plane.h
+@@ -3,13 +3,13 @@
+  * Copyright © 2021 Intel Corporation
+  */
+ 
+-#ifndef __INTEL_PLANE_INITIAL_H__
+-#define __INTEL_PLANE_INITIAL_H__
++#ifndef __INTEL_INITIAL_PLANE_H__
++#define __INTEL_INITIAL_PLANE_H__
+ 
+ struct intel_crtc;
+ struct intel_display;
+ 
+ void intel_initial_plane_config(struct intel_display *display);
+-void intel_plane_initial_vblank_wait(struct intel_crtc *crtc);
++void intel_initial_plane_vblank_wait(struct intel_crtc *crtc);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/i915/i915_initial_plane.c b/drivers/gpu/drm/i915/i915_initial_plane.c
+index 87c964485a41..b7f115708c32 100644
+--- a/drivers/gpu/drm/i915/i915_initial_plane.c
++++ b/drivers/gpu/drm/i915/i915_initial_plane.c
+@@ -11,14 +11,14 @@
+ #include "display/intel_display_types.h"
+ #include "display/intel_fb.h"
+ #include "display/intel_frontbuffer.h"
++#include "display/intel_initial_plane.h"
+ #include "display/intel_plane.h"
+-#include "display/intel_plane_initial.h"
+ #include "gem/i915_gem_lmem.h"
+ #include "gem/i915_gem_region.h"
+ 
+ #include "i915_drv.h"
+ 
+-void intel_plane_initial_vblank_wait(struct intel_crtc *crtc)
++void intel_initial_plane_vblank_wait(struct intel_crtc *crtc)
+ {
+ 	intel_crtc_wait_for_next_vblank(crtc);
+ }
+@@ -436,7 +436,7 @@ void intel_initial_plane_config(struct intel_display *display)
+ 		intel_find_initial_plane_obj(crtc, plane_configs);
+ 
+ 		if (display->funcs.display->fixup_initial_plane_config(crtc, plane_config))
+-			intel_plane_initial_vblank_wait(crtc);
++			intel_initial_plane_vblank_wait(crtc);
+ 
+ 		plane_config_fini(plane_config);
+ 	}
+diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
+index 01c105a93bb9..9d5760e56c4c 100644
+--- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
++++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
+@@ -19,15 +19,15 @@
+ #include "intel_fb.h"
+ #include "intel_fb_pin.h"
+ #include "intel_frontbuffer.h"
++#include "intel_initial_plane.h"
+ #include "intel_plane.h"
+-#include "intel_plane_initial.h"
+ #include "xe_bo.h"
+ #include "xe_vram_types.h"
+ #include "xe_wa.h"
+ 
+ #include <generated/xe_device_wa_oob.h>
+ 
+-void intel_plane_initial_vblank_wait(struct intel_crtc *crtc)
++void intel_initial_plane_vblank_wait(struct intel_crtc *crtc)
+ {
+ 	/* Early xe has no irq */
+ 	struct xe_device *xe = to_xe_device(crtc->base.dev);
+@@ -314,7 +314,7 @@ void intel_initial_plane_config(struct intel_display *display)
+ 		intel_find_initial_plane_obj(crtc, plane_configs);
+ 
+ 		if (display->funcs.display->fixup_initial_plane_config(crtc, plane_config))
+-			intel_plane_initial_vblank_wait(crtc);
++			intel_initial_plane_vblank_wait(crtc);
+ 
+ 		plane_config_fini(plane_config);
+ 	}
 -- 
 2.47.3
 
