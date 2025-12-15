@@ -2,67 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50AAECBD671
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Dec 2025 11:46:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EBD0CBD7FF
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Dec 2025 12:31:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D5D910E26E;
-	Mon, 15 Dec 2025 10:46:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75BB410E435;
+	Mon, 15 Dec 2025 11:31:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PyXsbZRe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d1FPXBhN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B33C510E26E;
- Mon, 15 Dec 2025 10:46:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8890D10E3F4;
+ Mon, 15 Dec 2025 11:31:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765795590; x=1797331590;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Bk15fFQaaNzeTwIC9795mFTycSNqNCgufGv6rxPBva8=;
- b=PyXsbZRe0wexDDlcF2aWGjndv/eQrSM8Bdfc3Q/GlnEsFqOhocYNZF3u
- i/2EON2ibTop3s5tzY/wWH4FA9EenOElcrh5Ue3Qps5OgTRGdHp25nGrj
- i2SFfvHchiKuhowFndVRc9NU7RF0RiX9S9tygy1DROXYsQdx8etCtr2Vv
- nWMPrDm2xcEJ6Ljy91CZIECxLim+YDuInkjZlmtgLJsyLIdHPHH3tgwMH
- WjWfVZu72Tu7qaXS4t1ZXYxE0oBtRUGXHdejcNWeu0f5DbU4/Q530UwZk
- 7MIMWpSLnUGV7fOH1H4OStnPvD8HZXLOkgsheNr9UCnFA7HyOa8iDNaAS Q==;
-X-CSE-ConnectionGUID: cFh8EmROSAqefWlcqaQ2RQ==
-X-CSE-MsgGUID: A559Iw7hQRCNEBDCfX9oJg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11642"; a="55258318"
-X-IronPort-AV: E=Sophos;i="6.21,150,1763452800"; d="scan'208";a="55258318"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2025 02:46:29 -0800
-X-CSE-ConnectionGUID: VTvqYNBUSx6AZXQyYR1e+A==
-X-CSE-MsgGUID: eyUgr191R++dzMUJ7Zp7cQ==
+ t=1765798265; x=1797334265;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=G1nikKrpos+4eEcRr66hTbk1bo3WNaRaPW8upBd7gd4=;
+ b=d1FPXBhNnzTZzJKZbs8loXkfsNlpKQIhl+VvwJdMTI8U+PQKffKDLK/b
+ FkyKvFdp6n1eIz/UH4uV9PC+NLjnckMRYPBHj14uRmrY6hYEspO2kxvDj
+ B5mhAqbERgW1FyYqtyEuIy9twCbHMbbzIFX0DX1/e9Ri8YD6XtcnnFvh0
+ gSQRk5WBc932TaG3g8JrYEe3ccJhQe/13xpyq8Q7Ymw2BGjmF7cAg6yjv
+ 5jB3XECd7dJlf0PRW8j5zXNZvUvxUi9eIgfZwVdp6E2qgojP1dzwLrXBv
+ szsSO/0UfJxMavZoUYoKoujEJUZsgG5DhuQ9nTSIVmhrNx8JLZK1EkZJv Q==;
+X-CSE-ConnectionGUID: aDxSE37WTPyURB9JGuV3Ag==
+X-CSE-MsgGUID: S3z+1o7IRrGGtKIeqJOmZA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11642"; a="67732755"
+X-IronPort-AV: E=Sophos;i="6.21,150,1763452800"; d="scan'208";a="67732755"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2025 03:31:05 -0800
+X-CSE-ConnectionGUID: XAwHH+r+RJKgI18Uc1H/iA==
+X-CSE-MsgGUID: nLzwftedRWeFwNoqWERNfA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,150,1763452800"; d="scan'208";a="228764455"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.107])
+X-IronPort-AV: E=Sophos;i="6.21,150,1763452800"; d="scan'208";a="235090377"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2025 02:46:26 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>
-Cc: stable@vger.kernel.org, =?UTF-8?B?6rmA6rCV66+8?= <km.kim1503@gmail.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>
-Subject: Re: [PATCH v4] drm/i915/gem: Zero-initialize the eb.vma array in
- i915_gem_do_execbuffer
-Date: Mon, 15 Dec 2025 11:46:24 +0100
-Message-ID: <84087946.yqcDRGjS6z@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20251212150611.18757-2-krzysztof.niemiec@intel.com>
-References: <20251212150611.18757-2-krzysztof.niemiec@intel.com>
+ 15 Dec 2025 03:31:03 -0800
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: jani.nikula@linux.intel.com,
+	Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 0/5] Prepare GVT for display modularization
+Date: Mon, 15 Dec 2025 16:48:36 +0530
+Message-ID: <20251215111842.2099789-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,158 +67,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Friday, 12 December 2025 16:06:12 CET Krzysztof Niemiec wrote:
-> Initialize the eb.vma array with values of 0 when the eb structure is
-> first set up. In particular, this sets the eb->vma[i].vma pointers to
-> NULL, simplifying cleanup and getting rid of the bug described below.
-> 
-> During the execution of eb_lookup_vmas(), the eb->vma array is
-> successively filled up with struct eb_vma objects. This process includes
-> calling eb_add_vma(), which might fail; however, even in the event of
-> failure, eb->vma[i].vma is set for the currently processed buffer.
-> 
-> If eb_add_vma() fails, eb_lookup_vmas() returns with an error, which
-> prompts a call to eb_release_vmas() to clean up the mess. Since
-> eb_lookup_vmas() might fail during processing any (possibly not first)
-> buffer, eb_release_vmas() checks whether a buffer's vma is NULL to know
-> at what point did the lookup function fail.
-> 
-> In eb_lookup_vmas(), eb->vma[i].vma is set to NULL if either the helper
-> function eb_lookup_vma() or eb_validate_vma() fails. eb->vma[i+1].vma is
-> set to NULL in case i915_gem_object_userptr_submit_init() fails; the
-> current one needs to be cleaned up by eb_release_vmas() at this point,
-> so the next one is set. If eb_add_vma() fails, neither the current nor
-> the next vma is nullified, which is a source of a NULL deref bug
-> described in [1].
-> 
-> When entering eb_lookup_vmas(), the vma pointers are set to the slab
-> poison value, instead of NULL. This doesn't matter for the actual
-> lookup, since it gets overwritten anyway, however the eb_release_vmas()
-> function only recognizes NULL as the stopping value, hence the pointers
-> are being nullified as they go in case of intermediate failure. This
-> patch changes the approach to filling them all with NULL at the start
-> instead, rather than handling that manually during failure.
-> 
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15062
-> Fixes: 544460c33821 ("drm/i915: Multi-BB execbuf")
-> Reported-by: Gangmin Kim <km.kim1503@gmail.com>
-> Cc: <stable@vger.kernel.org> # 5.16.x
-> Signed-off-by: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+GVT currently relies on display internals through register macros and helpers
+like for_each_pipe(). This tight coupling makes modularization difficult
+because GVT should not access struct intel_display directly.
+Add an API for GVT code to expose DISPLAY_RUNTIME_INFO()->pipe_mask.
+This series introduces changes to make GVT independent of display internals
+while keeping existing macros usable:
 
-Reviewed-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+- Abstract offset calculations in display using
+  INTEL_DISPLAY_DEVICE_*_OFFSET() macros.
+- Add APIs for GVT to compute offsets and pipe mask via functions.
+- Update GVT to use these APIs by overriding helper macros and
+  for_each_pipe().
 
-> ---
-> I messed up the continuity in previous revisions; the original patch
-> was sent as [1], and the first revision (which I didn't mark as v2 due
-> to the title change) was sent as [2].
-> 
-> This is the full current changelog:
-> 
-> v4:
->    - delete an empty line (Janusz), reword the comment a bit (Krzysztof,
->      Janusz)
-> v3:
->    - use memset() to fill the entire eb.vma array with zeros instead of
->    looping through the elements (Janusz)
->    - add a comment clarifying the mechanism of the initial allocation (Janusz)
->    - change the commit log again, including title
->    - rearrange the tags to keep checkpatch happy
-> v2:
->    - set the eb->vma[i].vma pointers to NULL during setup instead of
->      ad-hoc at failure (Janusz)
->    - romanize the reporter's name (Andi, offline)
->    - change the commit log, including title
-> 
-> [1] https://patchwork.freedesktop.org/series/156832/
-> [2] https://patchwork.freedesktop.org/series/158036/
-> 
->  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 37 +++++++++----------
->  1 file changed, 17 insertions(+), 20 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index b057c2fa03a4..348023d13668 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -951,13 +951,13 @@ static int eb_lookup_vmas(struct i915_execbuffer *eb)
->  		vma = eb_lookup_vma(eb, eb->exec[i].handle);
->  		if (IS_ERR(vma)) {
->  			err = PTR_ERR(vma);
-> -			goto err;
-> +			return err;
->  		}
->  
->  		err = eb_validate_vma(eb, &eb->exec[i], vma);
->  		if (unlikely(err)) {
->  			i915_vma_put(vma);
-> -			goto err;
-> +			return err;
->  		}
->  
->  		err = eb_add_vma(eb, &current_batch, i, vma);
-> @@ -966,19 +966,8 @@ static int eb_lookup_vmas(struct i915_execbuffer *eb)
->  
->  		if (i915_gem_object_is_userptr(vma->obj)) {
->  			err = i915_gem_object_userptr_submit_init(vma->obj);
-> -			if (err) {
-> -				if (i + 1 < eb->buffer_count) {
-> -					/*
-> -					 * Execbuffer code expects last vma entry to be NULL,
-> -					 * since we already initialized this entry,
-> -					 * set the next value to NULL or we mess up
-> -					 * cleanup handling.
-> -					 */
-> -					eb->vma[i + 1].vma = NULL;
-> -				}
-> -
-> +			if (err)
->  				return err;
-> -			}
->  
->  			eb->vma[i].flags |= __EXEC_OBJECT_USERPTR_INIT;
->  			eb->args->flags |= __EXEC_USERPTR_USED;
-> @@ -986,10 +975,6 @@ static int eb_lookup_vmas(struct i915_execbuffer *eb)
->  	}
->  
->  	return 0;
-> -
-> -err:
-> -	eb->vma[i].vma = NULL;
-> -	return err;
->  }
->  
->  static int eb_lock_vmas(struct i915_execbuffer *eb)
-> @@ -3375,7 +3360,8 @@ i915_gem_do_execbuffer(struct drm_device *dev,
->  
->  	eb.exec = exec;
->  	eb.vma = (struct eb_vma *)(exec + args->buffer_count + 1);
-> -	eb.vma[0].vma = NULL;
-> +	memset(eb.vma, 0x00, args->buffer_count * sizeof(struct eb_vma));
-> +
->  	eb.batch_pool = NULL;
->  
->  	eb.invalid_flags = __EXEC_OBJECT_UNKNOWN_FLAGS;
-> @@ -3584,7 +3570,18 @@ i915_gem_execbuffer2_ioctl(struct drm_device *dev, void *data,
->  	if (err)
->  		return err;
->  
-> -	/* Allocate extra slots for use by the command parser */
-> +	/*
-> +	 * Allocate extra slots for use by the command parser.
-> +	 *
-> +	 * Note that this allocation handles two different arrays (the
-> +	 * exec2_list array, and the eventual eb.vma array introduced in
-> +	 * i915_gem_do_execubuffer()), that reside in virtually contiguous
-> +	 * memory. Also note that the allocation intentionally doesn't fill the
-> +	 * area with zeros (because the exec2_list part doesn't need to be, as
-> +	 * it's immediately overwritten by user data a few lines below).
-> +	 * However, the eb.vma part is explicitly zeroed later in
-> +	 * i915_gem_do_execbuffer().
-> +	 */
->  	exec2_list = kvmalloc_array(count + 2, eb_element_size(),
->  				    __GFP_NOWARN | GFP_KERNEL);
->  	if (exec2_list == NULL) {
-> 
+Ankit Nautiyal (5):
+  drm/i915/display: Abstract pipe/trans/cursor offset calculation
+  drm/i915/display: Add APIs to be used by gvt to get the register
+    offsets
+  drm/i915/gvt: Add header to use display offset functions in macros
+  drm/i915/gvt: Change for_each_pipe to use pipe_mask API
+  drm/i915/gvt/display_helpers: Cast argument to enum pipe for
+    pipe-offset macro
 
+ drivers/gpu/drm/i915/Makefile                 |  1 +
+ .../drm/i915/display/intel_display_device.h   | 17 +++++++
+ .../drm/i915/display/intel_display_limits.c   |  0
+ .../drm/i915/display/intel_display_reg_defs.h | 15 ++----
+ drivers/gpu/drm/i915/display/intel_gvt_api.c  | 40 ++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_gvt_api.h  | 21 +++++++++
+ drivers/gpu/drm/i915/gvt/cmd_parser.c         |  2 +
+ drivers/gpu/drm/i915/gvt/display.c            |  2 +
+ drivers/gpu/drm/i915/gvt/display_helpers.h    | 46 +++++++++++++++++++
+ drivers/gpu/drm/i915/gvt/fb_decoder.c         |  2 +
+ drivers/gpu/drm/i915/gvt/handlers.c           |  2 +
+ 11 files changed, 137 insertions(+), 11 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_display_limits.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_gvt_api.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_gvt_api.h
+ create mode 100644 drivers/gpu/drm/i915/gvt/display_helpers.h
 
-
+-- 
+2.45.2
 
