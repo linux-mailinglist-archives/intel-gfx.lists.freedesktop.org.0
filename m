@@ -2,35 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 397CACBEBF5
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Dec 2025 16:48:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27D0ECBEBFC
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Dec 2025 16:48:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C68510E632;
-	Mon, 15 Dec 2025 15:48:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5A6A10E636;
+	Mon, 15 Dec 2025 15:48:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="KF0uF0vG";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="hGgqYdIh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DE9410E630;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1B5E10E62F;
  Mon, 15 Dec 2025 15:48:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1765813679;
- bh=LA3hIjGi9cA+PnG6A3TfKFJX6Y7TpnsugvkmMDZPIGM=;
+ s=default; t=1765813680;
+ bh=Qyjkrg23NvqAtrZ6SXaT7ACN9JWfiY1iU+ZEiaE5bX4=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=KF0uF0vG3mYPBZD+fwKoPva9kkSqwY+eBF/jtwm016c6TCnUZcmcUDaLIog+5xKlE
- gAgDtXNW+XBHiCaxHsXQyyclQKih+JTGqJY/j7n4t9ukNy/5ZkSjMAjwfLmLzCZy3l
- WDxvRSY37wMyfPJT05laM0OgDuPFJDNyzYbgrYVNZDdAOzrT2qGN1CkH5GsGbmiCVs
- xDpIHuE97w4e616fOceqlkeLhWxzmx8SPwZ7LPUuMpO/RBGkg+/cIH+w21X7bP3GdJ
- hwUZtGzsf5PgVXX1EYgw/3hg5elGrEtIUPOWoR/qjOd7SvJVtiWz+fHuHJ8HOXOxyD
- hjCmDweKEx5Xw==
+ b=hGgqYdIh8At8iqouPEAnb06+tLu0MwnPPFE4wT6bQ/1Q7tJrMqIyoRVtY8XKm+RKA
+ ptWqYYQbIymkaK2ZHzPKnTKe+U6Z8s0P85+5I0y1DHHLHiMzOh2xDG7qAM4wtqtmf4
+ Kt5Cxgrd7Vlp4m2DdPf1RhsrFYEIXjilQ0bmZzAJ6z+zBipYLotO4mrlEXtkFUW77M
+ QV0YYk8nM2R6n/nJGAkt91ceZn0wJ7dXeTjhc2nLUHQRn3nRsA3rkp6VD8q1WSnKXC
+ +KqAITZbzP0urlXLpRP8hgaxycrx+B423h01RthN2jG/2F/rj/XburH7/xIHDz3qt3
+ NNescsCZBXAKw==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Subject: [i915-rt 15/16] drm/i915/guc: Consider also RCU depth in busy loop.
-Date: Mon, 15 Dec 2025 16:47:55 +0100
-Message-ID: <20251215154740.1738648-33-dev@lankhorst.se>
+Subject: [i915-rt 16/16] Revert "drm/i915: Depend on !PREEMPT_RT."
+Date: Mon, 15 Dec 2025 16:47:56 +0100
+Message-ID: <20251215154740.1738648-34-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251215154740.1738648-18-dev@lankhorst.se>
 References: <20251215154740.1738648-18-dev@lankhorst.se>
@@ -53,34 +53,28 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 
-intel_guc_send_busy_loop() looks at in_atomic() and irqs_disabled() to
-decide if it should busy-spin while waiting or if it may sleep.
-Both checks will report false on PREEMPT_RT if sleeping spinlocks are
-acquired leading to RCU splats while the function sleeps.
+Once the known issues are addressed, it should be safe to enable the
+driver.
 
-Check also if RCU has been disabled.
-
-Reported-by: "John B. Wyatt IV" <jwyatt@redhat.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Acked-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/gt/uc/intel_guc.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/Kconfig | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-index 053780f562c1a..b25fa8f4dc4bd 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-@@ -362,7 +362,7 @@ static inline int intel_guc_send_busy_loop(struct intel_guc *guc,
- {
- 	int err;
- 	unsigned int sleep_period_ms = 1;
--	bool not_atomic = !in_atomic() && !irqs_disabled();
-+	bool not_atomic = !in_atomic() && !irqs_disabled() && !rcu_preempt_depth();
- 
- 	/*
- 	 * FIXME: Have caller pass in if we are in an atomic context to avoid
+diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
+index 5e939004b6463..40a9234e6e5dc 100644
+--- a/drivers/gpu/drm/i915/Kconfig
++++ b/drivers/gpu/drm/i915/Kconfig
+@@ -3,7 +3,6 @@ config DRM_I915
+ 	tristate "Intel 8xx/9xx/G3x/G4x/HD Graphics"
+ 	depends on DRM
+ 	depends on X86 && PCI
+-	depends on !PREEMPT_RT
+ 	select INTEL_GTT if X86
+ 	select INTERVAL_TREE
+ 	# we need shmfs for the swappable backing store, and in particular
 -- 
 2.51.0
 
