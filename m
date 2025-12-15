@@ -2,62 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98A62CBDAAA
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Dec 2025 13:01:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C2A4FCBDAC4
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Dec 2025 13:02:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DB8710E478;
-	Mon, 15 Dec 2025 12:01:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ffhclWew";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58AAE89E36;
+	Mon, 15 Dec 2025 12:02:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D84110E474;
- Mon, 15 Dec 2025 12:01:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765800069; x=1797336069;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=a7J9cXlVxiyjvS/iWvxTSaNoNMJG7z0g5HLTqv/VcMI=;
- b=ffhclWewVwMbV/6SQHcE5wx027oRflNKOCDi6Y6SnDU4GStAIkSswMIW
- bxAtaiBFjmOmLP+Rc3kgw8Bl8X+XPrHQ29/unkI2dEa+JLYLMaBuiSQUL
- MFCViChm35lWZm/ns6zIL7A7LiHWF7M6DEs55FD1Ll81xxjuzx3K7PXN+
- B7zSl9G1igF8rIGHtPIgPN9ceXIp6FjGJjIipT8ChDx7on8RqgC4K162u
- Smfy2rOrnnmBAjtGp2+EvioVBmvA1hEbkgrAzgECBwxN70f6kI+ZKlJJ+
- JinpO5mjdLz5wcB0+Q+2jnA0UlYg4qoPAxt38WNwZcY/mSti5IYylaQff A==;
-X-CSE-ConnectionGUID: Udr1iRpUTRCxq2ecWdaWPA==
-X-CSE-MsgGUID: 1y6mZ7CYTFuEPL4ZOw1cvQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11642"; a="67853354"
-X-IronPort-AV: E=Sophos;i="6.21,150,1763452800"; d="scan'208";a="67853354"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2025 04:01:09 -0800
-X-CSE-ConnectionGUID: O2aiBP/QTCyMN4+FjRPJMw==
-X-CSE-MsgGUID: t0HWtlv+RauYEELHzD334g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,150,1763452800"; d="scan'208";a="197323698"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.106])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2025 04:01:00 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: Re: [PATCH 4/5] drm/i915/gvt: Change for_each_pipe to use pipe_mask
- API
-In-Reply-To: <20251215111842.2099789-5-ankit.k.nautiyal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20251215111842.2099789-1-ankit.k.nautiyal@intel.com>
- <20251215111842.2099789-5-ankit.k.nautiyal@intel.com>
-Date: Mon, 15 Dec 2025 14:00:55 +0200
-Message-ID: <2785d3cddb6199bc7e6cef3374dbff46d4cae205@intel.com>
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C0DE89D56;
+ Mon, 15 Dec 2025 12:02:12 +0000 (UTC)
+Received: from mobile-access-5d6aa7-235.dhcp.inet.fi ([93.106.167.235]
+ helo=[192.168.8.139])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
+ id 1vV7HE-00000000p1g-2Rol; Mon, 15 Dec 2025 14:02:10 +0200
+Message-ID: <a45bad5ec743491abe27dbe5ce3b6a13f610710e.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Date: Mon, 15 Dec 2025 14:02:07 +0200
+In-Reply-To: <aT_2t7DhxNmURqLc@ideak-desk>
+References: <20251127175023.1522538-1-imre.deak@intel.com>
+ <20251127175023.1522538-15-imre.deak@intel.com>
+ <bd03d373949f5cb07e6b5d9314dd002fe7483be9.camel@coelho.fi>
+ <aT_2t7DhxNmURqLc@ideak-desk>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-7 
 MIME-Version: 1.0
-Content-Type: text/plain
+X-Spam-Checker-Version: SpamAssassin 4.0.2 (2025-08-27) on farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+ autolearn=ham autolearn_force=no version=4.0.2
+Subject: Re: [PATCH 14/50] drm/i915/dp: Factor out
+ align_max_sink_dsc_input_bpp()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,74 +52,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 15 Dec 2025, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
-> Add a new API to get pipe_mask from DISPLAY_RUNTIME_INFO() for GVT.
-> Update the for_each_pipe() macro in GVT to call this API, instead of
-> accessing DISPLAY_RUNTIME_INFO()->pipe_mask directly.
->
-> This keeps the macro usable in GVT without exposing display internals
-> and prepares for display modularization.
->
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_gvt_api.c | 6 ++++++
->  drivers/gpu/drm/i915/display/intel_gvt_api.h | 1 +
->  drivers/gpu/drm/i915/gvt/display_helpers.h   | 7 +++++++
->  3 files changed, 14 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_gvt_api.c b/drivers/gpu/drm/i915/display/intel_gvt_api.c
-> index 8abea318fbc2..0b09bbf2c29a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_gvt_api.c
-> +++ b/drivers/gpu/drm/i915/display/intel_gvt_api.c
-> @@ -32,3 +32,9 @@ u32 intel_display_device_mmio_base(struct intel_display *display)
->  	return DISPLAY_MMIO_BASE(display);
->  }
->  EXPORT_SYMBOL_GPL(intel_display_device_mmio_base);
-> +
-> +u8 intel_display_runtime_info_pipe_mask(struct intel_display *display)
-> +{
-> +	return DISPLAY_RUNTIME_INFO(display)->pipe_mask;
-> +}
+On Mon, 2025-12-15 at 13:53 +0200, Imre Deak wrote:
+> On Mon, Dec 15, 2025 at 09:46:24AM +0200, Luca Coelho wrote:
+> > On Thu, 2025-11-27 at 19:49 +0200, Imre Deak wrote:
+> > > Factor out align_max_sink_dsc_input_bpp(), also used later for comput=
+ing
+> > > the maximum DSC input BPP limit.
+> > >=20
+> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_dp.c | 28 ++++++++++++++++-------=
+--
+> > >  1 file changed, 18 insertions(+), 10 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/dr=
+m/i915/display/intel_dp.c
+> > > index 000fccc39a292..dcb9bc11e677b 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > > @@ -1893,12 +1893,27 @@ int intel_dp_dsc_max_src_input_bpc(struct int=
+el_display *display)
+> > >  	return intel_dp_dsc_min_src_input_bpc();
+> > >  }
+> > > =20
+> > > +static int align_max_sink_dsc_input_bpp(const struct intel_connector=
+ *connector,
+> > > +					int max_pipe_bpp)
+> > > +{
+> > > +	u8 dsc_bpc[3];
+> >=20
+> > I think it's safer to use the '=3D {}' we had before, because that zero=
+es
+> > the array, so in case of any stack leaks, you won't leak aleatory parts
+> > of the memory.  In this case it's only 3 bytes, so hardly anything
+> > important could leak, but anyway.
+>=20
+> As for any other variable I don't see any reason for initializing it, if
+> it will be initialized before its first use. It will be initialized
+> before its first use by drm_dp_dsc_sink_supported_input_bpcs().
 
-I don't think gvt needs to know it's about "runtime info". Maybe make it
-just intel_display_device_pipe_mask()?
+Fair enough.  Security here is probably not so important, and as I
+said, it's only 3 bytes, but in wifi we once had the activity of pre-
+initializing all arrays like this for security reasons.  Your call.
 
-Though I'm also wondering about making it even more abstracted with
-something like intel_display_device_pipe_valid(), and using that for the
-various other cases that check pipes in GVT. But maybe the patch at hand
-is a good start.
 
-> +EXPORT_SYMBOL_GPL(intel_display_runtime_info_pipe_mask);
-> diff --git a/drivers/gpu/drm/i915/display/intel_gvt_api.h b/drivers/gpu/drm/i915/display/intel_gvt_api.h
-> index e9a1122a988d..8ceda30a969b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_gvt_api.h
-> +++ b/drivers/gpu/drm/i915/display/intel_gvt_api.h
-> @@ -16,5 +16,6 @@ u32 intel_display_device_pipe_offset(struct intel_display *display, enum pipe pi
->  u32 intel_display_device_trans_offset(struct intel_display *display, enum transcoder trans);
->  u32 intel_display_device_cursor_offset(struct intel_display *display, enum pipe pipe);
->  u32 intel_display_device_mmio_base(struct intel_display *display);
-> +u8 intel_display_runtime_info_pipe_mask(struct intel_display *display);
->  
->  #endif /* __INTEL_GVT_API_H__ */
-> diff --git a/drivers/gpu/drm/i915/gvt/display_helpers.h b/drivers/gpu/drm/i915/gvt/display_helpers.h
-> index 6f68a1e8751a..d11ebb03b946 100644
-> --- a/drivers/gpu/drm/i915/gvt/display_helpers.h
-> +++ b/drivers/gpu/drm/i915/gvt/display_helpers.h
-> @@ -36,4 +36,11 @@ struct display;
->  #define INTEL_DISPLAY_DEVICE_CURSOR_OFFSET(display, pipe) \
->  	intel_display_device_cursor_offset((display), (pipe))
->  
-> +#ifdef for_each_pipe
+> > Also, since this is 3 bytes long, it's theoretically better to have it
+> > at the end of the stack declarations.
+>=20
+> The compiler is free to reorder the allocation order on the stack and
+> is expected to that for optimal alignment.
 
-Ditto about ifdefs here as with previous patch.
+Of course the compiler will do this sort of things, but it's just
+better practice IMHO to keeps organized in some way.  If you had said
+that it was in alphabetical order (it isn't), then it would probably
+satisfy my OCD. lol
 
-> +#undef for_each_pipe
-> +#endif
-> +#define for_each_pipe(display, __p) \
-> +	for ((__p) = 0; (__p) < I915_MAX_PIPES; (__p)++) \
-> +		for_each_if(intel_display_runtime_info_pipe_mask((display)) & BIT(__p))
-> +
->  #endif /* __DISPLAY_HELPERS_H__ */
+In any case, these were just nitpicks, so it's up to you.
 
--- 
-Jani Nikula, Intel
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+
+--
+Cheers,
+Luca.
+
+
+
+> > > +	int num_bpc;
+> > > +	int i;
+> > > +
+> > > +	num_bpc =3D drm_dp_dsc_sink_supported_input_bpcs(connector->dp.dsc_=
+dpcd,
+> > > +						       dsc_bpc);
+> > > +	for (i =3D 0; i < num_bpc; i++) {
+> > > +		if (dsc_bpc[i] * 3 <=3D max_pipe_bpp)
+> > > +			return dsc_bpc[i] * 3;
+> > > +	}
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > >  int intel_dp_dsc_compute_max_bpp(const struct intel_connector *conne=
+ctor,
+> > >  				 u8 max_req_bpc)
+> > >  {
+> > >  	struct intel_display *display =3D to_intel_display(connector);
+> > > -	int i, num_bpc;
+> > > -	u8 dsc_bpc[3] =3D {};
+> > >  	int dsc_max_bpc;
+> > > =20
+> > >  	dsc_max_bpc =3D intel_dp_dsc_max_src_input_bpc(display);
+> > > @@ -1908,14 +1923,7 @@ int intel_dp_dsc_compute_max_bpp(const struct =
+intel_connector *connector,
+> > > =20
+> > >  	dsc_max_bpc =3D min(dsc_max_bpc, max_req_bpc);
+> > > =20
+> > > -	num_bpc =3D drm_dp_dsc_sink_supported_input_bpcs(connector->dp.dsc_=
+dpcd,
+> > > -						       dsc_bpc);
+> > > -	for (i =3D 0; i < num_bpc; i++) {
+> > > -		if (dsc_max_bpc >=3D dsc_bpc[i])
+> > > -			return dsc_bpc[i] * 3;
+> > > -	}
+> > > -
+> > > -	return 0;
+> > > +	return align_max_sink_dsc_input_bpp(connector, dsc_max_bpc * 3);
+> > >  }
+> > > =20
+> > >  static int intel_dp_source_dsc_version_minor(struct intel_display *d=
+isplay)
