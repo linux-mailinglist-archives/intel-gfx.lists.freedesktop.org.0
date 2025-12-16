@@ -2,57 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A988CC52EE
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Dec 2025 22:12:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70D2DCC52F1
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Dec 2025 22:12:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD39E10E8AA;
-	Tue, 16 Dec 2025 21:12:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D17E910E96F;
+	Tue, 16 Dec 2025 21:12:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WY3ne2s9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KtgQ13Q1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7E3410E33A;
- Tue, 16 Dec 2025 21:12:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4CE010E33A;
+ Tue, 16 Dec 2025 21:12:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765919540; x=1797455540;
- h=from:subject:date:message-id:mime-version:
- content-transfer-encoding:to:cc;
- bh=8OrsPb5avHPD4rHDzG5d1vsUMVEDHIsHGNMxD8tZOgY=;
- b=WY3ne2s9RLGtkRXpOMnAr89MUiRujV+C1Vb+QqNen8p0Z53T2qB5RNvq
- N1zqiqxpAi1d53TIhv+mNzo3f4s55Ju607Z8z21UPrNi885qTHcuW8L6J
- uikmCudLM1k6z8TFuxPG5S5BxwDYWjOPFYf7QUqyneN/EHkd1bVmkuoic
- Fp1XXEizIhb2cTqhkDQCJ9e5iSHbAsx+TzSgbxmK26ARsR4h+o4mpVfAO
- gfoYN+pmtP0b+D9KQE4UQRRD0mUCSvqNT4DLLiXcVIsivo3uxxjNvUGUO
- YwRMgxkQbZcN/LWKzUbeV/HHKBsGdmI9Rwp8LkOJywcJcMkZU+I2Cf3F4 Q==;
-X-CSE-ConnectionGUID: VAHPQ2BQT0iGPUVCEh/Jag==
-X-CSE-MsgGUID: CWVP1BBqRpiTudtHgvodEQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="67732977"
-X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; d="scan'208";a="67732977"
+ t=1765919541; x=1797455541;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:references:in-reply-to:to:cc;
+ bh=UkN/qxPcoCwnwhnQWZnorFtx4rNYoPlq06F5jgKPteE=;
+ b=KtgQ13Q10x9L4omN3jTQIhYO1EJHFuGegkza8nY150QYhLsq/5D5MjPY
+ XIdo8VnWfFOgbQMgcAu9GYnercPuAiX5f+ykXJmwf8DR6RIKFQEx12HOE
+ fMgbGvs/u3hdfvWYQemc4BqX4S5n1cnq96jbCX+1YJ6x1hC7glUN81j51
+ Zn/oVWbuJLGL/f9EUhppsUINr+V2m1ZIbcA+tctFLzUAuY9tvXR0nzGlk
+ gAqaRNwOwWYy7rkq4zXrkoslph7kik3z0eBC4UkaVANmy0V9stwejE2La
+ Ew7STZhX/42gHI4Vz4Rj7XT6dl09/RmU2PX2sH6vXBAtxLqv7W0OTQSM2 A==;
+X-CSE-ConnectionGUID: VCZZzWUDQyiIvH2ELWSmHQ==
+X-CSE-MsgGUID: WWKBq0iiShqwDrb6+TWC8A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="67732979"
+X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; d="scan'208";a="67732979"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 13:12:20 -0800
-X-CSE-ConnectionGUID: oBUjLv59QN2FnPTMe5lSsg==
-X-CSE-MsgGUID: gNJon+hzSwCE49VjVt4qlQ==
+ 16 Dec 2025 13:12:21 -0800
+X-CSE-ConnectionGUID: au8Jg1xUTmGHo15xFs5Evg==
+X-CSE-MsgGUID: k95DNl7GQZ6aeGzwBGuNoQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; d="scan'208";a="198017045"
+X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; d="scan'208";a="198017054"
 Received: from aschofie-mobl2.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.223.67])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 13:12:18 -0800
+ 16 Dec 2025 13:12:19 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Subject: [PATCH 0/2] Toggle powerdown states for C10 on HDMI
-Date: Tue, 16 Dec 2025 18:11:59 -0300
-Message-Id: <20251216-wa_14026084006-c10-hdmi-toggle-powerdown-v1-0-08677b03e2f1@intel.com>
+Date: Tue, 16 Dec 2025 18:12:00 -0300
+Subject: [PATCH 1/2] drm/i915/cx0: Use a more accurate message for
+ powerdown change failure
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIACDLQWkC/x3NQQrCMBBA0auUWTswCUlsvYoUqcmYDmhSEjFC6
- d0NLt/m/x0qF+EKl2GHwh+pklOHOg3g1yVFRgndoElbpZXDttyUIe1oNEQOvSJcw0vwnWN8Mm6
- 5cQm5JdRsrfH+Pp3HCXpuK/yQ7391nY/jB7xQiKF6AAAA
-X-Change-ID: 20251216-wa_14026084006-c10-hdmi-toggle-powerdown-2e554ccb9789
+Message-Id: <20251216-wa_14026084006-c10-hdmi-toggle-powerdown-v1-1-08677b03e2f1@intel.com>
+References: <20251216-wa_14026084006-c10-hdmi-toggle-powerdown-v1-0-08677b03e2f1@intel.com>
+In-Reply-To: <20251216-wa_14026084006-c10-hdmi-toggle-powerdown-v1-0-08677b03e2f1@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Cc: Gustavo Sousa <gustavo.sousa@intel.com>
 X-Mailer: b4 0.15-dev
@@ -71,24 +70,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-A new step has been added to Bspec with respect to the C10 PHY, which
-instructs the driver to toggle powerdown value for boths PHY lanes to P0
-and then P2 when driving an HDMI connector.  This series implements
-that.
+We do not use the function intel_cx0_powerdown_change_sequence()
+exclusively to take the PHY out of reset, hence the warning message on
+failure is misleading.  Furthermore, in an upcoming change, we will also
+use that function to implement a new C10 PHY workaround.
+
+Use a more accurate message by saying that we failed to change the
+powerdown state.
 
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
-Gustavo Sousa (2):
-      drm/i915/cx0: Use a more accurate message for powerdown change failure
-      drm/i915/cx0: Toggle powerdown states for C10 on HDMI
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 17 ++++++++++++++++-
- 1 file changed, 16 insertions(+), 1 deletion(-)
----
-base-commit: 72428bdb20b6c86beaeddb9d69bf698d0697aa41
-change-id: 20251216-wa_14026084006-c10-hdmi-toggle-powerdown-2e554ccb9789
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index f6d69627154e..264f8a5072e5 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -3059,7 +3059,7 @@ void intel_cx0_powerdown_change_sequence(struct intel_encoder *encoder,
+ 				       intel_cx0_get_powerdown_update(lane_mask),
+ 				       XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_MS))
+ 		drm_warn(display->drm,
+-			 "PHY %c failed to bring out of lane reset\n",
++			 "PHY %c failed to change powerdown state\n",
+ 			 phy_name(phy));
+ }
+ 
 
-Best regards,
---  
-Gustavo Sousa <gustavo.sousa@intel.com>
+-- 
+2.52.0
 
