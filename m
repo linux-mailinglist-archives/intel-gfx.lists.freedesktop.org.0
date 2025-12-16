@@ -2,60 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07EBBCC30C5
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Dec 2025 14:04:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DF0FCC340E
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Dec 2025 14:36:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85EE710E958;
-	Tue, 16 Dec 2025 13:04:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A166410E11B;
+	Tue, 16 Dec 2025 13:35:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fu33P1N6";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="uq2fj/6l";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54A8910E7E3;
- Tue, 16 Dec 2025 13:04:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765890246; x=1797426246;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=xBwTA9Istr+bytxUSDmN3Q4KXncHHZw/yKkNjExx06E=;
- b=fu33P1N6uLFBx1euzeArEt17fdiaCG7Ngvj0EAZxv0lS4T8PIqGcX2sr
- w7UhH9W2wJGatma+3/r+Qi6oxgNvyrX4vl8HS4R2vhJdlJvzPMze93P0q
- z5GeAqbSIq1RqdcO70UiLt8fe8az6MMgiiFHlXp2FQD0bAAu3Ov7lVeRn
- 1UyNxT49NLw4vQFgHm3A8zXhUBmpO7dhpML8PTAJRet6D2vRRKBLp+p39
- NK6YviTtG6pyFWbbCMH+mUineQHj6fPSRg+h+5MphG4k4tBrlwqRC79iK
- Dmh0Zj3se2E0x9dKRM/fTtvjpGsmNrXUk43dQ0P5vVbaOKvjTVFp5Yala Q==;
-X-CSE-ConnectionGUID: GN8YU5TyT3KDJM8CPf87kA==
-X-CSE-MsgGUID: L+OB9jhWTOKr3XYiLUu43g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11643"; a="55377848"
-X-IronPort-AV: E=Sophos;i="6.21,153,1763452800"; d="scan'208";a="55377848"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 05:04:06 -0800
-X-CSE-ConnectionGUID: rMcnPhJ3T3+r/v7IMFOtnQ==
-X-CSE-MsgGUID: bRdmfd6cTvebTDlwClVePQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,153,1763452800"; d="scan'208";a="202921623"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO
- jhogande-mobl3.intel.com) ([10.245.246.133])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 05:04:04 -0800
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH] drm/i915/display: Allow async flip when Selective Fetch is
- enabled
-Date: Tue, 16 Dec 2025 15:03:51 +0200
-Message-ID: <20251216130351.2799110-1-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.43.0
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 010C010E11B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Dec 2025 13:35:56 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id DB72A6001D;
+ Tue, 16 Dec 2025 13:35:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E69DCC4CEF1;
+ Tue, 16 Dec 2025 13:35:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1765892155;
+ bh=QyuqxcFKng+vuTvwkZkZc3wTzi1ZMhfrFZUBqzz7GiA=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=uq2fj/6lNvCYYrgnt1gFIq6O6nOLvETfOjgyGT1ojNsyGIDtiehf9VfYou4J460sK
+ zcGjEzPMNeJ9m7dfY935WLKqejbJNVV6PmDCfqLIrkxBiQWnjxulrdDPwWfKkeA0kG
+ wCnpssB+62XZATEkjgG/r28KCyn1+R/0nx2FkLYAz5rlXONaxvmKHLGJLkC+HxFpYR
+ 2y1WexfFAejSq1agZaZhySonBRsPZ1NTZ6HYbJJMIrEjXe8UTtF9wFMtvFvdmxCRIm
+ ZmuXaU06S7iEfOEHhEN4uD7RlQVBi+yBiRI3qBfizhwUDJ5bqpsksLIkFgDpdRf4ze
+ LwCy07aoz1s2w==
+Date: Tue, 16 Dec 2025 14:35:51 +0100
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, andi.shyti@linux.intel.com, 
+ krzysztof.karas@intel.com, jani.nikula@linux.intel.com,
+ krzysztof.niemiec@intel.com
+Subject: Re: [PATCH v2] drm/i915/gt: use designated initializers for
+ intel_gt_debugfs_file
+Message-ID: <dektfs7tnmsyn5evuz3y6phudnqgi6eytbmwhpnlzwuxmh7qwt@hyw7zg7jrex3>
+References: <f662dbd6c43287ddc013fde1670653ad03d5f490.1765540658.git.sebastian.brzezinka@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f662dbd6c43287ddc013fde1670653ad03d5f490.1765540658.git.sebastian.brzezinka@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,35 +59,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Fix silent conflict during drm-next backmerge causing async flips being
-rejected when Selective Fetch is enabled.
+Hi Sebastian,
 
-Fixes: b8304863a399 ("Merge drm/drm-next into drm-intel-next")
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 8 --------
- 1 file changed, 8 deletions(-)
+On Fri, Dec 12, 2025 at 01:01:57PM +0100, Sebastian Brzezinka wrote:
+> CONFIG_RANDSTRUCT may reorder structure fields, which makes positional
+> initializers unsafe. The i915 GT debugfs tables were using positional
+> initializers for `struct intel_gt_debugfs_file`, and on configs where
+> the layout differs (e.g., presence/absence of the `.eval` callback),
+> this can lead to fields being initialized incorrectly and trigger
+> randstruct warnings such as:
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 9c6d3ecdb589e..d5947cc9b94c5 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -6026,14 +6026,6 @@ static int intel_async_flip_check_uapi(struct intel_atomic_state *state,
- 		return -EINVAL;
- 	}
- 
--	/* FIXME: selective fetch should be disabled for async flips */
--	if (new_crtc_state->enable_psr2_sel_fetch) {
--		drm_dbg_kms(display->drm,
--			    "[CRTC:%d:%s] async flip disallowed with PSR2 selective fetch\n",
--			    crtc->base.base.id, crtc->base.name);
--		return -EINVAL;
--	}
--
- 	for_each_oldnew_intel_plane_in_state(state, plane, old_plane_state,
- 					     new_plane_state, i) {
- 		if (plane->pipe != crtc->pipe)
--- 
-2.43.0
+nit: leave a space here.
 
+> ```
+>   drivers/gpu/drm/i915/gt/intel_gt_debugfs.c:75:51: note: randstruct:
+>   casting between randomized structure pointer types (constructor)
+> ```
+> 
+> Switch all the GT debugfs file arrays to designated initializers. This
+> binds each value to the intended member regardless of structure
+> reordering or optional members and removes the warning while preserving
+> the intended initialization.
+> 
+> No functional change, only initialization style is updated.
+> 
+> Signed-off-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+> Reviewed-by: Krzysztof Karas <krzysztof.karas@intel.com>
+
+...
+
+>  	static const struct intel_gt_debugfs_file files[] = {
+> -		{ "drpc", &drpc_fops, NULL },
+> -		{ "frequency", &frequency_fops, NULL },
+> -		{ "forcewake", &fw_domains_fops, NULL },
+> -		{ "forcewake_user", &forcewake_user_fops, NULL},
+> -		{ "llc", &llc_fops, llc_eval },
+> -		{ "rps_boost", &rps_boost_fops, rps_eval },
+> -		{ "perf_limit_reasons", &perf_limit_reasons_fops, perf_limit_reasons_eval },
+> +		{ .name = "drpc", .fops = &drpc_fops },
+> +		{ .name = "frequency", .fops = &frequency_fops },
+> +		{ .name = "forcewake", .fops = &fw_domains_fops },
+> +		{ .name = "forcewake_user", .fops = &forcewake_user_fops},
+> +		{ .name = "llc", .fops = &llc_fops, .eval = llc_eval },
+> +		{ .name = "rps_boost", .fops = &rps_boost_fops, .eval = rps_eval },
+> +		{ .name = "perf_limit_reasons", .fops = &perf_limit_reasons_fops,
+> +		  .eval = perf_limit_reasons_eval },
+
+For consistency, keep it in the same line, even if it goes over
+80 (or 100 (remembmer that 100 is accepted)).
+
+>  	};
+
+...
+
+>  	static const struct intel_gt_debugfs_file files[] = {
+> -		{ "guc_info", &guc_info_fops, NULL },
+> -		{ "guc_registered_contexts", &guc_registered_contexts_fops, NULL },
+> -		{ "guc_slpc_info", &guc_slpc_info_fops, &intel_eval_slpc_support},
+> -		{ "guc_sched_disable_delay_ms", &guc_sched_disable_delay_ms_fops, NULL },
+> -		{ "guc_sched_disable_gucid_threshold", &guc_sched_disable_gucid_threshold_fops,
+> -		   NULL },
+> +		{ .name = "guc_info", .fops = &guc_info_fops },
+> +		{ .name = "guc_registered_contexts", .fops = &guc_registered_contexts_fops },
+> +		{ .name = "guc_slpc_info", .fops = &guc_slpc_info_fops,
+> +		  .eval = &intel_eval_slpc_support },
+
+the "&" here is an error, you have the chance to fix it.
+
+> +		{ .name = "guc_sched_disable_delay_ms", .fops = &guc_sched_disable_delay_ms_fops },
+> +		{ .name = "guc_sched_disable_gucid_threshold",
+> +		  .fops = &guc_sched_disable_gucid_threshold_fops },
+
+same comment for the new lines here.
+
+Andi
+
+>  	};
