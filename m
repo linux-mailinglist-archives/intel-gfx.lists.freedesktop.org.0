@@ -2,60 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BAECCC3549
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Dec 2025 14:48:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87A21CC36AB
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Dec 2025 15:05:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECFA810E7E8;
-	Tue, 16 Dec 2025 13:48:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02C3610E7FA;
+	Tue, 16 Dec 2025 14:05:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DwNFilga";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wp8y2Co6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A03CA10E7E8
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Dec 2025 13:48:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71E9710E2D6;
+ Tue, 16 Dec 2025 14:05:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765892900; x=1797428900;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ngiLwWOAcuL1Tg7RnoUR1jXzSaV0yuJVciviFjVjVwo=;
- b=DwNFilgaYbWahZEWho2QCixIFHOQGsgWDolIjcDIAElLtJq3XeKGnoLv
- K1PJyniXBFcdhwGZTzDzAUH+M0Oy/ivD8sJNqCarTYRTUEuOrhFhrYqtn
- 0P5cz0k4kz2c26XybZapt0acsrF2KTdrXJlx6r1+JGEszwFTT0myFLekx
- I8cmPlG6I8jsHru8OKAoaEgQASVBKj3D/0zGZGIQHxlww0YDgJG3pkKqS
- pF3fe4aalaSWhKK2xzFqIBcE2iQaepW2Kjd97557lGq5BTzF1NJTWnBsi
- 1zj1aF/URgTLFo5tSJZOuPnYYlYHkL221HR4ZWVS1xMtTIWt9MZdATRrv g==;
-X-CSE-ConnectionGUID: DQ6A6rlXRyeUJmiLJP0MSw==
-X-CSE-MsgGUID: vcEIV8PzSSKWyKZdWsrWlg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11643"; a="78447551"
-X-IronPort-AV: E=Sophos;i="6.21,153,1763452800"; d="scan'208";a="78447551"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 05:48:20 -0800
-X-CSE-ConnectionGUID: BXu3hGRCQzKGUZEFizqORA==
-X-CSE-MsgGUID: vjnituMCTSe/CV2nh6iK4Q==
+ t=1765893925; x=1797429925;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=FSrfAIRGNRTOG1kihz2jz0HY5jiji1F1d0j9XukoSwk=;
+ b=Wp8y2Co6P7w8iYFn+pFlK2Y3SnFg+KactD7ihW52r99cB4gmugsdxYvZ
+ hMExquLaHlSNNSrG10pYfwEKwF2XRHKJ7Rwv9n895BbTdCYuNvIEjP+b/
+ svd37AnZmNQ9LEyyfn4u4fyj7McrjrOGZQFZx+K47fjqrEPCCIPx7OeaS
+ 8/sgQKvg63hDN4Fwxnlotdys7tkevOPlpDDsWR0wO477GaVaNC/cm2S1i
+ bGQ+AFkgw9yKuYSDFvyo4mj9oP93hLNWpYb7urejdbAFzeOZbmjX5ItHv
+ yyS8ottLuUcM5plTR4xO40ldtKQ/LyiotMZomDbfZkstK7nQiCFmjKni+ g==;
+X-CSE-ConnectionGUID: W0Vi+F12QfebkRKGYub6iA==
+X-CSE-MsgGUID: yB7Z193jTvaA4JeOholjFQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="67567373"
+X-IronPort-AV: E=Sophos;i="6.21,153,1763452800"; d="scan'208";a="67567373"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2025 06:05:25 -0800
+X-CSE-ConnectionGUID: UQpapJe2RnaPwxyaTcW4Yg==
+X-CSE-MsgGUID: 12zWlOrQRuu3iwXG9978IA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,153,1763452800"; d="scan'208";a="202434967"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.153])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 05:48:18 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Randy Dunlap <rdunlap@infradead.org>, intel-gfx@lists.freedesktop.org
-Cc: linux-doc@vger.kernel.org, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH] drm/i915/wakeref: clean up INTEL_WAKEREF_PUT_* flag macros
-In-Reply-To: <76482fc4-7989-41ad-a244-3de4bca44043@infradead.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20251215120908.3515578-1-jani.nikula@intel.com>
- <76482fc4-7989-41ad-a244-3de4bca44043@infradead.org>
-Date: Tue, 16 Dec 2025 15:48:15 +0200
-Message-ID: <707d40a5b84853a6403e537163c6cb97c3474792@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,153,1763452800"; d="scan'208";a="197121325"
+Received: from abityuts-desk.ger.corp.intel.com (HELO
+ vgovind2-mobl4.intel.com) ([10.245.244.244])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2025 06:05:21 -0800
+From: Vinod Govindapillai <vinod.govindapillai@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: vinod.govindapillai@intel.com, matthew.d.roper@intel.com,
+ ville.syrjala@intel.com
+Subject: [PATCH] drm/i915/display: update the wa_22014263786
+Date: Tue, 16 Dec 2025 16:05:08 +0200
+Message-ID: <20251216140508.975258-1-vinod.govindapillai@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,107 +70,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 15 Dec 2025, Randy Dunlap <rdunlap@infradead.org> wrote:
-> On 12/15/25 4:09 AM, Jani Nikula wrote:
->> Commit 469c1c9eb6c9 ("kernel-doc: Issue warnings that were silently
->> discarded") started emitting warnings for cases that were previously
->> silently discarded. One such case is in intel_wakeref.h:
->> 
->> Warning: drivers/gpu/drm/i915/intel_wakeref.h:156 expecting prototype
->>   for __intel_wakeref_put(). Prototype was for INTEL_WAKEREF_PUT_ASYNC()
->>   instead
->> 
->> Arguably kernel-doc should be able to handle this, as it's valid C, but
->> having the flags defined between the function declarator and the body is
->> just asking for trouble. Move the INTEL_WAKEREF_PUT_* macros away from
->> there, making kernel-doc's life easier.
->> 
->> While at it, reduce the unnecessary abstraction levels by removing the
->> enum, and append _MASK to INTEL_WAKEREF_PUT_DELAY for clarity.
->> 
->> Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
->> Cc: Jonathan Corbet <corbet@lwn.net>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Acked-by: Randy Dunlap <rdunlap@infradead.org>
-> Tested-by: Randy Dunlap <rdunlap@infradead.org>
->
-> Thanks.
+For DG2, wa_22014263786 is applicable only if the number of active
+planes is greater than 1 in pipe A and pipe B. Cursor planes and
+any planes on pipe C or pipe D are not considered for this.
 
-Thanks, pushed to drm-intel-next.
+Bspec: 54077, 72197
+Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+---
+ .../gpu/drm/i915/display/intel_display_wa.c   | 29 ++++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_fbc.c      |  6 ++++
+ 2 files changed, 34 insertions(+), 1 deletion(-)
 
-BR,
-Jani.
-
->
->> 
->> ---
->> 
->> Curiously, kernel-doc does not return non-zero exit status for these
->> warnings even with the -Werror parameter!
->> ---
->>  drivers/gpu/drm/i915/intel_wakeref.c |  2 +-
->>  drivers/gpu/drm/i915/intel_wakeref.h | 14 +++++---------
->>  2 files changed, 6 insertions(+), 10 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/intel_wakeref.c b/drivers/gpu/drm/i915/intel_wakeref.c
->> index b1883dccc22a..98e7cee4e1dc 100644
->> --- a/drivers/gpu/drm/i915/intel_wakeref.c
->> +++ b/drivers/gpu/drm/i915/intel_wakeref.c
->> @@ -80,7 +80,7 @@ void __intel_wakeref_put_last(struct intel_wakeref *wf, unsigned long flags)
->>  	/* Assume we are not in process context and so cannot sleep. */
->>  	if (flags & INTEL_WAKEREF_PUT_ASYNC || !mutex_trylock(&wf->mutex)) {
->>  		mod_delayed_work(wf->i915->unordered_wq, &wf->work,
->> -				 FIELD_GET(INTEL_WAKEREF_PUT_DELAY, flags));
->> +				 FIELD_GET(INTEL_WAKEREF_PUT_DELAY_MASK, flags));
->>  		return;
->>  	}
->>  
->> diff --git a/drivers/gpu/drm/i915/intel_wakeref.h b/drivers/gpu/drm/i915/intel_wakeref.h
->> index a2894a56e18f..81308bac34ba 100644
->> --- a/drivers/gpu/drm/i915/intel_wakeref.h
->> +++ b/drivers/gpu/drm/i915/intel_wakeref.h
->> @@ -128,17 +128,16 @@ intel_wakeref_get_if_active(struct intel_wakeref *wf)
->>  	return atomic_inc_not_zero(&wf->count);
->>  }
->>  
->> -enum {
->> -	INTEL_WAKEREF_PUT_ASYNC_BIT = 0,
->> -	__INTEL_WAKEREF_PUT_LAST_BIT__
->> -};
->> -
->>  static inline void
->>  intel_wakeref_might_get(struct intel_wakeref *wf)
->>  {
->>  	might_lock(&wf->mutex);
->>  }
->>  
->> +/* flags for __intel_wakeref_put() and __intel_wakeref_put_last */
->> +#define INTEL_WAKEREF_PUT_ASYNC		BIT(0)
->> +#define INTEL_WAKEREF_PUT_DELAY_MASK	GENMASK(BITS_PER_LONG - 1, 1)
->> +
->>  /**
->>   * __intel_wakeref_put: Release the wakeref
->>   * @wf: the wakeref
->> @@ -154,9 +153,6 @@ intel_wakeref_might_get(struct intel_wakeref *wf)
->>   */
->>  static inline void
->>  __intel_wakeref_put(struct intel_wakeref *wf, unsigned long flags)
->> -#define INTEL_WAKEREF_PUT_ASYNC BIT(INTEL_WAKEREF_PUT_ASYNC_BIT)
->> -#define INTEL_WAKEREF_PUT_DELAY \
->> -	GENMASK(BITS_PER_LONG - 1, __INTEL_WAKEREF_PUT_LAST_BIT__)
->>  {
->>  	INTEL_WAKEREF_BUG_ON(atomic_read(&wf->count) <= 0);
->>  	if (unlikely(!atomic_add_unless(&wf->count, -1, 1)))
->> @@ -181,7 +177,7 @@ intel_wakeref_put_delay(struct intel_wakeref *wf, unsigned long delay)
->>  {
->>  	__intel_wakeref_put(wf,
->>  			    INTEL_WAKEREF_PUT_ASYNC |
->> -			    FIELD_PREP(INTEL_WAKEREF_PUT_DELAY, delay));
->> +			    FIELD_PREP(INTEL_WAKEREF_PUT_DELAY_MASK, delay));
->>  }
->>  
->>  static inline void
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
+index a00af39f7538..ffc2356283aa 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_wa.c
++++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
+@@ -7,6 +7,7 @@
+ 
+ #include "i915_reg.h"
+ #include "intel_de.h"
++#include "intel_display_types.h"
+ #include "intel_display_core.h"
+ #include "intel_display_regs.h"
+ #include "intel_display_wa.h"
+@@ -53,6 +54,32 @@ static bool intel_display_needs_wa_16025573575(struct intel_display *display)
+ 		DISPLAY_VERx100(display) == 3500;
+ }
+ 
++static bool intel_display_needs_wa_22014263786(struct intel_display *display)
++{
++	if (!IS_DISPLAY_VERx100(display, 1100, 1400))
++		return false;
++
++	if (display->platform.dg2) {
++		u8 pipe_mask = PIPE_A | PIPE_B;
++		int num_active_planes = 0;
++		struct intel_crtc *crtc;
++
++		for_each_intel_crtc_in_pipe_mask(display->drm, crtc, pipe_mask) {
++			const struct intel_crtc_state *crtc_state =
++				to_intel_crtc_state(crtc->base.state);
++			u8 active_planes =
++				crtc_state->active_planes & ~BIT(PLANE_CURSOR);
++
++			num_active_planes += hweight8(active_planes);
++		}
++
++		if (num_active_planes <= 1)
++			return false;
++	}
++
++	return true;
++}
++
+ /*
+  * Wa_14011503117:
+  * Fixes: Before enabling the scaler DE fatal error is masked
+@@ -69,7 +96,7 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
+ 	case INTEL_DISPLAY_WA_14011503117:
+ 		return DISPLAY_VER(display) == 13;
+ 	case INTEL_DISPLAY_WA_22014263786:
+-		return IS_DISPLAY_VERx100(display, 1100, 1400);
++		return intel_display_needs_wa_22014263786(display);
+ 	case INTEL_DISPLAY_WA_15018326506:
+ 		return display->platform.battlemage;
+ 	case INTEL_DISPLAY_WA_14025769978:
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index fef2f35ff1e9..5b0a83cb5386 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -944,10 +944,16 @@ static void intel_fbc_program_workarounds(struct intel_fbc *fbc)
+ 	 * Wa_22014263786
+ 	 * Fixes: Screen flicker with FBC and Package C state enabled
+ 	 * Workaround: Forced SLB invalidation before start of new frame.
++	 *             For DG2, wa is applied only if the number of planes
++	 *             in PIPE A and PIPE B is > 1. If the wa condition is
++	 *             not met, this chicken bit must be unset for DG2.
+ 	 */
+ 	if (intel_display_wa(display, 22014263786))
+ 		intel_de_rmw(display, ILK_DPFC_CHICKEN(fbc->id),
+ 			     0, DPFC_CHICKEN_FORCE_SLB_INVALIDATION);
++	else if (display->platform.dg2)
++		intel_de_rmw(display, ILK_DPFC_CHICKEN(fbc->id),
++			     DPFC_CHICKEN_FORCE_SLB_INVALIDATION, 0);
+ 
+ 	/* wa_18038517565 Disable DPFC clock gating before FBC enable */
+ 	if (display->platform.dg2 || DISPLAY_VER(display) >= 14)
 -- 
-Jani Nikula, Intel
+2.43.0
+
