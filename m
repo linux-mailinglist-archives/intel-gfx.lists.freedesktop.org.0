@@ -2,48 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADE90CC127B
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Dec 2025 07:43:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A55BCCC178F
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Dec 2025 09:08:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D62E10E6EB;
-	Tue, 16 Dec 2025 06:43:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3033410E74D;
+	Tue, 16 Dec 2025 08:08:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="ZufkX9Y9";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Uf4taUh+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [198.137.202.133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 659A410E6EB
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Dec 2025 06:43:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
- Message-ID:Sender:Reply-To:Content-ID:Content-Description;
- bh=mYDUlQyW4hNefAm7Ltz/Cj2u8irC6xba/fO7dY7hi/M=; b=ZufkX9Y9HumTRGczYjeHKWRr+R
- i9qwMiroheuY8/Mm6VVUFoKzrTdLINrNJoGNLf2qHZ8E9qWJCu7QkLcTpgnXvlAUzmzL1IDoOB8dB
- v+nEM4cRkAUr84MMp7jXBd5HW3Hv9/16XxjJ1PO1fegivobBDhW58yki8Wj618FYB8Ja8XLjhwkSK
- 0se6pkw41ptMt2nTgQ8yESKRWQBk+f3OhhtwpSx/lRrfKJdtTUEmkibVBvVeKOheFHt9DDPnv1ouT
- SY97g1r9ca34uAbH24qpsy0P82+wGANN7rEKhcuqW/GCCAtkkRHBuOyUAMVbuD32JiPQdOb34qQ5X
- CrQLXsoQ==;
-Received: from [50.53.43.113] (helo=[192.168.254.34])
- by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
- id 1vVOmT-00000004nTR-2yck; Tue, 16 Dec 2025 06:43:33 +0000
-Message-ID: <76482fc4-7989-41ad-a244-3de4bca44043@infradead.org>
-Date: Mon, 15 Dec 2025 22:43:33 -0800
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com
+ [209.85.214.175])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10ABC10E743
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Dec 2025 08:08:26 +0000 (UTC)
+Received: by mail-pl1-f175.google.com with SMTP id
+ d9443c01a7336-2a0bb2f093aso25035085ad.3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Dec 2025 00:08:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1765872506; x=1766477306; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=UcGwnkJI+x9Zj9EkUAHg+6nFkUOQodVP98UqzkIBE1k=;
+ b=Uf4taUh+JgjH7VM+fEqtzPMQRTeHo6Uota1+gF/05t8niq9jqweMsWuwvXVIHuNJi/
+ kScSjJYdjV3O8hSy0X0XzwLhlYpxA8jFe1p3LwzZnrtNphkoW//veK0K2b3/SLCzuc7X
+ jhoG2HFDcMLRU+G1Gm7gkSK2UBnZitNxcfZ1g50Jy6Eda9VrR078j+a5+myzXUuG9cfE
+ 0xFWwKJaakSgRlQUOU3FQia39+HkszakkkSLbbU9ygiOnqIwrCamnp33L5wJ3TFEmftq
+ meFzw34ATW17QjZ2hBDbRKZA51GwQpuaYsb3iVuXJN0oPk5e0NQ8PySB88OnsXkgGuSP
+ wefQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1765872506; x=1766477306;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=UcGwnkJI+x9Zj9EkUAHg+6nFkUOQodVP98UqzkIBE1k=;
+ b=h5/rfl6c3WnRDitP20Wt1EW4fxP7jigpsXzIwrhWlYCGMOCKaIFw6o+12fFujJOA/v
+ d6s2t7eO0PuuCCF7NdEXAptpdM+0BYLtC61o4tLnk7Lgg76UBFUqVGLBN783IN0Q321D
+ YXOgQSTmnZuIhTwEyndFCVjnbtPFluY2gg8eAIKdIIV42AyZvYgLD4cc6Z7WN6jSOhnw
+ MG2xGdxg5p/HPymd58V/rC6uQqbZmZnxO1/0Y4RzAeh6LzbUvxG4ifwZy47oW0KS2Lw6
+ GJB0tkxAEopYCGKIlFDsEbKNiOiGCtXdh6pGfsdVxfO5HxnOCu1d30he3pUGhVMcIapd
+ DjvA==
+X-Gm-Message-State: AOJu0YzC7VqhyYcQ/41SGJ/aJNgbjDNyY3rluSgF5PhP8mhz3LzkGRtS
+ 98j8k8vJMhcG2agysjiLEbHbkrdepNRV9lFmzLWf2A7EBJoCZuHfj/YFx12Pz37/01M=
+X-Gm-Gg: AY/fxX6g0CVrqgkdyOAahSkacemI3gldh27dy2Szp8M5d2DRrLpTDtK8zNWJDHFmBwK
+ jWtAcfaWML1XvTrOQWcFgurFt1B9QFE4r31IcNAUPx8OGCPAEQDZ+sQSfbpk/C3A3RROdXokgNj
+ RrCHhE3fzL6TZQWjhUcunEEKAKeOUP6rJiYVjRf+FMESP5xRTubtbDZ32Kzo67wAWsbh/Wq9/XU
+ dhZYppvua8akzlonFQMRgRSrCT7C4N3QIh30Sv2YcY0hOybfY5/IGcszu4IC3uUWrvdFDLjzk8i
+ o1kHIhTmQJkS5bgrGfI24WyVSYFNbB6eVt9TubGLjxJ775FFpdbr3k2w4Wv6eJYU+LxTCJEvWyT
+ MBPM5rl4oPJNkUwLi28kXeSfkd+6BMulbGqddXCG+1HMdqIW0Pyl/RcqtMHI2DlvnfB3LXQi0NZ
+ 9LiGe7AE5MrUPz1Sx6XV7BSMIeCXv7Oknww+1MkyzrU7CY47L206qwOQcAlW4P
+X-Google-Smtp-Source: AGHT+IHjLPpjkhRHBhcs8Nph29+B00E9r7Df3sKFF9Qg/AnA3mcDOGgHpW+Yt2CFP6iFnQPe45cuVg==
+X-Received: by 2002:a17:903:f90:b0:295:b46f:a6c2 with SMTP id
+ d9443c01a7336-29f23c7ba77mr137880075ad.37.1765872506098; 
+ Tue, 16 Dec 2025 00:08:26 -0800 (PST)
+Received: from localhost ([134.134.139.75]) by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-29ee9b36af7sm157481845ad.18.2025.12.16.00.08.24
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 16 Dec 2025 00:08:25 -0800 (PST)
+From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Subject: [PATCH 0/2] switch to use kernel standard fault injection in i915
+Date: Tue, 16 Dec 2025 10:07:52 +0200
+Message-ID: <20251216080754.221974-1-juhapekka.heikkila@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/wakeref: clean up INTEL_WAKEREF_PUT_* flag macros
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: linux-doc@vger.kernel.org,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Jonathan Corbet <corbet@lwn.net>
-References: <20251215120908.3515578-1-jani.nikula@intel.com>
-Content-Language: en-US
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20251215120908.3515578-1-jani.nikula@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,102 +84,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Here taken out calls to i915_inject_probe_failure and changed to use
+ALLOW_ERROR_INJECTION for the same functions.
+
+Below functions are dropped from testing since I couldn't hit those
+at module bind time, testing these would just fail the tests.
+To include these in test would need to find way to cause resetting in i915
+which would trigger these:
+
+intel_gvt_init
+intel_wopcm_init
+intel_uc_fw_upload
+intel_gt_init with expected -EIO (-EINVAL is tested)
+lrc_init_wa_ctx
+intel_huc_auth
+guc_check_version_range
+intel_uc_fw_fetch
+uc_fw_xfer
+__intel_uc_reset_hw
+guc_enable_communication
+uc_init_wopcm
+..and all stages of __force_fw_fetch_failures
 
 
-On 12/15/25 4:09 AM, Jani Nikula wrote:
-> Commit 469c1c9eb6c9 ("kernel-doc: Issue warnings that were silently
-> discarded") started emitting warnings for cases that were previously
-> silently discarded. One such case is in intel_wakeref.h:
-> 
-> Warning: drivers/gpu/drm/i915/intel_wakeref.h:156 expecting prototype
->   for __intel_wakeref_put(). Prototype was for INTEL_WAKEREF_PUT_ASYNC()
->   instead
-> 
-> Arguably kernel-doc should be able to handle this, as it's valid C, but
-> having the flags defined between the function declarator and the body is
-> just asking for trouble. Move the INTEL_WAKEREF_PUT_* macros away from
-> there, making kernel-doc's life easier.
-> 
-> While at it, reduce the unnecessary abstraction levels by removing the
-> enum, and append _MASK to INTEL_WAKEREF_PUT_DELAY for clarity.
-> 
-> Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> Cc: Jonathan Corbet <corbet@lwn.net>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Also here added intel_gvt_driver_remove to error recovery path.
 
-Acked-by: Randy Dunlap <rdunlap@infradead.org>
-Tested-by: Randy Dunlap <rdunlap@infradead.org>
+/Juha-Pekka
 
-Thanks.
+Test-with: 20251215134510.183735-1-juhapekka.heikkila@gmail.com
 
-> 
-> ---
-> 
-> Curiously, kernel-doc does not return non-zero exit status for these
-> warnings even with the -Werror parameter!
-> ---
->  drivers/gpu/drm/i915/intel_wakeref.c |  2 +-
->  drivers/gpu/drm/i915/intel_wakeref.h | 14 +++++---------
->  2 files changed, 6 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/intel_wakeref.c b/drivers/gpu/drm/i915/intel_wakeref.c
-> index b1883dccc22a..98e7cee4e1dc 100644
-> --- a/drivers/gpu/drm/i915/intel_wakeref.c
-> +++ b/drivers/gpu/drm/i915/intel_wakeref.c
-> @@ -80,7 +80,7 @@ void __intel_wakeref_put_last(struct intel_wakeref *wf, unsigned long flags)
->  	/* Assume we are not in process context and so cannot sleep. */
->  	if (flags & INTEL_WAKEREF_PUT_ASYNC || !mutex_trylock(&wf->mutex)) {
->  		mod_delayed_work(wf->i915->unordered_wq, &wf->work,
-> -				 FIELD_GET(INTEL_WAKEREF_PUT_DELAY, flags));
-> +				 FIELD_GET(INTEL_WAKEREF_PUT_DELAY_MASK, flags));
->  		return;
->  	}
->  
-> diff --git a/drivers/gpu/drm/i915/intel_wakeref.h b/drivers/gpu/drm/i915/intel_wakeref.h
-> index a2894a56e18f..81308bac34ba 100644
-> --- a/drivers/gpu/drm/i915/intel_wakeref.h
-> +++ b/drivers/gpu/drm/i915/intel_wakeref.h
-> @@ -128,17 +128,16 @@ intel_wakeref_get_if_active(struct intel_wakeref *wf)
->  	return atomic_inc_not_zero(&wf->count);
->  }
->  
-> -enum {
-> -	INTEL_WAKEREF_PUT_ASYNC_BIT = 0,
-> -	__INTEL_WAKEREF_PUT_LAST_BIT__
-> -};
-> -
->  static inline void
->  intel_wakeref_might_get(struct intel_wakeref *wf)
->  {
->  	might_lock(&wf->mutex);
->  }
->  
-> +/* flags for __intel_wakeref_put() and __intel_wakeref_put_last */
-> +#define INTEL_WAKEREF_PUT_ASYNC		BIT(0)
-> +#define INTEL_WAKEREF_PUT_DELAY_MASK	GENMASK(BITS_PER_LONG - 1, 1)
-> +
->  /**
->   * __intel_wakeref_put: Release the wakeref
->   * @wf: the wakeref
-> @@ -154,9 +153,6 @@ intel_wakeref_might_get(struct intel_wakeref *wf)
->   */
->  static inline void
->  __intel_wakeref_put(struct intel_wakeref *wf, unsigned long flags)
-> -#define INTEL_WAKEREF_PUT_ASYNC BIT(INTEL_WAKEREF_PUT_ASYNC_BIT)
-> -#define INTEL_WAKEREF_PUT_DELAY \
-> -	GENMASK(BITS_PER_LONG - 1, __INTEL_WAKEREF_PUT_LAST_BIT__)
->  {
->  	INTEL_WAKEREF_BUG_ON(atomic_read(&wf->count) <= 0);
->  	if (unlikely(!atomic_add_unless(&wf->count, -1, 1)))
-> @@ -181,7 +177,7 @@ intel_wakeref_put_delay(struct intel_wakeref *wf, unsigned long delay)
->  {
->  	__intel_wakeref_put(wf,
->  			    INTEL_WAKEREF_PUT_ASYNC |
-> -			    FIELD_PREP(INTEL_WAKEREF_PUT_DELAY, delay));
-> +			    FIELD_PREP(INTEL_WAKEREF_PUT_DELAY_MASK, delay));
->  }
->  
->  static inline void
+Juha-Pekka Heikkila (2):
+  drm/i915: switch to use kernel standard error injection
+  drm/i915: Add intel_gvt_driver_remove() onto error cleanup path
+
+ .../gpu/drm/i915/display/intel_connector.c    | 14 +----
+ .../drm/i915/display/intel_display_driver.c   |  5 +-
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  4 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c            |  9 +--
+ drivers/gpu/drm/i915/gt/intel_gt_print.h      |  5 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c           |  4 --
+ drivers/gpu/drm/i915/gt/intel_wopcm.c         |  3 -
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |  8 +--
+ drivers/gpu/drm/i915/gt/uc/intel_huc.c        |  4 --
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c         | 17 +-----
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      | 60 +------------------
+ drivers/gpu/drm/i915/i915_driver.c            | 13 ++--
+ drivers/gpu/drm/i915/i915_params.c            |  5 --
+ drivers/gpu/drm/i915/i915_params.h            |  1 -
+ drivers/gpu/drm/i915/i915_pci.c               |  6 +-
+ drivers/gpu/drm/i915/i915_utils.c             | 30 +---------
+ drivers/gpu/drm/i915/i915_utils.h             | 22 +------
+ drivers/gpu/drm/i915/intel_gvt.c              |  3 -
+ drivers/gpu/drm/i915/intel_uncore.c           |  4 +-
+ 19 files changed, 18 insertions(+), 199 deletions(-)
 
 -- 
-~Randy
+2.43.0
+
