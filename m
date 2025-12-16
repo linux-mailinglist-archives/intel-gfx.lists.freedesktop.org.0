@@ -2,62 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 020DBCC24DB
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Dec 2025 12:35:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9898ECC24C9
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Dec 2025 12:35:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76C9610E817;
-	Tue, 16 Dec 2025 11:35:35 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bn2KmCHY";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE23410E7D5;
+	Tue, 16 Dec 2025 11:35:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1F2810E810;
- Tue, 16 Dec 2025 11:35:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765884933; x=1797420933;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=m+/jL15ZeP/s+6cc+aG/yY9449FnzS47LhIoA+++kc8=;
- b=Bn2KmCHYYREZnDKPRUHJzJ5aXQ6dp6s0+uQgfR7Jn5xPWdmgFryryJ0W
- RSV3elunZB0t0ZGV49EhUiniFqnMjd8w2EiCu0qp5OTdGZNvMn1OI4oeG
- ma/cnQ2f/AJKmMb8qNWa79DkTx/BKR2aes9k44NcNbPyMvDjBMwf829UD
- 9CA4/NABgzUmgeFeSNyztLMaZqMmceyS0397WikNN0Cb8HCdeG/Pefe7z
- ZLRUmUyW3TMDxIQD3vIBQdEGGaYxbYYSF5QCYwrP657pev79+K8dH0Xyv
- PI54hoqXIsnjf9WTrgqw7rBpn2vCOdemUPjwgTSFyH65O5acMld+jDtW8 Q==;
-X-CSE-ConnectionGUID: 8MB8pUXBTsKpejZtI3ULgA==
-X-CSE-MsgGUID: qS8w8r7lTWCRQedeaKFlpg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11643"; a="70376493"
-X-IronPort-AV: E=Sophos;i="6.21,153,1763452800"; d="scan'208";a="70376493"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 03:35:33 -0800
-X-CSE-ConnectionGUID: y9XylHrrQYyiINhwGd0+5Q==
-X-CSE-MsgGUID: cafWr+H4SMeGxO/4xWzdHw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,153,1763452800"; d="scan'208";a="197977140"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.244.209])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 03:35:30 -0800
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Intel graphics driver community testing & development
- <intel-gfx@lists.freedesktop.org>
-Cc: Direct Rendering Infrastructure - Development
- <dri-devel@lists.freedesktop.org>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Norbert Lange <nolange79@gmail.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH] drm/i915: Mark dependency on CONFIG_X86_PAT
-Date: Tue, 16 Dec 2025 13:35:12 +0200
-Message-ID: <20251216113512.153447-1-joonas.lahtinen@linux.intel.com>
-X-Mailer: git-send-email 2.52.0
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64E5610E7D5;
+ Tue, 16 Dec 2025 11:35:25 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_drm/i915/display=3A_All_p?=
+ =?utf-8?q?atches_to_make_PREEMPT=5FRT_work_on_i915_+_xe=2E_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 16 Dec 2025 11:35:25 -0000
+Message-ID: <176588492540.93218.3039874163622232016@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251216092226.1777909-18-dev@lankhorst.se>
+In-Reply-To: <20251216092226.1777909-18-dev@lankhorst.se>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,38 +37,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Building the driver without CONFIG_X86_PAT would yield in reduced
-platform/uAPI support and is not currently planned to be supported.
+== Series Details ==
 
-Add a dependency in Kconfig to avoid issues with such build until
-somebody steps up to fix and validate such builds.
+Series: drm/i915/display: All patches to make PREEMPT_RT work on i915 + xe. (rev2)
+URL   : https://patchwork.freedesktop.org/series/159035/
+State : failure
 
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15410
-Signed-off-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Reported-by: Norbert Lange <nolange79@gmail.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/i915/Kconfig | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
-index 5e939004b6463..a19a233239056 100644
---- a/drivers/gpu/drm/i915/Kconfig
-+++ b/drivers/gpu/drm/i915/Kconfig
-@@ -2,7 +2,7 @@
- config DRM_I915
- 	tristate "Intel 8xx/9xx/G3x/G4x/HD Graphics"
- 	depends on DRM
--	depends on X86 && PCI
-+	depends on X86 && X86_PAT && PCI
- 	depends on !PREEMPT_RT
- 	select INTEL_GTT if X86
- 	select INTERVAL_TREE
--- 
-2.52.0
+Error: make failed
+  CALL    scripts/checksyscalls.sh
+  DESCEND objtool
+  INSTALL libsubcmd_headers
+  CC [M]  drivers/gpu/drm/i915/display/intel_vblank.o
+drivers/gpu/drm/i915/display/intel_vblank.c:245:12: error: static declaration of ‘__intel_get_crtc_scanline’ follows non-static declaration
+  245 | static int __intel_get_crtc_scanline(struct intel_crtc *crtc)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from drivers/gpu/drm/i915/display/intel_vblank.c:19:
+drivers/gpu/drm/i915/display/intel_vblank.h:41:5: note: previous declaration of ‘__intel_get_crtc_scanline’ with type ‘int(struct intel_crtc *)’
+   41 | int __intel_get_crtc_scanline(struct intel_crtc *crtc);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/i915/display/intel_vblank.c: In function ‘scanline_in_safe_range’:
+drivers/gpu/drm/i915/display/intel_vblank.c:739:49: error: ‘display’ undeclared (first use in this function)
+  739 |                 intel_vblank_section_enter_irqf(display, &irqflags);
+      |                                                 ^~~~~~~
+drivers/gpu/drm/i915/display/intel_vblank.c:739:49: note: each undeclared identifier is reported only once for each function it appears in
+drivers/gpu/drm/i915/display/intel_vblank.c:741:9: error: ‘position’ undeclared (first use in this function)
+  741 |         position = __intel_get_crtc_scanline(crtc);
+      |         ^~~~~~~~
+drivers/gpu/drm/i915/display/intel_vblank.c:741:46: error: ‘crtc’ undeclared (first use in this function)
+  741 |         position = __intel_get_crtc_scanline(crtc);
+      |                                              ^~~~
+make[6]: *** [scripts/Makefile.build:287: drivers/gpu/drm/i915/display/intel_vblank.o] Error 1
+make[5]: *** [scripts/Makefile.build:556: drivers/gpu/drm/i915] Error 2
+make[4]: *** [scripts/Makefile.build:556: drivers/gpu/drm] Error 2
+make[3]: *** [scripts/Makefile.build:556: drivers/gpu] Error 2
+make[2]: *** [scripts/Makefile.build:556: drivers] Error 2
+make[1]: *** [/home/kbuild/kernel/Makefile:2054: .] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
+Build failed, no error log produced
+
 
