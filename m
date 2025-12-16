@@ -2,41 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEA60CC513C
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Dec 2025 21:15:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42B39CC5218
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Dec 2025 21:55:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFA5310E874;
-	Tue, 16 Dec 2025 20:15:17 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="SY+cZbWH";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB2E910E764;
+	Tue, 16 Dec 2025 20:55:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 453EE10E155;
- Tue, 16 Dec 2025 20:15:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1765916114;
- bh=n6ml83CVyREMXoI7JsUqJNlSZqhiqG6t1FLzS/WrF+o=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=SY+cZbWH4hVx/gSPfxHVLLAXi157zb2lsPsVU2+mN3BsHT4YQGsL1lyh8ArImWtq3
- 7RI5EE/pXSW8NO5Mq2Nk3mW0+XEvxemNazv1dDYik0RUt4K0JN2cBh3YG6+4tC+eUC
- q8R0YYdUl9uV9cqca+gZqkoIf2/ByHFWvEF4sL6b9LXbNyKpHyglPSGC+LSqrhB/op
- EHJuyYA6KEMI8mlGI1P4/gOVbt7xqamVTk3JHNCif5i2gndIjiaK9mfHAMtgQ5DWhI
- Un/mZa1etQ5IOKzTNOs/8Pdn18mF337m0Lckv3fmxpXTy1bBeMietpnEoGyT6oEZYy
- aoscjSg0ZRq8A==
-From: Maarten Lankhorst <dev@lankhorst.se>
-To: intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Subject: [i915-rt v2.1] drm/i915/display: Remove locking from
- intel_vblank_evade critical section
-Date: Tue, 16 Dec 2025 21:15:13 +0100
-Message-ID: <20251216201512.1844765-2-dev@lankhorst.se>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251216092226.1777909-24-dev@lankhorst.se>
-References: <20251216092226.1777909-24-dev@lankhorst.se>
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F132410E2F0;
+ Tue, 16 Dec 2025 20:54:59 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_warning_for_drm/i915/display=3A_All_p?=
+ =?utf-8?q?atches_to_make_PREEMPT=5FRT_work_on_i915_+_xe=2E_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 16 Dec 2025 20:54:59 -0000
+Message-ID: <176591849998.95337.1543527335849618761@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251216092226.1777909-18-dev@lankhorst.se>
+In-Reply-To: <20251216092226.1777909-18-dev@lankhorst.se>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,120 +37,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-finish_wait() may take a lock, which means that it can take any amount
-of time. On PREEMPT-RT we should not be taking any lock after disabling
-preemption, so ensure that the completion is done before disabling
-interrupts.
+== Series Details ==
 
-This also has the benefit of making vblank evasion more deterministic,
-by performing the final vblank check after all locking is done.
+Series: drm/i915/display: All patches to make PREEMPT_RT work on i915 + xe. (rev3)
+URL   : https://patchwork.freedesktop.org/series/159035/
+State : warning
 
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
----
- drivers/gpu/drm/i915/display/intel_crtc.c   |  2 +-
- drivers/gpu/drm/i915/display/intel_vblank.c | 30 +++++++++------------
- drivers/gpu/drm/i915/display/intel_vblank.h |  1 +
- 3 files changed, 15 insertions(+), 18 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 778ebc5095c38..cb31c9c1c2525 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -684,7 +684,7 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
- 	struct intel_crtc_state *new_crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	enum pipe pipe = crtc->pipe;
--	int scanline_end = intel_get_crtc_scanline(crtc);
-+	int scanline_end = __intel_get_crtc_scanline(crtc);
- 	u32 end_vbl_count = intel_crtc_get_vblank_counter(crtc);
- 	ktime_t end_vbl_time = ktime_get();
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index 2b106ffa3f5f5..289f390762b7c 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -242,7 +242,7 @@ int intel_crtc_scanline_offset(const struct intel_crtc_state *crtc_state)
-  * intel_de_read_fw(), only for fast reads of display block, no need for
-  * forcewake etc.
-  */
--static int __intel_get_crtc_scanline(struct intel_crtc *crtc)
-+int __intel_get_crtc_scanline(struct intel_crtc *crtc)
- {
- 	struct intel_display *display = to_intel_display(crtc);
- 	struct drm_vblank_crtc *vblank = drm_crtc_vblank_crtc(&crtc->base);
-@@ -708,6 +708,16 @@ void intel_vblank_evade_init(const struct intel_crtc_state *old_crtc_state,
- 		evade->min -= vblank_delay;
- }
- 
-+static bool scanline_in_safe_range(struct intel_vblank_evade_ctx *evade, int *scanline, bool unlocked)
-+{
-+	if (unlocked)
-+		*scanline = intel_get_crtc_scanline(evade->crtc);
-+	else
-+		*scanline = __intel_get_crtc_scanline(evade->crtc);
-+
-+	return *scanline < evade->min || *scanline > evade->max;
-+}
-+
- /* must be called with vblank interrupt already enabled! */
- int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
- {
-@@ -715,24 +725,12 @@ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
- 	struct intel_display *display = to_intel_display(crtc);
- 	long timeout = msecs_to_jiffies_timeout(1);
- 	wait_queue_head_t *wq = drm_crtc_vblank_waitqueue(&crtc->base);
--	DEFINE_WAIT(wait);
- 	int scanline;
- 
- 	if (evade->min <= 0 || evade->max <= 0)
- 		return 0;
- 
--	for (;;) {
--		/*
--		 * prepare_to_wait() has a memory barrier, which guarantees
--		 * other CPUs can see the task state update by the time we
--		 * read the scanline.
--		 */
--		prepare_to_wait(wq, &wait, TASK_UNINTERRUPTIBLE);
--
--		scanline = intel_get_crtc_scanline(crtc);
--		if (scanline < evade->min || scanline > evade->max)
--			break;
--
-+	while (!scanline_in_safe_range(evade, &scanline, false)) {
- 		if (!timeout) {
- 			drm_dbg_kms(display->drm,
- 				    "Potential atomic update failure on pipe %c\n",
-@@ -742,13 +740,11 @@ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
- 
- 		local_irq_enable();
- 
--		timeout = schedule_timeout(timeout);
-+		timeout = wait_event_timeout(*wq, scanline_in_safe_range(evade, &scanline, true), timeout);
- 
- 		local_irq_disable();
- 	}
- 
--	finish_wait(wq, &wait);
--
- 	/*
- 	 * On VLV/CHV DSI the scanline counter would appear to
- 	 * increment approx. 1/3 of a scanline before start of vblank.
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.h b/drivers/gpu/drm/i915/display/intel_vblank.h
-index 98d04cacd65f8..aa1974400e9fc 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.h
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.h
-@@ -38,6 +38,7 @@ u32 g4x_get_vblank_counter(struct drm_crtc *crtc);
- bool intel_crtc_get_vblank_timestamp(struct drm_crtc *crtc, int *max_error,
- 				     ktime_t *vblank_time, bool in_vblank_irq);
- int intel_get_crtc_scanline(struct intel_crtc *crtc);
-+int __intel_get_crtc_scanline(struct intel_crtc *crtc);
- void intel_wait_for_pipe_scanline_stopped(struct intel_crtc *crtc);
- void intel_wait_for_pipe_scanline_moving(struct intel_crtc *crtc);
- void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state,
--- 
-2.51.0
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/159035/revisions/3/mbox/ not applied
+Applying: drm/i915/display: Fix intel_lpe_audio_irq_handler for PREEMPT-RT
+Applying: drm/i915/display: Make get_vblank_counter use intel_de_read_fw()
+Applying: drm/i915/display: Use intel_de_write_fw in intel_pipe_fastset
+Applying: drm/i915/display: Make set_pipeconf use the fw variants
+Applying: drm/i915/display: Move vblank put until after critical section
+Applying: drm/i915/display: Remove locking from intel_vblank_evade critical section
+Applying: drm/i915/display: Handle vlv dsi workaround in scanline_in_safe_range too
+error: sha1 information is lacking or useless (drivers/gpu/drm/i915/display/intel_vblank.c).
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0007 drm/i915/display: Handle vlv dsi workaround in scanline_in_safe_range too
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
 
