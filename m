@@ -2,54 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B063CC2F6D
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Dec 2025 13:52:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07EBBCC30C5
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Dec 2025 14:04:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CDB110E6F5;
-	Tue, 16 Dec 2025 12:52:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85EE710E958;
+	Tue, 16 Dec 2025 13:04:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="um9TU7IT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fu33P1N6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 685CC10E119;
- Tue, 16 Dec 2025 12:51:59 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 1BD004383F;
- Tue, 16 Dec 2025 12:51:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EFACC4CEF5;
- Tue, 16 Dec 2025 12:51:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1765889519;
- bh=nLGMKa8GAhOECGEH8Z5temkXugV9kUm9LAzLBglxrsA=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=um9TU7ITAShTdHjRqEQUIT21NioxifFtpmoxqtmWMkZfqzxGoZh5QTQ/jcwVmCWvA
- 7c7+D3DuwDzMPrc98bmb0OFMTxqhtyS+60I+WiP5hDcmjiBmQh2iBHgavwQGVJPd3n
- aeev7JArwHTp7GkqmtKNXxy3q3FclkKLzUUFuMJyXOup1fIFAb7jnI5kw9eyBB6AQ3
- z/59u9/t0NERZTU0P3Q2qe++Lgkx/7rGszlCG9D6fcLjmDXf9zof+8RYMdRTKt5kTn
- rbennJKuCoHluKstPQVnDhh1QA45X/LtMFTlzE8DyIApky7yLX4bhAJKbMQhxkSotQ
- OyDUHS+3kDrKA==
-Date: Tue, 16 Dec 2025 13:51:55 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- stable@vger.kernel.org, =?utf-8?B?6rmA6rCV66+8?= <km.kim1503@gmail.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Chris Wilson <chris.p.wilson@linux.intel.com>, 
- Andi Shyti <andi.shyti@linux.intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>, 
- Krzysztof Karas <krzysztof.karas@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-Subject: Re: [PATCH v4] drm/i915/gem: Zero-initialize the eb.vma array in
- i915_gem_do_execbuffer
-Message-ID: <rry4vms675np6isl4qgd6z7latqit4dintqptegjg6xduc4mvl@b2mtbzsu4yx3>
-References: <20251212150611.18757-2-krzysztof.niemiec@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54A8910E7E3;
+ Tue, 16 Dec 2025 13:04:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1765890246; x=1797426246;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=xBwTA9Istr+bytxUSDmN3Q4KXncHHZw/yKkNjExx06E=;
+ b=fu33P1N6uLFBx1euzeArEt17fdiaCG7Ngvj0EAZxv0lS4T8PIqGcX2sr
+ w7UhH9W2wJGatma+3/r+Qi6oxgNvyrX4vl8HS4R2vhJdlJvzPMze93P0q
+ z5GeAqbSIq1RqdcO70UiLt8fe8az6MMgiiFHlXp2FQD0bAAu3Ov7lVeRn
+ 1UyNxT49NLw4vQFgHm3A8zXhUBmpO7dhpML8PTAJRet6D2vRRKBLp+p39
+ NK6YviTtG6pyFWbbCMH+mUineQHj6fPSRg+h+5MphG4k4tBrlwqRC79iK
+ Dmh0Zj3se2E0x9dKRM/fTtvjpGsmNrXUk43dQ0P5vVbaOKvjTVFp5Yala Q==;
+X-CSE-ConnectionGUID: GN8YU5TyT3KDJM8CPf87kA==
+X-CSE-MsgGUID: L+OB9jhWTOKr3XYiLUu43g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11643"; a="55377848"
+X-IronPort-AV: E=Sophos;i="6.21,153,1763452800"; d="scan'208";a="55377848"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2025 05:04:06 -0800
+X-CSE-ConnectionGUID: rMcnPhJ3T3+r/v7IMFOtnQ==
+X-CSE-MsgGUID: bRdmfd6cTvebTDlwClVePQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,153,1763452800"; d="scan'208";a="202921623"
+Received: from lfiedoro-mobl.ger.corp.intel.com (HELO
+ jhogande-mobl3.intel.com) ([10.245.246.133])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2025 05:04:04 -0800
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH] drm/i915/display: Allow async flip when Selective Fetch is
+ enabled
+Date: Tue, 16 Dec 2025 15:03:51 +0200
+Message-ID: <20251216130351.2799110-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251212150611.18757-2-krzysztof.niemiec@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,89 +71,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Krzysztof,
+Fix silent conflict during drm-next backmerge causing async flips being
+rejected when Selective Fetch is enabled.
 
-...
+Fixes: b8304863a399 ("Merge drm/drm-next into drm-intel-next")
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 8 --------
+ 1 file changed, 8 deletions(-)
 
-> In eb_lookup_vmas(), eb->vma[i].vma is set to NULL if either the helper
-> function eb_lookup_vma() or eb_validate_vma() fails. eb->vma[i+1].vma is
-> set to NULL in case i915_gem_object_userptr_submit_init() fails; the
-> current one needs to be cleaned up by eb_release_vmas() at this point,
-> so the next one is set. If eb_add_vma() fails, neither the current nor
-> the next vma is nullified, which is a source of a NULL deref bug
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 9c6d3ecdb589e..d5947cc9b94c5 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -6026,14 +6026,6 @@ static int intel_async_flip_check_uapi(struct intel_atomic_state *state,
+ 		return -EINVAL;
+ 	}
+ 
+-	/* FIXME: selective fetch should be disabled for async flips */
+-	if (new_crtc_state->enable_psr2_sel_fetch) {
+-		drm_dbg_kms(display->drm,
+-			    "[CRTC:%d:%s] async flip disallowed with PSR2 selective fetch\n",
+-			    crtc->base.base.id, crtc->base.name);
+-		return -EINVAL;
+-	}
+-
+ 	for_each_oldnew_intel_plane_in_state(state, plane, old_plane_state,
+ 					     new_plane_state, i) {
+ 		if (plane->pipe != crtc->pipe)
+-- 
+2.43.0
 
-/nullified/set to NULL/
-
-> described in [1].
-
-The [1] reference is out of the commit log :-)
-
-> When entering eb_lookup_vmas(), the vma pointers are set to the slab
-> poison value, instead of NULL. This doesn't matter for the actual
-> lookup, since it gets overwritten anyway, however the eb_release_vmas()
-> function only recognizes NULL as the stopping value, hence the pointers
-> are being nullified as they go in case of intermediate failure. This
-
-/nullified/set to NULL/
-
-> patch changes the approach to filling them all with NULL at the start
-> instead, rather than handling that manually during failure.
-
-...
-
->  static int eb_lock_vmas(struct i915_execbuffer *eb)
-> @@ -3375,7 +3360,8 @@ i915_gem_do_execbuffer(struct drm_device *dev,
->  
->  	eb.exec = exec;
->  	eb.vma = (struct eb_vma *)(exec + args->buffer_count + 1);
-> -	eb.vma[0].vma = NULL;
-> +	memset(eb.vma, 0x00, args->buffer_count * sizeof(struct eb_vma));
-
-/0x00/0/
-
-Should this be buffer_count + 1?
-
-> +
->  	eb.batch_pool = NULL;
->  
->  	eb.invalid_flags = __EXEC_OBJECT_UNKNOWN_FLAGS;
-> @@ -3584,7 +3570,18 @@ i915_gem_execbuffer2_ioctl(struct drm_device *dev, void *data,
->  	if (err)
->  		return err;
->  
-> -	/* Allocate extra slots for use by the command parser */
-> +	/*
-> +	 * Allocate extra slots for use by the command parser.
-> +	 *
-> +	 * Note that this allocation handles two different arrays (the
-> +	 * exec2_list array, and the eventual eb.vma array introduced in
-> +	 * i915_gem_do_execubuffer()), that reside in virtually contiguous
-
-/execubuffer/execbuffer/
-
-> +	 * memory. Also note that the allocation intentionally doesn't fill the
-> +	 * area with zeros (because the exec2_list part doesn't need to be, as
-> +	 * it's immediately overwritten by user data a few lines below).
-
-No need to put this last sentence within brackets, it's just a
-continuation sentence.
-
-Except for the "+ 1" note, everything is trivial:
-
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-
-Given that this has failed in patchwork, can you please resend a
-v5 if there are no other comments from your side?
-
-Thanks,
-Andi
-
-> +	 * However, the eb.vma part is explicitly zeroed later in
-> +	 * i915_gem_do_execbuffer().
-> +	 */
->  	exec2_list = kvmalloc_array(count + 2, eb_element_size(),
->  				    __GFP_NOWARN | GFP_KERNEL);
->  	if (exec2_list == NULL) {
-> -- 
-> 2.45.2
-> 
