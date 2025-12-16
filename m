@@ -2,58 +2,194 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF90DCC1A38
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Dec 2025 09:47:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0507CCC19AB
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Dec 2025 09:38:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9D2110E7A6;
-	Tue, 16 Dec 2025 08:46:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CEDC10E422;
+	Tue, 16 Dec 2025 08:38:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NtVNF2vz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WP/QndER";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0E4910E798;
- Tue, 16 Dec 2025 08:46:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A70F310E422;
+ Tue, 16 Dec 2025 08:38:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765874818; x=1797410818;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=taCdkoo7CRh1nmm3XH3RLiaDjRUFoPiF+Zt6OfPW1KE=;
- b=NtVNF2vzl32Gm21czXKPvA5XEp0ds9LPhGEimF3NTgA30Ie7Tj7kekuS
- HTF2QbDOWFs+Bjwe5hd+HF1pnFMVzF6E2oNLMK746AM1l2Kqx/we476EM
- oIatJ6LIx3VijL1zCVm3ciiEfrg0KSGnCHKY6aDM/8ZE3ERFj7aSNaMr7
- LeCid2eSper0Gvpt2mL6VbavcQcdf0c7sQ6n3oV4KEXSujiK09sYlqf0f
- Uj34LZNRoaZB2kPYNvWpS9OairFLKO4HsxAxD38vzJ9QrT6GU5dRkjpoE
- pjbvkcbUj4AwToykMdrYs7m1uTQc79wPzNvfYpTrWEbImIKnmv5pXBF7b Q==;
-X-CSE-ConnectionGUID: eCEpGiqCSgmzZP9b+NbeuQ==
-X-CSE-MsgGUID: cs78LnjzR66n0qisvIufmw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11643"; a="71642345"
-X-IronPort-AV: E=Sophos;i="6.21,152,1763452800"; d="scan'208";a="71642345"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 00:46:58 -0800
-X-CSE-ConnectionGUID: Q0eoA3DAT5Of7NoNiJ2O+A==
-X-CSE-MsgGUID: S99D0kTFTrG3wpeXDFuftg==
+ t=1765874329; x=1797410329;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=/mHIPNVoKjlIGutXaYzx3TmmvKcwRIgEVEOISSXmkds=;
+ b=WP/QndERSJGVulVrtZFyjcEp10J0bi659ylrAeoUoLk9lZhLwkA4WSTK
+ 2Ua6cGA70rUDu2USouHmyl85rynnU/QdWJj8TadfQvnokL6lr2nZGP7jr
+ Imu1uZhwggp1YqS1VZimqqK4wf9qxIX7D6vyQZJtz3MqRJ93jbBTvBAQp
+ 3CBbIRmfrVOh9sMOsMlZfd/hiQy+4/YOmEYl2WIOTDPLEL94km0jr0Z+4
+ XwSMp9tBwBhjhDCredsua0kDZBuNfGdkfsl3AtgKAH7gDtcIbmXJwVlks
+ 3l/Rw9aS/Zbgx+4LmIt/tQyWBjzFEZ9LJc3tB7BdTlf54hdRmdn2CfKg+ Q==;
+X-CSE-ConnectionGUID: +5qYKZ6iQH24PYghnlKxOA==
+X-CSE-MsgGUID: kjMsJtUYRr+A1TQayfVi6g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11643"; a="90443419"
+X-IronPort-AV: E=Sophos;i="6.21,152,1763452800"; d="scan'208";a="90443419"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2025 00:38:49 -0800
+X-CSE-ConnectionGUID: d8UXkoSsSYOv9Rb5POHEOA==
+X-CSE-MsgGUID: HAvsb/yYQTicwBBm+8KaxA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,152,1763452800"; d="scan'208";a="198448920"
-Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa009.fm.intel.com with ESMTP; 16 Dec 2025 00:46:57 -0800
-From: Mika Kahola <mika.kahola@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: imre.deak@intel.com,
-	Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH 13/13] drm/i915/display: Remove .clock member from eDP/DP/HDMI
- pll tables
-Date: Tue, 16 Dec 2025 10:37:59 +0200
-Message-Id: <20251216083759.383163-14-mika.kahola@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251216083759.383163-1-mika.kahola@intel.com>
-References: <20251216083759.383163-1-mika.kahola@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,152,1763452800"; d="scan'208";a="203064260"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2025 00:38:49 -0800
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Tue, 16 Dec 2025 00:38:48 -0800
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29 via Frontend Transport; Tue, 16 Dec 2025 00:38:48 -0800
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.65)
+ by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Tue, 16 Dec 2025 00:38:48 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=jR1lsrLo8tyHkS3AfF5wkNzMVdMSgLe0XZgrQblpWpk4jBiwxL53c8eceaZecr6lp3xKGagP0q9BENHwHUy746d9Lv4peIQ2l1MjvxdhdoxIESBwtITzkSWGSOp2SxArMMUdbFGZM7GzhsCEMYQeGZZg4PDHb1xZz93kK8IaL4RyY/EQh9970EH8f1PpeRBriiB6hrXzgsvZ6wUZxRB4ZfvitiqDyvWTnrPVFj6H+BTZRe08VWoMQEmHpFVMOc6iAo6Y80p483Eyesu57pAWqu4AGewr95cb+vo5M4vEIi1MznvylNX2NN8xcm6/EjsBJ63lcM/H4tTBLZE4ysKieQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/mHIPNVoKjlIGutXaYzx3TmmvKcwRIgEVEOISSXmkds=;
+ b=VIOAtIG1c7M0YAOCpW83QYRr7WRi9njq5dcyn+mXajpKmAxS02setwrObXWa+4a95DL9snrwSwhyDQry08A/cyFjqHkcKUADWrN/E3JVj3Hgp/RvgVFnJ1PNcK7yO9yLmO+bs24RuMiD5KcGsWuWow8lfZwrRpMazpLIV8Kuwn6pyY4YYXpAIyObfhrhjcwzNggYVHPaMCk/5Z3lwXMMvFVzbWcgQqu+3FlMsM8dtLOP2CEjOMe036747X/goYOBbxQOalKrYWN98yW7zLBLeGfh6oZthxyUYEgEAKAYb/JZgLPWYzRy+1dwx0tVTk4x+suIQZh9hkIrA5RXqFr8xw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB6019.namprd11.prod.outlook.com (2603:10b6:8:60::5) by
+ PH8PR11MB6998.namprd11.prod.outlook.com (2603:10b6:510:222::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.13; Tue, 16 Dec
+ 2025 08:38:41 +0000
+Received: from DM4PR11MB6019.namprd11.prod.outlook.com
+ ([fe80::fc1:e80f:134c:5ed2]) by DM4PR11MB6019.namprd11.prod.outlook.com
+ ([fe80::fc1:e80f:134c:5ed2%5]) with mapi id 15.20.9412.011; Tue, 16 Dec 2025
+ 08:38:41 +0000
+From: "Hogander, Jouni" <jouni.hogander@intel.com>
+To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH v3 1/3] drm/i915/psr: Set plane id bit in
+ crtc_state->async_flip_planes for PSR
+Thread-Topic: [PATCH v3 1/3] drm/i915/psr: Set plane id bit in
+ crtc_state->async_flip_planes for PSR
+Thread-Index: AQHcYsX0kkXrXhu5aE+Zt82gX143kLUP6FaAgBQg3wA=
+Date: Tue, 16 Dec 2025 08:38:41 +0000
+Message-ID: <7bbf61949c2cc7d5ab9c1bc0b3f8accc98eb071f.camel@intel.com>
+References: <20251201132457.624358-1-jouni.hogander@intel.com>
+ <20251201132457.624358-2-jouni.hogander@intel.com>
+ <aTA4BTe4I5sA-WSJ@intel.com>
+In-Reply-To: <aTA4BTe4I5sA-WSJ@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB6019:EE_|PH8PR11MB6998:EE_
+x-ms-office365-filtering-correlation-id: 46a0e326-6c44-4896-5e44-08de3c7e843d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|10070799003|38070700021; 
+x-microsoft-antispam-message-info: =?utf-8?B?My9ldnA4TFVkVmRrdW4xblEyV3FDWjZqdUdRQldmZXZZSE1TeGFoRFBRcENW?=
+ =?utf-8?B?ZXN5aW5zQURLVEVxSHBOaTNydnp5T2pmMk5zcnhOdmZOclRUcm5ndU90L0Q0?=
+ =?utf-8?B?R0RnSXZFUnVOVHNxc1N0TWZLSFA2UVIva3F5bXE5Zkx6b3ZQNlBQNjNUVmxC?=
+ =?utf-8?B?cStGcVArS3pubmZ3NE9hb25ra25WNHlpTlhtQnpXbHhrRFRiOXVCTUw4STBI?=
+ =?utf-8?B?M1BiTXk2aGx2Ym5yeU1LZTljQU1icHRBWGtnR2N2Q1RPZ3VDRnAvckk2b3p2?=
+ =?utf-8?B?WHhGeS9mMys1Y0pZYWh0MVMwOVowTmI1RWJ2WUNNekJUNG01Ukt3Q0w4dnJS?=
+ =?utf-8?B?ZVBsb1lWdTF0aUx1NytzaEw2Ti96cnN0LzJpaVhlNi9YZmQ0aHN4Tng0S3Fk?=
+ =?utf-8?B?ck1GVTA3aHoyc1pjRzBuZndFd3c0MXN1ZnBXdGdscXJBUnAvcG5qazVsRDhI?=
+ =?utf-8?B?Ym5oeE5zTWxsamJkZ0dlNXE5TFZLbmxmWE5uRFBXQVBkeXc2NDZTejY2ZTlJ?=
+ =?utf-8?B?MW15OEJiSHlyZTVvVmVwalVNM05jeG5vL1dqVHFESDNwYkFubzNRY3IwVzlJ?=
+ =?utf-8?B?STJEREpyQnY5SkkvMURYYkJJaGNvWGRNSnpmVjRQWk1oM2RpeHo1VTZWcVli?=
+ =?utf-8?B?Nm43TER4ckJsZ3NLbEtZV2hKb0IybFFnKy9nQVZEcWlOUlFOWG9vaE9XTEt4?=
+ =?utf-8?B?WkZBdDJqaVY4d2ZJMGZUWk5TMk51ZkkvTXVxT0dYakc1cXZGZ3o0Nk9iaHY5?=
+ =?utf-8?B?clpGTHJhTFRFTTltRGVpb09YUE1nYjE1SFZFcDZ5SE5wRnloN2dvTmFFS09E?=
+ =?utf-8?B?TmwyZXFHMWZtNjRwRVFaaGZ0N0dkQXFTQlRqRU02dkdtOE50VjUzSTJmRHFV?=
+ =?utf-8?B?NmN2ODNPWHg5M1pPTGpWUkVxcHVJMkNxUGtzc2w1VjI0TEhLdFlCV0lEMkFl?=
+ =?utf-8?B?ZnZ3aWpPVS9EYXVxVEhVR0JIaXgrL2xKVmNUSEJuL2ZZMmpMbFg4YlRDMVMw?=
+ =?utf-8?B?NmJaZExJQjNRdXI3V2l1Q25CTGhRQ1NTc3RpUVhGRnF2REFDdGFUMURENGNJ?=
+ =?utf-8?B?STVsbHFvM2cvRmFpNDF5c2NXQ0JGWXNCNm55eHUxR21kUmlnWXc5LzhGZ01v?=
+ =?utf-8?B?aFA1aTJ2b2pQY2N4eVlUMUx2cThoc0lnRHI2ZjVmL0tpN0ZFbGlPVngzYkFh?=
+ =?utf-8?B?MHlRSnBuZmduZEhQcjQvd2RnbTZrWFNlb3l5eml4aVc3MUF3U0pYeTdxZmQ2?=
+ =?utf-8?B?YWVnTlBQUDk2SmN1bEozVHIrYlVnU3haL2lnSzlDNWZjdEpUdjU2WEdEcjFw?=
+ =?utf-8?B?VXpTMUNGd3NJRURxSnRab2lieStxNWZOLzNHQVEwQ3dmaGNCdGpDT0didWVP?=
+ =?utf-8?B?VmlEdmovSVhEWmJpdTdlK1FtWXF1eHpEWHNXb29xWnhJK21oOEptbTlsdzRi?=
+ =?utf-8?B?VDlsTFQvVHdwcXp1UFFObFJnT0ZhdFQveUt3Q1dxaGZLYmZxWHBsd3M0ckww?=
+ =?utf-8?B?OC9maGtYUTVLR09vdkt1aUZjaHpKZllGK1FMQ3dqdDhNSWU3NUUzZys3eXRw?=
+ =?utf-8?B?MWN5bElvN0REZ3dES3Z6b0NsK2o5Yk5NczE4SkF1eTBDdXlXOXozam9sRyts?=
+ =?utf-8?B?NjBMU3NkNmptdU15R0M1c1hxUlNzRlVyRFlkaGpHdVRjaWZjaEJSMGdJWXhG?=
+ =?utf-8?B?TXNqYmFydGh1dk5JdnhIM0FweWFvbjBlakdJc3I2MXhhZVdBYXQwdDhJdXpS?=
+ =?utf-8?B?R0JYVksxWUN6OW5rampMaHdrZUFaaUN6c1hKazdYMmhBU2g0Qk45cDZBZk1z?=
+ =?utf-8?B?bUtMTjZiOTJRZGJCRFczOUhCYWhEK1BLN2IwWjlnQ0o3V2d1bWlnR3hYN25E?=
+ =?utf-8?B?WmdaRmdtM1BBNGdhL2tENkhWdVNmU1lrditHZTRQZTJ2aVdCOVdrUmV1bzBq?=
+ =?utf-8?Q?n5HzmyIBoeOTWF6kakzRCyTSmEKSXpSb?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB6019.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(10070799003)(38070700021); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?QXJqcGdrMTdmajNLcm9pMmw4VzVTY2xjeTlJZE1iczF4TDlWSjE3YU8zT0U5?=
+ =?utf-8?B?ZlVQMU03N3VNak5KaC9TL09LOGNuVVcvQkhJUTlVWFM2T1lZNVNSa1ZWNXdO?=
+ =?utf-8?B?dzVNTFVFU2t0RjhxTUFJdnBZdUl6OEV3OEJoYWhiazhaaFducVp0VUc0THB2?=
+ =?utf-8?B?Sk1VOHREMnhPeDRxdko5emc4TmRmWnVaQXZjaVlhQm5KYVNTaCt6blZZM3RH?=
+ =?utf-8?B?WGRzS3lYL2pLVkhQK3FvZGp1eUR4K1NXZzM1UVdCaGpiYS9RaU1zYnZRQ2I1?=
+ =?utf-8?B?Um1hQjc2eTVJUzhtMmdSWjRodGdxMHhGdDFOMnM0RnA0Y0VDNmh3RUlOZm5I?=
+ =?utf-8?B?NER4Y3VaY3JuNkZULzdGaDlpaWpDU0RJMTNqZ293YUxrMTBFRm5INThFMW1T?=
+ =?utf-8?B?dnIyaC9kVTdNWWpqcEZ5WW4yaVhGaWFwdExmRmFWdHhhRTJWMWI2MnpoUjZ3?=
+ =?utf-8?B?dGIrZFdBWWxtd2FhclR2Y0xJelI2OHBORUxvd3k2K1UyaDVUUzVkVUJWcFRJ?=
+ =?utf-8?B?cnNncW11MVhZcGlwUDFWWGhwTUh3ak1lTnVSdmJleWQxQ3RsRit5a1FYVGUx?=
+ =?utf-8?B?UlNYRDRyWnA5ODB1ZVo3NFRsVmQzRFdHbFp6TlRESVc1MkN2Q3hORVdueDhs?=
+ =?utf-8?B?RklUOXJJcm5STmF4UGdLQUhjMTdUSTRJQWpVUks4RENaYzF2Ym1XN1UwSXBR?=
+ =?utf-8?B?NTgzeUVpSU9FejdWeXplRGJZMER5cEtVUXJjbWZHVjJ5eVUrN0xBaXJpejhr?=
+ =?utf-8?B?SW9iZ1Y1d2ZrbW54bUk5WkdZQU5JWE9ibnlFNmFtSDJqZE42OGNlTWJ0SGZt?=
+ =?utf-8?B?aGtyT2I5dXUrcndjNUNReStzM0daemxRb0w0c1YrM0puWjAwRG15RUpNOUVJ?=
+ =?utf-8?B?djVaL2daU2tXYTlTUHIzYzl0QUQwWUFaUGd4Q0xCZ25hb0hGL29nYjFseEVW?=
+ =?utf-8?B?MGtzSEhJSzlQQmovUUNlNnhLcnpTRCtEMmhxb2tCbTRjckNYekRMbDcxU3dT?=
+ =?utf-8?B?RFBWUStjOGJUalRKY2NSWFBWNHdWQVZybEtOajgvMEtUTW81UjdWcW9BVlMv?=
+ =?utf-8?B?VFNDRGVwdU9xaHFSUkFmVUM4SHMva0MrVjdiSHIzM3RST3FFdmZacGZ3YnVF?=
+ =?utf-8?B?SFFOTHI0ZTBVQ1d1S1FtUm1VRnMvY2JNUWJTY3RHTTdMQjZaUTF5NHVNV0tk?=
+ =?utf-8?B?bXI3UzcwZzJBMitBRlg1VFBhZUhQNHpqK3o2a3RGdUVRRFBpWGViK2FydkJN?=
+ =?utf-8?B?T1ZWMTJLUHZKMzNlRlgwdXkyQ0drRC9NOWxwS05iNm9xcXhRQnIzMjhnRGFv?=
+ =?utf-8?B?QmNYM3NLMEVrNUZUUC8vSkphQ0k0VGRQVis0NjVyMFM3SG1NWEdBNng5N2RN?=
+ =?utf-8?B?Zys2Q0NzVXJJRGZrTytkWVNObTJaTEdvWHI1QkhIUkZHT1JGNkR5K0g0MW1x?=
+ =?utf-8?B?RU9JNVBZUWlBYTlzcnMzQjJkRzNrRDQwQ3NkQVFnd0dsUnVhTHRPZnZnWGM2?=
+ =?utf-8?B?V0FyaTk1dmZnV2VUTEF0cXJRZlhNT3plZGV3SFE3RUl0NEs2VFdHaFJETGw3?=
+ =?utf-8?B?MkEvR1l3SXVpaG52Y043VS9vUjl0bWROcDUzTGhDOTlqWjFBSkR3MzZiblpH?=
+ =?utf-8?B?NzBBbmc0WUFUdnNVaUprVVBRSnIzeHFDdy9UTFRnQThUZzYyVEliaW5SSUZj?=
+ =?utf-8?B?d3IrQzlvTzhyWXh6RnhXWFE1NnVyK0ZSWm4vbjM2bVZ1YWZzQXdoRXkzTURJ?=
+ =?utf-8?B?aUY5RGN2c1FZVm9ydmlueWtwbENNRzJQWWdmbjgzTUhJNzdaUGNFV2VyMGVn?=
+ =?utf-8?B?TDRMT1hTUC9mTnFBTmN2YldUZ2pXMFlXM1hhSVEzRTVuY0dyWmZ6UXBYYmVk?=
+ =?utf-8?B?TllvbmszUXRrWmtqeEZ4SWxoZE9JY2tTMnB2cWZsajRLQzd0Tnd1T3ZMWFRS?=
+ =?utf-8?B?KytNM0lvdjB2UnArVjRzcG5JQUYxMkIwT1poWmgvSmVucklJRTFUUm5hTnFl?=
+ =?utf-8?B?OHZ6QldNR3RjNzZxcklJRDlsekQ3ZS9ZK0VpcGMrUjFpQVdMRnA0RGZxZ1Vt?=
+ =?utf-8?B?d1JuS1RNdE9lV3lUWUsyQ2VxemMvMUxjMWN4ckNiTWtGdmk3WkFlRjlscXA4?=
+ =?utf-8?B?bWtLcVkrdUllVmxvakFONCtHdHJGeGNQM0NuWHRwTTBSdHo3bFR0UXRNaE14?=
+ =?utf-8?B?dXRLZjFZVHA5OEhMbXhVNDNoZkprSzdOZjJvTlozUUxuTjF1TTlsaFk3K0JH?=
+ =?utf-8?B?VEJaU3B0a3hreEViSVdlNk1ZdzNnPT0=?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <7514A41207B1734CB1FBD140523BA1E8@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6019.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 46a0e326-6c44-4896-5e44-08de3c7e843d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Dec 2025 08:38:41.5260 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ucMh8pT7Z/omlsMO4xhjT/B6e0jtL0LJwK2FQYwP2q6B9qA5jlXIuH5E1ioHUTIz6P8M3/Jpn44b0Bx0YIcIIadJWlQflNBZ7REtU7pWUxw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6998
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,907 +205,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PLL state structure has a member .clock. This is not needed as
-the port clock is possible to calculate from the pll dividers.
-Remove the .clock from the pll state structure.
-
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 88 +------------------
- drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  3 -
- drivers/gpu/drm/i915/display/intel_lt_phy.c   | 26 ------
- .../drm/i915/display/intel_snps_hdmi_pll.c    |  3 -
- 4 files changed, 3 insertions(+), 117 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 25f6062345f9..d58dda4cd014 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -547,7 +547,6 @@ void intel_cx0_phy_set_signal_levels(struct intel_encoder *encoder,
-  */
- 
- static const struct intel_c10pll_state mtl_c10_dp_rbr = {
--	.clock = 162000,
- 	.tx = 0x10,
- 	.cmn = 0x21,
- 	.pll[0] = 0xB4,
-@@ -573,7 +572,6 @@ static const struct intel_c10pll_state mtl_c10_dp_rbr = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_edp_r216 = {
--	.clock = 216000,
- 	.tx = 0x10,
- 	.cmn = 0x21,
- 	.pll[0] = 0x4,
-@@ -599,7 +597,6 @@ static const struct intel_c10pll_state mtl_c10_edp_r216 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_edp_r243 = {
--	.clock = 243000,
- 	.tx = 0x10,
- 	.cmn = 0x21,
- 	.pll[0] = 0x34,
-@@ -625,7 +622,6 @@ static const struct intel_c10pll_state mtl_c10_edp_r243 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_dp_hbr1 = {
--	.clock = 270000,
- 	.tx = 0x10,
- 	.cmn = 0x21,
- 	.pll[0] = 0xF4,
-@@ -651,7 +647,6 @@ static const struct intel_c10pll_state mtl_c10_dp_hbr1 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_edp_r324 = {
--	.clock = 324000,
- 	.tx = 0x10,
- 	.cmn = 0x21,
- 	.pll[0] = 0xB4,
-@@ -677,7 +672,6 @@ static const struct intel_c10pll_state mtl_c10_edp_r324 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_edp_r432 = {
--	.clock = 432000,
- 	.tx = 0x10,
- 	.cmn = 0x21,
- 	.pll[0] = 0x4,
-@@ -703,7 +697,6 @@ static const struct intel_c10pll_state mtl_c10_edp_r432 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_dp_hbr2 = {
--	.clock = 540000,
- 	.tx = 0x10,
- 	.cmn = 0x21,
- 	.pll[0] = 0xF4,
-@@ -729,7 +722,6 @@ static const struct intel_c10pll_state mtl_c10_dp_hbr2 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_edp_r675 = {
--	.clock = 675000,
- 	.tx = 0x10,
- 	.cmn = 0x21,
- 	.pll[0] = 0xB4,
-@@ -755,7 +747,6 @@ static const struct intel_c10pll_state mtl_c10_edp_r675 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_dp_hbr3 = {
--	.clock = 810000,
- 	.tx = 0x10,
- 	.cmn = 0x21,
- 	.pll[0] = 0x34,
-@@ -834,7 +825,6 @@ static const struct intel_cx0pll_params mtl_c10_edp_tables[] = {
- 
- /* C20 basic DP 1.4 tables */
- static const struct intel_c20pll_state mtl_c20_dp_rbr = {
--	.clock = 162000,
- 	.tx = {	0xbe88, /* tx cfg0 */
- 		0x5800, /* tx cfg1 */
- 		0x0000, /* tx cfg2 */
-@@ -859,7 +849,6 @@ static const struct intel_c20pll_state mtl_c20_dp_rbr = {
- };
- 
- static const struct intel_c20pll_state mtl_c20_dp_hbr1 = {
--	.clock = 270000,
- 	.tx = {	0xbe88, /* tx cfg0 */
- 		0x4800, /* tx cfg1 */
- 		0x0000, /* tx cfg2 */
-@@ -884,7 +873,6 @@ static const struct intel_c20pll_state mtl_c20_dp_hbr1 = {
- };
- 
- static const struct intel_c20pll_state mtl_c20_dp_hbr2 = {
--	.clock = 540000,
- 	.tx = {	0xbe88, /* tx cfg0 */
- 		0x4800, /* tx cfg1 */
- 		0x0000, /* tx cfg2 */
-@@ -909,7 +897,6 @@ static const struct intel_c20pll_state mtl_c20_dp_hbr2 = {
- };
- 
- static const struct intel_c20pll_state mtl_c20_dp_hbr3 = {
--	.clock = 810000,
- 	.tx = {	0xbe88, /* tx cfg0 */
- 		0x4800, /* tx cfg1 */
- 		0x0000, /* tx cfg2 */
-@@ -935,7 +922,6 @@ static const struct intel_c20pll_state mtl_c20_dp_hbr3 = {
- 
- /* C20 basic DP 2.0 tables */
- static const struct intel_c20pll_state mtl_c20_dp_uhbr10 = {
--	.clock = 1000000, /* 10 Gbps */
- 	.tx = {	0xbe21, /* tx cfg0 */
- 		0xe800, /* tx cfg1 */
- 		0x0000, /* tx cfg2 */
-@@ -959,7 +945,6 @@ static const struct intel_c20pll_state mtl_c20_dp_uhbr10 = {
- };
- 
- static const struct intel_c20pll_state mtl_c20_dp_uhbr13_5 = {
--	.clock = 1350000, /* 13.5 Gbps */
- 	.tx = {	0xbea0, /* tx cfg0 */
- 		0x4800, /* tx cfg1 */
- 		0x0000, /* tx cfg2 */
-@@ -984,7 +969,6 @@ static const struct intel_c20pll_state mtl_c20_dp_uhbr13_5 = {
- };
- 
- static const struct intel_c20pll_state mtl_c20_dp_uhbr20 = {
--	.clock = 2000000, /* 20 Gbps */
- 	.tx = {	0xbe20, /* tx cfg0 */
- 		0x4800, /* tx cfg1 */
- 		0x0000, /* tx cfg2 */
-@@ -1022,7 +1006,6 @@ static const struct intel_cx0pll_params mtl_c20_dp_tables[] = {
-  */
- 
- static const struct intel_c20pll_state xe2hpd_c20_edp_r216 = {
--	.clock = 216000,
- 	.tx = { 0xbe88,
- 		0x4800,
- 		0x0000,
-@@ -1047,7 +1030,6 @@ static const struct intel_c20pll_state xe2hpd_c20_edp_r216 = {
- };
- 
- static const struct intel_c20pll_state xe2hpd_c20_edp_r243 = {
--	.clock = 243000,
- 	.tx = { 0xbe88,
- 		0x4800,
- 		0x0000,
-@@ -1072,7 +1054,6 @@ static const struct intel_c20pll_state xe2hpd_c20_edp_r243 = {
- };
- 
- static const struct intel_c20pll_state xe2hpd_c20_edp_r324 = {
--	.clock = 324000,
- 	.tx = { 0xbe88,
- 		0x4800,
- 		0x0000,
-@@ -1097,7 +1078,6 @@ static const struct intel_c20pll_state xe2hpd_c20_edp_r324 = {
- };
- 
- static const struct intel_c20pll_state xe2hpd_c20_edp_r432 = {
--	.clock = 432000,
- 	.tx = { 0xbe88,
- 		0x4800,
- 		0x0000,
-@@ -1122,7 +1102,6 @@ static const struct intel_c20pll_state xe2hpd_c20_edp_r432 = {
- };
- 
- static const struct intel_c20pll_state xe2hpd_c20_edp_r675 = {
--	.clock = 675000,
- 	.tx = { 0xbe88,
- 		0x4800,
- 		0x0000,
-@@ -1159,7 +1138,6 @@ static const struct intel_cx0pll_params xe2hpd_c20_edp_tables[] = {
- };
- 
- static const struct intel_c20pll_state xe2hpd_c20_dp_uhbr13_5 = {
--	.clock = 1350000, /* 13.5 Gbps */
- 	.tx = {	0xbea0, /* tx cfg0 */
- 		0x4800, /* tx cfg1 */
- 		0x0000, /* tx cfg2 */
-@@ -1212,7 +1190,6 @@ static const struct intel_cx0pll_params xe3lpd_c20_dp_edp_tables[] = {
-  */
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_25_2 = {
--	.clock = 25200,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0x4,
-@@ -1238,7 +1215,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_25_2 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_27_0 = {
--	.clock = 27000,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0x34,
-@@ -1264,7 +1240,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_27_0 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_74_25 = {
--	.clock = 74250,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0xF4,
-@@ -1290,7 +1265,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_74_25 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_148_5 = {
--	.clock = 148500,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0xF4,
-@@ -1316,7 +1290,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_148_5 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_594 = {
--	.clock = 594000,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0xF4,
-@@ -1343,7 +1316,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_594 = {
- 
- /* Precomputed C10 HDMI PLL tables */
- static const struct intel_c10pll_state mtl_c10_hdmi_27027 = {
--	.clock = 27027,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xC0, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1353,7 +1325,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_27027 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_28320 = {
--	.clock = 28320,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0x04, .pll[1] = 0x00, .pll[2] = 0xCC, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1363,7 +1334,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_28320 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_30240 = {
--	.clock = 30240,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0x04, .pll[1] = 0x00, .pll[2] = 0xDC, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1373,7 +1343,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_30240 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_31500 = {
--	.clock = 31500,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x62, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1383,7 +1352,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_31500 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_36000 = {
--	.clock = 36000,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0xC4, .pll[1] = 0x00, .pll[2] = 0x76, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1393,7 +1361,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_36000 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_40000 = {
--	.clock = 40000,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0xB4, .pll[1] = 0x00, .pll[2] = 0x86, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1403,7 +1370,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_40000 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_49500 = {
--	.clock = 49500,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0x74, .pll[1] = 0x00, .pll[2] = 0xAE, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1413,7 +1379,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_49500 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_50000 = {
--	.clock = 50000,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0x74, .pll[1] = 0x00, .pll[2] = 0xB0, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1423,7 +1388,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_50000 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_57284 = {
--	.clock = 57284,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xCE, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1433,7 +1397,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_57284 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_58000 = {
--	.clock = 58000,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xD0, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1443,7 +1406,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_58000 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_65000 = {
--	.clock = 65000,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x66, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1453,7 +1415,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_65000 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_71000 = {
--	.clock = 71000,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x72, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1463,7 +1424,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_71000 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_74176 = {
--	.clock = 74176,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x7A, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1473,7 +1433,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_74176 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_75000 = {
--	.clock = 75000,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x7C, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1483,7 +1442,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_75000 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_78750 = {
--	.clock = 78750,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0xB4, .pll[1] = 0x00, .pll[2] = 0x84, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1493,7 +1451,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_78750 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_85500 = {
--	.clock = 85500,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0xB4, .pll[1] = 0x00, .pll[2] = 0x92, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1503,7 +1460,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_85500 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_88750 = {
--	.clock = 88750,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0x74, .pll[1] = 0x00, .pll[2] = 0x98, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1513,7 +1469,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_88750 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_106500 = {
--	.clock = 106500,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xBC, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1523,7 +1478,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_106500 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_108000 = {
--	.clock = 108000,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xC0, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1533,7 +1487,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_108000 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_115500 = {
--	.clock = 115500,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xD0, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1543,7 +1496,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_115500 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_119000 = {
--	.clock = 119000,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xD6, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1553,7 +1505,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_119000 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_135000 = {
--	.clock = 135000,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x6C, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1563,7 +1514,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_135000 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_138500 = {
--	.clock = 138500,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x70, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1573,7 +1523,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_138500 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_147160 = {
--	.clock = 147160,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x78, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1583,7 +1532,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_147160 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_148352 = {
--	.clock = 148352,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x7A, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1593,7 +1541,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_148352 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_154000 = {
--	.clock = 154000,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0xB4, .pll[1] = 0x00, .pll[2] = 0x80, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1603,7 +1550,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_154000 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_162000 = {
--	.clock = 162000,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0xB4, .pll[1] = 0x00, .pll[2] = 0x88, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1613,7 +1559,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_162000 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_167000 = {
--	.clock = 167000,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0xB4, .pll[1] = 0x00, .pll[2] = 0x8C, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1623,7 +1568,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_167000 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_197802 = {
--	.clock = 197802,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0x74, .pll[1] = 0x00, .pll[2] = 0xAE, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1633,7 +1577,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_197802 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_198000 = {
--	.clock = 198000,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0x74, .pll[1] = 0x00, .pll[2] = 0xAE, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1643,7 +1586,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_198000 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_209800 = {
--	.clock = 209800,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xBA, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1653,7 +1595,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_209800 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_241500 = {
--	.clock = 241500,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xDA, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1663,7 +1604,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_241500 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_262750 = {
--	.clock = 262750,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x68, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1673,7 +1613,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_262750 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_268500 = {
--	.clock = 268500,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x6A, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1683,7 +1622,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_268500 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_296703 = {
--	.clock = 296703,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x7A, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1693,7 +1631,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_296703 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_297000 = {
--	.clock = 297000,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x7A, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1703,7 +1640,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_297000 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_319750 = {
--	.clock = 319750,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0xB4, .pll[1] = 0x00, .pll[2] = 0x86, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1713,7 +1649,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_319750 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_497750 = {
--	.clock = 497750,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xE2, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1723,7 +1658,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_497750 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_592000 = {
--	.clock = 592000,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x7A, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1733,7 +1667,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_592000 = {
- };
- 
- static const struct intel_c10pll_state mtl_c10_hdmi_593407 = {
--	.clock = 593407,
- 	.tx = 0x10,
- 	.cmn = 0x1,
- 	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x7A, .pll[3] = 0x00, .pll[4] = 0x00,
-@@ -1791,7 +1724,6 @@ static const struct intel_cx0pll_params mtl_c10_hdmi_tables[] = {
- };
- 
- static const struct intel_c20pll_state mtl_c20_hdmi_27_0 = {
--	.clock = 27000,
- 	.tx = {  0xbe88, /* tx cfg0 */
- 		  0x9800, /* tx cfg1 */
- 		  0x0000, /* tx cfg2 */
-@@ -1816,7 +1748,6 @@ static const struct intel_c20pll_state mtl_c20_hdmi_27_0 = {
- };
- 
- static const struct intel_c20pll_state mtl_c20_hdmi_74_25 = {
--	.clock = 74250,
- 	.tx = {  0xbe88, /* tx cfg0 */
- 		  0x9800, /* tx cfg1 */
- 		  0x0000, /* tx cfg2 */
-@@ -1841,7 +1772,6 @@ static const struct intel_c20pll_state mtl_c20_hdmi_74_25 = {
- };
- 
- static const struct intel_c20pll_state mtl_c20_hdmi_148_5 = {
--	.clock = 148500,
- 	.tx = {  0xbe88, /* tx cfg0 */
- 		  0x9800, /* tx cfg1 */
- 		  0x0000, /* tx cfg2 */
-@@ -1866,7 +1796,6 @@ static const struct intel_c20pll_state mtl_c20_hdmi_148_5 = {
- };
- 
- static const struct intel_c20pll_state mtl_c20_hdmi_594 = {
--	.clock = 594000,
- 	.tx = {  0xbe88, /* tx cfg0 */
- 		  0x9800, /* tx cfg1 */
- 		  0x0000, /* tx cfg2 */
-@@ -1891,7 +1820,6 @@ static const struct intel_c20pll_state mtl_c20_hdmi_594 = {
- };
- 
- static const struct intel_c20pll_state mtl_c20_hdmi_300 = {
--	.clock = 300000,
- 	.tx = {  0xbe98, /* tx cfg0 */
- 		  0x8800, /* tx cfg1 */
- 		  0x0000, /* tx cfg2 */
-@@ -1916,7 +1844,6 @@ static const struct intel_c20pll_state mtl_c20_hdmi_300 = {
- };
- 
- static const struct intel_c20pll_state mtl_c20_hdmi_600 = {
--	.clock = 600000,
- 	.tx = {  0xbe98, /* tx cfg0 */
- 		  0x8800, /* tx cfg1 */
- 		  0x0000, /* tx cfg2 */
-@@ -1941,7 +1868,6 @@ static const struct intel_c20pll_state mtl_c20_hdmi_600 = {
- };
- 
- static const struct intel_c20pll_state mtl_c20_hdmi_800 = {
--	.clock = 800000,
- 	.tx = {  0xbe98, /* tx cfg0 */
- 		  0x8800, /* tx cfg1 */
- 		  0x0000, /* tx cfg2 */
-@@ -1966,7 +1892,6 @@ static const struct intel_c20pll_state mtl_c20_hdmi_800 = {
- };
- 
- static const struct intel_c20pll_state mtl_c20_hdmi_1000 = {
--	.clock = 1000000,
- 	.tx = {  0xbe98, /* tx cfg0 */
- 		  0x8800, /* tx cfg1 */
- 		  0x0000, /* tx cfg2 */
-@@ -1991,7 +1916,6 @@ static const struct intel_c20pll_state mtl_c20_hdmi_1000 = {
- };
- 
- static const struct intel_c20pll_state mtl_c20_hdmi_1200 = {
--	.clock = 1200000,
- 	.tx = {  0xbe98, /* tx cfg0 */
- 		  0x8800, /* tx cfg1 */
- 		  0x0000, /* tx cfg2 */
-@@ -2329,8 +2253,6 @@ static void intel_c10pll_readout_hw_state(struct intel_encoder *encoder,
- 
- 	intel_cx0_phy_transaction_end(encoder, wakeref);
- 
--	pll_state->clock = intel_c10pll_calc_port_clock(pll_state);
--
- 	cx0pll_state->ssc_enabled = readout_ssc_state(encoder, true);
- 
- 	if (cx0pll_state->ssc_enabled != intel_c10pll_ssc_enabled(pll_state))
-@@ -2375,8 +2297,7 @@ static void intel_c10pll_dump_hw_state(struct drm_printer *p,
- 	unsigned int multiplier, tx_clk_div;
- 
- 	fracen = hw_state->pll[0] & C10_PLL0_FRACEN;
--	drm_printf(p, "c10pll_hw_state: clock: %d, fracen: %s, ",
--		   hw_state->clock, str_yes_no(fracen));
-+	drm_printf(p, "c10pll_hw_state: fracen: %s, ", str_yes_no(fracen));
- 
- 	if (fracen) {
- 		frac_quot = hw_state->pll[12] << 8 | hw_state->pll[11];
-@@ -2481,7 +2402,6 @@ static int intel_c20_compute_hdmi_tmds_pll(struct intel_display *display,
- 	else
- 		mpllb_ana_freq_vco = MPLLB_ANA_FREQ_VCO_0;
- 
--	pll_state->clock	= port_clock;
- 	pll_state->tx[0]	= 0xbe88;
- 	pll_state->tx[1]	= intel_c20_hdmi_tmds_tx_cgf_1(display);
- 	pll_state->tx[2]	= 0x0000;
-@@ -2830,8 +2750,6 @@ static void intel_c20pll_readout_hw_state(struct intel_encoder *encoder,
- 		}
- 	}
- 
--	pll_state->clock = intel_c20pll_calc_port_clock(pll_state);
--
- 	intel_cx0_phy_transaction_end(encoder, wakeref);
- 
- 	cx0pll_state->ssc_enabled = readout_ssc_state(encoder, intel_c20phy_use_mpllb(pll_state));
-@@ -2842,7 +2760,7 @@ static void intel_c20pll_dump_hw_state(struct drm_printer *p,
- {
- 	int i;
- 
--	drm_printf(p, "c20pll_hw_state: clock: %d\n", hw_state->clock);
-+	drm_printf(p, "c20pll_hw_state:\n");
- 	drm_printf(p,
- 		   "tx[0] = 0x%.4x, tx[1] = 0x%.4x, tx[2] = 0x%.4x\n",
- 		   hw_state->tx[0], hw_state->tx[1], hw_state->tx[2]);
-@@ -3230,7 +3148,7 @@ static u32 intel_cx0_get_pclk_pll_ack(u8 lane_mask)
- static void intel_cx0pll_enable(struct intel_encoder *encoder,
- 				const struct intel_cx0pll_state *pll_state)
- {
--	int port_clock = pll_state->use_c10 ? pll_state->c10.clock : pll_state->c20.clock;
-+	int port_clock;
- 	struct intel_display *display = to_intel_display(encoder);
- 	enum phy phy = intel_encoder_to_phy(encoder);
- 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-index 5b71c860515f..4cc14ce5eebe 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-@@ -241,14 +241,12 @@ struct intel_mpllb_state {
- };
- 
- struct intel_c10pll_state {
--	u32 clock; /* in KHz */
- 	u8 tx;
- 	u8 cmn;
- 	u8 pll[20];
- };
- 
- struct intel_c20pll_state {
--	u32 clock; /* in kHz */
- 	u16 tx[3];
- 	u16 cmn[4];
- 	union {
-@@ -274,7 +272,6 @@ struct intel_cx0pll_state {
- };
- 
- struct intel_lt_phy_pll_state {
--	u32 clock; /* in kHz */
- 	u8 addr_msb[13];
- 	u8 addr_lsb[13];
- 	u8 data[13][4];
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index cf2c29c77de5..09a48d414603 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -59,7 +59,6 @@ struct lt_phy_params {
- };
- 
- static const struct intel_lt_phy_pll_state xe3plpd_lt_dp_rbr = {
--	.clock = 162000,
- 	.config = {
- 		0x83,
- 		0x2d,
-@@ -113,7 +112,6 @@ static const struct intel_lt_phy_pll_state xe3plpd_lt_dp_rbr = {
- };
- 
- static const struct intel_lt_phy_pll_state xe3plpd_lt_dp_hbr1 = {
--	.clock = 270000,
- 	.config = {
- 		0x8b,
- 		0x2d,
-@@ -167,7 +165,6 @@ static const struct intel_lt_phy_pll_state xe3plpd_lt_dp_hbr1 = {
- };
- 
- static const struct intel_lt_phy_pll_state xe3plpd_lt_dp_hbr2 = {
--	.clock = 540000,
- 	.config = {
- 		0x93,
- 		0x2d,
-@@ -221,7 +218,6 @@ static const struct intel_lt_phy_pll_state xe3plpd_lt_dp_hbr2 = {
- };
- 
- static const struct intel_lt_phy_pll_state xe3plpd_lt_dp_hbr3 = {
--	.clock = 810000,
- 	.config = {
- 		0x9b,
- 		0x2d,
-@@ -275,7 +271,6 @@ static const struct intel_lt_phy_pll_state xe3plpd_lt_dp_hbr3 = {
- };
- 
- static const struct intel_lt_phy_pll_state xe3plpd_lt_dp_uhbr10 = {
--	.clock = 1000000,
- 	.config = {
- 		0x43,
- 		0x2d,
-@@ -329,7 +324,6 @@ static const struct intel_lt_phy_pll_state xe3plpd_lt_dp_uhbr10 = {
- };
- 
- static const struct intel_lt_phy_pll_state xe3plpd_lt_dp_uhbr13_5 = {
--	.clock = 1350000,
- 	.config = {
- 		0xcb,
- 		0x2d,
-@@ -383,7 +377,6 @@ static const struct intel_lt_phy_pll_state xe3plpd_lt_dp_uhbr13_5 = {
- };
- 
- static const struct intel_lt_phy_pll_state xe3plpd_lt_dp_uhbr20 = {
--	.clock = 2000000,
- 	.config = {
- 		0x53,
- 		0x2d,
-@@ -464,7 +457,6 @@ static const struct intel_lt_phy_pll_params xe3plpd_lt_dp_tables[] = {
- };
- 
- static const struct intel_lt_phy_pll_state xe3plpd_lt_edp_2_16 = {
--	.clock = 216000,
- 	.config = {
- 		0xa3,
- 		0x2d,
-@@ -518,7 +510,6 @@ static const struct intel_lt_phy_pll_state xe3plpd_lt_edp_2_16 = {
- };
- 
- static const struct intel_lt_phy_pll_state xe3plpd_lt_edp_2_43 = {
--	.clock = 243000,
- 	.config = {
- 		0xab,
- 		0x2d,
-@@ -572,7 +563,6 @@ static const struct intel_lt_phy_pll_state xe3plpd_lt_edp_2_43 = {
- };
- 
- static const struct intel_lt_phy_pll_state xe3plpd_lt_edp_3_24 = {
--	.clock = 324000,
- 	.config = {
- 		0xb3,
- 		0x2d,
-@@ -626,7 +616,6 @@ static const struct intel_lt_phy_pll_state xe3plpd_lt_edp_3_24 = {
- };
- 
- static const struct intel_lt_phy_pll_state xe3plpd_lt_edp_4_32 = {
--	.clock = 432000,
- 	.config = {
- 		0xbb,
- 		0x2d,
-@@ -680,7 +669,6 @@ static const struct intel_lt_phy_pll_state xe3plpd_lt_edp_4_32 = {
- };
- 
- static const struct intel_lt_phy_pll_state xe3plpd_lt_edp_6_75 = {
--	.clock = 675000,
- 	.config = {
- 		0xdb,
- 		0x2d,
-@@ -746,7 +734,6 @@ static const struct intel_lt_phy_pll_params xe3plpd_lt_edp_tables[] = {
- };
- 
- static const struct intel_lt_phy_pll_state xe3plpd_lt_hdmi_252 = {
--	.clock = 25200,
- 	.config = {
- 		0x84,
- 		0x2d,
-@@ -800,7 +787,6 @@ static const struct intel_lt_phy_pll_state xe3plpd_lt_hdmi_252 = {
- };
- 
- static const struct intel_lt_phy_pll_state xe3plpd_lt_hdmi_742p5 = {
--	.clock = 74250,
- 	.config = {
- 		0x84,
- 		0x2d,
-@@ -854,7 +840,6 @@ static const struct intel_lt_phy_pll_state xe3plpd_lt_hdmi_742p5 = {
- };
- 
- static const struct intel_lt_phy_pll_state xe3plpd_lt_hdmi_1p485 = {
--	.clock = 148500,
- 	.config = {
- 		0x84,
- 		0x2d,
-@@ -908,7 +893,6 @@ static const struct intel_lt_phy_pll_state xe3plpd_lt_hdmi_1p485 = {
- };
- 
- static const struct intel_lt_phy_pll_state xe3plpd_lt_hdmi_5p94 = {
--	.clock = 594000,
- 	.config = {
- 		0x84,
- 		0x2d,
-@@ -2175,7 +2159,6 @@ void intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
- 				       const struct intel_crtc_state *crtc_state,
- 				       struct intel_lt_phy_pll_state *pll_state)
- {
--	struct intel_display *display = to_intel_display(encoder);
- 	u8 owned_lane_mask;
- 	u8 lane;
- 	struct ref_tracker *wakeref;
-@@ -2200,8 +2183,6 @@ void intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
- 						  LT_PHY_VDR_X_DATAY(i, j));
- 	}
- 
--	pll_state->clock =
--		intel_lt_phy_calc_port_clock(display, &crtc_state->dpll_hw_state.ltpll);
- 	intel_lt_phy_transaction_end(encoder, wakeref);
- }
- 
-@@ -2215,7 +2196,6 @@ void intel_lt_phy_pll_state_verify(struct intel_atomic_state *state,
- 	struct intel_encoder *encoder;
- 	struct intel_lt_phy_pll_state pll_hw_state = {};
- 	const struct intel_lt_phy_pll_state *pll_sw_state = &new_crtc_state->dpll_hw_state.ltpll;
--	int clock;
- 	int i, j;
- 
- 	if (DISPLAY_VER(display) < 35)
-@@ -2231,17 +2211,11 @@ void intel_lt_phy_pll_state_verify(struct intel_atomic_state *state,
- 
- 	encoder = intel_get_crtc_new_encoder(state, new_crtc_state);
- 	intel_lt_phy_pll_readout_hw_state(encoder, new_crtc_state, &pll_hw_state);
--	clock = intel_lt_phy_calc_port_clock(display, &new_crtc_state->dpll_hw_state.ltpll);
- 
- 	dig_port = enc_to_dig_port(encoder);
- 	if (intel_tc_port_in_tbt_alt_mode(dig_port))
- 		return;
- 
--	INTEL_DISPLAY_STATE_WARN(display, pll_hw_state.clock != clock,
--				 "[CRTC:%d:%s] mismatch in LT PHY: Register CLOCK (expected %d, found %d)",
--				 crtc->base.base.id, crtc->base.name,
--				 pll_sw_state->clock, pll_hw_state.clock);
--
- 	for (i = 0; i < 3; i++) {
- 		INTEL_DISPLAY_STATE_WARN(display, pll_hw_state.config[i] != pll_sw_state->config[i],
- 					 "[CRTC:%d:%s] mismatch in LT PHY PLL CONFIG%d: (expected 0x%04x, found 0x%04x)",
-diff --git a/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c b/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c
-index a201edceee10..7d4ff41134c2 100644
---- a/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c
-+++ b/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c
-@@ -259,7 +259,6 @@ void intel_snps_hdmi_pll_compute_mpllb(struct intel_mpllb_state *pll_state, u64
- 			      dg2_curve_freq_hz, dg2_curve_0, dg2_curve_1, dg2_curve_2,
- 			      prescaler_divider, &pll_params);
- 
--	pll_state->clock = pixel_clock;
- 	pll_state->ref_control =
- 		REG_FIELD_PREP(SNPS_PHY_REF_CONTROL_REF_RANGE, ref_range);
- 	pll_state->mpllb_cp =
-@@ -332,8 +331,6 @@ void intel_snps_hdmi_pll_compute_c10pll(struct intel_c10pll_state *pll_state, u6
- 			      c10_curve_1, c10_curve_2, prescaler_divider,
- 			      &pll_params);
- 
--	pll_state->clock = pixel_clock;
--
- 	pll_state->tx = 0x10;
- 	pll_state->cmn = 0x1;
- 	pll_state->pll[0] = REG_FIELD_PREP(C10_PLL0_DIV5CLK_EN, pll_params.mpll_div5_en) |
--- 
-2.34.1
-
+T24gV2VkLCAyMDI1LTEyLTAzIGF0IDE1OjE1ICswMjAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
+DQo+IE9uIE1vbiwgRGVjIDAxLCAyMDI1IGF0IDAzOjI0OjU1UE0gKzAyMDAsIEpvdW5pIEjDtmdh
+bmRlciB3cm90ZToNCj4gPiBDdXJyZW50bHkgcGxhbmUgaWQgYml0IGlzIHNldCBpbiBjcnRjX3N0
+YXRlLT5hc3luY19mbGlwX3BsYW5lcyBvbmx5DQo+ID4gd2hlbg0KPiA+IGFzeW5jIGZsaXAgdG9n
+Z2xlIHdvcmthcm91bmQgaXMgbmVlZGVkLiBXZSB3YW50IHRvIHV0aWxpemUNCj4gPiBjcnRjX3N0
+YXRlLT5hc3luY19mbGlwX3BsYW5lcyBmdXJ0aGVyIGluIFNlbGVjdGl2ZSBGZXRjaA0KPiA+IGNh
+bGN1bGF0aW9uLg0KPiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6IEpvdW5pIEjDtmdhbmRlciA8am91
+bmkuaG9nYW5kZXJAaW50ZWwuY29tPg0KPiA+IC0tLQ0KPiA+IMKgZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9wbGFuZS5jIHwgMTAgKysrKysrKystLQ0KPiA+IMKgMSBmaWxlIGNo
+YW5nZWQsIDggaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkNCj4gPiANCj4gPiBkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wbGFuZS5jDQo+ID4gYi9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3BsYW5lLmMNCj4gPiBpbmRleCA3Yjc2
+MTlkNTkyNTEuLmRlMGE2OWM1NTU4MiAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX3BsYW5lLmMNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX3BsYW5lLmMNCj4gPiBAQCAtNjAzLDggKzYwMyw3IEBAIHN0YXRpYyBp
+bnQNCj4gPiBpbnRlbF9wbGFuZV9hdG9taWNfY2FsY19jaGFuZ2VzKGNvbnN0IHN0cnVjdCBpbnRl
+bF9jcnRjX3N0YXRlDQo+ID4gKm9sZF9jcg0KPiA+IMKgCWlmIChpbnRlbF9wbGFuZV9kb19hc3lu
+Y19mbGlwKHBsYW5lLCBvbGRfY3J0Y19zdGF0ZSwNCj4gPiBuZXdfY3J0Y19zdGF0ZSkpIHsNCj4g
+PiDCoAkJbmV3X2NydGNfc3RhdGUtPmRvX2FzeW5jX2ZsaXAgPSB0cnVlOw0KPiA+IMKgCQluZXdf
+Y3J0Y19zdGF0ZS0+YXN5bmNfZmxpcF9wbGFuZXMgfD0gQklUKHBsYW5lLQ0KPiA+ID5pZCk7DQo+
+ID4gLQl9IGVsc2UgaWYgKHBsYW5lLT5uZWVkX2FzeW5jX2ZsaXBfdG9nZ2xlX3dhICYmDQo+ID4g
+LQkJwqDCoCBuZXdfY3J0Y19zdGF0ZS0+dWFwaS5hc3luY19mbGlwKSB7DQo+ID4gKwl9IGVsc2Ug
+aWYgKG5ld19jcnRjX3N0YXRlLT51YXBpLmFzeW5jX2ZsaXApIHsNCj4gDQo+IEknZCBnZXQgcmlk
+IG9mIHRoZSBpZi1lbHNlIGNvbnN0cnVjdCBoZXJlIG5vdywgYW5kIGp1c3QgZG8gc29tZXRoaW5n
+DQo+IGxpa2U6DQo+IA0KPiBpZiAoaW50ZWxfcGxhbmVfZG9fYXN5bmNfZmxpcCguLi4pKQ0KPiAJ
+bmV3X2NydGNfc3RhdGUtPmRvX2FzeW5jX2ZsaXAgPSB0cnVlOw0KPiANCj4gaWYgKG5ld19jcnRj
+X3N0YXRlLT51YXBpLmFzeW5jX2ZsaXApIHsNCj4gCS8qIC4uLiAqLw0KPiAJbmV3X2NydGNfc3Rh
+dGUtPmFzeW5jX2ZsaXBfcGxhbmVzIHw9IEJJVChwbGFuZS0+aWQpOw0KPiB9DQo+IA0KPiBXZSBz
+aG91bGQgcHJvYmFibHkgYWxzbyBtb3ZlIHRoZSBwbGFuZS0+YXN5bmNfZmxpcCBjaGVjaw0KPiBv
+dXQgZnJvbSBpbnRlbF9wbGFuZV9kb19hc3luY19mbGlwKCkgYW5kIGp1c3QgbWFrZSBpdCBhDQo+
+IGRybV9XQVJOX09OKC4uLiwgdWFwaS5hc3luY19mbGlwICYmICFwbGFuZS0+YXN5bmNfZmxpcCku
+DQo+IEJ1dCB0aGF0J3MgcHJvYmFibHkgYmV0dGVyIGxlZnQgZm9yIGEgc2VwYXJhdGUgcGF0Y2gu
+DQoNCkkgaGF2ZSBzZW50IGEgcGF0Y2ggZm9yIHRoaXM6DQoNCmh0dHBzOi8vcGF0Y2h3b3JrLmZy
+ZWVkZXNrdG9wLm9yZy9zZXJpZXMvMTU5MDg2Lw0KDQpCUiwNCkpvdW5pIEjDtmdhbmRlcg0K
