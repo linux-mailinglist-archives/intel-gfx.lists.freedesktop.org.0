@@ -2,59 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87A21CC36AB
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Dec 2025 15:05:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE215CC372C
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Dec 2025 15:12:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02C3610E7FA;
-	Tue, 16 Dec 2025 14:05:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA6C110E7CF;
+	Tue, 16 Dec 2025 14:12:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wp8y2Co6";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="U0+UloLx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71E9710E2D6;
- Tue, 16 Dec 2025 14:05:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765893925; x=1797429925;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=FSrfAIRGNRTOG1kihz2jz0HY5jiji1F1d0j9XukoSwk=;
- b=Wp8y2Co6P7w8iYFn+pFlK2Y3SnFg+KactD7ihW52r99cB4gmugsdxYvZ
- hMExquLaHlSNNSrG10pYfwEKwF2XRHKJ7Rwv9n895BbTdCYuNvIEjP+b/
- svd37AnZmNQ9LEyyfn4u4fyj7McrjrOGZQFZx+K47fjqrEPCCIPx7OeaS
- 8/sgQKvg63hDN4Fwxnlotdys7tkevOPlpDDsWR0wO477GaVaNC/cm2S1i
- bGQ+AFkgw9yKuYSDFvyo4mj9oP93hLNWpYb7urejdbAFzeOZbmjX5ItHv
- yyS8ottLuUcM5plTR4xO40ldtKQ/LyiotMZomDbfZkstK7nQiCFmjKni+ g==;
-X-CSE-ConnectionGUID: W0Vi+F12QfebkRKGYub6iA==
-X-CSE-MsgGUID: yB7Z193jTvaA4JeOholjFQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="67567373"
-X-IronPort-AV: E=Sophos;i="6.21,153,1763452800"; d="scan'208";a="67567373"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 06:05:25 -0800
-X-CSE-ConnectionGUID: UQpapJe2RnaPwxyaTcW4Yg==
-X-CSE-MsgGUID: 12zWlOrQRuu3iwXG9978IA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,153,1763452800"; d="scan'208";a="197121325"
-Received: from abityuts-desk.ger.corp.intel.com (HELO
- vgovind2-mobl4.intel.com) ([10.245.244.244])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 06:05:21 -0800
-From: Vinod Govindapillai <vinod.govindapillai@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com, matthew.d.roper@intel.com,
- ville.syrjala@intel.com
-Subject: [PATCH] drm/i915/display: update the wa_22014263786
-Date: Tue, 16 Dec 2025 16:05:08 +0200
-Message-ID: <20251216140508.975258-1-vinod.govindapillai@intel.com>
-X-Mailer: git-send-email 2.43.0
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1539810E2D4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Dec 2025 14:12:04 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id D484840BBC;
+ Tue, 16 Dec 2025 14:12:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A0CAC4CEF1;
+ Tue, 16 Dec 2025 14:12:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1765894323;
+ bh=YrPHpZWK3FzAouIaESE9PcvPHDffz4WG3h+dxX21VmE=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=U0+UloLxKN+QB8fSfRdLz3o3TnFZ2jRJBew2fGX1aONxgvI934vSg5QhQR+q/ow9i
+ eFkWRiiVxOmvdTZyN/9Ts3CAKmm01nL/n3BIngDAGlKjT9L8OPVYc3J5vOwJXTagJ9
+ PPWd8cGaXL2tVzPzlOC5MSXLCJ2tm/EDZbzwH3eYLi0ZstWsfXUIMWGiWKcduqMF0T
+ 1WiUbbnMejJFSJMEdj6cyCdJGW1QIrgTikCGyZzK+7jDS5LJ+n90eh4yvyV9bVkZV6
+ e2t6zQlFV5cqErxLn/SdvC5eOY5lTmpUqRL6ji0bVUU2oAuZycTOhTcvv2ByozIIfq
+ Ukha1pJKMTOBQ==
+Date: Tue, 16 Dec 2025 15:11:59 +0100
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Krzysztof Karas <krzysztof.karas@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>, 
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: Re: [PATCH v5 2/3] drm: Avoid suspicious operations in
+ drm_fb_dma_get_gem_addr()
+Message-ID: <ygpvfkswgkgnjh6amvjfthqdjbpjdxuztmpk4vpn6hi25gqdu2@6pqtahptblnv>
+References: <20251204143827.111428-1-krzysztof.karas@intel.com>
+ <20251204143827.111428-3-krzysztof.karas@intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251204143827.111428-3-krzysztof.karas@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,92 +61,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For DG2, wa_22014263786 is applicable only if the number of active
-planes is greater than 1 in pipe A and pipe B. Cursor planes and
-any planes on pipe C or pipe D are not considered for this.
+On Thu, Dec 04, 2025 at 02:38:26PM +0000, Krzysztof Karas wrote:
+> dma_addr calculations are carried out using 32-bit
+> arithmetic, which could cause a truncation of the values
+> before they are extended to 64 bits. Cast one of the operands
+> to dma_addr_t, so 64-bit arithmetic is used.
 
-Bspec: 54077, 72197
-Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
----
- .../gpu/drm/i915/display/intel_display_wa.c   | 29 ++++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_fbc.c      |  6 ++++
- 2 files changed, 34 insertions(+), 1 deletion(-)
+dma_addr_t is not always 64 bit. The patch is correct, even
+though I don't see a big probability that the issue might show
+up. An ack from display people would help.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
-index a00af39f7538..ffc2356283aa 100644
---- a/drivers/gpu/drm/i915/display/intel_display_wa.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-@@ -7,6 +7,7 @@
- 
- #include "i915_reg.h"
- #include "intel_de.h"
-+#include "intel_display_types.h"
- #include "intel_display_core.h"
- #include "intel_display_regs.h"
- #include "intel_display_wa.h"
-@@ -53,6 +54,32 @@ static bool intel_display_needs_wa_16025573575(struct intel_display *display)
- 		DISPLAY_VERx100(display) == 3500;
- }
- 
-+static bool intel_display_needs_wa_22014263786(struct intel_display *display)
-+{
-+	if (!IS_DISPLAY_VERx100(display, 1100, 1400))
-+		return false;
-+
-+	if (display->platform.dg2) {
-+		u8 pipe_mask = PIPE_A | PIPE_B;
-+		int num_active_planes = 0;
-+		struct intel_crtc *crtc;
-+
-+		for_each_intel_crtc_in_pipe_mask(display->drm, crtc, pipe_mask) {
-+			const struct intel_crtc_state *crtc_state =
-+				to_intel_crtc_state(crtc->base.state);
-+			u8 active_planes =
-+				crtc_state->active_planes & ~BIT(PLANE_CURSOR);
-+
-+			num_active_planes += hweight8(active_planes);
-+		}
-+
-+		if (num_active_planes <= 1)
-+			return false;
-+	}
-+
-+	return true;
-+}
-+
- /*
-  * Wa_14011503117:
-  * Fixes: Before enabling the scaler DE fatal error is masked
-@@ -69,7 +96,7 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
- 	case INTEL_DISPLAY_WA_14011503117:
- 		return DISPLAY_VER(display) == 13;
- 	case INTEL_DISPLAY_WA_22014263786:
--		return IS_DISPLAY_VERx100(display, 1100, 1400);
-+		return intel_display_needs_wa_22014263786(display);
- 	case INTEL_DISPLAY_WA_15018326506:
- 		return display->platform.battlemage;
- 	case INTEL_DISPLAY_WA_14025769978:
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index fef2f35ff1e9..5b0a83cb5386 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -944,10 +944,16 @@ static void intel_fbc_program_workarounds(struct intel_fbc *fbc)
- 	 * Wa_22014263786
- 	 * Fixes: Screen flicker with FBC and Package C state enabled
- 	 * Workaround: Forced SLB invalidation before start of new frame.
-+	 *             For DG2, wa is applied only if the number of planes
-+	 *             in PIPE A and PIPE B is > 1. If the wa condition is
-+	 *             not met, this chicken bit must be unset for DG2.
- 	 */
- 	if (intel_display_wa(display, 22014263786))
- 		intel_de_rmw(display, ILK_DPFC_CHICKEN(fbc->id),
- 			     0, DPFC_CHICKEN_FORCE_SLB_INVALIDATION);
-+	else if (display->platform.dg2)
-+		intel_de_rmw(display, ILK_DPFC_CHICKEN(fbc->id),
-+			     DPFC_CHICKEN_FORCE_SLB_INVALIDATION, 0);
- 
- 	/* wa_18038517565 Disable DPFC clock gating before FBC enable */
- 	if (display->platform.dg2 || DISPLAY_VER(display) >= 14)
--- 
-2.43.0
+From my side:
 
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+
+with the commit log changed (but if this goes in, I can change it
+on the fly).
+
+Thanks,
+Andi
