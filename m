@@ -2,56 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FF10CC908B
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Dec 2025 18:24:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CA2CCC9343
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Dec 2025 19:09:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90E1C10E587;
-	Wed, 17 Dec 2025 17:24:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DCB410E7BA;
+	Wed, 17 Dec 2025 18:09:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="ExGZ+get";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="2j96BQod";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F32EE10E587;
- Wed, 17 Dec 2025 17:24:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1765992247;
- bh=+PpC+4mgo85FzfqJLBbiUr6rR7AC9pRiqaqgBeRBpAU=;
- h=From:To:Cc:Subject:Date:From;
- b=ExGZ+getoiIFwkhtGNHVOrtgI9i8MiFxWP42OhDKr6HJPCA5wmaKYBqJBrzzYeFV1
- 5FXwwJDPrpW6E8m+ByvTXWMnF/k55FCCFYxAE9UIyiHQA0TUrTXLLLA0AgG5MCjdo+
- 5/MgpBfd16BvwS8sfFrQiqpVn0b1PZN/SSJ9t65hGM8NgoCBF1uSQqAArbe+TSlm3v
- pZI9Ljdlk+okzT6e8a1146jm+NVk/ln8FX54VB5JNAQlJgctiuY/XppXyhSRTPcBbI
- XYns2QsGiY+KjtLUQKtY6LNwbsS5JWyPhnlyWOmcbloxS9XPItEXZsQjE26LEYGISp
- 6tQVMP3JurXsQ==
-Received: from debian-rockchip-rock5b-rk3588.. (unknown
- [IPv6:2a01:e0a:5e3:6100:2e0:4cff:fe03:d8c])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- (Authenticated sender: loicmolinari)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id 2231917E127F;
- Wed, 17 Dec 2025 18:24:07 +0100 (CET)
-From: =?UTF-8?q?Lo=C3=AFc=20Molinari?= <loic.molinari@collabora.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [198.137.202.133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5811110E33B;
+ Wed, 17 Dec 2025 18:09:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+ Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+ bh=pJ995Z+yFdhxVC5mXYbnSOTU8w1AXddwEeOENWW3ugU=; b=2j96BQod15lY0JqikEVSiVJkwU
+ m5U3EB+jmBed2XTIMLRsNlNzS871TZ4w2JV/lXFTn/k+/MxU4FrPLYWmOkIqmbNBUpDSBl059HKgP
+ KaEtHQwcbQQ9PjuuNSt5FRjG1FULz/f2TwYucqhOxNUvG03NGYZHRN+KFUjZ8TjAukuhdlzHIkVBb
+ yH0LcgVsZm2ALF41I18PcQ3wQOIsldLg+38nTycNRW271RXWuHRfg+8d0ldBfn6AiRTClQNa2pe+U
+ cZrxpbyrQRyjNs/eJ0o5XWEiWf0mxKfnwLgNWk81Uc0VqJZZNTy9PdTWcm4w/ahyMeAx6YA710oF4
+ NNOs0+dw==;
+Received: from [50.53.43.113] (helo=[192.168.254.34])
+ by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
+ id 1vVvxe-00000007FIq-0zPb; Wed, 17 Dec 2025 18:09:18 +0000
+Message-ID: <5773feac-a80e-4a59-a0f2-dc787faa9f61@infradead.org>
+Date: Wed, 17 Dec 2025 10:09:16 -0800
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/gem: Fix kerneldoc warnings
+To: =?UTF-8?Q?Lo=C3=AFc_Molinari?= <loic.molinari@collabora.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
 Cc: Stephen Rothwell <sfr@canb.auug.org.au>,
  Boris Brezillon <boris.brezillon@collabora.com>,
- =?UTF-8?q?Lo=C3=AFc=20Molinari?= <loic.molinari@collabora.com>,
  Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
  DRI Devel Mailing List <dri-devel@lists.freedesktop.org>,
  Intel Graphics Mailing List <intel-gfx@lists.freedesktop.org>,
  Linux Next Mailing List <linux-next@vger.kernel.org>,
  Collabora Kernel Mailing List <kernel@collabora.com>
-Subject: [PATCH] drm/gem: Fix kerneldoc warnings
-Date: Wed, 17 Dec 2025 18:24:04 +0100
-Message-ID: <20251217172404.31216-1-loic.molinari@collabora.com>
-X-Mailer: git-send-email 2.47.3
-MIME-Version: 1.0
+References: <20251217172404.31216-1-loic.molinari@collabora.com>
+Content-Language: en-US
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20251217172404.31216-1-loic.molinari@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -69,52 +66,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Fix incorrect parameters in drm_gem_shmem_init() and missing " *" on
-empty lines in drm_gem_get_huge_mnt().
 
-Signed-off-by: Loïc Molinari <loic.molinari@collabora.com>
----
- drivers/gpu/drm/drm_gem_shmem_helper.c | 7 +++++--
- include/drm/drm_gem.h                  | 4 ++--
- 2 files changed, 7 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/drm_gem_shmem_helper.c
-index 29174ab58ff3..fbd1164174b0 100644
---- a/drivers/gpu/drm/drm_gem_shmem_helper.c
-+++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
-@@ -94,9 +94,12 @@ static int __drm_gem_shmem_init(struct drm_device *dev, struct drm_gem_shmem_obj
- }
- 
- /**
-- * drm_gem_shmem_init - Initialize an allocated object.
-+ * drm_gem_shmem_init - Initialize an allocated object of the given size
-  * @dev: DRM device
-- * @obj: The allocated shmem GEM object.
-+ * @shmem: shmem GEM object to initialize
-+ * @size: Size of the object to initialize
-+ *
-+ * This function initializes an allocated shmem GEM object.
-  *
-  * Returns:
-  * 0 on success, or a negative error code on failure.
-diff --git a/include/drm/drm_gem.h b/include/drm/drm_gem.h
-index f4da8ed0d630..86f5846154f7 100644
---- a/include/drm/drm_gem.h
-+++ b/include/drm/drm_gem.h
-@@ -508,11 +508,11 @@ static inline int drm_gem_huge_mnt_create(struct drm_device *dev,
- /**
-  * drm_gem_get_huge_mnt - Get the huge tmpfs mountpoint used by a DRM device
-  * @dev: DRM device
--
-+ *
-  * This function gets the huge tmpfs mountpoint used by DRM device @dev. A huge
-  * tmpfs mountpoint is used instead of `shm_mnt` after a successful call to
-  * drm_gem_huge_mnt_create() when CONFIG_TRANSPARENT_HUGEPAGE is enabled.
--
-+ *
-  * Returns:
-  * The huge tmpfs mountpoint in use, NULL otherwise.
-  */
+On 12/17/25 9:24 AM, Loïc Molinari wrote:
+> Fix incorrect parameters in drm_gem_shmem_init() and missing " *" on
+> empty lines in drm_gem_get_huge_mnt().
+> 
+> Signed-off-by: Loïc Molinari <loic.molinari@collabora.com>
+
+Reviewed-by: Randy Dunlap <rdunlap@infradead.org>
+Tested-by: Randy Dunlap <rdunlap@infradead.org>
+
+Thanks.
+
+> ---
+>  drivers/gpu/drm/drm_gem_shmem_helper.c | 7 +++++--
+>  include/drm/drm_gem.h                  | 4 ++--
+>  2 files changed, 7 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/drm_gem_shmem_helper.c
+> index 29174ab58ff3..fbd1164174b0 100644
+> --- a/drivers/gpu/drm/drm_gem_shmem_helper.c
+> +++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
+> @@ -94,9 +94,12 @@ static int __drm_gem_shmem_init(struct drm_device *dev, struct drm_gem_shmem_obj
+>  }
+>  
+>  /**
+> - * drm_gem_shmem_init - Initialize an allocated object.
+> + * drm_gem_shmem_init - Initialize an allocated object of the given size
+>   * @dev: DRM device
+> - * @obj: The allocated shmem GEM object.
+> + * @shmem: shmem GEM object to initialize
+> + * @size: Size of the object to initialize
+> + *
+> + * This function initializes an allocated shmem GEM object.
+>   *
+>   * Returns:
+>   * 0 on success, or a negative error code on failure.
+> diff --git a/include/drm/drm_gem.h b/include/drm/drm_gem.h
+> index f4da8ed0d630..86f5846154f7 100644
+> --- a/include/drm/drm_gem.h
+> +++ b/include/drm/drm_gem.h
+> @@ -508,11 +508,11 @@ static inline int drm_gem_huge_mnt_create(struct drm_device *dev,
+>  /**
+>   * drm_gem_get_huge_mnt - Get the huge tmpfs mountpoint used by a DRM device
+>   * @dev: DRM device
+> -
+> + *
+>   * This function gets the huge tmpfs mountpoint used by DRM device @dev. A huge
+>   * tmpfs mountpoint is used instead of `shm_mnt` after a successful call to
+>   * drm_gem_huge_mnt_create() when CONFIG_TRANSPARENT_HUGEPAGE is enabled.
+> -
+> + *
+>   * Returns:
+>   * The huge tmpfs mountpoint in use, NULL otherwise.
+>   */
+
 -- 
-2.47.3
-
+~Randy
