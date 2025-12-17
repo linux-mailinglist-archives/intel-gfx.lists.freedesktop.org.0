@@ -2,63 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76CFFCC66E1
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Dec 2025 08:52:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91471CC672F
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Dec 2025 08:56:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E1D110EB2B;
-	Wed, 17 Dec 2025 07:52:17 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TAJB9N+8";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6378510EB5B;
+	Wed, 17 Dec 2025 07:56:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEAF410E32F;
- Wed, 17 Dec 2025 07:52:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765957936; x=1797493936;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:subject:from:cc:to:date:message-id;
- bh=6EEx6wjGSM9/p8k0O03nggo+l2M+RSXW3PfeXkBT57M=;
- b=TAJB9N+8tR8FA8610f9+GzBQiILfwVteJhw/asgqe6f2IbDKj/oILTD1
- nsHHv9YuwLFLzYOH51zEEvQoBO64OF75dDVBFY/eYPj0NjD27UUMlJpav
- 3u1kRjaJFkOIgRH+KnykuSF0rgnLcNPzw+5LY3403f0lZZKqlSiGp0P4x
- Xyep4HCtGt1NY+pG75z8hSzy9Yo83gZzjcigdNTSigs1A/env4cePDTiU
- hSrphM+Ymzk5n5dMU0OZNtY1YgDCrJnc2SWjZDyVuSr0LhMhjxAQ9wuzp
- +Ymlb+qEYuKuild4PoBOnnYR433h5PkrAzspfNTvSsFiXwZTZuz5XeyYX w==;
-X-CSE-ConnectionGUID: xNJ9fvzKS6ugVJMG42cQJg==
-X-CSE-MsgGUID: 3nHEiyJ2QDq1h8ODOKPWWg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="70467633"
-X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="70467633"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 23:52:15 -0800
-X-CSE-ConnectionGUID: FAip91TLSUS1AJSaBcImjw==
-X-CSE-MsgGUID: SvSJtc+zTZGUIN2nMreMGw==
-X-ExtLoop1: 1
-Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.245.148])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 23:52:13 -0800
-Content-Type: text/plain; charset="utf-8"
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 882F610EB5B;
+ Wed, 17 Dec 2025 07:56:38 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7635936502501664419=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <aUHRbTRd0NQ4GbXc@intel.com>
-References: <20251216113512.153447-1-joonas.lahtinen@linux.intel.com>
- <aUHRbTRd0NQ4GbXc@intel.com>
-Subject: Re: [PATCH] drm/i915: Mark dependency on CONFIG_X86_PAT
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Intel graphics driver community testing & development
- <intel-gfx@lists.freedesktop.org>,
- Direct Rendering Infrastructure - Development
- <dri-devel@lists.freedesktop.org>, Norbert Lange <nolange79@gmail.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Ville =?utf-8?b?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Wed, 17 Dec 2025 09:52:10 +0200
-Message-ID: <176595793039.8890.365691153363895249@jlahtine-mobl>
-User-Agent: alot/0.12.dev7+g16b50e5f
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_Make_Display_free_from_i9?=
+ =?utf-8?q?15=5Freg=2Eh?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Uma Shankar" <uma.shankar@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 17 Dec 2025 07:56:38 -0000
+Message-ID: <176595819852.96797.3050523505786067860@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251217062209.852324-1-uma.shankar@intel.com>
+In-Reply-To: <20251217062209.852324-1-uma.shankar@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,72 +37,161 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Ville Syrj=C3=A4l=C3=A4 (2025-12-16 23:38:53)
-> On Tue, Dec 16, 2025 at 01:35:12PM +0200, Joonas Lahtinen wrote:
-> > Building the driver without CONFIG_X86_PAT would yield in reduced
-> > platform/uAPI support and is not currently planned to be supported.
-> >=20
-> > Add a dependency in Kconfig to avoid issues with such build until
-> > somebody steps up to fix and validate such builds.
->=20
-> The driver works just fine w/o PAT on older GPUs at least.
+--===============7635936502501664419==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Wouldn't this fall under the reduced platform support clause? Would you
-like me to rephrase the above wording to be more clear?
+== Series Details ==
 
-The other option would be to identify all such platforms and only probe
-driver for those at runtime if kernel was built with X86_PAT=3Dn.
+Series: Make Display free from i915_reg.h
+URL   : https://patchwork.freedesktop.org/series/159131/
+State : success
 
-Patches welcome :)
+== Summary ==
 
-> Otherwise
-> it wouldn't work at all on any P3 class CPU as the kernel completely
-> disables PAT support on those even if the kernel is built with
-> X86_PAT=3Dy.
+CI Bug Log - changes from CI_DRM_17694 -> Patchwork_159131v1
+====================================================
 
-That's interesting, thanks for sharing.
+Summary
+-------
 
-I guess that would be exactly to avoid having to support kernel
-builds with X86_PAT=3Dn? At least the impact of limited functionality
-is clearly limited to set of the older platforms which never had
-the functionality to begin with even if we added new uAPI so that
-shouldn't be a problem with diverging uAPI based on compile
-time config.
+  **SUCCESS**
 
-Regards, Joonas
+  No regressions found.
 
-> You can also disable PAT on the command line with "nopat".
->=20
-> >=20
-> > Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15410
-> > Signed-off-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> > Reported-by: Norbert Lange <nolange79@gmail.com>
-> > Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> > Cc: Tvrtko Ursulin <tursulin@ursulin.net>
-> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/Kconfig | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
-> > index 5e939004b6463..a19a233239056 100644
-> > --- a/drivers/gpu/drm/i915/Kconfig
-> > +++ b/drivers/gpu/drm/i915/Kconfig
-> > @@ -2,7 +2,7 @@
-> >  config DRM_I915
-> >       tristate "Intel 8xx/9xx/G3x/G4x/HD Graphics"
-> >       depends on DRM
-> > -     depends on X86 && PCI
-> > +     depends on X86 && X86_PAT && PCI
-> >       depends on !PREEMPT_RT
-> >       select INTEL_GTT if X86
-> >       select INTERVAL_TREE
-> > --=20
-> > 2.52.0
->=20
-> --=20
-> Ville Syrj=C3=83=C2=A4l=C3=83=C2=A4
-> Intel
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159131v1/index.html
+
+Participating hosts (42 -> 40)
+------------------------------
+
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_159131v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-3:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17694/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159131v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+    - bat-mtlp-9:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17694/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159131v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - bat-jsl-1:          [DMESG-FAIL][5] ([i915#14808]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17694/bat-jsl-1/igt@i915_selftest@live.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159131v1/bat-jsl-1/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-14:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17694/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159131v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#14808]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14808
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_17694 -> Patchwork_159131v1
+
+  CI-20190529: 20190529
+  CI_DRM_17694: 2eb2f8746a879f1c0e4c56b715c179424dafd8e0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8668: 906681747a312ef11ef9af8ab1fa6eff28b4cbd0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_159131v1: 2eb2f8746a879f1c0e4c56b715c179424dafd8e0 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159131v1/index.html
+
+--===============7635936502501664419==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Make Display free from i915_reg.h</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159131/">https://patchwork.freedesktop.org/series/159131/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159131v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159131v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17694 -&gt; Patchwork_159131v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159131v1/index.html</p>
+<h2>Participating hosts (42 -&gt; 40)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_159131v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17694/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159131v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17694/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159131v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17694/bat-jsl-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14808">i915#14808</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159131v1/bat-jsl-1/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17694/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159131v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17694 -&gt; Patchwork_159131v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17694: 2eb2f8746a879f1c0e4c56b715c179424dafd8e0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8668: 906681747a312ef11ef9af8ab1fa6eff28b4cbd0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_159131v1: 2eb2f8746a879f1c0e4c56b715c179424dafd8e0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============7635936502501664419==--
