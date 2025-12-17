@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C3EBCC86EF
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Dec 2025 16:28:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 110CACC86F3
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Dec 2025 16:28:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8381D10EB20;
-	Wed, 17 Dec 2025 15:28:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C47610ED0B;
+	Wed, 17 Dec 2025 15:28:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Sw3NZDvQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SpWuumtj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2185B10E8CA;
- Wed, 17 Dec 2025 15:28:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 77BEB10E8CC;
+ Wed, 17 Dec 2025 15:28:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765985326; x=1797521326;
+ t=1765985327; x=1797521327;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VJlNLscnPkOwDXb/A0lkAkh6pUPZzWidGLTm6TNl9ko=;
- b=Sw3NZDvQS4jMDdG30FR49cW8LobHXoy202GJ+NcYefk7H+1h5hWzgqlC
- gWW6kkPUHmjWoTImgZm5aAy9SwgTa/Qqtg9d+aEc7G/ykfjIt86TNJntb
- D2fomp9Nu9oFm7iW0EJZ01/LgVG8dMoIQkKi+vI4L7O+hODmc2U7U8fdl
- lUVVExPYAIk+e+5PG8SYUIDb5/UrdcUiJSbHdATb+P3TM3+xK/Mp3EVui
- zMwpkeT+oUNq0aUwULZ+8y/a9e4Skn+vQG/j2KF4rNwISZPq9rAzrIy8H
- 7y+YZ1HLQlHTiW3hLsDH4lqpICbdC+zqsZxtjXobKBtK2WmV8dV1jD6BI w==;
-X-CSE-ConnectionGUID: oDRIhfKUSj23c0Xybs6cFQ==
-X-CSE-MsgGUID: dR/b+munQDapDZtP563poA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11645"; a="71781430"
-X-IronPort-AV: E=Sophos;i="6.21,156,1763452800"; d="scan'208";a="71781430"
+ bh=A2mLH1yBrU3fuyAxVA2viSeQ3nwnOKxhgGlhrrWStJQ=;
+ b=SpWuumtjvsn4r5EQWlWYEUnlJ7sHM46wrkHSQgmxL6T4KOuwKjO6lhfW
+ BwJbHl+y5rndk40p/bgNF721B/nZLcOCcYCmtcSbOCRvPPa7cwjXJWLlR
+ ykt9Omj5YAOCr/d51+SxrN7IjOZes63e3by0SQsgOdmStXWZV75weg1a6
+ Yi7n9rzAG2bM1lN6liY41oNv1XuOybSS7TM1TExAdi/KcVJg84FkHEiLC
+ lxa+hQu90PM+dxgl39Z4bfbncTGF8ox3nnciE7iK8K26XuYqDguBccvG0
+ P6tGuWQOaPZNVVTBisSrlvoMqSX9ouXnwjE4MIA1IPqfoQoyrT3VNnOz2 g==;
+X-CSE-ConnectionGUID: MbFaAd2uReyqWZsWqYGQAw==
+X-CSE-MsgGUID: 1OKMIfagSC2IujLYn7+jLw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11645"; a="71781436"
+X-IronPort-AV: E=Sophos;i="6.21,156,1763452800"; d="scan'208";a="71781436"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2025 07:28:45 -0800
-X-CSE-ConnectionGUID: jqwlPWrbTZ2tJlnBmDSWUA==
-X-CSE-MsgGUID: xLqJncsXQ2eHNfabVeh/IA==
+ 17 Dec 2025 07:28:47 -0800
+X-CSE-ConnectionGUID: rF2KcuwoRVyq9Gsuqk1iGg==
+X-CSE-MsgGUID: 2Kax5y+TQzSwz1GoAzyXgg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,156,1763452800"; d="scan'208";a="198097296"
+X-IronPort-AV: E=Sophos;i="6.21,156,1763452800"; d="scan'208";a="198097299"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by orviesa009.jf.intel.com with ESMTP; 17 Dec 2025 07:28:44 -0800
+ by orviesa009.jf.intel.com with ESMTP; 17 Dec 2025 07:28:45 -0800
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH v2 04/15] drm/i915/lt_phy: Drop LT PHY crtc_state for port
+Subject: [PATCH v2 05/15] drm/i915/cx0: Drop encoder from port clock
  calculation
-Date: Wed, 17 Dec 2025 17:19:44 +0200
-Message-Id: <20251217151955.1690202-5-mika.kahola@intel.com>
+Date: Wed, 17 Dec 2025 17:19:45 +0200
+Message-Id: <20251217151955.1690202-6-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251217151955.1690202-1-mika.kahola@intel.com>
 References: <20251217151955.1690202-1-mika.kahola@intel.com>
@@ -68,149 +68,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Drop crtc_state from intel_lt_phy_calc_port_clock() function call
-and replace it with pll state instead. Follow-up changes will
-call these functions without a crtc_state available.
+For C10 and C20 we have unused encoder parameter passed
+to port clock calculation function. Remove encoder from
+passing it to port clock calculation function.
 
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c    |  4 +++-
- drivers/gpu/drm/i915/display/intel_dpll.c   |  3 ++-
- drivers/gpu/drm/i915/display/intel_lt_phy.c | 19 ++++++++-----------
- drivers/gpu/drm/i915/display/intel_lt_phy.h |  4 ++--
- 4 files changed, 15 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 14 ++++++--------
+ 1 file changed, 6 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index cb91d07cdaa6..d8739e2bb004 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -4247,13 +4247,15 @@ void intel_ddi_get_clock(struct intel_encoder *encoder,
- static void xe3plpd_ddi_get_config(struct intel_encoder *encoder,
- 				   struct intel_crtc_state *crtc_state)
- {
-+	struct intel_display *display = to_intel_display(encoder);
-+
- 	intel_lt_phy_pll_readout_hw_state(encoder, crtc_state, &crtc_state->dpll_hw_state.ltpll);
- 
- 	if (crtc_state->dpll_hw_state.ltpll.tbt_mode)
- 		crtc_state->port_clock = intel_mtl_tbt_calc_port_clock(encoder);
- 	else
- 		crtc_state->port_clock =
--			intel_lt_phy_calc_port_clock(encoder, crtc_state);
-+			intel_lt_phy_calc_port_clock(display, &crtc_state->dpll_hw_state.ltpll);
- 	intel_ddi_get_config(encoder, crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index 664c48dc0ce3..b7ac89e32586 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -2103,8 +2103,7 @@ static bool cx0pll_state_is_dp(const struct intel_cx0pll_state *pll_state)
+ 	return c20pll_state_is_dp(&pll_state->c20);
  }
  
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
-index a4f372c9e6fc..1b5b18fa0a36 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll.c
-@@ -1219,6 +1219,7 @@ static int xe3plpd_crtc_compute_clock(struct intel_atomic_state *state,
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	struct intel_encoder *encoder =
- 		intel_get_crtc_new_encoder(state, crtc_state);
-+	struct intel_display *display = to_intel_display(encoder);
- 	int ret;
- 
- 	ret = intel_lt_phy_pll_calc_state(crtc_state, encoder);
-@@ -1227,7 +1228,7 @@ static int xe3plpd_crtc_compute_clock(struct intel_atomic_state *state,
- 
- 	/* TODO: Do the readback via intel_compute_shared_dplls() */
- 	crtc_state->port_clock =
--			intel_lt_phy_calc_port_clock(encoder, crtc_state);
-+			intel_lt_phy_calc_port_clock(display, &crtc_state->dpll_hw_state.ltpll);
- 
- 	crtc_state->hw.adjusted_mode.crtc_clock = intel_crtc_dotclock(crtc_state);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index 939c8975fd4c..74b0bc90c959 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -1679,7 +1679,8 @@ intel_lt_phy_calculate_hdmi_state(struct intel_lt_phy_pll_state *lt_state,
+-static int intel_c10pll_calc_port_clock(struct intel_encoder *encoder,
+-					const struct intel_c10pll_state *pll_state)
++static int intel_c10pll_calc_port_clock(const struct intel_c10pll_state *pll_state)
+ {
+ 	unsigned int frac_quot = 0, frac_rem = 0, frac_den = 1;
+ 	unsigned int multiplier, tx_clk_div, hdmi_div, refclk = 38400;
+@@ -2135,8 +2134,7 @@ static bool intel_c20phy_use_mpllb(const struct intel_c20pll_state *state)
+ 	return state->tx[0] & C20_PHY_USE_MPLLB;
  }
  
- static int
--intel_lt_phy_calc_hdmi_port_clock(const struct intel_crtc_state *crtc_state)
-+intel_lt_phy_calc_hdmi_port_clock(struct intel_display *display,
-+				  const struct intel_lt_phy_pll_state *lt_state)
+-static int intel_c20pll_calc_port_clock(struct intel_encoder *encoder,
+-					const struct intel_c20pll_state *pll_state)
++static int intel_c20pll_calc_port_clock(const struct intel_c20pll_state *pll_state)
  {
- #define REGVAL(i) (				\
- 	(lt_state->data[i][3])		|	\
-@@ -1688,9 +1689,6 @@ intel_lt_phy_calc_hdmi_port_clock(const struct intel_crtc_state *crtc_state)
- 	(lt_state->data[i][0] << 24)		\
- )
+ 	unsigned int frac, frac_en, frac_quot, frac_rem, frac_den;
+ 	unsigned int multiplier, refclk = 38400;
+@@ -2325,7 +2323,7 @@ static void intel_c10pll_readout_hw_state(struct intel_encoder *encoder,
  
--	struct intel_display *display = to_intel_display(crtc_state);
--	const struct intel_lt_phy_pll_state *lt_state =
--		&crtc_state->dpll_hw_state.ltpll;
- 	int clk = 0;
- 	u32 d8, pll_reg_5, pll_reg_3, pll_reg_57, m2div_frac, m2div_int;
- 	u64 temp0, temp1;
-@@ -1748,12 +1746,10 @@ intel_lt_phy_calc_hdmi_port_clock(const struct intel_crtc_state *crtc_state)
- }
+ 	intel_cx0_phy_transaction_end(encoder, wakeref);
  
- int
--intel_lt_phy_calc_port_clock(struct intel_encoder *encoder,
--			     const struct intel_crtc_state *crtc_state)
-+intel_lt_phy_calc_port_clock(struct intel_display *display,
-+			     const struct intel_lt_phy_pll_state *lt_state)
- {
- 	int clk;
--	const struct intel_lt_phy_pll_state *lt_state =
--		&crtc_state->dpll_hw_state.ltpll;
- 	u8 mode, rate;
+-	pll_state->clock = intel_c10pll_calc_port_clock(encoder, pll_state);
++	pll_state->clock = intel_c10pll_calc_port_clock(pll_state);
  
- 	mode = REG_FIELD_GET8(LT_PHY_VDR_MODE_ENCODING_MASK,
-@@ -1769,7 +1765,7 @@ intel_lt_phy_calc_port_clock(struct intel_encoder *encoder,
- 				      lt_state->config[0]);
- 		clk = intel_lt_phy_get_dp_clock(rate);
- 	} else {
--		clk = intel_lt_phy_calc_hdmi_port_clock(crtc_state);
-+		clk = intel_lt_phy_calc_hdmi_port_clock(display, lt_state);
+ 	cx0pll_state->ssc_enabled = readout_ssc_state(encoder, true);
+ 
+@@ -2821,7 +2819,7 @@ static void intel_c20pll_readout_hw_state(struct intel_encoder *encoder,
+ 		}
  	}
  
- 	return clk;
-@@ -2220,6 +2216,7 @@ void intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
- 				       const struct intel_crtc_state *crtc_state,
- 				       struct intel_lt_phy_pll_state *pll_state)
- {
-+	struct intel_display *display = to_intel_display(encoder);
- 	u8 owned_lane_mask;
- 	u8 lane;
- 	struct ref_tracker *wakeref;
-@@ -2245,7 +2242,7 @@ void intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
- 	}
+-	pll_state->clock = intel_c20pll_calc_port_clock(encoder, pll_state);
++	pll_state->clock = intel_c20pll_calc_port_clock(pll_state);
  
- 	pll_state->clock =
--		intel_lt_phy_calc_port_clock(encoder, crtc_state);
-+		intel_lt_phy_calc_port_clock(display, &crtc_state->dpll_hw_state.ltpll);
- 	intel_lt_phy_transaction_end(encoder, wakeref);
+ 	intel_cx0_phy_transaction_end(encoder, wakeref);
+ 
+@@ -3713,9 +3711,9 @@ int intel_cx0pll_calc_port_clock(struct intel_encoder *encoder,
+ 				 const struct intel_cx0pll_state *pll_state)
+ {
+ 	if (intel_encoder_is_c10phy(encoder))
+-		return intel_c10pll_calc_port_clock(encoder, &pll_state->c10);
++		return intel_c10pll_calc_port_clock(&pll_state->c10);
+ 
+-	return intel_c20pll_calc_port_clock(encoder, &pll_state->c20);
++	return intel_c20pll_calc_port_clock(&pll_state->c20);
  }
  
-@@ -2275,7 +2272,7 @@ void intel_lt_phy_pll_state_verify(struct intel_atomic_state *state,
- 
- 	encoder = intel_get_crtc_new_encoder(state, new_crtc_state);
- 	intel_lt_phy_pll_readout_hw_state(encoder, new_crtc_state, &pll_hw_state);
--	clock = intel_lt_phy_calc_port_clock(encoder, new_crtc_state);
-+	clock = intel_lt_phy_calc_port_clock(display, &new_crtc_state->dpll_hw_state.ltpll);
- 
- 	dig_port = enc_to_dig_port(encoder);
- 	if (intel_tc_port_in_tbt_alt_mode(dig_port))
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-index 7659c92b6c3c..c4999a55473e 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-@@ -21,8 +21,8 @@ void intel_lt_phy_pll_disable(struct intel_encoder *encoder);
- int
- intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
- 			    struct intel_encoder *encoder);
--int intel_lt_phy_calc_port_clock(struct intel_encoder *encoder,
--				 const struct intel_crtc_state *crtc_state);
-+int intel_lt_phy_calc_port_clock(struct intel_display *display,
-+				 const struct intel_lt_phy_pll_state *lt_state);
- void intel_lt_phy_set_signal_levels(struct intel_encoder *encoder,
- 				    const struct intel_crtc_state *crtc_state);
- void intel_lt_phy_dump_hw_state(struct intel_display *display,
+ /*
 -- 
 2.34.1
 
