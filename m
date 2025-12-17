@@ -2,59 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3946CC84A5
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Dec 2025 15:51:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C6B9CC86E3
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Dec 2025 16:28:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B353A10ECFC;
-	Wed, 17 Dec 2025 14:51:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D68D10E8BF;
+	Wed, 17 Dec 2025 15:28:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bAuCAe1P";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WgwEYkRC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 933EF10E8C3;
- Wed, 17 Dec 2025 14:51:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B4B410E8BA;
+ Wed, 17 Dec 2025 15:28:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765983088; x=1797519088;
+ t=1765985321; x=1797521321;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=G/Wh5BKe1HQbhFuM02Y+XD5h2CKfvtoltkEDlOyH6kI=;
- b=bAuCAe1PbLuXr+hpsHcfCHJISMd+acO+dMAFhtbHzlyzmyGzNvIr105E
- G2olUvJk7JABOJ44DhU/SpJ0aakBlQYrgBB7YqRQuzMNiYfaX2+jZAJLG
- KqMTrh8Ne01yIFElRLgx/OTKBtizm34X3OAiOP+zmyoVKG8iMFLtAH/R+
- d61LSHC8f4RR50LD3hGlLjrfnghUxd+FnIEk1HBFJPqZ5sZGpCZgK+yTi
- Xoa6lEEFdtoxG/Cp8Nx/juQqevLAYmCMbeo09jBeERzr6s02rtfCBUv9y
- FwJguXe5XPbmmxVJTYA5edds+kn1KzUJ5iJrJ5P9pUs7J+s3iPxEYVrmo g==;
-X-CSE-ConnectionGUID: aefQVKwFS2OTO6b9yZF/cw==
-X-CSE-MsgGUID: vvuF+hbHRKqj+KFo8WxQ8w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11645"; a="67115359"
-X-IronPort-AV: E=Sophos;i="6.21,156,1763452800"; d="scan'208";a="67115359"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2025 06:51:27 -0800
-X-CSE-ConnectionGUID: rYRnNRP5Qymm93gr/aSetg==
-X-CSE-MsgGUID: /jy6pOFKSO6SakgvoQGzIA==
+ bh=oeFOnEpIeWLH5LLT/A02oLxw/RY3cA7c+faTvUxwb2c=;
+ b=WgwEYkRC8Am1odHW/OIDCgwtNdgdskclWVNY86skdLjiymp1glsq7tjT
+ e1x7e2GTi+QvMyCGhDAKSzlhQyZFr1oLcKij3GWn/1xnKROf2l9UrWAI9
+ mQ5AQDCbEn6UJEqlrg8wmVtAxR2AY7hsbOfFKiK/lCASVSs8B47yrJ88V
+ sK5223nGtr8k1oyegjZNPq2qQoh+MvZmThlnNMvK0IgxlKKTXjfLFoQoG
+ vck0WOv0/8lm80IZKJPJCycKmv6mdB8UtWo5w98KZnwmKoC4HsRf7CpQl
+ xi3yqnSBzMUxVH3L3zXWu7G4C8xDS5s2dV45vVt0TwTczceJzYAJ9y23E g==;
+X-CSE-ConnectionGUID: +h/BRGBsQmamqrs55SYGsg==
+X-CSE-MsgGUID: eWLutqoeQo+Z7bn0P86qPQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11645"; a="71781408"
+X-IronPort-AV: E=Sophos;i="6.21,156,1763452800"; d="scan'208";a="71781408"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2025 07:28:40 -0800
+X-CSE-ConnectionGUID: Rll15jJjTc2BzIzGZw/Bog==
+X-CSE-MsgGUID: 5xmk+FhKTOGzCj2xzi8JAw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,156,1763452800"; d="scan'208";a="198385195"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.201])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2025 06:51:24 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
- intel-gfx@lists.freedesktop.org,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Subject: [PATCH i-g-t] tests/intel/gem_lmem_swapping: Avoid false failures
- from oom-killer
-Date: Wed, 17 Dec 2025 15:50:30 +0100
-Message-ID: <20251217145110.131121-2-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.52.0
+X-IronPort-AV: E=Sophos;i="6.21,156,1763452800"; d="scan'208";a="198097278"
+Received: from display-adls.igk.intel.com ([10.211.131.198])
+ by orviesa009.jf.intel.com with ESMTP; 17 Dec 2025 07:28:38 -0800
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Mika Kahola <mika.kahola@intel.com>,
+	Imre Deak <imre.deak@intel.com>
+Subject: [PATCH v2 00/15] drm/i915/pll: Verify pll dividers and remove
+ redundant .clock member
+Date: Wed, 17 Dec 2025 17:19:40 +0200
+Message-Id: <20251217151955.1690202-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -72,95 +67,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The smem-oom subtest can expectedly result in oom-killer being triggered,
-which then dumps a call trace from a process that triggered it.  If that
-happens to be a process that executes drm or i915 functions then the call
-trace dump contains lines recognized by igt_runner running in piglit mode
-as potential warnings.  If severity of the call trace dump messages is
-NOTICE or higher, which isn't unlikely, then a dmesg-warn result is
-reported despite successful completion of the subtest.
+Fix the issues in v1 after further testing, review and issues existing
+in the current code revealed by the self-tests added by the patchset
+and as such gives a background/rationale for adding all the self-test
+infra in the patchset (see last 3 items below).
 
-Fortunately, severity of those call trace dump messages depends on kernel
-default log level which can be controlled from user space over sysctl.
+* Fix determining the encoder mode from the crtc_state vs.
+   the intel_encoder_is_dp/hdmi() helpers
+* Fix termination of PLL parameter list in the PLL tables
+* Move changes in the patchset to the patch they logically belong
+* Use a stricter +-1kHz allowance for a difference between the
+   computed and requested PLL clock rate
+* Drop fixed non-FRL HDMI PLL parameter entries, due to a mismatch
+   between the fixed PLL dividers and clock rate for these
+* Fix 10x-off FRL HDMI clock rates
+* Fix DP2.0 10G and 20G and HDMI FRL clock rate determination
+   during PLL enabling
 
-To avoid false failure reports, relax kernel default log level to INFO so
-those log lines are ignored by igt_runner in piglit mode at an expense of
-call traces from real issues potentially detected by the subtest not
-contributing to the igt_runner reported result.  Since those call traces
-are still available to developers, only submitted with reduced severity,
-that shouldn't hurt as long as the igt_runner still abandons further
-execution and reports an abort result on a kernel taint.
+https://lore.kernel.org/intel-gfx/20251216083759.383163-1-mika.kahola@intel.com/
 
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5493
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
----
- tests/intel/gem_lmem_swapping.c | 40 ++++++++++++++++++++++++++++++++-
- 1 file changed, 39 insertions(+), 1 deletion(-)
+Cc: Imre Deak <imre.deak@intel.com>
 
-diff --git a/tests/intel/gem_lmem_swapping.c b/tests/intel/gem_lmem_swapping.c
-index adae26716c..ab951a7414 100644
---- a/tests/intel/gem_lmem_swapping.c
-+++ b/tests/intel/gem_lmem_swapping.c
-@@ -804,8 +804,9 @@ int igt_main_args("", long_options, help_str, opt_handler, NULL)
- 		{ "parallel-random-verify-ccs", TEST_PARALLEL | TEST_RANDOM | TEST_CCS },
- 		{ }
- 	};
-+	int i915 = -1, console_log_level, default_log_level;
- 	const intel_ctx_t *ctx;
--	int i915 = -1;
-+	FILE *printk;
- 
- 	igt_fixture() {
- 		struct intel_execution_engine2 *e;
-@@ -860,11 +861,48 @@ int igt_main_args("", long_options, help_str, opt_handler, NULL)
- 			test_evict(i915, ctx, region, test->flags);
- 	}
- 
-+	/*
-+	 * The smem-oom subtest can result in oom-killer being triggered, which
-+	 * then dumps a call trace from a process that triggered it.  If that
-+	 * happens to be a process that executes drm or i915 functions then the
-+	 * call trace dump contains lines recognized by igt_runner as warnings
-+	 * and a dmesg-warn result is reported.  To avoid false failure reports,
-+	 * relax kernel default log level to INFO for those lines to be ignored
-+	 * by igt_runner in piglit mode, at an expense of call traces from
-+	 * potential real issues not contributing to the igt_runner reported
-+	 * result.  Since those call traces are still available to developers,
-+	 * only displayed with relaxed severity, that shouldn't hurt as long as
-+	 * igt_runner still abandons further execution and reports an abort
-+	 * result on a kernel taint.
-+	 */
-+	igt_fixture() {
-+		printk = fopen("/proc/sys/kernel/printk", "r+");
-+		if (igt_debug_on(!printk))
-+			break;
-+
-+		if (!igt_debug_on(fscanf(printk, "%d %d",
-+					 &console_log_level, &default_log_level) != 2) &&
-+		    default_log_level < 6) {
-+			rewind(printk);
-+			igt_debug_on(fprintf(printk, "%d 6", console_log_level) != 3);
-+		} else {
-+			fclose(printk);
-+			printk = NULL;
-+		}
-+	}
-+
- 	igt_describe("Exercise local memory swapping during exhausting system memory");
- 	dynamic_lmem_subtest(region, regions, "smem-oom")
- 		test_smem_oom(i915, ctx, region);
- 
- 	igt_fixture() {
-+		if (printk) {
-+			rewind(printk);
-+			igt_debug_on(fprintf(printk, "%d %d",
-+					     console_log_level, default_log_level) != 3);
-+			fclose(printk);
-+		}
-+
- 		intel_allocator_multiprocess_stop();
- 		intel_ctx_destroy(i915, ctx);
- 		free(regions);
+Mika Kahola (15):
+  drm/i915/c10: Move C10 port clock calculation
+  drm/i915/c20: Move C20 port clock calculation
+  drm/i915/cx0: Drop Cx0 crtc_state from HDMI TMDS pll divider
+    calculation
+  drm/i915/lt_phy: Drop LT PHY crtc_state for port calculation
+  drm/i915/cx0: Drop encoder from port clock calculation
+  drm/i915/cx0: Create macro around pll tables
+  drm/i915/lt_phy: Create macro for lt phy pll state
+  drm/i915/display: Add helper function for fuzzy clock check
+  drm/i915/cx0: Fix HDMI FRL clock rates
+  drm/i915/cx0: Add a fuzzy check for DP/HDMI clock rates during
+    programming
+  drm/i915/cx0: Verify C10/C20 pll dividers
+  drm/i915/lt_phy: Add verification for lt phy pll dividers
+  drm/i915/cx0: Drop C20 25.175 MHz rate
+  drm/i915/lt_phy: Drop 27.2 MHz rate
+  drm/i915/display: Remove .clock member from eDP/DP/HDMI pll tables
+
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 731 ++++++++++--------
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h  |   2 +
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   4 +-
+ drivers/gpu/drm/i915/display/intel_dpll.c     |   3 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  11 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.h |   3 -
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |  18 +-
+ drivers/gpu/drm/i915/display/intel_lt_phy.c   | 242 +++---
+ drivers/gpu/drm/i915/display/intel_lt_phy.h   |   5 +-
+ .../drm/i915/display/intel_snps_hdmi_pll.c    |   2 -
+ 10 files changed, 549 insertions(+), 472 deletions(-)
+
 -- 
-2.52.0
+2.34.1
 
