@@ -2,54 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCEEECCCAEF
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Dec 2025 17:16:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB3ECCCCC94
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Dec 2025 17:33:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11BC410EA1B;
-	Thu, 18 Dec 2025 16:16:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A74110E968;
+	Thu, 18 Dec 2025 16:33:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=emersion.fr header.i=@emersion.fr header.b="R4qefrpk";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Pt4dkfXw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-244102.protonmail.ch (mail-244102.protonmail.ch
- [109.224.244.102])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 001DA10EA1B
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 Dec 2025 16:16:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
- s=protonmail3; t=1766074554; x=1766333754;
- bh=wcJGa3FpQvqKYSuDBQebeLYMX7Mta1CDqB/hhA7sH88=;
- h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
- Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
- Message-ID:BIMI-Selector;
- b=R4qefrpkg/xne2aKHbfQI0zLMqyD5Jl03iYsxerjUa3ycEJXnZScRBnik+nuHB1lJ
- Yd47xyinwzd3IZtgDxDSqqNaymKcf30kfqXZwkK6L37rtHmBAXiCS5xrJjIpYzdm7y
- avOnmc0gaBOmXCQ1IaOGQyxNodxGm6nrKLOznO5HJM9ULJNUeWXU07jlM6iaoMZ+KK
- 9ytQZhFYZe8ewQwiEe9igvwcpcGdUCYMieNwtFBT25+k60eyou36Mya6z1Pf5rbnHv
- 5kSbiZadoJ2Tr9UkJgUS4Wo/lDsiielC+ljGpvDlxbOl9ObA+cIrUvZkXymWLGOpRQ
- eGVFTKTC+4/rg==
-Date: Thu, 18 Dec 2025 16:15:49 +0000
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-From: Simon Ser <contact@emersion.fr>
-Cc: =?utf-8?Q?Ville_Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Uma Shankar <uma.shankar@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- pekka.paalanen@collabora.com, harry.wentland@amd.com, mwen@igalia.com,
- jadahl@redhat.com, sebastian.wick@redhat.com, swati2.sharma@intel.com,
- alex.hung@amd.com, jani.nikula@intel.com, suraj.kandpal@intel.com
-Subject: Re: [v8 14/15] drm/i915/color: Add 3D LUT to color pipeline
-Message-ID: <k3LqbZf-MaL96Q4M9Gi2ulFVSAPs8qKk3J7vvjzvqFwqbI-v8rlIi4f2Sr5KvVmB04UZXAZIPaLZHADswcIMESDOWilrOBNOLtRhlUcoowk=@emersion.fr>
-In-Reply-To: <31921238-6621-40d5-94b5-8ba3e5f9d40c@intel.com>
-References: <20251203085211.3663374-1-uma.shankar@intel.com>
- <20251203085211.3663374-15-uma.shankar@intel.com>
- <aTwwBMKUp5AYmFTN@intel.com> <f24364ad-a861-4fcd-93ab-3230a6b3299b@intel.com>
- <k4mMdQv6X-RIzc4veUD5pP2oD1KGp1Tx6ifJM6S8W3nrowRPz275vsfcNUHeflvxZaISPaM_e861Q-1rO1jnV8bNNmOdPJ3tyS3GVbnpbao=@emersion.fr>
- <31921238-6621-40d5-94b5-8ba3e5f9d40c@intel.com>
-Feedback-ID: 1358184:user:proton
-X-Pm-Message-ID: 8e534f4916e09db9fe19c8ade093505a387cb3b3
+Received: from lankhorst.se (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4812610E718;
+ Thu, 18 Dec 2025 16:33:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1766075612;
+ bh=REorg8QrUoMmAtH1OTwMg2ReWqTFtk4sMIjmUiBNIYE=;
+ h=From:To:Subject:Date:From;
+ b=Pt4dkfXw1fDbOnSMfxGe1FJYoDKhlbQnaGwN3/YnUu6kkOaJ1xNXIbVJL0RZBYwca
+ nfuBJJ7PGfpdMYZa8bS6cQ9pI21P07jf04WhPokuxf7Oi60IqQdOzQ5GxvCJI0rwXw
+ uS9hJJk/HtcE8BMAvtQ5kistRIwzjgA0DZcDtjcifdBS8V0dA0dILoschb+zYoj6Be
+ gxguzQ4c/Ss0+rbfsnnCyKTKBw61uiR9Dk6/Ow3mWsz0ChuFLyz+p3uJnCiJpxTK0t
+ puttQsxdHnLy88vo4HwyizLw8SZZ6eYRWmPi8SgyUADkIopXX78fO7WsJ/23HGeL9N
+ hBXkQ3Cz1l8Eg==
+From: Maarten Lankhorst <dev@lankhorst.se>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Subject: [i915-rt v4 00/20] drm/i915/display: All patches to make PREEMPT_RT
+ work on i915 + xe.
+Date: Thu, 18 Dec 2025 17:33:48 +0100
+Message-ID: <20251218163408.97508-1-dev@lankhorst.se>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,75 +50,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Monday, December 15th, 2025 at 09:43, Borah, Chaitanya Kumar <chaitanya.=
-kumar.borah@intel.com> wrote:
+We should probably take the uncore lock only once, and hold it during
+entire evasion. For now just remove the code using it to see if CI
+passes.
 
-> On 12/12/2025 11:55 PM, Simon Ser wrote:
->=20
-> > On Friday, December 12th, 2025 at 18:47, Borah, Chaitanya Kumar chaitan=
-ya.kumar.borah@intel.com wrote:
-> >=20
-> > > > > +void intel_color_plane_commit_arm(struct intel_dsb *dsb,
-> > > > > + const struct intel_plane_state *plane_state)
-> > > > > +{
-> > > > > + struct intel_display *display =3D to_intel_display(plane_state)=
-;
-> > > > > + struct intel_crtc *crtc =3D to_intel_crtc(plane_state->uapi.crt=
-c);
-> > > > > +
-> > > > > + if (crtc && intel_color_crtc_has_3dlut(display, crtc->pipe))
-> > > > > + glk_lut_3d_commit(dsb, crtc, !!plane_state->hw.lut_3d);
-> > > > > ^^^^^^^^^^^^
-> > > >=20
-> > > > And this looks like a pretty major fail. Why is the 3D LUT stored i=
-n
-> > > > the plane state when it's a pipe level thing?
-> > >=20
-> > > With DISPLAY_VER(display) >=3D 35, 3DLUT can be attached to a plane.
-> > >=20
-> > > (Bits[23:22] in 3DLUT_CTL). This is the only way we are exposing the =
-HW
-> > > to the userspace right now (through the new plane color pipeline uapi=
-).
-> > > Therefore, it lies in the plane state.
-> > >=20
-> > > However, there are (soonish)plans to adopt the color pipeline for crt=
-cs
-> > > too. Once that happens, it needs to be handled a bit more carefully. =
-A
-> > > potential approach is to allow userspace to program the block with a
-> > > first come first served semantics and fail the commit if it tries to =
-set
-> > > 3DLUT both on plane and crtc in the same commit.
-> >=20
-> > The plane 3D LUT must only be used before blending. Any pipe-level
-> > post-blending 3D LUT hardware block is not suitable to implement plane
-> > colorops.
->=20
-> Same 3D LUT block is shared across pipe and planes. When we do end up
-> implementing the pipe color pipeline we would like the 3DLUT exposed at
-> the pipe stage too.
+Another test run with i915 as well, and some bugs in selftests fixed.
 
-Ah, I see! And there is a switch in the hw to configure whether it's
-applied pre- or post-blending?
+Maarten Lankhorst (15):
+  drm/i915/display: Fix intel_lpe_audio_irq_handler for PREEMPT-RT
+  drm/i915/display: Make get_vblank_counter use intel_de_read_fw()
+  drm/i915/display: Use intel_de_write_fw in intel_pipe_fastset
+  drm/i915/display: Make set_pipeconf use the fw variants
+  drm/i915/display: Move vblank put until after critical section
+  drm/i915/display: Remove locking from intel_vblank_evade critical
+    section
+  drm/i915/display: Handle vlv dsi workaround in scanline_in_safe_range
+    too
+  drm/i915/display: Make icl_dsi_frame_update use _fw too
+  drm/i915/display: Enable interrupts earlier on PREEMPT_RT
+  PREEMPT_RT injection
+  drm/i915/display: Use intel_de_read_fw in colorops
+  drm/i915/gt: Fix selftests on PREEMPT_RT
+  drm/i915/gt: Set stop_timeout() correctly on PREEMPT-RT
+  drm/i915/display: Do not take uncore lock in i915_get_vblank_counter
+  drm/i915/display: Remove uncore lock from vlv_atomic_update_fifo
 
-> However, there is no good way to do it in the current color pipeline
-> UAPI (atleast that I know of). One suggestion from Harry (discussed in
-> the hackfest) was to list the pipelines in order of preference of the
-> driver.
->=20
-> Considering we prefer the pre-blend 3DLUT over a post blend one, it
-> would mean that we don't expose the 3DLUT on the first pipeline on the
-> crtc but do it in the second one. (I am not sure how well it scales thoug=
-h)
->=20
-> I have considered other solutions like introducing a new property say
-> "muxed" which could be used with Bypass to indicate if the current color
-> block is being used in another part of the pipeline.
+Mike Galbraith (1):
+  drm/i915: Use preempt_disable/enable_rt() where recommended
 
-I think two pipelines + making commits fail when they use conflicting
-colorops is the way to go.
+Sebastian Andrzej Siewior (4):
+  drm/i915/gt: Use spin_lock_irq() instead of local_irq_disable() +
+    spin_lock()
+  drm/i915: Drop the irqs_disabled() check
+  drm/i915/guc: Consider also RCU depth in busy loop.
+  Revert "drm/i915: Depend on !PREEMPT_RT."
 
-If it turns out to be a generalized issue with more hardware and the
-above solution isn't enough for user-space, we can think of introducing
-a way to describe the limitation.
+ drivers/gpu/drm/i915/Kconfig                  |   1 -
+ drivers/gpu/drm/i915/Kconfig.debug            |  15 ---
+ drivers/gpu/drm/i915/display/i9xx_wm.c        |   3 -
+ drivers/gpu/drm/i915/display/icl_dsi.c        |   4 +-
+ drivers/gpu/drm/i915/display/intel_color.c    |   4 +-
+ drivers/gpu/drm/i915/display/intel_crtc.c     |  12 +-
+ drivers/gpu/drm/i915/display/intel_cursor.c   |   8 +-
+ drivers/gpu/drm/i915/display/intel_de.h       |   8 ++
+ drivers/gpu/drm/i915/display/intel_display.c  |  46 +++----
+ .../gpu/drm/i915/display/intel_lpe_audio.c    |   2 +-
+ drivers/gpu/drm/i915/display/intel_vblank.c   | 115 ++++++++++--------
+ drivers/gpu/drm/i915/display/intel_vblank.h   |   1 +
+ drivers/gpu/drm/i915/display/intel_vrr.c      |  16 +--
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   2 +-
+ .../drm/i915/gt/intel_execlists_submission.c  |  17 +--
+ drivers/gpu/drm/i915/gt/selftest_engine_pm.c  |   8 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   2 +-
+ drivers/gpu/drm/i915/i915_request.c           |   2 -
+ drivers/gpu/drm/i915/intel_uncore.h           |  25 ++--
+ drivers/gpu/drm/xe/Kconfig.debug              |   5 +
+ .../drm/xe/compat-i915-headers/intel_uncore.h |   7 ++
+ kernel/Kconfig.preempt                        |   4 +-
+ 22 files changed, 172 insertions(+), 135 deletions(-)
+
+-- 
+2.51.0
+
