@@ -2,65 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0452CCC67D
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Dec 2025 16:09:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DCCECCC70B
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Dec 2025 16:19:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 831CE10EA48;
-	Thu, 18 Dec 2025 15:09:50 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c3mcqFM/";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4561710EA12;
+	Thu, 18 Dec 2025 15:19:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98CD410EA28;
- Thu, 18 Dec 2025 15:09:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766070588; x=1797606588;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=Xwq22S4A23SN6OvPG6NywgAlxwX9e2Byb4LgjMfXp5s=;
- b=c3mcqFM/7K6WvsOWhV9IyfSg5EpTL4Clqd8sHxaehDyZXvEvbN1xcLaT
- BOy/ZMNmyA5wrPUFRSlsrvgF28KnjSV7kPCkqRB+xodS9GXMSECHe4XSO
- D4vY7AiraYVPwAqS0aLHHZLWraFWBIOl4MoixXaH7wqOZ4wshjnRbCFgd
- TMAP9HYTLlWWkTdcA2rad+THqNlhP3wkzsGOgPdSRlwLYVktV8Wa5Gt5V
- 6SM4/MRL+CQsO51ycVM6Sbn0kYuEc/e52BjDq/7D0iKkKfN6m4uNjYeem
- MECNB8F8FdUUXM8MBC4ty7HQiw4cE1ujYF6Sl4akxq2C5s5xEZGKflMPB Q==;
-X-CSE-ConnectionGUID: Xvc2KCEQRgiSSkGI4mi4xg==
-X-CSE-MsgGUID: a1qRT/91RYmKngFBLS24Xg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11646"; a="79395898"
-X-IronPort-AV: E=Sophos;i="6.21,158,1763452800"; d="scan'208";a="79395898"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2025 07:09:48 -0800
-X-CSE-ConnectionGUID: P3+3reLyRQi2ev0K7jhVlg==
-X-CSE-MsgGUID: mChjOnEMQj2SwOqaHmNFlA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,158,1763452800"; d="scan'208";a="199079714"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.252])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2025 07:09:46 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- igt-dev@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
- intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH i-g-t] tests/intel/gem_lmem_swapping: Avoid false failures
- from oom-killer
-Date: Thu, 18 Dec 2025 16:09:43 +0100
-Message-ID: <2277720.NgBsaNRSFp@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20251218142125.i75a6km3wm7nxjsc@kamilkon-DESK.igk.intel.com>
-References: <20251217145110.131121-2-janusz.krzysztofik@linux.intel.com>
- <20251218142125.i75a6km3wm7nxjsc@kamilkon-DESK.igk.intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 790F510EA12;
+ Thu, 18 Dec 2025 15:19:23 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_drm/atomic=3A_convert_drm?=
+ =?utf-8?q?=5Fatomic=5Fget=5F=7Bold=2C_new=7D=5Fcolorop=5Fstate=28=29_into_p?=
+ =?utf-8?q?roper_functions?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 18 Dec 2025 15:19:23 -0000
+Message-ID: <176607116349.101158.5958076698880110115@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251218141527.405328-1-jani.nikula@intel.com>
+In-Reply-To: <20251218141527.405328-1-jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,142 +38,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Kamil,
+== Series Details ==
 
-Thank you for looking at this.
+Series: drm/atomic: convert drm_atomic_get_{old, new}_colorop_state() into proper functions
+URL   : https://patchwork.freedesktop.org/series/159220/
+State : failure
 
-On Thursday, 18 December 2025 15:21:25 CET Kamil Konieczny wrote:
-> Hi Janusz,
-> On 2025-12-17 at 15:50:30 +0100, Janusz Krzysztofik wrote:
-> > The smem-oom subtest can expectedly result in oom-killer being triggered,
-> > which then dumps a call trace from a process that triggered it.  If that
-> > happens to be a process that executes drm or i915 functions then the call
-> > trace dump contains lines recognized by igt_runner running in piglit mode
-> > as potential warnings.  If severity of the call trace dump messages is
-> > NOTICE or higher, which isn't unlikely, then a dmesg-warn result is
-> > reported despite successful completion of the subtest.
-> > 
-> > Fortunately, severity of those call trace dump messages depends on kernel
-> > default log level which can be controlled from user space over sysctl.
-> > 
-> > To avoid false failure reports, relax kernel default log level to INFO so
-> > those log lines are ignored by igt_runner in piglit mode at an expense of
-> > call traces from real issues potentially detected by the subtest not
-> > contributing to the igt_runner reported result.  Since those call traces
-> > are still available to developers, only submitted with reduced severity,
-> > that shouldn't hurt as long as the igt_runner still abandons further
-> > execution and reports an abort result on a kernel taint.
-> > 
-> > Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5493
-> > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> > ---
-> >  tests/intel/gem_lmem_swapping.c | 40 ++++++++++++++++++++++++++++++++-
-> >  1 file changed, 39 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/tests/intel/gem_lmem_swapping.c b/tests/intel/gem_lmem_swapping.c
-> > index adae26716c..ab951a7414 100644
-> > --- a/tests/intel/gem_lmem_swapping.c
-> > +++ b/tests/intel/gem_lmem_swapping.c
-> > @@ -804,8 +804,9 @@ int igt_main_args("", long_options, help_str, opt_handler, NULL)
-> >  		{ "parallel-random-verify-ccs", TEST_PARALLEL | TEST_RANDOM | TEST_CCS },
-> >  		{ }
-> >  	};
-> > +	int i915 = -1, console_log_level, default_log_level;
-> >  	const intel_ctx_t *ctx;
-> > -	int i915 = -1;
-> > +	FILE *printk;
-> 
-> 	FILE *printk = NULL;
-> 
-> For a reason see below.
-> 
-> >  
-> >  	igt_fixture() {
-> >  		struct intel_execution_engine2 *e;
-> > @@ -860,11 +861,48 @@ int igt_main_args("", long_options, help_str, opt_handler, NULL)
-> >  			test_evict(i915, ctx, region, test->flags);
-> >  	}
-> >  
-> > +	/*
-> > +	 * The smem-oom subtest can result in oom-killer being triggered, which
-> > +	 * then dumps a call trace from a process that triggered it.  If that
-> > +	 * happens to be a process that executes drm or i915 functions then the
-> > +	 * call trace dump contains lines recognized by igt_runner as warnings
-> > +	 * and a dmesg-warn result is reported.  To avoid false failure reports,
-> > +	 * relax kernel default log level to INFO for those lines to be ignored
-> > +	 * by igt_runner in piglit mode, at an expense of call traces from
-> > +	 * potential real issues not contributing to the igt_runner reported
-> > +	 * result.  Since those call traces are still available to developers,
-> > +	 * only displayed with relaxed severity, that shouldn't hurt as long as
-> > +	 * igt_runner still abandons further execution and reports an abort
-> > +	 * result on a kernel taint.
-> > +	 */
-> > +	igt_fixture() {
-> > +		printk = fopen("/proc/sys/kernel/printk", "r+");
-> > +		if (igt_debug_on(!printk))
-> > +			break;
-> > +
-> > +		if (!igt_debug_on(fscanf(printk, "%d %d",
-> > +					 &console_log_level, &default_log_level) != 2) &&
-> > +		    default_log_level < 6) {
-> > +			rewind(printk);
-> > +			igt_debug_on(fprintf(printk, "%d 6", console_log_level) != 3);
-> > +		} else {
-> > +			fclose(printk);
-> > +			printk = NULL;
-> > +		}
-> > +	}
-> > +
-> 
-> Looks good but please move it inside subtest smem-oom,
-> so it will affect only it. Cleanup should be done in final fixup
-> so that code is ok.
+== Summary ==
 
-The only way I can imagine other subtests affected is if someone adds a 
-new subtest below without taking care of splitting the loglevel cleanup 
-out of the final igt_fixture() into a separate one, placed right after 
-the "smem_oom" subtest and before any other future subtests.  But we can 
-take care now, either by already splitting it into two consecutive 
-igt_fixture sections, or by adding a reminder to do that before adding 
-new subtests in between.  I think that would be more clear then hiding 
-the loglevel setup steps inside the test_smem_oom().  Moreover, your 
-approach doesn't address potential cases of running more than one 
-subtest in a single invocation of the test, which is perfectly possible 
-when igt_runner is used with --multiple-mode option or in manual runs.
-
-As additional benefits, we neither have to pass extra arguments to the 
-test_smem_oom(), nor have to take care for the loglevel setup being 
-processed only once in case more than one LMEM region exists and 
-test_smmem_oom() is called several times.
-
-Thanks,
-Janusz
-
-
-> 
-> Regards,
-> Kamil
-> 
-> >  	igt_describe("Exercise local memory swapping during exhausting system memory");
-> >  	dynamic_lmem_subtest(region, regions, "smem-oom")
-> >  		test_smem_oom(i915, ctx, region);
-> >  
-> >  	igt_fixture() {
-> > +		if (printk) {
-> > +			rewind(printk);
-> > +			igt_debug_on(fprintf(printk, "%d %d",
-> > +					     console_log_level, default_log_level) != 3);
-> > +			fclose(printk);
-> > +		}
-> > +
-> >  		intel_allocator_multiprocess_stop();
-> >  		intel_ctx_destroy(i915, ctx);
-> >  		free(regions);
-> 
-
-
+Error: make failed
+  CALL    scripts/checksyscalls.sh
+  DESCEND objtool
+  INSTALL libsubcmd_headers
+  CC [M]  drivers/gpu/drm/vkms/vkms_drv.o
+drivers/gpu/drm/vkms/vkms_drv.c: In function ‘vkms_destroy’:
+drivers/gpu/drm/vkms/vkms_drv.c:261:9: error: implicit declaration of function ‘drm_colorop_pipeline_destroy’ [-Werror=implicit-function-declaration]
+  261 |         drm_colorop_pipeline_destroy(&config->dev->drm);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cc1: some warnings being treated as errors
+make[6]: *** [scripts/Makefile.build:287: drivers/gpu/drm/vkms/vkms_drv.o] Error 1
+make[5]: *** [scripts/Makefile.build:556: drivers/gpu/drm/vkms] Error 2
+make[4]: *** [scripts/Makefile.build:556: drivers/gpu/drm] Error 2
+make[3]: *** [scripts/Makefile.build:556: drivers/gpu] Error 2
+make[2]: *** [scripts/Makefile.build:556: drivers] Error 2
+make[1]: *** [/home/kbuild/kernel/Makefile:2054: .] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
+Build failed, no error log produced
 
 
