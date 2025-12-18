@@ -2,29 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6052BCCD00B
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Dec 2025 18:42:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 841CFCCD002
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Dec 2025 18:42:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB0A710E5A6;
-	Thu, 18 Dec 2025 17:42:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68BC210E4D7;
+	Thu, 18 Dec 2025 17:41:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 977A410E42E;
- Thu, 18 Dec 2025 17:42:52 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from relay.hostedemail.com (smtprelay0017.hostedemail.com
+ [216.40.44.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 407BA10E427;
+ Thu, 18 Dec 2025 17:41:56 +0000 (UTC)
+Received: from omf20.hostedemail.com (a10.router.float.18 [10.200.18.1])
+ by unirelay06.hostedemail.com (Postfix) with ESMTP id 034CC1358D7;
+ Thu, 18 Dec 2025 17:41:52 +0000 (UTC)
+Received: from [HIDDEN] (Authenticated sender: rostedt@goodmis.org) by
+ omf20.hostedemail.com (Postfix) with ESMTPA id 023D820027; 
+ Thu, 18 Dec 2025 17:41:47 +0000 (UTC)
+Date: Thu, 18 Dec 2025 12:43:26 -0500
+From: Steven Rostedt <rostedt@goodmis.org>
+To: Yury Norov <yury.norov@gmail.com>
+Cc: Randy Dunlap <rdunlap@infradead.org>, Andrew Morton
+ <akpm@linux-foundation.org>, Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>, Christophe Leroy <chleroy@kernel.org>,
+ Ingo Molnar <mingo@kernel.org>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, David Laight
+ <david.laight@runbox.com>, Petr Pavlu <petr.pavlu@suse.com>, Andi Shyti
+ <andi.shyti@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko
+ Ursulin <tursulin@ursulin.net>, Daniel Gomez <da.gomez@kernel.org>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-modules@vger.kernel.org,
+ linux-trace-kernel@vger.kernel.org, Kees Cook <kees@kernel.org>
+Subject: Re: [PATCH v3 4/4] tracing: move tracing declarations from kernel.h
+ to a dedicated header
+Message-ID: <20251218124326.22334325@gandalf.local.home>
+In-Reply-To: <20251218123349.35339242@gandalf.local.home>
+References: <20251205175237.242022-1-yury.norov@gmail.com>
+ <20251205175237.242022-5-yury.norov@gmail.com>
+ <20251216161316.45b3f19ff0ad482018137189@linux-foundation.org>
+ <55ceb7bf-0fe9-4edc-81c2-d51366847eec@infradead.org>
+ <aUN8Hm377C5A0ILX@yury>
+ <20251218123349.35339242@gandalf.local.home>
+X-Mailer: Claws Mail 3.20.0git84 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_drm/i915/display=3A_All_p?=
- =?utf-8?q?atches_to_make_PREEMPT=5FRT_work_on_i915_+_xe=2E_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <dev@lankhorst.se>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 18 Dec 2025 17:42:52 -0000
-Message-ID: <176607977261.102714.4785612617479203073@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251218163408.97508-1-dev@lankhorst.se>
-In-Reply-To: <20251218163408.97508-1-dev@lankhorst.se>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 023D820027
+X-Stat-Signature: o45fb7y4yczxrp6ryyc4bjh177djf3bh
+X-Spam-Status: No, score=1.40
+X-Rspamd-Server: rspamout08
+X-Session-Marker: 726F737465647440676F6F646D69732E6F7267
+X-Session-ID: U2FsdGVkX1+gcUhXo6im9KxxnMPkzbEPK1jjIb73cJg=
+X-HE-Tag: 1766079707-102559
+X-HE-Meta: U2FsdGVkX1+FLaJcIEU86Yt8MEehfwVAisIxolYkzum3jsTsXtF/7d/COMCPvGimbkdCJDem8K4HreWeMJLYHvtpjFnvf3EsAgzop9i+1Qo75r6aRfau/Ye5CoT9oXH1h3WmzTn3Si1MuoMi+JVjVnvoaGdxDzYO/QwzORGyITGf+Xm/6rLqeb+FioS46ubI74HEXEowehIuZFosZJp+80qxOPGSXFaTarSa/MK47R0qIkOXeTnw9MGLdhS+zu6yQE80iPETG2eTIFNXnVWQWLq0jX/LndYRrn5J1xlOesaiULBiDx8MMtxGYXJWQ38xh4H0k3U+2AO+kFVcbDtrC1aErQ30++hwTAGk9FPoZMNtKSgcmEERjL1asAgBob4jxvppT+cS8Ff6SW8amtswUw==
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,86 +70,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, 18 Dec 2025 12:33:49 -0500
+Steven Rostedt <rostedt@goodmis.org> wrote:
 
-Series: drm/i915/display: All patches to make PREEMPT_RT work on i915 + xe. (rev5)
-URL   : https://patchwork.freedesktop.org/series/159035/
-State : failure
+> On Wed, 17 Dec 2025 22:59:33 -0500
+> Yury Norov <yury.norov@gmail.com> wrote:
+> 
+> > I deem to drop trace_printk.h from kernel.h - it is more aligned with
+> > the idea of unloading the header. The original motivation to keep
+> > trace_printk.h in kernel.h was just because a similar printk.h is living
+> > there. But after all, this is a purely debugging header, so no need for
+> > almost every C file to bear debugging stuff.  
+> 
+> It is a big deal for debugging stuff. A lot of developers debug their code
+> with trace_printk(), and do the "shotgun approach", where they cut and
+> paste trace_printk()s all over their code in several files. Having to now add:
+> 
+>   #include <linux/trace_printk.h>
+> 
+> whenever a trace_printk() is added is going to be a big PITA and slow down
+> all debugging efforts.
+>
 
-== Summary ==
+I don't actually remember why I had __trace_puts() pass in the size. I
+could change it to:
 
-Error: make failed
-  CALL    scripts/checksyscalls.sh
-  DESCEND objtool
-  INSTALL libsubcmd_headers
-  CC [M]  drivers/gpu/drm/i915/i915_driver.o
-In file included from ./drivers/gpu/drm/i915/gt/intel_engine_types.h:26,
-                 from ./drivers/gpu/drm/i915/gt/intel_context_types.h:17,
-                 from drivers/gpu/drm/i915/gem/i915_gem_context_types.h:19,
-                 from drivers/gpu/drm/i915/gem/i915_gem_context.h:9,
-                 from drivers/gpu/drm/i915/i915_driver.c:75:
-./drivers/gpu/drm/i915/intel_uncore.h: In function ‘intel_uncore_read64_2x32_fw’:
-./drivers/gpu/drm/i915/intel_uncore.h:455:19: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘lower’
-  455 |         u32 upper lower, old_upper, loop = 0;
-      |                   ^~~~~
-./drivers/gpu/drm/i915/intel_uncore.h:455:19: error: ‘lower’ undeclared (first use in this function); did you mean ‘islower’?
-  455 |         u32 upper lower, old_upper, loop = 0;
-      |                   ^~~~~
-      |                   islower
-./drivers/gpu/drm/i915/intel_uncore.h:455:19: note: each undeclared identifier is reported only once for each function it appears in
-./drivers/gpu/drm/i915/intel_uncore.h:455:26: error: ‘old_upper’ undeclared (first use in this function); did you mean ‘si_upper’?
-  455 |         u32 upper lower, old_upper, loop = 0;
-      |                          ^~~~~~~~~
-      |                          si_upper
-./drivers/gpu/drm/i915/intel_uncore.h:455:24: error: left-hand operand of comma expression has no effect [-Werror=unused-value]
-  455 |         u32 upper lower, old_upper, loop = 0;
-      |                        ^
-./drivers/gpu/drm/i915/intel_uncore.h:455:37: error: ‘loop’ undeclared (first use in this function)
-  455 |         u32 upper lower, old_upper, loop = 0;
-      |                                     ^~~~
-./drivers/gpu/drm/i915/intel_uncore.h:455:35: error: left-hand operand of comma expression has no effect [-Werror=unused-value]
-  455 |         u32 upper lower, old_upper, loop = 0;
-      |                                   ^
-./drivers/gpu/drm/i915/intel_uncore.h:456:9: error: ‘upper’ undeclared (first use in this function)
-  456 |         upper = intel_uncore_read_fw(uncoree, upper_reg);
-      |         ^~~~~
-./drivers/gpu/drm/i915/intel_uncore.h:456:38: error: ‘uncoree’ undeclared (first use in this function); did you mean ‘uncore’?
-  456 |         upper = intel_uncore_read_fw(uncoree, upper_reg);
-      |                                      ^~~~~~~
-./drivers/gpu/drm/i915/intel_uncore.h:425:55: note: in definition of macro ‘intel_uncore_read_fw’
-  425 | #define intel_uncore_read_fw(...) __raw_uncore_read32(__VA_ARGS__)
-      |                                                       ^~~~~~~~~~~
-./drivers/gpu/drm/i915/intel_uncore.h:456:47: error: ‘upper_reg’ undeclared (first use in this function)
-  456 |         upper = intel_uncore_read_fw(uncoree, upper_reg);
-      |                                               ^~~~~~~~~
-./drivers/gpu/drm/i915/intel_uncore.h:425:55: note: in definition of macro ‘intel_uncore_read_fw’
-  425 | #define intel_uncore_read_fw(...) __raw_uncore_read32(__VA_ARGS__)
-      |                                                       ^~~~~~~~~~~
-./drivers/gpu/drm/i915/intel_uncore.h:459:54: error: ‘lower_reg’ undeclared (first use in this function)
-  459 |                 lower = intel_uncore_read_fw(uncore, lower_reg);
-      |                                                      ^~~~~~~~~
-./drivers/gpu/drm/i915/intel_uncore.h:425:55: note: in definition of macro ‘intel_uncore_read_fw’
-  425 | #define intel_uncore_read_fw(...) __raw_uncore_read32(__VA_ARGS__)
-      |                                                       ^~~~~~~~~~~
-./drivers/gpu/drm/i915/intel_uncore.h: In function ‘intel_uncore_read64_2x32’:
-./drivers/gpu/drm/i915/intel_uncore.h:483:15: error: too many arguments to function ‘intel_uncore_read64_2x32_fw’
-  483 |         ret = intel_uncore_read64_2x32_fw(uncore, lower_reg, upper_reg);
-      |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-./drivers/gpu/drm/i915/intel_uncore.h:453:1: note: declared here
-  453 | intel_uncore_read64_2x32_fw(struct intel_uncore *uncore)
-      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-cc1: all warnings being treated as errors
-make[6]: *** [scripts/Makefile.build:287: drivers/gpu/drm/i915/i915_driver.o] Error 1
-make[5]: *** [scripts/Makefile.build:556: drivers/gpu/drm/i915] Error 2
-make[4]: *** [scripts/Makefile.build:556: drivers/gpu/drm] Error 2
-make[3]: *** [scripts/Makefile.build:556: drivers/gpu] Error 2
-make[2]: *** [scripts/Makefile.build:556: drivers] Error 2
-make[1]: *** [/home/kbuild/kernel/Makefile:2054: .] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
-Build failed, no error log produced
+diff --git a/include/linux/kernel.h b/include/linux/kernel.h
+index 5b46924fdff5..d5a939b8c391 100644
+--- a/include/linux/kernel.h
++++ b/include/linux/kernel.h
+@@ -331,10 +331,10 @@ int __trace_printk(unsigned long ip, const char *fmt, ...);
+ 	if (__builtin_constant_p(str))					\
+ 		__trace_bputs(_THIS_IP_, trace_printk_fmt);		\
+ 	else								\
+-		__trace_puts(_THIS_IP_, str, strlen(str));		\
++		__trace_puts(_THIS_IP_, str);				\
+ })
+ extern int __trace_bputs(unsigned long ip, const char *str);
+-extern int __trace_puts(unsigned long ip, const char *str, int size);
++extern int __trace_puts(unsigned long ip, const char *str);
+ 
+ extern void trace_dump_stack(int skip);
+ 
+diff --git a/kernel/trace/trace.c b/kernel/trace/trace.c
+index e575956ef9b5..686741edb803 100644
+--- a/kernel/trace/trace.c
++++ b/kernel/trace/trace.c
+@@ -1178,11 +1178,10 @@ EXPORT_SYMBOL_GPL(__trace_array_puts);
+  * __trace_puts - write a constant string into the trace buffer.
+  * @ip:	   The address of the caller
+  * @str:   The constant string to write
+- * @size:  The size of the string.
+  */
+-int __trace_puts(unsigned long ip, const char *str, int size)
++int __trace_puts(unsigned long ip, const char *str)
+ {
+-	return __trace_array_puts(printk_trace, ip, str, size);
++	return __trace_array_puts(printk_trace, ip, str, strlen(str));
+ }
+ EXPORT_SYMBOL_GPL(__trace_puts);
+ 
+@@ -1201,7 +1200,7 @@ int __trace_bputs(unsigned long ip, const char *str)
+ 	int size = sizeof(struct bputs_entry);
+ 
+ 	if (!printk_binsafe(tr))
+-		return __trace_puts(ip, str, strlen(str));
++		return __trace_puts(ip, str);
+ 
+ 	if (!(tr->trace_flags & TRACE_ITER(PRINTK)))
+ 		return 0;
+diff --git a/kernel/trace/trace.h b/kernel/trace/trace.h
+index b6d42fe06115..de4e6713b84e 100644
+--- a/kernel/trace/trace.h
++++ b/kernel/trace/trace.h
+@@ -2116,7 +2116,7 @@ extern void tracing_log_err(struct trace_array *tr,
+  * about performance). The internal_trace_puts() is for such
+  * a purpose.
+  */
+-#define internal_trace_puts(str) __trace_puts(_THIS_IP_, str, strlen(str))
++#define internal_trace_puts(str) __trace_puts(_THIS_IP_, str)
+ 
+ #undef FTRACE_ENTRY
+ #define FTRACE_ENTRY(call, struct_name, id, tstruct, print)	\
 
 
+
+Which removes the strlen() altogether.
+
+-- Steve
