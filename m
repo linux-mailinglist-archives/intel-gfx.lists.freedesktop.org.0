@@ -2,60 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D039CCCB822
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Dec 2025 11:57:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 890BACCB9C5
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Dec 2025 12:27:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B662210E373;
-	Thu, 18 Dec 2025 10:57:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F8D810ED51;
+	Thu, 18 Dec 2025 11:27:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ENxkTX8r";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YarfRYQm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B399B10E3CA;
- Thu, 18 Dec 2025 10:57:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DC1110ED51
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Dec 2025 11:27:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766055433; x=1797591433;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ewg0/jr685m+lcz1X1TNZPQWbDF1blNDFIPcmMV7q7A=;
- b=ENxkTX8rHrOvycrBi1Tq690zXKIXBrZB6TqCEiQVq0OMgQpZKTHZucT6
- FonsmnGOOTmmkq4MUk9niPHH6BlkGpqLsODQukgsXgHYZCyPwWa38Fis8
- sbR8sBd2JokzG3ke2lWr93z2TuYibEoxo6i6cejvJGu4peKbrpTxf3N65
- VBwBDYVN4tP6HISyJw7BqxbjL54EK+H7Se9dS7726VhdSzqAL3Z8qkISU
- Q484WkpUEO20O8hO6MU1nzhl1e+90MnAHSib7g1sDDk89putUy19wBxrn
- 1JtCH2hOd1oxovCjcCnJwSPPC3DtV4hoMgMrQcPYudHlxa4EKIPxDkYR2 g==;
-X-CSE-ConnectionGUID: budObvLFQP2nYsFousAQnA==
-X-CSE-MsgGUID: 5urDgaarRU+svcXAyP1V/g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11645"; a="79129488"
-X-IronPort-AV: E=Sophos;i="6.21,158,1763452800"; d="scan'208";a="79129488"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2025 02:57:13 -0800
-X-CSE-ConnectionGUID: hUJD9oYnS/WmjbC2EmfmkQ==
-X-CSE-MsgGUID: 51ugCaprQj+SRn4ufUfAUQ==
+ t=1766057267; x=1797593267;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=JcZoUWWVLAqRG7TaB5lOmsCyB3wOanYdLXQllH31fjU=;
+ b=YarfRYQmlo6RxnMkr5X+BVk/8WJJdTeYme/exURJMXHGnTXPR1iaJMqT
+ xdr4N/2nViRIwFP8QIbzsDQ+qYBcOCCJ57KsePMqVW36TtQz4PNrGjYZb
+ cjKPDODzgcsY/OrvxxZeylHOK9CxQuCI3Tw1RX7gOLTMbj5eNQyEvOomm
+ g7QiZ1jjTFY+4uO5Xr7s93jpnIJ111huir8My+6xrRE5xM/FFONQOGMOa
+ 194ZmyxlsP257amhMuhNoYMT6C9TH8Mu7b6Y/uHHAxEC+k7hhiKGVVAZ7
+ MUWCVui0Buwbm4GQFoPrhH3ZxKdbUcDQJ92MIS+pZo0zoPMu9s+En1VcP w==;
+X-CSE-ConnectionGUID: q5gM4vltQ6ec873BIZiiBQ==
+X-CSE-MsgGUID: 7zcqbblbQHyyulYYWUMgzg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11645"; a="67203459"
+X-IronPort-AV: E=Sophos;i="6.21,158,1763452800"; d="scan'208";a="67203459"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2025 03:27:47 -0800
+X-CSE-ConnectionGUID: hzKkg9lDTDGEFhgFKRS0cA==
+X-CSE-MsgGUID: TLMAK7L3Rc2Ck762gqDKXg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,158,1763452800"; d="scan'208";a="197702892"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.247])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2025 02:57:12 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: Re: [PATCH 0/7] Prepare GVT for display modularization
-In-Reply-To: <20251218082302.2327243-1-ankit.k.nautiyal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20251218082302.2327243-1-ankit.k.nautiyal@intel.com>
-Date: Thu, 18 Dec 2025 12:57:08 +0200
-Message-ID: <aec7910187fc14d556af6fb84c4b9e6a43575f37@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,158,1763452800"; d="scan'208";a="198326882"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2025 03:27:46 -0800
+Date: Thu, 18 Dec 2025 12:27:43 +0100
+From: Raag Jadav <raag.jadav@intel.com>
+To: "Anirban, Sk" <sk.anirban@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, krzysztof.karas@intel.com
+Subject: Re: [PATCH v3] drm/i915/selftest: Add throttle reason diagnostics to
+ RPS selftests
+Message-ID: <aUPlL6PWbpe5RhG-@black.igk.intel.com>
+References: <20251218053220.1599233-2-sk.anirban@intel.com>
+ <281d4ce1-bb8b-48bc-bac0-286b95ddf318@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <281d4ce1-bb8b-48bc-bac0-286b95ddf318@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,69 +69,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 18 Dec 2025, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
-> GVT currently relies on display internals through register macros and
-> helpers like for_each_pipe(). This tight coupling makes modularization
-> difficult because GVT should not access struct intel_display directly.
-> Add an API for GVT code to expose DISPLAY_RUNTIME_INFO()->pipe_mask.
-> This series introduces changes to make GVT independent of display internals
-> while keeping existing macros usable:
->
-> - Abstract offset calculations in display using
->   INTEL_DISPLAY_DEVICE_*_OFFSET() macros.
-> - Add APIs for GVT to compute offsets and pipe mask via functions.
-> - Update GVT to use these APIs by overriding helper macros and
->   for_each_pipe().
+On Thu, Dec 18, 2025 at 11:16:29AM +0530, Anirban, Sk wrote:
+> Hi Krzysztof,
+> 
+> Could you please let me know if I can retain your review for this version of
+> my patch?
 
-Oh, this doesn't handle intel_gvt_mmio_table.c, which is part of i915.
+Yes, unless there are major changes we usually retain the tags.
 
-That can be a follow-up, I guess, but still needs to be addressed.
+> On 18-12-2025 11:02 am, Sk Anirban wrote:
+> > Report GPU throttle reasons when RPS tests fail to reach expected
+> > frequencies or power levels.
+> > 
+> > v2: Read the throttle value before the spinner ends (Raag)
+> >      Add a condition before printing throttle value (Krzysztof)
+> > v3: Extend throttle reasons debug support (Raag)
+> > 
+> > Signed-off-by: Sk Anirban <sk.anirban@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/gt/selftest_rps.c | 37 ++++++++++++++++++++++----
+> >   1 file changed, 32 insertions(+), 5 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
+> > index 73bc91c6ea07..b42d9b39add6 100644
+> > --- a/drivers/gpu/drm/i915/gt/selftest_rps.c
+> > +++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
+> > @@ -378,6 +378,7 @@ int live_rps_control(void *arg)
+> >   	enum intel_engine_id id;
+> >   	struct igt_spinner spin;
+> >   	intel_wakeref_t wakeref;
+> > +	u32 throttle;
+> >   	int err = 0;
+> >   	/*
+> > @@ -463,6 +464,10 @@ int live_rps_control(void *arg)
+> >   		max = rps_set_check(rps, limit);
+> >   		max_dt = ktime_sub(ktime_get(), max_dt);
+> > +		throttle = intel_uncore_read(gt->uncore,
+> > +					     intel_gt_perf_limit_reasons_reg(gt));
 
-BR,
-Jani.
+Now that we allow 100 characters I think this can be one line.
 
->
-> Rev2:
-> - Remove conflicting headers and get rid of #ifdefs/#undefs in last
->   patch.
-> - Wrap macro arguments in paranthesis.
-> - Rename for_each_pipe to gvt_for_each_pipe.
->
-> PS: I have not yet addressed the question about whether we need to start
->     using _MMIO_TRANS2() instead of_MMIO_PIPE2() in TRANSCONF() macro.
->     That likely needs a separate patch and discussion.
->     For now, I have kept the patch#4 to deal with the
->     -Werror=enum-conversion:
->      - drm/i915/gvt/display_helpers: Cast argument to enum pipe for
->        pipe-offset macro
->
-> Ankit Nautiyal (7):
->   drm/i915/display: Abstract pipe/trans/cursor offset calculation
->   drm/i915/display: Add APIs to be used by gvt to get the register
->     offsets
->   drm/i915/gvt: Add header to use display offset functions in macros
->   drm/i915/gvt/display_helpers: Cast argument to enum pipe for
->     pipe-offset macro
->   drm/i915/gvt: Change for_each_pipe to use pipe_valid API
->   drm/i915/gvt: Use the appropriate header for the DPLL macro
->   drm/i915/gvt/display_helper: Get rid of #ifdef/#undefs
->
->  drivers/gpu/drm/i915/Makefile                 |  1 +
->  .../drm/i915/display/intel_display_device.h   | 17 +++++++
->  .../drm/i915/display/intel_display_limits.c   |  0
->  .../drm/i915/display/intel_display_reg_defs.h | 15 ++-----
->  drivers/gpu/drm/i915/display/intel_gvt_api.c  | 45 +++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_gvt_api.h  | 21 +++++++++
->  drivers/gpu/drm/i915/gvt/cmd_parser.c         |  2 +-
->  drivers/gpu/drm/i915/gvt/display.c            |  9 ++--
->  drivers/gpu/drm/i915/gvt/display_helpers.h    | 27 +++++++++++
->  drivers/gpu/drm/i915/gvt/fb_decoder.c         |  2 +-
->  drivers/gpu/drm/i915/gvt/handlers.c           |  2 +-
->  11 files changed, 123 insertions(+), 18 deletions(-)
->  create mode 100644 drivers/gpu/drm/i915/display/intel_display_limits.c
->  create mode 100644 drivers/gpu/drm/i915/display/intel_gvt_api.c
->  create mode 100644 drivers/gpu/drm/i915/display/intel_gvt_api.h
->  create mode 100644 drivers/gpu/drm/i915/gvt/display_helpers.h
+> > +		throttle &= GT0_PERF_LIMIT_REASONS_MASK;
+> > +
+> >   		min_dt = ktime_get();
+> >   		min = rps_set_check(rps, rps->min_freq);
+> >   		min_dt = ktime_sub(ktime_get(), min_dt);
+> > @@ -478,11 +483,9 @@ int live_rps_control(void *arg)
+> >   			min, max, ktime_to_ns(min_dt), ktime_to_ns(max_dt));
+> >   		if (limit != rps->max_freq) {
+> > -			u32 throttle = intel_uncore_read(gt->uncore,
+> > -							 intel_gt_perf_limit_reasons_reg(gt));
+> > -
+> > -			pr_warn("%s: GPU throttled with reasons 0x%08x\n",
+> > -				engine->name, throttle & GT0_PERF_LIMIT_REASONS_MASK);
+> > +			if (throttle)
+> > +				pr_warn("%s: GPU throttled with reasons 0x%08x\n",
+> > +					engine->name, throttle);
+> >   			show_pstate_limits(rps);
+> >   		}
+> > @@ -1138,6 +1141,7 @@ int live_rps_power(void *arg)
+> >   	struct intel_engine_cs *engine;
+> >   	enum intel_engine_id id;
+> >   	struct igt_spinner spin;
+> > +	u32 throttle;
+> >   	int err = 0;
+> >   	/*
+> > @@ -1195,6 +1199,10 @@ int live_rps_power(void *arg)
+> >   		max.freq = rps->max_freq;
+> >   		max.power = measure_power_at(rps, &max.freq);
+> > +		throttle = intel_uncore_read(gt->uncore,
+> > +					     intel_gt_perf_limit_reasons_reg(gt));
 
--- 
-Jani Nikula, Intel
+Ditto.
+
+> > +		throttle &= GT0_PERF_LIMIT_REASONS_MASK;
+> > +
+> >   		min.freq = rps->min_freq;
+> >   		min.power = measure_power_at(rps, &min.freq);
+> > @@ -1210,12 +1218,21 @@ int live_rps_power(void *arg)
+> >   			pr_notice("Could not control frequency, ran at [%d:%uMHz, %d:%uMhz]\n",
+> >   				  min.freq, intel_gpu_freq(rps, min.freq),
+> >   				  max.freq, intel_gpu_freq(rps, max.freq));
+> > +
+> > +			if (throttle)
+> > +				pr_warn("%s: GPU throttled with reasons 0x%08x\n",
+> > +					engine->name, throttle);
+> >   			continue;
+> >   		}
+> >   		if (11 * min.power > 10 * max.power) {
+> >   			pr_err("%s: did not conserve power when setting lower frequency!\n",
+> >   			       engine->name);
+> > +
+> > +			if (throttle)
+> > +				pr_warn("%s: GPU throttled with reasons 0x%08x\n",
+> > +					engine->name, throttle);
+> > +
+> >   			err = -EINVAL;
+> >   			break;
+> >   		}
+> > @@ -1241,6 +1258,7 @@ int live_rps_dynamic(void *arg)
+> >   	struct intel_engine_cs *engine;
+> >   	enum intel_engine_id id;
+> >   	struct igt_spinner spin;
+> > +	u32 throttle;
+> >   	int err = 0;
+> >   	/*
+> > @@ -1293,6 +1311,10 @@ int live_rps_dynamic(void *arg)
+> >   		max.freq = wait_for_freq(rps, rps->max_freq, 500);
+> >   		max.dt = ktime_sub(ktime_get(), max.dt);
+> > +		throttle = intel_uncore_read(gt->uncore,
+> > +					     intel_gt_perf_limit_reasons_reg(gt));
+
+Ditto. And with that,
+
+Reviewed-by: Raag Jadav <raag.jadav@intel.com>
+
+> > +		throttle &= GT0_PERF_LIMIT_REASONS_MASK;
+> > +
+> >   		igt_spinner_end(&spin);
+> >   		min.dt = ktime_get();
+> > @@ -1308,6 +1330,11 @@ int live_rps_dynamic(void *arg)
+> >   		if (min.freq >= max.freq) {
+> >   			pr_err("%s: dynamic reclocking of spinner failed\n!",
+> >   			       engine->name);
+> > +
+> > +			if (throttle)
+> > +				pr_warn("%s: GPU throttled with reasons 0x%08x\n",
+> > +					engine->name, throttle);
+> > +
+> >   			err = -EINVAL;
+> >   		}
