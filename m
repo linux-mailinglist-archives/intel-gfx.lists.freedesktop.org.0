@@ -2,29 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90E01CCCA41
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Dec 2025 17:07:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCEEECCCAEF
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Dec 2025 17:16:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E61E10EA28;
-	Thu, 18 Dec 2025 16:07:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11BC410EA1B;
+	Thu, 18 Dec 2025 16:16:03 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=emersion.fr header.i=@emersion.fr header.b="R4qefrpk";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8ABA610EA27;
- Thu, 18 Dec 2025 16:07:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2745583907051542555=="
+Received: from mail-244102.protonmail.ch (mail-244102.protonmail.ch
+ [109.224.244.102])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 001DA10EA1B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Dec 2025 16:16:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
+ s=protonmail3; t=1766074554; x=1766333754;
+ bh=wcJGa3FpQvqKYSuDBQebeLYMX7Mta1CDqB/hhA7sH88=;
+ h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+ Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+ Message-ID:BIMI-Selector;
+ b=R4qefrpkg/xne2aKHbfQI0zLMqyD5Jl03iYsxerjUa3ycEJXnZScRBnik+nuHB1lJ
+ Yd47xyinwzd3IZtgDxDSqqNaymKcf30kfqXZwkK6L37rtHmBAXiCS5xrJjIpYzdm7y
+ avOnmc0gaBOmXCQ1IaOGQyxNodxGm6nrKLOznO5HJM9ULJNUeWXU07jlM6iaoMZ+KK
+ 9ytQZhFYZe8ewQwiEe9igvwcpcGdUCYMieNwtFBT25+k60eyou36Mya6z1Pf5rbnHv
+ 5kSbiZadoJ2Tr9UkJgUS4Wo/lDsiielC+ljGpvDlxbOl9ObA+cIrUvZkXymWLGOpRQ
+ eGVFTKTC+4/rg==
+Date: Thu, 18 Dec 2025 16:15:49 +0000
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+From: Simon Ser <contact@emersion.fr>
+Cc: =?utf-8?Q?Ville_Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Uma Shankar <uma.shankar@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ pekka.paalanen@collabora.com, harry.wentland@amd.com, mwen@igalia.com,
+ jadahl@redhat.com, sebastian.wick@redhat.com, swati2.sharma@intel.com,
+ alex.hung@amd.com, jani.nikula@intel.com, suraj.kandpal@intel.com
+Subject: Re: [v8 14/15] drm/i915/color: Add 3D LUT to color pipeline
+Message-ID: <k3LqbZf-MaL96Q4M9Gi2ulFVSAPs8qKk3J7vvjzvqFwqbI-v8rlIi4f2Sr5KvVmB04UZXAZIPaLZHADswcIMESDOWilrOBNOLtRhlUcoowk=@emersion.fr>
+In-Reply-To: <31921238-6621-40d5-94b5-8ba3e5f9d40c@intel.com>
+References: <20251203085211.3663374-1-uma.shankar@intel.com>
+ <20251203085211.3663374-15-uma.shankar@intel.com>
+ <aTwwBMKUp5AYmFTN@intel.com> <f24364ad-a861-4fcd-93ab-3230a6b3299b@intel.com>
+ <k4mMdQv6X-RIzc4veUD5pP2oD1KGp1Tx6ifJM6S8W3nrowRPz275vsfcNUHeflvxZaISPaM_e861Q-1rO1jnV8bNNmOdPJ3tyS3GVbnpbao=@emersion.fr>
+ <31921238-6621-40d5-94b5-8ba3e5f9d40c@intel.com>
+Feedback-ID: 1358184:user:proton
+X-Pm-Message-ID: 8e534f4916e09db9fe19c8ade093505a387cb3b3
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/colorop=3A_do_no?=
- =?utf-8?q?t_include_headers_from_headers?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 18 Dec 2025 16:07:43 -0000
-Message-ID: <176607406356.101158.10561362094392543053@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251218141807.409751-1-jani.nikula@intel.com>
-In-Reply-To: <20251218141807.409751-1-jani.nikula@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,128 +62,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2745583907051542555==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Monday, December 15th, 2025 at 09:43, Borah, Chaitanya Kumar <chaitanya.=
+kumar.borah@intel.com> wrote:
 
-== Series Details ==
+> On 12/12/2025 11:55 PM, Simon Ser wrote:
+>=20
+> > On Friday, December 12th, 2025 at 18:47, Borah, Chaitanya Kumar chaitan=
+ya.kumar.borah@intel.com wrote:
+> >=20
+> > > > > +void intel_color_plane_commit_arm(struct intel_dsb *dsb,
+> > > > > + const struct intel_plane_state *plane_state)
+> > > > > +{
+> > > > > + struct intel_display *display =3D to_intel_display(plane_state)=
+;
+> > > > > + struct intel_crtc *crtc =3D to_intel_crtc(plane_state->uapi.crt=
+c);
+> > > > > +
+> > > > > + if (crtc && intel_color_crtc_has_3dlut(display, crtc->pipe))
+> > > > > + glk_lut_3d_commit(dsb, crtc, !!plane_state->hw.lut_3d);
+> > > > > ^^^^^^^^^^^^
+> > > >=20
+> > > > And this looks like a pretty major fail. Why is the 3D LUT stored i=
+n
+> > > > the plane state when it's a pipe level thing?
+> > >=20
+> > > With DISPLAY_VER(display) >=3D 35, 3DLUT can be attached to a plane.
+> > >=20
+> > > (Bits[23:22] in 3DLUT_CTL). This is the only way we are exposing the =
+HW
+> > > to the userspace right now (through the new plane color pipeline uapi=
+).
+> > > Therefore, it lies in the plane state.
+> > >=20
+> > > However, there are (soonish)plans to adopt the color pipeline for crt=
+cs
+> > > too. Once that happens, it needs to be handled a bit more carefully. =
+A
+> > > potential approach is to allow userspace to program the block with a
+> > > first come first served semantics and fail the commit if it tries to =
+set
+> > > 3DLUT both on plane and crtc in the same commit.
+> >=20
+> > The plane 3D LUT must only be used before blending. Any pipe-level
+> > post-blending 3D LUT hardware block is not suitable to implement plane
+> > colorops.
+>=20
+> Same 3D LUT block is shared across pipe and planes. When we do end up
+> implementing the pipe color pipeline we would like the 3DLUT exposed at
+> the pipe stage too.
 
-Series: drm/i915/colorop: do not include headers from headers
-URL   : https://patchwork.freedesktop.org/series/159223/
-State : success
+Ah, I see! And there is a switch in the hw to configure whether it's
+applied pre- or post-blending?
 
-== Summary ==
+> However, there is no good way to do it in the current color pipeline
+> UAPI (atleast that I know of). One suggestion from Harry (discussed in
+> the hackfest) was to list the pipelines in order of preference of the
+> driver.
+>=20
+> Considering we prefer the pre-blend 3DLUT over a post blend one, it
+> would mean that we don't expose the 3DLUT on the first pipeline on the
+> crtc but do it in the second one. (I am not sure how well it scales thoug=
+h)
+>=20
+> I have considered other solutions like introducing a new property say
+> "muxed" which could be used with Bypass to indicate if the current color
+> block is being used in another part of the pipeline.
 
-CI Bug Log - changes from CI_DRM_17704 -> Patchwork_159223v1
-====================================================
+I think two pipelines + making commits fail when they use conflicting
+colorops is the way to go.
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159223v1/index.html
-
-Participating hosts (43 -> 40)
-------------------------------
-
-  Missing    (3): bat-dg2-13 fi-snb-2520m bat-adls-6 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_159223v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17704/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159223v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_17704 -> Patchwork_159223v1
-
-  CI-20190529: 20190529
-  CI_DRM_17704: 31985bb0a701138a06a5eb0b175b2a5c850cc4ee @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8671: 8671
-  Patchwork_159223v1: 31985bb0a701138a06a5eb0b175b2a5c850cc4ee @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159223v1/index.html
-
---===============2745583907051542555==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/colorop: do not include headers from headers</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159223/">https://patchwork.freedesktop.org/series/159223/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159223v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159223v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17704 -&gt; Patchwork_159223v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159223v1/index.html</p>
-<h2>Participating hosts (43 -&gt; 40)</h2>
-<p>Missing    (3): bat-dg2-13 fi-snb-2520m bat-adls-6 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_159223v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17704/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159223v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17704 -&gt; Patchwork_159223v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17704: 31985bb0a701138a06a5eb0b175b2a5c850cc4ee @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8671: 8671<br />
-  Patchwork_159223v1: 31985bb0a701138a06a5eb0b175b2a5c850cc4ee @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============2745583907051542555==--
+If it turns out to be a generalized issue with more hardware and the
+above solution isn't enough for user-space, we can think of introducing
+a way to describe the limitation.
