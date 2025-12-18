@@ -2,64 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2082CCDAC6
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Dec 2025 22:24:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F291CCDAF3
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Dec 2025 22:28:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AF1E10E46A;
-	Thu, 18 Dec 2025 21:24:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0701F10EABE;
+	Thu, 18 Dec 2025 21:28:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from relay.hostedemail.com (smtprelay0014.hostedemail.com
- [216.40.44.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A664210E2E4;
- Thu, 18 Dec 2025 21:24:11 +0000 (UTC)
-Received: from omf10.hostedemail.com (a10.router.float.18 [10.200.18.1])
- by unirelay03.hostedemail.com (Postfix) with ESMTP id 6F808B82A6;
- Thu, 18 Dec 2025 21:24:08 +0000 (UTC)
-Received: from [HIDDEN] (Authenticated sender: rostedt@goodmis.org) by
- omf10.hostedemail.com (Postfix) with ESMTPA id 744942F; 
- Thu, 18 Dec 2025 21:24:03 +0000 (UTC)
-Date: Thu, 18 Dec 2025 16:25:42 -0500
-From: Steven Rostedt <rostedt@goodmis.org>
-To: Yury Norov <yury.norov@gmail.com>
-Cc: Randy Dunlap <rdunlap@infradead.org>, Andrew Morton
- <akpm@linux-foundation.org>, Masami Hiramatsu <mhiramat@kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, Christophe Leroy <chleroy@kernel.org>,
- Ingo Molnar <mingo@kernel.org>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, David Laight
- <david.laight@runbox.com>, Petr Pavlu <petr.pavlu@suse.com>, Andi Shyti
- <andi.shyti@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko
- Ursulin <tursulin@ursulin.net>, Daniel Gomez <da.gomez@kernel.org>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-modules@vger.kernel.org,
- linux-trace-kernel@vger.kernel.org, Kees Cook <kees@kernel.org>
-Subject: Re: [PATCH v3 4/4] tracing: move tracing declarations from kernel.h
- to a dedicated header
-Message-ID: <20251218162542.476009db@gandalf.local.home>
-In-Reply-To: <aURlK1gpCrfLEKN9@yury>
-References: <20251205175237.242022-1-yury.norov@gmail.com>
- <20251205175237.242022-5-yury.norov@gmail.com>
- <20251216161316.45b3f19ff0ad482018137189@linux-foundation.org>
- <55ceb7bf-0fe9-4edc-81c2-d51366847eec@infradead.org>
- <aUN8Hm377C5A0ILX@yury>
- <20251218123349.35339242@gandalf.local.home>
- <20251218124326.22334325@gandalf.local.home>
- <aURlK1gpCrfLEKN9@yury>
-X-Mailer: Claws Mail 3.20.0git84 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6564A10EABE;
+ Thu, 18 Dec 2025 21:28:27 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Stat-Signature: 5wwf9gob3j94aeuxi6eiyod9cjcjs5gu
-X-Rspamd-Server: rspamout01
-X-Rspamd-Queue-Id: 744942F
-X-Spam-Status: No, score=1.02
-X-Session-Marker: 726F737465647440676F6F646D69732E6F7267
-X-Session-ID: U2FsdGVkX1+qadkGPvrEw+WnOGTOA3qaSmf6dajjukE=
-X-HE-Tag: 1766093043-108761
-X-HE-Meta: U2FsdGVkX1+Xw1uaVtgMkJj+Zet6YRpVC3/38BOj1xfE3N4PX1Nmv+XXFMI+J9u5wvpIClJspVH2v7b5HlXNj6KKyu7uhp3y/HAasEZW4kqrOU9FGz+pAWr8HgF5KcgmC3MBhGDdKWsc3fyDLxMGmOfriowcq+34XtUOEv8llhRHmwVbhdbrQjpO/+46rFPCqQFi8t0J4es7oXaHOUbOGwh6YD32UqbgzlYruriqS8H9Ws7zxaqY4jtWs7W4IPS7HZ3cCZejPOnZenb2jdtZw8F60/CUvXfDPCS10GVN+aRrjUIGfaCDvm+k/kqhwZesKGkj5Av9d/XRlSO/ab8whwEI9JxBZWFe
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_drm/i915/display=3A_All_p?=
+ =?utf-8?q?atches_to_make_PREEMPT=5FRT_work_on_i915_+_xe=2E_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 18 Dec 2025 21:28:27 -0000
+Message-ID: <176609330741.103427.17710252683574068486@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251218163408.97508-1-dev@lankhorst.se>
+In-Reply-To: <20251218163408.97508-1-dev@lankhorst.se>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,19 +37,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 18 Dec 2025 15:33:47 -0500
-Yury Norov <yury.norov@gmail.com> wrote:
+== Series Details ==
 
-> > I don't actually remember why I had __trace_puts() pass in the size. I
-> > could change it to:  
-> 
-> This is the best approach. I'll schedule it for v4. Would you like me to
-> take it as-is, or you'd send a patch?
->  
+Series: drm/i915/display: All patches to make PREEMPT_RT work on i915 + xe. (rev7)
+URL   : https://patchwork.freedesktop.org/series/159035/
+State : failure
 
-Let me send an official patch.
+== Summary ==
 
--- Steve
+Error: make failed
+  CALL    scripts/checksyscalls.sh
+  DESCEND objtool
+  INSTALL libsubcmd_headers
+  CC [M]  drivers/gpu/drm/i915/display/i9xx_wm.o
+drivers/gpu/drm/i915/display/i9xx_wm.c: In function ‘vlv_atomic_update_fifo’:
+drivers/gpu/drm/i915/display/i9xx_wm.c:1866:34: error: unused variable ‘dev_priv’ [-Werror=unused-variable]
+ 1866 |         struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+      |                                  ^~~~~~~~
+cc1: all warnings being treated as errors
+make[6]: *** [scripts/Makefile.build:287: drivers/gpu/drm/i915/display/i9xx_wm.o] Error 1
+make[5]: *** [scripts/Makefile.build:556: drivers/gpu/drm/i915] Error 2
+make[4]: *** [scripts/Makefile.build:556: drivers/gpu/drm] Error 2
+make[3]: *** [scripts/Makefile.build:556: drivers/gpu] Error 2
+make[2]: *** [scripts/Makefile.build:556: drivers] Error 2
+make[1]: *** [/home/kbuild2/kernel/Makefile:2054: .] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
+Build failed, no error log produced
+
+
