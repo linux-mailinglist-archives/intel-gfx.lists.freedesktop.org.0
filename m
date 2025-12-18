@@ -2,188 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8EDCCCBBB0
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Dec 2025 13:09:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5076CCCBCC4
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Dec 2025 13:32:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 217BC10EE03;
-	Thu, 18 Dec 2025 12:09:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AEF810E3F2;
+	Thu, 18 Dec 2025 12:32:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UkJ85nE1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h2IKBAcz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EF9110EE03;
- Thu, 18 Dec 2025 12:09:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A0C810E0B9;
+ Thu, 18 Dec 2025 12:32:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766059791; x=1797595791;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=g1J5+//KHu6T3iGt8V/3A/kLCtn7I+08er3kNW9kCQs=;
- b=UkJ85nE12NLG5k1OA0MA7jHVV8tfusMA8IHaaieMpxZia3wZE5lOcwWS
- SotwdcUc3D5/s7vbvNYEifV9cLNfweXZejMuSDH962I8QwSdQaWqDWkUw
- m/opzeAOUCSBIE63gZwWqcSVU/BNcarV/4AAyGBkAYeE4D8x1Y1fE+NuI
- mglXUN4rWPYM3HVzH/5iOlkVz5h4AVCvNSJXCfQ/7hUVr5lEgAXzIACt/
- IYKYQD7R/1bD18gYt3I4uo1ISL75JF2aaBgcv3ry7bXAVApuSZVrewmAU
- U6579jEvwwIGun89k364sWdhkF4Y/oGqz2zLMRrSEqkkptIwYhI5wNI2X Q==;
-X-CSE-ConnectionGUID: Y0ucT1JUQ6+uj3scEnGGKw==
-X-CSE-MsgGUID: lxiGRrIWRQ6k1nO7gS7C5g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11635"; a="67949246"
-X-IronPort-AV: E=Sophos;i="6.20,256,1758610800"; d="scan'208";a="67949246"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2025 04:09:50 -0800
-X-CSE-ConnectionGUID: PcfayLUmRfmI8/1OuIm8uw==
-X-CSE-MsgGUID: 9mMPrrAvTMa1RxgCmV5CQw==
+ t=1766061138; x=1797597138;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=fHGpm5RFzopDqkONEShJ5YENlKybIqiIiJNtGzoRXKU=;
+ b=h2IKBAczmgQRaCwFS46T2DWd6IyISrmVeT+uXHuskcCNmcW2m+c00d5x
+ xXzTckbF9HK1SFCuoVqzkCa9zQCvx689CMltbylSKmmZIz1smWiJiQZve
+ r9o93GBB2ae7hc9bmVSTWuXiFDLgrDtcXNFiXoQfcysRA4hZPR+tN1Q3A
+ saJGNKIrajHUkZNrtd40J+bxaC55AsQtN31we7J+Izim56yn6xvpV9tNd
+ 3buWJitTQ5+5GmrTSCBmGMQE+siSA87efu9Md+yp3Duk6moSlWw44CQsX
+ PjFJNfGRmn3Zi2SwHov+tagOPk/0d9zy843AKvSedpfpgwwB9nIxJel7z A==;
+X-CSE-ConnectionGUID: VKaHekrGTw+WT3914wRVxA==
+X-CSE-MsgGUID: th0mfuOJSvavfXVDesbvyg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11646"; a="85597336"
+X-IronPort-AV: E=Sophos;i="6.21,158,1763452800"; d="scan'208";a="85597336"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2025 04:32:18 -0800
+X-CSE-ConnectionGUID: L4EvtK4rRSS3O1NxWruKcg==
+X-CSE-MsgGUID: GvV7JbDDRIGGEp5Purg22Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,158,1763452800"; d="scan'208";a="198170023"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2025 04:09:50 -0800
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Thu, 18 Dec 2025 04:09:49 -0800
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Thu, 18 Dec 2025 04:09:49 -0800
-Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.20) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Thu, 18 Dec 2025 04:09:49 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VhXMJvw/SKPLhTdDYTi+OrKZE1+nd8jnfzxUOfFaBexDoTPROi3EBepJka22WTa6lloEFBOThhxJpHMj8hZfsHySu1KduIN/GRGlzPKpIOU/xeWDuahNF2h36ymxsmxiXt855jcOWcsFgqp6AdQZVMR/nNlSV38YUQrra8pF8V8nJaKeTTI+f4wmMaxkrVQd7r5r+X9mQkt8tz5Bq/ii4cr4bVaBlsXIORJpyKLVPE3w0EiVz9eLg0uGh7A4MpUj5xkuBlGrlB+C96PQwRc++YIOUbvLlocLFH7XXPTjJH48nUGMTu3fQ+hJk8aIaNkTgBXP7aSmeZihZlWZb4k0Gw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UTIAg7O5Z0kqUosz+KpSiv18yiYprttTBWdpzvX1u+E=;
- b=yG05ZOXPa15P56lrO01tWHWPk4KhMaDXPzrH9jiAXIGbka2GiEJeS3Cn10YbhtJAbrJ+b4f0e4uFdPg/REriLdnAJAnlMvse38GGhOwBWXshNQjz5MQTipx5VSf9E7+l1/ifPA4epF4h/3ZUkYSRISSBpj+B0cK/qtrpZTpRz/qlLiMMY/GJGvS9oRia31gp+/B/D+0Ki22U+GA1I2iLCQj3R7a14kDer3rNXtuXbSar2HSyWHgIu4BskE9ZCRNvonqakUgpnNvAg8xO8EDXj6+DNQeni9iTcnzMr69d1VYbM6oQQaB5n1n+j+VVM5vgmH4b9vT6WXGXQNCr9mF5Pg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by DS0PR11MB8718.namprd11.prod.outlook.com (2603:10b6:8:1b9::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.8; Thu, 18 Dec
- 2025 12:09:47 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839%7]) with mapi id 15.20.9434.001; Thu, 18 Dec 2025
- 12:09:47 +0000
-Message-ID: <7bd5361c-2f50-41ac-af40-d005d0202c6c@intel.com>
-Date: Thu, 18 Dec 2025 17:39:41 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/7] drm/i915/display: Add APIs to be used by gvt to get
- the register offsets
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- <intel-gfx@lists.freedesktop.org>, <intel-gvt-dev@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>
-References: <20251218082302.2327243-1-ankit.k.nautiyal@intel.com>
- <20251218082302.2327243-3-ankit.k.nautiyal@intel.com>
- <d3d285c5180e950b8189d7d96d06d21f1d88cf6f@intel.com>
-Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <d3d285c5180e950b8189d7d96d06d21f1d88cf6f@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0067.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1b3::15) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+X-IronPort-AV: E=Sophos;i="6.21,158,1763452800"; d="scan'208";a="203645149"
+Received: from display-adls.igk.intel.com ([10.211.131.198])
+ by orviesa005.jf.intel.com with ESMTP; 18 Dec 2025 04:32:17 -0800
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: krzysztof.karas@intel.com,
+	Mika Kahola <mika.kahola@intel.com>
+Subject: [PATCH v2] drm/i915/cx0: Unify naming for C20 pll tables
+Date: Thu, 18 Dec 2025 14:23:29 +0200
+Message-Id: <20251218122329.2265139-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|DS0PR11MB8718:EE_
-X-MS-Office365-Filtering-Correlation-Id: f51f7259-2e53-474f-e5fd-08de3e2e5681
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?RVJ2VXdOd0RqMkFHOURXUnI3aVpEVEF0eWh4YkR3S2JoZDhjbDNTT2RNdUVr?=
- =?utf-8?B?WndQQzltdytya09zVmdrSFBIN1hrYUIrc1RxN1Z6Q2lKK2dzYkxNOWJYSkd2?=
- =?utf-8?B?YmZpaVI1SGtZM2lEb05SV0x2QUszTmpaaHRMdHBUM2JYWmJTdEswTlJvYzB6?=
- =?utf-8?B?dWpGTHI5OFA4TUNSaUVzaTBOcER6TDc5bUJvLzBpSSs4bDkrSDA1czNvaEdo?=
- =?utf-8?B?OHdoWUpOa1FrRDRRNzFBWm9qZkJRVTcrQzAxZHFSYnZ5VW9xMGZWeTA3bjJw?=
- =?utf-8?B?a1ljc1RtOHlVQUFHYzBTUllXWkJTQUYzM3ZtMUkrWXM1YklHQ1Q3RGdnNjJt?=
- =?utf-8?B?S29SUW9ydEZWaEdJS0t5Um9TL3cvajNrdWNkUU81aGMzTXFGVnd3ZUFjRFhr?=
- =?utf-8?B?QU81R3BIejhJckZSQ096b3p1RGJ2V0pXeGxGSnBpMnZDQnJMU0tDeElqUmU3?=
- =?utf-8?B?L3ZzZkZtQ3BaYllzYng2QkdjZlVsZzgyWWVFR1I4UHZYVmZWVEp4TVVOTzVY?=
- =?utf-8?B?SWNYa2pZMWZDOFUrZFp5RUFqcjRWbmhiV21QRjhnQXlkdE84WU01d0loWWpx?=
- =?utf-8?B?M2tSTThqdmVHYkJkUFMyQTAyWjEwcWRPOTN0cEdzUGxDSnNEWnFUZys0bDJB?=
- =?utf-8?B?NGpNTVBuSFFEd003d3hKVE9DTHFjN09ROFp0Y1hZVmkrbjZjNmU5OS8rZCt2?=
- =?utf-8?B?Z0JSS3VCb2t0aWduVWtpZW40T1FXRzczMi9PSTI1SjRkMCtxSVpkNVUvb3Z3?=
- =?utf-8?B?TzlxT0ZYTkFPRkh2emZ5cUcvSkJiZGVNNDdLQmdneCs4L2FlZVk4d0FpSldH?=
- =?utf-8?B?SGVIWk5GWG5MRm9Id1BiS2FDek51U2VkTXVQVGhlQnBhOUxyby9GUFJNTDVN?=
- =?utf-8?B?NExBU2J6TEwxWDNLMUEySXQyaUZCMzZYSXdLaDh1NjkzQzhvcVU5WllQTzJz?=
- =?utf-8?B?NGZoTEVWSWpROURWVmJqVDVhQmNvcEcvYkg5TERINlVPTnp2d2dUVlZ5SWlR?=
- =?utf-8?B?L1drcDNnbG9PRjNhS2R1dnNIcDJMa1ZUeTFlM3JWaWZWbllPQ2UxWXpwTll3?=
- =?utf-8?B?WE5BVEk5OUVWMTNra05OTmRYejJZM0NkV3ltMmlHZnhRZzhLSEI2TUZmWnFT?=
- =?utf-8?B?NklpUFdXeDE4aDFWMlViM0ZlS2JuVGJKODErVjVJck5BM1Btc0ZmaUxjTVBM?=
- =?utf-8?B?ZTBOa2l0Ui93S3ZRclRVelV2YjRLbTZHTlZQM09CY2gvdGkwR2x1a1d3K1lY?=
- =?utf-8?B?VjBqVVp1S3dTTnBzaVYyVmJaWWpoZDB4amdZSHVIdVR5aThHSHhGZU9Jbk5O?=
- =?utf-8?B?ZDdiQUplZkFCOGhWd3BtdVBsQmI5WURrUjFWd1U0a0wxcnFVNjFvUVpta2Np?=
- =?utf-8?B?b3RnYWZCZEp4eGkyS081emFxb1c2dEJuWHpmUHRrekpIVjA4blRGKzBiZGpl?=
- =?utf-8?B?MzBUeWQ0THZwaGMyekRyVXg1REdTQkJRdmFaTW5xNGpQc0NqS29iL25zR3dU?=
- =?utf-8?B?Yk5TaVZZZERtREZ0OTl0QlZTOEFSSXBya0hKZi9CQlh1bDdNbURMeDN6T3F1?=
- =?utf-8?B?akJSNVY3K3J1bVhRL2NuWGpuL1ZIQnk0SXVmWHRlYnlZV2VOU1RxRitYYWZy?=
- =?utf-8?B?Q0o0TmY0TEdHcnV3ZDgyU2ZtNThzL0tGd01SNDFSWjN1RHU3NElXNFMyRDlz?=
- =?utf-8?B?VXFiSW4vSlVFOGxTNGhlMW96N0pZZGhPanJ2bWJZWWhIUWcwd3hOU1ZtRXN1?=
- =?utf-8?B?SldDQzQya2ZSWWNwNlR6clFCN1JBckw3NlRSTEpXcTlrYllzZ0xjMnFva3or?=
- =?utf-8?B?bjljWitJeE9lUG95WVRXR2VKNnU5WndEYVhmblUyUzVpTDlaQlRZbDh4aGRV?=
- =?utf-8?B?V29xcU00NTZ5d2hKOWJvazFwNVhaeDc1czdkanR4bmR0TCtva1BxeUdna1Zu?=
- =?utf-8?Q?h5GxKyVgd4LcMx8r4BdJqH+asu2P2ORQ?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZUp0Q3JITnRjalkzeUpTTlhJcURTbTV3UzhVWWNkVXNlRk1pN3FJYXZiaEhV?=
- =?utf-8?B?aVZZTGUxNURib2NXMWFvWDEvZUR1UFR4TDgrTXlaQzBFc3VRVTRaMUVtZTFj?=
- =?utf-8?B?MUk5UDVDWmNZRDFabnd4NmJYZTIvTlZCYVNENS9ldkNVV21mZ3YveWVndkFI?=
- =?utf-8?B?YlJVVVA3WWROTThPTmVGMzNiTE5nZFBzd0paMGlabHNXUU1jUWg0MnJZM1VO?=
- =?utf-8?B?QWxRKzdNbmVjbHF5R29hcngyT2s5dVVuTm1HeWtXNmVTUWhFV2IvYUpIdWcx?=
- =?utf-8?B?c1p5dENkM3dzN1ozMGFicGcwTmZDNEN1UjJlNkZocllrcktHTGp1UDBTUko5?=
- =?utf-8?B?YkI0ZjRrRllrcFczbUE4Z0RHbk5Kay9HQm5Bc0FDQUJMMHJJNnZiMmp4b1lz?=
- =?utf-8?B?T0dpblJ5YXFxYUF5Ykd4YTNrOE84NE5GVmIrZjdBbkltZjJEZjZyVFpEKzBF?=
- =?utf-8?B?VVQ2QWY2MXpTK0VaUUNETGJmK0dsWi9CdHFaeHVZVk1DVWxGL08vN2VxODJO?=
- =?utf-8?B?TUxJZnhVam1ubzh6UjRxVzQwdlVZNW1zaTgxZ1NyNGk0ZS83eUphVkk4UDBQ?=
- =?utf-8?B?K24xL01XZzhLT0VHSmtnYWxpdG5iSEJ5QWJQWFFOcEdrZFErMC9hcWFkdXdQ?=
- =?utf-8?B?NUltWWlnRnlPUjFCWWdZR2lwaWF6TUx0K3ZWd0pVU3Z5ZWxIZU01K1ZSTlBX?=
- =?utf-8?B?RS9FNS9oQkUydkVTVkNEZktScWxEUENTMjF6ZGNRdkJtODJPRHdieGpBaWZn?=
- =?utf-8?B?ZHBTYjZvd0JiQ0tLaDdtbnJ3c0R6TDBLeDFlVjk2L1gvV3ZyT1dkZnhjaTVw?=
- =?utf-8?B?NmEvTnBiM0IyRGZvQ1VtWHFHYzVYa2REeHJFSVhtMGlTVXNuT2V5YXlYalFZ?=
- =?utf-8?B?MEJRNUNPMExFSjBMZlU4cko5RWhBUnBRaVV3V1hvWk1rYTRJVTlZUVkzM3dt?=
- =?utf-8?B?V2NqaHJhdDFXdGRmaHZXMlYxeERJeTBmZGpMMk5JbHB1WHluVnBxQ3hHRnV4?=
- =?utf-8?B?S3dyQTYrMDlJdS8rYW92SjhOREx3WEdMS2JiQm16TUh6YnQ2bDJVQ1ZkTTF4?=
- =?utf-8?B?bXdVNmxoNnVkQWwvVlhKR2RGdkZxNGZlOUlZWm9oS2xTL2V3WmhuUHovaWtV?=
- =?utf-8?B?MjJFTVB2dzVKTjc5Z3NUUXBwNWNjenhXQ2JwYVVNQTl4Nm5EbnBRNmpyR3Fu?=
- =?utf-8?B?V0llY2hoK2ZaQSt0L2hrbWpUampWSzFKKytpVmRLMmtmVEhJK0pIYjljakc5?=
- =?utf-8?B?VDZXMGRFOUtiOUtUVXJNV09yN1EyZzF3eHMvNFFQSVF3YWN4TERjMndJNGt3?=
- =?utf-8?B?SE9TcElxVFdpd21lay9UVE14c3FKU2Y5TVhtNGpQS3QwWjVwb3pJdnVpc3Zv?=
- =?utf-8?B?TmVwRG9ZbFhWWEhacGh0bGJxZklUdExxRmhZODdHUE9UMGtXMjA2MUYvY1k5?=
- =?utf-8?B?akJvRlRqN2lCMHR1YjlrYmlicmVzK0RGQUNyRUVQQU5xMXE2RmkwUkRnRGZ1?=
- =?utf-8?B?QVFCVXgwaStNYk9YKzl4K3VlaE1razhKMlQ1WVZWU1QxY0E2aGZETndZTnZX?=
- =?utf-8?B?S2svcXFqK0lPL0lqcjVwaHYrU0JrdjQ4YjZHclZtOGVselZ3cXh2bkdaRktt?=
- =?utf-8?B?NFMvZE9VUWVDTmlna0ZWVHNac09OVmVvZE80VVpLSjBCNGRZVEhOcEUwaks5?=
- =?utf-8?B?N21sNVpCWC9qRU56Tjg0MFo5Z0FsVTI3Mzd4U1g1Q1pzTEdVM21wRTFqeXlE?=
- =?utf-8?B?ZUIwVDBsT3dZa0RPSG9QaDVBSzY0M2xlZVpzeTBPSVJQUnJDOWRvSnh3VUtl?=
- =?utf-8?B?U2NOajZhTHpValJjRGdnME9hNkxuaUtJbzFYV01tOFVvaXVRRnFDdEJvZDVS?=
- =?utf-8?B?cHJNMzV6M1N5cjRWaXUrRmpBbTVSNnF2MXEveHdtR3ZERWNPdGU0UlRHb2JL?=
- =?utf-8?B?b1RvQ3hXQTdrd1F2R0JwdHFVRExNWEUvWWtvcWtOL0RZVjd0dEZUMHkrdFVj?=
- =?utf-8?B?cGVKQjUxSWNxNjgzN2FlYW0vSW1tL2RmaXplM25PSGNIQ1MrWW00NTZBckdw?=
- =?utf-8?B?NDdka0k0OE5XK1pCWlRsRDU4MURRRTlrMVNGUWtPOVBOWUNUSTY1S2s3Mi9C?=
- =?utf-8?B?VXgyMGY5UjlodkE1Y0czdElOWE00dGc0aWlLWnVKb1hBT3lSUVR5blhNRmVj?=
- =?utf-8?B?Wnc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f51f7259-2e53-474f-e5fd-08de3e2e5681
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2025 12:09:47.7260 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DIrX69yt/VV1X5pBdqSkBWneV1o+qqNl2dtPTXw1mo7fvIYlA+ls3ZqrZETO4t+woWx8Q4V3bzsaGpmRaVWXpyCtzCecw8TNY3/RNy51jy0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB8718
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -199,145 +66,166 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+To fetch pll divider tables a function name for C20
+is intel_c20_pll_tables_get() but for C10 the similar
+function is called intel_c10pll_tables_get(). Rename
+intel_c20_pll_tables_get() to intel_c20pll_tables_get()
+to be more consistent.
 
-On 12/18/2025 4:02 PM, Jani Nikula wrote:
-> On Thu, 18 Dec 2025, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
->> GVT code uses macros for register offsets that require display internal
->> structures. This makes clean separation of display code and
->> modularization difficult.
->>
->> Introduce APIs to abstract offset calculations:
->> - intel_display_device_pipe_offset()
->> - intel_display_device_trans_offset()
->> - intel_display_device_cursor_offset()
->> - intel_display_device_mmio_base()
->>
->> These APIs return absolute base offsets for the respective register
->> groups, allowing GVT to compute MMIO addresses without using internal
->> macros or struct fields. This prepares the path to separate
->> display-dependent code from i915/gvt/*.
->>
->> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>   drivers/gpu/drm/i915/Makefile                 |  1 +
->>   .../drm/i915/display/intel_display_limits.c   |  0
->>   drivers/gpu/drm/i915/display/intel_gvt_api.c  | 34 +++++++++++++++++++
->>   drivers/gpu/drm/i915/display/intel_gvt_api.h  | 20 +++++++++++
->>   4 files changed, 55 insertions(+)
->>   create mode 100644 drivers/gpu/drm/i915/display/intel_display_limits.c
->>   create mode 100644 drivers/gpu/drm/i915/display/intel_gvt_api.c
->>   create mode 100644 drivers/gpu/drm/i915/display/intel_gvt_api.h
->>
->> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
->> index f01b5d8a07c7..7974f017f263 100644
->> --- a/drivers/gpu/drm/i915/Makefile
->> +++ b/drivers/gpu/drm/i915/Makefile
->> @@ -360,6 +360,7 @@ i915-y += \
->>   	display/intel_dvo.o \
->>   	display/intel_encoder.o \
->>   	display/intel_gmbus.o \
->> +	display/intel_gvt_api.o \
-> Actually, this should be:
->
-> i915-$(CONFIG_DRM_I915_GVT) += \
-> 	display/intel_gvt_api.o
->
-> i.e. let's not add this stuff unless GVT is actually enabled.
+v2: Unify naming for all intel_cx0_pll_* to
+    intel_cx0pll_* functions (Krzysztof)
 
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 24 +++++++++----------
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h  |  2 +-
+ .../drm/i915/display/intel_display_reset.c    |  2 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  2 +-
+ 4 files changed, 15 insertions(+), 15 deletions(-)
 
-Got it. Will fix this.
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index f6d69627154e..3ddf7e5cae52 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -2287,7 +2287,7 @@ static void intel_c10pll_readout_hw_state(struct intel_encoder *encoder,
+ 			    str_enabled_disabled(intel_c10pll_ssc_enabled(pll_state)));
+ }
+ 
+-static void intel_c10_pll_program(struct intel_display *display,
++static void intel_c10pll_program(struct intel_display *display,
+ 				  struct intel_encoder *encoder,
+ 				  const struct intel_c10pll_state *pll_state)
+ {
+@@ -2458,7 +2458,7 @@ static int intel_c20_compute_hdmi_tmds_pll(const struct intel_crtc_state *crtc_s
+ }
+ 
+ static const struct intel_c20pll_state * const *
+-intel_c20_pll_tables_get(const struct intel_crtc_state *crtc_state,
++intel_c20pll_tables_get(const struct intel_crtc_state *crtc_state,
+ 			 struct intel_encoder *encoder)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+@@ -2626,13 +2626,13 @@ static void intel_c20_program_vdr_params(struct intel_encoder *encoder,
+ }
+ 
+ static const struct intel_c20pll_state *
+-intel_c20_pll_find_table(const struct intel_crtc_state *crtc_state,
++intel_c20pll_find_table(const struct intel_crtc_state *crtc_state,
+ 			 struct intel_encoder *encoder)
+ {
+ 	const struct intel_c20pll_state * const *tables;
+ 	int i;
+ 
+-	tables = intel_c20_pll_tables_get(crtc_state, encoder);
++	tables = intel_c20pll_tables_get(crtc_state, encoder);
+ 	if (!tables)
+ 		return NULL;
+ 
+@@ -2649,7 +2649,7 @@ static int intel_c20pll_calc_state_from_table(const struct intel_crtc_state *crt
+ {
+ 	const struct intel_c20pll_state *table;
+ 
+-	table = intel_c20_pll_find_table(crtc_state, encoder);
++	table = intel_c20pll_find_table(crtc_state, encoder);
+ 	if (!table)
+ 		return -EINVAL;
+ 
+@@ -2880,7 +2880,7 @@ static bool intel_c20_protocol_switch_valid(struct intel_encoder *encoder)
+ 	return intel_tc_port_in_legacy_mode(intel_dig_port);
+ }
+ 
+-static void intel_c20_pll_program(struct intel_display *display,
++static void intel_c20pll_program(struct intel_display *display,
+ 				  struct intel_encoder *encoder,
+ 				  const struct intel_c20pll_state *pll_state)
+ {
+@@ -3260,9 +3260,9 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
+ 
+ 	/* 5. Program PHY internal PLL internal registers. */
+ 	if (intel_encoder_is_c10phy(encoder))
+-		intel_c10_pll_program(display, encoder, &pll_state->c10);
++		intel_c10pll_program(display, encoder, &pll_state->c10);
+ 	else
+-		intel_c20_pll_program(display, encoder, &pll_state->c20);
++		intel_c20pll_program(display, encoder, &pll_state->c20);
+ 
+ 	/*
+ 	 * 6. Program the enabled and disabled owned PHY lane
+@@ -3558,7 +3558,7 @@ static void intel_cx0pll_disable(struct intel_encoder *encoder)
+ 	intel_cx0_phy_transaction_end(encoder, wakeref);
+ }
+ 
+-static bool intel_cx0_pll_is_enabled(struct intel_encoder *encoder)
++static bool intel_cx0pll_is_enabled(struct intel_encoder *encoder)
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
+ 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+@@ -3645,7 +3645,7 @@ bool intel_cx0pll_readout_hw_state(struct intel_encoder *encoder,
+ {
+ 	memset(pll_state, 0, sizeof(*pll_state));
+ 
+-	if (!intel_cx0_pll_is_enabled(encoder))
++	if (!intel_cx0pll_is_enabled(encoder))
+ 		return false;
+ 
+ 	if (intel_encoder_is_c10phy(encoder))
+@@ -3730,7 +3730,7 @@ int intel_cx0pll_calc_port_clock(struct intel_encoder *encoder,
+  *    to the Disable state.
+  * 2. Follow PLL Disable Sequence. This moves powerdown to the Disable state and disables the PLL.
+  */
+-void intel_cx0_pll_power_save_wa(struct intel_display *display)
++void intel_cx0pll_power_save_wa(struct intel_display *display)
+ {
+ 	struct intel_encoder *encoder;
+ 
+@@ -3748,7 +3748,7 @@ void intel_cx0_pll_power_save_wa(struct intel_display *display)
+ 		if (!intel_encoder_is_c10phy(encoder))
+ 			continue;
+ 
+-		if (intel_cx0_pll_is_enabled(encoder))
++		if (intel_cx0pll_is_enabled(encoder))
+ 			continue;
+ 
+ 		if (intel_c10pll_calc_state_from_table(encoder,
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+index 9f10113e2d18..e36a8a8377a0 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+@@ -77,7 +77,7 @@ bool intel_mtl_tbt_pll_readout_hw_state(struct intel_display *display,
+ 					struct intel_dpll_hw_state *hw_state);
+ int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder);
+ 
+-void intel_cx0_pll_power_save_wa(struct intel_display *display);
++void intel_cx0pll_power_save_wa(struct intel_display *display);
+ void intel_lnl_mac_transmit_lfps(struct intel_encoder *encoder,
+ 				 const struct intel_crtc_state *crtc_state);
+ void intel_mtl_tbt_pll_enable(struct intel_encoder *encoder,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.c b/drivers/gpu/drm/i915/display/intel_display_reset.c
+index d00ef5bdcbda..c58c9994bff6 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_reset.c
++++ b/drivers/gpu/drm/i915/display/intel_display_reset.c
+@@ -107,7 +107,7 @@ void intel_display_reset_finish(struct intel_display *display, bool test_only)
+ 		intel_pps_unlock_regs_wa(display);
+ 		intel_display_driver_init_hw(display);
+ 		intel_clock_gating_init(display->drm);
+-		intel_cx0_pll_power_save_wa(display);
++		intel_cx0pll_power_save_wa(display);
+ 		intel_hpd_init(display);
+ 
+ 		ret = __intel_display_driver_resume(display, state, ctx);
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index 9aa84a430f09..905eeb0b4a09 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -4842,7 +4842,7 @@ void intel_dpll_sanitize_state(struct intel_display *display)
+ 	struct intel_dpll *pll;
+ 	int i;
+ 
+-	intel_cx0_pll_power_save_wa(display);
++	intel_cx0pll_power_save_wa(display);
+ 
+ 	for_each_dpll(display, pll, i)
+ 		sanitize_dpll_state(display, pll);
+-- 
+2.34.1
 
-
->
->>   	display/intel_hdmi.o \
->>   	display/intel_lspcon.o \
->>   	display/intel_lt_phy.o \
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_limits.c b/drivers/gpu/drm/i915/display/intel_display_limits.c
->> new file mode 100644
->> index 000000000000..e69de29bb2d1
->> diff --git a/drivers/gpu/drm/i915/display/intel_gvt_api.c b/drivers/gpu/drm/i915/display/intel_gvt_api.c
->> new file mode 100644
->> index 000000000000..8abea318fbc2
->> --- /dev/null
->> +++ b/drivers/gpu/drm/i915/display/intel_gvt_api.c
->> @@ -0,0 +1,34 @@
->> +// SPDX-License-Identifier: MIT
->> +/*
->> + * Copyright © 2025 Intel Corporation
->> + */
->> +
->> +#include <linux/types.h>
->> +
->> +#include "intel_display_core.h"
->> +#include "intel_display_regs.h"
->> +#include "intel_gvt_api.h"
->> +
->> +u32 intel_display_device_pipe_offset(struct intel_display *display, enum pipe pipe)
->> +{
->> +	return INTEL_DISPLAY_DEVICE_PIPE_OFFSET(display, pipe);
->> +}
->> +EXPORT_SYMBOL_GPL(intel_display_device_pipe_offset);
-> And the exports should be
->
-> EXPORT_SYMBOL_NS_GPL(..., "I915_GVT");
->
-> to limit the exposure.
-
-Will take care of this in next version.
-
-
-Thanks & Regards,
-
-Ankit
-
->
-> Sorry for not catching this earlier.
->
-> BR,
-> Jani.
->
->> +
->> +u32 intel_display_device_trans_offset(struct intel_display *display, enum transcoder trans)
->> +{
->> +	return INTEL_DISPLAY_DEVICE_TRANS_OFFSET(display, trans);
->> +}
->> +EXPORT_SYMBOL_GPL(intel_display_device_trans_offset);
->> +
->> +u32 intel_display_device_cursor_offset(struct intel_display *display, enum pipe pipe)
->> +{
->> +	return INTEL_DISPLAY_DEVICE_CURSOR_OFFSET(display, pipe);
->> +}
->> +EXPORT_SYMBOL_GPL(intel_display_device_cursor_offset);
->> +
->> +u32 intel_display_device_mmio_base(struct intel_display *display)
->> +{
->> +	return DISPLAY_MMIO_BASE(display);
->> +}
->> +EXPORT_SYMBOL_GPL(intel_display_device_mmio_base);
->> diff --git a/drivers/gpu/drm/i915/display/intel_gvt_api.h b/drivers/gpu/drm/i915/display/intel_gvt_api.h
->> new file mode 100644
->> index 000000000000..e9a1122a988d
->> --- /dev/null
->> +++ b/drivers/gpu/drm/i915/display/intel_gvt_api.h
->> @@ -0,0 +1,20 @@
->> +// SPDX-License-Identifier: MIT
->> +/*
->> + * Copyright © 2025 Intel Corporation
->> + */
->> +
->> +#ifndef __INTEL_GVT_API_H__
->> +#define __INTEL_GVT_API_H__
->> +
->> +#include <linux/types.h>
->> +
->> +enum pipe;
->> +enum transcoder;
->> +struct intel_display;
->> +
->> +u32 intel_display_device_pipe_offset(struct intel_display *display, enum pipe pipe);
->> +u32 intel_display_device_trans_offset(struct intel_display *display, enum transcoder trans);
->> +u32 intel_display_device_cursor_offset(struct intel_display *display, enum pipe pipe);
->> +u32 intel_display_device_mmio_base(struct intel_display *display);
->> +
->> +#endif /* __INTEL_GVT_API_H__ */
