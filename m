@@ -2,58 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98228CCB4EE
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Dec 2025 11:09:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BD16CCB5AF
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Dec 2025 11:25:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC15D10E964;
-	Thu, 18 Dec 2025 10:09:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BFBA10EDAE;
+	Thu, 18 Dec 2025 10:25:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="nXG7GxuP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Md7Pwyag";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3CDC10E964;
- Thu, 18 Dec 2025 10:09:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1766052581;
- bh=o1fdrSWwO0xShmzqL2G5QlgwbWYvhXX+R7M9VNjTXJ4=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=nXG7GxuPC93tvgwak+SlwW3fsT70fORelI0ocCJLMZLZkDLgsIegaaElfdGba++31
- HHSfySgD+qcrRBlfWsTz0agUC7Ve8BdtD49OphYgbcoiojIPNlO4MvKVVoa2k94NVA
- 05kLTaQ2jB2ucldlsndgs8t40DdjmHsGw8ULTCRsAhpP9AUPVyBu6D4gD/EnDSMILr
- H9x9vTwKo0kKEMtxcE+nnzToGJf+8K8DnW/Pi9+uq/9ZplVjH791BStOvMdHpjBV1w
- s6WoLYFVpGUrZFCjtcNY/kWnmAiLUOnSpxFkxcYxK1JoF0Hl3sT+3wNYRMaR3qWlR2
- qlqiT3u7dG1EQ==
-Received: from fedora (unknown [IPv6:2a01:e0a:2c:6930:d919:a6e:5ea1:8a9f])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
- server-digest SHA256) (No client certificate requested)
- (Authenticated sender: bbrezillon)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id 6835D17E1146;
- Thu, 18 Dec 2025 11:09:41 +0100 (CET)
-Date: Thu, 18 Dec 2025 11:09:37 +0100
-From: Boris Brezillon <boris.brezillon@collabora.com>
-To: =?UTF-8?B?TG/Dr2M=?= Molinari <loic.molinari@collabora.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Stephen Rothwell
- <sfr@canb.auug.org.au>, Linux Kernel Mailing List
- <linux-kernel@vger.kernel.org>, DRI Devel Mailing List
- <dri-devel@lists.freedesktop.org>, Intel Graphics Mailing List
- <intel-gfx@lists.freedesktop.org>, Linux Next Mailing List
- <linux-next@vger.kernel.org>, Collabora Kernel Mailing List
- <kernel@collabora.com>
-Subject: Re: [PATCH] drm/gem: Fix kerneldoc warnings
-Message-ID: <20251218110937.2d1a0c7d@fedora>
-In-Reply-To: <20251217172404.31216-1-loic.molinari@collabora.com>
-References: <20251217172404.31216-1-loic.molinari@collabora.com>
-Organization: Collabora
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-redhat-linux-gnu)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EA0010EDAC;
+ Thu, 18 Dec 2025 10:25:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1766053522; x=1797589522;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=8etLWeN9vMli19qY5aoTxcoQyfTNxQ3UM0Cpz52e4XU=;
+ b=Md7Pwyagr+MsXiPyn4FfnixiiZsTPQ7IOG07UJ54+Fz2VRMVIbuny2sT
+ 6cin9FY+/fOwNNYUDlM4l24bvzWLDWDNBZ0l9jcJZWNPfArsZWW6KZouV
+ xF+5d6Xrd7peoxMj8oG0yqR5lmc+S6uJTJHqZSpwc8OJmdQ6rWyox+QJC
+ arsadb2QrkGhIJnC4Syn03As46w417yyUEaj5QBq0cCz+WeasBxBwAO0Y
+ myw3ijfprVMSPOag5g5Y3Eozj5wzs0VPt6hupryS2ks3TBy0IcFJAvxxf
+ bhsCdv9F5x5YvVzMwJOjjQrFilXNv+ee1ksSk2Shq5J+pdYDYFb0MN/rq Q==;
+X-CSE-ConnectionGUID: g5xpdgxcSN2e8Z5Nmj9vMw==
+X-CSE-MsgGUID: NJhLdObJQi2oJjYhJISbBg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11635"; a="67941818"
+X-IronPort-AV: E=Sophos;i="6.20,256,1758610800"; d="scan'208";a="67941818"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2025 02:25:22 -0800
+X-CSE-ConnectionGUID: brTraHSUSBGnwwFnQQ4RKA==
+X-CSE-MsgGUID: BVDDDIVvRcGlgTw+QfIAOQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,158,1763452800"; d="scan'208";a="198317922"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.247])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2025 02:25:19 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: Re: [PATCH 4/7] drm/i915/gvt/display_helpers: Cast argument to enum
+ pipe for pipe-offset macro
+In-Reply-To: <20251218082302.2327243-5-ankit.k.nautiyal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20251218082302.2327243-1-ankit.k.nautiyal@intel.com>
+ <20251218082302.2327243-5-ankit.k.nautiyal@intel.com>
+Date: Thu, 18 Dec 2025 12:25:16 +0200
+Message-ID: <db0cedb60c1b9a32f0412efb97ca34e7870e1f71@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,62 +73,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 17 Dec 2025 18:24:04 +0100
-Lo=C3=AFc Molinari <loic.molinari@collabora.com> wrote:
+On Thu, 18 Dec 2025, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+> TRANSCONF() expands via _MMIO_PIPE2, i.e., it uses pipe-based addressing.
+> In GVT, some call sites pass an enum transcoder to TRANSCONF(), which now
+> routes through INTEL_DISPLAY_DEVICE_PIPE_OFFSET() and ultimately calls
+> intel_display_device_pipe_offset(), whose parameter type is enum pipe.
+>
+> This results in -Werror=enum-conversion.
 
-> Fix incorrect parameters in drm_gem_shmem_init() and missing " *" on
-> empty lines in drm_gem_get_huge_mnt().
->=20
-> Signed-off-by: Lo=C3=AFc Molinari <loic.molinari@collabora.com>
+And that's really why this should be squashed to the previous patch,
+with explanation in the commit message, as otherwise the previous one
+fails to build.
 
-Queued to drm-misc-next.
+I don't know, maybe could also add a FIXME comment about the cast?
+*shrug*
 
+BR,
+Jani.
+
+>
+> To address this, cast the index to enum pipe in the GVT-side macro
+> override.
+>
+> This works for all cases as TRANSCODER_{A,B,C,D} all have 1:1 mapping to
+> PIPE_{A,B,C,D} except for TRANSCODER_EDP.
+>
+> There is one place which uses TRANSCONF() with TRANSCODER_EDP, which
+> appears to be incorrect. In any case, the cast preserves the previous
+> behaviour.
+>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > ---
->  drivers/gpu/drm/drm_gem_shmem_helper.c | 7 +++++--
->  include/drm/drm_gem.h                  | 4 ++--
->  2 files changed, 7 insertions(+), 4 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/drm=
-_gem_shmem_helper.c
-> index 29174ab58ff3..fbd1164174b0 100644
-> --- a/drivers/gpu/drm/drm_gem_shmem_helper.c
-> +++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
-> @@ -94,9 +94,12 @@ static int __drm_gem_shmem_init(struct drm_device *dev=
-, struct drm_gem_shmem_obj
->  }
-> =20
->  /**
-> - * drm_gem_shmem_init - Initialize an allocated object.
-> + * drm_gem_shmem_init - Initialize an allocated object of the given size
->   * @dev: DRM device
-> - * @obj: The allocated shmem GEM object.
-> + * @shmem: shmem GEM object to initialize
-> + * @size: Size of the object to initialize
-> + *
-> + * This function initializes an allocated shmem GEM object.
->   *
->   * Returns:
->   * 0 on success, or a negative error code on failure.
-> diff --git a/include/drm/drm_gem.h b/include/drm/drm_gem.h
-> index f4da8ed0d630..86f5846154f7 100644
-> --- a/include/drm/drm_gem.h
-> +++ b/include/drm/drm_gem.h
-> @@ -508,11 +508,11 @@ static inline int drm_gem_huge_mnt_create(struct dr=
-m_device *dev,
->  /**
->   * drm_gem_get_huge_mnt - Get the huge tmpfs mountpoint used by a DRM de=
-vice
->   * @dev: DRM device
-> -
-> + *
->   * This function gets the huge tmpfs mountpoint used by DRM device @dev.=
- A huge
->   * tmpfs mountpoint is used instead of `shm_mnt` after a successful call=
- to
->   * drm_gem_huge_mnt_create() when CONFIG_TRANSPARENT_HUGEPAGE is enabled.
-> -
-> + *
->   * Returns:
->   * The huge tmpfs mountpoint in use, NULL otherwise.
->   */
+>  drivers/gpu/drm/i915/gvt/display_helpers.h | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gvt/display_helpers.h b/drivers/gpu/drm/i915/gvt/display_helpers.h
+> index 97ebc92768fc..3af878e3d78e 100644
+> --- a/drivers/gpu/drm/i915/gvt/display_helpers.h
+> +++ b/drivers/gpu/drm/i915/gvt/display_helpers.h
+> @@ -17,8 +17,8 @@
+>  #ifdef INTEL_DISPLAY_DEVICE_PIPE_OFFSET
+>  #undef INTEL_DISPLAY_DEVICE_PIPE_OFFSET
+>  #endif
+> -#define INTEL_DISPLAY_DEVICE_PIPE_OFFSET(display, pipe) \
+> -	intel_display_device_pipe_offset((display), (pipe))
+> +#define INTEL_DISPLAY_DEVICE_PIPE_OFFSET(display, idx) \
+> +	intel_display_device_pipe_offset((display), (enum pipe)(idx))
+>  
+>  #ifdef INTEL_DISPLAY_DEVICE_TRANS_OFFSET
+>  #undef INTEL_DISPLAY_DEVICE_TRANS_OFFSET
 
+-- 
+Jani Nikula, Intel
