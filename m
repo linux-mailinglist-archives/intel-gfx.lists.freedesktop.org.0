@@ -2,63 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B70B9CCFA9A
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Dec 2025 12:50:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3899ACCFCE1
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Dec 2025 13:34:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C7F310EF60;
-	Fri, 19 Dec 2025 11:50:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DE7410EE09;
+	Fri, 19 Dec 2025 12:34:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JAj8lwJq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dJEaKHGG";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 682CB10EF5F;
- Fri, 19 Dec 2025 11:50:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6241110EA0B;
+ Fri, 19 Dec 2025 12:34:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766145022; x=1797681022;
+ t=1766147692; x=1797683692;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=iqo0pthT9ZTp/rHTrFiXbDfYB6vLiomNLJKBB8x5uFI=;
- b=JAj8lwJqOCG5WaMU1zrL18X29Z4JrphOo3JYBmaXc+Y1y/G9cyV8KpNd
- uOzEJ8EG4Q1KwJXotH6sEr3sAdMxqNiohhy9rmP4JeYzZ3MqoAF2p2mzn
- wkR+S0O8xPQ5VO82sYf/39EiHZELfxNoJkgwOIlrOq4YS8FuPFP6XzqB/
- 06kOJpywegZCos+Fxqqu7wYr3PsKNgghPkNZQWFJJdBFPvhv/Ox8IxDnG
- eDAPNRrYvAZAe0OPnwEEzEenpZAUR2zd3yTxetx1wDSErDgTFFigfot0c
- C9j5+TK4AMO2e9L9qrV2ODBJF24PeQOCGbJYP8jUGTa88WTOAPZkyaklr A==;
-X-CSE-ConnectionGUID: CBlFuDZsSjuVtYEidBV3/Q==
-X-CSE-MsgGUID: uU99u4CaRn+alskafbsXBw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11646"; a="90763289"
-X-IronPort-AV: E=Sophos;i="6.21,161,1763452800"; d="scan'208";a="90763289"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2025 03:50:21 -0800
-X-CSE-ConnectionGUID: 0FlMvEwWRt6A5ClNI1B9sg==
-X-CSE-MsgGUID: k4znRoOzS5mfn/HHv+KC5Q==
+ message-id:mime-version;
+ bh=QCowxUVRhaAxskuRRJpovQkOpBM8IyJkA+NE6FsRjJU=;
+ b=dJEaKHGGE8w5m8Uqh+/3BaoiIRB0ovFwbLaO+WucjbWi48ZF47NW1o4F
+ b8ddGVvwLk4LENWqSEDAkjS1rumNBujWDmaDrOvERVtDWfDIyjHkM05Aj
+ 7K00BXmQrWchzwrN5XgmgBle4+WJicnFG9G9cuaR7ImhGPghwM5r/L9Vr
+ rxXhTu7ibgpWn7IpJEXRrgoQkKTfryvOKMvGhYGItzMYPYR3uTS4g29yN
+ PLpI4ATpQAVEXUik1EJJsJNCqV1TXFV4ROj39Eh2r3r1/M0ewWbEeDOuL
+ ceGaQS3gtAfXeI2BPCeNYj+7e2XX7cUs/OGpiITTQ2KllGl+lm6XYJk0W g==;
+X-CSE-ConnectionGUID: izf6UQPeQLKsEjBTHfJ8Pw==
+X-CSE-MsgGUID: e8fRizt0SJ+IIQf9EL2kIQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11646"; a="79476192"
+X-IronPort-AV: E=Sophos;i="6.21,161,1763452800"; d="scan'208";a="79476192"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2025 04:34:52 -0800
+X-CSE-ConnectionGUID: Uab0KEWdRqWINiNleksCtg==
+X-CSE-MsgGUID: IZIxYAtXSgWdqGT0GJP7JQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,161,1763452800"; d="scan'208";a="199100183"
+X-IronPort-AV: E=Sophos;i="6.21,161,1763452800"; d="scan'208";a="198752702"
 Received: from mwiniars-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.34])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2025 03:50:17 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Alex Hung <alex.hung@amd.com>, dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, Simon Ser <contact@emersion.fr>, Harry
- Wentland <harry.wentland@amd.com>, Daniel Stone <daniels@collabora.com>,
- Melissa Wen <mwen@igalia.com>, Sebastian Wick <sebastian.wick@redhat.com>
-Subject: Re: [PATCH] drm/atomic: convert
- drm_atomic_get_{old,new}_colorop_state() into proper functions
-In-Reply-To: <befebef3-0870-4c2d-a847-1fe1cc2acd7b@amd.com>
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2025 04:34:50 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: Re: [PATCH 4/6] drm/i915/gvt: Change for_each_pipe to use
+ pipe_valid API
+In-Reply-To: <20251219060302.2365123-5-ankit.k.nautiyal@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20251218141527.405328-1-jani.nikula@intel.com>
- <befebef3-0870-4c2d-a847-1fe1cc2acd7b@amd.com>
-Date: Fri, 19 Dec 2025 13:50:14 +0200
-Message-ID: <aaa7bc13a2a34eea7f591ff535c6eef5de5f0f30@intel.com>
+References: <20251219060302.2365123-1-ankit.k.nautiyal@intel.com>
+ <20251219060302.2365123-5-ankit.k.nautiyal@intel.com>
+Date: Fri, 19 Dec 2025 14:34:47 +0200
+Message-ID: <6e7a241b3c0244bf4d2ad37dc7fca69a3754405d@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,279 +73,135 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 18 Dec 2025, Alex Hung <alex.hung@amd.com> wrote:
-> Hi Jani,
+On Fri, 19 Dec 2025, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+> Add a new API to check if a given pipe is valid using
+> DISPLAY_RUNTIME_INFO() for GVT.
 >
-> Some compilation errors with this patch:
+> Update GVT to use this API instead of accessing
+> `DISPLAY_RUNTIME_INFO->pipe_mask` directly in the `for_each_pipe` macro.
+>
+> Since `for_each_pipe` is defined in i915/display/intel_display.h, which
+> also contains other macros used by gvt/display.c, we cannot drop the
+> intel_display.h header yet. This causes a build error because
+> `for_each_pipe` is included from both i915/display/intel_display.h and
+> gvt/display_helpers.h.
+>
+> To resolve this, rename the GVT macro to `gvt_for_each_pipe` and make it
+> call the new API. This avoids exposing display internals and prepares for
+> display modularization.
 
-Thanks a lot, sent v2.
+I'm fine with the separate name for this, to underline the difference.
 
-BR,
-Jani.
+However, I think in the long run gvt should include fewer things from
+display/. This may mean refactoring display headers a bit to limit the
+exposure. Like, there's current intel_display_types.h and
+intel_display.h includes, and we shouldn't have them, but it's beyond
+this series.
 
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 >
-> drivers/gpu/drm/vkms/vkms_drv.c: In function =E2=80=98vkms_destroy=E2=80=
-=99:
-> drivers/gpu/drm/vkms/vkms_drv.c:261:9: error: implicit declaration of=20
-> function =E2=80=98drm_colorop_pipeline_destroy=E2=80=99=20
-> [-Werror=3Dimplicit-function-declaration]
->    261 |         drm_colorop_pipeline_destroy(&config->dev->drm);
->        |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> cc1: some warnings being treated as errors
-> make[9]: *** [scripts/Makefile.build:287:=20
-> drivers/gpu/drm/vkms/vkms_drv.o] Error 1
-> make[9]: *** Waiting for unfinished jobs....
-> drivers/gpu/drm/vkms/vkms_composer.c: In function =E2=80=98apply_colorop=
-=E2=80=99:
-> drivers/gpu/drm/vkms/vkms_composer.c:164:58: error: invalid use of=20
-> undefined type =E2=80=98struct drm_colorop=E2=80=99
->    164 |         struct drm_colorop_state *colorop_state =3D colorop->sta=
-te;
->        |                                                          ^~
-> drivers/gpu/drm/vkms/vkms_composer.c:165:41: error: invalid use of=20
-> undefined type =E2=80=98struct drm_colorop=E2=80=99
->    165 |         struct drm_device *dev =3D colorop->dev;
->        |                                         ^~
-> drivers/gpu/drm/vkms/vkms_composer.c:167:20: error: invalid use of=20
-> undefined type =E2=80=98struct drm_colorop=E2=80=99
->    167 |         if (colorop->type =3D=3D DRM_COLOROP_1D_CURVE) {
->        |                    ^~
-> drivers/gpu/drm/vkms/vkms_composer.c:168:38: error: invalid use of=20
-> undefined type =E2=80=98struct drm_colorop_state=E2=80=99
->    168 |                 switch (colorop_state->curve_1d_type) {
->        |                                      ^~
-> drivers/gpu/drm/vkms/vkms_composer.c:169:22: error:=20
-> =E2=80=98DRM_COLOROP_1D_CURVE_SRGB_INV_EOTF=E2=80=99 undeclared (first us=
-e in this function)
->    169 |                 case DRM_COLOROP_1D_CURVE_SRGB_INV_EOTF:
->        |                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> drivers/gpu/drm/vkms/vkms_composer.c:169:22: note: each undeclared=20
-> identifier is reported only once for each function it appears in
-> drivers/gpu/drm/vkms/vkms_composer.c:174:22: error:=20
-> =E2=80=98DRM_COLOROP_1D_CURVE_SRGB_EOTF=E2=80=99 undeclared (first use in=
- this=20
-> function); did you mean =E2=80=98DRM_COLOROP_1D_CURVE=E2=80=99?
->    174 |                 case DRM_COLOROP_1D_CURVE_SRGB_EOTF:
-> ...
+> v2:
+>  - Expose API to check if pipe is valid rather than the runtime info
+>    pipe mask. (Jani)
+>  - Rename the macro to `gvt_for_each_pipe` to resolve build error.
+> v3:
+>  - Use EXPORT_SYMBOL_NS_GPL(..., "I915_GVT"); (Jani)
+>  - Use enum pipe at call sites instead of casting in the macro. (Jani)
 >
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_gvt_api.c |  9 +++++++++
+>  drivers/gpu/drm/i915/display/intel_gvt_api.h |  1 +
+>  drivers/gpu/drm/i915/gvt/display.c           | 10 +++++-----
+>  drivers/gpu/drm/i915/gvt/display_helpers.h   |  4 ++++
+>  4 files changed, 19 insertions(+), 5 deletions(-)
 >
-> Including the drm_colorop.h in vkms_composer.c and vkms_drv.c fixes them:
->
-> diff --git a/drivers/gpu/drm/vkms/vkms_composer.c=20
-> b/drivers/gpu/drm/vkms/vkms_composer.c
-> index 3cf3f26e0d8e..cd85de4ffd03 100644
-> --- a/drivers/gpu/drm/vkms/vkms_composer.c
-> +++ b/drivers/gpu/drm/vkms/vkms_composer.c
-> @@ -5,6 +5,7 @@
->   #include <drm/drm_atomic.h>
->   #include <drm/drm_atomic_helper.h>
->   #include <drm/drm_blend.h>
-> +#include <drm/drm_colorop.h>
->   #include <drm/drm_fourcc.h>
->   #include <drm/drm_fixed.h>
->   #include <drm/drm_gem_framebuffer_helper.h>
-> diff --git a/drivers/gpu/drm/vkms/vkms_drv.c=20
-> b/drivers/gpu/drm/vkms/vkms_drv.c
-> index dd1402f43773..434c295f44ba 100644
-> --- a/drivers/gpu/drm/vkms/vkms_drv.c
-> +++ b/drivers/gpu/drm/vkms/vkms_drv.c
-> @@ -17,6 +17,7 @@
->   #include <drm/drm_gem.h>
->   #include <drm/drm_atomic.h>
->   #include <drm/drm_atomic_helper.h>
-> +#include <drm/drm_colorop.h>
->   #include <drm/drm_drv.h>
->   #include <drm/drm_fbdev_shmem.h>
->   #include <drm/drm_file.h>
->
->
-> Alex
->
-> On 12/18/25 07:15, Jani Nikula wrote:
->> There is no real reason to include drm_colorop.h from drm_atomic.h, as
->> drm_atomic_get_{old,new}_colorop_state() have no real reason to be
->> static inline.
->>=20
->> Convert the static inlines to proper functions, and drop the include to
->> reduce the include dependencies and improve data hiding.
->>=20
->> Fixes: cfc27680ee20 ("drm/colorop: Introduce new drm_colorop mode object=
-")
->> Cc: Simon Ser <contact@emersion.fr>
->> Cc: Alex Hung <alex.hung@amd.com>
->> Cc: Harry Wentland <harry.wentland@amd.com>
->> Cc: Daniel Stone <daniels@collabora.com>
->> Cc: Melissa Wen <mwen@igalia.com>
->> Cc: Sebastian Wick <sebastian.wick@redhat.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->>=20
->> ---
->>=20
->> Including the massive Cc list because I don't want to keep doing this
->> afterwards. This stuff needs to be blocked and fixed during review. Just
->> stop including headers from headers. It's a PITA to clean up.
->> ---
->>   .../amd/display/amdgpu_dm/amdgpu_dm_color.c   |  3 ++
->>   drivers/gpu/drm/drm_atomic.c                  | 32 +++++++++++++++
->>   drivers/gpu/drm/drm_atomic_helper.c           |  1 +
->>   .../drm/i915/display/intel_display_types.h    |  1 +
->>   include/drm/drm_atomic.h                      | 39 ++++---------------
->>   5 files changed, 45 insertions(+), 31 deletions(-)
->>=20
->> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c b/d=
-rivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
->> index 1dcc79b35225..20a76d81d532 100644
->> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
->> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
->> @@ -23,6 +23,9 @@
->>    * Authors: AMD
->>    *
->>    */
->> +
->> +#include <drm/drm_colorop.h>
->> +
->>   #include "amdgpu.h"
->>   #include "amdgpu_mode.h"
->>   #include "amdgpu_dm.h"
->> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
->> index 6d3ea8056b60..52738b80ddbe 100644
->> --- a/drivers/gpu/drm/drm_atomic.c
->> +++ b/drivers/gpu/drm/drm_atomic.c
->> @@ -641,6 +641,38 @@ drm_atomic_get_colorop_state(struct drm_atomic_stat=
-e *state,
->>   }
->>   EXPORT_SYMBOL(drm_atomic_get_colorop_state);
->>=20=20=20
->> +/**
->> + * drm_atomic_get_old_colorop_state - get colorop state, if it exists
->> + * @state: global atomic state object
->> + * @colorop: colorop to grab
->> + *
->> + * This function returns the old colorop state for the given colorop, or
->> + * NULL if the colorop is not part of the global atomic state.
->> + */
->> +struct drm_colorop_state *
->> +drm_atomic_get_old_colorop_state(struct drm_atomic_state *state,
->> +				 struct drm_colorop *colorop)
->> +{
->> +	return state->colorops[drm_colorop_index(colorop)].old_state;
->> +}
->> +EXPORT_SYMBOL(drm_atomic_get_old_colorop_state);
->> +
->> +/**
->> + * drm_atomic_get_new_colorop_state - get colorop state, if it exists
->> + * @state: global atomic state object
->> + * @colorop: colorop to grab
->> + *
->> + * This function returns the new colorop state for the given colorop, or
->> + * NULL if the colorop is not part of the global atomic state.
->> + */
->> +struct drm_colorop_state *
->> +drm_atomic_get_new_colorop_state(struct drm_atomic_state *state,
->> +				 struct drm_colorop *colorop)
->> +{
->> +	return state->colorops[drm_colorop_index(colorop)].new_state;
->> +}
->> +EXPORT_SYMBOL(drm_atomic_get_new_colorop_state);
->> +
->>   static bool
->>   plane_switching_crtc(const struct drm_plane_state *old_plane_state,
->>   		     const struct drm_plane_state *new_plane_state)
->> diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_a=
-tomic_helper.c
->> index 10adac9397cf..5840e9cc6f66 100644
->> --- a/drivers/gpu/drm/drm_atomic_helper.c
->> +++ b/drivers/gpu/drm/drm_atomic_helper.c
->> @@ -34,6 +34,7 @@
->>   #include <drm/drm_atomic_uapi.h>
->>   #include <drm/drm_blend.h>
->>   #include <drm/drm_bridge.h>
->> +#include <drm/drm_colorop.h>
->>   #include <drm/drm_damage_helper.h>
->>   #include <drm/drm_device.h>
->>   #include <drm/drm_drv.h>
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/driver=
-s/gpu/drm/i915/display/intel_display_types.h
->> index 6ff53cd58052..eb2e3f1e83c9 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->> @@ -34,6 +34,7 @@
->>   #include <drm/display/drm_dp_tunnel.h>
->>   #include <drm/display/drm_dsc.h>
->>   #include <drm/drm_atomic.h>
->> +#include <drm/drm_colorop.h>
->>   #include <drm/drm_crtc.h>
->>   #include <drm/drm_encoder.h>
->>   #include <drm/drm_framebuffer.h>
->> diff --git a/include/drm/drm_atomic.h b/include/drm/drm_atomic.h
->> index 74ce26fa8838..178f8f62c80f 100644
->> --- a/include/drm/drm_atomic.h
->> +++ b/include/drm/drm_atomic.h
->> @@ -30,7 +30,6 @@
->>=20=20=20
->>   #include <drm/drm_crtc.h>
->>   #include <drm/drm_util.h>
->> -#include <drm/drm_colorop.h>
->>=20=20=20
->>   /**
->>    * struct drm_crtc_commit - track modeset commits on a CRTC
->> @@ -712,6 +711,14 @@ drm_atomic_get_plane_state(struct drm_atomic_state =
-*state,
->>   struct drm_colorop_state *
->>   drm_atomic_get_colorop_state(struct drm_atomic_state *state,
->>   			     struct drm_colorop *colorop);
->> +
->> +struct drm_colorop_state *
->> +drm_atomic_get_old_colorop_state(struct drm_atomic_state *state,
->> +				 struct drm_colorop *colorop);
->> +struct drm_colorop_state *
->> +drm_atomic_get_new_colorop_state(struct drm_atomic_state *state,
->> +				 struct drm_colorop *colorop);
->> +
->>   struct drm_connector_state * __must_check
->>   drm_atomic_get_connector_state(struct drm_atomic_state *state,
->>   			       struct drm_connector *connector);
->> @@ -808,36 +815,6 @@ drm_atomic_get_new_plane_state(const struct drm_ato=
-mic_state *state,
->>   	return state->planes[drm_plane_index(plane)].new_state;
->>   }
->>=20=20=20
->> -/**
->> - * drm_atomic_get_old_colorop_state - get colorop state, if it exists
->> - * @state: global atomic state object
->> - * @colorop: colorop to grab
->> - *
->> - * This function returns the old colorop state for the given colorop, or
->> - * NULL if the colorop is not part of the global atomic state.
->> - */
->> -static inline struct drm_colorop_state *
->> -drm_atomic_get_old_colorop_state(struct drm_atomic_state *state,
->> -				 struct drm_colorop *colorop)
->> -{
->> -	return state->colorops[drm_colorop_index(colorop)].old_state;
->> -}
->> -
->> -/**
->> - * drm_atomic_get_new_colorop_state - get colorop state, if it exists
->> - * @state: global atomic state object
->> - * @colorop: colorop to grab
->> - *
->> - * This function returns the new colorop state for the given colorop, or
->> - * NULL if the colorop is not part of the global atomic state.
->> - */
->> -static inline struct drm_colorop_state *
->> -drm_atomic_get_new_colorop_state(struct drm_atomic_state *state,
->> -				 struct drm_colorop *colorop)
->> -{
->> -	return state->colorops[drm_colorop_index(colorop)].new_state;
->> -}
->> -
->>   /**
->>    * drm_atomic_get_old_connector_state - get connector state, if it exi=
-sts
->>    * @state: global atomic state object
->
+> diff --git a/drivers/gpu/drm/i915/display/intel_gvt_api.c b/drivers/gpu/drm/i915/display/intel_gvt_api.c
+> index b1bfe4843135..a69e249395ae 100644
+> --- a/drivers/gpu/drm/i915/display/intel_gvt_api.c
+> +++ b/drivers/gpu/drm/i915/display/intel_gvt_api.c
+> @@ -32,3 +32,12 @@ u32 intel_display_device_mmio_base(struct intel_display *display)
+>  	return DISPLAY_MMIO_BASE(display);
+>  }
+>  EXPORT_SYMBOL_NS_GPL(intel_display_device_mmio_base, "I915_GVT");
+> +
+> +bool intel_display_device_pipe_valid(struct intel_display *display, enum pipe pipe)
+> +{
+> +	if (pipe < PIPE_A || pipe >= I915_MAX_PIPES)
+> +		return false;
+> +
+> +	return DISPLAY_RUNTIME_INFO(display)->pipe_mask & BIT(pipe);
+> +}
+> +EXPORT_SYMBOL_NS_GPL(intel_display_device_pipe_valid, "I915_GVT");
+> diff --git a/drivers/gpu/drm/i915/display/intel_gvt_api.h b/drivers/gpu/drm/i915/display/intel_gvt_api.h
+> index e9a1122a988d..a53687f7d934 100644
+> --- a/drivers/gpu/drm/i915/display/intel_gvt_api.h
+> +++ b/drivers/gpu/drm/i915/display/intel_gvt_api.h
+> @@ -16,5 +16,6 @@ u32 intel_display_device_pipe_offset(struct intel_display *display, enum pipe pi
+>  u32 intel_display_device_trans_offset(struct intel_display *display, enum transcoder trans);
+>  u32 intel_display_device_cursor_offset(struct intel_display *display, enum pipe pipe);
+>  u32 intel_display_device_mmio_base(struct intel_display *display);
+> +bool intel_display_device_pipe_valid(struct intel_display *display, enum pipe pipe);
+>  
+>  #endif /* __INTEL_GVT_API_H__ */
+> diff --git a/drivers/gpu/drm/i915/gvt/display.c b/drivers/gpu/drm/i915/gvt/display.c
+> index 9d6b22b2e4d0..1d0c581a8ccc 100644
+> --- a/drivers/gpu/drm/i915/gvt/display.c
+> +++ b/drivers/gpu/drm/i915/gvt/display.c
+> @@ -188,7 +188,7 @@ static void emulate_monitor_status_change(struct intel_vgpu *vgpu)
+>  {
+>  	struct drm_i915_private *dev_priv = vgpu->gvt->gt->i915;
+>  	struct intel_display *display = dev_priv->display;
+> -	int pipe;
+> +	enum pipe pipe;
+>  
+>  	if (IS_BROXTON(dev_priv)) {
+>  		enum transcoder trans;
+> @@ -200,7 +200,7 @@ static void emulate_monitor_status_change(struct intel_vgpu *vgpu)
+>  			  GEN8_DE_PORT_HOTPLUG(HPD_PORT_B) |
+>  			  GEN8_DE_PORT_HOTPLUG(HPD_PORT_C));
+>  
+> -		for_each_pipe(display, pipe) {
+> +		gvt_for_each_pipe(display, pipe) {
+>  			vgpu_vreg_t(vgpu, TRANSCONF(display, pipe)) &=
+>  				~(TRANSCONF_ENABLE | TRANSCONF_STATE_ENABLE);
+>  			vgpu_vreg_t(vgpu, DSPCNTR(display, pipe)) &= ~DISP_ENABLE;
+> @@ -516,7 +516,7 @@ static void emulate_monitor_status_change(struct intel_vgpu *vgpu)
+>  		vgpu_vreg_t(vgpu, PCH_ADPA) &= ~ADPA_CRT_HOTPLUG_MONITOR_MASK;
+>  
+>  	/* Disable Primary/Sprite/Cursor plane */
+> -	for_each_pipe(display, pipe) {
+> +	gvt_for_each_pipe(display, pipe) {
+>  		vgpu_vreg_t(vgpu, DSPCNTR(display, pipe)) &= ~DISP_ENABLE;
+>  		vgpu_vreg_t(vgpu, SPRCTL(pipe)) &= ~SPRITE_ENABLE;
+>  		vgpu_vreg_t(vgpu, CURCNTR(display, pipe)) &= ~MCURSOR_MODE_MASK;
+> @@ -669,10 +669,10 @@ void intel_vgpu_emulate_vblank(struct intel_vgpu *vgpu)
+>  {
+>  	struct drm_i915_private *i915 = vgpu->gvt->gt->i915;
+>  	struct intel_display *display = i915->display;
+> -	int pipe;
+> +	enum pipe pipe;
+>  
+>  	mutex_lock(&vgpu->vgpu_lock);
+> -	for_each_pipe(display, pipe)
+> +	gvt_for_each_pipe(display, pipe)
+>  		emulate_vblank_on_pipe(vgpu, pipe);
+>  	mutex_unlock(&vgpu->vgpu_lock);
+>  }
+> diff --git a/drivers/gpu/drm/i915/gvt/display_helpers.h b/drivers/gpu/drm/i915/gvt/display_helpers.h
+> index 46c5192a79a7..7c6e15aa280a 100644
+> --- a/drivers/gpu/drm/i915/gvt/display_helpers.h
+> +++ b/drivers/gpu/drm/i915/gvt/display_helpers.h
+> @@ -42,4 +42,8 @@
+>  #define INTEL_DISPLAY_DEVICE_CURSOR_OFFSET(display, pipe) \
+>  	intel_display_device_cursor_offset((display), (pipe))
+>  
+> +#define gvt_for_each_pipe(display, __p) \
+> +	for ((__p) = PIPE_A; (__p) < I915_MAX_PIPES; (__p)++) \
+> +		for_each_if(intel_display_device_pipe_valid((display), (__p)))
+> +
+>  #endif /* __DISPLAY_HELPERS_H__ */
 
---=20
+-- 
 Jani Nikula, Intel
