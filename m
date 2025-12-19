@@ -2,57 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F91FCCEA10
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Dec 2025 07:15:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61DF2CCEBBF
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Dec 2025 08:13:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0411C10EE0B;
-	Fri, 19 Dec 2025 06:15:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E53A510EE2F;
+	Fri, 19 Dec 2025 07:12:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I1xgs+GU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VGZK/s+C";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D30F10EE0B;
- Fri, 19 Dec 2025 06:15:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67EB510EE2F;
+ Fri, 19 Dec 2025 07:12:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766124936; x=1797660936;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=eqWd4gMh5xt+Wk4nnZOi992orNE1wDzzDUGQ4KWh0S8=;
- b=I1xgs+GU3iHGv0rDF+9UGzy2dg1mdssLaBZbuJPlDvLrUZU12389ICij
- Qyi0li8QkAyBls8JDj/xtDtFLO8v1d2PFPSybQ3Xumu/Y2Z66WnTJD/JF
- AcH/qig0ZmKOSUSNVPz+4KLi/EshZmP5FBtFp1SAzKoCbCKUxDvIc/vq/
- Ut/mPcey5ZX/enKZeCqiL6d5Yt+vE0yZtvzgYLu4rKW6hs/Ie7/i+amZV
- E6QPouGBPbC3OH8oqc+HrV93pRvay4QRRc6l6+Fu3O08pxsjXsbO/8bs2
- x0bbAOpS+pEWGf4yxH145Bb1AUBNQeXqOUSsq6iZrFoalxyT6fME+BJRv g==;
-X-CSE-ConnectionGUID: T4D4VilwRmWm+pWpM+jMIw==
-X-CSE-MsgGUID: 1i3wKC5wQzWoV9e7FpTysA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11646"; a="68058625"
-X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="68058625"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2025 22:15:36 -0800
-X-CSE-ConnectionGUID: Pu9zFYO1RgaTykKgpD8YQw==
-X-CSE-MsgGUID: QDWEPfZRS92pxR+6p12S5A==
+ t=1766128378; x=1797664378;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=l6tQ61PY49V14D2GFNf2ZWG1cSVvC9o+jThxs8XO4a0=;
+ b=VGZK/s+CsB148f3NNEZzJGAKP5ZstifkP9LymCJZ0XI+k7YLQbVuWcOS
+ H9IvY/BQG6B9v9bLoXhaU9Dv9DYHylcyU6vkHdHDbVT6r93NExqvrTX5Y
+ ZJmKfBFwYz8Wy4RfIWq6M4o+0u9h5BYRqi0uEmmnWuJ0hUa2SRvMT7/FJ
+ rrEMVp+AC25FAgsRyQB7Tfyfl7jNEZS/nfStFLkkUBa/m/XiDN8UeklkK
+ 0hsu7ceAHbe+uINckL87MUd0jyxnciAbTk5KWPxE2spuVtxkvocNNhy5I
+ okFwlDzvm/cHg3Y5iViHZyoV/Pn1Vf1U8J+CufMlN4d8tJ6jin+Yogyju w==;
+X-CSE-ConnectionGUID: ok5PmrYJQjuk+Ujg3NpR9g==
+X-CSE-MsgGUID: vaUvx7LSStWyikeaMLJBzg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11646"; a="93562270"
+X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="93562270"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2025 23:12:58 -0800
+X-CSE-ConnectionGUID: ehlmLq8RQd2ulsLScpO5gg==
+X-CSE-MsgGUID: tmngKEg8QLq9e6rSl6ttBQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="229464715"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2025 22:15:34 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: jani.nikula@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH 6/6] drm/i915/gvt/display_helper: Get rid of #ifdef/#undefs
-Date: Fri, 19 Dec 2025 11:32:59 +0530
-Message-ID: <20251219060302.2365123-7-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20251219060302.2365123-1-ankit.k.nautiyal@intel.com>
-References: <20251219060302.2365123-1-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="222209418"
+Received: from dut-2a59.iind.intel.com ([10.190.239.113])
+ by fmviesa002.fm.intel.com with ESMTP; 18 Dec 2025 23:12:54 -0800
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Cc: harry.wentland@amd.com, jani.nikula@linux.intel.com,
+ louis.chauvet@bootlin.com, mwen@igalia.com, contact@emersion.fr,
+ alex.hung@amd.com, daniels@collabora.com, uma.shankar@intel.com,
+ suraj.kandpal@intel.com, nfraprado@collabora.com,
+ ville.syrjala@linux.intel.com, matthew.d.roper@intel.com
+Subject: [PATCH 00/13] drm: Color pipeline teardown and follow-up
+ fixes/improvements
+Date: Fri, 19 Dec 2025 12:26:01 +0530
+Message-Id: <20251219065614.190834-1-chaitanya.kumar.borah@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,91 +71,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now that i915/display macros have been substituted with wrappers that call
-the new display-device helpers, we can drop the conflicting includes from
-GVT and remove the temporary #ifdef/#undef macro overrides.
+This series contains follow-up fixes and improvements for the DRM color
+pipeline infrastructure that was introduced in v6.19.[1][2]
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/gvt/cmd_parser.c      |  1 -
- drivers/gpu/drm/i915/gvt/display_helpers.h | 12 ------------
- drivers/gpu/drm/i915/gvt/fb_decoder.c      |  1 -
- drivers/gpu/drm/i915/gvt/handlers.c        |  1 -
- 4 files changed, 15 deletions(-)
+The central handling of clean up of colorop from the mode_config list
+is missing. While vkms calls drm_colorop_pipeline_destroy() in vkms_destroy(),
+amd driver calls it only during failure of the init path and i915/xe driver
+does not call it at all. This means amd and intel leaks these objects on
+driver removal.
 
-diff --git a/drivers/gpu/drm/i915/gvt/cmd_parser.c b/drivers/gpu/drm/i915/gvt/cmd_parser.c
-index fbc8a5e28576..e5301733f4e4 100644
---- a/drivers/gpu/drm/i915/gvt/cmd_parser.c
-+++ b/drivers/gpu/drm/i915/gvt/cmd_parser.c
-@@ -53,7 +53,6 @@
- #include "trace.h"
- 
- #include "display/i9xx_plane_regs.h"
--#include "display/intel_display_core.h"
- #include "display/intel_sprite_regs.h"
- #include "gem/i915_gem_context.h"
- #include "gem/i915_gem_pm.h"
-diff --git a/drivers/gpu/drm/i915/gvt/display_helpers.h b/drivers/gpu/drm/i915/gvt/display_helpers.h
-index 7c6e15aa280a..6bbf9698eb7d 100644
---- a/drivers/gpu/drm/i915/gvt/display_helpers.h
-+++ b/drivers/gpu/drm/i915/gvt/display_helpers.h
-@@ -8,15 +8,9 @@
- 
- #include "display/intel_gvt_api.h"
- 
--#ifdef DISPLAY_MMIO_BASE
--#undef DISPLAY_MMIO_BASE
--#endif
- #define DISPLAY_MMIO_BASE(display) \
- 	intel_display_device_mmio_base((display))
- 
--#ifdef INTEL_DISPLAY_DEVICE_PIPE_OFFSET
--#undef INTEL_DISPLAY_DEVICE_PIPE_OFFSET
--#endif
- /*
-  * #FIXME:
-  * TRANSCONF() uses pipe-based addressing via _MMIO_PIPE2().
-@@ -30,15 +24,9 @@
- #define INTEL_DISPLAY_DEVICE_PIPE_OFFSET(display, idx) \
- 	intel_display_device_pipe_offset((display), (enum pipe)(idx))
- 
--#ifdef INTEL_DISPLAY_DEVICE_TRANS_OFFSET
--#undef INTEL_DISPLAY_DEVICE_TRANS_OFFSET
--#endif
- #define INTEL_DISPLAY_DEVICE_TRANS_OFFSET(display, trans) \
- 	intel_display_device_trans_offset((display), (trans))
- 
--#ifdef INTEL_DISPLAY_DEVICE_CURSOR_OFFSET
--#undef INTEL_DISPLAY_DEVICE_CURSOR_OFFSET
--#endif
- #define INTEL_DISPLAY_DEVICE_CURSOR_OFFSET(display, pipe) \
- 	intel_display_device_cursor_offset((display), (pipe))
- 
-diff --git a/drivers/gpu/drm/i915/gvt/fb_decoder.c b/drivers/gpu/drm/i915/gvt/fb_decoder.c
-index c402f3b5a0ab..3d1a7e5c8cd3 100644
---- a/drivers/gpu/drm/i915/gvt/fb_decoder.c
-+++ b/drivers/gpu/drm/i915/gvt/fb_decoder.c
-@@ -43,7 +43,6 @@
- 
- #include "display/i9xx_plane_regs.h"
- #include "display/intel_cursor_regs.h"
--#include "display/intel_display_core.h"
- #include "display/intel_sprite_regs.h"
- #include "display/skl_universal_plane_regs.h"
- #include "display_helpers.h"
-diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
-index 9ada97d01b6c..7063d3c77562 100644
---- a/drivers/gpu/drm/i915/gvt/handlers.c
-+++ b/drivers/gpu/drm/i915/gvt/handlers.c
-@@ -49,7 +49,6 @@
- #include "display/i9xx_plane_regs.h"
- #include "display/intel_crt_regs.h"
- #include "display/intel_cursor_regs.h"
--#include "display/intel_display_core.h"
- #include "display/intel_display_types.h"
- #include "display/intel_dmc_regs.h"
- #include "display/intel_dp_aux_regs.h"
+This series adds the teardown of mode_config.colorop_list in drm_mode_config_cleanup().
+Since, i915/xe sub-classes the drm_colorop within intel_colorop it was not enough
+to just use drm_colorop_pipeline_destroy(). Therefore, this series
+
+- Introduces driver-managed destruction for drm_colorop objects and
+  updates core helpers to use driver-provided destroy callbacks.
+- Ensures all colorop objects are correctly torn down during
+  mode_config cleanup and driver removal.
+
+In addition to that following changes are made in the series
+- Fixes enum name lifetime leaks in color pipeline init in i915, amdgpu_dm, and vkms
+- Corrects the ordering of the 3D LUT block in the i915 plane color pipeline
+- Refactors i915 plane color pipeline initialization to reliably clean
+  up partially constructed pipelines on failure.
+
+Thanks for taking a look. Feedback is welcome.
+
+[1] https://lore.kernel.org/dri-devel/cbe00ac4-a535-47d3-813a-e2eda7e9b991@amd.com/
+[2] https://lore.kernel.org/intel-gfx/20251203085211.3663374-1-uma.shankar@intel.com/
+
+==
+Chaitanya
+
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Uma Shankar <uma.shankar@intel.com>
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Alex Hung <alex.hung@amd.com>
+Cc: Louis Chauvet <louis.chauvet@bootlin.com>
+Cc: Melissa Wen <mwen@igalia.com>
+Cc: Simon Ser <contact@emersion.fr>
+Cc: Daniel Stone <daniels@collabora.com>
+Cc: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+
+Chaitanya Kumar Borah (13):
+  drm/i915/color: Place 3D LUT after CSC in plane color pipeline
+  drm/amd/display: Fix color pipeline enum name leak
+  drm/vkms: Fix color pipeline enum name leak
+  drm/i915/display: Fix color pipeline enum name leak
+  drm: Allow driver-managed destruction of colorop objects
+  drm/colorop: Add destroy helper for colorop objects
+  drm/amd/display: Hook up colorop destroy helper for plane pipelines
+  drm/vkms: Hook up colorop destroy helper for plane pipelines
+  drm/i915/display: Hook up intel_colorop_destroy
+  drm: Clean up colorop objects during mode_config cleanup
+  drm/vkms: Remove drm_colorop_pipeline_destroy() from vkms_destroy()
+  drm/colorop: Use destroy callback for color pipeline teardown
+  drm/i915/color: Add failure handling in plane color pipeline init
+
+ .../amd/display/amdgpu_dm/amdgpu_dm_colorop.c |  31 +++-
+ .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   |  13 +-
+ drivers/gpu/drm/drm_colorop.c                 |  46 +++--
+ drivers/gpu/drm/drm_mode_config.c             |   6 +
+ .../drm/i915/display/intel_color_pipeline.c   | 161 +++++++++++++-----
+ drivers/gpu/drm/i915/display/intel_colorop.c  |   6 +
+ drivers/gpu/drm/i915/display/intel_colorop.h  |   1 +
+ drivers/gpu/drm/vkms/vkms_colorop.c           |  31 ++--
+ drivers/gpu/drm/vkms/vkms_drv.c               |   1 -
+ include/drm/drm_colorop.h                     |  40 ++++-
+ 10 files changed, 249 insertions(+), 87 deletions(-)
+
 -- 
-2.45.2
+2.25.1
 
