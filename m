@@ -2,192 +2,103 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 494B7CCED81
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Dec 2025 08:51:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB64FCCF035
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Dec 2025 09:44:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCF2F10EBF8;
-	Fri, 19 Dec 2025 07:50:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FA5810EED4;
+	Fri, 19 Dec 2025 08:44:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lyeAVrCH";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="BBOHpXIB";
+	dkim=pass (2048-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="MCLBxV55";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDD2C10E8D6;
- Fri, 19 Dec 2025 07:50:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766130657; x=1797666657;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=uwfwC4CJDVfEIlrAEwUf5j/jrmOj+rMI+Wfnx5olCKU=;
- b=lyeAVrCHVlxP1qq8sRuR8KuVVLLovzqOTeTJl5u9b39zNge4m5eQFpcQ
- p6U6kuS0U6PVopeQ2pa57YlV361rqvXtHfgRj8nQQyoiuzWrFqZLu1e3Y
- S8ApP85gSRk1At+y1IA66+3TNGHxwOu1dyTyurGIUg4vys0JSIBTzSCnI
- Ou8udOVi/UV9VI+6Seg8f1zsVqdQrayDsLXpWMSUb0xKbvzYtDd5kiR9N
- IqkOknnZRAtx2m/KWU7IB94YcceG/wC1jRc0Lpc//JrLEYv9TdqEtihEc
- GLonobA27reYJG/mIeE96Kd680UhrczI+SN1CKStiVr/FfxYcWSqG3txY g==;
-X-CSE-ConnectionGUID: O6CdABlXRAGIlpi+l1MqRQ==
-X-CSE-MsgGUID: UHK6E7SCSz290RytkjZtqA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11646"; a="67968493"
-X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="67968493"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2025 23:50:56 -0800
-X-CSE-ConnectionGUID: FUBttKDRRGu/7LH9rghk1w==
-X-CSE-MsgGUID: DNEl9NP7RBicI0bytfb0pg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="203697989"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2025 23:50:56 -0800
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Thu, 18 Dec 2025 23:50:55 -0800
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Thu, 18 Dec 2025 23:50:55 -0800
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.70) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Thu, 18 Dec 2025 23:50:55 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=oPC6dxzVM6tO4l7iXg65AwKGks8f2Z1yLLBlBrte3i+TRWwSGMYINOCb6ThFF+GqH3z99TiKSCuj+0EDxMIS8iZLJgjGGRdcXw9F1RdSiWL3mx0uXjfTFy2apaR4QMmNIHpVgo9zEa9sUqL/pCA3IfNrStW+zlyhcd8sIEZ3dvWkh5+AshmPxqeVSNfJdcc3hMQFjmnMoR0vP3GEiCCCfhWRwGqHbgmRoOeTwHATvbY+2At7W4troFpTLmQHw+cHG2rkdnrZlkkY8Oe+j1fdZt+mru6v5MCYt9mmFUhtd5IvkR0udTn3WrVrmgrkMFdgZX5cvQqyTLeKgGoZ+xwpTA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uwfwC4CJDVfEIlrAEwUf5j/jrmOj+rMI+Wfnx5olCKU=;
- b=Z1i/UfF+9DVr138j6d4jhsy5ELLWbACAeomq0znFpHdVQ4zXSberVHF4sH4OLAS1Q2FqOj4ajiWY30WiPfVaHN+BYxkbPcmyhu7c9ClUCdyJ5EQVJ4DIWewuxaOysCCLkcTMM9to+IMmmIMwCLzQVijWtkQx+rgNLpiQR5VJWOTzl2RrFCAzhWYi1QM15ni1C8OoKhUfzsMB+tnwk4QK+ejr7/zodwyI5/vNnE7+2BDx7GFYd1iKFoRwdAGyIbHAp1kbgMvJRtwFNkIcy0ppdSqO6kcYYqHOkUZja6Sya6ZqtSfxIAXBA5DGx6xhfIPKuaSGid1TSVyjo2ZAyeJ11A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from IA1PR11MB6266.namprd11.prod.outlook.com (2603:10b6:208:3e6::12)
- by LV8PR11MB8723.namprd11.prod.outlook.com (2603:10b6:408:1f8::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.8; Fri, 19 Dec
- 2025 07:50:54 +0000
-Received: from IA1PR11MB6266.namprd11.prod.outlook.com
- ([fe80::eda2:e570:4314:8720]) by IA1PR11MB6266.namprd11.prod.outlook.com
- ([fe80::eda2:e570:4314:8720%4]) with mapi id 15.20.9434.009; Fri, 19 Dec 2025
- 07:50:54 +0000
-From: "Bhadane, Dnyaneshwar" <dnyaneshwar.bhadane@intel.com>
-To: "Sousa, Gustavo" <gustavo.sousa@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "Sousa, Gustavo" <gustavo.sousa@intel.com>
-Subject: RE: [PATCH 2/2] drm/i915/cx0: Toggle powerdown states for C10 on HDMI
-Thread-Topic: [PATCH 2/2] drm/i915/cx0: Toggle powerdown states for C10 on HDMI
-Thread-Index: AQHcbtC57GOS20KHPUyXpKYuVXHTTrUoeIqg
-Date: Fri, 19 Dec 2025 07:50:53 +0000
-Message-ID: <IA1PR11MB6266675E8DC83DD4A396266EE2A9A@IA1PR11MB6266.namprd11.prod.outlook.com>
-References: <20251216-wa_14026084006-c10-hdmi-toggle-powerdown-v1-0-08677b03e2f1@intel.com>
- <20251216-wa_14026084006-c10-hdmi-toggle-powerdown-v1-2-08677b03e2f1@intel.com>
-In-Reply-To: <20251216-wa_14026084006-c10-hdmi-toggle-powerdown-v1-2-08677b03e2f1@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA1PR11MB6266:EE_|LV8PR11MB8723:EE_
-x-ms-office365-filtering-correlation-id: 0036b8db-bbb0-4f4d-ea2b-08de3ed35641
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|38070700021|7053199007; 
-x-microsoft-antispam-message-info: =?utf-8?B?SVcyemlFdjFpZ2N3TUZrNVZvTUdzb2tOVmx3VEJmYmtic0VjcFR2bCt6UTNr?=
- =?utf-8?B?VHQxNzZTY21wRjgyeE1TRGJzcWpRemVtNThlRVJwaEZZRDhoWUwwd2VXRG9y?=
- =?utf-8?B?SFRnMFVscTNwdWJ5THpUY2NodzZMemRZbGQ2dWlsL2puNGpsTGIrN2pBZ2k1?=
- =?utf-8?B?OUNEM2VNamlMeFArWDJoTnV5dU1ZNER2WWZwMHZOS2F0TzF6Uk9mcW5OZUZF?=
- =?utf-8?B?THJiNkRTci9kSkxLZ2ZwcGFsSFRONTFUZVVla3gwbzlSMWw4em1xMW5TZmlL?=
- =?utf-8?B?SjVXaTFzbTVvL0hGckVwUzFJTlBOS0hBbXpiaXVZOWF3dUk0VGNoS3hrcU81?=
- =?utf-8?B?YkloL3RLOGdQa2RmOGVReitUTzFFSmhZcEF2L1UydjhacWJ6R2p6WkNyZ2JM?=
- =?utf-8?B?dS9UN2JpMFFpWXdUbjhnbHV1NXhYV3d6U3U0aEtZR05nL1UvN3VmM2pTMzNj?=
- =?utf-8?B?ekJUL0dCZWtFU3dJOTVOWVRlcldDSFVxTGpKVG9BRStOcWI2Q2swNUFjM3hL?=
- =?utf-8?B?Z2dIaCt6VU4wR05vd0VKNmtCbk1FemxWN2FVQWQ0UTliQlFubGNmK0hkYTlQ?=
- =?utf-8?B?S0tvUU91UXVoaTNzcEpReVNmZWRhL1Z6UEEvOFdmKzNsQ1NCNG1nT2RmUkN3?=
- =?utf-8?B?N2d3YzZxaUE1RDJSSDUrdldpYkRKUEJTeWQ5YTFMZUtRdWxiSzZrbFVsbHpj?=
- =?utf-8?B?RkUvb2RIbEU1U2FueUdMUVEzWnVGRENjSHNQREc4c0ZJcXNld2NxaDg2U0RK?=
- =?utf-8?B?KzM4YzZPSzBVbUQzcE83Qy9pWk04RCtPRzF6eHZOU0I2V3V5M2t4andTUUQx?=
- =?utf-8?B?RTV2N3VZTmg0d3BqL2F4U3ZKSjh3ZW1YaGdPZGtzZmwvWC9JV21XVk5WN05u?=
- =?utf-8?B?RlhKMElCQ2FwaWVPc1dMNTFQdmJyRXB0SXhVQ3kwZXVSUHNTN0w3c2R1OW40?=
- =?utf-8?B?OVhRV0dzaE02NUxIakZlclBwZHBIdFd6amtzT0xRU1BiQzlsUGtoa3p1RHpn?=
- =?utf-8?B?eHVNdVVNeER2aS92ZnlKcmtFenIyNUhVUEM3dzdSMlNkWGRBbGN6RzJwU1hY?=
- =?utf-8?B?Sk5SYnZNNHNpMS9uK3VHNEh4ODZ6UXBGQ2ppeUx6b01KMDZWRkxBNnYwZk0y?=
- =?utf-8?B?Q1NvN2NDaElpN2xSc2lIZnUra2xaQzhoRnlNRkdvRnpSeXdrcXkyN1Jkc2dC?=
- =?utf-8?B?d3ZCb2JZRi95SkRPT0N4d0U2ZmVjN1Q3cWFZaHhqNURMeEhNbzNvWU1WN3hs?=
- =?utf-8?B?dzlNU2YzN3Zncy9Hdll0ZXhFblhjcktpZDBaQVMrTVFCOG9sdkNkYWU4Zm1I?=
- =?utf-8?B?elhKNzllNGRnaXdDOG9zTzJOZlpQaWdvVjFreWhCc3JFVnZVVGRkaXY3bXFn?=
- =?utf-8?B?WjZSSFYrbzQ2VXdya0paSTlHQnhqSUdWOVBJT0RGOGpZb3FlTmFDMFV1TkFr?=
- =?utf-8?B?czJpbmcxcy8xVlJJOFhtano5SHRaNUMzT3BVdDMyWlpvc05FLzBkVW1vMS8v?=
- =?utf-8?B?am0zQ2c4Tk05SVlvRmhnZGhyUnc1TXF4c21TZVF1emk4TFljd2VOaG16dzdt?=
- =?utf-8?B?YkZJNmE4dDhoaE5zNVFLcGQwTERTQjZEMnJWc2FpcGdhSjV2Wmt0aERmYnpa?=
- =?utf-8?B?MTkyWWMyMVZ6aWRKbnd0UDBqZ2NBQWpXcm10Q1g3aFJ3b1BxV1d6REZQRUpD?=
- =?utf-8?B?Z0VvM3pXZHp3QzE2NlJwNG5YUTdGREFSWVI2T0M4aUFuUzI1Vlh3K0RrSlQz?=
- =?utf-8?B?ekVvMmFteGF5WVFyeEJZRUd3RlZWR3VLNFFOZDltdU96WUozMmdNdmhJV0Z6?=
- =?utf-8?B?b3dwNDVvUHRadS9TOG11d1lPYWVHS2loTDd0dDhicWdWa2FpODFxODZRMzdz?=
- =?utf-8?B?UUVvb2hNWFRVeHppcGdjWk9JRDE0TE0zL1lhdUpxQzFnS3NZN1g5dGRWVHd6?=
- =?utf-8?B?eEoyVGkyQk96ZitwV3JNNHpXM2ZkNFc0ZmloY1dlUENOU1Q5eDZiamcraG5T?=
- =?utf-8?B?ZGE0STJHVExubHVIcXNPMVM2a29mWG5ZUUswYmZEYkhhY3dhb3JBcloyeVlU?=
- =?utf-8?Q?NNAwsB?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA1PR11MB6266.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(38070700021)(7053199007); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Z3N6U2swSlRJMnYxZUY5dElUbVhFckpHK3R2MFQ0SzZkTkxpWm8wbWhoWDFL?=
- =?utf-8?B?SzJZaURDM3A0WEtwWlI3TmxxWlQwS0hwYmdqM250V0V6cFZ5L1kvQ25IUjNW?=
- =?utf-8?B?alVDbExjK1VpYUs0aXZRUnRQb1dudGd3dGJ0bW1XVGJxQjQyeXRzSDFCZllR?=
- =?utf-8?B?c2dBSDdZdTdxYy9pUVRjdTRUWUhlTjR0dVZ1dWRqQmFzRExPb2ZOUTBieDF4?=
- =?utf-8?B?TFp2MDltc3diYnorcnArUVlVL3NDRTlGU3R4bjVhMXVVOXFaRTR2VjRUMDBu?=
- =?utf-8?B?RDhTcEhQNWdPZjUxNVdWbWxlaWFVNHI4b2NjYzNEZnlYVUJoUHM5c3NOajJw?=
- =?utf-8?B?RHhnWTI4bkhaejdVM1lBZlVSbkZTUUlUckFRSlBmeWw4amV5SWdkaHhLeWJZ?=
- =?utf-8?B?UEdVTUZLM1pHcHh2a2RDc3plVHpvMERNNnlLZlNkZ0M5bHRMK1RKeWgvbUVM?=
- =?utf-8?B?V3Y5Wm1sK3dIeVRnWkhoeHVaYnlsdnRub29XM21XR1haQ2h2OWdxUDZYU0Jp?=
- =?utf-8?B?SlMybHpmd2UyOFIwZkJtTjFXak4zN3RGM0VPMDUyaVVmYUJzbUk4ZFYxTFVu?=
- =?utf-8?B?NlJtMW9ybkRrVEdXcGdxM3hXeTNTRWhhSHcyTE42TmJNd05hcVVGWTdJdytv?=
- =?utf-8?B?OUVEZ1dvL1VGRlgwOTFtTmNSWnRoQy9uVDBjeGNqZk02WkZDZXVYUjJiZjVZ?=
- =?utf-8?B?cTV4RnJoZWN1bkxXaTI0NUtQc2JWN2gwL0NjcUk5Y1RMYVAySFNtaGJWb1B5?=
- =?utf-8?B?SUwxZVkwUXpNZ2QyakVhVVpOSUk5SXNOL0xCekZXQ3NUNVJrc2JTRmh0RitD?=
- =?utf-8?B?RVBSTENVQ1RjS2V5SFBZMFdWS0N4UGJtN09hOW9lQzJFYjh6d2R4bHRGWHIv?=
- =?utf-8?B?MmFEeU9WK3FYYVE3Wjg4TjJJSUJNMWs3UzZYWjJYK3pIWGtwVmd1cWxzTUxC?=
- =?utf-8?B?SjkwRHF2L295VVVCa0owckR4ZUlhREo4Ym9oNUtCaXZhN3hhakU1V1E4VGIv?=
- =?utf-8?B?eVI2bWVKOVFKTmt2eEhnMUE4SXJWTThqZHQyWm5hTERhSFh2ZXZaM3A1V2tU?=
- =?utf-8?B?TTZjVmxnT0xKbyszc1hDclZ0M0kyVXM0MFpkb1d6STR6SkJ2bmY3SUhQTWVs?=
- =?utf-8?B?ZGhkQ3NRR0Z4aEkxVzVMTVRBQVVCZlAyYUcrY09WNXJ1YlE3SnJManRxcG91?=
- =?utf-8?B?YTJYdWY2MXU3c0NRRDg1MDhsVGpHOElQdVNHcHV6c0MwK2NkdFN0S0lPNnBR?=
- =?utf-8?B?MkJYb3BxYk1FblBPWDdPS3dhWTN2TkZ3MXh6aG1FN0llbmZSV1Iwa3p5Wkp4?=
- =?utf-8?B?ZUl5TlhNUi8zbzRMZ1NHOGhySFQwcXMzM2pEeDZOUkd2UlhSOE5sSnJndE9T?=
- =?utf-8?B?MjhKWHNCZmFrczR0Zi9FMkZuaHFBajhyUGhnSk16dWNhNjBoRStLYkRHRG42?=
- =?utf-8?B?OWEwVFJlUENTNjhmZkZtYmdRbG83WVd3dXAwcVQ3dG13NE5XOTh2L1BIZmZZ?=
- =?utf-8?B?Yi93TWlkQnBKZ2U1aURneE5iYUNPUGM5UFE5Z2l3cEtNKyttWEd1TzdGSVBQ?=
- =?utf-8?B?UG9xK1NraW90V1o0TDd4WjVYUWlBTVBac0R2c2lSbGhuSjUyRFlOOTVoa01E?=
- =?utf-8?B?czRPWXRzaTEzemY0NE0wd0JDcmlIRlJqZmdESDdHTVRyeXlTQnAyVjVMbTBE?=
- =?utf-8?B?UE9zaXorYStEYkM1akE1NkZkT3RjMHVES2them9McVd2Y0gyTk51WXlEMVZj?=
- =?utf-8?B?dlBCRDBtd0VsR3hSQVJhMFRnekQxUXdBQmFzZmVCSnBFREJKdWtoMnFmdHE1?=
- =?utf-8?B?bjE3OVNjcDltSmZtMWpibld4dUhsZXRocXRRdjJzQnNUZ3MwRmdBSEJQOHYv?=
- =?utf-8?B?NW4rKy9RUkllQUxVUEphSHZ2WTJEdEhZQW1qRnJxRS9hdURmYkt1bHRzZkcv?=
- =?utf-8?B?QTNteGFoYTRWT3diMUtsVWxpZVVpUHN3Q01PNWc0UGZmM0RaV3VvWS80V3RC?=
- =?utf-8?B?b2tTMUs0czFaRkhQdjRINnN4TDJjSlpUdlVJV3hhNlBua3MxSkVwRXp6V1lR?=
- =?utf-8?B?VnhFN2xGWE4xZ0FNY1VoVElJZGtsZjJCdmZEckszQktzYzIwU3RzK2F0dUYx?=
- =?utf-8?B?T3R2MW84NnVDRjh5Umx0djNtenlTSHN0bms0dG1SZHJYNFpydnlwRzlZVGtl?=
- =?utf-8?B?QXc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C18810ED39
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Dec 2025 08:44:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1766133889;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=upMiXO1bVUKRVMOQaCC6tvSV7uMV7Xger8IN4wXmILU=;
+ b=BBOHpXIBQq2FePl+CeD2pU9a4P87hFhp46g0pc2UsHskcqY7Rsjun7ca9HedDVjjhRJJ+z
+ y7LlwgfvAJPqG7RnyQEsuOWFHQkJ++JfmDe6V+xzMowifNlG4bEE3NHM7vHlWzHPX3fw/N
+ z9YjBjLgiTOdknyGry8VURTIWDGBrgk=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-445-nc3TCK48PauW20BN0aEiYA-1; Fri, 19 Dec 2025 03:44:47 -0500
+X-MC-Unique: nc3TCK48PauW20BN0aEiYA-1
+X-Mimecast-MFC-AGG-ID: nc3TCK48PauW20BN0aEiYA_1766133886
+Received: by mail-wm1-f70.google.com with SMTP id
+ 5b1f17b1804b1-477cabba65dso8650915e9.2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Dec 2025 00:44:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=redhat.com; s=google; t=1766133886; x=1766738686; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=upMiXO1bVUKRVMOQaCC6tvSV7uMV7Xger8IN4wXmILU=;
+ b=MCLBxV55p5uQ6GxCCeyatSCgzNN3BZQIZGoAmDJlVeaat3oEFYnAG5gAZfT8sbHB60
+ xCfTSYVeH7jqcoKBpcwczWE23g4Ym2TMjYo6sRZXnkD0MH2Sh4sCNcCLnR/rMcxEytHC
+ oFjuZI1j5igfeHX4TJOcx9PACNNXsYisKPns0SmdjOQOqZ4k2aqILukr0i0BaiTnEqgv
+ DNx7uLV9wRhYikmXhAijN4bcs28kTZpJmo/VOvD5WqaRx5X/tRwdyQfKqMIz0rUSPohD
+ 4DTMTVcxJxA1Pxv1v2qcgy7negEtKfzjd3QHKkFp3T8cKFB4qVrWdxnH2EYjB+YhQMV8
+ oV4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1766133886; x=1766738686;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=upMiXO1bVUKRVMOQaCC6tvSV7uMV7Xger8IN4wXmILU=;
+ b=b9QrJSiJu6hiHVQoMLMHMh9inNGAGs2LkRe+CTGYJ4rq/PMlg990S0IimvXVV/D9an
+ YmAPnk75iMw8/QSzDKmXY0Pu83uM8iwfGm5enORtE9VEbSpguCStbxBK2oBbT1fyT0ku
+ caxkuTk4tiNGB5lKU3zka5gCuiYoCncVnO9a/EkHs5UrJ4wbtGE1EPOui2KfAArOFiUV
+ a3BMAMpkgUeNfdVOZ2ikIxv8vfH5KKUEy714MspYGJuvaYqZ3+ywUuKrOlureT5kjBdK
+ LHe4jUgd7DmCWiLa3Etm3vpwa1aTEzEzPQKcT/7cUU81nKs+nRwBR/MPPJWnIcWTpBas
+ G5zA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUxr2QI2rfL5e/KCYuiXlkhRPUmJjc+FWZt9Qem8+doRq2Jo+xHKmsMEaq3Wb4BwAGvFgmA+8aWgLU=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YynVCJYviqdTKFiHGVnxt4T4vWBN1Pdnkra285YhisOtBY6/+1f
+ 2RqWfdDGatdoI79vlCNBVWwRVqlsgTix34N+y+2yqH0wRuUVD91HQwwyFwTwdbL1UX97+EmzhSU
+ qqB1bXI+REaV8ND1lcOaFYseLtNo2roEzCJLYH3nMvebRZ5jgZNuFe8qjHi/sv/Qf5xjE4Q==
+X-Gm-Gg: AY/fxX6xaBL6IkUwLhzUz8qf7c5lgVqS+rVG7k9UQHwvEGtOdryCrtHpokvSVMlDcz+
+ yQna719QeNXyhvtSWR8wZi9ZjsfGDVTF3grgbf6zSxz483V7nL3oXcMnTyGm7fUv5WXuuW8cbXm
+ yjYGdUV8p0WjLGAB/LwLXkERykY0jplj6poStgVc+y8vPhCU9PxBPLknghq8djJfMo595Y/Avku
+ loEUY/fAZRieMqE+z/C0JqZ0ivizlSL/jfNAlXyG2JX/hWCvZdfcMEI7gTrQaCPnDk7oGR85x0d
+ QLvC4xdTL9gcadKKeYsFJWvgp1NiTmNM0/RsJb5l/ELZT/daSJK+mGlBH2PYRw==
+X-Received: by 2002:a05:600c:46c4:b0:471:14af:c715 with SMTP id
+ 5b1f17b1804b1-47d19533472mr18628855e9.3.1766133886210; 
+ Fri, 19 Dec 2025 00:44:46 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFHRZt6KWe46mx6ZtB4B52L3xtqXwoxBu7fs8J9csqjRO/5q6Y+k4W1VISevBepJVzaVLD4ew==
+X-Received: by 2002:a05:600c:46c4:b0:471:14af:c715 with SMTP id
+ 5b1f17b1804b1-47d19533472mr18628285e9.3.1766133885661; 
+ Fri, 19 Dec 2025 00:44:45 -0800 (PST)
+Received: from localhost ([2a01:e0a:b25:f902::ff])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-47be2723d19sm95746485e9.2.2025.12.19.00.44.44
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 19 Dec 2025 00:44:45 -0800 (PST)
+Date: Fri, 19 Dec 2025 09:44:44 +0100
+From: Maxime Ripard <mripard@redhat.com>
+To: Dave Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-next
+Message-ID: <20251219-arcane-quaint-skunk-e383b0@houat>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6266.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0036b8db-bbb0-4f4d-ea2b-08de3ed35641
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Dec 2025 07:50:53.9258 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Y/r7l9BME1UovFQMgpdrbgH+5prP5a3JI/59FioJfvjH3YCcYkPrFG4l+rknx5QKsNEFtKrZr+JBpsyguaAnr+JmYqNU8UoqQlZ4TX1uzI8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR11MB8723
-X-OriginatorOrg: intel.com
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="mlkpzx4zkpvmtckn"
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -203,44 +114,469 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwteGUgPGludGVs
-LXhlLWJvdW5jZXNAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPiBPbiBCZWhhbGYgT2YgR3VzdGF2bw0K
-PiBTb3VzYQ0KPiBTZW50OiBXZWRuZXNkYXksIERlY2VtYmVyIDE3LCAyMDI1IDI6NDIgQU0NCj4g
-VG86IGludGVsLXhlQGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgaW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZw0KPiBDYzogU291c2EsIEd1c3Rhdm8gPGd1c3Rhdm8uc291c2FAaW50ZWwuY29t
-Pg0KPiBTdWJqZWN0OiBbUEFUQ0ggMi8yXSBkcm0vaTkxNS9jeDA6IFRvZ2dsZSBwb3dlcmRvd24g
-c3RhdGVzIGZvciBDMTAgb24NCj4gSERNSQ0KPiANCj4gQSBuZXcgc3RlcCBoYXMgYmVlbiBhZGRl
-ZCB0byBCc3BlYyB3aXRoIHJlc3BlY3QgdG8gdGhlIEMxMCBQSFksIHdoaWNoDQo+IGluc3RydWN0
-cyB0aGUgZHJpdmVyIHRvIHRvZ2dsZSBwb3dlcmRvd24gdmFsdWUgZm9yIGJvdGhzIFBIWSBsYW5l
-cyB0byBQMCBhbmQNCj4gdGhlbiBQMiB3aGVuIGRyaXZpbmcgYW4gSERNSSBjb25uZWN0b3IuIFRo
-aXMgdXBkYXRlIGluIHRoZSBCc3BlYyByZWZsZWN0cw0KPiB0aGUgY2hhbmdlcyByZXF1aXJlZCBi
-eSBXYV8xNDAyNjA4NDAwNiwgc28gZG9jdW1lbnQgaXQuDQo+IA0KPiBOb3RlIHRoYXQsIHVubGlr
-ZSBvdGhlciBkaXNwbGF5IHdvcmthcm91bmRzLCB0aGlzIG9uZSBpcyBhY3R1YWxseSB0aWVkIHRv
-IHRoZQ0KPiBDMTAgUEhZIGFuZCBub3QgdG8gYSBzcGVjaWZpYyBkaXNwbGF5IElQLiAgQXMgc3Vj
-aCwgbGV0J3MganVzdCBkb2N1bWVudCBpdCBpbg0KPiBpbnRlbF9jeDBfcGh5LmMgaW5zdGVhZCBv
-ZiBhZGRpbmcgaXQgdG8gaW50ZWxfZGlzcGxheV93YS5jLg0KPiANCj4gQnNwZWM6IDY0NTY4LCA3
-NDQ4OQ0KPiBTaWduZWQtb2ZmLWJ5OiBHdXN0YXZvIFNvdXNhIDxndXN0YXZvLnNvdXNhQGludGVs
-LmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2N4MF9w
-aHkuYyB8IDE1ICsrKysrKysrKysrKysrKw0KPiAgMSBmaWxlIGNoYW5nZWQsIDE1IGluc2VydGlv
-bnMoKykNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2N4MF9waHkuYw0KPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY3gw
-X3BoeS5jDQo+IGluZGV4IDI2NGY4YTUwNzJlNS4uMmM4N2M1ODgxMmRhIDEwMDY0NA0KPiAtLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2N4MF9waHkuYw0KPiArKysgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2N4MF9waHkuYw0KPiBAQCAtMzMwMiw2
-ICszMzAyLDIxIEBAIHN0YXRpYyB2b2lkIGludGVsX2N4MHBsbF9lbmFibGUoc3RydWN0DQo+IGlu
-dGVsX2VuY29kZXIgKmVuY29kZXIsDQo+ICAJICogRnJlcXVlbmN5IENoYW5nZS4gV2UgaGFuZGxl
-IHRoaXMgc3RlcCBpbiBieHRfc2V0X2NkY2xrKCkuDQo+ICAJICovDQo+IA0KPiArCS8qDQo+ICsJ
-ICogMTIuIFRvZ2dsZSBwb3dlcmRvd24gaWYgSERNSSBpcyBlbmFibGVkIG9uIEMxMCBQSFkuDQo+
-ICsJICoNCj4gKwkgKiBXYV8xMzAxMzUwMjY0NjoNCj4gKwkgKiBGaXhlczogSERNSSBsYW5lIHRv
-IGxhbmUgc2tldyB2aW9sYXRpb25zIG9uIEMxMCBkaXNwbGF5IFBIWXMuDQo+ICsJICogV29ya2Fy
-b3VuZDogVG9nZ2xlIHBvd2VyZG93biB2YWx1ZSBieSBzZXR0aW5nIGZpcnN0IHRvIFAwIGFuZA0K
-PiB0aGVuIHRvIFAyLCBmb3IgYm90aA0KPiArCSAqIFBIWSBsYW5lcy4NCj4gKwkgKi8NCj4gKwlp
-ZiAoIWN4MHBsbF9zdGF0ZV9pc19kcChwbGxfc3RhdGUpICYmIHBsbF9zdGF0ZS0+dXNlX2MxMCkg
-ew0KPiArCQlpbnRlbF9jeDBfcG93ZXJkb3duX2NoYW5nZV9zZXF1ZW5jZShlbmNvZGVyLA0KPiBJ
-TlRFTF9DWDBfQk9USF9MQU5FUywNCj4gKwkJCQkJCSAgICBYRUxQRFBfUDBfU1RBVEVfQUNUSVZF
-KTsNCj4gKwkJaW50ZWxfY3gwX3Bvd2VyZG93bl9jaGFuZ2Vfc2VxdWVuY2UoZW5jb2RlciwNCj4g
-SU5URUxfQ1gwX0JPVEhfTEFORVMsDQo+ICsJCQkJCQkgICAgWEVMUERQX1AyX1NUQVRFX1JFQURZ
-KTsNCj4gKwl9DQo+ICsNCg0KTEdUTSwNClJldmlld2VkLWJ5OiBEbnlhbmVzaHdhciBCaGFkYW5l
-IDxkbnlhbmVzaHdhci5iaGFkYW5lQGludGVsLmNvbT4NCg0KRG55YW5lc2h3YXIsDQo+ICAJaW50
-ZWxfY3gwX3BoeV90cmFuc2FjdGlvbl9lbmQoZW5jb2Rlciwgd2FrZXJlZik7ICB9DQo+IA0KPiAN
-Cj4gLS0NCj4gMi41Mi4wDQoNCg==
+
+--mlkpzx4zkpvmtckn
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: [PULL] drm-misc-next
+MIME-Version: 1.0
+
+Hi Dave, Sima,
+
+Here's the drm-misc-next PR for this week.
+
+The diffstat is bigger than reported in the tag because
+drm-misc-next-2025-12-12 hasn't been merged in drm-next yet.
+
+Thanks!
+Maxime
+
+drm-misc-next-2025-12-19:
+drm-misc-next for 6.20:
+
+Core Changes:
+
+  - dma-buf: Add tracepoints
+  - sched: Introduce new helpers
+
+Driver Changes:
+
+  - amdxdna: Enable hardware context priority, Remove (obsolete and
+    never public) NPU2 Support, Race condition fix
+  - rockchip: Add RK3368 HDMI Support
+  - rz-du: Add RZ/V2H(P) MIPI-DSI Support
+
+  - panels:
+    - st7571: Introduce SPI support
+    - New panels: Sitronix ST7920, Samsung LTL106HL02, LG LH546WF1-ED01, Ha=
+nnStar HSD156JUW2
+The following changes since commit 8f0b4cce4481fb22653697cced8d0d04027cb1e8:
+
+  Linux 6.19-rc1 (2025-12-14 16:05:07 +1200)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-202=
+5-12-19
+
+for you to fetch changes up to 332070795bd96193756cb4446eddc3ec9ff6a0e8:
+
+  accel/amdxdna: Enable hardware context priority (2025-12-18 10:36:44 -080=
+0)
+
+----------------------------------------------------------------
+drm-misc-next for 6.20:
+
+Core Changes:
+
+  - dma-buf: Add tracepoints
+  - sched: Introduce new helpers
+
+Driver Changes:
+
+  - amdxdna: Enable hardware context priority, Remove (obsolete and
+    never public) NPU2 Support, Race condition fix
+  - rockchip: Add RK3368 HDMI Support
+  - rz-du: Add RZ/V2H(P) MIPI-DSI Support
+
+  - panels:
+    - st7571: Introduce SPI support
+    - New panels: Sitronix ST7920, Samsung LTL106HL02, LG LH546WF1-ED01, Ha=
+nnStar HSD156JUW2
+
+----------------------------------------------------------------
+Akash Goel (1):
+      drm/panthor: Remove redundant call to disable the MCU
+
+Alexey Klimov (1):
+      gpu/panel-edp: add AUO panel entry for B140HAN06.4
+
+Amin GATTOUT (1):
+      drm/panel: otm8009a: Switch to mipi_dsi_multi_context helpers
+
+Anton Bambura (1):
+      gpu/drm: panel: add Samsung LTL106HL02 MIPI DSI panel driver
+
+Ashley Smith (1):
+      drm/panthor: Enable timestamp propagation
+
+Boris Brezillon (27):
+      drm/panthor: Always wait after sending a command to an AS
+      drm/panthor: Kill lock_region()
+      drm/panthor: Recover from panthor_gpu_flush_caches() failures
+      drm/panthor: Add support for atomic page table updates
+      drm/panthor: Make panthor_vm_[un]map_pages() more robust
+      drm/panthor: Relax a check in panthor_sched_pre_reset()
+      drm/panthor: Simplify group idleness tracking
+      drm/panthor: Don't try to enable extract events
+      drm/panthor: Fix the full_tick check
+      drm/panthor: Fix the group priority rotation logic
+      drm/panthor: Fix immediate ticking on a disabled tick
+      drm/panthor: Fix the logic that decides when to stop ticking
+      drm/panthor: Make sure we resume the tick when new jobs are submitted
+      drm/panthor: Kill panthor_sched_immediate_tick()
+      drm/panthor: Drop a WARN_ON() in group_free_queue()
+      drm/panthor: Make sure caches are flushed/invalidated when an AS is r=
+ecycled
+      drm/panthor: Unlock the locked region before disabling an AS
+      drm/panthor: Provide a custom dma_buf implementation
+      drm/panthor: Fix panthor_gpu_coherency_set()
+      drm/panthor: Expose the selected coherency protocol to the UMD
+      drm/panthor: Add a PANTHOR_BO_SYNC ioctl
+      drm/panthor: Add an ioctl to query BO flags
+      drm/panfrost: Provide a custom dma_buf implementation
+      drm/panfrost: Expose the selected coherency protocol to the UMD
+      drm/panfrost: Add an ioctl to query BO flags
+      drm/gem: Fix builds with CONFIG_MMU=3Dn
+      drm/panthor: Fix kerneldoc in uAPI header
+
+Chia-I Wu (2):
+      drm/panthor: fix queue_reset_timeout_locked
+      drm/panthor: fix for dma-fence safe access rules
+
+Christian K=F6nig (4):
+      dma-buf: replace "#if" with just "if"
+      dma-buf: improve sg_table debugging hack v4
+      dma-buf: enable DMABUF_DEBUG by default on DEBUG kernels
+      dma-buf/selftests: drop the mock_wait implementation
+
+Dan Carpenter (2):
+      drm/plane: Fix IS_ERR() vs NULL bug drm_plane_create_color_pipeline_p=
+roperty()
+      drm/panthor: unlock on error in panthor_ioctl_bo_create()
+
+David Heidelberg (7):
+      dt-bindings: panel: s6e3fc2x01: Sort and remove unnecessary properties
+      dt-bindings: panel: sw43408: adjust to reflect the DDIC and panel used
+      drm/panel: sw43408: Introduce LH546WF1-ED01 panel compatible
+      drm/panel: sw43408: Separate reset sequence into own function
+      drm/panel: sw43408: Remove manual invocation of unprepare at remove
+      drm/panel: sw43408: Switch to devm_regulator_bulk_get_const
+      drm/panel: sw43408: Improve wording when reset-gpios aren't available
+
+Eslam Khafagy (1):
+      drm: pl111: replace dev_* print functions with drm_* variants
+
+Faith Ekstrand (4):
+      drm/panthor: Bump the driver version to 1.7
+      drm/panfrost: Add a PANFROST_SYNC_BO ioctl
+      drm/panfrost: Add flag to map GEM object Write-Back Cacheable
+      drm/panfrost: Bump the driver version to 1.6
+
+Heiko Stuebner (2):
+      dt-bindings: display: rockchip: dw-hdmi: Add compatible for RK3368 HD=
+MI
+      drm/rockchip: hdmi: add RK3368 controller variant
+
+Iker Pedrosa (3):
+      dt-bindings: display: sitronix,st7920: Add DT schema
+      drm: Add driver for Sitronix ST7920 LCD displays
+      MAINTAINERS: Add entry for Sitronix ST7920 driver
+
+Jani Nikula (11):
+      drm/hyperv: move Kconfig under driver directory
+      drm/vgem: move Kconfig under driver directory
+      drm/Kconfig: move generic Kconfig options above drivers
+      drm/Kconfig: sort driver Kconfig source list
+      drm/vblank: remove drm_wait_one_vblank() completely
+      drm/vblank: remove superfluous pipe check
+      drm/vblank: add return value to drm_crtc_wait_one_vblank()
+      drm/vblank: limit vblank variable scope to atomic
+      drm/vblank: use the drm_vblank_crtc() and drm_crtc_vblank_crtc() help=
+ers more
+      drm/vblank: prefer drm_crtc_vblank_crtc() over drm_vblank_crtc()
+      drm/gem: fix build for mm_get_unmapped_area() call after backmerge
+
+Karol Wachowski (1):
+      accel/ivpu: Validate scatter-gather size against buffer size
+
+Karunika Choo (1):
+      drm/panthor: Fix NULL pointer dereference on panthor_fw_unplug
+
+Lad Prabhakar (3):
+      dt-bindings: display: bridge: renesas,dsi: Document RZ/V2H(P) and RZ/=
+V2N
+      drm: renesas: rz-du: mipi_dsi: Add LPCLK clock support
+      drm: renesas: rz-du: mipi_dsi: Add support for RZ/V2H(P) SoC
+
+Langyan Ye (1):
+      drm/panel-edp: Add CSW MNE007QB3-1
+
+Lizhi Hou (10):
+      accel/amdxdna: Poll MPNPU_PWAITMODE after requesting firmware suspend
+      accel/amdxdna: Fix tail-pointer polling in mailbox_get_msg()
+      accel/amdxdna: Fix race condition when checking rpm_on
+      accel/amdxdna: Fix cu_idx being cleared by memset() during command se=
+tup
+      accel/amdxdna: Fix race where send ring appears full due to delayed h=
+ead update
+      accel/amdxdna: Fix potential NULL pointer dereference in context clea=
+nup
+      accel/amdxdna: Remove amdxdna_flush()
+      accel/amdxdna: Remove NPU2 support
+      accel/amdxdna: Enable temporal sharing only mode
+      accel/amdxdna: Enable hardware context priority
+
+Lo=EFc Molinari (13):
+      drm/shmem-helper: Simplify page offset calculation in fault handler
+      drm/shmem-helper: Map huge pages in fault handler
+      drm/gem: Introduce drm_gem_get_unmapped_area() fop
+      drm/gem: Add huge tmpfs mountpoint helpers
+      drm/i915: Use huge tmpfs mountpoint helpers
+      drm/v3d: Use huge tmpfs mountpoint helpers
+      drm/gem: Get rid of *_with_mnt helpers
+      drm/panthor: Introduce huge tmpfs mountpoint option
+      drm/panfrost: Introduce huge tmpfs mountpoint option
+      Documentation/gpu/drm-mm: Add THP paragraph to GEM mapping section
+      drm/panthor: Add flag to map GEM object Write-Back Cacheable
+      drm/i915: Fix BO alloc flags
+      drm/gem: Fix kerneldoc warnings
+
+Luca Ceresoli (2):
+      drm/bridge: add drm_bridge_unplug() and drm_bridge_enter/exit()
+      drm/bridge: ti-sn65dsi83: protect device resources on unplug
+
+Marcus Folkesson (7):
+      drm/sitronix/st7571-i2c: rename 'struct drm_device' in st7571_device
+      drm/sitronix/st7571-i2c: add 'struct device' to st7571_device
+      drm/sitronix/st7571-i2c: move common structures to st7571.h
+      drm/sitronix/st7571-i2c: make probe independent of hw interface
+      drm/sitronix/st7571: split up the driver into a common and an i2c part
+      drm/sitronix/st7571-spi: add support for SPI interface
+      dt-bindings: display: sitronix,st7571: add example for SPI
+
+Matthew Brost (2):
+      drm/sched: Add several job helpers to avoid drivers touching schedule=
+r state
+      drm/sched: Add pending job list iterator
+
+Maxime Ripard (2):
+      drm/atomic: Add dev pointer to drm_private_obj
+      Merge drm/drm-next into drm-misc-next
+
+Philipp Stanner (9):
+      drm/todo: Add section with task for GPU scheduler
+      drm/todo: Add entry for unlocked drm/sched rq readers
+      dma-buf/dma-fence: Add dma_fence_test_signaled_flag()
+      dma-buf/dma-fence: Add dma_fence_check_and_signal()
+      amd/amdkfd: Use dma_fence_check_and_signal()
+      drm/xe: Use dma_fence_check_and_signal_locked()
+      dma-buf: Don't misuse dma_fence_signal()
+      drm/ttm: Use dma_fence_check_and_signal()
+      dma-buf/dma-fence: Remove return code of signaling-functions
+
+Renjun Wang (2):
+      dt-bindings: display: simple: Add HannStar HSD156JUW2
+      drm/panel: simple: Add HannStar HSD156JUW2
+
+Suraj Kandpal (1):
+      drm/display/dp_mst: Add protection against 0 vcpi
+
+Svyatoslav Ryhel (1):
+      dt-bindings: display: panel: document Samsung LTL106HL02 MIPI DSI pan=
+el
+
+Thomas Zimmermann (9):
+      drm/ast: Move cursor format conversion into helper function
+      drm/ast: Support cursor buffers objects in I/O memory
+      drm/ast: Wrap cursor framebuffer access in drm_gem_fb_begin/end_cpu_a=
+ccess()
+      drm/amdgpu: Do not implement mode_set_base_atomic callback
+      drm/nouveau: Do not implement mode_set_base_atomic callback
+      drm/radeon: Do not implement mode_set_base_atomic callback
+      drm/fbdev-helper: Remove drm_fb_helper_debug_enter/_leave()
+      fbcon: Remove fb_debug_enter/_leave from struct fb_ops
+      drm/vblank: Unexport drm_wait_one_vblank()
+
+Tvrtko Ursulin (6):
+      drm/panic: Report invalid or unsupported panic modes
+      drm/ttm: Make ttm_bo_init_validate safe against ttm_operation_ctx re-=
+ordering
+      drm/ttm: Resource cannot be NULL in ttm_resource_intersects
+      drm/ttm: Tidy ttm_operation_ctx initialization
+      drm/ttm: Tidy usage of local variables a little bit
+      drm/syncobj: Convert syncobj idr to xarray
+
+Val Packett (1):
+      drm/panel-edp: Add AUO B140QAX01.H panel
+
+gaoxiang17 (1):
+      dma-buf: add some tracepoints to debug.
+
+ .../bindings/display/bridge/renesas,dsi.yaml       |  120 ++-
+ .../bindings/display/panel/lg,sw43408.yaml         |   13 +-
+ .../bindings/display/panel/panel-simple-dsi.yaml   |    2 +
+ .../bindings/display/panel/panel-simple.yaml       |    2 +
+ .../bindings/display/panel/samsung,s6e3fc2x01.yaml |   20 +-
+ .../display/rockchip/rockchip,dw-hdmi.yaml         |    1 +
+ .../bindings/display/sitronix,st7571.yaml          |   25 +
+ .../bindings/display/sitronix,st7920.yaml          |   58 ++
+ Documentation/gpu/drm-mm.rst                       |   29 +-
+ Documentation/gpu/todo.rst                         |   45 +
+ Documentation/process/debugging/kgdb.rst           |   28 -
+ MAINTAINERS                                        |   10 +
+ drivers/accel/amdxdna/Makefile                     |    1 -
+ drivers/accel/amdxdna/aie2_ctx.c                   |   18 +-
+ drivers/accel/amdxdna/aie2_message.c               |   92 +-
+ drivers/accel/amdxdna/aie2_msg_priv.h              |    8 +-
+ drivers/accel/amdxdna/aie2_pci.c                   |    2 +-
+ drivers/accel/amdxdna/aie2_pci.h                   |    4 +
+ drivers/accel/amdxdna/aie2_pm.c                    |   17 +-
+ drivers/accel/amdxdna/aie2_psp.c                   |   15 +
+ drivers/accel/amdxdna/aie2_smu.c                   |   27 +-
+ drivers/accel/amdxdna/amdxdna_ctx.h                |    1 +
+ drivers/accel/amdxdna/amdxdna_mailbox.c            |   46 +-
+ drivers/accel/amdxdna/amdxdna_pci_drv.c            |   30 +-
+ drivers/accel/amdxdna/amdxdna_pci_drv.h            |    2 -
+ drivers/accel/amdxdna/amdxdna_pm.c                 |   22 +-
+ drivers/accel/amdxdna/npu1_regs.c                  |    2 +
+ drivers/accel/amdxdna/npu2_regs.c                  |  115 ---
+ drivers/accel/amdxdna/npu4_regs.c                  |    3 +
+ drivers/accel/amdxdna/npu5_regs.c                  |    2 +
+ drivers/accel/amdxdna/npu6_regs.c                  |    2 +
+ drivers/accel/ivpu/ivpu_gem.c                      |    2 +-
+ drivers/accel/ivpu/ivpu_mmu_context.c              |   20 +-
+ drivers/accel/ivpu/ivpu_mmu_context.h              |    5 +-
+ drivers/dma-buf/Kconfig                            |    2 +-
+ drivers/dma-buf/dma-buf.c                          |  128 ++-
+ drivers/dma-buf/dma-fence.c                        |  100 +-
+ drivers/dma-buf/st-dma-fence.c                     |   55 +-
+ drivers/gpu/drm/Kconfig                            |  213 ++---
+ drivers/gpu/drm/amd/amdgpu/dce_v10_0.c             |   35 +-
+ drivers/gpu/drm/amd/amdgpu/dce_v6_0.c              |   35 +-
+ drivers/gpu/drm/amd/amdgpu/dce_v8_0.c              |   35 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c           |    6 +-
+ drivers/gpu/drm/ast/ast_cursor.c                   |   83 +-
+ drivers/gpu/drm/bridge/ti-sn65dsi83.c              |   86 +-
+ drivers/gpu/drm/display/drm_dp_mst_topology.c      |    3 +-
+ drivers/gpu/drm/drm_atomic.c                       |    1 +
+ drivers/gpu/drm/drm_bridge.c                       |   62 ++
+ drivers/gpu/drm/drm_fb_helper.c                    |  108 ---
+ drivers/gpu/drm/drm_gem.c                          |  203 +++-
+ drivers/gpu/drm/drm_gem_shmem_helper.c             |   86 +-
+ drivers/gpu/drm/drm_panic.c                        |   77 +-
+ drivers/gpu/drm/drm_plane.c                        |    4 +-
+ drivers/gpu/drm/drm_syncobj.c                      |   65 +-
+ drivers/gpu/drm/drm_vblank.c                       |   52 +-
+ drivers/gpu/drm/hyperv/Kconfig                     |   14 +
+ drivers/gpu/drm/i915/Makefile                      |    3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object_types.h   |   10 +-
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c          |   58 +-
+ drivers/gpu/drm/i915/gem/i915_gemfs.c              |   71 --
+ drivers/gpu/drm/i915/gem/i915_gemfs.h              |   14 -
+ drivers/gpu/drm/i915/gem/selftests/huge_pages.c    |   15 +-
+ drivers/gpu/drm/i915/i915_drv.h                    |    5 -
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c            |   24 +-
+ drivers/gpu/drm/panel/Kconfig                      |   13 +
+ drivers/gpu/drm/panel/Makefile                     |    1 +
+ drivers/gpu/drm/panel/panel-edp.c                  |    3 +
+ drivers/gpu/drm/panel/panel-lg-sw43408.c           |   64 +-
+ drivers/gpu/drm/panel/panel-orisetech-otm8009a.c   |  175 ++--
+ drivers/gpu/drm/panel/panel-samsung-ltl106hl02.c   |  179 ++++
+ drivers/gpu/drm/panel/panel-simple.c               |   28 +
+ drivers/gpu/drm/panfrost/panfrost_device.c         |    3 +
+ drivers/gpu/drm/panfrost/panfrost_device.h         |    1 +
+ drivers/gpu/drm/panfrost/panfrost_drv.c            |  107 ++-
+ drivers/gpu/drm/panfrost/panfrost_drv.h            |    9 +
+ drivers/gpu/drm/panfrost/panfrost_gem.c            |  257 +++++
+ drivers/gpu/drm/panfrost/panfrost_gem.h            |   12 +
+ drivers/gpu/drm/panfrost/panfrost_gpu.c            |   26 +-
+ drivers/gpu/drm/panfrost/panfrost_regs.h           |   10 +-
+ drivers/gpu/drm/panthor/panthor_device.c           |   13 +-
+ drivers/gpu/drm/panthor/panthor_drv.c              |   89 +-
+ drivers/gpu/drm/panthor/panthor_drv.h              |    9 +
+ drivers/gpu/drm/panthor/panthor_fw.c               |    8 +-
+ drivers/gpu/drm/panthor/panthor_gem.c              |  258 ++++-
+ drivers/gpu/drm/panthor/panthor_gem.h              |    8 +
+ drivers/gpu/drm/panthor/panthor_gpu.c              |   21 +-
+ drivers/gpu/drm/panthor/panthor_mmu.c              |  314 +++---
+ drivers/gpu/drm/panthor/panthor_sched.c            |  256 ++---
+ drivers/gpu/drm/pl111/pl111_display.c              |    4 +-
+ drivers/gpu/drm/pl111/pl111_drv.c                  |   29 +-
+ drivers/gpu/drm/pl111/pl111_nomadik.c              |    4 +-
+ drivers/gpu/drm/pl111/pl111_nomadik.h              |    4 +-
+ drivers/gpu/drm/pl111/pl111_versatile.c            |   53 +-
+ drivers/gpu/drm/pl111/pl111_versatile.h            |    2 +-
+ drivers/gpu/drm/radeon/atombios_crtc.c             |   74 +-
+ drivers/gpu/drm/radeon/radeon_legacy_crtc.c        |   23 +-
+ drivers/gpu/drm/radeon/radeon_mode.h               |   10 +-
+ drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c     |  453 +++++++++
+ .../gpu/drm/renesas/rz-du/rzg2l_mipi_dsi_regs.h    |   34 +
+ drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c        |   16 +
+ drivers/gpu/drm/scheduler/sched_main.c             |   40 +-
+ drivers/gpu/drm/sitronix/Kconfig                   |   48 +-
+ drivers/gpu/drm/sitronix/Makefile                  |    3 +
+ drivers/gpu/drm/sitronix/st7571-i2c.c              | 1003 +---------------=
+----
+ drivers/gpu/drm/sitronix/st7571-spi.c              |   76 ++
+ drivers/gpu/drm/sitronix/st7571.c                  |  918 ++++++++++++++++=
+++
+ drivers/gpu/drm/sitronix/st7571.h                  |   91 ++
+ drivers/gpu/drm/sitronix/st7920.c                  |  867 +++++++++++++++++
+ drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c   |    2 +-
+ drivers/gpu/drm/ttm/ttm_bo.c                       |   64 +-
+ drivers/gpu/drm/ttm/ttm_bo_util.c                  |   57 +-
+ drivers/gpu/drm/ttm/ttm_bo_vm.c                    |   12 +-
+ drivers/gpu/drm/ttm/ttm_device.c                   |    5 +-
+ drivers/gpu/drm/ttm/ttm_pool.c                     |   26 +-
+ drivers/gpu/drm/ttm/ttm_resource.c                 |   14 +-
+ drivers/gpu/drm/ttm/ttm_tt.c                       |    2 +-
+ drivers/gpu/drm/v3d/Makefile                       |    3 +-
+ drivers/gpu/drm/v3d/v3d_bo.c                       |    6 +-
+ drivers/gpu/drm/v3d/v3d_drv.c                      |    2 +-
+ drivers/gpu/drm/v3d/v3d_drv.h                      |   11 +-
+ drivers/gpu/drm/v3d/v3d_gem.c                      |   21 +-
+ drivers/gpu/drm/v3d/v3d_gemfs.c                    |   62 --
+ drivers/gpu/drm/vgem/Kconfig                       |    9 +
+ drivers/gpu/drm/xe/xe_hw_fence.c                   |    4 +-
+ drivers/video/fbdev/core/fbcon.c                   |   24 -
+ drivers/video/fbdev/core/fbcon.h                   |    1 -
+ include/drm/drm_atomic.h                           |    5 +
+ include/drm/drm_bridge.h                           |   12 +
+ include/drm/drm_device.h                           |   15 +
+ include/drm/drm_fb_helper.h                        |   21 -
+ include/drm/drm_file.h                             |    7 +-
+ include/drm/drm_gem.h                              |   45 +-
+ include/drm/drm_gem_shmem_helper.h                 |    3 -
+ include/drm/drm_modeset_helper_vtables.h           |   23 -
+ include/drm/drm_vblank.h                           |    3 +-
+ include/drm/gpu_scheduler.h                        |   52 +
+ include/linux/dma-fence.h                          |   35 +-
+ include/linux/fb.h                                 |    4 -
+ include/trace/events/dma_buf.h                     |  157 +++
+ include/uapi/drm/amdxdna_accel.h                   |    8 +
+ include/uapi/drm/panfrost_drm.h                    |   76 +-
+ include/uapi/drm/panthor_drm.h                     |  157 ++-
+ 142 files changed, 6078 insertions(+), 2928 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/sitronix,st79=
+20.yaml
+ delete mode 100644 drivers/accel/amdxdna/npu2_regs.c
+ create mode 100644 drivers/gpu/drm/hyperv/Kconfig
+ delete mode 100644 drivers/gpu/drm/i915/gem/i915_gemfs.c
+ delete mode 100644 drivers/gpu/drm/i915/gem/i915_gemfs.h
+ create mode 100644 drivers/gpu/drm/panel/panel-samsung-ltl106hl02.c
+ create mode 100644 drivers/gpu/drm/panfrost/panfrost_drv.h
+ create mode 100644 drivers/gpu/drm/panthor/panthor_drv.h
+ create mode 100644 drivers/gpu/drm/sitronix/st7571-spi.c
+ create mode 100644 drivers/gpu/drm/sitronix/st7571.c
+ create mode 100644 drivers/gpu/drm/sitronix/st7571.h
+ create mode 100644 drivers/gpu/drm/sitronix/st7920.c
+ delete mode 100644 drivers/gpu/drm/v3d/v3d_gemfs.c
+ create mode 100644 drivers/gpu/drm/vgem/Kconfig
+ create mode 100644 include/trace/events/dma_buf.h
+
+--mlkpzx4zkpvmtckn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaUUQfAAKCRAnX84Zoj2+
+djWXAX4+0/O9YzAabAtWchIt+dCw2ZkYTHeI/wy4x03deEoAOTQg88jpt52iJfCY
+7XxuU5YBf0DE09iTu+reSxXxOt2kR6rw6YU6wTJxDeZIPydxQG8eIBIpok3kovpm
+/ahpLdiaAw==
+=Pp5K
+-----END PGP SIGNATURE-----
+
+--mlkpzx4zkpvmtckn--
+
