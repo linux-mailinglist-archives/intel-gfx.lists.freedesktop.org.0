@@ -2,29 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C1A6CD2339
-	for <lists+intel-gfx@lfdr.de>; Sat, 20 Dec 2025 00:43:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4C10CD318D
+	for <lists+intel-gfx@lfdr.de>; Sat, 20 Dec 2025 16:21:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC04B10E002;
-	Fri, 19 Dec 2025 23:43:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75F9D10E264;
+	Sat, 20 Dec 2025 15:21:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NPpRGuPL";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F43310E002;
- Fri, 19 Dec 2025 23:43:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6646290881042767926=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C335E10E1F4;
+ Sat, 20 Dec 2025 15:21:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1766244105; x=1797780105;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=/VSpkD0HUqmQ7ywPno+NDDxNEtOXIamRkFsc4W/V2CM=;
+ b=NPpRGuPLm35f+lYNL0nwHoRx/ugVYdqYiENZ6LZFaNL/BxOZzQP925R2
+ cXez9ZbFLhVkr7y8Oso3FEPFr6gmJb8o3U86+5KwshCzhn7KlUbARi16x
+ H+fh+ckpzV5kD1xhaW8aeMp1nPKnZwLCzCJoQrCFgeEHHmzSVVRjKmw2N
+ 2Tc6S8M5yKe054Pdfx619c2y+diBsMNSL/L4FGyfLhVN/sodSb/724maH
+ PPRN2pPDUrvRg4fDnM/VZIe8AvyCERQHkma58CONBYpdZ37L+OVgbL9HZ
+ 2Tw1KdKKPsbZHGAxCcSBPXimMtv72kp6j3o0Voc53yDIRs+7+Ucfu8IAy Q==;
+X-CSE-ConnectionGUID: EtKOIWMDR1mb3rO2Is7veg==
+X-CSE-MsgGUID: Xd3hZYkeR+OAeWquOPgQaA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11648"; a="68153721"
+X-IronPort-AV: E=Sophos;i="6.21,164,1763452800"; d="scan'208";a="68153721"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2025 07:21:44 -0800
+X-CSE-ConnectionGUID: 3De7O1SbQ4KoIQc0h2oQ0w==
+X-CSE-MsgGUID: TOEMPmDaRc2HCtJ+NzV4AQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,164,1763452800"; d="scan'208";a="204053588"
+Received: from igk-lkp-server01.igk.intel.com (HELO 8a0c053bdd2a)
+ ([10.211.93.152])
+ by fmviesa004.fm.intel.com with ESMTP; 20 Dec 2025 07:21:42 -0800
+Received: from kbuild by 8a0c053bdd2a with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1vWym4-000000004fO-03ip;
+ Sat, 20 Dec 2025 15:21:40 +0000
+Date: Sat, 20 Dec 2025 16:20:46 +0100
+From: kernel test robot <lkp@intel.com>
+To: Maarten Lankhorst <dev@lankhorst.se>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev
+Subject: Re: [i915-rt v4 19/20] drm/i915/display: Do not take uncore lock in
+ i915_get_vblank_counter
+Message-ID: <202512201653.RtK7HcqE-lkp@intel.com>
+References: <20251218163408.97508-20-dev@lankhorst.se>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Preve?=
- =?utf-8?q?nt_u64_underflow_in_intel=5Ffbc=5Fstolen=5Fend?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 19 Dec 2025 23:43:41 -0000
-Message-ID: <176618782105.108745.14734738208934083652@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251219210335.133830-2-jonathan.cavitt@intel.com>
-In-Reply-To: <20251219210335.133830-2-jonathan.cavitt@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251218163408.97508-20-dev@lankhorst.se>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,181 +69,443 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6646290881042767926==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Maarten,
 
-== Series Details ==
+kernel test robot noticed the following build errors:
 
-Series: drm/i915/display: Prevent u64 underflow in intel_fbc_stolen_end
-URL   : https://patchwork.freedesktop.org/series/159319/
-State : success
+[auto build test ERROR on drm-i915/for-linux-next]
+[also build test ERROR on drm-i915/for-linux-next-fixes drm-xe/drm-xe-next drm-tip/drm-tip linus/master v6.19-rc1 next-20251219]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-== Summary ==
+url:    https://github.com/intel-lab-lkp/linux/commits/Maarten-Lankhorst/drm-i915-display-Fix-intel_lpe_audio_irq_handler-for-PREEMPT-RT/20251219-044020
+base:   https://gitlab.freedesktop.org/drm/i915/kernel.git for-linux-next
+patch link:    https://lore.kernel.org/r/20251218163408.97508-20-dev%40lankhorst.se
+patch subject: [i915-rt v4 19/20] drm/i915/display: Do not take uncore lock in i915_get_vblank_counter
+config: x86_64-rhel-9.4 (https://download.01.org/0day-ci/archive/20251220/202512201653.RtK7HcqE-lkp@intel.com/config)
+compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251220/202512201653.RtK7HcqE-lkp@intel.com/reproduce)
 
-CI Bug Log - changes from CI_DRM_17722 -> Patchwork_159319v1
-====================================================
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202512201653.RtK7HcqE-lkp@intel.com/
 
-Summary
--------
+All error/warnings (new ones prefixed by >>):
 
-  **SUCCESS**
+   In file included from drivers/gpu/drm/i915/gt/intel_engine_types.h:26,
+                    from drivers/gpu/drm/i915/gt/intel_context_types.h:17,
+                    from drivers/gpu/drm/i915/gem/i915_gem_context_types.h:19,
+                    from drivers/gpu/drm/i915/gem/i915_gem_context.h:9,
+                    from drivers/gpu/drm/i915/i915_driver.c:75:
+   drivers/gpu/drm/i915/intel_uncore.h: In function 'intel_uncore_read64_2x32_fw':
+>> drivers/gpu/drm/i915/intel_uncore.h:455:19: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'lower'
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                   ^~~~~
+>> drivers/gpu/drm/i915/intel_uncore.h:455:19: error: 'lower' undeclared (first use in this function); did you mean 'tolower'?
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                   ^~~~~
+         |                   tolower
+   drivers/gpu/drm/i915/intel_uncore.h:455:19: note: each undeclared identifier is reported only once for each function it appears in
+>> drivers/gpu/drm/i915/intel_uncore.h:455:26: error: 'old_upper' undeclared (first use in this function); did you mean 'si_upper'?
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                          ^~~~~~~~~
+         |                          si_upper
+>> drivers/gpu/drm/i915/intel_uncore.h:455:24: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                        ^
+>> drivers/gpu/drm/i915/intel_uncore.h:455:37: error: 'loop' undeclared (first use in this function)
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                                     ^~~~
+   drivers/gpu/drm/i915/intel_uncore.h:455:35: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                                   ^
+>> drivers/gpu/drm/i915/intel_uncore.h:456:9: error: 'upper' undeclared (first use in this function)
+     456 |         upper = intel_uncore_read_fw(uncoree, upper_reg);
+         |         ^~~~~
+>> drivers/gpu/drm/i915/intel_uncore.h:456:38: error: 'uncoree' undeclared (first use in this function); did you mean 'uncore'?
+     456 |         upper = intel_uncore_read_fw(uncoree, upper_reg);
+         |                                      ^~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:425:55: note: in definition of macro 'intel_uncore_read_fw'
+     425 | #define intel_uncore_read_fw(...) __raw_uncore_read32(__VA_ARGS__)
+         |                                                       ^~~~~~~~~~~
+>> drivers/gpu/drm/i915/intel_uncore.h:456:47: error: 'upper_reg' undeclared (first use in this function)
+     456 |         upper = intel_uncore_read_fw(uncoree, upper_reg);
+         |                                               ^~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:425:55: note: in definition of macro 'intel_uncore_read_fw'
+     425 | #define intel_uncore_read_fw(...) __raw_uncore_read32(__VA_ARGS__)
+         |                                                       ^~~~~~~~~~~
+>> drivers/gpu/drm/i915/intel_uncore.h:459:54: error: 'lower_reg' undeclared (first use in this function)
+     459 |                 lower = intel_uncore_read_fw(uncore, lower_reg);
+         |                                                      ^~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:425:55: note: in definition of macro 'intel_uncore_read_fw'
+     425 | #define intel_uncore_read_fw(...) __raw_uncore_read32(__VA_ARGS__)
+         |                                                       ^~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h: In function 'intel_uncore_read64_2x32':
+>> drivers/gpu/drm/i915/intel_uncore.h:483:15: error: too many arguments to function 'intel_uncore_read64_2x32_fw'
+     483 |         ret = intel_uncore_read64_2x32_fw(uncore, lower_reg, upper_reg);
+         |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:453:1: note: declared here
+     453 | intel_uncore_read64_2x32_fw(struct intel_uncore *uncore)
+         | ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+--
+   In file included from drivers/gpu/drm/i915/gt/intel_engine_types.h:26,
+                    from drivers/gpu/drm/i915/gt/intel_context_types.h:17,
+                    from drivers/gpu/drm/i915/gem/i915_gem_context_types.h:19,
+                    from drivers/gpu/drm/i915/gem/i915_gem_context.h:9,
+                    from drivers/gpu/drm/i915/i915_drm_client.c:14:
+   drivers/gpu/drm/i915/intel_uncore.h: In function 'intel_uncore_read64_2x32_fw':
+>> drivers/gpu/drm/i915/intel_uncore.h:455:19: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'lower'
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                   ^~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:455:19: error: 'lower' undeclared (first use in this function); did you mean 'islower'?
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                   ^~~~~
+         |                   islower
+   drivers/gpu/drm/i915/intel_uncore.h:455:19: note: each undeclared identifier is reported only once for each function it appears in
+>> drivers/gpu/drm/i915/intel_uncore.h:455:26: error: 'old_upper' undeclared (first use in this function); did you mean 'si_upper'?
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                          ^~~~~~~~~
+         |                          si_upper
+>> drivers/gpu/drm/i915/intel_uncore.h:455:24: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                        ^
+>> drivers/gpu/drm/i915/intel_uncore.h:455:37: error: 'loop' undeclared (first use in this function)
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                                     ^~~~
+   drivers/gpu/drm/i915/intel_uncore.h:455:35: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                                   ^
+>> drivers/gpu/drm/i915/intel_uncore.h:456:9: error: 'upper' undeclared (first use in this function)
+     456 |         upper = intel_uncore_read_fw(uncoree, upper_reg);
+         |         ^~~~~
+>> drivers/gpu/drm/i915/intel_uncore.h:456:38: error: 'uncoree' undeclared (first use in this function); did you mean 'uncore'?
+     456 |         upper = intel_uncore_read_fw(uncoree, upper_reg);
+         |                                      ^~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:425:55: note: in definition of macro 'intel_uncore_read_fw'
+     425 | #define intel_uncore_read_fw(...) __raw_uncore_read32(__VA_ARGS__)
+         |                                                       ^~~~~~~~~~~
+>> drivers/gpu/drm/i915/intel_uncore.h:456:47: error: 'upper_reg' undeclared (first use in this function)
+     456 |         upper = intel_uncore_read_fw(uncoree, upper_reg);
+         |                                               ^~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:425:55: note: in definition of macro 'intel_uncore_read_fw'
+     425 | #define intel_uncore_read_fw(...) __raw_uncore_read32(__VA_ARGS__)
+         |                                                       ^~~~~~~~~~~
+>> drivers/gpu/drm/i915/intel_uncore.h:459:54: error: 'lower_reg' undeclared (first use in this function)
+     459 |                 lower = intel_uncore_read_fw(uncore, lower_reg);
+         |                                                      ^~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:425:55: note: in definition of macro 'intel_uncore_read_fw'
+     425 | #define intel_uncore_read_fw(...) __raw_uncore_read32(__VA_ARGS__)
+         |                                                       ^~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h: In function 'intel_uncore_read64_2x32':
+>> drivers/gpu/drm/i915/intel_uncore.h:483:15: error: too many arguments to function 'intel_uncore_read64_2x32_fw'
+     483 |         ret = intel_uncore_read64_2x32_fw(uncore, lower_reg, upper_reg);
+         |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:453:1: note: declared here
+     453 | intel_uncore_read64_2x32_fw(struct intel_uncore *uncore)
+         | ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+--
+   In file included from drivers/gpu/drm/i915/gt/intel_engine_types.h:26,
+                    from drivers/gpu/drm/i915/gt/intel_context_types.h:17,
+                    from drivers/gpu/drm/i915/gem/i915_gem_context_types.h:19,
+                    from drivers/gpu/drm/i915/i915_drv.h:40,
+                    from drivers/gpu/drm/i915/i915_ioctl.c:8:
+   drivers/gpu/drm/i915/intel_uncore.h: In function 'intel_uncore_read64_2x32_fw':
+>> drivers/gpu/drm/i915/intel_uncore.h:455:19: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'lower'
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                   ^~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:455:19: error: 'lower' undeclared (first use in this function); did you mean 'islower'?
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                   ^~~~~
+         |                   islower
+   drivers/gpu/drm/i915/intel_uncore.h:455:19: note: each undeclared identifier is reported only once for each function it appears in
+>> drivers/gpu/drm/i915/intel_uncore.h:455:26: error: 'old_upper' undeclared (first use in this function); did you mean 'si_upper'?
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                          ^~~~~~~~~
+         |                          si_upper
+>> drivers/gpu/drm/i915/intel_uncore.h:455:24: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                        ^
+>> drivers/gpu/drm/i915/intel_uncore.h:455:37: error: 'loop' undeclared (first use in this function)
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                                     ^~~~
+   drivers/gpu/drm/i915/intel_uncore.h:455:35: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                                   ^
+>> drivers/gpu/drm/i915/intel_uncore.h:456:9: error: 'upper' undeclared (first use in this function)
+     456 |         upper = intel_uncore_read_fw(uncoree, upper_reg);
+         |         ^~~~~
+>> drivers/gpu/drm/i915/intel_uncore.h:456:38: error: 'uncoree' undeclared (first use in this function); did you mean 'uncore'?
+     456 |         upper = intel_uncore_read_fw(uncoree, upper_reg);
+         |                                      ^~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:425:55: note: in definition of macro 'intel_uncore_read_fw'
+     425 | #define intel_uncore_read_fw(...) __raw_uncore_read32(__VA_ARGS__)
+         |                                                       ^~~~~~~~~~~
+>> drivers/gpu/drm/i915/intel_uncore.h:456:47: error: 'upper_reg' undeclared (first use in this function)
+     456 |         upper = intel_uncore_read_fw(uncoree, upper_reg);
+         |                                               ^~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:425:55: note: in definition of macro 'intel_uncore_read_fw'
+     425 | #define intel_uncore_read_fw(...) __raw_uncore_read32(__VA_ARGS__)
+         |                                                       ^~~~~~~~~~~
+>> drivers/gpu/drm/i915/intel_uncore.h:459:54: error: 'lower_reg' undeclared (first use in this function)
+     459 |                 lower = intel_uncore_read_fw(uncore, lower_reg);
+         |                                                      ^~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:425:55: note: in definition of macro 'intel_uncore_read_fw'
+     425 | #define intel_uncore_read_fw(...) __raw_uncore_read32(__VA_ARGS__)
+         |                                                       ^~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h: In function 'intel_uncore_read64_2x32':
+>> drivers/gpu/drm/i915/intel_uncore.h:483:15: error: too many arguments to function 'intel_uncore_read64_2x32_fw'
+     483 |         ret = intel_uncore_read64_2x32_fw(uncore, lower_reg, upper_reg);
+         |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:453:1: note: declared here
+     453 | intel_uncore_read64_2x32_fw(struct intel_uncore *uncore)
+         | ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h: In function 'intel_uncore_read64_2x32_fw':
+>> drivers/gpu/drm/i915/intel_uncore.h:464:1: warning: control reaches end of non-void function [-Wreturn-type]
+     464 | }
+         | ^
+--
+   In file included from drivers/gpu/drm/i915/display/intel_de.h:12,
+                    from drivers/gpu/drm/i915/display/hsw_ips.c:13:
+   drivers/gpu/drm/i915/intel_uncore.h: In function 'intel_uncore_read64_2x32_fw':
+>> drivers/gpu/drm/i915/intel_uncore.h:455:19: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'lower'
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                   ^~~~~
+>> drivers/gpu/drm/i915/intel_uncore.h:455:19: error: 'lower' undeclared (first use in this function); did you mean 'tolower'?
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                   ^~~~~
+         |                   tolower
+   drivers/gpu/drm/i915/intel_uncore.h:455:19: note: each undeclared identifier is reported only once for each function it appears in
+>> drivers/gpu/drm/i915/intel_uncore.h:455:26: error: 'old_upper' undeclared (first use in this function); did you mean 'si_upper'?
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                          ^~~~~~~~~
+         |                          si_upper
+>> drivers/gpu/drm/i915/intel_uncore.h:455:24: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                        ^
+>> drivers/gpu/drm/i915/intel_uncore.h:455:37: error: 'loop' undeclared (first use in this function)
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                                     ^~~~
+   drivers/gpu/drm/i915/intel_uncore.h:455:35: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                                   ^
+>> drivers/gpu/drm/i915/intel_uncore.h:456:9: error: 'upper' undeclared (first use in this function)
+     456 |         upper = intel_uncore_read_fw(uncoree, upper_reg);
+         |         ^~~~~
+>> drivers/gpu/drm/i915/intel_uncore.h:456:38: error: 'uncoree' undeclared (first use in this function); did you mean 'uncore'?
+     456 |         upper = intel_uncore_read_fw(uncoree, upper_reg);
+         |                                      ^~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:425:55: note: in definition of macro 'intel_uncore_read_fw'
+     425 | #define intel_uncore_read_fw(...) __raw_uncore_read32(__VA_ARGS__)
+         |                                                       ^~~~~~~~~~~
+>> drivers/gpu/drm/i915/intel_uncore.h:456:47: error: 'upper_reg' undeclared (first use in this function)
+     456 |         upper = intel_uncore_read_fw(uncoree, upper_reg);
+         |                                               ^~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:425:55: note: in definition of macro 'intel_uncore_read_fw'
+     425 | #define intel_uncore_read_fw(...) __raw_uncore_read32(__VA_ARGS__)
+         |                                                       ^~~~~~~~~~~
+>> drivers/gpu/drm/i915/intel_uncore.h:459:54: error: 'lower_reg' undeclared (first use in this function)
+     459 |                 lower = intel_uncore_read_fw(uncore, lower_reg);
+         |                                                      ^~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:425:55: note: in definition of macro 'intel_uncore_read_fw'
+     425 | #define intel_uncore_read_fw(...) __raw_uncore_read32(__VA_ARGS__)
+         |                                                       ^~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h: In function 'intel_uncore_read64_2x32':
+>> drivers/gpu/drm/i915/intel_uncore.h:483:15: error: too many arguments to function 'intel_uncore_read64_2x32_fw'
+     483 |         ret = intel_uncore_read64_2x32_fw(uncore, lower_reg, upper_reg);
+         |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:453:1: note: declared here
+     453 | intel_uncore_read64_2x32_fw(struct intel_uncore *uncore)
+         | ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/display/intel_de.h: In function 'intel_de_read64_2x32_fw':
+>> drivers/gpu/drm/i915/display/intel_de.h:70:16: error: too many arguments to function 'intel_uncore_read64_2x32_fw'
+      70 |         return intel_uncore_read64_2x32_fw(__to_uncore(display),
+         |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:453:1: note: declared here
+     453 | intel_uncore_read64_2x32_fw(struct intel_uncore *uncore)
+         | ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+--
+   In file included from drivers/gpu/drm/i915/gt/intel_engine_types.h:26,
+                    from drivers/gpu/drm/i915/gt/intel_context_types.h:17,
+                    from drivers/gpu/drm/i915/gem/i915_gem_context_types.h:19,
+                    from drivers/gpu/drm/i915/i915_drv.h:40,
+                    from drivers/gpu/drm/i915/display/i9xx_wm.c:10:
+   drivers/gpu/drm/i915/intel_uncore.h: In function 'intel_uncore_read64_2x32_fw':
+>> drivers/gpu/drm/i915/intel_uncore.h:455:19: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'lower'
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                   ^~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:455:19: error: 'lower' undeclared (first use in this function); did you mean 'islower'?
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                   ^~~~~
+         |                   islower
+   drivers/gpu/drm/i915/intel_uncore.h:455:19: note: each undeclared identifier is reported only once for each function it appears in
+>> drivers/gpu/drm/i915/intel_uncore.h:455:26: error: 'old_upper' undeclared (first use in this function); did you mean 'si_upper'?
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                          ^~~~~~~~~
+         |                          si_upper
+>> drivers/gpu/drm/i915/intel_uncore.h:455:24: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                        ^
+>> drivers/gpu/drm/i915/intel_uncore.h:455:37: error: 'loop' undeclared (first use in this function)
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                                     ^~~~
+   drivers/gpu/drm/i915/intel_uncore.h:455:35: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                                   ^
+>> drivers/gpu/drm/i915/intel_uncore.h:456:9: error: 'upper' undeclared (first use in this function)
+     456 |         upper = intel_uncore_read_fw(uncoree, upper_reg);
+         |         ^~~~~
+>> drivers/gpu/drm/i915/intel_uncore.h:456:38: error: 'uncoree' undeclared (first use in this function); did you mean 'uncore'?
+     456 |         upper = intel_uncore_read_fw(uncoree, upper_reg);
+         |                                      ^~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:425:55: note: in definition of macro 'intel_uncore_read_fw'
+     425 | #define intel_uncore_read_fw(...) __raw_uncore_read32(__VA_ARGS__)
+         |                                                       ^~~~~~~~~~~
+>> drivers/gpu/drm/i915/intel_uncore.h:456:47: error: 'upper_reg' undeclared (first use in this function)
+     456 |         upper = intel_uncore_read_fw(uncoree, upper_reg);
+         |                                               ^~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:425:55: note: in definition of macro 'intel_uncore_read_fw'
+     425 | #define intel_uncore_read_fw(...) __raw_uncore_read32(__VA_ARGS__)
+         |                                                       ^~~~~~~~~~~
+>> drivers/gpu/drm/i915/intel_uncore.h:459:54: error: 'lower_reg' undeclared (first use in this function)
+     459 |                 lower = intel_uncore_read_fw(uncore, lower_reg);
+         |                                                      ^~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:425:55: note: in definition of macro 'intel_uncore_read_fw'
+     425 | #define intel_uncore_read_fw(...) __raw_uncore_read32(__VA_ARGS__)
+         |                                                       ^~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h: In function 'intel_uncore_read64_2x32':
+>> drivers/gpu/drm/i915/intel_uncore.h:483:15: error: too many arguments to function 'intel_uncore_read64_2x32_fw'
+     483 |         ret = intel_uncore_read64_2x32_fw(uncore, lower_reg, upper_reg);
+         |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:453:1: note: declared here
+     453 | intel_uncore_read64_2x32_fw(struct intel_uncore *uncore)
+         | ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+   In file included from drivers/gpu/drm/i915/display/i9xx_wm.c:16:
+   drivers/gpu/drm/i915/display/intel_de.h: In function 'intel_de_read64_2x32_fw':
+>> drivers/gpu/drm/i915/display/intel_de.h:70:16: error: too many arguments to function 'intel_uncore_read64_2x32_fw'
+      70 |         return intel_uncore_read64_2x32_fw(__to_uncore(display),
+         |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:453:1: note: declared here
+     453 | intel_uncore_read64_2x32_fw(struct intel_uncore *uncore)
+         | ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+--
+   In file included from drivers/gpu/drm/i915/gt/intel_engine_types.h:26,
+                    from drivers/gpu/drm/i915/gt/intel_context_types.h:17,
+                    from drivers/gpu/drm/i915/gem/i915_gem_context_types.h:19,
+                    from drivers/gpu/drm/i915/i915_drv.h:40,
+                    from drivers/gpu/drm/i915/display/intel_vblank.c:11:
+   drivers/gpu/drm/i915/intel_uncore.h: In function 'intel_uncore_read64_2x32_fw':
+>> drivers/gpu/drm/i915/intel_uncore.h:455:19: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'lower'
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                   ^~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:455:19: error: 'lower' undeclared (first use in this function); did you mean 'islower'?
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                   ^~~~~
+         |                   islower
+   drivers/gpu/drm/i915/intel_uncore.h:455:19: note: each undeclared identifier is reported only once for each function it appears in
+>> drivers/gpu/drm/i915/intel_uncore.h:455:26: error: 'old_upper' undeclared (first use in this function); did you mean 'si_upper'?
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                          ^~~~~~~~~
+         |                          si_upper
+>> drivers/gpu/drm/i915/intel_uncore.h:455:24: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                        ^
+>> drivers/gpu/drm/i915/intel_uncore.h:455:37: error: 'loop' undeclared (first use in this function)
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                                     ^~~~
+   drivers/gpu/drm/i915/intel_uncore.h:455:35: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+     455 |         u32 upper lower, old_upper, loop = 0;
+         |                                   ^
+>> drivers/gpu/drm/i915/intel_uncore.h:456:9: error: 'upper' undeclared (first use in this function)
+     456 |         upper = intel_uncore_read_fw(uncoree, upper_reg);
+         |         ^~~~~
+>> drivers/gpu/drm/i915/intel_uncore.h:456:38: error: 'uncoree' undeclared (first use in this function); did you mean 'uncore'?
+     456 |         upper = intel_uncore_read_fw(uncoree, upper_reg);
+         |                                      ^~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:425:55: note: in definition of macro 'intel_uncore_read_fw'
+     425 | #define intel_uncore_read_fw(...) __raw_uncore_read32(__VA_ARGS__)
+         |                                                       ^~~~~~~~~~~
+>> drivers/gpu/drm/i915/intel_uncore.h:456:47: error: 'upper_reg' undeclared (first use in this function)
+     456 |         upper = intel_uncore_read_fw(uncoree, upper_reg);
+         |                                               ^~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:425:55: note: in definition of macro 'intel_uncore_read_fw'
+     425 | #define intel_uncore_read_fw(...) __raw_uncore_read32(__VA_ARGS__)
+         |                                                       ^~~~~~~~~~~
+>> drivers/gpu/drm/i915/intel_uncore.h:459:54: error: 'lower_reg' undeclared (first use in this function)
+     459 |                 lower = intel_uncore_read_fw(uncore, lower_reg);
+         |                                                      ^~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:425:55: note: in definition of macro 'intel_uncore_read_fw'
+     425 | #define intel_uncore_read_fw(...) __raw_uncore_read32(__VA_ARGS__)
+         |                                                       ^~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h: In function 'intel_uncore_read64_2x32':
+>> drivers/gpu/drm/i915/intel_uncore.h:483:15: error: too many arguments to function 'intel_uncore_read64_2x32_fw'
+     483 |         ret = intel_uncore_read64_2x32_fw(uncore, lower_reg, upper_reg);
+         |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:453:1: note: declared here
+     453 | intel_uncore_read64_2x32_fw(struct intel_uncore *uncore)
+         | ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+   In file included from drivers/gpu/drm/i915/display/intel_vblank.c:14:
+   drivers/gpu/drm/i915/display/intel_de.h: In function 'intel_de_read64_2x32_fw':
+>> drivers/gpu/drm/i915/display/intel_de.h:70:16: error: too many arguments to function 'intel_uncore_read64_2x32_fw'
+      70 |         return intel_uncore_read64_2x32_fw(__to_uncore(display),
+         |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h:453:1: note: declared here
+     453 | intel_uncore_read64_2x32_fw(struct intel_uncore *uncore)
+         | ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_uncore.h: In function 'intel_uncore_read64_2x32_fw':
+>> drivers/gpu/drm/i915/intel_uncore.h:464:1: warning: control reaches end of non-void function [-Wreturn-type]
+     464 | }
+         | ^
+..
 
-  No regressions found.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159319v1/index.html
+vim +455 drivers/gpu/drm/i915/intel_uncore.h
 
-Participating hosts (43 -> 40)
-------------------------------
+   451	
+   452	static inline u64
+   453	intel_uncore_read64_2x32_fw(struct intel_uncore *uncore)
+   454	{
+ > 455		u32 upper lower, old_upper, loop = 0;
+ > 456		upper = intel_uncore_read_fw(uncoree, upper_reg);
+   457		do {
+   458			old_upper = upper;
+ > 459			lower = intel_uncore_read_fw(uncore, lower_reg);
+   460			upper = intel_uncore_read_fw(uncore, upper_reg);
+   461		} while (upper != old_upper && loop++ < 2);
+   462	
+   463		return (u64)upper << 32 | lower;
+ > 464	}
+   465	
+   466	static inline u64
+   467	intel_uncore_read64_2x32(struct intel_uncore *uncore,
+   468				 i915_reg_t lower_reg, i915_reg_t upper_reg)
+   469	{
+   470		enum forcewake_domains fw_domains;
+   471		unsigned long flags;
+   472		u64 ret;
+   473	
+   474		fw_domains = intel_uncore_forcewake_for_reg(uncore, lower_reg,
+   475							    FW_REG_READ);
+   476	
+   477		fw_domains |= intel_uncore_forcewake_for_reg(uncore, upper_reg,
+   478							    FW_REG_READ);
+   479	
+   480		spin_lock_irqsave(&uncore->lock, flags);
+   481		intel_uncore_forcewake_get__locked(uncore, fw_domains);
+   482	
+ > 483		ret = intel_uncore_read64_2x32_fw(uncore, lower_reg, upper_reg);
+   484	
+   485		intel_uncore_forcewake_put__locked(uncore, fw_domains);
+   486		spin_unlock_irqrestore(&uncore->lock, flags);
+   487	
+   488		return ret;
+   489	}
+   490	
 
-  Missing    (3): bat-dg2-13 fi-snb-2520m bat-adls-6 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_159319v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17722/bat-mtlp-8/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159319v1/bat-mtlp-8/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-5:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17722/bat-arls-5/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159319v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
-    - bat-dg2-9:          [PASS][5] -> [DMESG-FAIL][6] ([i915#12061]) +1 other test dmesg-fail
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17722/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159319v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-    - bat-dg2-11:         [PASS][7] -> [DMESG-FAIL][8] ([i915#12061]) +1 other test dmesg-fail
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17722/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159319v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - fi-hsw-4770:        [INCOMPLETE][9] -> [PASS][10] +1 other test pass
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17722/fi-hsw-4770/igt@i915_selftest@live.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159319v1/fi-hsw-4770/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [DMESG-FAIL][11] ([i915#12061]) -> [PASS][12] +1 other test pass
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17722/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159319v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-    - bat-mtlp-9:         [DMESG-FAIL][13] ([i915#12061]) -> [PASS][14] +1 other test pass
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17722/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159319v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_17722 -> Patchwork_159319v1
-
-  CI-20190529: 20190529
-  CI_DRM_17722: 020eab92c6fed8e2257f0f8e7e1343e7e70b2b9c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8674: f38f4d8e9c65aff45ac807e646d06e38bc3193a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_159319v1: 020eab92c6fed8e2257f0f8e7e1343e7e70b2b9c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159319v1/index.html
-
---===============6646290881042767926==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Prevent u64 underflow in intel_fbc_stolen_end</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159319/">https://patchwork.freedesktop.org/series/159319/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159319v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159319v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17722 -&gt; Patchwork_159319v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159319v1/index.html</p>
-<h2>Participating hosts (43 -&gt; 40)</h2>
-<p>Missing    (3): bat-dg2-13 fi-snb-2520m bat-adls-6 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_159319v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17722/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159319v1/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17722/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159319v1/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17722/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159319v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17722/bat-dg2-11/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159319v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17722/fi-hsw-4770/igt@i915_selftest@live.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159319v1/fi-hsw-4770/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17722/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159319v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17722/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159319v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17722 -&gt; Patchwork_159319v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17722: 020eab92c6fed8e2257f0f8e7e1343e7e70b2b9c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8674: f38f4d8e9c65aff45ac807e646d06e38bc3193a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_159319v1: 020eab92c6fed8e2257f0f8e7e1343e7e70b2b9c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============6646290881042767926==--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
