@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0EA8CD743A
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Dec 2025 23:19:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E903CD743D
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Dec 2025 23:19:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC33010E21D;
-	Mon, 22 Dec 2025 22:19:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D62A10E268;
+	Mon, 22 Dec 2025 22:19:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OJGkEoiN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aoZbbDJO";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47CDF10E1BA;
- Mon, 22 Dec 2025 22:19:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CCCC10E21D;
+ Mon, 22 Dec 2025 22:19:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766441949; x=1797977949;
+ t=1766441951; x=1797977951;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=TvZ88nu6WoNmmHjJwkZjJSbFOexzl4gjdo6q0q+ZuzE=;
- b=OJGkEoiN/d7jLQcD41MbuoDZaWaCtTevzKPLBQpgnCVNhNIh+9iEuR8J
- ZUUQj7hY7y1ibcyFR8zSM19Z7bwF8ILvfGsRhGfU4H0SVlu6g1MbfjL7H
- UjHItsL/EWg/IKTQxvfSQwTHwzsCH19XeMLVJI8yUtrKNv3zEYMgI/rSB
- ZK67i38ajisGChbb20sMbsDnS0NtVhWOLNKGXh4Uw3jNI9zsM0hpXfdbd
- poZykSH7H9/MZyL6Vxsztb3QIp0GpGO+U7T+mAnH25icCpruiiAsog6Vt
- SE3z5rPznUtCIvd46G/j+wqoEJU62y7jVP30YJTEc9P7nxz7i4X+Hcn9/ g==;
-X-CSE-ConnectionGUID: WRVsLa+qRiur4nBwma9KUg==
-X-CSE-MsgGUID: vJewy/WvTkmVPBXzRDTWaQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11650"; a="68339743"
-X-IronPort-AV: E=Sophos;i="6.21,169,1763452800"; d="scan'208";a="68339743"
+ bh=2Bxinsk5UBVH/b3IHt0GUyDQzvQJg+Mjqq6L7XAhv6g=;
+ b=aoZbbDJOkpaO+T1dpbBOe9j5NWm8bB7tsL+FN0Lgnu3nQ1gu8sXhvt0L
+ eEOmr7KRYRMjiWgfem5mwbwc9tffuHWfC8CDIiBTiYDplD6Z3Lk6X+1M/
+ 8Re+tPx2qRkIkc171V+3CpOFETXU+F2Llj4bD57oGtXWMXelkwy/JgpPo
+ R4HOtUVStkq9rESZmbOU62uen2q9HCok+qvz0J+bsrpfmy0lQSdKntTUn
+ y+WXX4c1uN/QyNkedZhax4wp82er7/zDHo410kDc2/lRje/jLGeFTwPg+
+ bpUTwthhRTcTWUabhX83dlyFCvMDYNsy/41QNpx9YTpXhY7hByeNbZLnf w==;
+X-CSE-ConnectionGUID: TSZHxSsrSuyMGdLgn2pUNA==
+X-CSE-MsgGUID: D8JporFTR4ClSN/q65v48g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11650"; a="68339745"
+X-IronPort-AV: E=Sophos;i="6.21,169,1763452800"; d="scan'208";a="68339745"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2025 14:19:09 -0800
-X-CSE-ConnectionGUID: N8x+4lxoQN2ppc1EtoIZng==
-X-CSE-MsgGUID: ElvviOBnTECxinqAPkWHbA==
+ 22 Dec 2025 14:19:11 -0800
+X-CSE-ConnectionGUID: x8vJdfBPQZKuw9tPf65aSA==
+X-CSE-MsgGUID: hXaKgYkQRvWuKelQzPCANQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,169,1763452800"; d="scan'208";a="199619007"
+X-IronPort-AV: E=Sophos;i="6.21,169,1763452800"; d="scan'208";a="199619013"
 Received: from smoehrl-linux.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.220.137])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2025 14:19:08 -0800
+ 22 Dec 2025 14:19:09 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Mon, 22 Dec 2025 19:18:47 -0300
-Subject: [PATCH 1/2] drm/i915/display_wa: Keep enum intel_display_wa sorted
+Date: Mon, 22 Dec 2025 19:18:48 -0300
+Subject: [PATCH 2/2] drm/i915/cdclk: Implement Wa_13012396614
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251222-display-wa-13012396614-timing-of-mdclk-source-selection-v1-1-a2f7e9447f7a@intel.com>
+Message-Id: <20251222-display-wa-13012396614-timing-of-mdclk-source-selection-v1-2-a2f7e9447f7a@intel.com>
 References: <20251222-display-wa-13012396614-timing-of-mdclk-source-selection-v1-0-a2f7e9447f7a@intel.com>
 In-Reply-To: <20251222-display-wa-13012396614-timing-of-mdclk-source-selection-v1-0-a2f7e9447f7a@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
@@ -69,75 +69,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For a consistent way of updating enum intel_display_wa, let's sort it by
-lineage number and add a comment asking for future updates to keep it
-sorted.
-
-In the same way, let's also keep __intel_display_wa() sorted.
+A new workaround was defined for Xe3_LPD, which requires a tweak on how
+we handle MDCLK selection.  Implement it.
 
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
---
-Note: this can be easily reviewed with `git show --color-moved`.
 ---
- drivers/gpu/drm/i915/display/intel_display_wa.c | 12 ++++++------
- drivers/gpu/drm/i915/display/intel_display_wa.h | 11 ++++++++---
- 2 files changed, 14 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cdclk.c      | 31 ++++++++++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_display_wa.c |  2 ++
+ drivers/gpu/drm/i915/display/intel_display_wa.h |  1 +
+ 3 files changed, 31 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index 0aa59d624095..7443e5285942 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -39,6 +39,7 @@
+ #include "intel_display_regs.h"
+ #include "intel_display_types.h"
+ #include "intel_display_utils.h"
++#include "intel_display_wa.h"
+ #include "intel_dram.h"
+ #include "intel_mchbar_regs.h"
+ #include "intel_pci_config.h"
+@@ -1858,6 +1859,20 @@ static void bxt_de_pll_enable(struct intel_display *display, int vco)
+ 
+ static void icl_cdclk_pll_disable(struct intel_display *display)
+ {
++	/*
++	 * Wa_13012396614:
++	 * Fixes: A sporadic race condition between MDCLK selection and PLL
++	 *        enabling.
++	 * Workaround:
++	 *   Change programming of MDCLK source selection in CDCLK_CTL:
++	 *    - When disabling the CDCLK PLL, first set MDCLK source to be CD2XCLK.
++	 *    - When enabling the CDCLK PLL, update MDCLK source selection only
++	 *      after the PLL is enabled (which is already done as part of the
++	 *      normal flow of _bxt_set_cdclk()).
++	 */
++	if (intel_display_wa(display, 13012396614))
++		intel_de_rmw(display, CDCLK_CTL, MDCLK_SOURCE_SEL_MASK, MDCLK_SOURCE_SEL_CD2XCLK);
++
+ 	intel_de_rmw(display, BXT_DE_PLL_ENABLE,
+ 		     BXT_DE_PLL_PLL_ENABLE, 0);
+ 
+@@ -2147,10 +2162,20 @@ static u32 bxt_cdclk_ctl(struct intel_display *display,
+ 	    cdclk >= 500000)
+ 		val |= BXT_CDCLK_SSA_PRECHARGE_ENABLE;
+ 
+-	if (DISPLAY_VER(display) >= 20)
+-		val |= xe2lpd_mdclk_source_sel(display);
+-	else
++	if (DISPLAY_VER(display) >= 20) {
++		/*
++		 * Wa_13012396614 requires selecting CD2XCLK as MDCLK source
++		 * prior to disabling the PLL, which is already handled by
++		 * icl_cdclk_pll_disable().  Here we are just making sure
++		 * we keep the expected value.
++		 */
++		if (intel_display_wa(display, 13012396614) && vco == 0)
++			val |= MDCLK_SOURCE_SEL_CD2XCLK;
++		else
++			val |= xe2lpd_mdclk_source_sel(display);
++	} else {
+ 		val |= skl_cdclk_decimal(cdclk);
++	}
+ 
+ 	return val;
+ }
 diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
-index a00af39f7538..2b360447e92e 100644
+index 2b360447e92e..581d943b9bdc 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_wa.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-@@ -62,18 +62,18 @@ static bool intel_display_needs_wa_16025573575(struct intel_display *display)
+@@ -62,6 +62,8 @@ static bool intel_display_needs_wa_16025573575(struct intel_display *display)
  bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa, const char *name)
  {
  	switch (wa) {
-+	case INTEL_DISPLAY_WA_14011503117:
-+		return DISPLAY_VER(display) == 13;
-+	case INTEL_DISPLAY_WA_14025769978:
-+		return DISPLAY_VER(display) == 35;
-+	case INTEL_DISPLAY_WA_15018326506:
-+		return display->platform.battlemage;
- 	case INTEL_DISPLAY_WA_16023588340:
- 		return intel_display_needs_wa_16023588340(display);
- 	case INTEL_DISPLAY_WA_16025573575:
- 		return intel_display_needs_wa_16025573575(display);
--	case INTEL_DISPLAY_WA_14011503117:
--		return DISPLAY_VER(display) == 13;
- 	case INTEL_DISPLAY_WA_22014263786:
- 		return IS_DISPLAY_VERx100(display, 1100, 1400);
--	case INTEL_DISPLAY_WA_15018326506:
--		return display->platform.battlemage;
--	case INTEL_DISPLAY_WA_14025769978:
--		return DISPLAY_VER(display) == 35;
- 	default:
- 		drm_WARN(display->drm, 1, "Missing Wa number: %s\n", name);
- 		break;
++	case INTEL_DISPLAY_WA_13012396614:
++		return DISPLAY_VERx100(display) == 3000;
+ 	case INTEL_DISPLAY_WA_14011503117:
+ 		return DISPLAY_VER(display) == 13;
+ 	case INTEL_DISPLAY_WA_14025769978:
 diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
-index a68c0bb7e516..56b586e38306 100644
+index 56b586e38306..40f989f19df1 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_wa.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-@@ -21,13 +21,18 @@ static inline bool intel_display_needs_wa_16023588340(struct intel_display *disp
- bool intel_display_needs_wa_16023588340(struct intel_display *display);
- #endif
- 
-+/*
-+ * This enum lists display workarounds; each entry here must have a
-+ * corresponding case in __intel_display_wa().  Keep both sorted by lineage
-+ * number.
-+ */
+@@ -27,6 +27,7 @@ bool intel_display_needs_wa_16023588340(struct intel_display *display);
+  * number.
+  */
  enum intel_display_wa {
-+	INTEL_DISPLAY_WA_14011503117,
-+	INTEL_DISPLAY_WA_14025769978,
-+	INTEL_DISPLAY_WA_15018326506,
- 	INTEL_DISPLAY_WA_16023588340,
- 	INTEL_DISPLAY_WA_16025573575,
--	INTEL_DISPLAY_WA_14011503117,
- 	INTEL_DISPLAY_WA_22014263786,
--	INTEL_DISPLAY_WA_15018326506,
--	INTEL_DISPLAY_WA_14025769978,
- };
- 
- bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa, const char *name);
++	INTEL_DISPLAY_WA_13012396614,
+ 	INTEL_DISPLAY_WA_14011503117,
+ 	INTEL_DISPLAY_WA_14025769978,
+ 	INTEL_DISPLAY_WA_15018326506,
 
 -- 
 2.52.0
