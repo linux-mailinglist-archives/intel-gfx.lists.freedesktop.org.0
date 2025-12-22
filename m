@@ -2,63 +2,169 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8C8DCD5FD7
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Dec 2025 13:34:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CC9BCD6108
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Dec 2025 13:56:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5271410E64E;
-	Mon, 22 Dec 2025 12:34:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5B5210E661;
+	Mon, 22 Dec 2025 12:56:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XIX+aI3Z";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RBAdkZQg";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDF1310E64E;
- Mon, 22 Dec 2025 12:34:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E64710E661;
+ Mon, 22 Dec 2025 12:56:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766406868; x=1797942868;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=6taoh4JzhOMo93DCGXJjrN7ht0a389S/QPVr2ej3YdY=;
- b=XIX+aI3ZdoAyql15BqFVnJc5MFBjglbbJlZmUUQ+0CL6KS0f4rwG+qAY
- 1BgsuYSfPzdm0L15H69akYoCqaeHgsBS3EQKU2eJmTjDHhGkz4z85J2aO
- 6WbYq2VnJs+8wCLi8+pDLObkwaHbbRSBv0XEPbsBFE2GKnr7hGNmdHeWW
- Y9g6nW/KOfO5TY5XpxJX9FZYfD4GoWnw42eyhvQ/ebhDUzdOqjuf8jUsv
- N0RnmsUQ36cvTTWYpSXr4Ld681YevauTHxtFRlX5E8YjfyU5FF3pU/Dko
- zvs7gGIC/gAjAyoPqZu11k/6/zXLh0n3wsdzRS9jYE06JFZHSFSao+esz g==;
-X-CSE-ConnectionGUID: 1ZS6/RbbQXiUCBg4gmmHxg==
-X-CSE-MsgGUID: Pi/i83AqTuC5uBq55eSpgw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11649"; a="72121844"
-X-IronPort-AV: E=Sophos;i="6.21,168,1763452800"; d="scan'208";a="72121844"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2025 04:34:28 -0800
-X-CSE-ConnectionGUID: 2NWX/+3ZQj+nukgi0JoDVg==
-X-CSE-MsgGUID: 7DRFZVCLRTuV63zkljeUGw==
+ t=1766408174; x=1797944174;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ in-reply-to:mime-version;
+ bh=AxXTcTgXrjl/PTbkzV3LIidMkL6n/EVNzlB1HrM6+8M=;
+ b=RBAdkZQgVAsZxKv/shZUE5SuVc2ffOGdw9Z4EZail6LWk5zvl6UwiVEQ
+ bDb5WQ06DJG8wnpbURE6atYPJ0YApCYKcIutZCs0DWTCA4uchjG6VfQBY
+ 0mI1iCIqEAGavZ98XmcfxP/sC3EFamTVHPsaCukC+a4Yx6UB5iKOtFAcB
+ 2IwpmZVQpmQGdpcyrY842VHFQSKf+0kJHTz6y2mQUoPaf/KAZA65InPCB
+ t53uhBeWwB4hRsBHApoKDwuxpp1CGaLkGlannYgmYAcidicA8LgemAn4n
+ Q+hl0Uwi/ixzdXFWudjgc5SrtYDMTybWP9gVeTNSnS4Hr7YN4L9Khq4da A==;
+X-CSE-ConnectionGUID: iNcTVS6TSmixHOUow+W/7Q==
+X-CSE-MsgGUID: Lh5bn3gyQaWMeWTSmGyVVA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11649"; a="78896861"
+X-IronPort-AV: E=Sophos;i="6.21,168,1763452800"; d="scan'208";a="78896861"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2025 04:56:14 -0800
+X-CSE-ConnectionGUID: XmNNVnGWR5iiIfaeMiAxSg==
+X-CSE-MsgGUID: 1iUIAGFDTQixPbvmi3PEoQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,168,1763452800"; d="scan'208";a="203984570"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.79])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2025 04:34:26 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	Ville Syrjala <ville.syrjala@linux.intel.com>
-Subject: [PATCH v2 4/4] drm/i915/display: use to_intel_uncore() to avoid
- i915_drv.h
-Date: Mon, 22 Dec 2025 14:34:03 +0200
-Message-ID: <44a5d526a097ab9276e60162263fa8cd23325ce7.1766406794.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1766406794.git.jani.nikula@intel.com>
-References: <cover.1766406794.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,168,1763452800"; d="scan'208";a="230534275"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2025 04:56:14 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Mon, 22 Dec 2025 04:56:13 -0800
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29 via Frontend Transport; Mon, 22 Dec 2025 04:56:13 -0800
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.30) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Mon, 22 Dec 2025 04:56:13 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=NEh4Z+dCoGsBjTPCu+FWqAdp+hsV7ohlXU47AMDgeacFI7lxhnmhY3oRQZPqyUeMbZwjU0+GVnhYQSXP4FtExZye4itBV3QlLS2wvn0bVDPifWoBzRlMYjl52JWXWgfd8FqgdZDMFZLbQe/hCVJTId35kNy8OIkzXrPaJqjk9wjFr+awXcfHZX5yxzLyI9HDToGaoP9m6hKEvuK4jh19Kd35P4ttNsMjbO/YRLra8W5GbmVrC6uvOX2IAs1oVNFmYIWffW5jtZ+YNyrMucQcqGZlzyl5o6LhRVWc9rFe7X/yj68sEKL6b8bdc/gdGqgsE55ZN1lHw2zlrAlMfImDpw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tpIBEXky0VVGNt7caIsbRo+rNB9TWn+HTpS347dUotI=;
+ b=LeBpYy5hi+AsaZpdgqTCINsadez1XdV6aOBmx5yD6BM99EEJQmieout3KFIRRm91aeeH2DgiFYWqOmeog/p6jMyBMa4EeXoMqvgyxwCXxGFN0S/pJRLm4hwnw2Cs0XHQz2nwLWDMuXU/MulgNC36UNq2sza0Vbxv0qxVOo5wZ1yFchV7fLlbEUez82PrEzDlvknA+La7rsb+f2Rq3ntkFIuee9F9JqfDDIo7hNFGdnAVoRHzylRgJf5hvFJPyD3JUw23VRBoRlmSen1tQ8RyBBd+w4mJ5zdlGERvYvo6kayQmcBQv3TdvZjygciVEN0b3zUsCWR87AtAaDjw8zOaUA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
+ by DS0PR11MB7925.namprd11.prod.outlook.com (2603:10b6:8:f8::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.11; Mon, 22 Dec
+ 2025 12:56:10 +0000
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::8900:d137:e757:ac9f%3]) with mapi id 15.20.9434.009; Mon, 22 Dec 2025
+ 12:56:10 +0000
+Date: Mon, 22 Dec 2025 14:56:04 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/i915/vdsc: Account for DSC slice overhead in
+ intel_vdsc_min_cdclk()
+Message-ID: <aUk_5GZQrDIDN8fK@ideak-desk>
+References: <20251222044443.2443411-1-ankit.k.nautiyal@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20251222044443.2443411-1-ankit.k.nautiyal@intel.com>
+X-ClientProxiedBy: LO4P302CA0009.GBRP302.PROD.OUTLOOK.COM
+ (2603:10a6:600:2c2::17) To SJ0PR11MB4845.namprd11.prod.outlook.com
+ (2603:10b6:a03:2d1::10)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|DS0PR11MB7925:EE_
+X-MS-Office365-Filtering-Correlation-Id: abcd74c7-6583-4b1e-f855-08de41597a9a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0; ARA:13230040|10070799003|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?vVkytxVB1M4swdr56ne2PU3xCSRsfAaismiPZJJf++zTLAAjxBJ98LKEb0Np?=
+ =?us-ascii?Q?3F79Px9284JA1HBRdqfPdJs+r00xlqRF2l6xzPNEDXR81HvEe2+/wBw53lLK?=
+ =?us-ascii?Q?OlMrDL5mCz/wST45N48izSSTbugfeni4mZCM83EQWSEtpQxkSzgdda0g1ycP?=
+ =?us-ascii?Q?tlOXVPgUtpLvTKiM0zvsCriQT4ZHGP/V6xEozyiA7xItsaC7nyts9tNTbh7N?=
+ =?us-ascii?Q?jVnlckK2G0ZuAtNA8Mnrz2cp+qwTpg11xqAL84KG8xZ3uh/JgYP3GbVSEv2Y?=
+ =?us-ascii?Q?FtPudvfdsbjW1+pyjP6MYrsskk/I4Dp6euQwyn4SAwHYsZ7Tx8Zm79QdQl7k?=
+ =?us-ascii?Q?ipB1ihm9EYCNXyEKBoKK8kM3F6PbBeYhBSzW81QkdoeH+utes2yIQsPslcLu?=
+ =?us-ascii?Q?4L0dN+osxaAop2xspi7KTX8XwNg8I9QDnBlLU6EO6f/lpe6aj/NxeB3G6fqL?=
+ =?us-ascii?Q?NyWzTbwJmZit+59awAUw63hR4+QbNjROSQZNHF+VEU91oQJnWTrz/d75/3Xd?=
+ =?us-ascii?Q?fL5Sz1xOnH1HfM17wQ3y31xNDGGWe+G0CMft9rmlWNSt2ZHJlYT728zRav37?=
+ =?us-ascii?Q?qD2aMb06oX3bYk/idczejhGbziw73YuoYzw3/KsJEi2xyMRLuy1/oDt+Yz7m?=
+ =?us-ascii?Q?7mbvRhp9HEmFAZL08sQRfPWkU4moZ3XaePLs9Xt1kYfOrQ+T10sA+Xo0aPBV?=
+ =?us-ascii?Q?ta5EyZtJW22on7umpVrmuxr66OwB9dNBnsMUeUpbXWnN9ceNmPe6syOMUZ5g?=
+ =?us-ascii?Q?kRryD6UiaPyAgn4bxHfMgKKlqa4x5VyvsS0RDD1kQQ8cAGgoXwgiQUa0Looo?=
+ =?us-ascii?Q?kjD3MaTIljHpp74iXLFoIRn/m7yNu5cTmEbzGrCIIeybRr/YdAvPtjuplBem?=
+ =?us-ascii?Q?9JqBSkLOAxzhYlnx1V4h8JOEjcGUW4rjuuK1AOXMFzborI9gwPAYySYMp42I?=
+ =?us-ascii?Q?akOpzLddL9MEgZ8pRLEE/S7NnlCtXM1vadR02NGIYdqv/pyqrR4VFUXZnUWD?=
+ =?us-ascii?Q?ie7lC1Ef9CEZywwhYoMZb38DRZC1Dm0YMi66IZc74xd+mgAkYLEgVfYu+Huy?=
+ =?us-ascii?Q?e9N8kmcwpKdqofM/T1TSOp0M34VWuKXRFLAE7QsP4H1FtaKmhP+QtFcT+C03?=
+ =?us-ascii?Q?iPjqZ7NCDV4fTUTIiRib9yAf54wdNVWxpwa+cNvKpMDYx1cUDrRR+q6JwBdU?=
+ =?us-ascii?Q?VY1CMwJInuOdC8vhZYWHs1bIlxlqK5eWgDAOXcx8YbUSgy2K2tGk1dBVNSdY?=
+ =?us-ascii?Q?9uDbqkLp7HoRmgs+Z+8z9sFc1Qe6SipbMwvlzYlNjDJ4og4pSOkO39bE7nne?=
+ =?us-ascii?Q?6G9Q3y3c8qWq2g6f0aItkA9o2r6HH4ZizjS1R8gvjNIVCef6sxWZerEVkEmh?=
+ =?us-ascii?Q?vtYrbfPwaUazL3xXbDnZGgEFTWvefWSyP3Lm3HdBXnfS7d/qZQa3z8Teiuj1?=
+ =?us-ascii?Q?XcGJZffC25Biw94Lb8ZxHbXBaRgG628P?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(10070799003)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?0wOHcA1CEPjudAnFDTMGVzw874cRBwTzXMLQde8LO6iPLEbLwH5Q34jyw1M+?=
+ =?us-ascii?Q?2K1N5KnNzt54X79NLFoB5FeaENmCHbckHh7Vv8BgH7VfNFVrYNDv+yGz8i6m?=
+ =?us-ascii?Q?v4+GZ+YXnPrwRo0oB9uDLiZCSWBmgCHsY7wq6OtXUwFv0kulUHP1WwSKcBKf?=
+ =?us-ascii?Q?6eLc2B0Yd0mvKtxIphBmm9MqMF1fY59QiZOFynt91Ij6omNY+ro7UpOP2DEE?=
+ =?us-ascii?Q?MXr8+OizQcBMFVOKCjxbjvDcDd83dU3JkkyevXtnshORRQiimwEsBoIZOF39?=
+ =?us-ascii?Q?zsaiW9rHkaVjRdnSkY8VEzD0pZgL8/VITHv3pfixUZqj1y7MerQ5JhBwx90g?=
+ =?us-ascii?Q?O5r4NJjTVpou91ejcJixehdJCN7KMHOErffa8HN4Vn8LUnIrDqFYR9RT7OsK?=
+ =?us-ascii?Q?Le7Ls62W5euUO8YmRkjStVXyKoF2oLtRGZw4aETxy69df7kuHCJOFnaFuYXe?=
+ =?us-ascii?Q?tPmei7OcZqr/zlODWG6jx23kpPCP4rKDHsz3cy3qM5C8EJlbkG05GzGa5nAO?=
+ =?us-ascii?Q?dBHQyMKnusar2gjhPeTjaXX3Mmbemc2eh0nJyIfXUk8bw+HamFUDP4YGcSMm?=
+ =?us-ascii?Q?7SHWlCpRH7NCcIBT04boHeuKMhxeRqYvNUBYAz4BKZE3RUVwq7A4deB4NmUB?=
+ =?us-ascii?Q?jWEsF2hTePO/qXrX6wWRolajRAxGmwj3VGij3R+uROc435fz5HXRcNsPs0V/?=
+ =?us-ascii?Q?a+Cq3/mzeuIImtvbCt3HGbG4cGO9lKloYWd9QeG7jNpMOO85RRgN5McZmDZm?=
+ =?us-ascii?Q?RBYJvY9viXRrfW68YBqQ03DXoMRKKYUAGythqkhoEGFiWs8iFQXAClquUqty?=
+ =?us-ascii?Q?nomDdcQriA3w6t6HbJ19Xjy7gqt0qNbtS7r7T+DC1pRlX3fTAnwkntggjns1?=
+ =?us-ascii?Q?2Yxaxrc+TFx7HpmnwuqnyhHoVUytkprLhMQONoBk/Ny1wR0HzyJCNHn7J50w?=
+ =?us-ascii?Q?ZTcO1hZ5jg77GXmXjGfqYkKKR11tEw7B80G37pJlpvBVeFC0ZHVdTye+wvgP?=
+ =?us-ascii?Q?Sl3aVm3j0dcdcNbvMUgCYBhwc0nauDy6eVpECifUuBlcFCrs2uxSZM4PkYP4?=
+ =?us-ascii?Q?J0baoQ88jGESgsPIavreiGYp1Ib0DL9XMuDj+cUjo4WKhir3HoaP1ki0WxDI?=
+ =?us-ascii?Q?DKKxDelQi9HBqbiejYZY6aVk8shN8GxzsRw64lpdFuGeGYkdz4CJQv1phsPT?=
+ =?us-ascii?Q?cnchuUKw4TSWPdaAm8yXgn+DSg1o60ULTllPtR9WjkKlNEgR3d7+ZYl8FmKl?=
+ =?us-ascii?Q?NR2t+GpXmEHVLppSaqNaUO/GFX1LQCiuLhUFeXYMqBlZDdQrpz+8ydx4qHxr?=
+ =?us-ascii?Q?lIwBQrZLQmhWV2bolzi957khdoDCNEom+B6NVgf6GJW1Z/bOTE2jRVrbsEWV?=
+ =?us-ascii?Q?mTokMHlqsyDtpPScl1EElRZ9DOj9n8Ja7Xs584gWOqxlLpBUWFcRdI9jGzPq?=
+ =?us-ascii?Q?Ty6mHIHxIoySiltMt+vDgCGWY7rNVIuoXLyO/9zHum3EkgHWWWDGtpzVahRw?=
+ =?us-ascii?Q?lPk1YwgDnLKfImvcyVQh32x1GGcbsvzWzFZehZR3j/fORScV2aKFt5EIjE+c?=
+ =?us-ascii?Q?kSzBCsZ6fQBktL8UXWMmXebxWj+lCyMJRMX0PWHaD0EVSoYG2cFU5h1JajpU?=
+ =?us-ascii?Q?QHxEe48evjEKdlXE2tLDTk/AyhMQ+DQalN/7cpasxkruin7Bf/PaKWynIov6?=
+ =?us-ascii?Q?Dfnc1f/tT+32CHlQciQPbodFBevl9J12roDxvRcOjEaZEXin6niBdns+9Ttw?=
+ =?us-ascii?Q?4iJJGF9OjBfrvB7ePJa0S1gR+f2RU979SosMbi83RVN91uMWpp3C4SOjZ41X?=
+X-MS-Exchange-AntiSpam-MessageData-1: GGTM5aSdY0vk5w==
+X-MS-Exchange-CrossTenant-Network-Message-Id: abcd74c7-6583-4b1e-f855-08de41597a9a
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Dec 2025 12:56:10.0623 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Zcjlpw0YA7cNcepyd3gCXMT6xkJfVP79kbfjmcLJ/pa6vZoFvcaRcf7O/+kNavVgSkUKYIQjIXrJMO1RteDFvg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7925
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,407 +177,121 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-A number of places that include i915_drv.h only need it to get from
-display to i915 to uncore. We have to_intel_uncore() for that, use it to
-avoid the i915_drv.h include.
+On Mon, Dec 22, 2025 at 10:14:43AM +0530, Ankit Nautiyal wrote:
+> When DSC is enabled on a pipe, the pipe pixel rate input to the
+> CDCLK frequency and pipe joining calculation needs an adjustment to
+> account for compression overhead "bubbles" added at each horizontal
+> slice boundary.
+> 
+> Account for this overhead while computing min cdclk required for DSC.
+> 
+> v2: Get rid of the scaling factor and return unchanged pixel-rate
+> instead of 0.
+> 
+> Bspec:68912
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_vdsc.c | 45 +++++++++++++++++++++--
+>  1 file changed, 41 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> index ad5fe841e4b3..b91cd009be9d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> @@ -1050,15 +1050,52 @@ void intel_vdsc_state_dump(struct drm_printer *p, int indent,
+>  	drm_dsc_dump_config(p, indent, &crtc_state->dsc.config);
+>  }
+>  
+> +static
+> +int intel_dsc_get_pixel_rate_with_dsc_bubbles(int pixel_rate, int htotal,
+> +					      int dsc_horizontal_slices)
+> +{
+> +	int dsc_slice_bubbles;
+> +	u64 num;
+> +
+> +	if (!htotal)
 
-v2: Rebase
+Should this also warn as !slice_width below?
 
-Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/i9xx_wm.c       | 17 ++++----
- drivers/gpu/drm/i915/display/intel_bw.c      | 19 ++++-----
- drivers/gpu/drm/i915/display/intel_display.c |  4 +-
- drivers/gpu/drm/i915/display/intel_dram.c    | 42 +++++++++-----------
- drivers/gpu/drm/i915/display/intel_rom.c     |  8 ++--
- drivers/gpu/drm/i915/display/intel_vblank.c  | 13 +++---
- 6 files changed, 48 insertions(+), 55 deletions(-)
+> +		return pixel_rate;
+> +
+> +	dsc_slice_bubbles = 14 * dsc_horizontal_slices;
+> +	num = (u64)pixel_rate * (u64)(htotal + dsc_slice_bubbles);
 
-diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i915/display/i9xx_wm.c
-index 167277cd8877..39dfceb438ae 100644
---- a/drivers/gpu/drm/i915/display/i9xx_wm.c
-+++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
-@@ -7,7 +7,6 @@
- 
- #include <drm/drm_print.h>
- 
--#include "i915_drv.h"
- #include "i915_reg.h"
- #include "i9xx_wm.h"
- #include "i9xx_wm_regs.h"
-@@ -17,6 +16,7 @@
- #include "intel_display.h"
- #include "intel_display_regs.h"
- #include "intel_display_trace.h"
-+#include "intel_display_utils.h"
- #include "intel_dram.h"
- #include "intel_fb.h"
- #include "intel_mchbar_regs.h"
-@@ -1863,8 +1863,7 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
- 				   struct intel_crtc *crtc)
- {
- 	struct intel_display *display = to_intel_display(crtc);
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
--	struct intel_uncore *uncore = &dev_priv->uncore;
-+	struct intel_uncore *uncore = to_intel_uncore(display->drm);
- 	const struct intel_crtc_state *crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	const struct vlv_fifo_state *fifo_state =
-@@ -2743,12 +2742,12 @@ static void ilk_compute_wm_level(struct intel_display *display,
- 
- static void hsw_read_wm_latency(struct intel_display *display, u16 wm[])
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
-+	struct intel_uncore *uncore = to_intel_uncore(display->drm);
- 	u64 sskpd;
- 
- 	display->wm.num_levels = 5;
- 
--	sskpd = intel_uncore_read64(&i915->uncore, MCH_SSKPD);
-+	sskpd = intel_uncore_read64(uncore, MCH_SSKPD);
- 
- 	wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
- 	if (wm[0] == 0)
-@@ -2761,12 +2760,12 @@ static void hsw_read_wm_latency(struct intel_display *display, u16 wm[])
- 
- static void snb_read_wm_latency(struct intel_display *display, u16 wm[])
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
-+	struct intel_uncore *uncore = to_intel_uncore(display->drm);
- 	u32 sskpd;
- 
- 	display->wm.num_levels = 4;
- 
--	sskpd = intel_uncore_read(&i915->uncore, MCH_SSKPD);
-+	sskpd = intel_uncore_read(uncore, MCH_SSKPD);
- 
- 	wm[0] = REG_FIELD_GET(SSKPD_WM0_MASK_SNB, sskpd);
- 	wm[1] = REG_FIELD_GET(SSKPD_WM1_MASK_SNB, sskpd);
-@@ -2776,12 +2775,12 @@ static void snb_read_wm_latency(struct intel_display *display, u16 wm[])
- 
- static void ilk_read_wm_latency(struct intel_display *display, u16 wm[])
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
-+	struct intel_uncore *uncore = to_intel_uncore(display->drm);
- 	u32 mltr;
- 
- 	display->wm.num_levels = 3;
- 
--	mltr = intel_uncore_read(&i915->uncore, MLTR_ILK);
-+	mltr = intel_uncore_read(uncore, MLTR_ILK);
- 
- 	/* ILK primary LP0 latency is 700 ns */
- 	wm[0] = 7;
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index d27835ed49c2..4ee3f5172f4e 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -6,7 +6,6 @@
- #include <drm/drm_atomic_state_helper.h>
- #include <drm/drm_print.h>
- 
--#include "i915_drv.h"
- #include "i915_reg.h"
- #include "intel_bw.h"
- #include "intel_crtc.h"
-@@ -75,11 +74,11 @@ static int dg1_mchbar_read_qgv_point_info(struct intel_display *display,
- 					  struct intel_qgv_point *sp,
- 					  int point)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
-+	struct intel_uncore *uncore = to_intel_uncore(display->drm);
- 	u32 dclk_ratio, dclk_reference;
- 	u32 val;
- 
--	val = intel_uncore_read(&i915->uncore, SA_PERF_STATUS_0_0_0_MCHBAR_PC);
-+	val = intel_uncore_read(uncore, SA_PERF_STATUS_0_0_0_MCHBAR_PC);
- 	dclk_ratio = REG_FIELD_GET(DG1_QCLK_RATIO_MASK, val);
- 	if (val & DG1_QCLK_REFERENCE)
- 		dclk_reference = 6; /* 6 * 16.666 MHz = 100 MHz */
-@@ -87,18 +86,18 @@ static int dg1_mchbar_read_qgv_point_info(struct intel_display *display,
- 		dclk_reference = 8; /* 8 * 16.666 MHz = 133 MHz */
- 	sp->dclk = DIV_ROUND_UP((16667 * dclk_ratio * dclk_reference) + 500, 1000);
- 
--	val = intel_uncore_read(&i915->uncore, SKL_MC_BIOS_DATA_0_0_0_MCHBAR_PCU);
-+	val = intel_uncore_read(uncore, SKL_MC_BIOS_DATA_0_0_0_MCHBAR_PCU);
- 	if (val & DG1_GEAR_TYPE)
- 		sp->dclk *= 2;
- 
- 	if (sp->dclk == 0)
- 		return -EINVAL;
- 
--	val = intel_uncore_read(&i915->uncore, MCHBAR_CH0_CR_TC_PRE_0_0_0_MCHBAR);
-+	val = intel_uncore_read(uncore, MCHBAR_CH0_CR_TC_PRE_0_0_0_MCHBAR);
- 	sp->t_rp = REG_FIELD_GET(DG1_DRAM_T_RP_MASK, val);
- 	sp->t_rdpre = REG_FIELD_GET(DG1_DRAM_T_RDPRE_MASK, val);
- 
--	val = intel_uncore_read(&i915->uncore, MCHBAR_CH0_CR_TC_PRE_0_0_0_MCHBAR_HIGH);
-+	val = intel_uncore_read(uncore, MCHBAR_CH0_CR_TC_PRE_0_0_0_MCHBAR_HIGH);
- 	sp->t_rcd = REG_FIELD_GET(DG1_DRAM_T_RCD_MASK, val);
- 	sp->t_ras = REG_FIELD_GET(DG1_DRAM_T_RAS_MASK, val);
- 
-@@ -212,14 +211,12 @@ static int icl_pcode_restrict_qgv_points(struct intel_display *display,
- static int mtl_read_qgv_point_info(struct intel_display *display,
- 				   struct intel_qgv_point *sp, int point)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
-+	struct intel_uncore *uncore = to_intel_uncore(display->drm);
- 	u32 val, val2;
- 	u16 dclk;
- 
--	val = intel_uncore_read(&i915->uncore,
--				MTL_MEM_SS_INFO_QGV_POINT_LOW(point));
--	val2 = intel_uncore_read(&i915->uncore,
--				 MTL_MEM_SS_INFO_QGV_POINT_HIGH(point));
-+	val = intel_uncore_read(uncore, MTL_MEM_SS_INFO_QGV_POINT_LOW(point));
-+	val2 = intel_uncore_read(uncore, MTL_MEM_SS_INFO_QGV_POINT_HIGH(point));
- 	dclk = REG_FIELD_GET(MTL_DCLK_MASK, val);
- 	sp->dclk = DIV_ROUND_CLOSEST(16667 * dclk, 1000);
- 	sp->t_rp = REG_FIELD_GET(MTL_TRP_MASK, val);
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 32de0bab0982..4d843edda72f 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7381,7 +7381,7 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
- static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- {
- 	struct intel_display *display = to_intel_display(state);
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
-+	struct intel_uncore *uncore = to_intel_uncore(display->drm);
- 	struct intel_crtc_state *new_crtc_state, *old_crtc_state;
- 	struct intel_crtc *crtc;
- 	struct intel_power_domain_mask put_domains[I915_MAX_PIPES] = {};
-@@ -7591,7 +7591,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 		 * so enable debugging for the next modeset - and hope we catch
- 		 * the culprit.
- 		 */
--		intel_uncore_arm_unclaimed_mmio_detection(&dev_priv->uncore);
-+		intel_uncore_arm_unclaimed_mmio_detection(uncore);
- 	}
- 	/*
- 	 * Delay re-enabling DC states by 17 ms to avoid the off->on->off
-diff --git a/drivers/gpu/drm/i915/display/intel_dram.c b/drivers/gpu/drm/i915/display/intel_dram.c
-index 019a722a38bf..170de304fe96 100644
---- a/drivers/gpu/drm/i915/display/intel_dram.c
-+++ b/drivers/gpu/drm/i915/display/intel_dram.c
-@@ -8,7 +8,6 @@
- #include <drm/drm_managed.h>
- #include <drm/drm_print.h>
- 
--#include "i915_drv.h"
- #include "i915_reg.h"
- #include "intel_display_core.h"
- #include "intel_display_utils.h"
-@@ -58,18 +57,18 @@ const char *intel_dram_type_str(enum intel_dram_type type)
- 
- static enum intel_dram_type pnv_dram_type(struct intel_display *display)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
-+	struct intel_uncore *uncore = to_intel_uncore(display->drm);
- 
--	return intel_uncore_read(&i915->uncore, CSHRDDR3CTL) & CSHRDDR3CTL_DDR3 ?
-+	return intel_uncore_read(uncore, CSHRDDR3CTL) & CSHRDDR3CTL_DDR3 ?
- 		INTEL_DRAM_DDR3 : INTEL_DRAM_DDR2;
- }
- 
- static unsigned int pnv_mem_freq(struct intel_display *display)
- {
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
-+	struct intel_uncore *uncore = to_intel_uncore(display->drm);
- 	u32 tmp;
- 
--	tmp = intel_uncore_read(&dev_priv->uncore, CLKCFG);
-+	tmp = intel_uncore_read(uncore, CLKCFG);
- 
- 	switch (tmp & CLKCFG_MEM_MASK) {
- 	case CLKCFG_MEM_533:
-@@ -85,10 +84,10 @@ static unsigned int pnv_mem_freq(struct intel_display *display)
- 
- static unsigned int ilk_mem_freq(struct intel_display *display)
- {
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
-+	struct intel_uncore *uncore = to_intel_uncore(display->drm);
- 	u16 ddrpll;
- 
--	ddrpll = intel_uncore_read16(&dev_priv->uncore, DDRMPLL1);
-+	ddrpll = intel_uncore_read16(uncore, DDRMPLL1);
- 	switch (ddrpll & 0xff) {
- 	case 0xc:
- 		return 800000;
-@@ -158,7 +157,7 @@ unsigned int intel_mem_freq(struct intel_display *display)
- 
- static unsigned int i9xx_fsb_freq(struct intel_display *display)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
-+	struct intel_uncore *uncore = to_intel_uncore(display->drm);
- 	u32 fsb;
- 
- 	/*
-@@ -169,7 +168,7 @@ static unsigned int i9xx_fsb_freq(struct intel_display *display)
- 	 * don't know which registers have that information,
- 	 * and all the relevant docs have gone to bit heaven :(
- 	 */
--	fsb = intel_uncore_read(&i915->uncore, CLKCFG) & CLKCFG_FSB_MASK;
-+	fsb = intel_uncore_read(uncore, CLKCFG) & CLKCFG_FSB_MASK;
- 
- 	if (display->platform.pineview || display->platform.mobile) {
- 		switch (fsb) {
-@@ -214,10 +213,10 @@ static unsigned int i9xx_fsb_freq(struct intel_display *display)
- 
- static unsigned int ilk_fsb_freq(struct intel_display *display)
- {
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
-+	struct intel_uncore *uncore = to_intel_uncore(display->drm);
- 	u16 fsb;
- 
--	fsb = intel_uncore_read16(&dev_priv->uncore, CSIPLL0) & 0x3ff;
-+	fsb = intel_uncore_read16(uncore, CSIPLL0) & 0x3ff;
- 
- 	switch (fsb) {
- 	case 0x00c:
-@@ -484,7 +483,7 @@ intel_is_dram_symmetric(const struct dram_channel_info *ch0,
- static int
- skl_dram_get_channels_info(struct intel_display *display, struct dram_info *dram_info)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
-+	struct intel_uncore *uncore = to_intel_uncore(display->drm);
- 	struct dram_channel_info ch0 = {}, ch1 = {};
- 	u32 val;
- 	int ret;
-@@ -492,14 +491,12 @@ skl_dram_get_channels_info(struct intel_display *display, struct dram_info *dram
- 	/* Assume 16Gb+ DIMMs are present until proven otherwise */
- 	dram_info->has_16gb_dimms = true;
- 
--	val = intel_uncore_read(&i915->uncore,
--				SKL_MAD_DIMM_CH0_0_0_0_MCHBAR_MCMAIN);
-+	val = intel_uncore_read(uncore, SKL_MAD_DIMM_CH0_0_0_0_MCHBAR_MCMAIN);
- 	ret = skl_dram_get_channel_info(display, &ch0, 0, val);
- 	if (ret == 0)
- 		dram_info->num_channels++;
- 
--	val = intel_uncore_read(&i915->uncore,
--				SKL_MAD_DIMM_CH1_0_0_0_MCHBAR_MCMAIN);
-+	val = intel_uncore_read(uncore, SKL_MAD_DIMM_CH1_0_0_0_MCHBAR_MCMAIN);
- 	ret = skl_dram_get_channel_info(display, &ch1, 1, val);
- 	if (ret == 0)
- 		dram_info->num_channels++;
-@@ -530,11 +527,10 @@ skl_dram_get_channels_info(struct intel_display *display, struct dram_info *dram
- static enum intel_dram_type
- skl_get_dram_type(struct intel_display *display)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
-+	struct intel_uncore *uncore = to_intel_uncore(display->drm);
- 	u32 val;
- 
--	val = intel_uncore_read(&i915->uncore,
--				SKL_MAD_INTER_CHANNEL_0_0_0_MCHBAR_MCMAIN);
-+	val = intel_uncore_read(uncore, SKL_MAD_INTER_CHANNEL_0_0_0_MCHBAR_MCMAIN);
- 
- 	switch (val & SKL_DRAM_DDR_TYPE_MASK) {
- 	case SKL_DRAM_DDR_TYPE_DDR3:
-@@ -645,7 +641,7 @@ static void bxt_get_dimm_info(struct dram_dimm_info *dimm, u32 val)
- 
- static int bxt_get_dram_info(struct intel_display *display, struct dram_info *dram_info)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
-+	struct intel_uncore *uncore = to_intel_uncore(display->drm);
- 	u32 val;
- 	u8 valid_ranks = 0;
- 	int i;
-@@ -657,7 +653,7 @@ static int bxt_get_dram_info(struct intel_display *display, struct dram_info *dr
- 		struct dram_dimm_info dimm;
- 		enum intel_dram_type type;
- 
--		val = intel_uncore_read(&i915->uncore, BXT_D_CR_DRP0_DUNIT(i));
-+		val = intel_uncore_read(uncore, BXT_D_CR_DRP0_DUNIT(i));
- 		if (val == 0xFFFFFFFF)
- 			continue;
- 
-@@ -770,8 +766,8 @@ static int gen12_get_dram_info(struct intel_display *display, struct dram_info *
- 
- static int xelpdp_get_dram_info(struct intel_display *display, struct dram_info *dram_info)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
--	u32 val = intel_uncore_read(&i915->uncore, MTL_MEM_SS_INFO_GLOBAL);
-+	struct intel_uncore *uncore = to_intel_uncore(display->drm);
-+	u32 val = intel_uncore_read(uncore, MTL_MEM_SS_INFO_GLOBAL);
- 
- 	switch (REG_FIELD_GET(MTL_DDR_TYPE_MASK, val)) {
- 	case 0:
-diff --git a/drivers/gpu/drm/i915/display/intel_rom.c b/drivers/gpu/drm/i915/display/intel_rom.c
-index 2f17dc856e7f..c8f615315310 100644
---- a/drivers/gpu/drm/i915/display/intel_rom.c
-+++ b/drivers/gpu/drm/i915/display/intel_rom.c
-@@ -3,7 +3,10 @@
-  * Copyright © 2024 Intel Corporation
-  */
- 
--#include "i915_drv.h"
-+#include <linux/pci.h>
-+
-+#include <drm/drm_device.h>
-+
- #include "i915_reg.h"
- 
- #include "intel_rom.h"
-@@ -41,7 +44,6 @@ static u16 spi_read16(struct intel_rom *rom, loff_t offset)
- 
- struct intel_rom *intel_rom_spi(struct drm_device *drm)
- {
--	struct drm_i915_private *i915 = to_i915(drm);
- 	struct intel_rom *rom;
- 	u32 static_region;
- 
-@@ -49,7 +51,7 @@ struct intel_rom *intel_rom_spi(struct drm_device *drm)
- 	if (!rom)
- 		return NULL;
- 
--	rom->uncore = &i915->uncore;
-+	rom->uncore = to_intel_uncore(drm);
- 
- 	static_region = intel_uncore_read(rom->uncore, SPI_STATIC_REGIONS);
- 	static_region &= OPTIONROM_SPI_REGIONID_MASK;
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index 671f357c6563..d7028ac2c4bd 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -8,7 +8,6 @@
- #include <drm/drm_print.h>
- #include <drm/drm_vblank.h>
- 
--#include "i915_drv.h"
- #include "intel_color.h"
- #include "intel_crtc.h"
- #include "intel_de.h"
-@@ -305,17 +304,17 @@ static int __intel_get_crtc_scanline(struct intel_crtc *crtc)
-  */
- #ifdef I915
- static void intel_vblank_section_enter(struct intel_display *display)
--	__acquires(i915->uncore.lock)
-+	__acquires(uncore->lock)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
--	spin_lock(&i915->uncore.lock);
-+	struct intel_uncore *uncore = to_intel_uncore(display->drm);
-+	spin_lock(&uncore->lock);
- }
- 
- static void intel_vblank_section_exit(struct intel_display *display)
--	__releases(i915->uncore.lock)
-+	__releases(uncore->lock)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
--	spin_unlock(&i915->uncore.lock);
-+	struct intel_uncore *uncore = to_intel_uncore(display->drm);
-+	spin_unlock(&uncore->lock);
- }
- #else
- static void intel_vblank_section_enter(struct intel_display *display)
--- 
-2.47.3
+Better to use mul_u32_u32() to avoid the casts and 64-bit x 64-bit
+multiplication.
 
+> +
+> +	return (int)DIV_ROUND_UP_ULL(num, (u64)htotal);
+
+Both casts are ensured by the compiler already, so no need for doing
+them explicitly.
+
+> +}
+> +
+> +static
+> +int pixel_rate_with_dsc_bubbles(const struct intel_crtc_state *crtc_state, int pixel_rate)
+> +{
+> +	struct intel_display *display = to_intel_display(crtc_state);
+> +	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+> +	const struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
+> +	int dsc_horizontal_slices;
+> +
+> +	if (drm_WARN_ON(display->drm, !vdsc_cfg->slice_width))
+> +		return pixel_rate;
+> +
+> +	dsc_horizontal_slices = vdsc_cfg->pic_width / vdsc_cfg->slice_width;
+
+The above looks to be the same as crtc_state->dsc.slice_count, aka the
+slices per scanline, could you use that instead?
+
+> +
+> +	return intel_dsc_get_pixel_rate_with_dsc_bubbles(pixel_rate,
+> +							 adjusted_mode->crtc_htotal,
+> +							 dsc_horizontal_slices);
+> +}
+> +
+>  int intel_vdsc_min_cdclk(const struct intel_crtc_state *crtc_state)
+>  {
+>  	struct intel_display *display = to_intel_display(crtc_state);
+>  	int num_vdsc_instances = intel_dsc_get_num_vdsc_instances(crtc_state);
+> +	int pixel_rate;
+>  	int min_cdclk;
+>  
+>  	if (!crtc_state->dsc.compression_enable)
+>  		return 0;
+>  
+> +	pixel_rate = pixel_rate_with_dsc_bubbles(crtc_state, crtc_state->pixel_rate);
+> +
+>  	/*
+>  	 * When we decide to use only one VDSC engine, since
+>  	 * each VDSC operates with 1 ppc throughput, pixel clock
+> @@ -1066,7 +1103,7 @@ int intel_vdsc_min_cdclk(const struct intel_crtc_state *crtc_state)
+>  	 * If there 2 VDSC engines, then pixel clock can't be higher than
+>  	 * VDSC clock(cdclk) * 2 and so on.
+>  	 */
+> -	min_cdclk = DIV_ROUND_UP(crtc_state->pixel_rate, num_vdsc_instances);
+> +	min_cdclk = DIV_ROUND_UP(pixel_rate, num_vdsc_instances);
+>  
+>  	if (crtc_state->joiner_pipes) {
+>  		int pixel_clock = intel_dp_mode_to_fec_clock(crtc_state->hw.adjusted_mode.clock);
+> @@ -1084,9 +1121,9 @@ int intel_vdsc_min_cdclk(const struct intel_crtc_state *crtc_state)
+>  		 * => CDCLK >= compressed_bpp * Pixel clock  / 2 * Bigjoiner Interface bits
+>  		 */
+>  		int bigjoiner_interface_bits = DISPLAY_VER(display) >= 14 ? 36 : 24;
+> -		int min_cdclk_bj =
+> -			(fxp_q4_to_int_roundup(crtc_state->dsc.compressed_bpp_x16) *
+> -			 pixel_clock) / (2 * bigjoiner_interface_bits);
+> +		int adjusted_pixel_rate = pixel_rate_with_dsc_bubbles(crtc_state, pixel_clock);
+> +		int min_cdclk_bj = (fxp_q4_to_int_roundup(crtc_state->dsc.compressed_bpp_x16) *
+> +				   adjusted_pixel_rate) / (2 * bigjoiner_interface_bits);
+>  
+>  		min_cdclk = max(min_cdclk, min_cdclk_bj);
+>  	}
+> -- 
+> 2.45.2
+> 
