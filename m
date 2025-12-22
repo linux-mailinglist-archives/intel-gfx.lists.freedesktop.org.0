@@ -2,58 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E903CD743D
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Dec 2025 23:19:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3087FCD774C
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Dec 2025 00:33:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D62A10E268;
-	Mon, 22 Dec 2025 22:19:12 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aoZbbDJO";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4F6610E1C8;
+	Mon, 22 Dec 2025 23:32:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CCCC10E21D;
- Mon, 22 Dec 2025 22:19:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766441951; x=1797977951;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=2Bxinsk5UBVH/b3IHt0GUyDQzvQJg+Mjqq6L7XAhv6g=;
- b=aoZbbDJOkpaO+T1dpbBOe9j5NWm8bB7tsL+FN0Lgnu3nQ1gu8sXhvt0L
- eEOmr7KRYRMjiWgfem5mwbwc9tffuHWfC8CDIiBTiYDplD6Z3Lk6X+1M/
- 8Re+tPx2qRkIkc171V+3CpOFETXU+F2Llj4bD57oGtXWMXelkwy/JgpPo
- R4HOtUVStkq9rESZmbOU62uen2q9HCok+qvz0J+bsrpfmy0lQSdKntTUn
- y+WXX4c1uN/QyNkedZhax4wp82er7/zDHo410kDc2/lRje/jLGeFTwPg+
- bpUTwthhRTcTWUabhX83dlyFCvMDYNsy/41QNpx9YTpXhY7hByeNbZLnf w==;
-X-CSE-ConnectionGUID: TSZHxSsrSuyMGdLgn2pUNA==
-X-CSE-MsgGUID: D8JporFTR4ClSN/q65v48g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11650"; a="68339745"
-X-IronPort-AV: E=Sophos;i="6.21,169,1763452800"; d="scan'208";a="68339745"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2025 14:19:11 -0800
-X-CSE-ConnectionGUID: x8vJdfBPQZKuw9tPf65aSA==
-X-CSE-MsgGUID: hXaKgYkQRvWuKelQzPCANQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,169,1763452800"; d="scan'208";a="199619013"
-Received: from smoehrl-linux.amr.corp.intel.com (HELO [192.168.1.16])
- ([10.124.220.137])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2025 14:19:09 -0800
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Mon, 22 Dec 2025 19:18:48 -0300
-Subject: [PATCH 2/2] drm/i915/cdclk: Implement Wa_13012396614
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE01C10E099;
+ Mon, 22 Dec 2025 23:32:58 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2576790271896823704=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251222-display-wa-13012396614-timing-of-mdclk-source-selection-v1-2-a2f7e9447f7a@intel.com>
-References: <20251222-display-wa-13012396614-timing-of-mdclk-source-selection-v1-0-a2f7e9447f7a@intel.com>
-In-Reply-To: <20251222-display-wa-13012396614-timing-of-mdclk-source-selection-v1-0-a2f7e9447f7a@intel.com>
-To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-X-Mailer: b4 0.15-dev
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/cdclk=3A_Incorpo?=
+ =?utf-8?q?rate_Xe3=5FLPD_changes_for_CD2X_divider?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 22 Dec 2025 23:32:58 -0000
+Message-ID: <176644637869.111846.17361648940169525532@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251222-xe3_lpd-no-cd2x-divider-v1-1-96f1e112baaa@intel.com>
+In-Reply-To: <20251222-xe3_lpd-no-cd2x-divider-v1-1-96f1e112baaa@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,102 +37,161 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-A new workaround was defined for Xe3_LPD, which requires a tweak on how
-we handle MDCLK selection.  Implement it.
+--===============2576790271896823704==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cdclk.c      | 31 ++++++++++++++++++++++---
- drivers/gpu/drm/i915/display/intel_display_wa.c |  2 ++
- drivers/gpu/drm/i915/display/intel_display_wa.h |  1 +
- 3 files changed, 31 insertions(+), 3 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 0aa59d624095..7443e5285942 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -39,6 +39,7 @@
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
- #include "intel_display_utils.h"
-+#include "intel_display_wa.h"
- #include "intel_dram.h"
- #include "intel_mchbar_regs.h"
- #include "intel_pci_config.h"
-@@ -1858,6 +1859,20 @@ static void bxt_de_pll_enable(struct intel_display *display, int vco)
- 
- static void icl_cdclk_pll_disable(struct intel_display *display)
- {
-+	/*
-+	 * Wa_13012396614:
-+	 * Fixes: A sporadic race condition between MDCLK selection and PLL
-+	 *        enabling.
-+	 * Workaround:
-+	 *   Change programming of MDCLK source selection in CDCLK_CTL:
-+	 *    - When disabling the CDCLK PLL, first set MDCLK source to be CD2XCLK.
-+	 *    - When enabling the CDCLK PLL, update MDCLK source selection only
-+	 *      after the PLL is enabled (which is already done as part of the
-+	 *      normal flow of _bxt_set_cdclk()).
-+	 */
-+	if (intel_display_wa(display, 13012396614))
-+		intel_de_rmw(display, CDCLK_CTL, MDCLK_SOURCE_SEL_MASK, MDCLK_SOURCE_SEL_CD2XCLK);
-+
- 	intel_de_rmw(display, BXT_DE_PLL_ENABLE,
- 		     BXT_DE_PLL_PLL_ENABLE, 0);
- 
-@@ -2147,10 +2162,20 @@ static u32 bxt_cdclk_ctl(struct intel_display *display,
- 	    cdclk >= 500000)
- 		val |= BXT_CDCLK_SSA_PRECHARGE_ENABLE;
- 
--	if (DISPLAY_VER(display) >= 20)
--		val |= xe2lpd_mdclk_source_sel(display);
--	else
-+	if (DISPLAY_VER(display) >= 20) {
-+		/*
-+		 * Wa_13012396614 requires selecting CD2XCLK as MDCLK source
-+		 * prior to disabling the PLL, which is already handled by
-+		 * icl_cdclk_pll_disable().  Here we are just making sure
-+		 * we keep the expected value.
-+		 */
-+		if (intel_display_wa(display, 13012396614) && vco == 0)
-+			val |= MDCLK_SOURCE_SEL_CD2XCLK;
-+		else
-+			val |= xe2lpd_mdclk_source_sel(display);
-+	} else {
- 		val |= skl_cdclk_decimal(cdclk);
-+	}
- 
- 	return val;
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
-index 2b360447e92e..581d943b9bdc 100644
---- a/drivers/gpu/drm/i915/display/intel_display_wa.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-@@ -62,6 +62,8 @@ static bool intel_display_needs_wa_16025573575(struct intel_display *display)
- bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa, const char *name)
- {
- 	switch (wa) {
-+	case INTEL_DISPLAY_WA_13012396614:
-+		return DISPLAY_VERx100(display) == 3000;
- 	case INTEL_DISPLAY_WA_14011503117:
- 		return DISPLAY_VER(display) == 13;
- 	case INTEL_DISPLAY_WA_14025769978:
-diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
-index 56b586e38306..40f989f19df1 100644
---- a/drivers/gpu/drm/i915/display/intel_display_wa.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-@@ -27,6 +27,7 @@ bool intel_display_needs_wa_16023588340(struct intel_display *display);
-  * number.
-  */
- enum intel_display_wa {
-+	INTEL_DISPLAY_WA_13012396614,
- 	INTEL_DISPLAY_WA_14011503117,
- 	INTEL_DISPLAY_WA_14025769978,
- 	INTEL_DISPLAY_WA_15018326506,
+Series: drm/i915/cdclk: Incorporate Xe3_LPD changes for CD2X divider
+URL   : https://patchwork.freedesktop.org/series/159399/
+State : success
 
--- 
-2.52.0
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_17732 -> Patchwork_159399v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v1/index.html
+
+Participating hosts (44 -> 42)
+------------------------------
+
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_159399v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live:
+    - bat-twl-1:          [PASS][1] -> [ABORT][2] ([i915#14365]) +1 other test abort
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17732/bat-twl-1/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v1/bat-twl-1/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-14:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17732/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-3:         [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17732/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+    - bat-arls-5:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17732/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#14365]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14365
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_17732 -> Patchwork_159399v1
+
+  CI-20190529: 20190529
+  CI_DRM_17732: f101d56dc32350daa45c130ff7a6d46512f614a9 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8674: f38f4d8e9c65aff45ac807e646d06e38bc3193a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_159399v1: f101d56dc32350daa45c130ff7a6d46512f614a9 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v1/index.html
+
+--===============2576790271896823704==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/cdclk: Incorporate Xe3_LPD changes for CD2X divider</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159399/">https://patchwork.freedesktop.org/series/159399/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17732 -&gt; Patchwork_159399v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v1/index.html</p>
+<h2>Participating hosts (44 -&gt; 42)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_159399v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-twl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17732/bat-twl-1/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v1/bat-twl-1/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14365">i915#14365</a>) +1 other test abort</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17732/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17732/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17732/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v1/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17732 -&gt; Patchwork_159399v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17732: f101d56dc32350daa45c130ff7a6d46512f614a9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8674: f38f4d8e9c65aff45ac807e646d06e38bc3193a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_159399v1: f101d56dc32350daa45c130ff7a6d46512f614a9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============2576790271896823704==--
