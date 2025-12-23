@@ -2,56 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5D90CD8EA0
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Dec 2025 11:45:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C1B5CD8EA1
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Dec 2025 11:45:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E2BA10E255;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88F8510E26B;
 	Tue, 23 Dec 2025 10:45:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h3eQprXc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eS2XY3pd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 327E210E237;
- Tue, 23 Dec 2025 10:45:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9904410E243;
+ Tue, 23 Dec 2025 10:45:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766486743; x=1798022743;
+ t=1766486746; x=1798022746;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2s2EXac30uPt9GQjjc9ty6qWUHeckav08gbJGyFgm0o=;
- b=h3eQprXcOK+QXlk9Q5NO8INTsHMk7zcJTvAf+C/p77dGDgqVSZNbZFJF
- UtwglFsGX6o6oRI3ojjlFvJ8+aG4Yer9Xm/ayNxzhQ1qm8yDMi36dhZbw
- qVC87NNp0hTPPSbxXvj4IF4nT+1VFYZkaq8T0khBg2+YCHgrp7GCUT3y/
- Xj/e9+xpFk8M3VwrwQPTT5lLkG4EMONFsFGYo1iBteCkr4+dyv6yU6qEx
- PAPTnBNvzB7sXC9MZdy8gNlpwzCFDjkA0s2/e0k+fSYVWEZx8cFomsysT
- 1XnwBqxvpeLtfcvBPOqzb++VwK0mTg4+RSzOVklhLjQ5hBRSQ9cpj7seA g==;
-X-CSE-ConnectionGUID: TJpyfVbXT5iJBUxmNAF+2g==
-X-CSE-MsgGUID: K9rK0Nd8S1Cvw/BouIipow==
-X-IronPort-AV: E=McAfee;i="6800,10657,11650"; a="68090007"
-X-IronPort-AV: E=Sophos;i="6.21,170,1763452800"; d="scan'208";a="68090007"
+ bh=dOTB60avIpNy/CeLiNKdJ0GjoDTWMvt5DhUao/8KK5M=;
+ b=eS2XY3pdF5PPo4s5oDSckrbiKcAbFtocoeSeX/0h0SsG1LD/G++b84qS
+ ISO1BuYU+KGHnsQVZ3Uibk9J2cRDXwuFrgI210YqESzNEh9xMlb5DZ8KU
+ WPiUVRmvq9JYLgWRh5k9FUZLAfdaiotBDfAjnYIdi4tTELFX+d9gvqiHq
+ 9NbOoSd9rYGdCYqp73/MtT/2SSGB0N25QAL+ZDxd/3mc0RG65BW1qRGHM
+ enWSoLvOVLvsSTZlEj0g2KTnW11oGpL0CfwGueItSf7IRXcmZreAZYnHs
+ Ac+8kqHtdgx/vFUtoN9rJK8aaLxabOAflLlCpbKzWTr77KzYxAgaSXOJF Q==;
+X-CSE-ConnectionGUID: hNOzYy2pQLWA8RVAOj8vjg==
+X-CSE-MsgGUID: //ud/iLjSgamudvUNXqlAw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11650"; a="68090008"
+X-IronPort-AV: E=Sophos;i="6.21,170,1763452800"; d="scan'208";a="68090008"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2025 02:45:43 -0800
-X-CSE-ConnectionGUID: 6LFrvBN5QqKt5+8OA54uAA==
-X-CSE-MsgGUID: g+FrTB1FStCbj/4P3iTw6Q==
+ 23 Dec 2025 02:45:46 -0800
+X-CSE-ConnectionGUID: KHWJ0tuPRDy6Jqw9Oi0WpQ==
+X-CSE-MsgGUID: lTatuXtORWqK1H8KsLAqIQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,170,1763452800"; d="scan'208";a="199734568"
+X-IronPort-AV: E=Sophos;i="6.21,170,1763452800"; d="scan'208";a="199734572"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa007.jf.intel.com with ESMTP; 23 Dec 2025 02:45:39 -0800
+ by orviesa007.jf.intel.com with ESMTP; 23 Dec 2025 02:45:41 -0800
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, mitulkumar.ajitkumar.golani@intel.com,
  ankit.k.nautiyal@intel.com, ville.syrjala@linux.intel.com,
  uma.shankar@intel.com, jani.nikula@intel.com
-Subject: [PATCH v11 14/18] drm/i915/display: Wait for VRR PUSH status update
-Date: Tue, 23 Dec 2025 16:15:36 +0530
-Message-ID: <20251223104542.2688548-15-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH v11 15/18] drm/i915/dsb: Add pipedmc dc balance enable/disable
+Date: Tue, 23 Dec 2025 16:15:37 +0530
+Message-ID: <20251223104542.2688548-16-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20251223104542.2688548-1-mitulkumar.ajitkumar.golani@intel.com>
 References: <20251223104542.2688548-1-mitulkumar.ajitkumar.golani@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,54 +69,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-After VRR Push is sent, need to wait till flipline decision boundary
-to get Push bit to get cleared.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+Add function to control DC balance enable/disable bit via DSB.
 
 --v2:
-- Adjust delays to vrr vmin vblank delays. (Ankit)
+Remove redundant forward declaration.
 
---v3:
-- Change intel_vrr_vmin_safe_window_end() so that
-intel_dsb_wait_for_delayed_vblank() uses correct delay. (Ankit)
-
---v4:
-- Simplify intel_vrr_vmin_safe_window_end implementation. (Ankit)
-
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vrr.c | 15 +++++++++++++--
- 1 file changed, 13 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dmc.c | 17 +++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dmc.h |  3 +++
+ 2 files changed, 20 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 68b39fe0f7bc..a4a198a28519 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -1095,10 +1095,21 @@ int intel_vrr_safe_window_start(const struct intel_crtc_state *crtc_state)
- 		return crtc_state->hw.adjusted_mode.crtc_vdisplay;
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index 2fb6fec6dc99..e076ba7e0f28 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -1755,3 +1755,20 @@ u32 intel_pipedmc_start_mmioaddr(struct intel_crtc *crtc)
  
-+static int
-+intel_vrr_dcb_vmin_vblank_start(const struct intel_crtc_state *crtc_state)
+ 	return dmc ? dmc->dmc_info[dmc_id].start_mmioaddr : 0;
+ }
++
++void intel_pipedmc_dcb_enable(struct intel_dsb *dsb, struct intel_crtc *crtc)
 +{
-+	return (intel_vrr_dcb_vmin_vblank_start_next(crtc_state) < 0) ?
-+		intel_vrr_dcb_vmin_vblank_start_final(crtc_state) :
-+		intel_vrr_dcb_vmin_vblank_start_next(crtc_state);
++	struct intel_display *display = to_intel_display(crtc);
++	enum pipe pipe = crtc->pipe;
++
++	intel_de_write_dsb(display, dsb, PIPEDMC_DCB_CTL(pipe),
++			   PIPEDMC_ADAPTIVE_DCB_ENABLE);
 +}
 +
- int intel_vrr_vmin_safe_window_end(const struct intel_crtc_state *crtc_state)
- {
--	return intel_vrr_vmin_vblank_start(crtc_state) -
--	       crtc_state->set_context_latency;
-+	int vmin_vblank_start = crtc_state->vrr.dc_balance.enable ?
-+			intel_vrr_dcb_vmin_vblank_start(crtc_state) :
-+			intel_vrr_vmin_vblank_start(crtc_state);
++void intel_pipedmc_dcb_disable(struct intel_dsb *dsb, struct intel_crtc *crtc)
++{
++	struct intel_display *display = to_intel_display(crtc);
++	enum pipe pipe = crtc->pipe;
 +
-+	return vmin_vblank_start - crtc_state->set_context_latency;
- }
++	intel_de_write_dsb(display, dsb, PIPEDMC_DCB_CTL(pipe), 0);
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.h b/drivers/gpu/drm/i915/display/intel_dmc.h
+index 40e9dcb033cc..9c6a42fc820e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.h
++++ b/drivers/gpu/drm/i915/display/intel_dmc.h
+@@ -15,6 +15,7 @@ struct intel_crtc;
+ struct intel_crtc_state;
+ struct intel_display;
+ struct intel_dmc_snapshot;
++struct intel_dsb;
  
- int intel_vrr_dcb_vmin_vblank_start_next(const struct intel_crtc_state *crtc_state)
+ void intel_dmc_init(struct intel_display *display);
+ void intel_dmc_load_program(struct intel_display *display);
+@@ -39,6 +40,8 @@ void intel_dmc_update_dc6_allowed_count(struct intel_display *display, bool star
+ void assert_main_dmc_loaded(struct intel_display *display);
+ 
+ void intel_pipedmc_irq_handler(struct intel_display *display, enum pipe pipe);
++void intel_pipedmc_dcb_enable(struct intel_dsb *dsb, struct intel_crtc *crtc);
++void intel_pipedmc_dcb_disable(struct intel_dsb *dsb, struct intel_crtc *crtc);
+ 
+ u32 intel_pipedmc_start_mmioaddr(struct intel_crtc *crtc);
+ void intel_pipedmc_enable_event(struct intel_crtc *crtc,
 -- 
 2.48.1
 
