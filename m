@@ -2,57 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB736CD8C79
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Dec 2025 11:24:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16FB7CD8E67
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Dec 2025 11:45:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66D3710E225;
-	Tue, 23 Dec 2025 10:24:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 081E310E0B9;
+	Tue, 23 Dec 2025 10:45:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mBT739CO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O6k0YBuO";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDB9E10E225
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Dec 2025 10:24:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEE4410E0B9;
+ Tue, 23 Dec 2025 10:45:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766485463; x=1798021463;
+ t=1766486708; x=1798022708;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=6OiawV4tlXOVBCSgOXxDNTGAF2Co7z9G9DfesBlyfBs=;
- b=mBT739COPxEhCJQVZvwWYtbZ6FGSjUVh5uU9eiC5NypqxkOyiGzDzLM+
- emufeuddUyASsCbWM54Mpo8hlXMEMsqsA7lUNTPLtd07wpX05w78xR6+E
- 9LsdH6VLm8SGtdNc4yfUxESCsO/fJuli2YQbw9sr8CrfR6IgTht+2UeMg
- bmUwDDu2xAuOHXdIdr6ltGjaDwilGAzFYWnBkZAVeSFJqUnx5R/be5f3D
- 9tRmeQUQkCjinJk/eUCTnEPXHxgM8GE4sT3ZrT3ddlqdgK1GvLAOeS2LK
- hC/2KQL1ybZqi/qO9axwUr9Ks5uydXjtXdBoRg/aY1ohag7CgjdM7V7aQ w==;
-X-CSE-ConnectionGUID: DOo1jeTlTESbA2LI1EgAJg==
-X-CSE-MsgGUID: IFE3hG9YQ1eRoA9uBiLCXw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11650"; a="55901719"
-X-IronPort-AV: E=Sophos;i="6.21,170,1763452800"; d="scan'208";a="55901719"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2025 02:24:23 -0800
-X-CSE-ConnectionGUID: M7Oj70uvTb+yyizrpjTETg==
-X-CSE-MsgGUID: g8sSFTk0S2y6jGN4BY+xZg==
+ bh=CXviflxflEKYouL8Sc/yECz+sjuWylmgjPrftWEy9ck=;
+ b=O6k0YBuOD7K7tDUu0d1UlvdabbdC2I7NR6nUfoAA4KJl6Wqf9FGsTrk/
+ J1C5CcbWER4ay6DzRIR0IibAeM9epGO/baui9ae5Xe5taPQ5ShqrZElPy
+ EwhWsFiSrHTm+PCT2M8sTlw80EPhJP7OXKpTgfqGq9ZDBMyKWM8jLEHen
+ 4wW9csMRWoxXWqpva+7CtZDp6gKuwJW+nM2NpbsVKYYHlGbsm2EhwJp/v
+ tzZg8KykSr2ptTn0Yo9jpMmgWkiWfAcFicKCfhJ12ZdyfDtySxM1891M0
+ Z8C0tYKKsacGFaUiAkTYfkj5xQfUAELfy0KhXjzVzsMSxylJ3yApu/szC Q==;
+X-CSE-ConnectionGUID: TfhT1AaTTKWSoWUzJSb6jA==
+X-CSE-MsgGUID: YK8+0n1vT4WJLw/QtTgfSw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11650"; a="68089965"
+X-IronPort-AV: E=Sophos;i="6.21,170,1763452800"; d="scan'208";a="68089965"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Dec 2025 02:45:08 -0800
+X-CSE-ConnectionGUID: SAKQ75NfSUC8RexkWpPHMw==
+X-CSE-MsgGUID: GbuambCpRLuS5/3uyzoeoA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,170,1763452800"; d="scan'208";a="204244655"
-Received: from anirban-z690i-a-ultra-plus.iind.intel.com ([10.190.216.83])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2025 02:24:21 -0800
-From: Sk Anirban <sk.anirban@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,170,1763452800"; d="scan'208";a="199734446"
+Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
+ by orviesa007.jf.intel.com with ESMTP; 23 Dec 2025 02:45:03 -0800
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
- karthik.poosa@intel.com, raag.jadav@intel.com, soham.purkait@intel.com,
- mallesh.koujalagi@intel.com, krzysztof.karas@intel.com,
- Sk Anirban <sk.anirban@intel.com>
-Subject: [PATCH v4] drm/i915/selftest: Add throttle reason diagnostics to RPS
- selftests
-Date: Tue, 23 Dec 2025 15:46:06 +0530
-Message-ID: <20251223101605.3304379-2-sk.anirban@intel.com>
-X-Mailer: git-send-email 2.43.0
+Cc: intel-xe@lists.freedesktop.org, mitulkumar.ajitkumar.golani@intel.com,
+ ankit.k.nautiyal@intel.com, ville.syrjala@linux.intel.com,
+ uma.shankar@intel.com, jani.nikula@intel.com
+Subject: [PATCH v11 00/18] Enable/Disable DC balance along with VRR DSB
+Date: Tue, 23 Dec 2025 16:15:22 +0530
+Message-ID: <20251223104542.2688548-1-mitulkumar.ajitkumar.golani@intel.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,128 +67,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Report GPU throttle reasons when RPS tests fail to reach expected
-frequencies or power levels.
+Control DC Balance Adjustment bit to accomodate changes along
+with VRR DSB implementation.
 
-v2: Read the throttle value before the spinner ends (Raag)
-    Add a condition before printing throttle value (Krzysztof)
-v3: Extend throttle reasons debug support (Raag)
-v4: Cosmetic changes (Raag)
+Mitul Golani (12):
+  drm/i915/display: Add source param for dc balance
+  drm/i915/vrr: Add VRR DC balance registers
+  drm/i915/vrr: Add DC Balance params to crtc_state
+  drm/i915/vrr: Add state dump for DC Balance params
+  drm/i915/vrr: Add compute config for DC Balance params
+  drm/i915/vrr: Add function to check if DC Balance Possible
+  drm/i915/vrr: Add function to reset DC balance accumulated params
+  drm/i915/display: Add DC Balance flip count operations
+  drm/i915/vrr: Write DC balance params to hw registers
+  drm/i915/display: Wait for VRR PUSH status update
+  drm/i915/display: Add function to configure event for dc balance
+  drm/i915/vrr: Enable DC Balance
 
-Signed-off-by: Sk Anirban <sk.anirban@intel.com>
-Reviewed-by: Raag Jadav <raag.jadav@intel.com>
-Reviewed-by: Krzysztof Karas <krzysztof.karas@intel.com>
----
- drivers/gpu/drm/i915/gt/selftest_rps.c | 34 ++++++++++++++++++++++----
- 1 file changed, 29 insertions(+), 5 deletions(-)
+Ville Syrjälä (6):
+  drm/i915/dmc: Add pipe dmc registers and bits for DC Balance
+  drm/i915/vrr: Add functions to read out vmin/vmax stuff
+  drm/i915/vblank: Extract vrr_vblank_start()
+  drm/i915/vrr: Implement vblank evasion with DC balancing
+  drm/i915/dsb: Add pipedmc dc balance enable/disable
+  drm/i915/vrr: Pause DC Balancing for DSB commits
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
-index 73bc91c6ea07..be77fba2ec49 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rps.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
-@@ -378,6 +378,7 @@ int live_rps_control(void *arg)
- 	enum intel_engine_id id;
- 	struct igt_spinner spin;
- 	intel_wakeref_t wakeref;
-+	u32 throttle;
- 	int err = 0;
- 
- 	/*
-@@ -463,6 +464,9 @@ int live_rps_control(void *arg)
- 		max = rps_set_check(rps, limit);
- 		max_dt = ktime_sub(ktime_get(), max_dt);
- 
-+		throttle = intel_uncore_read(gt->uncore, intel_gt_perf_limit_reasons_reg(gt));
-+		throttle &= GT0_PERF_LIMIT_REASONS_MASK;
-+
- 		min_dt = ktime_get();
- 		min = rps_set_check(rps, rps->min_freq);
- 		min_dt = ktime_sub(ktime_get(), min_dt);
-@@ -478,11 +482,9 @@ int live_rps_control(void *arg)
- 			min, max, ktime_to_ns(min_dt), ktime_to_ns(max_dt));
- 
- 		if (limit != rps->max_freq) {
--			u32 throttle = intel_uncore_read(gt->uncore,
--							 intel_gt_perf_limit_reasons_reg(gt));
--
--			pr_warn("%s: GPU throttled with reasons 0x%08x\n",
--				engine->name, throttle & GT0_PERF_LIMIT_REASONS_MASK);
-+			if (throttle)
-+				pr_warn("%s: GPU throttled with reasons 0x%08x\n",
-+					engine->name, throttle);
- 			show_pstate_limits(rps);
- 		}
- 
-@@ -1138,6 +1140,7 @@ int live_rps_power(void *arg)
- 	struct intel_engine_cs *engine;
- 	enum intel_engine_id id;
- 	struct igt_spinner spin;
-+	u32 throttle;
- 	int err = 0;
- 
- 	/*
-@@ -1195,6 +1198,9 @@ int live_rps_power(void *arg)
- 		max.freq = rps->max_freq;
- 		max.power = measure_power_at(rps, &max.freq);
- 
-+		throttle = intel_uncore_read(gt->uncore, intel_gt_perf_limit_reasons_reg(gt));
-+		throttle &= GT0_PERF_LIMIT_REASONS_MASK;
-+
- 		min.freq = rps->min_freq;
- 		min.power = measure_power_at(rps, &min.freq);
- 
-@@ -1210,12 +1216,21 @@ int live_rps_power(void *arg)
- 			pr_notice("Could not control frequency, ran at [%d:%uMHz, %d:%uMhz]\n",
- 				  min.freq, intel_gpu_freq(rps, min.freq),
- 				  max.freq, intel_gpu_freq(rps, max.freq));
-+
-+			if (throttle)
-+				pr_warn("%s: GPU throttled with reasons 0x%08x\n",
-+					engine->name, throttle);
- 			continue;
- 		}
- 
- 		if (11 * min.power > 10 * max.power) {
- 			pr_err("%s: did not conserve power when setting lower frequency!\n",
- 			       engine->name);
-+
-+			if (throttle)
-+				pr_warn("%s: GPU throttled with reasons 0x%08x\n",
-+					engine->name, throttle);
-+
- 			err = -EINVAL;
- 			break;
- 		}
-@@ -1241,6 +1256,7 @@ int live_rps_dynamic(void *arg)
- 	struct intel_engine_cs *engine;
- 	enum intel_engine_id id;
- 	struct igt_spinner spin;
-+	u32 throttle;
- 	int err = 0;
- 
- 	/*
-@@ -1293,6 +1309,9 @@ int live_rps_dynamic(void *arg)
- 		max.freq = wait_for_freq(rps, rps->max_freq, 500);
- 		max.dt = ktime_sub(ktime_get(), max.dt);
- 
-+		throttle = intel_uncore_read(gt->uncore, intel_gt_perf_limit_reasons_reg(gt));
-+		throttle &= GT0_PERF_LIMIT_REASONS_MASK;
-+
- 		igt_spinner_end(&spin);
- 
- 		min.dt = ktime_get();
-@@ -1308,6 +1327,11 @@ int live_rps_dynamic(void *arg)
- 		if (min.freq >= max.freq) {
- 			pr_err("%s: dynamic reclocking of spinner failed\n!",
- 			       engine->name);
-+
-+			if (throttle)
-+				pr_warn("%s: GPU throttled with reasons 0x%08x\n",
-+					engine->name, throttle);
-+
- 			err = -EINVAL;
- 		}
- 
+ .../drm/i915/display/intel_crtc_state_dump.c  |   8 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  30 ++
+ .../drm/i915/display/intel_display_device.h   |   1 +
+ .../drm/i915/display/intel_display_types.h    |  11 +
+ drivers/gpu/drm/i915/display/intel_dmc.c      |  25 ++
+ drivers/gpu/drm/i915/display/intel_dmc.h      |   5 +
+ drivers/gpu/drm/i915/display/intel_dmc_regs.h |  60 ++++
+ drivers/gpu/drm/i915/display/intel_dsb.c      |  31 +-
+ drivers/gpu/drm/i915/display/intel_vblank.c   |  33 +-
+ drivers/gpu/drm/i915/display/intel_vrr.c      | 281 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_vrr.h      |  10 +
+ drivers/gpu/drm/i915/display/intel_vrr_regs.h |  68 +++++
+ 12 files changed, 556 insertions(+), 7 deletions(-)
+
 -- 
-2.43.0
+2.48.1
 
