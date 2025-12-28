@@ -2,29 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E831DCE5784
-	for <lists+intel-gfx@lfdr.de>; Sun, 28 Dec 2025 22:14:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C8F3CE5791
+	for <lists+intel-gfx@lfdr.de>; Sun, 28 Dec 2025 22:31:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C314B10F20C;
-	Sun, 28 Dec 2025 21:14:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F053112A47;
+	Sun, 28 Dec 2025 21:31:55 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="uJDfCTVf";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 950AF10F20C;
- Sun, 28 Dec 2025 21:14:14 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8129778623480861420=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/gt=3A_use_design?=
- =?utf-8?q?ated_initializers_for_intel=5Fgt=5Fdebugfs=5Ffile_=28rev8=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sebastian Brzezinka" <sebastian.brzezinka@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Sun, 28 Dec 2025 21:14:14 -0000
-Message-ID: <176695645460.119264.1461988284690100966@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <bae491e8098705a87304a7c94573b377e8c8fa37.1765897826.git.sebastian.brzezinka@intel.com>
-In-Reply-To: <bae491e8098705a87304a7c94573b377e8c8fa37.1765897826.git.sebastian.brzezinka@intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66A44112621;
+ Sun, 28 Dec 2025 21:31:52 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id B280B41789;
+ Sun, 28 Dec 2025 21:31:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CEDFEC4CEFB;
+ Sun, 28 Dec 2025 21:31:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
+ s=korg; t=1766957511;
+ bh=RmuKLZ3sZCzDzTXc4AqK859HnGlXw2AUurpubxSNsXU=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=uJDfCTVftVwMa2XsyOr5TGBpTc8L5ZEB0rtH29CWCovofEiPBEIxYtV/YGToTkYgM
+ /5OY5Kp1PwiaPQ6fHsd0tCWscNsnPAUY/S7G00WsSGg1y37ajSqI/E/v3NneOYHigM
+ teZo8kMbZXPvSc/pRwzu1e9k3k4yJXE1KJAaJb4Q=
+Date: Sun, 28 Dec 2025 13:31:50 -0800
+From: Andrew Morton <akpm@linux-foundation.org>
+To: Steven Rostedt <rostedt@goodmis.org>
+Cc: "Yury Norov (NVIDIA)" <yury.norov@gmail.com>, Masami Hiramatsu
+ <mhiramat@kernel.org>, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Christophe Leroy
+ <chleroy@kernel.org>, Randy Dunlap <rdunlap@infradead.org>, Ingo Molnar
+ <mingo@kernel.org>, Jani Nikula <jani.nikula@linux.intel.com>, Joonas
+ Lahtinen <joonas.lahtinen@linux.intel.com>, David Laight
+ <david.laight@runbox.com>, Petr Pavlu <petr.pavlu@suse.com>, Andi Shyti
+ <andi.shyti@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko
+ Ursulin <tursulin@ursulin.net>, Daniel Gomez <da.gomez@kernel.org>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-modules@vger.kernel.org,
+ linux-trace-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 7/7] kernel.h: drop trace_printk.h
+Message-Id: <20251228133150.1d5731d04bc1b685b0fe81c1@linux-foundation.org>
+In-Reply-To: <20251226115848.298465d4@gandalf.local.home>
+References: <20251225170930.1151781-1-yury.norov@gmail.com>
+ <20251225170930.1151781-8-yury.norov@gmail.com>
+ <20251226115848.298465d4@gandalf.local.home>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,148 +66,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8129778623480861420==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, 26 Dec 2025 11:58:48 -0500 Steven Rostedt <rostedt@goodmis.org> wrote:
 
-== Series Details ==
+> On Thu, 25 Dec 2025 12:09:29 -0500
+> "Yury Norov (NVIDIA)" <yury.norov@gmail.com> wrote:
+> 
+> > The trace_printk.h header is debugging-only by nature, but now it's
+> > included by almost every compilation unit via kernel.h.
+> > 
+> > Removing trace_printk.h saves 1.5-2% of compilation time on my
+> > Ubuntu-derived x86_64/localyesconfig.
+> > 
+> > There's ~30 files in the codebase, requiring trace_printk.h for
+> > non-debugging reasons: mostly to disable tracing on panic or under
+> > similar conditions. Include the header for those explicitly.
+> > 
+> > This implicitly decouples linux/kernel.h and linux/instruction_pointer.h
+> > as well, because it has been isolated to trace_printk.h early in the
+> > series.
+> > 
+> > Signed-off-by: Yury Norov (NVIDIA) <yury.norov@gmail.com>
+> 
+> I'm still against this patch. It means every time someone adds
+> trace_printk() they need to add the header for it.
+> 
+> trace_printk() should be as available to the kernel as printk() is.
 
-Series: drm/i915/gt: use designated initializers for intel_gt_debugfs_file (rev8)
-URL   : https://patchwork.freedesktop.org/series/158761/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_17743 -> Patchwork_158761v8
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158761v8/index.html
-
-Participating hosts (44 -> 42)
-------------------------------
-
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_158761v8 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live:
-    - bat-twl-1:          [PASS][1] -> [ABORT][2] ([i915#14365]) +1 other test abort
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17743/bat-twl-1/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158761v8/bat-twl-1/igt@i915_selftest@live.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [DMESG-FAIL][3] ([i915#12061]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17743/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158761v8/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-    - bat-dg2-9:          [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17743/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158761v8/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#14365]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14365
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_17743 -> Patchwork_158761v8
-
-  CI-20190529: 20190529
-  CI_DRM_17743: d981f0db217cc859e49c783e0a6e766642e143b6 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8677: 8677
-  Patchwork_158761v8: d981f0db217cc859e49c783e0a6e766642e143b6 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158761v8/index.html
-
---===============8129778623480861420==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gt: use designated initializers for intel_gt_debugfs_file (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158761/">https://patchwork.freedesktop.org/series/158761/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158761v8/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158761v8/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17743 -&gt; Patchwork_158761v8</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158761v8/index.html</p>
-<h2>Participating hosts (44 -&gt; 42)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_158761v8 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live:<ul>
-<li>bat-twl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17743/bat-twl-1/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158761v8/bat-twl-1/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14365">i915#14365</a>) +1 other test abort</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17743/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158761v8/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17743/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158761v8/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17743 -&gt; Patchwork_158761v8</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17743: d981f0db217cc859e49c783e0a6e766642e143b6 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8677: 8677<br />
-  Patchwork_158761v8: d981f0db217cc859e49c783e0a6e766642e143b6 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============8129778623480861420==--
+um, why?  trace_printk is used 1% as often as is printk.  Seems
+reasonable to include a header file to access such a rarely-used(!) and
+specialized thing?
