@@ -2,126 +2,105 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBF61CE8455
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Dec 2025 23:05:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DC99CE83FB
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Dec 2025 22:59:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74CD610E742;
-	Mon, 29 Dec 2025 22:05:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF83610E73B;
+	Mon, 29 Dec 2025 21:59:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=broadcom.com header.i=@broadcom.com header.b="Y3ljoC2v";
+	dkim=pass (1024-bit key; unprotected) header.d=broadcom.com header.i=@broadcom.com header.b="Iq0zqbRI";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-f226.google.com (mail-pl1-f226.google.com
- [209.85.214.226])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70C6F10E742
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Dec 2025 22:05:42 +0000 (UTC)
-Received: by mail-pl1-f226.google.com with SMTP id
- d9443c01a7336-2a0833b5aeeso129109125ad.1
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Dec 2025 14:05:42 -0800 (PST)
+Received: from mail-qv1-f97.google.com (mail-qv1-f97.google.com
+ [209.85.219.97])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 955D910E73B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 29 Dec 2025 21:59:47 +0000 (UTC)
+Received: by mail-qv1-f97.google.com with SMTP id
+ 6a1803df08f44-8888a444300so102285766d6.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 29 Dec 2025 13:59:47 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1767045942; x=1767650742;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:dkim-signature:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=UwzcNp2HYOV4Z1mSXVXCsNd5TObEfxUddJJZvW7JJZk=;
- b=nSH3fmPCJ7qCYXkfQ3sUoO53FTH9cz7cB9MFKlhgL74LmIy6qbeBP3HHFDShwBzEAq
- Nxv5ZIh+ksqd/bk6MKfCyXC1NMzeuH/4hRRWjUrZhYPo1UiUDc4fCyGjSfm2iIHUZedw
- HG0VGWAaEoS3TrInNj0eGCFLZ8IzTXqJLnfuSlCu3xaJU8DJNYEEfhGa74jWOenTar2Z
- AiJAKXS+TjcHwg8qYYpcFNcjkkiM++DdFIQ3ssiQ4+5TSN9UHOH8qa2CYqJqD8aRwT4F
- bhYPLUQg+XEWwb8SstawSp/A2I56utMiO2qO7kImtsM/wQzovvGASobo8JUECZIlrGJE
- Cf2Q==
+ d=1e100.net; s=20230601; t=1767045586; x=1767650386;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:dkim-signature:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=eqxbMiL7ohe4dc/pwMvCfPcqWUGF7TjyIlnwnpMs1gk=;
+ b=ke4KNPyMhSsTvagUZd34MXBE+g4Xrzqd6sHg4bHyhZn3zBX3qzXIf0pkq0o3N/xtCK
+ rcI4fNaoMoM3NSgxOAvf7zbU5uFg5+LksnA5h33kfB5HF8+0jiX1eE+xHFQ89go/qnuk
+ aKpbJcEFH/u2AaMmRf/BBOwK/g2wuO0XmVXAcgvGP0GRtNT4IqMT7rflc5b+WLMIk/PV
+ IRUgUFGD956nCZD9XxJg9PpycRsYXYPMjV9TYi1jyOIgoh0gtcT3TYGJEsqYkhmr/neB
+ E5rnI3ZtALFKKQL+ZOoVujGb5j4Wj8SzfRUyt5XANMcb7ynitp0jT5sz/DdeYWBYDhNu
+ xZmw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUbwPPC+YfIVuc/08xgpGGYc+i5JtYrr7TGsAwiqUHTif3CgxmvKLpWhIq3EZiUi0yTo/gNZLAgjx0=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx4jDibaXidh25YEz5i57Y8IIUsQAzdKhN7xYOWXRI2ME8PgfjP
- jwb0Oaq79XlPBmnLtbeBgI/aUXZfx+9Cd7TN+032jYXZIhBBlw2ypoQOClXa4QAXW7Zg5bmrVmx
- BC9fYjrT43Z9QPPLc3j8lcAA13iZW1l6XBkdvUEyoAgHl5KT3hQFGGdplFsoJE0JWq22k3aH9jQ
- wA+tyAGoY03J88avoAOGubdII77xWKlhU70YbbsSNgvyTTXFcB6OFWIY+hFpVOnIEtm+iDDcS5L
- ApskX7zPnurKVVwxkan
-X-Gm-Gg: AY/fxX5mI2IbRO92T94u10hgHpWpy/QcghAPkhButUeZU+NBeJOB8auw+G4XE7z0dac
- CZ5V9ys87sV8izu73FvCTMrOE2t4vlDAkMJOkL36EhQK2NcqnZ948UVEzo/ABinhDzhpuh09Yn+
- oX4HHeyt39GrFB65vrECm3Ahp3RQxcqSbKAEIcA5h6VgHhBlwMDJ9apZ+L+l8gxmjOcSuB+coFl
- EZ6+FMpkvUTdMqFheHW7wsBJZO4W95d0xKw1qAaGTtr+JrX9r1SYu8GzRPpeG5pRfMMI+I7KGge
- 9g5m3UuXs+m2k9DI6pVJ1hChiZk1GRPy6lTlaS0Dqbds1Ft8uGad3r+TotGQUOThBpSo60aCknE
- OAZL/9JkMQ++sulPY4mHPCiapPLELxlNJO7NwFYhOLQUW2vQuNU8pRq4ueP2sVbGFryJvQZ0Udk
- s6EN+WOQA47KYMVP8+Yh2Tnvw2oXyTqtxQ49w5kl271rgO
-X-Google-Smtp-Source: AGHT+IHE1AbZ9dsVXrDbX7NRsGXFW2AJXcqXOoWlhiqc50RUs63vVywRSHh8mVJ+qOLNN0j4vZpN5zCsHT/S
-X-Received: by 2002:a17:903:4407:b0:2a0:9d25:c4ca with SMTP id
- d9443c01a7336-2a2f222ade3mr348114895ad.18.1767045941927; 
- Mon, 29 Dec 2025 14:05:41 -0800 (PST)
+ AJvYcCX8ioZeBP5jY9xdQm/SH8D5HY6etJlSlcaIhDsiUfj7TVH7E7Uwo/ZZsK9/pEsUS0y+F7e2gPbv0yo=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwS7G2U13HGhPyGCGfnD5JMTRHhMsMi12K5bd2yM/2pTij26LnA
+ NMVnP2ZvK2i4xINhSwh/11IFk7alIDdKbgMn9/qPDvnpy+rr2U3Zmd1qSgKAw4wA1SrmYiJPJ7l
+ OKbTYrOaCpICzYBrfw8kGCcf6PmnXFZZEbYWv864JsiFBNY5g5nQQGGXDnkujFq3RvG92YBJKV9
+ Q7WyHoKuuqpbtfxjBlix3eWhSswEogDEjtIJd/LGuoDkX3Gs3821wxc4PuMV+Asl4aYOtfIE9cT
+ 23nHfsHhfDAeZhjPJMi
+X-Gm-Gg: AY/fxX5E8euez372aTS8/CN/GD5ka+bbnmrLRSIO0/EgU74oO0cEBl9MtguC9VUmeoh
+ T2KcgtAek4QMcx2pxs6XxTl08zl8p10dT1gvqA7uUmU4LIQ5LUMIey0kVR2HWogXyNxE9dA9rn+
+ OWUZNyrDPMKOxqemoMb36AetwRelxvTznQG+n0bQtXGAb2fHSBnfy7kDXrOvPyJ5En72Ops+ail
+ OEm8tiQEksQ9d34McvTng59vWTKzxXhh9VktlmRaXRlSgxQNZ4X3+sqIb9r8LnUjuG5C2R/jARU
+ 4u1ct6k59eHD/EicrsCws2LfdiJliC+oOxyoyliw8yrIrpLleyz1Q1JcMLhv1xIk07QBJTZq5zx
+ Ecn8GD6E1tC3uoRwkkNJ6P9eZ1MQpod0oo088mfFTq5IwjA7O9VywWV0jxc6+c54cv+1SWB+ngq
+ 35OtF99Ou72LqeKLSa1w/SWerRrCDRbGAHICv8tpGXLG8G
+X-Google-Smtp-Source: AGHT+IHDQylBQ6zBaI2CmnWIrFb1wbYVQgDG6EHytAZ5Pesk9sggJ8wTvaY98TLO+DSdQibWuR7fJXzljA0k
+X-Received: by 2002:a05:6214:3f8a:b0:720:3cd9:1f7e with SMTP id
+ 6a1803df08f44-88d7f5ae5e9mr489965776d6.0.1767045586606; 
+ Mon, 29 Dec 2025 13:59:46 -0800 (PST)
 Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com
  (address-144-49-247-117.dlp.protect.broadcom.com. [144.49.247.117])
  by smtp-relay.gmail.com with ESMTPS id
- d9443c01a7336-2a2f3d06a59sm32831185ad.40.2025.12.29.14.05.41
+ 6a1803df08f44-88d980511f3sm41230176d6.26.2025.12.29.13.59.46
  for <intel-gfx@lists.freedesktop.org>
  (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 29 Dec 2025 14:05:41 -0800 (PST)
+ Mon, 29 Dec 2025 13:59:46 -0800 (PST)
 X-Relaying-Domain: broadcom.com
 X-CFilter-Loop: Reflected
-Received: by mail-qv1-f70.google.com with SMTP id
- 6a1803df08f44-88883a2cabbso350150186d6.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Dec 2025 14:05:40 -0800 (PST)
+Received: by mail-qk1-f197.google.com with SMTP id
+ af79cd13be357-8b1d8f56e24so2399905785a.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 29 Dec 2025 13:59:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=broadcom.com; s=google; t=1767045940; x=1767650740;
+ d=broadcom.com; s=google; t=1767045586; x=1767650386;
  darn=lists.freedesktop.org; 
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=UwzcNp2HYOV4Z1mSXVXCsNd5TObEfxUddJJZvW7JJZk=;
- b=Y3ljoC2vCrzMbPu4PAWd3dstoQL6TcEW4y5rNcrNV8DS519baxMalDhWJC489b0H12
- oDogiBl5RB0DoqdNbxq4ro5X2RXM+FevDnZ5IjliGpNLKgTZImX/BjFr5T8Ed5LSe8vR
- wms0sMODC27XsR1aXcX0/l4HeQmGIViszdKSU=
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=eqxbMiL7ohe4dc/pwMvCfPcqWUGF7TjyIlnwnpMs1gk=;
+ b=Iq0zqbRIZSL0AvPFaKhVU4W2DP4DTuTpV/Ggos+mufsNE525pVssCdCFZ11ooTxKKh
+ NgrmXaPtgFx+ukEeDAUwthLnTf0s3m4e2Bt+cg2ueLWogAF95FBJsMNYhddkVV4LTdYu
+ vwegevyZj3fn5Wmnr59XLtd49N8BA7jqUnAj0=
 X-Forwarded-Encrypted: i=1;
- AJvYcCVyOslFM9OrqOF8H0GT6XMmgvd9fLMeOpC2YgjeuFlyzZD0xWbeqDQnxfg+yCukbSxS1k6L/b2xMIE=@lists.freedesktop.org
-X-Received: by 2002:a05:6214:428e:b0:88a:3681:1d96 with SMTP id
- 6a1803df08f44-88d881b984fmr478636076d6.63.1767045551436; 
- Mon, 29 Dec 2025 13:59:11 -0800 (PST)
-X-Received: by 2002:a05:6214:428e:b0:88a:3681:1d96 with SMTP id
- 6a1803df08f44-88d881b984fmr478635666d6.63.1767045550918; 
- Mon, 29 Dec 2025 13:59:10 -0800 (PST)
+ AJvYcCVHk/2zvNdiLlkpGQNcUG6I+SrP9ZSBac1liGCcMg88a3+Bk7iIhxGTISq+19dH2jyiUl/zFSaAeh4=@lists.freedesktop.org
+X-Received: by 2002:a05:620a:44d5:b0:8b2:e179:feb7 with SMTP id
+ af79cd13be357-8c08fa99a77mr5321267085a.49.1767045585849; 
+ Mon, 29 Dec 2025 13:59:45 -0800 (PST)
+X-Received: by 2002:a05:620a:44d5:b0:8b2:e179:feb7 with SMTP id
+ af79cd13be357-8c08fa99a77mr5321265485a.49.1767045585459; 
+ Mon, 29 Dec 2025 13:59:45 -0800 (PST)
 Received: from localhost.localdomain
  (pool-173-49-113-140.phlapa.fios.verizon.net. [173.49.113.140])
  by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-88d9759f164sm231530026d6.24.2025.12.29.13.59.09
+ 6a1803df08f44-88d9759f164sm231530026d6.24.2025.12.29.13.59.44
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 29 Dec 2025 13:59:10 -0800 (PST)
+ Mon, 29 Dec 2025 13:59:44 -0800 (PST)
 From: Zack Rusin <zack.rusin@broadcom.com>
 To: dri-devel@lists.freedesktop.org
-Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- Ard Biesheuvel <ardb@kernel.org>, Ce Sun <cesun102@amd.com>,
- Chia-I Wu <olvaffe@gmail.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
- Deepak Rawat <drawat.floss@gmail.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Hans de Goede <hansg@kernel.org>, Hawking Zhang <Hawking.Zhang@amd.com>,
- Helge Deller <deller@gmx.de>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Jocelyn Falempe <jfalempe@redhat.com>,
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Lijo Lazar <lijo.lazar@amd.com>, linux-efi@vger.kernel.org,
- linux-fbdev@vger.kernel.org, linux-hyperv@vger.kernel.org,
- linux-kernel@vger.kernel.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- Lyude Paul <lyude@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- "Mario Limonciello (AMD)" <superm1@kernel.org>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Maxime Ripard <mripard@kernel.org>, nouveau@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
- spice-devel@lists.freedesktop.org,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, virtualization@lists.linux.dev,
- Vitaly Prosyak <vitaly.prosyak@amd.com>
-Subject: [PATCH 00/12] Recover sysfb after DRM probe failure
-Date: Mon, 29 Dec 2025 16:58:06 -0500
-Message-ID: <20251229215906.3688205-1-zack.rusin@broadcom.com>
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH 12/12] drm/i915: Use devm aperture helpers for sysfb restore
+ on probe failure
+Date: Mon, 29 Dec 2025 16:58:18 -0500
+Message-ID: <20251229215906.3688205-13-zack.rusin@broadcom.com>
 X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20251229215906.3688205-1-zack.rusin@broadcom.com>
+References: <20251229215906.3688205-1-zack.rusin@broadcom.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-DetectorID-Processed: b00c1d49-9d2e-4205-b15f-d015386d3d5e
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -139,119 +118,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Almost a rite of passage for every DRM developer and most Linux users
-is upgrading your DRM driver/updating boot flags/changing some config
-and having DRM driver fail at probe resulting in a blank screen.
+Use devm_aperture_remove_conflicting_pci_devices() instead of the
+non-devm variant to automatically restore the system framebuffer
+(efifb/simpledrm) if the driver's probe fails after removing the
+firmware framebuffer.
 
-Currently there's no way to recover from DRM driver probe failure. PCI
-DRM driver explicitly throw out the existing sysfb to get exclusive
-access to PCI resources so if the probe fails the system is left without
-a functioning display driver.
+Call devm_aperture_remove_conflicting_pci_devices_done() after
+successful probe to cancel the automatic restore, as the driver
+is now responsible for display output.
 
-Add code to sysfb to recever system framebuffer when DRM driver's probe
-fails. This means that a DRM driver that fails to load reloads the system
-framebuffer driver.
+This ensures users don't lose display output if the i915 driver
+fails to probe after removing the firmware framebuffer.
 
-This works best with simpledrm. Without it Xorg won't recover because
-it still tries to load the vendor specific driver which ends up usually
-not working at all. With simpledrm the system recovers really nicely
-ending up with a working console and not a blank screen.
-
-There's a caveat in that some hardware might require some special magic
-register write to recover EFI display. I'd appreciate it a lot if
-maintainers could introduce a temporary failure in their drivers
-probe to validate that the sysfb recovers and they get a working console.
-The easiest way to double check it is by adding:
- /* XXX: Temporary failure to test sysfb restore - REMOVE BEFORE COMMIT */
- dev_info(&pdev->dev, "Testing sysfb restore: forcing probe failure\n");
- ret = -EINVAL;
- goto out_error;
-or such right after the devm_aperture_remove_conflicting_pci_devices .
-
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-Cc: Ard Biesheuvel <ardb@kernel.org>
-Cc: Ce Sun <cesun102@amd.com>
-Cc: Chia-I Wu <olvaffe@gmail.com>
-Cc: "Christian König" <christian.koenig@amd.com>
-Cc: Danilo Krummrich <dakr@kernel.org>
-Cc: Dave Airlie <airlied@redhat.com>
-Cc: Deepak Rawat <drawat.floss@gmail.com>
-Cc: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Cc: dri-devel@lists.freedesktop.org
-Cc: Gerd Hoffmann <kraxel@redhat.com>
-Cc: Gurchetan Singh <gurchetansingh@chromium.org>
-Cc: Hans de Goede <hansg@kernel.org>
-Cc: Hawking Zhang <Hawking.Zhang@amd.com>
-Cc: Helge Deller <deller@gmx.de>
-Cc: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Signed-off-by: Zack Rusin <zack.rusin@broadcom.com>
 Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Javier Martinez Canillas <javierm@redhat.com>
-Cc: Jocelyn Falempe <jfalempe@redhat.com>
 Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Lijo Lazar <lijo.lazar@amd.com>
-Cc: linux-efi@vger.kernel.org
-Cc: linux-fbdev@vger.kernel.org
-Cc: linux-hyperv@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Lyude Paul <lyude@redhat.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: "Mario Limonciello (AMD)" <superm1@kernel.org>
-Cc: Mario Limonciello <mario.limonciello@amd.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: nouveau@lists.freedesktop.org
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: spice-devel@lists.freedesktop.org
-Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: "Timur Kristóf" <timur.kristof@gmail.com>
 Cc: Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: virtualization@lists.linux.dev
-Cc: Vitaly Prosyak <vitaly.prosyak@amd.com>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Simona Vetter <simona@ffwll.ch>
+Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org
+---
+ drivers/gpu/drm/i915/i915_driver.c | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
 
-Zack Rusin (12):
-  video/aperture: Add sysfb restore on DRM probe failure
-  drm/vmwgfx: Use devm aperture helpers for sysfb restore on probe
-    failure
-  drm/xe: Use devm aperture helpers for sysfb restore on probe failure
-  drm/amdgpu: Use devm aperture helpers for sysfb restore on probe
-    failure
-  drm/virtio: Add sysfb restore on probe failure
-  drm/nouveau: Use devm aperture helpers for sysfb restore on probe
-    failure
-  drm/qxl: Use devm aperture helpers for sysfb restore on probe failure
-  drm/vboxvideo: Use devm aperture helpers for sysfb restore on probe
-    failure
-  drm/hyperv: Add sysfb restore on probe failure
-  drm/ast: Use devm aperture helpers for sysfb restore on probe failure
-  drm/radeon: Use devm aperture helpers for sysfb restore on probe
-    failure
-  drm/i915: Use devm aperture helpers for sysfb restore on probe failure
-
- drivers/firmware/efi/sysfb_efi.c           |   2 +-
- drivers/firmware/sysfb.c                   | 191 +++++++++++++--------
- drivers/firmware/sysfb_simplefb.c          |  10 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |   9 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |   7 +
- drivers/gpu/drm/ast/ast_drv.c              |  13 +-
- drivers/gpu/drm/hyperv/hyperv_drm_drv.c    |  23 +++
- drivers/gpu/drm/i915/i915_driver.c         |  13 +-
- drivers/gpu/drm/nouveau/nouveau_drm.c      |  16 +-
- drivers/gpu/drm/qxl/qxl_drv.c              |  14 +-
- drivers/gpu/drm/radeon/radeon_drv.c        |  15 +-
- drivers/gpu/drm/vboxvideo/vbox_drv.c       |  13 +-
- drivers/gpu/drm/virtio/virtgpu_drv.c       |  29 ++++
- drivers/gpu/drm/vmwgfx/vmwgfx_drv.c        |  13 +-
- drivers/gpu/drm/xe/xe_device.c             |   7 +-
- drivers/gpu/drm/xe/xe_pci.c                |   7 +
- drivers/video/aperture.c                   |  54 ++++++
- include/linux/aperture.h                   |  14 ++
- include/linux/sysfb.h                      |   6 +
- 19 files changed, 368 insertions(+), 88 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index c97b76771917..f9efeb825064 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -506,7 +506,12 @@ static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
+ 	if (ret)
+ 		goto err_perf;
+ 
+-	ret = aperture_remove_conflicting_pci_devices(pdev, dev_priv->drm.driver->name);
++	/*
++	 * Use devm variant to automatically restore sysfb if probe fails.
++	 * This ensures the user doesn't lose display if our probe fails
++	 * after removing the firmware framebuffer (efifb/simpledrm).
++	 */
++	ret = devm_aperture_remove_conflicting_pci_devices(pdev, dev_priv->drm.driver->name);
+ 	if (ret)
+ 		goto err_ggtt;
+ 
+@@ -866,6 +871,12 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 
+ 	i915->do_release = true;
+ 
++	/*
++	 * Probe succeeded - cancel the automatic sysfb restore action.
++	 * We're now responsible for display output.
++	 */
++	devm_aperture_remove_conflicting_pci_devices_done(pdev);
++
+ 	return 0;
+ 
+ out_cleanup_gem:
 -- 
 2.48.1
 
