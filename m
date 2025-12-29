@@ -2,62 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49194CE69DB
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Dec 2025 12:55:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7000ECE69DE
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Dec 2025 12:55:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBB4310E415;
-	Mon, 29 Dec 2025 11:55:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F161810E419;
+	Mon, 29 Dec 2025 11:55:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JJv8QG8U";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ImEfhHa0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5915F10E415;
- Mon, 29 Dec 2025 11:55:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3BABC10E419;
+ Mon, 29 Dec 2025 11:55:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767009305; x=1798545305;
+ t=1767009311; x=1798545311;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tHJj2B42o53T7wn4vugmhhO8X2mfccMXKDH210Jeh2g=;
- b=JJv8QG8USCe0ePnOEqj6dcjJsRN93Td5oggGnZ2SZv/4oCyqMnuo+OPq
- enYVdwJtuiX74XDtD28U3nW9Nt2Xw8ueHIedBrVMAlPXSpetItUW7vqRq
- FT+eq74qByoOQIzF1VY+vyfOyXurtGtEHRyiYIHvzJCK8uALEPwmVbgKc
- bIOfGaGN136GUlC7bkyhzLmrpE76n9UpyU2Z168ZLY2/fljPG0XdxYjea
- CakdADK9nuMDx7yDNvBYZ+dnXXhBvPTP1boZODHlB4RHEAgfNP6TOXcSm
- 8b1jFRcNW14k9cnnrrC9hofnY/MTEgkjBeKYi35tmuFn9WEdlb7kU5TYO Q==;
-X-CSE-ConnectionGUID: WNMgrPDtTt+tPXMJF8N/rg==
-X-CSE-MsgGUID: XV2UAHf3SauyfAk6CcRCdQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11655"; a="68593155"
-X-IronPort-AV: E=Sophos;i="6.21,185,1763452800"; d="scan'208";a="68593155"
+ bh=AjOpUYGrMQ+gn8drwiVxUnM2EvkVbo7SaLydfNdrNg8=;
+ b=ImEfhHa0Mi9uRC3oU06Ta6tkEwMq/wKTna9UJ6TU9pKAX9wpsgIL9YPv
+ gR2Cu2fgD3ZwsLIZFuMYCjbKWDFCOFMXy4lYBP1JL55z2KaJ4iQJgZPzT
+ jMYMWcX0DmpP9rvzqLiTNLfb1AFG05iKYS0Mg1pSRCxh5b7aNKCEFgQY9
+ ALSuCPud8+TNC2ZqsMPuXuUFRYZoXLPm4tWCQZBsbTBvWJUAFW8ugUhRg
+ d6skNi07m6v7Q/AkM6NMX/2jahHBJrN2lPYPEcOR3rcoBcxqMKv41EDn1
+ 5ktYuGo1MF3vxlVyrqOL+x0Viy6VZ9ROJbDRNub/N9Q6O9/n1RlRIXSnw g==;
+X-CSE-ConnectionGUID: 6ZGa/K3UQguJ6qqsmIErPw==
+X-CSE-MsgGUID: j7Y9bEemR/WguWsDMwoKRg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11655"; a="68593164"
+X-IronPort-AV: E=Sophos;i="6.21,185,1763452800"; d="scan'208";a="68593164"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Dec 2025 03:55:05 -0800
-X-CSE-ConnectionGUID: FQaH0IBKSDueFr/sMQzJyA==
-X-CSE-MsgGUID: x3AIIAwCSvCiWxoGXLCg9Q==
+ 29 Dec 2025 03:55:11 -0800
+X-CSE-ConnectionGUID: a2sjNROGRq2LuC1fIw1B4A==
+X-CSE-MsgGUID: HdWWEhB/Tem76LoTrIIhdQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,185,1763452800"; d="scan'208";a="201176753"
+X-IronPort-AV: E=Sophos;i="6.21,185,1763452800"; d="scan'208";a="201176786"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.147])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Dec 2025 03:55:02 -0800
+ 29 Dec 2025 03:55:08 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com, rodrigo.vivi@intel.com,
  ville.syrjala@linux.intel.com
-Subject: [PATCH 2/3] drm/xe: remove compat i915_drv.h and
- -Ddrm_i915_private=xe_device hack
-Date: Mon, 29 Dec 2025 13:54:44 +0200
-Message-ID: <8d2da5404439ed334d7682922b599f36eeb60e9d.1767009044.git.jani.nikula@intel.com>
+Subject: [PATCH 3/3] drm/i915/utils: drop unnecessary ifdefs
+Date: Mon, 29 Dec 2025 13:54:45 +0200
+Message-ID: <f40a1fd365cbcfb77bd76ce0041c4523699f6052.1767009044.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1767009044.git.jani.nikula@intel.com>
 References: <cover.1767009044.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,58 +72,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The xe display build no longer needs the compat i915_drv.h or the ugly
--Ddrm_i915_private=xe_device hack. Remove them, with great pleasure.
+The i915_utils.h and intel_display_utils.h were in some cases included
+from the same files, the former via i915_drv.h and the latter
+directly. This lead to a clash between MISSING_CASE() and
+fetch_and_zero() defined in both, requiring ifdefs.
+
+With the display dependency on i915_drv.h removed, we can also remove
+the now unnecessary ifdefs.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile                   |  3 +--
- .../gpu/drm/xe/compat-i915-headers/i915_drv.h | 22 -------------------
- 2 files changed, 1 insertion(+), 24 deletions(-)
- delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+ drivers/gpu/drm/i915/display/intel_display_utils.h | 4 ----
+ drivers/gpu/drm/i915/i915_utils.h                  | 4 ----
+ 2 files changed, 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 3315f93a35b2..2b20c79d7ec9 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -200,8 +200,7 @@ endif
- # i915 Display compat #defines and #includes
- subdir-ccflags-$(CONFIG_DRM_XE_DISPLAY) += \
- 	-I$(src)/compat-i915-headers \
--	-I$(srctree)/drivers/gpu/drm/i915/display/ \
--	-Ddrm_i915_private=xe_device
-+	-I$(srctree)/drivers/gpu/drm/i915/display/
+diff --git a/drivers/gpu/drm/i915/display/intel_display_utils.h b/drivers/gpu/drm/i915/display/intel_display_utils.h
+index 2a18f160320c..affa3179f52c 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_utils.h
++++ b/drivers/gpu/drm/i915/display/intel_display_utils.h
+@@ -9,18 +9,14 @@
  
- # Rule to build display code shared with i915
- $(obj)/i915-display/%.o: $(srctree)/drivers/gpu/drm/i915/display/%.c FORCE
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-deleted file mode 100644
-index 04d1925f9a19..000000000000
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-+++ /dev/null
-@@ -1,22 +0,0 @@
--/* SPDX-License-Identifier: MIT */
--/*
-- * Copyright © 2023 Intel Corporation
-- */
--#ifndef _XE_I915_DRV_H_
--#define _XE_I915_DRV_H_
--
--/*
-- * "Adaptation header" to allow i915 display to also build for xe driver.
-- * TODO: refactor i915 and xe so this can cease to exist
-- */
--
--#include <drm/drm_drv.h>
--
--#include "xe_device_types.h"
--
--static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
--{
--	return container_of(dev, struct drm_i915_private, drm);
--}
--
+ struct intel_display;
+ 
+-#ifndef MISSING_CASE
+ #define MISSING_CASE(x) WARN(1, "Missing case (%s == %ld)\n", \
+ 			     __stringify(x), (long)(x))
 -#endif
+ 
+-#ifndef fetch_and_zero
+ #define fetch_and_zero(ptr) ({						\
+ 	typeof(*ptr) __T = *(ptr);					\
+ 	*(ptr) = (typeof(*ptr))0;					\
+ 	__T;								\
+ })
+-#endif
+ 
+ #define KHz(x) (1000 * (x))
+ #define MHz(x) KHz(1000 * (x))
+diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
+index 9e5b7fcadbe2..ecc20e0528f4 100644
+--- a/drivers/gpu/drm/i915/i915_utils.h
++++ b/drivers/gpu/drm/i915/i915_utils.h
+@@ -38,22 +38,18 @@
+ 
+ struct drm_i915_private;
+ 
+-#ifndef MISSING_CASE
+ #define MISSING_CASE(x) WARN(1, "Missing case (%s == %ld)\n", \
+ 			     __stringify(x), (long)(x))
+-#endif
+ 
+ #define i915_probe_error(i915, fmt, ...) ({ \
+ 	drm_err(&(i915)->drm, fmt, ##__VA_ARGS__); \
+ })
+ 
+-#ifndef fetch_and_zero
+ #define fetch_and_zero(ptr) ({						\
+ 	typeof(*ptr) __T = *(ptr);					\
+ 	*(ptr) = (typeof(*ptr))0;					\
+ 	__T;								\
+ })
+-#endif
+ 
+ /*
+  * check_user_mbz: Check that a user value exists and is zero
 -- 
 2.47.3
 
