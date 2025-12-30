@@ -2,61 +2,99 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC1D2CEA107
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Dec 2025 16:29:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B60C9CEA264
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Dec 2025 17:18:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B814610E911;
-	Tue, 30 Dec 2025 15:29:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5344C10E92A;
+	Tue, 30 Dec 2025 16:18:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JM4haG3V";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cCJXCvE2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D41C210E911;
- Tue, 30 Dec 2025 15:29:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767108572; x=1798644572;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=BRydKcpDs26YemeA6M/dtOc/vy7KuqT8LiQy/2JTKio=;
- b=JM4haG3VX1EYPLw9vYX5+2ejHnbKrV9GcfHJSFfoK/+hcpNwECwiLf20
- zWf4C+5M5NnBTGAEINBjBuFkwHP2ZtKPMKxuHipjmWANSvc01fD9JMQnk
- /h7Gxk3sluFzly33ZSFqk4uApe9AHhoFNjm+Nk6ruegGDYGiiipDrVxFd
- rHbsxNwknuqoOxk+VZWNl+EbZskqn2r+TDEnYT0GzxIudBu7902OXc0QC
- zP3xfqH1k0f3pcZP6p9tp1xbBw6wshETxbg6FejsBdgGgRxIwSWALsPnG
- EL0X+EX3X931iumRVh1k9iOTmRDyLwAG8LRu6OjS413Il3zKp44EXwcaj g==;
-X-CSE-ConnectionGUID: JxydWfFoQQy00qFM2S9Pcg==
-X-CSE-MsgGUID: /W8glLOrSUmK7UkaHqggEA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11657"; a="80069206"
-X-IronPort-AV: E=Sophos;i="6.21,189,1763452800"; d="scan'208";a="80069206"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Dec 2025 07:29:31 -0800
-X-CSE-ConnectionGUID: chDeC9WoTxuiC0TH6bDxVw==
-X-CSE-MsgGUID: NImSVSHIQ1ut6pqR4WoH2g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,189,1763452800"; d="scan'208";a="201493818"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.171])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Dec 2025 07:29:29 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, mika.kahola@intel.com, Suraj Kandpal
- <suraj.kandpal@intel.com>
-Subject: Re: [PATCH 3/3] drm/i915/cx0: Clear response ready & error bit
-In-Reply-To: <20251230083142.70064-4-suraj.kandpal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20251230083142.70064-1-suraj.kandpal@intel.com>
- <20251230083142.70064-4-suraj.kandpal@intel.com>
-Date: Tue, 30 Dec 2025 17:29:25 +0200
-Message-ID: <9cc99447d45269c91b9d7cb43a07dd829f6f7c95@intel.com>
+Received: from mail-yx1-f41.google.com (mail-yx1-f41.google.com
+ [74.125.224.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51EF410E92A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Dec 2025 16:18:40 +0000 (UTC)
+Received: by mail-yx1-f41.google.com with SMTP id
+ 956f58d0204a3-64472c71fc0so8308546d50.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Dec 2025 08:18:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1767111519; x=1767716319; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=MPsyxbejDKzht/HLlmTw2OYeWbm6m6QfdKcYrQLdRPs=;
+ b=cCJXCvE2PNoQLR1evpX/U3Nenyr5aEkanSYn7XVEAqkmD/bKJboHcsV4INE/t5B9/g
+ 6vRDL2YFWWBfGRn4tY1TsBqBS/5fWHAFVYqr7PdpMHVsQywpV4O0LWwVWlSUJHhOnrKi
+ ywm1vmEiSCfmT5bmxTGQLmXa9xNnhXTUcOpbm7IIk/KjGMWbc8DS6aVW/18sIWRCyMk5
+ x6/dhxYVAvP+aybtpY1lcq38OO6IKrYeSHpOJX9omWO8b9lkEAYbyDbjm7mGc6MrcNuN
+ Nw2pyJFAr8v+d5MMO//2HW4AZc8MQJz7FQuUgE6U6f6NXJ0qz8WWGhv9kU6ryYEY5mMx
+ qpig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1767111519; x=1767716319;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=MPsyxbejDKzht/HLlmTw2OYeWbm6m6QfdKcYrQLdRPs=;
+ b=aPxBRUcmtD5JWxrdzao6PxvnAvMZpoYlcuiVmX6lsYoqdW6vzcsXe+4F1JbI6m6O3U
+ odyoE+NPaD1i6aas1Zgqo8zz+8KFmbC6z6YRxYuDvDFDCzP6Wh0QzNjE7+Ltz8N9Q2fM
+ +eqd/jYraogaXe+GdfuYWO7ixhzZCgwF9jpi1BRROHh4jLkRHRSI1Db4FqJ1vrZVuk6R
+ F0KNHy/GyhlT5IGMYvZ7VAP8DsUbWafxzMabYnFWyjdhO8hjbvRb4CFDD07McJHWvlI0
+ 8o1yzHaTV+SiHwan+uAHkBEuVIBv6mOgSenhncGRTrN+O8LJCp9pkN6KoXNSLdwhkbD0
+ +MKg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVMArLpvaT1791dNHC9iSLoeIRBXclDSVJtL7AmyiW9THxSYmAU+SfKMzxckvM1mWXfAmHMf6CP5Hg=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyuXll/iUeiBFmRtIFKk9eoI6z2+0S84ozxvOl7vV1VCu+8WKwZ
+ 6Wv3g4xt70rcaQT3n8P5qqsX0ll1vYktyK9Zoz7Ip5JaqHXRzu+r0gA8
+X-Gm-Gg: AY/fxX5/gHD32cMWZzbm9SAXGLYYxKtq+WUIlcD8phgVfMkaJYujcAN8gaVh1dYYksS
+ gF42FfUsnuAYJ3PhqcsilFv2bqJRvodtxVivUwXZ3iE9YURW1qspsxS6agKZSfvwBcdP7t42IM1
+ xpWDeoXdiGVOD8A1SyphZGxbFiJlXa2ZkNu2HOLMK8LKoikARd19uHKrKYJ8t9mweZSU4MODLL3
+ 4jdNUo7JiIshybEdKs0ucAF4TxTBecdRXVcpZvhNQLz5HGN0j4U/H+M752mB7McWGGSrT1L+M4J
+ qorO2SfUqweZpiESiSxMkKfirVVNrclxjo0HBHui4rIo0IL8gKeQrFg/xpJ+YDN/fYS0+FsRL8+
+ ESakUQ1vElu08mQiNmEFAgXVhWGyaGx0JdofOE3aBGvOQmO6gKMEZqvY/IuKANU1vl5CaGelS1H
+ 8G3FqOrwA=
+X-Google-Smtp-Source: AGHT+IEgiqEBna6+E3gk4ji1N98UDvQ4ZQ6HTSlvv4L7zUJHLtl+Nax+qoAvUGugh8jqgLuKhXifXA==
+X-Received: by 2002:a05:690e:11c7:b0:644:6adf:cbf0 with SMTP id
+ 956f58d0204a3-6466a8e6db0mr24510128d50.92.1767111518890; 
+ Tue, 30 Dec 2025 08:18:38 -0800 (PST)
+Received: from localhost ([2601:346:0:79bd:79bc:cbcc:ae9e:6e4e])
+ by smtp.gmail.com with ESMTPSA id
+ 00721157ae682-78fb44f0670sm126746507b3.26.2025.12.30.08.18.38
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 30 Dec 2025 08:18:38 -0800 (PST)
+Date: Tue, 30 Dec 2025 11:18:37 -0500
+From: Yury Norov <yury.norov@gmail.com>
+To: Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Steven Rostedt <rostedt@goodmis.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Christophe Leroy <chleroy@kernel.org>,
+ Randy Dunlap <rdunlap@infradead.org>, Ingo Molnar <mingo@kernel.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ David Laight <david.laight@runbox.com>, Petr Pavlu <petr.pavlu@suse.com>,
+ Andi Shyti <andi.shyti@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Daniel Gomez <da.gomez@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-modules@vger.kernel.org, linux-trace-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 7/7] kernel.h: drop trace_printk.h
+Message-ID: <aVP7XVtYwb4YV9gy@yury>
+References: <20251225170930.1151781-1-yury.norov@gmail.com>
+ <20251225170930.1151781-8-yury.norov@gmail.com>
+ <20251226115848.298465d4@gandalf.local.home>
+ <20251228133150.1d5731d04bc1b685b0fe81c1@linux-foundation.org>
+ <20251229111748.3ba66311@gandalf.local.home>
+ <9833cb61-1ec5-4cc1-ad9d-3e07f3deff80@efficios.com>
+ <aVOTbArAxmbT5LY9@smile.fi.intel.com>
+ <71767aa7-0247-4bcc-8746-3338905197b3@efficios.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <71767aa7-0247-4bcc-8746-3338905197b3@efficios.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,48 +110,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 30 Dec 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> Clear the response ready and error bit of PORT_P2M_MESSAGE_BUS_STATUS
-> before writing the transaction pending bit of
-> PORT_M2P_MSGBUS_CTL as that is a hard requirement. If not done
-> we find that the PHY hangs since it ends up in a weird state if left
-> idle for more than 1 hour.
+On Tue, Dec 30, 2025 at 09:21:00AM -0500, Mathieu Desnoyers wrote:
+> On 2025-12-30 03:55, Andy Shevchenko wrote:
+> > On Mon, Dec 29, 2025 at 05:25:08PM -0500, Mathieu Desnoyers wrote:
+> > 
+> > ...
+> > 
+> > > One possible compromise would be to move it to its own header file,
+> > > and introduce a CONFIG_TRACE_PRINTK Kconfig option (default Y) that
+> > > would surround an include from linux/kernel.h with a preprocessor
+> > > conditional.
+
+We already have CONFIG_TRACING, and everything in the new
+trace_printk.h is conditional on it. We can protect the header in
+kernel.h with the same config.
+
+> > > But please make sure the default stays as it is today:
+> > > include the trace printk header by default.
+> > 
+> > "by default" where exactly?
+
+Seemingly nowhere.
+
+> > The problem is that kernel.h is a total mess and
+> > it's included in a lot of mysterious ways (indirectly),
+
+Yes!
+
+> > and in C you _must_
+> > include a header anyway for a custom API, just define *which* one.
 >
-> Bspec: 65101
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_cx0_phy.c | 4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> index 5edd293b533b..5ebc3404eee2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> @@ -222,6 +222,8 @@ static int __intel_cx0_read_once(struct intel_encoder *encoder,
->  		return -ETIMEDOUT;
->  	}
->  
-> +	intel_clear_response_ready_flag(encoder, lane);
-> +
+> This patch series moves the guts of trace_printk into its own header
+> file, which reduces clutter. So that's already progress. :)
+> 
+> > 
+> > Based on the Steven's first replies I see a compromise in having it inside
+> > printk.h. If you want to debug something with printf() (in general) the same
+> > header should provide all species. Do you agree?
+ 
+It may sound logical, but I don't like this idea. Printk() is used
+for debugging by everyone, but its main goal is to communicate to
+userspace and between different parts of the kernel. Notice how all
+debugging and development API in linux/pritnk.h is protected with the
+corresponding ifdefery. 
 
-Please rename the non-static function. Nobody knows what that's related
-to without looking at the function.
+Contrary to that, trace_printk() is a purely debugging feature. There's
+no use for it after the debugging is done. (Or I missed something?)
 
-BR,
-Jani.
+Everyone admits that kernel.h is a mess. Particularly, it's a mess of
+development and production features. So, moving trace_printk() from an
+already messy kernel.h to a less messy printk.h - to me it looks like
+spreading the mess.
 
->  	intel_de_write(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port, lane),
->  		       XELPDP_PORT_M2P_TRANSACTION_PENDING |
->  		       XELPDP_PORT_M2P_COMMAND_READ |
-> @@ -293,6 +295,8 @@ static int __intel_cx0_write_once(struct intel_encoder *encoder,
->  		return -ETIMEDOUT;
->  	}
->  
-> +	intel_clear_response_ready_flag(encoder, lane);
-> +
->  	intel_de_write(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port, lane),
->  		       XELPDP_PORT_M2P_TRANSACTION_PENDING |
->  		       (committed ? XELPDP_PORT_M2P_COMMAND_WRITE_COMMITTED :
+> I don't have a strong opinion about including trace_printk.h from either
+> kernel.h or printk.h. As long as it's still included by a default kernel
+> config the same way it has been documented/used since 2009.
 
--- 
-Jani Nikula, Intel
+Can you please point to the documentation and quote the exact piece
+stating that? Git history points to the commit 40ada30f9621f from Ingo
+that decouples tracers from DEBUG_KERNEL, and the following 422d3c7a577
+from Kosaki that force-enables the new TRACING_SUPPORT regardless of
+the DEBUG_KERNEL state.
+
+To me, decoupling tracing from DEBUG_KERNEL looks accidental rather than
+intentional. So maybe simply restore that dependency?
+
+Currently, even with tinyconfig, DEBUG_KERNEL is enabled (via EXPERT).
+And even if EXPERT and DEBUG_KERNEL are off, tracers are still enabled.
+This doesn't look right...
+
+Thanks,
+Yury
