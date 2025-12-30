@@ -2,75 +2,175 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 124D1CFE3E1
-	for <lists+intel-gfx@lfdr.de>; Wed, 07 Jan 2026 15:20:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E04CCFE3E8
+	for <lists+intel-gfx@lfdr.de>; Wed, 07 Jan 2026 15:20:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E6BE10E60E;
-	Wed,  7 Jan 2026 14:19:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D93E10E617;
+	Wed,  7 Jan 2026 14:20:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="ICppRZMH";
+	dkim=pass (2048-bit key; unprotected) header.d=efficios.com header.i=@efficios.com header.b="dBYbn3FU";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com
- [209.85.221.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1373110E880
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Dec 2025 09:10:40 +0000 (UTC)
-Received: by mail-wr1-f42.google.com with SMTP id
- ffacd0b85a97d-432777da980so1932855f8f.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Dec 2025 01:10:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1767085838; x=1767690638; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=J5NFsipfMK9XBVYfroy27ggD+k/SBP7vWAnNBtEfHSU=;
- b=ICppRZMHgwmWdQE4f669mu1xIAoyyzDISSMh5KGxhU0pct9E8x/S/czRFXilyDLuRW
- eMF3z8EzkbHp0D3mCd1UH8Euio5h72MdJosGKfHaKQKhvlTSWln13dv5SIShjuFBq0ot
- fEBKCi7o7GzZMyqg57R3aNCgnmxm0N4N/npv0oVdE0shJ3Y+jTXYzaue5wsBRKS7Nfkt
- jVJv4GyC0rmlsyg9PU1+EZ6NHz5U84oMjoP8Qb/MZxc1kxDAQwCQK7AvSnQzSBX1QDWG
- mkBdqjBVpMIISIW+3m/v+f7eIw6tJOgaiifEAIWRMXo62RRZj7TaGw6/QAlgPMv85vJV
- iLbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1767085838; x=1767690638;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=J5NFsipfMK9XBVYfroy27ggD+k/SBP7vWAnNBtEfHSU=;
- b=e7Uv74Jefo62Wtq3aN6d9iqFOIw706rZkkMKsG+6pp+UzPap5MBB6UnxdIDhb1Lq7Q
- jNecOk5pvi/p3enDLn4nfmJydeiAAyTJrOFPSro//yhC7lMFQ+1ihrwx/u5Dj2JiIud/
- uWeVi77bMnFFw99Wo0ZE5NF5cfh/r6R7JTIWlUtm2eAj0CmPsmrDKgpg7+n/jCwxif/k
- pq4I4MJ2Izfn8Ms3xcsdy3qsvGHPsBu5W7lyxrYO4qKiduaO2L9XKqLYYWv5RynY1pj+
- UR//tneJJCPEmUtMyQ8k5eEgHZCr1kfQeduoqW1/NIVZwKUeR1nVWHnCLHC0yUrgXSOj
- QWyA==
-X-Gm-Message-State: AOJu0YwPBZqDfwEXjy0DshQcPCUeu2ApzQhMg5U4vTP1eofv1Cbi0gvS
- 777yANfNgfZoCtQs6inUChQzN75DasS5x2Dd7nOA2e/F1QQ+GgEFTQgvzNB+oA==
-X-Gm-Gg: AY/fxX4nkMnCtoKuvdJOkfrcbHBfFExaSMOWdOzQhSurofS2z7KRXTjebQYu+/sX8M2
- OMy31RT5i5QmpVRfgK7TJXvPCTEC41MWkrQR3X860A4+ZQ4ouvs22OHaLk6nbooQ+HAQhtd/hUe
- pRkoBpA32ziKn5gfc1vKvWDPHnYH6ycgGDShzbCMJoPfSpk2gAfj/5Ow6SiyDYSjiJ/7F9L1UU7
- vQvn5e+DSIrPbmcZM509lVP0t4uxAykyMz9pzuG55IRlVmDtneX0xPE5Gj35J1CVdXLCQ2JmUlr
- F0qCGby+Zbhm1+vHIMIwzTKMbCLGq0kviQnOc9HOubTKygEEoT7yOaeZjnpUv5zLOEZhAyvX9x4
- 7165WpJXvMAxX5Mp2Xa7YriP9+ATzIsQDytHt8WnmaG77ejGkBbnzJjh5sclQkszt0uav6loa5q
- BY7rp3+XkxeVlyfpy8gwv8OC05N6w=
-X-Google-Smtp-Source: AGHT+IGQ+SnzoC1jTjOiDUQ3LhBdC1Uts8CjtNNVnC1uIZF/cVYe4TlTZ/sojdIeUqEHAKkaBJ8zgw==
-X-Received: by 2002:a05:6000:25c6:b0:430:f9c2:84ec with SMTP id
- ffacd0b85a97d-4324e4d0f5dmr43870414f8f.26.1767085838188; 
- Tue, 30 Dec 2025 01:10:38 -0800 (PST)
-Received: from oscar.. (83.67.3.89.rev.sfr.net. [89.3.67.83])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-4324ea22674sm68645194f8f.10.2025.12.30.01.10.37
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 30 Dec 2025 01:10:37 -0800 (PST)
-From: Jerome Tollet <jerome.tollet@gmail.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, jani.nikula@linux.intel.com,
- rodrigo.vivi@intel.com, Jerome Tollet <jerome.tollet@gmail.com>
-Subject: [PATCH] drm/i915/hdmi: Fix 4K@60Hz HDMI display with SCDC timing
- delays
-Date: Tue, 30 Dec 2025 10:10:37 +0100
-Message-ID: <20251230091037.5603-1-jerome.tollet@gmail.com>
-X-Mailer: git-send-email 2.43.0
+Received: from YT3PR01CU008.outbound.protection.outlook.com
+ (mail-canadacentralazon11020080.outbound.protection.outlook.com
+ [52.101.189.80])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7021910E1F8;
+ Tue, 30 Dec 2025 14:21:08 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=h7MFn/wt9+b0IubkS3+hnAMbNzvHIJs6gj11CkXlZdkwAYqrvas76IXiNOTyuZXa9JYZKyR4CUIveFgZYI+ln63reEeRpVghgJfIpvyJ6+LApuYLqkJ9RsVpivOyFnNpFXTJPSHH9gkDIe6VkHriwS9ktUNWmzirWYI0+k8XxC9V0pSSd7XeNzvfpXxgMHxpTSi+40Ex2cwi8EPje3QT8c67OyG2apT+svx+ATO5QvU/2VaSeOax+gDhmXRkDpUdjK5jaZKSzbob+4u2djj2w/c8tc0K5nHxUJ8vzHhhM663ddnqJM8z6Nps9xU8JkCxR/2XJaazH2M79PwGeb3aCg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xmfOm970tR0LMfVhppECJYwa31qtTvA7VdHsreylcy0=;
+ b=b4FEQOdTnsgtfp9nfCzIyJjb4Txv0Dw+q6gvaBSfqLpLcI1gGeMO+GOSQYwtU7jnZAg5c4zDhxsLUqlVVGE0VSQH/JeHRB2NIvZU2PFq4qPnOpIMnq5o7SiHdTiz7juuSPmw7U1fM1MaefOVWZoLNp7NbTkQPUfo/5nAYCrw1CreT2hgoxwFxsZLR4ZOkDR2wm/okAyMzC4etrFCmb+E4MxRSqozJy4vhTMJpTcwSFmEUv7Mb4fNaVSH7kAheQntyW8RXVfhUQZiuvbO5NIulgRpraMc5B0nmoQlpPcpFcgmvT+Xtc357PFzeOAQDIsdwRzO4gzsb2aQhs/qr1uBuA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=efficios.com; dmarc=pass action=none header.from=efficios.com;
+ dkim=pass header.d=efficios.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=efficios.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xmfOm970tR0LMfVhppECJYwa31qtTvA7VdHsreylcy0=;
+ b=dBYbn3FUM8OpJ3zUhI4YcRuiN2Mvp+duZAFXmB8IfYS6pTZtbLRmXAKybWQWb5TID7mmkLKSKGBybTKWQXBhLWsCq6U6a3vpcDHLHJJkyZaa4XWAULe4s2alH1/hwiMeuHD3WB3dSkU48KZAoqgz8E1vDGewuxWJInhmleh2VEVPzBdxgJC0E1ydpmZ2Z4p/VxCz78RC/73TNX5azPl5615aDoRXuCRg6Ge4nD+cy5nOdpq6lPSD76l2TPOYHQf72j9oERBBTitkIXZcjEtbS0lCR+QQgAMezaMND1P8GsjZ7q9EkAzfloXama8jX+zzWDSFxoI3Ptp2qr8Fv5pFEg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=efficios.com;
+Received: from YT2PR01MB9175.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:be::5)
+ by YT3PR01MB10796.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:95::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9478.4; Tue, 30 Dec
+ 2025 14:21:04 +0000
+Received: from YT2PR01MB9175.CANPRD01.PROD.OUTLOOK.COM
+ ([fe80::6004:a862:d45d:90c1]) by YT2PR01MB9175.CANPRD01.PROD.OUTLOOK.COM
+ ([fe80::6004:a862:d45d:90c1%5]) with mapi id 15.20.9456.013; Tue, 30 Dec 2025
+ 14:21:04 +0000
+Message-ID: <71767aa7-0247-4bcc-8746-3338905197b3@efficios.com>
+Date: Tue, 30 Dec 2025 09:21:00 -0500
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 7/7] kernel.h: drop trace_printk.h
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Steven Rostedt <rostedt@goodmis.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ "Yury Norov (NVIDIA)" <yury.norov@gmail.com>,
+ Masami Hiramatsu <mhiramat@kernel.org>, Christophe Leroy
+ <chleroy@kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
+ Ingo Molnar <mingo@kernel.org>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ David Laight <david.laight@runbox.com>, Petr Pavlu <petr.pavlu@suse.com>,
+ Andi Shyti <andi.shyti@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Daniel Gomez <da.gomez@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-modules@vger.kernel.org,
+ linux-trace-kernel@vger.kernel.org
+References: <20251225170930.1151781-1-yury.norov@gmail.com>
+ <20251225170930.1151781-8-yury.norov@gmail.com>
+ <20251226115848.298465d4@gandalf.local.home>
+ <20251228133150.1d5731d04bc1b685b0fe81c1@linux-foundation.org>
+ <20251229111748.3ba66311@gandalf.local.home>
+ <9833cb61-1ec5-4cc1-ad9d-3e07f3deff80@efficios.com>
+ <aVOTbArAxmbT5LY9@smile.fi.intel.com>
+Content-Language: en-US
+From: Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+In-Reply-To: <aVOTbArAxmbT5LY9@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: YQBPR0101CA0345.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c01:6b::19) To YT2PR01MB9175.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:be::5)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: YT2PR01MB9175:EE_|YT3PR01MB10796:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2d66e775-d2bc-46b7-a473-08de47aeaa4c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?a003RE0yYk1ra0FKRXZ0ZzRjT3B2U2toTkhYMXFVZlhQeXpHVURIekpmMmhl?=
+ =?utf-8?B?Z2tTYUk0VGh4MnhlQVZBZFA1Mnc2WVVFZzJ3cTUwTGtXMXpPR3RIMlV3V1My?=
+ =?utf-8?B?UzVIRTgwTkNoYS8zV0VzMmJBWkZxSVBYTTdsLzJaSnZ3T2tpL0Jhbk95T09j?=
+ =?utf-8?B?YVpZbVMxdEQ4enViVWNkcm5zcEJLVVlucXpMSUlzNkNDU24vNGF0QVpTZnJQ?=
+ =?utf-8?B?cmtYTEp3ajZHYis1bzFteEt2ZFpDQVNCMXc3Y3VuUHN2ek5DZnlyeXl5RlJG?=
+ =?utf-8?B?cEVSYmJPL01tdTNFTzNydGVmbjJNODl4MTBUYW9KZHVmOTNqZUdUZCtuclMx?=
+ =?utf-8?B?RnZXaE5oc050Wk5uNmtkWER6V0huSWdXMW5KR3J4V05BR0lZZ1FwWVUyNnFw?=
+ =?utf-8?B?M1loWHVhZ3Eza3N5Vi9BclY4VFc0WFZUZE5iK2lIQ3JJTlhRUnBsNGpGSG1t?=
+ =?utf-8?B?bzVvTGtkcFh6ai9URlRoL1BlcFhCNEMrUFlMdVRHSitsRldJQzhZT1BoRmtV?=
+ =?utf-8?B?RHpTM2VzU0pHbFJVcm1qNmJXUVorT3duZ1djczd5dkZ2cktGaWhyYjBpeTFk?=
+ =?utf-8?B?TExNUEV3MUpUZnNuMlJTZnRxUzNzdWdzUnExVmd3MVdPSzBZMHVCTUxnVXRC?=
+ =?utf-8?B?NHFTOW5YQTlVclVOdVZacGlxVk9SbWZYSEVkN1YvQXZLWVNsazdjSTE5RnpT?=
+ =?utf-8?B?QUdmY0c2SDRCUXlpUEFLOHRuaFlKcVlXV2hPelpuZFdLYndMRUYzbnZVZERF?=
+ =?utf-8?B?YWptUVp1WjRCREtBVld1YktJNDlMZWl6WTRCbFBwUlFYWXJNWnRJdTFVQzVO?=
+ =?utf-8?B?N2NXeFk4VTZIb3VQSUhCTXY4a3JVcFpibHpiWEFpUEp3dklSRmFHV0wrZVFK?=
+ =?utf-8?B?YytsdGRKTHhkWmp3MWFMOHFtWWlLcFpwSlV4OHRod0tsNWk2Q0lqOTJzaU9N?=
+ =?utf-8?B?S25SSHkvTldNcXpDMzJ0TE9ZUmdVN1kvd1VzblBKMjdYRnZlRGpyVWdldGNM?=
+ =?utf-8?B?aXk5M3FrVGRVd1hBL1RqQWtlbkFhbmwrZnd4L0d5YXc0TGd6NXdnTnVTWitK?=
+ =?utf-8?B?N1ZoU2NXbk12NVp5ekpwMDhBN2hPU3dWRk9OblNzYUM3a0NHU0JWNDAwempT?=
+ =?utf-8?B?R0VBc0gyOFlRblkzOEpVSDcza1JxTVRLOWxCclpvVUpWVW40REhNUXF0WHhp?=
+ =?utf-8?B?Z09GVWp3TnpWem4yTU9VOE1TbkZaTXF5TDlyV1R0dmhHbzRtOFowbkVIMEg5?=
+ =?utf-8?B?SVpiRVRVYmZjZldmUm84ayt3WGhOcVBUMEtVVXhVQ2pTaEZKMUNLUlQ4NURi?=
+ =?utf-8?B?SUZuVnZQOVlHUzFCL1JBRE1SL0VqTURaQkZibXNFNkl6MnQ3SEovSi9UL1Qx?=
+ =?utf-8?B?ZW1qYUFza253ZjdTRGl1ZnNTU1FUeVE3ZHQvdUxxdk5GSWdxeFNyY3JiMVVC?=
+ =?utf-8?B?MjQ5VG1MZFMyM0J6QzVlS0o0WE9reVlDV3F5V2szYnNCUEVNckR4NDhMaFFt?=
+ =?utf-8?B?TVpqbjg1alpyYmJjRnFzanRYcmora09UbXZ2YjNyQlZUT21NWUE2aUZETTRG?=
+ =?utf-8?B?SjNKVXRoY3YwSnA2Z3VtYzl0Wm02c1N4QU9OTzU5ZDJoeWFKdEt0a1MxUUtW?=
+ =?utf-8?B?dHhmTWxXa2JmcDlLeUNKVm1WL0pMdHh2YUF6b3dMRkdoc29Ra1JzTEltcHYx?=
+ =?utf-8?B?aEViSlVSbmlQU1BydjBVYlk0TkN6VGhpcEpTcFVqUEthYnpJTjlmK3RBSWUw?=
+ =?utf-8?B?NktyRXdqZ1V1KzdKVnp2eFp1T0YyK0ZZVEtIdXJVTW5yTndHVEVKaFBRekxy?=
+ =?utf-8?B?ZGliaTNSUURFak9GeVdsWVJ6YVhhRk1XYmtxaE9sWkliU0IwTTJDbHNEZENN?=
+ =?utf-8?B?Wk5lUVhzbW1iVzVpYVl0VnBaOTZKNjNIS2ZodnJLbGVSZWc9PQ==?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:YT2PR01MB9175.CANPRD01.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(7416014)(1800799024)(366016); DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?d2hvZUxrem9kdm50NVUySFRPVXZyenE2eXRwZnFJSVpqOEhYbzZyNGd0NVZw?=
+ =?utf-8?B?dVhONEZEc29MVWhvVmVVQXlPdk9FQ0JIZUdvdkZIRExUaG01N3U1Rno1M1VL?=
+ =?utf-8?B?cGxsd1MwUFhJdFhpQ3IxUVdETkVvb3diaHVSWnRNSDNDQWVzcjlDbllXRmxE?=
+ =?utf-8?B?VTBzbzZ6bWJBQS80YkdhcW9RNlZHbm1vWVh4dHZ6NmJaNlhndCtyVUJLblp0?=
+ =?utf-8?B?R0gvbWZnYVdjTngxeUt6VVBJWC9BdCtnaExNd1lEdEdZQnZNR241Tm1jd0F1?=
+ =?utf-8?B?QUVFbDRSK2pKM0hycVc1a2lWajZxNDkvTUJ5eHBQbnMxcGhvdTR4NzZ0Yk13?=
+ =?utf-8?B?dHhram9LRWNzTUlFK0xZOUFUMi9VVTFOdUMrOUcrd21RZGx0MWt4MGQ5RWdw?=
+ =?utf-8?B?SFNYcVF6UkJDQ1ZOK3FiU3ppUEY3V1hzMWlBcW5Rb1ZpRDBPZ2ttMGY3WENk?=
+ =?utf-8?B?Mnlucnp3OTNlTU9zNmJLZ1ZKK0E4TjlCMHdKR1JldmpEMXpPWTR6b3l1QkNX?=
+ =?utf-8?B?UnQ2SGJpTzVzLzI3eWM1TUYwZHI2OHhiRGw1d09vdE9TQ2RhcjVkUFBzWkdK?=
+ =?utf-8?B?YlQrZlVtbmUvSmlxY3VhY2hycVhpZTVQRk82dkM0Z0srQ3NzVk00Q2xUQnlq?=
+ =?utf-8?B?RjhEdEEyZWpMNDU5dnI2R2JKVzBlOW5wb3JiMkUxRHdpbzdSc2tjUXF2MHQ0?=
+ =?utf-8?B?M3RYVUtaaENSOHpXYzNDR2xxMU9zVGthZFc0VDdLaTVyaU9BbHZ2RkU3RjR3?=
+ =?utf-8?B?RG5mWVRtdDdqWUp0QWQ5N3JPRjFNZWxvRGpVVDB5OGwydXlRNExDODdsVWFu?=
+ =?utf-8?B?d3hsVm9sTGRsR01xZjM3ZVdkWUhqUUhNNkFBYlVhbUI1ZExNU1JpYUhERzJY?=
+ =?utf-8?B?NGtFUXRXUmp1dDFrMFpHaDRoWi9UelBMQ1R1RElPZDlCTkN4WXM3cHFFTGQ4?=
+ =?utf-8?B?V2VzdE5rT3V5R3NqU2xoQ09ycmRuLy9VY25JOFhyNjRwMGhjbUpyNWhUWU1J?=
+ =?utf-8?B?emR4WDkzN09RVHNxYXd0cG94Q0YrcXNYSkhqODFmK0ZwTHljZmdsR0Exa1Mv?=
+ =?utf-8?B?UGJhYVFvdUNMdkZiU3dPbG1oemVZNW9tQWtTQjMyd3p3OWdCd3ZTTThLUnVk?=
+ =?utf-8?B?cTBhenZhMlY1NXk4Vk5Pb3JOV1UwSjZ6OTBXS05vR2pETHRDNDZrbk5wVHBV?=
+ =?utf-8?B?V29ZM1pkblVONk5QTEM2MDIxWXRLY1Ivb0QrMTZybmd0Q2dlNFYwb3BYSnFF?=
+ =?utf-8?B?eEVkMG1LUk9QZEl6Q05ISWN5bmxhV1Y0TFY5WDg1RU0xOVp4YWZGMnlzYVhY?=
+ =?utf-8?B?VTRlaWd0T0JPK1dHQWJ1cjdINHFhdGFwREFNaG1nRXlmVTZ6SnRaM3RNdFFV?=
+ =?utf-8?B?Vko0bysvMTBxNjhhanhDcTBabkpSblJ3UnZxamovSmFGYkE3TmU5SkkwbnFI?=
+ =?utf-8?B?RXk0V20rZG9qOGZiRnNhTTJwNDIybWpKVlljY2EwMkY1NFl3OUhzQUxnajQw?=
+ =?utf-8?B?Uk1rRjdZOFdTZUJ5OU4rQnlxWHdOY3RyRG12aVJBQmlqS0hYeEEzTUNvbitE?=
+ =?utf-8?B?aE52dkQxU2NOZWdHdW51K3ZnbTZBTEk0Y3pTK2NIWjhmK2ZjZ1VwdGQ3aml4?=
+ =?utf-8?B?SS9ZVnNOQTV0S1JSNmtJaDc2SzdaTGhzaE0zb0dtRThaSXVyb1BEbWIwMEln?=
+ =?utf-8?B?eDZzaW9HZ1RxTHh0cEloTkx6N1B3ejN3eVFyR0EraEtjZ2RXUmFHMnVsSVc0?=
+ =?utf-8?B?aWNrM0JZd1l5UDY1OVFTYS9VbDNpYk41cFdKUlcrNnhyVmJmbmxaSjVUQmtX?=
+ =?utf-8?B?Vzg4UTNXWHZyWFlRbzcrNzQycUIzblJ5N21ncmNyc3d6SS9FZWk0NDhZVS9h?=
+ =?utf-8?B?eVZ1eTc1ZDJTQmlDMWJrVy9SdXF5TWFoRC8zQXlEZTdmeEQvS3RSSVBvODl5?=
+ =?utf-8?B?bzc3Nm5xMmZzWVZKVVdrQXRCUHM5eHB5dUwzdEtMalovL1UwWXBycytJZGZB?=
+ =?utf-8?B?M3ZTdm5odEt4ZDFnWitUYW5OMUJqTEozVk5tNUNGOVEvVU9jSi83ZXl6M25T?=
+ =?utf-8?B?UXBuWGtyUHh0VWtZV1FCMFZBbnRwam11WlVYNlU2UFB2ejhOalVCWUJIOGUw?=
+ =?utf-8?B?SnIzc21ZZFA5YzlidUN3eUVuRUpKZGVPcDFBTjZWN1RJK1ZHVURqUmNRYTdX?=
+ =?utf-8?B?SzMzSk5ianFFZERJQzRhYnREa2xnWDcwQi9BNnFjaXpCZElYM3czVnNUU1ZN?=
+ =?utf-8?B?MDZTTDhmT0FTYmQwQlNLVlR2eTloejdvYjhRaWhOQzIzRGRhbzM2b3V5TWVJ?=
+ =?utf-8?B?bkJHMkxXbHpPSzE0akRFdzEyUXpQYmY0RklDRFFubzBYRUhvQ2VVYzB6M1RT?=
+ =?utf-8?Q?G1HflB6xF7D/RPzA=3D?=
+X-OriginatorOrg: efficios.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2d66e775-d2bc-46b7-a473-08de47aeaa4c
+X-MS-Exchange-CrossTenant-AuthSource: YT2PR01MB9175.CANPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Dec 2025 14:21:04.1974 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4f278736-4ab6-415c-957e-1f55336bd31e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tJCCHMKchYxyXY2sxleL8Lpf8nRlze7XuANf1WfsibXtaT/a9uWrNJvXAoUhd8ucx13la9EGZISrZKd11VMOIEoEo2Np32tJkrC4uEnrDRE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: YT3PR01MB10796
 X-Mailman-Approved-At: Wed, 07 Jan 2026 14:19:56 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -87,66 +187,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Some HDMI 2.0 monitors fail to decode the signal at 4K@60Hz (594 MHz)
-when SCDC scrambling is configured too quickly. The monitor displays
-"format detection" error and never recovers, despite SCDC I2C
-transactions succeeding.
+On 2025-12-30 03:55, Andy Shevchenko wrote:
+> On Mon, Dec 29, 2025 at 05:25:08PM -0500, Mathieu Desnoyers wrote:
+> 
+> ...
+> 
+>> One possible compromise would be to move it to its own header file,
+>> and introduce a CONFIG_TRACE_PRINTK Kconfig option (default Y) that
+>> would surround an include from linux/kernel.h with a preprocessor
+>> conditional. But please make sure the default stays as it is today:
+>> include the trace printk header by default.
+> 
+> "by default" where exactly? The problem is that kernel.h is a total mess and
+> it's included in a lot of mysterious ways (indirectly), and in C you _must_
+> include a header anyway for a custom API, just define *which* one.
 
-Root cause: The SCDC disable/enable sequence happens too fast (~16ms),
-causing the monitor to lose sync during the transition. HDMI 2.0 spec
-section 10.4.1.7 states that the sink can disable scrambling if it
-doesn't detect a scrambled clock within 100ms.
+This patch series moves the guts of trace_printk into its own header
+file, which reduces clutter. So that's already progress. :)
 
-Solution: Add timing delays to allow the monitor to properly handle
-the SCDC configuration:
-- 100ms before SCDC configuration (let monitor stabilize)
-- 150ms after DDI enable (let monitor lock onto scrambled signal)
+> 
+> Based on the Steven's first replies I see a compromise in having it inside
+> printk.h. If you want to debug something with printf() (in general) the same
+> header should provide all species. Do you agree?
 
-Testing performed on:
-- Hardware: Intel Alder Lake-N N100 (Gen12.0, PCI ID 8086:46d1)
-- Monitor: Cisco Desk Pro (HDMI 2.0 capable)
-- Resolution: 3840x2160@60Hz via HDMI 2.0
-- Kernel: Linux 6.18.1
-- Test scenarios:
-  * Multiple reboots (stable across all tests)
-  * DPMS ON/OFF cycles (suspend/resume works correctly)
+I don't have a strong opinion about including trace_printk.h from either
+kernel.h or printk.h. As long as it's still included by a default kernel
+config the same way it has been documented/used since 2009.
 
-Impact: Adds 250ms delay during boot, only when hdmi_scrambling is
-active (resolutions > 340 MHz). No impact on lower resolutions or
-runtime performance.
+Thanks,
 
-Fixes display initialization on monitors sensitive to SCDC timing.
+Mathieu
 
-Signed-off-by: Jerome Tollet <jerome.tollet@gmail.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index abcdef123456..fedcba654321 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3414,6 +3414,10 @@ static void intel_ddi_enable_hdmi(struct intel_atomic_state *state,
- 	enum port port = encoder->port;
- 	u32 buf_ctl = 0;
- 
-+	/* Give monitor time to be ready before SCDC configuration */
-+	if (crtc_state->hdmi_scrambling)
-+		msleep(100);
-+
- 	if (!intel_hdmi_handle_sink_scrambling(encoder, connector,
- 					       crtc_state->hdmi_high_tmds_clock_ratio,
- 					       crtc_state->hdmi_scrambling))
-@@ -3502,6 +3506,10 @@ static void intel_ddi_enable_hdmi(struct intel_atomic_state *state,
- 	}
- 
- 	intel_ddi_buf_enable(encoder, buf_ctl);
-+
-+	/* Give monitor time to lock onto scrambled signal after DDI enable */
-+	if (crtc_state->hdmi_scrambling)
-+		msleep(150);
- }
- 
- static void intel_ddi_enable(struct intel_atomic_state *state,
---
-2.43.0
+-- 
+Mathieu Desnoyers
+EfficiOS Inc.
+https://www.efficios.com
