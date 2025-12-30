@@ -2,65 +2,187 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0580FCEA363
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Dec 2025 17:46:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3B56CEA536
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Dec 2025 18:36:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F8BA10E346;
-	Tue, 30 Dec 2025 16:46:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58EED10E763;
+	Tue, 30 Dec 2025 17:36:44 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cIv1i0/S";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from relay.hostedemail.com (smtprelay0013.hostedemail.com
- [216.40.44.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1E5C10E346;
- Tue, 30 Dec 2025 16:46:07 +0000 (UTC)
-Received: from omf16.hostedemail.com (a10.router.float.18 [10.200.18.1])
- by unirelay01.hostedemail.com (Postfix) with ESMTP id 3A4561AC02;
- Tue, 30 Dec 2025 16:46:05 +0000 (UTC)
-Received: from [HIDDEN] (Authenticated sender: rostedt@goodmis.org) by
- omf16.hostedemail.com (Postfix) with ESMTPA id 3C3872000E; 
- Tue, 30 Dec 2025 16:46:00 +0000 (UTC)
-Date: Tue, 30 Dec 2025 11:46:08 -0500
-From: Steven Rostedt <rostedt@goodmis.org>
-To: Yury Norov <yury.norov@gmail.com>
-Cc: Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, Andrew Morton
- <akpm@linux-foundation.org>, Masami Hiramatsu <mhiramat@kernel.org>,
- Christophe Leroy <chleroy@kernel.org>, Randy Dunlap
- <rdunlap@infradead.org>, Ingo Molnar <mingo@kernel.org>, Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, David Laight <david.laight@runbox.com>,
- Petr Pavlu <petr.pavlu@suse.com>, Andi Shyti <andi.shyti@kernel.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Daniel Gomez <da.gomez@kernel.org>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-modules@vger.kernel.org,
- linux-trace-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 7/7] kernel.h: drop trace_printk.h
-Message-ID: <20251230114608.4d016ad3@gandalf.local.home>
-In-Reply-To: <aVP7XVtYwb4YV9gy@yury>
-References: <20251225170930.1151781-1-yury.norov@gmail.com>
- <20251225170930.1151781-8-yury.norov@gmail.com>
- <20251226115848.298465d4@gandalf.local.home>
- <20251228133150.1d5731d04bc1b685b0fe81c1@linux-foundation.org>
- <20251229111748.3ba66311@gandalf.local.home>
- <9833cb61-1ec5-4cc1-ad9d-3e07f3deff80@efficios.com>
- <aVOTbArAxmbT5LY9@smile.fi.intel.com>
- <71767aa7-0247-4bcc-8746-3338905197b3@efficios.com>
- <aVP7XVtYwb4YV9gy@yury>
-X-Mailer: Claws Mail 3.20.0git84 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DEB010E36E;
+ Tue, 30 Dec 2025 17:36:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1767116202; x=1798652202;
+ h=content-transfer-encoding:in-reply-to:references:subject:
+ from:cc:to:date:message-id:mime-version;
+ bh=PgSMKTt/+RFG0VTOkQOWnK8mSdVUuEteaNnfF/Daci8=;
+ b=cIv1i0/SgxXksNbTci7lz6IluXuRttn89STBwxJMLfnnkLkpuWX4HEm4
+ /BoUCN6SQ+AYsLXbQRywXtPS32/US/rk5v28e0liuz5od+XByWEKjemyN
+ nQ7jsXrTACt6WlK+Uao4Lf9dnQy8pygSDkbq6pNeA4EsU9j4PE9jyE3sb
+ OVhuYL/FmLmUK/6bxG+UsH8Tpz7DphIJmyirESQgtIATMdXucUCRxYrH0
+ tGl4K2duso17IfAhOPCRK9NGZnjQtTy0kFcDp1XZcy/CZ4bjoqgCRr1uZ
+ N2Hfi1PukGNclGVFvc02V7Rniki6ozpUjc5ykm3N+OOsn8tOneTiVUMnZ Q==;
+X-CSE-ConnectionGUID: RBAzI5J0TeqA8UfLGOm39A==
+X-CSE-MsgGUID: Wz+YK1u+QwaAczYcoaV41g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11657"; a="68775481"
+X-IronPort-AV: E=Sophos;i="6.21,189,1763452800"; d="scan'208";a="68775481"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Dec 2025 09:36:42 -0800
+X-CSE-ConnectionGUID: 2jCCM+9gQSSFpsY/GpQxFA==
+X-CSE-MsgGUID: SR094sGlRVa1jYhHUgvQyw==
+X-ExtLoop1: 1
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Dec 2025 09:36:42 -0800
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Tue, 30 Dec 2025 09:36:41 -0800
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29 via Frontend Transport; Tue, 30 Dec 2025 09:36:41 -0800
+Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.11) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Tue, 30 Dec 2025 09:36:41 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=hmzqVu/NxEjZzZwVVWbhQuR7rpF6KZZLpuJpofhHHTCTEsIazZmW3x6rdvl3pIMQdmvLk1uIf374tIpwiiY9y+qpeIHdi+MFcHyhvKTNwx+TP2WSH1xYyz8h/R/nHqSH2s7fIKT+OGL9ABMKNqivaYRqj94JkNcUtUwv38WqCdt+kqsIRD7HcFW7sSQxYyJHnK2yakyE0zgCMZPD80a8kvT48qG1DdlLP92X1PrmaHK9LU4Ex8Jm7wQlp1hgVmaRvN9T7fYLXmMNMlkoZEqFpSRAKZPOc+zzfQvvXyQYq7X487QHnzSXyUBMNJ6ozmjWTY3y3lXZrk4e6YD/RiDQ4A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sbtkfu5I6/UVAlD3v4rmrQsx/nYqPGz+pqrjvZHdFFE=;
+ b=g2kdU68edYlFryyRyih1wZgZ4drszMe2nIs8QF1zDQYB1VE2ZopPX9ZBYIdQHZwpNHJQliGYkYMTwwJVOj4LNTni8WFj/lmOTiFSVfZYE529RdI5ULgH2kZPsGBv8cUpaFTTQrp4nE+XMFkl7HRPu3XSj2m2UWPSIDvuErBoTYPk1a2Z7ETPMmOA0C28cnJaysGLotC5U2RsdWAPcrTvoOjemxbQOvgEvGhCJL31BbWeTYMaJEW80sTxUeZNRwsvuDWC/kOryH9TZJcG5knQGlk4cWPerpxeIGCvKk8SL4sNnz0iGlivuRrxdCdUOkYfP/y3Yt+EO1QBza5kwRg3Ow==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
+ by IA3PR11MB9206.namprd11.prod.outlook.com (2603:10b6:208:574::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9456.14; Tue, 30 Dec
+ 2025 17:36:40 +0000
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::7e8b:2e5:8ce4:2350%3]) with mapi id 15.20.9456.013; Tue, 30 Dec 2025
+ 17:36:40 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20251230083142.70064-4-suraj.kandpal@intel.com>
+References: <20251230083142.70064-1-suraj.kandpal@intel.com>
+ <20251230083142.70064-4-suraj.kandpal@intel.com>
+Subject: Re: [PATCH 3/3] drm/i915/cx0: Clear response ready & error bit
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+CC: <ankit.k.nautiyal@intel.com>, <mika.kahola@intel.com>, Suraj Kandpal
+ <suraj.kandpal@intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+Date: Tue, 30 Dec 2025 14:36:35 -0300
+Message-ID: <176711619593.18661.17406989812251209808@intel.com>
+User-Agent: alot/0.12.dev22+g972188619
+X-ClientProxiedBy: SJ0P220CA0030.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:41b::6) To PH8PR11MB8287.namprd11.prod.outlook.com
+ (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Stat-Signature: 4i9hewjpr3gbis1q6d3ttnkhanok4op7
-X-Spam-Status: No, score=1.40
-X-Rspamd-Server: rspamout03
-X-Rspamd-Queue-Id: 3C3872000E
-X-Session-Marker: 726F737465647440676F6F646D69732E6F7267
-X-Session-ID: U2FsdGVkX18O6dPuVd6GpggnxnHsJ7vt65oCGcSBmjI=
-X-HE-Tag: 1767113160-914064
-X-HE-Meta: U2FsdGVkX18pw+VknCW4DxjOFTSyQBTc345WFVz/6FnLY9YrBVc+F9/yrODI8xntUzXr6QDAUTdwfVKc2ji52wMkx+htI+Dz48K8SQi/wWRO2PFdggctocbIDZ5uEWPoDkRnaAh25vBcp2AJUUygYwNwh/JrMwAbIPXdqK9Tcrzvo7CnkiLt7z4jGH0nkAFlAvkuq4vJv4757f0HurjAvcOTdxeG8PfzZHXSAP7l2112HEI/BbnRhX84nNssrD2zF9mPTP/WWzuKXZzPJFvm6bYURwv1iQUdmJ4Btt6EYP/lD/A5Gh+qz40ZHZK6TEeWi+OOS6gMWcRgJnjXFYTpHVKKNdF2FB0XpS+54YY1zUvhwOh/RzvjoRCBjkhlhsp+
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|IA3PR11MB9206:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5ca871a9-10fb-4623-06e6-08de47c9fd7f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?V21TRURBQ0xadTgvdnhtTHhtOUFCSk5pRkxJRTR2c2hPT2JZc05sWHVWY2FD?=
+ =?utf-8?B?RjJnR1NhNXFPdjZyZTFRLzJKeTdmbWRqT1RIRmJvK1ZKVWRwUjR6eWRVYWds?=
+ =?utf-8?B?S1JlbFVaZlRWY01CcWVDWXZKMG1kRm9NU1NFc3JOWldKZEV2T0JFbUlwZGRh?=
+ =?utf-8?B?SHFJc2xjaEVkeHNmdWVXV25wQTRacnRpamVQUDFJUExOdS8wQXZhWU4xdW1M?=
+ =?utf-8?B?YXBZeVdTR3UrWUtzNm5DT1g4dEkvd0VYOC92SkY3OE8zdXFGMWFHZjRGdEdz?=
+ =?utf-8?B?eHN2TjN5QVErSjhsV29pQTRxenJRM3gycnhaWFdDNktQZHRGQmNCNFZtUFYr?=
+ =?utf-8?B?WDhGVDN3UGVHVVdiSldhMmtoZjRkNHNFUGN5Q3N0ZVYwVTI2cFpxVFo2eFFN?=
+ =?utf-8?B?UG45OW1DeGcxTld0ZDNYY1J3aGVLU0p6azdobUpjNENOWVFFYS80YnFTc0dn?=
+ =?utf-8?B?MXc4N0FLR01MVkJqREVoVE82VGhLdGxqSkxaay9DSTVGMzVDZXdJV2hXbTA4?=
+ =?utf-8?B?VGFYTXFXRHY2T09MUTNQVVpwNmRZSlNhVkZpb0dXQklkcXZuMGs2bVppb21u?=
+ =?utf-8?B?WExMR0JNbjRHTzdLWUYyUWNhQStERVUzaFA3MnV3UWpGckt0Q2xSREd1cEtZ?=
+ =?utf-8?B?MFFDbG9IODcyMnl3emthaUpFSmRETE16d2h4aDFpemxuZ01kSDB0U3RsRVBa?=
+ =?utf-8?B?WEtrK0dvTWtHbXRwMXYxbndmLzAvRDJrOTdqY2U1WU9ZbTZYQk5UQjZwOHFz?=
+ =?utf-8?B?Q2d0TVdwU2xEcWdEZTlaVmJOcncrQ0c0SElDVEllbUZ6R0VocnJPOEMyMEFC?=
+ =?utf-8?B?SXNSblpGU2FOWFh4QUhrWEJFKzBNaGxrVCtCdDhpL3JLLyt3bnZsbFU0aHIz?=
+ =?utf-8?B?bEJPS1hIaWtkdi8xbG9QN3Zya09qSktjT2x5eU5OeXY3TEJLWVFOaWxHOGZO?=
+ =?utf-8?B?NUxYM2VsK2N1d3BRd3ptR1VOREh3dkxwZyt3ZFlDMVZwZ0FNNERCOGVKYmtw?=
+ =?utf-8?B?SXBYVnE3dUdWNDlEd0Vjc29aU1VnVEhDM2FPMlhBVUJ3Q1A3TzRSUDJPTlVX?=
+ =?utf-8?B?K3FYSVhic2l2YzFGa3VtTm1PVmVmMTZGZlNoOExLU2ttdHBMdlh5OVFBa0c1?=
+ =?utf-8?B?NEY2cTZRV1dwOEJVUmdwY29OdGFwN3EyeXdLdHZRbCt5NFp3YVBGamdoMFoy?=
+ =?utf-8?B?V3poK0Z2RTMyZC9hSklHQlVYeFRFbzEzN1A2Uzl1dHAxOHMvMTV0MEMyM1hV?=
+ =?utf-8?B?RmFvMTF2dUtOYTBFWURWZ2ZiajR3Vm5ENmowMWVVT2cxQ1E3TW5md0tGazVx?=
+ =?utf-8?B?ME4zamh3eFRFZW5FemFHRWpSTldYRGN5SFRkcUNWVnowWGw0RGFCM3pWSWZm?=
+ =?utf-8?B?Y2JlQ3dMS3JLMXZ6ay9DNEwydVMydXhKWHdJdFlWY2JjTTBwVFBtTUV0V2pZ?=
+ =?utf-8?B?eUdraERydzY0dHBDczlDUjRkZGVBQ0dWanRjcmlxcEpVZ3gxRjgwTDFuc1NG?=
+ =?utf-8?B?Qlo2czJOUzZPbVl2OWJhSTdwMVY5MG9UNFJXVkpBZmlmVytLTG1pR1pIMnNs?=
+ =?utf-8?B?WVZIT3I0amd1K3p1T0xJd3ZmRzdXRFBjOU9COG90UGozQk13d3RmSzZxa2E3?=
+ =?utf-8?B?b0JGbHptdFJuWXFMckpZcGtScTFxZ1dUeS9ia2NNWHA1bmxuQUVqdWZFQUtu?=
+ =?utf-8?B?dnMxOUNBeW9oUHNYMkJZTExVVlhhT2JqaGhzT1RJeXhaeWpHd2p5VEJNcUtS?=
+ =?utf-8?B?cjF6Q04zdEQxSW9xMlpJYWVQaDZ5NVIzdGhlQWxlRkdKNmxQcnR5djllWldR?=
+ =?utf-8?B?cG1vVlFXS1RxVGVYWk5VY3VDMVoyMndyMVJpMkFHSFR2VU5ULzhZc1I5ZE9W?=
+ =?utf-8?B?YU9NZzdoTFZkWTh0cEtvd0JacCtyUGtKaDJ5RjJVM2dsUzNKWUROZHI5SVU5?=
+ =?utf-8?Q?zQIPQoIfh3t6X2DYwUnbqsEMPYVQZCXd?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WFloN0tYK2JvNzVyMXFmeFVJS00xTzllL0ZIOXk5YU04ZVlsWEtVMmNQSC9q?=
+ =?utf-8?B?UXIvajE2aUo3WVBJRFFxZVZ1SjFBY0tueGZTT0lER2pNejc1U0c1VHFXZS9p?=
+ =?utf-8?B?Z0ZmbHdQTjFGeU1HNnhGakdlc01KWXgza2gzWndvemZGeEFGYnl3MmxYRFQ5?=
+ =?utf-8?B?MnpJMElFNlJrYlVtNnFvcnlVNWdJbXJ1SW5MUVFFeGs4OXVsaFdYS3o1VHFB?=
+ =?utf-8?B?VEkrY3pQckh4VTliY3B5cGtzbkk2RWRxaW1ySDQ0ZGFOOEtJMkhMaUpLRCtC?=
+ =?utf-8?B?cXF4YzZyQVRjQWp0cm81QmhlWFc3RFJEd21KZzArcVIwZmc3R0J5MnV4SHA2?=
+ =?utf-8?B?aVQ3aXU3TWlXVzRxeDhxS3FqelhuaGxSdlIzeUZMSEsrMmhub3M3MXdaNkVN?=
+ =?utf-8?B?dlRmZmdSakRPb0F4eDFxY3Nsb1F4NDhIakxyL2R4ZjRJVFFzR0xPdCtieEhI?=
+ =?utf-8?B?ZElZTnFmZmxaZjRGRkRyaVN6cytNNUNZeUljOVpGZlI4cndseERUSTRUaHdY?=
+ =?utf-8?B?WjZUTmNmV0l1dGRobE0zUk9sRUlwR0g3R0VTblZScTdhbEFGNzcvdlFaUXlk?=
+ =?utf-8?B?eHArblN2Um5uRkRsM3REY1puYi9TU216L1BGOGVNbXExQmluNy9nS014OVRl?=
+ =?utf-8?B?eGEvc3dCUDV6VVl5ejhNM2d1bTRGdFBubi95NzFZRkxQSHdkazZLc2dGK2t4?=
+ =?utf-8?B?WWdpK2JxTG5SRjRQQ29UaUZrN3hTL1oxMXRaY0VRYXBEenJPUWFsQUJ1a0o1?=
+ =?utf-8?B?VVpoKzgrL1Roc2NYSXNkTlB5ci91NmtjM1JodWJmdEoyVWRML2gyOXBaL1Fh?=
+ =?utf-8?B?UjIwOFMzZHh3blNBWUs2bVp5YkZGVFRmY0orMlpjSm9UN1FRbkErSlMwUXpu?=
+ =?utf-8?B?NUc3a3NtcGpDOXpnM0s1ckNydE5Gck1yNm9iRmVDSzhvNmh0TDc4bmdLbnFV?=
+ =?utf-8?B?WWh5M01qVVlSUi9RczJOWVpySWJkSEorODZORGJPMFFzZVpDYzFUaFJPYUd3?=
+ =?utf-8?B?MHRUaGpWbmQvQ2swK1RTc0ltOEVvb3lMNDhBcEFKY3ppdzFFVHBiUkF4VmlP?=
+ =?utf-8?B?QnozM2JWcG9oMGFmcTBoanI4UWh0QTdWK091MWlTbzhDL3Ixd0VkQWNGMnhH?=
+ =?utf-8?B?VWh2b1RpU0xDZGtDci9zYURkdGxTNDNOMldhUkFyYkRVcXZHdDU0Q0VwbE9i?=
+ =?utf-8?B?NVM3WnJZYlJKNnV3eUtvSnhpN1hqMHZ3a2duRnVhYUpTNXdtUTF3TUZjejM4?=
+ =?utf-8?B?RHEwcjRDOEIvQUQ0WXRFa0hZRVYzV1c1bXdkYUNZa2UzVERJQTFsd3ZzcXNp?=
+ =?utf-8?B?eElNaklOZFBRRWNJMTUyUVlBZ1BCekg1RVUzNjlwK2dud0NZTnBEVWduckY4?=
+ =?utf-8?B?UStkMnFLd1RYeGNiMXRtN0V3S0V2aytqZ25iekU0ekcvSFpOT1RYSWtRV3Zk?=
+ =?utf-8?B?M2R2M3RPUzZYbkhaT3llZWVMZWg0SDl4WXBFaGdoOGROMytUQmtTNERIaVBs?=
+ =?utf-8?B?azkwZmZVblpEVmIzU2k1bTlLMHlCbkE0UXFJTGI1MkZaOW9uNWMzOTdBNDhD?=
+ =?utf-8?B?QmFURmpJZkZMRmIrM21aL1orc3JHUHhBRmhjamlzZ2V4RXg1WWpSUXF4QXJq?=
+ =?utf-8?B?a1BxdjhNRzQwaEE4OWpFQmdNTm1XWFhHQW51dmdRbm9pS1pDb3dXdHA5N1hH?=
+ =?utf-8?B?N2VEbUdBZ2Z3WWJzSEsvanB4aDkzUjVTeFFWYmpzRzF0U3BoenFmRjJGSlhR?=
+ =?utf-8?B?Skc0bzBXQjY4VUNlSUtyT3U1d0liRlhZeVBGUmg0K29ZdmkvbEplem9JUnZx?=
+ =?utf-8?B?cFpCMlRCeVlrbjY2bDk5TkswaHgvSER6d2RLaE12S2cwRzFsRnl1cmx3disz?=
+ =?utf-8?B?Z0dpY3BOams5WTNreUUvVzhtc2NoTW1nY2RQdEJ1RzBqa2xyNjN4bWFpMUpB?=
+ =?utf-8?B?Q09KYkR5MlFHUGwwSE02RlVvZ0lUOExxOEpmUHptUG9sQlBiREc0WmVqV0xs?=
+ =?utf-8?B?UWVGWWQrRXJlUUwvVk85cktocnk5dUFuT0I3Q3lFcmJ0K3JTOCtVenRzdGE2?=
+ =?utf-8?B?NVdCV2ZWamdkZ3dIR0VFL1BvMDRjRTdRV3AwTENTU3lIUjAzMXJtOGM4QWlZ?=
+ =?utf-8?B?KzBCbTdEYWdYNGJqdVVDUGltRTJqZVlzWWFsZ3BVUk5xenEwTHdYazEzSlN2?=
+ =?utf-8?B?dU1VdVZpdVhYSlJiRGxxd05KY0MxcEZva3p3UkEySzZMckg3VnlLRFJ5OWZm?=
+ =?utf-8?B?ZWhZeTEzc3R2RFVVMzJSSEs1QlpQT1ZINkYwYllZZGVNVkttQ3k2OVQ3aVFX?=
+ =?utf-8?B?bmNubUFpMVBqSy9qc1M4eDFvbUhyVUdGekh6MlkrZkZqSE5wcFRZdz09?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5ca871a9-10fb-4623-06e6-08de47c9fd7f
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Dec 2025 17:36:40.1877 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: j1jbo5WD3RrVN0gDjxedZbscUUN/DUG6rPvxA9Aygmke0MHqNFux8L2Lkh4o6Qz0ttD/pRffFPo/tHtkU7XqJA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB9206
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,115 +198,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 30 Dec 2025 11:18:37 -0500
-Yury Norov <yury.norov@gmail.com> wrote:
+Quoting Suraj Kandpal (2025-12-30 05:31:42-03:00)
+>Clear the response ready and error bit of PORT_P2M_MESSAGE_BUS_STATUS
+>before writing the transaction pending bit of
+>PORT_M2P_MSGBUS_CTL as that is a hard requirement. If not done
+>we find that the PHY hangs since it ends up in a weird state if left
+>idle for more than 1 hour.
 
-> On Tue, Dec 30, 2025 at 09:21:00AM -0500, Mathieu Desnoyers wrote:
-> > On 2025-12-30 03:55, Andy Shevchenko wrote:  
-> > > On Mon, Dec 29, 2025 at 05:25:08PM -0500, Mathieu Desnoyers wrote:
-> > > 
-> > > ...
-> > >   
-> > > > One possible compromise would be to move it to its own header file,
-> > > > and introduce a CONFIG_TRACE_PRINTK Kconfig option (default Y) that
-> > > > would surround an include from linux/kernel.h with a preprocessor
-> > > > conditional.  
-> 
-> We already have CONFIG_TRACING, and everything in the new
-> trace_printk.h is conditional on it. We can protect the header in
-> kernel.h with the same config.
+Since the series title refers to suspend/resume, is there an easy way of
+reproducing this via some power state transition?
 
-Tracing is used in production all the time. So I think we can have a new
-config just for trace_printk(). I was actually thinking of adding a
-CONFIG_HIDE_TRACE_PRINTK, with the description of:
+I'm wondering if we are looking at a driver issue here or if this is
+really something else.  I see that we usually call intel_cx0_bus_reset()
+in error paths, which contains a call to
+intel_clear_response_ready_flag(), but it could end up being not called
+if the reset times out.
 
-  trace_printk() is an extremely powerful utility to debug and develop
-  kernel code. It is defined in kernel.h so that it can be easily accessed
-  during development or having to debug existing code.
+Do we see error messages from the driver when the PHY hangs?
 
-  But trace_printk() is not to be included in the final result, and having
-  it in kernel.h during normal builds where the builder has no plans of
-  debugging the kernel causes wasted cycles and time in compiling the kernel.
+--
+Gustavo Sousa
 
-  By saying yes here, the include of trace_printk() macros will be hidden
-  from kernel.h and help speed up the compile.
-
-  If you do not plan on debugging this kernel, say Y
-
-And then have in kernel.h:
-
-#ifndef CONFIG_HIDE_TRACE_PRINTK
-# include <linux/trace_printk.h>
-#endif
-
-This also means it gets set for allyesconfig builds, which I doubt anyone
-wants to debug anyway.
-
-> 
-> > > > But please make sure the default stays as it is today:
-> > > > include the trace printk header by default.  
-> > > 
-> > > "by default" where exactly?  
-> 
-> Seemingly nowhere.
-> 
-> > > The problem is that kernel.h is a total mess and
-> > > it's included in a lot of mysterious ways (indirectly),  
-> 
-> Yes!
-> 
-> > > and in C you _must_
-> > > include a header anyway for a custom API, just define *which* one.  
-> >
-> > This patch series moves the guts of trace_printk into its own header
-> > file, which reduces clutter. So that's already progress. :)
-> >   
-> > > 
-> > > Based on the Steven's first replies I see a compromise in having it inside
-> > > printk.h. If you want to debug something with printf() (in general) the same
-> > > header should provide all species. Do you agree?  
->  
-> It may sound logical, but I don't like this idea. Printk() is used
-> for debugging by everyone, but its main goal is to communicate to
-> userspace and between different parts of the kernel. Notice how all
-> debugging and development API in linux/pritnk.h is protected with the
-> corresponding ifdefery. 
-> 
-> Contrary to that, trace_printk() is a purely debugging feature. There's
-> no use for it after the debugging is done. (Or I missed something?)
-
-I actually agree with you here. I don't think adding trace_printk.h into
-printk.h is appropriate. I only said that anywhere you can add a printk()
-for debugging, you should also be able to add trace_printk(). I believe
-kernel.h is the appropriate place for both.
-
-> 
-> Everyone admits that kernel.h is a mess. Particularly, it's a mess of
-> development and production features. So, moving trace_printk() from an
-> already messy kernel.h to a less messy printk.h - to me it looks like
-> spreading the mess.
-> 
-> > I don't have a strong opinion about including trace_printk.h from either
-> > kernel.h or printk.h. As long as it's still included by a default kernel
-> > config the same way it has been documented/used since 2009.  
-> 
-> Can you please point to the documentation and quote the exact piece
-> stating that? Git history points to the commit 40ada30f9621f from Ingo
-> that decouples tracers from DEBUG_KERNEL, and the following 422d3c7a577
-> from Kosaki that force-enables the new TRACING_SUPPORT regardless of
-> the DEBUG_KERNEL state.
-> 
-> To me, decoupling tracing from DEBUG_KERNEL looks accidental rather than
-> intentional. So maybe simply restore that dependency?
-
-Absolutely not. Tracing is used to debug production kernels, and things
-like live kernel patching also depend on it, not to mention BPF.
-
-> 
-> Currently, even with tinyconfig, DEBUG_KERNEL is enabled (via EXPERT).
-> And even if EXPERT and DEBUG_KERNEL are off, tracers are still enabled.
-> This doesn't look right...
-
-Looks fine to me.
-
--- Steve
+>
+>Bspec: 65101
+>Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+>---
+> drivers/gpu/drm/i915/display/intel_cx0_phy.c | 4 ++++
+> 1 file changed, 4 insertions(+)
+>
+>diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/dr=
+m/i915/display/intel_cx0_phy.c
+>index 5edd293b533b..5ebc3404eee2 100644
+>--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+>+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+>@@ -222,6 +222,8 @@ static int __intel_cx0_read_once(struct intel_encoder =
+*encoder,
+>                 return -ETIMEDOUT;
+>         }
+>=20
+>+        intel_clear_response_ready_flag(encoder, lane);
+>+
+>         intel_de_write(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port,=
+ lane),
+>                        XELPDP_PORT_M2P_TRANSACTION_PENDING |
+>                        XELPDP_PORT_M2P_COMMAND_READ |
+>@@ -293,6 +295,8 @@ static int __intel_cx0_write_once(struct intel_encoder=
+ *encoder,
+>                 return -ETIMEDOUT;
+>         }
+>=20
+>+        intel_clear_response_ready_flag(encoder, lane);
+>+
+>         intel_de_write(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port,=
+ lane),
+>                        XELPDP_PORT_M2P_TRANSACTION_PENDING |
+>                        (committed ? XELPDP_PORT_M2P_COMMAND_WRITE_COMMITT=
+ED :
+>--=20
+>2.34.1
+>
