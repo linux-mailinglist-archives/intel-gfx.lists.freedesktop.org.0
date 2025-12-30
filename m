@@ -2,62 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1345CEAB61
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Dec 2025 22:23:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EEF5CEAB73
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Dec 2025 22:24:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4911F10E439;
-	Tue, 30 Dec 2025 21:23:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFB6C10E242;
+	Tue, 30 Dec 2025 21:24:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JLRZIxM/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JDmVqka+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC22B10E242;
- Tue, 30 Dec 2025 21:23:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF06510E242;
+ Tue, 30 Dec 2025 21:24:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767129799; x=1798665799;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=7/SepoqWdjvk/U9ie5TprvDK+meEAIcqeIPVjqa6b/g=;
- b=JLRZIxM/Im6e5FOu33ETeJLLWXLUuHZ7uQApsKw5yVriY/jdW5A3V838
- gnRv3XQFBVAzb0qHyKqccUH/PpqU6N9+EniIia3yIBo9o1LsRqY7Q3tlJ
- K1bsxUXRY5d5a3izKWJ+4OBMQ5RdLSdrKWIsBUy2y5W/tTgn2FkjPn1jD
- KgbwhoOeG2vxd+kmkG7nOQcpbxJdkbd+5/WR/Oa/0e7XXamxAZPFPAU0+
- b4Dz9pLtUDCH6H80WIGPSmfnWMrpjpd1yIgpjglpLeLOrF1eahlNRBiTj
- tgEqPunkBDaFjZn6OByBxt53a4fhSlvgD5I1lHW7z++T33QTQyvAoUpNQ g==;
-X-CSE-ConnectionGUID: rjGSjdukQICOW5zbyjblEQ==
-X-CSE-MsgGUID: CMiCdxL4S7mxMhYix3F6Ig==
-X-IronPort-AV: E=McAfee;i="6800,10657,11657"; a="67910045"
-X-IronPort-AV: E=Sophos;i="6.21,189,1763452800"; d="scan'208";a="67910045"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ t=1767129853; x=1798665853;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=DSwuUGiHf4FZPILBJOKH/xxiJYlTrpKkInvgEsOZp1Q=;
+ b=JDmVqka+8pfjvTIQT2IgQ7zorNEzbegmicQKkHcscrqLPX7EBVC1vcDX
+ /zZnQDGh85nan09Dx2H1NPZLcVj6MqZMq7odMkPRKI2UB4vF+G3Y2Jcv8
+ +s7oPsr4uuKxW59NP6x4P8ofVvknClcTI8DQkFDCeg2YAjCB2TyfqszWV
+ IvO3BlHqaDI3Ux56k4P6pMOgJX5qzzeU+MnzSO4O215XtofX1R24pqizL
+ qAx+lEFQiuGx87uPB1vAhk7g9ngnFtghcCEeA/ujqUtrQZhCoN8yHYWuM
+ 0N2BDNyNPGV3X9oVnohVEeyO3ak5tVnxm992Hl+JmPI+NnkAbfnnAfN77 A==;
+X-CSE-ConnectionGUID: Ffg/EskYT0G2E+2TLqKBQg==
+X-CSE-MsgGUID: TQZcjf1NQJyiEqNc40n0YA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11657"; a="67910132"
+X-IronPort-AV: E=Sophos;i="6.21,189,1763452800"; d="scan'208";a="67910132"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Dec 2025 13:23:18 -0800
-X-CSE-ConnectionGUID: iilGdmsuQUamLPLsbNRkZg==
-X-CSE-MsgGUID: pg4unHMsTo2Ws+Xueu9rIQ==
+ 30 Dec 2025 13:24:12 -0800
+X-CSE-ConnectionGUID: r+7UhRv9QMOCxmPkoNfsTg==
+X-CSE-MsgGUID: L3jw1z1TTful0vAhMO3hkA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,189,1763452800"; d="scan'208";a="201546031"
-Received: from igk-lkp-server01.igk.intel.com (HELO 8a0c053bdd2a)
- ([10.211.93.152])
- by fmviesa008.fm.intel.com with ESMTP; 30 Dec 2025 13:23:17 -0800
-Received: from kbuild by 8a0c053bdd2a with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1vahBS-0000000081c-4AWG;
- Tue, 30 Dec 2025 21:23:14 +0000
-Date: Tue, 30 Dec 2025 22:23:00 +0100
-From: kernel test robot <lkp@intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, ankit.k.nautiyal@intel.com,
- mika.kahola@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: Re: [PATCH 1/3] drm/i915/cx0: Split PLL enabling/disabling in two
- parts
-Message-ID: <202512302233.vcqoghOz-lkp@intel.com>
-References: <20251230083142.70064-2-suraj.kandpal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,189,1763452800"; d="scan'208";a="206182069"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.171])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Dec 2025 13:24:10 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ rodrigo.vivi@intel.com, ville.syrjala@linux.intel.com
+Subject: Re: [PATCH 2/3] drm/xe: remove compat i915_drv.h and
+ -Ddrm_i915_private=xe_device hack
+In-Reply-To: <20251230164508.GW4164497@mdroper-desk1.amr.corp.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <cover.1767009044.git.jani.nikula@intel.com>
+ <8d2da5404439ed334d7682922b599f36eeb60e9d.1767009044.git.jani.nikula@intel.com>
+ <20251229172318.GH1180203@mdroper-desk1.amr.corp.intel.com>
+ <5b3d9ac4e919ac69d35232251f1b8181b7276e9b@intel.com>
+ <20251230164508.GW4164497@mdroper-desk1.amr.corp.intel.com>
+Date: Tue, 30 Dec 2025 23:24:07 +0200
+Message-ID: <00447b0453e8cfbadef56a8c6ca99dfd1fe9d9c4@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251230083142.70064-2-suraj.kandpal@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,70 +75,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Suraj,
+On Tue, 30 Dec 2025, Matt Roper <matthew.d.roper@intel.com> wrote:
+> On Tue, Dec 30, 2025 at 03:59:33PM +0200, Jani Nikula wrote:
+>> On Mon, 29 Dec 2025, Matt Roper <matthew.d.roper@intel.com> wrote:
+>> > On Mon, Dec 29, 2025 at 01:54:44PM +0200, Jani Nikula wrote:
+>> >> The xe display build no longer needs the compat i915_drv.h or the ugly
+>> >> -Ddrm_i915_private=xe_device hack. Remove them, with great pleasure.
+>> >> 
+>> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> >
+>> > There's still a comment referring to this aliasing in xe_device_types.h
+>> > (above the intel_uncore substruct) that should probably be removed too
+>> > now that the alias is gone.  Otherwise,
+>> 
+>> I already looked at it, but Ville's going to nuke the whole uncore
+>> member from xe_device soonish, along with the whole comment, so decided
+>> to just let it be. That okay with you?
+>
+> Yeah, that's fine with me.
 
-kernel test robot noticed the following build warnings:
+Thanks, pushed to drm-intel-next. \o/
 
-[auto build test WARNING on drm-i915/for-linux-next]
-[also build test WARNING on drm-tip/drm-tip]
-[cannot apply to drm-i915/for-linux-next-fixes linus/master v6.19-rc3 next-20251219]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+BR,
+Jani.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Suraj-Kandpal/drm-i915-cx0-Split-PLL-enabling-disabling-in-two-parts/20251230-163308
-base:   https://gitlab.freedesktop.org/drm/i915/kernel.git for-linux-next
-patch link:    https://lore.kernel.org/r/20251230083142.70064-2-suraj.kandpal%40intel.com
-patch subject: [PATCH 1/3] drm/i915/cx0: Split PLL enabling/disabling in two parts
-config: x86_64-rhel-9.4-kunit (https://download.01.org/0day-ci/archive/20251230/202512302233.vcqoghOz-lkp@intel.com/config)
-compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251230/202512302233.vcqoghOz-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202512302233.vcqoghOz-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from include/linux/bits.h:5,
-                    from include/linux/bitops.h:6,
-                    from include/linux/log2.h:12,
-                    from drivers/gpu/drm/i915/display/intel_cx0_phy.c:6:
-   drivers/gpu/drm/i915/display/intel_cx0_phy.c: In function 'intel_cx0pll_enable_clock':
->> include/vdso/bits.h:7:33: warning: statement with no effect [-Wunused-value]
-       7 | #define BIT(nr)                 (UL(1) << (nr))
-         |                                 ^
-   drivers/gpu/drm/i915/display/intel_cx0_phy.c:32:33: note: in expansion of macro 'BIT'
-      32 | #define INTEL_CX0_LANE0         BIT(0)
-         |                                 ^~~
-   drivers/gpu/drm/i915/display/intel_cx0_phy.c:3388:43: note: in expansion of macro 'INTEL_CX0_LANE0'
-    3388 |                                           INTEL_CX0_LANE0;
-         |                                           ^~~~~~~~~~~~~~~
---
-   In file included from include/linux/bits.h:5,
-                    from include/linux/bitops.h:6,
-                    from include/linux/log2.h:12,
-                    from display/intel_cx0_phy.c:6:
-   display/intel_cx0_phy.c: In function 'intel_cx0pll_enable_clock':
->> include/vdso/bits.h:7:33: warning: statement with no effect [-Wunused-value]
-       7 | #define BIT(nr)                 (UL(1) << (nr))
-         |                                 ^
-   display/intel_cx0_phy.c:32:33: note: in expansion of macro 'BIT'
-      32 | #define INTEL_CX0_LANE0         BIT(0)
-         |                                 ^~~
-   display/intel_cx0_phy.c:3388:43: note: in expansion of macro 'INTEL_CX0_LANE0'
-    3388 |                                           INTEL_CX0_LANE0;
-         |                                           ^~~~~~~~~~~~~~~
-
-
-vim +7 include/vdso/bits.h
-
-3945ff37d2f48d Vincenzo Frascino 2020-03-20  6  
-3945ff37d2f48d Vincenzo Frascino 2020-03-20 @7  #define BIT(nr)			(UL(1) << (nr))
-cbdb1f163af2bb Andy Shevchenko   2022-11-28  8  #define BIT_ULL(nr)		(ULL(1) << (nr))
-3945ff37d2f48d Vincenzo Frascino 2020-03-20  9  
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Jani Nikula, Intel
