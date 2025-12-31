@@ -2,59 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28A80CEBCB5
-	for <lists+intel-gfx@lfdr.de>; Wed, 31 Dec 2025 11:32:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C130FCEBCBE
+	for <lists+intel-gfx@lfdr.de>; Wed, 31 Dec 2025 11:35:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73F8F10E071;
-	Wed, 31 Dec 2025 10:32:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C489610E7AB;
+	Wed, 31 Dec 2025 10:35:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NfSL4bIg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DVqcJ0HF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 149B710E071;
- Wed, 31 Dec 2025 10:32:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E419C10E46C;
+ Wed, 31 Dec 2025 10:35:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767177159; x=1798713159;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=rtyrRllh93Kn8QH+ebwIXomc8UDBaX0RKdzZLkGIc54=;
- b=NfSL4bIgB7vsS1O1+RAXCSHqJvBmqcjG2eluEHawNew8adVzEArpXyOB
- 2hnzQuygETYHveddlmsk0iiT/qmiEI804gFqDtN0evmF3tz9xJoDS3gkN
- fqArenEYFNXPMJUkv1rJIxRvR/Q82ie9mMgpZob3gR5sl9vb2zqxSEwpd
- 7ZDMZmvJvlYjaub+2q9aJGnfbnxtqkNcAYgP8m8NS899xJKy0eXSydaPI
- MpL05iQbkUMnmNVHrS5MNBN9k7pwShNq1GU+zB23+FDDON/VrRgUXkn3r
- KRUEGpuqw169Kduz1IzN/L1oaIKZj2smbbKH0AXEWCa1/J5ygeAEyeVlN A==;
-X-CSE-ConnectionGUID: AHzD6ZBITuqF8PMjhS82HQ==
-X-CSE-MsgGUID: eky86Qn1T02jCoW04q9nZA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11657"; a="67944816"
-X-IronPort-AV: E=Sophos;i="6.21,191,1763452800"; d="scan'208";a="67944816"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Dec 2025 02:32:38 -0800
-X-CSE-ConnectionGUID: t0Md6hz3SO6TeUgJbEnilw==
-X-CSE-MsgGUID: m6s89IVJSAWKRdTtjSSenw==
+ t=1767177338; x=1798713338;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=BGUbYfP8ojfg2fXWeOrnyDQFTdtG6JasmBj/7UsqdxQ=;
+ b=DVqcJ0HFDFSuPehvpLpSAH50QA5FNSXKBdWDtjqCkMEdDovNqFbNn65r
+ w2/16fajj2Z1Xph2mdbLZq/OCFTdv5ZIpf1tzm+9VUYU8WFK1RSO+fusk
+ gcooE2d8+OyodQQ/Q9F7ui739I96GV+Evrm2bXpG71Wy4MwOMySV5N6f6
+ jViDzc8YSvWR6YRhF0ae34ddE2ZPO9IOfK5YmR9FRKtXdjSawEaMy3NsM
+ fm+zoLJsXWDGniTMGMUDJ1tSs/wgyMhqzcl0LQtQg+lQw1FSGLoAn5Xbz
+ au2iXgnX3NWO6SW/HR1rjLNlRjAK0guLooAcC1kxU3LcpNHKyO8gPvKNZ g==;
+X-CSE-ConnectionGUID: DoS29rSrSGGFzoKXRoELxg==
+X-CSE-MsgGUID: EbZTUkksSp63k9Rk7WhSqQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11657"; a="68908956"
+X-IronPort-AV: E=Sophos;i="6.21,191,1763452800"; d="scan'208";a="68908956"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Dec 2025 02:35:37 -0800
+X-CSE-ConnectionGUID: HtBBjOMhSTGpD9XKdVJdKw==
+X-CSE-MsgGUID: qjp7aSUgT7SYq+2L4eIoKg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,191,1763452800"; d="scan'208";a="201652986"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.201])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Dec 2025 02:32:36 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH] drm/i915/display: remove accidentally added empty file
-Date: Wed, 31 Dec 2025 12:32:32 +0200
-Message-ID: <20251231103232.627666-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-MIME-Version: 1.0
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Dec 2025 02:35:35 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 0/7] Prepare GVT for display modularization
+In-Reply-To: <54c40d40-f365-49cc-93d0-b40a8db54585@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+References: <20251218082302.2327243-1-ankit.k.nautiyal@intel.com>
+ <54c40d40-f365-49cc-93d0-b40a8db54585@intel.com>
+Date: Wed, 31 Dec 2025 12:35:32 +0200
+Message-ID: <803681dce30df69342611e5dd132440e2c94ccc5@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,19 +69,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-intel_display_limits.c was never supposed to be added. Remove it.
+On Mon, 29 Dec 2025, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com> wrote:
+> PS: Fixed the SPDX license identifier styling for the header files (and 
+> the checkpatch warnings due to these), before pushing.
 
-Fixes: f3255cf4490e ("drm/i915/display: Add APIs to be used by gvt to get the register offsets")
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_limits.c | 0
- 1 file changed, 0 insertions(+), 0 deletions(-)
- delete mode 100644 drivers/gpu/drm/i915/display/intel_display_limits.c
+Did you checkpatch the changes? Usually the style is to have the SPDX
+identifier in a comment of its own, not combined with whatever follows:
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_limits.c b/drivers/gpu/drm/i915/display/intel_display_limits.c
-deleted file mode 100644
-index e69de29bb2d1..000000000000
+/* SPDX-License-Identifier: MIT */
+
+BR,
+Jani.
+
+
 -- 
-2.47.3
-
+Jani Nikula, Intel
