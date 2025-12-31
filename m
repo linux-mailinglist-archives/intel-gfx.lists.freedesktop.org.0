@@ -2,54 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBE88CEBDB9
-	for <lists+intel-gfx@lfdr.de>; Wed, 31 Dec 2025 12:26:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42D12CEBDBC
+	for <lists+intel-gfx@lfdr.de>; Wed, 31 Dec 2025 12:26:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B884910E0E3;
-	Wed, 31 Dec 2025 11:26:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE98F10E8E6;
+	Wed, 31 Dec 2025 11:26:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GERGkPz7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lF8MzmTX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D03AC10E0E3
- for <intel-gfx@lists.freedesktop.org>; Wed, 31 Dec 2025 11:26:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5660010E2BC
+ for <intel-gfx@lists.freedesktop.org>; Wed, 31 Dec 2025 11:26:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767180378; x=1798716378;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=tjasStTtLb5cr2UxVBxy2guqqF8psnf1WhI3/kTEnMk=;
- b=GERGkPz7J5ttww0gzwbIErfWpjkKGa7w/AarJ4mVyQWLQsJm2FAAcSN3
- uCxTn/kdRTU8ddfCrK0Q6cHUTrLSzR0gQ7yEiYQU9n0Xs/pFN22LFjXNx
- v/0JUgyukl6oZwGzyi7VbrTX6kVIxumu1Rxvm4JDJZOb/rIj3tEnZtRmK
- N06pBycxM6tlnF9XFrWk62iXolyd7J7Z1T7S1h3ecj9+kN4OcyQv0E3GC
- ObCH9DiUFFkDdo0EObFuudMVH29NVzaFVMGWJXWao4FU8zut2BONiCTrm
- CUfFnnQCL/2mQUACk29pdfCAL5niQCQYZvMn/EsiwXPsMF/akoSDx0tvW Q==;
-X-CSE-ConnectionGUID: 219vNNg3QsqWcCbw0/R9iQ==
-X-CSE-MsgGUID: JmFWB/zPTv+LtGBNGv22fQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11657"; a="67946814"
-X-IronPort-AV: E=Sophos;i="6.21,191,1763452800"; d="scan'208";a="67946814"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Dec 2025 03:26:17 -0800
-X-CSE-ConnectionGUID: 3OWl4tUQRCy9X6azZnaJFg==
-X-CSE-MsgGUID: TYelDdxjRcWrK9aHwO6Qxg==
+ t=1767180383; x=1798716383;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=yiYSmUUaYmHXBt1XWP3MLCDzlREt5dILQDk05d7iBqk=;
+ b=lF8MzmTXsT5zhYAqtHu07EAzSB74mLVW8dAw3sLlm+y3nkGj0EUzt1Hx
+ rBwZ7IFcIY4gDiB6e/yA20ZepNeUAUG5aPsiJRxwelHR8ZwIiWe2cf3Ct
+ 3vyvfzFifquy6Mr7iVnGw8fiJUrTmH4XGUYpBjBLEGU5zhrCcbOJc90Zg
+ xodRQc3JHA3z2pfxtgEBznBAdp1rSJBHJjxPJBvsJTublW/ekmtcAjJGg
+ e35ywQLvs7QT2vRu7LaZs/+xSAQolRco1pivCUg5GZjGvmVo0S8cueISz
+ 9FiJOu2c9JV6i+keGJhrBlXVSLEf0A0u+hqWgqDpqvwODIy+5GISpzLO8 w==;
+X-CSE-ConnectionGUID: 6N1Sp3iwQCmJ+jFUgUyWIQ==
+X-CSE-MsgGUID: hJaTe9b2RAKsWi+SsMoyIg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11657"; a="68817566"
+X-IronPort-AV: E=Sophos;i="6.21,191,1763452800"; d="scan'208";a="68817566"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Dec 2025 03:26:22 -0800
+X-CSE-ConnectionGUID: 0Hi1HvoaSWS+6I4kiPzE6Q==
+X-CSE-MsgGUID: MccFGzYURqeu1TUNDPsALQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,191,1763452800"; d="scan'208";a="232505337"
+X-IronPort-AV: E=Sophos;i="6.21,191,1763452800"; d="scan'208";a="200550196"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.201])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Dec 2025 03:26:15 -0800
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Dec 2025 03:26:20 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	ankit.k.nautiyal@intel.com
-Subject: [PATCH 0/5] drm/i915/gvt: some include cleanups
-Date: Wed, 31 Dec 2025 13:26:06 +0200
-Message-ID: <cover.1767180318.git.jani.nikula@intel.com>
+Subject: [PATCH 1/5] drm/i915/gvt: sort and group include directives
+Date: Wed, 31 Dec 2025 13:26:07 +0200
+Message-ID: <c9f2b5a7367671965a7f5fa4f22b94ce9b980cfd.1767180318.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <cover.1767180318.git.jani.nikula@intel.com>
+References: <cover.1767180318.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
@@ -69,46 +71,654 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Clean up gvt includes to make it a bit easier to deal with.
+The include directives are a bit of a mess in gvt. Sort and group them
+to make them easier to deal with.
 
-Jani Nikula (5):
-  drm/i915/gvt: sort and group include directives
-  drm/i915/gvt: include sched_policy.h only where needed
-  drm/i915/gvt: reduce include of gt/intel_engine_regs.h
-  drm/i915/gvt: reduce include of vfio.h
-  drm/i915/gvt: include intel_display_limits.h where needed
-
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
  drivers/gpu/drm/i915/gvt/aperture_gm.c      |  5 +++--
  drivers/gpu/drm/i915/gvt/cfg_space.c        |  2 +-
- drivers/gpu/drm/i915/gvt/cmd_parser.c       | 22 ++++++++++---------
+ drivers/gpu/drm/i915/gvt/cmd_parser.c       | 22 +++++++++++---------
  drivers/gpu/drm/i915/gvt/debugfs.c          |  4 +++-
  drivers/gpu/drm/i915/gvt/display.c          | 12 +++++------
  drivers/gpu/drm/i915/gvt/display.h          |  2 +-
  drivers/gpu/drm/i915/gvt/dmabuf.c           |  6 +++---
- drivers/gpu/drm/i915/gvt/dmabuf.h           |  7 +++++-
+ drivers/gpu/drm/i915/gvt/dmabuf.h           |  1 +
  drivers/gpu/drm/i915/gvt/edid.c             |  1 +
  drivers/gpu/drm/i915/gvt/execlist.c         |  2 +-
  drivers/gpu/drm/i915/gvt/fb_decoder.c       | 12 +++++------
- drivers/gpu/drm/i915/gvt/fb_decoder.h       |  2 --
  drivers/gpu/drm/i915/gvt/firmware.c         |  4 ++--
  drivers/gpu/drm/i915/gvt/gtt.c              |  9 ++++----
- drivers/gpu/drm/i915/gvt/gvt.h              | 24 ++++++++++-----------
- drivers/gpu/drm/i915/gvt/handlers.c         | 19 ++++++++++------
+ drivers/gpu/drm/i915/gvt/gvt.h              | 23 ++++++++++-----------
+ drivers/gpu/drm/i915/gvt/handlers.c         | 17 ++++++++-------
  drivers/gpu/drm/i915/gvt/interrupt.c        |  5 +++--
- drivers/gpu/drm/i915/gvt/kvmgt.c            | 18 ++++++++--------
+ drivers/gpu/drm/i915/gvt/kvmgt.c            | 17 +++++++--------
  drivers/gpu/drm/i915/gvt/mmio.c             | 11 +++++-----
- drivers/gpu/drm/i915/gvt/mmio_context.h     |  5 -----
  drivers/gpu/drm/i915/gvt/opregion.c         |  3 ++-
  drivers/gpu/drm/i915/gvt/page_track.c       |  3 ++-
- drivers/gpu/drm/i915/gvt/sched_policy.c     |  3 ++-
- drivers/gpu/drm/i915/gvt/scheduler.c        |  8 ++++++-
+ drivers/gpu/drm/i915/gvt/sched_policy.c     |  2 +-
+ drivers/gpu/drm/i915/gvt/scheduler.c        |  3 ++-
  drivers/gpu/drm/i915/gvt/trace.h            |  2 +-
  drivers/gpu/drm/i915/gvt/trace_points.c     |  2 ++
- drivers/gpu/drm/i915/gvt/vgpu.c             |  6 ++++--
+ drivers/gpu/drm/i915/gvt/vgpu.c             |  5 +++--
  drivers/gpu/drm/i915/intel_gvt.c            | 11 ++++++----
  drivers/gpu/drm/i915/intel_gvt_mmio_table.c |  4 +++-
- 29 files changed, 122 insertions(+), 92 deletions(-)
+ 27 files changed, 106 insertions(+), 84 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/gvt/aperture_gm.c b/drivers/gpu/drm/i915/gvt/aperture_gm.c
+index 8cc6e712b0f7..253b41789be9 100644
+--- a/drivers/gpu/drm/i915/gvt/aperture_gm.c
++++ b/drivers/gpu/drm/i915/gvt/aperture_gm.c
+@@ -36,10 +36,11 @@
+ 
+ #include <drm/drm_print.h>
+ 
+-#include "i915_drv.h"
+-#include "i915_reg.h"
+ #include "gt/intel_ggtt_fencing.h"
++
+ #include "gvt.h"
++#include "i915_drv.h"
++#include "i915_reg.h"
+ 
+ static int alloc_gm(struct intel_vgpu *vgpu, bool high_gm)
+ {
+diff --git a/drivers/gpu/drm/i915/gvt/cfg_space.c b/drivers/gpu/drm/i915/gvt/cfg_space.c
+index 295a7b5e1d7c..1937e04d3791 100644
+--- a/drivers/gpu/drm/i915/gvt/cfg_space.c
++++ b/drivers/gpu/drm/i915/gvt/cfg_space.c
+@@ -33,8 +33,8 @@
+ 
+ #include <drm/drm_print.h>
+ 
+-#include "i915_drv.h"
+ #include "gvt.h"
++#include "i915_drv.h"
+ #include "intel_pci_config.h"
+ 
+ enum {
+diff --git a/drivers/gpu/drm/i915/gvt/cmd_parser.c b/drivers/gpu/drm/i915/gvt/cmd_parser.c
+index e5301733f4e4..bf7c3d3f5f8a 100644
+--- a/drivers/gpu/drm/i915/gvt/cmd_parser.c
++++ b/drivers/gpu/drm/i915/gvt/cmd_parser.c
+@@ -38,27 +38,29 @@
+ 
+ #include <drm/drm_print.h>
+ 
+-#include "i915_drv.h"
+-#include "i915_reg.h"
++#include "display/i9xx_plane_regs.h"
+ #include "display/intel_display_regs.h"
++#include "display/intel_sprite_regs.h"
++
++#include "gem/i915_gem_context.h"
++#include "gem/i915_gem_pm.h"
++
++#include "gt/intel_context.h"
+ #include "gt/intel_engine_regs.h"
+ #include "gt/intel_gpu_commands.h"
+ #include "gt/intel_gt_regs.h"
++#include "gt/intel_gt_requests.h"
+ #include "gt/intel_lrc.h"
+ #include "gt/intel_ring.h"
+-#include "gt/intel_gt_requests.h"
+ #include "gt/shmem_utils.h"
++
++#include "display_helpers.h"
+ #include "gvt.h"
++#include "i915_drv.h"
+ #include "i915_pvinfo.h"
++#include "i915_reg.h"
+ #include "trace.h"
+ 
+-#include "display/i9xx_plane_regs.h"
+-#include "display/intel_sprite_regs.h"
+-#include "gem/i915_gem_context.h"
+-#include "gem/i915_gem_pm.h"
+-#include "gt/intel_context.h"
+-#include "display_helpers.h"
+-
+ #define INVALID_OP    (~0U)
+ 
+ #define OP_LEN_MI           9
+diff --git a/drivers/gpu/drm/i915/gvt/debugfs.c b/drivers/gpu/drm/i915/gvt/debugfs.c
+index 415422b5943c..ae3fd2c3cd23 100644
+--- a/drivers/gpu/drm/i915/gvt/debugfs.c
++++ b/drivers/gpu/drm/i915/gvt/debugfs.c
+@@ -20,10 +20,12 @@
+  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  * SOFTWARE.
+  */
++
+ #include <linux/debugfs.h>
+ #include <linux/list_sort.h>
+-#include "i915_drv.h"
++
+ #include "gvt.h"
++#include "i915_drv.h"
+ 
+ struct mmio_diff_param {
+ 	struct intel_vgpu *vgpu;
+diff --git a/drivers/gpu/drm/i915/gvt/display.c b/drivers/gpu/drm/i915/gvt/display.c
+index f230b07a12ae..21341842c0a9 100644
+--- a/drivers/gpu/drm/i915/gvt/display.c
++++ b/drivers/gpu/drm/i915/gvt/display.c
+@@ -35,21 +35,21 @@
+ #include <drm/display/drm_dp.h>
+ #include <drm/drm_print.h>
+ 
+-#include "i915_drv.h"
+-#include "i915_reg.h"
+-#include "display/intel_display_regs.h"
+-#include "gvt.h"
+-
+ #include "display/bxt_dpio_phy_regs.h"
+ #include "display/i9xx_plane_regs.h"
+ #include "display/intel_crt_regs.h"
+ #include "display/intel_cursor_regs.h"
+ #include "display/intel_display.h"
+-#include "display_helpers.h"
++#include "display/intel_display_regs.h"
+ #include "display/intel_dpio_phy.h"
+ #include "display/intel_dpll_mgr.h"
+ #include "display/intel_sprite_regs.h"
+ 
++#include "display_helpers.h"
++#include "gvt.h"
++#include "i915_drv.h"
++#include "i915_reg.h"
++
+ static int get_edp_pipe(struct intel_vgpu *vgpu)
+ {
+ 	u32 data = vgpu_vreg(vgpu, _TRANS_DDI_FUNC_CTL_EDP);
+diff --git a/drivers/gpu/drm/i915/gvt/display.h b/drivers/gpu/drm/i915/gvt/display.h
+index bc7f05f9a271..41a3b053663a 100644
+--- a/drivers/gpu/drm/i915/gvt/display.h
++++ b/drivers/gpu/drm/i915/gvt/display.h
+@@ -35,8 +35,8 @@
+ #ifndef _GVT_DISPLAY_H_
+ #define _GVT_DISPLAY_H_
+ 
+-#include <linux/types.h>
+ #include <linux/hrtimer.h>
++#include <linux/types.h>
+ 
+ struct intel_gvt;
+ struct intel_vgpu;
+diff --git a/drivers/gpu/drm/i915/gvt/dmabuf.c b/drivers/gpu/drm/i915/gvt/dmabuf.c
+index 92506c80322d..8e76869b352c 100644
+--- a/drivers/gpu/drm/i915/gvt/dmabuf.c
++++ b/drivers/gpu/drm/i915/gvt/dmabuf.c
+@@ -35,12 +35,12 @@
+ #include <drm/drm_plane.h>
+ #include <drm/drm_print.h>
+ 
++#include "display/skl_universal_plane_regs.h"
++
+ #include "gem/i915_gem_dmabuf.h"
+ 
+-#include "i915_drv.h"
+ #include "gvt.h"
+-
+-#include "display/skl_universal_plane_regs.h"
++#include "i915_drv.h"
+ 
+ #define GEN8_DECODE_PTE(pte) (pte & GENMASK_ULL(63, 12))
+ 
+diff --git a/drivers/gpu/drm/i915/gvt/dmabuf.h b/drivers/gpu/drm/i915/gvt/dmabuf.h
+index 3dcdb6570eda..06445e1cf3cf 100644
+--- a/drivers/gpu/drm/i915/gvt/dmabuf.h
++++ b/drivers/gpu/drm/i915/gvt/dmabuf.h
+@@ -30,6 +30,7 @@
+ 
+ #ifndef _GVT_DMABUF_H_
+ #define _GVT_DMABUF_H_
++
+ #include <linux/vfio.h>
+ 
+ struct intel_vgpu_fb_info {
+diff --git a/drivers/gpu/drm/i915/gvt/edid.c b/drivers/gpu/drm/i915/gvt/edid.c
+index 30e414381af3..021afff1cd5d 100644
+--- a/drivers/gpu/drm/i915/gvt/edid.c
++++ b/drivers/gpu/drm/i915/gvt/edid.c
+@@ -38,6 +38,7 @@
+ #include "display/intel_dp_aux_regs.h"
+ #include "display/intel_gmbus.h"
+ #include "display/intel_gmbus_regs.h"
++
+ #include "gvt.h"
+ #include "i915_drv.h"
+ #include "i915_reg.h"
+diff --git a/drivers/gpu/drm/i915/gvt/execlist.c b/drivers/gpu/drm/i915/gvt/execlist.c
+index 274c6ef42400..29147a9f162e 100644
+--- a/drivers/gpu/drm/i915/gvt/execlist.c
++++ b/drivers/gpu/drm/i915/gvt/execlist.c
+@@ -32,8 +32,8 @@
+  *
+  */
+ 
+-#include "i915_drv.h"
+ #include "gvt.h"
++#include "i915_drv.h"
+ 
+ #define _EL_OFFSET_STATUS       0x234
+ #define _EL_OFFSET_STATUS_BUF   0x370
+diff --git a/drivers/gpu/drm/i915/gvt/fb_decoder.c b/drivers/gpu/drm/i915/gvt/fb_decoder.c
+index 3d1a7e5c8cd3..d7abf38df532 100644
+--- a/drivers/gpu/drm/i915/gvt/fb_decoder.c
++++ b/drivers/gpu/drm/i915/gvt/fb_decoder.c
+@@ -35,17 +35,17 @@
+ 
+ #include <uapi/drm/drm_fourcc.h>
+ 
+-#include "gvt.h"
+-#include "i915_drv.h"
+-#include "i915_pvinfo.h"
+-#include "i915_reg.h"
+-#include "display/intel_display_regs.h"
+-
+ #include "display/i9xx_plane_regs.h"
+ #include "display/intel_cursor_regs.h"
++#include "display/intel_display_regs.h"
+ #include "display/intel_sprite_regs.h"
+ #include "display/skl_universal_plane_regs.h"
++
+ #include "display_helpers.h"
++#include "gvt.h"
++#include "i915_drv.h"
++#include "i915_pvinfo.h"
++#include "i915_reg.h"
+ 
+ #define PRIMARY_FORMAT_NUM	16
+ struct pixel_format {
+diff --git a/drivers/gpu/drm/i915/gvt/firmware.c b/drivers/gpu/drm/i915/gvt/firmware.c
+index 221a3ae81baf..e452298991be 100644
+--- a/drivers/gpu/drm/i915/gvt/firmware.c
++++ b/drivers/gpu/drm/i915/gvt/firmware.c
+@@ -28,12 +28,12 @@
+  *
+  */
+ 
+-#include <linux/firmware.h>
+ #include <linux/crc32.h>
++#include <linux/firmware.h>
+ #include <linux/vmalloc.h>
+ 
+-#include "i915_drv.h"
+ #include "gvt.h"
++#include "i915_drv.h"
+ #include "i915_pvinfo.h"
+ 
+ #define FIRMWARE_VERSION (0x0)
+diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gtt.c
+index 076d9139edc6..49028e7ef1e0 100644
+--- a/drivers/gpu/drm/i915/gvt/gtt.c
++++ b/drivers/gpu/drm/i915/gvt/gtt.c
+@@ -33,16 +33,17 @@
+  *
+  */
+ 
++#include <linux/vmalloc.h>
++
+ #include <drm/drm_print.h>
+ 
+-#include "i915_drv.h"
++#include "gt/intel_gt_regs.h"
++
+ #include "gvt.h"
++#include "i915_drv.h"
+ #include "i915_pvinfo.h"
+ #include "trace.h"
+ 
+-#include "gt/intel_gt_regs.h"
+-#include <linux/vmalloc.h>
+-
+ #if defined(VERBOSE_DEBUG)
+ #define gvt_vdbg_mm(fmt, args...) gvt_dbg_mm(fmt, ##args)
+ #else
+diff --git a/drivers/gpu/drm/i915/gvt/gvt.h b/drivers/gpu/drm/i915/gvt/gvt.h
+index 1d10c16e6465..965d94610d56 100644
+--- a/drivers/gpu/drm/i915/gvt/gvt.h
++++ b/drivers/gpu/drm/i915/gvt/gvt.h
+@@ -34,29 +34,28 @@
+ #define _GVT_H_
+ 
+ #include <uapi/linux/pci_regs.h>
+-#include <linux/vfio.h>
+ #include <linux/mdev.h>
+-
++#include <linux/vfio.h>
+ #include <asm/kvm_page_track.h>
+ 
+ #include "gt/intel_gt.h"
+-#include "intel_gvt.h"
+ 
++#include "cmd_parser.h"
+ #include "debug.h"
+-#include "mmio.h"
+-#include "reg.h"
+-#include "interrupt.h"
+-#include "gtt.h"
+ #include "display.h"
++#include "dmabuf.h"
+ #include "edid.h"
+ #include "execlist.h"
+-#include "scheduler.h"
+-#include "sched_policy.h"
+-#include "mmio_context.h"
+-#include "cmd_parser.h"
+ #include "fb_decoder.h"
+-#include "dmabuf.h"
++#include "gtt.h"
++#include "intel_gvt.h"
++#include "interrupt.h"
++#include "mmio.h"
++#include "mmio_context.h"
+ #include "page_track.h"
++#include "reg.h"
++#include "sched_policy.h"
++#include "scheduler.h"
+ 
+ #define GVT_MAX_VGPU 8
+ 
+diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
+index 7063d3c77562..04cfe0997cde 100644
+--- a/drivers/gpu/drm/i915/gvt/handlers.c
++++ b/drivers/gpu/drm/i915/gvt/handlers.c
+@@ -36,19 +36,16 @@
+ 
+  */
+ 
++#include <linux/vmalloc.h>
++
+ #include <drm/display/drm_dp.h>
+ #include <drm/drm_print.h>
+ 
+-#include "i915_drv.h"
+-#include "i915_reg.h"
+-#include "display/intel_display_regs.h"
+-#include "gvt.h"
+-#include "i915_pvinfo.h"
+-#include "intel_mchbar_regs.h"
+ #include "display/bxt_dpio_phy_regs.h"
+ #include "display/i9xx_plane_regs.h"
+ #include "display/intel_crt_regs.h"
+ #include "display/intel_cursor_regs.h"
++#include "display/intel_display_regs.h"
+ #include "display/intel_display_types.h"
+ #include "display/intel_dmc_regs.h"
+ #include "display/intel_dp_aux_regs.h"
+@@ -63,9 +60,15 @@
+ #include "display/skl_universal_plane_regs.h"
+ #include "display/skl_watermark_regs.h"
+ #include "display/vlv_dsi_pll_regs.h"
++
+ #include "gt/intel_gt_regs.h"
+-#include <linux/vmalloc.h>
++
+ #include "display_helpers.h"
++#include "gvt.h"
++#include "i915_drv.h"
++#include "i915_pvinfo.h"
++#include "i915_reg.h"
++#include "intel_mchbar_regs.h"
+ 
+ /* XXX FIXME i915 has changed PP_XXX definition */
+ #define PCH_PP_STATUS  _MMIO(0xc7200)
+diff --git a/drivers/gpu/drm/i915/gvt/interrupt.c b/drivers/gpu/drm/i915/gvt/interrupt.c
+index 3e66269bc4ee..91d22b1c62e2 100644
+--- a/drivers/gpu/drm/i915/gvt/interrupt.c
++++ b/drivers/gpu/drm/i915/gvt/interrupt.c
+@@ -33,10 +33,11 @@
+ 
+ #include <drm/drm_print.h>
+ 
+-#include "i915_drv.h"
+-#include "i915_reg.h"
+ #include "display/intel_display_regs.h"
++
+ #include "gvt.h"
++#include "i915_drv.h"
++#include "i915_reg.h"
+ #include "trace.h"
+ 
+ struct intel_gvt_irq_info {
+diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
+index 3abc9206f1a8..b3739c9fcc48 100644
+--- a/drivers/gpu/drm/i915/gvt/kvmgt.c
++++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
+@@ -33,26 +33,25 @@
+  *    Zhi Wang <zhi.a.wang@intel.com>
+  */
+ 
++#include <linux/debugfs.h>
++#include <linux/eventfd.h>
+ #include <linux/init.h>
+-#include <linux/mm.h>
+ #include <linux/kthread.h>
+-#include <linux/sched/mm.h>
+-#include <linux/types.h>
+ #include <linux/list.h>
+-#include <linux/rbtree.h>
+-#include <linux/spinlock.h>
+-#include <linux/eventfd.h>
+ #include <linux/mdev.h>
+-#include <linux/debugfs.h>
+-
++#include <linux/mm.h>
+ #include <linux/nospec.h>
++#include <linux/rbtree.h>
++#include <linux/sched/mm.h>
++#include <linux/spinlock.h>
++#include <linux/types.h>
+ 
+ #include <drm/drm_edid.h>
+ #include <drm/drm_print.h>
+ 
++#include "gvt.h"
+ #include "i915_drv.h"
+ #include "intel_gvt.h"
+-#include "gvt.h"
+ 
+ MODULE_IMPORT_NS("DMA_BUF");
+ MODULE_IMPORT_NS("I915_GVT");
+diff --git a/drivers/gpu/drm/i915/gvt/mmio.c b/drivers/gpu/drm/i915/gvt/mmio.c
+index 214eb7effa31..9e98db2d4f67 100644
+--- a/drivers/gpu/drm/i915/gvt/mmio.c
++++ b/drivers/gpu/drm/i915/gvt/mmio.c
+@@ -37,15 +37,16 @@
+ 
+ #include <drm/drm_print.h>
+ 
+-#include "i915_drv.h"
+-#include "i915_reg.h"
+-#include "display/intel_display_regs.h"
+-#include "gvt.h"
+-
+ #include "display/bxt_dpio_phy_regs.h"
++#include "display/intel_display_regs.h"
+ #include "display/intel_dpio_phy.h"
++
+ #include "gt/intel_gt_regs.h"
+ 
++#include "gvt.h"
++#include "i915_drv.h"
++#include "i915_reg.h"
++
+ /**
+  * intel_vgpu_gpa_to_mmio_offset - translate a GPA to MMIO offset
+  * @vgpu: a vGPU
+diff --git a/drivers/gpu/drm/i915/gvt/opregion.c b/drivers/gpu/drm/i915/gvt/opregion.c
+index dbad4d853d3a..d6e76ba31d60 100644
+--- a/drivers/gpu/drm/i915/gvt/opregion.c
++++ b/drivers/gpu/drm/i915/gvt/opregion.c
+@@ -22,8 +22,9 @@
+  */
+ 
+ #include <linux/acpi.h>
+-#include "i915_drv.h"
++
+ #include "gvt.h"
++#include "i915_drv.h"
+ 
+ /*
+  * Note: Only for GVT-g virtual VBT generation, other usage must
+diff --git a/drivers/gpu/drm/i915/gvt/page_track.c b/drivers/gpu/drm/i915/gvt/page_track.c
+index 20c3cd807488..b22ef801963e 100644
+--- a/drivers/gpu/drm/i915/gvt/page_track.c
++++ b/drivers/gpu/drm/i915/gvt/page_track.c
+@@ -20,8 +20,9 @@
+  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  * SOFTWARE.
+  */
+-#include "i915_drv.h"
++
+ #include "gvt.h"
++#include "i915_drv.h"
+ 
+ /**
+  * intel_vgpu_find_page_track - find page track rcord of guest page
+diff --git a/drivers/gpu/drm/i915/gvt/sched_policy.c b/drivers/gpu/drm/i915/gvt/sched_policy.c
+index 6c2d68e88266..df787472b1cf 100644
+--- a/drivers/gpu/drm/i915/gvt/sched_policy.c
++++ b/drivers/gpu/drm/i915/gvt/sched_policy.c
+@@ -31,8 +31,8 @@
+  *
+  */
+ 
+-#include "i915_drv.h"
+ #include "gvt.h"
++#include "i915_drv.h"
+ 
+ static bool vgpu_has_pending_workload(struct intel_vgpu *vgpu)
+ {
+diff --git a/drivers/gpu/drm/i915/gvt/scheduler.c b/drivers/gpu/drm/i915/gvt/scheduler.c
+index 63ad1fed525a..a91accfd371d 100644
+--- a/drivers/gpu/drm/i915/gvt/scheduler.c
++++ b/drivers/gpu/drm/i915/gvt/scheduler.c
+@@ -38,16 +38,17 @@
+ #include <drm/drm_print.h>
+ 
+ #include "gem/i915_gem_pm.h"
++
+ #include "gt/intel_context.h"
+ #include "gt/intel_execlists_submission.h"
+ #include "gt/intel_gt_regs.h"
+ #include "gt/intel_lrc.h"
+ #include "gt/intel_ring.h"
+ 
++#include "gvt.h"
+ #include "i915_drv.h"
+ #include "i915_gem_gtt.h"
+ #include "i915_perf_oa_regs.h"
+-#include "gvt.h"
+ 
+ #define RING_CTX_OFF(x) \
+ 	offsetof(struct execlist_ring_context, x)
+diff --git a/drivers/gpu/drm/i915/gvt/trace.h b/drivers/gpu/drm/i915/gvt/trace.h
+index 63874d385c6f..8cd0601e478f 100644
+--- a/drivers/gpu/drm/i915/gvt/trace.h
++++ b/drivers/gpu/drm/i915/gvt/trace.h
+@@ -31,9 +31,9 @@
+ #if !defined(_GVT_TRACE_H_) || defined(TRACE_HEADER_MULTI_READ)
+ #define _GVT_TRACE_H_
+ 
+-#include <linux/types.h>
+ #include <linux/stringify.h>
+ #include <linux/tracepoint.h>
++#include <linux/types.h>
+ #include <asm/tsc.h>
+ 
+ #undef TRACE_SYSTEM
+diff --git a/drivers/gpu/drm/i915/gvt/trace_points.c b/drivers/gpu/drm/i915/gvt/trace_points.c
+index fe552e877e09..79b75356d622 100644
+--- a/drivers/gpu/drm/i915/gvt/trace_points.c
++++ b/drivers/gpu/drm/i915/gvt/trace_points.c
+@@ -30,5 +30,7 @@
+ 
+ #ifndef __CHECKER__
+ #define CREATE_TRACE_POINTS
++
+ #include "trace.h"
++
+ #endif
+diff --git a/drivers/gpu/drm/i915/gvt/vgpu.c b/drivers/gpu/drm/i915/gvt/vgpu.c
+index c49e4bf95a30..a12011410874 100644
+--- a/drivers/gpu/drm/i915/gvt/vgpu.c
++++ b/drivers/gpu/drm/i915/gvt/vgpu.c
+@@ -31,12 +31,13 @@
+  *
+  */
+ 
++#include <linux/vmalloc.h>
++
+ #include <drm/drm_print.h>
+ 
+-#include "i915_drv.h"
+ #include "gvt.h"
++#include "i915_drv.h"
+ #include "i915_pvinfo.h"
+-#include <linux/vmalloc.h>
+ 
+ void populate_pvinfo_page(struct intel_vgpu *vgpu)
+ {
+diff --git a/drivers/gpu/drm/i915/intel_gvt.c b/drivers/gpu/drm/i915/intel_gvt.c
+index 5f615ec0e580..6b43713899b8 100644
+--- a/drivers/gpu/drm/i915/intel_gvt.c
++++ b/drivers/gpu/drm/i915/intel_gvt.c
+@@ -21,16 +21,19 @@
+  * SOFTWARE.
+  */
+ 
++#include <linux/vmalloc.h>
++
+ #include <drm/drm_print.h>
+ 
+-#include "i915_drv.h"
+-#include "i915_vgpu.h"
+-#include "intel_gvt.h"
+ #include "gem/i915_gem_dmabuf.h"
++
+ #include "gt/intel_context.h"
+ #include "gt/intel_ring.h"
+ #include "gt/shmem_utils.h"
+-#include <linux/vmalloc.h>
++
++#include "i915_drv.h"
++#include "i915_vgpu.h"
++#include "intel_gvt.h"
+ 
+ /**
+  * DOC: Intel GVT-g host support
+diff --git a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
+index ca57a3dd3148..478d00f89a4b 100644
+--- a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
++++ b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
+@@ -12,6 +12,7 @@
+ #include "display/intel_crt_regs.h"
+ #include "display/intel_cursor_regs.h"
+ #include "display/intel_display_core.h"
++#include "display/intel_display_regs.h"
+ #include "display/intel_display_types.h"
+ #include "display/intel_dmc_regs.h"
+ #include "display/intel_dp_aux_regs.h"
+@@ -27,14 +28,15 @@
+ #include "display/skl_universal_plane_regs.h"
+ #include "display/skl_watermark_regs.h"
+ #include "display/vlv_dsi_pll_regs.h"
++
+ #include "gt/intel_engine_regs.h"
+ #include "gt/intel_gt_regs.h"
++
+ #include "gvt/reg.h"
+ 
+ #include "i915_drv.h"
+ #include "i915_pvinfo.h"
+ #include "i915_reg.h"
+-#include "display/intel_display_regs.h"
+ #include "intel_gvt.h"
+ #include "intel_mchbar_regs.h"
+ 
 -- 
 2.47.3
 
