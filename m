@@ -2,63 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA708CEC6C3
-	for <lists+intel-gfx@lfdr.de>; Wed, 31 Dec 2025 18:51:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5A63CED012
+	for <lists+intel-gfx@lfdr.de>; Thu, 01 Jan 2026 13:22:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 320A010E030;
-	Wed, 31 Dec 2025 17:51:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEF6910E541;
+	Thu,  1 Jan 2026 12:22:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l853oLqY";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="EbR0+NQf";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C68E210E030;
- Wed, 31 Dec 2025 17:51:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767203515; x=1798739515;
- h=from:to:cc:subject:date:message-id:mime-version;
- bh=IIcs8lX24Td3b3E5y25iXivkIU1FYlzK1UcpBVdjKHM=;
- b=l853oLqYZ2YzBsEMjmmVYh1DGyMoQY0D9cjJoU/yKkUbkMXzA8DwO1NV
- 86oNfnWvdTVyCcY7aaMiK0sCHL8VKHXG5yfgzdVvNOz+M26KIpnXRLtEI
- Yq/zUtqdKi9VgEJIbnPfx9+RnOZ9tFzqSvv7tZLueC/6WHDV1La/g3hF8
- qPB8sCIqlfqHjShfQoseeqLBWVERj6E+zcVwqa6R4XTAeHvaIfw5n622q
- EQsxvb9WbxO8E2fWhSvBU9PcjN81L929OQm5AMbjrgl73w50IjKVUu6Yp
- H9DvqvS/zq72DM4nGHGEyZ2a02RedCtoRZSgLiIZ5/HA1fsMPvOy+UphE g==;
-X-CSE-ConnectionGUID: N6/rzknqRqKWq9iIg8u/yg==
-X-CSE-MsgGUID: 3Bx9F3DDR/uecFIuHbhdtw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11658"; a="86349384"
-X-IronPort-AV: E=Sophos;i="6.21,192,1763452800"; d="scan'208";a="86349384"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Dec 2025 09:51:55 -0800
-X-CSE-ConnectionGUID: GaA48XehRoeNbq8J0r6SXw==
-X-CSE-MsgGUID: ld+o6+wiR1ePkfLATtiUxQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,192,1763452800"; d="scan'208";a="205962545"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.201])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Dec 2025 09:51:50 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, Oded
- Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-fixes
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Date: Wed, 31 Dec 2025 19:51:47 +0200
-Message-ID: <4e79f041395bb8bcc9b2a76bb98b5e3df1c1c3eb@intel.com>
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07A7610E549
+ for <intel-gfx@lists.freedesktop.org>; Thu,  1 Jan 2026 12:22:42 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 106F360008;
+ Thu,  1 Jan 2026 12:22:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AC8AC4CEF7;
+ Thu,  1 Jan 2026 12:22:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1767270161;
+ bh=OktOxjA9IvBe6b4AHKx3IfuhYKk72BWKSpPorMtfSi8=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=EbR0+NQfBpp2H+1bIn5d8tCp3E2Aw8G7EyVrc8ONDthydofDbOYbHZiCouJICuPHe
+ 5DP2yTKbDQqyH8B8JILBbsSzGv155/obTcFD/+AsUhKXO++ZPnn3j50Uj+ph4pNFp3
+ c5Kv8PiDIWZJZZ4sGPDpgjjpa26nlb/rZ9Cxzbkvsc3uHFaBEzinHaZgJ6AADbAZgz
+ bzElBiqy+DHGhZefqoNG5zvzDEuMpHw/Pc2OEqcRZlVZ3XJ2zlR/r7pkuyttm7FKNB
+ ROXOK7b1BNFgN41LnyYHrWN4ttWIX513kZFzxsYPkZJjWqQEUb7/RzPISDGaYLZ2RB
+ RAzGMS0RhM+gw==
+Date: Thu, 1 Jan 2026 13:22:38 +0100
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, andi.shyti@linux.intel.com, 
+ krzysztof.karas@intel.com, jani.nikula@linux.intel.com,
+ krzysztof.niemiec@intel.com
+Subject: Re: [PATCH v3] drm/i915/gt: use designated initializers for
+ intel_gt_debugfs_file
+Message-ID: <fqeykoqwo2xuzkef4l66ddpyiwhauqhtejkdilx2ccxusnokii@ia6pjbk3kmrh>
+References: <bae491e8098705a87304a7c94573b377e8c8fa37.1765897826.git.sebastian.brzezinka@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <bae491e8098705a87304a7c94573b377e8c8fa37.1765897826.git.sebastian.brzezinka@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,40 +59,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Sebastian,
 
-Hi Dave & Sima -
+On Tue, Dec 16, 2025 at 04:11:45PM +0100, Sebastian Brzezinka wrote:
+> CONFIG_RANDSTRUCT may reorder structure fields, which makes positional
+> initializers unsafe. The i915 GT debugfs tables were using positional
+> initializers for `struct intel_gt_debugfs_file`, and on configs where
+> the layout differs (e.g., presence/absence of the `.eval` callback),
+> this can lead to fields being initialized incorrectly and trigger
+> randstruct warnings such as:
+> 
+> ```
+>   drivers/gpu/drm/i915/gt/intel_gt_debugfs.c:75:51: note: randstruct:
+>   casting between randomized structure pointer types (constructor)
+> ```
+> 
+> Switch all the GT debugfs file arrays to designated initializers. This
+> binds each value to the intended member regardless of structure
+> reordering or optional members and removes the warning while preserving
+> the intended initialization. Also drops the '&' from
+> intel_eval_slpc_support so .eval receives the function pointer directly.
+> 
+> No functional change, only initialization style is updated.
+> 
+> Signed-off-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+> Reviewed-by: Krzysztof Karas <krzysztof.karas@intel.com>
 
-Still pretty quiet in the i915 land, just one fix for -rc4.
+Reviewed and merged to drm-intel-gt-next.
 
-Happy New Year!
-
-
-BR,
-Jani.
-
-
-The following changes since commit f8f9c1f4d0c7a64600e2ca312dec824a0bc2f1da:
-
-  Linux 6.19-rc3 (2025-12-28 13:24:26 -0800)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2025-12-31
-
-for you to fetch changes up to 4fe2bd195435e71c117983d87f278112c5ab364c:
-
-  drm/i915/gem: Zero-initialize the eb.vma array in i915_gem_do_execbuffer (2025-12-31 11:19:47 +0200)
-
-----------------------------------------------------------------
-drm/i915 fixes for v6.19-rc4:
-- Fix eb_lookup_vmas() failure path
-
-----------------------------------------------------------------
-Krzysztof Niemiec (1):
-      drm/i915/gem: Zero-initialize the eb.vma array in i915_gem_do_execbuffer
-
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 37 ++++++++++++--------------
- 1 file changed, 17 insertions(+), 20 deletions(-)
-
--- 
-Jani Nikula, Intel
+Thanks,
+Andi
