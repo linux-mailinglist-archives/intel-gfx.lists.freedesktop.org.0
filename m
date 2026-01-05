@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C685CF35BF
-	for <lists+intel-gfx@lfdr.de>; Mon, 05 Jan 2026 12:51:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BE9DCF35C2
+	for <lists+intel-gfx@lfdr.de>; Mon, 05 Jan 2026 12:51:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E1A110E3BA;
-	Mon,  5 Jan 2026 11:51:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08D7310E3BD;
+	Mon,  5 Jan 2026 11:51:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RGCm19fr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hbyMhDbe";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 123D310E3B9;
- Mon,  5 Jan 2026 11:51:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C34D710E3BC;
+ Mon,  5 Jan 2026 11:51:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767613913; x=1799149913;
+ t=1767613915; x=1799149915;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ofOtQ2s1O9eyTseocLg/pm/D68lL/2Jww/407v31ruM=;
- b=RGCm19fr2FHe+Di107UtJ0GPVyks5Ig+5etp6KswpTBwuupGI8CODBhs
- flbn3CYs0LZlwhgII+8STwquiCETlI57m0S5sKe3I2DsqH8AFbII0fbAL
- gA7SSJ2CbvqyL8s0bx3Q4nI8SrDVNnByp5VXBkkXK8V/0Uh1S9ykShMKD
- U9Z/3v4/sX7Nx39GD9QSRH91KE4JghTlp9xsdfMbi9afy7YHUr5riJYgD
- 0cw6Y+RdRyZWk8OeY5uMZDJCKe7QDFozJefIHuJO955US+jsq8YtxS9+L
- /rJnWSrpycM9GDeaSlZKeS3k6KIj44aaIsCLjmXT7N5T4MzqG7OaI4mzx A==;
-X-CSE-ConnectionGUID: MS/u4t1zSsujTmq+kbj8JQ==
-X-CSE-MsgGUID: ncKODA59QUWT06C32kV2oA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11661"; a="69050653"
-X-IronPort-AV: E=Sophos;i="6.21,203,1763452800"; d="scan'208";a="69050653"
+ bh=aX+ugELG4iHqywcar/h+THV0sghxHExCRJ61HMVo2wc=;
+ b=hbyMhDbey8RjZX5YnLnuO9hyqWzqndS258i7hJq5BuDjuPGlpP/YQDT4
+ UWN5PqLdQ629bS3B0K5XMmLkz2BeMDzKVXMo6AGHFLBb+MNGkpfzOKzu/
+ sJCP8m8AIZwEqspfbSDVsROdO/uCJQtEsXG83hykdVBsikru5GCykMR1Y
+ dnrBWyKVQwUVR7tfsEGv+k95emHsJaKsSVNAv/8VKgdis1lB7zHtttIxx
+ /QHL9u2tRU3bSFvWm9dtkeNijvj7JquuNjo47j1Wp+0iZQ6/Hw4iBtdBs
+ jpmYbbPYccgkIwgMnk6Dv0clydAwiyMvuv+HD94qkBDtrvux1+XMzf32N g==;
+X-CSE-ConnectionGUID: JKKXoeV3R+GXxuumR/QG5w==
+X-CSE-MsgGUID: 2ctd8+/vT4+gMbtKTC/ZEg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11661"; a="69050654"
+X-IronPort-AV: E=Sophos;i="6.21,203,1763452800"; d="scan'208";a="69050654"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2026 03:51:53 -0800
-X-CSE-ConnectionGUID: KnJUUdT9TYCadNkGtdWZDA==
-X-CSE-MsgGUID: hiyNJlakRaa02ACp4R8sqA==
+ 05 Jan 2026 03:51:54 -0800
+X-CSE-ConnectionGUID: Fw5AlTxSTtmv0r13W/ZPtQ==
+X-CSE-MsgGUID: XJIaoExnTwmhb2JbJUiI1Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,203,1763452800"; d="scan'208";a="202614055"
+X-IronPort-AV: E=Sophos;i="6.21,203,1763452800"; d="scan'208";a="202614066"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2026 03:51:51 -0800
+ 05 Jan 2026 03:51:53 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@linux.intel.com,
 	Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 1/9] drm/i915/intel_alpm: Fix the SPDX identifier comment
-Date: Mon,  5 Jan 2026 17:05:35 +0530
-Message-ID: <20260105113544.574323-2-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 2/9] drm/i915/intel_cx0_phy: Fix the SPDX identifier comment
+Date: Mon,  5 Jan 2026 17:05:36 +0530
+Message-ID: <20260105113544.574323-3-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260105113544.574323-1-ankit.k.nautiyal@intel.com>
 References: <20260105113544.574323-1-ankit.k.nautiyal@intel.com>
@@ -76,21 +76,19 @@ Fix the SPDX identifier comment as per the licensing rules [1].
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_alpm.h | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
-index 53599b464dea..c6a4ec5b9561 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.h
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.h
-@@ -1,5 +1,5 @@
--/* SPDX-License-Identifier: MIT
-- *
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+index 9f10113e2d18..ae98ac23ea22 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+@@ -1,4 +1,4 @@
+-// SPDX-License-Identifier: MIT
 +/* SPDX-License-Identifier: MIT */
-+/*
-  * Copyright © 2024 Intel Corporation
+ /*
+  * Copyright © 2023 Intel Corporation
   */
- 
 -- 
 2.45.2
 
