@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B20BCF3A0B
-	for <lists+intel-gfx@lfdr.de>; Mon, 05 Jan 2026 13:56:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDEDBCF3A1D
+	for <lists+intel-gfx@lfdr.de>; Mon, 05 Jan 2026 13:56:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15DD610E3CF;
-	Mon,  5 Jan 2026 12:56:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C62C10E3D1;
+	Mon,  5 Jan 2026 12:56:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zat27u8u";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VR5OajR9";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14D6A10E3C8;
- Mon,  5 Jan 2026 12:56:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1138610E3C8;
+ Mon,  5 Jan 2026 12:56:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767617775; x=1799153775;
+ t=1767617817; x=1799153817;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=RbsPvssDiHMUFGQQkZsU1Rd1sKlaNIwhTtri0wGkjBk=;
- b=Zat27u8uZKCHuJmAQOEzDq0fcMK9aw9NGVzUouruiLmhsOEVbf/42rYA
- 7EN9F3M65JuuOvUTZWvEVUTSbFfKe0wJC7cPellEZeMHWQoKvrRThZ+if
- Uu8Mdp6VZjIkls+ZoPe/2TvEu4SwxtHfLNnuDOAgvnNAHzp0r93CFtWqC
- abG1J/wmBxJ/I9Xgqe/foaBfnXRDNBXafj9V79Fai06lyRmDGdqw/XO57
- BSFNwoIQ+kVsU9sZIYruhGhJb+nAuRsRK3dONz99uqpZd+fGUAKo1woLM
- 2qNEf0duSfZx4xVuhJEH3LWpMmBl2npRwLYX48+YjVfo5asTdtYm04GLh A==;
-X-CSE-ConnectionGUID: x1mM4yTdRPCtxUPOmq+PFw==
-X-CSE-MsgGUID: FucP/iGKRqyztJ6IoN/EIg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11662"; a="79704738"
-X-IronPort-AV: E=Sophos;i="6.21,203,1763452800"; d="scan'208";a="79704738"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2026 04:56:15 -0800
-X-CSE-ConnectionGUID: mRn/jRjsSdCmIzshzTThDQ==
-X-CSE-MsgGUID: xppJanOGSWarlJ8m2XOYnA==
+ bh=y9jviwOC0b5Pl0QCngSd3okDONyHj1+EbhQlYxiT4F0=;
+ b=VR5OajR96ydbb3zNy3bRm/EkhuLGMnHVR3iWTpPp73JZRNVKwCmXoc+P
+ aJJMacDwtVz1SU1OlUE+twdtgzqTDF6mROhXjlzwDAD1V7KRKPVEq2ZIH
+ 2d2A4q9Hb5CXYEbVc8To4YcTEO0NK0A8G6d6WXJ0Q9Y0CyYcGLB8OQXHM
+ +cwgFZK5cvsLEaMkwo7ou/f0U+3R8MSiXJrws5MoUTTUsNqozs3/9MzUQ
+ +9F2pRU6Ovp5zsEcyPxwCqQ8Vj6c1zPizxHPy/zEiSRPPp1W1IdNQIFKY
+ JVhG+Pn9Jr7ZnDnBqKS8qqDiWiLdaBbvngfwg62VGVQCpbNFuw9WLHrgz g==;
+X-CSE-ConnectionGUID: 2WdUXIQpQuKTPQzvqTihVg==
+X-CSE-MsgGUID: wWmpFUHSThmqLlrGQz9biA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11662"; a="69030974"
+X-IronPort-AV: E=Sophos;i="6.21,203,1763452800"; d="scan'208";a="69030974"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jan 2026 04:56:57 -0800
+X-CSE-ConnectionGUID: 01FwwsK/Tau7uaPaiQeXgA==
+X-CSE-MsgGUID: 8QGe72H4Q5i96ZtW3lmu1w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,203,1763452800"; d="scan'208";a="202284308"
+X-IronPort-AV: E=Sophos;i="6.21,203,1763452800"; d="scan'208";a="225917737"
 Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.3])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2026 04:56:12 -0800
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jan 2026 04:56:53 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Cc: animesh.manna@intel.com, uma.shankar@intel.com, imre.deak@intel.com,
  jouni.hogander@intel.com
-Subject: Re: [PATCH 5/9] drm/i915/display: Track DC3CO enable source
-In-Reply-To: <20251209113332.2770263-6-dibin.moolakadan.subrahmanian@intel.com>
+Subject: Re: [PATCH 8/9] drm/i915/display: Add intel_dc3co_can_enable() helper
+In-Reply-To: <20251209113332.2770263-9-dibin.moolakadan.subrahmanian@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20251209113332.2770263-1-dibin.moolakadan.subrahmanian@intel.com>
- <20251209113332.2770263-6-dibin.moolakadan.subrahmanian@intel.com>
-Date: Mon, 05 Jan 2026 14:56:09 +0200
-Message-ID: <90fbefb9b09b41b53fa41ce21f6eaaec53f3db3b@intel.com>
+ <20251209113332.2770263-9-dibin.moolakadan.subrahmanian@intel.com>
+Date: Mon, 05 Jan 2026 14:56:50 +0200
+Message-ID: <df369eb61d6d3d87a5bcd0d295ad57af65a55657@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -73,103 +73,71 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Tue, 09 Dec 2025, Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com> wrote:
-> Introduce a bitmask enum intel_dc3co_source to record which display
-> features (PSR2, ALPM, LOBF) contribute to allowing DC3CO entry.
-> The source tracking is added here and will be integrated into the DC3CO
-> allow logic in follow-up commits.
+> Introduce a new helper that validates whether DC3CO can be enabled
+> based on both allow  and source.
+>
 > Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c       | 11 +++++++++++
->  drivers/gpu/drm/i915/display/intel_display.h       |  4 +++-
->  drivers/gpu/drm/i915/display/intel_display_core.h  |  1 +
->  drivers/gpu/drm/i915/display/intel_display_power.h | 10 ++++++++++
->  4 files changed, 25 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/intel_display.c | 11 ++++++++++-
+>  drivers/gpu/drm/i915/display/intel_display.h |  1 +
+>  drivers/gpu/drm/i915/display/intel_psr.c     |  2 +-
+>  3 files changed, 12 insertions(+), 2 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 205f55a87736..b14a1c9f80bd 100644
+> index b14a1c9f80bd..9f9ba58371ab 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display.c
 > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -6300,6 +6300,16 @@ bool intel_dc3co_allowed(struct intel_display *display)
->  	return display->power.dc3co_allow;
+> @@ -6295,6 +6295,15 @@ static int intel_joiner_add_affected_crtcs(struct intel_atomic_state *state)
+>  	return 0;
 >  }
 >  
-> +void intel_dc3co_source_set(struct intel_display *display, enum intel_dc3co_source source)
+> +bool intel_dc3co_can_enable(struct intel_display *display)
 > +{
-> +	display->power.dc3co_source |= source;
-> +}
-> +
-> +void intel_dc3co_source_unset(struct intel_display *display, enum intel_dc3co_source source)
-> +{
-> +	display->power.dc3co_source &= ~source;
+> +	/*
+> +	 * ToDo - Check CMTG enabled
+> +	 * ToDo - Check flipq enabled
+> +	 */
+> +	return (display->power.dc3co_allow && display->power.dc3co_source);
 > +}
 > +
 
-These don't belong in intel_display.[ch].
+This doesn't belong in intel_display.[ch].
 
->  static bool intel_dc3co_port_pipe_compatible(struct intel_dp *intel_dp,
->  					     const struct intel_crtc_state *crtc_state)
+>  bool intel_dc3co_allowed(struct intel_display *display)
 >  {
-> @@ -6330,6 +6340,7 @@ static void intel_dc3co_allow_check(struct intel_atomic_state *state)
->  	bool allow = true;
->  
->  	display->power.dc3co_allow = 0;
-> +	intel_dc3co_source_unset(display, DC3CO_SOURCE_ALL);
->  
->  	if ((power_domains->allowed_dc_mask & DC_STATE_EN_UPTO_DC3CO) != DC_STATE_EN_UPTO_DC3CO)
->  		return;
+>  	return display->power.dc3co_allow;
+> @@ -7683,7 +7692,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+>  		 */
+>  		intel_uncore_arm_unclaimed_mmio_detection(&dev_priv->uncore);
+>  	}
+> -	if (intel_dc3co_allowed(display))
+> +	if (intel_dc3co_can_enable(display))
+>  		intel_display_power_set_target_dc_state(display, DC_STATE_EN_UPTO_DC3CO);
+>  	else
+>  		intel_display_power_set_target_dc_state(display, DC_STATE_EN_UPTO_DC6);
 > diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-> index 97987f082560..87bbf1f66209 100644
+> index 87bbf1f66209..f704cce4f1d8 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display.h
 > +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> @@ -46,6 +46,7 @@ struct intel_link_m_n;
->  struct intel_plane;
->  struct intel_plane_state;
->  struct intel_power_domain_mask;
-> +enum intel_dc3co_source;
->  
->  #define pipe_name(p) ((p) + 'A')
->  
-> @@ -561,5 +562,6 @@ bool assert_port_valid(struct intel_display *display, enum port port);
->  bool intel_scanout_needs_vtd_wa(struct intel_display *display);
->  int intel_crtc_num_joined_pipes(const struct intel_crtc_state *crtc_state);
+> @@ -564,4 +564,5 @@ int intel_crtc_num_joined_pipes(const struct intel_crtc_state *crtc_state);
 >  bool intel_dc3co_allowed(struct intel_display *display);
-> -
-> +void intel_dc3co_source_set(struct intel_display *display, enum intel_dc3co_source source);
-> +void intel_dc3co_source_unset(struct intel_display *display, enum intel_dc3co_source source);
+>  void intel_dc3co_source_set(struct intel_display *display, enum intel_dc3co_source source);
+>  void intel_dc3co_source_unset(struct intel_display *display, enum intel_dc3co_source source);
+> +bool intel_dc3co_can_enable(struct intel_display *display);
 >  #endif
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-> index fa567c95029c..4ce34c567dbd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-> @@ -541,6 +541,7 @@ struct intel_display {
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> index d4c5dc6dcc82..18bf45455ea2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -3909,7 +3909,7 @@ void intel_psr_notify_vblank_enable_disable(struct intel_display *display,
+>  		return;
+>  	}
 >  
->  		/* mark dc3co entry is allowed*/
->  		bool dc3co_allow;
-> +		u32 dc3co_source;
->  	} power;
->  
->  	struct {
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-> index d616d5d09cbe..dde07f931963 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-> @@ -131,6 +131,16 @@ struct intel_power_domain_mask {
->  	DECLARE_BITMAP(bits, POWER_DOMAIN_NUM);
->  };
->  
-> +enum intel_dc3co_source {
-> +	DC3CO_SOURCE_NONE = 0,
-> +	DC3CO_SOURCE_PSR2 = BIT(0),
-> +	DC3CO_SOURCE_ALPM = BIT(1),
-> +	DC3CO_SOURCE_LOBF = BIT(2),
-> +	DC3CO_SOURCE_ALL  = DC3CO_SOURCE_PSR2 |
-> +			    DC3CO_SOURCE_ALPM |
-> +			    DC3CO_SOURCE_LOBF,
-> +};
-> +
->  struct i915_power_domains {
->  	/*
->  	 * Power wells needed for initialization at driver init and suspend
+> -	if (intel_dc3co_allowed(display))
+> +	if (intel_dc3co_can_enable(display))
+>  		intel_display_power_set_target_dc_state(display, enable ? DC_STATE_DISABLE :
+>  						DC_STATE_EN_UPTO_DC3CO);
+>  	else
 
 -- 
 Jani Nikula, Intel
