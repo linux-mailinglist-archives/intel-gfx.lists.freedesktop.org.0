@@ -2,84 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 995C3CF0742
-	for <lists+intel-gfx@lfdr.de>; Sun, 04 Jan 2026 01:21:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04619CF19EF
+	for <lists+intel-gfx@lfdr.de>; Mon, 05 Jan 2026 03:21:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C751610E38F;
-	Sun,  4 Jan 2026 00:21:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E00310E21D;
+	Mon,  5 Jan 2026 02:21:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IENiP5ZT";
+	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="VcTXBzoo";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DD8D10E38F;
- Sun,  4 Jan 2026 00:21:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767486064; x=1799022064;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=EZ07LHl/c+KnJFICNJyVpY6174knisfxMAC3WeK1sEs=;
- b=IENiP5ZTDjjdOQ6wcuhpfTc0u0VfserIPvUcZvBCrytfPCFuM/aBLm6r
- vmJn3nMV5qhS6RNE+VAqB/ZJAgOlAEX8pfDz8taXKb7042xbe9PZ2MSnC
- 5uRGG/aVcPkpXWrLz4kdAPxheQIgS5mYJKLzufkN8kaH+eOeKXSPjA8A6
- g0gMNF9WH9lQHp34ey35yvDSK4K5cqd8aMvKfzuutE+4fzJ7VI3DsmtQg
- hnAZ6y60nUwQoWNobgZr4G/uM2ssTvlteZ/ntHCYSX5WJwN9QNP0setGl
- Ftez+MqfXt9wk8cpEpNO3qzDy6ilyjWtGwSH6z9hkm1rvdVUhoeDcnw3F w==;
-X-CSE-ConnectionGUID: huVvTIPlQX2r2ZFAp0/Mog==
-X-CSE-MsgGUID: RJq/cJRiTLaTGYv9tsWt+w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11659"; a="68893384"
-X-IronPort-AV: E=Sophos;i="6.21,200,1763452800"; d="scan'208";a="68893384"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jan 2026 16:21:03 -0800
-X-CSE-ConnectionGUID: er8J3jTxQTKaWgFpHOj7dA==
-X-CSE-MsgGUID: znKggkO8RgWK0+QLdUyaaQ==
-X-ExtLoop1: 1
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.244.75])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jan 2026 16:20:58 -0800
-Date: Sun, 4 Jan 2026 02:20:55 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Joel Fernandes <joelagnelf@nvidia.com>
-Cc: Steven Rostedt <rostedt@goodmis.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Yury Norov <yury.norov@gmail.com>, Masami Hiramatsu <mhiramat@kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Christophe Leroy <chleroy@kernel.org>,
- Randy Dunlap <rdunlap@infradead.org>, Ingo Molnar <mingo@kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- David Laight <david.laight@runbox.com>, Petr Pavlu <petr.pavlu@suse.com>,
- Andi Shyti <andi.shyti@kernel.org>, Vivi Rodrigo <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Daniel Gomez <da.gomez@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-modules@vger.kernel.org" <linux-modules@vger.kernel.org>,
- "linux-trace-kernel@vger.kernel.org" <linux-trace-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 7/7] kernel.h: drop trace_printk.h
-Message-ID: <aVmyZ0iXzTkNU86y@smile.fi.intel.com>
-References: <20251225170930.1151781-1-yury.norov@gmail.com>
- <20251225170930.1151781-8-yury.norov@gmail.com>
- <20251226115848.298465d4@gandalf.local.home>
- <20251228133150.1d5731d04bc1b685b0fe81c1@linux-foundation.org>
- <20251229111748.3ba66311@gandalf.local.home>
- <20260103005059.GA11015@joelbox2>
- <aVkSVk2L6VH9MYGz@smile.fi.intel.com>
- <937926D0-00DC-499B-9FD8-D921C903882D@nvidia.com>
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5B9C10E18E;
+ Mon,  5 Jan 2026 02:21:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=202503; t=1767579662;
+ bh=34wq1iDgsfa73LvmdTFbnaXjd3iI7mxyRi37mETzBi4=;
+ h=Date:From:To:Cc:Subject:From;
+ b=VcTXBzoo1OuD8SVXfOctTIxFd2x7hmu05MWMFizKk6KDiLysueNWYaPMsTUOPFm8w
+ RhwDTynuzeTS4DxyEZazawEXIfyknF6fmVhWoxYtTzvGRWIorIuBCZO7h42gZRCtMv
+ 8CLcD6ASsfhYZVIRtfTBkKA2sIYQ66k1k7M6Fpqidm32G4sgpVubPoM6RWkT7s49cP
+ U8S7bDEQpHXeaydKKmFfFgfeHGZxivzPe01vAXQFKvg/IhI6bfF4DD1SPtx2u2MT7I
+ BSFKjzXbYT2M504cHgX/GbECJcJsnI5T+zTBEmFe4DYQwt8ouVFr0qq+viBUKY17H9
+ Xgjvz2PqhWzJw==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (Client did not present a certificate)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4dkyhZ0p2Cz4w0Q;
+ Mon, 05 Jan 2026 13:21:02 +1100 (AEDT)
+Date: Mon, 5 Jan 2026 13:21:01 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Dave Airlie <airlied@redhat.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Eslam Khafagy <eslam.medhat1993@gmail.com>, Linus Walleij
+ <linusw@kernel.org>, DRI <dri-devel@lists.freedesktop.org>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, Linux Kernel Mailing List
+ <linux-kernel@vger.kernel.org>, Linux Next Mailing List
+ <linux-next@vger.kernel.org>, Miaoqian Lin <linmq006@gmail.com>
+Subject: linux-next: manual merge of the drm tree with the drm-misc-fixes tree
+Message-ID: <20260105132101.28cb175c@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <937926D0-00DC-499B-9FD8-D921C903882D@nvidia.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Type: multipart/signed; boundary="Sig_/h1T/qnJSvBHObWYxkMEWg6Q";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,35 +59,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Jan 03, 2026 at 03:36:44PM +0000, Joel Fernandes wrote:
-> > On Jan 3, 2026, at 7:58 AM, Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
-> > On Fri, Jan 02, 2026 at 07:50:59PM -0500, Joel Fernandes wrote:
-> >> On Mon, Dec 29, 2025 at 11:17:48AM -0500, Steven Rostedt wrote:
+--Sig_/h1T/qnJSvBHObWYxkMEWg6Q
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-...
+Hi all,
 
-> >> I use trace_printk() all the time for kernel, particularly RCU development.
-> >> One of the key usecases I have is dumping traces on panic (with panic on warn
-> >> and stop tracing on warn enabled). This is extremely useful since I can add
-> >> custom tracing and dump traces when rare conditions occur. I fixed several
-> >> bugs with this technique.
-> >> 
-> >> I also recommend keeping it convenient to use.
-> > 
-> > Okay, you know C, please share your opinion what header is the best to hold the
-> > trace_printk.h to be included.
-> 
-> I do not think it is necessary to move it.
+Today's linux-next merge of the drm tree got a conflict in:
 
-I'm not talking about move, I'm talking about the C 101 thingy. Any custom API
-should be included before use, otherwise compiler won't see it. Which header do
-you want to include to have this API being provided? Note, it's really bad
-situation right now with the header to be included implicitly via non-obvious
-or obscure path. The discussion moved as far as I see it towards the finding a
-good place for the trace_printk.h.
+  drivers/gpu/drm/pl111/pl111_drv.c
 
--- 
-With Best Regards,
-Andy Shevchenko
+between commit:
 
+  0ddd3bb4b14c ("drm/pl111: Fix error handling in pl111_amba_probe")
 
+from the drm-misc-fixes tree and commit:
+
+  a1542b8ca6ed ("drm: pl111: replace dev_* print functions with drm_* varia=
+nts")
+
+from the drm tree.
+
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+diff --cc drivers/gpu/drm/pl111/pl111_drv.c
+index d7dc83cf7b00,ac9e4b6bd2eb..000000000000
+--- a/drivers/gpu/drm/pl111/pl111_drv.c
++++ b/drivers/gpu/drm/pl111/pl111_drv.c
+@@@ -294,8 -295,8 +295,8 @@@ static int pl111_amba_probe(struct amba
+  	ret =3D devm_request_irq(dev, amba_dev->irq[0], pl111_irq, 0,
+  			       variant->name, priv);
+  	if (ret !=3D 0) {
+- 		dev_err(dev, "%s failed irq %d\n", __func__, ret);
++ 		drm_err(drm, "%s failed irq %d\n", __func__, ret);
+ -		return ret;
+ +		goto dev_put;
+  	}
+ =20
+  	ret =3D pl111_modeset_init(drm);
+
+--Sig_/h1T/qnJSvBHObWYxkMEWg6Q
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmlbIA0ACgkQAVBC80lX
+0Gwtagf/amx14w80fJg2MhKJSM3O8puVTRjUv/D2T/Bi0/pOMaqSO26aFL+czYI7
+u4cxSF8P951Z6AUG79iZkzkCBCnZVupgnqpb5H96A05PUzJfS0sOsp7UmfSnbOAB
+NGMPVcd5EVUo77UDHb/5ddJrzDs6tVTVu7VH9ypgCrD2y/YGj2+LHbHSeEnIsLcc
+BItKmgUkys/6wUmopnmyOGdhZlKLr82d5s3SxZUIWe5TFZGS7erzby/FuMF5+Lbz
+A0zUwMfEUhn/eZsEmGYVV9o0QO1XxrrB/WlUbMp7DtSX/gci1+7sDtXcVmBYfj+k
+OtF3afEDS8biZ871gA4NGzgyH7njqg==
+=mTY5
+-----END PGP SIGNATURE-----
+
+--Sig_/h1T/qnJSvBHObWYxkMEWg6Q--
