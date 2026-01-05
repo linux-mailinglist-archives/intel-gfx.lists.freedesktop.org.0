@@ -2,61 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 114E2CF1C88
-	for <lists+intel-gfx@lfdr.de>; Mon, 05 Jan 2026 05:02:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37F79CF1D3A
+	for <lists+intel-gfx@lfdr.de>; Mon, 05 Jan 2026 05:57:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35B0710E39E;
-	Mon,  5 Jan 2026 04:02:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C3EE10E07D;
+	Mon,  5 Jan 2026 04:57:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cAF3e6uj";
+	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="oCFTD19T";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6E3A10E27C;
- Mon,  5 Jan 2026 04:02:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767585766; x=1799121766;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=F1xCzcO0Fb4KKhPebm+S7lJRzpthe4YaTxN/uxlIhw0=;
- b=cAF3e6ujAkHLAeovb+k1K3nnO8gE/BD9AAsZk+EA7e9CZItv6BW2nJd3
- w/qzvc38oxoTbvfKNbK4b/frjzFavIjYHA5h441c/j8b7/iS5CFayi4sZ
- Mmy2dTuTosQDPHqgXK4erueTTRWeIfiKr4wOCqVA9dLPnCveDwz39zhHD
- ZhMk4EQXg0YaCw77/kF6QTluRhTFqpjLip5GM74NUUHne486Fnhp65YH8
- VbLcviNyr6+Dl15HWUVXIDX3RiuRc77rh06PeQ8SX9cZSllr6SWFv9jOe
- 9C2RArd6vNorQReZBU2uZ42bKoB2mHwA7rtEVBKN5DkYjzP5vpxhLzSa0 Q==;
-X-CSE-ConnectionGUID: Hh9eo9VuTk+f7KeknOGPxQ==
-X-CSE-MsgGUID: QCbUw3TQQUCe18VLcJUUTg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11661"; a="68856274"
-X-IronPort-AV: E=Sophos;i="6.21,202,1763452800"; d="scan'208";a="68856274"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2026 20:02:45 -0800
-X-CSE-ConnectionGUID: sXk6jf7yRKy6IZpSvlhPJg==
-X-CSE-MsgGUID: Xd/7IJSKRq6ac72QHIIl1Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,202,1763452800"; d="scan'208";a="202060696"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2026 20:02:42 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: daniele.ceraolospurio@intel.com, carlos.santa@intel.com,
- intel-gfx@lists.freedesktop.org,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v2 22/22] drm/i915/display: Use atomic helper to set plane
- fence deadlines
-Date: Sun,  4 Jan 2026 20:02:37 -0800
-Message-Id: <20260105040237.1307873-23-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260105040237.1307873-1-matthew.brost@intel.com>
-References: <20260105040237.1307873-1-matthew.brost@intel.com>
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F2A410E07D;
+ Mon,  5 Jan 2026 04:57:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=202503; t=1767589056;
+ bh=92VY6OEmaTZZIFAl4VC6nS4a/om3Rxq94YffNwRAQo8=;
+ h=Date:From:To:Cc:Subject:From;
+ b=oCFTD19TmMuKgXIaF+nRUZXsK9H/4SLNgDnk8JjTQZrIMm0WwT5BYCXMcZaOyqid0
+ ouXJ5hSXl61tg6TDKl5k1ONSzCCmBBEv3LFdiGt+tPlfgFMDS97ntBS6mGNxV3U6EH
+ Cf/fH0VmVyM8HxNzXetOg7pzAWRzrvchHOYtQ1nIcjzDjFYHnqyTknsS2Pb9bXT8W3
+ QJiJv/NKunY6uNZKJQRcuxYFETAGgIgIdGY1+Z07wixvCiZ2jcQ0L2yjNqNSHWI1MW
+ WadwZPw3oWNo+rGvGB3DCmRr+n5R3CoBEENckbqyp01xBA1R2Ix/YRkOfsTwxZmArn
+ vdEp0e9uKm2UQ==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (Client did not present a certificate)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4dl29C5NnBz4wCx;
+ Mon, 05 Jan 2026 15:57:35 +1100 (AEDT)
+Date: Mon, 5 Jan 2026 15:57:35 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>
+Subject: linux-next: build warning after merge of the drm-misc tree
+Message-ID: <20260105155735.3b4012b6@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; boundary="Sig_/mQg3VFDK4CcorqkjrtTadez";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,37 +57,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-i915 has its own atomic commit path and does not always funnel through
-drm_atomic_helper_wait_for_fences(). Reuse the atomic helper deadline
-logic by calling drm_atomic_helper_set_fence_deadline() at the start of
-intel_atomic_commit().
+--Sig_/mQg3VFDK4CcorqkjrtTadez
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-This sets an advisory deadline on incoming plane fences based on the
-next vblank for single-CRTC commits, matching the behavior of the atomic
-helper wait path.
+Hi all,
 
-Cc: <intel-gfx@lists.freedesktop.org>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 2 ++
- 1 file changed, 2 insertions(+)
+After merging the drm-misc tree, today's linux-next build (htmldocs)
+produced this warning:
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 81b3a6692ca2..d12ff6cd17b2 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7751,6 +7751,8 @@ int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state *_state,
- 	drm_atomic_state_get(&state->base);
- 	INIT_WORK(&state->base.commit_work, intel_atomic_commit_work);
- 
-+	drm_atomic_helper_set_fence_deadline(dev, _state);
-+
- 	if (nonblock && state->modeset) {
- 		queue_work(display->wq.modeset, &state->base.commit_work);
- 	} else if (nonblock) {
--- 
-2.34.1
+Documentation/gpu/drm-kms-helpers:197: drivers/gpu/drm/drm_bridge.c:1521: E=
+RROR: Unexpected indentation. [docutils]
+Documentation/gpu/drm-kms-helpers:197: drivers/gpu/drm/drm_bridge.c:1523: W=
+ARNING: Block quote ends without a blank line; unexpected unindent. [docuti=
+ls]
 
+Introduced by commit
+
+  9da0e06abda8 ("drm/bridge: deprecate of_drm_find_bridge()")
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/mQg3VFDK4CcorqkjrtTadez
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmlbRL8ACgkQAVBC80lX
+0GyEuAf/T0+PXVWEAkBFuCVUBXiA1pl6OPWL+FdWThgz+5DP24PFdJNMOsaDhfYf
+y11ZPc98EI0yFuQCmxfI2FQq6te2/TZO3FPCIXysJXKYiG9AZz6EUyzIpgQNE8kq
+JnveUlv1mUr+iobiU5dBfeuN4xKDmdMP07V3GRc5TMBgIKVskmMbjwuDjpAVvtbK
+Apudp/QcXoS+eJWy1PFWGxgei+Zo7njQdnTAhOxggIVH1SRUL2hYpu6v9abRY1jP
+7Q6WeJ5jdNdeEOlf8K90fhGpvy4mbpOpjiPp/ybSwmQsD4GqNrGH1SOXYCXfRpgK
+LtOW+RqRXpqScJaadtJbvb+1Qeg4MA==
+=IQUf
+-----END PGP SIGNATURE-----
+
+--Sig_/mQg3VFDK4CcorqkjrtTadez--
