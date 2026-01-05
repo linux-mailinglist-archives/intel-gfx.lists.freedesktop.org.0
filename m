@@ -2,61 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D995BCF3AED
-	for <lists+intel-gfx@lfdr.de>; Mon, 05 Jan 2026 14:03:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DE57CF3C08
+	for <lists+intel-gfx@lfdr.de>; Mon, 05 Jan 2026 14:20:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B89A10E25A;
-	Mon,  5 Jan 2026 13:03:01 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Vx/F1Jj/";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DE2010E3D0;
+	Mon,  5 Jan 2026 13:20:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9C0010E085;
- Mon,  5 Jan 2026 13:02:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767618179; x=1799154179;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=2JJQFbwCKKO9HtUOBKUjzQCwebLhRF1Ct6OWk34CqTA=;
- b=Vx/F1Jj/a7bLvID5xtaOb+sARLxXCv+4nIhFgewLq73X/c40dqn/n6sR
- h4QGzsl+jj1UXRdbmzRpVc4qZnTukts07GRS4/Imlj4+2zk9w66zWKaBA
- V9R5i/T5RwB1AXrNvQkW3rxn7sQkhHI8E1CElhuuAT+2C8bpe2RfCGSGS
- yZ49fY8eexwiObK7oX60TyMPxC5JQd6E8pqHt0jyJIIQoO5ZDw/V5JIF5
- jQAXg6jo9DSLPxDHciJFwOScbyIYumnUgsY/6M9rn0eSzzl81nrvOk1Zc
- Z73Y4gYvTE4WN+zlcVr+QquV5r+h+bY5jutiXFuxSZAdW4R/jNQQckB7M w==;
-X-CSE-ConnectionGUID: B0HXq63IRWulHPIDJ8TOlA==
-X-CSE-MsgGUID: Mh16WXNIROuQ2nSFApqxWQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11662"; a="79286353"
-X-IronPort-AV: E=Sophos;i="6.21,203,1763452800"; d="scan'208";a="79286353"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2026 05:02:59 -0800
-X-CSE-ConnectionGUID: p9d7k6dPR3yAmSFdVG7PPA==
-X-CSE-MsgGUID: sgKiPZ45Ry+zMQFB9+dpxQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,203,1763452800"; d="scan'208";a="202153126"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.3])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2026 05:02:57 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: animesh.manna@intel.com, uma.shankar@intel.com, imre.deak@intel.com,
- jouni.hogander@intel.com
-Subject: Re: [PATCH 7/9] drm/i915/display: psr enable DC3CO support
-In-Reply-To: <20251209113332.2770263-8-dibin.moolakadan.subrahmanian@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20251209113332.2770263-1-dibin.moolakadan.subrahmanian@intel.com>
- <20251209113332.2770263-8-dibin.moolakadan.subrahmanian@intel.com>
-Date: Mon, 05 Jan 2026 15:02:53 +0200
-Message-ID: <6a34a806cbb5c8a2ebe2f6c541cf8b3b6d0bac95@intel.com>
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D5D210E3D0;
+ Mon,  5 Jan 2026 13:20:15 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8441271099723128276=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Fix_t?=
+ =?utf-8?q?he_SPDX_license_identifier_for_C_headers_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 05 Jan 2026 13:20:15 -0000
+Message-ID: <176761921551.126139.5267372140276961733@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260105113544.574323-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20260105113544.574323-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,37 +37,152 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 09 Dec 2025, Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com> wrote:
-> if DC3CO allowed and psr2 is enabled, update dc3co_source
+--===============8441271099723128276==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yeah, I can read the code, but what does it mean? Why?
+== Series Details ==
 
->
-> Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_psr.c | 6 ++++++
->  1 file changed, 6 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> index 9c616f449ad6..d4c5dc6dcc82 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -3007,6 +3007,12 @@ void intel_psr_post_plane_update(struct intel_atomic_state *state,
->  		if (crtc_state->crc_enabled && psr->enabled)
->  			intel_psr_force_update(intel_dp);
->  
-> +		if (psr->enabled &&
-> +		    psr->sel_update_enabled &&
-> +		    intel_dc3co_allowed(display)) {
-> +			intel_dc3co_source_set(display, DC3CO_SOURCE_PSR2);
-> +		}
-> +
->  		/*
->  		 * Clear possible busy bits in case we have
->  		 * invalidate -> flip -> flush sequence.
+Series: drm/i915/display: Fix the SPDX license identifier for C headers (rev2)
+URL   : https://patchwork.freedesktop.org/series/159642/
+State : success
 
--- 
-Jani Nikula, Intel
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_17766 -> Patchwork_159642v2
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159642v2/index.html
+
+Participating hosts (44 -> 42)
+------------------------------
+
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_159642v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-rpls-4:         [PASS][1] -> [DMESG-WARN][2] ([i915#13400])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17766/bat-rpls-4/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159642v2/bat-rpls-4/igt@core_hotunplug@unbind-rebind.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-3:         [DMESG-FAIL][3] ([i915#12061]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17766/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159642v2/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+    - bat-dg2-11:         [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17766/bat-dg2-11/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159642v2/bat-dg2-11/igt@i915_selftest@live@workarounds.html
+    - bat-mtlp-9:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17766/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159642v2/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#13400]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13400
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_17766 -> Patchwork_159642v2
+
+  CI-20190529: 20190529
+  CI_DRM_17766: f5136cded03e959ebb00a1160e5f00973c38007e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8682: 8682
+  Patchwork_159642v2: f5136cded03e959ebb00a1160e5f00973c38007e @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159642v2/index.html
+
+--===============8441271099723128276==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Fix the SPDX license identifier for C headers (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159642/">https://patchwork.freedesktop.org/series/159642/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159642v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159642v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17766 -&gt; Patchwork_159642v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159642v2/index.html</p>
+<h2>Participating hosts (44 -&gt; 42)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_159642v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-rpls-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17766/bat-rpls-4/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159642v2/bat-rpls-4/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13400">i915#13400</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17766/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159642v2/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17766/bat-dg2-11/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159642v2/bat-dg2-11/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17766/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159642v2/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17766 -&gt; Patchwork_159642v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17766: f5136cded03e959ebb00a1160e5f00973c38007e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8682: 8682<br />
+  Patchwork_159642v2: f5136cded03e959ebb00a1160e5f00973c38007e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============8441271099723128276==--
