@@ -2,29 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47F44CF39EA
-	for <lists+intel-gfx@lfdr.de>; Mon, 05 Jan 2026 13:53:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AC9ACF3A02
+	for <lists+intel-gfx@lfdr.de>; Mon, 05 Jan 2026 13:55:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9378310E3C7;
-	Mon,  5 Jan 2026 12:53:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2A6010E3CA;
+	Mon,  5 Jan 2026 12:55:39 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LclbEmtI";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C892C10E3C7;
- Mon,  5 Jan 2026 12:53:50 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5363420919833263452=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BA6A10E3C8;
+ Mon,  5 Jan 2026 12:55:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1767617739; x=1799153739;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=TbGqG/Z/4u5XcFpqH9iNYJBpgUSgYR0lVlEkafCilGo=;
+ b=LclbEmtIhkHiJvaqtLxo0HShadJ62URiyXfVBHJfZUHWyDxgQ8uB1lYQ
+ RfyHbIWUsYSvZwTXL+lSUIv0Nd5Gd9404nQWe2WeVH+s4nogMbY5L0CRD
+ Lsprs2ANrgIvrQeqV4K49B0frxSbX4IXFHoiFXLgs9mUcWAU/laWkDyrt
+ 8aC963VKqHPhTz84RBDJn3VtVzc47xNYSaCqK8Hv9xAfynYpQKL9PKNAe
+ Q5RjCiDkhWavZEtFPzm8gcQMPTKw8m9I/kDdkl7xhFxe31qjud4HLEHN6
+ 7UiWlpXAHUwEVe6y+Zc3wJvAz6PCOrHphc0clcr6cUZtu2Nm9BXQIolBq g==;
+X-CSE-ConnectionGUID: T0fyR/EIRCG6lWKjMmB0UQ==
+X-CSE-MsgGUID: GSrejb5iRS6ZhoE3O00VZA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11662"; a="79285868"
+X-IronPort-AV: E=Sophos;i="6.21,203,1763452800"; d="scan'208";a="79285868"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jan 2026 04:55:39 -0800
+X-CSE-ConnectionGUID: /PxZiPxVT+2E9DGXr+hw3A==
+X-CSE-MsgGUID: lA5FhBcqT1KQneXI2rizYw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,203,1763452800"; d="scan'208";a="202151936"
+Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.3])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jan 2026 04:55:36 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: animesh.manna@intel.com, uma.shankar@intel.com, imre.deak@intel.com,
+ jouni.hogander@intel.com
+Subject: Re: [PATCH 4/9] drm/i915/display: Add DC3CO eligibility logic
+In-Reply-To: <20251209113332.2770263-5-dibin.moolakadan.subrahmanian@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20251209113332.2770263-1-dibin.moolakadan.subrahmanian@intel.com>
+ <20251209113332.2770263-5-dibin.moolakadan.subrahmanian@intel.com>
+Date: Mon, 05 Jan 2026 14:55:32 +0200
+Message-ID: <e6ee14b445df7979d8bd90ee0f45ab7505d1e92e@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Fix_t?=
- =?utf-8?q?he_SPDX_license_identifier_for_C_headers?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 05 Jan 2026 12:53:50 -0000
-Message-ID: <176761763081.126139.3114200483698303395@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260105113544.574323-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20260105113544.574323-1-ankit.k.nautiyal@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,161 +69,234 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5363420919833263452==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 09 Dec 2025, Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com> wrote:
+> Introduce dc3co_allow in struct intel_display and determine DC3CO
+> eligibility during atomic_check(). DC3CO is permitted only when:
+>
+>   - the active pipe drives eDP,
+>   - the pipe is single-pipe (no joiner),
+>   - the pipe/port combination supports DC3CO.
+>
+> When eligible, intel_atomic_commit_tail() programs the target DC state
+> as DC_STATE_EN_UPTO_DC3CO; otherwise we fall back to DC6. Update the
+> PSR vblank enable/disable path to follow the same policy.
+>
+> Also extend get_allowed_dc_mask() to expose DC3CO support on
+> DISPLAY_VER >= 35.
+>
+> Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c  | 75 +++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_display.h  |  1 +
+>  .../gpu/drm/i915/display/intel_display_core.h |  3 +
+>  .../drm/i915/display/intel_display_power.c    |  4 +-
+>  drivers/gpu/drm/i915/display/intel_psr.c      | 13 ++--
+>  5 files changed, 87 insertions(+), 9 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 9c6d3ecdb589..205f55a87736 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -6295,6 +6295,75 @@ static int intel_joiner_add_affected_crtcs(struct intel_atomic_state *state)
+>  	return 0;
+>  }
+>  
+> +bool intel_dc3co_allowed(struct intel_display *display)
+> +{
+> +	return display->power.dc3co_allow;
 
-== Series Details ==
+Very few files should touch display->power, and this is not one of them.
 
-Series: drm/i915/display: Fix the SPDX license identifier for C headers
-URL   : https://patchwork.freedesktop.org/series/159642/
-State : success
+'git grep "display->power" -- drivers/gpu/drm/i915/display'
 
-== Summary ==
+When is it okay to call this function and expect to get sane results?
 
-CI Bug Log - changes from CI_DRM_17766 -> Patchwork_159642v1
-====================================================
+> +}
+> +
+> +static bool intel_dc3co_port_pipe_compatible(struct intel_dp *intel_dp,
+> +					     const struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+> +	enum pipe pipe = to_intel_crtc(crtc_state->uapi.crtc)->pipe;
+> +	enum port port = dig_port->base.port;
+> +	int num_pipes = intel_crtc_num_joined_pipes(crtc_state);
+> +
+> +	if (num_pipes != 1)
+> +		return false;
+> +
+> +	if (!(pipe <= PIPE_B && port <= PORT_B))
+> +		return false;
+> +
+> +	return true;
 
-Summary
--------
+That's a really complicated way to say
 
-  **SUCCESS**
+	return num_pipes == 1 && pipe <= PIPEB && port <= PORT_B;
 
-  No regressions found.
+> +}
+> +
+> +static void intel_dc3co_allow_check(struct intel_atomic_state *state)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159642v1/index.html
+What does "check" mean here? Or in *any* function?
 
-Participating hosts (44 -> 42)
-------------------------------
+Check sounds like something that's a pure function that doesn't change
+anything... but this does.
 
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
+> +{
+> +	struct intel_display *display = to_intel_display(state);
+> +	struct intel_crtc *crtc;
+> +	struct intel_crtc_state *new_crtc_state;
+> +	struct intel_encoder *encoder;
+> +	struct intel_dp *intel_dp;
+> +	int i;
+> +	struct i915_power_domains *power_domains = &display->power.domains;
+> +	bool any_active = false;
+> +	bool allow = true;
+> +
+> +	display->power.dc3co_allow = 0;
 
-Known issues
-------------
+That's now cached state with no stated rules on when it's valid and when
+it's not.
 
-  Here are the changes found in Patchwork_159642v1 that come from known issues:
+> +
+> +	if ((power_domains->allowed_dc_mask & DC_STATE_EN_UPTO_DC3CO) != DC_STATE_EN_UPTO_DC3CO)
+> +		return;
+> +
+> +	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+> +		if (!new_crtc_state->hw.active)
+> +			continue;
+> +
+> +		any_active = true;
+> +
+> +		for_each_intel_encoder_mask(display->drm, encoder,
+> +					    new_crtc_state->uapi.encoder_mask) {
+> +			/* If any active pipe not eDP disable*/
 
-### IGT changes ###
+What?
 
-#### Issues hit ####
+> +			if (!intel_encoder_is_dp(encoder) ||
+> +			    encoder->type != INTEL_OUTPUT_EDP) {
+> +				allow = false;
+> +				goto out;
+> +			}
+> +			intel_dp = enc_to_intel_dp(encoder);
+> +			/* Port, joiner, pipe placement checks */
 
-  * igt@i915_selftest@live:
-    - bat-jsl-1:          [PASS][1] -> [DMESG-FAIL][2] ([i915#15394]) +1 other test dmesg-fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17766/bat-jsl-1/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159642v1/bat-jsl-1/igt@i915_selftest@live.html
+Is that a helpful comment?
 
-  
-#### Possible fixes ####
+> +			if (!intel_dc3co_port_pipe_compatible(intel_dp, new_crtc_state)) {
+> +				allow = false;
+> +				goto out;
+> +			}
+> +		}
+> +	}
+> +
+> +	if (!any_active)
+> +		allow = false;
+> +
+> +out:
+> +	display->power.dc3co_allow = allow;
+> +}
+> +
 
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [DMESG-FAIL][3] ([i915#12061]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17766/bat-mtlp-8/igt@i915_selftest@live.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159642v1/bat-mtlp-8/igt@i915_selftest@live.html
+intel_display.[ch] is not the dumping ground for random new code. The
+goal is to *reduce* the size of it, not increase.
 
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-9:          [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17766/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159642v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-    - bat-mtlp-9:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17766/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159642v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+>  static int intel_atomic_check_config(struct intel_atomic_state *state,
+>  				     struct intel_link_bw_limits *limits,
+>  				     enum pipe *failed_pipe)
+> @@ -6565,6 +6634,8 @@ int intel_atomic_check(struct drm_device *dev,
+>  	if (ret)
+>  		goto fail;
+>  
+> +	intel_dc3co_allow_check(state);
+> +
+>  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+>  					    new_crtc_state, i) {
+>  		intel_color_assert_luts(new_crtc_state);
+> @@ -7601,6 +7672,10 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+>  		 */
+>  		intel_uncore_arm_unclaimed_mmio_detection(&dev_priv->uncore);
+>  	}
+> +	if (intel_dc3co_allowed(display))
+> +		intel_display_power_set_target_dc_state(display, DC_STATE_EN_UPTO_DC3CO);
+> +	else
+> +		intel_display_power_set_target_dc_state(display, DC_STATE_EN_UPTO_DC6);
+>  	/*
+>  	 * Delay re-enabling DC states by 17 ms to avoid the off->on->off
+>  	 * toggling overhead at and above 60 FPS.
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+> index f8e6e4e82722..97987f082560 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> @@ -560,5 +560,6 @@ bool assert_port_valid(struct intel_display *display, enum port port);
+>  
+>  bool intel_scanout_needs_vtd_wa(struct intel_display *display);
+>  int intel_crtc_num_joined_pipes(const struct intel_crtc_state *crtc_state);
+> +bool intel_dc3co_allowed(struct intel_display *display);
+>  
+>  #endif
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+> index d708d322aa85..fa567c95029c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+> @@ -538,6 +538,9 @@ struct intel_display {
+>  
+>  		/* perform PHY state sanity checks? */
+>  		bool chv_phy_assert[2];
+> +
+> +		/* mark dc3co entry is allowed*/
 
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#15394]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15394
+		                              ^- space missing
 
+> +		bool dc3co_allow;
 
-Build changes
--------------
+Still unclear when this is valid.
 
-  * Linux: CI_DRM_17766 -> Patchwork_159642v1
+>  	} power;
+>  
+>  	struct {
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> index 0961b194554c..e99552f18756 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -956,7 +956,9 @@ static u32 get_allowed_dc_mask(struct intel_display *display, int enable_dc)
+>  	if (!HAS_DISPLAY(display))
+>  		return 0;
+>  
+> -	if (DISPLAY_VER(display) >= 20)
+> +	if (DISPLAY_VER(display) >= 35)
+> +		max_dc = 3;
+> +	else if (DISPLAY_VER(display) >= 20)
+>  		max_dc = 2;
+>  	else if (display->platform.dg2)
+>  		max_dc = 1;
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> index 753359069044..9c616f449ad6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -3903,14 +3903,11 @@ void intel_psr_notify_vblank_enable_disable(struct intel_display *display,
+>  		return;
+>  	}
+>  
+> -	/*
+> -	 * NOTE: intel_display_power_set_target_dc_state is used
+> -	 * only by PSR * code for DC3CO handling. DC3CO target
+> -	 * state is currently disabled in * PSR code. If DC3CO
+> -	 * is taken into use we need take that into account here
+> -	 * as well.
+> -	 */
+> -	intel_display_power_set_target_dc_state(display, enable ? DC_STATE_DISABLE :
+> +	if (intel_dc3co_allowed(display))
+> +		intel_display_power_set_target_dc_state(display, enable ? DC_STATE_DISABLE :
+> +						DC_STATE_EN_UPTO_DC3CO);
+> +	else
+> +		intel_display_power_set_target_dc_state(display, enable ? DC_STATE_DISABLE :
+>  						DC_STATE_EN_UPTO_DC6);
+>  }
 
-  CI-20190529: 20190529
-  CI_DRM_17766: f5136cded03e959ebb00a1160e5f00973c38007e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8682: 8682
-  Patchwork_159642v1: f5136cded03e959ebb00a1160e5f00973c38007e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159642v1/index.html
-
---===============5363420919833263452==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Fix the SPDX license identifier for C headers</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159642/">https://patchwork.freedesktop.org/series/159642/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159642v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159642v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17766 -&gt; Patchwork_159642v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159642v1/index.html</p>
-<h2>Participating hosts (44 -&gt; 42)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_159642v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live:<ul>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17766/bat-jsl-1/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159642v1/bat-jsl-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15394">i915#15394</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17766/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159642v1/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17766/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159642v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17766/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159642v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17766 -&gt; Patchwork_159642v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17766: f5136cded03e959ebb00a1160e5f00973c38007e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8682: 8682<br />
-  Patchwork_159642v1: f5136cded03e959ebb00a1160e5f00973c38007e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============5363420919833263452==--
+-- 
+Jani Nikula, Intel
