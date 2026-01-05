@@ -2,48 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04619CF19EF
-	for <lists+intel-gfx@lfdr.de>; Mon, 05 Jan 2026 03:21:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 114E2CF1C88
+	for <lists+intel-gfx@lfdr.de>; Mon, 05 Jan 2026 05:02:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E00310E21D;
-	Mon,  5 Jan 2026 02:21:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35B0710E39E;
+	Mon,  5 Jan 2026 04:02:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="VcTXBzoo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cAF3e6uj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5B9C10E18E;
- Mon,  5 Jan 2026 02:21:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=202503; t=1767579662;
- bh=34wq1iDgsfa73LvmdTFbnaXjd3iI7mxyRi37mETzBi4=;
- h=Date:From:To:Cc:Subject:From;
- b=VcTXBzoo1OuD8SVXfOctTIxFd2x7hmu05MWMFizKk6KDiLysueNWYaPMsTUOPFm8w
- RhwDTynuzeTS4DxyEZazawEXIfyknF6fmVhWoxYtTzvGRWIorIuBCZO7h42gZRCtMv
- 8CLcD6ASsfhYZVIRtfTBkKA2sIYQ66k1k7M6Fpqidm32G4sgpVubPoM6RWkT7s49cP
- U8S7bDEQpHXeaydKKmFfFgfeHGZxivzPe01vAXQFKvg/IhI6bfF4DD1SPtx2u2MT7I
- BSFKjzXbYT2M504cHgX/GbECJcJsnI5T+zTBEmFe4DYQwt8ouVFr0qq+viBUKY17H9
- Xgjvz2PqhWzJw==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (Client did not present a certificate)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4dkyhZ0p2Cz4w0Q;
- Mon, 05 Jan 2026 13:21:02 +1100 (AEDT)
-Date: Mon, 5 Jan 2026 13:21:01 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Dave Airlie <airlied@redhat.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Eslam Khafagy <eslam.medhat1993@gmail.com>, Linus Walleij
- <linusw@kernel.org>, DRI <dri-devel@lists.freedesktop.org>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, Linux Kernel Mailing List
- <linux-kernel@vger.kernel.org>, Linux Next Mailing List
- <linux-next@vger.kernel.org>, Miaoqian Lin <linmq006@gmail.com>
-Subject: linux-next: manual merge of the drm tree with the drm-misc-fixes tree
-Message-ID: <20260105132101.28cb175c@canb.auug.org.au>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6E3A10E27C;
+ Mon,  5 Jan 2026 04:02:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1767585766; x=1799121766;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=F1xCzcO0Fb4KKhPebm+S7lJRzpthe4YaTxN/uxlIhw0=;
+ b=cAF3e6ujAkHLAeovb+k1K3nnO8gE/BD9AAsZk+EA7e9CZItv6BW2nJd3
+ w/qzvc38oxoTbvfKNbK4b/frjzFavIjYHA5h441c/j8b7/iS5CFayi4sZ
+ Mmy2dTuTosQDPHqgXK4erueTTRWeIfiKr4wOCqVA9dLPnCveDwz39zhHD
+ ZhMk4EQXg0YaCw77/kF6QTluRhTFqpjLip5GM74NUUHne486Fnhp65YH8
+ VbLcviNyr6+Dl15HWUVXIDX3RiuRc77rh06PeQ8SX9cZSllr6SWFv9jOe
+ 9C2RArd6vNorQReZBU2uZ42bKoB2mHwA7rtEVBKN5DkYjzP5vpxhLzSa0 Q==;
+X-CSE-ConnectionGUID: Hh9eo9VuTk+f7KeknOGPxQ==
+X-CSE-MsgGUID: QCbUw3TQQUCe18VLcJUUTg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11661"; a="68856274"
+X-IronPort-AV: E=Sophos;i="6.21,202,1763452800"; d="scan'208";a="68856274"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2026 20:02:45 -0800
+X-CSE-ConnectionGUID: sXk6jf7yRKy6IZpSvlhPJg==
+X-CSE-MsgGUID: Xd/7IJSKRq6ac72QHIIl1Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,202,1763452800"; d="scan'208";a="202060696"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2026 20:02:42 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: daniele.ceraolospurio@intel.com, carlos.santa@intel.com,
+ intel-gfx@lists.freedesktop.org,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH v2 22/22] drm/i915/display: Use atomic helper to set plane
+ fence deadlines
+Date: Sun,  4 Jan 2026 20:02:37 -0800
+Message-Id: <20260105040237.1307873-23-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260105040237.1307873-1-matthew.brost@intel.com>
+References: <20260105040237.1307873-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/h1T/qnJSvBHObWYxkMEWg6Q";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,68 +72,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/h1T/qnJSvBHObWYxkMEWg6Q
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+i915 has its own atomic commit path and does not always funnel through
+drm_atomic_helper_wait_for_fences(). Reuse the atomic helper deadline
+logic by calling drm_atomic_helper_set_fence_deadline() at the start of
+intel_atomic_commit().
 
-Hi all,
+This sets an advisory deadline on incoming plane fences based on the
+next vblank for single-CRTC commits, matching the behavior of the atomic
+helper wait path.
 
-Today's linux-next merge of the drm tree got a conflict in:
+Cc: <intel-gfx@lists.freedesktop.org>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-  drivers/gpu/drm/pl111/pl111_drv.c
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 81b3a6692ca2..d12ff6cd17b2 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7751,6 +7751,8 @@ int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state *_state,
+ 	drm_atomic_state_get(&state->base);
+ 	INIT_WORK(&state->base.commit_work, intel_atomic_commit_work);
+ 
++	drm_atomic_helper_set_fence_deadline(dev, _state);
++
+ 	if (nonblock && state->modeset) {
+ 		queue_work(display->wq.modeset, &state->base.commit_work);
+ 	} else if (nonblock) {
+-- 
+2.34.1
 
-between commit:
-
-  0ddd3bb4b14c ("drm/pl111: Fix error handling in pl111_amba_probe")
-
-from the drm-misc-fixes tree and commit:
-
-  a1542b8ca6ed ("drm: pl111: replace dev_* print functions with drm_* varia=
-nts")
-
-from the drm tree.
-
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
-
---=20
-Cheers,
-Stephen Rothwell
-
-diff --cc drivers/gpu/drm/pl111/pl111_drv.c
-index d7dc83cf7b00,ac9e4b6bd2eb..000000000000
---- a/drivers/gpu/drm/pl111/pl111_drv.c
-+++ b/drivers/gpu/drm/pl111/pl111_drv.c
-@@@ -294,8 -295,8 +295,8 @@@ static int pl111_amba_probe(struct amba
-  	ret =3D devm_request_irq(dev, amba_dev->irq[0], pl111_irq, 0,
-  			       variant->name, priv);
-  	if (ret !=3D 0) {
-- 		dev_err(dev, "%s failed irq %d\n", __func__, ret);
-+ 		drm_err(drm, "%s failed irq %d\n", __func__, ret);
- -		return ret;
- +		goto dev_put;
-  	}
- =20
-  	ret =3D pl111_modeset_init(drm);
-
---Sig_/h1T/qnJSvBHObWYxkMEWg6Q
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmlbIA0ACgkQAVBC80lX
-0Gwtagf/amx14w80fJg2MhKJSM3O8puVTRjUv/D2T/Bi0/pOMaqSO26aFL+czYI7
-u4cxSF8P951Z6AUG79iZkzkCBCnZVupgnqpb5H96A05PUzJfS0sOsp7UmfSnbOAB
-NGMPVcd5EVUo77UDHb/5ddJrzDs6tVTVu7VH9ypgCrD2y/YGj2+LHbHSeEnIsLcc
-BItKmgUkys/6wUmopnmyOGdhZlKLr82d5s3SxZUIWe5TFZGS7erzby/FuMF5+Lbz
-A0zUwMfEUhn/eZsEmGYVV9o0QO1XxrrB/WlUbMp7DtSX/gci1+7sDtXcVmBYfj+k
-OtF3afEDS8biZ871gA4NGzgyH7njqg==
-=mTY5
------END PGP SIGNATURE-----
-
---Sig_/h1T/qnJSvBHObWYxkMEWg6Q--
