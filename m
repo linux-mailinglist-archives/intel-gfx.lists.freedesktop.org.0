@@ -2,207 +2,192 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B553CF82D1
-	for <lists+intel-gfx@lfdr.de>; Tue, 06 Jan 2026 12:57:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D952FCF865F
+	for <lists+intel-gfx@lfdr.de>; Tue, 06 Jan 2026 13:59:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD43210E4FE;
-	Tue,  6 Jan 2026 11:57:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73C4910E455;
+	Tue,  6 Jan 2026 12:59:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h6ZxWimu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IdadRMZb";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B698610E1E0;
- Tue,  6 Jan 2026 11:57:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55F4710E3DE;
+ Tue,  6 Jan 2026 12:59:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767700634; x=1799236634;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=K4fmDedtT1OMxMNCUeyDj4dJTno2jkM+VNkgoSnPOLo=;
- b=h6ZxWimuWN3tjHwMxlHL/C37rqtjliZe/1+YEQfVMIYwJT/DowWjS4Se
- 7PveXv0z8JFlYPJPbc/51YyQSrLbMl0x25wvPy6mT9tLapzdHz/Q4yRCW
- sEv0QO4U9Khd7VXoszN96BhkIZJtmeaPwl8cMkTPnBV/YT/HS7E5hE/1f
- 2BbaFAm3hpJRD7+9MnnC1tCxpBjRmC7ukWPaeEdZQGrRY1+qk1oellQcN
- GIEm2kyr+axWHmAHBhExSZ5BT3uMqqOHI+3bO7yHgBgWPED8T4YQvnZsq
- KBH6KkJ0AipRr7TjpCYvGNLBMAMJ/G3w1p82JyLK/1zxgJelZrYiqU5ni w==;
-X-CSE-ConnectionGUID: 6Ek4sx9HQJGtoZp4rdcHjg==
-X-CSE-MsgGUID: MaE/LYV+QkyYIw9649mQjg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11662"; a="56627631"
-X-IronPort-AV: E=Sophos;i="6.21,204,1763452800"; d="scan'208";a="56627631"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2026 03:57:13 -0800
-X-CSE-ConnectionGUID: vzmZj4x0SRmiWGwXH9ln2w==
-X-CSE-MsgGUID: qHBJHOs8TnW9SylAIwWw/w==
+ t=1767704343; x=1799240343;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:mime-version;
+ bh=dzhoSYzLuzdJEYoxmcRx4rUupkc19Y++o5OVDbsxo1Q=;
+ b=IdadRMZb85c6T+nXa6SVNiriV5KW90YehR2wIC5fx7ZdpsGMK7QxlH8E
+ PMxXBkGx5T9GUoiYQkb68Wjgf2OA6mp7ujP5iUCPdldEQ6afHFJcinMwM
+ n13NUc059SsC6x3y2oXeOO7tgjJ1DTShdNF4Vlx5Dib+UyAGI1mqSVOWq
+ bD61DyrEX2lsad3JQBVW7/Ov2ExzDFNeU3Pc0DNqAXwFSLHH9QpGK0pnB
+ +1jq80nQ3hCtok0MRvXYANV8pABhbMIa5eL8itNf9olVRRARmaXoOqhG5
+ GW9kqwXrIUhfFsQx2Mpzr9WUP6D2+o3cr4N51WHiSHFw5Ng5MPHEHjkwQ Q==;
+X-CSE-ConnectionGUID: HcLvt+aNQXWzWSp6mdfP9w==
+X-CSE-MsgGUID: P+rd4xaUSyaet/XULqyBMA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11663"; a="80517427"
+X-IronPort-AV: E=Sophos;i="6.21,204,1763452800"; d="scan'208,217";a="80517427"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jan 2026 04:59:02 -0800
+X-CSE-ConnectionGUID: O8tpYtSXQ/ybfOt/HXYVFQ==
+X-CSE-MsgGUID: qsY78/rvTPesXmo0myYXmg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,204,1763452800"; d="scan'208";a="233775969"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2026 03:57:13 -0800
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.21,204,1763452800"; 
+ d="scan'208,217";a="207122182"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jan 2026 04:59:01 -0800
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Tue, 6 Jan 2026 03:57:12 -0800
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.2.2562.29; Tue, 6 Jan 2026 04:59:01 -0800
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Tue, 6 Jan 2026 03:57:12 -0800
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.68) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.29 via Frontend Transport; Tue, 6 Jan 2026 04:59:01 -0800
+Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.15) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Tue, 6 Jan 2026 03:57:12 -0800
+ 15.2.2562.29; Tue, 6 Jan 2026 04:59:01 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=MJnweNAD7b8NdU3aD/MyvoYjOyWDjlN8BjNFzSNSIW3HHn3pBp5gYo2aXtcjN4iu0um1or2cy4VJNJ/oO0yinV6Bx+YjHet8zC7pA1T1i1UJd+n6SDe8j1Fo+KqUt0uMGSmlJNPhNluujdsHnMGES0zRfhh1LVacPYP1QVydZgi5MnB3SxEVypVt6Ga1HiBnui0gBgmranadHgTF+OBdUKGR6dAAJozhXyZLUeci0LTryabI/h8T3D2V0by0jjfr3EA96bRstOUfClypI21SLXJNMdFHO8BpsKHB+v0Cu5i6KoOBGi/WyJfZtVn35BNmaFkGnvgPWWO2//Ckk0w+yw==
+ b=yT8qz6g0tF/vWU+mXimYOsYgcHhQYaJsCbJ9ExFOBevdiGd9FUpvmtXZ8OTscaEIErikpegJubEthgFKihBb5VHADKqmmvDmtIAv7/R32mlXcmzzAgnqRSqze78Y4KFa18r20+Y3ueuyVq+8cy3+vtqmUBkuwdaKtEJ+IujA1zHoFyG0HQki5wu2KQv7JEOsM8jhiJOohxty+mZBSZ+TMkygDnu6LTtH7aEYBOA83hAwzJiCec10qvYPB+Br2HgBLhsVG3oDTayYp6g0RhtPyCLikh4jTyNkwaPqRyPfOh0s0ycUBbNoUDxZRtYp4Pn4gIFtlpGl3o59ml+lPWoMhw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=K4fmDedtT1OMxMNCUeyDj4dJTno2jkM+VNkgoSnPOLo=;
- b=X/scpGoEfQ2wiaOXgoOcIMEZ3saFPxHVszsKR7ffH99QXvfi8c/Fi+jFKpBPR3MT3MFiAA1hA3++eywGdIUZd2UQ0TQ9JCPQdU5mmPDu8gfmavcw/s6BdPhuNixoWGqQs+06qhLgb+7NvtU6XshH2bmmfEHlvcf2mUt6Y/ZbM8KaR859ML1ArhqbCIcsMlHYYi3KyCng7wuBSkZI5KJ9HK1By4epnU3y3/SYO6C0+SxtFtql6SEcjRjOqaiU4c77wIR4iW4BJiYSHHuV4apsr40KVrUGNoVVcToaWIIn2YEUSMMiM7fPWB627zFSZhFi+c0cj0WUxyBuVQoDGehUuw==
+ bh=nGM2bE/Z7zrQxHAZ6XPtgyOzmAHemG8SV7js6Yc0UkM=;
+ b=Zc41Y4eWxP/CxIfobp1sCqAr7KEqBQN4Ff/4FJSt0VDdcTVvEiBKuGJv0OuF/htscD8yJq7topLXfYKpcZ3poE7IC/n8dIH9tVr6bebqSAZ+sY65apa67C3cxue7N6zwOEycuI8g+l5eePIyQXvObf20oJ3aX9xUvInovQNQJQe9sNoOoYLOR83aUVunI4wRv7xWKy/4OE0k2GlCyff1bapzdaOdRvnCSiDBfgZZC96lu3sKNVBN+wVjm4aMNUp+eecFJfK3/BPD4eEmU2Qo22zAOKAT68jOfXtorCT9S9X8x7M6YsCwRP+v9syOygxfoEH2xcQaj0Vn+Qe/hMqZZg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB6360.namprd11.prod.outlook.com (2603:10b6:8:bd::12) by
- CH3PR11MB7764.namprd11.prod.outlook.com (2603:10b6:610:145::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.2; Tue, 6 Jan
- 2026 11:57:05 +0000
-Received: from DM4PR11MB6360.namprd11.prod.outlook.com
- ([fe80::8648:3a6b:af5c:b6e6]) by DM4PR11MB6360.namprd11.prod.outlook.com
- ([fe80::8648:3a6b:af5c:b6e6%4]) with mapi id 15.20.9499.002; Tue, 6 Jan 2026
- 11:57:05 +0000
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>, "Borah, Chaitanya Kumar"
- <chaitanya.kumar.borah@intel.com>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-CC: "harry.wentland@amd.com" <harry.wentland@amd.com>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
- "louis.chauvet@bootlin.com" <louis.chauvet@bootlin.com>, "mwen@igalia.com"
- <mwen@igalia.com>, "contact@emersion.fr" <contact@emersion.fr>,
- "alex.hung@amd.com" <alex.hung@amd.com>, "daniels@collabora.com"
- <daniels@collabora.com>, "nfraprado@collabora.com" <nfraprado@collabora.com>, 
- "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>, "Roper,
- Matthew D" <matthew.d.roper@intel.com>, "Nautiyal, Ankit K"
- <ankit.k.nautiyal@intel.com>
-Subject: RE: [PATCH 13/13] drm/i915/color: Add failure handling in plane color
- pipeline init
-Thread-Topic: [PATCH 13/13] drm/i915/color: Add failure handling in plane
- color pipeline init
-Thread-Index: AQHccLcObQkjEZeQnUe0uXwspci6U7VEnx6AgACDCmA=
-Date: Tue, 6 Jan 2026 11:57:05 +0000
-Message-ID: <DM4PR11MB6360A3D231FF631FB93E3AA2F487A@DM4PR11MB6360.namprd11.prod.outlook.com>
-References: <20251219065614.190834-1-chaitanya.kumar.borah@intel.com>
- <20251219065614.190834-14-chaitanya.kumar.borah@intel.com>
- <DM3PPF208195D8D8D76FABC0564F8D66DB0E387A@DM3PPF208195D8D.namprd11.prod.outlook.com>
-In-Reply-To: <DM3PPF208195D8D8D76FABC0564F8D66DB0E387A@DM3PPF208195D8D.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB6360:EE_|CH3PR11MB7764:EE_
-x-ms-office365-filtering-correlation-id: 3205729e-b1a0-464d-11f1-08de4d1ab60b
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|7416014|366016|376014|38070700021; 
-x-microsoft-antispam-message-info: =?utf-8?B?Y2MyUmp4SFRpMFJrektOZ2JqK0JjMHlRRXN1ZVJjMTJDS2cyZ1Fpa0ttR3R2?=
- =?utf-8?B?NmJVVGV0VHpwU1B3NHhNTnBpS3gwTVhNRXdVMzNqZlZsWE9CcCtuM0t1Snph?=
- =?utf-8?B?WHdmL2l4Vy9CSFIrUmpZYmdoQVdpYWQ0dlp6VXJqWi8vdXRmc2xPMmg5ZnBr?=
- =?utf-8?B?cEUrcGoyOU5tRkRFWnRIZHJ5M1Z4Y0U3Z0JRZmEyaVhOVXExVFRoMDFPcGdw?=
- =?utf-8?B?cnllT3NDWVFhQ2ZBK1RSUWdXMk9waGdzZ1JjSEVjendueWJPMEtBQUgyQ21o?=
- =?utf-8?B?azBQdHpMeGNoWjIyU01uMkpaakRGM0FUaWpFd2V3U0NCem9rZzF5YW93N3RX?=
- =?utf-8?B?bWx1d2ZlRjhXTXV4UEFiM25nMk4vZFRsZ2VHQjNTZU16OU84N3Fwd2J4QlB6?=
- =?utf-8?B?RS85Zi96ZWswQXNvV2xzOHBTdVJ2eWlyR1BGS0E0V1lHbG9kTDRSVFdXNkVO?=
- =?utf-8?B?UXA5NktxWWlJcytzL005bjhBdXdQUzhTb0ZIY3Fja2RkOFU2cDZ6T0F4SUFo?=
- =?utf-8?B?MzNwcWtvS1MyUTBKdGtvRnZUR0lJMDVsc0Z6eW90dURjY0JNZUtraFZhcUMy?=
- =?utf-8?B?Tm1nZ3FScXlsbFh6VnFhMzlUNk4zaVFtSmV3NGVwY3FDY0cyT3ZQMnd2Z2ZF?=
- =?utf-8?B?SE8zWi9STUpBRU04dFFjakdMNmxJMElvMTNsL2dqSWtrdThKUmgxWjAwOWxS?=
- =?utf-8?B?bXNidjJmZm1VTm8zRC9mek5uV08zbFVOMEwzYWlJR3drbjFad2F0UXBDZnhx?=
- =?utf-8?B?dCtyelFqeWw2WnFUSkRnd0U2dGVwTGw2WFFkTzlmcnJ5aU1pSi9OK3FMZ3I3?=
- =?utf-8?B?VzQ0WjdRUG1tb2NMQVM1RmExV2xkclVoRnVtRU8zVjJxSTRsaE5WRnM3VnpW?=
- =?utf-8?B?bWdNSis2WmhUelJEbkY2WWh2VmQxVzVzR3RnanU2aXZpR1NaK3JSWldVdDFv?=
- =?utf-8?B?UExOVGFMTHBZWW8zaU10V0JpYzljWHNBS1hpUUFRbThGZHpHbm53WUxOTEFk?=
- =?utf-8?B?cE9OUG04b0NRUkhPUk8zZzVFM1h2UWl3YUc1T01YVC9YOWwweFZ4bUVSRHNz?=
- =?utf-8?B?RjdGT2RMbXFFdEpxUVVYN282dGs4Sy9pblJzOUNjVEt0bXlpdDI5aThMZkR5?=
- =?utf-8?B?WHlNYlhvSGlKYmlwMHlZZUIycXJkYWdyNzczM051Y2VvK20rRDhmTnRIaEIw?=
- =?utf-8?B?QmFrYmVuVTc2c3Zib1NTTWN4NTJMRVJhV1hvSVFZbXZZT1c0QXBDblJVOVJi?=
- =?utf-8?B?RWt0NzFXRXVrZzRWeVZZU1piaWs0by9FODVtS1FKMXpsM2hWY1N6RGxDVlN5?=
- =?utf-8?B?R01HYzR2RndkeHA3bmhMNUM5dFBKMEVST2RRQkpWVUNENTZNZHgwdC9zMm9u?=
- =?utf-8?B?Y3JJS2VxN2NmUjNRNjNsWDREZUhqVGJMVWdQT0U1Y2tTQXh0WEZ6NHN2d3U1?=
- =?utf-8?B?MUZoekRxUUttU1dnYjdrUE1xVDIzRzRIVnA4andiWFJFelpybjlIS3E5TWZv?=
- =?utf-8?B?L3JadjJDMkZXb3F1WWxwR2dSUDlkdnZjL1FZVFZRaGJiZTJpRDRHOFJvSXdk?=
- =?utf-8?B?U2RSNWRzakRsY1ozd20rSGRYRlEwODc4alB0c3NIM1JDUlIxMnZmbnJWT1NB?=
- =?utf-8?B?UEhndWF6R29rMkdMRXo1ZXdPTDFRZjVzNVE1ZmRvWFdRNXE0MnpGQ0Z5VGJk?=
- =?utf-8?B?a0NjeE1aWUVPaW9QV1lBQ2taSzY1UzFueWFxMlVwZlBHSENCNlFJOEVEaG9j?=
- =?utf-8?B?Uk14WDJIZjYvKzIrdGJSWm1EdkRoU014WlFML1NzQjJ2SjRBdzRzdFgzUWFj?=
- =?utf-8?B?ZFVoV0VqREd1U0RsOCtMbzZYQklnQndjSUNRTHNBK0FEekY5VHVGd0ZIK1BX?=
- =?utf-8?B?aFRCYVZ5bEhaUWFhaEF2MUltSS83WHVIVzdMM0dnV1BJc1FGZ2sybjA5UWd6?=
- =?utf-8?B?Qzc0dlRMUXdYSGxSZnA1WGhXcWFZQy9Obk5TQkJQV0RZOCtwTE9kQ21saFpF?=
- =?utf-8?B?OFF1b2ZFc3BRZjBTL2k0UHF2TkdjcmpqcHVXUDRqaEgrazI4WE1vYm4xalFH?=
- =?utf-8?Q?9hqLTH?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB6360.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(7416014)(366016)(376014)(38070700021); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?UXhBTW04OS9XNFprUHhNVnpPMVFxbkN0SWlXWFRTMVBEMWhOT3B6aW5XRThk?=
- =?utf-8?B?NmhLM1hxRC9ZS3ZmdWNLdDVFN0V5Z3Vkc2lTTmpmWlNKSHRDYjVQcW11Zmd0?=
- =?utf-8?B?WFVvUzN1TmlpblZhSldyYlZyQXRjTFdNTml5bURwcnQ2dXBQVHljNmlOMlhL?=
- =?utf-8?B?YjQyUW10ZGdPaVJmaXM2NUxwSmluMUV0OFM2RHhSazd6L3lYcU1lWkp2bHFT?=
- =?utf-8?B?WFBnMHVnZlByR1VSbnBnZmg4WHBKcndKT1IxMlYzUms2bjdCekdiU0Yrc3U5?=
- =?utf-8?B?TEFPN3ErZUxTRmxLa0cyUjJ3OGVRcGpJVE84OTlBcHNZem16TTVrMVhIZFpa?=
- =?utf-8?B?eVg2RTVZUUJzaEFDYU9vdElqTm1kRGlVRVdWZGtCSjNHNGk2N1Z4UlZVdTUx?=
- =?utf-8?B?eC9DSWM4RTJzQ05HWkR0c3BUQzNwODFnalVkQ3JoUmk2Y1RVTHNrb0lIckZr?=
- =?utf-8?B?UlpGK2QvUkRONHl4L3BuTEVJQzVueXkvakZCSnJaMHd1ZVZhWXhGN3lPcStl?=
- =?utf-8?B?VHZIclphdTVNbkd6REErbCtuTEdMdkFJbDJiSUFKMU1Tb004aVR0dVJza2FP?=
- =?utf-8?B?dGxXQWlKbzhuQlJ4WWVFLytabWFNREVscVQzTGtFdVczNktzOC9VV0w1TW1H?=
- =?utf-8?B?OTZGTGFYd2JBeG0vRjdKODFncCtaazRlVGJydUZYRzZwTEhGZEdkRXRqVnJj?=
- =?utf-8?B?K2t0SVdOVkpHeEswdldYMzlEQXQwWW1HdW5wTU1mZGp1ejk0R0l1Nmxoc1Vr?=
- =?utf-8?B?aGNhM0pQS3Q5d212MDNrRUZIOXNyL3lxeC9uc0NlTGxGaVQ4c256b2xlbThX?=
- =?utf-8?B?TXRnREtpa1ZKM3hTZUtwVHNoUlJrVTBGZWU5cnl6anJ1Y09ZSUluS1RFZUN6?=
- =?utf-8?B?SlJ2VzJyNzBPNjVjUndtN1Yzd2oxZmJmeVRIZzdrVytmYXpaQVNwd3lqeUpJ?=
- =?utf-8?B?blRseFBPbkFsRkZQZDZqeit1Y3NZejR3NkZkSU9STk1BUi84cW02dmI5dGxq?=
- =?utf-8?B?eE5YcEdVV0RZY0tiQ1VpT0N4bVUyVC9RQTdkbENRYThzaWlvdUR6ZUN4UFBu?=
- =?utf-8?B?SEkrTkNQSUh3Uk9NOHJ6N1IwbDVLVGZqc1ZZUmZhRjh0TS92amRkMkZaMmpk?=
- =?utf-8?B?OXlWOUVFN3VTb3RxY0YwejNjMVZVT3N6SmFZUnZZazBWTEJkRW8vM2ZxNGhF?=
- =?utf-8?B?WkQ5cnY1bkZHWlBKNW5zUkE3cXpjNmYvWkt5RDIwWTgvUWZoSE51WWZuU29m?=
- =?utf-8?B?UXlhYmtwTHRTaG5Pb01MMnN6Um9yTHgxb0owTVFFUHFmSjAxd21aeTV4VlVx?=
- =?utf-8?B?Z2VDeEkwbHlCSHc1NndKV3FCRUJMckNmTlZyOWVBdjE4SlV6eWxNdEo0dzd2?=
- =?utf-8?B?VEhsSUJCQVBhaDh1Y1hJYUNhbHM1b2p1dG45eWkvSXFqMjhNVnNvajZYZ2ll?=
- =?utf-8?B?NnozTFBodFd0OG0xR1dkdXdhN01SenpWZ2ZLeEhkK1o3V3JXVWdyUkxEQWpT?=
- =?utf-8?B?ZFo2SGhvMVlZemRCY0FzRjkxWG1xc29NZXRyS1JQbkpzMVhOZkV0NjNZdXdl?=
- =?utf-8?B?VHdRWmt1NmtXT0JNcjFRRDFjdis3cFNmOU1mWkxYWkVlYXJ6QzdoRmorcnE3?=
- =?utf-8?B?YmNMNTZjUnAyME5iY2hlWHp1V1lJRGZUOEUwQktuRGxKUXpTNG5Cei9tZG5I?=
- =?utf-8?B?a3VSYVNHUXlXUzFmWDdGNE1GS1YyY1B2L2ZSWlpVd1ZwaGtaNUtQcGx5VHU4?=
- =?utf-8?B?U2p6Uk5sVUdLZ2drWWRPTlVFeUVla0NXYXdocHVlTjM4L2Z5SVFDNGpncVhp?=
- =?utf-8?B?OUtPTE9QZklXUkRuRFl2UGRlaFZTaGxGUkxFMVV5WXczeHkydHB5dEVWWms2?=
- =?utf-8?B?ZUkrUnpaY0MrNzFmY0dwZjVGbjQ5ZXBTdVB3bm80WFhabThEMzQvOW5tOVAy?=
- =?utf-8?B?Q1pCV0NKZmp1QlkwdmVrTnVTUG9xTjdpUjBoQVhjczJGZUoyVTBybXdqcXFs?=
- =?utf-8?B?Y0lOWjJzcllNN3UxV2V0clcxZTVoS3BQbzl6N3ZGamJsbzVHL3hvVENpRjY1?=
- =?utf-8?B?MWFYZEhtNkZHZGZUZkpYRWx0a0U4ZVhVdUM5c0c1Z0c3UDY5NWtGRjVWazAz?=
- =?utf-8?B?UDZxVjUyS1NzQ1lPTzNtRzVaSUJwSWNpeTJseXA2V0pQWTBZUnVTT1Zoa0xp?=
- =?utf-8?B?RVlTMTJyd2RFZDhZQmVPb0o4a0JHWnI2UUQ0RGlBRFQ5SVBIdVZQZjByOUgz?=
- =?utf-8?B?a0tGUXVwaE9CZy94RXZFRG0wVnBua2MzU1BUdVUzcHhyQmRaK1NaOE5uVjNq?=
- =?utf-8?B?UG8yM1lEbEM2Tm9kRXh4bHFXYnlzbERnaEp1ckM3RnZQUjVhUUJzZz09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from IA1PR11MB7175.namprd11.prod.outlook.com (2603:10b6:208:419::5)
+ by PH0PR11MB7168.namprd11.prod.outlook.com (2603:10b6:510:1e9::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9478.4; Tue, 6 Jan
+ 2026 12:58:56 +0000
+Received: from IA1PR11MB7175.namprd11.prod.outlook.com
+ ([fe80::cc3a:1f73:430f:472]) by IA1PR11MB7175.namprd11.prod.outlook.com
+ ([fe80::cc3a:1f73:430f:472%5]) with mapi id 15.20.9478.004; Tue, 6 Jan 2026
+ 12:58:56 +0000
+Content-Type: multipart/alternative;
+ boundary="------------Wj000MUebBoz1sIYV2D73iYE"
+Message-ID: <8e41d261-4edb-45c2-b89e-749ac49457ef@intel.com>
+Date: Tue, 6 Jan 2026 18:28:49 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/9] drm/i915/display: Add DC3CO eligibility logic
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+CC: <animesh.manna@intel.com>, <uma.shankar@intel.com>, <imre.deak@intel.com>, 
+ <jouni.hogander@intel.com>
+References: <20251209113332.2770263-1-dibin.moolakadan.subrahmanian@intel.com>
+ <20251209113332.2770263-5-dibin.moolakadan.subrahmanian@intel.com>
+ <e6ee14b445df7979d8bd90ee0f45ab7505d1e92e@intel.com>
+Content-Language: en-US
+From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+In-Reply-To: <e6ee14b445df7979d8bd90ee0f45ab7505d1e92e@intel.com>
+X-ClientProxiedBy: MA5PR01CA0191.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b2::14) To IA1PR11MB7175.namprd11.prod.outlook.com
+ (2603:10b6:208:419::5)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR11MB7175:EE_|PH0PR11MB7168:EE_
+X-MS-Office365-Filtering-Correlation-Id: f2046c66-dcb1-4a04-e5da-08de4d235a2b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|8096899003;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?ZGR3YkJVVGZTOXRmeE5RR3ViQ3ZWeVpYekRNb0tzcmw3MFhYQkJUeS9hNi9K?=
+ =?utf-8?B?Z0VXVkFGWHZuMTFaQVUzbEtVcHkxWUtKYjh0Ujd5OElRSWx4S0VMOSs4NWE4?=
+ =?utf-8?B?S0FRN0ZycmFMcFJhbEpJWjFJY1BYV3l1MTlhVXpFQlpzWVZLTXZTRk5hUkls?=
+ =?utf-8?B?cVJzL1BLTHhPdWVySXYvSmxhWnBGQU9TZnlnaVFIZkJmZlRtY0E4SWl1Q1M5?=
+ =?utf-8?B?VnhsTWVTd05BVmlST2l0U0JIeGJ4T3hSMW5uRGFlNXY5RGdZRGN3dVlDMFl6?=
+ =?utf-8?B?SFNvZGxKNEt1L2E2K2d2aXdZOHJodUp1aFpwQXkrbndzMy9maGpBTjhhU1pX?=
+ =?utf-8?B?OEFRK2JEaUdKdVNtd0JUaEU5bE5RVXFBYStyRUZqVjdnTC9UbmdGbWVCdk1H?=
+ =?utf-8?B?cGl5UmZKT0ZPZnRnV1E4bzB2UlVpNUJnREdOSFd2NFJybXpjZ3JSaVFRUDFS?=
+ =?utf-8?B?QW41WUhXL1ZRdWx6eTZwS3JCb1JxckU2cndqdUVMOTZaWWk0MXBNZUl4VmMx?=
+ =?utf-8?B?UDgydHNWOVByVlFCOCt5TTNndnMwMk1vV3FhSllXNmFWMndUd1o4ZVl1dVpF?=
+ =?utf-8?B?Yzh3SHZkUm5LVURuUzM5RkRLYVVWV0wwNzZVL0dPVzlaQmhGMWFER0FmOUlL?=
+ =?utf-8?B?blhwR3RiL3VtZ1dFR0hja2xWSDB0VnMyQ2R4bjRYcG5qSHlvMkgzUkpFTWxi?=
+ =?utf-8?B?dVREcEI3c0d6WjVWa09WY24rR3VLc0x2RGxWOW5jYjZLT0Z6NmltclhFZ3Nt?=
+ =?utf-8?B?N1BsSTh6bjUzMlZRY2xxU0hoeDZrbGs1cnl4THV3T0RrZmtXaExKMDh4dUVh?=
+ =?utf-8?B?N1poYVFxNzZ2VmJBamFGaC9NdWNEcEFHNHBsMzl6Q0gyT2gvSU9xb2w5SHRD?=
+ =?utf-8?B?R01HVll6eFJzMHkxZSsrRE1MYjFZU2ZqV0RLbnkwNFM5Z1FiallzOXdJQ1ZD?=
+ =?utf-8?B?OFVJR3N1elVkejBaaTlVckc3am9waHhjenhQaWJtZHJvaFdvRjFTcmNLZzNn?=
+ =?utf-8?B?TGJ1SXNNWVAwSmNabkRyN2E3SmFGUVVhcTY5MVJqdzFkbFkzQ0lPa2VpaUlI?=
+ =?utf-8?B?VjAwL1V3V0J1bDBJcmpDU01qZCt1VHgvbG5oQjVGUHM0eTY1c2ExVWs1Rmp4?=
+ =?utf-8?B?UjVhNnB3TEFrYzlGbUpEL2dtSEQ0ZmsxYy9DeXJ1VDFOTVB0angzdDJPZTVH?=
+ =?utf-8?B?eS9uVWNuQnE0UnhiT21ib2RjYTRGdXJRdllQWHBUdTFlcm1vNThBdWgyMUNE?=
+ =?utf-8?B?L3V4bEF6YXQ3ajFqNmFGSFdNY1J2NS9wR0o5aXZ6L1B2MnQrbUQ5aEN3SkZm?=
+ =?utf-8?B?Mld5bFBWdHVMMnl5empUaG1IODRhL256eTJGSldyTm9TeEUrRGFQQW9jaCtZ?=
+ =?utf-8?B?WUxRSjBpdU5BVXhyS3ZYWXdQSklWcERXZU8zWHBqbUpyVFpkM3NreHRzNCtS?=
+ =?utf-8?B?K3VaTnJ0OWR4UEw2S1NWcnJIQlZBTjdBT0piVUlFb3BtQkZrcFZ5dDFiOURk?=
+ =?utf-8?B?b2ZFNFd4V0NZM2dpYTc5Z29PR3dkZ3g4eXI1YXVmdnpPT0xONlpjZXg3emR5?=
+ =?utf-8?B?L2doem44YThZWERHWWR5RldTbXBkQ3cxckNzY3N4ZHVLNTVXU3pwL3Q0eGpw?=
+ =?utf-8?B?UGh3SnJsWTBvVFkraVZ0NHZTcUlpQTZLTEFPdE8rOElVeVBPcnZseFRtcWFk?=
+ =?utf-8?B?dmZzT3JjanVlUXBBeFZNcTA5SnZsQXpGRGM1SXhxZWJmcG1pMURrVGtUeW1K?=
+ =?utf-8?B?ZVF0dkJVL3pTSThBeXZFTERoUm5QUEhSRjNXRnhMeXpKcmVzTVBDZ3VjL1Z6?=
+ =?utf-8?B?RWZORHR0bStFZFhSTGtQWmQ1a0QvUExPUDhidTQzVWVJd3NWMTNCZzhmcDh4?=
+ =?utf-8?B?ZkdvQVNiZWJ4c29peHFkbEhQb2o5Y3ArbjVyWG5PYlZIOEE2T2Z6Y3d0UEFI?=
+ =?utf-8?Q?NUUwRFIgqPPcOoDa47TRTVE7rcF7ZmRa?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA1PR11MB7175.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(8096899003); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bWtkeUF1ZkN2VjdyOHJtaFREeHNXdFNNUms1Uy8xTjdxc1lQS1VTNlhzWTMx?=
+ =?utf-8?B?eE1MMmRHdXdrQlBJZnVRdjBETjZEYzV3WUt4VWZ5d09ITlN6Z05IY2prQnVa?=
+ =?utf-8?B?RUpjRHlCNTJjYlRsUXFKRTMyS2hkemZUWlV1STNTMVpZbVNDVktpRm1rWUdQ?=
+ =?utf-8?B?NkFYakZmTFBnNGc4czh6Sy9RWGR4cHNNK0UyUXBSa3ovRXIvUnZobWFnMDdX?=
+ =?utf-8?B?UjhqSzl4ZEVBS01NcUJ5TmZXYlI2QWx5Q3IwYWhnbzA5bTVLemlySXFTZFNY?=
+ =?utf-8?B?alIrZjd6SHZoSFhvaTQvVXMxVWtId2JtaG5Lb0pRM3I4dzVVMlBaV0xweTFm?=
+ =?utf-8?B?SnZTcGN2OFpqUFdvdDNLMVZLQ2t4VkE5cUhMY0JDTEhrVjBvdmtkV2xISlhm?=
+ =?utf-8?B?SGw2b2RWa2x2S2NkbVhsdG5wZnFpL2dlTlBacm9UbnpyNjBZd0tFRnNqTi92?=
+ =?utf-8?B?T1VYYzlrS0g0K0tlbkJUNXBxWExlcS9vNE5FU3VaK0Q0RG8yRFFPVFBzUGo3?=
+ =?utf-8?B?NGJBcGdrbi9jNGlyQVNRRmp0V3hISEhXTmZUNmlYV3hnVzZUMWhQekpuWkJH?=
+ =?utf-8?B?YldjYU5JV1VwMFpmT3pCNDA0NjRoUGhYeXFsc3UrU1JGbGg5Q1RPSVo4cVV6?=
+ =?utf-8?B?TnNxeElaZ05Rc2Z0em96UEJycE80eXJiMENzSVpWWlFKeGpGVGlEZXlUS3Bs?=
+ =?utf-8?B?VUpjODZVeWhMNEsrc0hNaE9oYjl4bkxtZzBjNC9Sc2tjZnBVVnI3a0lXQTJW?=
+ =?utf-8?B?blJ3UE4rYVNVQ2VWN2VubXZ4dnZzdXoxQi9ocURRbHBkSy9UaUNkb1plVmsx?=
+ =?utf-8?B?b3RWK05hRnlCeFA3ZTd4dytxUWptRytmN2lJaDc5dWV4b3hiVTNsTkdHdnQv?=
+ =?utf-8?B?YUdtNjlEM1p1TDQ1S2k5RVlYcTd3NUVMYVQ0dHNlSFF0U0FPU24wSDhvY1VH?=
+ =?utf-8?B?KzVJMjgxZUQwWmRQZ3lFd0ZDRnNMb3VYL08xcW0vRkw2aUU1RU5xa1plbW83?=
+ =?utf-8?B?em5QSVh6dk0zWHJKcjJFVjc4NExiMUVnemp1SS8wOFYrcVlaenNIRjhHWmRZ?=
+ =?utf-8?B?MXBYQUoxVW1EZGlZZnRBMTE1L1lnQWJUYzgzSFhadzVkK3B2NUpKcW9hMThp?=
+ =?utf-8?B?Y3RSRVZXK0NyZEJGL1o4NU1iblBQVFFUVWwxYTZvS2NFUTdQTmhabEx6dWZB?=
+ =?utf-8?B?UkJ5L0RmVk9zRFVzUFVCc1VkTkFuaTd2MHZ3OFpuY3FnL1cyYVIzcUcwNy9h?=
+ =?utf-8?B?QUdqdGlGcHJTYldtTWptQU9vY2FRYzBjWjQxUlpuMmZIRlczQ3Y3cTRWRDhQ?=
+ =?utf-8?B?K2tyNmxzYnhQNnZuTmRzOEhnSXhkYmxzVzFoalF6S1NsZ2R0ZDUvckFXZE1Q?=
+ =?utf-8?B?alhmWG1SU3J0NWh1by9hRzNRMjhZNlVwTUdBRE04Wk0wWXlJMnQvcUxkR3B1?=
+ =?utf-8?B?L0RRSHc4OW5RdndTRVpZT2Z3MGlYR2pDVHVpOHRkMzF0MUd1anQvb1ZRNTFD?=
+ =?utf-8?B?MHhWWllrOUZ2WFRkdy94djRJU2YvcW5abW5uQVZZbEdwbXNyZkVkbW5TRlp1?=
+ =?utf-8?B?NU5RYm4zWnRjdlpleGtmeWhFS3VyRGtOaWtZcnJxUVE3Y1RxckxQV1VXMmR0?=
+ =?utf-8?B?KzRZQW84TWgzbFpLbGhJeWpFcE0yYSs1cEhzbVJUNWRGbGEzZGc0cS9ydjll?=
+ =?utf-8?B?b1BDMzRqanhpT0hQVVUrYjFEYVhLdDJBQXJwTHl4MEJJWnBEamZQbFpmZVBG?=
+ =?utf-8?B?aHRWaHpHZ01BTVBBdFdNd2RWZmpudERZTnZBUG1MN2Fmam1wZjFlQ1BtYzha?=
+ =?utf-8?B?b0k3cWV4Vjh2UUhKbll2SnllNVFjSGtJZTNrRGJLdzhBdjhubDl6Um5ZWThP?=
+ =?utf-8?B?YmhrRmU3RVI3WVdvcDJ2ZGFaSjlWVHEyYVhrcnVlYzdySzdRUE1lRW1SNWc3?=
+ =?utf-8?B?U1lpNFpBaWp6cUhXUUpiOXIrZ05MeHF2K3diS0N0aUtkY3JITUVGL0RvSGhv?=
+ =?utf-8?B?OFlEemd1ekMvWEpQWFJiSWg2Tys4MTMwVG9BTlJycmZmUitQUkZYR3FsTDla?=
+ =?utf-8?B?Q0VMMzVvL2dwREZucVhYNEhMUWdhWFIxaVJxRThBSTVCVTA5WUQ2TWVCZUow?=
+ =?utf-8?B?NHZxL3pXSHp1QmltNzJ0dVl6VHB3RWdkQmxxUlpuWWxTTHd0RVY1d0hsOW42?=
+ =?utf-8?B?KzRObXlOR0JpRUU0SnhhUTd1ZHNXMGs2MDU1VVFhUkpjS3RzR0VaWnp2bi9H?=
+ =?utf-8?B?a3djSGNKa1A5RjJ4Z1puUkNVcDd1WnU3aTYrYkxkME9LNXFkbmpoSTlFWXFv?=
+ =?utf-8?B?TVVnVUJ6aFUrNDZRdEpET3NJS0t0cFU1UzVtdEp1UDNmVDA1R1M4QTdydzVr?=
+ =?utf-8?Q?VeBoutzpFr2hIKk/XBH1w4reBekh1BqF3Wohw8/WhvWfA?=
+X-MS-Exchange-AntiSpam-MessageData-1: zmLFufHIrjslrg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: f2046c66-dcb1-4a04-e5da-08de4d235a2b
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB7175.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6360.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3205729e-b1a0-464d-11f1-08de4d1ab60b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jan 2026 11:57:05.1781 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 2zvfTQsWYFS7SWLwE+fl9icLybWdbBvbppB7h5KHO75VwU9wkewofWlztF09Z5EK1WcOK7o/QkgbZsRfvOD4rQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7764
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2026 12:58:56.7044 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: U6in/z8lthD0XFj9r2gvgOv0Pi91kqoN/wdHw5bd3LFyjJ9FjeKuYrQvptR//zfspndynfN/56yCepp5gGl0M8FVFdnZ4F7Eii0fM3Rb/R/XN231MA8vBc+oTwxBioA5
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7168
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -219,185 +204,568 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS2FuZHBhbCwgU3VyYWog
-PHN1cmFqLmthbmRwYWxAaW50ZWwuY29tPg0KPiBTZW50OiBUdWVzZGF5LCBKYW51YXJ5IDYsIDIw
-MjYgOToyNSBBTQ0KPiBUbzogQm9yYWgsIENoYWl0YW55YSBLdW1hciA8Y2hhaXRhbnlhLmt1bWFy
-LmJvcmFoQGludGVsLmNvbT47IGRyaS0NCj4gZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOyBp
-bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOyBpbnRlbC0NCj4geGVAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnOyBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBDYzogaGFycnkud2Vu
-dGxhbmRAYW1kLmNvbTsgamFuaS5uaWt1bGFAbGludXguaW50ZWwuY29tOw0KPiBsb3Vpcy5jaGF1
-dmV0QGJvb3RsaW4uY29tOyBtd2VuQGlnYWxpYS5jb207IGNvbnRhY3RAZW1lcnNpb24uZnI7DQo+
-IGFsZXguaHVuZ0BhbWQuY29tOyBkYW5pZWxzQGNvbGxhYm9yYS5jb207IFNoYW5rYXIsIFVtYQ0K
-PiA8dW1hLnNoYW5rYXJAaW50ZWwuY29tPjsgbmZyYXByYWRvQGNvbGxhYm9yYS5jb207DQo+IHZp
-bGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tOyBSb3BlciwgTWF0dGhldyBEIDxtYXR0aGV3LmQu
-cm9wZXJAaW50ZWwuY29tPjsNCj4gTmF1dGl5YWwsIEFua2l0IEsgPGFua2l0LmsubmF1dGl5YWxA
-aW50ZWwuY29tPg0KPiBTdWJqZWN0OiBSRTogW1BBVENIIDEzLzEzXSBkcm0vaTkxNS9jb2xvcjog
-QWRkIGZhaWx1cmUgaGFuZGxpbmcgaW4gcGxhbmUgY29sb3INCj4gcGlwZWxpbmUgaW5pdA0KPiAN
-Cj4gPiBTdWJqZWN0OiBbUEFUQ0ggMTMvMTNdIGRybS9pOTE1L2NvbG9yOiBBZGQgZmFpbHVyZSBo
-YW5kbGluZyBpbiBwbGFuZQ0KPiA+IGNvbG9yIHBpcGVsaW5lIGluaXQNCj4gPg0KPiA+IFRoZSBw
-bGFuZSBjb2xvciBwaXBlbGluZSBpbml0aWFsaXphdGlvbiBidWlsdCB1cCBtdWx0aXBsZSBjb2xv
-cm9wDQo+ID4gYmxvY2tzIGlubGluZSwgYnV0IGRpZCBub3QgcmVsaWFibHkgY2xlYW4gdXAgcGFy
-dGlhbGx5IGNvbnN0cnVjdGVkDQo+ID4gcGlwZWxpbmVzIHdoZW4gYW4gaW50ZXJtZWRpYXRlIHN0
-ZXAgZmFpbGVkLiBUaGlzIGNvdWxkIGxlYWQgdG8gbGVha2VkDQo+ID4gY29sb3JvcCBvYmplY3Rz
-IGFuZCBmcmFnaWxlIGVycm9yIGhhbmRsaW5nIGFzIHRoZSBwaXBlbGluZSBncm93cy4NCj4gPg0K
-PiA+IFJlZmFjdG9yIHRoZSBwaXBlbGluZSBjb25zdHJ1Y3Rpb24gdG8gdXNlIGEgY29tbW9uIGhl
-bHBlciBmb3IgYWRkaW5nDQo+ID4gY29sb3JvcCBibG9ja3MuIFRoaXMgY2VudHJhbGl6ZXMgYWxs
-b2NhdGlvbiwgaW5pdGlhbGl6YXRpb24sIGFuZA0KPiA+IHRlYXJkb3duIGxvZ2ljLCBhbGxvd2lu
-ZyB0aGUgY2FsbGVyIHRvIHJlbGlhYmx5IHVud2luZCBhbGwgcHJldmlvdXNseSBjcmVhdGVkDQo+
-IGNvbG9yb3BzIG9uIGZhaWx1cmUuDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBDaGFpdGFueWEg
-S3VtYXIgQm9yYWggPGNoYWl0YW55YS5rdW1hci5ib3JhaEBpbnRlbC5jb20+DQo+ID4gLS0tDQo+
-ID4gIC4uLi9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NvbG9yX3BpcGVsaW5lLmMgICB8IDE0MiAr
-KysrKysrKysrKystLS0tLS0NCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDEwMCBpbnNlcnRpb25zKCsp
-LCA0MiBkZWxldGlvbnMoLSkNCj4gPg0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2NvbG9yX3BpcGVsaW5lLmMNCj4gPiBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfY29sb3JfcGlwZWxpbmUuYw0KPiA+IGluZGV4IDhmZWNjNTM1
-NDBiYS4uMDM1ZWMzZjAyMmNkIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfY29sb3JfcGlwZWxpbmUuYw0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfY29sb3JfcGlwZWxpbmUuYw0KPiA+IEBAIC0yLDYgKzIsOCBA
-QA0KPiA+ICAvKg0KPiA+ICAgKiBDb3B5cmlnaHQgwqkgMjAyNSBJbnRlbCBDb3Jwb3JhdGlvbg0K
-PiA+ICAgKi8NCj4gPiArI2luY2x1ZGUgPGRybS9kcm1fcHJpbnQuaD4NCj4gPiArDQo+ID4gICNp
-bmNsdWRlICJpbnRlbF9jb2xvci5oIg0KPiA+ICAjaW5jbHVkZSAiaW50ZWxfY29sb3JvcC5oIg0K
-PiA+ICAjaW5jbHVkZSAiaW50ZWxfY29sb3JfcGlwZWxpbmUuaCINCj4gPiBAQCAtMTAsNiArMTIs
-NyBAQA0KPiA+ICAjaW5jbHVkZSAic2tsX3VuaXZlcnNhbF9wbGFuZS5oIg0KPiA+DQo+ID4gICNk
-ZWZpbmUgTUFYX0NPTE9SX1BJUEVMSU5FUyAxDQo+ID4gKyNkZWZpbmUgTUFYX0NPTE9ST1AgNA0K
-PiA+ICAjZGVmaW5lIFBMQU5FX0RFR0FNTUFfU0laRSAxMjgNCj4gPiAgI2RlZmluZSBQTEFORV9H
-QU1NQV9TSVpFIDMyDQo+ID4NCj4gPiBAQCAtMTgsNjkgKzIxLDEyNCBAQCBzdGF0aWMgY29uc3Qg
-c3RydWN0IGRybV9jb2xvcm9wX2Z1bmNzDQo+ID4gaW50ZWxfY29sb3JvcF9mdW5jcyA9IHsgIH07
-DQo+ID4NCj4gPiAgc3RhdGljDQo+ID4gLWludCBfaW50ZWxfY29sb3JfcGlwZWxpbmVfcGxhbmVf
-aW5pdChzdHJ1Y3QgZHJtX3BsYW5lICpwbGFuZSwgc3RydWN0DQo+ID4gZHJtX3Byb3BfZW51bV9s
-aXN0ICpsaXN0LA0KPiA+IC0JCQkJICAgICBlbnVtIHBpcGUgcGlwZSkNCj4gPiArc3RydWN0IGlu
-dGVsX2NvbG9yb3AgKmludGVsX2NvbG9yX3BpcGVsaW5lX3BsYW5lX2FkZF9jb2xvcm9wKHN0cnVj
-dA0KPiA+IGRybV9wbGFuZSAqcGxhbmUsDQo+ID4gKwkJCQkJCQkgICAgIHN0cnVjdA0KPiA+IGlu
-dGVsX2NvbG9yb3AgKnByZXYsDQo+ID4gKwkJCQkJCQkgICAgIGVudW0NCj4gPiBpbnRlbF9jb2xv
-cl9ibG9jayBpZCkNCj4gPiAgew0KPiANCj4gU2VlbXMgbGlrZSB5b3UganVzdCBhZGRlZCBhIG5l
-dyBmdW5jdGlvbiBhbmQgdGhlbiBjaGFuZ2VkIHRoZSBmdW5jdGlvbg0KPiBfaW50ZWxfY29sb3Jf
-cGlwZWxpbmVfcGxhbmVfaW5pdCBidXQgZ2l0IGZvcm1hdC1wYXRjaCBtZXNzZWQgdGhpcyBwYXRj
-aCB1cCBiaXQNCj4gTWF5YmUgdHJ5IHVzZSAtLXBhdGllbmNlIG9wdGlvbiB0byBtYWtlIHRoaXMg
-cGF0Y2ggbW9yZSByZWFkYWJsZS4NCg0KWWVhaCB0aGUgcmVmYWN0b3IgY3JlYXRlZCBzb21lIHdl
-aXJkbmVzcyBidXQgbG9naWNhbGx5IGxvb2tzIG9rLg0KQ2hlY2sgaWYgaXQgY2FuIGJlIG1hZGUg
-bW9yZSByZWFkYWJsZS4gTWF5YmUgYnJlYWsgaXQgaW4gMiBwYXRjaGVzIGlmIHJlcXVpcmVkLA0K
-b25lIHRvIGludHJvZHVjZSB0aGUgaGVscGVyIGFuZCBuZXh0IHVzaW5nIHRoZSBuZXcgaGVscGVy
-Lg0KDQo+ID4gIAlzdHJ1Y3QgZHJtX2RldmljZSAqZGV2ID0gcGxhbmUtPmRldjsNCj4gPiAtCXN0
-cnVjdCBpbnRlbF9kaXNwbGF5ICpkaXNwbGF5ID0gdG9faW50ZWxfZGlzcGxheShkZXYpOw0KPiA+
-IC0Jc3RydWN0IGRybV9jb2xvcm9wICpwcmV2X29wOw0KPiA+ICAJc3RydWN0IGludGVsX2NvbG9y
-b3AgKmNvbG9yb3A7DQo+ID4gIAlpbnQgcmV0Ow0KPiA+DQo+ID4gLQljb2xvcm9wID0gaW50ZWxf
-Y29sb3JvcF9jcmVhdGUoSU5URUxfUExBTkVfQ0JfUFJFX0NTQ19MVVQpOw0KPiA+IC0NCj4gPiAt
-CXJldCA9IGRybV9wbGFuZV9jb2xvcm9wX2N1cnZlXzFkX2x1dF9pbml0KGRldiwgJmNvbG9yb3At
-PmJhc2UsDQo+ID4gcGxhbmUsICZpbnRlbF9jb2xvcm9wX2Z1bmNzLA0KPiA+IC0JCQkJCQkgIFBM
-QU5FX0RFR0FNTUFfU0laRSwNCj4gPiAtDQo+ID4gRFJNX0NPTE9ST1BfTFVUMURfSU5URVJQT0xB
-VElPTl9MSU5FQVIsDQo+ID4gLQ0KPiA+IERSTV9DT0xPUk9QX0ZMQUdfQUxMT1dfQllQQVNTKTsN
-Cj4gPiArCWNvbG9yb3AgPSBpbnRlbF9jb2xvcm9wX2NyZWF0ZShpZCk7DQo+ID4gKw0KPiA+ICsJ
-aWYgKElTX0VSUihjb2xvcm9wKSkNCj4gPiArCQlyZXR1cm4gY29sb3JvcDsNCj4gPiArDQo+ID4g
-Kwlzd2l0Y2ggKGlkKSB7DQo+ID4gKwljYXNlIElOVEVMX1BMQU5FX0NCX1BSRV9DU0NfTFVUOg0K
-PiA+ICsJCXJldCA9IGRybV9wbGFuZV9jb2xvcm9wX2N1cnZlXzFkX2x1dF9pbml0KGRldiwNCj4g
-PiArCQkJCQkJCSAgJmNvbG9yb3AtPmJhc2UsDQo+ID4gcGxhbmUsDQo+ID4gKw0KPiA+ICZpbnRl
-bF9jb2xvcm9wX2Z1bmNzLA0KPiA+ICsNCj4gPiBQTEFORV9ERUdBTU1BX1NJWkUsDQo+ID4gKw0K
-PiA+IERSTV9DT0xPUk9QX0xVVDFEX0lOVEVSUE9MQVRJT05fTElORUFSLA0KPiA+ICsNCj4gPiBE
-Uk1fQ09MT1JPUF9GTEFHX0FMTE9XX0JZUEFTUyk7DQo+ID4gKwkJYnJlYWs7DQo+ID4gKwljYXNl
-IElOVEVMX1BMQU5FX0NCX0NTQzoNCj4gPiArCQlyZXQgPSBkcm1fcGxhbmVfY29sb3JvcF9jdG1f
-M3g0X2luaXQoZGV2LCAmY29sb3JvcC0+YmFzZSwNCj4gPiBwbGFuZSwNCj4gPiArCQkJCQkJICAg
-ICAmaW50ZWxfY29sb3JvcF9mdW5jcywNCj4gPiArDQo+ID4gRFJNX0NPTE9ST1BfRkxBR19BTExP
-V19CWVBBU1MpOw0KPiA+ICsJCWJyZWFrOw0KPiA+ICsJY2FzZSBJTlRFTF9QTEFORV9DQl8zRExV
-VDoNCj4gPiArCQlyZXQgPSBkcm1fcGxhbmVfY29sb3JvcF8zZGx1dF9pbml0KGRldiwgJmNvbG9y
-b3AtPmJhc2UsDQo+ID4gcGxhbmUsDQo+ID4gKwkJCQkJCSAgICZpbnRlbF9jb2xvcm9wX2Z1bmNz
-LCAxNywNCj4gPiArDQo+ID4gRFJNX0NPTE9ST1BfTFVUM0RfSU5URVJQT0xBVElPTl9URVRSQUhF
-RFJBTCwNCj4gPiArCQkJCQkJICAgdHJ1ZSk7DQo+ID4gKwkJYnJlYWs7DQo+ID4gKwljYXNlIElO
-VEVMX1BMQU5FX0NCX1BPU1RfQ1NDX0xVVDoNCj4gPiArCQlyZXQgPSBkcm1fcGxhbmVfY29sb3Jv
-cF9jdXJ2ZV8xZF9sdXRfaW5pdChkZXYsICZjb2xvcm9wLQ0KPiA+ID5iYXNlLCBwbGFuZSwNCj4g
-PiArDQo+ID4gJmludGVsX2NvbG9yb3BfZnVuY3MsDQo+ID4gKw0KPiA+IFBMQU5FX0dBTU1BX1NJ
-WkUsDQo+ID4gKw0KPiA+IERSTV9DT0xPUk9QX0xVVDFEX0lOVEVSUE9MQVRJT05fTElORUFSLA0K
-PiA+ICsNCj4gPiBEUk1fQ09MT1JPUF9GTEFHX0FMTE9XX0JZUEFTUyk7DQo+ID4gKwkJYnJlYWs7
-DQo+ID4gKwlkZWZhdWx0Og0KPiA+ICsJCWRybV9lcnIocGxhbmUtPmRldiwgIkludmFsaWQgY29s
-b3JvcCBpZCBbJWRdIiwgaWQpOw0KPiA+ICsJCXJldCA9IC1FSU5WQUw7DQo+ID4gKwl9DQo+ID4N
-Cj4gPiAgCWlmIChyZXQpDQo+ID4gLQkJcmV0dXJuIHJldDsNCj4gPiArCQlnb3RvIGNsZWFudXA7
-DQo+ID4NCj4gPiAtCWxpc3QtPnR5cGUgPSBjb2xvcm9wLT5iYXNlLmJhc2UuaWQ7DQo+ID4gKwlp
-ZiAocHJldikNCj4gPiArCQlkcm1fY29sb3JvcF9zZXRfbmV4dF9wcm9wZXJ0eSgmcHJldi0+YmFz
-ZSwgJmNvbG9yb3AtDQo+ID4gPmJhc2UpOw0KPiA+DQo+ID4gLQkvKiBUT0RPOiBoYW5kbGUgZmFp
-bHVyZXMgYW5kIGNsZWFuIHVwICovDQo+ID4gLQlwcmV2X29wID0gJmNvbG9yb3AtPmJhc2U7DQo+
-ID4gKwlyZXR1cm4gY29sb3JvcDsNCj4gPg0KPiA+IC0JY29sb3JvcCA9IGludGVsX2NvbG9yb3Bf
-Y3JlYXRlKElOVEVMX1BMQU5FX0NCX0NTQyk7DQo+ID4gLQlyZXQgPSBkcm1fcGxhbmVfY29sb3Jv
-cF9jdG1fM3g0X2luaXQoZGV2LCAmY29sb3JvcC0+YmFzZSwgcGxhbmUsDQo+ID4gJmludGVsX2Nv
-bG9yb3BfZnVuY3MsDQo+ID4gLQ0KPiA+IERSTV9DT0xPUk9QX0ZMQUdfQUxMT1dfQllQQVNTKTsN
-Cj4gPiAtCWlmIChyZXQpDQo+ID4gLQkJcmV0dXJuIHJldDsNCj4gPiArY2xlYW51cDoNCj4gPiAr
-CWludGVsX2NvbG9yb3BfZGVzdHJveSgmY29sb3JvcC0+YmFzZSk7DQo+ID4gKwlyZXR1cm4gRVJS
-X1BUUihyZXQpOw0KPiA+ICt9DQo+ID4NCj4gPiAtCWRybV9jb2xvcm9wX3NldF9uZXh0X3Byb3Bl
-cnR5KHByZXZfb3AsICZjb2xvcm9wLT5iYXNlKTsNCj4gPiAtCXByZXZfb3AgPSAmY29sb3JvcC0+
-YmFzZTsNCj4gPiArc3RhdGljDQo+ID4gK2ludCBfaW50ZWxfY29sb3JfcGlwZWxpbmVfcGxhbmVf
-aW5pdChzdHJ1Y3QgZHJtX3BsYW5lICpwbGFuZSwgc3RydWN0DQo+ID4gZHJtX3Byb3BfZW51bV9s
-aXN0ICpsaXN0LA0KPiA+ICsJCQkJICAgICBlbnVtIHBpcGUgcGlwZSkNCj4gPiArew0KPiA+ICsJ
-c3RydWN0IGRybV9kZXZpY2UgKmRldiA9IHBsYW5lLT5kZXY7DQo+ID4gKwlzdHJ1Y3QgaW50ZWxf
-ZGlzcGxheSAqZGlzcGxheSA9IHRvX2ludGVsX2Rpc3BsYXkoZGV2KTsNCj4gPiArCXN0cnVjdCBp
-bnRlbF9jb2xvcm9wICpjb2xvcm9wW01BWF9DT0xPUk9QXTsNCj4gPiArCWludCByZXQgPSAwOw0K
-PiA+ICsJaW50IGkgPSAwOw0KPiA+DQo+ID4gLQlpZiAoRElTUExBWV9WRVIoZGlzcGxheSkgPj0g
-MzUgJiYNCj4gPiAtCSAgICBpbnRlbF9jb2xvcl9jcnRjX2hhc18zZGx1dChkaXNwbGF5LCBwaXBl
-KSAmJg0KPiA+IC0JICAgIHBsYW5lLT50eXBlID09IERSTV9QTEFORV9UWVBFX1BSSU1BUlkpIHsN
-Cj4gPiAtCQljb2xvcm9wID0gaW50ZWxfY29sb3JvcF9jcmVhdGUoSU5URUxfUExBTkVfQ0JfM0RM
-VVQpOw0KPiA+ICsJY29sb3JvcFtpXSA9IGludGVsX2NvbG9yX3BpcGVsaW5lX3BsYW5lX2FkZF9j
-b2xvcm9wKHBsYW5lLCBOVUxMLA0KPiA+ICsNCj4gPiBJTlRFTF9QTEFORV9DQl9QUkVfQ1NDX0xV
-VCk7DQo+ID4gKw0KPiA+ICsJaWYgKElTX0VSUihjb2xvcm9wW2ldKSkgew0KPiA+ICsJCXJldCA9
-IFBUUl9FUlIoY29sb3JvcFtpXSk7DQo+ID4gKwkJZ290byBjbGVhbnVwOw0KPiA+ICsJfQ0KPiA+
-ICsJaSsrOw0KPiANCj4gSSBzZWUgYSBsb3Qgb2YgcmVwZWF0ZWQgY29kZSBtYXliZSB3ZSBjYW4g
-Z2V0IHRoaXMgZG9uZSB2aWEgYSBsb29wIHN0YXRpYyBjb25zdA0KPiBlbnVtIGludGVsX2NvbG9y
-b3BfdHlwZSBwaXBlbGluZVtdID0gew0KPiAgICAgICAgIElOVEVMX1BMQU5FX0NCX1BSRV9DU0Nf
-TFVULA0KPiAgICAgICAgIElOVEVMX1BMQU5FX0NCX0NTQywNCj4gICAgICAgICBJTlRFTF9QTEFO
-RV9DQl8zRExVVCwNCj4gICAgICAgICBJTlRFTF9QTEFORV9DQl9QT1NUX0NTQ19MVVQsDQo+IH07
-DQo+IA0KPiBmb3IgKG4gPSAwOyBuIDwgQVJSQVlfU0laRShwaXBlbGluZSk7IG4rKykgew0KPiAg
-ICAgICAgIGlmIChwaXBlbGluZVtuXSA9PSBJTlRFTF9QTEFORV9DQl8zRExVVCAmJg0KPiAgICAg
-ICAgICAgICAoRElTUExBWV9WRVIoZGlzcGxheSkgPCAzNSB8fA0KPiAgICAgICAgICAgICAgcGxh
-bmUtPnR5cGUgIT0gRFJNX1BMQU5FX1RZUEVfUFJJTUFSWSB8fA0KPiAgICAgICAgICAgICAgIWlu
-dGVsX2NvbG9yX2NydGNfaGFzXzNkbHV0KGRpc3BsYXksIHBpcGUpKSkNCj4gICAgICAgICAgICAg
-ICAgIGNvbnRpbnVlOw0KPiANCj4gICAgICAgICByZXQgPSBhZGRfcGxhbmVfY29sb3JvcChwbGFu
-ZSwgY29sb3JvcCwgJmksICZwcmV2LCBwaXBlbGluZVtuXSk7DQo+ICAgICAgICAgaWYgKHJldCkN
-Cj4gICAgICAgICAgICAgICAgIGdvdG8gY2xlYW51cDsNCj4gfQ0KPiANCj4gV2hlcmUgYWRkX3Bs
-YW5lX2NvbG9yb3AgaXMNCj4gDQo+IHN0YXRpYyBpbnQNCj4gYWRkX3BsYW5lX2NvbG9yb3Aoc3Ry
-dWN0IGRybV9wbGFuZSAqcGxhbmUsDQo+ICAgICAgICAgICAgICAgICAgIHN0cnVjdCBpbnRlbF9j
-b2xvcm9wICoqY29sb3JvcCwNCj4gICAgICAgICAgICAgICAgICAgaW50ICppLA0KPiAgICAgICAg
-ICAgICAgICAgICBzdHJ1Y3QgaW50ZWxfY29sb3JvcCAqKnByZXYsDQo+ICAgICAgICAgICAgICAg
-ICAgIGVudW0gaW50ZWxfY29sb3JvcF90eXBlIHR5cGUpIHsNCj4gICAgICAgICBjb2xvcm9wWypp
-XSA9IGludGVsX2NvbG9yX3BpcGVsaW5lX3BsYW5lX2FkZF9jb2xvcm9wKHBsYW5lLCAqcHJldiwg
-dHlwZSk7DQo+ICAgICAgICAgaWYgKElTX0VSUihjb2xvcm9wWyppXSkpDQo+ICAgICAgICAgICAg
-ICAgICByZXR1cm4gUFRSX0VSUihjb2xvcm9wWyppXSk7DQo+IA0KPiAgICAgICAgICpwcmV2ID0g
-Y29sb3JvcFsqaV07DQo+ICAgICAgICAgKCppKSsrOw0KPiANCj4gICAgICAgICByZXR1cm4gMDsN
-Cj4gfQ0KDQpUaGlzIGNhbiBiZSBleHBsb3JlZCwgd2UgY2FuIGNyZWF0ZSBwaXBlbGluZSB3aXNl
-IGFycmF5IGVudHJpZXMgYW5kIHRyYXZlcnNlIHRoZW0gaW4gbG9vcA0KdG8gbWFrZSBpdCBjbGVh
-cmVyIGFuZCBtb3JlIGNvbmNpc2UuIFRvIGNyZWF0ZSBhIHNwZWNpZmljIHBpcGVsaW5lLCB3ZSBj
-YW4ganVzdCBwYXNzIHRoZSBhcnJheS4NCg0KT3ZlcmFsbCBjaGFuZ2VzIGluIHRoZSBzZXJpZXMg
-bG9vayBnb29kIHRvIG1lLiBUaGFua3MgZm9yIHdvcmtpbmcgb24gZml4aW5nIHRoZSBsZWFrcy4N
-Cg0KUmVnYXJkcywNClVtYSBTaGFua2FyDQoNCj4gPg0KPiA+IC0JCXJldCA9IGRybV9wbGFuZV9j
-b2xvcm9wXzNkbHV0X2luaXQoZGV2LCAmY29sb3JvcC0+YmFzZSwNCj4gPiBwbGFuZSwNCj4gPiAt
-CQkJCQkJICAgJmludGVsX2NvbG9yb3BfZnVuY3MsIDE3LA0KPiA+IC0NCj4gPiBEUk1fQ09MT1JP
-UF9MVVQzRF9JTlRFUlBPTEFUSU9OX1RFVFJBSEVEUkFMLA0KPiA+IC0JCQkJCQkgICB0cnVlKTsN
-Cj4gPiAtCQlpZiAocmV0KQ0KPiA+IC0JCQlyZXR1cm4gcmV0Ow0KPiA+DQo+ID4gLQkJZHJtX2Nv
-bG9yb3Bfc2V0X25leHRfcHJvcGVydHkocHJldl9vcCwgJmNvbG9yb3AtPmJhc2UpOw0KPiA+ICsJ
-Y29sb3JvcFtpXSA9IGludGVsX2NvbG9yX3BpcGVsaW5lX3BsYW5lX2FkZF9jb2xvcm9wKHBsYW5l
-LCBjb2xvcm9wW2kNCj4gPiArLQ0KPiA+IDFdLA0KPiA+ICsNCj4gPiBJTlRFTF9QTEFORV9DQl9D
-U0MpOw0KPiA+DQo+ID4gLQkJcHJldl9vcCA9ICZjb2xvcm9wLT5iYXNlOw0KPiA+ICsJaWYgKElT
-X0VSUihjb2xvcm9wW2ldKSkgew0KPiA+ICsJCXJldCA9IFBUUl9FUlIoY29sb3JvcFtpXSk7DQo+
-ID4gKwkJZ290byBjbGVhbnVwOw0KPiA+ICAJfQ0KPiA+DQo+ID4gLQljb2xvcm9wID0gaW50ZWxf
-Y29sb3JvcF9jcmVhdGUoSU5URUxfUExBTkVfQ0JfUE9TVF9DU0NfTFVUKTsNCj4gPiAtCXJldCA9
-IGRybV9wbGFuZV9jb2xvcm9wX2N1cnZlXzFkX2x1dF9pbml0KGRldiwgJmNvbG9yb3AtPmJhc2Us
-DQo+ID4gcGxhbmUsICZpbnRlbF9jb2xvcm9wX2Z1bmNzLA0KPiA+IC0JCQkJCQkgIFBMQU5FX0dB
-TU1BX1NJWkUsDQo+ID4gLQ0KPiA+IERSTV9DT0xPUk9QX0xVVDFEX0lOVEVSUE9MQVRJT05fTElO
-RUFSLA0KPiA+IC0NCj4gPiBEUk1fQ09MT1JPUF9GTEFHX0FMTE9XX0JZUEFTUyk7DQo+ID4gLQlp
-ZiAocmV0KQ0KPiA+IC0JCXJldHVybiByZXQ7DQo+ID4gKwlpKys7DQo+ID4NCj4gPiAtCWRybV9j
-b2xvcm9wX3NldF9uZXh0X3Byb3BlcnR5KHByZXZfb3AsICZjb2xvcm9wLT5iYXNlKTsNCj4gPiAr
-CWlmIChESVNQTEFZX1ZFUihkaXNwbGF5KSA+PSAzNSAmJg0KPiA+ICsJICAgIGludGVsX2NvbG9y
-X2NydGNfaGFzXzNkbHV0KGRpc3BsYXksIHBpcGUpICYmDQo+ID4gKwkgICAgcGxhbmUtPnR5cGUg
-PT0gRFJNX1BMQU5FX1RZUEVfUFJJTUFSWSkgew0KPiA+ICsJCWNvbG9yb3BbaV0gPSBpbnRlbF9j
-b2xvcl9waXBlbGluZV9wbGFuZV9hZGRfY29sb3JvcChwbGFuZSwNCj4gPiBjb2xvcm9wW2kgLSAx
-XSwNCj4gPiArDQo+ID4gSU5URUxfUExBTkVfQ0JfM0RMVVQpOw0KPiA+ICsNCj4gPiArCQlpZiAo
-SVNfRVJSKGNvbG9yb3BbaV0pKSB7DQo+ID4gKwkJCXJldCA9IFBUUl9FUlIoY29sb3JvcFtpXSk7
-DQo+ID4gKwkJCWdvdG8gY2xlYW51cDsNCj4gPiArCQl9DQo+ID4gKwkJaSsrOw0KPiA+ICsJfQ0K
-PiA+DQo+ID4gLQlsaXN0LT5uYW1lID0ga2FzcHJpbnRmKEdGUF9LRVJORUwsICJDb2xvciBQaXBl
-bGluZSAlZCIsIGxpc3QtPnR5cGUpOw0KPiA+ICsJY29sb3JvcFtpXSA9IGludGVsX2NvbG9yX3Bp
-cGVsaW5lX3BsYW5lX2FkZF9jb2xvcm9wKHBsYW5lLCBjb2xvcm9wW2kNCj4gPiArLQ0KPiA+IDFd
-LA0KPiA+ICsNCj4gPiBJTlRFTF9QTEFORV9DQl9QT1NUX0NTQ19MVVQpOw0KPiA+ICsJaWYgKElT
-X0VSUihjb2xvcm9wW2ldKSkgew0KPiA+ICsJCXJldCA9IFBUUl9FUlIoY29sb3JvcFtpXSk7DQo+
-ID4gKwkJZ290byBjbGVhbnVwOw0KPiA+ICsJfQ0KPiA+ICsJaSsrOw0KPiA+ICsNCj4gPiArCWxp
-c3QtPnR5cGUgPSBjb2xvcm9wWzBdLT5iYXNlLmJhc2UuaWQ7DQo+ID4gKwlsaXN0LT5uYW1lID0g
-a2FzcHJpbnRmKEdGUF9LRVJORUwsICJDb2xvciBQaXBlbGluZSAlZCIsDQo+ID4gK2NvbG9yb3Bb
-MF0tPmJhc2UuYmFzZS5pZCk7DQo+ID4NCj4gPiAgCXJldHVybiAwOw0KPiA+ICsNCj4gPiArY2xl
-YW51cDoNCj4gPiArCXdoaWxlICgtLWkgPj0gMCkNCj4gPiArCQlpbnRlbF9jb2xvcm9wX2Rlc3Ry
-b3koJmNvbG9yb3BbaV0tPmJhc2UpOw0KPiA+ICsJcmV0dXJuIHJldDsNCj4gPiAgfQ0KPiA+DQo+
-ID4gIGludCBpbnRlbF9jb2xvcl9waXBlbGluZV9wbGFuZV9pbml0KHN0cnVjdCBkcm1fcGxhbmUg
-KnBsYW5lLCBlbnVtDQo+ID4gcGlwZSBwaXBlKQ0KPiA+IC0tDQo+ID4gMi4yNS4xDQoNCg==
+--------------Wj000MUebBoz1sIYV2D73iYE
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+
+
+On 05-01-2026 18:25, Jani Nikula wrote:
+> On Tue, 09 Dec 2025, Dibin Moolakadan Subrahmanian<dibin.moolakadan.subrahmanian@intel.com> wrote:
+>> Introduce dc3co_allow in struct intel_display and determine DC3CO
+>> eligibility during atomic_check(). DC3CO is permitted only when:
+>>
+>>    - the active pipe drives eDP,
+>>    - the pipe is single-pipe (no joiner),
+>>    - the pipe/port combination supports DC3CO.
+>>
+>> When eligible, intel_atomic_commit_tail() programs the target DC state
+>> as DC_STATE_EN_UPTO_DC3CO; otherwise we fall back to DC6. Update the
+>> PSR vblank enable/disable path to follow the same policy.
+>>
+>> Also extend get_allowed_dc_mask() to expose DC3CO support on
+>> DISPLAY_VER >= 35.
+>>
+>> Signed-off-by: Dibin Moolakadan Subrahmanian<dibin.moolakadan.subrahmanian@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_display.c  | 75 +++++++++++++++++++
+>>   drivers/gpu/drm/i915/display/intel_display.h  |  1 +
+>>   .../gpu/drm/i915/display/intel_display_core.h |  3 +
+>>   .../drm/i915/display/intel_display_power.c    |  4 +-
+>>   drivers/gpu/drm/i915/display/intel_psr.c      | 13 ++--
+>>   5 files changed, 87 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+>> index 9c6d3ecdb589..205f55a87736 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> @@ -6295,6 +6295,75 @@ static int intel_joiner_add_affected_crtcs(struct intel_atomic_state *state)
+>>   	return 0;
+>>   }
+>>   
+>> +bool intel_dc3co_allowed(struct intel_display *display)
+>> +{
+>> +	return display->power.dc3co_allow;
+> Very few files should touch display->power, and this is not one of them.
+>
+> 'git grep "display->power" -- drivers/gpu/drm/i915/display'
+
+Yes, git grep shows few files , I will try to move all dc3co functions to
+drivers/gpu/drm/i915/display/intel_display_power.c.
+
+>
+> When is it okay to call this function and expect to get sane results?
+
+display->power.dc3co_allow is only updated in intel_dc3co_allow_check() which is called from
+intel_atomic_commit_tail().intel_dc3co_allowed() only intended to be called from intel_post_plane_update()
+path(ALPM/PSR), which executes as part of intel_atomic_commit_tail().
+
+>
+>> +}
+>> +
+>> +static bool intel_dc3co_port_pipe_compatible(struct intel_dp *intel_dp,
+>> +					     const struct intel_crtc_state *crtc_state)
+>> +{
+>> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+>> +	enum pipe pipe = to_intel_crtc(crtc_state->uapi.crtc)->pipe;
+>> +	enum port port = dig_port->base.port;
+>> +	int num_pipes = intel_crtc_num_joined_pipes(crtc_state);
+>> +
+>> +	if (num_pipes != 1)
+>> +		return false;
+>> +
+>> +	if (!(pipe <= PIPE_B && port <= PORT_B))
+>> +		return false;
+>> +
+>> +	return true;
+> That's a really complicated way to say
+>
+> 	return num_pipes == 1 && pipe <= PIPEB && port <= PORT_B;
+
+I will update this.
+
+>
+>> +}
+>> +
+>> +static void intel_dc3co_allow_check(struct intel_atomic_state *state)
+> What does "check" mean here? Or in *any* function?
+>
+> Check sounds like something that's a pure function that doesn't change
+> anything... but this does.
+
+I will split this function to two , one for check and one for initialization
+
+>> +{
+>> +	struct intel_display *display = to_intel_display(state);
+>> +	struct intel_crtc *crtc;
+>> +	struct intel_crtc_state *new_crtc_state;
+>> +	struct intel_encoder *encoder;
+>> +	struct intel_dp *intel_dp;
+>> +	int i;
+>> +	struct i915_power_domains *power_domains = &display->power.domains;
+>> +	bool any_active = false;
+>> +	bool allow = true;
+>> +
+>> +	display->power.dc3co_allow = 0;
+> That's now cached state with no stated rules on when it's valid and when
+> it's not.
+>
+>> +
+>> +	if ((power_domains->allowed_dc_mask & DC_STATE_EN_UPTO_DC3CO) != DC_STATE_EN_UPTO_DC3CO)
+>> +		return;
+>> +
+>> +	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+>> +		if (!new_crtc_state->hw.active)
+>> +			continue;
+>> +
+>> +		any_active = true;
+>> +
+>> +		for_each_intel_encoder_mask(display->drm, encoder,
+>> +					    new_crtc_state->uapi.encoder_mask) {
+>> +			/* If any active pipe not eDP disable*/
+> What?
+
+I will correct comment /* Disallow DC3CO if any active pipe is not eDP */
+
+>
+>> +			if (!intel_encoder_is_dp(encoder) ||
+>> +			    encoder->type != INTEL_OUTPUT_EDP) {
+>> +				allow = false;
+>> +				goto out;
+>> +			}
+>> +			intel_dp = enc_to_intel_dp(encoder);
+>> +			/* Port, joiner, pipe placement checks */
+> Is that a helpful comment?
+>
+>> +			if (!intel_dc3co_port_pipe_compatible(intel_dp, new_crtc_state)) {
+>> +				allow = false;
+>> +				goto out;
+>> +			}
+>> +		}
+>> +	}
+>> +
+>> +	if (!any_active)
+>> +		allow = false;
+>> +
+>> +out:
+>> +	display->power.dc3co_allow = allow;
+>> +}
+>> +
+> intel_display.[ch] is not the dumping ground for random new code. The
+> goal is to *reduce* the size of it, not increase.
+
+This function needs encoder,port and pipe information, which is why I added
+it in intel_display.c.However,I agree it is updating dc3co_allow . I will check if
+it can be moved to intel_display_power.c.
+
+>
+>>   static int intel_atomic_check_config(struct intel_atomic_state *state,
+>>   				     struct intel_link_bw_limits *limits,
+>>   				     enum pipe *failed_pipe)
+>> @@ -6565,6 +6634,8 @@ int intel_atomic_check(struct drm_device *dev,
+>>   	if (ret)
+>>   		goto fail;
+>>   
+>> +	intel_dc3co_allow_check(state);
+>> +
+>>   	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+>>   					    new_crtc_state, i) {
+>>   		intel_color_assert_luts(new_crtc_state);
+>> @@ -7601,6 +7672,10 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+>>   		 */
+>>   		intel_uncore_arm_unclaimed_mmio_detection(&dev_priv->uncore);
+>>   	}
+>> +	if (intel_dc3co_allowed(display))
+>> +		intel_display_power_set_target_dc_state(display, DC_STATE_EN_UPTO_DC3CO);
+>> +	else
+>> +		intel_display_power_set_target_dc_state(display, DC_STATE_EN_UPTO_DC6);
+>>   	/*
+>>   	 * Delay re-enabling DC states by 17 ms to avoid the off->on->off
+>>   	 * toggling overhead at and above 60 FPS.
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+>> index f8e6e4e82722..97987f082560 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+>> @@ -560,5 +560,6 @@ bool assert_port_valid(struct intel_display *display, enum port port);
+>>   
+>>   bool intel_scanout_needs_vtd_wa(struct intel_display *display);
+>>   int intel_crtc_num_joined_pipes(const struct intel_crtc_state *crtc_state);
+>> +bool intel_dc3co_allowed(struct intel_display *display);
+>>   
+>>   #endif
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+>> index d708d322aa85..fa567c95029c 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+>> @@ -538,6 +538,9 @@ struct intel_display {
+>>   
+>>   		/* perform PHY state sanity checks? */
+>>   		bool chv_phy_assert[2];
+>> +
+>> +		/* mark dc3co entry is allowed*/
+> 		                              ^- space missing
+will add space.
+>
+>> +		bool dc3co_allow;
+> Still unclear when this is valid.
+>
+>>   	} power;
+>>   
+>>   	struct {
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+>> index 0961b194554c..e99552f18756 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+>> @@ -956,7 +956,9 @@ static u32 get_allowed_dc_mask(struct intel_display *display, int enable_dc)
+>>   	if (!HAS_DISPLAY(display))
+>>   		return 0;
+>>   
+>> -	if (DISPLAY_VER(display) >= 20)
+>> +	if (DISPLAY_VER(display) >= 35)
+>> +		max_dc = 3;
+>> +	else if (DISPLAY_VER(display) >= 20)
+>>   		max_dc = 2;
+>>   	else if (display->platform.dg2)
+>>   		max_dc = 1;
+>> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+>> index 753359069044..9c616f449ad6 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+>> @@ -3903,14 +3903,11 @@ void intel_psr_notify_vblank_enable_disable(struct intel_display *display,
+>>   		return;
+>>   	}
+>>   
+>> -	/*
+>> -	 * NOTE: intel_display_power_set_target_dc_state is used
+>> -	 * only by PSR * code for DC3CO handling. DC3CO target
+>> -	 * state is currently disabled in * PSR code. If DC3CO
+>> -	 * is taken into use we need take that into account here
+>> -	 * as well.
+>> -	 */
+>> -	intel_display_power_set_target_dc_state(display, enable ? DC_STATE_DISABLE :
+>> +	if (intel_dc3co_allowed(display))
+>> +		intel_display_power_set_target_dc_state(display, enable ? DC_STATE_DISABLE :
+>> +						DC_STATE_EN_UPTO_DC3CO);
+>> +	else
+>> +		intel_display_power_set_target_dc_state(display, enable ? DC_STATE_DISABLE :
+>>   						DC_STATE_EN_UPTO_DC6);
+>>   }
+--------------Wj000MUebBoz1sIYV2D73iYE
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 05-01-2026 18:25, Jani Nikula wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:e6ee14b445df7979d8bd90ee0f45ab7505d1e92e@intel.com">
+      <pre wrap="" class="moz-quote-pre">On Tue, 09 Dec 2025, Dibin Moolakadan Subrahmanian <a class="moz-txt-link-rfc2396E" href="mailto:dibin.moolakadan.subrahmanian@intel.com">&lt;dibin.moolakadan.subrahmanian@intel.com&gt;</a> wrote:
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">Introduce dc3co_allow in struct intel_display and determine DC3CO
+eligibility during atomic_check(). DC3CO is permitted only when:
+
+  - the active pipe drives eDP,
+  - the pipe is single-pipe (no joiner),
+  - the pipe/port combination supports DC3CO.
+
+When eligible, intel_atomic_commit_tail() programs the target DC state
+as DC_STATE_EN_UPTO_DC3CO; otherwise we fall back to DC6. Update the
+PSR vblank enable/disable path to follow the same policy.
+
+Also extend get_allowed_dc_mask() to expose DC3CO support on
+DISPLAY_VER &gt;= 35.
+
+Signed-off-by: Dibin Moolakadan Subrahmanian <a class="moz-txt-link-rfc2396E" href="mailto:dibin.moolakadan.subrahmanian@intel.com">&lt;dibin.moolakadan.subrahmanian@intel.com&gt;</a>
+---
+ drivers/gpu/drm/i915/display/intel_display.c  | 75 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_display.h  |  1 +
+ .../gpu/drm/i915/display/intel_display_core.h |  3 +
+ .../drm/i915/display/intel_display_power.c    |  4 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      | 13 ++--
+ 5 files changed, 87 insertions(+), 9 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 9c6d3ecdb589..205f55a87736 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -6295,6 +6295,75 @@ static int intel_joiner_add_affected_crtcs(struct intel_atomic_state *state)
+ 	return 0;
+ }
+ 
++bool intel_dc3co_allowed(struct intel_display *display)
++{
++	return display-&gt;power.dc3co_allow;
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+Very few files should touch display-&gt;power, and this is not one of them.
+
+'git grep &quot;display-&gt;power&quot; -- drivers/gpu/drm/i915/display'</pre>
+    </blockquote>
+    <pre>Yes, git grep shows few files , I will try to move all dc3co functions to
+drivers/gpu/drm/i915/display/intel_display_power.c.</pre>
+    <blockquote type="cite" cite="mid:e6ee14b445df7979d8bd90ee0f45ab7505d1e92e@intel.com">
+      <pre wrap="" class="moz-quote-pre">
+
+When is it okay to call this function and expect to get sane results?</pre>
+    </blockquote>
+    <pre wrap="" class="moz-quote-pre">display-&gt;power.dc3co_allow is only updated in intel_dc3co_allow_check() which is called from
+intel_atomic_commit_tail().intel_dc3co_allowed() only intended to be called from intel_post_plane_update()
+path(ALPM/PSR), which executes as part of intel_atomic_commit_tail().</pre>
+    <blockquote type="cite" cite="mid:e6ee14b445df7979d8bd90ee0f45ab7505d1e92e@intel.com">
+      <pre wrap="" class="moz-quote-pre">
+
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">+}
++
++static bool intel_dc3co_port_pipe_compatible(struct intel_dp *intel_dp,
++					     const struct intel_crtc_state *crtc_state)
++{
++	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
++	enum pipe pipe = to_intel_crtc(crtc_state-&gt;uapi.crtc)-&gt;pipe;
++	enum port port = dig_port-&gt;base.port;
++	int num_pipes = intel_crtc_num_joined_pipes(crtc_state);
++
++	if (num_pipes != 1)
++		return false;
++
++	if (!(pipe &lt;= PIPE_B &amp;&amp; port &lt;= PORT_B))
++		return false;
++
++	return true;
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+That's a really complicated way to say
+
+	return num_pipes == 1 &amp;&amp; pipe &lt;= PIPEB &amp;&amp; port &lt;= PORT_B;</pre>
+    </blockquote>
+    <pre>I will update this.</pre>
+    <blockquote type="cite" cite="mid:e6ee14b445df7979d8bd90ee0f45ab7505d1e92e@intel.com">
+      <pre wrap="" class="moz-quote-pre">
+
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">+}
++
++static void intel_dc3co_allow_check(struct intel_atomic_state *state)
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+What does &quot;check&quot; mean here? Or in *any* function?
+
+Check sounds like something that's a pure function that doesn't change
+anything... but this does.
+</pre>
+    </blockquote>
+    <pre>I will split this function to two , one for check and one for initialization </pre>
+    <blockquote type="cite" cite="mid:e6ee14b445df7979d8bd90ee0f45ab7505d1e92e@intel.com">
+      <pre wrap="" class="moz-quote-pre">
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">+{
++	struct intel_display *display = to_intel_display(state);
++	struct intel_crtc *crtc;
++	struct intel_crtc_state *new_crtc_state;
++	struct intel_encoder *encoder;
++	struct intel_dp *intel_dp;
++	int i;
++	struct i915_power_domains *power_domains = &amp;display-&gt;power.domains;
++	bool any_active = false;
++	bool allow = true;
++
++	display-&gt;power.dc3co_allow = 0;
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+That's now cached state with no stated rules on when it's valid and when
+it's not.
+
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">+
++	if ((power_domains-&gt;allowed_dc_mask &amp; DC_STATE_EN_UPTO_DC3CO) != DC_STATE_EN_UPTO_DC3CO)
++		return;
++
++	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
++		if (!new_crtc_state-&gt;hw.active)
++			continue;
++
++		any_active = true;
++
++		for_each_intel_encoder_mask(display-&gt;drm, encoder,
++					    new_crtc_state-&gt;uapi.encoder_mask) {
++			/* If any active pipe not eDP disable*/
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+What?</pre>
+    </blockquote>
+    <pre wrap="" class="moz-quote-pre">I will correct comment /* Disallow DC3CO if any active pipe is not eDP */</pre>
+    <blockquote type="cite" cite="mid:e6ee14b445df7979d8bd90ee0f45ab7505d1e92e@intel.com">
+      <pre wrap="" class="moz-quote-pre">
+
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">+			if (!intel_encoder_is_dp(encoder) ||
++			    encoder-&gt;type != INTEL_OUTPUT_EDP) {
++				allow = false;
++				goto out;
++			}
++			intel_dp = enc_to_intel_dp(encoder);
++			/* Port, joiner, pipe placement checks */
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+Is that a helpful comment?
+
+</pre>
+    </blockquote>
+    <blockquote type="cite" cite="mid:e6ee14b445df7979d8bd90ee0f45ab7505d1e92e@intel.com">
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">+			if (!intel_dc3co_port_pipe_compatible(intel_dp, new_crtc_state)) {
++				allow = false;
++				goto out;
++			}
++		}
++	}
++
++	if (!any_active)
++		allow = false;
++
++out:
++	display-&gt;power.dc3co_allow = allow;
++}
++
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+intel_display.[ch] is not the dumping ground for random new code. The
+goal is to *reduce* the size of it, not increase.</pre>
+    </blockquote>
+    <pre>This function needs encoder,port and pipe information, which is why I added
+it in intel_display.c.However,I agree it is updating dc3co_allow . I will check if
+it can be moved to intel_display_power.c.</pre>
+    <blockquote type="cite" cite="mid:e6ee14b445df7979d8bd90ee0f45ab7505d1e92e@intel.com">
+      <pre wrap="" class="moz-quote-pre">
+
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre"> static int intel_atomic_check_config(struct intel_atomic_state *state,
+ 				     struct intel_link_bw_limits *limits,
+ 				     enum pipe *failed_pipe)
+@@ -6565,6 +6634,8 @@ int intel_atomic_check(struct drm_device *dev,
+ 	if (ret)
+ 		goto fail;
+ 
++	intel_dc3co_allow_check(state);
++
+ 	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+ 					    new_crtc_state, i) {
+ 		intel_color_assert_luts(new_crtc_state);
+@@ -7601,6 +7672,10 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+ 		 */
+ 		intel_uncore_arm_unclaimed_mmio_detection(&amp;dev_priv-&gt;uncore);
+ 	}
++	if (intel_dc3co_allowed(display))
++		intel_display_power_set_target_dc_state(display, DC_STATE_EN_UPTO_DC3CO);
++	else
++		intel_display_power_set_target_dc_state(display, DC_STATE_EN_UPTO_DC6);
+ 	/*
+ 	 * Delay re-enabling DC states by 17 ms to avoid the off-&gt;on-&gt;off
+ 	 * toggling overhead at and above 60 FPS.
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index f8e6e4e82722..97987f082560 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -560,5 +560,6 @@ bool assert_port_valid(struct intel_display *display, enum port port);
+ 
+ bool intel_scanout_needs_vtd_wa(struct intel_display *display);
+ int intel_crtc_num_joined_pipes(const struct intel_crtc_state *crtc_state);
++bool intel_dc3co_allowed(struct intel_display *display);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+index d708d322aa85..fa567c95029c 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_core.h
++++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+@@ -538,6 +538,9 @@ struct intel_display {
+ 
+ 		/* perform PHY state sanity checks? */
+ 		bool chv_phy_assert[2];
++
++		/* mark dc3co entry is allowed*/
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+		                              ^- space missing</pre>
+    </blockquote>
+    will add space.
+    <blockquote type="cite" cite="mid:e6ee14b445df7979d8bd90ee0f45ab7505d1e92e@intel.com">
+      <pre wrap="" class="moz-quote-pre">
+
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">+		bool dc3co_allow;
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+Still unclear when this is valid.
+
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre"> 	} power;
+ 
+ 	struct {
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 0961b194554c..e99552f18756 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -956,7 +956,9 @@ static u32 get_allowed_dc_mask(struct intel_display *display, int enable_dc)
+ 	if (!HAS_DISPLAY(display))
+ 		return 0;
+ 
+-	if (DISPLAY_VER(display) &gt;= 20)
++	if (DISPLAY_VER(display) &gt;= 35)
++		max_dc = 3;
++	else if (DISPLAY_VER(display) &gt;= 20)
+ 		max_dc = 2;
+ 	else if (display-&gt;platform.dg2)
+ 		max_dc = 1;
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 753359069044..9c616f449ad6 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -3903,14 +3903,11 @@ void intel_psr_notify_vblank_enable_disable(struct intel_display *display,
+ 		return;
+ 	}
+ 
+-	/*
+-	 * NOTE: intel_display_power_set_target_dc_state is used
+-	 * only by PSR * code for DC3CO handling. DC3CO target
+-	 * state is currently disabled in * PSR code. If DC3CO
+-	 * is taken into use we need take that into account here
+-	 * as well.
+-	 */
+-	intel_display_power_set_target_dc_state(display, enable ? DC_STATE_DISABLE :
++	if (intel_dc3co_allowed(display))
++		intel_display_power_set_target_dc_state(display, enable ? DC_STATE_DISABLE :
++						DC_STATE_EN_UPTO_DC3CO);
++	else
++		intel_display_power_set_target_dc_state(display, enable ? DC_STATE_DISABLE :
+ 						DC_STATE_EN_UPTO_DC6);
+ }
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------Wj000MUebBoz1sIYV2D73iYE--
