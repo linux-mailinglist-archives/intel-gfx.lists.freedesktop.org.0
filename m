@@ -2,192 +2,192 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D952FCF865F
-	for <lists+intel-gfx@lfdr.de>; Tue, 06 Jan 2026 13:59:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EEF8CF86DB
+	for <lists+intel-gfx@lfdr.de>; Tue, 06 Jan 2026 14:11:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73C4910E455;
-	Tue,  6 Jan 2026 12:59:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B9B610E4B1;
+	Tue,  6 Jan 2026 13:11:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IdadRMZb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nq0frFiK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55F4710E3DE;
- Tue,  6 Jan 2026 12:59:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBD2D10E49F;
+ Tue,  6 Jan 2026 13:11:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767704343; x=1799240343;
+ t=1767705074; x=1799241074;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:mime-version;
- bh=dzhoSYzLuzdJEYoxmcRx4rUupkc19Y++o5OVDbsxo1Q=;
- b=IdadRMZb85c6T+nXa6SVNiriV5KW90YehR2wIC5fx7ZdpsGMK7QxlH8E
- PMxXBkGx5T9GUoiYQkb68Wjgf2OA6mp7ujP5iUCPdldEQ6afHFJcinMwM
- n13NUc059SsC6x3y2oXeOO7tgjJ1DTShdNF4Vlx5Dib+UyAGI1mqSVOWq
- bD61DyrEX2lsad3JQBVW7/Ov2ExzDFNeU3Pc0DNqAXwFSLHH9QpGK0pnB
- +1jq80nQ3hCtok0MRvXYANV8pABhbMIa5eL8itNf9olVRRARmaXoOqhG5
- GW9kqwXrIUhfFsQx2Mpzr9WUP6D2+o3cr4N51WHiSHFw5Ng5MPHEHjkwQ Q==;
-X-CSE-ConnectionGUID: HcLvt+aNQXWzWSp6mdfP9w==
-X-CSE-MsgGUID: P+rd4xaUSyaet/XULqyBMA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11663"; a="80517427"
-X-IronPort-AV: E=Sophos;i="6.21,204,1763452800"; d="scan'208,217";a="80517427"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2026 04:59:02 -0800
-X-CSE-ConnectionGUID: O8tpYtSXQ/ybfOt/HXYVFQ==
-X-CSE-MsgGUID: qsY78/rvTPesXmo0myYXmg==
+ bh=Mib+Ub5EjVffZclVtGUlbG9sXBqKpi0Aj+1CtOympV4=;
+ b=Nq0frFiKnUSGx73r2dPl1Fanw+CoujcjN1a9Ad9NoerqTQk3RJ+VcJlk
+ 4zXhVpM0dysWD0imBSD6PUuVrF4PaQCx3UL8vThgEP3w7pauviapOskJ1
+ +OXf0tvrjHuNFjwS/AO/ZdKyp7eE409WfL5VBWMHq8hdH0DkUwJggU++R
+ HOGMIogO2iNw1cZDUK85+bgbUwuF2xQyIQybFebMyTkB5LkUH3Mdm7+hs
+ IzsmeK1CE31havaSlrtnBSbQf/GzDap9WTXealfI+hfpxcR42AZ5qzlaU
+ G+ZCDhefPMqc3gkpoVTA09cj+ECr5kzHhJYhHN6zTepTP/r1fuyWSAaFS g==;
+X-CSE-ConnectionGUID: /Wa9u3KwT4excbrpoZodpg==
+X-CSE-MsgGUID: orckVb9QQzGIfNKYSrYxLA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11663"; a="69141998"
+X-IronPort-AV: E=Sophos;i="6.21,204,1763452800"; d="scan'208,217";a="69141998"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jan 2026 05:11:14 -0800
+X-CSE-ConnectionGUID: eeoQKDxkSB61IfAY7LavTQ==
+X-CSE-MsgGUID: wDMmXg6hRzui/m7K+62Tog==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.21,204,1763452800"; 
- d="scan'208,217";a="207122182"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2026 04:59:01 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ d="scan'208,217";a="233347956"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jan 2026 05:11:14 -0800
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Tue, 6 Jan 2026 04:59:01 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.29; Tue, 6 Jan 2026 05:11:12 -0800
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Tue, 6 Jan 2026 04:59:01 -0800
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.15) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.29 via Frontend Transport; Tue, 6 Jan 2026 05:11:12 -0800
+Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.47) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Tue, 6 Jan 2026 04:59:01 -0800
+ 15.2.2562.29; Tue, 6 Jan 2026 05:11:12 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yT8qz6g0tF/vWU+mXimYOsYgcHhQYaJsCbJ9ExFOBevdiGd9FUpvmtXZ8OTscaEIErikpegJubEthgFKihBb5VHADKqmmvDmtIAv7/R32mlXcmzzAgnqRSqze78Y4KFa18r20+Y3ueuyVq+8cy3+vtqmUBkuwdaKtEJ+IujA1zHoFyG0HQki5wu2KQv7JEOsM8jhiJOohxty+mZBSZ+TMkygDnu6LTtH7aEYBOA83hAwzJiCec10qvYPB+Br2HgBLhsVG3oDTayYp6g0RhtPyCLikh4jTyNkwaPqRyPfOh0s0ycUBbNoUDxZRtYp4Pn4gIFtlpGl3o59ml+lPWoMhw==
+ b=Tfi447LpOMubLefGQw/IT1hQmWzCCFIxQ5GktjiEF2EuMEG1v/xAyUgysMfvVcW2lodzD9OsxeOPDH/IINJJUItN0QvJ67K/koyikGkONnDdnr+UVx8bo0iQioByNvfvGn1bFGK3OK78jqXFB7lEQl4bS67gPQrtuGHOmO6z00PK1+EdZoiCGBNDBD0nRQPhKBwMJQ07om727M6BxYumWzEtXO5R6UU9toPclj8DJOasC6gEAuSidcKML7FrOxAM8yuo5IDcWUBqNsBLT+36ZucQ3ThVMPGev/Tz4QivKL4rmy7aznRiPF9ecqz9+cEYqx8LpWp5pNiUC7M2nzmwIQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nGM2bE/Z7zrQxHAZ6XPtgyOzmAHemG8SV7js6Yc0UkM=;
- b=Zc41Y4eWxP/CxIfobp1sCqAr7KEqBQN4Ff/4FJSt0VDdcTVvEiBKuGJv0OuF/htscD8yJq7topLXfYKpcZ3poE7IC/n8dIH9tVr6bebqSAZ+sY65apa67C3cxue7N6zwOEycuI8g+l5eePIyQXvObf20oJ3aX9xUvInovQNQJQe9sNoOoYLOR83aUVunI4wRv7xWKy/4OE0k2GlCyff1bapzdaOdRvnCSiDBfgZZC96lu3sKNVBN+wVjm4aMNUp+eecFJfK3/BPD4eEmU2Qo22zAOKAT68jOfXtorCT9S9X8x7M6YsCwRP+v9syOygxfoEH2xcQaj0Vn+Qe/hMqZZg==
+ bh=UJEQCcyEQdM/jzONlXTayK8xbZRd1ItuhYbXUtmI8wU=;
+ b=ycQsRrrw6SpjgX3gEoiXWlI6iUj9DctfhupKmr2+ykgMk5m6IibrbqdYlT4qz1CPE00U9rOYMv5tiYjJJ0vUXpdJcPlbtzKd3mDV2wttQKQ+EMtjHHEoYJFENQKID9oX7Oc5aAv8Iue9jItDEU9scGu0NuyASJWcwofwkstR/VPrv0KAENcGur6JqMd5RjOm1B8eWaJRiSXgEnREFXnyU0CXvb2geKX1wLkmsAbSuDp4ilGtbdpy1RIYd0vQmBrP7G22nStR2vqNwFUd6Vm9hdIIR/looq4758GJLlx0Itngq5lB7vyD6WgvF5QcXPGy9jnHzbe1qC1yYnMaeBp/Qw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from IA1PR11MB7175.namprd11.prod.outlook.com (2603:10b6:208:419::5)
- by PH0PR11MB7168.namprd11.prod.outlook.com (2603:10b6:510:1e9::14)
+ by DM3PPF68472F2DC.namprd11.prod.outlook.com (2603:10b6:f:fc00::f29)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9478.4; Tue, 6 Jan
- 2026 12:58:56 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9478.5; Tue, 6 Jan
+ 2026 13:11:05 +0000
 Received: from IA1PR11MB7175.namprd11.prod.outlook.com
  ([fe80::cc3a:1f73:430f:472]) by IA1PR11MB7175.namprd11.prod.outlook.com
  ([fe80::cc3a:1f73:430f:472%5]) with mapi id 15.20.9478.004; Tue, 6 Jan 2026
- 12:58:56 +0000
+ 13:11:05 +0000
 Content-Type: multipart/alternative;
- boundary="------------Wj000MUebBoz1sIYV2D73iYE"
-Message-ID: <8e41d261-4edb-45c2-b89e-749ac49457ef@intel.com>
-Date: Tue, 6 Jan 2026 18:28:49 +0530
+ boundary="------------f00QsOYM386SzC4YhpJBOrZ3"
+Message-ID: <1400f320-3b30-48c5-9a23-54878d0e42eb@intel.com>
+Date: Tue, 6 Jan 2026 18:40:56 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/9] drm/i915/display: Add DC3CO eligibility logic
+Subject: Re: [PATCH 7/9] drm/i915/display: psr enable DC3CO support
 To: Jani Nikula <jani.nikula@linux.intel.com>,
  <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
 CC: <animesh.manna@intel.com>, <uma.shankar@intel.com>, <imre.deak@intel.com>, 
  <jouni.hogander@intel.com>
 References: <20251209113332.2770263-1-dibin.moolakadan.subrahmanian@intel.com>
- <20251209113332.2770263-5-dibin.moolakadan.subrahmanian@intel.com>
- <e6ee14b445df7979d8bd90ee0f45ab7505d1e92e@intel.com>
+ <20251209113332.2770263-8-dibin.moolakadan.subrahmanian@intel.com>
+ <6a34a806cbb5c8a2ebe2f6c541cf8b3b6d0bac95@intel.com>
 Content-Language: en-US
 From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-In-Reply-To: <e6ee14b445df7979d8bd90ee0f45ab7505d1e92e@intel.com>
-X-ClientProxiedBy: MA5PR01CA0191.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1b2::14) To IA1PR11MB7175.namprd11.prod.outlook.com
+In-Reply-To: <6a34a806cbb5c8a2ebe2f6c541cf8b3b6d0bac95@intel.com>
+X-ClientProxiedBy: MA5P287CA0190.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b6::14) To IA1PR11MB7175.namprd11.prod.outlook.com
  (2603:10b6:208:419::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR11MB7175:EE_|PH0PR11MB7168:EE_
-X-MS-Office365-Filtering-Correlation-Id: f2046c66-dcb1-4a04-e5da-08de4d235a2b
+X-MS-TrafficTypeDiagnostic: IA1PR11MB7175:EE_|DM3PPF68472F2DC:EE_
+X-MS-Office365-Filtering-Correlation-Id: c3807aeb-6c07-4935-e78d-08de4d250c91
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|8096899003;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?ZGR3YkJVVGZTOXRmeE5RR3ViQ3ZWeVpYekRNb0tzcmw3MFhYQkJUeS9hNi9K?=
- =?utf-8?B?Z0VXVkFGWHZuMTFaQVUzbEtVcHkxWUtKYjh0Ujd5OElRSWx4S0VMOSs4NWE4?=
- =?utf-8?B?S0FRN0ZycmFMcFJhbEpJWjFJY1BYV3l1MTlhVXpFQlpzWVZLTXZTRk5hUkls?=
- =?utf-8?B?cVJzL1BLTHhPdWVySXYvSmxhWnBGQU9TZnlnaVFIZkJmZlRtY0E4SWl1Q1M5?=
- =?utf-8?B?VnhsTWVTd05BVmlST2l0U0JIeGJ4T3hSMW5uRGFlNXY5RGdZRGN3dVlDMFl6?=
- =?utf-8?B?SFNvZGxKNEt1L2E2K2d2aXdZOHJodUp1aFpwQXkrbndzMy9maGpBTjhhU1pX?=
- =?utf-8?B?OEFRK2JEaUdKdVNtd0JUaEU5bE5RVXFBYStyRUZqVjdnTC9UbmdGbWVCdk1H?=
- =?utf-8?B?cGl5UmZKT0ZPZnRnV1E4bzB2UlVpNUJnREdOSFd2NFJybXpjZ3JSaVFRUDFS?=
- =?utf-8?B?QW41WUhXL1ZRdWx6eTZwS3JCb1JxckU2cndqdUVMOTZaWWk0MXBNZUl4VmMx?=
- =?utf-8?B?UDgydHNWOVByVlFCOCt5TTNndnMwMk1vV3FhSllXNmFWMndUd1o4ZVl1dVpF?=
- =?utf-8?B?Yzh3SHZkUm5LVURuUzM5RkRLYVVWV0wwNzZVL0dPVzlaQmhGMWFER0FmOUlL?=
- =?utf-8?B?blhwR3RiL3VtZ1dFR0hja2xWSDB0VnMyQ2R4bjRYcG5qSHlvMkgzUkpFTWxi?=
- =?utf-8?B?dVREcEI3c0d6WjVWa09WY24rR3VLc0x2RGxWOW5jYjZLT0Z6NmltclhFZ3Nt?=
- =?utf-8?B?N1BsSTh6bjUzMlZRY2xxU0hoeDZrbGs1cnl4THV3T0RrZmtXaExKMDh4dUVh?=
- =?utf-8?B?N1poYVFxNzZ2VmJBamFGaC9NdWNEcEFHNHBsMzl6Q0gyT2gvSU9xb2w5SHRD?=
- =?utf-8?B?R01HVll6eFJzMHkxZSsrRE1MYjFZU2ZqV0RLbnkwNFM5Z1FiallzOXdJQ1ZD?=
- =?utf-8?B?OFVJR3N1elVkejBaaTlVckc3am9waHhjenhQaWJtZHJvaFdvRjFTcmNLZzNn?=
- =?utf-8?B?TGJ1SXNNWVAwSmNabkRyN2E3SmFGUVVhcTY5MVJqdzFkbFkzQ0lPa2VpaUlI?=
- =?utf-8?B?VjAwL1V3V0J1bDBJcmpDU01qZCt1VHgvbG5oQjVGUHM0eTY1c2ExVWs1Rmp4?=
- =?utf-8?B?UjVhNnB3TEFrYzlGbUpEL2dtSEQ0ZmsxYy9DeXJ1VDFOTVB0angzdDJPZTVH?=
- =?utf-8?B?eS9uVWNuQnE0UnhiT21ib2RjYTRGdXJRdllQWHBUdTFlcm1vNThBdWgyMUNE?=
- =?utf-8?B?L3V4bEF6YXQ3ajFqNmFGSFdNY1J2NS9wR0o5aXZ6L1B2MnQrbUQ5aEN3SkZm?=
- =?utf-8?B?Mld5bFBWdHVMMnl5empUaG1IODRhL256eTJGSldyTm9TeEUrRGFQQW9jaCtZ?=
- =?utf-8?B?WUxRSjBpdU5BVXhyS3ZYWXdQSklWcERXZU8zWHBqbUpyVFpkM3NreHRzNCtS?=
- =?utf-8?B?K3VaTnJ0OWR4UEw2S1NWcnJIQlZBTjdBT0piVUlFb3BtQkZrcFZ5dDFiOURk?=
- =?utf-8?B?b2ZFNFd4V0NZM2dpYTc5Z29PR3dkZ3g4eXI1YXVmdnpPT0xONlpjZXg3emR5?=
- =?utf-8?B?L2doem44YThZWERHWWR5RldTbXBkQ3cxckNzY3N4ZHVLNTVXU3pwL3Q0eGpw?=
- =?utf-8?B?UGh3SnJsWTBvVFkraVZ0NHZTcUlpQTZLTEFPdE8rOElVeVBPcnZseFRtcWFk?=
- =?utf-8?B?dmZzT3JjanVlUXBBeFZNcTA5SnZsQXpGRGM1SXhxZWJmcG1pMURrVGtUeW1K?=
- =?utf-8?B?ZVF0dkJVL3pTSThBeXZFTERoUm5QUEhSRjNXRnhMeXpKcmVzTVBDZ3VjL1Z6?=
- =?utf-8?B?RWZORHR0bStFZFhSTGtQWmQ1a0QvUExPUDhidTQzVWVJd3NWMTNCZzhmcDh4?=
- =?utf-8?B?ZkdvQVNiZWJ4c29peHFkbEhQb2o5Y3ArbjVyWG5PYlZIOEE2T2Z6Y3d0UEFI?=
- =?utf-8?Q?NUUwRFIgqPPcOoDa47TRTVE7rcF7ZmRa?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|8096899003;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?WTdsWHpYR2RwdVlINVFWbGRKM2lCdjIyNFphRHhYSFVOTXFEN0NZUVJpeG41?=
+ =?utf-8?B?WE13TGxPbXVWaXhNQ2VKY0UvUWZaVlFydmpLWUhNY0Q3V1ZVRDJMemY4Uk5K?=
+ =?utf-8?B?T0xBRTM5K0FZdXp1R1VvazZwanpTbGxGTkVJaHdCMW1DcEtkVGtBY09GR05w?=
+ =?utf-8?B?ZDNWTndKcHlGNkxBTUppQW5LdEgvZkpvMXVzclFLSW9wSlg1R3ZVOGFUTEti?=
+ =?utf-8?B?MDM5S0lua2hGL2pFM2F0NVJZanZmWFZHM1d6eGwwSWRNSTYxak9MbllQWXF2?=
+ =?utf-8?B?MDl0VG51UlVrVW9wcUwwYTZKSFBYRjJOMjZkZ0g3dWNJQ0RSSmc1c2hnTVVQ?=
+ =?utf-8?B?aHIydGZBTlRBbWxXTWRMd3pndnVpdDdjemhidUtWWEZMT3orZWwwS2NDWWRq?=
+ =?utf-8?B?Z1JSTmZjWkswVkVQQ0VDUituT2RFQ0xRbytWYS8yeTBrc1JTdUF0L2JFMWRu?=
+ =?utf-8?B?N1hMelVaK0IycDBsWVIwZnFkME9FZlNJeGptTzIyQkd0amhRRUNwbFk0dkJK?=
+ =?utf-8?B?UVdrZnpLQVNwRzZkU3NQakhxeGVEMlhRSVlnb3plc3RyUkt1RzRWWWdvRExl?=
+ =?utf-8?B?bk5xZjhxZ3JEVkRUL0xxNFBRU1FrYjluQlY2TE5GSU4rSVF0dzZMbjRQazBq?=
+ =?utf-8?B?eDBkRXVFRllRcGFKKzl6amNHYVBLajN2LzIxTlY4aUJUbVB5bHEwbk4rTTlF?=
+ =?utf-8?B?RG1Da1E5QlVybWlmSmJPVW04T3NTdUc1ZkZjOEFlUzdoaHhsdlYrMTVRa3M5?=
+ =?utf-8?B?V0tpdUtyMDk0ZWhVZUNBcEJZemZ5YzFBRW4vN1pXOGxuRUtkNTRUVFYvQmdM?=
+ =?utf-8?B?Vmk4YlN3cjZtQU11WUovTzdFRiszRHRCNHNpUjF4dHQvRDhtNU5UdDJRcTdm?=
+ =?utf-8?B?TjFRcVNlZi81ZWUrZEhqblNPWVZGYmprWlE0U0VOWnlNN0RHZzZOS0VMWFlh?=
+ =?utf-8?B?RHFEVE0vY3JsTXVuK0VDZVQ3a1h1ZHRPYXpLVGNPNm5UdFpkeGtzSEtiQjh4?=
+ =?utf-8?B?MVlEUlNJd3B4ekFhNWduN1VTOGNDdUFjNDJGRFY1ZkdFMjFtc09qc0UrTzhD?=
+ =?utf-8?B?eGFNaDNHdjZnMWI4bWpsNkFBdVIybFhxUzJwd2tRR1gvYmlZY2hlWlVFZmpn?=
+ =?utf-8?B?MHZNRXNSRGltUEhrUXkvMm1KNUR4WCs4UnVGOGIzbzh2allzT1h1TUxpMzZJ?=
+ =?utf-8?B?YUIwbHRWNkpXeWVVNmFpMVV4ajhrVll5dGRhZjZWc280WGNQQys4RUhSUVRr?=
+ =?utf-8?B?T2lRcFBnM2NOUEJIcDZQcnF2aG9IRGl2MTlGSStSMGxoMjhRODRHcWVsS3Bi?=
+ =?utf-8?B?aXZjelhGZzE5bVdtVFRoLzkvbDcxMUdXNnpYMVg1aXlyRXlnelpaZGVSMnJV?=
+ =?utf-8?B?aUFUQlFuV3EvZ3BWYWpRMi9sWnRDWG16TXg2cjdkbmQzSm94VXl6QmEvWHZp?=
+ =?utf-8?B?Tk1DNzBvS1Y3L0NIQ1JKdUF2L2dxK0R2T1VZWk1VcE13NjE1UGtSaEtwSENm?=
+ =?utf-8?B?WFQ4N1huR2tZbDNYb05jdlVDeFZOdEJWaldGbG55Mzh0a0g3OTgwcDI0SGJE?=
+ =?utf-8?B?bjJjMFBadU95TXg1YnlXSG1kcUVnUnFnZGVrL1pqbU9ZSytzTGgrb3ArREZX?=
+ =?utf-8?B?cmZmalRGWmk3dXdJblJ4RTBReUh1RDVKUG1MYnBFSzdaNnhNZ0JRc3ZRbGRh?=
+ =?utf-8?B?R0FneDlKak1hM1dRMFFLMmNtL1UxVDFOSFpPNTVkRXBPK0dPUXg5clRhcVU1?=
+ =?utf-8?B?Y0RRdnhkM2s4aC9mdFlsalJDbXlJMkxHSjFjTS9iamNWL1JqY3I5Z3dCM0Fm?=
+ =?utf-8?B?cWRKdTRXbWZpeFlwVzI4K3ZRZERzMnZsRVJUdXl4RnZ0dDRpYkpBUEp6WTUx?=
+ =?utf-8?B?SnJSVGNFTVBRWlVnUWNYNDRKNU1ubUlyTDBMcGE0eTBTYlV4U1Y5U0lZRW8x?=
+ =?utf-8?Q?9q66lXoSf7TOgb5/wb61BN9PD2PvuHsD?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:IA1PR11MB7175.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(8096899003); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(1800799024)(366016)(376014)(8096899003); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bWtkeUF1ZkN2VjdyOHJtaFREeHNXdFNNUms1Uy8xTjdxc1lQS1VTNlhzWTMx?=
- =?utf-8?B?eE1MMmRHdXdrQlBJZnVRdjBETjZEYzV3WUt4VWZ5d09ITlN6Z05IY2prQnVa?=
- =?utf-8?B?RUpjRHlCNTJjYlRsUXFKRTMyS2hkemZUWlV1STNTMVpZbVNDVktpRm1rWUdQ?=
- =?utf-8?B?NkFYakZmTFBnNGc4czh6Sy9RWGR4cHNNK0UyUXBSa3ovRXIvUnZobWFnMDdX?=
- =?utf-8?B?UjhqSzl4ZEVBS01NcUJ5TmZXYlI2QWx5Q3IwYWhnbzA5bTVLemlySXFTZFNY?=
- =?utf-8?B?alIrZjd6SHZoSFhvaTQvVXMxVWtId2JtaG5Lb0pRM3I4dzVVMlBaV0xweTFm?=
- =?utf-8?B?SnZTcGN2OFpqUFdvdDNLMVZLQ2t4VkE5cUhMY0JDTEhrVjBvdmtkV2xISlhm?=
- =?utf-8?B?SGw2b2RWa2x2S2NkbVhsdG5wZnFpL2dlTlBacm9UbnpyNjBZd0tFRnNqTi92?=
- =?utf-8?B?T1VYYzlrS0g0K0tlbkJUNXBxWExlcS9vNE5FU3VaK0Q0RG8yRFFPVFBzUGo3?=
- =?utf-8?B?NGJBcGdrbi9jNGlyQVNRRmp0V3hISEhXTmZUNmlYV3hnVzZUMWhQekpuWkJH?=
- =?utf-8?B?YldjYU5JV1VwMFpmT3pCNDA0NjRoUGhYeXFsc3UrU1JGbGg5Q1RPSVo4cVV6?=
- =?utf-8?B?TnNxeElaZ05Rc2Z0em96UEJycE80eXJiMENzSVpWWlFKeGpGVGlEZXlUS3Bs?=
- =?utf-8?B?VUpjODZVeWhMNEsrc0hNaE9oYjl4bkxtZzBjNC9Sc2tjZnBVVnI3a0lXQTJW?=
- =?utf-8?B?blJ3UE4rYVNVQ2VWN2VubXZ4dnZzdXoxQi9ocURRbHBkSy9UaUNkb1plVmsx?=
- =?utf-8?B?b3RWK05hRnlCeFA3ZTd4dytxUWptRytmN2lJaDc5dWV4b3hiVTNsTkdHdnQv?=
- =?utf-8?B?YUdtNjlEM1p1TDQ1S2k5RVlYcTd3NUVMYVQ0dHNlSFF0U0FPU24wSDhvY1VH?=
- =?utf-8?B?KzVJMjgxZUQwWmRQZ3lFd0ZDRnNMb3VYL08xcW0vRkw2aUU1RU5xa1plbW83?=
- =?utf-8?B?em5QSVh6dk0zWHJKcjJFVjc4NExiMUVnemp1SS8wOFYrcVlaenNIRjhHWmRZ?=
- =?utf-8?B?MXBYQUoxVW1EZGlZZnRBMTE1L1lnQWJUYzgzSFhadzVkK3B2NUpKcW9hMThp?=
- =?utf-8?B?Y3RSRVZXK0NyZEJGL1o4NU1iblBQVFFUVWwxYTZvS2NFUTdQTmhabEx6dWZB?=
- =?utf-8?B?UkJ5L0RmVk9zRFVzUFVCc1VkTkFuaTd2MHZ3OFpuY3FnL1cyYVIzcUcwNy9h?=
- =?utf-8?B?QUdqdGlGcHJTYldtTWptQU9vY2FRYzBjWjQxUlpuMmZIRlczQ3Y3cTRWRDhQ?=
- =?utf-8?B?K2tyNmxzYnhQNnZuTmRzOEhnSXhkYmxzVzFoalF6S1NsZ2R0ZDUvckFXZE1Q?=
- =?utf-8?B?alhmWG1SU3J0NWh1by9hRzNRMjhZNlVwTUdBRE04Wk0wWXlJMnQvcUxkR3B1?=
- =?utf-8?B?L0RRSHc4OW5RdndTRVpZT2Z3MGlYR2pDVHVpOHRkMzF0MUd1anQvb1ZRNTFD?=
- =?utf-8?B?MHhWWllrOUZ2WFRkdy94djRJU2YvcW5abW5uQVZZbEdwbXNyZkVkbW5TRlp1?=
- =?utf-8?B?NU5RYm4zWnRjdlpleGtmeWhFS3VyRGtOaWtZcnJxUVE3Y1RxckxQV1VXMmR0?=
- =?utf-8?B?KzRZQW84TWgzbFpLbGhJeWpFcE0yYSs1cEhzbVJUNWRGbGEzZGc0cS9ydjll?=
- =?utf-8?B?b1BDMzRqanhpT0hQVVUrYjFEYVhLdDJBQXJwTHl4MEJJWnBEamZQbFpmZVBG?=
- =?utf-8?B?aHRWaHpHZ01BTVBBdFdNd2RWZmpudERZTnZBUG1MN2Fmam1wZjFlQ1BtYzha?=
- =?utf-8?B?b0k3cWV4Vjh2UUhKbll2SnllNVFjSGtJZTNrRGJLdzhBdjhubDl6Um5ZWThP?=
- =?utf-8?B?YmhrRmU3RVI3WVdvcDJ2ZGFaSjlWVHEyYVhrcnVlYzdySzdRUE1lRW1SNWc3?=
- =?utf-8?B?U1lpNFpBaWp6cUhXUUpiOXIrZ05MeHF2K3diS0N0aUtkY3JITUVGL0RvSGhv?=
- =?utf-8?B?OFlEemd1ekMvWEpQWFJiSWg2Tys4MTMwVG9BTlJycmZmUitQUkZYR3FsTDla?=
- =?utf-8?B?Q0VMMzVvL2dwREZucVhYNEhMUWdhWFIxaVJxRThBSTVCVTA5WUQ2TWVCZUow?=
- =?utf-8?B?NHZxL3pXSHp1QmltNzJ0dVl6VHB3RWdkQmxxUlpuWWxTTHd0RVY1d0hsOW42?=
- =?utf-8?B?KzRObXlOR0JpRUU0SnhhUTd1ZHNXMGs2MDU1VVFhUkpjS3RzR0VaWnp2bi9H?=
- =?utf-8?B?a3djSGNKa1A5RjJ4Z1puUkNVcDd1WnU3aTYrYkxkME9LNXFkbmpoSTlFWXFv?=
- =?utf-8?B?TVVnVUJ6aFUrNDZRdEpET3NJS0t0cFU1UzVtdEp1UDNmVDA1R1M4QTdydzVr?=
- =?utf-8?Q?VeBoutzpFr2hIKk/XBH1w4reBekh1BqF3Wohw8/WhvWfA?=
-X-MS-Exchange-AntiSpam-MessageData-1: zmLFufHIrjslrg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: f2046c66-dcb1-4a04-e5da-08de4d235a2b
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NnZlTTRjQWdkbHNWUXBQZURibXE0N3hwenlEQURmQ3ZCVll5eHdDY0lTNU00?=
+ =?utf-8?B?RldnQytUQU50a3QyeUN4c1VDNklONXR3dkRCRzd2L1FvVmpITy90TGJjK01j?=
+ =?utf-8?B?Q0xYaHZVNGYzSmt6RldmRnNwaE11bytGYUtRVHFHOVpEeDY4NFVVbUFBWXZk?=
+ =?utf-8?B?WXlQUHVzbzVlcklzTUJRTFhrMWdYMll4eVFBT0dMQTFTUm9mUHNnd28xQ05C?=
+ =?utf-8?B?djA1dTZxKzJKdzJ0ZzhtRXBkQUZpenJuRU84ckJGaFZHRHVEMTl1K0VXQTcy?=
+ =?utf-8?B?K1hLcjc3R3pDWkVZdW1UenFUVWdBYzhFVzN4Zjh1TXAzekd5KzF2ZWxSUkNa?=
+ =?utf-8?B?L0RQUFBTL3FCcm1XOVE2dDF3d3VTMTlDaldmd3AwbXZQSlJ5bGI0dVh4c1FW?=
+ =?utf-8?B?dWpuVzNUdDdDZEQ5NmhMaHh1NGRSQXlxVHhSa3NRQUlveGlock40UVFnem15?=
+ =?utf-8?B?a2prd3Y0bndjdDhsMm5nK3JIT0dXUnhuWnVqZFBJeFpIcmdkbFlvTGFsQTUx?=
+ =?utf-8?B?cnN0dUxsRjQ2WlBvc09qa3hTRTdoaW8ydU9zT1psbzFvSlVZSEpsZVpMeDNI?=
+ =?utf-8?B?MlV0aTNJUU8xWm5lOHdQZ2Vvc0plRkFKZ1VBMkNLREo3eXVmV0JENlNtUnds?=
+ =?utf-8?B?VElPYWFOQVVKczh4OUY4MlQ4cTluS3RqZEVoZnp0bWhsRTRiUlV3YWhzQVJj?=
+ =?utf-8?B?MXhsTTNTT0J0dWQ5ZDYzTW8waXNRZDc2WTROUHExQmpwQWZsbXJ3VjYxUEt0?=
+ =?utf-8?B?L1lwd1ZIRTlVK2x6ejVJVzRMWXppR1h0MnMwUGFYNUNOa2VxNDFFTEtFSzNJ?=
+ =?utf-8?B?am1YejZUVHNwcGxUWTBETmFEaDcwbGlLeFhZWnJBaUVJNVI3TW1McUtodVBW?=
+ =?utf-8?B?Yk83bWh4eFNOUEFsdmtISzc3Nm9MRWNxdThMMGlGbzJ5RldOOGNLdGtwZE9s?=
+ =?utf-8?B?R3RTRUxFNTAxeW5Bb1V3eXF2UW8xSWkxelh2SFhmd0xFdE43M0dKSzRuYkhN?=
+ =?utf-8?B?WU1qbWkrTHoxMHZTZ2dvMFoxYkNKbEY5ZVFoOWFZR1Fsby9yb2RXSU0wampX?=
+ =?utf-8?B?NW9ldkRyYngxMWFXaXdQTFdxZFJzNTZidDFlVkxYc0NITkZTQllmYm56VTlj?=
+ =?utf-8?B?NzJDY0lQaHNJNmxmWXF1Zk41VTFTcTJuL0JYMlJod2JqMHYycHl6bVlZbkRr?=
+ =?utf-8?B?L1RrdVlNRTErK1NwQ1lhclJYeGdXamdML0d1Yk1Ua2wzNzN5T0pqZXIwL0NL?=
+ =?utf-8?B?ckxsY25KTXhrcTJGL1Z0aDBpMHEzRWwveUVXTFo2ZUhXOW5TWStia2xSbWdk?=
+ =?utf-8?B?MjRUb09rd21NVW0wa1FCeGJzZzNiZEw0WDVIWStUMlFOQStTVDIxYXZWNG1K?=
+ =?utf-8?B?SEtqSHJKempINVNPZXhtNnNFM1l5VWpPM0pEMS9IaU5Vc2tGNENYQk9XVitJ?=
+ =?utf-8?B?azRxQW1vMy80ejRpTG5SNG9abU9hS0Yzb3h3dDQzblZUb29LeTB1dFJOOXRP?=
+ =?utf-8?B?Q3NSZlpNUW5Xb3JwNVEvUjcrNnpxSXFWVjdySk0wNTBGRzRkYUt3Ri8zVEI5?=
+ =?utf-8?B?cGhmbG83V2hNMGVKZjlXZTRZSWkxRm5ncHYxeG1JQzE2NHc5ZmNVNG9VMk9y?=
+ =?utf-8?B?MkI1dUw3T3ZnbENUc0RJMGJnYTJIcjY3VnJxVklQckpUcVVrbHFTaTVyditw?=
+ =?utf-8?B?eGtHcSt4a2dZRU42MVNSWG1QeTRTQ0hZYVNOZTBad1dSNS94bHlMczl4NnZZ?=
+ =?utf-8?B?cTlWRnhsaVA2WWszak9vUUxKMWk0eWh5SzZRUUF1ZWZldGNrRmxWbkhYaEo0?=
+ =?utf-8?B?WitObDJwRURKNE1UdWs5cUNWY3MwTStZMUcrbUlObTJNTW0yeFJDMk9IOERC?=
+ =?utf-8?B?cGtuTlRzT0pLNFFlUjNIUUFNSEpXWk1NRitjaU1PTlQ5UFVnYkFEMW85TEdp?=
+ =?utf-8?B?RVpLUnNiWmh5OGFwb0hFU2VCWkkyMVdSWUhDODRGTzdpT2J6MVNZVTZOUUI3?=
+ =?utf-8?B?aXJSNUhuZzVSNlFPSnFISjljMlg4eGVicm4yQ3dzZFduVE9lMEhyRFFBM3NC?=
+ =?utf-8?B?N3EyeG1MYTBiT3dJU3JyVWRMckkwWEpoMkFtVXYzemhJZ3JzYmVyVnVZU3hJ?=
+ =?utf-8?B?Nk5vZkw0VldLU1ZCWmI3K0tjS2htODE1QTVubFM2NFEzZDA4WVhRMVFqc0lr?=
+ =?utf-8?B?VW5JLytsWVpsZHJLK05TOW9HMFJRUHFhNkI5aTZwUWpHdVo4U2tGUCtWbDVG?=
+ =?utf-8?B?UHBGMFNQY3h5Z2N3aWdLTGZ6WSs2M05QY1BTM3NPeFJlU0RBSmUvNUxmcVNl?=
+ =?utf-8?B?eW1FYXZndnVBVExpRUxmdS8yeUtjbTRqMERYWGxZeStWYlArUE5SZkwrWUdK?=
+ =?utf-8?Q?hu7K5XNBnWn6XQzVuh2+oa4YIoz/P26+uEfsMhCrRg8U7?=
+X-MS-Exchange-AntiSpam-MessageData-1: pkp5ykYexkpRYQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: c3807aeb-6c07-4935-e78d-08de4d250c91
 X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB7175.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2026 12:58:56.7044 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2026 13:11:05.7445 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: U6in/z8lthD0XFj9r2gvgOv0Pi91kqoN/wdHw5bd3LFyjJ9FjeKuYrQvptR//zfspndynfN/56yCepp5gGl0M8FVFdnZ4F7Eii0fM3Rb/R/XN231MA8vBc+oTwxBioA5
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7168
+X-MS-Exchange-CrossTenant-UserPrincipalName: Or8lwn5IDJXxkZCOODrgpHWAmzJMpqkEpvYYD6DVKNLc9MFle+bVQ5AwZp66kpp/z4ab8IHBiTBkG5VHQ4zF0M3r8eHq3Q1Jp1y8u+/qyiVSwGeWNO8RFkSJAF/4giz4
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPF68472F2DC
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -204,252 +204,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---------------Wj000MUebBoz1sIYV2D73iYE
+--------------f00QsOYM386SzC4YhpJBOrZ3
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-
-On 05-01-2026 18:25, Jani Nikula wrote:
+On 05-01-2026 18:32, Jani Nikula wrote:
 > On Tue, 09 Dec 2025, Dibin Moolakadan Subrahmanian<dibin.moolakadan.subrahmanian@intel.com> wrote:
->> Introduce dc3co_allow in struct intel_display and determine DC3CO
->> eligibility during atomic_check(). DC3CO is permitted only when:
->>
->>    - the active pipe drives eDP,
->>    - the pipe is single-pipe (no joiner),
->>    - the pipe/port combination supports DC3CO.
->>
->> When eligible, intel_atomic_commit_tail() programs the target DC state
->> as DC_STATE_EN_UPTO_DC3CO; otherwise we fall back to DC6. Update the
->> PSR vblank enable/disable path to follow the same policy.
->>
->> Also extend get_allowed_dc_mask() to expose DC3CO support on
->> DISPLAY_VER >= 35.
->>
+>> if DC3CO allowed and psr2 is enabled, update dc3co_source
+> Yeah, I can read the code, but what does it mean? Why?
+
+I will add more details.
+The intent is to record PSR2 as the source enabling DC3CO.
+DC3CO can be entered when either PSR2 or LOBF is enabled, and
+dc3co_source is used to track which feature triggered it.
+
 >> Signed-off-by: Dibin Moolakadan Subrahmanian<dibin.moolakadan.subrahmanian@intel.com>
 >> ---
->>   drivers/gpu/drm/i915/display/intel_display.c  | 75 +++++++++++++++++++
->>   drivers/gpu/drm/i915/display/intel_display.h  |  1 +
->>   .../gpu/drm/i915/display/intel_display_core.h |  3 +
->>   .../drm/i915/display/intel_display_power.c    |  4 +-
->>   drivers/gpu/drm/i915/display/intel_psr.c      | 13 ++--
->>   5 files changed, 87 insertions(+), 9 deletions(-)
+>>   drivers/gpu/drm/i915/display/intel_psr.c | 6 ++++++
+>>   1 file changed, 6 insertions(+)
 >>
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
->> index 9c6d3ecdb589..205f55a87736 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> @@ -6295,6 +6295,75 @@ static int intel_joiner_add_affected_crtcs(struct intel_atomic_state *state)
->>   	return 0;
->>   }
->>   
->> +bool intel_dc3co_allowed(struct intel_display *display)
->> +{
->> +	return display->power.dc3co_allow;
-> Very few files should touch display->power, and this is not one of them.
->
-> 'git grep "display->power" -- drivers/gpu/drm/i915/display'
-
-Yes, git grep shows few files , I will try to move all dc3co functions to
-drivers/gpu/drm/i915/display/intel_display_power.c.
-
->
-> When is it okay to call this function and expect to get sane results?
-
-display->power.dc3co_allow is only updated in intel_dc3co_allow_check() which is called from
-intel_atomic_commit_tail().intel_dc3co_allowed() only intended to be called from intel_post_plane_update()
-path(ALPM/PSR), which executes as part of intel_atomic_commit_tail().
-
->
->> +}
->> +
->> +static bool intel_dc3co_port_pipe_compatible(struct intel_dp *intel_dp,
->> +					     const struct intel_crtc_state *crtc_state)
->> +{
->> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->> +	enum pipe pipe = to_intel_crtc(crtc_state->uapi.crtc)->pipe;
->> +	enum port port = dig_port->base.port;
->> +	int num_pipes = intel_crtc_num_joined_pipes(crtc_state);
->> +
->> +	if (num_pipes != 1)
->> +		return false;
->> +
->> +	if (!(pipe <= PIPE_B && port <= PORT_B))
->> +		return false;
->> +
->> +	return true;
-> That's a really complicated way to say
->
-> 	return num_pipes == 1 && pipe <= PIPEB && port <= PORT_B;
-
-I will update this.
-
->
->> +}
->> +
->> +static void intel_dc3co_allow_check(struct intel_atomic_state *state)
-> What does "check" mean here? Or in *any* function?
->
-> Check sounds like something that's a pure function that doesn't change
-> anything... but this does.
-
-I will split this function to two , one for check and one for initialization
-
->> +{
->> +	struct intel_display *display = to_intel_display(state);
->> +	struct intel_crtc *crtc;
->> +	struct intel_crtc_state *new_crtc_state;
->> +	struct intel_encoder *encoder;
->> +	struct intel_dp *intel_dp;
->> +	int i;
->> +	struct i915_power_domains *power_domains = &display->power.domains;
->> +	bool any_active = false;
->> +	bool allow = true;
->> +
->> +	display->power.dc3co_allow = 0;
-> That's now cached state with no stated rules on when it's valid and when
-> it's not.
->
->> +
->> +	if ((power_domains->allowed_dc_mask & DC_STATE_EN_UPTO_DC3CO) != DC_STATE_EN_UPTO_DC3CO)
->> +		return;
->> +
->> +	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
->> +		if (!new_crtc_state->hw.active)
->> +			continue;
->> +
->> +		any_active = true;
->> +
->> +		for_each_intel_encoder_mask(display->drm, encoder,
->> +					    new_crtc_state->uapi.encoder_mask) {
->> +			/* If any active pipe not eDP disable*/
-> What?
-
-I will correct comment /* Disallow DC3CO if any active pipe is not eDP */
-
->
->> +			if (!intel_encoder_is_dp(encoder) ||
->> +			    encoder->type != INTEL_OUTPUT_EDP) {
->> +				allow = false;
->> +				goto out;
->> +			}
->> +			intel_dp = enc_to_intel_dp(encoder);
->> +			/* Port, joiner, pipe placement checks */
-> Is that a helpful comment?
->
->> +			if (!intel_dc3co_port_pipe_compatible(intel_dp, new_crtc_state)) {
->> +				allow = false;
->> +				goto out;
->> +			}
->> +		}
->> +	}
->> +
->> +	if (!any_active)
->> +		allow = false;
->> +
->> +out:
->> +	display->power.dc3co_allow = allow;
->> +}
->> +
-> intel_display.[ch] is not the dumping ground for random new code. The
-> goal is to *reduce* the size of it, not increase.
-
-This function needs encoder,port and pipe information, which is why I added
-it in intel_display.c.However,I agree it is updating dc3co_allow . I will check if
-it can be moved to intel_display_power.c.
-
->
->>   static int intel_atomic_check_config(struct intel_atomic_state *state,
->>   				     struct intel_link_bw_limits *limits,
->>   				     enum pipe *failed_pipe)
->> @@ -6565,6 +6634,8 @@ int intel_atomic_check(struct drm_device *dev,
->>   	if (ret)
->>   		goto fail;
->>   
->> +	intel_dc3co_allow_check(state);
->> +
->>   	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
->>   					    new_crtc_state, i) {
->>   		intel_color_assert_luts(new_crtc_state);
->> @@ -7601,6 +7672,10 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
->>   		 */
->>   		intel_uncore_arm_unclaimed_mmio_detection(&dev_priv->uncore);
->>   	}
->> +	if (intel_dc3co_allowed(display))
->> +		intel_display_power_set_target_dc_state(display, DC_STATE_EN_UPTO_DC3CO);
->> +	else
->> +		intel_display_power_set_target_dc_state(display, DC_STATE_EN_UPTO_DC6);
->>   	/*
->>   	 * Delay re-enabling DC states by 17 ms to avoid the off->on->off
->>   	 * toggling overhead at and above 60 FPS.
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
->> index f8e6e4e82722..97987f082560 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display.h
->> @@ -560,5 +560,6 @@ bool assert_port_valid(struct intel_display *display, enum port port);
->>   
->>   bool intel_scanout_needs_vtd_wa(struct intel_display *display);
->>   int intel_crtc_num_joined_pipes(const struct intel_crtc_state *crtc_state);
->> +bool intel_dc3co_allowed(struct intel_display *display);
->>   
->>   #endif
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
->> index d708d322aa85..fa567c95029c 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
->> @@ -538,6 +538,9 @@ struct intel_display {
->>   
->>   		/* perform PHY state sanity checks? */
->>   		bool chv_phy_assert[2];
->> +
->> +		/* mark dc3co entry is allowed*/
-> 		                              ^- space missing
-will add space.
->
->> +		bool dc3co_allow;
-> Still unclear when this is valid.
->
->>   	} power;
->>   
->>   	struct {
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
->> index 0961b194554c..e99552f18756 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
->> @@ -956,7 +956,9 @@ static u32 get_allowed_dc_mask(struct intel_display *display, int enable_dc)
->>   	if (!HAS_DISPLAY(display))
->>   		return 0;
->>   
->> -	if (DISPLAY_VER(display) >= 20)
->> +	if (DISPLAY_VER(display) >= 35)
->> +		max_dc = 3;
->> +	else if (DISPLAY_VER(display) >= 20)
->>   		max_dc = 2;
->>   	else if (display->platform.dg2)
->>   		max_dc = 1;
 >> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
->> index 753359069044..9c616f449ad6 100644
+>> index 9c616f449ad6..d4c5dc6dcc82 100644
 >> --- a/drivers/gpu/drm/i915/display/intel_psr.c
 >> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
->> @@ -3903,14 +3903,11 @@ void intel_psr_notify_vblank_enable_disable(struct intel_display *display,
->>   		return;
->>   	}
+>> @@ -3007,6 +3007,12 @@ void intel_psr_post_plane_update(struct intel_atomic_state *state,
+>>   		if (crtc_state->crc_enabled && psr->enabled)
+>>   			intel_psr_force_update(intel_dp);
 >>   
->> -	/*
->> -	 * NOTE: intel_display_power_set_target_dc_state is used
->> -	 * only by PSR * code for DC3CO handling. DC3CO target
->> -	 * state is currently disabled in * PSR code. If DC3CO
->> -	 * is taken into use we need take that into account here
->> -	 * as well.
->> -	 */
->> -	intel_display_power_set_target_dc_state(display, enable ? DC_STATE_DISABLE :
->> +	if (intel_dc3co_allowed(display))
->> +		intel_display_power_set_target_dc_state(display, enable ? DC_STATE_DISABLE :
->> +						DC_STATE_EN_UPTO_DC3CO);
->> +	else
->> +		intel_display_power_set_target_dc_state(display, enable ? DC_STATE_DISABLE :
->>   						DC_STATE_EN_UPTO_DC6);
->>   }
---------------Wj000MUebBoz1sIYV2D73iYE
+>> +		if (psr->enabled &&
+>> +		    psr->sel_update_enabled &&
+>> +		    intel_dc3co_allowed(display)) {
+>> +			intel_dc3co_source_set(display, DC3CO_SOURCE_PSR2);
+>> +		}
+>> +
+>>   		/*
+>>   		 * Clear possible busy bits in case we have
+>>   		 * invalidate -> flip -> flush sequence.
+--------------f00QsOYM386SzC4YhpJBOrZ3
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
@@ -457,309 +248,51 @@ Content-Transfer-Encoding: 7bit
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   </head>
   <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 05-01-2026 18:25, Jani Nikula wrote:<br>
+    <pre>
+</pre>
+    <div class="moz-cite-prefix">On 05-01-2026 18:32, Jani Nikula wrote:<br>
     </div>
-    <blockquote type="cite" cite="mid:e6ee14b445df7979d8bd90ee0f45ab7505d1e92e@intel.com">
+    <blockquote type="cite" cite="mid:6a34a806cbb5c8a2ebe2f6c541cf8b3b6d0bac95@intel.com">
       <pre wrap="" class="moz-quote-pre">On Tue, 09 Dec 2025, Dibin Moolakadan Subrahmanian <a class="moz-txt-link-rfc2396E" href="mailto:dibin.moolakadan.subrahmanian@intel.com">&lt;dibin.moolakadan.subrahmanian@intel.com&gt;</a> wrote:
 </pre>
       <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">Introduce dc3co_allow in struct intel_display and determine DC3CO
-eligibility during atomic_check(). DC3CO is permitted only when:
-
-  - the active pipe drives eDP,
-  - the pipe is single-pipe (no joiner),
-  - the pipe/port combination supports DC3CO.
-
-When eligible, intel_atomic_commit_tail() programs the target DC state
-as DC_STATE_EN_UPTO_DC3CO; otherwise we fall back to DC6. Update the
-PSR vblank enable/disable path to follow the same policy.
-
-Also extend get_allowed_dc_mask() to expose DC3CO support on
-DISPLAY_VER &gt;= 35.
-
+        <pre wrap="" class="moz-quote-pre">if DC3CO allowed and psr2 is enabled, update dc3co_source
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+Yeah, I can read the code, but what does it mean? Why?</pre>
+    </blockquote>
+    <pre>I will add more details.
+The intent is to record PSR2 as the source enabling DC3CO.
+DC3CO can be entered when either PSR2 or LOBF is enabled, and
+dc3co_source is used to track which feature triggered it.</pre>
+    <blockquote type="cite" cite="mid:6a34a806cbb5c8a2ebe2f6c541cf8b3b6d0bac95@intel.com">
+      <pre wrap="" class="moz-quote-pre">
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">
 Signed-off-by: Dibin Moolakadan Subrahmanian <a class="moz-txt-link-rfc2396E" href="mailto:dibin.moolakadan.subrahmanian@intel.com">&lt;dibin.moolakadan.subrahmanian@intel.com&gt;</a>
 ---
- drivers/gpu/drm/i915/display/intel_display.c  | 75 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_display.h  |  1 +
- .../gpu/drm/i915/display/intel_display_core.h |  3 +
- .../drm/i915/display/intel_display_power.c    |  4 +-
- drivers/gpu/drm/i915/display/intel_psr.c      | 13 ++--
- 5 files changed, 87 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 9c6d3ecdb589..205f55a87736 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -6295,6 +6295,75 @@ static int intel_joiner_add_affected_crtcs(struct intel_atomic_state *state)
- 	return 0;
- }
- 
-+bool intel_dc3co_allowed(struct intel_display *display)
-+{
-+	return display-&gt;power.dc3co_allow;
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-Very few files should touch display-&gt;power, and this is not one of them.
-
-'git grep &quot;display-&gt;power&quot; -- drivers/gpu/drm/i915/display'</pre>
-    </blockquote>
-    <pre>Yes, git grep shows few files , I will try to move all dc3co functions to
-drivers/gpu/drm/i915/display/intel_display_power.c.</pre>
-    <blockquote type="cite" cite="mid:e6ee14b445df7979d8bd90ee0f45ab7505d1e92e@intel.com">
-      <pre wrap="" class="moz-quote-pre">
-
-When is it okay to call this function and expect to get sane results?</pre>
-    </blockquote>
-    <pre wrap="" class="moz-quote-pre">display-&gt;power.dc3co_allow is only updated in intel_dc3co_allow_check() which is called from
-intel_atomic_commit_tail().intel_dc3co_allowed() only intended to be called from intel_post_plane_update()
-path(ALPM/PSR), which executes as part of intel_atomic_commit_tail().</pre>
-    <blockquote type="cite" cite="mid:e6ee14b445df7979d8bd90ee0f45ab7505d1e92e@intel.com">
-      <pre wrap="" class="moz-quote-pre">
-
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">+}
-+
-+static bool intel_dc3co_port_pipe_compatible(struct intel_dp *intel_dp,
-+					     const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-+	enum pipe pipe = to_intel_crtc(crtc_state-&gt;uapi.crtc)-&gt;pipe;
-+	enum port port = dig_port-&gt;base.port;
-+	int num_pipes = intel_crtc_num_joined_pipes(crtc_state);
-+
-+	if (num_pipes != 1)
-+		return false;
-+
-+	if (!(pipe &lt;= PIPE_B &amp;&amp; port &lt;= PORT_B))
-+		return false;
-+
-+	return true;
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-That's a really complicated way to say
-
-	return num_pipes == 1 &amp;&amp; pipe &lt;= PIPEB &amp;&amp; port &lt;= PORT_B;</pre>
-    </blockquote>
-    <pre>I will update this.</pre>
-    <blockquote type="cite" cite="mid:e6ee14b445df7979d8bd90ee0f45ab7505d1e92e@intel.com">
-      <pre wrap="" class="moz-quote-pre">
-
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">+}
-+
-+static void intel_dc3co_allow_check(struct intel_atomic_state *state)
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-What does &quot;check&quot; mean here? Or in *any* function?
-
-Check sounds like something that's a pure function that doesn't change
-anything... but this does.
-</pre>
-    </blockquote>
-    <pre>I will split this function to two , one for check and one for initialization </pre>
-    <blockquote type="cite" cite="mid:e6ee14b445df7979d8bd90ee0f45ab7505d1e92e@intel.com">
-      <pre wrap="" class="moz-quote-pre">
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">+{
-+	struct intel_display *display = to_intel_display(state);
-+	struct intel_crtc *crtc;
-+	struct intel_crtc_state *new_crtc_state;
-+	struct intel_encoder *encoder;
-+	struct intel_dp *intel_dp;
-+	int i;
-+	struct i915_power_domains *power_domains = &amp;display-&gt;power.domains;
-+	bool any_active = false;
-+	bool allow = true;
-+
-+	display-&gt;power.dc3co_allow = 0;
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-That's now cached state with no stated rules on when it's valid and when
-it's not.
-
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">+
-+	if ((power_domains-&gt;allowed_dc_mask &amp; DC_STATE_EN_UPTO_DC3CO) != DC_STATE_EN_UPTO_DC3CO)
-+		return;
-+
-+	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
-+		if (!new_crtc_state-&gt;hw.active)
-+			continue;
-+
-+		any_active = true;
-+
-+		for_each_intel_encoder_mask(display-&gt;drm, encoder,
-+					    new_crtc_state-&gt;uapi.encoder_mask) {
-+			/* If any active pipe not eDP disable*/
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-What?</pre>
-    </blockquote>
-    <pre wrap="" class="moz-quote-pre">I will correct comment /* Disallow DC3CO if any active pipe is not eDP */</pre>
-    <blockquote type="cite" cite="mid:e6ee14b445df7979d8bd90ee0f45ab7505d1e92e@intel.com">
-      <pre wrap="" class="moz-quote-pre">
-
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">+			if (!intel_encoder_is_dp(encoder) ||
-+			    encoder-&gt;type != INTEL_OUTPUT_EDP) {
-+				allow = false;
-+				goto out;
-+			}
-+			intel_dp = enc_to_intel_dp(encoder);
-+			/* Port, joiner, pipe placement checks */
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-Is that a helpful comment?
-
-</pre>
-    </blockquote>
-    <blockquote type="cite" cite="mid:e6ee14b445df7979d8bd90ee0f45ab7505d1e92e@intel.com">
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">+			if (!intel_dc3co_port_pipe_compatible(intel_dp, new_crtc_state)) {
-+				allow = false;
-+				goto out;
-+			}
-+		}
-+	}
-+
-+	if (!any_active)
-+		allow = false;
-+
-+out:
-+	display-&gt;power.dc3co_allow = allow;
-+}
-+
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-intel_display.[ch] is not the dumping ground for random new code. The
-goal is to *reduce* the size of it, not increase.</pre>
-    </blockquote>
-    <pre>This function needs encoder,port and pipe information, which is why I added
-it in intel_display.c.However,I agree it is updating dc3co_allow . I will check if
-it can be moved to intel_display_power.c.</pre>
-    <blockquote type="cite" cite="mid:e6ee14b445df7979d8bd90ee0f45ab7505d1e92e@intel.com">
-      <pre wrap="" class="moz-quote-pre">
-
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre"> static int intel_atomic_check_config(struct intel_atomic_state *state,
- 				     struct intel_link_bw_limits *limits,
- 				     enum pipe *failed_pipe)
-@@ -6565,6 +6634,8 @@ int intel_atomic_check(struct drm_device *dev,
- 	if (ret)
- 		goto fail;
- 
-+	intel_dc3co_allow_check(state);
-+
- 	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
- 					    new_crtc_state, i) {
- 		intel_color_assert_luts(new_crtc_state);
-@@ -7601,6 +7672,10 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 		 */
- 		intel_uncore_arm_unclaimed_mmio_detection(&amp;dev_priv-&gt;uncore);
- 	}
-+	if (intel_dc3co_allowed(display))
-+		intel_display_power_set_target_dc_state(display, DC_STATE_EN_UPTO_DC3CO);
-+	else
-+		intel_display_power_set_target_dc_state(display, DC_STATE_EN_UPTO_DC6);
- 	/*
- 	 * Delay re-enabling DC states by 17 ms to avoid the off-&gt;on-&gt;off
- 	 * toggling overhead at and above 60 FPS.
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index f8e6e4e82722..97987f082560 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -560,5 +560,6 @@ bool assert_port_valid(struct intel_display *display, enum port port);
- 
- bool intel_scanout_needs_vtd_wa(struct intel_display *display);
- int intel_crtc_num_joined_pipes(const struct intel_crtc_state *crtc_state);
-+bool intel_dc3co_allowed(struct intel_display *display);
- 
- #endif
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index d708d322aa85..fa567c95029c 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -538,6 +538,9 @@ struct intel_display {
- 
- 		/* perform PHY state sanity checks? */
- 		bool chv_phy_assert[2];
-+
-+		/* mark dc3co entry is allowed*/
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-		                              ^- space missing</pre>
-    </blockquote>
-    will add space.
-    <blockquote type="cite" cite="mid:e6ee14b445df7979d8bd90ee0f45ab7505d1e92e@intel.com">
-      <pre wrap="" class="moz-quote-pre">
-
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">+		bool dc3co_allow;
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-Still unclear when this is valid.
-
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre"> 	} power;
- 
- 	struct {
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 0961b194554c..e99552f18756 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -956,7 +956,9 @@ static u32 get_allowed_dc_mask(struct intel_display *display, int enable_dc)
- 	if (!HAS_DISPLAY(display))
- 		return 0;
- 
--	if (DISPLAY_VER(display) &gt;= 20)
-+	if (DISPLAY_VER(display) &gt;= 35)
-+		max_dc = 3;
-+	else if (DISPLAY_VER(display) &gt;= 20)
- 		max_dc = 2;
- 	else if (display-&gt;platform.dg2)
- 		max_dc = 1;
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 753359069044..9c616f449ad6 100644
+index 9c616f449ad6..d4c5dc6dcc82 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -3903,14 +3903,11 @@ void intel_psr_notify_vblank_enable_disable(struct intel_display *display,
- 		return;
- 	}
+@@ -3007,6 +3007,12 @@ void intel_psr_post_plane_update(struct intel_atomic_state *state,
+ 		if (crtc_state-&gt;crc_enabled &amp;&amp; psr-&gt;enabled)
+ 			intel_psr_force_update(intel_dp);
  
--	/*
--	 * NOTE: intel_display_power_set_target_dc_state is used
--	 * only by PSR * code for DC3CO handling. DC3CO target
--	 * state is currently disabled in * PSR code. If DC3CO
--	 * is taken into use we need take that into account here
--	 * as well.
--	 */
--	intel_display_power_set_target_dc_state(display, enable ? DC_STATE_DISABLE :
-+	if (intel_dc3co_allowed(display))
-+		intel_display_power_set_target_dc_state(display, enable ? DC_STATE_DISABLE :
-+						DC_STATE_EN_UPTO_DC3CO);
-+	else
-+		intel_display_power_set_target_dc_state(display, enable ? DC_STATE_DISABLE :
- 						DC_STATE_EN_UPTO_DC6);
- }
++		if (psr-&gt;enabled &amp;&amp;
++		    psr-&gt;sel_update_enabled &amp;&amp;
++		    intel_dc3co_allowed(display)) {
++			intel_dc3co_source_set(display, DC3CO_SOURCE_PSR2);
++		}
++
+ 		/*
+ 		 * Clear possible busy bits in case we have
+ 		 * invalidate -&gt; flip -&gt; flush sequence.
 </pre>
       </blockquote>
       <pre wrap="" class="moz-quote-pre">
@@ -768,4 +301,4 @@ index 753359069044..9c616f449ad6 100644
   </body>
 </html>
 
---------------Wj000MUebBoz1sIYV2D73iYE--
+--------------f00QsOYM386SzC4YhpJBOrZ3--
