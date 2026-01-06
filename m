@@ -2,63 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE0FECFB1C6
-	for <lists+intel-gfx@lfdr.de>; Tue, 06 Jan 2026 22:41:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F6C3CFB508
+	for <lists+intel-gfx@lfdr.de>; Wed, 07 Jan 2026 00:03:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02D3410E03B;
-	Tue,  6 Jan 2026 21:41:12 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NjSAWSDf";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id B439B10E19A;
+	Tue,  6 Jan 2026 23:02:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CFE710E004;
- Tue,  6 Jan 2026 21:41:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767735672; x=1799271672;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:to:cc;
- bh=iW7jkDSE74R5Cm/lMtPSGzfImnUqKwXjqDHbGcCoCRY=;
- b=NjSAWSDfZ1SjsJqIhNsIiFQltpIvJPwAYZSDLe9pU+MWbAw1le0U8j/A
- YqM+FT/lXCt0dE/Ay8+6tZsUX4jZQrA9Pw9oHsK2cgXoLsNxACb1JuSSU
- /ShmL2mb/hUv0ykRNDnSFlZYLYv+xpLF6r3pVa+flFhTVTXkp+EFDk1VX
- nOqeW2XZlprBgG+9i0Or5Pr1JRjGvcGBQfyN6OIKjJwkC02VX5U+P+rFE
- /cRabPsq0LU021R5c1Ce6MvCF55PAWoRA1W4HQievT1fj0qWmG5kdUNSM
- q/IFIbJb4thrV86Y9ArVy8E6OYbGuZk83mzpAy/uEiZcNjsAp4g4syzjm g==;
-X-CSE-ConnectionGUID: ibC1BizZTeiUcdr3rQmx3w==
-X-CSE-MsgGUID: QiT2+qbrTnqb4KEOO+2/vQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11663"; a="68845996"
-X-IronPort-AV: E=Sophos;i="6.21,206,1763452800"; d="scan'208";a="68845996"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2026 13:40:58 -0800
-X-CSE-ConnectionGUID: oYHiQfSBSLa/Y7XFBEvZqg==
-X-CSE-MsgGUID: ILkFE8JhTa6R1Q9ADT7KZg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,206,1763452800"; d="scan'208";a="207814990"
-Received: from khuang2-desk.gar.corp.intel.com (HELO [192.168.1.16])
- ([10.124.222.76])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2026 13:40:56 -0800
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Tue, 06 Jan 2026 18:40:21 -0300
-Subject: [PATCH v2] drm/i915/cdclk: Incorporate Xe3_LPD changes for CD2X
- divider
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D41F10E19A;
+ Tue,  6 Jan 2026 23:02:57 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7239696353057023675=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260106-xe3_lpd-no-cd2x-divider-v2-1-06e5cbc9dabb@intel.com>
-X-B4-Tracking: v=1; b=H4sIAESBXWkC/4WNWwrCMBBFt1Ly7UhnfDV+uQ8pEpuJHahJSUqol
- O7d2A34eQ7ccxeVOAonda0WFTlLkuAL0K5SXW/8i0FsYUU1nZCIYObDYxgt+ACdpRmsZLEc4dg
- 47Wp9IacbVdZjZCfzVr63hXtJU4if7Sjjz/5vZgQEfXbIiPQ0xtzETzzsu/BW7bquX4eGqmK+A
- AAA
-X-Change-ID: 20251222-xe3_lpd-no-cd2x-divider-48f9f0972f98
-To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>, 
- Gustavo Sousa <gustavo.sousa@intel.com>
-X-Mailer: b4 0.15-dev
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/cdclk=3A_Incorpo?=
+ =?utf-8?q?rate_Xe3=5FLPD_changes_for_CD2X_divider_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 06 Jan 2026 23:02:57 -0000
+Message-ID: <176774057712.130820.3630985741480131010@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260106-xe3_lpd-no-cd2x-divider-v2-1-06e5cbc9dabb@intel.com>
+In-Reply-To: <20260106-xe3_lpd-no-cd2x-divider-v2-1-06e5cbc9dabb@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,108 +37,190 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Xe3_LPD, there is no instruction to program the CD2X divider anymore
-and the hardware is expected to always use the default value of 0b00,
-meaning "divide by 1".
+--===============7239696353057023675==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-With that, the CDCLK_CTL register was changed so that:
+== Series Details ==
 
-  (1) The field "CD2X Divider Select" became a debug-only field.
-      Because we are programming CDCLK_CTL with a direct write instead
-      of read-modify-write operation, we still need to program "CD2X
-      Divider Select" in order to keep the field from deviating from its
-      default value.  Let's, however, throw a warning if we encounter a
-      CDCLK value that would result in an unexpected value for that
-      field.
+Series: drm/i915/cdclk: Incorporate Xe3_LPD changes for CD2X divider (rev2)
+URL   : https://patchwork.freedesktop.org/series/159399/
+State : success
 
-  (2) The field "CD2X Pipe Select" has been removed. In fact, some
-      debugging in a PTL machine showed that such field comes back as
-      zero after writing a non-zero value to it.  As such, do not
-      program it starting with Xe3_LPD.
+== Summary ==
 
-v2:
-  - Add missing "val |= " when calling bxt_cdclk_cd2x_pipe().
-    (Dnyaneshwar)
+CI Bug Log - changes from CI_DRM_17773 -> Patchwork_159399v2
+====================================================
 
-Bspec: 68864, 69090
-Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
----
-Changes in v2:
-- EDITME: describe what is new in this series revision.
-- EDITME: use bulletpoints and terse descriptions.
-- Link to v1: https://patch.msgid.link/20251222-xe3_lpd-no-cd2x-divider-v1-1-96f1e112baaa@intel.com
----
- drivers/gpu/drm/i915/display/intel_cdclk.c | 29 +++++++++++++++++++++++------
- 1 file changed, 23 insertions(+), 6 deletions(-)
+Summary
+-------
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 7443e5285942..9bfbfbf34dc0 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -1948,6 +1948,8 @@ static u32 bxt_cdclk_cd2x_pipe(struct intel_display *display, enum pipe pipe)
- static u32 bxt_cdclk_cd2x_div_sel(struct intel_display *display,
- 				  int cdclk, int vco, u16 waveform)
- {
-+	u32 ret;
-+
- 	/* cdclk = vco / 2 / div{1,1.5,2,4} */
- 	switch (cdclk_divider(cdclk, vco, waveform)) {
- 	default:
-@@ -1956,14 +1958,27 @@ static u32 bxt_cdclk_cd2x_div_sel(struct intel_display *display,
- 		drm_WARN_ON(display->drm, vco != 0);
- 		fallthrough;
- 	case 2:
--		return BXT_CDCLK_CD2X_DIV_SEL_1;
-+		ret = BXT_CDCLK_CD2X_DIV_SEL_1;
-+		break;
- 	case 3:
--		return BXT_CDCLK_CD2X_DIV_SEL_1_5;
-+		ret = BXT_CDCLK_CD2X_DIV_SEL_1_5;
-+		break;
- 	case 4:
--		return BXT_CDCLK_CD2X_DIV_SEL_2;
-+		ret = BXT_CDCLK_CD2X_DIV_SEL_2;
-+		break;
- 	case 8:
--		return BXT_CDCLK_CD2X_DIV_SEL_4;
-+		ret = BXT_CDCLK_CD2X_DIV_SEL_4;
-+		break;
- 	}
-+
-+	/*
-+	 * On Xe3_LPD onward, the expectation is to always have
-+	 * BXT_CDCLK_CD2X_DIV_SEL_1 as the default.
-+	 */
-+	if (DISPLAY_VER(display) >= 30)
-+		drm_WARN_ON(display->drm, ret != BXT_CDCLK_CD2X_DIV_SEL_1);
-+
-+	return ret;
- }
- 
- static u16 cdclk_squash_waveform(struct intel_display *display,
-@@ -2151,8 +2166,10 @@ static u32 bxt_cdclk_ctl(struct intel_display *display,
- 
- 	waveform = cdclk_squash_waveform(display, cdclk);
- 
--	val = bxt_cdclk_cd2x_div_sel(display, cdclk, vco, waveform) |
--		bxt_cdclk_cd2x_pipe(display, pipe);
-+	val = bxt_cdclk_cd2x_div_sel(display, cdclk, vco, waveform);
-+
-+	if (DISPLAY_VER(display) < 30)
-+		val |= bxt_cdclk_cd2x_pipe(display, pipe);
- 
- 	/*
- 	 * Disable SSA Precharge when CD clock frequency < 500 MHz,
+  **SUCCESS**
 
----
-base-commit: 3d6700a02638d446a4e8ad92a8212c3efef84ae0
-change-id: 20251222-xe3_lpd-no-cd2x-divider-48f9f0972f98
+  No regressions found.
 
-Best regards,
---  
-Gustavo Sousa <gustavo.sousa@intel.com>
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v2/index.html
 
+Participating hosts (44 -> 42)
+------------------------------
+
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_159399v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17773/bat-mtlp-8/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v2/bat-mtlp-8/igt@i915_selftest@live.html
+    - bat-atsm-1:         NOTRUN -> [DMESG-FAIL][3] ([i915#12061] / [i915#13929])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v2/bat-atsm-1/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@mman:
+    - bat-atsm-1:         NOTRUN -> [DMESG-FAIL][4] ([i915#13929])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v2/bat-atsm-1/igt@i915_selftest@live@mman.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [PASS][5] -> [DMESG-FAIL][6] ([i915#12061]) +1 other test dmesg-fail
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17773/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v2/bat-arls-5/igt@i915_selftest@live@workarounds.html
+    - bat-atsm-1:         NOTRUN -> [DMESG-FAIL][7] ([i915#12061])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v2/bat-atsm-1/igt@i915_selftest@live@workarounds.html
+    - bat-mtlp-9:         [PASS][8] -> [DMESG-FAIL][9] ([i915#12061]) +1 other test dmesg-fail
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17773/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v2/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - bat-atsm-1:         [ABORT][10] -> [PASS][11] +1 other test pass
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17773/bat-atsm-1/igt@gem_lmem_swapping@parallel-random-engines.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v2/bat-atsm-1/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-9:          [DMESG-FAIL][12] ([i915#12061]) -> [PASS][13] +1 other test pass
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17773/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v2/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#13929]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_17773 -> Patchwork_159399v2
+
+  CI-20190529: 20190529
+  CI_DRM_17773: 3d6700a02638d446a4e8ad92a8212c3efef84ae0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8686: 8686
+  Patchwork_159399v2: 3d6700a02638d446a4e8ad92a8212c3efef84ae0 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v2/index.html
+
+--===============7239696353057023675==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/cdclk: Incorporate Xe3_LPD changes for CD2X divider (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159399/">https://patchwork.freedesktop.org/series/159399/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17773 -&gt; Patchwork_159399v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v2/index.html</p>
+<h2>Participating hosts (44 -&gt; 42)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_159399v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17773/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v2/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v2/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@mman:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v2/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17773/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v2/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v2/bat-atsm-1/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>)</li>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17773/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v2/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17773/bat-atsm-1/igt@gem_lmem_swapping@parallel-random-engines.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v2/bat-atsm-1/igt@gem_lmem_swapping@parallel-random-engines.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17773/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159399v2/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17773 -&gt; Patchwork_159399v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17773: 3d6700a02638d446a4e8ad92a8212c3efef84ae0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8686: 8686<br />
+  Patchwork_159399v2: 3d6700a02638d446a4e8ad92a8212c3efef84ae0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============7239696353057023675==--
