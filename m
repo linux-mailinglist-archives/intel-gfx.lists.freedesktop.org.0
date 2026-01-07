@@ -2,59 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9836CFE8A8
-	for <lists+intel-gfx@lfdr.de>; Wed, 07 Jan 2026 16:22:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CE60CFEB78
+	for <lists+intel-gfx@lfdr.de>; Wed, 07 Jan 2026 16:56:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B82810E621;
-	Wed,  7 Jan 2026 15:22:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B437610E1A9;
+	Wed,  7 Jan 2026 15:56:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LetT+aiB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HUQplUvL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6AFA510E61D;
- Wed,  7 Jan 2026 15:22:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7080810E623
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Jan 2026 15:56:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767799335; x=1799335335;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=r4HMcMTX1zd+7WjDOHrmRXLQ0lRJMYrYNa3nsCZw8ag=;
- b=LetT+aiBOW+SMGB6brh6QJD9DTt4Y6CG+EJiQkU+WmPwyUw7Skpn1GN0
- p97xAr76zZj8Zr39K+v+97IfVAtZIkzVJQhmFYM/o6p0K7ms3BPzKLsg7
- VKsBe3yOh7W+OP2wfrVzOY2ppb9nXAUhAmZc2BntgygV6Mfs+vx/1MGUg
- G3Ufrh9Kafmbxuom/2QI+nsFnL5RbswS3motRAYi1rl98zv1SxPwmwE9C
- Enp3yI4bGBQIQOoh1Ii55owzdOkM/Fnubqt7AtFfzyC+kvD3mnDiVL9YE
- VMw1gO9Q5bb16uXlX2/1AX99TU7i7Xp0hQ+XrUNrufIyPLpz0amxR0aZm A==;
-X-CSE-ConnectionGUID: IqIEUuuxT06ZRfq2seX+1g==
-X-CSE-MsgGUID: geFQqNEiRPiJpZj8yxEFpg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11664"; a="79891155"
-X-IronPort-AV: E=Sophos;i="6.21,208,1763452800"; d="scan'208";a="79891155"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2026 07:22:15 -0800
-X-CSE-ConnectionGUID: 5r/MNvHlSzKoNXD5ciNjsg==
-X-CSE-MsgGUID: 4BdS7K46Rw239eE/zxmd+A==
+ t=1767801362; x=1799337362;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=/oL4UGvZXpU5bRBTEq2Kc3e+zADii/c6zjAgXO7tcRc=;
+ b=HUQplUvLCYNefwGN2G4EFjccBdTAEODil34xhulH6YGtXH3TJKzBsQgy
+ dlBK0DcNowQxrnHjpAQF6MHCOQHo6HzfYW3lBPtcVJMGhHe79AwGwj9nD
+ 8PHG5D/OZ8OuWlGBDunIe6TfuKLVqW4yObWeO2sl2Bfbn+xkmIelIirET
+ dP5Jrxs3Pb2e3/4X5ZTEp/U8omhuVJFbY1Zq9R7F/iQX3SKTf2KT2Ar6z
+ mdz1bNb/6ZRlPMSj30kfCd5mhllhNNrmFNl5c47Pu1pfi6ySsy41EmLzu
+ XkMinqX4DZf4rfc1acJdc1zhXk5EqVC95KxvZJFvG/tj1iHSXDqzSHcyJ A==;
+X-CSE-ConnectionGUID: wI1iUQeRT3CP+blA70gIww==
+X-CSE-MsgGUID: 1nZLtuSwT0mwZ7w0YBP6fA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11664"; a="79477124"
+X-IronPort-AV: E=Sophos;i="6.21,208,1763452800"; d="scan'208";a="79477124"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2026 07:56:02 -0800
+X-CSE-ConnectionGUID: AtTveOOjTAekUrzETxIjsg==
+X-CSE-MsgGUID: LLj6DIzrQrmOdQkmFGaT6g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,208,1763452800"; d="scan'208";a="202077022"
-Received: from administrator-system-product-name.igk.intel.com
- ([10.91.214.181])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2026 07:22:13 -0800
-Date: Wed, 7 Jan 2026 16:22:11 +0100 (CET)
-From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>
-cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- ankit.k.nautiyal@intel.com, mika.kahola@intel.com
-Subject: Re: [PATCH 1/3] drm/i915/cx0: Split PLL enabling/disabling in two
- parts
-In-Reply-To: <20251230083142.70064-2-suraj.kandpal@intel.com>
-Message-ID: <0205146a-4832-f242-ea67-e9b5fc31d940@intel.com>
-References: <20251230083142.70064-1-suraj.kandpal@intel.com>
- <20251230083142.70064-2-suraj.kandpal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,208,1763452800"; d="scan'208";a="202161981"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.60])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2026 07:55:58 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: "Gupta, Saurabhg" <saurabhg.gupta@intel.com>, "Zuo, Alex"
+ <alex.zuo@intel.com>, "Zanoni, Paulo R" <paulo.r.zanoni@intel.com>,
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "daniel.vetter@ffwll.ch" <daniel.vetter@ffwll.ch>, "Cavitt, Jonathan"
+ <jonathan.cavitt@intel.com>
+Subject: RE: [PATCH] drm/i915/display: Prevent u64 underflow in
+ intel_fbc_stolen_end
+In-Reply-To: <CH0PR11MB544499F13BF3FF457345EEB2E584A@CH0PR11MB5444.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20251219210335.133830-2-jonathan.cavitt@intel.com>
+ <38d11ac18820022abbc7bd58f7b50e719aa4bf61@intel.com>
+ <CH0PR11MB544499F13BF3FF457345EEB2E584A@CH0PR11MB5444.namprd11.prod.outlook.com>
+Date: Wed, 07 Jan 2026 17:55:54 +0200
+Message-ID: <4f5fb36bc0dfef8e0bcd584226cf3c2e442f063e@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-534682163-1767799334=:1288690"
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,249 +78,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+On Wed, 07 Jan 2026, "Cavitt, Jonathan" <jonathan.cavitt@intel.com> wrote:
+> -----Original Message-----
+> From: Jani Nikula <jani.nikula@linux.intel.com>=20
+> Sent: Wednesday, January 7, 2026 3:39 AM
+> To: Cavitt, Jonathan <jonathan.cavitt@intel.com>; intel-gfx@lists.freedes=
+ktop.org
+> Cc: Gupta, Saurabhg <saurabhg.gupta@intel.com>; Zuo, Alex <alex.zuo@intel=
+.com>; Cavitt, Jonathan <jonathan.cavitt@intel.com>; Zanoni, Paulo R <paulo=
+.r.zanoni@intel.com>; ville.syrjala@linux.intel.com; daniel.vetter@ffwll.ch
+> Subject: Re: [PATCH] drm/i915/display: Prevent u64 underflow in intel_fbc=
+_stolen_end
+>>=20
+>> On Fri, 19 Dec 2025, Jonathan Cavitt <jonathan.cavitt@intel.com> wrote:
+>> > Static analysis reveals a potential integer underflow in
+>> > intel_fbc_stolen_end.  This can apparently occur if
+>> > intel_parent_stolen_area_size returns zero (or, theoretically, any val=
+ue
+>> > less than 2^23), as 2^23 is subtracted from the return value and stored
+>> > in a u64.  While this doesn't appear to cause any issues due to the use
+>> > of the min() function to clamp the return values from the
+>> > intel_fbc_stolen_end function, it would be best practice to avoid
+>> > undeflowing values like this on principle.  So, rework the function to
+>> > prevent the underflow from occurring.  Note that the underflow at
+>> > present would result in the value of intel_fbc_cfb_base_max being
+>> > returned at the end of intel_fbc_stolen_end, so just return that if the
+>> > value of intel_parent_stolen_area_size is too small.
+>> >
+>> > While we're here, create a macro for the 2^23 value and modify the
+>> > execution path for readability.
+>> >
+>> > Fixes: a9da512b3ed7 ("drm/i915: avoid the last 8mb of stolen on BDW/SK=
+L")
+>> > Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+>> > Cc: Paulo Zanoni <paulo.r.zanoni@intel.com>
+>> > Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+>> > ---
+>> >  drivers/gpu/drm/i915/display/intel_fbc.c | 20 ++++++++++++++------
+>> >  1 file changed, 14 insertions(+), 6 deletions(-)
+>> >
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/dr=
+m/i915/display/intel_fbc.c
+>> > index fef2f35ff1e9..00c32df50933 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+>> > @@ -807,21 +807,29 @@ static u64 intel_fbc_cfb_base_max(struct intel_d=
+isplay *display)
+>> >  		return BIT_ULL(32);
+>> >  }
+>> >=20=20
+>> > +#define STOLEN_RESERVE_MAX	SZ_8M
+>> >  static u64 intel_fbc_stolen_end(struct intel_display *display)
+>> >  {
+>> > -	u64 end;
+>> > +	u64 end =3D intel_fbc_cfb_base_max(display);
+>> >=20=20
+>> >  	/* The FBC hardware for BDW/SKL doesn't have access to the stolen
+>> >  	 * reserved range size, so it always assumes the maximum (8mb) is us=
+ed.
+>> >  	 * If we enable FBC using a CFB on that memory range we'll get FIFO
+>> >  	 * underruns, even if that range is not reserved by the BIOS. */
+>> >  	if (display->platform.broadwell ||
+>> > -	    (DISPLAY_VER(display) =3D=3D 9 && !display->platform.broxton))
+>> > -		end =3D intel_parent_stolen_area_size(display) - 8 * 1024 * 1024;
+>> > -	else
+>> > -		end =3D U64_MAX;
+>> > +	    (DISPLAY_VER(display) =3D=3D 9 && !display->platform.broxton)) {
+>> > +		u64 stolen_area_size =3D intel_parent_stolen_area_size(display);
+>> > +
+>> > +		/* If stolen_area_size is less than STOLEN_RESERVE_MAX,
+>> > +		 * use intel_fbc_cfb_base_max instead. */
+>>=20
+>> Please use the proper multi-line comment style.
+>
+> Should I also fix the comment about FBC hardware while I'm here?
 
---8323329-534682163-1767799334=:1288690
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8BIT
+I wouldn't mind.
 
-Hi Suraj,
+>
+>>=20
+>> > +		if (stolen_area_size < STOLEN_RESERVE_MAX)
+>> > +			return end;
+>>=20
+>> check_sub_overflow(), perhaps with a drm_WARN_ON(), would be the way to
+>> go I think. You can get rid of the extra macro too.
+>
+> So, instead of STOLEN_RESERVE_MAX, just directly reference SZ_8M here?
 
-On Tue, 30 Dec 2025, Suraj Kandpal wrote:
-> From: Mika Kahola <mika.kahola@intel.com>
->
-> Split PLL enabling/disabling in two parts - one for pll setting
-> pll dividers and second one to enable/disable pll clock. PLL
-> clock enabling/disbling happens via encoder->enable_clock/disable_clock
-> function hook. The reason for doing this is that we need to make sure
-> the clock enablement happens after PPS ON step to be inline with the
-> sequences which we end up violating otherwise. As a result of this
-> violation we end up in a hanged state if machine stays idle for more
-> that 15 mins.
->
-> PLL state verification happens now earlier than the clock is enabled
-> which causes a drm warn to be thrown. Silence this warning by
-> allowing this check for only earlier platforms than MeteorLake.
->
-> Bspec: 49190
-> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
-> drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 87 ++++++++++++-------
-> drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 12 +--
-> 2 files changed, 64 insertions(+), 35 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> index 7288065d2461..f3baba264e88 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> @@ -3225,11 +3225,8 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
-> {
-> 	int port_clock = pll_state->use_c10 ? pll_state->c10.clock : pll_state->c20.clock;
-> 	struct intel_display *display = to_intel_display(encoder);
-> -	enum phy phy = intel_encoder_to_phy(encoder);
-> 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-> 	bool lane_reversal = dig_port->lane_reversal;
-> -	u8 maxpclk_lane = lane_reversal ? INTEL_CX0_LANE1 :
-> -					  INTEL_CX0_LANE0;
-> 	struct ref_tracker *wakeref = intel_cx0_phy_transaction_begin(encoder);
->
-> 	/*
-> @@ -3284,27 +3281,6 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
-> 	 */
-> 	intel_de_write(display, DDI_CLK_VALFREQ(encoder->port), port_clock);
->
-> -	/*
-> -	 * 9. Set PORT_CLOCK_CTL register PCLK PLL Request
-> -	 * LN<Lane for maxPCLK> to "1" to enable PLL.
-> -	 */
-> -	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
-> -		     intel_cx0_get_pclk_pll_request(INTEL_CX0_BOTH_LANES),
-> -		     intel_cx0_get_pclk_pll_request(maxpclk_lane));
-> -
-> -	/* 10. Poll on PORT_CLOCK_CTL PCLK PLL Ack LN<Lane for maxPCLK> == "1". */
-> -	if (intel_de_wait_us(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
-> -			     intel_cx0_get_pclk_pll_ack(INTEL_CX0_BOTH_LANES),
-> -			     intel_cx0_get_pclk_pll_ack(maxpclk_lane),
-> -			     XELPDP_PCLK_PLL_ENABLE_TIMEOUT_US, NULL))
-> -		drm_warn(display->drm, "Port %c PLL not locked\n",
-> -			 phy_name(phy));
-> -
-> -	/*
-> -	 * 11. Follow the Display Voltage Frequency Switching Sequence After
-> -	 * Frequency Change. We handle this step in bxt_set_cdclk().
-> -	 */
-> -
-> 	/*
-> 	 * 12. Toggle powerdown if HDMI is enabled on C10 PHY.
-> 	 *
-> @@ -3403,6 +3379,42 @@ static int intel_mtl_tbt_clock_select(struct intel_display *display,
-> 	}
-> }
->
-> +static void intel_cx0pll_enable_clock(struct intel_encoder *encoder)
-> +{
-> +	struct intel_display *display = to_intel_display(encoder);
-> +	enum phy phy = intel_encoder_to_phy(encoder);
-> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-> +	bool lane_reversal = dig_port->lane_reversal;
-> +					  INTEL_CX0_LANE0;
+Yeah, since using check_sub_overflow() means you don't have to reference
+the value twice, so you don't need the macro for it.
 
-Line above breaks the build. My current understanding is that it causes
-compiler to expand INTEL_CX0_LANE0 into BIT(0), which expands into 1UL
-<< 0. Finally, compiler parses it more or less as:
+> -Jonathan Cavitt
+>
+>>=20
+>> > +
+>> > +		stolen_area_size -=3D STOLEN_RESERVE_MAX;
+>>=20
+>> A blank line is preferred before return.
+>>=20
+>> > +		return min(end, stolen_area_size);
+>> > +	}
+>> >=20=20
+>> > -	return min(end, intel_fbc_cfb_base_max(display));
+>> > +	return end;
+>> >  }
+>> >=20=20
+>> >  static int intel_fbc_min_limit(const struct intel_plane_state *plane_=
+state)
+>>=20
+>> --=20
+>> Jani Nikula, Intel
+>>=20
 
-1;
-
-Since it is a valid statement but doesn't do anything, it triggers
-unused value warning, which is turned into error.
-
-IOW, with the line removed build works.
-
-The explanation seems consistent with the output:
-
-In file included from ./include/linux/bits.h:5,
-                  from ./include/linux/bitops.h:6,
-                  from ./include/linux/log2.h:12,
-                  from drivers/gpu/drm/i915/display/intel_cx0_phy.c:6:
-drivers/gpu/drm/i915/display/intel_cx0_phy.c: In function ‘intel_cx0pll_enable_clock’:
-./include/vdso/bits.h:7:33: error: statement with no effect [-Werror=unused-value]
-     7 | #define BIT(nr)                 (UL(1) << (nr))
-       |                                 ^
-drivers/gpu/drm/i915/display/intel_cx0_phy.c:32:33: note: in expansion of macro ‘BIT’
-    32 | #define INTEL_CX0_LANE0         BIT(0)
-       |                                 ^~~
-drivers/gpu/drm/i915/display/intel_cx0_phy.c:3378:43: note: in expansion of macro ‘INTEL_CX0_LANE0’
-  3378 |                                           INTEL_CX0_LANE0;
-       |                                           ^~~~~~~~~~~~~~~
-cc1: all warnings being treated as errors
-
-Besides of this, for the whole series:
-Reviewed-by: Michał Grzelak <michal.grzelak@intel.com>
-
-BR,
-Michał
-
-> +	u8 maxpclk_lane = lane_reversal ? INTEL_CX0_LANE1 :
-> +					INTEL_CX0_LANE0;
-> +
-> +	struct ref_tracker *wakeref = intel_cx0_phy_transaction_begin(encoder);
-> +
-> +	/*
-> +	 * 9. Set PORT_CLOCK_CTL register PCLK PLL Request
-> +	 * LN<Lane for maxPCLK> to "1" to enable PLL.
-> +	 */
-> +	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
-> +		     intel_cx0_get_pclk_pll_request(INTEL_CX0_BOTH_LANES),
-> +		     intel_cx0_get_pclk_pll_request(maxpclk_lane));
-> +
-> +	/* 10. Poll on PORT_CLOCK_CTL PCLK PLL Ack LN<Lane for maxPCLK> == "1". */
-> +	if (intel_de_wait_us(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
-> +			     intel_cx0_get_pclk_pll_ack(INTEL_CX0_BOTH_LANES),
-> +			     intel_cx0_get_pclk_pll_ack(maxpclk_lane),
-> +			     XELPDP_PCLK_PLL_ENABLE_TIMEOUT_US, NULL))
-> +		drm_warn(display->drm, "Port %c PLL not locked\n",
-> +			 phy_name(phy));
-> +
-> +	/*
-> +	 * 11. Follow the Display Voltage Frequency Switching Sequence After
-> +	 * Frequency Change. We handle this step in bxt_set_cdclk().
-> +	 */
-> +
-> +	intel_cx0_phy_transaction_end(encoder, wakeref);
-> +}
-> +
-> void intel_mtl_tbt_pll_enable_clock(struct intel_encoder *encoder, int port_clock)
-> {
-> 	struct intel_display *display = to_intel_display(encoder);
-> @@ -3472,6 +3484,8 @@ void intel_mtl_pll_enable_clock(struct intel_encoder *encoder,
->
-> 	if (intel_tc_port_in_tbt_alt_mode(dig_port))
-> 		intel_mtl_tbt_pll_enable_clock(encoder, crtc_state->port_clock);
-> +	else
-> +		intel_cx0pll_enable_clock(encoder);
-> }
->
-> /*
-> @@ -3567,12 +3581,6 @@ static void intel_cx0pll_disable(struct intel_encoder *encoder)
-> 	 * Frequency Change. We handle this step in bxt_set_cdclk().
-> 	 */
->
-> -	/* 7. Program PORT_CLOCK_CTL register to disable and gate clocks. */
-> -	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
-> -		     XELPDP_DDI_CLOCK_SELECT_MASK(display), 0);
-> -	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
-> -		     XELPDP_FORWARD_CLOCK_UNGATE, 0);
-> -
-> 	intel_cx0_phy_transaction_end(encoder, wakeref);
-> }
->
-> @@ -3586,6 +3594,20 @@ static bool intel_cx0_pll_is_enabled(struct intel_encoder *encoder)
-> 			     intel_cx0_get_pclk_pll_request(lane);
-> }
->
-> +static void intel_cx0pll_disable_clock(struct intel_encoder *encoder)
-> +{
-> +	struct intel_display *display = to_intel_display(encoder);
-> +	struct ref_tracker *wakeref = intel_cx0_phy_transaction_begin(encoder);
-> +
-> +	/* 7. Program PORT_CLOCK_CTL register to disable and gate clocks. */
-> +	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
-> +		     XELPDP_DDI_CLOCK_SELECT_MASK(display), 0);
-> +	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
-> +		     XELPDP_FORWARD_CLOCK_UNGATE, 0);
-> +
-> +	intel_cx0_phy_transaction_end(encoder, wakeref);
-> +}
-> +
-> void intel_mtl_tbt_pll_disable_clock(struct intel_encoder *encoder)
-> {
-> 	struct intel_display *display = to_intel_display(encoder);
-> @@ -3635,6 +3657,9 @@ void intel_mtl_pll_disable_clock(struct intel_encoder *encoder)
->
-> 	if (intel_tc_port_in_tbt_alt_mode(dig_port))
-> 		intel_mtl_tbt_pll_disable_clock(encoder);
-> +	else
-> +		intel_cx0pll_disable_clock(encoder);
-> +
-> }
->
-> enum icl_port_dpll_id
-> @@ -3783,6 +3808,8 @@ void intel_cx0_pll_power_save_wa(struct intel_display *display)
-> 			    encoder->base.base.id, encoder->base.name);
->
-> 		intel_cx0pll_enable(encoder, &pll_state);
-> +		intel_cx0pll_enable_clock(encoder);
-> 		intel_cx0pll_disable(encoder);
-> +		intel_cx0pll_disable_clock(encoder);
-> 	}
-> }
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> index 9aa84a430f09..59395076103c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -186,11 +186,13 @@ void assert_dpll(struct intel_display *display,
-> 		     "asserting DPLL %s with no DPLL\n", str_on_off(state)))
-> 		return;
->
-> -	cur_state = intel_dpll_get_hw_state(display, pll, &hw_state);
-> -	INTEL_DISPLAY_STATE_WARN(display, cur_state != state,
-> -				 "%s assertion failure (expected %s, current %s)\n",
-> -				 pll->info->name, str_on_off(state),
-> -				 str_on_off(cur_state));
-> +	if (DISPLAY_VER(display) < 14) {
-> +		cur_state = intel_dpll_get_hw_state(display, pll, &hw_state);
-> +		INTEL_DISPLAY_STATE_WARN(display, cur_state != state,
-> +					 "%s assertion failure (expected %s, current %s)\n",
-> +					 pll->info->name, str_on_off(state),
-> +					 str_on_off(cur_state));
-> +	}
-> }
->
-> static enum tc_port icl_pll_id_to_tc_port(enum intel_dpll_id id)
-> -- 
-> 2.34.1
->
->
---8323329-534682163-1767799334=:1288690--
+--=20
+Jani Nikula, Intel
