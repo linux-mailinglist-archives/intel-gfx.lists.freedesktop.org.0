@@ -2,52 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9DB2D02DB5
-	for <lists+intel-gfx@lfdr.de>; Thu, 08 Jan 2026 14:08:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 68EBAD030D7
+	for <lists+intel-gfx@lfdr.de>; Thu, 08 Jan 2026 14:33:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B01110E706;
-	Thu,  8 Jan 2026 13:08:15 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=codethink.co.uk header.i=@codethink.co.uk header.b="Ii68tg82";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7E4110E71F;
+	Thu,  8 Jan 2026 13:33:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 2223 seconds by postgrey-1.36 at gabe;
- Thu, 08 Jan 2026 13:06:55 UTC
-Received: from imap5.colo.codethink.co.uk (imap5.colo.codethink.co.uk
- [78.40.148.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5343F10E718
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jan 2026 13:06:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=codethink.co.uk; s=imap5-20230908; h=Sender:Content-Transfer-Encoding:
- MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:In-Reply-To:
- References; bh=h3WPAZwOdCVplvMNaq1hIEtPy126krS22W4TAcGNMNo=; b=Ii68tg82bEfUvz
- 7YamHK3AV73XWtRvHDT/po5RRca7S8xBT9nmPxOFH3iXHSyxCnXuJh2bWRqRM7y0EANxBMqLCOAWs
- aZ8cDi1Km4GWfz3WRS/8v4u/FaKk/tvGVa/vITDIoDo2A+yOjHhYUxu+J44YXsVkHuwpZJptMfwJ/
- xZDpMWigQiHn5mc2yhCG8vXG7cASz67AdfKXQp5ZlmPsEp1zRSe3k6svzQjPOMO0CihlLar4t0Njr
- 0MTmlBNi4eA1SU+g9KGtme7pM5+DpBYXVEeHZVbKJtiJBjZMzrRANpXqDXZrSQdk4uc4fAocvC4l4
- KgJPU57BzX8edg+kqmpQ==;
-Received: from [167.98.27.226] (helo=rainbowdash)
- by imap5.colo.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
- id 1vdp8p-00BxHg-Nf; Thu, 08 Jan 2026 12:29:27 +0000
-Received: from ben by rainbowdash with local (Exim 4.99.1)
- (envelope-from <ben@rainbowdash>) id 1vdp8p-000000010Un-2AEB;
- Thu, 08 Jan 2026 12:29:27 +0000
-From: Ben Dooks <ben.dooks@codethink.co.uk>
-To: dri-devel@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: simona@ffwll.ch, airlied@gmail.com, tursulin@ursulin.net,
- rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com,
- jani.nikula@linux.intel.com, linux-kernel@vger.kernel.org,
- Ben Dooks <ben.dooks@codethink.co.uk>
-Subject: [PATCH] drm/i915/guc: make 'guc_hw_reg_state' static as it isn't
- exported
-Date: Thu,  8 Jan 2026 12:29:26 +0000
-Message-Id: <20260108122926.240224-1-ben.dooks@codethink.co.uk>
-X-Mailer: git-send-email 2.37.2.352.g3c44437643
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFBEC10E721;
+ Thu,  8 Jan 2026 13:33:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 08 Jan 2026 13:08:14 +0000
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/i915/guc=3A?=
+ =?utf-8?q?_make_=27guc=5Fhw=5Freg=5Fstate=27_static_as_it_isn=27t_exported?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ben Dooks" <ben.dooks@codethink.co.uk>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 08 Jan 2026 13:33:35 -0000
+Message-ID: <176787921592.136594.14498487873607708080@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260108122926.240224-1-ben.dooks@codethink.co.uk>
+In-Reply-To: <20260108122926.240224-1-ben.dooks@codethink.co.uk>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,32 +37,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The guc_hw_reg_state array is not exported, so make it static.
-Fixes the following sparse warning:
-drivers/gpu/drm/i915/i915_gpu_error.c:692:3: warning: symbol 'guc_hw_reg_state' was not declared. Should it be static?
+== Series Details ==
 
-Fixes: ba391a102ec11 ("drm/i915/guc: Include the GuC registers in the error state")
-Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
----
- drivers/gpu/drm/i915/i915_gpu_error.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Series: drm/i915/guc: make 'guc_hw_reg_state' static as it isn't exported
+URL   : https://patchwork.freedesktop.org/series/159812/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index 7582ef34bf3f..303d8d9b7775 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -686,7 +686,7 @@ static void err_print_guc_ctb(struct drm_i915_error_state_buf *m,
- }
- 
- /* This list includes registers that are useful in debugging GuC hangs. */
--const struct {
-+static const struct {
- 	u32 start;
- 	u32 count;
- } guc_hw_reg_state[] = {
--- 
-2.37.2.352.g3c44437643
+== Summary ==
+
+Address 'ben.dooks@codethink.co.uk' is not on the allowlist, which prevents CI from being triggered for this patch.
+If you want Intel GFX CI to accept this address, please contact the script maintainers at i915-ci-infra@lists.freedesktop.org.
+Exception occurred during validation, bailing out!
+
 
