@@ -2,174 +2,104 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D88CD018B9
-	for <lists+intel-gfx@lfdr.de>; Thu, 08 Jan 2026 09:17:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4C8AD01932
+	for <lists+intel-gfx@lfdr.de>; Thu, 08 Jan 2026 09:26:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2AE110E398;
-	Thu,  8 Jan 2026 08:17:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9982C10E6A2;
+	Thu,  8 Jan 2026 08:26:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j2+dAlES";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="WSi1xh4Z";
+	dkim=pass (2048-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="t3sh2GAZ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4810410E398;
- Thu,  8 Jan 2026 08:17:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767860244; x=1799396244;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=25+6AwTNSIIZmvzPEi7cXbyP+k+3OjYtR4XnwhfzTDc=;
- b=j2+dAlES7G8QaEFhuaCiiDvN33oKV0umuiTFhn61cWdZpHMz7YDuF/R4
- vUbQKkTlLqrTIxcNcGAzjGScaRmEHQTUsskfORXTZ69bTSY6qq754D5O1
- L8ztFYKc0kNdxQv/Q2Lu4vqf5ONqBZidVEx3ApvG3nwTogZE5H0A6+HcK
- 5m+QtxCjj/RDRsp3zA6d3ufQKw0TIGDYdr47luLnIzJvowgJbKKaSh9CG
- ZDfs+7Qi/3zmfyMlhjXmz9KqGeAPLKc6WLGW4nBQtQcvB9mpi6qjbc+8y
- jL1KnIYMGY2FwodBgBSbYKLpxbfveUd48MjXHU/3bkOJqS6LQodu+OyyR Q==;
-X-CSE-ConnectionGUID: C2AZ1ICQTiO7TeaqniAPWw==
-X-CSE-MsgGUID: 8TYE2JlcQ9GMoy6/2R9XJA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11664"; a="69215021"
-X-IronPort-AV: E=Sophos;i="6.21,210,1763452800"; d="scan'208";a="69215021"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2026 00:17:24 -0800
-X-CSE-ConnectionGUID: ff32S7u4SBacrLwlWyMA7w==
-X-CSE-MsgGUID: E0UGRHP0RA+GHI1vJhirDA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,210,1763452800"; d="scan'208";a="204014496"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2026 00:17:24 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Thu, 8 Jan 2026 00:17:23 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Thu, 8 Jan 2026 00:17:23 -0800
-Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.17) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Thu, 8 Jan 2026 00:17:23 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WQsze6uPXj00j+cqjRk0shce9eOuikdi6rKBZTCrrFwX8znUYzrwWa3fLi8yAufx/pRkDLIcUMvg/kka+3tL1lnEPFF5z1j2zNJlQpd1lv8KNw0Y6i7UsMz5btmPqSDPQltdJRVGsaB/j7Zw3ywAYNvZEYmU9GlZugUS9umNYF/8OgpQqO2xvzh/582iB3Z/IupP7DfjLCmuw7hK3ilwYBa2WWc1EQt4ijnOQF/8Pu5ciPS6PBUXjEyDZVtO8WMaMEBW5PiE9sHLGnjTmHEKJe0Lu+brriGAq7st3GIUi3tqtxl1TSHkGJ5W1mD7dDs+fhIw0/CNxhhiPvzJR3jmhQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ETWdzAIS92dwys32UysssSTNMVTmHXLmjBqNCTyEa4U=;
- b=SFQ2ew6a5j+chtvpm4pK5tFbrV0hBc0wGQNEeNw/qExRAfE9+I8YXhpJG8DhimpcalFP8DkAGXtMs/eKi3NH2LgPDxrPAEEk+KqqCUo87NthNz6KAJKRsYMq/rGMsZOoJhlMDgLLBVGxcBkyeUpUGYcv1CfnQn0U2vAI8Fs47w7DY3F6KUXJEgu3b3htZFksIu5DzLEgp9J/vSOxHbK1WPHxnaYklsxi2fzk+IdYb0jsU3LUlfREAN48M/y7vMqMd9Wb229v9zx2wmuoTQsyBcx/95g5CTbXTPPau0dHtJrA7BS7Agc5CVfplj65m87d6qmw1U1UiRtRQzZ3O6Bk+A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS0PR11MB8049.namprd11.prod.outlook.com (2603:10b6:8:116::6) by
- DS7PR11MB9474.namprd11.prod.outlook.com (2603:10b6:8:265::13) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9499.2; Thu, 8 Jan 2026 08:17:21 +0000
-Received: from DS0PR11MB8049.namprd11.prod.outlook.com
- ([fe80::d84a:3532:5337:1f7c]) by DS0PR11MB8049.namprd11.prod.outlook.com
- ([fe80::d84a:3532:5337:1f7c%3]) with mapi id 15.20.9499.003; Thu, 8 Jan 2026
- 08:17:21 +0000
-From: "Manna, Animesh" <animesh.manna@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: RE: [RFC 1/8] drm/i915/cmtg: enable cmtg LNL onwards
-Thread-Topic: [RFC 1/8] drm/i915/cmtg: enable cmtg LNL onwards
-Thread-Index: AQHcV7sVGlavxlDnqUe8lkN7pGj5ErT2+oMAgFFEFkA=
-Date: Thu, 8 Jan 2026 08:17:20 +0000
-Message-ID: <DS0PR11MB80492FC84E850729AAB46B53F985A@DS0PR11MB8049.namprd11.prod.outlook.com>
-References: <20251117114216.1522615-1-animesh.manna@intel.com>
- <20251117114216.1522615-2-animesh.manna@intel.com>
- <233b0f125ed2caa3f8c06de970636c0d92ca79af@intel.com>
-In-Reply-To: <233b0f125ed2caa3f8c06de970636c0d92ca79af@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR11MB8049:EE_|DS7PR11MB9474:EE_
-x-ms-office365-filtering-correlation-id: 4868b2a9-5639-4393-9d39-08de4e8e587a
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|366016|376014|1800799024|38070700021;
-x-microsoft-antispam-message-info: =?us-ascii?Q?KpyUVhJ2yDD7nycWhe9yPKXMQZepBfvvCGkmTvr13VLM+2To3q4p0VNZTlfj?=
- =?us-ascii?Q?VrpcKHUqlTHXrgwq2rexMqEbbod8etj7ALU2+ogq1NyOC33Asyk8Z3Fxn4+y?=
- =?us-ascii?Q?SAbWgYciHqHtvS5DvBUJAXbkHntPq0PIP6tjTS/OQh4r16S8LOlkHjPQu5r3?=
- =?us-ascii?Q?EsDp+sAhpYRJturzYC90gEz3gebUxWSktJ/Cqo6PBm1FixPzTJSbvuh/zqmp?=
- =?us-ascii?Q?1Vz6WrXXU/k6xeaAXto1cQbGqqQyO2YVLlmYk9ZGh9DRa40L2sFLfHFXI/LY?=
- =?us-ascii?Q?0rZcS3W4x7gXTL/+qRrDSJ8g/wc9sDBg1UP8orbKNQadbHF+AQALPBDEFjip?=
- =?us-ascii?Q?U2vb5DzK6j7BCq+JvvEAnhdSmE3qRfLKXxjE8AoiEg4LgEfUI+3cs1SEcdkL?=
- =?us-ascii?Q?d2HxUJymFf0PE+5iebgriW+wjGxozzjwDCNgpeJmlV3UyUp/eG2J40a5nWod?=
- =?us-ascii?Q?94IuKG76m7ZyqGo0Gro1Ed9irSOLzdWnCazQjwp+/dSxBvybk4z5K7IlIrtE?=
- =?us-ascii?Q?/uZIFp4egsejlEYNCUvzZZevxi8cE7l2trTHmE2z54wr/rsIfCV3QBa/25RB?=
- =?us-ascii?Q?bEMcwR8HXO4UYAiOZUqqo0EziMLzbxjeBh4107c7G/Y0L4zXbn8Vj8u3ZSW6?=
- =?us-ascii?Q?MiBuBzll+5IkSp2RPuhRQdCn6UnpnMU9ORIEJw6mEcTjH0p5h24h9KC7KSIT?=
- =?us-ascii?Q?Ya+W0kWHhFHvJMpbIg9Jc0d5sLeUeAmzrr1ZX1Tf3lnWXyOAWJ5HvhNxz01+?=
- =?us-ascii?Q?AF4EaeZ7tBUslquraggQGWh+uHaNlcw0NhxP3gS541KX0GpjXdifontB7XAk?=
- =?us-ascii?Q?Z07CPHEMJ9RcWF/wawPKGhuuEJ91bndcXg7FV5Qfb/0ot5SKj2T1SgCcUlnf?=
- =?us-ascii?Q?P9noiKc5acVmX8JV3/VaRrOs/ktbsJFJgmTBGxsisXGtPQmxMy9KsN1+JCCx?=
- =?us-ascii?Q?S5zHNLKYNQp9GZSwcviRD6zDgFQGh9kTsafs/dsJ9WW160N9xPISump+a8hY?=
- =?us-ascii?Q?yiGvzWN1vPxtvqCnVVhQ4HVzX8uOe263xV3jUJrADHczsV8AKyOKZYQ3SHVj?=
- =?us-ascii?Q?mVK5KiMb4TC+5IQBlrK1rK/6DaHrvFltnhebPpnwUbq9CySUEJBRlUX+mMPI?=
- =?us-ascii?Q?awd/EtGlkHj/oVWz95IdRAl9NwHToar0nj58i52V6HZXNY/yF8cg17yOfgW5?=
- =?us-ascii?Q?vpYmIlTLszlClrVogJgMwJYGi2ZEKqLy/CGuTcn2d36qkzpFWYQ7MO4C6c6R?=
- =?us-ascii?Q?c/6hQ6lE7hi2mMNi1Ukas0ZXwXuJEGlIzogdcA738ie9wt966pTLOtG/d2dL?=
- =?us-ascii?Q?tXdW87Pnkj13BdLHhERfA6L4C3Y+gsyINWpcHqX/dOFJvqqfZk+iv50Msi4s?=
- =?us-ascii?Q?7Z9r3iWL23+lP33srFtp47eBeTU6vltWmMefltbjVjBkSvjZRRgEwhulBEic?=
- =?us-ascii?Q?6JeFxviHsaIldq2OsYGu2V4PEQAuTZCfqxRT2pxnq/9NpXPm065iHjIuS5wP?=
- =?us-ascii?Q?EzdLUA+2C+sMzLmlf3etz66vZVNVi7iRG2JI?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8049.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(38070700021); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?LA6qCBE/dXpubRTm8dsxrHmxETbtliL6WTX1Aja84Nrd69xjWY8TOCvDmFTz?=
- =?us-ascii?Q?wwspsAYeKI+0TX1pTktYZu6RjQHfoD4uykhpQAP+YdSfHOdohFYhlrwpKBvK?=
- =?us-ascii?Q?C/oF9WKOMkGJiMpuUmAVAV+V4FhhxfkUyktcu9w2i5+AtXn7tP/C2bEWrGj/?=
- =?us-ascii?Q?QbifnPLE7gVeBtVn26Pxhvbh9J8QaABp1fl6ZCr2h2KoG7mxQynl+UXVlpc1?=
- =?us-ascii?Q?uVeoyROniVzAKucSyxzndRTB7k13ktmey9Pau8y4i76KOoLfT0X5MvRjEqG+?=
- =?us-ascii?Q?1xPYNQaNK1gvNpS15dehBEeGTbFj3kEzI1TnzbNLLWhVv1h/1BF5osmsw+zD?=
- =?us-ascii?Q?X9bcK/twT0c6+WSgI2CVWueq5ENbMwHQzfT681zO8Pn74PYnzYTsfApDomuH?=
- =?us-ascii?Q?/lBdYpkrFtj3KunvoUPx5BKe0vjgA6Jn2KfWiQh5q8J2TmseOGiRpWIsPpOV?=
- =?us-ascii?Q?hbs+I03oGF9YQZeC36EPuJqXvxQQ3xU1AtEzU9JO0GZE19C0K4sr3JJTAlpS?=
- =?us-ascii?Q?0qB0YbCNpYMkOl8qMS7VUpg9+VlGnOJlwuvRFA2DI2agSExGBmRLfZwx1Jgg?=
- =?us-ascii?Q?q2hGep74M0hl9tKkq33iXyRVl9S6gEG6TH7s56b7dTQpBLxMUL7oeL3VbihO?=
- =?us-ascii?Q?Wt+vsjTf/HgEy1EAl4yd/4kKQ2ju7A+nhpPX72t9eHw4Ehx0+9IzVXkXHI4c?=
- =?us-ascii?Q?tfQtVrM9eU48w75wlMwy+h/Hxp+Ta3HKyWMHwM8zx9WT4h/x8PunwwUpKXu2?=
- =?us-ascii?Q?e+EbsGLCFznM3LfwVVP+okbZJ4C17/YYkrekQwVv3yCH3KBt9dzgcc4jtEZg?=
- =?us-ascii?Q?/ObMTmmX3f9OEMWIHMz9xy7b5F+BbSOYjscS3nL7O6k1LroMqSEmCeoGaBkS?=
- =?us-ascii?Q?Rh45y4CBUjCRJb07hJlr7mQ8NUhrsknI5Ahsc4+g9xZYwERDAZt+qfBP+VFh?=
- =?us-ascii?Q?RJMtjmEUr7PugzLcEThsXtV/g6lr5p2sYKAHuu1Cr3iK0NhSlA0T9y9tBKN+?=
- =?us-ascii?Q?XW7sH0lQEgVHN6+OcNe/1vcJIlciD43rlpmnIkXzmfdDVOqk5vF1qEeGfep3?=
- =?us-ascii?Q?H2WEQ5yvQh8DYoqDTNNet/jaEl/CEDHg0XmtLzpWF3tHWT0Q2VPOiOh5Gh/p?=
- =?us-ascii?Q?Qd94xB6TgevMW8j9OsjDfZ7B4cL+VuSIa2Qj1Rj4EkqYUJfmbPdnCj4t3rWY?=
- =?us-ascii?Q?H3kWfnBV/w6S7uoEdnJudJG8RXsW92oBkIj7qgC4aRDdstIWTyRnMI6Gkc6a?=
- =?us-ascii?Q?FG/AX0efjvO7YqPYwrMAVTRYaZXidqoem1Xo02TGXQDksAljPYGW5lYcnSwu?=
- =?us-ascii?Q?PFRan3NCgw7Hivm3tv5o7zaVT1g6Kk1IbEIUPuxH230tH3o84M8d9Yx2n/fH?=
- =?us-ascii?Q?srIzl6UKB+e5iqFtdT8v+QwNOD3iPIEOor3k6jnaObV0Sx3PzfvqFSmlzRA8?=
- =?us-ascii?Q?pMHm6P1NbS7+bSJksf8ZU6dgGUyYs0/gXhQ/97NEOluyfC2agIi8xHPKiF/M?=
- =?us-ascii?Q?L/b4Afb53JkZ8CaXFzeONriaIloasYvz4/BvXqkM9NRB2kJTrtCB+WmgFfbm?=
- =?us-ascii?Q?LhzpwZdGtQVNaCDBsb0qFaznRBlNynoXPkXH8zPjBJc7UQnVEKPy+Y2b2oov?=
- =?us-ascii?Q?fRDl0ViUtHC1sxVjoVffAMStLjM+XbF/Z2M1cPaGVXoFUZAgAmy1UiWeTuKg?=
- =?us-ascii?Q?J4UFBZIVTPABou24ZWR8+ve1eqwgx/Jp5NYtDnJkkUhXxqT2UvQ+Zvn5QJsa?=
- =?us-ascii?Q?MN+8Ux3MCA=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DD6810E23B
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jan 2026 08:26:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1767860790;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=/ciEekKvSDtjek2xr+dB+FxgGmcFL6sHdIhER3U7ln0=;
+ b=WSi1xh4ZZFYhtbdYPp1x+DGe0lLE06GijV6CHq5TekHa/ioHudndWcrUqknSskBh7Ws1jL
+ Ol1hV57VSJpM5Aax6PECv+ocO2l7Jc/seGXJXsIhnkaHQolZmJMfunnmsu0/nsEP1pyNPx
+ UW/3rv39yETj2F1HTHyRoR3+7xe29w8=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-479-rmHt03kPN_iG1ywbPo8UBw-1; Thu, 08 Jan 2026 03:26:28 -0500
+X-MC-Unique: rmHt03kPN_iG1ywbPo8UBw-1
+X-Mimecast-MFC-AGG-ID: rmHt03kPN_iG1ywbPo8UBw_1767860787
+Received: by mail-wm1-f72.google.com with SMTP id
+ 5b1f17b1804b1-477b8a667bcso32940005e9.2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 08 Jan 2026 00:26:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=redhat.com; s=google; t=1767860787; x=1768465587; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=/ciEekKvSDtjek2xr+dB+FxgGmcFL6sHdIhER3U7ln0=;
+ b=t3sh2GAZIEqGqb/QBQ4RJ2J0P43Pk7dd+DKR7Aj95+KRiCsMeo8tfW+kJCCcmTPO4C
+ pyAznYU7Td8M2AXJfyl7udk7ZOgMiKJKaL4UYhUem3VYwM4XFH/CGL10G3eDEmKVE0hy
+ IV6nf/ZEe9/KxdWZGzQf2ovWk8hStq3qcCxR3fnbdROI+HpncI4CDFaakgbVL2XzzyCK
+ uE2HVMPszs4nyPt99LF16vf2k8f9pDTd4F7yzBYDUaatwGWIUCE91raxsw9/UvuTAPLC
+ 9kyVGDpmL+zlsDOhRcQ3YSweKrJzjEJsV3vpKiQ4fc2wSNLSYpOpwS2mX3RuKB7Tt5PA
+ s0FA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1767860787; x=1768465587;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=/ciEekKvSDtjek2xr+dB+FxgGmcFL6sHdIhER3U7ln0=;
+ b=iH8ajzUG7PTEvbroDUqzKGnyP7OiqUM1An29s9FxDoIHvqsZDhjntOI0hWtGphzj/x
+ UDO3xcV+w3ECt6DlewoNw73OYa+JG2JoROftq5hdCmKyIqfgrjHjiWnl3REAMYmtlaGW
+ 3k573sHxZ/7gR1zwKOV5iZl4QWUaLycwZoGQHwn9pjsOnITzHJzivrSwxf4RYKDgw9k8
+ uAbXdA44RvmPcBRN63f0IdXM+wKyoHeD0T0yxy05QTBkjzI1mUOxrmv1ALv6emXPrRUN
+ Gxxw0r9zDjucfYkVl05JayYoZLqJYKLlVmbZLcXRYSLh7kaPodIaS7bTayyjDHOw5Bcg
+ pZWw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVKxR9+302AT5Y1D+0NEXefUPQXHx/HdwdvEJYbioPmzUA5oSSfDsk+MuT9lB4vsWE5gEf2c9pE3qk=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzYAEc2IhqB7CeMZ6L6kHCjQyKj//lQ5pxY673OZD/ZJSONZL2x
+ F+8HWZbXp4CyoEjbHhegnzNOksupVHO/7lNNycF4m5JfBYyPgjZY50ONEMpI87lIFOtrFBpFh+w
+ o4BLzFPp4IrS0hmcVnHMWFAytbTeBWIamHmLy8hFvMpeFRadOF7Q2zJsVcUIKf/jjqDTXiw==
+X-Gm-Gg: AY/fxX5a6I25l3si5Zh98n+XHlyfJycHvsvWQKOpqBvGmSB+dz3qUGcFjs66nJgo1wo
+ HR2eJZJoe95uECG57sARAFxqIuIfCUSXM0cNckhmB78hKJQDNZE5L8XuiDXGLMhW3+T3pSX5pIF
+ vkkJDFvKnas//OH0+yW3+fl3C7gJ5OYJfUns0uuzaq9umJxDvSvvTiWN7BU+9oh6JPcclx+ze1Q
+ M6JVOCx9OOe5UdVuPDjIKXRm1/pc79zE4DVreGfXPmD9vkusV9SShGAtRaC7b2X/eWnMXkhTW4u
+ GsYrImc9lhnex0jI2X1Fm9cQgQMmM9KDizGwHkjbwASVBkg4ok7K/PFBNOpgOA==
+X-Received: by 2002:a05:600c:1988:b0:477:fad:acd9 with SMTP id
+ 5b1f17b1804b1-47d84b54025mr53556445e9.34.1767860786906; 
+ Thu, 08 Jan 2026 00:26:26 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEnXPDy1sxFKFhhMcSwFNGFUc/GK/Qz9o8f+THE15OZf0OqXouxHk+BSMhStOReZR8yzb4N3Q==
+X-Received: by 2002:a05:600c:1988:b0:477:fad:acd9 with SMTP id
+ 5b1f17b1804b1-47d84b54025mr53556125e9.34.1767860786349; 
+ Thu, 08 Jan 2026 00:26:26 -0800 (PST)
+Received: from localhost ([2a01:e0a:b25:f902::ff])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-432bd0e199bsm14999855f8f.16.2026.01.08.00.26.25
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 08 Jan 2026 00:26:25 -0800 (PST)
+Date: Thu, 8 Jan 2026 09:26:25 +0100
+From: Maxime Ripard <mripard@redhat.com>
+To: Dave Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Matthew Brost <matthew.brost@intel.com>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-next
+Message-ID: <20260108-literate-nyala-of-courtesy-de501a@houat>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8049.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4868b2a9-5639-4393-9d39-08de4e8e587a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jan 2026 08:17:20.9457 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: roJtsONjLDSwaLKEQ6/6BTCP/XZBBlrH4F+qz2Z+NOEdqrVDoU3Irs/wDvtTJrU8tfE7vHeTNZFX8QAtRJSghA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB9474
-X-OriginatorOrg: intel.com
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="rpzmdoo344mwnsls"
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -186,81 +116,265 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
+--rpzmdoo344mwnsls
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: [PULL] drm-misc-next
+MIME-Version: 1.0
 
-> -----Original Message-----
-> From: Jani Nikula <jani.nikula@linux.intel.com>
-> Sent: Monday, November 17, 2025 8:45 PM
-> To: Manna, Animesh <animesh.manna@intel.com>; intel-
-> gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> Cc: Manna, Animesh <animesh.manna@intel.com>
-> Subject: Re: [RFC 1/8] drm/i915/cmtg: enable cmtg LNL onwards
->=20
-> On Mon, 17 Nov 2025, Animesh Manna <animesh.manna@intel.com> wrote:
-> > Introduce a flag for cmtg. LNL onwards CMTG support will be added.
-> > Set the flag as per DISPLAY_VER() check.
-> >
-> > Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display_types.h | 3 +++
-> >  drivers/gpu/drm/i915/display/intel_dp.c            | 5 +++++
-> >  2 files changed, 8 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
-> b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > index 38702a9e0f50..7b8343755c90 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > @@ -1351,6 +1351,9 @@ struct intel_crtc_state {
-> >
-> >  	struct drm_rect psr2_su_area;
-> >
-> > +	/* CMTG Enable */
->=20
-> The comment is useless, it's literally the same as the member name.
->=20
-> > +	bool enable_cmtg;
->=20
-> Please let's add this stuff in sub-structs, we should do it more in
-> general:
->=20
-> 	struct {
-> 		bool enable;
->         } cmtg;
->=20
-> > +
-> >  	/* Variable Refresh Rate state */
-> >  	struct {
-> >  		bool enable, in_range;
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index 0ec82fcbcf48..3f7da4c08665 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -3421,6 +3421,11 @@ intel_dp_compute_config(struct intel_encoder
-> *encoder,
-> >  	intel_dp_compute_vsc_sdp(intel_dp, pipe_config, conn_state);
-> >  	intel_dp_compute_hdr_metadata_infoframe_sdp(intel_dp,
-> pipe_config, conn_state);
-> >
-> > +	if(DISPLAY_VER(display) >=3D 15 && intel_dp_is_edp(intel_dp)) {
-> > +		pipe_config->enable_cmtg =3D true;
-> > +		drm_dbg_kms(display->drm,"ANI-DBG:
-> intel_dp_compute_config\n");
->=20
-> Please don't leave personal debug stuff even in RFC code.
+Hi Dave, Sima,
 
-All above feedback have taken care in next version, currently debug ongoing=
- with flipQ, will float after that.
+Happy new year!
 
-Regards,
-Animesh
->=20
-> > +	}
-> > +
-> >  	return intel_dp_tunnel_atomic_compute_stream_bw(state, intel_dp,
-> connector,
-> >  							pipe_config);
-> >  }
->=20
-> --
-> Jani Nikula, Intel
+Here's the first drm-misc-next PR for 2026.
+
+Thanks
+Maxime
+
+drm-misc-next-2026-01-08:
+drm-misc-next for 6.20:
+
+UAPI Changes:
+
+Cross-subsystem Changes:
+
+Core Changes:
+  - draw: Add API to check if a format conversion can be done
+  - panic: Rename draw_panic_static_* to draw_panic_screen_*, Add kunit
+    tests
+  - shmem: Improve tests
+
+Driver Changes:
+  - ast: Big endian fixes
+  - etnaviv: Add PPU flop reset support
+  - panfrost: Add GPU_PM_RT support for RZ/G3E SoC
+  - panthor: multiple fixes around VM termination, huge page support
+  - pl111: Fix build regression
+  - v3d: Fix DMA segment size
+
+  - bridge:
+    - Add connector argument to .hpd_notify
+    - Plenty of patches to convert existing drivers to refcounting
+    - Convert Rockchip's inno hdmi support to a proper bridge
+    - lontium-lt9611uxc: Switch to HDMI audio helpers
+
+  - panel:
+    - New panel: BOE NV140WUM-T08
+The following changes since commit 332070795bd96193756cb4446eddc3ec9ff6a0e8:
+
+  accel/amdxdna: Enable hardware context priority (2025-12-18 10:36:44 -080=
+0)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-202=
+6-01-08
+
+for you to fetch changes up to 6a0b99e9fb45f403c3097a9047963d2dd5b0fab2:
+
+  drm/etnaviv: Add module parameter to force PPU flop reset (2026-01-06 16:=
+43:19 +0100)
+
+----------------------------------------------------------------
+drm-misc-next for 6.20:
+
+UAPI Changes:
+
+Cross-subsystem Changes:
+
+Core Changes:
+  - draw: Add API to check if a format conversion can be done
+  - panic: Rename draw_panic_static_* to draw_panic_screen_*, Add kunit
+    tests
+  - shmem: Improve tests
+
+Driver Changes:
+  - ast: Big endian fixes
+  - etnaviv: Add PPU flop reset support
+  - panfrost: Add GPU_PM_RT support for RZ/G3E SoC
+  - panthor: multiple fixes around VM termination, huge page support
+  - pl111: Fix build regression
+  - v3d: Fix DMA segment size
+
+  - bridge:
+    - Add connector argument to .hpd_notify
+    - Plenty of patches to convert existing drivers to refcounting
+    - Convert Rockchip's inno hdmi support to a proper bridge
+    - lontium-lt9611uxc: Switch to HDMI audio helpers
+
+  - panel:
+    - New panel: BOE NV140WUM-T08
+
+----------------------------------------------------------------
+Adri=E1n Larumbe (1):
+      drm/panthor: Support partial unmaps of huge pages
+
+Andy Yan (2):
+      drm/rockchip: inno-hdmi: Convert to drm bridge
+      MAINTAINERS: Add entry for Innosilicon hdmi bridge library
+
+Arnd Bergmann (1):
+      drm: pl111: fix build regression
+
+Biju Das (1):
+      drm/panfrost: Add GPU_PM_RT support for RZ/G3E SoC
+
+Dmitry Baryshkov (2):
+      drm/bridge: add connector argument to .hpd_notify callback
+      drm/bridge: lontium-lt9611uxc: switch to HDMI audio helpers
+
+Francesco Valla (3):
+      drm/draw: add drm_draw_can_convert_from_xrgb8888
+      drm/log: avoid WARN when searching for usable format
+      drm/panic: avoid WARN when checking format support
+
+Gert Wollny (5):
+      drm/etnaviv: Add command stream definitions required for a PPU flop r=
+eset
+      drm/etnaviv: move some functions to a header to be able to use them e=
+xternally
+      drm/etnaviv: Add a new function to emit a series of states to cmd str=
+eam
+      drm/etnaviv: Add PPU flop reset
+      drm/etnaviv: Add module parameter to force PPU flop reset
+
+Hans de Goede (1):
+      drm/panel: edp: add BOE NV140WUM-T08 panel
+
+Jani Nikula (1):
+      drm/atomic: convert drm_atomic_get_{old, new}_colorop_state() into pr=
+oper functions
+
+Jocelyn Falempe (2):
+      drm/panic: Rename draw_panic_static_* to draw_panic_screen_*
+      drm/panic: Add kunit tests for drm_panic
+
+Ketil Johnsen (1):
+      drm/panthor: Evict groups before VM termination
+
+Luca Ceresoli (18):
+      drm/bridge: add of_drm_find_and_get_bridge()
+      drm/bridge: deprecate of_drm_find_bridge()
+      drm/todo: add entry about converting to of_drm_find_and_get_bridge()
+      drm/bridge: make of_drm_find_bridge() a wrapper of of_drm_find_and_ge=
+t_bridge()
+      drm/arcpgu: convert to of_drm_find_and_get_bridge()
+      drm/bridge: add next_bridge pointer to struct drm_bridge
+      drm/bridge: ite-it66121: get/put the next bridge
+      drm/bridge: imx8qxp-pixel-combiner: get/put the next bridge
+      drm/bridge: simple-bridge: get/put the next bridge
+      drm/meson: encoder_cvbs: get/put the next bridge
+      drm/meson: encoder_dsi: get/put the next bridge
+      drm/meson: encoder_hdmi: get/put the next bridge
+      drm/bridge: imx8qxp-pxl2dpi: simplify put of device_node pointers
+      drm/bridge: imx8qxp-pxl2dpi: remove excess error message
+      drm/bridge: imx8qxp-pxl2dpi: imx8qxp_pxl2dpi_find_next_bridge: return=
+ int, not ERR_PTR
+      drm/bridge: imx8qxp-pxl2dpi: get/put the next bridge
+      drm/bridge: imx8qxp-pxl2dpi: get/put the companion bridge
+      drm/bridge: imx8qxp-pixel-link: remove excess error message
+
+Martin Blumenstingl (1):
+      drm/meson: venc: add support for HDMI DMT modes up to 3840x2160
+
+Ren=E9 Rebe (1):
+      drm/ast: Swap framebuffer writes on big-endian machines
+
+Thomas Zimmermann (7):
+      drm/tests: shmem: Swap names of export tests
+      drm/tests: shmem: Add clean-up action to unpin pages
+      drm/tests: shmem: Hold reservation lock around vmap/vunmap
+      drm/tests: shmem: Hold reservation lock around madvise
+      drm/tests: shmem: Hold reservation lock around purge
+      vt: Remove trailing whitespace
+      vt: Remove con_debug_enter/_leave from struct consw
+
+Xiaolei Wang (1):
+      drm/v3d: Set DMA segment size to avoid debug warnings
+
+ Documentation/gpu/todo.rst                         |  16 +
+ MAINTAINERS                                        |   9 +
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_color.c    |   3 +
+ drivers/gpu/drm/ast/ast_cursor.c                   |  11 +-
+ drivers/gpu/drm/ast/ast_mode.c                     |  11 +-
+ drivers/gpu/drm/bridge/Kconfig                     |   7 +
+ drivers/gpu/drm/bridge/Makefile                    |   1 +
+ .../gpu/drm/bridge/imx/imx8qxp-pixel-combiner.c    |   9 +-
+ drivers/gpu/drm/bridge/imx/imx8qxp-pixel-link.c    |   9 +-
+ drivers/gpu/drm/bridge/imx/imx8qxp-pxl2dpi.c       |  63 ++-
+ .../{rockchip/inno_hdmi.c =3D> bridge/inno-hdmi.c}   | 504 ++++++---------=
+------
+ drivers/gpu/drm/bridge/ite-it66121.c               |   7 +-
+ drivers/gpu/drm/bridge/lontium-lt9611uxc.c         | 125 ++---
+ drivers/gpu/drm/bridge/simple-bridge.c             |  15 +-
+ drivers/gpu/drm/clients/drm_log.c                  |   2 +-
+ drivers/gpu/drm/display/drm_bridge_connector.c     |   2 +-
+ drivers/gpu/drm/drm_atomic.c                       |  32 ++
+ drivers/gpu/drm/drm_atomic_helper.c                |   1 +
+ drivers/gpu/drm/drm_bridge.c                       |  69 ++-
+ drivers/gpu/drm/drm_draw.c                         |  29 ++
+ drivers/gpu/drm/drm_draw_internal.h                |   2 +
+ drivers/gpu/drm/drm_gem_shmem_helper.c             |  63 +++
+ drivers/gpu/drm/drm_panic.c                        |  24 +-
+ drivers/gpu/drm/etnaviv/Makefile                   |   1 +
+ drivers/gpu/drm/etnaviv/etnaviv_buffer.c           |  75 +--
+ drivers/gpu/drm/etnaviv/etnaviv_buffer.h           |  99 ++++
+ drivers/gpu/drm/etnaviv/etnaviv_drv.c              |   3 +
+ drivers/gpu/drm/etnaviv/etnaviv_drv.h              |   3 +
+ drivers/gpu/drm/etnaviv/etnaviv_flop_reset.c       | 224 +++++++++
+ drivers/gpu/drm/etnaviv/etnaviv_flop_reset.h       |  21 +
+ drivers/gpu/drm/etnaviv/etnaviv_gpu.c              |  11 +
+ drivers/gpu/drm/etnaviv/state_3d.xml.h             |  95 ++++
+ drivers/gpu/drm/i915/display/intel_display_types.h |   1 +
+ drivers/gpu/drm/meson/meson_encoder_cvbs.c         |   7 +-
+ drivers/gpu/drm/meson/meson_encoder_dsi.c          |   7 +-
+ drivers/gpu/drm/meson/meson_encoder_hdmi.c         |  10 +-
+ drivers/gpu/drm/meson/meson_venc.c                 |   4 +-
+ drivers/gpu/drm/msm/dp/dp_display.c                |   3 +-
+ drivers/gpu/drm/msm/dp/dp_drm.h                    |   3 +-
+ drivers/gpu/drm/omapdrm/dss/hdmi4.c                |   1 +
+ drivers/gpu/drm/panel/panel-edp.c                  |   7 +
+ drivers/gpu/drm/panfrost/panfrost_drv.c            |   5 +-
+ drivers/gpu/drm/panthor/panthor_mmu.c              | 104 ++++-
+ drivers/gpu/drm/panthor/panthor_sched.c            |  14 +
+ drivers/gpu/drm/panthor/panthor_sched.h            |   1 +
+ drivers/gpu/drm/pl111/pl111_nomadik.c              |   1 +
+ drivers/gpu/drm/rockchip/Kconfig                   |   1 +
+ drivers/gpu/drm/rockchip/Makefile                  |   2 +-
+ drivers/gpu/drm/rockchip/inno_hdmi-rockchip.c      | 189 ++++++++
+ drivers/gpu/drm/tests/drm_gem_shmem_test.c         |  30 +-
+ drivers/gpu/drm/tests/drm_panic_test.c             | 221 +++++++++
+ drivers/gpu/drm/tiny/arcpgu.c                      |   5 +-
+ drivers/gpu/drm/v3d/v3d_drv.c                      |   2 +
+ drivers/gpu/drm/vkms/vkms_composer.c               |   1 +
+ drivers/gpu/drm/vkms/vkms_drv.c                    |   1 +
+ drivers/tty/vt/vt.c                                |  32 +-
+ include/drm/bridge/inno_hdmi.h                     |  33 ++
+ include/drm/drm_atomic.h                           |  39 +-
+ include/drm/drm_bridge.h                           |  17 +
+ include/drm/drm_gem_shmem_helper.h                 |  11 +
+ include/linux/console.h                            |   8 -
+ 61 files changed, 1590 insertions(+), 716 deletions(-)
+ rename drivers/gpu/drm/{rockchip/inno_hdmi.c =3D> bridge/inno-hdmi.c} (69%)
+ create mode 100644 drivers/gpu/drm/etnaviv/etnaviv_buffer.h
+ create mode 100644 drivers/gpu/drm/etnaviv/etnaviv_flop_reset.c
+ create mode 100644 drivers/gpu/drm/etnaviv/etnaviv_flop_reset.h
+ create mode 100644 drivers/gpu/drm/rockchip/inno_hdmi-rockchip.c
+ create mode 100644 drivers/gpu/drm/tests/drm_panic_test.c
+ create mode 100644 include/drm/bridge/inno_hdmi.h
+
+--rpzmdoo344mwnsls
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaV9qMAAKCRAnX84Zoj2+
+dvpGAX0ZbOJ9mmRLm2OeTXypYLSUXE+LqQ6JYgWzmv6kQN4t6w6sdghwEPEaDm7S
+Sqp/ANYBf0WoKK+sXGZ/vMI99S4GqCEUwQ+NrKxsDpsZB2vqGdIGhZPfQyGw40YT
+U7RxT2vdEQ==
+=vKIP
+-----END PGP SIGNATURE-----
+
+--rpzmdoo344mwnsls--
+
