@@ -2,158 +2,204 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7D55D08970
-	for <lists+intel-gfx@lfdr.de>; Fri, 09 Jan 2026 11:34:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F684D08CE9
+	for <lists+intel-gfx@lfdr.de>; Fri, 09 Jan 2026 12:07:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 048DA10E88E;
-	Fri,  9 Jan 2026 10:34:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EAF8910E898;
+	Fri,  9 Jan 2026 11:07:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="AYGkFnRw";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="IHUFvxjX";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="AYGkFnRw";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="IHUFvxjX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XkucuZbO";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A9E910E893
- for <intel-gfx@lists.freedesktop.org>; Fri,  9 Jan 2026 10:34:31 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 892485BD4C;
- Fri,  9 Jan 2026 10:34:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1767954869; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=quXykmFucH86nMSyArVgl9RjHoQwr+Ungu8b5HjPcy4=;
- b=AYGkFnRwOFEi2fS+0MgdGKuPjA5xML1KOEc0VNsILP7ImaqRJ4uUWXamjRs8/0o0vpKGhf
- 7MdEAeqQ4bcAxw2TDloU/+OssmLjWH5UUlO21Va39W6gTXrp1mv9PEbzCDRLA8v7bJkvGC
- fj9pE11XRgdPxIiiCGMLZ4rIU7VzfFA=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1767954869;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=quXykmFucH86nMSyArVgl9RjHoQwr+Ungu8b5HjPcy4=;
- b=IHUFvxjXt6RNe94raOnQ1X8PE56K7NAxMjFmxFzfDsr06Ts6Avcj62ovlK3mxFEbcYeb9j
- Lla84MGwl3Bi/IDw==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1767954869; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=quXykmFucH86nMSyArVgl9RjHoQwr+Ungu8b5HjPcy4=;
- b=AYGkFnRwOFEi2fS+0MgdGKuPjA5xML1KOEc0VNsILP7ImaqRJ4uUWXamjRs8/0o0vpKGhf
- 7MdEAeqQ4bcAxw2TDloU/+OssmLjWH5UUlO21Va39W6gTXrp1mv9PEbzCDRLA8v7bJkvGC
- fj9pE11XRgdPxIiiCGMLZ4rIU7VzfFA=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1767954869;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=quXykmFucH86nMSyArVgl9RjHoQwr+Ungu8b5HjPcy4=;
- b=IHUFvxjXt6RNe94raOnQ1X8PE56K7NAxMjFmxFzfDsr06Ts6Avcj62ovlK3mxFEbcYeb9j
- Lla84MGwl3Bi/IDw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 5C7883EA63;
- Fri,  9 Jan 2026 10:34:28 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id LvUmFbTZYGkGRAAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Fri, 09 Jan 2026 10:34:28 +0000
-Message-ID: <c816f7ed-66e0-4773-b3d1-4769234bd30b@suse.de>
-Date: Fri, 9 Jan 2026 11:34:27 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/12] Recover sysfb after DRM probe failure
-To: Zack Rusin <zack.rusin@broadcom.com>, dri-devel@lists.freedesktop.org
-Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- Ard Biesheuvel <ardb@kernel.org>, Ce Sun <cesun102@amd.com>,
- Chia-I Wu <olvaffe@gmail.com>, =?UTF-8?Q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>,
- Dave Airlie <airlied@redhat.com>, Deepak Rawat <drawat.floss@gmail.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Hans de Goede <hansg@kernel.org>, Hawking Zhang <Hawking.Zhang@amd.com>,
- Helge Deller <deller@gmx.de>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Jocelyn Falempe <jfalempe@redhat.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Lijo Lazar <lijo.lazar@amd.com>, linux-efi@vger.kernel.org,
- linux-fbdev@vger.kernel.org, linux-hyperv@vger.kernel.org,
- linux-kernel@vger.kernel.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- Lyude Paul <lyude@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- "Mario Limonciello (AMD)" <superm1@kernel.org>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Maxime Ripard <mripard@kernel.org>, nouveau@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
- spice-devel@lists.freedesktop.org,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, virtualization@lists.linux.dev,
- Vitaly Prosyak <vitaly.prosyak@amd.com>
-References: <20251229215906.3688205-1-zack.rusin@broadcom.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8C6510E02B;
+ Fri,  9 Jan 2026 11:07:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1767956825; x=1799492825;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=dIWwCMU2QoaINxUXywnDGbUX86qTIJTHzHCBPFOOgfk=;
+ b=XkucuZbOkQppqIPyY50KShtk6wygZshiQSMpQPqUMJukycJByyIJUubX
+ ZDtNGXla1RVm9IduabeOnvrfubHbOUf/Bk9WCEd1+S5aPVslP2liqB7P3
+ GvjcuXjhdqsK9K9+E7vgctgx7yFLkoIXPVn0Cs+lMHEjz8+B3bhRmEKru
+ e4jDfjjf9mpfQv/WPYRlJJKAdjwFo90gouz6KAtDSBUosWUT1Mb3skich
+ FTDUzyFtl/VT+wzXDNsdX7hvDRIkyhIreHDHVlMnPff1XUkLX55WCcqs3
+ PATJlZkDMmb0FyUlPPsSKmiqZ5PXVKBNhsXADZsqIrSkHDmZDUjuNhmIR w==;
+X-CSE-ConnectionGUID: TupdvbpVQRWoiU5zlEjm8w==
+X-CSE-MsgGUID: 9m5c/uqpRjShV/pnSy9//w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11665"; a="56891456"
+X-IronPort-AV: E=Sophos;i="6.21,212,1763452800"; d="scan'208";a="56891456"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2026 03:07:04 -0800
+X-CSE-ConnectionGUID: jxHtTYxQQe+i+vAztoE/hw==
+X-CSE-MsgGUID: zHv/GpzFRE2jEFcycgEJEQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,212,1763452800"; d="scan'208";a="203875458"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2026 03:07:04 -0800
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Fri, 9 Jan 2026 03:07:03 -0800
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29 via Frontend Transport; Fri, 9 Jan 2026 03:07:03 -0800
+Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.7) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Fri, 9 Jan 2026 03:07:03 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bfO5Tc8/UC1TUhHi0GBXTB3OLRj6j4rNrAhDKhpAHhSZUg388OoTbMG3fSTZ9Nkc/uztnB7uA66zlqGE3juPSFYYgt8L8B1nWSnxbmDQAOFJpNSwzjBH9Jvq0/NINvvdWP52NBKBGaOzgQ7Ep1jKXsGxbY0EukLxRvxJaigRYXSwRrgdGgHZLGMuyjvjQ8/qkOO2RN5TodMomaOG0YfmHNuwGPqJqm+TvGED44EdahS9A5YN3PdKt8ronpVaZTwZ2e7nVepYhkrlvW2lIN5R+CZmCLxMeVikg4D7agVwYY7KpcF9CgXUAUZZx0sSPp4/roZaiNeJUuWCnCUvDmTZ7Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dIWwCMU2QoaINxUXywnDGbUX86qTIJTHzHCBPFOOgfk=;
+ b=rJva9m1DXyjFwqLsmzwQCVEj6YhDXmXEUzivz5zcWto1jFtYVYa5yE3pD3dEHzX+SKgTv2+qMqIdBBRkK5XJKuldg+r1xqIedtyabnztSJcAjCK6CdDOeExO8SxIHItWm+x+mSYRnXXhAAweI3tSe3S1tpPyO8GJLoOC678cO4LlrpR0rt017eU5oZN3dAXvrcXuPQZ/PlZbbWjxZE//NEV0V70uWEDe6wRo6qTV9x6xJD/RXGX0TQdWCDSlHWP1NLR/tf3ivYIiopeUrn6Il+KUNiaMSgxNs9jAGjOF5CBmOXDUCLfG1k8nOOoi/znFRegytoa6Z14xTEofPvv5fQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from IA0PR11MB7307.namprd11.prod.outlook.com (2603:10b6:208:437::10)
+ by SJ0PR11MB4782.namprd11.prod.outlook.com (2603:10b6:a03:2df::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.5; Fri, 9 Jan
+ 2026 11:07:01 +0000
+Received: from IA0PR11MB7307.namprd11.prod.outlook.com
+ ([fe80::dafa:d38d:8ac1:e843]) by IA0PR11MB7307.namprd11.prod.outlook.com
+ ([fe80::dafa:d38d:8ac1:e843%6]) with mapi id 15.20.9499.003; Fri, 9 Jan 2026
+ 11:07:01 +0000
+From: "Murthy, Arun R" <arun.r.murthy@intel.com>
+To: =?utf-8?B?TWljaGVsIETDpG56ZXI=?= <michel.daenzer@mailbox.org>, "Maarten
+ Lankhorst" <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Jani Nikula
+ <jani.nikula@linux.intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, "xaver.hugl@kde.org" <xaver.hugl@kde.org>,
+ "andrealmeid@igalia.com" <andrealmeid@igalia.com>, "Kumar, Naveen1"
+ <naveen1.kumar@intel.com>, "Syrjala, Ville" <ville.syrjala@intel.com>, Dmitry
+ Baryshkov <lumag@kernel.org>
+CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: RE: [PATCH RFC v3 0/7] Async Flip in Atomic ioctl corrections
+Thread-Topic: [PATCH RFC v3 0/7] Async Flip in Atomic ioctl corrections
+Thread-Index: AQHcgIN5UwmDuAHNMUuSYMjH6VvbC7VJl7sAgAAVv7A=
+Date: Fri, 9 Jan 2026 11:07:00 +0000
+Message-ID: <IA0PR11MB730722B84E81A0CC9BF80275BA82A@IA0PR11MB7307.namprd11.prod.outlook.com>
+References: <20260108-async-v3-0-e7730c3fe9ff@intel.com>
+ <342abb15-95e6-4ed6-8b86-a900c0f403a4@mailbox.org>
+In-Reply-To: <342abb15-95e6-4ed6-8b86-a900c0f403a4@mailbox.org>
+Accept-Language: en-US
 Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <20251229215906.3688205-1-zack.rusin@broadcom.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-2.80 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- SUSPICIOUS_RECIPS(1.50)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com,gmx.de];
- MIME_TRACE(0.00)[0:+]; FUZZY_RATELIMITED(0.00)[rspamd.com];
- TO_DN_SOME(0.00)[]; RCPT_COUNT_TWELVE(0.00)[43];
- TAGGED_RCPT(0.00)[]; MID_RHS_MATCH_FROM(0.00)[];
- R_RATELIMIT(0.00)[to_ip_from(RLxtqcp3yg5i7i9mi6syp13ijk)];
- FROM_HAS_DN(0.00)[];
- FREEMAIL_CC(0.00)[amd.com,lists.freedesktop.org,kernel.org,gmail.com,redhat.com,collabora.com,chromium.org,gmx.de,linux.intel.com,vger.kernel.org,intel.com,ffwll.ch,ursulin.net,lists.linux.dev];
- RCVD_TLS_ALL(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
- RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:email, suse.com:url, suse.de:mid,
- suse.de:email, imap1.dmz-prg2.suse.org:helo, lists.freedesktop.org:email]
-X-Spam-Flag: NO
-X-Spam-Score: -2.80
-X-Spam-Level: 
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: IA0PR11MB7307:EE_|SJ0PR11MB4782:EE_
+x-ms-office365-filtering-correlation-id: 11e1cb3c-6c0e-40f6-40f0-08de4f6f36a6
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|376014|7416014|10070799003|366016|38070700021|921020; 
+x-microsoft-antispam-message-info: =?utf-8?B?eVNndXlFWjhjdG04cStsZzJyaDVvaE5XQUFoTk0yVzhWWGRoRmVScGdYeWM1?=
+ =?utf-8?B?ZjI1eDJKbmxwb0xUMHRBeTlCamZjYmhtTG12cm9qcjg3bjBDM3ZJcXh4YWdh?=
+ =?utf-8?B?VDBlZjZ2WHVHeWdwWEFmWE1hM2lBbnBWaFFvVDFlbzB0d3hZcUc4Q3ZRZHNK?=
+ =?utf-8?B?d250SzNzdW9EMG9Dci93OGVKbW5UTElrNkhidUtteGlYNzRpSW9GMzJDUWMv?=
+ =?utf-8?B?RVU5cjBwcmZaNHh4WWtwelhQeTlsbmFUcXFJMklINUNlZ3BXblpINDhNeWJE?=
+ =?utf-8?B?N0lLMmVRaDB1UlB2eTZrSEpXdktibFBqbnF2OG52ZURtUklIdUtqMHZJSFJi?=
+ =?utf-8?B?ZWxTZnpwSzExYzJHVUQrYWM2V3VYSmNlOWk0RjAzdGcrUE9OWWpPOGdldnYw?=
+ =?utf-8?B?OElZeVpidDlwZVlVdzdaT0pzS0s2NVQyeURQOEhtUmI1aUxjYzFmVmYvM1d4?=
+ =?utf-8?B?TXJkRGFzeGxrT3lxSXRDaFpPV2tSNVUyalJLL1pMY3loTjIwS2s2SmlGS0Nx?=
+ =?utf-8?B?UzZHTFoxUU5rRGhsa05Yd3o1UGJYVnJYK0FvWmtseWtMemZwNkgxT2kzTWtq?=
+ =?utf-8?B?UDNEV3ozWHRpVUkvS2lPYXg4YTJUQlA1S0lSV1FycVJ3cC84V0pBcmFPTHdC?=
+ =?utf-8?B?SUFBSHd6VnAxWFB5MSsrZUVxeGRhSm9tVmJxSS9rTzdHclBoeVRFNFFZOUJL?=
+ =?utf-8?B?TlpneDI4b0o0cER2NVhsWi9xSWlNMzlGWjhFYUNaN1AwODVMUy9wNE9tOW1E?=
+ =?utf-8?B?TDduT043UHNtejFEaEp3ZVhQTlVQYTFGeEQ5cDNTR0RpcjQ3V1F6WTh6NDJp?=
+ =?utf-8?B?N3BkVUJlcktJd3craE5HbGJIZjg0bUU2dFJPMlk1MXhLcUtrTTUxdmwxOVhS?=
+ =?utf-8?B?L1p0UThWS3BiZXB4b0o1S1NqazZpYzJpN3VqSTF6UUNNOERSWUpkcU9qM1RD?=
+ =?utf-8?B?SzV5VDUwUzBVeDlPSDdlZDliVjlaYzJwNFVDNjVlWHBQUG1DZVAvZVN0WTBW?=
+ =?utf-8?B?SGQ0enJqd01wRGdvTFkzN2dVT0VEQXZwTDhvZ2hOMWhHTlRmaDJBOVRlSVN0?=
+ =?utf-8?B?RXlTYThIUzJDN3BDVVBFK3FOZFE2RXBjdHJrQ2JKWTM1UEE2cTVXMUdDQmVD?=
+ =?utf-8?B?QnJ1ZzlxQzljZXpLOW1wN3JHREN1UWpGRW1VU0pwVjhzdDJTN0pkcWVtMFN3?=
+ =?utf-8?B?NWtHUXpHbjdwdUdXYmtVUHV0aHFSN0xWVmhaK0FMZmhWS2NhTHhGUk1odWdI?=
+ =?utf-8?B?NHdVaGwwVTY4bzl3ZG1zd1duaU1IdXBkK0ZxWmU1R1FWNEppZGVNZE9tRkd4?=
+ =?utf-8?B?RTdONllBNVc2cWtMalFnNXBsSllwdG1Sby92OWl0L1dZS0prV0cvM0hVdEdX?=
+ =?utf-8?B?dSt1VnMvbkZndzdnYWlqRjRrbkdCK1hleSt0KzUyMUppYUxJcTZHdWpRWEor?=
+ =?utf-8?B?Yk5SQnhoc2MwZW9jeXJLM0Jpd2h3OVlUQ2lSNHRKc21JckZ0aHFCbkRJUU04?=
+ =?utf-8?B?b2l4Q2U0azVGOEJjcmhmQlU5RlN0b3NiSEQzdk1DTUtUR054V0xjTzI4Q2h2?=
+ =?utf-8?B?dSs4REl2M2Zvd0ZOWDFPNFVRR1V6bWlSTWdHMElSeC9SY2ZueFRDZXZrUVdk?=
+ =?utf-8?B?cDQwNnRtQm1WOU1UQytSQU1zOTg2U1FqQmRUMS9ad0tVWE1vRzdhdUErdWZj?=
+ =?utf-8?B?UTVqTlFsQStXUDZqdjhveVpMTGNuR1kzeUxCeUZOY003VkZpa2RjSmh6Zy80?=
+ =?utf-8?B?dEE4YklJRHE5WURZUTJ6SS9yczZKVy9VbWpxamZhekU1RGhCaTBjRmtaUVRD?=
+ =?utf-8?B?WllVeTJRcmlhbUE4S1ZCdDJ2azdaUGFGK09sYWl4MElpYjhjcG1NTE81WkIx?=
+ =?utf-8?B?RURjRWltVUg1L1dFaVB4U3JrcnRKTU5selRrWlJtd2s5VkUwUlhDOHdhbHdH?=
+ =?utf-8?B?WGRJNURYeDBkWE1GbFJ0UzlLcm1lTDJTU1FMZmxTVmdKbVpTNkJDWSszL3FJ?=
+ =?utf-8?Q?V0fbQVndMO4P+ToG6nOoZaTmcrHCnA=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA0PR11MB7307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(7416014)(10070799003)(366016)(38070700021)(921020);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 2
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?MEptcVZFZTFSdTg4aUJGMklhQlVMTTg4UTd1Y09LM2h4RGIxSXhNZEFMeDJv?=
+ =?utf-8?B?L2ZsaEg0SUtjcXREN09tK3BqVmhUSzFWRUhpeXppdS9HYSt6aGp2eFVLTGVm?=
+ =?utf-8?B?ZUxmdmphTU5OZmpjU3JJQm1jUEdKQllSbTBPQ1g1SnNwOXNLYlBoYmFCcCtx?=
+ =?utf-8?B?c1kyNnQyL2Eydzk1QmhUdEExV1p6WTlvb2g0b3JDcXFSSHk0SXR3TkVsbk9m?=
+ =?utf-8?B?a1F3RTNRVTBWanVPVHV0UnM3N3B4bnRNYzQzTyt4TnNiYVRHekhwL3lmbVFl?=
+ =?utf-8?B?KzN5ckRmdm1LMkI1SXBEaFY0UWFTcXNEUEZvZ1dmcC93QnQxcmJkWnFiYUQ5?=
+ =?utf-8?B?Z3cxd1o3cDZ4cTNZT2xtR08zZFpJTkRtSm95VlR3RHRVVU8yeVZZM21rRENK?=
+ =?utf-8?B?KzRtaldHL0tSU0hIb3NRQzRFOWtPcnh5TWJna0FvSmJFZE5wd1c2REhlazR6?=
+ =?utf-8?B?OGtnUjVZVHp4QkM5bjBIV0dBNHR2eXBPWU1TQjhndGR5SytwYUcwdWM3TlY2?=
+ =?utf-8?B?aElndXhkb2VMTjRtbVkrVDFvTjZaSFRhZnd1NVBaSkRSZjNGcXdzZFFoS2ty?=
+ =?utf-8?B?aGNoSDZFN1pSZ3cwSkRPN1dmcmdDKzh1TzdBUU5MeXZkWS9PUFNPaDF5bE5C?=
+ =?utf-8?B?bGQwaHlicCtKaWtSdzFRY2MyTGVOOVcxbXhJaUlCUFR4NDJCRFpSaTFEOE85?=
+ =?utf-8?B?TFJZZmtjZm53Y2hQZDNQa2pRQmNwRWtUWk0xVStBMEtHTzYvMW1UaDJkWmJV?=
+ =?utf-8?B?Ty80a0c4Q0V0djBGelRPSjVtL2tMMWZaVXdOa29PZ2hxdzFMb093eVh4ckNw?=
+ =?utf-8?B?SVFUQUd2MkI1S2hCNTFLeVMxUVg1TGhSOXV6VGFobFl3eEcyRWE1THc5UmZQ?=
+ =?utf-8?B?UXNBT2NBcmVEa2dxelAvakNTRThPeTM1Qnd3Nk92WXRDUnNwbDhqVDJtUlpn?=
+ =?utf-8?B?aFQxTXh1TDlYV1phWjZGSkYwZFZNckpzUU5RTkVpcXZ6R0RQYWl4QU9tVXVv?=
+ =?utf-8?B?Q2JYYUtoZy80bkpSclhRSW5ZZzlPZ2FYMlJTLzQ2cjdsZ0piZlRRamJ1Ym5z?=
+ =?utf-8?B?UkJHUDBXeFltbVhBeWV1bkk0a1U3NE1uM1pYVlhVY2JrZ0dab1pjNm1vRVJT?=
+ =?utf-8?B?SHJ2bk9SM0lPRUNxU1U0dlA1Q0hrY2VhRkJ3UW53Z2w2SlpzV2tGNFA5aU9u?=
+ =?utf-8?B?b0Z6YzBicWxVQkNwb0plRWFmdVI0b2NqYWg5Y1A5R2podEJoSGFWYWFlbU9m?=
+ =?utf-8?B?WDdvczYxcUdPQkEzTEdvOU5ITmFlbnkvaXRMVHlNYi9zM3ZvUHg1VSswb21H?=
+ =?utf-8?B?ZzBob2Q0dFNoM0F0TnhpYjBQaGU5R0tmT0FKbnJvcmpFQ0tmbzV4VndaNlFR?=
+ =?utf-8?B?Q2piYjN2VTZHVkY1TXN6c3dzZzkzaUsrZUMrc2hGczlLQ0lTSXRVWWxQVjlw?=
+ =?utf-8?B?bHJPaUR5UWlPS3BiZXFaMkdTZ29ZZjZTQW10a0NFclJQMTc2RWhyRUlpM3RF?=
+ =?utf-8?B?ZnlubytxY3YzandNRUFIOTJWbTUzVExoTHRUSVpabThJOWpiaGtoNG03eEg5?=
+ =?utf-8?B?QTVYRVNkbzZSY2ptUy9rWXlZT09NbXJFeUJWaWV5WVJyNU1mT01XVkZNNGVR?=
+ =?utf-8?B?V0JZczRUWmhnTktmTlNWK1BzUFcvRlVIeGhxd0U0MUNzZEpCVTUyeTdpajlk?=
+ =?utf-8?B?L3RKRGZkZ3NaL1dpRE1SWDY5OFp6T05nTWNhcmVnNVIrOThTaW9wTkxhWFFJ?=
+ =?utf-8?B?cnFmZXV6RXhxV3p4WERLSmhzUFZvN3VDdmpHSVp5K1I2cFBsek1QdUtiMjNU?=
+ =?utf-8?B?bmhuZmtta01rTVY2QWZEWFZ1VS82NGVNaml6c3JheWZKNnFIMitxOW5DL0Ez?=
+ =?utf-8?B?d2RScENXemZFWHJ3aEVzUjFqOWRZY21iREU1NVFJN1dveGt2MlY2NzNDazI3?=
+ =?utf-8?B?NWxQZzFwT1dlQ1JvTk5LS0JIN2NNWUxTWXQ2MGdXd2dmcHFNOFUxc2lHYWFB?=
+ =?utf-8?B?TlZaVk01ak5LYkw4TzlwUEQ2a0tEc1ppV0FCaHUxVXk2Zk1TUTh2UmVaLzZy?=
+ =?utf-8?B?emhNaENlSTZzUldSSFN2SUd3Ty9Ybm5JZllEa21lMlBpSDg3RkxtMFdTVmVm?=
+ =?utf-8?B?VlhQL3lJOEpCU3dwRmVMUXJYaWVRQnFPRm5TNkdUMmJ2TjZvZTNaSjJ4RVU5?=
+ =?utf-8?B?R1JiRFBOQ2pYQ2Y5YkVUcGtoSElYcU5qaytDb29TTTk2N1FrSlBGS1ZpYlVh?=
+ =?utf-8?B?VUJZckhlOWFBcWtlRWdBTnVPNUZXU3JFQWxQeWRZVjZ6eFVHQUJOWUdTWHBv?=
+ =?utf-8?B?YzNrcFlWZFY2blJxRTA2cEJvTVNWbVF0T2hISHppNGFaTWVLaTVHV2F5b0Ny?=
+ =?utf-8?Q?rINvfwk50LxneJhVg86FD9ivsOAoFfAY50O+7xxKHfxMw?=
+x-ms-exchange-antispam-messagedata-1: Z3U42n0L5KcV7g==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7307.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 11e1cb3c-6c0e-40f6-40f0-08de4f6f36a6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Jan 2026 11:07:00.9822 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 7MzBGGwyaTzumk7lnHZbx6x/xxfqrg4GpjQGBgtvodEPUkxJySobHej9wz4370rx9GPyqM3hdlqIUHcjabxoDg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4782
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -169,167 +215,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi
-
-Am 29.12.25 um 22:58 schrieb Zack Rusin:
-> Almost a rite of passage for every DRM developer and most Linux users
-> is upgrading your DRM driver/updating boot flags/changing some config
-> and having DRM driver fail at probe resulting in a blank screen.
->
-> Currently there's no way to recover from DRM driver probe failure. PCI
-> DRM driver explicitly throw out the existing sysfb to get exclusive
-> access to PCI resources so if the probe fails the system is left without
-> a functioning display driver.
->
-> Add code to sysfb to recever system framebuffer when DRM driver's probe
-> fails. This means that a DRM driver that fails to load reloads the system
-> framebuffer driver.
->
-> This works best with simpledrm. Without it Xorg won't recover because
-> it still tries to load the vendor specific driver which ends up usually
-> not working at all. With simpledrm the system recovers really nicely
-> ending up with a working console and not a blank screen.
->
-> There's a caveat in that some hardware might require some special magic
-> register write to recover EFI display. I'd appreciate it a lot if
-> maintainers could introduce a temporary failure in their drivers
-> probe to validate that the sysfb recovers and they get a working console.
-> The easiest way to double check it is by adding:
->   /* XXX: Temporary failure to test sysfb restore - REMOVE BEFORE COMMIT */
->   dev_info(&pdev->dev, "Testing sysfb restore: forcing probe failure\n");
->   ret = -EINVAL;
->   goto out_error;
-> or such right after the devm_aperture_remove_conflicting_pci_devices .
-
-Recovering the display like that is guess work and will at best work 
-with simple discrete devices where the framebuffer is always located in 
-a confined graphics aperture.
-
-But the problem you're trying to solve is a real one.
-
-What we'd want to do instead is to take the initial hardware state into 
-account when we do the initial mode-setting operation.
-
-The first step is to move each driver's remove_conflicting_devices call 
-to the latest possible location in the probe function. We usually do it 
-first, because that's easy. But on most hardware, it could happen much 
-later. The native driver is free to examine hardware state while probing 
-the device as long as it does not interfere with the pre-configured 
-framebuffer mode/format/address. Hence it can set up it's internal 
-structures while the sysfb device is still active.
-
-The next step for the native driver is to load the pre-configured 
-hardware state into its initial internal atomic state. Maxime has worked 
-on that on and off. The last iteration I'm aware of is at [1].
-
-After the state-readout, the sysfb device has to be unplugged. But as 
-the underlying hardware config remains active, the native driver can now 
-use and modify it. We currently do a drm_mode_config_reset(), which 
-clears the state and then let the first client set a new display state. 
-But with state-readout, we could either pick up the existing framebuffer 
-directly or do a proper modeset from existing state.
-
-As DRM clients control the mode setting, they'd likely need some changes 
-to handle state-readout. There's such code in i915's fbdev support AFAIK.
-
-Best regards
-Thomas
-
-[1] 
-https://lore.kernel.org/dri-devel/20250902-drm-state-readout-v1-0-14ad5315da3f@kernel.org/
-
->
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: amd-gfx@lists.freedesktop.org
-> Cc: Ard Biesheuvel <ardb@kernel.org>
-> Cc: Ce Sun <cesun102@amd.com>
-> Cc: Chia-I Wu <olvaffe@gmail.com>
-> Cc: "Christian König" <christian.koenig@amd.com>
-> Cc: Danilo Krummrich <dakr@kernel.org>
-> Cc: Dave Airlie <airlied@redhat.com>
-> Cc: Deepak Rawat <drawat.floss@gmail.com>
-> Cc: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: Gerd Hoffmann <kraxel@redhat.com>
-> Cc: Gurchetan Singh <gurchetansingh@chromium.org>
-> Cc: Hans de Goede <hansg@kernel.org>
-> Cc: Hawking Zhang <Hawking.Zhang@amd.com>
-> Cc: Helge Deller <deller@gmx.de>
-> Cc: intel-gfx@lists.freedesktop.org
-> Cc: intel-xe@lists.freedesktop.org
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Javier Martinez Canillas <javierm@redhat.com>
-> Cc: Jocelyn Falempe <jfalempe@redhat.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Lijo Lazar <lijo.lazar@amd.com>
-> Cc: linux-efi@vger.kernel.org
-> Cc: linux-fbdev@vger.kernel.org
-> Cc: linux-hyperv@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: "Mario Limonciello (AMD)" <superm1@kernel.org>
-> Cc: Mario Limonciello <mario.limonciello@amd.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: nouveau@lists.freedesktop.org
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Cc: spice-devel@lists.freedesktop.org
-> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: "Timur Kristóf" <timur.kristof@gmail.com>
-> Cc: Tvrtko Ursulin <tursulin@ursulin.net>
-> Cc: virtualization@lists.linux.dev
-> Cc: Vitaly Prosyak <vitaly.prosyak@amd.com>
->
-> Zack Rusin (12):
->    video/aperture: Add sysfb restore on DRM probe failure
->    drm/vmwgfx: Use devm aperture helpers for sysfb restore on probe
->      failure
->    drm/xe: Use devm aperture helpers for sysfb restore on probe failure
->    drm/amdgpu: Use devm aperture helpers for sysfb restore on probe
->      failure
->    drm/virtio: Add sysfb restore on probe failure
->    drm/nouveau: Use devm aperture helpers for sysfb restore on probe
->      failure
->    drm/qxl: Use devm aperture helpers for sysfb restore on probe failure
->    drm/vboxvideo: Use devm aperture helpers for sysfb restore on probe
->      failure
->    drm/hyperv: Add sysfb restore on probe failure
->    drm/ast: Use devm aperture helpers for sysfb restore on probe failure
->    drm/radeon: Use devm aperture helpers for sysfb restore on probe
->      failure
->    drm/i915: Use devm aperture helpers for sysfb restore on probe failure
->
->   drivers/firmware/efi/sysfb_efi.c           |   2 +-
->   drivers/firmware/sysfb.c                   | 191 +++++++++++++--------
->   drivers/firmware/sysfb_simplefb.c          |  10 +-
->   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |   9 +-
->   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |   7 +
->   drivers/gpu/drm/ast/ast_drv.c              |  13 +-
->   drivers/gpu/drm/hyperv/hyperv_drm_drv.c    |  23 +++
->   drivers/gpu/drm/i915/i915_driver.c         |  13 +-
->   drivers/gpu/drm/nouveau/nouveau_drm.c      |  16 +-
->   drivers/gpu/drm/qxl/qxl_drv.c              |  14 +-
->   drivers/gpu/drm/radeon/radeon_drv.c        |  15 +-
->   drivers/gpu/drm/vboxvideo/vbox_drv.c       |  13 +-
->   drivers/gpu/drm/virtio/virtgpu_drv.c       |  29 ++++
->   drivers/gpu/drm/vmwgfx/vmwgfx_drv.c        |  13 +-
->   drivers/gpu/drm/xe/xe_device.c             |   7 +-
->   drivers/gpu/drm/xe/xe_pci.c                |   7 +
->   drivers/video/aperture.c                   |  54 ++++++
->   include/linux/aperture.h                   |  14 ++
->   include/linux/sysfb.h                      |   6 +
->   19 files changed, 368 insertions(+), 88 deletions(-)
->
-
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
-
-
+DQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IE1pY2hlbCBEw6RuemVyIDxt
+aWNoZWwuZGFlbnplckBtYWlsYm94Lm9yZz4NCj4gU2VudDogRnJpZGF5LCBKYW51YXJ5IDksIDIw
+MjYgMzoxMyBQTQ0KPiBUbzogTXVydGh5LCBBcnVuIFIgPGFydW4uci5tdXJ0aHlAaW50ZWwuY29t
+PjsgTWFhcnRlbiBMYW5raG9yc3QNCj4gPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNv
+bT47IE1heGltZSBSaXBhcmQgPG1yaXBhcmRAa2VybmVsLm9yZz47DQo+IFRob21hcyBaaW1tZXJt
+YW5uIDx0emltbWVybWFubkBzdXNlLmRlPjsgRGF2aWQgQWlybGllDQo+IDxhaXJsaWVkQGdtYWls
+LmNvbT47IFNpbW9uYSBWZXR0ZXIgPHNpbW9uYUBmZndsbC5jaD47IEphbmkgTmlrdWxhDQo+IDxq
+YW5pLm5pa3VsYUBsaW51eC5pbnRlbC5jb20+OyBWaXZpLCBSb2RyaWdvIDxyb2RyaWdvLnZpdmlA
+aW50ZWwuY29tPjsgSm9vbmFzDQo+IExhaHRpbmVuIDxqb29uYXMubGFodGluZW5AbGludXguaW50
+ZWwuY29tPjsgVHZydGtvIFVyc3VsaW4NCj4gPHR1cnN1bGluQHVyc3VsaW4ubmV0PjsgeGF2ZXIu
+aHVnbEBrZGUub3JnOyBhbmRyZWFsbWVpZEBpZ2FsaWEuY29tOyBLdW1hciwNCj4gTmF2ZWVuMSA8
+bmF2ZWVuMS5rdW1hckBpbnRlbC5jb20+OyBTeXJqYWxhLCBWaWxsZSA8dmlsbGUuc3lyamFsYUBp
+bnRlbC5jb20+Ow0KPiBEbWl0cnkgQmFyeXNoa292IDxsdW1hZ0BrZXJuZWwub3JnPg0KPiBDYzog
+ZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZzsgaW50ZWwtDQo+IHhlQGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBTdWJqZWN0OiBS
+ZTogW1BBVENIIFJGQyB2MyAwLzddIEFzeW5jIEZsaXAgaW4gQXRvbWljIGlvY3RsIGNvcnJlY3Rp
+b25zDQo+IA0KPiBPbiAxLzgvMjYgMTA6NDMsIEFydW4gUiBNdXJ0aHkgd3JvdGU6DQo+ID4gc3Ry
+dWN0IGRybV9jcnRjX3N0YXRlIHsNCj4gPiAgICAgICAgICAvKioNCj4gPiAgICAgICAgICAgKiBA
+YXN5bmNfZmxpcDoNCj4gPiAgICAgICAgICAgKg0KPiA+ICAgICAgICAgICAqIFRoaXMgaXMgc2V0
+IHdoZW4gRFJNX01PREVfUEFHRV9GTElQX0FTWU5DIGlzIHNldCBpbiB0aGUgbGVnYWN5DQo+ID4g
+ICAgICAgICAgICogUEFHRV9GTElQIElPQ1RMLiBJdCdzIG5vdCB3aXJlZCB1cCBmb3IgdGhlIGF0
+b21pYyBJT0NUTA0KPiA+IGl0c2VsZiB5ZXQuDQo+ID4gICAgICAgICAgICovDQo+ID4gICAgICAg
+ICAgYm9vbCBhc3luY19mbGlwOw0KPiA+DQo+ID4gSW4gdGhlIGV4aXN0aW5nIGNvZGUgdGhlIGZs
+YWcgYXN5bmNfZmxpcCB3YXMgaW50ZW5kZWQgZm9yIHRoZSBsZWdhY3kNCj4gPiBQQUdFX0ZMSVAg
+SU9DVEwuIEJ1dCB0aGUgc2FtZSBpcyBiZWluZyB1c2VkIGZvciBhdG9taWMgSU9DVEwuDQo+ID4g
+QXMgcGVyIHRoZSBoYXJkd2FyZSBmZWF0dXJlIGlzIGNvbmNlcm5lZCwgYXN5bmMgZmxpcCBpcyBh
+IHBsYW5lDQo+ID4gZmVhdHVyZSBhbmQgaXMgdG8gYmUgdHJlYXRlZCBwZXIgcGxhbmUgYmFzaXMg
+YW5kIG5vdCBwZXIgcGlwZSBiYXNpcy4NCj4gPiBGb3IgYSBnaXZlbiBoYXJkd2FyZSBwaXBlLCBh
+bW9uZyB0aGUgbXVsdGlwbGUgaGFyZHdhcmUgcGxhbmVzLCBvbmUgY2FuDQo+ID4gZ28gd2l0aCBz
+eW5jIGZsaXAgYW5kIG90aGVyIDIvMyBjYW4gZ28gd2l0aCBhc3luYyBmbGlwLg0KPiANCj4gRldJ
+VywgdGhpcyBraW5kIG9mIG1peCduJ21hdGNoIGRvZXNuJ3Qgc2VlbSB1c2VmdWwgd2l0aCBjdXJy
+ZW50IFVBUEksIHNpbmNlIG5vDQo+IG5ldyBjb21taXQgY2FuIGJlIG1hZGUgZm9yIHRoZSBhc3lu
+YyBwbGFuZShzKSBiZWZvcmUgdGhlIHByZXZpb3VzIGNvbW1pdCBmb3INCj4gdGhlIHN5bmMgcGxh
+bmUocykgaGFzIGNvbXBsZXRlZCwgc28gdGhlIGFzeW5jIHBsYW5lKHMpIGNhbid0IGFjdHVhbGx5
+IGhhdmUNCj4gaGlnaGVyIHVwZGF0ZSByYXRlIHRoYW4gdGhlIHN5bmMgb25lKHMpLg0KVGhhdOKA
+mXMgcmlnaHQsIHN1Y2ggbWl4IGFuZCBtYXRjaCBmbGlwcyB3aWxsIHN0aWxsIGNvbnN1bWUgdmJs
+YW5rIHRpbWUgZm9yIGZsaXBwaW5nLg0KVGhpcyBzZXJpZXMgZG9lc27igJl0IHNvbHZlIHRoYXQs
+IGJ1dCByYXRoZXIgYWNjb21tb2RhdGUgbXVsdGlwbGUgcGxhbmUgYXN5bmMgZmxpcHMgaW4gYW4g
+YXRvbWljIGlvY3RsIGFuZCBhbGxvd2luZyBkaXNhYmxpbmcgb2YgYSBzeW5jIHBsYW5lIHdoaWNo
+IGlzIGFscmVhZHkgZW5hYmxlZC4gVGhlcmUgaGFzIGJlZW4gYSBsb25nIGRpc2N1c3Npb24gaW4g
+dGhlIGdpdGxhYihodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2k5MTUva2VybmVs
+Ly0vaXNzdWVzLzEzODM0KSBvbiB0aGlzLg0KDQpUaGFua3MgYW5kIFJlZ2FyZHMsDQpBcnVuIFIg
+TXVydGh5DQotLS0tLS0tLS0tLS0tLS0tLS0tDQo=
