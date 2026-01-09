@@ -2,48 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D459D06E3F
-	for <lists+intel-gfx@lfdr.de>; Fri, 09 Jan 2026 03:54:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37303D06FD0
+	for <lists+intel-gfx@lfdr.de>; Fri, 09 Jan 2026 04:28:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7DC6D10E37E;
-	Fri,  9 Jan 2026 02:54:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F05010E7E8;
+	Fri,  9 Jan 2026 03:28:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="ky3r+SJM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jadrd1aw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DED510E37E;
- Fri,  9 Jan 2026 02:54:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=202503; t=1767927279;
- bh=c7L7YWLxRsvA+5ELP8FC8QCI5J1nWuF3GfW4reXiz3c=;
- h=Date:From:To:Cc:Subject:From;
- b=ky3r+SJMr4f/duvycoLA6o75GooWNoiQVjyWXA9AWM8UnZM3GuBPqjU858yKQfiFY
- 2tW8XdEj0uj8S/RtiCBhQlK/qTrrMJ0iPYbY08P9Xgh2lz5AE2aClEMcWY/cM92rKu
- La0VwOEuEHpUAEIXOCxfF1M0fDqG8q6oxqTO88zBeQA6sA9YbG0a33Q4C0X0/KkD+Q
- HGtdpYGwQcpHL7pgY9vSxE3WDH3matmK+3+ZgsPvkkH5xvT98ESWxPv56NTuWJ4RW3
- wcFUUChiVBCjH8xMHdv5XM5+1XSXUxLqFQt+Mp+DZuJEh40HtTq6kMQLQ4+lWLfnR9
- pHA4mVxgs81Nw==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (Client did not present a certificate)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4dnRFW53hPz4wB9;
- Fri, 09 Jan 2026 13:54:39 +1100 (AEDT)
-Date: Fri, 9 Jan 2026 13:54:38 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Alice Ryhl <aliceryhl@google.com>, Danilo Krummrich <dakr@kernel.org>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
- <dri-devel@lists.freedesktop.org>, Linux Kernel Mailing List
- <linux-kernel@vger.kernel.org>, Linux Next Mailing List
- <linux-next@vger.kernel.org>
-Subject: linux-next: build warning after merge of the drm-misc tree
-Message-ID: <20260109135438.5b4f463d@canb.auug.org.au>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4E5110E7E3;
+ Fri,  9 Jan 2026 03:28:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1767929317; x=1799465317;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=EjP75rMtYoxcuMKQSr6O53Qxk6em91HW4fufreZrCsM=;
+ b=Jadrd1awZnZ/v5a2YYMVTN754zqY1Nan0u7ivQskKscRF52e82qwwhyC
+ YoH8+NLdt4SW3Cly0gjoS28cxTvNDWoC6CgRu9DgqIoKvX5WvHkdG8XX1
+ LCbLpr2BsgUjxi87iqGQ/UP7AjG9eB5JEZLqVvwIEy0+T+C6d21ThbJwJ
+ 1uIHqioRKo7J9Ak/jDp7v8t1tLu3hQHBirsISUgB58K+D+O/9GPbJ42p4
+ ysqH2w2QTkCC4vIz3UO1pmfdJLdSxsvxC5PnUYSQXd1kRtfuEOq098/ok
+ ewmtlCkyW6AWLcS4tPDWBmENHYo1Z0VPlmBGKfLhZkskBCxrE491cUFzi Q==;
+X-CSE-ConnectionGUID: 0+RuB/4EQZCs/gNslP5b7Q==
+X-CSE-MsgGUID: UvnVQBO3SFKSrPo8oF0+jg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11665"; a="86900933"
+X-IronPort-AV: E=Sophos;i="6.21,211,1763452800"; d="scan'208";a="86900933"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2026 19:28:36 -0800
+X-CSE-ConnectionGUID: R9n3EEWqTXyb+QmgEeIpAg==
+X-CSE-MsgGUID: PiZRmvkSR3KiVcxBJnV4jw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,211,1763452800"; d="scan'208";a="203396555"
+Received: from baandr0id001.iind.intel.com ([10.66.253.151])
+ by orviesa007.jf.intel.com with ESMTP; 08 Jan 2026 19:28:34 -0800
+From: Kaushlendra Kumar <kaushlendra.kumar@intel.com>
+To: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
+ joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ simona@ffwll.ch
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org,
+ Kaushlendra Kumar <kaushlendra.kumar@intel.com>
+Subject: [PATCH] drm/i915: free _DSM package when no connectors
+Date: Fri,  9 Jan 2026 08:55:49 +0530
+Message-Id: <20260109032549.1826303-1-kaushlendra.kumar@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/mDxmUqvf2iZgZ9AThVLE2Y8";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,41 +68,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/mDxmUqvf2iZgZ9AThVLE2Y8
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+acpi_evaluate_dsm_typed() returns an ACPI package in pkg.
+When pkg->package.count == 0, we returned without freeing pkg,
+leaking memory. Free pkg before returning on the empty case.
 
-Hi all,
+Signed-off-by: Kaushlendra Kumar <kaushlendra.kumar@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_acpi.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-After merging the drm-misc tree, today's linux-next build (htmldocs)
-produced this warning:
+diff --git a/drivers/gpu/drm/i915/display/intel_acpi.c b/drivers/gpu/drm/i915/display/intel_acpi.c
+index 68c01932f7b4..e06f324027be 100644
+--- a/drivers/gpu/drm/i915/display/intel_acpi.c
++++ b/drivers/gpu/drm/i915/display/intel_acpi.c
+@@ -96,6 +96,7 @@ static void intel_dsm_platform_mux_info(acpi_handle dhandle)
+ 
+ 	if (!pkg->package.count) {
+ 		DRM_DEBUG_DRIVER("no connection in _DSM\n");
++		ACPI_FREE(pkg);
+ 		return;
+ 	}
+ 
+-- 
+2.34.1
 
-WARNING: drivers/gpu/drm/drm_gpuvm.c:1855 expecting prototype for drm_gpuvm=
-_bo_obtain(). Prototype was for drm_gpuvm_bo_obtain_locked() instead
-
-Introduced by commit
-
-  9bf4ca1e699c ("drm/gpuvm: drm_gpuvm_bo_obtain() requires lock and staged =
-mode")
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/mDxmUqvf2iZgZ9AThVLE2Y8
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmlgbe4ACgkQAVBC80lX
-0GxRCQf/RpLd4QJWZVnvm+HkrQVRJz8d48jf/FX/hvntp4APfJ+h+79JjAqivIIb
-XyUfbofgja38tmx5ZraDm7n+68g1LxAnZ6PbDCy8OTKcxH/3SgSL0a5vRgRxoWkd
-Ty5qJn/ORsuK/CKXeSvMiJMcRyIGMOqlUKD0xP4yEZWlY2WEtcrwZpOTRGT0rHoR
-RMNT6TD6Rl4Vg2XB5vzSSTqeJzoaF64N3lERWTjjSK0RCahMGbuuaLRqhOvtzyvF
-/xlnmGrzVRJ08H5HJBPHK5Yol3ISRgwnCZyA0bzKLNznBJAbne3qLa+vY8EU2Idb
-+WwNygq4s3F7GTPbhp8eHiUXNO1HzA==
-=rh/0
------END PGP SIGNATURE-----
-
---Sig_/mDxmUqvf2iZgZ9AThVLE2Y8--
