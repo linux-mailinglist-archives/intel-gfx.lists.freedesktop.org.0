@@ -2,72 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44E10D08E13
-	for <lists+intel-gfx@lfdr.de>; Fri, 09 Jan 2026 12:28:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 531F5D0A2DA
+	for <lists+intel-gfx@lfdr.de>; Fri, 09 Jan 2026 14:05:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 588A110E8A2;
-	Fri,  9 Jan 2026 11:28:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8103A10E8B4;
+	Fri,  9 Jan 2026 13:05:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="iPkzT5g7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dH3rZDTi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 336 seconds by postgrey-1.36 at gabe;
- Fri, 09 Jan 2026 11:28:45 UTC
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9870C10E8A2;
- Fri,  9 Jan 2026 11:28:45 +0000 (UTC)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org
- [IPv6:2001:67c:2050:b231:465::1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4dnfXB1sQCz9tRD;
- Fri,  9 Jan 2026 12:23:06 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; t=1767957786;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=4YVGV/Yb9izcoWuOvgKsXDa6QswfuZB/Juc+OgN1i7I=;
- b=iPkzT5g7FRvlP82GzKGjGT7cn7EcHblr0ojPzgEb3zuihspG68ED4gAh1naWA2nzf5OdGO
- UXkgN7TON8/IDpBPFc5iV2Wu65XIDcJ7LFO6g86AsHfvQd0j2/54Dnrmqtu/24HO9AIm+J
- VYkRI79gyd3Z2koUiR2IlpHIrhWF3hXC83XfDhP2Zfln1ncQZq6Z8Fed7xKIrOEJVgKuGq
- twIm/mMb+36eSkeyGaXduWgaOzAFKGzlMpC2ysK/9jY+d0LY60Y28TcjGrNRdhux/tOMl/
- EBz+R0ndwAOkN25QUZmF3vI4FbS+PDUaz9TqK48XvNSgGsdzQ2WqRWWdIdii0g==
-Message-ID: <05ac3e30-b3dc-48ea-96db-1cbdb4454730@mailbox.org>
-Date: Fri, 9 Jan 2026 12:23:00 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C56E10E8B4
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Jan 2026 13:05:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1767963916; x=1799499916;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=jJfGRNJEH6KPz8gbJaczmczh206qdQruLA1pjxVNEco=;
+ b=dH3rZDTiSwx5jgTYCHCRePZQMNVsOm7G+EDurUOjnlrNTgfR7LtDdtIn
+ LGKqoX6UgC8r5bjuqxK40nrD0Xx9ww+f/ZoBO4LItgtfUL82ijl2qQ63x
+ 24veQlHAF0+XSkXCPwVOt72UDxbXlcWfl+EVHDyiYNsrDFyRrUCbrup5N
+ oj6S+DXTXNLHbLW7g/+GhX1Dcm8y2yh48IA+i3Xc0mOUShrw5ua1qYBBn
+ 40FPgudTXBAPsV+tkkfK1X1k+zIGIEvHGhQaXqYasfvrYHXHdn5Jq57A5
+ N/yleWWLPrEOzm8lV9UEt6J0r7TtNwCwP1LyACTdPdkaSKtuHyRwkywrf Q==;
+X-CSE-ConnectionGUID: R4Y9WnqBRKSe9LsqBSxI8A==
+X-CSE-MsgGUID: xE9FbBoqRMmc3BsTqeGXqg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11666"; a="86931659"
+X-IronPort-AV: E=Sophos;i="6.21,212,1763452800"; d="scan'208";a="86931659"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2026 05:05:15 -0800
+X-CSE-ConnectionGUID: cUuZ7HYERfOUDQBLyDqwEw==
+X-CSE-MsgGUID: UYJYEOISSx29KVK4ytF81g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,212,1763452800"; d="scan'208";a="208521099"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.143])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2026 05:05:12 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
+ paulo.r.zanoni@intel.com, ville.syrjala@linux.intel.com,
+ daniel.vetter@ffwll.ch
+Subject: Re: [PATCH v2] drm/i915/display: Prevent u64 underflow in
+ intel_fbc_stolen_end
+In-Reply-To: <20260107162935.8123-2-jonathan.cavitt@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260107162935.8123-2-jonathan.cavitt@intel.com>
+Date: Fri, 09 Jan 2026 15:05:08 +0200
+Message-ID: <87eaa8a11bfb87a656489125a19af8a0bde0ce01@intel.com>
 MIME-Version: 1.0
-Subject: Re: [PATCH [RFC] v3 5/7] drm/atomic: Allow planes with NULL fb along
- with async flip
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- "xaver.hugl@kde.org" <xaver.hugl@kde.org>,
- "andrealmeid@igalia.com" <andrealmeid@igalia.com>,
- "Kumar, Naveen1" <naveen1.kumar@intel.com>,
- "Syrjala, Ville" <ville.syrjala@intel.com>,
- Dmitry Baryshkov <lumag@kernel.org>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-References: <20260108-async-v3-0-e7730c3fe9ff@intel.com>
- <20260108-async-v3-5-e7730c3fe9ff@intel.com>
- <6316ba11-0660-419c-afb6-a1588f6efef5@mailbox.org>
- <IA0PR11MB73076D91D60F168B9D112051BA82A@IA0PR11MB7307.namprd11.prod.outlook.com>
-From: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
-Content-Language: en-CA
-In-Reply-To: <IA0PR11MB73076D91D60F168B9D112051BA82A@IA0PR11MB7307.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: 50e49ebdfe95bdea6d2
-X-MBO-RS-META: 5pn7ingpy5i51pgnr5yizttjjzy98dq5
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,22 +74,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 1/9/26 12:08, Murthy, Arun R wrote:
->> From: Michel Dänzer <michel.daenzer@mailbox.org>
->> On 1/8/26 10:43, Arun R Murthy wrote:
->>> Along with async flip if there is a request to disable a sync plane by
->>> providing a NULL fb allow them.
->>
->> That could result in async changes to other planes taking effect in an earlier
->> refresh cycle than the sync plane being disabled, couldn't it? In which case the
->> commit arguably wouldn't actually be "atomic".
->>
-> This is the request from the community to allow disabling of a sync plane in an async flip atomic ioctl.
-> https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13834
+On Wed, 07 Jan 2026, Jonathan Cavitt <jonathan.cavitt@intel.com> wrote:
+> Static analysis reveals a potential integer underflow in
+> intel_fbc_stolen_end.  This can apparently occur if
+> intel_parent_stolen_area_size returns zero (or, theoretically, any value
+> less than 2^23), as 2^23 is subtracted from the return value and stored
+> in a u64.  While this doesn't appear to cause any issues due to the use
+> of the min() function to clamp the return values from the
+> intel_fbc_stolen_end function, it would be best practice to avoid
+> undeflowing values like this on principle.  So, rework the function to
+> prevent the underflow from occurring.  Note that the underflow at
+> present would result in the value of intel_fbc_cfb_base_max being
+> returned at the end of intel_fbc_stolen_end, so just return that if the
+> value of intel_parent_stolen_area_size is too small.
+>
+> While we're here, fix the other comments here and modify the execution
+> path for readability.
+>
+> v2: (Jani)
+> - Fix the comments in intel_fbc_stolen_end
+> - Use check_sub_overflow
+> - Remove macro that mirrors SZ_8M, as it is now only referenced once
+> - Misc. formatting fixes
+>
+> Fixes: a9da512b3ed7 ("drm/i915: avoid the last 8mb of stolen on BDW/SKL")
+> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> Cc: Paulo Zanoni <paulo.r.zanoni@intel.com>
+> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
 
-Can't see any such request there. I suspect there might be a misunderstanding.
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
+> ---
+>  drivers/gpu/drm/i915/display/intel_fbc.c | 29 +++++++++++++++++-------
+>  1 file changed, 21 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i=
+915/display/intel_fbc.c
+> index fef2f35ff1e9..1f3f5237a1c2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> @@ -809,19 +809,32 @@ static u64 intel_fbc_cfb_base_max(struct intel_disp=
+lay *display)
+>=20=20
+>  static u64 intel_fbc_stolen_end(struct intel_display *display)
+>  {
+> -	u64 end;
+> +	u64 end =3D intel_fbc_cfb_base_max(display);
+>=20=20
+> -	/* The FBC hardware for BDW/SKL doesn't have access to the stolen
+> +	/*
+> +	 * The FBC hardware for BDW/SKL doesn't have access to the stolen
+>  	 * reserved range size, so it always assumes the maximum (8mb) is used.
+>  	 * If we enable FBC using a CFB on that memory range we'll get FIFO
+> -	 * underruns, even if that range is not reserved by the BIOS. */
+> +	 * underruns, even if that range is not reserved by the BIOS.
+> +	 */
+>  	if (display->platform.broadwell ||
+> -	    (DISPLAY_VER(display) =3D=3D 9 && !display->platform.broxton))
+> -		end =3D intel_parent_stolen_area_size(display) - 8 * 1024 * 1024;
+> -	else
+> -		end =3D U64_MAX;
+> +	    (DISPLAY_VER(display) =3D=3D 9 && !display->platform.broxton)) {
+> +		u64 stolen_area_size =3D intel_parent_stolen_area_size(display);
+> +
+> +		/*
+> +		 * If stolen_area_size is less than SZ_8M, use
+> +		 * intel_fbc_cfb_base_max instead.  This should not happen,
+> +		 * so warn if it does.
+> +		 */
+> +		if (drm_WARN_ON(display->drm,
+> +				check_sub_overflow(stolen_area_size,
+> +						   SZ_8M, &stolen_area_size)))
+> +			return end;
+> +
+> +		return min(end, stolen_area_size);
+> +	}
+>=20=20
+> -	return min(end, intel_fbc_cfb_base_max(display));
+> +	return end;
+>  }
+>=20=20
+>  static int intel_fbc_min_limit(const struct intel_plane_state *plane_sta=
+te)
 
--- 
-Earthling Michel Dänzer       \        GNOME / Xwayland / Mesa developer
-https://redhat.com             \               Libre software enthusiast
+--=20
+Jani Nikula, Intel
