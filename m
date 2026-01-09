@@ -2,29 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3F93D07721
-	for <lists+intel-gfx@lfdr.de>; Fri, 09 Jan 2026 07:48:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40DDDD07E41
+	for <lists+intel-gfx@lfdr.de>; Fri, 09 Jan 2026 09:43:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB9B110E7EF;
-	Fri,  9 Jan 2026 06:48:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C280010E81F;
+	Fri,  9 Jan 2026 08:42:59 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O0NCuAJb";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCE3A10E7EF;
- Fri,  9 Jan 2026 06:48:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7916240877187113048=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C5AA10E817;
+ Fri,  9 Jan 2026 08:42:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1767948178; x=1799484178;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=KbTCncQ97eerYnw4Wnp91TIcTti+LR3nCKvYH1J59aA=;
+ b=O0NCuAJbxovJWCsIc0rdwx//7xYBqj3W60ixSSKSz/V9qhFORLYRPGBx
+ xcddnU01o7WFeu5QOML9n2Jgxj1+sHXpwGGqiHeQDxzwvC5pjSx3qI542
+ KPf4Q2+VS3W00FilYYXCnBI+mXMOQobXHhVsvD8Ey+cky8i/WK/YQ2ZEN
+ /+Bo50MilqNcx2BmDbfAYOfeUbUFuw1xVElSAPYSnqSoGL4rlSQmePyGw
+ TIByaXufrhsRslU+nfROV0qWUdXPtpKIjEN/t217hDXo18HHNmZQqE2ur
+ RCogqHVDUSoxUwzOIzEIzkhq8veJ/++nKaZlQ15oc7dwSGDE1IEV4N+hW g==;
+X-CSE-ConnectionGUID: 4q+uutgZTFWFnZt/I9G8fQ==
+X-CSE-MsgGUID: +TchHBtISS+pidLfZ4JqCQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11665"; a="69241385"
+X-IronPort-AV: E=Sophos;i="6.21,212,1763452800"; d="scan'208";a="69241385"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2026 00:42:58 -0800
+X-CSE-ConnectionGUID: ps0lOmumRfGomJYoGwQ6Qw==
+X-CSE-MsgGUID: K6mETJ7JSumbVto6QyMiaw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,212,1763452800"; d="scan'208";a="240924425"
+Received: from dut-2a59.iind.intel.com ([10.190.239.113])
+ by orviesa001.jf.intel.com with ESMTP; 09 Jan 2026 00:42:53 -0800
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Cc: harry.wentland@amd.com, jani.nikula@linux.intel.com,
+ louis.chauvet@bootlin.com, mwen@igalia.com, contact@emersion.fr,
+ alex.hung@amd.com, daniels@collabora.com, uma.shankar@intel.com,
+ suraj.kandpal@intel.com, nfraprado@collabora.com,
+ ville.syrjala@linux.intel.com, matthew.d.roper@intel.com
+Subject: [PATCH v2 00/13] drm: Color pipeline teardown and follow-up
+ fixes/improvements
+Date: Fri,  9 Jan 2026 13:47:15 +0530
+Message-Id: <20260109081728.478844-1-chaitanya.kumar.borah@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_use_p?=
- =?utf-8?q?ort_not_transcoder_for_PORT=5FALPM=5FCTL?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Kaushlendra Kumar" <kaushlendra.kumar@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 09 Jan 2026 06:48:42 -0000
-Message-ID: <176794132288.139574.14379606156327715898@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260109050021.2017982-1-kaushlendra.kumar@intel.com>
-In-Reply-To: <20260109050021.2017982-1-kaushlendra.kumar@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,132 +68,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7916240877187113048==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This series contains follow-up fixes and improvements for the DRM color
+pipeline infrastructure that was introduced in v6.19.[1][2]
 
-== Series Details ==
+The central handling of clean up of colorop from the mode_config list
+is missing. While vkms calls drm_colorop_pipeline_destroy() in vkms_destroy(),
+amd driver calls it only during failure of the init path and i915/xe driver
+does not call it at all. This means amd and intel leaks these objects on
+driver removal.
 
-Series: drm/i915/display: use port not transcoder for PORT_ALPM_CTL
-URL   : https://patchwork.freedesktop.org/series/159850/
-State : success
+This series adds the teardown of mode_config.colorop_list in drm_mode_config_cleanup().
+Since, i915/xe sub-classes the drm_colorop within intel_colorop it was not enough
+to just use drm_colorop_pipeline_destroy(). Therefore, this series
 
-== Summary ==
+- Introduces driver-managed destruction for drm_colorop objects and
+  updates core helpers to use driver-provided destroy callbacks.
+- Ensures all colorop objects are correctly torn down during
+  mode_config cleanup and driver removal.
 
-CI Bug Log - changes from CI_DRM_17791 -> Patchwork_159850v1
-====================================================
+In addition to that following changes are made in the series
+- Fixes enum name lifetime leaks in color pipeline init in i915, amdgpu_dm, and vkms
+- Corrects the ordering of the 3D LUT block in the i915 plane color pipeline
+- Refactors i915 plane color pipeline initialization to reliably clean
+  up partially constructed pipelines on failure.
 
-Summary
--------
+Thanks for taking a look. Feedback is welcome.
 
-  **SUCCESS**
+[1] https://lore.kernel.org/dri-devel/cbe00ac4-a535-47d3-813a-e2eda7e9b991@amd.com/
+[2] https://lore.kernel.org/intel-gfx/20251203085211.3663374-1-uma.shankar@intel.com/
 
-  No regressions found.
+v2:
+ - Re-arrange patches (Alex)
+ - Re-factor code to avoid repitition in pipeline creation (Suraj)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159850v1/index.html
+==
+Chaitanya
 
-Participating hosts (43 -> 41)
-------------------------------
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Uma Shankar <uma.shankar@intel.com>
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Alex Hung <alex.hung@amd.com>
+Cc: Louis Chauvet <louis.chauvet@bootlin.com>
+Cc: Melissa Wen <mwen@igalia.com>
+Cc: Simon Ser <contact@emersion.fr>
+Cc: Daniel Stone <daniels@collabora.com>
+Cc: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
+Chaitanya Kumar Borah (13):
+  drm/i915/color: Place 3D LUT after CSC in plane color pipeline
+  drm/amd/display: Fix color pipeline enum name leak
+  drm/vkms: Fix color pipeline enum name leak
+  drm/i915/display: Fix color pipeline enum name leak
+  drm/colorop: Add destroy helper for colorop objects
+  drm: Allow driver-managed destruction of colorop objects
+  drm/amd/display: Hook up colorop destroy helper for plane pipelines
+  drm/vkms: Hook up colorop destroy helper for plane pipelines
+  drm/i915/display: Hook up intel_colorop_destroy
+  drm: Clean up colorop objects during mode_config cleanup
+  drm/vkms: Remove drm_colorop_pipeline_destroy() from vkms_destroy()
+  drm/colorop: Use destroy callback for color pipeline teardown
+  drm/i915/color: Add failure handling in plane color pipeline init
 
-Known issues
-------------
+ .../amd/display/amdgpu_dm/amdgpu_dm_colorop.c |  31 ++-
+ .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   |  13 +-
+ drivers/gpu/drm/drm_colorop.c                 |  46 +++--
+ drivers/gpu/drm/drm_mode_config.c             |   6 +
+ .../drm/i915/display/intel_color_pipeline.c   | 179 +++++++++++++-----
+ drivers/gpu/drm/i915/display/intel_colorop.c  |   6 +
+ drivers/gpu/drm/i915/display/intel_colorop.h  |   1 +
+ drivers/gpu/drm/vkms/vkms_colorop.c           |  31 +--
+ drivers/gpu/drm/vkms/vkms_drv.c               |   1 -
+ include/drm/drm_colorop.h                     |  40 +++-
+ 10 files changed, 264 insertions(+), 90 deletions(-)
 
-  Here are the changes found in Patchwork_159850v1 that come from known issues:
+-- 
+2.25.1
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17791/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159850v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-    - bat-mtlp-9:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17791/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159850v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_17791 -> Patchwork_159850v1
-
-  CI-20190529: 20190529
-  CI_DRM_17791: 9e5d93261e35cda4189383e8746fef35c7d0d335 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8692: 8692
-  Patchwork_159850v1: 9e5d93261e35cda4189383e8746fef35c7d0d335 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159850v1/index.html
-
---===============7916240877187113048==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: use port not transcoder for PORT_ALPM_CTL</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159850/">https://patchwork.freedesktop.org/series/159850/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159850v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159850v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17791 -&gt; Patchwork_159850v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159850v1/index.html</p>
-<h2>Participating hosts (43 -&gt; 41)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_159850v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17791/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159850v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17791/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159850v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17791 -&gt; Patchwork_159850v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17791: 9e5d93261e35cda4189383e8746fef35c7d0d335 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8692: 8692<br />
-  Patchwork_159850v1: 9e5d93261e35cda4189383e8746fef35c7d0d335 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============7916240877187113048==--
