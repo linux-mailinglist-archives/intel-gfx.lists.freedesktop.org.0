@@ -2,163 +2,103 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1237CD25154
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Jan 2026 15:54:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A735D255A7
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Jan 2026 16:30:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DE3410E778;
-	Thu, 15 Jan 2026 14:54:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8786910E793;
+	Thu, 15 Jan 2026 15:30:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="u3+AdunZ";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="+y469f0k";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="u3+AdunZ";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="+y469f0k";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=infineon.com header.i=@infineon.com header.b="BAFTMr8w";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D34310E77A
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Jan 2026 14:54:22 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 1C8345BCF9;
- Thu, 15 Jan 2026 14:54:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1768488861; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=JZZ4aQNg2kjiPEymub4m2ZNUq8Vs0R8IU8wf9bayzIQ=;
- b=u3+AdunZbEIUoZWB+rhqLpYJ6IOEXlrbfM2JOkCyI5MYIcDLrEuH8P0Cesm86n4ZwEyDAa
- uwkCa8FFBhp5oqidCwb4Vc3vWyffObhGGihTxKkp4BHJt0G2R3PUONHXQYb1qaEVhoifKv
- 3Ts9xhU9N5+rdU9u8xuq+XZTAT10uH4=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1768488861;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=JZZ4aQNg2kjiPEymub4m2ZNUq8Vs0R8IU8wf9bayzIQ=;
- b=+y469f0kxCy5vqopXjNK/p7mIWTHY+kTTMW2/4AAvaaIVWS0yxnWyT2vCR37a2/fCUpjx7
- EgGAVex9oJIKDYCQ==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1768488861; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=JZZ4aQNg2kjiPEymub4m2ZNUq8Vs0R8IU8wf9bayzIQ=;
- b=u3+AdunZbEIUoZWB+rhqLpYJ6IOEXlrbfM2JOkCyI5MYIcDLrEuH8P0Cesm86n4ZwEyDAa
- uwkCa8FFBhp5oqidCwb4Vc3vWyffObhGGihTxKkp4BHJt0G2R3PUONHXQYb1qaEVhoifKv
- 3Ts9xhU9N5+rdU9u8xuq+XZTAT10uH4=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1768488861;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=JZZ4aQNg2kjiPEymub4m2ZNUq8Vs0R8IU8wf9bayzIQ=;
- b=+y469f0kxCy5vqopXjNK/p7mIWTHY+kTTMW2/4AAvaaIVWS0yxnWyT2vCR37a2/fCUpjx7
- EgGAVex9oJIKDYCQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 066063EA63;
- Thu, 15 Jan 2026 14:54:20 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id lYw6AJz/aGlHAQAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 15 Jan 2026 14:54:20 +0000
-Message-ID: <4ee824d5-8ea0-4ae1-8bcb-5f8cbae37fc8@suse.de>
-Date: Thu, 15 Jan 2026 15:54:19 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/12] Recover sysfb after DRM probe failure
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Zack Rusin <zack.rusin@broadcom.com>
-Cc: dri-devel@lists.freedesktop.org, Alex Deucher
- <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- Ard Biesheuvel <ardb@kernel.org>, Ce Sun <cesun102@amd.com>,
- Chia-I Wu <olvaffe@gmail.com>, Danilo Krummrich <dakr@kernel.org>,
- Dave Airlie <airlied@redhat.com>, Deepak Rawat <drawat.floss@gmail.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Hans de Goede <hansg@kernel.org>, Hawking Zhang <Hawking.Zhang@amd.com>,
- Helge Deller <deller@gmx.de>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Jocelyn Falempe <jfalempe@redhat.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Lijo Lazar <lijo.lazar@amd.com>, linux-efi@vger.kernel.org,
- linux-fbdev@vger.kernel.org, linux-hyperv@vger.kernel.org,
- linux-kernel@vger.kernel.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- Lyude Paul <lyude@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- "Mario Limonciello (AMD)" <superm1@kernel.org>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Maxime Ripard <mripard@kernel.org>, nouveau@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
- spice-devel@lists.freedesktop.org,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, virtualization@lists.linux.dev,
- Vitaly Prosyak <vitaly.prosyak@amd.com>
-References: <20251229215906.3688205-1-zack.rusin@broadcom.com>
- <c816f7ed-66e0-4773-b3d1-4769234bd30b@suse.de>
- <CABQX2QNQU4XZ1rJFqnJeMkz8WP=t9atj0BqXHbDQab7ZnAyJxg@mail.gmail.com>
- <97993761-5884-4ada-b345-9fb64819e02a@suse.de>
- <9058636d-cc18-4c8f-92cf-782fd8f771af@amd.com>
+X-Greylist: delayed 427 seconds by postgrey-1.36 at gabe;
+ Mon, 12 Jan 2026 21:08:02 UTC
+Received: from smtp2.infineon.com (smtp2.infineon.com [217.10.52.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F1C410E17B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Jan 2026 21:08:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=infineon.com; i=@infineon.com; q=dns/txt; s=IFXMAIL;
+ t=1768252083; x=1799788083;
+ h=from:to:cc:subject:date:message-id:in-reply-to: mime-version;
+ bh=kNW58q0vhnHE4IwENphTvFyQMUGpm//lPqdZcWsBYV0=;
+ b=BAFTMr8wAY2bwMO3oGlrBq92sbqSQp4TS9Zgi8fuTX57ZOvKcSZRexBS
+ q8/vRg5t7/jLg++ITNEIoohWLb2NqbK6DqYXbzJ+qXjfuoonIhvW0gTlk
+ uGH3JUKGcGBLP2B2es5tnJ+Eph23xCYGaKD9TY6Du6apMTg0mw17+T/O9 s=;
+X-CSE-ConnectionGUID: wU//zo2bRGqYVwwLtKJKkw==
+X-CSE-MsgGUID: EinN0ee5SbultAP1DT7eUw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="139229266"
+X-IronPort-AV: E=Sophos;i="6.21,221,1763420400"; 
+ d="scan'208,217";a="139229266"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO MUCSE805.infineon.com) ([172.23.29.31])
+ by smtp2.infineon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2026 22:00:54 +0100
+Received: from MUCSE809.infineon.com (172.23.29.35) by MUCSE805.infineon.com
+ (172.23.29.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.35; Mon, 12 Jan
+ 2026 22:00:53 +0100
+Received: from MUCSE801.infineon.com (172.23.29.27) by MUCSE809.infineon.com
+ (172.23.29.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.35; Mon, 12 Jan
+ 2026 22:00:53 +0100
+Received: from MUCSE801.infineon.com ([fe80::1f12:7149:6e8:2b2]) by
+ MUCSE801.infineon.com ([fe80::1f12:7149:6e8:2b2%14]) with mapi id
+ 15.02.2562.035; Mon, 12 Jan 2026 22:00:53 +0100
+From: <support@infineon.com>
+To: <nommensen1981@gmail.com>, <support@aoostar.com>, <support@chuwi.com>,
+ <support@geekompc.com>, <support@morefine.com>, <support@acemagic.com>,
+ <support@toptonpc.com>, <support@beelink.com>, <support@gmktec.com>,
+ <support@msi.com>, <linux@hp.com>, <linux@dell.com>, <linux@lenovo.com>,
+ <linux@asus.com>, <freebsd-current@freebsd.org>,
+ <freebsd-hardware@freebsd.org>, <opensuse-kernel@opensuse.org>,
+ <arch-general@lists.archlinux.org>, <fedora-kernel@lists.fedoraproject.org>,
+ <debian-kernel@lists.debian.org>, <ubuntu-devel@lists.ubuntu.com>,
+ <root@linuxmint.com>, <lm-sensors@lists.lm-sensors.org>,
+ <linux-hwmon@vger.kernel.org>, <sales@ite.com.tw>, <support@ite.com.tw>,
+ <gpuopen@amd.com>, <graphics-driver@amd.com>, <linux@amd.com>
+CC: <support@lockheedmartin.com>, <support@boeing.com>, <support@ngc.com>,
+ <support@rtx.com>, <support@baesystems.com>, <support@thalesgroup.com>,
+ <info@rheinmetall.com>, <info@leonardocompany.com>, <info@saabgroup.com>,
+ <support.industry@siemens.com>, <support@bosch.com>, <support@se.com>,
+ <support@abb.com>, <support@rockwellautomation.com>, <support@advantech.com>, 
+ <support@kontron.com>, <support@aaeon.com>, <support@adlinktech.com>,
+ <support@iei.com.tw>, <support@dfi.com>, <support@portwell.com>,
+ <support@nxp.com>, <support@renesas.com>, <support@microchip.com>,
+ <support@broadcom.com>, <support@marvell.com>, <support@infineon.com>,
+ <support@st.com>, <linux-kernel@intel.com>, <support@intel.com>,
+ <support@amd.com>, <support@qti.qualcomm.com>, <support@realtek.com>,
+ <support@creative.com>, <support@cmedia.com.tw>, <support@via.com.tw>,
+ <support@esstech.com>, <support@cirrus.com>, <support@analog.com>,
+ <support@ti.com>, <support@yamaha.com>, <support@focusrite.com>,
+ <support@steinberg.de>, <support@behringer.com>, <support@pny.com>,
+ <support@inno3d.com>, <support@gainward.com>, <support@palit.com>,
+ <support@zotac.com>, <support@xfxforce.com>, <support@powercolor.com>,
+ <support@sapphiretech.com>, <intel-gfx@lists.freedesktop.org>,
+ <linux-bugs@nvidia.com>, <support@tyan.com>, <support@foxconn.com>,
+ <support@ecs.com.tw>, <support@maxsun.com>, <support@colorful.cn>,
+ <support@nzxt.com>, <support@evga.com>, <support@supermicro.com>,
+ <support@biostar.com.tw>, <support@gigabyte.com>, <support@asrock.com>,
+ <support@asus.com>, <support@minisforum.com>
+Subject: [IFX-260112-1977499] RE: Structural hardware support gap on modern
+ AMD systems: missing official AMD & ITE sensor, fan and power stack for Linux
+ (all distros) and FreeBSD ~|~CRM0071640006510
+Thread-Topic: [IFX-260112-1977499] RE: Structural hardware support gap on
+ modern AMD systems: missing official AMD & ITE sensor, fan and power stack
+ for Linux (all distros) and FreeBSD ~|~CRM0071640006510
+Thread-Index: AQHchAaJMmCPRpeymkyJyp+Q6P15NQ==
+Date: Mon, 12 Jan 2026 21:00:52 +0000
+Message-ID: <54AFAFA44762482FA1F3D8408EB2FE2E1DC8406882C9@SUPPORT.INFINEON.COM>
+In-Reply-To: <CACNpR7e_CKPqT6+qXr0u-+rGOsvcypih5TNE0rriHwXTJqYOiw@mail.gmail.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <9058636d-cc18-4c8f-92cf-782fd8f771af@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
-X-Spam-Score: -2.70
-X-Spamd-Result: default: False [-2.70 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- SUSPICIOUS_RECIPS(1.50)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_BASE64_TEXT(0.10)[];
- MIME_GOOD(-0.10)[text/plain];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- TO_MATCH_ENVRCPT_ALL(0.00)[];
- FUZZY_RATELIMITED(0.00)[rspamd.com]; MIME_TRACE(0.00)[0:+];
- ARC_NA(0.00)[]; RCPT_COUNT_TWELVE(0.00)[43];
- FREEMAIL_ENVRCPT(0.00)[gmail.com,gmx.de]; RCVD_TLS_ALL(0.00)[];
- TO_DN_SOME(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- FREEMAIL_CC(0.00)[lists.freedesktop.org,amd.com,kernel.org,gmail.com,redhat.com,collabora.com,chromium.org,gmx.de,linux.intel.com,vger.kernel.org,intel.com,ffwll.ch,ursulin.net,lists.linux.dev];
- MID_RHS_MATCH_FROM(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- TAGGED_RCPT(0.00)[];
- R_RATELIMIT(0.00)[to_ip_from(RLxtqcp3yg5i7i9mi6syp13ijk)];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,suse.de:email]
-X-Spam-Level: 
-X-Spam-Flag: NO
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.32.22.196]
+Content-Type: multipart/alternative;
+ boundary="_000_54AFAFA44762482FA1F3D8408EB2FE2E1DC8406882C9SUPPORTINFI_"
+MIME-Version: 1.0
+X-Mailman-Approved-At: Thu, 15 Jan 2026 15:30:29 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -174,159 +114,801 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGkNCg0KQW0gMTUuMDEuMjYgdW0gMTU6Mzkgc2NocmllYiBDaHJpc3RpYW4gS8O2bmlnOg0K
-PiBTb3JyeSB0byBiZWluZyBsYXRlLCBidXQgSSBvbmx5IG5vdyByZWFsaXplZCB3aGF0IHlv
-dSBhcmUgZG9pbmcgaGVyZS4NCj4NCj4gT24gMS8xNS8yNiAxMjowMiwgVGhvbWFzIFppbW1l
-cm1hbm4gd3JvdGU6DQo+PiBIaSwNCj4+DQo+PiBhcG9sb2dpZXMgZm9yIHRoZSBkZWxheS4g
-SSB3YW50ZWQgdG8gcmVwbHkgYW5kIHRoZW4gZm9yZ290IGFib3V0IGl0Lg0KPj4NCj4+IEFt
-IDEwLjAxLjI2IHVtIDA1OjUyIHNjaHJpZWIgWmFjayBSdXNpbjoNCj4+PiBPbiBGcmksIEph
-biA5LCAyMDI2IGF0IDU6MzTigK9BTSBUaG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5A
-c3VzZS5kZT4gd3JvdGU6DQo+Pj4+IEhpDQo+Pj4+DQo+Pj4+IEFtIDI5LjEyLjI1IHVtIDIy
-OjU4IHNjaHJpZWIgWmFjayBSdXNpbjoNCj4+Pj4+IEFsbW9zdCBhIHJpdGUgb2YgcGFzc2Fn
-ZSBmb3IgZXZlcnkgRFJNIGRldmVsb3BlciBhbmQgbW9zdCBMaW51eCB1c2Vycw0KPj4+Pj4g
-aXMgdXBncmFkaW5nIHlvdXIgRFJNIGRyaXZlci91cGRhdGluZyBib290IGZsYWdzL2NoYW5n
-aW5nIHNvbWUgY29uZmlnDQo+Pj4+PiBhbmQgaGF2aW5nIERSTSBkcml2ZXIgZmFpbCBhdCBw
-cm9iZSByZXN1bHRpbmcgaW4gYSBibGFuayBzY3JlZW4uDQo+Pj4+Pg0KPj4+Pj4gQ3VycmVu
-dGx5IHRoZXJlJ3Mgbm8gd2F5IHRvIHJlY292ZXIgZnJvbSBEUk0gZHJpdmVyIHByb2JlIGZh
-aWx1cmUuIFBDSQ0KPj4+Pj4gRFJNIGRyaXZlciBleHBsaWNpdGx5IHRocm93IG91dCB0aGUg
-ZXhpc3Rpbmcgc3lzZmIgdG8gZ2V0IGV4Y2x1c2l2ZQ0KPj4+Pj4gYWNjZXNzIHRvIFBDSSBy
-ZXNvdXJjZXMgc28gaWYgdGhlIHByb2JlIGZhaWxzIHRoZSBzeXN0ZW0gaXMgbGVmdCB3aXRo
-b3V0DQo+Pj4+PiBhIGZ1bmN0aW9uaW5nIGRpc3BsYXkgZHJpdmVyLg0KPj4+Pj4NCj4+Pj4+
-IEFkZCBjb2RlIHRvIHN5c2ZiIHRvIHJlY2V2ZXIgc3lzdGVtIGZyYW1lYnVmZmVyIHdoZW4g
-RFJNIGRyaXZlcidzIHByb2JlDQo+Pj4+PiBmYWlscy4gVGhpcyBtZWFucyB0aGF0IGEgRFJN
-IGRyaXZlciB0aGF0IGZhaWxzIHRvIGxvYWQgcmVsb2FkcyB0aGUgc3lzdGVtDQo+Pj4+PiBm
-cmFtZWJ1ZmZlciBkcml2ZXIuDQo+Pj4+Pg0KPj4+Pj4gVGhpcyB3b3JrcyBiZXN0IHdpdGgg
-c2ltcGxlZHJtLiBXaXRob3V0IGl0IFhvcmcgd29uJ3QgcmVjb3ZlciBiZWNhdXNlDQo+Pj4+
-PiBpdCBzdGlsbCB0cmllcyB0byBsb2FkIHRoZSB2ZW5kb3Igc3BlY2lmaWMgZHJpdmVyIHdo
-aWNoIGVuZHMgdXAgdXN1YWxseQ0KPj4+Pj4gbm90IHdvcmtpbmcgYXQgYWxsLiBXaXRoIHNp
-bXBsZWRybSB0aGUgc3lzdGVtIHJlY292ZXJzIHJlYWxseSBuaWNlbHkNCj4+Pj4+IGVuZGlu
-ZyB1cCB3aXRoIGEgd29ya2luZyBjb25zb2xlIGFuZCBub3QgYSBibGFuayBzY3JlZW4uDQo+
-Pj4+Pg0KPj4+Pj4gVGhlcmUncyBhIGNhdmVhdCBpbiB0aGF0IHNvbWUgaGFyZHdhcmUgbWln
-aHQgcmVxdWlyZSBzb21lIHNwZWNpYWwgbWFnaWMNCj4+Pj4+IHJlZ2lzdGVyIHdyaXRlIHRv
-IHJlY292ZXIgRUZJIGRpc3BsYXkuIEknZCBhcHByZWNpYXRlIGl0IGEgbG90IGlmDQo+Pj4+
-PiBtYWludGFpbmVycyBjb3VsZCBpbnRyb2R1Y2UgYSB0ZW1wb3JhcnkgZmFpbHVyZSBpbiB0
-aGVpciBkcml2ZXJzDQo+Pj4+PiBwcm9iZSB0byB2YWxpZGF0ZSB0aGF0IHRoZSBzeXNmYiBy
-ZWNvdmVycyBhbmQgdGhleSBnZXQgYSB3b3JraW5nIGNvbnNvbGUuDQo+Pj4+PiBUaGUgZWFz
-aWVzdCB3YXkgdG8gZG91YmxlIGNoZWNrIGl0IGlzIGJ5IGFkZGluZzoNCj4+Pj4+ICDCoMKg
-IC8qIFhYWDogVGVtcG9yYXJ5IGZhaWx1cmUgdG8gdGVzdCBzeXNmYiByZXN0b3JlIC0gUkVN
-T1ZFIEJFRk9SRSBDT01NSVQgKi8NCj4+Pj4+ICDCoMKgIGRldl9pbmZvKCZwZGV2LT5kZXYs
-ICJUZXN0aW5nIHN5c2ZiIHJlc3RvcmU6IGZvcmNpbmcgcHJvYmUgZmFpbHVyZVxuIik7DQo+
-Pj4+PiAgwqDCoCByZXQgPSAtRUlOVkFMOw0KPj4+Pj4gIMKgwqAgZ290byBvdXRfZXJyb3I7
-DQo+Pj4+PiBvciBzdWNoIHJpZ2h0IGFmdGVyIHRoZSBkZXZtX2FwZXJ0dXJlX3JlbW92ZV9j
-b25mbGljdGluZ19wY2lfZGV2aWNlcyAuDQo+Pj4+IFJlY292ZXJpbmcgdGhlIGRpc3BsYXkg
-bGlrZSB0aGF0IGlzIGd1ZXNzIHdvcmsgYW5kIHdpbGwgYXQgYmVzdCB3b3JrDQo+Pj4+IHdp
-dGggc2ltcGxlIGRpc2NyZXRlIGRldmljZXMgd2hlcmUgdGhlIGZyYW1lYnVmZmVyIGlzIGFs
-d2F5cyBsb2NhdGVkIGluDQo+Pj4+IGEgY29uZmluZWQgZ3JhcGhpY3MgYXBlcnR1cmUuDQo+
-Pj4+DQo+Pj4+IEJ1dCB0aGUgcHJvYmxlbSB5b3UncmUgdHJ5aW5nIHRvIHNvbHZlIGlzIGEg
-cmVhbCBvbmUuDQo+Pj4+DQo+Pj4+IFdoYXQgd2UnZCB3YW50IHRvIGRvIGluc3RlYWQgaXMg
-dG8gdGFrZSB0aGUgaW5pdGlhbCBoYXJkd2FyZSBzdGF0ZSBpbnRvDQo+Pj4+IGFjY291bnQg
-d2hlbiB3ZSBkbyB0aGUgaW5pdGlhbCBtb2RlLXNldHRpbmcgb3BlcmF0aW9uLg0KPj4+Pg0K
-Pj4+PiBUaGUgZmlyc3Qgc3RlcCBpcyB0byBtb3ZlIGVhY2ggZHJpdmVyJ3MgcmVtb3ZlX2Nv
-bmZsaWN0aW5nX2RldmljZXMgY2FsbA0KPj4+PiB0byB0aGUgbGF0ZXN0IHBvc3NpYmxlIGxv
-Y2F0aW9uIGluIHRoZSBwcm9iZSBmdW5jdGlvbi4gV2UgdXN1YWxseSBkbyBpdA0KPj4+PiBm
-aXJzdCwgYmVjYXVzZSB0aGF0J3MgZWFzeS4gQnV0IG9uIG1vc3QgaGFyZHdhcmUsIGl0IGNv
-dWxkIGhhcHBlbiBtdWNoDQo+Pj4+IGxhdGVyLg0KPj4+IFdlbGwsIHNvbWUgZHJpdmVycyAo
-dmJveCwgdm13Z2Z4LCBib2NocyBhbmQgY3VycnVzLXFlbXUpIGRvIGl0IGJlY2F1c2UNCj4+
-PiB0aGV5IHJlcXVlc3QgcGNpIHJlZ2lvbnMgd2hpY2ggaXMgZ29pbmcgdG8gZmFpbCBvdGhl
-cndpc2UuIEJlY2F1c2UNCj4+PiBncmFiYmluaW5nIHRoZSBwY2kgcmVzb3VyY2VzIGlzIGlu
-IGdlbmVyYWwgdGhlIHZlcnkgZmlyc3QgdGhpbmcgdGhhdA0KPj4+IHRob3NlIGRyaXZlcnMg
-bmVlZCB0byBkbyB0byBzZXR1cCBhbnl0aGluZywgd2UNCj4+PiByZW1vdmVfY29uZmxpY3Rp
-bmdfZGV2aWNlcyBmaXJzdCBvciBhdCBsZWFzdCB2ZXJ5IGVhcmx5Lg0KPj4gVG8gbXkga25v
-d2xlZGdlLCByZXF1ZXN0aW5nIHJlc291cmNlcyBpcyBtb3JlIGFib3V0IGNvcnJlY3RuZXNz
-IHRoYW4gYSBoYXJkIHJlcXVpcmVtZW50IHRvIHVzZSBhbiBJL08gb3IgbWVtb3J5IHJhbmdl
-LiBIYXMgdGhpcyBjaGFuZ2VkPw0KPiBOb3BlIHRoYXQgaXMgbm90IGNvcnJlY3QuDQo+DQo+
-IEF0IGxlYXN0IGZvciBBTUQgR1BVcyByZW1vdmVfY29uZmxpY3RpbmdfZGV2aWNlcygpIHJl
-YWxseSBlYXJseSBpcyBuZWNlc3NhcnkgYmVjYXVzZSBvdGhlcndpc2Ugc29tZSBvcGVyYXRp
-b25zIGp1c3QgcmVzdWx0IGluIGEgc3BvbnRhbmVvdXMgc3lzdGVtIHJlYm9vdC4JDQoNCkhl
-cmUgSSB3YXMgb25seSB0YWxraW5nIGFib3V0IGF2b2lkaW5nIGNhbGxzIHRvIHJlcXVlc3Rf
-cmVzb3VyY2UoKSBhbmQgDQpzaW1pbGFyIGludGVyZmFjZXMuDQoNCj4NCj4gRm9yIGV4YW1w
-bGUgcmVzaXppbmcgdGhlIFBDSWUgQkFSIGdpdmluZyBhY2Nlc3MgdG8gVlJBTSBvciBkaXNh
-YmxpbmcgVkdBIGVtdWxhdGlvbiAod2hpY2ggQUZBSUsgaXMgdXNlZCBmb3IgRUZJIGFzIHdl
-bGwpIGlzIG9ubHkgcG9zc2libGUgd2hlbiB0aGUgVkdBIG9yIEVGSSBmcmFtZWJ1ZmZlciBk
-cml2ZXIgaXMga2lja2VkIG91dCBmaXJzdC4NCg0KWWVhaCwgdGhhdCdzIHdoYXQgSSBleHBl
-Y3RlZC4NCg0KPg0KPiBBbmQgZGlzYWJsaW5nIFZHQSBlbXVsYXRpb24gaXMgYW1vbmcgdGhl
-IGFic29sdXRlbHkgZmlyc3Qgc3RlcHMgeW91IGRvIHRvIHRha2Ugb3ZlciB0aGUgc2Nhbm91
-dCBjb25maWcuDQoNCkFzc3VtaW5nIHRoZSBkcml2ZXIgKG9yIGRyaXZlciBhdXRob3IpIGlz
-IGNhcmVmdWwsIGlzIGl0IHBvc3NpYmxlIHRvIA0Kb25seSByZWFkIHN0YXRlIGZyb20gQU1E
-IGhhcmR3YXJlIGF0IHN1Y2ggYW4gZWFybHkgdGltZT8NCg0KV2UgdXN1YWxseSBkbyByZW1v
-dmVfY29uZmxpY3RpbmdfZGV2aWNlcygpIGFzIHRoZSBmaXJzdCB0aGluZyBpbiBtb3N0IA0K
-ZHJpdmVyJ3MgcHJvYmUgZnVuY3Rpb24uIEFzIGEgZmlyc3Qgc3RlcCwgaXQgd291bGQgYmUg
-aGVscGZ1bCB0byANCnBvc3Rwb25lIGl0dG8gYSBsYXRlciBwb2ludC4NCg0KPg0KPiBTbyBJ
-IGFic29sdXRlbHkgY2xlYXJseSBoYXZlIHRvIHJlamVjdCB0aGUgYW1kZ3B1IHBhdGNoIGlu
-IHRoaXMgc2VyaWVzLCB0aGF0IHdpbGwgYnJlYWsgdG9ucyBvZiB1c2UgY2FzZXMuDQoNCkRv
-bid0IHdvcnJ5LCB3ZSdyZSBzdGlsbCBpbiB0aGUgZWFybHkgaWRlYXRpb24gcGhhc2UuDQoN
-CkJlc3QgcmVnYXJkcw0KVGhvbWFzDQoNCj4NCj4gUmVnYXJkcywNCj4gQ2hyaXN0aWFuLg0K
-Pg0KPj4+IEkgYWxzbyBkb24ndCB0aGluayBpdCdzIHBvc3NpYmxlIG9yIGV2ZW4gZGVzaXJh
-YmxlIGJ5IHNvbWUgZHJpdmVycyB0bw0KPj4+IHJldXNlIHRoZSBpbml0aWFsIHN0YXRlLCBn
-b29kIGV4YW1wbGUgaGVyZSBpcyB2bXdnZnggd2hlcmUgYnkgZGVmYXVsdA0KPj4+IHNvbWUg
-cGVvcGxlIHdpbGwgc2V0dXAgdGhlaXIgdm0ncyB3aXRoIGUuZy4gOG1iIHJhbSwgd2hlbiB0
-aGUgdm13Z2Z4DQo+Pj4gbG9hZHMgd2UgYWxsb3cgc2Nhbm5pbmcgb3V0IGZyb20gc3lzdGVt
-IG1lbW9yeSwgc28geW91IGNhbiBzZXQgeW91ciB2bQ0KPj4+IHVwIHdpdGggOG1iIG9mIHZy
-YW0gYnV0IHN0aWxsIHVzZSA0ayByZXNvbHV0aW9ucyB3aGVuIHRoZSBkcml2ZXINCj4+PiBs
-b2FkcywgdGhpcyB3YXkgdGhlIHN1c3BlbmQgc2l6ZSBvZiB0aGUgdm0gaXMgdmVyeSBwcmVk
-aWN0YWJsZSAodGlueQ0KPj4+IHZyYW0gcGx1cyB3aGF0ZXZlciByYW0gd2FzIHNldHVwKSB3
-aGlsZSBzdGlsbCBhbGxvd2luZyBhIGxvdCBvZg0KPj4+IGZsZXhpYmlsaXR5Lg0KPj4gSWYg
-dGhlcmUncyBubyBpbml0aWFsIHN0YXRlIHRvIHN3aXRjaCBmcm9tLCB0aGUgZmlyc3QgbW9k
-ZXNldCBjYW4gZmFpbCB3aGlsZSBsZWF2aW5nIHRoZSBkaXNwbGF5IHVudXNhYmxlLiBUaGVy
-ZSdzIG5vIHdheSBhcm91bmQgdGhhdC4gR29pbmcgYmFjayB0byB0aGUgb2xkIHN0YXRlIGlz
-IG5vdCBhbiBvcHRpb24gdW5sZXNzIHRoZSBkcml2ZXIgaGFzIGJlZW4gd3JpdHRlbiB0byBz
-dXBwb3J0IHRoaXMuDQo+Pg0KPj4gVGhlIGNhc2Ugb2Ygdm13Z2Z4IGlzIHNwZWNpYWwsIGJ1
-dCBkb2VzIG5vdCBlZmZlY3QgdGhlIG92ZXJhbGwgcHJvYmxlbS4gRm9yIHZtd2dmeCwgaXQg
-d291bGQgYmUgYmVzdCB0byBpbXBvcnQgdGhhdCBpbml0aWFsIHN0YXRlIGFuZCBzdXBwb3J0
-IGEgdHJhbnNwYXJlbnQgbW9kZXNldCBmcm9tIHZyYW0gdG8gc3lzdGVtIG1lbW9yeSAoYW5k
-IGJhY2spIGF0IGxlYXN0IGR1cmluZyB0aGlzIGluaXRpYWwgc3RhdGUuDQo+Pg0KPj4NCj4+
-PiBJbiBnZW5lcmFsIEkgdGhpbmsgaG93ZXZlciB0aGlzIGlzIHBsYW5uZWQgaXQncyB0d28g
-b3IgdGhyZWUgc2VwYXJhdGUgc2VyaWVzOg0KPj4+IDEpIGluZnJhc3RydWN0dXJlIHRvIHJl
-bG9hZCB0aGUgc3lzZmIgZHJpdmVyICh3aGF0IHRoaXMgc2VyaWVzIGlzKQ0KPj4+IDIpIG1h
-a2luZyBzdXJlIHRoYXQgZHJpdmVycyB0aGF0IGRvIHdhbnQgdG8gcmVjb3ZlciBjbGVhbmx5
-IGFjdHVhbGx5DQo+Pj4gY2xlYW4gb3V0IGFsbCB0aGUgc3RhdGUgb24gZXhpdCBwcm9wZXJs
-eSwNCj4+PiAzKSBhYnN0cmFjdGluZyBhdCBsZWFzdCBzb21lIG9mIHRoYXQgY2xlYW51cCBp
-biBzb21lIGRyaXZlciBpbmRlcGVuZGVudCB3YXkNCj4+IFRoYXQncyByZWFsbHkgbm90IGdv
-aW5nIHRvIHdvcmsuIEZvciBleGFtcGxlLCBpbiB0aGUgY3VycmVudCBzZXJpZXMsIHlvdSBp
-bnZva2UgZGV2bV9hcGVydHVyZV9yZW1vdmVfY29uZmxpY3RpbmdfcGNpX2RldmljZXNfZG9u
-ZSgpIGFmdGVyIGRybV9tb2RlX3Jlc2V0KCksIGRybV9kZXZfcmVnaXN0ZXIoKSBhbmQgZHJt
-X2NsaWVudF9zZXR1cCgpLiBFYWNoIG9mIHRoZXNlIGNhbGxzIGNhbiBtb2RpZnkgaGFyZHdh
-cmUgc3RhdGUuIEluIHRoZSBjYXNlIG9mIF9yZWdpc3RlcigpIGFuZCBfc2V0dXAoKSwgdGhl
-IERSTSBjbGllbnRzIGNhbiBwZXJmb3JtIGEgbW9kZXNldCwgd2hpY2ggZGVzdHJveXMgdGhl
-IGluaXRpYWwgaGFyZHdhcmUgc3RhdGUuIFBhdGNoIDEgb2YgdGhpcyBzZXJpZXMgcmVtb3Zl
-cyB0aGUgc3lzZmIgZGV2aWNlL2RyaXZlciBlbnRpcmVseS4gVGhhdCBzaG91bGQgYmUgYSBu
-by1nbyBhcyBpdCBzaWduaWZpY2FudGx5IGNvbXBsaWNhdGVzIHJlY292ZXJ5LiBGb3IgZXhh
-bXBsZSwgaWYgdGhlIG5hdGl2ZSBkcml2ZXJzIGZhaWxlZCBmcm9tIGFuIGFsbG9jYXRpb24g
-ZmFpbHVyZSwgdGhlIHN5c2ZiIGRldmljZS9kcml2ZXIgaXMgbm90IGxpa2VseSB0byBjb21l
-IGJhY2sgZWl0aGVyLiBBcyB0aGUgdmVyeSBmaXJzdCB0aGluZywgdGhlIHNlcmllcyBzaG91
-bGQgc3RhdGUgd2hpY2ggZmFpbHVyZXMgaXMgaXMgZ29pbmcgdG8gcmVzb2x2ZSwgLSBmYWls
-ZWQgaGFyZHdhcmUgaW5pdCwgLSBpbnZhbGlkIGluaXRpYWwgbW9kZXNldHRpbmcsIC0gcnVu
-dGltZSBlcnJvcnMgKHN1Y2ggRU5PTUVNLCBmYWlsZWQgZmlybXdhcmUgbG9hZGluZyksIC0g
-b3RoZXJzPyBBbmQgdGhlbiBzcGVjaWZ5IGhvdyBhIHJlY292ZXJ5IHRvIHN5c2ZiIGNvdWxk
-IGxvb2sgaW4gZWFjaCBzdXBwb3J0ZWQgc2NlbmFyaW8uIEluIHRlcm1zIG9mIGltcGxlbWVu
-dGF0aW9uLCBtYWtlIGFueSB0cmFuc2l0aW9uIGJldHdlZW4gZHJpdmVycw0KPj4gZ3JhZHVh
-bGx5LiBUaGUgbmF0aXZlIGRyaXZlciBuZWVkcyB0byBhY3F1aXJlIHRoZSBoYXJkd2FyZSBy
-ZXNvdXJjZSAoZnJhbWVidWZmZXIgYW5kIEkvTyBhcGVydHVyZXMpIHdpdGhvdXQgdW5sb2Fk
-aW5nIHRoZSBzeXNmYiBkcml2ZXIuIEx1Y2tpbHkgdGhlcmUncyBzdHJ1Y3QgZHJtX2Rldmlj
-ZS51bnBsdWcsIHdoaWNoIGRvZXMgdGhhdC4gWzFdIEZsaXBwaW5nIHRoaXMgZmllbGQgZGlz
-YWJsZXMgaGFyZHdhcmUgYWNjZXNzIGZvciBEUk0gZHJpdmVycy4gQWxsIHN5c2ZiIGRyaXZl
-cnMgc3VwcG9ydCB0aGlzLiBUbyBnZXQgdGhlIHN5c2ZiIGRyaXZlcnMgcmVhZHksIEkgc3Vn
-Z2VzdCBkZWRpY2F0ZWQgaGVscGVycyBmb3IgZWFjaCBkcml2ZXJzIGFwZXJ0dXJlLiBUaGUg
-YXBlcnR1cmUgaGVscGVycyBjYW4gdXNlIHRoZXNlIGNhbGxiYWNrIHRvIGZsaXAgdGhlIERS
-TSBkcml2ZXIgb2ZmIGFuZCBvbiBhZ2Fpbi4gRm9yIGV4YW1wbGUsIGVmaWRybSBjb3VsZCBk
-byB0aGlzIGFzIGEgbWluaW11bTogaW50IGVmaWRybV9hcGVydHVyZV9zdXNwZW5kKCkgeyBk
-ZXYtPnVucGx1ZyA9IHRydWU7IHJlbW92ZV9yZXNvdXJjZSgvKmZyYW1lYnVmZmVyIGFwZXJ0
-dXJlKi8pIHJldHVybiAwIH0gaW50IGVmaWRybV9hcGVydHVyZV9yZXN1bWUoKSB7IGluc2Vy
-dF9yZXNvdXJjZSgvKmZyYW1lYnVmZmVyIGFwZXJ0dXJlKi8pIGRldi0+dW5wbHVnID0gZmFs
-c2U7IHJldHVybiAwIH0gc3RydWN0IGFwZXJ0dXJlX2Z1bmNzIGVmaWRybV9hcGVydHVyZV9m
-dW5jcyB7IC5zdXNwZW5kID0gZWZpZHJtX2FwZXJ0dXJlX3N1c3BlbmQsIC5yZXN1bWUgPSBl
-Zmlkcm1fYXBlcnR1cmVfcmVzdW1lLCB9IFBhc3MgdGhpcyBzdHJ1Y3Qgd2hlbiBlZmlkcm0g
-YWNxdWlyZXMgdGhlIGZyYW1lYnVmZmVyIGFwZXJ0dXJlLCBzbyB0aGF0IHRoZSBhcGVydHVy
-ZSBoZWxwZXJzIGNhbiBjb250cm9sIHRoZSBiZWhhdmlvciBvZiBlZmlkcm0uIFdpdGggdGhp
-cywgYSBtdWx0aS0NCj4+IHN0ZXAgdGFrZW92ZXIgZnJvbSBzeXNmYiB0byBuYXRpdmUgZHJp
-dmVyIGNhbiBiZSB0cmllZC4gSXQncyBzdGlsbCBhIG1hc3NpdmUgZWZmb3J0IHRoYXQgcmVx
-dWlyZXMgYW4gYXVkaXQgb2YgZWFjaCBkcml2ZXIncyBwcm9iaW5nIGxvZ2ljLiBUaGVyZSdz
-IG5vIGNvcHktcGFzdGUgcGF0dGVybiBBRkFJQ1QuIEkgc3VnZ2VzdCB0byBwaWNrIG9uZSBz
-aW1wbGUgZHJpdmVyIGZpcnN0IGFuZCBtYWtlIGEgcHJvdG90eXBlLiBMZXQgbWUgYWxzbyBz
-YXkgdGhhdCBJIERPIGxpa2UgdGhlIGdlbmVyYWwgaWRlYSB5b3UncmUgcHJvcG9zaW5nLiBC
-dXQgaWYgaXQgd2FzIGVhc3ksIHdlIHdvdWxkIGxpa2VseSBoYXZlIGRvbmUgaXQgYWxyZWFk
-eS4gQmVzdCByZWdhcmRzIFRob21hcw0KPj4+IHoNCg0KLS0gDQotLQ0KVGhvbWFzIFppbW1l
-cm1hbm4NCkdyYXBoaWNzIERyaXZlciBEZXZlbG9wZXINClNVU0UgU29mdHdhcmUgU29sdXRp
-b25zIEdlcm1hbnkgR21iSA0KRnJhbmtlbnN0ci4gMTQ2LCA5MDQ2MSBOw7xybmJlcmcsIEdl
-cm1hbnksIHd3dy5zdXNlLmNvbQ0KR0Y6IEpvY2hlbiBKYXNlciwgQW5kcmV3IE1jRG9uYWxk
-LCBXZXJuZXIgS25vYmxpY2gsIChIUkIgMzY4MDksIEFHIE7DvHJuYmVyZykNCg0KDQo=
+--_000_54AFAFA44762482FA1F3D8408EB2FE2E1DC8406882C9SUPPORTINFI_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Dear Sender,
+
+Please use our other support options available at: https://www.infineon.com=
+/support
+
+For urgent inquiries kindly contact our hotline: https://www.infineon.com/c=
+all
+
+
+
+
+
+Best regards,
+Infineon Technologies AG,
+--
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Infineon Technologies AG
+Chairman of the Supervisory Board: Dr. Herbert Diess
+Management Board: Jochen Hanebeck (CEO), Alexander Gorski, Elke Reichart, D=
+r. Sven Schneider, Andreas Urschitz
+Registered office: Neubiberg
+Commercial register: M=FCnchen HRB 126492
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+------------------- Original Message -------------------
+From: nommensen1981@gmail.com;
+Received: Mon Jan 12 2026 20:57:09 GMT+0100 (Central European Standard Time=
+)
+To: support@aoostar.com; support@chuwi.com; support@geekompc.com; support@m=
+orefine.com; support@acemagic.com; support@toptonpc.com; support@beelink.co=
+m; support@gmktec.com; support@msi.com; linux@hp.com; linux@dell.com; linux=
+@lenovo.com; linux@asus.com; freebsd-current@freebsd.org; freebsd-hardware@=
+freebsd.org; opensuse-kernel@opensuse.org; arch-general@lists.archlinux.org=
+; fedora-kernel@lists.fedoraproject.org; debian-kernel@lists.debian.org; ub=
+untu-devel@lists.ubuntu.com; root@linuxmint.com; lm-sensors@lists.lm-sensor=
+s.org; linux-hwmon@vger.kernel.org; sales@ite.com.tw; support@ite.com.tw; g=
+puopen@amd.com; graphics-driver@amd.com; linux@amd.com;
+Cc: support@lockheedmartin.com; support@boeing.com; support@ngc.com; suppor=
+t@rtx.com; support@baesystems.com; support@thalesgroup.com; info@rheinmetal=
+l.com; info@leonardocompany.com; info@saabgroup.com; support.industry@sieme=
+ns.com; support@bosch.com; support@se.com; support@abb.com; support@rockwel=
+lautomation.com; support@advantech.com; support@kontron.com; support@aaeon.=
+com; support@adlinktech.com; support@iei.com.tw; support@dfi.com; support@p=
+ortwell.com; support@nxp.com; support@renesas.com; support@microchip.com; s=
+upport@broadcom.com; support@marvell.com; support@infineon.com; support@st.=
+com; linux-kernel@intel.com; support@intel.com; support@amd.com; support@qt=
+i.qualcomm.com; support@realtek.com; support@creative.com; support@cmedia.c=
+om.tw; support@via.com.tw; support@esstech.com; support@cirrus.com; support=
+@analog.com; support@ti.com; support@yamaha.com; support@focusrite.com; sup=
+port@steinberg.de; support@behringer.com; support@pny.com; support@inno3d.c=
+om; support@gainward.com; support@palit.com; support@zotac.com; support@xfx=
+force.com; support@powercolor.com; support@sapphiretech.com; intel-gfx@list=
+s.freedesktop.org; linux-bugs@nvidia.com; support@tyan.com; support@foxconn=
+.com; support@ecs.com.tw; support@maxsun.com; support@colorful.cn; support@=
+nzxt.com; support@evga.com; support@supermicro.com; support@biostar.com.tw;=
+ support@gigabyte.com; support@asrock.com; support@asus.com; support@minisf=
+orum.com;
+Subject: Structural hardware support gap on modern AMD systems: missing off=
+icial AMD & ITE sensor, fan and power stack for Linux (all distros) and Fre=
+eBSD
+
+
+
+Caution: This e-mail originated outside Infineon Technologies. Please be ca=
+utious when sharing information or opening attachments especially from unkn=
+own senders. Refer to our intranet guide<https://intranet-content.infineon.=
+com/explore/aboutinfineon/rules/informationsecurity/ug/SocialEngineering/Pa=
+ges/SocialEngineeringElements_en.aspx> to help you identify Phishing email.
+
+
+
+
+Dear AMD, ITE, OEM partners, Linux and FreeBSD maintainers,
+
+this email describes a structural hardware support gap on modern AMD-based =
+systems, affecting all Linux distributions and FreeBSD, specifically regard=
+ing ITE Super-I/O chips, sensor access, fan control, and power management.
+
+This is not a configuration problem and not distribution-specific.
+It is a missing official vendor-supported driver and integration stack.
+
+________________________________
+1. Affected platforms (representative)
+
+  *   Operating systems
+
+     *   All Linux distributions (Ubuntu, Linux Mint, Debian, Fedora, Arch,=
+ openSUSE, etc.)
+
+     *   FreeBSD
+
+  *   Hardware
+
+     *   CPU: AMD Ryzen 6000 / 7000 / 8000 series (desktop, mobile, HS/HX)
+
+     *   GPU: AMD Radeon iGPU/dGPU (RDNA2 / RDNA3, e.g. 780M)
+
+     *   Mainboards, laptops and mini-PCs using ITE Super-I/O chips
+(IT86xx / IT87xx / IT89xx families)
+
+________________________________
+2. Observed problem (Linux & FreeBSD)
+
+On all Linux distributions and FreeBSD:
+
+  *   ITE Super-I/O chips are detected but unsupported
+
+     *   Typical output:
+ITE IT86xx detected (to-be-written)
+
+  *   No official driver for:
+
+     *   motherboard temperatures
+
+     *   voltages
+
+     *   fan RPM
+
+     *   PWM fan control
+
+  *   CPU and GPU telemetry is fragmented and inconsistent
+
+  *   Tools such as:
+
+     *   lm-sensors, psensor, fancontrol (Linux)
+
+     *   sysctl, hwmon, powerd (FreeBSD)
+cannot operate safely without vendor support
+
+  *   Users are forced to:
+
+     *   rely on BIOS-only fan control
+
+     *   use experimental or reverse-engineered drivers
+
+     *   accept missing thermal visibility
+
+This leads to:
+
+  *   reduced system safety
+
+  *   unnecessary fan noise
+
+  *   poor power efficiency
+
+  *   blocked adoption for non-technical users
+
+________________________________
+3. Why this works on Windows (important context)
+
+On Windows systems:
+
+  *   ITE provides proprietary reference drivers to OEMs
+
+  *   OEMs integrate:
+
+     *   ITE drivers
+
+     *   Embedded Controller (EC) firmware
+
+     *   ACPI tables
+
+  *   Microsoft distributes these drivers via Windows Update
+
+On Linux and FreeBSD:
+
+  *   No public register documentation
+
+  *   No official vendor drivers
+
+  *   No OEM-exposed ACPI/EC interfaces
+
+  *   Community developers cannot implement safe, complete support
+
+________________________________
+4. Root cause (clear responsibility split)
+
+  *   ITE
+
+     *   No public Super-I/O register specifications
+
+     *   No official Linux or FreeBSD drivers
+
+  *   OEMs
+
+     *   Ship Linux/FreeBSD-capable hardware without sensor/fan support
+
+     *   Do not expose EC/ACPI interfaces for non-Windows systems
+
+  *   AMD
+
+     *   No unified vendor-supported control stack for Linux and FreeBSD
+
+     *   No official repository bundling CPU, GPU, sensor and power control
+
+________________________________
+5. Proposed solution (realistic and actionable)
+A) Official AMD-supported repository
+
+  *   Linux: official AMD repository (PPA / repo)
+
+  *   FreeBSD: official AMD packages/ports
+
+Containing:
+
+  *   CPU power and thermal telemetry
+
+  *   GPU telemetry and power limits
+
+  *   OEM-approved sensor interfaces
+
+  *   Safe fan control framework
+
+________________________________
+B) Official ITE support for Unix-like systems
+
+One of the following:
+
+  *   Public Super-I/O register documentation
+or
+
+  *   Vendor-maintained drivers for Linux and FreeBSD
+or
+
+  *   OEM-mediated abstraction layer shared across platforms
+
+________________________________
+C) Unified user-space control framework
+
+Available on:
+
+  *   Linux (all distributions)
+
+  *   FreeBSD
+
+With:
+
+  *   Four fixed profiles:
+
+     *   Power saving
+
+     *   Quiet / Office
+
+     *   Balanced
+
+     *   Maximum performance
+
+  *   Optional automatic mode
+
+  *   Manual overrides for advanced users
+
+  *   Safe defaults for families and seniors
+
+________________________________
+6. Why this matters
+
+  *   Modern AMD hardware is powerful but artificially limited on Linux and=
+ FreeBSD
+
+  *   The issue affects all distributions, not just one ecosystem
+
+  *   Lack of official hardware control blocks:
+
+     *   OEM Linux offerings
+
+     *   FreeBSD workstation and server use
+
+     *   long-term stable systems
+
+  *   This is a systemic vendor-level gap, not a community failure
+
+________________________________
+7. Request
+
+We ask AMD, ITE and OEM partners to:
+
+  *   treat Linux and FreeBSD as first-class platforms
+
+  *   provide an official, supported hardware control stack
+
+  *   stop forcing users and developers into unsafe reverse engineering
+
+  *   coordinate with kernel, hwmon and FreeBSD maintainers
+
+We are willing to provide logs, testing feedback and structured reports.
+
+Kind regards,
+
+Daniel Frank Nommensen
+
+
+
+--_000_54AFAFA44762482FA1F3D8408EB2FE2E1DC8406882C9SUPPORTINFI_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+</head>
+<body>
+<div class=3D"ck-content" data-wrapper=3D"true" dir=3D"ltr" style=3D"--ck-i=
+mage-style-spacing: 1.5em; --ck-inline-image-style-spacing: calc(var(--ck-i=
+mage-style-spacing) / 2); font-family: Arial; font-size: 11pt;">
+<div style=3D"font-family:Arial;font-size:11pt;">
+<div style=3D"display:block;" id=3D"signature">
+<div>
+<div style=3D"font-family:;" dir=3D"ltr" data-wrapper=3D"true">
+<div>
+<div style=3D"font-family:;" data-wrapper=3D"true" dir=3D"ltr">
+<p style=3D"margin: 0cm;"><span style=3D"font-family:Arial;font-size:11pt;"=
+><span lang=3D"EN-US">Dear Sender,</span></span></p>
+<p style=3D"margin: 0cm;"><br>
+<span style=3D"font-family:Arial;font-size:11pt;"><span lang=3D"EN-US">Plea=
+se use our other support options available at:&nbsp;</span></span><a href=
+=3D"https://www.infineon.com/support" target=3D"_blank" title=3D"https://ww=
+w.infineon.com/support"><span style=3D"font-family:Arial;font-size:11pt;"><=
+span lang=3D"EN-US">https://www.infineon.com/support</span></span></a></p>
+<p style=3D"margin: 0cm;"><br>
+<span style=3D"font-family:Arial;font-size:11pt;"><span lang=3D"EN-US">For =
+urgent inquiries kindly contact our hotline:&nbsp;</span></span><a href=3D"=
+https://www.infineon.com/call" target=3D"_blank" title=3D"https://www.infin=
+eon.com/call"><span style=3D"font-family:Arial;font-size:11pt;"><span lang=
+=3D"EN-US">https://www.infineon.com/call</span></span></a></p>
+<p style=3D"margin: 0cm;">&nbsp;</p>
+<p style=3D"margin: 0cm;"><span style=3D"font-family:Arial;font-size:11pt;"=
+><span lang=3D"EN-US">&nbsp;</span></span></p>
+<p style=3D"margin: 0cm;"><span style=3D"font-family:Arial;font-size:11pt;"=
+><span lang=3D"EN-US">Best regards,</span></span><br>
+<span style=3D"font-family:Arial;font-size:11pt;"><span lang=3D"EN-US">Infi=
+neon Technologies AG,</span></span><br>
+<span style=3D"font-family:Arial;font-size:11pt;"><span lang=3D"EN-US">--</=
+span></span><br>
+<span style=3D"font-family:Arial;font-size:11pt;"><span lang=3D"EN-US">&#43=
+;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43=
+;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43=
+;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43=
+;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;</span></span><br>
+<span style=3D"font-family:Arial;font-size:11pt;"><span lang=3D"EN-US">Infi=
+neon Technologies AG</span></span><br>
+<span style=3D"font-family:Arial;font-size:11pt;"><span lang=3D"EN-US">Chai=
+rman of the Supervisory Board: Dr. Herbert Diess</span></span><br>
+<span style=3D"font-family:Arial;font-size:11pt;"><span lang=3D"EN-US">Mana=
+gement Board: Jochen Hanebeck (CEO), Alexander Gorski, Elke Reichart, Dr. S=
+ven Schneider, Andreas Urschitz</span></span><br>
+<span style=3D"font-family:Arial;font-size:11pt;"><span lang=3D"EN-US">Regi=
+stered office: Neubiberg</span></span><br>
+<span style=3D"font-family:Arial;font-size:11pt;"><span lang=3D"EN-US">Comm=
+ercial register: M=FCnchen HRB 126492</span></span><br>
+<span style=3D"font-family:Arial;font-size:11pt;"><span lang=3D"EN-US">&#43=
+;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43=
+;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43=
+;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43=
+;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;</span></span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p style=3D"margin: 0;"><span style=3D"font-family:Tahoma, Verdana, Arial;f=
+ont-size:small;">------------------- Original Message -------------------</=
+span><br>
+<span style=3D"font-family:Tahoma, Verdana, Arial;font-size:small;"><b>From=
+:</b> nommensen1981@gmail.com;&nbsp;</span><br>
+<span style=3D"font-family:Tahoma, Verdana, Arial;font-size:small;"><b>Rece=
+ived:</b> Mon Jan 12 2026 20:57:09 GMT&#43;0100 (Central European Standard =
+Time)</span><br>
+<span style=3D"font-family:Tahoma, Verdana, Arial;font-size:small;"><b>To:<=
+/b> support@aoostar.com; support@chuwi.com; support@geekompc.com; support@m=
+orefine.com; support@acemagic.com; support@toptonpc.com; support@beelink.co=
+m; support@gmktec.com; support@msi.com;
+ linux@hp.com; linux@dell.com; linux@lenovo.com; linux@asus.com; freebsd-cu=
+rrent@freebsd.org; freebsd-hardware@freebsd.org; opensuse-kernel@opensuse.o=
+rg; arch-general@lists.archlinux.org; fedora-kernel@lists.fedoraproject.org=
+; debian-kernel@lists.debian.org;
+ ubuntu-devel@lists.ubuntu.com; root@linuxmint.com; lm-sensors@lists.lm-sen=
+sors.org; linux-hwmon@vger.kernel.org; sales@ite.com.tw; support@ite.com.tw=
+; gpuopen@amd.com; graphics-driver@amd.com; linux@amd.com;&nbsp;</span><br>
+<span style=3D"font-family:Tahoma, Verdana, Arial;font-size:small;"><b>Cc:<=
+/b> support@lockheedmartin.com; support@boeing.com; support@ngc.com; suppor=
+t@rtx.com; support@baesystems.com; support@thalesgroup.com; info@rheinmetal=
+l.com; info@leonardocompany.com; info@saabgroup.com;
+ support.industry@siemens.com; support@bosch.com; support@se.com; support@a=
+bb.com; support@rockwellautomation.com; support@advantech.com; support@kont=
+ron.com; support@aaeon.com; support@adlinktech.com; support@iei.com.tw; sup=
+port@dfi.com; support@portwell.com;
+ support@nxp.com; support@renesas.com; support@microchip.com; support@broad=
+com.com; support@marvell.com; support@infineon.com; support@st.com; linux-k=
+ernel@intel.com; support@intel.com; support@amd.com; support@qti.qualcomm.c=
+om; support@realtek.com; support@creative.com;
+ support@cmedia.com.tw; support@via.com.tw; support@esstech.com; support@ci=
+rrus.com; support@analog.com; support@ti.com; support@yamaha.com; support@f=
+ocusrite.com; support@steinberg.de; support@behringer.com; support@pny.com;=
+ support@inno3d.com; support@gainward.com;
+ support@palit.com; support@zotac.com; support@xfxforce.com; support@powerc=
+olor.com; support@sapphiretech.com; intel-gfx@lists.freedesktop.org; linux-=
+bugs@nvidia.com; support@tyan.com; support@foxconn.com; support@ecs.com.tw;=
+ support@maxsun.com; support@colorful.cn;
+ support@nzxt.com; support@evga.com; support@supermicro.com; support@biosta=
+r.com.tw; support@gigabyte.com; support@asrock.com; support@asus.com; suppo=
+rt@minisforum.com;&nbsp;</span><br>
+<span style=3D"font-family:Tahoma, Verdana, Arial;font-size:small;"><b>Subj=
+ect:</b> Structural hardware support gap on modern AMD systems: missing off=
+icial AMD &amp; ITE sensor, fan and power stack for Linux (all distros) and=
+ FreeBSD</span><br>
+<br>
+&nbsp;</p>
+<div dir=3D"ltr">
+<div style=3D"background-color:#FFE4B5;display:inline-block;font-family:cal=
+ibri;padding:5px;width:auto;">
+<table class=3D"table" style=3D"background-color:#FFE4B5;font-size:14px;wid=
+th:auto;">
+<tbody>
+<tr>
+<td aria-label=3D"Table cell"><strong>Caution</strong>:&nbsp;<span style=3D=
+"font-family:arial,helvetica,clean,sans-serif;font-size:13px;">This e-mail =
+originated outside Infineon Technologies. Please be cautious when sharing i=
+nformation or opening attachments especially
+ from unknown senders. Refer to our&nbsp;</span><a style=3D"font-family:ari=
+al,helvetica,clean,sans-serif;font-size:13px;" href=3D"https://intranet-con=
+tent.infineon.com/explore/aboutinfineon/rules/informationsecurity/ug/Social=
+Engineering/Pages/SocialEngineeringElements_en.aspx"><span style=3D"backgro=
+und-attachment:initial;background-clip:initial;background-image:initial;bac=
+kground-origin:initial;background-position:initial;background-repeat:initia=
+l;background-size:initial;">intranet
+ guide</span></a><span style=3D"font-family:arial,helvetica,clean,sans-seri=
+f;font-size:13px;">&nbsp;to help you identify Phishing email.</span><br>
+&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p style=3D"margin: 0;"><br>
+&nbsp;</p>
+<div>
+<div dir=3D"ltr">
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>Dear AMD, ITE, =
+OEM partners, Linux and FreeBSD maintainers,</span></p>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>this email desc=
+ribes a <strong>
+structural hardware support gap on modern AMD-based systems</strong>, affec=
+ting <strong>
+all Linux distributions and FreeBSD</strong>, specifically regarding <stron=
+g>ITE Super-I/O chips, sensor access, fan control, and power management</st=
+rong>.</span></p>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>This is <strong=
+>not a configuration problem</strong> and
+<strong>not distribution-specific</strong>.</span><br>
+<span>It is a <strong>missing official vendor-supported driver and integrat=
+ion stack</strong>.</span></p>
+<hr>
+<h2><span>1. Affected platforms (representative)</span></h2>
+<ul>
+<li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span><strong>Operati=
+ng systems</strong></span></p>
+<ul>
+<li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>All Linux distr=
+ibutions (Ubuntu, Linux Mint, Debian, Fedora, Arch, openSUSE, etc.)</span><=
+/p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span><strong>FreeBSD=
+</strong></span></p>
+</li></ul>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span><strong>Hardwar=
+e</strong></span></p>
+<ul>
+<li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>CPU: AMD Ryzen =
+6000 / 7000 / 8000 series (desktop, mobile, HS/HX)</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>GPU: AMD Radeon=
+ iGPU/dGPU (RDNA2 / RDNA3, e.g. 780M)</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>Mainboards, lap=
+tops and mini-PCs using
+<strong>ITE Super-I/O chips</strong></span><br>
+<span>(IT86xx / IT87xx / IT89xx families)</span></p>
+</li></ul>
+</li></ul>
+<hr>
+<h2><span>2. Observed problem (Linux &amp; FreeBSD)</span></h2>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>On <strong>all =
+Linux distributions and FreeBSD</strong>:</span></p>
+<ul>
+<li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>ITE Super-I/O c=
+hips are detected but
+<strong>unsupported</strong></span></p>
+<ul>
+<li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>Typical output:=
+</span><br>
+<code><span>ITE IT86xx detected (to-be-written)</span></code></p>
+</li></ul>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>No official dri=
+ver for:</span></p>
+<ul>
+<li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>motherboard tem=
+peratures</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>voltages</span>=
+</p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>fan RPM</span><=
+/p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>PWM fan control=
+</span></p>
+</li></ul>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>CPU and GPU tel=
+emetry is <strong>
+fragmented and inconsistent</strong></span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>Tools such as:<=
+/span></p>
+<ul>
+<li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><code><span>lm-sensor=
+s</span></code><span>,
+</span><code><span>psensor</span></code><span>, </span><code><span>fancontr=
+ol</span></code><span> (Linux)</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><code><span>sysctl</s=
+pan></code><span>,
+</span><code><span>hwmon</span></code><span>, </span><code><span>powerd</sp=
+an></code><span> (FreeBSD)</span><br>
+<span>cannot operate safely without vendor support</span></p>
+</li></ul>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>Users are force=
+d to:</span></p>
+<ul>
+<li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>rely on BIOS-on=
+ly fan control</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>use experimenta=
+l or reverse-engineered drivers</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>accept missing =
+thermal visibility</span></p>
+</li></ul>
+</li></ul>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>This leads to:<=
+/span></p>
+<ul>
+<li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>reduced system =
+safety</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>unnecessary fan=
+ noise</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>poor power effi=
+ciency</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>blocked adoptio=
+n for non-technical users</span></p>
+</li></ul>
+<hr>
+<h2><span>3. Why this works on Windows (important context)</span></h2>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>On Windows syst=
+ems:</span></p>
+<ul>
+<li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span><strong>ITE</st=
+rong> provides proprietary reference drivers to OEMs</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span><strong>OEMs</s=
+trong> integrate:</span></p>
+<ul>
+<li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>ITE drivers</sp=
+an></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>Embedded Contro=
+ller (EC) firmware</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>ACPI tables</sp=
+an></p>
+</li></ul>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span><strong>Microso=
+ft</strong> distributes these drivers via Windows Update</span></p>
+</li></ul>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>On Linux and Fr=
+eeBSD:</span></p>
+<ul>
+<li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>No public regis=
+ter documentation</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>No official ven=
+dor drivers</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>No OEM-exposed =
+ACPI/EC interfaces</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>Community devel=
+opers cannot implement safe, complete support</span></p>
+</li></ul>
+<hr>
+<h2><span>4. Root cause (clear responsibility split)</span></h2>
+<ul>
+<li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span><strong>ITE</st=
+rong></span></p>
+<ul>
+<li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>No public Super=
+-I/O register specifications</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>No official Lin=
+ux or FreeBSD drivers</span></p>
+</li></ul>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span><strong>OEMs</s=
+trong></span></p>
+<ul>
+<li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>Ship Linux/Free=
+BSD-capable hardware without sensor/fan support</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>Do not expose E=
+C/ACPI interfaces for non-Windows systems</span></p>
+</li></ul>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span><strong>AMD</st=
+rong></span></p>
+<ul>
+<li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>No unified vend=
+or-supported control stack for Linux and FreeBSD</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>No official rep=
+ository bundling CPU, GPU, sensor and power control</span></p>
+</li></ul>
+</li></ul>
+<hr>
+<h2><span>5. Proposed solution (realistic and actionable)</span></h2>
+<h3><span>A) Official AMD-supported repository</span></h3>
+<ul>
+<li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>Linux: official=
+ AMD repository (PPA / repo)</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>FreeBSD: offici=
+al AMD packages/ports</span></p>
+</li></ul>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>Containing:</sp=
+an></p>
+<ul>
+<li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>CPU power and t=
+hermal telemetry</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>GPU telemetry a=
+nd power limits</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>OEM-approved se=
+nsor interfaces</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>Safe fan contro=
+l framework</span></p>
+</li></ul>
+<hr>
+<h3><span>B) Official ITE support for Unix-like systems</span></h3>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>One of the foll=
+owing:</span></p>
+<ul>
+<li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>Public Super-I/=
+O register documentation</span><br>
+<span><strong>or</strong></span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>Vendor-maintain=
+ed drivers for Linux and FreeBSD</span><br>
+<span><strong>or</strong></span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>OEM-mediated ab=
+straction layer shared across platforms</span></p>
+</li></ul>
+<hr>
+<h3><span>C) Unified user-space control framework</span></h3>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>Available on:</=
+span></p>
+<ul>
+<li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>Linux (all dist=
+ributions)</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>FreeBSD</span><=
+/p>
+</li></ul>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>With:</span></p=
+>
+<ul>
+<li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>Four fixed prof=
+iles:</span></p>
+<ol start=3D"1">
+<li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>Power saving</s=
+pan></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>Quiet / Office<=
+/span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>Balanced</span>=
+</p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>Maximum perform=
+ance</span></p>
+</li></ol>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>Optional automa=
+tic mode</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>Manual override=
+s for advanced users</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>Safe defaults f=
+or families and seniors</span></p>
+</li></ul>
+<hr>
+<h2><span>6. Why this matters</span></h2>
+<ul>
+<li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>Modern AMD hard=
+ware is powerful but
+<strong>artificially limited</strong> on Linux and FreeBSD</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>The issue affec=
+ts <strong>
+all distributions</strong>, not just one ecosystem</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>Lack of officia=
+l hardware control blocks:</span></p>
+<ul>
+<li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>OEM Linux offer=
+ings</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>FreeBSD worksta=
+tion and server use</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>long-term stabl=
+e systems</span></p>
+</li></ul>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>This is a <stro=
+ng>systemic vendor-level gap</strong>, not a community failure</span></p>
+</li></ul>
+<hr>
+<h2><span>7. Request</span></h2>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>We ask AMD, ITE=
+ and OEM partners to:</span></p>
+<ul>
+<li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>treat Linux and=
+ FreeBSD as
+<strong>first-class platforms</strong></span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>provide an offi=
+cial, supported hardware control stack</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>stop forcing us=
+ers and developers into unsafe reverse engineering</span></p>
+</li><li>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>coordinate with=
+ kernel, hwmon and FreeBSD maintainers</span></p>
+</li></ul>
+<p class=3D"gmail-isSelectedEnd" style=3D"margin: 0;"><span>We are willing =
+to provide logs, testing feedback and structured reports.</span></p>
+<p style=3D"margin: 0;"><span>Kind regards,</span></p>
+<p style=3D"margin: 0;">Daniel Frank Nommensen</p>
+<p style=3D"margin: 0;"><br>
+&nbsp;</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_54AFAFA44762482FA1F3D8408EB2FE2E1DC8406882C9SUPPORTINFI_--
