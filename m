@@ -2,196 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DC47D183A0
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jan 2026 11:53:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0071ED1838F
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jan 2026 11:53:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20BE210E4E3;
-	Tue, 13 Jan 2026 10:53:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 665CA10E4DA;
+	Tue, 13 Jan 2026 10:53:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ULCKjyIG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VSq3f46g";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4935B10E4DC;
- Tue, 13 Jan 2026 10:53:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1EA810E4D0;
+ Tue, 13 Jan 2026 10:53:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768301604; x=1799837604;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=wkz+pHxlSw6OCC840TH9xzSMOl4QQZk7Pgar3q7xAtE=;
- b=ULCKjyIG3dwXelD8rfqoHSaPGev0Tqn6YQx32H0GGKh4L0PxzvO/iWLn
- ySNhHp22bVnsIml+Lqj8T/ytpvji5U8ghqPgae4CzCytNVzzA80f3HWIS
- pBggpKN3Ml8LsYLVlOZwhLSS+tLs4l87jkRpaj+tTtpF+MoL3+cnvvDsc
- 5R0SO7PGx00LyLUuKmJvlIl0y+57yJmDBWy22BxBccFhHJEygm9XY2xxG
- cb7n10Vj/W4+xgmZyl4hZvMDxHrfkpn35NvtbZD9Ox6Gqga8YPpQVgn0T
- WMBmIRyqf2ayT01KYCwv+CaxpxYsE0/jB5W/urOzveIuM+nRYn6eLUxuj g==;
-X-CSE-ConnectionGUID: iyHXpXZ5Swq6hIF42u+GqQ==
-X-CSE-MsgGUID: fEAYTeLWRym1BzIiUK5BsA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="95057467"
-X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; d="scan'208";a="95057467"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2026 02:53:24 -0800
-X-CSE-ConnectionGUID: w2Drx+1lR4K95zeJUdieSA==
-X-CSE-MsgGUID: xlzFMw7HRZ+9CeJNMxcbTQ==
+ t=1768301596; x=1799837596;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=LoS36F2vtru91ArMQWK8BgfHrWh/r0v7hLjWDK90geI=;
+ b=VSq3f46gLZFpBZqEcrH377NqpCGoRkN8mz9I+NEtzed75fpKa4QIWnYk
+ gwair6duGarqUSb9K1C81nDt4aQGS7ZP3wE+B/1KFWOYMhtWj5DM1PMQg
+ Y3d3NBoWA9wp10IXveyy+VXiWZ2NfKMlcdvzT6sZrRcBytJzwC/kXQ2ki
+ reSoTZCAow+Ul5GznOYzZHBUpCCVCOpofDaEA7Tgu1CBUhA9/nMMHF94g
+ Bx8t/MuAWjKhTyfWNdSlB6HeOEFNWbwm8SVFtygP90902wQvKPydgdb5E
+ QGgAcrh/kiTved+dYa5izNTAAMe2whXbzzlReTYhymiBgHU4CjxksyKLj Q==;
+X-CSE-ConnectionGUID: Uah5GETQTHmJYHXx45o+BQ==
+X-CSE-MsgGUID: nLzjzVmSRFew/i/mjuSMjQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="92251421"
+X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; d="scan'208";a="92251421"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2026 02:53:15 -0800
+X-CSE-ConnectionGUID: RLpLCtn6R1Sy+WoO5b99Xw==
+X-CSE-MsgGUID: kqF37buPRheHU9+VM+G88w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; d="scan'208";a="204162805"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2026 02:53:24 -0800
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Tue, 13 Jan 2026 02:53:23 -0800
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Tue, 13 Jan 2026 02:53:23 -0800
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.11) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Tue, 13 Jan 2026 02:53:23 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=f3n3YF6rGZB9yM07k8S6KMg5K6M+sE9iXZtOYdLULZH6ZyxXaMGSkrDPbl2Lx9dNfoNhwzmj2C/o4IRnwr0YvM6cV0Y698vhPPAGdeVVpkrdDDcgFILvPhAFdizPh4sy7GgZ6+GNi/I3xtIAnqy6y05F+OlWwEiWGV59KhMGYS4Qs47GSGbpoqahbrs6ED+PNwv+FZp5/kjt75wMFZhOVWyViyZ0KRxUylD1NZwOqU8xmj2JMGvhrT4uLDsqlqNHbOyJhkgo1WY13OCW5cPSEAqW2N9vffXnqMXH4p9qB1lX/EwRKloYxpnf4RGtp1HiRGFf6Agxfgj7HyycfoJsIw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CwIjK+fiBpeKq/cYR8vOBAHkAET/A9JErXKexkuxPn8=;
- b=qHX1Tt7h4SR1nvcy5MsMWnzMj5xAvwGKK9JQskeBNFovSU/iCNLmqSPTSJugH6cDL0g3UwQoROVSFCQhT4JzORhyZcWA6ZNKLX8BO0SdUw/pornhtPLxJZpyoZhI8tQF+s7XMdhJh9cswCgLd13nIBxAvu/s7SaiFd/U5f6fvoZ8fdD4814AjthD2Uu0WbCcc4D0PLb3PKyISrm6bwyMhMX5QNGhMif49A9aNwd9PJgwZN2jkjvHb3mbPjzEFme84YyZy1PdnrzVyKNHImQVBkG9j6Yge5OUd8DzkF31T5CXBiXDZ98C/I6Y3Yw++EqDJStsWVHcjVo2g0/vZnnowg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com (2603:10b6:a03:488::12)
- by PH0PR11MB7586.namprd11.prod.outlook.com (2603:10b6:510:26e::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.7; Tue, 13 Jan
- 2026 10:53:20 +0000
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::45f:5907:efdb:cb5b]) by SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::45f:5907:efdb:cb5b%3]) with mapi id 15.20.9499.005; Tue, 13 Jan 2026
- 10:53:20 +0000
-Message-ID: <76400db2-4bbc-4b5f-a1b2-497dabc9ee73@intel.com>
-Date: Tue, 13 Jan 2026 16:23:10 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 05/13] drm/colorop: Add destroy helper for colorop
- objects
-Content-Language: en-GB
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- <dri-devel@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>
-CC: <harry.wentland@amd.com>, <louis.chauvet@bootlin.com>, <mwen@igalia.com>, 
- <contact@emersion.fr>, <alex.hung@amd.com>, <daniels@collabora.com>,
- <uma.shankar@intel.com>, <suraj.kandpal@intel.com>,
- <nfraprado@collabora.com>, <ville.syrjala@linux.intel.com>,
- <matthew.d.roper@intel.com>
-References: <20260109081728.478844-1-chaitanya.kumar.borah@intel.com>
- <20260109081728.478844-6-chaitanya.kumar.borah@intel.com>
- <bd769e61d261899ada538818b5a3923070ba2b72@intel.com>
-From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-In-Reply-To: <bd769e61d261899ada538818b5a3923070ba2b72@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA1P287CA0020.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a00:35::32) To SJ1PR11MB6129.namprd11.prod.outlook.com
- (2603:10b6:a03:488::12)
+X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; d="scan'208";a="204443357"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.48])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2026 02:53:14 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: Zbigniew =?UTF-8?B?S2VtcGN6ecWEc2tp?= <zbigniew.kempczynski@intel.com>
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Subject: Re: [RFC i-g-t] Extend lsgpu output with data from discrete GPU
+ upstream bridge
+Date: Tue, 13 Jan 2026 11:53:11 +0100
+Message-ID: <14378338.RDIVbhacDa@jkrzyszt-mobl2.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <3c6q6qy233qap2w6tibmjrsckkmnjqhsmrucf37z5uip3prgfb@qflifrueyydx>
+References: <24219669.6Emhk5qWAg@jkrzyszt-mobl2.ger.corp.intel.com>
+ <3c6q6qy233qap2w6tibmjrsckkmnjqhsmrucf37z5uip3prgfb@qflifrueyydx>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PR11MB6129:EE_|PH0PR11MB7586:EE_
-X-MS-Office365-Filtering-Correlation-Id: c548a4b9-61b8-4843-6d5f-08de5291f6b7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|7416014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?Y3JWWkhyRUN0UGtXS1U5UWNWS0VkbGpRZDhaTnprQW9Xa3ppUUUxeXBISlN0?=
- =?utf-8?B?T2JVYXhyZUxRRWtHaWxKMDhDNWt4SENrUGc5ZGhGODdyYkd6ZFVxcGc0cHFJ?=
- =?utf-8?B?M3M3Vm1VYVA1OVh1NEdMWXRBUmNmNVdXVFg4Yjc1WDcrYml3MXlSQi9RSXVN?=
- =?utf-8?B?eGdBMXVlOHZPQUhKaGRIVjFmc2dFYmsxd2Y3ZENrK2VzZFQyQk1vUnNwMzFR?=
- =?utf-8?B?OU5hb2V0WFhUaUkvT080cElqNWtjRENyYnhnUnMrRWMwV2JDMWVnWUc3Y1Bn?=
- =?utf-8?B?dmRmeWRwV2hIYUcvRlhQdFJYWjY2eVhtMXFOQURKMStnb0Q4Q3NrWk4rcWcr?=
- =?utf-8?B?Qi9RUjNrMjVGeHFtMGhzM3BEUU5XbU8rdHNzRGVraUxPQjR1TVZ6LzJTN2Rw?=
- =?utf-8?B?azdmcG0vMExxa3dnMFNFSzhGalp6d2xJWkw4L3d3RC84cVMzZjErU2tLQk1J?=
- =?utf-8?B?c1Fvby9NVlUwUFVEUjc5MnZXVUVDWTJ2UStmRkJtbXpWR0FDdW1JVEFYc1dN?=
- =?utf-8?B?SVc2MExGSVNGZHFsT0s4TytaV3pMeUFQaWlSYXNlcW00TWE1dzVNaVlkeWpG?=
- =?utf-8?B?ZlVhRFRISzlXR1hJOTZrVHRhZW9vUERwd1YzYkxGRDVRZHFCQTRQUTg5QkUy?=
- =?utf-8?B?NElqVklqNTNMRnZRd29TWGZxVFV4QWZPL2c2aTRkSjIwU0Qrb0lxNVlxYkxF?=
- =?utf-8?B?cndqakpScytnL3hudGQ1NmZXWnM3KzdCOVQ0QlF5T0FpdzRrVXFsdkwybnhQ?=
- =?utf-8?B?YjRMejZYOVBTMEhLemR3RTlSTWROYlcyN1Zvci82cEQ1UmZHSVBybmVFWUgy?=
- =?utf-8?B?SWU1clN2bmNCS002a1Q0U204cXRkd0V6dEF5L0lsb1Q1MGJ6VDc4TnFSc1Uw?=
- =?utf-8?B?VmJrSm5UeHlNZ2RoQU5mM3U3UVRiSGxId1E2aHVrdmI3aDNBQXAwWmpRb00r?=
- =?utf-8?B?K2RsMnpvSEV5eTNrNURoTGQ2MTg1QkQ3M3hPK0Z1SHJPTHFrTlF6amtCREll?=
- =?utf-8?B?bVJ6WjJja2RtYjN1OVM2cjF4cXA4ZkFycXVvanFiWDd6djE0WG4zL2NiMU9s?=
- =?utf-8?B?UzVSRkNJMENzbW9rZUt4eHBXa05LeFJ6K3lyRWxqTFdDVEZTa21lWHgvR0xN?=
- =?utf-8?B?UE1Da094S2t2MmtONVRMTm5XenNVUmd6YVErUEIweVk1ZWhwYWpTL1lsbWVH?=
- =?utf-8?B?Q1N1cERtSzhBOFBoZlowUHBYV2ltQ2xiWW1Tc291R2dyL2g1WE9XR1o3TFlM?=
- =?utf-8?B?N1hvYjZoVTNtUDdVQzl1KzRHMEVvRXdpTVF2eGlkeWk3WmRtWnJiUHl3NzQv?=
- =?utf-8?B?TTA0Mysyakh4K3ZEWUhjaUt5YVVDbmhERnJwQzByZTR4Ry9sczFwUlBoMlhi?=
- =?utf-8?B?ZktDaXUrdFRnVG02RksrUGdVVkNwRk1GK0VXdFFjRDN4cWRQTTZneWZ0M1Bo?=
- =?utf-8?B?bWgvaksxNDNGTmcyZW5uSXdpT1RhbG9xeVlXMXlOMFFtSC9TcHN6SXFud0FC?=
- =?utf-8?B?ajBGRmN1WnBCc3ozZlZUQXdLVlR1YWJaOUpKRm83blBwOERJUldNRE9PQmgr?=
- =?utf-8?B?aHFobkp3OUN2dWZqdnRuU0U4dFFEaVgwckoybVJKQlFBaTc0ZkdxaHI1SWJC?=
- =?utf-8?B?aDhKRFVTSGlVVWNESUQ3RjZoU1IzM2lQTklTWGE0NGZXUitMZS95bHk5OVg3?=
- =?utf-8?B?V0RYY3ZxUStKeXhrL0dnN0xwVFZxRU9VZW05bG4wK2JpSmxBeWRYYUQ0Y0pv?=
- =?utf-8?B?TEhvYzkvcHU3UmNsM2hLa0loN3ZDeEwxbDBDRTdxL2NDcjd5bnJzTHhSK1BG?=
- =?utf-8?B?Qm5SSlRyYWE3Q1BBUEgwUTR1amdSWHBvQ1R0OFVHTE0zUERhaUlMSzh3UXlB?=
- =?utf-8?B?MnVoNit4ck9xRWxab0ZidjZOS0pPcEZTdk9td1p4dFMrRzhGekVzekRNMmVW?=
- =?utf-8?Q?zwRWcLZno9IQzfsPWe4y8KwDxFotNUa9?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ1PR11MB6129.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(7416014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?K09MRDZWYXU4Sm9XQmdDNVNNdVIwZ3Zjc0hEcHcvczZVTmZUZ05LY2NLOU5a?=
- =?utf-8?B?Y2c2eTNnS0xUK2kyUnlxcUhwM1NVWjRoQXZtWGJOUUtXSElBOElvSkpzNUdW?=
- =?utf-8?B?VFlqZS8zL0tPYUdkbTg2UFZObWVta0xpVlZUSXhoYnlhVSthSkdMR2FWb0Iz?=
- =?utf-8?B?cGt1RGZNQkRpTWpxQWREN3cwdk91OXoybzA1ZTJFckRoVHNiVjFPS3l2MUNt?=
- =?utf-8?B?ZjVYUU1yU3M0dmkwSnJjRVBxZTdudG4vWUJ0NDRSMHp3Y1l5emVFekdJMVVa?=
- =?utf-8?B?cXRCb1VLaFBaVXFEc2dnU0tOV2hIVDZYNHp1RWJ5K1YxUE15TmhKUHhYakVs?=
- =?utf-8?B?NUNiMzYwL09sQ0hhTEhXVmJySDl3a3NRZzdPTVFyVE9IR0l0TEVkRXpCK2hU?=
- =?utf-8?B?TUpQam92RlVwZ0hhcC9sQzNsOWVWZlpQQ21SQ25xUDg2WVRzZUFMdHZlU1lS?=
- =?utf-8?B?WUhlSGI1alhsRmw4S1NNbVZnQzBlS3N2eW15c08vZUpHYTgwMVB0a25BTXNh?=
- =?utf-8?B?TTIvNytuQVJwRDhaU2R4d1BXVXlSM0wvV04vMmdKSWo0WWVEQjJRUnFId2ds?=
- =?utf-8?B?VEJVNmdVdUF2Mm93OUxwODlZcGE4VnlmMHViVDFvMlRkNW03ejlLYzZRNjEr?=
- =?utf-8?B?M2R6SHZxNGRjUFBrVEsxZHpVZ29CL3U5aVMwNWtjTXVNQURYS2RoMEZ1cHla?=
- =?utf-8?B?Z1ZaMXQvSWhLN2g3MXJVTThDTE5aaEtyUVZCZmlsSzN5MzRnTEw1MHIzV01Z?=
- =?utf-8?B?UU52azRYNERwTmpRSlpBT2NISkZ1SUI4NElVUlFzTmlMN3JxKytlTHFQZ1VI?=
- =?utf-8?B?MDFEbTltVnZ4blU5SnEvM2ZjR0N1WnlKdU80ZEM3Wnc3OURnVUhTOU1GdnRa?=
- =?utf-8?B?cFJadk4zTVcvVEszNER5enM5dHdXd09qWmRSQjY4cXcvb2VhRlBUZm5rcWYz?=
- =?utf-8?B?SlJWUTRUOVplajVmbFoxdnF2b1ViVlpFUGpXRlBldEdZZEYzRGFSYVVnVkVO?=
- =?utf-8?B?UGRhYlVZMkJxY1ZuZkoxcnpPVWRuT2w1L2lzYUFZOGNVTVpqYmtodXRyakF2?=
- =?utf-8?B?QXhSOENpc1crclZ5ajY4ZHNKNzFZRm8rUEVwRlVJZ0xtb0F5MlZVbnhiQjdh?=
- =?utf-8?B?aFJJMFBlYmRTZlJIOFVTMUI1Q291bmtYMjlFRnZnQ2RyNWJDd3c2emJlbW5K?=
- =?utf-8?B?OTY3VE9keXZRNEFWSUxrRWFZM3pXbkVaQ3ZuWnQzVHRtS2k4MGVLNnhQL2lB?=
- =?utf-8?B?RFFsK3FRcGJDZml4bXVCdkZjV0RXeGFCSkRNTGVDbmtHRENFUThzQ1kwMFpW?=
- =?utf-8?B?UC9xZFJxdWtLTHU5Si9lY3hoNzd0aW9MVFhQUzlXTnlwQ2I2T1UxZzNMMU1D?=
- =?utf-8?B?Q0VsUFhXRG1QVE9CMFZMdHV6TW5mbDVnY3JiN3VFNXVLWVVjdko4aDBQRy9O?=
- =?utf-8?B?dmc1K0pDbnQ3UGJ1UnlBVU9BTzd0eG0zUnk1U1d6RkRTem5BTlFEZlZVMWVv?=
- =?utf-8?B?NVd5N2xNYWdDWFZMN1k5RHBXMXVVdllUWXVSaFdHcDBMelNqWVdUTUZZUS9t?=
- =?utf-8?B?c2tRTUgwU3p3ZTYrRVJCTnlPUkF2UmZpZUdBR3Y4enMyeDFlOVQ1elBMa3Ju?=
- =?utf-8?B?blQ3ZjhJT2ZtY2srNjBBM0hnY2d0NDR2U0daV2l6L2RFYngyUkZKbThSN3Fw?=
- =?utf-8?B?L3VPWkRuekNBV3BZTXQwM0libUdDemh6NHFvQlhoZmNCK3cyY2FUNWNzYVVD?=
- =?utf-8?B?dk9vU0pnQmhBVHdTaUFXMG1zNDV3NG9UazJsWlc4Ynh0Z2NTN3VCVXdWYTRP?=
- =?utf-8?B?TkcwaEtkeThYdU5QVS9uWHowVUhEck1nRGVTN3diamJGS0VEZ0lMQlZZcC9z?=
- =?utf-8?B?bndMMTlJMWM1MXlrcWNnVlAyOHJoVFdmZ2R4cXdaUzhydjdsU1JCVkFIanZt?=
- =?utf-8?B?MDlDaTBJY1RaQ2JsdjdvTko3dzZJclI0RlhwVGVoTUU1cmsrNVB6ZURSV3pt?=
- =?utf-8?B?MkZMUG1qRTl1ZFAyZ1lYeXdqQi94QWs1QzA3OXhFU1gxRUpyNzVITjBqYjNt?=
- =?utf-8?B?cEo5dWlJTGpuUDJKdERZSUQ0bU1VSC96WTlPM2Y1MDhHRjUzd1NlZEN6V1R1?=
- =?utf-8?B?VUx0eWZJZllaSkVidTVMeHZZTUptYnBOdzdZa0VKak5LUWlXNlBoYVdPQUpt?=
- =?utf-8?B?a05zVHJmZk04MDBTb2VNWmlWQzdFT1k3UVZYRm5ta0hBQzd4WUd1Qk1rZGhB?=
- =?utf-8?B?Z0VSc3RMRlRIU212WUxGeWNsMXlMMmtOQ01mNmtuSjZ2RmJSSWhwQmNKbDBB?=
- =?utf-8?B?NldCd1NXSHFlM2ZjU0JjMEZReW9maDRtVkxaTG1xcEFGYjN1MW45K3pJajF6?=
- =?utf-8?Q?vHYyRmx5wBOt8KoY=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: c548a4b9-61b8-4843-6d5f-08de5291f6b7
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6129.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jan 2026 10:53:19.9160 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NEyVeAp+RhGRwUePDpHkc+XGflHbRoYJirza/Dog8a6KilB7GhBpP8CwV8OqlR1lmdtqHk/8stGs3Cz2mH2VurAZNlKWD+3sCzazZWfetL8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7586
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -207,79 +71,359 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Zbigniew,
+
+Thanks for your comments.
+
+On Monday, 12 January 2026 17:45:23 CET Zbigniew Kempczy=C5=84ski wrote:
+> On Thu, Jan 08, 2026 at 07:29:27PM +0100, Janusz Krzysztofik wrote:
+> > Hi,
+> >=20
+> > Before I submit patches, I'd like you to have a look at the below provi=
+ded=20
+> > example of proposed output from a modified lsgpu tool and share your co=
+mments.
+> >=20
+> > Users complain about PCIe link bandwith of their Intel discrete GPU dev=
+ices=20
+> > limited to 2.5 GT/s x1, unable to utilize capabilities of their motherb=
+oards,=20
+> > see https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10753.  So =
+far=20
+> > Intel has provided the following explanation:
+> > https://www.intel.com/content/www/us/en/support/articles/000094587/grap=
+hics.html
+> >=20
+> > That's not true.  While PCI devices associated directly with Intel disc=
+rete=20
+> > GPUs provide fake data about link speed and width capabilities and stat=
+us,=20
+> > their upstream PCIe bridges report correct, actual values of those link=
+=20
+> > bandwidth attributes.
+>=20
+> Last time I was looking at this, and I have some doubts:
+>=20
+> Examining PCIe link chain for BMG, in my case device is
+>=20
+> 0000:03:00.0 -> ../../../devices/pci0000:00/0000:00:01.0/0000:01:00.0/000=
+0:02:01.0/0000:03:00.0
+>=20
+> LnkCap looks like this:
+>=20
+> # lspci -vv -s 0000:00:01.0 | egrep '^[0-9]|LnkCap'
+> 00:01.0 PCI bridge: Intel Corporation Device a70d (rev 01) (prog-if 00 [N=
+ormal decode])
+>                 LnkCap: Port #2, Speed 32GT/s, Width x16, ASPM L1, Exit L=
+atency L1 <16us
+>                 LnkCap2: Supported Link Speeds: 2.5-32GT/s, Crosslink- Re=
+timer+ 2Retimers+ DRS-
+> # lspci -vv -s 0000:01:00.0 | egrep '^[0-9]|LnkCap'
+> 01:00.0 PCI bridge: Intel Corporation Device e2ff (rev 01) (prog-if 00 [N=
+ormal decode])
+>                 LnkCap: Port #0, Speed 16GT/s, Width x8, ASPM L1, Exit La=
+tency L1 <32us
+>                 LnkCap2: Supported Link Speeds: 2.5-16GT/s, Crosslink- Re=
+timer+ 2Retimers+ DRS+
+> # lspci -vv -s 0000:02:01.0 | egrep '^[0-9]|LnkCap'
+> 02:01.0 PCI bridge: Intel Corporation Device e2f0 (prog-if 00 [Normal dec=
+ode])
+>                 LnkCap: Port #8, Speed 2.5GT/s, Width x1, ASPM L1, Exit L=
+atency L1 <1us
+>                 LnkCap2: Supported Link Speeds: 2.5GT/s, Crosslink- Retim=
+er+ 2Retimers+ DRS-
+> # lspci -vv -s 0000:03:00.0 | egrep '^[0-9]|LnkCap'
+> 03:00.0 VGA compatible controller: Intel Corporation Device e20b (prog-if=
+ 00 [VGA controller])
+>                 LnkCap: Port #0, Speed 2.5GT/s, Width x1, ASPM L0s L1, Ex=
+it Latency L0s <64ns, L1 <1us
+>                 LnkCap2: Supported Link Speeds: 2.5GT/s, Crosslink- Retim=
+er- 2Retimers- DRS-
+>=20
+> What is real link speed/width here? 32GT/s? 16GT/s? 2.5GT/s? Even if we
+> put 16GT/s here or even 32GT/s (why not, it is in the chain) we still
+> really don't know what is the real link speed/width on the GPU side.
+
+You've focused on link capabilities, while there is also information on lin=
+k=20
+status available.  If you grep your lspci output with '^[0-9]|LnkCap|LnkSta=
+'=20
+then you will also see current link status, compared to its capabilities.
+
+> We will provide then two different values - lspci will show one value,
+> lsgpu another. =20
+
+No, I proposed to omit those fake link bandwidth attributes associated with=
+=20
+the device itself from the output of lsgpu, and complement it with a view o=
+f=20
+the device's PCIe upstream bridge, with its correct link speed and size inf=
+o.
+
+> I don't know is it possible to alter sysfs values to real
+> link speed/width (assuming it is a lie now) but imo real fix should go
+> to sysfs side, not to userspace apps which just read what kernel provides.
+
+Those values are exposed in sysfs only via /sys/bus/pci/<slot>/device/confi=
+g. =20
+Its content is provided by the linux kernel PCI layer as a copy of the=20
+device's PCI config space read directly from hardware.  I don't think PCI=20
+subsystem maintainers will like your idea.  Since the issue is Intel GPU=20
+specific, it needs to be addressed in an Intel specific piece of software,=
+=20
+if not in hardware.  Neither i915 nor Xe KMDs can do anything about that.
+
+My first approach was to limit the corrective actions to extending the now=
+=20
+misleading information provided by customer support with a explanation of=20
+where to look for actual values and a promise that those values, provided b=
+y=20
+the device's upstream bridge, correctly describe the device's link status.
+
+The idea of teaching our lsgpu utility how to show current link status=20
+correctly addresses the lack of such tool on the Linux side, compared to=20
+Windows with its GPU-Z or HWiNFO user space tools which can do that (Window=
+s=20
+Device Manager still provides the same fake info as lspci).
+
+Thanks,
+Janusz
+
+>=20
+> --
+> Zbigniew
+>=20
+> >=20
+> > While users may use lspci tool to examine bridge devices manually thems=
+elves,=20
+> > there is an idea of extending our lsgpu tool with support for printing =
+that=20
+> > data.  In order for the tool to show correct link bandwidth of a discre=
+te GPU,=20
+> > we need to identify its PCIe upstream bridge and get that information f=
+rom=20
+> > that bridge.  For consistency with lspci output, we are not going to re=
+place=20
+> > silently the fake data with those obtained from the bridge, only omit t=
+hat=20
+> > data from our list of the GPU PCI device attributes, and complement the=
+=20
+> > printout with more or less complete information about the bridge itself.
+> >=20
+> > Please have a look at the example output provided below and share your=
+=20
+> > comments, if any.
+> >=20
+> > $ sudo ./build/tools/lsgpu -s
+> > sys:/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000=
+:03:00.0/drm/card0
+> >     subsystem       : drm
+> >     drm card        : /dev/dri/card0
+> >     parent          : sys:/sys/devices/pci0000:00/0000:00:01.0/0000:01:=
+00.0/0000:02:01.0/0000:03:00.0
+> >=20
+> > sys:/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000=
+:03:00.0/drm/renderD128
+> >     subsystem       : drm
+> >     drm render      : /dev/dri/renderD128
+> >     parent          : sys:/sys/devices/pci0000:00/0000:00:01.0/0000:01:=
+00.0/0000:02:01.0/0000:03:00.0
+> >=20
+> > sys:/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000=
+:03:00.0
+> >     subsystem       : pci
+> >     drm card        : /dev/dri/card0
+> >     drm render      : /dev/dri/renderD128
+> >     vendor          : 8086
+> >     device          : 56A0
+> >     codename        : dg2
+> >     bridge          : sys:/sys/devices/pci0000:00/0000:00:01.0/0000:01:=
+00.0
+> >=20
+> > sys:/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0
+> >     subsystem       : pci
+> >     vendor          : 8086
+> >     device          : 4FA0
+> >=20
+> > $ sudo ./build/tools/lsgpu -p
+> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D drm:/sys/devices/pci0000:00/0000:00:01.0=
+/0000:01:00.0/0000:02:01.0/0000:03:00.0/drm/card0 =3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D
+> >=20
+> > [properties]
+> > DEVPATH                         : /devices/pci0000:00/0000:00:01.0/0000=
+:01:00.0/0000:02:01.0/0000:03:00.0/drm/card0
+> > ID_PATH_TAG                     : pci-0000_03_00_0
+> > CURRENT_TAGS                    : :seat:uaccess:master-of-seat:
+> > TAGS                            : :seat:uaccess:master-of-seat:
+> > MINOR                           : 0
+> > DEVNAME                         : /dev/dri/card0
+> > ID_PATH                         : pci-0000:03:00.0
+> > SUBSYSTEM                       : drm
+> > DEVTYPE                         : drm_minor
+> > DEVLINKS                        : /dev/dri/by-path/pci-0000:03:00.0-card
+> > ID_FOR_SEAT                     : drm-pci-0000_03_00_0
+> > USEC_INITIALIZED                : 7056426
+> > MAJOR                           : 226
+> >=20
+> > [attributes]
+> > gt_cur_freq_mhz                 : 600
+> > gt_act_freq_mhz                 : 0
+> > subsystem                       : drm
+> > gt_max_freq_mhz                 : 2400
+> > gt_RP1_freq_mhz                 : 600
+> > gt_RPn_freq_mhz                 : 300
+> > device                          : 0000:03:00.0
+> > gt_boost_freq_mhz               : 2400
+> > gt_RP0_freq_mhz                 : 2400
+> > error                           : No error state collected
+> > gt_min_freq_mhz                 : 300
+> > dev                             : 226:0
+> >=20
+> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D drm:/sys/devices/pci0000:00/0000:00:01.0=
+/0000:01:00.0/0000:02:01.0/0000:03:00.0/drm/renderD128 =3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D
+> >=20
+> > [properties]
+> > DEVPATH                         : /devices/pci0000:00/0000:00:01.0/0000=
+:01:00.0/0000:02:01.0/0000:03:00.0/drm/renderD128
+> > ID_PATH                         : pci-0000:03:00.0
+> > MINOR                           : 128
+> > DEVNAME                         : /dev/dri/renderD128
+> > ID_PATH_TAG                     : pci-0000_03_00_0
+> > SUBSYSTEM                       : drm
+> > DEVTYPE                         : drm_minor
+> > DEVLINKS                        : /dev/dri/by-path/pci-0000:03:00.0-ren=
+der
+> > USEC_INITIALIZED                : 7057304
+> > MAJOR                           : 226
+> >=20
+> > [attributes]
+> > subsystem                       : drm
+> > dev                             : 226:128
+> > device                          : 0000:03:00.0
+> >=20
+> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D pci:/sys/devices/pci0000:00/0000:00:01.0=
+/0000:01:00.0/0000:02:01.0/0000:03:00.0 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > card device                     : /dev/dri/card0
+> > render device                   : /dev/dri/renderD128
+> > codename                        : dg2
+> >=20
+> > [properties]
+> > PCI_ID                          : 8086:56A0
+> > DEVPATH                         : /devices/pci0000:00/0000:00:01.0/0000=
+:01:00.0/0000:02:01.0/0000:03:00.0
+> > ID_PCI_INTERFACE_FROM_DATABASE  : VGA controller
+> > ID_PATH_TAG                     : pci-0000_03_00_0
+> > PCI_CLASS                       : 30000
+> > ID_PCI_CLASS_FROM_DATABASE      : Display controller
+> > ID_PCI_SUBCLASS_FROM_DATABASE   : VGA compatible controller
+> > PCI_SUBSYS_ID                   : 8086:1029
+> > MODALIAS                        : pci:v00008086d000056A0sv00008086sd000=
+01029bc03sc00i00
+> > PCI_SLOT_NAME                   : 0000:03:00.0
+> > USEC_INITIALIZED                : 7056140
+> > DRIVER                          : i915
+> > ID_PATH                         : pci-0000:03:00.0
+> > SUBSYSTEM                       : pci
+> >=20
+> > [attributes]
+> > consistent_dma_mask_bits        : 46
+> > power_state                     : D0
+> > class                           : 0x030000
+> > subsystem                       : pci
+> > iommu_group                     : 17
+> > enable                          : 1
+> > subsystem_vendor                : 0x8086
+> > reset_method                    : flr bus
+> > vendor                          : 0x8086
+> > boot_vga                        : 1
+> > resource2_resize                : 0000000000007f00
+> > subsystem_device                : 0x1029
+> > driver                          : i915
+> > iommu                           : dmar0
+> > d3cold_allowed                  : 1
+> > local_cpulist                   : 0-23
+> > ari_enabled                     : 1
+> > numa_node                       : -1
+> > dma_mask_bits                   : 46
+> > irq                             : 124
+> > driver_override                 : (null)
+> > device                          : 0x56a0
+> > local_cpus                      : ffffff
+> > revision                        : 0x08
+> > msi_bus                         : 1
+> > broken_parity_status            : 0
+> > devspec                         :=20
+> >=20
+> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D pci:/sys/devices/pci0000:00/0000:00:01.0=
+/0000:01:00.0 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >=20
+> > [properties]
+> > PCI_ID                          : 8086:4FA0
+> > DEVPATH                         : /devices/pci0000:00/0000:00:01.0/0000=
+:01:00.0
+> > ID_PCI_INTERFACE_FROM_DATABASE  : Normal decode
+> > ID_PATH_TAG                     : pci-0000_01_00_0
+> > PCI_CLASS                       : 60400
+> > ID_PCI_CLASS_FROM_DATABASE      : Bridge
+> > ID_PCI_SUBCLASS_FROM_DATABASE   : PCI bridge
+> > PCI_SUBSYS_ID                   : 0000:0000
+> > MODALIAS                        : pci:v00008086d00004FA0sv00000000sd000=
+00000bc06sc04i00
+> > PCI_SLOT_NAME                   : 0000:01:00.0
+> > USEC_INITIALIZED                : 7055925
+> > DRIVER                          : pcieport
+> > ID_PATH                         : pci-0000:01:00.0
+> > SUBSYSTEM                       : pci
+> >=20
+> > [attributes]
+> > firmware_node                   : device:04
+> > irq                             : 16
+> > iommu_group                     : 14
+> > reset_method                    : bus
+> > device                          : 0x4fa0
+> > d3cold_allowed                  : 1
+> > broken_parity_status            : 0
+> > consistent_dma_mask_bits        : 32
+> > numa_node                       : -1
+> > local_cpus                      : ffffff
+> > subsystem                       : pci
+> > iommu                           : dmar0
+> > enable                          : 1
+> > subsystem_vendor                : 0x0000
+> > secondary_bus_number            : 2
+> > current_link_speed              : 16.0 GT/s PCIe
+> > max_link_width                  : 16
+> > vendor                          : 0x8086
+> > max_link_speed                  : 16.0 GT/s PCIe
+> > msi_bus                         : 1
+> > current_link_width              : 16
+> > dma_mask_bits                   : 32
+> > driver_override                 : (null)
+> > ari_enabled                     : 0
+> > class                           : 0x060400
+> > local_cpulist                   : 0-23
+> > revision                        : 0x01
+> > subordinate_bus_number          : 4
+> > subsystem_device                : 0x0000
+> > driver                          : pcieport
+> > devspec                         :=20
+> > power_state                     : D0
+> >=20
+> >=20
+> > A few AER related attributes that provide error statistics in the form =
+of=20
+> > hard to format lists of multiple key-values pairs each have been omitte=
+d form=20
+> > the printout.
+> >=20
+> > Thanks,
+> > Janusz
+> >=20
+> >=20
+>=20
 
 
-On 1/12/2026 4:53 PM, Jani Nikula wrote:
-> On Fri, 09 Jan 2026, Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
->> Add a helper that performs common cleanup and frees the
->> associated object. This can be used by drivers if they do not
->> require any driver-specific teardown.
->>
->> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
->> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
->> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
->> Reviewed-by: Alex Hung <alex.hung@amd.com>
->> ---
->>   drivers/gpu/drm/drm_colorop.c | 12 ++++++++++++
->>   include/drm/drm_colorop.h     | 10 ++++++++++
->>   2 files changed, 22 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/drm_colorop.c
->> index 44eb823585d2..ba19a3ab23cb 100644
->> --- a/drivers/gpu/drm/drm_colorop.c
->> +++ b/drivers/gpu/drm/drm_colorop.c
->> @@ -178,6 +178,18 @@ void drm_colorop_cleanup(struct drm_colorop *colorop)
->>   }
->>   EXPORT_SYMBOL(drm_colorop_cleanup);
->>   
->> +/**
->> + * drm_colorop_destroy() - Helper for colorop destruction
->> + *
->> + * @colorop: colorop to destroy
->> + */
->> +void drm_colorop_destroy(struct drm_colorop *colorop)
->> +{
->> +	drm_colorop_cleanup(colorop);
->> +	kfree(colorop);
->> +}
->> +EXPORT_SYMBOL(drm_colorop_destroy);
->> +
->>   /**
->>    * drm_colorop_pipeline_destroy - Helper for color pipeline destruction
->>    *
->> diff --git a/include/drm/drm_colorop.h b/include/drm/drm_colorop.h
->> index a3a32f9f918c..0f5ba72c1704 100644
->> --- a/include/drm/drm_colorop.h
->> +++ b/include/drm/drm_colorop.h
->> @@ -420,6 +420,16 @@ void drm_colorop_atomic_destroy_state(struct drm_colorop *colorop,
->>    */
->>   void drm_colorop_reset(struct drm_colorop *colorop);
->>   
->> +/**
->> + * drm_colorop_destroy - destroy colorop
->> + * @colorop: drm colorop
->> + *
->> + * Destroys @colorop by performing common DRM cleanup and freeing the
->> + * colorop object. This can be used by drivers if they do not
->> + * require any driver-specific teardown.
->> + */
-> 
-> The kernel-doc should be with the function definition, not at the
-> declaration, and certainly not both.
-> 
 
-Thank you, Jani, for pointing it out. I have removed it in v3.
-
-Regards
-Chaitanya
-
-> BR,
-> Jani.
-> 
->> +void drm_colorop_destroy(struct drm_colorop *colorop);
->> +
->>   /**
->>    * drm_colorop_index - find the index of a registered colorop
->>    * @colorop: colorop to find index for
-> 
 
