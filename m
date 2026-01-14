@@ -2,61 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE0ACD1DC77
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Jan 2026 11:02:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0FF5D1E57C
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Jan 2026 12:16:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C035810E59C;
-	Wed, 14 Jan 2026 10:02:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 587B910E5F9;
+	Wed, 14 Jan 2026 11:16:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AXMlMVXa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YKv+NdHg";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEEF210E59C;
- Wed, 14 Jan 2026 10:02:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7936F10E5F6;
+ Wed, 14 Jan 2026 11:15:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768384955; x=1799920955;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Ltoi6d1y9hMQX7O/QunwiUXIEnec+Q4Y6102/vWTIfA=;
- b=AXMlMVXaUNuROYGx2ngmI4oaKNZ0dVNBeMUv3Ge/Ve1/O3915aJhNuMw
- YvGcCtvXdJZnmTw+jHe5R+udNg5ov78OjPI3SJcPZQatZh/SWMxyokGRq
- myYfuTEsvKuqAwDBd2ND4zpsWYH8gmmTS6kX97uzYkduuYvHNBwCZE/J5
- pK958OgCtf0FiWHr/J0QRQU2/+/O19m1k17KZbwRshyr7R1RGJqwG25fb
- DUu9b/fS053ncQ1uZbU4dsEDYsFjUzMzngAqm7VZCh9YYCcD3vdSsny4u
- N7emuIl7J9RKF3wVNb1LAOKnXQWsY0DveVvwAHVKaK5Hwe4vZa23D70Bh w==;
-X-CSE-ConnectionGUID: 84kgNpWcTMSMoQm+n9LeAw==
-X-CSE-MsgGUID: yfTTY1KJS8iqsFNeDJ3BWw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11670"; a="68686821"
-X-IronPort-AV: E=Sophos;i="6.21,225,1763452800"; d="scan'208";a="68686821"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2026 02:02:29 -0800
-X-CSE-ConnectionGUID: Vxejt5gNQ8WSYM8vJY/F4g==
-X-CSE-MsgGUID: 6DNflADcSWegW0spQ7GREQ==
+ t=1768389359; x=1799925359;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=bUEQEl6ZeOA0bVESGUL6LPDFA4vKbn2hPdDrbaDUBNg=;
+ b=YKv+NdHgRj5T9Miwf0uXlvynmndYwfLIneehLGbGz+4WhsU9Bnky3iwL
+ 9aRMjNGWxfcugj8JcIoye5SOIT09ZauM7bjI/Iq3EIVvMNzWWEM+4e4BF
+ CR8ry/N0auQtRfiqIQLd7iLBI+6wmp1FrMm7EynZNTLE4MCQ2Jgg7OjyJ
+ YPT5/7WK/XjZxqnwRn4d8k3eVj159WkIVOiflCQAtlgMHhbe794t9+X/F
+ DAnL0DiulvdY400h+9XEyYxfxlClOxXMV16wXMkclT+K72biC57sgbTiU
+ PzMmVw/aSgYPGcOkNDpq0sIKstxGegfxVpY6KTzMgNKdZXUlqtDprajU+ g==;
+X-CSE-ConnectionGUID: c1iZx+7gSZi73MKzxiWfaw==
+X-CSE-MsgGUID: G906REInROWJGWowNrsN7A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11670"; a="92354842"
+X-IronPort-AV: E=Sophos;i="6.21,225,1763452800"; d="scan'208";a="92354842"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jan 2026 03:15:58 -0800
+X-CSE-ConnectionGUID: DlrLZCeJT6qKXDET78WE8w==
+X-CSE-MsgGUID: GBwfJtk1Rx+21yKCceK+jQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,225,1763452800"; d="scan'208";a="209143741"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.77])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2026 02:02:27 -0800
-Date: Wed, 14 Jan 2026 11:02:24 +0100
-From: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,225,1763452800"; d="scan'208";a="204665377"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.97])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jan 2026 03:15:57 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: Zbigniew =?UTF-8?B?S2VtcGN6ecWEc2tp?= <zbigniew.kempczynski@intel.com>
 Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Subject: Re: [RFC i-g-t] Extend lsgpu output with data from discrete GPU
  upstream bridge
-Message-ID: <6o6jfwyzqbolkk5mwqfjmuzyoupjoj54lhrviwdney55m7e65o@itibavtjtbpi>
+Date: Wed, 14 Jan 2026 12:15:53 +0100
+Message-ID: <40192570.10thIPus4b@jkrzyszt-mobl2.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <14378338.RDIVbhacDa@jkrzyszt-mobl2.ger.corp.intel.com>
 References: <24219669.6Emhk5qWAg@jkrzyszt-mobl2.ger.corp.intel.com>
  <3c6q6qy233qap2w6tibmjrsckkmnjqhsmrucf37z5uip3prgfb@qflifrueyydx>
  <14378338.RDIVbhacDa@jkrzyszt-mobl2.ger.corp.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <14378338.RDIVbhacDa@jkrzyszt-mobl2.ger.corp.intel.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,159 +72,207 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 13, 2026 at 11:53:11AM +0100, Janusz Krzysztofik wrote:
+Hi,
+
+Auto correction.
+
+On Tuesday, 13 January 2026 11:53:11 CET Janusz Krzysztofik wrote:
 > Hi Zbigniew,
-> 
+>=20
 > Thanks for your comments.
-> 
-> On Monday, 12 January 2026 17:45:23 CET Zbigniew Kempczyński wrote:
+>=20
+> On Monday, 12 January 2026 17:45:23 CET Zbigniew Kempczy=C5=84ski wrote:
 > > On Thu, Jan 08, 2026 at 07:29:27PM +0100, Janusz Krzysztofik wrote:
 > > > Hi,
-> > > 
-> > > Before I submit patches, I'd like you to have a look at the below provided 
-> > > example of proposed output from a modified lsgpu tool and share your comments.
-> > > 
-> > > Users complain about PCIe link bandwith of their Intel discrete GPU devices 
-> > > limited to 2.5 GT/s x1, unable to utilize capabilities of their motherboards, 
-> > > see https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10753.  So far 
+> > >=20
+> > > Before I submit patches, I'd like you to have a look at the below pro=
+vided=20
+> > > example of proposed output from a modified lsgpu tool and share your =
+comments.
+> > >=20
+> > > Users complain about PCIe link bandwith of their Intel discrete GPU d=
+evices=20
+> > > limited to 2.5 GT/s x1, unable to utilize capabilities of their mothe=
+rboards,=20
+> > > see https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10753.  S=
+o far=20
 > > > Intel has provided the following explanation:
-> > > https://www.intel.com/content/www/us/en/support/articles/000094587/graphics.html
-> > > 
-> > > That's not true.  While PCI devices associated directly with Intel discrete 
-> > > GPUs provide fake data about link speed and width capabilities and status, 
-> > > their upstream PCIe bridges report correct, actual values of those link 
+> > > https://www.intel.com/content/www/us/en/support/articles/000094587/gr=
+aphics.html
+> > >=20
+> > > That's not true.  While PCI devices associated directly with Intel di=
+screte=20
+> > > GPUs provide fake data about link speed and width capabilities and st=
+atus,=20
+> > > their upstream PCIe bridges report correct, actual values of those li=
+nk=20
 > > > bandwidth attributes.
-> > 
+> >=20
 > > Last time I was looking at this, and I have some doubts:
-> > 
+> >=20
 > > Examining PCIe link chain for BMG, in my case device is
-> > 
-> > 0000:03:00.0 -> ../../../devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0
-> > 
+> >=20
+> > 0000:03:00.0 -> ../../../devices/pci0000:00/0000:00:01.0/0000:01:00.0/0=
+000:02:01.0/0000:03:00.0
+> >=20
 > > LnkCap looks like this:
-> > 
+> >=20
 > > # lspci -vv -s 0000:00:01.0 | egrep '^[0-9]|LnkCap'
-> > 00:01.0 PCI bridge: Intel Corporation Device a70d (rev 01) (prog-if 00 [Normal decode])
-> >                 LnkCap: Port #2, Speed 32GT/s, Width x16, ASPM L1, Exit Latency L1 <16us
-> >                 LnkCap2: Supported Link Speeds: 2.5-32GT/s, Crosslink- Retimer+ 2Retimers+ DRS-
+> > 00:01.0 PCI bridge: Intel Corporation Device a70d (rev 01) (prog-if 00 =
+[Normal decode])
+> >                 LnkCap: Port #2, Speed 32GT/s, Width x16, ASPM L1, Exit=
+ Latency L1 <16us
+> >                 LnkCap2: Supported Link Speeds: 2.5-32GT/s, Crosslink- =
+Retimer+ 2Retimers+ DRS-
 > > # lspci -vv -s 0000:01:00.0 | egrep '^[0-9]|LnkCap'
-> > 01:00.0 PCI bridge: Intel Corporation Device e2ff (rev 01) (prog-if 00 [Normal decode])
-> >                 LnkCap: Port #0, Speed 16GT/s, Width x8, ASPM L1, Exit Latency L1 <32us
-> >                 LnkCap2: Supported Link Speeds: 2.5-16GT/s, Crosslink- Retimer+ 2Retimers+ DRS+
+> > 01:00.0 PCI bridge: Intel Corporation Device e2ff (rev 01) (prog-if 00 =
+[Normal decode])
+> >                 LnkCap: Port #0, Speed 16GT/s, Width x8, ASPM L1, Exit =
+Latency L1 <32us
+> >                 LnkCap2: Supported Link Speeds: 2.5-16GT/s, Crosslink- =
+Retimer+ 2Retimers+ DRS+
 > > # lspci -vv -s 0000:02:01.0 | egrep '^[0-9]|LnkCap'
-> > 02:01.0 PCI bridge: Intel Corporation Device e2f0 (prog-if 00 [Normal decode])
-> >                 LnkCap: Port #8, Speed 2.5GT/s, Width x1, ASPM L1, Exit Latency L1 <1us
-> >                 LnkCap2: Supported Link Speeds: 2.5GT/s, Crosslink- Retimer+ 2Retimers+ DRS-
+> > 02:01.0 PCI bridge: Intel Corporation Device e2f0 (prog-if 00 [Normal d=
+ecode])
+> >                 LnkCap: Port #8, Speed 2.5GT/s, Width x1, ASPM L1, Exit=
+ Latency L1 <1us
+> >                 LnkCap2: Supported Link Speeds: 2.5GT/s, Crosslink- Ret=
+imer+ 2Retimers+ DRS-
 > > # lspci -vv -s 0000:03:00.0 | egrep '^[0-9]|LnkCap'
-> > 03:00.0 VGA compatible controller: Intel Corporation Device e20b (prog-if 00 [VGA controller])
-> >                 LnkCap: Port #0, Speed 2.5GT/s, Width x1, ASPM L0s L1, Exit Latency L0s <64ns, L1 <1us
-> >                 LnkCap2: Supported Link Speeds: 2.5GT/s, Crosslink- Retimer- 2Retimers- DRS-
-> > 
+> > 03:00.0 VGA compatible controller: Intel Corporation Device e20b (prog-=
+if 00 [VGA controller])
+> >                 LnkCap: Port #0, Speed 2.5GT/s, Width x1, ASPM L0s L1, =
+Exit Latency L0s <64ns, L1 <1us
+> >                 LnkCap2: Supported Link Speeds: 2.5GT/s, Crosslink- Ret=
+imer- 2Retimers- DRS-
+> >=20
 > > What is real link speed/width here? 32GT/s? 16GT/s? 2.5GT/s? Even if we
 > > put 16GT/s here or even 32GT/s (why not, it is in the chain) we still
 > > really don't know what is the real link speed/width on the GPU side.
-> 
-> You've focused on link capabilities, while there is also information on link 
-> status available.  If you grep your lspci output with '^[0-9]|LnkCap|LnkSta' 
+>=20
+> You've focused on link capabilities, while there is also information on l=
+ink=20
+> status available.  If you grep your lspci output with '^[0-9]|LnkCap|LnkS=
+ta'=20
 > then you will also see current link status, compared to its capabilities.
-
-You're right, LnkSta for root port shows 16GT/s whereas LnkCap shows
-32GT/s. So it seems upstream bridge port link works at 16GT/s and
-downstream/endpoint shows 2.5GT/s.
-
-> 
+>=20
 > > We will provide then two different values - lspci will show one value,
-> > lsgpu another.  
-> 
-> No, I proposed to omit those fake link bandwidth attributes associated with 
-> the device itself from the output of lsgpu, and complement it with a view of 
-> the device's PCIe upstream bridge, with its correct link speed and size info.
-> 
+> > lsgpu another. =20
+>=20
+> No, I proposed to omit those fake link bandwidth attributes associated wi=
+th=20
+> the device itself from the output of lsgpu, and complement it with a view=
+ of=20
+> the device's PCIe upstream bridge, with its correct link speed and size i=
+nfo.
+>=20
 > > I don't know is it possible to alter sysfs values to real
 > > link speed/width (assuming it is a lie now) but imo real fix should go
-> > to sysfs side, not to userspace apps which just read what kernel provides.
-> 
-> Those values are exposed in sysfs only via /sys/bus/pci/<slot>/device/config.  
-> Its content is provided by the linux kernel PCI layer as a copy of the 
-> device's PCI config space read directly from hardware.  I don't think PCI 
-> subsystem maintainers will like your idea.  Since the issue is Intel GPU 
-> specific, it needs to be addressed in an Intel specific piece of software, 
+> > to sysfs side, not to userspace apps which just read what kernel provid=
+es.
+>=20
+> Those values are exposed in sysfs only via /sys/bus/pci/<slot>/device/con=
+fig. =20
+> Its content is provided by the linux kernel PCI layer as a copy of the=20
+> device's PCI config space read directly from hardware. =20
+
+Not quite true as there are also separate max/current_link_speed/size=20
+attributes, but their content is also generated directly from PCI config=20
+space.
+
+Thanks,
+Janusz
+
+> I don't think PCI=20
+> subsystem maintainers will like your idea.  Since the issue is Intel GPU=
+=20
+> specific, it needs to be addressed in an Intel specific piece of software=
+,=20
 > if not in hardware.  Neither i915 nor Xe KMDs can do anything about that.
-
-Problem I see now with 2.5GT/s x1 is regular user will run lspci
-(I would do so) and wonder what's wrong in the configuration link
-(BIOS settings/etc) wasting time to investigate it before creating
-report. Unless luckily google'ing will show lspci doesn't show
-proper values.
-
-> 
-> My first approach was to limit the corrective actions to extending the now 
-> misleading information provided by customer support with a explanation of 
-> where to look for actual values and a promise that those values, provided by 
+>=20
+> My first approach was to limit the corrective actions to extending the no=
+w=20
+> misleading information provided by customer support with a explanation of=
+=20
+> where to look for actual values and a promise that those values, provided=
+ by=20
 > the device's upstream bridge, correctly describe the device's link status.
-> 
-> The idea of teaching our lsgpu utility how to show current link status 
-> correctly addresses the lack of such tool on the Linux side, compared to 
-> Windows with its GPU-Z or HWiNFO user space tools which can do that (Windows 
+>=20
+> The idea of teaching our lsgpu utility how to show current link status=20
+> correctly addresses the lack of such tool on the Linux side, compared to=
+=20
+> Windows with its GPU-Z or HWiNFO user space tools which can do that (Wind=
+ows=20
 > Device Manager still provides the same fake info as lspci).
-
-So it seems this is only thing we can do now. We can't change lspci nor
-(likely) sysfs. Does anyone have another idea?
-
---
-Zbigniew
-
-> 
+>=20
 > Thanks,
 > Janusz
-> 
-> > 
+>=20
+> >=20
 > > --
 > > Zbigniew
-> > 
-> > > 
-> > > While users may use lspci tool to examine bridge devices manually themselves, 
-> > > there is an idea of extending our lsgpu tool with support for printing that 
-> > > data.  In order for the tool to show correct link bandwidth of a discrete GPU, 
-> > > we need to identify its PCIe upstream bridge and get that information from 
-> > > that bridge.  For consistency with lspci output, we are not going to replace 
-> > > silently the fake data with those obtained from the bridge, only omit that 
-> > > data from our list of the GPU PCI device attributes, and complement the 
-> > > printout with more or less complete information about the bridge itself.
-> > > 
-> > > Please have a look at the example output provided below and share your 
+> >=20
+> > >=20
+> > > While users may use lspci tool to examine bridge devices manually the=
+mselves,=20
+> > > there is an idea of extending our lsgpu tool with support for printin=
+g that=20
+> > > data.  In order for the tool to show correct link bandwidth of a disc=
+rete GPU,=20
+> > > we need to identify its PCIe upstream bridge and get that information=
+ from=20
+> > > that bridge.  For consistency with lspci output, we are not going to =
+replace=20
+> > > silently the fake data with those obtained from the bridge, only omit=
+ that=20
+> > > data from our list of the GPU PCI device attributes, and complement t=
+he=20
+> > > printout with more or less complete information about the bridge itse=
+lf.
+> > >=20
+> > > Please have a look at the example output provided below and share you=
+r=20
 > > > comments, if any.
-> > > 
+> > >=20
 > > > $ sudo ./build/tools/lsgpu -s
-> > > sys:/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0/drm/card0
+> > > sys:/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/00=
+00:03:00.0/drm/card0
 > > >     subsystem       : drm
 > > >     drm card        : /dev/dri/card0
-> > >     parent          : sys:/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0
-> > > 
-> > > sys:/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0/drm/renderD128
+> > >     parent          : sys:/sys/devices/pci0000:00/0000:00:01.0/0000:0=
+1:00.0/0000:02:01.0/0000:03:00.0
+> > >=20
+> > > sys:/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/00=
+00:03:00.0/drm/renderD128
 > > >     subsystem       : drm
 > > >     drm render      : /dev/dri/renderD128
-> > >     parent          : sys:/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0
-> > > 
-> > > sys:/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0
+> > >     parent          : sys:/sys/devices/pci0000:00/0000:00:01.0/0000:0=
+1:00.0/0000:02:01.0/0000:03:00.0
+> > >=20
+> > > sys:/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/00=
+00:03:00.0
 > > >     subsystem       : pci
 > > >     drm card        : /dev/dri/card0
 > > >     drm render      : /dev/dri/renderD128
 > > >     vendor          : 8086
 > > >     device          : 56A0
 > > >     codename        : dg2
-> > >     bridge          : sys:/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0
-> > > 
+> > >     bridge          : sys:/sys/devices/pci0000:00/0000:00:01.0/0000:0=
+1:00.0
+> > >=20
 > > > sys:/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0
 > > >     subsystem       : pci
 > > >     vendor          : 8086
 > > >     device          : 4FA0
-> > > 
+> > >=20
 > > > $ sudo ./build/tools/lsgpu -p
-> > > ========== drm:/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0/drm/card0 ==========
-> > > 
+> > > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D drm:/sys/devices/pci0000:00/0000:00:01=
+=2E0/0000:01:00.0/0000:02:01.0/0000:03:00.0/drm/card0 =3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D
+> > >=20
 > > > [properties]
-> > > DEVPATH                         : /devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0/drm/card0
+> > > DEVPATH                         : /devices/pci0000:00/0000:00:01.0/00=
+00:01:00.0/0000:02:01.0/0000:03:00.0/drm/card0
 > > > ID_PATH_TAG                     : pci-0000_03_00_0
 > > > CURRENT_TAGS                    : :seat:uaccess:master-of-seat:
 > > > TAGS                            : :seat:uaccess:master-of-seat:
@@ -233,11 +281,12 @@ Zbigniew
 > > > ID_PATH                         : pci-0000:03:00.0
 > > > SUBSYSTEM                       : drm
 > > > DEVTYPE                         : drm_minor
-> > > DEVLINKS                        : /dev/dri/by-path/pci-0000:03:00.0-card
+> > > DEVLINKS                        : /dev/dri/by-path/pci-0000:03:00.0-c=
+ard
 > > > ID_FOR_SEAT                     : drm-pci-0000_03_00_0
 > > > USEC_INITIALIZED                : 7056426
 > > > MAJOR                           : 226
-> > > 
+> > >=20
 > > > [attributes]
 > > > gt_cur_freq_mhz                 : 600
 > > > gt_act_freq_mhz                 : 0
@@ -251,47 +300,54 @@ Zbigniew
 > > > error                           : No error state collected
 > > > gt_min_freq_mhz                 : 300
 > > > dev                             : 226:0
-> > > 
-> > > ========== drm:/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0/drm/renderD128 ==========
-> > > 
+> > >=20
+> > > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D drm:/sys/devices/pci0000:00/0000:00:01=
+=2E0/0000:01:00.0/0000:02:01.0/0000:03:00.0/drm/renderD128 =3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D
+> > >=20
 > > > [properties]
-> > > DEVPATH                         : /devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0/drm/renderD128
+> > > DEVPATH                         : /devices/pci0000:00/0000:00:01.0/00=
+00:01:00.0/0000:02:01.0/0000:03:00.0/drm/renderD128
 > > > ID_PATH                         : pci-0000:03:00.0
 > > > MINOR                           : 128
 > > > DEVNAME                         : /dev/dri/renderD128
 > > > ID_PATH_TAG                     : pci-0000_03_00_0
 > > > SUBSYSTEM                       : drm
 > > > DEVTYPE                         : drm_minor
-> > > DEVLINKS                        : /dev/dri/by-path/pci-0000:03:00.0-render
+> > > DEVLINKS                        : /dev/dri/by-path/pci-0000:03:00.0-r=
+ender
 > > > USEC_INITIALIZED                : 7057304
 > > > MAJOR                           : 226
-> > > 
+> > >=20
 > > > [attributes]
 > > > subsystem                       : drm
 > > > dev                             : 226:128
 > > > device                          : 0000:03:00.0
-> > > 
-> > > ========== pci:/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0 ==========
+> > >=20
+> > > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D pci:/sys/devices/pci0000:00/0000:00:01=
+=2E0/0000:01:00.0/0000:02:01.0/0000:03:00.0 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
 > > > card device                     : /dev/dri/card0
 > > > render device                   : /dev/dri/renderD128
 > > > codename                        : dg2
-> > > 
+> > >=20
 > > > [properties]
 > > > PCI_ID                          : 8086:56A0
-> > > DEVPATH                         : /devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0
+> > > DEVPATH                         : /devices/pci0000:00/0000:00:01.0/00=
+00:01:00.0/0000:02:01.0/0000:03:00.0
 > > > ID_PCI_INTERFACE_FROM_DATABASE  : VGA controller
 > > > ID_PATH_TAG                     : pci-0000_03_00_0
 > > > PCI_CLASS                       : 30000
 > > > ID_PCI_CLASS_FROM_DATABASE      : Display controller
 > > > ID_PCI_SUBCLASS_FROM_DATABASE   : VGA compatible controller
 > > > PCI_SUBSYS_ID                   : 8086:1029
-> > > MODALIAS                        : pci:v00008086d000056A0sv00008086sd00001029bc03sc00i00
+> > > MODALIAS                        : pci:v00008086d000056A0sv00008086sd0=
+0001029bc03sc00i00
 > > > PCI_SLOT_NAME                   : 0000:03:00.0
 > > > USEC_INITIALIZED                : 7056140
 > > > DRIVER                          : i915
 > > > ID_PATH                         : pci-0000:03:00.0
 > > > SUBSYSTEM                       : pci
-> > > 
+> > >=20
 > > > [attributes]
 > > > consistent_dma_mask_bits        : 46
 > > > power_state                     : D0
@@ -319,26 +375,29 @@ Zbigniew
 > > > revision                        : 0x08
 > > > msi_bus                         : 1
 > > > broken_parity_status            : 0
-> > > devspec                         : 
-> > > 
-> > > ========== pci:/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0 ==========
-> > > 
+> > > devspec                         :=20
+> > >=20
+> > > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D pci:/sys/devices/pci0000:00/0000:00:01=
+=2E0/0000:01:00.0 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > >=20
 > > > [properties]
 > > > PCI_ID                          : 8086:4FA0
-> > > DEVPATH                         : /devices/pci0000:00/0000:00:01.0/0000:01:00.0
+> > > DEVPATH                         : /devices/pci0000:00/0000:00:01.0/00=
+00:01:00.0
 > > > ID_PCI_INTERFACE_FROM_DATABASE  : Normal decode
 > > > ID_PATH_TAG                     : pci-0000_01_00_0
 > > > PCI_CLASS                       : 60400
 > > > ID_PCI_CLASS_FROM_DATABASE      : Bridge
 > > > ID_PCI_SUBCLASS_FROM_DATABASE   : PCI bridge
 > > > PCI_SUBSYS_ID                   : 0000:0000
-> > > MODALIAS                        : pci:v00008086d00004FA0sv00000000sd00000000bc06sc04i00
+> > > MODALIAS                        : pci:v00008086d00004FA0sv00000000sd0=
+0000000bc06sc04i00
 > > > PCI_SLOT_NAME                   : 0000:01:00.0
 > > > USEC_INITIALIZED                : 7055925
 > > > DRIVER                          : pcieport
 > > > ID_PATH                         : pci-0000:01:00.0
 > > > SUBSYSTEM                       : pci
-> > > 
+> > >=20
 > > > [attributes]
 > > > firmware_node                   : device:04
 > > > irq                             : 16
@@ -370,20 +429,24 @@ Zbigniew
 > > > subordinate_bus_number          : 4
 > > > subsystem_device                : 0x0000
 > > > driver                          : pcieport
-> > > devspec                         : 
+> > > devspec                         :=20
 > > > power_state                     : D0
-> > > 
-> > > 
-> > > A few AER related attributes that provide error statistics in the form of 
-> > > hard to format lists of multiple key-values pairs each have been omitted form 
+> > >=20
+> > >=20
+> > > A few AER related attributes that provide error statistics in the for=
+m of=20
+> > > hard to format lists of multiple key-values pairs each have been omit=
+ted form=20
 > > > the printout.
-> > > 
+> > >=20
 > > > Thanks,
 > > > Janusz
-> > > 
-> > > 
-> > 
-> 
-> 
-> 
-> 
+> > >=20
+> > >=20
+> >=20
+>=20
+>=20
+
+
+
+
