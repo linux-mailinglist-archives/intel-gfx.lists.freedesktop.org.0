@@ -2,57 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73DA2D1C499
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Jan 2026 04:43:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1006FD1C557
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Jan 2026 05:24:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E696F10E5C8;
-	Wed, 14 Jan 2026 03:43:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i9HPuSz8";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA62810E002;
+	Wed, 14 Jan 2026 04:24:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFB5E10E5C8;
- Wed, 14 Jan 2026 03:43:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768362191; x=1799898191;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=KnA9flBSLWzukpYlk2YO9J8R2pJRd2WHH+X+u1ANOSE=;
- b=i9HPuSz8lJsyl51PvMIT+qX2DrrMhgn0KxxhTMRnjDTvin7j8efCs2QV
- X92PowcX3xJSzuN2ehDtxibTM0nPkfOAP0L6b6U9V3kvYbzd75aQKvWpl
- JFShwGTISpFsf8TM7V5XTYTrL6FJ4UgcKM970xqexfTKbQfli9AS7AwlC
- GS88UyAaUJlf72XaeL/jpCO2ddOZy2wYF7UfFRSZJmcXgb/w96ectV6Y1
- 93aqJcTEvfXc+xCWSx0lYtb7lPhfvzliVeFvrGY/8qzjNj+OfntdDtq63
- hAeZ7/rc7e0ZegF/uqUG7Z9IfpJJcYwYjhB6yAtoiD4OMnloihF7vY4Fu A==;
-X-CSE-ConnectionGUID: F/UPnHKXSV2sMlVXsPF/qQ==
-X-CSE-MsgGUID: w+LjV4khTU6MO50fA0PVRw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11670"; a="68664597"
-X-IronPort-AV: E=Sophos;i="6.21,224,1763452800"; d="scan'208";a="68664597"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2026 19:43:11 -0800
-X-CSE-ConnectionGUID: NCrTTdYERvaxU1QbuiPpjg==
-X-CSE-MsgGUID: TPL8GAy9SGajoWMzLFwWqQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,224,1763452800"; d="scan'208";a="204833758"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa008.fm.intel.com with ESMTP; 13 Jan 2026 19:43:09 -0800
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com,
-	Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v2 3/3] drm/i915/cx0: Rename intel_clear_response_ready flag
-Date: Wed, 14 Jan 2026 09:12:59 +0530
-Message-Id: <20260114034259.466605-4-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260114034259.466605-1-suraj.kandpal@intel.com>
-References: <20260114034259.466605-1-suraj.kandpal@intel.com>
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C464010E002;
+ Wed, 14 Jan 2026 04:24:12 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8793662378758939795=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/bios=3A_Use_get?=
+ =?utf-8?q?=5Funaligned=5F*_for_VBT_block_size_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Kaushlendra Kumar" <kaushlendra.kumar@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 14 Jan 2026 04:24:12 -0000
+Message-ID: <176836465276.152800.7655442632499582399@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260114030145.3039094-1-kaushlendra.kumar@intel.com>
+In-Reply-To: <20260114030145.3039094-1-kaushlendra.kumar@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,108 +37,187 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Rename the non static intel_clear_response_ready_flag to
-intel_cx0_clear_response_ready_flag so that we follow the
-naming standards of non static function.
+--===============8793662378758939795==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 14 +++++++-------
- drivers/gpu/drm/i915/display/intel_cx0_phy.h |  4 ++--
- drivers/gpu/drm/i915/display/intel_lt_phy.c  |  2 +-
- 3 files changed, 10 insertions(+), 10 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 00c7fa9040ee..716b5108b4c4 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -127,8 +127,8 @@ static void intel_cx0_phy_transaction_end(struct intel_encoder *encoder, struct
- 	intel_display_power_put(display, POWER_DOMAIN_DC_OFF, wakeref);
- }
- 
--void intel_clear_response_ready_flag(struct intel_encoder *encoder,
--				     int lane)
-+void intel_cx0_clear_response_ready_flag(struct intel_encoder *encoder,
-+					 int lane)
- {
- 	struct intel_display *display = to_intel_display(encoder);
- 
-@@ -155,7 +155,7 @@ void intel_cx0_bus_reset(struct intel_encoder *encoder, int lane)
- 		return;
- 	}
- 
--	intel_clear_response_ready_flag(encoder, lane);
-+	intel_cx0_clear_response_ready_flag(encoder, lane);
- }
- 
- int intel_cx0_wait_for_ack(struct intel_encoder *encoder,
-@@ -222,7 +222,7 @@ static int __intel_cx0_read_once(struct intel_encoder *encoder,
- 		return -ETIMEDOUT;
- 	}
- 
--	intel_clear_response_ready_flag(encoder, lane);
-+	intel_cx0_clear_response_ready_flag(encoder, lane);
- 
- 	intel_de_write(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port, lane),
- 		       XELPDP_PORT_M2P_TRANSACTION_PENDING |
-@@ -233,7 +233,7 @@ static int __intel_cx0_read_once(struct intel_encoder *encoder,
- 	if (ack < 0)
- 		return ack;
- 
--	intel_clear_response_ready_flag(encoder, lane);
-+	intel_cx0_clear_response_ready_flag(encoder, lane);
- 
- 	/*
- 	 * FIXME: Workaround to let HW to settle
-@@ -295,7 +295,7 @@ static int __intel_cx0_write_once(struct intel_encoder *encoder,
- 		return -ETIMEDOUT;
- 	}
- 
--	intel_clear_response_ready_flag(encoder, lane);
-+	intel_cx0_clear_response_ready_flag(encoder, lane);
- 
- 	intel_de_write(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port, lane),
- 		       XELPDP_PORT_M2P_TRANSACTION_PENDING |
-@@ -325,7 +325,7 @@ static int __intel_cx0_write_once(struct intel_encoder *encoder,
- 		return -EINVAL;
- 	}
- 
--	intel_clear_response_ready_flag(encoder, lane);
-+	intel_cx0_clear_response_ready_flag(encoder, lane);
- 
- 	/*
- 	 * FIXME: Workaround to let HW to settle
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-index ae98ac23ea22..87d3bdaca3ec 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-@@ -25,8 +25,8 @@ struct intel_dpll_hw_state;
- struct intel_encoder;
- struct intel_hdmi;
- 
--void intel_clear_response_ready_flag(struct intel_encoder *encoder,
--				     int lane);
-+void intel_cx0_clear_response_ready_flag(struct intel_encoder *encoder,
-+					 int lane);
- bool intel_encoder_is_c10phy(struct intel_encoder *encoder);
- void intel_mtl_pll_enable(struct intel_encoder *encoder,
- 			  struct intel_dpll *pll,
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index 6cdae03ee172..e174ca011d50 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -1106,7 +1106,7 @@ static int __intel_lt_phy_p2p_write_once(struct intel_encoder *encoder,
- 	 * This is the time PHY takes to settle down after programming the PHY.
- 	 */
- 	udelay(150);
--	intel_clear_response_ready_flag(encoder, lane);
-+	intel_cx0_clear_response_ready_flag(encoder, lane);
- 	intel_lt_phy_clear_status_p2p(encoder, lane);
- 
- 	return 0;
--- 
-2.34.1
+Series: drm/i915/bios: Use get_unaligned_* for VBT block size (rev3)
+URL   : https://patchwork.freedesktop.org/series/159993/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_17817 -> Patchwork_159993v3
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159993v3/index.html
+
+Participating hosts (43 -> 40)
+------------------------------
+
+  Missing    (3): bat-dg2-13 fi-snb-2520m bat-adls-6 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_159993v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17817/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159993v3/bat-arls-5/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_pm_rpm@basic-rte:
+    - bat-rpls-4:         [PASS][3] -> [DMESG-WARN][4] ([i915#13400])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17817/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159993v3/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-mtlp-9:         [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17817/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159993v3/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live:
+    - bat-atsm-1:         [DMESG-FAIL][7] ([i915#12061] / [i915#13929]) -> [DMESG-FAIL][8] ([i915#12061] / [i915#14204])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17817/bat-atsm-1/igt@i915_selftest@live.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159993v3/bat-atsm-1/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@mman:
+    - bat-atsm-1:         [DMESG-FAIL][9] ([i915#13929]) -> [DMESG-FAIL][10] ([i915#14204])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17817/bat-atsm-1/igt@i915_selftest@live@mman.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159993v3/bat-atsm-1/igt@i915_selftest@live@mman.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#13400]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13400
+  [i915#13929]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929
+  [i915#14204]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_17817 -> Patchwork_159993v3
+
+  CI-20190529: 20190529
+  CI_DRM_17817: 1580579412915ac76344699e53124b580060302d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8699: 0b67ab25f2eb58b296872c8c34474b79353727d5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_159993v3: 1580579412915ac76344699e53124b580060302d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159993v3/index.html
+
+--===============8793662378758939795==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/bios: Use get_unaligned_* for VBT block size (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159993/">https://patchwork.freedesktop.org/series/159993/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159993v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159993v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17817 -&gt; Patchwork_159993v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159993v3/index.html</p>
+<h2>Participating hosts (43 -&gt; 40)</h2>
+<p>Missing    (3): bat-dg2-13 fi-snb-2520m bat-adls-6 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_159993v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17817/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159993v3/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_rpm@basic-rte:</p>
+<ul>
+<li>bat-rpls-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17817/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159993v3/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13400">i915#13400</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17817/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159993v3/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17817/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159993v3/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@mman:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17817/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159993v3/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17817 -&gt; Patchwork_159993v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17817: 1580579412915ac76344699e53124b580060302d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8699: 0b67ab25f2eb58b296872c8c34474b79353727d5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_159993v3: 1580579412915ac76344699e53124b580060302d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============8793662378758939795==--
