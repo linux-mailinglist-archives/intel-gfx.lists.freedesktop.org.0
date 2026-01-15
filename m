@@ -2,72 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA44AD301AB
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jan 2026 12:08:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 404B9D301C2
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jan 2026 12:08:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B8A810E866;
-	Fri, 16 Jan 2026 11:08:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60D5710E87A;
+	Fri, 16 Jan 2026 11:08:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="x2SsHxdw";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="RF2cfMK+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-dy1-f201.google.com (mail-dy1-f201.google.com
- [74.125.82.201])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DA5D10E7B2
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Jan 2026 16:55:41 +0000 (UTC)
-Received: by mail-dy1-f201.google.com with SMTP id
- 5a478bee46e88-2b6ad399cd8so1535371eec.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Jan 2026 08:55:41 -0800 (PST)
+Received: from mail-dl1-f74.google.com (mail-dl1-f74.google.com [74.125.82.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93ED310E7B2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Jan 2026 16:55:43 +0000 (UTC)
+Received: by mail-dl1-f74.google.com with SMTP id
+ a92af1059eb24-11b9786fb51so7136703c88.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Jan 2026 08:55:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1768496141; x=1769100941;
+ d=google.com; s=20230601; t=1768496143; x=1769100943;
  darn=lists.freedesktop.org; 
  h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
  :date:from:to:cc:subject:date:message-id:reply-to;
- bh=9MMxvIkbkB14DLGuoxttnKY1ii69PbAEMosuxYSlces=;
- b=x2SsHxdws7W3nMwhLLGeVZ65L1NW5epp4exHGkIY2ps5ksezlW4X3gIIgEl70JA9eL
- WNCElyQ+LUi84H1UQdjvMZk+167xHT5VIQBt/JhVYZrXKWkA17jcfnfjxYXag77ixI5o
- DeYOLIQNajLVVonrDsjylTDy9iBboGgR2YyNEkng8crJ21IGLRi+NRUcVGk540kooqgr
- nICp0dr1rCsYcIp8osqV80Hu/0gk2ATqsrSBiTcylvdyKJdE2r//9mZqOC09TUfnBCiJ
- AujS+I8oNz4AvmR/27fb/IKD8ibIwT+eEqYX5q/TsocRCobutH9oXrmR/2J+JJzvfJ6j
- Dw/g==
+ bh=Nn6cPsAYtQFTKYtJyUKSSUcHQ6X5lDM8Qh43AxxJzlA=;
+ b=RF2cfMK+EC5E5pxPF8q3NDY/MVumoFB01R21lc1qdPTvnhh01KGl1kx/+mE618Ywen
+ VTb+gar2IHdxz8m9PKSncK9gT1cds1BFxMgFXZM0shmaNdpkTeerrXj7tFHulk2zPKku
+ AkEs57HOCVtQ5CpRRQ14ahQqWAupsDvb58CSppH8EJ9ke55Q+s3DMh5KZeYwbBqNUKLt
+ a1UmZ8LWpB3vctdlc2WLCdSZ8Cr+1/8Hq1BKQmAjirR3kuZdVa2oNTGpEsxQiSmDkp6D
+ oeqnvN/iuXj2wVpX2OfcmuuqZQCQGwPZ4MJgq8iV/4Hr5OO+eHVsuAB91qCYAj81QXhN
+ ncqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1768496141; x=1769100941;
+ d=1e100.net; s=20230601; t=1768496143; x=1769100943;
  h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
  :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=9MMxvIkbkB14DLGuoxttnKY1ii69PbAEMosuxYSlces=;
- b=nRi9AZLiiMHL9pV6uny031Si3ALkhkO/FXJzAWNORWeG8Sw/b7LPhtPVdd8WD4Phzb
- b7+OoOOl7NgnBiby5p5ceOq3962r/oz7g8+sNTYHVRMipPeOTKqLMLmwnKJFD2hXuuKn
- rEB/DB7G9YuO+yn2fksK7GIw/VuF1w7bKTiti02lcxmlN75bGCLbSdzaXFXTjK0nhghb
- kyt8ZyzqCAGx3wPQwCX2H3URayaUaopt97elOEDF5f9IpSWjGtP8PIIVU3GBCEcglOLF
- vZKrp0eIjLRvygbekW5D4T8uNSkbbo2DVfP+/qfyBDLDcARqETw1bm5gm6f3TrsGOUg6
- gdlQ==
+ bh=Nn6cPsAYtQFTKYtJyUKSSUcHQ6X5lDM8Qh43AxxJzlA=;
+ b=RhjbULxqKrrBkf394DHpDB8AH2Eo337Zd3BDnfFzIJ3kYWHHOuFg2IH2t9YXWbNNgQ
+ 0o5ZU9e+Is4ioNWmkSIBOP6sXHGam1rXdq9KwluA124n+pJCZlfVQBX6SttbYAsUNpFy
+ 8rBLcQUKF+K7jyHlyQsHRFTBq0uaJbpUZSCwIUmZsCbQl4PUpwu8rxw5kf7EONaSawDJ
+ QYYo2hncO/RygVJ1yt0QUjpJQOQw8OpUSPccgR5hB/yyNrN8zmZtnCSl/uWXYJhgyQr1
+ hJvSUA8ihOIVCOcvOD0jOCIc23IFirT5Hz6dUQc9Fc5msbxFj11ubMTXP/QMyymRPkj0
+ RWTA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWgpOerSpttQNGclyWB1tsIsv+7tbnH0Fq9V+zkwDQD/4Sem9y1LZ2ijPFOn7xt4NayQtVKDj6tJ50=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxMyNob4zgNe3uQWEdpvKTbVGdcJZjNu2xTmoIYpW6VPP9LSfT0
- Bfi8TCX/0d5QToO2jOX53e45bcIt/hoi2iMA9n4CVJfKXfRSVKdJNLN4DoKS9oWnPKGp8bWdr1K
- DMp6pLCBOXqpD7A==
-X-Received: from dybqf13.prod.google.com
- ([2002:a05:7301:648d:b0:2ae:34d1:e425])
+ AJvYcCWdt6+wLxoBP7HM1sRotQEXECJitF/b4j8HPCMND+JsaciwKnvPguflKdEMQcxIsDXEqQ6usMM78dE=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxOA2rdaVLHzkE7YWEPBvzBt22xJlBDN2UfJiI7WCiSU1u+WJve
+ DDeZdrkmChFh3FfoxbGhpfdoCgsDwoNZQS5fGQ2TP+eYZ1uiJ89HwRnXcnm9aEF+dhm30Ztd8h6
+ 75W6RZ+4Bvxqgow==
+X-Received: from dlbcq14.prod.google.com
+ ([2002:a05:7022:248e:b0:11d:d033:7c3a])
  (user=jdsultan job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:7300:3723:b0:2b4:7ea1:763d with SMTP id
- 5a478bee46e88-2b6b444b79fmr6134eec.0.1768496140680; 
- Thu, 15 Jan 2026 08:55:40 -0800 (PST)
-Date: Thu, 15 Jan 2026 08:54:47 -0800
+ 2002:a05:7022:b8d:b0:11a:3734:3db3 with SMTP id
+ a92af1059eb24-1244a769e03mr292497c88.32.1768496142691; 
+ Thu, 15 Jan 2026 08:55:42 -0800 (PST)
+Date: Thu, 15 Jan 2026 08:54:48 -0800
 In-Reply-To: <20260115-upstream-prep-v1-0-001d5b38fc11@google.com>
 Mime-Version: 1.0
 References: <20260115-upstream-prep-v1-0-001d5b38fc11@google.com>
 X-Developer-Key: i=jdsultan@google.com; a=ed25519;
  pk=RhTSABMOTIhvVE7NYiZwn1iDGYYNbaN092nvaEF2dxo=
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1768496136; l=38853;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768496136; l=24292;
  i=jdsultan@google.com; s=20260115; h=from:subject:message-id;
- bh=1z/RaW9yC5CimFZQmLCiJt8gWuqxQJQ932kC1RwX+UU=;
- b=1GQIB5uXXI1CuG1n3cv0galUdpUEe/Jjx+4gp/MWZmBjv6O9I7wuVBs6ozc6OMcryKtxMggCP
- oyzOeo4rsxlDnpYmHM+dM1tqbnkBAQx36a8B3s5+IqXAWGbq9hphWTm
+ bh=/Qw7J7TJrdHaE+WNysw0Fqa4HCl/Jad3uV5ReVuGWBw=;
+ b=MNiSRvULNN7h1l1ooBFnjOauVQR+8mCfOOf0xxTWythFRXjOEwtO2t2x/t64ayN2vDdoSpff3
+ ejMQZe9QS/8C4yJ5S6tIxrVVW/KND2qQ9qJwjbVjysBJ1O7DTGv4eHb
 X-Mailer: b4 0.14.2
-Message-ID: <20260115-upstream-prep-v1-1-001d5b38fc11@google.com>
-Subject: [PATCH RFC 01/10] drm/i915/display: Implement passive initialization
- for splash screen preservation
+Message-ID: <20260115-upstream-prep-v1-2-001d5b38fc11@google.com>
+Subject: [PATCH RFC 02/10] drm/xe/display: Implement seamless boot state
+ reconstruction for PTL
 From: Juasheem Sultan <jdsultan@google.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@linux.intel.com>,
@@ -91,1021 +90,674 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-To achieve a seamless transition from the bootloader to the kernel driver
-(fastboot) on Panther Lake (PTL), especially with MSO panels, we need to
-avoid resetting the hardware state during initialization.
+To achieve a flicker-free transition from bootloader to kernel (fastboot)
+on Panther Lake (PTL), the driver must accurately reconstruct the
+hardware state established by the BIOS before the first atomic commit.
 
-Introduce a "passive" initialization path (`intel_ddi_init_encoder_early`)
-that constructs the necessary DRM software objects (encoders, connectors)
-to match the hardware state without issuing any hardware-resetting commands
-(like DP link training or full modesets).
+Currently, the Xe driver initialization sequence may reset hardware or
+fail to populate essential state (like MSO configurations or DP link
+rates), leading to a blank screen or visual artifacts during boot.
 
-Key changes include:
-1. Early encoder/connector initialization that skips GMBUS/AUX activity
-   where unsafe.
-2. MSO-specific fixes:
-   * Hardcoded link parameters for 2256x1504 MSO mode.
-   * Forced positive sync polarity (required by hardware/panel).
-   * Manual handling of splitter state in `get_config`.
-3. Improved DSC DPCD reading with retry logic to handle slow-to-wake panels.
+This patch introduces a comprehensive state reconstruction path:
 
-This prevents the splash screen from flickering or disappearing during boot.
+1.  **Passive Encoder Setup**: Adds `intel_setup_encoders` to discover
+    ports and create encoder objects based on VBT data without triggering
+    disruptive probing sequences.
+
+2.  **BIOS State Readout**:
+    *   Implements `xe_initial_pll_enable` to identify active pipes
+        and ensure PLLs, PPS, and VDD are correctly tracked in software.
+    *   Reconstructs `intel_dp` state (link rates, lane counts) using
+        hardware readout, falling back to VBT values if DPCD reads fail
+        (common during early init).
+
+3.  **MSO & VBT Fixes**:
+    *   Parses EDID early to fix up MSO (Multi-Segment Operation)
+        timings and flags.
+    *   Adds overrides for incorrect VBT link rate reports on PTL.
+    *   Forces MSO configuration if detection fails but is required by
+        the platform.
+
+4.  **Power Management**:
+    *   Grabs a persistent `POWER_DOMAIN_INIT` reference in
+        `xe_display_register` to prevent the hardware from power-gating
+        active pipes when the initial wakerefs are dropped.
 
 Signed-off-by: Juasheem Sultan <jdsultan@google.com>
 ---
- drivers/gpu/drm/i915/display/intel_connector.c |   9 +
- drivers/gpu/drm/i915/display/intel_connector.h |   1 +
- drivers/gpu/drm/i915/display/intel_ddi.c       | 205 ++++++++++++-
- drivers/gpu/drm/i915/display/intel_ddi.h       |   2 +
- drivers/gpu/drm/i915/display/intel_dp.c        | 385 ++++++++++++++++++++++---
- drivers/gpu/drm/i915/display/intel_dp.h        |   5 +
- drivers/gpu/drm/i915/display/intel_hdmi.c      |  39 +++
- drivers/gpu/drm/i915/display/intel_hdmi.h      |   2 +
- drivers/gpu/drm/i915/display/intel_panel.c     |  41 ++-
- drivers/gpu/drm/i915/display/intel_panel.h     |   3 +
- 10 files changed, 639 insertions(+), 53 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bios.c         |  40 ++-
+ drivers/gpu/drm/i915/display/intel_cdclk.c        |  36 ---
+ drivers/gpu/drm/i915/display/intel_cdclk.h        |  41 ++-
+ drivers/gpu/drm/i915/display/intel_display.h      |   4 +
+ drivers/gpu/drm/i915/display/intel_display_core.h |   2 +
+ drivers/gpu/drm/xe/display/xe_display.c           | 309 +++++++++++++++++++++-
+ drivers/gpu/drm/xe/display/xe_display.h           |   2 +
+ drivers/gpu/drm/xe/xe_device.c                    |   2 +-
+ 8 files changed, 383 insertions(+), 53 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_connector.c b/drivers/gpu/drm/i915/display/intel_connector.c
-index 6a55854db5b68f33408ad6e8a24062293308d32c..b7189f840758e60b601870c78d5076316c5ce05e 100644
---- a/drivers/gpu/drm/i915/display/intel_connector.c
-+++ b/drivers/gpu/drm/i915/display/intel_connector.c
-@@ -118,6 +118,15 @@ struct intel_connector *intel_connector_alloc(void)
- 	return connector;
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index 3596dce84c2863b85dd7c3e3baf0364e560b2777..fc6291e6b3ea6715283fc1cff80a175fdda34045 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -43,6 +43,8 @@
+ #include "intel_display_types.h"
+ #include "intel_gmbus.h"
  
++#include "intel_ddi.h"
 +
-+void intel_connector_destroy_early(struct drm_connector *connector)
-+{
-+	struct intel_connector *intel_connector = to_intel_connector(connector);
-+
-+	intel_panel_fini(intel_connector);
-+	kfree(connector);
-+}
-+
- /*
-  * Free the bits allocated by intel_connector_alloc.
-  * This should only be used after intel_connector_alloc has returned
-diff --git a/drivers/gpu/drm/i915/display/intel_connector.h b/drivers/gpu/drm/i915/display/intel_connector.h
-index 0aa86626e6463327dd96fac7405eae0f3c0e1b83..ef1a18f78a9d8b9a151f877b54aa779b4e0ca5e4 100644
---- a/drivers/gpu/drm/i915/display/intel_connector.h
-+++ b/drivers/gpu/drm/i915/display/intel_connector.h
-@@ -17,6 +17,7 @@ struct intel_encoder;
- struct intel_connector *intel_connector_alloc(void);
- void intel_connector_free(struct intel_connector *connector);
- void intel_connector_destroy(struct drm_connector *connector);
-+void intel_connector_destroy_early(struct drm_connector *connector);
- int intel_connector_register(struct drm_connector *connector);
- void intel_connector_unregister(struct drm_connector *connector);
- void intel_connector_attach_encoder(struct intel_connector *connector,
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index c09aa759f4d4f41b861ad0bb67882cb4c5140cc6..0fa6e0258d9108cafd3991f1d2d5de099ab6aef8 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -2499,8 +2499,15 @@ static void intel_ddi_mso_get_config(struct intel_encoder *encoder,
- 	dss1 = intel_de_read(display, ICL_PIPE_DSS_CTL1(pipe));
+ #define _INTEL_BIOS_PRIVATE
+ #include "intel_vbt_defs.h"
  
- 	pipe_config->splitter.enable = dss1 & SPLITTER_ENABLE;
--	if (!pipe_config->splitter.enable)
-+	if (!pipe_config->splitter.enable) {
-+		if (intel_is_boot_mso_pipe(pipe)) {
-+			pipe_config->splitter.enable = true;
-+			pipe_config->splitter.link_count = 2;
-+			pipe_config->splitter.pixel_overlap = 0;
-+			return;
-+		}
- 		return;
+@@ -1540,10 +1542,22 @@ parse_edp(struct intel_display *display,
+ 	panel->vbt.edp.drrs_msa_timing_delay =
+ 		panel_bits(edp->sdrrs_msa_timing_delay, panel_type, 2);
+ 
+-	if (display->vbt.version >= 244)
+-		panel->vbt.edp.max_link_rate =
+-			edp->edp_max_port_link_rate[panel_type] * 20;
++	if (display->vbt.version >= 244) {
++	u8 edp_max_port_link_rate =
++	    edp->edp_max_port_link_rate[panel_type];
+ 
++	if (display->vbt.version >= 263) {
++			panel->vbt.edp.max_link_rate =
++		(edp_max_port_link_rate & 0x7) * 20;
++	} else {
++	    /*
++	     * HACK: The VBT is reporting a lower max link rate than supported.
++	     * Override to HBR3 (8.1 Gbps) as per direct VBT hexdump analysis.
++	     */
++	    panel->vbt.edp.max_link_rate = 810000; /* Force HBR3 (8.1 Gbps) */
 +	}
- 
- 	if (drm_WARN_ON(display->drm, !(intel_ddi_splitter_pipe_mask(display) & BIT(pipe)))) {
- 		pipe_config->splitter.enable = false;
-@@ -4251,6 +4258,9 @@ static void mtl_ddi_get_config(struct intel_encoder *encoder,
- 		crtc_state->port_clock = intel_cx0pll_calc_port_clock(encoder, &crtc_state->dpll_hw_state.cx0pll);
- 
- 	intel_ddi_get_config(encoder, crtc_state);
 +
-+	/* FIX: Read out DSC state so we don't lose it during takeover */
-+	intel_dsc_get_config(crtc_state);
++	}
+ 	if (display->vbt.version >= 251)
+ 		panel->vbt.edp.dsc_disable =
+ 			panel_bool(edp->edp_dsc_disable, panel_type);
+@@ -3778,3 +3792,23 @@ void intel_bios_debugfs_register(struct intel_display *display)
+ 	debugfs_create_file("i915_vbt", 0444, display->drm->debugfs_root,
+ 			    display, &intel_bios_vbt_fops);
  }
- 
- static void dg2_ddi_get_config(struct intel_encoder *encoder,
-@@ -4586,6 +4596,18 @@ static int intel_ddi_compute_config_late(struct intel_encoder *encoder,
- 	return 0;
- }
- 
-+static void intel_ddi_encoder_destroy_early(struct drm_encoder *encoder)
++
++/**
++* intel setup_encoders - minimally initialize encoders to identify ports
++* @dev_priv: i915 device instance
++*
++* This functions is a stripped-down version of intel_setup_outputs(). Its sole purpose is to iterate over the VBT chidl devices to discover which physical prots exist and initialize the corresponding intel_encoder software objects.
++*
++* This is critical for the flicker-free boot path, where we need to identify
++* the active encoder by its port number before a full modeset has occurred.
++* This function populates the required encoder->port fields without creating
++* connectors or triggering a full output probe, which would cause flicker.
++*/
++void intel_setup_encoders(struct intel_display *display)
 +{
-+	struct intel_digital_port *dig_port = enc_to_dig_port(to_intel_encoder(encoder));
-+
-+	/*
-+	 * Our early encoders are not registered, so we must not call
-+	 * drm_encoder_cleanup(), which would try to unregister them.
-+	 */
-+
-+	kfree(dig_port);
++	if (HAS_DDI(display)) {
++		intel_bios_for_each_encoder(display, intel_ddi_init_encoder_early);
++	} else {
++		drm_dbg_kms(display->drm, "Non-DDI platform in minimal encoder setup, may need more\n");
++	}
 +}
-+
- static void intel_ddi_encoder_destroy(struct drm_encoder *encoder)
- {
- 	struct intel_display *display = to_intel_display(encoder->dev);
-@@ -4624,12 +4646,61 @@ static int intel_ddi_encoder_late_register(struct drm_encoder *_encoder)
- 	return 0;
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index 9725eebe5706a8a737d3b8d3f1de65f0e7455343..61ec5d8b14e24e9edb5fb1e2b84d0c8d1519133e 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -116,42 +116,6 @@
+  * dividers can be programmed correctly.
+  */
  
-+static const struct drm_encoder_funcs intel_ddi_funcs_early = {
-+	.reset = intel_ddi_encoder_reset,
-+	.destroy = intel_ddi_encoder_destroy_early,
-+	.late_register = NULL,
-+};
+-struct intel_cdclk_state {
+-	struct intel_global_state base;
+-
+-	/*
+-	 * Logical configuration of cdclk (used for all scaling,
+-	 * watermark, etc. calculations and checks). This is
+-	 * computed as if all enabled crtcs were active.
+-	 */
+-	struct intel_cdclk_config logical;
+-
+-	/*
+-	 * Actual configuration of cdclk, can be different from the
+-	 * logical configuration only when all crtc's are DPMS off.
+-	 */
+-	struct intel_cdclk_config actual;
+-
+-	/* minimum acceptable cdclk to satisfy bandwidth requirements */
+-	int bw_min_cdclk;
+-	/* minimum acceptable cdclk for each pipe */
+-	int min_cdclk[I915_MAX_PIPES];
+-	/* minimum acceptable voltage level for each pipe */
+-	u8 min_voltage_level[I915_MAX_PIPES];
+-
+-	/* pipe to which cd2x update is synchronized */
+-	enum pipe pipe;
+-
+-	/* forced minimum cdclk for glk+ audio w/a */
+-	int force_min_cdclk;
+-
+-	/* bitmask of active pipes */
+-	u8 active_pipes;
+-
+-	/* update cdclk with pipes disabled */
+-	bool disable_pipes;
+-};
+-
+ struct intel_cdclk_funcs {
+ 	void (*get_cdclk)(struct intel_display *display,
+ 			  struct intel_cdclk_config *cdclk_config);
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
+index cacee598af0e2a8d0c379b011f65dcc610a7b9d7..07f8b184b5fef1b79959fd4257b1aeb94c81c524 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.h
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
+@@ -8,9 +8,10 @@
+ 
+ #include <linux/types.h>
+ 
+-enum pipe;
++#include "intel_display_limits.h"
++#include "intel_global_state.h"
 +
- static const struct drm_encoder_funcs intel_ddi_funcs = {
- 	.reset = intel_ddi_encoder_reset,
- 	.destroy = intel_ddi_encoder_destroy,
- 	.late_register = intel_ddi_encoder_late_register,
+ struct intel_atomic_state;
+-struct intel_cdclk_state;
+ struct intel_crtc;
+ struct intel_crtc_state;
+ struct intel_display;
+@@ -22,6 +23,42 @@ struct intel_cdclk_config {
+ 	bool joined_mbus;
  };
  
-+static int intel_ddi_init_dp_connector_early(struct intel_digital_port *dig_port)
-+{
-+	struct intel_connector *connector;
-+	struct intel_display *display = to_intel_display(dig_port->base.base.dev);
-+	enum port port = dig_port->base.port;
-+
-+	connector = intel_connector_alloc();
-+	if (!connector)
-+		return -ENOMEM;
-+
-+	dig_port->dp.output_reg = DDI_BUF_CTL(port);
-+	if (DISPLAY_VER(display) >= 14)
-+		dig_port->dp.prepare_link_retrain = mtl_ddi_prepare_link_retrain;
-+	else
-+		dig_port->dp.prepare_link_retrain = intel_ddi_prepare_link_retrain;
-+	dig_port->dp.set_link_train = intel_ddi_set_link_train;
-+	dig_port->dp.set_idle_link_train = intel_ddi_set_idle_link_train;
-+
-+	dig_port->dp.voltage_max = intel_ddi_dp_voltage_max;
-+	dig_port->dp.preemph_max = intel_ddi_dp_preemph_max;
-+
-+	if (!intel_dp_init_connector_early(dig_port, connector)) {
-+		kfree(connector);
-+		return -EINVAL;
-+	}
-+
-+	if (dig_port->base.type == INTEL_OUTPUT_EDP) {
-+		struct drm_device *dev = dig_port->base.base.dev;
-+		struct drm_privacy_screen *privacy_screen;
-+
-+		privacy_screen = drm_privacy_screen_get(dev->dev, NULL);
-+		if (!IS_ERR(privacy_screen)) {
-+			drm_connector_attach_privacy_screen_provider(&connector->base,
-+								     privacy_screen);
-+		} else if (PTR_ERR(privacy_screen) != -ENODEV) {
-+			drm_warn(dev, "Error getting privacy-screen\n");
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+
- static int intel_ddi_init_dp_connector(struct intel_digital_port *dig_port)
- {
- 	struct intel_display *display = to_intel_display(dig_port);
-@@ -4834,6 +4905,24 @@ static bool bdw_digital_port_connected(struct intel_encoder *encoder)
- 	return intel_de_read(display, GEN8_DE_PORT_ISR) & bit;
- }
- 
-+static int intel_ddi_init_hdmi_connector_early(struct intel_digital_port *dig_port)
-+{
-+	struct intel_connector *connector;
-+	enum port port = dig_port->base.port;
-+
-+	connector = intel_connector_alloc();
-+	if (!connector)
-+		return -ENOMEM;
-+
-+	dig_port->hdmi.hdmi_reg = DDI_BUF_CTL(port);
-+
-+	/* In early init, we can't get a GMBUS adapter, so skip full init */
-+	intel_hdmi_init_connector_early(dig_port, connector);
-+
-+	return 0;
-+}
-+
-+
- static int intel_ddi_init_hdmi_connector(struct intel_digital_port *dig_port)
- {
- 	struct intel_connector *connector;
-@@ -5100,6 +5189,120 @@ static const char *intel_ddi_encoder_name(struct intel_display *display,
- 	drm_WARN_ON(display->drm, seq_buf_has_overflowed(s));
- 
- 	return seq_buf_str(s);
-+
-+}
-+
-+void intel_ddi_init_encoder_early(struct intel_display *display,
-+			const struct intel_bios_encoder_data *devdata)
-+{
-+	enum port port = intel_bios_encoder_port(devdata);
-+	enum phy phy;
-+	struct intel_digital_port *dig_port;
-+	struct intel_encoder *encoder;
-+	bool init_dp;
-+
-+
-+	if (port_in_use(display, port)) {
-+		return;
-+	}
-+
-+	dig_port = kzalloc(sizeof(*dig_port), GFP_KERNEL);
-+	if (!dig_port)
-+		return;
-+
-+	encoder = &dig_port->base;
-+	encoder->devdata = devdata;
-+	encoder->get_hw_state = intel_ddi_get_hw_state;
-+	encoder->port = port;
-+	drm_encoder_init(display->drm, &encoder->base, &intel_ddi_funcs_early,
-+					DRM_MODE_ENCODER_TMDS, "DDI %c", port_name(port));
-+	dig_port->max_lanes = intel_ddi_max_lanes(dig_port);
-+	encoder->base.possible_crtcs = (1 << INTEL_NUM_PIPES(display)) - 1;
-+	intel_infoframe_init(dig_port);
-+
-+
-+	phy = intel_port_to_phy(display, port);
-+	init_dp = intel_bios_encoder_supports_dp(devdata);
-+
-+	if (intel_bios_encoder_is_lspcon(devdata)) {
-+		/*
-+		 * Lspcon device needs to be driven with DP connector
-+		 * with special detection sequence. So make sure DP
-+		 * is initialized before lspcon.
-+		 */
-+		init_dp = true;
-+		drm_dbg_kms(display->drm, "VBT says port %c has lspcon\n",
-+			    port_name(port));
-+	}
-+
-+	if (intel_phy_is_snps(display, phy) &&
-+	    display->snps.phy_failed_calibration & BIT(phy)) {
-+		drm_dbg_kms(display->drm,
-+			    "SNPS PHY %c failed to calibrate, proceeding anyway\n",
-+			    phy_name(phy));
-+	}
-+
-+	encoder->get_hw_state = intel_ddi_get_hw_state;
-+
-+	encoder->enable_clock = intel_mtl_pll_enable;
-+	encoder->disable_clock = intel_mtl_pll_disable;
-+	encoder->port_pll_type = intel_mtl_port_pll_type;
-+	encoder->get_config = mtl_ddi_get_config;
-+	encoder->set_signal_levels = intel_cx0_phy_set_signal_levels;
-+	intel_ddi_buf_trans_init(encoder);
-+	encoder->hpd_pin = xelpd_hpd_pin(display, port);
-+
-+	encoder->type = INTEL_OUTPUT_DDI;
-+	encoder->power_domain = intel_display_power_ddi_lanes_domain(display, port);
-+	dig_port->ddi_io_power_domain = intel_display_power_ddi_io_domain(display, port);
-+	encoder->port = port;
-+	encoder->initial_fastset_check = intel_ddi_initial_fastset_check;
-+
-+	if (intel_bios_encoder_supports_dp(devdata) ||
-+			intel_bios_encoder_supports_edp(devdata)) {
-+		dig_port->dp.output_reg = DDI_BUF_CTL(port);
-+		dig_port->max_lanes = intel_bios_dp_max_lane_count(devdata);
-+		dig_port->aux_ch = intel_bios_dp_aux_ch(devdata);
-+	}
-+
-+
-+	if (init_dp) {
-+		if (intel_ddi_init_dp_connector_early(dig_port))
-+
-+		dig_port->hpd_pulse = intel_dp_hpd_pulse;
-+
-+		if (dig_port->dp.mso_link_count)
-+			encoder->pipe_mask = intel_ddi_splitter_pipe_mask(display);
-+	}
-+	encoder->hotplug = intel_ddi_hotplug;
-+	encoder->compute_output_type = intel_ddi_compute_output_type;
-+	encoder->compute_config = intel_ddi_compute_config;
-+	encoder->compute_config_late = intel_ddi_compute_config_late;
-+	encoder->enable = intel_ddi_enable;
-+	encoder->pre_pll_enable = intel_ddi_pre_pll_enable;
-+	encoder->pre_enable = intel_ddi_pre_enable;
-+	encoder->disable = intel_ddi_disable;
-+	encoder->post_pll_disable = intel_ddi_post_pll_disable;
-+	encoder->post_disable = intel_ddi_post_disable;
-+	encoder->update_pipe = intel_ddi_update_pipe;
-+	encoder->audio_enable = intel_audio_codec_enable;
-+	encoder->audio_disable = intel_audio_codec_disable;
-+	encoder->get_hw_state = intel_ddi_get_hw_state;
-+	encoder->sync_state = intel_ddi_sync_state;
-+	encoder->initial_fastset_check = intel_ddi_initial_fastset_check;
-+	encoder->suspend = intel_ddi_encoder_suspend;
-+	encoder->shutdown = intel_ddi_encoder_shutdown;
-+	encoder->get_power_domains = intel_ddi_get_power_domains;
-+	encoder->port = port;
-+	encoder->cloneable = 0;
-+	encoder->pipe_mask = ~0;
-+
-+	if (encoder->type != INTEL_OUTPUT_EDP && intel_bios_encoder_supports_hdmi(devdata)) {
-+		if (intel_ddi_init_hdmi_connector_early(dig_port))
-+			drm_err(display->drm, "Failed to initialize hdmi connector\n");
-+	}
-+
-+	return;
- }
- 
- void intel_ddi_init(struct intel_display *display,
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.h b/drivers/gpu/drm/i915/display/intel_ddi.h
-index f6f511bb04314ca122df5cf69491b2ce828865be..d507eae289360517439473ff105fc43b944fa33a 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.h
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.h
-@@ -56,6 +56,8 @@ void hsw_prepare_dp_ddi_buffers(struct intel_encoder *encoder,
- void intel_wait_ddi_buf_idle(struct intel_display *display, enum port port);
- void intel_ddi_init(struct intel_display *display,
- 		    const struct intel_bios_encoder_data *devdata);
-+void intel_ddi_init_encoder_early(struct intel_display *display,
-+			const struct intel_bios_encoder_data *devdata);
- bool intel_ddi_get_hw_state(struct intel_encoder *encoder, enum pipe *pipe);
- void intel_ddi_config_transcoder_func(struct intel_encoder *encoder,
- 				      const struct intel_crtc_state *crtc_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 2eab591a8ef5681419e11b0fcc89c1a37e9d0db0..f73a7f9d2198b418cea06cc3c1636f09bb681dee 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1416,13 +1416,20 @@ intel_dp_mode_valid(struct drm_connector *_connector,
- 	struct intel_connector *connector = to_intel_connector(_connector);
- 	struct intel_dp *intel_dp = intel_attached_dp(connector);
- 	enum intel_output_format sink_format, output_format;
-+	enum drm_mode_status status;
-+
-+	if (mode->hdisplay == 2256 && mode->vdisplay == 1504) {
-+		/* Run a partial check to see what WOULD fail */
-+		status = intel_cpu_transcoder_mode_valid(display, mode);
-+		return MODE_OK;
-+	}
-+
- 	const struct drm_display_mode *fixed_mode;
- 	int target_clock = mode->clock;
- 	int max_rate, mode_rate, max_lanes, max_link_clock;
- 	int max_dotclk = display->cdclk.max_dotclk_freq;
- 	u16 dsc_max_compressed_bpp = 0;
- 	u8 dsc_slice_count = 0;
--	enum drm_mode_status status;
- 	bool dsc = false;
- 	int num_joined_pipes;
- 
-@@ -2660,13 +2667,16 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
- 						     false,
- 						     &limits);
- 
-+	/* HACK: Force max link settings for MSO panel */
-+	limits.max_rate = 810000;
-+	limits.max_lane_count = 4;
- 	if (!dsc_needed) {
- 		/*
- 		 * Optimize for slow and wide for everything, because there are some
- 		 * eDP 1.3 and 1.4 panels don't work well with fast and narrow.
- 		 */
- 		ret = intel_dp_compute_link_config_wide(intel_dp, pipe_config,
--							conn_state, &limits);
-+						conn_state, &limits);
- 		if (!ret && intel_dp_is_uhbr(pipe_config))
- 			ret = intel_dp_mtp_tu_compute_config(intel_dp,
- 							     pipe_config,
-@@ -2711,9 +2721,8 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
- 						pipe_config->port_clock,
- 						pipe_config->lane_count));
- 
--	return 0;
-+	return ret;
- }
--
- bool intel_dp_limited_color_range(const struct intel_crtc_state *crtc_state,
- 				  const struct drm_connector_state *conn_state)
- {
-@@ -3267,6 +3276,12 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 	if (ret)
- 		return ret;
- 
-+	/* [FB-FIX] Force 216000 link rate for MSO. Found 216000 in HW. Override compute result. */
-+	if (pipe_config->hw.pipe_mode.hdisplay == 2256) {
-+		pipe_config->lane_count = 4;
-+		pipe_config->port_clock = 216000;
-+	}
-+
- 	if ((intel_dp_is_edp(intel_dp) && fixed_mode) ||
- 	    pipe_config->output_format == INTEL_OUTPUT_FORMAT_YCBCR420) {
- 		ret = intel_pfit_compute_config(pipe_config, conn_state);
-@@ -3299,9 +3314,14 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 		pipe_config->splitter.link_count = n;
- 		pipe_config->splitter.pixel_overlap = overlap;
- 
--		drm_dbg_kms(display->drm,
--			    "MSO link count %d, pixel overlap %d\n",
--			    n, overlap);
-+		/*
-+		 * [FB-FIX] Force Positive Sync for MSO panels.
-+		 * If we fell through here (skipped restore_boot), we must ensure flags are correct.
-+		 */
-+		if ((adjusted_mode->flags & (DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_NHSYNC |
-+					     DRM_MODE_FLAG_PVSYNC | DRM_MODE_FLAG_NVSYNC)) == 0) {
-+			adjusted_mode->flags |= DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC;
-+		}
- 
- 		adjusted_mode->crtc_hdisplay = adjusted_mode->crtc_hdisplay / n + overlap;
- 		adjusted_mode->crtc_hblank_start = adjusted_mode->crtc_hblank_start / n + overlap;
-@@ -3315,9 +3335,11 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 	intel_dp_audio_compute_config(encoder, pipe_config, conn_state);
- 
- 	if (!intel_dp_is_uhbr(pipe_config)) {
-+		int mso_clock = adjusted_mode->crtc_clock;
-+
- 		intel_link_compute_m_n(link_bpp_x16,
- 				       pipe_config->lane_count,
--				       adjusted_mode->crtc_clock,
-+				       mso_clock,
- 				       pipe_config->port_clock,
- 				       intel_dp_bw_fec_overhead(pipe_config->fec_enable),
- 				       &pipe_config->dp_m_n);
-@@ -3743,11 +3765,8 @@ bool intel_dp_initial_fastset_check(struct intel_encoder *encoder,
- 	 * Remove once we have readout for DSC.
- 	 */
- 	if (crtc_state->dsc.compression_enable) {
--		drm_dbg_kms(display->drm,
--			    "[ENCODER:%d:%s] Forcing full modeset due to DSC being enabled\n",
--			    encoder->base.base.id, encoder->base.name);
--		crtc_state->uapi.mode_changed = true;
--		fastset = false;
-+		// crtc_state->uapi.mode_changed = true;
-+		// fastset = false;
- 	}
- 
- 	if (CAN_PANEL_REPLAY(intel_dp)) {
-@@ -4156,17 +4175,34 @@ static bool intel_dp_get_colorimetry_status(struct intel_dp *intel_dp)
- static void intel_dp_read_dsc_dpcd(struct drm_dp_aux *aux,
- 				   u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE])
- {
--	if (drm_dp_dpcd_read(aux, DP_DSC_SUPPORT, dsc_dpcd,
--			     DP_DSC_RECEIVER_CAP_SIZE) < 0) {
--		drm_err(aux->drm_dev,
--			"Failed to read DPCD register 0x%x\n",
--			DP_DSC_SUPPORT);
--		return;
--	}
-+	int ret;
-+	int i;
-+
-+	for (i = 0; i < 5; i++) {
-+		if (i > 0)
-+			usleep_range(1000, 2000);
-+
-+		ret = drm_dp_dpcd_read(aux, DP_DSC_SUPPORT, dsc_dpcd,
-+			     DP_DSC_RECEIVER_CAP_SIZE);
-+
-+		/*
-+		 * A successful read returning all zeros means the panel
-+		 * is not ready yet. The first byte should have the DSC
-+		 * version number.
-+		 */
-+		if (ret >= 0 && dsc_dpcd[0] != 0) {
-+			drm_dbg_kms(aux->drm_dev,
-+				    "DSC DPCD read successful after %d tries\n", i + 1);
-+			drm_dbg_kms(aux->drm_dev, "DSC DPCD: %*ph\n",
-+				    DP_DSC_RECEIVER_CAP_SIZE, dsc_dpcd);
-+			return;
-+		}
- 
--	drm_dbg_kms(aux->drm_dev, "DSC DPCD: %*ph\n",
--		    DP_DSC_RECEIVER_CAP_SIZE,
--		    dsc_dpcd);
-+		drm_dbg_kms(aux->drm_dev,
-+			    "Failed to read DSC DPCD (ret=%d), retrying (%d/5)...\n",
-+			    ret, i + 1);
-+	}
-+	/* Let the (likely zero) dsc_dpcd pass through; the caller will handle it. */
- }
- 
- void intel_dp_get_dsc_sink_cap(u8 dpcd_rev, struct intel_connector *connector)
-@@ -4223,7 +4259,7 @@ intel_dp_detect_dsc_caps(struct intel_dp *intel_dp, struct intel_connector *conn
- 					  connector);
- }
- 
--static void intel_edp_mso_mode_fixup(struct intel_connector *connector,
-+void intel_edp_mso_mode_fixup(struct intel_connector *connector,
- 				     struct drm_display_mode *mode)
- {
- 	struct intel_display *display = to_intel_display(connector);
-@@ -4240,6 +4276,15 @@ static void intel_edp_mso_mode_fixup(struct intel_connector *connector,
- 	mode->htotal = (mode->htotal - overlap) * n;
- 	mode->clock *= n;
- 
-+	/*
-+	 * HACK: If EDID doesn't specify sync polarity (Flags=0),
-+	 * force Positive Sync (Flags=0xA) to match hardware expectation for MSO panels.
-+	 */
-+	if ((mode->flags & (DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_NHSYNC |
-+			    DRM_MODE_FLAG_PVSYNC | DRM_MODE_FLAG_NVSYNC)) == 0) {
-+		mode->flags |= DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC;
-+	}
-+
- 	drm_mode_set_name(mode);
- 
- 	drm_dbg_kms(display->drm,
-@@ -4275,42 +4320,59 @@ void intel_edp_fixup_vbt_bpp(struct intel_encoder *encoder, int pipe_bpp)
- 	}
- }
- 
--static void intel_edp_mso_init(struct intel_dp *intel_dp)
-+void intel_edp_mso_init(struct intel_dp *intel_dp)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	struct intel_connector *connector = intel_dp->attached_connector;
- 	struct drm_display_info *info = &connector->base.display_info;
--	u8 mso;
--
--	if (intel_dp->edp_dpcd[0] < DP_EDP_14)
--		return;
-+	u8 mso_link_count = 0, mso_pixel_overlap = 0;
- 
--	if (drm_dp_dpcd_readb(&intel_dp->aux, DP_EDP_MSO_LINK_CAPABILITIES, &mso) != 1) {
--		drm_err(display->drm, "Failed to read MSO cap\n");
-+	if (intel_dp->edp_dpcd[0] < DP_EDP_14) {
-+		drm_dbg_kms(display->drm,
-+			    "[CONNECTOR:%d:%s] eDP < 1.4 not supported for MSO\n",
-+			    connector->base.base.id, connector->base.name);
- 		return;
- 	}
- 
--	/* Valid configurations are SST or MSO 2x1, 2x2, 4x1 */
--	mso &= DP_EDP_MSO_NUMBER_OF_LINKS_MASK;
--	if (mso % 2 || mso > drm_dp_max_lane_count(intel_dp->dpcd)) {
--		drm_err(display->drm, "Invalid MSO link count cap %u\n", mso);
--		mso = 0;
-+	if (connector->panel.vbt.edp.mso_link_count) {
-+		mso_link_count = connector->panel.vbt.edp.mso_link_count;
-+		mso_pixel_overlap = connector->panel.vbt.edp.mso_pixel_overlap;
-+
-+		if (mso_link_count != 2 && mso_link_count != 4) {
-+			drm_dbg_kms(display->drm,
-+				    "[CONNECTOR:%d:%s] VBT has unsupported MSO link count %u\n",
-+				    connector->base.base.id, connector->base.name,
-+				    mso_link_count);
-+			mso_link_count = 0;
-+		}
-+	} else if (info->mso_stream_count) {
-+		mso_link_count = info->mso_stream_count;
-+		mso_pixel_overlap = info->mso_pixel_overlap;
-+
-+		if (mso_link_count != 2 && mso_link_count != 4) {
-+			drm_dbg_kms(display->drm,
-+				    "[CONNECTOR:%d:%s] Sink has unsupported MSO link count %u\n",
-+				    connector->base.base.id, connector->base.name,
-+				    mso_link_count);
-+			mso_link_count = 0;
-+		}
- 	}
- 
--	if (mso) {
--		drm_dbg_kms(display->drm,
--			    "Sink MSO %ux%u configuration, pixel overlap %u\n",
--			    mso, drm_dp_max_lane_count(intel_dp->dpcd) / mso,
--			    info->mso_pixel_overlap);
--		if (!HAS_MSO(display)) {
--			drm_err(display->drm,
--				"No source MSO support, disabling\n");
--			mso = 0;
-+	/*
-+	 * To use MSO the panel must be VRR capable
-+	 */
-+	if (mso_link_count) {
-+		if (!drm_dp_is_branch(intel_dp->dpcd) &&
-+		    intel_dp->dpcd[DP_EDP_CONFIGURATION_CAP] == 0) {
-+			drm_dbg_kms(display->drm,
-+				    "[CONNECTOR:%d:%s] Sink doesn't support MSO\n",
-+				    connector->base.base.id, connector->base.name);
-+			mso_link_count = 0;
- 		}
- 	}
- 
--	intel_dp->mso_link_count = mso;
--	intel_dp->mso_pixel_overlap = mso ? info->mso_pixel_overlap : 0;
-+	intel_dp->mso_link_count = mso_link_count;
-+	intel_dp->mso_pixel_overlap = mso_pixel_overlap;
- }
- 
- static void
-@@ -6043,8 +6105,9 @@ static int intel_dp_get_modes(struct drm_connector *_connector)
- 	num_modes = drm_edid_connector_add_modes(&connector->base);
- 
- 	/* Also add fixed mode, which may or may not be present in EDID */
--	if (intel_dp_is_edp(intel_dp))
-+	if (intel_dp_is_edp(intel_dp)) {
- 		num_modes += intel_panel_get_modes(connector);
-+	}
- 
- 	if (num_modes)
- 		return num_modes;
-@@ -6532,6 +6595,107 @@ static void intel_edp_backlight_setup(struct intel_dp *intel_dp,
- 	intel_backlight_setup(connector, pipe);
- }
- 
-+static bool intel_edp_init_connector_early(struct intel_dp *intel_dp,
-+				     struct intel_connector *connector)
-+{
-+	struct intel_display *display = to_intel_display(intel_dp);
-+	struct drm_display_mode *fixed_mode;
-+	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-+	//bool has_dpcd;
-+	const struct drm_edid *drm_edid = NULL;
-+
-+	if (!intel_dp_is_edp(intel_dp))
-+		return true;
++struct intel_cdclk_state {
++	struct intel_global_state base;
 +
 +	/*
-+	 * On IBX/CPT we may get here with LVDS already registered. Since the
-+	 * driver uses the only internal power sequencer available for both
-+	 * eDP and LVDS bail out early in this case to prevent interfering
-+	 * with an already powered-on LVDS power sequencer.
++	 * Logical configuration of cdclk (used for all scaling,
++	 * watermark, etc. calculations and checks). This is
++	 * computed as if all enabled crtcs were active.
 +	 */
-+	if (intel_get_lvds_encoder(display)) {
-+		drm_WARN_ON(display->drm,
-+			    !(HAS_PCH_IBX(display) || HAS_PCH_CPT(display)));
-+
-+		return false;
-+	}
-+	intel_bios_init_panel_early(display, &connector->panel,
-+				    encoder->devdata);
++	struct intel_cdclk_config logical;
 +
 +	/*
-+	 * VBT and straps are liars. Also check HPD as that seems
-+	 * to be the most reliable piece of information available.
-+	 *
-+	 * ... expect on devices that forgot to hook HPD up for eDP
-+	 * (eg. Acer Chromebook C710), so we'll check it only if multiple
-+	 * ports are attempting to use the same AUX CH, according to VBT.
++	 * Actual configuration of cdclk, can be different from the
++	 * logical configuration only when all crtc's are DPMS off.
 +	 */
-+	if (intel_bios_dp_has_shared_aux_ch(encoder->devdata)) {
-+		/*
-+		 * If this fails, presume the DPCD answer came
-+		 * from some other port using the same AUX CH.
-+		 *
-+		 * FIXME maybe cleaner to check this before the
-+		 * DPCD read? Would need sort out the VDD handling...
-+		 */
-+		if (!intel_digital_port_connected(encoder)) {
-+			goto out_vdd_off;
-+		}
++	struct intel_cdclk_config actual;
 +
-+		/*
-+		 * Unfortunately even the HPD based detection fails on
-+		 * eg. Asus B360M-A (CFL+CNP), so as a last resort fall
-+		 * back to checking for a VGA branch device. Only do this
-+		 * on known affected platforms to minimize false positives.
-+		 */
-+		if (DISPLAY_VER(display) == 9 && drm_dp_is_branch(intel_dp->dpcd) &&
-+		    (intel_dp->dpcd[DP_DOWNSTREAMPORT_PRESENT] & DP_DWN_STRM_PORT_TYPE_MASK) ==
-+		    DP_DWN_STRM_PORT_TYPE_ANALOG) {
-+			goto out_vdd_off;
-+		}
-+	}
-+	mutex_lock(&display->drm->mode_config.mutex);
++	/* minimum acceptable cdclk to satisfy bandwidth requirements */
++	int bw_min_cdclk;
++	/* minimum acceptable cdclk for each pipe */
++	int min_cdclk[I915_MAX_PIPES];
++	/* minimum acceptable voltage level for each pipe */
++	u8 min_voltage_level[I915_MAX_PIPES];
 +
-+	intel_bios_init_panel_late(display, &connector->panel, encoder->devdata,
-+				   IS_ERR(drm_edid) ? NULL : drm_edid);
++	/* pipe to which cd2x update is synchronized */
++	enum pipe pipe;
 +
-+	intel_panel_add_edid_fixed_modes(connector, true);
++	/* forced minimum cdclk for glk+ audio w/a */
++	int force_min_cdclk;
 +
-+	/* MSO requires information from the EDID */
-+	intel_edp_mso_init(intel_dp);
++	/* bitmask of active pipes */
++	u8 active_pipes;
 +
-+	/* multiply the mode clock and horizontal timings for MSO */
-+	list_for_each_entry(fixed_mode, &connector->panel.fixed_modes, head)
-+		intel_edp_mso_mode_fixup(connector, fixed_mode);
-+
-+	/* fallback to VBT if available for eDP */
-+	if (!intel_panel_preferred_fixed_mode(connector))
-+		intel_panel_add_vbt_lfp_fixed_mode(connector);
-+
-+	mutex_unlock(&display->drm->mode_config.mutex);
-+
-+	if (!intel_panel_preferred_fixed_mode(connector)) {
-+		goto out_vdd_off;
-+	}
-+	intel_panel_init_early(connector, drm_edid);
-+
-+	//intel_edp_backlight_setup(intel_dp, connector);
-+
-+	//intel_edp_add_properties(intel_dp);
-+
-+	//intel_pps_init_late(intel_dp);
-+
-+	return true;
-+
-+out_vdd_off:
-+	//intel_pps_vdd_off_sync(intel_dp);
-+	intel_bios_fini_panel(&connector->panel);
-+
-+	return false;
-+}
-+
-+
-+
- static bool intel_edp_init_connector(struct intel_dp *intel_dp,
- 				     struct intel_connector *connector)
- {
-@@ -6698,6 +6862,131 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
- 	return false;
- }
- 
-+static void intel_dp_modeset_retry_work_fn(struct work_struct *work)
-+{
-+	struct intel_connector *connector = container_of(work, typeof(*connector),
-+							 modeset_retry_work);
-+	struct intel_display *display = to_intel_display(connector);
-+
-+	drm_dbg_kms(display->drm, "[CONNECTOR:%d:%s]\n", connector->base.base.id,
-+		    connector->base.name);
-+
-+	/* Grab the locks before changing connector property*/
-+	mutex_lock(&display->drm->mode_config.mutex);
-+	/* Set connector link status to BAD and send a Uevent to notify
-+	 * userspace to do a modeset.
-+	 */
-+	drm_connector_set_link_status_property(&connector->base,
-+					       DRM_MODE_LINK_STATUS_BAD);
-+	mutex_unlock(&display->drm->mode_config.mutex);
-+	/* Send Hotplug uevent so userspace can reprobe */
-+	drm_kms_helper_connector_hotplug_event(&connector->base);
-+
-+	drm_connector_put(&connector->base);
-+}
-+
-+void intel_dp_init_modeset_retry_work(struct intel_connector *connector)
-+{
-+	INIT_WORK(&connector->modeset_retry_work,
-+		  intel_dp_modeset_retry_work_fn);
-+}
-+
-+static void intel_dp_connector_reset_early(struct drm_connector *connector)
-+{
-+	drm_dbg_kms(to_intel_display(connector->dev)->drm,
-+			"[CONNECTOR:%d:%s] skipping reset to preserve BIOS state\n",
-+			connector->base.id, connector->name);
-+}
-+
-+static const struct drm_connector_funcs intel_dp_connector_funcs_early = {
-+	.reset = intel_dp_connector_reset_early,
-+	.fill_modes = drm_helper_probe_single_connector_modes,
-+	.destroy = intel_connector_destroy_early,
-+	.atomic_duplicate_state = intel_digital_connector_duplicate_state,
-+	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
-+	.atomic_set_property = intel_digital_connector_atomic_set_property,
-+	.atomic_get_property = intel_digital_connector_atomic_get_property,
-+	.late_register = intel_dp_connector_register,
-+	.early_unregister = NULL,
++	/* update cdclk with pipes disabled */
++	bool disable_pipes;
 +};
 +
+ void intel_cdclk_init_hw(struct intel_display *display);
+ void intel_cdclk_uninit_hw(struct intel_display *display);
+ void intel_init_cdclk_hooks(struct intel_display *display);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index 37e2ab301a80ef123bbdb4af9d4258b8fb6880ce..20e7ee02d57c28e1b4a67faecc3e82acc7d8cd02 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -529,6 +529,10 @@ void intel_setup_outputs(struct intel_display *display);
+ int intel_initial_commit(struct intel_display *display);
+ void intel_panel_sanitize_ssc(struct intel_display *display);
+ void intel_update_czclk(struct intel_display *display);
++void intel_setup_encoders(struct intel_display *display);
++void intel_panel_sanitize_ssc(struct drm_i915_private *i915);
++void intel_update_czclk(struct drm_i915_private *i915);
++void intel_atomic_helper_free_state_worker(struct work_struct *work);
+ enum drm_mode_status intel_mode_valid(struct drm_device *dev,
+ 				      const struct drm_display_mode *mode);
+ int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state *_state,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+index 8c226406c5cd0a47bd5cd9ddf668e0825103c06f..becdee5109e20d0eb6d1bf80a6a021e25ad7fc1b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_core.h
++++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+@@ -74,6 +74,8 @@ struct intel_display_funcs {
+ 	void (*crtc_disable)(struct intel_atomic_state *state,
+ 			     struct intel_crtc *crtc);
+ 	void (*commit_modeset_enables)(struct intel_atomic_state *state);
++	void (*post_crtc_init_hook)(struct intel_display *display);
++	void (*initial_plane_config)(struct intel_display *display);
+ };
+ 
+ /* functions used for watermark calcs for display. */
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index 19e691fccf8ce8866cb2ea4e2139a8e5cb3e8bc9..8950880618c2314d62477437d069359cd835bd47 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -13,17 +13,25 @@
+ #include <drm/drm_drv.h>
+ #include <drm/drm_managed.h>
+ #include <drm/drm_probe_helper.h>
++#include <drm/drm_atomic.h>
++#include <drm/drm_modeset_lock.h>
++#include <drm/drm_edid.h>
+ #include <uapi/drm/xe_drm.h>
+ 
+ #include "soc/intel_dram.h"
+ #include "intel_acpi.h"
+ #include "intel_audio.h"
+ #include "intel_bw.h"
++#include "intel_cdclk.h"
+ #include "intel_display.h"
+ #include "intel_display_device.h"
+ #include "intel_display_driver.h"
+ #include "intel_display_irq.h"
+ #include "intel_display_types.h"
++#include "intel_display_limits.h"
++#include "intel_crtc.h"
++#include "intel_de.h"
++#include "skl_universal_plane_regs.h"
+ #include "intel_dmc.h"
+ #include "intel_dmc_wl.h"
+ #include "intel_dp.h"
+@@ -32,7 +40,14 @@
+ #include "intel_hdcp.h"
+ #include "intel_hotplug.h"
+ #include "intel_opregion.h"
++#include "intel_pch.h"
+ #include "skl_watermark.h"
++#include "intel_plane_initial.h"
++#include "intel_pps.h"
++#include "intel_backlight.h"
++#include "intel_panel.h"
++#include "intel_cx0_phy.h"
++#include "intel_cx0_phy_regs.h"
+ #include "xe_module.h"
+ 
+ /* Xe device functions */
+@@ -81,7 +96,7 @@ static void unset_display_features(struct xe_device *xe)
+ 	xe->drm.driver_features &= ~(DRIVER_MODESET | DRIVER_ATOMIC);
+ }
+ 
+-static void xe_display_fini_early(void *arg)
++static void xe_display_fini_early(struct drm_device *dev, void *arg)
+ {
+ 	struct xe_device *xe = arg;
+ 	struct intel_display *display = xe->display;
+@@ -99,7 +114,6 @@ static void xe_display_fini_early(void *arg)
+ int xe_display_init_early(struct xe_device *xe)
+ {
+ 	struct intel_display *display = xe->display;
+-	int err;
+ 
+ 	if (!xe->info.probe_display)
+ 		return 0;
+@@ -107,32 +121,293 @@ int xe_display_init_early(struct xe_device *xe)
+ 	/* Fake uncore lock */
+ 	spin_lock_init(&xe->uncore.lock);
+ 
+-	intel_display_driver_early_probe(display);
++	/* This must be called before any calls to HAS_PCH_* */
++	intel_pch_detect(display);
 +
-+bool
++	return drmm_add_action_or_reset(&xe->drm, xe_display_fini_early, xe);
++}
 +
-+intel_dp_init_connector_early(struct intel_digital_port *dig_port,
 +
-+			      struct intel_connector *connector)
 +
++void skl_get_initial_plane_config(struct intel_crtc *crtc, struct intel_initial_plane_config *plane_config);
++
++static void xe_initial_pll_enable(struct xe_device *xe)
 +{
-+	struct intel_dp *intel_dp = &dig_port->dp;
-+	struct intel_encoder *encoder = &dig_port->base;
-+	struct drm_device *dev = encoder->base.dev;
-+	enum port port = encoder->port;
-+	int type;
-+	intel_dp->attached_connector = connector;
++	struct intel_display *display = xe->display;
++	enum pipe pipe;
++	enum pipe active_pipe = INVALID_PIPE;
++	u32 pipe_val;
++	u32 pll_val;
++	enum plane_id plane_id = PLANE_PRIMARY;
++	struct intel_crtc *crtc = NULL;
++	struct intel_crtc *iter;
++	struct intel_encoder *active_encoder = NULL;
++	struct intel_crtc_state *temp_state = NULL;
++	struct intel_connector *connector = NULL;
++	struct drm_connector *_connector;
 +
-+	if (_intel_dp_is_port_edp(to_intel_display(dev), encoder->devdata, port)) {
-+		type = DRM_MODE_CONNECTOR_eDP;
-+		encoder->type = INTEL_OUTPUT_EDP;
++	/* 1. Find the active pipe from hardware registers */
++	for_each_pipe(display, pipe) {
++		pipe_val = intel_de_read(display, PLANE_CTL(pipe, plane_id));
++		if (pipe_val & PLANE_CTL_ENABLE) {
++			active_pipe = pipe;
++			break;
++		}
++	}
++
++	if (active_pipe == INVALID_PIPE) {
++		return;
++	}
++
++	/* 2. Find the corresponding software CRTC, encoder, and connector objects */
++	for_each_intel_crtc(&xe->drm, iter) {
++		if (iter->pipe == active_pipe) {
++			crtc = iter;
++			break;
++		}
++	}
++
++	if (!crtc) {
++		return;
++	}
++
++	for_each_intel_encoder(&xe->drm, active_encoder) {
++		if (active_encoder->pipe_mask & BIT(active_pipe))
++			break;
++	}
++
++	if (!active_encoder) {
++		return;
++	}
++
++	list_for_each_entry(_connector, &xe->drm.mode_config.connector_list, head) {
++		if (to_intel_connector(_connector)->encoder == active_encoder) {
++			connector = to_intel_connector(_connector);
++			break;
++		}
++	}
++
++	if (!connector) {
++		return;
++	}
++
++	struct intel_dp *intel_dp = enc_to_intel_dp(active_encoder);
++
++	/* 3. Create a temporary, local state object */
++	temp_state = kzalloc(sizeof(*temp_state), GFP_KERNEL);
++	if (!temp_state)
++		return;
++
++	temp_state->uapi.crtc = &crtc->base;
++	temp_state->hw.active = true;
++	temp_state->hw.enable = true;
++
++	/* 4. Populate the temporary state directly from hardware */
++	if (!intel_crtc_get_pipe_config(temp_state)) {
++		goto out_free;
++	}
++	active_encoder->get_config(active_encoder, temp_state);
++
++	/* 5. Provide VBT hints to guide the config calculation */
++	u8 vbt_lane_count = intel_bios_dp_max_lane_count(active_encoder->devdata);
++	int vbt_max_rate = connector->panel.vbt.edp.max_link_rate;
++	static const int dp_rates[] = {162000, 270000, 540000, 810000};
++	const int *source_rates;
++	int i, size, max_rate;
++
++	/* REORDERED: 7. Enable the PLL */
++	pll_val = intel_de_read(display, XELPDP_PORT_CLOCK_CTL(display, active_encoder->port));
++	if (pll_val & (XELPDP_LANE_PCLK_PLL_ACK(0) | XELPDP_LANE_PCLK_PLL_ACK(1))) {
 +	} else {
-+		type = DRM_MODE_CONNECTOR_DisplayPort;
-+	}
-+	/* This is the bare minimum: create the software object and link it. */
-+	drm_connector_init(dev, &connector->base, &intel_dp_connector_funcs_early,
-+			       type);
-+	drm_connector_helper_add(&connector->base, &intel_dp_connector_helper_funcs);
-+	/*
-+	 * Do not assign the DDC adapter here. The AUX channel is not
-+	 * fully initialized at this early stage, and attempting to
-+	 * create the sysfs link for the DDC will fail, causing the
-+	 * entire driver probe to abort. The DDC will be assigned
-+	 * later during the full connector initialization.
-+	 */
-+
-+	if (encoder->type == INTEL_OUTPUT_EDP) {
-+		intel_dp_set_default_sink_rates(intel_dp);
-+		intel_dp_set_default_max_sink_lane_count(intel_dp);
-+		intel_dp_set_source_rates(intel_dp);
-+		intel_dp_set_common_rates(intel_dp);
-+		intel_dp_reset_link_params(intel_dp);
-+	}
-+	intel_connector_attach_encoder(connector, encoder);
-+
-+	connector->get_hw_state = intel_ddi_connector_get_hw_state;
-+
-+	/*
-+	 * Skip TC port init during early probe. The full TC port init
-+	 * depends on other parts of the display driver that are not yet
-+	 * initialized, and attempting it here causes a kernel panic.
-+	 * The TC port will be fully initialized later.
-+	 */
-+	/* if (!intel_dp_early_tc_port_init(dig_port)) {
-+	   drm_connector_cleanup(&connector->base);
-+	   return false;
-+	   } */
-+	struct intel_display *display = to_intel_display(dig_port->base.base.dev);
-+
-+	dig_port->ddi_power_wakeref = intel_display_power_get(display,
-+			intel_display_power_ddi_lanes_domain(display, port));
-+	intel_dp_aux_init(intel_dp);
-+	connector->dp.dsc_decompression_aux = &intel_dp->aux;
-+
-+	/*
-+	 * Call our minimal, passive eDP init function, butdo nothing else.
-+	 * All othercalls (set_rates, psr_init, hdcp_init, etc.)
-+	 * must be removed.
-+	 */
-+
-+	if (!intel_edp_init_connector_early(intel_dp, connector)) {
-+		intel_dp_aux_fini(intel_dp);
-+		drm_connector_cleanup(&connector->base);
-+		return false;
-+
++		intel_mtl_pll_enable(active_encoder, temp_state);
 +	}
 +
-+	return true;
++	/* 8. With the PLL on, we can now safely read the DPCD */
++
++	/* Initialize PPS so we can safely check panel power state */
++	if (!intel_pps_init(intel_dp))
++		drm_warn(&xe->drm, "DEBUG: intel_pps_init failed\n");
++
++	/* Ensure VDD is on for software tracking to match hardware */
++	intel_pps_vdd_on_unlocked(intel_dp);
++
++	i = drm_dp_read_dpcd_caps(&intel_dp->aux, intel_dp->dpcd);
++	if (i < 0) {
++		drm_warn(&xe->drm, "DEBUG: drm_dp_read_dpcd_caps failed: %d\n", i);
++	}
++
++	/* Fallback: If DPCD read 0 (or failed), use VBT values to avoid RBR fallback mismatch */
++	if (intel_dp->dpcd[DP_MAX_LINK_RATE] == 0) {
++		intel_dp->dpcd[DP_MAX_LINK_RATE] = drm_dp_link_rate_to_bw_code(vbt_max_rate);
++		if (intel_dp->dpcd[DP_MAX_LANE_COUNT] == 0)
++			intel_dp->dpcd[DP_MAX_LANE_COUNT] = vbt_lane_count;
++	}
++
++	/* Read EDID to get the correct panel mode */
++	const struct drm_edid *drm_edid = drm_edid_read_ddc(&connector->base, &intel_dp->aux.ddc);
++
++	if (!drm_edid) {
++		drm_warn(&xe->drm, "DEBUG: EDID read failed\n");
++	} else {
++		/* We need to lock mode_config to update panel modes safely */
++		mutex_lock(&xe->drm.mode_config.mutex);
++
++		/* Re-init panel early with EDID to ensure backlight presence is detected correctly */
++		intel_bios_init_panel_late(display, &connector->panel, active_encoder->devdata, drm_edid);
++
++		/* Update the connector with the EDID we just read */
++		if (drm_edid_connector_update(&connector->base, drm_edid) ||
++			!drm_edid_connector_add_modes(&connector->base)) {
++			drm_warn(&xe->drm, "DEBUG: EDID update failed\n");
++		}
+ 
++		/* Re-run the fixed mode logic now that we have EDID */
++		intel_panel_add_edid_fixed_modes(connector, true);
++
++		/* Also init MSO since we have EDID now */
++		if (intel_dp->mso_link_count == 0)
++			intel_edp_mso_init(intel_dp);
++
++		/* HACK: Force MSO for Panther Lake if detection failed */
++		if (intel_dp->mso_link_count == 0) {
++			intel_dp->mso_link_count = 2;
++			intel_dp->mso_pixel_overlap = 0;
++		}
++
++		/* multiply the mode clock and horizontal timings for MSO */
++		struct drm_display_mode *fixed_mode;
++
++		list_for_each_entry(fixed_mode, &connector->panel.fixed_modes, head) {
++			intel_edp_mso_mode_fixup(connector, fixed_mode);
++		}
++
++		mutex_unlock(&xe->drm.mode_config.mutex);
++		drm_edid_free(drm_edid);
++	}
++
++	/* Now that PPS is ready and DPCD is populated, initialize backlight funcs safely */
++	intel_backlight_init_funcs(&connector->panel);
++
++	/* Replicate intel_dp_set_sink_rates logic */
++	max_rate = drm_dp_bw_code_to_link_rate(intel_dp->dpcd[DP_MAX_LINK_RATE]);
++	for (i = 0; i < ARRAY_SIZE(dp_rates); i++) {
++		if (dp_rates[i] > max_rate)
++			break;
++		intel_dp->sink_rates[i] = dp_rates[i];
++	}
++	intel_dp->num_sink_rates = i;
++
++	/* Replicate intel_dp_set_max_sink_lane_count logic */
++	intel_dp->max_sink_lane_count = drm_dp_max_lane_count(intel_dp->dpcd);
++
++	/* Replicate intel_dp_set_source_rates logic */
++	static const int bmg_rates[] = {21600, 162000, 216000, 243000, 270000, 324000, 432000, 540000, 675000, 810000, 1000000, 1350000};
++	static const int mtl_rates[] = {21600, 162000, 216000, 243000, 270000, 324000, 432000, 540000, 675000, 810000, 1000000, 2000000};
++	static const int icl_rates[] = {21600, 162000, 216000, 270000, 324000, 432000, 540000, 648000, 810000, 1000000, 1350000};
++	static const int default_rates[] = {21600, 162000, 270000, 540000};
++
++	if (DISPLAY_VER(display) >= 14) {
++		if (display->platform.battlemage) {
++			source_rates = bmg_rates;
++			size = ARRAY_SIZE(bmg_rates);
++		} else {
++			source_rates = mtl_rates;
++			size = ARRAY_SIZE(mtl_rates);
++		}
++	} else if (DISPLAY_VER(display) >= 11) {
++		source_rates = icl_rates;
++		size = ARRAY_SIZE(icl_rates);
++	} else {
++		source_rates = default_rates;
++		size = ARRAY_SIZE(default_rates);
++	}
++
++	intel_dp->source_rates = source_rates;
++	intel_dp->num_source_rates = size;
++
++	/* Replicate intel_dp_set_common_rates logic using a simplified intersect_rates */
++	int common_idx = 0;
++	int src_idx = 0, sink_idx = 0;
++
++	while (src_idx < intel_dp->num_source_rates && sink_idx < intel_dp->num_sink_rates) {
++		if (intel_dp->source_rates[src_idx] == intel_dp->sink_rates[sink_idx]) {
++			intel_dp->common_rates[common_idx++] = intel_dp->source_rates[src_idx];
++			src_idx++;
++			sink_idx++;
++		} else if (intel_dp->source_rates[src_idx] < intel_dp->sink_rates[sink_idx]) {
++			src_idx++;
++		} else {
++			sink_idx++;
++		}
++	}
++	intel_dp->num_common_rates = common_idx;
++
++	if (intel_dp->num_common_rates == 0) {
++		intel_dp->common_rates[0] = 162000;
++		intel_dp->num_common_rates = 1;
++	}
++
++out_free:
++	/* 9. Discard the temporary state */
++	kfree(temp_state);
 +}
 +
- bool
- intel_dp_init_connector(struct intel_digital_port *dig_port,
- 			struct intel_connector *connector)
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index f90cfd1dbbd058ef0c2a13a391a6851faedb1683..c4bff87747ca22d484e66aeefa5f317e75fa566e 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -47,6 +47,8 @@ intel_dp_queue_modeset_retry_for_link(struct intel_atomic_state *state,
- 				      const struct intel_crtc_state *crtc_state);
- bool intel_dp_init_connector(struct intel_digital_port *dig_port,
- 			     struct intel_connector *intel_connector);
-+bool intel_dp_init_connector_early(struct intel_digital_port *dig_port,
-+			     struct intel_connector *intel_connector);
- void intel_dp_connector_sync_state(struct intel_connector *connector,
- 				   const struct intel_crtc_state *crtc_state);
- void intel_dp_set_link_params(struct intel_dp *intel_dp,
-@@ -215,5 +217,8 @@ int intel_dp_compute_min_hblank(struct intel_crtc_state *crtc_state,
- int intel_dp_dsc_bpp_step_x16(const struct intel_connector *connector);
- void intel_dp_dpcd_set_probe(struct intel_dp *intel_dp, bool force_on_external);
- bool intel_dp_in_hdr_mode(const struct drm_connector_state *conn_state);
-+void intel_edp_mso_init(struct intel_dp *intel_dp);
-+void intel_edp_mso_mode_fixup(struct intel_connector *connector,
-+			      struct drm_display_mode *mode);
++static struct intel_display_funcs xe_display_funcs;
++
++static void xe_display_post_crtc_init(struct intel_display *display)
++{
++	xe_initial_pll_enable(to_xe_device(display->drm));
++}
++
++int xe_display_init_noirq(struct xe_device *xe)
++{
++	struct intel_display *display = xe->display;
++	int err = 0;
++
++	intel_display_driver_early_probe(display);
+ 	/* Early display init.. */
+ 	intel_opregion_setup(display);
+-
+ 	/*
+ 	 * Fill the dram structure to get the system dram info. This will be
+ 	 * used for memory latency calculation.
+ 	 */
+-	err = intel_dram_detect(xe);
++	intel_dram_detect(xe);
++
+ 	if (err)
+ 		goto err_opregion;
  
- #endif /* __INTEL_DP_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 4ab7e2e3bfd42c9ff77770a9759a28080d198483..4f0d5b85253cf2500dea05a4735dfdb9b800b789 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -3041,6 +3041,45 @@ void intel_infoframe_init(struct intel_digital_port *dig_port)
- 	}
+ 	intel_bw_init_hw(display);
+-
+-	intel_display_device_info_runtime_init(display);
+-
+ 	err = intel_display_driver_probe_noirq(display);
++	if (err) {
++		intel_opregion_cleanup(display);
++		return err;
++	}
++	err = intel_cdclk_init(display);
+ 	if (err)
+-		goto err_opregion;
++		return err;
++	intel_cdclk_init_hw(display);
++	to_intel_cdclk_state(display->cdclk.obj.state)->actual = display->cdclk.hw;
++	to_intel_cdclk_state(display->cdclk.obj.state)->logical = display->cdclk.hw;
++	intel_display_device_info_runtime_init(display);
++	if (xe->info.probe_display) {
++		if (display->funcs.display) {
++			xe_display_funcs = *display->funcs.display;
++			xe_display_funcs.initial_plane_config = intel_initial_plane_config; //xe_initial_plane_config_override;
++			xe_display_funcs.get_initial_plane_config = skl_get_initial_plane_config;
++			xe_display_funcs.post_crtc_init_hook = xe_display_post_crtc_init;
++			display->funcs.display = &xe_display_funcs;
++		}
++	}
+ 
+ 	err = intel_display_driver_probe_nogem(display);
+ 	if (err)
+ 		goto err_noirq;
+ 
+-	return devm_add_action_or_reset(xe->drm.dev, xe_display_fini_early, xe);
++	err = intel_display_driver_probe(display);
++	if (err)
++		goto err_noirq;
++
++	return drmm_add_action_or_reset(&xe->drm, xe_display_fini_early, xe);
+ err_noirq:
+ 	intel_display_driver_remove_noirq(display);
+ 	intel_power_domains_cleanup(display);
+@@ -160,7 +435,7 @@ int xe_display_init(struct xe_device *xe)
+ 	if (!xe->info.probe_display)
+ 		return 0;
+ 
+-	err = intel_display_driver_probe(display);
++	err = intel_display_driver_probe_nogem(display);
+ 	if (err)
+ 		return err;
+ 
+@@ -174,6 +449,18 @@ void xe_display_register(struct xe_device *xe)
+ 	if (!xe->info.probe_display)
+ 		return;
+ 
++	/*
++	 * FIXME: On PTL, the initial commit fails to grab the necessary runtime
++	 * power references for the active pipes/transcoders. When
++	 * intel_power_domains_enable() drops the POWER_DOMAIN_INIT wakeref,
++	 * the display hardware powers down.
++	 *
++	 * Workaround: Manually grab a persistent reference to POWER_DOMAIN_INIT
++	 * here. This effectively keeps the boot configuration powered until
++	 * driver unload or a future fix addresses the root cause in fastset.
++	 */
++	intel_display_power_get(display, POWER_DOMAIN_INIT);
++
+ 	intel_display_driver_register(display);
+ 	intel_power_domains_enable(display);
  }
+diff --git a/drivers/gpu/drm/xe/display/xe_display.h b/drivers/gpu/drm/xe/display/xe_display.h
+index e533aa4750bc11bfaf9a2b81e2dd8c1ac6ee58bc..d891a8abd7fc2293961c4e42be3ccf1dd1a8bb33 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.h
++++ b/drivers/gpu/drm/xe/display/xe_display.h
+@@ -18,6 +18,7 @@ void xe_display_driver_set_hooks(struct drm_driver *driver);
+ int xe_display_probe(struct xe_device *xe);
  
-+static void intel_hdmi_connector_reset_early(struct drm_connector *connector)
-+{
-+	drm_dbg_kms(to_intel_display(connector->dev)->drm,
-+			"[CONNECTOR:%d:%s] skipping reset to preserve BIOS state\n",
-+			connector->base.id, connector->name);
-+}
-+
-+static const struct drm_connector_funcs intel_hdmi_connector_funcs_early = {
-+	.reset = intel_hdmi_connector_reset_early,
-+	.destroy = intel_connector_destroy_early,
-+	.fill_modes = drm_helper_probe_single_connector_modes,
-+	.atomic_duplicate_state = intel_digital_connector_duplicate_state,
-+	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
-+	.atomic_set_property = intel_digital_connector_atomic_set_property,
-+	.atomic_get_property = intel_digital_connector_atomic_get_property,
-+};
-+
-+bool intel_hdmi_init_connector_early(struct intel_digital_port *dig_port,
-+					struct intel_connector *intel_connector)
-+{
-+	struct drm_device *dev = dig_port->base.base.dev;
-+	struct drm_connector *connector = &intel_connector->base;
-+	struct intel_encoder *intel_encoder = &dig_port->base;
-+
-+	drm_connector_init(dev, connector, &intel_hdmi_connector_funcs_early,
-+		    DRM_MODE_CONNECTOR_HDMIA);
-+	drm_connector_helper_add(connector, &intel_hdmi_connector_helper_funcs);
-+
-+	/* For early init, we only create the software objects.
-+	 * Hardware state callbacks and other active setup are deferred.
-+	*/
-+	intel_connector_attach_encoder(intel_connector, intel_encoder);
-+
-+
-+	return true;
-+
-+}
-+
-+
- bool intel_hdmi_init_connector(struct intel_digital_port *dig_port,
- 			       struct intel_connector *intel_connector)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.h b/drivers/gpu/drm/i915/display/intel_hdmi.h
-index dec2ad7dd8a229d1035b974b4f989d25ffc5ae59..c39f825c320b423b3a94f2919413f1e2d8551711 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.h
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.h
-@@ -23,6 +23,8 @@ union hdmi_infoframe;
+ int xe_display_init_early(struct xe_device *xe);
++int xe_display_init_noirq(struct xe_device *xe);
+ int xe_display_init(struct xe_device *xe);
  
- bool intel_hdmi_init_connector(struct intel_digital_port *dig_port,
- 			       struct intel_connector *intel_connector);
-+bool intel_hdmi_init_connector_early(struct intel_digital_port *dig_port,
-+			       struct intel_connector *intel_connector);
- bool intel_hdmi_compute_has_hdmi_sink(struct intel_encoder *encoder,
- 				      const struct intel_crtc_state *crtc_state,
- 				      const struct drm_connector_state *conn_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
-index 2a20aaaaac39b788759d604976ebee3635205cea..c677d7908c1961c64e591aee07b04c20deda78b1 100644
---- a/drivers/gpu/drm/i915/display/intel_panel.c
-+++ b/drivers/gpu/drm/i915/display/intel_panel.c
-@@ -87,13 +87,26 @@ intel_panel_fixed_mode(struct intel_connector *connector,
- 		       const struct drm_display_mode *mode)
- {
- 	const struct drm_display_mode *fixed_mode, *best_mode = NULL;
--	int vrefresh = drm_mode_vrefresh(mode);
-+	int vrefresh = 0;
-+
-+	if (list_empty(&connector->panel.fixed_modes)) {
-+		return NULL;
-+	}
-+
-+	if (mode)
-+		vrefresh = drm_mode_vrefresh(mode);
+ void xe_display_register(struct xe_device *xe);
+@@ -47,6 +48,7 @@ static inline void xe_display_driver_remove(struct xe_device *xe) {}
+ static inline int xe_display_probe(struct xe_device *xe) { return 0; }
  
- 	list_for_each_entry(fixed_mode, &connector->panel.fixed_modes, head) {
--		int fixed_mode_vrefresh = drm_mode_vrefresh(fixed_mode);
-+		int fixed_mode_vrefresh;
-+
-+		if (mode && fixed_mode->hdisplay < mode->hdisplay)
-+			continue;
-+		if (mode && fixed_mode->vdisplay < mode->vdisplay)
-+			continue;
+ static inline int xe_display_init_early(struct xe_device *xe) { return 0; }
++static inline int xe_display_init_noirq(struct xe_device *xe) { return 0; }
+ static inline int xe_display_init(struct xe_device *xe) { return 0; }
  
--		if (is_best_fixed_mode(connector, vrefresh,
--				       fixed_mode_vrefresh, best_mode))
-+		fixed_mode_vrefresh = drm_mode_vrefresh(fixed_mode);
-+
-+		if (is_best_fixed_mode(connector, vrefresh, fixed_mode_vrefresh, best_mode))
- 			best_mode = fixed_mode;
- 	}
+ static inline void xe_display_register(struct xe_device *xe) {}
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 456899238377edb92702108f7c43dcfecd635a98..bc3bc1fc91b5782aeab778b7e94ac63c8ed7b514 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -913,7 +913,7 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		return err;
  
-@@ -425,6 +438,26 @@ void intel_panel_init_alloc(struct intel_connector *connector)
- 	INIT_LIST_HEAD(&panel->fixed_modes);
- }
+-	err = xe_display_init(xe);
++	err = xe_display_init_noirq(xe);
+ 	if (err)
+ 		return err;
  
-+int intel_panel_init_early(struct intel_connector *connector,
-+		     const struct drm_edid *fixed_edid)
-+{
-+	//struct intel_panel *panel = &connector->panel;
-+
-+	//panel->fixed_edid = fixed_edid;
-+
-+	//intel_backlight_init_funcs(panel);
-+
-+	if (!has_drrs_modes(connector))
-+		connector->panel.vbt.drrs_type = DRRS_TYPE_NONE;
-+
-+	drm_dbg_kms(connector->base.dev,
-+		    "[CONNECTOR:%d:%s] DRRS type: %s\n",
-+		    connector->base.base.id, connector->base.name,
-+		    intel_drrs_type_str(intel_panel_drrs_type(connector)));
-+
-+	return 0;
-+}
-+
- int intel_panel_init(struct intel_connector *connector,
- 		     const struct drm_edid *fixed_edid)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_panel.h b/drivers/gpu/drm/i915/display/intel_panel.h
-index 56a6412cf0fb1cff3be84b04b22d6673a0bf46f1..3fa90d978d9a541b694f5c70303eb2e637e80a46 100644
---- a/drivers/gpu/drm/i915/display/intel_panel.h
-+++ b/drivers/gpu/drm/i915/display/intel_panel.h
-@@ -22,6 +22,9 @@ struct intel_encoder;
- void intel_panel_init_alloc(struct intel_connector *connector);
- int intel_panel_init(struct intel_connector *connector,
- 		     const struct drm_edid *fixed_edid);
-+int intel_panel_init_early(struct intel_connector *connector,
-+		     const struct drm_edid *fixed_edid);
-+
- void intel_panel_fini(struct intel_connector *connector);
- int intel_panel_register(struct intel_connector *connector);
- void intel_panel_unregister(struct intel_connector *connector);
 
 -- 
 2.52.0.457.g6b5491de43-goog
