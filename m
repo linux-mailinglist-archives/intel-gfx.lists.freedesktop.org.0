@@ -2,53 +2,95 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 175C7D255A8
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Jan 2026 16:30:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 655EAD252D6
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Jan 2026 16:10:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8178310E791;
-	Thu, 15 Jan 2026 15:30:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E70F810E785;
+	Thu, 15 Jan 2026 15:10:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=sony.com header.i=@sony.com header.b="Qyb4yGyj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A/kfq7x/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 603 seconds by postgrey-1.36 at gabe;
- Thu, 15 Jan 2026 02:05:12 UTC
-Received: from jpms-ob01.noc.sony.co.jp (jpms-ob01.noc.sony.co.jp
- [211.125.140.164])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04ED010E07F;
- Thu, 15 Jan 2026 02:05:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sony.com; s=s1jp; t=1768442712; x=1799978712;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=rOTnTgioJ0MGMPCpp+74pLbbNNolomswZYdZCgUS8Uk=;
- b=Qyb4yGyj2rCYIZpvPekoK8E0xDJu88Vj+9letnzRtKZCv95dOnD0SBk8
- jZEiAwAhk8TUxEwwb7gVWFbZPXUFIEJ+mxaWsm/vrIq8idbVKiqdXxO+n
- k2fFNd27wz3cu42tfx6UgSqjCxydqe/+PBXnGYfcOeXAvW9hO0UCnnOXZ
- ScpsLNaSqOKbBaIWPoqeLbqpOV+IuzxGMlnrKRXBT7AOAXBwC6xKUhnlI
- aWt2CO254MjMmd3scLFnX0QsgfR57Ho53Qc4UNr6M5tHtk5d9m0lgEJCI
- w05R/74VO+a/M5JXreo+AMBDW3ygeoSXoFh7X3cer1vZOkpDYspkjD3dJ A==;
-Received: from unknown (HELO jpmta-ob1.noc.sony.co.jp)
- ([IPv6:2001:cf8:0:6e7::6])
- by jpms-ob01.noc.sony.co.jp with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2026 10:55:07 +0900
-X-IronPort-AV: E=Sophos;i="6.21,226,1763391600"; d="scan'208";a="600976025"
-Received: from unknown (HELO rahul-Z690-S01..) ([43.11.34.175])
- by jpmta-ob1.noc.sony.co.jp with ESMTP; 15 Jan 2026 10:55:07 +0900
-From: Rahul Bukte <rahul.bukte@sony.com>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, tursulin@ursulin.net
-Cc: Rahul Bukte <rahul.bukte@sony.com>, linux-kernel@vger.kernel.org,
- daniel.palmer@sony.com
-Subject: [RFC PATCH] drm/i915: i915 null pointer dereference
-Date: Thu, 15 Jan 2026 10:54:51 +0900
-Message-ID: <20260115015454.3226069-1-rahul.bukte@sony.com>
-X-Mailer: git-send-email 2.43.0
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 888E110E77E;
+ Thu, 15 Jan 2026 15:10:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1768489841; x=1800025841;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=zJtKOUTDeVup7QvvLjg/CY50ojhXg1JVcSwyHLTVV5U=;
+ b=A/kfq7x/jx/HkHy4MC/gn/Yge3mC+1iBV7Z8atkoNLN3mdooZh9JdFf8
+ h4LSnaCfUJ/HCo4l0BCfLQlOW1IzcJtCh0oPAYarB3n1bYYuGqw+AGc3J
+ 2ugleA6uU3R8/6ojlkJ8Qlm+VnRF3UYtMekqSO6+UjaogTcLw1Ls3pvq/
+ ZXp7VDMwrhCym019CzudPArqrYF6sdgUbPwWokDGfCGibpqLI2XB59OpR
+ jFeWuO/4/pgTAIuhTJxtTJASHQhPI+PDJx22zOQk/g6AsQEQPpuBgeEoS
+ 9WuEkRy1Q7zA7dNwxTPCZxeL3l1JB55hEMbchw/K7mU7dZ7cJj8RcyECt g==;
+X-CSE-ConnectionGUID: lnR18X7xQGqYtErDZAtzyg==
+X-CSE-MsgGUID: w0YUhWm8TMqe0Lwk5K3rpg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11672"; a="80439991"
+X-IronPort-AV: E=Sophos;i="6.21,228,1763452800"; d="scan'208";a="80439991"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2026 07:10:39 -0800
+X-CSE-ConnectionGUID: QlyxHSHiTzCEbE1DbfKHgA==
+X-CSE-MsgGUID: Hevrt8lZSOytYcWKGKE26Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,228,1763452800"; d="scan'208";a="205005261"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.53])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2026 07:10:28 -0800
+Date: Thu, 15 Jan 2026 17:10:24 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>,
+ Zack Rusin <zack.rusin@broadcom.com>, dri-devel@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>,
+ amd-gfx@lists.freedesktop.org, Ard Biesheuvel <ardb@kernel.org>,
+ Ce Sun <cesun102@amd.com>, Chia-I Wu <olvaffe@gmail.com>,
+ Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
+ Deepak Rawat <drawat.floss@gmail.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Hans de Goede <hansg@kernel.org>,
+ Hawking Zhang <Hawking.Zhang@amd.com>, Helge Deller <deller@gmx.de>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Jocelyn Falempe <jfalempe@redhat.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Lijo Lazar <lijo.lazar@amd.com>, linux-efi@vger.kernel.org,
+ linux-fbdev@vger.kernel.org, linux-hyperv@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ Lyude Paul <lyude@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ "Mario Limonciello (AMD)" <superm1@kernel.org>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Maxime Ripard <mripard@kernel.org>, nouveau@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Simona Vetter <simona@ffwll.ch>, spice-devel@lists.freedesktop.org,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Timur =?iso-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, virtualization@lists.linux.dev,
+ Vitaly Prosyak <vitaly.prosyak@amd.com>
+Subject: Re: [PATCH 00/12] Recover sysfb after DRM probe failure
+Message-ID: <aWkDYO1o9T1BhvXj@intel.com>
+References: <20251229215906.3688205-1-zack.rusin@broadcom.com>
+ <c816f7ed-66e0-4773-b3d1-4769234bd30b@suse.de>
+ <CABQX2QNQU4XZ1rJFqnJeMkz8WP=t9atj0BqXHbDQab7ZnAyJxg@mail.gmail.com>
+ <97993761-5884-4ada-b345-9fb64819e02a@suse.de>
+ <9058636d-cc18-4c8f-92cf-782fd8f771af@amd.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 15 Jan 2026 15:30:29 +0000
+In-Reply-To: <9058636d-cc18-4c8f-92cf-782fd8f771af@amd.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,93 +106,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When the i915 driver firmware binaries are not present, the
-set_default_submission pointer is not set. This pointer is
-dereferenced during suspend anyways.
+On Thu, Jan 15, 2026 at 03:39:00PM +0100, Christian König wrote:
+> Sorry to being late, but I only now realized what you are doing here.
+> 
+> On 1/15/26 12:02, Thomas Zimmermann wrote:
+> > Hi,
+> > 
+> > apologies for the delay. I wanted to reply and then forgot about it.
+> > 
+> > Am 10.01.26 um 05:52 schrieb Zack Rusin:
+> >> On Fri, Jan 9, 2026 at 5:34 AM Thomas Zimmermann <tzimmermann@suse.de> wrote:
+> >>> Hi
+> >>>
+> >>> Am 29.12.25 um 22:58 schrieb Zack Rusin:
+> >>>> Almost a rite of passage for every DRM developer and most Linux users
+> >>>> is upgrading your DRM driver/updating boot flags/changing some config
+> >>>> and having DRM driver fail at probe resulting in a blank screen.
+> >>>>
+> >>>> Currently there's no way to recover from DRM driver probe failure. PCI
+> >>>> DRM driver explicitly throw out the existing sysfb to get exclusive
+> >>>> access to PCI resources so if the probe fails the system is left without
+> >>>> a functioning display driver.
+> >>>>
+> >>>> Add code to sysfb to recever system framebuffer when DRM driver's probe
+> >>>> fails. This means that a DRM driver that fails to load reloads the system
+> >>>> framebuffer driver.
+> >>>>
+> >>>> This works best with simpledrm. Without it Xorg won't recover because
+> >>>> it still tries to load the vendor specific driver which ends up usually
+> >>>> not working at all. With simpledrm the system recovers really nicely
+> >>>> ending up with a working console and not a blank screen.
+> >>>>
+> >>>> There's a caveat in that some hardware might require some special magic
+> >>>> register write to recover EFI display. I'd appreciate it a lot if
+> >>>> maintainers could introduce a temporary failure in their drivers
+> >>>> probe to validate that the sysfb recovers and they get a working console.
+> >>>> The easiest way to double check it is by adding:
+> >>>>    /* XXX: Temporary failure to test sysfb restore - REMOVE BEFORE COMMIT */
+> >>>>    dev_info(&pdev->dev, "Testing sysfb restore: forcing probe failure\n");
+> >>>>    ret = -EINVAL;
+> >>>>    goto out_error;
+> >>>> or such right after the devm_aperture_remove_conflicting_pci_devices .
+> >>> Recovering the display like that is guess work and will at best work
+> >>> with simple discrete devices where the framebuffer is always located in
+> >>> a confined graphics aperture.
+> >>>
+> >>> But the problem you're trying to solve is a real one.
+> >>>
+> >>> What we'd want to do instead is to take the initial hardware state into
+> >>> account when we do the initial mode-setting operation.
+> >>>
+> >>> The first step is to move each driver's remove_conflicting_devices call
+> >>> to the latest possible location in the probe function. We usually do it
+> >>> first, because that's easy. But on most hardware, it could happen much
+> >>> later.
+> >> Well, some drivers (vbox, vmwgfx, bochs and currus-qemu) do it because
+> >> they request pci regions which is going to fail otherwise. Because
+> >> grabbining the pci resources is in general the very first thing that
+> >> those drivers need to do to setup anything, we
+> >> remove_conflicting_devices first or at least very early.
+> > 
+> > To my knowledge, requesting resources is more about correctness than a hard requirement to use an I/O or memory range. Has this changed?
+> 
+> Nope that is not correct.
+> 
+> At least for AMD GPUs remove_conflicting_devices() really early is necessary because otherwise some operations just result in a spontaneous system reboot.	
+> 
+> For example resizing the PCIe BAR giving access to VRAM or disabling VGA emulation (which AFAIK is used for EFI as well) is only possible when the VGA or EFI framebuffer driver is kicked out first.
+> 
+> And disabling VGA emulation is among the absolutely first steps you do to take over the scanout config.
 
-Add a check to make sure it is set before dereferencing.
+It's similar for Intel. For us VGA emulation won't be used for
+EFI boot, but we still can't have the previous driver poking
+around in memory while the real driver is initializing. The
+entire memory layout may get completely shuffled so there's
+no telling where such memory accesses would land.
 
-# echo +20 > /sys/class/rtc/rtc0/wakealarm && echo mem > /sys/power/state
-[   23.289926] PM: suspend entry (deep)
-[   23.293558] Filesystems sync: 0.000 seconds
-[   23.298010] Freezing user space processes
-[   23.302771] Freezing user space processes completed (elapsed 0.000 seconds)
-[   23.309766] OOM killer disabled.
-[   23.313027] Freezing remaining freezable tasks
-[   23.318540] Freezing remaining freezable tasks completed (elapsed 0.001 seconds)
-[   23.342038] serial 00:05: disabled
-[   23.345719] serial 00:02: disabled
-[   23.349342] serial 00:01: disabled
-[   23.353782] sd 0:0:0:0: [sda] Synchronizing SCSI cache
-[   23.358993] sd 1:0:0:0: [sdb] Synchronizing SCSI cache
-[   23.361635] ata1.00: Entering standby power mode
-[   23.368863] ata2.00: Entering standby power mode
-[   23.445187] BUG: kernel NULL pointer dereference, address: 0000000000000000
-[   23.452194] #PF: supervisor instruction fetch in kernel mode
-[   23.457896] #PF: error_code(0x0010) - not-present page
-[   23.463065] PGD 0 P4D 0 
-[   23.465640] Oops: Oops: 0010 [#1] SMP NOPTI
-[   23.469869] CPU: 8 UID: 0 PID: 211 Comm: kworker/u48:18 Tainted: G S      W           6.19.0-rc4-00020-gf0b9d8eb98df #10 PREEMPT(voluntary) 
-[   23.482512] Tainted: [S]=CPU_OUT_OF_SPEC, [W]=WARN
-[   23.496511] Workqueue: async async_run_entry_fn
-[   23.501087] RIP: 0010:0x0
-[   23.503755] Code: Unable to access opcode bytes at 0xffffffffffffffd6.
-[   23.510324] RSP: 0018:ffffb4a60065fca8 EFLAGS: 00010246
-[   23.515592] RAX: 0000000000000000 RBX: ffff9f428290e000 RCX: 000000000000000f
-[   23.522765] RDX: 0000000000000000 RSI: 0000000000000282 RDI: ffff9f428290e000
-[   23.529937] RBP: ffff9f4282907070 R08: ffff9f4281130428 R09: 00000000ffffffff
-[   23.537111] R10: 0000000000000000 R11: 0000000000000001 R12: ffff9f42829070f8
-[   23.544284] R13: ffff9f4282906028 R14: ffff9f4282900000 R15: ffff9f4282906b68
-[   23.551457] FS:  0000000000000000(0000) GS:ffff9f466b2cf000(0000) knlGS:0000000000000000
-[   23.559588] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[   23.565365] CR2: ffffffffffffffd6 CR3: 000000031c230001 CR4: 0000000000f70ef0
-[   23.572539] PKRU: 55555554
-[   23.575281] Call Trace:
-[   23.577770]  <TASK>
-[   23.579905]  intel_engines_reset_default_submission+0x42/0x60
-[   23.585695]  __intel_gt_unset_wedged+0x191/0x200
-[   23.590360]  intel_gt_unset_wedged+0x20/0x40
-[   23.594675]  gt_sanitize+0x15e/0x170
-[   23.598290]  i915_gem_suspend_late+0x6b/0x180
-[   23.602692]  i915_drm_suspend_late+0x35/0xf0
-[   23.607008]  ? __pfx_pci_pm_suspend_late+0x10/0x10
-[   23.611843]  dpm_run_callback+0x78/0x1c0
-[   23.615817]  device_suspend_late+0xde/0x2e0
-[   23.620037]  async_suspend_late+0x18/0x30
-[   23.624082]  async_run_entry_fn+0x25/0xa0
-[   23.628129]  process_one_work+0x15b/0x380
-[   23.632182]  worker_thread+0x2a5/0x3c0
-[   23.635973]  ? __pfx_worker_thread+0x10/0x10
-[   23.640279]  kthread+0xf6/0x1f0
-[   23.643464]  ? __pfx_kthread+0x10/0x10
-[   23.647263]  ? __pfx_kthread+0x10/0x10
-[   23.651045]  ret_from_fork+0x131/0x190
-[   23.654837]  ? __pfx_kthread+0x10/0x10
-[   23.658634]  ret_from_fork_asm+0x1a/0x30
-[   23.662597]  </TASK>
-[   23.664826] Modules linked in:
-[   23.667914] CR2: 0000000000000000
-[   23.671271] ------------[ cut here ]------------
+And I suppose reBAR is a concern for us as well.
 
-Signed-off-by: Rahul Bukte <rahul.bukte@sony.com>
----
- drivers/gpu/drm/i915/gt/intel_engine_cs.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index b721bbd23356..ce8cdd517daa 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1969,7 +1969,8 @@ void intel_engines_reset_default_submission(struct intel_gt *gt)
- 		if (engine->sanitize)
- 			engine->sanitize(engine);
- 
--		engine->set_default_submission(engine);
-+		if (engine->set_default_submission)
-+			engine->set_default_submission(engine);
- 	}
- }
- 
 -- 
-2.43.0
-
+Ville Syrjälä
+Intel
