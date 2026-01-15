@@ -2,70 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE6A4D3018E
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jan 2026 12:08:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EE33D30198
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jan 2026 12:08:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F6A010E1E6;
-	Fri, 16 Jan 2026 11:08:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3091710E85F;
+	Fri, 16 Jan 2026 11:08:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="MWai50Ub";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="gqR/MXW3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail-dl1-f73.google.com (mail-dl1-f73.google.com [74.125.82.73])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9F2F10E7B3
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Jan 2026 16:55:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B903610E7B2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Jan 2026 16:55:55 +0000 (UTC)
 Received: by mail-dl1-f73.google.com with SMTP id
- a92af1059eb24-121b1cb8377so2145064c88.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Jan 2026 08:55:53 -0800 (PST)
+ a92af1059eb24-1233b91de6bso1976559c88.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Jan 2026 08:55:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1768496153; x=1769100953;
+ d=google.com; s=20230601; t=1768496155; x=1769100955;
  darn=lists.freedesktop.org; 
  h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
  :date:from:to:cc:subject:date:message-id:reply-to;
- bh=aUfgbjlk+oCRuYuk3n9o+FjPCOtDA20kNyuDihWC6Gw=;
- b=MWai50Ubh1r9uUrJT6IC3viQunUWbR3wcD8SMduYMPs8+Z1i5AKMUGUhh63tYR0g2Q
- 6U0g3ewwP7SmF+YoGTVVd346qxrfFvb9iAgtnKFKM9RWnXjF4WL2Yf7ycVjGjmBw+8PZ
- 5eoBT7k7M6/UPHGQD7o2gwsrrhxpxl5HYbLPKVS1AFwh40w3yJKVPYKak9NjA4k8ANPT
- 5OuAUrSH2JN9SoxCYD2UahQpiPbtA8+x5WYPehFx+D7Qaz+yMbCQPERm2HWBgKwbZiIT
- SCgcC3BLoo6eqDAkh8d2epx6BYWRHfPKgvkbjzR7szWNEswcQQdwubjOSdYcRHLOtKbs
- oJ2Q==
+ bh=ZLxrrBTaeX8lcoiGtzPx6tjssn/D62UubEIOXBrcnGo=;
+ b=gqR/MXW3rP6z/HhBRjAmbsa7qwfy94L7vAVCK0pBEcKirAzuAULKrbTsrg3ykO+pHv
+ NDNIH8OpB74OhkOrThIjyjrpFguUi5WJxsJ/0l1yEW76kNlTysmtUqtTEOv2rB6OymkS
+ lKYqnmArqtanrhsuz2epPHokXpfa5bmKiHlj9T9ihfw240pXiE/amWfvNdXQR90wFbR+
+ qxFxnFdBB+oJMvWhjq//Zn9SAxcv/IA8zPgzhWBUZH5KP6ZnpFk4QBPartt895rT7CL1
+ tP8XU8la4yWWe0crJpU2wvQbdaG/6atmbW2DaHLecFRkN1fx2P8CoVMZFqg8vpzK6YbJ
+ d8pQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1768496153; x=1769100953;
+ d=1e100.net; s=20230601; t=1768496155; x=1769100955;
  h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
  :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=aUfgbjlk+oCRuYuk3n9o+FjPCOtDA20kNyuDihWC6Gw=;
- b=XnnQRdl1lMuFrUxi2kzkFSMCZaOufvhjZyHVZownRKAFHc4DPmTf6p8Qk4xCKm1Aoq
- 9lhRGOP1G6XnWjygrrArNsin+OoXygvaXFEv54yE5s2FGEf7YtxWI7hF50q6HDju5bjD
- NBA8M9sr7UpC6jcvTQS+CBRibs70toRKxnVG7//432Vo0UQhyP0IB18MC+d8BXvIOujp
- NtqGAVPGxuf9ZN4bbQjMwJONhfpakHxCzommojqT4wkOzCy4CpGNh5yCfPunOsirGkj9
- HNfBUsZZ45zYllmJatsR6TbHcb8eoW8f9+uaRdBsUkVPyHEImhjk8gG3TZ7S0iRUa414
- yzAg==
+ bh=ZLxrrBTaeX8lcoiGtzPx6tjssn/D62UubEIOXBrcnGo=;
+ b=MPRKsfnIuzNpUfn4yQLJoimWWU6vNi8GA7AtwaxK1IhYO341mt6R617zPNWZiP0z+Z
+ 63daIp9Bh8/UcEP7B3APuO+VL4l8sg26OmlDRyEUJ3VpOwfecByPQIOdvhgREqpJCutR
+ 4+2q0/shz3qCN09SZPe73WPD0jAx4KBoRn4oV0FyLsknME132WOV48oPk5Cy4N3xxsej
+ BD/hIc+23YTZrQmxg1lkSwYMyY9ZT4Q38M1NqWyBb78amQ173Dk3h7WNiMakre2A67va
+ ATgrKx6+UyR5Fr4UGP0BgT5yKNIdY6i8AyJ0Vdfg/9Dq27eta2Zztc8twGx7WvHyfQka
+ fgXg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXg0XKwSHbTUy7KTcA1ks7jbyPyGo+u5xM+23sKZ2A0ELyQcacWWaB6nCkAr7tiCZwzMs5rHUShiIM=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwXBjgeeR0f8EqNubRwkO1RhDdwgAHEWFZBaXqSNsUmaJB2wfF/
- cefbROwXlgMnfewkqqUJe9SKh6PYpaiZZbQN6zWuwDGThgU/nm0cOkExwXdNWZP0aAjv7oHHQ6i
- SDcMtpezoyQlCGg==
-X-Received: from dyot37.prod.google.com ([2002:a05:7300:6da5:b0:2ae:51c6:b62])
+ AJvYcCV+MfX9AhpxHLWz3ZbKzGAurjpbRPU/FGorTiwOW4c6RMix/4USUtDacXK5VBcv1HUCyJz10vfz5GM=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy4xv4M4EWbO0/sqKDyYyeiSXg2oydsdZ6xuuafTYYHS1Pea+3H
+ EbMjFgCgl7N3Gs1FLOLv/lFMTuGKMV4FsBNyWpN3sD4ZxJDE1vPiTIBcraY2Ws9JNfk8vbVyv2g
+ kXBIW9VLBIj9xxg==
+X-Received: from dlrr7.prod.google.com ([2002:a05:701a:c947:b0:122:8e:6ea4])
  (user=jdsultan job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:7022:61a7:b0:11a:5065:8763 with SMTP id
- a92af1059eb24-1244a7195bfmr313682c88.5.1768496152922; 
- Thu, 15 Jan 2026 08:55:52 -0800 (PST)
-Date: Thu, 15 Jan 2026 08:54:53 -0800
+ 2002:a05:7022:6291:b0:123:345b:ba05 with SMTP id
+ a92af1059eb24-1244a6ff2f7mr285604c88.22.1768496154920; 
+ Thu, 15 Jan 2026 08:55:54 -0800 (PST)
+Date: Thu, 15 Jan 2026 08:54:54 -0800
 In-Reply-To: <20260115-upstream-prep-v1-0-001d5b38fc11@google.com>
 Mime-Version: 1.0
 References: <20260115-upstream-prep-v1-0-001d5b38fc11@google.com>
 X-Developer-Key: i=jdsultan@google.com; a=ed25519;
  pk=RhTSABMOTIhvVE7NYiZwn1iDGYYNbaN092nvaEF2dxo=
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1768496136; l=17248;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768496136; l=5846;
  i=jdsultan@google.com; s=20260115; h=from:subject:message-id;
- bh=v7z/HxlcVgsPbzm7xiDYjVYOSQxb2FitXVH6KO1GjV4=;
- b=jKuaHHaSGaibWpD7KE35bWEgMw21QagkbvhDS0Gkgl9P2l2kvpvMkAhjqm0bmhkZrtqIDiQ5D
- QgxEk3ZC4ZiBHyFLGE44AU8C5lfj9I6NuUd1PiZNvhcX51XU12Ap7c/
+ bh=HsBkkil6AvfI0pFX4SeMbinO+sMF/xL6OPu7JcdzxOk=;
+ b=QQBDpqomC41CnTL0hqVaQDE9/6P/sL3pS6cKM9WtUlgOxChtQCRnwFEe6Dpeaa/qV1KrfkMJT
+ TzXjXKhTLnDCCNzGyTsabY2BPD1HWuiLTTOdUnfWiFTnsoOSGzf5Dwh
 X-Mailer: b4 0.14.2
-Message-ID: <20260115-upstream-prep-v1-7-001d5b38fc11@google.com>
-Subject: [PATCH RFC 07/10] drm/i915/display: Implement seamless fastboot for
- MSO panels on PTL
+Message-ID: <20260115-upstream-prep-v1-8-001d5b38fc11@google.com>
+Subject: [PATCH RFC 08/10] drm/i915/display: Robustify fastboot and power init
+ for seamless boot
 From: Juasheem Sultan <jdsultan@google.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@linux.intel.com>,
@@ -89,469 +89,142 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The standard display probe and modeset setup path (`intel_setup_outputs`,
-`intel_modeset_setup_hw_state`) often resets the hardware or fails to
-perfectly match the BIOS configuration for dual-link MSO (Multi-Segment
-Operation) panels. This causes screen flickering or black screens during
-boot on Panther Lake (PTL).
+To support a seamless transition from BIOS to kernel driver (fastboot),
+especially on PTL with MSO panels, several adjustments are needed to
+avoid unnecessary hardware resets and verification failures.
 
-This patch introduces a specialized "fastboot" probe path in
-`intel_display_driver_probe_nogem`:
+1.  **Power Well & CDCLK Preservation**: In `icl_display_core_init`,
+    check if the display power well 1 is already enabled. If so, preserve
+    the current CDCLK configuration instead of forcibly resetting it.
+    This prevents the display from glitching or blanking during driver load.
 
-1.  **Active Pipe Detection**: Iterates through pipes to find the one
-    left active by the BIOS.
-2.  **Hardware State Readout**: Uses `intel_crtc_get_pipe_config` to
-    accurately read the current hardware state.
-3.  **MSO Timing Reconstruction**: Detects if the hardware is driving
-    an MSO split mode (e.g., 1128px width) and manually scales the
-    timings (hdisplay, htotal, clock, etc.) to the full logical
-    resolution (2256px). This ensures the mode matches VBT/userspace
-    expectations and prevents invalid mode rejection.
-4.  **Topology Reconstruction**: Identifies the active encoder and
-    connector, links them to the CRTC, and synthesizes a valid DRM
-    mode from the readout.
-5.  **State Locking**: Invokes `intel_crtc_steal_state` to persist
-    this configuration as the initial atomic state.
-6.  **Cleanup & Bypass**: Removes unused connectors to prevent interference
-    and skips the standard heavyweight output setup if a valid BIOS
-    configuration is successfully reconstructed.
+2.  **Verification Relaxation**:
+    *   Skip the "connector not active" warning in `intel_connector_verify_state`
+        for MSO panels where the split link topology might confuse the
+        standard checks during fastset.
+    *   Bypass `intel_modeset_verify_crtc` for inherited states or the
+        boot pipe if no full modeset is required. This avoids verifying
+        state that hasn't been fully touched by the driver yet but is
+        known to be valid from BIOS.
 
-This ensures the kernel driver seamlessly takes over the display without
-an intermediate modeset, preserving the splash screen.
+3.  **Type Extensions**: Add necessary fields to `intel_atomic_state`
+    (fastset flag), `intel_digital_port` (DDI tracking), and
+    `intel_vbt_panel_data` (MSO parameters) to support the enhanced
+    fastboot logic.
 
 Signed-off-by: Juasheem Sultan <jdsultan@google.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.h       |   2 -
- .../gpu/drm/i915/display/intel_display_driver.c    | 309 +++++++++++++++++++--
- 2 files changed, 286 insertions(+), 25 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_power.c  | 16 +++++++++++++---
+ drivers/gpu/drm/i915/display/intel_display_types.h  |  8 ++++++++
+ drivers/gpu/drm/i915/display/intel_modeset_verify.c | 14 ++++++++++++--
+ 3 files changed, 33 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 2a6a75fc8e0e202c7d63478c3d9541248e474d6a..0eb6d08e95f412a7d0999ee846f2769ce13ff2ab 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -531,8 +531,6 @@ int intel_initial_commit(struct intel_display *display);
- void intel_panel_sanitize_ssc(struct intel_display *display);
- void intel_update_czclk(struct intel_display *display);
- void intel_setup_encoders(struct intel_display *display);
--void intel_panel_sanitize_ssc(struct drm_i915_private *i915);
--void intel_update_czclk(struct drm_i915_private *i915);
- void intel_atomic_helper_free_state_worker(struct work_struct *work);
- enum drm_mode_status intel_mode_valid(struct drm_device *dev,
- 				      const struct drm_display_mode *mode);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index cf1c14412abea724a549c5670b6344522fd36037..80927d2674d32c0d96b141a97e1c60217b4d01b2 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -8,6 +8,7 @@
-  */
- 
- #include <linux/vga_switcheroo.h>
-+#include <linux/slab.h>
- #include <acpi/video.h>
- #include <drm/display/drm_dp_mst_helper.h>
- #include <drm/drm_atomic_helper.h>
-@@ -17,48 +18,62 @@
- #include <drm/drm_probe_helper.h>
- #include <drm/drm_vblank.h>
- 
-+#include <drm/drm_atomic_uapi.h>
-+
-+#include "intel_display_regs.h"
-+#include <drm/drm_encoder.h>
- #include "i915_drv.h"
- #include "i915_utils.h"
-+#include "i915_reg.h"
- #include "i9xx_wm.h"
- #include "intel_acpi.h"
- #include "intel_atomic.h"
- #include "intel_audio.h"
-+#include "intel_backlight.h"
- #include "intel_bios.h"
--#include "intel_bw.h"
- #include "intel_cdclk.h"
- #include "intel_color.h"
- #include "intel_crtc.h"
- #include "intel_display_core.h"
-+#include "intel_ddi.h"
-+#include "intel_de.h"
-+#include "intel_display.h"
- #include "intel_display_debugfs.h"
- #include "intel_display_driver.h"
- #include "intel_display_irq.h"
- #include "intel_display_power.h"
- #include "intel_display_types.h"
- #include "intel_display_wa.h"
--#include "intel_dkl_phy.h"
--#include "intel_dmc.h"
-+#include "intel_dpll.h"
-+#include "intel_dpt.h"
-+#include "intel_dpt_common.h"
- #include "intel_dp.h"
- #include "intel_dp_tunnel.h"
--#include "intel_dpll.h"
--#include "intel_dpll_mgr.h"
-+#include "intel_dkl_phy.h"
-+#include "intel_dmc.h"
-+#include "intel_bw.h"
-+#include "intel_quirks.h"
-+#include "intel_modeset_lock.h"
-+#include "intel_hti.h"
-+#include "intel_modeset_setup.h"
- #include "intel_fb.h"
--#include "intel_fbc.h"
- #include "intel_fbdev.h"
- #include "intel_fdi.h"
- #include "intel_flipq.h"
- #include "intel_gmbus.h"
- #include "intel_hdcp.h"
- #include "intel_hotplug.h"
--#include "intel_hti.h"
--#include "intel_modeset_lock.h"
--#include "intel_modeset_setup.h"
- #include "intel_opregion.h"
- #include "intel_overlay.h"
--#include "intel_plane_initial.h"
-+#include "intel_panel.h"
-+#include "intel_pch_display.h"
-+#include "intel_pcode.h"
- #include "intel_pmdemand.h"
- #include "intel_pps.h"
- #include "intel_psr.h"
- #include "intel_quirks.h"
-+#include "intel_snps_phy.h"
-+#include "intel_tc.h"
- #include "intel_vga.h"
- #include "intel_wm.h"
- #include "skl_watermark.h"
-@@ -454,6 +469,8 @@ bool intel_display_driver_check_access(struct intel_display *display)
- /* part #2: call after irq install, but before gem init */
- int intel_display_driver_probe_nogem(struct intel_display *display)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index da4babfd6bcbd3b427c6da76cc54b450abeb4a38..0ac2acf34371bb43ddc2308d0ad81177023dad5b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -1661,8 +1661,7 @@ static void icl_display_core_init(struct intel_display *display,
  {
-+	bool found_initial_config = false;
-+	struct intel_crtc *crtc;
- 	enum pipe pipe;
- 	int ret;
- 
-@@ -468,22 +485,264 @@ int intel_display_driver_probe_nogem(struct intel_display *display)
- 
- 	intel_gmbus_setup(display);
- 
-+	intel_dpll_init(display);
-+	intel_setup_encoders(display);
-+
- 	drm_dbg_kms(display->drm, "%d display pipe%s available.\n",
- 		    INTEL_NUM_PIPES(display),
- 		    INTEL_NUM_PIPES(display) > 1 ? "s" : "");
-+		for_each_pipe(display, pipe) {
-+			ret = intel_crtc_init(display, pipe);
-+			if (ret)
-+				goto err_mode_config;
-+		}
- 
--	for_each_pipe(display, pipe) {
--		ret = intel_crtc_init(display, pipe);
--		if (ret)
--			goto err_mode_config;
-+		if (display->funcs.display && display->funcs.display->post_crtc_init_hook)
-+			display->funcs.display->post_crtc_init_hook(display);
-+	display->funcs.display->initial_plane_config(display);
-+
-+
-+	for_each_intel_crtc(display->drm, crtc) {
-+		struct intel_crtc_state *crtc_state = to_intel_crtc_state(crtc->base.state);
-+
-+		if (!to_intel_plane_state(crtc->base.primary->state)->uapi.fb) {
-+			crtc_state->uapi.active = false;
-+			crtc_state->hw.active = false;
-+			crtc->active = false;
-+			continue;
-+		}
-+
-+		if (intel_crtc_get_pipe_config(crtc_state)) {
-+			if (crtc_state->hw.pipe_mode.hdisplay == 1128) {
-+				crtc_state->hw.pipe_mode.hdisplay *= 2;
-+				crtc_state->hw.pipe_mode.crtc_hdisplay *= 2;
-+				crtc_state->hw.pipe_mode.htotal *= 2;
-+				crtc_state->hw.pipe_mode.crtc_htotal *= 2;
-+			}
-+
-+			struct intel_encoder *encoder = NULL;
-+			enum port port;
-+			u32 tmp;
-+
-+			/* Find the active encoder to get the clock */
-+			tmp = intel_de_read(display, TRANS_DDI_FUNC_CTL(display, crtc_state->cpu_transcoder));
-+			port = REG_FIELD_GET(TRANS_DDI_PORT_MASK, tmp);
-+			for_each_intel_encoder(display->drm, encoder) {
-+				if (encoder->port == port) {
-+					break;
-+				}
-+			}
-+
-+
-+			if (encoder && encoder->port == port) {
-+				/*
-+				 * The clock is not known at this point. It will be filled in
-+				 * when the encoder's get_config is called.
-+				 */
-+				encoder->get_config(encoder, crtc_state);
-+
-+				if (crtc_state->hw.adjusted_mode.crtc_clock == 112492) {
-+					crtc_state->hw.adjusted_mode.crtc_clock *= 2;
-+				}
-+
-+				/*
-+				 * HACK: MSO Fixup for readout (Fastboot path).
-+				 * If we read out the split MSO mode (1128), scale it up to the
-+				 * logical mode (2256) so it matches the VBT/User mode.
-+				 */
-+				if (crtc_state->hw.pipe_mode.hdisplay == 1128) {
-+
-+					/* Scale ALL horizontal timings to prevent invalid mode (Sync < Active) */
-+					crtc_state->hw.pipe_mode.hdisplay *= 2;
-+					crtc_state->hw.pipe_mode.hsync_start *= 2;
-+					crtc_state->hw.pipe_mode.hsync_end *= 2;
-+					crtc_state->hw.pipe_mode.htotal *= 2;
-+
-+					crtc_state->hw.pipe_mode.crtc_hdisplay *= 2;
-+					crtc_state->hw.pipe_mode.crtc_hsync_start *= 2;
-+					crtc_state->hw.pipe_mode.crtc_hsync_end *= 2;
-+					crtc_state->hw.pipe_mode.crtc_htotal *= 2;
-+					crtc_state->hw.pipe_mode.crtc_hblank_start *= 2;
-+					crtc_state->hw.pipe_mode.crtc_hblank_end *= 2;
-+
-+					/* Scale clock */
-+					crtc_state->hw.pipe_mode.crtc_clock *= 2;
-+					crtc_state->hw.pipe_mode.clock *= 2;
-+
-+					/* Fix name */
-+					snprintf(crtc_state->hw.pipe_mode.name, DRM_DISPLAY_MODE_LEN, "%dx%d",
-+							crtc_state->hw.pipe_mode.hdisplay, crtc_state->hw.pipe_mode.vdisplay);
-+				} else if (crtc_state->hw.pipe_mode.hdisplay == 2256 &&
-+						crtc_state->hw.pipe_mode.crtc_hsync_start == 1152) {
-+
-+					/* Geometry is already scaled, but Sync/Blank are raw. Fix them. */
-+					crtc_state->hw.pipe_mode.hsync_start *= 2;
-+					crtc_state->hw.pipe_mode.hsync_end *= 2;
-+					crtc_state->hw.pipe_mode.crtc_hsync_start *= 2;
-+					crtc_state->hw.pipe_mode.crtc_hsync_end *= 2;
-+					crtc_state->hw.pipe_mode.crtc_hblank_start *= 2;
-+					crtc_state->hw.pipe_mode.crtc_hblank_end *= 2;
-+				}
-+				/* Link the encoder to the CRTC */
-+				encoder->base.crtc = &crtc->base;
-+
-+				/*
-+				 * Copy crtc_clock to clock for drm_mode_vrefresh()
-+				 */
-+				crtc_state->hw.adjusted_mode.clock = crtc_state->hw.adjusted_mode.crtc_clock;
-+
-+				/*
-+				 * Copy the timings from the pipe_mode to the adjusted_mode
-+				 * to ensure the full mode is available for state stealing.
-+				 */
-+
-+				crtc_state->hw.adjusted_mode.hdisplay = crtc_state->hw.pipe_mode.hdisplay;
-+				crtc_state->hw.adjusted_mode.vdisplay = crtc_state->hw.pipe_mode.vdisplay;
-+				/* Copy to both sets of timing fields for consistency */
-+				crtc_state->hw.adjusted_mode.htotal = crtc_state->hw.pipe_mode.crtc_htotal;
-+				crtc_state->hw.adjusted_mode.vtotal = crtc_state->hw.pipe_mode.crtc_vtotal;
-+				crtc_state->hw.adjusted_mode.crtc_hdisplay = crtc_state->hw.pipe_mode.crtc_hdisplay;
-+				crtc_state->hw.adjusted_mode.crtc_htotal = crtc_state->hw.pipe_mode.crtc_htotal;
-+				crtc_state->hw.adjusted_mode.crtc_vtotal = crtc_state->hw.pipe_mode.crtc_vtotal;
-+
-+				/*FIX: Also copy HSync/Blank to ensure valid adjusted_mode */
-+				crtc_state->hw.adjusted_mode.hsync_start = crtc_state->hw.pipe_mode.crtc_hsync_start;
-+				crtc_state->hw.adjusted_mode.hsync_end = crtc_state->hw.pipe_mode.crtc_hsync_end;
-+				crtc_state->hw.adjusted_mode.crtc_hsync_start = crtc_state->hw.pipe_mode.crtc_hsync_start;
-+				crtc_state->hw.adjusted_mode.crtc_hsync_end = crtc_state->hw.pipe_mode.crtc_hsync_end;
-+
-+				crtc_state->hw.adjusted_mode.crtc_hblank_start = crtc_state->hw.pipe_mode.crtc_hblank_start;
-+				crtc_state->hw.adjusted_mode.crtc_hblank_end = crtc_state->hw.pipe_mode.crtc_hblank_end;
-+				crtc_state->uapi.encoder_mask = drm_encoder_mask(&encoder->base);
-+
-+				/* Sync the UAPI state with the read-out HW state */
-+				drm_mode_copy(&crtc_state->uapi.mode, &crtc_state->hw.adjusted_mode);
-+				drm_mode_copy(&crtc_state->uapi.adjusted_mode, &crtc_state->hw.adjusted_mode);
-+				crtc->base.enabled = true;
-+				crtc->active = true;
-+				drm_mode_copy(&crtc->base.mode, &crtc_state->hw.mode);
-+				drm_mode_copy(&crtc->base.hwmode, &crtc_state->hw.adjusted_mode);
-+				crtc_state->uapi.enable = crtc->base.enabled;
-+				crtc_state->uapi.active = crtc->active;
-+
-+				if (drm_atomic_set_mode_for_crtc(&crtc_state->uapi, &crtc_state->hw.adjusted_mode) < 0) {
-+				}
-+
-+				struct drm_connector *connector = NULL;
-+				struct drm_connector_list_iter conn_iter;
-+
-+				drm_connector_list_iter_begin(display->drm, &conn_iter);
-+				drm_for_each_connector_iter(connector, &conn_iter) {
-+					if (to_intel_connector(connector)->encoder == encoder) {
-+
-+						struct drm_display_mode *mode;
-+
-+						/* Clear out any modes added by VBT parsing */
-+						struct drm_display_mode *next;
-+
-+						mutex_lock(&display->drm->mode_config.mutex);
-+						list_for_each_entry_safe(mode, next, &connector->probed_modes, head)
-+							drm_mode_destroy(display->drm, mode);
-+
-+						connector->status = connector_status_connected;
-+
-+						mode = kzalloc(sizeof(*mode), GFP_KERNEL);
-+						if (mode) {
-+							drm_mode_copy(mode, &crtc_state->hw.adjusted_mode);
-+							drm_mode_probed_add(connector, mode);
-+							connector->state->crtc = &crtc->base;
-+						}
-+						mutex_unlock(&display->drm->mode_config.mutex);
-+						break;
-+					}
-+				}
-+				drm_connector_list_iter_end(&conn_iter);
-+
-+				intel_crtc_steal_state(crtc_state);
-+
-+				found_initial_config = true;
-+			}
-+		}
-+	}
-+
-+	if (found_initial_config) {
-+		struct intel_crtc *active_crtc = NULL;
-+		struct intel_encoder *active_encoder = NULL;
-+		struct intel_connector *active_connector = NULL;
-+		struct intel_connector *connector, *tmp;
-+		struct drm_connector_list_iter conn_iter;
-+		enum pipe pipe;
-+
-+		/* Find the single active CRTC pipe */
-+		for_each_intel_crtc(display->drm, crtc) {
-+			if (to_intel_crtc_state(crtc->base.state)->hw.active) {
-+				active_crtc = crtc;
-+				break;
-+			}
-+		}
-+
-+		/*
-+		 * Find the active encoder by checking the HW state of all encoders
-+		 * to see which one is driving the active pipe.
-+		 */
-+		if (active_crtc) {
-+			struct intel_encoder *encoder;
-+
-+			for_each_intel_encoder(display->drm, encoder) {
-+				if (encoder->get_hw_state(encoder, &pipe) && pipe == active_crtc->pipe) {
-+					active_encoder = encoder;
-+					break;
-+				}
-+			}
-+		}
-+
-+		/* Find the connector attached to the active encoder */
-+		if (active_encoder) {
-+			drm_connector_list_iter_begin(display->drm, &conn_iter);
-+			for_each_intel_connector_iter(connector, &conn_iter) {
-+				if (connector->encoder == active_encoder) {
-+					active_connector = connector;
-+					break;
-+				}
-+			}
-+			drm_connector_list_iter_end(&conn_iter);
-+		}
-+
-+		/*
-+		 * Clean up any connectors that were initialized for probing but
-+		 * are not actually part of the active modeset.
-+		 */
-+		list_for_each_entry_safe(connector, tmp, &display->drm->mode_config.connector_list, base.head) {
-+			if (connector != active_connector) {
-+				drm_connector_cleanup(&connector->base);
-+				kfree(connector);
-+			}
-+		}
-+
-+		if (active_connector && active_crtc) {
-+
-+			if (active_encoder->type == INTEL_OUTPUT_EDP) {
-+				struct intel_dp *intel_dp = enc_to_intel_dp(active_encoder);
-+
-+				intel_pps_vdd_on_unlocked(intel_dp);
-+				intel_backlight_setup(active_connector, active_crtc->pipe);
-+				intel_pps_vdd_off_unlocked(intel_dp, false);
-+			} else {
-+				intel_backlight_setup(active_connector, active_crtc->pipe);
-+			}
-+		}
-+		to_intel_cdclk_state(display->cdclk.obj.state)->logical = display->cdclk.hw;
-+		to_intel_cdclk_state(display->cdclk.obj.state)->actual = display->cdclk.hw;
-+	} else {
-+		/* Fallback to full setup if no initial config was found */
-+		intel_update_czclk(display);
-+		intel_display_driver_init_hw(display);
- 	}
- 
- 	intel_plane_possible_crtcs_init(display);
--	intel_dpll_init(display);
-+
- 	intel_fdi_pll_freq_update(display);
- 
--	intel_update_czclk(display);
--	intel_display_driver_init_hw(display);
- 	intel_dpll_update_ref_clks(display);
- 
- 	if (display->cdclk.max_cdclk_freq == 0)
-@@ -491,7 +750,8 @@ int intel_display_driver_probe_nogem(struct intel_display *display)
- 
- 	intel_hti_init(display);
- 
--	intel_setup_outputs(display);
-+	/* Just disable it once at startup */
-+	intel_vga_disable(display);
- 
- 	ret = intel_dp_tunnel_mgr_init(display);
- 	if (ret)
-@@ -500,12 +760,15 @@ int intel_display_driver_probe_nogem(struct intel_display *display)
- 	intel_display_driver_disable_user_access(display);
- 
- 	drm_modeset_lock_all(display->drm);
--	intel_modeset_setup_hw_state(display, display->drm->mode_config.acquire_ctx);
-+
-+	if (!found_initial_config) {
-+		intel_modeset_setup_hw_state(display, display->drm->mode_config.acquire_ctx);
-+	} else {
-+	}
-+
- 	intel_acpi_assign_connector_fwnodes(display);
- 	drm_modeset_unlock_all(display->drm);
- 
--	intel_initial_plane_config(display);
+ 	struct i915_power_domains *power_domains = &display->power.domains;
+ 	struct i915_power_well *well;
 -
- 	/*
- 	 * Make sure hardware watermarks really match the state we read out.
- 	 * Note that we need to do this after reconstructing the BIOS fb's
-@@ -527,7 +790,7 @@ int intel_display_driver_probe_nogem(struct intel_display *display)
- /* part #3: call after gem init */
- int intel_display_driver_probe(struct intel_display *display)
- {
--	int ret;
-+	int ret = 0;
+-	gen9_set_dc_state(display, DC_STATE_DISABLE);
++	bool was_enabled;
  
- 	if (!HAS_DISPLAY(display))
- 		return 0;
-@@ -570,8 +833,8 @@ void intel_display_driver_register(struct intel_display *display)
+ 	/* Wa_14011294188:ehl,jsl,tgl,rkl,adl-s */
+ 	if (INTEL_PCH_TYPE(display) >= PCH_TGP &&
+@@ -1685,6 +1684,7 @@ static void icl_display_core_init(struct intel_display *display,
+ 	 */
+ 	mutex_lock(&power_domains->lock);
+ 	well = lookup_power_well(display, SKL_DISP_PW_1);
++	was_enabled = intel_power_well_is_enabled(display, well);
+ 	intel_power_well_enable(display, well);
+ 	mutex_unlock(&power_domains->lock);
+ 
+@@ -1693,7 +1693,17 @@ static void icl_display_core_init(struct intel_display *display,
+ 			     HOLD_PHY_PG1_LATCH | HOLD_PHY_CLKREQ_PG1_LATCH, 0);
+ 
+ 	/* 4. Enable CDCLK. */
+-	intel_cdclk_init_hw(display);
++	if (was_enabled) {
++		struct intel_cdclk_config cdclk_config;
++
++		intel_cdclk_get_cdclk(display, &cdclk_config);
++		if (intel_cdclk_clock_changed(&display->cdclk.hw, &cdclk_config)) {
++			display->cdclk.hw = cdclk_config;
++		}
++	} else {
++		gen9_set_dc_state(display, DC_STATE_DISABLE);
++		intel_cdclk_init_hw(display);
++	}
+ 
+ 	if (DISPLAY_VER(display) == 12 || display->platform.dg2)
+ 		gen12_dbuf_slices_config(display);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 358ab922d7a769a363d2c6dfa7960f2fd869fe03..eb8331698fb18d77419c18ca648733e2699d45b1 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -350,6 +350,8 @@ struct intel_vbt_panel_data {
+ 		bool low_vswing;
+ 		bool hobl;
+ 		bool dsc_disable;
++		u8 mso_link_count;
++		u8 mso_pixel_overlap;
+ 	} edp;
+ 
+ 	struct {
+@@ -594,6 +596,8 @@ struct dpll {
+ struct intel_atomic_state {
+ 	struct drm_atomic_state base;
+ 
++	bool fastset;
++
+ 	struct ref_tracker *wakeref;
+ 
+ 	struct intel_global_objs_state *global_objs;
+@@ -1879,6 +1883,10 @@ struct intel_lspcon {
+ 
+ struct intel_digital_port {
+ 	struct intel_encoder base;
++	i915_reg_t ddi_buf_ctl_reg;
++	intel_wakeref_t ddi_power_wakeref;
++
++	u32 saved_port_bits;
+ 	struct intel_dp dp;
+ 	struct intel_hdmi hdmi;
+ 	struct intel_lspcon lspcon;
+diff --git a/drivers/gpu/drm/i915/display/intel_modeset_verify.c b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
+index f2f6b9d9afa10b921d991a34de9b59b19317b544..76d19e9ef4e204535885768bc119d26f07cf6c54 100644
+--- a/drivers/gpu/drm/i915/display/intel_modeset_verify.c
++++ b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
+@@ -55,8 +55,13 @@ static void intel_connector_verify_state(const struct intel_crtc_state *crtc_sta
+ 		INTEL_DISPLAY_STATE_WARN(display, conn_state->crtc != encoder->base.crtc,
+ 					 "attached encoder crtc differs from connector crtc\n");
+ 	} else {
+-		INTEL_DISPLAY_STATE_WARN(display, crtc_state && crtc_state->hw.active,
+-					 "attached crtc is active, but connector isn't\n");
++		/*
++		 * HACK: Skip this warning for MSO panels if fastset is being tricky.
++		 */
++		if (!crtc_state || !crtc_state->splitter.enable)
++			INTEL_DISPLAY_STATE_WARN(display, crtc_state && crtc_state->hw.active,
++						 "attached crtc is active, but connector isn't\n");
++
+ 		INTEL_DISPLAY_STATE_WARN(display, !crtc_state && conn_state->best_encoder,
+ 					 "best encoder set without crtc!\n");
+ 	}
+@@ -236,6 +241,11 @@ void intel_modeset_verify_crtc(struct intel_atomic_state *state,
+ 	const struct intel_crtc_state *new_crtc_state =
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 
++	if (new_crtc_state->inherited ||
++	    (intel_is_boot_pipe(crtc->pipe) && !intel_crtc_needs_modeset(new_crtc_state))) {
++		return;
++	}
++
+ 	if (!intel_crtc_needs_modeset(new_crtc_state) &&
+ 	    !intel_crtc_needs_fastset(new_crtc_state))
  		return;
- 
- 	/* Must be done after probing outputs */
-+	/* intel_acpi_video_register(display); */
- 	intel_opregion_register(display);
--	intel_acpi_video_register(display);
- 
- 	intel_audio_init(display);
- 
 
 -- 
 2.52.0.457.g6b5491de43-goog
