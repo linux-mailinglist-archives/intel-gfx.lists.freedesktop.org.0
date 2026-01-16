@@ -2,66 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39067D309F5
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jan 2026 12:46:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ECE4D30B77
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jan 2026 12:54:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0385310E875;
-	Fri, 16 Jan 2026 11:46:42 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OkyViYxb";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CC5610E86D;
+	Fri, 16 Jan 2026 11:54:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B49610E86F;
- Fri, 16 Jan 2026 11:46:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768564001; x=1800100001;
- h=message-id:date:mime-version:from:to:cc:subject:
- content-transfer-encoding;
- bh=GBKaodGhra2VQepQQ7Xg+rEauVjQTk0O5E68nqVwRlE=;
- b=OkyViYxbhMk1h7mVaP9J/eSC5ba6tv52gXJJ/r9N3Gm6g9HTmSx5Nf2b
- QNVfyI4yHaCE+oCCWWHpADObhNX2F7ECT8k23pku/xl38WWgGY8ffB8CD
- 6qHTWHkEg1/6KTLWLklrvN6zXffAwNYxLzeZs+MwXIrQ/naTB16a4MpBq
- A/+LSVfHhkhFX5/w6IKVVcgNmwznpA507Z0YdwtyL8hk0MJhQ6uFvuYQR
- rmQZlrtjbUZbyvxUD5DEDoflEMYxpbp+/Nm/KjFzFhWWsBEZdy82WAxXy
- aD/WOAKutZtfHafRnblOkO2zLGm5coTxRxfIsOGW/w+Lgt0S/Y1ZeSfwT Q==;
-X-CSE-ConnectionGUID: 7e6I+glqTC6go6bX+B15wQ==
-X-CSE-MsgGUID: f/Dpu633Sdil7CztbYhyBA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11672"; a="69969256"
-X-IronPort-AV: E=Sophos;i="6.21,230,1763452800"; d="scan'208";a="69969256"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2026 03:46:40 -0800
-X-CSE-ConnectionGUID: xp0JfnKuS/m//zmB1C5ZfQ==
-X-CSE-MsgGUID: TW3srg4BQj2ACbjZQLvFVw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,230,1763452800"; d="scan'208";a="205642159"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO [10.245.245.179])
- ([10.245.245.179])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2026 03:46:37 -0800
-Message-ID: <ce0acfe2-9c1a-42b7-8782-f1e7f34b8544@linux.intel.com>
-Date: Fri, 16 Jan 2026 12:46:34 +0100
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D6F310E1EF;
+ Fri, 16 Jan 2026 11:54:37 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4562265779372017712=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Oded Gabbay <ogabbay@kernel.org>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>, Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: [PULL] drm-misc-fixes
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_Unload_linux/kernel=2Eh_?=
+ =?utf-8?q?=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Yury Norov" <yury.norov@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 16 Jan 2026 11:54:37 -0000
+Message-ID: <176856447731.161648.727944596883869057@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260116042510.241009-1-ynorov@nvidia.com>
+In-Reply-To: <20260116042510.241009-1-ynorov@nvidia.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,143 +37,172 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Simona,
+--===============4562265779372017712==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Nature made it a bit hard to send a pull request, but ready now!
-Nothing that stood out to me, all just minor fixes.
+== Series Details ==
 
-Kind regards,
-~Maarten Lankhorst
+Series: Unload linux/kernel.h (rev6)
+URL   : https://patchwork.freedesktop.org/series/158239/
+State : success
 
-drm-misc-fixes-2026-01-16:
-drm-misc-fixes for v6.19-rc6:
+== Summary ==
 
-vmwgfx:
-- Fix hw regression from refactoring cursor handling on v10 'hardware'
-- Fix warnings in destructor by merging the 2 release functions
-- kernel doc fix
-- error handling in vmw_compat_shader_add()
+CI Bug Log - changes from CI_DRM_17832 -> Patchwork_158239v6
+====================================================
 
-rockchip:
-- fix vop2 polling
-- fix regression waiting for cfgdone without config change
-- fix warning when enabling encoder
+Summary
+-------
 
-core:
-- take gem lock when preallocating in gpuvm.
-- add single byte read fallback to dp for broken usb-c adapters
-- remove duplicate drm_sysfb declarations
+  **SUCCESS**
 
-gud:
-- Fix oops on usb disconnect
+  No regressions found.
 
-Simple panel:
-- Re-add fallback when connector is not set to fix regressions
-- Set correct type in DataImage SCF0700C48GGU18
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/index.html
 
-nouveau:
-- locking fixes for cursor handling.
-The following changes since commit d5bdf88d1f9d1e4808177f03d89de3d0ba6c6e84:
+Participating hosts (43 -> 41)
+------------------------------
 
-  drm/fb-helper: Fix vblank timeout during suspend/reset (2026-01-06 09:05:06 +0100)
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
 
-are available in the Git repository at:
+Known issues
+------------
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2026-01-16
+  Here are the changes found in Patchwork_158239v6 that come from known issues:
 
-for you to fetch changes up to b91a565ed14fcf900b4d95e86882b4b763860986:
+### IGT changes ###
 
-  drm/sysfb: Remove duplicate declarations (2026-01-14 11:03:56 +0100)
+#### Issues hit ####
 
-----------------------------------------------------------------
-drm-misc-fixes for v6.19-rc6:
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17832/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/bat-arls-5/igt@i915_selftest@live@workarounds.html
 
-vmwgfx:
-- Fix hw regression from refactoring cursor handling on v10 'hardware'
-- Fix warnings in destructor by merging the 2 release functions
-- kernel doc fix
-- error handling in vmw_compat_shader_add()
+  
+#### Possible fixes ####
 
-rockchip:
-- fix vop2 polling
-- fix regression waiting for cfgdone without config change
-- fix warning when enabling encoder
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [DMESG-FAIL][3] ([i915#12061]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17832/bat-mtlp-8/igt@i915_selftest@live.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/bat-mtlp-8/igt@i915_selftest@live.html
 
-core:
-- take gem lock when preallocating in gpuvm.
-- add single byte read fallback to dp for broken usb-c adapters
-- remove duplicate drm_sysfb declarations
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-14:         [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17832/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+    - bat-mtlp-9:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17832/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
 
-gud:
-- Fix oops on usb disconnect
+  * igt@kms_hdmi_inject@inject-audio:
+    - fi-tgl-1115g4:      [FAIL][9] ([i915#14867]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17832/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
 
-Simple panel:
-- Re-add fallback when connector is not set to fix regressions
-- Set correct type in DataImage SCF0700C48GGU18
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#14867]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14867
 
-nouveau:
-- locking fixes for cursor handling.
 
-----------------------------------------------------------------
-Alice Ryhl (1):
-      drm/gpuvm: take GEM lock inside drm_gpuvm_bo_obtain_prealloc()
+Build changes
+-------------
 
-Andy Yan (2):
-      drm/rockchip: vop2: Add delay between poll registers
-      drm/rockchip: vop2: Only wait for changed layer cfg done when there is pending cfgdone bits
+  * Linux: CI_DRM_17832 -> Patchwork_158239v6
 
-Bartlomiej Kubik (1):
-      drm/vmwgfx: Fix kernel-doc warnings for vmwgfx_fence
+  CI-20190529: 20190529
+  CI_DRM_17832: 278a33d3977124821c19b51fb88d9d651b4fe40a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8704: 8704
+  Patchwork_158239v6: 278a33d3977124821c19b51fb88d9d651b4fe40a @ git://anongit.freedesktop.org/gfx-ci/linux
 
-Chia-Lin Kao (AceLan) (1):
-      drm/dp: Add byte-by-byte fallback for broken USB-C adapters
+== Logs ==
 
-Cristian Ciocaltea (1):
-      drm/rockchip: dw_hdmi_qp: Switch to gpiod_set_value_cansleep()
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/index.html
 
-Haoxiang Li (1):
-      drm/vmwgfx: Fix an error return check in vmw_compat_shader_add()
+--===============4562265779372017712==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Ian Forbes (2):
-      drm/vmwgfx: Fix KMS with 3D on HW version 10
-      drm/vmwgfx: Merge vmw_bo_release and vmw_bo_free functions
 
-Ludovic Desroches (1):
-      drm/panel: simple: restore connector_type fallback
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
-Lyude Paul (2):
-      drm/nouveau/disp/nv50-: Set lock_core in curs507a_prepare
-      drm/nouveau/kms/nv50-: Assert we hold nv50_disp->lock in nv50_head_flush_*
 
-Marek Vasut (1):
-      drm/panel-simple: fix connector type for DataImage SCF0700C48GGU18 panel
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Unload linux/kernel.h (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158239/">https://patchwork.freedesktop.org/series/158239/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
-Sebastian Reichel (1):
-      drm/bridge: dw-hdmi-qp: Fix spurious IRQ on resume
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/index.html</a></td></tr>
 
-Shenghao Yang (1):
-      drm/gud: fix NULL fb and crtc dereferences on USB disconnect
+</table>
 
-Thomas Zimmermann (1):
-      drm/sysfb: Remove duplicate declarations
 
- drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c   |   9 ++
- drivers/gpu/drm/drm_gpuvm.c                    |  75 +++++++++++------
- drivers/gpu/drm/gud/gud_pipe.c                 |  20 ++---
- drivers/gpu/drm/nouveau/dispnv50/curs507a.c    |   1 +
- drivers/gpu/drm/nouveau/dispnv50/head.c        |   5 ++
- drivers/gpu/drm/panel/panel-simple.c           | 110 ++++++++++++-------------
- drivers/gpu/drm/panthor/panthor_mmu.c          |  10 ---
- drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c |  14 +++-
- drivers/gpu/drm/rockchip/rockchip_vop2_reg.c   |  17 +++-
- drivers/gpu/drm/sysfb/drm_sysfb_helper.h       |   9 --
- drivers/gpu/drm/vmwgfx/vmwgfx_bo.c             |  22 ++---
- drivers/gpu/drm/vmwgfx/vmwgfx_fence.c          |  10 +--
- drivers/gpu/drm/vmwgfx/vmwgfx_kms.c            |  14 ++--
- drivers/gpu/drm/vmwgfx/vmwgfx_shader.c         |   4 +-
- include/drm/bridge/dw_hdmi_qp.h                |   1 +
- include/drm/display/drm_dp_helper.h            |  57 ++++++++-----
- 16 files changed, 216 insertions(+), 162 deletions(-)
+    <h1>CI Bug Log - changes from CI_DRM_17832 -&gt; Patchwork_158239v6</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/index.html</p>
+<h2>Participating hosts (43 -&gt; 41)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_158239v6 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17832/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17832/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17832/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17832/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdmi_inject@inject-audio:</p>
+<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17832/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14867">i915#14867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17832 -&gt; Patchwork_158239v6</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17832: 278a33d3977124821c19b51fb88d9d651b4fe40a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8704: 8704<br />
+  Patchwork_158239v6: 278a33d3977124821c19b51fb88d9d651b4fe40a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============4562265779372017712==--
