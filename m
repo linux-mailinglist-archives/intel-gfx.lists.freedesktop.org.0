@@ -2,162 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DDB8D2D95B
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jan 2026 08:58:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34BC2D2DCC7
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jan 2026 09:14:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3174110E81E;
-	Fri, 16 Jan 2026 07:58:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 288E910E829;
+	Fri, 16 Jan 2026 08:14:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="R04uVWab";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="MZ1Ehz5Y";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="R04uVWab";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="MZ1Ehz5Y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gBNWkPjR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05A3310E818
- for <intel-gfx@lists.freedesktop.org>; Fri, 16 Jan 2026 07:58:31 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id BB3173368D;
- Fri, 16 Jan 2026 07:58:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1768550309; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=tEBnbJXoSEVNx2d1sg+6yp9TJGIDCgDTADCnwPCP7K0=;
- b=R04uVWabAymZykGlX+71SwYrLQ6fCzyjOgy+9ATKoaBXltpvMrjIlYpv5Q3yl4hyqJQqQk
- ic0hgpJzRhcu/XCONdInAYct22wQf9B2hRKDGAhcBsOhViR6cCBFk0lM9YwDMZwWYtbOhZ
- 3CIEsweVt1ZK6QNpJiQvBRvHy9sHwyI=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1768550309;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=tEBnbJXoSEVNx2d1sg+6yp9TJGIDCgDTADCnwPCP7K0=;
- b=MZ1Ehz5YNpca9ytNX4G/92HJJlPCJPBDy2lqLRB9ZcbIoy5+YWZTdll3DfwqPiZkbmZXaV
- ibH4XxwwepxK2qBA==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1768550309; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=tEBnbJXoSEVNx2d1sg+6yp9TJGIDCgDTADCnwPCP7K0=;
- b=R04uVWabAymZykGlX+71SwYrLQ6fCzyjOgy+9ATKoaBXltpvMrjIlYpv5Q3yl4hyqJQqQk
- ic0hgpJzRhcu/XCONdInAYct22wQf9B2hRKDGAhcBsOhViR6cCBFk0lM9YwDMZwWYtbOhZ
- 3CIEsweVt1ZK6QNpJiQvBRvHy9sHwyI=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1768550309;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=tEBnbJXoSEVNx2d1sg+6yp9TJGIDCgDTADCnwPCP7K0=;
- b=MZ1Ehz5YNpca9ytNX4G/92HJJlPCJPBDy2lqLRB9ZcbIoy5+YWZTdll3DfwqPiZkbmZXaV
- ibH4XxwwepxK2qBA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id AF64F3EA63;
- Fri, 16 Jan 2026 07:58:28 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id gp4oKaTvaWk8ZAAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Fri, 16 Jan 2026 07:58:28 +0000
-Message-ID: <f3643c19-c250-4927-b39d-37d2494c7c84@suse.de>
-Date: Fri, 16 Jan 2026 08:58:28 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/12] Recover sysfb after DRM probe failure
-To: Zack Rusin <zack.rusin@broadcom.com>
-Cc: dri-devel@lists.freedesktop.org, Alex Deucher
- <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- Ard Biesheuvel <ardb@kernel.org>, Ce Sun <cesun102@amd.com>,
- Chia-I Wu <olvaffe@gmail.com>, =?UTF-8?Q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>,
- Dave Airlie <airlied@redhat.com>, Deepak Rawat <drawat.floss@gmail.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Hans de Goede <hansg@kernel.org>, Hawking Zhang <Hawking.Zhang@amd.com>,
- Helge Deller <deller@gmx.de>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Jocelyn Falempe <jfalempe@redhat.com>,
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93BB910E823;
+ Fri, 16 Jan 2026 08:14:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1768551246; x=1800087246;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=OuoqOOo/707Go4x/0zDg1+lOhJlBCiPNnMWeAo+ATLU=;
+ b=gBNWkPjRbMZbc1D6pkDsbM5zh1f/aq+ygMZ1xj2O7Biu47vI+bIVj/X6
+ mLhF/6ohrM7wfnmqMJZMaym0l8XzBeUSR15bok9vSE3bqVnqBhVeJeICX
+ 2/H0KX15oqFneHGVioY/K97RsE5hXCsGQx+VLQXExV+YStdbCNgmwIgGU
+ xdgJX54v8cV1S4o3Bnt9KESztmEHP5TyF3GMPu7ojbkaobUryLpMnkmW8
+ NtrxfSwpFKQRPDxBJ6LInZWNCRAhn85FxD84Rf3m3GXsM1YBZzfac+Tui
+ lX+qS2Jhe3boqJuRg4aVaS0YKOisRS4UpInB/1+OH5Hboi3ZG3grsG0iw w==;
+X-CSE-ConnectionGUID: WDYykO9ZQnKUqLOmNupYhQ==
+X-CSE-MsgGUID: Jp7MAIZNRn+C8Szqklvspg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11672"; a="73717362"
+X-IronPort-AV: E=Sophos;i="6.21,230,1763452800"; d="scan'208";a="73717362"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2026 00:13:57 -0800
+X-CSE-ConnectionGUID: SAyNptJKSESRZNvSqQ71fg==
+X-CSE-MsgGUID: lG8gRhLuTIKoUbQNQIeAMw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,230,1763452800"; d="scan'208";a="204328940"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.118])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2026 00:13:50 -0800
+Date: Fri, 16 Jan 2026 10:13:47 +0200
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Lijo Lazar <lijo.lazar@amd.com>, linux-efi@vger.kernel.org,
- linux-fbdev@vger.kernel.org, linux-hyperv@vger.kernel.org,
- linux-kernel@vger.kernel.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- Lyude Paul <lyude@redhat.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- "Mario Limonciello (AMD)" <superm1@kernel.org>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Maxime Ripard <mripard@kernel.org>, nouveau@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
- spice-devel@lists.freedesktop.org,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, virtualization@lists.linux.dev,
- Vitaly Prosyak <vitaly.prosyak@amd.com>
-References: <20251229215906.3688205-1-zack.rusin@broadcom.com>
- <c816f7ed-66e0-4773-b3d1-4769234bd30b@suse.de>
- <CABQX2QNQU4XZ1rJFqnJeMkz8WP=t9atj0BqXHbDQab7ZnAyJxg@mail.gmail.com>
- <97993761-5884-4ada-b345-9fb64819e02a@suse.de>
- <CABQX2QMn_dTh2h44LRwB7+RxGqK3Jn+QCx38xWrzpNJG5SZ9-Q@mail.gmail.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <CABQX2QMn_dTh2h44LRwB7+RxGqK3Jn+QCx38xWrzpNJG5SZ9-Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Score: -2.80
-X-Spamd-Result: default: False [-2.80 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- SUSPICIOUS_RECIPS(1.50)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com,gmx.de];
- MIME_TRACE(0.00)[0:+]; FUZZY_RATELIMITED(0.00)[rspamd.com];
- TO_DN_SOME(0.00)[]; RCPT_COUNT_TWELVE(0.00)[43];
- TAGGED_RCPT(0.00)[]; MID_RHS_MATCH_FROM(0.00)[];
- R_RATELIMIT(0.00)[to_ip_from(RLxtqcp3yg5i7i9mi6syp13ijk)];
- FROM_HAS_DN(0.00)[];
- FREEMAIL_CC(0.00)[lists.freedesktop.org,amd.com,kernel.org,gmail.com,redhat.com,collabora.com,chromium.org,gmx.de,linux.intel.com,vger.kernel.org,intel.com,ffwll.ch,ursulin.net,lists.linux.dev];
- RCVD_TLS_ALL(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
- RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:url]
-X-Spam-Level: 
-X-Spam-Flag: NO
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-gt-next
+Message-ID: <aWnzOx78S4Vh38QE@jlahtine-mobl>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -173,82 +76,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi
+Hi Dave & Sima,
 
-Am 16.01.26 um 04:59 schrieb Zack Rusin:
-> On Thu, Jan 15, 2026 at 6:02 AM Thomas Zimmermann <tzimmermann@suse.de> wrote:
->> That's really not going to work. For example, in the current series, you
->> invoke devm_aperture_remove_conflicting_pci_devices_done() after
->> drm_mode_reset(), drm_dev_register() and drm_client_setup().
-> That's perfectly fine,
-> devm_aperture_remove_conflicting_pci_devices_done is removing the
-> reload behavior not doing anything.
->
-> This series, essentially, just adds a "defer" statement to
-> aperture_remove_conflicting_pci_devices that says
->
-> "reload sysfb if this driver unloads".
->
-> devm_aperture_remove_conflicting_pci_devices_done just cancels that defer.
+Here goes the drm-intel-gt-next PR towards v6.20.
 
-Exactly. And if that reload happens after the hardware state has been 
-changed, the result is undefined.
+Mainly a GuC recommended version update for DG2/MTL and a NULL deref fix
+in execbuf. Rest is smaller fixes.
 
->
-> You could ask why have
-> devm_aperture_remove_conflicting_pci_devices_done at all then and it's
-> because I didn't want to change the default behavior of anything.
->
-> There are three cases:
-> 1) Driver fails to load before
-> aperture_remove_conflicting_pci_devices, in which case sysfb is still
-> active and there's no problem,
-> 2) Driver fails to load after aperture_remove_conflicting_pci_devices,
-> in which case sysfb is gone and the screen is blank
-> 3) Driver is unloaded after the probe succeeded. igt tests this too.
->
-> Without devm_aperture_remove_conflicting_pci_devices_done we'd try to
-> reload sysfb in #3, which, in general makes sense to me and I'd
-> probably remove it in my drivers, but there might be people or tests
-> (again, igt does it and we don't need to flip-flop between sysfb and
-> the driver there) that depend on specifically that behavior of not
-> having anything driving fb so I didn't want to change it.
->
-> So with this series the worst case scenario is that the driver that
-> failed after aperture_remove_conflicting_pci_devices changed the
-> hardware state so much that sysfb can't recover and the fb is blank.
-> So it was blank before and this series can't fix it because the driver
-> in its cleanup routine will need to do more unwinding for sysfb to
-> reload (i.e. we'd need an extra patch to unwind the driver state).
+Regards, Joonas
 
-The current recovery/reload is not reliable in any case. A number of 
-high-profile devs have also said that it doesn't work with their driver. 
-The same is true for ast. So the current approach is not going to happen.
+***
 
-> There also might be the case of some crazy behavior, e.g. pci bar
-> resize in the driver makes the vga hardware crash or something, in
-> which case, yea, we should definitely skip this patch, at least until
-> those drivers properly cleanup on exit.
+drm-intel-gt-next-2026-01-16:
 
-There's nothing crazy here. It's standard probing code.
+Driver Changes:
 
-If you want to to move forward, my suggestion is to look at the proposal 
-with the aperture_funcs callbacks that control sysfb device access. And 
-from there, build a full prototype with one or two drivers.
+- Bump recommended GuC version for DG2 and MTL
+- Fix for syzkaller found NULL deref in execbuf (Krzyssztof, Gangmin)
 
-Best regards
-Thomas
+- Use designated initializers in debugfs code (Sebastian)
+- Selftest and static checker fixes (Ard, Sk)
+The following changes since commit 3bcf7894a93e18bff802088a368c13d86a5987a0:
 
+  drm/i915/gt: Use standard API for seqcount read in TLB invalidation (2025-10-31 10:58:05 +0100)
 
->
-> z
+are available in the Git repository at:
 
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-gt-next-2026-01-16
 
+for you to fetch changes up to 9512d9fc2a7a4fee14854fbb3af89a8bf599f361:
 
+  drm/i915/guc: Recommend GuC v70.53.0 for DG2, MTL (2026-01-12 14:21:10 -0800)
+
+----------------------------------------------------------------
+Driver Changes:
+
+- Bump recommended GuC version for DG2 and MTL
+- Fix for syzkaller found NULL deref in execbuf (Krzyssztof, Gangmin)
+
+- Use designated initializers in debugfs code (Sebastian)
+- Selftest and static checker fixes (Ard, Sk)
+
+----------------------------------------------------------------
+Ard Biesheuvel (1):
+      drm/i915: Fix format string truncation warning
+
+Julia Filipchuk (1):
+      drm/i915/guc: Recommend GuC v70.53.0 for DG2, MTL
+
+Krzysztof Niemiec (1):
+      drm/i915/gem: Zero-initialize the eb.vma array in i915_gem_do_execbuffer
+
+Sebastian Brzezinka (1):
+      drm/i915/gt: use designated initializers for intel_gt_debugfs_file
+
+Sk Anirban (1):
+      drm/i915/selftest: Add throttle reason diagnostics to RPS selftests
+
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     | 37 ++++++++++------------
+ drivers/gpu/drm/i915/gt/intel_gt_debugfs.c         |  4 +--
+ drivers/gpu/drm/i915/gt/intel_gt_engines_debugfs.c |  2 +-
+ drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c      | 15 +++++----
+ drivers/gpu/drm/i915/gt/intel_sseu_debugfs.c       |  4 +--
+ drivers/gpu/drm/i915/gt/selftest_rps.c             | 34 +++++++++++++++++---
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_debugfs.c  |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_debugfs.c     | 13 ++++----
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log_debugfs.c |  8 ++---
+ drivers/gpu/drm/i915/gt/uc/intel_huc_debugfs.c     |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.c      |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c           |  4 +--
+ drivers/gpu/drm/i915/intel_memory_region.h         |  2 +-
+ 13 files changed, 76 insertions(+), 53 deletions(-)
