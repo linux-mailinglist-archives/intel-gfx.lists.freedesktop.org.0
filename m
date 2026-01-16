@@ -2,61 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69FA3D30869
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jan 2026 12:40:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39067D309F5
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jan 2026 12:46:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F291510E862;
-	Fri, 16 Jan 2026 11:39:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0385310E875;
+	Fri, 16 Jan 2026 11:46:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mJ/3fUKy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OkyViYxb";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 130EB10E862;
- Fri, 16 Jan 2026 11:39:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B49610E86F;
+ Fri, 16 Jan 2026 11:46:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768563600; x=1800099600;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=lf8yPHo+2XxI7kjmm9rP3r71ZkhhAPKmC6o0bVs4PdA=;
- b=mJ/3fUKy1HDliGVzqV+eu1YorPoQE9wAil785kk8iUUm53rTKQcIouiw
- 9mCkv3kkdU3f6tko2fpEy5C09Gb0hkzTSiOgrGn2FCe49JVFOZzFx97Ey
- Hnp/gdPEKDZn/V8eAekC34M9397J2AZ8iwNzsTpR3zBHzZFPGKZ4S8Vnz
- CfVLbPngOT2XJysZp4pzHv//Cf3zpfliU/O6MbJmyFYfNnuS3yXGG3Mwr
- wudoSi97oeE3H6AQCCXu9ct/PS9woIA/t3IpO0JnawM4TCqogYN1eymOP
- jP6r0XDJGuQKfk31viF7OBmTt/13Ws4tzSUgIJMq8jV1t5nvg8HBKOYFV w==;
-X-CSE-ConnectionGUID: +z4bMbq/RQKctt3n5MQeCg==
-X-CSE-MsgGUID: SI5Q7wO6Q46MO8ndKzwZAA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11672"; a="92540303"
-X-IronPort-AV: E=Sophos;i="6.21,230,1763452800"; d="scan'208";a="92540303"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2026 03:39:59 -0800
-X-CSE-ConnectionGUID: BmnevpQhQca2B/C16KO67w==
-X-CSE-MsgGUID: gECwUeb9RieS1ViMUH//oQ==
+ t=1768564001; x=1800100001;
+ h=message-id:date:mime-version:from:to:cc:subject:
+ content-transfer-encoding;
+ bh=GBKaodGhra2VQepQQ7Xg+rEauVjQTk0O5E68nqVwRlE=;
+ b=OkyViYxbhMk1h7mVaP9J/eSC5ba6tv52gXJJ/r9N3Gm6g9HTmSx5Nf2b
+ QNVfyI4yHaCE+oCCWWHpADObhNX2F7ECT8k23pku/xl38WWgGY8ffB8CD
+ 6qHTWHkEg1/6KTLWLklrvN6zXffAwNYxLzeZs+MwXIrQ/naTB16a4MpBq
+ A/+LSVfHhkhFX5/w6IKVVcgNmwznpA507Z0YdwtyL8hk0MJhQ6uFvuYQR
+ rmQZlrtjbUZbyvxUD5DEDoflEMYxpbp+/Nm/KjFzFhWWsBEZdy82WAxXy
+ aD/WOAKutZtfHafRnblOkO2zLGm5coTxRxfIsOGW/w+Lgt0S/Y1ZeSfwT Q==;
+X-CSE-ConnectionGUID: 7e6I+glqTC6go6bX+B15wQ==
+X-CSE-MsgGUID: f/Dpu633Sdil7CztbYhyBA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11672"; a="69969256"
+X-IronPort-AV: E=Sophos;i="6.21,230,1763452800"; d="scan'208";a="69969256"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2026 03:46:40 -0800
+X-CSE-ConnectionGUID: xp0JfnKuS/m//zmB1C5ZfQ==
+X-CSE-MsgGUID: TW3srg4BQj2ACbjZQLvFVw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,230,1763452800"; d="scan'208";a="205276886"
-Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.205])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2026 03:39:55 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Juasheem Sultan <jdsultan@google.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <seanpaul@google.com>,
- Manasi Navare <navaremanasi@google.com>, Drew Davenport
- <ddavenport@google.com>, Juasheem Sultan <jdsultan@google.com>
-Subject: Re: [RFC PATCH 00/10] Enable seamless boot (fastboot) for PTL
-In-Reply-To: <20260115-upstream-prep-v1-0-001d5b38fc11@google.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260115-upstream-prep-v1-0-001d5b38fc11@google.com>
-Date: Fri, 16 Jan 2026 13:39:52 +0200
-Message-ID: <2015894f4f7351c6a2ac77f32348877ed110d95c@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,230,1763452800"; d="scan'208";a="205642159"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO [10.245.245.179])
+ ([10.245.245.179])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2026 03:46:37 -0800
+Message-ID: <ce0acfe2-9c1a-42b7-8782-f1e7f34b8544@linux.intel.com>
+Date: Fri, 16 Jan 2026 12:46:34 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
+Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Oded Gabbay <ogabbay@kernel.org>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: [PULL] drm-misc-fixes
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,128 +77,140 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 15 Jan 2026, Juasheem Sultan <jdsultan@google.com> wrote:
-> This RFC patch series proposes an implementation of seamless boot (fastboot)
-> support for Panther Lake (PTL) platforms within the Xe driver, mirroring
-> functionality already present in i915. The primary focus is on devices using
-> MSO (Multi-Segment Operation) panels and EDP panels.
->
-> The goal of this series is to achieve a flicker-free transition from the
-> bootloader (BIOS/UEFI) to the kernel driver by strictly adhering to the
-> hardware state established by the firmware.
+Hi Dave, Simona,
 
-The goal is something we obviously share.
+Nature made it a bit hard to send a pull request, but ready now!
+Nothing that stood out to me, all just minor fixes.
 
-> Key areas addressed in this revision:
-> 1.  **Boot State Preservation**: Where necessary, make amendments to initial
-> 	hardware readouts and ensure that the framebuffer state as established
-> 	by firmware is correctly passed into the driver as a memory object.
-> 2.  **Atomic State Handoff**: Adjusting the atomic commit path to prevent
->     unnecessary pipe disables or power well toggles when inheriting a valid
->     boot state.
-> 3.  **Passive Probing**: Introducing a "passive" initialization path that
->     builds the DRM software state without triggering hardware resets.
->
-> This is an initial implementation subject to discussion. 
+Kind regards,
+~Maarten Lankhorst
 
-- There's just way, *way* too much code duplication. I can't even make
-  myself read through the entire thing because it's all familiar
-  existing stuff, just subtly different. I can't stress this
-  enough. There's so much duplication that I won't take on telling you
-  what needs to be done. It's on you to figure out how to deduplicate.
+drm-misc-fixes-2026-01-16:
+drm-misc-fixes for v6.19-rc6:
 
-- There's way too much magic values and hacking for a specific
-  configuration.
+vmwgfx:
+- Fix hw regression from refactoring cursor handling on v10 'hardware'
+- Fix warnings in destructor by merging the 2 release functions
+- kernel doc fix
+- error handling in vmw_compat_shader_add()
 
-- There's way too much code being added in xe_display.c when the goal is
-  to unify and deduplicate everything under i915/display. All of this
-  needs to happen in the i915/display directory, shared between i915 and
-  xe drivers.
+rockchip:
+- fix vop2 polling
+- fix regression waiting for cfgdone without config change
+- fix warning when enabling encoder
 
-- There's way too many random unrelated unexplained things going on
-  here. Things like unused struct members being added, commented out
-  code being added, stuff being first added and then removed later in
-  the series.
+core:
+- take gem lock when preallocating in gpuvm.
+- add single byte read fallback to dp for broken usb-c adapters
+- remove duplicate drm_sysfb declarations
 
-- There are way too many things being done in individual patches. The
-  "key changes include" lists in commit messages are a pretty big
-  clue. Each patch should do one thing, and one thing only. At times it
-  feels like the changes in single patches aren't even related to each
-  other.
+gud:
+- Fix oops on usb disconnect
 
-All in all, I get the distinct feeling a lot of this is LLM generated,
-which is something you'd do well to disclose if it's indeed the
-case. Please see [1] for current discussion on the matter.
+Simple panel:
+- Re-add fallback when connector is not set to fix regressions
+- Set correct type in DataImage SCF0700C48GGU18
 
-Again, the goal is something we share, but I honestly fear taking this
-series as the starting point for that will be counter-productive.
+nouveau:
+- locking fixes for cursor handling.
+The following changes since commit d5bdf88d1f9d1e4808177f03d89de3d0ba6c6e84:
 
-I would love to see small, focused patch series tackling existing issues
-one by one, instead of a giant hack attempting to fix everything at
-once.
+  drm/fb-helper: Fix vblank timeout during suspend/reset (2026-01-06 09:05:06 +0100)
 
+are available in the Git repository at:
 
-BR,
-Jani.
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2026-01-16
 
+for you to fetch changes up to b91a565ed14fcf900b4d95e86882b4b763860986:
 
-[1] https://lore.kernel.org/r/20260113000612.1133427-1-dave.hansen@linux.intel.com
+  drm/sysfb: Remove duplicate declarations (2026-01-14 11:03:56 +0100)
 
+----------------------------------------------------------------
+drm-misc-fixes for v6.19-rc6:
 
->
-> Change-Id: I5cd3bdd4f6f687f007e91f6d0afbfeecfc06762b
-> Signed-off-by: Juasheem Sultan <jdsultan@google.com>
-> ---
-> Juasheem Sultan (10):
->       drm/i915/display: Implement passive initialization for splash screen preservation
->       drm/xe/display: Implement seamless boot state reconstruction for PTL
->       drm/i915/display: Implement aggressive boot state preservation for PTL
->       drm/xe/display: Fix initial plane reconstruction and stolen memory handling
->       drm/i915/display: Enable early PLL readout and robustify modeset setup
->       drm/i915/display: Fix vblank timestamps and update logic for fastboot
->       drm/i915/display: Implement seamless fastboot for MSO panels on PTL
->       drm/i915/display: Robustify fastboot and power init for seamless boot
->       drm/i915/display: Fix initial plane config readout and MSO stride for PTL
->       drm/i915/display: Refactor initial plane readout and harden boot handover
->
->  drivers/gpu/drm/i915/display/intel_bios.c          |  40 +-
->  drivers/gpu/drm/i915/display/intel_cdclk.c         |  36 -
->  drivers/gpu/drm/i915/display/intel_cdclk.h         |  41 +-
->  drivers/gpu/drm/i915/display/intel_connector.c     |   9 +
->  drivers/gpu/drm/i915/display/intel_connector.h     |   1 +
->  drivers/gpu/drm/i915/display/intel_crtc.c          |  62 +-
->  drivers/gpu/drm/i915/display/intel_ddi.c           | 205 +++++-
->  drivers/gpu/drm/i915/display/intel_ddi.h           |   2 +
->  drivers/gpu/drm/i915/display/intel_display.c       | 814 +++++++++++++++++++--
->  drivers/gpu/drm/i915/display/intel_display.h       |   6 +
->  drivers/gpu/drm/i915/display/intel_display_core.h  |   2 +
->  .../gpu/drm/i915/display/intel_display_driver.c    | 329 ++++++++-
->  drivers/gpu/drm/i915/display/intel_display_power.c |  16 +-
->  drivers/gpu/drm/i915/display/intel_display_types.h |   8 +
->  drivers/gpu/drm/i915/display/intel_dp.c            | 372 ++++++++--
->  drivers/gpu/drm/i915/display/intel_dp.h            |   5 +
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c      |  16 +-
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.h      |   1 +
->  drivers/gpu/drm/i915/display/intel_hdmi.c          |  39 +
->  drivers/gpu/drm/i915/display/intel_hdmi.h          |   2 +
->  drivers/gpu/drm/i915/display/intel_modeset_setup.c |   7 +
->  .../gpu/drm/i915/display/intel_modeset_verify.c    |  14 +-
->  drivers/gpu/drm/i915/display/intel_panel.c         |  41 +-
->  drivers/gpu/drm/i915/display/intel_panel.h         |   3 +
->  drivers/gpu/drm/i915/display/intel_plane_initial.c |  53 ++
->  drivers/gpu/drm/i915/display/skl_universal_plane.c |  32 +-
->  drivers/gpu/drm/xe/display/xe_display.c            | 309 +++++++-
->  drivers/gpu/drm/xe/display/xe_display.h            |   2 +
->  drivers/gpu/drm/xe/display/xe_plane_initial.c      |  28 +-
->  drivers/gpu/drm/xe/xe_device.c                     |   2 +-
->  drivers/gpu/drm/xe/xe_ggtt.h                       |   3 +
->  drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c             |   2 +
->  32 files changed, 2302 insertions(+), 200 deletions(-)
-> ---
-> base-commit: 812e4b8966d421afd4df8f794bf15f1a1a3ec7b6
-> change-id: 20260115-upstream-prep-b29156970a75
->
-> Best regards,
+vmwgfx:
+- Fix hw regression from refactoring cursor handling on v10 'hardware'
+- Fix warnings in destructor by merging the 2 release functions
+- kernel doc fix
+- error handling in vmw_compat_shader_add()
 
--- 
-Jani Nikula, Intel
+rockchip:
+- fix vop2 polling
+- fix regression waiting for cfgdone without config change
+- fix warning when enabling encoder
+
+core:
+- take gem lock when preallocating in gpuvm.
+- add single byte read fallback to dp for broken usb-c adapters
+- remove duplicate drm_sysfb declarations
+
+gud:
+- Fix oops on usb disconnect
+
+Simple panel:
+- Re-add fallback when connector is not set to fix regressions
+- Set correct type in DataImage SCF0700C48GGU18
+
+nouveau:
+- locking fixes for cursor handling.
+
+----------------------------------------------------------------
+Alice Ryhl (1):
+      drm/gpuvm: take GEM lock inside drm_gpuvm_bo_obtain_prealloc()
+
+Andy Yan (2):
+      drm/rockchip: vop2: Add delay between poll registers
+      drm/rockchip: vop2: Only wait for changed layer cfg done when there is pending cfgdone bits
+
+Bartlomiej Kubik (1):
+      drm/vmwgfx: Fix kernel-doc warnings for vmwgfx_fence
+
+Chia-Lin Kao (AceLan) (1):
+      drm/dp: Add byte-by-byte fallback for broken USB-C adapters
+
+Cristian Ciocaltea (1):
+      drm/rockchip: dw_hdmi_qp: Switch to gpiod_set_value_cansleep()
+
+Haoxiang Li (1):
+      drm/vmwgfx: Fix an error return check in vmw_compat_shader_add()
+
+Ian Forbes (2):
+      drm/vmwgfx: Fix KMS with 3D on HW version 10
+      drm/vmwgfx: Merge vmw_bo_release and vmw_bo_free functions
+
+Ludovic Desroches (1):
+      drm/panel: simple: restore connector_type fallback
+
+Lyude Paul (2):
+      drm/nouveau/disp/nv50-: Set lock_core in curs507a_prepare
+      drm/nouveau/kms/nv50-: Assert we hold nv50_disp->lock in nv50_head_flush_*
+
+Marek Vasut (1):
+      drm/panel-simple: fix connector type for DataImage SCF0700C48GGU18 panel
+
+Sebastian Reichel (1):
+      drm/bridge: dw-hdmi-qp: Fix spurious IRQ on resume
+
+Shenghao Yang (1):
+      drm/gud: fix NULL fb and crtc dereferences on USB disconnect
+
+Thomas Zimmermann (1):
+      drm/sysfb: Remove duplicate declarations
+
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c   |   9 ++
+ drivers/gpu/drm/drm_gpuvm.c                    |  75 +++++++++++------
+ drivers/gpu/drm/gud/gud_pipe.c                 |  20 ++---
+ drivers/gpu/drm/nouveau/dispnv50/curs507a.c    |   1 +
+ drivers/gpu/drm/nouveau/dispnv50/head.c        |   5 ++
+ drivers/gpu/drm/panel/panel-simple.c           | 110 ++++++++++++-------------
+ drivers/gpu/drm/panthor/panthor_mmu.c          |  10 ---
+ drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c |  14 +++-
+ drivers/gpu/drm/rockchip/rockchip_vop2_reg.c   |  17 +++-
+ drivers/gpu/drm/sysfb/drm_sysfb_helper.h       |   9 --
+ drivers/gpu/drm/vmwgfx/vmwgfx_bo.c             |  22 ++---
+ drivers/gpu/drm/vmwgfx/vmwgfx_fence.c          |  10 +--
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.c            |  14 ++--
+ drivers/gpu/drm/vmwgfx/vmwgfx_shader.c         |   4 +-
+ include/drm/bridge/dw_hdmi_qp.h                |   1 +
+ include/drm/display/drm_dp_helper.h            |  57 ++++++++-----
+ 16 files changed, 216 insertions(+), 162 deletions(-)
