@@ -2,29 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ECE4D30B77
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jan 2026 12:54:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08488D30E2B
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jan 2026 13:10:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CC5610E86D;
-	Fri, 16 Jan 2026 11:54:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C8A710E227;
+	Fri, 16 Jan 2026 12:10:14 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n5FQ7IHv";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D6F310E1EF;
- Fri, 16 Jan 2026 11:54:37 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4562265779372017712=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6EA810E205;
+ Fri, 16 Jan 2026 12:10:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1768565412; x=1800101412;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=WVF8gTCY/aSD5XfYkv247p2BgMwJu5VH67I/46AQqJM=;
+ b=n5FQ7IHvYr/5ePjpDzAHfhK0rXnmRS49ocJN+NbDGj04o3NKBzmeidte
+ XJ/g1HuhJyN8bxWKUKdqeCTVTq7onjV5tnJEw08WK9sZF8cSmsoN6Ussi
+ 17E6X4ACPdGfvFAWqmtpLxF9yeWANxFg+5yKLdr/J6BI8XkKynLOSzoPL
+ V5MZvG6Y0+yPpXb/HaqWX6EQP79VsHPqk0twa8KYxMTY9OwMOFp0ras8e
+ U2408ee6Adif2BgsDYoY0nWbzpaL0WP3HSDffcmt7iG7RIReQvo4Kagch
+ 9MlfEGhgyUNeBW+RAPgFb+vy74pREQBUr99/2oA+uim8lKzy698m89rE5 A==;
+X-CSE-ConnectionGUID: rDxrcCsYTO2mLCnBUw3s1Q==
+X-CSE-MsgGUID: Uq8JKfs8TGGTn4B5vyiKcg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11672"; a="73725084"
+X-IronPort-AV: E=Sophos;i="6.21,231,1763452800"; d="scan'208";a="73725084"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2026 04:10:12 -0800
+X-CSE-ConnectionGUID: TNXod8hUTPmCKQtZPzLdYQ==
+X-CSE-MsgGUID: ZTNK6hgFThy1dzsUEIRuoA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,231,1763452800"; d="scan'208";a="204438306"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.210])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2026 04:10:10 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+ Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>,
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Subject: Re: [PATCH i-g-t v4] tests/intel/gem_lmem_swapping: Avoid false
+ failures from oom-killer
+Date: Fri, 16 Jan 2026 13:10:07 +0100
+Message-ID: <9213181.VV5PYv0bhD@jkrzyszt-mobl2.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20260115184334.1025817-2-janusz.krzysztofik@linux.intel.com>
+References: <20260115184334.1025817-2-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_Unload_linux/kernel=2Eh_?=
- =?utf-8?q?=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Yury Norov" <yury.norov@gmail.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 16 Jan 2026 11:54:37 -0000
-Message-ID: <176856447731.161648.727944596883869057@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260116042510.241009-1-ynorov@nvidia.com>
-In-Reply-To: <20260116042510.241009-1-ynorov@nvidia.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,172 +72,194 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4562265779372017712==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thursday, 15 January 2026 19:43:03 CET Janusz Krzysztofik wrote:
+> The smem-oom subtest can expectedly result in oom-killer being triggered,
+> which then dumps a call trace from a process that triggered it.  If that
+> happens to be a process that executes drm or i915 functions then the call
+> trace dump contains lines recognized by igt_runner running in piglit mode
+> as potential warnings.  If severity of the call trace dump messages is
+> NOTICE or higher, which isn't unlikely, then a dmesg-warn result is
+> reported despite successful completion of the subtest.
+> 
+> Fortunately, severity of those call trace dump messages depends on kernel
+> default log level which can be controlled from user space over sysctl.
+> 
+> To avoid false failure reports, relax kernel default log level to INFO so
+> those log lines are ignored by igt_runner in piglit mode at an expense of
+> call traces from real issues potentially detected by the subtest not
+> contributing to the igt_runner reported result.  Since those call traces
+> are still available to developers, only submitted with reduced severity,
+> that shouldn't hurt as long as the igt_runner still abandons further
+> execution and reports an abort result on a kernel taint.
+> 
+> v4: In the exit handler, restore the default log level with a simple
+>     write() from a formerly prepared buffer, and abort verbosely if that
+>     doesn't succeed (Kamil).
+> v3: Move cleanup to an exit handler in case we are killed (Kamil).
+> v2: Move default log level setup inside subtest smem-oom (Kamil),
+>   - move cleanup there as well.
+> 
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5493
+> Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> ---
+>  tests/intel/gem_lmem_swapping.c | 91 ++++++++++++++++++++++++++++++++-
+>  1 file changed, 89 insertions(+), 2 deletions(-)
+> 
+> diff --git a/tests/intel/gem_lmem_swapping.c b/tests/intel/
+gem_lmem_swapping.c
+> index adae26716c..1b07124aff 100644
+> --- a/tests/intel/gem_lmem_swapping.c
+> +++ b/tests/intel/gem_lmem_swapping.c
+> @@ -9,6 +9,7 @@
+>  #include "i915/intel_memory_region.h"
+>  #include "igt.h"
+>  #include "igt_kmod.h"
+> +#include "runnercomms.h"
+>  #include <unistd.h>
+>  #include <stdlib.h>
+>  #include <stdint.h>
+> @@ -661,6 +662,38 @@ static void gem_leak(int fd, uint64_t alloc)
+>  	gem_madvise(fd, handle, I915_MADV_DONTNEED);
+>  }
+>  
+> +static int printk = -1;
+> +static char log_levels[4];
+> +
+> +static void printk_exit_handler(int sig)
+> +{
+> +	char *message = NULL;
+> +	int n;
+> +
+> +	if (printk < 0)
+> +		return;
+> +
+> +	n = strlen(log_levels);
+> +	if (!n) {
+> +		message = strdup("no defaults saved, unable to restore /
+proc/sys/kernel/printk\n");
+> +	} else if (write(printk, log_levels, n) != n) {
+> +		n = errno;
+> +		if (asprintf(&message,
+> +			     "restoring /proc/sys/kernel/printk defaults 
+failed, errno: %d\n",
+> +			     n) < 0)
+> +			message = NULL;
 
-== Series Details ==
+Intended to prevent from processing an undefined pointer, that's incorrect, 
+because that effectively disables the abort path despite the unsuccessful 
+restore of log levels.  Now I think I should rather reserve a local 80-char 
+buffer on stack and sprintf the message to that buffer.  Let me submit v5.
 
-Series: Unload linux/kernel.h (rev6)
-URL   : https://patchwork.freedesktop.org/series/158239/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_17832 -> Patchwork_158239v6
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/index.html
-
-Participating hosts (43 -> 41)
-------------------------------
-
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_158239v6 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-5:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17832/bat-arls-5/igt@i915_selftest@live@workarounds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/bat-arls-5/igt@i915_selftest@live@workarounds.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [DMESG-FAIL][3] ([i915#12061]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17832/bat-mtlp-8/igt@i915_selftest@live.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/bat-mtlp-8/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-14:         [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17832/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-    - bat-mtlp-9:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17832/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-tgl-1115g4:      [FAIL][9] ([i915#14867]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17832/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#14867]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14867
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_17832 -> Patchwork_158239v6
-
-  CI-20190529: 20190529
-  CI_DRM_17832: 278a33d3977124821c19b51fb88d9d651b4fe40a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8704: 8704
-  Patchwork_158239v6: 278a33d3977124821c19b51fb88d9d651b4fe40a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/index.html
-
---===============4562265779372017712==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thanks,
+Janusz
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+> +	}
+> +	close(printk);
+> +
+> +	if (message) {
+> +		log_to_runner_sig_safe(message, strlen(message));
+> +		free(message);
+> +		abort();
+> +	}
+> +
+> +	printk = -1;
+> +}
+> +
+>  static int *lmem_done;
+>  
+>  static void smem_oom_exit_handler(int sig)
+> @@ -861,8 +894,62 @@ int igt_main_args("", long_options, help_str, 
+opt_handler, NULL)
+>  	}
+>  
+>  	igt_describe("Exercise local memory swapping during exhausting 
+system memory");
+> -	dynamic_lmem_subtest(region, regions, "smem-oom")
+> -		test_smem_oom(i915, ctx, region);
+> +	igt_subtest_with_dynamic("smem-oom") {
+> +		int console_log_level, default_log_level;
+> +		unsigned int fd, i = 0;
+> +		FILE *stream = NULL;
+> +
+> +		/*
+> +		 * This subtest can result in oom-killer being triggered, 
+which
+> +		 * then dumps a call trace from a process that triggered 
+it.
+> +		 * If that happens to be a process that executes drm or 
+i915
+> +		 * functions then the call trace dump contains lines 
+recognized
+> +		 * by igt_runner as warnings and a dmesg-warn result is
+> +		 * reported.  To avoid false failure reports, relax kernel
+> +		 * default log level to INFO for those lines to be ignored 
+by
+> +		 * igt_runner in piglit mode, at an expense of call traces 
+from
+> +		 * potential real issues not contributing to the 
+igt_runner
+> +		 * reported result.  Since those call traces are still 
+available
+> +		 * to developers, only displayed with relaxed severity, 
+that
+> +		 * shouldn't hurt as long as igt_runner still abandons 
+further
+> +		 * execution and reports an abort result on a kernel 
+taint.
+> +		 */
+> +		fd = open("/proc/sys/kernel/printk", O_RDWR);
+> +		if (!igt_debug_on(fd < 0))
+> +			stream = fdopen(fd, "r+");
+> +
+> +		if (igt_debug_on(!stream))
+> +			close(fd);
+> +		else
+> +			i = fscanf(stream, "%d %d", &console_log_level, 
+&default_log_level);
+> +
+> +		if (igt_debug_on(i != 2) || default_log_level >= 6) {
+> +			i = 0;
+> +			fclose(stream);
+> +		} else {
+> +			i = snprintf(log_levels, sizeof(log_levels), "%d 
+%d",
+> +				     console_log_level, 
+default_log_level);
+> +		}
+> +
+> +		if (!igt_debug_on(i != 3))
+> +			printk = dup(fd);
+> +
+> +		if (!igt_debug_on(printk < 0)) {
+> +			igt_install_exit_handler(printk_exit_handler);
+> +
+> +			rewind(stream);
+> +			igt_debug_on(fprintf(stream, "%d 6", 
+console_log_level) != 6);
+> +		}
+> +
+> +		for (i = 0; i < regions->num_regions; i++) {
+> +			region = &regions->regions[i];
+> +			if (region->region.memory_class == 
+I915_MEMORY_CLASS_DEVICE)
+> +				igt_dynamic_f("lmem%u", region-
+>region.memory_instance)
+> +					test_smem_oom(i915, ctx, 
+region);
+> +		}
+> +
+> +		printk_exit_handler(0);
+> +	}
+>  
+>  	igt_fixture() {
+>  		intel_allocator_multiprocess_stop();
+> 
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Unload linux/kernel.h (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158239/">https://patchwork.freedesktop.org/series/158239/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/index.html</a></td></tr>
-
-</table>
 
 
-    <h1>CI Bug Log - changes from CI_DRM_17832 -&gt; Patchwork_158239v6</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/index.html</p>
-<h2>Participating hosts (43 -&gt; 41)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_158239v6 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17832/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17832/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17832/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17832/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17832/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14867">i915#14867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158239v6/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17832 -&gt; Patchwork_158239v6</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17832: 278a33d3977124821c19b51fb88d9d651b4fe40a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8704: 8704<br />
-  Patchwork_158239v6: 278a33d3977124821c19b51fb88d9d651b4fe40a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============4562265779372017712==--
