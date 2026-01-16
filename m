@@ -2,62 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D978D2F0A0
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jan 2026 10:50:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3085CD2FAD2
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jan 2026 11:39:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C189910E842;
-	Fri, 16 Jan 2026 09:50:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A7EE10E859;
+	Fri, 16 Jan 2026 10:39:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xl9fu/wE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nzNXiI7t";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1738F10E840;
- Fri, 16 Jan 2026 09:50:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 846C210E859;
+ Fri, 16 Jan 2026 10:39:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768557055; x=1800093055;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=rGnuuiGHTCK33n12B8lS8ws8dXFlcVUBexrpfI0qXH0=;
- b=Xl9fu/wEIoO1aKVADaMDKSC4u565sicDH8U8BVHtYY7HIkyXkXw8OpMN
- 8VfV+09p5u+mKjNJaQnfZpm86h5EdFSGuOh0U1ne86MkTNSAgYnTKUHAN
- 9Ldg94lUIQmmiLvtGbp8QrWFVXws9/WVSdKq8gxO8pL96jRXvvz64dDHd
- OtRBpRfJtc10+hqRj0NuaPIHl7AWuxEHfDjAH6gNop2QGNlqMbEMxKlB0
- UAsf7N2KJZYzsxGooo7QPrAGjfRy7lO2JCYIZwiwmhrCyeag6xFYkJwGZ
- Vf+GEjdWUa5TH2pKwkGv8kcb6MI/h5+HfPK/515PfCANYCRLQJNtcl5Fv A==;
-X-CSE-ConnectionGUID: k7cif0KASyCXo7eiNpEpNQ==
-X-CSE-MsgGUID: ZYyRCbQaTTKMsoqXx4jw7w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11672"; a="80987496"
-X-IronPort-AV: E=Sophos;i="6.21,230,1763452800"; d="scan'208";a="80987496"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2026 01:50:54 -0800
-X-CSE-ConnectionGUID: JX+nYLThTNGpaL+oGubYAA==
-X-CSE-MsgGUID: lnj2SeAwSX6+MEk3w6U9aA==
+ t=1768559951; x=1800095951;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=6vNrFyt9pKsyjaHJvFfeVXE3gFVxD5FmN8r8HpRCAL4=;
+ b=nzNXiI7tOb0u8RkwNX+OotGM1Gwj53vp/3DxDja8F24Ud0lFVBGm3hGZ
+ N/Z/yewAH93PZe9tMJz3O1/iBIYd6EBgLrF+Dn/2Ou4EjGpdLbO0/WqDs
+ At5J8bRJGqbkeLpdlAup1WI8KrxKJJGfTbTxM4gzov960GGb2FZZZhFkA
+ BgOYu2g6a/kFxn4ER8RMLpnTG9ikqCT8U2GSXvU/VsHerJL52etSmw7Gj
+ yG2qn8k9fUAZuScRJf/Mqa7nCUnWsdQbgV5Di0f5mgOi75gkeOMBYlA9v
+ Li5k+kjieOKqg0yycC5yERUjrg+QmM87MotD/Jc9VT9yHnE4Air2kWoLO A==;
+X-CSE-ConnectionGUID: MWY+X9u7R76eRepmE4z0iQ==
+X-CSE-MsgGUID: F6a2NQv3T4a7O6LA17Pqrg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11672"; a="69077072"
+X-IronPort-AV: E=Sophos;i="6.21,230,1763452800"; d="scan'208";a="69077072"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2026 02:39:11 -0800
+X-CSE-ConnectionGUID: +TNIa+a4RweZweo1j82YLw==
+X-CSE-MsgGUID: qENavIesRUuTn8PEvbP5wA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,230,1763452800"; d="scan'208";a="235893561"
-Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.205])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2026 01:50:50 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Kaushlendra Kumar <kaushlendra.kumar@intel.com>, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
- simona@ffwll.ch
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Kaushlendra Kumar
- <kaushlendra.kumar@intel.com>
-Subject: Re: [PATCH] drm/i915/crtc: Guard vblank wait when CRTC lookup fails
-In-Reply-To: <20260116062203.1650454-1-kaushlendra.kumar@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260116062203.1650454-1-kaushlendra.kumar@intel.com>
-Date: Fri, 16 Jan 2026 11:50:46 +0200
-Message-ID: <6f7ad8bd5d41e50176d98cfb658aaa7b77f63cd0@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,230,1763452800"; d="scan'208";a="204420540"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.99])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2026 02:39:05 -0800
+Date: Fri, 16 Jan 2026 12:39:02 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Yury Norov <ynorov@nvidia.com>
+Cc: Steven Rostedt <rostedt@goodmis.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Christophe Leroy <chleroy@kernel.org>,
+ Randy Dunlap <rdunlap@infradead.org>, Ingo Molnar <mingo@kernel.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ David Laight <david.laight@runbox.com>, Petr Pavlu <petr.pavlu@suse.com>,
+ Andi Shyti <andi.shyti@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Daniel Gomez <da.gomez@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Danilo Krummrich <dakr@kernel.org>, Joel Fernandes <joelagnelf@nvidia.com>,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-modules@vger.kernel.org,
+ linux-trace-kernel@vger.kernel.org,
+ "Yury Norov (NVIDIA)" <yury.norov@gmail.com>
+Subject: Re: [PATCH v5 0/6] Unload linux/kernel.h
+Message-ID: <aWoVRlm1GFux-Z-9@smile.fi.intel.com>
+References: <20260116042510.241009-1-ynorov@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260116042510.241009-1-ynorov@nvidia.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,35 +87,15 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 16 Jan 2026, Kaushlendra Kumar <kaushlendra.kumar@intel.com> wrote:
-> intel_crtc_for_pipe() may return NULL in teardown/error paths.
-> Add a NULL check in intel_wait_for_vblank_if_active() to avoid
-> dereferencing a missing CRTC and rare NULL deref panics.
+On Thu, Jan 15, 2026 at 11:25:03PM -0500, Yury Norov wrote:
+> kernel.h hosts declarations that can be placed better. This series
+> decouples kernel.h with some explicit and implicit dependencies; also,
+> moves tracing functionality to a new independent header.
 
-Do you have the backtrace?
-
-BR,
-Jani.
-
->
-> Fixes: 92e9624ad946 ("drm/i915/crtc: un-inline some crtc functions and move to intel_crtc.[ch]")
-> Signed-off-by: Kaushlendra Kumar <kaushlendra.kumar@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_crtc.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-> index 9d2a23c96c61..9eb158737c1c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> @@ -74,7 +74,7 @@ void intel_wait_for_vblank_if_active(struct intel_display *display,
->  {
->  	struct intel_crtc *crtc = intel_crtc_for_pipe(display, pipe);
->  
-> -	if (crtc->active)
-> +	if (crtc && crtc->active)
->  		intel_crtc_wait_for_next_vblank(crtc);
->  }
+Thanks! Which tree should it go through?
 
 -- 
-Jani Nikula, Intel
+With Best Regards,
+Andy Shevchenko
+
+
