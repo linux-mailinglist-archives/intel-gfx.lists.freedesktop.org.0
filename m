@@ -2,61 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BE77D32CF0
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jan 2026 15:45:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D9ADD32EB3
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jan 2026 15:54:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3340210E0A3;
-	Fri, 16 Jan 2026 14:45:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 930C010E22A;
+	Fri, 16 Jan 2026 14:54:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="JHn9hny+";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cIp6n7Xj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13E4F10E0A3;
- Fri, 16 Jan 2026 14:45:39 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id BE0CE41708;
- Fri, 16 Jan 2026 14:45:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2066EC116C6;
- Fri, 16 Jan 2026 14:45:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1768574738;
- bh=dLIP3yuCXQig06JmGi7Dt5CFTqwxB/97u4nRMJ/85o8=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=JHn9hny+KZc4fD/9N3/yGG4Ed/hhHgyo20Xlcfi6MQ0Tz8Px4xYfrMnWeTFClUuk8
- 00EV1D5wpqvfLr0GiQqLHyQcyukMIVymVzBr7dJCpGoIs5JGJ4g4MAMNMBZDsazQuO
- 3bfpoDTbahXMz2Ln32On0kIkEny+5/uDL7Cww21E=
-Date: Fri, 16 Jan 2026 15:45:36 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Yury Norov <ynorov@nvidia.com>
-Cc: Steven Rostedt <rostedt@goodmis.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Masami Hiramatsu <mhiramat@kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Christophe Leroy <chleroy@kernel.org>,
- Randy Dunlap <rdunlap@infradead.org>, Ingo Molnar <mingo@kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- David Laight <david.laight@runbox.com>, Petr Pavlu <petr.pavlu@suse.com>,
- Andi Shyti <andi.shyti@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Daniel Gomez <da.gomez@kernel.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>, Joel Fernandes <joelagnelf@nvidia.com>,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-modules@vger.kernel.org,
- linux-trace-kernel@vger.kernel.org,
- "Yury Norov (NVIDIA)" <yury.norov@gmail.com>
-Subject: Re: [PATCH v5 3/6] kernel.h: move VERIFY_OCTAL_PERMISSIONS() to
- sysfs.h
-Message-ID: <2026011629-recognize-municipal-2a89@gregkh>
-References: <20260116042510.241009-1-ynorov@nvidia.com>
- <20260116042510.241009-4-ynorov@nvidia.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D26EF10E22A;
+ Fri, 16 Jan 2026 14:54:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1768575287; x=1800111287;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=coaVUw5a2J36+nJkGkKo6+WKeYVRAlZmUu3UHoPw2VM=;
+ b=cIp6n7XjwcragEy3vbO3s7LmbHx6Yu/2umYkIs1vrwvvFO8APlCCrlF2
+ cOP3N/ulwwRJIasJdW4RF4x3ZM2we/UHSZEEQ6usV32QZ1FqETLVVDGst
+ IWWLkMJ9rod3PCnQCeQqeuDeutMhPImLAV2zvjEvPVw31Q5FZuxHMWgs8
+ PBSlBLrYh6jCr4ikXn0YyZ2AxuBW+mr4ZzqUbsMhHwN1To4RQOzOytVgn
+ AOURA6GaGOiBZiNbt92YhZuloFKBTV0x/TyyxWGlA9kUiE09X71S0eg8g
+ V2r9/Py1cCY+TZ+5VWscdjydLsK8oF16W1OaxKXenseQ3FQWEEJ9lwQ94 w==;
+X-CSE-ConnectionGUID: p5MWs6TVSWeVoLN9MC81mg==
+X-CSE-MsgGUID: LGKPZC1oSF+BOSrcaSPI6w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11673"; a="73736304"
+X-IronPort-AV: E=Sophos;i="6.21,231,1763452800"; d="scan'208";a="73736304"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2026 06:54:47 -0800
+X-CSE-ConnectionGUID: mzVJ52NWTH+vEZLR6tws3A==
+X-CSE-MsgGUID: yinwTvCQQl64lJuO61R4SA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,231,1763452800"; d="scan'208";a="235954631"
+Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.205])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2026 06:54:45 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 0/2] drm/{i915,
+ xe}/dsb: move DSB buffer calls to parent interface
+Date: Fri, 16 Jan 2026 16:54:39 +0200
+Message-ID: <cover.1768575249.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260116042510.241009-4-ynorov@nvidia.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,23 +70,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 15, 2026 at 11:25:06PM -0500, Yury Norov wrote:
-> The macro is related to sysfs, but is defined in kernel.h. Move it to
-> the proper header, and unload the generic kernel.h.
-> 
-> Now that the macro is removed from kernel.h, linux/moduleparam.h is
-> decoupled, and kernel.h inclusion can be removed.
-> 
-> Acked-by: Randy Dunlap <rdunlap@infradead.org>
-> Tested-by: Randy Dunlap <rdunlap@infradead.org>
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> Reviewed-by: Petr Pavlu <petr.pavlu@suse.com>
-> Signed-off-by: Yury Norov <ynorov@nvidia.com>
-> ---
->  Documentation/filesystems/sysfs.rst |  2 +-
->  include/linux/kernel.h              | 12 ------------
->  include/linux/moduleparam.h         |  2 +-
->  include/linux/sysfs.h               | 13 +++++++++++++
->  4 files changed, 15 insertions(+), 14 deletions(-)
 
-Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Jani Nikula (2):
+  drm/i915/dsb: move i915 specific DSB buffer implementation to i915
+  drm/{i915,xe}/dsb: move DSB buffer to parent interface
+
+ drivers/gpu/drm/i915/Makefile                 |  2 +-
+ drivers/gpu/drm/i915/display/intel_dsb.c      | 92 ++++++++++++++-----
+ .../gpu/drm/i915/display/intel_dsb_buffer.h   | 22 -----
+ drivers/gpu/drm/i915/i915_driver.c            |  2 +
+ .../intel_dsb_buffer.c => i915_dsb_buffer.c}  | 28 ++++--
+ drivers/gpu/drm/i915/i915_dsb_buffer.h        |  9 ++
+ drivers/gpu/drm/xe/display/xe_display.c       |  2 +
+ drivers/gpu/drm/xe/display/xe_dsb_buffer.c    | 28 ++++--
+ drivers/gpu/drm/xe/display/xe_dsb_buffer.h    |  9 ++
+ include/drm/intel/display_parent_interface.h  | 14 +++
+ 10 files changed, 147 insertions(+), 61 deletions(-)
+ delete mode 100644 drivers/gpu/drm/i915/display/intel_dsb_buffer.h
+ rename drivers/gpu/drm/i915/{display/intel_dsb_buffer.c => i915_dsb_buffer.c} (63%)
+ create mode 100644 drivers/gpu/drm/i915/i915_dsb_buffer.h
+ create mode 100644 drivers/gpu/drm/xe/display/xe_dsb_buffer.h
+
+-- 
+2.47.3
+
