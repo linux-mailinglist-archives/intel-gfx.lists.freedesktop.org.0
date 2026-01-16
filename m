@@ -2,58 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A17F7D2E53A
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jan 2026 09:55:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D38D5D2E537
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jan 2026 09:55:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77A4E10E837;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6696B10E836;
 	Fri, 16 Jan 2026 08:55:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mRaFjH/S";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N+WpPzUC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A6A110E82E;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E47F10E836;
  Fri, 16 Jan 2026 08:55:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1768553712; x=1800089712;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=RP59RR1HWAvbsj4hT/gEhWhXF9JkI5v28sHskBYWKB4=;
- b=mRaFjH/S09PlU1BfZt7scSrmerLIAS9Po6EOxh5PLhRQ4C/vJVtQ5uaJ
- qZ+6kkksTO4Mpoesrg/Z5Tb5Sk9DtgSgaUkis5zZMph6erK8WdXXrSr2g
- b4KSs8XyUpxRu/t6L1m1LOG8AMbrL8T+Y0Mx1vSTBu1+2dVqKWA3lowtW
- 55VDSIzeortBu58ye33aFUUQ9u86soc2yODogqCeyvFXoGjGOY3IDL0NI
- nrRZgIvzFYvMM01rTjS8D2hooqy2gHwJv3/LFVr0AnIawWz9HB3SSLYo8
- PNVO5TGlKp6TpGP/Pg9GPuXP+LtmRsHEvhBDUzbxOghCz2k/xuCcmCIWV A==;
-X-CSE-ConnectionGUID: 8eSyttTwTMCLAOR8lTqc7g==
-X-CSE-MsgGUID: 2x8mQD0PQx+rPURqupZI7Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11672"; a="69918119"
-X-IronPort-AV: E=Sophos;i="6.21,230,1763452800"; d="scan'208";a="69918119"
+ bh=G5jpWAY0CnpfJz8thsQzZLKWMjxLaoa6fUx+bIrym3c=;
+ b=N+WpPzUCqZM9AmUNjYNl2i9wrGbyhokVnNZ/YmnERHcbfVkxBjLJ2qQU
+ etub5MuAaEdmNW2YoD3ZgqIqVnig4GzlJIp4U8hdhAfpvxFUh4FU4y5F6
+ l/l+wuQyJveg2IYw01508LJ15WdyobxdG6cdlYsnWpXeCjZacItV5MF/8
+ 2plqr9CkaEeUgSNY7rbQ4I2SkCUqOrlBmvw+sC0UsJrOIGDbGbxZf+VJb
+ eHOlnc3gsWKq8bTlakhDrgRglHG3Iy9bz5z/+lacos9WTRTi7bEAdzSK5
+ 3+DW1WMxOIBmNH00pMBBj1BbD2BgzZ2WfXOYzR5YdAsnE6F/TTYTy1dzC A==;
+X-CSE-ConnectionGUID: PU5JzOAhROK56kY/e/6UVw==
+X-CSE-MsgGUID: x2cQhtSER8akAzxruJyR5g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11672"; a="69918122"
+X-IronPort-AV: E=Sophos;i="6.21,230,1763452800"; d="scan'208";a="69918122"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  16 Jan 2026 00:55:11 -0800
-X-CSE-ConnectionGUID: J1tTs30zQpGmT7oTJrwFKA==
-X-CSE-MsgGUID: pUMZplRbRhGAwknXPmd7Xw==
+X-CSE-ConnectionGUID: YVANBiAeTrONetDKW/BV9Q==
+X-CSE-MsgGUID: y9w8QnRRS8i0zSk5XO/0Mg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,230,1763452800"; d="scan'208";a="204398219"
+X-IronPort-AV: E=Sophos;i="6.21,230,1763452800"; d="scan'208";a="204398236"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa010.jf.intel.com with ESMTP; 16 Jan 2026 00:55:06 -0800
+ by orviesa010.jf.intel.com with ESMTP; 16 Jan 2026 00:55:08 -0800
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>,
- Gustavo Sousa <gustavo.sousa@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v3 2/3] drm/i915/cx0: Clear response ready & error bit
-Date: Fri, 16 Jan 2026 14:24:54 +0530
-Message-Id: <20260116085455.571766-3-suraj.kandpal@intel.com>
+Cc: ankit.k.nautiyal@intel.com,
+	Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH v3 3/3] drm/i915/cx0: Rename intel_clear_response_ready flag
+Date: Fri, 16 Jan 2026 14:24:55 +0530
+Message-Id: <20260116085455.571766-4-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260116085455.571766-1-suraj.kandpal@intel.com>
 References: <20260116085455.571766-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,42 +68,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Clear the response ready and error bit of PORT_P2M_MESSAGE_BUS_STATUS
-before writing the transaction pending bit of
-PORT_M2P_MSGBUS_CTL as that is a hard requirement. If not done
-we find that the PHY hangs since it ends up in a weird state if left
-idle for more than 1 hour.
+Rename the non static intel_clear_response_ready_flag to
+intel_cx0_clear_response_ready_flag so that we follow the
+naming standards of non static function.
 
-Bspec: 65101
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
-Reviewed-by: Michał Grzelak <michal.grzelak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 14 +++++++-------
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h |  4 ++--
+ drivers/gpu/drm/i915/display/intel_lt_phy.c  |  2 +-
+ 3 files changed, 10 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 7288065d2461..5b6b1ce40b0d 100644
+index 5b6b1ce40b0d..3ef25c942f44 100644
 --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -222,6 +222,8 @@ static int __intel_cx0_read_once(struct intel_encoder *encoder,
+@@ -127,8 +127,8 @@ static void intel_cx0_phy_transaction_end(struct intel_encoder *encoder, struct
+ 	intel_display_power_put(display, POWER_DOMAIN_DC_OFF, wakeref);
+ }
+ 
+-void intel_clear_response_ready_flag(struct intel_encoder *encoder,
+-				     int lane)
++void intel_cx0_clear_response_ready_flag(struct intel_encoder *encoder,
++					 int lane)
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
+ 
+@@ -155,7 +155,7 @@ void intel_cx0_bus_reset(struct intel_encoder *encoder, int lane)
+ 		return;
+ 	}
+ 
+-	intel_clear_response_ready_flag(encoder, lane);
++	intel_cx0_clear_response_ready_flag(encoder, lane);
+ }
+ 
+ int intel_cx0_wait_for_ack(struct intel_encoder *encoder,
+@@ -222,7 +222,7 @@ static int __intel_cx0_read_once(struct intel_encoder *encoder,
  		return -ETIMEDOUT;
  	}
  
-+	intel_clear_response_ready_flag(encoder, lane);
-+
+-	intel_clear_response_ready_flag(encoder, lane);
++	intel_cx0_clear_response_ready_flag(encoder, lane);
+ 
  	intel_de_write(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port, lane),
  		       XELPDP_PORT_M2P_TRANSACTION_PENDING |
- 		       XELPDP_PORT_M2P_COMMAND_READ |
-@@ -293,6 +295,8 @@ static int __intel_cx0_write_once(struct intel_encoder *encoder,
+@@ -233,7 +233,7 @@ static int __intel_cx0_read_once(struct intel_encoder *encoder,
+ 	if (ack < 0)
+ 		return ack;
+ 
+-	intel_clear_response_ready_flag(encoder, lane);
++	intel_cx0_clear_response_ready_flag(encoder, lane);
+ 
+ 	/*
+ 	 * FIXME: Workaround to let HW to settle
+@@ -295,7 +295,7 @@ static int __intel_cx0_write_once(struct intel_encoder *encoder,
  		return -ETIMEDOUT;
  	}
  
-+	intel_clear_response_ready_flag(encoder, lane);
-+
+-	intel_clear_response_ready_flag(encoder, lane);
++	intel_cx0_clear_response_ready_flag(encoder, lane);
+ 
  	intel_de_write(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port, lane),
  		       XELPDP_PORT_M2P_TRANSACTION_PENDING |
- 		       (committed ? XELPDP_PORT_M2P_COMMAND_WRITE_COMMITTED :
+@@ -325,7 +325,7 @@ static int __intel_cx0_write_once(struct intel_encoder *encoder,
+ 		return -EINVAL;
+ 	}
+ 
+-	intel_clear_response_ready_flag(encoder, lane);
++	intel_cx0_clear_response_ready_flag(encoder, lane);
+ 
+ 	/*
+ 	 * FIXME: Workaround to let HW to settle
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+index ae98ac23ea22..87d3bdaca3ec 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+@@ -25,8 +25,8 @@ struct intel_dpll_hw_state;
+ struct intel_encoder;
+ struct intel_hdmi;
+ 
+-void intel_clear_response_ready_flag(struct intel_encoder *encoder,
+-				     int lane);
++void intel_cx0_clear_response_ready_flag(struct intel_encoder *encoder,
++					 int lane);
+ bool intel_encoder_is_c10phy(struct intel_encoder *encoder);
+ void intel_mtl_pll_enable(struct intel_encoder *encoder,
+ 			  struct intel_dpll *pll,
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+index 6cdae03ee172..e174ca011d50 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+@@ -1106,7 +1106,7 @@ static int __intel_lt_phy_p2p_write_once(struct intel_encoder *encoder,
+ 	 * This is the time PHY takes to settle down after programming the PHY.
+ 	 */
+ 	udelay(150);
+-	intel_clear_response_ready_flag(encoder, lane);
++	intel_cx0_clear_response_ready_flag(encoder, lane);
+ 	intel_lt_phy_clear_status_p2p(encoder, lane);
+ 
+ 	return 0;
 -- 
 2.34.1
 
