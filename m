@@ -2,128 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2D1AD38CCD
-	for <lists+intel-gfx@lfdr.de>; Sat, 17 Jan 2026 07:03:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50973D399ED
+	for <lists+intel-gfx@lfdr.de>; Sun, 18 Jan 2026 22:07:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4374D10E206;
-	Sat, 17 Jan 2026 06:03:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 474A310E2EE;
+	Sun, 18 Jan 2026 21:07:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=broadcom.com header.i=@broadcom.com header.b="IhrHz8Fa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZaDAjz9W";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-f227.google.com (mail-pl1-f227.google.com
- [209.85.214.227])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 812C710E011
- for <intel-gfx@lists.freedesktop.org>; Sat, 17 Jan 2026 06:03:05 +0000 (UTC)
-Received: by mail-pl1-f227.google.com with SMTP id
- d9443c01a7336-2a137692691so17452085ad.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 16 Jan 2026 22:03:05 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1768629785; x=1769234585;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:dkim-signature:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=j9j3JEzDJrzsMJVxeIh9EKeyZIteIYpJcF/zMKbRXfc=;
- b=xRqc/YhTRLky1lFzqpY2rRO8Ck+Fj0D/erSORWEjtOW4rWjeJS7IuqHCvnXldXkBWm
- Dl4pHiDNWRDDBq0cDUZmLMykLCyCewL00kbOM5xObqiZ/S3nqfS1a0JtMQ3gyjb08j8o
- hs7Ecs5kc515he9vV7T0lpy4Ut4U6luRavthtPhhzDkXeaXpRCQfUG19XSRgQEzPRdFY
- oXoea58h2CpDJo8enxG5Xth5PwolbiNLH485zQoY4IOOTF4a/il4eZOxTtHGbtlV6x4u
- qej3M4iKf0XsIWwohH5ENZMSJ2x7K/ZeTmMLmku+8PADGKc5KRCI8WpgKe3Lvw1JyodR
- kRAQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXFSxxazzdHUdLWZqS+R0HoKjpU9hhXwFVggouqFLzAqKmt4NW1xa3iru8nFTRw8lgzvGZaQyMtwgU=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyJR6skfMlZXqk8Xc/nLI1f2fPDxXZw+zEv9lAyFab7ZFAN4y2g
- /RtWmRO0t1F+hjAt++x51cvwACr+EefCCGKgUx8V5f1dMpjr2l72soSqeutxVeGyIH//UdM6MHX
- /PgdBx2A4DKcopnTi+nbj3ywrkBVIoQp2qZIWjMPESG+WsQmLz7erzkWJ2L6VEq94lfiHdAYV1x
- fo/qnqcXND8vPZ3RGx5mxAtTG61/JpsJ9as1Vs8/rP/AVtzjuMDS0thuUZklq5cU1o0JTboEg4p
- xPpm7YuJYk6rSFXPzDX
-X-Gm-Gg: AY/fxX4r7XCuPe6KfGsf/LGqZftvcg3mB7q+wXuDyeYeRKcHURdHu1LkaAIlevJg8VA
- sAgbWThuKl2Vn1hXDdzqAaGAj2x88SXrrOZys6RnaZ6iZxM1Jq9ALmPhYOGgIc+sIkuUMLdtDcv
- g7sGYE93m2e9+TQKHK0NpeZVkkdLgQgfQlyC+g4qj8RKD/uMnLfcO8ubg6He1ccMaTfRZJIqdG/
- /pd/tJVX4h2UMH/SPeh7xMWA4YPtxwrWdk3QH146vj3FhMpCA00g7VYrY/3f1YM4Gm9QE9v/IGo
- j4rtvKKhONeo4bFw2qDuBM527NFDxSeQrgo7VUsbBvhio350JUKUrBvu/PYe8u0nutyx4lIK0hn
- dlzP0+LdSGVw7QNVQR2YdNVD0eXUDS/ixGrc35VFa4hJH9GqC1OtzOkeQYLM5JnEn6hIpuv+ybP
- 18ydqzwGWS4lGqWH8PGAvwg0+asc/y9RcjNHUOaf8=
-X-Received: by 2002:a17:903:28d:b0:29f:299a:b6e2 with SMTP id
- d9443c01a7336-2a7177c7807mr49408895ad.42.1768629784853; 
- Fri, 16 Jan 2026 22:03:04 -0800 (PST)
-Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com
- (address-144-49-247-2.dlp.protect.broadcom.com. [144.49.247.2])
- by smtp-relay.gmail.com with ESMTPS id
- d9443c01a7336-2a718f89ebcsm6076015ad.0.2026.01.16.22.03.04
- for <intel-gfx@lists.freedesktop.org>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 16 Jan 2026 22:03:04 -0800 (PST)
-X-Relaying-Domain: broadcom.com
-X-CFilter-Loop: Reflected
-Received: by mail-lj1-f200.google.com with SMTP id
- 38308e7fff4ca-383558ea1b7so17899171fa.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 16 Jan 2026 22:03:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=broadcom.com; s=google; t=1768629782; x=1769234582;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=j9j3JEzDJrzsMJVxeIh9EKeyZIteIYpJcF/zMKbRXfc=;
- b=IhrHz8FabKW62XjVSlo2g6cp5kot+dIq83D+zJs8tIGkRXFEYkQo/MO1jU3MQGzS/K
- VZvi6dPj7lyN+wQ1QZLg+bscCKDQ7NV6HzuA7BRbLNKocNhhIWhCkp/irwHR15tFXmjb
- gM+nD3vIcT+ZDZtvXx9MMLnMEtaPV1DAqTl+U=
-X-Forwarded-Encrypted: i=1;
- AJvYcCW9PlrIOg2M1OMtflY3v35dbkgB71+lQxmLs5Uu9Ix2hiTOKCgAD7m9gr76el5QBBFKq5WZztXY1ow=@lists.freedesktop.org
-X-Received: by 2002:a05:6512:10cb:b0:598:f262:15c7 with SMTP id
- 2adb3069b0e04-59baeef7c0amr1501687e87.25.1768629781466; 
- Fri, 16 Jan 2026 22:03:01 -0800 (PST)
-X-Received: by 2002:a05:6512:10cb:b0:598:f262:15c7 with SMTP id
- 2adb3069b0e04-59baeef7c0amr1501644e87.25.1768629780919; Fri, 16 Jan 2026
- 22:03:00 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02DE010E038;
+ Sun, 18 Jan 2026 21:07:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1768770455; x=1800306455;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=TQXLTOnpCPrrVC+HVoOwe2vPgwr/ikivez+J2L96hhQ=;
+ b=ZaDAjz9WVxXzdfvsw0W9gx3iIbzrvgbI2QBLP99c6S+a4SH4cIXBpCdI
+ FWPzK8a7xjmfkd6WjexB3QtaIRti90hcMeOKk0/9JefC4N2f6vzTKIMCN
+ FnGY8WVqmb3OoGWh/45fFMmKn9sJlvNxdTYDvF5CMwDimjX2XTsGMGU9Q
+ mW1GovYJW2NIf1wOi4veFmK7erdHrARERsBBTJUdaijP1r2Al981S9xLX
+ 3znIXxqeNBxmkywiN0dRJhZv5qnEWdjNgjG1WJl46a9KsFaNjTfc/bNf0
+ wOLkLCDAbqY5aW9ZF5OTW8FIeWnEjHBE9bB6kaukfMoeXXXoRvIbgyC/I Q==;
+X-CSE-ConnectionGUID: duB3xpfsRxmy/CvHKv9SDg==
+X-CSE-MsgGUID: inzoBXRdRPizdNnvfNj8VA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11675"; a="57545118"
+X-IronPort-AV: E=Sophos;i="6.21,236,1763452800"; d="scan'208";a="57545118"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2026 13:07:34 -0800
+X-CSE-ConnectionGUID: rfdYlB/lQ9WUxS6DtJ98mA==
+X-CSE-MsgGUID: fXkBkN3uRk+xPGIz9yLEhQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,236,1763452800"; d="scan'208";a="243263720"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO
+ vgovind2-mobl4.intel.com) ([10.245.244.21])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2026 13:07:31 -0800
+From: Vinod Govindapillai <vinod.govindapillai@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: vinod.govindapillai@intel.com, uma.shankar@intel.com,
+ juha-pekka.heikkila@intel.com
+Subject: [PATCH] drm/i915/display: fix the pixel normalization handling for
+ xe3p_lpd
+Date: Sun, 18 Jan 2026 23:07:17 +0200
+Message-ID: <20260118210717.284056-1-vinod.govindapillai@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-References: <20251229215906.3688205-1-zack.rusin@broadcom.com>
- <c816f7ed-66e0-4773-b3d1-4769234bd30b@suse.de>
- <CABQX2QNQU4XZ1rJFqnJeMkz8WP=t9atj0BqXHbDQab7ZnAyJxg@mail.gmail.com>
- <97993761-5884-4ada-b345-9fb64819e02a@suse.de>
- <CABQX2QMn_dTh2h44LRwB7+RxGqK3Jn+QCx38xWrzpNJG5SZ9-Q@mail.gmail.com>
- <f3643c19-c250-4927-b39d-37d2494c7c84@suse.de>
-In-Reply-To: <f3643c19-c250-4927-b39d-37d2494c7c84@suse.de>
-From: Zack Rusin <zack.rusin@broadcom.com>
-Date: Sat, 17 Jan 2026 01:02:48 -0500
-X-Gm-Features: AZwV_QiUnz_If_z8Rkd9UgQ6zWILOg85OCTnKGucjTIyh0yZ4kAyPDhffMT5Rew
-Message-ID: <CABQX2QM0_6DJtrahJS7x9iF_wcSZRc4dohEiPnMCtAg7Vt7JPQ@mail.gmail.com>
-Subject: Re: [PATCH 00/12] Recover sysfb after DRM probe failure
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>, 
- amd-gfx@lists.freedesktop.org, Ard Biesheuvel <ardb@kernel.org>,
- Ce Sun <cesun102@amd.com>, Chia-I Wu <olvaffe@gmail.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>, 
- Deepak Rawat <drawat.floss@gmail.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>, 
- Gerd Hoffmann <kraxel@redhat.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>, 
- Hans de Goede <hansg@kernel.org>, Hawking Zhang <Hawking.Zhang@amd.com>,
- Helge Deller <deller@gmx.de>, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Javier Martinez Canillas <javierm@redhat.com>, 
- Jocelyn Falempe <jfalempe@redhat.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Lijo Lazar <lijo.lazar@amd.com>, linux-efi@vger.kernel.org,
- linux-fbdev@vger.kernel.org, 
- linux-hyperv@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Lucas De Marchi <lucas.demarchi@intel.com>, Lyude Paul <lyude@redhat.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- "Mario Limonciello (AMD)" <superm1@kernel.org>,
- Mario Limonciello <mario.limonciello@amd.com>, 
- Maxime Ripard <mripard@kernel.org>, nouveau@lists.freedesktop.org, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>, 
- spice-devel@lists.freedesktop.org, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, virtualization@lists.linux.dev, 
- Vitaly Prosyak <vitaly.prosyak@amd.com>
-X-DetectorID-Processed: b00c1d49-9d2e-4205-b15f-d015386d3d5e
-Content-Type: multipart/signed; protocol="application/pkcs7-signature";
- micalg=sha-256; boundary="000000000000efcf9006488f35c8"
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -139,166 +71,120 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---000000000000efcf9006488f35c8
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Pixel normalizer is enabled with normalization factor as 1.0 for
+FP16 formats in order to support FBC for those formats in xe3p_lpd.
+Previously pixel normalizer gets disabled during the plane disable
+routine. But there could be plane format settings without explicitly
+calling the plane disable in-between and we could endup keeping the
+pixel normalizer enabled for formats which we don't require that.
+This is causing crc mismatches in yuv formats and FIFO underruns in
+planar formats like NV12. Fix this by updating the pixel normalizer
+configuration based on the pixel formats explicitly during the plane
+settings arm calls itself - enable it for FP16 and disable it for other
+formats in HDR capable planes.
 
-On Fri, Jan 16, 2026 at 2:58=E2=80=AFAM Thomas Zimmermann <tzimmermann@suse=
-.de> wrote:
->
-> Hi
->
-> Am 16.01.26 um 04:59 schrieb Zack Rusin:
-> > On Thu, Jan 15, 2026 at 6:02=E2=80=AFAM Thomas Zimmermann <tzimmermann@=
-suse.de> wrote:
-> >> That's really not going to work. For example, in the current series, y=
-ou
-> >> invoke devm_aperture_remove_conflicting_pci_devices_done() after
-> >> drm_mode_reset(), drm_dev_register() and drm_client_setup().
-> > That's perfectly fine,
-> > devm_aperture_remove_conflicting_pci_devices_done is removing the
-> > reload behavior not doing anything.
-> >
-> > This series, essentially, just adds a "defer" statement to
-> > aperture_remove_conflicting_pci_devices that says
-> >
-> > "reload sysfb if this driver unloads".
-> >
-> > devm_aperture_remove_conflicting_pci_devices_done just cancels that def=
-er.
->
-> Exactly. And if that reload happens after the hardware state has been
-> changed, the result is undefined.
+Fixes: 5298eea7ed20 ("drm/i915/xe3p_lpd: use pixel normalizer for fp16 formats for FBC")
+Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+---
+ .../drm/i915/display/intel_display_device.h   |  1 +
+ .../drm/i915/display/skl_universal_plane.c    | 51 +++++++++++++------
+ 2 files changed, 36 insertions(+), 16 deletions(-)
 
-This is all predicated on drivers actually cleaning up after
-themselves. I don't think any amount of good will or api design is
-going to fix device specific state mismatches.
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index 6c74d6b0cc48..126aa1eeeb6d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -175,6 +175,7 @@ struct intel_display_platforms {
+ #define HAS_DSC_MST(__display)		(DISPLAY_VER(__display) >= 12 && HAS_DSC(__display))
+ #define HAS_FBC(__display)		(DISPLAY_RUNTIME_INFO(__display)->fbc_mask != 0)
+ #define HAS_FBC_DIRTY_RECT(__display)	(DISPLAY_VER(__display) >= 30)
++#define HAS_FBC_FP16_FORMATS(__display)	(DISPLAY_VER(__display) >= 35)
+ #define HAS_FBC_SYS_CACHE(__display)	(DISPLAY_VER(__display) >= 35 && !(__display)->platform.dgfx)
+ #define HAS_FPGA_DBG_UNCLAIMED(__display)	(DISPLAY_INFO(__display)->has_fpga_dbg)
+ #define HAS_FW_BLC(__display)		(DISPLAY_VER(__display) >= 3)
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index b3d41705448a..724d5d25d3d0 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -891,20 +891,46 @@ static void icl_plane_disable_sel_fetch_arm(struct intel_dsb *dsb,
+ 	intel_de_write_dsb(display, dsb, SEL_FETCH_PLANE_CTL(pipe, plane->id), 0);
+ }
+ 
+-static void x3p_lpd_plane_update_pixel_normalizer(struct intel_dsb *dsb,
+-						  struct intel_plane *plane,
+-						  bool enable)
++static void xe3p_lpd_plane_disable_pixel_normalizer(struct intel_dsb *dsb,
++						    struct intel_plane *plane)
+ {
+ 	struct intel_display *display = to_intel_display(plane);
+ 	enum intel_fbc_id fbc_id = skl_fbc_id_for_pipe(plane->pipe);
+-	u32 val;
+ 
+-	/* Only HDR planes have pixel normalizer and don't matter if no FBC */
++	if (!HAS_FBC_FP16_FORMATS(display))
++		return;
++
++	/* Only HDR planes have pixel normalizer and don't matter if FBC is fused off */
++	if (!skl_plane_has_fbc(display, fbc_id, plane->id))
++		return;
++
++	intel_de_write_dsb(display, dsb,
++			   PLANE_PIXEL_NORMALIZE(plane->pipe, plane->id), 0);
++}
++
++static void xe3p_lpd_plane_update_pixel_normalizer(struct intel_dsb *dsb,
++						   struct intel_plane *plane)
++{
++	struct intel_display *display = to_intel_display(plane);
++	enum intel_fbc_id fbc_id = skl_fbc_id_for_pipe(plane->pipe);
++	const struct intel_plane_state *plane_state =
++		to_intel_plane_state(plane->base.state);
++	u32 val = 0;
++
++	if (!HAS_FBC_FP16_FORMATS(display))
++		return;
++
+ 	if (!skl_plane_has_fbc(display, fbc_id, plane->id))
+ 		return;
+ 
+-	val = enable ? PLANE_PIXEL_NORMALIZE_NORM_FACTOR(PLANE_PIXEL_NORMALIZE_NORM_FACTOR_1_0) |
+-		       PLANE_PIXEL_NORMALIZE_ENABLE : 0;
++	/*
++	 * In order to have FBC for fp16 formats pixel normalizer block must be
++	 * active. Check if pixel normalizer block need to be enabled for FBC.
++	 * If needed, use normalization factor as 1.0 and enable the block.
++	 */
++	if (intel_fbc_is_enable_pixel_normalizer(plane_state))
++		val = PLANE_PIXEL_NORMALIZE_NORM_FACTOR(PLANE_PIXEL_NORMALIZE_NORM_FACTOR_1_0) |
++		      PLANE_PIXEL_NORMALIZE_ENABLE;
+ 
+ 	intel_de_write_dsb(display, dsb,
+ 			   PLANE_PIXEL_NORMALIZE(plane->pipe, plane->id), val);
+@@ -926,8 +952,7 @@ icl_plane_disable_arm(struct intel_dsb *dsb,
+ 
+ 	icl_plane_disable_sel_fetch_arm(dsb, plane, crtc_state);
+ 
+-	if (DISPLAY_VER(display) >= 35)
+-		x3p_lpd_plane_update_pixel_normalizer(dsb, plane, false);
++	xe3p_lpd_plane_disable_pixel_normalizer(dsb, plane);
+ 
+ 	intel_de_write_dsb(display, dsb, PLANE_CTL(pipe, plane_id), 0);
+ 	intel_de_write_dsb(display, dsb, PLANE_SURF(pipe, plane_id), 0);
+@@ -1674,13 +1699,7 @@ icl_plane_update_arm(struct intel_dsb *dsb,
+ 
+ 	intel_color_plane_commit_arm(dsb, plane_state);
+ 
+-	/*
+-	 * In order to have FBC for fp16 formats pixel normalizer block must be
+-	 * active. Check if pixel normalizer block need to be enabled for FBC.
+-	 * If needed, use normalization factor as 1.0 and enable the block.
+-	 */
+-	if (intel_fbc_is_enable_pixel_normalizer(plane_state))
+-		x3p_lpd_plane_update_pixel_normalizer(dsb, plane, true);
++	xe3p_lpd_plane_update_pixel_normalizer(dsb, plane);
+ 
+ 	/*
+ 	 * The control register self-arms if the plane was previously
+-- 
+2.43.0
 
-> The current recovery/reload is not reliable in any case. A number of
-> high-profile devs have also said that it doesn't work with their driver.
-> The same is true for ast. So the current approach is not going to happen.
->
-> > There also might be the case of some crazy behavior, e.g. pci bar
-> > resize in the driver makes the vga hardware crash or something, in
-> > which case, yea, we should definitely skip this patch, at least until
-> > those drivers properly cleanup on exit.
->
-> There's nothing crazy here. It's standard probing code.
->
-> If you want to to move forward, my suggestion is to look at the proposal
-> with the aperture_funcs callbacks that control sysfb device access. And
-> from there, build a full prototype with one or two drivers.
-
-I don't think that approach is going to work. I don't think there's
-anything that can be done if drivers didn't cleanup everything they've
-done that might have broken sysfb on unload. I'm going to drop it
-then, it's obviously a shame because it works fine with virtualized
-drivers and they're ones that would likely profit from this the most
-but I'm sceptical that I could do full system state set reset in a
-generalized fashion for hw drivers or that the work required would be
-worth the payoff.
-
-z
-
---000000000000efcf9006488f35c8
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-MIIVIgYJKoZIhvcNAQcCoIIVEzCCFQ8CAQExDzANBglghkgBZQMEAgEFADALBgkqhkiG9w0BBwGg
-ghKPMIIGqDCCBJCgAwIBAgIQfofDCS7XZu8vIeKo0KeY9DANBgkqhkiG9w0BAQwFADBMMSAwHgYD
-VQQLExdHbG9iYWxTaWduIFJvb3QgQ0EgLSBSNjETMBEGA1UEChMKR2xvYmFsU2lnbjETMBEGA1UE
-AxMKR2xvYmFsU2lnbjAeFw0yMzA0MTkwMzUzNTNaFw0yOTA0MTkwMDAwMDBaMFIxCzAJBgNVBAYT
-AkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMSgwJgYDVQQDEx9HbG9iYWxTaWduIEdDQyBS
-NiBTTUlNRSBDQSAyMDIzMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAwjAEbSkPcSyn
-26Zn9VtoE/xBvzYmNW29bW1pJZ7jrzKwPJm/GakCvy0IIgObMsx9bpFaq30X1kEJZnLUzuE1/hlc
-hatYqyORVBeHlv5V0QRSXY4faR0dCkIhXhoGknZ2O0bUJithcN1IsEADNizZ1AJIaWsWbQ4tYEYj
-ytEdvfkxz1WtX3SjtecZR+9wLJLt6HNa4sC//QKdjyfr/NhDCzYrdIzAssoXFnp4t+HcMyQTrj0r
-pD8KkPj96sy9axzegLbzte7wgTHbWBeJGp0sKg7BAu+G0Rk6teO1yPd75arbCvfY/NaRRQHk6tmG
-71gpLdB1ZhP9IcNYyeTKXIgfMh2tVK9DnXGaksYCyi6WisJa1Oa+poUroX2ESXO6o03lVxiA1xyf
-G8lUzpUNZonGVrUjhG5+MdY16/6b0uKejZCLbgu6HLPvIyqdTb9XqF4XWWKu+OMDs/rWyQ64v3mv
-Sa0te5Q5tchm4m9K0Pe9LlIKBk/gsgfaOHJDp4hYx4wocDr8DeCZe5d5wCFkxoGc1ckM8ZoMgpUc
-4pgkQE5ShxYMmKbPvNRPa5YFzbFtcFn5RMr1Mju8gt8J0c+dxYco2hi7dEW391KKxGhv7MJBcc+0
-x3FFTnmhU+5t6+CnkKMlrmzyaoeVryRTvOiH4FnTNHtVKUYDsCM0CLDdMNgoxgkCAwEAAaOCAX4w
-ggF6MA4GA1UdDwEB/wQEAwIBhjBMBgNVHSUERTBDBggrBgEFBQcDAgYIKwYBBQUHAwQGCisGAQQB
-gjcUAgIGCisGAQQBgjcKAwwGCisGAQQBgjcKAwQGCSsGAQQBgjcVBjASBgNVHRMBAf8ECDAGAQH/
-AgEAMB0GA1UdDgQWBBQAKTaeXHq6D68tUC3boCOFGLCgkjAfBgNVHSMEGDAWgBSubAWjkxPioufi
-1xzWx/B/yGdToDB7BggrBgEFBQcBAQRvMG0wLgYIKwYBBQUHMAGGImh0dHA6Ly9vY3NwMi5nbG9i
-YWxzaWduLmNvbS9yb290cjYwOwYIKwYBBQUHMAKGL2h0dHA6Ly9zZWN1cmUuZ2xvYmFsc2lnbi5j
-b20vY2FjZXJ0L3Jvb3QtcjYuY3J0MDYGA1UdHwQvMC0wK6ApoCeGJWh0dHA6Ly9jcmwuZ2xvYmFs
-c2lnbi5jb20vcm9vdC1yNi5jcmwwEQYDVR0gBAowCDAGBgRVHSAAMA0GCSqGSIb3DQEBDAUAA4IC
-AQCRkUdr1aIDRmkNI5jx5ggapGUThq0KcM2dzpMu314mJne8yKVXwzfKBtqbBjbUNMODnBkhvZcn
-bHUStur2/nt1tP3ee8KyNhYxzv4DkI0NbV93JChXipfsan7YjdfEk5vI2Fq+wpbGALyyWBgfy79Y
-IgbYWATB158tvEh5UO8kpGpjY95xv+070X3FYuGyeZyIvao26mN872FuxRxYhNLwGHIy38N9ASa1
-Q3BTNKSrHrZngadofHglG5W3TMFR11JOEOAUHhUgpbVVvgCYgGA6dSX0y5z7k3rXVyjFOs7KBSXr
-dJPKadpl4vqYphH7+P40nzBRcxJHrv5FeXlTrb+drjyXNjZSCmzfkOuCqPspBuJ7vab0/9oeNERg
-nz6SLCjLKcDXbMbKcRXgNhFBlzN4OUBqieSBXk80w2Nzx12KvNj758WavxOsXIbX0Zxwo1h3uw75
-AI2v8qwFWXNclO8qW2VXoq6kihWpeiuvDmFfSAwRLxwwIjgUuzG9SaQ+pOomuaC7QTKWMI0hL0b4
-mEPq9GsPPQq1UmwkcYFJ/Z4I93DZuKcXmKMmuANTS6wxwIEw8Q5MQ6y9fbJxGEOgOgYL4QIqNULb
-5CYPnt2LeiIiEnh8Uuh8tawqSjnR0h7Bv5q4mgo3L1Z9QQuexUntWD96t4o0q1jXWLyrpgP7Zcnu
-CzCCBYMwggNroAMCAQICDkXmuwODM8OFZUjm/0VRMA0GCSqGSIb3DQEBDAUAMEwxIDAeBgNVBAsT
-F0dsb2JhbFNpZ24gUm9vdCBDQSAtIFI2MRMwEQYDVQQKEwpHbG9iYWxTaWduMRMwEQYDVQQDEwpH
-bG9iYWxTaWduMB4XDTE0MTIxMDAwMDAwMFoXDTM0MTIxMDAwMDAwMFowTDEgMB4GA1UECxMXR2xv
-YmFsU2lnbiBSb290IENBIC0gUjYxEzARBgNVBAoTCkdsb2JhbFNpZ24xEzARBgNVBAMTCkdsb2Jh
-bFNpZ24wggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQCVB+hzymb57BTKezz3DQjxtEUL
-LIK0SMbrWzyug7hBkjMUpG9/6SrMxrCIa8W2idHGsv8UzlEUIexK3RtaxtaH7k06FQbtZGYLkoDK
-RN5zlE7zp4l/T3hjCMgSUG1CZi9NuXkoTVIaihqAtxmBDn7EirxkTCEcQ2jXPTyKxbJm1ZCatzEG
-xb7ibTIGph75ueuqo7i/voJjUNDwGInf5A959eqiHyrScC5757yTu21T4kh8jBAHOP9msndhfuDq
-jDyqtKT285VKEgdt/Yyyic/QoGF3yFh0sNQjOvddOsqi250J3l1ELZDxgc1Xkvp+vFAEYzTfa5MY
-vms2sjnkrCQ2t/DvthwTV5O23rL44oW3c6K4NapF8uCdNqFvVIrxclZuLojFUUJEFZTuo8U4lptO
-TloLR/MGNkl3MLxxN+Wm7CEIdfzmYRY/d9XZkZeECmzUAk10wBTt/Tn7g/JeFKEEsAvp/u6P4W4L
-sgizYWYJarEGOmWWWcDwNf3J2iiNGhGHcIEKqJp1HZ46hgUAntuA1iX53AWeJ1lMdjlb6vmlodiD
-D9H/3zAR+YXPM0j1ym1kFCx6WE/TSwhJxZVkGmMOeT31s4zKWK2cQkV5bg6HGVxUsWW2v4yb3BPp
-DW+4LtxnbsmLEbWEFIoAGXCDeZGXkdQaJ783HjIH2BRjPChMrwIDAQABo2MwYTAOBgNVHQ8BAf8E
-BAMCAQYwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUrmwFo5MT4qLn4tcc1sfwf8hnU6AwHwYD
-VR0jBBgwFoAUrmwFo5MT4qLn4tcc1sfwf8hnU6AwDQYJKoZIhvcNAQEMBQADggIBAIMl7ejR/ZVS
-zZ7ABKCRaeZc0ITe3K2iT+hHeNZlmKlbqDyHfAKK0W63FnPmX8BUmNV0vsHN4hGRrSMYPd3hckSW
-tJVewHuOmXgWQxNWV7Oiszu1d9xAcqyj65s1PrEIIaHnxEM3eTK+teecLEy8QymZjjDTrCHg4x36
-2AczdlQAIiq5TSAucGja5VP8g1zTnfL/RAxEZvLS471GABptArolXY2hMVHdVEYcTduZlu8aHARc
-phXveOB5/l3bPqpMVf2aFalv4ab733Aw6cPuQkbtwpMFifp9Y3s/0HGBfADomK4OeDTDJfuvCp8g
-a907E48SjOJBGkh6c6B3ace2XH+CyB7+WBsoK6hsrV5twAXSe7frgP4lN/4Cm2isQl3D7vXM3PBQ
-ddI2aZzmewTfbgZptt4KCUhZh+t7FGB6ZKppQ++Rx0zsGN1s71MtjJnhXvJyPs9UyL1n7KQPTEX/
-07kwIwdMjxC/hpbZmVq0mVccpMy7FYlTuiwFD+TEnhmxGDTVTJ267fcfrySVBHioA7vugeXaX3yL
-SqGQdCWnsz5LyCxWvcfI7zjiXJLwefechLp0LWEBIH5+0fJPB1lfiy1DUutGDJTh9WZHeXfVVFsf
-rSQ3y0VaTqBESMjYsJnFFYQJ9tZJScBluOYacW6gqPGC6EU+bNYC1wpngwVayaQQMIIGWDCCBECg
-AwIBAgIMYT8cPnonh1geNIT5MA0GCSqGSIb3DQEBCwUAMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
-ExBHbG9iYWxTaWduIG52LXNhMSgwJgYDVQQDEx9HbG9iYWxTaWduIEdDQyBSNiBTTUlNRSBDQSAy
-MDIzMB4XDTI0MTEyODA2NTUwOVoXDTI2MTEyOTA2NTUwOVowgaUxCzAJBgNVBAYTAlVTMRMwEQYD
-VQQIEwpDYWxpZm9ybmlhMREwDwYDVQQHEwhTYW4gSm9zZTEZMBcGA1UEYRMQTlRSVVMrREUtNjYx
-MDExNzEWMBQGA1UEChMNQlJPQURDT00gSU5DLjETMBEGA1UEAxMKWmFjayBSdXNpbjEmMCQGCSqG
-SIb3DQEJARYXemFjay5ydXNpbkBicm9hZGNvbS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAw
-ggEKAoIBAQCwQ8KpnuEwUOX0rOrLRj3vS0VImknKwshcmcfA9VtdEQhJHGDQoNjaBEFQHqLqn4Lf
-hqEGUo+nKhz2uqGl2MtQFb8oG+yJPCFPgeSvbiRxmeOwSP0jrNADVKpYpy4UApPqS+UfVQXKbwbM
-6U6qgI8F5eiKsQyE0HgYrQJx/sDs9LLVZlaNiA3U8M8CgEnb8VhuH3BN/yXphhEQdJXb1TyaJA60
-SmHcZdEQZbl4EjwUcs3UIowmI/Mhi7ADQB7VNsO/BaOVBEQk53xH+4djY/cg7jvqTTeliY05j2Yx
-uwwXcDC4mWjGzxAT5DVqC8fKQvon1uc2heorHb555+sLdwYxAgMBAAGjggHYMIIB1DAOBgNVHQ8B
-Af8EBAMCBaAwgZMGCCsGAQUFBwEBBIGGMIGDMEYGCCsGAQUFBzAChjpodHRwOi8vc2VjdXJlLmds
-b2JhbHNpZ24uY29tL2NhY2VydC9nc2djY3I2c21pbWVjYTIwMjMuY3J0MDkGCCsGAQUFBzABhi1o
-dHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3I2c21pbWVjYTIwMjMwZQYDVR0gBF4wXDAJ
-BgdngQwBBQMBMAsGCSsGAQQBoDIBKDBCBgorBgEEAaAyCgMCMDQwMgYIKwYBBQUHAgEWJmh0dHBz
-Oi8vd3d3Lmdsb2JhbHNpZ24uY29tL3JlcG9zaXRvcnkvMAkGA1UdEwQCMAAwQQYDVR0fBDowODA2
-oDSgMoYwaHR0cDovL2NybC5nbG9iYWxzaWduLmNvbS9nc2djY3I2c21pbWVjYTIwMjMuY3JsMCIG
-A1UdEQQbMBmBF3phY2sucnVzaW5AYnJvYWRjb20uY29tMBMGA1UdJQQMMAoGCCsGAQUFBwMEMB8G
-A1UdIwQYMBaAFAApNp5ceroPry1QLdugI4UYsKCSMB0GA1UdDgQWBBQNDn2m/OLuDx9YjEqPLCDB
-s/VKNTANBgkqhkiG9w0BAQsFAAOCAgEAF463syOLTQkWZmEyyR60W1sM3J1cbnMRrBFUBt3S2NTY
-SJ2NAvkTAxbPoOhK6IQdaTyrWi8xdg2tftr5FC1bOSUdxudY6dipq2txe7mEoUE6VlpJid/56Mo4
-QJRb6YiykQeIfoJiYMKsyuXWsTB1rhQxlxfnaFxi8Xy3+xKAeX68DcsHG3ZU0h1beBURA44tXcz6
-fFDNPQ2k6rWDFz+XNN2YOPqfse2wEm3DXpqNT79ycU7Uva7e51b8XdbmJ6XVzUFmWzhjXy5hvV8z
-iF+DvP+KT1/bjO6aNL2/3PWiy1u6xjnWvobHuAYVrXxQ5wzk8aPOnED9Q8pt2nqk/UIzw2f67Cn9
-3CxrVqXUKm93J+rupyKVTGgKO9T1ODVPo665aIbM72RxSI9Wsofatm2fo8DWOkrfs29pYfy6eECl
-91qfFMl+IzIVfDgIrEX6gSngJ2ZLaG6L+/iNrUxHxxsaUmyDwBbTfjYwr10H6NKES3JaxVRslnpF
-06HTTciJNx2wowbYF1c+BFY4r/19LHygijIVa+hZEgNuMrVLyAamaAKZ1AWxTdv8Q/eeNN3Myq61
-b1ykTSPCXjBq/03CMF/wT1wly16jYjLDXZ6II/HYyJt34QeqnBENU9zXTc9RopqcuHD2g+ROT7lI
-VLi5ffzC8rVliltTltbYPc7F0lAvGKAxggJXMIICUwIBATBiMFIxCzAJBgNVBAYTAkJFMRkwFwYD
-VQQKExBHbG9iYWxTaWduIG52LXNhMSgwJgYDVQQDEx9HbG9iYWxTaWduIEdDQyBSNiBTTUlNRSBD
-QSAyMDIzAgxhPxw+eieHWB40hPkwDQYJYIZIAWUDBAIBBQCggccwLwYJKoZIhvcNAQkEMSIEIBCK
-e4A3z3CqFQe3IsyXO5x3uXMpy+yDDD7NQNrNRe7NMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEw
-HAYJKoZIhvcNAQkFMQ8XDTI2MDExNzA2MDMwMlowXAYJKoZIhvcNAQkPMU8wTTALBglghkgBZQME
-ASowCwYJYIZIAWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQcwCwYJ
-YIZIAWUDBAIBMA0GCSqGSIb3DQEBAQUABIIBADnfpLDRtY3ZBZL7ltI8Yiq6c5TD0Tv/FGci0rA9
-txHbRGMB2w3d8WiU4il+YNMHiRyF/mcsSF+E/SIuH/aWtoRV6uao8r12CQ+B+hgxLtBMZ8Gq/ZSF
-Ygy6pZG95T6EeyeDoH9VLfcFey4WfC/Mnfu2R7fPJxZihHras/uGgHcga0YhzuyHXB8eXvnDKvST
-hcbY0XvAHAFdItfmWdb/CGGfPkVKwtmwj0wRKu90qvMLh7TTNok8Mggcw5Y9mcvnkBcw3ae8DZKT
-hC8kPEAjk0glu1GFV9fZ62/LuAH0OkZw/b7+fLmEFbwOb17yrKMWw/H9rihgpjw1NYOlWePvmC4=
---000000000000efcf9006488f35c8--
