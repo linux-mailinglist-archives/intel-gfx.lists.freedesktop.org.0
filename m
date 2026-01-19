@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F840D3A337
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jan 2026 10:38:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75834D3A339
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jan 2026 10:38:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D02B010E3EA;
-	Mon, 19 Jan 2026 09:38:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB3C710E3E8;
+	Mon, 19 Jan 2026 09:38:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jFeOpL8Z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ekkLAj30";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0CD810E3E5;
- Mon, 19 Jan 2026 09:38:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2258410E3EB;
+ Mon, 19 Jan 2026 09:38:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768815500; x=1800351500;
+ t=1768815501; x=1800351501;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=j780FCsxpcw9KIPIA57l4o+3zCsjubGla8TsMOQk5rY=;
- b=jFeOpL8ZLZD3NZKtRXVoBW5bKB5hDdQ0bClYRm3zF5AdZTklvaIf9KBM
- uqc4qoCLcYuicg1PFrJrrFif035h3D98u1j6ax05lLuta5JVONl38c+/u
- IFM55hOE4cQm+QSKBf488QuEGwRptsCQyxMGoWxlAj82IMTrcXhchrt7g
- NoMPDyfMBtu1P7zHMtvyIhaw1jfjvF3fKghxq/nmanD7RAcIc9ilu0iuS
- M4Bz3PiGag7fGyvfl+8i9v5Ge7GZjcgR2dX65LZ3Wq+sWrwq6dZrAyaCX
- Q6HNr+wrS/gKyw+ulCOVTV2xSF4NzLZhVNyNcLM4OsjtExbX2wGdSlwA3 w==;
-X-CSE-ConnectionGUID: kSagcu+FSzSaf4rAUE6ZMA==
-X-CSE-MsgGUID: p23YYY2uStO9+CwW08m51A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11675"; a="87602193"
-X-IronPort-AV: E=Sophos;i="6.21,237,1763452800"; d="scan'208";a="87602193"
+ bh=IOR+bMveYHJUtRa9Y2ORg4AeH2wpxGrrqWeqQTFY35c=;
+ b=ekkLAj30ddoNIb+3kDg8FQheGBPM4nnmuYgvPyqHlJnGJmFrq/df+7Jp
+ 4G3hasHVQv97gMCxbpztqcWd/ivfrFQFWiGVQER4ndtYLVIZ9BzqrpgAR
+ Fq10LIDKNSIDJHZn8n+nuZNYBerc/ehQcy9lv2XYasfkLRnCtqF6m+/Ob
+ ojSha5US1fN7Pr69Hm+COliMt7Xc+319R5xM9cPuZz8EYe+wAxFvB6b26
+ 3aBDnRybjFaHVa5hYdRB/ky/a46Obl4WUNnsDZABmfGERBXaD+Rgvy11A
+ JpTKY0OV8QxT47Sn+QsfMnGoADrsdRM8YlSybya63+8ByDGzGioUZ1xAx g==;
+X-CSE-ConnectionGUID: zkh8yQo0RUG8cGeit0L0DQ==
+X-CSE-MsgGUID: SU7KDRARQpekifG1KwCC5A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11675"; a="87602200"
+X-IronPort-AV: E=Sophos;i="6.21,237,1763452800"; d="scan'208";a="87602200"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2026 01:38:19 -0800
-X-CSE-ConnectionGUID: VW8Z6/ryTkKx+/CPbAgyOg==
-X-CSE-MsgGUID: mOXYhMyNQ8Gz4Jl4DDT1bA==
+ 19 Jan 2026 01:38:21 -0800
+X-CSE-ConnectionGUID: RkaZ6IvgQ+O5ndb76PRsKg==
+X-CSE-MsgGUID: 7C+KG53LS8KjPUuNK1Vbsg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,237,1763452800"; d="scan'208";a="210838475"
+X-IronPort-AV: E=Sophos;i="6.21,237,1763452800"; d="scan'208";a="210838484"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by orviesa005.jf.intel.com with ESMTP; 19 Jan 2026 01:38:18 -0800
+ by orviesa005.jf.intel.com with ESMTP; 19 Jan 2026 01:38:20 -0800
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Mika Kahola <mika.kahola@intel.com>,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [CI 13/15] drm/i915/cx0: Drop C20 25.175 MHz rate
-Date: Mon, 19 Jan 2026 09:37:54 +0000
-Message-ID: <20260119093757.2850233-14-mika.kahola@intel.com>
+Subject: [CI 14/15] drm/i915/lt_phy: Drop 27.2 MHz rate
+Date: Mon, 19 Jan 2026 09:37:55 +0000
+Message-ID: <20260119093757.2850233-15-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260119093757.2850233-1-mika.kahola@intel.com>
 References: <20260119093757.2850233-1-mika.kahola@intel.com>
@@ -68,62 +68,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Drop C20 25.175 MHz PLL table as with these
-PLL dividers the port clock will be incorrectly
-calculated to 25.2 MHz. For 25.175 MHz rate the
-PLl dividers are calculated algorithmically making
-PLL table for this rate redundant.
+Drop 27.2 MHz PLL table as with these PLL dividers
+the port clock will be incorrectly calculated to 27.0 MHz.
+For 27.2 MHz rate the PLl dividers are calculated
+algorithmically making PLL table for this rate redundant.
 
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 26 --------------------
- 1 file changed, 26 deletions(-)
+ drivers/gpu/drm/i915/display/intel_lt_phy.c | 55 ---------------------
+ 1 file changed, 55 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index ce4b7582b737..a0af7d3e87b6 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -1798,31 +1798,6 @@ static const struct intel_cx0pll_params mtl_c10_hdmi_tables[] = {
- 	{}
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+index dbe2b2dc9887..a3326057449a 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+@@ -803,60 +803,6 @@ static const struct intel_lt_phy_pll_state xe3plpd_lt_hdmi_252 = {
+ 	},
  };
  
--static const struct intel_c20pll_state mtl_c20_hdmi_25_175 = {
--	.clock = 25175,
--	.tx = {  0xbe88, /* tx cfg0 */
--		  0x9800, /* tx cfg1 */
--		  0x0000, /* tx cfg2 */
--		},
--	.cmn = { 0x0500, /* cmn cfg0*/
--		  0x0005, /* cmn cfg1 */
--		  0x0000, /* cmn cfg2 */
--		  0x0000, /* cmn cfg3 */
--		},
--	.mpllb = { 0xa0d2,	/* mpllb cfg0 */
--		   0x7d80,	/* mpllb cfg1 */
--		   0x0906,	/* mpllb cfg2 */
--		   0xbe40,	/* mpllb cfg3 */
--		   0x0000,	/* mpllb cfg4 */
--		   0x0000,	/* mpllb cfg5 */
--		   0x0200,	/* mpllb cfg6 */
--		   0x0001,	/* mpllb cfg7 */
--		   0x0000,	/* mpllb cfg8 */
--		   0x0000,	/* mpllb cfg9 */
--		   0x0001,	/* mpllb cfg10 */
--		},
+-static const struct intel_lt_phy_pll_state xe3plpd_lt_hdmi_272 = {
+-	.clock = 27200,
+-	.config = {
+-		0x84,
+-		0x2d,
+-		0x0,
+-	},
+-	.addr_msb = {
+-		0x87,
+-		0x87,
+-		0x87,
+-		0x87,
+-		0x88,
+-		0x88,
+-		0x88,
+-		0x88,
+-		0x88,
+-		0x88,
+-		0x88,
+-		0x88,
+-		0x88,
+-	},
+-	.addr_lsb = {
+-		0x10,
+-		0x0c,
+-		0x14,
+-		0xe4,
+-		0x0c,
+-		0x10,
+-		0x14,
+-		0x18,
+-		0x48,
+-		0x40,
+-		0x4c,
+-		0x24,
+-		0x44,
+-	},
+-	.data = {
+-		{ 0x0,  0x4c, 0x2,  0x0  },
+-		{ 0x0b, 0x15, 0x26, 0xa0 },
+-		{ 0x60, 0x0,  0x0,  0x0  },
+-		{ 0x8,  0x4,  0x96, 0x28 },
+-		{ 0xfa, 0x0c, 0x84, 0x11 },
+-		{ 0x80, 0x0f, 0xd9, 0x53 },
+-		{ 0x86, 0x0,  0x0,  0x0  },
+-		{ 0x1,  0xa0, 0x1,  0x0  },
+-		{ 0x4b, 0x0,  0x0,  0x0  },
+-		{ 0x28, 0x0,  0x0,  0x0  },
+-		{ 0x0,  0x14, 0x2a, 0x14 },
+-		{ 0x0,  0x0,  0x0,  0x0  },
+-		{ 0x0,  0x0,  0x0,  0x0  },
+-	},
 -};
 -
- static const struct intel_c20pll_state mtl_c20_hdmi_27_0 = {
- 	.clock = 27000,
- 	.tx = {  0xbe88, /* tx cfg0 */
-@@ -2049,7 +2024,6 @@ static const struct intel_c20pll_state mtl_c20_hdmi_1200 = {
- };
+ static const struct intel_lt_phy_pll_state xe3plpd_lt_hdmi_742p5 = {
+ 	.clock = 74250,
+ 	.config = {
+@@ -1021,7 +967,6 @@ static const struct intel_lt_phy_pll_state xe3plpd_lt_hdmi_5p94 = {
  
- static const struct intel_cx0pll_params mtl_c20_hdmi_tables[] = {
--	C20PLL_HDMI_PARAMS(25175, mtl_c20_hdmi_25_175),
- 	C20PLL_HDMI_PARAMS(27000, mtl_c20_hdmi_27_0),
- 	C20PLL_HDMI_PARAMS(74250, mtl_c20_hdmi_74_25),
- 	C20PLL_HDMI_PARAMS(148500, mtl_c20_hdmi_148_5),
+ static const struct intel_lt_phy_pll_params xe3plpd_lt_hdmi_tables[] = {
+ 	LT_PHY_PLL_HDMI_PARAMS(25200, xe3plpd_lt_hdmi_252),
+-	LT_PHY_PLL_HDMI_PARAMS(27200, xe3plpd_lt_hdmi_272),
+ 	LT_PHY_PLL_HDMI_PARAMS(74250, xe3plpd_lt_hdmi_742p5),
+ 	LT_PHY_PLL_HDMI_PARAMS(148500, xe3plpd_lt_hdmi_1p485),
+ 	LT_PHY_PLL_HDMI_PARAMS(594000, xe3plpd_lt_hdmi_5p94),
 -- 
 2.43.0
 
