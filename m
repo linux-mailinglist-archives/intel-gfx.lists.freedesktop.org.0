@@ -2,29 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD071D3BA38
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jan 2026 22:42:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E074D3BA57
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jan 2026 23:04:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C3EF10E52E;
-	Mon, 19 Jan 2026 21:42:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3E1710E530;
+	Mon, 19 Jan 2026 22:04:26 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="JacXpEjr";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7F2710E36E;
- Mon, 19 Jan 2026 21:42:56 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5288E10E530
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Jan 2026 22:04:25 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id E7E9F43EC4
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Jan 2026 22:04:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53BCEC116C6
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Jan 2026 22:04:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1768860264;
+ bh=ddoX8ZX7BIMT+tU5gXkzUGRXcUVVwUwuaeMC6zUlHgo=;
+ h=Date:From:To:Subject:References:In-Reply-To:From;
+ b=JacXpEjrEV2HOr51Aqx7ZRyncVaHWQ/Rm0trdLS0L2XXDGqULVSbSxc4DWVetC49i
+ pEaTrwxvv7PycFta3alt85ils+ciNty9D03w2WfnZFUQkWgqsTdIlpUZTWTDxY9006
+ s9o4o89xtIcIeV1kEutEpv9izvZy6ojrYOJPmsx8WuU4EZO3nH8FidgC5CRxqUeFKV
+ marHtPWwU/vt/bQ5FHM29c6Z95usTxePWCMKQOTkyZC37TZPV3buU65M67XAX35blc
+ 31qq5wfOOhxNQa69jz9PG+gIdZgTG3zSedSURMHzwEG+HXg+qjUwdUO+Eob0jYgznL
+ rmhK5wYaPCiYA==
+Date: Mon, 19 Jan 2026 22:04:21 +0000
+From: Mark Brown <broonie@kernel.org>
+To: intel-gfx@lists.freedesktop.org
+Subject: Re: =?utf-8?B?4pyXIEZpLkNJLkJVSUxEOiBmYWls?= =?utf-8?Q?ure_fo?=
+ =?utf-8?Q?r?= linux-next: build failure after merge of the drm-misc tree
+Message-ID: <a97a2761-12e3-4a55-86e3-4087226f3fa1@sirena.org.uk>
+References: <aW5r7NzicgqvpaUj@sirena.org.uk>
+ <176885888710.169327.3706500302616245978@a3b018990fe9>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_mm=3A_add_bitmap_VMA_flag?=
- =?utf-8?q?_helpers_and_convert_all_mmap=5Fprepare_to_use_them_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lorenzo Stoakes" <lorenzo.stoakes@oracle.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 19 Jan 2026 21:42:56 -0000
-Message-ID: <176885897662.169325.64594123083696440@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <cover.1768857200.git.lorenzo.stoakes@oracle.com>
-In-Reply-To: <cover.1768857200.git.lorenzo.stoakes@oracle.com>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="DCxww5iaNugtIZdD"
+Content-Disposition: inline
+In-Reply-To: <176885888710.169327.3706500302616245978@a3b018990fe9>
+X-Cookie: Does not include installation.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,33 +56,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: mm: add bitmap VMA flag helpers and convert all mmap_prepare to use them (rev2)
-URL   : https://patchwork.freedesktop.org/series/160306/
-State : failure
+--DCxww5iaNugtIZdD
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-== Summary ==
+On Mon, Jan 19, 2026 at 09:41:27PM -0000, Patchwork wrote:
+> =3D=3D Series Details =3D=3D
+>=20
+> Series: linux-next: build failure after merge of the drm-misc tree
+> URL   : https://patchwork.freedesktop.org/series/160314/
+> State : failure
+>=20
+> =3D=3D Summary =3D=3D
+>=20
+> Error: patch https://patchwork.freedesktop.org/api/1.0/series/160314/revi=
+sions/1/mbox/ not applied
+> Applying: linux-next: build failure after merge of the drm-misc tree
+> error: sha1 information is lacking or useless (drivers/gpu/drm/tests/drm_=
+hdmi_state_helper_test.c).
+> error: could not build fake ancestor
+> hint: Use 'git am --show-current-patch=3Ddiff' to see the failed patch
+> Patch failed at 0001 linux-next: build failure after merge of the drm-mis=
+c tree
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/160306/revisions/2/mbox/ not applied
-Applying: mm: rename vma_flag_test/set_atomic() to vma_test/set_atomic_flag()
-Applying: mm: add mk_vma_flags() bitmap flag macro helper
-Applying: tools: bitmap: add missing bitmap_[subset(), andnot()]
-Applying: mm: add basic VMA flag operation helper functions
-Applying: mm: update hugetlbfs to use VMA flags on mmap_prepare
-Applying: mm: update secretmem to use VMA flags on mmap_prepare
-Applying: mm: update shmem_[kernel]_file_*() functions to use vma_flags_t
-error: sha1 information is lacking or useless (mm/shmem.c).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0007 mm: update shmem_[kernel]_file_*() functions to use vma_flags_t
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-Build failed, no error log produced
+This seems confused?
 
+--DCxww5iaNugtIZdD
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmluqmQACgkQJNaLcl1U
+h9BLWAf+NW8W23ta7Ha9hjsl+OYMmtwjwxzROmXGPrhTVjiwdEQOiy+xgmEGJ2GZ
+i3T9K4etvqFTHW3KruG9OgaG6SGHGHvCpp5vgEeBiuTDxK00fUuNgTsvNuOOz8op
+WrKgayn4STQ9cj4/rRDs7+ywPEkxm45owewb3VuUwLQJy48MF+i2virgYW3fO2f1
+V32f9Wnu3VLKinyM7YcbVHKknoRCCRCu074pHwXiS69R4IrygDCXDxUIIvIRm3EX
+GxRd5NllGDuXWcm1uhiXMHxmspoZrrwe/HaOZ3Q35MvX6r6CPBZG73G4ZQQCNO3B
+O00R3HDOBzCOgfWHT3IOVius+BoHcQ==
+=iZsm
+-----END PGP SIGNATURE-----
+
+--DCxww5iaNugtIZdD--
