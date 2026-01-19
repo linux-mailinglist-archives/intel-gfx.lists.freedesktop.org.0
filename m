@@ -2,64 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC250D3A50B
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jan 2026 11:31:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47208D3A7C4
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jan 2026 13:05:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D790010E08F;
-	Mon, 19 Jan 2026 10:31:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE40A10E409;
+	Mon, 19 Jan 2026 12:05:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JkdMUjYN";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="qVqG8f98";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 039E110E08F;
- Mon, 19 Jan 2026 10:31:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768818673; x=1800354673;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=yx5xKLfKMFBT595CHRCKFxrAsGme5jm7v4kRVJY3QM8=;
- b=JkdMUjYN7/3CT5d7uHWx82xaf/mB/ZO189nke/nFxF3mKalTTsKp8F27
- 9QK92rtVUOYUd/tC8ScvtqOQdg5e21CbvSC+1LWXkOl+0mf6htg8qyVyk
- p3edzZPdug5aWfP5jvk5ytt1gVYY+cbQgv04wJSAbaDGflvtsIoEQRuhF
- tgqVUS4xscxaWSRu0LavKKZ6JlI1KCr5NwhItW1k9d7adnTxIRV75AWre
- UBtFT/+e7NXWU8ZESrFbxiq7GIqb49XQ4tY9fZb+0EEmCp5bBIeXOhgaF
- a0gpGMzef1iBHOZCU7PFE4FoUaOM+vVidHHLhDdRqyq5NXSp6SXIvI8/6 w==;
-X-CSE-ConnectionGUID: Qa+lOoWhSP+PHlcYjlIPiA==
-X-CSE-MsgGUID: YdgJHWH8QO2XX5HFt/18Gw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11675"; a="87609784"
-X-IronPort-AV: E=Sophos;i="6.21,238,1763452800"; d="scan'208";a="87609784"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2026 02:31:12 -0800
-X-CSE-ConnectionGUID: R9FFOm8cSnKFmJhb6ZPO4g==
-X-CSE-MsgGUID: u1sG5ectS3Whw8cbP0IlKQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,238,1763452800"; d="scan'208";a="209972195"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.22])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2026 02:31:10 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Krzysztof Karas <krzysztof.karas@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>
-Subject: Re: [PATCH v2] drm/i915/selftests: Prevent userspace mapping
- invalidation
-Date: Mon, 19 Jan 2026 11:31:06 +0100
-Message-ID: <3333011.vfdyTQepKt@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <5biajlwhi3oaep72si2dj2lhp2xwrpfa2gxqc2l36464uishjo@g26isdq64nv2>
-References: <5biajlwhi3oaep72si2dj2lhp2xwrpfa2gxqc2l36464uishjo@g26isdq64nv2>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DEDC10E405;
+ Mon, 19 Jan 2026 12:05:17 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id EBF5543BBB;
+ Mon, 19 Jan 2026 12:05:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0CF2C116C6;
+ Mon, 19 Jan 2026 12:05:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1768824316;
+ bh=x7rEGJPHMBLIdc7lqY3U1p+7lSYSCw4JvQMi+nq6oLE=;
+ h=From:To:Cc:Subject:Date:From;
+ b=qVqG8f98lfbmGT3DNofvd2SQdF704uDRKOCwOh95+ORICe/NG7/2feus3rQ7OpUId
+ c0fpsdLI/LI1Q0AF+cbzzud9MRoy87MgnxRpQfNl/bWE4ZIz02bIuE1fhgIykWyD5N
+ tC50meQIUnSccXvfjvjQTnnMgjfsU5hIlw316ftdnbB81MPwf0YPO7eCDVsNUo8vKJ
+ CqGW+qIV0IWbHs8v2ShvQZTwAsSovcxJmOl8Uny3gJOUYaX7A+0iJTswVDPTs4gM6n
+ CmD62/Moa5KInX+fVjrxq5yLIOEqlc0pX0y0MCCd+eGSehX6rucZL+wkpJiBtvn3jZ
+ bQSgQdv553N3w==
+Received: from mchehab by mail.kernel.org with local (Exim 4.99)
+ (envelope-from <mchehab+huawei@kernel.org>)
+ id 1vho0Q-00000001Zj7-350e; Mon, 19 Jan 2026 13:05:14 +0100
+From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To: Jonathan Corbet <corbet@lwn.net>
+Cc: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+ Alex Shi <alexs@kernel.org>, Carlos Bilbao <carlos.bilbao@kernel.org>,
+ David Airlie <airlied@gmail.com>, Federico Vaga <federico.vaga@vaga.pv.it>,
+ Hu Haowen <2023002089@link.tyut.edu.cn>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nsc@kernel.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Yanteng Si <si.yanteng@linux.dev>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-doc@vger.kernel.org, linux-kbuild@vger.kernel.org,
+ linux-kernel@vger.kernel.org, workflows@vger.kernel.org,
+ =?UTF-8?q?Thomas=20Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Avadhut Naik <avadhut.naik@amd.com>,
+ Chenguang Zhao <zhaochenguang@kylinos.cn>,
+ David Disseldorp <ddiss@suse.de>, Dongliang Mu <dzm91@hust.edu.cn>,
+ Gang Yan <yangang@kylinos.cn>, Kees Cook <kees@kernel.org>,
+ Masahiro Yamada <masahiroy@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
+ Randy Dunlap <rdunlap@infradead.org>,
+ Shuah Khan <skhan@linuxfoundation.org>,
+ Steven Rostedt <rostedt@goodmis.org>, Tamir Duberstein <tamird@gmail.com>,
+ Vincent Mailhol <mailhol@kernel.org>, WangYuli <wanyl5933@chinaunicom.cn>
+Subject: [PATCH 0/9] docs: Fix kernel-doc -Werror and moves it to tools/docs
+Date: Mon, 19 Jan 2026 13:04:55 +0100
+Message-ID: <cover.1768823489.git.mchehab+huawei@kernel.org>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset=UTF-8
 Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,99 +82,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Krzysztof,
+Hi Jon,
 
-On Monday, 19 January 2026 11:16:02 CET Krzysztof Karas wrote:
-> IGT mmap testing in i915 uses current task's address space to
-> allocate new userspace mapping, without registering real user
-> for that address space in mm_struct.
-> 
-> It was observed that mm->mm_users would occasionally drop to 0
-> during tests, which reaped userspace mappings, further leading
-> to failures upon reading from userland memory.
-> 
-> Prevent this by artificially increasing mm_users counter for the
-> duration of the test.
-> 
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204
-> Signed-off-by: Krzysztof Karas <krzysztof.karas@intel.com>
-> ---
-> During testing I also found out that this problem affects
-> another function, __igt_mmap(), which also utilizes userspace
-> VMAs.
-> 
-> v2:
->  * use mmget/mmput() (Jani);
->  * include __igt_mmap() in the scope;
->  * change comments and commit message;
-> 
->  .../drm/i915/gem/selftests/i915_gem_mman.c    | 24 +++++++++++++++++++
->  1 file changed, 24 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-> index 0d250d57496a..82ab090f66c8 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-> @@ -916,6 +916,13 @@ static int __igt_mmap(struct drm_i915_private *i915,
->  	if (err)
->  		return err;
->  
-> +	/*
-> +	 * Get a reference to tasks's mm_struct to artificially increase mm_users
-> +	 * and ensure the kernel does not try to clean up the userspace mappings
-> +	 * of the current task during the test.
-> +	 */
-> +	mmget_not_zero(current->mm);
+After a restful weekend and revisiting both yours and my series,
+I'm opting to send a patch series merging both into one:
 
-What happens if that fails?
+- The first 4 patches are from my series (no changes since v5):
+    https://lore.kernel.org/linux-doc/cover.1768642102.git.mchehab+huawei@kernel.org/T/#m81211c0ff38bbaa82b8b0b6606f242ccc0c2a9ac
 
-Thanks,
-Janusz
+- It follows by the 2 patches from your renaming series:
+    https://lore.kernel.org/linux-doc/20260119111745.4694546b@foz.lan/T/#m51099c31a99dccccdb4d17cbaadc818e9e4df8c4
 
-> +
->  	addr = igt_mmap_offset(i915, offset, obj->base.size, PROT_WRITE, MAP_SHARED);
->  	if (IS_ERR_VALUE(addr))
->  		return addr;
-> @@ -968,6 +975,11 @@ static int __igt_mmap(struct drm_i915_private *i915,
->  		err = gtt_check(obj);
->  out_unmap:
->  	vm_munmap(addr, obj->base.size);
-> +	/*
-> +	 * mmput() is not supposed to be called on task's own
-> +	 * mm_struct, so let kernel handle that.
-> +	 */
-> +	mmput_async(current->mm);
->  	return err;
->  }
->  
-> @@ -1177,6 +1189,13 @@ static int __igt_mmap_migrate(struct intel_memory_region **placements,
->  	if (err)
->  		goto out_put;
->  
-> +	/*
-> +	 * Get a reference to tasks's mm_struct to artificially increase mm_users
-> +	 * and ensure the kernel does not try to clean up the userspace mappings
-> +	 * of the current task during the test.
-> +	 */
-> +	mmget_not_zero(current->mm);
-> +
->  	/*
->  	 * This will eventually create a GEM context, due to opening dummy drm
->  	 * file, which needs a tiny amount of mappable device memory for the top
-> @@ -1293,6 +1312,11 @@ static int __igt_mmap_migrate(struct intel_memory_region **placements,
->  
->  out_addr:
->  	vm_munmap(addr, obj->base.size);
-> +	/*
-> +	 * mmput() is not supposed to be called on task's own
-> +	 * mm_struct, so let kernel handle that.
-> +	 */
-> +	mmput_async(current->mm);
->  
->  out_put:
->  	i915_gem_object_put(obj);
-> 
+  with the fix I proposed for kernel-doc to find its libraries
 
+I added 3 patches afterwards:
 
+  - patch 5: move possible return values from docstring to helper message;
+  - patch 6: improve MsgFormatter description;
+  - patch 7: moves kerneldoc_bin from conf.py to the sphinx/kerneldoc.py
+    (this is now just a debugging message - no need to pick it from env)
 
+IMO, this series is ready to be merged.
+
+NOTE:
+    I didn't rename kernel-doc to kernel_doc.py nor added any symlinks.
+    If we want some day to use sphinx autoparse extension, we can do it
+    later. I guess we can also revisit it during -rc period, if needed.
+
+Regards,
+Mauro
+
+Jonathan Corbet (2):
+  docs: kdoc: remove support for an external kernel-doc from sphinx
+  docs: kdoc: move kernel-doc to tools/docs
+
+Mauro Carvalho Chehab (7):
+  docs: kdoc: fix logic to handle unissued warnings
+  docs: kdoc: avoid error_count overflows
+  docs: kdoc: ensure that comments are using our coding style
+  docs: kdoc: some fixes to kernel-doc comments
+  docs: kdoc: move the return values to the helper message
+  docs: kdoc: improve description of MsgFormatter
+  docs: conf.py: get rid of the now unused kerneldoc_bin env var
+
+ Documentation/conf.py                         |  4 -
+ Documentation/doc-guide/kernel-doc.rst        |  8 +-
+ Documentation/kbuild/kbuild.rst               |  2 +-
+ Documentation/process/coding-style.rst        |  2 +-
+ Documentation/sphinx/kerneldoc.py             | 60 +++----------
+ .../it_IT/doc-guide/kernel-doc.rst            |  8 +-
+ .../sp_SP/process/coding-style.rst            |  2 +-
+ .../zh_CN/doc-guide/kernel-doc.rst            | 10 +--
+ .../translations/zh_CN/kbuild/kbuild.rst      |  2 +-
+ .../zh_CN/process/coding-style.rst            |  2 +-
+ .../zh_TW/process/coding-style.rst            |  2 +-
+ MAINTAINERS                                   |  2 -
+ Makefile                                      |  2 +-
+ drivers/gpu/drm/i915/Makefile                 |  2 +-
+ scripts/kernel-doc                            |  1 -
+ tools/docs/find-unused-docs.sh                |  2 +-
+ .../kernel-doc.py => tools/docs/kernel-doc    | 89 ++++++++++++-------
+ tools/docs/sphinx-build-wrapper               |  2 +-
+ tools/lib/python/kdoc/kdoc_parser.py          | 35 ++++++--
+ 19 files changed, 120 insertions(+), 117 deletions(-)
+ delete mode 120000 scripts/kernel-doc
+ rename scripts/kernel-doc.py => tools/docs/kernel-doc (88%)
+
+-- 
+2.52.0
 
