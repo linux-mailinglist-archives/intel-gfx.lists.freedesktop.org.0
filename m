@@ -2,55 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D3C9D3A7D7
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jan 2026 13:05:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 691AFD3AA67
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jan 2026 14:33:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75DC310E41B;
-	Mon, 19 Jan 2026 12:05:29 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="WvOuF7hD";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE67310E44C;
+	Mon, 19 Jan 2026 13:33:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AE0310E40C;
- Mon, 19 Jan 2026 12:05:18 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 5200360166;
- Mon, 19 Jan 2026 12:05:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4FDFC2BC9E;
- Mon, 19 Jan 2026 12:05:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1768824316;
- bh=6HyC5gF4ScinHY1gGeYNGGYvsoRZQIoC1BWSJQdTkY4=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=WvOuF7hDdCBaQHihY9OW2YC1MzFJB74MOokdSvhwGI85VRZ6Ev5ixzSbIBVoGZb0/
- AmbHlcUNZ2uPeFv1VnM9Qa7+zTcxklTBwakBGzeGuORRTwf/v0c317Hhqo3pHRQvA8
- xN0ekp0C1rZw+mLt2vegSQ6so20BWtxxGtdy+loRJ5Q8MNLVrGGWAYazLjJon10GlF
- g9EbikW4yrmdSyIR3ntYNzXo9x6GcoTddi06ePHkoshuq6hlkf1qMgLFNTit1g9/Rc
- 7z/wVoOni+N0u5k5pdd+YSlwDfNSmUkHEuPrq6WVsUrAwa34hFYy2oxu1hnL2sshDG
- vxQE1+IuvzqjQ==
-Received: from mchehab by mail.kernel.org with local (Exim 4.99)
- (envelope-from <mchehab+huawei@kernel.org>)
- id 1vho0Q-00000001Zjj-48cY; Mon, 19 Jan 2026 13:05:14 +0100
-From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To: Jonathan Corbet <corbet@lwn.net>,
- Linux Doc Mailing List <linux-doc@vger.kernel.org>
-Cc: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
- workflows@vger.kernel.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Shuah Khan <skhan@linuxfoundation.org>
-Subject: [PATCH 9/9] docs: conf.py: get rid of the now unused kerneldoc_bin
- env var
-Date: Mon, 19 Jan 2026 13:05:04 +0100
-Message-ID: <c0fa9f561c1dd4370f9096de4195a9214763c51c.1768823489.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <cover.1768823489.git.mchehab+huawei@kernel.org>
-References: <cover.1768823489.git.mchehab+huawei@kernel.org>
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D56C310E44C;
+ Mon, 19 Jan 2026 13:33:01 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4962534959885960970=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Disab?=
+ =?utf-8?q?le_casf_with_joiner_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Garg, Nemesa" <nemesa.garg@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 19 Jan 2026 13:33:01 -0000
+Message-ID: <176882958186.167619.13906500070268633058@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260113054925.633053-1-nemesa.garg@intel.com>
+In-Reply-To: <20260113054925.633053-1-nemesa.garg@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,69 +37,189 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In the past, this contained the location of the binary file to parse
-kernel-doc. Nowadays, it is used only for debugging purposes, inside
-kerneldoc.py extension.
+--===============4962534959885960970==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Move it to sphinx/kerneldoc.py, to avoid needing to handle with it
-on several places.
+== Series Details ==
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- Documentation/conf.py             | 4 ----
- Documentation/sphinx/kerneldoc.py | 7 +++++--
- 2 files changed, 5 insertions(+), 6 deletions(-)
+Series: drm/i915/display: Disable casf with joiner (rev3)
+URL   : https://patchwork.freedesktop.org/series/159636/
+State : success
 
-diff --git a/Documentation/conf.py b/Documentation/conf.py
-index 383d5e5b9d0a..65df81a9e414 100644
---- a/Documentation/conf.py
-+++ b/Documentation/conf.py
-@@ -579,10 +579,6 @@ pdf_documents = [
-     ("kernel-documentation", "Kernel", "Kernel", "J. Random Bozo"),
- ]
- 
--# kernel-doc extension configuration for running Sphinx directly (e.g. by Read
--# the Docs). In a normal build, these are supplied from the Makefile via command
--# line arguments.
--kerneldoc_bin = "../tools/docs/kernel-doc"  # Not used now
- kerneldoc_srctree = ".."
- 
- def setup(app):
-diff --git a/Documentation/sphinx/kerneldoc.py b/Documentation/sphinx/kerneldoc.py
-index afbab458550a..c1cadb4eb099 100644
---- a/Documentation/sphinx/kerneldoc.py
-+++ b/Documentation/sphinx/kerneldoc.py
-@@ -47,6 +47,10 @@ sys.path.insert(0, os.path.join(srctree, "tools/lib/python"))
- from kdoc.kdoc_files import KernelFiles
- from kdoc.kdoc_output import RestFormat
- 
-+# Used when verbose is active to show how to reproduce kernel-doc
-+# issues via command line
-+kerneldoc_bin = "tools/docs/kernel-doc"
-+
- __version__  = '1.0'
- kfiles = None
- logger = logging.getLogger(__name__)
-@@ -95,7 +99,7 @@ class KernelDocDirective(Directive):
-     def handle_args(self):
- 
-         env = self.state.document.settings.env
--        cmd = [env.config.kerneldoc_bin, '-rst', '-enable-lineno']
-+        cmd = [kerneldoc_bin, '-rst', '-enable-lineno']
- 
-         filename = env.config.kerneldoc_srctree + '/' + self.arguments[0]
- 
-@@ -257,7 +261,6 @@ def setup_kfiles(app):
- 
- 
- def setup(app):
--    app.add_config_value('kerneldoc_bin', None, 'env')
-     app.add_config_value('kerneldoc_srctree', None, 'env')
-     app.add_config_value('kerneldoc_verbosity', 1, 'env')
- 
--- 
-2.52.0
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_17821 -> Patchwork_159636v3
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159636v3/index.html
+
+Participating hosts (43 -> 40)
+------------------------------
+
+  Missing    (3): bat-dg2-13 fi-snb-2520m bat-adls-6 
+
+New tests
+---------
+
+  New tests have been introduced between CI_DRM_17821 and Patchwork_159636v3:
+
+### New IGT tests (3) ###
+
+  * igt@kms_addfb_basic:
+    - Statuses :
+    - Exec time: [None] s
+
+  * igt@kms_force_connector_basic:
+    - Statuses :
+    - Exec time: [None] s
+
+  * igt@kms_pipe_crc_basic:
+    - Statuses :
+    - Exec time: [None] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_159636v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_addfb_basic@unused-pitches:
+    - fi-ilk-650:         [PASS][1] -> [INCOMPLETE][2] ([i915#15597])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17821/fi-ilk-650/igt@kms_addfb_basic@unused-pitches.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159636v3/fi-ilk-650/igt@kms_addfb_basic@unused-pitches.html
+
+  * igt@vgem_basic@mmap:
+    - fi-cfl-8700k:       [PASS][3] -> [INCOMPLETE][4] ([i915#15596])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17821/fi-cfl-8700k/igt@vgem_basic@mmap.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159636v3/fi-cfl-8700k/igt@vgem_basic@mmap.html
+
+  
+  [i915#15596]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15596
+  [i915#15597]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15597
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_17821 -> Patchwork_159636v3
+
+  CI-20190529: 20190529
+  CI_DRM_17821: 733664f1edf3c01cc68e6dd0bbdb135158a98a1d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8701: 8701
+  Patchwork_159636v3: 733664f1edf3c01cc68e6dd0bbdb135158a98a1d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159636v3/index.html
+
+--===============4962534959885960970==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Disable casf with joiner (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159636/">https://patchwork.freedesktop.org/series/159636/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159636v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159636v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17821 -&gt; Patchwork_159636v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159636v3/index.html</p>
+<h2>Participating hosts (43 -&gt; 40)</h2>
+<p>Missing    (3): bat-dg2-13 fi-snb-2520m bat-adls-6 </p>
+<h2>New tests</h2>
+<p>New tests have been introduced between CI_DRM_17821 and Patchwork_159636v3:</p>
+<h3>New IGT tests (3)</h3>
+<ul>
+<li>
+<p>igt@kms_addfb_basic:</p>
+<ul>
+<li>Statuses :</li>
+<li>Exec time: [None] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic:</p>
+<ul>
+<li>Statuses :</li>
+<li>Exec time: [None] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic:</p>
+<ul>
+<li>Statuses :</li>
+<li>Exec time: [None] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_159636v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_addfb_basic@unused-pitches:</p>
+<ul>
+<li>fi-ilk-650:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17821/fi-ilk-650/igt@kms_addfb_basic@unused-pitches.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159636v3/fi-ilk-650/igt@kms_addfb_basic@unused-pitches.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15597">i915#15597</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@vgem_basic@mmap:</p>
+<ul>
+<li>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17821/fi-cfl-8700k/igt@vgem_basic@mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159636v3/fi-cfl-8700k/igt@vgem_basic@mmap.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15596">i915#15596</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17821 -&gt; Patchwork_159636v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17821: 733664f1edf3c01cc68e6dd0bbdb135158a98a1d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8701: 8701<br />
+  Patchwork_159636v3: 733664f1edf3c01cc68e6dd0bbdb135158a98a1d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============4962534959885960970==--
