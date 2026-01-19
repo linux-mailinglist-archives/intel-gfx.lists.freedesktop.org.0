@@ -2,56 +2,250 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30585D3B81D
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jan 2026 21:20:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3AB6D3B96D
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jan 2026 22:20:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAC3C10E1BC;
-	Mon, 19 Jan 2026 20:20:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6419F10E51B;
+	Mon, 19 Jan 2026 21:20:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="maTSCRPA";
+	dkim=pass (2048-bit key; unprotected) header.d=oracle.com header.i=@oracle.com header.b="O+jfyT1C";
+	dkim=pass (1024-bit key; unprotected) header.d=oracle.onmicrosoft.com header.i=@oracle.onmicrosoft.com header.b="apMlo0OQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B5AB10E1BC;
- Mon, 19 Jan 2026 20:20:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768854017; x=1800390017;
- h=date:from:to:cc:subject:message-id;
- bh=1vQg/T5ZuzuhxcFSSx1m4hlg1qsZLbyt3u418N/l8YE=;
- b=maTSCRPAgBBlo4JkeEP07D/ig/hQMo8m2UwR1TfYOCXJbBaN7kCG6bvi
- cvnEGLXs3yqgDybIaUGSbK1HCjAJmcgNhtab2jYb12uG1159q+692SvND
- Gwihs5Xk26l3VQyCyBNsQCGagmn86v1fIi1IJd9zy78o4D2AxHZa92nNq
- x/6HxT/Q7wUCTP4nu6ZilOIznxKNpNSH8kRuigJxF5x0wjM4q/ztnM0xZ
- HcmsR6pcNwi7UUmEsyLupiIAHEd3PnFKcCSpC923B8FM/QIUFGV0a+bm0
- gkeW0JL0xOTZf4IBsRNs98ez+ZTkac7+l8iz/FAtft2lYVY/ahivsl4Qn g==;
-X-CSE-ConnectionGUID: 52zBgXZEQde7TQQdYaooeQ==
-X-CSE-MsgGUID: Z/p7gk+0Q1O8Sm0QTlZ8TQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11676"; a="73694254"
-X-IronPort-AV: E=Sophos;i="6.21,238,1763452800"; d="scan'208";a="73694254"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2026 12:20:17 -0800
-X-CSE-ConnectionGUID: 3GfOwatjSPiOYcDIiG1Lcw==
-X-CSE-MsgGUID: oeuaV/PBSHmpRqw+Ia9ZSA==
-X-ExtLoop1: 1
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
- by fmviesa003.fm.intel.com with ESMTP; 19 Jan 2026 12:20:15 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1vhvjQ-00000000OH1-2aWp;
- Mon, 19 Jan 2026 20:20:12 +0000
-Date: Tue, 20 Jan 2026 04:19:30 +0800
-From: kernel test robot <lkp@intel.com>
-To: Dmitry Baryshkov <lumag@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [drm-tip:drm-tip 1415/1442]
- drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c:2744:49: warning: passing
- argument 6 of 'drm_property_replace_blob_from_id' makes integer from pointer
- without a cast
-Message-ID: <202601200452.irMHod6V-lkp@intel.com>
-User-Agent: s-nail v14.9.25
+Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com
+ [205.220.165.32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1E0210E51B;
+ Mon, 19 Jan 2026 21:20:35 +0000 (UTC)
+Received: from pps.filterd (m0333521.ppops.net [127.0.0.1])
+ by mx0b-00069f02.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 60JBDOkJ1269382; Mon, 19 Jan 2026 21:18:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
+ :content-type:date:from:in-reply-to:message-id:mime-version
+ :references:subject:to; s=corp-2025-04-25; bh=UA8XYMlY5RvU6vkcL0
+ LukbpcpzFDBBk1FXzLuTHAy8k=; b=O+jfyT1CIuzJStiq3+z/5RNF2hlPoU6Usk
+ pxWvpA17sMCd9I6u4H44m7dRuVjRZ2p+uI93+vYtiyfeaprxpE5uGBT/nVypzNxx
+ nKroviGXVeXpcIRFysx/dUOvzjax80essCCRrgqPqF0Q3Q/42o++QUWyVbKkoMM5
+ HJ+FNzmSCWfeEfUI9mJKJRoE2ewciFt360HiupBAGF1RlR93YZO2nB4prvd0nIwH
+ xP4dMSXSaHfY1OCoblx3QQjDccInUJdxZhJKoGnwzf0jCLjB3Hi1DBHiRWSsGpLG
+ aUMGb5GEbHZ7KcM71hpYJvt13rcHII40WcNsNjjuR1MPoYwlmgVQ==
+Received: from iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com
+ (iadpaimrmta02.appoci.oracle.com [147.154.18.20])
+ by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 4br1b8as4k-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Mon, 19 Jan 2026 21:18:50 +0000 (GMT)
+Received: from pps.filterd
+ (iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
+ by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (8.18.1.2/8.18.1.2)
+ with ESMTP id 60JKxbVd032442; Mon, 19 Jan 2026 21:18:49 GMT
+Received: from sn4pr0501cu005.outbound.protection.outlook.com
+ (mail-southcentralusazon11011027.outbound.protection.outlook.com
+ [40.93.194.27])
+ by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id
+ 4br0vchws5-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Mon, 19 Jan 2026 21:18:49 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rUJrU3LevnqzzpMHrU4ovuyvw+LF2nLFOcjcuLKuGB0tED8QUFdMxn3WKKMdhQ53q5vzZnIDMMocG4dDFVY68Np1oylVNDGjth0UmG8Za4R6vinwzmpfABpC8DlOZaqQXjMvHk2BfrFoBqg6Wb88fzff1ZmkPNrGOh3N7AenYNazdwugRcDu5yPn6hQLMzpmUjBwXAXuXEdFi3MzbQsxLLv54aLzsdsi8oR+CyiGIERutQi+1pT1/gkxGkLKhqocmC71sxkP++j8Vsa7nlW1UP/Wp1fqn+fHX+lS6wqSTNTR/i2TTmCj212xVRfDw/gm6bjfNni12W0JkFI9eC+hEQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UA8XYMlY5RvU6vkcL0LukbpcpzFDBBk1FXzLuTHAy8k=;
+ b=cf8BzmSL2iH4Oe60IjqQKcWOGPKO7kinTTVXY5m+Eb84QFmESf+QteMZ3jw5A+ILOlXsnXG8qe2WtwmnIgxMaP5yqk2BhcaPc7TpFxjWCYovWcwR28z2/T+BtgJNC9VXyBu4mx2GmFOz0puPFZOLZKgCvQ18R9NMcMIIkzhsyxZcUypIUKnjrjOVuAVL1RmNO+3rJUGfDh8Ki5K4VtgedWiQhnRgDpbGDmXNvrsVWnvgeM4gdhJaPcUngH0jLKuioVeqCDj1URF4fJfoBW1l7xSdB+I10iEYAhuVnkvwKd/nNTWvnQQajrXwe0yXviOIr4u+pB2gBI+5oxB+CmXtWQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
+ dkim=pass header.d=oracle.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UA8XYMlY5RvU6vkcL0LukbpcpzFDBBk1FXzLuTHAy8k=;
+ b=apMlo0OQgzZ4g8TdRa5twDzSgplYjm1RsyBk6W+xMOdkaQd7axNeAB0Ok5mFGF9tc6lJKifpvi5ahNRvcS0iVWeJ2tfF1UJeUCtJiFLdxVx9SbZZIpfhLIT2iMZhO424vETdPhY+44FSXFs/8ZeBIl7lElp3g3Lc5dMrBzMp3gc=
+Received: from BL4PR10MB8229.namprd10.prod.outlook.com (2603:10b6:208:4e6::14)
+ by DM4PR10MB6838.namprd10.prod.outlook.com (2603:10b6:8:106::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.12; Mon, 19 Jan
+ 2026 21:18:45 +0000
+Received: from BL4PR10MB8229.namprd10.prod.outlook.com
+ ([fe80::552b:16d2:af:c582]) by BL4PR10MB8229.namprd10.prod.outlook.com
+ ([fe80::552b:16d2:af:c582%6]) with mapi id 15.20.9520.005; Mon, 19 Jan 2026
+ 21:18:43 +0000
+Date: Mon, 19 Jan 2026 21:18:47 +0000
+From: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+To: Andrew Morton <akpm@linux-foundation.org>
+Cc: Jarkko Sakkinen <jarkko@kernel.org>,
+ Dave Hansen <dave.hansen@linux.intel.com>,
+ Thomas Gleixner <tglx@kernel.org>, Ingo Molnar <mingo@redhat.com>,
+ Borislav Petkov <bp@alien8.de>, x86@kernel.org,
+ "H . Peter Anvin" <hpa@zytor.com>, Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Dan Williams <dan.j.williams@intel.com>,
+ Vishal Verma <vishal.l.verma@intel.com>, Dave Jiang <dave.jiang@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Christian Koenig <christian.koenig@amd.com>,
+ Huang Rui <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Alexander Viro <viro@zeniv.linux.org.uk>,
+ Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
+ Benjamin LaHaise <bcrl@kvack.org>, Gao Xiang <xiang@kernel.org>,
+ Chao Yu <chao@kernel.org>, Yue Hu <zbestahu@gmail.com>,
+ Jeffle Xu <jefflexu@linux.alibaba.com>,
+ Sandeep Dhavale <dhavale@google.com>,
+ Hongbo Li <lihongbo22@huawei.com>, Chunhai Guo <guochunhai@vivo.com>,
+ Theodore Ts'o <tytso@mit.edu>, Andreas Dilger <adilger.kernel@dilger.ca>,
+ Muchun Song <muchun.song@linux.dev>, Oscar Salvador <osalvador@suse.de>,
+ David Hildenbrand <david@kernel.org>,
+ Konstantin Komarov <almaz.alexandrovich@paragon-software.com>,
+ Mike Marshall <hubcap@omnibond.com>,
+ Martin Brandenburg <martin@omnibond.com>, Tony Luck <tony.luck@intel.com>,
+ Reinette Chatre <reinette.chatre@intel.com>,
+ Dave Martin <Dave.Martin@arm.com>, James Morse <james.morse@arm.com>,
+ Babu Moger <babu.moger@amd.com>, Carlos Maiolino <cem@kernel.org>,
+ Damien Le Moal <dlemoal@kernel.org>, Naohiro Aota <naohiro.aota@wdc.com>,
+ Johannes Thumshirn <jth@kernel.org>, Matthew Wilcox <willy@infradead.org>,
+ "Liam R . Howlett" <Liam.Howlett@oracle.com>,
+ Vlastimil Babka <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
+ Hugh Dickins <hughd@google.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>, Zi Yan <ziy@nvidia.com>,
+ Nico Pache <npache@redhat.com>, Ryan Roberts <ryan.roberts@arm.com>,
+ Dev Jain <dev.jain@arm.com>, Barry Song <baohua@kernel.org>,
+ Lance Yang <lance.yang@linux.dev>, Jann Horn <jannh@google.com>,
+ Pedro Falcato <pfalcato@suse.de>, David Howells <dhowells@redhat.com>,
+ Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
+ "Serge E . Hallyn" <serge@hallyn.com>, Yury Norov <yury.norov@gmail.com>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>, linux-sgx@vger.kernel.org,
+ linux-kernel@vger.kernel.org, nvdimm@lists.linux.dev,
+ linux-cxl@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-fsdevel@vger.kernel.org,
+ linux-aio@kvack.org, linux-erofs@lists.ozlabs.org,
+ linux-ext4@vger.kernel.org, linux-mm@kvack.org, ntfs3@lists.linux.dev,
+ devel@lists.orangefs.org, linux-xfs@vger.kernel.org,
+ keyrings@vger.kernel.org, linux-security-module@vger.kernel.org,
+ Jason Gunthorpe <jgg@nvidia.com>
+Subject: Re: [PATCH 00/12] mm: add bitmap VMA flag helpers and convert all
+ mmap_prepare to use them
+Message-ID: <6a7510d1-5346-48cc-9746-9d5d9eb8d027@lucifer.local>
+References: <cover.1768834061.git.lorenzo.stoakes@oracle.com>
+ <20260119113302.76b21eb8be2f9d0bb076446d@linux-foundation.org>
+ <e7b0dfa2-51c7-469b-a6f2-78b505c0f139@lucifer.local>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e7b0dfa2-51c7-469b-a6f2-78b505c0f139@lucifer.local>
+X-ClientProxiedBy: LO4P265CA0148.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:2c7::12) To BL4PR10MB8229.namprd10.prod.outlook.com
+ (2603:10b6:208:4e6::14)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL4PR10MB8229:EE_|DM4PR10MB6838:EE_
+X-MS-Office365-Filtering-Correlation-Id: cc46bba5-aa0f-4e78-4cc9-08de57a05321
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?YaalNDTBBlBvq0UUz8AX016MtJGqiWxCmXIuc4JEJvJ81sjwPL0kjXH6mwFx?=
+ =?us-ascii?Q?JxbQCo0r/AqXd+Lzx/DIY3KzH0ajbjJyEXkiXf/xuN5f+WP7BPZnSETf8FrQ?=
+ =?us-ascii?Q?LqvrUQ0r9sNWGKSwOHqLn1uMHjYutsG2DHeQLQB3L1CdoJWH4WRFhtzIvkNe?=
+ =?us-ascii?Q?prSOBxJGFnSq/0UOTN89Wf1hZCJumL6xuZ+fERIhBQfISQnEnbVHPmUgyWsE?=
+ =?us-ascii?Q?biDXF6gOhrbpySxNrI6atto6FGv5E+TnlMYyBxnj4vIIBeEoLE0cjIgNzYZg?=
+ =?us-ascii?Q?cgtnCFT/5KywB4Kb59BcxHMHbmZavmEE8H9IXFJFXZPcuGYQf1kuv0UJ4aMd?=
+ =?us-ascii?Q?y45vwXbpgqewEG09ZNRO6a4xB71aFJBbMvxh2w2fb0oQ1pUZipODUZ6PFUAg?=
+ =?us-ascii?Q?Rs8R3ItZ+Zcws1a7F1sK32HHA8M/2iIzJkeUjGyST1PLZ4h7NFgvoa0yd46P?=
+ =?us-ascii?Q?/R6t0J8zUUiLxiS5lIntsnyarm5pQAnL8De1ZtqmElhUBS12YVdWv0U3ahdm?=
+ =?us-ascii?Q?0YydX3Ov8u7rDZmbxkSzzi1QYp7u18M9dHMoWBp7qoOmoc0ngTj/xEzJ8IBy?=
+ =?us-ascii?Q?cjFCeHVOitlLQvwbl/+o3Jbg2e3zRLk8AUshi8RnSS5e70zBhR3Sa3GyEy2F?=
+ =?us-ascii?Q?4qIRCzPvB2UpTEI+DdKmoh7sJBjLNBB7ntOUp0ezz4+b8wVvYh02pf9JQbVN?=
+ =?us-ascii?Q?akgqVEYGgRs7M3QZB2cAjqd2bB7py8uaVOjWbIGZFYOYONCWhrcwb97telOQ?=
+ =?us-ascii?Q?WCsS6zBGpjhfVDdWn8h2xBszKZw/v8z2sALIq65gDN1d3bp3Wt+rSjT1jGiu?=
+ =?us-ascii?Q?V1VRH/GheU7jX0FAWRb1SfSjK87erDO4f1DQOw/YfLJ23uTU4KlQ+RAa7Z0o?=
+ =?us-ascii?Q?bDLVIz/derbax/p0qn8Rrqc2fXEPKhBgGzhRRLvrIk58eoW6S9iK4qRnCdeX?=
+ =?us-ascii?Q?fiOPKx8saIc0EtYwtx8nOiOVkqIoHA3CzzsxegpTtsSE655p1F35QRVumI1+?=
+ =?us-ascii?Q?uYfedSpvuwqaIqtbz20CEb1G3vvjfffAYloh/xQnvo8ws8qrbCGVgdWJrHyg?=
+ =?us-ascii?Q?dS42/MNuFHfxUj30+nOiSU1lCSEV0QZbYLosz7OZM4vfN7xcQEfjqk2VOiXP?=
+ =?us-ascii?Q?AB1kOWluVaJz5tLqFA3Pz5zPRMtnIBRgxpEmiKRRHphrHvSht8qsoMUqkYza?=
+ =?us-ascii?Q?mHtvY3pJH9x+eZlFHs1QvSR4d4wozWsaFkybcVxXMOyeadps0gRmednYl074?=
+ =?us-ascii?Q?KMILltNQNAFGIp4syPjVxSQr+piuk0eYaRBAgJp9elN/FK0vYaNUEhb1Yui1?=
+ =?us-ascii?Q?mfHcig7Z+6yQbe0VOZd4Mg/cvNwwU9rkxgSNahMp2V/euAxQ3JqAlm8QR9I0?=
+ =?us-ascii?Q?06eAZBnHdK3JMaot/+2nvlNdytTe28bkOgBYgoWM30aZC5cK5r1S8WZlFLO2?=
+ =?us-ascii?Q?oMYoDYibhcAGTQYFqImK1W9qtxE8N8UBhRlKabRU0zc0fJ/REQF7I7gm8kxK?=
+ =?us-ascii?Q?LPREwkuRZS58gKA2BtvCQMEWryQDxVcNiRRKh1KsC4GtW1XyGh5P6Li5d36z?=
+ =?us-ascii?Q?euTczmTkmfx0p3WEX2E=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL4PR10MB8229.namprd10.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(7416014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?GU3Tt66MlYmtmwLBaW9/1qrxq1CXd0sV2dbUPksD/UuNY2/rRsK5B8MjQFcf?=
+ =?us-ascii?Q?XIMpzbGccK1e+tnalqOeINp6wf9ieT2okk17Xaof+DfkAweerWLHjNpybXR/?=
+ =?us-ascii?Q?cUHWC9fX4rlPsEyhc7GKz2/9YFmKfHPB1z2pOJ1NCZawgtu6ZyxzeV3Jh76i?=
+ =?us-ascii?Q?UrF4L/Rp0zxXYAmulZjQd+OrgvFMHPM7hgNVd1M2Tjk+a9vPPEtXj/n9TbBX?=
+ =?us-ascii?Q?/Tt368TD1NLbxHXURBX39KDuuaZl47gfc1S/uV8EPHMRxLEj9Zk4jhmB/Csv?=
+ =?us-ascii?Q?XC1XkA/5J4rxhVDT4Cfu/XWhwUfu1cc6LG4iI0YX0jSYAzMBjq6k9KqwIFsF?=
+ =?us-ascii?Q?OhkBL3KeM0BB0iH4ER8P554RoGJtwnECKnQOZ+iVBVF4tjToinBK1pADmX/b?=
+ =?us-ascii?Q?TE0CchpR7cIuSUsiZisFiRtpy2bAlAOuDi9dY1euNPHF9cof6+eDWANAjOrj?=
+ =?us-ascii?Q?VC0TK8rv6oorzwkOdLY52uHLH/4LeptI8Z5BsdcEeYtibRM8gmPMPMGPurUN?=
+ =?us-ascii?Q?20J5M3fgqgYuTrCSJoo7L3Jo2juVkV9q+gQXh43/sq25OKZtzIQ/GisqvxeF?=
+ =?us-ascii?Q?EuL3bDDdKv8rTdpH8nPW904MNz9ZyganTIJCrvR5AG2BiViGtVzF9iwjwaXF?=
+ =?us-ascii?Q?p7cjG55HH56yl721cDHLKAawt1m2VDMTzDTh1Bn75ZnwDAFgIyvW4q7f8w3B?=
+ =?us-ascii?Q?33dLQa8cwt3NoWCl2f/wJoVrvBgtvfGX1XCeGZGKLRuZtEzooKOrmk5t+/u7?=
+ =?us-ascii?Q?LPfmmWAEMyHFcLgxs/CMPgPKVKv9uQYfAcISfows+uq/b5t4PwjjH+PVByO9?=
+ =?us-ascii?Q?X4wp7sWVgvKSK7XRrYyBTrJzw1zYVumx5815MbkJO9OWIn6YHKbqYRV2jLAo?=
+ =?us-ascii?Q?1odIR3Wn8QbQMPAiVbREDGNewo/L9jdqu/tkdnioEJ39r+oOeoxl2HDyDREC?=
+ =?us-ascii?Q?//3ZHIGU8Hqbbt5adIXHi15CT1cd4zdApK15WSKgFf995yO+t6/B/b9bCOXj?=
+ =?us-ascii?Q?6WjBHSF93GY/p2gsPh6aFGJVB7LQXLT4tSA/I2rNlra0NbxEnMLb2+/zUI42?=
+ =?us-ascii?Q?Sq4KYrflTs0yPuP9Ui7WPbjYlhBwnKdlZh6WuapigWHIyi1dHtya6dXW9oEo?=
+ =?us-ascii?Q?2WJf2C66vjl+dDD9w809roxmv5eQr8JY9fMEIX6fE93bkzjH/vrTDmo2s5z7?=
+ =?us-ascii?Q?EyBRSKlL+v00A7vRAypXafVCuDRamIBU5o7i21nrmfAzoUAwdKjjSGlwuFdH?=
+ =?us-ascii?Q?+JjwmwCGSCIHt9DBNJr2k46VCe+LMlTkeMjySzQtqGaublEu/j1OQ5K2+zXT?=
+ =?us-ascii?Q?2bQ2hc4GsHBnzzB5GHAmx6aAl16A2l289PmffpTLcqNLUgK2YRr/LsCBiFav?=
+ =?us-ascii?Q?LAkned9eSmOVNHpZr9GizWqLK3GXJ+z1zAFin8TXE+JwBQNcbgKFXmMhdoAd?=
+ =?us-ascii?Q?yiF8jI/3OaQXffV17vVcf7NeQJA/Qyz4lW86jrVTN00b1xqSamr93OI8IWWw?=
+ =?us-ascii?Q?DMKWQiV3/veByOgD05LkDiEMAu8K7o65uhSTkpw0H+6ssx81gvXEuUvbxo4e?=
+ =?us-ascii?Q?qdQ/8HG5Xjc8nskbGifnXSsvPO2ZSWbjdBwiWhmSMVXl4u7CuzEMZuako8dF?=
+ =?us-ascii?Q?dX3rafex7ENYUtjFMku2LaiTw/A5lCtGhlp+j4YJURJvxL+MR/WRQKJNExZN?=
+ =?us-ascii?Q?SN/REDqvsTS7/BKhM4+zBky6h6QIoa1o23axL+/bZvuaHyHs05fnCl8VRMqE?=
+ =?us-ascii?Q?vLjHgIEPdEuMGbieElkaHEBrtgBmqrs=3D?=
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: Xl0r6DbH+mRmN+HzBzmDhCEudAtTLQ1xiDGx0IJsaVnuYyn3yR1i5Y6iBME1coxyBgv5asIa/swMczQKOtxi5R19ofLrpqGIIporXVRXtg0kYr7BaJEmLnCZjNdqP7VKzlH3lcQqpWCx78AT9Y3hQphNeVbzpDgJHjfSM4h2ogj0nY2LUTAaQAQ0peQYOWQWzFniesZnk4gGh7xbB3IoUVWp13PBNuVfc8b5i9fvwn8gciACxzCQrB/sjMT71gw0KvS0dCoMhDI9CJxUJ6ib8MMYi62zQf4b5+hf/E+8C97iNpEnC+qktel7ovptaA3mQQFDiPXxxwZ0qFtSVFncTlD8JdaEqbhplGxrTDvofDklfkEdEhUeE/ZnZqejz4YL5UszEUBbHASB7/qoSTfS42kZodHusY7BbatoymB6ZcYwC7NLGMN6No3eg3/yL3pHxltoQsI+I6SKLbm13M9ZQPxPNmAU/XM6YAcgsVaqNkXIsmSdJKFDdiv+5beFRBoiHexnbJyEC3CVToTfQmVnZnRyKkm4i6xn6aXxvWGyas/B+w1+/ph3Ng1XTdWlDLBpgIjMl3tFBMRRvQZReU9dHEXYDPbbzbKt69fZA+ymwOc=
+X-OriginatorOrg: oracle.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cc46bba5-aa0f-4e78-4cc9-08de57a05321
+X-MS-Exchange-CrossTenant-AuthSource: BL4PR10MB8229.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2026 21:18:43.7586 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +l7Ou9fK6+w0UbZ7V7PQRPB78OibEfBTev5GuzaAV3OOoN4+sGEzaYfzqJmQ2X2PKKEYB9XiVuZrlPOZ6W+r/z8sFQLf+jwn7tUefbY9+oc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR10MB6838
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-19_05,2026-01-19_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0
+ bulkscore=0 adultscore=0
+ spamscore=0 phishscore=0 mlxscore=0 mlxlogscore=684 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2601150000
+ definitions=main-2601190178
+X-Authority-Analysis: v=2.4 cv=WbcBqkhX c=1 sm=1 tr=0 ts=696e9fba b=1 cx=c_pps
+ a=e1sVV491RgrpLwSTMOnk8w==:117
+ a=e1sVV491RgrpLwSTMOnk8w==:17
+ a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19
+ a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=vUbySO9Y5rIA:10 a=GoEa3M9JfhUA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=BabDg4oCxTNmhIoQOgoA:9 a=CjuIK1q_8ugA:10 cc=ntf awl=host:13654
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE5MDE3OCBTYWx0ZWRfX2FYLT2C2+ZK1
+ 4kUk2h7Hwkot1zDKNbAqI426z7TpzmV5AVnSpE6rBfy8XGT1Y1pknJxX35+97sbGfH+UMOQyPm+
+ Pyhi2+b/Bz8w1Ntm8lxhNxh/MdNPSkp2CzagtQyiGkdz6RwfpVfKAv6700RP2AglCVHhFL5Bh5K
+ ZhIEBtSURoJKWfMhJh562y8ZyLmaM4DfN4U4ZxJLRKWKAggOevskdewl9kaqOzyrfEGNqW2qV6r
+ sVi2ZeTrXUgeruCEzB175zfsP/EotFep+HH8WLoKNak7YoS9vrfrPSLhtEVw8/lHM5C9Cq7HmWt
+ NbCDPHvdoaqcqPaphMYjqSJORx3gETzZRqsWGoPD/KMcPo8YWK11XziMYq1DVz8hmQghSIxQy8S
+ tJoV8VrQKuA3oprAyqxAkQxMaTnqn8t7dU3P1LI47449vN37fXVThCTd4k/7X/iFMWWa8heRZ9G
+ oebW4SoM/2eUD8RRBf1uQm4lk54C6gWSRgnjkXL0=
+X-Proofpoint-ORIG-GUID: fFxqauKLVVTiWPHP5YVNpkkWJ8XssKI0
+X-Proofpoint-GUID: fFxqauKLVVTiWPHP5YVNpkkWJ8XssKI0
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,169 +261,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-tree:   https://gitlab.freedesktop.org/drm/tip.git drm-tip
-head:   1629d3f34f235cd5e43cfd0386a152d65584ccd4
-commit: 7436a87db99d57196c49d10de35f41531993d5f1 [1415/1442] drm/tests: hdmi: check the infoframes behaviour
-config: x86_64-randconfig-005-20260119 (https://download.01.org/0day-ci/archive/20260120/202601200452.irMHod6V-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.4.0-5) 12.4.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260120/202601200452.irMHod6V-lkp@intel.com/reproduce)
+All - please disregard this version of the series, I'm about to send a
+resend that's rebased on mm-unstable and fixes the merge conflict.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202601200452.irMHod6V-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c: In function 'drm_test_check_reject_hdr_infoframe_bpc_10':
->> drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c:2744:49: warning: passing argument 6 of 'drm_property_replace_blob_from_id' makes integer from pointer without a cast [-Wint-conversion]
-    2744 |                                                 &replaced);
-         |                                                 ^~~~~~~~~
-         |                                                 |
-         |                                                 bool * {aka _Bool *}
-   In file included from include/drm/drm_connector.h:33,
-                    from include/drm/drm_modes.h:33,
-                    from include/drm/drm_crtc.h:32,
-                    from include/drm/drm_atomic.h:31,
-                    from drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c:7:
-   include/drm/drm_property.h:287:47: note: expected 'ssize_t' {aka 'long int'} but argument is of type 'bool *' {aka '_Bool *'}
-     287 |                                       ssize_t max_size,
-         |                                       ~~~~~~~~^~~~~~~~
-   drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c:2740:15: error: too few arguments to function 'drm_property_replace_blob_from_id'
-    2740 |         ret = drm_property_replace_blob_from_id(drm,
-         |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/drm/drm_property.h:282:5: note: declared here
-     282 | int drm_property_replace_blob_from_id(struct drm_device *dev,
-         |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-vim +/drm_property_replace_blob_from_id +2744 drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c
-
-  2658	
-  2659	/*
-  2660	 * Test that the rejection of HDR InfoFrame results in the failure of
-  2661	 * drm_atomic_helper_connector_hdmi_update_infoframes() in the high bpc is
-  2662	 * supported.
-  2663	 */
-  2664	static void drm_test_check_reject_hdr_infoframe_bpc_10(struct kunit *test)
-  2665	{
-  2666		struct drm_atomic_helper_connector_hdmi_priv *priv;
-  2667		struct drm_modeset_acquire_ctx ctx;
-  2668		struct drm_atomic_state *state;
-  2669		struct drm_connector_state *new_conn_state;
-  2670		struct drm_crtc_state *crtc_state;
-  2671		struct drm_display_mode *preferred;
-  2672		struct drm_connector *conn;
-  2673		struct drm_device *drm;
-  2674		struct drm_crtc *crtc;
-  2675		int old_hdmi_update_failures;
-  2676		struct hdr_output_metadata hdr_data;
-  2677		struct drm_property_blob *hdr_blob;
-  2678		bool replaced;
-  2679		int ret;
-  2680	
-  2681		priv = drm_kunit_helper_connector_hdmi_init_with_edid_funcs(test,
-  2682					BIT(HDMI_COLORSPACE_RGB),
-  2683					10,
-  2684					&reject_hdr_infoframe_hdmi_funcs,
-  2685					test_edid_hdmi_1080p_rgb_max_200mhz_hdr);
-  2686		KUNIT_ASSERT_NOT_NULL(test, priv);
-  2687	
-  2688		drm = &priv->drm;
-  2689		crtc = priv->crtc;
-  2690		conn = &priv->connector;
-  2691	
-  2692		preferred = find_preferred_mode(conn);
-  2693		KUNIT_ASSERT_NOT_NULL(test, preferred);
-  2694	
-  2695		drm_modeset_acquire_init(&ctx, 0);
-  2696	
-  2697	retry_conn_enable:
-  2698		ret = drm_kunit_helper_enable_crtc_connector(test, drm,
-  2699							     crtc, conn,
-  2700							     preferred,
-  2701							     &ctx);
-  2702		if (ret == -EDEADLK) {
-  2703			ret = drm_modeset_backoff(&ctx);
-  2704			if (!ret)
-  2705				goto retry_conn_enable;
-  2706		}
-  2707		KUNIT_ASSERT_EQ(test, ret, 0);
-  2708	
-  2709		drm_encoder_helper_add(&priv->encoder, &test_encoder_helper_funcs);
-  2710	
-  2711		state = drm_kunit_helper_atomic_state_alloc(test, drm, &ctx);
-  2712		KUNIT_ASSERT_NOT_ERR_OR_NULL(test, state);
-  2713	
-  2714	retry_conn_state:
-  2715		new_conn_state = drm_atomic_get_connector_state(state, conn);
-  2716		if (PTR_ERR(new_conn_state) == -EDEADLK) {
-  2717			drm_atomic_state_clear(state);
-  2718			ret = drm_modeset_backoff(&ctx);
-  2719			if (!ret)
-  2720				goto retry_conn_state;
-  2721		}
-  2722		KUNIT_ASSERT_NOT_ERR_OR_NULL(test, new_conn_state);
-  2723	
-  2724		crtc_state = drm_atomic_get_crtc_state(state, crtc);
-  2725		if (PTR_ERR(crtc_state) == -EDEADLK) {
-  2726			drm_atomic_state_clear(state);
-  2727			ret = drm_modeset_backoff(&ctx);
-  2728			if (!ret)
-  2729				goto retry_conn_state;
-  2730		}
-  2731		KUNIT_ASSERT_NOT_ERR_OR_NULL(test, crtc_state);
-  2732	
-  2733		hdr_data.metadata_type = HDMI_STATIC_METADATA_TYPE1;
-  2734		hdr_data.hdmi_metadata_type1.eotf = HDMI_EOTF_TRADITIONAL_GAMMA_SDR;
-  2735		hdr_data.hdmi_metadata_type1.metadata_type = HDMI_STATIC_METADATA_TYPE1;
-  2736	
-  2737		hdr_blob = drm_property_create_blob(drm, sizeof(hdr_data), &hdr_data);
-  2738		KUNIT_ASSERT_NOT_ERR_OR_NULL(test, hdr_blob);
-  2739	
-  2740		ret = drm_property_replace_blob_from_id(drm,
-  2741							&new_conn_state->hdr_output_metadata,
-  2742							hdr_blob->base.id,
-  2743							sizeof(struct hdr_output_metadata), -1,
-> 2744							&replaced);
-  2745		KUNIT_ASSERT_EQ(test, ret, 0);
-  2746		KUNIT_ASSERT_EQ(test, replaced, true);
-  2747	
-  2748		crtc_state->mode_changed = true;
-  2749	
-  2750		old_hdmi_update_failures = priv->hdmi_update_failures;
-  2751	
-  2752		ret = drm_atomic_check_only(state);
-  2753		if (ret == -EDEADLK) {
-  2754			drm_atomic_state_clear(state);
-  2755			ret = drm_modeset_backoff(&ctx);
-  2756			if (!ret)
-  2757				goto retry_conn_state;
-  2758		}
-  2759		KUNIT_ASSERT_EQ(test, ret, 0);
-  2760	
-  2761		ret = drm_atomic_commit(state);
-  2762		if (ret == -EDEADLK) {
-  2763			drm_atomic_state_clear(state);
-  2764			ret = drm_modeset_backoff(&ctx);
-  2765			if (!ret)
-  2766				goto retry_conn_state;
-  2767		}
-  2768		KUNIT_ASSERT_EQ(test, ret, 0);
-  2769	
-  2770		KUNIT_EXPECT_LE(test, old_hdmi_update_failures, priv->hdmi_update_failures);
-  2771	
-  2772		new_conn_state = conn->state;
-  2773		KUNIT_ASSERT_NOT_NULL(test, new_conn_state);
-  2774	
-  2775		KUNIT_ASSERT_EQ(test, new_conn_state->hdmi.output_bpc, 10);
-  2776		KUNIT_ASSERT_EQ(test, new_conn_state->hdmi.infoframes.hdr_drm.set, true);
-  2777	
-  2778		drm_modeset_drop_locks(&ctx);
-  2779		drm_modeset_acquire_fini(&ctx);
-  2780	}
-  2781	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thanks, Lorenzo
