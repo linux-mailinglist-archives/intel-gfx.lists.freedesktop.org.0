@@ -2,68 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OFTZITqpb2kZEwAAu9opvQ
+	id ABaoFKypb2lUEwAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jan 2026 17:11:38 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jan 2026 17:13:32 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3CA74725C
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jan 2026 17:11:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC750472E7
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jan 2026 17:13:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55F7110E626;
-	Tue, 20 Jan 2026 16:11:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39EA610E629;
+	Tue, 20 Jan 2026 16:13:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WH9FE9yU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Dmq1Evga";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86EC210E626
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jan 2026 16:11:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33D2810E629;
+ Tue, 20 Jan 2026 16:13:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768925495; x=1800461495;
+ t=1768925610; x=1800461610;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=wItH6JYEUrIaQ9/hhcz+aBkOKBsbuMrGwki6nH5xNhY=;
- b=WH9FE9yU06RFNamkQ03wTvMnrptLK/q6+KUDEQiYRynKoPAVWpcVzGcp
- uGsfvJBTAm3Rzmg1TUhcgOB6chEiU9t+1RJX5qt/nGvSY4lMxCchPcW6j
- nb2RYAPyh2O8dLtw9b3l46CL7B9XnfC4PsK/p6P1V5MHuz95T79Oj4cMz
- FUILCpc5mH2RwzaMjS4kpDcl9uAMmM09aFgGu7/WQR/LUvXC/s0Quhs6B
- 1gLHYm9G2PLE7xWaGIrT942cNjcjpJCBTYVQSsr/2hWA/JpmC1pgiAMd9
- DcECAkQ+wErOtSMSlRUslbzBMlHaG5mkF7fgAeJi2EK3zIGFocQ6ZOE7g g==;
-X-CSE-ConnectionGUID: /8xzVf8hQe2mjcEh00uITw==
-X-CSE-MsgGUID: IfWLmZQGQC2jWIrgDdG/Uw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="70042872"
-X-IronPort-AV: E=Sophos;i="6.21,240,1763452800"; d="scan'208";a="70042872"
+ bh=498oxGrniusgwl02USGMvrqJUqhP94piwMBn+uueNZg=;
+ b=Dmq1EvgaMRU0oO2fYpbC9A/4L2wjPh/h+Z2NLLDtlzjjytgYLmTauf20
+ nwW9NrDwpqiMpunRBVYpSG06uvGV1jE0LNQ3f+A7B5sMlR/JEUcnM6zLb
+ iTgMpL9hFA94jBLipXMSTvVv/kbJJwU0IPceqkezhi20BmsPSJZL5zJ1q
+ e8Cw6isMevjjKzVozYXeVCFYgpOkUOquhO1aofRdlg7AzI0YQvu7RCl88
+ 0qCduZ9ITkFeMScyXF+K9LzRwgtLc7qGzU4zsGFfsRv6NqWhkBXiNwWng
+ Jh/trivkWHYCfAZ0sdahxiUtelathe/V5F4gLJV2/QTYkdOV72cykFTcW Q==;
+X-CSE-ConnectionGUID: i1QSpgmsS52dL4Tb1hKZ9w==
+X-CSE-MsgGUID: Sn05ouwDTBix02/1K8ixbw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="70043146"
+X-IronPort-AV: E=Sophos;i="6.21,240,1763452800"; d="scan'208";a="70043146"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2026 08:11:35 -0800
-X-CSE-ConnectionGUID: dPJD5DX4RQ+p0TvdjLB/ig==
-X-CSE-MsgGUID: TfVVNKOPQ+OGan7RNN+kgw==
+ 20 Jan 2026 08:13:29 -0800
+X-CSE-ConnectionGUID: h1NsZGHDSiyWrJQNkQI+bg==
+X-CSE-MsgGUID: ssdgYu1pQh6jUL0If3dBvA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,240,1763452800"; d="scan'208";a="206199455"
+X-IronPort-AV: E=Sophos;i="6.21,240,1763452800"; d="scan'208";a="206199643"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.13])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2026 08:11:32 -0800
-Date: Tue, 20 Jan 2026 18:11:28 +0200
+ 20 Jan 2026 08:13:27 -0800
+Date: Tue, 20 Jan 2026 18:13:23 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jia Yao <jia.yao@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, Alex Zuo <alex.zuo@intel.com>,
- Shuicheng Lin <shuicheng.lin@intel.com>,
- Askar Safin <safinaskar@gmail.com>, Pingfan Liu <piliu@redhat.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>
-Subject: Re: [PATCH v3] drm/i915: Clearing the Memory Space Enable bit when
- disabling i915
-Message-ID: <aW-pMDuVDR_uIAQx@intel.com>
-References: <20251007180634.912006-1-jia.yao@intel.com>
- <20260120044203.2436044-1-jia.yao@intel.com>
+To: "Garg, Nemesa" <nemesa.garg@intel.com>
+Cc: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Subject: Re: [PATCH] drm/i915/display: Disable DMG Clock Gating
+Message-ID: <aW-po67khakWTsNR@intel.com>
+References: <20260120050033.635681-1-suraj.kandpal@intel.com>
+ <IA1PR11MB646765DC8252C407F4218656E389A@IA1PR11MB6467.namprd11.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260120044203.2436044-1-jia.yao@intel.com>
+In-Reply-To: <IA1PR11MB646765DC8252C407F4218656E389A@IA1PR11MB6467.namprd11.prod.outlook.com>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
@@ -81,168 +80,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.28 / 15.00];
+X-Spamd-Result: default: False [0.52 / 15.00];
 	MID_RHS_MATCH_TO(1.00)[];
-	R_MIXED_CHARSET(0.59)[subject];
+	R_MIXED_CHARSET(0.83)[subject];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,intel.com,gmail.com,redhat.com,linux.intel.com];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:jia.yao@intel.com,m:alex.zuo@intel.com,m:shuicheng.lin@intel.com,m:safinaskar@gmail.com,m:piliu@redhat.com,m:chris.p.wilson@linux.intel.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	HAS_ORG_HEADER(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
 	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,gitlab.freedesktop.org:url]
-X-Rspamd-Queue-Id: E3CA74725C
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email,intel.com:dkim,intel.com:mid]
+X-Rspamd-Queue-Id: AC750472E7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Jan 20, 2026 at 04:42:03AM +0000, Jia Yao wrote:
-> In a kexec reboot scenario, the GPU's Global Graphics Translation Table
-> (GGTT) retains its previous state after the kernel is reloaded, until i915
-> reinitializes the GGTT.
+On Tue, Jan 20, 2026 at 08:23:17AM +0000, Garg, Nemesa wrote:
 > 
-> The simple-framebuffer driver is initialized before i915 and accesses the
-> PCIe memory space (GPU aperture) through outdated GGTT entries. This leads
-> to invalid physical memory accesses, causing GPF or data corruption.
 > 
-> To prevent such issues, the Memory Space Enable (MSE) bit in the PCI Command
-> Register is cleared during i915_driver_shutdown. This disables all PCIe
-> memory space access (including MMIO and aperture) at the hardware level.
-> After the kernel is reloaded, access to the PCIe memory space will be
-> forbidden until i915 is re-initialized.
+> > -----Original Message-----
+> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Suraj
+> > Kandpal
+> > Sent: Tuesday, January 20, 2026 10:31 AM
+> > To: intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
+> > Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Kandpal, Suraj
+> > <suraj.kandpal@intel.com>
+> > Subject: [PATCH] drm/i915/display: Disable DMG Clock Gating
+> > 
+> > Disable DMG Clock gating during display initialization.
+> > 
+> > WA: 22021451799
+> > Bspec: 69095
+> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_modeset_setup.c | 7 +++++++
+> >  drivers/gpu/drm/i915/i915_reg.h                    | 1 +
+> >  2 files changed, 8 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> > b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> > index d10cbf69a5f8..2d46f00bd0d8 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> > @@ -910,6 +910,13 @@ get_encoder_power_domains(struct intel_display
+> > *display)
+> > 
+> >  static void intel_early_display_was(struct intel_display *display)  {
+> > +	/*
+> > +	 * Wa_22021451799
+> > +	 * Disable DMG Clock gating
+> > +	 */
+> > +	if (DISPLAY_VER(display) == 35)
+> > +		intel_de_rmw(display, GEN9_CLKGATE_DIS_0, 0,
+> > DMG_GATING_DIS);
+> > +
+> >  	/*
+> I guess we can remove the comment, only wa no. itself is sufficient.
 
-Still looks like a hack. I think the correct fix would involve
-preventing the kexec'd kernel from initializing the fb driver that
-is doing the invalid memory accesses.
+At least the commit message (if not the comment) should describe what
+this does. I do not want to have to trawl bspec to figure that out.
 
 > 
-> Since disabling PCIe memory space affects all MMIO operations, PXP shutdown
-> needs to be completed before this point. Calls intel_pxp_fini() before
-> disabling memory space to ensure PXP cleanup can still access MMIO registers.
+> With this fix LGTM,
+> Reviewed-by: Nemesa Garg <nemesa.garg@intel.com>
 > 
-> v2:
->   - follow brace style
-> 
-> v3:
->   - revise description
-> 
-> Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14598
-> Cc: Alex Zuo <alex.zuo@intel.com>
-> Cc: Shuicheng Lin <shuicheng.lin@intel.com>
-> Cc: Askar Safin <safinaskar@gmail.com>
-> Cc: Pingfan Liu <piliu@redhat.com>
-> Suggested-by: Chris Wilson <chris.p.wilson@linux.intel.com>
-> Signed-off-by: Jia Yao <jia.yao@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_driver.c | 35 +++++++++++++++++++++++++++---
->  1 file changed, 32 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index b46cb54ef5dc..766f85726b67 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -118,6 +118,33 @@
->  
->  static const struct drm_driver i915_drm_driver;
->  
-> +static int i915_enable_device(struct pci_dev *pdev)
-> +{
-> +	u32 cmd;
-> +	int ret;
-> +
-> +	ret = pci_enable_device(pdev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	pci_read_config_dword(pdev, PCI_COMMAND, &cmd);
-> +	if (!(cmd & PCI_COMMAND_MEMORY))
-> +		pci_write_config_dword(pdev, PCI_COMMAND, cmd | PCI_COMMAND_MEMORY);
-> +
-> +	return 0;
-> +}
-> +
-> +static void i915_disable_device(struct pci_dev *pdev)
-> +{
-> +	u32 cmd;
-> +
-> +	pci_read_config_dword(pdev, PCI_COMMAND, &cmd);
-> +	if (cmd & PCI_COMMAND_MEMORY)
-> +		pci_write_config_dword(pdev, PCI_COMMAND, cmd & ~PCI_COMMAND_MEMORY);
-> +
-> +	pci_disable_device(pdev);
-> +}
-> +
->  static int i915_workqueues_init(struct drm_i915_private *dev_priv)
->  {
->  	/*
-> @@ -788,7 +815,7 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->  	struct intel_display *display;
->  	int ret;
->  
-> -	ret = pci_enable_device(pdev);
-> +	ret = i915_enable_device(pdev);
->  	if (ret) {
->  		pr_err("Failed to enable graphics device: %pe\n", ERR_PTR(ret));
->  		return ret;
-> @@ -796,7 +823,7 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->  
->  	i915 = i915_driver_create(pdev, ent);
->  	if (IS_ERR(i915)) {
-> -		pci_disable_device(pdev);
-> +		i915_disable_device(pdev);
->  		return PTR_ERR(i915);
->  	}
->  
-> @@ -885,7 +912,7 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->  	enable_rpm_wakeref_asserts(&i915->runtime_pm);
->  	i915_driver_late_release(i915);
->  out_pci_disable:
-> -	pci_disable_device(pdev);
-> +	i915_disable_device(pdev);
->  	i915_probe_error(i915, "Device initialization failed (%d)\n", ret);
->  	return ret;
->  }
-> @@ -1003,6 +1030,7 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
->  
->  	intel_dmc_suspend(display);
->  
-> +	intel_pxp_fini(i915);
->  	i915_gem_suspend(i915);
->  
->  	/*
-> @@ -1020,6 +1048,7 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
->  	enable_rpm_wakeref_asserts(&i915->runtime_pm);
->  
->  	intel_runtime_pm_driver_last_release(&i915->runtime_pm);
-> +	i915_disable_device(to_pci_dev(i915->drm.dev));
->  }
->  
->  static bool suspend_to_idle(struct drm_i915_private *dev_priv)
-> -- 
-> 2.34.1
+> >  	 * Display WA #1185 WaDisableDARBFClkGating:glk,icl,ehl,tgl
+> >  	 * Also known as Wa_14010480278.
+> > diff --git a/drivers/gpu/drm/i915/i915_reg.h
+> > b/drivers/gpu/drm/i915/i915_reg.h index 5bf3b4ab2baa..f928db78a3fa
+> > 100644
+> > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > @@ -763,6 +763,7 @@
+> >   */
+> >  #define GEN9_CLKGATE_DIS_0		_MMIO(0x46530)
+> >  #define   DARBF_GATING_DIS		REG_BIT(27)
+> > +#define   DMG_GATING_DIS		REG_BIT(21)
+> >  #define   MTL_PIPEDMC_GATING_DIS(pipe)	REG_BIT(15 - (pipe))
+> >  #define   PWM2_GATING_DIS		REG_BIT(14)
+> >  #define   PWM1_GATING_DIS		REG_BIT(13)
+> > --
+> > 2.34.1
 
 -- 
 Ville Syrjälä
