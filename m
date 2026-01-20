@@ -2,73 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8EToADgJcGlyUwAAu9opvQ
+	id mHmpK9MJcGlyUwAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 00:01:12 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 00:03:47 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4EF14D68E
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 00:01:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FFA34D726
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 00:03:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 515D010E663;
-	Tue, 20 Jan 2026 23:01:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3C8E10E666;
+	Tue, 20 Jan 2026 23:03:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="popOrSrT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gtP9fO99";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 755EE10E65D;
- Tue, 20 Jan 2026 23:01:05 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 8C8E860007;
- Tue, 20 Jan 2026 23:01:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1907BC16AAE;
- Tue, 20 Jan 2026 23:00:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1768950064;
- bh=dClrHcKLkN3Omg1AAuVft+c2sQj8sX7paCLkftkiBBc=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=popOrSrTL9zTWJldNDPUB2j/MRzDfzsPuDzrbGZEMz2xV40sXWFd2sKeg2EY4sjqR
- L0eryVBnxe5jnFEBcFxlvb5PVt1l7BrJxRnIGEPt80GYYVNsJcH639kCJy+hpbwKS8
- CEGdEWam6jmlu6Ig7XcnTwnroRUvpOEKqzUR9ZHmwRpcUtEKr3lw+DFcTl2X6Ly8hB
- YpQw6oZ3LmlQ698uP+J1c0w7g96Yt7qi/iEzBfbdCOGX9ZMmZ73NgtEa5HSVcPZATa
- W3U3abd+19StFhluNNTVpRntJ/48m7uV4OJyrpb29gzWdaPqNl1AecSeVWDo+Lu3pT
- Wrx/3WLNCpeAQ==
-Date: Wed, 21 Jan 2026 00:00:53 +0100
-From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To: Jonathan Corbet <corbet@lwn.net>
-Cc: Alex Shi <alexs@kernel.org>, Carlos Bilbao <carlos.bilbao@kernel.org>,
- David Airlie <airlied@gmail.com>, Federico Vaga <federico.vaga@vaga.pv.it>,
- Hu Haowen <2023002089@link.tyut.edu.cn>, Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Nathan Chancellor <nathan@kernel.org>, Nicolas Schier
- <nsc@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter
- <simona@ffwll.ch>, Tvrtko Ursulin <tursulin@ursulin.net>, Yanteng Si
- <si.yanteng@linux.dev>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-doc@vger.kernel.org,
- linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
- workflows@vger.kernel.org, Thomas =?UTF-8?B?V2Vpw59zY2h1aA==?=
- <thomas.weissschuh@linutronix.de>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, Avadhut Naik <avadhut.naik@amd.com>,
- Chenguang Zhao <zhaochenguang@kylinos.cn>, David Disseldorp
- <ddiss@suse.de>, Dongliang Mu <dzm91@hust.edu.cn>, Gang Yan
- <yangang@kylinos.cn>, Kees Cook <kees@kernel.org>, Masahiro Yamada
- <masahiroy@kernel.org>, Miguel Ojeda <ojeda@kernel.org>, Randy Dunlap
- <rdunlap@infradead.org>, Shuah Khan <skhan@linuxfoundation.org>, Steven
- Rostedt <rostedt@goodmis.org>, Tamir Duberstein <tamird@gmail.com>, Vincent
- Mailhol <mailhol@kernel.org>, WangYuli <wanyl5933@chinaunicom.cn>
-Subject: Re: [PATCH 0/9] docs: Fix kernel-doc -Werror and moves it to
- tools/docs
-Message-ID: <20260121000053.5e274248@foz.lan>
-In-Reply-To: <87wm1bhozz.fsf@trenco.lwn.net>
-References: <cover.1768823489.git.mchehab+huawei@kernel.org>
- <87wm1bhozz.fsf@trenco.lwn.net>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-redhat-linux-gnu)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE4A010E666;
+ Tue, 20 Jan 2026 23:03:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1768950225; x=1800486225;
+ h=date:from:to:cc:subject:in-reply-to:message-id:
+ references:mime-version:content-id;
+ bh=QZQaYwj7FhXwbQqqQMTaUztAW7O0XyXrUEf4/Zd98NM=;
+ b=gtP9fO99t3B0UzP0HUX27794b4zgJz7rdO2ATOMDI6wZL/dC6OvlX4nX
+ vAuyhUHBPjk+h38cXOGlXsTDA65YVyo+mxEIbYr1R9DFvQcW06t0mbT1x
+ GNNyqI/kjKvaZqnOxOOsZ8miWtZ4WprG4bDPiPz+mGEW7viHHuBL3sQz8
+ ZECoRvamNGnF9I2nz5spGRJ16SJjCmrgxOi4hn6HJjhSGqqaOIZBDRWA3
+ lEkYVEL50zY6PoSqOBTRFnWDo4TOAemtnRAM8ZFun76Ovs2fqV/XOVhsQ
+ C3cAQeUv1Mn4kZUnP+NEXs6yFPvyKkWoMSiWhxRPbhFPpE7bdRWmlvZg8 A==;
+X-CSE-ConnectionGUID: n45p382lTkW+zQkfqVVxhQ==
+X-CSE-MsgGUID: 9NnnRwfiRu+sOdchrOwmFg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="92839049"
+X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="92839049"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2026 15:03:44 -0800
+X-CSE-ConnectionGUID: z5IG6DFbTs+vs1yy0Ij6NA==
+X-CSE-MsgGUID: vKXUI7c7RAedgJcRdPZcFA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="243828066"
+Received: from administrator-system-product-name.igk.intel.com
+ ([10.91.214.181])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2026 15:03:34 -0800
+Date: Wed, 21 Jan 2026 00:03:32 +0100 (CET)
+From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v2 1/2] drm/i915/dsb: move i915 specific DSB buffer
+ implementation to i915
+In-Reply-To: <a01b3e69a3f79713eacf437af00dbe23d2f9c8dd.1768923917.git.jani.nikula@intel.com>
+Message-ID: <2f08a298-5ae2-7594-6e76-200179733c28@intel.com>
+References: <cover.1768923917.git.jani.nikula@intel.com>
+ <a01b3e69a3f79713eacf437af00dbe23d2f9c8dd.1768923917.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; BOUNDARY="8323329-352309005-1768924376=:3959841"
+Content-ID: <d17a03f0-89fd-2f99-70e1-e60c106bb50d@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,116 +74,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	CTYPE_MIXED_BOGUS(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MAILLIST(-0.20)[mailman];
+	MIME_GOOD(-0.10)[multipart/mixed,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[37];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[huawei];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mchehab@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vaga.pv.it,link.tyut.edu.cn,linux.intel.com,intel.com,ffwll.ch,ursulin.net,linux.dev,lists.freedesktop.org,vger.kernel.org,linutronix.de,amd.com,kylinos.cn,suse.de,hust.edu.cn,infradead.org,linuxfoundation.org,goodmis.org,chinaunicom.cn];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+];
+	ARC_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,conf.py:url,lwn.net:email]
-X-Rspamd-Queue-Id: A4EF14D68E
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[michal.grzelak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_THREE(0.00)[3];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email,intel.com:dkim,intel.com:mid]
+X-Rspamd-Queue-Id: 3FFA34D726
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Jon,
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-On Tue, 20 Jan 2026 15:56:48 -0700
-Jonathan Corbet <corbet@lwn.net> wrote:
+--8323329-352309005-1768924376=:3959841
+Content-Type: text/plain; CHARSET=ISO-8859-2; format=flowed
+Content-Transfer-Encoding: 8BIT
+Content-ID: <756f8d85-d842-73d7-3d89-f2afd0cc2fa1@intel.com>
 
-> Mauro Carvalho Chehab <mchehab+huawei@kernel.org> writes:
-> 
-> > Hi Jon,
-> >
-> > After a restful weekend and revisiting both yours and my series,
-> > I'm opting to send a patch series merging both into one:
-> >
-> > - The first 4 patches are from my series (no changes since v5):
-> >     https://lore.kernel.org/linux-doc/cover.1768642102.git.mchehab+huawei@kernel.org/T/#m81211c0ff38bbaa82b8b0b6606f242ccc0c2a9ac
-> >
-> > - It follows by the 2 patches from your renaming series:
-> >     https://lore.kernel.org/linux-doc/20260119111745.4694546b@foz.lan/T/#m51099c31a99dccccdb4d17cbaadc818e9e4df8c4
-> >
-> >   with the fix I proposed for kernel-doc to find its libraries
-> >
-> > I added 3 patches afterwards:
-> >
-> >   - patch 5: move possible return values from docstring to helper message;
-> >   - patch 6: improve MsgFormatter description;
-> >   - patch 7: moves kerneldoc_bin from conf.py to the sphinx/kerneldoc.py
-> >     (this is now just a debugging message - no need to pick it from env)
-> >
-> > IMO, this series is ready to be merged.  
-> 
-> Patch 7 adds a new warning:
-> 
->   WARNING: unknown config value 'kerneldoc_bin' in override, ignoring
-> 
-> It needs to be taken out of sphinx-build-wrapper; I've appended the
-> following patch to the series to deal with it. 
+On Tue, 20 Jan 2026, Jani Nikula wrote:
+> The DSB buffer implementation is different for both i915 and xe. Move
+> the i915 specific implementation from display to i915 core.
+>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-True, thanks for checking it!
+Reviewed-by: Micha³ Grzelak <michal.grzelak@intel.com>
 
-> I think I'll go ahead
-> and tack on a patch putting in the scripts/kernel-doc symlink, then I
-> guess it's ready to go.
-
-Go ahead. Yeah, I think that, with such changes, this series is
-ready to go.
-> 
-> Thanks,
-> 
-> jon
-> 
-> From 4a3efd128f7da996b677151790d043ec44a00561 Mon Sep 17 00:00:00 2001
-> From: Jonathan Corbet <corbet@lwn.net>
-> Date: Tue, 20 Jan 2026 15:50:38 -0700
-> Subject: [PATCH] docs: sphinx-build-wrapper: stop setting kerneldoc_bin for
->  Sphinx
-> 
-> Now that the Sphinx build does not use the kerneldoc_bin configuration
-> variable, we shouldn't try to set it in the build wrapper or we get a nifty
-> warning:
-> 
->   WARNING: unknown config value 'kerneldoc_bin' in override, ignoring
-> 
-> Signed-off-by: Jonathan Corbet <corbet@lwn.net>
-
-Reviewed-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-
-> ---
->  tools/docs/sphinx-build-wrapper | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/tools/docs/sphinx-build-wrapper b/tools/docs/sphinx-build-wrapper
-> index cb2a5005e633..9f1ae1485f84 100755
-> --- a/tools/docs/sphinx-build-wrapper
-> +++ b/tools/docs/sphinx-build-wrapper
-> @@ -750,7 +750,6 @@ class SphinxBuilder:
->  
->              build_args = args + [
->                  "-d", doctree_dir,
-> -                "-D", f"kerneldoc_bin={kerneldoc}",
->                  "-D", f"version={self.kernelversion}",
->                  "-D", f"release={self.kernelrelease}",
->                  "-D", f"kerneldoc_srctree={self.srctree}",
-
-Thanks,
-Mauro
+BR,
+Micha³
+--8323329-352309005-1768924376=:3959841--
