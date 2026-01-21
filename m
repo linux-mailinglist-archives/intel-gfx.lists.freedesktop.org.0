@@ -2,62 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8JwDAepBcGnXXAAAu9opvQ
+	id iAlxJWlCcGnXXAAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 04:03:06 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 04:05:13 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86A1950320
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 04:03:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 243815037C
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 04:05:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DCE910E68B;
-	Wed, 21 Jan 2026 03:03:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E1yWrRq8";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id F21C610E68F;
+	Wed, 21 Jan 2026 03:05:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DED910E686;
- Wed, 21 Jan 2026 03:03:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768964582; x=1800500582;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=EuqWGTyrw+2MNh5+h4NZtQZtbkg5gau16KI+GEfLpZo=;
- b=E1yWrRq82OrdYxwlRrh8TgQZhLPKHM6Bb21NByRmzQInXqEGcMzyfrEQ
- 5XxtWn2DXh4sAKZWWrg0IQUoXQ9Wuet0avR5MgeHOMKUk3OI3GFMgVtRb
- 2XE/5hss4dDhM8gtHMBYjiGfC3n69CD3CZhbRqhzvKb2M1pzbvb6+gLqt
- 8A+YotYLcKgq47NJSDyt+KlqvMojsOy1XNpewSjr/evUn2kmnUY141qZW
- V8hWRBigyyS3EPfRyl+yadG1DYjLsDxilG2Usj8geNe7O6fHdjs2lubDo
- 7aRRbFieJTQ5j52U0niuQnTMz/g4Qy0bcAXDuS8hHR2YS1xU4auwD0wh6 w==;
-X-CSE-ConnectionGUID: uuBZxeiOQ4C3gYh5SguVSQ==
-X-CSE-MsgGUID: EXyWQCuYQnapIOtQkUxqMg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="70278729"
-X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; d="scan'208";a="70278729"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2026 19:03:02 -0800
-X-CSE-ConnectionGUID: j3BwPWYEQkiPlp+rwdpEKQ==
-X-CSE-MsgGUID: 2u/rgMOOTUC3z9lo42OseA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; d="scan'208";a="205437840"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa006.jf.intel.com with ESMTP; 20 Jan 2026 19:02:59 -0800
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>,
- Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH v2] drm/i915/display: Disable DMG Clock Gating
-Date: Wed, 21 Jan 2026 08:32:57 +0530
-Message-Id: <20260121030257.662294-1-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260120050033.635681-1-suraj.kandpal@intel.com>
-References: <20260120050033.635681-1-suraj.kandpal@intel.com>
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68B1010E68F;
+ Wed, 21 Jan 2026 03:05:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_drm/i915/display=3A_Disab?=
+ =?utf-8?q?le_DMG_Clock_Gating_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 21 Jan 2026 03:05:09 -0000
+Message-ID: <176896470942.174471.12196805480449660694@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260120050033.635681-1-suraj.kandpal@intel.com>
+In-Reply-To: <20260120050033.635681-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,93 +42,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_TWO(0.00)[2];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email,intel.com:dkim,intel.com:mid];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	R_DKIM_NA(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[suraj.kandpal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 86A1950320
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,patchwork.freedesktop.org:url]
+X-Rspamd-Queue-Id: 243815037C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Incorrect clock is connected to DMG registers.
-Disable DMG Clock gating during display initialization.
+== Series Details ==
 
-WA: 22021451799
-Bspec: 69095
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Reviewed-by: Nemesa Garg <nemesa.garg@intel.com>
----
+Series: drm/i915/display: Disable DMG Clock Gating (rev2)
+URL   : https://patchwork.freedesktop.org/series/160330/
+State : failure
 
-v1 -> v2:
--Remove details from comment (Nemesa)
--Add details in commit message (Ville)
+== Summary ==
 
- drivers/gpu/drm/i915/display/intel_modeset_setup.c | 4 ++++
- drivers/gpu/drm/i915/i915_reg.h                    | 1 +
- drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c | 1 +
- 3 files changed, 6 insertions(+)
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/160330/revisions/2/mbox/ not applied
+Applying: drm/i915/display: Disable DMG Clock Gating
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c
+CONFLICT (content): Merge conflict in drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c
+error: Failed to merge in the changes.
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0001 drm/i915/display: Disable DMG Clock Gating
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+Build failed, no error log produced
 
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-index d10cbf69a5f8..7180e54af50b 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-@@ -910,6 +910,10 @@ get_encoder_power_domains(struct intel_display *display)
- 
- static void intel_early_display_was(struct intel_display *display)
- {
-+	/* Wa_22021451799 */
-+	if (DISPLAY_VER(display) == 35)
-+		intel_de_rmw(display, GEN9_CLKGATE_DIS_0, 0, DMG_GATING_DIS);
-+
- 	/*
- 	 * Display WA #1185 WaDisableDARBFClkGating:glk,icl,ehl,tgl
- 	 * Also known as Wa_14010480278.
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 5bf3b4ab2baa..f928db78a3fa 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -763,6 +763,7 @@
-  */
- #define GEN9_CLKGATE_DIS_0		_MMIO(0x46530)
- #define   DARBF_GATING_DIS		REG_BIT(27)
-+#define   DMG_GATING_DIS		REG_BIT(21)
- #define   MTL_PIPEDMC_GATING_DIS(pipe)	REG_BIT(15 - (pipe))
- #define   PWM2_GATING_DIS		REG_BIT(14)
- #define   PWM1_GATING_DIS		REG_BIT(13)
-diff --git a/drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c b/drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c
-index d95786faf181..c4c4058c8ac5 100644
---- a/drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c
-+++ b/drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c
-@@ -2923,6 +2923,7 @@ static void drm_test_check_reject_hdr_infoframe_bpc_10(struct kunit *test)
- 						&new_conn_state->hdr_output_metadata,
- 						hdr_blob->base.id,
- 						sizeof(struct hdr_output_metadata), -1,
-+						sizeof(struct hdr_output_metadata),
- 						&replaced);
- 	KUNIT_ASSERT_EQ(test, ret, 0);
- 	KUNIT_ASSERT_EQ(test, replaced, true);
--- 
-2.34.1
 
