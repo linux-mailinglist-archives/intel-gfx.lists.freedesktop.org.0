@@ -2,83 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MMpwJkfZcGmraQAAu9opvQ
+	id sOozMQfZcGmraQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 14:48:55 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 14:47:51 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D3FE57E6F
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 14:48:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62E5F57DC3
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 14:47:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C915010E7CC;
-	Wed, 21 Jan 2026 13:48:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5A7410E7BC;
+	Wed, 21 Jan 2026 13:47:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="NBgc6ozo";
+	dkim=pass (2048-bit key; secure) header.d=kde.org header.i=@kde.org header.b="EOtzZ+B/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D21CB10E7C4;
- Wed, 21 Jan 2026 13:48:51 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1769003323; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=Qu5HcFI7eZQyiLafHMrl40Bks9ctbn3Ag/wWiDv4upwjKR2blsOUlAAB+pwG4gnk1oMbo6IckVIieq4tPo2co0flrE6JQDG75MFPG2S8idT5LkDpkZRny0maeIl33YuuAvdD8Wa1Hcqu7VlU76nJ4rFSTTi3fw7mqUR/byQ4XEQ=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1769003323;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=SfjcxeAT2W+o+UxrPmZJDMJEXHj1m3+fRUI5YUGISxM=; 
- b=KhH6sT8FeyTWPQ93V/yBX/pRI+veKpouS2PgUmP8OeIaNEDLH4tu9tNIuh5NGYd4VowpJqrG5L8LoetvhaqhC13gGxEw/pFfh6b9XtAhyf5J54GPblqhxvTmTAmu6pd7bjSFhcGqnT32X0rrlhg0+5GWhbZerJ4jMWH9TxxPO4k=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1769003323; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
- bh=SfjcxeAT2W+o+UxrPmZJDMJEXHj1m3+fRUI5YUGISxM=;
- b=NBgc6ozo0i/RTDRfPAIxxMCsaynl11+ueBDC0eT6tGUo92Lv21csWpMu8MW+PpwE
- HG8fPD/kd3L6KIb+sPpMgHUXL3U4hMtwD8b3oN8/K0qN3AdNNpVXmLt5KKxEhNA3ehu
- /RZi4IFp0AyKU9yvGug+X0zTy4RLOdZFb0bOtYKI=
-Received: by mx.zohomail.com with SMTPS id 1769003320832411.20417740809444;
- Wed, 21 Jan 2026 05:48:40 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Wed, 21 Jan 2026 14:45:47 +0100
-Subject: [PATCH v6 21/21] drm/bridge: Document bridge chain format
- selection
+Received: from letterbox.kde.org (letterbox.kde.org [46.43.1.242])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61D2F10E7BE
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jan 2026 13:47:48 +0000 (UTC)
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com
+ [209.85.128.181]) (Authenticated sender: zamundaaa)
+ by letterbox.kde.org (Postfix) with ESMTPSA id 0A16B33FB66
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jan 2026 13:47:46 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kde.org; s=users;
+ t=1769003266; bh=uYTf2tQSx2DIJi0JwknLpK4w6u6cYJIPjQSQD16Dlh0=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=EOtzZ+B//TrWCAMQ9wrzM8F4S6iRuIw3ytesEcc7kZQZqAi/aU9VWKO/RQBLmHpfl
+ zhlNvYaE/JyDYYUlBaitFuNXSEKXZiheHFmisCMSNwb3F+6QIvZd0RyALFNzVfuGoq
+ l/JKrp+t4pxK8iCOg9cU6h9SoXeHoQEGPFKhTH6916DeGCddlQEszhuK5j+ta5nLjT
+ ZpbAf8vf8L/9G/KlkIK4YIzYV2XYo7qxsaNrM51449B7cvfr18ESzVqj1S1v3yFmDk
+ E+Wg9Y8PynW7Rqbtx9iWFXKowJG8pXWrVri4ojUBjMVk//i6oytIGGN/f64Ee9hErG
+ yRj8hbwT9IbRg==
+Received: by mail-yw1-f181.google.com with SMTP id
+ 00721157ae682-79275e61c2cso62347007b3.3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jan 2026 05:47:45 -0800 (PST)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWYRwsn8AOKXWLdozLuH+obYMlCI1cBbeCasx9wg53kGAfJnBOy6RoBhJTIE8xktfurnMbh+Ao5FLY=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyOJn0jY+d1myUarLnRzn50szizNv7Hmt5Z2cKQamIkfMFptsrz
+ M1aQ1wYGsWn/p51fZ3fn2ZkG78S4y1B/Nv+oGSOnlRxirX6ADIi1eTtJOpYtXQhKhLnFsbq654W
+ 4802P5AdmHva0lpyOySm8asYDOlbN/JE=
+X-Received: by 2002:a05:690c:f03:b0:787:f72d:2a5d with SMTP id
+ 00721157ae682-793c66adb28mr149552197b3.2.1769003264625; Wed, 21 Jan 2026
+ 05:47:44 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260121-color-format-v6-21-7b81a771cd0b@collabora.com>
-References: <20260121-color-format-v6-0-7b81a771cd0b@collabora.com>
-In-Reply-To: <20260121-color-format-v6-0-7b81a771cd0b@collabora.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>, 
- Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
+References: <20260106-atomic-v7-0-d51d9a351684@intel.com>
+ <20260106-atomic-v7-1-d51d9a351684@intel.com>
+In-Reply-To: <20260106-atomic-v7-1-d51d9a351684@intel.com>
+From: Xaver Hugl <xaver.hugl@kde.org>
+Date: Wed, 21 Jan 2026 14:47:33 +0100
+X-Gmail-Original-Message-ID: <CAFZQkGzQ3GmUHibTJS2xCWsya2=Bh_Uo8zjqN5f_K4HMdfpHCA@mail.gmail.com>
+X-Gm-Features: AZwV_QjJqwbQ9zapV1vWIkTbS9UceQz_gcqvByDuD4HZQNF1NHEqx_meGIOHXP8
+Message-ID: <CAFZQkGzQ3GmUHibTJS2xCWsya2=Bh_Uo8zjqN5f_K4HMdfpHCA@mail.gmail.com>
+Subject: Re: [PATCH v7 1/5] drm: Define user readable error codes for atomic
+ ioctl
+To: Arun R Murthy <arun.r.murthy@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, 
+ Jani Nikula <jani.nikula@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Jonathan Corbet <corbet@lwn.net>
-Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-doc@vger.kernel.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.14.3
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ harry.wentland@amd.com, uma.shankar@intel.com, louis.chauvet@bootlin.com, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,117 +83,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
-	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[kde.org:s=users];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[37];
-	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:arun.r.murthy@intel.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:harry.wentland@amd.com,m:uma.shankar@intel.com,m:louis.chauvet@bootlin.com,m:dri-devel@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,s:lists@lfdr.de];
+	DMARC_NA(0.00)[kde.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,intel-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[xaver.hugl@kde.org,intel-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,ursulin.net,amd.com,bootlin.com,lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[xaver.hugl@kde.org,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kde.org:+];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,collabora.com:dkim,collabora.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 4D3FE57E6F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,kde.org:dkim]
+X-Rspamd-Queue-Id: 62E5F57DC3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The bridge chain format selection behaviour was, until now,
-undocumented. With the addition of the "color format" DRM property, it's
-not sufficiently complex enough that documentation is warranted,
-especially for driver authors trying to do the right thing.
+> +       DRM_MODE_ATOMIC_ASYNC_NOT_SUPP_PLANE,
+I don't think it makes sense to have an enum value for this, the
+per-plane support for async pageflips should be reported to the
+compositor in a way that doesn't require atomic tests. Once that's
+done, trying to do async flips with it is just invalid API usage.
 
-Add a high-level overview of how the process is supposed to work, and
-mention what the display driver is supposed to do if it wants to make
-use of this functionality.
+> +       DRM_MODE_ATOMIC_ASYNC_MODIFIER_NOT_SUPP,
+Same here, there's already a drm property for async-capable
+format+modifiers on each plane, so this falls under invalid API usage.
 
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
----
- Documentation/gpu/drm-kms-helpers.rst |  6 ++++++
- drivers/gpu/drm/drm_bridge.c          | 39 +++++++++++++++++++++++++++++++++++
- 2 files changed, 45 insertions(+)
+One more thing I noticed for the failure codes: I think it would be
+better if INVALID_API_USAGE and unspecified errors would be split,
+with the latter being the default error code.
+Afaict with the current version the compositor would be told it's
+using the API wrong when it's just a normal test failure that the
+driver hasn't added a more specific error code for yet.
+INVALID_API_USAGE would then just be for actual "you should know
+better than to try this" cases, which should never happen in correct
+compositor operation.
 
-diff --git a/Documentation/gpu/drm-kms-helpers.rst b/Documentation/gpu/drm-kms-helpers.rst
-index 781129f78b06..47c4f593cf9d 100644
---- a/Documentation/gpu/drm-kms-helpers.rst
-+++ b/Documentation/gpu/drm-kms-helpers.rst
-@@ -181,6 +181,12 @@ Bridge Operations
- .. kernel-doc:: drivers/gpu/drm/drm_bridge.c
-    :doc: bridge operations
- 
-+Bridge Chain Format Selection
-+-----------------------------
-+
-+.. kernel-doc:: drivers/gpu/drm/drm_bridge.c
-+   :doc: bridge chain format selection
-+
- Bridge Connector Helper
- -----------------------
- 
-diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
-index b0dfa03dbb81..a155b8aa4a3d 100644
---- a/drivers/gpu/drm/drm_bridge.c
-+++ b/drivers/gpu/drm/drm_bridge.c
-@@ -198,6 +198,45 @@
-  * driver.
-  */
- 
-+/**
-+ * DOC: bridge chain format selection
-+ *
-+ * A bridge chain, from display output processor to connector, may contain
-+ * bridges capable of converting between bus formats on their inputs, and
-+ * output formats on their outputs. For example, a bridge may be able to convert
-+ * from RGB to YCbCr 4:4:4, and pass through YCbCr 4:2:0 as-is, but not convert
-+ * from RGB to YCbCr 4:2:0. This means not all input formats map to all output
-+ * formats.
-+ *
-+ * Further adding to this, a desired output color format, as specified with the
-+ * "color format" DRM property, might not correspond to what the display driver
-+ * should set at its output 1:1. The bridge chain it feeds into may only be able
-+ * to reach the desired output format, if a conversion from a different starting
-+ * format is performed.
-+ *
-+ * To deal with this complexity, the recursive bridge chain bus format selection
-+ * logic starts with the last bridge in the chain, usually the connector, and
-+ * then recursively walks the chain of bridges backwards to the first bridge,
-+ * trying to find a path.
-+ *
-+ * For a display driver to work in such a scenario, it should read the first
-+ * bridge's bridge state to figure out which bus format the chain resolved to.
-+ * If the first bridge's input format resolved to %MEDIA_BUS_FMT_FIXED, then its
-+ * output format should be used.
-+ *
-+ * Special handling is done for HDMI as it relates to format selection. Instead
-+ * of directly using the "color format" DRM property for bridge chains that end
-+ * in HDMI bridges, the bridge chain format selection logic will trust the logic
-+ * that set the HDMI output format. For the common HDMI state helper
-+ * functionality, this means that %DRM_COLOR_FORMAT_AUTO will allow fallbacks to
-+ * YCBCr 4:2:0 if the bandwidth requirements would otherwise be too high but the
-+ * mode and connector allow it.
-+ *
-+ * For bridge chains that do not end in an HDMI bridge, %DRM_COLOR_FORMAT_AUTO
-+ * will be satisfied with the first output format on the last bridge for which
-+ * it can find a path back to the first bridge.
-+ */
-+
- /* Protect bridge_list and bridge_lingering_list */
- static DEFINE_MUTEX(bridge_lock);
- static LIST_HEAD(bridge_list);
+Other than that, the API looks good to me. I'll put together a KWin
+implementation soon.
 
--- 
-2.52.0
-
+- Xaver
