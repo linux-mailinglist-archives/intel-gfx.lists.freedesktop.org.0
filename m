@@ -2,43 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id Gp+RKFracGnnaQAAu9opvQ
+	id +Ey3JlracGnCaQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
 	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 14:53:30 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22BF957F56
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DB5A57F55
 	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 14:53:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EAE410E174;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EC4810E7D2;
 	Wed, 21 Jan 2026 13:53:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Fds77Ijg";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="AWjMwJC+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B91DE10E7CE;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1A7F10E7D2;
  Wed, 21 Jan 2026 13:53:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
  s=default; t=1769003605;
- bh=uLFCamQk+mxuKbmOw6XpLu3qm2HJUuDv67/dvtuqQyM=;
- h=From:To:Cc:Subject:Date:From;
- b=Fds77Ijgb4TuwdMLJMxsUSus7jJ/N+E9YMZCOF/kV9ZIEpZoVzOFGO+eIqArn6yHH
- DkZXckxzJSTJ5AjV3csMTrjVHpezZ9mEGgg1DnLcaxCBavKtNcJmDke0MY86P9o5eH
- HXTwYPbjKRp1ayJn4Sj9cewsQueHdBQaDLzqsZ2Jr/vBVOWps//KKFUbd7qpI3GPNI
- mblhXR1kR1oKzYzhhrJqhvT865rQ+YiNc9Ux1fDy4GTjPMVxR3NM9Tn+/HgmQNCEz6
- gSFcBvimSjQe9zfXC4lGY3sqTgqrnbF3iztWbEKhNDqjk7M56W+BoJ8dtsgx9nBa5q
- w0Y+DEsvTg2Qw==
+ bh=Bne1RUVyYhtMfwYqK3Ip48zVZdJr+u55XTL2YPV9fWw=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=AWjMwJC+aiHeJFs7AV1pLrk3I0IcTp2/32lQ/TzqsntosJH/YwkcLHaXQHArml9n+
+ BPrclbzvpl0dyc+WtdSwzrQY1aHDW30za25cedWVMGRKd97odCFcHOQqsKnKVL4wEr
+ Qk9UDJ0oHaDCIbxdgDsc0h4vhlxHKH9k6JMWyTCEd7rNFIpxb8kx328IYnzs1YACry
+ Cs8/VS+ZBcZflL5u7c6aRsLDSShZ9qlgKqDK2pLPMfEtjHOSUScwcI+ZN0+peN7Y+N
+ oThUXAR2YvuHaEPiheIXyxXD328ilvdY85GF1ygMJVAy84b4wzqPOGpNzFynCb6N8a
+ 2hsrfKeRaCdUQ==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [i915-rt v5 00/21] drm/i915/display: All patches to make PREEMPT_RT
- work on i915 + xe.
-Date: Wed, 21 Jan 2026 14:52:56 +0100
-Message-ID: <20260121135318.651622-1-dev@lankhorst.se>
+Cc: Maarten Lankhorst <dev@lankhorst.se>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [i915-rt v5 01/21] drm/i915/display: Fix intel_lpe_audio_irq_handler
+ for PREEMPT-RT
+Date: Wed, 21 Jan 2026 14:52:57 +0100
+Message-ID: <20260121135318.651622-2-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20260121135318.651622-1-dev@lankhorst.se>
+References: <20260121135318.651622-1-dev@lankhorst.se>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -74,78 +77,44 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	FROM_NEQ_ENVFROM(0.00)[dev@lankhorst.se,intel-gfx-bounces@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lankhorst.se:mid,lankhorst.se:dkim];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email,lankhorst.se:email,lankhorst.se:dkim,lankhorst.se:mid];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_THREE(0.00)[4];
 	RCVD_COUNT_TWO(0.00)[2];
 	DKIM_TRACE(0.00)[lankhorst.se:+]
-X-Rspamd-Queue-Id: 22BF957F56
+X-Rspamd-Queue-Id: 1DB5A57F55
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-We should probably take the uncore lock only once, and hold it during
-entire evasion. For now just remove the code using it to see if CI
-passes.
+The LPE audio interrupt comes from the i915 interrupt handler. It
+should be in irq disabled context.
 
-Since last time, adjust some patches to compile again, and also
-add a lockdep_reset() to make CI pass from repeatedly loading
-the i915 module.
+With PREEMPT_RT enabled, the IRQ handler is threaded.
+Because intel_lpe_audio_irq_handler() may be called in threaded IRQ context,
+generic_handle_irq_safe API disables the interrupts before calling LPE's
+interrupt top half handler.
 
-Maarten Lankhorst (16):
-  drm/i915/display: Fix intel_lpe_audio_irq_handler for PREEMPT-RT
-  drm/i915/display: Make get_vblank_counter use intel_de_read_fw()
-  drm/i915/display: Use intel_de_write_fw in intel_pipe_fastset
-  drm/i915/display: Make set_pipeconf use the fw variants
-  drm/i915/display: Move vblank put until after critical section
-  drm/i915/display: Remove locking from intel_vblank_evade critical
-    section
-  drm/i915/display: Handle vlv dsi workaround in scanline_in_safe_range
-    too
-  drm/i915/display: Make icl_dsi_frame_update use _fw too
-  drm/i915/display: Enable interrupts earlier on PREEMPT_RT
-  drm/i915/display: Use intel_de_read/write_fw in colorops
-  drm/i915/gt: Fix selftests on PREEMPT_RT
-  drm/i915/gt: Set stop_timeout() correctly on PREEMPT-RT
-  drm/i915/display: Do not take uncore lock in i915_get_vblank_counter
-  drm/i915/display: Remove uncore lock from vlv_atomic_update_fifo
-  PREEMPT_RT injection
-  FOR-CI: drm/i915: Reset lockdep after selftest unload
+This fixes braswell audio issues with RT enabled.
 
-Mike Galbraith (1):
-  drm/i915: Use preempt_disable/enable_rt() where recommended
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_lpe_audio.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Sebastian Andrzej Siewior (4):
-  drm/i915/gt: Use spin_lock_irq() instead of local_irq_disable() +
-    spin_lock()
-  drm/i915: Drop the irqs_disabled() check
-  drm/i915/guc: Consider also RCU depth in busy loop.
-  Revert "drm/i915: Depend on !PREEMPT_RT."
-
- drivers/gpu/drm/i915/Kconfig                  |   1 -
- drivers/gpu/drm/i915/Kconfig.debug            |  15 ---
- drivers/gpu/drm/i915/display/i9xx_wm.c        |   4 -
- drivers/gpu/drm/i915/display/icl_dsi.c        |   4 +-
- drivers/gpu/drm/i915/display/intel_color.c    |   6 +-
- drivers/gpu/drm/i915/display/intel_crtc.c     |  12 +-
- drivers/gpu/drm/i915/display/intel_cursor.c   |   8 +-
- drivers/gpu/drm/i915/display/intel_de.h       |   8 ++
- drivers/gpu/drm/i915/display/intel_display.c  |  46 +++----
- .../gpu/drm/i915/display/intel_lpe_audio.c    |   2 +-
- drivers/gpu/drm/i915/display/intel_vblank.c   | 115 ++++++++++--------
- drivers/gpu/drm/i915/display/intel_vblank.h   |   1 +
- drivers/gpu/drm/i915/display/intel_vrr.c      |  16 +--
- drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   2 +-
- .../drm/i915/gt/intel_execlists_submission.c  |  17 +--
- drivers/gpu/drm/i915/gt/selftest_engine_pm.c  |   8 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   2 +-
- drivers/gpu/drm/i915/i915_module.c            |   6 +
- drivers/gpu/drm/i915/i915_request.c           |   2 -
- drivers/gpu/drm/i915/intel_uncore.h           |  26 ++--
- drivers/gpu/drm/xe/Kconfig.debug              |   5 +
- .../drm/xe/compat-i915-headers/intel_uncore.h |   7 ++
- kernel/Kconfig.preempt                        |   4 +-
- 23 files changed, 180 insertions(+), 137 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+index 5b41abe1c64d5..172c0062237eb 100644
+--- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+@@ -262,7 +262,7 @@ void intel_lpe_audio_irq_handler(struct intel_display *display)
+ 	if (!HAS_LPE_AUDIO(display))
+ 		return;
+ 
+-	ret = generic_handle_irq(display->audio.lpe.irq);
++	ret = generic_handle_irq_safe(display->audio.lpe.irq);
+ 	if (ret)
+ 		drm_err_ratelimited(display->drm,
+ 				    "error handling LPE audio irq: %d\n", ret);
 -- 
 2.51.0
 
