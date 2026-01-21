@@ -2,164 +2,78 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qK9qAZejcGlyYgAAu9opvQ
+	id oBqtEEmkcGlyYgAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 10:59:51 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 11:02:49 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6117354CF8
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 10:59:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EEA554DB6
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 11:02:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92C8610E735;
-	Wed, 21 Jan 2026 09:59:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B56810E737;
+	Wed, 21 Jan 2026 10:02:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="gTz7XHKu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JVEJayuw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from SN4PR0501CU005.outbound.protection.outlook.com
- (mail-southcentralusazon11011063.outbound.protection.outlook.com
- [40.93.194.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AF5D10E734;
- Wed, 21 Jan 2026 09:59:47 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gHr9bOGGqolEc/TlZ9Jp9vFs6/mLwl4o9EEaKHHpalkoLLaKPCon0AuLkxsyq+6Z7HG7VPCZWwCewkf8J7qEWhJ6dCHoVR7NK7zqbaQstHpKraNmUINCvczSnbi2UW6KxY7VvoW9vt5D2NifdKxq5Lu4LD+Ht4vNXIlj/TDmm9DTVcx24AZHQ4YotuUIE/fi1FwUWaKu1R5zPCnTWBgmRyM/AouJekgl7FnqXf0roEmw2vMXU5ioGPM0Wt8xIE9vUfWSyj9UNczXLTsGvozDwpSPMC3gIR0oZwss42O1ehpgBYuPIMAyL4ZHtxM1WpRG4VZOpCpR8fahYEqGnU8JZw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5BhLejjHzebkpeBB918wFBlMp1KJz6gj6pkiO9mSWBA=;
- b=ORjMFno5zFs5oCPg0yM8seOe2QFWiO02ROAAtv12FN4PP0p0QFAhwpt5tvhq7n4OdPOmzFqBUCeByTP6XTZV537zhSLb3NvL7ASG1kpSf3CQB1X+hOL/ckUB9ygER07AeE3Q38pdC+/OIltoV1XFOzWzuf1wngSNoAUQhHQHcexo03ZfR3YIvRJYT6JbFpSK7Q+yeRzVEeisMmxNtS/s+fw6iswA5VwELE7RQ+Vqctahz4eHK6AETf4pjNtbBpBVZlslmPJ6PPcjqRZfOHJIC1FDkBmuUxdxz6eJKmoHdCXghSpNuzNqc4sx6bvw8rIkI/WJ+omgc0OQgICswaUP3g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=protonmail.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5BhLejjHzebkpeBB918wFBlMp1KJz6gj6pkiO9mSWBA=;
- b=gTz7XHKud6iu0rN+ZEwTP7Dpj7ViBD+Ef6V+37mX2XmEou72Ns2igUjSjGDJozX0DCOHiC/Y67cuKNqMaDXhicf/wuEOzMoHNux5yn+DwKEfcmnrHeUEPyalXsaKwjr0txZJz5ro9c3mmc42gSshZHlXNY45PeOUBf7FsbSEGYPhD1JLnCJO+A5KY9AwnVLq2Dcjp4BI+DxPziNGnO/9Rj6fMZXJfvds0CIxKmhErLtFOapyDbDQfVW5WdNvbEe7vuk3+1nM1baou17/XmpfaPoFoJQkptKF39RxuJCcaPviT0u2nmeoaA4iCsUCyTbpPyWKiZ722e1G52Rruqsxpw==
-Received: from PH7PR02CA0012.namprd02.prod.outlook.com (2603:10b6:510:33d::12)
- by DS2PR12MB9775.namprd12.prod.outlook.com (2603:10b6:8:2bb::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.9; Wed, 21 Jan
- 2026 09:59:43 +0000
-Received: from SN1PEPF0002BA4E.namprd03.prod.outlook.com
- (2603:10b6:510:33d:cafe::7e) by PH7PR02CA0012.outlook.office365.com
- (2603:10b6:510:33d::12) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.10 via Frontend Transport; Wed,
- 21 Jan 2026 09:59:41 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com;
- dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- SN1PEPF0002BA4E.mail.protection.outlook.com (10.167.242.71) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9542.4 via Frontend Transport; Wed, 21 Jan 2026 09:59:42 +0000
-Received: from rnnvmail205.nvidia.com (10.129.68.10) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 21 Jan
- 2026 01:59:28 -0800
-Received: from rnnvmail205.nvidia.com (10.129.68.10) by rnnvmail205.nvidia.com
- (10.129.68.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 21 Jan
- 2026 01:59:28 -0800
-Received: from inno-thin-client (10.127.8.10) by mail.nvidia.com
- (10.129.68.10) with Microsoft SMTP Server id 15.2.2562.20 via Frontend
- Transport; Wed, 21 Jan 2026 01:59:18 -0800
-Date: Wed, 21 Jan 2026 11:59:17 +0200
-From: Zhi Wang <zhiw@nvidia.com>
-To: Joel Fernandes <joelagnelf@nvidia.com>
-CC: <linux-kernel@vger.kernel.org>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Simona Vetter <simona@ffwll.ch>, Jonathan Corbet <corbet@lwn.net>, "Alex
- Deucher" <alexander.deucher@amd.com>, Christian =?UTF-8?B?S8O2bmln?=
- <christian.koenig@amd.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- "Joonas Lahtinen" <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui
- <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>, Matthew Brost
- <matthew.brost@intel.com>, Lucas De Marchi <lucas.demarchi@intel.com>, Thomas
- =?UTF-8?B?SGVsbHN0csO2bQ==?= <thomas.hellstrom@linux.intel.com>, Helge Deller
- <deller@gmx.de>, Danilo Krummrich <dakr@kernel.org>, Alice Ryhl
- <aliceryhl@google.com>, Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor
- <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, Gary Guo
- <gary@garyguo.net>, =?UTF-8?B?QmrDtnJu?= Roy Baron
- <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>, "Andreas
- Hindborg" <a.hindborg@kernel.org>, Trevor Gross <tmgross@umich.edu>,
- "Alistair Popple" <apopple@nvidia.com>, Alexandre Courbot
- <acourbot@nvidia.com>, "Andrea Righi" <arighi@nvidia.com>, Alexey Ivanov
- <alexeyi@nvidia.com>, "Philipp Stanner" <phasta@kernel.org>, Elle Rhumsaa
- <elle@weathered-steel.dev>, "Daniel Almeida" <daniel.almeida@collabora.com>,
- <joel@joelfernandes.org>, <nouveau@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>, <rust-for-linux@vger.kernel.org>,
- <linux-doc@vger.kernel.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <linux-fbdev@vger.kernel.org>
-Subject: Re: [PATCH RFC v6 14/26] nova-core: mm: Add TLB flush support
-Message-ID: <20260121115917.73cfcc7f.zhiw@nvidia.com>
-In-Reply-To: <20260120204303.3229303-15-joelagnelf@nvidia.com>
-References: <20260120204303.3229303-1-joelagnelf@nvidia.com>
- <20260120204303.3229303-15-joelagnelf@nvidia.com>
-Organization: NVIDIA
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.33; x86_64-pc-linux-gnu)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A129C10E737;
+ Wed, 21 Jan 2026 10:02:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1768989767; x=1800525767;
+ h=from:date:to:cc:subject:in-reply-to:message-id:
+ references:mime-version:content-id;
+ bh=5x1yWRMZo6Yjnl9EgGnZ48kgw7u1ZpJ/OyNDBks1Pvc=;
+ b=JVEJayuwxMWMB7auObJXx3n2zE4vmNW4O5Jw71TTieFSUOuUou7+AY1S
+ LOXD9qtT3LLKQ9q0rc+7FgQsnXfxDqQy+8qIr8mzO6+9HH92pu7pqvg8J
+ Qc1mJHXik6RxDS5Kyj7GwuJU4f5eec/ZrI5vos8cUSK8mldnEXSh+5Qqr
+ Nt/76DeWsTZmVhazZ5CvyCCtA0nZK321+ZZSmpCcl3KTAqKIgnBbo+8HF
+ +hfbwfDaJngGFA0xGapiua41DA4ujalZM2DxZzqEh2rBbXe3LCnMWgzL4
+ JtJ1jvFsTpPtgntuQZKKzO4iQiXvtldynz9V7A0aN+qW3kx183rZeJUAC w==;
+X-CSE-ConnectionGUID: DXI1lQvNQvaYdWodbx6P7g==
+X-CSE-MsgGUID: EON/8dkDRbWhl/Iajf9yWw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="87625892"
+X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; d="scan'208";a="87625892"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2026 02:02:46 -0800
+X-CSE-ConnectionGUID: CPohdRaPRjGLk71wGPUZ9A==
+X-CSE-MsgGUID: EWgQ+mAZSQa/dfE6ACW4Gg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; d="scan'208";a="206643649"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.108])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2026 02:02:39 -0800
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Wed, 21 Jan 2026 12:02:35 +0200 (EET)
+To: =?ISO-8859-15?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+cc: =?ISO-8859-15?Q?Alex_Benn=E9e?= <alex.bennee@linaro.org>, 
+ Simon Richter <Simon.Richter@hogyros.de>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, 
+ Bjorn Helgaas <bhelgaas@google.com>, David Airlie <airlied@gmail.com>, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ linux-pci@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Simona Vetter <simona@ffwll.ch>, Tvrtko Ursulin <tursulin@ursulin.net>, 
+ =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>, 
+ =?ISO-8859-15?Q?Thomas_Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, 
+ =?ISO-8859-2?Q?Micha=B3_Winiarski?= <michal.winiarski@intel.com>, 
+ LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 06/11] PCI: Fix restoring BARs on BAR resize rollback
+ path
+In-Reply-To: <aW_w1oFQCzUxGYtu@intel.com>
+Message-ID: <bf1ece5f-07dd-31e7-db0d-40dfa8ebf7b7@linux.intel.com>
+References: <20251113162628.5946-1-ilpo.jarvinen@linux.intel.com>
+ <20251113162628.5946-7-ilpo.jarvinen@linux.intel.com>
+ <aW_w1oFQCzUxGYtu@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002BA4E:EE_|DS2PR12MB9775:EE_
-X-MS-Office365-Filtering-Correlation-Id: fee268b6-aaa7-43e4-d889-08de58d3cc6a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|7416014|376014|36860700013|82310400026|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?vxRT2M8s9l+u73JAASCw8kiQYktLr2/PLsIvrTlM0RLjsFEhMA9JktuUxY+O?=
- =?us-ascii?Q?uKdX13iCDnd06e0Lhk8Jmqe8zErgn4o8Ey6bNejovc7rTsckaOCvTdinfKri?=
- =?us-ascii?Q?KozYCPPrnGEZGR5FjoSOTKEKVsHVU2oWmZKWGJ2zmzxI2AoRfVjzsxLH+EK/?=
- =?us-ascii?Q?nKCUmYg/gq/y75nEJR6QtLjQW4WIZoEamUZD4yB8xLQWo0fSztsoVdkLaE2L?=
- =?us-ascii?Q?r2phLrkP4izO7c4ss9LuBSgzISwY/jaVnaBDGEwMFhfLb5Df6ghOVYDE3vqI?=
- =?us-ascii?Q?2yOQ4kfVu54EGhKURuWfwLEoqFUHzkFnhGEbSUqtzHWh2bWn+YaQpalMkRQr?=
- =?us-ascii?Q?yGman1io6IeBTrrkn6Rw2OPY1XclnuZningACB4zeBvWIGNYdszMitHEkkNo?=
- =?us-ascii?Q?BFu+ucIKnw8Wx53KyEi1Zqb1VSCtLOc7FNdkSzJIll0XzdwLxONHkJ2jE06N?=
- =?us-ascii?Q?v6obM/EQJHzo3BZJmkGkxTNKmGhCd6qVwnHpbDA+1Q7+as66OBuEHNYMtCJJ?=
- =?us-ascii?Q?2K1wCDjW6M6s2VfKTdAyWbADcl1X8FW8L0Crtfi0HEFh1T3lLPGaQA0q77vA?=
- =?us-ascii?Q?i7dijOJGP2M/9zvUy5kIfnRqv8zWumJQVGQVpTlClS3n32srJfEhAhwhYxh/?=
- =?us-ascii?Q?ikvwMEgph4Ne+Uo5J4pH0daPouIL5n2n0jZLExJvAUSBKobyINznD3c3HK78?=
- =?us-ascii?Q?oSShYo8grYtcVjsuz8CPiKAu7tYJvxOGKFfvRGgW/3HGn0A4BwJlN91BF6bp?=
- =?us-ascii?Q?6y1/S8eIjSDpvO+x39DF+DromnKt/zJHcLFN/EydO8axhusGRMh93zNe+cXz?=
- =?us-ascii?Q?3Vxa/wGUcu4DMz+Z4kykHwNUI9zWhs5wu1XS2sjvYhcRZ47iyhb0i/z8vltC?=
- =?us-ascii?Q?/vbhnHSWQWKThvheh2Cv9YWh/kfxLIqYl1X4/QP45OPVfpTdQ2SdwuYheIrH?=
- =?us-ascii?Q?HOitbiI9vqedoPXQOBNUmKFCyrmlODRESdz+ICfaf3zaL0D+YuA+RGiNs4YN?=
- =?us-ascii?Q?D34zROGPD7aZJyFsh4xw+Xo+fAJ69ISu/j+m+iVFuDx8JXhJC7nlqT+K8NS7?=
- =?us-ascii?Q?4rFtumBQl+zICbIkWwZFS95l4olhtM27BTNM9FAliPxheDza6r7/hiynbkjV?=
- =?us-ascii?Q?AfAPgGtKMgXNbbi6ivxZ6QMJABVsqoIBTHsZkMjm1A30EYX0RncXJEUyUCtI?=
- =?us-ascii?Q?0NPAlsobzCPZe3iGcJAHaSv2OFs9kkLd4TLxqQn4XyzOAfIDN6mC8WJXDsLA?=
- =?us-ascii?Q?9/TBpCBGbdRvg2uI57MmSPXns9JBMZk4w9pzzukxE1tAPjIx3gZs4r7rF8++?=
- =?us-ascii?Q?96GpYjsrESddClZf9ADVLU7mYYS9U+Hq0O8wLvFXfmsAQmHDLDxTOcFbcIhM?=
- =?us-ascii?Q?dSfcmIf4YKPkOFicTOWBmvVndiL27G1YA+vvTog/WNc0WlrrIpNb4YlrRVTF?=
- =?us-ascii?Q?/VD8SG+oyB55yZnjVc2Y51bau1IGUVVvKqcwDydnEAR/7506digH6UAjgLbO?=
- =?us-ascii?Q?JfjpyWfs3N0x+bBdZEPhmkmyA4wg6yrSC1gfgD2J1CoHi5eOHjcIOyUJ4iot?=
- =?us-ascii?Q?OuFzM1XOPNcRqDLZc4yf9CSer+upWQ5AD8aSvSkgdYy4kknoBO0QBDBVeSnZ?=
- =?us-ascii?Q?Y+5+duURztvbkJI6zEP03cGDB5XwRdMf9Yf2pEFv8EfO7SeBnQYpbmHyX9qB?=
- =?us-ascii?Q?k/FCmQ=3D=3D?=
-X-Forefront-Antispam-Report: CIP:216.228.117.160; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge1.nvidia.com; CAT:NONE;
- SFS:(13230040)(7416014)(376014)(36860700013)(82310400026)(1800799024); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2026 09:59:42.3045 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fee268b6-aaa7-43e4-d889-08de58d3cc6a
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.160];
- Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF0002BA4E.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS2PR12MB9775
+Content-Type: multipart/mixed; BOUNDARY="8323328-237514233-1768987075=:1033"
+Content-ID: <c081b2b9-396b-b5f8-3d52-7b064a7fde28@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -174,205 +88,313 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	CTYPE_MIXED_BOGUS(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[multipart/mixed,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[Nvidia.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,nvidia.com:email,nvidia.com:mid];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[44];
-	FREEMAIL_CC(0.00)[vger.kernel.org,linux.intel.com,kernel.org,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,google.com,gmail.com,garyguo.net,protonmail.com,umich.edu,nvidia.com,weathered-steel.dev,collabora.com,joelfernandes.org,lists.freedesktop.org];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zhiw@nvidia.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+];
+	FREEMAIL_CC(0.00)[linaro.org,hogyros.de,intel.com,amd.com,lists.freedesktop.org,google.com,gmail.com,linux.intel.com,vger.kernel.org,ffwll.ch,ursulin.net];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ilpo.jarvinen@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: 6117354CF8
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,linux.intel.com:mid,intel.com:dkim]
+X-Rspamd-Queue-Id: 9EEA554DB6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, 20 Jan 2026 15:42:51 -0500
-Joel Fernandes <joelagnelf@nvidia.com> wrote:
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-> Add TLB (Translation Lookaside Buffer) flush support for GPU MMU.
-> 
+--8323328-237514233-1768987075=:1033
+Content-Type: text/plain; CHARSET=ISO-8859-15
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-ID: <42d4d565-d15f-b9b5-c51a-da0923ea45e4@linux.intel.com>
 
-The same concern as in PATCH 5, guess we need to think of concurrency for
-TLB flush.
+On Tue, 20 Jan 2026, Ville Syrj=E4l=E4 wrote:
 
-> After modifying page table entries, the GPU's TLB must be invalidated
-> to ensure the new mappings take effect. The Tlb struct provides flush
-> functionality through BAR0 registers.
-> 
-> The flush operation writes the page directory base address and triggers
-> an invalidation, polling for completion with a 2 second timeout matching
-> the Nouveau driver.
-> 
-> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
-> ---
->  drivers/gpu/nova-core/mm/mod.rs |  1 +
->  drivers/gpu/nova-core/mm/tlb.rs | 79 +++++++++++++++++++++++++++++++++
->  drivers/gpu/nova-core/regs.rs   | 33 ++++++++++++++
->  3 files changed, 113 insertions(+)
->  create mode 100644 drivers/gpu/nova-core/mm/tlb.rs
-> 
-> diff --git a/drivers/gpu/nova-core/mm/mod.rs
-> b/drivers/gpu/nova-core/mm/mod.rs index 6015fc8753bc..39635f2d0156 100644
-> --- a/drivers/gpu/nova-core/mm/mod.rs
-> +++ b/drivers/gpu/nova-core/mm/mod.rs
-> @@ -6,6 +6,7 @@
->  
->  pub(crate) mod pagetable;
->  pub(crate) mod pramin;
-> +pub(crate) mod tlb;
->  
->  use kernel::sizes::SZ_4K;
->  
-> diff --git a/drivers/gpu/nova-core/mm/tlb.rs
-> b/drivers/gpu/nova-core/mm/tlb.rs new file mode 100644
-> index 000000000000..8b2ee620da18
-> --- /dev/null
-> +++ b/drivers/gpu/nova-core/mm/tlb.rs
-> @@ -0,0 +1,79 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +//! TLB (Translation Lookaside Buffer) flush support for GPU MMU.
-> +//!
-> +//! After modifying page table entries, the GPU's TLB must be flushed to
-> +//! ensure the new mappings take effect. This module provides TLB flush
-> +//! functionality for virtual memory managers.
-> +//!
-> +//! # Example
-> +//!
-> +//! ```ignore
-> +//! use crate::mm::tlb::Tlb;
-> +//!
-> +//! fn page_table_update(tlb: &Tlb, pdb_addr: VramAddress) ->
-> Result<()> { +//!     // ... modify page tables ...
-> +//!
-> +//!     // Flush TLB to make changes visible (polls for completion).
-> +//!     tlb.flush(pdb_addr)?;
-> +//!
-> +//!     Ok(())
-> +//! }
-> +//! ```
-> +
-> +#![allow(dead_code)]
-> +
-> +use kernel::{
-> +    devres::Devres,
-> +    io::poll::read_poll_timeout,
-> +    prelude::*,
-> +    sync::Arc,
-> +    time::Delta, //
-> +};
-> +
-> +use crate::{
-> +    driver::Bar0,
-> +    mm::VramAddress,
-> +    regs, //
-> +};
-> +
-> +/// TLB manager for GPU translation buffer operations.
-> +pub(crate) struct Tlb {
-> +    bar: Arc<Devres<Bar0>>,
-> +}
-> +
-> +impl Tlb {
-> +    /// Create a new TLB manager.
-> +    pub(super) fn new(bar: Arc<Devres<Bar0>>) -> Self {
-> +        Self { bar }
-> +    }
-> +
-> +    /// Flush the GPU TLB for a specific page directory base.
-> +    ///
-> +    /// This invalidates all TLB entries associated with the given PDB
-> address.
-> +    /// Must be called after modifying page table entries to ensure the
-> GPU sees
-> +    /// the updated mappings.
-> +    pub(crate) fn flush(&self, pdb_addr: VramAddress) -> Result {
-> +        let bar = self.bar.try_access().ok_or(ENODEV)?;
-> +
-> +        // Write PDB address.
-> +
-> regs::NV_TLB_FLUSH_PDB_LO::from_pdb_addr(pdb_addr.raw_u64()).write(&*bar);
-> +
-> regs::NV_TLB_FLUSH_PDB_HI::from_pdb_addr(pdb_addr.raw_u64()).write(&*bar);
-> +
-> +        // Trigger flush: invalidate all pages and enable.
-> +        regs::NV_TLB_FLUSH_CTRL::default()
-> +            .set_page_all(true)
-> +            .set_enable(true)
-> +            .write(&*bar);
-> +
-> +        // Poll for completion - enable bit clears when flush is done.
-> +        read_poll_timeout(
-> +            || Ok(regs::NV_TLB_FLUSH_CTRL::read(&*bar)),
-> +            |ctrl| !ctrl.enable(),
-> +            Delta::ZERO,
-> +            Delta::from_secs(2),
-> +        )?;
-> +
-> +        Ok(())
-> +    }
-> +}
-> diff --git a/drivers/gpu/nova-core/regs.rs
-> b/drivers/gpu/nova-core/regs.rs index c8b8fbdcf608..e722ef837e11 100644
-> --- a/drivers/gpu/nova-core/regs.rs
-> +++ b/drivers/gpu/nova-core/regs.rs
-> @@ -414,3 +414,36 @@ pub(crate) mod ga100 {
->          0:0     display_disabled as bool;
->      });
->  }
-> +
-> +// MMU TLB
-> +
-> +register!(NV_TLB_FLUSH_PDB_LO @ 0x00b830a0, "TLB flush register: PDB
-> address bits [39:8]" {
-> +    31:0    pdb_lo as u32, "PDB address bits [39:8]";
-> +});
-> +
-> +impl NV_TLB_FLUSH_PDB_LO {
-> +    /// Create a register value from a PDB address.
-> +    ///
-> +    /// Extracts bits [39:8] of the address and shifts it right by 8
-> bits.
-> +    pub(crate) fn from_pdb_addr(addr: u64) -> Self {
-> +        Self::default().set_pdb_lo(((addr >> 8) & 0xFFFF_FFFF) as u32)
-> +    }
-> +}
-> +
-> +register!(NV_TLB_FLUSH_PDB_HI @ 0x00b830a4, "TLB flush register: PDB
-> address bits [47:40]" {
-> +    7:0     pdb_hi as u8, "PDB address bits [47:40]";
-> +});
-> +
-> +impl NV_TLB_FLUSH_PDB_HI {
-> +    /// Create a register value from a PDB address.
-> +    ///
-> +    /// Extracts bits [47:40] of the address and shifts it right by 40
-> bits.
-> +    pub(crate) fn from_pdb_addr(addr: u64) -> Self {
-> +        Self::default().set_pdb_hi(((addr >> 40) & 0xFF) as u8)
-> +    }
-> +}
-> +
-> +register!(NV_TLB_FLUSH_CTRL @ 0x00b830b0, "TLB flush control register" {
-> +    0:0     page_all as bool, "Invalidate all pages";
-> +    31:31   enable as bool, "Enable/trigger flush (clears when flush
-> completes)"; +});
+> On Thu, Nov 13, 2025 at 06:26:23PM +0200, Ilpo J=E4rvinen wrote:
+> > BAR resize operation is implemented in the pci_resize_resource() and
+> > pbus_reassign_bridge_resources() functions. pci_resize_resource() can
+> > be called either from __resource_resize_store() from sysfs or directly
+> > by the driver for the Endpoint Device.
+> >=20
+> > The pci_resize_resource() requires that caller has released the device
+> > resources that share the bridge window with the BAR to be resized as
+> > otherwise the bridge window is pinned in place and cannot be changed.
+> >=20
+> > pbus_reassign_bridge_resources() implement rollback of the resources if
+> > the resize operation fails, but rollback is performed only for the
+> > bridge windows. Because releasing the device resources are done by the
+> > caller of the BAR resize interface, these functions performing the BAR
+> > resize do not have access to the device resources as they were before
+> > the resize.
+> >=20
+> > pbus_reassign_bridge_resources() could try to
+> > __pci_bridge_assign_resources() after rolling back the bridge windows
+> > as they were, however, it will not guarantee the resource are assigned
+> > due to differences how FW and the kernel may want to assign the
+> > resources (alignment of the start address and tail).
+> >=20
+> > In order to perform rollback robustly, the BAR resize interface has to
+> > be altered to also release the device resources that share the bridge
+> > window with the BAR to be resized.
+> >=20
+> > Also, remove restoring from the entries failed list as saved list
+> > should now contain both the bridge windows and device resources so
+> > the extra restore is duplicated work.
+> >=20
+> > Some drivers (currently only amdgpu) want to prevent releasing some
+> > resources. Add exclude_bars param to pci_resize_resource() and make
+> > amdgpu to pass its register BAR (BAR 5) which should never be released
+> > during resize operation. Normally 64-bit prefetchable resources do not
+> > share bridge window with it as the register BAR (32-bit only) but there
+> > are various fallbacks in the resource assignment logic which may make
+> > the resources to share the bridge window in rare cases.
+> >=20
+> > This change (together with the driver side changes) is to counter the
+> > resource releases that had to be done to prevent resource tree
+> > corruption in the ("PCI: Release assigned resource before restoring
+> > them") change. As such, it likely restores functionality in cases where
+> > device resources were released to avoid resource tree conflicts which
+> > appeared to be "working" when such conflicts were not correctly
+> > detected by the kernel.
+>=20
+> This thing completely broke my DG2 + non-reBAR system.  The bisect
+> points to commit 4efaa80b3d75 ("drm/i915: Remove driver side BAR
+> release before resize") but the real problems seem to be in this
+> patch. A had a quick look at the code and spotted a few issues...
+>=20
+> <snip>
+> > @@ -2468,34 +2466,78 @@ int pbus_reassign_bridge_resources(struct pci_b=
+us *bus, struct resource *res)
+> >  =09=09free_list(&added);
+> > =20
+> >  =09if (!list_empty(&failed)) {
+> > -=09=09if (pci_required_resource_failed(&failed, type)) {
+> > +=09=09if (pci_required_resource_failed(&failed, type))
+> >  =09=09=09ret =3D -ENOSPC;
+> > -=09=09=09goto cleanup;
+> > -=09=09}
+> > -=09=09/* Only resources with unrelated types failed (again) */
+> >  =09=09free_list(&failed);
+> > +=09=09if (ret)
+> > +=09=09=09return ret;
+> > +
+> > +=09=09/* Only resources with unrelated types failed (again) */
+> >  =09}
+> > =20
+> > -=09list_for_each_entry(dev_res, &saved, list) {
+> > +=09list_for_each_entry(dev_res, saved, list) {
+> >  =09=09struct pci_dev *dev =3D dev_res->dev;
+> > =20
+> >  =09=09/* Skip the bridge we just assigned resources for */
+> >  =09=09if (bridge =3D=3D dev)
+> >  =09=09=09continue;
+> > =20
+> > +=09=09if (!dev->subordinate)
+> > +=09=09=09continue;
+> > +
+> >  =09=09pci_setup_bridge(dev->subordinate);
+> >  =09}
+> > =20
+> > -=09free_list(&saved);
+> > -=09up_read(&pci_bus_sem);
+> >  =09return 0;
+> > +}
+> > =20
+> > -cleanup:
+> > -=09/* Restore size and flags */
+> > -=09list_for_each_entry(dev_res, &failed, list)
+> > -=09=09restore_dev_resource(dev_res);
+> > -=09free_list(&failed);
+> > +int pci_do_resource_release_and_resize(struct pci_dev *pdev, int resno=
+, int size,
+> > +=09=09=09=09       int exclude_bars)
+> > +{
+> > +=09struct resource *res =3D pci_resource_n(pdev, resno);
+> > +=09struct pci_dev_resource *dev_res;
+> > +=09struct pci_bus *bus =3D pdev->bus;
+> > +=09struct resource *b_win, *r;
+> > +=09LIST_HEAD(saved);
+> > +=09unsigned int i;
+> > +=09int ret =3D 0;
+> > +
+> > +=09b_win =3D pbus_select_window(bus, res);
+> > +=09if (!b_win)
+> > +=09=09return -EINVAL;
+> > +
+> > +=09pci_dev_for_each_resource(pdev, r, i) {
+> > +=09=09if (i >=3D PCI_BRIDGE_RESOURCES)
+> > +=09=09=09break;
+> > +
+> > +=09=09if (exclude_bars & BIT(i))
+> > +=09=09=09continue;
+> > =20
+> > +=09=09if (b_win !=3D pbus_select_window(bus, r))
+> > +=09=09=09continue;
+> > +
+> > +=09=09ret =3D add_to_list(&saved, pdev, r, 0, 0);
+> > +=09=09if (ret)
+> > +=09=09=09goto restore;
+> > +=09=09pci_release_resource(pdev, i);
+> > +=09}
+> > +
+> > +=09pci_resize_resource_set_size(pdev, resno, size);
+> > +
+> > +=09if (!bus->self)
+> > +=09=09goto out;
+> > +
+> > +=09down_read(&pci_bus_sem);
+> > +=09ret =3D pbus_reassign_bridge_resources(bus, res, &saved);
+> > +=09if (ret)
+> > +=09=09goto restore;
+> > +
+> > +out:
+> > +=09up_read(&pci_bus_sem);
+> > +=09free_list(&saved);
+> > +=09return ret;
+> > +
+> > +restore:
+> >  =09/* Revert to the old configuration */
+> >  =09list_for_each_entry(dev_res, &saved, list) {
+> >  =09=09struct resource *res =3D dev_res->res;
+> > @@ -2510,13 +2552,21 @@ int pbus_reassign_bridge_resources(struct pci_b=
+us *bus, struct resource *res)
+> > =20
+> >  =09=09restore_dev_resource(dev_res);
+> > =20
+> > -=09=09pci_claim_resource(dev, i);
+> > -=09=09pci_setup_bridge(dev->subordinate);
+> > -=09}
+> > -=09up_read(&pci_bus_sem);
+> > -=09free_list(&saved);
+> > +=09=09ret =3D pci_claim_resource(dev, i);
+> > +=09=09if (ret)
+> > +=09=09=09continue;
+>=20
+> This clobbers 'ret' was supposedly meant to be returned to the
+> caller in the end. Thus (at least in my case) the caller always
+> sees a return value of 0, and then it forgets to restores the
+> reBAR setting back to the original value.
 
+Thanks for the report.
+
+Yes, you're right it's wrong, I'll move that call inside the if.
+
+> > -=09return ret;
+> > +=09=09if (i < PCI_BRIDGE_RESOURCES) {
+> > +=09=09=09const char *res_name =3D pci_resource_name(dev, i);
+> > +
+> > +=09=09=09pci_update_resource(dev, i);
+> > +=09=09=09pci_info(dev, "%s %pR: old value restored\n",
+> > +=09=09=09=09 res_name, res);
+> > +=09=09}
+> > +=09=09if (dev->subordinate)
+> > +=09=09=09pci_setup_bridge(dev->subordinate);
+> > +=09}
+> > +=09goto out;
+> >  }
+> > =20
+> >  void pci_assign_unassigned_bus_resources(struct pci_bus *bus)
+> > diff --git a/drivers/pci/setup-res.c b/drivers/pci/setup-res.c
+> > index 3d0b0b3f60c4..e4486d7030c0 100644
+> > --- a/drivers/pci/setup-res.c
+> > +++ b/drivers/pci/setup-res.c
+> > @@ -444,8 +444,7 @@ static bool pci_resize_is_memory_decoding_enabled(s=
+truct pci_dev *dev,
+> >  =09return cmd & PCI_COMMAND_MEMORY;
+> >  }
+> > =20
+> > -static void pci_resize_resource_set_size(struct pci_dev *dev, int resn=
+o,
+> > -=09=09=09=09=09 int size)
+> > +void pci_resize_resource_set_size(struct pci_dev *dev, int resno, int =
+size)
+> >  {
+> >  =09resource_size_t res_size =3D pci_rebar_size_to_bytes(size);
+> >  =09struct resource *res =3D pci_resource_n(dev, resno);
+> > @@ -456,9 +455,9 @@ static void pci_resize_resource_set_size(struct pci=
+_dev *dev, int resno,
+> >  =09resource_set_size(res, res_size);
+> >  }
+> > =20
+> > -int pci_resize_resource(struct pci_dev *dev, int resno, int size)
+> > +int pci_resize_resource(struct pci_dev *dev, int resno, int size,
+> > +=09=09=09int exclude_bars)
+> >  {
+> > -=09struct resource *res =3D pci_resource_n(dev, resno);
+> >  =09struct pci_host_bridge *host;
+> >  =09int old, ret;
+> >  =09u32 sizes;
+> > @@ -468,10 +467,6 @@ int pci_resize_resource(struct pci_dev *dev, int r=
+esno, int size)
+> >  =09if (host->preserve_config)
+> >  =09=09return -ENOTSUPP;
+> > =20
+> > -=09/* Make sure the resource isn't assigned before resizing it. */
+> > -=09if (!(res->flags & IORESOURCE_UNSET))
+> > -=09=09return -EBUSY;
+> > -
+> >  =09if (pci_resize_is_memory_decoding_enabled(dev, resno))
+> >  =09=09return -EBUSY;
+> > =20
+> > @@ -490,19 +485,13 @@ int pci_resize_resource(struct pci_dev *dev, int =
+resno, int size)
+> >  =09if (ret)
+> >  =09=09return ret;
+> > =20
+> > -=09pci_resize_resource_set_size(dev, resno, size);
+> > -
+> > -=09/* Check if the new config works by trying to assign everything. */
+> > -=09if (dev->bus->self) {
+> > -=09=09ret =3D pbus_reassign_bridge_resources(dev->bus, res);
+> > -=09=09if (ret)
+> > -=09=09=09goto error_resize;
+> > -=09}
+> > +=09ret =3D pci_do_resource_release_and_resize(dev, resno, size, exclud=
+e_bars);
+> > +=09if (ret)
+> > +=09=09goto error_resize;
+> >  =09return 0;
+> > =20
+> >  error_resize:
+> >  =09pci_rebar_set_size(dev, resno, old);
+> > -=09pci_resize_resource_set_size(dev, resno, old);
+>=20
+> This new order is very broken because the new reBAR setting
+> may have turned some of the originally set bits in the BAR
+> to read-only. Thus we may not be able to restore the BAR back
+> to the original value.
+>=20
+> In my case the original settings are 256MiB / 0x4030000000,
+> followed by a failed resize to 8GiB, and finally we see a
+> failed restore 'BAR 2: error updating (0x3000000c !=3D 0x0000000c)'
+> due to the read-only bits.
+>=20
+> i915 limps along after the failure but nothing really works,
+> and xe just completely explodes.
+
+Hmm, I certainly didn't foresee this happening. It seems I need to break=20
+the nice rebar/setup-bus layering to fix this (by moving the=20
+pci_rebar_set_size() calls into pci_do_resource_release_and_resize()).
+
+
+--=20
+ i.
+--8323328-237514233-1768987075=:1033--
