@@ -2,46 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yFjaJ2zacGnCaQAAu9opvQ
+	id IHJZBW7acGnCaQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 14:53:48 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 14:53:50 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37AA857F98
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 14:53:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87D5F57F9F
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 14:53:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C149D10E7E0;
-	Wed, 21 Jan 2026 13:53:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 293F910E7DB;
+	Wed, 21 Jan 2026 13:53:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="b+R/kGhu";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="EpWTpdd7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DE2D10E791;
- Wed, 21 Jan 2026 13:53:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5ABFB10E7CE;
+ Wed, 21 Jan 2026 13:53:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1769003623;
- bh=XkNbpS7yQj2e4rEUpkO727rITZUhqgBZpR0JMM7XA4o=;
+ s=default; t=1769003625;
+ bh=izs/V+K/ScIwy7fzW5zaHEnhYl2YYtKi8DqlCqLEN+o=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=b+R/kGhuUTDFTKSkW9hAm7NipAe28U7JKzL36sUurgbjsmwwAmigeGe7Gdzff4c1T
- 44QU/6wBgiyacXVMh896pIypLni5oLVwt+ewcjMjQqbJK3b/h5EfdMckvr7l+Y4est
- MlOadfvewsDkUpKCRFZTp8EKNBigL15GqZf9kQjYqagRguiEbzRcILnZjSvrI1x5Z7
- To4c7NOeN49H2jZineP8U9BTnpANQClAUhL7Rftbsj0H3RrpArLIfVhGJgOKxK0gJ8
- /jp9GgzzH3gAqWBr4mGOaBLo36FCJA8GTu0h4j+GjA/xK9FaRznwBAO25BII4/osoe
- wdHSRnhzEymyg==
+ b=EpWTpdd7iLYLlBS3jy8/tTxAAg1Wxu3LYBsNOztvniO1cCDfrg5C+SDscgwPEtiEw
+ 8ATfOZ1SnCg9VErrEcmpPUzBlT+hqFfT0Sn7qzYr3sPcFMHUxrBkxvzosvkpIv4Teo
+ LdyP1a27l+IH+we5LD4I1p6/v81+NiXAjV/iK0AqgTHBTOChF2NxbdaSSlzYsgWF3n
+ 5uNfhA/p4tHqUTnSQ1TFvYTgzg2Va6DW4NhOClOOsORC7AvZPZKfbK2YfHLLpDPRYx
+ a9FGgFPcVbGvbuwdYyHFhsFlpQsO5pCivrpnPQazZKzbCJgjKhZo4GbAIIcFvk0jhT
+ k5VJZyuZQ0AeQ==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Mike Galbraith <umgwanakikbuti@gmail.com>,
- Mario Kleiner <mario.kleiner.de@gmail.com>,
- Thomas Gleixner <tglx@linutronix.de>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Maarten Lankhorst <dev@lankhorst.se>
-Subject: [i915-rt v5 10/21] drm/i915: Use preempt_disable/enable_rt() where
- recommended
-Date: Wed, 21 Jan 2026 14:53:06 +0100
-Message-ID: <20260121135318.651622-11-dev@lankhorst.se>
+Cc: Maarten Lankhorst <dev@lankhorst.se>
+Subject: [i915-rt v5 11/21] drm/i915/display: Use intel_de_read/write_fw in
+ colorops
+Date: Wed, 21 Jan 2026 14:53:07 +0100
+Message-ID: <20260121135318.651622-12-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260121135318.651622-1-dev@lankhorst.se>
 References: <20260121135318.651622-1-dev@lankhorst.se>
@@ -63,151 +59,172 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[lankhorst.se,none];
-	MAILLIST(-0.20)[mailman];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[lankhorst.se:s=default];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com,linutronix.de,lankhorst.se];
-	RCVD_TLS_LAST(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dev@lankhorst.se,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[lankhorst.se:+];
-	RCVD_COUNT_TWO(0.00)[2];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linutronix.de:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lankhorst.se:email,lankhorst.se:dkim,lankhorst.se:mid]
-X-Rspamd-Queue-Id: 37AA857F98
+	FROM_NEQ_ENVFROM(0.00)[dev@lankhorst.se,intel-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lankhorst.se:email,lankhorst.se:dkim,lankhorst.se:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	RCVD_COUNT_TWO(0.00)[2];
+	DKIM_TRACE(0.00)[lankhorst.se:+]
+X-Rspamd-Queue-Id: 87D5F57F9F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Mike Galbraith <umgwanakikbuti@gmail.com>
+Using the _fw variants fixes a module load error on PTL:
 
-Mario Kleiner suggest in commit
-  ad3543ede630f ("drm/intel: Push get_scanout_position() timestamping into kms driver.")
+<4> [363.690050] Call Trace:
+<4> [363.690052]  <TASK>
+<4> [363.690055]  dump_stack_lvl+0x91/0xf0
+<4> [363.690067]  dump_stack+0x10/0x20
+<4> [363.690074]  __might_resched+0x174/0x260
+<4> [363.690087]  rt_spin_lock+0x63/0x200
+<4> [363.690092]  ? intel_dmc_wl_get+0x3c/0x140 [xe]
+<4> [363.690470]  ? __lock_acquire+0x1195/0x2860
+<4> [363.690487]  intel_dmc_wl_get+0x3c/0x140 [xe]
+<4> [363.690842]  intel_color_plane_commit_arm+0xbc/0x140 [xe]
+<4> [363.691246]  icl_plane_update_arm+0x23f/0x280 [xe]
+<4> [363.691605]  intel_plane_update_arm+0x74/0x170 [xe]
+<4> [363.691970]  intel_crtc_planes_update_arm+0x3cb/0x4c0 [xe]
+<4> [363.692338]  intel_update_crtc+0x1c3/0x840 [xe]
+<4> [363.692742]  ? intel_pre_update_crtc+0x2ce/0x470 [xe]
+<4> [363.693125]  ? intel_enable_crtc+0x123/0x150 [xe]
+<4> [363.693508]  skl_commit_modeset_enables+0x4c4/0x720 [xe]
+<4> [363.693888]  intel_atomic_commit_tail+0xd9d/0x1b30 [xe]
+<4> [363.694274]  intel_atomic_commit+0x2e8/0x330 [xe]
+<4> [363.694621]  ? intel_atomic_commit+0x2e8/0x330 [xe]
+<4> [363.694956]  drm_atomic_commit+0xaf/0xf0
+<4> [363.694962]  ? __pfx___drm_printfn_info+0x10/0x10
+<4> [363.694978]  drm_client_modeset_commit_atomic+0x25c/0x2b0
+<4> [363.695018]  drm_client_modeset_commit_locked+0x63/0x1b0
+<4> [363.695029]  drm_client_modeset_commit+0x26/0x50
+<4> [363.695035]  __drm_fb_helper_restore_fbdev_mode_unlocked+0xdc/0x110
+<4> [363.695045]  drm_fb_helper_set_par+0x2f/0x50
+<4> [363.695052]  intel_fbdev_set_par+0x39/0x90 [xe]
+<4> [363.695365]  fbcon_init+0x283/0x680
+<4> [363.695382]  visual_init+0xf2/0x190
+<4> [363.695396]  do_bind_con_driver.isra.0+0x1f1/0x4c0
+<4> [363.695416]  do_take_over_console+0x181/0x220
+<4> [363.695422]  ? vprintk_default+0x1d/0x30
+<4> [363.695436]  do_fbcon_takeover+0x85/0x160
+<4> [363.695447]  do_fb_registered+0x24c/0x2b0
+<4> [363.695460]  fbcon_fb_registered+0x3a/0x90
+<4> [363.695469]  do_register_framebuffer+0x216/0x320
+<4> [363.695488]  register_framebuffer+0x23/0x50
+<4> [363.695494]  __drm_fb_helper_initial_config_and_unlock+0x3ea/0x670
+<4> [363.695502]  ? trace_hardirqs_on+0x1e/0xd0
+<4> [363.695526]  drm_fb_helper_initial_config+0x3f/0x50
+<4> [363.695534]  drm_fbdev_client_hotplug+0x80/0xd0
+<4> [363.695543]  drm_client_register+0x8a/0xe0
+<4> [363.695556]  drm_fbdev_client_setup+0x127/0x1f0
+<4> [363.695563]  drm_client_setup+0xa7/0xe0
+<4> [363.695569]  drm_client_setup_with_color_mode+0x24/0x40
+<4> [363.695575]  intel_fbdev_setup+0x1c6/0x510 [xe]
+<4> [363.695857]  intel_display_driver_register+0xb5/0x100 [xe]
+<4> [363.696188]  ? __pfx___drm_printfn_dbg+0x10/0x10
+<4> [363.696194]  ? intel_display_driver_register+0x2e/0x100 [xe]
+<4> [363.696515]  xe_display_register+0x29/0x40 [xe]
+<4> [363.696858]  xe_device_probe+0x51a/0x9e0 [xe]
+<4> [363.697102]  ? __drmm_add_action+0x98/0x110
+<4> [363.697108]  ? __pfx___drmm_mutex_release+0x10/0x10
+<4> [363.697116]  ? __drmm_add_action_or_reset+0x1e/0x50
+<4> [363.697130]  xe_pci_probe+0x396/0x620 [xe]
+<4> [363.697423]  local_pci_probe+0x47/0xb0
+<4> [363.697431]  pci_device_probe+0xf3/0x260
+<4> [363.697444]  really_probe+0xf1/0x3c0
+<4> [363.697451]  __driver_probe_device+0x8c/0x180
+<4> [363.697458]  driver_probe_device+0x24/0xd0
+<4> [363.697464]  __driver_attach+0x10f/0x220
+<4> [363.697468]  ? __pfx___driver_attach+0x10/0x10
+<4> [363.697472]  bus_for_each_dev+0x7f/0xe0
+<4> [363.697484]  driver_attach+0x1e/0x30
+<4> [363.697487]  bus_add_driver+0x154/0x290
+<4> [363.697498]  driver_register+0x5e/0x130
+<4> [363.697504]  __pci_register_driver+0x84/0xa0
+<4> [363.697509]  xe_register_pci_driver+0x23/0x30 [xe]
+<4> [363.697762]  xe_init+0x2c/0x110 [xe]
+<4> [363.698007]  ? __pfx_xe_init+0x10/0x10 [xe]
+<4> [363.698239]  do_one_initcall+0x60/0x3f0
+<4> [363.698250]  ? __kmalloc_cache_noprof+0x470/0x690
+<4> [363.698267]  do_init_module+0x97/0x2b0
+<4> [363.698275]  load_module+0x2d08/0x2e30
+<4> [363.698280]  ? __kernel_read+0x164/0x310
+<4> [363.698312]  ? kernel_read_file+0x2ca/0x340
+<4> [363.698328]  init_module_from_file+0x96/0xe0
+<4> [363.698330]  ? init_module_from_file+0x96/0xe0
+<4> [363.698357]  idempotent_init_module+0x11d/0x340
+<4> [363.698384]  __x64_sys_finit_module+0x73/0xe0
+<4> [363.698393]  x64_sys_call+0x1e3d/0x26a0
+<4> [363.698399]  do_syscall_64+0x93/0xab0
+<4> [363.698413]  ? ext4_llseek+0xc3/0x130
+<4> [363.698425]  ? ksys_lseek+0x55/0xd0
+<4> [363.698438]  ? do_syscall_64+0x1b7/0xab0
+<4> [363.698444]  ? switch_fpu_return+0xea/0x150
+<4> [363.698454]  ? do_syscall_64+0x1b7/0xab0
+<4> [363.698465]  ? kernfs_fop_read_iter+0x197/0x210
+<4> [363.698470]  ? rw_verify_area+0x16f/0x200
+<4> [363.698482]  ? vfs_read+0x22a/0x360
+<4> [363.698498]  ? do_syscall_64+0x1b7/0xab0
+<4> [363.698506]  ? ksys_read+0x72/0xf0
+<4> [363.698520]  ? do_syscall_64+0x1b7/0xab0
+<4> [363.698526]  ? do_syscall_64+0x1b7/0xab0
+<4> [363.698532]  ? do_syscall_64+0x1b7/0xab0
+<4> [363.698535]  ? exc_page_fault+0xbd/0x2c0
+<4> [363.698545]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+<4> [363.698549] RIP: 0033:0x715af255025d
 
-a spots where preemption should be disabled on PREEMPT_RT. The
-difference is that on PREEMPT_RT the intel_uncore::lock disables neither
-preemption nor interrupts and so region remains preemptible.
+And a similar backtrace in hsw_color_commit_arm().
 
-The area covers only register reads and writes. The part that worries me
-is:
-- __intel_get_crtc_scanline() the worst case is 100us if no match is
-  found.
-
-- intel_crtc_scanlines_since_frame_timestamp() not sure how long this
-  may take in the worst case.
-
-It was in the RT queue for a while and nobody complained.
-Disable preemption on PREEPMPT_RT during timestamping.
-
-[bigeasy: patch description.]
-
-Cc: Mario Kleiner <mario.kleiner.de@gmail.com>
-Signed-off-by: Mike Galbraith <umgwanakikbuti@gmail.com>
-Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
-Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/display/intel_vblank.c | 43 ++++++++++++++++-----
- 1 file changed, 33 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/display/intel_color.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index 6bc784563a7c1..e204c260b9aef 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -316,6 +316,20 @@ static void intel_vblank_section_exit(struct intel_display *display)
- 	struct intel_uncore *uncore = to_intel_uncore(display->drm);
- 	spin_unlock(&uncore->lock);
- }
-+
-+static void intel_vblank_section_enter_irqf(struct intel_display *display, unsigned long *flags)
-+	__acquires(i915->uncore.lock)
-+{
-+	struct intel_uncore *uncore = to_intel_uncore(display->drm);
-+	spin_lock_irqsave(&uncore->lock, *flags);
-+}
-+
-+static void intel_vblank_section_exit_irqf(struct intel_display *display, unsigned long flags)
-+	__releases(i915->uncore.lock)
-+{
-+	struct intel_uncore *uncore = to_intel_uncore(display->drm);
-+	spin_unlock_irqrestore(&uncore->lock, flags);
-+}
- #else
- static void intel_vblank_section_enter(struct intel_display *display)
- {
-@@ -324,6 +338,17 @@ static void intel_vblank_section_enter(struct intel_display *display)
- static void intel_vblank_section_exit(struct intel_display *display)
- {
- }
-+
-+static void intel_vblank_section_enter_irqf(struct intel_display *display, unsigned long *flags)
-+{
-+	*flags = 0;
-+}
-+
-+static void intel_vblank_section_exit_irqf(struct intel_display *display, unsigned long flags)
-+{
-+	if (flags)
-+		return;
-+}
- #endif
+diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+index e7950655434b8..9cbc719370456 100644
+--- a/drivers/gpu/drm/i915/display/intel_color.c
++++ b/drivers/gpu/drm/i915/display/intel_color.c
+@@ -1050,7 +1050,7 @@ static void hsw_color_commit_arm(struct intel_dsb *dsb,
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct intel_display *display = to_intel_display(crtc);
  
- static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
-@@ -360,10 +385,10 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
- 	 * timing critical raw register reads, potentially with
- 	 * preemption disabled, so the following code must not block.
- 	 */
--	local_irq_save(irqflags);
--	intel_vblank_section_enter(display);
-+	intel_vblank_section_enter_irqf(display, &irqflags);
+-	intel_de_write(display, GAMMA_MODE(crtc->pipe),
++	intel_de_write_fw(display, GAMMA_MODE(crtc->pipe),
+ 		       crtc_state->gamma_mode);
  
--	/* preempt_disable_rt() should go right here in PREEMPT_RT patchset. */
-+	if (IS_ENABLED(CONFIG_PREEMPT_RT))
-+		preempt_disable();
+ 	intel_de_write_fw(display, PIPE_CSC_MODE(crtc->pipe),
+@@ -4078,7 +4078,7 @@ static void glk_load_lut_3d(struct intel_dsb *dsb,
+ 	int i, lut_size = drm_color_lut32_size(blob);
+ 	enum pipe pipe = crtc->pipe;
  
- 	/* Get optional system timestamp before query. */
- 	if (stime)
-@@ -427,10 +452,10 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
- 	if (etime)
- 		*etime = ktime_get();
+-	if (!dsb && intel_de_read(display, LUT_3D_CTL(pipe)) & LUT_3D_READY) {
++	if (!dsb && intel_de_read_fw(display, LUT_3D_CTL(pipe)) & LUT_3D_READY) {
+ 		drm_err(display->drm, "[CRTC:%d:%s] 3D LUT not ready, not loading LUTs\n",
+ 			crtc->base.base.id, crtc->base.name);
+ 		return;
+@@ -4096,7 +4096,7 @@ static void glk_lut_3d_commit(struct intel_dsb *dsb, struct intel_crtc *crtc, bo
+ 	enum pipe pipe = crtc->pipe;
+ 	u32 val = 0;
  
--	/* preempt_enable_rt() should go right here in PREEMPT_RT patchset. */
-+	if (IS_ENABLED(CONFIG_PREEMPT_RT))
-+		preempt_enable();
- 
--	intel_vblank_section_exit(display);
--	local_irq_restore(irqflags);
-+	intel_vblank_section_exit_irqf(display, irqflags);
- 
- 	/*
- 	 * While in vblank, position will be negative
-@@ -468,13 +493,11 @@ int intel_get_crtc_scanline(struct intel_crtc *crtc)
- 	unsigned long irqflags;
- 	int position;
- 
--	local_irq_save(irqflags);
--	intel_vblank_section_enter(display);
-+	intel_vblank_section_enter_irqf(display, &irqflags);
- 
- 	position = __intel_get_crtc_scanline(crtc);
- 
--	intel_vblank_section_exit(display);
--	local_irq_restore(irqflags);
-+	intel_vblank_section_exit_irqf(display, irqflags);
- 
- 	return position;
- }
+-	if (!dsb && intel_de_read(display, LUT_3D_CTL(pipe)) & LUT_3D_READY) {
++	if (!dsb && intel_de_read_fw(display, LUT_3D_CTL(pipe)) & LUT_3D_READY) {
+ 		drm_err(display->drm, "[CRTC:%d:%s] 3D LUT not ready, not committing change\n",
+ 			crtc->base.base.id, crtc->base.name);
+ 		return;
 -- 
 2.51.0
 
