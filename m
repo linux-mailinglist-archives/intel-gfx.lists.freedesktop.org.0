@@ -2,65 +2,83 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uAy5MYvYcGkOaAAAu9opvQ
+	id aCnXCv/YcGmraQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 14:45:47 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 14:47:43 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BB2857BE8
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 14:45:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D098857DA3
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 14:47:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 895E810E154;
-	Wed, 21 Jan 2026 13:45:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 503B610E7B8;
+	Wed, 21 Jan 2026 13:47:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OMn1JsI/";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="Qu9JQRca";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 604DB10E154;
- Wed, 21 Jan 2026 13:45:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769003143; x=1800539143;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=XueELBJu97blWbfgp7t5pd9+spftDfRhmvAtR3T4x34=;
- b=OMn1JsI/0r3SPjznXq0eO07YmOf8dy7dyNLR8Kh7A2sKw0dUnURzxy1J
- A5IbopEVTkKewugzt2wItPpav/fI1xyqYKkmzptmL4BGf/oqKDs3nQSt4
- MnU/uPQCpzFJa9wkL/GPUff2OaN0k8oDI6y1aqh+WBj7SxP3rC3epH065
- SWjQd62LkVmNDK0lF9n7tNEPAyqfva3hO3WItYPElbGwChaES7msKxxax
- e5syvJGgCeUrTz5GOqO+MIJhJTn0+Ry4tmcwut8/hV4ZYTYypRaUZY08q
- Iii4xLdd23tTfhdhRf4gowdNR3JqUd97eqOdOvKUwVH1b0roynA0+2Oci w==;
-X-CSE-ConnectionGUID: z/4HdqNzQjiA34viDyDHGg==
-X-CSE-MsgGUID: s64+5kfgTiGMdX+rA0XK9Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="70128865"
-X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; d="scan'208";a="70128865"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2026 05:45:43 -0800
-X-CSE-ConnectionGUID: gacHPRiURiygrKGXZo6/dQ==
-X-CSE-MsgGUID: H7o9KcPZQtOlGfLLlIKfZw==
-X-ExtLoop1: 1
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.119])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2026 05:45:41 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: Re: [PATCH] drm/i915/gvt_mmio_table: Use the gvt versions of the
- display macros
-In-Reply-To: <20260114025456.1639171-1-ankit.k.nautiyal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260114025456.1639171-1-ankit.k.nautiyal@intel.com>
-Date: Wed, 21 Jan 2026 15:45:37 +0200
-Message-ID: <0bc65f08b4bc32eeaaa0b96d8b56a3db80253d40@intel.com>
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 190B610E7B5;
+ Wed, 21 Jan 2026 13:47:39 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1769003251; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=ESCmP69DqhXY0g6AKKV1yMIX37G78DXl6/Ty2RIdk6UjOzoQsnDaScXshCY+KeZhz8de7UAR/aagxw1WkDGF8ZMZU0lhatwmUbaZIASeytkRUgr7UGJJpbUXZO4gDoYsivpVx+5tsxLODri0LkSFB1McHUrn9Lb3TY3znIqXoOg=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1769003251;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=fvHVPCg2cs6DtR2tisxMC9k+ePCvaV4nGam51l3RVf4=; 
+ b=caQt08fGPWFuMMkMsGEaJClGbQZGz9kDA237WWorO2kImp2997pGIcOirFCgW44AkHssN34a8ZKpTpONnptSA3qWgt2f/kgEsoXK+UVusPXlaYLpL+qep5YR3Xb1D+jLVLtG5DvvMZPZjFJM41es1LmpdabUpUPrtQ7/4gZErH0=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+ dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1769003251; 
+ s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+ h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
+ bh=fvHVPCg2cs6DtR2tisxMC9k+ePCvaV4nGam51l3RVf4=;
+ b=Qu9JQRcaAP89Gzlz5s66kBL0PfnNFKpLyQBD1QN0JAoDZj8M/VFCljvJkJGgJkPR
+ YqBHB7flo8cmSPx7h4UYshiYOWhzH0ihRttZPW6sMxVmA3uwrW+5aqmn8xH5PVsB2aO
+ Ln3mBUMYJC90MFCR3+GwHqg0luinhYD+F1jst2fc=
+Received: by mx.zohomail.com with SMTPS id 1769003250085973.8856147645752;
+ Wed, 21 Jan 2026 05:47:30 -0800 (PST)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Date: Wed, 21 Jan 2026 14:45:38 +0100
+Subject: [PATCH v6 12/21] drm/rockchip: vop2: Recognise 10/12-bit YUV422 as
+ YUV formats
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260121-color-format-v6-12-7b81a771cd0b@collabora.com>
+References: <20260121-color-format-v6-0-7b81a771cd0b@collabora.com>
+In-Reply-To: <20260121-color-format-v6-0-7b81a771cd0b@collabora.com>
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Sandy Huang <hjc@rock-chips.com>, 
+ =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Andy Yan <andy.yan@rock-chips.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+ Jonathan Corbet <corbet@lwn.net>
+Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ linux-doc@vger.kernel.org, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+X-Mailer: b4 0.14.3
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,77 +93,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	HAS_ORG_HEADER(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[37];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: 9BB2857BE8
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,collabora.com:dkim,collabora.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: D098857DA3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 14 Jan 2026, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
-> Include gvt/display_helpers.h so that the display register macros in
-> intel_gvt_mmio_table.c expand through the exported display functions.
-> This lets us keep the existing macro calls while avoiding direct
-> access to display internals, helping the display modularization work.
->
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+The Rockchip VOP2 video output driver has a "is_yuv_output" function,
+which returns true when a given bus format is a YUV format, and false
+otherwise.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+This switch statement is lacking the bus format used for YUV422 10-bit,
+as well as the bus format used for YUV422 12-bit.
 
-> ---
->  drivers/gpu/drm/i915/intel_gvt_mmio_table.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-> index 478d00f89a4b..052596ac83a0 100644
-> --- a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-> +++ b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-> @@ -11,12 +11,12 @@
->  #include "display/intel_color_regs.h"
->  #include "display/intel_crt_regs.h"
->  #include "display/intel_cursor_regs.h"
-> -#include "display/intel_display_core.h"
->  #include "display/intel_display_regs.h"
->  #include "display/intel_display_types.h"
->  #include "display/intel_dmc_regs.h"
->  #include "display/intel_dp_aux_regs.h"
->  #include "display/intel_dpio_phy.h"
-> +#include "display/intel_fbc.h"
->  #include "display/intel_fbc_regs.h"
->  #include "display/intel_fdi_regs.h"
->  #include "display/intel_lvds_regs.h"
-> @@ -32,6 +32,7 @@
->  #include "gt/intel_engine_regs.h"
->  #include "gt/intel_gt_regs.h"
->  
-> +#include "gvt/display_helpers.h"
->  #include "gvt/reg.h"
->  
->  #include "i915_drv.h"
+Add MEDIA_BUS_FMT_YUYV10_1X20 and MEDIA_BUS_FMT_YUYV12_1X24 to
+is_yuv_output's switch cases to resolve this.
+
+Fixes: 604be85547ce ("drm/rockchip: Add VOP2 driver")
+Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+---
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+index f21efbca42e6..3dd7b7571487 100644
+--- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+@@ -369,6 +369,9 @@ static bool is_yuv_output(u32 bus_format)
+ 	switch (bus_format) {
+ 	case MEDIA_BUS_FMT_YUV8_1X24:
+ 	case MEDIA_BUS_FMT_YUV10_1X30:
++	case MEDIA_BUS_FMT_YUYV10_1X20:
++	case MEDIA_BUS_FMT_UYVY10_1X20:
++	case MEDIA_BUS_FMT_YUYV12_1X24:
+ 	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
+ 	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
+ 	case MEDIA_BUS_FMT_YUYV8_2X8:
 
 -- 
-Jani Nikula, Intel
+2.52.0
+
