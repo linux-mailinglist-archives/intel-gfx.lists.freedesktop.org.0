@@ -2,68 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GItnGFs7cWnKfQAAu9opvQ
+	id eJJbCF87cWnKfQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 21:47:23 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 21:47:27 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC71E5D8FD
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 21:47:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3B035D904
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 21:47:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FA4B10E887;
-	Wed, 21 Jan 2026 20:47:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4AE0B10E884;
+	Wed, 21 Jan 2026 20:47:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="Er/AIEQh";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="PK9xdVJu";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-dy1-f202.google.com (mail-dy1-f202.google.com
- [74.125.82.202])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C0B010E887
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jan 2026 20:47:20 +0000 (UTC)
-Received: by mail-dy1-f202.google.com with SMTP id
- 5a478bee46e88-2b70d8095daso236737eec.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jan 2026 12:47:20 -0800 (PST)
+Received: from mail-dy1-f201.google.com (mail-dy1-f201.google.com
+ [74.125.82.201])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50AB010E886
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jan 2026 20:47:24 +0000 (UTC)
+Received: by mail-dy1-f201.google.com with SMTP id
+ 5a478bee46e88-2b6b9c1249fso455678eec.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jan 2026 12:47:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1769028440; x=1769633240;
+ d=google.com; s=20230601; t=1769028444; x=1769633244;
  darn=lists.freedesktop.org; 
  h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
  :date:from:to:cc:subject:date:message-id:reply-to;
- bh=aLZ3zH/7uDwWLYCOO4D2algTztp4r6t6l5wdVxQyDAs=;
- b=Er/AIEQh5e6m9nuJ6tQVFJCz1SytRbq8yE0K8npIWzPPrYBjtfI9wxpBl4W2L1wts0
- Edky3FYgnqddNBwj5iWIzYk/5pbs+YOL4+wlO8uI3kL+YQlIKvxpfwrLXuyOT5ehvLBo
- y6cyLAOmhbVOownofu+iT0RN9NNuYcTe3GCe4+p//OrT/1uutiboK1uDGfRdQmrXCpJZ
- qUJxkv9Y10yS9pFBSvq00dCgt9ij46or6x4KB61QRV/yHTYlb3Pygme59Vi9BRqgNHcm
- 6mKhwo6gUuypDcL5GfMnXAWcF4m6HgekyAG3vEpEJE2/4VMCWjM4rg+PIjR0bVkDHG93
- 6wFQ==
+ bh=/asIp0nkNh7HmrCfGJJav0eZDXLPbeZkOAARCIQJcew=;
+ b=PK9xdVJuBCeuIk6JTGbYf+jFKaKaIGZPkj/v866Mw24FvIIgMv6AdwWgyzhiTCHHaD
+ eJo09MigT8rOqRGDa5N+peUPo4gv4VKcmGT7JXHRUdI82nGRgeBS+YjWm9Skkh/IY7qh
+ k7fYeSNv3LqfhGBEq/wm0i20/Ro8jXGXl/mXC8kXmp3yuxVnwMOBVHpZuOPrL+lpkBw3
+ v15jYW9FM5TJUuEwIf8taSxBYk5DdVYZAtqBdZwF43VDNtvDv1q3pqQS8Jl3Qzic8Cf3
+ hWDdPCMKmQwD3yUlxW4wW7nrVl6Br6izofHczwYg0KAbw/9hUgfkkeEhEl9SolCGo/+r
+ KgRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1769028440; x=1769633240;
+ d=1e100.net; s=20230601; t=1769028444; x=1769633244;
  h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
  :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=aLZ3zH/7uDwWLYCOO4D2algTztp4r6t6l5wdVxQyDAs=;
- b=t1hZGo+pCCNKD1SqUMI1xPOZsRQNFtmiQ/lHntOAz1gIeGxrWf3rmk+PE0lQuQM2Ip
- ftA/+xhPZron3mKwKmsX0dt5GbnzH6Uw6x7kAWFEdCSHytIxqjh5Vhm/IZplOUXu3I6/
- hkl8shq0dBdHURfZ1p6oHIZtEBYcRp8blyA5zjQZn1mhrQgFoznWqlyUCrRTQs+to+pb
- T3oSJyzRsLE8QCjKn9Yqn8ebGnjo6ZHU7n4qLLmzrYhqMdpj4hhA6tS9F4UwqQadTwCb
- 5wOy+P4HX1+8LrvcN4GmmP6Z7yQ41Zcm7NchptS6LcGrnRiE/WcONKgnmZbxQlHHSI1a
- XoqQ==
-X-Gm-Message-State: AOJu0YwqH+SQ1TfTr1/GXPMuisZ2/UPXTDTRZ00l17RYbQAKDeyQZZIK
- a/Gyn/0cWfgeE3n8kOWf87uQTkXNkix4epkhDR6ReuTIdl6E0aXRA/yyDgQTOMVlhHVFVa4cWD9
- 0k14dgpDxIhe+fa4IbAtKiOJjkjqvrUk2//mz2akHJEXi3cLmynep5lyZakkWx/DSwQC/GBmTvD
- aPWw1EOthTC7BaKRcLEIb6+vT1SdCfIU/VsJ1n9AO9lk3lgQ9rK2wUecPq6wI=
-X-Received: from dycam16.prod.google.com ([2002:a05:7300:fc10:b0:2b7:880:7a40])
+ bh=/asIp0nkNh7HmrCfGJJav0eZDXLPbeZkOAARCIQJcew=;
+ b=W2FT3ST42been2cXbkj2lr+0oj32Gvo5AL3EfrRdrgLYrtKwqwtMo0YYWQNYS5TgLg
+ l+R7ibiWS7iRJYihwI2Cofn3fWU0vS5YgXGldxQ8es5s3bwR/bmQaI1jeVnKiuOxCSZr
+ 2FaCS2C/Lgw3ta6OTPMh1a+vt6k+CrcG3U7Z0XwRUEZIRMLfmnoUlllTrIu5REB35Nnm
+ qdjNgHbAqSRu0oIKCLG6257Di2ME1LF+5OAjDppFAMsM566SORUXbJN3N/1+LG/PTdd6
+ UcyZCcpIDYFMItKZNjOvwSgLfwNv9NLgQR5ias2f4qoPt61SkvRBT2tNjOThtutop7F9
+ ciqw==
+X-Gm-Message-State: AOJu0YwL76ChMR/NJNZN/NeuZz1mjYEaxP0SCjLEI+YQfyJ3VreBapMC
+ 67UvMUsSFoG20+vp1VQyJJHCNUOCtY0cBn73qrZaLOWzb4x+wTVvhfyuXYdSXBOP4uj8lSj+NwV
+ wdBR4cBJSHhtyiD0+5Ig4xqdMPASGfjI5xV+nPmEJiZK1xZniEP+4emfhJjfEbrRccLscSae62a
+ PVHrl2r/zg8sDi+kkOIypQC/iX9FeLVNfnFdNhK33OSHlZtuvBP6TdeXMv9wQ=
+X-Received: from dyblf48.prod.google.com ([2002:a05:7301:a30:b0:2b6:d0da:33fa])
  (user=jdsultan job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:7300:23d0:b0:2ae:526a:961d with SMTP id
- 5a478bee46e88-2b6b4eb3a48mr12014173eec.40.1769028439489; 
- Wed, 21 Jan 2026 12:47:19 -0800 (PST)
-Date: Wed, 21 Jan 2026 12:46:52 -0800
+ 2002:a05:7300:541:b0:2ac:21b5:f43c with SMTP id
+ 5a478bee46e88-2b6b4e8a488mr13968778eec.20.1769028443336; 
+ Wed, 21 Jan 2026 12:47:23 -0800 (PST)
+Date: Wed, 21 Jan 2026 12:46:53 -0800
 In-Reply-To: <20260121204705.432290-1-jdsultan@google.com>
 Mime-Version: 1.0
 References: <20260121204705.432290-1-jdsultan@google.com>
 X-Mailer: git-send-email 2.52.0.457.g6b5491de43-goog
-Message-ID: <20260121204705.432290-2-jdsultan@google.com>
-Subject: [RFC PATCH v3 1/2] drm/xe/display: Fix reading the framebuffer from
- stolen memory
+Message-ID: <20260121204705.432290-3-jdsultan@google.com>
+Subject: [RFC PATCH v3 2/2] drm/i915/display: Synchronize crtc_state for
+ initial commit
 From: Juasheem Sultan <jdsultan@google.com>
 To: intel-gfx@lists.freedesktop.org, intel_xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@linux.intel.com>,
@@ -111,60 +111,52 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: EC71E5D8FD
+X-Rspamd-Queue-Id: C3B035D904
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Currently, we attempt to pin stolen memory using the ggtt address. This
-doesn't appear to actually read the framebuffer that was setup by the
-bios. Instead, we have to use the underlying physical address offset
-within stolen memory.
+When attempting the initial commit, there is a mismatch between
+the new crtc_state and the old crtc_state. This causes us to fail the
+pipe_config comparison and force a modeset. In the case where we are
+inheriting an initialized state, we can sync the new and the old state
+to pass the comparison and allow us to do a fastset and achieve an
+uninterrupted handoff to userspace.
 
 Signed-off-by: Juasheem Sultan <jdsultan@google.com>
 ---
- drivers/gpu/drm/xe/display/xe_plane_initial.c | 22 ++++++++++++++++++-
- 1 file changed, 21 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-index 94f00def811b..2b84d0cc97e3 100644
---- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
-+++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-@@ -22,6 +22,7 @@
- #include "intel_plane.h"
- #include "intel_plane_initial.h"
- #include "xe_bo.h"
-+#include "xe_ttm_stolen_mgr.h"
- #include "xe_vram_types.h"
- #include "xe_wa.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 0d527cf22866..6eef4bd2e251 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -5736,6 +5736,25 @@ static void intel_crtc_check_fastset(const struct intel_crtc_state *old_crtc_sta
+ 	if (old_crtc_state->vrr.in_range != new_crtc_state->vrr.in_range)
+ 		new_crtc_state->update_lrr = false;
  
-@@ -120,7 +121,26 @@ initial_plane_bo(struct xe_device *xe,
- 
- 		if (!stolen)
- 			return NULL;
--		phys_base = base;
++	/* Copying crtc state if inheriting an old state for commit */
++	if (old_crtc_state->inherited) {
++		new_crtc_state->hw = old_crtc_state->hw;
 +
-+		/* Read PTE to find physical address backing the GGTT address */
-+		u64 pte = xe_ggtt_read_pte(tile0->mem.ggtt, base);
-+		u64 phys_addr = pte & ~(page_size - 1);
++		new_crtc_state->port_clock = old_crtc_state->port_clock;
++		new_crtc_state->pipe_bpp = old_crtc_state->pipe_bpp;
++		new_crtc_state->cpu_transcoder = old_crtc_state->cpu_transcoder;
++		new_crtc_state->lane_count = old_crtc_state->lane_count;
++		new_crtc_state->output_types = old_crtc_state->output_types;
++		new_crtc_state->dp_m_n = old_crtc_state->dp_m_n;
++		new_crtc_state->framestart_delay = old_crtc_state->framestart_delay;
++		new_crtc_state->pixel_multiplier = old_crtc_state->pixel_multiplier;
++		new_crtc_state->pixel_rate = old_crtc_state->pixel_rate;
++		new_crtc_state->enhanced_framing = old_crtc_state->enhanced_framing;
++		new_crtc_state->dpll_hw_state = old_crtc_state->dpll_hw_state;
++		new_crtc_state->intel_dpll = old_crtc_state->intel_dpll;
++		new_crtc_state->vrr.guardband = old_crtc_state->vrr.guardband;
++	}
 +
-+		u64 stolen_base = xe_ttm_stolen_gpu_offset(xe);
-+
-+		drm_dbg_kms(&xe->drm,
-+			"Stolen Framebuffer base=%x pte=%llx phys_addr=%llx stolen_base=%llx\n",
-+			 base, pte, phys_addr, stolen_base);
-+
-+		/* Make sure that the physical address is in the range of stolen memory */
-+		if (phys_addr >= stolen_base) {
-+			phys_base = phys_addr - stolen_base;
-+		} else {
-+			drm_err(&xe->drm, "Stolen memory outside of stolen range phys_base=%pa\n",
-+				&phys_base);
-+			return NULL;
-+		}
-+
- 		flags |= XE_BO_FLAG_STOLEN;
- 
- 		if (XE_GT_WA(xe_root_mmio_gt(xe), 22019338487_display))
+ 	if (!intel_pipe_config_compare(old_crtc_state, new_crtc_state, true)) {
+ 		drm_dbg_kms(display->drm, "[CRTC:%d:%s] fastset requirement not met, forcing full modeset\n",
+ 			    crtc->base.base.id, crtc->base.name);
 -- 
 2.52.0.457.g6b5491de43-goog
 
