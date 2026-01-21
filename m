@@ -2,42 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UE4sMHracGnnaQAAu9opvQ
+	id gP6dH37acGnCaQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 14:54:02 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 14:54:06 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 985A657FD9
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 14:54:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5201A57FFE
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 14:54:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2582B10E7E8;
-	Wed, 21 Jan 2026 13:54:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E01C110E7F6;
+	Wed, 21 Jan 2026 13:54:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="foc77zgd";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="pUF5E/3U";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 991A710E7E8;
- Wed, 21 Jan 2026 13:54:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7C7A10E7F7;
+ Wed, 21 Jan 2026 13:54:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1769003639;
- bh=GP729jmpCGUY+Fn/glAufP8wPOvQXQuKRr876LaC2MQ=;
+ s=default; t=1769003641;
+ bh=VBco7zVB9VTaGgt3tIx7GWoTZdb6hMaqwzco395EbzY=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=foc77zgdnjzBlqLfpIFVXQdNwcXcJuvb5MT0wbVIXhiPb9/8PVfhLlE87fkElts4b
- ot7+CUUfN9oxhvnZlGHi5bu7rTOoKjcFlWbd8XHtil1qTkmBPrNYopoyTra5b6ZNlA
- Te4rPyM/2X2cvxhS9q+WFA64L1s1cg1UnxYeE9w0bje+oZCO4OkUbkY7c3uliP/S2P
- R8g6B6GWtrDdCCqGuOXlTtS9+keiL5t/sME5nta+HLm7nBuOgGm5V+uHp1eWhmOS52
- GPFC+s0tRm98OVkjLuQnqzE+XC+4Dbd4U1CUY4SfeVaCLIQheB/UB5XYB/qfBUH4sp
- cNikfb/Ah4Oow==
+ b=pUF5E/3UBjquetMfP4cI1LEeRgtfBiJfz5lEOYRj1SGnhiObI9oP1WYVXSOkz1O6P
+ WNovSnBsB2EACKT8FwQIeAfpFfUlsPHEcjZyCA0Nz5a3cXrtg2C85nouJMLNgvxwST
+ 2b1pu/dUHajrB2PdC6BNJ3AnuIQAXflrmcKF+2f2JTXdQqGoeWLu2VaNuJjQ/jHE8L
+ W4BFu19Pc+2uaz5nUSPPvIiNol3bPkYRHKc8KIDCnqqkirhuwQsazD3XaREDTC0xj8
+ tVWj2YDnEgBKHav1vfLssJNu8WdlASsxuDdyg/Z1xzfaOLrdzwMjwiubdwJOOTH1zk
+ iLGySeSfT/EDw==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [i915-rt v5 19/21] drm/i915/display: Remove uncore lock from
- vlv_atomic_update_fifo
-Date: Wed, 21 Jan 2026 14:53:15 +0100
-Message-ID: <20260121135318.651622-20-dev@lankhorst.se>
+Subject: [i915-rt v5 20/21] PREEMPT_RT injection
+Date: Wed, 21 Jan 2026 14:53:16 +0100
+Message-ID: <20260121135318.651622-21-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260121135318.651622-1-dev@lankhorst.se>
 References: <20260121135318.651622-1-dev@lankhorst.se>
@@ -81,47 +80,75 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCPT_COUNT_THREE(0.00)[3];
 	RCVD_COUNT_TWO(0.00)[2];
 	DKIM_TRACE(0.00)[lankhorst.se:+]
-X-Rspamd-Queue-Id: 985A657FD9
+X-Rspamd-Queue-Id: 5201A57FFE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-TODO: Grab uncore lock during entire vblank evasion before disabling
-interrupts, and check what breaks?
-
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/display/i9xx_wm.c | 4 ----
- 1 file changed, 4 deletions(-)
+ drivers/gpu/drm/i915/Kconfig.debug | 15 ---------------
+ drivers/gpu/drm/xe/Kconfig.debug   |  5 +++++
+ kernel/Kconfig.preempt             |  4 ++--
+ 3 files changed, 7 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i915/display/i9xx_wm.c
-index 39dfceb438ae4..62a988ce11ece 100644
---- a/drivers/gpu/drm/i915/display/i9xx_wm.c
-+++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
-@@ -1863,7 +1863,6 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
- 				   struct intel_crtc *crtc)
- {
- 	struct intel_display *display = to_intel_display(crtc);
--	struct intel_uncore *uncore = to_intel_uncore(display->drm);
- 	const struct intel_crtc_state *crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	const struct vlv_fifo_state *fifo_state =
-@@ -1892,7 +1891,6 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
- 	 * intel_pipe_update_start() has already disabled interrupts
- 	 * for us, so a plain spin_lock() is sufficient here.
- 	 */
--	spin_lock(&uncore->lock);
+diff --git a/drivers/gpu/drm/i915/Kconfig.debug b/drivers/gpu/drm/i915/Kconfig.debug
+index 3562a02ef7adc..0ab10ff41e38d 100644
+--- a/drivers/gpu/drm/i915/Kconfig.debug
++++ b/drivers/gpu/drm/i915/Kconfig.debug
+@@ -233,21 +233,6 @@ config DRM_I915_LOW_LEVEL_TRACEPOINTS
  
- 	switch (crtc->pipe) {
- 	case PIPE_A:
-@@ -1951,8 +1949,6 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
- 	}
+ 	  If in doubt, say "N".
  
- 	intel_de_read_fw(display, DSPARB(display));
+-config DRM_I915_DEBUG_VBLANK_EVADE
+-	bool "Enable extra debug warnings for vblank evasion"
+-	depends on DRM_I915
+-	default n
+-	help
+-	  Choose this option to turn on extra debug warnings for the
+-	  vblank evade mechanism. This gives a warning every time the
+-	  the deadline allotted for the vblank evade critical section
+-	  is exceeded, even if there isn't an actual risk of missing
+-	  the vblank.
 -
--	spin_unlock(&uncore->lock);
- }
+-	  Recommended for driver developers only.
+-
+-	  If in doubt, say "N".
+-
+ config DRM_I915_DEBUG_RUNTIME_PM
+ 	bool "Enable extra state checking for runtime PM"
+ 	depends on DRM_I915
+diff --git a/drivers/gpu/drm/xe/Kconfig.debug b/drivers/gpu/drm/xe/Kconfig.debug
+index 01227c77f6d70..1d5f11c6e88f3 100644
+--- a/drivers/gpu/drm/xe/Kconfig.debug
++++ b/drivers/gpu/drm/xe/Kconfig.debug
+@@ -30,6 +30,11 @@ config DRM_XE_DEBUG
  
- #undef VLV_FIFO
+ 	  If in doubt, say "N".
+ 
++config DRM_I915_DEBUG_VBLANK_EVADE
++        def_bool y
++        depends on DRM_XE
++
++
+ config DRM_XE_DEBUG_VM
+ 	bool "Enable extra VM debugging info"
+ 	default n
+diff --git a/kernel/Kconfig.preempt b/kernel/Kconfig.preempt
+index da326800c1c9b..68a6d42c55abe 100644
+--- a/kernel/Kconfig.preempt
++++ b/kernel/Kconfig.preempt
+@@ -87,9 +87,9 @@ config PREEMPT_LAZY
+ endchoice
+ 
+ config PREEMPT_RT
+-	bool "Fully Preemptible Kernel (Real-Time)"
+-	depends on EXPERT && ARCH_SUPPORTS_RT && !COMPILE_TEST
++	def_bool y
+ 	select PREEMPTION
++	depends on ARCH_SUPPORTS_RT
+ 	help
+ 	  This option turns the kernel into a real-time kernel by replacing
+ 	  various locking primitives (spinlocks, rwlocks, etc.) with
 -- 
 2.51.0
 
