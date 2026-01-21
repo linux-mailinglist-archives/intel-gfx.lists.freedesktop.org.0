@@ -2,59 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MD6lKHdRcGlvXQAAu9opvQ
+	id OGhqLHlRcGlvXQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 05:09:27 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 05:09:29 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E08750CF7
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 05:09:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 813C050CFF
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jan 2026 05:09:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 985F810E6A4;
-	Wed, 21 Jan 2026 04:09:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A067510E6A8;
+	Wed, 21 Jan 2026 04:09:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VGjLLrYM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ldhONhyR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E366A10E142;
- Wed, 21 Jan 2026 04:09:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8819110E142;
+ Wed, 21 Jan 2026 04:09:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768968562; x=1800504562;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=JNhmkDQkjIYa4zXGwvhWuZkucWsl2glQxHzKQIfe4WQ=;
- b=VGjLLrYMiYh970PmZBiF4bgVqB+aqbWRT1Z4/2PDVWrc0vXnuvPJgz+4
- TTkd/SBK7RUbKbYPn17A+r2p9resATM4bC7eWthRgbCIFAZEFesxpB4sn
- 7xc0Qx9Zqwjd3EvgHjioZSBpYzuFpP/mGqNljVTRClGOGjQ2qQpcN/FSO
- xaOgkODWEwQK84Wr4voXekhPkJwTFdk0JF1z+NM5I5qQ3DJglZ76IiYyd
- XWhaDyZqIdh89F8Sv28AwafDTDrEvVCBc5lQSIhT/PlA82ZA87jeKPecU
- Ad5g5ezIzdDtIiSl59ZZFbiEvFIUqvomb+eJ4LeKO8LIkm3Rv0eu0xNxV A==;
-X-CSE-ConnectionGUID: X+2e9JwPS/q/j52em0+lrg==
-X-CSE-MsgGUID: TLHuPnRnT8mSQ0yk+ozphw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="81299940"
-X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; d="scan'208";a="81299940"
+ t=1768968563; x=1800504563;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=2cNdf2bNKsJO11VV2OTLLs8wd1vxF30EpY95V/BL/24=;
+ b=ldhONhyRwZBEnPbfdRQI1QQtf9oLvIvaniz6QUYC0fx2GJDaMok+UEMg
+ GoI9afzLChDmbiDuvQ2OAVQ2UkHhBENbEHVrIH0ZaLWPFzkIEr3WgX/6t
+ jfw2OkDXBdrUVlmAXo9xmmLJGqs3Bt85cLUZ+4lT56a3rsixWHbWS/0Xp
+ xk3UHQXzApOD3ee/Pu7olcGitHhPgW7rNBWl9o+cHc/N3tlJFfv00BP43
+ QfCotGlmCKQ1wRjrIsi5N2qsX/OLQQ0zbxFGN3PL6W7s9HdG5Cs2xbmyR
+ OModOLEA0AUsRQqFJ6GW4CRFhXJgB/ZdLZQ+5HKtc0CMgbryNxubip0Dn A==;
+X-CSE-ConnectionGUID: p0vgjdWUTYOwUFdv6L8SyQ==
+X-CSE-MsgGUID: IOxvvsDBQZWy7mAsHwLMiA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="81299944"
+X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; d="scan'208";a="81299944"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2026 20:09:21 -0800
-X-CSE-ConnectionGUID: avWDg2xRQ4OocM1DYsuC4Q==
-X-CSE-MsgGUID: eDv0q4B3RdOqzxbRafRTVg==
+ 20 Jan 2026 20:09:23 -0800
+X-CSE-ConnectionGUID: 7aWVzwuBQXeeTlOmqm7U7w==
+X-CSE-MsgGUID: QyoSoxDQQUukn3a4b2zeow==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; d="scan'208";a="211330923"
+X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; d="scan'208";a="211330930"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2026 20:09:21 -0800
+ 20 Jan 2026 20:09:23 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: imre.deak@intel.com,
 	Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 00/14] Account for DSC bubble overhead for horizontal slices
-Date: Wed, 21 Jan 2026 09:23:16 +0530
-Message-ID: <20260121035330.2793386-1-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 01/14] drm/i915/dp: Early reject bad hdisplay in
+ intel_dp_mode_valid
+Date: Wed, 21 Jan 2026 09:23:17 +0530
+Message-ID: <20260121035330.2793386-2-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20260121035330.2793386-1-ankit.k.nautiyal@intel.com>
+References: <20260121035330.2793386-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -90,84 +93,46 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:mid,intel.com:dkim,patchwork.freedesktop.org:url];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCPT_COUNT_THREE(0.00)[4];
 	FROM_NEQ_ENVFROM(0.00)[ankit.k.nautiyal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 0E08750CF7
+X-Rspamd-Queue-Id: 813C050CFF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-When DSC is enabled on a pipe, the pipe pixel rate input to cdclk frequency
-and pipe joiner calculations needs to be adjusted to account for
-compression overhead: specifically, the "bubbles" added at each horizontal
-slice boundary. This overhead has always existed, even on earlier
-platforms, but was not previously accounted for.
+Move check for bad hdisplay early as it is independent on other checks.
 
-Currently, the number of joined pipes is computed much earlier than the
-decision to use DSC: both during the mode_valid phase for each mode and in
-the compute_config phase for a given mode. As a result, the DSC bubble
-overhead cannot be considered when determining the number of pipes to join,
-which may lead to incorrect configurations.
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-This series refactors the sequence of steps used to determine the number of
-pipes to be joined and the DSC policy. The first few patches restructure
-the mode_valid and compute config logic to make room for DSC bubble
-overhead accounting. With these, we iterate over joiner candidates and
-select the minimal joiner configuration that satisfies the
-mode-requirements. The later patches introduce the actual overhead
-adjustment and use it for: the minimum cdclk requirements with DSC,
-SST mode_valid logic, and SST/MST compute_config logic.
-
-Rev 2:
- - Refactor joiner computation for compute config.
- - Refactor DSC BW calculation.
- - Add overhead for SST/MST compute config phase for recomputing joiner
-   requirements for DSC.
- - NOTE:
-   - For Patch#7 (drm/i915/dp: Rework pipe joiner logic in mode_valid)
-     git diff = --patience is used for better readability.
-
-Rev 3:
- - Use diff = --patience in format-patch for better readability.
- - Add a macro to iterate over the joiner candidates.
- - Add a separate helper to check pixel rate against dotclock limit.
- - Add patch from Chaitanya for additional platform specific
-   limitations [1].
-
-[1] https://patchwork.freedesktop.org/patch/661952/?series=151047&rev=1
-
-Ankit Nautiyal (13):
-  drm/i915/dp: Early reject bad hdisplay in intel_dp_mode_valid
-  drm/i915/dp: Move num_joined_pipes and related checks together
-  drm/i915/dp: Extract helper to get the hdisplay limit
-  drm/i915/dp: Rework pipe joiner logic in mode_valid
-  drm/i915/dp: Rework pipe joiner logic in compute_config
-  drm/i915/dp_mst: Move the check for dotclock at the end
-  drm/i915/dp_mst: Move the joiner dependent code together
-  drm/i915/dp_mst: Rework pipe joiner logic in mode_valid
-  drm/i915/dp_mst: Extract helper to compute link for given joiner
-    config
-  drm/i915/dp_mst: Rework pipe joiner logic in compute_config
-  drm/i915/dp: Introduce helper to check pixel rate against dotclock
-    limits
-  drm/i915/dp: Refactor dsc_slice_count handling in
-    intel_dp_mode_valid()
-  drm/i915/dp: Account for DSC slice overhead
-
-Chaitanya Kumar Borah (1):
-  drm/i915/display: Add upper limit check for pixel clock
-
- drivers/gpu/drm/i915/display/intel_display.c |  12 +
- drivers/gpu/drm/i915/display/intel_display.h |   1 +
- drivers/gpu/drm/i915/display/intel_dp.c      | 297 ++++++++++++++-----
- drivers/gpu/drm/i915/display/intel_dp.h      |  13 +
- drivers/gpu/drm/i915/display/intel_dp_mst.c  | 217 ++++++++++----
- drivers/gpu/drm/i915/display/intel_vdsc.c    |   1 -
- drivers/gpu/drm/i915/display/intel_vdsc.h    |   3 +
- 7 files changed, 402 insertions(+), 142 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 79fd3b8d8b25..126da297efc5 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -1460,6 +1460,9 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+ 	if (mode->clock < 10000)
+ 		return MODE_CLOCK_LOW;
+ 
++	if (intel_dp_hdisplay_bad(display, mode->hdisplay))
++		return MODE_H_ILLEGAL;
++
+ 	fixed_mode = intel_panel_fixed_mode(connector, mode);
+ 	if (intel_dp_is_edp(intel_dp) && fixed_mode) {
+ 		status = intel_panel_mode_valid(connector, mode);
+@@ -1483,9 +1486,6 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+ 	if (target_clock > max_dotclk)
+ 		return MODE_CLOCK_HIGH;
+ 
+-	if (intel_dp_hdisplay_bad(display, mode->hdisplay))
+-		return MODE_H_ILLEGAL;
+-
+ 	max_link_clock = intel_dp_max_link_rate(intel_dp);
+ 	max_lanes = intel_dp_max_lane_count(intel_dp);
+ 
 -- 
 2.45.2
 
