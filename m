@@ -2,82 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qGY8I2MfcmmPdQAAu9opvQ
+	id YDpdJkgncmmadwAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jan 2026 14:00:19 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jan 2026 14:34:00 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D75C466F7A
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jan 2026 14:00:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D05106757B
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jan 2026 14:33:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 582CF10E9A9;
-	Thu, 22 Jan 2026 13:00:16 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="XQ+af+yj";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF45A10E99F;
+	Thu, 22 Jan 2026 13:33:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E8E710E9AC;
- Thu, 22 Jan 2026 13:00:14 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1769086792; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=VKqPDXZqQscCYPdjRAFzVjNUl2wWtTJSvTiRTzEYXbg2KRiiyrzw7Fgd5F4aj/GqLRkPG52NFbg+LSpLjs4GAECVbS01LsWvA9Fz1NjwIAPPjcU/3BNCDvAgEzXUnKfZB2evUSGJlSirmL7GTIXm02Roe2I5pcvUy99ppcqfscg=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1769086792;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=uaYzvb2XfnnkbyKx6FP5LwKsEl3/GXRkx9jsqA5CXcg=; 
- b=RJCKftJsR+YMsCXvoJUwTAO3XJ8vrGzxjCCYZQmDVjdkydhhqR4Bgvb/ZHdXIutEzxgIJnul+AxHTbyPdvbqJo6hzUNsBlNrvzLsDYiCWTGUDpqGZqeaDwo+5XzzCEUSynNz4SiSmXQzIFLwIW+bzQeySP1wgm4RvmR24fr4xfU=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1769086792; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
- bh=uaYzvb2XfnnkbyKx6FP5LwKsEl3/GXRkx9jsqA5CXcg=;
- b=XQ+af+yjMhxPFVDC94pM4PlfhBu+gM6eH/bwFiy44r2PfvdSy4/Aodursm5Hdrqi
- VZ1oIeM9xzg5jXHXTAll2xKeZgInWMdf2dKrQIFjeVJqLYGJlLr9PJTsgJ/NoOlwVW6
- ezT5oPGKFoHngWSi9Nrm67krvXYabnOVwbijhWko=
-Received: by mx.zohomail.com with SMTPS id 1769086791692511.35700158955376;
- Thu, 22 Jan 2026 04:59:51 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Andy Yan <andyshrk@163.com>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Sandy Huang <hjc@rock-chips.com>,
- Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, kernel@collabora.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v7 10/22] drm/rockchip: vop2: Fix YUV444 output
-Date: Thu, 22 Jan 2026 13:59:41 +0100
-Message-ID: <6631107.DvuYhMxLoT@workhorse>
-In-Reply-To: <7ab32c86.7542.19be4d21f69.Coremail.andyshrk@163.com>
-References: <20260121-color-format-v7-0-ef790dae780c@collabora.com>
- <20260121-color-format-v7-10-ef790dae780c@collabora.com>
- <7ab32c86.7542.19be4d21f69.Coremail.andyshrk@163.com>
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AECF210E9A7;
+ Thu, 22 Jan 2026 13:33:56 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1794913394421976866=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/cdclk=3A_Extend_?=
+ =?utf-8?q?Wa=5F13012396614_to_Xe3p=5FLPD?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 22 Jan 2026 13:33:56 -0000
+Message-ID: <176908883671.183335.10293251085133528287@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260122-wa_13012396614-xe3p_lpd-v1-1-39d34a3a5b77@intel.com>
+In-Reply-To: <20260122-wa_13012396614-xe3p_lpd-v1-1-39d34a3a5b77@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,175 +42,179 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
+X-Spamd-Result: default: False [-0.11 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[37];
-	RCVD_COUNT_THREE(0.00)[3];
-	FREEMAIL_TO(0.00)[163.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,intel-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url,collabora.com:email,collabora.com:dkim]
-X-Rspamd-Queue-Id: D75C466F7A
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org]
+X-Rspamd-Queue-Id: D05106757B
 X-Rspamd-Action: no action
 
-On Thursday, 22 January 2026 09:28:54 Central European Standard Time Andy Y=
-an wrote:
->=20
-> Hello Nicolas=EF=BC=8C
->=20
-> At 2026-01-21 22:45:17, "Nicolas Frattaroli" <nicolas.frattaroli@collabor=
-a.com> wrote:
-> >YUV444 (aka YCbCr444) output isn't working quite right on RK3588. The
-> >resulting image on the display, while identifying itself as YUV444, has
-> >some components swapped, even after adding the necessary DRM formats to
-> >the conversion functions.
-> >
-> >Judging by downstream, this is because YUV444 also needs an rb swap
-> >performed in the AFBC case.
-> >
-> >Add the DRM formats to the appropriate switch statements, and add a
-> >function for checking whether an rb swap needs to be performed in the
-> >AFBC case.
-> >
-> >Fixes: 604be85547ce ("drm/rockchip: Add VOP2 driver")
-> >Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> >---
-> > drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 19 +++++++++++++++++++
-> > 1 file changed, 19 insertions(+)
-> >
-> >diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/=
-drm/rockchip/rockchip_drm_vop2.c
-> >index ec3b4fde10db..469c63dd97d5 100644
-> >--- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> >+++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> >@@ -176,6 +176,7 @@ static enum vop2_data_format vop2_convert_format(u32=
- format)
-> > 	case DRM_FORMAT_ARGB2101010:
-> > 	case DRM_FORMAT_XBGR2101010:
-> > 	case DRM_FORMAT_ABGR2101010:
-> >+	case DRM_FORMAT_VUY101010:
-> > 		return VOP2_FMT_XRGB101010;
-> > 	case DRM_FORMAT_XRGB8888:
-> > 	case DRM_FORMAT_ARGB8888:
-> >@@ -184,6 +185,7 @@ static enum vop2_data_format vop2_convert_format(u32=
- format)
-> > 		return VOP2_FMT_ARGB8888;
-> > 	case DRM_FORMAT_RGB888:
-> > 	case DRM_FORMAT_BGR888:
-> >+	case DRM_FORMAT_VUY888:
-> > 		return VOP2_FMT_RGB888;
-> > 	case DRM_FORMAT_RGB565:
-> > 	case DRM_FORMAT_BGR565:
-> >@@ -225,6 +227,7 @@ static enum vop2_afbc_format vop2_convert_afbc_forma=
-t(u32 format)
-> > 	case DRM_FORMAT_ARGB2101010:
-> > 	case DRM_FORMAT_XBGR2101010:
-> > 	case DRM_FORMAT_ABGR2101010:
-> >+	case DRM_FORMAT_VUY101010:
-> > 		return VOP2_AFBC_FMT_ARGB2101010;
-> > 	case DRM_FORMAT_XRGB8888:
-> > 	case DRM_FORMAT_ARGB8888:
-> >@@ -233,6 +236,7 @@ static enum vop2_afbc_format vop2_convert_afbc_forma=
-t(u32 format)
-> > 		return VOP2_AFBC_FMT_ARGB8888;
-> > 	case DRM_FORMAT_RGB888:
-> > 	case DRM_FORMAT_BGR888:
-> >+	case DRM_FORMAT_VUY888:
->=20
-> How did you test this format? It seems tools like modetest don=E2=80=99t =
-support testing this pattern.
->=20
+--===============1794913394421976866==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Hi Andy,
+== Series Details ==
 
-using the rest of this series, which implements the "color format"
-DRM property, and the corresponding weston MR that makes use of it[1].
+Series: drm/i915/cdclk: Extend Wa_13012396614 to Xe3p_LPD
+URL   : https://patchwork.freedesktop.org/series/160487/
+State : success
 
-I create a ~/.config/weston.ini with the following contents:
+== Summary ==
 
-    [output]
-    name=3DHDMI-A-1
-    color-format=3Dyuv444
+CI Bug Log - changes from CI_DRM_17872 -> Patchwork_160487v1
+====================================================
 
-This will make Weston try to set the output format to 10-bit YUV444. To
-limit it to 8-bit, you can add `max-bpc=3D8`. The monitor's EDID needs to
-report YUV444 support, otherwise that Weston version won't let you set
-this property.
+Summary
+-------
 
-Link: https://gitlab.freedesktop.org/wayland/weston/-/merge_requests/1859 [=
-1]
+  **SUCCESS**
 
-Kind regards,
-Nicolas Frattaroli
+  No regressions found.
 
->=20
->=20
-> > 		return VOP2_AFBC_FMT_RGB888;
-> > 	case DRM_FORMAT_RGB565:
-> > 	case DRM_FORMAT_BGR565:
-> >@@ -270,6 +274,19 @@ static bool vop2_win_rb_swap(u32 format)
-> > 	}
-> > }
-> >=20
-> >+static bool vop2_afbc_rb_swap(u32 format)
-> >+{
-> >+	switch (format) {
-> >+	case DRM_FORMAT_NV24:
-> >+	case DRM_FORMAT_NV30:
-> >+	case DRM_FORMAT_VUY888:
-> >+	case DRM_FORMAT_VUY101010:
-> >+		return true;
-> >+	default:
-> >+		return false;
-> >+	}
-> >+}
-> >+
-> > static bool vop2_afbc_uv_swap(u32 format)
-> > {
-> > 	switch (format) {
-> >@@ -1291,6 +1308,7 @@ static void vop2_plane_atomic_update(struct drm_pl=
-ane *plane,
-> > 		 /* It's for head stride, each head size is 16 byte */
-> > 		stride =3D ALIGN(stride, block_w) / block_w * 16;
-> >=20
-> >+		rb_swap =3D vop2_afbc_rb_swap(fb->format->format);
-> > 		uv_swap =3D vop2_afbc_uv_swap(fb->format->format);
-> > 		/*
-> > 		 * This is a workaround for crazy IC design, Cluster
-> >@@ -1308,6 +1326,7 @@ static void vop2_plane_atomic_update(struct drm_pl=
-ane *plane,
-> > 			vop2_win_write(win, VOP2_WIN_AFBC_ENABLE, 1);
-> > 		vop2_win_write(win, VOP2_WIN_AFBC_FORMAT, afbc_format);
-> > 		vop2_win_write(win, VOP2_WIN_AFBC_UV_SWAP, uv_swap);
-> >+		vop2_win_write(win, VOP2_WIN_AFBC_RB_SWAP, rb_swap);
-> > 		/*
-> > 		 * On rk3566/8, this bit is auto gating enable,
-> > 		 * but this function is not work well so we need
-> >
->=20
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160487v1/index.html
+
+Participating hosts (43 -> 39)
+------------------------------
+
+  Missing    (4): bat-adlp-9 bat-dg2-13 fi-snb-2520m bat-adls-6 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_160487v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17872/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160487v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
+    - bat-dg2-9:          [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17872/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160487v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-14:         [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17872/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160487v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+    - bat-arls-6:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17872/bat-arls-6/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160487v1/bat-arls-6/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
 
 
+Build changes
+-------------
+
+  * Linux: CI_DRM_17872 -> Patchwork_160487v1
+
+  CI-20190529: 20190529
+  CI_DRM_17872: 75950b1567cb40a67e93cb3912e023219745ff60 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8712: 8712
+  Patchwork_160487v1: 75950b1567cb40a67e93cb3912e023219745ff60 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160487v1/index.html
+
+--===============1794913394421976866==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/cdclk: Extend Wa_13012396614 to Xe3p_LPD</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160487/">https://patchwork.freedesktop.org/series/160487/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160487v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160487v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17872 -&gt; Patchwork_160487v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160487v1/index.html</p>
+<h2>Participating hosts (43 -&gt; 39)</h2>
+<p>Missing    (4): bat-adlp-9 bat-dg2-13 fi-snb-2520m bat-adls-6 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_160487v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17872/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160487v1/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17872/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160487v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17872/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160487v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17872/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160487v1/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17872 -&gt; Patchwork_160487v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17872: 75950b1567cb40a67e93cb3912e023219745ff60 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8712: 8712<br />
+  Patchwork_160487v1: 75950b1567cb40a67e93cb3912e023219745ff60 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============1794913394421976866==--
