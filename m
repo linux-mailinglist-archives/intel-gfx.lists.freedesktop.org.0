@@ -2,63 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KKfABhQNcmksawAAu9opvQ
+	id YLTSHU0NcmksawAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jan 2026 12:42:12 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jan 2026 12:43:09 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 711976627F
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jan 2026 12:42:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD22B66296
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jan 2026 12:43:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0713F10E98A;
-	Thu, 22 Jan 2026 11:42:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D68710E990;
+	Thu, 22 Jan 2026 11:43:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k/TyBMzM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZJ3IA2g8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4179D10E988;
- Thu, 22 Jan 2026 11:42:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B6D910E98D;
+ Thu, 22 Jan 2026 11:43:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769082128; x=1800618128;
+ t=1769082186; x=1800618186;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=b7Bmine4y6uO93K/thWf1HLQEQyIOH7A4URbwqf8gI0=;
- b=k/TyBMzM2JpqhMXvAUxJZY/BhtkLrDoUIbzf2usrm+SkQDS/8Jad0u+m
- FxVvXdMS0crtC9OPrjMaq3Hd+ih08karYgRx1iarMVxsjsYVw1OCGgY0M
- hr3MZd7LNAyLU0FHPyXmAZSIC8ADkz5km6vs+zRujutvK8FYB/QSgqDow
- p02tE24kUjfmaZwL+s13hQuTh9BRgFbwOd7SflAq+WBQTX0urGAiqKamE
- h/VFoWQPVcQY0C1Ueb6eTl3FFB5+nkQG6LyL8UpRTftZdlaVwzcUatpGe
- 9Fk5YD0k6qErGWmMPbi9vyeu1QkieRxf9OkltW/nuEv+CX0G5Gpz6eNLj g==;
-X-CSE-ConnectionGUID: BZ4VKhs7Ql6UjVh1wB4hcw==
-X-CSE-MsgGUID: YKS+6/cnQlix7Q/J5f9C5A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="92985396"
-X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; d="scan'208";a="92985396"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2026 03:42:07 -0800
-X-CSE-ConnectionGUID: dPJxNaa6T/SQUEM1sxm0lA==
-X-CSE-MsgGUID: MhQlVJa9ThSjZXFTLGG+MA==
+ bh=ADMKnUq+XCI3wuvVF7+UUF05SchjPe8zvbNaVM7PbPQ=;
+ b=ZJ3IA2g8nU47POXdS/GUJLDYH6oqu63IvwcGBBViV+j27y2blp/iANth
+ fCq+1II8jCUre7nJBYO3FKGHI86YD+rxt6o+6s5QTHszp/zvSVC7Bidth
+ RX5mR7F301fE51+ol9npLyCvt6Qj/sidWPyGngJjFrtzsLCTnGGhQg3ZZ
+ kDUaDG/YNES8JYOD9Ql3E2rZqaIcYMX5fkUckNzRxIHZAGUhhDazFicJU
+ SWwQRQsrBOTnrBm+pRUgIPj85ljv1wdHdXB/3L3EnOkbB28pWHEaM5UsJ
+ eQQ+SPtMdjqM809SatGg3JYSkPc48nO5dFtV2iRbnS3ZuoanlCqiyBzXG g==;
+X-CSE-ConnectionGUID: zF++R3DuQe+aeXqdqXOkyg==
+X-CSE-MsgGUID: aiSgjCEFQV6M9NyQHHPl8Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="81039874"
+X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; d="scan'208";a="81039874"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2026 03:43:06 -0800
+X-CSE-ConnectionGUID: sDbRe7OURGe0cqi0DoI/Zw==
+X-CSE-MsgGUID: W3vTMYZwRcKk+AS2lxF40w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; d="scan'208";a="211731009"
+X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; d="scan'208";a="211229232"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.192])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2026 03:42:02 -0800
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2026 03:43:04 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: Uma Shankar <uma.shankar@intel.com>, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, Uma Shankar <uma.shankar@intel.com>
-Subject: Re: [v2 07/19] drm/{i915, xe}: Remove i915_reg.h from intel_dram.c
-In-Reply-To: <20260121232414.707192-8-uma.shankar@intel.com>
+Subject: Re: [v2 08/19] drm/{i915, xe}: Removed i915_reg.h from intel_display.c
+In-Reply-To: <20260121232414.707192-9-uma.shankar@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260121232414.707192-1-uma.shankar@intel.com>
- <20260121232414.707192-8-uma.shankar@intel.com>
-Date: Thu, 22 Jan 2026 13:41:58 +0200
-Message-ID: <c2f3a128c1b75d051e53942432603374b9f418aa@intel.com>
+ <20260121232414.707192-9-uma.shankar@intel.com>
+Date: Thu, 22 Jan 2026 13:43:01 +0200
+Message-ID: <e96ac9fbe9b53bbbae5dc84c3fb0d270e5093a29@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -79,7 +79,7 @@ X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
@@ -101,74 +101,107 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: 711976627F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: DD22B66296
 X-Rspamd-Action: no action
 
 On Thu, 22 Jan 2026, Uma Shankar <uma.shankar@intel.com> wrote:
-> Make intel_dram.c free from including i915_reg.h.
+> Move CHICKEN_PIPESL_1 register definition to display header.
+> This allows intel_display.c free of i915_reg.h include.
+>
+> v2: Drop common header in include and use display_regs.h (Jani)
 >
 > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+
+*Remove in subject, also drm/i915 prefix only.
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
 > ---
->  drivers/gpu/drm/i915/display/intel_display_regs.h | 6 +++++-
->  drivers/gpu/drm/i915/display/intel_dram.c         | 3 ++-
->  drivers/gpu/drm/i915/i915_reg.h                   | 6 ------
->  3 files changed, 7 insertions(+), 8 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display.c  |  1 -
+>  .../gpu/drm/i915/display/intel_display_regs.h | 23 +++++++++++++++++++
+>  drivers/gpu/drm/i915/i915_reg.h               | 22 ------------------
+>  3 files changed, 23 insertions(+), 23 deletions(-)
 >
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 7491e00e3858..b7d4ac7e5ff9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -50,7 +50,6 @@
+>  #include "g4x_hdmi.h"
+>  #include "hsw_ips.h"
+>  #include "i915_config.h"
+> -#include "i915_reg.h"
+>  #include "i9xx_plane.h"
+>  #include "i9xx_plane_regs.h"
+>  #include "i9xx_wm.h"
 > diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-> index 3447ee229354..f395b7d4d640 100644
+> index f395b7d4d640..b26e6a4ee1c3 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
 > +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-> @@ -3075,6 +3075,10 @@ enum skl_power_gate {
->  #define   MTL_TRAS_MASK			REG_GENMASK(16, 8)
->  #define   MTL_TRDPRE_MASK		REG_GENMASK(7, 0)
+> @@ -1544,6 +1544,29 @@
+>  #define   CHICKEN_FBC_STRIDE_MASK	REG_GENMASK(12, 0)
+>  #define   CHICKEN_FBC_STRIDE(x)		REG_FIELD_PREP(CHICKEN_FBC_STRIDE_MASK, (x))
 >  
-> -
-> +#define MTL_MEM_SS_INFO_GLOBAL			_MMIO(0x45700)
-> +#define   XE3P_ECC_IMPACTING_DE			REG_BIT(12)
-> +#define   MTL_N_OF_ENABLED_QGV_POINTS_MASK	REG_GENMASK(11, 8)
-> +#define   MTL_N_OF_POPULATED_CH_MASK		REG_GENMASK(7, 4)
-> +#define   MTL_DDR_TYPE_MASK			REG_GENMASK(3, 0)
->  
->  #endif /* __INTEL_DISPLAY_REGS_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_dram.c b/drivers/gpu/drm/i915/display/intel_dram.c
-> index 170de304fe96..73a127dd6720 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dram.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dram.c
-> @@ -7,10 +7,11 @@
->  
->  #include <drm/drm_managed.h>
->  #include <drm/drm_print.h>
-> +#include <drm/intel/intel_gmd_common_regs.h>
-
-dram only needs a few pcode things, so I'd prefer having a file for
-pcode regs and only including that here.
-
->  
-> -#include "i915_reg.h"
->  #include "intel_display_core.h"
->  #include "intel_display_utils.h"
-> +#include "intel_display_regs.h"
->  #include "intel_dram.h"
->  #include "intel_mchbar_regs.h"
->  #include "intel_pcode.h"
+> +#define _CHICKEN_PIPESL_1_A	0x420b0
+> +#define _CHICKEN_PIPESL_1_B	0x420b4
+> +#define CHICKEN_PIPESL_1(pipe)	_MMIO_PIPE(pipe, _CHICKEN_PIPESL_1_A, _CHICKEN_PIPESL_1_B)
+> +#define   HSW_PRI_STRETCH_MAX_MASK	REG_GENMASK(28, 27)
+> +#define   HSW_PRI_STRETCH_MAX_X8	REG_FIELD_PREP(HSW_PRI_STRETCH_MAX_MASK, 0)
+> +#define   HSW_PRI_STRETCH_MAX_X4	REG_FIELD_PREP(HSW_PRI_STRETCH_MAX_MASK, 1)
+> +#define   HSW_PRI_STRETCH_MAX_X2	REG_FIELD_PREP(HSW_PRI_STRETCH_MAX_MASK, 2)
+> +#define   HSW_PRI_STRETCH_MAX_X1	REG_FIELD_PREP(HSW_PRI_STRETCH_MAX_MASK, 3)
+> +#define   HSW_SPR_STRETCH_MAX_MASK	REG_GENMASK(26, 25)
+> +#define   HSW_SPR_STRETCH_MAX_X8	REG_FIELD_PREP(HSW_SPR_STRETCH_MAX_MASK, 0)
+> +#define   HSW_SPR_STRETCH_MAX_X4	REG_FIELD_PREP(HSW_SPR_STRETCH_MAX_MASK, 1)
+> +#define   HSW_SPR_STRETCH_MAX_X2	REG_FIELD_PREP(HSW_SPR_STRETCH_MAX_MASK, 2)
+> +#define   HSW_SPR_STRETCH_MAX_X1	REG_FIELD_PREP(HSW_SPR_STRETCH_MAX_MASK, 3)
+> +#define   HSW_FBCQ_DIS			REG_BIT(22)
+> +#define   HSW_UNMASK_VBL_TO_REGS_IN_SRD REG_BIT(15) /* hsw */
+> +#define   SKL_PSR_MASK_PLANE_FLIP	REG_BIT(11) /* skl+ */
+> +#define   SKL_PLANE1_STRETCH_MAX_MASK	REG_GENMASK(1, 0)
+> +#define   SKL_PLANE1_STRETCH_MAX_X8	REG_FIELD_PREP(SKL_PLANE1_STRETCH_MAX_MASK, 0)
+> +#define   SKL_PLANE1_STRETCH_MAX_X4	REG_FIELD_PREP(SKL_PLANE1_STRETCH_MAX_MASK, 1)
+> +#define   SKL_PLANE1_STRETCH_MAX_X2	REG_FIELD_PREP(SKL_PLANE1_STRETCH_MAX_MASK, 2)
+> +#define   SKL_PLANE1_STRETCH_MAX_X1	REG_FIELD_PREP(SKL_PLANE1_STRETCH_MAX_MASK, 3)
+> +#define   BDW_UNMASK_VBL_TO_REGS_IN_SRD	REG_BIT(0) /* bdw */
+> +
+>  #define _CHICKEN_TRANS_A	0x420c0
+>  #define _CHICKEN_TRANS_B	0x420c4
+>  #define _CHICKEN_TRANS_C	0x420c8
 > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index fac24a649d61..c9fb9af1a35c 100644
+> index c9fb9af1a35c..c1d141e9ca47 100644
 > --- a/drivers/gpu/drm/i915/i915_reg.h
 > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -1005,12 +1005,6 @@
->  #define OROM_OFFSET				_MMIO(0x1020c0)
->  #define   OROM_OFFSET_MASK			REG_GENMASK(20, 16)
+> @@ -878,28 +878,6 @@
+>  #define CHICKEN_PAR2_1		_MMIO(0x42090)
+>  #define   KVM_CONFIG_CHANGE_NOTIFICATION_SELECT	REG_BIT(14)
 >  
-> -#define MTL_MEM_SS_INFO_GLOBAL			_MMIO(0x45700)
-> -#define   XE3P_ECC_IMPACTING_DE			REG_BIT(12)
-> -#define   MTL_N_OF_ENABLED_QGV_POINTS_MASK	REG_GENMASK(11, 8)
-> -#define   MTL_N_OF_POPULATED_CH_MASK		REG_GENMASK(7, 4)
-> -#define   MTL_DDR_TYPE_MASK			REG_GENMASK(3, 0)
-> -
->  #define MTL_MEDIA_GSI_BASE		0x380000
+> -#define _CHICKEN_PIPESL_1_A	0x420b0
+> -#define _CHICKEN_PIPESL_1_B	0x420b4
+> -#define CHICKEN_PIPESL_1(pipe)	_MMIO_PIPE(pipe, _CHICKEN_PIPESL_1_A, _CHICKEN_PIPESL_1_B)
+> -#define   HSW_PRI_STRETCH_MAX_MASK	REG_GENMASK(28, 27)
+> -#define   HSW_PRI_STRETCH_MAX_X8	REG_FIELD_PREP(HSW_PRI_STRETCH_MAX_MASK, 0)
+> -#define   HSW_PRI_STRETCH_MAX_X4	REG_FIELD_PREP(HSW_PRI_STRETCH_MAX_MASK, 1)
+> -#define   HSW_PRI_STRETCH_MAX_X2	REG_FIELD_PREP(HSW_PRI_STRETCH_MAX_MASK, 2)
+> -#define   HSW_PRI_STRETCH_MAX_X1	REG_FIELD_PREP(HSW_PRI_STRETCH_MAX_MASK, 3)
+> -#define   HSW_SPR_STRETCH_MAX_MASK	REG_GENMASK(26, 25)
+> -#define   HSW_SPR_STRETCH_MAX_X8	REG_FIELD_PREP(HSW_SPR_STRETCH_MAX_MASK, 0)
+> -#define   HSW_SPR_STRETCH_MAX_X4	REG_FIELD_PREP(HSW_SPR_STRETCH_MAX_MASK, 1)
+> -#define   HSW_SPR_STRETCH_MAX_X2	REG_FIELD_PREP(HSW_SPR_STRETCH_MAX_MASK, 2)
+> -#define   HSW_SPR_STRETCH_MAX_X1	REG_FIELD_PREP(HSW_SPR_STRETCH_MAX_MASK, 3)
+> -#define   HSW_FBCQ_DIS			REG_BIT(22)
+> -#define   HSW_UNMASK_VBL_TO_REGS_IN_SRD REG_BIT(15) /* hsw */
+> -#define   SKL_PSR_MASK_PLANE_FLIP	REG_BIT(11) /* skl+ */
+> -#define   SKL_PLANE1_STRETCH_MAX_MASK	REG_GENMASK(1, 0)
+> -#define   SKL_PLANE1_STRETCH_MAX_X8	REG_FIELD_PREP(SKL_PLANE1_STRETCH_MAX_MASK, 0)
+> -#define   SKL_PLANE1_STRETCH_MAX_X4	REG_FIELD_PREP(SKL_PLANE1_STRETCH_MAX_MASK, 1)
+> -#define   SKL_PLANE1_STRETCH_MAX_X2	REG_FIELD_PREP(SKL_PLANE1_STRETCH_MAX_MASK, 2)
+> -#define   SKL_PLANE1_STRETCH_MAX_X1	REG_FIELD_PREP(SKL_PLANE1_STRETCH_MAX_MASK, 3)
+> -#define   BDW_UNMASK_VBL_TO_REGS_IN_SRD	REG_BIT(0) /* bdw */
 >  
->  #endif /* _I915_REG_H_ */
+>  #define DISP_ARB_CTL	_MMIO(0x45000)
+>  #define   DISP_FBC_MEMORY_WAKE		REG_BIT(31)
 
 -- 
 Jani Nikula, Intel
