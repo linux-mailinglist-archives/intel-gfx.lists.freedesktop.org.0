@@ -2,64 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4KxmKpYKcmmOagAAu9opvQ
+	id 8DUFB9oLcmksawAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jan 2026 12:31:34 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jan 2026 12:36:58 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1600D66064
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jan 2026 12:31:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B0F96617A
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jan 2026 12:36:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A013110E98F;
-	Thu, 22 Jan 2026 11:31:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4A3D10E980;
+	Thu, 22 Jan 2026 11:36:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n5D9MN/q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G0A+SRu9";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95F3310E98F;
- Thu, 22 Jan 2026 11:31:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 821CE10E98A;
+ Thu, 22 Jan 2026 11:36:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769081491; x=1800617491;
+ t=1769081814; x=1800617814;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=5JlVVCx96dIbCk5ez0r7mJ39H11sNNo+8dV57efqoOw=;
- b=n5D9MN/qzm0VDRQX2Na68zUdUXybJyN7gwHQiJtyc08hns3VkqgMgG1g
- e6CSfoHUdnGWcyATnbCmLEvRDWP6+PrQrifgc8PvHVOxwrallPjGsmQgp
- 2MsZPtqf/xXQyDBtgEd6tx68Pl6fQgTqNd/XjmBp8mY6JsUBRwkuJH56P
- J77YnbogzC/fL9mmCDvcUr3U2m/EjLWkPda9uOQoSChZZv7qoUIl+0F12
- GTcOXZVGNwP/VZL2Uwq0q0BbruF+sC1WJOy2T0R6jc60GiLGY9Ri9mMNS
- PMNknAz7WF9PgltpSxARk6Fy20OsnZGyqHgDd3N9Exz4yEuj4DRsYpSE8 g==;
-X-CSE-ConnectionGUID: i/bjHvOIRRqQBXsrrNb+cA==
-X-CSE-MsgGUID: vS1ywF0eQQGeB2l+w5nflA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="87898219"
-X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; d="scan'208";a="87898219"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2026 03:31:31 -0800
-X-CSE-ConnectionGUID: +Qc0LAG+RQW0BUP07NLdJg==
-X-CSE-MsgGUID: F1Zqmq08TLGjxHHuZ/eJ0g==
+ bh=memREqZU5vkSQkIvjsRfAYZRvebhBCPJCQWOcsKZqrQ=;
+ b=G0A+SRu9thUPB4lkzQYwdIdaUNT7n320dh+6BBwBVOhNGxP0WiqaDdyX
+ uGTilAKQXt2CpB2XHkfDIgrZOrS5uOYvQY6jks7z6QjrIfq+ZX55woNzW
+ I2XxS+iL6GNxa6l1ElWs9IHOrXBw8m5DkCJPBqmeAMutPzumgOQpCQcuy
+ kSb5oggvFVlVLHoLel/2paKeuum6m0pMJ1rgYA5UaErepG+UNzI+3sWWQ
+ 5+U+UcWrN68k/fDm58JRwbXmu1FfD2PoQcTrG8r7rrybAoJOsvBXTQ64T
+ 5hfzQiTcWYREfb/qoPP5FP2Sx7KN5MMUA3cc5/9MULZvvwqdXVXHWAL0M w==;
+X-CSE-ConnectionGUID: boxYrMHjQpaFaQ+BIJXTrA==
+X-CSE-MsgGUID: YW29G6gjRYi6sFeDrhC/zg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="70222341"
+X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; d="scan'208";a="70222341"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2026 03:36:54 -0800
+X-CSE-ConnectionGUID: wGijcoQcTN+Y4es4MkWYtA==
+X-CSE-MsgGUID: qdSTgfmJQROPHTjbk3S6jw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; d="scan'208";a="211728618"
+X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; d="scan'208";a="210856117"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.192])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2026 03:31:29 -0800
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2026 03:36:51 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: Uma Shankar <uma.shankar@intel.com>, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, Uma Shankar <uma.shankar@intel.com>
-Subject: Re: [v2 04/19] drm/{i915, xe}: Extract DSPCLK_GATE_D from i915_reg
- to display
-In-Reply-To: <20260121232414.707192-5-uma.shankar@intel.com>
+Subject: Re: [v2 06/19] drm/{i915, xe}: Remove i915_reg.h from
+ intel_display_device.c
+In-Reply-To: <20260121232414.707192-7-uma.shankar@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260121232414.707192-1-uma.shankar@intel.com>
- <20260121232414.707192-5-uma.shankar@intel.com>
-Date: Thu, 22 Jan 2026 13:31:25 +0200
-Message-ID: <fbe8ab499a70ede50316d30fc63327150b1d6a63@intel.com>
+ <20260121232414.707192-7-uma.shankar@intel.com>
+Date: Thu, 22 Jan 2026 13:36:48 +0200
+Message-ID: <e3b2fb8eefcfe7362bd24cd626a8ee7d2c4f4fce@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -102,179 +102,104 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: 1600D66064
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 7B0F96617A
 X-Rspamd-Action: no action
 
 On Thu, 22 Jan 2026, Uma Shankar <uma.shankar@intel.com> wrote:
-> Move DSPCLK_GATE_D register definition to display header.
-> This allows intel_gmbus.c free of i915_reg.h include.
+> Move GU_CNTL_PROTECTED to common header, this helps
+> intel_display_device.c free from i915_reg.h dependency.
 
-Grammar, I think.
+This doesn't mention the GMD ID stuff.
 
->
-> v2: Drop common header in include and use display_regs.h (Jani)
 >
 > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-
-Subject prefix, drm/i915. 
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
 > ---
->  .../gpu/drm/i915/display/intel_display_regs.h | 50 +++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_gmbus.c    |  1 -
->  drivers/gpu/drm/i915/i915_reg.h               | 50 -------------------
->  3 files changed, 50 insertions(+), 51 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display_device.c | 2 +-
+>  drivers/gpu/drm/i915/display/intel_display_regs.h   | 3 +++
+>  drivers/gpu/drm/i915/i915_reg.h                     | 8 --------
+>  include/drm/intel/intel_gmd_common_regs.h           | 5 +++++
+>  4 files changed, 9 insertions(+), 9 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-> index 1f922d013cd3..5136b7166775 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-> @@ -160,6 +160,47 @@
->  
->  #define   DPLL_FPA01_P1_POST_DIV_MASK_I830	0x001f0000
->  
-> +#define DSPCLK_GATE_D			_MMIO(0x6200)
-> +#define VLV_DSPCLK_GATE_D		_MMIO(VLV_DISPLAY_BASE + 0x6200)
-> +# define DPUNIT_B_CLOCK_GATE_DISABLE		(1 << 30) /* 965 */
-> +# define VSUNIT_CLOCK_GATE_DISABLE		(1 << 29) /* 965 */
-> +# define VRHUNIT_CLOCK_GATE_DISABLE		(1 << 28) /* 965 */
-> +# define VRDUNIT_CLOCK_GATE_DISABLE		(1 << 27) /* 965 */
-> +# define AUDUNIT_CLOCK_GATE_DISABLE		(1 << 26) /* 965 */
-> +# define DPUNIT_A_CLOCK_GATE_DISABLE		(1 << 25) /* 965 */
-> +# define DPCUNIT_CLOCK_GATE_DISABLE		(1 << 24) /* 965 */
-> +# define PNV_GMBUSUNIT_CLOCK_GATE_DISABLE	(1 << 24) /* pnv */
-> +# define TVRUNIT_CLOCK_GATE_DISABLE		(1 << 23) /* 915-945 */
-> +# define TVCUNIT_CLOCK_GATE_DISABLE		(1 << 22) /* 915-945 */
-> +# define TVFUNIT_CLOCK_GATE_DISABLE		(1 << 21) /* 915-945 */
-> +# define TVEUNIT_CLOCK_GATE_DISABLE		(1 << 20) /* 915-945 */
-> +# define DVSUNIT_CLOCK_GATE_DISABLE		(1 << 19) /* 915-945 */
-> +# define DSSUNIT_CLOCK_GATE_DISABLE		(1 << 18) /* 915-945 */
-> +# define DDBUNIT_CLOCK_GATE_DISABLE		(1 << 17) /* 915-945 */
-> +# define DPRUNIT_CLOCK_GATE_DISABLE		(1 << 16) /* 915-945 */
-> +# define DPFUNIT_CLOCK_GATE_DISABLE		(1 << 15) /* 915-945 */
-> +# define DPBMUNIT_CLOCK_GATE_DISABLE		(1 << 14) /* 915-945 */
-> +# define DPLSUNIT_CLOCK_GATE_DISABLE		(1 << 13) /* 915-945 */
-> +# define DPLUNIT_CLOCK_GATE_DISABLE		(1 << 12) /* 915-945 */
-> +# define DPOUNIT_CLOCK_GATE_DISABLE		(1 << 11)
-> +# define DPBUNIT_CLOCK_GATE_DISABLE		(1 << 10)
-> +# define DCUNIT_CLOCK_GATE_DISABLE		(1 << 9)
-> +# define DPUNIT_CLOCK_GATE_DISABLE		(1 << 8)
-> +# define VRUNIT_CLOCK_GATE_DISABLE		(1 << 7) /* 915+: reserved */
-> +# define OVHUNIT_CLOCK_GATE_DISABLE		(1 << 6) /* 830-865 */
-> +# define DPIOUNIT_CLOCK_GATE_DISABLE		(1 << 6) /* 915-945 */
-> +# define OVFUNIT_CLOCK_GATE_DISABLE		(1 << 5)
-> +# define OVBUNIT_CLOCK_GATE_DISABLE		(1 << 4)
-> +/*
-> + * This bit must be set on the 830 to prevent hangs when turning off the
-> + * overlay scaler.
-> + */
-> +# define OVRUNIT_CLOCK_GATE_DISABLE		(1 << 3)
-> +# define OVCUNIT_CLOCK_GATE_DISABLE		(1 << 2)
-> +# define OVUUNIT_CLOCK_GATE_DISABLE		(1 << 1)
-> +# define ZVUNIT_CLOCK_GATE_DISABLE		(1 << 0) /* 830 */
-> +# define OVLUNIT_CLOCK_GATE_DISABLE		(1 << 0) /* 845,865 */
-> +
->  /* Additional CHV pll/phy registers */
->  #define DPIO_PHY_STATUS			_MMIO(VLV_DISPLAY_BASE + 0x6240)
->  #define   DPLL_PORTD_READY_MASK		(0xf)
-> @@ -2926,6 +2967,15 @@ enum skl_power_gate {
->  #define  LPT_PWM_GRANULARITY		(1 << 5)
->  #define  DPLS_EDP_PPS_FIX_DIS		(1 << 0)
->  
-> +#define SOUTH_DSPCLK_GATE_D	_MMIO(0xc2020)
-> +#define  PCH_GMBUSUNIT_CLOCK_GATE_DISABLE (1 << 31)
-> +#define  PCH_DPLUNIT_CLOCK_GATE_DISABLE (1 << 30)
-> +#define  PCH_DPLSUNIT_CLOCK_GATE_DISABLE (1 << 29)
-> +#define  PCH_DPMGUNIT_CLOCK_GATE_DISABLE (1 << 15)
-> +#define  PCH_CPUNIT_CLOCK_GATE_DISABLE (1 << 14)
-> +#define  CNP_PWM_CGE_GATING_DISABLE (1 << 13)
-> +#define  PCH_LP_PARTITION_LEVEL_DISABLE  (1 << 12)
-> +
->  /* Gen4+ Timestamp and Pipe Frame time stamp registers */
->  #define GEN4_TIMESTAMP		_MMIO(0x2358)
->  #define ILK_TIMESTAMP_HI	_MMIO(0x70070)
-> diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
-> index 2caff677600c..81b6c6991323 100644
-> --- a/drivers/gpu/drm/i915/display/intel_gmbus.c
-> +++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
-> @@ -35,7 +35,6 @@
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+> index 471f236c9ddf..f7cc4198a870 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_device.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+> @@ -9,8 +9,8 @@
+>  #include <drm/drm_drv.h>
 >  #include <drm/drm_print.h>
->  #include <drm/display/drm_hdcp_helper.h>
+>  #include <drm/intel/pciids.h>
+> +#include <drm/intel/intel_gmd_common_regs.h>
 >  
 > -#include "i915_reg.h"
+>  #include "intel_cx0_phy_regs.h"
 >  #include "intel_de.h"
->  #include "intel_display_regs.h"
->  #include "intel_display_types.h"
+>  #include "intel_display.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+> index 5136b7166775..3447ee229354 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+> @@ -6,6 +6,9 @@
+>  
+>  #include "intel_display_reg_defs.h"
+>  
+> +#define GU_CNTL_PROTECTED		_MMIO(0x10100C)
+> +#define   DEPRESENT			REG_BIT(9)
+> +
+>  #define _GEN7_PIPEA_DE_LOAD_SL	0x70068
+>  #define _GEN7_PIPEB_DE_LOAD_SL	0x71068
+>  #define GEN7_PIPE_DE_LOAD_SL(pipe) _MMIO_PIPE(pipe, _GEN7_PIPEA_DE_LOAD_SL, _GEN7_PIPEB_DE_LOAD_SL)
 > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 5cd124083c17..dc13f9eb4cd7 100644
+> index 35122c997b8a..fac24a649d61 100644
 > --- a/drivers/gpu/drm/i915/i915_reg.h
 > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -613,47 +613,6 @@
->  #define  DSTATE_GFX_CLOCK_GATING		(1 << 1)
->  #define  DSTATE_DOT_CLOCK_GATING		(1 << 0)
+> @@ -117,9 +117,6 @@
+>   *  #define GEN8_BAR                    _MMIO(0xb888)
+>   */
 >  
-> -#define DSPCLK_GATE_D			_MMIO(0x6200)
-> -#define VLV_DSPCLK_GATE_D		_MMIO(VLV_DISPLAY_BASE + 0x6200)
-> -# define DPUNIT_B_CLOCK_GATE_DISABLE		(1 << 30) /* 965 */
-> -# define VSUNIT_CLOCK_GATE_DISABLE		(1 << 29) /* 965 */
-> -# define VRHUNIT_CLOCK_GATE_DISABLE		(1 << 28) /* 965 */
-> -# define VRDUNIT_CLOCK_GATE_DISABLE		(1 << 27) /* 965 */
-> -# define AUDUNIT_CLOCK_GATE_DISABLE		(1 << 26) /* 965 */
-> -# define DPUNIT_A_CLOCK_GATE_DISABLE		(1 << 25) /* 965 */
-> -# define DPCUNIT_CLOCK_GATE_DISABLE		(1 << 24) /* 965 */
-> -# define PNV_GMBUSUNIT_CLOCK_GATE_DISABLE	(1 << 24) /* pnv */
-> -# define TVRUNIT_CLOCK_GATE_DISABLE		(1 << 23) /* 915-945 */
-> -# define TVCUNIT_CLOCK_GATE_DISABLE		(1 << 22) /* 915-945 */
-> -# define TVFUNIT_CLOCK_GATE_DISABLE		(1 << 21) /* 915-945 */
-> -# define TVEUNIT_CLOCK_GATE_DISABLE		(1 << 20) /* 915-945 */
-> -# define DVSUNIT_CLOCK_GATE_DISABLE		(1 << 19) /* 915-945 */
-> -# define DSSUNIT_CLOCK_GATE_DISABLE		(1 << 18) /* 915-945 */
-> -# define DDBUNIT_CLOCK_GATE_DISABLE		(1 << 17) /* 915-945 */
-> -# define DPRUNIT_CLOCK_GATE_DISABLE		(1 << 16) /* 915-945 */
-> -# define DPFUNIT_CLOCK_GATE_DISABLE		(1 << 15) /* 915-945 */
-> -# define DPBMUNIT_CLOCK_GATE_DISABLE		(1 << 14) /* 915-945 */
-> -# define DPLSUNIT_CLOCK_GATE_DISABLE		(1 << 13) /* 915-945 */
-> -# define DPLUNIT_CLOCK_GATE_DISABLE		(1 << 12) /* 915-945 */
-> -# define DPOUNIT_CLOCK_GATE_DISABLE		(1 << 11)
-> -# define DPBUNIT_CLOCK_GATE_DISABLE		(1 << 10)
-> -# define DCUNIT_CLOCK_GATE_DISABLE		(1 << 9)
-> -# define DPUNIT_CLOCK_GATE_DISABLE		(1 << 8)
-> -# define VRUNIT_CLOCK_GATE_DISABLE		(1 << 7) /* 915+: reserved */
-> -# define OVHUNIT_CLOCK_GATE_DISABLE		(1 << 6) /* 830-865 */
-> -# define DPIOUNIT_CLOCK_GATE_DISABLE		(1 << 6) /* 915-945 */
-> -# define OVFUNIT_CLOCK_GATE_DISABLE		(1 << 5)
-> -# define OVBUNIT_CLOCK_GATE_DISABLE		(1 << 4)
-> -/*
-> - * This bit must be set on the 830 to prevent hangs when turning off the
-> - * overlay scaler.
-> - */
-> -# define OVRUNIT_CLOCK_GATE_DISABLE		(1 << 3)
-> -# define OVCUNIT_CLOCK_GATE_DISABLE		(1 << 2)
-> -# define OVUUNIT_CLOCK_GATE_DISABLE		(1 << 1)
-> -# define ZVUNIT_CLOCK_GATE_DISABLE		(1 << 0) /* 830 */
-> -# define OVLUNIT_CLOCK_GATE_DISABLE		(1 << 0) /* 845,865 */
+> -#define GU_CNTL_PROTECTED		_MMIO(0x10100C)
+> -#define   DEPRESENT			REG_BIT(9)
 > -
->  #define RENCLK_GATE_D1		_MMIO(0x6204)
->  # define BLITTER_CLOCK_GATE_DISABLE		(1 << 13) /* 945GM only */
->  # define MPEG_CLOCK_GATE_DISABLE		(1 << 12) /* 945GM only */
-> @@ -989,15 +948,6 @@
->  #define   TRANS_CHICKEN1_HDMIUNIT_GC_DISABLE	REG_BIT(10)
->  #define   TRANS_CHICKEN1_DP0UNIT_GC_DISABLE	REG_BIT(4)
+>  #define GU_CNTL				_MMIO(0x101010)
+>  #define   LMEM_INIT			REG_BIT(7)
+>  #define   DRIVERFLR			REG_BIT(31)
+> @@ -925,11 +922,6 @@
+>  #define   MASK_WAKEMEM				REG_BIT(13)
+>  #define   DDI_CLOCK_REG_ACCESS			REG_BIT(7)
 >  
-> -#define SOUTH_DSPCLK_GATE_D	_MMIO(0xc2020)
-> -#define  PCH_GMBUSUNIT_CLOCK_GATE_DISABLE (1 << 31)
-> -#define  PCH_DPLUNIT_CLOCK_GATE_DISABLE (1 << 30)
-> -#define  PCH_DPLSUNIT_CLOCK_GATE_DISABLE (1 << 29)
-> -#define  PCH_DPMGUNIT_CLOCK_GATE_DISABLE (1 << 15)
-> -#define  PCH_CPUNIT_CLOCK_GATE_DISABLE (1 << 14)
-> -#define  CNP_PWM_CGE_GATING_DISABLE (1 << 13)
-> -#define  PCH_LP_PARTITION_LEVEL_DISABLE  (1 << 12)
+> -#define GMD_ID_DISPLAY				_MMIO(0x510a0)
+> -#define   GMD_ID_ARCH_MASK			REG_GENMASK(31, 22)
+> -#define   GMD_ID_RELEASE_MASK			REG_GENMASK(21, 14)
+> -#define   GMD_ID_STEP				REG_GENMASK(5, 0)
 > -
->  #define  VLV_PMWGICZ				_MMIO(0x1300a4)
+>  /* PCH */
 >  
->  #define  HSW_EDRAM_CAP				_MMIO(0x120010)
+>  #define SDEISR  _MMIO(0xc4000)
+> diff --git a/include/drm/intel/intel_gmd_common_regs.h b/include/drm/intel/intel_gmd_common_regs.h
+> index 8e9a574c87d9..489d59379ab0 100644
+> --- a/include/drm/intel/intel_gmd_common_regs.h
+> +++ b/include/drm/intel/intel_gmd_common_regs.h
+> @@ -105,4 +105,9 @@
+>  #define     PCODE_MBOX_DOMAIN_NONE		0x0
+>  #define     PCODE_MBOX_DOMAIN_MEDIAFF		0x3
+>  
+> +#define GMD_ID_DISPLAY				_MMIO(0x510a0)
+> +#define   GMD_ID_ARCH_MASK			REG_GENMASK(31, 22)
+> +#define   GMD_ID_RELEASE_MASK			REG_GENMASK(21, 14)
+> +#define   GMD_ID_STEP				REG_GENMASK(5, 0)
+
+Only display uses GMD_ID_DISPLAY register. I'd put this in display regs,
+and define the register contents with GMD_ID_DISPLAY_* even if the
+register contents are identical for display and non-display GMD
+registers.
+
+Main point is, we should use the common regs file as little as possible.
+
+BR,
+Jani.
+
+> +
+>  #endif
 
 -- 
 Jani Nikula, Intel
