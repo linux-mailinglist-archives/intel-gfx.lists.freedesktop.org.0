@@ -2,64 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YN1eCa4UcmksawAAu9opvQ
+	id EM+VIaEVcmksawAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jan 2026 13:14:38 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jan 2026 13:18:41 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 879FE667C8
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jan 2026 13:14:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D84096684D
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jan 2026 13:18:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6084110E094;
-	Thu, 22 Jan 2026 12:14:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D38910E21A;
+	Thu, 22 Jan 2026 12:18:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W/wi9MtT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dzdGIP5d";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D949E10E094;
- Thu, 22 Jan 2026 12:14:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC87D10E081;
+ Thu, 22 Jan 2026 12:18:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769084074; x=1800620074;
+ t=1769084318; x=1800620318;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=Xm0XE7FgEHXocqOrIlZ/GB7i6BlrX2QBTYd22+iTcpE=;
- b=W/wi9MtTPVyyPOkGMfLAYOi3XNU0gR0+T3uvut2a85V5YZLyQx3uvdkN
- HT6QpuQx2M21cK0E6m6/rwk8Dckc3Jm+ZNIwp+St6xsYUAifvk7iqu4Nw
- lQ0xc7m08k1RiJFitVpy0eHjYjI+RDC2PaboPkNeSeCk+Erd8EwkmhX4/
- rU/ZQDDIFAI4jGTBobikjWnvIxN61hX+fw2+EQEo91hhqxf2uyXlICrgC
- Soxe9qK6xQBHHU16K6NEoK0EQOn5bJm6B5HcW7TIC/t0QfnMTp1gvduFw
- XLFwmFBtLpW7MLsnSLpg480eptO8EBLJIQZIHuQ3JHN8nhvynu0VIeh+m w==;
-X-CSE-ConnectionGUID: 52CVXRxgTkyEeciSETTtJw==
-X-CSE-MsgGUID: YzMi+hvjQOGS5rIfBTID3w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="81435322"
-X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; d="scan'208";a="81435322"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2026 04:14:33 -0800
-X-CSE-ConnectionGUID: LCWham2XSO66gxIiE7PCBA==
-X-CSE-MsgGUID: gMB7XKQaTxCG4sl5ECnURw==
+ bh=NAVpGSzTEjg69OO+kpxZWVfR8FEh6yoKO32DbCWOmgM=;
+ b=dzdGIP5dhv0qu4PJ9jhMeM9ueDSQuxiggu7zuvmyHQtMIddfYeaYxkaq
+ Gjfh4b802uZ/TDJfKyBrmBW5pzvdpkn1rwBi6GjjM+O/QKDaf4lOEtIeL
+ 8GQrt+SDUS60mPeBQmTlG7HoT1juL5Isdl+M+OkvtT2/j95E/2uEx3lTN
+ BOSW5Hv1s1BX8JEMTYsOV/QuscxRfneG8P0POdpb3PG0iDvLezneVxZjx
+ H7EyrNiFzqcyhjuojYFDWbK1/vwx8MFaV1ALb8XxXQawjRa57ISPt7aQ0
+ rvBQPB8SovfUEiwIf0zpNDEu1WuDHEmddfzGiRtTpORSRA0Yp6GkpKlmT w==;
+X-CSE-ConnectionGUID: rcwOtAoGTum9x4oIbfhCBw==
+X-CSE-MsgGUID: gSNkylk4RAa7D2Joj/Pebw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="81042244"
+X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; d="scan'208";a="81042244"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2026 04:18:37 -0800
+X-CSE-ConnectionGUID: OcB4RQQoRyK9nCE3aATVOA==
+X-CSE-MsgGUID: 8fm4opdITUiPuR05bKaBbw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; d="scan'208";a="211575921"
+X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; d="scan'208";a="207047489"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.192])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2026 04:14:31 -0800
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2026 04:18:35 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: Uma Shankar <uma.shankar@intel.com>, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, Uma Shankar <uma.shankar@intel.com>
-Subject: Re: [v2 15/19] drm/{i915, xe}: Remove i915_reg.h from
- intel_fifo_underrun.c
-In-Reply-To: <20260121232414.707192-16-uma.shankar@intel.com>
+Subject: Re: [v2 16/19] drm/{i915, xe}: Remove i915_reg.h from
+ intel_display_irq.c
+In-Reply-To: <20260121232414.707192-17-uma.shankar@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260121232414.707192-1-uma.shankar@intel.com>
- <20260121232414.707192-16-uma.shankar@intel.com>
-Date: Thu, 22 Jan 2026 14:14:28 +0200
-Message-ID: <c164173e1696e5d8fee8b5be0bbc90fa4f5aff1a@intel.com>
+ <20260121232414.707192-17-uma.shankar@intel.com>
+Date: Thu, 22 Jan 2026 14:18:32 +0200
+Message-ID: <5c2b9a980dc62c6bddf7e7a93d730a0a1526b355@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -103,109 +103,244 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 879FE667C8
+X-Rspamd-Queue-Id: D84096684D
 X-Rspamd-Action: no action
 
 On Thu, 22 Jan 2026, Uma Shankar <uma.shankar@intel.com> wrote:
-> Move GEN7_ERR_INT reg to common header to make intel_fifo_underrun.c
+> Move VLV_IRQ_REGS to common header to make intel_display_irq.c
 > free from including i915_reg.h.
-
-I think these should be in a display register header, not the common
-one. The users are display and gvt, apart from a single use in
-gt_record_global_regs() which should be moved to display. I can send a
-patch for that.
-
-BR,
-Jani.
-
-
-
 >
 > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 > ---
->  .../drm/i915/display/intel_fifo_underrun.c    |  2 +-
->  drivers/gpu/drm/i915/i915_reg.h               | 23 -------------------
->  include/drm/intel/intel_gmd_common_regs.h     | 23 +++++++++++++++++++
->  3 files changed, 24 insertions(+), 24 deletions(-)
+>  .../gpu/drm/i915/display/intel_display_irq.c  |  2 +-
+>  .../gpu/drm/i915/display/intel_display_regs.h | 28 +++++-----
+>  drivers/gpu/drm/i915/i915_reg.h               | 52 ------------------
+>  include/drm/intel/intel_gmd_common_regs.h     | 54 +++++++++++++++++++
+>  4 files changed, 69 insertions(+), 67 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-> index b413b3e871d8..c834be759e40 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-> @@ -28,8 +28,8 @@
->  #include <linux/seq_buf.h>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> index 9adeebb376b1..206c0d004646 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> @@ -5,8 +5,8 @@
 >  
 >  #include <drm/drm_print.h>
+>  #include <drm/drm_vblank.h>
 > +#include <drm/intel/intel_gmd_common_regs.h>
 >  
 > -#include "i915_reg.h"
+>  #include "icl_dsi_regs.h"
+>  #include "intel_crtc.h"
 >  #include "intel_de.h"
->  #include "intel_display_irq.h"
->  #include "intel_display_regs.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+> index aafe71a3b410..fb21b1cf6124 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+> @@ -90,20 +90,6 @@
+>  #define   DERRMR_PIPEC_VBLANK		(1 << 21)
+>  #define   DERRMR_PIPEC_HBLANK		(1 << 22)
+>  
+> -#define VLV_IRQ_REGS		I915_IRQ_REGS(VLV_IMR, \
+> -					      VLV_IER, \
+> -					      VLV_IIR)
+> -
+> -#define VLV_EIR		_MMIO(VLV_DISPLAY_BASE + 0x20b0)
+> -#define VLV_EMR		_MMIO(VLV_DISPLAY_BASE + 0x20b4)
+> -#define VLV_ESR		_MMIO(VLV_DISPLAY_BASE + 0x20b8)
+> -#define   VLV_ERROR_GUNIT_TLB_DATA			(1 << 6)
+> -#define   VLV_ERROR_GUNIT_TLB_PTE			(1 << 5)
+> -#define   VLV_ERROR_PAGE_TABLE				(1 << 4)
+> -#define   VLV_ERROR_CLAIM				(1 << 0)
+> -
+> -#define VLV_ERROR_REGS		I915_ERROR_REGS(VLV_EMR, VLV_EIR)
+> -
+>  #define _MBUS_ABOX0_CTL			0x45038
+>  #define _MBUS_ABOX1_CTL			0x45048
+>  #define _MBUS_ABOX2_CTL			0x4504C
+> @@ -3166,4 +3152,18 @@ enum skl_power_gate {
+>  #define   FW_BLC_SELF_FIFO_MASK    REG_BIT(16) /* 945 only */
+>  #define   FW_BLC_SELF_EN           REG_BIT(15) /* 945 only */
+>  
+> +#define VLV_IRQ_REGS		I915_IRQ_REGS(VLV_IMR, \
+> +					      VLV_IER, \
+> +					      VLV_IIR)
+> +
+> +#define VLV_EIR		_MMIO(VLV_DISPLAY_BASE + 0x20b0)
+> +#define VLV_EMR		_MMIO(VLV_DISPLAY_BASE + 0x20b4)
+> +#define VLV_ESR		_MMIO(VLV_DISPLAY_BASE + 0x20b8)
+> +#define   VLV_ERROR_GUNIT_TLB_DATA			(1 << 6)
+> +#define   VLV_ERROR_GUNIT_TLB_PTE			(1 << 5)
+> +#define   VLV_ERROR_PAGE_TABLE				(1 << 4)
+> +#define   VLV_ERROR_CLAIM				(1 << 0)
+> +
+> +#define VLV_ERROR_REGS		I915_ERROR_REGS(VLV_EMR, VLV_EIR)
+> +
+>  #endif /* __INTEL_DISPLAY_REGS_H__ */
 > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 62d58d7cfa7a..0af2c9c8dc0f 100644
+> index 0af2c9c8dc0f..a85e2d9ab561 100644
 > --- a/drivers/gpu/drm/i915/i915_reg.h
 > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -326,29 +326,6 @@
->  #define GEN7_MEDIA_MAX_REQ_COUNT	_MMIO(0x4070)
->  #define GEN7_GFX_MAX_REQ_COUNT		_MMIO(0x4074)
+> @@ -336,9 +336,6 @@
 >  
-> -#define GEN7_ERR_INT	_MMIO(0x44040)
-> -#define   ERR_INT_POISON		(1 << 31)
-> -#define   ERR_INT_INVALID_GTT_PTE	(1 << 29)
-> -#define   ERR_INT_INVALID_PTE_DATA	(1 << 28)
-> -#define   ERR_INT_SPRITE_C_FAULT	(1 << 23)
-> -#define   ERR_INT_PRIMARY_C_FAULT	(1 << 22)
-> -#define   ERR_INT_CURSOR_C_FAULT	(1 << 21)
-> -#define   ERR_INT_SPRITE_B_FAULT	(1 << 20)
-> -#define   ERR_INT_PRIMARY_B_FAULT	(1 << 19)
-> -#define   ERR_INT_CURSOR_B_FAULT	(1 << 18)
-> -#define   ERR_INT_SPRITE_A_FAULT	(1 << 17)
-> -#define   ERR_INT_PRIMARY_A_FAULT	(1 << 16)
-> -#define   ERR_INT_CURSOR_A_FAULT	(1 << 15)
-> -#define   ERR_INT_MMIO_UNCLAIMED	(1 << 13)
-> -#define   ERR_INT_PIPE_CRC_DONE_C	(1 << 8)
-> -#define   ERR_INT_FIFO_UNDERRUN_C	(1 << 6)
-> -#define   ERR_INT_PIPE_CRC_DONE_B	(1 << 5)
-> -#define   ERR_INT_FIFO_UNDERRUN_B	(1 << 3)
-> -#define   ERR_INT_PIPE_CRC_DONE_A	(1 << 2)
-> -#define   ERR_INT_PIPE_CRC_DONE(pipe)	(1 << (2 + (pipe) * 3))
-> -#define   ERR_INT_FIFO_UNDERRUN_A	(1 << 0)
-> -#define   ERR_INT_FIFO_UNDERRUN(pipe)	(1 << ((pipe) * 3))
+>  #define VLV_GU_CTL0	_MMIO(VLV_DISPLAY_BASE + 0x2030)
+>  #define VLV_GU_CTL1	_MMIO(VLV_DISPLAY_BASE + 0x2034)
+> -#define SCPD0		_MMIO(0x209c) /* 915+ only */
+> -#define  SCPD_FBC_IGNORE_3D			(1 << 6)
+> -#define  CSTATE_RENDER_CLOCK_GATE_DISABLE	(1 << 5)
+>  #define GEN2_IER	_MMIO(0x20a0)
+>  #define GEN2_IIR	_MMIO(0x20a4)
+>  #define GEN2_IMR	_MMIO(0x20a8)
+> @@ -352,13 +349,6 @@
+>  #define   GINT_DIS		(1 << 22)
+>  #define   GCFG_DIS		(1 << 8)
+>  #define VLV_GUNIT_CLOCK_GATE2	_MMIO(VLV_DISPLAY_BASE + 0x2064)
+> -#define VLV_IIR_RW	_MMIO(VLV_DISPLAY_BASE + 0x2084)
+> -#define VLV_IER		_MMIO(VLV_DISPLAY_BASE + 0x20a0)
+> -#define VLV_IIR		_MMIO(VLV_DISPLAY_BASE + 0x20a4)
+> -#define VLV_IMR		_MMIO(VLV_DISPLAY_BASE + 0x20a8)
+> -#define VLV_ISR		_MMIO(VLV_DISPLAY_BASE + 0x20ac)
+> -#define VLV_PCBR	_MMIO(VLV_DISPLAY_BASE + 0x2120)
+> -#define VLV_PCBR_ADDR_SHIFT	12
+>  
+>  #define EIR		_MMIO(0x20b0)
+>  #define EMR		_MMIO(0x20b4)
+> @@ -683,11 +673,6 @@
+>  #define PCH_3DCGDIS1		_MMIO(0x46024)
+>  # define VFMUNIT_CLOCK_GATE_DISABLE		(1 << 11)
+>  
+> -/* Display Internal Timeout Register */
+> -#define RM_TIMEOUT		_MMIO(0x42060)
+> -#define RM_TIMEOUT_REG_CAPTURE	_MMIO(0x420E0)
+> -#define  MMIO_TIMEOUT_US(us)	((us) << 0)
 > -
->  #define FPGA_DBG		_MMIO(0x42300)
->  #define   FPGA_DBG_RM_NOCLAIM	REG_BIT(31)
+>  #define VLV_MASTER_IER			_MMIO(0x4400c) /* Gunit master IER */
+>  #define   MASTER_INTERRUPT_ENABLE	(1 << 31)
 >  
+> @@ -700,24 +685,6 @@
+>  					      GTIER, \
+>  					      GTIIR)
+>  
+> -#define GEN8_MASTER_IRQ			_MMIO(0x44200)
+> -#define  GEN8_MASTER_IRQ_CONTROL	(1 << 31)
+> -#define  GEN8_PCU_IRQ			(1 << 30)
+> -#define  GEN8_DE_PCH_IRQ		(1 << 23)
+> -#define  GEN8_DE_MISC_IRQ		(1 << 22)
+> -#define  GEN8_DE_PORT_IRQ		(1 << 20)
+> -#define  GEN8_DE_PIPE_C_IRQ		(1 << 18)
+> -#define  GEN8_DE_PIPE_B_IRQ		(1 << 17)
+> -#define  GEN8_DE_PIPE_A_IRQ		(1 << 16)
+> -#define  GEN8_DE_PIPE_IRQ(pipe)		(1 << (16 + (pipe)))
+> -#define  GEN8_GT_VECS_IRQ		(1 << 6)
+> -#define  GEN8_GT_GUC_IRQ		(1 << 5)
+> -#define  GEN8_GT_PM_IRQ			(1 << 4)
+> -#define  GEN8_GT_VCS1_IRQ		(1 << 3) /* NB: VCS2 in bspec! */
+> -#define  GEN8_GT_VCS0_IRQ		(1 << 2) /* NB: VCS1 in bpsec! */
+> -#define  GEN8_GT_BCS_IRQ		(1 << 1)
+> -#define  GEN8_GT_RCS_IRQ		(1 << 0)
+> -
+>  #define GEN8_GT_ISR(which) _MMIO(0x44300 + (0x10 * (which)))
+>  #define GEN8_GT_IMR(which) _MMIO(0x44304 + (0x10 * (which)))
+>  #define GEN8_GT_IIR(which) _MMIO(0x44308 + (0x10 * (which)))
+> @@ -743,25 +710,6 @@
+>  						      GEN8_PCU_IER, \
+>  						      GEN8_PCU_IIR)
+>  
+> -#define GEN11_GU_MISC_ISR	_MMIO(0x444f0)
+> -#define GEN11_GU_MISC_IMR	_MMIO(0x444f4)
+> -#define GEN11_GU_MISC_IIR	_MMIO(0x444f8)
+> -#define GEN11_GU_MISC_IER	_MMIO(0x444fc)
+> -#define  GEN11_GU_MISC_GSE	(1 << 27)
+> -
+> -#define GEN11_GU_MISC_IRQ_REGS		I915_IRQ_REGS(GEN11_GU_MISC_IMR, \
+> -						      GEN11_GU_MISC_IER, \
+> -						      GEN11_GU_MISC_IIR)
+> -
+> -#define GEN11_GFX_MSTR_IRQ		_MMIO(0x190010)
+> -#define  GEN11_MASTER_IRQ		(1 << 31)
+> -#define  GEN11_PCU_IRQ			(1 << 30)
+> -#define  GEN11_GU_MISC_IRQ		(1 << 29)
+> -#define  GEN11_DISPLAY_IRQ		(1 << 16)
+> -#define  GEN11_GT_DW_IRQ(x)		(1 << (x))
+> -#define  GEN11_GT_DW1_IRQ		(1 << 1)
+> -#define  GEN11_GT_DW0_IRQ		(1 << 0)
+> -
+>  #define DG1_MSTR_TILE_INTR		_MMIO(0x190008)
+>  #define   DG1_MSTR_IRQ			REG_BIT(31)
+>  #define   DG1_MSTR_TILE(t)		REG_BIT(t)
 > diff --git a/include/drm/intel/intel_gmd_common_regs.h b/include/drm/intel/intel_gmd_common_regs.h
-> index 049349c365e3..2b2a7f21529a 100644
+> index 2b2a7f21529a..9bc234135454 100644
 > --- a/include/drm/intel/intel_gmd_common_regs.h
 > +++ b/include/drm/intel/intel_gmd_common_regs.h
-> @@ -169,4 +169,27 @@
->  #define   INSTPM_TLB_INVALIDATE	(1 << 9)
->  #define   INSTPM_SYNC_FLUSH	(1 << 5)
+> @@ -111,6 +111,9 @@
+>  #define   GMD_ID_STEP				REG_GENMASK(5, 0)
 >  
-> +#define GEN7_ERR_INT	_MMIO(0x44040)
-> +#define   ERR_INT_POISON		(1 << 31)
-> +#define   ERR_INT_INVALID_GTT_PTE	(1 << 29)
-> +#define   ERR_INT_INVALID_PTE_DATA	(1 << 28)
-> +#define   ERR_INT_SPRITE_C_FAULT	(1 << 23)
-> +#define   ERR_INT_PRIMARY_C_FAULT	(1 << 22)
-> +#define   ERR_INT_CURSOR_C_FAULT	(1 << 21)
-> +#define   ERR_INT_SPRITE_B_FAULT	(1 << 20)
-> +#define   ERR_INT_PRIMARY_B_FAULT	(1 << 19)
-> +#define   ERR_INT_CURSOR_B_FAULT	(1 << 18)
-> +#define   ERR_INT_SPRITE_A_FAULT	(1 << 17)
-> +#define   ERR_INT_PRIMARY_A_FAULT	(1 << 16)
-> +#define   ERR_INT_CURSOR_A_FAULT	(1 << 15)
-> +#define   ERR_INT_MMIO_UNCLAIMED	(1 << 13)
-> +#define   ERR_INT_PIPE_CRC_DONE_C	(1 << 8)
-> +#define   ERR_INT_FIFO_UNDERRUN_C	(1 << 6)
-> +#define   ERR_INT_PIPE_CRC_DONE_B	(1 << 5)
-> +#define   ERR_INT_FIFO_UNDERRUN_B	(1 << 3)
-> +#define   ERR_INT_PIPE_CRC_DONE_A	(1 << 2)
-> +#define   ERR_INT_PIPE_CRC_DONE(pipe)	(1 << (2 + (pipe) * 3))
-> +#define   ERR_INT_FIFO_UNDERRUN_A	(1 << 0)
-> +#define   ERR_INT_FIFO_UNDERRUN(pipe)	(1 << ((pipe) * 3))
+>  #define GEN2_ISR       _MMIO(0x20ac)
+> +#define SCPD0		_MMIO(0x209c) /* 915+ only */
+> +#define  SCPD_FBC_IGNORE_3D			(1 << 6)
+> +#define  CSTATE_RENDER_CLOCK_GATE_DISABLE	(1 << 5)
+>  
+>  #define I915_PM_INTERRUPT				(1 << 31)
+>  #define I915_ISP_INTERRUPT				(1 << 22)
+> @@ -192,4 +195,55 @@
+>  #define   ERR_INT_FIFO_UNDERRUN_A	(1 << 0)
+>  #define   ERR_INT_FIFO_UNDERRUN(pipe)	(1 << ((pipe) * 3))
+>  
+> +#define VLV_IIR_RW	_MMIO(VLV_DISPLAY_BASE + 0x2084)
+> +#define VLV_IER		_MMIO(VLV_DISPLAY_BASE + 0x20a0)
+> +#define VLV_IIR		_MMIO(VLV_DISPLAY_BASE + 0x20a4)
+> +#define VLV_IMR		_MMIO(VLV_DISPLAY_BASE + 0x20a8)
+> +#define VLV_ISR		_MMIO(VLV_DISPLAY_BASE + 0x20ac)
+> +#define VLV_PCBR	_MMIO(VLV_DISPLAY_BASE + 0x2120)
+> +#define VLV_PCBR_ADDR_SHIFT	12
+> +
+> +#define GEN8_MASTER_IRQ			_MMIO(0x44200)
+> +#define  GEN8_MASTER_IRQ_CONTROL	(1 << 31)
+> +#define  GEN8_PCU_IRQ			(1 << 30)
+> +#define  GEN8_DE_PCH_IRQ		(1 << 23)
+> +#define  GEN8_DE_MISC_IRQ		(1 << 22)
+> +#define  GEN8_DE_PORT_IRQ		(1 << 20)
+> +#define  GEN8_DE_PIPE_C_IRQ		(1 << 18)
+> +#define  GEN8_DE_PIPE_B_IRQ		(1 << 17)
+> +#define  GEN8_DE_PIPE_A_IRQ		(1 << 16)
+> +#define  GEN8_DE_PIPE_IRQ(pipe)		(1 << (16 + (pipe)))
+> +#define  GEN8_GT_VECS_IRQ		(1 << 6)
+> +#define  GEN8_GT_GUC_IRQ		(1 << 5)
+> +#define  GEN8_GT_PM_IRQ			(1 << 4)
+> +#define  GEN8_GT_VCS1_IRQ		(1 << 3) /* NB: VCS2 in bspec! */
+> +#define  GEN8_GT_VCS0_IRQ		(1 << 2) /* NB: VCS1 in bpsec! */
+> +#define  GEN8_GT_BCS_IRQ		(1 << 1)
+> +#define  GEN8_GT_RCS_IRQ		(1 << 0)
+> +
+> +
+> +#define GEN11_GU_MISC_ISR	_MMIO(0x444f0)
+> +#define GEN11_GU_MISC_IMR	_MMIO(0x444f4)
+> +#define GEN11_GU_MISC_IIR	_MMIO(0x444f8)
+> +#define GEN11_GU_MISC_IER	_MMIO(0x444fc)
+> +#define  GEN11_GU_MISC_GSE	(1 << 27)
+> +
+> +#define GEN11_GU_MISC_IRQ_REGS		I915_IRQ_REGS(GEN11_GU_MISC_IMR, \
+> +						      GEN11_GU_MISC_IER, \
+> +						      GEN11_GU_MISC_IIR)
+> +
+> +/* Display Internal Timeout Register */
+> +#define RM_TIMEOUT		_MMIO(0x42060)
+> +#define RM_TIMEOUT_REG_CAPTURE	_MMIO(0x420E0)
+> +#define  MMIO_TIMEOUT_US(us)	((us) << 0)
+
+These should be in display.
+
+> +
+> +#define GEN11_GFX_MSTR_IRQ		_MMIO(0x190010)
+> +#define  GEN11_MASTER_IRQ		(1 << 31)
+> +#define  GEN11_PCU_IRQ			(1 << 30)
+> +#define  GEN11_GU_MISC_IRQ		(1 << 29)
+> +#define  GEN11_DISPLAY_IRQ		(1 << 16)
+> +#define  GEN11_GT_DW_IRQ(x)		(1 << (x))
+> +#define  GEN11_GT_DW1_IRQ		(1 << 1)
+> +#define  GEN11_GT_DW0_IRQ		(1 << 0)
+
+All the irq registers should be a file of their own.
+
 > +
 >  #endif
 
