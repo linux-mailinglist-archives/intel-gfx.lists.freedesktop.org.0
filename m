@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iOrHBvsGcmmvZwAAu9opvQ
+	id sMkMLhgHcmmvZwAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jan 2026 12:16:11 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jan 2026 12:16:40 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5623C65D48
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jan 2026 12:16:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49BA765D67
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jan 2026 12:16:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7611A10E97A;
-	Thu, 22 Jan 2026 11:16:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8A9010E06D;
+	Thu, 22 Jan 2026 11:16:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HGLcQGzW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jeW5zaBG";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F29310E06D;
- Thu, 22 Jan 2026 11:16:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BEC910E06D;
+ Thu, 22 Jan 2026 11:16:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769080567; x=1800616567;
+ t=1769080598; x=1800616598;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=rnlHZZBO+cAFQzM3koZnESYCUzYejpnS7WaLoCxQyeg=;
- b=HGLcQGzWSRU+cpQejFIVCawtBiYMP0hPUa+9/IbN1t6HS51ALYp5Nfbd
- t8lCldtCDAhRN8ZUanBbH1ve79/WXH2gToFiTw/VQMsPhzvqvTrfGBCd+
- L48/2khpffRNTs2ZUilrVUu5jqX0Uqs7hTJdVSYdu96wm3HF1+BOp8UkE
- +g0UTIsuqTM87RqjEdTRixFeeB2Vd3RETnKN/d2T0KtHtSytPIUJd05GC
- d+UHrGtd9pc8PEM8Uyl7JuUHQ0v8QZBS7re8PtPjVlaUQA4HweDG0NyaE
- uIcANNipvtz+K+WRWCyaYfBgoMDfXddtFGlMYaa5I3MAjajQ0vbYAvyQ2 Q==;
-X-CSE-ConnectionGUID: XmWq+D1uS7CB51P26y+ovA==
-X-CSE-MsgGUID: VvYnguqFSVS5iH6Apz7g0Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="81430887"
-X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; d="scan'208";a="81430887"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2026 03:16:06 -0800
-X-CSE-ConnectionGUID: JTBID/EaSKCeIN2aTb2Fsg==
-X-CSE-MsgGUID: c7N1zVbjRSOYROTjy8p0ig==
+ bh=lmOtayG9lZd3jjXHnlx15aMDxKUGe4azQZL62lvxqjk=;
+ b=jeW5zaBGVZFdM6qZXEK2AKlfMPnDJR/H14sUoGW41p3oBOv3qF3Jk5qM
+ vP2xaTZDgs6cesVyescCrWCLuEarunlBmmEhr19FWmgjJ4L4kHXjfzbFm
+ iNVe9F1/98RD5nYCdXw2khBLZZil0uT+Cg880kPeDmZwIkMtzKUzenjcs
+ j4pBJpCjUyxEi0mY2UX3hPGUyEjTI8NEJRZN6Q2vSr3v5gDTIrCNCvFEh
+ itnjQCJFC6nMMAL8lilCl9EYz5fTF3WjQwgQ3g6L3lsmNp1r1ulWnP/HE
+ FNyQ6+DdXCuLJj/jrT0V0RAwG8oh0xtZQ554w62b58136WOPJfH26iMoW Q==;
+X-CSE-ConnectionGUID: kY7pD8trSFOia6B/qqqcdQ==
+X-CSE-MsgGUID: 77q2jkJ/TCC++XuyGl2waw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="70040943"
+X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; d="scan'208";a="70040943"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2026 03:16:38 -0800
+X-CSE-ConnectionGUID: qbSGBCfxTXS8//LzyeU/lw==
+X-CSE-MsgGUID: zp8DUewtScSN6HhZLk+SqA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; d="scan'208";a="206611435"
+X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; d="scan'208";a="205959175"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.192])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2026 03:16:05 -0800
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2026 03:16:36 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: Uma Shankar <uma.shankar@intel.com>, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
@@ -58,8 +58,8 @@ Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260121232414.707192-1-uma.shankar@intel.com>
  <20260121232414.707192-2-uma.shankar@intel.com>
-Date: Thu, 22 Jan 2026 13:16:02 +0200
-Message-ID: <007ce54a265e088d7da75e3ec308d84d0453b761@intel.com>
+Date: Thu, 22 Jan 2026 13:16:32 +0200
+Message-ID: <a361944ea5c4c8d5cbac086270d57e8d319d003c@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -103,7 +103,7 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: 5623C65D48
+X-Rspamd-Queue-Id: 49BA765D67
 X-Rspamd-Action: no action
 
 On Thu, 22 Jan 2026, Uma Shankar <uma.shankar@intel.com> wrote:
@@ -113,15 +113,14 @@ On Thu, 22 Jan 2026, Uma Shankar <uma.shankar@intel.com> wrote:
 > towards making display independent of i915.
 >
 > intel_clock_gating.c can include display header directly.
-
-...because its usage should be refactored and moved inside display.
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
 >
 > v2: Drop common header in include and use display_regs.h (Jani)
 >
 > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+
+Oh, the Subject should just be drm/i915, this isn't directly related to
+xe.
+
 > ---
 >  drivers/gpu/drm/i915/display/intel_display_regs.h | 10 ++++++++++
 >  drivers/gpu/drm/i915/display/intel_pch_display.c  |  1 -
