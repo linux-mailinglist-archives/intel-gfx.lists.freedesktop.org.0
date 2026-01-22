@@ -2,64 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gDhlGW8JcmmOagAAu9opvQ
+	id 6GKxDTUKcmmOagAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jan 2026 12:26:39 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jan 2026 12:29:57 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A7D265F87
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jan 2026 12:26:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A3CA66010
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jan 2026 12:29:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E87E10E984;
-	Thu, 22 Jan 2026 11:26:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB9AB10E98B;
+	Thu, 22 Jan 2026 11:29:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SQdUoj1S";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mP5CLQEK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B8F510E984;
- Thu, 22 Jan 2026 11:26:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 228C110E98A;
+ Thu, 22 Jan 2026 11:29:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769081195; x=1800617195;
+ t=1769081393; x=1800617393;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=QUuGzP4RszsC6DB0tL8JbfBhdmBjnnjU8CDdb5DrXVA=;
- b=SQdUoj1SFoN+vjYQTuWizlHdIpNuNM7FiWUOv3lH8Dn86vLqxd6KQNvI
- TIgBZ1ntsuI+792uuu1nN4sE3XR9KIQ1ucd4XJfBYGeXmNF0qxOqtQKEy
- 3LHANknhCzRwjCdUeAAQdL9Gx/eMc/gmsM1TYGMzgve12pAju9Szd14JK
- 7I0ufyUcNAt8LRUz7ewYjqz6hmBXJVpEoSoiC4CuueRCrdXyyYxeb/4DX
- eApTrPlHLFV40OHeVv5mC/jYsUBSeCnH954DORpBT0A5di2/CHJ6KO5CR
- rvuDxkidjBtOlNQLQmLAJpTe/gOrkJPDrE/L1hIm/C6xcFidSbNvX2FeX Q==;
-X-CSE-ConnectionGUID: sOTZYwBuR1ynKJPJbyOLjQ==
-X-CSE-MsgGUID: TbXkkvgNQLWpv1l+m7HEnQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="81038696"
-X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; d="scan'208";a="81038696"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2026 03:26:35 -0800
-X-CSE-ConnectionGUID: 2lWSnozyRoSJfy4kz4S3tQ==
-X-CSE-MsgGUID: sk6+0zAaRweXgD2iunaNww==
+ bh=5zGcunmHLGy6Pm7Q/Xc9H5ZpHzbouJlOCSJD30k7LnE=;
+ b=mP5CLQEKiODQtg2iwug8s8DDvWEPm9+MbYHmwIlJDBn+8nYy1SjgxCcS
+ 756oj18ZwdPk5qGcImhWmFyK0No2NQyx+3fVB8JmjR3FmTPQa6UvpGBmD
+ UMYTZF8Jpk2VnO9hT8Wid1KOvfwFkY631obu6f/IYd98dU9zLgv6BmJlU
+ RCLSU/yAQu6pAOAIIaqZSryZvN+dvLB+a9s4EyeQHxsEhyiH0cTmTszt4
+ 7PV6UB+9tdPR6+EwvkDM9ngGEYxqyDHWGzQ2eOJTyCwN9xABjXSHZdI7k
+ f1+31dGFh0VTZ03m1UAHZCVNoc/EUJ+q2cIuJ5+uyBZKJixU+W3d5TPNf g==;
+X-CSE-ConnectionGUID: xXu111zoSjev+eadTAHt0w==
+X-CSE-MsgGUID: 8IBPATctRu+9u2JhXCZcPw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="73949099"
+X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; d="scan'208";a="73949099"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2026 03:29:53 -0800
+X-CSE-ConnectionGUID: h2xdA8D0TzGt+VLXaXyUlA==
+X-CSE-MsgGUID: vaBji0hwTLGs5VY/tUPVAw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; d="scan'208";a="237378341"
+X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; d="scan'208";a="237972842"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.192])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2026 03:26:33 -0800
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2026 03:29:50 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: Uma Shankar <uma.shankar@intel.com>, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, Uma Shankar <uma.shankar@intel.com>
-Subject: Re: [v2 02/19] drm/{i915, xe}: Extract South chicken registers from
- i915_reg.h to display
-In-Reply-To: <20260121232414.707192-3-uma.shankar@intel.com>
+Subject: Re: [v2 03/19] drm/{i915, xe}: Extract display interrupt definitions
+In-Reply-To: <20260121232414.707192-4-uma.shankar@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260121232414.707192-1-uma.shankar@intel.com>
- <20260121232414.707192-3-uma.shankar@intel.com>
-Date: Thu, 22 Jan 2026 13:26:29 +0200
-Message-ID: <099215c667f4e0019c9200fb5558fcadff9d04bc@intel.com>
+ <20260121232414.707192-4-uma.shankar@intel.com>
+Date: Thu, 22 Jan 2026 13:29:47 +0200
+Message-ID: <cf81ee72dd6228c589fc565f0dfadaf32a138b7b@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -102,123 +101,136 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 4A7D265F87
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
+X-Rspamd-Queue-Id: 9A3CA66010
 X-Rspamd-Action: no action
 
 On Thu, 22 Jan 2026, Uma Shankar <uma.shankar@intel.com> wrote:
-> Extract South Chicken registers from i915_reg.h to display header.
-> This allows intel_pch_refclk.c not to include i915_reg.h
->
-> v2: Drop common header in include and use display_regs.h (Jani)
->
+> Move common registers to display to allow intel_display_rps.c
+> free of i915_reg.h dependency.
+
+The grammar's not quite right there.
+
 > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> ---
+>  .../gpu/drm/i915/display/intel_display_regs.h | 34 +++++++++++++++++++
+>  .../gpu/drm/i915/display/intel_display_rps.c  |  2 +-
+>  drivers/gpu/drm/i915/i915_reg.h               | 33 ------------------
+>  3 files changed, 35 insertions(+), 34 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+> index 4759a9600d3f..1f922d013cd3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+> @@ -1333,6 +1333,40 @@
+>  						      GEN8_DE_PORT_IER, \
+>  						      GEN8_DE_PORT_IIR)
+>  
+> +/* interrupts */
+> +#define DE_MASTER_IRQ_CONTROL   (1 << 31)
+> +#define DE_SPRITEB_FLIP_DONE    (1 << 29)
+> +#define DE_SPRITEA_FLIP_DONE    (1 << 28)
+> +#define DE_PLANEB_FLIP_DONE     (1 << 27)
+> +#define DE_PLANEA_FLIP_DONE     (1 << 26)
+> +#define DE_PLANE_FLIP_DONE(plane) (1 << (26 + (plane)))
+> +#define DE_PCU_EVENT            (1 << 25)
+> +#define DE_GTT_FAULT            (1 << 24)
+> +#define DE_POISON               (1 << 23)
+> +#define DE_PERFORM_COUNTER      (1 << 22)
+> +#define DE_PCH_EVENT            (1 << 21)
+> +#define DE_AUX_CHANNEL_A        (1 << 20)
+> +#define DE_DP_A_HOTPLUG         (1 << 19)
+> +#define DE_GSE                  (1 << 18)
+> +#define DE_PIPEB_VBLANK         (1 << 15)
+> +#define DE_PIPEB_EVEN_FIELD     (1 << 14)
+> +#define DE_PIPEB_ODD_FIELD      (1 << 13)
+> +#define DE_PIPEB_LINE_COMPARE   (1 << 12)
+> +#define DE_PIPEB_VSYNC          (1 << 11)
+> +#define DE_PIPEB_CRC_DONE	(1 << 10)
+> +#define DE_PIPEB_FIFO_UNDERRUN  (1 << 8)
+> +#define DE_PIPEA_VBLANK         (1 << 7)
+> +#define DE_PIPE_VBLANK(pipe)    (1 << (7 + 8 * (pipe)))
+> +#define DE_PIPEA_EVEN_FIELD     (1 << 6)
+> +#define DE_PIPEA_ODD_FIELD      (1 << 5)
+> +#define DE_PIPEA_LINE_COMPARE   (1 << 4)
+> +#define DE_PIPEA_VSYNC          (1 << 3)
+> +#define DE_PIPEA_CRC_DONE	(1 << 2)
+> +#define DE_PIPE_CRC_DONE(pipe)	(1 << (2 + 8 * (pipe)))
+> +#define DE_PIPEA_FIFO_UNDERRUN  (1 << 0)
+> +#define DE_PIPE_FIFO_UNDERRUN(pipe)  (1 << (8 * (pipe)))
+> +
+> +
 
-Just drm/i915 is sufficient as subject prefix.
+Superfluous newline.
 
-It's mildly annoying that there's a bunch of whitespace changes bundled
-in here. They should be kept separate, if only to speed up review by 10x
-with 'git show --color-moved' which works wonders for pure code
-movement. Subsequent separate whitespace changes, in turn, are a breeze
-to review with 'git show -w'.
+Other than that,
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-> ---
->  .../gpu/drm/i915/display/intel_display_regs.h | 28 +++++++++++++++++++
->  .../gpu/drm/i915/display/intel_pch_refclk.c   |  1 -
->  drivers/gpu/drm/i915/i915_reg.h               | 27 ------------------
->  3 files changed, 28 insertions(+), 28 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-> index 9f8fbfb2e115..4759a9600d3f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-> @@ -2864,6 +2864,34 @@ enum skl_power_gate {
->  #define  SFUSE_STRAP_DDIC_DETECTED	(1 << 1)
->  #define  SFUSE_STRAP_DDID_DETECTED	(1 << 0)
->  
-> +#define SOUTH_CHICKEN1			_MMIO(0xc2000)
-> +#define  FDIA_PHASE_SYNC_SHIFT_OVR	19
-> +#define  FDIA_PHASE_SYNC_SHIFT_EN	18
-> +#define  INVERT_DDIE_HPD		REG_BIT(28)
-> +#define  INVERT_DDID_HPD_MTP		REG_BIT(27)
-> +#define  INVERT_TC4_HPD			REG_BIT(26)
-> +#define  INVERT_TC3_HPD			REG_BIT(25)
-> +#define  INVERT_TC2_HPD			REG_BIT(24)
-> +#define  INVERT_TC1_HPD			REG_BIT(23)
-> +#define  INVERT_DDID_HPD		(1 << 18)
-> +#define  INVERT_DDIC_HPD		(1 << 17)
-> +#define  INVERT_DDIB_HPD                (1 << 16)
-> +#define  INVERT_DDIA_HPD                (1 << 15)
-> +#define  FDI_PHASE_SYNC_OVR(pipe)	(1 << (FDIA_PHASE_SYNC_SHIFT_OVR - ((pipe) * 2)))
-> +#define  FDI_PHASE_SYNC_EN(pipe)	(1 << (FDIA_PHASE_SYNC_SHIFT_EN - ((pipe) * 2)))
-> +#define  FDI_BC_BIFURCATION_SELECT	(1 << 12)
-> +#define  CHASSIS_CLK_REQ_DURATION_MASK	(0xf << 8)
-> +#define  CHASSIS_CLK_REQ_DURATION(x)	((x) << 8)
-> +#define  SBCLK_RUN_REFCLK_DIS		(1 << 7)
-> +#define  ICP_SECOND_PPS_IO_SELECT	REG_BIT(2)
-> +#define  SPT_PWM_GRANULARITY		(1 << 0)
-> +
-> +#define SOUTH_CHICKEN2			_MMIO(0xc2004)
-> +#define  FDI_MPHY_IOSFSB_RESET_STATUS	(1 << 13)
-> +#define  FDI_MPHY_IOSFSB_RESET_CTL	(1 << 12)
-> +#define  LPT_PWM_GRANULARITY		(1 << 5)
-> +#define  DPLS_EDP_PPS_FIX_DIS		(1 << 0)
-> +
->  /* Gen4+ Timestamp and Pipe Frame time stamp registers */
->  #define GEN4_TIMESTAMP		_MMIO(0x2358)
->  #define ILK_TIMESTAMP_HI	_MMIO(0x70070)
-> diff --git a/drivers/gpu/drm/i915/display/intel_pch_refclk.c b/drivers/gpu/drm/i915/display/intel_pch_refclk.c
-> index 9a89bb6dcf65..5f88663ef5e8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_pch_refclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_pch_refclk.c
-> @@ -5,7 +5,6 @@
->  
->  #include <drm/drm_print.h>
+PS. This one took like 5 seconds to review with 'git show
+--color-moved'.
+
+
+>  #define GEN8_DE_MISC_ISR _MMIO(0x44460)
+>  #define GEN8_DE_MISC_IMR _MMIO(0x44464)
+>  #define GEN8_DE_MISC_IIR _MMIO(0x44468)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_rps.c b/drivers/gpu/drm/i915/display/intel_display_rps.c
+> index e77811396474..bf00266dae4b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_rps.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_rps.c
+> @@ -8,8 +8,8 @@
+>  #include <drm/drm_crtc.h>
+>  #include <drm/drm_vblank.h>
 >  
 > -#include "i915_reg.h"
->  #include "intel_de.h"
->  #include "intel_display_regs.h"
+>  #include "intel_display_core.h"
+> +#include "intel_display_regs.h"
+>  #include "intel_display_irq.h"
+>  #include "intel_display_rps.h"
 >  #include "intel_display_types.h"
 > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index d247e107f42f..80ea0df40b1e 100644
+> index 80ea0df40b1e..5cd124083c17 100644
 > --- a/drivers/gpu/drm/i915/i915_reg.h
 > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -1022,33 +1022,6 @@
->  #define   TRANS_CHICKEN1_HDMIUNIT_GC_DISABLE	REG_BIT(10)
->  #define   TRANS_CHICKEN1_DP0UNIT_GC_DISABLE	REG_BIT(4)
+> @@ -804,39 +804,6 @@
+>  #define RM_TIMEOUT_REG_CAPTURE	_MMIO(0x420E0)
+>  #define  MMIO_TIMEOUT_US(us)	((us) << 0)
 >  
-> -#define SOUTH_CHICKEN1		_MMIO(0xc2000)
-> -#define  FDIA_PHASE_SYNC_SHIFT_OVR	19
-> -#define  FDIA_PHASE_SYNC_SHIFT_EN	18
-> -#define  INVERT_DDIE_HPD			REG_BIT(28)
-> -#define  INVERT_DDID_HPD_MTP			REG_BIT(27)
-> -#define  INVERT_TC4_HPD				REG_BIT(26)
-> -#define  INVERT_TC3_HPD				REG_BIT(25)
-> -#define  INVERT_TC2_HPD				REG_BIT(24)
-> -#define  INVERT_TC1_HPD				REG_BIT(23)
-> -#define  INVERT_DDID_HPD			(1 << 18)
-> -#define  INVERT_DDIC_HPD			(1 << 17)
-> -#define  INVERT_DDIB_HPD			(1 << 16)
-> -#define  INVERT_DDIA_HPD			(1 << 15)
-> -#define  FDI_PHASE_SYNC_OVR(pipe) (1 << (FDIA_PHASE_SYNC_SHIFT_OVR - ((pipe) * 2)))
-> -#define  FDI_PHASE_SYNC_EN(pipe) (1 << (FDIA_PHASE_SYNC_SHIFT_EN - ((pipe) * 2)))
-> -#define  FDI_BC_BIFURCATION_SELECT	(1 << 12)
-> -#define  CHASSIS_CLK_REQ_DURATION_MASK	(0xf << 8)
-> -#define  CHASSIS_CLK_REQ_DURATION(x)	((x) << 8)
-> -#define  SBCLK_RUN_REFCLK_DIS		(1 << 7)
-> -#define  ICP_SECOND_PPS_IO_SELECT	REG_BIT(2)
-> -#define  SPT_PWM_GRANULARITY		(1 << 0)
-> -#define SOUTH_CHICKEN2		_MMIO(0xc2004)
-> -#define  FDI_MPHY_IOSFSB_RESET_STATUS	(1 << 13)
-> -#define  FDI_MPHY_IOSFSB_RESET_CTL	(1 << 12)
-> -#define  LPT_PWM_GRANULARITY		(1 << 5)
-> -#define  DPLS_EDP_PPS_FIX_DIS		(1 << 0)
+> -/* interrupts */
+> -#define DE_MASTER_IRQ_CONTROL   (1 << 31)
+> -#define DE_SPRITEB_FLIP_DONE    (1 << 29)
+> -#define DE_SPRITEA_FLIP_DONE    (1 << 28)
+> -#define DE_PLANEB_FLIP_DONE     (1 << 27)
+> -#define DE_PLANEA_FLIP_DONE     (1 << 26)
+> -#define DE_PLANE_FLIP_DONE(plane) (1 << (26 + (plane)))
+> -#define DE_PCU_EVENT            (1 << 25)
+> -#define DE_GTT_FAULT            (1 << 24)
+> -#define DE_POISON               (1 << 23)
+> -#define DE_PERFORM_COUNTER      (1 << 22)
+> -#define DE_PCH_EVENT            (1 << 21)
+> -#define DE_AUX_CHANNEL_A        (1 << 20)
+> -#define DE_DP_A_HOTPLUG         (1 << 19)
+> -#define DE_GSE                  (1 << 18)
+> -#define DE_PIPEB_VBLANK         (1 << 15)
+> -#define DE_PIPEB_EVEN_FIELD     (1 << 14)
+> -#define DE_PIPEB_ODD_FIELD      (1 << 13)
+> -#define DE_PIPEB_LINE_COMPARE   (1 << 12)
+> -#define DE_PIPEB_VSYNC          (1 << 11)
+> -#define DE_PIPEB_CRC_DONE	(1 << 10)
+> -#define DE_PIPEB_FIFO_UNDERRUN  (1 << 8)
+> -#define DE_PIPEA_VBLANK         (1 << 7)
+> -#define DE_PIPE_VBLANK(pipe)    (1 << (7 + 8 * (pipe)))
+> -#define DE_PIPEA_EVEN_FIELD     (1 << 6)
+> -#define DE_PIPEA_ODD_FIELD      (1 << 5)
+> -#define DE_PIPEA_LINE_COMPARE   (1 << 4)
+> -#define DE_PIPEA_VSYNC          (1 << 3)
+> -#define DE_PIPEA_CRC_DONE	(1 << 2)
+> -#define DE_PIPE_CRC_DONE(pipe)	(1 << (2 + 8 * (pipe)))
+> -#define DE_PIPEA_FIFO_UNDERRUN  (1 << 0)
+> -#define DE_PIPE_FIFO_UNDERRUN(pipe)  (1 << (8 * (pipe)))
 > -
->  #define SOUTH_DSPCLK_GATE_D	_MMIO(0xc2020)
->  #define  PCH_GMBUSUNIT_CLOCK_GATE_DISABLE (1 << 31)
->  #define  PCH_DPLUNIT_CLOCK_GATE_DISABLE (1 << 30)
+>  #define VLV_MASTER_IER			_MMIO(0x4400c) /* Gunit master IER */
+>  #define   MASTER_INTERRUPT_ENABLE	(1 << 31)
 
 -- 
 Jani Nikula, Intel
