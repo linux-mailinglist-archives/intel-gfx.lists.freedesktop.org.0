@@ -2,62 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kLLKMyRDc2mWtwAAu9opvQ
+	id 8CbyFDxEc2lEuQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jan 2026 10:45:08 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jan 2026 10:49:48 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F22A7396B
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jan 2026 10:45:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B50D3739BD
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jan 2026 10:49:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C1BD10EA84;
-	Fri, 23 Jan 2026 09:45:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42ADC10E29B;
+	Fri, 23 Jan 2026 09:49:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NWSqjSC/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TCmhjLV+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72E7C10EA84;
- Fri, 23 Jan 2026 09:45:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C37D10E29B
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Jan 2026 09:49:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769161505; x=1800697505;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=3358mfMQQ3L4x5UeL6cI36QsgfGXhfdntN5rcZAt9XM=;
- b=NWSqjSC/66U7OrMsX0X7SleyNRygd3hmYRZa+TDcfITfgjk0uMs0WL0a
- 8xO8DhS9aEBVOEm4+1hPMW24kk9A3zguWU5u1Y/bwwVNN9Bj6gd7vvexp
- bkvBUa0y8hK7IDmt7/0ZSraZofkWqpJYwftvXDmfZrB3/tMkmrj0FTaXJ
- QldhaolDuEGSWXihdO53vwREEeqrR4D+As70hxQPgkcOYb6OwOxZ52PJx
- b4adm4nLgCb/atHZ+Y2ye2TX5YGPL9MRp4g6YzIC8ivLNB4IV8SmNfSnM
- gaXuvM7hlslPffUsxLmPLYq4kug/9RrP1DPfxL7d9LDcrDaPYLH8Cf6vw g==;
-X-CSE-ConnectionGUID: l4oQjjHDTtKZIRU+TYlIdw==
-X-CSE-MsgGUID: 8ijjU0YYTHmcgsRNS01ZxQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11679"; a="80720409"
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="80720409"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2026 01:44:17 -0800
-X-CSE-ConnectionGUID: bqdNhbeqSlWAYyhvSmIr6Q==
-X-CSE-MsgGUID: TnrPQn+NSauquddZPwO70g==
+ t=1769161785; x=1800697785;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=RfLuHYk04/4GckoqujA/xaHlipjVbCRTzrrcT4ybQpo=;
+ b=TCmhjLV+8NnlgBEifEtdPXrvvmsz8qx2h+86b4wvxUllvaIO/cczD1zx
+ 5xlMAoC1RJ6dCDQg9PnO4SbD5BGnreGA9q8lB913ZRHU+pnAkcojDBDSj
+ hSY1fft2GGFoGO7NHCzuu1F9jhrTMuS5OeU6l/RMB/ZAFDqwtL6jT/ACe
+ YZ6+jIkw+dJY8JWT01RMU0TegnSDIe7EHtXplDOPRBLrIWYWnqpDY24GC
+ 2iRpsOyIn6XFPHan/kP152h2LrBTK7dIjxbPZyhg6N/WXb6g7RkpHSZj+
+ 6VSVj7ZCXXODP6rv+leypZi4JOFY38bpHFsL7wkIJBf1ODmiVqyMgbYB5 Q==;
+X-CSE-ConnectionGUID: SOBh+ZX0SkObymRtK5H77A==
+X-CSE-MsgGUID: ey6YUxPzRdu5Lh7JKQesVQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11679"; a="74265853"
+X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="74265853"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2026 01:49:45 -0800
+X-CSE-ConnectionGUID: W8ghNlKrSBadpAPnpOyESA==
+X-CSE-MsgGUID: LPUeCWutQlyVNtqWahvvKA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="211855516"
 Received: from aotchere-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.2])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2026 01:44:16 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Shankar, Uma" <uma.shankar@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/i915: move GEN7_ERR_INT snapshot to display irq code
-In-Reply-To: <CY5PR11MB6344156110390114E8974C33F494A@CY5PR11MB6344.namprd11.prod.outlook.com>
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2026 01:49:42 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com
+Subject: Re: [PATCH] drm/i915/display: PORT_NONE is not valid
+In-Reply-To: <20260122213940.64352-2-jonathan.cavitt@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260122123759.1701492-1-jani.nikula@intel.com>
- <CY5PR11MB6344156110390114E8974C33F494A@CY5PR11MB6344.namprd11.prod.outlook.com>
-Date: Fri, 23 Jan 2026 11:44:13 +0200
-Message-ID: <9c2bee04bf61874849aa53af3baae3f878dcbf19@intel.com>
+References: <20260122213940.64352-2-jonathan.cavitt@intel.com>
+Date: Fri, 23 Jan 2026 11:49:39 +0200
+Message-ID: <e1e39bf10d9c383ccf1230ce4470616aa84abfdf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -75,143 +74,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:jonathan.cavitt@intel.com,m:saurabhg.gupta@intel.com,m:alex.zuo@intel.com,s:lists@lfdr.de];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	HAS_ORG_HEADER(0.00)[];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	URIBL_MULTI_FAIL(0.00)[gabe.freedesktop.org:server fail,intel.com:server fail];
 	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-0.976];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.750];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,lists.freedesktop.org:email]
-X-Rspamd-Queue-Id: 1F22A7396B
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	RCPT_COUNT_FIVE(0.00)[5];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: B50D3739BD
 X-Rspamd-Action: no action
 
-On Fri, 23 Jan 2026, "Shankar, Uma" <uma.shankar@intel.com> wrote:
->> -----Original Message-----
->> From: Nikula, Jani <jani.nikula@intel.com>
->> Sent: Thursday, January 22, 2026 6:08 PM
->> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
->> Cc: Nikula, Jani <jani.nikula@intel.com>; Shankar, Uma
->> <uma.shankar@intel.com>
->> Subject: [PATCH] drm/i915: move GEN7_ERR_INT snapshot to display irq code
->> 
->> The error interrupt register GEN7_ERR_INT is a display irq register. Move its
->> GPU error capture to display irq snapshot.
+On Thu, 22 Jan 2026, Jonathan Cavitt <jonathan.cavitt@intel.com> wrote:
+> Static analysis issue:
 >
-> Looks Good to me.
-> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+> In assert_port_valid, add a check to ensure port != PORT_NONE, as that
+> is not a valid port.  The check must be explicit to prevent a bad bit
+> shift operation in the general case via short-circuiting.  It's not
+> likely this will ever come up in a real use case, but it's at least
+> worth guarding against.
+>
+> It would probably also be pertinent to modify the behavior of the
+> port_name function to correctly print PORT_NONE in this case, as
+> currently the port would be reported as 'port @' by the debugger.  But
+> that should be done separately, and given port_name is mostly just a
+> debug printing helper function anyways, fixing it is a low priority.
+>
+> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 7491e00e3858..250f31bb5938 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -7828,7 +7828,8 @@ static bool intel_ddi_crt_present(struct intel_display *display)
+>  
+>  bool assert_port_valid(struct intel_display *display, enum port port)
+>  {
+> -	return !drm_WARN(display->drm, !(DISPLAY_RUNTIME_INFO(display)->port_mask & BIT(port)),
+> +	return !drm_WARN(display->drm,
+> +			 !(port < 0 || DISPLAY_RUNTIME_INFO(display)->port_mask & BIT(port)),
 
-Thanks, pushed to din.
+That's a bunch of negatives put together, making one's head spin, but
+the innermost part is supposed to be checking if the port is valid,
+i.e. BIT(port) is set in ->port_mask.
+
+This makes "port < 0" another condition for the port being valid, which
+is not the case. The port is only valid if
+
+	port >= 0 && DISPLAY_RUNTIME_INFO(display)->port_mask & BIT(port)
 
 BR,
 Jani.
 
->
->> Cc: Uma Shankar <uma.shankar@intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_display_irq.c | 5 +++++
->>  drivers/gpu/drm/i915/i915_gpu_error.c            | 6 ------
->>  drivers/gpu/drm/i915/i915_gpu_error.h            | 1 -
->>  3 files changed, 5 insertions(+), 7 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c
->> b/drivers/gpu/drm/i915/display/intel_display_irq.c
->> index 9adeebb376b1..0a71840041de 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
->> @@ -2472,6 +2472,7 @@ void intel_display_irq_init(struct intel_display *display)
->> 
->>  struct intel_display_irq_snapshot {
->>  	u32 derrmr;
->> +	u32 err_int;
->>  };
->> 
->>  struct intel_display_irq_snapshot *
->> @@ -2486,6 +2487,9 @@ intel_display_irq_snapshot_capture(struct intel_display
->> *display)
->>  	if (DISPLAY_VER(display) >= 6 && DISPLAY_VER(display) < 20 &&
->> !HAS_GMCH(display))
->>  		snapshot->derrmr = intel_de_read(display, DERRMR);
->> 
->> +	if (DISPLAY_VER(display) == 7)
->> +		snapshot->err_int = intel_de_read(display, GEN7_ERR_INT);
->> +
->>  	return snapshot;
->>  }
->> 
->> @@ -2496,4 +2500,5 @@ void intel_display_irq_snapshot_print(const struct
->> intel_display_irq_snapshot *s
->>  		return;
->> 
->>  	drm_printf(p, "DERRMR: 0x%08x\n", snapshot->derrmr);
->> +	drm_printf(p, "ERR_INT: 0x%08x\n", snapshot->err_int);
->>  }
->> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c
->> b/drivers/gpu/drm/i915/i915_gpu_error.c
->> index 303d8d9b7775..31c5341fb9cf 100644
->> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
->> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
->> @@ -824,9 +824,6 @@ static void err_print_gt_global(struct
->> drm_i915_error_state_buf *m,
->>  		err_printf(m, "FAULT_TLB_DATA: 0x%08x 0x%08x\n",
->>  			   gt->fault_data1, gt->fault_data0);
->> 
->> -	if (GRAPHICS_VER(m->i915) == 7)
->> -		err_printf(m, "ERR_INT: 0x%08x\n", gt->err_int);
->> -
->>  	if (IS_GRAPHICS_VER(m->i915, 8, 11))
->>  		err_printf(m, "GTT_CACHE_EN: 0x%08x\n", gt->gtt_cache);
->> 
->> @@ -1929,9 +1926,6 @@ static void gt_record_global_regs(struct
->> intel_gt_coredump *gt)
->>  	if (IS_VALLEYVIEW(i915))
->>  		gt->forcewake = intel_uncore_read_fw(uncore,
->> FORCEWAKE_VLV);
->> 
->> -	if (GRAPHICS_VER(i915) == 7)
->> -		gt->err_int = intel_uncore_read(uncore, GEN7_ERR_INT);
->> -
->>  	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 55)) {
->>  		gt->fault_data0 = intel_gt_mcr_read_any((struct intel_gt *)gt->_gt,
->> 
->> 	XEHP_FAULT_TLB_DATA0);
->> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h
->> b/drivers/gpu/drm/i915/i915_gpu_error.h
->> index 91b3df621a49..26970c5e291e 100644
->> --- a/drivers/gpu/drm/i915/i915_gpu_error.h
->> +++ b/drivers/gpu/drm/i915/i915_gpu_error.h
->> @@ -149,7 +149,6 @@ struct intel_gt_coredump {
->>  	u32 gtier[6], ngtier;
->>  	u32 forcewake;
->>  	u32 error; /* gen6+ */
->> -	u32 err_int; /* gen7 */
->>  	u32 fault_data0; /* gen8, gen9 */
->>  	u32 fault_data1; /* gen8, gen9 */
->>  	u32 done_reg;
->> --
->> 2.47.3
->
+>  			 "Platform does not support port %c\n", port_name(port));
+>  }
 
 -- 
 Jani Nikula, Intel
