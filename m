@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kEw0Oh+Ec2kDxAAAu9opvQ
+	id ONwnLcyFc2krxAAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jan 2026 15:22:23 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jan 2026 15:29:32 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57C4976F79
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jan 2026 15:22:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0D9B7711A
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jan 2026 15:29:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB2D110EB00;
-	Fri, 23 Jan 2026 14:22:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E75210EB04;
+	Fri, 23 Jan 2026 14:29:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kYo+gN7z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RmSz653N";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FB8810EB02;
- Fri, 23 Jan 2026 14:22:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35F6010EB04;
+ Fri, 23 Jan 2026 14:29:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769178140; x=1800714140;
+ t=1769178569; x=1800714569;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qzEUEd5wYPruV9Dx1N3VqliJeI3W3U3vLfAlAcGdyr8=;
- b=kYo+gN7zH4iXeqHgbt5X5KKMBEgb+tzZUHA++/JWdQYsGj2ZCmm3GHv8
- QWwD7W7KFPPxBupi72f/aWCkvKJEFh5bA/9eNGw5FyfBXKz9Lq8jMbGxc
- jA7y80RRptt/P+15N9zRZdTBPL8GqAC0noOUT4Fu72r5eJT9Qo2eaLGnV
- 0TfZohflVyvjO+N3awHQhlNvUcc3a9TTZdXb+mL9lhLX6oP7CvGnL0YoC
- TU3OpSnwT4GFcGzFIdgNF2HPEii8MVBdWNujmD9CXdV03fKfkUaJm6bew
- DkTw0Qn2unIIoNvqWscv8JqU4WC4ksxt+zHRyLGDFJoBp8OpblqKwGehn Q==;
-X-CSE-ConnectionGUID: mmeOgioCSB+PoM6MHYfzCQ==
-X-CSE-MsgGUID: 8IjckzvrS2uc4lplfPNNKA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11680"; a="81542267"
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="81542267"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2026 06:22:20 -0800
-X-CSE-ConnectionGUID: UvGH7EHnReuVdLZGWiX5Dw==
-X-CSE-MsgGUID: 9UltHjhpTyCqphO2Ll1M0A==
+ bh=+Ljz6X3pg9b4MwaJws3QtPQtxP1Uq8JbUBRAeoxtbxA=;
+ b=RmSz653NLOBPTugZ8Ehm1Is5NLKc7MJIf2A4FGX1CmeAph7E1quqwow1
+ zkAaO69HjiMb1qzcqhDnMZZdq2CccFTeh2o7/5HFaiaWq3nXoR0wX00rD
+ A9ny4af1T//aI1A1nmkI5D2bjtsg16H8gq2TfcT7nlqLDIgeeg2gFVibp
+ golJnXYE/hfbGkIv34Brqt9yiVFGrVkRrW1CtftWt/85xMV3aYDRdZlln
+ rtFvFRNTONSm36C32xhyRob5FfcM1GOwzptLjaCXYTD828oew9cuCCAj3
+ zz9mdRwkpVX+2AoOM20l6wYqVuURxktDAx6UPcwtWwSe/MlyUAEG+JInl Q==;
+X-CSE-ConnectionGUID: SODJmmrvRxKfp9Jrwnzr0w==
+X-CSE-MsgGUID: trxKDlF4Qt+SeJjO4ubNWQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11680"; a="81149432"
+X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="81149432"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2026 06:29:29 -0800
+X-CSE-ConnectionGUID: bYkkBBiGRg2dCQ2FL/a/+Q==
+X-CSE-MsgGUID: nUsLlEU+RQ6lKtH5Cp735Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="207381348"
+X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="211161237"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.8])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2026 06:22:17 -0800
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2026 06:29:26 -0800
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org,
  Sebastian Brzezinka <sebastian.brzezinka@intel.com>
@@ -55,16 +55,16 @@ Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  Krzysztof Karas <krzysztof.karas@intel.com>,
  Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
  Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-Subject: Re: [PATCH i-g-t 3/7] lib/igt_device_scan: Include PCIe bridge
- upstream port if available
-Date: Fri, 23 Jan 2026 15:22:15 +0100
-Message-ID: <2026104.PYKUYFuaPT@jkrzyszt-mobl2.ger.corp.intel.com>
+Subject: Re: [PATCH i-g-t 6/7] lib/igt_device_scan: Don't print bridge not
+ applicable attributes
+Date: Fri, 23 Jan 2026 15:29:23 +0100
+Message-ID: <3672367.iIbC2pHGDl@jkrzyszt-mobl2.ger.corp.intel.com>
 Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
  80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <DFVX25OT5Y4I.1UO45LB0A5M5P@intel.com>
+In-Reply-To: <DFVX2N7U0WJA.UOCF6Q7ATIMG@intel.com>
 References: <20260121114656.1970684-9-janusz.krzysztofik@linux.intel.com>
- <20260121114656.1970684-12-janusz.krzysztofik@linux.intel.com>
- <DFVX25OT5Y4I.1UO45LB0A5M5P@intel.com>
+ <20260121114656.1970684-15-janusz.krzysztofik@linux.intel.com>
+ <DFVX2N7U0WJA.UOCF6Q7ATIMG@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="utf-8"
@@ -109,118 +109,80 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	RCPT_COUNT_SEVEN(0.00)[9];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,intel.com:email,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,jkrzyszt-mobl2.ger.corp.intel.com:mid]
-X-Rspamd-Queue-Id: 57C4976F79
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,jkrzyszt-mobl2.ger.corp.intel.com:mid]
+X-Rspamd-Queue-Id: F0D9B7711A
 X-Rspamd-Action: no action
 
 Hi Sebastian,
 
-On Friday, 23 January 2026 12:02:30 CET Sebastian Brzezinka wrote:
+On Friday, 23 January 2026 12:03:09 CET Sebastian Brzezinka wrote:
 > Hi Janusz,
 > 
 > On Wed Jan 21, 2026 at 12:42 PM CET, Janusz Krzysztofik wrote:
-> > Users of Intel discrete graphics adapters are confused with fake
-> > information on PCIe link bandwidth (speed and size) of their GPU devices
-> > reported by sysfs and userspace tools, including our lsgpu utility.  In
-> > order for the lsgpu to show correct link bandwidth information, we need to
-> > identify an upstream port of a PCIe bridge that sits on the GPU card and
-> > get that information from that port.
+> > In addition to properties and attributes obtained from udev, print
+> > functions also list some library specific attributes: drm_card,
+> > drm_render and codename.  Those not necessarily make sense for PCIe
+> > bridge upstream ports that follow their PCI GPU devices on the listing.
+> > Skip them.
 > >
-> > Since the tool uses our udev based igt_device_scan library for identifying
-> > GPU devices and printing their properties and attributes, modifications
-> > that we need apply to that library.
-> >
-> > When scanning for DRM devices and their PCI parents, the lsgpu utility
-> > requests collection of all their attributes.  When running in this mode,
-> > also try to collect information about upstream ports of PCIe bridges of
-> > discrete GPU devices.  Once collected, the lsgpu utility will show that
-> > information automatically while listing the devices.
-> >
-> > While IGT tests are using pciaccess library for processing PCI devices,
-> > that library requires careful handling in order to avoid collisions among
-> > multiple processes or threads potentially using it.  That protection is
-> > implemented in igt_device with help of IGT exit handlers. That requires
-> > linking with full igt_core library code, while the lsgpu tool now depends
-> > neither on igt_device nor on igt_core.  To keep that independence,
-> > implement the new code around libpci.  With that approach, refactoring of
-> > IGT use of pciaccess is avoided.
-> >
-> > Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10753
 > > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 > > ---
-> >  lib/igt_device_scan.c | 73 +++++++++++++++++++++++++++++++++++++++++--
-> >  lib/meson.build       |  2 ++
-> >  meson.build           |  1 +
-> >  3 files changed, 74 insertions(+), 2 deletions(-)
+> >  lib/igt_device_scan.c | 8 ++++++--
+> >  1 file changed, 6 insertions(+), 2 deletions(-)
 > >
 > > diff --git a/lib/igt_device_scan.c b/lib/igt_device_scan.c
-> > index d3a2ebe8d2..34c7a8131b 100644
+> > index 7c58ab84e8..e86da001a9 100644
 > > --- a/lib/igt_device_scan.c
 > > +++ b/lib/igt_device_scan.c
-> > @@ -36,6 +36,7 @@
-> >  #ifdef __linux__
-> >  #include <linux/limits.h>
-> >  #endif
-> > +#include <pci/pci.h>
-> >  #include <sys/stat.h>
-> >  #include <sys/time.h>
-> >  #include <sys/types.h>
-> > @@ -909,6 +910,27 @@ static struct igt_device *igt_device_from_syspath(const char *syspath)
-> >  	return NULL;
+> > @@ -204,6 +204,7 @@ enum dev_type {
+> >  	DEVTYPE_ALL,
+> >  	DEVTYPE_INTEGRATED,
+> >  	DEVTYPE_DISCRETE,
+> > +	DEVTYPE_BRIDGE,
+> >  };
+> >  
+> >  #define STR_INTEGRATED "integrated"
+> > @@ -1055,6 +1056,8 @@ static void update_or_add_parent(struct udev *udev,
+> >  
+> >  	bridge_idev = find_or_add_igt_device(udev, bridge_dev, limit_attrs);
+> >  	igt_assert(bridge_idev);
+> > +
+> > +	bridge_idev->dev_type = DEVTYPE_BRIDGE;
 > >  }
 > >  
-> > +static bool is_pcie_upstream_bridge(struct pci_dev *dev)
-> > +{
-> > +	struct pci_cap *pcie;
-> > +	uint8_t type, dir;
-> > +
-> > +	type = pci_read_byte(dev, PCI_HEADER_TYPE) & 0x7f;
-> > +	if (type != PCI_HEADER_TYPE_BRIDGE)
-> > +		return false;
-> > +
-> > +	pcie = pci_find_cap(dev, PCI_CAP_ID_EXP, PCI_CAP_NORMAL);
-> > +	if (!pcie)
-> > +		return false;
-> > +
-> > +	/* GET_REG_MASK macro borrowed from pciutils' internal bitops.h */
-> > +#define GET_REG_MASK(reg, mask) (((reg) & (mask)) / ((mask) & ~((mask) << 1)))
-> > +	dir = GET_REG_MASK(pci_read_word(dev, pcie->addr + PCI_EXP_FLAGS), PCI_EXP_FLAGS_TYPE);
-> > +#undef GET_REG_MASK
-> Instead of copying the macro, we could just use: 
-> 	type = ( pci_read_word... & PCI_EXP_FLAGS_TYPE) >> 4. This seems cleaner.
-
-I guess it took you a bit of time to understand how that macro works, so it 
-did to me :-).  Then OK, let's use the more clear but correct looking version 
-you propose, even if it's not clear to me why they did it that way, less 
-clear, more complicated.
-
+> >  static struct igt_device *duplicate_device(struct igt_device *dev) {
+> > @@ -1313,7 +1316,8 @@ igt_devs_print_simple(struct igt_list_head *view,
+> >  			if (is_pci_subsystem(dev)) {
+> >  				_pr_simple("vendor", dev->vendor);
+> >  				_pr_simple("device", dev->device);
+> > -				_pr_simple("codename", dev->codename);
+> > +				if (dev->dev_type != DEVTYPE_BRIDGE)
+> > +					_pr_simple("codename", dev->codename);
+> >  			}
+> >  		}
+> >  		printf("\n");
+> > @@ -1465,7 +1469,7 @@ igt_devs_print_detail(struct igt_list_head *view,
+> >  	igt_list_for_each_entry(dev, view, link) {
+> >  		printf("========== %s:%s ==========\n",
+> >  		       dev->subsystem, dev->syspath);
+> > -		if (!is_drm_subsystem(dev)) {
+> > +		if (!is_drm_subsystem(dev) && dev->dev_type != DEVTYPE_BRIDGE) {
+> >  			_print_key_value("card device", dev->drm_card);
+> >  			_print_key_value("render device", dev->drm_render);
+> >  			_print_key_value("codename", dev->codename);
 > 
-> > +
-> > +	return dir == PCI_EXP_TYPE_UPSTREAM;
-> > +}
-> > +
-> >  #define RETRIES_GET_PARENT 5
-> >  
-> >  static struct igt_device *find_or_add_igt_device(struct udev *udev,
-> > @@ -948,18 +970,55 @@ static struct igt_device *find_or_add_igt_device(struct udev *udev,
-> >  	return idev;
-> >  }
-> >  
-> > +static struct udev_device *get_pcie_upstream_bridge(struct udev *udev,
-> > +						    struct udev_device *dev)
-> > +{
-> > +	struct pci_access *pacc;
-> > +
-> > +	pacc = pci_alloc();
-> > +	pci_init(pacc);
-> > +
-> I'm not entirely familiar with this pci library, but is it necessary to initialize it
-> for every device? It might be more efficient to do it once in scan_drm_devices.
+> Could this be merged with patch 7? Most of this will be removed in the next patch anyway.
 
-OK, you've got it.
+If there are no cons from other reviewers for whom that split into two 
+patches, intended to improve their readability, should be better preserved, 
+then yes, I can merge them.
 
 Thanks,
 Janusz
+
+> 
+> 
+
 
 
 
