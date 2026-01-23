@@ -2,111 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UFoqMKgnc2kAswAAu9opvQ
+	id kLLKMyRDc2mWtwAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jan 2026 08:47:52 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jan 2026 10:45:08 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37EC771F7B
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jan 2026 08:47:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F22A7396B
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jan 2026 10:45:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE9C810E28C;
-	Fri, 23 Jan 2026 07:47:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C1BD10EA84;
+	Fri, 23 Jan 2026 09:45:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Dhz6ArAn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NWSqjSC/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D648610E28C;
- Fri, 23 Jan 2026 07:47:49 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 8F53D443C6;
- Fri, 23 Jan 2026 07:47:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D6FAC2BC86;
- Fri, 23 Jan 2026 07:47:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1769154469;
- bh=qZcCh8YaN75BaHxJI3n8DUClBttDVVefL2TarE8x2cs=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Dhz6ArAnF4mrMgD2V9gaW0IOdAyt0UWHdcwmUQgrPBIWvnoaDzJtzmzMJxVck5gv+
- zEZgJOeFD/IJQzx2Up99SCKmemnDSbXrWZlm1SAK7ny61M8KuplDc84jbfdlgQwQR6
- +8Rb9fJ2j1Dh4UnsHETHjtBawHKcytU2E3ai7JjVMGK0KGDMhhcMz8n/3MAGSNlsTJ
- lel+3wVzQK3+jEYSZdvY/T5wo14jtYZ5i4jErLaZOvUngMzlLTTOeS1t4am1xi1tfP
- GskVtQYN+cTM93xV5bjb1azN9mPAsYErt+ynoEzLMYagl5talCo4C2ogUWa2ojcK07
- lGuDTmdB4UMCw==
-Date: Thu, 22 Jan 2026 23:47:48 -0800
-From: "Darrick J. Wong" <djwong@kernel.org>
-To: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-Cc: Andrew Morton <akpm@linux-foundation.org>,
- Jarkko Sakkinen <jarkko@kernel.org>,
- Dave Hansen <dave.hansen@linux.intel.com>,
- Thomas Gleixner <tglx@kernel.org>, Ingo Molnar <mingo@redhat.com>,
- Borislav Petkov <bp@alien8.de>, x86@kernel.org,
- "H . Peter Anvin" <hpa@zytor.com>, Arnd Bergmann <arnd@arndb.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Dan Williams <dan.j.williams@intel.com>,
- Vishal Verma <vishal.l.verma@intel.com>, Dave Jiang <dave.jiang@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Alexander Viro <viro@zeniv.linux.org.uk>,
- Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
- Benjamin LaHaise <bcrl@kvack.org>, Gao Xiang <xiang@kernel.org>,
- Chao Yu <chao@kernel.org>, Yue Hu <zbestahu@gmail.com>,
- Jeffle Xu <jefflexu@linux.alibaba.com>,
- Sandeep Dhavale <dhavale@google.com>, Hongbo Li <lihongbo22@huawei.com>,
- Chunhai Guo <guochunhai@vivo.com>, Theodore Ts'o <tytso@mit.edu>,
- Andreas Dilger <adilger.kernel@dilger.ca>,
- Muchun Song <muchun.song@linux.dev>, Oscar Salvador <osalvador@suse.de>,
- David Hildenbrand <david@kernel.org>,
- Konstantin Komarov <almaz.alexandrovich@paragon-software.com>,
- Mike Marshall <hubcap@omnibond.com>,
- Martin Brandenburg <martin@omnibond.com>, Tony Luck <tony.luck@intel.com>,
- Reinette Chatre <reinette.chatre@intel.com>,
- Dave Martin <Dave.Martin@arm.com>,
- James Morse <james.morse@arm.com>, Babu Moger <babu.moger@amd.com>,
- Carlos Maiolino <cem@kernel.org>, Damien Le Moal <dlemoal@kernel.org>,
- Naohiro Aota <naohiro.aota@wdc.com>, Johannes Thumshirn <jth@kernel.org>,
- Matthew Wilcox <willy@infradead.org>,
- "Liam R . Howlett" <Liam.Howlett@oracle.com>,
- Vlastimil Babka <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>,
- Suren Baghdasaryan <surenb@google.com>,
- Michal Hocko <mhocko@suse.com>, Hugh Dickins <hughd@google.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Zi Yan <ziy@nvidia.com>, Nico Pache <npache@redhat.com>,
- Ryan Roberts <ryan.roberts@arm.com>, Dev Jain <dev.jain@arm.com>,
- Barry Song <baohua@kernel.org>, Lance Yang <lance.yang@linux.dev>,
- Jann Horn <jannh@google.com>, Pedro Falcato <pfalcato@suse.de>,
- David Howells <dhowells@redhat.com>,
- Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
- "Serge E . Hallyn" <serge@hallyn.com>, Yury Norov <yury.norov@gmail.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- linux-sgx@vger.kernel.org, linux-kernel@vger.kernel.org,
- nvdimm@lists.linux.dev, linux-cxl@vger.kernel.org,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-fsdevel@vger.kernel.org, linux-aio@kvack.org,
- linux-erofs@lists.ozlabs.org, linux-ext4@vger.kernel.org,
- linux-mm@kvack.org, ntfs3@lists.linux.dev, devel@lists.orangefs.org,
- linux-xfs@vger.kernel.org, keyrings@vger.kernel.org,
- linux-security-module@vger.kernel.org, Jason Gunthorpe <jgg@nvidia.com>
-Subject: Re: [PATCH v2 09/13] mm: update all remaining mmap_prepare users to
- use vma_flags_t
-Message-ID: <20260123074748.GX5945@frogsfrogsfrogs>
-References: <cover.1769097829.git.lorenzo.stoakes@oracle.com>
- <fb1f55323799f09fe6a36865b31550c9ec67c225.1769097829.git.lorenzo.stoakes@oracle.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72E7C10EA84;
+ Fri, 23 Jan 2026 09:45:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1769161505; x=1800697505;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=3358mfMQQ3L4x5UeL6cI36QsgfGXhfdntN5rcZAt9XM=;
+ b=NWSqjSC/66U7OrMsX0X7SleyNRygd3hmYRZa+TDcfITfgjk0uMs0WL0a
+ 8xO8DhS9aEBVOEm4+1hPMW24kk9A3zguWU5u1Y/bwwVNN9Bj6gd7vvexp
+ bkvBUa0y8hK7IDmt7/0ZSraZofkWqpJYwftvXDmfZrB3/tMkmrj0FTaXJ
+ QldhaolDuEGSWXihdO53vwREEeqrR4D+As70hxQPgkcOYb6OwOxZ52PJx
+ b4adm4nLgCb/atHZ+Y2ye2TX5YGPL9MRp4g6YzIC8ivLNB4IV8SmNfSnM
+ gaXuvM7hlslPffUsxLmPLYq4kug/9RrP1DPfxL7d9LDcrDaPYLH8Cf6vw g==;
+X-CSE-ConnectionGUID: l4oQjjHDTtKZIRU+TYlIdw==
+X-CSE-MsgGUID: 8ijjU0YYTHmcgsRNS01ZxQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11679"; a="80720409"
+X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="80720409"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2026 01:44:17 -0800
+X-CSE-ConnectionGUID: bqdNhbeqSlWAYyhvSmIr6Q==
+X-CSE-MsgGUID: TnrPQn+NSauquddZPwO70g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="211855516"
+Received: from aotchere-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.2])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2026 01:44:16 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Shankar, Uma" <uma.shankar@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/i915: move GEN7_ERR_INT snapshot to display irq code
+In-Reply-To: <CY5PR11MB6344156110390114E8974C33F494A@CY5PR11MB6344.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260122123759.1701492-1-jani.nikula@intel.com>
+ <CY5PR11MB6344156110390114E8974C33F494A@CY5PR11MB6344.namprd11.prod.outlook.com>
+Date: Fri, 23 Jan 2026 11:44:13 +0200
+Message-ID: <9c2bee04bf61874849aa53af3baae3f878dcbf19@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <fb1f55323799f09fe6a36865b31550c9ec67c225.1769097829.git.lorenzo.stoakes@oracle.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -122,100 +75,143 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[linux-foundation.org,kernel.org,linux.intel.com,redhat.com,alien8.de,zytor.com,arndb.de,linuxfoundation.org,intel.com,suse.de,gmail.com,ffwll.ch,ursulin.net,amd.com,zeniv.linux.org.uk,suse.cz,kvack.org,linux.alibaba.com,google.com,huawei.com,vivo.com,mit.edu,dilger.ca,linux.dev,paragon-software.com,omnibond.com,arm.com,wdc.com,infradead.org,oracle.com,suse.com,nvidia.com,paul-moore.com,namei.org,hallyn.com,rasmusvillemoes.dk,vger.kernel.org,lists.linux.dev,lists.freedesktop.org,lists.ozlabs.org,lists.orangefs.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_GT_50(0.00)[94];
-	FROM_NEQ_ENVFROM(0.00)[djwong@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-0.976];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,oracle.com:email]
-X-Rspamd-Queue-Id: 37EC771F7B
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,lists.freedesktop.org:email]
+X-Rspamd-Queue-Id: 1F22A7396B
 X-Rspamd-Action: no action
 
-On Thu, Jan 22, 2026 at 04:06:18PM +0000, Lorenzo Stoakes wrote:
-> We will be shortly removing the vm_flags_t field from vm_area_desc so we
-> need to update all mmap_prepare users to only use the dessc->vma_flags
-> field.
-> 
-> This patch achieves that and makes all ancillary changes required to make
-> this possible.
-> 
-> This lays the groundwork for future work to eliminate the use of vm_flags_t
-> in vm_area_desc altogether and more broadly throughout the kernel.
-> 
-> While we're here, we take the opportunity to replace VM_REMAP_FLAGS with
-> VMA_REMAP_FLAGS, the vma_flags_t equivalent.
-> 
-> No functional changes intended.
-> 
-> Signed-off-by: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-> ---
->  drivers/char/mem.c       |  6 +++---
->  drivers/dax/device.c     | 10 +++++-----
->  fs/aio.c                 |  2 +-
->  fs/erofs/data.c          |  5 +++--
->  fs/ext4/file.c           |  4 ++--
->  fs/ntfs3/file.c          |  2 +-
->  fs/orangefs/file.c       |  4 ++--
->  fs/ramfs/file-nommu.c    |  2 +-
->  fs/resctrl/pseudo_lock.c |  2 +-
->  fs/romfs/mmap-nommu.c    |  2 +-
->  fs/xfs/xfs_file.c        |  4 ++--
->  fs/zonefs/file.c         |  3 ++-
->  include/linux/dax.h      |  8 ++++----
->  include/linux/mm.h       | 24 +++++++++++++++++++-----
->  kernel/relay.c           |  2 +-
->  mm/memory.c              | 17 ++++++++---------
->  16 files changed, 56 insertions(+), 41 deletions(-)
-> 
+On Fri, 23 Jan 2026, "Shankar, Uma" <uma.shankar@intel.com> wrote:
+>> -----Original Message-----
+>> From: Nikula, Jani <jani.nikula@intel.com>
+>> Sent: Thursday, January 22, 2026 6:08 PM
+>> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+>> Cc: Nikula, Jani <jani.nikula@intel.com>; Shankar, Uma
+>> <uma.shankar@intel.com>
+>> Subject: [PATCH] drm/i915: move GEN7_ERR_INT snapshot to display irq code
+>> 
+>> The error interrupt register GEN7_ERR_INT is a display irq register. Move its
+>> GPU error capture to display irq snapshot.
+>
+> Looks Good to me.
+> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 
-<snip to xfs>
+Thanks, pushed to din.
 
-> diff --git a/fs/xfs/xfs_file.c b/fs/xfs/xfs_file.c
-> index 7874cf745af3..1238ec018bc7 100644
-> --- a/fs/xfs/xfs_file.c
-> +++ b/fs/xfs/xfs_file.c
-> @@ -1974,14 +1974,14 @@ xfs_file_mmap_prepare(
->  	 * We don't support synchronous mappings for non-DAX files and
->  	 * for DAX files if underneath dax_device is not synchronous.
->  	 */
-> -	if (!daxdev_mapping_supported(desc->vm_flags, file_inode(file),
-> +	if (!daxdev_mapping_supported(desc, file_inode(file),
->  				      target->bt_daxdev))
->  		return -EOPNOTSUPP;
->  
->  	file_accessed(file);
->  	desc->vm_ops = &xfs_file_vm_ops;
->  	if (IS_DAX(inode))
-> -		desc->vm_flags |= VM_HUGEPAGE;
-> +		vma_desc_set_flags(desc, VMA_HUGEPAGE_BIT);
+BR,
+Jani.
 
-Looks good to me,
-Acked-by: "Darrick J. Wong" <djwong@kernel.org>
+>
+>> Cc: Uma Shankar <uma.shankar@intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_display_irq.c | 5 +++++
+>>  drivers/gpu/drm/i915/i915_gpu_error.c            | 6 ------
+>>  drivers/gpu/drm/i915/i915_gpu_error.h            | 1 -
+>>  3 files changed, 5 insertions(+), 7 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c
+>> b/drivers/gpu/drm/i915/display/intel_display_irq.c
+>> index 9adeebb376b1..0a71840041de 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+>> @@ -2472,6 +2472,7 @@ void intel_display_irq_init(struct intel_display *display)
+>> 
+>>  struct intel_display_irq_snapshot {
+>>  	u32 derrmr;
+>> +	u32 err_int;
+>>  };
+>> 
+>>  struct intel_display_irq_snapshot *
+>> @@ -2486,6 +2487,9 @@ intel_display_irq_snapshot_capture(struct intel_display
+>> *display)
+>>  	if (DISPLAY_VER(display) >= 6 && DISPLAY_VER(display) < 20 &&
+>> !HAS_GMCH(display))
+>>  		snapshot->derrmr = intel_de_read(display, DERRMR);
+>> 
+>> +	if (DISPLAY_VER(display) == 7)
+>> +		snapshot->err_int = intel_de_read(display, GEN7_ERR_INT);
+>> +
+>>  	return snapshot;
+>>  }
+>> 
+>> @@ -2496,4 +2500,5 @@ void intel_display_irq_snapshot_print(const struct
+>> intel_display_irq_snapshot *s
+>>  		return;
+>> 
+>>  	drm_printf(p, "DERRMR: 0x%08x\n", snapshot->derrmr);
+>> +	drm_printf(p, "ERR_INT: 0x%08x\n", snapshot->err_int);
+>>  }
+>> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c
+>> b/drivers/gpu/drm/i915/i915_gpu_error.c
+>> index 303d8d9b7775..31c5341fb9cf 100644
+>> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+>> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+>> @@ -824,9 +824,6 @@ static void err_print_gt_global(struct
+>> drm_i915_error_state_buf *m,
+>>  		err_printf(m, "FAULT_TLB_DATA: 0x%08x 0x%08x\n",
+>>  			   gt->fault_data1, gt->fault_data0);
+>> 
+>> -	if (GRAPHICS_VER(m->i915) == 7)
+>> -		err_printf(m, "ERR_INT: 0x%08x\n", gt->err_int);
+>> -
+>>  	if (IS_GRAPHICS_VER(m->i915, 8, 11))
+>>  		err_printf(m, "GTT_CACHE_EN: 0x%08x\n", gt->gtt_cache);
+>> 
+>> @@ -1929,9 +1926,6 @@ static void gt_record_global_regs(struct
+>> intel_gt_coredump *gt)
+>>  	if (IS_VALLEYVIEW(i915))
+>>  		gt->forcewake = intel_uncore_read_fw(uncore,
+>> FORCEWAKE_VLV);
+>> 
+>> -	if (GRAPHICS_VER(i915) == 7)
+>> -		gt->err_int = intel_uncore_read(uncore, GEN7_ERR_INT);
+>> -
+>>  	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 55)) {
+>>  		gt->fault_data0 = intel_gt_mcr_read_any((struct intel_gt *)gt->_gt,
+>> 
+>> 	XEHP_FAULT_TLB_DATA0);
+>> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h
+>> b/drivers/gpu/drm/i915/i915_gpu_error.h
+>> index 91b3df621a49..26970c5e291e 100644
+>> --- a/drivers/gpu/drm/i915/i915_gpu_error.h
+>> +++ b/drivers/gpu/drm/i915/i915_gpu_error.h
+>> @@ -149,7 +149,6 @@ struct intel_gt_coredump {
+>>  	u32 gtier[6], ngtier;
+>>  	u32 forcewake;
+>>  	u32 error; /* gen6+ */
+>> -	u32 err_int; /* gen7 */
+>>  	u32 fault_data0; /* gen8, gen9 */
+>>  	u32 fault_data1; /* gen8, gen9 */
+>>  	u32 done_reg;
+>> --
+>> 2.47.3
+>
 
---D
-
->  	return 0;
->  }
->  
+-- 
+Jani Nikula, Intel
