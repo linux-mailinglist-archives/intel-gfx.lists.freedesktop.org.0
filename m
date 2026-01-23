@@ -2,166 +2,186 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mK1+DvNJc2mHuQAAu9opvQ
+	id GHZnI81Pc2ncugAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jan 2026 11:14:11 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jan 2026 11:39:09 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 657B47417A
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jan 2026 11:14:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B13D97463F
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jan 2026 11:39:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E348510EA9C;
-	Fri, 23 Jan 2026 10:14:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A9E310EA9A;
+	Fri, 23 Jan 2026 10:39:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="W4QIwRsX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hqKOEfMg";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from DM5PR21CU001.outbound.protection.outlook.com
- (mail-centralusazon11011028.outbound.protection.outlook.com [52.101.62.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FB7310EA9B;
- Fri, 23 Jan 2026 10:14:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23EBB10EA9A;
+ Fri, 23 Jan 2026 10:39:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1769164746; x=1800700746;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=oThnN+wGNyuKRYz4gmeU1DCgWv0A28+RsRbYRhADQ30=;
+ b=hqKOEfMgQVN0kP2sKly4nK+r8/ivBzLG8ElccGRxtZ7hSd55QVX3VPOZ
+ ObezAEN2N3Nruwxc9s7pCTEWr44fAFjmAE/4CYg8pAo+b7Dl9AuTKjuGa
+ 8ooASDPaa67sX8oBEtEswr16gA/A84H63O+W0cEIi9+ny2DksJZYNIVJT
+ 1WHfVE4FifCBZkSeeoc67POvQ3STigP2A+vtxqoWLBKEVppk8xbkPIZmj
+ mACi7SBsopIA41//r4qRIQ/bJtnikxnU3Bx1iQcjcza/hDJimw+kAApfV
+ HsnWnaPK/hiu0d6Kgn17K6ZKkQJLeCNJhPI47dTGUSMy74kaJA74xcq8k Q==;
+X-CSE-ConnectionGUID: 3xjAqcLxQzup93iTCocB9A==
+X-CSE-MsgGUID: rsptEN5TSH+DBIZhMVIK0g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11679"; a="73004854"
+X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="73004854"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2026 02:39:06 -0800
+X-CSE-ConnectionGUID: 7n9YFKHhRCOzRcz130w/Uw==
+X-CSE-MsgGUID: FEy9eBVNRouqGT6wCeyU8g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="244606689"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2026 02:39:06 -0800
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Fri, 23 Jan 2026 02:39:04 -0800
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35 via Frontend Transport; Fri, 23 Jan 2026 02:39:04 -0800
+Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.70) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Fri, 23 Jan 2026 02:39:04 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rIDjrYi3rUTdahj+eBTLUkdNwuqnhXvjJR5rtX9bn/5ywIltTq4VwsJ2XMqrFherAEf9tyF9JBvVZW0VtIlWT4c4spM8bSdjg7owM8/1Zkn7oxhI+Q4ZEtMEAbj1YnHMEEHdhAYbh556pW58NqlXrunTrv17UU5s3ctpjnqvHYfDgPopb0j0QnkvhU//T8AmZNC3Rk6Cw+dWCflEzBvvjiveuy5EZOaiMMAxxGjZThi/5f8eBmae3we1vd63Th4fskekb0eIZVlx9w0p8VXgRgP2yD8Re3pLuvU8cpNtKYvMCxDomGOqbVr3oQgVXzwIP9Gni2mO1Dwwz9/LZg63gQ==
+ b=ITNqGP8u6r8W9604hwLf8rxOepIuNRv12bhGU6r0Xaq87GJkqXhr3qPUk2uSVeqy432wSpCF3NSOhchE7i7kE+aM322FCPAJjRzC1nwOIdPuxeQYvHPwESAqcy4oG58IiEwgPLG9SJcaemGJ2bUW8HFFQlHOrUkSV8zAeaNou7NGFiTENTxybQsEg73iwxse2nA/wdAW7W73xCyBVbutoPBRmwe4OZGOM988bS3pAokV5DHT4wqbZa0c5MUHoOpP6G4HQpcpMES9ugpBjWgu45lxXl88N3gUO5XsWa9EYRsqPHhavSIOUr9EFNK7jZBC1t6mEp7OmS/SWMWLaGP0RA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mReL2HqlLw6k9N55UDV8jQDAy80aTJhXhTqdfjp68Wk=;
- b=u3Iyau23IchgZO6rzajgc5eK4GP7O3erBsutGqoFbgaTTQ6Iuy48lqIjY822OTRSufPkpo11MVQVZyIc7sDqjc5zHiSnbB8q2+5x78yinipgCZg5A/m2ZhslBc8IXA2TkaMMWkmYbDzd3rSIJ76CbpZRt6G1fhZarBYbaDRZfK9IICxPrfCKtDwqcgMxxg9uIFW2hfkMlNAX6Ffl9qJKiLqzzZyXNJj8qmUwiE+cIN9Aa/K64QyHl0JXiFYmgCaupkSVgSlhW/FFWDMHJNaEzRmss2e4dDws3hLf9lxpoxK6HynYknL/nBRJC3LFnbYvpGPzw0N2QKTLpAgtz9WoQQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.118.233) smtp.rcpttodomain=garyguo.net smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mReL2HqlLw6k9N55UDV8jQDAy80aTJhXhTqdfjp68Wk=;
- b=W4QIwRsXKJvFpri3OE5Ur3jy/oCgOFvgMTpTmzUkHMvIHqkR5g0hlqVKOFqcsxRCdW2SXqMgGHTndxj+pJdYY3MbkzqHbCgrCMuQy4Y3Ul5P6JFnDmXZ8TlMELm3OEtHtZXf0+g1y2rpAccndordHgBTJ2zZ6SHvjIAOjFFo/5WbBVuA9tKfFZtHd4OvhffPEXJmB8whfsKDLjqZeCTFunaG8O0FozOOQ3zf7BueQtKFqngdO9b6XNToHa1j+SAMcDN8B5+rgBAQ/HorG5rj+EV6bsXPpLOp+Cqe8j1vVECREqrZ4IB2HWnwmyz85z6EWoEDWPF+UHYN0kY39yX0dQ==
-Received: from DM6PR06CA0047.namprd06.prod.outlook.com (2603:10b6:5:54::24) by
- DS4PR12MB999075.namprd12.prod.outlook.com (2603:10b6:8:2fc::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.10; Fri, 23 Jan
- 2026 10:14:04 +0000
-Received: from DS1PEPF00017094.namprd03.prod.outlook.com
- (2603:10b6:5:54:cafe::e1) by DM6PR06CA0047.outlook.office365.com
- (2603:10b6:5:54::24) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.11 via Frontend Transport; Fri,
- 23 Jan 2026 10:14:02 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.233)
- smtp.mailfrom=nvidia.com;
- dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.118.233 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.118.233; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.118.233) by
- DS1PEPF00017094.mail.protection.outlook.com (10.167.17.137) with Microsoft
+ bh=MU7gC0Dp94WRLSlt/3AHGlYHk7VzthUuDOIE8m2BALg=;
+ b=sVnxkYAXhJNZ2IbITkEdoqhfrnMwTglJZGMzBBK2eS/XhsKtHqTYnm+m4gbwzoAvubcj936YVqCdQhtxfSo8WcoDsJDRXJcLs2prnF7iO+oWu2iQb+F5BsL/B+413TjH7jzCaAHHBQHjy5RjmAeZBS6eHkVUCUykgLAKwJVRjjS1ueBHt50pH4S8E4RTEQX/SjeskmNKa+80j5DA9M2TWfHzwAXIoHaXRWlnVHdr4fRX/2k0TVh2QX2IGpFYSmD2qst9CV/KEZTjjnITC0SmuJlx3Qaczzzh97SNrGyloyHfvgkjWUPFleyZQsPXBdK4AFF4WviSAIqKxGDHnB9M9g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB6360.namprd11.prod.outlook.com (2603:10b6:8:bd::12) by
+ CH3PR11MB7177.namprd11.prod.outlook.com (2603:10b6:610:153::8) with
+ Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9564.3 via Frontend Transport; Fri, 23 Jan 2026 10:14:04 +0000
-Received: from drhqmail202.nvidia.com (10.126.190.181) by mail.nvidia.com
- (10.127.129.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 23 Jan
- 2026 02:13:54 -0800
-Received: from drhqmail201.nvidia.com (10.126.190.180) by
- drhqmail202.nvidia.com (10.126.190.181) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.20; Fri, 23 Jan 2026 02:13:53 -0800
-Received: from inno-thin-client (10.127.8.10) by mail.nvidia.com
- (10.126.190.180) with Microsoft SMTP Server id 15.2.2562.20 via Frontend
- Transport; Fri, 23 Jan 2026 02:13:44 -0800
-Date: Fri, 23 Jan 2026 12:13:43 +0200
-From: Zhi Wang <zhiw@nvidia.com>
-To: Joel Fernandes <joelagnelf@nvidia.com>
-CC: <linux-kernel@vger.kernel.org>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Simona Vetter <simona@ffwll.ch>, Jonathan Corbet <corbet@lwn.net>, "Alex
- Deucher" <alexander.deucher@amd.com>, Christian Koenig
- <christian.koenig@amd.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- "Joonas Lahtinen" <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui
- <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>, Matthew Brost
- <matthew.brost@intel.com>, Lucas De Marchi <lucas.demarchi@intel.com>,
- "Thomas Hellstrom" <thomas.hellstrom@linux.intel.com>, Helge Deller
- <deller@gmx.de>, Danilo Krummrich <dakr@kernel.org>, Alice Ryhl
- <aliceryhl@google.com>, "Miguel Ojeda" <ojeda@kernel.org>, Alex Gaynor
- <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, Gary Guo
- <gary@garyguo.net>, Bjorn Roy Baron <bjorn3_gh@protonmail.com>, Benno Lossin
- <lossin@kernel.org>, "Andreas Hindborg" <a.hindborg@kernel.org>, Trevor Gross
- <tmgross@umich.edu>, "Alistair Popple" <apopple@nvidia.com>, Alexandre
- Courbot <acourbot@nvidia.com>, "Andrea Righi" <arighi@nvidia.com>, Alexey
- Ivanov <alexeyi@nvidia.com>, "Philipp Stanner" <phasta@kernel.org>, Elle
- Rhumsaa <elle@weathered-steel.dev>, "Daniel Almeida"
- <daniel.almeida@collabora.com>, <nouveau@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>, <rust-for-linux@vger.kernel.org>,
- <linux-doc@vger.kernel.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <linux-fbdev@vger.kernel.org>
-Subject: Re: [PATCH RFC v6 05/26] nova-core: mm: Add support to use PRAMIN
- windows to write to VRAM
-Message-ID: <20260123121343.396bc4cd.zhiw@nvidia.com>
-In-Reply-To: <DS0PR12MB6486717785F6DD14EE1F1C46A397A@DS0PR12MB6486.namprd12.prod.outlook.com>
-References: <20260120204303.3229303-1-joelagnelf@nvidia.com>
- <20260120204303.3229303-6-joelagnelf@nvidia.com>
- <20260121100745.2b5a58e5.zhiw@nvidia.com>
- <e186973c-ce31-405a-8bfa-dc647737a666@nvidia.com>
- <DS0PR12MB6486717785F6DD14EE1F1C46A397A@DS0PR12MB6486.namprd12.prod.outlook.com>
-Organization: NVIDIA
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.33; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF00017094:EE_|DS4PR12MB999075:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0e977e9b-bb5f-4136-ef9d-08de5a6822ed
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|7416014|376014|1800799024|36860700013|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?8gUNWX/O8eHZBAUr3VJTeDyjNuSbOr+741G7nKhZJQDVJ7sdcQTJfAm70gqp?=
- =?us-ascii?Q?K6Lx2xUI/SWi6nckOXW5hkZZTXv4bHE6YiFZ1AluMO8BoEqVpfBhrr2rHF+j?=
- =?us-ascii?Q?vUR20aNwcmo/+rE+8QIHa0/80OM3vmVmBvPypYtA18XSub9eHMEX/kJxLfPT?=
- =?us-ascii?Q?qlB/Posk/IZ+KFAVgzbV5hhZSh/aOHvOBLrKzVlk8iaBr3FHCf9ajmB++p6x?=
- =?us-ascii?Q?ktRdsxPH3uI3SHgQsyD4mPZxILqQdnr+fQdiADfXxhXCnYIEX+SWiI+SacPM?=
- =?us-ascii?Q?6lE1hdNYParyUs7bQJZi6wGdelz5n06Fyk2Y6uouW0CR5aN7zyn4rHedwnd8?=
- =?us-ascii?Q?ErlTHLnxNjH8I3o4NLW1GqDgXn0i9L26tn6AxIkSY+5hVqjvlf/XcvdBaGst?=
- =?us-ascii?Q?xk8yTggDO4YWaq/Bl9grT5gXdSpVTARJfaBzi1GjJ1AZSVFWQaBV5SjnwrnF?=
- =?us-ascii?Q?EwmEMuxhD23C7dnnPpm+lNwmEmIqvpr46X4+4D3T8quRAFz8You8G0NzjjBk?=
- =?us-ascii?Q?bcEhX0WC7p2mqC4KZEA/Rplyt0g8LANjCbf8VUXlCn4/2mFXCibnLStRzdxB?=
- =?us-ascii?Q?bXhVpDhnU1GY8RVHRNJsIT957jl+/PW2+Sh8y50wdHfQtI1p6ABPjDrMMmhl?=
- =?us-ascii?Q?YajnsvULAiMCOTZlOxguQllgJN5jdzCysrgCUnVkYwmp9NbzeJDj2oZFa0ul?=
- =?us-ascii?Q?LQjUA0Jd3WzXEUjEC1OhJ2OHJhf+Br1QnipPsAZk0K8lDVDxB8Q378M8cXi0?=
- =?us-ascii?Q?gOK52UiOj76v3NPdlD7ZaiORHFwA2mumZa3UO5GKkWCXrF40KxSzZ1g/SFXt?=
- =?us-ascii?Q?cn+WwnEuJ/5HlVEuDrIonv+bNmOIh/f2bexUMmzUT2wGKGyzbtln4SN6/jcM?=
- =?us-ascii?Q?AvMZNWFpXeW6K3ND4ehGfpulI7iEnaz5f9XBk8BqM4uJ4LUNmINP0Aj/s8kH?=
- =?us-ascii?Q?MO+1ktsIcyvi107CxgqsUbzSKrPDiXEE665yowMRKj7rT6e56NfabeUFcgTC?=
- =?us-ascii?Q?6mSAWuQvhFzsSKgmgUwCF7e9FZc2F3o76YeWqpqOB5J9Qlqt30kK0MHKsCg+?=
- =?us-ascii?Q?NcOueIgVf8FqKUFhXgrbB+wJAgF8cUzxCzPeEafBQVnuEQPOU+jPRj9njESQ?=
- =?us-ascii?Q?UGuBpLQIxQYssC45tRVkIPdj0ayAvC2b7kI1QohAv09TQ92fMgIVfbruRcty?=
- =?us-ascii?Q?1TuWhpF+KVIhMb9DOyirHzz8ZQBuYgr8jDIbcTfl/h7MOBxh7/dHPQ64wbxa?=
- =?us-ascii?Q?0z3B2yGggDE/vRIbA3PABq//GL4RIJqe2AjEg19M5XLIGplk6t8ptpeVxaO2?=
- =?us-ascii?Q?1YKZt8xwYquzmrh4PMsYL7iMDEDbPCUUY/SdsVgf7iv7LsnRGaxq9mUyqe34?=
- =?us-ascii?Q?TRyIYWTHIB1phhYIGBrd9Y6kBajku1fD3h4u7TuKxe7DNphP8Jndvs8NPIIB?=
- =?us-ascii?Q?s3JNu/nqmMGcrvLs+70/XVXHA7Jpv874sqS/ZNdx+4ivQ/nIsKwgg7WNlP2g?=
- =?us-ascii?Q?wKxDqX01kMQq37FtebGNkWEtyUbRur5tL6DEredmGysfTyr9VBzE3zyRBTfv?=
- =?us-ascii?Q?4ltnESy4ZzsfIyGnBu3CUoo1xh2VPdnUffU8afZqXsdpbssLrE0C6ORvhqsW?=
- =?us-ascii?Q?HSdIU7yjGy6r1eGhJrUhT+s+mOqZRH/YYsRfXn/1nZ+TRFy1FZAQVtetMm3K?=
- =?us-ascii?Q?i/9/4Q=3D=3D?=
-X-Forefront-Antispam-Report: CIP:216.228.118.233; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc7edge2.nvidia.com; CAT:NONE;
- SFS:(13230040)(7416014)(376014)(1800799024)(36860700013)(82310400026); DIR:OUT;
+ 15.20.9542.12; Fri, 23 Jan 2026 10:38:57 +0000
+Received: from DM4PR11MB6360.namprd11.prod.outlook.com
+ ([fe80::8648:3a6b:af5c:b6e6]) by DM4PR11MB6360.namprd11.prod.outlook.com
+ ([fe80::8648:3a6b:af5c:b6e6%3]) with mapi id 15.20.9542.010; Fri, 23 Jan 2026
+ 10:38:57 +0000
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+CC: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
+Subject: RE: [v2 01/19] drm/{i915, xe}: Extract display registers from
+ i915_reg.h to display
+Thread-Topic: [v2 01/19] drm/{i915, xe}: Extract display registers from
+ i915_reg.h to display
+Thread-Index: AQHciyrl3NhlBVOmxUu7iLDL5XGsOLVeCsoAgAGHu8A=
+Date: Fri, 23 Jan 2026 10:38:57 +0000
+Message-ID: <DM4PR11MB63600262D057D0A1B1899DBCF494A@DM4PR11MB6360.namprd11.prod.outlook.com>
+References: <20260121232414.707192-1-uma.shankar@intel.com>
+ <20260121232414.707192-2-uma.shankar@intel.com>
+ <a361944ea5c4c8d5cbac086270d57e8d319d003c@intel.com>
+In-Reply-To: <a361944ea5c4c8d5cbac086270d57e8d319d003c@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB6360:EE_|CH3PR11MB7177:EE_
+x-ms-office365-filtering-correlation-id: fbef0e9f-d0bc-46fe-93b7-08de5a6b9ce8
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|376014|366016|1800799024|7053199007|38070700021; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?iXUZ38wi/MCEIX3tV/B4GkcsXQecyAkHsrn4G9opLA/wpvwn/mEhurSS3aGd?=
+ =?us-ascii?Q?KZT96dPZLSDuzEGtaVTM7bvhKSTcJsAFd1a9aApZuci3HbMBM8VJuXnvMvuM?=
+ =?us-ascii?Q?0KPwGOclv+5qzU1fB1j5pB1QkAk58/ZSrlUeji9ob74eVntadIvtvPBNug/G?=
+ =?us-ascii?Q?cNYEfh+Nsxtrba3UggNmROffuPnut8wS/DI2HahPFHPCBwAWLfZtI6zF08EX?=
+ =?us-ascii?Q?wAkjwqR0LqA63T5Wkx+ynDvEv0tEtdpBhtvIkQ7sk9BUMLV/7Inc/jtahnKd?=
+ =?us-ascii?Q?Fe/cdJ9YSQtTn5eIQYNVt7RIPupdxK0l504iMacb8WJGW7+NCNVlOxIcIU1A?=
+ =?us-ascii?Q?Cb00N2MrxHeuDjmk0jwSA+vMN+cJOyNJd8cDbNii0V8nTTs+0xl58iNJcoAC?=
+ =?us-ascii?Q?BNVO1GOQiJyFRemEz9OyoFZ2Wq9iTlbdDkYFCmmHnMzRA/XrLKLHBdJWOSMC?=
+ =?us-ascii?Q?QLmAsXCVT0kw0q4W3hEexqOTYstj4me7ygccQwjlr4sLGge2DcJ9oI5aA1Cb?=
+ =?us-ascii?Q?OigVzUHViugVE/CAGop0m5EjpLFPR/0uOzT0LSwuId2IrjAZShgrkHQdadKq?=
+ =?us-ascii?Q?AVpgIRtm1ZMw4ZZVl60B6+lRxbEc9joApbxTPdP3PVFDKM1hNi6OwVnOQ3RY?=
+ =?us-ascii?Q?uTgtBJ0Bw6vXbXvyp8/OWbFrpUdin6wDj+vqGpxrcfFjUQBrX1Qq1SoxdWx4?=
+ =?us-ascii?Q?sF7L7gBH5aYRzGvwHHooOFbykf6DQQBkQT3EPQ49gX1BFA9riTKHRo2nHUrG?=
+ =?us-ascii?Q?cGWZvwcHDfvZCcvMaIYEqiQMHbGqMl/29uNnuvgrqvVoR3thMNKIU0OuajFE?=
+ =?us-ascii?Q?IuHWOPZgFnpwgaQXw1LPHQhxxtww5aVewaPcv5jEwWcmNhOSslW/EYt/T5Wq?=
+ =?us-ascii?Q?77KUjR+hvIzKWKthhlFl3sJwONiVVtFCa0XT5ApQ7EGZU0Hku17rK0HoltwM?=
+ =?us-ascii?Q?iLstN+AqUXIEhLH6P8Qbdj1fMSrWEzK0ivxO/fixC0QetznJYJSI2DPg/Opk?=
+ =?us-ascii?Q?xlmRjKR8qK70uDDfp11bZaCPSeU0qsxu5uBJucldNLwkPQ51zwMaPCKdwJxU?=
+ =?us-ascii?Q?gZpYmhQS+7XqXVawKdwkf5VHD3pzxxGtIfrfn+W6MQDz837j5UHWS03QyF1R?=
+ =?us-ascii?Q?zdvXMbpEdsD8gLmS2SD+1iViDCeNBrZwE9SBg3s6N2H6/aRGJ+jGjSD95tpz?=
+ =?us-ascii?Q?c0Mbh2fJKcImUjfmW2Zf+Xd2efx/H/6u81DwrhrWUca8RWBMFuXi+KiwCbqe?=
+ =?us-ascii?Q?SzmYiSYLBG5zwUNvZmkUZNIN86SYcjRHv7Ep4rzKvP5SIYGTOqzFJkXEKYse?=
+ =?us-ascii?Q?uSvXT4epiC88CXeXRZFRkoIRExCHl9COTup5les+wlmvSdPZCWwezLBJh5Ic?=
+ =?us-ascii?Q?XRQrOy2TzyU29FecSmp2GmAvjWOaGQ9xvkPYb0ARAwIQXluKfqzqx6cdsCwX?=
+ =?us-ascii?Q?FOfVbsnWs2Rkspk2wHOK+j6iK8bdzQOaBI2NP+TCJJLHxXsbNCVMHSiJfGcC?=
+ =?us-ascii?Q?ZG+yUkT9Z1z4afGcfxUmyOQCCbKujiFVSqyQjg5Z7GaVJPXesfspaen5ItQL?=
+ =?us-ascii?Q?dmrb+p1z6Ny9hO8czpqc1zSq/lDBELj5awJO60YC0Eo6XMHAiglDO+L30k54?=
+ =?us-ascii?Q?KGObdAnPGLmtC3Kpw6mJAvY=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB6360.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(7053199007)(38070700021); DIR:OUT;
  SFP:1101; 
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2026 10:14:04.1322 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0e977e9b-bb5f-4136-ef9d-08de5a6822ed
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.118.233];
- Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF00017094.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PR12MB999075
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?IH4ivr6xWlZ0x6P/u6vDnAfVSC+RwEGyFI+8E9NNI/xr4pwgFnFADucAl8DY?=
+ =?us-ascii?Q?BbCg9r1BEe9MLOopvBn55RrBZTENAVt/WrucpuI9eyStG0qwlljn6ODcPhkT?=
+ =?us-ascii?Q?vQAtzJD9mSfGhR2MmLgpsbzULdxI1GMQVb6J9STXMCP5JEl2y4H/vcScd1OL?=
+ =?us-ascii?Q?FiKkZ7MpSf6v6mq2VecISCDwnq7EqKt79p6Dma/t/a8Lwc71LB0KDaCFVa/b?=
+ =?us-ascii?Q?iqwrl4F+fx+6x2TXs8W7IeJnd44aIQfPJ07wmmnva1ag2OZlzd29wpLcTVJO?=
+ =?us-ascii?Q?NGqgrOLg9UpVCL6ClQy69t1m5J+3PcT81vUDaodnbptPvDOp9+My9v6Q6TpD?=
+ =?us-ascii?Q?P9TBcmiP4+F9yHwOwYBaB1b+SCGCqPgvjhZKpddmDvUN7uI5MfMc7jxPbbxl?=
+ =?us-ascii?Q?wPSfcGXZZ79dlRQAUanHT7LVAKdrlEVB89Z+E8xr5foQl4Fw10Hk4skHbopI?=
+ =?us-ascii?Q?eqmzJ/GcjnepNzCFamstYSEsWgAqZjEP3sWmr70ZD05CIISUS5dFRqs6PvTO?=
+ =?us-ascii?Q?Y0ZZecRp1wzPlLKBqPBEJP2iLgR6ZKJo66aXbuGikgMwnp/N7D102fwAgFTT?=
+ =?us-ascii?Q?I4t27W/K5FaBfsOPCiRP6vHu/wrlvxa2x+gBTmdSQQ8et0lY1mPbZh8akAIX?=
+ =?us-ascii?Q?eLfaS85IXmo8FuDEvWxh2BmKavkEsp6dg+eVou0kEIogunomAKJK0DqkQKCB?=
+ =?us-ascii?Q?rmXd/utJMxlKghSbjAuW6H2MYM9r62Nnm2QlH53VzxSdrAoxXh1G9ckFGIhs?=
+ =?us-ascii?Q?iQTsdlI2PkJ5er3R+lL9dKpCf28KX0rGmUcbBMae/HnyuZGv8agoStb9NOgk?=
+ =?us-ascii?Q?LWoXZBfl2O4KI+cekCdTy8LYcLh2ousWHUbuElOcyXdIzVZwkMGNXXmypYqM?=
+ =?us-ascii?Q?QfICpmFdZcVuMIxjOBYXhpwMYPPVRFUMgvZnHbR7LCKNbZZE1lUNqPrUN69Z?=
+ =?us-ascii?Q?qJTDK7AAm48kuhUnvknWJ6dtrZQ2IESfGlbF0maoOZlqmiI7pF3IpLNmBs6E?=
+ =?us-ascii?Q?Agq0wh0GEq4ycQ0OAqLr5xY2hhf+TczqISDJf/IHzwRYxFjWtINCT4WBVMHo?=
+ =?us-ascii?Q?CTTMHTRtJcbhhn1jpSeomlEJoVn3vMn7TKfMnsO6PICUiOzaXjTzVxAgn1Wq?=
+ =?us-ascii?Q?fHtaMZ5+bnK/SV7tA+3dTZ6SsVAokyK4lnRKTNT1xXk8iPZQCf5ryMAQD5DA?=
+ =?us-ascii?Q?L4wPnCzJCIBDp6cowBpG6yOb5KmBqmHKz08T5NaJGX1VckbLQahK/PjNfBSJ?=
+ =?us-ascii?Q?U9XZkDXjUXXJ+7FsMxOCdvB1YspDWavkUahzxEETjbwjP7VpyBsJKLm5KXqh?=
+ =?us-ascii?Q?O3s4+yFQwpXr9uYKZC/WWVsTwug3RldhrieSoXcba5hoPMUx0YrhgaDmq9Cm?=
+ =?us-ascii?Q?EvYTT0/20GRXr0he7pJR5xHvIm2SLZ1nR6zW1V4G/4ASe6LwL6hSDfIpSGXM?=
+ =?us-ascii?Q?e0EwutuNfqzWH6IHcZseOXGvp4C9loO58rbTLYeusvVNEuY6gXHfCDHo986e?=
+ =?us-ascii?Q?uc16V6xgrbsUa1lX6Gl2A9f1Fe4ppkA4z5SE2UAW5TRZk43IGNSHjI3CjQ8k?=
+ =?us-ascii?Q?fHwrkm6UUfnYGag0B6h48UP2tggvYQ2fOIsx/fkuFPYEkaiFy+hK6dZvn0oe?=
+ =?us-ascii?Q?jUqPA8QqlJwmzu/2tsOaQrFgs1U5cXBbdWI3vH3HwfpjoEvkL3SC9llTomTt?=
+ =?us-ascii?Q?I63NaT/b25eTkKn00McezmZ3DSItvrpgmyTpC8WjMbOxWeundsyTKJFicYiD?=
+ =?us-ascii?Q?n7hGXjTcFg=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6360.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fbef0e9f-d0bc-46fe-93b7-08de5a6b9ce8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jan 2026 10:38:57.3324 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: JNuLxOayhHO1jc/zullySVQzpp8+BeBKV+VTbrkI5TXWk24/cHnCKv4ps2kRyES9ZBeOoFoUlffvc00FXQKR2g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7177
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -177,112 +197,161 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-2.31 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[43];
-	FREEMAIL_CC(0.00)[vger.kernel.org,linux.intel.com,kernel.org,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,google.com,gmail.com,garyguo.net,protonmail.com,umich.edu,nvidia.com,weathered-steel.dev,collabora.com,lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zhiw@nvidia.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	NEURAL_HAM(-0.00)[-0.994];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[uma.shankar@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	NEURAL_HAM(-0.00)[-0.985];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: 657B47417A
+	TAGGED_RCPT(0.00)[intel-gfx];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: B13D97463F
 X-Rspamd-Action: no action
 
-On Thu, 22 Jan 2026 18:16:00 -0500
-Joel Fernandes <joelagnelf@nvidia.com> wrote:
 
-> On Wed, 21 Jan 2026 12:52:10 -0500, Joel Fernandes wrote:
-> > I think we can incrementally build on this series to add support for
-> > the same, it is not something this series directly addresses since I
-> > have spend majority of my time last several months making translation
-> > *work* which is itself no east task. This series is just preliminary
-> > based on work from last several months and to make BAR1 work. For
-> > instance, I kept PRAMIN simple based on feedback that we don't want to
-> > over complicate without fully understanding all the requirements.
-> > There is also additional requirements for locking design that have
-> > implications with DMA fencing etc, for instance.
+
+> -----Original Message-----
+> From: Nikula, Jani <jani.nikula@intel.com>
+> Sent: Thursday, January 22, 2026 4:47 PM
+> To: Shankar, Uma <uma.shankar@intel.com>; intel-gfx@lists.freedesktop.org=
+;
+> intel-xe@lists.freedesktop.org
+> Cc: ville.syrjala@linux.intel.com; Shankar, Uma <uma.shankar@intel.com>
+> Subject: Re: [v2 01/19] drm/{i915, xe}: Extract display registers from i9=
+15_reg.h to
+> display
+>=20
+> On Thu, 22 Jan 2026, Uma Shankar <uma.shankar@intel.com> wrote:
+> > There are certain register definitions which are defined in i915_reg.h
+> > which are exclusively needed by display. Move the same to display
+> > headers to remove i915_reg.h includes from display. This is a step
+> > towards making display independent of i915.
 > >
-> > Anyway thinking out loud, I am thinking for handling concurrency at
-> > the page table entry level (if we ever need it), we could use per-PT
-> > spinlocks similar to the Linux kernel. But lets plan on how to do this
-> > properly and based on actual requirements.
-> 
-> Thanks for the discussion on concurrency, Zhi.
-> 
-> My plan is to make TLB and PRAMIN use immutable references in their
-> function calls and then implement internal locking. I've already done
-> this for the GPU buddy functions, so it should be doable, and we'll keep
-> it consistent. As a result, we will have finer-grain locking on the
-> memory management objects instead of requiring to globally lock a common
-> GpuMm object. I'll plan on doing this for v7.
-> 
-> Also, the PTE allocation race you mentioned is already handled by PRAMIN
-> serialization. Since threads must hold the PRAMIN lock to write page
-> table entries, concurrent writers are not possible:
-> 
->   Thread A: acquire PRAMIN lock
->   Thread A: read PDE (via PRAMIN) -> NULL
->   Thread A: alloc PT page, write PDE
->   Thread A: release PRAMIN lock
-> 
->   Thread B: acquire PRAMIN lock
->   Thread B: read PDE (via PRAMIN) -> sees A's pointer
->   Thread B: uses existing PT page, no allocation needed
-> 
-> No atomic compare-and-swap on VRAM is needed because the PRAMIN lock
-> serializes access. Please let me know if you had a different scenario in
-> mind, but I think this covers it.
-> 
-> Zhi, feel free to use v6 though for any testing you are doing while I
-> rework the locking.
-> 
+> > intel_clock_gating.c can include display header directly.
+> >
+> > v2: Drop common header in include and use display_regs.h (Jani)
+> >
+> > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+>=20
+> Oh, the Subject should just be drm/i915, this isn't directly related to x=
+e.
 
-Hi Joel:
+Sure, will fix it.
 
-Thanks so much for the work and the discussion. It is super important
-efforts for me to move on for the vGPU work. :)
+Regards,
+Uma Shankar
 
-As we discussed, the concurrency matters most when booting multiple vGPUs.
-At that time, the concurrency happens at:
-
-1) Allocating GPU memory chunks
-2) Reserving GPU channels
-3) Mapping GPU memory to BAR1 page table
-
-We basically need kinda protection there. E.g. Guard/Access on immutable
-references, which is backed by the mutex. I believe there shouldn't be a
-non-sleepible path reaching those. This should be fine.
-
-I can see you are thinking of fine-granularity locking scheme, which I
-think is the right direction to go. I agreed with the above two locks.
-
-For 1), I can recall that you mentioned there is some lock protection
-already there.
-
-For 2), We can think of it when reaching there.
-
-However for 3), We need to have one there as well beside the above two
-locks. Have you already had one in the GPU VA allocator?
-
-If yes, the above two locks should be good enough so far. IMO.
-
-Z.
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display_regs.h | 10 ++++++++++
+> > drivers/gpu/drm/i915/display/intel_pch_display.c  |  1 -
+> >  drivers/gpu/drm/i915/i915_reg.h                   | 10 ----------
+> >  drivers/gpu/drm/i915/intel_clock_gating.c         |  2 +-
+> >  4 files changed, 11 insertions(+), 12 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h
+> > b/drivers/gpu/drm/i915/display/intel_display_regs.h
+> > index 9e0d853f4b61..9f8fbfb2e115 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+> > @@ -2021,6 +2021,16 @@
+> >  #define  TRANS_BPC_6
+> 	REG_FIELD_PREP(TRANS_BPC_MASK, 2)
+> >  #define  TRANS_BPC_12
+> 	REG_FIELD_PREP(TRANS_BPC_MASK, 3)
+> >
+> > +#define _TRANSA_CHICKEN2	0xf0064
+> > +#define _TRANSB_CHICKEN2	0xf1064
+> > +#define TRANS_CHICKEN2(pipe)	_MMIO_PIPE(pipe,
+> _TRANSA_CHICKEN2, _TRANSB_CHICKEN2)
+> > +#define   TRANS_CHICKEN2_TIMING_OVERRIDE		REG_BIT(31)
+> > +#define   TRANS_CHICKEN2_FDI_POLARITY_REVERSED
+> 	REG_BIT(29)
+> > +#define   TRANS_CHICKEN2_FRAME_START_DELAY_MASK
+> 	REG_GENMASK(28, 27)
+> > +#define   TRANS_CHICKEN2_FRAME_START_DELAY(x)
+> 	REG_FIELD_PREP(TRANS_CHICKEN2_FRAME_START_DELAY_MASK,
+> (x)) /* 0-3 */
+> > +#define   TRANS_CHICKEN2_DISABLE_DEEP_COLOR_COUNTER
+> 	REG_BIT(26)
+> > +#define   TRANS_CHICKEN2_DISABLE_DEEP_COLOR_MODESWITCH
+> 	REG_BIT(25)
+> > +
+> >  #define PCH_DP_B		_MMIO(0xe4100)
+> >  #define PCH_DP_C		_MMIO(0xe4200)
+> >  #define PCH_DP_D		_MMIO(0xe4300)
+> > diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c
+> > b/drivers/gpu/drm/i915/display/intel_pch_display.c
+> > index 16619f7be5f8..69c7952a1413 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_pch_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
+> > @@ -6,7 +6,6 @@
+> >  #include <drm/drm_print.h>
+> >
+> >  #include "g4x_dp.h"
+> > -#include "i915_reg.h"
+> >  #include "intel_crt.h"
+> >  #include "intel_crt_regs.h"
+> >  #include "intel_de.h"
+> > diff --git a/drivers/gpu/drm/i915/i915_reg.h
+> > b/drivers/gpu/drm/i915/i915_reg.h index 5bf3b4ab2baa..d247e107f42f
+> > 100644
+> > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > @@ -1022,16 +1022,6 @@
+> >  #define   TRANS_CHICKEN1_HDMIUNIT_GC_DISABLE	REG_BIT(10)
+> >  #define   TRANS_CHICKEN1_DP0UNIT_GC_DISABLE	REG_BIT(4)
+> >
+> > -#define _TRANSA_CHICKEN2	 0xf0064
+> > -#define _TRANSB_CHICKEN2	 0xf1064
+> > -#define TRANS_CHICKEN2(pipe)	_MMIO_PIPE(pipe,
+> _TRANSA_CHICKEN2, _TRANSB_CHICKEN2)
+> > -#define   TRANS_CHICKEN2_TIMING_OVERRIDE		REG_BIT(31)
+> > -#define   TRANS_CHICKEN2_FDI_POLARITY_REVERSED
+> 	REG_BIT(29)
+> > -#define   TRANS_CHICKEN2_FRAME_START_DELAY_MASK
+> 	REG_GENMASK(28, 27)
+> > -#define   TRANS_CHICKEN2_FRAME_START_DELAY(x)
+> 	REG_FIELD_PREP(TRANS_CHICKEN2_FRAME_START_DELAY_MASK,
+> (x)) /* 0-3 */
+> > -#define   TRANS_CHICKEN2_DISABLE_DEEP_COLOR_COUNTER
+> 	REG_BIT(26)
+> > -#define   TRANS_CHICKEN2_DISABLE_DEEP_COLOR_MODESWITCH
+> 	REG_BIT(25)
+> > -
+> >  #define SOUTH_CHICKEN1		_MMIO(0xc2000)
+> >  #define  FDIA_PHASE_SYNC_SHIFT_OVR	19
+> >  #define  FDIA_PHASE_SYNC_SHIFT_EN	18
+> > diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c
+> > b/drivers/gpu/drm/i915/intel_clock_gating.c
+> > index 7336934bb934..4e18d5a22112 100644
+> > --- a/drivers/gpu/drm/i915/intel_clock_gating.c
+> > +++ b/drivers/gpu/drm/i915/intel_clock_gating.c
+> > @@ -30,7 +30,7 @@
+> >  #include "display/i9xx_plane_regs.h"
+> >  #include "display/intel_display.h"
+> >  #include "display/intel_display_core.h"
+> > -
+> > +#include "display/intel_display_regs.h"
+> >  #include "gt/intel_engine_regs.h"
+> >  #include "gt/intel_gt.h"
+> >  #include "gt/intel_gt_mcr.h"
+>=20
+> --
+> Jani Nikula, Intel
