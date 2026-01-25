@@ -2,178 +2,111 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WcHsDip3dWmqFQEAu9opvQ
+	id +NCiEXByd2n7ggEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sun, 25 Jan 2026 02:51:38 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jan 2026 14:56:00 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78BFA7F71A
-	for <lists+intel-gfx@lfdr.de>; Sun, 25 Jan 2026 02:51:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF943892A4
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jan 2026 14:55:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEE9C10E357;
-	Sun, 25 Jan 2026 01:51:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F33EC10E43D;
+	Mon, 26 Jan 2026 13:55:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="Ul12KzdS";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="M89xD5TT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010033.outbound.protection.outlook.com [52.101.201.33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3607610E246;
- Sun, 25 Jan 2026 01:51:33 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wzxIpk0frLoTLPKqNJqNcwZRyDuxtGS8V2RXEbVHNGVcWIbJrEvTEsMZOkOQKken5U75HzbZebt8GjU/Xexd1jlqzTKyauSlJLrZLLfxcdHKIM5UWZrQzTR6Z8s7N+RpsziCS3hyGOiz8zTwRdUZSdPsKuS6YKqK+nQ7ZF/N73ImmtS8k+ISZBE9vMSVitUEdsIEET891xYMU2CqTnLrdsPeJYKBYJsjH76WZwWay5+59T+mF0yFlkNLq39McpI2M0ezuWjQp5jCBrIIJOnrJkG5cHz78UgQGt30jzUJV0z1E5lpgEiivPfTGWujAV7OMETWzcisArOhAJ4tnrRmgg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LkdAEm3nHzcBkuZwK4qjsA87mv3h5tKuVVxpMMBwP1E=;
- b=P7w4XjMxjX/YNLX3N2DjvJgORswK/b70uo+vDpKKsij5Qli8Jh7qT/EUdp8dYeFB0l8xxfAnvhml+TvPeckP+aT4V/Dhdbs0FnhqQ4hihnf2NSOLkksOHuZxPtH9Jyh/8lLtZmG/GdankzDffefRKZmkIv4HWJIRkQdnqG1Q/o2qj24FXL9G+fUXoqbURin7sgZWEk96WyHNf2uk+WL3qE5VEmlt4/pIevw3F9Yrcp5Jyi0Ze5hMyXWXCm7pUleAxNHFc/8ZxoSAjKi9ldy+IAdnhQSbB0jBG1qVQcuhsRta7ZlpwBOHP/2SgBPfzmxuyUYDQkyeoho/3Y2r7vRw3Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LkdAEm3nHzcBkuZwK4qjsA87mv3h5tKuVVxpMMBwP1E=;
- b=Ul12KzdS2CoMKeWFQ24wVMuiLQ+tZ7WKiqJPC7HYHAf50D2sE6EjpyDriYzzaBedd1KnKGPgbxPCsNbdWtudKAshpcaIySowxzZw8zjWTE3bqjALFtWwYx7VB62Dcbb7UhegH2v6xTy3KhoUm/fNmPRPsLkej6Hl+x7v+tXM0IcxzMzipjdMUByJIOKcalOtrk5nJK5pZVJnRl3UJMeZguEDchpxCtAvD+qtGmmCjCYVUbGiGdzuRoGArklhn4mDHwj+PwvyngLUKJVwHzM/SKsV8ZlJzWjxe1ZzAWuoy8iZchQ1yC/7o0CyNoyZzl7TLUVuUPbu8B8Y0+AXcgQMnQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- PH0PR12MB5630.namprd12.prod.outlook.com (2603:10b6:510:146::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.14; Sun, 25 Jan
- 2026 01:51:28 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9542.010; Sun, 25 Jan 2026
- 01:51:28 +0000
-Date: Sat, 24 Jan 2026 20:51:27 -0500
-From: Joel Fernandes <joelagnelf@nvidia.com>
-To: Gary Guo <gary@garyguo.net>
-Cc: linux-kernel@vger.kernel.org,
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B001B10E363;
+ Sun, 25 Jan 2026 14:50:07 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id B0A0743D2F;
+ Sun, 25 Jan 2026 14:50:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70185C19421;
+ Sun, 25 Jan 2026 14:50:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1769352606;
+ bh=Qb77RiWgyHm5SU1GmS1LMhqiQbtCFBFXaWxM/S1HaDo=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=M89xD5TT4e8L24TFAy59ViAy3loqol6G07UhfkgnivqN0T1QHIeXLK6KufoCrmnXv
+ kekwqOI8IRA4bMgS3j6olFfRKZTjyIBt4fMtWD+6LFJ0ZGBnPwkx1Vvk3JrvMW2Ll4
+ zC5Vge1F4V9gjzvpVRyB4bOSiYG1Efwk0TeU8NIXylAL1tIZq8vI4gcuC9uXB2RLeh
+ JBN9Hl+6DYuHM7nuJ5FN1dElHztg8/NLO1X1HlWuX25qrluftOw7nVx6DrXppnlOtZ
+ MyTpao/Eq+4i/v4tPdubm9C3tLQzM8HcEkPI3lCw90Wg6LIyuqGLw6gE9EaZT2Y1at
+ 1DQ8tqzm59ruQ==
+Date: Sun, 25 Jan 2026 16:50:01 +0200
+From: Jarkko Sakkinen <jarkko@kernel.org>
+To: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>,
+ Dave Hansen <dave.hansen@linux.intel.com>,
+ Thomas Gleixner <tglx@kernel.org>, Ingo Molnar <mingo@redhat.com>,
+ Borislav Petkov <bp@alien8.de>, x86@kernel.org,
+ "H . Peter Anvin" <hpa@zytor.com>, Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Dan Williams <dan.j.williams@intel.com>,
+ Vishal Verma <vishal.l.verma@intel.com>, Dave Jiang <dave.jiang@intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>,
  Thomas Zimmermann <tzimmermann@suse.de>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
  Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
  Matthew Auld <matthew.auld@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Danilo Krummrich <dakr@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
- =?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>, John Hubbard <jhubbard@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
- Andrea Righi <arighi@nvidia.com>, Andy Ritger <aritger@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, Alexey Ivanov <alexeyi@nvidia.com>,
- Balbir Singh <balbirs@nvidia.com>, Philipp Stanner <phasta@kernel.org>,
- Elle Rhumsaa <elle@weathered-steel.dev>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH RFC v6 01/26] rust: clist: Add support to interface with
- C linked lists
-Message-ID: <20260125015127.GA66441@joelbox2>
-References: <20260120204303.3229303-1-joelagnelf@nvidia.com>
- <20260120204303.3229303-2-joelagnelf@nvidia.com>
- <DFTTGUYGY72V.3VLVSCB2OOXIB@garyguo.net>
- <01a981f1-64c7-4504-b309-45a024258fe9@nvidia.com>
- <DFUK089V1IEU.U83YQT72BO3@garyguo.net>
+ Alexander Viro <viro@zeniv.linux.org.uk>,
+ Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
+ Benjamin LaHaise <bcrl@kvack.org>, Gao Xiang <xiang@kernel.org>,
+ Chao Yu <chao@kernel.org>, Yue Hu <zbestahu@gmail.com>,
+ Jeffle Xu <jefflexu@linux.alibaba.com>,
+ Sandeep Dhavale <dhavale@google.com>, Hongbo Li <lihongbo22@huawei.com>,
+ Chunhai Guo <guochunhai@vivo.com>, Theodore Ts'o <tytso@mit.edu>,
+ Andreas Dilger <adilger.kernel@dilger.ca>,
+ Muchun Song <muchun.song@linux.dev>, Oscar Salvador <osalvador@suse.de>,
+ David Hildenbrand <david@kernel.org>,
+ Konstantin Komarov <almaz.alexandrovich@paragon-software.com>,
+ Mike Marshall <hubcap@omnibond.com>,
+ Martin Brandenburg <martin@omnibond.com>, Tony Luck <tony.luck@intel.com>,
+ Reinette Chatre <reinette.chatre@intel.com>,
+ Dave Martin <Dave.Martin@arm.com>,
+ James Morse <james.morse@arm.com>, Babu Moger <babu.moger@amd.com>,
+ Carlos Maiolino <cem@kernel.org>, Damien Le Moal <dlemoal@kernel.org>,
+ Naohiro Aota <naohiro.aota@wdc.com>, Johannes Thumshirn <jth@kernel.org>,
+ Matthew Wilcox <willy@infradead.org>,
+ "Liam R . Howlett" <Liam.Howlett@oracle.com>,
+ Vlastimil Babka <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>,
+ Michal Hocko <mhocko@suse.com>, Hugh Dickins <hughd@google.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Zi Yan <ziy@nvidia.com>, Nico Pache <npache@redhat.com>,
+ Ryan Roberts <ryan.roberts@arm.com>, Dev Jain <dev.jain@arm.com>,
+ Barry Song <baohua@kernel.org>, Lance Yang <lance.yang@linux.dev>,
+ Jann Horn <jannh@google.com>, Pedro Falcato <pfalcato@suse.de>,
+ David Howells <dhowells@redhat.com>,
+ Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
+ "Serge E . Hallyn" <serge@hallyn.com>, Yury Norov <yury.norov@gmail.com>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ linux-sgx@vger.kernel.org, linux-kernel@vger.kernel.org,
+ nvdimm@lists.linux.dev, linux-cxl@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-fsdevel@vger.kernel.org, linux-aio@kvack.org,
+ linux-erofs@lists.ozlabs.org, linux-ext4@vger.kernel.org,
+ linux-mm@kvack.org, ntfs3@lists.linux.dev, devel@lists.orangefs.org,
+ linux-xfs@vger.kernel.org, keyrings@vger.kernel.org,
+ linux-security-module@vger.kernel.org, Jason Gunthorpe <jgg@nvidia.com>
+Subject: Re: [PATCH v2 08/13] mm: update shmem_[kernel]_file_*() functions to
+ use vma_flags_t
+Message-ID: <aXYtmbL40r5wLgk2@kernel.org>
+References: <cover.1769097829.git.lorenzo.stoakes@oracle.com>
+ <736febd280eb484d79cef5cf55b8a6f79ad832d2.1769097829.git.lorenzo.stoakes@oracle.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <DFUK089V1IEU.U83YQT72BO3@garyguo.net>
-X-ClientProxiedBy: BL1P223CA0010.NAMP223.PROD.OUTLOOK.COM
- (2603:10b6:208:2c4::15) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|PH0PR12MB5630:EE_
-X-MS-Office365-Filtering-Correlation-Id: d8e5a34c-df46-4119-fd68-08de5bb44130
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7416014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?OAg+17xFg4OBPaIAwAGAd7xZn5vMG9FjnrOwECfM3iYJ9j4tw5UuIGBtswb9?=
- =?us-ascii?Q?rQ42V9TfqtNdmH+ROX7jhxZsbv9bk0D/4gcK05rtwfB2dV4E55+j00teYmG/?=
- =?us-ascii?Q?adsWgzWzWtaVg4Ch9mW4HtOKmeQe8PxbEw/7+k344qtu2Ito2nApX4brFGCp?=
- =?us-ascii?Q?3WtCIbnjEY5osGVt+phVzM8nrd6958Ka99ytaFv5G6UC8nWZCR0K650Dr/Mp?=
- =?us-ascii?Q?rdyjU+IZNwVFj9rRVUvuZnOY/WeNFCemwuDdwnJGWQB+BfLWKiVU1El3361I?=
- =?us-ascii?Q?cOZ+SZKs4Ryi3Zsh3+hS8n3zRv/VUAYbleS+anAVT0L+X3AbKJwIy2R6cWIi?=
- =?us-ascii?Q?W2xUmQOHmOrTjCGO66utSZksE9W0JQTeY55AW3WtHQcx7y4cBHcXvVNWc80J?=
- =?us-ascii?Q?pQxUKplm6mOoVDCErmskt3Cz9p2u26xxt7VLEq1srkix7Ux9uUg/C91a++1J?=
- =?us-ascii?Q?GfdXJFg/1/MlNCpHRML/sal2tALmjawUey7kELWfwAbJhORt0M2YU9TRtoi8?=
- =?us-ascii?Q?MVxwpvzxYOOmk+nrCTK/o0Mhxe0PlOew0VsQyADoKBNODPG2Y8+lDMNyCzOd?=
- =?us-ascii?Q?vl0v4U4w2vVz4ivf+dJ7Lw6AA/X8eErNDY8ZWP1oYqQtszNCopO38jdCFX7c?=
- =?us-ascii?Q?98w2zRpytYaCoVMJavfj3MlzTvv12VkYwr8Zrvemv9WdloRLzkehDfcKGLWA?=
- =?us-ascii?Q?gYmaq0Nd1lntI64c2kDrgJrknIzrZtwZ6LO+KuNGiY6SIjVUgPtgDkj8J4Ay?=
- =?us-ascii?Q?CO2Hu0rFs69Flr/9ZSt6sz9NGS3zBEMOS2LnhVYWgX8OBBKYy45FMQQycFtl?=
- =?us-ascii?Q?/VbRzcSlIdMHeK622S8DVlqMOWg7tvkxfOoAa3haYgqJkP0fNTSA8vaHldiB?=
- =?us-ascii?Q?nZq3dk4fa8pUHh0mjO+GGBnVEXn61PiYYWzpXKlD962+yzobhRf9/xFQrpXX?=
- =?us-ascii?Q?uhXKXk9X7f0OdcK2YGN/GcBphsDaYBjh+gmvHsjs+4/stE9tfj7GGhu4nDzo?=
- =?us-ascii?Q?P1bNotpxbBQr9UfyzB0+miyCmYPUqb9sn/JSE5wjDxY4wf9raF7xX+H/RA51?=
- =?us-ascii?Q?QGYNIJNGID562cyRKFw8XVVRfpE0wqsOLENfbpXdxX1xPqdgvWFeGwD9NZhV?=
- =?us-ascii?Q?FgGdLXAhvUheqROSvJKtN3ZL5qBies7RSoE5XPByGKQdq+bKTYje9htfk9yu?=
- =?us-ascii?Q?eiECO0duqttsSwNiAtcwKFKHXKaO958T+IIK01EOc+OZKYcxEnYAWUVb9qCg?=
- =?us-ascii?Q?AfH82aG+7pNgCdSVg/FVilG7EbJOJ+88ePN9QpGA5utO+2lZgmsMT8rLsjWQ?=
- =?us-ascii?Q?UOYtor6HAAVp83fRh0C11VtEIMJsNqyVnmXJHy162cuyItuKqlEpeYOk6fGq?=
- =?us-ascii?Q?ON2aGCTnUrwh7X/dmcDYlD4NMQfdwGO3DgSmrkx3tqHqcAVjpLo8OmpApU4N?=
- =?us-ascii?Q?dgxfB2tnMxDOckr5hwvqGyQshQTiSoTWM3LgF4l1uG1tPqe8cvyiCpjYQcVb?=
- =?us-ascii?Q?0+TWfADSDKThTyhZDY/jHzfIUb4aEX0xRowuqi6HggN/OciOqGTgsM726mT4?=
- =?us-ascii?Q?sMsBTKV/x6ZNyOYAm9U=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(7416014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/CYglk0LsikG8hlV1F2MPz6VjUl/ZWf2VLz7uD89RMl8E6EXpDLmYrvRUCLK?=
- =?us-ascii?Q?b/zJoQFpajfy75ZGvvYhV8Bhx3gZNsMPJ5Ofu9omASXB/Y96d5iaVdYRHOyI?=
- =?us-ascii?Q?stJ/1BVJ0GMZU14GEaBHYEKU3tUCQnRIBf2KunQMwixRDK3cUqZfypEH0XRV?=
- =?us-ascii?Q?4oaeMODIOA58DQsHs8NsZodnkMN5Esq7noc99PihNLSQvtfgRBM8a4s+s4CD?=
- =?us-ascii?Q?46r5n+FGPKw176zWnQ4AcrGFIzd+4/jyOXrp2Z6zl4rFoozOBS/XDIY0Ey+E?=
- =?us-ascii?Q?wI99H4NoXkMa7RlftM69mH2ThfShkLd7VzSx4VKci0aViGj7MTlp9PkCx+lF?=
- =?us-ascii?Q?hbRgfp6sWnQLFkCCgZXupF829EGlk6uGHsDMWTOKT8E3qcPcht9UenfTz1Xi?=
- =?us-ascii?Q?E4+QzXnibc1FOXrgMLX1pIFACumTCEOXqysI0q/lPzfExi9+Rd2MOl2Naqra?=
- =?us-ascii?Q?1ePs1b4oM29Gs4/or3p91eg8rj60mYjEdlkDfLvxvpHT+1qBnnJOwnVmCSf+?=
- =?us-ascii?Q?vf1EOalavyIrLmZVnV5clg+aioj65iNUHhaWoLRJewuFfAOKvakYCgvPiaTa?=
- =?us-ascii?Q?Yc8Eonom+Vbnf0bh9yufjlyq4RTI23/C4WIAnYB0XipL2I//tJUT3lN2xtYg?=
- =?us-ascii?Q?JMy7H8fMwO8jkvRkfgx/jGpx5fzsBbJFD/cKM1aaNvyIZimDehUqbo7JeDA3?=
- =?us-ascii?Q?s16ebYtU6D+zO6i9QlzwjME0gy9DHgfzlve4lb8IC1cqILW8jX0izGHgfZ5R?=
- =?us-ascii?Q?STY46qoPlGRrVGNOKw+tDnPtUv2z2fjBjNaKLD4elJvElnEHWpVF1M/Kjm+3?=
- =?us-ascii?Q?Lt0p2hgDpchdxWDY+Jup4oPA2hc0QXSCrYVe/VSQaqDr8Q4Ia3GUO02wNs69?=
- =?us-ascii?Q?9LMFIwfXdSyEBz/LJv3tOP0Q1EsugkSjNPLrCc8v/8yb6ZyTziHSII9Opi9M?=
- =?us-ascii?Q?q+UwFg0uBrhwWULeh/uqeOS6ThFswZAvz5X/lA8LKQykcWy6s7BXrv8sBw98?=
- =?us-ascii?Q?F9zctPYFrAhUFMLIB7np5m1Ig46TFo605xvrJiOEU4+3sLlODzwkeGjEGZh7?=
- =?us-ascii?Q?5uBEa+NTsMyCyRXBCA5po/OF46wdF9uR21cmPZ1Y/Sfa/QZxOdsU2zkMjYuX?=
- =?us-ascii?Q?WE51PEedKdX19FiF7bHx85i7yHMAbS/lASX4c5QcibikhvyCOfHdU17NzLmh?=
- =?us-ascii?Q?TtQHfQHQZqsCuUJTjNL3ogbWHzvwLl6OeVjw9WMYdm18suqxXK5tKWgX5dNU?=
- =?us-ascii?Q?JwmHCJFPvVdQc5wrOQcWb6aAU25Lp4EWAqfLuOMJrunzG0Fz9AkkU8emQCTd?=
- =?us-ascii?Q?i3csa83NlSgj2QYl9hK0x5yGSOADOR+VqNRNZtEPQ8duo7RokbAU+NU8XhW0?=
- =?us-ascii?Q?ebL370IVTb+XsKdiKVWumN0SG3Bc4Dw3LjSzvjR6OzNiaLRkvArbn3Lmsgqh?=
- =?us-ascii?Q?/WGIdkpbgupLRDmu+H+ORhQPCqjQ9lgd5/O6L/bYcqZhZlXQl9vsuD3101n3?=
- =?us-ascii?Q?fAUOf3yYmtEVV91eD82leiQs+V8JTPlQcnJ3PFnZ7hsAwJBJy2pRf0Q+yb82?=
- =?us-ascii?Q?OuHICBps5hKKtB0lMPWENYyF4Mg8wC8C5TnxvMkLSWQlbvv76uoHlugW0O83?=
- =?us-ascii?Q?r3PUZcQMN0kVpALlA1oQN0O/6Bq9p74n4ny3r5KNxxLUMeOBx+e/EiG0NgDk?=
- =?us-ascii?Q?RqnhAPgL4lDe8HVExO3rlcOtDTe8KnI/L/Ret/q8ROuxQWql6BfTF/LSxVpO?=
- =?us-ascii?Q?UMvtopIimg=3D=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d8e5a34c-df46-4119-fd68-08de5bb44130
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2026 01:51:28.0629 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: a7wQD5e1GYtLKJKhbDzPS98WFwAj8rY9Wexjq8o44Z9J7SwOUg7I+HyyIXh4LAcq5Pfz9oZd9mcnmC88enhGnw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB5630
+In-Reply-To: <736febd280eb484d79cef5cf55b8a6f79ad832d2.1769097829.git.lorenzo.stoakes@oracle.com>
+X-Mailman-Approved-At: Mon, 26 Jan 2026 13:55:54 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -189,107 +122,506 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.31 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ARC_NA(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[linux-foundation.org,linux.intel.com,kernel.org,redhat.com,alien8.de,zytor.com,arndb.de,linuxfoundation.org,intel.com,suse.de,gmail.com,ffwll.ch,ursulin.net,amd.com,zeniv.linux.org.uk,suse.cz,kvack.org,linux.alibaba.com,google.com,huawei.com,vivo.com,mit.edu,dilger.ca,linux.dev,paragon-software.com,omnibond.com,arm.com,wdc.com,infradead.org,oracle.com,suse.com,nvidia.com,paul-moore.com,namei.org,hallyn.com,rasmusvillemoes.dk,vger.kernel.org,lists.linux.dev,lists.freedesktop.org,lists.ozlabs.org,lists.orangefs.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[50];
-	FROM_NEQ_ENVFROM(0.00)[joelagnelf@nvidia.com,intel-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,google.com,protonmail.com,umich.edu,nvidia.com,weathered-steel.dev,collabora.com,lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	MISSING_XM_UA(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[Nvidia.com:dkim]
-X-Rspamd-Queue-Id: 78BFA7F71A
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_GT_50(0.00)[93];
+	FROM_NEQ_ENVFROM(0.00)[jarkko@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oracle.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: CF943892A4
 X-Rspamd-Action: no action
 
-On Wed, Jan 21, 2026 at 08:36:05PM +0000, Gary Guo wrote:
->>> Why is this callback necessary? The user can just create the list head and
->>> then reference it later? I don't see what this specifically gains over just
->>> doing
->>> 
->>>     fn new() -> impl PinInit<Self>;
->>> 
->>> and have user-side
->>> 
->>>     list <- CListHead::new(),
->>>     _: {
->>>         do_want_ever(&list)
->>>     }
->>
->> The list initialization can fail, see the GPU buddy patch:
->>
->>         // Create pin-initializer that initializes list and allocates blocks.
->>         let init = try_pin_init!(AllocatedBlocks {
->>             list <- CListHead::try_init(|list| {
->>                 // Lock while allocating to serialize with concurrent frees.
->>                 let guard = buddy_arc.lock();
->>
->>                 // SAFETY: guard provides exclusive access, list is initialized.
->>                 to_result(unsafe {
->>                     bindings::gpu_buddy_alloc_blocks(
->>                         guard.as_raw(),
->>                         params.start_range_address,
->>                         params.end_range_address,
->>                         params.size_bytes,
->>                         params.min_block_size_bytes,
->>                         list.as_raw(),
->>                         params.buddy_flags.as_raw(),
->>                     )
->>                 })
->>             }),
->>             buddy: Arc::clone(&buddy_arc),
->>             flags: params.buddy_flags,
->>         });
+On Thu, Jan 22, 2026 at 04:06:17PM +0000, Lorenzo Stoakes wrote:
+> In order to be able to use only vma_flags_t in vm_area_desc we must adjust
+> shmem file setup functions to operate in terms of vma_flags_t rather than
+> vm_flags_t.
 > 
-> The list initialization doesn't fail? It's the subsequent action you did that
-> failed.
+> This patch makes this change and updates all callers to use the new
+> functions.
 > 
-> You can put failing things in the `_: { ... }` block too.
+> No functional changes intended.
+> 
+> Signed-off-by: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+> ---
+>  arch/x86/kernel/cpu/sgx/ioctl.c           |  2 +-
+>  drivers/gpu/drm/drm_gem.c                 |  5 +-
+>  drivers/gpu/drm/i915/gem/i915_gem_shmem.c |  2 +-
+>  drivers/gpu/drm/i915/gem/i915_gem_ttm.c   |  3 +-
+>  drivers/gpu/drm/i915/gt/shmem_utils.c     |  3 +-
+>  drivers/gpu/drm/ttm/tests/ttm_tt_test.c   |  2 +-
+>  drivers/gpu/drm/ttm/ttm_backup.c          |  3 +-
+>  drivers/gpu/drm/ttm/ttm_tt.c              |  2 +-
+>  fs/xfs/scrub/xfile.c                      |  3 +-
+>  fs/xfs/xfs_buf_mem.c                      |  2 +-
+>  include/linux/shmem_fs.h                  |  8 ++-
+>  ipc/shm.c                                 |  6 +--
+>  mm/memfd.c                                |  2 +-
+>  mm/memfd_luo.c                            |  2 +-
+>  mm/shmem.c                                | 59 +++++++++++++----------
+>  security/keys/big_key.c                   |  2 +-
+>  16 files changed, 57 insertions(+), 49 deletions(-)
+> 
+> diff --git a/arch/x86/kernel/cpu/sgx/ioctl.c b/arch/x86/kernel/cpu/sgx/ioctl.c
+> index 9322a9287dc7..0bc36957979d 100644
+> --- a/arch/x86/kernel/cpu/sgx/ioctl.c
+> +++ b/arch/x86/kernel/cpu/sgx/ioctl.c
+> @@ -83,7 +83,7 @@ static int sgx_encl_create(struct sgx_encl *encl, struct sgx_secs *secs)
+>  	encl_size = secs->size + PAGE_SIZE;
+>  
+>  	backing = shmem_file_setup("SGX backing", encl_size + (encl_size >> 5),
+> -				   VM_NORESERVE);
+> +				   mk_vma_flags(VMA_NORESERVE_BIT));
+>  	if (IS_ERR(backing)) {
+>  		ret = PTR_ERR(backing);
+>  		goto err_out_shrink;
 
-This worked out well, thanks for the suggestion! I've updated the code
-to use `CListHead::new()` with the failable allocation in a `_: { ... }` block:
+As per this diff:
 
-        let init = try_pin_init!(AllocatedBlocks {
-            buddy: Arc::clone(&buddy_arc),
-            list <- CListHead::new(),
-            flags: params.buddy_flags,
-            _: {
-                // Lock while allocating to serialize with concurrent frees.
-                let guard = buddy.lock();
+Reviewed-by: Jarkko Sakkinen <jarkko@kernel.org>
 
-                // SAFETY: `guard` provides exclusive access to the buddy allocator.
-                to_result(unsafe {
-                    bindings::gpu_buddy_alloc_blocks(
-                        guard.as_raw(),
-                        params.start_range_address,
-                        params.end_range_address,
-                        params.size_bytes,
-                        params.min_block_size_bytes,
-                        list.as_raw(),
-                        params.buddy_flags.as_raw(),
-                    )
-                })?
-            }
-        });
+> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+> index e4df43427394..be4dca2bc34e 100644
+> --- a/drivers/gpu/drm/drm_gem.c
+> +++ b/drivers/gpu/drm/drm_gem.c
+> @@ -130,14 +130,15 @@ int drm_gem_object_init_with_mnt(struct drm_device *dev,
+>  				 struct vfsmount *gemfs)
+>  {
+>  	struct file *filp;
+> +	const vma_flags_t flags = mk_vma_flags(VMA_NORESERVE_BIT);
+>  
+>  	drm_gem_private_object_init(dev, obj, size);
+>  
+>  	if (gemfs)
+>  		filp = shmem_file_setup_with_mnt(gemfs, "drm mm object", size,
+> -						 VM_NORESERVE);
+> +						 flags);
+>  	else
+> -		filp = shmem_file_setup("drm mm object", size, VM_NORESERVE);
+> +		filp = shmem_file_setup("drm mm object", size, flags);
+>  
+>  	if (IS_ERR(filp))
+>  		return PTR_ERR(filp);
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> index 26dda55a07ff..fe1843497b27 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> @@ -496,7 +496,7 @@ static int __create_shmem(struct drm_i915_private *i915,
+>  			  struct drm_gem_object *obj,
+>  			  resource_size_t size)
+>  {
+> -	unsigned long flags = VM_NORESERVE;
+> +	const vma_flags_t flags = mk_vma_flags(VMA_NORESERVE_BIT);
+>  	struct file *filp;
+>  
+>  	drm_gem_private_object_init(&i915->drm, obj, size);
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> index f65fe86c02b5..7b1a7d01db2b 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> @@ -200,7 +200,8 @@ static int i915_ttm_tt_shmem_populate(struct ttm_device *bdev,
+>  		struct address_space *mapping;
+>  		gfp_t mask;
+>  
+> -		filp = shmem_file_setup("i915-shmem-tt", size, VM_NORESERVE);
+> +		filp = shmem_file_setup("i915-shmem-tt", size,
+> +					mk_vma_flags(VMA_NORESERVE_BIT));
+>  		if (IS_ERR(filp))
+>  			return PTR_ERR(filp);
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/shmem_utils.c b/drivers/gpu/drm/i915/gt/shmem_utils.c
+> index 365c4b8b04f4..5f37c699a320 100644
+> --- a/drivers/gpu/drm/i915/gt/shmem_utils.c
+> +++ b/drivers/gpu/drm/i915/gt/shmem_utils.c
+> @@ -19,7 +19,8 @@ struct file *shmem_create_from_data(const char *name, void *data, size_t len)
+>  	struct file *file;
+>  	int err;
+>  
+> -	file = shmem_file_setup(name, PAGE_ALIGN(len), VM_NORESERVE);
+> +	file = shmem_file_setup(name, PAGE_ALIGN(len),
+> +				mk_vma_flags(VMA_NORESERVE_BIT));
+>  	if (IS_ERR(file))
+>  		return file;
+>  
+> diff --git a/drivers/gpu/drm/ttm/tests/ttm_tt_test.c b/drivers/gpu/drm/ttm/tests/ttm_tt_test.c
+> index 61ec6f580b62..bd5f7d0b9b62 100644
+> --- a/drivers/gpu/drm/ttm/tests/ttm_tt_test.c
+> +++ b/drivers/gpu/drm/ttm/tests/ttm_tt_test.c
+> @@ -143,7 +143,7 @@ static void ttm_tt_fini_shmem(struct kunit *test)
+>  	err = ttm_tt_init(tt, bo, 0, caching, 0);
+>  	KUNIT_ASSERT_EQ(test, err, 0);
+>  
+> -	shmem = shmem_file_setup("ttm swap", BO_SIZE, 0);
+> +	shmem = shmem_file_setup("ttm swap", BO_SIZE, EMPTY_VMA_FLAGS);
+>  	tt->swap_storage = shmem;
+>  
+>  	ttm_tt_fini(tt);
+> diff --git a/drivers/gpu/drm/ttm/ttm_backup.c b/drivers/gpu/drm/ttm/ttm_backup.c
+> index 32530c75f038..6bd4c123d94c 100644
+> --- a/drivers/gpu/drm/ttm/ttm_backup.c
+> +++ b/drivers/gpu/drm/ttm/ttm_backup.c
+> @@ -178,5 +178,6 @@ EXPORT_SYMBOL_GPL(ttm_backup_bytes_avail);
+>   */
+>  struct file *ttm_backup_shmem_create(loff_t size)
+>  {
+> -	return shmem_file_setup("ttm shmem backup", size, 0);
+> +	return shmem_file_setup("ttm shmem backup", size,
+> +				EMPTY_VMA_FLAGS);
+>  }
+> diff --git a/drivers/gpu/drm/ttm/ttm_tt.c b/drivers/gpu/drm/ttm/ttm_tt.c
+> index 611d20ab966d..f73a5ce87645 100644
+> --- a/drivers/gpu/drm/ttm/ttm_tt.c
+> +++ b/drivers/gpu/drm/ttm/ttm_tt.c
+> @@ -330,7 +330,7 @@ int ttm_tt_swapout(struct ttm_device *bdev, struct ttm_tt *ttm,
+>  	struct page *to_page;
+>  	int i, ret;
+>  
+> -	swap_storage = shmem_file_setup("ttm swap", size, 0);
+> +	swap_storage = shmem_file_setup("ttm swap", size, EMPTY_VMA_FLAGS);
+>  	if (IS_ERR(swap_storage)) {
+>  		pr_err("Failed allocating swap storage\n");
+>  		return PTR_ERR(swap_storage);
+> diff --git a/fs/xfs/scrub/xfile.c b/fs/xfs/scrub/xfile.c
+> index c753c79df203..fe0584a39f16 100644
+> --- a/fs/xfs/scrub/xfile.c
+> +++ b/fs/xfs/scrub/xfile.c
+> @@ -61,7 +61,8 @@ xfile_create(
+>  	if (!xf)
+>  		return -ENOMEM;
+>  
+> -	xf->file = shmem_kernel_file_setup(description, isize, VM_NORESERVE);
+> +	xf->file = shmem_kernel_file_setup(description, isize,
+> +					   mk_vma_flags(VMA_NORESERVE_BIT));
+>  	if (IS_ERR(xf->file)) {
+>  		error = PTR_ERR(xf->file);
+>  		goto out_xfile;
+> diff --git a/fs/xfs/xfs_buf_mem.c b/fs/xfs/xfs_buf_mem.c
+> index dcbfa274e06d..fd6f0a5bc0ea 100644
+> --- a/fs/xfs/xfs_buf_mem.c
+> +++ b/fs/xfs/xfs_buf_mem.c
+> @@ -62,7 +62,7 @@ xmbuf_alloc(
+>  	if (!btp)
+>  		return -ENOMEM;
+>  
+> -	file = shmem_kernel_file_setup(descr, 0, 0);
+> +	file = shmem_kernel_file_setup(descr, 0, EMPTY_VMA_FLAGS);
+>  	if (IS_ERR(file)) {
+>  		error = PTR_ERR(file);
+>  		goto out_free_btp;
+> diff --git a/include/linux/shmem_fs.h b/include/linux/shmem_fs.h
+> index e2069b3179c4..a8273b32e041 100644
+> --- a/include/linux/shmem_fs.h
+> +++ b/include/linux/shmem_fs.h
+> @@ -102,12 +102,10 @@ static inline struct shmem_inode_info *SHMEM_I(struct inode *inode)
+>  extern const struct fs_parameter_spec shmem_fs_parameters[];
+>  extern void shmem_init(void);
+>  extern int shmem_init_fs_context(struct fs_context *fc);
+> -extern struct file *shmem_file_setup(const char *name,
+> -					loff_t size, unsigned long flags);
+> -extern struct file *shmem_kernel_file_setup(const char *name, loff_t size,
+> -					    unsigned long flags);
+> +struct file *shmem_file_setup(const char *name, loff_t size, vma_flags_t flags);
+> +struct file *shmem_kernel_file_setup(const char *name, loff_t size, vma_flags_t vma_flags);
+>  extern struct file *shmem_file_setup_with_mnt(struct vfsmount *mnt,
+> -		const char *name, loff_t size, unsigned long flags);
+> +		const char *name, loff_t size, vma_flags_t flags);
+>  int shmem_zero_setup(struct vm_area_struct *vma);
+>  int shmem_zero_setup_desc(struct vm_area_desc *desc);
+>  extern unsigned long shmem_get_unmapped_area(struct file *, unsigned long addr,
+> diff --git a/ipc/shm.c b/ipc/shm.c
+> index 2c7379c4c647..e8c7d1924c50 100644
+> --- a/ipc/shm.c
+> +++ b/ipc/shm.c
+> @@ -708,6 +708,7 @@ static int newseg(struct ipc_namespace *ns, struct ipc_params *params)
+>  	struct shmid_kernel *shp;
+>  	size_t numpages = (size + PAGE_SIZE - 1) >> PAGE_SHIFT;
+>  	const bool has_no_reserve = shmflg & SHM_NORESERVE;
+> +	vma_flags_t acctflag = EMPTY_VMA_FLAGS;
+>  	struct file *file;
+>  	char name[13];
+>  
+> @@ -738,7 +739,6 @@ static int newseg(struct ipc_namespace *ns, struct ipc_params *params)
+>  
+>  	sprintf(name, "SYSV%08x", key);
+>  	if (shmflg & SHM_HUGETLB) {
+> -		vma_flags_t acctflag = EMPTY_VMA_FLAGS;
+>  		struct hstate *hs;
+>  		size_t hugesize;
+>  
+> @@ -755,14 +755,12 @@ static int newseg(struct ipc_namespace *ns, struct ipc_params *params)
+>  		file = hugetlb_file_setup(name, hugesize, acctflag,
+>  				HUGETLB_SHMFS_INODE, (shmflg >> SHM_HUGE_SHIFT) & SHM_HUGE_MASK);
+>  	} else {
+> -		vm_flags_t acctflag = 0;
+> -
+>  		/*
+>  		 * Do not allow no accounting for OVERCOMMIT_NEVER, even
+>  		 * if it's asked for.
+>  		 */
+>  		if  (has_no_reserve && sysctl_overcommit_memory != OVERCOMMIT_NEVER)
+> -			acctflag = VM_NORESERVE;
+> +			vma_flags_set(&acctflag, VMA_NORESERVE_BIT);
+>  		file = shmem_kernel_file_setup(name, size, acctflag);
+>  	}
+>  	error = PTR_ERR(file);
+> diff --git a/mm/memfd.c b/mm/memfd.c
+> index 5f95f639550c..f3a8950850a2 100644
+> --- a/mm/memfd.c
+> +++ b/mm/memfd.c
+> @@ -469,7 +469,7 @@ static struct file *alloc_file(const char *name, unsigned int flags)
+>  					(flags >> MFD_HUGE_SHIFT) &
+>  					MFD_HUGE_MASK);
+>  	} else {
+> -		file = shmem_file_setup(name, 0, VM_NORESERVE);
+> +		file = shmem_file_setup(name, 0, mk_vma_flags(VMA_NORESERVE_BIT));
+>  	}
+>  	if (IS_ERR(file))
+>  		return file;
+> diff --git a/mm/memfd_luo.c b/mm/memfd_luo.c
+> index 4f6ba63b4310..a2629dcfd0f1 100644
+> --- a/mm/memfd_luo.c
+> +++ b/mm/memfd_luo.c
+> @@ -443,7 +443,7 @@ static int memfd_luo_retrieve(struct liveupdate_file_op_args *args)
+>  	if (!ser)
+>  		return -EINVAL;
+>  
+> -	file = shmem_file_setup("", 0, VM_NORESERVE);
+> +	file = shmem_file_setup("", 0, mk_vma_flags(VMA_NORESERVE_BIT));
+>  
+>  	if (IS_ERR(file)) {
+>  		pr_err("failed to setup file: %pe\n", file);
+> diff --git a/mm/shmem.c b/mm/shmem.c
+> index 0adde3f4df27..97a8f55c7296 100644
+> --- a/mm/shmem.c
+> +++ b/mm/shmem.c
+> @@ -3057,9 +3057,9 @@ static struct offset_ctx *shmem_get_offset_ctx(struct inode *inode)
+>  }
+>  
+>  static struct inode *__shmem_get_inode(struct mnt_idmap *idmap,
+> -					     struct super_block *sb,
+> -					     struct inode *dir, umode_t mode,
+> -					     dev_t dev, unsigned long flags)
+> +				       struct super_block *sb,
+> +				       struct inode *dir, umode_t mode,
+> +				       dev_t dev, vma_flags_t flags)
+>  {
+>  	struct inode *inode;
+>  	struct shmem_inode_info *info;
+> @@ -3087,7 +3087,8 @@ static struct inode *__shmem_get_inode(struct mnt_idmap *idmap,
+>  	spin_lock_init(&info->lock);
+>  	atomic_set(&info->stop_eviction, 0);
+>  	info->seals = F_SEAL_SEAL;
+> -	info->flags = (flags & VM_NORESERVE) ? SHMEM_F_NORESERVE : 0;
+> +	info->flags = vma_flags_test(&flags, VMA_NORESERVE_BIT)
+> +		? SHMEM_F_NORESERVE : 0;
+>  	info->i_crtime = inode_get_mtime(inode);
+>  	info->fsflags = (dir == NULL) ? 0 :
+>  		SHMEM_I(dir)->fsflags & SHMEM_FL_INHERITED;
+> @@ -3140,7 +3141,7 @@ static struct inode *__shmem_get_inode(struct mnt_idmap *idmap,
+>  #ifdef CONFIG_TMPFS_QUOTA
+>  static struct inode *shmem_get_inode(struct mnt_idmap *idmap,
+>  				     struct super_block *sb, struct inode *dir,
+> -				     umode_t mode, dev_t dev, unsigned long flags)
+> +				     umode_t mode, dev_t dev, vma_flags_t flags)
+>  {
+>  	int err;
+>  	struct inode *inode;
+> @@ -3166,9 +3167,9 @@ static struct inode *shmem_get_inode(struct mnt_idmap *idmap,
+>  	return ERR_PTR(err);
+>  }
+>  #else
+> -static inline struct inode *shmem_get_inode(struct mnt_idmap *idmap,
+> +static struct inode *shmem_get_inode(struct mnt_idmap *idmap,
+>  				     struct super_block *sb, struct inode *dir,
+> -				     umode_t mode, dev_t dev, unsigned long flags)
+> +				     umode_t mode, dev_t dev, vma_flags_t flags)
+>  {
+>  	return __shmem_get_inode(idmap, sb, dir, mode, dev, flags);
+>  }
+> @@ -3875,7 +3876,8 @@ shmem_mknod(struct mnt_idmap *idmap, struct inode *dir,
+>  	if (!generic_ci_validate_strict_name(dir, &dentry->d_name))
+>  		return -EINVAL;
+>  
+> -	inode = shmem_get_inode(idmap, dir->i_sb, dir, mode, dev, VM_NORESERVE);
+> +	inode = shmem_get_inode(idmap, dir->i_sb, dir, mode, dev,
+> +				mk_vma_flags(VMA_NORESERVE_BIT));
+>  	if (IS_ERR(inode))
+>  		return PTR_ERR(inode);
+>  
+> @@ -3910,7 +3912,8 @@ shmem_tmpfile(struct mnt_idmap *idmap, struct inode *dir,
+>  	struct inode *inode;
+>  	int error;
+>  
+> -	inode = shmem_get_inode(idmap, dir->i_sb, dir, mode, 0, VM_NORESERVE);
+> +	inode = shmem_get_inode(idmap, dir->i_sb, dir, mode, 0,
+> +				mk_vma_flags(VMA_NORESERVE_BIT));
+>  	if (IS_ERR(inode)) {
+>  		error = PTR_ERR(inode);
+>  		goto err_out;
+> @@ -4107,7 +4110,7 @@ static int shmem_symlink(struct mnt_idmap *idmap, struct inode *dir,
+>  		return -ENAMETOOLONG;
+>  
+>  	inode = shmem_get_inode(idmap, dir->i_sb, dir, S_IFLNK | 0777, 0,
+> -				VM_NORESERVE);
+> +				mk_vma_flags(VMA_NORESERVE_BIT));
+>  	if (IS_ERR(inode))
+>  		return PTR_ERR(inode);
+>  
+> @@ -5108,7 +5111,8 @@ static int shmem_fill_super(struct super_block *sb, struct fs_context *fc)
+>  #endif /* CONFIG_TMPFS_QUOTA */
+>  
+>  	inode = shmem_get_inode(&nop_mnt_idmap, sb, NULL,
+> -				S_IFDIR | sbinfo->mode, 0, VM_NORESERVE);
+> +				S_IFDIR | sbinfo->mode, 0,
+> +				mk_vma_flags(VMA_NORESERVE_BIT));
+>  	if (IS_ERR(inode)) {
+>  		error = PTR_ERR(inode);
+>  		goto failed;
+> @@ -5808,7 +5812,7 @@ static inline void shmem_unacct_size(unsigned long flags, loff_t size)
+>  
+>  static inline struct inode *shmem_get_inode(struct mnt_idmap *idmap,
+>  				struct super_block *sb, struct inode *dir,
+> -				umode_t mode, dev_t dev, unsigned long flags)
+> +				umode_t mode, dev_t dev, vma_flags_t flags)
+>  {
+>  	struct inode *inode = ramfs_get_inode(sb, dir, mode, dev);
+>  	return inode ? inode : ERR_PTR(-ENOSPC);
+> @@ -5819,10 +5823,11 @@ static inline struct inode *shmem_get_inode(struct mnt_idmap *idmap,
+>  /* common code */
+>  
+>  static struct file *__shmem_file_setup(struct vfsmount *mnt, const char *name,
+> -				       loff_t size, unsigned long vm_flags,
+> +				       loff_t size, vma_flags_t flags,
+>  				       unsigned int i_flags)
+>  {
+> -	unsigned long flags = (vm_flags & VM_NORESERVE) ? SHMEM_F_NORESERVE : 0;
+> +	const unsigned long shmem_flags =
+> +		vma_flags_test(&flags, VMA_NORESERVE_BIT) ? SHMEM_F_NORESERVE : 0;
+>  	struct inode *inode;
+>  	struct file *res;
+>  
+> @@ -5835,13 +5840,13 @@ static struct file *__shmem_file_setup(struct vfsmount *mnt, const char *name,
+>  	if (is_idmapped_mnt(mnt))
+>  		return ERR_PTR(-EINVAL);
+>  
+> -	if (shmem_acct_size(flags, size))
+> +	if (shmem_acct_size(shmem_flags, size))
+>  		return ERR_PTR(-ENOMEM);
+>  
+>  	inode = shmem_get_inode(&nop_mnt_idmap, mnt->mnt_sb, NULL,
+> -				S_IFREG | S_IRWXUGO, 0, vm_flags);
+> +				S_IFREG | S_IRWXUGO, 0, flags);
+>  	if (IS_ERR(inode)) {
+> -		shmem_unacct_size(flags, size);
+> +		shmem_unacct_size(shmem_flags, size);
+>  		return ERR_CAST(inode);
+>  	}
+>  	inode->i_flags |= i_flags;
+> @@ -5864,9 +5869,10 @@ static struct file *__shmem_file_setup(struct vfsmount *mnt, const char *name,
+>   *	checks are provided at the key or shm level rather than the inode.
+>   * @name: name for dentry (to be seen in /proc/<pid>/maps)
+>   * @size: size to be set for the file
+> - * @flags: VM_NORESERVE suppresses pre-accounting of the entire object size
+> + * @vma_flags: VMA_NORESERVE_BIT suppresses pre-accounting of the entire object size
+>   */
+> -struct file *shmem_kernel_file_setup(const char *name, loff_t size, unsigned long flags)
+> +struct file *shmem_kernel_file_setup(const char *name, loff_t size,
+> +				     vma_flags_t flags)
+>  {
+>  	return __shmem_file_setup(shm_mnt, name, size, flags, S_PRIVATE);
+>  }
+> @@ -5878,7 +5884,7 @@ EXPORT_SYMBOL_GPL(shmem_kernel_file_setup);
+>   * @size: size to be set for the file
+>   * @flags: VM_NORESERVE suppresses pre-accounting of the entire object size
+>   */
+> -struct file *shmem_file_setup(const char *name, loff_t size, unsigned long flags)
+> +struct file *shmem_file_setup(const char *name, loff_t size, vma_flags_t flags)
+>  {
+>  	return __shmem_file_setup(shm_mnt, name, size, flags, 0);
+>  }
+> @@ -5889,16 +5895,17 @@ EXPORT_SYMBOL_GPL(shmem_file_setup);
+>   * @mnt: the tmpfs mount where the file will be created
+>   * @name: name for dentry (to be seen in /proc/<pid>/maps)
+>   * @size: size to be set for the file
+> - * @flags: VM_NORESERVE suppresses pre-accounting of the entire object size
+> + * @flags: VMA_NORESERVE_BIT suppresses pre-accounting of the entire object size
+>   */
+>  struct file *shmem_file_setup_with_mnt(struct vfsmount *mnt, const char *name,
+> -				       loff_t size, unsigned long flags)
+> +				       loff_t size, vma_flags_t flags)
+>  {
+>  	return __shmem_file_setup(mnt, name, size, flags, 0);
+>  }
+>  EXPORT_SYMBOL_GPL(shmem_file_setup_with_mnt);
+>  
+> -static struct file *__shmem_zero_setup(unsigned long start, unsigned long end, vm_flags_t vm_flags)
+> +static struct file *__shmem_zero_setup(unsigned long start, unsigned long end,
+> +		vma_flags_t flags)
+>  {
+>  	loff_t size = end - start;
+>  
+> @@ -5908,7 +5915,7 @@ static struct file *__shmem_zero_setup(unsigned long start, unsigned long end, v
+>  	 * accessible to the user through its mapping, use S_PRIVATE flag to
+>  	 * bypass file security, in the same way as shmem_kernel_file_setup().
+>  	 */
+> -	return shmem_kernel_file_setup("dev/zero", size, vm_flags);
+> +	return shmem_kernel_file_setup("dev/zero", size, flags);
+>  }
+>  
+>  /**
+> @@ -5918,7 +5925,7 @@ static struct file *__shmem_zero_setup(unsigned long start, unsigned long end, v
+>   */
+>  int shmem_zero_setup(struct vm_area_struct *vma)
+>  {
+> -	struct file *file = __shmem_zero_setup(vma->vm_start, vma->vm_end, vma->vm_flags);
+> +	struct file *file = __shmem_zero_setup(vma->vm_start, vma->vm_end, vma->flags);
+>  
+>  	if (IS_ERR(file))
+>  		return PTR_ERR(file);
+> @@ -5939,7 +5946,7 @@ int shmem_zero_setup(struct vm_area_struct *vma)
+>   */
+>  int shmem_zero_setup_desc(struct vm_area_desc *desc)
+>  {
+> -	struct file *file = __shmem_zero_setup(desc->start, desc->end, desc->vm_flags);
+> +	struct file *file = __shmem_zero_setup(desc->start, desc->end, desc->vma_flags);
+>  
+>  	if (IS_ERR(file))
+>  		return PTR_ERR(file);
+> diff --git a/security/keys/big_key.c b/security/keys/big_key.c
+> index d46862ab90d6..268f702df380 100644
+> --- a/security/keys/big_key.c
+> +++ b/security/keys/big_key.c
+> @@ -103,7 +103,7 @@ int big_key_preparse(struct key_preparsed_payload *prep)
+>  					 0, enckey);
+>  
+>  		/* save aligned data to file */
+> -		file = shmem_kernel_file_setup("", enclen, 0);
+> +		file = shmem_kernel_file_setup("", enclen, EMPTY_VMA_FLAGS);
+>  		if (IS_ERR(file)) {
+>  			ret = PTR_ERR(file);
+>  			goto err_enckey;
+> -- 
+> 2.52.0
+> 
 
-I'll remove the try_init() method from CListHead since new() is sufficient.
-
--- 
-Joel Fernandes
-
+BR, Jarkko
