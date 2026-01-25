@@ -2,34 +2,87 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qJmvBFlydGno5gAAu9opvQ
+	id CM5DIm5yd2n7ggEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sat, 24 Jan 2026 08:18:49 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jan 2026 14:55:58 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B32D7CCAF
-	for <lists+intel-gfx@lfdr.de>; Sat, 24 Jan 2026 08:18:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CBFB89296
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jan 2026 14:55:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C579A10E30B;
-	Sat, 24 Jan 2026 07:18:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F9E310E43B;
+	Mon, 26 Jan 2026 13:55:55 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Bz7FAYJO";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5494810E30B;
- Sat, 24 Jan 2026 07:18:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5475526862602486406=="
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com
+ [209.85.210.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70E8710E34D
+ for <intel-gfx@lists.freedesktop.org>; Sun, 25 Jan 2026 00:12:03 +0000 (UTC)
+Received: by mail-pf1-f174.google.com with SMTP id
+ d2e1a72fcca58-82311f4070cso1354016b3a.0
+ for <intel-gfx@lists.freedesktop.org>; Sat, 24 Jan 2026 16:12:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1769299923; x=1769904723; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=S13bvTkOJ8+hfUIaAAD5yR0hRksywvnKTFVvNAS0+Hk=;
+ b=Bz7FAYJOTmt0HtG4PmWKeATFDjEHAzoAO6mIA7OiazEsFPGQ1d1f+NsX91gf5oDF+B
+ cx52uMnNC0ZAUshp/2DPKiKKsPlYnh67nc4rOTRRoOlFBL+qSIWI11Flpa45EpRt3zu7
+ IHTKx4hS+d/WS3EHebFkB9zvSnqTPe9RMlHqPBPJdZmh+Kqa+wJCeCE0edKXFBsyZSij
+ V6Wic8T8GzstB5VgurulG0/TiCTqU9rX20AhENZAtX/9p7fLgsc+/YPsDXsFJYEuPPsr
+ Iih42AtdB6dSQfSen+ed9zqoLLeLZVRGT5pXfklQp+yM8cRZ7R3pgCHvoWB0gwj21iUJ
+ sJuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1769299923; x=1769904723;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=S13bvTkOJ8+hfUIaAAD5yR0hRksywvnKTFVvNAS0+Hk=;
+ b=UrE7ZGk7wp1QD2P2dMEIvXuXS4b+aRnTcMJouolyNQHj2xggQ3XJUKxHvjJiDUX/7K
+ hHKQVklqgAPA7VK7IUAW2/LSkgF+Uy6O2YAQcAN1keWU3lq87z8UvoErmjFW0MGzfSlw
+ r0IzK08mndwCFZ0Hm7jXrGDGVEHcTywHsy7XVLAfRGIW+jxde8NpW8tXw2JkHGyqPNlY
+ bGcF45pLBHSB/BMZN1jQFkSabdZZJWnvog+CHJVsBr9rJmr+CmqRS/wXkGGVzX9f1lNl
+ w5g9KxWFGydBbe+IXe7JpcAPuAFAGVNdo3c3gvvV8LBlP+QHWnoyzJx9SPuUsq2cDA5d
+ A5UA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX8+FRjYVMf/TmBIp8k7ukMBOlx12J/a+I+4z+bxh0rUNlFF1nGl++vug8JYYs9PwVJYpiTmnnnqO8=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxho3gayIhPgPdUa3sVVQQFLmEMbPv6ltmRdOnKnKreOHLeH3ds
+ 7xr0mibms/m1XmoS4Kz0KXO2Z39L8/QCYqRkjqHVeNSWTM8aZ6wo5bTR6AP+
+X-Gm-Gg: AZuq6aI3qwFRbIhsJyMGJf6L3/HsqodK0ph+ZOijrHKG3trZwNWApAV4S/C3RI/AIya
+ Pf96is3EUgWESZrNbsSkDX3ORT9BiVnw9/da7D1vVGnzQ5nQK+XEsvFtKYmwNNeZflrZyTT9dfe
+ 6HfnUrcKDisv93AsDqa1FqNSfWdxYJQw1nZKllwPW8Ant1SrHWUntD7e3uKOEWjsURBLAkthzIN
+ mcJPyQFPdgofylW1m3eGit1GQPSIARkw2KWBoE2UZspDlhSC+lEHgkNnio3XPPfizFYb2WrPQSF
+ HaaXViqP5TI4gW5+varvkNIzfSt2/WfRQ7Q+MHU6OJwjjwby5QqRvCZ0B73zl+CmjNg863kkSQp
+ JN1cytPKk4GFM+wha8BM2vjXqOiXAVI2YzvEau6tk94Y5Pv0yEPU8fxlHifB0L6NVI11rEwzBmQ
+ M6wFe8w+Zw9R8voRs=
+X-Received: by 2002:a05:6a00:4091:b0:823:1444:7873 with SMTP id
+ d2e1a72fcca58-823412bf321mr213136b3a.32.1769299922979; 
+ Sat, 24 Jan 2026 16:12:02 -0800 (PST)
+Received: from at.. ([171.61.161.234]) by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-8231876e5d0sm5608273b3a.61.2026.01.24.16.11.59
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 24 Jan 2026 16:12:02 -0800 (PST)
+From: Atharva Tiwari <atharvatiwarilinuxdev@gmail.com>
+To: 
+Cc: Atharva Tiwari <atharvatiwarilinuxdev@gmail.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] Add support for eGPUs on Apple Products
+Date: Sun, 25 Jan 2026 00:10:59 +0000
+Message-ID: <20260125001111.1269-1-atharvatiwarilinuxdev@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915=3A_Register_vGPU?=
- =?utf-8?q?_after_DRM_dev_register_and_fix_fail_path?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Kaushlendra Kumar" <kaushlendra.kumar@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Sat, 24 Jan 2026 07:18:45 -0000
-Message-ID: <176923912532.189692.4250032927334065454@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260124062914.1244888-1-kaushlendra.kumar@intel.com>
-In-Reply-To: <20260124062914.1244888-1-kaushlendra.kumar@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 26 Jan 2026 13:55:54 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,207 +95,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	DATE_IN_PAST(1.00)[37];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:atharvatiwarilinuxdev@gmail.com,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:airlied@gmail.com,m:simona@ffwll.ch,m:intel-xe@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
+	ARC_NA(0.00)[];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[atharvatiwarilinuxdev@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,linux.intel.com,intel.com,ursulin.net,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[atharvatiwarilinuxdev@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,basic-flip-vs-dpms:email,patchwork.freedesktop.org:url,gitlab.freedesktop.org:url]
-X-Rspamd-Queue-Id: 3B32D7CCAF
+	RCPT_COUNT_SEVEN(0.00)[11];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 5CBFB89296
 X-Rspamd-Action: no action
 
---===============5475526862602486406==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This series adds support for eGPUs on Apple products, by
+enabling apple-set-os on all apple devices.
 
-== Series Details ==
-
-Series: drm/i915: Register vGPU after DRM dev register and fix fail path
-URL   : https://patchwork.freedesktop.org/series/160598/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_17882 -> Patchwork_160598v1
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_160598v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_160598v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160598v1/index.html
-
-Participating hosts (43 -> 41)
-------------------------------
-
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_160598v1:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_flip@basic-flip-vs-dpms@c-dp1:
-    - bat-adlp-9:         [PASS][1] -> [FAIL][2] +2 other tests fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17882/bat-adlp-9/igt@kms_flip@basic-flip-vs-dpms@c-dp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160598v1/bat-adlp-9/igt@kms_flip@basic-flip-vs-dpms@c-dp1.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_160598v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-14:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17882/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160598v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-5:         [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17882/bat-arls-5/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160598v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+A side effect of this patch is that the iGPU becomes enabled on iMacs.
+However, iMacs can’t use the iGPU for rendering (They can't link-train
+the internal display), so displays must be disabled on iMacs.
 
 
-Build changes
--------------
+Atharva Tiwari (2):
+  efi/libstub: enable apple-set-os for all apple devices
+  drm/i915/display: Disable display for iMac's
 
-  * Linux: CI_DRM_17882 -> Patchwork_160598v1
+ drivers/firmware/efi/libstub/x86-stub.c       | 22 +++++--------------
+ .../drm/i915/display/intel_display_device.c   |  7 ++++++
+ 2 files changed, 12 insertions(+), 17 deletions(-)
 
-  CI-20190529: 20190529
-  CI_DRM_17882: 6d7af7c5b6b121d5595b64be7dfcbf33be53287b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8716: 8716
-  Patchwork_160598v1: 6d7af7c5b6b121d5595b64be7dfcbf33be53287b @ git://anongit.freedesktop.org/gfx-ci/linux
+-- 
+2.43.0
 
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160598v1/index.html
-
---===============5475526862602486406==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Register vGPU after DRM dev register and fix fail path</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160598/">https://patchwork.freedesktop.org/series/160598/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160598v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160598v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17882 -&gt; Patchwork_160598v1</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_160598v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_160598v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160598v1/index.html</p>
-<h2>Participating hosts (43 -&gt; 41)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_160598v1:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-dpms@c-dp1:<ul>
-<li>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17882/bat-adlp-9/igt@kms_flip@basic-flip-vs-dpms@c-dp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160598v1/bat-adlp-9/igt@kms_flip@basic-flip-vs-dpms@c-dp1.html">FAIL</a> +2 other tests fail</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_160598v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17882/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160598v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17882/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160598v1/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17882 -&gt; Patchwork_160598v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17882: 6d7af7c5b6b121d5595b64be7dfcbf33be53287b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8716: 8716<br />
-  Patchwork_160598v1: 6d7af7c5b6b121d5595b64be7dfcbf33be53287b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============5475526862602486406==--
