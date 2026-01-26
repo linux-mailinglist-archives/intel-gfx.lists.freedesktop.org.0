@@ -2,72 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KFtzDppkd2lefAEAu9opvQ
+	id CC7uA2Zqd2nCfQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jan 2026 13:56:58 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jan 2026 14:21:42 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99A7988838
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jan 2026 13:56:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC98488C19
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jan 2026 14:21:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A82CC10E411;
-	Mon, 26 Jan 2026 12:56:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 360F789C69;
+	Mon, 26 Jan 2026 13:21:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZuqI96h+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kXFuoiUv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6399710E21E;
- Mon, 26 Jan 2026 12:56:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7169E89C69
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 13:21:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769432213; x=1800968213;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=+lMEAILZfAJO9u0LWDi0oL79K7xksAaqRfLBQX37uF0=;
- b=ZuqI96h+3O5ysjqythMo/4r9nB5IBw6rrdeBvvukoPZ06QxQhCiabXRH
- A9mRq8LEauTKpv7bVCEarNFxgUMqCebs5ZqY15Cze9RvnE+r0Jj42kOsu
- SKnFZqvmTvF9p2tf3co7+DF9PcrNb+8fVlqQnmpsi8wU0hwk8xqW01JTo
- oc17JRHsyPjZFEnUydIbEV9EQO4QiKKGq0U6cYFgNf5ojSwZuzVLrD2Dp
- Rb/9V/zEdKerBoXScDWtMQNXN471r724tpQvvGRocyFhKJg87SyNvzOn5
- g59YvP3hnAOJdjJ6bmKdeIzUNlVkGKVciwiodzxDqu8YjHZQLWHZON5F/ g==;
-X-CSE-ConnectionGUID: j9KlGbquRKKIHvAEgXNxtw==
-X-CSE-MsgGUID: oWmGmFcUQHWswr+eWX37eQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11683"; a="81326493"
-X-IronPort-AV: E=Sophos;i="6.21,255,1763452800"; d="scan'208";a="81326493"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2026 04:56:53 -0800
-X-CSE-ConnectionGUID: 2xHfz/nbSuygkHrfbxZ00g==
-X-CSE-MsgGUID: LS3dOau+QeyYBeotQoCHIg==
+ t=1769433696; x=1800969696;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=ODWMronDGwlHFkl217/7iKbHLd8a8RLz04fsrVoHHMI=;
+ b=kXFuoiUvhjzNqyCsHE+e+sq4lDDjVbfrJVR3d/+G4Dq4yylYWBUjvTrq
+ mDy8NpbSuHInfHEWumyyLwwojFttzflOhGkwZcMRhoVyBh9DWqhXCFQFy
+ 1IJLAcBAd7I8ylKedtiI7XruO/VfQzicokrbFoU12HG6z3ysTohcH2mQl
+ ArRWQLhY4HCIVzAtfgCfNlco6hPc9/Yr/zT+QHxqbzWzU/yNxD+RTUNkt
+ 2QAUq3+fz8soxnT0wmZLXu0EKYZ7P6GWzyu3CVNxZjAbJewi84oM24P/I
+ pGxoM+YIMh/lhHWub13ykQmeFnzA5BheoTxcVF4Wz2XgT4YGguFo2UK2n g==;
+X-CSE-ConnectionGUID: hhhg3mVVTimBILxM0f9lFg==
+X-CSE-MsgGUID: OgRZjZHCQcGG1Nu91ILX/A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11683"; a="96071706"
+X-IronPort-AV: E=Sophos;i="6.21,255,1763452800"; d="scan'208";a="96071706"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2026 05:21:36 -0800
+X-CSE-ConnectionGUID: 6WRq+792SIKbb27Nko2Qtw==
+X-CSE-MsgGUID: 9fdu5XHUTt6W0QIDhLlG6Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,255,1763452800"; d="scan'208";a="207728841"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.97])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2026 04:56:49 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.org,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-Subject: Re: [PATCH i-g-t 7/7] lib/igt_device_scan: Print GPU upstream port
- parent/child relations
-Date: Mon, 26 Jan 2026 13:56:46 +0100
-Message-ID: <2893102.BEx9A2HvPv@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <6123599.MhkbZ0Pkbq@jkrzyszt-mobl2.ger.corp.intel.com>
-References: <20260121114656.1970684-9-janusz.krzysztofik@linux.intel.com>
- <DFVX33TUJM19.WAFS6MCXBOJR@intel.com>
- <6123599.MhkbZ0Pkbq@jkrzyszt-mobl2.ger.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,255,1763452800"; d="scan'208";a="206798738"
+Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.99])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2026 05:21:34 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com
+Subject: Re: [PATCH v2] drm/i915/display: PORT_NONE is not valid
+In-Reply-To: <20260123152121.7042-2-jonathan.cavitt@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260123152121.7042-2-jonathan.cavitt@intel.com>
+Date: Mon, 26 Jan 2026 15:21:30 +0200
+Message-ID: <24a0947ec3219ac716a5ce20e15ed0c3b895a9b9@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,118 +75,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	HAS_ORG_HEADER(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	ARC_NA(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:jonathan.cavitt@intel.com,m:saurabhg.gupta@intel.com,m:alex.zuo@intel.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[janusz.krzysztofik@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_FIVE(0.00)[5];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 99A7988838
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: CC98488C19
 X-Rspamd-Action: no action
 
-Hi,
+On Fri, 23 Jan 2026, Jonathan Cavitt <jonathan.cavitt@intel.com> wrote:
+> Static analysis issue:
+>
+> In assert_port_valid, add a check to ensure port != PORT_NONE, as that
+> is not a valid port.  The check must be explicit to prevent a bad bit
+> shift operation in the general case via short-circuiting.  It's not
+> likely this will ever come up in a real use case, but it's at least
+> worth guarding against.
+>
+> It would probably also be pertinent to modify the behavior of the
+> port_name function to correctly print PORT_NONE in this case, as
+> currently the port would be reported as 'port @' by the debugger.  But
+> that should be done separately, and given port_name is mostly just a
+> debug printing helper function anyways, fixing it is a low priority.
+>
+> v2:
+> - Conditional check was backwards.  Fix it.  (Jani)
+>
+> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
 
-Here are my conclusion from a closer look.
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-On Friday, 23 January 2026 15:34:23 CET Janusz Krzysztofik wrote:
-> Hi Sebastian,
->=20
-> On Friday, 23 January 2026 12:03:45 CET Sebastian Brzezinka wrote:
-> > Hi Janusz,
-> >=20
-> > On Wed Jan 21, 2026 at 12:42 PM CET, Janusz Krzysztofik wrote:
-> > > In a short listing, information about PCI parents of DRM devices, as =
-well
-> > > as about DRM children of PCI GPU devices is now printed.  In a long
-> > > listing in turn, the latter is also printed.  Apply a similar approac=
-h to
-> > > PCIe bridge upstream ports: print information about their PCI GPU chi=
-ldren
-> > > and also their codenames in both formats, and inform about upstream p=
-orts
-> > > of PCIe bridges found on PCI discrete GPU cards in the short format.
-> > >
-> > > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> > > ---
-> > >  lib/igt_device_scan.c | 22 +++++++++++++++++-----
-> > >  1 file changed, 17 insertions(+), 5 deletions(-)
-> > >
-> > > diff --git a/lib/igt_device_scan.c b/lib/igt_device_scan.c
-> > > index e86da001a9..69ea8d2eaf 100644
-> > > --- a/lib/igt_device_scan.c
-> > > +++ b/lib/igt_device_scan.c
-> > > @@ -250,6 +250,8 @@ struct igt_device {
-> > >  	char *codename; /* For grouping by codename */
-> > >  	enum dev_type dev_type; /* For grouping by integrated/discrete */
-> > > =20
-> > > +	char *pci_gpu; /* Filled for upstream bridge ports */
-> > > +
-> > >  	struct igt_list_head link;
-> > >  };
-> > > =20
-> > > @@ -1058,6 +1060,9 @@ static void update_or_add_parent(struct udev *u=
-dev,
-> > >  	igt_assert(bridge_idev);
-> > > =20
-> > >  	bridge_idev->dev_type =3D DEVTYPE_BRIDGE;
-> > > +	bridge_idev->pci_gpu =3D parent_idev->pci_slot_name;
-> > > +	bridge_idev->codename =3D parent_idev->codename;
-> > > +	parent_idev->parent =3D bridge_idev;
-> > I haven=E2=80=99t checked the release process myself. Have you verified=
- that freeing this
-> > memory won=E2=80=99t lead to any problems?
-> >  (Maybe use strdup??)
->=20
-> Indeed, I might have missed something here.  While pci_gpu and parent see=
-m=20
-> safe for me at a first glance, I'm not sure about codename.  Let me have=
-=20
-> another, closer look at all of them.
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 7491e00e3858..0c3bb3f98ee4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -7828,7 +7828,8 @@ static bool intel_ddi_crt_present(struct intel_display *display)
+>  
+>  bool assert_port_valid(struct intel_display *display, enum port port)
+>  {
+> -	return !drm_WARN(display->drm, !(DISPLAY_RUNTIME_INFO(display)->port_mask & BIT(port)),
+> +	return !drm_WARN(display->drm,
+> +			 !(port >= 0 && DISPLAY_RUNTIME_INFO(display)->port_mask & BIT(port)),
+>  			 "Platform does not support port %c\n", port_name(port));
+>  }
 
-I think parent_idev->parent is safe, it follows the pattern used before:
-	idev->parent =3D parent_idev;
-
-However, bridge_idev->codename evidently requires strdup() to avoid double=
-=20
-free() on destroy.
-
-As long as printing to stdout likely captures content of bridge_idev->pci_g=
-pu=20
-before parent_idev and its attributes are destroyed, that one seems safe, b=
-ut=20
-let's use strdup() as well to be on the safe side.
-
-Thanks for catching this.
-
-Thanks,
-Janusz
-
-
->=20
-> Thanks,
-> Janusz
->=20
-
-
-
-
+-- 
+Jani Nikula, Intel
