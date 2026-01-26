@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oEKfLSwfd2ntcQEAu9opvQ
+	id SFqbDSwfd2ntcQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
 	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jan 2026 09:00:44 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6888885336
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jan 2026 09:00:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B53A8532F
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jan 2026 09:00:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A519D10E3AA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CCDA10E3A7;
 	Mon, 26 Jan 2026 08:00:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MLU1vCHz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cmVd4Sq8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 873B210E3A4;
- Mon, 26 Jan 2026 08:00:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22CB310E3A6;
+ Mon, 26 Jan 2026 08:00:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769414440; x=1800950440;
+ t=1769414441; x=1800950441;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ADeTdodqOnkBpiVULK1E46wmAt6ZwpUH5C32ZaQZfqs=;
- b=MLU1vCHzmE6coC3i4/j19Qu3/7Iq2jmtfn+fpg+tmMkAnVZSj4sXZFbz
- alGvGDkvGOSVXDEkHWgE3i9ydp45MwXPTNwpp40ep2vbj+y0iA0mIeA0D
- fhmGnJAWORRXOYcyAWqlcw0MT80Fx88v8iY0WJrxv6U7jqxatex7c4Sbb
- qT46wBDv3ziawgHlBCuIuPj6F/9djGW73y04wweElchARyLl4LSnsQbsY
- 2apCuAKVnzvJYl7kJT5SQENaxl07+dvWC8DCn0p2W7/YIpdEavOpXhMpX
- zhAd5aYlU2jHPd9ipgn/vVZ8rHktj8gFP3rY9AH+lg3rXw53hWdd87hfg A==;
-X-CSE-ConnectionGUID: MfXQFs88TpST8uouvBjuDA==
-X-CSE-MsgGUID: GaT0ZGICRy+2h4aBNuW2TA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11682"; a="70682847"
-X-IronPort-AV: E=Sophos;i="6.21,254,1763452800"; d="scan'208";a="70682847"
+ bh=5WJPoNuB2NcejSoRmTs9dkJAXnvF5Uk54FnZ/Yqu/gg=;
+ b=cmVd4Sq85C/7jI5Iu99dHKgGtwPCs1nNEKYP5eHtSSS5PRpXq/enUcFW
+ aMFuKjVSzJ805Nr3U1EJ/7AknXhrzOLoq0TmCpmV0NQVAvLbijQCtEhlH
+ x2F++sytxAQYSlXdltSAQLW0RPOMNqxDoqU5CDVp/VkS1r9mCuTyHo6FT
+ Vv1zKX9qcnam8LuQyIjgKOrOMpl0Q90p/qZQkBaafK+79YbAT6o2LikbM
+ HFFJoWdRHHnJQe2FlPtBdVo41blgHrZ94rBaL7cSOCKv+Kz0gaWDoO/R5
+ Y4e59MFt1WwxAwp1KBeDtMepBUo4FxyJWkmu10CH/7JHxXDotLaOf1w/S A==;
+X-CSE-ConnectionGUID: MCD8KWfLTWeaQhrCG5YunA==
+X-CSE-MsgGUID: tsis2h+VRMq36QAMf3mADw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11682"; a="70682848"
+X-IronPort-AV: E=Sophos;i="6.21,254,1763452800"; d="scan'208";a="70682848"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2026 00:00:40 -0800
-X-CSE-ConnectionGUID: 9gZgbRYJQcmwfXUbauOyoQ==
-X-CSE-MsgGUID: DLHfPefaSu23hL8j6QePDw==
+ 26 Jan 2026 00:00:41 -0800
+X-CSE-ConnectionGUID: 5Ktg08R/Taeb5bYPBScWdQ==
+X-CSE-MsgGUID: CtLp0E7DTcisYdThuGXfSA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,254,1763452800"; d="scan'208";a="207867670"
+X-IronPort-AV: E=Sophos;i="6.21,254,1763452800"; d="scan'208";a="207867678"
 Received: from krybak-mobl1.ger.corp.intel.com (HELO jhogande-mobl3.intel.com)
  ([10.245.246.56])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2026 00:00:38 -0800
+ 26 Jan 2026 00:00:39 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v10 04/10] drm/i915/vrr: Prepare to Use TRANS_PUSH mechanism
- for PSR frame change
-Date: Mon, 26 Jan 2026 09:59:53 +0200
-Message-ID: <20260126075959.925413-5-jouni.hogander@intel.com>
+Subject: [PATCH v10 05/10] drm/i915/dsb: Set DSB_SKIP_WAITS_EN chicken bit for
+ LunarLake and onwards
+Date: Mon, 26 Jan 2026 09:59:54 +0200
+Message-ID: <20260126075959.925413-6-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260126075959.925413-1-jouni.hogander@intel.com>
 References: <20260126075959.925413-1-jouni.hogander@intel.com>
@@ -102,126 +102,60 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCPT_COUNT_THREE(0.00)[3];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: 6888885336
+X-Rspamd-Queue-Id: 0B53A8532F
 X-Rspamd-Action: no action
 
-On Lunarlake and onwards it is possible to generate PSR "frame change"
-event using TRANS_PUSH mechanism. Implement function to enable this and
-take PSR into account in intel_vrr_send_push.
-
-v7:
-  - HAS_PSR_FRAME_CHANGE macro moved to separate patch and renamed as
-    HAS_PSR_TRANS_PUSH_FRAME_CHANGE
-  - use intel_psr_use_trans_push instead of HAS_PSR_FRAME_CHANGE in
-    intel_psr_trigger_frame_change
-  - moved calling intel_vrr_psr_frame_change_enable away from this patch
-v6:
-  - add HAS_PSR_FRAME_CHANGE macro
-  - use TRANS_PUSH in instead of TRAN_VRR_CTL
-v5: use intel_psr_use_trans_push for intel_vrr_psr_frame_change_enable
-v4:
-  - use rmw when enabling/disabling transcoder
-  - set TRANS_PUSH_EN conditionally in intel_vrr_send_push
-  - do not call intel_vrr_send_push from intel_psr_trigger_frame_change
-  - do not enable using TRANS_PUSH mechanism for PSR "Frame Change"
-v3:
-  - use rmw when enabling/disabling
-  - keep LNL_TRANS_PUSH_PSR_PR_EN set always on LunarLake and onwards
-v2: use intel_vrr_trans_push_enabled_set_clear instead of rmw
+On LunarLake we are using TRANS_PUSH mechanism to trigger "Frame Change"
+event. This way we have more control on when PSR HW is woken up. I.e. not
+every display register write is triggering sending update. This allows us
+setting DSB_SKIP_WAITS_EN chicken bit as well.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crtc.c |  4 +++-
- drivers/gpu/drm/i915/display/intel_psr.c  |  8 +++++---
- drivers/gpu/drm/i915/display/intel_vrr.c  | 14 ++++++++++++--
- drivers/gpu/drm/i915/display/intel_vrr.h  |  1 +
- 4 files changed, 21 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dsb.c | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 778ebc5095c3..ed3c6c4ce025 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -747,7 +747,9 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
- 	 * which would cause the next frame to terminate already at vmin
- 	 * vblank start instead of vmax vblank start.
- 	 */
--	if (!state->base.legacy_cursor_update)
-+	if (!state->base.legacy_cursor_update ||
-+	    (intel_psr_use_trans_push(new_crtc_state) &&
-+	     !new_crtc_state->vrr.enable))
- 		intel_vrr_send_push(NULL, new_crtc_state);
- 
- 	local_irq_enable();
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index b0d72c04db45..9613c50623dc 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -2516,9 +2516,11 @@ void intel_psr_trigger_frame_change_event(struct intel_dsb *dsb,
- 		intel_pre_commit_crtc_state(state, crtc);
- 	struct intel_display *display = to_intel_display(crtc);
- 
--	if (crtc_state->has_psr)
--		intel_de_write_dsb(display, dsb,
--				   CURSURFLIVE(display, crtc->pipe), 0);
-+	if (!crtc_state->has_psr || intel_psr_use_trans_push(crtc_state))
-+		return;
-+
-+	intel_de_write_dsb(display, dsb,
-+			   CURSURFLIVE(display, crtc->pipe), 0);
- }
- 
- /**
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index f26989c74268..8a072f90049f 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -698,7 +698,7 @@ void intel_vrr_send_push(struct intel_dsb *dsb,
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 
--	if (!crtc_state->vrr.enable)
-+	if (!crtc_state->vrr.enable && !intel_psr_use_trans_push(crtc_state))
- 		return;
- 
- 	if (dsb)
-@@ -920,7 +920,8 @@ static void intel_vrr_tg_disable(const struct intel_crtc_state *old_crtc_state)
- 				       VRR_STATUS_VRR_EN_LIVE, 1000))
- 		drm_err(display->drm, "Timed out waiting for VRR live status to clear\n");
- 
--	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder), 0);
-+	intel_de_rmw(display, TRANS_PUSH(display, cpu_transcoder),
-+		     TRANS_PUSH_EN, 0);
- }
- 
- void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
-@@ -973,6 +974,15 @@ void intel_vrr_transcoder_disable(const struct intel_crtc_state *old_crtc_state)
- 		intel_vrr_tg_disable(old_crtc_state);
- }
- 
-+void intel_vrr_psr_frame_change_enable(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-+
-+	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder),
-+		       trans_vrr_push(crtc_state, false));
-+}
-+
- bool intel_vrr_is_fixed_rr(const struct intel_crtc_state *crtc_state)
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+index 91060e2a5762..3f083211a7ca 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.c
++++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+@@ -17,6 +17,7 @@
+ #include "intel_dsb.h"
+ #include "intel_dsb_buffer.h"
+ #include "intel_dsb_regs.h"
++#include "intel_psr.h"
+ #include "intel_vblank.h"
+ #include "intel_vrr.h"
+ #include "skl_watermark.h"
+@@ -166,18 +167,24 @@ static int dsb_scanline_to_hw(struct intel_atomic_state *state,
+  * definitely do not want to skip vblank wait. We also have concern what comes
+  * to skipping vblank evasion. I.e. arming registers are latched before we have
+  * managed writing them. Due to these reasons we are not setting
+- * DSB_SKIP_WAITS_EN.
++ * DSB_SKIP_WAITS_EN except when using TRANS_PUSH mechanism to trigger
++ * "frame change" event.
+  */
+ static u32 dsb_chicken(struct intel_atomic_state *state,
+ 		       struct intel_crtc *crtc)
  {
- 	return crtc_state->vrr.flipline &&
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
-index bedcc8c4bff2..4f16ca4af91f 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.h
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.h
-@@ -33,6 +33,7 @@ void intel_vrr_dcb_increment_flip_count(struct intel_crtc_state *crtc_state,
- 					struct intel_crtc *crtc);
- bool intel_vrr_is_push_sent(const struct intel_crtc_state *crtc_state);
- void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state);
-+void intel_vrr_psr_frame_change_enable(const struct intel_crtc_state *crtc_state);
- void intel_vrr_get_config(struct intel_crtc_state *crtc_state);
- int intel_vrr_vmax_vtotal(const struct intel_crtc_state *crtc_state);
- int intel_vrr_vmin_vtotal(const struct intel_crtc_state *crtc_state);
++	const struct intel_crtc_state *new_crtc_state =
++		intel_atomic_get_new_crtc_state(state, crtc);
++	u32 chicken = intel_psr_use_trans_push(new_crtc_state) ?
++		DSB_SKIP_WAITS_EN : 0;
++
+ 	if (pre_commit_is_vrr_active(state, crtc))
+-		return DSB_CTRL_WAIT_SAFE_WINDOW |
++		chicken |= DSB_CTRL_WAIT_SAFE_WINDOW |
+ 			DSB_CTRL_NO_WAIT_VBLANK |
+ 			DSB_INST_WAIT_SAFE_WINDOW |
+ 			DSB_INST_NO_WAIT_VBLANK;
+-	else
+-		return 0;
++
++	return chicken;
+ }
+ 
+ static bool assert_dsb_has_room(struct intel_dsb *dsb)
 -- 
 2.43.0
 
