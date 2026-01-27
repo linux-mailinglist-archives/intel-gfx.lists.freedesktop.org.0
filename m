@@ -2,65 +2,142 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2EdECgKeeGm/rQEAu9opvQ
+	id OO0DNpifeGn4rQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jan 2026 12:14:10 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jan 2026 12:20:56 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 674729371F
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jan 2026 12:14:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C3E793856
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jan 2026 12:20:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4E1F10E53D;
-	Tue, 27 Jan 2026 11:14:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA25410E550;
+	Tue, 27 Jan 2026 11:20:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A8Bg6ViP";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZOmoAHbz";
+	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="LgcG84Ka";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E315910E51A;
- Tue, 27 Jan 2026 11:14:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769512447; x=1801048447;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=MJ9bVO65Q8i/t5S+CbwwEPPzJ6w2f+hvuBs42Xel2Xw=;
- b=A8Bg6ViPAV0FvXL0PEvrekuFuCcbbbfgJhpUt0/hyKDDbbxZTGyti+ih
- 6UmxoYwXWnxeU4ftsdRfSXY9dYCnBn1G4u9nFRsrq7oO1Jh27LjPIwGgv
- LjFdpJ5sq7x+1l5E4jpHwKh6oSgl0ATBQj5wfhR1FO6C2P2qy9T1VJHsI
- W/EP13b7B47yqhH3A/Qsdqq4jaG2fMNHkCJGNy00jUI0yrSsJNgp/QAw6
- IFcEeLQdYkbrvX5pcYEB0+/T0FpzLQjEI8bTmbDY0hGOS0BjKj9q3Ewka
- zh9hgNkRozmz6abDDaOd4BZl7m1drsiRX6CXmdTc6ZX3MDLhtmdOvRiyZ A==;
-X-CSE-ConnectionGUID: skt+lxZsRbu3khA2bYZXUg==
-X-CSE-MsgGUID: Z/UA62saR1O6g+cQMFw8tg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11683"; a="81337436"
-X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="81337436"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2026 03:14:07 -0800
-X-CSE-ConnectionGUID: efN4/mhdRTqz+Akw1YSLkw==
-X-CSE-MsgGUID: Jpag3YsoQjmN832wFTSUew==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="208189029"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO
- vgovind2-mobl4.intel.com) ([10.245.244.14])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2026 03:14:05 -0800
-From: Vinod Govindapillai <vinod.govindapillai@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com, uma.shankar@intel.com,
- juha-pekka.heikkila@intel.com
-Subject: [PATCH v3] drm/i915/display: fix the pixel normalization handling for
- xe3p_lpd
-Date: Tue, 27 Jan 2026 13:13:45 +0200
-Message-ID: <20260127111345.939736-1-vinod.govindapillai@intel.com>
-X-Mailer: git-send-email 2.43.0
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53DC010E54E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Jan 2026 11:20:53 +0000 (UTC)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 60R87L6P2379299
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Jan 2026 11:20:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+ QHcqP74r9VhaV5/cZgET4JduR2x2H6zcTZIlVplq3nc=; b=ZOmoAHbzG7TQYghP
+ Q/+fbofrkL7z1l7f55oU9lCHS5tFUbwHxZdoNe8x2Autw64GNBVGPZfGheI2QSXv
+ FLteKO5fStxqgUtuFGTqtUmc3bhwpXiwUTAZq+eiWL9XCEl7E9oBmFcwcII/R3A1
+ XIXCwti6ZrVikX3lgE3m+BnoMabUKfRhd6rX6vphMzGx4wHMLshJAZJClrQDYRtc
+ V9wdwul5Zz53ucOdClomE9fcqt3xWzzcwLuJR/aoXdZY0kjqRw8azEK/efE5heiY
+ 9HP7tGuOK4teYFXiS9Y1Hx43Up5X4TKZSsUszoo+KyiOSAcSekrY+FTAMewIDm0c
+ ocgIsg==
+Received: from mail-vs1-f72.google.com (mail-vs1-f72.google.com
+ [209.85.217.72])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bxsjr8mwq-1
+ (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Jan 2026 11:20:52 +0000 (GMT)
+Received: by mail-vs1-f72.google.com with SMTP id
+ ada2fe7eead31-5f5256bfd3cso5730148137.3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Jan 2026 03:20:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oss.qualcomm.com; s=google; t=1769512852; x=1770117652;
+ darn=lists.freedesktop.org; 
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=QHcqP74r9VhaV5/cZgET4JduR2x2H6zcTZIlVplq3nc=;
+ b=LgcG84KaZPT3q5Eep+sBrDDX5X23Vgw4gwvRUTjRcITxbVw8JQdBWWHU3qFeRJClGO
+ ebV00+AOMpaJrnEHjEUhPE6E6qwrh6ZJZNDTTTa5FDf3qis2saW2EB0X7iRYH4Akku+6
+ q3ddMhaOode/FNbfSfFJ7makH+HtpfoByupTgsHGh3KhYmXxygmuot3yF4efoHbHpLIy
+ DiwRKP2QV6d+MpEUG4FUYYg7jGWP0h6aGdFb8a27rYlwXuIFEX7NP3K49xDJMJUNdoq9
+ /ZlYgkuopEUvD3TfXU+t84EAA4aUO+dOlE6M+STOHMf0EJdTY/ALqXyARAwiJSKxen6U
+ qCjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1769512852; x=1770117652;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=QHcqP74r9VhaV5/cZgET4JduR2x2H6zcTZIlVplq3nc=;
+ b=boe0KfOyuSLMBd8ViCsouS6wYXDEBLwsGqiVAZFGiGQvZLgGBA7G660YtaRSsl1Czc
+ 1T9nRqKiSWOyAPVhX9jlED9vu/OCS9M6/6XpDXquVeWPwjQuc+kqI3YNUb6XBtjJAk1Q
+ iSKGrVCwfNG68eJzoVVrRTmbrQKcVuT12QMFwYKS0+fLn60jKskI9J2RZdeiguOM9Dsq
+ km8K70HHLTu1rPUJZcjhL0PYuFX7ceJVDcRLhpKa4xTqu8xvG8Z8HWn4qyOhzyq4Ukvo
+ NGq3q3YxDdHi9THXjfWBHTb4wlw5oCWk8NyeKCh8Dy4U0+Q3356xsZ9GjTIHQ6rvic+B
+ pf6w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWY8TtkI5aoMaR/k/fHOsrPyJdwnzLa0D8mGXDIW+L/HG1TftfIqrteYiZuhW4HzZBKNXHm11fLHkc=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Ywuntxz0Tm1NsBKHjZaC9U3dQsxQNI+9YXUGLdeIH7iiLAiaBYe
+ U4DJq/1nQ9spnS7PeJ5iKIIqJzKv9qYYQtQAbc0klOw/PUz9ls7cJi9neR68Ww/yfl0/otBbNMU
+ tDBbcKmeLBxakuZc6yRV4qBqoXEg/LqaPGG4hjefNXvUhLUPU/7vvXVDv7tPzzNPQ29atej4=
+X-Gm-Gg: AZuq6aLNvgOQkTfXIf0Nvvg0h84/wVg98fGohJfcdWlKlKXXmZUHwze18EFNLhiGvp6
+ Ap3KO6RXc9rJZOxfFBo+EBnYS2jZAZQovMo5x6rJ9HPzO1CgXpzWcTI0VsOwOxnxVERm8EKk1xP
+ AxzcL/5onVYm5BmWwktydnw3cvcP9YcLAbFbLwK+SOKDTf6h5JRPNebRHXY/rHN+RxRj+qvt5FU
+ tx5b3+IIBxpVAQInfEJX9rziFggJq7GjlHKu+DFzS4+AuHvHWjv5brc34JNoLlsGL16oq9iIpJ4
+ hYaN0k+2nNJwaUHU89vPYntUAVDKcQvcgPU2i2AmpdatT7+HkCQ49Id7miILm7xfUQNpONzq7kA
+ sEpNBmEvLMpSKfPyv1p+JR9hkPsOBVTJPFdXLk+XnObP+/L0idP2U0u+91HaMhKmneRLjgXUn/b
+ /bALFyFg69VWpN1cmvwph9+Yg=
+X-Received: by 2002:a05:6102:291f:b0:5f5:35bd:6fb3 with SMTP id
+ ada2fe7eead31-5f7235d4e59mr521463137.5.1769512851681; 
+ Tue, 27 Jan 2026 03:20:51 -0800 (PST)
+X-Received: by 2002:a05:6102:291f:b0:5f5:35bd:6fb3 with SMTP id
+ ada2fe7eead31-5f7235d4e59mr521455137.5.1769512851297; 
+ Tue, 27 Jan 2026 03:20:51 -0800 (PST)
+Received: from umbar.lan
+ (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
+ [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-59de48f0259sm3368696e87.45.2026.01.27.03.20.50
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 27 Jan 2026 03:20:50 -0800 (PST)
+Date: Tue, 27 Jan 2026 13:20:48 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Vignesh Raman <vignesh.raman@collabora.com>
+Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
+ helen.fornazier@gmail.com, airlied@gmail.com, simona.vetter@ffwll.ch,
+ lumag@kernel.org, robdclark@gmail.com, robin.clark@oss.qualcomm.com,
+ guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com,
+ valentine.burley@collabora.com, linux-mediatek@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 3/7] drm/ci: reduce sm8350-hdk parallel jobs from 4 to 2
+Message-ID: <ftkgk4xevcfe4dyx2pqi3gk3bqm7jcv65qvn3ypgrwls5dyx3m@srsgbmsteifw>
+References: <20260127104406.200505-1-vignesh.raman@collabora.com>
+ <20260127104406.200505-4-vignesh.raman@collabora.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260127104406.200505-4-vignesh.raman@collabora.com>
+X-Proofpoint-GUID: 3eh_6FuRnLVwC4GNVd2DAWeOHavXnrTp
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI3MDA5MiBTYWx0ZWRfXyJKbblDk30rX
+ wWQvkZBj0X50+LJL1GVsedM0frvGuaOTix7uK9FxSKQJj0kCo9syDHJvaURIehCuyT06LZXznPY
+ M/6vRS05bcZlSsP8rYSnG1a6BaKBkLKVQSFOFTyXgRPb49XmGOyx3TJgt/0D0ZzTaCTiSPWB6qV
+ 5d25HZeDqb5Pq9Vv8HRFIvtVy7YJUKu1O27D9pfZwa6Uo1JdwmofR+XwaheYvYpj6pd4McY4q/D
+ Jng4X7I26eynpgIEIMzGzYILdO42sV1ASOSKAdJsixbMH//9Wi7YcpkmtgSk8KKVCluEXyhI1UO
+ s0vmiI2/P9QzdvkdiUPb9QM5yPtFJWBWAgPeVZD8/6HKXobu1u+PrPSiQseo0pbVezEsaPzuFYp
+ nhlZ9UIkiDOsUpDcqYTAyVFXJdQXnzwXj+WJt/fOm2IDzDF+Yu/EmAWZWTfV8wEQnnJ8Slu9Jcc
+ pbsWGb6IwFAIsNSEMMw==
+X-Authority-Analysis: v=2.4 cv=b+i/I9Gx c=1 sm=1 tr=0 ts=69789f94 cx=c_pps
+ a=DUEm7b3gzWu7BqY5nP7+9g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=QX4gbG5DAAAA:8 a=EUspDBNiAAAA:8 a=_49z0RMimKR0Jg0_r6oA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=-aSRE8QhW-JAV6biHavz:22 a=AbAUZ8qAyYyZVLSsDulk:22
+X-Proofpoint-ORIG-GUID: 3eh_6FuRnLVwC4GNVd2DAWeOHavXnrTp
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
+ definitions=2026-01-27_02,2026-01-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 adultscore=0 lowpriorityscore=0 clxscore=1015 phishscore=0
+ impostorscore=0 bulkscore=0 spamscore=0 priorityscore=1501 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601270092
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,293 +153,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[dmitry.baryshkov@oss.qualcomm.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
 	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vinod.govindapillai@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS(0.00)[m:vignesh.raman@collabora.com,m:dri-devel@lists.freedesktop.org,m:daniels@collabora.com,m:helen.fornazier@gmail.com,m:airlied@gmail.com,m:simona.vetter@ffwll.ch,m:lumag@kernel.org,m:robdclark@gmail.com,m:robin.clark@oss.qualcomm.com,m:guilherme.gallo@collabora.com,m:sergi.blanch.torne@collabora.com,m:valentine.burley@collabora.com,m:linux-mediatek@lists.infradead.org,m:linux-amlogic@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:amd-gfx@lists.freedesktop.org,m:linux-arm-msm@vger.kernel.org,m:virtualization@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:helenfornazier@gmail.com,s:lists@lfdr.de];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,collabora.com,gmail.com,ffwll.ch,kernel.org,oss.qualcomm.com,lists.infradead.org,vger.kernel.org,lists.linux.dev];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: 674729371F
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,collabora.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,oss.qualcomm.com:dkim]
+X-Rspamd-Queue-Id: 8C3E793856
 X-Rspamd-Action: no action
 
-Pixel normalizer is enabled with normalization factor as 1.0 for
-FP16 formats in order to support FBC for those formats in xe3p_lpd.
-Previously pixel normalizer gets disabled during the plane disable
-routine. But there could be plane format settings without explicitly
-calling the plane disable in-between and we could endup keeping the
-pixel normalizer enabled for formats which we don't require that.
-This is causing crc mismatches in yuv formats and FIFO underruns in
-planar formats like NV12.
+On Tue, Jan 27, 2026 at 04:13:58PM +0530, Vignesh Raman wrote:
+> The sm8350-hdk jobs are short and each test takes around 2–3 minutes and
+> the full job completes in about 10 minutes. Running 4 parallel jobs uses
+> 4 devices at once, which is not needed. Set parallel to 2 to reduce
+> device usage.
+> 
+> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+> ---
+>  drivers/gpu/drm/ci/test.yml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-Fix this by updating the pixel normalizer configuration based on the
-pixel formats explicitly during the plane settings arm calls itself
-- enable it for FP16 and disable it for other formats in HDR capable
-planes. To avoid redundancies in these updates, normalization factor
-between old and new plane states are compared before the update. The
-function to check validity of the fp16 formats for fbc is now updated
-to return the normalization factor as 1.0 in case of fp16 formats and
-0 in other cases.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-v2: avoid redundant pixel normalization setting updates
 
-v3: moved the normalization factor definition to intel_fbc.c and some
-    updates to comments
-
-Fixes: 5298eea7ed20 ("drm/i915/xe3p_lpd: use pixel normalizer for fp16 formats for FBC")
-Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
----
- .../drm/i915/display/intel_display_device.h   |  1 +
- .../drm/i915/display/intel_display_types.h    |  8 ++
- drivers/gpu/drm/i915/display/intel_fbc.c      | 19 ++++-
- drivers/gpu/drm/i915/display/intel_fbc.h      |  4 +-
- .../drm/i915/display/skl_universal_plane.c    | 82 +++++++++++++++----
- .../i915/display/skl_universal_plane_regs.h   |  1 -
- 6 files changed, 92 insertions(+), 23 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 6c74d6b0cc48..126aa1eeeb6d 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -175,6 +175,7 @@ struct intel_display_platforms {
- #define HAS_DSC_MST(__display)		(DISPLAY_VER(__display) >= 12 && HAS_DSC(__display))
- #define HAS_FBC(__display)		(DISPLAY_RUNTIME_INFO(__display)->fbc_mask != 0)
- #define HAS_FBC_DIRTY_RECT(__display)	(DISPLAY_VER(__display) >= 30)
-+#define HAS_FBC_FP16_FORMATS(__display)	(DISPLAY_VER(__display) >= 35)
- #define HAS_FBC_SYS_CACHE(__display)	(DISPLAY_VER(__display) >= 35 && !(__display)->platform.dgfx)
- #define HAS_FPGA_DBG_UNCLAIMED(__display)	(DISPLAY_INFO(__display)->has_fpga_dbg)
- #define HAS_FW_BLC(__display)		(DISPLAY_VER(__display) >= 3)
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index e6298279dc89..92bce232b2c5 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -686,6 +686,14 @@ struct intel_plane_state {
- 	unsigned long flags;
- #define PLANE_HAS_FENCE BIT(0)
- 
-+	/* xe3p_lpd+ */
-+	struct {
-+		/* In half-precision floating-point format. 0x3c00 (1.0) for fp16 formats */
-+		unsigned int factor;
-+		/* update is needed if factor differs between old and new plane states */
-+		bool needs_update;
-+	} pixel_normalizer;
-+
- 	struct intel_fb_view view;
- 
- 	/* for legacy cursor fb unpin */
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 1f3f5237a1c2..f9474e7741c8 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -71,6 +71,9 @@
- 
- #define FBC_SYS_CACHE_ID_NONE	I915_MAX_FBCS
- 
-+/* Pixel normalization factor 1.0 in half-precision floating-point format */
-+#define NORM_FACTOR_1_0_IN_HALF_PRECISION_FP		0x3c00
-+
- struct intel_fbc_funcs {
- 	void (*activate)(struct intel_fbc *fbc);
- 	void (*deactivate)(struct intel_fbc *fbc);
-@@ -1215,13 +1218,21 @@ static bool xe3p_lpd_fbc_pixel_format_is_valid(const struct intel_plane_state *p
- 	}
- }
- 
--bool
--intel_fbc_is_enable_pixel_normalizer(const struct intel_plane_state *plane_state)
-+unsigned int
-+intel_fbc_normalization_factor(const struct intel_plane_state *plane_state)
- {
- 	struct intel_display *display = to_intel_display(plane_state);
- 
--	return DISPLAY_VER(display) >= 35 &&
--	       xe3p_lpd_fbc_fp16_format_is_valid(plane_state);
-+	/*
-+	 * In order to have FBC for fp16 formats pixel normalizer block must be
-+	 * active. For FP16 formats, use normalization factor as 1.0 and enable
-+	 * the block.
-+	 */
-+	if (HAS_FBC_FP16_FORMATS(display) &&
-+	    xe3p_lpd_fbc_fp16_format_is_valid(plane_state))
-+		return NORM_FACTOR_1_0_IN_HALF_PRECISION_FP;
-+
-+	return 0;
- }
- 
- static bool pixel_format_is_valid(const struct intel_plane_state *plane_state)
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.h b/drivers/gpu/drm/i915/display/intel_fbc.h
-index f0255ddae2b6..b5888e98a659 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.h
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.h
-@@ -56,7 +56,7 @@ void intel_fbc_prepare_dirty_rect(struct intel_atomic_state *state,
- 				  struct intel_crtc *crtc);
- void intel_fbc_dirty_rect_update_noarm(struct intel_dsb *dsb,
- 				       struct intel_plane *plane);
--bool
--intel_fbc_is_enable_pixel_normalizer(const struct intel_plane_state *plane_state);
-+unsigned int
-+intel_fbc_normalization_factor(const struct intel_plane_state *plane_state);
- 
- #endif /* __INTEL_FBC_H__ */
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index b3d41705448a..05c227913b8d 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -891,20 +891,49 @@ static void icl_plane_disable_sel_fetch_arm(struct intel_dsb *dsb,
- 	intel_de_write_dsb(display, dsb, SEL_FETCH_PLANE_CTL(pipe, plane->id), 0);
- }
- 
--static void x3p_lpd_plane_update_pixel_normalizer(struct intel_dsb *dsb,
--						  struct intel_plane *plane,
--						  bool enable)
-+static void xe3p_lpd_plane_disable_pixel_normalizer(struct intel_dsb *dsb,
-+						    struct intel_plane *plane)
- {
- 	struct intel_display *display = to_intel_display(plane);
- 	enum intel_fbc_id fbc_id = skl_fbc_id_for_pipe(plane->pipe);
--	u32 val;
-+	const struct intel_plane_state *plane_state =
-+		to_intel_plane_state(plane->base.state);
-+
-+	if (!HAS_FBC_FP16_FORMATS(display))
-+		return;
-+
-+	if (!skl_plane_has_fbc(display, fbc_id, plane->id))
-+		return;
-+
-+	if (!plane_state->pixel_normalizer.factor)
-+		return;
-+
-+	intel_de_write_dsb(display, dsb,
-+			   PLANE_PIXEL_NORMALIZE(plane->pipe, plane->id), 0);
-+}
-+
-+static void xe3p_lpd_plane_update_pixel_normalizer(struct intel_dsb *dsb,
-+						   struct intel_plane *plane)
-+{
-+	struct intel_display *display = to_intel_display(plane);
-+	enum intel_fbc_id fbc_id = skl_fbc_id_for_pipe(plane->pipe);
-+	const struct intel_plane_state *plane_state =
-+		to_intel_plane_state(plane->base.state);
-+	u32 val = 0;
-+
-+	if (!HAS_FBC_FP16_FORMATS(display))
-+		return;
- 
--	/* Only HDR planes have pixel normalizer and don't matter if no FBC */
-+	/* Only HDR planes have pixel normalizer and don't matter if FBC is fused off */
- 	if (!skl_plane_has_fbc(display, fbc_id, plane->id))
- 		return;
- 
--	val = enable ? PLANE_PIXEL_NORMALIZE_NORM_FACTOR(PLANE_PIXEL_NORMALIZE_NORM_FACTOR_1_0) |
--		       PLANE_PIXEL_NORMALIZE_ENABLE : 0;
-+	if (!plane_state->pixel_normalizer.needs_update)
-+		return;
-+
-+	if (plane_state->pixel_normalizer.factor)
-+		val = PLANE_PIXEL_NORMALIZE_NORM_FACTOR(plane_state->pixel_normalizer.factor) |
-+		      PLANE_PIXEL_NORMALIZE_ENABLE;
- 
- 	intel_de_write_dsb(display, dsb,
- 			   PLANE_PIXEL_NORMALIZE(plane->pipe, plane->id), val);
-@@ -926,8 +955,7 @@ icl_plane_disable_arm(struct intel_dsb *dsb,
- 
- 	icl_plane_disable_sel_fetch_arm(dsb, plane, crtc_state);
- 
--	if (DISPLAY_VER(display) >= 35)
--		x3p_lpd_plane_update_pixel_normalizer(dsb, plane, false);
-+	xe3p_lpd_plane_disable_pixel_normalizer(dsb, plane);
- 
- 	intel_de_write_dsb(display, dsb, PLANE_CTL(pipe, plane_id), 0);
- 	intel_de_write_dsb(display, dsb, PLANE_SURF(pipe, plane_id), 0);
-@@ -1674,13 +1702,7 @@ icl_plane_update_arm(struct intel_dsb *dsb,
- 
- 	intel_color_plane_commit_arm(dsb, plane_state);
- 
--	/*
--	 * In order to have FBC for fp16 formats pixel normalizer block must be
--	 * active. Check if pixel normalizer block need to be enabled for FBC.
--	 * If needed, use normalization factor as 1.0 and enable the block.
--	 */
--	if (intel_fbc_is_enable_pixel_normalizer(plane_state))
--		x3p_lpd_plane_update_pixel_normalizer(dsb, plane, true);
-+	xe3p_lpd_plane_update_pixel_normalizer(dsb, plane);
- 
- 	/*
- 	 * The control register self-arms if the plane was previously
-@@ -2350,6 +2372,32 @@ static void clip_damage(struct intel_plane_state *plane_state)
- 	drm_rect_intersect(damage, &src);
- }
- 
-+static void check_pixel_normalizer(struct intel_plane_state *plane_state)
-+{
-+	struct intel_display *display = to_intel_display(plane_state);
-+	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
-+	struct intel_atomic_state *state =
-+		to_intel_atomic_state(plane_state->uapi.state);
-+	const struct intel_plane_state *old_plane_state =
-+		intel_atomic_get_old_plane_state(state, plane);
-+
-+	if (!HAS_FBC_FP16_FORMATS(display))
-+		return;
-+
-+	plane_state->pixel_normalizer.factor =
-+		intel_fbc_normalization_factor(plane_state);
-+
-+	/*
-+	 * In case of no old state to compare, better to force update the pixel
-+	 * normalizer settings.
-+	 */
-+	plane_state->pixel_normalizer.needs_update = true;
-+	if (old_plane_state && old_plane_state->hw.fb)
-+		plane_state->pixel_normalizer.needs_update =
-+			plane_state->pixel_normalizer.factor !=
-+			intel_fbc_normalization_factor(old_plane_state);
-+}
-+
- static int skl_plane_check(struct intel_crtc_state *crtc_state,
- 			   struct intel_plane_state *plane_state)
- {
-@@ -2400,6 +2448,8 @@ static int skl_plane_check(struct intel_crtc_state *crtc_state,
- 
- 	check_protection(plane_state);
- 
-+	check_pixel_normalizer(plane_state);
-+
- 	/* HW only has 8 bits pixel precision, disable plane if invisible */
- 	if (!(plane_state->hw.alpha >> 8)) {
- 		plane_state->uapi.visible = false;
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h b/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
-index 6fd4da9f63cf..651f3557b576 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
-@@ -580,6 +580,5 @@
- #define   PLANE_PIXEL_NORMALIZE_ENABLE			REG_BIT(31)
- #define   PLANE_PIXEL_NORMALIZE_NORM_FACTOR_MASK	REG_GENMASK(15, 0)
- #define   PLANE_PIXEL_NORMALIZE_NORM_FACTOR(val)	REG_FIELD_PREP(PLANE_PIXEL_NORMALIZE_NORM_FACTOR_MASK, (val))
--#define   PLANE_PIXEL_NORMALIZE_NORM_FACTOR_1_0		0x3c00
- 
- #endif /* __SKL_UNIVERSAL_PLANE_REGS_H__ */
 -- 
-2.43.0
-
+With best wishes
+Dmitry
