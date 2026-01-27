@@ -2,181 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qPfDBYikeGmGrgEAu9opvQ
+	id OBPzGxuteGl9rwEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jan 2026 12:42:00 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jan 2026 13:18:35 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AC5793BEE
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jan 2026 12:41:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BE42942DE
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jan 2026 13:18:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 869A910E061;
-	Tue, 27 Jan 2026 11:41:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4B1110E089;
+	Tue, 27 Jan 2026 12:18:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UkMdY9BL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g1HY5bLk";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41BC810E061;
- Tue, 27 Jan 2026 11:41:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0748210E089;
+ Tue, 27 Jan 2026 12:18:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769514116; x=1801050116;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=ylNt0d8DQtva0AZvulw/cbLS1UEP3tuPx7xqWYXvVU0=;
- b=UkMdY9BL7wgMb1dCVLn2SQVs5duLy9gp7xV3JJvPyPaeGcdOiaubwPqv
- NTcgielFoJGzX6/V5db7Ume4zalLX+rtD4nH+hIDrlBM4wo0wtyDupVpE
- zSbhzvdelmvI56TZkAnvJPCHCEPR4s3jLhil2p5FW9iNqPUW0SjVvmSAG
- 16nBlcXl1EE82m7nj1/qT8ErEE8shimKj1vyMoQzIAJPTXl/455ti1W/3
- BoQpFcQxljXLqeiOou/nDrNA17azEwmNHCUSASiOFBybtK2/tNM+IoknO
- 4AbLUfPsm42kkh/Peb1F/GSD7Ff0D+ocvg5d+gqtrOrkAHqxkjuLK2taH A==;
-X-CSE-ConnectionGUID: h9KOyc6yRQqQKSSK0q3hvA==
-X-CSE-MsgGUID: 7S4j1eZdTdKvjtgitb3ktA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11683"; a="70609579"
-X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="70609579"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2026 03:41:49 -0800
-X-CSE-ConnectionGUID: R9iScxQsSJyRk1JXCFjVvw==
-X-CSE-MsgGUID: wVar1soqSei4LEHx548ebw==
+ t=1769516311; x=1801052311;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=rV/4MGo52M6b/K1M4C5ns/3j8iDtPTwx6O2SN4szxak=;
+ b=g1HY5bLkSaUz567yCwQNlYLM+/YQQNjnFOIIQrhZ574RXCAucHhjUCrf
+ ptGD+YIuPd5YF3vDOYYhfNnkxFKoQeF+5wxAEbP9J1zASDV/kPIpgCsUx
+ G9h/DoT5VB/LnUl6ZobNZtByhLIHz+0Ea0PjJMami4b/S7unKpXcyg35m
+ H9wsMsxfH4ScM9ph9fd3BALlUIFnXB9o/J5kFDcoRinIdcQ/GNiuMEPBU
+ 3Tih6vDyHlttttJqJ5ppJXx8RtWvSyOC7EPBp2UGY04Lhx9CvOm65OlTX
+ VTdMddBrxa2FUSm6l7IJW4VrtwXnOce8F2s+UjYji7uwNnrJhqglfdStV Q==;
+X-CSE-ConnectionGUID: fwTpBZazR7WhYsJ/XhAYww==
+X-CSE-MsgGUID: SoKUcOtdT866oQkm8hM+hQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11683"; a="70612426"
+X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="70612426"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2026 04:18:16 -0800
+X-CSE-ConnectionGUID: 3VLZlJJWQmCpWFwaMk8C+Q==
+X-CSE-MsgGUID: /yS8puqNRYq0Jqph28SlIA==
 X-ExtLoop1: 1
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2026 03:41:49 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Tue, 27 Jan 2026 03:41:48 -0800
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Tue, 27 Jan 2026 03:41:48 -0800
-Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.40) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Tue, 27 Jan 2026 03:41:48 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EjvCxTsRjEYyO41n9SkwIZ55xU5f0osSDsCBevWTZOCPMRX+b7XMbv4NmugEbEWPYTeq1CyST2H2A3HCsh99kFSvuNl4mDgfGOi5BMf3pDhwjxmAVuOiS1+sL5RCCrsyIxIT7I3iN56vV4gtIFwairvgE7YBomyo3qhM5yxOQ6b9I/kf+jd2XFaJa6yqYChci3GwYgJ1nffvH0JfXBmGPYKsoKXelcUvVRpKTyA7pT354QtDNnAfnfZ1XDUb0x+xBcuBt6Yd0F2rLXdOnx5C5SJjGO/FOWHGfnNRaWkuF4O3xsKCKIXa65gLEOY7D5jC/janrx+uWQgOFWPRSFvVhg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PyoVkdRh7DPfHyfb87PbLH50fPqvFpPuZfcFBorNqGc=;
- b=M0wCikOy+XafdM0NEz+rlrj4N0pBY3zRnT+MTt5TLG83sg7E1wK87UJu5wUHK4w2TZNjejYuqPO2lXC3ntbashqR3H8VGtSO/NAsooVKz4ozJI5dYBHcsGQencfs6Cz+ofRJhzm0/yi/e9nTfzaTfcjwp0aFNOeTgg7GAgD0VJh/nLfF5nV9ivn/b4oT6kyMPctzg53XU35t+iFj52x/VIZWQtcY0G3aydDMHW0dKzYBAoQxYn09XoEhtg8X01IjwaRh84i/lndqx5JExxQheMLpaeQcRu+4YAcCNSD1inlpPXZ5NS0YqrKnU9ftrgpXDhHTgWfZC/8Et3NI1WmWkQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
- (2603:10b6:f:fc00::f13) by IA0PR11MB7283.namprd11.prod.outlook.com
- (2603:10b6:208:439::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.15; Tue, 27 Jan
- 2026 11:41:41 +0000
-Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
- ([fe80::7cc8:75c9:22c6:3c66]) by DM3PPF208195D8D.namprd11.prod.outlook.com
- ([fe80::7cc8:75c9:22c6:3c66%7]) with mapi id 15.20.9542.015; Tue, 27 Jan 2026
- 11:41:41 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: "Garg, Nemesa" <nemesa.garg@intel.com>, "Golani, Mitulkumar Ajitkumar"
- <mitulkumar.ajitkumar.golani@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH v2 1/1] drm/i915/display: Implement Wa_16024710867
-Thread-Topic: [PATCH v2 1/1] drm/i915/display: Implement Wa_16024710867
-Thread-Index: AQHcj2KIqBjPR2Lt0kaY0Wdnjuk0M7VlxF8AgAAgGrA=
-Date: Tue, 27 Jan 2026 11:41:40 +0000
-Message-ID: <DM3PPF208195D8D64885F3CC7DBFA48E632E390A@DM3PPF208195D8D.namprd11.prod.outlook.com>
-References: <20260127074644.991015-1-mitulkumar.ajitkumar.golani@intel.com>
- <20260127074644.991015-2-mitulkumar.ajitkumar.golani@intel.com>
- <IA1PR11MB64677E81F84F83BAE617A7D9E390A@IA1PR11MB6467.namprd11.prod.outlook.com>
-In-Reply-To: <IA1PR11MB64677E81F84F83BAE617A7D9E390A@IA1PR11MB6467.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM3PPF208195D8D:EE_|IA0PR11MB7283:EE_
-x-ms-office365-filtering-correlation-id: 09db5de0-1553-4756-408a-08de5d9909e2
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|376014|1800799024|366016|38070700021;
-x-microsoft-antispam-message-info: =?us-ascii?Q?wNMr0ytppJaDYEhqWEac8m6kGtM3hT7jUXPApb5qirRxgB7xwm5yLVsd4t7N?=
- =?us-ascii?Q?eYb5xGejTpxPONbMBoBgQRIQPIAlTh256pbahnV7H7YxE6mcD2v7MUUwcjoO?=
- =?us-ascii?Q?W23PYhXgeuf7Cagtg1w+q85eaG7O0uUdg2igvDft7hEFguOz/xLAc3eN5J4F?=
- =?us-ascii?Q?lJYYioLz4hFJB8/Hjetqzz61hzTHmioRmn1bprtiD8D1M+60dsaJZ19/HlTf?=
- =?us-ascii?Q?kOISXtCtc1nxN+/APRCJ1Ft2k43umMEKR5yieyguBclAFWXWGvjSJjFB4U/N?=
- =?us-ascii?Q?Akp5Z71BNt15kPtBvSZKqhWodrTryqcGbMXnB0Tsfrn0bMXb6jk1X2KVBi67?=
- =?us-ascii?Q?oxe5gDOOWtuXbwGb3PCCQqgkWhXLm8bZ8ySXyla6yb67GOXwLdJ+T8BYEcEq?=
- =?us-ascii?Q?oHTdOiBILOWCQfNZQHjUlbQG3cnmtp1M0OeyBYLpnELvQ38zgal0QdLGgXRv?=
- =?us-ascii?Q?o+eMDOsrUuD1ilikXU9Is/i2vnRWWR9Wclftp0diMYqVEZ2YHoQvG23eF6MC?=
- =?us-ascii?Q?vsfxx2Hm7GWc71aeR6mAzyD8f/57AUd1ZbVCaufOK5fjbqlSVKJ2CGzQm5/l?=
- =?us-ascii?Q?C12PaaaOVpeGPHw5Gi4GG7fmvhYihJCdlRpnVSUZGIFqbENRsIzNnxS7elbx?=
- =?us-ascii?Q?ZykMPUGhxmiK3r3dJ98wQ9/DVhDc7jwj3CGz37OyepCgW+Kvhp8JI5EaPxgV?=
- =?us-ascii?Q?qLIqdyXiv8OshUSpNTRUZ9tjt3L7eWAoXKG1b8CjHMK+zZWGkO3Oo083i9A7?=
- =?us-ascii?Q?Fb+zFtzpgvTQ0PEm4WFzQkGPnFyIU/nzwoZ4pO2EAsufO4QFMlK/mSU6HKBI?=
- =?us-ascii?Q?Yoydk1L1KmpZ7Z6cnbj6q9ChoX29uEEjLM2nddOM7CgicWwclqPlXz8lzK4d?=
- =?us-ascii?Q?JZg/+jMOwuYMK4nYYIT6FU7HkCBepmGj1pUeb+sYmhKbHOs6xPDpZ1ZRJB17?=
- =?us-ascii?Q?ImmFcXT0GYqXLIswP6TDj0ARxksTWNMijGz732L4K/pkKpVtZMvSRxBcwcDs?=
- =?us-ascii?Q?mC6lI3pSi3S7MicSnVPByaeI8pug3dKEffMXhA/0sPOswaHM6p6qNqbl7x2u?=
- =?us-ascii?Q?5EXlYKMNe5rY2SCnWD+LKcxaHRsxd04J2BmGclr7KCN7x6rtfYx7L8AwGAB9?=
- =?us-ascii?Q?8jKGYTGu7nOc26mdPWKJAvJ5qC+hhua9aVSNUi0pnF3ob5LEP2MKJtEOQz0z?=
- =?us-ascii?Q?hEzmp6JzYRF6emNCAp/jOleyNejgiNtO3lb8KFw187i+Lax6Sz3xo61jW30t?=
- =?us-ascii?Q?lUblrlTEEwGMJWWx8p6yHT3WEysmGFme9HxNBfJAJKSpZtng+2NrpKIa/Xal?=
- =?us-ascii?Q?v+o43ei2ES+zDKeBtfpOMJuAz/jvzFvsP4U7R2G+RQXgMMF/Wqm+P2X68QI8?=
- =?us-ascii?Q?j0Ogikv5NoOYAe44BZ7w9Px4FongHNOxHIVjiTX0vclKqQg7ALnUxHt2R7dj?=
- =?us-ascii?Q?23teZe6LWsBy0mTsRxpvmTCDcmKWmtqIDOAOC8Oq5QHSgRPPUsm2rtsKLN7j?=
- =?us-ascii?Q?8UhncMAwzScTbF+ii8GIFEuH+laTi8BVv45n8AaEoAV4yz7TPFmffLjKqQVp?=
- =?us-ascii?Q?iEptZPBKgsoni6aSJIQvXIGn7O1UYJnGWKrKT/kgD2DxGECCxfBJBPQVVSmC?=
- =?us-ascii?Q?u6nplHkYeC4MzqdE2Qyk/b0=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM3PPF208195D8D.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(38070700021); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?+bK5pbnFBhuY84b8weV8n6ON0j5Qf1LXZPE1w3uX4wh0fj58NOL25dpD68H3?=
- =?us-ascii?Q?qUfMh7AX7u3OWM96O3ftRFVHynyTzrmYjZYiYV58gzhfeijBeiDdzQtYWtD4?=
- =?us-ascii?Q?XZf116EDwcx+aIkY6R7eK00H2oSoYPOHyV/EcoFVVowfsffUMdR4QH+ZbxKY?=
- =?us-ascii?Q?kpakYCOJZ/nbC1e2jDPeY0EWt4NxxKucnjVEo5XMR3McFsGrT7usgnG5znBm?=
- =?us-ascii?Q?lH/JYhamDs5c5htXmUH4jmR19BPGbvJDj+y3vQuP7KqpmI1d72paHNrhMSja?=
- =?us-ascii?Q?sqO8XRdfahN4fAfs14jywlRB2E+v8CgfdzNsHjZS09aV7NyevLmfckGkxkwk?=
- =?us-ascii?Q?YU3C2zoSJbINsASSQzYxjhFQ67DIHyk6EkS+AcKVA94vyPt0MrUFFIum1OTa?=
- =?us-ascii?Q?nNmjbwcdMt1NPLFq/fncZfZ6w7NkoXwJxDicRaFzmq8skLcT8ADptJpogge5?=
- =?us-ascii?Q?IKRmm7VSECRBPBp0MllYlPAIx9SkYlcGjiAjxjjpqlOQXJ7FUrJkibpQzuQX?=
- =?us-ascii?Q?PiWQh8TEMpERWTaHcxM/KB+hNJGZGc9BwMfF+UPxbfXdWzc3JYXPBj2bcz1O?=
- =?us-ascii?Q?5NLijSjq0WcpfO7Ul5VtSSEVic7k/ramofH8IVdBn3vq4KY7gVniNN8mqlJl?=
- =?us-ascii?Q?SxXKRYAR96QvvmdR2q+bTlCo+nzkCJKIALH3KpCJDV6N2x7htXKmUR6o3MnU?=
- =?us-ascii?Q?66XaLp7EkchmCmF3uwTGCIgw7CWJ8WvVQAUcMTIA67zYNBo9pluLSKSm8RfP?=
- =?us-ascii?Q?eNIfqkBlefXV4nI9y+gU0SR3HVcX2yFY69tnnRt1yDm037tExAOfiZOyp4/v?=
- =?us-ascii?Q?n4MWp+L7zbLIwiEozG+yD3Keh8Ww2Yzc+LL9pXGkFsM7kMI35B5P8YgK9jDp?=
- =?us-ascii?Q?6YXUVuuUfnq+XgZZTHDpjEZ/70Wj1pXJvdUm4SA1m/v6XSqd0UEn8iWDKueA?=
- =?us-ascii?Q?A9hfToTe4OvR/rUUZdaYtLI9jZXYu5b7t0ZigbZAmqgM6ZYhQkUbt3bDM0CG?=
- =?us-ascii?Q?n3sMZM3MtDQNiY8F9T+QTwgs5x+0FSDtrnSwKPKFsftbCXnyzDNHPb2wDa9H?=
- =?us-ascii?Q?0lCe6rVt22gTNI5su/1DQOz0ymb6UW1ynkhr6IVcJAdZYNb53W72J+Oh0VO+?=
- =?us-ascii?Q?6Q6h3EQIC/WplvyjKWef8lS/FYhZNkD42g90659ZXA2WoAEkBAYpxF547uim?=
- =?us-ascii?Q?THzQhaNEFtMSLSrFc8+o/ZTcUXUxyVWCEn+MZnq/MtIK235Flye0+EVJroH5?=
- =?us-ascii?Q?JAnPaN2PMTj2pIvC38dLUz8elSqq3DVdwUNwIbvqRnRnoDaN7++Xv4JqzzF2?=
- =?us-ascii?Q?e6JWNK6y4hCwTK6z8QDCcsh2Umn07WHYXIrzEIKfdJmD74P68Z7JKjLyxyiz?=
- =?us-ascii?Q?/7jdNRN19m/uKvCJBTsrUftG0R5KUo4raPM+euvzgUcGvmLDsixF+bCxRn+V?=
- =?us-ascii?Q?mbk27tcmB7evj1OVC2WcEp20oR0VtnNNOLTDTxJYS59/WPiE6d3DJnxoed2w?=
- =?us-ascii?Q?7xT7WxDa8pM1H27t+hfvI0mp1ZdFzxIUwSYiLEoQH7KLJ02WKas31Fp4qkW2?=
- =?us-ascii?Q?r7QwwzkYcRX6VdLDAWNRLTKDoqduD7fGepfo5RUoSOe+EqK1CyWKTFqo1voX?=
- =?us-ascii?Q?A0RHVJpsYl9JeyHN3R5D5DUmBAfqxPzQPoTqJ3YBFnyHnv9LBkc9M+kJBKGW?=
- =?us-ascii?Q?+CmrW+6DGBEbXLpvt19JqmdQFFWCMLWnqbcIhAwb5d528h2FwN7dAelxrleX?=
- =?us-ascii?Q?c8Vb3tF/PA=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="207583463"
+Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.86])
+ by fmviesa007-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2026 04:18:14 -0800
+Date: Tue, 27 Jan 2026 14:18:11 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ uma.shankar@intel.com, juha-pekka.heikkila@intel.com
+Subject: Re: [PATCH v3] drm/i915/display: fix the pixel normalization
+ handling for xe3p_lpd
+Message-ID: <aXis2rWjpuNDBm7y@intel.com>
+References: <20260127111345.939736-1-vinod.govindapillai@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM3PPF208195D8D.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 09db5de0-1553-4756-408a-08de5d9909e2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Jan 2026 11:41:40.9883 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ZIj7cmEGxcGSRn4DTmjiUfINyHGQ62lA4QlUS+t+YrUO0BhMmFM7jai4iKVfNtuRs/AmxSA8+KsaJ5YRi+ZDeg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7283
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260127111345.939736-1-vinod.govindapillai@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -192,79 +78,328 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+X-Spamd-Result: default: False [0.31 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
+	R_MIXED_CHARSET(0.63)[subject];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,DM3PPF208195D8D.namprd11.prod.outlook.com:mid];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[suraj.kandpal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
+	HAS_ORG_HEADER(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: 7AC5793BEE
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 9BE42942DE
 X-Rspamd-Action: no action
 
-> > Subject: [PATCH v2 1/1] drm/i915/display: Implement Wa_16024710867
-> >
-> > Defeature port sync feature for xe3lpd onwards.
-> >
-> > --v1:
-> > - Use xe3lpd naming (Suraj)
-> > - Use IS_DISPLAY_VER (Suraj)
-> >
-> > Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_ddi.c | 5 ++++-
-> >  1 file changed, 4 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > index d8739e2bb004..a3e6f9a31b20 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > @@ -4588,8 +4588,11 @@ intel_ddi_port_sync_transcoders(const struct
-> > intel_crtc_state *ref_crtc_state,
-> >  	/*
-> >  	 * We don't enable port sync on BDW due to missing w/as and
-> >  	 * due to not having adjusted the modeset sequence appropriately.
-> > +	 *
-> > +	 * Wa_16024710867
-> > +	 * Deprecate port sync support for xe3lpd+
-> >  	 */
-> > -	if (DISPLAY_VER(display) < 9)
-> > +	if (!IS_DISPLAY_VER(display, 9, 20))
-> >  		return 0;
-> >
-> I guess instead of 20 it should be 30.
+On Tue, Jan 27, 2026 at 01:13:45PM +0200, Vinod Govindapillai wrote:
+> Pixel normalizer is enabled with normalization factor as 1.0 for
+> FP16 formats in order to support FBC for those formats in xe3p_lpd.
+> Previously pixel normalizer gets disabled during the plane disable
+> routine. But there could be plane format settings without explicitly
+> calling the plane disable in-between and we could endup keeping the
+> pixel normalizer enabled for formats which we don't require that.
+> This is causing crc mismatches in yuv formats and FIFO underruns in
+> planar formats like NV12.
+> 
+> Fix this by updating the pixel normalizer configuration based on the
+> pixel formats explicitly during the plane settings arm calls itself
+> - enable it for FP16 and disable it for other formats in HDR capable
+> planes. To avoid redundancies in these updates, normalization factor
+> between old and new plane states are compared before the update. The
+> function to check validity of the fp16 formats for fbc is now updated
+> to return the normalization factor as 1.0 in case of fp16 formats and
+> 0 in other cases.
 
-No it wouldn't be since the range we want is from
-[9, 30) where 30 is not included so it would ideally be (9,29)
-But since we jump from display ver 20 to 30 it would be IS_DISPLAY_VER(9,20=
-)
+This looks incredibly complex for just writing a single register.
+I think it should be just somehting like:
 
-Regards,
-Suraj Kandpal
+static u32 pixel_normalizer_val()
+{
+	if (!need_pixel_normalizer())
+		return 0;
 
->=20
-> Regards,
-> Nemesa
-> >  	if (!intel_crtc_has_type(ref_crtc_state, INTEL_OUTPUT_DP))
-> > --
-> > 2.48.1
+	return ENABLE | FACTOR;
+}
 
+plane_update(..)
+{
+	...
+	if (HAS_PIXEL_NORMALIZER())
+		write(PIXEL_NOFMRALIZER, pixel_normalizer_val())
+	...
+}
+
+plane_disable()
+{
+	...
+	// do we even need to disable it for disabled planes?
+	if (HAS_PIXEL_NORMALIZER())
+		write(PIXEL_NORMALIZER, 0);
+	...
+}
+
+> 
+> v2: avoid redundant pixel normalization setting updates
+> 
+> v3: moved the normalization factor definition to intel_fbc.c and some
+>     updates to comments
+> 
+> Fixes: 5298eea7ed20 ("drm/i915/xe3p_lpd: use pixel normalizer for fp16 formats for FBC")
+> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+> ---
+>  .../drm/i915/display/intel_display_device.h   |  1 +
+>  .../drm/i915/display/intel_display_types.h    |  8 ++
+>  drivers/gpu/drm/i915/display/intel_fbc.c      | 19 ++++-
+>  drivers/gpu/drm/i915/display/intel_fbc.h      |  4 +-
+>  .../drm/i915/display/skl_universal_plane.c    | 82 +++++++++++++++----
+>  .../i915/display/skl_universal_plane_regs.h   |  1 -
+>  6 files changed, 92 insertions(+), 23 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+> index 6c74d6b0cc48..126aa1eeeb6d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+> @@ -175,6 +175,7 @@ struct intel_display_platforms {
+>  #define HAS_DSC_MST(__display)		(DISPLAY_VER(__display) >= 12 && HAS_DSC(__display))
+>  #define HAS_FBC(__display)		(DISPLAY_RUNTIME_INFO(__display)->fbc_mask != 0)
+>  #define HAS_FBC_DIRTY_RECT(__display)	(DISPLAY_VER(__display) >= 30)
+> +#define HAS_FBC_FP16_FORMATS(__display)	(DISPLAY_VER(__display) >= 35)
+>  #define HAS_FBC_SYS_CACHE(__display)	(DISPLAY_VER(__display) >= 35 && !(__display)->platform.dgfx)
+>  #define HAS_FPGA_DBG_UNCLAIMED(__display)	(DISPLAY_INFO(__display)->has_fpga_dbg)
+>  #define HAS_FW_BLC(__display)		(DISPLAY_VER(__display) >= 3)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index e6298279dc89..92bce232b2c5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -686,6 +686,14 @@ struct intel_plane_state {
+>  	unsigned long flags;
+>  #define PLANE_HAS_FENCE BIT(0)
+>  
+> +	/* xe3p_lpd+ */
+> +	struct {
+> +		/* In half-precision floating-point format. 0x3c00 (1.0) for fp16 formats */
+> +		unsigned int factor;
+> +		/* update is needed if factor differs between old and new plane states */
+> +		bool needs_update;
+> +	} pixel_normalizer;
+> +
+>  	struct intel_fb_view view;
+>  
+>  	/* for legacy cursor fb unpin */
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+> index 1f3f5237a1c2..f9474e7741c8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> @@ -71,6 +71,9 @@
+>  
+>  #define FBC_SYS_CACHE_ID_NONE	I915_MAX_FBCS
+>  
+> +/* Pixel normalization factor 1.0 in half-precision floating-point format */
+> +#define NORM_FACTOR_1_0_IN_HALF_PRECISION_FP		0x3c00
+> +
+>  struct intel_fbc_funcs {
+>  	void (*activate)(struct intel_fbc *fbc);
+>  	void (*deactivate)(struct intel_fbc *fbc);
+> @@ -1215,13 +1218,21 @@ static bool xe3p_lpd_fbc_pixel_format_is_valid(const struct intel_plane_state *p
+>  	}
+>  }
+>  
+> -bool
+> -intel_fbc_is_enable_pixel_normalizer(const struct intel_plane_state *plane_state)
+> +unsigned int
+> +intel_fbc_normalization_factor(const struct intel_plane_state *plane_state)
+>  {
+>  	struct intel_display *display = to_intel_display(plane_state);
+>  
+> -	return DISPLAY_VER(display) >= 35 &&
+> -	       xe3p_lpd_fbc_fp16_format_is_valid(plane_state);
+> +	/*
+> +	 * In order to have FBC for fp16 formats pixel normalizer block must be
+> +	 * active. For FP16 formats, use normalization factor as 1.0 and enable
+> +	 * the block.
+> +	 */
+> +	if (HAS_FBC_FP16_FORMATS(display) &&
+> +	    xe3p_lpd_fbc_fp16_format_is_valid(plane_state))
+> +		return NORM_FACTOR_1_0_IN_HALF_PRECISION_FP;
+> +
+> +	return 0;
+>  }
+>  
+>  static bool pixel_format_is_valid(const struct intel_plane_state *plane_state)
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.h b/drivers/gpu/drm/i915/display/intel_fbc.h
+> index f0255ddae2b6..b5888e98a659 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.h
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.h
+> @@ -56,7 +56,7 @@ void intel_fbc_prepare_dirty_rect(struct intel_atomic_state *state,
+>  				  struct intel_crtc *crtc);
+>  void intel_fbc_dirty_rect_update_noarm(struct intel_dsb *dsb,
+>  				       struct intel_plane *plane);
+> -bool
+> -intel_fbc_is_enable_pixel_normalizer(const struct intel_plane_state *plane_state);
+> +unsigned int
+> +intel_fbc_normalization_factor(const struct intel_plane_state *plane_state);
+>  
+>  #endif /* __INTEL_FBC_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> index b3d41705448a..05c227913b8d 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> @@ -891,20 +891,49 @@ static void icl_plane_disable_sel_fetch_arm(struct intel_dsb *dsb,
+>  	intel_de_write_dsb(display, dsb, SEL_FETCH_PLANE_CTL(pipe, plane->id), 0);
+>  }
+>  
+> -static void x3p_lpd_plane_update_pixel_normalizer(struct intel_dsb *dsb,
+> -						  struct intel_plane *plane,
+> -						  bool enable)
+> +static void xe3p_lpd_plane_disable_pixel_normalizer(struct intel_dsb *dsb,
+> +						    struct intel_plane *plane)
+>  {
+>  	struct intel_display *display = to_intel_display(plane);
+>  	enum intel_fbc_id fbc_id = skl_fbc_id_for_pipe(plane->pipe);
+> -	u32 val;
+> +	const struct intel_plane_state *plane_state =
+> +		to_intel_plane_state(plane->base.state);
+> +
+> +	if (!HAS_FBC_FP16_FORMATS(display))
+> +		return;
+> +
+> +	if (!skl_plane_has_fbc(display, fbc_id, plane->id))
+> +		return;
+> +
+> +	if (!plane_state->pixel_normalizer.factor)
+> +		return;
+> +
+> +	intel_de_write_dsb(display, dsb,
+> +			   PLANE_PIXEL_NORMALIZE(plane->pipe, plane->id), 0);
+> +}
+> +
+> +static void xe3p_lpd_plane_update_pixel_normalizer(struct intel_dsb *dsb,
+> +						   struct intel_plane *plane)
+> +{
+> +	struct intel_display *display = to_intel_display(plane);
+> +	enum intel_fbc_id fbc_id = skl_fbc_id_for_pipe(plane->pipe);
+> +	const struct intel_plane_state *plane_state =
+> +		to_intel_plane_state(plane->base.state);
+> +	u32 val = 0;
+> +
+> +	if (!HAS_FBC_FP16_FORMATS(display))
+> +		return;
+>  
+> -	/* Only HDR planes have pixel normalizer and don't matter if no FBC */
+> +	/* Only HDR planes have pixel normalizer and don't matter if FBC is fused off */
+>  	if (!skl_plane_has_fbc(display, fbc_id, plane->id))
+>  		return;
+>  
+> -	val = enable ? PLANE_PIXEL_NORMALIZE_NORM_FACTOR(PLANE_PIXEL_NORMALIZE_NORM_FACTOR_1_0) |
+> -		       PLANE_PIXEL_NORMALIZE_ENABLE : 0;
+> +	if (!plane_state->pixel_normalizer.needs_update)
+> +		return;
+> +
+> +	if (plane_state->pixel_normalizer.factor)
+> +		val = PLANE_PIXEL_NORMALIZE_NORM_FACTOR(plane_state->pixel_normalizer.factor) |
+> +		      PLANE_PIXEL_NORMALIZE_ENABLE;
+>  
+>  	intel_de_write_dsb(display, dsb,
+>  			   PLANE_PIXEL_NORMALIZE(plane->pipe, plane->id), val);
+> @@ -926,8 +955,7 @@ icl_plane_disable_arm(struct intel_dsb *dsb,
+>  
+>  	icl_plane_disable_sel_fetch_arm(dsb, plane, crtc_state);
+>  
+> -	if (DISPLAY_VER(display) >= 35)
+> -		x3p_lpd_plane_update_pixel_normalizer(dsb, plane, false);
+> +	xe3p_lpd_plane_disable_pixel_normalizer(dsb, plane);
+>  
+>  	intel_de_write_dsb(display, dsb, PLANE_CTL(pipe, plane_id), 0);
+>  	intel_de_write_dsb(display, dsb, PLANE_SURF(pipe, plane_id), 0);
+> @@ -1674,13 +1702,7 @@ icl_plane_update_arm(struct intel_dsb *dsb,
+>  
+>  	intel_color_plane_commit_arm(dsb, plane_state);
+>  
+> -	/*
+> -	 * In order to have FBC for fp16 formats pixel normalizer block must be
+> -	 * active. Check if pixel normalizer block need to be enabled for FBC.
+> -	 * If needed, use normalization factor as 1.0 and enable the block.
+> -	 */
+> -	if (intel_fbc_is_enable_pixel_normalizer(plane_state))
+> -		x3p_lpd_plane_update_pixel_normalizer(dsb, plane, true);
+> +	xe3p_lpd_plane_update_pixel_normalizer(dsb, plane);
+>  
+>  	/*
+>  	 * The control register self-arms if the plane was previously
+> @@ -2350,6 +2372,32 @@ static void clip_damage(struct intel_plane_state *plane_state)
+>  	drm_rect_intersect(damage, &src);
+>  }
+>  
+> +static void check_pixel_normalizer(struct intel_plane_state *plane_state)
+> +{
+> +	struct intel_display *display = to_intel_display(plane_state);
+> +	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+> +	struct intel_atomic_state *state =
+> +		to_intel_atomic_state(plane_state->uapi.state);
+> +	const struct intel_plane_state *old_plane_state =
+> +		intel_atomic_get_old_plane_state(state, plane);
+> +
+> +	if (!HAS_FBC_FP16_FORMATS(display))
+> +		return;
+> +
+> +	plane_state->pixel_normalizer.factor =
+> +		intel_fbc_normalization_factor(plane_state);
+> +
+> +	/*
+> +	 * In case of no old state to compare, better to force update the pixel
+> +	 * normalizer settings.
+> +	 */
+> +	plane_state->pixel_normalizer.needs_update = true;
+> +	if (old_plane_state && old_plane_state->hw.fb)
+> +		plane_state->pixel_normalizer.needs_update =
+> +			plane_state->pixel_normalizer.factor !=
+> +			intel_fbc_normalization_factor(old_plane_state);
+> +}
+> +
+>  static int skl_plane_check(struct intel_crtc_state *crtc_state,
+>  			   struct intel_plane_state *plane_state)
+>  {
+> @@ -2400,6 +2448,8 @@ static int skl_plane_check(struct intel_crtc_state *crtc_state,
+>  
+>  	check_protection(plane_state);
+>  
+> +	check_pixel_normalizer(plane_state);
+> +
+>  	/* HW only has 8 bits pixel precision, disable plane if invisible */
+>  	if (!(plane_state->hw.alpha >> 8)) {
+>  		plane_state->uapi.visible = false;
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h b/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
+> index 6fd4da9f63cf..651f3557b576 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
+> @@ -580,6 +580,5 @@
+>  #define   PLANE_PIXEL_NORMALIZE_ENABLE			REG_BIT(31)
+>  #define   PLANE_PIXEL_NORMALIZE_NORM_FACTOR_MASK	REG_GENMASK(15, 0)
+>  #define   PLANE_PIXEL_NORMALIZE_NORM_FACTOR(val)	REG_FIELD_PREP(PLANE_PIXEL_NORMALIZE_NORM_FACTOR_MASK, (val))
+> -#define   PLANE_PIXEL_NORMALIZE_NORM_FACTOR_1_0		0x3c00
+>  
+>  #endif /* __SKL_UNIVERSAL_PLANE_REGS_H__ */
+> -- 
+> 2.43.0
+
+-- 
+Ville Syrjälä
+Intel
