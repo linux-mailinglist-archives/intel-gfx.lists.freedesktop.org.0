@@ -2,101 +2,181 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KIVfJedxeGnEpwEAu9opvQ
+	id QPHoEo11eGlDqAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jan 2026 09:05:59 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jan 2026 09:21:33 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56EBE90EA7
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jan 2026 09:05:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AFCB49108D
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jan 2026 09:21:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E01610E4CC;
-	Tue, 27 Jan 2026 08:05:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F85210E4DA;
+	Tue, 27 Jan 2026 08:21:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="nSarG0gE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RKh78VZ7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com
- [209.85.218.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8142510E4CC
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Jan 2026 08:05:53 +0000 (UTC)
-Received: by mail-ej1-f51.google.com with SMTP id
- a640c23a62f3a-b87677a8abeso814498566b.1
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Jan 2026 00:05:53 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1769501152; cv=none;
- d=google.com; s=arc-20240605;
- b=ZRcvTrys3/45NI9D2Roq31eqQvGWoWXE4wM6gOP16nS/AA/5F/UCt+hrE454Zm6Olu
- Wl2mQrPoYNvSHG9Em49efJkoC8GegOx5f109KQX75jb7sxHj/AUKXJHaMx11eJXmc74d
- k4BEj3zTu7yjfBszGQygYOA1lxKPKnHI55vNYw2BYiOshs5Uj/TQzep+SiGG+f/w5cr3
- luK4KSKkcz4O6Kvb/JUbPulgInorDXfBxUH6P//7+8VtQYnSnHPkvWUTcoj5ddU8Z05J
- t1s4YRLF8IfqmfcdD3a+vHP/oWYoyFC8F55NJoCNWUkaKOKLSfzOTOcmtnAMAqodN37y
- EObQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:dkim-signature;
- bh=Nc/gHQubbPXzt+nuGEIisaowD42kgVBJ+bLCU9qxKOY=;
- fh=coMO0toNIE8zHj3c+bZAoLUAxedEZiT6DWJndpLBUL4=;
- b=bW0B6EFCDVs4qZnP0BqMm4snDeoiOrMZxD4yIx+DFByR5M7L+FMaG01ImgzVRzbsHn
- SKjVyRKZ1/wsTY3EeSzkcbypv8o7oARBq58VELuMZSLtMsIlvs91NCGIpDdwhJ6TrjV1
- tLKEiCZbKzvG8VJN+aJtrkV3F7JuQsuJ6idLkdeBJvi8d3YM1/RgrZ+PwRNI6luEx+au
- Ip2TcqvJh0wytXlqwfyRZXPSTFnSF9AXtwyC56cr6mA0yU5bjTLVBd5s7VnTMTuzm1wD
- SSFGgSRJJL9AEQrOQsN5/fr7QLhegRKBxav0rsQiW6Et/e0pTWV9MmPGoWPILyZ2qUoW
- BuwA==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1769501152; x=1770105952;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=Nc/gHQubbPXzt+nuGEIisaowD42kgVBJ+bLCU9qxKOY=;
- b=nSarG0gEwegAuC+UJcOTUeIxNeIvr0Ze1jEmhj3heeZU5oHQ9DIqkWOMW5CbMqiN8U
- BK7ueNcJh/tm39Wr2Kb+OlyMypSaQyehqU4WVF3RkkWwm7sHirbUoYO02C9C1kB1rzvx
- Ur/IoRSPBHpe+y/bk3upzGdWOwCh+mZA34GOe4n4ekn+2edCewlHqjY7UhZJ1bw/ZppM
- fdVwRTQ2MFzn4CcVHNsA6dVHEgOD1Czc6Z7NEXLjQxlLfLnur1T4UVlb8udKru0BzySS
- 3YOM6atRkPC7zhM9hrNHCPxMkJ78L1UoS4IjVHwH1o1UWQRczXhMqcEp1jFb0WmVcjAR
- re2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1769501152; x=1770105952;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=Nc/gHQubbPXzt+nuGEIisaowD42kgVBJ+bLCU9qxKOY=;
- b=gGNRvE7ohQ1anDAyuo/ZpZAJmi1dRD5uDAXgXfdJki4LXPQ0YZdZRnzyzTCs6iSLL+
- pSMrJXxrEM4bZKqKYJlNxhOVj2viYlDVuMWnWf5ip8gQES2P+YhP3iIhIH1dQJXI5tKD
- OeK7SrzSsEd82UXtnQzaUr49OD+Jl945OMuOywKwVUV9OEZoOJce0t/ORQ1ZbCY2IvrM
- cRaPmcGn/TERsjJ538PQKa4Rhu2x8MuM5dlg8GWsounM+8tB1EDDIttC6kw19wJS+5z2
- C+GrRq1fO/Delgyl1Jvl7XkUXZkm0HEaTc68NBHu3KeGmlalGBskZd9mwH3xKvL4M/Vy
- 3g7w==
-X-Gm-Message-State: AOJu0YyLimlJ/UckdRHU0th3/dGeKM2kH2qY5XE4vdP+cP1DqTxuZWZg
- rUpaa0J6oR91p5XRqeWLO6clY0HFar00Q381tCmWPqaA9m2mJAJ0YkevmF4+scO/UtYT8U5Dqa3
- ef1BPBIlJgbmVT3BieH9tfF2gA+FokMpCkelrBoEa
-X-Gm-Gg: AZuq6aL6y2vio1hDhcZS2Bj5X4HnKvd1KV9+antbHcwfXomKccqj0IZx6wdzF2Nf957
- kFd4uR/8FrDqO8r/9mV3LZRvxUfe+uXjETq7JTHU20UVLOpzBB7vNvDtzLd8WDwr2hqphYWmpSK
- 0u+KqwaCcUJN8MipZSc3sBPkK3ciqd43QK8hbSjKClkiWot4d0/hE4lHGCqs5lzAXsrsnLoS4EQ
- aMV39Yc5SZboDSP1A/XGJTJi+bYq9iUEF9VwzrEBTCa03vCz84K5sDAHc4KGTaLAbPWQ6Ao7Z0Z
- Ap6h3x04q0zvlatGrwiVGBRBk8BVT/DD14+yIAAFBnS26sD1rdtXmb/X8g==
-X-Received: by 2002:a17:907:9692:b0:b87:718:5da2 with SMTP id
- a640c23a62f3a-b8dab28c815mr73780766b.1.1769501151560; Tue, 27 Jan 2026
- 00:05:51 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0541D10E4DA;
+ Tue, 27 Jan 2026 08:21:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1769502089; x=1801038089;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=1IEyLKxahHllus8y7bPHhjx9rb3T+oXi9iB/tV3sR0w=;
+ b=RKh78VZ7A2j7NKBq0fcQqFIkxMs98U/pRD9VKp93403uZ7Nf7wsGo/fr
+ tcVv8oUuOoKB8K7G8ORMAhzflgmAhnSp6usMF1aLF/cDFde9DUHRQiVjj
+ x0fnWT40QFVGgHS4Ch/UTSXFnJHNCi9E/tWddeOTub3/nRKkoeM6nFzDh
+ CFWkAqA1bryvWFCAgcLp1OgqskvSBaUXS0nO1PTx4ibH2SlrJin35EkHO
+ m/sphspZ7KFFMO5oZ9VqdsHPJw5CdODousvUnYI0InZzhMGV2Lq4wTR0s
+ j2F3Tm5Vv1fwMkqpLqiya/1KPtuXBxVqIGJUGu3VDharigVpdd0MV1/xJ g==;
+X-CSE-ConnectionGUID: s4Wj2Vm7S5a6maGiMEyYCw==
+X-CSE-MsgGUID: oX/xema4Q6GKhhl7LcesxA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11683"; a="70593941"
+X-IronPort-AV: E=Sophos;i="6.21,256,1763452800"; d="scan'208";a="70593941"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2026 00:21:28 -0800
+X-CSE-ConnectionGUID: 8D7lhXSbRFe115meOU3QOg==
+X-CSE-MsgGUID: zvs3sU2CTv2cQuupDqiVlA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,256,1763452800"; d="scan'208";a="239181873"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2026 00:21:27 -0800
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Tue, 27 Jan 2026 00:21:26 -0800
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35 via Frontend Transport; Tue, 27 Jan 2026 00:21:26 -0800
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.62) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Tue, 27 Jan 2026 00:21:25 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=XEQRZcXgeF7VbJKjcsIHuvVg/RKMytJ6NgD1C72edevixmz/CcugveeC1Xb/QLUnR2jzSqgab+pK3rspUvzfCYw0gUQs6ReC7Ce2TynVqB96qUooTIgny19dkYjgvOeXlUkDOAkKVxBfEw0K1N7oxR4pdllVJr3sRXRbSXgAB7LcwcuVQI42eikZuktibUm4u9/JhFU3FTYJa1RMlht4TzddW911vDJZOUbrL04l3j/DO2UarzcSOl+4MPDyNF2AXItrtd2wTj7mgmaYwBi1+MSOMJOT9ehJaBOrSujrmcqOIC9ehFBQC0E0LnpiVnLABcxE79/jdQLPKABTW3bFYQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+UrXS3NoIsW9lcG7nVCjoGGHyjBTw8OUyONTYda7CZ0=;
+ b=JnLxzISOR6ORyehS3hMN7KhVI5FOt+HOrmcbOYK64+J0CxGUgrZ6bHoCtEfKfNpxxmtczi5oGtmAyOZdxYytqwOLTfgwBN0RJgNf5t5ojReCE7gvHmdtOzIw4Ju+07dUmhN80b9bB7XjOGSQoUhOi+Q893n2/uapf+1NdjfbO3fDlRng53qYt0LB4/eOop0Se5pTgfJ+jv+GliP8bJWcoVAyOlKjoBWZ1Qs0f5MBy8kVNUJL0a0LV1g1Tq2ILyIJRxBdveqTsahJEWtkIJbXpCJEuWqyFAJDGpfTsPpzRrODa7c5FgJP1gr/jqMI28FPBwUy9q2PlXoPoCVt3lXlJg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
+ (2603:10b6:f:fc00::f13) by IA1PR11MB6196.namprd11.prod.outlook.com
+ (2603:10b6:208:3e8::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.15; Tue, 27 Jan
+ 2026 08:21:07 +0000
+Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
+ ([fe80::7cc8:75c9:22c6:3c66]) by DM3PPF208195D8D.namprd11.prod.outlook.com
+ ([fe80::7cc8:75c9:22c6:3c66%7]) with mapi id 15.20.9542.015; Tue, 27 Jan 2026
+ 08:21:07 +0000
+From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Subject: RE: [PATCH v2 1/1] drm/i915/display: Implement Wa_16024710867
+Thread-Topic: [PATCH v2 1/1] drm/i915/display: Implement Wa_16024710867
+Thread-Index: AQHcj2KIqBjPR2Lt0kaY0Wdnjuk0M7Vlq5CQ
+Date: Tue, 27 Jan 2026 08:21:07 +0000
+Message-ID: <DM3PPF208195D8DC5C28AE67D593A5CB53DE390A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+References: <20260127074644.991015-1-mitulkumar.ajitkumar.golani@intel.com>
+ <20260127074644.991015-2-mitulkumar.ajitkumar.golani@intel.com>
+In-Reply-To: <20260127074644.991015-2-mitulkumar.ajitkumar.golani@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM3PPF208195D8D:EE_|IA1PR11MB6196:EE_
+x-ms-office365-filtering-correlation-id: dbb529f6-2ffb-49c9-5315-08de5d7d0526
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|366016|376014|38070700021;
+x-microsoft-antispam-message-info: =?us-ascii?Q?chs/fjmHrGG5mlbNSsXWTfHfo/MGUJzydgavzpFVsP5Ko4MLHrWYpbATEoja?=
+ =?us-ascii?Q?ICPO3vdTl1xI4MNphE8XFO300V6JmzdDdT1KbTGqJbdo0yIjws04E8v9tBhv?=
+ =?us-ascii?Q?LzsLierMxFX0555Rp5ISQqkWs3rRZszpUxJqEoDEHOXm9Q7C4gTcOuu1lkg2?=
+ =?us-ascii?Q?8e4NCgp5KdejGw72FC26UtwOtSgEQAnaN2Tl6taJ1K6f8u20UNqVIGmMqhIm?=
+ =?us-ascii?Q?IKE3DqC2gB8DJOz2ZXctotSvmn2QSVdBjlN6du3TYjwuTQSNituJxrgAyKP7?=
+ =?us-ascii?Q?cTyChDY7uAmZtiT8ljftwVHatDnjCqI9omvW5L8G0e+4uzJgJH/1Prw24EAF?=
+ =?us-ascii?Q?ST7MCkqNK7safGiVrmNEr5nBtZZkzYZUU6VlK/cPKmq9R9cTwEk7eSQBQoeg?=
+ =?us-ascii?Q?diVSmFvYHCpJCxvRF9RmxqVWrAUR8+MNj4Fbafp5fwv4sYeqrtSw31/lfkTm?=
+ =?us-ascii?Q?Fza3ngZu5anh1Urkwnvk8j8gF9d6lAmwCR40S4edx5gZVLBljNhnRe0oeFj/?=
+ =?us-ascii?Q?dbt9y4rITbnanBhn+reCJL40rSKpenrQcnNBzKdFcEMt2Bz0dd/NLBH1ZAlh?=
+ =?us-ascii?Q?VVhYJnM//YdRp8ePsKYz23sgyxhThKA9+ZkzSD4Ap7wlRknq779H7JCSUY73?=
+ =?us-ascii?Q?lxBcEF1qUrlc06QqyxeUhYOac2bYum0QrDtghPvPz2Pvh6Ic22CKonF9lybw?=
+ =?us-ascii?Q?9r3f7IvjNiaqHQ7Rqnk56iJ110tMDzWYosb2YiiXaADqVNXGQLmhaKMCzK3/?=
+ =?us-ascii?Q?4x5lZLvv5ywB+Dh3MTlIVF4isYIZK+wxO/NR/EPc+dzhRP4LY235zD6veJXr?=
+ =?us-ascii?Q?S4kvvCnYJRcrKG9xssQfV9FE7PZ7WquZQj3ZTSqmZNMvLPhW1e3XRdCSjsYg?=
+ =?us-ascii?Q?wZdzIMwMtQ58ukNYTVaO3jTB3rgoWE8gdXy96fGUKnwiy/KMqZ9gpfOIm5vW?=
+ =?us-ascii?Q?cpyzf/eXSqfWCCnGWduZewXa+3s9gav3o9EB3x31lXQ8zgkefyEA/1ogODDn?=
+ =?us-ascii?Q?gr3926i0GqdpzPCfDp8RVWXml0xX1qdmplBgnhelCb0Oc+AAEU5oqUh+0ZU3?=
+ =?us-ascii?Q?CU2qXHMo7Ttw6gXZvXUJg+eLOJ+zemcH71R65hOIu+rB0/CNj0WtD7HR/ks3?=
+ =?us-ascii?Q?fISrrcDITi4InJ13ZyXgTP+/LONxo1c3CYZnlSCByIc5kH1MhkKw+3NCAzI0?=
+ =?us-ascii?Q?dRW4wmKzyEcf6T6bML3bkMs7jw/breFCkpzErkQlGKWXc8lJ3CPHV2DybXwE?=
+ =?us-ascii?Q?Nq337AKqgT+g0nKXfn6ADNnOogPumFqFQtTRfqMX0ffRD+nm210qXHTn40N2?=
+ =?us-ascii?Q?da6cZIEQo1qklOT1JsneXX84v3aCGJKp4oE6OVv+Pdw/4mvDGS06WMB2XHmW?=
+ =?us-ascii?Q?zye1MqjHbdPfdTQ0bVKWsX3OYx+IK0LY7B7HOvYmpPdDj7kwq0pQ33niOdTH?=
+ =?us-ascii?Q?8zb2ENKFvb7uZA22EwpsiQzUfkKQ5HrNr8pu4ZpF5PMw/ed2sAUOqp2Mbsz7?=
+ =?us-ascii?Q?FLCuc3BUzAMAyx9xJByo8Cc1QivR8EZdj3VVHxwu6/KsOc5E+h2YmJQJLyBE?=
+ =?us-ascii?Q?ma5FEEdu2iOBQqHteUgAvS9+yikv5bEaq9H2Epbe/WEZPr57ayQbSdVXv0Wv?=
+ =?us-ascii?Q?OmUswuTgIseDulZtqj99YXM=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM3PPF208195D8D.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(38070700021); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?f78UhC1PDRvYrrU3rL/g7n/ranP6n/IBpnKmF4T1xkgIrjOhNp4RC10jRk1m?=
+ =?us-ascii?Q?3aHUXyKdDAvLSavHWNs8OQZM7MCbg9+GHrykDOIzBSs92v1YNyRxMM2OlYX1?=
+ =?us-ascii?Q?67HBjLYy9b4F2s1pYzz/c7lkyw+TUHZp1q7VP/ymGpJO+Nrf0KVdcUbYtzOR?=
+ =?us-ascii?Q?uybu5k0QkKBp01W5h0vKS42wpfyIOETX5kLba1N6T8KWGUxWsrZGiNWsQV1i?=
+ =?us-ascii?Q?AJX9+KmaNU9hjnhkCnnA9aCPc7dbT5X1BVy9m/NCDRtCg2MFZF6+WwF14pVF?=
+ =?us-ascii?Q?3z6BFJDswFzE1nh1ZBxxwayGRbhLDT4N06jj0vvC3CaMkKnA9KuTkg4oIP++?=
+ =?us-ascii?Q?3ZyUgg4cWQWj0Vcq/c9AsgH6vOpq/YxKtZOg62LeFJ2aGeSg1q8Sr4YJELOY?=
+ =?us-ascii?Q?R2IYoi8jOx/Sb7FsiwZ+r/J3wBZOQ3kmnQ6REVhFDjPCLBpKocQogXqqYhqV?=
+ =?us-ascii?Q?+vS713N+SYr8PAF3vIyYVicQ6GFMXNmuxr+CXPPV2HmRjLrdKHqbuhQpJyYk?=
+ =?us-ascii?Q?tl1AXSjhLMb+0NTjolxDqTbZDGcDbR7PYFPus9eBu6NNcw5Q6hbgjowR2/FZ?=
+ =?us-ascii?Q?jxFhfE5HPP5b8LXZfct6wBxbZ7dfzA0RW0CELMrG3T4LG7+lmVpg1O6t6rW9?=
+ =?us-ascii?Q?ctZ/RwD0KUj86FCmKn9r85+IObuYHBTPfJNwwUTGsAkf3U3Lzh2ggxdY9nmh?=
+ =?us-ascii?Q?iyTI0r6Xf9CzbvvFGzwB3AgItbSe7Ys36yA2u5DtvZaKnN0F2XRqEQlsLpBr?=
+ =?us-ascii?Q?ceTGKEI46TF9iZ9O9d6+acspSXdCJYsvCIw0rRKdGfqX7ONGVgrMvjw3uWs7?=
+ =?us-ascii?Q?54fr25kG69MiSU+TykxPm5noqfVWBrVTB5yOvyPHZ73rML+GuMiKd/GYHLa6?=
+ =?us-ascii?Q?UZfmrwLF7AOIgd4QrnJ2Q+EWaBAFJc50LhaRlDbgpvoKMpgN2m+8tY9Xgde2?=
+ =?us-ascii?Q?cgEN/rqYQ+2j+pCZQu5v+K+fSOXifJdDH8oxjIaiyr+Fw6hh4S0J6DbM6V4u?=
+ =?us-ascii?Q?pboGXBPnHuTfUgD9cKhw9/59LNW+xjmakVRhZHd2RrnTP1BniG3eVL7lpQLl?=
+ =?us-ascii?Q?UL4vN5XfLaPhlS4uyngbNxJDVKro3r7xusBZu4VeHBxuvieqCKVqdabptjvf?=
+ =?us-ascii?Q?eXnfI9Zfm8g74YC5npBH9czssFupkNo/NkxiaCizUdieaybAR14dS+vHx1Mz?=
+ =?us-ascii?Q?hgg0A6Hyk8Zd2Ua3b/iaRNqVybflPkCipCEM1cz5QzSz3sUbvNVeF5FAra2X?=
+ =?us-ascii?Q?jIR80xT9uTot22VRfG2of3EyIPYBX9r+gJstmc4ZaScNLSZ/AqSv2ymlp3E2?=
+ =?us-ascii?Q?aDyiy25x+M1/vjNjTeeFoXN9O5JcfE3zLbgJBUYPnlh0bqC0bZB9i9misUDe?=
+ =?us-ascii?Q?G3GPvMvqHSSm3zKT2W0+cl01qdVYmKsQ58h3b08iZD9bmZgUpiKWI1fNDMiS?=
+ =?us-ascii?Q?dEn6sK6ymsnwYR8Bx/0Q4Co+kbbHCjcjQzFo6FPPYlGUgl9ilWNiITbZjOkp?=
+ =?us-ascii?Q?aK+Iwb6h4YTKEYZHn62PzvElNGM5pYY4mAJhN0WcUJRFXk13EMMQbyPUihPE?=
+ =?us-ascii?Q?UlxtrJTJBV7+PXpcGafaK0ws8TU+aBpuElhhwX5x0kX2G0nf2r/nmw6uNy0N?=
+ =?us-ascii?Q?dmI1Q70tbhW1FiY/2IqsIn5czced6bQk07g67V9l58ujTMfDz7sqc3Oa0dLc?=
+ =?us-ascii?Q?RXZS8p4aEmBaccRnNTaAO4ZekXaJwuuDbctRkTqp9DwUEMyBye8nYyErU5qM?=
+ =?us-ascii?Q?kZTQqKDO2w=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-References: <20260121204705.432290-1-jdsultan@google.com>
- <20260121204705.432290-3-jdsultan@google.com>
- <19ddb0a9aa900c51759cfa62b66bcbf079c4dde8@intel.com>
-In-Reply-To: <19ddb0a9aa900c51759cfa62b66bcbf079c4dde8@intel.com>
-From: Juasheem Sultan <jdsultan@google.com>
-Date: Tue, 27 Jan 2026 00:05:39 -0800
-X-Gm-Features: AZwV_QhKmDYoQu2wDK6wjO1Wf73XdcjztZ7TUFwKNaSwFgT7oVREQjfLB7fg0W4
-Message-ID: <CAH6Pru4+nGqBf0y4ZJxPhB19SSUih1+k+4UUSyxnCQT2KMfw8g@mail.gmail.com>
-Subject: Re: [RFC PATCH v3 2/2] drm/i915/display: Synchronize crtc_state for
- initial commit
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel_xe@lists.freedesktop.org, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Manasi Navare <navaremanasi@google.com>,
- Drew Davenport <ddavenport@google.com>, Sean Paul <seanpaul@google.com>, 
- Samuel Jacob <samjaco@google.com>, Rajat Jain <rajatja@google.com>
-Content-Type: multipart/alternative; boundary="000000000000929c9d06495a1712"
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM3PPF208195D8D.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: dbb529f6-2ffb-49c9-5315-08de5d7d0526
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Jan 2026 08:21:07.1455 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ozdBF7F6RWinRa7jbdt5xm6O03AJKf0NRS0ywLAE+VRCldyCEk2Qlw6qa/sAhLUrvocN3p7oB2grwqOo+UibqQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6196
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,392 +193,83 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[google.com,reject];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[google.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[jdsultan@google.com,intel-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_RECIPIENTS(0.00)[m:jani.nikula@linux.intel.com,m:intel_xe@lists.freedesktop.org,m:rodrigo.vivi@intel.com,m:navaremanasi@google.com,m:ddavenport@google.com,m:seanpaul@google.com,m:samjaco@google.com,m:rajatja@google.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[google.com:+];
-	MISSING_XM_UA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
 	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jdsultan@google.com,intel-gfx-bounces@lists.freedesktop.org];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[suraj.kandpal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid,base.name:url,base.id:url]
-X-Rspamd-Queue-Id: 56EBE90EA7
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: AFCB49108D
 X-Rspamd-Action: no action
 
---000000000000929c9d06495a1712
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+> Subject: [PATCH v2 1/1] drm/i915/display: Implement Wa_16024710867
+>=20
 
-> I'd like to see logs of what the differences are.
+Let's keep the subject here as Defeature Port Sync rather than implement WA=
+_
+I know it shows up as a WA but actually we are just defeaturing this. Its n=
+ot some
+Issue we are working around.
 
-Here's the logs from the pipe_config_compare without my patch:
-<6>[   43.743023] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in hw.enable (expected yes, found no)
-<6>[   43.763730] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in hw.active (expected yes, found no)
-<6>[   43.789093] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in cpu_transcoder (expected 0, found -1)
-<6>[   43.814759] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met ihw.enablen lane_count (expected 2, found 0)
-<6>[   43.835751] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in dp_m_n (expected tu 64 data 8007832/8388608 link
-333659/524288, found tu 0, data 0/0 link 0/0)
-<6>[   43.835753] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in output_types (expected 0x00000100, found 0x00000000)
-<6>[   43.835754] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in framestart_delay (expected 1, found 0)
-<6>[   43.856743] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in hw.pipe_mode.crtc_hdisplay (expected 1920, found 0)
-<6>[   43.888602] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in hw.pipe_mode.crtc_htotal (expected 2080, found 0)
-<6>[   43.888603] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in hw.pipe_mode.crtc_hblank_start (expected 1920, found
-0)
-<6>[   43.888604] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in hw.pipe_mode.crtc_hblank_end (expected 2080, found 0=
-)
-<6>[   43.888604] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in hw.pipe_mode.crtc_hsync_start (expected 1966, found
-0)
-<6>[   43.888605] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in hw.pipe_mode.crtc_hsync_end (expected 1996, found 0)
-<6>[   43.888605] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in hw.pipe_mode.crtc_vdisplay (expected 1200, found 0)
-<6>[   43.888606] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in hw.pipe_mode.crtc_vsync_start (expected 1210, found
-0)
-<6>[   43.888607] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in hw.pipe_mode.crtc_vsync_end (expected 1216, found 0)
-<6>[   43.911732] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in hw.pipe_mode.crtc_vtotal (expected 1236, found 0)
-<6>[   43.911733] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in hw.pipe_mode.crtc_vblank_end (expected 1236, found 0=
-)
-<6>[   43.932520] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in hw.adjusted_mode.crtc_hdisplay (expected 1920, found
-0)
-<6>[   43.960305] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in hw.adjusted_mode.crtc_htotal (expected 2080, found 0=
-)
-<6>[   43.960306] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in hw.adjusted_mode.crtc_hblank_start (expected 1920,
-found 0)
-<6>[   43.960306] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in hw.adjusted_mode.crtc_hblank_end (expected 2080,
-found 0)
-<6>[   43.960307] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in hw.adjusted_mode.crtc_hsync_start (expected 1966,
-found 0)
-<6>[   43.960307] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in hw.adjusted_mode.crtc_hsync_end (expected 1996,
-found 0)
-<6>[   43.960308] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in hw.adjusted_mode.crtc_vdisplay (expected 1200, found
-0)
-<6>[   43.960308] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in hw.adjusted_mode.crtc_vsync_start (expected 1210,
-found 0)
-<6>[   43.960309] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in hw.adjusted_mode.crtc_vsync_end (expected 1216,
-found 0)
-<6>[   43.960310] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in hw.adjusted_mode.crtc_vtotal (expected 1236, found 0=
-)
-<6>[   43.960310] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in hw.adjusted_mode.crtc_vblank_end (expected 1236,
-found 0)
-<6>[   43.988392] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in pixel_multiplier (expected 1, found 0)
-<6>[   43.988393] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in hw.adjusted_mode.flags (2) (expected 2, found 0)
-<6>[   44.016086] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in hw.adjusted_mode.flags (8) (expected 8, found 0)
-<6>[   44.016087] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in enhanced_framing (expected yes, found no)
-<6>[   44.016088] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in pipe_bpp (expected 24, found 0)
-<6>[   44.044074] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in hw.pipe_mode.crtc_clock (expected 154647, found 0)
-<6>[   44.044075] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in hw.adjusted_mode.crtc_clock (expected 154647, found
-0)
-<6>[   44.044075] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in port_clock (expected 243000, found 0)
-<6>[   44.044077] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met in vrr.guardband (expected 35, found 0)
-<6>[   44.065890] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset
-requirement not met, forcing full modeset
+> Defeature port sync feature for xe3lpd onwards.
+> --v1:
+> - Use xe3lpd naming (Suraj)
+> - Use IS_DISPLAY_VER (Suraj)
+>=20
 
-On Thu, Jan 22, 2026 at 7:29=E2=80=AFAM Jani Nikula <jani.nikula@linux.inte=
-l.com>
-wrote:
+You can add the Bspec link for the register where it says this is being def=
+eature I think its in=20
+TRANS_DDI_FUNC2
 
-> On Wed, 21 Jan 2026, Juasheem Sultan <jdsultan@google.com> wrote:
-> > When attempting the initial commit, there is a mismatch between
-> > the new crtc_state and the old crtc_state. This causes us to fail the
-> > pipe_config comparison and force a modeset. In the case where we are
-> > inheriting an initialized state, we can sync the new and the old state
-> > to pass the comparison and allow us to do a fastset and achieve an
-> > uninterrupted handoff to userspace.
-> >
-> > Signed-off-by: Juasheem Sultan <jdsultan@google.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c | 19 +++++++++++++++++++
-> >  1 file changed, 19 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> b/drivers/gpu/drm/i915/display/intel_display.c
-> > index 0d527cf22866..6eef4bd2e251 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -5736,6 +5736,25 @@ static void intel_crtc_check_fastset(const struc=
-t
-> intel_crtc_state *old_crtc_sta
-> >       if (old_crtc_state->vrr.in_range !=3D new_crtc_state->vrr.in_rang=
-e)
-> >               new_crtc_state->update_lrr =3D false;
-> >
-> > +     /* Copying crtc state if inheriting an old state for commit */
-> > +     if (old_crtc_state->inherited) {
-> > +             new_crtc_state->hw =3D old_crtc_state->hw;
-> > +
-> > +             new_crtc_state->port_clock =3D old_crtc_state->port_clock=
-;
-> > +             new_crtc_state->pipe_bpp =3D old_crtc_state->pipe_bpp;
-> > +             new_crtc_state->cpu_transcoder =3D
-> old_crtc_state->cpu_transcoder;
-> > +             new_crtc_state->lane_count =3D old_crtc_state->lane_count=
-;
-> > +             new_crtc_state->output_types =3D
-> old_crtc_state->output_types;
-> > +             new_crtc_state->dp_m_n =3D old_crtc_state->dp_m_n;
-> > +             new_crtc_state->framestart_delay =3D
-> old_crtc_state->framestart_delay;
-> > +             new_crtc_state->pixel_multiplier =3D
-> old_crtc_state->pixel_multiplier;
-> > +             new_crtc_state->pixel_rate =3D old_crtc_state->pixel_rate=
-;
-> > +             new_crtc_state->enhanced_framing =3D
-> old_crtc_state->enhanced_framing;
-> > +             new_crtc_state->dpll_hw_state =3D
-> old_crtc_state->dpll_hw_state;
-> > +             new_crtc_state->intel_dpll =3D old_crtc_state->intel_dpll=
-;
-> > +             new_crtc_state->vrr.guardband =3D
-> old_crtc_state->vrr.guardband;
->
-> I'd like to see logs of what the differences are.
->
-> BR,
-> Jani.
->
-> > +     }
-> > +
-> >       if (!intel_pipe_config_compare(old_crtc_state, new_crtc_state,
-> true)) {
-> >               drm_dbg_kms(display->drm, "[CRTC:%d:%s] fastset
-> requirement not met, forcing full modeset\n",
-> >                           crtc->base.base.id, crtc->base.name);
->
+> Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
+> b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index d8739e2bb004..a3e6f9a31b20 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -4588,8 +4588,11 @@ intel_ddi_port_sync_transcoders(const struct
+> intel_crtc_state *ref_crtc_state,
+>  	/*
+>  	 * We don't enable port sync on BDW due to missing w/as and
+>  	 * due to not having adjusted the modeset sequence appropriately.
+> +	 *
+> +	 * Wa_16024710867
+> +	 * Deprecate port sync support for xe3lpd+
+
+You can remove this comment  and just modify the above comment to=20
+From xe3lpd onwards we have defeatured this=20
+
+With that fixed LGTM,
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+
+>  	 */
+> -	if (DISPLAY_VER(display) < 9)
+> +	if (!IS_DISPLAY_VER(display, 9, 20))
+>  		return 0;
+>=20
+>  	if (!intel_crtc_has_type(ref_crtc_state, INTEL_OUTPUT_DP))
 > --
-> Jani Nikula, Intel
->
+> 2.48.1
 
---000000000000929c9d06495a1712
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><span class=3D"gmail-im"><div>&gt; I&#39;d like to see log=
-s of what the differences are.</div><div><br></div></span>Here&#39;s the lo=
-gs from the pipe_config_compare without my patch:=C2=A0<div>&lt;6&gt;[ =C2=
-=A0 43.743023] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset requirement =
-not met in hw.enable (expected yes, found no)<br>&lt;6&gt;[ =C2=A0 43.76373=
-0] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset requirement not met in h=
-w.active (expected yes, found no)<br>&lt;6&gt;[ =C2=A0 43.789093] xe 0000:0=
-0:02.0: [drm] [CRTC:88:pipe A] fastset requirement not met in cpu_transcode=
-r (expected 0, found -1)<br>&lt;6&gt;[ =C2=A0 43.814759] xe 0000:00:02.0: [=
-drm] [CRTC:88:pipe A] fastset requirement not met ihw.enablen lane_count (e=
-xpected 2, found 0)<br>&lt;6&gt;[ =C2=A0 43.835751] xe 0000:00:02.0: [drm] =
-[CRTC:88:pipe A] fastset requirement not met in dp_m_n (expected tu 64 data=
- 8007832/8388608 link 333659/524288, found tu 0, data 0/0 link 0/0)<br>&lt;=
-6&gt;[ =C2=A0 43.835753] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset re=
-quirement not met in output_types (expected 0x00000100, found 0x00000000)<b=
-r>&lt;6&gt;[ =C2=A0 43.835754] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fast=
-set requirement not met in framestart_delay (expected 1, found 0)<br>&lt;6&=
-gt;[ =C2=A0 43.856743] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset requ=
-irement not met in hw.pipe_mode.crtc_hdisplay (expected 1920, found 0)<br>&=
-lt;6&gt;[ =C2=A0 43.888602] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset=
- requirement not met in hw.pipe_mode.crtc_htotal (expected 2080, found 0)<b=
-r>&lt;6&gt;[ =C2=A0 43.888603] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fast=
-set requirement not met in hw.pipe_mode.crtc_hblank_start (expected 1920, f=
-ound 0)<br>&lt;6&gt;[ =C2=A0 43.888604] xe 0000:00:02.0: [drm] [CRTC:88:pip=
-e A] fastset requirement not met in hw.pipe_mode.crtc_hblank_end (expected =
-2080, found 0)<br>&lt;6&gt;[ =C2=A0 43.888604] xe 0000:00:02.0: [drm] [CRTC=
-:88:pipe A] fastset requirement not met in hw.pipe_mode.crtc_hsync_start (e=
-xpected 1966, found 0)<br>&lt;6&gt;[ =C2=A0 43.888605] xe 0000:00:02.0: [dr=
-m] [CRTC:88:pipe A] fastset requirement not met in hw.pipe_mode.crtc_hsync_=
-end (expected 1996, found 0)<br>&lt;6&gt;[ =C2=A0 43.888605] xe 0000:00:02.=
-0: [drm] [CRTC:88:pipe A] fastset requirement not met in hw.pipe_mode.crtc_=
-vdisplay (expected 1200, found 0)<br>&lt;6&gt;[ =C2=A0 43.888606] xe 0000:0=
-0:02.0: [drm] [CRTC:88:pipe A] fastset requirement not met in hw.pipe_mode.=
-crtc_vsync_start (expected 1210, found 0)<br>&lt;6&gt;[ =C2=A0 43.888607] x=
-e 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset requirement not met in hw.pi=
-pe_mode.crtc_vsync_end (expected 1216, found 0)<br>&lt;6&gt;[ =C2=A0 43.911=
-732] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset requirement not met in=
- hw.pipe_mode.crtc_vtotal (expected 1236, found 0)<br>&lt;6&gt;[ =C2=A0 43.=
-911733] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset requirement not met=
- in hw.pipe_mode.crtc_vblank_end (expected 1236, found 0)<br>&lt;6&gt;[ =C2=
-=A0 43.932520] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset requirement =
-not met in hw.adjusted_mode.crtc_hdisplay (expected 1920, found 0)<br>&lt;6=
-&gt;[ =C2=A0 43.960305] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset req=
-uirement not met in hw.adjusted_mode.crtc_htotal (expected 2080, found 0)<b=
-r>&lt;6&gt;[ =C2=A0 43.960306] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fast=
-set requirement not met in hw.adjusted_mode.crtc_hblank_start (expected 192=
-0, found 0)<br>&lt;6&gt;[ =C2=A0 43.960306] xe 0000:00:02.0: [drm] [CRTC:88=
-:pipe A] fastset requirement not met in hw.adjusted_mode.crtc_hblank_end (e=
-xpected 2080, found 0)<br>&lt;6&gt;[ =C2=A0 43.960307] xe 0000:00:02.0: [dr=
-m] [CRTC:88:pipe A] fastset requirement not met in hw.adjusted_mode.crtc_hs=
-ync_start (expected 1966, found 0)<br>&lt;6&gt;[ =C2=A0 43.960307] xe 0000:=
-00:02.0: [drm] [CRTC:88:pipe A] fastset requirement not met in hw.adjusted_=
-mode.crtc_hsync_end (expected 1996, found 0)<br>&lt;6&gt;[ =C2=A0 43.960308=
-] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset requirement not met in hw=
-.adjusted_mode.crtc_vdisplay (expected 1200, found 0)<br>&lt;6&gt;[ =C2=A0 =
-43.960308] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset requirement not =
-met in hw.adjusted_mode.crtc_vsync_start (expected 1210, found 0)<br>&lt;6&=
-gt;[ =C2=A0 43.960309] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset requ=
-irement not met in hw.adjusted_mode.crtc_vsync_end (expected 1216, found 0)=
-<br>&lt;6&gt;[ =C2=A0 43.960310] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fa=
-stset requirement not met in hw.adjusted_mode.crtc_vtotal (expected 1236, f=
-ound 0)<br>&lt;6&gt;[ =C2=A0 43.960310] xe 0000:00:02.0: [drm] [CRTC:88:pip=
-e A] fastset requirement not met in hw.adjusted_mode.crtc_vblank_end (expec=
-ted 1236, found 0)<br>&lt;6&gt;[ =C2=A0 43.988392] xe 0000:00:02.0: [drm] [=
-CRTC:88:pipe A] fastset requirement not met in pixel_multiplier (expected 1=
-, found 0)<br>&lt;6&gt;[ =C2=A0 43.988393] xe 0000:00:02.0: [drm] [CRTC:88:=
-pipe A] fastset requirement not met in hw.adjusted_mode.flags (2) (expected=
- 2, found 0)<br>&lt;6&gt;[ =C2=A0 44.016086] xe 0000:00:02.0: [drm] [CRTC:8=
-8:pipe A] fastset requirement not met in hw.adjusted_mode.flags (8) (expect=
-ed 8, found 0)<br>&lt;6&gt;[ =C2=A0 44.016087] xe 0000:00:02.0: [drm] [CRTC=
-:88:pipe A] fastset requirement not met in enhanced_framing (expected yes, =
-found no)<br>&lt;6&gt;[ =C2=A0 44.016088] xe 0000:00:02.0: [drm] [CRTC:88:p=
-ipe A] fastset requirement not met in pipe_bpp (expected 24, found 0)<br>&l=
-t;6&gt;[ =C2=A0 44.044074] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset =
-requirement not met in hw.pipe_mode.crtc_clock (expected 154647, found 0)<b=
-r>&lt;6&gt;[ =C2=A0 44.044075] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fast=
-set requirement not met in hw.adjusted_mode.crtc_clock (expected 154647, fo=
-und 0)<br>&lt;6&gt;[ =C2=A0 44.044075] xe 0000:00:02.0: [drm] [CRTC:88:pipe=
- A] fastset requirement not met in port_clock (expected 243000, found 0)<br=
->&lt;6&gt;[ =C2=A0 44.044077] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fasts=
-et requirement not met in vrr.guardband (expected 35, found 0)<br>&lt;6&gt;=
-[ =C2=A0 44.065890] xe 0000:00:02.0: [drm] [CRTC:88:pipe A] fastset require=
-ment not met, forcing full modeset</div></div><br><div class=3D"gmail_quote=
- gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jan 2=
-2, 2026 at 7:29=E2=80=AFAM Jani Nikula &lt;<a href=3D"mailto:jani.nikula@li=
-nux.intel.com">jani.nikula@linux.intel.com</a>&gt; wrote:<br></div><blockqu=
-ote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px=
- solid rgb(204,204,204);padding-left:1ex">On Wed, 21 Jan 2026, Juasheem Sul=
-tan &lt;<a href=3D"mailto:jdsultan@google.com" target=3D"_blank">jdsultan@g=
-oogle.com</a>&gt; wrote:<br>
-&gt; When attempting the initial commit, there is a mismatch between<br>
-&gt; the new crtc_state and the old crtc_state. This causes us to fail the<=
-br>
-&gt; pipe_config comparison and force a modeset. In the case where we are<b=
-r>
-&gt; inheriting an initialized state, we can sync the new and the old state=
-<br>
-&gt; to pass the comparison and allow us to do a fastset and achieve an<br>
-&gt; uninterrupted handoff to userspace.<br>
-&gt;<br>
-&gt; Signed-off-by: Juasheem Sultan &lt;<a href=3D"mailto:jdsultan@google.c=
-om" target=3D"_blank">jdsultan@google.com</a>&gt;<br>
-&gt; ---<br>
-&gt;=C2=A0 drivers/gpu/drm/i915/display/intel_display.c | 19 ++++++++++++++=
-+++++<br>
-&gt;=C2=A0 1 file changed, 19 insertions(+)<br>
-&gt;<br>
-&gt; diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gp=
-u/drm/i915/display/intel_display.c<br>
-&gt; index 0d527cf22866..6eef4bd2e251 100644<br>
-&gt; --- a/drivers/gpu/drm/i915/display/intel_display.c<br>
-&gt; +++ b/drivers/gpu/drm/i915/display/intel_display.c<br>
-&gt; @@ -5736,6 +5736,25 @@ static void intel_crtc_check_fastset(const stru=
-ct intel_crtc_state *old_crtc_sta<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0if (old_crtc_state-&gt;vrr.in_range !=3D new=
-_crtc_state-&gt;vrr.in_range)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0new_crtc_state-&=
-gt;update_lrr =3D false;<br>
-&gt;=C2=A0 <br>
-&gt; +=C2=A0 =C2=A0 =C2=A0/* Copying crtc state if inheriting an old state =
-for commit */<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0if (old_crtc_state-&gt;inherited) {<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0new_crtc_state-&gt;hw=
- =3D old_crtc_state-&gt;hw;<br>
-&gt; +<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0new_crtc_state-&gt;po=
-rt_clock =3D old_crtc_state-&gt;port_clock;<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0new_crtc_state-&gt;pi=
-pe_bpp =3D old_crtc_state-&gt;pipe_bpp;<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0new_crtc_state-&gt;cp=
-u_transcoder =3D old_crtc_state-&gt;cpu_transcoder;<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0new_crtc_state-&gt;la=
-ne_count =3D old_crtc_state-&gt;lane_count;<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0new_crtc_state-&gt;ou=
-tput_types =3D old_crtc_state-&gt;output_types;<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0new_crtc_state-&gt;dp=
-_m_n =3D old_crtc_state-&gt;dp_m_n;<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0new_crtc_state-&gt;fr=
-amestart_delay =3D old_crtc_state-&gt;framestart_delay;<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0new_crtc_state-&gt;pi=
-xel_multiplier =3D old_crtc_state-&gt;pixel_multiplier;<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0new_crtc_state-&gt;pi=
-xel_rate =3D old_crtc_state-&gt;pixel_rate;<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0new_crtc_state-&gt;en=
-hanced_framing =3D old_crtc_state-&gt;enhanced_framing;<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0new_crtc_state-&gt;dp=
-ll_hw_state =3D old_crtc_state-&gt;dpll_hw_state;<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0new_crtc_state-&gt;in=
-tel_dpll =3D old_crtc_state-&gt;intel_dpll;<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0new_crtc_state-&gt;vr=
-r.guardband =3D old_crtc_state-&gt;vrr.guardband;<br>
-<br>
-I&#39;d like to see logs of what the differences are.<br>
-<br>
-BR,<br>
-Jani.<br>
-<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0}<br>
-&gt; +<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0if (!intel_pipe_config_compare(old_crtc_stat=
-e, new_crtc_state, true)) {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0drm_dbg_kms(disp=
-lay-&gt;drm, &quot;[CRTC:%d:%s] fastset requirement not met, forcing full m=
-odeset\n&quot;,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0crtc-&gt;<a href=3D"http://base.base.id" rel=3D"=
-noreferrer" target=3D"_blank">base.base.id</a>, crtc-&gt;<a href=3D"http://=
-base.name" rel=3D"noreferrer" target=3D"_blank">base.name</a>);<br>
-<br>
--- <br>
-Jani Nikula, Intel<br>
-</blockquote></div>
-
---000000000000929c9d06495a1712--
