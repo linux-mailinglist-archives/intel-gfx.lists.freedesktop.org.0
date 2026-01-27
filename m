@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gP+bBwyNeGmqqwEAu9opvQ
+	id fPl1CQyNeGlprAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
 	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jan 2026 11:01:48 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9513F92555
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jan 2026 11:01:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9B0192556
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jan 2026 11:01:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F64B10E508;
-	Tue, 27 Jan 2026 10:01:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0238A10E511;
+	Tue, 27 Jan 2026 10:01:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V0UBrVKQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MV6VUfWK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5FD410E506;
- Tue, 27 Jan 2026 10:01:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D3B7F10E50F;
+ Tue, 27 Jan 2026 10:01:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769508099; x=1801044099;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=QYia554mp1quyVc1FEkYlwYNLcQmGqna5Zbc2X+gZ28=;
- b=V0UBrVKQTZeQ1bdBePNid/Kmr+h13r+1XbEtoFqsijOoIygLPK9tLXaj
- vullOo0RKd8YFlthHtQ/OQ1zmw4c7cWfgwFC1J3Y5wyKVGNuQcgejB5eW
- xulzvZbIl5wdaO/ybXLYfortk9ajkhd9Z8i+l91UKevSfuWOZbE2RJsrx
- kk3TnEGsC/JQWRMQe+VS+XCcnNcuPJdbNxl/ukSOWnWQRLlP4GLN/oa4D
- BCy2p8C5JMcdWNUdI8QNunmr+bl0KR79UF5mA3gmFQzFeGIp8i3OAGGmU
- 3ZEScIVNSoajqoLbSreQnsOrEbcUa0ohBUZT6V2WcF+DygeXgsUbiNPPk w==;
-X-CSE-ConnectionGUID: s8FWz3i7QR2FwwJ7P4KcUg==
-X-CSE-MsgGUID: dF7ymtNqS4KU+e2FucIHqA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11683"; a="70602207"
-X-IronPort-AV: E=Sophos;i="6.21,256,1763452800"; d="scan'208";a="70602207"
+ t=1769508102; x=1801044102;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=IRXkFMtiKGyTthEWl9T6gKkE7CSjUV2a/O97fUMJO+U=;
+ b=MV6VUfWK0wvFkmvHKZhDSSC94lj+LJJ8Cfkv4p8ni/Mv+xORwRNNgtBp
+ f8mxPgqT/Xf8UIONcOCicbL9mHPGONrMGsnrI8hLwGXpWYTr9NT8JYyOS
+ eRpJ4l9aEEDCtxx1pFMKZDpn3y+JgUFbInML4mso+NtH1C+ncnm5RWu1m
+ /CBejn3II6z3K9g4IM14jxJ+iMSsJEoh8zHBiujDidlYymeUvpd7HRh8B
+ LoZFLa7FsYhklAx9aozHRr7eELi4EqoM/085c8w14ehgWx9n1Nkpevdtv
+ syJ56bcPsfIIsS7C2kAk6jS+f7KD/lvKgTdNz2WAMjNX1gXWRuIRsDIEo w==;
+X-CSE-ConnectionGUID: s6HyKnkITdSKAc1025rXuQ==
+X-CSE-MsgGUID: MfK8+OZkRgun93/ggzO8XQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11683"; a="70602213"
+X-IronPort-AV: E=Sophos;i="6.21,256,1763452800"; d="scan'208";a="70602213"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2026 02:01:38 -0800
-X-CSE-ConnectionGUID: ugV8p5aPQeuGcxv9Qbdn+Q==
-X-CSE-MsgGUID: jsvZGtBcQ16ahmq4In9Xgw==
+ 27 Jan 2026 02:01:42 -0800
+X-CSE-ConnectionGUID: ijPFAQXLR3y7gwJ7yED0ig==
+X-CSE-MsgGUID: KhhmLFphQNajVOdQdZLuSQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,256,1763452800"; d="scan'208";a="207732492"
+X-IronPort-AV: E=Sophos;i="6.21,256,1763452800"; d="scan'208";a="207732502"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.153])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2026 02:01:35 -0800
+ 27 Jan 2026 02:01:38 -0800
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
@@ -55,10 +55,13 @@ Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
  Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
  Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Subject: [PATCH i-g-t v2 0/6] lsgpu: Report upstream port link bandwidth
-Date: Tue, 27 Jan 2026 10:54:17 +0100
-Message-ID: <20260127100123.114516-8-janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH i-g-t v2 1/6] lib/igt_device_scan: Don't print fake link
+ bandwidth attributes
+Date: Tue, 27 Jan 2026 10:54:18 +0100
+Message-ID: <20260127100123.114516-9-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260127100123.114516-8-janusz.krzysztofik@linux.intel.com>
+References: <20260127100123.114516-8-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -100,8 +103,8 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	RCPT_COUNT_SEVEN(0.00)[9];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,meson.build:url]
-X-Rspamd-Queue-Id: 9513F92555
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim]
+X-Rspamd-Queue-Id: C9B0192556
 X-Rspamd-Action: no action
 
 Users of Intel discrete graphics adapters are confused with fake
@@ -126,35 +129,61 @@ Since the tool uses our udev based igt_device_scan library for identifying
 GPU devices and printing their properties and attributes, modifications
 that we need apply to that library.
 
+As a first step, exclude the fake data from being printed.
+
 v2: Keep dump_props_and_attrs() generic: hand over decision on omitting
     link attributes to the caller, and implementation of the check to a
-    helper (Sebastian),
-  - drop unclear GET_REG_MASK macro (Sebastian),
-  - reuse no longer needed variable containing PCI_HEADER_TYPE for storing
-    PCI_EXP_FLAGS_TYPE,
-  - maintain a single instance of struct pci_access throughout processing
-    of the whole udev device list (Sebastian),
-  - hand over detection of AER attributes to a helper,
-  - merge a formerly separate patch "lib/igt_device_scan: Don't print
-    bridge not applicable attributes" into "lib/igt_device_scan: Print GPU
-    upstream port parent/child relations" (Sebastian),
-  - allocate memory to local attributes of a bridge for safety (Sebastian),
-  - no need for DEVTYPE_BRIDGE, just skip attributes if NULL.
+    helper (Sebastian).
 
+Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10753
 Cc: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+---
+ lib/igt_device_scan.c | 17 +++++++++++++++--
+ 1 file changed, 15 insertions(+), 2 deletions(-)
 
-Janusz Krzysztofik (6):
-  lib/igt_device_scan: Don't print fake link bandwidth attributes
-  lib/igt_device_scan: Split out reusable part of update_or_add_parent
-  lib/igt_device_scan: Include PCIe bridge upstream port if available
-  lib/igt_device_scan: List PCIe bridge ports after their children
-  lib/igt_device_scan: Omit AER statistics data from attributes
-  lib/igt_device_scan: Print GPU upstream port parent/child relations
-
- lib/igt_device_scan.c | 199 +++++++++++++++++++++++++++++++++++-------
- lib/meson.build       |   2 +
- meson.build           |   1 +
- 3 files changed, 170 insertions(+), 32 deletions(-)
+diff --git a/lib/igt_device_scan.c b/lib/igt_device_scan.c
+index abd8ca209e..7ae64375b5 100644
+--- a/lib/igt_device_scan.c
++++ b/lib/igt_device_scan.c
+@@ -602,7 +602,15 @@ static inline void _print_key_value(const char *k, const char *v)
+ 	printf("%-32s: %s\n", k, v);
+ }
+ 
+-static void dump_props_and_attrs(const struct igt_device *dev)
++static bool is_link_attr(const char *name)
++{
++	return !strcmp(name, "max_link_speed") ||
++	       !strcmp(name, "max_link_width") ||
++	       !strcmp(name, "current_link_speed") ||
++	       !strcmp(name, "current_link_width");
++}
++
++static void dump_props_and_attrs(const struct igt_device *dev, bool omit_link)
+ {
+ 	struct igt_map_entry *entry;
+ 
+@@ -613,6 +621,10 @@ static void dump_props_and_attrs(const struct igt_device *dev)
+ 
+ 	printf("\n[attributes]\n");
+ 	igt_map_foreach(dev->attrs_map, entry) {
++		/* omit link bandwidth attributes if requested */
++		if (omit_link && is_link_attr(entry->key))
++			continue;
++
+ 		_print_key_value((char *)entry->key, (char *)entry->data);
+ 	}
+ 	printf("\n");
+@@ -1366,7 +1378,8 @@ igt_devs_print_detail(struct igt_list_head *view,
+ 			_print_key_value("codename", dev->codename);
+ 		}
+ 
+-		dump_props_and_attrs(dev);
++		/* omit fake link bandwidth attributes if a discrete card */
++		dump_props_and_attrs(dev, dev->dev_type == DEVTYPE_DISCRETE);
+ 	}
+ }
+ 
 -- 
 2.52.0
 
