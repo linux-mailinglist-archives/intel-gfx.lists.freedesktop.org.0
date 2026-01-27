@@ -2,57 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KHpSJM9veGmjpwEAu9opvQ
+	id OIPmIdBveGmjpwEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jan 2026 08:57:03 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jan 2026 08:57:04 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2136C90DF9
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jan 2026 08:57:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C62690E00
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jan 2026 08:57:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A9F310E46C;
-	Tue, 27 Jan 2026 07:57:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85BC810E4D0;
+	Tue, 27 Jan 2026 07:57:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OGpId0IE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fR/I/88/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70D7F10E468;
- Tue, 27 Jan 2026 07:56:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71DAE10E468;
+ Tue, 27 Jan 2026 07:57:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769500619; x=1801036619;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=kcut6guFr00zsxykUjDT8Mj0PjupNBwTMjpR79v/ePQ=;
- b=OGpId0IEgFTR25vTy1fZY2c89uAGKXbFSBOEK4UG/QbsTpod9DUObqO0
- vkyyVDw2+X1yUzAImvg69ZazIKUsIHF0gRAbywBr3rQDNrBwmJSsrJOYM
- wbgoFHdjzHPY1T9BZa884m8RNFsasIMnCD8m0asRUo5woWYD7taBx86O5
- E2awwOXml6KMnSVDXOc291hSQgosLdprTw+D+K3ZRUcH0eKJ/fKyf8HX2
- dcmX9lqDc8/AeV3S44+HckcpWq8HvVQ2f+VJZQfM+i9SU45ronrWhboW3
- j8aJpjL7h1VKzcglEUPwpYfF6La3+ecpGKxx06rT4k6Cjzmw2ga+vCc84 A==;
-X-CSE-ConnectionGUID: 0GPpNzGcQ1GkCo+7Lbv16A==
-X-CSE-MsgGUID: 7pERr7TfTP+JRft20EdY0g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11683"; a="81320947"
-X-IronPort-AV: E=Sophos;i="6.21,256,1763452800"; d="scan'208";a="81320947"
+ t=1769500620; x=1801036620;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=uCv3pGgErWDgTQjmtYedWPhWT8BqUXsAhqVpTGRhU/Q=;
+ b=fR/I/88/Et+x4owIe87bj8R6lIroNluGlhAj32exUeKgDzerzinI9Odf
+ 1b9ULfwxIicOxpoR+1q+uPIWecHrcOHKhETpYY8iQLdYJYETq6PVNesOM
+ GG8J2ds3unGcSUA9y65pBJodc8YDzjJRCyuyk0hY56e6JPflEKA2m+KnO
+ Gz+nQ89UYMXJALHgw3MPmOJ107i+2DntlPyImVAyRZkQjhHhtcuN6dDOp
+ IhS3EnyJGG1XR3I7JrAg0RfuowSljgWytrCYBvAP2NQnOLTsrF8X4MGuz
+ 4StP1nxor2cEQ5a6P2ak1RFN1IDHwz/ksk4ptxGt137yaCfA4JzysCZc3 Q==;
+X-CSE-ConnectionGUID: a7kicRRTQda3y62yUmtUkQ==
+X-CSE-MsgGUID: pBSWyKduRyeVaXQjsMO62Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11683"; a="81320948"
+X-IronPort-AV: E=Sophos;i="6.21,256,1763452800"; d="scan'208";a="81320948"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2026 23:56:59 -0800
-X-CSE-ConnectionGUID: 6+vjITTeSom/7e1tXxc4Zw==
-X-CSE-MsgGUID: mYp7+BWASNuG4ojCqwnUPA==
+ 26 Jan 2026 23:57:00 -0800
+X-CSE-ConnectionGUID: bKQyGOPAQzKCTJJB+pp4vA==
+X-CSE-MsgGUID: 5zdZDW9dQJW8BtwxOeIu3Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,256,1763452800"; d="scan'208";a="207026705"
+X-IronPort-AV: E=Sophos;i="6.21,256,1763452800"; d="scan'208";a="207026714"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa006.jf.intel.com with ESMTP; 26 Jan 2026 23:56:58 -0800
+ by orviesa006.jf.intel.com with ESMTP; 26 Jan 2026 23:57:00 -0800
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: suraj.kandpal@intel.com
-Subject: [PATCH v2 0/1] drm/i915/display: Implement Wa_16024710867
-Date: Tue, 27 Jan 2026 13:16:43 +0530
-Message-ID: <20260127074644.991015-1-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH v2 1/1] drm/i915/display: Implement Wa_16024710867
+Date: Tue, 27 Jan 2026 13:16:44 +0530
+Message-ID: <20260127074644.991015-2-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20260127074644.991015-1-mitulkumar.ajitkumar.golani@intel.com>
+References: <20260127074644.991015-1-mitulkumar.ajitkumar.golani@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -94,18 +96,38 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim]
-X-Rspamd-Queue-Id: 2136C90DF9
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 5C62690E00
 X-Rspamd-Action: no action
 
 Defeature port sync feature for xe3lpd onwards.
 
-Mitul Golani (1):
-  drm/i915/display: Implement Wa_16024710867
+--v1:
+- Use xe3lpd naming (Suraj)
+- Use IS_DISPLAY_VER (Suraj)
 
+Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+---
  drivers/gpu/drm/i915/display/intel_ddi.c | 5 ++++-
  1 file changed, 4 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index d8739e2bb004..a3e6f9a31b20 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -4588,8 +4588,11 @@ intel_ddi_port_sync_transcoders(const struct intel_crtc_state *ref_crtc_state,
+ 	/*
+ 	 * We don't enable port sync on BDW due to missing w/as and
+ 	 * due to not having adjusted the modeset sequence appropriately.
++	 *
++	 * Wa_16024710867
++	 * Deprecate port sync support for xe3lpd+
+ 	 */
+-	if (DISPLAY_VER(display) < 9)
++	if (!IS_DISPLAY_VER(display, 9, 20))
+ 		return 0;
+ 
+ 	if (!intel_crtc_has_type(ref_crtc_state, INTEL_OUTPUT_DP))
 -- 
 2.48.1
 
