@@ -2,60 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eHzKBCaXeGnmrAEAu9opvQ
+	id gHITLNGXeGkWrQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jan 2026 11:44:54 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jan 2026 11:47:45 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC0909312B
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jan 2026 11:44:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46789931E5
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jan 2026 11:47:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 252C410E532;
-	Tue, 27 Jan 2026 10:44:52 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="NJW/8eJ/";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id C39E610E535;
+	Tue, 27 Jan 2026 10:47:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6043D10E530;
- Tue, 27 Jan 2026 10:44:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1769510690;
- bh=qYSt9bUzQj5PyLabpQbUCQOve2lblO05FC7MGh9qImw=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=NJW/8eJ/0fjsVjkD9hNxyNMHFzxPA7QiELRnVSJ/tBEgwal3OLvg5UWufex+uMvmy
- +A+jaYPaDN4FDmi9ILRED9athTHjU4tOhmVaQgeJOtqLYmERrmyK7RGVQw3zsHGzUr
- wmo3j+GKT3H2AUHuQHHRGs3vcq2ipDGPhyU8/2SrB48dGXXbZBj7GX806vR8GNDE3J
- Cy0s3W4BQN9k8y1e+XBul4S8QX+9gLLESWvuTh/VMA1vMwlQ2e59IRibNpe5zw46/e
- ou/ERa3qbe2Loa9C2GUFQDmS1OdQnnVWyDY29Nt86Gd73Izcplr0mM3HpKPoD2trJX
- WyZwxbkw0mung==
-Received: from vignesh-thinkpad.. (unknown [171.76.81.211])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: vignesh)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id 3A56917E0DB7;
- Tue, 27 Jan 2026 11:44:46 +0100 (CET)
-From: Vignesh Raman <vignesh.raman@collabora.com>
-To: dri-devel@lists.freedesktop.org
-Cc: daniels@collabora.com, helen.fornazier@gmail.com, airlied@gmail.com,
- simona.vetter@ffwll.ch, dmitry.baryshkov@oss.qualcomm.com,
- lumag@kernel.org, robdclark@gmail.com, robin.clark@oss.qualcomm.com,
- guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com,
- valentine.burley@collabora.com, linux-mediatek@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org,
- amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
- linux-kernel@vger.kernel.org
-Subject: [PATCH v1 7/7] drm/ci: disable rebase when pulling *-external-fixes
-Date: Tue, 27 Jan 2026 16:14:02 +0530
-Message-ID: <20260127104406.200505-8-vignesh.raman@collabora.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260127104406.200505-1-vignesh.raman@collabora.com>
-References: <20260127104406.200505-1-vignesh.raman@collabora.com>
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DDAC10E05D;
+ Tue, 27 Jan 2026 10:47:42 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_mm=3A_add_bitmap_VMA_flag?=
+ =?utf-8?q?_helpers_and_convert_all_mmap=5Fprepare_to_use_them_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lorenzo Stoakes" <lorenzo.stoakes@oracle.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 27 Jan 2026 10:47:42 -0000
+Message-ID: <176951086251.195253.10237443018232168581@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <cover.1769097829.git.lorenzo.stoakes@oracle.com>
+In-Reply-To: <cover.1769097829.git.lorenzo.stoakes@oracle.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,95 +42,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[collabora.com,gmail.com,ffwll.ch,oss.qualcomm.com,kernel.org,lists.infradead.org,lists.freedesktop.org,vger.kernel.org,lists.linux.dev];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
+	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[3];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vignesh.raman@collabora.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.927];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,collabora.com:email,collabora.com:dkim,collabora.com:mid]
-X-Rspamd-Queue-Id: AC0909312B
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:replyto,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,patchwork.freedesktop.org:url]
+X-Rspamd-Queue-Id: 46789931E5
 X-Rspamd-Action: no action
 
-CI jobs were rebasing the branch-under-test onto *-external-fixes,
-causing conflicts.
+== Series Details ==
 
-Remove the global pull.rebase setting and disable rebase when pulling
-*-external-fixes so they are merged instead.
+Series: mm: add bitmap VMA flag helpers and convert all mmap_prepare to use them (rev5)
+URL   : https://patchwork.freedesktop.org/series/160306/
+State : failure
 
-Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
----
- drivers/gpu/drm/ci/build.sh | 12 ++++--------
- 1 file changed, 4 insertions(+), 8 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/ci/build.sh b/drivers/gpu/drm/ci/build.sh
-index 5485ea756382..d00d549cbd9c 100644
---- a/drivers/gpu/drm/ci/build.sh
-+++ b/drivers/gpu/drm/ci/build.sh
-@@ -3,9 +3,6 @@
- 
- set -ex
- 
--# Clean up stale rebases that GitLab might not have removed when reusing a checkout dir
--rm -rf .git/rebase-apply
--
- . .gitlab-ci/container/container_pre_build.sh
- 
- # libssl-dev was uninstalled because it was considered an ephemeral package
-@@ -62,25 +59,24 @@ export PATH=$NEWPATH:$PATH
- 
- git config --global user.email "fdo@example.com"
- git config --global user.name "freedesktop.org CI"
--git config --global pull.rebase true
- 
- # cleanup git state on the worker
--rm -rf .git/rebase-merge
-+rm -rf .git/rebase-merge .git/rebase-apply
- 
- # Try to merge fixes from target repo
- if [ "$(git ls-remote --exit-code --heads ${UPSTREAM_REPO} ${TARGET_BRANCH}-external-fixes)" ]; then
--    git pull ${UPSTREAM_REPO} ${TARGET_BRANCH}-external-fixes
-+    git pull --no-rebase ${UPSTREAM_REPO} ${TARGET_BRANCH}-external-fixes
- fi
- 
- # Try to merge fixes from local repo if this isn't a merge request
- # otherwise try merging the fixes from the merge target
- if [ -z "$CI_MERGE_REQUEST_PROJECT_PATH" ]; then
-     if [ "$(git ls-remote --exit-code --heads origin ${TARGET_BRANCH}-external-fixes)" ]; then
--        git pull origin ${TARGET_BRANCH}-external-fixes
-+        git pull --no-rebase origin ${TARGET_BRANCH}-external-fixes
-     fi
- else
-     if [ "$(git ls-remote --exit-code --heads ${CI_MERGE_REQUEST_PROJECT_URL} ${CI_MERGE_REQUEST_TARGET_BRANCH_NAME}-external-fixes)" ]; then
--        git pull ${CI_MERGE_REQUEST_PROJECT_URL} ${CI_MERGE_REQUEST_TARGET_BRANCH_NAME}-external-fixes
-+        git pull --no-rebase ${CI_MERGE_REQUEST_PROJECT_URL} ${CI_MERGE_REQUEST_TARGET_BRANCH_NAME}-external-fixes
-     fi
- fi
- 
--- 
-2.47.3
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/160306/revisions/5/mbox/ not applied
+Applying: mm/vma: remove __private sparse decoration from vma_flags_t
+error: sha1 information is lacking or useless (include/linux/mm.h).
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0001 mm/vma: remove __private sparse decoration from vma_flags_t
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+Build failed, no error log produced
+
 
