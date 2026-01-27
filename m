@@ -2,34 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gHITLNGXeGkWrQEAu9opvQ
+	id WDEIBSWdeGm/rQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jan 2026 11:47:45 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jan 2026 12:10:29 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46789931E5
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jan 2026 11:47:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9953A9368A
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jan 2026 12:10:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C39E610E535;
-	Tue, 27 Jan 2026 10:47:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25AA410E542;
+	Tue, 27 Jan 2026 11:10:27 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="IvFxtKx4";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DDAC10E05D;
- Tue, 27 Jan 2026 10:47:42 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE01E10E53C;
+ Tue, 27 Jan 2026 11:10:25 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 19FA76014F;
+ Tue, 27 Jan 2026 11:10:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DB17C116C6;
+ Tue, 27 Jan 2026 11:10:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1769512224;
+ bh=ghE0PV6MgbDOIunX4C/dCjhWcjwFHGSYSnXY9jCVIxs=;
+ h=Date:From:To:Cc:Subject:From;
+ b=IvFxtKx4VCQ9+taAJzXnxvFpREBvVfvq9lmsSfEjV9Qf1hWM8vHfdU5hs1bdHvUMH
+ OVxZ+YCrfoYlajmSckilv6ldTopjyg5ymuWcL4rWW/xeZAs0zIu4sniAXcQ3RjttqD
+ N7O2Lql6lxl5l47UqgsKPTmAhKyX8zRuV4PXzuhjrpKko+oq7nCwMLUdz3oxEzQJI9
+ 5ov6T6Vlkav/JXYKXcriClkv6sTZiK0eq3gTsGb7A6dgmYY3VmUMvipsjuA/eYS+Fk
+ kUsVlJwTJX3fjXrBmsDdktJi5e+4vEz8O9qQV6WH321If2TfYsV1FFod/2wO4eRpS3
+ kqy0pQjZffvNA==
+Date: Tue, 27 Jan 2026 11:10:20 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Simona Vetter <simona.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>
+Cc: linux-next@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Fixes tags could use some work in the drm-misc tree
+Message-ID: <2951a9c1-3a6a-4f96-96b6-8cd49b5c0eb9@sirena.org.uk>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_mm=3A_add_bitmap_VMA_flag?=
- =?utf-8?q?_helpers_and_convert_all_mmap=5Fprepare_to_use_them_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lorenzo Stoakes" <lorenzo.stoakes@oracle.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 27 Jan 2026 10:47:42 -0000
-Message-ID: <176951086251.195253.10237443018232168581@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <cover.1769097829.git.lorenzo.stoakes@oracle.com>
-In-Reply-To: <cover.1769097829.git.lorenzo.stoakes@oracle.com>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="noIxOaML5XedF8uY"
+Content-Disposition: inline
+X-Cookie: I brake for chezlogs!
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,57 +60,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-3.41 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	RCPT_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:replyto,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,patchwork.freedesktop.org:url]
-X-Rspamd-Queue-Id: 46789931E5
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,sirena.org.uk:mid]
+X-Rspamd-Queue-Id: 9953A9368A
 X-Rspamd-Action: no action
 
-== Series Details ==
 
-Series: mm: add bitmap VMA flag helpers and convert all mmap_prepare to use them (rev5)
-URL   : https://patchwork.freedesktop.org/series/160306/
-State : failure
+--noIxOaML5XedF8uY
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-== Summary ==
+In commit
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/160306/revisions/5/mbox/ not applied
-Applying: mm/vma: remove __private sparse decoration from vma_flags_t
-error: sha1 information is lacking or useless (include/linux/mm.h).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 mm/vma: remove __private sparse decoration from vma_flags_t
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-Build failed, no error log produced
+  6ef93f62533e4 ("drm/amd/ras: Reduce stack usage in amdgpu_virt_ras_get_cper_records()")
 
+Fixes tag
 
+  Fixes:
+
+has these problem(s):
+
+  - No SHA1 recognised
+
+--noIxOaML5XedF8uY
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAml4nRsACgkQJNaLcl1U
+h9CXLwf9G0dTFjqQFNplLJkaEoyt/k67OYGOYLOCGjOBNcgxNVSU4bc/j0+QKTrS
+zoWh8WGAwDFv4b09PfnXfzVZ2t0gK7Ls/0Fg9/ZdBRFWKUI2wzOluIp6m46cSBzs
+3tIx1Uqra8uFqKARThB13s6/as8+UtMt/Jhp5rN+p5/9PWO6aWZ/5MlfA5JM8C8N
+iCBkObJIv3y3DM7BnRYRDC9vIm91QQgJaUNGVj+OI7aLW5qqn7l3Wv2dOUS2TiwN
+cCydaksJy08Ia5eJUhC9dkZfqB/4UeUTUOJurknr5xzXfd2DymkM7jab6qU1tncS
+eRywKtKosxvdFKJMe/iP3mFlIc2kCg==
+=pmUD
+-----END PGP SIGNATURE-----
+
+--noIxOaML5XedF8uY--
