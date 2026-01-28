@@ -2,68 +2,82 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KABJGxT2eWkE1QEAu9opvQ
+	id CLAHGEP7eWkE1QEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jan 2026 12:42:12 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jan 2026 13:04:19 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42B3EA0AF5
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jan 2026 12:42:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 132F0A0FCF
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jan 2026 13:04:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85A3510E6B3;
-	Wed, 28 Jan 2026 11:42:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B6F310E6B8;
+	Wed, 28 Jan 2026 12:04:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IIG97y2h";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Hx8cf+jz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DACC10E6AB;
- Wed, 28 Jan 2026 11:42:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769600527; x=1801136527;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=7V57PF/K4KWB0Lf/aLPtIvJRf80T3BVClO24KED1RdQ=;
- b=IIG97y2h+kwDvv1E6A2u1lrkR8P6M+jApvpwH0p0mNPieR1VzUh+jiGh
- 8y4uH7mLq3c5eW87Y8uO05YTDIQJ9M/0xc0cZ4EvgwqlaCTgEqC9BdyBa
- lRzNlQfdKTxvrdvS2W8c1m/GIlWrtIk84JohqGaDen7S3WmC942sHROVr
- lAkNjRA9cF56e7FCTDJGeQTB6XsL51TYaxwu/6zeNQKNHyBJy+x97k3au
- 4bz1t//7IfAJtenDrEHQzCUk7LG5I8PHV1zgkc0MFSh5w7ZZV+c4rMASG
- gL+Nx4Tcc97INDlLaaP51RYFhO+R6e5vPQdHdKt0h9cgH1qNrN2YYaZBL w==;
-X-CSE-ConnectionGUID: a5kvkBKJQnWJFhLq/6X5eA==
-X-CSE-MsgGUID: 6hpX4O4MQw6lcB1YoCqG0A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="70704886"
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="70704886"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2026 03:42:06 -0800
-X-CSE-ConnectionGUID: EEfl5fiRT1eatRGG6hIgPA==
-X-CSE-MsgGUID: kQH+rG8mS3KpGLXTFW6jnw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="213114894"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.207])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2026 03:42:02 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Atharva Tiwari <atharvatiwarilinuxdev@gmail.com>
-Cc: airlied@gmail.com, atharvatiwarilinuxdev@gmail.com,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, joonas.lahtinen@linux.intel.com,
- linux-kernel@vger.kernel.org, rodrigo.vivi@intel.com, simona@ffwll.ch,
- tursulin@ursulin.net, ville.syrjala@linux.intel.com
-Subject: Re: [PATCH 2/2] drm/i915/display: Disable display for iMac's
-In-Reply-To: <20260127183924.1109-1-atharvatiwarilinuxdev@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <bc778f93d4e2a18848bc93a51aed9b627bcbb2cf@intel.com>
- <20260127183924.1109-1-atharvatiwarilinuxdev@gmail.com>
-Date: Wed, 28 Jan 2026 13:41:59 +0200
-Message-ID: <c4cc37ed9b626155706d5b167935c65eb5fc139d@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7F6710E6AF;
+ Wed, 28 Jan 2026 12:04:14 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 588EB4038E;
+ Wed, 28 Jan 2026 12:04:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DA89C4CEF1;
+ Wed, 28 Jan 2026 12:04:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1769601854;
+ bh=ZmWp47hdVxyqv1Ds+2Hq8SoLybTurOLu+L6KbG5zDis=;
+ h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
+ b=Hx8cf+jzc7ub0hEm2EJD7hjBM5GYjypHZfOvHh9LRFTILWZObQdgV/HK/IWv+uLPy
+ QzwMaPaZwA+V+WErhedeik+QeYs1j80V+8P+jOhgKApsZ1s79rGFAC6RUq4+D5Ardn
+ n62+ipYg5+OX6sXbx9BsgWCbDyUkOOSoZW9EPkqcJk4sUK+fsaoJcXefEI/9RvlHNC
+ eqkqF2D98GiwsjvyxkKugFrsM93/vx/v/+zhBRaGrlGsp/aOZuQGevj0bw7jmsrvBG
+ cv+blyDHbdlOGVFLw2q2+VMmk/cjQy252+jpZJPmDd65c5tggySUXW4QONEzl5E3Ao
+ RqgAJXywJWoUw==
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 28 Jan 2026 13:04:02 +0100
+Message-Id: <DG07HZN0PL87.X5MKDCVVYIRE@kernel.org>
+Subject: Re: [PATCH RFC v6 05/26] nova-core: mm: Add support to use PRAMIN
+ windows to write to VRAM
+Cc: "Zhi Wang" <zhiw@nvidia.com>, <linux-kernel@vger.kernel.org>, "Maarten
+ Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
+ <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "David
+ Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Jonathan
+ Corbet" <corbet@lwn.net>, "Alex Deucher" <alexander.deucher@amd.com>,
+ "Christian Koenig" <christian.koenig@amd.com>, "Jani Nikula"
+ <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
+ <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
+ "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang Rui" <ray.huang@amd.com>,
+ "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
+ <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
+ "Thomas Hellstrom" <thomas.hellstrom@linux.intel.com>, "Helge Deller"
+ <deller@gmx.de>, "Alice Ryhl" <aliceryhl@google.com>, "Miguel Ojeda"
+ <ojeda@kernel.org>, "Alex Gaynor" <alex.gaynor@gmail.com>, "Boqun Feng"
+ <boqun.feng@gmail.com>, "Gary Guo" <gary@garyguo.net>, "Bjorn Roy Baron"
+ <bjorn3_gh@protonmail.com>, "Benno Lossin" <lossin@kernel.org>, "Andreas
+ Hindborg" <a.hindborg@kernel.org>, "Trevor Gross" <tmgross@umich.edu>,
+ "John Hubbard" <jhubbard@nvidia.com>, "Alistair Popple"
+ <apopple@nvidia.com>, "Timur Tabi" <ttabi@nvidia.com>, "Edwin Peer"
+ <epeer@nvidia.com>, "Alexandre Courbot" <acourbot@nvidia.com>, "Andrea
+ Righi" <arighi@nvidia.com>, "Andy Ritger" <aritger@nvidia.com>, "Alexey
+ Ivanov" <alexeyi@nvidia.com>, "Balbir Singh" <balbirs@nvidia.com>, "Philipp
+ Stanner" <phasta@kernel.org>, "Elle Rhumsaa" <elle@weathered-steel.dev>,
+ "Daniel Almeida" <daniel.almeida@collabora.com>,
+ <nouveau@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <rust-for-linux@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+ <amd-gfx@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <linux-fbdev@vger.kernel.org>
+To: "Joel Fernandes" <joelagnelf@nvidia.com>
+From: "Danilo Krummrich" <dakr@kernel.org>
+References: <20260120204303.3229303-1-joelagnelf@nvidia.com>
+ <20260120204303.3229303-6-joelagnelf@nvidia.com>
+ <20260121100745.2b5a58e5.zhiw@nvidia.com>
+ <e186973c-ce31-405a-8bfa-dc647737a666@nvidia.com>
+ <DS0PR12MB6486717785F6DD14EE1F1C46A397A@DS0PR12MB6486.namprd12.prod.outlook.com>
+In-Reply-To: <DS0PR12MB6486717785F6DD14EE1F1C46A397A@DS0PR12MB6486.namprd12.prod.outlook.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,87 +93,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MV_CASE(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	ARC_NA(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,lists.freedesktop.org,linux.intel.com,vger.kernel.org,intel.com,ffwll.ch,ursulin.net];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[nvidia.com,vger.kernel.org,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,google.com,garyguo.net,protonmail.com,umich.edu,weathered-steel.dev,collabora.com,lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 42B3EA0AF5
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[50];
+	FROM_NEQ_ENVFROM(0.00)[dakr@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[]
+X-Rspamd-Queue-Id: 132F0A0FCF
 X-Rspamd-Action: no action
 
-On Tue, 27 Jan 2026, Atharva Tiwari <atharvatiwarilinuxdev@gmail.com> wrote:
->>At a glance, this seems like the appropriate level.
->> 
->> What if you drop patch 2 and supply i915.disable_display=1 module
->> parameter? Or return false from intel_display_device_enabled().
+On Fri Jan 23, 2026 at 12:16 AM CET, Joel Fernandes wrote:
+> My plan is to make TLB and PRAMIN use immutable references in their funct=
+ion
+> calls and then implement internal locking. I've already done this for the=
+ GPU
+> buddy functions, so it should be doable, and we'll keep it consistent. As=
+ a
+> result, we will have finer-grain locking on the memory management objects
+> instead of requiring to globally lock a common GpuMm object. I'll plan on
+> doing this for v7.
 >
-> I added the i915.disable_display=1 module parameter and removed the patch
-> , but then the display just goes blank, here are some logs:
+> Also, the PTE allocation race you mentioned is already handled by PRAMIN
+> serialization. Since threads must hold the PRAMIN lock to write page tabl=
+e
+> entries, concurrent writers are not possible:
+>
+>   Thread A: acquire PRAMIN lock
+>   Thread A: read PDE (via PRAMIN) -> NULL
+>   Thread A: alloc PT page, write PDE
+>   Thread A: release PRAMIN lock
+>
+>   Thread B: acquire PRAMIN lock
+>   Thread B: read PDE (via PRAMIN) -> sees A's pointer
+>   Thread B: uses existing PT page, no allocation needed
 
-Mmh, okay. Honestly, I still feel like this would be the better thing to
-do, but I don't think I have the time to debug this further. Feels like
-a rabbit hole. ;)
+This won't work unfortunately.
 
-So I guess let's go with ignoring display completely. The way to go is
-to extend has_no_display() with a struct dmi_system_id array, and use
-dmi_check_system() on it. Even if it's just one, it'll be so much easier
-to extend later on.
+We have to separate allocations and modifications of the page tabe. Or in o=
+ther
+words, we must not allocate new PDEs or PTEs while holding the lock protect=
+ing
+the page table from modifications.
 
-Something like this, completely untested of course:
+Once we have VM_BIND in nova-drm, we will have the situation that userspace
+passes jobs to modify the GPUs virtual address space and hence the page tab=
+les.
 
-static bool has_no_display(struct pci_dev *pdev)
-{
-	static const struct pci_device_id ids[] = {
-		INTEL_IVB_Q_IDS(INTEL_VGA_DEVICE, 0),
-		{}
-	};
+Such a jobs has mainly three stages.
 
-	static const struct dmi_system_id dmi_ids[] = {
-		{
-			.ident = "Apple iMac",
-			.matches = {
-				DMI_EXACT_MATCH(DMI_BOARD_VENDOR, "Apple Inc."),
-				DMI_EXACT_MATCH(DMI_PRODUCT_NAME, "iMac"),
-			}
-		},
-		{}
-	};
+  (1) The submit stage.
 
-	return pci_match_id(ids, pdev) || dmi_check_system(dmi_ids);
-}
+      This is where the job is initialized, dependencies are set up and the
+      driver has to pre-allocate all kinds of structures that are required
+      throughout the subsequent stages of the job.
 
-Finally, it would really be super helpful if you could file a bug at the
-fdo gitlab as described at [1], along with the full dmesg with debugs
-enabled, running just patch 1, and then you could reference that issue
-in the commit. So we'd have some info for posterity of what's actually
-going on.
+  (2) The run stage.
 
+      This is the stage where the job is staged for execution and its DMA f=
+ence
+      has been made public (i.e. it is accessible by userspace).
 
-Thanks,
-Jani.
+      This is the stage where we are in the DMA fence signalling critical
+      section, hence we can't do any non-atomic allocations, since otherwis=
+e we
+      could deadlock in MMU notifier callbacks for instance.
 
--- 
-Jani Nikula, Intel
+      This is the stage where the page table is actually modified. Hence, w=
+e
+      can't acquire any locks that might be held elsewhere while doing
+      non-atomic allocations. Also note that this is transitive, e.g. if yo=
+u
+      take lock A and somewhere else a lock B is taked while A is already h=
+eld
+      and we do non-atomic allocations while holding B, then A can't be hel=
+d in
+      the DMA fence signalling critical path either.
+
+      It is also worth noting that this is the stage where we know the exac=
+t
+      operations we have to execute based on the VM_BIND request from users=
+pace.
+
+      For instance, in the submit stage we may only know that userspace wan=
+ts
+      that we map a BO with a certain offset in the GPUs virtual address sp=
+ace
+      at [0x0, 0x1000000]. What we don't know is what exact operations this=
+ does
+      require, i.e. "What do we have to unmap first?", "Are there any
+      overlapping mappings that we have to truncate?", etc.
+
+      So, we have to consider this when we pre-allocate in the submit stage=
+.
+
+  (3) The cleanup stage.
+
+      This is where the job has been signaled and hence left the DMA fence
+      signalling critical section.
+
+      In this stage the job is cleaned up, which includes freeing data that=
+ is
+      not required anymore, such as PTEs and PDEs.
