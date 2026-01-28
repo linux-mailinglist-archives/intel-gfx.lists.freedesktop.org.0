@@ -2,56 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eEAIJqoxemlr4gEAu9opvQ
+	id SCwNHyE1eml+4gEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jan 2026 16:56:26 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jan 2026 17:11:13 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EE29A4C42
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jan 2026 16:56:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D258A53D5
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jan 2026 17:11:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10A5810E727;
-	Wed, 28 Jan 2026 15:56:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 273DD10E743;
+	Wed, 28 Jan 2026 16:11:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bmailout2.hostsharing.net (bmailout2.hostsharing.net
- [83.223.78.240])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87E1A10E72C;
- Wed, 28 Jan 2026 15:56:22 +0000 (UTC)
+X-Greylist: delayed 483 seconds by postgrey-1.36 at gabe;
+ Wed, 28 Jan 2026 16:11:08 UTC
+Received: from bmailout1.hostsharing.net (bmailout1.hostsharing.net
+ [83.223.95.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 872B610E73B;
+ Wed, 28 Jan 2026 16:11:08 +0000 (UTC)
 Received: from h08.hostsharing.net (h08.hostsharing.net [83.223.95.28])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature ECDSA (secp384r1) server-digest SHA384
  client-signature ECDSA (secp384r1) client-digest SHA384)
  (Client CN "*.hostsharing.net",
  Issuer "GlobalSign GCC R6 AlphaSSL CA 2025" (verified OK))
- by bmailout2.hostsharing.net (Postfix) with ESMTPS id 57D162009D01;
- Wed, 28 Jan 2026 16:56:21 +0100 (CET)
+ by bmailout1.hostsharing.net (Postfix) with ESMTPS id 0299E2C0781D;
+ Wed, 28 Jan 2026 17:03:04 +0100 (CET)
 Received: by h08.hostsharing.net (Postfix, from userid 100393)
- id 43F1435135; Wed, 28 Jan 2026 16:56:21 +0100 (CET)
-Date: Wed, 28 Jan 2026 16:56:21 +0100
+ id ED2A733097; Wed, 28 Jan 2026 17:03:03 +0100 (CET)
+Date: Wed, 28 Jan 2026 17:03:03 +0100
 From: Lukas Wunner <lukas@wunner.de>
-To: Atharva Tiwari <atharvatiwarilinuxdev@gmail.com>
-Cc: Ard Biesheuvel <ardb@kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Atharva Tiwari <atharvatiwarilinuxdev@gmail.com>,
+ Ard Biesheuvel <ardb@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Tvrtko Ursulin <tursulin@ursulin.net>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Javier Martinez Canillas <javierm@redhat.com>,
  Thomas Zimmermann <tzimmermann@suse.de>,
- Lenny Szubowicz <lszubowi@redhat.com>, Ingo Molnar <mingo@kernel.org>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ "Borislav Petkov (AMD)" <bp@alien8.de>,
+ Lenny Szubowicz <lszubowi@redhat.com>,
  Francesco Pompo <francescopompo2@gmail.com>,
  linux-efi@vger.kernel.org, linux-kernel@vger.kernel.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v2 0/2] Add support for eGPUs on Apple Products
-Message-ID: <aXoxpWFE0rByjS-y@wunner.de>
+Subject: Re: [PATCH v2 2/2] drm/i915/display: Disable display for iMac's
+Message-ID: <aXozN_-GCw4bLjmE@wunner.de>
 References: <20260128145855.1071-1-atharvatiwarilinuxdev@gmail.com>
+ <20260128145855.1071-3-atharvatiwarilinuxdev@gmail.com>
+ <26c4e0b7f9c25f405401288d13fc7e5097e9c7f5@intel.com>
+ <aXotLnGvZu4Ib0Vx@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260128145855.1071-1-atharvatiwarilinuxdev@gmail.com>
+In-Reply-To: <aXotLnGvZu4Ib0Vx@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,44 +82,45 @@ X-Spamd-Result: default: False [-0.61 / 15.00];
 	DMARC_NA(0.00)[wunner.de: no valid DMARC record];
 	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch,redhat.com,suse.de,vger.kernel.org,lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linux.intel.com,gmail.com,kernel.org,intel.com,ursulin.net,ffwll.ch,suse.de,redhat.com,alien8.de,vger.kernel.org,lists.freedesktop.org];
 	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.871];
 	FROM_NEQ_ENVFROM(0.00)[lukas@wunner.de,intel-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 3EE29A4C42
+	DBL_BLOCKED_OPENRESOLVER(0.00)[wunner.de:mid]
+X-Rspamd-Queue-Id: 4D258A53D5
 X-Rspamd-Action: no action
 
-On Wed, Jan 28, 2026 at 02:58:36PM +0000, Atharva Tiwari wrote:
-> This series adds support for eGPUs on Apple products, by
-> enabling apple-set-os on all apple devices.
+On Wed, Jan 28, 2026 at 05:37:18PM +0200, Ville Syrjälä wrote:
+> On Wed, Jan 28, 2026 at 05:23:51PM +0200, Jani Nikula wrote:
+> > On Wed, 28 Jan 2026, Atharva Tiwari <atharvatiwarilinuxdev@gmail.com> wrote:
+> > > Disable display on iMacs, as they can't do link training
+> > > on the internal display.
+> > >
+> > > (tested on iMac20,1)
 > 
-> A side effect of this patch is that the iGPU becomes enabled on iMacs.
-> However, iMacs canâ€™t use the iGPU to drive the display
-> (They can't link-train the internal display),
-> so displays must be disabled on iMacs.
+> I guess the main problem with a hack like this is that you won't
+> be able to get deep pkgC states due to the display hardware not
+> going into DC5/6.
 
-Oh there's the explanation that should have been in the commit message
-of patch [2/2].
+If patch [1/2] in this series results in a power regression,
+I'd say it needs to be reworked.  Either exclude iMacs from
+the set_os protocol or find a way to power down the iGPU again
+once the kernel has assumed control.
 
-It's possible that the iMac has a multiplexer built-in which can
-switch between the iGPU and dGPU at runtime.  Please ensure that
-you have set CONFIG_APPLE_GMUX=y in your .config, the gmux driver
-should bind to the multiplexer if there is one.
-
-If there is a multiplexer built-in, then disabling the iGPU is the
-wrong approach.
+I wonder what macOS does.  If the iGPU is exposed by set_os,
+surely macOS must be able to power down the iGPU again,
+so we should be doing the same.
 
 Thanks,
 
