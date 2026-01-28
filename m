@@ -2,66 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WPuAHCs1eml+4gEAu9opvQ
+	id qFr2Lss4eml+4gEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jan 2026 17:11:23 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jan 2026 17:26:51 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4561A53ED
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jan 2026 17:11:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07546A5A0B
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jan 2026 17:26:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DDA010E72C;
-	Wed, 28 Jan 2026 16:11:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34B4A10E737;
+	Wed, 28 Jan 2026 16:26:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dOtua6gM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SUuNW1YJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22D1010E740;
- Wed, 28 Jan 2026 16:11:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCC3B10E736
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 Jan 2026 16:26:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769616676; x=1801152676;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Aa6yZVedBCpO1gMTLD6kxFOO0eKs2nH/7uhnRYFv+/k=;
- b=dOtua6gMBYJf2S3MaNAnD/YYxxmoKsm+J+ATgWktjfJCgsRkCFuKBLzH
- oqW436lnGjlEB5qRSOKOTfZX1JP93m15hxSYTX4/N6bV7F7VFDgg4Qh/N
- ZkCpphxAmuiGgbbVyVFmukOmrmjmRNF5J6A9mKAwbCls1mFR/slLBA0gc
- nVPUOB3Ga3nrCFR+Wkpecig9bze/8fQWjncdNKCD8qix5p9+5gJwNaQEb
- DXFeJg4GeV5y68oOrnVvgClIHGYxrcKuilRoKr99nNVjzB30iCFvplohX
- MEtOIxFmz6uTVUkozWOhidPiT2vzDgghyqLh13BEZo60EopUQkaIWfgqt g==;
-X-CSE-ConnectionGUID: ETbk9pOtR+e5gbAzw4rwtQ==
-X-CSE-MsgGUID: bkJr/ePtRoakEX7j4y/Nww==
-X-IronPort-AV: E=McAfee;i="6800,10657,11685"; a="82262462"
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="82262462"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2026 08:11:15 -0800
-X-CSE-ConnectionGUID: +QN1EVbZQuqnNBUr8WdBig==
-X-CSE-MsgGUID: OsENfbnAR2GHhPD6GeWFLA==
+ t=1769617608; x=1801153608;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7kQSkn9zCiNJobSRetBRcv4CbXnWOk/k+R89r/6rq28=;
+ b=SUuNW1YJcWPyMOCX8nCDvBhzJFfeya3xcib1RGgwgPTbvsiP3tIu65Qt
+ C5doA1foZar+DDyJbF1Vj7TTjWVavVoQ+VORk2DB/s6uTPe/oYrngVYOR
+ eoIUBghgR3CJhcErlWoITbHumdklpFN1636YckmEMeuTO55deNIBk2f5P
+ 6+NSttgkcZf1ChdHPYs3XFQSjx7/YZ7luoVip3IXeyqfL8ZucWl8SARg2
+ YdTFW7Y6Qd2N7TvF94hKJstb7JqjZT6dGRgd7nMIEM5BInefgNexK3Xy4
+ tC0N+/crfJllGmBRa1jWN/bkrT2usaCxGz7vljMo1W186evKa/52bz697 w==;
+X-CSE-ConnectionGUID: OjirQYnITxqESgBIWO4LSA==
+X-CSE-MsgGUID: 2CnfRfpTTLuYZl339y7WHg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11685"; a="74696786"
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="74696786"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2026 08:26:47 -0800
+X-CSE-ConnectionGUID: edGHZMgST16CNdJfq4VWmA==
+X-CSE-MsgGUID: r9jyVaEDROKYw2avrpUh+w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="208546992"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.210])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2026 08:11:12 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Subject: [PATCH i-g-t v3 6/6] lib/igt_device_scan: Print GPU upstream port
- parent/child relations
-Date: Wed, 28 Jan 2026 17:09:04 +0100
-Message-ID: <20260128161041.225652-14-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260128161041.225652-8-janusz.krzysztofik@linux.intel.com>
-References: <20260128161041.225652-8-janusz.krzysztofik@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="213279769"
+Received: from dut4086lnl.fm.intel.com ([10.105.10.177])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2026 08:26:46 -0800
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
+ jani.nikula@linux.intel.com
+Subject: [PATCH v2] drm/i915/display: Assert valid cpu_transcoder
+Date: Wed, 28 Jan 2026 16:26:46 +0000
+Message-ID: <20260128162645.60413-2-jonathan.cavitt@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -83,113 +75,130 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[janusz.krzysztofik@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_FIVE(0.00)[5];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jonathan.cavitt@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim]
-X-Rspamd-Queue-Id: E4561A53ED
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 07546A5A0B
 X-Rspamd-Action: no action
 
-In a short listing, lsgpu prints a sysfs path of a PCI GPU parent as a
-local attribute of a DRM device.  However, if that's a discrete GPU and
-its associated PCIe upstream bridge port has been identified, no
-information on that bridge is listed among the GPU attributes.  Follow the
-pattern used with DRM devices and also show a PCI slot of the bridge port
-as a local attribute of the discrete GPU device.
+Static analysis issue:
 
-Moreover, in both short and detailed listings, local attributes intended
-for providing device names of GPU associated DRM devices and the GPU
-codename are also printed as attributes of related PCIe upstream bridge
-port, however, the DRM device names are shown as (null), and the codename
-attribute provides raw vendor:device codes of the bridge itself.  Replace
-those with PCI slot and codename of the GPU device.
+Bit operations are being performed using bit offsets computed from
+cpu_transcoder values, which may (albeit unlikely) be -1.  Assert this
+is not the case when relevant.
 
-v2: Allocate memory to local attributes of a bridge for safety (Sebastian),
-  - merge with a formerly separate patch "lib/igt_device_scan: Don't print
-    bridge not applicable attributes" (Sebastian),
-  - no need for DEVTYPE_BRIDGE, just skip attributes if NULL.
+v2: Don't use drm_device in display code (Jani)
 
-Cc: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
 ---
- lib/igt_device_scan.c | 18 ++++++++++++++++--
- 1 file changed, 16 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c     | 8 +++++++-
+ drivers/gpu/drm/i915/display/intel_display.c | 6 ++++++
+ drivers/gpu/drm/i915/display/intel_dp.c      | 3 +++
+ drivers/gpu/drm/i915/display/intel_dp_mst.c  | 3 +++
+ 4 files changed, 19 insertions(+), 1 deletion(-)
 
-diff --git a/lib/igt_device_scan.c b/lib/igt_device_scan.c
-index f4d2eb6568..96bf0e359d 100644
---- a/lib/igt_device_scan.c
-+++ b/lib/igt_device_scan.c
-@@ -249,6 +249,8 @@ struct igt_device {
- 	char *codename; /* For grouping by codename */
- 	enum dev_type dev_type; /* For grouping by integrated/discrete */
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index d8739e2bb004..ec947c415e5f 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -3876,7 +3876,8 @@ static void intel_ddi_set_idle_link_train(struct intel_dp *intel_dp,
+ static bool intel_ddi_is_audio_enabled(struct intel_display *display,
+ 				       enum transcoder cpu_transcoder)
+ {
+-	if (cpu_transcoder == TRANSCODER_EDP)
++	if (cpu_transcoder == TRANSCODER_EDP ||
++	    drm_WARN_ON(display->drm, cpu_transcoder == INVALID_TRANSCODER))
+ 		return false;
  
-+	char *pci_gpu; /* Filled for upstream bridge ports */
+ 	if (!intel_display_power_is_enabled(display, POWER_DOMAIN_AUDIO_MMIO))
+@@ -4611,6 +4612,8 @@ intel_ddi_port_sync_transcoders(const struct intel_crtc_state *ref_crtc_state,
+ 		if (!crtcs_port_sync_compatible(ref_crtc_state,
+ 						crtc_state))
+ 			continue;
++		if (drm_WARN_ON(display->drm, crtc_state->cpu_transcoder == INVALID_TRANSCODER))
++			continue;
+ 		transcoders |= BIT(crtc_state->cpu_transcoder);
+ 	}
+ 
+@@ -4649,6 +4652,9 @@ static int intel_ddi_compute_config_late(struct intel_encoder *encoder,
+ 	else
+ 		crtc_state->master_transcoder = ffs(port_sync_transcoders) - 1;
+ 
++	if (drm_WARN_ON(display->drm, crtc_state->cpu_transcoder == INVALID_TRANSCODER))
++		return -EINVAL;
 +
- 	struct igt_list_head link;
- };
+ 	if (crtc_state->master_transcoder == crtc_state->cpu_transcoder) {
+ 		crtc_state->master_transcoder = INVALID_TRANSCODER;
+ 		crtc_state->sync_mode_slaves_mask =
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 7491e00e3858..6b2a0cb0e0e1 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -5854,10 +5854,16 @@ static bool intel_cpu_transcoders_need_modeset(struct intel_atomic_state *state,
+ 					       u8 transcoders)
+ {
+ 	const struct intel_crtc_state *new_crtc_state;
++	struct intel_display *display;
+ 	struct intel_crtc *crtc;
+ 	int i;
  
-@@ -1063,6 +1065,9 @@ static void update_or_add_parent(struct udev *udev,
++	display = to_intel_display(state);
++
+ 	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
++		if (drm_WARN_ON(display->drm,
++				new_crtc_state->cpu_transcoder == INVALID_TRANSCODER))
++			continue;
+ 		if (new_crtc_state->hw.enable &&
+ 		    transcoders & BIT(new_crtc_state->cpu_transcoder) &&
+ 		    intel_crtc_needs_modeset(new_crtc_state))
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 79fd3b8d8b25..402b22423ff2 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -6412,6 +6412,9 @@ static int intel_modeset_affected_transcoders(struct intel_atomic_state *state,
+ 		if (!crtc_state->hw.enable)
+ 			continue;
  
- 	/* override DEVTYPE_INTEGRATED so link attributes won't be omitted */
- 	bridge_idev->dev_type = DEVTYPE_ALL;
-+	bridge_idev->pci_gpu = strdup(parent_idev->pci_slot_name);
-+	bridge_idev->codename = strdup(parent_idev->codename);
-+	parent_idev->parent = bridge_idev;
- }
++		if (drm_WARN_ON(display->drm, crtc_state->cpu_transcoder == INVALID_TRANSCODER))
++			continue;
++
+ 		if (!(transcoders & BIT(crtc_state->cpu_transcoder)))
+ 			continue;
  
- static struct igt_device *duplicate_device(struct igt_device *dev) {
-@@ -1234,6 +1239,7 @@ static void igt_device_free(struct igt_device *dev)
- 	free(dev->device);
- 	free(dev->driver);
- 	free(dev->pci_slot_name);
-+	free(dev->pci_gpu);
- 	igt_map_destroy(dev->attrs_map, free_key_value);
- 	igt_map_destroy(dev->props_map, free_key_value);
- }
-@@ -1330,7 +1336,11 @@ igt_devs_print_simple(struct igt_list_head *view,
- 			if (is_pci_subsystem(dev)) {
- 				_pr_simple("vendor", dev->vendor);
- 				_pr_simple("device", dev->device);
-+				if (dev->pci_gpu)
-+					_pr_simple("GPU device", dev->pci_gpu);
- 				_pr_simple("codename", dev->codename);
-+				if (dev->parent && dev->parent->pci_slot_name)
-+					_pr_simple("upstream port", dev->parent->pci_slot_name);
- 			}
- 		}
- 		printf("\n");
-@@ -1483,8 +1493,12 @@ igt_devs_print_detail(struct igt_list_head *view,
- 		printf("========== %s:%s ==========\n",
- 		       dev->subsystem, dev->syspath);
- 		if (!is_drm_subsystem(dev)) {
--			_print_key_value("card device", dev->drm_card);
--			_print_key_value("render device", dev->drm_render);
-+			if (dev->drm_card)
-+				_print_key_value("card device", dev->drm_card);
-+			if (dev->drm_render)
-+				_print_key_value("render device", dev->drm_render);
-+			if (dev->pci_gpu)
-+				_print_key_value("GPU device", dev->pci_gpu);
- 			_print_key_value("codename", dev->codename);
- 		}
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index 24f8e60df9ac..f6690130d1cb 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -741,6 +741,9 @@ intel_dp_mst_transcoder_mask(struct intel_atomic_state *state,
+ 		if (!crtc_state->hw.active)
+ 			continue;
+ 
++		if (drm_WARN_ON(display->drm, crtc_state->cpu_transcoder == INVALID_TRANSCODER))
++			continue;
++
+ 		transcoders |= BIT(crtc_state->cpu_transcoder);
+ 	}
  
 -- 
-2.52.0
+2.43.0
 
