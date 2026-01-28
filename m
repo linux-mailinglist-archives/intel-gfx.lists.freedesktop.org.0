@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qL7tClMkemmv2wEAu9opvQ
+	id oGv7IFckemkO3QEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jan 2026 15:59:31 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jan 2026 15:59:35 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A007A365D
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jan 2026 15:59:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5866AA367A
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jan 2026 15:59:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F408F10E710;
-	Wed, 28 Jan 2026 14:59:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3EDF10E712;
+	Wed, 28 Jan 2026 14:59:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P/E2NLvm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T/eKTSA8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6394110E710;
- Wed, 28 Jan 2026 14:59:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 155CC10E712;
+ Wed, 28 Jan 2026 14:59:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769612368; x=1801148368;
+ t=1769612373; x=1801148373;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=p+R0jbvq3615jhl9qUSOI8H/mRkHqSV7f/c3s6opnoc=;
- b=P/E2NLvmqvUsu9GJjzI2QkbM2lO2KmyLzzatj0b1dGpPV3dQzZeKRwve
- aq4wtsuWkCxIxAM8OGtwX9f0a+eXu7GLnDQngXMrXVUCA676ADYaQCG6Q
- TgzBa46hR8Hu9BQH+vFB0kgmPbUqJw6EVKie1q0XlLVcUuxsSa+X/Xfh8
- hA92FADTUogLqC1N6k2Z4E66OotKfLA0MsJdbHlDC6pXf8DofAVmpYBPx
- GMdRaQzngtPRH+Qvvj5/lqfaNKaIwftkZ9S0dLx2hvC4FNq3woLJlqGvN
- 3d8UKTEnUdPv99vnb26Bz/q8uEnQzF8UDHPeobk792CYIvkVAUTbPg+0F Q==;
-X-CSE-ConnectionGUID: 6cHcvRVgSzuELDGMIbZyNQ==
-X-CSE-MsgGUID: tWaPSaf/Rz6vk1QBXoSHOw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="81935634"
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="81935634"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2026 06:59:28 -0800
-X-CSE-ConnectionGUID: df1sDhRsT4OAIIAK+q+tsw==
-X-CSE-MsgGUID: Ep+yrr/xTe6v+tO9XcN34g==
+ bh=CiGkUOiEfZWkqrrWtOj1tA3kP66U/7uCwwDeNxbBWGQ=;
+ b=T/eKTSA87VxVk9RBQH+fxLQ8rYHx+szDes/r0TPlp145GNO019/Ob2P/
+ 0k+UYmeJqt+T2epO0FJNBijKXbs37sTzmi3/Rqui69QuHGtmE1e/o0+mW
+ lfNZUQIW/AidOa0VYmp0dd7GVgB7huqHx2nJlTscAuj+qe//v328aScfZ
+ ZoT3iVd6c2ddt7IzSgYXQIDJk0jJ3IeGp0OeulhHxkzJZj0RuG1Z6UGwt
+ nWGaBxOWqjmTYsiJy2nYYsTNCSBE5bNAS1iIiaUA/+oSYRT8R2E0hv0wB
+ avwhw/xjs9uTlZKe5Jsp7+F3zoL+BI5U9jYaSjzEmcfowGx6EfzT/GcPw A==;
+X-CSE-ConnectionGUID: 9f2xT7tZTX250kPT3xFNdQ==
+X-CSE-MsgGUID: T6Pzc+s4SIO8tpQuCr/gPA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="70728170"
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="70728170"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2026 06:59:33 -0800
+X-CSE-ConnectionGUID: wyeTYIdJSPSxfurSM1+eiQ==
+X-CSE-MsgGUID: CSqSLB7DQo2JizJprXgU3g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="208354142"
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="212845160"
 Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.207])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2026 06:59:25 -0800
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2026 06:59:31 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 2/4] drm/i915/gvt: drop dependency on display struct dpll
-Date: Wed, 28 Jan 2026 16:59:08 +0200
-Message-ID: <ff7478efa80323c638a31c578cb1d707692ef51d.1769612208.git.jani.nikula@intel.com>
+Subject: [PATCH 3/4] drm/i915/gvt: drop dependency on intel_display_types.h
+Date: Wed, 28 Jan 2026 16:59:09 +0200
+Message-ID: <2fa5677f5ff3dbeaa75a7984d74fb9855a4ba3d2.1769612208.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1769612208.git.jani.nikula@intel.com>
 References: <cover.1769612208.git.jani.nikula@intel.com>
@@ -101,80 +101,49 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCPT_COUNT_THREE(0.00)[4];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid,clock.dot:url]
-X-Rspamd-Queue-Id: 8A007A365D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
+X-Rspamd-Queue-Id: 5866AA367A
 X-Rspamd-Action: no action
 
-The gvt code has no real need for struct dpll, it's just a collection of
-variables. So use a bunch of variables instead.
+Avoid even accidental use of display details by dropping the include of
+intel_display_types.h. We'll still have to include intel_dpll_mgt.h for
+the DPLL IDs, but at least the surface is smaller.
+
+Add duplicate defines of pipe_name() and port_name() to avoid depending
+on display. They're trivial enough to be acceptable.
 
 Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-
 ---
-
-Tip: 'git show --color-words' is easier to review.
----
- drivers/gpu/drm/i915/gvt/handlers.c | 33 ++++++++++++-----------------
- 1 file changed, 14 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/i915/gvt/handlers.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
-index bd20f287720f..383b04160559 100644
+index 383b04160559..6f860c320afc 100644
 --- a/drivers/gpu/drm/i915/gvt/handlers.c
 +++ b/drivers/gpu/drm/i915/gvt/handlers.c
-@@ -558,7 +558,7 @@ static u32 bxt_vgpu_get_dp_bitrate(struct intel_vgpu *vgpu, enum port port)
- 	int refclk = 100000;
- 	enum dpio_phy phy = DPIO_PHY0;
- 	enum dpio_channel ch = DPIO_CH0;
--	struct dpll clock = {};
-+	int m1, m2, n, p1, p2, m, p, vco, dot;
- 	u32 temp;
+@@ -46,10 +46,10 @@
+ #include "display/intel_crt_regs.h"
+ #include "display/intel_cursor_regs.h"
+ #include "display/intel_display_regs.h"
+-#include "display/intel_display_types.h"
+ #include "display/intel_dmc_regs.h"
+ #include "display/intel_dp_aux_regs.h"
+ #include "display/intel_dpio_phy.h"
++#include "display/intel_dpll_mgr.h"
+ #include "display/intel_fbc.h"
+ #include "display/intel_fdi_regs.h"
+ #include "display/intel_pps_regs.h"
+@@ -79,6 +79,9 @@
+ #define PCH_PP_OFF_DELAYS _MMIO(0xc720c)
+ #define PCH_PP_DIVISOR _MMIO(0xc7210)
  
- 	/* Port to PHY mapping is fixed, see bxt_ddi_phy_info{} */
-@@ -587,30 +587,25 @@ static u32 bxt_vgpu_get_dp_bitrate(struct intel_vgpu *vgpu, enum port port)
- 		goto out;
- 	}
- 
--	clock.m1 = 2;
--	clock.m2 = REG_FIELD_GET(PORT_PLL_M2_INT_MASK,
--				 vgpu_vreg_t(vgpu, BXT_PORT_PLL(phy, ch, 0))) << 22;
-+	m1 = 2;
-+	m2 = REG_FIELD_GET(PORT_PLL_M2_INT_MASK, vgpu_vreg_t(vgpu, BXT_PORT_PLL(phy, ch, 0))) << 22;
- 	if (vgpu_vreg_t(vgpu, BXT_PORT_PLL(phy, ch, 3)) & PORT_PLL_M2_FRAC_ENABLE)
--		clock.m2 |= REG_FIELD_GET(PORT_PLL_M2_FRAC_MASK,
--					  vgpu_vreg_t(vgpu, BXT_PORT_PLL(phy, ch, 2)));
--	clock.n = REG_FIELD_GET(PORT_PLL_N_MASK,
--				vgpu_vreg_t(vgpu, BXT_PORT_PLL(phy, ch, 1)));
--	clock.p1 = REG_FIELD_GET(PORT_PLL_P1_MASK,
--				 vgpu_vreg_t(vgpu, BXT_PORT_PLL_EBB_0(phy, ch)));
--	clock.p2 = REG_FIELD_GET(PORT_PLL_P2_MASK,
--				 vgpu_vreg_t(vgpu, BXT_PORT_PLL_EBB_0(phy, ch)));
--	clock.m = clock.m1 * clock.m2;
--	clock.p = clock.p1 * clock.p2 * 5;
--
--	if (clock.n == 0 || clock.p == 0) {
-+		m2 |= REG_FIELD_GET(PORT_PLL_M2_FRAC_MASK, vgpu_vreg_t(vgpu, BXT_PORT_PLL(phy, ch, 2)));
-+	n = REG_FIELD_GET(PORT_PLL_N_MASK, vgpu_vreg_t(vgpu, BXT_PORT_PLL(phy, ch, 1)));
-+	p1 = REG_FIELD_GET(PORT_PLL_P1_MASK, vgpu_vreg_t(vgpu, BXT_PORT_PLL_EBB_0(phy, ch)));
-+	p2 = REG_FIELD_GET(PORT_PLL_P2_MASK, vgpu_vreg_t(vgpu, BXT_PORT_PLL_EBB_0(phy, ch)));
-+	m = m1 * m2;
-+	p = p1 * p2 * 5;
++#define pipe_name(p) ((p) + 'A')
++#define port_name(p) ((p) + 'A')
 +
-+	if (n == 0 || p == 0) {
- 		gvt_dbg_dpy("vgpu-%d PORT_%c PLL has invalid divider\n", vgpu->id, port_name(port));
- 		goto out;
- 	}
- 
--	clock.vco = DIV_ROUND_CLOSEST_ULL(mul_u32_u32(refclk, clock.m), clock.n << 22);
--	clock.dot = DIV_ROUND_CLOSEST(clock.vco, clock.p);
-+	vco = DIV_ROUND_CLOSEST_ULL(mul_u32_u32(refclk, m), n << 22);
-+	dot = DIV_ROUND_CLOSEST(vco, p);
- 
--	dp_br = clock.dot;
-+	dp_br = dot;
- 
- out:
- 	return dp_br;
+ unsigned long intel_gvt_get_device_type(struct intel_gvt *gvt)
+ {
+ 	struct drm_i915_private *i915 = gvt->gt->i915;
 -- 
 2.47.3
 
