@@ -2,255 +2,197 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eH7hDhE9emlB4wEAu9opvQ
+	id gDf4BHM9emlB4wEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jan 2026 17:45:05 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jan 2026 17:46:43 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAF40A60FA
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jan 2026 17:45:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93EFAA617B
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jan 2026 17:46:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28A1010E2CC;
-	Wed, 28 Jan 2026 16:45:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1318210E736;
+	Wed, 28 Jan 2026 16:46:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=oracle.com header.i=@oracle.com header.b="G7PPwhgr";
-	dkim=pass (1024-bit key; unprotected) header.d=oracle.onmicrosoft.com header.i=@oracle.onmicrosoft.com header.b="fGnLY0Q5";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CrAgpQTT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com
- [205.220.177.32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1555510E2CC;
- Wed, 28 Jan 2026 16:45:01 +0000 (UTC)
-Received: from pps.filterd (m0246630.ppops.net [127.0.0.1])
- by mx0b-00069f02.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 60S4C6fC1432082; Wed, 28 Jan 2026 16:44:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
- :content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=corp-2025-04-25; bh=opu0x7FeVMzcAlmS8d
- PWKS7gc5jBEPD0/D78+u6NWys=; b=G7PPwhgrLKw8QEMf5XWD7w3MJbyJxiUq1W
- +JXWNq7MBozkvpQldYDKVmynYdLZ/1oZaivUpfEx8AnN2R4ZHd7r4xH+g05EGO67
- f4rhssNNT8xssUIieKgYwUWUykxUXrcGI7ZeIZdyXy0KcoVSkjbY7GuW4yW7UB/x
- XcZvtmaDSeIquxKHPv9/VAMAl+AloKezTRK+/OEnSWEVUHJlZpuW/xz30zth8wh5
- I+B5cy2FMeyUCmKqG7rdqGPd/SqTJPd/eeTV/sU+4XpVR43kn7OWaMBJ5bhbsZzm
- seu0VzVVycUiUEnG/tb0rKd2rGiWf/iWE8oRPnlUeVUGwGJjsNgg==
-Received: from iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com
- (iadpaimrmta01.appoci.oracle.com [130.35.100.223])
- by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 4by5dj1cah-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Wed, 28 Jan 2026 16:44:24 +0000 (GMT)
-Received: from pps.filterd
- (iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
- by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (8.18.1.2/8.18.1.2)
- with ESMTP id 60SFNTUZ020001; Wed, 28 Jan 2026 16:44:24 GMT
-Received: from sn4pr2101cu001.outbound.protection.outlook.com
- (mail-southcentralusazon11012040.outbound.protection.outlook.com
- [40.93.195.40])
- by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id
- 4bvmhgf1xf-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Wed, 28 Jan 2026 16:44:23 +0000
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74BE010E732;
+ Wed, 28 Jan 2026 16:46:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1769618798; x=1801154798;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=n7tz84jrmZXG9nJPLxlSPfCMuUXSPLl3DBs4ssTSXz8=;
+ b=CrAgpQTTMfw8c3K/ayYA5YPPEbHRIcdvfagZBHfTTOkFOTv2BzS7B3YG
+ /adlmKa9jIiBzl+A+3BakHc5KonkagXKu3K6T26g9fD0107aNJF8GyUnr
+ GWcDpuyQ1rVShMmunBiE0uH+AeKuRkUcf39LZhIO6y3lJUBPo88+iXS9X
+ CugpaU971NkM8Nk7HGZMQefix07sAuBe2fJ0piakbjhBwpYHXLA3/vxmW
+ aMl3FrFAJIlc1eJYPHXD/O3UCdZJVHMjezLPSouShajhVki0MumoKdF0F
+ AifY+KbLu+KjpSDEurafNxKeO4U7RF8CoCsZwAmTFWaaLDeX6OyLD0aja w==;
+X-CSE-ConnectionGUID: deuxiHPXR7yaE4njARvhFw==
+X-CSE-MsgGUID: 7SHsLS2fSsi7c09+tyk96Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11685"; a="88412726"
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="88412726"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2026 08:46:38 -0800
+X-CSE-ConnectionGUID: 5PUqLFFoSni+B6tn9atHrg==
+X-CSE-MsgGUID: /cOtskVVQwqAK3F8tlESzg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="208221748"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2026 08:46:38 -0800
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Wed, 28 Jan 2026 08:46:37 -0800
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35 via Frontend Transport; Wed, 28 Jan 2026 08:46:37 -0800
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.36)
+ by edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Wed, 28 Jan 2026 08:46:37 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rgbnES/GllpFsPIcUf2ZE+8NUlvVBLHN+iiqs17JnhoTnSm6bkYMDLby5ohGsY4W+/hcVEHOprDuzPsWs4TG7PbVIbYAaRJSdSgu38My+bYFEMRhrgG52BrLo8pvFLU9e4f3waaQzLRDGJOiL6a2tgl9t9e9WeOCaKN3D91FZ5ulmToeqsl80vXarfwRmGP0TngWW1jtaZ5/5BobLUEWccpzxYlQl7gO3iH1q97Y01xNDSEOAJ8uwW+4IsFir3I373dTYcy+5Stji+cKHHzmpzdP/R2eGRGNCJNXsExeggD2KVePbI2s00yyWGPw4pCSSST4UUkSVKuHt74YertU1A==
+ b=UBp9nvr41+mXNzzVCgCiV1PtK+C5fcZxjaX2tugs9BFbTgW16dmkr8NrKhk3Y4TmRmDKnnVvqnIYJJnV8SG8A/Fe2yLRg6OLErGPrjEZUpMCVSEUL5h1Xi+56X1uteJxnBuA88epjsLW77rutsaYEG7riaPL3Udg2gXtkHseZvxBmso9JqTxNrRkzsle4NcqQoaiILhbFjMJWP4MtrseIHt7vxZo+UuYypXJd0PXW8l9/dKf5sLOTRo+T4C5iarjyjz4sdndYarEsNobgefgjm1pxAuV3peDGFI5movrjvIjOQPeT64/CUck8e4L9r9ZF/lntnbnZPqXwXAtWn91tw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=opu0x7FeVMzcAlmS8dPWKS7gc5jBEPD0/D78+u6NWys=;
- b=XJCmWpo0h3xO91lLF3YTtium4zRa0h+KrAjwEPjSarfES+Rexcfs+h0d7tgpTjsBfmfMQfpm87uW+CkSGhHKE5Zc0fOiLBw0jystcJn4QRv3Wqhmg5Emv15PS3URuTiLEuPr2rETj/rpQAbXk3D7sA8xxI/KxzgpNXtbTc0USzGLysL6lLBUjsWrI/h9X0/NwWoyYFBSC09KeQkil4uDBoMuOSpJ9ya3q5BN2j2tNXiOKLrRQbisXplcxFXdPdob0ICdnqXF4gvVlQabu8z87jWnwhf2FvT+4okXcFynwxa7k3bPMBBnNVmmjfr1kyqoqky7TrCvYkGiAz4bIqmCpg==
+ bh=4cYPe3SA/igulaOW3qTwUnxeOXOF7/jt1ZmVnmUtfxQ=;
+ b=C7v47ODFIt4Q4F5oJhaJNI/cM8CRF0+fKIBdUveCyw8e8YK89vizvFgzPpSC789u6NSfJj9mRl6fXaIb2gjSe1ttIrKaLcFzJqE3PJMDO92SU4vFi368CpIhTmEMC7+K/dE5BCphO0yL6E7/Tp1Jc12aGM5zE0ovg5WLGAtOTz3irATMqrktB2t9dtEvTwK8TyqnpYngjGnl+Ntqvp+G11i1y/oGrWjgnCswRUXhAY0iq30GLGENv2m/5JYZKEN3LHX4g4UnS/OIDj8fZd9CeXYMpEOftnZwV4Uz34L+azxXln811Z2zL9sDvUKFOw4GxIDZN7/tkrcfHd7TX2w9MQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
- dkim=pass header.d=oracle.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=opu0x7FeVMzcAlmS8dPWKS7gc5jBEPD0/D78+u6NWys=;
- b=fGnLY0Q5nmwq0s7XFHIg9VFkzWvpWWBCUtHfhTG1cQ5w74T/6O6QLTTK7P42qDvUDnG1pLcJs3YmUZB1mMIrTwKMSDM4DPJDZXdksvFxY03iRr17IkMLH+s11Avb6eszc3yfCgsv7WRkWLgD8FTOBnZcFnW/0YyA5MnB4Hv3htg=
-Received: from BL4PR10MB8229.namprd10.prod.outlook.com (2603:10b6:208:4e6::14)
- by IA1PR10MB7198.namprd10.prod.outlook.com (2603:10b6:208:3f3::17)
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
+ by IA1PR11MB6491.namprd11.prod.outlook.com (2603:10b6:208:3a5::19)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.8; Wed, 28 Jan
- 2026 16:44:15 +0000
-Received: from BL4PR10MB8229.namprd10.prod.outlook.com
- ([fe80::552b:16d2:af:c582]) by BL4PR10MB8229.namprd10.prod.outlook.com
- ([fe80::552b:16d2:af:c582%6]) with mapi id 15.20.9520.005; Wed, 28 Jan 2026
- 16:44:15 +0000
-Date: Wed, 28 Jan 2026 16:44:12 +0000
-From: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-To: Andrew Morton <akpm@linux-foundation.org>
-Cc: Jarkko Sakkinen <jarkko@kernel.org>,
- Dave Hansen <dave.hansen@linux.intel.com>,
- Thomas Gleixner <tglx@kernel.org>, Ingo Molnar <mingo@redhat.com>,
- Borislav Petkov <bp@alien8.de>, x86@kernel.org,
- "H . Peter Anvin" <hpa@zytor.com>, Arnd Bergmann <arnd@arndb.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Dan Williams <dan.j.williams@intel.com>,
- Vishal Verma <vishal.l.verma@intel.com>, Dave Jiang <dave.jiang@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Christian Koenig <christian.koenig@amd.com>,
- Huang Rui <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Alexander Viro <viro@zeniv.linux.org.uk>,
- Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
- Benjamin LaHaise <bcrl@kvack.org>, Gao Xiang <xiang@kernel.org>,
- Chao Yu <chao@kernel.org>, Yue Hu <zbestahu@gmail.com>,
- Jeffle Xu <jefflexu@linux.alibaba.com>,
- Sandeep Dhavale <dhavale@google.com>,
- Hongbo Li <lihongbo22@huawei.com>, Chunhai Guo <guochunhai@vivo.com>,
- Theodore Ts'o <tytso@mit.edu>, Andreas Dilger <adilger.kernel@dilger.ca>,
- Muchun Song <muchun.song@linux.dev>, Oscar Salvador <osalvador@suse.de>,
- David Hildenbrand <david@kernel.org>,
- Konstantin Komarov <almaz.alexandrovich@paragon-software.com>,
- Mike Marshall <hubcap@omnibond.com>,
- Martin Brandenburg <martin@omnibond.com>, Tony Luck <tony.luck@intel.com>,
- Reinette Chatre <reinette.chatre@intel.com>,
- Dave Martin <Dave.Martin@arm.com>, James Morse <james.morse@arm.com>,
- Babu Moger <babu.moger@amd.com>, Carlos Maiolino <cem@kernel.org>,
- Damien Le Moal <dlemoal@kernel.org>, Naohiro Aota <naohiro.aota@wdc.com>,
- Johannes Thumshirn <jth@kernel.org>, Matthew Wilcox <willy@infradead.org>,
- "Liam R . Howlett" <Liam.Howlett@oracle.com>,
- Vlastimil Babka <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>,
- Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
- Hugh Dickins <hughd@google.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>, Zi Yan <ziy@nvidia.com>,
- Nico Pache <npache@redhat.com>, Ryan Roberts <ryan.roberts@arm.com>,
- Dev Jain <dev.jain@arm.com>, Barry Song <baohua@kernel.org>,
- Lance Yang <lance.yang@linux.dev>, Jann Horn <jannh@google.com>,
- Pedro Falcato <pfalcato@suse.de>, David Howells <dhowells@redhat.com>,
- Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
- "Serge E . Hallyn" <serge@hallyn.com>, Yury Norov <yury.norov@gmail.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>, linux-sgx@vger.kernel.org,
- linux-kernel@vger.kernel.org, nvdimm@lists.linux.dev,
- linux-cxl@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-fsdevel@vger.kernel.org,
- linux-aio@kvack.org, linux-erofs@lists.ozlabs.org,
- linux-ext4@vger.kernel.org, linux-mm@kvack.org, ntfs3@lists.linux.dev,
- devel@lists.orangefs.org, linux-xfs@vger.kernel.org,
- keyrings@vger.kernel.org, linux-security-module@vger.kernel.org,
- Jason Gunthorpe <jgg@nvidia.com>
-Subject: Re: [PATCH v2 07/13] mm: update secretmem to use VMA flags on
- mmap_prepare
-Message-ID: <3aab9ab1-74b4-405e-9efb-08fc2500c06e@lucifer.local>
-References: <cover.1769097829.git.lorenzo.stoakes@oracle.com>
- <a243a09b0a5d0581e963d696de1735f61f5b2075.1769097829.git.lorenzo.stoakes@oracle.com>
-Content-Type: text/plain; charset=us-ascii
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.7; Wed, 28 Jan
+ 2026 16:46:32 +0000
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::8900:d137:e757:ac9f%3]) with mapi id 15.20.9520.003; Wed, 28 Jan 2026
+ 16:46:32 +0000
+Date: Wed, 28 Jan 2026 18:46:28 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <jani.nikula@linux.intel.com>
+Subject: Re: [PATCH 04/16] drm/i915/dp: Rework pipe joiner logic in mode_valid
+Message-ID: <aXo8dwGBqxY5vE6o@ideak-desk.lan>
+References: <20260128140636.3527799-1-ankit.k.nautiyal@intel.com>
+ <20260128140636.3527799-5-ankit.k.nautiyal@intel.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <a243a09b0a5d0581e963d696de1735f61f5b2075.1769097829.git.lorenzo.stoakes@oracle.com>
-X-ClientProxiedBy: LO4P265CA0238.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:350::11) To BL4PR10MB8229.namprd10.prod.outlook.com
- (2603:10b6:208:4e6::14)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260128140636.3527799-5-ankit.k.nautiyal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+X-ClientProxiedBy: GV3P280CA0104.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:150:8::24) To SJ0PR11MB4845.namprd11.prod.outlook.com
+ (2603:10b6:a03:2d1::10)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL4PR10MB8229:EE_|IA1PR10MB7198:EE_
-X-MS-Office365-Filtering-Correlation-Id: f93b3cd6-62bd-4e6c-3ecc-08de5e8c78ec
+X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|IA1PR11MB6491:EE_
+X-MS-Office365-Filtering-Correlation-Id: 55b59432-6ea3-41c0-7b71-08de5e8ccaf8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Nfd4jrR37+I4JjuqOag+LkVrWVENa9nJNfakhfix+8ewq7mrgPq8XnusvV24?=
- =?us-ascii?Q?ajV1BW9RDrAV0hP6YX8lOV+l8Rel3uPN62kWxiN8Jo5dpMv1/B2vpk/4GMHA?=
- =?us-ascii?Q?hoATZ6aa1UR/WeSccQZSjYpBs51/HhixSyIsys0LCD99PxTvkfcqg4GVBsAL?=
- =?us-ascii?Q?sva79tXOiYvX8IjXv+nt3E8wxBJrVimBMnQWqa9akHji7McHnK8l1cS2C3R7?=
- =?us-ascii?Q?a1mM2we5LQKULQIVo5wHSFVvDrgAM+PKDa3LqBhbNYaE/NzDEH9+QbIFcieL?=
- =?us-ascii?Q?5VCm/ZCrS214WKw1es1SPCWoMmDmhkNhG/MwdYLg3Hj83iZqYhTajWmnnqGR?=
- =?us-ascii?Q?gBXiAcnWeIyBroCmvV4xdU1ytQAWFtfGDZFCMRkV0WX7I3A5hF4bseOjGWQ8?=
- =?us-ascii?Q?qIG8aP9diiO10c1j0d09E72thGwJWNbNwJjC2E7L6kCCl//ZGAUVaz2s89sl?=
- =?us-ascii?Q?vAjbqSFjLzO9F6/C3lCrDf+mwumPyh0rvp2aRzBbdtov+zdkHOYhnkrdnjo8?=
- =?us-ascii?Q?/NkhQsm0iGZD6kSfeVYyTGTriVQ0MyhrdacH/RkcbvjKYb+RJAw87Y4/7pBS?=
- =?us-ascii?Q?rIl+aurA7XeM5tTO5ZRxWaal6I7o+qKRXC1ESMATH00301SpfSsjQaROcHu2?=
- =?us-ascii?Q?DLXMKn0UVxfMDrSmOO6itAzo/7TDs6Ap0271TXbLl2M9Z8iOh06DzbQihebR?=
- =?us-ascii?Q?SFGLcuLRn7WrkuftFGybtdCAnssL4QB/lNBG9vx2wzM7OovcurKm+92O44Fu?=
- =?us-ascii?Q?ETXC035vlwbAEfsR4Zde63XXRywvDpP6URPWTzmFEUnGP18KbO/pKRSAOMpC?=
- =?us-ascii?Q?imSW0yVpxaYeJlXo0tt/aJtZ+QBcILWn01ygX51cwf9WWlNvZcZ2qfhIhJE2?=
- =?us-ascii?Q?Hb5IJGDCqqP7L2ZOuNPUlkHoT1N3DitdTaOrcE4IleUDJgQ8CwF81ZjVfqg/?=
- =?us-ascii?Q?Coij5W7OwA20zAgFiFXsKWODMFPfkXOHyDV85LUWxnADG60f2thmaOuPK/Re?=
- =?us-ascii?Q?XeX1BMc3kZ5ByrpPxQ6AdCs/KYggAOfaLsrQceYKqVpLYqaQTEICBI0pQbO7?=
- =?us-ascii?Q?NBToZho1vaDJ9QjWmlccYeS6qsUbQPI/+UPj/E79xcPzUwl0zMJHhadGOOpH?=
- =?us-ascii?Q?80fK8d58Ru5yCPxInGcRoEqx9rqUah9RO4Joryxladp0waT2Q0nPJVvg7JpK?=
- =?us-ascii?Q?ILcI6XQzgGUCWl+4QsKifkhg+Wmv6bRjI/0eAeUA4BNyfFYO3bE/EcssheUC?=
- =?us-ascii?Q?iR8kBDJ6fuESnVjuCZ6E0L4JYkR2HrBdsBP9hGDLXUJO8ZlEpHtrVpsr/ha2?=
- =?us-ascii?Q?6IH1xYlIldo57Vj4+3r4fdAxANXTvtX9wpYSowPwjfdJIQKxtlW3qw94yr7K?=
- =?us-ascii?Q?9QBPdy7dUywsNZVLYWZnjwLa6gV8wYN4DdNL6l+N7WePPmISoMvjWglxQpQC?=
- =?us-ascii?Q?LRLYBXft420t2yovf+5iVxkhbfsxUyBez8RlBBjYvCE3VJXwdypAHptjzjxM?=
- =?us-ascii?Q?33dWXHkFCLK107O9RzCn3jDn7XcUIo/7uYZkziNa7NzF7tFJZQzEUXMMRvrT?=
- =?us-ascii?Q?uJucOKlyZ5Z2fRDSrnM=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?OVJVd1FqT0FsbFp4NFErL00rbWlGVjREOTR1N2Z1aml2ZXRpRFZ6MmhFSzU4?=
+ =?utf-8?B?RFNadmtnT0VUZ3loY2R5VHYzZWlTbHY2QWp5OHQyYlplZVk4RnRYNlFTZHRN?=
+ =?utf-8?B?OHQ2bVU0Y0Fpem55WkFhTlJ3TGxmenlLdC9rZEgwYTFNRGZkVFBFTUw4N1k3?=
+ =?utf-8?B?aWV2dlJsWG5WQzJlejhnaUpYWFpiQitsWnVDdXYxY0hWMzVIZ0t0Zmk2Mm04?=
+ =?utf-8?B?S1NnOEpXTEsyVmhjcmszNFFaeTI3NnVjL0IxQndXbjNPaTB3Zmt2RzlPRTVp?=
+ =?utf-8?B?eklGYTAweDlWZWpGQ0lLU3RCb05ndVhJbTN4TFF5dXhOT3pPL2orMmMxWjdx?=
+ =?utf-8?B?Yk5HcWw3a1JUWjFRNkdXTjhsV0pNS3I5M01veFliRnZJa0hoTzlMM3BxRlVh?=
+ =?utf-8?B?S3o2eEJFNkxVSkd2Q0p1eTBPSTRsazNhS0laNitxei9VMmVQd2pES29sRkgv?=
+ =?utf-8?B?OG5mcWJaNWFmdkZ2bEhMWEZ5OG9EblhFSkg1S0x5SENEWk5NYVZKN3AxRzg1?=
+ =?utf-8?B?ZVh3SytHQ0lhdG5lSFhDdFJPRVE3T0N6VDE1Uko5a3MvSW9hTWdONFJNTmk4?=
+ =?utf-8?B?QXJRYmZtZUJETHQ3QlhMWUdzWmNmalg3ZDZ6VlBINHY0UkpjMzl0YmxKOW9X?=
+ =?utf-8?B?UUNmVUdwN0d0eEN5NWdaNWl1SVYzanhkUWhxVVE1RGhGbkdnY3NBSVNjM0M5?=
+ =?utf-8?B?WUNxVDVpdnhoYjhTRUh1V2hMUHZSWW5xZmJaRGV0c3NnSittYVNNR1Qza1hu?=
+ =?utf-8?B?b2VzMCtMRTl4YWhhRGc0cmU0WHBNTkJyUkFpTDBsd3NsMllkUXdnWHZnb0pU?=
+ =?utf-8?B?VUZwTG1QN2g3YXZvTXQyME55Z3VkeTJROW1QbHE4V2toWGlTSUpPUnZITklm?=
+ =?utf-8?B?UUxpRk44MWI1VXdvWnVpbVZwUFJNL1UxMjZVOWhnWWNDQkVxODRnU1lIRWhq?=
+ =?utf-8?B?U1pvaTd3V0ZyWGVQL085QUcvZXZMTWo2NzY4SGU3cWtheU1ha2hPVStndU5F?=
+ =?utf-8?B?c0JXQ2NHZ2NMQ1h0QXR4d2pFUCtrNVdmTFdvYlU3YmtxNDB6SXRvZ0k4Q0tG?=
+ =?utf-8?B?cGIrem1GazJiYmU4QXVkbzlJeUhjMUVXYnpvSWUybGhaVFJqcUlqakRuT3BG?=
+ =?utf-8?B?WGdkRWZ6MGdIbnoxaEZOWVBEelBzbVlicFpLdXQyVlVMSTZmbWFkb3J0Tyta?=
+ =?utf-8?B?U3k0YlczMjZDV2x5cmx6SERxalUrZWo5akVGalllOUlzdTJaZDdkQTVmbUJV?=
+ =?utf-8?B?K3lheE5rUVFiOVV0VnJRWmxWc2x1ZHd1c29mZkZsWlpCMDB2a05OaGJLRDZ3?=
+ =?utf-8?B?ZFJLa2paVWNxT3FMUWo1T2RaWmFxOXNYOHREcmlKTG5mVDJqaGZFNkU1V2Jq?=
+ =?utf-8?B?OEpMa0tvaFVsNlNMa1RZRDR5bngzZ2IzdFRQV1U2VmdBMytpdlQ5MnNPcDM4?=
+ =?utf-8?B?aUJWR21yeUxuVWZPdUhBWXdycmN4MFdVMW1YYUFlTVZJTHg5NVNORXg5Ymk4?=
+ =?utf-8?B?Y1FtUXAwUFBOVGNCb3djSXFrVEFPMHlsc1RJV2JWTnhmSUpyQi9pNmRacVR5?=
+ =?utf-8?B?UkhHK2xkMlI4c1JjU1VNcUVqaW4rRS9YYnRKTG9aN0Z0R0VpUDZ0NlVMTUVR?=
+ =?utf-8?B?cU5CQVBRVnJsdUhzL1hmdEFxY2hvNERyYjhKTHYrMUhGdld0cVorN0VzWldo?=
+ =?utf-8?B?UksrMzRwdUZybUVIdFB3MHRpYnp2dHY2WUNQRXUrcWFTWmFEZDRiZU5tajF6?=
+ =?utf-8?B?Tk1SRTFsQ2hKM2QxS2lmSmFLTjNheW9JOHEzY3V0SDZlUlRTc09BZ0habktE?=
+ =?utf-8?B?a2wrRytkZmRIYURkQ0hxVE84RjNrY3BYQWZRTjVBMVZ0dkJiYkdRTlpMMkNM?=
+ =?utf-8?B?RUVVcFR2RmVQc2tBTDlWcWg1Y2VOb3lIbE9sNmZOdC9IUUtnaExwdmgzUTJK?=
+ =?utf-8?B?R1JpY3JaZ1JSWWxRTFNqK24yajlUbWdqYkJzMDBBazNMTFNNWU90M1hrT1Vw?=
+ =?utf-8?B?TnFMYm96U1BZbkZjUU1BTktXamRvMTVoZEVKLzk0ZWdDVXFEUVUyZmhkVVR2?=
+ =?utf-8?B?WkRLTVRzdEdyc2ZoY0NnMFp2ckQvU3BjK2Q3ZXVhMzFqeFp4QWtMenJWRW1p?=
+ =?utf-8?Q?O9lM=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL4PR10MB8229.namprd10.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(7416014)(376014); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Q4G/hEbqprUEaZgXH65Ikvwor0IWWvhxOyThD2pNGHWD6eZDd4zb98gzFXNT?=
- =?us-ascii?Q?XV7JlUTyj1vyDsta3ST2vloDfDF2+LQViGFQ4D68YY+uUIbI4iDgrWWaJEsZ?=
- =?us-ascii?Q?iTMzNMdVADQ9QHHIzhp7o5JPJF87POYZ5wavHhdToCF8MlJzMoPnJVCKtuwG?=
- =?us-ascii?Q?3tLe+Y2QMvdQKxOTJkKzVOh/9QD5VCG8Q61eXc/I2EPxGY1wS2yVFCq3jGou?=
- =?us-ascii?Q?5/egDA5Ip69H8jC7/6HXTJFB+GzWa7kfARLPezGXEhJDdhE4zEwdHNgxcsM6?=
- =?us-ascii?Q?HHAifDzXcp2YQZUmHt8ecFcATzhige1uYAywB2112CHDNZW2FuSOs4OaTd30?=
- =?us-ascii?Q?ruGEbXh++H6TL9XSxMR1a2xesdbRmbndCPBVrsGOjbKc/R1jWzCgxlhS/BYQ?=
- =?us-ascii?Q?Ac1ufAH7BlhBhdISw/ZJ07Ux91UunmAfc6aVrCxCRHpAzo08u1SIGEyBZsN6?=
- =?us-ascii?Q?MPteu9wuGX5GCDrwIOUNAJ6F0v6eAnYJzCu0CHEojQh1K2qc2EZGcw2FFU3d?=
- =?us-ascii?Q?oOzdev+8cxtuIZZNlM71iTSIrYQIwBh6YRsfCu6U9AlqFk6vBLeYLprW+0y2?=
- =?us-ascii?Q?ODBVS99AWIIMS67rk9id+NVL9q7/fSgpMoVXL+Gjs+fEJkdiqiTIxI2vwIzo?=
- =?us-ascii?Q?kjzSBTEfF6SPw+b+hwRQW0dw94elC9yS+mx8tqCwgnhSWth4MBixn2Jzsc56?=
- =?us-ascii?Q?p77saWxXySUcVtxwOCdMOt+8zsJn6DpZA0R78QunFBPZoEt4o3RxG+bcU2C9?=
- =?us-ascii?Q?Cen7ZE1WGLPs/e/KsPd4mQHWrZ9mQr2Isu2715UZcS1y6KtyPDUZjRL4uOFH?=
- =?us-ascii?Q?elA5s/5HFsTpKy1VZuL3y+5Sjw9RBMaGXLsReNKkxDEDKh90j+G/MIaYPx7m?=
- =?us-ascii?Q?98uYFebyKez8LvVVOc11LMt2HgbjPKyyWKhC384vTvbMPZ12S9Y7QEFrZKYQ?=
- =?us-ascii?Q?Uo3cyV5vSpNS3sqRfJ3X2MXnG81PW/aK88lFmfXxzD4QH6TSqQUu+7hEj5hG?=
- =?us-ascii?Q?gFTMFTG7TnHhhXUKDG6eQULlnarFtiYsbb42C2Rxk7aj0n9y0DAG+9gV4HlG?=
- =?us-ascii?Q?7xeoCNAsuAO90fKTSJ93op1o635zcVNWnJjQQS3MIpWr9WLEJAgMkANnO6zZ?=
- =?us-ascii?Q?S9fslqu1q/lF/3SF004ixL1tU4Q3Q+cWw/7KQC0E2Az3t7rmNTRoUX55Hkbk?=
- =?us-ascii?Q?HNYBYs3hL6RlLaxT9S7cEJjO5jgGNaaya6VErIGdAixfWbTsaiIj2eNNX2Ww?=
- =?us-ascii?Q?H4spZlyvk97G6Eed2t6hT0KOXf9BZPFyh1o1JkXg5oeEsvAYKGJnqJ1G9ffM?=
- =?us-ascii?Q?kwiGiHpRbgDyIMec3f+bRNz2EgkKJ2hCOVDZLJzk6pMzN5w7iKEUx0bQyXmo?=
- =?us-ascii?Q?gyiTDL61tLJsNcTyDxAG6v3j3HwGyn8D9rpbA2MP9DYCqqbnAgjG/BvWZURg?=
- =?us-ascii?Q?vYoiqgZTWUJr66m5sSZKXL/SPCXsXFGAbd9c9br0eRrN2SCTkUgmWb7lkcF/?=
- =?us-ascii?Q?zJebMEhSQ8sOtB9DpJaQa9OaB9m0kRU29MA3tzBlc6E6mgycXH9OI7YbFtyV?=
- =?us-ascii?Q?GVopTtKJAOItYFpP/oc/of7TkVoEe2BY0MKnUue6Yzr8/wRWzxRTpe0RbUNa?=
- =?us-ascii?Q?sSASe8EmRQu2CoRXk1vE9IeYF/4JXzvEJJMzAuJgRgSDXo0aaTSSsPoMN2ne?=
- =?us-ascii?Q?xp8jF8cYzeN7I8WpeCCRUuAeE6tinmra1Dxav9wMSmAiID6RQVDgWRWlN1qe?=
- =?us-ascii?Q?lr0O5FlheMIgYhmzK0L2LsnUyIdhRlg=3D?=
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: UIMhI4yE04TGD8YouozrZ0ciab4Kwj7mhubXi8fwxyCUi0OyK4Ac96RARKQcQyKgkpv9K1tu1Ys6K2p5cXNGeboxLhOeZrf8tJ0xC459En3FdBf0S8/gjJdnqefxtjx8SHc3vREd0hopdHYt4s7FwBpkMNegW9b1MvnkY+ygw6/7xfZmLfK5xlAp0SAIukLkplvnvKuBMwLQV0n5Qm6W6gYZ0F00W59NHjhdCwvne11BVS3+RKeLSVS1Gm163svdKq2Zk3DQ3wqtiK1o4APg/B4NL9VvqkPoNP43HQM6OswYur0MrIOdCOVCQ7lCoeQsJzGNuA2Cw3SULNJm5UYRjCu3PpDwGQPzNglMhiWlLkSGfpe+h9mLOI4+qUeeDDrN9ygIMymBcLJ6vUKDJd3sZ5nE0espktBUGTRPsSvJkIM1C97eBwXyuxZchuYzE7mXdIQlgYpWyqm8lUBBKPncBkRB1U2lL0wEKP94EHb63JRCpgl2aqWwuaskP45t4BWOU/WwfJz3AYlhPLcHVUGcb4KdEfB6rMGlTvGSAuEwo3fid4m/vX9rSXcM0Pm29+ssidYy9yrSdovvhde1/3cd3PS4M23COXsi6y8BMuSdyyM=
-X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f93b3cd6-62bd-4e6c-3ecc-08de5e8c78ec
-X-MS-Exchange-CrossTenant-AuthSource: BL4PR10MB8229.namprd10.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZWkzMUtoYmVWcFBPL0FOYXB0MzdyRnRWZnRDbVprWldJM0pNVjByYVBzRzlS?=
+ =?utf-8?B?b3pIZVppcCtUTngzR2FuY0xhdmM5LzV4eThxV0x6MXRUS0F0RUM1WDYrUU9C?=
+ =?utf-8?B?em1TVHV6NWdOWFU4YVNVQ0Q3N1A3dGtSR25kL21kUCtPWnVaTVhCd0sxRHBT?=
+ =?utf-8?B?bCtncE9zOUhwR014bEtMdDZ0cFdlMW04cXU2eU5SNWl3M3VBcnA2VUV4MjJ5?=
+ =?utf-8?B?YUloNDd3dDhmNDQ5SkREYkE4YmV5bmZpZVV0RVJrVWVhbzEvRUx2VFk3dnRM?=
+ =?utf-8?B?VzZ4bEo0bGVBdndpTlVWSEFJS2Zzc3FVN2NvMHoyTm5mcE5Da2gvVnFueStt?=
+ =?utf-8?B?Qm9GWi9kM2U2WEl5ZDFNWWIwKzNHcndoVWJkODV1eUZ5MGVYOHE3RCtXLzcv?=
+ =?utf-8?B?dnViNnRucjV3WnFRRjAzV2xrSEdsQ1ZXb3hoMmV2UEJxa1pmNzMwcUlLeGxn?=
+ =?utf-8?B?eWRWcVFRY0VXT3B5OE5jbXVqYWY1Mmt6QXVQY2xIdjVrM0gwZEZCRWpldGc2?=
+ =?utf-8?B?ZDFMckoyQjcwa01YY0U4Sy9oamk2bktlMjFWTWVxWGozdVVQUWZXeGZvTC9i?=
+ =?utf-8?B?WDFEci9sZHlWV0YveXEvMTZRUkVhT2hjNmI1ZGFMS25vZVFsUGRiV0dMbUwz?=
+ =?utf-8?B?eUxUREpYVWFyVFAwTUVCcVdVWlJHTEdYME9vU0lJTkZzWVk1TkUrUUx1Q1Iw?=
+ =?utf-8?B?Ukk1N2JhNDVzK2VMRlgrNXhrNGIwU1ZjZU4wdHJMYWlNam5SZHB4Q2N2Tmo0?=
+ =?utf-8?B?aXRQbjNGYlhpc2x4S0c3d3ozWUR2YVJxRGlVMjhMdU1BU3REd25IQzJnSTB4?=
+ =?utf-8?B?dDBwVDdyL2ZTajE3L3ZlcnIydjJ3YnJWSmpHTGp6dFdxOWdRK0ZsUCtYdHpU?=
+ =?utf-8?B?S2JmOHNWd1hNRkJkeVhtcjg3aWdhUHZ6a0F1ZlVCUGtrZnBVWmRGNlRvZUdv?=
+ =?utf-8?B?MG9VZzlnSnVKZ21tYXJPdlJTaU9OSk9Ca3BaRWNNaWtvckozbjVoa09UbXNk?=
+ =?utf-8?B?dzFWN2pOR3J6SnByb3Avcm9vZ1Erd2w5WWxETE9MeUtmZDNlenM5djNSdUxw?=
+ =?utf-8?B?Um9hZGxrM2gzY3BWaTRONnQ1MmJsY0loMGU3TS91MXV1c1cycVI5cTFraEwx?=
+ =?utf-8?B?ZGJRb2daRlNYM2pJVFMreXNneWZSRzhZa0drd0ZuOXIvdG9WUzlRUWdmVnIx?=
+ =?utf-8?B?NjZPUkVVVFAwTUlENjV6Tjc3L0RWTXZkdkVpbU5NUlptOWdCVTlXRjBUUFd6?=
+ =?utf-8?B?eTFLMnZhcHY1eUh6NkJrK25ZVjFaRmZxS3VOak8wNDV1Z0g5enlyWDFQSFRL?=
+ =?utf-8?B?YzJCSGpteGlMN1doc1FRREpJQ0o5T29pRUZmZm10SmZmOGp5Rk5Yd05uRTFh?=
+ =?utf-8?B?WnRKbTdLOHd1RFRpS3FOUkI5NEpZYkNoUkpNUTNvaVdaZ2dubkFWY1VWNDNz?=
+ =?utf-8?B?Y2NxcXhMWFRBdFhYbW5GSk9BcENRdlVxWVh3LzlPL2h1a2tNVlFoWGk3byt0?=
+ =?utf-8?B?bmMwTnY5djRnSk01VFk3N0Z5KzJaT3gzVGwzUVB6bDJZTlFET3NmcTBGTnlJ?=
+ =?utf-8?B?STdtUE52SkhqSDJrU2Zrdkw3dHZLVTIxQU1WWFRHVVFmU2haRkFWcHBVM21a?=
+ =?utf-8?B?Y2NQckFFSm10KzhvQVltS0ViOFdTSEovZGNQTTNTWmh1aFJ4YmxqdktEYW4x?=
+ =?utf-8?B?TW5XcHp3RmRYZTczbk9YZjJoMHVGSkxCT1IyUzErUzdiTE00MjVabGoybS9Y?=
+ =?utf-8?B?MElzcUtWL2FZU0ZHQ0Q0elZ0S2l5MmxpbWJYcUovTGJLUWtGMEdCSWxBSFJI?=
+ =?utf-8?B?bVQ1cWwvdmpXQzEzcjdXYmRVVXZrdTlBRkNwQ2pHR01MUDlFUHBjZWVPa3E2?=
+ =?utf-8?B?M3YzaEtoNXhpd0M5SUw1dnBoOUVmcE9TMGxxTWluZUl1d2VzWUF5MW9OZWJW?=
+ =?utf-8?B?SUhVZjRJYVZIQndFMGtyVzlGZ1BKYnI0ZWZMVmVDUzFCM2ZHV2N4cTFoakp3?=
+ =?utf-8?B?VnJoRUhXMklWeG5BS2hXZlplWm5qY2NKY3hLYjJGY3BPZkxySkZxajBqVFlR?=
+ =?utf-8?B?UDZoNGdkTHZ4UDdpakJxNjFlcGtjaUt0SGZrVGtrMzFPRXpvNW5WVzMrTFpN?=
+ =?utf-8?B?emVSei9TYW1xZzR0RUVMWi8zVHJpcjlURktmWGFwS3ZjTXlKZWl0cWc0UGIy?=
+ =?utf-8?B?bFBmWXBGSFUyYnd6dUVoQlFUdmxPMDlwek5haXBrczdWZDd1VzNSL0Q5WmdU?=
+ =?utf-8?B?ZDFVY1NDUzRSMjBOZ2FkVldEZXg5S21vcEt0SXREd3BLd3UxbEQvZEJNalkr?=
+ =?utf-8?B?V3pNYjN6S2xMY2pQVUZHMTFkbFRxSlJrVXBLYlRERTFtZjNvYW5BQT09?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 55b59432-6ea3-41c0-7b71-08de5e8ccaf8
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2026 16:44:15.2130 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2026 16:46:32.8099 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: t3ma2GMRC6GWNaDE1YJ81RbNfpAVtVWo+6eTvANoLL2VB6UACrpNKM/7LthpEXUB7TLJ21BsLQPCBKQYoQce4DmEj9jvUL/vFryHNIldlgg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR10MB7198
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-01-28_03,2026-01-28_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0
- bulkscore=0 phishscore=0
- mlxlogscore=999 mlxscore=0 spamscore=0 suspectscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2601150000
- definitions=main-2601280138
-X-Proofpoint-ORIG-GUID: FlZPLo73qH5dlmnq9SqtNdXqvFhWjvGL
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI4MDEzNyBTYWx0ZWRfXz3JaJCLZI9Yh
- plFd4btUPADJWMSeUglpMWbTzcrt8ZxW6+LJZ55Pu38vougQ5HCzmNiqnsOfi1f44ZzEC0hawkH
- Y9camBZlXXVAU8o/o3VwO7/EbeykxXxpXOUaS8MofhlRVfN8nUvnSWSn8vfFs+ZKY5AUHWoWj/K
- kRGeEuXkNtZQQSlr8sjGeU4oO6cm5/BPPgQl+497PaFevnqQ0KqbSBKg+6z7Rk1JBLWw6CHHW6l
- wu8AeKGlqtN7FRLvVG4W50j2aW5+K6RnjVFX83L9+zkQSP6AEIxZ+z2ZQIgL68c52nOaH74RqEp
- T87CqNtkOKAUU09G+mBMozlbmxmxC6VDv049EU+IdclzjMJqxaRZvS6xGryQgbACmVQtOX/1061
- ITvT8CfiFk2skfqEg9fEFlx7yWc5f2TXKoQ2S+7Tn7tPElw0flb+omqLlWYwo9oXhN03zCUgapM
- hKD3gh5Hl0MiLlrBrX+StKLm6ZCit3mb3G23XlKo=
-X-Authority-Analysis: v=2.4 cv=IrsTsb/g c=1 sm=1 tr=0 ts=697a3ce8 b=1 cx=c_pps
- a=zPCbziy225d3KhSqZt3L1A==:117
- a=zPCbziy225d3KhSqZt3L1A==:17
- a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19
- a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=vUbySO9Y5rIA:10 a=GoEa3M9JfhUA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=yPCof4ZbAAAA:8 a=REBL0svVakopdHju3rAA:9 a=CjuIK1q_8ugA:10 cc=ntf
- awl=host:12103
-X-Proofpoint-GUID: FlZPLo73qH5dlmnq9SqtNdXqvFhWjvGL
+X-MS-Exchange-CrossTenant-UserPrincipalName: RADrJcn1Q55TDNdabNA5GXV3cpYWtFKvmByQNLrxt7/KGBHziBpMIsV6gu7Z4AGErr3c5EsCLkkliXzTiOdAdQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6491
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -263,70 +205,291 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[oracle.com,reject];
+X-Spamd-Result: default: False [1.49 / 15.00];
+	R_DKIM_REJECT(1.00)[intel.com:s=Intel];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[oracle.com:s=corp-2025-04-25,oracle.onmicrosoft.com:s=selector2-oracle-onmicrosoft-com];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[intel.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,linux.intel.com,redhat.com,alien8.de,zytor.com,arndb.de,linuxfoundation.org,intel.com,suse.de,gmail.com,ffwll.ch,ursulin.net,amd.com,zeniv.linux.org.uk,suse.cz,kvack.org,linux.alibaba.com,google.com,huawei.com,vivo.com,mit.edu,dilger.ca,linux.dev,paragon-software.com,omnibond.com,arm.com,wdc.com,infradead.org,oracle.com,suse.com,nvidia.com,paul-moore.com,namei.org,hallyn.com,rasmusvillemoes.dk,vger.kernel.org,lists.linux.dev,lists.freedesktop.org,lists.ozlabs.org,lists.orangefs.org];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,oracle.com:email,oracle.com:dkim,oracle.onmicrosoft.com:dkim];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DOM_EQ_TO_DOM(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[oracle.com:+,oracle.onmicrosoft.com:+];
-	MISSING_XM_UA(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lorenzo.stoakes@oracle.com,intel-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:replyto,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,ideak-desk.lan:mid];
+	DKIM_TRACE(0.00)[intel.com:-];
+	HAS_REPLYTO(0.00)[imre.deak@intel.com];
+	REPLYTO_ADDR_EQ_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[imre.deak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[93];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: AAF40A60FA
+	TAGGED_RCPT(0.00)[intel-gfx];
+	RCPT_COUNT_THREE(0.00)[4];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: 93EFAA617B
 X-Rspamd-Action: no action
 
-Hi Andrew,
+On Wed, Jan 28, 2026 at 07:36:24PM +0530, Ankit Nautiyal wrote:
+> Currently in intel_dp_mode_valid(), we compute the number of joined pipes
+> required before deciding whether DSC is needed. This ordering prevents us
+> from accounting for DSC-related overhead when determining pipe
+> requirements.
+> 
+> It is not possible to first decide whether DSC is needed and then compute
+> the required number of joined pipes, because the two depend on each other:
+> 
+>  - DSC need is a function of the pipe count (e.g., 4‑pipe always requires
+>    DSC; 2‑pipe may require it if uncompressed joiner is unavailable).
+> 
+>  - Whether a given pipe‑join configuration is sufficient depends on
+>    effective bandwidth, which itself changes when DSC is used.
+> 
+> As a result, the only correct approach is to iterate candidate pipe counts.
+> 
+> So, refactor the logic to start with a single pipe and incrementally try
+> additional pipes only if needed. While DSC overhead is not yet computed
+> here, this restructuring prepares the code to support that in a follow-up
+> changes.
+> 
+> Additionally, if a forced joiner configuration is present, we first check
+> whether it satisfies the bandwidth and timing constraints. If it does not,
+> we fall back to evaluating configurations with 1, 2, or 4 pipes joined
+> and prune or keep the mode accordingly.
+> 
+> v2:
+>  - Iterate over number of pipes to be joined instead of joiner
+>    candidates. (Jani)
+>  - Document the rationale of iterating over number of joined pipes.
+>    (Imre)
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 158 +++++++++++++++---------
+>  1 file changed, 103 insertions(+), 55 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 4c3a1b6d0015..599965a6e1a6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -1434,6 +1434,23 @@ bool intel_dp_has_dsc(const struct intel_connector *connector)
+>  	return true;
+>  }
+>  
+> +static
+> +bool intel_dp_can_join(struct intel_display *display,
+> +		       int num_joined_pipes)
+> +{
+> +	switch (num_joined_pipes) {
+> +	case 1:
+> +		return true;
+> +	case 2:
+> +		return HAS_BIGJOINER(display) ||
+> +		       HAS_UNCOMPRESSED_JOINER(display);
+> +	case 4:
+> +		return HAS_ULTRAJOINER(display);
+> +	default:
+> +		return false;
+> +	}
+> +}
+> +
+>  static enum drm_mode_status
+>  intel_dp_mode_valid(struct drm_connector *_connector,
+>  		    const struct drm_display_mode *mode)
+> @@ -1445,13 +1462,13 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+>  	const struct drm_display_mode *fixed_mode;
+>  	int target_clock = mode->clock;
+>  	int max_rate, mode_rate, max_lanes, max_link_clock;
+> -	int max_dotclk = display->cdclk.max_dotclk_freq;
+>  	u16 dsc_max_compressed_bpp = 0;
+>  	u8 dsc_slice_count = 0;
+>  	enum drm_mode_status status;
+>  	bool dsc = false;
+>  	int num_joined_pipes;
+>  	int link_bpp_x16;
+> +	int num_pipes;
+>  
+>  	status = intel_cpu_transcoder_mode_valid(display, mode);
+>  	if (status != MODE_OK)
+> @@ -1488,67 +1505,98 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+>  					   target_clock, mode->hdisplay,
+>  					   link_bpp_x16, 0);
+>  
+> -	num_joined_pipes = intel_dp_num_joined_pipes(intel_dp, connector,
+> -						     mode->hdisplay, target_clock);
+> -	max_dotclk *= num_joined_pipes;
+> -
+> -	if (target_clock > max_dotclk)
+> -		return MODE_CLOCK_HIGH;
+> -
+> -	status = intel_pfit_mode_valid(display, mode, output_format, num_joined_pipes);
+> -	if (status != MODE_OK)
+> -		return status;
+> -
+> -	if (intel_dp_has_dsc(connector)) {
+> -		int pipe_bpp;
+> -
+> -		/*
+> -		 * TBD pass the connector BPC,
+> -		 * for now U8_MAX so that max BPC on that platform would be picked
+> -		 */
+> -		pipe_bpp = intel_dp_dsc_compute_max_bpp(connector, U8_MAX);
+> -
+> -		/*
+> -		 * Output bpp is stored in 6.4 format so right shift by 4 to get the
+> -		 * integer value since we support only integer values of bpp.
+> -		 */
+> -		if (intel_dp_is_edp(intel_dp)) {
+> -			dsc_max_compressed_bpp =
+> -				drm_edp_dsc_sink_output_bpp(connector->dp.dsc_dpcd) >> 4;
+> -
+> -			dsc_slice_count =
+> -				intel_dp_dsc_get_slice_count(connector,
+> -							     target_clock,
+> -							     mode->hdisplay,
+> -							     num_joined_pipes);
+> -
+> -			dsc = dsc_max_compressed_bpp && dsc_slice_count;
+> -		} else if (drm_dp_sink_supports_fec(connector->dp.fec_capability)) {
+> -			unsigned long bw_overhead_flags = 0;
+> -
+> -			if (!drm_dp_is_uhbr_rate(max_link_clock))
+> -				bw_overhead_flags |= DRM_DP_BW_OVERHEAD_FEC;
+> -
+> -			dsc = intel_dp_mode_valid_with_dsc(connector,
+> -							   max_link_clock, max_lanes,
+> -							   target_clock, mode->hdisplay,
+> -							   num_joined_pipes,
+> -							   output_format, pipe_bpp,
+> -							   bw_overhead_flags);
+> +	/*
+> +	 * We cannot determine the required pipe‑join count before knowing whether
+> +	 * DSC is needed, nor can we determine DSC need without knowing the pipe
+> +	 * count.
+> +	 * Because of this dependency cycle, the only correct approach is to iterate
+> +	 * over candidate pipe counts and evaluate each combination.
+> +	 */
+> +	for (num_pipes = 0; num_pipes < I915_MAX_PIPES; num_pipes++) {
+> +		int max_dotclk = display->cdclk.max_dotclk_freq;
+> +
+> +		status = MODE_CLOCK_HIGH;
+> +
+> +		if (num_pipes == 0) {
+> +			if (!connector->force_joined_pipes)
+> +				continue;
+> +			num_joined_pipes = connector->force_joined_pipes;
+> +		} else {
+> +			num_joined_pipes = num_pipes;
+> +		}
 
-Could you apply the below fix-patch to resolve the issue Chris's AI checks
-detected, I missed out one caller of mlock_future_ok() (a very human mistake
-;)).
+The current way is to try connector->force_joined_pipes and fail the
+commit if that doesn't work. Here you'd change that to fall back trying
+non-forced pipe-joined configs in that case. If that's needed (not sure
+if that's a good idea, since then the user wouldn't know which case
+succeeded or failed), it should be a separate change. Here it could be
+simply an if (forced_joined_pipes && num_pipes != forced_joined_pipes)
+continue and then use num_pipes instead of num_joined_pipes later in the
+loop.
 
-Cheers, Lorenzo
+> +
+> +		if (!intel_dp_can_join(display, num_joined_pipes))
+> +			continue;
+> +
+> +		if (mode->hdisplay > num_joined_pipes * intel_dp_max_hdisplay_per_pipe(display))
+> +			continue;
+> +
+> +		status = intel_pfit_mode_valid(display, mode, output_format, num_joined_pipes);
+> +		if (status != MODE_OK)
+> +			continue;
+> +
+> +		if (intel_dp_has_dsc(connector)) {
+> +			int pipe_bpp;
+> +
+> +			/*
+> +			 * TBD pass the connector BPC,
+> +			 * for now U8_MAX so that max BPC on that platform would be picked
+> +			 */
+> +			pipe_bpp = intel_dp_dsc_compute_max_bpp(connector, U8_MAX);
+> +
+> +			/*
+> +			 * Output bpp is stored in 6.4 format so right shift by 4 to get the
+> +			 * integer value since we support only integer values of bpp.
+> +			 */
+> +			if (intel_dp_is_edp(intel_dp)) {
+> +				dsc_max_compressed_bpp =
+> +					drm_edp_dsc_sink_output_bpp(connector->dp.dsc_dpcd) >> 4;
+> +
+> +				dsc_slice_count =
+> +					intel_dp_dsc_get_slice_count(connector,
+> +								     target_clock,
+> +								     mode->hdisplay,
+> +								     num_joined_pipes);
+> +
+> +				dsc = dsc_max_compressed_bpp && dsc_slice_count;
+> +			} else if (drm_dp_sink_supports_fec(connector->dp.fec_capability)) {
+> +				unsigned long bw_overhead_flags = 0;
+> +
+> +				if (!drm_dp_is_uhbr_rate(max_link_clock))
+> +					bw_overhead_flags |= DRM_DP_BW_OVERHEAD_FEC;
+> +
+> +				dsc = intel_dp_mode_valid_with_dsc(connector,
+> +								   max_link_clock, max_lanes,
+> +								   target_clock, mode->hdisplay,
+> +								   num_joined_pipes,
+> +								   output_format, pipe_bpp,
+> +								   bw_overhead_flags);
+> +			}
+> +		}
+> +
+> +		if (intel_dp_joiner_needs_dsc(display, num_joined_pipes) && !dsc)
+> +			continue;
+> +
+> +		if (mode_rate > max_rate && !dsc)
+> +			continue;
+> +
+> +		status = intel_mode_valid_max_plane_size(display, mode, num_joined_pipes);
+> +		if (status != MODE_OK)
+> +			continue;
+> +
+> +		max_dotclk *= num_joined_pipes;
+> +
+> +		if (target_clock <= max_dotclk) {
+> +			status = MODE_OK;
 
-----8<----
-From 652146b4d93a31bb6f9da9428ddaab8a4a53e170 Mon Sep 17 00:00:00 2001
-From: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-Date: Wed, 28 Jan 2026 16:41:55 +0000
-Subject: [PATCH] fix
+status stays MODE_OK if target_clock > max_dotclk.
 
-Signed-off-by: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
----
- mm/mmap.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+> +			break;
+>  		}
+>  	}
+>  
+> -	if (intel_dp_joiner_needs_dsc(display, num_joined_pipes) && !dsc)
+> -		return MODE_CLOCK_HIGH;
+> -
+> -	status = intel_mode_valid_max_plane_size(display, mode, num_joined_pipes);
+>  	if (status != MODE_OK)
+>  		return status;
+>  
+> -	if (mode_rate > max_rate && !dsc)
+> -		return MODE_CLOCK_HIGH;
+> -
+>  	return intel_dp_mode_valid_downstream(connector, mode, target_clock);
+> +
 
-diff --git a/mm/mmap.c b/mm/mmap.c
-index 354479c95896..5dfe57b6d69a 100644
---- a/mm/mmap.c
-+++ b/mm/mmap.c
-@@ -108,7 +108,8 @@ static int check_brk_limits(unsigned long addr, unsigned long len)
- 	if (IS_ERR_VALUE(mapped_addr))
- 		return mapped_addr;
+Extra w/s.
 
--	return mlock_future_ok(current->mm, current->mm->def_flags, len)
-+	return mlock_future_ok(current->mm,
-+			      current->mm->def_flags & VM_LOCKED, len)
- 		? 0 : -EAGAIN;
- }
-
---
-2.52.0
+>  }
+>  
+>  bool intel_dp_source_supports_tps3(struct intel_display *display)
+> -- 
+> 2.45.2
+> 
