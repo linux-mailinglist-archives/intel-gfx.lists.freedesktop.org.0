@@ -2,79 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4EmAHhj1eWnT1AEAu9opvQ
+	id KABJGxT2eWkE1QEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jan 2026 12:38:00 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jan 2026 12:42:12 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6425A095F
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jan 2026 12:37:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42B3EA0AF5
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jan 2026 12:42:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2419F10E6A9;
-	Wed, 28 Jan 2026 11:37:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85A3510E6B3;
+	Wed, 28 Jan 2026 11:42:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="VEC26QRf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IIG97y2h";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7ADD910E6A7;
- Wed, 28 Jan 2026 11:37:57 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 224C244091;
- Wed, 28 Jan 2026 11:37:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23404C4CEF1;
- Wed, 28 Jan 2026 11:37:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1769600277;
- bh=Q84GU8xgsjGXyT/viKhB7wVI26KgRvvwxmD1gNRdy8M=;
- h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
- b=VEC26QRf+0VxV8vqSHDh+7/n7HJgr9VHxk0DfXO02krOr0HKGpHnslA8xQM7F/Sfx
- uvgpjvKWl80Jt2NzzrP5Vf4WzZEKkgkCutpfrCte31cGJ0oyWexjKhZZJaw9iMT5Kr
- MRJ659ORGYlPWX98JxGlDIa2zLTppGEXexk40IyQd06aW2Z0u1J2et46X9rBROXCpr
- 3Eu1ofi7CTwfE7MEJTfTYl337ZPaHDbJf5Fxu+NXyXcRqGvGFSqH2uIoULyZTrma/o
- gNvMYUWfo1U6149cpZkMVGRsGAZLiRYJ5I0009kg+Guok8oyVcMNOqbgdra/drRR6I
- tev/SXp8kLopQ==
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 28 Jan 2026 12:37:44 +0100
-Message-Id: <DG06XUWOJLO5.1ESB8ES6A6081@kernel.org>
-Subject: Re: [PATCH RFC v6 00/26] nova-core: Memory management
- infrastructure (v6)
-Cc: <linux-kernel@vger.kernel.org>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
- <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Jonathan Corbet"
- <corbet@lwn.net>, "Alex Deucher" <alexander.deucher@amd.com>,
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, "Jani Nikula"
- <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
- <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
- "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang Rui" <ray.huang@amd.com>,
- "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
- <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Helge Deller" <deller@gmx.de>, "Alice Ryhl" <aliceryhl@google.com>,
- "Miguel Ojeda" <ojeda@kernel.org>, "Alex Gaynor" <alex.gaynor@gmail.com>,
- "Boqun Feng" <boqun.feng@gmail.com>, "Gary Guo" <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Benno Lossin"
- <lossin@kernel.org>, "Andreas Hindborg" <a.hindborg@kernel.org>, "Trevor
- Gross" <tmgross@umich.edu>, "John Hubbard" <jhubbard@nvidia.com>, "Alistair
- Popple" <apopple@nvidia.com>, "Timur Tabi" <ttabi@nvidia.com>, "Edwin Peer"
- <epeer@nvidia.com>, "Alexandre Courbot" <acourbot@nvidia.com>, "Andrea
- Righi" <arighi@nvidia.com>, "Andy Ritger" <aritger@nvidia.com>, "Zhi Wang"
- <zhiw@nvidia.com>, "Alexey Ivanov" <alexeyi@nvidia.com>, "Balbir Singh"
- <balbirs@nvidia.com>, "Philipp Stanner" <phasta@kernel.org>, "Elle Rhumsaa"
- <elle@weathered-steel.dev>, "Daniel Almeida"
- <daniel.almeida@collabora.com>, <joel@joelfernandes.org>,
- <nouveau@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <rust-for-linux@vger.kernel.org>, <linux-doc@vger.kernel.org>,
- <amd-gfx@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <linux-fbdev@vger.kernel.org>
-To: "Joel Fernandes" <joelagnelf@nvidia.com>
-From: "Danilo Krummrich" <dakr@kernel.org>
-References: <20260120204303.3229303-1-joelagnelf@nvidia.com>
-In-Reply-To: <20260120204303.3229303-1-joelagnelf@nvidia.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DACC10E6AB;
+ Wed, 28 Jan 2026 11:42:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1769600527; x=1801136527;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=7V57PF/K4KWB0Lf/aLPtIvJRf80T3BVClO24KED1RdQ=;
+ b=IIG97y2h+kwDvv1E6A2u1lrkR8P6M+jApvpwH0p0mNPieR1VzUh+jiGh
+ 8y4uH7mLq3c5eW87Y8uO05YTDIQJ9M/0xc0cZ4EvgwqlaCTgEqC9BdyBa
+ lRzNlQfdKTxvrdvS2W8c1m/GIlWrtIk84JohqGaDen7S3WmC942sHROVr
+ lAkNjRA9cF56e7FCTDJGeQTB6XsL51TYaxwu/6zeNQKNHyBJy+x97k3au
+ 4bz1t//7IfAJtenDrEHQzCUk7LG5I8PHV1zgkc0MFSh5w7ZZV+c4rMASG
+ gL+Nx4Tcc97INDlLaaP51RYFhO+R6e5vPQdHdKt0h9cgH1qNrN2YYaZBL w==;
+X-CSE-ConnectionGUID: a5kvkBKJQnWJFhLq/6X5eA==
+X-CSE-MsgGUID: 6hpX4O4MQw6lcB1YoCqG0A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="70704886"
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="70704886"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2026 03:42:06 -0800
+X-CSE-ConnectionGUID: EEfl5fiRT1eatRGG6hIgPA==
+X-CSE-MsgGUID: kQH+rG8mS3KpGLXTFW6jnw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="213114894"
+Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.207])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2026 03:42:02 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Atharva Tiwari <atharvatiwarilinuxdev@gmail.com>
+Cc: airlied@gmail.com, atharvatiwarilinuxdev@gmail.com,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, joonas.lahtinen@linux.intel.com,
+ linux-kernel@vger.kernel.org, rodrigo.vivi@intel.com, simona@ffwll.ch,
+ tursulin@ursulin.net, ville.syrjala@linux.intel.com
+Subject: Re: [PATCH 2/2] drm/i915/display: Disable display for iMac's
+In-Reply-To: <20260127183924.1109-1-atharvatiwarilinuxdev@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <bc778f93d4e2a18848bc93a51aed9b627bcbb2cf@intel.com>
+ <20260127183924.1109-1-atharvatiwarilinuxdev@gmail.com>
+Date: Wed, 28 Jan 2026 13:41:59 +0200
+Message-ID: <c4cc37ed9b626155706d5b167935c65eb5fc139d@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,139 +79,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MV_CASE(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
 	ARC_NA(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,google.com,garyguo.net,protonmail.com,umich.edu,nvidia.com,weathered-steel.dev,collabora.com,joelfernandes.org,lists.freedesktop.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,lists.freedesktop.org,linux.intel.com,vger.kernel.org,intel.com,ffwll.ch,ursulin.net];
+	DKIM_TRACE(0.00)[intel.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[51];
-	FROM_NEQ_ENVFROM(0.00)[dakr@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: B6425A095F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 42B3EA0AF5
 X-Rspamd-Action: no action
 
-On Tue Jan 20, 2026 at 9:42 PM CET, Joel Fernandes wrote:
-> This series is rebased on drm-rust-kernel/drm-rust-next and provides memo=
-ry
-> management infrastructure for the nova-core GPU driver. It combines sever=
-al
-> previous series and provides a foundation for nova GPU memory management
-> including page tables, virtual memory management, and BAR mapping. All th=
-ese
-> are critical nova-core features.
-
-Thanks for this work, I will go through the series soon. (Although it would=
- also
-be nice to have what I mention below addressed first.)
-
-> The series includes:
-> - A Rust module (CList) to interface with C circular linked lists, requir=
-ed
->   for iterating over buddy allocator blocks.
-> - Movement of the DRM buddy allocator up to drivers/gpu/ level, renamed t=
-o GPU buddy.
-> - Rust bindings for the GPU buddy allocator.
-> - PRAMIN aperture support for direct VRAM access.
-> - Page table types for MMU v2 and v3 formats.
-> - Virtual Memory Manager (VMM) for GPU virtual address space management.
-> - BAR1 user interface for mapping access GPU via virtual memory.
-> - Selftests for PRAMIN and BAR1 user interface (disabled by default).
+On Tue, 27 Jan 2026, Atharva Tiwari <atharvatiwarilinuxdev@gmail.com> wrote:
+>>At a glance, this seems like the appropriate level.
+>> 
+>> What if you drop patch 2 and supply i915.disable_display=1 module
+>> parameter? Or return false from intel_display_device_enabled().
 >
-> Changes from v5 to v6:
-> - Rebased on drm-rust-kernel/drm-rust-next
-> - Added page table types and page table walker infrastructure
-> - Added Virtual Memory Manager (VMM)
-> - Added BAR1 user interface
-> - Added TLB flush support
-> - Added GpuMm memory manager
-> - Extended to 26 patches from 6 (full mm infrastructure now included)
->
-> The git tree with all patches can be found at:
-> git://git.kernel.org/pub/scm/linux/kernel/git/jfern/linux.git (tag: nova-=
-mm-v6-20260120)
->
-> Link to v5: https://lore.kernel.org/all/20251219203805.1246586-1-joelagne=
-lf@nvidia.com/
->
-> Previous series that are combined:
-> - v4 (clist + buddy): https://lore.kernel.org/all/20251204215129.2357292-=
-1-joelagnelf@nvidia.com/
-> - v3 (clist only): https://lore.kernel.org/all/20251129213056.4021375-1-j=
-oelagnelf@nvidia.com/
-> - v2 (clist only): https://lore.kernel.org/all/20251111171315.2196103-4-j=
-oelagnelf@nvidia.com/
-> - clist RFC (original with buddy): https://lore.kernel.org/all/2025103019=
-0613.1224287-1-joelagnelf@nvidia.com/
-> - DRM buddy move: https://lore.kernel.org/all/20251124234432.1988476-1-jo=
-elagnelf@nvidia.com/
-> - PRAMIN series: https://lore.kernel.org/all/20251020185539.49986-1-joela=
-gnelf@nvidia.com/
+> I added the i915.disable_display=1 module parameter and removed the patch
+> , but then the display just goes blank, here are some logs:
 
-I'm not overly happy with this version history. I understand that you are
-building things on top of each other, but going back and forth with adding =
-and
-removing features from a series is confusing and makes it hard to keep trac=
-k of
-things.
+Mmh, okay. Honestly, I still feel like this would be the better thing to
+do, but I don't think I have the time to debug this further. Feels like
+a rabbit hole. ;)
 
-(In the worst case it may even result in reviewers skipping over it leaving=
- you
-with no progress eventually.)
+So I guess let's go with ignoring display completely. The way to go is
+to extend has_no_display() with a struct dmi_system_id array, and use
+dmi_check_system() on it. Even if it's just one, it'll be so much easier
+to extend later on.
 
-I.e. you stared with a CList and DRM buddy RFC, then DRM buddy disappeared =
-for a
-few versions and came back eventually. Then, in the next version, the PRAMI=
-N
-stuff came back in, which also had a predecessor series already and now you
-added lots of MM stuff on top of it.
+Something like this, completely untested of course:
 
-The whole version history is about what features and patches were added and
-removed to/from the series, rather than about what actually changed design =
-wise
-and code wise between the iterations (which is the important part for revie=
-wers
-and maintainers).
+static bool has_no_display(struct pci_dev *pdev)
+{
+	static const struct pci_device_id ids[] = {
+		INTEL_IVB_Q_IDS(INTEL_VGA_DEVICE, 0),
+		{}
+	};
 
-I also think it is confusing that a lot of the patches in this series have =
-never
-been posted before, yet they are labeled as v6 of this RFC.
+	static const struct dmi_system_id dmi_ids[] = {
+		{
+			.ident = "Apple iMac",
+			.matches = {
+				DMI_EXACT_MATCH(DMI_BOARD_VENDOR, "Apple Inc."),
+				DMI_EXACT_MATCH(DMI_PRODUCT_NAME, "iMac"),
+			}
+		},
+		{}
+	};
 
-Hence, please separate the features from each other in separate patch serie=
-s,
-with their own proper version history and changelog. In order to account fo=
-r the
-dependencies, you can just mention them in the cover letter and add a link =
-to
-the other related patch series, which should be sufficient for people inter=
-ested
-in the full picture.
+	return pci_match_id(ids, pdev) || dmi_check_system(dmi_ids);
+}
 
-I think the most clean approach would probably be a split with CList, DRM b=
-uddy
-and Nova MM stuff.
+Finally, it would really be super helpful if you could file a bug at the
+fdo gitlab as described at [1], along with the full dmesg with debugs
+enabled, running just patch 1, and then you could reference that issue
+in the commit. So we'd have some info for posterity of what's actually
+going on.
 
-And just to clarify, in the end I do not care too much about whether it's a=
-ll in
-a single series or split up, but going back and forth with combining things=
- that
-once have been separate and have a separate history doesn't work out well.
+
+Thanks,
+Jani.
+
+-- 
+Jani Nikula, Intel
