@@ -2,67 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sGSfAF8he2mZBgIAu9opvQ
+	id gKjhHTQie2mZBgIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jan 2026 09:59:11 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jan 2026 10:02:44 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23B33ADE6D
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jan 2026 09:59:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F09FDADEA5
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jan 2026 10:02:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90A8510E83C;
-	Thu, 29 Jan 2026 08:59:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8383E89FF7;
+	Thu, 29 Jan 2026 09:02:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ibaoibi+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V5ZxpOiX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1141810E83C;
- Thu, 29 Jan 2026 08:59:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9396F890EB;
+ Thu, 29 Jan 2026 09:02:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769677148; x=1801213148;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=bcrAzpbqJixVR9lvMZUFhUvTL4GAMcNwl2QZ2OB5SA0=;
- b=Ibaoibi+mGY1b6k+mTfe0v/L5lFnCq4Q5XwEAIU62HmvNxh4Gxx5VQxI
- Bk3GoHSGVqniSa2M1DBFxe8smXwXC1fDybtzZ+2RFvdBEMZY8ojoxKzsr
- 06hoYxlf8QeN/nI3i+zeDWRfrk5ShgHFMXZwXEFyTaVBrV7+A54TY7AqY
- ARBj7vEZjJJbh0xrCt7EqNwU8s2EofVd1dMkeCsDD/I7m5gF1I+ixOlpC
- 79epoHXOjKE0sweRth1hRCoxUt2E+RujBWfxOCb1EOoWv7A+WEKNeA2LE
- nHD6jAIqQfx2fXduYJB3LJMHMvBwGDwhyHyKTRMBp8kEty6l2czzcFhKU w==;
-X-CSE-ConnectionGUID: ITOqsJbVSCqGxlYLmKkQag==
-X-CSE-MsgGUID: Rm45cbJ0Qs28xHV6nxuZxg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11685"; a="70959983"
-X-IronPort-AV: E=Sophos;i="6.21,260,1763452800"; d="scan'208";a="70959983"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2026 00:59:08 -0800
-X-CSE-ConnectionGUID: KnWF/oF3TF6tsHtfEepC9Q==
-X-CSE-MsgGUID: VmFwc7t5SjCNC8aZQ6yYfg==
+ t=1769677355; x=1801213355;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7nLHDetjhXQKtgNSEu0MclmdkH2clD6+kPuMXFtNOZY=;
+ b=V5ZxpOiXjGpWZazZUlMfulGh6yZU0pDg4B8i6dlpUyjVmuFoqbBFi41R
+ aMFOdmbP/ej47Yo96sKElMVCexzh4dSnBvarxh7aEj1jZMjEsXcYl+kDZ
+ KR4QJcDhiXxvxceohKd+CjgT2IICfWY6GMk5IRq7Y3+Y7DN2FPUjDU1Xe
+ 1wS1c3WmtONhstKHsWqYt37ppXFegPUPby4RB+/b0a9+XIeTzGwrewjG3
+ 6hn8w7F6aCYy0FCzwkFmtjnxC1Mp7VnCBta1U0WYF51ABbKvklvmM9275
+ IHzKQSzvjhloGXMlZJWJ22o9zvBP/1APc6RcZQM2zMx5RTc5xwmGTWOs3 Q==;
+X-CSE-ConnectionGUID: Gb3hFCM+Ssy2sxT5gJ0SZA==
+X-CSE-MsgGUID: bu6YN/mzR4S034ReBKNhNg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11685"; a="69920774"
+X-IronPort-AV: E=Sophos;i="6.21,260,1763452800"; d="scan'208";a="69920774"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2026 01:02:35 -0800
+X-CSE-ConnectionGUID: iMt3rOxiR4+Napiq4Pe9tg==
+X-CSE-MsgGUID: OYjZopwESyG6Zy5ksB3+xw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,260,1763452800"; d="scan'208";a="246122781"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.4])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2026 00:59:05 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, Suraj Kandpal
- <suraj.kandpal@intel.com>
-Subject: Re: [PATCH v2] drm/i915/display: Wait for pipe start to avoid
- vblank and scanline jumps
-In-Reply-To: <20260129060722.1382789-1-suraj.kandpal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260119043025.589754-1-suraj.kandpal@intel.com>
- <20260129060722.1382789-1-suraj.kandpal@intel.com>
-Date: Thu, 29 Jan 2026 10:59:01 +0200
-Message-ID: <58597bfd2f0b15ed1ba4ca4b8f80aaa6d9030b8b@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,260,1763452800"; d="scan'208";a="213020948"
+Received: from administrator-system-product-name.igk.intel.com
+ ([10.91.214.181])
+ by fmviesa005.fm.intel.com with ESMTP; 29 Jan 2026 01:02:33 -0800
+From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
+Subject: [PATCH v2 0/1] i915/i915_driver: move intel_gvt_init() level higher
+Date: Thu, 29 Jan 2026 10:01:28 +0100
+Message-ID: <20260129090129.2601661-1-michal.grzelak@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,107 +80,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	HAS_ORG_HEADER(0.00)[];
+	RSPAMD_URIBL_FAIL(0.00)[intel.com:query timed out];
+	RBL_SEM_FAIL(0.00)[131.252.210.177:query timed out];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	SEM_URIBL_FRESH15_UNKNOWN_FAIL(0.00)[intel.com:query timed out];
+	FROM_NEQ_ENVFROM(0.00)[michal.grzelak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: 23B33ADE6D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: F09FDADEA5
 X-Rspamd-Action: no action
 
-On Thu, 29 Jan 2026, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> Check if values are updated or not in PIPE_SCANLINE register before we
-> move on ahead with modeset.
-> This is because we need to make sure we are not getting
-> stale values from PIPE_SCANLINE register as we use theses scanline
-> values to make a decision if an atomic commit can go through. Without
-> this change we see Atomic update failure warning with the following
-> signature:
-> [drm] *ERROR* Atomic update failure on pipe B (start=457 end=458) time
-> 50 us, min 2128, max 2161, scanline start 411, end 2165.
-> Where the atomic commit takes less than 100us but we still see a
-> vblank count jump and a big leap in scanline.
-> The PIPE_SCANLINE may give stale values as internally after writing
-> to TRANSCONF register it take H/w around a vblank to actually get
-> enabled.
->
-> Bspec: 69961
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index d8739e2bb004..4514de71cb9f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -83,6 +83,7 @@
->  #include "intel_snps_phy.h"
->  #include "intel_step.h"
->  #include "intel_tc.h"
-> +#include "intel_vblank.h"
->  #include "intel_vdsc.h"
->  #include "intel_vdsc_regs.h"
->  #include "intel_vrr.h"
-> @@ -3562,6 +3563,16 @@ static void intel_ddi_enable(struct intel_atomic_state *state,
->  		intel_ddi_enable_hdmi(state, encoder, crtc_state, conn_state);
->  	else
->  		intel_ddi_enable_dp(state, encoder, crtc_state, conn_state);
-> +	/*
-> +	 * Somtimes when pipe starts PIPEDSL/PIPE_SCANLINE reads will return a
-> +	 * stale value, this is because it may take 1 vblank for TRANSCONF
-> +	 * register to enable the pipe, which causes an apparent vblank
-> +	 * timestamp and scaline jump  jump when PIPEDSL/PIPE_SCANLINE
-> +	 * resets to its proper value. That also messes up the frame count
-> +	 * when it's derived from the timestamps. So let's wait for the
-> +	 * pipe to start properly, So lets wait before we proceed with modeset.
-> +	 */
-> +	intel_wait_for_pipe_scanline_moving(to_intel_crtc(crtc_state->uapi.crtc));
+Next version of [1]. Tested on MTL-P.
 
-The problem with adding these type of things is that they're almost
-impossible to remove afterwards.
-
-And on the face of it, it's kind of random placement in DDI encoder
-enable where there's nothing else like this.
-
-But the *_crtc_enable() functions in intel_display.c do have vblank
-waits and scanline moving waits right after intel_encoders_enable(). So
-that's kind of where it feels like this belongs.
-
-On another note, what about the stale values? Related perhaps? [1]
+[1] https://lore.kernel.org/all/20260128180933.2561419-1-michal.grzelak@intel.com
 
 BR,
-Jani.
+Michał
 
+---
+Changelog:
+v1->v2
+- don't move err_msi error path from i915_driver_hw_probe (Jani)
+- rewrite commit message
 
-[1] https://lore.kernel.org/r/20260108165139.1381835-1-aer@tuxedocomputers.com
+Michał Grzelak (1):
+  i915/i915_driver: move intel_gvt_init() level higher
 
-
->  
->  	intel_hdcp_enable(state, encoder, crtc_state, conn_state);
+ drivers/gpu/drm/i915/i915_driver.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.45.2
+
