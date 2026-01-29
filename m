@@ -2,71 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wAAGDLxae2nXEAIAu9opvQ
+	id 4PERF19ce2nXEAIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jan 2026 14:03:56 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jan 2026 14:10:55 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43953B03BB
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jan 2026 14:03:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6027B047D
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jan 2026 14:10:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 589FB10E867;
-	Thu, 29 Jan 2026 13:03:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5105710E86A;
+	Thu, 29 Jan 2026 13:10:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HEt7rGyL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BBNmR1bJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5FD410E864;
- Thu, 29 Jan 2026 13:03:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3034110E86A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Jan 2026 13:10:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769691832; x=1801227832;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=QoL/3/xdwbkKUmwk4AhcI4T1m2uS4Pea1jZcUxWnxm8=;
- b=HEt7rGyLj204ORKHnR/Rte8U0GoYhKl56j3P4pefH8MU/9M6hH18hkd4
- y1ISOU328jiLyGZFKcutEPPcwNBJM/WAjdPDLGIu6ZPMcdN7zPxH2Nw63
- NGNQBaBHd1TGGaNhr3GcGefBhJZOKlpqIopwHuyUg32CxEsSUwRkmyFUy
- a+gkmamjMXCJ4hblU7UdYzZPpusMlP1DqKsjXT0xI4aEXAqYk8KPFQ+s9
- p4JoxZ9z1pMPSF/wpgrsPqlyutkyGIBuXt4mliRfZcwU/Qfx1WW3WpYw2
- NbcYFkCQS9m4irjHRHdt1z7ky5+V8CfV7NVChqup9yX3ir+rXDD0tFk+x Q==;
-X-CSE-ConnectionGUID: 2DGkHO1KTSef6cY2VWFdCw==
-X-CSE-MsgGUID: Gjb9hJbHQg2n3J7atUHd1Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11685"; a="74553671"
-X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="74553671"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2026 05:03:51 -0800
-X-CSE-ConnectionGUID: 8L2VHMa6RxSaP5AmP9Rq1w==
-X-CSE-MsgGUID: qe/TbRaoQ4W3fU7YF46k/g==
+ t=1769692253; x=1801228253;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=+WiYwNiX2gLMKvFK4IBZaeYSrQOVxaz6Z9CGJX2SexI=;
+ b=BBNmR1bJvs3YiSPSQpu3z0tCS1N3ZXTMd9tiU0gRoO9fM+sIRlkg7e2i
+ evck4HxWfcYrrBQKfaO3znZfj0J5XtHwNF4tG5VIOCCtfQs0GlVD6Altk
+ efnA8zBF9WGRwGsI095wp/qHxoMuYEPJylZbGuKzYdMyPqUDle4DT3AUR
+ ay/WLiYBwNSuTLPBxygv0ySp1TAgkzsb+LsyLVgSa+b0D8+sTw5gyLOrz
+ Tk11yQ2RT7BX39SdBXzS9JUxULvFuG1PCicWqXiTv1S5dHqxEJAyXc07W
+ Ec65SfHSiLs4XzIBqT1nZ19I/FzHqPzSWIQTXHK4wejCjb5tWRIfG4nIL g==;
+X-CSE-ConnectionGUID: RqDOU64fS5KcVUm7IB36Jw==
+X-CSE-MsgGUID: T/5UqMjgTQmoHSkSJMAXbQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11685"; a="70825763"
+X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="70825763"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2026 05:10:52 -0800
+X-CSE-ConnectionGUID: SBKx6e7VQfulVL3a4dlfhQ==
+X-CSE-MsgGUID: J+FOzFObQ2qCAyw07TPHnQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="208177883"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.160])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2026 05:03:47 -0800
-Date: Thu, 29 Jan 2026 14:03:44 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Jani Nikula <jani.nikula@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Subject: Re: [PATCH v2 1/1] i915/i915_driver: move intel_gvt_init() level
- higher
-Message-ID: <aXtasNhZFdaqbnAm@ashyti-mobl2.lan>
-References: <20260129090129.2601661-1-michal.grzelak@intel.com>
- <20260129090129.2601661-2-michal.grzelak@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="213536744"
+Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.23])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2026 05:10:49 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>, Krzysztof Karas
+ <krzysztof.karas@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Andi Shyti
+ <andi.shyti@linux.intel.com>, Sebastian Brzezinka
+ <sebastian.brzezinka@intel.com>, Krzysztof Niemiec
+ <krzysztof.niemiec@intel.com>, maxime.ripard@kernel.org, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>
+Subject: Re: [PATCH v6 0/2] Miscellaneous fixes in drm code
+In-Reply-To: <aXtFHm4Y94jf0YXd@ashyti-mobl2.lan>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260120154824.1864085-1-krzysztof.karas@intel.com>
+ <aXtFHm4Y94jf0YXd@ashyti-mobl2.lan>
+Date: Thu, 29 Jan 2026 15:10:44 +0200
+Message-ID: <52e0096c310d346b23fa65b56837b4e0ecc09d58@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260129090129.2601661-2-michal.grzelak@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,64 +81,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,ashyti-mobl2.lan:mid];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andi.shyti@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 43953B03BB
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_SOME(0.00)[];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:andi.shyti@linux.intel.com,m:krzysztof.karas@intel.com,m:sebastian.brzezinka@intel.com,m:krzysztof.niemiec@intel.com,m:maxime.ripard@kernel.org,m:maarten.lankhorst@linux.intel.com,m:tzimmermann@suse.de,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	HAS_ORG_HEADER(0.00)[];
+	ARC_NA(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: C6027B047D
 X-Rspamd-Action: no action
 
-Hi Michal,
+On Thu, 29 Jan 2026, Andi Shyti <andi.shyti@linux.intel.com> wrote:
+> Hi Krzysztof,
+>
+>> Krzysztof Karas (2):
+>>   drm: Warn before division by 0 would occur
+>>   drm: Avoid suspicious operations in drm_fb_dma_get_gem_addr()
+>> 
+>>  drivers/gpu/drm/drm_fb_dma_helper.c | 7 +++++--
+>>  1 file changed, 5 insertions(+), 2 deletions(-)
+>
+> merged to drm-intel-gt-next.
 
-On Thu, Jan 29, 2026 at 10:01:29AM +0100, Michał Grzelak wrote:
-> Both initialisation and removal of GVT happen at different abstraction
-> levels. Hence caller of i915_driver_hw_probe() has no way of knowing
-> status of intel_gvt_init(). This can lead to an unbalanced number of
-> calls of intel_gvt_init() and intel_gvt_driver_remove() since GVT error
-> path is currently handled in i915_driver_probe(). One such scenario has
-> been seen with i915_driver_hw_probe() fault injection, which caused
-> double entry deletion and list corruption.
-> 
-> Move intel_gvt_init() up to i915_driver_probe(). Add out_cleanup_gvt
-> error path for removing gvt. Trigger it only after intel_gvt_init()
-> succeeded.
-> 
-> In case intel_gvt_init() failed, theoretically we should follow err_msi
-> error path. That is actually impossible since call to intel_gvt_init()
-> unconditionally returns 0, although it claims to return negative error
-> code on failure. Thus follow standard out_cleanup_hw error path on a
-> hypothetical future intel_gvt_init() failure. Remove err_msi label from
-> i915_driver_hw_probe() since intel_gvt_init() was the only user of it.
-> 
-> Changelog:
-> v1->v2
-> - don't move err_msi error path from i915_driver_hw_probe (Jani)
-> - rewrite commit message
-> 
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15481
-> Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
+...but neither commit belongs in drm-intel-gt-next, they belong in
+drm-misc-next!
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: drm-misc maintainers, how do you want to resolve this?
 
-Thanks,
-Andi
+BR,
+Jani.
+
+
+-- 
+Jani Nikula, Intel
