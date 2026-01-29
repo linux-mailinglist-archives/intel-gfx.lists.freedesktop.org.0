@@ -2,70 +2,77 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qGZBN6Rie2l2EQIAu9opvQ
+	id 4N2LH5dse2mMEgIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jan 2026 14:37:40 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jan 2026 15:20:07 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FE98B075A
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jan 2026 14:37:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A37FB0DAD
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jan 2026 15:20:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E065410E02B;
-	Thu, 29 Jan 2026 13:37:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCB8010E330;
+	Thu, 29 Jan 2026 14:20:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mAiyZ2mQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="COY+I1LN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB06B10E02B
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Jan 2026 13:37:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE88110E330;
+ Thu, 29 Jan 2026 14:20:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769693857; x=1801229857;
+ t=1769696404; x=1801232404;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=iz0KttqIBwnNO8Z+I0WDIhJ6AGOKKZmSPClOtk0VSdY=;
- b=mAiyZ2mQV9nxP9erhgvhogMMGY4iI8LAizGSUZgZLX0Yb0F5YWjyu6Wh
- 37fUAq/hyjB5RjUPqfIuY0PYl/DqR4nvD5XQ0PxGfzl5tbIQHj99VPZzs
- 7+cX60aHaz+4C3SHzSQq3ctxlTxMP5QQZ+fuGfBiOruh5MbN54uqGP4/U
- N9YgIoiePBhZyJizED8Fxn4K4OOfItXj4Vp+ptjU97uEy+y9EnwH5G+VV
- 3z3u5ui7SP+JApv3S6FCJ3jw6RZZCERHJUJUcqHwxMA9AyKa7zBug1TAN
- NUnp1QfehiUgl7zMuXbFHp4yyicmNigk3M/opZrpo5QMZDUN9oNUjzeDY Q==;
-X-CSE-ConnectionGUID: /kOHCJw6RPmbhB9R+SKRKA==
-X-CSE-MsgGUID: 6kj90h3oT5Chsl0CtOMlXQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11685"; a="69947158"
-X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="69947158"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2026 05:37:37 -0800
-X-CSE-ConnectionGUID: IjjSuNNzQ2OOxn8Kr3q54Q==
-X-CSE-MsgGUID: bPKsQIkaTlGVT+JnacZIhw==
+ bh=apqALf2mZvnFPwFAMX3pLXqSOd6RTvU3jT7r+/TFQCQ=;
+ b=COY+I1LN/5i3LdC7YO1hmlFv5Ltx+PoDkdyLfwZth3PfSylc0HHigq0/
+ 4KpVsnmDQ9Ik2W8tpTssXe0NmFvHTwHUmFoiIgFek6M4Ky6tjTzCD3tQP
+ 05HlInzZrfuHsA2ttcFYCfTkIrEVsOQAlCTQstjFi9McHsqsb2hW9weba
+ m/8Hs5YRROXRGK3dQH9mn8AZLMulICeqw4E6enBnxgI0GQZbaj5DKJcW7
+ ajK3twchq3wmtp9cSorMesZNakDq1xYBmBNBZgFHJBS7IrRpAuSU+wzuo
+ 1mkgJO+IK1qKHwplkFQ7UikmYXYfdu16NUDqMt3YGX3rKdf+TMs4iBOr7 A==;
+X-CSE-ConnectionGUID: GgSVWZJ+Q+epaziioHOH0Q==
+X-CSE-MsgGUID: v8WLJIqKQXG2KZkkHW0W4g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="70831091"
+X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="70831091"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2026 06:20:03 -0800
+X-CSE-ConnectionGUID: +fIWDTCtRX+Rd9/3zT4Q+Q==
+X-CSE-MsgGUID: cHu1RMjnT+SWuLKUdUN45Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="213076354"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.160])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2026 05:37:35 -0800
-Date: Thu, 29 Jan 2026 14:37:32 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>,
- intel-gfx@lists.freedesktop.org,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>, maxime.ripard@kernel.org,
+X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="208829978"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+ by fmviesa008.fm.intel.com with ESMTP; 29 Jan 2026 06:19:57 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1vlSsE-00000000bXM-42xH;
+ Thu, 29 Jan 2026 14:19:54 +0000
+Date: Thu, 29 Jan 2026 22:19:24 +0800
+From: kernel test robot <lkp@intel.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>
-Subject: Re: [PATCH v6 0/2] Miscellaneous fixes in drm code
-Message-ID: <aXtinG2JIhLjNWK6@ashyti-mobl2.lan>
-References: <20260120154824.1864085-1-krzysztof.karas@intel.com>
- <aXtFHm4Y94jf0YXd@ashyti-mobl2.lan>
- <52e0096c310d346b23fa65b56837b4e0ecc09d58@intel.com>
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, xaver.hugl@kde.org,
+ harry.wentland@amd.com, uma.shankar@intel.com,
+ louis.chauvet@bootlin.com, naveen1.kumar@intel.com,
+ ramya.krishna.yella@intel.com
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Arun R Murthy <arun.r.murthy@intel.com>,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: Re: [PATCH v8 2/7] drm/atomic: Add error_code element in atomic_state
+Message-ID: <202601292223.hq35FrBc-lkp@intel.com>
+References: <20260129-atomic-v8-2-4cb7b0faa051@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <52e0096c310d346b23fa65b56837b4e0ecc09d58@intel.com>
+In-Reply-To: <20260129-atomic-v8-2-4cb7b0faa051@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,57 +88,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:jani.nikula@linux.intel.com,m:andi.shyti@linux.intel.com,m:krzysztof.karas@intel.com,m:sebastian.brzezinka@intel.com,m:krzysztof.niemiec@intel.com,m:maxime.ripard@kernel.org,m:maarten.lankhorst@linux.intel.com,m:tzimmermann@suse.de,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[andi.shyti@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	FREEMAIL_TO(0.00)[intel.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,ursulin.net,kde.org,amd.com,bootlin.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andi.shyti@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,ashyti-mobl2.lan:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 6FE98B075A
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
+X-Rspamd-Queue-Id: 0A37FB0DAD
 X-Rspamd-Action: no action
 
-On Thu, Jan 29, 2026 at 03:10:44PM +0200, Jani Nikula wrote:
-> On Thu, 29 Jan 2026, Andi Shyti <andi.shyti@linux.intel.com> wrote:
-> > Hi Krzysztof,
-> >
-> >> Krzysztof Karas (2):
-> >>   drm: Warn before division by 0 would occur
-> >>   drm: Avoid suspicious operations in drm_fb_dma_get_gem_addr()
-> >> 
-> >>  drivers/gpu/drm/drm_fb_dma_helper.c | 7 +++++--
-> >>  1 file changed, 5 insertions(+), 2 deletions(-)
-> >
-> > merged to drm-intel-gt-next.
-> 
-> ...but neither commit belongs in drm-intel-gt-next, they belong in
-> drm-misc-next!
-> 
-> Cc: drm-misc maintainers, how do you want to resolve this?
+Hi Arun,
 
-Ah... sorry! I was taken by the habit!
+kernel test robot noticed the following build warnings:
 
-Andi
+[auto build test WARNING on 6a3c9a03d943eb112c916c7419a837bc7de3a296]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Arun-R-Murthy/drm-Define-user-readable-error-codes-for-atomic-ioctl/20260129-170325
+base:   6a3c9a03d943eb112c916c7419a837bc7de3a296
+patch link:    https://lore.kernel.org/r/20260129-atomic-v8-2-4cb7b0faa051%40intel.com
+patch subject: [PATCH v8 2/7] drm/atomic: Add error_code element in atomic_state
+config: hexagon-randconfig-001-20260129 (https://download.01.org/0day-ci/archive/20260129/202601292223.hq35FrBc-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 9b8addffa70cee5b2acc5454712d9cf78ce45710)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260129/202601292223.hq35FrBc-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601292223.hq35FrBc-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> Warning: drivers/gpu/drm/drm_atomic.c:2119 function parameter 'format' not described in 'drm_mode_atomic_add_error_msg'
+>> Warning: drivers/gpu/drm/drm_atomic.c:2119 function parameter 'format' not described in 'drm_mode_atomic_add_error_msg'
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
