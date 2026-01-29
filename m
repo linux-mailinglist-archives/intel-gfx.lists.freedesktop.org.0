@@ -2,68 +2,184 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MRoyLNHaemlE/AEAu9opvQ
+	id 8Hr7JXjeemmf/AEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jan 2026 04:58:09 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jan 2026 05:13:44 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7736FAB8A0
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jan 2026 04:58:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D844DABA02
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jan 2026 05:13:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBB9010E7B7;
-	Thu, 29 Jan 2026 03:58:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B46410E7B9;
+	Thu, 29 Jan 2026 04:13:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KZTHB/YD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DNA4zS1Y";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2616510E7B6;
- Thu, 29 Jan 2026 03:58:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 407A010E7B9;
+ Thu, 29 Jan 2026 04:13:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769659085; x=1801195085;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=pZTQzzhwMQxHvcW4sgILOyyLiK0welR6IrsOw4ftPkU=;
- b=KZTHB/YDtyA/4axUIqEWr14uVXQRTQzzmzt0D/z4Jgv2pFy8vPw1sUX6
- F4KYPbS5MkXSDv3G+ytb7C7RNsr5Zxbn+queqL7e7btMYZhjgKZU0fVA4
- hqGaTcwozfmmYmt4MD+Vdnr427GwV9pxY/Fw14xsl61esJDQjCrip/eH+
- sG8uxQIy2bfQ+pUYuPnS8ob/QmUwsnbNfCqmXgg+iNx6efy70Uy4zm/FQ
- upmX8vA5nYZWzFq+qImoZtZR4YsSPEAAZISzNRYvrJpx1GMQeFyyfeR/W
- ElnnY+IIhkTvPlAZgiQzDSB7W/ZQ7KMW92fQSnUoJLnqCMhkoIFgSESUy g==;
-X-CSE-ConnectionGUID: zpGVnv2bQS2AYq7aFowdFw==
-X-CSE-MsgGUID: itOvaYS+R8Kp4ClGhx3/Gw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11685"; a="88303732"
-X-IronPort-AV: E=Sophos;i="6.21,260,1763452800"; d="scan'208";a="88303732"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2026 19:58:04 -0800
-X-CSE-ConnectionGUID: vGVHJt50RfarKYwk8gf0VQ==
-X-CSE-MsgGUID: FBtdmdWjSiqdmBW3aBXjBQ==
+ t=1769660020; x=1801196020;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=0qz9jiJ0baLOT/c+c3g9/IYrGHPKIQWkxfP/xZhFkzs=;
+ b=DNA4zS1YlPtF8V926uLYrDBxPmY8MO0UYvPm4VUGvgEnLpVtvp6ZNH/v
+ hMbohsSH2mI+fzIUuIzT6MoVV5a8IATjd8jyDthssGISjRG/l3/2056Me
+ HnEdr15R8f91PVxp0pA6KB4HnXAHiWxG421bhMaMZdGhiBI8l1+qfPdZ3
+ GRj9GlWnN2F00ZQBbwIGp8iDoxEKbon2gWuAb1h+fpv0t8o1gbtFTzEWp
+ MvCnlZ+x2zauKi34m5Wj2ywnUDjRAXet0xtqkNzzUdpTMsuqtk85SXdXQ
+ pW6fLTrqazgU7DgM66niwKz/RBCEnyKKmkq+Q248UniInNINe/ahA+nEd Q==;
+X-CSE-ConnectionGUID: uQCOCCRUQjev9FQbaWtfgQ==
+X-CSE-MsgGUID: bagxrDvIT9+reRCQzS5NHw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11685"; a="93548073"
+X-IronPort-AV: E=Sophos;i="6.21,260,1763452800"; d="scan'208";a="93548073"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2026 20:13:40 -0800
+X-CSE-ConnectionGUID: ATrSw+HCQjO6+IWEFPANxA==
+X-CSE-MsgGUID: 9BNA2LZ4R3iC1zzo0Ns+Og==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,260,1763452800"; d="scan'208";a="208347944"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
- by fmviesa006.fm.intel.com with ESMTP; 28 Jan 2026 19:58:02 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1vlJAO-00000000b44-0YLF;
- Thu, 29 Jan 2026 03:58:00 +0000
-Date: Thu, 29 Jan 2026 11:57:47 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- jani.nikula@linux.intel.com, imre.deak@intel.com,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: Re: [PATCH 11/16] drm/i915/dp: Introduce helper to check pixel rate
- against dotclock limits
-Message-ID: <202601291157.RJA0VVmb-lkp@intel.com>
-References: <20260128140636.3527799-12-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,260,1763452800"; d="scan'208";a="213324651"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2026 20:13:39 -0800
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Wed, 28 Jan 2026 20:13:32 -0800
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35 via Frontend Transport; Wed, 28 Jan 2026 20:13:32 -0800
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.2) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Wed, 28 Jan 2026 20:13:31 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=auZLuVqUHCBmTCZqz9UN1YiuPJU8l1poV/HLPK9RYkQL/+ppbFTn5lObA06BTB46IgAEOUBihWnSqsiimY6Hy/ljdEO+RoYkuF+3nCG2328X6s1R1Z08AWE4HQ+pzzoNfTCcYT0lPrRbP0ZCDy+bDAI43BwWqJUd/VyuaZUhycyJjVTH6ZZhxAyqqP2ATt9Fidm1prjND7aplScg/3NSu5OFrvCIzXTrcFE3hkqiLs/DMptaF27GqBOMhyWoIi+cF2HR1I0c67oBj3tryskeAia9wIy6s8rDE72IT/dOb9WgTcsN2v0c9L7EmIoWDu/EQYSN+UC8Wgn7ISAfhP9urg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=laIvTsx7AioXu/65ChbsPNt9PYygOHHVCilia4t+CJY=;
+ b=GFajsHN4qd8OcSemCCLqsiyF+OZMjlECsZkL/bIQ/LdFCoJXqGGtvH6yvrHI8Rp5gzRK5CRhLRTHyVaQHPy0IuF8XTzqMEekxqpBh57YdjAgG0wDLz7H4YTLnKu0tD1GUuc3xBBa12Wyb2An/eBTVTktgxaXglc/zjPEfpMdErkygVoF+7nmOsd2n1L4tTN1NllomGhaBgZj4Ip7KNS0Rht3MgcgNnhsLviB+j/EgqzLzLmboRi8UMOZSlQDew67A4hkd9o9u1go0KFtoC8qGwszzt0XoVJ7Wjkys3lcBp1yxV2kKWCCziiCToJ6IdrFXdJh+g0lv4M0eyD+iSAThA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
+ (2603:10b6:f:fc00::f13) by CH3PR11MB7842.namprd11.prod.outlook.com
+ (2603:10b6:610:128::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.7; Thu, 29 Jan
+ 2026 04:13:24 +0000
+Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
+ ([fe80::7cc8:75c9:22c6:3c66]) by DM3PPF208195D8D.namprd11.prod.outlook.com
+ ([fe80::7cc8:75c9:22c6:3c66%7]) with mapi id 15.20.9542.015; Thu, 29 Jan 2026
+ 04:13:24 +0000
+From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+CC: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, "Murthy, Arun R"
+ <arun.r.murthy@intel.com>
+Subject: RE: [PATCH] drm/i915/dp: Add a meaningful return to
+ intel_dp_read_dsc_dpcd
+Thread-Topic: [PATCH] drm/i915/dp: Add a meaningful return to
+ intel_dp_read_dsc_dpcd
+Thread-Index: AQHckBF/rxWE7SJn+0iWk9RJGzImnrVnbNaAgAEd8xA=
+Date: Thu, 29 Jan 2026 04:13:24 +0000
+Message-ID: <DM3PPF208195D8DE0811B42813551EF6F68E39EA@DM3PPF208195D8D.namprd11.prod.outlook.com>
+References: <20260128044904.1293185-1-suraj.kandpal@intel.com>
+ <51a869ec09c61bd8ba56db858c983bb9667ac11b@intel.com>
+In-Reply-To: <51a869ec09c61bd8ba56db858c983bb9667ac11b@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM3PPF208195D8D:EE_|CH3PR11MB7842:EE_
+x-ms-office365-filtering-correlation-id: 063fb1e8-4530-481d-0186-08de5eecbf56
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|376014|366016|1800799024|38070700021;
+x-microsoft-antispam-message-info: =?us-ascii?Q?mVgA8ajR9oYYzTzAhXla9Sw2Vowip68x4oqrVNkJHdz7kM9/3rUwMg0kAqpg?=
+ =?us-ascii?Q?nhS7qFbTSDkIw3TvXInyNpKsiF4Sg6buf1/IfizYHK+blRFWQFziVSWDkOQW?=
+ =?us-ascii?Q?413dRl/cFf8gpaXLNr7xZpqxHnQAL1xyIOlOY8zeLvLhpLk1DD5Soq26XESp?=
+ =?us-ascii?Q?EUUMCYHfLQUSbuIKDjdUk11zLa4zWciRZCc2NrfdX3KV8xuI/pueyWxBVgT7?=
+ =?us-ascii?Q?8DKzD1kNli4BSQUiDmud00A/VsvCru6h5V7bIuRRbNCDb1psOP38ynbXHeXs?=
+ =?us-ascii?Q?/piTVJKZv9u/62hQH0UM2+vWHZHVlJEcgdYQ7aWgTHOQJ4xiHgmi9HYoknV1?=
+ =?us-ascii?Q?oj/vc7GFLv74dlTJvGCm+jCRgMirowBZ3zmgFUzlwwD+DU/aMFL2tqlcBOr3?=
+ =?us-ascii?Q?aNK9cYCoA7XptTGByAR9G8n2yUyK5tSKbp/VscwmbyxyV90EnidK3itaRnF7?=
+ =?us-ascii?Q?lNHSZ8hAqwwJqRybnmPeh6BP+N0+TwDG9bQ3NGVA6vrrqyH0L0/I2pBBWOLt?=
+ =?us-ascii?Q?Hs/6uoR4TbHRauAc1JOE22ZTAxxTYJd5q3K8Z/JvNeK0UCjT8FtRR42Dla2d?=
+ =?us-ascii?Q?JQAAApaEUJ3JIWrVtJhrvbkTtPu6IHwlptt6hc81jcI1Y8jkbTITIsOdNGJg?=
+ =?us-ascii?Q?PgzjbpZFcha80zvcmto7E9aNpQ+jYHC5xkQpFRwnBiDbbjGTmXiiZGF0BJ9g?=
+ =?us-ascii?Q?yxA2kBSawhd9Ok1EZyDTzV9+jcPHNpeLVfX9jOD1KeZRaUq+uQM/7UKJ+Ogv?=
+ =?us-ascii?Q?FXBO1cUQSLa3ZYttMqikV4P/IKByYi98VPqcMd6Z+Z4Pt0o/RArQXfPDtatv?=
+ =?us-ascii?Q?RqM/24yNQhyrjRJ9/AmaZhIWqcg/dQQEegk0YRJyKtwNXXJjnC4DwJDZLlDO?=
+ =?us-ascii?Q?W59dqRdwSZhK2i1B861XFpdAxu035cWmtqOVKt0tXCtJWbsKwgv2j8Zf9qd4?=
+ =?us-ascii?Q?zAtTHV6rLwLjPoWBk+dssfRNrq+zKfrq98C239o03WGMsLmQFuKkj/VgBjN/?=
+ =?us-ascii?Q?HTrpGfC5GqSgtGxp4oQd2pUyu39V+SSLWEWMdZihdsgagX4CCq2SBpE1r7vA?=
+ =?us-ascii?Q?VkLkPZgJ5V1ip4yTBA2fFzXdybOoXrh6cP+uFZF+V7k5CC8iSvhxfeIp0YEu?=
+ =?us-ascii?Q?ZDgAK07ekiai4NjlXtO2YTj40C+z0Bvae1kA0PEkJmIRFFD419SY4FXRIoKG?=
+ =?us-ascii?Q?iIVX8ex7AuScgKwV/ywdm9vLD4sP6PbqK/Qiri59IR9x/fvyHSXByw7kVhZG?=
+ =?us-ascii?Q?u+ywlCym2r63LR+ixfeNNm5gxTsWIFPnkbRnsX/QwJOik8K1vQ0KGFV2TQl8?=
+ =?us-ascii?Q?1VxIiWoXEEWFc6qDOxzb1wC0Ws9/ZynsrECQt+03HSy9ulGmRi7cuHwSTfOB?=
+ =?us-ascii?Q?mwcjJ9dtPIKNWFFeOfHarJCYHC/xYY99JZ8zUKEUawVW1hXQ0IvgUDWk21OP?=
+ =?us-ascii?Q?6lfYg2DJxJfRXD0syonjxupTC80X6YHbBjed/7a3HcLn3PwwzCy6MaBWyC/6?=
+ =?us-ascii?Q?edBstUDd4tprctR5VWxlP5btNkPePdYINOGeCdFHIl1Mx8NWtAF4LtBLpT/r?=
+ =?us-ascii?Q?ycvXB7jdKlK6idhLYTwGPuW+DzwdGsBLGpJLjBAnf3j9YYmTV/TUarC1X/kf?=
+ =?us-ascii?Q?UA8gywEpGmXBMnGzdA1EJD0=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM3PPF208195D8D.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(38070700021); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?L+XyWuBrgT0MxpgKEqcgziYnX7mqB5fCFOyfa1GOcR7rnH9WcIv3ODrQ5x9m?=
+ =?us-ascii?Q?VkfGY+hPaALk6lBpJ31sq2EN6rP0Yvqh980SZ1vHpRlayMWdzjtzQS68/RGf?=
+ =?us-ascii?Q?UZH+RPCpBZJ4UFpBWiTy51MGkCbYEd43oAjzqyvYVcF8n7LPhserqBVxLcOc?=
+ =?us-ascii?Q?cvnGdTULRWhUiCVD26hYULFMwOWtj/H14+i6fWKhHADrOzmNG632YiXw2cpH?=
+ =?us-ascii?Q?Zx4T77wHoYy48duxWZLeTZxbSB2x7BeCMsBDHtLfTSlOk6hzFBxbwN/wt58+?=
+ =?us-ascii?Q?QKnqJMAHFNcBCD4NBhK9JuYughZLOPIqaL543HxPEE/IMz6hx1XD+JPaRyfN?=
+ =?us-ascii?Q?jAk4EsbGto19zKB69DV4HoFVLrY/zDCvtfUkWENd9AxwYvVTXxfUoZh3/MrC?=
+ =?us-ascii?Q?yrVO1OEk7PQMS9jICvR8oWEHBFaQePvFJ3y5aykieytVXqd1bSkCC/naDTzQ?=
+ =?us-ascii?Q?8+TVM5+timu64N2HLClncwN53K40SCSE8FBTEE4bOwzI0p3OnsBFgUFw3sNh?=
+ =?us-ascii?Q?9JIWwq99QwNmuEgUBWzEC56GxKsm7F9h2qhXga8xMuoLhFX21Mj2pjr92+Ub?=
+ =?us-ascii?Q?pPCg3CfqIHSHGfArbW5niKhx8jSIn911z65zpnSmm1TbryW/1HJWkDwVFZAb?=
+ =?us-ascii?Q?mjT6eEBYfBPcvxPMciZnu0N4n17oJeMBWfTp8pZDxWY5RSzjBuxrp40+3H6d?=
+ =?us-ascii?Q?pIlN9eJVSUCu/Bk+b3k98ZkImYnYUcG1wuQg+igBCPaZoHrxv1EOx4bFhdOO?=
+ =?us-ascii?Q?H0QOco58MS/V5OHle7ndffNdigI+EHcSlIKlC/+ShmWuyvEZ2xMo8Q0r7fh9?=
+ =?us-ascii?Q?G1Omxy+X7AF9XF8HItzAWf3LlFHE6KYnbmiAymD8cvuK/ciwWQ6PFOC9jxiY?=
+ =?us-ascii?Q?NjXqNUsmuiRDoH0kWPuu0c1DmYPHRMBdr40MfKmq2SUq56u1h1Jblfbg4nrn?=
+ =?us-ascii?Q?eGFiutrznCBJ9LigP68btf8MZnyOA4NpdtMtlpeaOJhXYBTZIzFjdZasIUvf?=
+ =?us-ascii?Q?y2cNSOGEY2qJJZ7c+03S9DEUtQn6u7JAoJJf2+G1tw/oE5yAEq0/6goou2oH?=
+ =?us-ascii?Q?Fam5UcV8o7oATYz8LH91HT9w2zRWhiX4xUY6m9OOq2YiHOXIoldJq7xGWKEy?=
+ =?us-ascii?Q?lg+ef7yyz3PjTlLn7lO2kjwDEK9ruXfC0PV4+48Slw9SioYz+uLelsG7bc2G?=
+ =?us-ascii?Q?WWlmqiDv7XEBo6M97BPgSztfDIizomHxFxZInVIX/xZOqv0PHAvFrnuuVFui?=
+ =?us-ascii?Q?TfcKWyCjdmRw2Vv5chgEKxdabj59EoySIQA96X+6PUS18RZ1v0FBxOpBnq79?=
+ =?us-ascii?Q?A9/nnH/ueztyZRmQNXj33oUw0LYfh65rFKf0pObH2oHyGh0E9LEFc4zNvNhl?=
+ =?us-ascii?Q?JVab0szhnwCkX0cWI6N9pqIi+pdEbD2LWH76ZVCabJyYTpnoYF8buAEUnJ+F?=
+ =?us-ascii?Q?eGOgFJiwUIRuGkot2TXkV4Ta5noW+fUkmJGNx3USSVXZnnNAEAIGkxbxIngz?=
+ =?us-ascii?Q?1IMuIbNlg79y8Z/pbDd3mjYS49BV2Thw/XZVZvwSK9cAy20zshiWYs7GAiQ7?=
+ =?us-ascii?Q?qfzu7vKT4/jYNWWMRy1IOsQXCDkD8iLisSms/CA865xmS5Fmp72gDiLhb8ic?=
+ =?us-ascii?Q?JYOZpACdEBo2coYMdrBbJ5gNQLWhAv3PGYmR8YxHC1S8PhJBet0CjW6VpzYv?=
+ =?us-ascii?Q?8HRLWJzB2yFo6WdINmLOscHUIQD6Prewk5OPZ/V8EIylTrevSKtgTL/eEWQj?=
+ =?us-ascii?Q?blzk+LjO7w=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260128140636.3527799-12-ankit.k.nautiyal@intel.com>
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM3PPF208195D8D.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 063fb1e8-4530-481d-0186-08de5eecbf56
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Jan 2026 04:13:24.8040 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: X0DfbWfRqyAVGM6EbhqqdhapLjhbfDd9YNmya+UCg65LAdpWKZ6L2qHXmMNAWYCNMJwUfUorLALCPh7Em9npxw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7842
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,156 +195,137 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim];
 	MISSING_XM_UA(0.00)[];
-	ARC_NA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[suraj.kandpal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_SEVEN(0.00)[8];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid,git-scm.com:url]
-X-Rspamd-Queue-Id: 7736FAB8A0
+	TAGGED_RCPT(0.00)[intel-gfx];
+	RCPT_COUNT_FIVE(0.00)[5];
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: D844DABA02
 X-Rspamd-Action: no action
 
-Hi Ankit,
+> Subject: Re: [PATCH] drm/i915/dp: Add a meaningful return to
+> intel_dp_read_dsc_dpcd
+>=20
+> On Wed, 28 Jan 2026, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> > Add a meaningful return to intel_dp_read_dsc_dpcd so tha we avoid
+> > unwanted DPCD reads which are not needed once we know DSC DPCD read
+> > fails. While we are at it remove the drm_err since we do not shout
+> > error during intel_dp_detect phase since it may take time to come up
+> > after pps_on is called for eDP scenario.
+>=20
+> Please pay more attention to the commit message.
 
-kernel test robot noticed the following build warnings:
+Got it will fix it up
 
-[auto build test WARNING on drm-tip/drm-tip]
-[cannot apply to drm-i915/for-linux-next drm-i915/for-linux-next-fixes linus/master v6.19-rc7 next-20260128]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+>=20
+> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp.c | 24 +++++++++++++++---------
+> >  1 file changed, 15 insertions(+), 9 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> > b/drivers/gpu/drm/i915/display/intel_dp.c
+> > index 79fd3b8d8b25..d2ed8ec145a2 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -4281,20 +4281,21 @@ static bool
+> intel_dp_get_colorimetry_status(struct intel_dp *intel_dp)
+> >  	return dprx & DP_VSC_SDP_EXT_FOR_COLORIMETRY_SUPPORTED;
+> >  }
+> >
+> > -static void intel_dp_read_dsc_dpcd(struct drm_dp_aux *aux,
+> > -				   u8
+> dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE])
+> > +static int intel_dp_read_dsc_dpcd(struct drm_dp_aux *aux,
+> > +				  u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE])
+> >  {
+> >  	if (drm_dp_dpcd_read(aux, DP_DSC_SUPPORT, dsc_dpcd,
+> >  			     DP_DSC_RECEIVER_CAP_SIZE) < 0) {
+> > -		drm_err(aux->drm_dev,
+> > -			"Failed to read DPCD register 0x%x\n",
+> > -			DP_DSC_SUPPORT);
+> > -		return;
+> > +		drm_dbg_kms(aux->drm_dev,
+> > +			    "Could not read DSC DPCD register 0x%x\n",
+> > +			    DP_DSC_SUPPORT);
+> > +		return -EINVAL;
+>=20
+> If we want to do this properly, then let's propagate the actual error cod=
+e
+> instead of inventing -EINVAL here. And switch to drm_dp_dpcd_read_data(),
+> which returns an error if not all bytes were transferred (also a case the
+> current implementation completely ignores).
+>=20
+> Finlly, the debug logging could log the error code. A combo of %pe in the
+> format string and ERR_PTR(ret) in the corresponding parameter will do it
+> nicely.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ankit-Nautiyal/drm-i915-dp-Early-reject-bad-hdisplay-in-intel_dp_mode_valid/20260128-234512
-base:   https://gitlab.freedesktop.org/drm/tip.git drm-tip
-patch link:    https://lore.kernel.org/r/20260128140636.3527799-12-ankit.k.nautiyal%40intel.com
-patch subject: [PATCH 11/16] drm/i915/dp: Introduce helper to check pixel rate against dotclock limits
-config: i386-randconfig-004-20260129 (https://download.01.org/0day-ci/archive/20260129/202601291157.RJA0VVmb-lkp@intel.com/config)
-compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260129/202601291157.RJA0VVmb-lkp@intel.com/reproduce)
+Sure seems like good fix will get this done int the next revision.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202601291157.RJA0VVmb-lkp@intel.com/
+Regards,
+Suraj Kandpal
 
-All warnings (new ones prefixed by >>):
-
->> drivers/gpu/drm/i915/display/intel_dp.c:2828:6: warning: variable 'max_dotclk' set but not used [-Wunused-but-set-variable]
-    2828 |         int max_dotclk = display->cdclk.max_dotclk_freq;
-         |             ^
-   1 warning generated.
-
-
-vim +/max_dotclk +2828 drivers/gpu/drm/i915/display/intel_dp.c
-
-aa099402f98b1e drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2024-04-05  2814  
-72b2d2a6f178b9 drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2815  static int
-0d71b594bb8132 drivers/gpu/drm/i915/display/intel_dp.c Ankit Nautiyal        2026-01-28  2816  intel_dp_compute_link_for_joined_pipes(struct intel_encoder *encoder,
-72b2d2a6f178b9 drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2817  				       struct intel_crtc_state *pipe_config,
-72b2d2a6f178b9 drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2818  				       struct drm_connector_state *conn_state,
-72b2d2a6f178b9 drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2819  				       bool respect_downstream_limits)
-72b2d2a6f178b9 drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2820  {
-8146b9235fc2b3 drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2024-12-13  2821  	struct intel_display *display = to_intel_display(encoder);
-0d71b594bb8132 drivers/gpu/drm/i915/display/intel_dp.c Ankit Nautiyal        2026-01-28  2822  	int num_joined_pipes = intel_crtc_num_joined_pipes(pipe_config);
-e43b4f7980f860 drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2024-04-05  2823  	struct intel_connector *connector =
-36f579ffc69214 drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-10-24  2824  		to_intel_connector(conn_state->connector);
-72b2d2a6f178b9 drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2825  	const struct drm_display_mode *adjusted_mode =
-72b2d2a6f178b9 drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2826  		&pipe_config->hw.adjusted_mode;
-72b2d2a6f178b9 drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2827  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-0d71b594bb8132 drivers/gpu/drm/i915/display/intel_dp.c Ankit Nautiyal        2026-01-28 @2828  	int max_dotclk = display->cdclk.max_dotclk_freq;
-72b2d2a6f178b9 drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2829  	struct link_config_limits limits;
-aa099402f98b1e drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2024-04-05  2830  	bool dsc_needed, joiner_needs_dsc;
-7d0f2f68b661e5 drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2831  	int ret = 0;
-72b2d2a6f178b9 drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2832  
-5d1bbfba0f39cf drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2024-12-13  2833  	joiner_needs_dsc = intel_dp_joiner_needs_dsc(display, num_joined_pipes);
-1dedcdd0336c35 drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2022-03-30  2834  
-78015e27b7d75e drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2835  	dsc_needed = joiner_needs_dsc || intel_dp->force_dsc_en ||
-ba49a4643cf53c drivers/gpu/drm/i915/display/intel_dp.c Chaitanya Kumar Borah 2025-07-30  2836  		     !intel_dp_compute_config_limits(intel_dp, conn_state, pipe_config,
-78015e27b7d75e drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2837  						     respect_downstream_limits,
-78015e27b7d75e drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2838  						     false,
-78015e27b7d75e drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2839  						     &limits);
-7d0f2f68b661e5 drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2840  
-7d0f2f68b661e5 drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2841  	if (!dsc_needed) {
-3acd115d08f706 drivers/gpu/drm/i915/intel_dp.c         Jani Nikula           2018-04-26  2842  		/*
-acca7762eb71bc drivers/gpu/drm/i915/display/intel_dp.c Kai-Heng Feng         2021-04-21  2843  		 * Optimize for slow and wide for everything, because there are some
-acca7762eb71bc drivers/gpu/drm/i915/display/intel_dp.c Kai-Heng Feng         2021-04-21  2844  		 * eDP 1.3 and 1.4 panels don't work well with fast and narrow.
-3acd115d08f706 drivers/gpu/drm/i915/intel_dp.c         Jani Nikula           2018-04-26  2845  		 */
-7d0f2f68b661e5 drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2846  		ret = intel_dp_compute_link_config_wide(intel_dp, pipe_config,
-7d0f2f68b661e5 drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2847  							conn_state, &limits);
-ef0a0757bbeac9 drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2025-01-03  2848  		if (!ret && intel_dp_is_uhbr(pipe_config))
-ef0a0757bbeac9 drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2025-01-03  2849  			ret = intel_dp_mtp_tu_compute_config(intel_dp,
-ef0a0757bbeac9 drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2025-01-03  2850  							     pipe_config,
-bb322c6fa16f97 drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2025-01-29  2851  							     conn_state,
-67782bf6e8a628 drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2025-01-31  2852  							     fxp_q4_from_int(pipe_config->pipe_bpp),
-67782bf6e8a628 drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2025-01-31  2853  							     fxp_q4_from_int(pipe_config->pipe_bpp),
-ef0a0757bbeac9 drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2025-01-03  2854  							     0, false);
-7d0f2f68b661e5 drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2855  		if (ret)
-7d0f2f68b661e5 drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2856  			dsc_needed = true;
-7d0f2f68b661e5 drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2857  	}
-a4a157777c807d drivers/gpu/drm/i915/intel_dp.c         Manasi Navare         2018-11-28  2858  
-939bc3e4d996ba drivers/gpu/drm/i915/display/intel_dp.c Ankit Nautiyal        2025-01-03  2859  	if (dsc_needed && !intel_dp_supports_dsc(intel_dp, connector, pipe_config)) {
-939bc3e4d996ba drivers/gpu/drm/i915/display/intel_dp.c Ankit Nautiyal        2025-01-03  2860  		drm_dbg_kms(display->drm, "DSC required but not available\n");
-939bc3e4d996ba drivers/gpu/drm/i915/display/intel_dp.c Ankit Nautiyal        2025-01-03  2861  		return -EINVAL;
-939bc3e4d996ba drivers/gpu/drm/i915/display/intel_dp.c Ankit Nautiyal        2025-01-03  2862  	}
-939bc3e4d996ba drivers/gpu/drm/i915/display/intel_dp.c Ankit Nautiyal        2025-01-03  2863  
-7d0f2f68b661e5 drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2864  	if (dsc_needed) {
-8146b9235fc2b3 drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2024-12-13  2865  		drm_dbg_kms(display->drm,
-8146b9235fc2b3 drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2024-12-13  2866  			    "Try DSC (fallback=%s, joiner=%s, force=%s)\n",
-1dedcdd0336c35 drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2022-03-30  2867  			    str_yes_no(ret), str_yes_no(joiner_needs_dsc),
-1dedcdd0336c35 drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2022-03-30  2868  			    str_yes_no(intel_dp->force_dsc_en));
-78015e27b7d75e drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2869  
-ba49a4643cf53c drivers/gpu/drm/i915/display/intel_dp.c Chaitanya Kumar Borah 2025-07-30  2870  		if (!intel_dp_compute_config_limits(intel_dp, conn_state, pipe_config,
-78015e27b7d75e drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2871  						    respect_downstream_limits,
-78015e27b7d75e drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2872  						    true,
-78015e27b7d75e drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2873  						    &limits))
-78015e27b7d75e drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2874  			return -EINVAL;
-78015e27b7d75e drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-09-21  2875  
-204474a6b859ff drivers/gpu/drm/i915/intel_dp.c         Lyude Paul            2019-01-15  2876  		ret = intel_dp_dsc_compute_config(intel_dp, pipe_config,
-2056f0ad806272 drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2025-01-31  2877  						  conn_state, &limits, 64);
-204474a6b859ff drivers/gpu/drm/i915/intel_dp.c         Lyude Paul            2019-01-15  2878  		if (ret < 0)
-204474a6b859ff drivers/gpu/drm/i915/intel_dp.c         Lyude Paul            2019-01-15  2879  			return ret;
-7769db5883841b drivers/gpu/drm/i915/intel_dp.c         Jani Nikula           2018-09-05  2880  	}
-3600836585e3fd drivers/gpu/drm/i915/intel_dp.c         Simona Vetter         2013-03-27  2881  
-0d71b594bb8132 drivers/gpu/drm/i915/display/intel_dp.c Ankit Nautiyal        2026-01-28  2882  	max_dotclk *= num_joined_pipes;
-0d71b594bb8132 drivers/gpu/drm/i915/display/intel_dp.c Ankit Nautiyal        2026-01-28  2883  
-d98b5ca9b08780 drivers/gpu/drm/i915/display/intel_dp.c Ankit Nautiyal        2026-01-28  2884  	if (!intel_dp_dotclk_valid(display,
-d98b5ca9b08780 drivers/gpu/drm/i915/display/intel_dp.c Ankit Nautiyal        2026-01-28  2885  				   adjusted_mode->crtc_clock,
-d98b5ca9b08780 drivers/gpu/drm/i915/display/intel_dp.c Ankit Nautiyal        2026-01-28  2886  				   num_joined_pipes))
-0d71b594bb8132 drivers/gpu/drm/i915/display/intel_dp.c Ankit Nautiyal        2026-01-28  2887  		return -EINVAL;
-0d71b594bb8132 drivers/gpu/drm/i915/display/intel_dp.c Ankit Nautiyal        2026-01-28  2888  
-8146b9235fc2b3 drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2024-12-13  2889  	drm_dbg_kms(display->drm,
-2796b7ceec95bd drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2024-08-05  2890  		    "DP lane count %d clock %d bpp input %d compressed " FXP_Q4_FMT " link rate required %d available %d\n",
-a4a157777c807d drivers/gpu/drm/i915/intel_dp.c         Manasi Navare         2018-11-28  2891  		    pipe_config->lane_count, pipe_config->port_clock,
-a4a157777c807d drivers/gpu/drm/i915/intel_dp.c         Manasi Navare         2018-11-28  2892  		    pipe_config->pipe_bpp,
-2796b7ceec95bd drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2024-08-05  2893  		    FXP_Q4_ARGS(pipe_config->dsc.compressed_bpp_x16),
-e35cce9371fe1d drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2024-02-20  2894  		    intel_dp_config_required_rate(pipe_config),
-a4ea61b7482f56 drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2024-02-20  2895  		    intel_dp_max_link_data_rate(intel_dp,
-a4ea61b7482f56 drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2024-02-20  2896  						pipe_config->port_clock,
-a4a157777c807d drivers/gpu/drm/i915/intel_dp.c         Manasi Navare         2018-11-28  2897  						pipe_config->lane_count));
-3acd115d08f706 drivers/gpu/drm/i915/intel_dp.c         Jani Nikula           2018-04-26  2898  
-204474a6b859ff drivers/gpu/drm/i915/intel_dp.c         Lyude Paul            2019-01-15  2899  	return 0;
-981a63eb2725ec drivers/gpu/drm/i915/intel_dp.c         Jani Nikula           2018-04-26  2900  }
-981a63eb2725ec drivers/gpu/drm/i915/intel_dp.c         Jani Nikula           2018-04-26  2901  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+>=20
+> >  	}
+> >
+> >  	drm_dbg_kms(aux->drm_dev, "DSC DPCD: %*ph\n",
+> >  		    DP_DSC_RECEIVER_CAP_SIZE,
+> >  		    dsc_dpcd);
+> > +	return 0;
+> >  }
+> >
+> >  static void init_dsc_overall_throughput_limits(struct intel_connector
+> > *connector, bool is_branch) @@ -4345,8 +4346,11 @@ void
+> intel_dp_get_dsc_sink_cap(u8 dpcd_rev,
+> >  	if (dpcd_rev < DP_DPCD_REV_14)
+> >  		return;
+> >
+> > -	intel_dp_read_dsc_dpcd(connector->dp.dsc_decompression_aux,
+> > -			       connector->dp.dsc_dpcd);
+> > +	if (intel_dp_read_dsc_dpcd(connector->dp.dsc_decompression_aux,
+> > +				   connector->dp.dsc_dpcd) < 0) {
+> > +		drm_err(display->drm, "Failed to read DSC DPCD register\n");
+> > +		return;
+> > +	}
+> >
+> >  	if (drm_dp_dpcd_readb(connector->dp.dsc_decompression_aux,
+> DP_FEC_CAPABILITY,
+> >  			      &connector->dp.fec_capability) < 0) { @@ -4376,7
+> +4380,9 @@
+> > static void intel_edp_get_dsc_sink_cap(u8 edp_dpcd_rev, struct
+> intel_connector *
+> >  	if (edp_dpcd_rev < DP_EDP_14)
+> >  		return;
+> >
+> > -	intel_dp_read_dsc_dpcd(connector->dp.dsc_decompression_aux,
+> connector->dp.dsc_dpcd);
+> > +	if (intel_dp_read_dsc_dpcd(connector->dp.dsc_decompression_aux,
+> > +				   connector->dp.dsc_dpcd) < 0)
+> > +		return;
+> >
+> >  	if (connector->dp.dsc_dpcd[0] &
+> DP_DSC_DECOMPRESSION_IS_SUPPORTED)
+> >  		init_dsc_overall_throughput_limits(connector, false);
+>=20
+> --
+> Jani Nikula, Intel
