@@ -2,34 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +I/gBTBte2mMEgIAu9opvQ
+	id UBw0N71ue2mMEgIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jan 2026 15:22:40 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jan 2026 15:29:17 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A11CFB0DFA
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jan 2026 15:22:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B7D6B0F28
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jan 2026 15:29:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 281E310E86F;
-	Thu, 29 Jan 2026 14:22:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D66E210E86D;
+	Thu, 29 Jan 2026 14:29:15 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iMuHsy3c";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E462310E873;
- Thu, 29 Jan 2026 14:22:36 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6063805719343330058=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E50010E874
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Jan 2026 14:29:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1769696955; x=1801232955;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=rH6nDmXf1+xTHI5+13GwAaIseMia/bFUNXNU7oCNsrU=;
+ b=iMuHsy3cSxL7K7LmAja3TZIFTLHWhNA4QqdJGSSNoBrzWFHsTttOcJfH
+ u09KrlhF7XEefhKilkv6lHvBn4HnkSIFFOrcKvTTbY4bwez4H1s0jdHZE
+ sxpUJBGgDCHg2lfwAD2jn8dLvIzDHkvs35bHLVS256kUWoQ8jdXCqx6O5
+ BJDoXEgL35p6ONcGhE3bK4e5r2dyFQkfM1lawMU+A2lwKsRzzktlWEZxB
+ vxqYuQFXCDLjMfFA+oUb9Yi6W/Suxt81/DgKJWvLyrmpIG2zhmOIrBjil
+ 5CXWv/inolrt5/JbCiVVWzMLkzUsNP+h7q5YprUYQ+3kaK/KAmzFRqFkb Q==;
+X-CSE-ConnectionGUID: CS4cLmKJSpq1qaqhvueOjw==
+X-CSE-MsgGUID: NBsz2JYWS+WcNoW/CoFWmA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="96400096"
+X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="96400096"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2026 06:29:14 -0800
+X-CSE-ConnectionGUID: 5/mlllJQT7+5E5buhQ7NJA==
+X-CSE-MsgGUID: RRPJdAWrQj2TeGA69DQL1A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="207705590"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.160])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2026 06:29:10 -0800
+Date: Thu, 29 Jan 2026 15:29:07 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>,
+ intel-gfx@lists.freedesktop.org,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>, maxime.ripard@kernel.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Subject: Re: [PATCH v6 0/2] Miscellaneous fixes in drm code
+Message-ID: <aXtus9Lh67K-iKH4@ashyti-mobl2.lan>
+References: <20260120154824.1864085-1-krzysztof.karas@intel.com>
+ <aXtFHm4Y94jf0YXd@ashyti-mobl2.lan>
+ <52e0096c310d346b23fa65b56837b4e0ecc09d58@intel.com>
+ <aXtinG2JIhLjNWK6@ashyti-mobl2.lan>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm=3A_unwind_drm_device_?=
- =?utf-8?q?registration_upon_error_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Krzysztof Karas" <krzysztof.karas@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 29 Jan 2026 14:22:36 -0000
-Message-ID: <176969655693.205866.1681220165166790975@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <svtvqbauaqamxyqc43s2lsj4cj7ql2dk45fzujh5sr5g7pi77a@vb2f5f7zixqr>
-In-Reply-To: <svtvqbauaqamxyqc43s2lsj4cj7ql2dk45fzujh5sr5g7pi77a@vb2f5f7zixqr>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aXtinG2JIhLjNWK6@ashyti-mobl2.lan>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,139 +80,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:andi.shyti@linux.intel.com,m:jani.nikula@linux.intel.com,m:krzysztof.karas@intel.com,m:sebastian.brzezinka@intel.com,m:krzysztof.niemiec@intel.com,m:maxime.ripard@kernel.org,m:maarten.lankhorst@linux.intel.com,m:tzimmermann@suse.de,m:joonas.lahtinen@linux.intel.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[andi.shyti@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andi.shyti@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:replyto,gitlab.freedesktop.org:url,patchwork.freedesktop.org:url]
-X-Rspamd-Queue-Id: A11CFB0DFA
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,ashyti-mobl2.lan:mid]
+X-Rspamd-Queue-Id: 5B7D6B0F28
 X-Rspamd-Action: no action
 
---===============6063805719343330058==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi,
 
-== Series Details ==
+On Thu, Jan 29, 2026 at 02:37:32PM +0100, Andi Shyti wrote:
+> On Thu, Jan 29, 2026 at 03:10:44PM +0200, Jani Nikula wrote:
+> > On Thu, 29 Jan 2026, Andi Shyti <andi.shyti@linux.intel.com> wrote:
+> > > Hi Krzysztof,
+> > >
+> > >> Krzysztof Karas (2):
+> > >>   drm: Warn before division by 0 would occur
+> > >>   drm: Avoid suspicious operations in drm_fb_dma_get_gem_addr()
+> > >> 
+> > >>  drivers/gpu/drm/drm_fb_dma_helper.c | 7 +++++--
+> > >>  1 file changed, 5 insertions(+), 2 deletions(-)
+> > >
+> > > merged to drm-intel-gt-next.
+> > 
+> > ...but neither commit belongs in drm-intel-gt-next, they belong in
+> > drm-misc-next!
+> > 
+> > Cc: drm-misc maintainers, how do you want to resolve this?
+> 
+> Ah... sorry! I was taken by the habit!
 
-Series: drm: unwind drm device registration upon error (rev4)
-URL   : https://patchwork.freedesktop.org/series/158641/
-State : success
+Joonas has reverted them. Thanks a lot, Joonas!
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_17904 -> Patchwork_158641v4
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158641v4/index.html
-
-Participating hosts (43 -> 39)
-------------------------------
-
-  Missing    (4): bat-dg2-13 bat-jsl-1 fi-snb-2520m bat-adls-6 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_17904 -> Patchwork_158641v4
-
-  CI-20190529: 20190529
-  CI_DRM_17904: 7d2c5f861ae9bbed1464e1a6aa39a9055139a4b0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8724: 6a10d1136a4e856cc4ceb5b899c32b03ed8ddc5e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_158641v4: 7d2c5f861ae9bbed1464e1a6aa39a9055139a4b0 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158641v4/index.html
-
---===============6063805719343330058==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: unwind drm device registration upon error (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158641/">https://patchwork.freedesktop.org/series/158641/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158641v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158641v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17904 -&gt; Patchwork_158641v4</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_158641v4/index.html</p>
-<h2>Participating hosts (43 -&gt; 39)</h2>
-<p>Missing    (4): bat-dg2-13 bat-jsl-1 fi-snb-2520m bat-adls-6 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17904 -&gt; Patchwork_158641v4</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17904: 7d2c5f861ae9bbed1464e1a6aa39a9055139a4b0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8724: 6a10d1136a4e856cc4ceb5b899c32b03ed8ddc5e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_158641v4: 7d2c5f861ae9bbed1464e1a6aa39a9055139a4b0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============6063805719343330058==--
+Andi
