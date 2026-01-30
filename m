@@ -2,61 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yKrSLXm9fGlVOgIAu9opvQ
+	id QIAJIjvDfGmgOgIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Jan 2026 15:17:29 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Jan 2026 15:42:03 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CD37BB850
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Jan 2026 15:17:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3DF3BBADD
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Jan 2026 15:42:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB0B510E9F6;
-	Fri, 30 Jan 2026 14:17:27 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gFXiQU3o";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id E383710EA04;
+	Fri, 30 Jan 2026 14:42:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1A1A10E256;
- Fri, 30 Jan 2026 14:17:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769782645; x=1801318645;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=HkNmYZO6flnpykDLCcdvUneB97y/hCHX7hqUPOZ8v1M=;
- b=gFXiQU3of32V4iFsOiwvdEZa8S99vJ1jaj6JnH+kE+lRBccToVFbTht6
- 9VJ1FsbhplayvkT9tnSlR7kbA9oPXLPijNnmIbl/9/y+vn2jaN+7S1rsc
- kszlihHsK7no1hL4BO8DtDmwo+imWMdnvT4jbDtZnzcQVsv8mzzZhEhSg
- B0QQSpB0hbQ1iG9fQMX9SzQrzXTKuwLodU6DZ5C/S+cZ7CFmm/VMfenpF
- vHJFnP/bLAumqlm/n7inP0mlzXfg9qfdGbTQSGRddnHN0FamDg2dWGF28
- SomRe8Ri11yAIAiQ5bPiCvwzpI+qXkNY41wfsfCcAL09pOrpUGsUkjzBd A==;
-X-CSE-ConnectionGUID: 2g3UZ3+hQ3K8vlp/wb84eQ==
-X-CSE-MsgGUID: IA1jb1lbRXmBM28kLw7dVw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="88606295"
-X-IronPort-AV: E=Sophos;i="6.21,263,1763452800"; d="scan'208";a="88606295"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2026 06:17:25 -0800
-X-CSE-ConnectionGUID: sFa1IqjERcmEpoq+spwTcA==
-X-CSE-MsgGUID: heH+Np2vSI2wBoSsF1C/0Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,263,1763452800"; d="scan'208";a="213757508"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by fmviesa004.fm.intel.com with ESMTP; 30 Jan 2026 06:17:24 -0800
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: daniele.ceraolospurio@intel.com,
-	shuicheng.lin@intel.com
-Subject: [PATCH v2] drm/xe/guc: Fix kernel-doc warning in GuC scheduler ABI
- header
-Date: Fri, 30 Jan 2026 19:22:10 +0530
-Message-Id: <20260130135210.2659200-1-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AFEC10EA04;
+ Fri, 30 Jan 2026 14:41:59 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============9035539920403846341=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/power=5Fwell=3A_?=
+ =?utf-8?q?Enable_workaround_for_DSS_clock_gating_issue?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mika Kahola" <mika.kahola@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 30 Jan 2026 14:41:59 -0000
+Message-ID: <176978411962.210706.5735084180503136818@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260130134534.63118-1-mika.kahola@intel.com>
+In-Reply-To: <20260130134534.63118-1-mika.kahola@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,80 +42,158 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_TLS_LAST(0.00)[];
-	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[chaitanya.kumar.borah@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	TO_DN_NONE(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 4CD37BB850
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[live:email,patchwork.freedesktop.org:url,workarounds:email,lists.freedesktop.org:replyto,01.org:url,gitlab.freedesktop.org:url]
+X-Rspamd-Queue-Id: C3DF3BBADD
 X-Rspamd-Action: no action
 
-The GuC scheduler ABI header contains a file-level comment that is not
-intended to document a kernel-doc symbol. Using kernel-doc comment
-syntax (/** */) triggers kernel-doc warnings.
+--===============9035539920403846341==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-With "-Werror", this causes the build to fail. Convert the comment to a
-regular block comment.
+== Series Details ==
 
-HDRTEST drivers/gpu/drm/xe/abi/guc_scheduler_abi.h
-Warning: drivers/gpu/drm/xe/abi/guc_scheduler_abi.h:11 This comment starts with '/**', but isn't a kernel-doc comment. Refer to Documentation/doc-guide/kernel-doc.rst
- * Generic defines required for registration with and submissions to the GuC
-1 warnings as errors
-make[6]: *** [drivers/gpu/drm/xe/Makefile:377: drivers/gpu/drm/xe/abi/guc_scheduler_abi.hdrtest] Error 3
-make[5]: *** [scripts/Makefile.build:544: drivers/gpu/drm/xe] Error 2
-make[4]: *** [scripts/Makefile.build:544: drivers/gpu/drm] Error 2
-make[3]: *** [scripts/Makefile.build:544: drivers/gpu] Error 2
-make[2]: *** [scripts/Makefile.build:544: drivers] Error 2
-make[1]: *** [/home/kbuild2/kernel/Makefile:2088: .] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
+Series: drm/i915/power_well: Enable workaround for DSS clock gating issue
+URL   : https://patchwork.freedesktop.org/series/160922/
+State : success
 
-v2:
- - Add Fixes tag (Daniele)
+== Summary ==
 
-Fixes: b0c5cf4f5917 ("drm/gt/guc: extract scheduler-related defines from guc_fwif.h")
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Reviewed-by: Shuicheng Lin <shuicheng.lin@intel.com>
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
----
- drivers/gpu/drm/xe/abi/guc_scheduler_abi.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+CI Bug Log - changes from CI_DRM_17911 -> Patchwork_160922v1
+====================================================
 
-diff --git a/drivers/gpu/drm/xe/abi/guc_scheduler_abi.h b/drivers/gpu/drm/xe/abi/guc_scheduler_abi.h
-index 513b22a87428..19ec89bf39c5 100644
---- a/drivers/gpu/drm/xe/abi/guc_scheduler_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_scheduler_abi.h
-@@ -8,7 +8,7 @@
- 
- #include <linux/types.h>
- 
--/**
-+/*
-  * Generic defines required for registration with and submissions to the GuC
-  * scheduler. Includes engine class/instance defines and context attributes
-  * (id, priority, etc)
--- 
-2.25.1
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160922v1/index.html
+
+Participating hosts (43 -> 41)
+------------------------------
+
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_160922v1 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [DMESG-FAIL][1] ([i915#12061]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17911/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160922v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_17911 -> Patchwork_160922v1
+
+  CI-20190529: 20190529
+  CI_DRM_17911: feea7da320aa6950f02d3c4633ab678e6e61f7e9 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8726: 8726
+  Patchwork_160922v1: feea7da320aa6950f02d3c4633ab678e6e61f7e9 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160922v1/index.html
+
+--===============9035539920403846341==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/power_well: Enable workaround for DSS clock gating issue</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160922/">https://patchwork.freedesktop.org/series/160922/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160922v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160922v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17911 -&gt; Patchwork_160922v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160922v1/index.html</p>
+<h2>Participating hosts (43 -&gt; 41)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_160922v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17911/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160922v1/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17911 -&gt; Patchwork_160922v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17911: feea7da320aa6950f02d3c4633ab678e6e61f7e9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8726: 8726<br />
+  Patchwork_160922v1: feea7da320aa6950f02d3c4633ab678e6e61f7e9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============9035539920403846341==--
