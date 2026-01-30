@@ -2,49 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oElPDae2fGm7OQIAu9opvQ
+	id sN/HKgG3fGm7OQIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Jan 2026 14:48:23 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Jan 2026 14:49:53 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 754E7BB548
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Jan 2026 14:48:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17163BB568
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Jan 2026 14:49:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97ABC10E9E1;
-	Fri, 30 Jan 2026 13:48:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A432810E146;
+	Fri, 30 Jan 2026 13:49:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A9uGUAE9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n8AMt4c/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49A2810E11C;
- Fri, 30 Jan 2026 13:48:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21EA410E0B7;
+ Fri, 30 Jan 2026 13:49:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769780900; x=1801316900;
+ t=1769780991; x=1801316991;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=CSxdz/3px0oprcrq2SLCbtoE5fxV6Kf2g7sTqmwLEsA=;
- b=A9uGUAE9yUnB8sgULGzVVGHiwfmhrNYU/LUz+s94iAmR6NP9SkVNCZZU
- 3ZG3fGnILl34hoH6kWTjcizSOjGzRKM/7bQ+uZqH6WnPZWonDPWQwsRIq
- tvE875g8oBQwlJkl8h86y5MbPvXBjEGT56g+GROTtdRblBxUIlG64ncdn
- OQCJXmVCH8kazmasdP0gmFTi2+g9Iy/4xj3rg1PcXdn97fIVYwxaMuuZ1
- 4sBiT/KpXJnN8yF/ZBbk4rlN4GxSokos2HIHNqzNvqtpczbjZuo1eZR4q
- F5uoiuHjV1HlTMbsAAt0O6tl6MKkpJtQYmc8pNIFBYE940fEWLhIVnxcG g==;
-X-CSE-ConnectionGUID: NzBSPdvwT0aq/Me7FLwanQ==
-X-CSE-MsgGUID: IMcJ882kT/CRCGCaFpi3pA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="70940212"
-X-IronPort-AV: E=Sophos;i="6.21,263,1763452800"; d="scan'208";a="70940212"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2026 05:48:19 -0800
-X-CSE-ConnectionGUID: dVTgkDRbR7iNRVqkG7kYZw==
-X-CSE-MsgGUID: liXDqo/yTNCc3IkiEGYXRw==
+ bh=Q4o6CmsDePCGGmgeL2EewxzfibSe5d+HQ8rdud317qI=;
+ b=n8AMt4c/l4S4n9ttyZ/50TQL+7o7l8x7KTig4Ne/EaJWjQhtPknC8Ain
+ tEjKW3ueeGuWHlv/NGow2tKK5a0ReXLu48e9/GuXoe1/qUAOa14uWCIrj
+ XGzvSjFwTCNC1yTzDgoX2AcZIJBlfiVjjFzIaA/PRSEjMyyf6EC4+uBkI
+ vk3VOI0Si4jvgF/zALECccQWgJKaVsskhoZjQyeVhPXIxikyJ5vQ6RjDi
+ Z/cOzHzLioQnVzj9uek4/5fckgroF0zSRg91pMnXvu0RJ9DOICEaMsoud
+ dLBiuJKKuIx7Y8eu54Tbjc3GcnE9gHyAPYJ/kW8KfM+ObBb+v8fdpYRrC w==;
+X-CSE-ConnectionGUID: 6rU6BzO8SnmAL3Ug9wxYoQ==
+X-CSE-MsgGUID: mGoDaOppR56rrjStSfFiwg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="82139871"
+X-IronPort-AV: E=Sophos;i="6.21,263,1763452800"; d="scan'208";a="82139871"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2026 05:49:50 -0800
+X-CSE-ConnectionGUID: c3A+jh+fTSu2vqtte1KUQg==
+X-CSE-MsgGUID: oKRx5FErSDKoJhS1qGtiyw==
 X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,263,1763452800"; d="scan'208";a="240123544"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.83])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2026 05:48:16 -0800
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2026 05:49:47 -0800
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: Krzysztof Karas <krzysztof.karas@intel.com>
 Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
@@ -53,16 +54,16 @@ Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  Andi Shyti <andi.shyti@linux.intel.com>,
  Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
  Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-Subject: Re: [PATCH i-g-t v2 1/6] lib/igt_device_scan: Don't print fake link
- bandwidth attributes
-Date: Fri, 30 Jan 2026 14:48:13 +0100
-Message-ID: <2762841.Isy0gbHreE@jkrzyszt-mobl2.ger.corp.intel.com>
+Subject: Re: [PATCH i-g-t v2 2/6] lib/igt_device_scan: Split out reusable part
+ of update_or_add_parent
+Date: Fri, 30 Jan 2026 14:49:44 +0100
+Message-ID: <8046332.lvqk35OSZv@jkrzyszt-mobl2.ger.corp.intel.com>
 Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
  80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <reh3pf5mdecfzaxftaucazxifjpg5nhusryzgwettt5rtks4ok@yh5lh6vbelf3>
+In-Reply-To: <yv43qczs55sghgbvhdz5jyan6upf7sgcckaslnli33jbz2m4kz@jypceu4xi5ig>
 References: <20260127100123.114516-8-janusz.krzysztofik@linux.intel.com>
- <20260127100123.114516-9-janusz.krzysztofik@linux.intel.com>
- <reh3pf5mdecfzaxftaucazxifjpg5nhusryzgwettt5rtks4ok@yh5lh6vbelf3>
+ <20260127100123.114516-10-janusz.krzysztofik@linux.intel.com>
+ <yv43qczs55sghgbvhdz5jyan6upf7sgcckaslnli33jbz2m4kz@jypceu4xi5ig>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="utf-8"
@@ -107,122 +108,115 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	RCPT_COUNT_SEVEN(0.00)[8];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,gitlab.freedesktop.org:url,jkrzyszt-mobl2.ger.corp.intel.com:mid]
-X-Rspamd-Queue-Id: 754E7BB548
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,jkrzyszt-mobl2.ger.corp.intel.com:mid]
+X-Rspamd-Queue-Id: 17163BB568
 X-Rspamd-Action: no action
 
 Hi Krzysztof,
 
-Thanks for looking at this.
-
-On Friday, 30 January 2026 13:53:02 CET Krzysztof Karas wrote:
+On Friday, 30 January 2026 14:36:46 CET Krzysztof Karas wrote:
 > Hi Janusz,
 > 
-> the code looks good, I am wondering if "fake" is appropriate
-> word for the descriptions below:
-> in a way the values are correct, but wrongly reported - they
-> belong to pci x1 bridge of the GPU. Maybe adding a short
-> sentence that the values reported always belong to pci x1
-> instead of the fastest active bridge would complete the message?
-> What do you think?
+> >  #define RETRIES_GET_PARENT 5
+> Now that you excluded the "parent" word from names in function
+> below, so it's only implicitly operating on parent devices, you
+> could change this name to RETRIES_GET_DEVICE.
 
-If the GPU device was a real PCIe endpoint with link bandwith limited to 
-2.5GT/s, 1x (max_link_speed, max_link_width), as reported, then that would be 
-the actually possible maximum bandwidth of the GPU to CPU link, I believe, not 
-that of the bridge upstream port.  Since Intel declares the link bandwidth of 
-the bridge upstream port should be referred to as correctly describing the 
-actual GPU to CPU link bandwidth then my understanding is that the values 
-reported by the GPU should be disregarded as not true (then fake).  I'm open 
-to calling those values with another word but fake, as long as that word 
-reflects their non truth status.
+OK.
 
 Thanks,
 Janusz
 
 > 
-> On 2026-01-27 at 10:54:18 +0100, Janusz Krzysztofik wrote:
-> > Users of Intel discrete graphics adapters are confused with fake
-> > information on PCIe link bandwidth (speed and size) of their GPU devices
-> > reported by tools like lspci or lsgpu.  That fake information is
-> > unfortunately provided by hardware, Linux PCI subsystem just exposes it
-> > untouched to upper layers, including userspace via sysfs, and userspace
-> > tools just report those fake values.
-> > 
-> > While we can't do much about the kernel side or general purpose userspace
-> > tools like lspci, we can try to address the issue with our lsgpu utility.
-> > 
-> > Correct link bandwidth attributes of a discrete GPU card can be obtained
-> > from the kernel by looking not at the PCI device of the GPU itself, only
-> > at a PCIe upstream port of the card's PCI bridge.  For integrity with
-> > content of the sysfs and with output from the other tools, we are not
-> > going to replace the fake information with that from the bridge upstream
-> > port, only show that port and its attributes themselves while listing
-> > devices.
-> > 
-> > Since the tool uses our udev based igt_device_scan library for identifying
-> > GPU devices and printing their properties and attributes, modifications
-> > that we need apply to that library.
-> > 
-> > As a first step, exclude the fake data from being printed.
-> > 
-> > v2: Keep dump_props_and_attrs() generic: hand over decision on omitting
-> >     link attributes to the caller, and implementation of the check to a
-> >     helper (Sebastian).
-> > 
-> > Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10753
-> > Cc: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-> > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> > ---
-> >  lib/igt_device_scan.c | 17 +++++++++++++++--
-> >  1 file changed, 15 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/lib/igt_device_scan.c b/lib/igt_device_scan.c
-> > index abd8ca209e..7ae64375b5 100644
-> > --- a/lib/igt_device_scan.c
-> > +++ b/lib/igt_device_scan.c
-> > @@ -602,7 +602,15 @@ static inline void _print_key_value(const char *k, 
-const char *v)
-> >  	printf("%-32s: %s\n", k, v);
-> >  }
+> Rest of the code looks good to me:
+> Reviewed-by: Krzysztof Karas <krzysztof.karas@intel.com>
+> 
+> > -/* For each drm igt_device add or update its parent igt_device to the array.
+> > - * As card/render drm devices mostly have same parent (vkms is an exception)
+> > - * link to it and update corresponding drm_card / drm_render fields.
+> > - */
+> > -static void update_or_add_parent(struct udev *udev,
+> > -				 struct udev_device *dev,
+> > -				 struct igt_device *idev,
+> > -				 bool limit_attrs)
+> > +
+> > +static struct igt_device *find_or_add_igt_device(struct udev *udev,
+> > +						 struct udev_device *dev,
+> > +						 bool limit_attrs)
+> >  {
+> > -	struct udev_device *parent_dev;
+> > -	struct igt_device *parent_idev;
+> > -	const char *subsystem, *syspath, *devname;
+> >  	int retries = RETRIES_GET_PARENT;
+> > +	const char *subsystem, *syspath;
+> > +	struct igt_device *idev;
 > >  
-> > -static void dump_props_and_attrs(const struct igt_device *dev)
-> > +static bool is_link_attr(const char *name)
-> > +{
-> > +	return !strcmp(name, "max_link_speed") ||
-> > +	       !strcmp(name, "max_link_width") ||
-> > +	       !strcmp(name, "current_link_speed") ||
-> > +	       !strcmp(name, "current_link_width");
+> > -	/*
+> > -	 * Get parent for drm node. It caches parent in udev device
+> > -	 * and will be destroyed along with the node.
+> > -	 */
+> > -	parent_dev = udev_device_get_parent(dev);
+> > -	igt_assert(parent_dev);
+> > -
+> > -	subsystem = udev_device_get_subsystem(parent_dev);
+> > -	syspath = udev_device_get_syspath(parent_dev);
+> > +	subsystem = udev_device_get_subsystem(dev);
+> > +	syspath = udev_device_get_syspath(dev);
+> >  
+> > -	parent_idev = igt_device_find(subsystem, syspath);
+> > -	while (!parent_idev && retries--) {
+> > +	idev = igt_device_find(subsystem, syspath);
+> > +	while (!idev && retries--) {
+> >  		/*
+> >  		 * Don't care about previous parent_dev, it is tracked
+> >  		 * by the child node. There's very rare race when driver module
+> > @@ -951,15 +939,41 @@ static void update_or_add_parent(struct udev *udev,
+> >  		 * only udev_device_new*() will scan sys directory and
+> >  		 * return fresh udev device.
+> >  		 */
+> > -		parent_dev = udev_device_new_from_syspath(udev, syspath);
+> > -		parent_idev = igt_device_new_from_udev(parent_dev, limit_attrs);
+> > -		udev_device_unref(parent_dev);
+> > +		dev = udev_device_new_from_syspath(udev, syspath);
+> > +		idev = igt_device_new_from_udev(dev, limit_attrs);
+> > +		udev_device_unref(dev);
+> >  
+> > -		if (parent_idev)
+> > -			igt_list_add_tail(&parent_idev->link, &igt_devs.all);
+> > +		if (idev)
+> > +			igt_list_add_tail(&idev->link, &igt_devs.all);
+> >  		else
+> >  			usleep(100000); /* arbitrary, 100ms should be enough */
+> >  	}
+> > +
+> > +	return idev;
 > > +}
 > > +
-> > +static void dump_props_and_attrs(const struct igt_device *dev, bool 
-omit_link)
-> >  {
-> >  	struct igt_map_entry *entry;
-> >  
-> > @@ -613,6 +621,10 @@ static void dump_props_and_attrs(const struct 
-igt_device *dev)
-> >  
-> >  	printf("\n[attributes]\n");
-> >  	igt_map_foreach(dev->attrs_map, entry) {
-> > +		/* omit link bandwidth attributes if requested */
-> > +		if (omit_link && is_link_attr(entry->key))
-> > +			continue;
+> > +/*
+> > + * For each drm igt_device add or update its parent igt_device to the array.
+> > + * As card/render drm devices mostly have same parent (vkms is an exception)
+> > + * link to it and update corresponding drm_card / drm_render fields.
+> > + */
+> > +static void update_or_add_parent(struct udev *udev,
+> > +				 struct udev_device *dev,
+> > +				 struct igt_device *idev,
+> > +				 bool limit_attrs)
+> > +{
+> > +	struct udev_device *parent_dev;
+> > +	struct igt_device *parent_idev;
+> > +	const char *devname;
 > > +
-> >  		_print_key_value((char *)entry->key, (char *)entry->data);
-> >  	}
-> >  	printf("\n");
-> > @@ -1366,7 +1378,8 @@ igt_devs_print_detail(struct igt_list_head *view,
-> >  			_print_key_value("codename", dev->codename);
-> >  		}
+> > +	/*
+> > +	 * Get parent for drm node. It caches parent in udev device
+> > +	 * and will be destroyed along with the node.
+> > +	 */
+> > +	parent_dev = udev_device_get_parent(dev);
+> > +	igt_assert(parent_dev);
+> > +
+> > +	parent_idev = find_or_add_igt_device(udev, parent_dev, limit_attrs);
+> >  	igt_assert(parent_idev);
 > >  
-> > -		dump_props_and_attrs(dev);
-> > +		/* omit fake link bandwidth attributes if a discrete card 
-*/
-> > +		dump_props_and_attrs(dev, dev->dev_type == 
-DEVTYPE_DISCRETE);
-> >  	}
-> >  }
-> >  
+> >  	devname = udev_device_get_devnode(dev);
 > 
 > 
 
