@@ -2,63 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eJC0FbYagWm0EAMAu9opvQ
+	id kG9nNLkagWm0EAMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 22:44:22 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 22:44:25 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04038D1BBF
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 22:44:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 058D2D1BC6
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 22:44:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B799110E472;
-	Mon,  2 Feb 2026 21:44:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB7AB10E489;
+	Mon,  2 Feb 2026 21:44:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gbWDyVPS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hIBW5fe6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FC7D10E472;
- Mon,  2 Feb 2026 21:44:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CF0210E49A;
+ Mon,  2 Feb 2026 21:44:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770068659; x=1801604659;
+ t=1770068660; x=1801604660;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=X3Jdk+aB7j8WBmvDYFK5IxhQRFVBJIfhTQQygLjXQiQ=;
- b=gbWDyVPScU0WKoUS43x54hSn5njyhOYi2Hqvgieh3jVP2V6yV6hfAQNh
- FBKaIPD1ZFyJA91ovugyD06MiGYM/i5WDJ26DDXRngr4kmqn3fHBCMsPV
- skjXqTAB372xKT4FAG3Yd9/u+nt0BpGTUJSN0iqNyBWMeR/fLRo0N7HjZ
- C+W55PswhblZ0660lM1jIif82s91dVlGVUGd21PKvPzU5YKl+peqmdaiy
- JQ/tNeqGCgXRwnQJxQ1bwAjeO48zQ1vBKa6ZxC7Y48XnXjav9FVdMf6YG
- 6yQd7MiElmE1HJL6vbtKDqoFO+/s5dtP8LvZyABuDSWwH1WxcuSAOWG8W w==;
-X-CSE-ConnectionGUID: Kt12GL8dR5+CJHmD82yZyw==
-X-CSE-MsgGUID: j+lLuuznQUu4WnCPc9YBBw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="58814352"
-X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="58814352"
+ bh=m2SQyYBRHQruoBB/Z3qAoxk2tuOXT2cTrvoWKkRYYq8=;
+ b=hIBW5fe6szm4KIaQ0c9JRMLY6aGyxIBJcu9M+/kYraSJmYPLIxTD2G8M
+ xAdrOE1JYtPMzc+WrOx4PWmbKB4IUmsjJiFZ3i/os/jZNx5SiH4RXMBEZ
+ 1v3HlUAJdphfqWyWehir66+goKPYFvoNGaUX29DRQ47T07DGc787wFKqb
+ Iu30TqSQmPySDLZPjfW7jmA//AH/oNPm7XHWmFIj91JYAIC2qzpkdWmpx
+ 6Kw8ISqDMRbkd7/7EjhcI0pANU7uF1CRznPGHT9y4XyznAfL5IRSsfhy0
+ j7sHxhKq9UIlgYyqmpRrB9HfpTtXMGz9NRVDNZNEnJf39fZurJDUlj29X w==;
+X-CSE-ConnectionGUID: Q185HXdcS/WGN9gHIg0juw==
+X-CSE-MsgGUID: 4jZEQkl0QcmWC6a97UljKw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="58814355"
+X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="58814355"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 13:44:19 -0800
-X-CSE-ConnectionGUID: 3OodLMIwQk+dbYTbUdeWvg==
-X-CSE-MsgGUID: 9ZFQLuFpSMGnUQq8qnNmxw==
+ 02 Feb 2026 13:44:20 -0800
+X-CSE-ConnectionGUID: YwrkHJLVQ8u/wgQ4+P48pA==
+X-CSE-MsgGUID: seDrr59xRoeqn30QBi6S0w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="209646857"
+X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="209646860"
 Received: from smoehrl-linux.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.221.51])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 13:44:17 -0800
+ 02 Feb 2026 13:44:19 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Mon, 02 Feb 2026 18:43:15 -0300
-Subject: [PATCH 09/16] drm/xe/xe3p_lpg: Extend 'group ID' mask size
+Date: Mon, 02 Feb 2026 18:43:16 -0300
+Subject: [PATCH 10/16] drm/xe/xe3p_lpg: Update LRC sizes
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260202-nvl-p-upstreaming-v1-9-653e4ff105dc@intel.com>
+Message-Id: <20260202-nvl-p-upstreaming-v1-10-653e4ff105dc@intel.com>
 References: <20260202-nvl-p-upstreaming-v1-0-653e4ff105dc@intel.com>
 In-Reply-To: <20260202-nvl-p-upstreaming-v1-0-653e4ff105dc@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>, 
- Matt Roper <matthew.d.roper@intel.com>
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>
 X-Mailer: b4 0.15-dev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -90,45 +89,66 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_THREE(0.00)[3];
 	FROM_NEQ_ENVFROM(0.00)[gustavo.sousa@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
 	NEURAL_HAM(-0.00)[-1.000];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 04038D1BBF
+X-Rspamd-Queue-Id: 058D2D1BC6
 X-Rspamd-Action: no action
 
-From: Matt Roper <matthew.d.roper@intel.com>
+Like with previous generations, the engine context images for of both
+RCS and CCS in Xe3p_LPG contain a common layout at the end for the
+context related to the "Compute Pipeline".
 
-Xe3p_LPG extends the 'group ID' register mask by one bit.  Since the new
-upper bit (12) was unused on previous platforms, we can safely extend
-the existing mask size without worrying about adding conditional version
-checks to the register programming.
+The size of the memory area written to such section varies; it depends
+on the type of preemption has taken place during the execution and type
+of command streamer instruction that was used on the pipeline. For
+Xe3p_LPG, the maximum possible size, including NOOPs for cache line
+alignment, is 4368 dwords, which would be the case of a mid-thread
+preemption during the execution of a COMPUTE_WALKER_2 instruction.
 
-Bspec: 67175
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+The maximum size has increased in such a way that we need to update
+xe_gt_lrc_size() to match the new sizing requirement. When we add that
+to the engine-specific parts, we have:
+
+  - RCS context image: 6672 dwords = 26688 bytes -> 7 pages
+  - CCS context image: 5024 dwords = 20096 bytes -> 5 pages
+
+Bspec: 65182, 55793, 73590
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gt_regs.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_lrc.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index b5a7cc45f13d..19f053a7f9be 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -58,7 +58,7 @@
- #define   MCR_SLICE(slice)			REG_FIELD_PREP(MCR_SLICE_MASK, slice)
- #define   MCR_SUBSLICE_MASK			REG_GENMASK(26, 24)
- #define   MCR_SUBSLICE(subslice)		REG_FIELD_PREP(MCR_SUBSLICE_MASK, subslice)
--#define   MTL_MCR_GROUPID			REG_GENMASK(11, 8)
-+#define   MTL_MCR_GROUPID			REG_GENMASK(12, 8)
- #define   MTL_MCR_INSTANCEID			REG_GENMASK(3, 0)
- 
- #define PS_INVOCATION_COUNT			XE_REG(0x2348)
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index e58eb8b9db78..38f648b98868 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -113,13 +113,17 @@ size_t xe_gt_lrc_hang_replay_size(struct xe_gt *gt, enum xe_engine_class class)
+ 	/* Engine context image */
+ 	switch (class) {
+ 	case XE_ENGINE_CLASS_RENDER:
+-		if (GRAPHICS_VER(xe) >= 20)
++		if (GRAPHICS_VERx100(xe) >= 3510)
++			size += 7 * SZ_4K;
++		else if (GRAPHICS_VER(xe) >= 20)
+ 			size += 3 * SZ_4K;
+ 		else
+ 			size += 13 * SZ_4K;
+ 		break;
+ 	case XE_ENGINE_CLASS_COMPUTE:
+-		if (GRAPHICS_VER(xe) >= 20)
++		if (GRAPHICS_VERx100(xe) >= 3510)
++			size += 5 * SZ_4K;
++		else if (GRAPHICS_VER(xe) >= 20)
+ 			size += 2 * SZ_4K;
+ 		else
+ 			size += 13 * SZ_4K;
 
 -- 
 2.52.0
