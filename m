@@ -2,65 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ULLsKbHKgGl3AgMAu9opvQ
+	id gCOiBYvNgGl3AgMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 17:02:57 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 17:15:07 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D25FCE98C
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 17:02:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45BACCEC92
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 17:15:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 898DF10E501;
-	Mon,  2 Feb 2026 16:02:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E3E310E527;
+	Mon,  2 Feb 2026 16:15:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fP9isPWp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HQnbwgj+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3926510E501;
- Mon,  2 Feb 2026 16:02:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0674010E526;
+ Mon,  2 Feb 2026 16:15:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770048174; x=1801584174;
+ t=1770048902; x=1801584902;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=93vC35IoasH+ZPtHd4L8/1MfGfVTntkR6ZOHyPwamGo=;
- b=fP9isPWpPXoGEwXOA8geQkA1dHF8JEzPyzNfLGYX35sOYokZ7KnWUuhj
- HqXSmIEtCuXs746h6lZ5JWQ3wwEiHbpg/shxFnnDP7rt9Tvfxga93U7LQ
- QtPJAgzzJ/937x0kkF7fnozwFSA0HDcYNLg8RoW/YxPGnGGwcbnF7vMdi
- aoDiTAsFghA0OYtiYOXNje0ElIFPzA9+GWYzI3Va/7ZxLL8hrzdMOfdW1
- hhdqrtaxmGsf8nTpkan+KAK0zWZtZcC5R622JsXjluCgESoe84OKwUYvd
- JdNe4TZPgDkTxOJlddlHj0bnOeRH4usvyc0Lx8/SkcTOuDQ3B5tsZMASA g==;
-X-CSE-ConnectionGUID: P80HNB26RbyqLkC5Ppc/1A==
-X-CSE-MsgGUID: 4gcCFacaTEq7Ip3iBy+1UA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="71105848"
-X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="71105848"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 08:02:53 -0800
-X-CSE-ConnectionGUID: 0+LfPTEaR96bWLI8YVAiBQ==
-X-CSE-MsgGUID: GNlrpl3KR+CjXe8/Ci1geA==
+ bh=MNtshAPjRtVYIcKAHTqWNLU0nQa9mBXz4LVFP2FXAQE=;
+ b=HQnbwgj+Bxl2LVkIE2HfipMdlLWBaOBzh4vA+Vf8XBKTW+tSe+0bwLkM
+ SwbxtSQ9HRC63Fj0hWWWhwKMAJbtAJAaVOZq3+fUzEeUlKEPCONTTe8JE
+ DgsCyjzAoSVROEcoOaQfaex6+08IN6htXi2QfQX5GmdN3pz48v3PQwO4g
+ nMM1t08amlOzK/OQjSRto3sMvU9Ljf1n3gHviang599qvGz1+AAo1t3s0
+ ASdBW2eHDYQwPQs0+MKBYkZk69BSHC5Y1BrXOW59Yv2n4MKFRelapODpj
+ PpBEHAcS5FVhZlSs4dgLkTHp4wuRHG0Sz91/bkXFeikGHHdxRcovbhhAy g==;
+X-CSE-ConnectionGUID: ozxky5V1RIizo/WB62+2Bw==
+X-CSE-MsgGUID: 04NKYq/gQJC2E/iLZa04UQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="71262815"
+X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="71262815"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2026 08:14:22 -0800
+X-CSE-ConnectionGUID: soP2zpFRRvaCj35G8AFABA==
+X-CSE-MsgGUID: 42HwYyEFS5uGcXECEdG/1g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="209559118"
+X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="213678310"
 Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.244.247])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 08:02:49 -0800
-Date: Mon, 2 Feb 2026 18:02:46 +0200
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2026 08:14:15 -0800
+Date: Mon, 2 Feb 2026 18:14:05 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  jouni.hogander@intel.com
-Subject: Re: [PATCH 2/4] drm/i915/vrr: Avoid vrr for PCON with HDMI2.1 sink
-Message-ID: <aYDKpm3SKZPyZMnA@intel.com>
+Subject: Re: [PATCH 3/4] drm/i915/dp: Allow AS_SDP only if panel replay +
+ auxless alpm is supported
+Message-ID: <aYDNTXVr1CUQZcKn@intel.com>
 References: <20251111093007.3771409-1-ankit.k.nautiyal@intel.com>
- <20251111093007.3771409-3-ankit.k.nautiyal@intel.com>
+ <20251111093007.3771409-4-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251111093007.3771409-3-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20251111093007.3771409-4-ankit.k.nautiyal@intel.com>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
@@ -79,72 +80,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.28 / 15.00];
+X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_RHS_MATCH_TO(1.00)[];
-	R_MIXED_CHARSET(0.59)[subject];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
 	HAS_ORG_HEADER(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 3D25FCE98C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
+X-Rspamd-Queue-Id: 45BACCEC92
 X-Rspamd-Action: no action
 
-On Tue, Nov 11, 2025 at 03:00:05PM +0530, Ankit Nautiyal wrote:
-> Currently we do not support VRR with HDMI so skip vrr compute
-> config step for DP PCON with HDMI sink.
+On Tue, Nov 11, 2025 at 03:00:06PM +0530, Ankit Nautiyal wrote:
+> Adaptive Sync SDP is required when Panel replay is active and for
+> supporting VRR on PCON.
+> 
+> Since VRR on PCON still needs some effort, enable adaptive sync SDP only
+> when Panel replay with ALPM-Auxless is supported.
+> 
+> Set the AS_SDP mode for Fixed Vtotal mode for fixed refresh rate case.
+> 
+> v2: Remove redundant target_rr assignments. (Ville)
 > 
 > Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_vrr.c | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_dp.c | 15 ++++++++++++---
+>  1 file changed, 12 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index 00cbc126fb36..7a58e1f8acea 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -42,7 +42,14 @@ bool intel_vrr_is_capable(struct intel_connector *connector)
->  	case DRM_MODE_CONNECTOR_DisplayPort:
->  		if (connector->mst.dp)
->  			return false;
-> +
->  		intel_dp = intel_attached_dp(connector);
-> +		/*
-> +		 * VRR via PCON is currently unsupported.
-> +		 * TODO: Add support for VRR for DP HDMI2.1 PCON.
-> +		 */
-> +		if (intel_dp_has_hdmi_sink(intel_dp))
-
-That just checks what the EDID says about HDMI support, it
-doesn't really mean anything wrt. PCON vs. not.
-
-So if we eg. have a DVI sink attach through a PCON we won't
-bail out here.
-
-> +			return false;
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 92a553a76b57..2852a1d9f157 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2935,7 +2935,15 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
+>  	const struct drm_display_mode *adjusted_mode =
+>  		&crtc_state->hw.adjusted_mode;
 >  
->  		if (!drm_dp_sink_can_do_video_without_timing_msa(intel_dp->dpcd))
->  			return false;
+> -	if (!crtc_state->vrr.enable || !intel_dp->as_sdp_supported)
+> +	if (!intel_dp->as_sdp_supported)
+> +		return;
+> +
+> +	/*
+> +	 * Support Adaptive-Sync SDP only for PR+AUX-less ALPM for now.
+> +	 * It can be enabled for PCON + VRR, but that is currently not supported.
+> +	 */
+> +	if (!CAN_PANEL_REPLAY(intel_dp) ||
+> +	    !intel_alpm_aux_less_wake_supported(intel_dp))
+>  		return;
+>  
+>  	crtc_state->infoframes.enable |= intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC);
+> @@ -2949,9 +2957,10 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
+>  		as_sdp->mode = DP_AS_SDP_FAVT_TRR_REACHED;
+>  		as_sdp->target_rr = drm_mode_vrefresh(adjusted_mode);
+>  		as_sdp->target_rr_divider = true;
+> -	} else {
+> +	} else if (crtc_state->vrr.enable) {
+>  		as_sdp->mode = DP_AS_SDP_AVT_DYNAMIC_VTOTAL;
+> -		as_sdp->target_rr = 0;
+> +	} else {
+> +		as_sdp->mode = DP_AS_SDP_AVT_FIXED_VTOTAL;
+
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+But we're still not configuring DOWNSPREAD_CTRL correctly so PR+VRR
+seems to be busted.
+
+>  	}
+>  }
+>  
 > -- 
 > 2.45.2
 
