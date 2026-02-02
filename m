@@ -2,58 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cIVjJDqCgGnE8wIAu9opvQ
+	id uNfWKjyCgGnE8wIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 11:53:46 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 11:53:48 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40D01CB45D
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 11:53:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24DC6CB467
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 11:53:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C518510E450;
-	Mon,  2 Feb 2026 10:53:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E91910E459;
+	Mon,  2 Feb 2026 10:53:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g/SEokI0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="heZoNHjJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12AAA10E459;
- Mon,  2 Feb 2026 10:53:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F27C10E461;
+ Mon,  2 Feb 2026 10:53:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770029623; x=1801565623;
+ t=1770029625; x=1801565625;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=WuMtUTAJJRh06BZUXwxkYcG3bsX5kVhpudtMh/k9KCw=;
- b=g/SEokI0ImsqIekncvyoemPVbz6/MwLBZ+qZmqxVqL52szUXfBWnKTwj
- fAdqVNIQRuTyLs2bwUJm0Cni1b41TK8GocxBsFzE6ZeWXLtRxFrMEt0Eo
- sG2kwhefo7Fr/pge5dRkwkSt6Lz4st6YPNSsHn9e9sRj5Gx+l07SRvj44
- 86C9DyZXsm4433BP9lyuReMXlzl49E4mvR8AujbT+YQE1OW7PcQLw7s4F
- +ql0faGlyyfrjI/McEwgmk+HN4vY6y64rqB5QvIX4UXXeu9kcBK/zWz37
- 96oZqC2mrxdcr2ZhJz6FwxzQv791nCm2jLeNp+yCrhNtqwthRcOErzaQ2 A==;
-X-CSE-ConnectionGUID: FKDXuEFdTTakZP7XElfV0Q==
-X-CSE-MsgGUID: nHZrTvhrT9+5y8LWOk2aGQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11689"; a="70385058"
-X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="70385058"
+ bh=sbv6ZABMYjVYqDIp9nrNZnWy3JNqlXWs2ju7eEhcBYo=;
+ b=heZoNHjJXgwS+nvEbippHUGId3LYVeLz4Pui3kT0PMLPBLu/w4DUlXO2
+ 451etKkTQty1RHzwo/Mq8IZDMYL2O4jJyxO+ndbU0y7hPJSCOMf1Yll74
+ pcvZNCMM7Akm3b/FqIFszVGykwYPORAkfJA2qHX3Zoq6eHNv8/8E3xscw
+ +k7Iwk8U4Tzu/I8k2R4w2d7RtC93HqoJYeBp8wdaNzEtso78UV/fAz6md
+ 5SmPwRECNVXrkYqQEjbdzyLHtPDyDVrMWlccPqJeTOmb+GMZChzucCeSC
+ onNbfdzpKhicJgrh7iZkDpOFtU9szUwvtwZdiDwXqRksh8nieyMZrXVKe g==;
+X-CSE-ConnectionGUID: VUZptuWCQlu/psdD5IptLg==
+X-CSE-MsgGUID: XbaR+KsrS3aRn5YSvyWb3A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11689"; a="70385068"
+X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="70385068"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 02:53:43 -0800
-X-CSE-ConnectionGUID: jm96ReXoRmaDD2dkt0TVfA==
-X-CSE-MsgGUID: k3mdZQxVQEmD3AgcL6AGyA==
+ 02 Feb 2026 02:53:45 -0800
+X-CSE-ConnectionGUID: kYqQ3kliSfuX1r1KMgV+kg==
+X-CSE-MsgGUID: UfEswtIqT4GPEqteFF2x+g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="232419880"
+X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="232419891"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 02:53:41 -0800
+ 02 Feb 2026 02:53:43 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@linux.intel.com, imre.deak@intel.com,
+ Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 15/17] drm/i915/dp: Add helpers for joiner candidate loops
-Date: Mon,  2 Feb 2026 16:07:29 +0530
-Message-ID: <20260202103731.357416-16-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 16/17] drm/i915/display: Add upper limit check for pixel clock
+Date: Mon,  2 Feb 2026 16:07:30 +0530
+Message-ID: <20260202103731.357416-17-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260202103731.357416-1-ankit.k.nautiyal@intel.com>
 References: <20260202103731.357416-1-ankit.k.nautiyal@intel.com>
@@ -95,162 +96,87 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_FIVE(0.00)[6];
 	NEURAL_HAM(-0.00)[-1.000];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 40D01CB45D
+X-Rspamd-Queue-Id: 24DC6CB467
 X-Rspamd-Action: no action
 
-Introduce for_each_joiner_candidate(), intel_dp_joiner_candidate_valid()
-and intel_dp_joiner_candidate_valid() to remove duplicated joiner
-enumeration and validity checks across DP SST and MST paths.
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 
-Suggested-by: Imre Deak <imre.deak@intel.com>
+Add upper limit check for pixel clock for DISPLAY_VER >= 30.
+Limits don't apply when DSC is enabled.
+
+The helper returns the upper limit for the platforms, capped to the
+max dotclock (khz).
+
+For the currently supported versions of HDMI, pixel clock is already
+limited to 600Mhz so nothing needs to be done there as of now.
+
+v2:
+ - Add this limit to the new helper.
+v3:
+ - Rename helper to intel_max_uncompressed_dotclock(). (Imre)
+ - Limit only for PTL and cap the limit to max_dotclock. (Imre)
+
+BSpec: 49199, 68912
+Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c     | 44 ++++++++++-----------
- drivers/gpu/drm/i915/display/intel_dp.h     |  7 ++++
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 25 +-----------
- 3 files changed, 29 insertions(+), 47 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 11 +++++++++++
+ drivers/gpu/drm/i915/display/intel_display.h |  1 +
+ drivers/gpu/drm/i915/display/intel_dp.c      |  3 +++
+ 3 files changed, 15 insertions(+)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 7491e00e3858..9cfeb5530fd8 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -8001,6 +8001,17 @@ void intel_setup_outputs(struct intel_display *display)
+ 	drm_helper_move_panel_connectors_to_head(display->drm);
+ }
+ 
++int intel_max_uncompressed_dotclock(struct intel_display *display)
++{
++	int max_dotclock = display->cdclk.max_dotclk_freq;
++	int limit = max_dotclock;
++
++	if (DISPLAY_VER(display) >= 30)
++		limit = 1350000;
++
++	return min(max_dotclock, limit);
++}
++
+ static int max_dotclock(struct intel_display *display)
+ {
+ 	int max_dotclock = display->cdclk.max_dotclk_freq;
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index 4cced16af8ce..552a59d19e0f 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -462,6 +462,7 @@ void intel_cpu_transcoder_get_m2_n2(struct intel_crtc *crtc,
+ 				    struct intel_link_m_n *m_n);
+ int intel_dotclock_calculate(int link_freq, const struct intel_link_m_n *m_n);
+ int intel_crtc_dotclock(const struct intel_crtc_state *pipe_config);
++int intel_max_uncompressed_dotclock(struct intel_display *display);
+ enum intel_display_power_domain intel_port_to_power_domain(struct intel_digital_port *dig_port);
+ enum intel_display_power_domain
+ intel_aux_power_domain(struct intel_digital_port *dig_port);
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 6329004f56bc..a44db730e45e 100644
+index a44db730e45e..4be563a62f31 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1492,19 +1492,9 @@ intel_dp_mode_valid(struct drm_connector *_connector,
- 	 * over candidate pipe counts and evaluate each combination.
- 	 */
- 	status = MODE_CLOCK_HIGH;
--	for (num_joined_pipes = 1; num_joined_pipes <= I915_MAX_PIPES; num_joined_pipes++) {
-+	for_each_joiner_candidate(connector, mode, num_joined_pipes) {
- 		int dsc_slice_count = 0;
+@@ -1428,6 +1428,9 @@ bool intel_dp_dotclk_valid(struct intel_display *display,
+ 									 target_clock,
+ 									 htotal,
+ 									 dsc_slice_count);
++	else
++		effective_dotclk_limit =
++			intel_max_uncompressed_dotclock(display) * num_joined_pipes;
  
--		if (connector->force_joined_pipes &&
--		    num_joined_pipes != connector->force_joined_pipes)
--			continue;
--
--		if (!intel_dp_can_join(display, num_joined_pipes))
--			continue;
--
--		if (mode->hdisplay > num_joined_pipes * intel_dp_max_hdisplay_per_pipe(display))
--			continue;
--
- 		status = intel_pfit_mode_valid(display, mode, output_format, num_joined_pipes);
- 		if (status != MODE_OK)
- 			continue;
-@@ -2888,7 +2878,6 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
- 			     struct drm_connector_state *conn_state,
- 			     bool respect_downstream_limits)
- {
--	struct intel_display *display = to_intel_display(encoder);
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct intel_connector *connector =
- 		to_intel_connector(conn_state->connector);
-@@ -2902,18 +2891,7 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
- 	    !intel_dp_supports_fec(intel_dp, connector, crtc_state))
- 		return -EINVAL;
- 
--	for (num_joined_pipes = 1; num_joined_pipes <= I915_MAX_PIPES; num_joined_pipes++) {
--		if (connector->force_joined_pipes &&
--		    num_joined_pipes != connector->force_joined_pipes)
--			continue;
--
--		if (!intel_dp_can_join(display, num_joined_pipes))
--			continue;
--
--		if (adjusted_mode->hdisplay >
--		    num_joined_pipes * intel_dp_max_hdisplay_per_pipe(display))
--			continue;
--
-+	for_each_joiner_candidate(connector, adjusted_mode, num_joined_pipes) {
- 		/*
- 		 * NOTE:
- 		 * The crtc_state->joiner_pipes should have been set at the end
-@@ -7223,3 +7201,21 @@ int intel_dp_sdp_min_guardband(const struct intel_crtc_state *crtc_state,
- 
- 	return sdp_guardband;
+ 	return target_clock <= effective_dotclk_limit;
  }
-+
-+bool intel_dp_joiner_candidate_valid(struct intel_connector *connector,
-+				     int hdisplay,
-+				     int num_joined_pipes)
-+{
-+	struct intel_display *display = to_intel_display(connector);
-+
-+	if (!intel_dp_can_join(display, num_joined_pipes))
-+		return false;
-+
-+	if (hdisplay > num_joined_pipes * intel_dp_max_hdisplay_per_pipe(display))
-+		return false;
-+
-+	if (connector->force_joined_pipes && connector->force_joined_pipes != num_joined_pipes)
-+		return false;
-+
-+	return true;
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index 95a38763a367..ff527b351de0 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -229,5 +229,12 @@ bool intel_dp_dotclk_valid(struct intel_display *display,
- 			   int htotal,
- 			   int dsc_slice_count,
- 			   int num_joined_pipes);
-+bool intel_dp_joiner_candidate_valid(struct intel_connector *connector,
-+				     int hdisplay,
-+				     int num_joined_pipes);
-+
-+#define for_each_joiner_candidate(__connector, __mode, __num_joined_pipes) \
-+	for ((__num_joined_pipes) = 1; (__num_joined_pipes) <= (I915_MAX_PIPES); (__num_joined_pipes)++) \
-+		for_each_if(intel_dp_joiner_candidate_valid(__connector, (__mode)->hdisplay, __num_joined_pipes))
- 
- #endif /* __INTEL_DP_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 8bd3128add0e..29713075e413 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -720,18 +720,7 @@ static int mst_stream_compute_config(struct intel_encoder *encoder,
- 	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
- 	pipe_config->has_pch_encoder = false;
- 
--	for (num_joined_pipes = 1; num_joined_pipes <= I915_MAX_PIPES; num_joined_pipes++) {
--		if (connector->force_joined_pipes &&
--		    num_joined_pipes != connector->force_joined_pipes)
--			continue;
--
--		if (!intel_dp_can_join(display, num_joined_pipes))
--			continue;
--
--		if (adjusted_mode->hdisplay >
--		    num_joined_pipes * intel_dp_max_hdisplay_per_pipe(display))
--			continue;
--
-+	for_each_joiner_candidate(connector, adjusted_mode, num_joined_pipes) {
- 		if (num_joined_pipes > 1)
- 			pipe_config->joiner_pipes = GENMASK(crtc->pipe + num_joined_pipes - 1,
- 							    crtc->pipe);
-@@ -1535,19 +1524,9 @@ mst_connector_mode_valid_ctx(struct drm_connector *_connector,
- 	}
- 
- 	*status = MODE_CLOCK_HIGH;
--	for (num_joined_pipes = 1; num_joined_pipes <= I915_MAX_PIPES; num_joined_pipes++) {
-+	for_each_joiner_candidate(connector, mode, num_joined_pipes) {
- 		int dsc_slice_count = 0;
- 
--		if (connector->force_joined_pipes &&
--		    num_joined_pipes != connector->force_joined_pipes)
--			continue;
--
--		if (!intel_dp_can_join(display, num_joined_pipes))
--			continue;
--
--		if (mode->hdisplay > num_joined_pipes * intel_dp_max_hdisplay_per_pipe(display))
--			continue;
--
- 		if (intel_dp_has_dsc(connector) &&
- 		    drm_dp_sink_supports_fec(connector->dp.fec_capability)) {
- 			/*
 -- 
 2.45.2
 
