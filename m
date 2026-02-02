@@ -2,59 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CPdpHh6CgGnE8wIAu9opvQ
+	id eNVBBx+CgGnE8wIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 11:53:18 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 11:53:19 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7322CB3DA
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 11:53:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DEEB6CB3E1
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 11:53:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00AF310E420;
-	Mon,  2 Feb 2026 10:53:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 584F310E430;
+	Mon,  2 Feb 2026 10:53:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dq2YrfOA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bbA5o85A";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60BEE10E23B;
- Mon,  2 Feb 2026 10:53:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2BD810E413;
+ Mon,  2 Feb 2026 10:53:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770029594; x=1801565594;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=pf7K+xZyNSaQrsjPOC4Md6AwU3Rr94tQPCPmgwDWNlA=;
- b=dq2YrfOAMaWaD6I2WrDkFCIGt3x+TKokkXZRXeABfRU26jzDFk36J4ls
- CwTBGP2Zt62OQ1t8Y4SFRgYsSHLGvImUANE7YkEiM/FjFk9OAbry0mVx5
- SJFQ58Py38VZlsUDQdIN2kNHlMu2zGq9dM/L5SsDOwuFAlAVN2kCdevGd
- T5TBEZQvmK5R4WccpI42Jwakvc2LSAAzAIa/KB2E1bKDm4l+u6m4eGUAc
- /U4XeI2Us95+ig2Tx+ZQ0ASMHBZLUVXgeVLeE0JKe1eWSWMMz75tpuxO3
- dJ4WQEwvF79yhRsI5916CMQr/8qWwcs/jFLyRD1Ahasg6hgzQ0oi5laJx g==;
-X-CSE-ConnectionGUID: X4dSbwZ/QvehifA+ynGUfg==
-X-CSE-MsgGUID: MDoYfqBrQDadG1w6hIGcDA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11689"; a="70384996"
-X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="70384996"
+ t=1770029596; x=1801565596;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=ZZ939Trd59/yoiKHWZBFAtXcOEs4sg+Hj1UB1HbosEw=;
+ b=bbA5o85AZjagbUHU7ULTKnk7M7qXsucjkZBVV594L5gA317iwsR6EZGP
+ RsYQMANsWlOi5nEw2zg0je2RJXToZN1Vs+xGGv79PH5QRz9A/zMlc4AVW
+ XPAC4MBACpgMliT7rZ51VhT+a1S44BxH5+5FtWb5l7odO+tQ3va+ll8hU
+ uENVnhc17BfujGb1WDvkPvWMGKe2UfhDC8yTKJnv05DgiXagxfHNb4E7Y
+ bqRR8AnXr77lsKAd++3qYSv9lGX6Yf2v0kL/K1nUpaWPT5+LKy7lZoC+I
+ uOz7tAteSwpnXyuGUX2oQxi2ZW+PROUz0FTpTSLWSYFWQl7cN+b2WixqC Q==;
+X-CSE-ConnectionGUID: KOyu4Db1Sm+pwMau9l2ojg==
+X-CSE-MsgGUID: E2AVB3OZRL+Hgf1kwbeH2g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11689"; a="70384998"
+X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="70384998"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 02:53:14 -0800
-X-CSE-ConnectionGUID: lRqI6nDGTtu72RYtHNDN3w==
-X-CSE-MsgGUID: FKT2MdYLQoG+lPseY2GW5w==
+ 02 Feb 2026 02:53:16 -0800
+X-CSE-ConnectionGUID: kUOgNQqKRg6ZLEmzWZubZQ==
+X-CSE-MsgGUID: i8ckfipmS7qHsPR9A/wNUg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="232419718"
+X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="232419735"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 02:53:12 -0800
+ 02 Feb 2026 02:53:14 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@linux.intel.com, imre.deak@intel.com,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 00/17] Account for DSC bubble overhead for horizontal slices
-Date: Mon,  2 Feb 2026 16:07:14 +0530
-Message-ID: <20260202103731.357416-1-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 01/17] drm/i915/dp: Early reject bad hdisplay in
+ intel_dp_mode_valid
+Date: Mon,  2 Feb 2026 16:07:15 +0530
+Message-ID: <20260202103731.357416-2-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20260202103731.357416-1-ankit.k.nautiyal@intel.com>
+References: <20260202103731.357416-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -96,116 +99,41 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCPT_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-1.000];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: A7322CB3DA
+X-Rspamd-Queue-Id: DEEB6CB3E1
 X-Rspamd-Action: no action
 
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Move check for bad hdisplay early as it is independent on other checks.
 
-When DSC is enabled on a pipe, the pipe pixel rate input to cdclk frequency
-and pipe joiner calculations needs to be adjusted to account for
-compression overhead: specifically, the "bubbles" added at each horizontal
-slice boundary. This overhead has always existed, even on earlier
-platforms, but was not previously accounted for.
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-Currently, the number of joined pipes is computed much earlier than the
-decision to use DSC: both during the mode_valid phase for each mode and in
-the compute_config phase for a given mode. As a result, the DSC bubble
-overhead cannot be considered when determining the number of pipes to join,
-which may lead to incorrect configurations.
-
-This series refactors the sequence of steps used to determine the number of
-pipes to be joined and the DSC policy. The first few patches restructure
-the mode_valid and compute config logic to make room for DSC bubble
-overhead accounting. With these, we iterate over joiner candidates and
-select the minimal joiner configuration that satisfies the
-mode-requirements. The later patches introduce the actual overhead
-adjustment and use it for: the minimum cdclk requirements with DSC,
-SST mode_valid logic, and SST/MST compute_config logic.
-
-Rev 2:
- - Refactor joiner computation for compute config.
- - Refactor DSC BW calculation.
- - Add overhead for SST/MST compute config phase for recomputing joiner
-   requirements for DSC.
- - NOTE:
-   - For Patch#7 (drm/i915/dp: Rework pipe joiner logic in mode_valid)
-     git diff = --patience is used for better readability.
-
-Rev 3:
- - Use diff = --patience in format-patch for better readability.
- - Add a macro to iterate over the joiner candidates.
- - Add a separate helper to check pixel rate against dotclock limit.
- - Add patch from Chaitanya for additional platform specific
-   limitations [1].
-
-[1] https://patchwork.freedesktop.org/patch/661952/?series=151047&rev=1
-
-Rev 4:
- - Address review comments from Jani and Imre.
- - Drop enum for joiner candidates and iterate over num of pipes joined.
- - Rename some of the helpers.
- - Split the patch to check for pixel limit for max uncompressed
-   dotclock into PTL and other platforms. For PTL the bspec and HSDES
-   matches, but for other platforms need to confirm the need for the
-   limits.
-
-Rev 5:
- - Address comments from Imre.
- - Add a patch to remove joiner helpers that are no longer required.
- - Dropped the patch to replace the joiner loops with an iterator; will
-   follow up this separately.
- - Modified the patch to enforce pixel limit for max uncomprssed
-   dotclock for pre PTL platforms, and added the limit only for WCL.
-   Limits for prior platforms is intentionally left to avoid regression
-   on these platforms and deal with them if there are actual issues
-   reported.
- - Use diff = --histogram as its seen to work better for this series as
-   also suggested by Imre.
-
-Rev 6:
- - Address comments from Imre.
- - Re-add the patch to replace the joiner loops with iterator; [credits to
-   Imre to figure it out and for the suggested changes.]
-
-Rev 7:
- - Fix status in mode valid in patch#4
- - Align MST code with SSt in patch#8 and patch#10.
-
-Ankit Nautiyal (15):
-  drm/i915/dp: Early reject bad hdisplay in intel_dp_mode_valid
-  drm/i915/dp: Move num_joined_pipes and related checks together
-  drm/i915/dp: Extract helper to get the hdisplay limit
-  drm/i915/dp: Rework pipe joiner logic in mode_valid
-  drm/i915/dp: Rework pipe joiner logic in compute_config
-  drm/i915/dp_mst: Move the check for dotclock at the end
-  drm/i915/dp_mst: Move the joiner dependent code together
-  drm/i915/dp_mst: Rework pipe joiner logic in mode_valid
-  drm/i915/dp_mst: Extract helper to compute link for given joiner
-    config
-  drm/i915/dp_mst: Rework pipe joiner logic in compute_config
-  drm/i915/dp: Remove unused joiner helpers
-  drm/i915/dp: Introduce helper to check pixel rate against dotclock
-    limits
-  drm/i915/dp: Refactor dsc_slice_count handling in
-    intel_dp_mode_valid()
-  drm/i915/dp: Account for DSC slice overhead
-  drm/i915/dp: Add helpers for joiner candidate loops
-
-Chaitanya Kumar Borah (2):
-  drm/i915/display: Add upper limit check for pixel clock
-  drm/i915/display: Extend the max dotclock limit to WCL
-
- drivers/gpu/drm/i915/display/intel_display.c |  19 ++
- drivers/gpu/drm/i915/display/intel_display.h |   1 +
- drivers/gpu/drm/i915/display/intel_dp.c      | 316 ++++++++++++-------
- drivers/gpu/drm/i915/display/intel_dp.h      |  19 +-
- drivers/gpu/drm/i915/display/intel_dp_mst.c  | 190 +++++++----
- drivers/gpu/drm/i915/display/intel_vdsc.c    |   1 -
- drivers/gpu/drm/i915/display/intel_vdsc.h    |   3 +
- 7 files changed, 375 insertions(+), 174 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 79fd3b8d8b25..126da297efc5 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -1460,6 +1460,9 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+ 	if (mode->clock < 10000)
+ 		return MODE_CLOCK_LOW;
+ 
++	if (intel_dp_hdisplay_bad(display, mode->hdisplay))
++		return MODE_H_ILLEGAL;
++
+ 	fixed_mode = intel_panel_fixed_mode(connector, mode);
+ 	if (intel_dp_is_edp(intel_dp) && fixed_mode) {
+ 		status = intel_panel_mode_valid(connector, mode);
+@@ -1483,9 +1486,6 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+ 	if (target_clock > max_dotclk)
+ 		return MODE_CLOCK_HIGH;
+ 
+-	if (intel_dp_hdisplay_bad(display, mode->hdisplay))
+-		return MODE_H_ILLEGAL;
+-
+ 	max_link_clock = intel_dp_max_link_rate(intel_dp);
+ 	max_lanes = intel_dp_max_lane_count(intel_dp);
+ 
 -- 
 2.45.2
 
