@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uNfWKjyCgGnE8wIAu9opvQ
+	id EDTDLz2CgGnE8wIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 11:53:48 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 11:53:49 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24DC6CB467
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 11:53:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D118CB474
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 11:53:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E91910E459;
-	Mon,  2 Feb 2026 10:53:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F151D10E45E;
+	Mon,  2 Feb 2026 10:53:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="heZoNHjJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KXkyhfCc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F27C10E461;
- Mon,  2 Feb 2026 10:53:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C6EA10E45E;
+ Mon,  2 Feb 2026 10:53:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770029625; x=1801565625;
+ t=1770029627; x=1801565627;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=sbv6ZABMYjVYqDIp9nrNZnWy3JNqlXWs2ju7eEhcBYo=;
- b=heZoNHjJXgwS+nvEbippHUGId3LYVeLz4Pui3kT0PMLPBLu/w4DUlXO2
- 451etKkTQty1RHzwo/Mq8IZDMYL2O4jJyxO+ndbU0y7hPJSCOMf1Yll74
- pcvZNCMM7Akm3b/FqIFszVGykwYPORAkfJA2qHX3Zoq6eHNv8/8E3xscw
- +k7Iwk8U4Tzu/I8k2R4w2d7RtC93HqoJYeBp8wdaNzEtso78UV/fAz6md
- 5SmPwRECNVXrkYqQEjbdzyLHtPDyDVrMWlccPqJeTOmb+GMZChzucCeSC
- onNbfdzpKhicJgrh7iZkDpOFtU9szUwvtwZdiDwXqRksh8nieyMZrXVKe g==;
-X-CSE-ConnectionGUID: VUZptuWCQlu/psdD5IptLg==
-X-CSE-MsgGUID: XbaR+KsrS3aRn5YSvyWb3A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11689"; a="70385068"
-X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="70385068"
+ bh=8w11NIAeGaxobtFZZqqxVEDqNov1+wailnBFSsUjuNg=;
+ b=KXkyhfCc6Po+6kHX1hu7FOIjh3povCW5N2hgeaXTDGGTF200F0UNN3q/
+ Hh8I33SGFbYTxQ56FIJpBMhz7WUXvUj4s0f/tdSoaXVaq0guKb+GGHu7Q
+ VoBK2gQuhICia7FM0snaVg4tSZ5sYsR/PUh5SI1JVZoihdoZUQ236IDKf
+ 9NGtOd9ckFLZNG1M7QCQQgXBvXF5KEJHp07s9gtAD/j5B7LWwRaqfOX4v
+ JYVOEnO3e+N5qB/UhzHZxH2sCQYR9hNNXHvtiJAdoQp7/kct3rm6K3nQ/
+ 2sjT5++3RN3QuRIHxHSeD1/e31r3FPVgX6wD5CrTx80pfegVlYEVrcVnc w==;
+X-CSE-ConnectionGUID: CgUyqkkSTI+6xOUctzrE4Q==
+X-CSE-MsgGUID: XTP9EdXkQgWQs5YPC7xerg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11689"; a="70385073"
+X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="70385073"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 02:53:45 -0800
-X-CSE-ConnectionGUID: kYqQ3kliSfuX1r1KMgV+kg==
-X-CSE-MsgGUID: UfEswtIqT4GPEqteFF2x+g==
+ 02 Feb 2026 02:53:47 -0800
+X-CSE-ConnectionGUID: HWWHALMQSF2zkiGQbTjHgw==
+X-CSE-MsgGUID: DOi6LhgHSgyPui+2rwx+eQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="232419891"
+X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="232419902"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 02:53:43 -0800
+ 02 Feb 2026 02:53:45 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@linux.intel.com, imre.deak@intel.com,
  Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 16/17] drm/i915/display: Add upper limit check for pixel clock
-Date: Mon,  2 Feb 2026 16:07:30 +0530
-Message-ID: <20260202103731.357416-17-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 17/17] drm/i915/display: Extend the max dotclock limit to WCL
+Date: Mon,  2 Feb 2026 16:07:31 +0530
+Message-ID: <20260202103731.357416-18-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260202103731.357416-1-ankit.k.nautiyal@intel.com>
 References: <20260202103731.357416-1-ankit.k.nautiyal@intel.com>
@@ -99,83 +99,46 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCPT_COUNT_FIVE(0.00)[6];
 	NEURAL_HAM(-0.00)[-1.000];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 24DC6CB467
+X-Rspamd-Queue-Id: 7D118CB474
 X-Rspamd-Action: no action
 
 From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 
-Add upper limit check for pixel clock for DISPLAY_VER >= 30.
-Limits don't apply when DSC is enabled.
+Add upper limit check for pixel clock for WCL.
 
-The helper returns the upper limit for the platforms, capped to the
-max dotclock (khz).
-
-For the currently supported versions of HDMI, pixel clock is already
-limited to 600Mhz so nothing needs to be done there as of now.
-
-v2:
- - Add this limit to the new helper.
-v3:
- - Rename helper to intel_max_uncompressed_dotclock(). (Imre)
- - Limit only for PTL and cap the limit to max_dotclock. (Imre)
+For prior platforms though the bspec mentions the dotclock limits, however
+these are intentionally not enforced to avoid regressions, unless real
+issues are observed.
 
 BSpec: 49199, 68912
 Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 11 +++++++++++
- drivers/gpu/drm/i915/display/intel_display.h |  1 +
- drivers/gpu/drm/i915/display/intel_dp.c      |  3 +++
- 3 files changed, 15 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 7491e00e3858..9cfeb5530fd8 100644
+index 9cfeb5530fd8..bd4219467e0e 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -8001,6 +8001,17 @@ void intel_setup_outputs(struct intel_display *display)
- 	drm_helper_move_panel_connectors_to_head(display->drm);
- }
- 
-+int intel_max_uncompressed_dotclock(struct intel_display *display)
-+{
-+	int max_dotclock = display->cdclk.max_dotclk_freq;
-+	int limit = max_dotclock;
-+
-+	if (DISPLAY_VER(display) >= 30)
-+		limit = 1350000;
-+
-+	return min(max_dotclock, limit);
-+}
-+
- static int max_dotclock(struct intel_display *display)
- {
+@@ -8006,8 +8006,16 @@ int intel_max_uncompressed_dotclock(struct intel_display *display)
  	int max_dotclock = display->cdclk.max_dotclk_freq;
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 4cced16af8ce..552a59d19e0f 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -462,6 +462,7 @@ void intel_cpu_transcoder_get_m2_n2(struct intel_crtc *crtc,
- 				    struct intel_link_m_n *m_n);
- int intel_dotclock_calculate(int link_freq, const struct intel_link_m_n *m_n);
- int intel_crtc_dotclock(const struct intel_crtc_state *pipe_config);
-+int intel_max_uncompressed_dotclock(struct intel_display *display);
- enum intel_display_power_domain intel_port_to_power_domain(struct intel_digital_port *dig_port);
- enum intel_display_power_domain
- intel_aux_power_domain(struct intel_digital_port *dig_port);
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index a44db730e45e..4be563a62f31 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1428,6 +1428,9 @@ bool intel_dp_dotclk_valid(struct intel_display *display,
- 									 target_clock,
- 									 htotal,
- 									 dsc_slice_count);
-+	else
-+		effective_dotclk_limit =
-+			intel_max_uncompressed_dotclock(display) * num_joined_pipes;
+ 	int limit = max_dotclock;
  
- 	return target_clock <= effective_dotclk_limit;
+-	if (DISPLAY_VER(display) >= 30)
++	if (DISPLAY_VERx100(display) == 3002)
++		limit = 937500;
++	else if (DISPLAY_VER(display) >= 30)
+ 		limit = 1350000;
++	/*
++	 * Note: For other platforms though there are limits given
++	 * in the Bspec, however the limit is intentionally not
++	 * enforced to avoid regressions, unless real issues are
++	 * observed.
++	 */
+ 
+ 	return min(max_dotclock, limit);
  }
 -- 
 2.45.2
