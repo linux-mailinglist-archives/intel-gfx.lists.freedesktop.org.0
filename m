@@ -2,64 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4DIbLK8agWm0EAMAu9opvQ
+	id aKwELbEagWm0EAMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 22:44:15 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 22:44:17 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 257ADD1B95
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 22:44:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16CE0D1B9C
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 22:44:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4938410E40A;
-	Mon,  2 Feb 2026 21:44:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 806F510E416;
+	Mon,  2 Feb 2026 21:44:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kIE3EMzd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kDDexQXq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D74610E406;
- Mon,  2 Feb 2026 21:44:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0FAD10E406;
+ Mon,  2 Feb 2026 21:44:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770068650; x=1801604650;
+ t=1770068652; x=1801604652;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=qwEGRBHUsuvtZsEDOMB1v1XNLRyAphGdi5aPf9Y02pw=;
- b=kIE3EMzdmw8cod/WCFXsm9ECtTQ93VjASTNrP22+J8zKt3J20HpozaUX
- N5+P1TnTNP1Lxj8ihPANIlwvA7UR+wfRkGcrJ+nDFFNL9yrAGdMZ/I2Nt
- cpU0hGIWT+rhAA+O160UBMWL1ssBYL3v2k9meQWsP6OK/LcD+s4p5/p6J
- fdjtbgicZ+NfAZvPmGM1mjMEriZZiWzKS/aK5CJKfKEqk4tLNDypxPYjo
- A+0s3tenvUEwO6/Js+c+bwTe9kinS6eO0Woc/d5o3ruiStc/ebADJVghv
- rLafojVNkKvzqjCA1LqJ34Gb/ujh5A8FnUXo6oNXY314k6qBWYK9+bl1w w==;
-X-CSE-ConnectionGUID: dYKYEJMrTNqInVj6zCQCrw==
-X-CSE-MsgGUID: hO5C4yhWRYm44L+xdSX9Zg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="58814330"
-X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="58814330"
+ bh=NdXJUXcZSWQLf4rWtFTSoCjr1YghpV1BQaM/tsMmpN0=;
+ b=kDDexQXqSiQl9FztCcT5cddbY/4m13u+zk09WBpM2Q8DU6tLv8a8qP7B
+ NDpf7bYMWj/qe8SCd3B7QcqaTUsJVclk6EipIM7XWpw19N4RF7k0Mtuk4
+ XfZktIxGeC7Kzk22bb4hLKelb+lzFXAYhzI0GbH5aQi5z9C9xTy7IFLa0
+ dLMsR/9iUVKwD+vFTzoeLQUMl5guGQIULET7hXD1RQSFNfs9CHTySShD0
+ TX9qyUKioualIYBmhVOn/6CKPZYruqy9gH9k1Y/s4+wYpGgdatboMWci6
+ E/ibHLj/5EC1o2KTIuWFi40iTbF1+yDgb/4UTT7r/g6CNDaagnCWT8/ld Q==;
+X-CSE-ConnectionGUID: 9ItW3eQaTRmty9ChA7hODg==
+X-CSE-MsgGUID: oa2BIQX1R5ynIkwz8UBDtw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="58814331"
+X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="58814331"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 13:44:10 -0800
-X-CSE-ConnectionGUID: MERr8XqJRIS9fxBTYvrPwA==
-X-CSE-MsgGUID: MVAxfLFiSpy+ygn0k+gCVg==
+ 02 Feb 2026 13:44:11 -0800
+X-CSE-ConnectionGUID: C2CfbaUDSm+jrBfTjoYB1A==
+X-CSE-MsgGUID: xGmSQH5WQqqchy2uXvtetQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="209646820"
+X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="209646824"
 Received: from smoehrl-linux.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.221.51])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 13:44:08 -0800
+ 02 Feb 2026 13:44:10 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Mon, 02 Feb 2026 18:43:09 -0300
-Subject: [PATCH 03/16] drm/xe/pat: Differentiate between primary and media
- for PTA
+Date: Mon, 02 Feb 2026 18:43:10 -0300
+Subject: [PATCH 04/16] drm/xe/xe3p_lpg: Add new PAT table
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260202-nvl-p-upstreaming-v1-3-653e4ff105dc@intel.com>
+Message-Id: <20260202-nvl-p-upstreaming-v1-4-653e4ff105dc@intel.com>
 References: <20260202-nvl-p-upstreaming-v1-0-653e4ff105dc@intel.com>
 In-Reply-To: <20260202-nvl-p-upstreaming-v1-0-653e4ff105dc@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Cc: Gustavo Sousa <gustavo.sousa@intel.com>, 
- Tejas Upadhyay <tejas.upadhyay@intel.com>
+ Matt Roper <matthew.d.roper@intel.com>
 X-Mailer: b4 0.15-dev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -100,117 +99,111 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid];
 	NEURAL_HAM(-0.00)[-1.000];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 257ADD1B95
+X-Rspamd-Queue-Id: 16CE0D1B9C
 X-Rspamd-Action: no action
 
-Differently from currently supported platforms, in upcoming changes we
-will need to have different PAT entries for PTA based on the GT type. As
-such, let's prepare the code to support that by having two separate
-PTA-specific members in the pat struct, one for each type of GT.
+From: Matt Roper <matthew.d.roper@intel.com>
 
-While at it, also fix the kerneldoc for pat_ats.
+PAT programming for Xe3p_LPG is more similar to Xe2 and Xe3 than it is
+to Xe3p_XPC.  Compared to Xe2/Xe3 we have:
 
-Co-developed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+* There's a slight update to the PAT table, where two new indices (18
+  and 19) are added to expose a new "WB - Transient App" L3 caching
+  mode.
+
+* The PTA_MODE entry must be programmed differently according to the
+  media type, and both differ from Xe2.
+
+There are no changes to the underlying registers, so the Xe2 ops can be
+re-used for Xe3p.
+
+Bspec: 71582, 74160
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h |  8 +++++---
- drivers/gpu/drm/xe/xe_pat.c          | 27 ++++++++++++++++++---------
- 2 files changed, 23 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/xe/xe_pat.c | 55 ++++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 54 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 34feef79fa4e..4508ed54d1d5 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -568,10 +568,12 @@ struct xe_device {
- 		const struct xe_pat_table_entry *table;
- 		/** @pat.n_entries: Number of PAT entries */
- 		int n_entries;
--		/** @pat.ats_entry: PAT entry for PCIe ATS responses */
-+		/** @pat.pat_ats: PAT entry for PCIe ATS responses */
- 		const struct xe_pat_table_entry *pat_ats;
--		/** @pat.pta_entry: PAT entry for page table accesses */
--		const struct xe_pat_table_entry *pat_pta;
-+		/** @pat.pat_primary_pta: primary GT PAT entry for page table accesses */
-+		const struct xe_pat_table_entry *pat_primary_pta;
-+		/** @pat.pat_media_pta: media GT PAT entry for page table accesses */
-+		const struct xe_pat_table_entry *pat_media_pta;
- 		u32 idx[__XE_CACHE_LEVEL_COUNT];
- 	} pat;
- 
 diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-index 14d0dce5190a..5776ea67fe02 100644
+index 5776ea67fe02..3ba89e80be1f 100644
 --- a/drivers/gpu/drm/xe/xe_pat.c
 +++ b/drivers/gpu/drm/xe/xe_pat.c
-@@ -284,8 +284,10 @@ static void program_pat(struct xe_gt *gt, const struct xe_pat_table_entry table[
+@@ -123,7 +123,8 @@ static const struct xe_pat_table_entry xelpg_pat_table[] = {
+  *   - no_promote:  0=promotable, 1=no promote
+  *   - comp_en:     0=disable, 1=enable
+  *   - l3clos:      L3 class of service (0-3)
+- *   - l3_policy:   0=WB, 1=XD ("WB - Transient Display"), 3=UC
++ *   - l3_policy:   0=WB, 1=XD ("WB - Transient Display"),
++ *                  2=XA ("WB - Transient App" for Xe3p), 3=UC
+  *   - l4_policy:   0=WB, 1=WT, 3=UC
+  *   - coh_mode:    0=no snoop, 2=1-way coherent, 3=2-way coherent
+  *
+@@ -252,6 +253,44 @@ static const struct xe_pat_table_entry xe3p_xpc_pat_table[] = {
+ 	[31] = XE3P_XPC_PAT( 0, 3, 0, 0, 3 ),
+ };
  
- 	if (xe->pat.pat_ats)
- 		xe_mmio_write32(&gt->mmio, XE_REG(_PAT_ATS), xe->pat.pat_ats->value);
--	if (xe->pat.pat_pta)
--		xe_mmio_write32(&gt->mmio, XE_REG(_PAT_PTA), xe->pat.pat_pta->value);
-+	if (xe->pat.pat_primary_pta && xe_gt_is_main_type(gt))
-+		xe_mmio_write32(&gt->mmio, XE_REG(_PAT_PTA), xe->pat.pat_primary_pta->value);
-+	if (xe->pat.pat_media_pta && xe_gt_is_media_type(gt))
-+		xe_mmio_write32(&gt->mmio, XE_REG(_PAT_PTA), xe->pat.pat_media_pta->value);
- }
- 
- static void program_pat_mcr(struct xe_gt *gt, const struct xe_pat_table_entry table[],
-@@ -301,8 +303,10 @@ static void program_pat_mcr(struct xe_gt *gt, const struct xe_pat_table_entry ta
- 
- 	if (xe->pat.pat_ats)
- 		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_ATS), xe->pat.pat_ats->value);
--	if (xe->pat.pat_pta)
--		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_PTA), xe->pat.pat_pta->value);
-+	if (xe->pat.pat_primary_pta && xe_gt_is_main_type(gt))
-+		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_PTA), xe->pat.pat_primary_pta->value);
-+	if (xe->pat.pat_media_pta && xe_gt_is_media_type(gt))
-+		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_PTA), xe->pat.pat_media_pta->value);
- }
- 
- static int xelp_dump(struct xe_gt *gt, struct drm_printer *p)
-@@ -527,7 +531,8 @@ void xe_pat_init_early(struct xe_device *xe)
- 		xe->pat.ops = &xe3p_xpc_pat_ops;
- 		xe->pat.table = xe3p_xpc_pat_table;
- 		xe->pat.pat_ats = &xe3p_xpc_pat_ats;
--		xe->pat.pat_pta = &xe3p_xpc_pat_pta;
-+		xe->pat.pat_primary_pta = &xe3p_xpc_pat_pta;
-+		xe->pat.pat_media_pta = &xe3p_xpc_pat_pta;
- 		xe->pat.n_entries = ARRAY_SIZE(xe3p_xpc_pat_table);
++static const struct xe_pat_table_entry xe3p_primary_pat_pta = XE2_PAT(0, 0, 0, 0, 0, 3);
++static const struct xe_pat_table_entry xe3p_media_pat_pta = XE2_PAT(0, 0, 0, 0, 0, 2);
++
++static const struct xe_pat_table_entry xe3p_lpg_pat_table[] = {
++	[ 0] = XE2_PAT( 0, 0, 0, 0, 3, 0 ),
++	[ 1] = XE2_PAT( 0, 0, 0, 0, 3, 2 ),
++	[ 2] = XE2_PAT( 0, 0, 0, 0, 3, 3 ),
++	[ 3] = XE2_PAT( 0, 0, 0, 3, 3, 0 ),
++	[ 4] = XE2_PAT( 0, 0, 0, 3, 0, 2 ),
++	[ 5] = XE2_PAT( 0, 0, 0, 3, 3, 2 ),
++	[ 6] = XE2_PAT( 1, 0, 0, 1, 3, 0 ),
++	[ 7] = XE2_PAT( 0, 0, 0, 3, 0, 3 ),
++	[ 8] = XE2_PAT( 0, 0, 0, 3, 0, 0 ),
++	[ 9] = XE2_PAT( 0, 1, 0, 0, 3, 0 ),
++	[10] = XE2_PAT( 0, 1, 0, 3, 0, 0 ),
++	[11] = XE2_PAT( 1, 1, 0, 1, 3, 0 ),
++	[12] = XE2_PAT( 0, 1, 0, 3, 3, 0 ),
++	[13] = XE2_PAT( 0, 0, 0, 0, 0, 0 ),
++	[14] = XE2_PAT( 0, 1, 0, 0, 0, 0 ),
++	[15] = XE2_PAT( 1, 1, 0, 1, 1, 0 ),
++	[16] = XE2_PAT( 0, 1, 0, 0, 3, 2 ),
++	/* 17 is reserved; leave set to all 0's */
++	[18] = XE2_PAT( 1, 0, 0, 2, 3, 0 ),
++	[19] = XE2_PAT( 1, 0, 0, 2, 3, 2 ),
++	[20] = XE2_PAT( 0, 0, 1, 0, 3, 0 ),
++	[21] = XE2_PAT( 0, 1, 1, 0, 3, 0 ),
++	[22] = XE2_PAT( 0, 0, 1, 0, 3, 2 ),
++	[23] = XE2_PAT( 0, 0, 1, 0, 3, 3 ),
++	[24] = XE2_PAT( 0, 0, 2, 0, 3, 0 ),
++	[25] = XE2_PAT( 0, 1, 2, 0, 3, 0 ),
++	[26] = XE2_PAT( 0, 0, 2, 0, 3, 2 ),
++	[27] = XE2_PAT( 0, 0, 2, 0, 3, 3 ),
++	[28] = XE2_PAT( 0, 0, 3, 0, 3, 0 ),
++	[29] = XE2_PAT( 0, 1, 3, 0, 3, 0 ),
++	[30] = XE2_PAT( 0, 0, 3, 0, 3, 2 ),
++	[31] = XE2_PAT( 0, 0, 3, 0, 3, 3 ),
++};
++
+ u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index)
+ {
+ 	WARN_ON(pat_index >= xe->pat.n_entries);
+@@ -537,6 +576,20 @@ void xe_pat_init_early(struct xe_device *xe)
  		xe->pat.idx[XE_CACHE_NONE] = 3;
  		xe->pat.idx[XE_CACHE_WT] = 3;	/* N/A (no display); use UC */
-@@ -541,8 +546,10 @@ void xe_pat_init_early(struct xe_device *xe)
- 			xe->pat.table = xe2_pat_table;
- 		}
- 		xe->pat.pat_ats = &xe2_pat_ats;
--		if (IS_DGFX(xe))
--			xe->pat.pat_pta = &xe2_pat_pta;
-+		if (IS_DGFX(xe)) {
-+			xe->pat.pat_primary_pta = &xe2_pat_pta;
-+			xe->pat.pat_media_pta = &xe2_pat_pta;
+ 		xe->pat.idx[XE_CACHE_WB] = 2;
++	} else if (GRAPHICS_VER(xe) == 35) {
++		xe->pat.ops = &xe2_pat_ops;
++		xe->pat.table = xe3p_lpg_pat_table;
++		xe->pat.pat_ats = &xe2_pat_ats;
++		if (!IS_DGFX(xe)) {
++			xe->pat.pat_primary_pta = &xe3p_primary_pat_pta;
++			xe->pat.pat_media_pta = &xe3p_media_pat_pta;
 +		}
- 
- 		/* Wa_16023588340. XXX: Should use XE_WA */
- 		if (GRAPHICS_VERx100(xe) == 2001)
-@@ -649,6 +656,8 @@ int xe_pat_dump(struct xe_gt *gt, struct drm_printer *p)
- int xe_pat_dump_sw_config(struct xe_gt *gt, struct drm_printer *p)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
-+	const struct xe_pat_table_entry *pta_entry = xe_gt_is_main_type(gt) ?
-+		xe->pat.pat_primary_pta : xe->pat.pat_media_pta;
- 	char label[PAT_LABEL_LEN];
- 
- 	if (!xe->pat.table || !xe->pat.n_entries)
-@@ -675,8 +684,8 @@ int xe_pat_dump_sw_config(struct xe_gt *gt, struct drm_printer *p)
- 		}
- 	}
- 
--	if (xe->pat.pat_pta) {
--		u32 pat = xe->pat.pat_pta->value;
-+	if (pta_entry) {
-+		u32 pat = pta_entry->value;
- 
- 		drm_printf(p, "Page Table Access:\n");
- 		xe2_pat_entry_dump(p, "PTA_MODE", pat, false);
++		xe->pat.n_entries = ARRAY_SIZE(xe3p_lpg_pat_table);
++		xe->pat.idx[XE_CACHE_NONE] = 3;
++		xe->pat.idx[XE_CACHE_WT] = 15;
++		xe->pat.idx[XE_CACHE_WB] = 2;
++		xe->pat.idx[XE_CACHE_NONE_COMPRESSION] = 12;
++		xe->pat.idx[XE_CACHE_WB_COMPRESSION] = 16;
+ 	} else if (GRAPHICS_VER(xe) == 30 || GRAPHICS_VER(xe) == 20) {
+ 		xe->pat.ops = &xe2_pat_ops;
+ 		if (GRAPHICS_VER(xe) == 30) {
 
 -- 
 2.52.0
