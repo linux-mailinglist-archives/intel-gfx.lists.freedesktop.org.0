@@ -2,61 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EOj+NXiwgGn6AQMAu9opvQ
+	id sI/gL83JgGl3AgMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 15:11:04 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 16:59:09 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10897CD2DC
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 15:11:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DAA3BCE89E
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 16:59:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B33210E2AE;
-	Mon,  2 Feb 2026 14:11:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D4A210E2C7;
+	Mon,  2 Feb 2026 15:59:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PFwwYaz/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bLnWEpOr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 768FE10E2AE;
- Mon,  2 Feb 2026 14:11:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D4F710E2C7;
+ Mon,  2 Feb 2026 15:59:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770041462; x=1801577462;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=tGdh1Zt07Yc/aQsZwfNaZFZHC+pVd2xgpTeBQaOMgA0=;
- b=PFwwYaz/XxHlbA75QK6Y3QvKb9u9nORFK99ryrShD1iqbY6wCsg7ofQi
- 5xOeB5/+1fd6JQF/jamGA7RaWjZVryqch5019CkFCVrjcgt8cIL4+1XG1
- 3j7xUipP3UsYHzwPsZYuz243W1w2W3htdifdYyRQ+0dFwm37dsfMbF+C9
- K3DHb56LBwzq9jnAAzJRzyTrJA3pO68gO/969a0BOYx9aj9yrz+xbHGNG
- FmQXqdzt/51MT0NWi45tG9sAZXgVHmsJiwXQvBAU3KmHiYPCbR5K88tw8
- gRMyucGM8cr0aUwKCSbTV2BqequGe3cAFlGnMZY6CWUX/VJLwszjtEG9z A==;
-X-CSE-ConnectionGUID: rICa+MM7Sz613lNzsE0GQQ==
-X-CSE-MsgGUID: OXOid2flRZuPrZ2F+EnWXA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="88774533"
-X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="88774533"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 06:11:01 -0800
-X-CSE-ConnectionGUID: dGdJGdetSvKY8H2xC5IiyQ==
-X-CSE-MsgGUID: MTMOmV6jQI2jtbg30vNX9g==
+ t=1770047946; x=1801583946;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=now4Clu5N5gbAmnGKtrYocKeik7ZL8yAoJiN5ItWphU=;
+ b=bLnWEpOrza1OtdlyLLXj7u+imeP4DxzenyOGK88LNhLV3r3LqkhIlij8
+ Oow5IPIweFQm225ig1v7nyVUnrsSA6UskS77LlvEi48BzQDM/QixP/i1c
+ H4m7COCi75ECEH+JTnntefduNMYgYU2adJcoQP/nPipaXtC4CGlz5Lr/9
+ lhbPaehBtUaidIBP+stHHawJU3tIo1JUXgOgFhPCnzdyMiIOnsD7bjOOZ
+ EZ5mFq//p3bAFn+dtRe9Q3e0AQgupX8+FM3lmD8Dv70UqLiuPODMmDTHC
+ Gl2M5OML8jUmvEMVZoTD6XjAKvqBtX+ulBXANz+fhX/gxpQMj/kwG1YPw g==;
+X-CSE-ConnectionGUID: 58G7Bf7KQJK5iNpMUJMyvA==
+X-CSE-MsgGUID: NUEC0t+TTiiJPnFkpGpOhw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="81520585"
+X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="81520585"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2026 07:59:06 -0800
+X-CSE-ConnectionGUID: CxVZ3B3lQhyFzkUHijMUkg==
+X-CSE-MsgGUID: PgYHqFNRQDORji0fP00lVg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="209792099"
-Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa010.fm.intel.com with ESMTP; 02 Feb 2026 06:02:45 -0800
-From: Mika Kahola <mika.kahola@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- matthew.d.roper@intel.com, jani.nikula@linux.intel.com,
- suraj.kandpal@intel.com
-Cc: Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH v3] drm/i915/power_well: Enable workaround for DSS clock
- gating issue
-Date: Mon,  2 Feb 2026 14:02:42 +0000
-Message-ID: <20260202140242.704234-1-mika.kahola@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="213671687"
+Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.247])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2026 07:59:04 -0800
+Date: Mon, 2 Feb 2026 17:59:01 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jouni.hogander@intel.com,
+ Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Subject: Re: [PATCH 1/4] drm/i915/dp: Fix readback for target_rr in Adaptive
+ Sync SDP
+Message-ID: <aYDJxSzXFI3nmyqB@intel.com>
+References: <20251111093007.3771409-1-ankit.k.nautiyal@intel.com>
+ <20251111093007.3771409-2-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251111093007.3771409-2-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,190 +81,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [0.25 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
+	R_MIXED_CHARSET(0.56)[subject];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[mika.kahola@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	ARC_NA(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-1.000];
-	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 10897CD2DC
+	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
+X-Rspamd-Queue-Id: DAA3BCE89E
 X-Rspamd-Action: no action
 
-Prevent display corruption observed after restart, hotplug, or unplug
-operations on Meteor Lake and newer platforms. The issue is caused by
-DSS clock gating affecting DSC logic when pipe power wells are disabled.
+On Tue, Nov 11, 2025 at 03:00:04PM +0530, Ankit Nautiyal wrote:
+> Correct the bit-shift logic to properly readback the 10 bit target_rr from
+> DB3 and DB4.
+> 
+> v2: Align the style with readback for vtotal. (Ville)
+> 
+> Fixes: 12ea89291603 ("drm/i915/dp: Add Read/Write support for Adaptive Sync SDP")
+> Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-Apply this WA by disabling DSS clock gating for the affected pipes
-before turning off their power wells. This avoids DSC corruption on
-external displays.
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-v2: Use single intel_de_rmw() (Jani)
-    Switch to use drm_dbg_kms() instead of drm_printf() (Jani)
-    Remove WA number from commit message (Suraj)
-    rename dss_clock_gating_enable_disable() to
-    dss_pipe_gating_enable_disable();
-v3: Do not use open ended display version when checking
-    wa (Matt)
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 0ec82fcbcf48..92a553a76b57 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -4997,7 +4997,7 @@ int intel_dp_as_sdp_unpack(struct drm_dp_as_sdp *as_sdp,
+>  	as_sdp->length = sdp->sdp_header.HB3 & DP_ADAPTIVE_SYNC_SDP_LENGTH;
+>  	as_sdp->mode = sdp->db[0] & DP_ADAPTIVE_SYNC_SDP_OPERATION_MODE;
+>  	as_sdp->vtotal = (sdp->db[2] << 8) | sdp->db[1];
+> -	as_sdp->target_rr = (u64)sdp->db[3] | ((u64)sdp->db[4] & 0x3);
+> +	as_sdp->target_rr = ((sdp->db[4] & 0x3) << 8) | sdp->db[3];
+>  	as_sdp->target_rr_divider = sdp->db[4] & 0x20 ? true : false;
+>  
+>  	return 0;
+> -- 
+> 2.45.2
 
-WA: 22021048059
-BSpec: 690991, 666241
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- .../i915/display/intel_display_power_well.c   | 55 ++++++++++++++++++-
- .../gpu/drm/i915/display/intel_display_regs.h |  7 +++
- .../gpu/drm/i915/display/intel_display_wa.c   |  2 +
- .../gpu/drm/i915/display/intel_display_wa.h   |  1 +
- 4 files changed, 63 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index 6f9bc6f9615e..78f707b00550 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -18,6 +18,7 @@
- #include "intel_display_regs.h"
- #include "intel_display_rpm.h"
- #include "intel_display_types.h"
-+#include "intel_display_wa.h"
- #include "intel_dkl_phy.h"
- #include "intel_dkl_phy_regs.h"
- #include "intel_dmc.h"
-@@ -194,6 +195,48 @@ int intel_power_well_refcount(struct i915_power_well *power_well)
- 	return power_well->count;
- }
- 
-+static u32 dss_pipe_gating_bits(u8 irq_pipe_mask)
-+{
-+	u32 bits = 0;
-+
-+	if (irq_pipe_mask & BIT(PIPE_A))
-+		bits |= DSS_PIPE_A_GATING_DISABLED;
-+	if (irq_pipe_mask & BIT(PIPE_B))
-+		bits |= DSS_PIPE_B_GATING_DISABLED;
-+	if (irq_pipe_mask & BIT(PIPE_C))
-+		bits |= DSS_PIPE_C_GATING_DISABLED;
-+	if (irq_pipe_mask & BIT(PIPE_D))
-+		bits |= DSS_PIPE_D_GATING_DISABLED;
-+
-+	return bits;
-+}
-+
-+static void dss_pipe_gating_enable_disable(struct intel_display *display,
-+					   u8 irq_pipe_mask,
-+					   bool disable)
-+{
-+	u32 bits = dss_pipe_gating_bits(irq_pipe_mask);
-+	u32 clear, set;
-+
-+	if (!bits)
-+		return;
-+
-+	/*
-+	 * Single intel_de_rmw() for both enable/disable:
-+	 *  - disable == true, set bits (disable clock gating)
-+	 *  - disable == false, clear bits (re-enable clock gating)
-+	 */
-+	set = disable ? bits : 0;
-+	clear = disable ? 0 : bits;
-+
-+	intel_de_rmw(display, CLKGATE_DIS_DSSDSC, clear, set);
-+
-+	drm_dbg_kms(display->drm,
-+		    "DSS clock gating %sd for pipe_mask=0x%x (CLKGATE_DIS_DSSDSC=0x%08x)\n",
-+		    str_enable_disable(!disable), irq_pipe_mask,
-+		    intel_de_read(display, CLKGATE_DIS_DSSDSC));
-+}
-+
- /*
-  * Starting with Haswell, we have a "Power Down Well" that can be turned off
-  * when not needed anymore. We have 4 registers that can request the power well
-@@ -203,15 +246,23 @@ int intel_power_well_refcount(struct i915_power_well *power_well)
- static void hsw_power_well_post_enable(struct intel_display *display,
- 				       u8 irq_pipe_mask)
- {
--	if (irq_pipe_mask)
-+	if (irq_pipe_mask) {
- 		gen8_irq_power_well_post_enable(display, irq_pipe_mask);
-+
-+		if (intel_display_wa(display, 22021048059))
-+			dss_pipe_gating_enable_disable(display, irq_pipe_mask, false);
-+	}
- }
- 
- static void hsw_power_well_pre_disable(struct intel_display *display,
- 				       u8 irq_pipe_mask)
- {
--	if (irq_pipe_mask)
-+	if (irq_pipe_mask) {
-+		if (intel_display_wa(display, 22021048059))
-+			dss_pipe_gating_enable_disable(display, irq_pipe_mask, true);
-+
- 		gen8_irq_power_well_pre_disable(display, irq_pipe_mask);
-+	}
- }
- 
- #define ICL_AUX_PW_TO_PHY(pw_idx)	\
-diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index 9e0d853f4b61..9740f32ced24 100644
---- a/drivers/gpu/drm/i915/display/intel_display_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -2211,6 +2211,13 @@
- #define   HSW_PWR_WELL_FORCE_ON			(1 << 19)
- #define HSW_PWR_WELL_CTL6			_MMIO(0x45414)
- 
-+/* clock gating DSS DSC disable register */
-+#define CLKGATE_DIS_DSSDSC			_MMIO(0x46548)
-+#define   DSS_PIPE_D_GATING_DISABLED		REG_BIT(31)
-+#define   DSS_PIPE_C_GATING_DISABLED		REG_BIT(29)
-+#define   DSS_PIPE_B_GATING_DISABLED		REG_BIT(27)
-+#define   DSS_PIPE_A_GATING_DISABLED		REG_BIT(25)
-+
- /* SKL Fuse Status */
- enum skl_power_gate {
- 	SKL_PG0,
-diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
-index 2eb4af62d556..b1979ee9d836 100644
---- a/drivers/gpu/drm/i915/display/intel_display_wa.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-@@ -85,6 +85,8 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
- 		return intel_display_needs_wa_16025573575(display);
- 	case INTEL_DISPLAY_WA_22014263786:
- 		return IS_DISPLAY_VERx100(display, 1100, 1400);
-+	case INTEL_DISPLAY_WA_22021048059:
-+		return IS_DISPLAY_VER(display, 14, 35);
- 	default:
- 		drm_WARN(display->drm, 1, "Missing Wa number: %s\n", name);
- 		break;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
-index 40f989f19df1..767420d5f406 100644
---- a/drivers/gpu/drm/i915/display/intel_display_wa.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-@@ -34,6 +34,7 @@ enum intel_display_wa {
- 	INTEL_DISPLAY_WA_16023588340,
- 	INTEL_DISPLAY_WA_16025573575,
- 	INTEL_DISPLAY_WA_22014263786,
-+	INTEL_DISPLAY_WA_22021048059,
- };
- 
- bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa, const char *name);
 -- 
-2.43.0
-
+Ville Syrjälä
+Intel
