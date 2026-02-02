@@ -2,67 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CAiCHYV3gGmo8gIAu9opvQ
+	id CPdpHh6CgGnE8wIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 11:08:05 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 11:53:18 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A156CA8ED
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 11:08:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7322CB3DA
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Feb 2026 11:53:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3AE910E408;
-	Mon,  2 Feb 2026 10:08:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00AF310E420;
+	Mon,  2 Feb 2026 10:53:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FToguoyC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dq2YrfOA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F2A710E3F5;
- Mon,  2 Feb 2026 10:08:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60BEE10E23B;
+ Mon,  2 Feb 2026 10:53:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770026883; x=1801562883;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=W/C/wzNeqFOKr/Zl27ESeNBGX7o8naiaK6p98qzk65s=;
- b=FToguoyCoWg8atakYg75xxoUZxL5/aM53SF94NXYWz9DxJ/smhjO4LVs
- //H23DEyaYIEfJTgOtHQ6WrhLk20SXr1BQSqjqwwbyMMmSGOn/wfJsrm3
- BNeqfAgBqwtChXxe5Wbhxu8H6b5f5ofuT88HR0vAbXxpYyV6z1H4LSOAD
- 9P9BrWndoyaliXCUKby2FBPdMWIk6I/rIIKY07fudPjD+W2ehu298S6Xq
- GDxX+DwL+0cUXFT/EetcukONaekbgxAyZhyPNXur4poZqk5r8Y/yxsK37
- W66uccKWSXTzyNiGPtRTwXhU0Gwqh+5lhGIyXXLH8iwG0WYoQ63erBHJO w==;
-X-CSE-ConnectionGUID: wHVFtEHXRFSo+Dz6ZRukkQ==
-X-CSE-MsgGUID: I9JsP7oCRdmZGMWTA5jwbg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11689"; a="71163423"
-X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="71163423"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 02:08:02 -0800
-X-CSE-ConnectionGUID: +U6sgBR5QpSg7OJ62+W4uQ==
-X-CSE-MsgGUID: 7JrS7HxcQuKu6mDPlybpdA==
+ t=1770029594; x=1801565594;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=pf7K+xZyNSaQrsjPOC4Md6AwU3Rr94tQPCPmgwDWNlA=;
+ b=dq2YrfOAMaWaD6I2WrDkFCIGt3x+TKokkXZRXeABfRU26jzDFk36J4ls
+ CwTBGP2Zt62OQ1t8Y4SFRgYsSHLGvImUANE7YkEiM/FjFk9OAbry0mVx5
+ SJFQ58Py38VZlsUDQdIN2kNHlMu2zGq9dM/L5SsDOwuFAlAVN2kCdevGd
+ T5TBEZQvmK5R4WccpI42Jwakvc2LSAAzAIa/KB2E1bKDm4l+u6m4eGUAc
+ /U4XeI2Us95+ig2Tx+ZQ0ASMHBZLUVXgeVLeE0JKe1eWSWMMz75tpuxO3
+ dJ4WQEwvF79yhRsI5916CMQr/8qWwcs/jFLyRD1Ahasg6hgzQ0oi5laJx g==;
+X-CSE-ConnectionGUID: X4dSbwZ/QvehifA+ynGUfg==
+X-CSE-MsgGUID: MDoYfqBrQDadG1w6hIGcDA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11689"; a="70384996"
+X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="70384996"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2026 02:53:14 -0800
+X-CSE-ConnectionGUID: lRqI6nDGTtu72RYtHNDN3w==
+X-CSE-MsgGUID: FKT2MdYLQoG+lPseY2GW5w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="208984878"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by fmviesa007.fm.intel.com with ESMTP; 02 Feb 2026 02:07:58 -0800
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Cc: harry.wentland@amd.com, jani.nikula@linux.intel.com,
- louis.chauvet@bootlin.com, mwen@igalia.com, contact@emersion.fr,
- alex.hung@amd.com, daniels@collabora.com, uma.shankar@intel.com,
- suraj.kandpal@intel.com, nfraprado@collabora.com,
- ville.syrjala@linux.intel.com, matthew.d.roper@intel.com,
- maarten.lankhorst@intel.com, chaitanya.kumar.borah@intel.com
-Subject: [RESEND 9/9] drm/i915/color: Add failure handling in plane color
- pipeline init
-Date: Mon,  2 Feb 2026 15:12:02 +0530
-Message-Id: <20260202094202.2871478-10-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260202094202.2871478-1-chaitanya.kumar.borah@intel.com>
-References: <20260202094202.2871478-1-chaitanya.kumar.borah@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="232419718"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2026 02:53:12 -0800
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@linux.intel.com, imre.deak@intel.com,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 00/17] Account for DSC bubble overhead for horizontal slices
+Date: Mon,  2 Feb 2026 16:07:14 +0530
+Message-ID: <20260202103731.357416-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -79,262 +72,140 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.31 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FROM_NEQ_ENVFROM(0.00)[ankit.k.nautiyal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	ARC_NA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[chaitanya.kumar.borah@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	TO_DN_NONE(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-1.000];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 2A156CA8ED
+X-Rspamd-Queue-Id: A7322CB3DA
 X-Rspamd-Action: no action
 
-The plane color pipeline initialization built up multiple colorop blocks
-inline, but did not reliably clean up partially constructed pipelines
-when an intermediate step failed. This could lead to leaked colorop
-objects and fragile error handling as the pipeline grows.
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Refactor the pipeline construction to use a common helper for adding
-colorop blocks. This centralizes allocation, initialization, and
-teardown logic, allowing the caller to reliably unwind all previously
-created colorops on failure.
+When DSC is enabled on a pipe, the pipe pixel rate input to cdclk frequency
+and pipe joiner calculations needs to be adjusted to account for
+compression overhead: specifically, the "bubbles" added at each horizontal
+slice boundary. This overhead has always existed, even on earlier
+platforms, but was not previously accounted for.
 
-v2:
- - Refactor code to avoid repetition (Suraj)
+Currently, the number of joined pipes is computed much earlier than the
+decision to use DSC: both during the mode_valid phase for each mode and in
+the compute_config phase for a given mode. As a result, the DSC bubble
+overhead cannot be considered when determining the number of pipes to join,
+which may lead to incorrect configurations.
 
-v3:
- - s/nvl/xe3plpd (Suraj)
+This series refactors the sequence of steps used to determine the number of
+pipes to be joined and the DSC policy. The first few patches restructure
+the mode_valid and compute config logic to make room for DSC bubble
+overhead accounting. With these, we iterate over joiner candidates and
+select the minimal joiner configuration that satisfies the
+mode-requirements. The later patches introduce the actual overhead
+adjustment and use it for: the minimum cdclk requirements with DSC,
+SST mode_valid logic, and SST/MST compute_config logic.
 
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Acked-by: Jani Nikula <jani.nikula@intel.com>
----
- .../drm/i915/display/intel_color_pipeline.c   | 164 +++++++++++++-----
- 1 file changed, 117 insertions(+), 47 deletions(-)
+Rev 2:
+ - Refactor joiner computation for compute config.
+ - Refactor DSC BW calculation.
+ - Add overhead for SST/MST compute config phase for recomputing joiner
+   requirements for DSC.
+ - NOTE:
+   - For Patch#7 (drm/i915/dp: Rework pipe joiner logic in mode_valid)
+     git diff = --patience is used for better readability.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_color_pipeline.c b/drivers/gpu/drm/i915/display/intel_color_pipeline.c
-index 8fecc53540ba..6cf8080ee800 100644
---- a/drivers/gpu/drm/i915/display/intel_color_pipeline.c
-+++ b/drivers/gpu/drm/i915/display/intel_color_pipeline.c
-@@ -2,6 +2,8 @@
- /*
-  * Copyright © 2025 Intel Corporation
-  */
-+#include <drm/drm_print.h>
-+
- #include "intel_color.h"
- #include "intel_colorop.h"
- #include "intel_color_pipeline.h"
-@@ -10,6 +12,7 @@
- #include "skl_universal_plane.h"
- 
- #define MAX_COLOR_PIPELINES 1
-+#define MAX_COLOROP 4
- #define PLANE_DEGAMMA_SIZE 128
- #define PLANE_GAMMA_SIZE 32
- 
-@@ -17,70 +20,137 @@ static const struct drm_colorop_funcs intel_colorop_funcs = {
- 	.destroy = intel_colorop_destroy,
- };
- 
-+/*
-+ * 3DLUT can be bound to all three HDR planes. However, even with the latest
-+ * color pipeline UAPI, there is no good way to represent a HW block which
-+ * can be shared/attached at different stages of the pipeline. So right now,
-+ * we expose 3DLUT only attached with the primary plane.
-+ *
-+ * That way we don't confuse the userspace with opaque commit failures
-+ * on trying to enable it on multiple planes which would otherwise make
-+ * the pipeline totally unusable.
-+ */
-+static const enum intel_color_block xe3plpd_primary_plane_pipeline[] = {
-+	INTEL_PLANE_CB_PRE_CSC_LUT,
-+	INTEL_PLANE_CB_CSC,
-+	INTEL_PLANE_CB_3DLUT,
-+	INTEL_PLANE_CB_POST_CSC_LUT,
-+};
-+
-+static const enum intel_color_block hdr_plane_pipeline[] = {
-+	INTEL_PLANE_CB_PRE_CSC_LUT,
-+	INTEL_PLANE_CB_CSC,
-+	INTEL_PLANE_CB_POST_CSC_LUT,
-+};
-+
-+static bool plane_has_3dlut(struct intel_display *display, enum pipe pipe,
-+			    struct drm_plane *plane)
-+{
-+	return (DISPLAY_VER(display) >= 35 &&
-+		intel_color_crtc_has_3dlut(display, pipe) &&
-+		plane->type == DRM_PLANE_TYPE_PRIMARY);
-+}
-+
- static
--int _intel_color_pipeline_plane_init(struct drm_plane *plane, struct drm_prop_enum_list *list,
--				     enum pipe pipe)
-+struct intel_colorop *intel_color_pipeline_plane_add_colorop(struct drm_plane *plane,
-+							     struct intel_colorop *prev,
-+							     enum intel_color_block id)
- {
- 	struct drm_device *dev = plane->dev;
--	struct intel_display *display = to_intel_display(dev);
--	struct drm_colorop *prev_op;
- 	struct intel_colorop *colorop;
- 	int ret;
- 
--	colorop = intel_colorop_create(INTEL_PLANE_CB_PRE_CSC_LUT);
--
--	ret = drm_plane_colorop_curve_1d_lut_init(dev, &colorop->base, plane, &intel_colorop_funcs,
--						  PLANE_DEGAMMA_SIZE,
--						  DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
--						  DRM_COLOROP_FLAG_ALLOW_BYPASS);
--
--	if (ret)
--		return ret;
--
--	list->type = colorop->base.base.id;
--
--	/* TODO: handle failures and clean up */
--	prev_op = &colorop->base;
--
--	colorop = intel_colorop_create(INTEL_PLANE_CB_CSC);
--	ret = drm_plane_colorop_ctm_3x4_init(dev, &colorop->base, plane, &intel_colorop_funcs,
--					     DRM_COLOROP_FLAG_ALLOW_BYPASS);
--	if (ret)
--		return ret;
--
--	drm_colorop_set_next_property(prev_op, &colorop->base);
--	prev_op = &colorop->base;
--
--	if (DISPLAY_VER(display) >= 35 &&
--	    intel_color_crtc_has_3dlut(display, pipe) &&
--	    plane->type == DRM_PLANE_TYPE_PRIMARY) {
--		colorop = intel_colorop_create(INTEL_PLANE_CB_3DLUT);
--
-+	colorop = intel_colorop_create(id);
-+
-+	if (IS_ERR(colorop))
-+		return colorop;
-+
-+	switch (id) {
-+	case INTEL_PLANE_CB_PRE_CSC_LUT:
-+		ret = drm_plane_colorop_curve_1d_lut_init(dev,
-+							  &colorop->base, plane,
-+							  &intel_colorop_funcs,
-+							  PLANE_DEGAMMA_SIZE,
-+							  DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
-+							  DRM_COLOROP_FLAG_ALLOW_BYPASS);
-+		break;
-+	case INTEL_PLANE_CB_CSC:
-+		ret = drm_plane_colorop_ctm_3x4_init(dev, &colorop->base, plane,
-+						     &intel_colorop_funcs,
-+						     DRM_COLOROP_FLAG_ALLOW_BYPASS);
-+		break;
-+	case INTEL_PLANE_CB_3DLUT:
- 		ret = drm_plane_colorop_3dlut_init(dev, &colorop->base, plane,
- 						   &intel_colorop_funcs, 17,
- 						   DRM_COLOROP_LUT3D_INTERPOLATION_TETRAHEDRAL,
- 						   true);
--		if (ret)
--			return ret;
--
--		drm_colorop_set_next_property(prev_op, &colorop->base);
--
--		prev_op = &colorop->base;
-+		break;
-+	case INTEL_PLANE_CB_POST_CSC_LUT:
-+		ret = drm_plane_colorop_curve_1d_lut_init(dev, &colorop->base, plane,
-+							  &intel_colorop_funcs,
-+							  PLANE_GAMMA_SIZE,
-+							  DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
-+							  DRM_COLOROP_FLAG_ALLOW_BYPASS);
-+		break;
-+	default:
-+		drm_err(plane->dev, "Invalid colorop id [%d]", id);
-+		ret = -EINVAL;
- 	}
- 
--	colorop = intel_colorop_create(INTEL_PLANE_CB_POST_CSC_LUT);
--	ret = drm_plane_colorop_curve_1d_lut_init(dev, &colorop->base, plane, &intel_colorop_funcs,
--						  PLANE_GAMMA_SIZE,
--						  DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
--						  DRM_COLOROP_FLAG_ALLOW_BYPASS);
- 	if (ret)
--		return ret;
-+		goto cleanup;
- 
--	drm_colorop_set_next_property(prev_op, &colorop->base);
-+	if (prev)
-+		drm_colorop_set_next_property(&prev->base, &colorop->base);
- 
--	list->name = kasprintf(GFP_KERNEL, "Color Pipeline %d", list->type);
-+	return colorop;
-+
-+cleanup:
-+	intel_colorop_destroy(&colorop->base);
-+	return ERR_PTR(ret);
-+}
-+
-+static
-+int _intel_color_pipeline_plane_init(struct drm_plane *plane, struct drm_prop_enum_list *list,
-+				     enum pipe pipe)
-+{
-+	struct drm_device *dev = plane->dev;
-+	struct intel_display *display = to_intel_display(dev);
-+	struct intel_colorop *colorop[MAX_COLOROP];
-+	struct intel_colorop *prev = NULL;
-+	const enum intel_color_block *pipeline;
-+	int pipeline_len;
-+	int ret = 0;
-+	int i;
-+
-+	if (plane_has_3dlut(display, pipe, plane)) {
-+		pipeline = xe3plpd_primary_plane_pipeline;
-+		pipeline_len = ARRAY_SIZE(xe3plpd_primary_plane_pipeline);
-+	} else {
-+		pipeline = hdr_plane_pipeline;
-+		pipeline_len = ARRAY_SIZE(hdr_plane_pipeline);
-+	}
-+
-+	for (i = 0; i < pipeline_len; i++) {
-+		colorop[i] = intel_color_pipeline_plane_add_colorop(plane, prev,
-+								    pipeline[i]);
-+		if (IS_ERR(colorop[i])) {
-+			ret = PTR_ERR(colorop[i]);
-+			goto cleanup;
-+		}
-+
-+		prev = colorop[i];
-+	}
-+
-+	list->type = colorop[0]->base.base.id;
-+	list->name = kasprintf(GFP_KERNEL, "Color Pipeline %d", colorop[0]->base.base.id);
- 
- 	return 0;
-+
-+cleanup:
-+	while (--i >= 0)
-+		intel_colorop_destroy(&colorop[i]->base);
-+	return ret;
- }
- 
- int intel_color_pipeline_plane_init(struct drm_plane *plane, enum pipe pipe)
+Rev 3:
+ - Use diff = --patience in format-patch for better readability.
+ - Add a macro to iterate over the joiner candidates.
+ - Add a separate helper to check pixel rate against dotclock limit.
+ - Add patch from Chaitanya for additional platform specific
+   limitations [1].
+
+[1] https://patchwork.freedesktop.org/patch/661952/?series=151047&rev=1
+
+Rev 4:
+ - Address review comments from Jani and Imre.
+ - Drop enum for joiner candidates and iterate over num of pipes joined.
+ - Rename some of the helpers.
+ - Split the patch to check for pixel limit for max uncompressed
+   dotclock into PTL and other platforms. For PTL the bspec and HSDES
+   matches, but for other platforms need to confirm the need for the
+   limits.
+
+Rev 5:
+ - Address comments from Imre.
+ - Add a patch to remove joiner helpers that are no longer required.
+ - Dropped the patch to replace the joiner loops with an iterator; will
+   follow up this separately.
+ - Modified the patch to enforce pixel limit for max uncomprssed
+   dotclock for pre PTL platforms, and added the limit only for WCL.
+   Limits for prior platforms is intentionally left to avoid regression
+   on these platforms and deal with them if there are actual issues
+   reported.
+ - Use diff = --histogram as its seen to work better for this series as
+   also suggested by Imre.
+
+Rev 6:
+ - Address comments from Imre.
+ - Re-add the patch to replace the joiner loops with iterator; [credits to
+   Imre to figure it out and for the suggested changes.]
+
+Rev 7:
+ - Fix status in mode valid in patch#4
+ - Align MST code with SSt in patch#8 and patch#10.
+
+Ankit Nautiyal (15):
+  drm/i915/dp: Early reject bad hdisplay in intel_dp_mode_valid
+  drm/i915/dp: Move num_joined_pipes and related checks together
+  drm/i915/dp: Extract helper to get the hdisplay limit
+  drm/i915/dp: Rework pipe joiner logic in mode_valid
+  drm/i915/dp: Rework pipe joiner logic in compute_config
+  drm/i915/dp_mst: Move the check for dotclock at the end
+  drm/i915/dp_mst: Move the joiner dependent code together
+  drm/i915/dp_mst: Rework pipe joiner logic in mode_valid
+  drm/i915/dp_mst: Extract helper to compute link for given joiner
+    config
+  drm/i915/dp_mst: Rework pipe joiner logic in compute_config
+  drm/i915/dp: Remove unused joiner helpers
+  drm/i915/dp: Introduce helper to check pixel rate against dotclock
+    limits
+  drm/i915/dp: Refactor dsc_slice_count handling in
+    intel_dp_mode_valid()
+  drm/i915/dp: Account for DSC slice overhead
+  drm/i915/dp: Add helpers for joiner candidate loops
+
+Chaitanya Kumar Borah (2):
+  drm/i915/display: Add upper limit check for pixel clock
+  drm/i915/display: Extend the max dotclock limit to WCL
+
+ drivers/gpu/drm/i915/display/intel_display.c |  19 ++
+ drivers/gpu/drm/i915/display/intel_display.h |   1 +
+ drivers/gpu/drm/i915/display/intel_dp.c      | 316 ++++++++++++-------
+ drivers/gpu/drm/i915/display/intel_dp.h      |  19 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c  | 190 +++++++----
+ drivers/gpu/drm/i915/display/intel_vdsc.c    |   1 -
+ drivers/gpu/drm/i915/display/intel_vdsc.h    |   3 +
+ 7 files changed, 375 insertions(+), 174 deletions(-)
+
 -- 
-2.25.1
+2.45.2
 
