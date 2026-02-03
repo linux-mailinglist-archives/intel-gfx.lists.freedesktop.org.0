@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wKKSBZQCgmmYNgMAu9opvQ
+	id WECnM5UCgmmYNgMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 15:13:40 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 15:13:41 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEFA1DA6D9
-	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 15:13:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A055ADA6E0
+	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 15:13:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29D6510E696;
-	Tue,  3 Feb 2026 14:13:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF2A910E691;
+	Tue,  3 Feb 2026 14:13:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SyTFD8uo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NyrSc9KO";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E97C410E695;
- Tue,  3 Feb 2026 14:13:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0AC110E695;
+ Tue,  3 Feb 2026 14:13:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770128016; x=1801664016;
+ t=1770128018; x=1801664018;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DX+X2Hozta83o8SpBXDAw0vk/IEs7eC0BumJgMeTqCM=;
- b=SyTFD8uodyZH1Fhb/GvZANT9QdBTaIkjXyk3Acz0Hz91DIlxwnGkqRfz
- JaxVLLppJI7vOdJtojfQYC97rqg9v1vfe5Zfy54F+nZu8eLCrGupCbPXi
- BGNPfl0kVKO5tHWd88t3h3hrtUnuc4fMRzUUry1qTSAaLqYKBfGgLM2cZ
- UHc8Mk+FkZu+quYeFUDOsRGK/9uAxENNIHhRLwwDEmJi0S6FN7j8iCIET
- w0Q2wyJUu8fN/3rgKEnFFrCnp+BsnQCDv5ALRoQjWvN7xBpAbUDkOHd6m
- Xb9V+Oi2wVf0koICEMtl8d69e6Vt1mUPk2eRXin+ZPyGMhTRG4Lh+MPvs A==;
-X-CSE-ConnectionGUID: uWCrTzTIRPWCW2K0+dYjBw==
-X-CSE-MsgGUID: sHFTvPLfQD+aS+jRbmZmMQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="75156448"
-X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="75156448"
+ bh=cr0XNT+qsbwSgKZ5tRZYhG+2pbW3P9qDOaZyywZSC88=;
+ b=NyrSc9KO/mp3Wx6gqSBMcVOLxIYoC4GUEE1mFloVWjSoaIV5z3L0uvJ7
+ 1lSUvyrnbt7bngvQpAVyTQvPXnmAcG+Wz4bXsz9JR6Cxtuhhrv3QuOLHL
+ cl/g0BnfExBdkUSCN1ITM+iuDve1KTWLAIXxjtiq58X7vUNRKnibufFRs
+ JAQ+Ey3Ixp0GfgIfrRjToFo8Xn5Z9sTzAYuVHjNAGJIvKj3+NRvcx2Wz6
+ 1WPHdzVKfAN00Wpc165VN0Q0YSVU6xpIneS/bhkR+WjtT7KVToxsyqjvb
+ SST/1AfHW/QK1lP0d0eOu+hI2SMwV6f91fdMKomnFHUlLwt1S4cibIO5j A==;
+X-CSE-ConnectionGUID: Xn1CWjZQSGOC7knEJlx/JQ==
+X-CSE-MsgGUID: UUNBu6/DTKWnJNkASb+gJA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="75156451"
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="75156451"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2026 06:13:35 -0800
-X-CSE-ConnectionGUID: DZsXTVTVQcGsl8wsqllHng==
-X-CSE-MsgGUID: oEnIYuRNQo2qtskpAZWp8w==
+ 03 Feb 2026 06:13:37 -0800
+X-CSE-ConnectionGUID: eqBEf9geTrG94pnk4kS0Ag==
+X-CSE-MsgGUID: N15mP9IMS0Kn9vRa+O5xYA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="208956313"
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="208956316"
 Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by orviesa006.jf.intel.com with ESMTP; 03 Feb 2026 06:13:33 -0800
+ by orviesa006.jf.intel.com with ESMTP; 03 Feb 2026 06:13:35 -0800
 From: Animesh Manna <animesh.manna@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dibin.moolakadan.subrahmanian@intel.com, jani.nikula@intel.com,
  Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v2 07/10] drm/i915/cmtg: program sync to port for cmtg
-Date: Tue,  3 Feb 2026 19:14:04 +0530
-Message-Id: <20260203134407.2823406-8-animesh.manna@intel.com>
+Subject: [PATCH v2 08/10] drm/i915/cmtg: enable cmtg ctl
+Date: Tue,  3 Feb 2026 19:14:05 +0530
+Message-Id: <20260203134407.2823406-9-animesh.manna@intel.com>
 X-Mailer: git-send-email 2.29.0
 In-Reply-To: <20260203134407.2823406-1-animesh.manna@intel.com>
 References: <20260203134407.2823406-1-animesh.manna@intel.com>
@@ -98,44 +98,48 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: CEFA1DA6D9
+X-Rspamd-Queue-Id: A055ADA6E0
 X-Rspamd-Action: no action
 
-Program Cmtg Sync to Port Sync. Set before enabling the timing generator.
-While cmtg start running this bit will be cleared.
+Enable CMTG through control register.
 
 Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cmtg.c      | 3 +++
- drivers/gpu/drm/i915/display/intel_cmtg_regs.h | 2 ++
- 2 files changed, 5 insertions(+)
+ drivers/gpu/drm/i915/display/intel_cmtg.c | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.c b/drivers/gpu/drm/i915/display/intel_cmtg.c
-index 12a081dd7e4d..3af4aefc760e 100644
+index 3af4aefc760e..f7364c7408d5 100644
 --- a/drivers/gpu/drm/i915/display/intel_cmtg.c
 +++ b/drivers/gpu/drm/i915/display/intel_cmtg.c
-@@ -258,4 +258,7 @@ void intel_cmtg_enable(const struct intel_crtc_state *crtc_state)
- 		       intel_de_read(display, TRANS_SET_CONTEXT_LATENCY(display, cpu_transcoder)));
- 
- 	intel_cpu_cmtg_transcoder_set_m_n(crtc_state);
-+
-+	/* Program Cmtg Sync to Port Sync, TRANS_CMTG_CTL */
-+	intel_de_rmw(display, TRANS_CMTG_CTL(cpu_transcoder), CMTG_SYNC_TO_PORT, CMTG_SYNC_TO_PORT);
+@@ -244,6 +244,19 @@ static void intel_cpu_cmtg_transcoder_set_m_n(const struct intel_crtc_state *crt
+ 	intel_de_write(display, TRANS_LINKN1_CMTG(cpu_transcoder), m_n->link_n);
  }
-diff --git a/drivers/gpu/drm/i915/display/intel_cmtg_regs.h b/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
-index b766ded8686c..0ed767a797c0 100644
---- a/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
-@@ -18,7 +18,9 @@
  
- #define TRANS_CMTG_CTL_A		_MMIO(0x6fa88)
- #define TRANS_CMTG_CTL_B		_MMIO(0x6fb88)
-+#define TRANS_CMTG_CTL(id)		_MMIO(0x6fa88 + (id) * 0x100)
- #define  CMTG_ENABLE			REG_BIT(31)
-+#define  CMTG_SYNC_TO_PORT		REG_BIT(29)
++static void intel_cmtg_ctl_enable(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_display *display = to_intel_display(crtc_state);
++	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
++	u32 val = 0;
++
++	val = intel_de_read(display, TRANS_CMTG_CTL(cpu_transcoder));
++
++	val |= CMTG_ENABLE;
++
++	intel_de_write(display, TRANS_CMTG_CTL(cpu_transcoder), val);
++}
++
+ void intel_cmtg_enable(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+@@ -261,4 +274,7 @@ void intel_cmtg_enable(const struct intel_crtc_state *crtc_state)
  
- #define TRANS_HTOTAL_CMTG(id)		_MMIO(0x6F000 + (id) * 0x100)
- #define TRANS_HBLANK_CMTG(id)		_MMIO(0x6F004 + (id) * 0x100)
+ 	/* Program Cmtg Sync to Port Sync, TRANS_CMTG_CTL */
+ 	intel_de_rmw(display, TRANS_CMTG_CTL(cpu_transcoder), CMTG_SYNC_TO_PORT, CMTG_SYNC_TO_PORT);
++
++	/* Program Enable Cmtg */
++	intel_cmtg_ctl_enable(crtc_state);
+ }
 -- 
 2.29.0
 
