@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +F7wHG7JgWl1JwMAu9opvQ
+	id kHwtJXHJgWl1JwMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 11:09:50 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 11:09:53 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43921D7562
-	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 11:09:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BC86D756A
+	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 11:09:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABC9B10E5E2;
-	Tue,  3 Feb 2026 10:09:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B060C10E5E9;
+	Tue,  3 Feb 2026 10:09:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fMGyHsXi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PAEpjqU0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DFEE10E5E1;
- Tue,  3 Feb 2026 10:09:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A78010E5B4;
+ Tue,  3 Feb 2026 10:09:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770113388; x=1801649388;
+ t=1770113390; x=1801649390;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Z+CNHO+733zPiif7JhHi45m4TbgEOoj7Ja+Xzxp2lO8=;
- b=fMGyHsXiM4RV2srdnLHa91wSoSL/Nwgb91i49akQHx/XxcOtRNj5EmF0
- JDA66OvhQJeZlaHjX+9HUxZsBb827ydVa4bwr2AyovnI8j4C1RxD+WRuE
- cfmeP27AY1DJc85W8IyLXSxdUYs1nbOiORBnY3x28eR/NvBK7Bm4qbNih
- kkb0afGlnQ9VdFkyGNo40yNBO1d+LkGzJwVas2FjAEX+ZHL7JQ8yBJSCX
- PBAbQTYh1KPmy6TFe2lr67T4cxCtoAfmSbhShDzxGxcHXb6IeCdgthJaM
- duZts3hOsIIR84FdnXTelc5Riml2M+V9Zhzu3Yb5ANJj9UJBtpX43uoEG g==;
-X-CSE-ConnectionGUID: rSvKHlGTQWCzD/jkm5lBQA==
-X-CSE-MsgGUID: 1mOiioVZTpWW75L0qE1zkQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="88702721"
-X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="88702721"
+ bh=V3SuDBYx5Ykp17ZSwR9loLvbPW+yQjpUJQStU4AmSXk=;
+ b=PAEpjqU0vu4BgfeNIZ/G6ITfCEP691XjoqCTRqHtzVoA+59jWPPZhudY
+ OaWlcChVRGFVavH2hU+Wuo00RFDnHS0B4Dg3yP6SYsnDCaXboC1JvzqvQ
+ vKS/wpn9nLaMuifLp81EQSvFnT9gCn+8PZCt6G8jrMMgmrc8Tx2vELDbd
+ krY7FSx10gPcQUxsUtiKNp8jtpP5qmSZ95yx5lXXVF2TJImX3pMsFx2aY
+ ttCnPVKl+gSpEDk4WCFUYbEhVBXT39/BBQEPC3+tqqp+HnaxU+5SdhLZb
+ nuK0Ar3MQJRaXe47EvHf7PpGrOd+BOOHtodHx07pALmLYpySaA8feBGPT A==;
+X-CSE-ConnectionGUID: 7jgmkBDsTXaa0iFW3ThVbg==
+X-CSE-MsgGUID: 6QtfOCnASL6yrE05NQREAA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="88702726"
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="88702726"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2026 02:09:47 -0800
-X-CSE-ConnectionGUID: v1q1ins2SNiUa5S1GyJuaw==
-X-CSE-MsgGUID: QP8Ar2htT8CxMOz/D3veBw==
+ 03 Feb 2026 02:09:50 -0800
+X-CSE-ConnectionGUID: IUQjBAL3S3SbRiAchUJx+w==
+X-CSE-MsgGUID: p5KC4LryQ9qLPuG6EChAgQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="240476188"
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="240476209"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.210])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2026 02:09:45 -0800
+ 03 Feb 2026 02:09:48 -0800
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
@@ -55,10 +55,10 @@ Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
  Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
  Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Subject: [PATCH i-g-t v4 4/6] lib/igt_device_scan: List PCIe bridge ports
- after their children
-Date: Tue,  3 Feb 2026 11:05:06 +0100
-Message-ID: <20260203100920.420551-12-janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH i-g-t v4 5/6] lib/igt_device_scan: Omit AER statistics data
+ from attributes
+Date: Tue,  3 Feb 2026 11:05:07 +0100
+Message-ID: <20260203100920.420551-13-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260203100920.420551-8-janusz.krzysztofik@linux.intel.com>
 References: <20260203100920.420551-8-janusz.krzysztofik@linux.intel.com>
@@ -103,54 +103,56 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	RCPT_COUNT_SEVEN(0.00)[9];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.intel.com:mid,intel.com:email,intel.com:dkim]
-X-Rspamd-Queue-Id: 43921D7562
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,linux.intel.com:mid]
+X-Rspamd-Queue-Id: 3BC86D756A
 X-Rspamd-Action: no action
 
-Current device sorting algorithm positions PCIe bridge upstream ports
-between DRM and PCI devices of their GPU children.  Listing those two not
-interleaved with bridge ports, and the ports following their PCI GPU
-devices, seems more clear.  Go for it.
+Among attributes of a PCIe bridge upstream port of a discrete graphics
+card, there are three AER statistics attributes: aer_dev_correctable,
+aer_dev_nonfatal and aer_dev_fatal.  Each consists of a number of key-
+value pairs, while the library now expects only single value attributes.
+That affects formatting of lsgpu -p output.  In order to print that data
+correctly in a human readable form, extra formatting effort would be
+needed.  However, users of lsgpu, the only call site of that printing
+function of the igt_device_scan library, are not necessarily interested in
+that data.  Just drop those attributes from the printout.
 
-Reviewed-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+v2: Hand over detection of AER attributes to a helper.
+
 Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 ---
- lib/igt_device_scan.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ lib/igt_device_scan.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
 diff --git a/lib/igt_device_scan.c b/lib/igt_device_scan.c
-index 6668e7c686..93c3f9c0d8 100644
+index 93c3f9c0d8..5742940df7 100644
 --- a/lib/igt_device_scan.c
 +++ b/lib/igt_device_scan.c
-@@ -23,6 +23,7 @@
-  */
- 
- #include "drmtest.h"
-+#include "igt_aux.h"
- #include "igt_core.h"
- #include "igt_device_scan.h"
- #include "igt_list.h"
-@@ -1067,6 +1068,7 @@ static struct igt_device *duplicate_device(struct igt_device *dev) {
- static int devs_compare(const void *a, const void *b)
- {
- 	struct igt_device *dev1, *dev2;
-+	unsigned int len1, len2;
- 	int ret;
- 
- 	dev1 = *(struct igt_device **) a;
-@@ -1075,6 +1077,12 @@ static int devs_compare(const void *a, const void *b)
- 	if (ret)
- 		return ret;
- 
-+	len1 = strlen(dev1->syspath);
-+	len2 = strlen(dev2->syspath);
-+
-+	if (len1 != len2 && !strncmp(dev1->syspath, dev2->syspath, min(len1, len2)))
-+		return len2 - len1;
-+
- 	return strcmp(dev1->syspath, dev2->syspath);
+@@ -615,6 +615,13 @@ static bool is_link_attr(const char *name)
+ 	       !strcmp(name, "current_link_width");
  }
  
++static bool is_aer_attr(const char *name)
++{
++	return !strcmp(name, "aer_dev_correctable") ||
++	       !strcmp(name, "aer_dev_nonfatal") ||
++	       !strcmp(name, "aer_dev_fatal");
++}
++
+ static void dump_props_and_attrs(const struct igt_device *dev, bool omit_link)
+ {
+ 	struct igt_map_entry *entry;
+@@ -630,6 +637,10 @@ static void dump_props_and_attrs(const struct igt_device *dev, bool omit_link)
+ 		if (omit_link && is_link_attr(entry->key))
+ 			continue;
+ 
++		/* omit multi-line AER statistics data */
++		if (is_aer_attr(entry->key))
++			continue;
++
+ 		_print_key_value((char *)entry->key, (char *)entry->data);
+ 	}
+ 	printf("\n");
 -- 
 2.52.0
 
