@@ -2,64 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iIIqKs7ugWlAMwMAu9opvQ
+	id QMWJKjjvgWlAMwMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 13:49:18 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 13:51:04 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 107F3D94E8
-	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 13:49:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 163F0D9584
+	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 13:51:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88EEE10E63C;
-	Tue,  3 Feb 2026 12:49:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98C5310E63E;
+	Tue,  3 Feb 2026 12:51:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZyFvfDLY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Vgv33zOS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3552910E63C;
- Tue,  3 Feb 2026 12:49:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EDCF10E63D;
+ Tue,  3 Feb 2026 12:51:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770122955; x=1801658955;
+ t=1770123061; x=1801659061;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=d5QR04+abxXdIY5yS4SJTxRK6XY8Mo4Rq5Qom6G8HyQ=;
- b=ZyFvfDLY32zMpJaol/HKh3FkbZrhcKfNSo1Mu35Opg2fgILnUYQSTBNq
- 4ors83txXrgMQ1FoMloIuuONxtw4LQx51VsvLvng4C7RUGdRmPIJSHhQL
- vNhQyFwwTPdybehrir5Rvj/Rzcm433M4hF+HZZFr6Z+69AkDokF4FKLs+
- DIg7SgHb2KconC0cysffcZZegOlkAJvriFJTBTdl8yuS5iSN1fu2olfZh
- k2lkKUyH8X20VyWiabJPopy+Q+Bg9blTQnxzZmj8a7IOMCsxotxjx+cdE
- vXaR6CxARD94ZX+XLe3TaestBNBC3EhzoNNqwsoSfDmDiX0hl0ub3jpcm w==;
-X-CSE-ConnectionGUID: pZa8D9IZTiGz/0ziTDCGxA==
-X-CSE-MsgGUID: UQLmlbY2T2mkJA5jllBUEA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="71014852"
-X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="71014852"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2026 04:49:15 -0800
-X-CSE-ConnectionGUID: c+QxJUkmRZKwVdXDzBRteg==
-X-CSE-MsgGUID: NOW9oPr3TGykREoJScWJpA==
+ bh=vB+m74EnGDep0MqTF2zeVufHrV6jNE6osxvNmYVOfFc=;
+ b=Vgv33zOSgDWr42DZQiZMv/Da9QTpN+sG+kcDi+AoByvKS0IiZddke7Lm
+ RHNsuAl5EcVFSo/gboL4S0KnD0GigpnOTRaksRwuxpE7A3dlWXcd7sN+v
+ GOVJJg+KslBTEHUYQhcEqkmOKPa7XQtrhbxD/szo5ERNxN+yCJJPgEZmA
+ RDdP70j/gFmO7H7CHYWWYpixjm+kDAr2pacx7yHavsdkjZnvkgAn49qty
+ V31fsM0kXpz2f5j4PE6FxzZFNpexfeWZPDHmtLmYcECoXKmbC6WOj8hXz
+ C1qbPKfRV63xDl2PYKtCON3I4LcepMMurJKIIX+8/tmppsf3NxqbUEpgJ A==;
+X-CSE-ConnectionGUID: Ei5xUsnoTwmogl/+njR6Tg==
+X-CSE-MsgGUID: u/WwSU6eSB+MlVOIdb7ZpA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="81921519"
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="81921519"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2026 04:50:58 -0800
+X-CSE-ConnectionGUID: hsMkuQnSQ5K+vSs2hVOdug==
+X-CSE-MsgGUID: JqS5Nw1MQHW17Jz3rfIRpw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="214796743"
 Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.205])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2026 04:49:13 -0800
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2026 04:50:56 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: Uma Shankar <uma.shankar@intel.com>, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, Uma Shankar <uma.shankar@intel.com>
-Subject: Re: [v3 17/19] drm/i915: Remove i915_reg.h from
- intel_display_power_well.c
-In-Reply-To: <20260129211358.1240283-18-uma.shankar@intel.com>
+Subject: Re: [v3 19/19] drm/{i915, xe}: Remove i915_reg.h from display
+In-Reply-To: <20260129211358.1240283-20-uma.shankar@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260129211358.1240283-1-uma.shankar@intel.com>
- <20260129211358.1240283-18-uma.shankar@intel.com>
-Date: Tue, 03 Feb 2026 14:49:09 +0200
-Message-ID: <1990f0bcf49821dea3f5161099776bc975ec4c2f@intel.com>
+ <20260129211358.1240283-20-uma.shankar@intel.com>
+Date: Tue, 03 Feb 2026 14:50:53 +0200
+Message-ID: <69c7aea5bc84f5855944f90349bb5b92af13092a@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -104,69 +102,288 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: 107F3D94E8
+X-Rspamd-Queue-Id: 163F0D9584
 X-Rspamd-Action: no action
 
 On Fri, 30 Jan 2026, Uma Shankar <uma.shankar@intel.com> wrote:
-> Make intel_display_power_well.c free from including i915_reg.h.
+> Make display files free from including i915_reg.h.
 >
-> v2: Include specific pcode header, drop common header (Jani)
+> v2: Include modular per component headers (Jani)
 >
 > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display_power_well.c | 2 +-
->  drivers/gpu/drm/i915/display/intel_display_regs.h       | 2 ++
->  drivers/gpu/drm/i915/i915_reg.h                         | 3 ---
->  3 files changed, 3 insertions(+), 4 deletions(-)
+>  drivers/gpu/drm/i915/display/hsw_ips.c               | 2 +-
+>  drivers/gpu/drm/i915/display/i9xx_plane.c            | 1 -
+>  drivers/gpu/drm/i915/display/icl_dsi.c               | 1 -
+>  drivers/gpu/drm/i915/display/intel_backlight.c       | 1 -
+>  drivers/gpu/drm/i915/display/intel_bw.c              | 2 +-
+>  drivers/gpu/drm/i915/display/intel_casf.c            | 1 -
+>  drivers/gpu/drm/i915/display/intel_ddi.c             | 1 -
+>  drivers/gpu/drm/i915/display/intel_display_debugfs.c | 1 -
+>  drivers/gpu/drm/i915/display/intel_display_power.c   | 2 +-
+>  drivers/gpu/drm/i915/display/intel_display_wa.c      | 1 -
+>  drivers/gpu/drm/i915/display/intel_dmc.c             | 1 -
+>  drivers/gpu/drm/i915/display/intel_fdi.c             | 1 -
+>  drivers/gpu/drm/i915/display/intel_hdcp.c            | 2 +-
+>  drivers/gpu/drm/i915/display/intel_hotplug_irq.c     | 1 -
+>  drivers/gpu/drm/i915/display/intel_lt_phy.c          | 1 -
+>  drivers/gpu/drm/i915/display/intel_pps.c             | 1 -
+>  drivers/gpu/drm/i915/display/intel_tc.c              | 1 -
+>  drivers/gpu/drm/i915/display/skl_watermark.c         | 2 +-
+>  drivers/gpu/drm/i915/display/vlv_dsi.c               | 1 -
+>  19 files changed, 5 insertions(+), 19 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> index 6f9bc6f9615e..f98de1baa63d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> @@ -6,8 +6,8 @@
->  #include <linux/iopoll.h>
+> diff --git a/drivers/gpu/drm/i915/display/hsw_ips.c b/drivers/gpu/drm/i915/display/hsw_ips.c
+> index 0caaea2e64e1..5697fa4eb11f 100644
+> --- a/drivers/gpu/drm/i915/display/hsw_ips.c
+> +++ b/drivers/gpu/drm/i915/display/hsw_ips.c
+> @@ -6,9 +6,9 @@
+>  #include <linux/debugfs.h>
 >  
 >  #include <drm/drm_print.h>
 > +#include <drm/intel/intel_pcode.h>
 
-Hmm, nothing's being moved there in this patch, so this change feels
-unrelated.
+Nothing's being added there in this patch, so this feels
+unrelated. Ditto below.
+
+I think it'll lead to a better overall series if intel_pcode.h (or
+intel_pcode_regs.h) isn't included in i915_reg.h but rather everywhere
+it's needed.
 
 BR,
 Jani.
 
+
+>  
+>  #include "hsw_ips.h"
+> -#include "i915_reg.h"
+>  #include "intel_color_regs.h"
+>  #include "intel_de.h"
+>  #include "intel_display_regs.h"
+> diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
+> index b1fecf178906..9c16753a1f3b 100644
+> --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
+> +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
+> @@ -10,7 +10,6 @@
+>  #include <drm/drm_fourcc.h>
+>  #include <drm/drm_print.h>
+>  
+> -#include "i915_reg.h"
+>  #include "i9xx_plane.h"
+>  #include "i9xx_plane_regs.h"
+>  #include "intel_atomic.h"
+> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+> index c8e0333706c1..7cf511a6c0f9 100644
+> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> @@ -34,7 +34,6 @@
+>  #include <drm/drm_print.h>
+>  #include <drm/drm_probe_helper.h>
+>  
+> -#include "i915_reg.h"
+>  #include "icl_dsi.h"
+>  #include "icl_dsi_regs.h"
+>  #include "intel_atomic.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
+> index a68fdbd2acb9..34e95f05936e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_backlight.c
+> @@ -12,7 +12,6 @@
+>  #include <drm/drm_file.h>
+>  #include <drm/drm_print.h>
+>  
+> -#include "i915_reg.h"
+>  #include "intel_backlight.h"
+>  #include "intel_backlight_regs.h"
+>  #include "intel_connector.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+> index 8d84445c69f1..71149d8bcd73 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> @@ -5,8 +5,8 @@
+>  
+>  #include <drm/drm_atomic_state_helper.h>
+>  #include <drm/drm_print.h>
+> +#include <drm/intel/intel_pcode.h>
+>  
+> -#include "i915_reg.h"
+>  #include "intel_bw.h"
+>  #include "intel_crtc.h"
+>  #include "intel_display_core.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_casf.c b/drivers/gpu/drm/i915/display/intel_casf.c
+> index 0fe4398a1a4e..b167af31de5b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_casf.c
+> +++ b/drivers/gpu/drm/i915/display/intel_casf.c
+> @@ -3,7 +3,6 @@
+>  
+>  #include <drm/drm_print.h>
+>  
+> -#include "i915_reg.h"
+>  #include "intel_casf.h"
+>  #include "intel_casf_regs.h"
+>  #include "intel_de.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index d8739e2bb004..3f0c9c7fd5f8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -34,7 +34,6 @@
+>  #include <drm/drm_print.h>
+>  #include <drm/drm_privacy_screen_consumer.h>
+>  
+> -#include "i915_reg.h"
+>  #include "icl_dsi.h"
+>  #include "intel_alpm.h"
+>  #include "intel_audio.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> index aba13e8a9051..1ce28a31affb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -15,7 +15,6 @@
+>  #include <drm/drm_print.h>
+>  
+>  #include "hsw_ips.h"
+> -#include "i915_reg.h"
+>  #include "i9xx_wm_regs.h"
+>  #include "intel_alpm.h"
+>  #include "intel_bo.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> index 06adf6afbec0..a6e9f1c8d2dc 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -7,8 +7,8 @@
+>  #include <linux/string_helpers.h>
+>  
+>  #include <drm/drm_print.h>
+> +#include <drm/intel/intel_pcode.h>
 >  
 > -#include "i915_reg.h"
 >  #include "intel_backlight_regs.h"
->  #include "intel_combo_phy.h"
->  #include "intel_combo_phy_regs.h"
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-> index 4a9b7560ce8c..758749c5c322 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-> @@ -359,6 +359,8 @@
->  #define  FW_CSPWRDWNEN		(1 << 15)
+>  #include "intel_cdclk.h"
+>  #include "intel_clock_gating.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
+> index 2eb4af62d556..d9788a979561 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_wa.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
+> @@ -5,7 +5,6 @@
 >  
->  #define MI_ARB_VLV		_MMIO(VLV_DISPLAY_BASE + 0x6504)
-> +/* Disable display A/B trickle feed */
-> +#define   MI_ARB_DISPLAY_TRICKLE_FEED_DISABLE	(1 << 2)
+>  #include <drm/drm_print.h>
 >  
->  #define CZCLK_CDCLK_FREQ_RATIO	_MMIO(VLV_DISPLAY_BASE + 0x6508)
->  #define   CDCLK_FREQ_SHIFT	4
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 9cd7fce09ebe..e4fc61dcd384 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -428,9 +428,6 @@
->  #define   MI_ARB_LOW_PRIORITY_GRACE_4KB		(0 << 4)	/* default */
->  #define   MI_ARB_LOW_PRIORITY_GRACE_8KB		(1 << 4)
+> -#include "i915_reg.h"
+>  #include "intel_de.h"
+>  #include "intel_display_core.h"
+>  #include "intel_display_regs.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+> index 1182bc9a2e6d..8df06b993890 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+> @@ -29,7 +29,6 @@
+>  #include <drm/drm_file.h>
+>  #include <drm/drm_print.h>
 >  
-> -/* Disable display A/B trickle feed */
-> -#define   MI_ARB_DISPLAY_TRICKLE_FEED_DISABLE	(1 << 2)
-> -
->  /* Set display plane priority */
->  #define   MI_ARB_DISPLAY_PRIORITY_A_B		(0 << 0)	/* display A > display B */
->  #define   MI_ARB_DISPLAY_PRIORITY_B_A		(1 << 0)	/* display B > display A */
+> -#include "i915_reg.h"
+>  #include "intel_crtc.h"
+>  #include "intel_de.h"
+>  #include "intel_display_power_well.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
+> index 5bb0090dd5ed..24ce8a7842c7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fdi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fdi.c
+> @@ -8,7 +8,6 @@
+>  #include <drm/drm_fixed.h>
+>  #include <drm/drm_print.h>
+>  
+> -#include "i915_reg.h"
+>  #include "intel_atomic.h"
+>  #include "intel_crtc.h"
+>  #include "intel_ddi.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index b7479ced7871..6110a582437c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -17,8 +17,8 @@
+>  #include <drm/display/drm_hdcp_helper.h>
+>  #include <drm/drm_print.h>
+>  #include <drm/intel/i915_component.h>
+> +#include <drm/intel/intel_pcode.h>
+>  
+> -#include "i915_reg.h"
+>  #include "intel_connector.h"
+>  #include "intel_de.h"
+>  #include "intel_display_jiffies.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
+> index 82c39e4ffa37..8865cb2ac569 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
+> @@ -5,7 +5,6 @@
+>  
+>  #include <drm/drm_print.h>
+>  
+> -#include "i915_reg.h"
+>  #include "intel_de.h"
+>  #include "intel_display_irq.h"
+>  #include "intel_display_regs.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> index 04f63bdd0b87..1df23447fd84 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> @@ -5,7 +5,6 @@
+>  
+>  #include <drm/drm_print.h>
+>  
+> -#include "i915_reg.h"
+>  #include "intel_cx0_phy.h"
+>  #include "intel_cx0_phy_regs.h"
+>  #include "intel_ddi.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+> index b217ec7aa758..2d799af73bb7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pps.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
+> @@ -9,7 +9,6 @@
+>  #include <drm/drm_print.h>
+>  
+>  #include "g4x_dp.h"
+> -#include "i915_reg.h"
+>  #include "intel_de.h"
+>  #include "intel_display_jiffies.h"
+>  #include "intel_display_power_well.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
+> index 064f572bbc85..78ed9c58a72f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_tc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
+> @@ -7,7 +7,6 @@
+>  
+>  #include <drm/drm_print.h>
+>  
+> -#include "i915_reg.h"
+>  #include "intel_atomic.h"
+>  #include "intel_cx0_phy_regs.h"
+>  #include "intel_ddi.h"
+> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+> index b41da10f0f85..9efb94b4cbdb 100644
+> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> @@ -7,8 +7,8 @@
+>  
+>  #include <drm/drm_blend.h>
+>  #include <drm/drm_print.h>
+> +#include <drm/intel/intel_pcode.h>
+>  
+> -#include "i915_reg.h"
+>  #include "i9xx_wm.h"
+>  #include "intel_atomic.h"
+>  #include "intel_bw.h"
+> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+> index d705af3bf8ba..67f0082d3a69 100644
+> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+> @@ -33,7 +33,6 @@
+>  #include <drm/drm_print.h>
+>  #include <drm/drm_probe_helper.h>
+>  
+> -#include "i915_reg.h"
+>  #include "intel_atomic.h"
+>  #include "intel_backlight.h"
+>  #include "intel_connector.h"
 
 -- 
 Jani Nikula, Intel
