@@ -2,67 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CEw7INLagWlBLQMAu9opvQ
+	id 4NSyOCHhgWmDLQMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 12:24:02 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 12:50:57 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DBDBD841D
-	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 12:24:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44E10D89E9
+	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 12:50:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 197B410E31C;
-	Tue,  3 Feb 2026 11:24:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1381C10E31B;
+	Tue,  3 Feb 2026 11:50:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jf9HbU9n";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QBmjfLB5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3F1310E316
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Feb 2026 11:23:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CE7610E31B;
+ Tue,  3 Feb 2026 11:50:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770117837; x=1801653837;
+ t=1770119452; x=1801655452;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=rDRSjUI2hsjG2UxjrWIwcn2WFfzqG3e6QVUkUH3es54=;
- b=Jf9HbU9nA6W9xCezh5NQBpJYKc5IN6yN1NNe22xBQr/Jf1k5cCcpWD3h
- XeaZngaZtv9m7ZZSrdCEepAW7ipJZRs80KOKDTkUckjQfTFm/Mr71PrM9
- tWJOd1m57ij/ybfOmxw72qVXSjpAJcbvl73ANhsvf0dvvcMWyl6jrPOTx
- EBfGnHzwB48iKtZ1JAi+eToBOdMZGnshjeNHZzIuVKHe4fcUqQikQ8Jrp
- jM33QpxzTcmrI3Cf2yERAnjHrThUyjdnNj6XcNa5q/iisVDPghOiMklQQ
- m0ss5D2I9NWKs+jErP52FLi7m7F9cKqSImo1UHY+nF7JEHO2CNVzyM8WJ w==;
-X-CSE-ConnectionGUID: sjXIKeCBTjunlRlPEaAkQw==
-X-CSE-MsgGUID: TUppv6xZRo+tmWW4h0M+pQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="73882579"
-X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="73882579"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2026 03:23:55 -0800
-X-CSE-ConnectionGUID: hKrfa0asQdm4gwYLl+7B3g==
-X-CSE-MsgGUID: VV8YHkj+TFOzPRrxl/OJlA==
+ message-id:mime-version;
+ bh=t0YQO5O2IZFKurNSc/J4TfIQCC0rJpkl6Mzv7UaRB1g=;
+ b=QBmjfLB5Bq75V0LSRr217XclopR4A6weaoFM2xkqGquOMZBG4g06BtQ1
+ nqwkXrixhjKqNLub2rQwj54dE55hXRm8f19MCd2xyhtzCbI+JeSQft+qy
+ Nynd4fCeYmyX7H+b9XfBW/CdhvJ8KOn/hucO2VZzYuoq8pUUP42Bq0rYe
+ RXkbHxfOsT2j042zP1WCX3d0/sU35gkXrGdvF2G6PXovMAbBU5ZYb0lSh
+ HR1kekYmuxKOf5QjN2T/Re7DhDDAD/kRyujZN1cvIl8jJWjRhVU8qAL8Z
+ R/7Nv4u21In3mVPeYl+puqcVXj0ZTgXP872yvg7m6NGR5poxiImR8n0cN Q==;
+X-CSE-ConnectionGUID: mXKtWJ4PT7yJEXm6Q9ZkBA==
+X-CSE-MsgGUID: d+r1VbflQRW8gjwn9lJuqw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="70305693"
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="70305693"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2026 03:50:50 -0800
+X-CSE-ConnectionGUID: nM7PzXJmTTi23dYmonqCzg==
+X-CSE-MsgGUID: f5CQIAfvRhuMQqLh34hnDQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="214351696"
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="247433987"
 Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.205])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2026 03:23:53 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: Thasleem@freedesktop.org, Mohammed <mohammed.thasleem@intel.com>,
- =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>
-Subject: Re: [RESEND i-g-t v1] tests/kms_flip: test suspend on one pair of
- pipes
-In-Reply-To: <20260201150333.2650279-1-michal.grzelak@intel.com>
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2026 03:50:47 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Uma Shankar <uma.shankar@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, Uma Shankar <uma.shankar@intel.com>
+Subject: Re: [v3 07/19] drm/i915: Remove i915_reg.h from intel_dram.c
+In-Reply-To: <20260129211358.1240283-8-uma.shankar@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260201150333.2650279-1-michal.grzelak@intel.com>
-Date: Tue, 03 Feb 2026 13:23:50 +0200
-Message-ID: <80d639d3d928b7035ee6dddd68a781e5b13e8fca@intel.com>
+References: <20260129211358.1240283-1-uma.shankar@intel.com>
+ <20260129211358.1240283-8-uma.shankar@intel.com>
+Date: Tue, 03 Feb 2026 13:50:45 +0200
+Message-ID: <b4abcc0081e9f63c756e1bc3767ad16cc92e13af@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,53 +76,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:michal.grzelak@intel.com,m:Thasleem@freedesktop.org,m:mohammed.thasleem@intel.com,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	HAS_ORG_HEADER(0.00)[];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
+	HAS_ORG_HEADER(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 0DBDBD841D
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: 44E10D89E9
 X-Rspamd-Action: no action
 
-On Sun, 01 Feb 2026, Micha=C5=82 Grzelak <michal.grzelak@intel.com> wrote:
-> Currently, every pair of ({pipe1, pipe2}, {output1, output2}) is being
-> tested in 2x-* subtests. Since suspend shouldn't be tested per pipe, it
-> causes unnecessary overhead: with 4 pipes & 4 displays it runs in total
-> 36 tests. Given that each suspend's dynamic subtest can take up to tens
-> of seconds, total duration of the test easily exceeds timeout.
+On Fri, 30 Jan 2026, Uma Shankar <uma.shankar@intel.com> wrote:
+> Make intel_dram.c free from including i915_reg.h.
+>
+> v2: Move mem config register to newly added pcode header (Jani)
+>
+> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dram.c | 2 +-
+>  drivers/gpu/drm/i915/i915_reg.h           | 6 ------
+>  include/drm/intel/intel_pcode.h           | 6 ++++++
+>  3 files changed, 7 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dram.c b/drivers/gpu/drm/i915/display/intel_dram.c
+> index 3b9879714ea9..3366e18f594e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dram.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dram.c
+> @@ -7,8 +7,8 @@
+>  
+>  #include <drm/drm_managed.h>
+>  #include <drm/drm_print.h>
+> +#include <drm/intel/intel_pcode.h>
+>  
+> -#include "i915_reg.h"
+>  #include "intel_display_core.h"
+>  #include "intel_display_utils.h"
+>  #include "intel_dram.h"
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 4341308c3b2b..bc466d8c8c60 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -1010,12 +1010,6 @@
+>  #define OROM_OFFSET				_MMIO(0x1020c0)
+>  #define   OROM_OFFSET_MASK			REG_GENMASK(20, 16)
+>  
+> -#define MTL_MEM_SS_INFO_GLOBAL			_MMIO(0x45700)
+> -#define   XE3P_ECC_IMPACTING_DE			REG_BIT(12)
+> -#define   MTL_N_OF_ENABLED_QGV_POINTS_MASK	REG_GENMASK(11, 8)
+> -#define   MTL_N_OF_POPULATED_CH_MASK		REG_GENMASK(7, 4)
+> -#define   MTL_DDR_TYPE_MASK			REG_GENMASK(3, 0)
+> -
+>  #define MTL_MEDIA_GSI_BASE		0x380000
+>  
+>  #endif /* _I915_REG_H_ */
+> diff --git a/include/drm/intel/intel_pcode.h b/include/drm/intel/intel_pcode.h
+> index 8e9a574c87d9..f6f894ba9b20 100644
+> --- a/include/drm/intel/intel_pcode.h
+> +++ b/include/drm/intel/intel_pcode.h
+> @@ -105,4 +105,10 @@
+>  #define     PCODE_MBOX_DOMAIN_NONE		0x0
+>  #define     PCODE_MBOX_DOMAIN_MEDIAFF		0x3
+>  
+> +#define MTL_MEM_SS_INFO_GLOBAL			_MMIO(0x45700)
+> +#define   XE3P_ECC_IMPACTING_DE			REG_BIT(12)
+> +#define   MTL_N_OF_ENABLED_QGV_POINTS_MASK	REG_GENMASK(11, 8)
+> +#define   MTL_N_OF_POPULATED_CH_MASK		REG_GENMASK(7, 4)
+> +#define   MTL_DDR_TYPE_MASK			REG_GENMASK(3, 0)
 
-Surely this was meant for igt-dev mailing list.
+This isn't related to pcode, and this is only used in display. Why here?
 
 BR,
 Jani.
 
---=20
+> +
+>  #endif
+
+-- 
 Jani Nikula, Intel
