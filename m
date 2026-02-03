@@ -2,59 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ICVzKed9gWnkGgMAu9opvQ
+	id MK6eLTJ+gWnlGgMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 05:47:35 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 05:48:50 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15DADD4789
-	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 05:47:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2272DD47B4
+	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 05:48:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F22E10E517;
-	Tue,  3 Feb 2026 04:47:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94F6E10E51E;
+	Tue,  3 Feb 2026 04:48:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="egZOY+bl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NkdAfDUk";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48EA410E214;
- Tue,  3 Feb 2026 04:47:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19E8E10E51B;
+ Tue,  3 Feb 2026 04:48:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770094051; x=1801630051;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
+ t=1770094126; x=1801630126;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
  bh=yb7Kh//NmjdFcfqStpuwOPbOWCfCrjntjq+6zfRo7JI=;
- b=egZOY+blp1gvtijl+i/+c2btlCPpWICxRMzAqBw8IZukNIDnbCgX51Fh
- rmj6lCD8psVXp6ToQODSYn3H5gcpDmXF3YXo/XVb1uE8ceavzXMqJGkLm
- v4iTfHptuEijtoj7XMCO98JDppaoJlD7surPBP9vhG/d5jLFlW9fciAQn
- Ox95Mlkw0kS3nakxbrqJXwMjvCwZQ4C5xIFmh98ycRf5OC+z6EzKqhM/i
- /27PnhmRtxz2+2RYqZzShcElBQo1xImT01YzVj5QWlrX0wcIOyjwOhnww
- P0wVKNEGuZAEr0yCH+y3eK35l0FHetMBXynM9LJ9XNlN1N1ZW6YBauz28 A==;
-X-CSE-ConnectionGUID: y/lc43JVTR2KuwLloXSdXA==
-X-CSE-MsgGUID: EX4FtN/oT/WEGttRmaTTog==
-X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="73854698"
-X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="73854698"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 20:47:29 -0800
-X-CSE-ConnectionGUID: UbKGFW0dTIeQ/eBvw9Q2Pw==
-X-CSE-MsgGUID: uj5wkCxDR1umTSFhHMCZAA==
+ b=NkdAfDUkIsd6vfB+Ou/RLeaHDRrksPWrfxJvmwuMctwLnAhHJB9fm+O6
+ 3BUg1Vy6Au7xeYKtcjZvliPyY7OfZx3Fb39ZC5aKwAeGwxQQRy8+YMezE
+ /Qu49isaIG23WfyHNF/SVUqY5D/gkQrAwLSLN8Y61aGmpm7SnLkJnJ8G6
+ /fgfzE+gacrUo+qMtuEdYTQN1BpLiZkgQ2aPbgbVOUnKXx42RzMGxAIDr
+ QDi+hiSLiaJrVjRcstilMNI0S9r+FfeD6VSSttf69vir8UtP2YSlXoG1F
+ PKTqlz76P2OVlY3wVZm+VYjukT6Nx+qQFFiiRcE2OYQZylYqR/P6b38jQ w==;
+X-CSE-ConnectionGUID: EyJQRKFiTaSe9g/HOmWLYQ==
+X-CSE-MsgGUID: dOm2zAWmT/C4xJxQLz6/1Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="71338788"
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="71338788"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2026 20:48:43 -0800
+X-CSE-ConnectionGUID: flbRXaCiTS+ZxtuAytWF/A==
+X-CSE-MsgGUID: htJcTasQRlWDmSq5Db45fQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="209501834"
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="232643284"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa009.jf.intel.com with ESMTP; 02 Feb 2026 20:47:28 -0800
+ by fmviesa002.fm.intel.com with ESMTP; 02 Feb 2026 20:48:42 -0800
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: Rahul Bukte <rahul.bukte@sony.com>, Suraj Kandpal <suraj.kandpal@intel.com>
 Subject: [PATCH] drm/i915/gt: Check set_default_submission() before deferencing
-Date: Tue,  3 Feb 2026 10:17:23 +0530
-Message-Id: <20260203044723.1554875-1-suraj.kandpal@intel.com>
+Date: Tue,  3 Feb 2026 10:18:39 +0530
+Message-Id: <20260203044839.1555147-1-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260115015454.3226069-1-rahul.bukte@sony.com>
-References: <20260115015454.3226069-1-rahul.bukte@sony.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -97,7 +95,7 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sony.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: 15DADD4789
+X-Rspamd-Queue-Id: 2272DD47B4
 X-Rspamd-Action: no action
 
 From: Rahul Bukte <rahul.bukte@sony.com>
