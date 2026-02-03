@@ -2,34 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SCnVHQn7gWk7NQMAu9opvQ
+	id YNk6HYMCgmmYNgMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 14:41:29 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 15:13:23 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4F06DA060
-	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 14:41:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0BE0DA68C
+	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 15:13:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A31C510E657;
-	Tue,  3 Feb 2026 13:41:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59C6A10E685;
+	Tue,  3 Feb 2026 14:13:21 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PdJiwLCt";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97DFB10E32D;
- Tue,  3 Feb 2026 13:41:25 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44EED10E681;
+ Tue,  3 Feb 2026 14:13:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1770127998; x=1801663998;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+YV6LIUee58HtjBLaWVlo/8hUkKV+JfcZuDArPrhbTU=;
+ b=PdJiwLCtQmTsPCsOabVC5/4ek+ee4Vc3PB4zxh9CGKJYuHKSudp5xa9u
+ 5AM8mbS3wpbHiLYyfkIWBbT8P7tMw6pDLlaLpDZPy6FH8xP8QxQMbasa+
+ mMSx2CFuJgT5AQskFRmZMwFUkOk6AAXF1BwCdz2AdJtVGrLKt7FPfmf3+
+ prDcw+4VmlxpnUDY+PeQPFtdt40vpQ4izcootIQoeyif9ZRnCwcoNbl5A
+ OGvwvLdC9CG4jdWgHSheafVcdw/47iRNBqNgcUp1/h0p3a5xJRiYroGee
+ YSnaa+y6Al7IS8ZqGk6T454SRY7DVV6ulXkX0ZQI2q9klNcmBOs/af+T5 g==;
+X-CSE-ConnectionGUID: 8lMPKLx8RFm6TaJhd9GtXA==
+X-CSE-MsgGUID: W9arD6OjSFKrNCPV5AF5xQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="75156433"
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="75156433"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2026 06:13:16 -0800
+X-CSE-ConnectionGUID: aL8rBZ/fTFKZXg0mHge4gQ==
+X-CSE-MsgGUID: ui81IkFxQ0CkKXVHy7hSMg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="208956286"
+Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
+ by orviesa006.jf.intel.com with ESMTP; 03 Feb 2026 06:13:14 -0800
+From: Animesh Manna <animesh.manna@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: dibin.moolakadan.subrahmanian@intel.com, jani.nikula@intel.com,
+ Animesh Manna <animesh.manna@intel.com>
+Subject: [PATCH v2 00/10] CMTG enablement
+Date: Tue,  3 Feb 2026 19:13:57 +0530
+Message-Id: <20260203134407.2823406-1-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_drm/i915/selftests=3A_Pre?=
- =?utf-8?q?vent_userspace_mapping_invalidation_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Krzysztof Karas" <krzysztof.karas@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 03 Feb 2026 13:41:25 -0000
-Message-ID: <177012608559.219349.6937622437230637714@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <5biajlwhi3oaep72si2dj2lhp2xwrpfa2gxqc2l36464uishjo@g26isdq64nv2>
-In-Reply-To: <5biajlwhi3oaep72si2dj2lhp2xwrpfa2gxqc2l36464uishjo@g26isdq64nv2>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,61 +68,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[animesh.manna@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.999];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: D4F06DA060
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim]
+X-Rspamd-Queue-Id: F0BE0DA68C
 X-Rspamd-Action: no action
 
-== Series Details ==
+Common mode timing generator (CMTG) support is added LNL onwards.
+Enable CMTG which will be needed by other fearure like dynamic dc
+state enablement later.
 
-Series: drm/i915/selftests: Prevent userspace mapping invalidation (rev3)
-URL   : https://patchwork.freedesktop.org/series/160096/
-State : failure
+Testing ongoing, currently counters are incrementing as expected.
 
-== Summary ==
+Animesh Manna (8):
+  drm/i915/cmtg: enable cmtg LNL onwards
+  drm/i915/cmtg: cmtg set clock select
+  drm/i915/cmtg: set timings for cmtg
+  drm/i915/cmtg: program vrr registers of cmtg
+  drm/i915/cmtg: program set context latency of cmtg
+  drm/i915/cmtg: set transcoder mn for cmtg
+  drm/i915/cmtg: program sync to port for cmtg
+  drm/i915/cmtg: enable cmtg ctl
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/160096/revisions/3/mbox/ not applied
-Applying: drm/i915/selftests: Prevent userspace mapping invalidation
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 drm/i915/selftests: Prevent userspace mapping invalidation
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-Build failed, no error log produced
+Dibin Moolakadan Subrahmanian (2):
+  drm/i915/cmtg: enable cmtg in secondary mode
+  drm/i915/cmtg: disable CMTG on transcoder disable
 
+ drivers/gpu/drm/i915/display/intel_cmtg.c     | 140 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_cmtg.h     |   4 +
+ .../gpu/drm/i915/display/intel_cmtg_regs.h    |  22 +++
+ drivers/gpu/drm/i915/display/intel_crt.c      |   1 +
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  |   5 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  52 ++++---
+ .../drm/i915/display/intel_display_types.h    |   7 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |   4 +
+ drivers/gpu/drm/i915/display/intel_lt_phy.c   |   9 +-
+ drivers/gpu/drm/i915/display/intel_vrr.c      |   4 +
+ 10 files changed, 225 insertions(+), 23 deletions(-)
+
+-- 
+2.29.0
 
