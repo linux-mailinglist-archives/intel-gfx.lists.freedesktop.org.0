@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kFqvM2nJgWl1JwMAu9opvQ
+	id MKxpKGzJgWl1JwMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 11:09:45 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 11:09:48 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84129D754D
-	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 11:09:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5269AD7554
+	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 11:09:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD74610E5CE;
-	Tue,  3 Feb 2026 10:09:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0DCE10E5DF;
+	Tue,  3 Feb 2026 10:09:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fh5YNpRn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eN9huFBF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41D1A10E5CC;
- Tue,  3 Feb 2026 10:09:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D98EE10E5D0;
+ Tue,  3 Feb 2026 10:09:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770113382; x=1801649382;
+ t=1770113385; x=1801649385;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=40LHmGXPnhI7xXCw1vCzobKJTgCsAaBWxlFZy8fDIJc=;
- b=Fh5YNpRnXYNmrK5IO9FmcuJ5SY5pjYKyYD+ZXiylD10cinGeNNjNz8Go
- unsvw3IWaq/BRGWJun7TFc/0psTOu6BjqvjHtt8xLafWISw96CuFdZPWA
- g5NOx2POxBC9UQ5S7bxJrG+vR99R8MIOfeil0kJJc0NDqbkIlqO3Y3EZQ
- iLfULSI8eYQDEEEZ1uIDdKVyD8hmxb871GjgjDKs1Z9PVKWXUiNUzpVEJ
- 35rEJZ8CzVKGT8i6TrfML4AmLARbR0mtbIZzFz9hSD8/ltTE1VlnG8s5D
- NL4cP0XuTdH+Sc+YGX+8CiMKDzEyboQ0ODx+WpwbcbPL9eC8QwNmq8C7L w==;
-X-CSE-ConnectionGUID: 9UABjN29RNyl9xSNdQsXPw==
-X-CSE-MsgGUID: nM7xqh37Qt2EUkr2z36Imw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="88702714"
-X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="88702714"
+ bh=jVekW22HnYKs8fgW+xfJ9OxxYY8wGs8+/bNUbkFK344=;
+ b=eN9huFBF348Fo0a1rODfr6YzPeGAsN5NA1Mfbf7WqGac+a8U44rroPmL
+ b50d2CEt+IHWkbM+nUY8ZvYKommHH2ocSUYKJjyMqAIi7zkjHv0xhAmMF
+ 62TfKkhaFz7ck84w3KLn8QUKz0naR7AJ6DPCH3C+bJHcPIVwvbHqx5tyz
+ V0sWHD/AKLl5Yw2n+TAgUJ5k0Qqak6ZF+h7jhm4IIdOlhvPlhzv4qxn1g
+ dFrY4b7jbbmu498g8o7gj4R6CSqu607Uo0toAjIZDOY2G5In8ySY4LODV
+ t34qzEVIvj0vRJLnuTwKJ0uj6CntTYNmKN8vhQCCMOg3Hd+wNtLKC1KiM Q==;
+X-CSE-ConnectionGUID: 8/AFn6DTT2aIxJgeaolBAA==
+X-CSE-MsgGUID: vYpfSkqjRtOBOwI/zsCj+Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="88702717"
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="88702717"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2026 02:09:42 -0800
-X-CSE-ConnectionGUID: CNniRUh+SpC+SRH38Ng0eQ==
-X-CSE-MsgGUID: gm/NlkH7RyiOD/3TyLd1UQ==
+ 03 Feb 2026 02:09:45 -0800
+X-CSE-ConnectionGUID: Tck6vx67QH+dHxvijzEQdA==
+X-CSE-MsgGUID: pGhAC1DcT1ypw88L7GbQdw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="240476166"
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="240476177"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.210])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2026 02:09:40 -0800
+ 03 Feb 2026 02:09:43 -0800
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
@@ -55,10 +55,10 @@ Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
  Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
  Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Subject: [PATCH i-g-t v4 2/6] lib/igt_device_scan: Split out reusable part of
- update_or_add_parent
-Date: Tue,  3 Feb 2026 11:05:04 +0100
-Message-ID: <20260203100920.420551-10-janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH i-g-t v4 3/6] lib/igt_device_scan: Include PCIe bridge
+ upstream port if available
+Date: Tue,  3 Feb 2026 11:05:05 +0100
+Message-ID: <20260203100920.420551-11-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260203100920.420551-8-janusz.krzysztofik@linux.intel.com>
 References: <20260203100920.420551-8-janusz.krzysztofik@linux.intel.com>
@@ -103,8 +103,8 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	RCPT_COUNT_SEVEN(0.00)[9];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url,linux.intel.com:mid,intel.com:email,intel.com:dkim]
-X-Rspamd-Queue-Id: 84129D754D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,linux.intel.com:mid,gitlab.freedesktop.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,meson.build:url]
+X-Rspamd-Queue-Id: 5269AD7554
 X-Rspamd-Action: no action
 
 Users of Intel discrete graphics adapters are confused with fake
@@ -118,119 +118,228 @@ Since the tool uses our udev based igt_device_scan library for identifying
 GPU devices and printing their properties and attributes, modifications
 that we need apply to that library.
 
-Refactor the library so a part of it can be reused for processing the
-bridge port.
+When scanning for DRM devices and their PCI parents, the lsgpu utility
+requests collection of all their attributes.  When running in this mode,
+also try to collect information about upstream ports of PCIe bridges of
+discrete GPU devices.  Once collected, the lsgpu utility will show that
+information automatically while listing the devices.
 
-There are no functional changes introduced with this patch.
+While IGT tests are using libpciaccess library for processing PCI devices,
+that library requires careful handling in order to avoid collisions among
+multiple call sites potentially using it.  That protection is implemented
+in igt_device with help of IGT exit handlers. That requires linking with
+full igt_core library code, while the lsgpu tool now depends neither on
+igt_device nor on igt_core.  To keep that independence, implement the new
+code around libpci.  With that approach, refactoring of IGT use of either
+libpciaccess or igt_device_scan is avoided.  As an additional benefit,
+there is no need to re-implement some functionality, already provided by
+libpci function pci_find_cap(), which has no equivalent in libpciaccess.
 
-v4: Also change RETRIES_GET_PARENT to RETRIES_GET_DEVICE for consistency
-    with renamed variables (Krzysztof).
+v4: Replace 0x7f constant with PCI_HEADER_TYPE_MASK symbol (Krzysztof).
+v3: Fix incorrect use of ffs(),
+  - fix bridge link attribute printing suppressed with DEVTYPE_DISCRETE,
+  - in commit description, elaborate more on reasons for using libpci.
+v2: Drop unclear GET_REG_MASK macro (Sebastian),
+  - reuse no longer needed variable containing PCI_HEADER_TYPE for storing
+    PCI_EXP_FLAGS_TYPE,
+  - maintain a single instance of struct pci_access throughout processing
+    of the whole udev device list (Sebastian).
 
-Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10753
-Reviewed-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-Cc: Krzysztof Karas <krzysztof.karas@intel.com>
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10753
+Reviewed-by: Krzysztof Karas <krzysztof.karas@intel.com>
+Cc: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
 Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 ---
- lib/igt_device_scan.c | 72 ++++++++++++++++++++++++++-----------------
- 1 file changed, 43 insertions(+), 29 deletions(-)
+ lib/igt_device_scan.c | 86 +++++++++++++++++++++++++++++++++++++++++--
+ lib/meson.build       |  2 +
+ meson.build           |  1 +
+ 3 files changed, 86 insertions(+), 3 deletions(-)
 
 diff --git a/lib/igt_device_scan.c b/lib/igt_device_scan.c
-index 7ae64375b5..11b3034639 100644
+index 11b3034639..6668e7c686 100644
 --- a/lib/igt_device_scan.c
 +++ b/lib/igt_device_scan.c
-@@ -913,33 +913,21 @@ static struct igt_device *igt_device_from_syspath(const char *syspath)
+@@ -35,7 +35,11 @@
+ #include <libudev.h>
+ #ifdef __linux__
+ #include <linux/limits.h>
++#include <linux/pci_regs.h>
++#else
++#define PCI_HEADER_TYPE_MASK 0x7f
+ #endif
++#include <pci/pci.h>
+ #include <sys/stat.h>
+ #include <sys/time.h>
+ #include <sys/types.h>
+@@ -913,6 +917,26 @@ static struct igt_device *igt_device_from_syspath(const char *syspath)
  	return NULL;
  }
  
--#define RETRIES_GET_PARENT 5
--/* For each drm igt_device add or update its parent igt_device to the array.
-- * As card/render drm devices mostly have same parent (vkms is an exception)
-- * link to it and update corresponding drm_card / drm_render fields.
-- */
--static void update_or_add_parent(struct udev *udev,
--				 struct udev_device *dev,
--				 struct igt_device *idev,
--				 bool limit_attrs)
--{
--	struct udev_device *parent_dev;
--	struct igt_device *parent_idev;
--	const char *subsystem, *syspath, *devname;
--	int retries = RETRIES_GET_PARENT;
-+#define RETRIES_GET_DEVICE 5
- 
--	/*
--	 * Get parent for drm node. It caches parent in udev device
--	 * and will be destroyed along with the node.
--	 */
--	parent_dev = udev_device_get_parent(dev);
--	igt_assert(parent_dev);
-+static struct igt_device *find_or_add_igt_device(struct udev *udev,
-+						 struct udev_device *dev,
-+						 bool limit_attrs)
++static bool is_pcie_upstream_bridge(struct pci_dev *dev)
 +{
-+	int retries = RETRIES_GET_DEVICE;
-+	const char *subsystem, *syspath;
-+	struct igt_device *idev;
- 
--	subsystem = udev_device_get_subsystem(parent_dev);
--	syspath = udev_device_get_syspath(parent_dev);
-+	subsystem = udev_device_get_subsystem(dev);
-+	syspath = udev_device_get_syspath(dev);
- 
--	parent_idev = igt_device_find(subsystem, syspath);
--	while (!parent_idev && retries--) {
-+	idev = igt_device_find(subsystem, syspath);
-+	while (!idev && retries--) {
- 		/*
- 		 * Don't care about previous parent_dev, it is tracked
- 		 * by the child node. There's very rare race when driver module
-@@ -951,15 +939,41 @@ static void update_or_add_parent(struct udev *udev,
- 		 * only udev_device_new*() will scan sys directory and
- 		 * return fresh udev device.
- 		 */
--		parent_dev = udev_device_new_from_syspath(udev, syspath);
--		parent_idev = igt_device_new_from_udev(parent_dev, limit_attrs);
--		udev_device_unref(parent_dev);
-+		dev = udev_device_new_from_syspath(udev, syspath);
-+		idev = igt_device_new_from_udev(dev, limit_attrs);
-+		udev_device_unref(dev);
- 
--		if (parent_idev)
--			igt_list_add_tail(&parent_idev->link, &igt_devs.all);
-+		if (idev)
-+			igt_list_add_tail(&idev->link, &igt_devs.all);
- 		else
- 			usleep(100000); /* arbitrary, 100ms should be enough */
- 	}
++	struct pci_cap *pcie;
++	uint8_t type;
 +
-+	return idev;
++	type = pci_read_byte(dev, PCI_HEADER_TYPE) & PCI_HEADER_TYPE_MASK;
++	if (type != PCI_HEADER_TYPE_BRIDGE)
++		return false;
++
++	pcie = pci_find_cap(dev, PCI_CAP_ID_EXP, PCI_CAP_NORMAL);
++	if (!pcie)
++		return false;
++
++	type = pci_read_word(dev, pcie->addr + PCI_EXP_FLAGS);
++	type &= PCI_EXP_FLAGS_TYPE;
++	type >>= ffs(PCI_EXP_FLAGS_TYPE) - 1;
++
++	return type == PCI_EXP_TYPE_UPSTREAM;
 +}
 +
-+/*
-+ * For each drm igt_device add or update its parent igt_device to the array.
-+ * As card/render drm devices mostly have same parent (vkms is an exception)
-+ * link to it and update corresponding drm_card / drm_render fields.
-+ */
-+static void update_or_add_parent(struct udev *udev,
-+				 struct udev_device *dev,
-+				 struct igt_device *idev,
-+				 bool limit_attrs)
-+{
-+	struct udev_device *parent_dev;
-+	struct igt_device *parent_idev;
-+	const char *devname;
-+
-+	/*
-+	 * Get parent for drm node. It caches parent in udev device
-+	 * and will be destroyed along with the node.
-+	 */
-+	parent_dev = udev_device_get_parent(dev);
-+	igt_assert(parent_dev);
-+
-+	parent_idev = find_or_add_igt_device(udev, parent_dev, limit_attrs);
- 	igt_assert(parent_idev);
+ #define RETRIES_GET_DEVICE 5
  
- 	devname = udev_device_get_devnode(dev);
+ static struct igt_device *find_or_add_igt_device(struct udev *udev,
+@@ -952,18 +976,52 @@ static struct igt_device *find_or_add_igt_device(struct udev *udev,
+ 	return idev;
+ }
+ 
++static struct udev_device *get_pcie_upstream_bridge(struct udev *udev,
++						    struct udev_device *dev,
++						    struct pci_access *pacc)
++{
++	igt_assert(pacc);
++
++	for (dev = udev_device_get_parent(dev); dev; dev = udev_device_get_parent(dev)) {
++		struct pci_filter filter;
++		struct pci_dev *pci_dev;
++		const char *slot;
++
++		slot = udev_device_get_property_value(dev, "PCI_SLOT_NAME");
++		if (igt_debug_on(!slot))
++			continue;
++
++		pci_filter_init(pacc, &filter);
++		if (igt_debug_on(pci_filter_parse_slot(&filter, (char *)slot)))
++			continue;
++
++		pci_dev = pci_get_dev(pacc, filter.domain, filter.bus, filter.slot, filter.func);
++		if (igt_debug_on(!pci_dev))
++			continue;
++
++		if (is_pcie_upstream_bridge(pci_dev))
++			break;
++	}
++
++	return dev;
++}
++
+ /*
+  * For each drm igt_device add or update its parent igt_device to the array.
+  * As card/render drm devices mostly have same parent (vkms is an exception)
+  * link to it and update corresponding drm_card / drm_render fields.
++ *
++ * If collecting all attributes and the parent is a discrete GPU then also
++ * add or update its bridge's upstream port.
+  */
+ static void update_or_add_parent(struct udev *udev,
+ 				 struct udev_device *dev,
+ 				 struct igt_device *idev,
++				 struct pci_access *pacc,
+ 				 bool limit_attrs)
+ {
+-	struct udev_device *parent_dev;
+-	struct igt_device *parent_idev;
++	struct igt_device *parent_idev, *bridge_idev;
++	struct udev_device *parent_dev, *bridge_dev;
+ 	const char *devname;
+ 
+ 	/*
+@@ -983,6 +1041,19 @@ static void update_or_add_parent(struct udev *udev,
+ 		parent_idev->drm_render = strdup(devname);
+ 
+ 	idev->parent = parent_idev;
++
++	if (!pacc || parent_idev->dev_type != DEVTYPE_DISCRETE)
++		return;
++
++	bridge_dev = get_pcie_upstream_bridge(udev, parent_dev, pacc);
++	if (!bridge_dev)
++		return;
++
++	bridge_idev = find_or_add_igt_device(udev, bridge_dev, limit_attrs);
++	igt_assert(bridge_idev);
++
++	/* override DEVTYPE_INTEGRATED so link attributes won't be omitted */
++	bridge_idev->dev_type = DEVTYPE_ALL;
+ }
+ 
+ static struct igt_device *duplicate_device(struct igt_device *dev) {
+@@ -1072,6 +1143,7 @@ static void scan_drm_devices(bool limit_attrs)
+ 	struct udev *udev;
+ 	struct udev_enumerate *enumerate;
+ 	struct udev_list_entry *devices, *dev_list_entry;
++	struct pci_access *pacc = NULL;
+ 	struct igt_device *dev;
+ 	int ret;
+ 
+@@ -1095,6 +1167,12 @@ static void scan_drm_devices(bool limit_attrs)
+ 	if (!devices)
+ 		return;
+ 
++	/* prepare for upstream bridge port scan if called from lsgpu */
++	if (!limit_attrs) {
++		pacc = pci_alloc();
++		pci_init(pacc);
++	}
++
+ 	udev_list_entry_foreach(dev_list_entry, devices) {
+ 		const char *path;
+ 		struct udev_device *udev_dev;
+@@ -1104,10 +1182,12 @@ static void scan_drm_devices(bool limit_attrs)
+ 		udev_dev = udev_device_new_from_syspath(udev, path);
+ 		idev = igt_device_new_from_udev(udev_dev, limit_attrs);
+ 		igt_list_add_tail(&idev->link, &igt_devs.all);
+-		update_or_add_parent(udev, udev_dev, idev, limit_attrs);
++		update_or_add_parent(udev, udev_dev, idev, pacc, limit_attrs);
+ 
+ 		udev_device_unref(udev_dev);
+ 	}
++	if (pacc)
++		pci_cleanup(pacc);
+ 	udev_enumerate_unref(enumerate);
+ 	udev_unref(udev);
+ 
+diff --git a/lib/meson.build b/lib/meson.build
+index d851029e04..d4d2ffa127 100644
+--- a/lib/meson.build
++++ b/lib/meson.build
+@@ -141,6 +141,7 @@ lib_deps = [
+ 	libdrm,
+ 	libdw,
+ 	libkmod,
++	libpci,
+ 	libudev,
+ 	math,
+ 	pciaccess,
+@@ -334,6 +335,7 @@ lib_igt_perf = declare_dependency(link_with : lib_igt_perf_build,
+ 
+ scan_dep = [
+ 	glib,
++	libpci,
+ 	libudev,
+ ]
+ 
+diff --git a/meson.build b/meson.build
+index 4b2496c016..57849648a3 100644
+--- a/meson.build
++++ b/meson.build
+@@ -162,6 +162,7 @@ endif
+ build_info += 'Valgrind annotations: @0@'.format(valgrind.found())
+ 
+ cairo = dependency('cairo', version : '>1.12.0', required : true)
++libpci = dependency('libpci', required : true)
+ libudev = dependency('libudev', required : true)
+ glib = dependency('glib-2.0', required : true)
+ 
 -- 
 2.52.0
 
