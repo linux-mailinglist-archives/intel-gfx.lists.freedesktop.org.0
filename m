@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gH/sBGfJgWl1JwMAu9opvQ
+	id kFqvM2nJgWl1JwMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 11:09:43 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 11:09:45 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79B01D7544
-	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 11:09:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84129D754D
+	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 11:09:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9983B10E5C3;
-	Tue,  3 Feb 2026 10:09:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD74610E5CE;
+	Tue,  3 Feb 2026 10:09:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KBqT3QxR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fh5YNpRn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1D8110E5C3;
- Tue,  3 Feb 2026 10:09:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41D1A10E5CC;
+ Tue,  3 Feb 2026 10:09:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770113380; x=1801649380;
+ t=1770113382; x=1801649382;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5ZPJLwfoYPMkCd1/CgY9PsK+NIGduKmW+giSQPdOHak=;
- b=KBqT3QxRqpt1hWCrmKJVDyesoFZo7D9T2OCmc4lxRqNagJAAgcIjUxjF
- 6MBWKehf8XV7iOPd0F6i7fVfRn4YOC5jKFeILeSKYbBFhoyohrFxNAA7E
- box7H3v1idWhb7kD7/i8VTfbfelnbn0iTwMMKqkCyRWK5dMguFGGNcFCK
- r2vuJS7mFC4OundLHt7N08m15GRcPI5GGsDmfe6DL44ZsCm2hCPYn/eWO
- vFaq6CYjquZwicqpgC9Sgv7HL/Tv5CYqb5XGcrtiCOR/PIhjOuzgKKRAJ
- pn2UdgHj4ejMIWOuy+cpQVHPZKWUh5l/G67NQIeUgaKTgRIkQVUlP8/i0 w==;
-X-CSE-ConnectionGUID: kMs3fgMjQ4WBjVXk8MnUuA==
-X-CSE-MsgGUID: FY+j6DisRomTQVnWqxyenQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="88702705"
-X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="88702705"
+ bh=40LHmGXPnhI7xXCw1vCzobKJTgCsAaBWxlFZy8fDIJc=;
+ b=Fh5YNpRnXYNmrK5IO9FmcuJ5SY5pjYKyYD+ZXiylD10cinGeNNjNz8Go
+ unsvw3IWaq/BRGWJun7TFc/0psTOu6BjqvjHtt8xLafWISw96CuFdZPWA
+ g5NOx2POxBC9UQ5S7bxJrG+vR99R8MIOfeil0kJJc0NDqbkIlqO3Y3EZQ
+ iLfULSI8eYQDEEEZ1uIDdKVyD8hmxb871GjgjDKs1Z9PVKWXUiNUzpVEJ
+ 35rEJZ8CzVKGT8i6TrfML4AmLARbR0mtbIZzFz9hSD8/ltTE1VlnG8s5D
+ NL4cP0XuTdH+Sc+YGX+8CiMKDzEyboQ0ODx+WpwbcbPL9eC8QwNmq8C7L w==;
+X-CSE-ConnectionGUID: 9UABjN29RNyl9xSNdQsXPw==
+X-CSE-MsgGUID: nM7xqh37Qt2EUkr2z36Imw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="88702714"
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="88702714"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2026 02:09:40 -0800
-X-CSE-ConnectionGUID: EJ1THCBKSi2hvgaeAN1X5g==
-X-CSE-MsgGUID: dVG5RvHcRyGJi+MToPDlPw==
+ 03 Feb 2026 02:09:42 -0800
+X-CSE-ConnectionGUID: CNniRUh+SpC+SRH38Ng0eQ==
+X-CSE-MsgGUID: gm/NlkH7RyiOD/3TyLd1UQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="240476151"
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="240476166"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.210])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2026 02:09:37 -0800
+ 03 Feb 2026 02:09:40 -0800
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
@@ -55,10 +55,10 @@ Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
  Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
  Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Subject: [PATCH i-g-t v4 1/6] lib/igt_device_scan: Don't print fake link
- bandwidth attributes
-Date: Tue,  3 Feb 2026 11:05:03 +0100
-Message-ID: <20260203100920.420551-9-janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH i-g-t v4 2/6] lib/igt_device_scan: Split out reusable part of
+ update_or_add_parent
+Date: Tue,  3 Feb 2026 11:05:04 +0100
+Message-ID: <20260203100920.420551-10-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260203100920.420551-8-janusz.krzysztofik@linux.intel.com>
 References: <20260203100920.420551-8-janusz.krzysztofik@linux.intel.com>
@@ -103,88 +103,134 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	RCPT_COUNT_SEVEN(0.00)[9];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.intel.com:mid,gitlab.freedesktop.org:url]
-X-Rspamd-Queue-Id: 79B01D7544
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url,linux.intel.com:mid,intel.com:email,intel.com:dkim]
+X-Rspamd-Queue-Id: 84129D754D
 X-Rspamd-Action: no action
 
 Users of Intel discrete graphics adapters are confused with fake
 information on PCIe link bandwidth (speed and size) of their GPU devices
-reported by tools like lspci or lsgpu.  That fake information is
-unfortunately provided by hardware, Linux PCI subsystem just exposes it
-untouched to upper layers, including userspace via sysfs, and userspace
-tools just report those fake values.
-
-While we can't do much about the kernel side or general purpose userspace
-tools like lspci, we can try to address the issue with our lsgpu utility.
-
-Correct link bandwidth attributes of a discrete GPU card can be obtained
-from the kernel by looking not at the PCI device of the GPU itself, only
-at a PCIe upstream port of the card's PCI bridge.  For integrity with
-content of the sysfs and with output from the other tools, we are not
-going to replace the fake information with that from the bridge upstream
-port, only show that port and its attributes themselves while listing
-devices.
+reported by sysfs and userspace tools, including our lsgpu utility.  In
+order for the lsgpu to show correct link bandwidth information, we need to
+identify an upstream port of a PCIe bridge that sits on the GPU card and
+get that information from that port.
 
 Since the tool uses our udev based igt_device_scan library for identifying
 GPU devices and printing their properties and attributes, modifications
 that we need apply to that library.
 
-As a first step, exclude the fake data from being printed.
+Refactor the library so a part of it can be reused for processing the
+bridge port.
 
-v2: Keep dump_props_and_attrs() generic: hand over decision on omitting
-    link attributes to the caller, and implementation of the check to a
-    helper (Sebastian).
+There are no functional changes introduced with this patch.
+
+v4: Also change RETRIES_GET_PARENT to RETRIES_GET_DEVICE for consistency
+    with renamed variables (Krzysztof).
 
 Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10753
-Reviewed-by: Krzysztof Karas <krzysztof.karas@intel.com>
-Cc: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Reviewed-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Cc: Krzysztof Karas <krzysztof.karas@intel.com>
 Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 ---
- lib/igt_device_scan.c | 17 +++++++++++++++--
- 1 file changed, 15 insertions(+), 2 deletions(-)
+ lib/igt_device_scan.c | 72 ++++++++++++++++++++++++++-----------------
+ 1 file changed, 43 insertions(+), 29 deletions(-)
 
 diff --git a/lib/igt_device_scan.c b/lib/igt_device_scan.c
-index abd8ca209e..7ae64375b5 100644
+index 7ae64375b5..11b3034639 100644
 --- a/lib/igt_device_scan.c
 +++ b/lib/igt_device_scan.c
-@@ -602,7 +602,15 @@ static inline void _print_key_value(const char *k, const char *v)
- 	printf("%-32s: %s\n", k, v);
+@@ -913,33 +913,21 @@ static struct igt_device *igt_device_from_syspath(const char *syspath)
+ 	return NULL;
  }
  
--static void dump_props_and_attrs(const struct igt_device *dev)
-+static bool is_link_attr(const char *name)
+-#define RETRIES_GET_PARENT 5
+-/* For each drm igt_device add or update its parent igt_device to the array.
+- * As card/render drm devices mostly have same parent (vkms is an exception)
+- * link to it and update corresponding drm_card / drm_render fields.
+- */
+-static void update_or_add_parent(struct udev *udev,
+-				 struct udev_device *dev,
+-				 struct igt_device *idev,
+-				 bool limit_attrs)
+-{
+-	struct udev_device *parent_dev;
+-	struct igt_device *parent_idev;
+-	const char *subsystem, *syspath, *devname;
+-	int retries = RETRIES_GET_PARENT;
++#define RETRIES_GET_DEVICE 5
+ 
+-	/*
+-	 * Get parent for drm node. It caches parent in udev device
+-	 * and will be destroyed along with the node.
+-	 */
+-	parent_dev = udev_device_get_parent(dev);
+-	igt_assert(parent_dev);
++static struct igt_device *find_or_add_igt_device(struct udev *udev,
++						 struct udev_device *dev,
++						 bool limit_attrs)
 +{
-+	return !strcmp(name, "max_link_speed") ||
-+	       !strcmp(name, "max_link_width") ||
-+	       !strcmp(name, "current_link_speed") ||
-+	       !strcmp(name, "current_link_width");
++	int retries = RETRIES_GET_DEVICE;
++	const char *subsystem, *syspath;
++	struct igt_device *idev;
+ 
+-	subsystem = udev_device_get_subsystem(parent_dev);
+-	syspath = udev_device_get_syspath(parent_dev);
++	subsystem = udev_device_get_subsystem(dev);
++	syspath = udev_device_get_syspath(dev);
+ 
+-	parent_idev = igt_device_find(subsystem, syspath);
+-	while (!parent_idev && retries--) {
++	idev = igt_device_find(subsystem, syspath);
++	while (!idev && retries--) {
+ 		/*
+ 		 * Don't care about previous parent_dev, it is tracked
+ 		 * by the child node. There's very rare race when driver module
+@@ -951,15 +939,41 @@ static void update_or_add_parent(struct udev *udev,
+ 		 * only udev_device_new*() will scan sys directory and
+ 		 * return fresh udev device.
+ 		 */
+-		parent_dev = udev_device_new_from_syspath(udev, syspath);
+-		parent_idev = igt_device_new_from_udev(parent_dev, limit_attrs);
+-		udev_device_unref(parent_dev);
++		dev = udev_device_new_from_syspath(udev, syspath);
++		idev = igt_device_new_from_udev(dev, limit_attrs);
++		udev_device_unref(dev);
+ 
+-		if (parent_idev)
+-			igt_list_add_tail(&parent_idev->link, &igt_devs.all);
++		if (idev)
++			igt_list_add_tail(&idev->link, &igt_devs.all);
+ 		else
+ 			usleep(100000); /* arbitrary, 100ms should be enough */
+ 	}
++
++	return idev;
 +}
 +
-+static void dump_props_and_attrs(const struct igt_device *dev, bool omit_link)
- {
- 	struct igt_map_entry *entry;
- 
-@@ -613,6 +621,10 @@ static void dump_props_and_attrs(const struct igt_device *dev)
- 
- 	printf("\n[attributes]\n");
- 	igt_map_foreach(dev->attrs_map, entry) {
-+		/* omit link bandwidth attributes if requested */
-+		if (omit_link && is_link_attr(entry->key))
-+			continue;
++/*
++ * For each drm igt_device add or update its parent igt_device to the array.
++ * As card/render drm devices mostly have same parent (vkms is an exception)
++ * link to it and update corresponding drm_card / drm_render fields.
++ */
++static void update_or_add_parent(struct udev *udev,
++				 struct udev_device *dev,
++				 struct igt_device *idev,
++				 bool limit_attrs)
++{
++	struct udev_device *parent_dev;
++	struct igt_device *parent_idev;
++	const char *devname;
 +
- 		_print_key_value((char *)entry->key, (char *)entry->data);
- 	}
- 	printf("\n");
-@@ -1366,7 +1378,8 @@ igt_devs_print_detail(struct igt_list_head *view,
- 			_print_key_value("codename", dev->codename);
- 		}
++	/*
++	 * Get parent for drm node. It caches parent in udev device
++	 * and will be destroyed along with the node.
++	 */
++	parent_dev = udev_device_get_parent(dev);
++	igt_assert(parent_dev);
++
++	parent_idev = find_or_add_igt_device(udev, parent_dev, limit_attrs);
+ 	igt_assert(parent_idev);
  
--		dump_props_and_attrs(dev);
-+		/* omit fake link bandwidth attributes if a discrete card */
-+		dump_props_and_attrs(dev, dev->dev_type == DEVTYPE_DISCRETE);
- 	}
- }
- 
+ 	devname = udev_device_get_devnode(dev);
 -- 
 2.52.0
 
