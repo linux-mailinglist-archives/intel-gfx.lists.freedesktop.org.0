@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kHwtJXHJgWl1JwMAu9opvQ
+	id MMEEGXTJgWl1JwMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 11:09:53 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 11:09:56 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BC86D756A
-	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 11:09:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1832DD757B
+	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 11:09:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B060C10E5E9;
-	Tue,  3 Feb 2026 10:09:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A19D110E5EC;
+	Tue,  3 Feb 2026 10:09:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PAEpjqU0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LK4JkpZ8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A78010E5B4;
- Tue,  3 Feb 2026 10:09:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA4D710E5D1;
+ Tue,  3 Feb 2026 10:09:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770113390; x=1801649390;
+ t=1770113393; x=1801649393;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=V3SuDBYx5Ykp17ZSwR9loLvbPW+yQjpUJQStU4AmSXk=;
- b=PAEpjqU0vu4BgfeNIZ/G6ITfCEP691XjoqCTRqHtzVoA+59jWPPZhudY
- OaWlcChVRGFVavH2hU+Wuo00RFDnHS0B4Dg3yP6SYsnDCaXboC1JvzqvQ
- vKS/wpn9nLaMuifLp81EQSvFnT9gCn+8PZCt6G8jrMMgmrc8Tx2vELDbd
- krY7FSx10gPcQUxsUtiKNp8jtpP5qmSZ95yx5lXXVF2TJImX3pMsFx2aY
- ttCnPVKl+gSpEDk4WCFUYbEhVBXT39/BBQEPC3+tqqp+HnaxU+5SdhLZb
- nuK0Ar3MQJRaXe47EvHf7PpGrOd+BOOHtodHx07pALmLYpySaA8feBGPT A==;
-X-CSE-ConnectionGUID: 7jgmkBDsTXaa0iFW3ThVbg==
-X-CSE-MsgGUID: 6QtfOCnASL6yrE05NQREAA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="88702726"
-X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="88702726"
+ bh=LbbI7G/2/6Q7Gf1N16XYohCrUdtrJRSE8xWEcUk7Wf4=;
+ b=LK4JkpZ8kcxkdoPbral9NM8TGjP6Ebhsgf3cfi0bMsbKSztnFFuiiwpV
+ wshXq7YCG507fE181NM7xM7kjGUklhnGL8Ws0+qgwVhmbGB/UYS+hYWfj
+ UDbL6ExfXfzQqOl6/TZO9Ttn0KqUtgDP0YhRORbd5ZRnyt/cd8+G/PH4s
+ /zOzXfPFtwLd2QdNboTpyHPqvLezCB+teK6O5vdBOQftb6ubSwLe48fmn
+ 2huW6OOFyZyWXF/cyKx7+hg/2dS4jW2FEtiEIOzLx0/YZecGZmhvtUBN2
+ mZr8t9569eZ3VVG5Z8F5W+GTqOEdy2C/v7JlqJUO9JNa0EOPZMLllHa6l A==;
+X-CSE-ConnectionGUID: 5HMyQWsqSSmN/iJX597RyQ==
+X-CSE-MsgGUID: tz/CpGQ3Q3mUKdGb0WPziw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="88702727"
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="88702727"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2026 02:09:50 -0800
-X-CSE-ConnectionGUID: IUQjBAL3S3SbRiAchUJx+w==
-X-CSE-MsgGUID: p5KC4LryQ9qLPuG6EChAgQ==
+ 03 Feb 2026 02:09:53 -0800
+X-CSE-ConnectionGUID: a/lYEfbsTf24Req39SJCSg==
+X-CSE-MsgGUID: Q2jQ4t0bSTu/efWmzOJE8g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="240476209"
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="240476232"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.210])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2026 02:09:48 -0800
+ 03 Feb 2026 02:09:50 -0800
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
@@ -55,10 +55,10 @@ Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
  Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
  Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Subject: [PATCH i-g-t v4 5/6] lib/igt_device_scan: Omit AER statistics data
- from attributes
-Date: Tue,  3 Feb 2026 11:05:07 +0100
-Message-ID: <20260203100920.420551-13-janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH i-g-t v4 6/6] lib/igt_device_scan: Print GPU upstream port
+ parent/child relations
+Date: Tue,  3 Feb 2026 11:05:08 +0100
+Message-ID: <20260203100920.420551-14-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260203100920.420551-8-janusz.krzysztofik@linux.intel.com>
 References: <20260203100920.420551-8-janusz.krzysztofik@linux.intel.com>
@@ -103,56 +103,100 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	RCPT_COUNT_SEVEN(0.00)[9];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,linux.intel.com:mid]
-X-Rspamd-Queue-Id: 3BC86D756A
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim]
+X-Rspamd-Queue-Id: 1832DD757B
 X-Rspamd-Action: no action
 
-Among attributes of a PCIe bridge upstream port of a discrete graphics
-card, there are three AER statistics attributes: aer_dev_correctable,
-aer_dev_nonfatal and aer_dev_fatal.  Each consists of a number of key-
-value pairs, while the library now expects only single value attributes.
-That affects formatting of lsgpu -p output.  In order to print that data
-correctly in a human readable form, extra formatting effort would be
-needed.  However, users of lsgpu, the only call site of that printing
-function of the igt_device_scan library, are not necessarily interested in
-that data.  Just drop those attributes from the printout.
+In a short listing, lsgpu prints a sysfs path of a PCI GPU parent as a
+local attribute of a DRM device.  However, if that's a discrete GPU and
+its associated PCIe upstream bridge port has been identified, no
+information on that bridge is listed among the GPU attributes.  Follow the
+pattern used with DRM devices and also show a PCI slot of the bridge port
+as a local attribute of the discrete GPU device.
 
-v2: Hand over detection of AER attributes to a helper.
+Moreover, in both short and detailed listings, local attributes intended
+for providing device names of GPU associated DRM devices and the GPU
+codename are also printed as attributes of related PCIe upstream bridge
+port, however, the DRM device names are shown as (null), and the codename
+attribute provides raw vendor:device codes of the bridge itself.  Replace
+those with PCI slot and codename of the GPU device.
 
+v4: Free already allocated numeric codename before replacing (Sebastian),
+  - visually separate bridge specific updates of attributes already
+    populated by find_or_add_igt_device from bridge specific attribute
+    assignments.
+v2: Allocate memory to local attributes of a bridge for safety (Sebastian),
+  - merge with a formerly separate patch "lib/igt_device_scan: Don't print
+    bridge not applicable attributes" (Sebastian),
+  - no need for DEVTYPE_BRIDGE, just skip attributes if NULL.
+
+Cc: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
 Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 ---
- lib/igt_device_scan.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ lib/igt_device_scan.c | 21 +++++++++++++++++++--
+ 1 file changed, 19 insertions(+), 2 deletions(-)
 
 diff --git a/lib/igt_device_scan.c b/lib/igt_device_scan.c
-index 93c3f9c0d8..5742940df7 100644
+index 5742940df7..f5fb15d02f 100644
 --- a/lib/igt_device_scan.c
 +++ b/lib/igt_device_scan.c
-@@ -615,6 +615,13 @@ static bool is_link_attr(const char *name)
- 	       !strcmp(name, "current_link_width");
+@@ -252,6 +252,8 @@ struct igt_device {
+ 	char *codename; /* For grouping by codename */
+ 	enum dev_type dev_type; /* For grouping by integrated/discrete */
+ 
++	char *pci_gpu; /* Filled for upstream bridge ports */
++
+ 	struct igt_list_head link;
+ };
+ 
+@@ -1066,6 +1068,12 @@ static void update_or_add_parent(struct udev *udev,
+ 
+ 	/* override DEVTYPE_INTEGRATED so link attributes won't be omitted */
+ 	bridge_idev->dev_type = DEVTYPE_ALL;
++	/* free numeric codename before overwriting with GPU codename */
++	free(bridge_idev->codename);
++	bridge_idev->codename = strdup(parent_idev->codename);
++
++	bridge_idev->pci_gpu = strdup(parent_idev->pci_slot_name);
++	parent_idev->parent = bridge_idev;
  }
  
-+static bool is_aer_attr(const char *name)
-+{
-+	return !strcmp(name, "aer_dev_correctable") ||
-+	       !strcmp(name, "aer_dev_nonfatal") ||
-+	       !strcmp(name, "aer_dev_fatal");
-+}
-+
- static void dump_props_and_attrs(const struct igt_device *dev, bool omit_link)
- {
- 	struct igt_map_entry *entry;
-@@ -630,6 +637,10 @@ static void dump_props_and_attrs(const struct igt_device *dev, bool omit_link)
- 		if (omit_link && is_link_attr(entry->key))
- 			continue;
+ static struct igt_device *duplicate_device(struct igt_device *dev) {
+@@ -1237,6 +1245,7 @@ static void igt_device_free(struct igt_device *dev)
+ 	free(dev->device);
+ 	free(dev->driver);
+ 	free(dev->pci_slot_name);
++	free(dev->pci_gpu);
+ 	igt_map_destroy(dev->attrs_map, free_key_value);
+ 	igt_map_destroy(dev->props_map, free_key_value);
+ }
+@@ -1333,7 +1342,11 @@ igt_devs_print_simple(struct igt_list_head *view,
+ 			if (is_pci_subsystem(dev)) {
+ 				_pr_simple("vendor", dev->vendor);
+ 				_pr_simple("device", dev->device);
++				if (dev->pci_gpu)
++					_pr_simple("GPU device", dev->pci_gpu);
+ 				_pr_simple("codename", dev->codename);
++				if (dev->parent && dev->parent->pci_slot_name)
++					_pr_simple("upstream port", dev->parent->pci_slot_name);
+ 			}
+ 		}
+ 		printf("\n");
+@@ -1486,8 +1499,12 @@ igt_devs_print_detail(struct igt_list_head *view,
+ 		printf("========== %s:%s ==========\n",
+ 		       dev->subsystem, dev->syspath);
+ 		if (!is_drm_subsystem(dev)) {
+-			_print_key_value("card device", dev->drm_card);
+-			_print_key_value("render device", dev->drm_render);
++			if (dev->drm_card)
++				_print_key_value("card device", dev->drm_card);
++			if (dev->drm_render)
++				_print_key_value("render device", dev->drm_render);
++			if (dev->pci_gpu)
++				_print_key_value("GPU device", dev->pci_gpu);
+ 			_print_key_value("codename", dev->codename);
+ 		}
  
-+		/* omit multi-line AER statistics data */
-+		if (is_aer_attr(entry->key))
-+			continue;
-+
- 		_print_key_value((char *)entry->key, (char *)entry->data);
- 	}
- 	printf("\n");
 -- 
 2.52.0
 
