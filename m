@@ -2,93 +2,93 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id o3oEOb0Bgml5NwMAu9opvQ
+	id OJGzN70BgmmYNgMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
 	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 15:10:05 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88B23DA5E3
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E69DDA5DC
 	for <lists+intel-gfx@lfdr.de>; Tue, 03 Feb 2026 15:10:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A77CC10E676;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 920E710E65E;
 	Tue,  3 Feb 2026 14:10:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gTonk76a";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bkt0f/bF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com
- [209.85.214.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0716810E554
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Feb 2026 07:31:58 +0000 (UTC)
-Received: by mail-pl1-f174.google.com with SMTP id
- d9443c01a7336-2a91215c158so14083745ad.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 02 Feb 2026 23:31:58 -0800 (PST)
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com
+ [209.85.214.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CC5F10E554
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Feb 2026 07:32:06 +0000 (UTC)
+Received: by mail-pl1-f170.google.com with SMTP id
+ d9443c01a7336-2a7a9b8ed69so57594965ad.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 02 Feb 2026 23:32:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1770103917; x=1770708717; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1770103926; x=1770708726; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=JuaUAhd1+lDG6wBrbXZqMO2C5ILHdpZJbCQrItpX1Ck=;
- b=gTonk76alwH4yy8cx56qmvYfNpF1qCr0VU3ZwOVfQHWqOtiQcdIADX8mXwke0XmEvl
- XwzkUqMRzPA/B01o27K+jQ/kyHqiWLf7RddTa7DpUc0AtpA4NAiZ6+aE4p3mfUYC7Q9O
- ylfYpflz7pkRzoB7A81s3wFF/OgjSWN+dvnwmqdIR8PPH2XpkJYlC3UpCXwcpaSryPwR
- u4P/Zp2DCq/OFGwWmsB4aop0TABTvvsJEXTle5bA38X6HbGGEqZSveUN62vyB2beS4Wh
- UoE84yTmaCH1ZF4gOEQ1y2Lo2RbMuJsoGfswOzWWsnOXf//uqCz0w2fk+hePAljr/byF
- PYaQ==
+ bh=JVbsoeLJUH+6Qu+riey08jBhyxYlZrCyG0lFJ2fnhgw=;
+ b=bkt0f/bF2klTba0+ERrIWH2piZYb1PVsByJDHTpEvSGNvKPtyfLxUx0WmsoNbxxL1i
+ OrlVlpJDC/nH0SiE6iPNu35PTwzDUXTzr53U9Na9s+qh7X3Wam8jQ9B8YHzHM5rXePNL
+ AvtY2BvvIJsMlHtSBJ1PeKqZfpGqKVhy9iavULw9d+9/fWoGMYSEvrr8I/XA/hQ0kmc9
+ RrKRJcKha+lywKgFekC9WCLWtcrJ+KNpauKmYAJCtwNhROqckuX+pF3qNWkPOIfG9e6S
+ ReCN8YNvOFhmPT7Xs617bj+NtssCKzssz7ZbS62zicU6VlGn5MyhDkYAmvdF1mFq/HkM
+ V4xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1770103917; x=1770708717;
+ d=1e100.net; s=20230601; t=1770103926; x=1770708726;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=JuaUAhd1+lDG6wBrbXZqMO2C5ILHdpZJbCQrItpX1Ck=;
- b=T5PZeGq9eFAN0GTwuUcEbbGFUG5gNvQFKYY5XnEdKk3zJbOEqvWFtVcdRYX8Lf52dw
- 76Mix7zDYAShGjN7af5NUNbz4HvpzDAOxb+MzCyAw2ITI4AXHsuXbEop+5pei+RHvrKr
- 1YXegjnqB0wWVJVyfBrrfhWHS/u3mMvz4Witcq+AAsRbMdZghML+SuhBfr6SVpSPpG+Q
- 5mRGUTxyN2esP7GWbN4yEMwa2CPK9n3BCx+RjBUrJ0/oT+M8BIpwoHuU6RQrJVHPCfu4
- 08RdOyBO4WJihlXYd2RWRmTxCJFjnJHVApd+youBid+34sspY2sZi/78m7qTMeiFVM0G
- Edfg==
+ bh=JVbsoeLJUH+6Qu+riey08jBhyxYlZrCyG0lFJ2fnhgw=;
+ b=ERK5+AmlvafLtaNpm+fpQwU402VVyNFuH4G/PEHYe9A8bI/nCQIijBio88ajqhNBMr
+ qckUDR0KQOpj1AgUk671cB7dkMQs2Rky1LDoWW954lyc94bLOpkZ5Zzuf4AZvh3Td9RJ
+ 2GT9Dd1IT4dsj3cbCUpiDRPJ1AsHNTyV2rsVku/z1OP7QvPxc+O1Ee/mu89griKe7t8K
+ GLOcqZs/R7lb3rOKFcDFAYgxvoxXDQzds0NgJU6rwUTJ1n7a2w0YDv9i0JbgpIgRrWiI
+ nFcgG7d7uGiUO5cg1avh8E9M9q/H/kY8aVqmPTom1sQbhY060P2R/nP3PwATLCYSJh3z
+ wLhg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVUZ+qzovJjCBC7zUisEy+UTSAuVwKzLNTysG+7jf2jgI7DInGH8cQqZZT30IowTo+FYRsAidN3mIM=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxC+l3ABSEcPLtNOZpdIIVvvx4fTlU7OiBjGoXAp1JlIQXV5qyG
- PeStTrwlNyMm1C9PLYCK1AJ8NGTJ9twesbXustIbgssqUZvS9kPacfaq8hs4
-X-Gm-Gg: AZuq6aIm12ZZfTdannmdps3ncd3QwnPgzaG0A2j2+orlzzuEnCeqNgC0/0QfYq3lpuY
- 4/cek72fWLbS+anliWuehERs+lthqb3SaxyzrJ+0VF4CFgLC4CVTcSvSzgmIZ1wSbbSESWiPV6Z
- ft0LsadHo9sOYdpCbp7QDsGBiaXswNNytm/31PrLIUikMfLKvZq4DODzuw+o+xufGLFg7cNVfdD
- vFJMjjYxmCIOkYiDd6lfIonnmPLaRScMIiri0CjuSRMtvEZJom7nvYhb+sCnXRak1Gt/NVdEmst
- U//bcz4hxIiThNdK3lOnEFCiXbcJT7ucjps7p6XIKBB5QxwYUf6+smnSBoIV8oTy7l9uXhwm0GA
- UVJ9Aiz/w94thMby5Vv32nFxyF9G9XqanjXkKhup94evDwh5GN9KiUGOBIWonzqXw2WJZ5t3SOt
- HH2XPGpdk0C+wB6M+mCvSi09kbcA==
-X-Received: by 2002:a17:903:1ac8:b0:2a0:d728:2e79 with SMTP id
- d9443c01a7336-2a8d7ed9bcbmr138418055ad.16.1770103917493; 
- Mon, 02 Feb 2026 23:31:57 -0800 (PST)
+ AJvYcCWbmc+HYRr5HKUaSIZqpFk0MsASOnEuMdCsrHnxuNDvrS80IFunbM2CyI0woANjTqG62LkmPnzAyec=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzK4GjZq/JjX+8MCt64rwvLmVYxW3eVAvv/em+9Ki3ElcP4Pc0C
+ RlcMrG1mfzyI1oDC9rBo0y30l4XR0gc1S9g9qmPSLHQHb2t/gl/LbUs=
+X-Gm-Gg: AZuq6aJPfzl+oUFbzhZdokr3PIeMgfz+QheaSYJQ7cNtN6GlPAXuhyfK7MHpGOtirY/
+ 5uCrMunaMqV8OjOtp4cbjcn3lzGCwT+s37Uc4VcfnfK2nmngnF7NGECXx0ECr1qEPxS1JQvSnpQ
+ 6tCjX7kaevdrojk2cBAzZGjwVk+mp7ktuthv33O0gDrPr3Ecab+mgNjTiiBbo19Yrfo+P8VzfgK
+ BQQ9HrN939DjZ5+6FJ9+8znW/D39JnVcyPZhiE5zXj5UCLcxVjFlM1j9ZW1xDKoKwc/N2twbRlF
+ T9eM0BNVChnn4g05+mNTvwqmeIoL9YmNYGfZKfijYJj3cq9xbaRlaZYN/YnZ6ShKTMyw/K4whkt
+ HqJDsJPxB//dAep/8yDYTuDGdn/uUrEgU8lOtNdl/zCdcKwB/8PjkTYmF6v5gWOHiGJ+QAkn6Ym
+ 3DKO0/kj0U2SN2zng=
+X-Received: by 2002:a17:902:e996:b0:295:9b73:b15c with SMTP id
+ d9443c01a7336-2a8d9a57c7emr96695715ad.42.1770103925941; 
+ Mon, 02 Feb 2026 23:32:05 -0800 (PST)
 Received: from at.. ([171.61.163.171]) by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-2a8dc225534sm108280865ad.68.2026.02.02.23.31.51
+ d9443c01a7336-2a8dc225534sm108280865ad.68.2026.02.02.23.31.59
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 02 Feb 2026 23:31:57 -0800 (PST)
+ Mon, 02 Feb 2026 23:32:05 -0800 (PST)
 From: Atharva Tiwari <atharvatiwarilinuxdev@gmail.com>
 To: 
 Cc: Atharva Tiwari <atharvatiwarilinuxdev@gmail.com>,
- Ard Biesheuvel <ardb@kernel.org>,
+ Jani Nikula <jani.nikula@intel.com>, Ard Biesheuvel <ardb@kernel.org>,
  Jani Nikula <jani.nikula@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
+ Simona Vetter <simona@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
  Javier Martinez Canillas <javierm@redhat.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Lenny Szubowicz <lszubowi@redhat.com>,
- "Borislav Petkov (AMD)" <bp@alien8.de>,
- Francesco Pompo <francescopompo2@gmail.com>, linux-efi@vger.kernel.org,
+ "Borislav Petkov (AMD)" <bp@alien8.de>, Ingo Molnar <mingo@kernel.org>,
+ Francesco Pompo <francescopompo2@gmail.com>,
+ Lenny Szubowicz <lszubowi@redhat.com>, linux-efi@vger.kernel.org,
  linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH v3 1/2] efi/libstub: Enable apple-set-os for most apple devices
-Date: Tue,  3 Feb 2026 07:31:17 +0000
-Message-ID: <20260203073130.1111-2-atharvatiwarilinuxdev@gmail.com>
+Subject: [PATCH v3 2/2] drm/i915/display: Disable display for iMac's
+Date: Tue,  3 Feb 2026 07:31:18 +0000
+Message-ID: <20260203073130.1111-3-atharvatiwarilinuxdev@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260203073130.1111-1-atharvatiwarilinuxdev@gmail.com>
 References: <20260203073130.1111-1-atharvatiwarilinuxdev@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 03 Feb 2026 14:10:02 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -106,95 +106,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,linux.intel.com,intel.com,ursulin.net,ffwll.ch,redhat.com,suse.de,alien8.de,vger.kernel.org,lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:atharvatiwarilinuxdev@gmail.com,m:jani.nikula@intel.com,m:ardb@kernel.org,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:airlied@gmail.com,m:simona@ffwll.ch,m:tzimmermann@suse.de,m:javierm@redhat.com,m:bp@alien8.de,m:mingo@kernel.org,m:francescopompo2@gmail.com,m:lszubowi@redhat.com,m:linux-efi@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:intel-xe@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS(0.00)[m:atharvatiwarilinuxdev@gmail.com,m:ardb@kernel.org,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:airlied@gmail.com,m:simona@ffwll.ch,m:javierm@redhat.com,m:tzimmermann@suse.de,m:lszubowi@redhat.com,m:bp@alien8.de,m:francescopompo2@gmail.com,m:linux-efi@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:intel-xe@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[atharvatiwarilinuxdev@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,intel.com,kernel.org,linux.intel.com,ursulin.net,ffwll.ch,suse.de,redhat.com,alien8.de,vger.kernel.org,lists.freedesktop.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
 	FROM_NEQ_ENVFROM(0.00)[atharvatiwarilinuxdev@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[intel-gfx];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 88B23DA5E3
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email]
+X-Rspamd-Queue-Id: 3E69DDA5DC
 X-Rspamd-Action: no action
 
-Enable apple-set-os on Apple Mac systems by default.
-
-Exclude MacBook6,2 and MacBookAir7,2, as enabling apple-set-os on
-these models causes regressions.
+Disable display on iMacs, as they can't do link training
+on the internal display.
 
 (tested on iMac20,1)
 
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Atharva Tiwari <atharvatiwarilinuxdev@gmail.com>
 ---
- drivers/firmware/efi/libstub/x86-stub.c | 20 +++++++-------------
- 1 file changed, 7 insertions(+), 13 deletions(-)
+ .../gpu/drm/i915/display/intel_display_device.c    | 14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/firmware/efi/libstub/x86-stub.c b/drivers/firmware/efi/libstub/x86-stub.c
-index cef32e2c82d8..532a713adef5 100644
---- a/drivers/firmware/efi/libstub/x86-stub.c
-+++ b/drivers/firmware/efi/libstub/x86-stub.c
-@@ -303,15 +303,9 @@ static const struct efi_smbios_record *get_table_record(u8 type)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+index 1170afaa8680..b1fec1018d7e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.c
++++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+@@ -3,6 +3,7 @@
+  * Copyright © 2023 Intel Corporation
+  */
  
- static bool apple_match_product_name(void)
- {
--	static const char type1_product_matches[][15] = {
--		"MacBookPro11,3",
--		"MacBookPro11,5",
--		"MacBookPro13,3",
--		"MacBookPro14,3",
--		"MacBookPro15,1",
--		"MacBookPro15,3",
--		"MacBookPro16,1",
--		"MacBookPro16,4",
-+	static const char disabled_product_matches[][14] = {
-+		"MacBookPro6,2",
-+		"MacBookPro7,2",
++#include <linux/dmi.h>
+ #include <linux/pci.h>
+ 
+ #include <drm/drm_color_mgmt.h>
+@@ -1435,7 +1436,18 @@ static bool has_no_display(struct pci_dev *pdev)
+ 		{}
  	};
- 	const struct efi_smbios_type1_record *record;
- 	const u8 *product;
-@@ -325,12 +319,12 @@ static bool apple_match_product_name(void)
- 	if (!product)
- 		return false;
  
--	for (int i = 0; i < ARRAY_SIZE(type1_product_matches); i++) {
--		if (!strcmp(product, type1_product_matches[i]))
--			return true;
-+	for (int i = 0; i < ARRAY_SIZE(disabled_product_matches); i++) {
-+		if (!strcmp(product, disabled_product_matches[i]))
-+			return false;
- 	}
- 
--	return false;
-+	return true;
+-	return pci_match_id(ids, pdev);
++	static const struct dmi_system_id dmi_ids[] = {
++		{
++			.ident = "Apple Inc. iMac",
++			.matches = {
++				DMI_EXACT_MATCH(DMI_BOARD_VENDOR, "Apple Inc."),
++				DMI_MATCH(DMI_PRODUCT_NAME, "iMac"),
++			}
++		},
++		{}
++	};
++
++	return pci_match_id(ids, pdev) || dmi_check_system(dmi_ids);
  }
  
- static void apple_set_os(void)
+ #define INTEL_DISPLAY_DEVICE(_id, _desc) { .devid = (_id), .desc = (_desc) }
 -- 
 2.43.0
 
