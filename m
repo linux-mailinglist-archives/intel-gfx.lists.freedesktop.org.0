@@ -2,68 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qFWVJtEQg2kPhQMAu9opvQ
+	id cCrhFW0ag2n+hgMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 04 Feb 2026 10:26:41 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 04 Feb 2026 11:07:41 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AEC7E3D02
-	for <lists+intel-gfx@lfdr.de>; Wed, 04 Feb 2026 10:26:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9E44E4401
+	for <lists+intel-gfx@lfdr.de>; Wed, 04 Feb 2026 11:07:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FD2A10E59B;
-	Wed,  4 Feb 2026 09:26:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7161710E5A6;
+	Wed,  4 Feb 2026 10:07:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aWgTejNO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BaLNzIL4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B93B10E599;
- Wed,  4 Feb 2026 09:26:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 760D510E5A6
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 Feb 2026 10:07:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770197197; x=1801733197;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=S1nzuNSJMTBoOxH6sKw/202K31gvAx+KFP3lq5TqC5Y=;
- b=aWgTejNOMi/h2ZmSCwvlpgkr8O3oQM0znOzzQ0Us5KJZLqjQvc3Dp2Ii
- w/e0iWQnN62IF+wkVjnGPAK8xLVkvjRD5kzhhFhPYZ1JKG3w6nxsl8u4C
- Nobi4PbgzhcgQBmMhW8qpOBYTxbWrJKNOoXXvFduwSgSZrH7GTgUaf9OF
- TOGrC4gOuu5moO4aFIr0hx7rYHeGx11ziz3TW22Zpl/M0dt7Y1IuppaDy
- AFXIondUrW22rwWnY23Q9hr+5MXjT+mpS/TiNNw31XAqfKYVVyDhEa/xn
- d61hkrAAXCvRBQllsoA0I14MmXKo15RpxZo6HfOUL9j2ij9dqySfp/qvV Q==;
-X-CSE-ConnectionGUID: XMo3ujGNQjGah5IVIhgOBw==
-X-CSE-MsgGUID: IzhpAF1bQOWX9f519tM/CA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="71276396"
-X-IronPort-AV: E=Sophos;i="6.21,272,1763452800"; d="scan'208";a="71276396"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2026 01:26:37 -0800
-X-CSE-ConnectionGUID: n1iv16PmS3mg1jffErXZPg==
-X-CSE-MsgGUID: AuorOw+QQMyB65iZEao1DA==
+ t=1770199657; x=1801735657;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=EH0ZG3SkO771bIq5WutYlFmitCrnZ5AIsPPM83Tpg0g=;
+ b=BaLNzIL40DjeVJNlWAVEELOf66Zh6dIDkav9Dp7MT2mdorramePyl1nU
+ oT4QqpjXCuA7MhM0DPRGV7RE169CWMNw9OHeZSo8AIpsNHFaLYZx4B09l
+ QfH4BvHy6R/7aHGZfD2BayxphKUL5pcawMRf3WMvvXPIq/8Nez+mQvJM9
+ 831dBblewLrx2SA3BJivYcvXpeHjmV78cTkWd6xFqkW2vJAkyPZ+k1qh4
+ iMOXwnmb+JCz+hUgd6TacxJ0SwlLn9MWQ+F2jYkkEhn9WfY+CcRFAvah2
+ Ag2Ip9ke+BQFqtt/lJTuMit+WfpUaSsRrCe1B6r2+RDc1U3C2AMCb9z66 w==;
+X-CSE-ConnectionGUID: kWurllW2R2S8XOsl8rd12A==
+X-CSE-MsgGUID: T5wpL4WtS4q5nAk/yUMdIA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="71287669"
+X-IronPort-AV: E=Sophos;i="6.21,272,1763452800"; d="scan'208";a="71287669"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2026 02:07:37 -0800
+X-CSE-ConnectionGUID: elHuVbTpRYOh13jg/Xueow==
+X-CSE-MsgGUID: 0DfGrjDXRM6qGGJc8uo8Iw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,272,1763452800"; d="scan'208";a="210153564"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.245.209])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2026 01:26:35 -0800
-Date: Wed, 4 Feb 2026 10:26:32 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>
-Subject: Re: [PATCH v4] drm/i915/selftests: Defer signalling the request fence
-Message-ID: <aYMQyMS1b5PhLPyv@ashyti-mobl2.lan>
-References: <20260130184507.45233-2-krzysztof.niemiec@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,272,1763452800"; d="scan'208";a="247712070"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.7])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2026 02:07:35 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com
+Subject: Re: [PATCH] drm/i915/gvt: No need for extra op check
+In-Reply-To: <20260203223642.7052-2-jonathan.cavitt@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260203223642.7052-2-jonathan.cavitt@intel.com>
+Date: Wed, 04 Feb 2026 12:07:31 +0200
+Message-ID: <082f48353e0dd9aa62a0bf10c0c95094f8702296@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260130184507.45233-2-krzysztof.niemiec@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,92 +75,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	TO_DN_SOME(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MISSING_XM_UA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andi.shyti@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,ashyti-mobl2.lan:mid,intel.com:email,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 4AEC7E3D02
+	FORGED_RECIPIENTS(0.00)[m:jonathan.cavitt@intel.com,m:saurabhg.gupta@intel.com,m:alex.zuo@intel.com,s:lists@lfdr.de];
+	ARC_NA(0.00)[];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	HAS_ORG_HEADER(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
+X-Rspamd-Queue-Id: D9E44E4401
 X-Rspamd-Action: no action
 
-Hi Krzysztof,
+On Tue, 03 Feb 2026, Jonathan Cavitt <jonathan.cavitt@intel.com> wrote:
+> Static analysis issue:
+>
+> In intel_gvt_i2c_handle_aux_ch_write, we check if op & 0x1 == 0.  If it
+> does not equal zero, then it must equal one, so checking op & 0x1 == 1
+> in the case it does not equal zero is unnecessary.
+>
+> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gvt/edid.c | 2 --
+>  1 file changed, 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gvt/edid.c b/drivers/gpu/drm/i915/gvt/edid.c
+> index 021afff1cd5d..5ac7636d6c07 100644
+> --- a/drivers/gpu/drm/i915/gvt/edid.c
+> +++ b/drivers/gpu/drm/i915/gvt/edid.c
+> @@ -543,8 +543,6 @@ void intel_gvt_i2c_handle_aux_ch_write(struct intel_vgpu *vgpu,
+>  		 * support the gfx driver to do EDID access.
+>  		 */
 
-On Fri, Jan 30, 2026 at 07:45:08PM +0100, Krzysztof Niemiec wrote:
-> The i915_active selftests live_active_wait and live_active_retire
-> operate on an i915_active attached to a mock, empty request, created as
-> part of test setup. A fence is attached to this request to control when
-> the request is processed. The tests then wait for the completion of the
-> active with __i915_active_wait(), and the test is considered successful
-> if this results in setting a variable in the active callback.
-> 
-> However, the behavior of __i915_active_wait() is such that if the
-> refcount for the active is 0, the function is almost completely skipped;
-> waiting on a already completed active yields no effect. This includes a
-> subsequent call to the retire() function of the active (which is the
-> callback that the test is interested about, and which dictates whether
-> its successful or not). So, if the active is completed before the
-> aforementioned call to __i915_active_wait(), the test will fail.
-> 
-> Most of the test runs in a single thread, including creating the
-> request, creating the fence for it, signalling that fence, and calling
-> __i915_active_wait(). However, the request itself is handled
-> asynchronously. This creates a race condition where if the request is
-> completed after signalling the fence, but before waiting on its active,
-> the active callback will not be invoked, failing the test.
-> 
-> Defer signalling the request's fence, to ensure the main test thread
-> gets to call __i915_active_wait() before request completion.
-> 
-> v4:
-> - Lower the delay timeout to 50ms (Jonathan)
-> - Put the check on work_finished inside a helper function (Jonathan)
-> 
-> v3:
-> - Embed the variables inside the live_active struct (Andi)
-> - Move the schedule_delayed_work call closer to the wait (Andi)
-> - Implement error handling in case an error state - the wait has
->   finished, but the deferred work didn't run - is somehow achieved (Andi)
-> 
-> v2:
-> - Clarify the need for a fix a little more (Krzysztof K., Janusz)
-> 
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14808
-> Signed-off-by: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+The context here is
 
-BTW, I don't want to block this patch, I'm just not feeling
-comfortable at merging it and I don't have better suggestions.
+	} else if ((op & 0x1) == DP_AUX_I2C_WRITE) {
+		/* TODO
+		 * We only support EDID reading from I2C_over_AUX. And
+		 * we do not expect the index mode to be used. Right now
+		 * the WRITE operation is ignored. It is good enough to
+		 * support the gfx driver to do EDID access.
+		 */
+	} else {
 
-BTW, you already have consensus here:
+and you could also toss the empty branch to the curb and check for 
 
-Reviewed-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-Reviewed-by: Krzysztof Karas <krzysztof.karas@intel.com>
-Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+	} else if ((op & 0x1) == DP_AUX_I2C_READ) {
 
-And, BTW, can you please add comments through the lines so that
-people understand what you are doing.
 
-Moreover, as Janusz suggested I would also like to have a real
-use case description of the issue and how it appeared in our
-environment.
 
-Thanks,
-Andi
+>  	} else {
+> -		if (drm_WARN_ON(&i915->drm, (op & 0x1) != DP_AUX_I2C_READ))
+> -			return;
+
+
+
+>  		if (drm_WARN_ON(&i915->drm, msg_length != 4))
+>  			return;
+>  		if (i2c_edid->edid_available && i2c_edid->target_selected) {
+
+-- 
+Jani Nikula, Intel
