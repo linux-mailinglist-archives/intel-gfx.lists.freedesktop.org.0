@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SGwBO7HWgml5cQMAu9opvQ
+	id 2N/KJ7PWgml5cQMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 04 Feb 2026 06:18:41 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 04 Feb 2026 06:18:43 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4A06E1DC1
-	for <lists+intel-gfx@lfdr.de>; Wed, 04 Feb 2026 06:18:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74768E1DC8
+	for <lists+intel-gfx@lfdr.de>; Wed, 04 Feb 2026 06:18:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 512B610E26E;
-	Wed,  4 Feb 2026 05:18:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDE0310E288;
+	Wed,  4 Feb 2026 05:18:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QjB4idgP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i2tqrLvm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0F5A10E26E;
- Wed,  4 Feb 2026 05:18:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1411210E288;
+ Wed,  4 Feb 2026 05:18:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770182318; x=1801718318;
+ t=1770182321; x=1801718321;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=XmBJdc1SSpPcTwuPNr8vq8i0vVX5qMgNU3EKX46q8Qk=;
- b=QjB4idgPJ3zk8uNbl7a6F2xNx1dH7gUR/f1cfyECTDlMJ55XMt/r+xt5
- tZVmxwj5yL2G5D+RnPkhPl3a5yjMTApWrjdOMY0V/H1cDBZ9ksebV5iWC
- WNWyugMSPByn0/suEzs5kBhdOk/yuJ5u6ExbL6FUBGKbzX69sdW5iY+6S
- KE/Zg8aSnlb6e6SbFWZwduncuY1b5pg8+cNTNQK4B+HUt4fOy9RukbbgS
- s9Im82JuV1pI660dDzihJj4qbkil4ys3OFdbov8rws+DtAZBd5wHQQOnb
- 5azIoFODE/rrVzuUQ90sJ4pCsIoFlwDSIlmXRj6FPbIXDD2002e4WpwjE g==;
-X-CSE-ConnectionGUID: NTxuNiCKRqio7hQFGSes6w==
-X-CSE-MsgGUID: NFtkJQx5T3OegGUSkUv/Jw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="82102820"
-X-IronPort-AV: E=Sophos;i="6.21,272,1763452800"; d="scan'208";a="82102820"
+ bh=9KVUITN6kjGOqMrbp7lTYE3UxXfkfwsW3O1FtmF3x44=;
+ b=i2tqrLvmGwNE2bTcfU+I+D03pBZF5KViLyBABTGbG87f89cAj/l89QN0
+ aWRs3OKyLBsjEljcSv+8GFiYuDXf7vnzg2R8GG0LunXg/sc8mEwiARCbt
+ bYVcxfTRYVV9X8jdzYFe56mwOE9dwgQT77Tbc3wzpSre7Dn0/8Z9719EJ
+ NAotKSd+cWtYZDtTY0Lm0pTe6Bg0rBKxWIq5U5MrbFegs6SH4aO1gl8HD
+ xDfAhHvFSG+j6ZfT3uStfdoXJB7iftzF1IWHDjl269i/k1B6UnFSuTxeS
+ NszntPfDIAxrDsscvrTPFyIahWjXh2nOpltHn1VbpIqCh4wRgS5UoeNzy g==;
+X-CSE-ConnectionGUID: SZsa0s5uRdeOKPFwC5NoHQ==
+X-CSE-MsgGUID: EhygxGHEQ5Snmabw48QMgQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="82102822"
+X-IronPort-AV: E=Sophos;i="6.21,272,1763452800"; d="scan'208";a="82102822"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2026 21:18:38 -0800
-X-CSE-ConnectionGUID: iJynhQE4TXeOvHHez6xfZg==
-X-CSE-MsgGUID: ib0seTVFRyOYf3ShJR5c/g==
+ 03 Feb 2026 21:18:41 -0800
+X-CSE-ConnectionGUID: 7soI+WjEQzOfOpQwgrvZPg==
+X-CSE-MsgGUID: D/SVDBgXR5GSJh/5L/7maw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,272,1763452800"; d="scan'208";a="210127483"
+X-IronPort-AV: E=Sophos;i="6.21,272,1763452800"; d="scan'208";a="210127490"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2026 21:18:36 -0800
+ 03 Feb 2026 21:18:39 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jouni.hogander@intel.com, ville.syrjala@linux.intel.com,
  animesh.manna@intel.com, michal.grzelak@intel.com,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [RESEND 2/5] drm/i915/alpm: Allow LOBF only if window1 > alpm
- check_entry lines
-Date: Wed,  4 Feb 2026 10:32:47 +0530
-Message-ID: <20260204050250.762718-3-ankit.k.nautiyal@intel.com>
+Subject: [RESEND 3/5] drm/i915/alpm: Allow LOBF only for platform that have
+ Always on VRR TG
+Date: Wed,  4 Feb 2026 10:32:48 +0530
+Message-ID: <20260204050250.762718-4-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260204050250.762718-1-ankit.k.nautiyal@intel.com>
 References: <20260204050250.762718-1-ankit.k.nautiyal@intel.com>
@@ -101,61 +101,42 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: C4A06E1DC1
+X-Rspamd-Queue-Id: 74768E1DC8
 X-Rspamd-Action: no action
 
-LOBF must be disabled if the number of lines within Window 1 is not greater
-than ALPM_CTL[ALPM Entry Check]
+As per bspec the LOBF is allowed when running in fixed refresh rate mode
+i.e. when flipline = vmin = vmax and when window1 is non zero. This
+implies that we can allow LOBF only when VRR timing generator is running
+in the fixed refresh rate mode.
 
-v2: Consider the case where SCL is in the active region. (Ville)
+Use the check intel_vrr_always_use_vrr_tg() to avoid LOBF with legacy
+timing generator. Also use intel_vrr_is_fixed_rr() to check for fixed
+refresh rate mode.
 
-Bspec:71041
+v2: Modify commit message to clarify window1 requirement for LOBF.
+(Ville)
+
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Michał Grzelak <michal.grzelak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_alpm.c | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ drivers/gpu/drm/i915/display/intel_alpm.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index 055184a3c7d5..27b26e5813dc 100644
+index 27b26e5813dc..3aeab4bebce2 100644
 --- a/drivers/gpu/drm/i915/display/intel_alpm.c
 +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -270,6 +270,23 @@ int intel_alpm_lobf_min_guardband(struct intel_crtc_state *crtc_state)
- 	return first_sdp_position + waketime_in_lines + crtc_state->set_context_latency;
- }
- 
-+static bool intel_alpm_lobf_is_window1_sufficient(struct intel_crtc_state *crtc_state)
-+{
-+	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-+	int vblank = adjusted_mode->crtc_vtotal - adjusted_mode->crtc_vdisplay;
-+	int window1;
-+
-+	/*
-+	 * LOBF must be disabled if the number of lines within Window 1 is not
-+	 * greater than ALPM_CTL[ALPM Entry Check]
-+	 */
-+	window1 = vblank - min(vblank,
-+			       crtc_state->vrr.guardband +
-+			       crtc_state->set_context_latency);
-+
-+	return window1 > crtc_state->alpm_state.check_entry_lines;
-+}
-+
- void intel_alpm_lobf_compute_config_late(struct intel_dp *intel_dp,
- 					 struct intel_crtc_state *crtc_state)
- {
-@@ -279,6 +296,11 @@ void intel_alpm_lobf_compute_config_late(struct intel_dp *intel_dp,
- 	if (!crtc_state->has_lobf)
+@@ -351,8 +351,8 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
+ 	if (crtc_state->has_psr)
  		return;
  
-+	if (!intel_alpm_lobf_is_window1_sufficient(crtc_state)) {
-+		crtc_state->has_lobf = false;
-+		return;
-+	}
-+
- 	/*
- 	 * LOBF can only be enabled if the time from the start of the SCL+Guardband
- 	 * window to the position of the first SDP is greater than the time it takes
+-	if (crtc_state->vrr.vmin != crtc_state->vrr.vmax ||
+-	    crtc_state->vrr.vmin != crtc_state->vrr.flipline)
++	if (!intel_vrr_always_use_vrr_tg(display) ||
++	    !intel_vrr_is_fixed_rr(crtc_state))
+ 		return;
+ 
+ 	if (!(intel_alpm_aux_wake_supported(intel_dp) ||
 -- 
 2.45.2
 
