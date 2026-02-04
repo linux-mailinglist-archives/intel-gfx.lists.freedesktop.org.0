@@ -2,56 +2,186 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wDTfF2WVgmkRWgMAu9opvQ
+	id +PjcIqqtgmliYAMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 04 Feb 2026 01:40:05 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 04 Feb 2026 03:23:38 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF776E011E
-	for <lists+intel-gfx@lfdr.de>; Wed, 04 Feb 2026 01:40:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AFE91E0CB2
+	for <lists+intel-gfx@lfdr.de>; Wed, 04 Feb 2026 03:23:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 636BC10E0F0;
-	Wed,  4 Feb 2026 00:40:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80EB710E26D;
+	Wed,  4 Feb 2026 02:23:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="lF+eaSrW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IcqI2UUK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97CD610E0F0;
- Wed,  4 Feb 2026 00:40:01 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 3AF6342B78;
- Wed,  4 Feb 2026 00:40:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81C2AC116D0;
- Wed,  4 Feb 2026 00:40:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1770165601;
- bh=GKZovP5EOkZIiHKArIuUvE9p7wRRTOzjsnqws8YhSyA=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=lF+eaSrWziwRv88h/hRHnoiSfWjtPLke0CcocKziqLrVgVLuA8yvKTquq3WUj75uI
- 8GO9FQYD/r19l2bHiXFwhcOsSwrS17MkZghkaRUrKsTt+ae17aYWW9TpQjvdN7UxK+
- q341UQQlA6OQXnrcP2fyTM4aBVbe2jDwT4pNBCrFxEE9W+N9tEfg/I+ywqtQlafeRC
- SpaTPl50S+Em5dUoNFMeLqczvdqTdAiD90jGvsqVzkO/ZkgGEjplrir+UlSC9yL3mA
- Sfiq6TdnJ1SC7wYjGuGwaB8vrHWXPiqrSrSr0Qkx4n9R2HGfCu3RhPi9Kw1fEmbnSN
- BbCyCTIVPouiQ==
-Date: Wed, 4 Feb 2026 01:39:56 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- Andi Shyti <andi.shyti@linux.intel.com>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>, 
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>, 
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>
-Subject: Re: [PATCH v4] drm/i915/selftests: Defer signalling the request fence
-Message-ID: <aYKNTxTAwSV-V1g_@zenone.zhora.eu>
-References: <20260130184507.45233-2-krzysztof.niemiec@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 838E710E1CE;
+ Wed,  4 Feb 2026 02:23:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1770171813; x=1801707813;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=foHma6F0dz3IlP4XHsAwGRkyHu41YpIMGjn87pPJGq0=;
+ b=IcqI2UUKVfZvSAEe72/5WG3gUpORHrvjiHqOU0+nDTePJ4A3/k4zkmTy
+ GHvJXckXz7RxeT5hg1BP7lxSiKDH0M/rR5Hr5JiJsdA7PMvFZd5hY8Gbj
+ jGAZ1cpSyZXsR7MpuXVxWlDKtHXptfuzu9KiK9ug78apdH5pDhX55x6PF
+ +QTaCkDw6J3ukdKX+rH7ltZ0ty3kPpIbqKiy0IYCphgpUG0wufCnmhXtq
+ XM0ze4emZbp51Pn55FJD+OnyHMW1ji2j58svajfElNqfplmOtILHjv1qO
+ sfOY6rP+tqCGPmRPSnsp5deFpEBbZae1GKx6zwgohJBX42O04cozW7WsJ Q==;
+X-CSE-ConnectionGUID: AoWWz6B+Rj+cbBSE4kHolw==
+X-CSE-MsgGUID: 2kHL3uK0RTS1CB32KZziAg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="71076794"
+X-IronPort-AV: E=Sophos;i="6.21,271,1763452800"; d="scan'208";a="71076794"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2026 18:23:33 -0800
+X-CSE-ConnectionGUID: Y1eIxhqfTPa5SnPxvUcb1A==
+X-CSE-MsgGUID: CJyW5TAEQnys6b1702jOHg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,271,1763452800"; d="scan'208";a="240897373"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2026 18:23:32 -0800
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Tue, 3 Feb 2026 18:23:31 -0800
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35 via Frontend Transport; Tue, 3 Feb 2026 18:23:31 -0800
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.70) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Tue, 3 Feb 2026 18:23:31 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=IxRXZ08pRA6fTyXXYtGr7plwoP2p6yoErWgew8Bw89aQBTRoYUBO0YhMrXjsgA+0/PYqKNYJIw09BAPQ7oLKYjLg7rgVnh+nk6RtAokALr/ctxEcIzZ4Yyhd3Dees85z2ugfcGI3ZUYXKWgwDP3XLKubIwOu9fZnpv4Q6vSpjccRvw3HK6p6M7rMWQxIg9JFxLx9TRGhEnC9TIu9hCtB8nbSmJG9b5YQYKptZDtRILr4TUkEKxeIjSI7+fuv89VIdE35gDzGS49XaztUrnWaI68lxxx0I40Y79vbte1S+15dUMAGeaB3niaGTahglhgHHUr6NVdZmhn9VbttNgegBw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=J1dVdEnss9LnGrBD0FqYNL2bJPKOQ7MEkETaQWm2mkA=;
+ b=g5idartCGS1TD0tcBYKdEFKUCbuVSpyBLAXOD5mEue6m1ysRy8n+9MSTzAB5vRC7kgUKwKIkEAIeCHugJnOX1N/uTn8ymzwIa3bSvGTt+vGofwR6jJ32gGMhqsfZLdc2eDuhlzKatJbnzLWq0Ao5V3NQPTppL1y3CFZsdQq3SSy3QQtD6uHwdVoqFkoPfN2CmoMV6qPl7ftNKIYyFEMnrRWt2D4xSNAmX/reU/cKIrSJAfm3li8cKevZ7L86CSRY9pHpPsvcv8UTgShM1O1yXJvmMXQEdzy49i7Hogti2QUolgI/v079TPzymuJqCMYE5Pn7U8Rcg2VO0y6t6hDhww==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
+ (2603:10b6:f:fc00::f13) by SA1PR11MB6944.namprd11.prod.outlook.com
+ (2603:10b6:806:2bb::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.12; Wed, 4 Feb
+ 2026 02:23:29 +0000
+Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
+ ([fe80::7cc8:75c9:22c6:3c66]) by DM3PPF208195D8D.namprd11.prod.outlook.com
+ ([fe80::7cc8:75c9:22c6:3c66%7]) with mapi id 15.20.9564.016; Wed, 4 Feb 2026
+ 02:23:28 +0000
+From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: "Deak, Imre" <imre.deak@intel.com>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, "Murthy, Arun R"
+ <arun.r.murthy@intel.com>
+Subject: RE: [PATCH] drm/i915/ltphy: Return true for TBT scenario during
+ lt_phy_state compare
+Thread-Topic: [PATCH] drm/i915/ltphy: Return true for TBT scenario during
+ lt_phy_state compare
+Thread-Index: AQHclLaqJ/LFo2fVVEGfCq99NcR6QLVwo/WAgAADN1CAAH6mgIAAqwrw
+Date: Wed, 4 Feb 2026 02:23:28 +0000
+Message-ID: <DM3PPF208195D8DBD02D30349B09A55B920E398A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+References: <20260203024141.1549517-1-suraj.kandpal@intel.com>
+ <aYGxCTupSRGPp4jH@ideak-desk.lan>
+ <DM3PPF208195D8DDE068284324584CE5BA3E39BA@DM3PPF208195D8D.namprd11.prod.outlook.com>
+ <aYId-fUaKONE4fvS@ideak-desk.lan>
+In-Reply-To: <aYId-fUaKONE4fvS@ideak-desk.lan>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM3PPF208195D8D:EE_|SA1PR11MB6944:EE_
+x-ms-office365-filtering-correlation-id: 2311cc31-a6cb-4d01-6558-08de6394624a
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|366016|376014|1800799024|38070700021;
+x-microsoft-antispam-message-info: =?us-ascii?Q?mlEtmLgtFDlFrbzGnS0abpxBWN1AO8wscXRnERSl7/fheP8hltpI5pyolJZy?=
+ =?us-ascii?Q?C3NlsrGPmQOL6AmIn/iii2gimM3aijl/wdPYzDXRVhs/5OX7dqo8cB1G/b2h?=
+ =?us-ascii?Q?HBX2lNW08l/6s/pTtXZ7AE0qpmlTjtht4B54qgl4OZ6nHolbaYNbe6mh/Kjg?=
+ =?us-ascii?Q?Zdd59px38/v9+q9pKtnqsTvpNqIaV3H2C7AU/VmNMdy0peH6ycK4/pyXN88m?=
+ =?us-ascii?Q?jNlGd3nKZUDrY6pkCc8nLugVHbosKtzkFdRFXaCc4DzYobZhXOkU6ma/3lMW?=
+ =?us-ascii?Q?yao8icsOycBGUUVjlY5uNdcHUUrZlYeGlPe+OMHGgFCmstXaDzYLUlHRPBIa?=
+ =?us-ascii?Q?oCRInRO+G0dSy/fMC8slMo6qHLTie49K9kdwlq7PQPNGO0XfFrZcn/tyIEvf?=
+ =?us-ascii?Q?4/OeyMcvn75+uuPTk9/NYgqkVwKG8dUvzWcD//51jLjtZzAvJPoO2U8HiluJ?=
+ =?us-ascii?Q?HB5swkCgSX6O6imPgwls5jj5i1Ggsn5fjoUY1HBZsT5my2kYhs5+Qqq+akHA?=
+ =?us-ascii?Q?T3MvK7GzTTR05YouTmYio4M5vW6ca3XX5DdMrBj6+jjrpZMJ4eFA5MDlrdyP?=
+ =?us-ascii?Q?kvLfVE+fnKuJTV0PL32UI2KjqKgMJRxZHt41GJLb5pnE4JI+Fo2QlxB2ReiR?=
+ =?us-ascii?Q?kDs9MRC2+V0rXPwPnNQ/fIBgbMxYTG/5SrpPFEgCAWgRH42hhrhkckSxQ0Y5?=
+ =?us-ascii?Q?b4My78fsYBkm0Z5APj7MLnYVb7r0JK0AgJWDiJA1VlmMuIrx0ZxxX3YA8EHg?=
+ =?us-ascii?Q?En7hy1cecRAwr7mRgZZgoezDz2O32ugENJb9qG9inNKj2MamHsQf3L+8/qsW?=
+ =?us-ascii?Q?IYbdM3Xcq9vP+rmvRThk4DSsSn/hTaJgJjZlZE0pRDLyyEBwQ7iliBmG80JM?=
+ =?us-ascii?Q?0f1x0ckNG8OL77oB4wMqM3TqXU28y/Ny0YkvLX8Px73BiqzMs1/8o/ypjOw8?=
+ =?us-ascii?Q?ZjGsuk0fyKn/x3+7ufI52hZIv7mOeDtJch6YrCEe/MnpWShZqitbT+RpwQBs?=
+ =?us-ascii?Q?tc1ZwaGmI8ZcjG024LVaCR147fTFG7erxuaGEqe7M2/bQ/P1eVSgs5VvvWqJ?=
+ =?us-ascii?Q?Qh1GV3BBSM8OfNATzWIeZ/XQX4LPSuoC63KuZN5VC49k8C0kD/HnTdjPS6ku?=
+ =?us-ascii?Q?1tD4Y+Oyih1H6TXr8a10sm4UQuu9yNaYaYMF2vuEHMCr9/p4txxWK28kQS96?=
+ =?us-ascii?Q?YHzcAqovTAQxJnag/PSIQ4eyZJF50QPuYmArzRy3gXtYT0j+7WuYDstl12fY?=
+ =?us-ascii?Q?fUOM1x+w9kVgMvmk/ADGvblIqUFJ/bQz6J2WRto78F0LFeMvvXSgf7NJlK+8?=
+ =?us-ascii?Q?+ff+jBb18JH1eq3R2zAtSByy8tvkGPs+73jEJBPyhr2fRzYHyFkF1DBKAgSL?=
+ =?us-ascii?Q?DrBSBmFPVQOQXWRGMhepCZpvJB12JAUCN8zOLNYpm2UnX+Ccz3PbWTIhA7en?=
+ =?us-ascii?Q?+aoKxR3TcWh4fPil/cEKDe5L7fSfYoKlPS2jmklLLhyWcfN8RekN/CY0kjUv?=
+ =?us-ascii?Q?Dq2YaJi3Mg5eyyNNBfENh68AMIiIxHQtQtsKThzrGRaXplkX13PgtyKq1tuZ?=
+ =?us-ascii?Q?QJvyipOOa4zXyAFHloyTmctFSzqRqzC22s+eLvw8XZ4284oY0wW+lvvlX1nM?=
+ =?us-ascii?Q?UXc6WEEqqoeu2NWW1autE6U=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM3PPF208195D8D.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(38070700021); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?2rb1n/tV14KVqVc6hUUFSfBAixCEAvVZXCWcmdYJg7W1fTuMTlJaCUamaYiR?=
+ =?us-ascii?Q?g4V7XEGKdhfC8/4F/JZ1ub7dYEogvmatzTilsRG3xyyZnG1wyAEA7gxFG0dd?=
+ =?us-ascii?Q?Fq5A6YxWtLeXGg65HNAhXdF9MKFB6QVr1nSe2EG4Dt9JPQlS/bZHNXEeIkJ6?=
+ =?us-ascii?Q?3KM1/nYR1uSsKeNVbifDUp+nzm/nbStQ1FB+PS2MDgMqhTgnvHenWMIa33Dl?=
+ =?us-ascii?Q?ijDQUiAIon0TlsaRo99kTPcoNjMWbeAy0cZ6SEl5I+QB7LBLZ8xLQt918+KZ?=
+ =?us-ascii?Q?8cSrbSall4rJQqxOmL9TeI5LPheUWGtjp/HXptOdN7fxWoLyKmERhWjsOVzv?=
+ =?us-ascii?Q?KhxZOOMPg+WlkKzilSJCnySyfFSTQ/fc4XVEyRmQ0bLBzvvXgVCCkJm6rG+8?=
+ =?us-ascii?Q?3BAlHOLklgzD7usQssqzh7iMOuxsMb1vYE+K2C0j/ul0apdIyIFQgM95arl9?=
+ =?us-ascii?Q?NnaguBJmowjCIKo54rSe3Gnn/xWY2d8is2D3PpciE34fznC3mkjDOLlTPd5b?=
+ =?us-ascii?Q?P77aqzJrakF5qOOg1/hg5z3aCUg9n7Idkqyp3B9al7uOUemkImXGyJy0TAyN?=
+ =?us-ascii?Q?TqqrcBWbR7HyIMl96mT9f+iWvTZpsBwdfaOmr7wOPx7qwSiNpM0OCi7IyDOx?=
+ =?us-ascii?Q?hDxNIuZItk8f0SsezGGonccEEef83SMeaNij9KxPKq2GZxQLg9SnIz0/eAC9?=
+ =?us-ascii?Q?oA1zfcLZuym+e+xoWHgSIDfJeIalP6NkFlMFqupIYiZIyKMiXFfnxbyEJ3ps?=
+ =?us-ascii?Q?wVEHWj7VIE6t5AzOWulkWCFeLow9M5bswofyet7kJtUf0wRbQN6a0r6vs1Zx?=
+ =?us-ascii?Q?Ss4jUQiYhwGvi8d9ljPf/Pe07eW8ETDMW4+vH86gqnKaGzXSY06HUDgXc7pD?=
+ =?us-ascii?Q?U1KVScNQoWSihZgvzHoI2fodNHBK4ZOeF4VSMzTX/xU/Gk2nnvO3Mvms271W?=
+ =?us-ascii?Q?30liZlibp3Miej/oYSuT2kK+thbjkDTquj8YbsbOQgadT1ErO6EqvZeRpYQ1?=
+ =?us-ascii?Q?rBzMgYzEVV51wm4DNg8mT51V08/o5wEtyNDGdhg2BrtRFRZn0yTMrm6V7aPY?=
+ =?us-ascii?Q?KR1pkOAky5laO/8dBGGdHmRvqS1r4FE2KjVP6IXmE8yCuFccL9vnJGGkueq1?=
+ =?us-ascii?Q?UG16cWmJ9ayqdrGwbHMIbSh3bjcqvpngmaS1p6C33ISb96QSrtcXLgOyKiUU?=
+ =?us-ascii?Q?8KJjp8XAtXsLNvkB8R/QyZIyNgj44BHfu2eoL5wK7C4SwqNcbWg7RuBul3WG?=
+ =?us-ascii?Q?eghnvioheSsKwnrkzDjPWqHZNjnhLXzkziKSizI9kk8bAf8+dX5KxTSVuTPm?=
+ =?us-ascii?Q?9L4oc6Z2xvy143HMC2zwYnjrjqeH9WuJacPEA/TUojpUsR2MhvlYJVN+6kS/?=
+ =?us-ascii?Q?d71H37xFWFjj7qa3pgxZE7KqOqLTOXKdqcK9oiwuFTJSZ3EPKMN45nCa7tbX?=
+ =?us-ascii?Q?/5BxuoO+lUoRXr5L+Du+8BrzT6Htk3Vpd+ySMZIpR390HG/4ZFRNHkw86lX6?=
+ =?us-ascii?Q?c/EISuNpIpsHFIqrVImERAbOhxzk4gM2B85O5fuhCfMChMCD06A8O61Hsgjr?=
+ =?us-ascii?Q?Qn2kQM2Z3mpkfZS9LVlKeKNLo6ZLZv+ighoPWHNhmreojMU1E47sFnlhrvuO?=
+ =?us-ascii?Q?FbWR/ueRaT6Y2RqRBmWOWz5oQLVch7T1KaDIUXyu1Og9h1VVdE6O4DVaM0qL?=
+ =?us-ascii?Q?WXMjfKTqZ/tEHVKmdFBari6ldz62QNZ+R5aJJayXYZkYijOZ4bm0Log0NYFT?=
+ =?us-ascii?Q?328JzKPCjA=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260130184507.45233-2-krzysztof.niemiec@intel.com>
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM3PPF208195D8D.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2311cc31-a6cb-4d01-6558-08de6394624a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Feb 2026 02:23:28.8138 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: rlijNiJApbSvhXYost10Va/T0onXH88qUV3ZVKdYNv7F+49iULN5WJ4ieo7haY6SF57JwhHieEIyLFAOGpKEZg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6944
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,234 +197,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[andi.shyti@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	FROM_NEQ_ENVFROM(0.00)[suraj.kandpal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,gitlab.freedesktop.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,zenone.zhora.eu:mid]
-X-Rspamd-Queue-Id: BF776E011E
+	TAGGED_RCPT(0.00)[intel-gfx];
+	RCPT_COUNT_FIVE(0.00)[5];
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: AFE91E0CB2
 X-Rspamd-Action: no action
 
-Hi Krzysztof,
+> Subject: Re: [PATCH] drm/i915/ltphy: Return true for TBT scenario during
+> lt_phy_state compare
+>=20
+> On Tue, Feb 03, 2026 at 10:40:33AM +0200, Kandpal, Suraj wrote:
+> > > Subject: Re: [PATCH] drm/i915/ltphy: Return true for TBT scenario
+> > > during lt_phy_state compare
+> > >
+> > > On Tue, Feb 03, 2026 at 08:11:41AM +0530, Suraj Kandpal wrote:
+> > > > TBT PHY is enablement/disablement is handled by its own TBT module.
+> > > > We do not play a big part in it's state management that being take
+> > > > care by it's own TBT modeule. With that in mind comparing the
+> > > > state would be wrong since we really don't touch it.
+> > > > Simple return true when we are in tbt mode.
+> > > >
+> > > > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/display/intel_lt_phy.c | 3 +++
+> > > >  1 file changed, 3 insertions(+)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> > > > b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> > > > index 04f63bdd0b87..27ad8407606b 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> > > > @@ -2158,6 +2158,9 @@ bool
+> > > >  intel_lt_phy_pll_compare_hw_state(const struct intel_lt_phy_pll_st=
+ate
+> *a,
+> > > >  				  const struct intel_lt_phy_pll_state *b)  {
+> > > > +	if (a->tbt_mode || b->tbt_mode)
+> > > > +		return true;
+> > >
+> > > It is a relevant state whether the PHY is in TBT mode or in a
+> > > non-TBT mode, even if the PHY is programmed by the TBT HW block in
+> > > TBT mode. So it's not ok to ignore a difference in this state.
+> > > Please provide the actual context for why the change was added.
+> >
+> > Bspec : 74492
+> >
+> > We do not write the PLL registers when it comes to TBT Mode that is
+> > done by the TBT dock.  Since the VDR register are shadow registers our
+> > shadow registers will never have those values. Which Means we will
+> > always have a state mismatch.
+>=20
+> Reading out the HW state of the actual PLL dividers and configuration is =
+not
+> read out in TBT mode for the above reason but the verification is skipped=
+ in
+> TBT mode for another reason:
+>=20
+> The PHY/PLL TypeC mode (TBT, DP-alt) can change after the PLL state was
+> computed for a modeset, so the state verification after the modeset seque=
+nce
+> would indicate a mismatch in case the mode changed from DP-alt to TBT, or
+> from TBT to DP-alt mode. To avoid such a mismatch error the verification =
+is
+> skipped if the mode for either the read-out or the computed state is TBT
+> (where that TBT PLL state doesn't reflect anyway the PLL's actual HW stat=
+e).
+>=20
+> Could you please amend the commit long along the above lines as a rationa=
+le
+> for the change?
 
-On Fri, Jan 30, 2026 at 07:45:08PM +0100, Krzysztof Niemiec wrote:
-> The i915_active selftests live_active_wait and live_active_retire
-> operate on an i915_active attached to a mock, empty request, created as
-> part of test setup. A fence is attached to this request to control when
-> the request is processed. The tests then wait for the completion of the
-> active with __i915_active_wait(), and the test is considered successful
-> if this results in setting a variable in the active callback.
-> 
-> However, the behavior of __i915_active_wait() is such that if the
-> refcount for the active is 0, the function is almost completely skipped;
-> waiting on a already completed active yields no effect. This includes a
-> subsequent call to the retire() function of the active (which is the
-> callback that the test is interested about, and which dictates whether
-> its successful or not). So, if the active is completed before the
-> aforementioned call to __i915_active_wait(), the test will fail.
-> 
-> Most of the test runs in a single thread, including creating the
-> request, creating the fence for it, signalling that fence, and calling
-> __i915_active_wait(). However, the request itself is handled
-> asynchronously. This creates a race condition where if the request is
-> completed after signalling the fence, but before waiting on its active,
-> the active callback will not be invoked, failing the test.
-> 
-> Defer signalling the request's fence, to ensure the main test thread
-> gets to call __i915_active_wait() before request completion.
-> 
-> v4:
-> - Lower the delay timeout to 50ms (Jonathan)
-> - Put the check on work_finished inside a helper function (Jonathan)
-> 
-> v3:
-> - Embed the variables inside the live_active struct (Andi)
-> - Move the schedule_delayed_work call closer to the wait (Andi)
-> - Implement error handling in case an error state - the wait has
->   finished, but the deferred work didn't run - is somehow achieved (Andi)
-> 
-> v2:
-> - Clarify the need for a fix a little more (Krzysztof K., Janusz)
-> 
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14808
-> Signed-off-by: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+Sure will amend and send the next revision
 
-I'm sorry, but for now this patch, for the reason I explained you
-in a previous version, is a nack.
+Regards,
+Suraj Kandpal
 
-You are trying to bypass locking issues by adding a random 50ms
-delay. It's too fragile and looks hackish.
-
-In any case, I've seen a few issues below, in case someone else
-agrees and is willing to merge it.
-
-> ---
->  drivers/gpu/drm/i915/selftests/i915_active.c | 51 +++++++++++++++++---
->  1 file changed, 45 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/selftests/i915_active.c b/drivers/gpu/drm/i915/selftests/i915_active.c
-> index 36c3a5460221..eadd0a8bc094 100644
-> --- a/drivers/gpu/drm/i915/selftests/i915_active.c
-> +++ b/drivers/gpu/drm/i915/selftests/i915_active.c
-> @@ -21,6 +21,10 @@ struct live_active {
->  	struct i915_active base;
->  	struct kref ref;
->  	bool retired;
-> +
-> +	struct i915_sw_fence *submit;
-> +	struct delayed_work work;
-> +	bool work_finished;
->  };
->  
->  static void __live_get(struct live_active *active)
-> @@ -76,11 +80,37 @@ static struct live_active *__live_alloc(struct drm_i915_private *i915)
->  	return active;
->  }
->  
-> +static void __live_submit_work_handler(struct work_struct *work)
-
-I don't see the point for the '__' here.
-
-> +{
-> +	struct delayed_work *d_work = container_of(work, struct delayed_work, work);
-> +	struct live_active *active = container_of(d_work, struct live_active, work);
-> +	i915_sw_fence_commit(active->submit);
-> +	heap_fence_put(active->submit);
-> +	active->work_finished = true;
-> +}
-> +
-> +static int
-> +__live_work_confirm_finished(struct drm_i915_private *i915,
-> +			     struct live_active *active)
-> +{
-> +	int err = 0;
-> +
-> +	if (!active->work_finished) {
-> +		struct drm_printer p = drm_err_printer(&i915->drm, __func__);
-> +
-> +		drm_printf(&p, "active->work hasn't finished, something went\
-> +				terribly wrong\n");
-
-until 100 characters per line is fine, but I'm sure you can
-reword to something better.
-
-> +		err = -EINVAL;
-> +		cancel_delayed_work_sync(&active->work);
-> +	}
-> +
-> +	return err;
-> +}
-> +
->  static struct live_active *
->  __live_active_setup(struct drm_i915_private *i915)
->  {
->  	struct intel_engine_cs *engine;
-> -	struct i915_sw_fence *submit;
->  	struct live_active *active;
->  	unsigned int count = 0;
->  	int err = 0;
-> @@ -89,8 +119,11 @@ __live_active_setup(struct drm_i915_private *i915)
->  	if (!active)
->  		return ERR_PTR(-ENOMEM);
->  
-> -	submit = heap_fence_create(GFP_KERNEL);
-> -	if (!submit) {
-> +	INIT_DELAYED_WORK(&active->work, __live_submit_work_handler);
-> +	active->work_finished = false;
-> +
-> +	active->submit = heap_fence_create(GFP_KERNEL);
-> +	if (!active->submit) {
->  		kfree(active);
->  		return ERR_PTR(-ENOMEM);
->  	}
-> @@ -109,7 +142,7 @@ __live_active_setup(struct drm_i915_private *i915)
->  		}
->  
->  		err = i915_sw_fence_await_sw_fence_gfp(&rq->submit,
-> -						       submit,
-> +						       active->submit,
->  						       GFP_KERNEL);
->  		if (err >= 0)
->  			err = i915_active_add_request(&active->base, rq);
-> @@ -134,8 +167,6 @@ __live_active_setup(struct drm_i915_private *i915)
->  	}
->  
->  out:
-> -	i915_sw_fence_commit(submit);
-> -	heap_fence_put(submit);
->  	if (err) {
->  		__live_put(active);
->  		active = ERR_PTR(err);
-> @@ -156,6 +187,8 @@ static int live_active_wait(void *arg)
->  	if (IS_ERR(active))
->  		return PTR_ERR(active);
-
-if we return with an error...
-
->  
-> +	schedule_delayed_work(&active->work, msecs_to_jiffies(50));
-
-... we don't schedule the work and therefore you leak the fence.
-
-> +
->  	__i915_active_wait(&active->base, TASK_UNINTERRUPTIBLE);
->  	if (!READ_ONCE(active->retired)) {
->  		struct drm_printer p = drm_err_printer(&i915->drm, __func__);
-> @@ -166,6 +199,8 @@ static int live_active_wait(void *arg)
->  		err = -EINVAL;
->  	}
->  
-> +	err = __live_work_confirm_finished(i915, active);
-
-Here you are overwriting err.
-
-> +
->  	__live_put(active);
->  
->  	if (igt_flush_test(i915))
-> @@ -186,6 +221,8 @@ static int live_active_retire(void *arg)
->  	if (IS_ERR(active))
->  		return PTR_ERR(active);
->  
-> +	schedule_delayed_work(&active->work, msecs_to_jiffies(50));
-> +
->  	/* waits for & retires all requests */
->  	if (igt_flush_test(i915))
->  		err = -EIO;
-> @@ -199,6 +236,8 @@ static int live_active_retire(void *arg)
->  		err = -EINVAL;
->  	}
->  
-> +	err = __live_work_confirm_finished(i915, active);
-
-here as well.
-
-Andi
-
-> +
->  	__live_put(active);
->  
->  	return err;
-> -- 
-> 2.45.2
-> 
+>=20
+> > This has always been the case since SNPS PHY.  Check
+> > intel_cx0pll_compare_hw_state int intel_cx0_phy.c too
+> >
+> > Regards,
+> > Suraj Kandpal
+> >
+> > >
+> > > > +
+> > > >  	/*
+> > > >  	 * With LT PHY values other than VDR0_CONFIG and VDR2_CONFIG are
+> > > >  	 * unreliable. They cannot always be read back since internally
+> > > > --
+> > > > 2.34.1
+> > > >
