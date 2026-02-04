@@ -2,68 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iFuZI+wNg2k+hAMAu9opvQ
+	id qFWVJtEQg2kPhQMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 04 Feb 2026 10:14:20 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 04 Feb 2026 10:26:41 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACA77E3A16
-	for <lists+intel-gfx@lfdr.de>; Wed, 04 Feb 2026 10:14:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AEC7E3D02
+	for <lists+intel-gfx@lfdr.de>; Wed, 04 Feb 2026 10:26:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDCAC10E590;
-	Wed,  4 Feb 2026 09:14:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FD2A10E59B;
+	Wed,  4 Feb 2026 09:26:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eA7W7k2Q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aWgTejNO";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5960310E599;
- Wed,  4 Feb 2026 09:14:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B93B10E599;
+ Wed,  4 Feb 2026 09:26:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770196456; x=1801732456;
+ t=1770197197; x=1801733197;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=uWFc3cCq7nvgonjkWV9CXlG3ak0iloScDgH4XwXi1og=;
- b=eA7W7k2Q45OxPoRtIl4TM9/wwAyFgUS8FJd155dAeM5qKW3Wz9p/5tpu
- PJ0pxT12zhDBlCUim3Rb1Anxyk08pttY7ZICuGNXGs7uRn8D9ibLTEMfU
- ohzI6/LkLSQKJtpHIK3dkG+3XWWhHj+5lqN+rycCvrLT/8C+BY7+V1u2c
- pLyqJqFcz3Bd4NFf8wpEYdb12kIbjgfGjGEmh3f0OXVLdriMReYnsB+PL
- YV6csPC7aAmtYUH8haey1f6nWvm/MJ6tOSlNdQ2N+4KSpbOj64d7icKA1
- s4n65KhWVuZFr0QI8y/0Qa93u6vnx0F6nK6bamaMrNnXmnU7yHlCYM5YV w==;
-X-CSE-ConnectionGUID: H+j056cQQcmPfmxpk6wJbQ==
-X-CSE-MsgGUID: 8xVVkCFGQ8SXaiOJiVEf2w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="75230385"
-X-IronPort-AV: E=Sophos;i="6.21,272,1763452800"; d="scan'208";a="75230385"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2026 01:14:16 -0800
-X-CSE-ConnectionGUID: 2skSiKnGR+upiIjAzys1xQ==
-X-CSE-MsgGUID: rZDQ3aCPSp63PrxXSlN9LA==
+ bh=S1nzuNSJMTBoOxH6sKw/202K31gvAx+KFP3lq5TqC5Y=;
+ b=aWgTejNOMi/h2ZmSCwvlpgkr8O3oQM0znOzzQ0Us5KJZLqjQvc3Dp2Ii
+ w/e0iWQnN62IF+wkVjnGPAK8xLVkvjRD5kzhhFhPYZ1JKG3w6nxsl8u4C
+ Nobi4PbgzhcgQBmMhW8qpOBYTxbWrJKNOoXXvFduwSgSZrH7GTgUaf9OF
+ TOGrC4gOuu5moO4aFIr0hx7rYHeGx11ziz3TW22Zpl/M0dt7Y1IuppaDy
+ AFXIondUrW22rwWnY23Q9hr+5MXjT+mpS/TiNNw31XAqfKYVVyDhEa/xn
+ d61hkrAAXCvRBQllsoA0I14MmXKo15RpxZo6HfOUL9j2ij9dqySfp/qvV Q==;
+X-CSE-ConnectionGUID: XMo3ujGNQjGah5IVIhgOBw==
+X-CSE-MsgGUID: IzhpAF1bQOWX9f519tM/CA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="71276396"
+X-IronPort-AV: E=Sophos;i="6.21,272,1763452800"; d="scan'208";a="71276396"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2026 01:26:37 -0800
+X-CSE-ConnectionGUID: n1iv16PmS3mg1jffErXZPg==
+X-CSE-MsgGUID: AuorOw+QQMyB65iZEao1DA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,272,1763452800"; d="scan'208";a="214276632"
+X-IronPort-AV: E=Sophos;i="6.21,272,1763452800"; d="scan'208";a="210153564"
 Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.245.209])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2026 01:14:14 -0800
-Date: Wed, 4 Feb 2026 10:14:11 +0100
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2026 01:26:35 -0800
+Date: Wed, 4 Feb 2026 10:26:32 +0100
 From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Krzysztof Karas <krzysztof.karas@intel.com>
+To: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
 Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
  Andi Shyti <andi.shyti@linux.intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>,
  Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-Subject: Re: [PATCH v2] drm/i915/selftests: Prevent userspace mapping
- invalidation
-Message-ID: <aYMN4xHcqNqcI2CL@ashyti-mobl2.lan>
-References: <5biajlwhi3oaep72si2dj2lhp2xwrpfa2gxqc2l36464uishjo@g26isdq64nv2>
+ Krzysztof Karas <krzysztof.karas@intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>
+Subject: Re: [PATCH v4] drm/i915/selftests: Defer signalling the request fence
+Message-ID: <aYMQyMS1b5PhLPyv@ashyti-mobl2.lan>
+References: <20260130184507.45233-2-krzysztof.niemiec@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <5biajlwhi3oaep72si2dj2lhp2xwrpfa2gxqc2l36464uishjo@g26isdq64nv2>
+In-Reply-To: <20260130184507.45233-2-krzysztof.niemiec@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,61 +81,90 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-1.31 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,ashyti-mobl2.lan:mid,gitlab.freedesktop.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
-	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[andi.shyti@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,ashyti-mobl2.lan:mid,intel.com:email,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: ACA77E3A16
+X-Rspamd-Queue-Id: 4AEC7E3D02
 X-Rspamd-Action: no action
 
 Hi Krzysztof,
 
-On Mon, Jan 19, 2026 at 10:16:02AM +0000, Krzysztof Karas wrote:
-> IGT mmap testing in i915 uses current task's address space to
-> allocate new userspace mapping, without registering real user
-> for that address space in mm_struct.
+On Fri, Jan 30, 2026 at 07:45:08PM +0100, Krzysztof Niemiec wrote:
+> The i915_active selftests live_active_wait and live_active_retire
+> operate on an i915_active attached to a mock, empty request, created as
+> part of test setup. A fence is attached to this request to control when
+> the request is processed. The tests then wait for the completion of the
+> active with __i915_active_wait(), and the test is considered successful
+> if this results in setting a variable in the active callback.
 > 
-> It was observed that mm->mm_users would occasionally drop to 0
-> during tests, which reaped userspace mappings, further leading
-> to failures upon reading from userland memory.
+> However, the behavior of __i915_active_wait() is such that if the
+> refcount for the active is 0, the function is almost completely skipped;
+> waiting on a already completed active yields no effect. This includes a
+> subsequent call to the retire() function of the active (which is the
+> callback that the test is interested about, and which dictates whether
+> its successful or not). So, if the active is completed before the
+> aforementioned call to __i915_active_wait(), the test will fail.
 > 
-> Prevent this by artificially increasing mm_users counter for the
-> duration of the test.
+> Most of the test runs in a single thread, including creating the
+> request, creating the fence for it, signalling that fence, and calling
+> __i915_active_wait(). However, the request itself is handled
+> asynchronously. This creates a race condition where if the request is
+> completed after signalling the fence, but before waiting on its active,
+> the active callback will not be invoked, failing the test.
 > 
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204
-> Signed-off-by: Krzysztof Karas <krzysztof.karas@intel.com>
+> Defer signalling the request's fence, to ensure the main test thread
+> gets to call __i915_active_wait() before request completion.
+> 
+> v4:
+> - Lower the delay timeout to 50ms (Jonathan)
+> - Put the check on work_finished inside a helper function (Jonathan)
+> 
+> v3:
+> - Embed the variables inside the live_active struct (Andi)
+> - Move the schedule_delayed_work call closer to the wait (Andi)
+> - Implement error handling in case an error state - the wait has
+>   finished, but the deferred work didn't run - is somehow achieved (Andi)
+> 
+> v2:
+> - Clarify the need for a fix a little more (Krzysztof K., Janusz)
+> 
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14808
+> Signed-off-by: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
 
-Can you please rebase this patch on top of the current trees?
+BTW, I don't want to block this patch, I'm just not feeling
+comfortable at merging it and I don't have better suggestions.
 
-> +	/*
-> +	 * Get a reference to tasks's mm_struct to artificially increase mm_users
-> +	 * and ensure the kernel does not try to clean up the userspace mappings
-> +	 * of the current task during the test.
-> +	 */
-> +	mmget_not_zero(current->mm);
+BTW, you already have consensus here:
 
-why mmget_not_zero() and not just mmget()?
+Reviewed-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Reviewed-by: Krzysztof Karas <krzysztof.karas@intel.com>
+Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 
-Overall the patch looks fine to me, I'd like to hear what's
-Janusz real concern here.
+And, BTW, can you please add comments through the lines so that
+people understand what you are doing.
+
+Moreover, as Janusz suggested I would also like to have a real
+use case description of the issue and how it appeared in our
+environment.
 
 Thanks,
 Andi
