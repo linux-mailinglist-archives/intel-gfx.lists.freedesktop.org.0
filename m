@@ -2,177 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sHGCAdiTgmnYWQMAu9opvQ
+	id wDTfF2WVgmkRWgMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 04 Feb 2026 01:33:28 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 04 Feb 2026 01:40:05 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62108E0082
-	for <lists+intel-gfx@lfdr.de>; Wed, 04 Feb 2026 01:33:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF776E011E
+	for <lists+intel-gfx@lfdr.de>; Wed, 04 Feb 2026 01:40:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A91F110E243;
-	Wed,  4 Feb 2026 00:33:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 636BC10E0F0;
+	Wed,  4 Feb 2026 00:40:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qmjq6xSf";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="lF+eaSrW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECBF110E0F0;
- Wed,  4 Feb 2026 00:33:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770165205; x=1801701205;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=IZJwmWmWFxovycME09RcXu6w1ms0otZhkcd387OqEs4=;
- b=Qmjq6xSfXwh3LPbh0k9rx/RkXBEAzt914Vb1ZxUiEOR4zRYT5VvOSAQS
- dJXiHmmcGTSxGXcM56mamWkDIiUn4aS8M09GDBwDnnEdj5V5q/TjgWZlo
- A1wujoclgNvW+Kg/H+p/79Ba4+W0NJJmqIwV8tn4Y/j2Z1C5bnTHbQ3xn
- /UPUOvJDoGHW5gVJefZuguF53qvctZL0d9kuXDyyOBpT6KYuE61jJ8foD
- 44mPRDXXm4Wj2bONdXeNBSyR2QW0T1pVARpzIrj85nNnZl9wMP1sD+I49
- g+ehSMrEFv33tIF19bjwGpSsUVaJ67x0lcEyh54/hT3BQMNGZR6ax6sbp Q==;
-X-CSE-ConnectionGUID: J8pmGdFCRF6J6gSNzzKK/Q==
-X-CSE-MsgGUID: e1SgQ8g3QIatLDGm0D4gug==
-X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="70367341"
-X-IronPort-AV: E=Sophos;i="6.21,271,1763452800"; d="scan'208";a="70367341"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2026 16:33:25 -0800
-X-CSE-ConnectionGUID: F4L60WCJSKGawFPkZi09Yg==
-X-CSE-MsgGUID: juT36H5BSOawgHqQsZa9vQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,271,1763452800"; d="scan'208";a="210101838"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2026 16:33:25 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Tue, 3 Feb 2026 16:33:23 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Tue, 3 Feb 2026 16:33:23 -0800
-Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.39) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Tue, 3 Feb 2026 16:33:23 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WS2n84lVDzAuA4gvY+UK2CdzdgcksLy7jNp+lvdn9C3Kf+EP7aSmlEsLWxXxpUNpwE0QeJWEeVd/GH93ViuVuzOnYxGGirnw6SyCIkvSlh5b7p1aUNpmBFd0K9VUWETL33Fkh4HKRXAQI1B4TFpcIzpWi+WdoQT2BlLKr56D0Xtv93teiVKdj1KjPwMDO/jbcNEDjF0hgfMjsixWS+L1YA/gdFGVwgtks9CQSUwGR+OXQte1nCoAh92WQ+BkH5oitSduwZ1/K+V5hCN7EPlyrUj6+0VIrFfy4gmqhdmJN+MxvONh/avkQd1Pi6i2Io9dUrDlumJDpo1pm2W0Tru9OA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YaN4NjNkJcgfD56ajg5ka35YCL8KZ831p4aIc8SluiQ=;
- b=M2DEFXGuOIeJSVVpNL544t5MMVmIFPFFi+H0wU6Z/Zem7s78psua1B2AB6+xTXz3Db9W1zFFEbJD8WZwfETG45pOQ7KVCXp4N+d7Zk3GSA5fUZKVsztkhwDIBTpLsvyCZLC3A8CnMv1aKSpOIcuTY7UeHkk28l/XXcYQ/v9FlNT5wNrDnknJPCdrd/fWDT1Z+cuubKUxv+9pwZwfpkOYjbTb83f3Re+KQGC9WvKq+nWp4+2fbdRMug6Uf9vnnc/AWjIouBTy8sgWcbWth89MO8bd+nb/NqbWHF7RMCP20TA5up4bIdYDMZAf5NQECVRYAXnya2kRSwGrOJ2V69XYwA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
- by PH7PR11MB8250.namprd11.prod.outlook.com (2603:10b6:510:1a8::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.12; Wed, 4 Feb
- 2026 00:33:20 +0000
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::a0e5:e99c:ee7b:620a]) by PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::a0e5:e99c:ee7b:620a%5]) with mapi id 15.20.9564.016; Wed, 4 Feb 2026
- 00:33:20 +0000
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: "Bhadane, Dnyaneshwar" <dnyaneshwar.bhadane@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "Roper, Matthew D" <matthew.d.roper@intel.com>
-Subject: RE: [PATCH 05/16] drm/xe/xe3p_lpg: Add MCR steering
-In-Reply-To: <IA1PR11MB6266F2346F428242E7F37C50E29BA@IA1PR11MB6266.namprd11.prod.outlook.com>
-References: <20260202-nvl-p-upstreaming-v1-0-653e4ff105dc@intel.com>
- <20260202-nvl-p-upstreaming-v1-5-653e4ff105dc@intel.com>
- <IA1PR11MB6266F2346F428242E7F37C50E29BA@IA1PR11MB6266.namprd11.prod.outlook.com>
-Date: Tue, 3 Feb 2026 21:33:15 -0300
-Message-ID: <87ikcd73g4.fsf@intel.com>
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR03CA0117.namprd03.prod.outlook.com
- (2603:10b6:a03:333::32) To PH8PR11MB8287.namprd11.prod.outlook.com
- (2603:10b6:510:1c7::14)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97CD610E0F0;
+ Wed,  4 Feb 2026 00:40:01 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 3AF6342B78;
+ Wed,  4 Feb 2026 00:40:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81C2AC116D0;
+ Wed,  4 Feb 2026 00:40:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1770165601;
+ bh=GKZovP5EOkZIiHKArIuUvE9p7wRRTOzjsnqws8YhSyA=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=lF+eaSrWziwRv88h/hRHnoiSfWjtPLke0CcocKziqLrVgVLuA8yvKTquq3WUj75uI
+ 8GO9FQYD/r19l2bHiXFwhcOsSwrS17MkZghkaRUrKsTt+ae17aYWW9TpQjvdN7UxK+
+ q341UQQlA6OQXnrcP2fyTM4aBVbe2jDwT4pNBCrFxEE9W+N9tEfg/I+ywqtQlafeRC
+ SpaTPl50S+Em5dUoNFMeLqczvdqTdAiD90jGvsqVzkO/ZkgGEjplrir+UlSC9yL3mA
+ Sfiq6TdnJ1SC7wYjGuGwaB8vrHWXPiqrSrSr0Qkx4n9R2HGfCu3RhPi9Kw1fEmbnSN
+ BbCyCTIVPouiQ==
+Date: Wed, 4 Feb 2026 01:39:56 +0100
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>, 
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>, 
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>
+Subject: Re: [PATCH v4] drm/i915/selftests: Defer signalling the request fence
+Message-ID: <aYKNTxTAwSV-V1g_@zenone.zhora.eu>
+References: <20260130184507.45233-2-krzysztof.niemiec@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|PH7PR11MB8250:EE_
-X-MS-Office365-Filtering-Correlation-Id: dac3e466-1c52-4b71-8a87-08de6384ff19
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016|7053199007;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?YweIIrqOlnudwCcr3RrbEHoceYiD1hhSF2p3ZSWFOY6HfJUjov25GMf1rvzo?=
- =?us-ascii?Q?UyJOPXzF4BrnTlBBmfkZFFw2xIgvveyvmZvEqFXfrBbKqjB7FU2LerzHI/0B?=
- =?us-ascii?Q?DIUm1bhPGBw5ndPgbLmBn0yTKq/DXCsUCHyI6QqXByN4ojoLtzuq2Z+eWl/E?=
- =?us-ascii?Q?vXJBM2TkUgmcUk0qkhUBSu0055iuTwx55S3h9VyYH4h8QMuT99DQY2wlfbQA?=
- =?us-ascii?Q?mraWHHrIVZCh2vWzjGcXtkdV2C9h5MUhmCE+H1CBhJJePOG/zwvG5eU8vMqh?=
- =?us-ascii?Q?Pm1DZVxXvv1LE28oxw6mOSfDS+QjMvKUaatp0oWMY5A+B9xafCcB0P9I80MR?=
- =?us-ascii?Q?QiG87zpgF3du4zPJ9UENmnlngq8NB3KtouJsLlDuK6UT8V6CYXohgXCoL/u4?=
- =?us-ascii?Q?qUj6jNO+lncgOvS7IUhlzHQx4oS2W3FZZZJ+1zgrDdsj16tmoZmUcCZqoWdt?=
- =?us-ascii?Q?HQKAKrNizedcq2bK9gnqSkzR7mNYir8dnHAHGAnvsQEs1Y4gOv8IsS+0IgfK?=
- =?us-ascii?Q?movQIwsVKGzxZtr/Ve1Hub/qqYjltDYtJ4fqvnU/Mwcr8gARiv4IDariqAKg?=
- =?us-ascii?Q?qA/6azjjqgOaKq+DF4601wVMyhdTu36cRO+OcIbg6vTvDHXsJ6z+TQaLEmkm?=
- =?us-ascii?Q?Hlpf6MrLTfjT2qsQGihI6D5JQ4cb+8in1uKeVNx+sooW8adDh1U3DofRGRd8?=
- =?us-ascii?Q?B3nAMS8/dqmYk+YBj5OwFPtk1X+q38yE8I8iC5aw2V0W3n2C6w8mgdKs/OOZ?=
- =?us-ascii?Q?W8NULyaBYeP5C9iWt1hBloAG86AYqdF2jDzoYIkB/zUvVpGN8xHB7MNBM44R?=
- =?us-ascii?Q?DGnAVMi51JR+jqgwyBcIyLNbNP95JaA1L+BQ2cgL/G7uqRJUCwVlZQI/y00Q?=
- =?us-ascii?Q?6Klv5P/xG0bz6G5DbUOVzQCrJ4Zp2EkMQYQtRnYqu1wXtb4sMZv1vqWlIfm2?=
- =?us-ascii?Q?lUzj5Xwr3Ow6mWt4B/gloV40gX81e1KBnx4/EZmZRHPdIR5xBkx/HPX879pr?=
- =?us-ascii?Q?/NNj9LSlcSCI4jvIJwKDUACF/7ugcoCIL2FB3jgok/ruRa6ulEgfK7jEqzqD?=
- =?us-ascii?Q?frZcA4Ij8s7xMdFcvSJjVAfKLo25e72MG6DX12IdqhUvN2U9KUAzzHAOJWrF?=
- =?us-ascii?Q?2MyEGEtJQcWeQlZK4oPI61xcIXFYqRrs1P/3sSWKat/d4+RIgb0CAzBHizk5?=
- =?us-ascii?Q?QcEZphhY7Qj28C3d0qWQlqU5Iz5Psvk6q3RhNlSwEzdDrOwezTBVwwf3bP5j?=
- =?us-ascii?Q?98yppwQ4/HOU9xKYG5Lx1+tyrbQLhJwHXG+j+14dzMJPP0Y6pJQH6y59Q4Mq?=
- =?us-ascii?Q?SPtgg+CHwVFUQAZehMiR8rvU9i0iBzkuS4tm8W5AdND1l4B8pUf6x88Xr1qE?=
- =?us-ascii?Q?y2HDO6mPalVrBBzkJEy+MabGr0FYEgy/R8qa1N1JPxjWyOxrMEIr2qyLVOyH?=
- =?us-ascii?Q?P3vzux27onUaTyMC404uJsqTx0FraqV+7BC0IxbV1/oaPNgCbZ/MQ4MlrYnA?=
- =?us-ascii?Q?U2kXMSDeHZQG8nJiBBxbIlQIMX+oE+1ozXyXiTx7Wxc/Whlu52YB7YZGkanA?=
- =?us-ascii?Q?xhPchCf5Y6B5R5RjlVw=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(7053199007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?M8gNyYKuvMn1/ZbPp5mnQ1PYvW2e0ZGFbROnNfEIPq2oBeCFmAJKm3ULrQjF?=
- =?us-ascii?Q?xeiQ68wUQ9m41XVwx3u/YkKS5lKrgycBXPQnHHfUGhIq52Odt3HbQjSYWMVR?=
- =?us-ascii?Q?huCBOdrZsCD/GqOmocI2KwRRSKl7+/x2uGVJwOOOSmRwvHyJ8Nk1kUhd1tl7?=
- =?us-ascii?Q?R00TugTGGo/VqZvKK2weECUiym/qb8TJkyB3Wxt1UVadfVrRTAZpbjR3Z4zW?=
- =?us-ascii?Q?iVRoPDIStIlU1/NABn1k1erBO+m5hNjk6PsB/PQUCK6ln4TvZpWojm3LW0E3?=
- =?us-ascii?Q?RCnnQF6feSyyrzJ+0PVotOyGm/XdqRyZ9is+XcYrHaR53rRAvxWLtYl38bXh?=
- =?us-ascii?Q?a1jDl3/K7OZ2fXSJmayPA2ue3dUwzeJiWRG4APZ/fNJK3zRMOKXQG9sBXzmr?=
- =?us-ascii?Q?CXnFP0EEYKqIyPiCS8TD8Cdk6gdumZ/pKavlbFcmgidC2ysVqoYRxEMJ8tqZ?=
- =?us-ascii?Q?l4O1abkJlRwrHVhK/QiqgxwgLBBe1peLDuFtHPnHIQ5nOc6mmJ9fqPIuQZtd?=
- =?us-ascii?Q?+nutyNMWzphXnk+8dfyrsk9SKB6/xuPdghc1FPWbCC5w7W5FllkWJ7BOxkDh?=
- =?us-ascii?Q?tfUuPpRRM0/6MXQtocvQPN/18srqX4wsgRKjGa+7rodWRpHdDBu95BOA4MeC?=
- =?us-ascii?Q?4dpPhHtXEgZ02Z4I3s/Ndzzxd+PLE2CPkQWsSUrSxS614tffTOyjSDAXznlZ?=
- =?us-ascii?Q?NWDOq5ncA843ikWH/EIB7VEPaL29OYEpy4gy2bn/E+oPIgco2C5Nnc0lviBs?=
- =?us-ascii?Q?6Aj2FITD67iDRMX2FKmWMJpwJpDJ8nzOU0ETfCdNsEs4elXFNDaoaB2dm/eP?=
- =?us-ascii?Q?HgI3kPTMYe7L41WHgCppQFyUZedRUD4elhENOi+KzZ8n/ZAXDk4IqKrxGDCs?=
- =?us-ascii?Q?vKVpPc2gcebJJbyUAgUcT5vcIiy4o/EJh1A8JbDNoHKHR5NX8GjFWXLUNJNd?=
- =?us-ascii?Q?Ah6VOXrFDMjJIui2cWSTQrUldYyTaomllQ2utEMRoL+fH57lyFabQAtliYEn?=
- =?us-ascii?Q?cfQdfbixiYRjLuFocQ1eSSTeoUaMXKTtNDq3C0d5R5y7aE8zNfPWlrivwTZu?=
- =?us-ascii?Q?tr5VD7xn2VTTaudzG1hok6VyCQWlfOsbWFlM3MJOuWv4XDVJwiyTgFYUM0EZ?=
- =?us-ascii?Q?tafCSvEPqTt+hLeEcuCaoxVHUkgl1RMEnOj/XfhdNgUZqarJXaB3PRff1QMc?=
- =?us-ascii?Q?cFM+UIsbC4zMumRpzJTdHOeKVWqSfODQVVssNFsrE60p0cu1gq+k3aNBATNX?=
- =?us-ascii?Q?Z2FL8g/Dsm5bD+Qg6kuJRUqOaHste/cmkJf0EdkZrhHnOJK/4N/eo40+35nZ?=
- =?us-ascii?Q?yS0ykAvWi/oh5aZEEs+X0FGBLasz4aaZw/X8jVkKVDwPY0Obqv4d4m44FMVE?=
- =?us-ascii?Q?MvGkSL2EONJfpkGjPC/VbrrwEs/QD0aRFdOnrrZIYz/yqc9pai750IST4LDz?=
- =?us-ascii?Q?qWG4WO8YaOHOsji1cFvLEchWNAnWBxlMowgcn9rEbcwWPz/+6GwQu2UKgfER?=
- =?us-ascii?Q?HXU26tmizuT3IPAppD+2LZQOz3JkcIwEnVcT3iClpjfYvAMe00v3Xr/H2rM3?=
- =?us-ascii?Q?wSE2Zd0vWXMwIiN/MgJoZjrpF+cKyR/x/xarETNvvvi1Io6zbxPbR2WVjlTX?=
- =?us-ascii?Q?7h30lwqp7S2Y+nJ6OmS2CjxuZ7BMRos1EegeiPltoYuXRNUICyhw/W99i5oG?=
- =?us-ascii?Q?7i403H+VCqSpE5idi4DYhDez8l08hfJyn+0xUJJCJj6Ke49ECXqYJp0eUSko?=
- =?us-ascii?Q?yVIr1nbRRA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: dac3e466-1c52-4b71-8a87-08de6384ff19
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Feb 2026 00:33:20.1218 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 918GhoG0M02+xZxzSY1oQ6v3mjeIe9dEMSROxxyJxIlwdOsnBjqw9arXNuqYD1eUBvue1tjlbJ8QZgLW3z8UhQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB8250
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260130184507.45233-2-krzysztof.niemiec@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -188,98 +67,234 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,lists.freedesktop.org:email];
-	FROM_NEQ_ENVFROM(0.00)[gustavo.sousa@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	NEURAL_HAM(-0.00)[-0.999];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[andi.shyti@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: 62108E0082
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,gitlab.freedesktop.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,zenone.zhora.eu:mid]
+X-Rspamd-Queue-Id: BF776E011E
 X-Rspamd-Action: no action
 
-"Bhadane, Dnyaneshwar" <dnyaneshwar.bhadane@intel.com> writes:
+Hi Krzysztof,
 
->> -----Original Message-----
->> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Gustavo
->> Sousa
->> Sent: Tuesday, February 3, 2026 3:13 AM
->> To: intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
->> Cc: Sousa, Gustavo <gustavo.sousa@intel.com>; Roper, Matthew D
->> <matthew.d.roper@intel.com>
->> Subject: [PATCH 05/16] drm/xe/xe3p_lpg: Add MCR steering
->> 
->> From: Matt Roper <matthew.d.roper@intel.com>
->> 
->> Xe3p_LPG has nearly identical steering to Xe2 and Xe3.  The only DSS/XeCore
->> change from those IPs is an additional range from 0xDE00-0xDE7F that was
->> previously reserved, so we can simply grow one of the existing ranges in the Xe2
->> table to include it.  Similarly, the "instance0" table is also almost identical, but
->> gains one additional PSMI range and requires a separate table.
->> 
->> Bspec: 75242
->> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
->> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
->> ---
->>  drivers/gpu/drm/xe/xe_gt_mcr.c | 18 +++++++++++++++++-
->>  1 file changed, 17 insertions(+), 1 deletion(-)
->> 
->> diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
->> index 7c1fe9ac120d..b112e551fc79 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_mcr.c
->> +++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
->> @@ -201,7 +201,7 @@ static const struct xe_mmio_range
->> xe2lpg_dss_steering_table[] = {
->>  	{ 0x009680, 0x0096FF },         /* DSS */
->>  	{ 0x00D800, 0x00D87F },         /* SLICE */
->>  	{ 0x00DC00, 0x00DCFF },         /* SLICE */
->> -	{ 0x00DE80, 0x00E8FF },         /* DSS (0xE000-0xE0FF reserved) */
->> +	{ 0x00DE00, 0x00E8FF },         /* DSS (0xE000-0xE0FF reserved) */
->>  	{ 0x00E980, 0x00E9FF },         /* SLICE */
->>  	{ 0x013000, 0x0133FF },         /* DSS (0x13000-0x131FF), SLICE (0x13200-
->> 0x133FF) */
->>  	{},
->> @@ -280,6 +280,19 @@ static const struct xe_mmio_range
->> xe3p_xpc_instance0_steering_table[] = {
->>  	{},
->>  };
->> 
->> +static const struct xe_mmio_range xe3p_lpg_instance0_steering_table[] = {
->> +	{ 0x004000, 0x004AFF },         /* GAM, rsvd, GAMWKR */
->> +	{ 0x008700, 0x00887F },         /* NODE */
->> +	{ 0x00B000, 0x00B3FF },         /* NODE, L3BANK */
->> +	{ 0x00B500, 0x00B6FF },		/* PSMI */
-> Hi,
-> Could we extend the range till 0x00BEFF ?
->> +	{ 0x00C800, 0x00CFFF },         /* GAM */
->> +	{ 0x00D880, 0x00D8FF },         /* NODE */
->> +	{ 0x00DD00, 0x00DDFF },         /* MEMPIPE */
-> Same as we did here extend till reserved.
+On Fri, Jan 30, 2026 at 07:45:08PM +0100, Krzysztof Niemiec wrote:
+> The i915_active selftests live_active_wait and live_active_retire
+> operate on an i915_active attached to a mock, empty request, created as
+> part of test setup. A fence is attached to this request to control when
+> the request is processed. The tests then wait for the completion of the
+> active with __i915_active_wait(), and the test is considered successful
+> if this results in setting a variable in the active callback.
+> 
+> However, the behavior of __i915_active_wait() is such that if the
+> refcount for the active is 0, the function is almost completely skipped;
+> waiting on a already completed active yields no effect. This includes a
+> subsequent call to the retire() function of the active (which is the
+> callback that the test is interested about, and which dictates whether
+> its successful or not). So, if the active is completed before the
+> aforementioned call to __i915_active_wait(), the test will fail.
+> 
+> Most of the test runs in a single thread, including creating the
+> request, creating the fence for it, signalling that fence, and calling
+> __i915_active_wait(). However, the request itself is handled
+> asynchronously. This creates a race condition where if the request is
+> completed after signalling the fence, but before waiting on its active,
+> the active callback will not be invoked, failing the test.
+> 
+> Defer signalling the request's fence, to ensure the main test thread
+> gets to call __i915_active_wait() before request completion.
+> 
+> v4:
+> - Lower the delay timeout to 50ms (Jonathan)
+> - Put the check on work_finished inside a helper function (Jonathan)
+> 
+> v3:
+> - Embed the variables inside the live_active struct (Andi)
+> - Move the schedule_delayed_work call closer to the wait (Andi)
+> - Implement error handling in case an error state - the wait has
+>   finished, but the deferred work didn't run - is somehow achieved (Andi)
+> 
+> v2:
+> - Clarify the need for a fix a little more (Krzysztof K., Janusz)
+> 
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14808
+> Signed-off-by: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
 
-We usually only include a reserved range if the range is preceeded and
-followed by MCR ranges of the same steering group.
+I'm sorry, but for now this patch, for the reason I explained you
+in a previous version, is a nack.
 
-This doesn't seem to be the case here.
+You are trying to bypass locking issues by adding a random 50ms
+delay. It's too fragile and looks hackish.
 
---
-Gustavo Sousa
+In any case, I've seen a few issues below, in case someone else
+agrees and is willing to merge it.
+
+> ---
+>  drivers/gpu/drm/i915/selftests/i915_active.c | 51 +++++++++++++++++---
+>  1 file changed, 45 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/selftests/i915_active.c b/drivers/gpu/drm/i915/selftests/i915_active.c
+> index 36c3a5460221..eadd0a8bc094 100644
+> --- a/drivers/gpu/drm/i915/selftests/i915_active.c
+> +++ b/drivers/gpu/drm/i915/selftests/i915_active.c
+> @@ -21,6 +21,10 @@ struct live_active {
+>  	struct i915_active base;
+>  	struct kref ref;
+>  	bool retired;
+> +
+> +	struct i915_sw_fence *submit;
+> +	struct delayed_work work;
+> +	bool work_finished;
+>  };
+>  
+>  static void __live_get(struct live_active *active)
+> @@ -76,11 +80,37 @@ static struct live_active *__live_alloc(struct drm_i915_private *i915)
+>  	return active;
+>  }
+>  
+> +static void __live_submit_work_handler(struct work_struct *work)
+
+I don't see the point for the '__' here.
+
+> +{
+> +	struct delayed_work *d_work = container_of(work, struct delayed_work, work);
+> +	struct live_active *active = container_of(d_work, struct live_active, work);
+> +	i915_sw_fence_commit(active->submit);
+> +	heap_fence_put(active->submit);
+> +	active->work_finished = true;
+> +}
+> +
+> +static int
+> +__live_work_confirm_finished(struct drm_i915_private *i915,
+> +			     struct live_active *active)
+> +{
+> +	int err = 0;
+> +
+> +	if (!active->work_finished) {
+> +		struct drm_printer p = drm_err_printer(&i915->drm, __func__);
+> +
+> +		drm_printf(&p, "active->work hasn't finished, something went\
+> +				terribly wrong\n");
+
+until 100 characters per line is fine, but I'm sure you can
+reword to something better.
+
+> +		err = -EINVAL;
+> +		cancel_delayed_work_sync(&active->work);
+> +	}
+> +
+> +	return err;
+> +}
+> +
+>  static struct live_active *
+>  __live_active_setup(struct drm_i915_private *i915)
+>  {
+>  	struct intel_engine_cs *engine;
+> -	struct i915_sw_fence *submit;
+>  	struct live_active *active;
+>  	unsigned int count = 0;
+>  	int err = 0;
+> @@ -89,8 +119,11 @@ __live_active_setup(struct drm_i915_private *i915)
+>  	if (!active)
+>  		return ERR_PTR(-ENOMEM);
+>  
+> -	submit = heap_fence_create(GFP_KERNEL);
+> -	if (!submit) {
+> +	INIT_DELAYED_WORK(&active->work, __live_submit_work_handler);
+> +	active->work_finished = false;
+> +
+> +	active->submit = heap_fence_create(GFP_KERNEL);
+> +	if (!active->submit) {
+>  		kfree(active);
+>  		return ERR_PTR(-ENOMEM);
+>  	}
+> @@ -109,7 +142,7 @@ __live_active_setup(struct drm_i915_private *i915)
+>  		}
+>  
+>  		err = i915_sw_fence_await_sw_fence_gfp(&rq->submit,
+> -						       submit,
+> +						       active->submit,
+>  						       GFP_KERNEL);
+>  		if (err >= 0)
+>  			err = i915_active_add_request(&active->base, rq);
+> @@ -134,8 +167,6 @@ __live_active_setup(struct drm_i915_private *i915)
+>  	}
+>  
+>  out:
+> -	i915_sw_fence_commit(submit);
+> -	heap_fence_put(submit);
+>  	if (err) {
+>  		__live_put(active);
+>  		active = ERR_PTR(err);
+> @@ -156,6 +187,8 @@ static int live_active_wait(void *arg)
+>  	if (IS_ERR(active))
+>  		return PTR_ERR(active);
+
+if we return with an error...
+
+>  
+> +	schedule_delayed_work(&active->work, msecs_to_jiffies(50));
+
+... we don't schedule the work and therefore you leak the fence.
+
+> +
+>  	__i915_active_wait(&active->base, TASK_UNINTERRUPTIBLE);
+>  	if (!READ_ONCE(active->retired)) {
+>  		struct drm_printer p = drm_err_printer(&i915->drm, __func__);
+> @@ -166,6 +199,8 @@ static int live_active_wait(void *arg)
+>  		err = -EINVAL;
+>  	}
+>  
+> +	err = __live_work_confirm_finished(i915, active);
+
+Here you are overwriting err.
+
+> +
+>  	__live_put(active);
+>  
+>  	if (igt_flush_test(i915))
+> @@ -186,6 +221,8 @@ static int live_active_retire(void *arg)
+>  	if (IS_ERR(active))
+>  		return PTR_ERR(active);
+>  
+> +	schedule_delayed_work(&active->work, msecs_to_jiffies(50));
+> +
+>  	/* waits for & retires all requests */
+>  	if (igt_flush_test(i915))
+>  		err = -EIO;
+> @@ -199,6 +236,8 @@ static int live_active_retire(void *arg)
+>  		err = -EINVAL;
+>  	}
+>  
+> +	err = __live_work_confirm_finished(i915, active);
+
+here as well.
+
+Andi
+
+> +
+>  	__live_put(active);
+>  
+>  	return err;
+> -- 
+> 2.45.2
+> 
