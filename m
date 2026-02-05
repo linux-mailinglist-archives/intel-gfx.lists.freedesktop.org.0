@@ -2,67 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WPP4JEyvhGk14QMAu9opvQ
+	id kDGbNNO2hGk54wMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 05 Feb 2026 15:55:08 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 05 Feb 2026 16:27:15 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA504F44C2
-	for <lists+intel-gfx@lfdr.de>; Thu, 05 Feb 2026 15:55:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2199EF4976
+	for <lists+intel-gfx@lfdr.de>; Thu, 05 Feb 2026 16:27:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3745110E901;
-	Thu,  5 Feb 2026 14:55:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C245910E906;
+	Thu,  5 Feb 2026 15:27:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e6+E9CKT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ja4hRnVo";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B685210E904;
- Thu,  5 Feb 2026 14:55:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC64110E101;
+ Thu,  5 Feb 2026 15:27:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770303305; x=1801839305;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=FqKEZL16WHFgir3ZxfP51tOhuh1XLm3/Wq8eVxDZcZ0=;
- b=e6+E9CKTHHADFD0SBIUDZXxxr/DcIeNpp+xM/IO7w3C6179RuuSb1AQE
- WH07rrm9zHAVvQ0J2nrfXjWn+NmsFn3xx3TZ+BDBydl4YnB9cr2NFnt0E
- nBNx5SAoJu3rNlrTZ6CTMQJHW89C7kP8YatM+3dQ3M3No6TIGOoVQjDn4
- oB+h4VwTRv+udz1m/LB64o1QF0VY/LEe2PEBtEAqBOoY2AvzOVPpNhg61
- x9FN1Kxq+5XhFBmPfYykNcebJ6EgwA9BYSSFEg3+Z0fDhhxSKdV4bpBfd
- kp+c1VNT+WepYnPnZnDZ8uz4xmixKx7G2RufEjvBVhCkYRADqfkIR4I+L Q==;
-X-CSE-ConnectionGUID: uk3lD55xTjKNiTcz7bMS5g==
-X-CSE-MsgGUID: oFvKtJSsRUeFQP2LR0UkiA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11692"; a="89083627"
-X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; d="scan'208";a="89083627"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2026 06:55:05 -0800
-X-CSE-ConnectionGUID: 4ExRhUncTDaig5EBjcDCKQ==
-X-CSE-MsgGUID: AN57kQr2QeiPqDVyPPRWKA==
+ t=1770305233; x=1801841233;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=9dDEho7mO9u4241BITzvScsshCE64rPQ9j5YJcgYnik=;
+ b=Ja4hRnVo7RcqgMKnwnBIYKZzEyovba2Kir5/sovOHK4OueAgdexNB8W+
+ Jj/YSdjolZHbHfKOChTQdD1xEnKPHJpWWiZ+O5KZEzTpzF/k5c7AVA7EL
+ HnfiDJTTrOgWW4rtgM4bI748vFR7Lblc07xClHxYFu9yZpMwlDDBtoosD
+ so1jfxtDhgee5UYkRLAcnJIXH6I87Aokj+M4DMTvZTEKio8K1wEJ+KuQv
+ EtpgdSZpSDEr3YqE3ezdHMaK0xjbMzd5RbsmNQs9i5PW3xzyebdntUMC7
+ yF2xlUJybAkWaMcqTpPIWm+8rI3wvLfZcCDj0T+MHUrwjGu0lFScEetsg g==;
+X-CSE-ConnectionGUID: 6NueVkxLQ269qwdZCY1Pvw==
+X-CSE-MsgGUID: HZovi+f5RIeFqgaNWeB1iQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11692"; a="81821262"
+X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; d="scan'208";a="81821262"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2026 07:27:12 -0800
+X-CSE-ConnectionGUID: lZQHHC1eRoWOIOG341+wRw==
+X-CSE-MsgGUID: 5xVdXM3ATCqDJKBKE4uXIw==
 X-ExtLoop1: 1
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.76])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2026 06:55:02 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Subject: [PATCH i-g-t v5 6/6] lib/igt_device_scan: Print GPU upstream port
- parent/child relations
-Date: Thu,  5 Feb 2026 15:51:55 +0100
-Message-ID: <20260205145427.1338534-14-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260205145427.1338534-8-janusz.krzysztofik@linux.intel.com>
-References: <20260205145427.1338534-8-janusz.krzysztofik@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; d="scan'208";a="248160985"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO fedora)
+ ([10.245.244.93])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2026 07:27:08 -0800
+Date: Thu, 5 Feb 2026 16:26:55 +0100
+From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-xe-fixes
+Message-ID: <aYS2v12R8ELQoTiZ@fedora>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,123 +81,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_COUNT_THREE(0.00)[4];
-	FROM_NEQ_ENVFROM(0.00)[janusz.krzysztofik@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[thomas.hellstrom@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: DA504F44C2
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 2199EF4976
 X-Rspamd-Action: no action
 
-In a short listing, lsgpu prints a sysfs path of a PCI GPU parent as a
-local attribute of a DRM device.  However, if that's a discrete GPU and
-its associated PCIe upstream bridge port has been identified, no
-information on that bridge is listed among the GPU attributes.  Follow the
-pattern used with DRM devices and also show a PCI slot of the bridge port
-as a local attribute of the discrete GPU device.
+Hi Dave, Simona
 
-Moreover, in both short and detailed listings, local attributes intended
-for providing device names of GPU associated DRM devices and the GPU
-codename are also printed as attributes of related PCIe upstream bridge
-port, however, the DRM device names are shown as (null), and the codename
-attribute provides raw vendor:device codes of the bridge itself.  Replace
-those with PCI slot and codename of the GPU device.
+This week's drm-xe-fixes PR for 6.19.
 
-v4: Free already allocated numeric codename before replacing (Sebastian),
-  - visually separate bridge specific updates of attributes already
-    populated by find_or_add_igt_device from bridge specific attribute
-    assignments.
-v2: Allocate memory to local attributes of a bridge for safety (Sebastian),
-  - merge with a formerly separate patch "lib/igt_device_scan: Don't print
-    bridge not applicable attributes" (Sebastian),
-  - no need for DEVTYPE_BRIDGE, just skip attributes if NULL.
+The CFI violation fix from Danile conflicts a bit with drm-next, but
+as usual, the resolution is in drm-rerere.
 
-Cc: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
----
- lib/igt_device_scan.c | 21 +++++++++++++++++++--
- 1 file changed, 19 insertions(+), 2 deletions(-)
+Thanks,
+Thomas
 
-diff --git a/lib/igt_device_scan.c b/lib/igt_device_scan.c
-index d7ec6c2b96..fc01fc375b 100644
---- a/lib/igt_device_scan.c
-+++ b/lib/igt_device_scan.c
-@@ -254,6 +254,8 @@ struct igt_device {
- 	char *codename; /* For grouping by codename */
- 	enum dev_type dev_type; /* For grouping by integrated/discrete */
- 
-+	char *pci_gpu; /* Filled for upstream bridge ports */
-+
- 	struct igt_list_head link;
- };
- 
-@@ -1068,6 +1070,12 @@ static void update_or_add_parent(struct udev *udev,
- 
- 	/* override DEVTYPE_INTEGRATED so link attributes won't be omitted */
- 	bridge_idev->dev_type = DEVTYPE_ALL;
-+	/* free numeric codename before overwriting with GPU codename */
-+	free(bridge_idev->codename);
-+	bridge_idev->codename = strdup(parent_idev->codename);
-+
-+	bridge_idev->pci_gpu = strdup(parent_idev->pci_slot_name);
-+	parent_idev->parent = bridge_idev;
- }
- 
- static struct igt_device *duplicate_device(struct igt_device *dev) {
-@@ -1239,6 +1247,7 @@ static void igt_device_free(struct igt_device *dev)
- 	free(dev->device);
- 	free(dev->driver);
- 	free(dev->pci_slot_name);
-+	free(dev->pci_gpu);
- 	igt_map_destroy(dev->attrs_map, free_key_value);
- 	igt_map_destroy(dev->props_map, free_key_value);
- }
-@@ -1335,7 +1344,11 @@ igt_devs_print_simple(struct igt_list_head *view,
- 			if (is_pci_subsystem(dev)) {
- 				_pr_simple("vendor", dev->vendor);
- 				_pr_simple("device", dev->device);
-+				if (dev->pci_gpu)
-+					_pr_simple("GPU device", dev->pci_gpu);
- 				_pr_simple("codename", dev->codename);
-+				if (dev->parent && dev->parent->pci_slot_name)
-+					_pr_simple("upstream port", dev->parent->pci_slot_name);
- 			}
- 		}
- 		printf("\n");
-@@ -1488,8 +1501,12 @@ igt_devs_print_detail(struct igt_list_head *view,
- 		printf("========== %s:%s ==========\n",
- 		       dev->subsystem, dev->syspath);
- 		if (!is_drm_subsystem(dev)) {
--			_print_key_value("card device", dev->drm_card);
--			_print_key_value("render device", dev->drm_render);
-+			if (dev->drm_card)
-+				_print_key_value("card device", dev->drm_card);
-+			if (dev->drm_render)
-+				_print_key_value("render device", dev->drm_render);
-+			if (dev->pci_gpu)
-+				_print_key_value("GPU device", dev->pci_gpu);
- 			_print_key_value("codename", dev->codename);
- 		}
- 
--- 
-2.52.0
+drm-xe-fixes-2026-02-05:
+Driver Changes:
+- Fix topology query pointer advance (Shuicheng)
+- A couple of kerneldoc fixes (Shuicheng)
+- Disable D3Cold for BMG only on specific platforms (Karthik)
+- Fix CFI violation in debugfs access (Daniele)
+The following changes since commit 8a44241b0b83a6047c5448da1fff03fcc29496b5:
 
+  drm/xe/nvm: Fix double-free on aux add failure (2026-01-29 20:31:53 +0100)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2026-02-05
+
+for you to fetch changes up to 4cb1b327135dddf3d0ec2544ea36ed05ba2252bc:
+
+  drm/xe/guc: Fix CFI violation in debugfs access. (2026-02-05 09:45:22 +0100)
+
+----------------------------------------------------------------
+Driver Changes:
+- Fix topology query pointer advance (Shuicheng)
+- A couple of kerneldoc fixes (Shuicheng)
+- Disable D3Cold for BMG only on specific platforms (Karthik)
+- Fix CFI violation in debugfs access (Daniele)
+
+----------------------------------------------------------------
+Daniele Ceraolo Spurio (1):
+      drm/xe/guc: Fix CFI violation in debugfs access.
+
+Karthik Poosa (1):
+      drm/xe/pm: Disable D3Cold for BMG only on specific platforms
+
+Shuicheng Lin (4):
+      drm/xe/query: Fix topology query pointer advance
+      drm/xe: Fix kerneldoc for xe_migrate_exec_queue
+      drm/xe: Fix kerneldoc for xe_gt_tlb_inval_init_early
+      drm/xe: Fix kerneldoc for xe_tlb_inval_job_alloc_dep
+
+ drivers/gpu/drm/xe/xe_guc.c           |  6 ++++--
+ drivers/gpu/drm/xe/xe_guc.h           |  2 +-
+ drivers/gpu/drm/xe/xe_migrate.c       |  2 +-
+ drivers/gpu/drm/xe/xe_pm.c            | 13 ++++++++++---
+ drivers/gpu/drm/xe/xe_query.c         |  2 +-
+ drivers/gpu/drm/xe/xe_tlb_inval.c     |  2 +-
+ drivers/gpu/drm/xe/xe_tlb_inval_job.c |  2 +-
+ 7 files changed, 19 insertions(+), 10 deletions(-)
