@@ -2,74 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MLjkKG4qhWmT9QMAu9opvQ
+	id AL0LLXAqhWmT9QMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 00:40:30 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 00:40:32 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCC5BF8622
-	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 00:40:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C593F8629
+	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 00:40:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8264910E16A;
-	Thu,  5 Feb 2026 23:40:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9372C10E16C;
+	Thu,  5 Feb 2026 23:40:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hmCLHEaQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gMRiTjZX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6044D10E164;
- Thu,  5 Feb 2026 23:40:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05CA910E175;
+ Thu,  5 Feb 2026 23:40:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770334826; x=1801870826;
- h=from:subject:date:message-id:mime-version:
- content-transfer-encoding:to:cc;
- bh=FOPlRYrZfnHjGSHJ2vbhHl8AEcdjsKmk8Tz/HgW24CI=;
- b=hmCLHEaQNvjR02mBolbd4rxcwJqWDfR3Cm73oVw/hx05svL6YokheWUz
- DXkoKV6nydr4/f2z8U/yIkYsaCRN4PjUeVor7Anf2oNqLHezQgEl88uM7
- 7rDNE02ILj43V7sAjFf/cgi2fDrZWt6gdBIanwVjFVqBC0crkuO89f8UO
- w/oGhA5r5Gz8lbXpqHB1zMJ/tp01t9BCPjIDTt/EAi5/Iuqj2WkTM+3JJ
- YqfUd3i6hGKdfoL+eqKroHA2Nk90zafTRdnczF+QcEKIQ65Z0Fz2y9nOC
- ghlZXfAyF5y7N13l7g87NkAsyqJEaO+FDrFxhiNKpaK9r2PRBFOiVTski Q==;
-X-CSE-ConnectionGUID: RGhgcc6yS5q1Q7Nfq7SXAg==
-X-CSE-MsgGUID: z5QifuCiTOOeaZJtjAO5xQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11692"; a="82658672"
-X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="82658672"
+ t=1770334830; x=1801870830;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:references:in-reply-to:to:cc;
+ bh=+MWo1Pl+syNF/Xj6Q3RXKyus6apvFC4cJQMHB6NvU+U=;
+ b=gMRiTjZXLWjFfQSFGtzK9jKGjz6A0X40c/CFHnMwvIK0SrLAC/z/gFpe
+ 3+IQhDtdMQ7kGOZ9HWhe8DtuJhOHXTtWZwjtHbcLvcKX2UH7XFPvLRFJg
+ uoEr807DFXcx5UgUy0gXB2gGtHtjdXWLw+IGwnTFh26EOyNuH5+zO8orQ
+ Iu9DlKvZGXrxRS3d3ci1FL/0aN6pw84cx8twNvO5kgGdPMJvArUwKn0dg
+ hbdDh/gu8kruVvgtuPDT+qzknbY6qMhgGeG8RSfoqFr/hMtaj4N4GgR/7
+ URpW7RE0QF8RlJBOSH6QPe3lLzYKGXm2PB/ee+RmUygJ9ZpBnYchhHI43 Q==;
+X-CSE-ConnectionGUID: /b51S4Z5S9Gt7hv3wuebZg==
+X-CSE-MsgGUID: XUMgT6+LQ5e+gLSzKN+JQw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11692"; a="82658674"
+X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="82658674"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2026 15:40:25 -0800
-X-CSE-ConnectionGUID: F56NVMJQQ6KCyPd2x+hB6g==
-X-CSE-MsgGUID: 21bp/I6hQHGabEJkIxcy0A==
+ 05 Feb 2026 15:40:30 -0800
+X-CSE-ConnectionGUID: v0cZEH5iS6C3U9Rxtcgmkg==
+X-CSE-MsgGUID: OddJe5Y0TIKgRtRz+z1fJw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="210499993"
+X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="210500064"
 Received: from rfrazer-mobl3.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.222.82])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2026 15:40:05 -0800
+ 05 Feb 2026 15:40:11 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Subject: [PATCH v2 00/15] Basic enabling patches for Xe3p_LPG and NVL-P
-Date: Thu, 05 Feb 2026 20:39:28 -0300
-Message-Id: <20260205-nvl-p-upstreaming-v2-0-9ec14f00cc6c@intel.com>
+Date: Thu, 05 Feb 2026 20:39:29 -0300
+Subject: [PATCH v2 01/15] drm/xe/xe3p_lpg: Add support for graphics IP
+ 35.10
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/22NwQqDMBBEf0X23C1JrAF76n8UDzbZ6IJGSWxok
- fx7U3vtZeANzJsdIgWmCNdqh0CJIy++gDpVYMbeD4RsC4MSSgtZC/RpwhWfa9wC9TP7AUm35Ho
- n7aOVUHZrIMevw3nvCo8ctyW8j4skv+3PVuKPLUkUqJuaLs5J0VhzY7/RdDbLDF3O+QOdv2Dos
- gAAAA==
-X-Change-ID: 20260130-nvl-p-upstreaming-e69efaf1db91
+Message-Id: <20260205-nvl-p-upstreaming-v2-1-9ec14f00cc6c@intel.com>
+References: <20260205-nvl-p-upstreaming-v2-0-9ec14f00cc6c@intel.com>
+In-Reply-To: <20260205-nvl-p-upstreaming-v2-0-9ec14f00cc6c@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Cc: Gustavo Sousa <gustavo.sousa@intel.com>, 
  Shekhar Chauhan <shekhar.chauhan@intel.com>, 
- Matt Roper <matthew.d.roper@intel.com>, Nitin Gote <nitin.r.gote@intel.com>, 
- Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>, 
- Mallesh Koujalagi <mallesh.koujalagi@intel.com>, 
- Tejas Upadhyay <tejas.upadhyay@intel.com>, 
- Matt Atwood <matthew.s.atwood@intel.com>, 
- Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>, 
- Aradhya Bhatia <aradhya.bhatia@intel.com>, 
- Suraj Kandpal <suraj.kandpal@intel.com>
+ Matt Roper <matthew.d.roper@intel.com>
 X-Mailer: b4 0.15-dev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -94,94 +85,81 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	ARC_NA(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MIME_TRACE(0.00)[0:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[gustavo.sousa@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gustavo.sousa@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: CCC5BF8622
+X-Rspamd-Queue-Id: 3C593F8629
 X-Rspamd-Action: no action
 
-NVL-P is a new Intel platform that comes with the following IPs:
+From: Shekhar Chauhan <shekhar.chauhan@intel.com>
 
-- Xe3p_LPG graphics;
-- Xe3p_LPM media;
-- Xe3p_LPD display.
+Add Xe3p_LPG graphics IP version 35.10. Xe3p_LPG supports all features
+described by XE2_GFX_FEATURES and also multi-queue feature on BCS and
+CCS engines.  As such, create a new struct xe_graphics_desc named
+graphics_xe3p_lpg that inherits from XE2_GFX_FEATURES and also includes
+the necessary .multi_queue_engine_class_mask.
 
-Enabling patches for Xe3p_LPM and Xe3p_LPD are already integrated in our
-driver.  In this series we add patches enabling Xe3p_LPG and then follow
-up with patches enabling NVL-P as a platform in our driver.
+Here is a list of fields and associated Bspec references for the members
+of the IP descriptor:
 
+ .hw_engine_mask (Bspec 60149)
+ .multi_queue_engine_class_mask (Bspec 74110)
+ .has_asid (Bspec 71132)
+ .has_atomic_enable_pte_bit (Bspec 59510, 74675)
+ .has_indirect_ring_state (Bspec 67296)
+ .has_range_tlb_inval (Bspec 71126)
+ .has_usm (Bspec 59651)
+ .has_64bit_timestamp (Bspec 60318)
+
+v2:
+  - Drop non-existing fields from the list in the commit message. (Matt)
+  - Squash patch adding .multi_queue_engine_class_mask here. (Matt)
+  - Rename graphics_xe3p to graphics_xe3p_lpg. (Matt)
+
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
-Changes in v2:
-- Added patch "drm/xe/nvlp: Bump maximum WOPCM size", which was missing
-  in v1.
-- Incorporated review feedback.  Please see the changelog in the
-  individual patches for details.
-- Dropped patch "drm/xe/nvlp: Define GuC firmware for NVL-P".  I'll
-  apply this separately to topic/xe-for-CI and decided to drop from v2
-  to avoid accidentally applying it to drm-xe-next.
-- Link to v1: https://patch.msgid.link/20260202-nvl-p-upstreaming-v1-0-653e4ff105dc@intel.com
+ drivers/gpu/drm/xe/xe_pci.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
----
-Aradhya Bhatia (1):
-      drm/xe/xe3p_lpg: Set STLB bank hash mode to 4KB
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index b5e8935fff1d..08e0ff9f75e8 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -106,6 +106,11 @@ static const struct xe_graphics_desc graphics_xe2 = {
+ 	XE2_GFX_FEATURES,
+ };
+ 
++static const struct xe_graphics_desc graphics_xe3p_lpg = {
++	XE2_GFX_FEATURES,
++	.multi_queue_engine_class_mask = BIT(XE_ENGINE_CLASS_COPY) | BIT(XE_ENGINE_CLASS_COMPUTE),
++};
++
+ static const struct xe_graphics_desc graphics_xe3p_xpc = {
+ 	XE2_GFX_FEATURES,
+ 	.has_indirect_ring_state = 1,
+@@ -148,6 +153,7 @@ static const struct xe_ip graphics_ips[] = {
+ 	{ 3003, "Xe3_LPG", &graphics_xe2 },
+ 	{ 3004, "Xe3_LPG", &graphics_xe2 },
+ 	{ 3005, "Xe3_LPG", &graphics_xe2 },
++	{ 3510, "Xe3p_LPG", &graphics_xe3p_lpg },
+ 	{ 3511, "Xe3p_XPC", &graphics_xe3p_xpc },
+ };
+ 
 
-Dnyaneshwar Bhadane (1):
-      drm/xe/nvlp: Attach MOCS table for nvlp
-
-Gustavo Sousa (3):
-      drm/xe/pat: Differentiate between primary and media for PTA
-      drm/xe/xe3p_lpg: Update LRC sizes
-      drm/xe/nvlp: Bump maximum WOPCM size
-
-Matt Roper (7):
-      drm/xe/xe3p_lpg: Add new PAT table
-      drm/xe/xe3p_lpg: Add MCR steering
-      drm/xe/xe3p_lpg: Add LRC parsing for additional RCS engine state
-      drm/xe/xe3p_lpg: Disable reporting of context switch status to GHWSP
-      drm/xe/xe3p_lpg: Drop unnecessary tuning settings
-      drm/xe/xe3p_lpg: Extend 'group ID' mask size
-      drm/i915/nvlp: Hook up display support
-
-Shekhar Chauhan (3):
-      drm/xe/xe3p_lpg: Add support for graphics IP 35.10
-      drm/xe/xe3p_lpg: Add initial workarounds for graphics version 35.10
-      drm/xe/nvlp: Add NVL-P platform definition
-
- .../gpu/drm/i915/display/intel_display_device.c    |  1 +
- .../gpu/drm/xe/instructions/xe_gfxpipe_commands.h  | 10 +++
- drivers/gpu/drm/xe/regs/xe_gt_regs.h               | 20 +++++-
- drivers/gpu/drm/xe/xe_bo.c                         |  4 +-
- drivers/gpu/drm/xe/xe_device_types.h               |  8 ++-
- drivers/gpu/drm/xe/xe_gt_mcr.c                     | 18 ++++-
- drivers/gpu/drm/xe/xe_lrc.c                        | 18 ++++-
- drivers/gpu/drm/xe/xe_mocs.c                       |  1 +
- drivers/gpu/drm/xe/xe_pat.c                        | 82 +++++++++++++++++++---
- drivers/gpu/drm/xe/xe_pci.c                        | 21 ++++++
- drivers/gpu/drm/xe/xe_platform_types.h             |  1 +
- drivers/gpu/drm/xe/xe_reg_whitelist.c              |  8 +++
- drivers/gpu/drm/xe/xe_tuning.c                     | 22 +++++-
- drivers/gpu/drm/xe/xe_wa.c                         | 43 ++++++++++++
- drivers/gpu/drm/xe/xe_wopcm.c                      | 15 +++-
- include/drm/intel/pciids.h                         | 12 ++++
- 16 files changed, 259 insertions(+), 25 deletions(-)
----
-base-commit: 75acb0a8b6f69c6429941e6845df2af94ed15939
-change-id: 20260130-nvl-p-upstreaming-e69efaf1db91
-
-Best regards,
---  
-Gustavo Sousa <gustavo.sousa@intel.com>
+-- 
+2.52.0
 
