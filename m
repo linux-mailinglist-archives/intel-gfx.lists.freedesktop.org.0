@@ -2,70 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CA51H6lOhGkE2gMAu9opvQ
+	id UIDvHD9ahGl92gMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 05 Feb 2026 09:02:49 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 05 Feb 2026 09:52:15 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71D9AEFAF6
-	for <lists+intel-gfx@lfdr.de>; Thu, 05 Feb 2026 09:02:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00C31F00D8
+	for <lists+intel-gfx@lfdr.de>; Thu, 05 Feb 2026 09:52:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D85B10E7EE;
-	Thu,  5 Feb 2026 08:02:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 481DF10E7FD;
+	Thu,  5 Feb 2026 08:52:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E8al/kwR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="idhVhAPv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83A4C10E7EC;
- Thu,  5 Feb 2026 08:02:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D47010E7F9;
+ Thu,  5 Feb 2026 08:52:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770278564; x=1801814564;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=W3HCSwVO02Jf4aCwQWQtsGXNqivdwb5pfp+JVt5AeHo=;
- b=E8al/kwRzg4W/v1pbHh9ZF4u0NDVor58BHgZBzlmU8pQ0pbOWN+HxMws
- qpHe45RMxPMdzy5uldLpTSgw9r9ot9MB4we6TsnTSJYvUMwWR+8cAdSdQ
- vgIvM2Vwu52irvXO/z5Ydfrtl2HE5SN8FQZlhp2RlD/TZGrEYcpw0w4CE
- +Yb4Xh4HSvZJj6UwPMHtzDjUEaWp/f/lD/gz0oRqH09IT4bUhsakRVS4Z
- HHZ922SBTmfiGZI383dvVFcGZp0r2OkgcZ0pyHX9AQWEJrpAOGxXTtkyT
- D/hwdjjg/AlO+RUEe/gHHLH8ZcyIqAlroAs0GTceMkFkjsd9yc2P3SQiC w==;
-X-CSE-ConnectionGUID: Htrb7/vcQjmRD5wKy04CUg==
-X-CSE-MsgGUID: +BIGO34lRLG7oDc1N08z7w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="74073705"
-X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; d="scan'208";a="74073705"
+ t=1770281533; x=1801817533;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5fp98ky7bJSBDlhHRcq0/D3yDXOCT5pcHOM/VEvLXLg=;
+ b=idhVhAPv3eBHFLZu2NsJDWnKu18fHCX+OYHSDg9r93tRHWA4KmNfnYKi
+ mLdqGD8BuVKpH5Kg/99HrLn3JG2zSI3LbBY93LL9CYUe5srJWH+qd2qpC
+ SoKg4mM893+lTwRLwBhXWTu0nX/M3K7hbRLtwoYD7stE+NgRKczwrk4Kb
+ yXq+JbGyWu4qFQZN2TFlJO0/xdMQK/sVTwy/1djXgooZ2bp80PYO6Tq9B
+ 73+vE2YRVw8uNRYi+ykfFt/baPlNuSUPm9YSYRvEEOk4uhaVOKrycrB/p
+ pw8r2WSZK4ucaTItInC9XXDsVPHWF2KscfkUhtD+adDP2qbtKmOaf5cSH Q==;
+X-CSE-ConnectionGUID: JTVMtn+iTeiZe375ZYX8dA==
+X-CSE-MsgGUID: wNSvyNi8ST+bHkfsspHfxA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="71377278"
+X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; d="scan'208";a="71377278"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2026 00:02:44 -0800
-X-CSE-ConnectionGUID: +0aAbd+fTbiwJg7ZpRqrYw==
-X-CSE-MsgGUID: ySThqqn4QOeriYv192hp1A==
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2026 00:52:10 -0800
+X-CSE-ConnectionGUID: dNiobhbrSaywouX/Lh6fuw==
+X-CSE-MsgGUID: fXJKh5ScQu6nIqaUM5d8hA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; d="scan'208";a="233363971"
-Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.244.91])
+X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; d="scan'208";a="233380036"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2026 00:02:40 -0800
-Date: Thu, 5 Feb 2026 10:02:38 +0200
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-next-fixes
-Message-ID: <aYROngKfyUIyoQW0@jlahtine-mobl>
+ 05 Feb 2026 00:52:04 -0800
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@linux.intel.com, imre.deak@intel.com,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 0/2] drm/i915/dp: Joiner cleanups and fix
+Date: Thu,  5 Feb 2026 14:06:21 +0530
+Message-ID: <20260205083623.793902-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,70 +72,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MAILLIST(-0.20)[mailman];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
-	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[ankit.k.nautiyal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[joonas.lahtinen@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,gitlab.freedesktop.org:url]
-X-Rspamd-Queue-Id: 71D9AEFAF6
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.999];
+	DKIM_TRACE(0.00)[intel.com:+]
+X-Rspamd-Queue-Id: 00C31F00D8
 X-Rspamd-Action: no action
 
-Hi Dave & Sima,
+Two small DP joiner updates:
+ - make intel_dp_can_join() static and
+ - restore the lost intel_dp_has_joiner() check dropped from ad121a62d566
 
-Here goes this weeks drm-intel-next-fixes PR towards 6.20/7.0-rc1.
+Ankit Nautiyal (2):
+  drm/i915/dp: Make intel_dp_can_join() static
+  drm/i915/dp: Restore the missing check for intel_dp_has_joiner
 
-Just one display fix for Xe3p_LPD pixel normalization.
+ drivers/gpu/drm/i915/display/intel_dp.c     | 17 ++++++++++++-----
+ drivers/gpu/drm/i915/display/intel_dp.h     |  9 ++++-----
+ drivers/gpu/drm/i915/display/intel_dp_mst.c |  4 ++--
+ 3 files changed, 18 insertions(+), 12 deletions(-)
 
-Regards, Joonas
+-- 
+2.45.2
 
-***
-
-drm-intel-next-fixes-2026-02-05:
-
-- Fix the pixel normalization handling for xe3p_lpd display
-
-The following changes since commit ad3ebcc2d06875738cd463fb5424cda70cd94a34:
-
-  drm/i915/display: Prevent u64 underflow in intel_fbc_stolen_end (2026-01-26 11:39:57 +0200)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-next-fixes-2026-02-05
-
-for you to fetch changes up to 3e28a67a85f9b569066f6dfcddadb39294c0c9d4:
-
-  drm/i915/display: fix the pixel normalization handling for xe3p_lpd (2026-02-02 13:41:03 +0200)
-
-----------------------------------------------------------------
-- Fix the pixel normalization handling for xe3p_lpd display
-
-----------------------------------------------------------------
-Vinod Govindapillai (1):
-      drm/i915/display: fix the pixel normalization handling for xe3p_lpd
-
- .../gpu/drm/i915/display/intel_display_device.h    |  1 +
- drivers/gpu/drm/i915/display/intel_fbc.c           | 10 +++---
- drivers/gpu/drm/i915/display/intel_fbc.h           |  3 +-
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 36 +++++++++++-----------
- 4 files changed, 26 insertions(+), 24 deletions(-)
