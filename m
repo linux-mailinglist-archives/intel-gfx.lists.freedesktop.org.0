@@ -2,64 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MDTeA3QqhWmT9QMAu9opvQ
+	id 3E+EGnoqhWnG9QMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 00:40:36 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 00:40:42 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66412F863A
-	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 00:40:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0184CF8671
+	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 00:40:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97AF310E17A;
-	Thu,  5 Feb 2026 23:40:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E38910E1FC;
+	Thu,  5 Feb 2026 23:40:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QSmL6E0h";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SXUbRV4t";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB9A210E177;
- Thu,  5 Feb 2026 23:40:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D41610E178;
+ Thu,  5 Feb 2026 23:40:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1770334832; x=1801870832;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=57XA19AnK05E0vS8AQcirwAEzG2InaonXd0jYDeqp5Q=;
- b=QSmL6E0h9cV2s1AU2XMJZKOlaVF7qGXjPkma3msntIEKpsH7OEJiey1X
- RDVyff8aLM+jaCttKa4jDnXA2DqODM885dWr2yN/JhBhSHXPDO5KUq+bG
- Pm+1U3S9q124kOLUSLlVsn4H148m4DaodewmoQfZPN3NNFeNAULuwbZCG
- Eflgr7xAz5yZ0btF3boKJfHweFcoQrvRA60ve22K81ujxMQlVbrEbiCus
- 4jzFW2C9wzRmmboRnl2h6Ud7qY7wEOOg9mJHxejOP1RIkXeM93FCXRNCy
- woGFX9d6FGePZDLGhkRGu+isEAwVOMkAT4Hlls6JOhQezAyud/fxgdywh w==;
-X-CSE-ConnectionGUID: a9crxMZRRpaAal7IP+RmYQ==
-X-CSE-MsgGUID: h8Ma/Jg6QdajTg0IMimiyg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11692"; a="82658682"
-X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="82658682"
+ bh=7pg9fAGanCBShJMn+CkwS6UigMm3E6NzIE3k12K2ztY=;
+ b=SXUbRV4t24pepZtSPLtukWQeCKvNhAmII/FNbPJEyJlyqJLTZ9cUxJ+s
+ AgfjHhRWT/lP7ldNMB9VFfc+irf9QVTEUd00vUJxJ21OorBBmelNzWkNo
+ +M0tHdyYkGMAjrBGpZ7NQM2JfE7ig3sXViW0McJJq2yP5dQ4hSDmjOGEQ
+ WhUsSnHY7MvlBwgQEzcjt/tbcepgdUxKaDmjw8hU6VWq8mKbJdNQxFagw
+ vTiswUhYXo6zd2OcrC2VHu7m5fE9sc/jfAED5xX9aQZGgGbaQ01qjXGgB
+ xktX/mLQoelUUMKbyPEBziyt2bYdinxYIuRosDf4bzkvOgncHQx+3yCRp Q==;
+X-CSE-ConnectionGUID: BnFTznRqQ76NrX74EtugwA==
+X-CSE-MsgGUID: a3MT0J1aSgSwY/MqK3Uy3w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11692"; a="82658683"
+X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="82658683"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  05 Feb 2026 15:40:32 -0800
-X-CSE-ConnectionGUID: gjUiXt1fRAGtJa9Gk0GNhg==
-X-CSE-MsgGUID: Q6P59zzLRjyr7YX9vupWlA==
+X-CSE-ConnectionGUID: tKkU90OmS86/GbJ1HY2dHA==
+X-CSE-MsgGUID: IJED9P+jQ+eoKILrxbx1qQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="210500124"
+X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="210500127"
 Received: from rfrazer-mobl3.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.222.82])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2026 15:40:18 -0800
+ 05 Feb 2026 15:40:20 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Thu, 05 Feb 2026 20:39:32 -0300
-Subject: [PATCH v2 04/15] drm/xe/xe3p_lpg: Add new PAT table
+Date: Thu, 05 Feb 2026 20:39:33 -0300
+Subject: [PATCH v2 05/15] drm/xe/xe3p_lpg: Add MCR steering
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260205-nvl-p-upstreaming-v2-4-9ec14f00cc6c@intel.com>
+Message-Id: <20260205-nvl-p-upstreaming-v2-5-9ec14f00cc6c@intel.com>
 References: <20260205-nvl-p-upstreaming-v2-0-9ec14f00cc6c@intel.com>
 In-Reply-To: <20260205-nvl-p-upstreaming-v2-0-9ec14f00cc6c@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Cc: Gustavo Sousa <gustavo.sousa@intel.com>, 
- Matt Roper <matthew.d.roper@intel.com>, 
- Matt Atwood <matthew.s.atwood@intel.com>
+ Matt Roper <matthew.d.roper@intel.com>
 X-Mailer: b4 0.15-dev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -91,7 +90,7 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_THREE(0.00)[4];
 	FROM_NEQ_ENVFROM(0.00)[gustavo.sousa@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
@@ -99,112 +98,68 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 66412F863A
+X-Rspamd-Queue-Id: 0184CF8671
 X-Rspamd-Action: no action
 
 From: Matt Roper <matthew.d.roper@intel.com>
 
-PAT programming for Xe3p_LPG is more similar to Xe2 and Xe3 than it is
-to Xe3p_XPC.  Compared to Xe2/Xe3 we have:
+Xe3p_LPG has nearly identical steering to Xe2 and Xe3.  The only
+DSS/XeCore change from those IPs is an additional range from
+0xDE00-0xDE7F that was previously reserved, so we can simply grow one of
+the existing ranges in the Xe2 table to include it.  Similarly, the
+"instance0" table is also almost identical, but gains one additional
+PSMI range and requires a separate table.
 
-* There's a slight update to the PAT table, where two new indices (18
-  and 19) are added to expose a new "WB - Transient App" L3 caching
-  mode.
-
-* The PTA_MODE entry must be programmed differently according to the
-  media type, and both differ from Xe2.
-
-There are no changes to the underlying registers, so the Xe2 ops can be
-re-used for Xe3p.
-
-Bspec: 71582, 74160
-Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
+Bspec: 75242
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pat.c | 55 ++++++++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 54 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_gt_mcr.c | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-index 5ba650948a4a..f840d9a58740 100644
---- a/drivers/gpu/drm/xe/xe_pat.c
-+++ b/drivers/gpu/drm/xe/xe_pat.c
-@@ -124,7 +124,8 @@ static const struct xe_pat_table_entry xelpg_pat_table[] = {
-  *   - no_promote:  0=promotable, 1=no promote
-  *   - comp_en:     0=disable, 1=enable
-  *   - l3clos:      L3 class of service (0-3)
-- *   - l3_policy:   0=WB, 1=XD ("WB - Transient Display"), 3=UC
-+ *   - l3_policy:   0=WB, 1=XD ("WB - Transient Display"),
-+ *                  2=XA ("WB - Transient App" for Xe3p), 3=UC
-  *   - l4_policy:   0=WB, 1=WT, 3=UC
-  *   - coh_mode:    0=no snoop, 2=1-way coherent, 3=2-way coherent
-  *
-@@ -253,6 +254,44 @@ static const struct xe_pat_table_entry xe3p_xpc_pat_table[] = {
- 	[31] = XE3P_XPC_PAT( 0, 3, 0, 0, 3 ),
+diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
+index 7c1fe9ac120d..b112e551fc79 100644
+--- a/drivers/gpu/drm/xe/xe_gt_mcr.c
++++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
+@@ -201,7 +201,7 @@ static const struct xe_mmio_range xe2lpg_dss_steering_table[] = {
+ 	{ 0x009680, 0x0096FF },         /* DSS */
+ 	{ 0x00D800, 0x00D87F },         /* SLICE */
+ 	{ 0x00DC00, 0x00DCFF },         /* SLICE */
+-	{ 0x00DE80, 0x00E8FF },         /* DSS (0xE000-0xE0FF reserved) */
++	{ 0x00DE00, 0x00E8FF },         /* DSS (0xE000-0xE0FF reserved) */
+ 	{ 0x00E980, 0x00E9FF },         /* SLICE */
+ 	{ 0x013000, 0x0133FF },         /* DSS (0x13000-0x131FF), SLICE (0x13200-0x133FF) */
+ 	{},
+@@ -280,6 +280,19 @@ static const struct xe_mmio_range xe3p_xpc_instance0_steering_table[] = {
+ 	{},
  };
  
-+static const struct xe_pat_table_entry xe3p_primary_pat_pta = XE2_PAT(0, 0, 0, 0, 0, 3);
-+static const struct xe_pat_table_entry xe3p_media_pat_pta = XE2_PAT(0, 0, 0, 0, 0, 2);
-+
-+static const struct xe_pat_table_entry xe3p_lpg_pat_table[] = {
-+	[ 0] = XE2_PAT( 0, 0, 0, 0, 3, 0 ),
-+	[ 1] = XE2_PAT( 0, 0, 0, 0, 3, 2 ),
-+	[ 2] = XE2_PAT( 0, 0, 0, 0, 3, 3 ),
-+	[ 3] = XE2_PAT( 0, 0, 0, 3, 3, 0 ),
-+	[ 4] = XE2_PAT( 0, 0, 0, 3, 0, 2 ),
-+	[ 5] = XE2_PAT( 0, 0, 0, 3, 3, 2 ),
-+	[ 6] = XE2_PAT( 1, 0, 0, 1, 3, 0 ),
-+	[ 7] = XE2_PAT( 0, 0, 0, 3, 0, 3 ),
-+	[ 8] = XE2_PAT( 0, 0, 0, 3, 0, 0 ),
-+	[ 9] = XE2_PAT( 0, 1, 0, 0, 3, 0 ),
-+	[10] = XE2_PAT( 0, 1, 0, 3, 0, 0 ),
-+	[11] = XE2_PAT( 1, 1, 0, 1, 3, 0 ),
-+	[12] = XE2_PAT( 0, 1, 0, 3, 3, 0 ),
-+	[13] = XE2_PAT( 0, 0, 0, 0, 0, 0 ),
-+	[14] = XE2_PAT( 0, 1, 0, 0, 0, 0 ),
-+	[15] = XE2_PAT( 1, 1, 0, 1, 1, 0 ),
-+	[16] = XE2_PAT( 0, 1, 0, 0, 3, 2 ),
-+	/* 17 is reserved; leave set to all 0's */
-+	[18] = XE2_PAT( 1, 0, 0, 2, 3, 0 ),
-+	[19] = XE2_PAT( 1, 0, 0, 2, 3, 2 ),
-+	[20] = XE2_PAT( 0, 0, 1, 0, 3, 0 ),
-+	[21] = XE2_PAT( 0, 1, 1, 0, 3, 0 ),
-+	[22] = XE2_PAT( 0, 0, 1, 0, 3, 2 ),
-+	[23] = XE2_PAT( 0, 0, 1, 0, 3, 3 ),
-+	[24] = XE2_PAT( 0, 0, 2, 0, 3, 0 ),
-+	[25] = XE2_PAT( 0, 1, 2, 0, 3, 0 ),
-+	[26] = XE2_PAT( 0, 0, 2, 0, 3, 2 ),
-+	[27] = XE2_PAT( 0, 0, 2, 0, 3, 3 ),
-+	[28] = XE2_PAT( 0, 0, 3, 0, 3, 0 ),
-+	[29] = XE2_PAT( 0, 1, 3, 0, 3, 0 ),
-+	[30] = XE2_PAT( 0, 0, 3, 0, 3, 2 ),
-+	[31] = XE2_PAT( 0, 0, 3, 0, 3, 3 ),
++static const struct xe_mmio_range xe3p_lpg_instance0_steering_table[] = {
++	{ 0x004000, 0x004AFF },         /* GAM, rsvd, GAMWKR */
++	{ 0x008700, 0x00887F },         /* NODE */
++	{ 0x00B000, 0x00B3FF },         /* NODE, L3BANK */
++	{ 0x00B500, 0x00B6FF },		/* PSMI */
++	{ 0x00C800, 0x00CFFF },         /* GAM */
++	{ 0x00D880, 0x00D8FF },         /* NODE */
++	{ 0x00DD00, 0x00DDFF },         /* MEMPIPE */
++	{ 0x00F000, 0x00FFFF },         /* GAM, GAMWKR */
++	{ 0x013400, 0x0135FF },         /* MEMPIPE */
++	{},
 +};
 +
- u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index)
+ static void init_steering_l3bank(struct xe_gt *gt)
  {
- 	WARN_ON(pat_index >= xe->pat.n_entries);
-@@ -508,6 +547,20 @@ void xe_pat_init_early(struct xe_device *xe)
- 		xe->pat.idx[XE_CACHE_NONE] = 3;
- 		xe->pat.idx[XE_CACHE_WT] = 3;	/* N/A (no display); use UC */
- 		xe->pat.idx[XE_CACHE_WB] = 2;
-+	} else if (GRAPHICS_VER(xe) == 35) {
-+		xe->pat.ops = &xe2_pat_ops;
-+		xe->pat.table = xe3p_lpg_pat_table;
-+		xe->pat.pat_ats = &xe2_pat_ats;
-+		if (!IS_DGFX(xe)) {
-+			xe->pat.pat_primary_pta = &xe3p_primary_pat_pta;
-+			xe->pat.pat_media_pta = &xe3p_media_pat_pta;
-+		}
-+		xe->pat.n_entries = ARRAY_SIZE(xe3p_lpg_pat_table);
-+		xe->pat.idx[XE_CACHE_NONE] = 3;
-+		xe->pat.idx[XE_CACHE_WT] = 15;
-+		xe->pat.idx[XE_CACHE_WB] = 2;
-+		xe->pat.idx[XE_CACHE_NONE_COMPRESSION] = 12;
-+		xe->pat.idx[XE_CACHE_WB_COMPRESSION] = 16;
- 	} else if (GRAPHICS_VER(xe) == 30 || GRAPHICS_VER(xe) == 20) {
- 		xe->pat.ops = &xe2_pat_ops;
- 		if (GRAPHICS_VER(xe) == 30) {
+ 	struct xe_device *xe = gt_to_xe(gt);
+@@ -533,6 +546,9 @@ void xe_gt_mcr_init_early(struct xe_gt *gt)
+ 			gt->steering[INSTANCE0].ranges = xe3p_xpc_instance0_steering_table;
+ 			gt->steering[L3BANK].ranges = xelpg_l3bank_steering_table;
+ 			gt->steering[NODE].ranges = xe3p_xpc_node_steering_table;
++		} else if (GRAPHICS_VERx100(xe) >= 3510) {
++			gt->steering[DSS].ranges = xe2lpg_dss_steering_table;
++			gt->steering[INSTANCE0].ranges = xe3p_lpg_instance0_steering_table;
+ 		} else if (GRAPHICS_VER(xe) >= 20) {
+ 			gt->steering[DSS].ranges = xe2lpg_dss_steering_table;
+ 			gt->steering[SQIDI_PSMI].ranges = xe2lpg_sqidi_psmi_steering_table;
 
 -- 
 2.52.0
