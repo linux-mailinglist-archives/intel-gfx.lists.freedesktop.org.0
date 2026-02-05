@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6CteC71ihGkK2wMAu9opvQ
+	id EJ9/Jr5ihGkK2wMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 05 Feb 2026 10:28:29 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 05 Feb 2026 10:28:30 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1445F0B81
-	for <lists+intel-gfx@lfdr.de>; Thu, 05 Feb 2026 10:28:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A036F0B88
+	for <lists+intel-gfx@lfdr.de>; Thu, 05 Feb 2026 10:28:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17E5010E858;
-	Thu,  5 Feb 2026 09:28:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E68010E83F;
+	Thu,  5 Feb 2026 09:28:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JefFpZc9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U04Zw6XB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6EEC10E843;
- Thu,  5 Feb 2026 09:28:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3E5E10E85A;
+ Thu,  5 Feb 2026 09:28:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770283705; x=1801819705;
+ t=1770283707; x=1801819707;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=E4i/7XhIYPIDAyRmGf0nVPAV2+nefZLbev2YX90Jil8=;
- b=JefFpZc9ciM47STUC0QbZeoE+cGDsP2TFGyMrq6JcNjsWPXd4FNhc4Fm
- iO6HEIWvd/VRr8mv2d9bSYqwhHT3Ptuew7ZR5mI2l1LFEKdqGedN5QbnG
- 4BSlOdcHJ5ppP/no4W+5XM/2MdWJQGlPXyU09reU4tGHN+6Bl1cG0JzDu
- YVP1RWIA7RJWK3TuA+TgVqDgTrrxwu7pSSYpP6o4BJV4JgYoNHxCK8g0g
- oQVh4GIFAeLb/WVSZ89Y+2Ypt4L4L65F1KGwY53boy+HL5GwYq2Xi77fQ
- XcdqpiH5W3Cikv/m+U/q6oA4xqGWE/FrOOVispLkd/p0B4xnbMUfW7Y6S w==;
-X-CSE-ConnectionGUID: 9IL1535KT3m9hIaJZb7Zhw==
-X-CSE-MsgGUID: mNqrqdXNR5KyEXLl9x9iHg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="89060134"
-X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; d="scan'208";a="89060134"
+ bh=Zsb+qb0GT02pzvz7bmhHWWVPg2AW/MNuAcGndAJiCnM=;
+ b=U04Zw6XBHp1ixxoXMfy2+bauaWN+sUULLOPAaBTq+a4YqbLrU027LvAY
+ FKdjzYQKAlbkTxcOxf1HHtcCIpl8/WdNIxpvLHzy6PSLoeXAK1xy4HbUx
+ 72uaaavEg8Wza5eFqf3m+O8y029peUMvMIT/rAP4IFKL69A9QivIdATHb
+ PbG5o/ZoHG/0M+XMLDX1EW5p+ovEzUPWOYldAVZhMVNoEhF8YhsaLjaJB
+ 9o1b1bhdXsc37tiLBBT2mxLGwg61NMNYJ3pvjYiB0bmqwCvaX7W8v47wK
+ 6Ca1S2ep+KyQ3KVlXn9ku+E6Ztt0Aurhg8fgKOd05PXBMKAkygImfuW+o A==;
+X-CSE-ConnectionGUID: jKUOIEWrTHWlrxtGk/4rcg==
+X-CSE-MsgGUID: N53cJTWSQv6Ren9C5KzWVw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="89060137"
+X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; d="scan'208";a="89060137"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2026 01:28:25 -0800
-X-CSE-ConnectionGUID: 0YthRyEwQJWYj3HfI2foBQ==
-X-CSE-MsgGUID: j34rEPjkRqaQiQ59zKRMiQ==
+ 05 Feb 2026 01:28:27 -0800
+X-CSE-ConnectionGUID: 6gZ4nousQOyjDiDh970Nfg==
+X-CSE-MsgGUID: D/0TK+zNSwSlrPgl2+hvIw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; d="scan'208";a="209807805"
+X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; d="scan'208";a="209807808"
 Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by fmviesa007.fm.intel.com with ESMTP; 05 Feb 2026 01:28:23 -0800
+ by fmviesa007.fm.intel.com with ESMTP; 05 Feb 2026 01:28:25 -0800
 From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
  Uma Shankar <uma.shankar@intel.com>
-Subject: [v4 15/20] drm/i915: Remove i915_reg.h from intel_psr.c
-Date: Thu,  5 Feb 2026 15:13:36 +0530
-Message-ID: <20260205094341.1882816-16-uma.shankar@intel.com>
+Subject: [v4 16/20] drm/i915: Remove i915_reg.h from intel_fifo_underrun.c
+Date: Thu,  5 Feb 2026 15:13:37 +0530
+Message-ID: <20260205094341.1882816-17-uma.shankar@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260205094341.1882816-1-uma.shankar@intel.com>
 References: <20260205094341.1882816-1-uma.shankar@intel.com>
@@ -97,115 +97,102 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCPT_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-0.999];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: D1445F0B81
+X-Rspamd-Queue-Id: 1A036F0B88
 X-Rspamd-Action: no action
 
-Move some chicken registers to display header to make
-intel_psr.c free from including i915_reg.h.
+Move GEN7_ERR_INT reg to common header to make intel_fifo_underrun.c
+free from including i915_reg.h.
 
-v3: Update commit header
-
-v2: Use display header instead of gmd common include (Jani)
+v2: Move GEN7_ERR_INT regs to display header (Jani)
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_regs.h | 26 +++++++++++++++++
- drivers/gpu/drm/i915/display/intel_psr.c      |  1 -
- drivers/gpu/drm/i915/i915_reg.h               | 28 -------------------
- 3 files changed, 26 insertions(+), 29 deletions(-)
+ .../gpu/drm/i915/display/intel_display_regs.h | 23 +++++++++++++++++++
+ .../drm/i915/display/intel_fifo_underrun.c    |  1 -
+ drivers/gpu/drm/i915/i915_reg.h               | 23 -------------------
+ 3 files changed, 23 insertions(+), 24 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index d4c5fd975b1b..9a7005e125a9 100644
+index 9a7005e125a9..dcb8cab7b30b 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -357,6 +357,32 @@
- #define OGAMC1			_MMIO(0x30020)
- #define OGAMC0			_MMIO(0x30024)
+@@ -82,6 +82,29 @@
+ #define   DERRMR_PIPEC_VBLANK		(1 << 21)
+ #define   DERRMR_PIPEC_HBLANK		(1 << 22)
  
-+#define GEN8_CHICKEN_DCPR_1			_MMIO(0x46430)
-+#define   _LATENCY_REPORTING_REMOVED_PIPE_D	REG_BIT(31)
-+#define   SKL_SELECT_ALTERNATE_DC_EXIT		REG_BIT(30)
-+#define   _LATENCY_REPORTING_REMOVED_PIPE_C	REG_BIT(25)
-+#define   _LATENCY_REPORTING_REMOVED_PIPE_B	REG_BIT(24)
-+#define   _LATENCY_REPORTING_REMOVED_PIPE_A	REG_BIT(23)
-+#define   LATENCY_REPORTING_REMOVED(pipe)	_PICK((pipe), \
-+						      _LATENCY_REPORTING_REMOVED_PIPE_A, \
-+						      _LATENCY_REPORTING_REMOVED_PIPE_B, \
-+						      _LATENCY_REPORTING_REMOVED_PIPE_C, \
-+						      _LATENCY_REPORTING_REMOVED_PIPE_D)
-+#define   ICL_DELAY_PMRSP			REG_BIT(22)
-+#define   DISABLE_FLR_SRC			REG_BIT(15)
-+#define   MASK_WAKEMEM				REG_BIT(13)
-+#define   DDI_CLOCK_REG_ACCESS			REG_BIT(7)
++#define GEN7_ERR_INT	_MMIO(0x44040)
++#define   ERR_INT_POISON		(1 << 31)
++#define   ERR_INT_INVALID_GTT_PTE	(1 << 29)
++#define   ERR_INT_INVALID_PTE_DATA	(1 << 28)
++#define   ERR_INT_SPRITE_C_FAULT	(1 << 23)
++#define   ERR_INT_PRIMARY_C_FAULT	(1 << 22)
++#define   ERR_INT_CURSOR_C_FAULT	(1 << 21)
++#define   ERR_INT_SPRITE_B_FAULT	(1 << 20)
++#define   ERR_INT_PRIMARY_B_FAULT	(1 << 19)
++#define   ERR_INT_CURSOR_B_FAULT	(1 << 18)
++#define   ERR_INT_SPRITE_A_FAULT	(1 << 17)
++#define   ERR_INT_PRIMARY_A_FAULT	(1 << 16)
++#define   ERR_INT_CURSOR_A_FAULT	(1 << 15)
++#define   ERR_INT_MMIO_UNCLAIMED	(1 << 13)
++#define   ERR_INT_PIPE_CRC_DONE_C	(1 << 8)
++#define   ERR_INT_FIFO_UNDERRUN_C	(1 << 6)
++#define   ERR_INT_PIPE_CRC_DONE_B	(1 << 5)
++#define   ERR_INT_FIFO_UNDERRUN_B	(1 << 3)
++#define   ERR_INT_PIPE_CRC_DONE_A	(1 << 2)
++#define   ERR_INT_PIPE_CRC_DONE(pipe)	(1 << (2 + (pipe) * 3))
++#define   ERR_INT_FIFO_UNDERRUN_A	(1 << 0)
++#define   ERR_INT_FIFO_UNDERRUN(pipe)	(1 << ((pipe) * 3))
 +
-+#define CHICKEN_PAR1_1		_MMIO(0x42080)
-+#define   IGNORE_KVMR_PIPE_A		REG_BIT(23)
-+#define   KBL_ARB_FILL_SPARE_22		REG_BIT(22)
-+#define   DIS_RAM_BYPASS_PSR2_MAN_TRACK	REG_BIT(16)
-+#define   SKL_DE_COMPRESSED_HASH_MODE	REG_BIT(15)
-+#define   HSW_MASK_VBL_TO_PIPE_IN_SRD	REG_BIT(15) /* hsw/bdw */
-+#define   FORCE_ARB_IDLE_PLANES		REG_BIT(14)
-+#define   SKL_EDP_PSR_FIX_RDWRAP	REG_BIT(3)
-+#define   IGNORE_PSR2_HW_TRACKING	REG_BIT(1)
-+
- #define GEN9_CLKGATE_DIS_4		_MMIO(0x4653C)
- #define   BXT_GMBUS_GATING_DIS		(1 << 14)
- #define   DG2_DPFC_GATING_DIS		REG_BIT(31)
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 4e644711c571..5bea2eda744b 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
+ #define VLV_IRQ_REGS		I915_IRQ_REGS(VLV_IMR, \
+ 					      VLV_IER, \
+ 					      VLV_IIR)
+diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
+index b413b3e871d8..bf047180def9 100644
+--- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
++++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
 @@ -29,7 +29,6 @@
+ 
  #include <drm/drm_print.h>
- #include <drm/drm_vblank.h>
  
 -#include "i915_reg.h"
- #include "intel_alpm.h"
- #include "intel_atomic.h"
- #include "intel_crtc.h"
+ #include "intel_de.h"
+ #include "intel_display_irq.h"
+ #include "intel_display_regs.h"
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 9cb753b65bc2..3a54b31bc072 100644
+index 3a54b31bc072..5cb53a8c451a 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -805,37 +805,9 @@
- #define   CHICKEN3_DGMG_REQ_OUT_FIX_DISABLE	REG_BIT(5)
- #define   CHICKEN3_DGMG_DONE_FIX_DISABLE	REG_BIT(2)
+@@ -325,29 +325,6 @@
+ #define GEN7_MEDIA_MAX_REQ_COUNT	_MMIO(0x4070)
+ #define GEN7_GFX_MAX_REQ_COUNT		_MMIO(0x4074)
  
--#define CHICKEN_PAR1_1		_MMIO(0x42080)
--#define   IGNORE_KVMR_PIPE_A		REG_BIT(23)
--#define   KBL_ARB_FILL_SPARE_22		REG_BIT(22)
--#define   DIS_RAM_BYPASS_PSR2_MAN_TRACK	REG_BIT(16)
--#define   SKL_DE_COMPRESSED_HASH_MODE	REG_BIT(15)
--#define   HSW_MASK_VBL_TO_PIPE_IN_SRD	REG_BIT(15) /* hsw/bdw */
--#define   FORCE_ARB_IDLE_PLANES		REG_BIT(14)
--#define   SKL_EDP_PSR_FIX_RDWRAP	REG_BIT(3)
--#define   IGNORE_PSR2_HW_TRACKING	REG_BIT(1)
+-#define GEN7_ERR_INT	_MMIO(0x44040)
+-#define   ERR_INT_POISON		(1 << 31)
+-#define   ERR_INT_INVALID_GTT_PTE	(1 << 29)
+-#define   ERR_INT_INVALID_PTE_DATA	(1 << 28)
+-#define   ERR_INT_SPRITE_C_FAULT	(1 << 23)
+-#define   ERR_INT_PRIMARY_C_FAULT	(1 << 22)
+-#define   ERR_INT_CURSOR_C_FAULT	(1 << 21)
+-#define   ERR_INT_SPRITE_B_FAULT	(1 << 20)
+-#define   ERR_INT_PRIMARY_B_FAULT	(1 << 19)
+-#define   ERR_INT_CURSOR_B_FAULT	(1 << 18)
+-#define   ERR_INT_SPRITE_A_FAULT	(1 << 17)
+-#define   ERR_INT_PRIMARY_A_FAULT	(1 << 16)
+-#define   ERR_INT_CURSOR_A_FAULT	(1 << 15)
+-#define   ERR_INT_MMIO_UNCLAIMED	(1 << 13)
+-#define   ERR_INT_PIPE_CRC_DONE_C	(1 << 8)
+-#define   ERR_INT_FIFO_UNDERRUN_C	(1 << 6)
+-#define   ERR_INT_PIPE_CRC_DONE_B	(1 << 5)
+-#define   ERR_INT_FIFO_UNDERRUN_B	(1 << 3)
+-#define   ERR_INT_PIPE_CRC_DONE_A	(1 << 2)
+-#define   ERR_INT_PIPE_CRC_DONE(pipe)	(1 << (2 + (pipe) * 3))
+-#define   ERR_INT_FIFO_UNDERRUN_A	(1 << 0)
+-#define   ERR_INT_FIFO_UNDERRUN(pipe)	(1 << ((pipe) * 3))
 -
- #define CHICKEN_PAR2_1		_MMIO(0x42090)
- #define   KVM_CONFIG_CHANGE_NOTIFICATION_SELECT	REG_BIT(14)
+ #define FPGA_DBG		_MMIO(0x42300)
+ #define   FPGA_DBG_RM_NOCLAIM	REG_BIT(31)
  
--
--#define GEN8_CHICKEN_DCPR_1			_MMIO(0x46430)
--#define   _LATENCY_REPORTING_REMOVED_PIPE_D	REG_BIT(31)
--#define   SKL_SELECT_ALTERNATE_DC_EXIT		REG_BIT(30)
--#define   _LATENCY_REPORTING_REMOVED_PIPE_C	REG_BIT(25)
--#define   _LATENCY_REPORTING_REMOVED_PIPE_B	REG_BIT(24)
--#define   _LATENCY_REPORTING_REMOVED_PIPE_A	REG_BIT(23)
--#define   LATENCY_REPORTING_REMOVED(pipe)	_PICK((pipe), \
--						      _LATENCY_REPORTING_REMOVED_PIPE_A, \
--						      _LATENCY_REPORTING_REMOVED_PIPE_B, \
--						      _LATENCY_REPORTING_REMOVED_PIPE_C, \
--						      _LATENCY_REPORTING_REMOVED_PIPE_D)
--#define   ICL_DELAY_PMRSP			REG_BIT(22)
--#define   DISABLE_FLR_SRC			REG_BIT(15)
--#define   MASK_WAKEMEM				REG_BIT(13)
--#define   DDI_CLOCK_REG_ACCESS			REG_BIT(7)
--
--
- #define  VLV_PMWGICZ				_MMIO(0x1300a4)
- 
- #define  HSW_EDRAM_CAP				_MMIO(0x120010)
 -- 
 2.50.1
 
