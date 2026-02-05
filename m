@@ -2,62 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wGhyBbpihGkK2wMAu9opvQ
+	id 6CteC71ihGkK2wMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 05 Feb 2026 10:28:26 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 05 Feb 2026 10:28:29 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBD71F0B73
-	for <lists+intel-gfx@lfdr.de>; Thu, 05 Feb 2026 10:28:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1445F0B81
+	for <lists+intel-gfx@lfdr.de>; Thu, 05 Feb 2026 10:28:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F11310E83E;
-	Thu,  5 Feb 2026 09:28:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17E5010E858;
+	Thu,  5 Feb 2026 09:28:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hZkVLqYg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JefFpZc9";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F24D910E840;
- Thu,  5 Feb 2026 09:28:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6EEC10E843;
+ Thu,  5 Feb 2026 09:28:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770283703; x=1801819703;
+ t=1770283705; x=1801819705;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ECtknv7xiIM4/Zsz01bIzbL7Bi+3afleXP0MJhUz4eQ=;
- b=hZkVLqYgfBuguzexgGNtxgNp/vT6+GWb/vtRFRGm0M7eogCU30Jo45rH
- HuIpht7hkLk0gwkbXi8K/ASMzrDOO0ylzOo5OKup3gqQ3cagw3WBXc2Uu
- VfnZ539PcEQGgBlZRu0n1rrTtASruMH+c11iQBJA02rYRAQ1qYMyqbscY
- GF5L+itUexnVtEX8poev/4Cw8Kh1TlidHQ3U1A6izhdFeis1LTP7cmroD
- SpNWHGTBBoLechuETDrbu2um0gs/ABi8YVbP1n9Efx8DMfHZ++pR19XkR
- KqqFiN2vCDydZg7CXeblA76LepQ0MecnO/BeVY4v14wMj4qIGRHjoJQ0X g==;
-X-CSE-ConnectionGUID: 65oFySnXTqW7HY1ByvUhag==
-X-CSE-MsgGUID: 7q6ESMyJSfatfXeG1T1N1w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="89060130"
-X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; d="scan'208";a="89060130"
+ bh=E4i/7XhIYPIDAyRmGf0nVPAV2+nefZLbev2YX90Jil8=;
+ b=JefFpZc9ciM47STUC0QbZeoE+cGDsP2TFGyMrq6JcNjsWPXd4FNhc4Fm
+ iO6HEIWvd/VRr8mv2d9bSYqwhHT3Ptuew7ZR5mI2l1LFEKdqGedN5QbnG
+ 4BSlOdcHJ5ppP/no4W+5XM/2MdWJQGlPXyU09reU4tGHN+6Bl1cG0JzDu
+ YVP1RWIA7RJWK3TuA+TgVqDgTrrxwu7pSSYpP6o4BJV4JgYoNHxCK8g0g
+ oQVh4GIFAeLb/WVSZ89Y+2Ypt4L4L65F1KGwY53boy+HL5GwYq2Xi77fQ
+ XcdqpiH5W3Cikv/m+U/q6oA4xqGWE/FrOOVispLkd/p0B4xnbMUfW7Y6S w==;
+X-CSE-ConnectionGUID: 9IL1535KT3m9hIaJZb7Zhw==
+X-CSE-MsgGUID: mNqrqdXNR5KyEXLl9x9iHg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="89060134"
+X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; d="scan'208";a="89060134"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2026 01:28:23 -0800
-X-CSE-ConnectionGUID: Auq4TukMSk6Mbn4zZOngbw==
-X-CSE-MsgGUID: iviD25E7SHCHCN958r+k9g==
+ 05 Feb 2026 01:28:25 -0800
+X-CSE-ConnectionGUID: 0YthRyEwQJWYj3HfI2foBQ==
+X-CSE-MsgGUID: j34rEPjkRqaQiQ59zKRMiQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; d="scan'208";a="209807798"
+X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; d="scan'208";a="209807805"
 Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by fmviesa007.fm.intel.com with ESMTP; 05 Feb 2026 01:28:21 -0800
+ by fmviesa007.fm.intel.com with ESMTP; 05 Feb 2026 01:28:23 -0800
 From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
  Uma Shankar <uma.shankar@intel.com>
-Subject: [v4 14/20] drm/i915: Remove i915_reg.h from intel_rom.c
-Date: Thu,  5 Feb 2026 15:13:35 +0530
-Message-ID: <20260205094341.1882816-15-uma.shankar@intel.com>
+Subject: [v4 15/20] drm/i915: Remove i915_reg.h from intel_psr.c
+Date: Thu,  5 Feb 2026 15:13:36 +0530
+Message-ID: <20260205094341.1882816-16-uma.shankar@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260205094341.1882816-1-uma.shankar@intel.com>
 References: <20260205094341.1882816-1-uma.shankar@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,11 +73,12 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.31 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
@@ -95,105 +95,117 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.999];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: BBD71F0B73
+X-Rspamd-Queue-Id: D1445F0B81
 X-Rspamd-Action: no action
 
-Make intel_rom.c free from including i915_reg.h.
+Move some chicken registers to display header to make
+intel_psr.c free from including i915_reg.h.
 
-v4: Move oprom reg to separate header (Ville)
-
-v3: Update patch header
+v3: Update commit header
 
 v2: Use display header instead of gmd common include (Jani)
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 ---
- .../gpu/drm/i915/display/intel_oprom_regs.h   | 36 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_rom.c      |  3 +-
- drivers/gpu/drm/i915/i915_reg.h               |  8 -----
- 3 files changed, 37 insertions(+), 10 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_oprom_regs.h
+ .../gpu/drm/i915/display/intel_display_regs.h | 26 +++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_psr.c      |  1 -
+ drivers/gpu/drm/i915/i915_reg.h               | 28 -------------------
+ 3 files changed, 26 insertions(+), 29 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_oprom_regs.h b/drivers/gpu/drm/i915/display/intel_oprom_regs.h
-new file mode 100644
-index 000000000000..2cf723aa4ab0
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_oprom_regs.h
-@@ -0,0 +1,36 @@
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice (including the next
-+ * paragraph) shall be included in all copies or substantial portions of the
-+ * Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-+ * IN THE SOFTWARE.
-+ *
-+ */
-+
-+#ifndef _INTEL_OPROM_REGS_H_
-+#define _INTEL_OPROM_REGS_H_
-+
-+#define PRIMARY_SPI_TRIGGER			_MMIO(0x102040)
-+#define PRIMARY_SPI_ADDRESS			_MMIO(0x102080)
-+#define PRIMARY_SPI_REGIONID			_MMIO(0x102084)
-+#define SPI_STATIC_REGIONS			_MMIO(0x102090)
-+#define   OPTIONROM_SPI_REGIONID_MASK		REG_GENMASK(7, 0)
-+#define OROM_OFFSET				_MMIO(0x1020c0)
-+#define   OROM_OFFSET_MASK			REG_GENMASK(20, 16)
-+
-+#endif
-diff --git a/drivers/gpu/drm/i915/display/intel_rom.c b/drivers/gpu/drm/i915/display/intel_rom.c
-index c8f615315310..024db7b1a1c6 100644
---- a/drivers/gpu/drm/i915/display/intel_rom.c
-+++ b/drivers/gpu/drm/i915/display/intel_rom.c
-@@ -7,10 +7,9 @@
+diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+index d4c5fd975b1b..9a7005e125a9 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+@@ -357,6 +357,32 @@
+ #define OGAMC1			_MMIO(0x30020)
+ #define OGAMC0			_MMIO(0x30024)
  
- #include <drm/drm_device.h>
++#define GEN8_CHICKEN_DCPR_1			_MMIO(0x46430)
++#define   _LATENCY_REPORTING_REMOVED_PIPE_D	REG_BIT(31)
++#define   SKL_SELECT_ALTERNATE_DC_EXIT		REG_BIT(30)
++#define   _LATENCY_REPORTING_REMOVED_PIPE_C	REG_BIT(25)
++#define   _LATENCY_REPORTING_REMOVED_PIPE_B	REG_BIT(24)
++#define   _LATENCY_REPORTING_REMOVED_PIPE_A	REG_BIT(23)
++#define   LATENCY_REPORTING_REMOVED(pipe)	_PICK((pipe), \
++						      _LATENCY_REPORTING_REMOVED_PIPE_A, \
++						      _LATENCY_REPORTING_REMOVED_PIPE_B, \
++						      _LATENCY_REPORTING_REMOVED_PIPE_C, \
++						      _LATENCY_REPORTING_REMOVED_PIPE_D)
++#define   ICL_DELAY_PMRSP			REG_BIT(22)
++#define   DISABLE_FLR_SRC			REG_BIT(15)
++#define   MASK_WAKEMEM				REG_BIT(13)
++#define   DDI_CLOCK_REG_ACCESS			REG_BIT(7)
++
++#define CHICKEN_PAR1_1		_MMIO(0x42080)
++#define   IGNORE_KVMR_PIPE_A		REG_BIT(23)
++#define   KBL_ARB_FILL_SPARE_22		REG_BIT(22)
++#define   DIS_RAM_BYPASS_PSR2_MAN_TRACK	REG_BIT(16)
++#define   SKL_DE_COMPRESSED_HASH_MODE	REG_BIT(15)
++#define   HSW_MASK_VBL_TO_PIPE_IN_SRD	REG_BIT(15) /* hsw/bdw */
++#define   FORCE_ARB_IDLE_PLANES		REG_BIT(14)
++#define   SKL_EDP_PSR_FIX_RDWRAP	REG_BIT(3)
++#define   IGNORE_PSR2_HW_TRACKING	REG_BIT(1)
++
+ #define GEN9_CLKGATE_DIS_4		_MMIO(0x4653C)
+ #define   BXT_GMBUS_GATING_DIS		(1 << 14)
+ #define   DG2_DPFC_GATING_DIS		REG_BIT(31)
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 4e644711c571..5bea2eda744b 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -29,7 +29,6 @@
+ #include <drm/drm_print.h>
+ #include <drm/drm_vblank.h>
  
 -#include "i915_reg.h"
--
- #include "intel_rom.h"
- #include "intel_uncore.h"
-+#include "intel_oprom_regs.h"
- 
- struct intel_rom {
- 	/* for PCI ROM */
+ #include "intel_alpm.h"
+ #include "intel_atomic.h"
+ #include "intel_crtc.h"
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 2c279bd3342d..9cb753b65bc2 100644
+index 9cb753b65bc2..3a54b31bc072 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -892,14 +892,6 @@
- #define   SGGI_DIS			REG_BIT(15)
- #define   SGR_DIS			REG_BIT(13)
+@@ -805,37 +805,9 @@
+ #define   CHICKEN3_DGMG_REQ_OUT_FIX_DISABLE	REG_BIT(5)
+ #define   CHICKEN3_DGMG_DONE_FIX_DISABLE	REG_BIT(2)
  
--#define PRIMARY_SPI_TRIGGER			_MMIO(0x102040)
--#define PRIMARY_SPI_ADDRESS			_MMIO(0x102080)
--#define PRIMARY_SPI_REGIONID			_MMIO(0x102084)
--#define SPI_STATIC_REGIONS			_MMIO(0x102090)
--#define   OPTIONROM_SPI_REGIONID_MASK		REG_GENMASK(7, 0)
--#define OROM_OFFSET				_MMIO(0x1020c0)
--#define   OROM_OFFSET_MASK			REG_GENMASK(20, 16)
+-#define CHICKEN_PAR1_1		_MMIO(0x42080)
+-#define   IGNORE_KVMR_PIPE_A		REG_BIT(23)
+-#define   KBL_ARB_FILL_SPARE_22		REG_BIT(22)
+-#define   DIS_RAM_BYPASS_PSR2_MAN_TRACK	REG_BIT(16)
+-#define   SKL_DE_COMPRESSED_HASH_MODE	REG_BIT(15)
+-#define   HSW_MASK_VBL_TO_PIPE_IN_SRD	REG_BIT(15) /* hsw/bdw */
+-#define   FORCE_ARB_IDLE_PLANES		REG_BIT(14)
+-#define   SKL_EDP_PSR_FIX_RDWRAP	REG_BIT(3)
+-#define   IGNORE_PSR2_HW_TRACKING	REG_BIT(1)
 -
- #define MTL_MEDIA_GSI_BASE		0x380000
+ #define CHICKEN_PAR2_1		_MMIO(0x42090)
+ #define   KVM_CONFIG_CHANGE_NOTIFICATION_SELECT	REG_BIT(14)
  
- #endif /* _I915_REG_H_ */
+-
+-#define GEN8_CHICKEN_DCPR_1			_MMIO(0x46430)
+-#define   _LATENCY_REPORTING_REMOVED_PIPE_D	REG_BIT(31)
+-#define   SKL_SELECT_ALTERNATE_DC_EXIT		REG_BIT(30)
+-#define   _LATENCY_REPORTING_REMOVED_PIPE_C	REG_BIT(25)
+-#define   _LATENCY_REPORTING_REMOVED_PIPE_B	REG_BIT(24)
+-#define   _LATENCY_REPORTING_REMOVED_PIPE_A	REG_BIT(23)
+-#define   LATENCY_REPORTING_REMOVED(pipe)	_PICK((pipe), \
+-						      _LATENCY_REPORTING_REMOVED_PIPE_A, \
+-						      _LATENCY_REPORTING_REMOVED_PIPE_B, \
+-						      _LATENCY_REPORTING_REMOVED_PIPE_C, \
+-						      _LATENCY_REPORTING_REMOVED_PIPE_D)
+-#define   ICL_DELAY_PMRSP			REG_BIT(22)
+-#define   DISABLE_FLR_SRC			REG_BIT(15)
+-#define   MASK_WAKEMEM				REG_BIT(13)
+-#define   DDI_CLOCK_REG_ACCESS			REG_BIT(7)
+-
+-
+ #define  VLV_PMWGICZ				_MMIO(0x1300a4)
+ 
+ #define  HSW_EDRAM_CAP				_MMIO(0x120010)
 -- 
 2.50.1
 
