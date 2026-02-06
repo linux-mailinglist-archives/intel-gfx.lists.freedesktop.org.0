@@ -2,63 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OLILHsE0hmlrLAQAu9opvQ
+	id kEG8NcM0hmneKQQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 19:36:49 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 19:36:51 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2878F10203E
-	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 19:36:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79CC310204C
+	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 19:36:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6105F10E8CD;
-	Fri,  6 Feb 2026 18:36:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA4A110E8D7;
+	Fri,  6 Feb 2026 18:36:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YIepfv29";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AGlS4YBx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C084E10E8D6;
- Fri,  6 Feb 2026 18:36:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80D4810E8A5;
+ Fri,  6 Feb 2026 18:36:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770403006; x=1801939006;
+ t=1770403008; x=1801939008;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=qGsI03QoiTNSOFQDjhAkP/xoSRTOUmvQ1UctcuHsbv8=;
- b=YIepfv2933Jt5mprFxzpKWxHnbHTqbJwRUrjKy1ysXfAURFMKg8/dp5v
- jfFSRmF1iC92jQmnwzQyLbitJ2uUceaV6gA67WG4mXPWyxBmFt4iqIR2B
- 9tH0pW9KXbNzTg/579s2st4XZvXLLNiR9wwgPPQlN8eeaPRLCTaNPRhvP
- qC/HETVC3lKragWazf5hEvMtBLdAmlRezsRGjUTIcXF5y8Nzt6qtsiZ+N
- aQop6RvjuqE06dei5Z9Fsd/tzZKEP7d81LxLkEKX3A5RpfPi1zptim/JX
- SXzhgvJQNR/lDabep/pQuClvC8IoEd4vajw2E2VX1Dh5CfuMO+ooQPQWL w==;
-X-CSE-ConnectionGUID: vxvvF5ZVRw2N5J3YIA90WQ==
-X-CSE-MsgGUID: HCuAgbXlSxyX2Igu2Z1Wsg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11693"; a="71516957"
-X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; d="scan'208";a="71516957"
+ bh=vQ4DCcUrZMNbhzZKbHTxWFDC8dH32VslfsyuaMfw8xA=;
+ b=AGlS4YBxPrPNk2Bdj1/cvtGJZDXgeAuW6NIdwRrJYMxSbdUqhyZN5asu
+ BQ1F0eSs/aQzQVU4U2ZC5HOE96CADF/3DQ6GMDYWkd6HEKn+3O9QcJLPu
+ GRxQ1lXCgVXUs1citScwjcbqb6nCzV4gEh9HggozQbz209vyYCyxAi44h
+ xYpYhP2+DrAYHrBWctKMX4NxJHXZfccGjtKEiNbBaQY11ndjN8xD7svQz
+ mQ4/X8UhwoYFGzg3OUrOHKUC6ZHCMiDq/Ph40X8tj42gjWt3JZryKqzbo
+ IWfUELU9EG7diY2dNSBc34+VFxWsHEuw3f82ksgtewSfzJtwvc/BnCPyE g==;
+X-CSE-ConnectionGUID: WTHWZo1gQ2KTPx9+UWUKjw==
+X-CSE-MsgGUID: 737tiQ4rRtyp6boNgbgo8A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11693"; a="71516960"
+X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; d="scan'208";a="71516960"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2026 10:36:46 -0800
-X-CSE-ConnectionGUID: ppy0sM4BS3yLXcvz3wyG8Q==
-X-CSE-MsgGUID: EsMgWZMnQZKZnPjTT2xhkw==
+ 06 Feb 2026 10:36:47 -0800
+X-CSE-ConnectionGUID: wr71HFhUS+qC99wPpTgO/w==
+X-CSE-MsgGUID: ccxa06kZRD2am2880VsPYQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; d="scan'208";a="210224767"
+X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; d="scan'208";a="210224774"
 Received: from vverma7-mobl3.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.222.159])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2026 10:36:45 -0800
+ 06 Feb 2026 10:36:46 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Fri, 06 Feb 2026 15:36:07 -0300
-Subject: [PATCH v3 11/15] drm/xe/xe3p_lpg: Set STLB bank hash mode to 4KB
+Date: Fri, 06 Feb 2026 15:36:08 -0300
+Subject: [PATCH v3 12/15] drm/xe/nvlp: Add NVL-P platform definition
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260206-nvl-p-upstreaming-v3-11-636e1ad32688@intel.com>
+Message-Id: <20260206-nvl-p-upstreaming-v3-12-636e1ad32688@intel.com>
 References: <20260206-nvl-p-upstreaming-v3-0-636e1ad32688@intel.com>
 In-Reply-To: <20260206-nvl-p-upstreaming-v3-0-636e1ad32688@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Cc: Gustavo Sousa <gustavo.sousa@intel.com>, 
- Aradhya Bhatia <aradhya.bhatia@intel.com>, 
+ Shekhar Chauhan <shekhar.chauhan@intel.com>, 
  Matt Roper <matthew.d.roper@intel.com>
 X-Mailer: b4 0.15-dev
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -100,62 +100,117 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
 	NEURAL_HAM(-0.00)[-0.999];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 2878F10203E
+X-Rspamd-Queue-Id: 79CC310204C
 X-Rspamd-Action: no action
 
-From: Aradhya Bhatia <aradhya.bhatia@intel.com>
+From: Shekhar Chauhan <shekhar.chauhan@intel.com>
 
-Since the dominant size of the pages referred in an i-gpu, such as
-Xe3p_LPG, will be 4KB, the HW default of mix of 64K and 2M for STLB bank
-hash mode does not make sense.
+Add platform definition along with device IDs for NVL-P.  Here is the
+list of device descriptor fields and associated Bspec references:
 
-Allow the SW to change it to 4KB Mode, for Xe3p_LPG.
+  .dma_mask_size (Bspec 74198)
+  .has_cached_pt (Bspec 71582)
+  .has_display (Bspec 74196)
+  .has_flat_ccs (Bspec 74110)
+  .has_page_reclaim_hw_assist (Bspec 73451)
+  .max_gt_per_tile (Bspec 74196)
+  .va_bits (Bspec 74198)
+  .vm_max_level (Bspec 59507)
 
 v2:
-  - Add Bspec reference. (Matt)
+  - Add list of descriptor fields and Bspec references. (Matt)
 
-Bspec: 78248
-Signed-off-by: Aradhya Bhatia <aradhya.bhatia@intel.com>
+Signed-off-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gt_regs.h | 2 ++
- drivers/gpu/drm/xe/xe_tuning.c       | 9 +++++++++
- 2 files changed, 11 insertions(+)
+ drivers/gpu/drm/xe/xe_bo.c             |  4 ++--
+ drivers/gpu/drm/xe/xe_pci.c            | 15 +++++++++++++++
+ drivers/gpu/drm/xe/xe_platform_types.h |  1 +
+ include/drm/intel/pciids.h             | 12 ++++++++++++
+ 4 files changed, 30 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index ff77523e823e..a375ffd666ba 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -473,6 +473,8 @@
- #define   FORCE_MISS_FTLB			REG_BIT(3)
- 
- #define XEHP_GAMSTLB_CTRL			XE_REG_MCR(0xcf4c)
-+#define   BANK_HASH_MODE			REG_GENMASK(27, 26)
-+#define   BANK_HASH_4KB_MODE			REG_FIELD_PREP(BANK_HASH_MODE, 0x3)
- #define   CONTROL_BLOCK_CLKGATE_DIS		REG_BIT(12)
- #define   EGRESS_BLOCK_CLKGATE_DIS		REG_BIT(11)
- #define   TAG_BLOCK_CLKGATE_DIS			REG_BIT(7)
-diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
-index 694385ae75f1..316f5e2b2e48 100644
---- a/drivers/gpu/drm/xe/xe_tuning.c
-+++ b/drivers/gpu/drm/xe/xe_tuning.c
-@@ -90,6 +90,15 @@ static const struct xe_rtp_entry_sr gt_tunings[] = {
- 	  XE_RTP_RULES(MEDIA_VERSION(2000)),
- 	  XE_RTP_ACTIONS(SET(XE2LPM_SCRATCH3_LBCF, RWFLUSHALLEN))
- 	},
-+
-+	/* Xe3p */
-+
-+	{ XE_RTP_NAME("Tuning: Set STLB Bank Hash Mode to 4KB"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3510, XE_RTP_END_VERSION_UNDEFINED),
-+		       IS_INTEGRATED),
-+	  XE_RTP_ACTIONS(FIELD_SET(XEHP_GAMSTLB_CTRL, BANK_HASH_MODE,
-+				   BANK_HASH_4KB_MODE))
-+	},
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 8bf16d60b9a5..9e998f9708df 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -512,8 +512,8 @@ static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
+ 		/*
+ 		 * Display scanout is always non-coherent with the CPU cache.
+ 		 *
+-		 * For Xe_LPG and beyond, PPGTT PTE lookups are also
+-		 * non-coherent and require a CPU:WC mapping.
++		 * For Xe_LPG and beyond up to NVL-P (excluding), PPGTT PTE
++		 * lookups are also non-coherent and require a CPU:WC mapping.
+ 		 */
+ 		if ((!bo->cpu_caching && bo->flags & XE_BO_FLAG_SCANOUT) ||
+ 		     (!xe->info.has_cached_pt && bo->flags & XE_BO_FLAG_PAGETABLE))
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index c11e4723e57e..cdee7a9acf14 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -450,6 +450,20 @@ static const struct xe_device_desc cri_desc = {
+ 	.vm_max_level = 4,
  };
  
- static const struct xe_rtp_entry_sr engine_tunings[] = {
++static const struct xe_device_desc nvlp_desc = {
++	PLATFORM(NOVALAKE_P),
++	.dma_mask_size = 46,
++	.has_cached_pt = true,
++	.has_display = true,
++	.has_flat_ccs = 1,
++	.has_page_reclaim_hw_assist = true,
++	.has_pre_prod_wa = true,
++	.max_gt_per_tile = 2,
++	.require_force_probe = true,
++	.va_bits = 48,
++	.vm_max_level = 4,
++};
++
+ #undef PLATFORM
+ __diag_pop();
+ 
+@@ -480,6 +494,7 @@ static const struct pci_device_id pciidlist[] = {
+ 	INTEL_WCL_IDS(INTEL_VGA_DEVICE, &ptl_desc),
+ 	INTEL_NVLS_IDS(INTEL_VGA_DEVICE, &nvls_desc),
+ 	INTEL_CRI_IDS(INTEL_PCI_DEVICE, &cri_desc),
++	INTEL_NVLP_IDS(INTEL_VGA_DEVICE, &nvlp_desc),
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(pci, pciidlist);
+diff --git a/drivers/gpu/drm/xe/xe_platform_types.h b/drivers/gpu/drm/xe/xe_platform_types.h
+index f516dbddfd88..6cff385227ea 100644
+--- a/drivers/gpu/drm/xe/xe_platform_types.h
++++ b/drivers/gpu/drm/xe/xe_platform_types.h
+@@ -26,6 +26,7 @@ enum xe_platform {
+ 	XE_PANTHERLAKE,
+ 	XE_NOVALAKE_S,
+ 	XE_CRESCENTISLAND,
++	XE_NOVALAKE_P,
+ };
+ 
+ enum xe_subplatform {
+diff --git a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h
+index 52520e684ab1..33b91cb2e684 100644
+--- a/include/drm/intel/pciids.h
++++ b/include/drm/intel/pciids.h
+@@ -900,4 +900,16 @@
+ #define INTEL_CRI_IDS(MACRO__, ...) \
+ 	MACRO__(0x674C, ## __VA_ARGS__)
+ 
++/* NVL-P */
++#define INTEL_NVLP_IDS(MACRO__, ...) \
++	MACRO__(0xD750, ## __VA_ARGS__), \
++	MACRO__(0xD751, ## __VA_ARGS__), \
++	MACRO__(0xD752, ## __VA_ARGS__), \
++	MACRO__(0xD753, ## __VA_ARGS__), \
++	MACRO__(0XD754, ## __VA_ARGS__), \
++	MACRO__(0XD755, ## __VA_ARGS__), \
++	MACRO__(0XD756, ## __VA_ARGS__), \
++	MACRO__(0XD757, ## __VA_ARGS__), \
++	MACRO__(0xD75F, ## __VA_ARGS__)
++
+ #endif /* __PCIIDS_H__ */
 
 -- 
 2.52.0
