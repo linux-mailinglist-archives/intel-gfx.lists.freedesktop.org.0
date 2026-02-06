@@ -2,59 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AOq6GfXahWnfHQQAu9opvQ
+	id sLULDPnahWnfHQQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 13:13:41 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 13:13:45 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB13AFD7E8
-	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 13:13:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1962FD7EF
+	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 13:13:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1826D10E73E;
-	Fri,  6 Feb 2026 12:13:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F8EB10E778;
+	Fri,  6 Feb 2026 12:13:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SHi5wGoi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BVYwHMyh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A819310E71F;
- Fri,  6 Feb 2026 12:13:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AEA610E76E;
+ Fri,  6 Feb 2026 12:13:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770380017; x=1801916017;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=+w7iN+7qAw4LtlGc0+VPJA4cGPOsJIsPD0XPZJHhL6U=;
- b=SHi5wGoiP8IxKg1LSq1ws/M3GwR5RRte/yNjvwBULOdvN/vLRIK92xnK
- P8L3QCzHTdWtzT64cpDR2Zvha67aJBd6/SwialjC3IIuDsRC5Y5vhZsa7
- o/kGizXMHwWLC4NPrgTnVzzdLB2eBS9fP6sBHCiyHvjYTLbMxdCrvRLOy
- f1uhQVeeKmossNV/KjAcOG6641gpsCrqmZxsWXBbKyLfrxmKxq7v/VQym
- NHi+bTmvxmXBv2cwcWDgW+32RriyUZ+LSdHDRC7ETtWAPo3uDChr9dVSQ
- BdCgUiksmEQ7jOEo1XiGfAdayNKCzqo1/c8QAvvLCPRiaypY+UxD1+qCS Q==;
-X-CSE-ConnectionGUID: JJ+zfeWhTDq9G4kbuSvqgA==
-X-CSE-MsgGUID: Bs9bkDgFS6ezDt+fl8YAfQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11692"; a="71765171"
-X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; d="scan'208";a="71765171"
+ t=1770380021; x=1801916021;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=9N/QZMHt3VPVVbCm30vz+B7gUq29t4ochRsU3HQlzAo=;
+ b=BVYwHMyhBxwaZqmfocNB1AEpydl4LBRW3kdZWwPXCtvxingE0QrXk353
+ 0nrA4LberpEAjAWXOqbLZp2/pgHvmJ+lHFG6gkiYjBOm+7F1JtSRoAHYi
+ KlgydpIZ02kDbHWQIyE1zMmwyLXoPjpRVxUmnbROITsfHYjEu+OvvRLIY
+ Y9Ttk5D79P2BgI1MhvRJtuXiOEBF32C2xhTDXPZN8X3x7ri1QnhwFmqgH
+ F1fveCczL1mtWOLMk7lmTmdSxNTJEuW0s03fklCAlD4jLWQZQR7pjhM+K
+ UvvlhMYh/Gps7YCVGinl6O0QP2ZyjcrlC2iDTarT0Ql7my2/SDkYgIiYi A==;
+X-CSE-ConnectionGUID: LKNZ2uCISL2cb5E0xHV+iA==
+X-CSE-MsgGUID: /kuifrVYSHOsJSffMe3pKQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11692"; a="71765179"
+X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; d="scan'208";a="71765179"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2026 04:13:36 -0800
-X-CSE-ConnectionGUID: fen5ZG6EQuKeNJdNHkEecQ==
-X-CSE-MsgGUID: RVX4Y8PRT2O33hrxvlum2Q==
+ 06 Feb 2026 04:13:41 -0800
+X-CSE-ConnectionGUID: J05MqQ/MSzCjRNLIYmk+7g==
+X-CSE-MsgGUID: teI9q95YSHCpivGD+FqOqw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; d="scan'208";a="248472583"
+X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; d="scan'208";a="248472589"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.129])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2026 04:13:35 -0800
+ 06 Feb 2026 04:13:39 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 00/10] drm/i915/dpt: refactoring, move to parent interface
-Date: Fri,  6 Feb 2026 14:13:21 +0200
-Message-ID: <cover.1770379986.git.jani.nikula@intel.com>
+Subject: [PATCH 01/10] drm/i915/dpt: move display/intel_dpt.c to i915_dpt.c
+Date: Fri,  6 Feb 2026 14:13:22 +0200
+Message-ID: <bd9644ca7b110251d6454bf91e5e7a33e178ad78.1770379986.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <cover.1770379986.git.jani.nikula@intel.com>
+References: <cover.1770379986.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
@@ -99,49 +101,71 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim]
-X-Rspamd-Queue-Id: CB13AFD7E8
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: D1962FD7EF
 X-Rspamd-Action: no action
 
+The DPT implementation is i915 specific. The xe driver has a different
+implementation. Move display/intel_dpt.c to i915_dpt.c. Cleanups will
+follow.
 
-Jani Nikula (10):
-  drm/i915/dpt: move display/intel_dpt.c to i915_dpt.c
-  drm/i915/dpt: pass obj, size instead of framebuffer to
-    intel_dpt_create()
-  drm/i915/dpt: move create/destroy to parent interface
-  drm/i915/dpt: move suspend/resume to parent interface
-  drm/i915/dpt: remove display/intel_dpt.h
-  drm/i915/dpt: drop _common from the DPT file names
-  drm/i915/dpt: switch to i915 runtime pm calls
-  drm/i915/dpt: rename i915 specific functions to i915_dpt_ prefix
-  drm/i915/dpt: rename struct i915_dpt to intel_dpt
-  drm/i915/dpt: pass opaque struct intel_dpt around instead of
-    i915_address_space
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/Makefile                          |  2 +-
+ .../gpu/drm/i915/{display/intel_dpt.c => i915_dpt.c}   | 10 +++++-----
+ 2 files changed, 6 insertions(+), 6 deletions(-)
+ rename drivers/gpu/drm/i915/{display/intel_dpt.c => i915_dpt.c} (97%)
 
- drivers/gpu/drm/i915/Makefile                 |   2 +-
- drivers/gpu/drm/i915/display/intel_display.c  |   1 -
- .../drm/i915/display/intel_display_types.h    |   2 +-
- drivers/gpu/drm/i915/display/intel_dpt.c      | 316 +++---------------
- drivers/gpu/drm/i915/display/intel_dpt.h      |  22 +-
- .../gpu/drm/i915/display/intel_dpt_common.c   |  35 --
- .../gpu/drm/i915/display/intel_dpt_common.h   |  13 -
- drivers/gpu/drm/i915/display/intel_fb.c       |  21 +-
- drivers/gpu/drm/i915/display/intel_fb_pin.c   |  15 +-
- drivers/gpu/drm/i915/display/intel_parent.c   |  28 ++
- drivers/gpu/drm/i915/display/intel_parent.h   |   9 +
- .../drm/i915/display/skl_universal_plane.c    |   1 -
- drivers/gpu/drm/i915/i915_dpt.c               | 277 +++++++++++++++
- drivers/gpu/drm/i915/i915_dpt.h               |  20 ++
- drivers/gpu/drm/i915/i915_driver.c            |   2 +
- drivers/gpu/drm/xe/Makefile                   |   2 +-
- drivers/gpu/drm/xe/display/xe_fb_pin.c        |  20 --
- include/drm/intel/display_parent_interface.h  |  11 +
- 18 files changed, 419 insertions(+), 378 deletions(-)
- delete mode 100644 drivers/gpu/drm/i915/display/intel_dpt_common.c
- delete mode 100644 drivers/gpu/drm/i915/display/intel_dpt_common.h
- create mode 100644 drivers/gpu/drm/i915/i915_dpt.c
- create mode 100644 drivers/gpu/drm/i915/i915_dpt.h
-
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index 7d726e8c21bf..1d71ecb3ca83 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -77,6 +77,7 @@ i915-$(CONFIG_PERF_EVENTS) += \
+ # core display adaptation
+ i915-y += \
+ 	i915_display_pc8.o \
++	i915_dpt.o \
+ 	i915_dsb_buffer.o \
+ 	i915_hdcp_gsc.o \
+ 	i915_initial_plane.o \
+@@ -270,7 +271,6 @@ i915-y += \
+ 	display/intel_dpio_phy.o \
+ 	display/intel_dpll.o \
+ 	display/intel_dpll_mgr.o \
+-	display/intel_dpt.o \
+ 	display/intel_dpt_common.o \
+ 	display/intel_dram.o \
+ 	display/intel_drrs.o \
+diff --git a/drivers/gpu/drm/i915/display/intel_dpt.c b/drivers/gpu/drm/i915/i915_dpt.c
+similarity index 97%
+rename from drivers/gpu/drm/i915/display/intel_dpt.c
+rename to drivers/gpu/drm/i915/i915_dpt.c
+index 58d953472218..e229c5e26f5f 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpt.c
++++ b/drivers/gpu/drm/i915/i915_dpt.c
+@@ -5,17 +5,17 @@
+ 
+ #include <drm/drm_print.h>
+ 
++#include "display/intel_display_core.h"
++#include "display/intel_display_rpm.h"
++#include "display/intel_display_types.h"
++#include "display/intel_dpt.h"
++#include "display/intel_fb.h"
+ #include "gem/i915_gem_domain.h"
+ #include "gem/i915_gem_internal.h"
+ #include "gem/i915_gem_lmem.h"
+ #include "gt/gen8_ppgtt.h"
+ 
+ #include "i915_drv.h"
+-#include "intel_display_core.h"
+-#include "intel_display_rpm.h"
+-#include "intel_display_types.h"
+-#include "intel_dpt.h"
+-#include "intel_fb.h"
+ 
+ struct i915_dpt {
+ 	struct i915_address_space vm;
 -- 
 2.47.3
 
