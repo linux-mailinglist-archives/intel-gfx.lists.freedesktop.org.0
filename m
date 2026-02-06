@@ -2,64 +2,99 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4AAdNNE0hmneKQQAu9opvQ
+	id 0EqAD7JBhmmbLQQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 19:37:05 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 20:32:02 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FB92102070
-	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 19:37:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89350102C36
+	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 20:32:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEB3E10E8E8;
-	Fri,  6 Feb 2026 18:37:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5728510E8C2;
+	Fri,  6 Feb 2026 19:31:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WRdx3IO2";
+	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="P0//Ycw7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B36610E8E8;
- Fri,  6 Feb 2026 18:37:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770403024; x=1801939024;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=jRk9zUO8K/65BHYu7uTAeL5qQGxD4xpM4JrDZx8CHd0=;
- b=WRdx3IO2TyKHvtbOZWj9j/WmuMdH8Zn6ltea/2d5qIY4+zsNm/dcMaQK
- pO/i9axyfBLD4kVLQMqRztdButnVWk16BDWbro59yzMLFzhLPUfQEPkGZ
- ITiMMRWB9uF8LyGmCK+1biUhuLMZI7R7OTpL9jBv07/aLfh3RFV1TopSn
- 3FbQyhBW0Z9J5B936pJLdGCURqluBOJPkh4eAT2GYPdc2ut2FDVr5nOkb
- 8R1p7yQ304AX2sXAtBexKhtKZlzxeNLyiiQ6N5JXCCi75q8CZD7q2Wsd/
- lBF6VQ8n4pbJhSTBqSCpobbiPHSiZPj45HOw7XDdoo9BO1q/Oe2zluJoU g==;
-X-CSE-ConnectionGUID: R9Ku8xniQMarzfSEBX36aA==
-X-CSE-MsgGUID: U6FNyAhxRV2fcvAa0ckBGg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11693"; a="71516969"
-X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; d="scan'208";a="71516969"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2026 10:36:52 -0800
-X-CSE-ConnectionGUID: qr2EYHmbRx2ZMQisLIlg9w==
-X-CSE-MsgGUID: 1PARiNNtRr+56RB/awp9FQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; d="scan'208";a="210224790"
-Received: from vverma7-mobl3.amr.corp.intel.com (HELO [192.168.1.16])
- ([10.124.222.159])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2026 10:36:52 -0800
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Fri, 06 Feb 2026 15:36:11 -0300
-Subject: [PATCH v3 15/15] drm/xe/nvlp: Bump maximum WOPCM size
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8408010E8C2;
+ Fri,  6 Feb 2026 19:31:58 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 7517341A3F;
+ Fri,  6 Feb 2026 19:31:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E60FC116C6;
+ Fri,  6 Feb 2026 19:31:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
+ s=korg; t=1770406317;
+ bh=sFmOLogLTpCWkUOE9qlbNa3u0BVXHcuyge59i+fnUfg=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=P0//Ycw7MamL01hmVUxrX954cfCW9uQM9dRODdcU5KIQuuE0qEyY1JS9AxdM8F96v
+ 5DofCLn88Bu4sHg6rPYalTvwkPcSbj6PjOltDumckh7j2RRU87blAz/W8ZmpRFjy+T
+ 5AbBbYyJ/4/G1l/2aQ5CJCldkjuxifDVAKZKSGfM=
+Date: Fri, 6 Feb 2026 11:31:53 -0800
+From: Andrew Morton <akpm@linux-foundation.org>
+To: Pedro Falcato <pfalcato@suse.de>
+Cc: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, Jarkko Sakkinen
+ <jarkko@kernel.org>, Dave Hansen <dave.hansen@linux.intel.com>, Thomas
+ Gleixner <tglx@kernel.org>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov
+ <bp@alien8.de>, x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>, Arnd
+ Bergmann <arnd@arndb.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Dan Williams <dan.j.williams@intel.com>, Vishal Verma
+ <vishal.l.verma@intel.com>, Dave Jiang <dave.jiang@intel.com>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Christian Koenig
+ <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>, Matthew Auld
+ <matthew.auld@intel.com>, Matthew Brost <matthew.brost@intel.com>,
+ Alexander Viro <viro@zeniv.linux.org.uk>, Christian Brauner
+ <brauner@kernel.org>, Jan Kara <jack@suse.cz>, Benjamin LaHaise
+ <bcrl@kvack.org>, Gao Xiang <xiang@kernel.org>, Chao Yu <chao@kernel.org>,
+ Yue Hu <zbestahu@gmail.com>, Jeffle Xu <jefflexu@linux.alibaba.com>,
+ Sandeep Dhavale <dhavale@google.com>, Hongbo Li <lihongbo22@huawei.com>,
+ Chunhai Guo <guochunhai@vivo.com>, Theodore Ts'o <tytso@mit.edu>, Andreas
+ Dilger <adilger.kernel@dilger.ca>, Muchun Song <muchun.song@linux.dev>,
+ Oscar Salvador <osalvador@suse.de>, David Hildenbrand <david@kernel.org>,
+ Konstantin Komarov <almaz.alexandrovich@paragon-software.com>, Mike
+ Marshall <hubcap@omnibond.com>, Martin Brandenburg <martin@omnibond.com>,
+ Tony Luck <tony.luck@intel.com>, Reinette Chatre
+ <reinette.chatre@intel.com>, Dave Martin <Dave.Martin@arm.com>, James Morse
+ <james.morse@arm.com>, Babu Moger <babu.moger@amd.com>, Carlos Maiolino
+ <cem@kernel.org>, Damien Le Moal <dlemoal@kernel.org>, Naohiro Aota
+ <naohiro.aota@wdc.com>, Johannes Thumshirn <jth@kernel.org>, Matthew Wilcox
+ <willy@infradead.org>, "Liam R . Howlett" <Liam.Howlett@oracle.com>,
+ Vlastimil Babka <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>, Suren
+ Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>, Hugh
+ Dickins <hughd@google.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, Zi
+ Yan <ziy@nvidia.com>, Nico Pache <npache@redhat.com>, Ryan Roberts
+ <ryan.roberts@arm.com>, Dev Jain <dev.jain@arm.com>, Barry Song
+ <baohua@kernel.org>, Lance Yang <lance.yang@linux.dev>, Jann Horn
+ <jannh@google.com>, David Howells <dhowells@redhat.com>, Paul Moore
+ <paul@paul-moore.com>, James Morris <jmorris@namei.org>, "Serge E . Hallyn"
+ <serge@hallyn.com>, Yury Norov <yury.norov@gmail.com>, Rasmus Villemoes
+ <linux@rasmusvillemoes.dk>, linux-sgx@vger.kernel.org,
+ linux-kernel@vger.kernel.org, nvdimm@lists.linux.dev,
+ linux-cxl@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-fsdevel@vger.kernel.org,
+ linux-aio@kvack.org, linux-erofs@lists.ozlabs.org,
+ linux-ext4@vger.kernel.org, linux-mm@kvack.org, ntfs3@lists.linux.dev,
+ devel@lists.orangefs.org, linux-xfs@vger.kernel.org,
+ keyrings@vger.kernel.org, linux-security-module@vger.kernel.org, Jason
+ Gunthorpe <jgg@nvidia.com>
+Subject: Re: [PATCH v2 09/13] mm: update all remaining mmap_prepare users to
+ use vma_flags_t
+Message-Id: <20260206113153.c443545459474cdef6dfd7ea@linux-foundation.org>
+In-Reply-To: <hmc2or77xnhrdlncfzjsljljwljnp6zztqsvmgxspfilmzkyty@czxpjpdm66ov>
+References: <cover.1769097829.git.lorenzo.stoakes@oracle.com>
+ <fb1f55323799f09fe6a36865b31550c9ec67c225.1769097829.git.lorenzo.stoakes@oracle.com>
+ <hmc2or77xnhrdlncfzjsljljwljnp6zztqsvmgxspfilmzkyty@czxpjpdm66ov>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260206-nvl-p-upstreaming-v3-15-636e1ad32688@intel.com>
-References: <20260206-nvl-p-upstreaming-v3-0-636e1ad32688@intel.com>
-In-Reply-To: <20260206-nvl-p-upstreaming-v3-0-636e1ad32688@intel.com>
-To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>, 
- Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-X-Mailer: b4 0.15-dev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,93 +110,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [1.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MV_CASE(0.50)[];
+	R_DKIM_ALLOW(-0.20)[linux-foundation.org:s=korg];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_THREE(0.00)[4];
-	FROM_NEQ_ENVFROM(0.00)[gustavo.sousa@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid];
-	NEURAL_HAM(-0.00)[-0.999];
-	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 9FB92102070
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
+	DMARC_NA(0.00)[linux-foundation.org];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[oracle.com,kernel.org,linux.intel.com,redhat.com,alien8.de,zytor.com,arndb.de,linuxfoundation.org,intel.com,suse.de,gmail.com,ffwll.ch,ursulin.net,amd.com,zeniv.linux.org.uk,suse.cz,kvack.org,linux.alibaba.com,google.com,huawei.com,vivo.com,mit.edu,dilger.ca,linux.dev,paragon-software.com,omnibond.com,arm.com,wdc.com,infradead.org,suse.com,nvidia.com,paul-moore.com,namei.org,hallyn.com,rasmusvillemoes.dk,vger.kernel.org,lists.linux.dev,lists.freedesktop.org,lists.ozlabs.org,lists.orangefs.org];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[93];
+	FROM_NEQ_ENVFROM(0.00)[akpm@linux-foundation.org,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[linux-foundation.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[]
+X-Rspamd-Queue-Id: 89350102C36
 X-Rspamd-Action: no action
 
-On NVL-P, the primary GT's WOPCM gained an extra 8MiB for the Memory
-URB.  As such, we need to bump the maximum size in the driver so that
-the driver is able to load without erroring out thinking that the WOPCM
-is too small.
+On Fri, 6 Feb 2026 17:46:36 +0000 Pedro Falcato <pfalcato@suse.de> wrote:
 
-FIXME: The wopcm code in xe driver is a bit confusing.  For the case
-where the offsets for GUC WOPCM are already locked, it appears we are
-using the maximum overall WOPCM size instead of the sizes relative to
-each type of GT.  The function __check_layout() should be checking
-against the latter.
+> > -#define VM_REMAP_FLAGS (VM_IO | VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP)
+> > +#define VMA_REMAP_FLAGS mk_vma_flags(VMA_IO_BIT, VMA_PFNMAP_BIT,	\
+> > +				     VMA_DONTEXPAND_BIT, VMA_DONTDUMP_BIT)
+> 
+> as a sidenote, these flags are no longer constant expressions and thus
+> 
+> static vma_flags_t flags = VMA_REMAP_FLAGS;
+> 
+> can't compile.
 
-Bspec: 67090
-Reviewed-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
----
- drivers/gpu/drm/xe/xe_wopcm.c | 15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
+Yup, that isn't nice.  An all-caps thing with no () is a compile-time
+constant.
 
-diff --git a/drivers/gpu/drm/xe/xe_wopcm.c b/drivers/gpu/drm/xe/xe_wopcm.c
-index dde4f4967ca3..900daf1d1b1b 100644
---- a/drivers/gpu/drm/xe/xe_wopcm.c
-+++ b/drivers/gpu/drm/xe/xe_wopcm.c
-@@ -55,8 +55,6 @@
- #define MTL_WOPCM_SIZE			SZ_4M
- #define WOPCM_SIZE			SZ_2M
- 
--#define MAX_WOPCM_SIZE			SZ_8M
--
- /* 16KB WOPCM (RSVD WOPCM) is reserved from HuC firmware top. */
- #define WOPCM_RESERVED_SIZE		SZ_16K
- 
-@@ -186,6 +184,14 @@ u32 xe_wopcm_size(struct xe_device *xe)
- 		WOPCM_SIZE;
- }
- 
-+static u32 max_wopcm_size(struct xe_device *xe)
-+{
-+	if (xe->info.platform == XE_NOVALAKE_P)
-+		return SZ_16M;
-+	else
-+		return SZ_8M;
-+}
-+
- /**
-  * xe_wopcm_init() - Initialize the WOPCM structure.
-  * @wopcm: pointer to xe_wopcm.
-@@ -227,8 +233,11 @@ int xe_wopcm_init(struct xe_wopcm *wopcm)
- 		 * When the GuC wopcm base and size are preprogrammed by
- 		 * BIOS/IFWI, check against the max allowed wopcm size to
- 		 * validate if the programmed values align to the wopcm layout.
-+		 *
-+		 * FIXME: This is giving the maximum overall WOPCM size and not
-+		 * the size relative to each GT.
- 		 */
--		wopcm->size = MAX_WOPCM_SIZE;
-+		wopcm->size = max_wopcm_size(xe);
- 
- 		goto check;
- 	}
+It looks like we can make this a nice inlined (commented!) lower-cased
+C function as a little low-priority cleanup.
 
--- 
-2.52.0
+> Rest LGTM though.
+> 
+> Acked-by: Pedro Falcato <pfalcato@suse.de>
 
+Great, thanks.
