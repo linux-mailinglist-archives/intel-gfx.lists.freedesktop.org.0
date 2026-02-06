@@ -2,64 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6MNzJsQ0hmlrLAQAu9opvQ
+	id 6PM9BMY0hmneKQQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 19:36:52 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 19:36:54 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C2F3102053
-	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 19:36:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B596010205A
+	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 19:36:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D33610E8DA;
-	Fri,  6 Feb 2026 18:36:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13BDF10E8E0;
+	Fri,  6 Feb 2026 18:36:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GxnoxLTO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IYOZGYjY";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44C8610E8D6;
- Fri,  6 Feb 2026 18:36:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07A8D10E8E0;
+ Fri,  6 Feb 2026 18:36:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770403009; x=1801939009;
+ t=1770403011; x=1801939011;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=Z+W8W8cc2beKeABbAQce3A6jT51rdfm5elYBLJ7roSY=;
- b=GxnoxLTOo3rBvAxnYGK0flw4gMzXa1sdMveOaloMR6hHfHAVmTd54iF9
- DJ8AXQkhKyUXzxOQ7/ekr2FREbRzZaAxd67Y1lZjhxkJplhkqk2OHdATz
- Iz9Q0Kv6BEgd3eXwtydZ7Bu/WTPUvQ7Tk7Bs/fudrkuBckChKBsw4np10
- Nzmuj9FhusDTu8V+zQidmKOBEnOK3LNZI+mcEsp/qOdAVIvkyS2ryKktm
- ly/T3yt3Cvv+p/vVeur0CU7Qr/15nIPCHcPqFd+7hqNF/OWShVzgOYsF3
- xr4Y2ubXLE+kJoDh6PeeFr5i0MGWnC5qj9a6xZby2mbtSvVD5AcgOnV1m Q==;
-X-CSE-ConnectionGUID: ExGN2K3WRweI0nKzClK1nA==
-X-CSE-MsgGUID: 3I4bWjb9RbeN+hLCOvfJYg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11693"; a="71516963"
-X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; d="scan'208";a="71516963"
+ bh=hwipaFZji6Ao4MHsgvVxkY7MRutGphXzmE+HJOCntXA=;
+ b=IYOZGYjYCzbrYR8hTMGEuPEVtVgPP677pCewV8kiFfLZi9SE9ikPu5kP
+ ckE+e2gZmPqLIiU8Xa3wTB/cDVG34dsutrkZS6Dx2B/mOFxiAlYe6JSbe
+ CIXUdUA9upQqq2pbKN90pZ4as+psK83Racfq2nnEP+n1Et4+lU/J6lbMe
+ hiDN5e/ewUruAXGb0JCx1hgtllnCGhjMawMl0CpyNPxTQniFHn8qazLTq
+ XAn00ErieY+KAmtA6wOBk3/+MX3Hb6vowZYVgewk/86teCxRfZi6jlmpS
+ iCqnQacrBKLGfCljNcQEA0H1VGpMtzDx8e6Z7VI/WuiCJXlwi4fQmO7tb w==;
+X-CSE-ConnectionGUID: uxr+WA3dT8yobRf5SBvQIA==
+X-CSE-MsgGUID: XbW7D5C6S6iyZQhHMSsEAw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11693"; a="71516967"
+X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; d="scan'208";a="71516967"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2026 10:36:49 -0800
-X-CSE-ConnectionGUID: 45mYa7JjTpic/UjevN5Acw==
-X-CSE-MsgGUID: 8vt8fEsmSTWBa0/M4iugaA==
+ 06 Feb 2026 10:36:51 -0800
+X-CSE-ConnectionGUID: iu1Ulc4GRYeqGsJc3Y9jrg==
+X-CSE-MsgGUID: L4wXhT+mRLqoHfL6tN7U1A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; d="scan'208";a="210224779"
+X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; d="scan'208";a="210224785"
 Received: from vverma7-mobl3.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.222.159])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2026 10:36:48 -0800
+ 06 Feb 2026 10:36:50 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Fri, 06 Feb 2026 15:36:09 -0300
-Subject: [PATCH v3 13/15] drm/xe/nvlp: Attach MOCS table for nvlp
+Date: Fri, 06 Feb 2026 15:36:10 -0300
+Subject: [PATCH v3 14/15] drm/i915/nvlp: Hook up display support
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260206-nvl-p-upstreaming-v3-13-636e1ad32688@intel.com>
+Message-Id: <20260206-nvl-p-upstreaming-v3-14-636e1ad32688@intel.com>
 References: <20260206-nvl-p-upstreaming-v3-0-636e1ad32688@intel.com>
 In-Reply-To: <20260206-nvl-p-upstreaming-v3-0-636e1ad32688@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Cc: Gustavo Sousa <gustavo.sousa@intel.com>, 
- Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>, 
- Matt Roper <matthew.d.roper@intel.com>
+ Matt Roper <matthew.d.roper@intel.com>, 
+ Suraj Kandpal <suraj.kandpal@intel.com>
 X-Mailer: b4 0.15-dev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -100,32 +100,33 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
 	NEURAL_HAM(-0.00)[-0.999];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 1C2F3102053
+X-Rspamd-Queue-Id: B596010205A
 X-Rspamd-Action: no action
 
-From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+From: Matt Roper <matthew.d.roper@intel.com>
 
-The MOCS table for NVL-P is same as for Xe2/Xe3 platforms.
+Although NVL-S and NVL-P are quite different on the GT side, they use
+identical Xe3p_LPD display IP and should take all the same codepaths.
 
-Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_mocs.c | 1 +
+ drivers/gpu/drm/i915/display/intel_display_device.c | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
-index 54822497c21e..1d19df860bea 100644
---- a/drivers/gpu/drm/xe/xe_mocs.c
-+++ b/drivers/gpu/drm/xe/xe_mocs.c
-@@ -600,6 +600,7 @@ static unsigned int get_mocs_settings(struct xe_device *xe,
- 		info->wb_index = 4;
- 		info->unused_entries_index = 4;
- 		break;
-+	case XE_NOVALAKE_P:
- 	case XE_NOVALAKE_S:
- 	case XE_PANTHERLAKE:
- 	case XE_LUNARLAKE:
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+index 471f236c9ddf..1a7f3ca079e8 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.c
++++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+@@ -1500,6 +1500,7 @@ static const struct {
+ 	INTEL_PTL_IDS(INTEL_DISPLAY_DEVICE, &ptl_desc),
+ 	INTEL_WCL_IDS(INTEL_DISPLAY_DEVICE, &ptl_desc),
+ 	INTEL_NVLS_IDS(INTEL_DISPLAY_DEVICE, &nvl_desc),
++	INTEL_NVLP_IDS(INTEL_DISPLAY_DEVICE, &nvl_desc),
+ };
+ 
+ static const struct {
 
 -- 
 2.52.0
