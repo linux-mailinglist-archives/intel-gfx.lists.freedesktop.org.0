@@ -2,194 +2,148 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QM9BEzAThmk1JgQAu9opvQ
+	id GOMRFscehmm/JwQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 17:13:36 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 18:03:03 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B0BA10017C
-	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 17:13:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EE5C100AE7
+	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 18:03:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C343D10E834;
-	Fri,  6 Feb 2026 16:13:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C8BB10E039;
+	Fri,  6 Feb 2026 17:03:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="pxzmmWjw";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="orkqlvE9";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="EE5crKCo";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="P0Te8zeS";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="rMULjRcu";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from LO0P265CU003.outbound.protection.outlook.com
- (mail-uksouthazon11022093.outbound.protection.outlook.com [52.101.96.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5770610E834;
- Fri,  6 Feb 2026 16:13:32 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=g1i5O1CDvcvIIgA7RAWvbJ55iO2euUNEKv6Cx4qskfm4NrhD6xdQcZPF4s481qog4ZSjRnaL+f9jlrn7iChoxBVrtlEBhT4iSXuhSk9/s5/7+Rc44O6Xmt4OQNxNskbh7Y6rSvaqgnoZ6AhMdoYHWjSjw0KI1XeL/D2vxNHW8Yl+i3ZH1XT2hBTycy+eyPqnTh0PMlsXylEPNWolAQGKsUKJ3qFHoawxJKU0ao5NGauhwnO5Ag0jEmAC8MQkchDmOVoxL7BuUyLxaebfvp0TqVm9HtbIYo3tMe/a5RB0vuJsrFfeHDrEQ0ulL2hhsy2q+z+ml7tecCP/AeraKthZ5w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Kwg/Bj3YCXLxkqwlVHV6hoYjss9oBtGFg9qQi7DMymk=;
- b=U2eQ+MHJVf1Y07fDujMgveXe4lM7FHz9fryLhUmrsaWo3Npmu04TUjdGYuLyAStlV/906dO+PHVau9iVCBeWteP4RRegJpaH9Npm9M5Cegrv7szl7+IKFfwHxeRbRp9V6rYYnyJBfZeQEovzsmmqKZR4m6SxJVzXbZPtgnpi9l4uNWXEm2IvP1AoFLflpbRVFAf77AraocYPuuIe/XOlrYhoHhOOEra7po01YaTF0ltC3W0mNCqv6XnYWsDqwlU32j1o4K6RwtVeVXs/7hWGUz+QBMW0QZSo/t4seC0n71isGAQycug+oaik6Ps4vsw9eb3q+vR/EwLTusqPMTXEbw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
- dkim=pass header.d=garyguo.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Kwg/Bj3YCXLxkqwlVHV6hoYjss9oBtGFg9qQi7DMymk=;
- b=pxzmmWjwdjiprjPiyNVQSJaY3CIaKK0Lu4KS4iXL2CQxbPJbShH/gpEkH2J/hfNhguiBphvDMpUwtEhmk55U0bZiKTbK8SxtADW+M197EJuXy8/zoAXDVOcPaTXhicGEtjYMpXlTXeMrR4KQ2XRGophFm+Eq9ZddTmyVQE+5HM4=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=garyguo.net;
-Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:488::16)
- by CWLP265MB2018.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:6a::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.15; Fri, 6 Feb
- 2026 16:13:28 +0000
-Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1c3:ceba:21b4:9986]) by LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1c3:ceba:21b4:9986%5]) with mapi id 15.20.9564.016; Fri, 6 Feb 2026
- 16:13:28 +0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 06 Feb 2026 16:13:27 +0000
-Message-Id: <DG80FV3VTT6P.2ZP18EM8605GT@garyguo.net>
-Subject: Re: [PATCH -next v7 1/2] rust: clist: Add support to interface with
- C linked lists
-From: "Gary Guo" <gary@garyguo.net>
-To: "Joel Fernandes" <joelagnelf@nvidia.com>, "Danilo Krummrich"
- <dakr@kernel.org>, "Gary Guo" <gary@garyguo.net>
-Cc: <linux-kernel@vger.kernel.org>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
- <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Jonathan Corbet"
- <corbet@lwn.net>, "Alex Deucher" <alexander.deucher@amd.com>,
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, "Jani Nikula"
- <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
- <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
- "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang Rui" <ray.huang@amd.com>,
- "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
- <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Helge Deller" <deller@gmx.de>, "Alice Ryhl" <aliceryhl@google.com>,
- "Miguel Ojeda" <ojeda@kernel.org>, "Alex Gaynor" <alex.gaynor@gmail.com>,
- "Boqun Feng" <boqun.feng@gmail.com>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, "Benno Lossin" <lossin@kernel.org>, "Andreas
- Hindborg" <a.hindborg@kernel.org>, "Trevor Gross" <tmgross@umich.edu>,
- "John Hubbard" <jhubbard@nvidia.com>, "Alistair Popple"
- <apopple@nvidia.com>, "Timur Tabi" <ttabi@nvidia.com>, "Edwin Peer"
- <epeer@nvidia.com>, "Alexandre Courbot" <acourbot@nvidia.com>, "Andrea
- Righi" <arighi@nvidia.com>, "Andy Ritger" <aritger@nvidia.com>, "Zhi Wang"
- <zhiw@nvidia.com>, "Balbir Singh" <balbirs@nvidia.com>, "Philipp Stanner"
- <phasta@kernel.org>, "Elle Rhumsaa" <elle@weathered-steel.dev>, "Daniel
- Almeida" <daniel.almeida@collabora.com>, <joel@joelfernandes.org>,
- <nouveau@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <rust-for-linux@vger.kernel.org>, <linux-doc@vger.kernel.org>,
- <amd-gfx@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <linux-fbdev@vger.kernel.org>
-X-Mailer: aerc 0.21.0
-References: <20260206004110.1914814-1-joelagnelf@nvidia.com>
- <20260206004110.1914814-2-joelagnelf@nvidia.com>
- <DG7ZF1UT98RQ.3F42J3ULGV2OC@garyguo.net>
- <DG800TDA6OXQ.275PMMS19F1EX@kernel.org>
- <77ac3274-a962-469d-a2f6-6ccc0670988a@nvidia.com>
-In-Reply-To: <77ac3274-a962-469d-a2f6-6ccc0670988a@nvidia.com>
-X-ClientProxiedBy: LO4P265CA0172.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:312::15) To LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:488::16)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B28F10E039
+ for <intel-gfx@lists.freedesktop.org>; Fri,  6 Feb 2026 17:02:58 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id E4EAF5BCE3;
+ Fri,  6 Feb 2026 17:02:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1770397377; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=CUYqtP7ZgHQdQC5vBnzVZXDXwlg+QpNEKhaQm5ovGbg=;
+ b=orkqlvE9SwTuzg1vUY/b9kRBRSLpHcoYbkm9JOzNPXV3xUCu71jskW4VC6PYgISH5dAKeQ
+ GnxkepJWMc9d5s492frW0onGpnHzB+rf+OT0PoaQHLS9zG/MfhCdsTS6jTxddG2endGtrJ
+ 1XF6Cbi3kAHbaCBgf/9/TTJmGw1Khg4=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1770397377;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=CUYqtP7ZgHQdQC5vBnzVZXDXwlg+QpNEKhaQm5ovGbg=;
+ b=EE5crKCoft9WjyIsphFaJSVj0dj3WisFlTa44mrS3a0w9C5UIZO139v5AfnUvd8wFoAV/1
+ ijvnduHOW12+fhAw==
+Authentication-Results: smtp-out2.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1770397373; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=CUYqtP7ZgHQdQC5vBnzVZXDXwlg+QpNEKhaQm5ovGbg=;
+ b=P0Te8zeSLjKAlYkAT+2RbICPhrTFBetL7skyodk5FaxxibOH9vtxvMRNfPFjuWF/D3BvCO
+ Twi7tlKa2WiGRW6KQFw0PMJvt9zlPkCAmXE9SqS2hBuQwUn90qdevnQOf1MeWIHxKS8xjC
+ uYOazmxOURU4PzyXqg1pSF2T4sjAbr4=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1770397373;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=CUYqtP7ZgHQdQC5vBnzVZXDXwlg+QpNEKhaQm5ovGbg=;
+ b=rMULjRculEo3SDhtOcqpmQ/l0s6TQHipK7lfBzjVqqjjFBs2ZAH89Z4OkmL0BIHHr2y7hh
+ +YBebsQbhnf9GdDA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id B86A13EA63;
+ Fri,  6 Feb 2026 17:02:48 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id dUHUKbgehmmudQAAD6G6ig
+ (envelope-from <pfalcato@suse.de>); Fri, 06 Feb 2026 17:02:48 +0000
+Date: Fri, 6 Feb 2026 17:02:47 +0000
+From: Pedro Falcato <pfalcato@suse.de>
+To: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>, 
+ Jarkko Sakkinen <jarkko@kernel.org>, Dave Hansen <dave.hansen@linux.intel.com>,
+ Thomas Gleixner <tglx@kernel.org>, Ingo Molnar <mingo@redhat.com>,
+ Borislav Petkov <bp@alien8.de>, 
+ x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
+ Arnd Bergmann <arnd@arndb.de>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Dan Williams <dan.j.williams@intel.com>, 
+ Vishal Verma <vishal.l.verma@intel.com>, Dave Jiang <dave.jiang@intel.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Christian Koenig <christian.koenig@amd.com>, 
+ Huang Rui <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>, 
+ Matthew Brost <matthew.brost@intel.com>,
+ Alexander Viro <viro@zeniv.linux.org.uk>, 
+ Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
+ Benjamin LaHaise <bcrl@kvack.org>, 
+ Gao Xiang <xiang@kernel.org>, Chao Yu <chao@kernel.org>,
+ Yue Hu <zbestahu@gmail.com>, 
+ Jeffle Xu <jefflexu@linux.alibaba.com>, Sandeep Dhavale <dhavale@google.com>, 
+ Hongbo Li <lihongbo22@huawei.com>, Chunhai Guo <guochunhai@vivo.com>,
+ Theodore Ts'o <tytso@mit.edu>, 
+ Andreas Dilger <adilger.kernel@dilger.ca>, Muchun Song <muchun.song@linux.dev>,
+ Oscar Salvador <osalvador@suse.de>, David Hildenbrand <david@kernel.org>, 
+ Konstantin Komarov <almaz.alexandrovich@paragon-software.com>,
+ Mike Marshall <hubcap@omnibond.com>, 
+ Martin Brandenburg <martin@omnibond.com>, Tony Luck <tony.luck@intel.com>, 
+ Reinette Chatre <reinette.chatre@intel.com>, Dave Martin <Dave.Martin@arm.com>,
+ James Morse <james.morse@arm.com>, Babu Moger <babu.moger@amd.com>, 
+ Carlos Maiolino <cem@kernel.org>, Damien Le Moal <dlemoal@kernel.org>, 
+ Naohiro Aota <naohiro.aota@wdc.com>, Johannes Thumshirn <jth@kernel.org>, 
+ Matthew Wilcox <willy@infradead.org>,
+ "Liam R . Howlett" <Liam.Howlett@oracle.com>, 
+ Vlastimil Babka <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>, 
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
+ Hugh Dickins <hughd@google.com>, 
+ Baolin Wang <baolin.wang@linux.alibaba.com>, Zi Yan <ziy@nvidia.com>,
+ Nico Pache <npache@redhat.com>, 
+ Ryan Roberts <ryan.roberts@arm.com>, Dev Jain <dev.jain@arm.com>,
+ Barry Song <baohua@kernel.org>, 
+ Lance Yang <lance.yang@linux.dev>, Jann Horn <jannh@google.com>, 
+ David Howells <dhowells@redhat.com>, Paul Moore <paul@paul-moore.com>, 
+ James Morris <jmorris@namei.org>, "Serge E . Hallyn" <serge@hallyn.com>, 
+ Yury Norov <yury.norov@gmail.com>, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ linux-sgx@vger.kernel.org, linux-kernel@vger.kernel.org, nvdimm@lists.linux.dev,
+ linux-cxl@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, 
+ linux-fsdevel@vger.kernel.org, linux-aio@kvack.org,
+ linux-erofs@lists.ozlabs.org, 
+ linux-ext4@vger.kernel.org, linux-mm@kvack.org, ntfs3@lists.linux.dev, 
+ devel@lists.orangefs.org, linux-xfs@vger.kernel.org, keyrings@vger.kernel.org, 
+ linux-security-module@vger.kernel.org, Jason Gunthorpe <jgg@nvidia.com>
+Subject: Re: [PATCH v2 01/13] mm/vma: remove __private sparse decoration from
+ vma_flags_t
+Message-ID: <e3qrulshyfrqkpihfb7prx2xyp5sn37aobccihw6r7vwwj2zm2@fh56mijhhk3c>
+References: <cover.1769097829.git.lorenzo.stoakes@oracle.com>
+ <64fa89f416f22a60ae74cfff8fd565e7677be192.1769097829.git.lorenzo.stoakes@oracle.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|CWLP265MB2018:EE_
-X-MS-Office365-Filtering-Correlation-Id: ed152add-6b46-4b58-6969-08de659aa9f8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|7416014|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?bXFxV01Dcmc2MUxYRHpYcUI4RFo0amJha1BnNE0vZE5sdlFWWkZ0WU5xaUU1?=
- =?utf-8?B?MlRGNkcrcXZWa3Fjc2JKWjNjMFVUODRLdStrWGN5WXNJa05COXB2MmV0M0hD?=
- =?utf-8?B?TmZnY1h0RndXNFZUL21rcE9xRENqeGhoNEgxeFZuTllMbXJqK0dJZmxmMGly?=
- =?utf-8?B?VnptbHJVcUo4WC8zbElsZVRtUFNKWlZBYnkrZjNSbHZaZmVzZDV2Q0lFdzBH?=
- =?utf-8?B?S1lacGFycE1LM0hNYXhMblFCUFl3dkE5aC9iVmpOYVZjYVhLL2NGK0IxQlFY?=
- =?utf-8?B?Q3NWOThGRG9qbkE2MXdyemdQZ2ZwTk90THFvWCtOZVRvcmhBVGVoVVpmSXd5?=
- =?utf-8?B?WWp2bU9YU3VoWU5RY1dlaDJPUDRmbXo1ekhXUjNFRlc3WGwyV3E3dGQwUitE?=
- =?utf-8?B?MDR1YnhTL1o3RUVmd1Y2ZG9BNjhBalcyVWxSYWRDa1hHbHdKS280dk1iWkxW?=
- =?utf-8?B?RFYrQXlla0RjYmJVN1VjRXlQcDhycEVQU1NUUGNLcWxQbno3N1dwQk9INU8x?=
- =?utf-8?B?cEF6cmNMVFB6d213RzkvRmpWR2pMT1V3V2FqMjhaZlRjNXJhZGJzUWtnMmRM?=
- =?utf-8?B?QXBaT01aY1I5a0VVNnBiRTl1c2liNTE2S25NbW1Tc0FuUEZmT2dTTU9kMHFF?=
- =?utf-8?B?bHgrQk02UzJrT1hhWU9UcmoxVWVyWUpMVlFPNjQyQ1FyYjVaOTR6a3pVandS?=
- =?utf-8?B?NTJxNVIwQXhGeEUxVUc4WmlZbGlsczVlZHNwSWlycjBpT3hUL1JqQmpaUHMz?=
- =?utf-8?B?NERtK243ZCtqM3JDRTIvajY3dXVDZ3YxQmJscFMyTEw3SldOU1ViU3h4SEpi?=
- =?utf-8?B?LzZCc1c1cTZSbmpCUzRiM3JFMElxUjV2S2FkbGJtYnI0aUpxelhIYVdXLzlC?=
- =?utf-8?B?Nk01UitjSVlVem1teU42U2tWaDZaZHRHRFNqK1lGdXdBbXA4SEVaRUVHMTMx?=
- =?utf-8?B?R0p1QnNpUlVId3RZOGdoeHYvWmZFdGMvdzRIc1RQdDU5ZzR1NldPR2pQZ2lu?=
- =?utf-8?B?azRSSkxSZ1RWa28rSHZlM2IzdlcvWE1JVnkwcEx1L0F5bG9mb2xiYTAyWUdL?=
- =?utf-8?B?OUdldDF4WVRmak9yNXVSSVFSaGkrVVhzUVF5eGZvTStOcWJCS3lXYWlYK0VN?=
- =?utf-8?B?VkdGZGc2c3l4b2h4Z25tWmZCd0R0UFlwZEgyQ0dQVDNOVHpiUE9ac29DenBr?=
- =?utf-8?B?eDQ0VFdvdlZEeEdtdVNvTlZYWGhOclM1bHovU3RMWEF5WGUvN01NRk9vNXJK?=
- =?utf-8?B?aWdublJzMnNPeUpjRjBtMHA1U3N4bXFzUHp4Y043UTNBL3RFSnUvaXhhaUZL?=
- =?utf-8?B?a1hvZWxaVC9UVzVYbGlySVV1dDlhUHVXT1JGdnVkZDdrWGVhU3lmU1U2N3Zh?=
- =?utf-8?B?MFZHcXYzTndOR0dDQkZWTFUzZjZqanh5S25zTXVYTlZ1MEM2a2k5OWxXNzkw?=
- =?utf-8?B?OVZlQ3pQMm96MEVzMjloS1FxY1diRlB0YlJHUDhDL0pUeDhlMGpoYXR6ZWdk?=
- =?utf-8?B?TnNLNUR2TThHaEZ2dlVWK2dTSklVUmdnZ1o3bWE4NlpLTEVkVWtRaXBBeHB3?=
- =?utf-8?B?M2JsZ2UrUE0vQlJONUZqVWxXNjYzQ1g1QzZSMXBGSXpja2JLdUs3SWt0RS85?=
- =?utf-8?B?QlZUTnBzemV5UE5hc3kydS9EYjlsYmxCdmw2UWd0VVJsa2dFYkZFN0FFU3pl?=
- =?utf-8?B?Rk8vNjBzdFdGa2x3QmFEWENONTFHM1B1TFZjdWdBWVEvZjN4Zm1qOHVRZU5t?=
- =?utf-8?B?T0hZdzlYR1ZQYjF0cTBvWFdwL2UzdGhHSCtZNTA0czQrbnBjb2g3amZ0Q29o?=
- =?utf-8?B?WUs1c002d09tZWxyTWRvVjF5Sk9MY2x4MG04S3dGQXc5dW11MjRLRllsZ3A5?=
- =?utf-8?B?QTJKdTJWc3RRdjJ5SVNQZlZGTjVEbEdrVGlEdG5QOCtPdnRDYU9kdDRpOFUy?=
- =?utf-8?B?RzNRcGdxSDVpNzV1UE5Dakp2L2dqQzNNUC8rTndRWkhVUGk5a1k5NG1uWXJy?=
- =?utf-8?B?UXUyKzcxNVNTeEt2a0Fkb3QwUnlFKzROVERUUWE5VFNtcHVQWjlTb2kwLzNL?=
- =?utf-8?B?ZlczWHA0SW5FdHpSS3VyQzVQYWt1YmFibC8vUG9yM1BSYm93ZE1uSFdZdDl6?=
- =?utf-8?Q?QOCM=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(7416014)(376014)(1800799024); DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?V0xhNHVlRUdQd2ZDenJPcmR6N2FMejBhY1YzT0Q1OWJtbEZwZTh4a2hFUG90?=
- =?utf-8?B?VXdndXhPQUUyNHJxSktpY2lVODhUNjBjUVR0alpVdjZZOE8yWjVETmZPaHJ3?=
- =?utf-8?B?cStDUk1iWVo2amtvM3N3aDRtV3lPVHY2MFR5Q015NURoRzVQaDJmNkl0eWlO?=
- =?utf-8?B?a2t6K09NU2VEdDl3ZlcvVlJ6TjZ4ZFptVHBFNEFocGNlUDhkVnQvSDF6VFlV?=
- =?utf-8?B?YTVTdUNYMFRGOGN6dFVDTXQvWWF3bEcvanhYRGFteVo4Z212Y0xkKzZqd3or?=
- =?utf-8?B?VXZlOUdmZE5CSnJSV0h4ZEMyVHBNVldhUGxlaGt4aTBOQ24wNGNYSWlZUXZN?=
- =?utf-8?B?T2xKQWRVc0kyL2QxMGw2SjVpeGNiZU1PM3ROSW94L2x1bHBqL3RsUllNWjQx?=
- =?utf-8?B?bEsvR0tJdjBnUjZPTnVoOVVqc01DaC9vYlNCcjhSMHc2amEwWkZzQ2ZXekh6?=
- =?utf-8?B?ZVJRNnM0NzQ4bVVPQ0hINko3UzcvRWVUYlkwMHlXc1dNc1kyV1d3ZmZtSi9q?=
- =?utf-8?B?eXJhTi83Q1lsRktHZ0p6RzVpUC9OSCtna29BYlE1dC95Ky9xV2cxcm5ERG1y?=
- =?utf-8?B?ZHdhSHZZL2RNMm9ZMTRGSElPOHJWRjFoS3YyK3FBdG9KY2N4UmJyb0JKa096?=
- =?utf-8?B?VXpCbjdiZFd1TlBtRXQ2VnFISUdOWGRrdDhtak4xY3NvZE9pa1pSQkZVelBL?=
- =?utf-8?B?OEExS2dtNFQwY2h3cC81ZUhQblo1UllyYlNLUWtXVXRMOEREUTNuZ1NDZTJo?=
- =?utf-8?B?dFZMSHdFZ0tKVlNHREFnaDI0YnNTU25mRmlRamlzVnVmZHpMcGgza1JodXJB?=
- =?utf-8?B?MG1HOGJUQzk4SjBWY1ovU0UrN2FNQlFxdmluTHMxRU9WWXJuOEpiK2JwSnMv?=
- =?utf-8?B?US9ZbkxuTDBYakpHNHJWNjBzVHFMM1hsWkRveTZ4VmFwNWZwNnFtSWdFTWJT?=
- =?utf-8?B?L1Y4Q09ncmFSWEVRT1lvcGJpWlAvRW1jcFZlZVZTRGxudE5XcTRxeU5SaTJk?=
- =?utf-8?B?TGVSNzhLK05ZZk9qMk5wZVMwd3diZnVhWkNJOGpOY09WOFlYamlxTDhLUnYx?=
- =?utf-8?B?cnhwVkx1SlBwTmJQdEpmYjBCQXhoUWFKU2N0VjRkUkUyanNycGZ3T3dadlJE?=
- =?utf-8?B?a0xZZUpQSkQxOStnbml6ZHM1WHNKYXB2enIzZGxQZ1I5UHVIVjNIY2hlUG1F?=
- =?utf-8?B?S2VuUVF1V1hCSjBKVGRRZ0pvRXpnVFlPY3lrL2tlbjVVTmpWbG9VZFNubnBE?=
- =?utf-8?B?UERiWXZrQk5YRkRqNFpsZGF1RG5hVUJ4ZjFwRG9XVnhncTZnazVMUE5uN0JQ?=
- =?utf-8?B?cXdEaU1LRU8xRUVzMkpPNElCbTN1N1l5OGU2MDBDbUpkckh0V2hXZTlhYzB3?=
- =?utf-8?B?ZklLZGRSMzZxdlpxUWNBMytVUU1yMHpDeC9jR2pidUQ5cW9FVW1zdkJnb0VI?=
- =?utf-8?B?Tk5uVk5sSTRDeklKa2hzbHNPczd2cWlzVHUrbldqbUVMM3hPQ0tUVFVmRUIz?=
- =?utf-8?B?elh6NzUzdElySlJkdjNmOVZYbUFRRHpkbk80MVlTTWdWUkRIeWJqNVZ6TTl3?=
- =?utf-8?B?ZHJSLzF1N2RuUDhlaFNmM2gzMk9SaFpRaWZWcG9HK3FKZDMzZmlDRlpjcTRz?=
- =?utf-8?B?WW5mdEh5YUVwZWxVUjBwTHg2UENGQW9FdURzMWdyYmhsSmVJcGlwbG1WeCsx?=
- =?utf-8?B?RFBYeGdZdExGczNMVHBXMnI1VTlLTnRZcysrVkNiL0xGQXpYYnVXOUVKdkVy?=
- =?utf-8?B?ZU56ZG9ycEpOWWVvV2JKTFRXc21QeWdlVFVCbWQ1WUJpM3RTR2ozQjRUTm9S?=
- =?utf-8?B?d0dQbm9aOEhTOFZiZ3FGNFQ5VTAwSkREZ3VEeVZLWHhWU0FPNzF2NDNTT1ly?=
- =?utf-8?B?NVFEbkhUc2RkUm5Tdy9OYmZ4UlJoS3B3RG52VndmMjRPbDZ4K1dOZCtBT1NR?=
- =?utf-8?B?VDN6VU1zTERydGJSdlJBNnZqUlNhVDR0M25pdHFvcHk2T25zODhrQW1nT2hH?=
- =?utf-8?B?L1RreUppNElNQzFUKzh0TzY5ak5GeHR5bC9PTGM4ak5uWkUzU0pvS0VaSzVS?=
- =?utf-8?B?Y3EyWkl6Rmh5a1B1cUZuQWhWN1pOcEZwb1psdTZpS1Rib3Y5NzdpdmROb3Fy?=
- =?utf-8?B?dVdhSW5zbmRULzNQQnVPMUF0UEd5REt2ZWRhcVlsTnBPZHlaSnZ6OTFWOURu?=
- =?utf-8?B?Y2VrZ1ZkQ0FEbitWaWF2bWZlNGZZTndTWHhiemVWckNndDg2V0dtR1BINTBM?=
- =?utf-8?B?akxqRDJXRGh6R3BJQ2dqNVZ2Wm1CckxTYWVDeTJFaEh6R3NJbzY1ZVVTamRs?=
- =?utf-8?Q?GBsO+7/Bb0JycX+9Ak?=
-X-OriginatorOrg: garyguo.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: ed152add-6b46-4b58-6969-08de659aa9f8
-X-MS-Exchange-CrossTenant-AuthSource: LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2026 16:13:28.5461 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HmbBqhRocyqG7sZFTfIOcT4DbEOtYciyCSERzAzwhaLa8JQsYLTxK4jx30UBurd9W1m7VjaC0TdExmqJpEaRxg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWLP265MB2018
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <64fa89f416f22a60ae74cfff8fd565e7677be192.1769097829.git.lorenzo.stoakes@oracle.com>
+X-Spam-Score: -2.30
+X-Spam-Level: 
+X-Spam-Flag: NO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -205,90 +159,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [0.69 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[garyguo.net,none];
+	DMARC_POLICY_ALLOW(-0.50)[suse.de,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[garyguo.net:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,google.com,protonmail.com,umich.edu,nvidia.com,weathered-steel.dev,collabora.com,joelfernandes.org,lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[pfalcato@suse.de,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:lorenzo.stoakes@oracle.com,m:akpm@linux-foundation.org,m:jarkko@kernel.org,m:dave.hansen@linux.intel.com,m:tglx@kernel.org,m:mingo@redhat.com,m:bp@alien8.de,m:x86@kernel.org,m:hpa@zytor.com,m:arnd@arndb.de,m:gregkh@linuxfoundation.org,m:dan.j.williams@intel.com,m:vishal.l.verma@intel.com,m:dave.jiang@intel.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:christian.koenig@amd.com,m:ray.huang@amd.com,m:matthew.auld@intel.com,m:matthew.brost@intel.com,m:viro@zeniv.linux.org.uk,m:brauner@kernel.org,m:jack@suse.cz,m:bcrl@kvack.org,m:xiang@kernel.org,m:chao@kernel.org,m:zbestahu@gmail.com,m:jefflexu@linux.alibaba.com,m:dhavale@google.com,m:lihongbo22@huawei.com,m:guochunhai@vivo.com,m:tytso@mit.edu,m:adilger.kernel@dilger.ca,m:muchun.song@linux.dev,m:osalvador@suse.de,m:david@kern
+ el.org,m:almaz.alexandrovich@paragon-software.com,m:hubcap@omnibond.com,m:martin@omnibond.com,m:tony.luck@intel.com,m:reinette.chatre@intel.com,m:Dave.Martin@arm.com,m:james.morse@arm.com,m:babu.moger@amd.com,m:cem@kernel.org,m:dlemoal@kernel.org,m:naohiro.aota@wdc.com,m:jth@kernel.org,m:willy@infradead.org,m:Liam.Howlett@oracle.com,m:vbabka@suse.cz,m:rppt@kernel.org,m:surenb@google.com,m:mhocko@suse.com,m:hughd@google.com,m:baolin.wang@linux.alibaba.com,m:ziy@nvidia.com,m:npache@redhat.com,m:ryan.roberts@arm.com,m:dev.jain@arm.com,m:baohua@kernel.org,m:lance.yang@linux.dev,m:jannh@google.com,m:dhowells@redhat.com,m:paul@paul-moore.com,m:jmorris@namei.org,m:serge@hallyn.com,m:yury.norov@gmail.com,m:linux@rasmusvillemoes.dk,m:linux-sgx@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:nvdimm@lists.linux.dev,m:linux-cxl@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-fsdevel@vger.kernel.org,m:linux-aio@kvack.org,m:linux-erofs@lists.ozlabs.org,m:linux-ext4@vger.kernel.org,m:li
+ nux-mm@kvack.org,m:ntfs3@lists.linux.dev,m:devel@lists.orangefs.org,m:linux-xfs@vger.kernel.org,m:keyrings@vger.kernel.org,m:linux-security-module@vger.kernel.org,m:jgg@nvidia.com,s:lists@lfdr.de];
+	ARC_NA(0.00)[];
+	FREEMAIL_CC(0.00)[linux-foundation.org,kernel.org,linux.intel.com,redhat.com,alien8.de,zytor.com,arndb.de,linuxfoundation.org,intel.com,suse.de,gmail.com,ffwll.ch,ursulin.net,amd.com,zeniv.linux.org.uk,suse.cz,kvack.org,linux.alibaba.com,google.com,huawei.com,vivo.com,mit.edu,dilger.ca,linux.dev,paragon-software.com,omnibond.com,arm.com,wdc.com,infradead.org,oracle.com,suse.com,nvidia.com,paul-moore.com,namei.org,hallyn.com,rasmusvillemoes.dk,vger.kernel.org,lists.linux.dev,lists.freedesktop.org,lists.ozlabs.org,lists.orangefs.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[51];
-	FROM_NEQ_ENVFROM(0.00)[gary@garyguo.net,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[garyguo.net:+];
-	NEURAL_HAM(-0.00)[-0.999];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	RCPT_COUNT_GT_50(0.00)[93];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[pfalcato@suse.de,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[suse.de:+];
+	NEURAL_HAM(-0.00)[-0.998];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,garyguo.net:mid,garyguo.net:dkim]
-X-Rspamd-Queue-Id: 8B0BA10017C
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,suse.de:dkim,oracle.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 3EE5C100AE7
 X-Rspamd-Action: no action
 
-On Fri Feb 6, 2026 at 4:05 PM GMT, Joel Fernandes wrote:
->
->
-> On 2/6/2026 10:53 AM, Danilo Krummrich wrote:
->> On Fri Feb 6, 2026 at 4:25 PM CET, Gary Guo wrote:
->>> On Fri Feb 6, 2026 at 12:41 AM GMT, Joel Fernandes wrote:
->>>> diff --git a/drivers/gpu/Kconfig b/drivers/gpu/Kconfig
->>>> index 22dd29cd50b5..2c3dec070645 100644
->>>> --- a/drivers/gpu/Kconfig
->>>> +++ b/drivers/gpu/Kconfig
->>>> @@ -1,7 +1,14 @@
->>>>  # SPDX-License-Identifier: GPL-2.0
->>>> =20
->>>> +config RUST_CLIST
->>>> +	bool
->>>> +	depends on RUST
->>>> +	help
->>>> +	  Rust abstraction for interfacing with C linked lists.
->>>
->>> I am not sure if we need extra config entry. This is fully generic so s=
-houldn't
->>> generate any code unless there is an user.
->>=20
->> I also don't think we need a Kconfig for this.
->>=20
->> In any case, it shouln't be in drivers/gpu/Kconfig.
->
-> Fair point, I believe I was having trouble compiling this into the kernel=
- crate
-> without warnings (I believe if !GPU_BUDDY). I'll try to drop it and see i=
-f we
-> can get rid of it.
+On Thu, Jan 22, 2026 at 04:06:10PM +0000, Lorenzo Stoakes wrote:
+> We need to pass around these values and access them in a way that sparse
+> does not allow, as __private implies noderef, i.e. disallowing dereference
+> of the value, which manifests as sparse warnings even when passed around
+> benignly.
+> 
+> Signed-off-by: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
 
-If you run into dead code warnings, I think it is fine to just
+Reviewed-by: Pedro Falcato <pfalcato@suse.de>
 
-    #[allow(dead_code, reason =3D "all users might be cfg-ed out")]
-
-the overhead of just let rustc type-checking this module isn't worth the ex=
-tra
-Kconfig plumbing, I think.
-
-Best,
-Gary
-
->
->>=20
->>>> +
->>>>  config GPU_BUDDY
->>>>  	bool
->>>> +	select RUST_CLIST if RUST
->>=20
->> If we will have a Kconfig for this, this belongs in the GPU buddy patch.
->
-> You mean, in the GPU buddy bindings patch right? If so, yes, I will move =
-it there.
->
-> Thanks.
-
+-- 
+Pedro
