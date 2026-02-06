@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mGJGD/f1hWnHIgQAu9opvQ
+	id 0OuwBtX3hWnHIgQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 15:08:55 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 15:16:53 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1113FEA43
-	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 15:08:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A435FEB1D
+	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 15:16:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D67B110E7C2;
-	Fri,  6 Feb 2026 14:08:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3A2B10E7CD;
+	Fri,  6 Feb 2026 14:16:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="m4RMr14q";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="RqAG13Ki";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7621210E7B8;
- Fri,  6 Feb 2026 14:08:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 647AD10E7C3;
+ Fri,  6 Feb 2026 14:16:49 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 59BB960122;
- Fri,  6 Feb 2026 14:08:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 831ACC19421;
- Fri,  6 Feb 2026 14:08:48 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 50F406001A;
+ Fri,  6 Feb 2026 14:16:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 809F7C19422;
+ Fri,  6 Feb 2026 14:16:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1770386929;
- bh=+lIi82NYDZHy3722msFtnCnh1tdb9jn2hqegryuZsv4=;
+ s=k20201202; t=1770387408;
+ bh=MfIveAnEmTvNIhWdwWFVHgbqL0PUK4fowKip9CXPScQ=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=m4RMr14qRzstPqItXkr/5OrxYDpSQG71tOjhHOic63cYTk2SvrNErOgO5dHJfp3e+
- w7mK5YUkXGNJsdh25Qt6kj+8LUHS80HPi0P5lONF4st4Nco+/Sofu1DKJuGM4rIyVK
- ++miMRAzAaKZ+aYUde9ZK/SSUFkNgF7GDYMJGbJidLXVGRq/X/9SvV68gm3Mm1OolL
- UQxfwaFyVy1yBltxH4sPXnnMsuuaLmfTlQtUHylW1jIt+1zqA6J+LKbJolNgvTMPSR
- kCEyA7JrZKZFYDLSIcn+HvgY63cZPo4nIIpoFQ/M8EaON7rZbm/BPoEFaso2y0rDs2
- OB1otDCYh9zwQ==
-Date: Fri, 6 Feb 2026 15:08:46 +0100
+ b=RqAG13Ki/PxUK25l81q/gCxQQUhF5YZLzbsMjFAd9AD62JjQ0BP4KF/yQjIX1pCdj
+ GEaQc7Vw3zC0OiUbJZUYWogj3DZDZaY7ZHRZxuuEaT0F20SQkdBr6bqqoAZD6KXEmr
+ Wc6+06DvEl0ohNgz4FIOLKxMElgkIKBq/+RQI/LdpQlO9eZgvYsOPSJ4FML292n3gl
+ LyfPybUivMrshDxho9PbqZN6QpaabH12EvmoeDA0pkcYcKqBkqIB6MT6EeavTbEmVk
+ O3FEK0j8xWWU+OrFhnHZuetsvL99aeJAZPSb2JTanjNSNDGHESoZ35ZcvCaDeZkG6h
+ zZ586z4h/v/lQ==
+Date: Fri, 6 Feb 2026 15:16:45 +0100
 From: Maxime Ripard <mripard@kernel.org>
 To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
@@ -63,17 +63,17 @@ Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  linux-kernel@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-doc@vger.kernel.org, Marius Vlad <marius.vlad@collabora.com>
-Subject: Re: [PATCH v7 03/22] drm: Add enum conversions between
- DRM_COLOR_FORMAT and HDMI_COLORSPACE
-Message-ID: <20260206-angelic-crimson-bug-aaab40@houat>
+ linux-doc@vger.kernel.org
+Subject: Re: [PATCH v7 05/22] drm/display: hdmi-state-helper: Act on color
+ format DRM property
+Message-ID: <20260206-accurate-wealthy-badger-45b4a8@houat>
 References: <20260121-color-format-v7-0-ef790dae780c@collabora.com>
- <20260121-color-format-v7-3-ef790dae780c@collabora.com>
+ <20260121-color-format-v7-5-ef790dae780c@collabora.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="7kyo6gozxaybulie"
+ protocol="application/pgp-signature"; boundary="2cbwiwfic3gmdzk2"
 Content-Disposition: inline
-In-Reply-To: <20260121-color-format-v7-3-ef790dae780c@collabora.com>
+In-Reply-To: <20260121-color-format-v7-5-ef790dae780c@collabora.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,7 +104,7 @@ X-Spamd-Result: default: False [-1.41 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	ARC_NA(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[37];
+	RCPT_COUNT_TWELVE(0.00)[36];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,suse.de,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -117,117 +117,84 @@ X-Spamd-Result: default: False [-1.41 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: D1113FEA43
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,collabora.com:email]
+X-Rspamd-Queue-Id: 7A435FEB1D
 X-Rspamd-Action: no action
 
 
---7kyo6gozxaybulie
+--2cbwiwfic3gmdzk2
 Content-Type: text/plain; protected-headers=v1; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v7 03/22] drm: Add enum conversions between
- DRM_COLOR_FORMAT and HDMI_COLORSPACE
+Subject: Re: [PATCH v7 05/22] drm/display: hdmi-state-helper: Act on color
+ format DRM property
 MIME-Version: 1.0
 
-On Wed, Jan 21, 2026 at 03:45:10PM +0100, Nicolas Frattaroli wrote:
-> While the two enums have similar values, they're not identical, and
-> HDMI's enum is defined as per the HDMI standard.
+On Wed, Jan 21, 2026 at 03:45:12PM +0100, Nicolas Frattaroli wrote:
+> With the introduction of the "color format" DRM property, which allows
+> userspace to request a specific color format, the HDMI state helper
+> should implement this.
 >=20
-> Add a simple conversion function from DRM to HDMI. Unexpected inputs
-> aren't handled in any clever way, DRM_COLOR_FORMAT_AUTO and any other
-> value that doesn't cleanly map to HDMI just gets returned as
-> HDMI_COLORSPACE_RGB.
+> Implement it by checking whether the property is set and set to
+> something other than auto. If so, pass the requested color format, and
+> otherwise set RGB.
 >=20
-> Add a second conversion function that gets a DRM_COLOR_FORMAT from an
-> HDMI_COLORSPACE as well. In this case, reserved HDMI values that can't
-> be converted will result in an -EINVAL return value.
->=20
-> Co-developed-by: Marius Vlad <marius.vlad@collabora.com>
-> Signed-off-by: Marius Vlad <marius.vlad@collabora.com>
 > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 > ---
->  include/drm/drm_connector.h | 54 +++++++++++++++++++++++++++++++++++++++=
-++++++
->  1 file changed, 54 insertions(+)
+>  drivers/gpu/drm/display/drm_hdmi_state_helper.c | 12 +++++++++++-
+>  1 file changed, 11 insertions(+), 1 deletion(-)
 >=20
-> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-> index b5604dca728a..ffeb42f3b4a3 100644
-> --- a/include/drm/drm_connector.h
-> +++ b/include/drm/drm_connector.h
-> @@ -2612,6 +2612,60 @@ int drm_connector_attach_color_format_property(str=
-uct drm_connector *connector);
+> diff --git a/drivers/gpu/drm/display/drm_hdmi_state_helper.c b/drivers/gp=
+u/drm/display/drm_hdmi_state_helper.c
+> index a1d16762ac7a..1ea3b9c93aa5 100644
+> --- a/drivers/gpu/drm/display/drm_hdmi_state_helper.c
+> +++ b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
+> @@ -649,11 +649,21 @@ hdmi_compute_config(const struct drm_connector *con=
+nector,
+>  	unsigned int max_bpc =3D clamp_t(unsigned int,
+>  				       conn_state->max_bpc,
+>  				       8, connector->max_bpc);
+> +	enum hdmi_colorspace hdmi_colorspace =3D
+> +		drm_color_format_to_hdmi_colorspace(conn_state->color_format);
+>  	int ret;
 > =20
->  const char *drm_get_color_format_name(enum drm_color_format color_fmt);
-> =20
-> +/**
-> + * drm_color_format_to_hdmi_colorspace - convert DRM color format to HDMI
-> + * @fmt: the &enum drm_color_format to convert
-> + *
-> + * Convert a given &enum drm_color_format to an equivalent
-> + * &enum hdmi_colorspace. For non-representable values and
-> + * %DRM_COLOR_FORMAT_AUTO, the value %HDMI_COLORSPACE_RGB is returned.
-> + *
-> + * Returns: the corresponding &enum hdmi_colorspace value
-> + */
-> +static inline enum hdmi_colorspace __pure
-> +drm_color_format_to_hdmi_colorspace(enum drm_color_format fmt)
-> +{
-> +	switch (fmt) {
-> +	default:
-> +	case DRM_COLOR_FORMAT_AUTO:
-> +	case DRM_COLOR_FORMAT_RGB444:
-> +		return HDMI_COLORSPACE_RGB;
+>  	ret =3D hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc,
+> -				      HDMI_COLORSPACE_RGB);
+> +				      hdmi_colorspace);
 
-I don't think that's correct. What auto ends up as totally depends on
-the atomic state it comes with.
+I still think we shoud be more explicit there, with something like
 
-At the very least, you should output a warning there, because that case
-should never happen.
+if (conn_state->color_format !=3D DRM_COLOR_FORMAT_AUTO) {
+	return hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc, drm_c=
+olor_format_to_hdmi_colorspace(conn_state->color_format))
+}
 
-> +	case DRM_COLOR_FORMAT_YCBCR444:
-> +		return HDMI_COLORSPACE_YUV444;
-> +	case DRM_COLOR_FORMAT_YCBCR422:
-> +		return HDMI_COLORSPACE_YUV422;
-> +	case DRM_COLOR_FORMAT_YCBCR420:
-> +		return HDMI_COLORSPACE_YUV420;
-> +	}
-> +}
-> +
-> +/**
-> + * drm_color_format_from_hdmi_colorspace - convert HDMI color format to =
-DRM
-> + * @fmt: the &enum hdmi_colorspace to convert
-> + *
-> + * Convert a given &enum hdmi_colorspace to an equivalent
-> + * &enum drm_color_format. For non-representable values,
-> + * %-EINVAL is returned.
-> + *
-> + * Returns: the corresponding &enum drm_color_format value, or %-EINVAL
-> + */
-> +static inline enum drm_color_format __pure
-> +drm_color_format_from_hdmi_colorspace(enum hdmi_colorspace fmt)
-> +{
-> +	switch (fmt) {
-> +	default:
-> +		return -EINVAL;
+ret =3D hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc,
+    			      HDMI_COLORSPACE_RGB);
 
-Wait, what?
+Otherwise, it's pretty easy to get confused between the behaviour
+drm_color_format_to_hdmi_colorspace() to return RGB when it get AUTO...
 
--EINVAL is not a valid value for your enum.
+>  	if (ret) {
+> +		/* If a color format was explicitly requested, don't fall back */
+> +		if (conn_state->color_format) {
+
+=2E.. or that auto is actually 0 in that enum.
+
+Or between the auto and non-auto code path.
 
 Maxime
 
---7kyo6gozxaybulie
+--2cbwiwfic3gmdzk2
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaYX17QAKCRAnX84Zoj2+
-dhqKAX9uCw/1iLG+7nCh7iWCwrhqxfm0JVwIRRQh/zjRf8Wet9GKZ9b66ZGwYC8M
-tXJZuowBgKH3e2XNrltRlENhX1pPWeDhYlezTP12g5E34y5OGMYep2YcNBUO0/Ck
-6YOwGJvwTQ==
-=PPqS
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaYX3zAAKCRAnX84Zoj2+
+drVqAYD2nzrDJAH0F0tKkx6Xcr+H2Zmy7gmPm/i9E/xOmEWV2OyB+eO07FcK6njD
+RjLDZpQBgMFQ9IdOGUZJR8znQp3cHRX9Aenj9f8l6mh6cJupKXlHogjQrki2a8Ft
+pLSQR3GN1A==
+=LCPG
 -----END PGP SIGNATURE-----
 
---7kyo6gozxaybulie--
+--2cbwiwfic3gmdzk2--
