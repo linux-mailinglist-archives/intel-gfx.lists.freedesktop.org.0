@@ -2,64 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gPseFQjbhWnfHQQAu9opvQ
+	id wApWLwrbhWnfHQQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 13:14:00 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 13:14:02 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3305FD804
-	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 13:13:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59829FD80D
+	for <lists+intel-gfx@lfdr.de>; Fri, 06 Feb 2026 13:14:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3752510E78A;
-	Fri,  6 Feb 2026 12:13:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B867710E773;
+	Fri,  6 Feb 2026 12:14:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JjhyfZPS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PBRzYj+1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F35C10E76E;
- Fri,  6 Feb 2026 12:13:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC71D10E773;
+ Fri,  6 Feb 2026 12:13:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770380036; x=1801916036;
+ t=1770380040; x=1801916040;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=nXw+13i6C63CY4x5I5cKGIj6fDkMnzxy20BPjavbzi8=;
- b=JjhyfZPSv2/9qAx3zt0YV156p4TSOTEV/yBQ1cbdCjDoyOQycWgz6uFP
- Lf+V8C3BnDajT9n1LjtrHNHh9l0ewkbgkpytobYcqBHdd9jhAcVoaY+S5
- BdDPYe28NsLTzBHu5cULb/SZ9RIn0Ir5F0bTswE5YibEuV9HBE4Le0ngU
- VCMPEZ0RiV/gLh5ATfrzuHpxjsu+anA2/OY/1H6em5m2HEm69Dut/cVeq
- uf9n+RJVe//3LnhNVscKbJ55ksQlOfbhgwPUygUKtUpcbFsPDOBUDdc4h
- 6YJU7BY6qHa/rzGxp5M8ck1KBebFJF9rg0uIwKjw5LddZmh69yTlsrcu9 w==;
-X-CSE-ConnectionGUID: p+PejppvQsuh0Z/BDKjnxQ==
-X-CSE-MsgGUID: /BqEfmoCQIOTvhlzB2APOQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11692"; a="71765193"
-X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; d="scan'208";a="71765193"
+ bh=1ztLI4bsY+8OI8X3uH0La9QWBnTS4nqY5RJHs/7VpYQ=;
+ b=PBRzYj+1catmbzyc0GUqADdzYtWsjc/MFa6FRtTjhg9JSuVfHYZUEYrl
+ m+HzM61ajfe6ytKgfnEbaIGfwMqmViIfvv7MsGGx/G8o+OPuogeH73kYj
+ R8uFZVTOsPqdUNxn8P7PlrCjxM27K90zCy3LoLvR0+n8Gi67+w3kfcm+l
+ uhZztVpX/40n+snjJ4RSzQYQ3ey73+LKO8NR/5uVF1EKFQyzp/EwNXsPf
+ 5YwBkLZQo+fQRE4kTj5cwZmv6x23JZMHyoXTJVkHiD3bMW75DCZK193N6
+ JRCJlUN/4zDYLylLjTk+fL3JCJzOvJp6TpPW1pu65o4zLOobUidB8yLoS g==;
+X-CSE-ConnectionGUID: OOytwKFiS9W5G4vAPfbHqA==
+X-CSE-MsgGUID: N21NUSYYSyipOmHdSdUxtg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11692"; a="71765201"
+X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; d="scan'208";a="71765201"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2026 04:13:56 -0800
-X-CSE-ConnectionGUID: dmDV+7g3T9Kqmz/DXRTShg==
-X-CSE-MsgGUID: dvJopXOdQFq5ruR55LJWoA==
+ 06 Feb 2026 04:14:00 -0800
+X-CSE-ConnectionGUID: lJDpVIx+TD6Z2GAD+zOePg==
+X-CSE-MsgGUID: d4rFnQW3TxWI124iLPmDkg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; d="scan'208";a="248472610"
+X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; d="scan'208";a="248472615"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.129])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2026 04:13:54 -0800
+ 06 Feb 2026 04:13:58 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 04/10] drm/i915/dpt: move suspend/resume to parent interface
-Date: Fri,  6 Feb 2026 14:13:25 +0200
-Message-ID: <5ad157d505f29f72517a7b73c93d5f9876b96fb3.1770379986.git.jani.nikula@intel.com>
+Subject: [PATCH 05/10] drm/i915/dpt: remove display/intel_dpt.h
+Date: Fri,  6 Feb 2026 14:13:26 +0200
+Message-ID: <cf5e28649d145ca9c41ad49a9b3920d60fa8b8bf.1770379986.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1770379986.git.jani.nikula@intel.com>
 References: <cover.1770379986.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -76,322 +77,150 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[intel.com:+];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	HAS_ORG_HEADER(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_THREE(0.00)[3];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	TO_DN_NONE(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: E3305FD804
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 59829FD80D
 X-Rspamd-Action: no action
 
-Add per-vm DPT suspend/resume calls to the display parent interface, and
-lift the generic code away from i915 specific code.
+The remaining functions declared in intel_dpt.h are i915 specific, and
+so are the users, so we can move them to i915_dpt.h. There are some
+useless intel_dpt.h includes around that we can remove.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dpt.h      |  3 -
- .../gpu/drm/i915/display/intel_dpt_common.c   | 59 +++++++++++++++
- .../gpu/drm/i915/display/intel_dpt_common.h   |  3 +
- drivers/gpu/drm/i915/display/intel_parent.c   | 12 ++++
- drivers/gpu/drm/i915/display/intel_parent.h   |  2 +
- drivers/gpu/drm/i915/i915_dpt.c               | 72 ++++---------------
- drivers/gpu/drm/i915/i915_driver.c            |  2 +-
- include/drm/intel/display_parent_interface.h  |  2 +
- 8 files changed, 91 insertions(+), 64 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c  |  1 -
+ drivers/gpu/drm/i915/display/intel_dpt.h      | 19 -------------------
+ drivers/gpu/drm/i915/display/intel_fb_pin.c   |  2 +-
+ .../drm/i915/display/skl_universal_plane.c    |  1 -
+ drivers/gpu/drm/i915/i915_dpt.c               |  2 +-
+ drivers/gpu/drm/i915/i915_dpt.h               | 10 ++++++++++
+ 6 files changed, 12 insertions(+), 23 deletions(-)
+ delete mode 100644 drivers/gpu/drm/i915/display/intel_dpt.h
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 295f14416be7..6df7593c29d5 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -85,7 +85,6 @@
+ #include "intel_dp_tunnel.h"
+ #include "intel_dpll.h"
+ #include "intel_dpll_mgr.h"
+-#include "intel_dpt.h"
+ #include "intel_dpt_common.h"
+ #include "intel_drrs.h"
+ #include "intel_dsb.h"
 diff --git a/drivers/gpu/drm/i915/display/intel_dpt.h b/drivers/gpu/drm/i915/display/intel_dpt.h
-index e05b3a716310..0482af43e946 100644
+deleted file mode 100644
+index 0482af43e946..000000000000
 --- a/drivers/gpu/drm/i915/display/intel_dpt.h
-+++ b/drivers/gpu/drm/i915/display/intel_dpt.h
-@@ -10,13 +10,10 @@
- 
- struct i915_address_space;
- struct i915_vma;
--struct intel_display;
- 
- struct i915_vma *intel_dpt_pin_to_ggtt(struct i915_address_space *vm,
- 				       unsigned int alignment);
- void intel_dpt_unpin_from_ggtt(struct i915_address_space *vm);
--void intel_dpt_suspend(struct intel_display *display);
--void intel_dpt_resume(struct intel_display *display);
- u64 intel_dpt_offset(struct i915_vma *dpt_vma);
- 
- #endif /* __INTEL_DPT_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_dpt_common.c b/drivers/gpu/drm/i915/display/intel_dpt_common.c
-index 5eb88d51dba1..6551318b037b 100644
---- a/drivers/gpu/drm/i915/display/intel_dpt_common.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpt_common.c
-@@ -7,6 +7,7 @@
++++ /dev/null
+@@ -1,19 +0,0 @@
+-/* SPDX-License-Identifier: MIT */
+-/*
+- * Copyright © 2021 Intel Corporation
+- */
+-
+-#ifndef __INTEL_DPT_H__
+-#define __INTEL_DPT_H__
+-
+-#include <linux/types.h>
+-
+-struct i915_address_space;
+-struct i915_vma;
+-
+-struct i915_vma *intel_dpt_pin_to_ggtt(struct i915_address_space *vm,
+-				       unsigned int alignment);
+-void intel_dpt_unpin_from_ggtt(struct i915_address_space *vm);
+-u64 intel_dpt_offset(struct i915_vma *dpt_vma);
+-
+-#endif /* __INTEL_DPT_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+index 7249b784fbba..5d4ae8be5ca6 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
++++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+@@ -17,7 +17,7 @@
+ #include "intel_display_core.h"
+ #include "intel_display_rpm.h"
+ #include "intel_display_types.h"
+-#include "intel_dpt.h"
++#include "i915_dpt.h"
+ #include "intel_fb.h"
+ #include "intel_fb_pin.h"
+ #include "intel_plane.h"
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 746e942cafd2..677f1339b7f8 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -17,7 +17,6 @@
  #include "intel_display_regs.h"
  #include "intel_display_types.h"
- #include "intel_dpt_common.h"
-+#include "intel_parent.h"
- #include "skl_universal_plane_regs.h"
- 
- void intel_dpt_configure(struct intel_crtc *crtc)
-@@ -33,3 +34,61 @@ void intel_dpt_configure(struct intel_crtc *crtc)
- 			     CHICKEN_MISC_DISABLE_DPT);
- 	}
- }
-+
-+/**
-+ * intel_dpt_suspend - suspend the memory mapping for all DPT FBs during system suspend
-+ * @display: display device instance
-+ *
-+ * Suspend the memory mapping during system suspend for all framebuffers which
-+ * are mapped to HW via a GGTT->DPT page table.
-+ *
-+ * This function must be called before the mappings in GGTT are suspended calling
-+ * i915_ggtt_suspend().
-+ */
-+void intel_dpt_suspend(struct intel_display *display)
-+{
-+	struct drm_framebuffer *drm_fb;
-+
-+	if (!HAS_DISPLAY(display))
-+		return;
-+
-+	mutex_lock(&display->drm->mode_config.fb_lock);
-+
-+	drm_for_each_fb(drm_fb, display->drm) {
-+		struct intel_framebuffer *fb = to_intel_framebuffer(drm_fb);
-+
-+		if (fb->dpt_vm)
-+			intel_parent_dpt_suspend(display, fb->dpt_vm);
-+	}
-+
-+	mutex_unlock(&display->drm->mode_config.fb_lock);
-+}
-+
-+/**
-+ * intel_dpt_resume - restore the memory mapping for all DPT FBs during system resume
-+ * @display: display device instance
-+ *
-+ * Restore the memory mapping during system resume for all framebuffers which
-+ * are mapped to HW via a GGTT->DPT page table. The content of these page
-+ * tables are not stored in the hibernation image during S4 and S3RST->S4
-+ * transitions, so here we reprogram the PTE entries in those tables.
-+ *
-+ * This function must be called after the mappings in GGTT have been restored calling
-+ * i915_ggtt_resume().
-+ */
-+void intel_dpt_resume(struct intel_display *display)
-+{
-+	struct drm_framebuffer *drm_fb;
-+
-+	if (!HAS_DISPLAY(display))
-+		return;
-+
-+	mutex_lock(&display->drm->mode_config.fb_lock);
-+	drm_for_each_fb(drm_fb, display->drm) {
-+		struct intel_framebuffer *fb = to_intel_framebuffer(drm_fb);
-+
-+		if (fb->dpt_vm)
-+			intel_parent_dpt_resume(display, fb->dpt_vm);
-+	}
-+	mutex_unlock(&display->drm->mode_config.fb_lock);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_dpt_common.h b/drivers/gpu/drm/i915/display/intel_dpt_common.h
-index 6d7de405126a..11bd495693b2 100644
---- a/drivers/gpu/drm/i915/display/intel_dpt_common.h
-+++ b/drivers/gpu/drm/i915/display/intel_dpt_common.h
-@@ -7,7 +7,10 @@
- #define __INTEL_DPT_COMMON_H__
- 
- struct intel_crtc;
-+struct intel_display;
- 
- void intel_dpt_configure(struct intel_crtc *crtc);
-+void intel_dpt_suspend(struct intel_display *display);
-+void intel_dpt_resume(struct intel_display *display);
- 
- #endif /* __INTEL_DPT_COMMON_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_parent.c b/drivers/gpu/drm/i915/display/intel_parent.c
-index c43e3518a139..a79ea775bde2 100644
---- a/drivers/gpu/drm/i915/display/intel_parent.c
-+++ b/drivers/gpu/drm/i915/display/intel_parent.c
-@@ -40,6 +40,18 @@ void intel_parent_dpt_destroy(struct intel_display *display, struct i915_address
- 		display->parent->dpt->destroy(vm);
- }
- 
-+void intel_parent_dpt_suspend(struct intel_display *display, struct i915_address_space *vm)
-+{
-+	if (display->parent->dpt)
-+		display->parent->dpt->suspend(vm);
-+}
-+
-+void intel_parent_dpt_resume(struct intel_display *display, struct i915_address_space *vm)
-+{
-+	if (display->parent->dpt)
-+		display->parent->dpt->resume(vm);
-+}
-+
- /* hdcp */
- ssize_t intel_parent_hdcp_gsc_msg_send(struct intel_display *display,
- 				       struct intel_hdcp_gsc_context *gsc_context,
-diff --git a/drivers/gpu/drm/i915/display/intel_parent.h b/drivers/gpu/drm/i915/display/intel_parent.h
-index 88860e471a0d..be577ce10c21 100644
---- a/drivers/gpu/drm/i915/display/intel_parent.h
-+++ b/drivers/gpu/drm/i915/display/intel_parent.h
-@@ -20,6 +20,8 @@ struct i915_address_space *intel_parent_dpt_create(struct intel_display *display
- 						   struct drm_gem_object *obj,
- 						   size_t size);
- void intel_parent_dpt_destroy(struct intel_display *display, struct i915_address_space *vm);
-+void intel_parent_dpt_suspend(struct intel_display *display, struct i915_address_space *vm);
-+void intel_parent_dpt_resume(struct intel_display *display, struct i915_address_space *vm);
- 
- /* hdcp */
- ssize_t intel_parent_hdcp_gsc_msg_send(struct intel_display *display,
+ #include "intel_display_utils.h"
+-#include "intel_dpt.h"
+ #include "intel_fb.h"
+ #include "intel_fbc.h"
+ #include "intel_frontbuffer.h"
 diff --git a/drivers/gpu/drm/i915/i915_dpt.c b/drivers/gpu/drm/i915/i915_dpt.c
-index 143929a84b62..28300ef898f6 100644
+index 28300ef898f6..597890649285 100644
 --- a/drivers/gpu/drm/i915/i915_dpt.c
 +++ b/drivers/gpu/drm/i915/i915_dpt.c
-@@ -8,9 +8,7 @@
+@@ -8,12 +8,12 @@
  
  #include "display/intel_display_core.h"
  #include "display/intel_display_rpm.h"
--#include "display/intel_display_types.h"
- #include "display/intel_dpt.h"
--#include "display/intel_fb.h"
+-#include "display/intel_dpt.h"
  #include "gem/i915_gem_domain.h"
  #include "gem/i915_gem_internal.h"
  #include "gem/i915_gem_lmem.h"
-@@ -185,64 +183,6 @@ void intel_dpt_unpin_from_ggtt(struct i915_address_space *vm)
- 	i915_vma_put(dpt->vma);
- }
+ #include "gt/gen8_ppgtt.h"
  
--/**
-- * intel_dpt_resume - restore the memory mapping for all DPT FBs during system resume
-- * @display: display device instance
-- *
-- * Restore the memory mapping during system resume for all framebuffers which
-- * are mapped to HW via a GGTT->DPT page table. The content of these page
-- * tables are not stored in the hibernation image during S4 and S3RST->S4
-- * transitions, so here we reprogram the PTE entries in those tables.
-- *
-- * This function must be called after the mappings in GGTT have been restored calling
-- * i915_ggtt_resume().
-- */
--void intel_dpt_resume(struct intel_display *display)
--{
--	struct drm_framebuffer *drm_fb;
--
--	if (!HAS_DISPLAY(display))
--		return;
--
--	mutex_lock(&display->drm->mode_config.fb_lock);
--	drm_for_each_fb(drm_fb, display->drm) {
--		struct intel_framebuffer *fb = to_intel_framebuffer(drm_fb);
--
--		if (fb->dpt_vm)
--			i915_ggtt_resume_vm(fb->dpt_vm, true);
--	}
--	mutex_unlock(&display->drm->mode_config.fb_lock);
--}
--
--/**
-- * intel_dpt_suspend - suspend the memory mapping for all DPT FBs during system suspend
-- * @display: display device instance
-- *
-- * Suspend the memory mapping during system suspend for all framebuffers which
-- * are mapped to HW via a GGTT->DPT page table.
-- *
-- * This function must be called before the mappings in GGTT are suspended calling
-- * i915_ggtt_suspend().
-- */
--void intel_dpt_suspend(struct intel_display *display)
--{
--	struct drm_framebuffer *drm_fb;
--
--	if (!HAS_DISPLAY(display))
--		return;
--
--	mutex_lock(&display->drm->mode_config.fb_lock);
--
--	drm_for_each_fb(drm_fb, display->drm) {
--		struct intel_framebuffer *fb = to_intel_framebuffer(drm_fb);
--
--		if (fb->dpt_vm)
--			i915_ggtt_suspend_vm(fb->dpt_vm, true);
--	}
--
--	mutex_unlock(&display->drm->mode_config.fb_lock);
--}
--
- static struct i915_address_space *i915_dpt_create(struct drm_gem_object *obj, size_t size)
- {
- 	struct drm_i915_private *i915 = to_i915(obj->dev);
-@@ -316,6 +256,16 @@ static void i915_dpt_destroy(struct i915_address_space *vm)
- 	i915_vm_put(&dpt->vm);
- }
++#include "i915_dpt.h"
+ #include "i915_drv.h"
  
-+static void i915_dpt_suspend(struct i915_address_space *vm)
-+{
-+	i915_ggtt_suspend_vm(vm, true);
-+}
+ struct i915_dpt {
+diff --git a/drivers/gpu/drm/i915/i915_dpt.h b/drivers/gpu/drm/i915/i915_dpt.h
+index 494cd4af3bcd..9b765bc8d88b 100644
+--- a/drivers/gpu/drm/i915/i915_dpt.h
++++ b/drivers/gpu/drm/i915/i915_dpt.h
+@@ -4,6 +4,16 @@
+ #ifndef __I915_DPT_H__
+ #define __I915_DPT_H__
+ 
++#include <linux/types.h>
 +
-+static void i915_dpt_resume(struct i915_address_space *vm)
-+{
-+	i915_ggtt_resume_vm(vm, true);
-+}
++struct i915_address_space;
++struct i915_vma;
 +
- u64 intel_dpt_offset(struct i915_vma *dpt_vma)
- {
- 	return i915_vma_offset(dpt_vma);
-@@ -324,4 +274,6 @@ u64 intel_dpt_offset(struct i915_vma *dpt_vma)
- const struct intel_display_dpt_interface i915_display_dpt_interface = {
- 	.create = i915_dpt_create,
- 	.destroy = i915_dpt_destroy,
-+	.suspend = i915_dpt_suspend,
-+	.resume = i915_dpt_resume,
- };
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index d4f71d02b90e..e1c73f626b32 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -58,7 +58,7 @@
- #include "display/intel_display_power.h"
- #include "display/intel_dmc.h"
- #include "display/intel_dp.h"
--#include "display/intel_dpt.h"
-+#include "display/intel_dpt_common.h"
- #include "display/intel_dram.h"
- #include "display/intel_encoder.h"
- #include "display/intel_fbdev.h"
-diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/intel/display_parent_interface.h
-index 48abbe187d61..2af4d6e99fd0 100644
---- a/include/drm/intel/display_parent_interface.h
-+++ b/include/drm/intel/display_parent_interface.h
-@@ -27,6 +27,8 @@ struct ref_tracker;
- struct intel_display_dpt_interface {
- 	struct i915_address_space *(*create)(struct drm_gem_object *obj, size_t size);
- 	void (*destroy)(struct i915_address_space *vm);
-+	void (*suspend)(struct i915_address_space *vm);
-+	void (*resume)(struct i915_address_space *vm);
- };
++struct i915_vma *intel_dpt_pin_to_ggtt(struct i915_address_space *vm,
++				       unsigned int alignment);
++void intel_dpt_unpin_from_ggtt(struct i915_address_space *vm);
++u64 intel_dpt_offset(struct i915_vma *dpt_vma);
++
+ extern const struct intel_display_dpt_interface i915_display_dpt_interface;
  
- struct intel_display_dsb_interface {
+ #endif /* __I915_DPT_H__ */
 -- 
 2.47.3
 
