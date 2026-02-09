@@ -2,69 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mFSDIcNPimmbJQAAu9opvQ
+	id DH3VKV1TimkVJgAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 09 Feb 2026 22:21:07 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 09 Feb 2026 22:36:29 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3399F114BA1
-	for <lists+intel-gfx@lfdr.de>; Mon, 09 Feb 2026 22:21:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE60F114D47
+	for <lists+intel-gfx@lfdr.de>; Mon, 09 Feb 2026 22:36:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E979E10E47D;
-	Mon,  9 Feb 2026 21:21:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D866B10E487;
+	Mon,  9 Feb 2026 21:36:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EHIHbUpk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LOevZWvx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B4A010E380;
- Mon,  9 Feb 2026 21:21:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B807910E48C
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 Feb 2026 21:36:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770672062; x=1802208062;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=Tl0X3h0YbIbrMYP/4PSqqKr9YSUO3iCbUFP9QAlD560=;
- b=EHIHbUpkELesNW0XQHtGAGBpgTXtoPVCW6ErcgmBUlFYol8S4GPPkyRm
- 2CsTcD/PwBIJ/vyAPZvkI3AS90UKtfnDxClNWCxQ+unvd6Licrx1z6YrV
- 0i2WpkBv6jbY6Z4sBcaYCZktDsV6XVCTiH8XWsZdBEN/Npy8qADnVPxPv
- LWbhwbI6npcF5VLU2Tn5ACMO/yU18YcjuSek4vIj1QMGruwgIHxXBWE02
- E5vWIneKG0Xt1PTaFP0t59s/2GlnlEq9pqVszyd3AlECO0zoRFPVTr8eM
- oUIeC3pCVdkRq09tOurp34fKpQJcaxSHPaJWwCSrwZ4DKzKckVwwMru8y A==;
-X-CSE-ConnectionGUID: QvLPGNb5S3Og5RsbxHzJDg==
-X-CSE-MsgGUID: gxHYbrXiT2qGwnGUICVdwQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11696"; a="71004177"
-X-IronPort-AV: E=Sophos;i="6.21,282,1763452800"; d="scan'208";a="71004177"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2026 13:21:02 -0800
-X-CSE-ConnectionGUID: qiJVag5sQhC/4fsrAuP8CQ==
-X-CSE-MsgGUID: 2EiX+7RgRAOpeh1o1+No/Q==
+ t=1770672986; x=1802208986;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=B7zWMBdW0vuIA3s2CMPBL89ClFEcBZA32+3kedOPXzQ=;
+ b=LOevZWvx5ZiZ33hfG0cRC/g9Pd1UDXjG/kBqvgGReej27YHAw+3ji7+J
+ jC3W+LEg97V541r+jR7AaHY/lb125Kj8M1zUHXjFjdeRIRr0diWuAi3Lz
+ 1zryeRFVpzK51p9W85NobeXCogL7ZAxh4wsOOueoFPevKJk4CDhS7M1MU
+ YH9Iql3GC/XE2RKf+YVLqRUeyL7Am8IaT2PXulzrmxPd1NoCZrZb+Yu4S
+ sL8AEhTDgsZcE460YmSzbxD4nTmUR2S09zjxqtyTbLZGGIlfo8bDY9wjO
+ Wf2Ec0GhM38Ye7E+Hj2cqhlJh5V5E5nKdk3v3kuIJLL5LkY3++edt8tQ+ Q==;
+X-CSE-ConnectionGUID: pSZ19lc6SlSey8HqO5uh9g==
+X-CSE-MsgGUID: G3BaJRwHS7KAyxziRRaWRA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11696"; a="94437725"
+X-IronPort-AV: E=Sophos;i="6.21,282,1763452800"; d="scan'208";a="94437725"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2026 13:36:26 -0800
+X-CSE-ConnectionGUID: FggtMy2sTGixJgVWnf0rpQ==
+X-CSE-MsgGUID: O9rdubmoTJuSBiayNvWCtw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,282,1763452800"; d="scan'208";a="211714482"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
- by orviesa008.jf.intel.com with ESMTP; 09 Feb 2026 13:21:00 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1vpYgj-00000000oKy-07Cx;
- Mon, 09 Feb 2026 21:20:57 +0000
-Date: Tue, 10 Feb 2026 05:20:41 +0800
-From: kernel test robot <lkp@intel.com>
-To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- matthew.auld@intel.com, christian.koenig@amd.com,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- alexander.deucher@amd.com,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-Subject: Re: [PATCH v3 2/2] drm/buddy: Add KUnit test for offset-aligned
- allocations
-Message-ID: <202602100509.jUETbEEY-lkp@intel.com>
-References: <20260209083051.13376-2-Arunpravin.PaneerSelvam@amd.com>
+X-IronPort-AV: E=Sophos;i="6.21,282,1763452800"; d="scan'208";a="216214472"
+Received: from chu13-desk.fm.intel.com ([10.80.209.210])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2026 13:36:25 -0800
+From: Austin Hu <austin.hu@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: chaitanya.kumar.borah@intel.com
+Subject: [PATCH 1/3] drm/i915/color: Add 3D LUT to color pipeline since Lunar
+ Lake.
+Date: Mon,  9 Feb 2026 13:34:20 -0800
+Message-Id: <20260209213422.2640277-1-austin.hu@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260209083051.13376-2-Arunpravin.PaneerSelvam@amd.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,170 +71,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.31 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,intel.com:email,01.org:url];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWO(0.00)[2];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 3399F114BA1
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[austin.hu@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	TO_DN_NONE(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: EE60F114D47
 X-Rspamd-Action: no action
 
-Hi Arunpravin,
+Verified on PTL, where IGT case kms_color_pipeline passes for PipeA
+and PipeB.
 
-kernel test robot noticed the following build warnings:
+Signed-off-by: Austin Hu <austin.hu@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_color_pipeline.c | 5 ++---
+ drivers/gpu/drm/i915/display/intel_display_device.c | 6 ++++++
+ drivers/gpu/drm/i915/display/intel_display_device.h | 2 ++
+ drivers/gpu/drm/i915/display/intel_display_regs.h   | 1 +
+ 4 files changed, 11 insertions(+), 3 deletions(-)
 
-[auto build test WARNING on 9d757669b2b22cd224c334924f798393ffca537c]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Arunpravin-Paneer-Selvam/drm-buddy-Add-KUnit-test-for-offset-aligned-allocations/20260209-163512
-base:   9d757669b2b22cd224c334924f798393ffca537c
-patch link:    https://lore.kernel.org/r/20260209083051.13376-2-Arunpravin.PaneerSelvam%40amd.com
-patch subject: [PATCH v3 2/2] drm/buddy: Add KUnit test for offset-aligned allocations
-config: riscv-allyesconfig (https://download.01.org/0day-ci/archive/20260210/202602100509.jUETbEEY-lkp@intel.com/config)
-compiler: clang version 16.0.6 (https://github.com/llvm/llvm-project 7cbf1a2591520c2491aa35339f227775f4d3adf6)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260210/202602100509.jUETbEEY-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202602100509.jUETbEEY-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/gpu/tests/gpu_buddy_test.c:46:7: error: too many arguments provided to function-like macro invocation
-                              "buddy_init failed\n");
-                              ^
-   include/kunit/test.h:1390:9: note: macro 'KUNIT_ASSERT_FALSE' defined here
-   #define KUNIT_ASSERT_FALSE(test, condition) \
-           ^
-   drivers/gpu/tests/gpu_buddy_test.c:45:2: error: use of undeclared identifier 'KUNIT_ASSERT_FALSE'; did you mean 'KUNIT_ASSERTION'?
-           KUNIT_ASSERT_FALSE(test, gpu_buddy_init(&mm, mm_size, SZ_4K),
-           ^~~~~~~~~~~~~~~~~~
-           KUNIT_ASSERTION
-   include/kunit/assert.h:27:2: note: 'KUNIT_ASSERTION' declared here
-           KUNIT_ASSERTION,
-           ^
->> drivers/gpu/tests/gpu_buddy_test.c:45:2: warning: expression result unused [-Wunused-value]
-           KUNIT_ASSERT_FALSE(test, gpu_buddy_init(&mm, mm_size, SZ_4K),
-           ^~~~~~~~~~~~~~~~~~
-   1 warning and 2 errors generated.
-
-
-vim +45 drivers/gpu/tests/gpu_buddy_test.c
-
-    23	
-    24	static void gpu_test_buddy_subtree_offset_alignment_stress(struct kunit *test)
-    25	{
-    26		struct gpu_buddy_block *block;
-    27		struct rb_node *node = NULL;
-    28		const u64 mm_size = SZ_2M;
-    29		const u64 alignments[] = {
-    30			SZ_1M,
-    31			SZ_512K,
-    32			SZ_256K,
-    33			SZ_128K,
-    34			SZ_64K,
-    35			SZ_32K,
-    36			SZ_16K,
-    37			SZ_8K,
-    38		};
-    39	
-    40		struct list_head allocated[ARRAY_SIZE(alignments)];
-    41		unsigned int i, order, max_subtree_align = 0;
-    42		struct gpu_buddy mm;
-    43		int ret, tree;
-    44	
-  > 45		KUNIT_ASSERT_FALSE(test, gpu_buddy_init(&mm, mm_size, SZ_4K),
-    46				   "buddy_init failed\n");
-    47	
-    48		for (i = 0; i < ARRAY_SIZE(allocated); i++)
-    49			INIT_LIST_HEAD(&allocated[i]);
-    50	
-    51		/*
-    52		 * Exercise subtree_max_alignment tracking by allocating blocks with descending
-    53		 * alignment constraints and freeing them in reverse order. This verifies that
-    54		 * free-tree augmentation correctly propagates the maximum offset alignment
-    55		 * present in each subtree at every stage.
-    56		 */
-    57	
-    58		for (i = 0; i < ARRAY_SIZE(alignments); i++) {
-    59			struct gpu_buddy_block *root = NULL;
-    60			unsigned int expected;
-    61			u64 align;
-    62	
-    63			align = alignments[i];
-    64			expected = ilog2(align) - 1;
-    65	
-    66			for (;;) {
-    67				ret = gpu_buddy_alloc_blocks(&mm,
-    68							     0, mm_size,
-    69							     SZ_4K, align,
-    70							     &allocated[i],
-    71							     0);
-    72				if (ret)
-    73					break;
-    74	
-    75				block = list_last_entry(&allocated[i],
-    76							struct gpu_buddy_block,
-    77							link);
-    78				KUNIT_EXPECT_EQ(test, gpu_buddy_block_offset(block) & (align - 1), 0ULL);
-    79			}
-    80	
-    81			for (order = mm.max_order + 1; order-- > 0 && !root; ) {
-    82				for (tree = 0; tree < 2; tree++) {
-    83					node = mm.free_trees[tree][order].rb_node;
-    84					if (node) {
-    85						root = container_of(node,
-    86								    struct gpu_buddy_block,
-    87								    rb);
-    88						break;
-    89					}
-    90				}
-    91			}
-    92	
-    93			KUNIT_ASSERT_NOT_NULL(test, root);
-    94			KUNIT_EXPECT_EQ(test, root->subtree_max_alignment, expected);
-    95		}
-    96	
-    97		for (i = ARRAY_SIZE(alignments); i-- > 0; ) {
-    98			gpu_buddy_free_list(&mm, &allocated[i], 0);
-    99	
-   100			for (order = 0; order <= mm.max_order; order++) {
-   101				for (tree = 0; tree < 2; tree++) {
-   102					node = mm.free_trees[tree][order].rb_node;
-   103					if (!node)
-   104						continue;
-   105	
-   106					block = container_of(node, struct gpu_buddy_block, rb);
-   107					max_subtree_align = max(max_subtree_align, block->subtree_max_alignment);
-   108				}
-   109			}
-   110	
-   111			KUNIT_EXPECT_GE(test, max_subtree_align, ilog2(alignments[i]));
-   112		}
-   113	
-   114		gpu_buddy_fini(&mm);
-   115	}
-   116	
-
+diff --git a/drivers/gpu/drm/i915/display/intel_color_pipeline.c b/drivers/gpu/drm/i915/display/intel_color_pipeline.c
+index 04af552b3..d26b0f134 100644
+--- a/drivers/gpu/drm/i915/display/intel_color_pipeline.c
++++ b/drivers/gpu/drm/i915/display/intel_color_pipeline.c
+@@ -47,9 +47,8 @@ int _intel_color_pipeline_plane_init(struct drm_plane *plane, struct drm_prop_en
+ 	drm_colorop_set_next_property(prev_op, &colorop->base);
+ 	prev_op = &colorop->base;
+ 
+-	if (DISPLAY_VER(display) >= 35 &&
+-	    intel_color_crtc_has_3dlut(display, pipe) &&
+-	    plane->type == DRM_PLANE_TYPE_PRIMARY) {
++	if ((DISPLAY_VER(display) >= 15) && HAS_3D_LUT(display) &&
++			intel_color_crtc_has_3dlut(display, pipe)) {
+ 		colorop = intel_colorop_create(INTEL_PLANE_CB_3DLUT);
+ 
+ 		ret = drm_plane_colorop_3dlut_init(dev, &colorop->base, plane, 17,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+index 471f236c9..423f99a75 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.c
++++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+@@ -1908,6 +1908,12 @@ static void __intel_display_device_info_runtime_init(struct intel_display *displ
+ 				if (display_runtime->num_scalers[pipe])
+ 					display_runtime->num_scalers[pipe] = 1;
+ 		}
++
++		if (REG_FIELD_GET(XE2LPD_DE_CAP_3DLUT_MASK, cap) ==
++		    XE2LPD_DE_CAP_3DLUT_REMOVED)
++			display_runtime->has_3d_lut = false;
++		else
++			display_runtime->has_3d_lut = true;
+ 	}
+ 
+ 	if (DISPLAY_VER(display) >= 30)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index e84c190dc..f91ccca6b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -173,6 +173,7 @@ struct intel_display_platforms {
+ #define HAS_DSC(__display)		(DISPLAY_RUNTIME_INFO(__display)->has_dsc)
+ #define HAS_DSC_3ENGINES(__display)	(DISPLAY_VERx100(__display) == 1401 && HAS_DSC(__display))
+ #define HAS_DSC_MST(__display)		(DISPLAY_VER(__display) >= 12 && HAS_DSC(__display))
++#define HAS_3D_LUT(__display)		(DISPLAY_RUNTIME_INFO(__display)->has_3d_lut)
+ #define HAS_FBC(__display)		(DISPLAY_RUNTIME_INFO(__display)->fbc_mask != 0)
+ #define HAS_FBC_DIRTY_RECT(__display)	(DISPLAY_VER(__display) >= 30)
+ #define HAS_FBC_SYS_CACHE(__display)	(DISPLAY_VER(__display) >= 35 && !(__display)->platform.dgfx)
+@@ -302,6 +303,7 @@ struct intel_display_runtime_info {
+ 	bool has_hdcp;
+ 	bool has_dmc;
+ 	bool has_dsc;
++	bool has_3d_lut;
+ 	bool edp_typec_support;
+ 	bool has_dbuf_overlap_detection;
+ };
+diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+index 9740f32ce..75fc7748a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+@@ -1554,6 +1554,7 @@
+ 
+ #define XE2LPD_DE_CAP			_MMIO(0x41100)
+ #define   XE2LPD_DE_CAP_3DLUT_MASK	REG_GENMASK(31, 30)
++#define   XE2LPD_DE_CAP_3DLUT_REMOVED	1
+ #define   XE2LPD_DE_CAP_DSC_MASK	REG_GENMASK(29, 28)
+ #define   XE2LPD_DE_CAP_DSC_REMOVED	1
+ #define   XE2LPD_DE_CAP_SCALER_MASK	REG_GENMASK(27, 26)
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
