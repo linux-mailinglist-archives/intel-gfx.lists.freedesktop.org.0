@@ -2,75 +2,170 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uDeAIeTpiWmdDwAAu9opvQ
+	id wAlfMS/qiWmdDwAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 09 Feb 2026 15:06:28 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 09 Feb 2026 15:07:43 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBE911100D6
-	for <lists+intel-gfx@lfdr.de>; Mon, 09 Feb 2026 15:06:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69C5C110130
+	for <lists+intel-gfx@lfdr.de>; Mon, 09 Feb 2026 15:07:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28E7D10E3FA;
-	Mon,  9 Feb 2026 14:06:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86DC210E3FD;
+	Mon,  9 Feb 2026 14:07:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L2B5GdAi";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="r3+5QSL6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F187F10E3F8;
- Mon,  9 Feb 2026 14:06:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770645985; x=1802181985;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=Vuwv11/YWv8Fv0lPLc1u4wv80/JZ0COAUUx4gr2pGUo=;
- b=L2B5GdAio9frrureQK7j2qTs+Aqsd3/LDOkSy7/wZ2e/8V56iBzZnELL
- IQkNFYYhGCDjR3IKVbsJFfLWjlcihUXDI6lO1rLcdhnNONcTcDxbUH/DL
- oP4hYYzMD9WfB1prgWkJjKfwm8PXNPHWeWj4HjrdSUGuQTDP8eGic4ekG
- /46fP4VWfPVEDph1sRFoRd435b+1dVKZmtOZhJqmBI2WecFp/OrXzPh4n
- yd1FUXEEG4TdXhUf2KskJOwoHw3JGEabzS7FMoGNKOvLjh78bfsDqx4/z
- rDSL+2VhMW18uzHVo6NJTyuoVFdrnV1grmOGK8ICKqS+IKAyHh4D7XNjP Q==;
-X-CSE-ConnectionGUID: CVgXD1dgTGuDm66D8nBBNQ==
-X-CSE-MsgGUID: TXns1LvWTNagidxsBbK0DA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11696"; a="71657226"
-X-IronPort-AV: E=Sophos;i="6.21,282,1763452800"; d="scan'208";a="71657226"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2026 06:06:25 -0800
-X-CSE-ConnectionGUID: RL2jKrQeQEClUqeFGZswCg==
-X-CSE-MsgGUID: qFxt+NnuQQ+FoAQUMzN6rA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,282,1763452800"; d="scan'208";a="216558142"
-Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.211.136.201])
- by orviesa005-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2026 06:06:23 -0800
-Date: Mon, 9 Feb 2026 15:06:08 +0100
-From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-Subject: Re: [PATCH i-g-t v5 3/6] lib/igt_device_scan: Include PCIe bridge
- upstream port if available
-Message-ID: <20260209140608.gw5ww2pf3fvpq6gi@kamilkon-DESK.igk.intel.com>
-Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-References: <20260205145427.1338534-8-janusz.krzysztofik@linux.intel.com>
- <20260205145427.1338534-11-janusz.krzysztofik@linux.intel.com>
+Received: from BL0PR03CU003.outbound.protection.outlook.com
+ (mail-eastusazon11012015.outbound.protection.outlook.com [52.101.53.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F353110E3F8;
+ Mon,  9 Feb 2026 14:07:38 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ShF9QWOVT3q1Z8wg6ZfE9+pt9Z1iljgBBJCOyIrm9MXDDlPa2suBaeA4tED4ldOH/JN36BIwRUlO1g/cemzNsvhCeNXLKg+MrcBH8iINlHQj2pz+HssJGMNqLK2STylxY4R73xnqCe9i27Ytz1NJrq6oygbFQLhneJlIxnjsilylVtpRQKe/egzi8b48rim6PqmLIQG7EQnSkKBI39Zq6dFrUE4XN0hvNNSZT9+17rS59NhaNJY8AOH/tUqJQqJDKFpfITgrnnpUHRYT7J2zgDPyre5zisqME7sFCMRLwE1Qrgs+zY220yCXyarhi73oUQ5rUKLP/yO31WOX5E8Q/g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=pQ0Y2ooEaudJ5kYogO2wQNt4aaYAQEcuH/LU2je12bY=;
+ b=Wcku1M7ylWkrXrJCbWsNiMoEEMl061d+p7AKgLLNVdBomVW0ui9H08oiaZWRuwM6Gd7xwr37JXCCPpQ0qhDnQWKa9F/CaHwTlXcAl7tWhlP2zC2jvu9jlI6eRbGNqYx79Ia5hsJlMuTLZF7U+sXgZCzA6udt3VRoO+TbqwJqDF6s6hyZUfnrx8heokAikCi/0J3hqa5pUn6CgXNqRgjOy2+M+AFg4I7lWOiY4XH1kWW7aO5ZePgt/Ahnel85dJ+dh6jihZ8BcW7xyMFSu4XXMwUd5Kg+suo6b38pabgI54s6mWOvAFH5cZTJkwCWkG1iAIN7aExE7aPpJ11GyJD6hw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pQ0Y2ooEaudJ5kYogO2wQNt4aaYAQEcuH/LU2je12bY=;
+ b=r3+5QSL6fEi0sZn6KoQubmLelT6g55c8Yr2se8J701GhDycpBMPVXlIPQV7ntfONJkKHw1VeA2U1Qe/KoDgF3SMyPbPR8vLGoHqXqspRi7SKTBZlL66I3VjpGwk2Hac4S7WwSJn7rDcnXhQOT0NDOVm2DT4r7GLpwzECzML7/o0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by CH3PR12MB9455.namprd12.prod.outlook.com (2603:10b6:610:1c1::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.18; Mon, 9 Feb
+ 2026 14:07:35 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9587.017; Mon, 9 Feb 2026
+ 14:07:35 +0000
+Message-ID: <e93e823f-8a26-42b2-9a10-50f1afd8dbe9@amd.com>
+Date: Mon, 9 Feb 2026 15:07:30 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dma-fence: Fix sparse warnings due __rcu annotations
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Rob Clark <robdclark@gmail.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>, Gustavo Padovan
+ <gustavo@padovan.org>, Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
+ kernel test robot <lkp@intel.com>
+References: <20250616155952.24259-1-tvrtko.ursulin@igalia.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20250616155952.24259-1-tvrtko.ursulin@igalia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR4P281CA0293.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:e7::6) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260205145427.1338534-11-janusz.krzysztofik@linux.intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|CH3PR12MB9455:EE_
+X-MS-Office365-Filtering-Correlation-Id: a3138567-db65-4543-f113-08de67e492ef
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|366016|376014|7416014|7053199007; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?emJPdFBWZ3VKTHFFUngzWWRxdWhjQ2oyanR2czFCSm5jcUVFaWtZY1NhU1Ft?=
+ =?utf-8?B?bjYwM2x6OVBDZWRmbFltV014NXR1aFlkZG1yY0xabW1LczAyZFRBK2Nzd04x?=
+ =?utf-8?B?d1o2eGlaOGd2cGVNdFU4SVlRbWliTnUxWjUya1pFdFE2TDFnNVNrM05sZ0Zp?=
+ =?utf-8?B?blA1WTNHOEgrNWpGMWRoOTM4RUtaNDVuMFpsditEZmJlRzArYU5zSHZ2T3pB?=
+ =?utf-8?B?M3hxeWM2K0tUZkdRNGtGT2hXdXc3N3VnVXVwaGJZVkF4T0lVa3ZDWlBmTVI0?=
+ =?utf-8?B?UDcwWmtGaGZBM1lyTnFJbE5YdlpnVkRGUHBTVXVlSGs2dFZ6Z1psUkVPeE95?=
+ =?utf-8?B?bHByZDh5NnJEVkVDZFZMV0E1YTgxbEZJS1lzTlBmamdhZHJ6QVJkcy9mNFRa?=
+ =?utf-8?B?Tmh6THpnQTQrK1Voekt2Smd1WFJ2RzVER21qT1hINUJuc20rN1V1SGZmazVo?=
+ =?utf-8?B?bVpXSVZaL0dJOFl1dUJCR2ljY09iVm5wK2FkNnFyeFgydnRpRXFQTjhiV2FO?=
+ =?utf-8?B?NkF2Q3B4MHlTeXdnVXVibWM0b0ZNdyt6M0FWYjl1ZDJYV2tQWDZXSy9Md25t?=
+ =?utf-8?B?Smg4dng2NmFpZEI0R01LbWZLUEk1cFgvYUFNbEVTL3cyZ1VCbFVpK3FLQlo4?=
+ =?utf-8?B?b25HdkNKYWg0cE8vYzdVVnlrd0ZwZ3Q4Q21sSW1VbkZIcFBQb2c1TWJyR0oz?=
+ =?utf-8?B?S2pEaXJTSVZhK25IeEVFYTZXejF0bmVWeGVOZ2dkcll0c25TdjNpS0dBN1d1?=
+ =?utf-8?B?V1VEbWRiUGVFS0FsYWllR2VWS2Qyd002SUR5ODMrd1NPZDNtN2l5VXdMalZJ?=
+ =?utf-8?B?RytsTUh3c29seWhJbjRWSjFORlNYUmZJd2xuZ3UrVVpaVlVYTGlqSnJ3cTNX?=
+ =?utf-8?B?M0JrNW5DQjJnb25tMUNNaS8vOXVBd05FR3grakJVb1piUWthWWxLU2RISndq?=
+ =?utf-8?B?TUxxYXVWSUVFREl4YmVRd0IwdTdHYkNrMFFzV28vNWd1Y1VvQ2N4SVlpYm1x?=
+ =?utf-8?B?WGh3SXFQdXRaNjFNSktLUkNrZmZ1ZVdBWmZNcXNlNTlpUDF5NCtkK25laVVE?=
+ =?utf-8?B?cEtKL1YybW1wQjU0aXM1cGEvcUErQmh1UGpLMUMydTJ2TXdJWjdrUm5LTXRa?=
+ =?utf-8?B?Z2QwZG91NGhOZktSQ0cyMzNWeTJKaExVMHlCM2x3LzB0STZLQldteHYvb09s?=
+ =?utf-8?B?bjFJUzNmNTVYS2F5MVQzMmt4MTkzMlpORWFGVWdJL1AyaUJFRWRpUVNuZlZR?=
+ =?utf-8?B?RktRR1dlOFdGM3pvQldkNmlvRURIS09mUmFxczVkRWpEQS9hN21ld0hmUFg2?=
+ =?utf-8?B?L00vM2h6SGM1TkFiZjlEdVlLT0Y2MitIdmt1NWd1Y2NiZmJxUEozdjVqenZ2?=
+ =?utf-8?B?NVdXVXZjWml3ZFFHMEtRbjdsRkhHU3UvRkg4d1l2TElJclFaNXhRbGkyTUxF?=
+ =?utf-8?B?dDRFMkh1VTl4UlZ1QTBqdjdKSzFUNVNhZk1MNXZ6U2NHZmxHU3g0MEVUR205?=
+ =?utf-8?B?ZjdYR0FEcjZ0K2RmV0NTM29TaXBPVkcyWmRqZC9DMHpDTHQ1RmdnNEQwZnN6?=
+ =?utf-8?B?RHFreWgyMzI5WUpxNmFQOHljdXhuN3RJUDFxMnJjL1FVS0tYZDJJcS8zZzlO?=
+ =?utf-8?B?amh5MC90Wi80SDhPa2xiZzBZS2xXcUZob0YrN0t3VUxHV3EzcWJJRTg0cTRp?=
+ =?utf-8?B?aUNQNnFFRTdGUGVPL1VrTDBiZjNvbDB3S3FVNldFU3BRMTJGcGdTL1dnZUo3?=
+ =?utf-8?B?WCtBcjVZdmxsekNnNWozdWFYcnN1MGtuZ050aEU0Wmw2TDFOUWtGTHFRanhC?=
+ =?utf-8?B?RW5vZm5zZWc0dlREYTBZY0NmbkZMWW12QjBzMWV0bnJOZzFhajNZcmZDeDZE?=
+ =?utf-8?B?ZFVhdUk1YmYxSThsTnppa05mbk5iLzdsZGI4NTl1YnV3ZWhBbFF3TjExOExC?=
+ =?utf-8?B?N1cxRjFrMk9sUy9kK09OdWovcVdidis4VHd6MHpyWE1MVzJ2eDY1UFAyejVz?=
+ =?utf-8?B?dTl2R1BtOXlCTUhaZXBxMjFGSzY5K2xDMlJhTkVjL3ZHUlJ2eXh4ZmpqTytT?=
+ =?utf-8?B?UlkxcHNsaXBvbkUzdEs5S1hpRVErRllsWFI5R1UxR0VseXY5YnZHQmZXZ2Rk?=
+ =?utf-8?Q?IzYg=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(7416014)(7053199007); DIR:OUT;
+ SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a3h2Z0ZQNmNMK2xiQlJoNGp5S20vUmluK0Y1b1ZFV0VVRGZ5c3J3ajkxNVlV?=
+ =?utf-8?B?dWl1elJ0Y3NzejBDelpRQnQ4MXJzV01qOE5yeU93bk5XdjdFeEJZNVhZaGhI?=
+ =?utf-8?B?V2NHQk9qYnU0bGYwMHlrT0dPMkpmRDlsVHB2Z1ZYa2VObTZPSlpXVFpTRjRw?=
+ =?utf-8?B?SUdOM3NHNkNpVlhWYnQ5ZEs4RWhVclVDMEM0RTdMUjVKM2Rhd1M5OXRUVS9Q?=
+ =?utf-8?B?Rk9QNWtLeEtkMlZjdHNleGp5SS91QjBiVkU5MzBHckd0ZDR6bDY0TXY0bEk2?=
+ =?utf-8?B?Um5oSFo2Q3oxOXNmaDNjeTVJOFl3VEJ6UWJ6TWFxcTk2YXhMVXZqWk5HbXZW?=
+ =?utf-8?B?SkNCOWV3WHIwSVVvbk1IOGpUc2NVMlF2encyTWx5QVVtc3crS0RZY1lMdnVZ?=
+ =?utf-8?B?ODNwSWkzL2ZTVnNKWkNCUy80Yll3cWdoYS9CY2JxTjl6K25iZTJrOXhSZVBM?=
+ =?utf-8?B?ZU5mN3d0c1JxczhqWGI3aHMxcGVLTlY5aFpGeDNvTTJRUk9jclhsZllLSElo?=
+ =?utf-8?B?UE1wMkJheW9CbklZdnZ5WnRuK3p5NjlZSlNWZDZCVE55bFQ1TXNiUS9nQmJX?=
+ =?utf-8?B?TFNNVjI1MXd1Kzk0SXdPN3UxUTIwMWtPR1V1ZCtmejRqM3oxT2tpNjBPNFAy?=
+ =?utf-8?B?M2RsWURQL09rd0cwMG9sTStoUUtyMjl4ek1LVm96L3IvOUxXbXV6N0d1MTRh?=
+ =?utf-8?B?K3ZsNDNPSytaRG1EZFdmdjh1c1A5dFVsSy9mWmw3eWhHRVpUa0F4SWNJQ2Iz?=
+ =?utf-8?B?SlNmazlERG1rdVEwUXF3dnlwUklPejNja3pLNEM3NEl2Y2hqbm9Nemp3eS9M?=
+ =?utf-8?B?U0lNUHZZRzlzckF3enlUMlI3eFVUdVp2UmtiUG80RG4vSDB4ZGJsKy9aWUxv?=
+ =?utf-8?B?YjQyNHJLUWx2ZGtKVkI5TEFtRm9QUzZMckQvTXllM0ZtOVBvTXdOWEdUZ1pz?=
+ =?utf-8?B?cmZxeC96OTFVSG15M1lpaHI2ODdpS05XN0cvVmhaNzVzckhMSHJZRlpBeUFy?=
+ =?utf-8?B?WXcraGsvdkFaNXF2QzhwOHJvTXhSVDRyNzNwNzJwU3U5a1NOSVhMZk1pM0pp?=
+ =?utf-8?B?WkU0WHZLNDZNR2FHb1h5djE3REg3Mys4bUw1SS9vOURIWVp6dUtyQlYwQ3N5?=
+ =?utf-8?B?M3VpQ0Y0NGVhVktRRVJwcTh5NzR4TFFtd2F5UzVTTkprMEs1YzExdTU2c0g4?=
+ =?utf-8?B?WmhnZ0tLVVpuUEJTU2xyNWs0dWkrMmxIdkViek9EeUlNRGZobCtjN1lDajRK?=
+ =?utf-8?B?NlhPN3JyQkJYMXpSL1ZsR2Z1c0lyaW1WUHhMTGpNWFRBOE5Ib3hLSXhUY2RT?=
+ =?utf-8?B?Ny9vVjh2d09ybmw4eUd0cWcvdHZYeHR0dFQrZjVXZ0VJYTZudDVmMHRjOXp2?=
+ =?utf-8?B?NjQweG9ONTQvNGxJc3ZtSXlrQ0xLV2dwYkVTVWVLWU4yQ1g5dmVOWExTbFlv?=
+ =?utf-8?B?Rm5Ec0o0aXJtMGVOcDdQR1o0aTlocFNodmhvZTgwQkxVVGZrRERSWndNdXYx?=
+ =?utf-8?B?UVRhclQ0dGZINEhYZFpnSk9kbkRPUFFQSWVxZENuT0Z0cFdHZFJPQXFIYnVI?=
+ =?utf-8?B?Um5sWlpOMUpYV09LWVVFSDdUdytMTlVwbmk1R0FOczhNOWFvV3VZVmljdnQ4?=
+ =?utf-8?B?d1JQTlFMREhvbDZTYkxNOXFzYmdZYlhrZTVqcWcreVlNa2Z1blowNkVIcHM0?=
+ =?utf-8?B?MWxZZXU2ak1MMzdBVlgxaWZmZDF2TUNBMFpQVURlc2JUaTl1UTJDOGhOeGJS?=
+ =?utf-8?B?ZmJrK2ROV2grbnZkcE1DUHorSXdyYUdJTUhLYUpLMkNHb3Jha2V2ZFMvNXpW?=
+ =?utf-8?B?RkJHaE9qZ216azRrT1NjL2QzU0ZpbzE5QThDNkFraXFsWldxbDd4RFluMFU4?=
+ =?utf-8?B?WW1OemlaWGloeTlQRXQ0TVJzdzhyc09lZnQvSFhROHR1TWdNMnVBcUlUd2V6?=
+ =?utf-8?B?a0VNMlYrKzhlYWpXNCtacUg3Y3JqdjJoUDZOVVZ2bDkwZFNnWGdXS0NtSHlV?=
+ =?utf-8?B?VHdVYStvUmt4aXB3Q2psckNiMXhIYWx3VWEycXcxenJIVWdnUnp2U0xFSTFD?=
+ =?utf-8?B?T1lUQzVpZnhEUHpCTThuMVJiV1M5cFlMN2RlU24vbU9GTTBpOWpSSVhPMVFI?=
+ =?utf-8?B?amd0cVAxbmk3eEdpcDhtNS9Ra0g1YmxVNSsvbXNnT0pYSmg5WEVDYzA1ZUFC?=
+ =?utf-8?B?UkFZUytHbVVBS0U0TmFDUzBpMFUrdk1CUnVaTzdEUWo0Y2o1L0lsWVhrYm51?=
+ =?utf-8?B?aFMxT3hVRS9RNktoekp1d0thS1FjdmJLd1NWZG9DZmhLU2oyL1B0c0dwanBS?=
+ =?utf-8?Q?JLHkapIeM95G6pdEH0?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a3138567-db65-4543-f113-08de67e492ef
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Feb 2026 14:07:35.1940 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: l0R0dk47G5cLodvBiToWchzC5E2BxOZfIjjBRaXLuMdSoVHKFiP6B2jnNPGXyxra
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9455
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,331 +181,165 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	ARC_NA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,meson.build:url,kamilkon-DESK.igk.intel.com:mid];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MIME_TRACE(0.00)[0:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kamil.konieczny@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[igalia.com,gmail.com,linaro.org,padovan.org,intel.com,lists.freedesktop.org,vger.kernel.org,lists.linaro.org];
+	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,intel-gfx-bounces@lists.freedesktop.org];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,amd.com:mid,amd.com:dkim,amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: DBE911100D6
+	DKIM_TRACE(0.00)[amd.com:+]
+X-Rspamd-Queue-Id: 69C5C110130
 X-Rspamd-Action: no action
 
-Hi Janusz,
-On 2026-02-05 at 15:51:52 +0100, Janusz Krzysztofik wrote:
-> Users of Intel discrete graphics adapters are confused with fake
-> information on PCIe link bandwidth (speed and size) of their GPU devices
-> reported by sysfs and userspace tools, including our lsgpu utility.  In
-> order for the lsgpu to show correct link bandwidth information, we need to
-> identify an upstream port of a PCIe bridge that sits on the GPU card and
-> get that information from that port.
+On 6/16/25 17:59, Tvrtko Ursulin wrote:
+> __rcu annotations on the return types from dma_fence_driver_name() and
+> dma_fence_timeline_name() cause sparse to complain because both the
+> constant signaled strings, and the strings return by the dma_fence_ops are
+> not __rcu annotated.
 > 
-> Since the tool uses our udev based igt_device_scan library for identifying
-> GPU devices and printing their properties and attributes, modifications
-> that we need apply to that library.
+> For a simple fix it is easiest to cast them with __rcu added and undo the
+> smarts from the tracpoints side of things. There is no functional change
+> since the rest is left in place. Later we can consider changing the
+> dma_fence_ops return types too, and handle all the individual drivers
+> which define them.
 > 
-> When scanning for DRM devices and their PCI parents, the lsgpu utility
-> requests collection of all their attributes.  When running in this mode,
-> also try to collect information about upstream ports of PCIe bridges of
-> discrete GPU devices.  Once collected, the lsgpu utility will show that
-> information automatically while listing the devices.
-> 
-> While IGT tests are using libpciaccess library for processing PCI devices,
-> that library requires careful handling in order to avoid collisions among
-> multiple call sites potentially using it.  That protection is implemented
-> in igt_device with help of IGT exit handlers. That requires linking with
-> full igt_core library code, while the lsgpu tool now depends neither on
-> igt_device nor on igt_core.  To keep that independence, implement the new
-> code around libpci.  With that approach, refactoring of IGT use of either
-> libpciaccess or igt_device_scan is avoided.  As an additional benefit,
-> there is no need to re-implement some functionality, already provided by
-> libpci function pci_find_cap(), which has no equivalent in libpciaccess.
-> 
-> v5: Address PCI_HEADER_TYPE_MASK missing from <linux/pci_regs.h> in CI,
->   - add libpci to docker files.
-> v4: Replace 0x7f constant with PCI_HEADER_TYPE_MASK symbol (Krzysztof).
-> v3: Fix incorrect use of ffs(),
->   - fix bridge link attribute printing suppressed with DEVTYPE_DISCRETE,
->   - in commit description, elaborate more on reasons for using libpci.
-> v2: Drop unclear GET_REG_MASK macro (Sebastian),
->   - reuse no longer needed variable containing PCI_HEADER_TYPE for storing
->     PCI_EXP_FLAGS_TYPE,
->   - maintain a single instance of struct pci_access throughout processing
->     of the whole udev device list (Sebastian).
-> 
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10753
-> Reviewed-by: Krzysztof Karas <krzysztof.karas@intel.com>
-> Cc: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> Fixes: 506aa8b02a8d ("dma-fence: Add safe access helpers and document the rules")
+> Reported-by: kernel test robot <lkp@intel.com>
+> Closes: https://lore.kernel.org/oe-kbuild-all/202506162214.1eA69hLe-lkp@intel.com/
+> Cc: Christian König <christian.koenig@amd.com>
 
-LGTM
-Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+Sorry for the delayed reply, completed missed this one.
 
-Regards,
-Kamil
+Patch is reviewed and pushed to drm-misc-next. It eventually will be backported to stable kernels because of the fixes tag, but since this is not a functional bug I didn't added a CC:stable tag.
+
+Thanks,
+Christian.
 
 > ---
->  Dockerfile.build-debian-arm64   |  1 +
->  Dockerfile.build-debian-armhf   |  1 +
->  Dockerfile.build-debian-minimal |  1 +
->  Dockerfile.build-fedora         |  1 +
->  lib/igt_device_scan.c           | 88 +++++++++++++++++++++++++++++++--
->  lib/meson.build                 |  2 +
->  meson.build                     |  1 +
->  7 files changed, 92 insertions(+), 3 deletions(-)
+>  drivers/dma-buf/dma-fence.c      |  8 ++++----
+>  include/trace/events/dma_fence.h | 35 +++++---------------------------
+>  2 files changed, 9 insertions(+), 34 deletions(-)
 > 
-> diff --git a/Dockerfile.build-debian-arm64 b/Dockerfile.build-debian-arm64
-> index cf0625ac72..c3643d70ea 100644
-> --- a/Dockerfile.build-debian-arm64
-> +++ b/Dockerfile.build-debian-arm64
-> @@ -23,6 +23,7 @@ RUN apt-get install -y \
->  			zlib1g-dev:arm64 \
->  			liblzma-dev:arm64 \
->  			libcairo-dev:arm64 \
-> +			libpci-dev:arm64 \
->  			libpixman-1-dev:arm64 \
->  			libudev-dev:arm64 \
->  			libgsl-dev:arm64 \
-> diff --git a/Dockerfile.build-debian-armhf b/Dockerfile.build-debian-armhf
-> index 58b5be82a4..605668441a 100644
-> --- a/Dockerfile.build-debian-armhf
-> +++ b/Dockerfile.build-debian-armhf
-> @@ -23,6 +23,7 @@ RUN apt-get install -y \
->  			zlib1g-dev:armhf \
->  			liblzma-dev:armhf \
->  			libcairo-dev:armhf \
-> +			libpci-dev:armhf \
->  			libpixman-1-dev:armhf \
->  			libudev-dev:armhf \
->  			libgsl-dev:armhf \
-> diff --git a/Dockerfile.build-debian-minimal b/Dockerfile.build-debian-minimal
-> index 3850fb43e5..808d2e32e7 100644
-> --- a/Dockerfile.build-debian-minimal
-> +++ b/Dockerfile.build-debian-minimal
-> @@ -14,6 +14,7 @@ RUN apt-get install -y \
->  			zlib1g-dev \
->  			liblzma-dev \
->  			libcairo-dev \
-> +			libpci-dev \
->  			libpixman-1-dev \
->  			libudev-dev \
->  			libxrandr-dev \
-> diff --git a/Dockerfile.build-fedora b/Dockerfile.build-fedora
-> index 9399c0a7db..9dd7b73481 100644
-> --- a/Dockerfile.build-fedora
-> +++ b/Dockerfile.build-fedora
-> @@ -12,6 +12,7 @@ RUN dnf install -y \
->  	'pkgconfig(pixman-1)' \
->  	'pkgconfig(valgrind)' \
->  	'pkgconfig(cairo)' \
-> +	'pkgconfig(libpci)' \
->  	'pkgconfig(libudev)' \
->  	'pkgconfig(glib-2.0)' \
->  	'pkgconfig(gsl)' \
-> diff --git a/lib/igt_device_scan.c b/lib/igt_device_scan.c
-> index 11b3034639..9549850005 100644
-> --- a/lib/igt_device_scan.c
-> +++ b/lib/igt_device_scan.c
-> @@ -35,7 +35,13 @@
->  #include <libudev.h>
->  #ifdef __linux__
->  #include <linux/limits.h>
-> +#include <linux/pci_regs.h>
->  #endif
-> +#ifndef PCI_HEADER_TYPE_MASK
-> +/* Either not linux, or <linux/pci_regs.h> too old */
-> +#define PCI_HEADER_TYPE_MASK 0x7f
-> +#endif
-> +#include <pci/pci.h>
->  #include <sys/stat.h>
->  #include <sys/time.h>
->  #include <sys/types.h>
-> @@ -913,6 +919,26 @@ static struct igt_device *igt_device_from_syspath(const char *syspath)
->  	return NULL;
+> diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
+> index 3f78c56b58dc..da60d4e68b89 100644
+> --- a/drivers/dma-buf/dma-fence.c
+> +++ b/drivers/dma-buf/dma-fence.c
+> @@ -1109,9 +1109,9 @@ const char __rcu *dma_fence_driver_name(struct dma_fence *fence)
+>  			 "RCU protection is required for safe access to returned string");
+>  
+>  	if (!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags))
+> -		return fence->ops->get_driver_name(fence);
+> +		return (const char __rcu *)fence->ops->get_driver_name(fence);
+>  	else
+> -		return "detached-driver";
+> +		return (const char __rcu *)"detached-driver";
 >  }
+>  EXPORT_SYMBOL(dma_fence_driver_name);
 >  
-> +static bool is_pcie_upstream_bridge(struct pci_dev *dev)
-> +{
-> +	struct pci_cap *pcie;
-> +	uint8_t type;
-> +
-> +	type = pci_read_byte(dev, PCI_HEADER_TYPE) & PCI_HEADER_TYPE_MASK;
-> +	if (type != PCI_HEADER_TYPE_BRIDGE)
-> +		return false;
-> +
-> +	pcie = pci_find_cap(dev, PCI_CAP_ID_EXP, PCI_CAP_NORMAL);
-> +	if (!pcie)
-> +		return false;
-> +
-> +	type = pci_read_word(dev, pcie->addr + PCI_EXP_FLAGS);
-> +	type &= PCI_EXP_FLAGS_TYPE;
-> +	type >>= ffs(PCI_EXP_FLAGS_TYPE) - 1;
-> +
-> +	return type == PCI_EXP_TYPE_UPSTREAM;
-> +}
-> +
->  #define RETRIES_GET_DEVICE 5
+> @@ -1141,8 +1141,8 @@ const char __rcu *dma_fence_timeline_name(struct dma_fence *fence)
+>  			 "RCU protection is required for safe access to returned string");
 >  
->  static struct igt_device *find_or_add_igt_device(struct udev *udev,
-> @@ -952,18 +978,52 @@ static struct igt_device *find_or_add_igt_device(struct udev *udev,
->  	return idev;
+>  	if (!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags))
+> -		return fence->ops->get_driver_name(fence);
+> +		return (const char __rcu *)fence->ops->get_driver_name(fence);
+>  	else
+> -		return "signaled-timeline";
+> +		return (const char __rcu *)"signaled-timeline";
 >  }
+>  EXPORT_SYMBOL(dma_fence_timeline_name);
+> diff --git a/include/trace/events/dma_fence.h b/include/trace/events/dma_fence.h
+> index 4814a65b68dc..3abba45c0601 100644
+> --- a/include/trace/events/dma_fence.h
+> +++ b/include/trace/events/dma_fence.h
+> @@ -9,37 +9,12 @@
 >  
-> +static struct udev_device *get_pcie_upstream_bridge(struct udev *udev,
-> +						    struct udev_device *dev,
-> +						    struct pci_access *pacc)
-> +{
-> +	igt_assert(pacc);
-> +
-> +	for (dev = udev_device_get_parent(dev); dev; dev = udev_device_get_parent(dev)) {
-> +		struct pci_filter filter;
-> +		struct pci_dev *pci_dev;
-> +		const char *slot;
-> +
-> +		slot = udev_device_get_property_value(dev, "PCI_SLOT_NAME");
-> +		if (igt_debug_on(!slot))
-> +			continue;
-> +
-> +		pci_filter_init(pacc, &filter);
-> +		if (igt_debug_on(pci_filter_parse_slot(&filter, (char *)slot)))
-> +			continue;
-> +
-> +		pci_dev = pci_get_dev(pacc, filter.domain, filter.bus, filter.slot, filter.func);
-> +		if (igt_debug_on(!pci_dev))
-> +			continue;
-> +
-> +		if (is_pcie_upstream_bridge(pci_dev))
-> +			break;
-> +	}
-> +
-> +	return dev;
-> +}
-> +
+>  struct dma_fence;
+>  
+> -DECLARE_EVENT_CLASS(dma_fence,
+> -
+> -	TP_PROTO(struct dma_fence *fence),
+> -
+> -	TP_ARGS(fence),
+> -
+> -	TP_STRUCT__entry(
+> -		__string(driver, dma_fence_driver_name(fence))
+> -		__string(timeline, dma_fence_timeline_name(fence))
+> -		__field(unsigned int, context)
+> -		__field(unsigned int, seqno)
+> -	),
+> -
+> -	TP_fast_assign(
+> -		__assign_str(driver);
+> -		__assign_str(timeline);
+> -		__entry->context = fence->context;
+> -		__entry->seqno = fence->seqno;
+> -	),
+> -
+> -	TP_printk("driver=%s timeline=%s context=%u seqno=%u",
+> -		  __get_str(driver), __get_str(timeline), __entry->context,
+> -		  __entry->seqno)
+> -);
+> -
 >  /*
->   * For each drm igt_device add or update its parent igt_device to the array.
->   * As card/render drm devices mostly have same parent (vkms is an exception)
->   * link to it and update corresponding drm_card / drm_render fields.
-> + *
-> + * If collecting all attributes and the parent is a discrete GPU then also
-> + * add or update its bridge's upstream port.
+>   * Safe only for call sites which are guaranteed to not race with fence
+>   * signaling,holding the fence->lock and having checked for not signaled, or the
+>   * signaling path itself.
 >   */
->  static void update_or_add_parent(struct udev *udev,
->  				 struct udev_device *dev,
->  				 struct igt_device *idev,
-> +				 struct pci_access *pacc,
->  				 bool limit_attrs)
->  {
-> -	struct udev_device *parent_dev;
-> -	struct igt_device *parent_idev;
-> +	struct igt_device *parent_idev, *bridge_idev;
-> +	struct udev_device *parent_dev, *bridge_dev;
->  	const char *devname;
+> -DECLARE_EVENT_CLASS(dma_fence_unsignaled,
+> +DECLARE_EVENT_CLASS(dma_fence,
 >  
->  	/*
-> @@ -983,6 +1043,19 @@ static void update_or_add_parent(struct udev *udev,
->  		parent_idev->drm_render = strdup(devname);
+>  	TP_PROTO(struct dma_fence *fence),
 >  
->  	idev->parent = parent_idev;
-> +
-> +	if (!pacc || parent_idev->dev_type != DEVTYPE_DISCRETE)
-> +		return;
-> +
-> +	bridge_dev = get_pcie_upstream_bridge(udev, parent_dev, pacc);
-> +	if (!bridge_dev)
-> +		return;
-> +
-> +	bridge_idev = find_or_add_igt_device(udev, bridge_dev, limit_attrs);
-> +	igt_assert(bridge_idev);
-> +
-> +	/* override DEVTYPE_INTEGRATED so link attributes won't be omitted */
-> +	bridge_idev->dev_type = DEVTYPE_ALL;
->  }
+> @@ -64,14 +39,14 @@ DECLARE_EVENT_CLASS(dma_fence_unsignaled,
+>  		  __entry->seqno)
+>  );
 >  
->  static struct igt_device *duplicate_device(struct igt_device *dev) {
-> @@ -1072,6 +1145,7 @@ static void scan_drm_devices(bool limit_attrs)
->  	struct udev *udev;
->  	struct udev_enumerate *enumerate;
->  	struct udev_list_entry *devices, *dev_list_entry;
-> +	struct pci_access *pacc = NULL;
->  	struct igt_device *dev;
->  	int ret;
+> -DEFINE_EVENT(dma_fence_unsignaled, dma_fence_emit,
+> +DEFINE_EVENT(dma_fence, dma_fence_emit,
 >  
-> @@ -1095,6 +1169,12 @@ static void scan_drm_devices(bool limit_attrs)
->  	if (!devices)
->  		return;
+>  	TP_PROTO(struct dma_fence *fence),
 >  
-> +	/* prepare for upstream bridge port scan if called from lsgpu */
-> +	if (!limit_attrs) {
-> +		pacc = pci_alloc();
-> +		pci_init(pacc);
-> +	}
-> +
->  	udev_list_entry_foreach(dev_list_entry, devices) {
->  		const char *path;
->  		struct udev_device *udev_dev;
-> @@ -1104,10 +1184,12 @@ static void scan_drm_devices(bool limit_attrs)
->  		udev_dev = udev_device_new_from_syspath(udev, path);
->  		idev = igt_device_new_from_udev(udev_dev, limit_attrs);
->  		igt_list_add_tail(&idev->link, &igt_devs.all);
-> -		update_or_add_parent(udev, udev_dev, idev, limit_attrs);
-> +		update_or_add_parent(udev, udev_dev, idev, pacc, limit_attrs);
+>  	TP_ARGS(fence)
+>  );
 >  
->  		udev_device_unref(udev_dev);
->  	}
-> +	if (pacc)
-> +		pci_cleanup(pacc);
->  	udev_enumerate_unref(enumerate);
->  	udev_unref(udev);
+> -DEFINE_EVENT(dma_fence_unsignaled, dma_fence_init,
+> +DEFINE_EVENT(dma_fence, dma_fence_init,
 >  
-> diff --git a/lib/meson.build b/lib/meson.build
-> index d851029e04..d4d2ffa127 100644
-> --- a/lib/meson.build
-> +++ b/lib/meson.build
-> @@ -141,6 +141,7 @@ lib_deps = [
->  	libdrm,
->  	libdw,
->  	libkmod,
-> +	libpci,
->  	libudev,
->  	math,
->  	pciaccess,
-> @@ -334,6 +335,7 @@ lib_igt_perf = declare_dependency(link_with : lib_igt_perf_build,
+>  	TP_PROTO(struct dma_fence *fence),
 >  
->  scan_dep = [
->  	glib,
-> +	libpci,
->  	libudev,
->  ]
+> @@ -85,14 +60,14 @@ DEFINE_EVENT(dma_fence, dma_fence_destroy,
+>  	TP_ARGS(fence)
+>  );
 >  
-> diff --git a/meson.build b/meson.build
-> index 4b2496c016..57849648a3 100644
-> --- a/meson.build
-> +++ b/meson.build
-> @@ -162,6 +162,7 @@ endif
->  build_info += 'Valgrind annotations: @0@'.format(valgrind.found())
+> -DEFINE_EVENT(dma_fence_unsignaled, dma_fence_enable_signal,
+> +DEFINE_EVENT(dma_fence, dma_fence_enable_signal,
 >  
->  cairo = dependency('cairo', version : '>1.12.0', required : true)
-> +libpci = dependency('libpci', required : true)
->  libudev = dependency('libudev', required : true)
->  glib = dependency('glib-2.0', required : true)
+>  	TP_PROTO(struct dma_fence *fence),
 >  
-> -- 
-> 2.52.0
-> 
+>  	TP_ARGS(fence)
+>  );
+>  
+> -DEFINE_EVENT(dma_fence_unsignaled, dma_fence_signaled,
+> +DEFINE_EVENT(dma_fence, dma_fence_signaled,
+>  
+>  	TP_PROTO(struct dma_fence *fence),
+>  
+
