@@ -2,254 +2,75 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gBR4Ar/piWmdDwAAu9opvQ
+	id uDeAIeTpiWmdDwAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 09 Feb 2026 15:05:51 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 09 Feb 2026 15:06:28 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EE89110093
-	for <lists+intel-gfx@lfdr.de>; Mon, 09 Feb 2026 15:05:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBE911100D6
+	for <lists+intel-gfx@lfdr.de>; Mon, 09 Feb 2026 15:06:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DD3210E368;
-	Mon,  9 Feb 2026 14:05:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28E7D10E3FA;
+	Mon,  9 Feb 2026 14:06:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=oracle.com header.i=@oracle.com header.b="GlIJTlUS";
-	dkim=pass (1024-bit key; unprotected) header.d=oracle.onmicrosoft.com header.i=@oracle.onmicrosoft.com header.b="P+PtFuf1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L2B5GdAi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com
- [205.220.165.32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78F1F10E362;
- Mon,  9 Feb 2026 14:05:45 +0000 (UTC)
-Received: from pps.filterd (m0246629.ppops.net [127.0.0.1])
- by mx0b-00069f02.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 619BxP6L1405298; Mon, 9 Feb 2026 14:04:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
- :content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=corp-2025-04-25; bh=XN9/pshIEtH6gcvYsx
- YLXigG8odRQF2zRrgNU1QZn0g=; b=GlIJTlUSyVHoNcrEBz9XhmPQ3EJ7+wcTda
- 1MU8CAXZ/C7Uatg0kODeDX3JW0SziWcrKN5Vwj+OlHbq77Q6hv7iUk+1y8le1fkV
- QSaIcuM8mz/jSkmqe5v+u4RDaYl/YuchrT/elgVLuRnEJyqG5a/5ad+N+aiApBHJ
- ZHmHfQpDA9dP2Ew59aBGyIoe68qJRo2Yimg/VjD9pSwNkV3ruRICUYHn7R1r4m0E
- wKZM4ZN+0yNj/ESDyplo471sDEvpywFHCOWfhTDwysIsNGw9xcidey1czMTaFoKb
- WWc/fOzn0roPhwpdGImMRHWXxgzklwwdoKqLJ0HkYZ8QD93L8iaQ==
-Received: from phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com
- (phxpaimrmta01.appoci.oracle.com [138.1.114.2])
- by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 4c5xh8t04d-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Mon, 09 Feb 2026 14:04:42 +0000 (GMT)
-Received: from pps.filterd
- (phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
- by phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com (8.18.1.2/8.18.1.2)
- with ESMTP id 619C0BrF004601; Mon, 9 Feb 2026 14:04:41 GMT
-Received: from dm5pr21cu001.outbound.protection.outlook.com
- (mail-centralusazon11011010.outbound.protection.outlook.com [52.101.62.10])
- by phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTPS id
- 4c7ctxgyy3-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Mon, 09 Feb 2026 14:04:41 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=keZQUyefymZwa2a9/TtwfFCm2MrPR71zJnbKx4CX8PU9k4R2Kkvfg5ek3kmP+kDFtclnzdf7ImcodLWv0FuSFQ5zIXaNDiivSflWsrFl5IgdKpYP3BzMvdrQs8V1j8ELhc2XNVo42WYlfbhFwW5wUufLl752UHAg6YgKrMNVQ/URA2wyeuARKEZ6/wD8XQrBChqwwqLQR5WkyOfT3Jjx1zE3m6IHK09fM5QF9OOcW3jf3n1+f2I76IlwOY6KlpWoeZPnis3qehKA81fquEBEppx6KaZNnRZQZ6XPWbk5rr76bwuRtA9Qex9vdVzPf1nsHVJCaK4Td+mgi+kOAkUfkA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XN9/pshIEtH6gcvYsxYLXigG8odRQF2zRrgNU1QZn0g=;
- b=mlRBlsJrTb7gz1BF6bjNoTcSidAe1MVzTaVjIB8SVfknWK2ol1SAukNWS9CXRPIjkNViAXzRT8FZcIvXR8XoOPjAssZl0pCoT85AHlkjDBs7meivAXRnq3GbHpKfzGJdciA4b/ibsi4gxFsF/pH/UuXz/eKTdQDhlEVoJSEAKREY6Zu0nDkuqCGBzqXldaMaZERCdEWSQatziOXa9IMmI98tG60ixdSTpZbEy1YXn9mP5x/KayrTsmagtWuEVbvt1YtAL+/WSALdlixQw6AnvXsnC+hZ8UDFnp8+EFoqYX3Yh2onUXTXwdLsx/KM8JmavU0sbK66gtvfPY8NoSyuGw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
- dkim=pass header.d=oracle.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XN9/pshIEtH6gcvYsxYLXigG8odRQF2zRrgNU1QZn0g=;
- b=P+PtFuf1CmX2/9w0bUrD3g2IJiInYNpHAUC5pUhKvilYpL/HgfaFkzFIPphs5PkB7qNXftUAVpV05n7blJL0s/4lP/G5+BShTx4SgaAHYVBcgVV1QrfbYT11aKAFYYpN6gL5PzPqYCoChJlZYF9xYiYY3T4uybgpfDg7mY9l6Xw=
-Received: from DM4PR10MB8218.namprd10.prod.outlook.com (2603:10b6:8:1cc::16)
- by DS0PR10MB6222.namprd10.prod.outlook.com (2603:10b6:8:c0::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.17; Mon, 9 Feb
- 2026 14:04:29 +0000
-Received: from DM4PR10MB8218.namprd10.prod.outlook.com
- ([fe80::f3ea:674e:7f2e:b711]) by DM4PR10MB8218.namprd10.prod.outlook.com
- ([fe80::f3ea:674e:7f2e:b711%4]) with mapi id 15.20.9587.017; Mon, 9 Feb 2026
- 14:04:29 +0000
-Date: Mon, 9 Feb 2026 14:04:29 +0000
-From: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-To: Pedro Falcato <pfalcato@suse.de>
-Cc: Andrew Morton <akpm@linux-foundation.org>,
- Jarkko Sakkinen <jarkko@kernel.org>,
- Dave Hansen <dave.hansen@linux.intel.com>,
- Thomas Gleixner <tglx@kernel.org>, Ingo Molnar <mingo@redhat.com>,
- Borislav Petkov <bp@alien8.de>, x86@kernel.org,
- "H . Peter Anvin" <hpa@zytor.com>, Arnd Bergmann <arnd@arndb.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Dan Williams <dan.j.williams@intel.com>,
- Vishal Verma <vishal.l.verma@intel.com>, Dave Jiang <dave.jiang@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Christian Koenig <christian.koenig@amd.com>,
- Huang Rui <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Alexander Viro <viro@zeniv.linux.org.uk>,
- Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
- Benjamin LaHaise <bcrl@kvack.org>, Gao Xiang <xiang@kernel.org>,
- Chao Yu <chao@kernel.org>, Yue Hu <zbestahu@gmail.com>,
- Jeffle Xu <jefflexu@linux.alibaba.com>,
- Sandeep Dhavale <dhavale@google.com>,
- Hongbo Li <lihongbo22@huawei.com>, Chunhai Guo <guochunhai@vivo.com>,
- Theodore Ts'o <tytso@mit.edu>, Andreas Dilger <adilger.kernel@dilger.ca>,
- Muchun Song <muchun.song@linux.dev>, Oscar Salvador <osalvador@suse.de>,
- David Hildenbrand <david@kernel.org>,
- Konstantin Komarov <almaz.alexandrovich@paragon-software.com>,
- Mike Marshall <hubcap@omnibond.com>,
- Martin Brandenburg <martin@omnibond.com>, Tony Luck <tony.luck@intel.com>,
- Reinette Chatre <reinette.chatre@intel.com>,
- Dave Martin <Dave.Martin@arm.com>, James Morse <james.morse@arm.com>,
- Babu Moger <babu.moger@amd.com>, Carlos Maiolino <cem@kernel.org>,
- Damien Le Moal <dlemoal@kernel.org>, Naohiro Aota <naohiro.aota@wdc.com>,
- Johannes Thumshirn <jth@kernel.org>, Matthew Wilcox <willy@infradead.org>,
- "Liam R . Howlett" <Liam.Howlett@oracle.com>,
- Vlastimil Babka <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>,
- Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
- Hugh Dickins <hughd@google.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>, Zi Yan <ziy@nvidia.com>,
- Nico Pache <npache@redhat.com>, Ryan Roberts <ryan.roberts@arm.com>,
- Dev Jain <dev.jain@arm.com>, Barry Song <baohua@kernel.org>,
- Lance Yang <lance.yang@linux.dev>, Jann Horn <jannh@google.com>,
- David Howells <dhowells@redhat.com>, Paul Moore <paul@paul-moore.com>,
- James Morris <jmorris@namei.org>, "Serge E . Hallyn" <serge@hallyn.com>,
- Yury Norov <yury.norov@gmail.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>, linux-sgx@vger.kernel.org,
- linux-kernel@vger.kernel.org, nvdimm@lists.linux.dev,
- linux-cxl@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-fsdevel@vger.kernel.org,
- linux-aio@kvack.org, linux-erofs@lists.ozlabs.org,
- linux-ext4@vger.kernel.org, linux-mm@kvack.org, ntfs3@lists.linux.dev,
- devel@lists.orangefs.org, linux-xfs@vger.kernel.org,
- keyrings@vger.kernel.org, linux-security-module@vger.kernel.org,
- Jason Gunthorpe <jgg@nvidia.com>
-Subject: Re: [PATCH v2 05/13] mm: add basic VMA flag operation helper functions
-Message-ID: <ee3a8a0b-cf20-4d6a-9a0d-a2515b32c896@lucifer.local>
-References: <cover.1769097829.git.lorenzo.stoakes@oracle.com>
- <885d4897d67a6a57c0b07fa182a7055ad752df11.1769097829.git.lorenzo.stoakes@oracle.com>
- <vrbggto75ugvpa5wtugmayr7yops6cnvygit42f2md646y6qnx@3vzc7taleijw>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <vrbggto75ugvpa5wtugmayr7yops6cnvygit42f2md646y6qnx@3vzc7taleijw>
-X-ClientProxiedBy: LO4P302CA0020.GBRP302.PROD.OUTLOOK.COM
- (2603:10a6:600:2c1::9) To DM4PR10MB8218.namprd10.prod.outlook.com
- (2603:10b6:8:1cc::16)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F187F10E3F8;
+ Mon,  9 Feb 2026 14:06:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1770645985; x=1802181985;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=Vuwv11/YWv8Fv0lPLc1u4wv80/JZ0COAUUx4gr2pGUo=;
+ b=L2B5GdAio9frrureQK7j2qTs+Aqsd3/LDOkSy7/wZ2e/8V56iBzZnELL
+ IQkNFYYhGCDjR3IKVbsJFfLWjlcihUXDI6lO1rLcdhnNONcTcDxbUH/DL
+ oP4hYYzMD9WfB1prgWkJjKfwm8PXNPHWeWj4HjrdSUGuQTDP8eGic4ekG
+ /46fP4VWfPVEDph1sRFoRd435b+1dVKZmtOZhJqmBI2WecFp/OrXzPh4n
+ yd1FUXEEG4TdXhUf2KskJOwoHw3JGEabzS7FMoGNKOvLjh78bfsDqx4/z
+ rDSL+2VhMW18uzHVo6NJTyuoVFdrnV1grmOGK8ICKqS+IKAyHh4D7XNjP Q==;
+X-CSE-ConnectionGUID: CVgXD1dgTGuDm66D8nBBNQ==
+X-CSE-MsgGUID: TXns1LvWTNagidxsBbK0DA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11696"; a="71657226"
+X-IronPort-AV: E=Sophos;i="6.21,282,1763452800"; d="scan'208";a="71657226"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2026 06:06:25 -0800
+X-CSE-ConnectionGUID: RL2jKrQeQEClUqeFGZswCg==
+X-CSE-MsgGUID: qFxt+NnuQQ+FoAQUMzN6rA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,282,1763452800"; d="scan'208";a="216558142"
+Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.211.136.201])
+ by orviesa005-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2026 06:06:23 -0800
+Date: Mon, 9 Feb 2026 15:06:08 +0100
+From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>,
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Subject: Re: [PATCH i-g-t v5 3/6] lib/igt_device_scan: Include PCIe bridge
+ upstream port if available
+Message-ID: <20260209140608.gw5ww2pf3fvpq6gi@kamilkon-DESK.igk.intel.com>
+Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>,
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+References: <20260205145427.1338534-8-janusz.krzysztofik@linux.intel.com>
+ <20260205145427.1338534-11-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR10MB8218:EE_|DS0PR10MB6222:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3e2c49ae-110d-4de0-dd1a-08de67e4245b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?jEsDz461LlyyV8NyviRb4tOn710YT1o2Ba5wS6//mAPfboQXAU4XBx1WhlhV?=
- =?us-ascii?Q?z44tpRySJsOe/a7gURaY1h4RlsnS2j/ANDy2XeLytQrEmtVUm4CMUDMwjxna?=
- =?us-ascii?Q?SPmk7zf/cIO6rqGxqdhl6zfscIEP3oNHj2GEOqPCAOqcD5cxQ2N8es0Tf3pB?=
- =?us-ascii?Q?rww3F5gDJnLNgxDsZBPwi/xfX1XSoGC45Ak1nQb4NPcxGRgZb8n1nNU4Eq+g?=
- =?us-ascii?Q?1QT1IQVkMvRXxZfF9xeej7d9g/X9UyYzGp1kvIJq4P4LUl27k/6DjYkQiour?=
- =?us-ascii?Q?A+FrCChADqz8nvgiqQHUXBJdTn3QypTADRGcRJgGvcrXDNbrr2ctXeq9Xg/C?=
- =?us-ascii?Q?Z2lXUtzO7f0gMT41cNEay+VWeSuIJfK8nnpgLI5ISmyOlCXW7kDGfUs21Lpi?=
- =?us-ascii?Q?y4vlkgqZ5d+5yfxcVJF1iI64DB9Df0GncL9pVFWUj8SLu5c7Rv4K1tdW/kOP?=
- =?us-ascii?Q?K/pYgDiKFPU/bfKmnuE/ja/NC0438a9UC6Y+DCxP9SMub6jaIQvNPFITlEAV?=
- =?us-ascii?Q?6OthsLmtXKjVIHPWjLAya7Vq/pnLutVNX/f1IN8z+4qP2JV+3/wJHZKTI0rG?=
- =?us-ascii?Q?CZMC75GiyB9AE2kGR8uZoap9EHlsGhBomdpzX5Zy3M/qijvVDpPdIQlBJgDW?=
- =?us-ascii?Q?vytNQq9+yFLBMNseCF5afNRUI7whYv5YM/55UQ5CWXh3cWP26FSolyZs11rg?=
- =?us-ascii?Q?GY2NrulMBUDZE5GCk2QB//Wocy+swvzaq1/8j6pjwed9UZtDWavPf935+pV+?=
- =?us-ascii?Q?W2jeZjNKbknI5fxE/DcenVt+yUWdZ89wZRcFfb9segQm0RuAj2SnHAki3y7s?=
- =?us-ascii?Q?1H2hoF9l4p5NPyVqKOKQ4zvH5LUbKpnA2NZCt/SMv1UhUea4oDib1KPMknEo?=
- =?us-ascii?Q?5vRs4RuzRY6SzrCjb2MSEJaDyMJaxe3d4Mf09tBm7zvuoa1jQyb+HZNiuVw9?=
- =?us-ascii?Q?TVM4KFvhDOuqOGUaL7PFCOKVbtnNZ5CA6rHqZ1a+v5jZhDDxkqQksCu+esWm?=
- =?us-ascii?Q?X86zNjO3MITpGHc+G6iZ/DNxIG+ScIrajfBECR81LXUNEhcCbfKngm4wsBOX?=
- =?us-ascii?Q?DnADLZqxB/ZCovzqrK0UTqZ/xCDMoqbz2BSt0+PaGKFKch9WWLyNgplAt5xS?=
- =?us-ascii?Q?4xN30Ux0saYpqc9/wrKZoWfYU/i5rZYWZWyolIfL/vT53hTLQWz98EKDg9j5?=
- =?us-ascii?Q?g3VbjQ7ZkuDhmcrBniGQv17o9WMqvMaud2NdBh/muTGaVWeNPUxm5/G6BbqF?=
- =?us-ascii?Q?adhjyNrNB7tniK/814WH7OPPWKk3CB5fOWrbznW7ODAkrzTuTFj2DxiMek07?=
- =?us-ascii?Q?Z5bSx8oWpOatfdmzF+1bUz5OAcBT1HVfPElsaOQLHMn4b0rFxMEWXrdwBbTK?=
- =?us-ascii?Q?FIloEhabKEAAGgO8G6XZB+fVUeED2ooJlNsI/ZBaO4KwX3+Lf74WAwJXZjCb?=
- =?us-ascii?Q?/AQuCGbuM35CHw4iJa4Wmur8VAR52jcDMJrOCOPG1x/NGil9fXiKdOmkzHUH?=
- =?us-ascii?Q?MLgdZeHjTOnt+M8kyYa+45dlyucmQxy+o3B/n4pmydaU7uL4u0rg3WEme9ki?=
- =?us-ascii?Q?LtT/cYgA5wdj0XEa+Sc=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR10MB8218.namprd10.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?algm93jTIV6IFZzwqxYt45GXti4mq6xDnk+JFqjmGddBxHXQ0ug7N2WeSpc9?=
- =?us-ascii?Q?y2RsOS9Dde2N/8uUigQMlgZnhWSZYk7mfFgOoVJJh852shIX4mxWxYEIGIbC?=
- =?us-ascii?Q?nbQpYoLGsHlDt5YzwFKQAGdxd+44j9jrg3CCCQkF7/F7m5zflTCdZWGJfBAW?=
- =?us-ascii?Q?CLlfRbDRxnyGLe0SIDo8GlBSsnilfmBFExqn7ly+bcIWHHHYaNgZZgD3KpPl?=
- =?us-ascii?Q?fiem1sPpf+1upq91jHJ7HnL307NJcfKjc6DncixiUFtMcQV5K6njwZlfuqPh?=
- =?us-ascii?Q?n/4lc+ULEB0adoX1ZNPqEnqhT65VJmFVklv1mtNVTTaDJjGTn1X6abAbKbcx?=
- =?us-ascii?Q?gwjHrBuDOrcUH+i6MXIV4ZU759UgtkaA+ukilMHS+9sNilCFjgLcQaIojABZ?=
- =?us-ascii?Q?CHqpAe5SFV5v4e4I80UVM7Ak0fWSD7PNZ2C/9onAZ/sfSbmCavWNr1dS/tZU?=
- =?us-ascii?Q?9Ow1wu6vqnFqiQGiMuRWWUcWEo981gwtEfgYq5rf1cJGEy+uxB0syJzLsweC?=
- =?us-ascii?Q?S24r/jRniT+LmHaP+AADTJX6IY+Q5GCJ3GxUtPLJfid1nEJaldkghRNpO9ee?=
- =?us-ascii?Q?XtF9d4D4EkIwR6BLX8TGnQKpIBnqHXF+GrtRzFfvbLctXvvFjApGMdO49AV6?=
- =?us-ascii?Q?Jprz/u7YqoVJwngb1tsQIlCxf6TltlCFjWf4O6cQGcNpAJDS6YxyJnN7XDj3?=
- =?us-ascii?Q?PD7ajDIZFUC1gauLOANmsd7lFCsza6G+c0HYm0KericLOcb5bbTI1IQXQaBz?=
- =?us-ascii?Q?68mhSJUN/u8BmVVuzIMVkvPblb/DK4NZkZtSXpZAVwFOB5eQ876SoPrpz4NQ?=
- =?us-ascii?Q?t8OOLc19iVVRAh1XmHabvGU/RC3cuo7nNZwJXuR1IoEkje7OaZc+AIKD3IaY?=
- =?us-ascii?Q?XhvHYFzV55xX+cHKgFPoFwCAUzKzeue6Ngr08jSTHNtn13axqZbhuZJtpXWO?=
- =?us-ascii?Q?HsWtdNk8Zp3R0pHDiljaYX/W3ZkTUiy+9dx5H0ZcCInM68zcyEbefK3xHj3R?=
- =?us-ascii?Q?VMfln6jHOonW/J3bYwbbMWjVAwwZaBUmALa0WQIe4dylj7dhkAqbu+pTo2VP?=
- =?us-ascii?Q?Ao0UrK/3xmzD+5HQBVcpg/nP+DR5eF3wY4zPsTQcjws/YtBlrNWD7Q9vyHTh?=
- =?us-ascii?Q?3vJHFG8ovDOGyB2MgZWZU611iGF9Y3HNjxLAvmmRF0YDgT17IFdELVsOLmIR?=
- =?us-ascii?Q?coB9rTBQbIe9tSp7nDyntAC5sVV8ppGtsa41Q8y5P3C0SN5jDRuN5S/YLb9m?=
- =?us-ascii?Q?ilMZKB286+D4QNIegUnz4YS5xPaITd+gJQfn0TnvyO5lEoiN6sKcDHEdDl1b?=
- =?us-ascii?Q?d1sIclNM2ctM3TGfzjtsPbX09RjNE2bmBcRQre9qAb0YgKxLzjlDlUtyzK5+?=
- =?us-ascii?Q?SgTuZM8lY5nI1aWl2DhOgpyNHHKw2hKo+c3C4nV+Q/YDDEjUIjbEyiwG/NYm?=
- =?us-ascii?Q?i1na4RQV8x/sx6c4bvm9KjAFE5c8OwTI6l1uJKL47k0Imtb5B/VzWcRDrHM5?=
- =?us-ascii?Q?LZ6S1kYeqZyLCtMB21qpl6YJmUBXCB9q4It3xrwg4HJ0P6scDZecNQoa1NEy?=
- =?us-ascii?Q?aZD26czewH5cOC44rVoaP6EolHPs+DQ6oofj6yL0oBGiTq4M66TLobQ3uFAT?=
- =?us-ascii?Q?wIsJOb4x6TslkIYIy7VFFbealaWXoxjLKnwBUoYkEbQoHR7d37ftprZoixT+?=
- =?us-ascii?Q?sjYSdIHuuYV+3jZGX9OYOkon1CKM/V14C3dhbvAEFIpunpHnaYHZ6I9eVs++?=
- =?us-ascii?Q?/9pA/mJXQA=3D=3D?=
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: 01KqIf54eTYJ389XoHV1TTvcQJXlwFzDjf4o37w3qHuZTIQkfKvz0WQ/EOPgYm5pm/wPcHUeWM1lGaLOhX0zW+a5ONrHVrypAJAStfspOkg56Q+LnECE9bFc04MxFBbR9Rhlbgu/RzM7BrjfiFPm5CXh3dRURyd8LSutGV2pPWwbOkcVy26bogDB2c1tqHv06ZnmjMFGEUeWhDs7g5QlQ8brQBbS1tvHNy3wKd8L3DPKCjvRTDLyAP9SqAvMENlhQERX4Hy51DMPQAA30Lsdr4Sa7udse22nT8fZWxzdf2VCO/XsY4ulF9SdK3Sd+1/2xRzTK313OM7o/V4Tj/e8ELV4rskDUl4zOGyDjD5OpB2fHPQQYpfRCz374BGOCRMCpAOqIFoDjYqP2stdpQH8I7n3zvHi579KXPzd33CMP7safWeIsPhIjrKNYHvQvT6WzC6OpIw98UosqkiAaf99/EyVTAdCiMSz8bdL6fLOrwU96Yyr2FlhSPjtx6Rval6PZllN6m5CINh3k3WsBMDW4UyZ9a9cT2tuBIbfp2+Tc04QsZS5ZIAsRy1L14ccMkbQJ782/to/eDmt9ddFTtyub/U0WPKEK3D0lWks0VOGSKA=
-X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3e2c49ae-110d-4de0-dd1a-08de67e4245b
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR10MB8218.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Feb 2026 14:04:29.4558 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fnkFz3Z7dqQugpLWqynHQ/59OBxP6yCMyrlLZBi7q8cJQjoQxXAFtHLJ+WMVYiZYKXPON6/hAADKdIwmuCOMfmyxCtTptfkpyOexlwrm0E0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR10MB6222
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-08_05,2026-02-09_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0
- spamscore=0 malwarescore=0
- mlxlogscore=999 suspectscore=0 phishscore=0 mlxscore=0 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2601150000
- definitions=main-2602090118
-X-Authority-Analysis: v=2.4 cv=YbOwJgRf c=1 sm=1 tr=0 ts=6989e97a cx=c_pps
- a=XiAAW1AwiKB2Y8Wsi+sD2Q==:117 a=XiAAW1AwiKB2Y8Wsi+sD2Q==:17
- a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19
- a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=HzLeVaNsDn8A:10 a=GoEa3M9JfhUA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22 a=yPCof4ZbAAAA:8
- a=fvR3Ec5kcXMutB-RvbEA:9 a=CjuIK1q_8ugA:10
-X-Proofpoint-ORIG-GUID: QZ_mHi027iN1x7vBbRhRx2U0ENVk-54g
-X-Proofpoint-GUID: QZ_mHi027iN1x7vBbRhRx2U0ENVk-54g
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA5MDExOCBTYWx0ZWRfXzv8SoinjNsc+
- hBrjhbq4T+HLcPoG2wxRC8RU6zoG5mXEERE/X47rZq2xW/vd8a+swZ/btk+T7xInxD8LDqQL0Wl
- pPm6drnhTT65xYkld2Tug8L6f/pnA+4P1xFR3XjVjvzZhxEL7ELV/03LyUcH5H6ozPHGwpJiwgy
- H/COQGO96pfookgxb2Nf+GSt+oRLgo0q1v1aztwHisDJFI1Ae9PfF5DOsBKXGfnmQwANw9hVP/G
- Zb4LE+RetacojNFffsDkZXe5hswjd9fvU157soml/spF+LHJuwThquPlK/6ASAAm7t8bnmVbTK4
- IdgWBDg+zSUIxy0TmCYszADj1ibSe4x4qgm7sRFi4fyjotgGsLVgZsegVdzLT/LQw4GIRMcFrNb
- 92KA1P2VeTXFy0WE2wcvHhgR0Ff3pAL9js/5K06nwr8qvM6FuDZqyB9iu1L+iweAUjzRyhBGL8m
- 9QojpC+jv7Swzy8wjpQ==
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260205145427.1338534-11-janusz.krzysztofik@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -265,101 +86,331 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[oracle.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[oracle.com:s=corp-2025-04-25,oracle.onmicrosoft.com:s=selector2-oracle-onmicrosoft-com];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[linux-foundation.org,kernel.org,linux.intel.com,redhat.com,alien8.de,zytor.com,arndb.de,linuxfoundation.org,intel.com,suse.de,gmail.com,ffwll.ch,ursulin.net,amd.com,zeniv.linux.org.uk,suse.cz,kvack.org,linux.alibaba.com,google.com,huawei.com,vivo.com,mit.edu,dilger.ca,linux.dev,paragon-software.com,omnibond.com,arm.com,wdc.com,infradead.org,oracle.com,suse.com,nvidia.com,paul-moore.com,namei.org,hallyn.com,rasmusvillemoes.dk,vger.kernel.org,lists.linux.dev,lists.freedesktop.org,lists.ozlabs.org,lists.orangefs.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,suse.de:email,oracle.com:email,oracle.com:dkim,lucifer.local:mid,oracle.onmicrosoft.com:dkim];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lorenzo.stoakes@oracle.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[oracle.com:+,oracle.onmicrosoft.com:+];
-	RCPT_COUNT_GT_50(0.00)[93];
+	ARC_NA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,meson.build:url,kamilkon-DESK.igk.intel.com:mid];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	MIME_TRACE(0.00)[0:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: 9EE89110093
+	TAGGED_RCPT(0.00)[intel-gfx];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kamil.konieczny@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+]
+X-Rspamd-Queue-Id: DBE911100D6
 X-Rspamd-Action: no action
 
-On Fri, Feb 06, 2026 at 05:35:49PM +0000, Pedro Falcato wrote:
-> On Thu, Jan 22, 2026 at 04:06:14PM +0000, Lorenzo Stoakes wrote:
-> > Now we have the mk_vma_flags() macro helper which permits easy
-> > specification of any number of VMA flags, add helper functions which
-> > operate with vma_flags_t parameters.
-> >
-> > This patch provides vma_flags_test[_mask](), vma_flags_set[_mask]() and
-> > vma_flags_clear[_mask]() respectively testing, setting and clearing flags
-> > with the _mask variants accepting vma_flag_t parameters, and the non-mask
-> > variants implemented as macros which accept a list of flags.
-> >
-> > This allows us to trivially test/set/clear aggregate VMA flag values as
-> > necessary, for instance:
-> >
-> > 	if (vma_flags_test(&flags, VMA_READ_BIT, VMA_WRITE_BIT))
-> > 		goto readwrite;
->
-> I'm not a huge fan of the _test ambiguity here, but more words makes it uglier :/
-> I think I can live with it though.
+Hi Janusz,
+On 2026-02-05 at 15:51:52 +0100, Janusz Krzysztofik wrote:
+> Users of Intel discrete graphics adapters are confused with fake
+> information on PCIe link bandwidth (speed and size) of their GPU devices
+> reported by sysfs and userspace tools, including our lsgpu utility.  In
+> order for the lsgpu to show correct link bandwidth information, we need to
+> identify an upstream port of a PCIe bridge that sits on the GPU card and
+> get that information from that port.
+> 
+> Since the tool uses our udev based igt_device_scan library for identifying
+> GPU devices and printing their properties and attributes, modifications
+> that we need apply to that library.
+> 
+> When scanning for DRM devices and their PCI parents, the lsgpu utility
+> requests collection of all their attributes.  When running in this mode,
+> also try to collect information about upstream ports of PCIe bridges of
+> discrete GPU devices.  Once collected, the lsgpu utility will show that
+> information automatically while listing the devices.
+> 
+> While IGT tests are using libpciaccess library for processing PCI devices,
+> that library requires careful handling in order to avoid collisions among
+> multiple call sites potentially using it.  That protection is implemented
+> in igt_device with help of IGT exit handlers. That requires linking with
+> full igt_core library code, while the lsgpu tool now depends neither on
+> igt_device nor on igt_core.  To keep that independence, implement the new
+> code around libpci.  With that approach, refactoring of IGT use of either
+> libpciaccess or igt_device_scan is avoided.  As an additional benefit,
+> there is no need to re-implement some functionality, already provided by
+> libpci function pci_find_cap(), which has no equivalent in libpciaccess.
+> 
+> v5: Address PCI_HEADER_TYPE_MASK missing from <linux/pci_regs.h> in CI,
+>   - add libpci to docker files.
+> v4: Replace 0x7f constant with PCI_HEADER_TYPE_MASK symbol (Krzysztof).
+> v3: Fix incorrect use of ffs(),
+>   - fix bridge link attribute printing suppressed with DEVTYPE_DISCRETE,
+>   - in commit description, elaborate more on reasons for using libpci.
+> v2: Drop unclear GET_REG_MASK macro (Sebastian),
+>   - reuse no longer needed variable containing PCI_HEADER_TYPE for storing
+>     PCI_EXP_FLAGS_TYPE,
+>   - maintain a single instance of struct pci_access throughout processing
+>     of the whole udev device list (Sebastian).
+> 
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10753
+> Reviewed-by: Krzysztof Karas <krzysztof.karas@intel.com>
+> Cc: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 
-Yeah, as discussed on IRC it's a bit of a trade off here unfortunately.
+LGTM
+Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
 
-I don't love having the _BIT stuff there but is necessary for now I feel until
-VM_xxx flags are finally fully deprecated.
+Regards,
+Kamil
 
->
-> >
-> > 	vma_flags_set(&flags, VMA_READ_BIT, VMA_WRITE_BIT);
-> >
-> > 	vma_flags_clear(&flags, VMA_READ_BIT, VMA_WRITE_BIT);
-> >
->
-> The variadic-ness here is very nice though.
-
-Thanks!
-
->
-> > We also add a function for testing that ALL flags are set for convenience,
-> > e.g.:
-> >
-> > 	if (vma_flags_test_all(&flags, VMA_READ_BIT, VMA_MAYREAD_BIT)) {
-> > 		/* Both READ and MAYREAD flags set */
-> > 		...
-> > 	}
-> >
-> > The compiler generates optimal assembly for each such that they behave as
-> > if the caller were setting the bitmap flags manually.
-> >
-> > This is important for e.g. drivers which manipulate flag values rather than
-> > a VMA's specific flag values.
-> >
-> > We also add helpers for testing, setting and clearing flags for VMA's and
-> > VMA descriptors to reduce boilerplate.
-> >
-> > Also add the EMPTY_VMA_FLAGS define to aid initialisation of empty flags.
-> >
-> > Finally, update the userland VMA tests to add the helpers there so they can
-> > be utilised as part of userland testing.
-> >
-> > Signed-off-by: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
->
-> Reviewed-by: Pedro Falcato <pfalcato@suse.de>
-
-Thanks (also for other tags :P)
-
->
-> --
-> Pedro
-
-Cheers, Lorenzo
+> ---
+>  Dockerfile.build-debian-arm64   |  1 +
+>  Dockerfile.build-debian-armhf   |  1 +
+>  Dockerfile.build-debian-minimal |  1 +
+>  Dockerfile.build-fedora         |  1 +
+>  lib/igt_device_scan.c           | 88 +++++++++++++++++++++++++++++++--
+>  lib/meson.build                 |  2 +
+>  meson.build                     |  1 +
+>  7 files changed, 92 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Dockerfile.build-debian-arm64 b/Dockerfile.build-debian-arm64
+> index cf0625ac72..c3643d70ea 100644
+> --- a/Dockerfile.build-debian-arm64
+> +++ b/Dockerfile.build-debian-arm64
+> @@ -23,6 +23,7 @@ RUN apt-get install -y \
+>  			zlib1g-dev:arm64 \
+>  			liblzma-dev:arm64 \
+>  			libcairo-dev:arm64 \
+> +			libpci-dev:arm64 \
+>  			libpixman-1-dev:arm64 \
+>  			libudev-dev:arm64 \
+>  			libgsl-dev:arm64 \
+> diff --git a/Dockerfile.build-debian-armhf b/Dockerfile.build-debian-armhf
+> index 58b5be82a4..605668441a 100644
+> --- a/Dockerfile.build-debian-armhf
+> +++ b/Dockerfile.build-debian-armhf
+> @@ -23,6 +23,7 @@ RUN apt-get install -y \
+>  			zlib1g-dev:armhf \
+>  			liblzma-dev:armhf \
+>  			libcairo-dev:armhf \
+> +			libpci-dev:armhf \
+>  			libpixman-1-dev:armhf \
+>  			libudev-dev:armhf \
+>  			libgsl-dev:armhf \
+> diff --git a/Dockerfile.build-debian-minimal b/Dockerfile.build-debian-minimal
+> index 3850fb43e5..808d2e32e7 100644
+> --- a/Dockerfile.build-debian-minimal
+> +++ b/Dockerfile.build-debian-minimal
+> @@ -14,6 +14,7 @@ RUN apt-get install -y \
+>  			zlib1g-dev \
+>  			liblzma-dev \
+>  			libcairo-dev \
+> +			libpci-dev \
+>  			libpixman-1-dev \
+>  			libudev-dev \
+>  			libxrandr-dev \
+> diff --git a/Dockerfile.build-fedora b/Dockerfile.build-fedora
+> index 9399c0a7db..9dd7b73481 100644
+> --- a/Dockerfile.build-fedora
+> +++ b/Dockerfile.build-fedora
+> @@ -12,6 +12,7 @@ RUN dnf install -y \
+>  	'pkgconfig(pixman-1)' \
+>  	'pkgconfig(valgrind)' \
+>  	'pkgconfig(cairo)' \
+> +	'pkgconfig(libpci)' \
+>  	'pkgconfig(libudev)' \
+>  	'pkgconfig(glib-2.0)' \
+>  	'pkgconfig(gsl)' \
+> diff --git a/lib/igt_device_scan.c b/lib/igt_device_scan.c
+> index 11b3034639..9549850005 100644
+> --- a/lib/igt_device_scan.c
+> +++ b/lib/igt_device_scan.c
+> @@ -35,7 +35,13 @@
+>  #include <libudev.h>
+>  #ifdef __linux__
+>  #include <linux/limits.h>
+> +#include <linux/pci_regs.h>
+>  #endif
+> +#ifndef PCI_HEADER_TYPE_MASK
+> +/* Either not linux, or <linux/pci_regs.h> too old */
+> +#define PCI_HEADER_TYPE_MASK 0x7f
+> +#endif
+> +#include <pci/pci.h>
+>  #include <sys/stat.h>
+>  #include <sys/time.h>
+>  #include <sys/types.h>
+> @@ -913,6 +919,26 @@ static struct igt_device *igt_device_from_syspath(const char *syspath)
+>  	return NULL;
+>  }
+>  
+> +static bool is_pcie_upstream_bridge(struct pci_dev *dev)
+> +{
+> +	struct pci_cap *pcie;
+> +	uint8_t type;
+> +
+> +	type = pci_read_byte(dev, PCI_HEADER_TYPE) & PCI_HEADER_TYPE_MASK;
+> +	if (type != PCI_HEADER_TYPE_BRIDGE)
+> +		return false;
+> +
+> +	pcie = pci_find_cap(dev, PCI_CAP_ID_EXP, PCI_CAP_NORMAL);
+> +	if (!pcie)
+> +		return false;
+> +
+> +	type = pci_read_word(dev, pcie->addr + PCI_EXP_FLAGS);
+> +	type &= PCI_EXP_FLAGS_TYPE;
+> +	type >>= ffs(PCI_EXP_FLAGS_TYPE) - 1;
+> +
+> +	return type == PCI_EXP_TYPE_UPSTREAM;
+> +}
+> +
+>  #define RETRIES_GET_DEVICE 5
+>  
+>  static struct igt_device *find_or_add_igt_device(struct udev *udev,
+> @@ -952,18 +978,52 @@ static struct igt_device *find_or_add_igt_device(struct udev *udev,
+>  	return idev;
+>  }
+>  
+> +static struct udev_device *get_pcie_upstream_bridge(struct udev *udev,
+> +						    struct udev_device *dev,
+> +						    struct pci_access *pacc)
+> +{
+> +	igt_assert(pacc);
+> +
+> +	for (dev = udev_device_get_parent(dev); dev; dev = udev_device_get_parent(dev)) {
+> +		struct pci_filter filter;
+> +		struct pci_dev *pci_dev;
+> +		const char *slot;
+> +
+> +		slot = udev_device_get_property_value(dev, "PCI_SLOT_NAME");
+> +		if (igt_debug_on(!slot))
+> +			continue;
+> +
+> +		pci_filter_init(pacc, &filter);
+> +		if (igt_debug_on(pci_filter_parse_slot(&filter, (char *)slot)))
+> +			continue;
+> +
+> +		pci_dev = pci_get_dev(pacc, filter.domain, filter.bus, filter.slot, filter.func);
+> +		if (igt_debug_on(!pci_dev))
+> +			continue;
+> +
+> +		if (is_pcie_upstream_bridge(pci_dev))
+> +			break;
+> +	}
+> +
+> +	return dev;
+> +}
+> +
+>  /*
+>   * For each drm igt_device add or update its parent igt_device to the array.
+>   * As card/render drm devices mostly have same parent (vkms is an exception)
+>   * link to it and update corresponding drm_card / drm_render fields.
+> + *
+> + * If collecting all attributes and the parent is a discrete GPU then also
+> + * add or update its bridge's upstream port.
+>   */
+>  static void update_or_add_parent(struct udev *udev,
+>  				 struct udev_device *dev,
+>  				 struct igt_device *idev,
+> +				 struct pci_access *pacc,
+>  				 bool limit_attrs)
+>  {
+> -	struct udev_device *parent_dev;
+> -	struct igt_device *parent_idev;
+> +	struct igt_device *parent_idev, *bridge_idev;
+> +	struct udev_device *parent_dev, *bridge_dev;
+>  	const char *devname;
+>  
+>  	/*
+> @@ -983,6 +1043,19 @@ static void update_or_add_parent(struct udev *udev,
+>  		parent_idev->drm_render = strdup(devname);
+>  
+>  	idev->parent = parent_idev;
+> +
+> +	if (!pacc || parent_idev->dev_type != DEVTYPE_DISCRETE)
+> +		return;
+> +
+> +	bridge_dev = get_pcie_upstream_bridge(udev, parent_dev, pacc);
+> +	if (!bridge_dev)
+> +		return;
+> +
+> +	bridge_idev = find_or_add_igt_device(udev, bridge_dev, limit_attrs);
+> +	igt_assert(bridge_idev);
+> +
+> +	/* override DEVTYPE_INTEGRATED so link attributes won't be omitted */
+> +	bridge_idev->dev_type = DEVTYPE_ALL;
+>  }
+>  
+>  static struct igt_device *duplicate_device(struct igt_device *dev) {
+> @@ -1072,6 +1145,7 @@ static void scan_drm_devices(bool limit_attrs)
+>  	struct udev *udev;
+>  	struct udev_enumerate *enumerate;
+>  	struct udev_list_entry *devices, *dev_list_entry;
+> +	struct pci_access *pacc = NULL;
+>  	struct igt_device *dev;
+>  	int ret;
+>  
+> @@ -1095,6 +1169,12 @@ static void scan_drm_devices(bool limit_attrs)
+>  	if (!devices)
+>  		return;
+>  
+> +	/* prepare for upstream bridge port scan if called from lsgpu */
+> +	if (!limit_attrs) {
+> +		pacc = pci_alloc();
+> +		pci_init(pacc);
+> +	}
+> +
+>  	udev_list_entry_foreach(dev_list_entry, devices) {
+>  		const char *path;
+>  		struct udev_device *udev_dev;
+> @@ -1104,10 +1184,12 @@ static void scan_drm_devices(bool limit_attrs)
+>  		udev_dev = udev_device_new_from_syspath(udev, path);
+>  		idev = igt_device_new_from_udev(udev_dev, limit_attrs);
+>  		igt_list_add_tail(&idev->link, &igt_devs.all);
+> -		update_or_add_parent(udev, udev_dev, idev, limit_attrs);
+> +		update_or_add_parent(udev, udev_dev, idev, pacc, limit_attrs);
+>  
+>  		udev_device_unref(udev_dev);
+>  	}
+> +	if (pacc)
+> +		pci_cleanup(pacc);
+>  	udev_enumerate_unref(enumerate);
+>  	udev_unref(udev);
+>  
+> diff --git a/lib/meson.build b/lib/meson.build
+> index d851029e04..d4d2ffa127 100644
+> --- a/lib/meson.build
+> +++ b/lib/meson.build
+> @@ -141,6 +141,7 @@ lib_deps = [
+>  	libdrm,
+>  	libdw,
+>  	libkmod,
+> +	libpci,
+>  	libudev,
+>  	math,
+>  	pciaccess,
+> @@ -334,6 +335,7 @@ lib_igt_perf = declare_dependency(link_with : lib_igt_perf_build,
+>  
+>  scan_dep = [
+>  	glib,
+> +	libpci,
+>  	libudev,
+>  ]
+>  
+> diff --git a/meson.build b/meson.build
+> index 4b2496c016..57849648a3 100644
+> --- a/meson.build
+> +++ b/meson.build
+> @@ -162,6 +162,7 @@ endif
+>  build_info += 'Valgrind annotations: @0@'.format(valgrind.found())
+>  
+>  cairo = dependency('cairo', version : '>1.12.0', required : true)
+> +libpci = dependency('libpci', required : true)
+>  libudev = dependency('libudev', required : true)
+>  glib = dependency('glib-2.0', required : true)
+>  
+> -- 
+> 2.52.0
+> 
