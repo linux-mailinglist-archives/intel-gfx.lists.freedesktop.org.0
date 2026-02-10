@@ -2,71 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MO7DLAP1imn2OwAAu9opvQ
+	id oB65AAD5imlBPAAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Feb 2026 10:06:11 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Feb 2026 10:23:12 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B137118899
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Feb 2026 10:06:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45548118D2C
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Feb 2026 10:23:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A07A10E502;
-	Tue, 10 Feb 2026 09:06:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE69B10E52E;
+	Tue, 10 Feb 2026 09:23:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HwEN0JPb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y+33NqKM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5339F10E50E;
- Tue, 10 Feb 2026 09:06:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BF2E10E51B;
+ Tue, 10 Feb 2026 09:23:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770714369; x=1802250369;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=ITHiJ8mV8MjBhrvl31MX8m6mVWmn+8bPpVNr5l5vxvo=;
- b=HwEN0JPbqkMPMr2a7AmJiuF0Q61Zc0sCr1vocgMyUXMa6SZfEI3Qm4+O
- 4lx8kMVu6Xq5ZQzq9e4ow66bcEAF0AgeQeaRjS1SHgnvhMt2BTqgtP+qC
- CPHM25OsorLAopzUasHrU64QHUNTvTvCexYj+jkJWIwWQqtmrU1YQZLvh
- O91SVovDaOPWgMfQfRoP3hPlLSxe/uuG2Zr4AM2cCIsbkvlrtpRB8QIaj
- WBvjW7T8YCKG/sVOJt8TSVlCfEA+OJjrOb+YVDDy6NPnxSvL67By0vLMB
- PQa2FZ10A3dT5fQeg0gCP4XNIRidmnVq9ggZXSqkLsrcpx/8Q2sZwPRQk w==;
-X-CSE-ConnectionGUID: F7Yg404ZR7SkQyGsFKs+7g==
-X-CSE-MsgGUID: Ej+wMFfqRmedt8NzrA5W9A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11696"; a="94479238"
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="94479238"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2026 01:06:09 -0800
-X-CSE-ConnectionGUID: wf+jMZ0KS96jsbIkGQsl0g==
-X-CSE-MsgGUID: 9czWtVkCQRCBwIkdPS8CbA==
+ t=1770715387; x=1802251387;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=Dab3dVl5SxedR/PwPLgEmY+DSdRMhfNXtdR0mTBnfLA=;
+ b=Y+33NqKMgNVY6CDcE8iM1/9zhvfh6TCcsh2EA3uJ7zFML2NoQ9Cad5NY
+ wTJeMLreeHeS5VGsW+di88nHr8sIWZ7CavetooKSnOz8n9/VvUT7uJfZV
+ Q7lXW+sWShD/cCfnUB3yl89X7dWUjpMXd4tLXha4jW9ZMRsSa1pSDD2AA
+ ZzfWgBEIwcDlSVFEkXz4aSFWJbLlmI0aLNqiAGoxtIRJGTGF9RiUwdkFO
+ LMnPCOOY9Td/PGf25xD0jXD2We1LCS/xinc7X5Kiry9MXkoCw9tOPaPnI
+ YRQj70wL5fL3vh8PO8ezeqn6BvufbIubzjHIA3IN4Qob6BBaXFalpRakE Q==;
+X-CSE-ConnectionGUID: 5XypM0oySM2tSoNDuJ+vYQ==
+X-CSE-MsgGUID: Dlvvu7csQw6ar+MmHzmBvw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11696"; a="82568788"
+X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="82568788"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2026 01:23:07 -0800
+X-CSE-ConnectionGUID: tPUbVQTLQMKTiU2QcJF8yQ==
+X-CSE-MsgGUID: pfiw3MXLSmGlbhLiIhZymw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="242479060"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orviesa002.jf.intel.com with ESMTP; 10 Feb 2026 01:06:04 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Tue, 10 Feb 2026 14:34:01 +0530
-Subject: [PATCH v9 7/7] drm: Introduce DRM_CAP_ATOMIC_ERROR_REPORTING
+X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="211058607"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.246])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2026 01:23:05 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Samasth Norway Ananda <samasth.norway.ananda@oracle.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: rodrigo.vivi@intel.com, samasth.norway.ananda@oracle.com,
+ ville.syrjala@linux.intel.com
+Subject: Re: [PATCH] drm/i915/gmbus: fix spurious timeout on 512-byte burst
+ reads
+In-Reply-To: <20260206203044.3892925-1-samasth.norway.ananda@oracle.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260206203044.3892925-1-samasth.norway.ananda@oracle.com>
+Date: Tue, 10 Feb 2026 11:23:02 +0200
+Message-ID: <83ad67d411502b2e2ece666745b5209dae83e4f7@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260210-atomic-v9-7-525c88fd2402@intel.com>
-References: <20260210-atomic-v9-0-525c88fd2402@intel.com>
-In-Reply-To: <20260210-atomic-v9-0-525c88fd2402@intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, xaver.hugl@kde.org, 
- harry.wentland@amd.com, uma.shankar@intel.com, louis.chauvet@bootlin.com, 
- naveen1.kumar@intel.com, ramya.krishna.yella@intel.com
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, Arun R Murthy <arun.r.murthy@intel.com>, 
- Suraj Kandpal <suraj.kandpal@intel.com>
-X-Mailer: b4 0.15-dev
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,76 +77,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	ARC_NA(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,ursulin.net,kde.org,amd.com,bootlin.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
-	FROM_NEQ_ENVFROM(0.00)[arun.r.murthy@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	RCVD_TLS_LAST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 8B137118899
+	ARC_NA(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,oracle.com:email]
+X-Rspamd-Queue-Id: 45548118D2C
 X-Rspamd-Action: no action
 
-The new capability informs users that atomic_ioctl() supports
-failure reporting when an error occurs.
+On Fri, 06 Feb 2026, Samasth Norway Ananda <samasth.norway.ananda@oracle.com> wrote:
+> When reading exactly 512 bytes with burst read enabled, the
+> extra_byte_added path breaks out of the inner do-while without
+> decrementing len. The outer while(len) then re-enters and gmbus_wait()
+> times out since all data has been delivered. Decrement len before the
+> break so the outer loop terminates correctly.
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/drm_ioctl.c | 3 +++
- include/uapi/drm/drm.h      | 7 +++++++
- 2 files changed, 10 insertions(+)
+Nice find, and the fix looks correct. How did you figure this out? Did
+you hit the issue?
 
-diff --git a/drivers/gpu/drm/drm_ioctl.c b/drivers/gpu/drm/drm_ioctl.c
-index ff193155129e7e863888d8958458978566b144f8..59f2b5b53830fd3aadc6e18cf49f0660a99e9c96 100644
---- a/drivers/gpu/drm/drm_ioctl.c
-+++ b/drivers/gpu/drm/drm_ioctl.c
-@@ -304,6 +304,9 @@ static int drm_getcap(struct drm_device *dev, void *data, struct drm_file *file_
- 		req->value = drm_core_check_feature(dev, DRIVER_ATOMIC) &&
- 			     dev->mode_config.async_page_flip;
- 		break;
-+	case DRM_CAP_ATOMIC_ERROR_REPORTING:
-+		req->value = drm_core_check_feature(dev, DRIVER_ATOMIC) && 1;
-+		break;
- 	default:
- 		return -EINVAL;
- 	}
-diff --git a/include/uapi/drm/drm.h b/include/uapi/drm/drm.h
-index 27cc159c1d275c7a7fe057840ef792f30a582bb7..6082410bcabfb4aa37b85e5f03d3611e5aed4aa5 100644
---- a/include/uapi/drm/drm.h
-+++ b/include/uapi/drm/drm.h
-@@ -812,6 +812,13 @@ struct drm_gem_change_handle {
-  * commits.
-  */
- #define DRM_CAP_ATOMIC_ASYNC_PAGE_FLIP	0x15
-+/**
-+ * DRM_CAP_ATOMIC_ERROR_REPORTING
-+ *
-+ * If set to 1, the driver supports reporting of failure codes on error in
-+ * atomic ioctl().
-+ */
-+#define DRM_CAP_ATOMIC_ERROR_REPORTING	0x16
- 
- /* DRM_IOCTL_GET_CAP ioctl argument type */
- struct drm_get_cap {
+I wonder if the whole extra byte thing is a workaround for some old
+hardware that shouldn't be needed on modern hardware... Ville, thoughts?
+
+> Also fix a typo in a nearby comment ("generata" -> "generate").
+
+"Also" is a good hint that it should be a separate patch. ;)
+
+BR,
+Jani
+
+> Fixes: d5dc0f43f268 ("drm/i915/gmbus: Enable burst read")
+> Signed-off-by: Samasth Norway Ananda <samasth.norway.ananda@oracle.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_gmbus.c | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
+> index 2caff677600c..5fb3fee34af4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_gmbus.c
+> +++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
+> @@ -496,8 +496,10 @@ gmbus_xfer_read_chunk(struct intel_display *display,
+>  
+>  		val = intel_de_read_fw(display, GMBUS3(display));
+>  		do {
+> -			if (extra_byte_added && len == 1)
+> +			if (extra_byte_added && len == 1) {
+> +				len--;
+>  				break;
+> +			}
+>  
+>  			*buf++ = val & 0xff;
+>  			val >>= 8;
+> @@ -693,7 +695,7 @@ do_gmbus_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs, int num,
+>  			goto clear_err;
+>  	}
+>  
+> -	/* Generate a STOP condition on the bus. Note that gmbus can't generata
+> +	/* Generate a STOP condition on the bus. Note that gmbus can't generate
+>  	 * a STOP on the very first cycle. To simplify the code we
+>  	 * unconditionally generate the STOP condition with an additional gmbus
+>  	 * cycle. */
 
 -- 
-2.25.1
-
+Jani Nikula, Intel
