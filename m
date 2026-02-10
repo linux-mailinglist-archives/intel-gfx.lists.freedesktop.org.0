@@ -2,70 +2,81 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uA+BG1lfi2msUAAAu9opvQ
+	id UM97AOVki2kMUQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Feb 2026 17:39:53 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Feb 2026 18:03:33 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A4D811D5AF
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Feb 2026 17:39:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95BB211D82F
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Feb 2026 18:03:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90B4310E1EF;
-	Tue, 10 Feb 2026 16:39:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0192E10E5DA;
+	Tue, 10 Feb 2026 17:03:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j895ECCr";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="UbiQl67K";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D752410E171;
- Tue, 10 Feb 2026 16:39:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770741589; x=1802277589;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=aAvVYjl6DawTN0v8POMG8q4x0T3yehEuSmeiJNP1Ep4=;
- b=j895ECCruhhoPMcUw6gKc/n3ew9FsN64eZiAn6oCvbwr8yx5xO2Nom1O
- A184TLXYTdwDCs+k06JkTJlWSGNlCl6mnEePZHgBkKvYL/mR5pcEgUxCu
- op+IM7Qv51fwGoiKDsf4KXUEauGwCsIZp6A4XBSFIpihYVQnHc5FQTCaU
- Y65TreAg4uGqBAg5cWv3vF0VFCksoC7AFKMI9ut5Yp1Bedti2HnCJD4AX
- 5a2ACsvuO5DHurPPDF0U+Lfsi0Z+NTEE/U2sdEcz01ruzhor8kqdHFE3A
- HpnqQFF+zOd1D1CIYuTGhqLrkYazinXOs9TSKUrFTuQJqu5VM5LKBSVZZ g==;
-X-CSE-ConnectionGUID: IEeKAAw5T6mhBxvMHhmEQQ==
-X-CSE-MsgGUID: LXN2neC0SdGvyp1W9mZYHA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11697"; a="83314258"
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="83314258"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2026 08:39:48 -0800
-X-CSE-ConnectionGUID: DGVGzVzcTjKNEU/pIHmAOw==
-X-CSE-MsgGUID: 2/Z1qBooQ0qQBXH9eqKC7Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="234944421"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.244.136])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2026 08:39:46 -0800
-Date: Tue, 10 Feb 2026 18:39:43 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: Samasth Norway Ananda <samasth.norway.ananda@oracle.com>,
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0ABB10E1CA;
+ Tue, 10 Feb 2026 17:03:25 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 54B7343C5F;
+ Tue, 10 Feb 2026 17:03:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAFE9C116C6;
+ Tue, 10 Feb 2026 17:03:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1770743005;
+ bh=YLgcpRDnWTHgN5iEvcrgGHQykKQfZ6+q//x2uAoTL2Q=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=UbiQl67KXho6dNAGklbzIoKY/CuPlIJmYXE2CfYzHTIJToITEXD9N+eJzfXKt3SHM
+ lSwwfms3XZg5cG1604q/3nRhYxZODV132zqUHy30bF0Dh0anrvl14BTtczFIKaSiYm
+ zJTXSfV6rqXSV50GwWyl6vA1rVF3ciiUruOnRDGq6DnYFjeRsSyoJqUWBM3Pbtn2jn
+ LJJWnwEsxMQrAdj/juSXJYCtctRajep/Kh0DdrCh6UAdgmSTLXq5zrsB5ZVAJneeZu
+ VtIJfcfdhuQmgZ/ahhSGGz/a0V5r6TH0Q5Q+pRphfFKzqvrlRShcEj+B874bueM1vH
+ ii6vUvQ94znzA==
+Date: Tue, 10 Feb 2026 18:03:22 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>, 
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
+ Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Dmitry Baryshkov <lumag@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Rob Herring <robh@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ kernel@collabora.com, 
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- rodrigo.vivi@intel.com
-Subject: Re: [PATCH] drm/i915/gmbus: fix spurious timeout on 512-byte burst
- reads
-Message-ID: <aYtfT7aw5n1Dwd-Y@intel.com>
-References: <20260206203044.3892925-1-samasth.norway.ananda@oracle.com>
- <83ad67d411502b2e2ece666745b5209dae83e4f7@intel.com>
+ linux-doc@vger.kernel.org, 
+ Andri Yngvason <andri@yngvason.is>, Werner Sembach <wse@tuxedocomputers.com>, 
+ Marius Vlad <marius.vlad@collabora.com>
+Subject: Re: [PATCH v7 02/22] drm: Add new general DRM property "color format"
+Message-ID: <20260210-imported-ant-of-defiance-7cdb42@houat>
+References: <20260121-color-format-v7-0-ef790dae780c@collabora.com>
+ <20260121-color-format-v7-2-ef790dae780c@collabora.com>
+ <20260206-deft-provocative-perch-6ca9bf@houat>
+ <6318997.lOV4Wx5bFT@workhorse>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="bzvkctnspkvgvs72"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <83ad67d411502b2e2ece666745b5209dae83e4f7@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+In-Reply-To: <6318997.lOV4Wx5bFT@workhorse>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,100 +92,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.31 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	R_MIXED_CHARSET(0.63)[subject];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [-1.41 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,suse.de,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,yngvason.is,tuxedocomputers.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[39];
+	FROM_NEQ_ENVFROM(0.00)[mripard@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_FIVE(0.00)[5];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,oracle.com:email,intel.com:mid,intel.com:dkim]
-X-Rspamd-Queue-Id: 8A4D811D5AF
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 95BB211D82F
 X-Rspamd-Action: no action
 
-On Tue, Feb 10, 2026 at 11:23:02AM +0200, Jani Nikula wrote:
-> On Fri, 06 Feb 2026, Samasth Norway Ananda <samasth.norway.ananda@oracle.com> wrote:
-> > When reading exactly 512 bytes with burst read enabled, the
-> > extra_byte_added path breaks out of the inner do-while without
-> > decrementing len. The outer while(len) then re-enters and gmbus_wait()
-> > times out since all data has been delivered. Decrement len before the
-> > break so the outer loop terminates correctly.
-> 
-> Nice find, and the fix looks correct. How did you figure this out? Did
-> you hit the issue?
-> 
-> I wonder if the whole extra byte thing is a workaround for some old
-> hardware that shouldn't be needed on modern hardware... Ville, thoughts?
 
-I think it's still needed due to the weird way this is implemented
-in the hardware. The byte counter rolls over at 256->1, so for that
-to happen the programmed byte count must be >256 or else we'd reach
-the target byte count before the rollover happens, in which case
-the entire transfer would terminate already during the first 256
-byte chunk.
+--bzvkctnspkvgvs72
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v7 02/22] drm: Add new general DRM property "color format"
+MIME-Version: 1.0
 
-> 
-> > Also fix a typo in a nearby comment ("generata" -> "generate").
-> 
-> "Also" is a good hint that it should be a separate patch. ;)
-> 
-> BR,
-> Jani
-> 
-> > Fixes: d5dc0f43f268 ("drm/i915/gmbus: Enable burst read")
-> > Signed-off-by: Samasth Norway Ananda <samasth.norway.ananda@oracle.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_gmbus.c | 6 ++++--
-> >  1 file changed, 4 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
-> > index 2caff677600c..5fb3fee34af4 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_gmbus.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
-> > @@ -496,8 +496,10 @@ gmbus_xfer_read_chunk(struct intel_display *display,
-> >  
-> >  		val = intel_de_read_fw(display, GMBUS3(display));
-> >  		do {
-> > -			if (extra_byte_added && len == 1)
-> > +			if (extra_byte_added && len == 1) {
-> > +				len--;
-> >  				break;
-> > +			}
-> >  
-> >  			*buf++ = val & 0xff;
-> >  			val >>= 8;
-> > @@ -693,7 +695,7 @@ do_gmbus_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs, int num,
-> >  			goto clear_err;
-> >  	}
-> >  
-> > -	/* Generate a STOP condition on the bus. Note that gmbus can't generata
-> > +	/* Generate a STOP condition on the bus. Note that gmbus can't generate
-> >  	 * a STOP on the very first cycle. To simplify the code we
-> >  	 * unconditionally generate the STOP condition with an additional gmbus
-> >  	 * cycle. */
-> 
-> -- 
-> Jani Nikula, Intel
+Hi,
 
--- 
-Ville Syrjälä
-Intel
+On Fri, Feb 06, 2026 at 04:26:56PM +0100, Nicolas Frattaroli wrote:
+> On Friday, 6 February 2026 15:05:08 Central European Standard Time Maxime=
+ Ripard wrote:
+> > On Wed, Jan 21, 2026 at 03:45:09PM +0100, Nicolas Frattaroli wrote:
+> > > diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+> > > index 7eaec37ae1c7..b5604dca728a 100644
+> > > --- a/include/drm/drm_connector.h
+> > > +++ b/include/drm/drm_connector.h
+> > > @@ -556,6 +556,16 @@ enum drm_colorspace {
+> > >  	DRM_MODE_COLORIMETRY_COUNT
+> > >  };
+> > > =20
+> > > +enum drm_color_format {
+> > > +	DRM_COLOR_FORMAT_AUTO			=3D 0,
+> > > +	DRM_COLOR_FORMAT_RGB444			=3D BIT(0),
+> > > +	DRM_COLOR_FORMAT_YCBCR444		=3D BIT(1),
+> > > +	DRM_COLOR_FORMAT_YCBCR422		=3D BIT(2),
+> > > +	DRM_COLOR_FORMAT_YCBCR420		=3D BIT(3),
+> > > +};
+> > > +
+> > > +#define DRM_COLOR_FORMAT_COUNT 5
+> > > +
+> >=20
+> > I don't really see a reason to expose an enum, with a bunch of values
+> > that are all mutually exclusive, as a bitmask. It's pretty inconsistent
+> > with most (all?) the other similar properties we have.
+> >=20
+> > I appreciate you did that to avoid fixing up every driver using those
+> > values, but then maybe we don't have to? We could create a userspace
+> > facing enum, and convert to DRM_COLOR_FORMAT internally.
+>=20
+> This is what the series did at v5 and earlier. IMHO it was kind of
+> counter-productive, because we then had two different things for the
+> same purpose, and some conversion logic between them. I think it's more
+> error prone to do it that way (think: mixing up the two), and doesn't
+> have a clear benefit. Just to give a picture of how bad things get:
+>=20
+> 1. we have the HDMI color format (aka "HDMI_COLORSPACE")
+> 2. we have driver specific output color formats, e.g. the intel ones
+> 3. we have DRM_COLOR_FORMAT
+> 4. we have the bus formats (multiple per color format)
+> 5. we have the DRM plane formats (again, multiple per color format)
+>=20
+> Adding a sixth into the mix feels a bit bad because we'll then need to
+> justify why we should have another layer of switch-case statements.
+
+Yeah, but they are all semantically different:
+
+* The userspace one you want to introduce is going to be a superset of
+  all the valid output format for all the output busses we support (so,
+  HDMI + DP + etc.)
+
+* plane formats are the input format, we have much more variation there,
+  and we will never output these. We can ignore these.
+
+* bus formats are somewhat similar, they are more about the wiring
+  between bridges than anything else, and they are not exposed to
+  userspace. We can ignore these too.
+
+* DRM_COLOR_FORMAT are definitely redundant.
+
+* The intel color formats are also redundant, but also internal. I would
+  expect them to converge to whatever we come up here eventually (but
+  really don't expect you to do that work).
+
+* And HDMI_COLORSPACE is really mandated by the HDMI spec, and is only
+  about HDMI connectors. It will never fully overlap with what we come
+  up with here, if only because HDMI cares about things we don't.
+
+So we really have two formats in my opinion: the one exposed through the
+uapi, and the internal one exposed to driver.
+
+In my view, the internal -> uapi conversion is trivial because the uapi
+one is a superset of the internal one (if only for auto). The uapi ->
+internal one needs to deal and resolve what auto means, but your code
+already does that.
+
+I don't really care about the internal format, as long as drivers don't
+have to be smart about it, so auto shouldn't be exposed to drivers. As
+far as I'm concerned, DRM_COLOR_FORMAT would fit that bill if it wasn't
+for the fact that it's both a bitmask and an enum depending on the
+context, which makes it pretty weird and error prone to deal with.
+
+Maxime
+
+--bzvkctnspkvgvs72
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaYtk1QAKCRAnX84Zoj2+
+dtH+AX9icXQp+NxFc1ZKirTjKLdjN/aWcl/dtMD8J4ci+mTqPt3KkSi4+FSK/s7a
+WNYTGwkBgOD8I055eaRKcNaaDGxQykXaPnfDkqAkw+xuNqdU6H6Fu+Om0bh+yw2H
+icXSLJ4gYw==
+=puI2
+-----END PGP SIGNATURE-----
+
+--bzvkctnspkvgvs72--
