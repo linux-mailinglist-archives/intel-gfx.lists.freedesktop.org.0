@@ -2,67 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eBD9FzVci2mYUAAAu9opvQ
+	id uA+BG1lfi2msUAAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Feb 2026 17:26:29 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Feb 2026 17:39:53 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E3CA11D242
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Feb 2026 17:26:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A4D811D5AF
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Feb 2026 17:39:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A88EA10E5D6;
-	Tue, 10 Feb 2026 16:26:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90B4310E1EF;
+	Tue, 10 Feb 2026 16:39:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AgrrEgFM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j895ECCr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D92EE10E5D2;
- Tue, 10 Feb 2026 16:26:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D752410E171;
+ Tue, 10 Feb 2026 16:39:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770740785; x=1802276785;
- h=message-id:date:mime-version:from:subject:to:cc:
- references:in-reply-to:content-transfer-encoding;
- bh=jbQxOL0+rihV9DQcHLri2xarDAAjXjCcTZhYf3ow+y0=;
- b=AgrrEgFM47F8IlR0oyaWcrRRFSxC8kIjI/tpGl053llqBWp+VTdTt9dm
- IELfzHWDMVmnSTm+bTyc+yymVC6Z7PcNYrXmD7NvrRpZc7uiJNvxN/Etq
- oBPhODR+VpsgB8RFqv2LXTBxpt/g0W1qpyi5QQAdxOfzF8FOqnD/iRyMg
- 72topbu+C1ND7skS4wjXQ8sJ3sGbUTaKz8Ir+51V6U09356vIvAkbYSAV
- +B6t1VjP2f+59gHBG2gBk4OeX2bNSpD1BcR7BnaN+xf7wL8K3G7leUID1
- x31BdALuwEVTszN4zAxwfjFAeMyTzQzf84x5gY3CGgcGKvEeiSWNGv7eu g==;
-X-CSE-ConnectionGUID: 6eKTfxKPSjaGLLGhZULCRQ==
-X-CSE-MsgGUID: o4iO4P3OTNKDPbfZLudf7g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11697"; a="70889387"
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="70889387"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2026 08:26:25 -0800
-X-CSE-ConnectionGUID: QBb7IkB9Q9SN0g3L33P+EA==
-X-CSE-MsgGUID: 07PdPbbURLOEX/M+7BmLMA==
+ t=1770741589; x=1802277589;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=aAvVYjl6DawTN0v8POMG8q4x0T3yehEuSmeiJNP1Ep4=;
+ b=j895ECCruhhoPMcUw6gKc/n3ew9FsN64eZiAn6oCvbwr8yx5xO2Nom1O
+ A184TLXYTdwDCs+k06JkTJlWSGNlCl6mnEePZHgBkKvYL/mR5pcEgUxCu
+ op+IM7Qv51fwGoiKDsf4KXUEauGwCsIZp6A4XBSFIpihYVQnHc5FQTCaU
+ Y65TreAg4uGqBAg5cWv3vF0VFCksoC7AFKMI9ut5Yp1Bedti2HnCJD4AX
+ 5a2ACsvuO5DHurPPDF0U+Lfsi0Z+NTEE/U2sdEcz01ruzhor8kqdHFE3A
+ HpnqQFF+zOd1D1CIYuTGhqLrkYazinXOs9TSKUrFTuQJqu5VM5LKBSVZZ g==;
+X-CSE-ConnectionGUID: IEeKAAw5T6mhBxvMHhmEQQ==
+X-CSE-MsgGUID: LXN2neC0SdGvyp1W9mZYHA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11697"; a="83314258"
+X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="83314258"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2026 08:39:48 -0800
+X-CSE-ConnectionGUID: DGVGzVzcTjKNEU/pIHmAOw==
+X-CSE-MsgGUID: 2/Z1qBooQ0qQBXH9eqKC7Q==
 X-ExtLoop1: 1
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.83])
- ([10.245.244.83])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2026 08:26:22 -0800
-Message-ID: <ce9833ef-8cfa-4b1a-b4d5-eda0158cb19d@intel.com>
-Date: Tue, 10 Feb 2026 16:26:24 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Matthew Auld <matthew.auld@intel.com>
-Subject: Re: [PATCH v3 1/2] drm/buddy: Improve offset-aligned allocation
- handling
-To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- christian.koenig@amd.com, dri-devel@lists.freedesktop.org,
+X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="234944421"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.136])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2026 08:39:46 -0800
+Date: Tue, 10 Feb 2026 18:39:43 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: Samasth Norway Ananda <samasth.norway.ananda@oracle.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Cc: alexander.deucher@amd.com
-References: <20260209083051.13376-1-Arunpravin.PaneerSelvam@amd.com>
-Content-Language: en-GB
-In-Reply-To: <20260209083051.13376-1-Arunpravin.PaneerSelvam@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ rodrigo.vivi@intel.com
+Subject: Re: [PATCH] drm/i915/gmbus: fix spurious timeout on 512-byte burst
+ reads
+Message-ID: <aYtfT7aw5n1Dwd-Y@intel.com>
+References: <20260206203044.3892925-1-samasth.norway.ananda@oracle.com>
+ <83ad67d411502b2e2ece666745b5209dae83e4f7@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <83ad67d411502b2e2ece666745b5209dae83e4f7@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,479 +81,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
+X-Spamd-Result: default: False [0.31 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
+	R_MIXED_CHARSET(0.63)[subject];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,amd.com:email];
+	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	FROM_NEQ_ENVFROM(0.00)[matthew.auld@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 9E3CA11D242
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_FIVE(0.00)[5];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,oracle.com:email,intel.com:mid,intel.com:dkim]
+X-Rspamd-Queue-Id: 8A4D811D5AF
 X-Rspamd-Action: no action
 
-On 09/02/2026 08:30, Arunpravin Paneer Selvam wrote:
-> Large alignment requests previously forced the buddy allocator to search by
-> alignment order, which often caused higher-order free blocks to be split even
-> when a suitably aligned smaller region already existed within them. This led
-> to excessive fragmentation, especially for workloads requesting small sizes
-> with large alignment constraints.
+On Tue, Feb 10, 2026 at 11:23:02AM +0200, Jani Nikula wrote:
+> On Fri, 06 Feb 2026, Samasth Norway Ananda <samasth.norway.ananda@oracle.com> wrote:
+> > When reading exactly 512 bytes with burst read enabled, the
+> > extra_byte_added path breaks out of the inner do-while without
+> > decrementing len. The outer while(len) then re-enters and gmbus_wait()
+> > times out since all data has been delivered. Decrement len before the
+> > break so the outer loop terminates correctly.
 > 
-> This change prioritizes the requested allocation size during the search and
-> uses an augmented RB-tree field (subtree_max_alignment) to efficiently locate
-> free blocks that satisfy both size and offset-alignment requirements. As a
-> result, the allocator can directly select an aligned sub-region without
-> splitting larger blocks unnecessarily.
+> Nice find, and the fix looks correct. How did you figure this out? Did
+> you hit the issue?
 > 
-> A practical example is the VKCTS test
-> dEQP-VK.memory.allocation.basic.size_8KiB.reverse.count_4000, which repeatedly
-> allocates 8 KiB buffers with a 256 KiB alignment. Previously, such allocations
-> caused large blocks to be split aggressively, despite smaller aligned regions
-> being sufficient. With this change, those aligned regions are reused directly,
-> significantly reducing fragmentation.
+> I wonder if the whole extra byte thing is a workaround for some old
+> hardware that shouldn't be needed on modern hardware... Ville, thoughts?
+
+I think it's still needed due to the weird way this is implemented
+in the hardware. The byte counter rolls over at 256->1, so for that
+to happen the programmed byte count must be >256 or else we'd reach
+the target byte count before the rollover happens, in which case
+the entire transfer would terminate already during the first 256
+byte chunk.
+
 > 
-> This improvement is visible in the amdgpu VRAM buddy allocator state
-> (/sys/kernel/debug/dri/1/amdgpu_vram_mm). After the change, higher-order blocks
-> are preserved and the number of low-order fragments is substantially reduced.
+> > Also fix a typo in a nearby comment ("generata" -> "generate").
 > 
-> Before:
->    order- 5 free: 1936 MiB, blocks: 15490
->    order- 4 free:  967 MiB, blocks: 15486
->    order- 3 free:  483 MiB, blocks: 15485
->    order- 2 free:  241 MiB, blocks: 15486
->    order- 1 free:  241 MiB, blocks: 30948
+> "Also" is a good hint that it should be a separate patch. ;)
 > 
-> After:
->    order- 5 free:  493 MiB, blocks:  3941
->    order- 4 free:  246 MiB, blocks:  3943
->    order- 3 free:  123 MiB, blocks:  4101
->    order- 2 free:   61 MiB, blocks:  4101
->    order- 1 free:   61 MiB, blocks:  8018
+> BR,
+> Jani
 > 
-> By avoiding unnecessary splits, this change improves allocator efficiency and
-> helps maintain larger contiguous free regions under heavy offset-aligned
-> allocation workloads.
+> > Fixes: d5dc0f43f268 ("drm/i915/gmbus: Enable burst read")
+> > Signed-off-by: Samasth Norway Ananda <samasth.norway.ananda@oracle.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_gmbus.c | 6 ++++--
+> >  1 file changed, 4 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
+> > index 2caff677600c..5fb3fee34af4 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_gmbus.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
+> > @@ -496,8 +496,10 @@ gmbus_xfer_read_chunk(struct intel_display *display,
+> >  
+> >  		val = intel_de_read_fw(display, GMBUS3(display));
+> >  		do {
+> > -			if (extra_byte_added && len == 1)
+> > +			if (extra_byte_added && len == 1) {
+> > +				len--;
+> >  				break;
+> > +			}
+> >  
+> >  			*buf++ = val & 0xff;
+> >  			val >>= 8;
+> > @@ -693,7 +695,7 @@ do_gmbus_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs, int num,
+> >  			goto clear_err;
+> >  	}
+> >  
+> > -	/* Generate a STOP condition on the bus. Note that gmbus can't generata
+> > +	/* Generate a STOP condition on the bus. Note that gmbus can't generate
+> >  	 * a STOP on the very first cycle. To simplify the code we
+> >  	 * unconditionally generate the STOP condition with an additional gmbus
+> >  	 * cycle. */
 > 
-> v2:(Matthew)
->    - Update augmented information along the path to the inserted node.
-> 
-> v3:
->    - Move the patch to gpu/buddy.c file.
-> 
-> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-> Suggested-by: Christian KÃ¶nig <christian.koenig@amd.com>
-> ---
->   drivers/gpu/buddy.c       | 271 +++++++++++++++++++++++++++++++-------
->   include/linux/gpu_buddy.h |   2 +
->   2 files changed, 228 insertions(+), 45 deletions(-)
-> 
-> diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
-> index 603c59a2013a..3a25eed050ba 100644
-> --- a/drivers/gpu/buddy.c
-> +++ b/drivers/gpu/buddy.c
-> @@ -14,6 +14,16 @@
->   
->   static struct kmem_cache *slab_blocks;
->   
-> +static unsigned int gpu_buddy_block_offset_alignment(struct gpu_buddy_block *block)
-> +{
-> +	return __ffs(gpu_buddy_block_offset(block));
+> -- 
+> Jani Nikula, Intel
 
-__ffs() will be undefined for offset zero it seems, so might blow up in 
-some strange way. I guess just return the max possible alignment here if 
-offset is zero? Also are we meant to use __ffs64() here?
-
-> +}
-> +
-> +RB_DECLARE_CALLBACKS_MAX(static, gpu_buddy_augment_cb,
-> +			 struct gpu_buddy_block, rb,
-> +			 unsigned int, subtree_max_alignment,
-> +			 gpu_buddy_block_offset_alignment);
-> +
->   static struct gpu_buddy_block *gpu_block_alloc(struct gpu_buddy *mm,
->   					       struct gpu_buddy_block *parent,
->   					       unsigned int order,
-> @@ -31,6 +41,9 @@ static struct gpu_buddy_block *gpu_block_alloc(struct gpu_buddy *mm,
->   	block->header |= order;
->   	block->parent = parent;
->   
-> +	block->subtree_max_alignment =
-> +		gpu_buddy_block_offset_alignment(block);
-> +
->   	RB_CLEAR_NODE(&block->rb);
->   
->   	BUG_ON(block->header & GPU_BUDDY_HEADER_UNUSED);
-> @@ -67,26 +80,42 @@ static bool rbtree_is_empty(struct rb_root *root)
->   	return RB_EMPTY_ROOT(root);
->   }
->   
-> -static bool gpu_buddy_block_offset_less(const struct gpu_buddy_block *block,
-> -					const struct gpu_buddy_block *node)
-> -{
-> -	return gpu_buddy_block_offset(block) < gpu_buddy_block_offset(node);
-> -}
-> -
-> -static bool rbtree_block_offset_less(struct rb_node *block,
-> -				     const struct rb_node *node)
-> -{
-> -	return gpu_buddy_block_offset_less(rbtree_get_free_block(block),
-> -					   rbtree_get_free_block(node));
-> -}
-> -
->   static void rbtree_insert(struct gpu_buddy *mm,
->   			  struct gpu_buddy_block *block,
->   			  enum gpu_buddy_free_tree tree)
->   {
-> -	rb_add(&block->rb,
-> -	       &mm->free_trees[tree][gpu_buddy_block_order(block)],
-> -	       rbtree_block_offset_less);
-> +	struct rb_node **link, *parent = NULL;
-> +	unsigned int block_alignment, order;
-> +	struct gpu_buddy_block *node;
-> +	struct rb_root *root;
-> +
-> +	order = gpu_buddy_block_order(block);
-> +	block_alignment = gpu_buddy_block_offset_alignment(block);
-> +
-> +	root = &mm->free_trees[tree][order];
-> +	link = &root->rb_node;
-> +
-> +	while (*link) {
-> +		parent = *link;
-> +		node = rbtree_get_free_block(parent);
-> +		/*
-> +		 * Manual augmentation update during insertion traversal. Required
-> +		 * because rb_insert_augmented() only calls rotate callback during
-> +		 * rotations. This ensures all ancestors on the insertion path have
-> +		 * correct subtree_max_alignment values.
-> +		 */
-> +		if (node->subtree_max_alignment < block_alignment)
-> +			node->subtree_max_alignment = block_alignment;
-> +
-> +		if (gpu_buddy_block_offset(block) < gpu_buddy_block_offset(node))
-> +			link = &parent->rb_left;
-> +		else
-> +			link = &parent->rb_right;
-> +	}
-> +
-> +	block->subtree_max_alignment = block_alignment;
-> +	rb_link_node(&block->rb, parent, link);
-> +	rb_insert_augmented(&block->rb, root, &gpu_buddy_augment_cb);
->   }
->   
->   static void rbtree_remove(struct gpu_buddy *mm,
-> @@ -99,7 +128,7 @@ static void rbtree_remove(struct gpu_buddy *mm,
->   	tree = get_block_tree(block);
->   	root = &mm->free_trees[tree][order];
->   
-> -	rb_erase(&block->rb, root);
-> +	rb_erase_augmented(&block->rb, root, &gpu_buddy_augment_cb);
->   	RB_CLEAR_NODE(&block->rb);
->   }
->   
-> @@ -790,6 +819,132 @@ alloc_from_freetree(struct gpu_buddy *mm,
->   	return ERR_PTR(err);
->   }
->   
-> +static bool
-> +gpu_buddy_can_offset_align(u64 size, u64 min_block_size)
-> +{
-> +	return size < min_block_size && is_power_of_2(size);
-> +}
-> +
-> +static bool gpu_buddy_subtree_can_satisfy(struct rb_node *node,
-> +					  unsigned int alignment)
-> +{
-> +	struct gpu_buddy_block *block;
-> +
-> +	if (!node)
-> +		return false;
-
-All callers seem to handle null case already, so could potentially drop 
-this?
-
-> +
-> +	block = rbtree_get_free_block(node);
-> +	return block->subtree_max_alignment >= alignment;
-> +}
-> +
-> +static struct gpu_buddy_block *
-> +gpu_buddy_find_block_aligned(struct gpu_buddy *mm,
-> +			     enum gpu_buddy_free_tree tree,
-> +			     unsigned int order,
-> +			     unsigned int tmp,
-> +			     unsigned int alignment,
-> +			     unsigned long flags)
-> +{
-> +	struct rb_root *root = &mm->free_trees[tree][tmp];
-> +	struct rb_node *rb = root->rb_node;
-> +
-> +	while (rb) {
-> +		struct gpu_buddy_block *block = rbtree_get_free_block(rb);
-> +		struct rb_node *left_node = rb->rb_left, *right_node = rb->rb_right;
-> +
-> +		if (right_node) {
-> +			if (gpu_buddy_subtree_can_satisfy(right_node, alignment)) {
-> +				rb = right_node;
-> +				continue;
-> +			}
-> +		}
-> +
-> +		if (gpu_buddy_block_order(block) >= order &&
-
-Is this not always true? With that we can drop order, or better yet 
-s/tmp/order/ ?
-
-> +		    __ffs(gpu_buddy_block_offset(block)) >= alignment)
-
-Same here with undefined offset zero case. I guess also use the helper.
-
-> +			return block;
-> +
-> +		if (left_node) {
-> +			if (gpu_buddy_subtree_can_satisfy(left_node, alignment)) {
-> +				rb = left_node;
-> +				continue;
-> +			}
-> +		}
-> +
-> +		break;
-> +	}
-> +
-> +	return NULL;
-> +}
-> +
-> +static struct gpu_buddy_block *
-> +gpu_buddy_offset_aligned_allocation(struct gpu_buddy *mm,
-> +				    u64 size,
-> +				    u64 min_block_size,
-> +				    unsigned long flags)
-> +{
-> +	struct gpu_buddy_block *block = NULL;
-> +	unsigned int order, tmp, alignment;
-> +	struct gpu_buddy_block *buddy;
-> +	enum gpu_buddy_free_tree tree;
-> +	unsigned long pages;
-> +	int err;
-> +
-> +	alignment = ilog2(min_block_size);
-> +	pages = size >> ilog2(mm->chunk_size);
-> +	order = fls(pages) - 1;
-> +
-> +	tree = (flags & GPU_BUDDY_CLEAR_ALLOCATION) ?
-> +		GPU_BUDDY_CLEAR_TREE : GPU_BUDDY_DIRTY_TREE;
-> +
-> +	for (tmp = order; tmp <= mm->max_order; ++tmp) {
-> +		block = gpu_buddy_find_block_aligned(mm, tree, order,
-> +						     tmp, alignment, flags);
-> +		if (!block) {
-> +			tree = (tree == GPU_BUDDY_CLEAR_TREE) ?
-> +				GPU_BUDDY_DIRTY_TREE : GPU_BUDDY_CLEAR_TREE;
-> +			block = gpu_buddy_find_block_aligned(mm, tree, order,
-> +							     tmp, alignment, flags);
-> +		}
-> +
-> +		if (block)
-> +			break;
-> +	}
-> +
-> +	if (!block)
-> +		return ERR_PTR(-ENOSPC);
-> +
-> +	while (gpu_buddy_block_order(block) > order) {
-> +		struct gpu_buddy_block *left, *right;
-> +
-> +		err = split_block(mm, block);
-> +		if (unlikely(err))
-> +			goto err_undo;
-> +
-> +		left  = block->left;
-> +		right = block->right;
-> +
-> +		if (__ffs(gpu_buddy_block_offset(right)) >= alignment)
-
-Might be better to use the helper for this?
-
-> +			block = right;
-> +		else
-> +			block = left;
-> +	}
-> +
-> +	return block;
-> +
-> +err_undo:
-> +	/*
-> +	 * We really don't want to leave around a bunch of split blocks, since
-> +	 * bigger is better, so make sure we merge everything back before we
-> +	 * free the allocated blocks.
-> +	 */
-> +	buddy = __get_buddy(block);
-> +	if (buddy &&
-> +	    (gpu_buddy_block_is_free(block) &&
-> +	     gpu_buddy_block_is_free(buddy)))
-> +		__gpu_buddy_free(mm, block, false);
-> +	return ERR_PTR(err);
-> +}
-> +
->   static int __alloc_range(struct gpu_buddy *mm,
->   			 struct list_head *dfs,
->   			 u64 start, u64 size,
-> @@ -1059,6 +1214,7 @@ EXPORT_SYMBOL(gpu_buddy_block_trim);
->   static struct gpu_buddy_block *
->   __gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
->   			 u64 start, u64 end,
-> +			 u64 size, u64 min_block_size,
->   			 unsigned int order,
->   			 unsigned long flags)
->   {
-> @@ -1066,6 +1222,11 @@ __gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
->   		/* Allocate traversing within the range */
->   		return  __gpu_buddy_alloc_range_bias(mm, start, end,
->   						     order, flags);
-> +	else if (size < min_block_size)
-> +		/* Allocate from an offset-aligned region without size rounding */
-> +		return gpu_buddy_offset_aligned_allocation(mm, size,
-> +							   min_block_size,
-> +							   flags);
->   	else
->   		/* Allocate from freetree */
->   		return alloc_from_freetree(mm, order, flags);
-> @@ -1137,8 +1298,11 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
->   	if (flags & GPU_BUDDY_CONTIGUOUS_ALLOCATION) {
->   		size = roundup_pow_of_two(size);
->   		min_block_size = size;
-> -	/* Align size value to min_block_size */
-> -	} else if (!IS_ALIGNED(size, min_block_size)) {
-> +		/*
-> +		 * Normalize the requested size to min_block_size for regular allocations.
-> +		 * Offset-aligned allocations intentionally skip size rounding.
-> +		 */
-> +	} else if (!gpu_buddy_can_offset_align(size, min_block_size)) {
->   		size = round_up(size, min_block_size);
->   	}
->   
-> @@ -1158,43 +1322,60 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
->   	do {
->   		order = min(order, (unsigned int)fls(pages) - 1);
->   		BUG_ON(order > mm->max_order);
-> -		BUG_ON(order < min_order);
-> +		/*
-> +		 * Regular allocations must not allocate blocks smaller than min_block_size.
-> +		 * Offset-aligned allocations deliberately bypass this constraint.
-> +		 */
-> +		BUG_ON(size >= min_block_size && order < min_order);
->   
->   		do {
-> +			unsigned int fallback_order;
-> +
->   			block = __gpu_buddy_alloc_blocks(mm, start,
->   							 end,
-> +							 size,
-> +							 min_block_size,
->   							 order,
->   							 flags);
->   			if (!IS_ERR(block))
->   				break;
->   
-> -			if (order-- == min_order) {
-> -				/* Try allocation through force merge method */
-> -				if (mm->clear_avail &&
-> -				    !__force_merge(mm, start, end, min_order)) {
-> -					block = __gpu_buddy_alloc_blocks(mm, start,
-> -									 end,
-> -									 min_order,
-> -									 flags);
-> -					if (!IS_ERR(block)) {
-> -						order = min_order;
-> -						break;
-> -					}
-> -				}
-> +			if (size < min_block_size) {
-> +				fallback_order = order;
-> +			} else if (order == min_order) {
-> +				fallback_order = min_order;
-> +			} else {
-> +				order--;
-> +				continue;
-> +			}
->   
-> -				/*
-> -				 * Try contiguous block allocation through
-> -				 * try harder method.
-> -				 */
-> -				if (flags & GPU_BUDDY_CONTIGUOUS_ALLOCATION &&
-> -				    !(flags & GPU_BUDDY_RANGE_ALLOCATION))
-> -					return __alloc_contig_try_harder(mm,
-> -									 original_size,
-> -									 original_min_size,
-> -									 blocks);
-> -				err = -ENOSPC;
-> -				goto err_free;
-> +			/* Try allocation through force merge method */
-> +			if (mm->clear_avail &&
-> +			    !__force_merge(mm, start, end, fallback_order)) {
-> +				block = __gpu_buddy_alloc_blocks(mm, start,
-> +								 end,
-> +								 size,
-> +								 min_block_size,
-> +								 fallback_order,
-> +								 flags);
-> +				if (!IS_ERR(block)) {
-> +					order = fallback_order;
-> +					break;
-> +				}
->   			}
-> +
-> +			/*
-> +			 * Try contiguous block allocation through
-> +			 * try harder method.
-> +			 */
-> +			if (flags & GPU_BUDDY_CONTIGUOUS_ALLOCATION &&
-> +			    !(flags & GPU_BUDDY_RANGE_ALLOCATION))
-> +				return __alloc_contig_try_harder(mm,
-> +								 original_size,
-> +								 original_min_size,
-> +								 blocks);
-> +			err = -ENOSPC;
-> +			goto err_free;
->   		} while (1);
->   
->   		mark_allocated(mm, block);
-> diff --git a/include/linux/gpu_buddy.h b/include/linux/gpu_buddy.h
-> index 07ac65db6d2e..7ad817c69ec6 100644
-> --- a/include/linux/gpu_buddy.h
-> +++ b/include/linux/gpu_buddy.h
-> @@ -11,6 +11,7 @@
->   #include <linux/slab.h>
->   #include <linux/sched.h>
->   #include <linux/rbtree.h>
-> +#include <linux/rbtree_augmented.h>
->   
->   #define GPU_BUDDY_RANGE_ALLOCATION		BIT(0)
->   #define GPU_BUDDY_TOPDOWN_ALLOCATION		BIT(1)
-> @@ -58,6 +59,7 @@ struct gpu_buddy_block {
->   	};
->   
->   	struct list_head tmp_link;
-> +	unsigned int subtree_max_alignment;
->   };
->   
->   /* Order-zero must be at least SZ_4K */
-> 
-> base-commit: 9d757669b2b22cd224c334924f798393ffca537c
-
+-- 
+Ville Syrjälä
+Intel
