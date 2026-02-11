@@ -2,46 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wQWiNpxJjGmukgAAu9opvQ
+	id +HD+LiNKjGmukgAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Feb 2026 10:19:24 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Feb 2026 10:21:39 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB0C2122A33
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Feb 2026 10:19:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9135C122AA1
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Feb 2026 10:21:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E01510E2FF;
-	Wed, 11 Feb 2026 09:19:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8801A10E344;
+	Wed, 11 Feb 2026 09:21:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="aVn6Hz7e";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="WvQ3ewTX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A59110E29E;
- Wed, 11 Feb 2026 09:19:21 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96E5310E2C4;
+ Wed, 11 Feb 2026 09:21:35 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id BB1214367A;
- Wed, 11 Feb 2026 09:19:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC37CC4CEF7;
- Wed, 11 Feb 2026 09:19:11 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id F00EB600CB;
+ Wed, 11 Feb 2026 09:21:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2F38C4CEF7;
+ Wed, 11 Feb 2026 09:21:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1770801560;
- bh=78vTmn6thDBzfMtB97lbGjUwbhyWjHfpO01rDAwelEE=;
- h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
- b=aVn6Hz7exp0YJcrbUnRdD+gd17f1RCAA1sl62249pmqhZS29AgnCdsbpjMH8vQ6gs
- cSQv5HLMWxo2QDS1hKjJFEG/YQ3uBYw43zlB4S1skWSy39hiqhsDcP+QPulot0nfxO
- N8j7Uh02sfUFF5Jhx0zgR69nlFtP2B/SzwZCUn2oP0aJmSZAl8Ua0YFXABPQFIKkDM
- A5yL2AFL3lts4OTxoYgANVJoQuhUr1/6YkJ2GPgK/rEbSvM6fi6j8ESdROE7LSLGad
- OUlqfK9D+aK85lrsm9/ouuaH1cbTAOZNYb2LkVWX8e2xjyzD6r3ZBk4ldQggiNdhql
- 8+jd/QPt2oy9w==
+ s=k20201202; t=1770801694;
+ bh=bbT8L9yuhCkcKZIt2AwaX5L7rkxzlrBrldrxjRCY6Qc=;
+ h=Date:Cc:To:From:Subject:References:In-Reply-To:From;
+ b=WvQ3ewTXZ2lQSqYQAAxvDxZIXx23sQMjCI9kZmySTxXf08I7vSWq2wMpO6JUEUGPl
+ 84R832HYeYTEN0Sk2sDTMYgyZkGhgpKuuL7Gt2uee/ViV4W3er/rKoAd6jcx/tqQ19
+ OiCiuHd9MlBlEh9GPY3AlGmbqCZfyIWufwYIkkLGn7LojPEaoyHXlkqjdE3pLOOABq
+ cEOz7Oqh37c+3cpcftV6Nhv8NFmzgTs1tkvuXcpbqOFtPCbG7YslH9I9XRCg0Rs5Bs
+ AN7w3KKk1aPoNzeTaCrUukzHvsI39VzMEwYkAqejXLvG4xov+ipmcO0xKsgvmnwAFG
+ aTpMU/ppeRiXA==
 Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Wed, 11 Feb 2026 10:19:09 +0100
-Message-Id: <DGC0RDIBDEYB.195QJ6S6GF9WL@kernel.org>
-Subject: Re: [PATCH -next v9 0/3] rust: Add CList and GPU buddy allocator
- bindings
+Date: Wed, 11 Feb 2026 10:21:23 +0100
+Message-Id: <DGC0T35RJU05.2TLS17F5B30B3@kernel.org>
 Cc: <linux-kernel@vger.kernel.org>, "Maarten Lankhorst"
  <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
  "Simona Vetter" <simona@ffwll.ch>, "Jonathan Corbet" <corbet@lwn.net>,
@@ -73,8 +71,11 @@ Cc: <linux-kernel@vger.kernel.org>, "Maarten Lankhorst"
  <linux-fbdev@vger.kernel.org>
 To: "Joel Fernandes" <joelagnelf@nvidia.com>
 From: "Danilo Krummrich" <dakr@kernel.org>
+Subject: Re: [PATCH -next v9 3/3] nova-core: mm: Select GPU_BUDDY for VRAM
+ allocation
 References: <20260210233204.790524-1-joelagnelf@nvidia.com>
-In-Reply-To: <20260210233204.790524-1-joelagnelf@nvidia.com>
+ <20260210233204.790524-4-joelagnelf@nvidia.com>
+In-Reply-To: <20260210233204.790524-4-joelagnelf@nvidia.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,23 +93,22 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.69 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MV_CASE(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_CC(0.00)[vger.kernel.org,linux.intel.com,kernel.org,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,google.com,gmail.com,garyguo.net,protonmail.com,umich.edu,nvidia.com,weathered-steel.dev,collabora.com,joelfernandes.org,lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[49];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[dakr@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
@@ -116,18 +116,39 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: AB0C2122A33
+	RCPT_COUNT_TWELVE(0.00)[49];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 9135C122AA1
 X-Rspamd-Action: no action
 
 On Wed Feb 11, 2026 at 12:32 AM CET, Joel Fernandes wrote:
-> Link to v8: https://lore.kernel.org/all/20260209214246.2783990-1-joelagne=
-lf@nvidia.com/
-> Link to v7: https://lore.kernel.org/all/20260206004110.1914814-1-joelagne=
-lf@nvidia.com/
+> nova-core will use the GPU buddy allocator for physical VRAM management.
+> Enable it in Kconfig.
+>
+> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
+> ---
+>  drivers/gpu/nova-core/Kconfig | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/nova-core/Kconfig b/drivers/gpu/nova-core/Kconfi=
+g
+> index 527920f9c4d3..6513007bf66f 100644
+> --- a/drivers/gpu/nova-core/Kconfig
+> +++ b/drivers/gpu/nova-core/Kconfig
+> @@ -3,8 +3,9 @@ config NOVA_CORE
+>  	depends on 64BIT
+>  	depends on PCI
+>  	depends on RUST
+> -	select RUST_FW_LOADER_ABSTRACTIONS
 
-I already asked about this in [1], can you please add a changlog to your se=
-ries?
+I think moving this should be a separate patch.
 
-[1] https://lore.kernel.org/all/DG0MRL6T7ACW.25G3GLJMP7PN1@kernel.org/
+>  	select AUXILIARY_BUS
+> +	select GPU_BUDDY
+> +	select RUST_FW_LOADER_ABSTRACTIONS
+>  	default n
+>  	help
+>  	  Choose this if you want to build the Nova Core driver for Nvidia
+> --=20
+> 2.34.1
+
