@@ -2,61 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AE8TDIH6jWnz9wAAu9opvQ
+	id 0JriNNz6jWnz9wAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Feb 2026 17:06:25 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Feb 2026 17:07:56 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48B8B12F395
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Feb 2026 17:06:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5919212F3C1
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Feb 2026 17:07:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B96910E769;
-	Thu, 12 Feb 2026 16:06:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F51410E776;
+	Thu, 12 Feb 2026 16:07:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TUpmXpqq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DBloByU5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C63B10E769
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Feb 2026 16:06:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 876C310E782
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Feb 2026 16:07:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770912381; x=1802448381;
+ t=1770912473; x=1802448473;
  h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=rxTOeEuDJp8/x7L/QXfdyQjnbNoItyMMhKQqEwg/lu4=;
- b=TUpmXpqqYbrdKX/5WukYOFjeJT22yfaScO3sjZa83dRkLTJcQitPv5lp
- KSE5hH8f1DtDmN5/e588lwngndeYLaz+aPaMC8606pSCH1OLBmAxJoUya
- pmLC1ajo19oascAlNYbHeKyQ2QOQT7sAywYD40XaHC+zlHOtNXl4NbMLT
- GQ1GLd18dYSC7hzxBAM6hjObBil4xoBgiSi9X2OcOanwWV2txylpTTDnD
- 2GKg/CfPxMre+hRzqLm75J1z4ExEh6hhZOSrq38POoXlq/r47eK6v4bTe
- Nx0Fe/TkRWKkWHEizP89HRf8hSSOpJDTvFm/Kzii/9bBOjWqgoFCtFGPG A==;
-X-CSE-ConnectionGUID: HOwLsGbwTcerwV/2IQzQ9Q==
-X-CSE-MsgGUID: cdeytzFERVKJeGJHxHQJrw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="75929802"
-X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; d="scan'208";a="75929802"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2026 08:06:21 -0800
-X-CSE-ConnectionGUID: I3sLsvpVSLC2u7mS0DzwsA==
-X-CSE-MsgGUID: ETQANyuHSFC4hH+B/st/yg==
+ mime-version; bh=GkKTGO+t5/Z6XXyLmiwOt2JjAp0F/JHcxtVIESLLmzs=;
+ b=DBloByU5gSAdVaAzzPJQ0hSSRO98Z0FfxGTitNC8NQOHTyHk/s30Jx+M
+ v8x9AhQNsy5y5vA8q6JV05LakwDAqoP4SAvuXGPo3i4En+ksBekJKdiWd
+ GbQ7AXztV8my2fx0dbsB1Z3kL2fb7TU1I+61YR9OMHXzEiAwo4Oziz6YF
+ v7Mt4WD4yOGVS75lUH+gvkeqGOLBvt2d8+CFyGgIH91r5nCbHlMMupBam
+ lZjqQ7WmjGMe5tbhXuZRveFjcGgi1S/84hf1n2aph+WMu6c8SRP90OP5a
+ +mabnzK0UOMpK/f+xUJWkLl+32SmOhGc5D4fUvuvOUhs8+RPr4/B2spzN A==;
+X-CSE-ConnectionGUID: +TZlq+/LS1ue3qUkBfR/HA==
+X-CSE-MsgGUID: cdWwIKqDS62FiTB2H+PzPw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="71113681"
+X-IronPort-AV: E=Sophos;i="6.21,287,1763452800"; d="scan'208";a="71113681"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2026 08:07:47 -0800
+X-CSE-ConnectionGUID: VHFiTaQ9RK63BUhbIyHJjQ==
+X-CSE-MsgGUID: RfcbzPqORt2tQ29CA4qAdQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,287,1763452800"; d="scan'208";a="211892617"
+X-IronPort-AV: E=Sophos;i="6.21,287,1763452800"; d="scan'208";a="216796484"
 Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.140])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2026 08:06:20 -0800
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2026 08:07:46 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Luca Coelho <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 12/16] drm/i915/display: convert W/As in intel_overlay.c
- to new framework
-In-Reply-To: <20260212125526.344401-13-luciano.coelho@intel.com>
+Subject: Re: [PATCH 00/16] drm/i915/display: convert a bunch of W/A checks
+ to the new framework
+In-Reply-To: <20260212125526.344401-1-luciano.coelho@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260212125526.344401-1-luciano.coelho@intel.com>
- <20260212125526.344401-13-luciano.coelho@intel.com>
-Date: Thu, 12 Feb 2026 18:06:16 +0200
-Message-ID: <8f5be7cb5ebe6e1ee0d09b95234cc8d75584c3e6@intel.com>
+Date: Thu, 12 Feb 2026 18:07:42 +0200
+Message-ID: <ac5d13a15dfb4474f3c62289f9996d5e33e7c2fd@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -107,62 +106,23 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: 48B8B12F395
+X-Rspamd-Queue-Id: 5919212F3C1
 X-Rspamd-Action: no action
 
 On Thu, 12 Feb 2026, Luca Coelho <luciano.coelho@intel.com> wrote:
-> Convert the low-hanging fruits of workaround checks to the workaround
-> framework.  Instead of having display structure checks for the
-> workarounds all over, concentrate the checks in intel_wa.c.
-
-This patch doesn't do anything, likely due to a change in
-intel_overlay.c.
-
+> Hi,
 >
-> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_wa.c | 2 ++
->  drivers/gpu/drm/i915/display/intel_display_wa.h | 1 +
->  drivers/gpu/drm/i915/display/intel_overlay.c    | 1 +
->  3 files changed, 4 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
-> index 72f645686efd..65ad82c67301 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_wa.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-> @@ -130,6 +130,8 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
->  			IS_DISPLAY_STEP(display, STEP_A0, STEP_B0);
->  	case INTEL_DISPLAY_WA_22014263786:
->  		return IS_DISPLAY_VERx100(display, 1100, 1400);
-> +	case INTEL_DISPLAY_WA_22018444074:
-> +		return !display->platform.meteorlake;
->  	case INTEL_DISPLAY_WA_22021048059:
->  		return IS_DISPLAY_VER(display, 14, 35);
->  	default:
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
-> index d8359f88de29..44d06b074b0f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_wa.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-> @@ -52,6 +52,7 @@ enum intel_display_wa {
->  	INTEL_DISPLAY_WA_22011320316,
->  	INTEL_DISPLAY_WA_22012358565,
->  	INTEL_DISPLAY_WA_22014263786,
-> +	INTEL_DISPLAY_WA_22018444074,
->  	INTEL_DISPLAY_WA_22021048059,
->  };
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
-> index e7838f4d2dac..1a47878dc805 100644
-> --- a/drivers/gpu/drm/i915/display/intel_overlay.c
-> +++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-> @@ -42,6 +42,7 @@
->  #include "intel_de.h"
->  #include "intel_display_regs.h"
->  #include "intel_display_types.h"
-> +#include "intel_display_wa.h"
->  #include "intel_frontbuffer.h"
->  #include "intel_overlay.h"
->  #include "intel_pci_config.h"
+> This series convert the "low hanging fruits" of workaround checks to
+> the new framework.  Some of the workarounds check other values that
+> are not in the intel_display structure, so they don't directly fit in
+> the workaround framework and will be left for later.
+
+This series needs to be sent to intel-xe too for xe CI.
+
+I did not do a detailed review, but I approve of the direction here.
+
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+
 
 -- 
 Jani Nikula, Intel
