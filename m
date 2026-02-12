@@ -2,37 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MOcEEVkkjmlCAAEAu9opvQ
+	id 0ExIO1okjmlCAAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Feb 2026 20:04:57 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Feb 2026 20:04:58 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2F22130876
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Feb 2026 20:04:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A618B13087D
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Feb 2026 20:04:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E01EA10E02D;
-	Thu, 12 Feb 2026 19:04:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E171310E784;
+	Thu, 12 Feb 2026 19:04:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 1526 seconds by postgrey-1.36 at gabe;
- Thu, 12 Feb 2026 19:04:53 UTC
 Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FCDB10E02D
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Feb 2026 19:04:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A9D310E2A0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Feb 2026 19:04:55 +0000 (UTC)
 Received: from 91-152-154-15.elisa-laajakaista.fi ([91.152.154.15]
  helo=[192.168.100.133])
  by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
  (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
- id 1vqbaz-00000002KNG-0OtA; Thu, 12 Feb 2026 20:39:22 +0200
-Message-ID: <fbec3aa42ac6d4c44393e9a9d6c8efe9bc55e64d.camel@coelho.fi>
+ id 1vqbbv-00000002KNT-11RF; Thu, 12 Feb 2026 20:40:20 +0200
+Message-ID: <b0e7e7c476f154e043cbd671acc430c952fe7ad7.camel@coelho.fi>
 From: Luca Coelho <luca@coelho.fi>
 To: Jani Nikula <jani.nikula@linux.intel.com>, Luca Coelho
  <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Thu, 12 Feb 2026 20:39:17 +0200
-In-Reply-To: <8f5be7cb5ebe6e1ee0d09b95234cc8d75584c3e6@intel.com>
+Date: Thu, 12 Feb 2026 20:40:17 +0200
+In-Reply-To: <ac5d13a15dfb4474f3c62289f9996d5e33e7c2fd@intel.com>
 References: <20260212125526.344401-1-luciano.coelho@intel.com>
- <20260212125526.344401-13-luciano.coelho@intel.com>
- <8f5be7cb5ebe6e1ee0d09b95234cc8d75584c3e6@intel.com>
+ <ac5d13a15dfb4474f3c62289f9996d5e33e7c2fd@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.56.2-8 
@@ -41,8 +38,8 @@ X-Spam-Checker-Version: SpamAssassin 4.0.2 (2025-08-27) on farmhouse.coelho.fi
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
  TVD_RCVD_IP autolearn=ham autolearn_force=no version=4.0.2
-Subject: Re: [PATCH 12/16] drm/i915/display: convert W/As in intel_overlay.c
- to new framework
+Subject: Re: [PATCH 00/16] drm/i915/display: convert a bunch of W/A checks
+ to the new framework
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,21 +83,26 @@ X-Spamd-Result: default: False [-0.61 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: A2F22130876
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email]
+X-Rspamd-Queue-Id: A618B13087D
 X-Rspamd-Action: no action
 
-On Thu, 2026-02-12 at 18:06 +0200, Jani Nikula wrote:
+On Thu, 2026-02-12 at 18:07 +0200, Jani Nikula wrote:
 > On Thu, 12 Feb 2026, Luca Coelho <luciano.coelho@intel.com> wrote:
-> > Convert the low-hanging fruits of workaround checks to the workaround
-> > framework.  Instead of having display structure checks for the
-> > workarounds all over, concentrate the checks in intel_wa.c.
+> > Hi,
+> >=20
+> > This series convert the "low hanging fruits" of workaround checks to
+> > the new framework.  Some of the workarounds check other values that
+> > are not in the intel_display structure, so they don't directly fit in
+> > the workaround framework and will be left for later.
 >=20
-> This patch doesn't do anything, likely due to a change in
-> intel_overlay.c.
+> This series needs to be sent to intel-xe too for xe CI.
+>=20
+> I did not do a detailed review, but I approve of the direction here.
+>=20
+> Acked-by: Jani Nikula <jani.nikula@intel.com>
 
-Oh, right, the workaround has actually been dropped in intel_overlay.c
-and I didn't realize it when rebasing.  I'll remove it from the series.
+Thanks! I'll resend without the NOP patch and Cc intel-xe as well.
 
 --
 Cheers,
