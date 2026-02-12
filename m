@@ -2,57 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id NfiPGcp0jWmr2wAAu9opvQ
+	id SMiOGsp0jWn42gAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
 	for <lists+intel-gfx@lfdr.de>; Thu, 12 Feb 2026 07:35:54 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0F0512AC74
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Feb 2026 07:35:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B45812AC76
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Feb 2026 07:35:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 788E310E6E2;
-	Thu, 12 Feb 2026 06:35:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F52310E6E6;
+	Thu, 12 Feb 2026 06:35:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ALnPhGQ8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gKrzIEb5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 460BC10E6E2;
- Thu, 12 Feb 2026 06:35:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD2E610E6E6;
+ Thu, 12 Feb 2026 06:35:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770878149; x=1802414149;
+ t=1770878152; x=1802414152;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=aZMNS1PvWVi0fj+PnIIUdfVLb2/jLaX/JELVHyr1KWw=;
- b=ALnPhGQ85YUziFvRorvJTvPB9g78Zpj/m4pZncY2gTVO/CWvpWSL7Dqr
- Kp5w+1Oj7HGvRAjImfuJ0M02nlgmJRQ7k5cAv2KozKRnEomXxU+1USMan
- Qio6gqrxYjIELgnOwRHZG7toTT/j6AtbRp0DMsGv8QZj4mPnc9O+c+47p
- 7W/OTTCITquZ8QKMKgiW7GljqRvXL1vrMzjaZ36ZaUMSzJsi7fMzzKvVD
- SOtYFekrIbkJEj3mKrf0qnwB5cX0pbraqP6+HRTFVlMiWBNN8jO77cykV
- P7XcccBEfqaRiFPvy8nmB9caa6yIXPSgKS1jjWHevpecACRA9ywT1Rdua Q==;
-X-CSE-ConnectionGUID: jewCqbhwQ9Gcq6eTEP9dSQ==
-X-CSE-MsgGUID: 6FRsrcMGTm2a0pwvVCVyJA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11698"; a="74642595"
-X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; d="scan'208";a="74642595"
+ bh=47MAfgVy33HiZplpX8HQkF2EutU3fokF53UkfRJlzSg=;
+ b=gKrzIEb5TJMYpXncwxf+ejOf6gFpvPZR5t7kp20rVwCCOzWk6wIDMzxR
+ piGI3JkD0oFu34BsdYsRVKHlxDFXp9IlYFWXv+E6zhgfGlG5EX3If640r
+ sP7QvFFdaraDSKkQp9px2aZmRn1MxFSx5/atVKHdIbOcUoEO+TEzdGsm7
+ N2NQzVXAA831996dCCsPMir5oZaAtXMxmstzOvgcPnrc5KY6Hr+/0+yZG
+ aq0eFwJvna8EDIodRjxVDb43ReiQzjBB0LfXL/8wCiynj0YFUxGa8jD87
+ tG9khp2NyXsGXYaRixQj1fwJgyLMigRnItI04XVDbm2MRAaZGrWwnxH0v g==;
+X-CSE-ConnectionGUID: S7C4d2o0Rui/+eC0gNwr0Q==
+X-CSE-MsgGUID: 036AgPZCQyewTwx6ETwUnA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11698"; a="74642601"
+X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; d="scan'208";a="74642601"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2026 22:35:49 -0800
-X-CSE-ConnectionGUID: 7CFtsYJ5Qky6urDvL3kJuA==
-X-CSE-MsgGUID: alQjc0U5TX2VlrcvBLfxeQ==
+ 11 Feb 2026 22:35:52 -0800
+X-CSE-ConnectionGUID: HjKdjeLLRs+ks+d1k+3vTQ==
+X-CSE-MsgGUID: CEOiKAj8Q6i2waCElLzbGA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; d="scan'208";a="212591657"
+X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; d="scan'208";a="212591668"
 Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orviesa007.jf.intel.com with ESMTP; 11 Feb 2026 22:35:47 -0800
+ by orviesa007.jf.intel.com with ESMTP; 11 Feb 2026 22:35:50 -0800
 From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Thu, 12 Feb 2026 12:04:21 +0530
-Subject: [PATCH v2 1/2] drm/i915/cx0_phy_regs: Include SoC and OS
- turnaround time
+Date: Thu, 12 Feb 2026 12:04:22 +0530
+Subject: [PATCH v2 2/2] drm/i915/lt_phy_regs: Add SoC/OS turnaround time
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260212-timeout-v2-1-74bccad5018d@intel.com>
+Message-Id: <20260212-timeout-v2-2-74bccad5018d@intel.com>
 References: <20260212-timeout-v2-0-74bccad5018d@intel.com>
 In-Reply-To: <20260212-timeout-v2-0-74bccad5018d@intel.com>
 To: Jani Nikula <jani.nikula@linux.intel.com>, uma.shankar@intel.com, 
@@ -98,39 +97,41 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: E0F0512AC74
+X-Rspamd-Queue-Id: 1B45812AC76
 X-Rspamd-Action: no action
 
-The port refclk enable timeout and the soc ready timeout value mentioned
-in the spec is the PHY timings and doesn't include the turnaround time
-from the SoC or OS. So add an overhead timeout value on top of the
-recommended timeouts from the PHY spec.
+On top the timeouts mentioned in the spec which includes only the PHY
+timeouts include the SoC and the OS turnaround time.
 The overhead value is based on the stress test results with multiple
 available panels.
 
 Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_lt_phy_regs.h | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-index 658890f7351530e5686c23e067deb359b3283d59..152a4e751bdcf216a95714a2bd2d6612cbbd4698 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-@@ -78,10 +78,10 @@
- #define XELPDP_PCLK_PLL_ENABLE_TIMEOUT_US		3200
- #define XELPDP_PCLK_PLL_DISABLE_TIMEOUT_US		20
- #define XELPDP_PORT_BUF_SOC_READY_TIMEOUT_US		100
--#define XELPDP_PORT_RESET_START_TIMEOUT_US		5
-+#define XELPDP_PORT_RESET_START_TIMEOUT_US		10
- #define XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_MS		2
- #define XELPDP_PORT_RESET_END_TIMEOUT_MS		15
--#define XELPDP_REFCLK_ENABLE_TIMEOUT_US			1
-+#define XELPDP_REFCLK_ENABLE_TIMEOUT_US			10
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
+index 37e46fb9abde4156ebd7ad1eb6cbbc12e7026b23..ff6d7829dbb9c50b2001d079b435b894faf9659e 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
+@@ -6,12 +6,12 @@
+ #ifndef __INTEL_LT_PHY_REGS_H__
+ #define __INTEL_LT_PHY_REGS_H__
  
- #define _XELPDP_PORT_BUF_CTL1_LN0_A			0x64004
- #define _XELPDP_PORT_BUF_CTL1_LN0_B			0x64104
+-#define XE3PLPD_MSGBUS_TIMEOUT_FAST_US	500
++#define XE3PLPD_MSGBUS_TIMEOUT_FAST_US		500
+ #define XE3PLPD_MACCLK_TURNON_LATENCY_MS	2
+-#define XE3PLPD_MACCLK_TURNOFF_LATENCY_US	1
++#define XE3PLPD_MACCLK_TURNOFF_LATENCY_US	10
+ #define XE3PLPD_RATE_CALIB_DONE_LATENCY_MS	1
+-#define XE3PLPD_RESET_START_LATENCY_US	10
+-#define XE3PLPD_PWRDN_TO_RDY_LATENCY_US	4
++#define XE3PLPD_RESET_START_LATENCY_US		10
++#define XE3PLPD_PWRDN_TO_RDY_LATENCY_US		10
+ #define XE3PLPD_RESET_END_LATENCY_MS		2
+ 
+ /* LT Phy MAC Register */
 
 -- 
 2.25.1
