@@ -2,37 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GJJ1EiHsjmkCGAEAu9opvQ
+	id DKQ+M5fsjmk5GAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 10:17:21 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 10:19:19 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B22771345FF
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 10:17:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3432113461C
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 10:19:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2285C10E7CF;
-	Fri, 13 Feb 2026 09:17:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 321B310E7D7;
+	Fri, 13 Feb 2026 09:19:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF71A10E7CC;
- Fri, 13 Feb 2026 09:17:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3903710E7D7;
+ Fri, 13 Feb 2026 09:19:16 +0000 (UTC)
 Received: from 37-33-41-57.bb.dnainternet.fi ([37.33.41.57]
  helo=[192.168.101.110])
  by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
  (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
- id 1vqpIX-00000002LYX-1q0m; Fri, 13 Feb 2026 11:17:15 +0200
-Message-ID: <eadc4c98ec81d27a7666c08d918f541260057089.camel@coelho.fi>
+ id 1vqpKS-00000002Lac-0GqZ; Fri, 13 Feb 2026 11:19:13 +0200
+Message-ID: <5ab22c377338056ee8a195481229817cb2849673.camel@coelho.fi>
 From: Luca Coelho <luca@coelho.fi>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>, "Coelho, Luciano"
- <luciano.coelho@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Date: Fri, 13 Feb 2026 11:17:12 +0200
-In-Reply-To: <DM3PPF208195D8D7F266E70FC4E81CDA15AE361A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>, Ville
+ =?ISO-8859-1?Q?Syrj=E4l=E4?=	 <ville.syrjala@linux.intel.com>, "Coelho,
+ Luciano" <luciano.coelho@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Date: Fri, 13 Feb 2026 11:19:10 +0200
+In-Reply-To: <DM3PPF208195D8DD2E52F76AE768BF86C3AE361A@DM3PPF208195D8D.namprd11.prod.outlook.com>
 References: <20260212184737.352515-1-luciano.coelho@intel.com>
- <20260212184737.352515-5-luciano.coelho@intel.com>
- <DM3PPF208195D8D7F266E70FC4E81CDA15AE361A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+ <20260212184737.352515-12-luciano.coelho@intel.com>
+ <aY6w7FuoIi0TydHB@intel.com>
+ <2358502e438f28e734c65a55364a437b0291e956.camel@coelho.fi>
+ <DM3PPF208195D8DD2E52F76AE768BF86C3AE361A@DM3PPF208195D8D.namprd11.prod.outlook.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.56.2-8 
@@ -41,8 +44,8 @@ X-Spam-Checker-Version: SpamAssassin 4.0.2 (2025-08-27) on farmhouse.coelho.fi
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
  TVD_RCVD_IP autolearn=ham autolearn_force=no version=4.0.2
-Subject: Re: [PATCH v2 04/15] drm/i915/display: convert W/As in
- intel_cursor.c to new framework
+Subject: Re: [PATCH v2 11/15] drm/i915/display: convert W/As in
+ intel_modeset_setup.c to new framework
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,104 +80,139 @@ X-Spamd-Result: default: False [-0.61 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[luca@coelho.fi,intel-gfx-bounces@lists.freedesktop.org];
 	TO_DN_EQ_ADDR_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,coelho.fi:mid];
 	DMARC_NA(0.00)[coelho.fi];
 	RCVD_TLS_LAST(0.00)[];
 	R_DKIM_NA(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4]
-X-Rspamd-Queue-Id: B22771345FF
+	RCPT_COUNT_FIVE(0.00)[5]
+X-Rspamd-Queue-Id: 3432113461C
 X-Rspamd-Action: no action
 
-On Fri, 2026-02-13 at 08:42 +0000, Kandpal, Suraj wrote:
-> > Subject: [PATCH v2 04/15] drm/i915/display: convert W/As in intel_curso=
-r.c to
-> > new framework
+On Fri, 2026-02-13 at 08:24 +0000, Kandpal, Suraj wrote:
+> > Subject: Re: [PATCH v2 11/15] drm/i915/display: convert W/As in
+> > intel_modeset_setup.c to new framework
 > >=20
-> > Convert the low-hanging fruits of workaround checks to the workaround
-> > framework.  Instead of having display structure checks for the workarou=
-nds all
-> > over, concentrate the checks in intel_wa.c.
->=20
-> * intel_display_wa.c
->=20
+> > On Fri, 2026-02-13 at 07:04 +0200, Ville Syrj=C3=A4l=C3=A4 wrote:
+> > > On Thu, Feb 12, 2026 at 08:46:09PM +0200, Luca Coelho wrote:
+> > > > Convert the low-hanging fruits of workaround checks to the
+> > > > workaround framework.  Instead of having display structure checks
+> > > > for the workarounds all over, concentrate the checks in intel_wa.c.
+> > > >=20
+> > > > Acked-by: Jani Nikula <jani.nikula@intel.com>
+> > > > Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+> > > > ---
+> > > > =C2=A0drivers/gpu/drm/i915/display/intel_display_wa.c    | 2 ++
+> > > > =C2=A0drivers/gpu/drm/i915/display/intel_display_wa.h    | 1 +
+> > > > =C2=A0drivers/gpu/drm/i915/display/intel_modeset_setup.c | 3 ++-
+> > > > =C2=A03 files changed, 5 insertions(+), 1 deletion(-)
+> > > >=20
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c
+> > > > b/drivers/gpu/drm/i915/display/intel_display_wa.c
+> > > > index 3aa79e607bf8..72f645686efd 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_display_wa.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
+> > > > @@ -79,6 +79,8 @@ bool __intel_display_wa(struct intel_display *dis=
+play,
+> > enum intel_display_wa wa,
+> > > > =C2=A0	case INTEL_DISPLAY_WA_13012396614:
+> > > > =C2=A0		return DISPLAY_VERx100(display) =3D=3D 3000 ||
+> > > > =C2=A0			DISPLAY_VERx100(display) =3D=3D 3500;
+> > > > +	case INTEL_DISPLAY_WA_14010480278:
+> > > > +		return (IS_DISPLAY_VER(display, 10, 12));
+> > >=20
+> > > This is now quite confusing. That w/a number only means something for
+> > > tgl+. I think if we want to start converting this kind of places
+> > > tgl+someone
+> > > needs to come up with an actual plan how to deal with older platforms=
+.
 > >=20
-> > Acked-by: Jani Nikula <jani.nikula@intel.com>
-> > Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
-> > ---
-> > =C2=A0drivers/gpu/drm/i915/display/intel_cursor.c     | 3 ++-
-> > =C2=A0drivers/gpu/drm/i915/display/intel_display_wa.c | 1 +
-> > drivers/gpu/drm/i915/display/intel_display_wa.h | 1 +
-> > =C2=A03 files changed, 4 insertions(+), 1 deletion(-)
+> > If there are more numbers from other platforms, I think they should jus=
+t have
+> > their own cases, like in some later patches in this series,
+> > eg.:
 > >=20
-> > diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c
-> > b/drivers/gpu/drm/i915/display/intel_cursor.c
-> > index 2c5d917fbd7e..53cd27fd4fc7 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_cursor.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-> > @@ -19,6 +19,7 @@
-> > =C2=A0#include "intel_display.h"
-> > =C2=A0#include "intel_display_types.h"
-> > =C2=A0#include "intel_display_utils.h"
-> > +#include "intel_display_wa.h"
-> > =C2=A0#include "intel_fb.h"
-> > =C2=A0#include "intel_fb_pin.h"
-> > =C2=A0#include "intel_frontbuffer.h"
-> > @@ -424,7 +425,7 @@ static u32 i9xx_cursor_ctl(const struct
-> > intel_plane_state *plane_state)
-> > =C2=A0		cntl |=3D MCURSOR_ROTATE_180;
+> > 	case INTEL_DISPLAY_WA_<tgl+_wa_number>:
+> > 	case INTEL_DISPLAY_WA_<lnl_wa_number>:
 > >=20
-> > =C2=A0	/* Wa_22012358565:adl-p */
-> > -	if (DISPLAY_VER(display) =3D=3D 13)
-> > +	if (intel_display_wa(display, 22012358565))
+> > ...but this was a problem before my series already, and it's not someth=
+ing I'm
+> > trying to address here.
+> >=20
+> >=20
+> > > Also I'm pretty sure that even among the new platforms some w/a's are
+> > > listed with different numbers for different platforms. Has anyone
+> > > thought what we should do about that?
+> >=20
+> > Yeah, and there's also the case where more than workaround has the same
+> > check, we'll end up with many fallthrough cases.
+> >=20
 >=20
-> Ahh so you define it here=20
-> So with all mentioned comments addressed for this patch
-> And ones where WA 22012358565 was questioned.
-> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com
 >=20
+> My two cents here:
+> Maybe we first get all the WA's here into this framework then work on how=
+ to optimize it later.
+> Perhaps documenting how and where WA's can be placed, their numbering and=
+ version checking.
 
-Yes, this workaround applies to more than one file, so I defined it
-here and reused it in subsequent patches.
-
-I'll change all the commit messages as you suggested.
-
-Thanks for the reviews!
+Yes, I agree with moving the "low-hanging fruits" to the new framework
+and continue to improve it from there.  That was the intention of this
+series, a first step that hopefully makes it easier to continue with
+subsequent clean-ups.
 
 --
 Cheers,
 Luca.
 
 
-> > =C2=A0		cntl |=3D MCURSOR_ARB_SLOTS(1);
-> >=20
-> > =C2=A0	return cntl;
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c
-> > b/drivers/gpu/drm/i915/display/intel_display_wa.c
-> > index f0311cd477a5..8473cb25c92e 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_wa.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-> > @@ -85,6 +85,7 @@ bool __intel_display_wa(struct intel_display *display=
-,
-> > enum intel_display_wa wa,
-> > =C2=A0			INTEL_PCH_TYPE(display) < PCH_DG1;
-> > =C2=A0	case INTEL_DISPLAY_WA_14011503030:
-> > =C2=A0	case INTEL_DISPLAY_WA_14011503117:
-> > +	case INTEL_DISPLAY_WA_22012358565:
-> > =C2=A0		return DISPLAY_VER(display) =3D=3D 13;
-> > =C2=A0	case INTEL_DISPLAY_WA_14011508470:
-> > =C2=A0		return (IS_DISPLAY_VERx100(display, 1200, 1300)); diff --git
-> > a/drivers/gpu/drm/i915/display/intel_display_wa.h
-> > b/drivers/gpu/drm/i915/display/intel_display_wa.h
-> > index 0d0501fc276f..7e5f5a466e2a 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_wa.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-> > @@ -42,6 +42,7 @@ enum intel_display_wa {
-> > =C2=A0	INTEL_DISPLAY_WA_16025573575,
-> > =C2=A0	INTEL_DISPLAY_WA_22010178259,
-> > =C2=A0	INTEL_DISPLAY_WA_22011320316,
-> > +	INTEL_DISPLAY_WA_22012358565,
-> > =C2=A0	INTEL_DISPLAY_WA_22014263786,
-> > =C2=A0	INTEL_DISPLAY_WA_22021048059,
-> > =C2=A0};
+
+> Regards,
+> Suraj Kandpal
+>=20
 > > --
-> > 2.51.0
+> > Cheers,
+> > Luca.
+> >=20
+> >=20
+> > > > =C2=A0	case INTEL_DISPLAY_WA_14010547955:
+> > > > =C2=A0		return display->platform.dg2;
+> > > > =C2=A0	case INTEL_DISPLAY_WA_14010685332:
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h
+> > > > b/drivers/gpu/drm/i915/display/intel_display_wa.h
+> > > > index 57345d0abe1c..d8359f88de29 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_display_wa.h
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
+> > > > @@ -30,6 +30,7 @@ enum intel_display_wa {
+> > > > =C2=A0	INTEL_DISPLAY_WA_1409120013,
+> > > > =C2=A0	INTEL_DISPLAY_WA_1409767108,
+> > > > =C2=A0	INTEL_DISPLAY_WA_13012396614,
+> > > > +	INTEL_DISPLAY_WA_14010480278,
+> > > > =C2=A0	INTEL_DISPLAY_WA_14010547955,
+> > > > =C2=A0	INTEL_DISPLAY_WA_14010685332,
+> > > > =C2=A0	INTEL_DISPLAY_WA_14011294188,
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> > > > b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> > > > index 9b0becee221c..7ee1494a67af 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> > > > @@ -25,6 +25,7 @@
+> > > > =C2=A0#include "intel_display_power.h"
+> > > > =C2=A0#include "intel_display_regs.h"
+> > > > =C2=A0#include "intel_display_types.h"
+> > > > +#include "intel_display_wa.h"
+> > > > =C2=A0#include "intel_dmc.h"
+> > > > =C2=A0#include "intel_fifo_underrun.h"
+> > > > =C2=A0#include "intel_modeset_setup.h"
+> > > > @@ -913,7 +914,7 @@ static void intel_early_display_was(struct
+> > intel_display *display)
+> > > > =C2=A0	 * Display WA #1185 WaDisableDARBFClkGating:glk,icl,ehl,tgl
+> > > > =C2=A0	 * Also known as Wa_14010480278.
+> > > > =C2=A0	 */
+> > > > -	if (IS_DISPLAY_VER(display, 10, 12))
+> > > > +	if (intel_display_wa(display, 14010480278))
+> > >=20
+> > > > =C2=A0		intel_de_rmw(display, GEN9_CLKGATE_DIS_0, 0,
+> > DARBF_GATING_DIS);
+> > > >=20
+> > > > =C2=A0	/*
+> > > > --
+> > > > 2.51.0
