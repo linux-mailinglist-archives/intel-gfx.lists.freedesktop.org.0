@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iCgnLSDsjmkCGAEAu9opvQ
+	id cPxAKiHsjmkCGAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 10:17:20 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 10:17:21 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 483951345FE
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 10:17:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C26013460C
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 10:17:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1AD410E7CB;
-	Fri, 13 Feb 2026 09:17:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 878E310E7CD;
+	Fri, 13 Feb 2026 09:17:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A1Ukm5M6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QijdIumr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7B8C10E7CB;
- Fri, 13 Feb 2026 09:17:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C3EA10E7CD;
+ Fri, 13 Feb 2026 09:17:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770974237; x=1802510237;
+ t=1770974238; x=1802510238;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=IK9EqmW+/DDVbJjSsUF4tzlMkmHf3KXfPCPrFRZnNHs=;
- b=A1Ukm5M6ZyIp/d5wLyKWqOfXLfj8fRt6VcPDiNcdPItKVT7mDTSEeQ5b
- Is2Kdd9vgRc02DFfN0X5XoIkwnYBvqVjXt54h0jh7yQUqbg7fK9sFHJAd
- rGMUhEX+FyccP2IBvCrX7of00/QNNrL1zkUVFf1ve/v/tGVkIgKxwRp/V
- AySKQxg1PWGYN0Rk6Q72Qi9nJ5t4MjLQ0Jqv9B+mM97p3zdDjyxSziiYH
- AMS3vt2dOAnkhDWAHY6yKNte9lWLP3dffTl4WYcTR1x3vEvuf+nCWIh60
- TGE4BsA6aoDmcbG+IQnYJJgDcMMim+sjSU9O55NYs+LADZR9ZBajS15dR A==;
-X-CSE-ConnectionGUID: hxhrSgvsTiCfGJPq//TfDQ==
-X-CSE-MsgGUID: kMjXdYbNQQ6uL9zuYpnnmg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="72146712"
-X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="72146712"
+ bh=RjfGb8LhDjK1zSEpcJNhgfyl76DmtgPzY28cuZqN8I0=;
+ b=QijdIumrvnpwojX4er3IFMzdBBtR9X9JFeOR31GnrFPdUTdvakdOLuDR
+ BGJnTOBltwewesGRfjkximiAilVCErPiqYfgEoWao31UN1pZFkrbhM8Ho
+ +AryL8lhO0xrFlM/v70WXlcq6MnVrvZVA/mViprq5c7N+tyfSUYd8yiXF
+ yfh+tcVPGM/Z69cwWVitgnpiyPhb5IKcS7fWjiDKsviUjgB+F5HOimqp0
+ My7+hm3v1oBg8+lq1fLgcUxd1Pfijp7r+4yWK/i6xv3nAP6cxnDcPc4Qg
+ vdiORQHyKup0W4l2BgOB5ivgklVDKb9GdYmhW8v2gaYhpL741hpZIaKeV A==;
+X-CSE-ConnectionGUID: s47FKs0XQliU+GtH1DLrvg==
+X-CSE-MsgGUID: EHWQ6NJiSsujE6XZCyYRvw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="72146721"
+X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="72146721"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2026 01:17:16 -0800
-X-CSE-ConnectionGUID: cRO4tDGNQs2fr0fwDnkWNw==
-X-CSE-MsgGUID: 00XKjBCUTXO3UNBhNULIsA==
+ 13 Feb 2026 01:17:18 -0800
+X-CSE-ConnectionGUID: UXgUkvgNTHeCVe9uv/80uA==
+X-CSE-MsgGUID: IVvGDHRrS/q71YLzjYLB4w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="211778845"
+X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="211778849"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa007.fm.intel.com with ESMTP; 13 Feb 2026 01:17:13 -0800
+ by fmviesa007.fm.intel.com with ESMTP; 13 Feb 2026 01:17:15 -0800
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 6/8] drm/i915/backlight: Update debug log during backlight
- setup
-Date: Fri, 13 Feb 2026 14:46:51 +0530
-Message-Id: <20260213091653.2250887-7-suraj.kandpal@intel.com>
+Subject: [PATCH 7/8] drm/i915/backlight: Provide clear description on how
+ backlight level is controlled
+Date: Fri, 13 Feb 2026 14:46:52 +0530
+Message-Id: <20260213091653.2250887-8-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260213091653.2250887-1-suraj.kandpal@intel.com>
 References: <20260213091653.2250887-1-suraj.kandpal@intel.com>
@@ -98,32 +98,63 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCPT_COUNT_FIVE(0.00)[5];
 	FROM_NEQ_ENVFROM(0.00)[suraj.kandpal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 483951345FE
+X-Rspamd-Queue-Id: 5C26013460C
 X-Rspamd-Action: no action
 
-With luminance_set which represents PANEL_LUMINANCE_OVERRIDE, we
-have another variable other than aux_enable to decide if we use
-PWM or DPCD. Make drm_dbg_kms log represent that.
+Currently it takes us multiple log prints to arrive at the conclusion
+on how we are actually controlling backlight level. Make the logging
+concise.
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ .../drm/i915/display/intel_dp_aux_backlight.c | 19 ++++++++++++++-----
+ 1 file changed, 14 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-index d44a94f05600..217747aedd16 100644
+index 217747aedd16..8f86b368612e 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-@@ -542,7 +542,8 @@ static int intel_dp_aux_vesa_setup_backlight(struct intel_connector *connector,
+@@ -368,6 +368,16 @@ static const char *dpcd_vs_pwm_str(bool aux)
+ 	return aux ? "DPCD" : "PWM";
+ }
+ 
++static const char *backlight_unit_str(struct intel_panel *panel)
++{
++	if (panel->backlight.edp.vesa.info.luminance_set)
++		return "NITS";
++	else if (panel->backlight.edp.vesa.info.aux_set)
++		return "Brightness %";
++	else
++		return "PWM";
++}
++
+ static void
+ intel_dp_aux_write_panel_luminance_override(struct intel_connector *connector)
+ {
+@@ -545,9 +555,11 @@ static int intel_dp_aux_vesa_setup_backlight(struct intel_connector *connector,
+ 		    dpcd_vs_pwm_str(panel->backlight.edp.vesa.info.aux_enable ||
+ 				    panel->backlight.edp.vesa.info.luminance_set));
  	drm_dbg_kms(display->drm,
- 		    "[CONNECTOR:%d:%s] AUX VESA backlight enable is controlled through %s\n",
+-		    "[CONNECTOR:%d:%s] AUX VESA backlight level is controlled through %s\n",
++		    "[CONNECTOR:%d:%s] AUX VESA backlight level is controlled through %s using %s values\n",
  		    connector->base.base.id, connector->base.name,
--		    dpcd_vs_pwm_str(panel->backlight.edp.vesa.info.aux_enable));
-+		    dpcd_vs_pwm_str(panel->backlight.edp.vesa.info.aux_enable ||
-+				    panel->backlight.edp.vesa.info.luminance_set));
- 	drm_dbg_kms(display->drm,
- 		    "[CONNECTOR:%d:%s] AUX VESA backlight level is controlled through %s\n",
- 		    connector->base.base.id, connector->base.name,
+-		    dpcd_vs_pwm_str(panel->backlight.edp.vesa.info.aux_set));
++		    dpcd_vs_pwm_str(panel->backlight.edp.vesa.info.aux_set ||
++				    panel->backlight.edp.vesa.info.luminance_set),
++		    backlight_unit_str(panel));
+ 
+ 	if (!panel->backlight.edp.vesa.info.aux_set ||
+ 	    !panel->backlight.edp.vesa.info.aux_enable) {
+@@ -574,9 +586,6 @@ static int intel_dp_aux_vesa_setup_backlight(struct intel_connector *connector,
+ 		}
+ 		panel->backlight.level = intel_dp_aux_vesa_get_backlight(connector, 0);
+ 		panel->backlight.enabled = panel->backlight.level != 0;
+-		drm_dbg_kms(display->drm,
+-			    "[CONNECTOR:%d:%s] AUX VESA Nits backlight level is controlled through DPCD\n",
+-			    connector->base.base.id, connector->base.name);
+ 	} else if (panel->backlight.edp.vesa.info.aux_set) {
+ 		panel->backlight.max = panel->backlight.edp.vesa.info.max;
+ 		panel->backlight.min = 0;
 -- 
 2.34.1
 
