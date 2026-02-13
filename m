@@ -2,64 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +rrHLqyujmkUDwEAu9opvQ
+	id 89EtNPSwjmlnDwEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 05:55:08 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 06:04:52 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5F98132E9B
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 05:55:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0257E132EEA
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 06:04:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 868A910E2DC;
-	Fri, 13 Feb 2026 04:55:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BD7E10E78D;
+	Fri, 13 Feb 2026 05:04:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CZfntIUM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z3wgGbsj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09E5F10E13C;
- Fri, 13 Feb 2026 04:55:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C9DA10E13C;
+ Fri, 13 Feb 2026 05:04:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770958503; x=1802494503;
+ t=1770959089; x=1802495089;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=xddnAtqIRenZJ+H3ktshp0crY834H3SxlsLVYyXDh5g=;
- b=CZfntIUMLjS+jLvF1RlrWxSvnppn3DcICa0ksk/Iu9wZD/y2OgZ4DFmN
- JD+wCMaM/iHkRJpcbvpm0gP8gLY5lINdEzOVpT6y8xMyzi4+W9pQYfwY3
- 09BI9G8KEFymvE3XN0kfI2Z3+MOzB81LVCIhhYu5QLaQQ6ivUoWKQ3R0+
- senijN1W+P6BDcihNCv86G436q1wVF/dtv0whtp07SzJc6tEuI4T0B45Y
- HoUTWclROR6nI62oww/f++GTsF5pk+pOsNAY1MPtADDZ2/HYOFi5KDt33
- NK0ZA2TSWbECh1xAMj+3VWxzgkP4PDdZ2jlfk15ghIF2VQSHMPatv/ClG g==;
-X-CSE-ConnectionGUID: TqcXF1tGRB6E8R6FIIMZuQ==
-X-CSE-MsgGUID: fwnu2GF1SbuNrNh04zexog==
-X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="72045167"
-X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="72045167"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2026 20:55:02 -0800
-X-CSE-ConnectionGUID: upVVMSPiTWOhtE1MSWeeYA==
-X-CSE-MsgGUID: oUKTccpIQAuNzmAhVSmH4w==
+ bh=oslPX89pJ6BYs7TNRSvvWmPzT9hRmePhrIC0taY2aM8=;
+ b=Z3wgGbsjss3oEu8PnzdqP1ad/q1WbqHFmLasVQU/SwjcSqDODofhWcA7
+ 9wwcNZdLRvAuU+8HkYyZeguCCwxkTR09SjyxkfKEa72tC1PmlawFPxTXw
+ S1Mv8pkdL++WgEDTNMivYXfhGNhyJ1KsoUW787wWs+x17/mlkICt7DDwv
+ zuZZ492a/AV9zCJNpVWrjKXFuozW0Kl6zvXQRvUjXqlb5G61F+pcg/HXo
+ GM/TFC0yd35GCt97lbd48SCzcL8oMR5kmPfchXFhekWiNJYpbs2le6I7Y
+ CA+DRkOMpu29Bl9Dx01ZBZYg+iWr+9iSWPShgHsoI9UNEfT2OAJaQNL1T Q==;
+X-CSE-ConnectionGUID: ftO1OHI5Trao3WRYSYqyUA==
+X-CSE-MsgGUID: s9vzvnizQpOn/8P9bvFuyg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="71170940"
+X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="71170940"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2026 21:04:49 -0800
+X-CSE-ConnectionGUID: q6w7n+FbRRumJdiBFEZ5bQ==
+X-CSE-MsgGUID: Z5WrO1FYRTaGF9PomokXJw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="212070602"
+X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="211558666"
 Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.245.239])
- by orviesa010-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2026 20:55:01 -0800
-Date: Fri, 13 Feb 2026 06:54:58 +0200
+ by fmviesa006-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2026 21:04:47 -0800
+Date: Fri, 13 Feb 2026 07:04:44 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Luca Coelho <luciano.coelho@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 01/15] drm/i915/display: convert audio workaround to
- new framework
-Message-ID: <aY6uooHNa6cfXAOr@intel.com>
+Subject: Re: [PATCH v2 11/15] drm/i915/display: convert W/As in
+ intel_modeset_setup.c to new framework
+Message-ID: <aY6w7FuoIi0TydHB@intel.com>
 References: <20260212184737.352515-1-luciano.coelho@intel.com>
- <20260212184737.352515-2-luciano.coelho@intel.com>
+ <20260212184737.352515-12-luciano.coelho@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260212184737.352515-2-luciano.coelho@intel.com>
+In-Reply-To: <20260212184737.352515-12-luciano.coelho@intel.com>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
@@ -78,9 +78,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.28 / 15.00];
+X-Spamd-Result: default: False [0.22 / 15.00];
 	MID_RHS_MATCH_TO(1.00)[];
-	R_MIXED_CHARSET(0.59)[subject];
+	R_MIXED_CHARSET(0.53)[subject];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
@@ -104,10 +104,10 @@ X-Spamd-Result: default: False [0.28 / 15.00];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_SENDER_MAILLIST(0.00)[]
-X-Rspamd-Queue-Id: D5F98132E9B
+X-Rspamd-Queue-Id: 0257E132EEA
 X-Rspamd-Action: no action
 
-On Thu, Feb 12, 2026 at 08:45:59PM +0200, Luca Coelho wrote:
+On Thu, Feb 12, 2026 at 08:46:09PM +0200, Luca Coelho wrote:
 > Convert the low-hanging fruits of workaround checks to the workaround
 > framework.  Instead of having display structure checks for the
 > workarounds all over, concentrate the checks in intel_wa.c.
@@ -115,103 +115,67 @@ On Thu, Feb 12, 2026 at 08:45:59PM +0200, Luca Coelho wrote:
 > Acked-by: Jani Nikula <jani.nikula@intel.com>
 > Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_audio.c      | 16 +++-------------
->  drivers/gpu/drm/i915/display/intel_display_wa.c |  4 ++++
->  drivers/gpu/drm/i915/display/intel_display_wa.h |  1 +
->  3 files changed, 8 insertions(+), 13 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display_wa.c    | 2 ++
+>  drivers/gpu/drm/i915/display/intel_display_wa.h    | 1 +
+>  drivers/gpu/drm/i915/display/intel_modeset_setup.c | 3 ++-
+>  3 files changed, 5 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
-> index 5f3c175afdd2..be4b5dbd36fe 100644
-> --- a/drivers/gpu/drm/i915/display/intel_audio.c
-> +++ b/drivers/gpu/drm/i915/display/intel_audio.c
-> @@ -37,6 +37,7 @@
->  #include "intel_crtc.h"
->  #include "intel_de.h"
->  #include "intel_display_types.h"
-> +#include "intel_display_wa.h"
->  #include "intel_lpe_audio.h"
->  
->  /**
-> @@ -184,17 +185,6 @@ static const struct hdmi_aud_ncts hdmi_aud_ncts_36bpp[] = {
->  	{ 192000, TMDS_445_5M, 20480, 371250 },
->  };
->  
-> -/*
-> - * WA_14020863754: Implement Audio Workaround
-> - * Corner case with Min Hblank Fix can cause audio hang
-
-We are now losing the description of the problem. Not great.
-Not that the description here is super clear, but at least it
-gives me some idea what this is about.
-
-Perhaps such descriptions should remain with the implementation?
-
-> - */
-> -static bool needs_wa_14020863754(struct intel_display *display)
-> -{
-> -	return DISPLAY_VERx100(display) == 3000 ||
-> -		DISPLAY_VERx100(display) == 2000 ||
-> -		DISPLAY_VERx100(display) == 1401;
-> -}
-> -
->  /* get AUD_CONFIG_PIXEL_CLOCK_HDMI_* value for mode */
->  static u32 audio_config_hdmi_pixel_clock(const struct intel_crtc_state *crtc_state)
->  {
-> @@ -440,7 +430,7 @@ static void hsw_audio_codec_disable(struct intel_encoder *encoder,
->  	intel_de_rmw(display, HSW_AUD_PIN_ELD_CP_VLD,
->  		     AUDIO_OUTPUT_ENABLE(cpu_transcoder), 0);
->  
-> -	if (needs_wa_14020863754(display))
-> +	if (intel_display_wa(display, 14020863754))
-
-This thing is still a major disaster. There is no way to get from
-here to the list of affected platforms without jumping through crazy
-hoops.
-
-At the very least the intel_display_wa() macro magic needs to die
-and this should just take the enum directly. Then I could at least
-jump to places where said enum value is used fairly quickly with
-cscope.
-
->  		intel_de_rmw(display, AUD_CHICKENBIT_REG3, DACBE_DISABLE_MIN_HBLANK_FIX, 0);
->  
->  	intel_audio_sdp_split_update(old_crtc_state, false);
-> @@ -572,7 +562,7 @@ static void hsw_audio_codec_enable(struct intel_encoder *encoder,
->  
->  	intel_audio_sdp_split_update(crtc_state, true);
->  
-> -	if (needs_wa_14020863754(display))
-> +	if (intel_display_wa(display, 14020863754))
->  		intel_de_rmw(display, AUD_CHICKENBIT_REG3, 0, DACBE_DISABLE_MIN_HBLANK_FIX);
->  
->  	/* Enable audio presence detect */
 > diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
-> index c2ccdca2c2f3..99ccc383ee70 100644
+> index 3aa79e607bf8..72f645686efd 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display_wa.c
 > +++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-> @@ -74,6 +74,10 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
+> @@ -79,6 +79,8 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
+>  	case INTEL_DISPLAY_WA_13012396614:
+>  		return DISPLAY_VERx100(display) == 3000 ||
 >  			DISPLAY_VERx100(display) == 3500;
->  	case INTEL_DISPLAY_WA_14011503117:
->  		return DISPLAY_VER(display) == 13;
-> +	case INTEL_DISPLAY_WA_14020863754:
-> +		return DISPLAY_VERx100(display) == 3000 ||
-> +			DISPLAY_VERx100(display) == 2000 ||
-> +			DISPLAY_VERx100(display) == 1401;
->  	case INTEL_DISPLAY_WA_14025769978:
->  		return DISPLAY_VER(display) == 35;
->  	case INTEL_DISPLAY_WA_15018326506:
+> +	case INTEL_DISPLAY_WA_14010480278:
+> +		return (IS_DISPLAY_VER(display, 10, 12));
+
+This is now quite confusing. That w/a number only means something for
+tgl+. I think if we want to start converting this kind of places someone
+needs to come up with an actual plan how to deal with older platforms.
+
+Also I'm pretty sure that even among the new platforms some w/a's are
+listed with different numbers for different platforms. Has anyone
+thought what we should do about that?
+
+>  	case INTEL_DISPLAY_WA_14010547955:
+>  		return display->platform.dg2;
+>  	case INTEL_DISPLAY_WA_14010685332:
 > diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
-> index 767420d5f406..bb1382148b6e 100644
+> index 57345d0abe1c..d8359f88de29 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display_wa.h
 > +++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-> @@ -29,6 +29,7 @@ bool intel_display_needs_wa_16023588340(struct intel_display *display);
->  enum intel_display_wa {
+> @@ -30,6 +30,7 @@ enum intel_display_wa {
+>  	INTEL_DISPLAY_WA_1409120013,
+>  	INTEL_DISPLAY_WA_1409767108,
 >  	INTEL_DISPLAY_WA_13012396614,
->  	INTEL_DISPLAY_WA_14011503117,
-> +	INTEL_DISPLAY_WA_14020863754,
->  	INTEL_DISPLAY_WA_14025769978,
->  	INTEL_DISPLAY_WA_15018326506,
->  	INTEL_DISPLAY_WA_16023588340,
+> +	INTEL_DISPLAY_WA_14010480278,
+>  	INTEL_DISPLAY_WA_14010547955,
+>  	INTEL_DISPLAY_WA_14010685332,
+>  	INTEL_DISPLAY_WA_14011294188,
+> diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> index 9b0becee221c..7ee1494a67af 100644
+> --- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> +++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> @@ -25,6 +25,7 @@
+>  #include "intel_display_power.h"
+>  #include "intel_display_regs.h"
+>  #include "intel_display_types.h"
+> +#include "intel_display_wa.h"
+>  #include "intel_dmc.h"
+>  #include "intel_fifo_underrun.h"
+>  #include "intel_modeset_setup.h"
+> @@ -913,7 +914,7 @@ static void intel_early_display_was(struct intel_display *display)
+>  	 * Display WA #1185 WaDisableDARBFClkGating:glk,icl,ehl,tgl
+>  	 * Also known as Wa_14010480278.
+>  	 */
+> -	if (IS_DISPLAY_VER(display, 10, 12))
+> +	if (intel_display_wa(display, 14010480278))
+
+>  		intel_de_rmw(display, GEN9_CLKGATE_DIS_0, 0, DARBF_GATING_DIS);
+>  
+>  	/*
 > -- 
 > 2.51.0
 
