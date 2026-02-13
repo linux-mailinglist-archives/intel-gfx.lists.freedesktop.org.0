@@ -2,38 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id c2OoMwzbjmkxFgEAu9opvQ
+	id mJMFFb7cjmlZFgEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 09:04:28 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 09:11:42 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFBD4133C82
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 09:04:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B0AB6133D23
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 09:11:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0A8F10E7A0;
-	Fri, 13 Feb 2026 08:04:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C72CA10E7A8;
+	Fri, 13 Feb 2026 08:11:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 1644 seconds by postgrey-1.36 at gabe;
- Fri, 13 Feb 2026 08:04:24 UTC
 Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3AF410E7A0;
- Fri, 13 Feb 2026 08:04:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 329CE10E7A5;
+ Fri, 13 Feb 2026 08:11:34 +0000 (UTC)
 Received: from 37-33-41-57.bb.dnainternet.fi ([37.33.41.57]
  helo=[192.168.101.110])
  by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
  (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
- id 1vqo9y-00000002LNe-2spl; Fri, 13 Feb 2026 10:04:20 +0200
-Message-ID: <2358502e438f28e734c65a55364a437b0291e956.camel@coelho.fi>
+ id 1vqoGn-00000002LOV-2UQ7; Fri, 13 Feb 2026 10:11:30 +0200
+Message-ID: <8396e3db945eaf8200a50d05b43eff4c991b3c76.camel@coelho.fi>
 From: Luca Coelho <luca@coelho.fi>
 To: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>, 
  Luca Coelho <luciano.coelho@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Date: Fri, 13 Feb 2026 10:04:17 +0200
-In-Reply-To: <aY6w7FuoIi0TydHB@intel.com>
+Date: Fri, 13 Feb 2026 10:11:20 +0200
+In-Reply-To: <aY6yD6b2MJT4YQYM@intel.com>
 References: <20260212184737.352515-1-luciano.coelho@intel.com>
- <20260212184737.352515-12-luciano.coelho@intel.com>
- <aY6w7FuoIi0TydHB@intel.com>
+ <20260212184737.352515-14-luciano.coelho@intel.com>
+ <aY6yD6b2MJT4YQYM@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.56.2-8 
@@ -42,8 +40,8 @@ X-Spam-Checker-Version: SpamAssassin 4.0.2 (2025-08-27) on farmhouse.coelho.fi
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
  TVD_RCVD_IP autolearn=ham autolearn_force=no version=4.0.2
-Subject: Re: [PATCH v2 11/15] drm/i915/display: convert W/As in
- intel_modeset_setup.c to new framework
+Subject: Re: [PATCH v2 13/15] drm/i915/display: convert W/As in intel_psr.c
+ to new framework
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,33 +58,32 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.61 / 15.00];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_RCPT(0.00)[intel-gfx];
 	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_COUNT_THREE(0.00)[3];
+	MID_RHS_MATCH_FROM(0.00)[];
 	R_DKIM_NA(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
 	FROM_NEQ_ENVFROM(0.00)[luca@coelho.fi,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DMARC_NA(0.00)[coelho.fi];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,coelho.fi:mid]
-X-Rspamd-Queue-Id: CFBD4133C82
+	RCPT_COUNT_THREE(0.00)[4]
+X-Rspamd-Queue-Id: B0AB6133D23
 X-Rspamd-Action: no action
 
-On Fri, 2026-02-13 at 07:04 +0200, Ville Syrj=C3=A4l=C3=A4 wrote:
-> On Thu, Feb 12, 2026 at 08:46:09PM +0200, Luca Coelho wrote:
+On Fri, 2026-02-13 at 07:09 +0200, Ville Syrj=C3=A4l=C3=A4 wrote:
+> On Thu, Feb 12, 2026 at 08:46:11PM +0200, Luca Coelho wrote:
 > > Convert the low-hanging fruits of workaround checks to the workaround
 > > framework.  Instead of having display structure checks for the
 > > workarounds all over, concentrate the checks in intel_wa.c.
@@ -94,90 +91,191 @@ On Fri, 2026-02-13 at 07:04 +0200, Ville Syrj=C3=A4l=C3=A4 wrote:
 > > Acked-by: Jani Nikula <jani.nikula@intel.com>
 > > Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 > > ---
-> >  drivers/gpu/drm/i915/display/intel_display_wa.c    | 2 ++
-> >  drivers/gpu/drm/i915/display/intel_display_wa.h    | 1 +
-> >  drivers/gpu/drm/i915/display/intel_modeset_setup.c | 3 ++-
-> >  3 files changed, 5 insertions(+), 1 deletion(-)
+> >  .../gpu/drm/i915/display/intel_display_wa.c   | 15 ++++++++++++--
+> >  .../gpu/drm/i915/display/intel_display_wa.h   |  4 ++++
+> >  drivers/gpu/drm/i915/display/intel_psr.c      | 20 ++++++++-----------
+> >  3 files changed, 25 insertions(+), 14 deletions(-)
 > >=20
 > > diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/=
 gpu/drm/i915/display/intel_display_wa.c
-> > index 3aa79e607bf8..72f645686efd 100644
+> > index 77ea2e5b8144..783e1383ff89 100644
 > > --- a/drivers/gpu/drm/i915/display/intel_display_wa.c
 > > +++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-> > @@ -79,6 +79,8 @@ bool __intel_display_wa(struct intel_display *display=
-, enum intel_display_wa wa,
-> >  	case INTEL_DISPLAY_WA_13012396614:
-> >  		return DISPLAY_VERx100(display) =3D=3D 3000 ||
-> >  			DISPLAY_VERx100(display) =3D=3D 3500;
-> > +	case INTEL_DISPLAY_WA_14010480278:
-> > +		return (IS_DISPLAY_VER(display, 10, 12));
+> > @@ -112,6 +112,13 @@ bool __intel_display_wa(struct intel_display *disp=
+lay, enum intel_display_wa wa,
+> >  		return DISPLAY_VER(display) =3D=3D 20;
+> >  	case INTEL_DISPLAY_WA_15018326506:
+> >  		return display->platform.battlemage;
+> > +	case INTEL_DISPLAY_WA_16011303918:
+> > +	case INTEL_DISPLAY_WA_22011320316:
+> > +		return display->platform.alderlake_p &&
+> > +			IS_DISPLAY_STEP(display, STEP_A0, STEP_B0);
+> > +	case INTEL_DISPLAY_WA_16011181250:
+> > +		return display->platform.rocketlake || display->platform.alderlake_s=
+ ||
+> > +			display->platform.dg2;
+> >  	case INTEL_DISPLAY_WA_16011342517:
+> >  		return display->platform.alderlake_p &&
+> >  			IS_DISPLAY_STEP(display, STEP_A0, STEP_D0);
+> > @@ -121,15 +128,19 @@ bool __intel_display_wa(struct intel_display *dis=
+play, enum intel_display_wa wa,
+> >  		return intel_display_needs_wa_16023588340(display);
+> >  	case INTEL_DISPLAY_WA_16025573575:
+> >  		return intel_display_needs_wa_16025573575(display);
+> > +	case INTEL_DISPLAY_WA_16025596647:
+> > +		return DISPLAY_VER(display) !=3D 20 &&
+> > +			!IS_DISPLAY_VERx100_STEP(display, 3000,
+> > +						 STEP_A0, STEP_B0);
 >=20
-> This is now quite confusing. That w/a number only means something for
-> tgl+. I think if we want to start converting this kind of places someone
-> needs to come up with an actual plan how to deal with older platforms.
+> This one is nuts. It declarates (incorrectly) which platforms don't
+> need the w/a. I don't think this sort of thing should be allowed here
+> ever.
 
-If there are more numbers from other platforms, I think they should
-just have their own cases, like in some later patches in this series,
-eg.:
-
-	case INTEL_DISPLAY_WA_<tgl+_wa_number>:
-	case INTEL_DISPLAY_WA_<lnl_wa_number>:
-
-...but this was a problem before my series already, and it's not
-something I'm trying to address here.
+Yeah, this is bad.  I noticed the inversion (i.e. return who _doesn't_
+need, as opposed to how all the other ones, which return who _does_
+need the workaroun), but I admit I didn't give it much attention.  I'll
+invert it.
 
 
-> Also I'm pretty sure that even among the new platforms some w/a's are
-> listed with different numbers for different platforms. Has anyone
-> thought what we should do about that?
+> Presumably the only reason it was OK in the old place is because=20
+> those codepaths were only executed on some new platforms. But
+> __intel_display_wa() is so generic that is is clearly meant to
+> give correct answers regardless of where it gets called.
 
-Yeah, and there's also the case where more than workaround has the same
-check, we'll end up with many fallthrough cases.
+I don't think it was okay in the old place either.  It's just confusing
+(unless it had a clear comment on why it was like this).
 
 --
 Cheers,
 Luca.
 
 
-> >  	case INTEL_DISPLAY_WA_14010547955:
-> >  		return display->platform.dg2;
-> >  	case INTEL_DISPLAY_WA_14010685332:
+> >  	case INTEL_DISPLAY_WA_18034343758:
+> >  		return DISPLAY_VER(display) =3D=3D 20 ||
+> >  			(display->platform.pantherlake &&
+> >  			 IS_DISPLAY_STEP(display, STEP_A0, STEP_B0));
+> >  	case INTEL_DISPLAY_WA_22010178259:
+> >  		return DISPLAY_VER(display) =3D=3D 12;
+> > -	case INTEL_DISPLAY_WA_22011320316:
+> > +	case INTEL_DISPLAY_WA_22012278275:
+> >  		return display->platform.alderlake_p &&
+> > -			IS_DISPLAY_STEP(display, STEP_A0, STEP_B0);
+> > +			IS_DISPLAY_STEP(display, STEP_A0, STEP_E0);
+> >  	case INTEL_DISPLAY_WA_22014263786:
+> >  		return IS_DISPLAY_VERx100(display, 1100, 1400);
+> >  	case INTEL_DISPLAY_WA_22021048059:
 > > diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/=
 gpu/drm/i915/display/intel_display_wa.h
-> > index 57345d0abe1c..d8359f88de29 100644
+> > index 3d2cf05ffacc..35d8df4c75a2 100644
 > > --- a/drivers/gpu/drm/i915/display/intel_display_wa.h
 > > +++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-> > @@ -30,6 +30,7 @@ enum intel_display_wa {
-> >  	INTEL_DISPLAY_WA_1409120013,
-> >  	INTEL_DISPLAY_WA_1409767108,
-> >  	INTEL_DISPLAY_WA_13012396614,
-> > +	INTEL_DISPLAY_WA_14010480278,
-> >  	INTEL_DISPLAY_WA_14010547955,
-> >  	INTEL_DISPLAY_WA_14010685332,
-> >  	INTEL_DISPLAY_WA_14011294188,
-> > diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drive=
-rs/gpu/drm/i915/display/intel_modeset_setup.c
-> > index 9b0becee221c..7ee1494a67af 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> > @@ -25,6 +25,7 @@
-> >  #include "intel_display_power.h"
-> >  #include "intel_display_regs.h"
+> > @@ -44,13 +44,17 @@ enum intel_display_wa {
+> >  	INTEL_DISPLAY_WA_14025769978,
+> >  	INTEL_DISPLAY_WA_15013987218,
+> >  	INTEL_DISPLAY_WA_15018326506,
+> > +	INTEL_DISPLAY_WA_16011181250,
+> > +	INTEL_DISPLAY_WA_16011303918,
+> >  	INTEL_DISPLAY_WA_16011342517,
+> >  	INTEL_DISPLAY_WA_16011863758,
+> >  	INTEL_DISPLAY_WA_16023588340,
+> >  	INTEL_DISPLAY_WA_16025573575,
+> > +	INTEL_DISPLAY_WA_16025596647,
+> >  	INTEL_DISPLAY_WA_18034343758,
+> >  	INTEL_DISPLAY_WA_22010178259,
+> >  	INTEL_DISPLAY_WA_22011320316,
+> > +	INTEL_DISPLAY_WA_22012278275,
+> >  	INTEL_DISPLAY_WA_22012358565,
+> >  	INTEL_DISPLAY_WA_22014263786,
+> >  	INTEL_DISPLAY_WA_22021048059,
+> > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm=
+/i915/display/intel_psr.c
+> > index 5bea2eda744b..b21e52f0c461 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> > @@ -40,6 +40,7 @@
+> >  #include "intel_display_rpm.h"
 > >  #include "intel_display_types.h"
+> >  #include "intel_display_utils.h"
 > > +#include "intel_display_wa.h"
 > >  #include "intel_dmc.h"
-> >  #include "intel_fifo_underrun.h"
-> >  #include "intel_modeset_setup.h"
-> > @@ -913,7 +914,7 @@ static void intel_early_display_was(struct intel_di=
-splay *display)
-> >  	 * Display WA #1185 WaDisableDARBFClkGating:glk,icl,ehl,tgl
-> >  	 * Also known as Wa_14010480278.
-> >  	 */
-> > -	if (IS_DISPLAY_VER(display, 10, 12))
-> > +	if (intel_display_wa(display, 14010480278))
->=20
-> >  		intel_de_rmw(display, GEN9_CLKGATE_DIS_0, 0, DARBF_GATING_DIS);
+> >  #include "intel_dp.h"
+> >  #include "intel_dp_aux.h"
+> > @@ -1082,7 +1083,7 @@ static void hsw_activate_psr2(struct intel_dp *in=
+tel_dp)
+> >  	}
+> > =20
+> >  	/* Wa_22012278275:adl-p */
+> > -	if (display->platform.alderlake_p && IS_DISPLAY_STEP(display, STEP_A0=
+, STEP_E0)) {
+> > +	if (intel_display_wa(display, 22012278275)) {
+> >  		static const u8 map[] =3D {
+> >  			2, /* 5 lines */
+> >  			1, /* 6 lines */
+> > @@ -1263,7 +1264,7 @@ tgl_dc3co_exitline_compute_config(struct intel_dp=
+ *intel_dp,
+> >  		return;
+> > =20
+> >  	/* Wa_16011303918:adl-p */
+> > -	if (display->platform.alderlake_p && IS_DISPLAY_STEP(display, STEP_A0=
+, STEP_B0))
+> > +	if (intel_display_wa(display, 16011303918))
+> >  		return;
 > > =20
 > >  	/*
+> > @@ -1540,8 +1541,7 @@ static bool intel_psr2_config_valid(struct intel_=
+dp *intel_dp,
+> >  	}
+> > =20
+> >  	/* Wa_16011181250 */
+> > -	if (display->platform.rocketlake || display->platform.alderlake_s ||
+> > -	    display->platform.dg2) {
+> > +	if (intel_display_wa(display, 16011181250)) {
+> >  		drm_dbg_kms(display->drm,
+> >  			    "PSR2 is defeatured for this platform\n");
+> >  		return false;
+> > @@ -1823,8 +1823,7 @@ void intel_psr_set_non_psr_pipes(struct intel_dp =
+*intel_dp,
+> >  	u8 active_pipes =3D 0;
+> > =20
+> >  	/* Wa_16025596647 */
+> > -	if (DISPLAY_VER(display) !=3D 20 &&
+> > -	    !IS_DISPLAY_VERx100_STEP(display, 3000, STEP_A0, STEP_B0))
+> > +	if (intel_display_wa(display, 16025596647))
+> >  		return;
+> > =20
+> >  	/* Not needed by Panel Replay  */
+> > @@ -3973,8 +3972,7 @@ static void psr_dc5_dc6_wa_work(struct work_struc=
+t *work)
+> >   */
+> >  void intel_psr_notify_dc5_dc6(struct intel_display *display)
+> >  {
+> > -	if (DISPLAY_VER(display) !=3D 20 &&
+> > -	    !IS_DISPLAY_VERx100_STEP(display, 3000, STEP_A0, STEP_B0))
+> > +	if (intel_display_wa(display, 16025596647))
+> >  		return;
+> > =20
+> >  	schedule_work(&display->psr_dc5_dc6_wa_work);
+> > @@ -3989,8 +3987,7 @@ void intel_psr_notify_dc5_dc6(struct intel_displa=
+y *display)
+> >   */
+> >  void intel_psr_dc5_dc6_wa_init(struct intel_display *display)
+> >  {
+> > -	if (DISPLAY_VER(display) !=3D 20 &&
+> > -	    !IS_DISPLAY_VERx100_STEP(display, 3000, STEP_A0, STEP_B0))
+> > +	if (intel_display_wa(display, 16025596647))
+> >  		return;
+> > =20
+> >  	INIT_WORK(&display->psr_dc5_dc6_wa_work, psr_dc5_dc6_wa_work);
+> > @@ -4011,8 +4008,7 @@ void intel_psr_notify_pipe_change(struct intel_at=
+omic_state *state,
+> >  	struct intel_display *display =3D to_intel_display(state);
+> >  	struct intel_encoder *encoder;
+> > =20
+> > -	if (DISPLAY_VER(display) !=3D 20 &&
+> > -	    !IS_DISPLAY_VERx100_STEP(display, 3000, STEP_A0, STEP_B0))
+> > +	if (intel_display_wa(display, 16025596647))
+> >  		return;
+> > =20
+> >  	for_each_intel_encoder_with_psr(display->drm, encoder) {
 > > --=20
 > > 2.51.0
