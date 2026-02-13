@@ -2,56 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kIakA4MYj2mJIgEAu9opvQ
+	id 8LRWMYkYj2mJIgEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 13:26:43 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 13:26:49 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1F7A13609C
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 13:26:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 644EA1360AB
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 13:26:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07B1110E80C;
-	Fri, 13 Feb 2026 12:26:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCD1110E80E;
+	Fri, 13 Feb 2026 12:26:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WKpeVHeJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Avmp326a";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0603310E807;
- Fri, 13 Feb 2026 12:26:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31CF910E814;
+ Fri, 13 Feb 2026 12:26:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770985600; x=1802521600;
+ t=1770985602; x=1802521602;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NmaQrCb12bg0H7nKuNnnQQ1AEwB61TYFJfi756vfH60=;
- b=WKpeVHeJ4XVL9OQu5+z9p4Z3UDiCaAEHppU6Kf9rzlpyWFV6zCtOEoG4
- mcxFMRPWxH1sffkPqJiJ1IS5bIwul0D0wi9/hO6oQX2f+kTtZv8Qd+5S4
- c4HhWI+KmPBtfLcF9dgMNVOqFtVbvt8EIl6OL64rBFehb9FTIgzX5549u
- moKNtyzgUYUM3CxEb/AcWAxAfvtoxGdjKtFEC0KyZ1Eik2t+11o7O+xw8
- eud75nIbS6UzixbjNp0sRwT9DGz0R5vMmsaREL0r5QIcl9ux0DAbZk+k3
- Gx0da7whMM54PUReU9lZFa7Kudh6F1ziVQBrt/19l0Zup27i4Ro0+CgqX g==;
-X-CSE-ConnectionGUID: vmJxF9XwSEeOb3SFbSgbBQ==
-X-CSE-MsgGUID: qaSCv1ShRXGYpwCmjVad4g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="72158142"
-X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="72158142"
+ bh=RvooJWze1cJT4cKiigKrZA1DBhgX10gry7e54UTL7hA=;
+ b=Avmp326aCoW+BBVvbPfFIfbvXywEokU5jwyKdHcQr4hDVV8hkNY7FO81
+ /yIxfiXWksx1q6lao7E/c3xmFZlqzVB7cKbNpN+CYXvkjTWREdxzHdj+T
+ AcY6QIuKbgwDdObY3/OgrutyBpx0YhAtyONieuA0nhXDvgnL0RFTKxZ2w
+ 9C8ErnzyGnWcZYyuHB2TPYsWowhN5Ri8X4B34s4EHW7CdA5kmjQZKvWSk
+ bxM+Tqaen5G8c08wXTdOkigEBVo72CjtCLiniZd9OHKWGfxCG8pazdl6Q
+ h9GuJQmCdyhbORlDG4R9ZI7FKH4qqSM5HVNkde74gy5q9UL/q30d/0dWU Q==;
+X-CSE-ConnectionGUID: aDBtjDSrSBmmRaJJ2i+Mhg==
+X-CSE-MsgGUID: eGftUSw/Rv2rdPY1frIZPA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="72158145"
+X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="72158145"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2026 04:26:40 -0800
-X-CSE-ConnectionGUID: E0iXvkidTRS6VyZ36QclNQ==
-X-CSE-MsgGUID: Io+zMzrKQ96Lp5iaZ5cKzw==
+ 13 Feb 2026 04:26:41 -0800
+X-CSE-ConnectionGUID: NC946HukRJGbAD8biMdJLQ==
+X-CSE-MsgGUID: SUeZ3I7JTSCd1v1WMyr45Q==
 X-ExtLoop1: 1
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa003.fm.intel.com with ESMTP; 13 Feb 2026 04:26:38 -0800
+ by fmviesa003.fm.intel.com with ESMTP; 13 Feb 2026 04:26:40 -0800
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH 18/19] drm/i915/lt_phy: Remove LT PHY specific state
- verification
-Date: Fri, 13 Feb 2026 12:26:14 +0000
-Message-ID: <20260213122615.1083654-19-mika.kahola@intel.com>
+Subject: [PATCH 19/19] drm/i915/lt_phy: Enable dpll framework for xe3plpd
+Date: Fri, 13 Feb 2026 12:26:15 +0000
+Message-ID: <20260213122615.1083654-20-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260213122615.1083654-1-mika.kahola@intel.com>
 References: <20260213122615.1083654-1-mika.kahola@intel.com>
@@ -96,94 +95,154 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCPT_COUNT_THREE(0.00)[3];
 	FROM_NEQ_ENVFROM(0.00)[mika.kahola@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: B1F7A13609C
+X-Rspamd-Queue-Id: 644EA1360AB
 X-Rspamd-Action: no action
 
-Remove LT PHY specific state verification as DPLL framework
-has state verification check.
+xe3plpd platform is supported by dpll framework remove a separate
+check for hw comparison and rely solely on dpll framework
+hw comparison.
+
+Finally, all required hooks are now in place so initialize
+PLL manager for xe3plpd platform and remove the redirections
+to the legacy code paths for clock enable/disable as well as
+state mismatch checks that are no longer needed.
 
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_lt_phy.c   | 39 -------------------
- drivers/gpu/drm/i915/display/intel_lt_phy.h   |  2 -
- .../drm/i915/display/intel_modeset_verify.c   |  1 -
- 3 files changed, 42 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  2 +-
+ drivers/gpu/drm/i915/display/intel_display.c  | 31 -------------------
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  7 +++--
+ drivers/gpu/drm/i915/display/intel_lt_phy.c   |  8 +----
+ 4 files changed, 6 insertions(+), 42 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index 052cbbd36397..1dc53918a054 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -2270,45 +2270,6 @@ bool intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
- 	return true;
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 9f3c8cd02a33..e59b5857bdb5 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -5286,7 +5286,7 @@ void intel_ddi_init(struct intel_display *display,
+ 	if (HAS_LT_PHY(display)) {
+ 		encoder->enable_clock = intel_xe3plpd_pll_enable_clock;
+ 		encoder->disable_clock = intel_xe3plpd_pll_disable_clock;
+-		encoder->port_pll_type = intel_mtl_port_pll_type;
++		encoder->port_pll_type = icl_ddi_tc_port_pll_type;
+ 		if (intel_encoder_is_tc(encoder))
+ 			encoder->get_config = mtl_ddi_tc_phy_get_config;
+ 		else
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 57b0ed062b41..b0e92e1bd98c 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -5045,23 +5045,6 @@ static bool allow_vblank_delay_fastset(const struct intel_crtc_state *old_crtc_s
+ 	       !intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DSI);
  }
  
--void intel_lt_phy_pll_state_verify(struct intel_atomic_state *state,
--				   struct intel_crtc *crtc)
+-static void
+-pipe_config_lt_phy_pll_mismatch(struct drm_printer *p, bool fastset,
+-				const struct intel_crtc *crtc,
+-				const char *name,
+-				const struct intel_lt_phy_pll_state *a,
+-				const struct intel_lt_phy_pll_state *b)
 -{
--	struct intel_display *display = to_intel_display(state);
--	struct intel_digital_port *dig_port;
--	const struct intel_crtc_state *new_crtc_state =
--		intel_atomic_get_new_crtc_state(state, crtc);
--	struct intel_encoder *encoder;
--	struct intel_lt_phy_pll_state pll_hw_state = {};
--	const struct intel_lt_phy_pll_state *pll_sw_state = &new_crtc_state->dpll_hw_state.ltpll;
+-	char *chipname = "LTPHY";
 -
--	if (DISPLAY_VER(display) < 35)
--		return;
+-	pipe_config_mismatch(p, fastset, crtc, name, chipname);
 -
--	if (!new_crtc_state->hw.active)
--		return;
--
--	/* intel_get_crtc_new_encoder() only works for modeset/fastset commits */
--	if (!intel_crtc_needs_modeset(new_crtc_state) &&
--	    !intel_crtc_needs_fastset(new_crtc_state))
--		return;
--
--	encoder = intel_get_crtc_new_encoder(state, new_crtc_state);
--	intel_lt_phy_pll_readout_hw_state(encoder, &pll_hw_state);
--
--	dig_port = enc_to_dig_port(encoder);
--	if (intel_tc_port_in_tbt_alt_mode(dig_port))
--		return;
--
--	INTEL_DISPLAY_STATE_WARN(display, pll_hw_state.config[0] != pll_sw_state->config[0],
--				 "[CRTC:%d:%s] mismatch in LT PHY PLL CONFIG 0: (expected 0x%04x, found 0x%04x)",
--				 crtc->base.base.id, crtc->base.name,
--				 pll_sw_state->config[0], pll_hw_state.config[0]);
--	INTEL_DISPLAY_STATE_WARN(display, pll_hw_state.config[2] != pll_sw_state->config[2],
--				 "[CRTC:%d:%s] mismatch in LT PHY PLL CONFIG 2: (expected 0x%04x, found 0x%04x)",
--				 crtc->base.base.id, crtc->base.name,
--				 pll_sw_state->config[2], pll_hw_state.config[2]);
+-	drm_printf(p, "expected:\n");
+-	intel_lt_phy_dump_hw_state(p, a);
+-	drm_printf(p, "found:\n");
+-	intel_lt_phy_dump_hw_state(p, b);
 -}
 -
- void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
- 			      struct intel_dpll *pll,
- 			      const struct intel_dpll_hw_state *dpll_hw_state)
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-index 1c2ec438cd10..8b98997b3107 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-@@ -41,8 +41,6 @@ bool intel_lt_phy_tbt_pll_readout_hw_state(struct intel_display *display,
- 					   struct intel_dpll_hw_state *hw_state);
- bool intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
- 				       struct intel_lt_phy_pll_state *pll_state);
--void intel_lt_phy_pll_state_verify(struct intel_atomic_state *state,
--				   struct intel_crtc *crtc);
- int
- intel_lt_phy_calculate_hdmi_state(struct intel_lt_phy_pll_state *lt_state,
- 				  u32 frequency_khz);
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_verify.c b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-index 12a00121c274..2ec17c2bfe0f 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-@@ -246,7 +246,6 @@ void intel_modeset_verify_crtc(struct intel_atomic_state *state,
- 	verify_crtc_state(state, crtc);
- 	intel_dpll_state_verify(state, crtc);
- 	intel_mpllb_state_verify(state, crtc);
--	intel_lt_phy_pll_state_verify(state, crtc);
+ bool
+ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 			  const struct intel_crtc_state *pipe_config,
+@@ -5176,16 +5159,6 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 	} \
+ } while (0)
+ 
+-#define PIPE_CONF_CHECK_PLL_LT(name) do { \
+-	if (!intel_lt_phy_pll_compare_hw_state(&current_config->name, \
+-					       &pipe_config->name)) { \
+-		pipe_config_lt_phy_pll_mismatch(&p, fastset, crtc, __stringify(name), \
+-						&current_config->name, \
+-						&pipe_config->name); \
+-		ret = false; \
+-	} \
+-} while (0)
+-
+ #define PIPE_CONF_CHECK_TIMINGS(name) do {     \
+ 	PIPE_CONF_CHECK_I(name.crtc_hdisplay); \
+ 	PIPE_CONF_CHECK_I(name.crtc_htotal); \
+@@ -5412,10 +5385,6 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 	if (display->dpll.mgr || HAS_GMCH(display))
+ 		PIPE_CONF_CHECK_PLL(dpll_hw_state);
+ 
+-	/* FIXME convert MTL+ platforms over to dpll_mgr */
+-	if (HAS_LT_PHY(display))
+-		PIPE_CONF_CHECK_PLL_LT(dpll_hw_state.ltpll);
+-
+ 	PIPE_CONF_CHECK_X(dsi_pll.ctrl);
+ 	PIPE_CONF_CHECK_X(dsi_pll.div);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index 534cc691979f..bbd2bcfc7ea3 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -4724,7 +4724,6 @@ static bool xe3plpd_compare_hw_state(const struct intel_dpll_hw_state *_a,
+ 	return intel_lt_phy_pll_compare_hw_state(a, b);
  }
  
- void intel_modeset_verify_disabled(struct intel_atomic_state *state)
+-__maybe_unused
+ static const struct intel_dpll_mgr xe3plpd_pll_mgr = {
+ 	.dpll_info = xe3plpd_plls,
+ 	.compute_dplls = xe3plpd_compute_dplls,
+@@ -4750,9 +4749,11 @@ void intel_dpll_init(struct intel_display *display)
+ 
+ 	mutex_init(&display->dpll.lock);
+ 
+-	if (DISPLAY_VER(display) >= 35 || display->platform.dg2)
+-		/* No shared DPLLs on NVL or DG2; port PLLs are part of the PHY */
++	if (display->platform.dg2)
++		/* No shared DPLLs on DG2; port PLLs are part of the PHY */
+ 		dpll_mgr = NULL;
++	else if (DISPLAY_VER(display) >= 35)
++		dpll_mgr = &xe3plpd_pll_mgr;
+ 	else if (DISPLAY_VER(display) >= 14)
+ 		dpll_mgr = &mtl_pll_mgr;
+ 	else if (display->platform.alderlake_p)
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+index 1dc53918a054..f68c3164332e 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+@@ -12,6 +12,7 @@
+ #include "intel_ddi_buf_trans.h"
+ #include "intel_de.h"
+ #include "intel_display.h"
++#include "intel_display_regs.h"
+ #include "intel_display_types.h"
+ #include "intel_display_utils.h"
+ #include "intel_dpll.h"
+@@ -2284,9 +2285,6 @@ void intel_xe3plpd_pll_enable_clock(struct intel_encoder *encoder,
+ 
+ 	if (intel_tc_port_in_tbt_alt_mode(dig_port))
+ 		intel_mtl_tbt_pll_enable_clock(encoder, crtc_state->port_clock);
+-	else
+-		/* TODO: remove when PLL mgr is in place. */
+-		intel_xe3plpd_pll_enable(encoder, NULL, &crtc_state->dpll_hw_state);
+ }
+ 
+ void intel_xe3plpd_pll_disable(struct intel_encoder *encoder)
+@@ -2305,10 +2303,6 @@ void intel_xe3plpd_pll_disable_clock(struct intel_encoder *encoder)
+ 
+ 	if (intel_tc_port_in_tbt_alt_mode(dig_port))
+ 		intel_mtl_tbt_pll_disable_clock(encoder);
+-	else
+-		/* TODO: remove when PLL mgr is in place. */
+-		intel_xe3plpd_pll_disable(encoder);
+-
+ }
+ 
+ static void intel_lt_phy_pll_verify_clock(struct intel_display *display,
 -- 
 2.43.0
 
