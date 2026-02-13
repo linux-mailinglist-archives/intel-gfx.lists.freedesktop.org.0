@@ -2,59 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0KUyFhXsjmkCGAEAu9opvQ
+	id eDWiHhfsjmkCGAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 10:17:09 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 10:17:11 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1D711345C9
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 10:17:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14C6A1345D7
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 10:17:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3698F10E096;
-	Fri, 13 Feb 2026 09:17:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 379C410E7C0;
+	Fri, 13 Feb 2026 09:17:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bA7jw7nD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lB7iCeES";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E29A10E096;
- Fri, 13 Feb 2026 09:17:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AD7610E7BD;
+ Fri, 13 Feb 2026 09:17:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770974226; x=1802510226;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=tWRUeyGxt+4EOnEWioaXcwyHgvAthovTsHSgUCfw2xU=;
- b=bA7jw7nDe452Tcy2CWerEES7t73Iszzfb231Ll4M3J+MPRouf4oKP9iJ
- oWz/gqKtsIXSBASXaBlZ93HN+olNw0XjH09rnGrliKqUghg1PM0MFrOVm
- n40BmKcdVWA3Y9eD/TtdT7Gr2KLOlA8rXMbx6BfOZ04Km+oLbjaD+U92V
- N9hVpopwbzHkG01nV4o/1mSqVRvTETu+SoHtTQ0W5lRnBsyZPX9xy/5bG
- 07iwHke5pgVnoRnZoRiMk4/PhlXBpCBqjJfC79Yvb7qVOcnmGql9mYSAb
- I4SItuTdv/nzkJICbHHnPpjVVYyj1XQwbGv2EQtp4ydZSFlI3GuMKT/cy g==;
-X-CSE-ConnectionGUID: Rd1+H02EST277Bax/HLFTQ==
-X-CSE-MsgGUID: nCkrH3mYRRS67uvs04VSuw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="72146672"
-X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="72146672"
+ t=1770974228; x=1802510228;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=T5zTPMCS6kgRgayxfssI0wZ0Ls07piuvPPisKN0lm7A=;
+ b=lB7iCeES0NSm+9d19I5mfz3UGDv8llYttIgABLBCIGqpFoGXVJqAf03e
+ 7O3cRWRXynH5+HMJjA1l/6nu8oPwiU5dqVh6KIHo9+GBadWzI7N0vqfJd
+ fzKBmWvCTpROgjj9S0nZTzqxAQHyVqxMXxq6Ogu3SfP0rjZU7O1zaPB5/
+ pUK4INEGNyPLysgMaYCIy8a2VtwanljxYGdXWS20qDKNt5HZfBi+OynN1
+ 2jDE4jjCU0zVDh9AxJFltfzSVPgRWGO8KdERoS7ITYXKbKDmXWfvpd7S2
+ Ca89TtcpRqDj7owOdOeccv2nIqFBrxzvoD6OrQY//d6Wi9ZhFtVkTv8hD g==;
+X-CSE-ConnectionGUID: madUecCAR6SYQfVXU2Q5WA==
+X-CSE-MsgGUID: 7q0PpV/WQn6A0OihYY02cA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="72146673"
+X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="72146673"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2026 01:17:05 -0800
-X-CSE-ConnectionGUID: nfwn/bx7Sz6PnuSsR5NO2Q==
-X-CSE-MsgGUID: ISuoNX3KRDaHXeLS7obU3g==
+ 13 Feb 2026 01:17:07 -0800
+X-CSE-ConnectionGUID: Z0Pg7ruiQiW3pG/zFTQ5gA==
+X-CSE-MsgGUID: ISqexI7YQdCczq2pIAg6Mg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="211778825"
+X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="211778830"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa007.fm.intel.com with ESMTP; 13 Feb 2026 01:17:03 -0800
+ by fmviesa007.fm.intel.com with ESMTP; 13 Feb 2026 01:17:05 -0800
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 0/8] Fixes and updates when using AUX backlight using
- Luminance 
-Date: Fri, 13 Feb 2026 14:46:45 +0530
-Message-Id: <20260213091653.2250887-1-suraj.kandpal@intel.com>
+Subject: [PATCH 1/8] drm/i915/backlight: Avoid 0 brightness for VESA AUX
+ backlight
+Date: Fri, 13 Feb 2026 14:46:46 +0530
+Message-Id: <20260213091653.2250887-2-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260213091653.2250887-1-suraj.kandpal@intel.com>
+References: <20260213091653.2250887-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -72,62 +74,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.69 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	SUBJECT_ENDS_SPACES(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
+	ARC_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email,gitlab.freedesktop.org:url];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[5];
 	FROM_NEQ_ENVFROM(0.00)[suraj.kandpal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: E1D711345C9
+	DKIM_TRACE(0.00)[intel.com:+]
+X-Rspamd-Queue-Id: 14C6A1345D7
 X-Rspamd-Action: no action
 
-This series aims to fix/update some code with respect to AUX backlight
-via luminance values for both VESA and INTEL HDR codepaths.
-The below are the major changes made in this series.
-- Do not allow 0 brightness which makes the screen go blank leaving
-user with no way to see the screen and increase brightness.
-- Take into account luminance_set variable when we decide which funcs
-need to be enabled
-- Update debug logs to make them more concise and help debug which
-code path was taken
+Whenever the minimum brightness is reported as 0 there are chances
+we maybe sometimes end up with blank screen. This confuses the user
+into thinking the display is acting weird. This occurs in eDP 1.5 when
+we are PANEL_LUMINANCE_OVERRIDE mode to mainpulate brightness via luminance
+values. Make sure if minimum luminance range is 0 we program
+it to 10% of max luminance range.
 
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15671
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ .../gpu/drm/i915/display/intel_dp_aux_backlight.c  | 14 +++++++++++---
+ 1 file changed, 11 insertions(+), 3 deletions(-)
 
-Suraj Kandpal (8):
-  drm/i915/backlight: Avoid 0 brightness for VESA AUX backlight
-  drm/i915/backlight: Use intel_panel variable instead of
-    intel_connector
-  drm/i915/backlight: Take luminance_set into account for VESA backlight
-  drm/i915/backlight: Check luminance_set when disabling PWM via AUX
-    VESA backlight
-  drm/i915/backlight: Short circuit intel_dp_aux_supports_hdr_backlight
-  drm/i915/backlight: Update debug log during backlight setup
-  drm/i915/backlight: Provide clear description on how backlight level
-    is controlled
-  drm/i915/backlight: Avoid 0 brightness for INTEL AUX HDR backlight
-
- .../drm/i915/display/intel_dp_aux_backlight.c | 60 +++++++++++++------
- 1 file changed, 43 insertions(+), 17 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+index eb05ef4bd9f6..f1811beee25f 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+@@ -456,7 +456,11 @@ static u32 intel_dp_aux_vesa_get_backlight(struct intel_connector *connector, en
+ 		}
+ 
+ 		val |= buf[0] | buf[1] << 8 | buf[2] << 16;
+-		return val / 1000;
++		val = val / 1000;
++		if (!val)
++			return panel->backlight.min;
++
++		return val;
+ 	}
+ 
+ 	return connector->panel.backlight.level;
+@@ -557,10 +561,14 @@ static int intel_dp_aux_vesa_setup_backlight(struct intel_connector *connector,
+ 	if (panel->backlight.edp.vesa.info.luminance_set) {
+ 		if (luminance_range->max_luminance) {
+ 			panel->backlight.max = panel->backlight.edp.vesa.info.max;
+-			panel->backlight.min = luminance_range->min_luminance;
++			if (luminance_range->min_luminance)
++				panel->backlight.min = luminance_range->min_luminance;
++			else
++				panel->backlight.min = (luminance_range->max_luminance * 10) / 100;
++
+ 		} else {
+ 			panel->backlight.max = 512;
+-			panel->backlight.min = 0;
++			panel->backlight.min = 51;
+ 		}
+ 		panel->backlight.level = intel_dp_aux_vesa_get_backlight(connector, 0);
+ 		panel->backlight.enabled = panel->backlight.level != 0;
 -- 
 2.34.1
 
