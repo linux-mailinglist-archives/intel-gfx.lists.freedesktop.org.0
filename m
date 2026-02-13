@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SExyMHkYj2mJIgEAu9opvQ
+	id eMoyMHoYj2mJIgEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 13:26:33 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 13:26:34 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99C89136055
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 13:26:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E501136064
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 13:26:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1536910E804;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF2E810E801;
 	Fri, 13 Feb 2026 12:26:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CyJhjVSw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SMrqrwN2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D535410E805;
- Fri, 13 Feb 2026 12:26:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DC6D10E801;
+ Fri, 13 Feb 2026 12:26:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770985591; x=1802521591;
+ t=1770985592; x=1802521592;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rRNRmS+iwtEvjn8MSJXVsZiic2j5KBzh0QJCMIU7Qvk=;
- b=CyJhjVSwpYxtqvTJRUxLciEl3XA/aBLE/t5MGBpnRGzAPrVWUirBu0lL
- egwCQMMT/YAcw1oy6jnkGmUA37jyQX6iLgiTFfga+MTbVNDO1LA2ngShB
- Ok/7YiBgJGEjkIOwbCwSiqAuk9MUSGD1Af2X43quPjguP5IOeYT8A7LUw
- 1BbdZ39t5YJvoiGb9BSxai6O28b1Epnvx8D3gSSBNbmP6mjvAsAS/AXRn
- V9yMosBXDvd0U/Xll/KtEWC4phughAYT61sibaFNRAk6YUZJEvzw91OUT
- kBM9p3PNig3cxtuL6M6myiRuv2MZz98U2W6TGlpDg0JVxY42rAKjlUP8s w==;
-X-CSE-ConnectionGUID: oiU9GHciR7GggVHlqYEdNg==
-X-CSE-MsgGUID: +/YBJ/+SQk+n/KKzSRqehQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="72158118"
-X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="72158118"
+ bh=HxbWdkFvbK8fBCUw5t9NvFfo4sLJ9/Fc0fyxvyth29U=;
+ b=SMrqrwN23E3d2xek6GW6js7vjFb52OhdwGhrext5DmFGRYQB3GhOWX7y
+ kcYzgsPvW4b4gpAOn9jHk6eTB8Ue6ys6buQLkUO0myzRAXJ8pBTTyu3MJ
+ UVJ8Z3Odle8+qAgsYvTDKW5fXKOeC8tbssEdfNBqdOUiN2RdiM5Tt4MIC
+ QX1Ojf2jKh+zG9DxmuLFzE40Yc8+wRkaf6xARga4AsET8RouoB8fynd3z
+ YoI680C7UQJbL2J5CUU9JfD+anHfV00OSWgeH8TKZ+pLKBxudoTT/iIkb
+ DFnHS3H5+P3r8OaIhlSoXaDgVHvIf6tQONiSZDnyOnQOYwSJh06pEX0pb Q==;
+X-CSE-ConnectionGUID: HiobmOKOS/y5fXabTfl2Fw==
+X-CSE-MsgGUID: N7/+xkLNTU+LpmM264DbHQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="72158119"
+X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="72158119"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2026 04:26:31 -0800
-X-CSE-ConnectionGUID: WjVXSAJoRd2JwPRktMzS8w==
-X-CSE-MsgGUID: VPiCDcT3QoGY8w/cq3Uj6Q==
+ 13 Feb 2026 04:26:32 -0800
+X-CSE-ConnectionGUID: 1QChM1+RRR6kmxhWiQkKmA==
+X-CSE-MsgGUID: VivjZ6i0QpCeDykgwBKUAA==
 X-ExtLoop1: 1
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa003.fm.intel.com with ESMTP; 13 Feb 2026 04:26:29 -0800
+ by fmviesa003.fm.intel.com with ESMTP; 13 Feb 2026 04:26:30 -0800
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH 10/19] drm/i915/lt_phy: Add xe3pldp .compare_hw_state hook
-Date: Fri, 13 Feb 2026 12:26:06 +0000
-Message-ID: <20260213122615.1083654-11-mika.kahola@intel.com>
+Subject: [PATCH 11/19] drm/i915/lt_phy: Add xe3plpd .get_hw_state hook
+Date: Fri, 13 Feb 2026 12:26:07 +0000
+Message-ID: <20260213122615.1083654-12-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260213122615.1083654-1-mika.kahola@intel.com>
 References: <20260213122615.1083654-1-mika.kahola@intel.com>
@@ -95,45 +95,119 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCPT_COUNT_THREE(0.00)[3];
 	FROM_NEQ_ENVFROM(0.00)[mika.kahola@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 99C89136055
+X-Rspamd-Queue-Id: 3E501136064
 X-Rspamd-Action: no action
 
-Add .compare_hw_state function pointer for xe3plpd platform
-to support dpll framework.
+Add .get_hw_state hook to xe3plpd platform for dpll framework
+and update intel_lt_phy_pll_readout_hw_state() function
+accordingly to support dpll framework.
 
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  2 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 13 +++++++++++++
+ drivers/gpu/drm/i915/display/intel_lt_phy.c   | 11 ++++++-----
+ drivers/gpu/drm/i915/display/intel_lt_phy.h   |  3 +--
+ 4 files changed, 21 insertions(+), 8 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index f92323664162..57de15fe3446 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -4249,7 +4249,7 @@ static void xe3plpd_ddi_get_config(struct intel_encoder *encoder,
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
+ 
+-	intel_lt_phy_pll_readout_hw_state(encoder, crtc_state, &crtc_state->dpll_hw_state.ltpll);
++	intel_lt_phy_pll_readout_hw_state(encoder, &crtc_state->dpll_hw_state.ltpll);
+ 
+ 	if (crtc_state->dpll_hw_state.ltpll.tbt_mode)
+ 		crtc_state->port_clock = intel_mtl_tbt_calc_port_clock(encoder);
 diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 26b78063dd94..c1d7d9909544 100644
+index c1d7d9909544..6502916793f5 100644
 --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
 +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -4655,6 +4655,15 @@ static void xe3plpd_dump_hw_state(struct drm_printer *p,
- 	intel_lt_phy_dump_hw_state(p, &dpll_hw_state->ltpll);
- }
- 
-+static bool xe3plpd_compare_hw_state(const struct intel_dpll_hw_state *_a,
-+				     const struct intel_dpll_hw_state *_b)
-+{
-+	const struct intel_lt_phy_pll_state *a = &_a->ltpll;
-+	const struct intel_lt_phy_pll_state *b = &_b->ltpll;
-+
-+	return intel_lt_phy_pll_compare_hw_state(a, b);
-+}
-+
- __maybe_unused
- static const struct intel_dpll_mgr xe3plpd_pll_mgr = {
- 	.dpll_info = xe3plpd_plls,
-@@ -4664,6 +4673,7 @@ static const struct intel_dpll_mgr xe3plpd_pll_mgr = {
- 	.update_active_dpll = icl_update_active_dpll,
- 	.update_ref_clks = icl_update_dpll_ref_clks,
- 	.dump_hw_state = xe3plpd_dump_hw_state,
-+	.compare_hw_state = xe3plpd_compare_hw_state,
+@@ -4571,7 +4571,20 @@ static const struct intel_dpll_mgr mtl_pll_mgr = {
+ 	.compare_hw_state = mtl_compare_hw_state,
  };
  
- /**
++static bool xe3plpd_pll_get_hw_state(struct intel_display *display,
++				     struct intel_dpll *pll,
++				     struct intel_dpll_hw_state *dpll_hw_state)
++{
++	struct intel_encoder *encoder = get_intel_encoder(display, pll);
++
++	if (!encoder)
++		return false;
++
++	return intel_lt_phy_pll_readout_hw_state(encoder, &dpll_hw_state->ltpll);
++}
++
+ static const struct intel_dpll_funcs xe3plpd_pll_funcs = {
++	.get_hw_state = xe3plpd_pll_get_hw_state,
+ };
+ 
+ static const struct dpll_info xe3plpd_plls[] = {
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+index 2d6cbfa79b5c..b1d95eb897db 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+@@ -2205,8 +2205,7 @@ static bool intel_lt_phy_pll_is_enabled(struct intel_encoder *encoder)
+ 			     intel_lt_phy_get_pclk_pll_request(lane);
+ }
+ 
+-void intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
+-				       const struct intel_crtc_state *crtc_state,
++bool intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
+ 				       struct intel_lt_phy_pll_state *pll_state)
+ {
+ 	u8 owned_lane_mask;
+@@ -2215,11 +2214,11 @@ void intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
+ 	int i, j, k;
+ 
+ 	if (!intel_lt_phy_pll_is_enabled(encoder))
+-		return;
++		return false;
+ 
+ 	pll_state->tbt_mode = intel_tc_port_in_tbt_alt_mode(enc_to_dig_port(encoder));
+ 	if (pll_state->tbt_mode)
+-		return;
++		return false;
+ 
+ 	owned_lane_mask = intel_lt_phy_get_owned_lane_mask(encoder);
+ 	lane = owned_lane_mask & INTEL_LT_PHY_LANE0 ? : INTEL_LT_PHY_LANE1;
+@@ -2240,6 +2239,8 @@ void intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
+ 	}
+ 
+ 	intel_lt_phy_transaction_end(encoder, wakeref);
++
++	return true;
+ }
+ 
+ void intel_lt_phy_pll_state_verify(struct intel_atomic_state *state,
+@@ -2265,7 +2266,7 @@ void intel_lt_phy_pll_state_verify(struct intel_atomic_state *state,
+ 		return;
+ 
+ 	encoder = intel_get_crtc_new_encoder(state, new_crtc_state);
+-	intel_lt_phy_pll_readout_hw_state(encoder, new_crtc_state, &pll_hw_state);
++	intel_lt_phy_pll_readout_hw_state(encoder, &pll_hw_state);
+ 
+ 	dig_port = enc_to_dig_port(encoder);
+ 	if (intel_tc_port_in_tbt_alt_mode(dig_port))
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h b/drivers/gpu/drm/i915/display/intel_lt_phy.h
+index 597b671bd39d..ff3896a2cebe 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.h
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
+@@ -33,8 +33,7 @@ void intel_lt_phy_dump_hw_state(struct drm_printer *p,
+ bool
+ intel_lt_phy_pll_compare_hw_state(const struct intel_lt_phy_pll_state *a,
+ 				  const struct intel_lt_phy_pll_state *b);
+-void intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
+-				       const struct intel_crtc_state *crtc_state,
++bool intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
+ 				       struct intel_lt_phy_pll_state *pll_state);
+ void intel_lt_phy_pll_state_verify(struct intel_atomic_state *state,
+ 				   struct intel_crtc *crtc);
 -- 
 2.43.0
 
