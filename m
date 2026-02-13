@@ -2,59 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4EnaDw38jmljGwEAu9opvQ
+	id cGRbBw78jmljGwEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 11:25:17 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 11:25:18 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A07C5135066
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 11:25:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE6FF13506D
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Feb 2026 11:25:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 355FE10E7C2;
-	Fri, 13 Feb 2026 10:25:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 300AF10E7BD;
+	Fri, 13 Feb 2026 10:25:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gOfk5v/K";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BRg2Xqz+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5DE510E7BD;
- Fri, 13 Feb 2026 10:25:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AF7A10E7BD;
+ Fri, 13 Feb 2026 10:25:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770978313; x=1802514313;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=KnVzkutQ1fIuynBWuwMD5/4yF5kLm2C9Ny+SAh9oAP4=;
- b=gOfk5v/KihiwGwIJpY2kXgXZeDkG5SpiyfmMIdSc3R0PesVjbkOFgBRg
- CNk3SzWw/hE5oe7wjnR+qrWkkXcbKT6qCL/GFAcKmo92KoNjLmRp49pqg
- GH3ET+j18PIiQ3ISpwZUQu6SFrCb0ou9hVgqxaFvva1m7pzje6b6MzOEm
- Jc3Nub+p+oS7wjLANrZFFtxN8hkWhiKWKEAUUhYAx7y2i/PRqvTKwAZpw
- aKqn6x5EU+IWbL9aQLJwNlP7jcIzG6umx4Lvz92vo9si2Ij1Ce/33vBBn
- w/0yN0PWSYCR7J8ymgTa3FDo9rWy/uFTV4ubo7V+lBiYWtw29MPmRRt/X g==;
-X-CSE-ConnectionGUID: VNrAtjQUR5mNCqd3q8B2wg==
-X-CSE-MsgGUID: Cvt7r3MQQqqRixFT3DnEWw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="72150641"
-X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="72150641"
+ t=1770978314; x=1802514314;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=H/zWwuaMJRh6epBmawTPorMya1CiwZh+OWT+NqfyR7s=;
+ b=BRg2Xqz+kEvmv90pNUimhjBzGEj1MyONxv6BkcbbqzAYqws9qmcB8ica
+ hFMVq9Ni/hiBV9QMgzE+Mu6spMp39Ym43DAXZ4eM6g8Lk2wqUvYeWFNk/
+ xZWebq792YAeWsxT8LoY5xEAVVHtvc7rYQJdyQSX5Dn1At0Y5BfaGJWJ2
+ kaua6G0HUhjzYWNpS/eQdfG9rG8nR45YCqthpg5sNqlR1vdbhFAIC3c93
+ kSrwEhj+SvKznhQ+9P8IlH8TiqtvgrP4Dfoyp0AGH06p/N2ivzTZmoiD8
+ v6oEGUssarnzeGWThbIVcjkj5vIR5it/edlEVquxFf7nYrF9Jye5soGMG A==;
+X-CSE-ConnectionGUID: 5ysyG+fHSs2JfUsO4aWT+g==
+X-CSE-MsgGUID: /uEIww9GTx+yMyzGS3FIxQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="72150648"
+X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="72150648"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2026 02:25:13 -0800
-X-CSE-ConnectionGUID: 3UgEP7M1QKW0nht0n+NPZg==
-X-CSE-MsgGUID: BMJTwZWCQl+jVMSognp3CA==
+ 13 Feb 2026 02:25:14 -0800
+X-CSE-ConnectionGUID: p2Kkf6PARYGyQ+GraGw7FQ==
+X-CSE-MsgGUID: /ym/CNHxQGSg6dg+Jzme6A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="212919531"
+X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="212919548"
 Received: from abityuts-desk.ger.corp.intel.com (HELO hazy.intel.com)
  ([10.245.244.16])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2026 02:25:12 -0800
+ 13 Feb 2026 02:25:13 -0800
 From: Luca Coelho <luciano.coelho@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 00/16] drm/i915/display: convert a bunch of W/A checks to
- the new framework
-Date: Fri, 13 Feb 2026 12:23:28 +0200
-Message-ID: <20260213102500.406925-1-luciano.coelho@intel.com>
+Subject: [PATCH v3 01/16] drm/i915/display: remove enum macro magic in
+ intel_display_wa()
+Date: Fri, 13 Feb 2026 12:23:29 +0200
+Message-ID: <20260213102500.406925-2-luciano.coelho@intel.com>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20260213102500.406925-1-luciano.coelho@intel.com>
+References: <20260213102500.406925-1-luciano.coelho@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -95,75 +97,197 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCPT_COUNT_TWO(0.00)[2];
 	RCVD_COUNT_THREE(0.00)[4];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: A07C5135066
+X-Rspamd-Queue-Id: BE6FF13506D
 X-Rspamd-Action: no action
 
-Hi,
+There's not much use in passing a number to the macro and let it
+convert that into the enum and a string.  It just hides the symbols.
 
-This series convert the "low hanging fruits" of workaround checks to
-the new framework.  Some of the workarounds check other values that
-are not in the intel_display structure, so they don't directly fit in
-the workaround framework and will be left for later.
+Remove the number to enum conversion magic in intel_display_wa().
 
-In v2:
-   * Added intel-xe in Cc for xe CI (Jani);
-   * Removed NOP intel-overlay.c patch (Jani).
+This has the side-effect of changing the print in the drm_WARN() that
+is issued when the number is not implemented, but that is moot anyway
+and can be changed later to something cleaner if needed.
 
-In v3:
-   * Added a comment back (accidentally removed) (Ville);
-   * Inverted the logic of W/A 16025596647 (Ville);
-   * Removed macro magic (Ville).
+Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cdclk.c              | 5 +++--
+ drivers/gpu/drm/i915/display/intel_display.c            | 2 +-
+ drivers/gpu/drm/i915/display/intel_display_power_well.c | 4 ++--
+ drivers/gpu/drm/i915/display/intel_display_wa.c         | 2 +-
+ drivers/gpu/drm/i915/display/intel_display_wa.h         | 2 +-
+ drivers/gpu/drm/i915/display/intel_fbc.c                | 8 ++++----
+ drivers/gpu/drm/i915/display/intel_gmbus.c              | 6 +++---
+ drivers/gpu/drm/i915/display/skl_scaler.c               | 2 +-
+ 8 files changed, 16 insertions(+), 15 deletions(-)
 
-Please review.
-
-Cheers,
-Luca.
-
-
-Luca Coelho (16):
-  drm/i915/display: remove enum macro magic in intel_display_wa()
-  drm/i915/display: convert audio workaround to new framework
-  drm/i915/display: convert W/As in intel_display_power.c to new
-    framework
-  drm/i915/display: convert W/As in intel_cdclk.c to new framework
-  drm/i915/display: convert W/As in intel_cursor.c to new framework
-  drm/i915/display: convert W/As in intel_ddi.c to new framework
-  drm/i915/display: convert W/As in intel_display.c to new framework
-  drm/i915/display: convert W/As in intel_display_device.c to new
-    framework
-  drm/i915/display: convert W/As in intel_dp_mst.c to new framework
-  drm/i915/display: convert W/As in intel_fbc.c to new framework
-  drm/i915/display: convert W/As in intel_flipq.c to new framework
-  drm/i915/display: convert W/As in intel_modeset_setup.c to new
-    framework
-  drm/i915/display: convert W/As in intel_pmdemand.c to new framework
-  drm/i915/display: convert W/As in intel_psr.c to new framework
-  drm/i915/display: convert W/As in skl_universal_plane.c to new
-    framework
-  drm/i915/display: convert W/As in skl_watermark.c to new framework
-
- drivers/gpu/drm/i915/display/intel_audio.c    | 24 +++----
- drivers/gpu/drm/i915/display/intel_cdclk.c    |  7 +-
- drivers/gpu/drm/i915/display/intel_cursor.c   |  3 +-
- drivers/gpu/drm/i915/display/intel_ddi.c      |  4 +-
- drivers/gpu/drm/i915/display/intel_display.c  |  6 +-
- .../drm/i915/display/intel_display_device.c   |  3 +-
- .../drm/i915/display/intel_display_power.c    | 22 +++---
- .../i915/display/intel_display_power_well.c   |  4 +-
- .../gpu/drm/i915/display/intel_display_wa.c   | 67 ++++++++++++++++++-
- .../gpu/drm/i915/display/intel_display_wa.h   | 27 +++++++-
- drivers/gpu/drm/i915/display/intel_dp_mst.c   |  3 +-
- drivers/gpu/drm/i915/display/intel_fbc.c      | 12 ++--
- drivers/gpu/drm/i915/display/intel_flipq.c    | 13 +---
- drivers/gpu/drm/i915/display/intel_gmbus.c    |  6 +-
- .../drm/i915/display/intel_modeset_setup.c    |  3 +-
- drivers/gpu/drm/i915/display/intel_pmdemand.c |  8 ++-
- drivers/gpu/drm/i915/display/intel_psr.c      | 20 +++---
- drivers/gpu/drm/i915/display/skl_scaler.c     |  2 +-
- .../drm/i915/display/skl_universal_plane.c    |  6 +-
- drivers/gpu/drm/i915/display/skl_watermark.c  |  3 +-
- 20 files changed, 164 insertions(+), 79 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index 29d90d612bb2..36b67b1a793d 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -1870,7 +1870,7 @@ static void icl_cdclk_pll_disable(struct intel_display *display)
+ 	 *      after the PLL is enabled (which is already done as part of the
+ 	 *      normal flow of _bxt_set_cdclk()).
+ 	 */
+-	if (intel_display_wa(display, 13012396614))
++	if (intel_display_wa(display, INTEL_DISPLAY_WA_13012396614))
+ 		intel_de_rmw(display, CDCLK_CTL, MDCLK_SOURCE_SEL_MASK, MDCLK_SOURCE_SEL_CD2XCLK);
+ 
+ 	intel_de_rmw(display, BXT_DE_PLL_ENABLE,
+@@ -2186,7 +2186,8 @@ static u32 bxt_cdclk_ctl(struct intel_display *display,
+ 		 * icl_cdclk_pll_disable().  Here we are just making sure
+ 		 * we keep the expected value.
+ 		 */
+-		if (intel_display_wa(display, 13012396614) && vco == 0)
++		if (intel_display_wa(display, INTEL_DISPLAY_WA_13012396614) &&
++		    vco == 0)
+ 			val |= MDCLK_SOURCE_SEL_CD2XCLK;
+ 		else
+ 			val |= xe2lpd_mdclk_source_sel(display);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index bd93add5101b..f5aeede6db76 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -1071,7 +1071,7 @@ static void intel_post_plane_update(struct intel_atomic_state *state,
+ 	if (audio_enabling(old_crtc_state, new_crtc_state))
+ 		intel_encoders_audio_enable(state, crtc);
+ 
+-	if (intel_display_wa(display, 14011503117)) {
++	if (intel_display_wa(display, INTEL_DISPLAY_WA_14011503117)) {
+ 		if (old_crtc_state->pch_pfit.enabled != new_crtc_state->pch_pfit.enabled)
+ 			adl_scaler_ecc_unmask(new_crtc_state);
+ 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index 9c8d29839caf..1e03187dbd38 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -249,7 +249,7 @@ static void hsw_power_well_post_enable(struct intel_display *display,
+ 	if (irq_pipe_mask) {
+ 		gen8_irq_power_well_post_enable(display, irq_pipe_mask);
+ 
+-		if (intel_display_wa(display, 22021048059))
++		if (intel_display_wa(display, INTEL_DISPLAY_WA_22021048059))
+ 			dss_pipe_gating_enable_disable(display, irq_pipe_mask, false);
+ 	}
+ }
+@@ -258,7 +258,7 @@ static void hsw_power_well_pre_disable(struct intel_display *display,
+ 				       u8 irq_pipe_mask)
+ {
+ 	if (irq_pipe_mask) {
+-		if (intel_display_wa(display, 22021048059))
++		if (intel_display_wa(display, INTEL_DISPLAY_WA_22021048059))
+ 			dss_pipe_gating_enable_disable(display, irq_pipe_mask, true);
+ 
+ 		gen8_irq_power_well_pre_disable(display, irq_pipe_mask);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
+index c2ccdca2c2f3..1d8340b36c01 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_wa.c
++++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
+@@ -87,7 +87,7 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
+ 	case INTEL_DISPLAY_WA_22021048059:
+ 		return IS_DISPLAY_VER(display, 14, 35);
+ 	default:
+-		drm_WARN(display->drm, 1, "Missing Wa number: %s\n", name);
++		drm_WARN(display->drm, 1, "Missing Wa: %s\n", name);
+ 		break;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
+index 767420d5f406..06c1f62c0f6d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_wa.h
++++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
+@@ -40,6 +40,6 @@ enum intel_display_wa {
+ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa, const char *name);
+ 
+ #define intel_display_wa(__display, __wa) \
+-	__intel_display_wa((__display), INTEL_DISPLAY_WA_##__wa, __stringify(__wa))
++	__intel_display_wa((__display), __wa, __stringify(__wa))
+ 
+ #endif
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index 9f39b6990bbd..4a99824653c7 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -958,7 +958,7 @@ static void intel_fbc_program_workarounds(struct intel_fbc *fbc)
+ 	 * Fixes: Screen flicker with FBC and Package C state enabled
+ 	 * Workaround: Forced SLB invalidation before start of new frame.
+ 	 */
+-	if (intel_display_wa(display, 22014263786))
++	if (intel_display_wa(display, INTEL_DISPLAY_WA_22014263786))
+ 		intel_de_rmw(display, ILK_DPFC_CHICKEN(fbc->id),
+ 			     0, DPFC_CHICKEN_FORCE_SLB_INVALIDATION);
+ 
+@@ -980,7 +980,7 @@ static void fbc_sys_cache_update_config(struct intel_display *display, u32 reg,
+ 	 * Fixes: SoC hardware issue in read caching
+ 	 * Workaround: disable cache read setting which is enabled by default.
+ 	 */
+-	if (!intel_display_wa(display, 14025769978))
++	if (!intel_display_wa(display, INTEL_DISPLAY_WA_14025769978))
+ 		/* Cache read enable is set by default */
+ 		reg |= FBC_SYS_CACHE_READ_ENABLE;
+ 
+@@ -1613,7 +1613,7 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
+ 		return 0;
+ 	}
+ 
+-	if (intel_display_wa(display, 16023588340)) {
++	if (intel_display_wa(display, INTEL_DISPLAY_WA_16023588340)) {
+ 		plane_state->no_fbc_reason = "Wa_16023588340";
+ 		return 0;
+ 	}
+@@ -1623,7 +1623,7 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
+ 	 * Fixes: Underrun during media decode
+ 	 * Workaround: Do not enable FBC
+ 	 */
+-	if (intel_display_wa(display, 15018326506)) {
++	if (intel_display_wa(display, INTEL_DISPLAY_WA_15018326506)) {
+ 		plane_state->no_fbc_reason = "Wa_15018326506";
+ 		return 0;
+ 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
+index 81b6c6991323..e42608d5bd61 100644
+--- a/drivers/gpu/drm/i915/display/intel_gmbus.c
++++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
+@@ -250,7 +250,7 @@ static u32 get_reserved(struct intel_gmbus *bus)
+ 	preserve_bits |= GPIO_DATA_PULLUP_DISABLE | GPIO_CLOCK_PULLUP_DISABLE;
+ 
+ 	/* Wa_16025573575: the masks bits need to be preserved through out */
+-	if (intel_display_wa(display, 16025573575))
++	if (intel_display_wa(display, INTEL_DISPLAY_WA_16025573575))
+ 		preserve_bits |= GPIO_CLOCK_DIR_MASK | GPIO_CLOCK_VAL_MASK |
+ 				 GPIO_DATA_DIR_MASK | GPIO_DATA_VAL_MASK;
+ 
+@@ -342,7 +342,7 @@ intel_gpio_pre_xfer(struct i2c_adapter *adapter)
+ 	if (display->platform.pineview)
+ 		pnv_gmbus_clock_gating(display, false);
+ 
+-	if (intel_display_wa(display, 16025573575))
++	if (intel_display_wa(display, INTEL_DISPLAY_WA_16025573575))
+ 		ptl_handle_mask_bits(bus, true);
+ 
+ 	set_data(bus, 1);
+@@ -363,7 +363,7 @@ intel_gpio_post_xfer(struct i2c_adapter *adapter)
+ 	if (display->platform.pineview)
+ 		pnv_gmbus_clock_gating(display, true);
+ 
+-	if (intel_display_wa(display, 16025573575))
++	if (intel_display_wa(display, INTEL_DISPLAY_WA_16025573575))
+ 		ptl_handle_mask_bits(bus, false);
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+index 4c4deac7f9c8..7c5cb188ebf0 100644
+--- a/drivers/gpu/drm/i915/display/skl_scaler.c
++++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+@@ -823,7 +823,7 @@ void skl_pfit_enable(const struct intel_crtc_state *crtc_state)
+ 			crtc_state->scaler_state.scaler_id < 0))
+ 		return;
+ 
+-	if (intel_display_wa(display, 14011503117))
++	if (intel_display_wa(display, INTEL_DISPLAY_WA_14011503117))
+ 		adl_scaler_ecc_mask(crtc_state);
+ 
+ 	drm_rect_init(&src, 0, 0,
 -- 
 2.51.0
 
