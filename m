@@ -2,58 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6OOYGMnalWn3VQIAu9opvQ
+	id +MlRN8zalWn3VQIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Feb 2026 16:29:13 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Feb 2026 16:29:16 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14405157691
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Feb 2026 16:29:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8BCA157698
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Feb 2026 16:29:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C81610E5D6;
-	Wed, 18 Feb 2026 15:29:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EBC010E5F1;
+	Wed, 18 Feb 2026 15:29:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Shgz1PF3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j34uvBA+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D48F010E5F1;
- Wed, 18 Feb 2026 15:29:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7C5010E5F2;
+ Wed, 18 Feb 2026 15:29:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771428550; x=1802964550;
+ t=1771428555; x=1802964555;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xri3Bq6pwTvam13sklGq2UU5nw3uoTui9J7QMBqPsVk=;
- b=Shgz1PF33DSDm31ejVmeNOfOpkbW/Sc3zNbKNZHyL3P85qlL73XFP53T
- EM9qRCVEhxWqMKi5jMHFvzx1mos848zDeQnGzbFVYaaT7B9LI+WONGJmJ
- 38lEupU3hp+XMIwWj0JjQnJAaVzcRtDDF7hbps2bJnGPALHZjXy3cvgyT
- 55CSIN1PL2cqBdw0x/fyHWMn7i01MRX3+2/tY7AHpERlRqfPU598wpzMi
- V9aiVRPOe9G1AGyTFnpY/251g3aWG/xSrupxBdfiR6QsdGL0+rND0NxQ5
- 4XQ9Rb4eTQn3zfnP6Ob10WWYEsN/FnTyFRccltc9CSWZEiSukLi2V98nh w==;
-X-CSE-ConnectionGUID: BtBw9WccSay6ZoervPMfsA==
-X-CSE-MsgGUID: EsEg+tT2T9e5qotS5fQHBg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11705"; a="60084509"
-X-IronPort-AV: E=Sophos;i="6.21,298,1763452800"; d="scan'208";a="60084509"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2026 07:29:09 -0800
-X-CSE-ConnectionGUID: YHGmDLH9ReaBeo/yLbWKeQ==
-X-CSE-MsgGUID: /ntOaWF4T+uUaZGyrDsbag==
+ bh=SEB9wSC9VYUB5nTykOEH8bIQWEsQc/iJhzSrSbys6wA=;
+ b=j34uvBA+KI0JLwsYX642/2xBPE/mEA0a7j2wFFGLmVDCqAiU2r8I1n3V
+ FNfr8fl4aJh+aEKyR8rs+yAj9OOLukauPy2hJIMUQthiqaefkvRuMvhlZ
+ JwKuL5HMK8r04/IBiW1YEOxVcXZo3SInvCt5jisKjSA2V2psfMkoslcvj
+ 8t5thAQAbDaWV+wPYchmKM9S7FHNl0b0pcnrGOziOlawdtgl9lOh8iQdY
+ o/mxluNNQhyV/gxPPBlxjHbaV9hy4VpCrDWgi9/IOtLgSTraVGU7qd/cf
+ PVDpuQj4+qCKrimFdw6b5S+Z33fGHHn1lVOqEMyMqQjpAtv9mxaDb+6nZ A==;
+X-CSE-ConnectionGUID: YKfLd+zTSE+qeBrE1klrcg==
+X-CSE-MsgGUID: rUOdaaoDTCazsVw7D6QsBA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11705"; a="72495477"
+X-IronPort-AV: E=Sophos;i="6.21,298,1763452800"; d="scan'208";a="72495477"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2026 07:29:15 -0800
+X-CSE-ConnectionGUID: lalnu/MrRpW6/bWQK2+org==
+X-CSE-MsgGUID: NwU2rxRzTa6ETWJrWj0djg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,298,1763452800"; d="scan'208";a="218756683"
+X-IronPort-AV: E=Sophos;i="6.21,298,1763452800"; d="scan'208";a="213302950"
 Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.244.66])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2026 07:29:08 -0800
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2026 07:29:13 -0800
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 14/19] drm/i915/overlay: Make i830_overlay_clock_gating() i915
- specific
-Date: Wed, 18 Feb 2026 17:28:01 +0200
-Message-ID: <20260218152806.18885-15-ville.syrjala@linux.intel.com>
+Subject: [PATCH 15/19] drm/i915/overlay: s/dev_priv/i915/
+Date: Wed, 18 Feb 2026 17:28:02 +0200
+Message-ID: <20260218152806.18885-16-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260218152806.18885-1-ville.syrjala@linux.intel.com>
 References: <20260218152806.18885-1-ville.syrjala@linux.intel.com>
@@ -101,92 +100,36 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	RCPT_COUNT_TWO(0.00)[2];
 	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 14405157691
+X-Rspamd-Queue-Id: A8BCA157698
 X-Rspamd-Action: no action
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-i830_overlay_clock_gating() will remain on the i915 side of the
-parent vs. display driver split. Stop using display specific stuff
-inside it.
-
-The one annoyance here is access to the display engine's
-DSPCLK_GATE_D register. The proper way to deal with that might
-be to move it to the display side, but that seems a bit hard right
-now. So leave it where it is for now.
+Rename the one lingering 'dev_priv' variable to the
+more modern 'i915' in the overlay code.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_overlay.c | 24 ++++++++++++--------
- 1 file changed, 15 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/display/intel_overlay.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
-index f51673cf94de..1b792926e076 100644
+index 1b792926e076..04e9ee278cd2 100644
 --- a/drivers/gpu/drm/i915/display/intel_overlay.c
 +++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-@@ -210,17 +210,21 @@ struct intel_overlay {
- 	void (*flip_complete)(struct intel_overlay *ovl);
- };
- 
--static void i830_overlay_clock_gating(struct intel_display *display,
-+static void i830_overlay_clock_gating(struct drm_i915_private *i915,
- 				      bool enable)
+@@ -1456,10 +1456,10 @@ static int i915_overlay_setup(struct drm_device *drm,
+ 			      struct intel_overlay *overlay,
+ 			      bool needs_physical)
  {
--	struct pci_dev *pdev = to_pci_dev(display->drm->dev);
-+	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
- 	u8 val;
- 
--	/* WA_OVERLAY_CLKGATE:alm */
-+	/*
-+	 * WA_OVERLAY_CLKGATE:alm
-+	 *
-+	 * FIXME should perhaps be done on the display side?
-+	 */
- 	if (enable)
--		intel_de_write(display, DSPCLK_GATE_D, 0);
-+		intel_uncore_write(&i915->uncore, DSPCLK_GATE_D, 0);
- 	else
--		intel_de_write(display, DSPCLK_GATE_D, OVRUNIT_CLOCK_GATE_DISABLE);
-+		intel_uncore_write(&i915->uncore, DSPCLK_GATE_D, OVRUNIT_CLOCK_GATE_DISABLE);
- 
- 	/* WA_DISABLE_L2CACHE_CLOCK_GATING:alm */
- 	pci_bus_read_config_byte(pdev->bus,
-@@ -266,6 +270,7 @@ static bool i915_overlay_is_active(struct drm_device *drm)
- static int i915_overlay_on(struct drm_device *drm,
- 			   u32 frontbuffer_bits)
- {
+-	struct drm_i915_private *dev_priv = to_i915(drm);
 +	struct drm_i915_private *i915 = to_i915(drm);
- 	struct intel_display *display = to_intel_display(drm);
- 	struct intel_overlay *overlay = display->overlay;
- 	struct i915_request *rq;
-@@ -285,8 +290,8 @@ static int i915_overlay_on(struct drm_device *drm,
+ 	struct intel_engine_cs *engine;
  
- 	overlay->frontbuffer_bits = frontbuffer_bits;
+-	engine = to_gt(dev_priv)->engine[RCS0];
++	engine = to_gt(i915)->engine[RCS0];
+ 	if (!engine || !engine->kernel_context)
+ 		return -ENOENT;
  
--	if (display->platform.i830)
--		i830_overlay_clock_gating(display, false);
-+	if (IS_I830(i915))
-+		i830_overlay_clock_gating(i915, false);
- 
- 	*cs++ = MI_OVERLAY_FLIP | MI_OVERLAY_ON;
- 	*cs++ = overlay->flip_addr | OFC_UPDATE;
-@@ -383,13 +388,14 @@ static void i915_overlay_release_old_vid_tail(struct intel_overlay *overlay)
- static void i915_overlay_off_tail(struct intel_overlay *overlay)
- {
- 	struct intel_display *display = overlay->display;
-+	struct drm_i915_private *i915 = to_i915(display->drm);
- 
- 	i915_overlay_release_old_vma(overlay);
- 
- 	overlay->frontbuffer_bits = 0;
- 
--	if (display->platform.i830)
--		i830_overlay_clock_gating(display, true);
-+	if (IS_I830(i915))
-+		i830_overlay_clock_gating(i915, true);
- }
- 
- static void i915_overlay_last_flip_retire(struct i915_active *active)
 -- 
 2.52.0
 
