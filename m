@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CsZoCTsLl2lEuAIAu9opvQ
+	id qKJcHDwLl2lEuAIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Feb 2026 14:08:11 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Feb 2026 14:08:12 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E460015EE61
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Feb 2026 14:08:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FF9915EE76
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Feb 2026 14:08:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F6F810E6DD;
-	Thu, 19 Feb 2026 13:08:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8392210E6E1;
+	Thu, 19 Feb 2026 13:08:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lPQu0SX6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W5juXETj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FDC810E6D9;
- Thu, 19 Feb 2026 13:08:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FA1210E6DC;
+ Thu, 19 Feb 2026 13:08:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771506487; x=1803042487;
+ t=1771506489; x=1803042489;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=htgtctGjo0OPyz7EIZGlWgEFQxFWfUMbWDqGURTjXYk=;
- b=lPQu0SX6P+xTla3+bfkXY3xGBOAwG3raAqYsyl9JaW82K+slBvUA3gMT
- y1L4qoeM7Whj7FMLecds/rQWdvYO4+5UL7TT7rbm4acACegCCPa8utg3j
- 6nDsXOmnJ0G5OxYcHqK1+jPIjL4ZeZnutGQ+ANQgvTqBF0nm8bAN6TCFO
- M0hApDl953TsVX7i+GW5aDTc4E6GkP8GZ4lIzpKCJdQBJ6niKSFvhkuEI
- +aKe/5PVNLM2hszbQxm62zhT3XlwDh+sO1p/88EdxwikclZhj+JQk2fg2
- YkE0D8TcJehVV7cfRy77PjufS7whz2uxPcURAbltRrCuzOa9/P0MbV8Lw g==;
-X-CSE-ConnectionGUID: +GFQfGwtRGW8/pPMz+maiQ==
-X-CSE-MsgGUID: JALSLqnCS8mmsMt1/ELvhA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11705"; a="72475518"
-X-IronPort-AV: E=Sophos;i="6.21,300,1763452800"; d="scan'208";a="72475518"
+ bh=27RuguUc24Foz/Z0yMb63i9Bn80pnNrEE9wi9biXXOM=;
+ b=W5juXETjVVo1hLyXJxk9G0oSP7u3Fu1BkrKqhAESl1Q/slhV76Y/P2Uf
+ vRyLfA6ZelJIz303+2FC2w66DONb1E/ubb4/HGdYIukJJgdIgs28xu18w
+ jUKKh6P7whvNH1TGv/0YVYezrmhnRSY3bPl4iYGA45tC2eiHFx74uk4CW
+ 0N1cpmu6QVCrc9QqNTqgI4SYX+wY4VBAhQG3tGvoMYPQcRh45fPmCpQoT
+ +Bk3YHT1Ox7PeTQ3R9WydkLe4jbNA6tqe4isCc/QEwDQHjAx5l+KzRyiE
+ 58vsrMmWsE8oZjSS/lKwCdilweVJEIY2OSssv+2lTIAlHBmzKu9w/rz7E w==;
+X-CSE-ConnectionGUID: TowGoMSvQn6EA8TjB7CijA==
+X-CSE-MsgGUID: +1sFBsp7SU+D0/ZasItjNw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11705"; a="72475531"
+X-IronPort-AV: E=Sophos;i="6.21,300,1763452800"; d="scan'208";a="72475531"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2026 05:08:07 -0800
-X-CSE-ConnectionGUID: /OM3W5gPSumjnmKgk6MjTg==
-X-CSE-MsgGUID: wRRtY6lYSB6eis8yo5w81w==
+ 19 Feb 2026 05:08:09 -0800
+X-CSE-ConnectionGUID: xUdHBKghRzOuz/qi5X3xXg==
+X-CSE-MsgGUID: 9xbGTC8vTSyhC9HNgbqMIw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,300,1763452800"; d="scan'208";a="212458574"
+X-IronPort-AV: E=Sophos;i="6.21,300,1763452800"; d="scan'208";a="212458604"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO
  jhogande-mobl3.intel.com) ([10.245.246.120])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2026 05:08:05 -0800
+ 19 Feb 2026 05:08:07 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH 3/5] drm/i915/dsc: Convert intel_dsc_get_vdsc_per_pipe as
- non-static
-Date: Thu, 19 Feb 2026 15:07:41 +0200
-Message-ID: <20260219130743.1232188-4-jouni.hogander@intel.com>
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
+ stable@vger.kernel.org
+Subject: [PATCH 4/5] drm/i915/psr: DSC configuration for Early Transport
+Date: Thu, 19 Feb 2026 15:07:42 +0200
+Message-ID: <20260219130743.1232188-5-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260219130743.1232188-1-jouni.hogander@intel.com>
 References: <20260219130743.1232188-1-jouni.hogander@intel.com>
@@ -100,45 +100,85 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_THREE(0.00)[4];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: E460015EE61
+X-Rspamd-Queue-Id: 1FF9915EE76
 X-Rspamd-Action: no action
 
-We need to do some configurations on DSC when using PSR2/PR Selective
-Update Early Transport. Convert intel_dsc_get_vdsc_per_pipe as non-static
-to make it available for PSR code.
+There is Selective Update slice row per frame and picture height
+configurations needed on DSC when using Selective Update Early
+Transport. Calculate and configure these when using Early Transport.
 
+Bspec: 68927
+Fixes: 467e4e061c44 ("drm/i915/psr: Enable psr2 early transport as possible")
+Cc: <stable@vger.kernel.org> # v6.9+
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vdsc.c | 2 +-
- drivers/gpu/drm/i915/display/intel_vdsc.h | 1 +
- 2 files changed, 2 insertions(+), 1 deletion(-)
+ .../drm/i915/display/intel_display_types.h    |  1 +
+ drivers/gpu/drm/i915/display/intel_psr.c      | 24 +++++++++++++++++++
+ 2 files changed, 25 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-index 7e53201b3cb1..f27ec0251613 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-@@ -467,7 +467,7 @@ intel_dsc_power_domain(struct intel_crtc *crtc, enum transcoder cpu_transcoder)
- 		return POWER_DOMAIN_TRANSCODER_VDSC_PW2;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index e8e4af03a6a6..8903804c04b1 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1381,6 +1381,7 @@ struct intel_crtc_state {
+ 	u32 psr2_man_track_ctl;
+ 
+ 	u32 pipe_srcsz_early_tpt;
++	u32 dsc_su_parameter_set_0_calc;
+ 
+ 	struct drm_rect psr2_su_area;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 331645a2c9f6..0a2948ec308d 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -2618,6 +2618,11 @@ void intel_psr2_program_trans_man_trk_ctl(struct intel_dsb *dsb,
+ 
+ 	intel_de_write_dsb(display, dsb, PIPE_SRCSZ_ERLY_TPT(crtc->pipe),
+ 			   crtc_state->pipe_srcsz_early_tpt);
++	intel_de_write_dsb(display, dsb, DSC_SU_PARAMETER_SET_0_DSC0(crtc->pipe),
++			   crtc_state->dsc_su_parameter_set_0_calc);
++	if (intel_dsc_get_vdsc_per_pipe(crtc_state) > 1)
++		intel_de_write_dsb(display, dsb, DSC_SU_PARAMETER_SET_0_DSC1(crtc->pipe),
++				   crtc_state->dsc_su_parameter_set_0_calc);
  }
  
--static int intel_dsc_get_vdsc_per_pipe(const struct intel_crtc_state *crtc_state)
-+int intel_dsc_get_vdsc_per_pipe(const struct intel_crtc_state *crtc_state)
- {
- 	return crtc_state->dsc.slice_config.streams_per_pipe;
+ static void psr2_man_trk_ctl_calc(struct intel_crtc_state *crtc_state,
+@@ -2668,6 +2673,23 @@ static u32 psr2_pipe_srcsz_early_tpt_calc(struct intel_crtc_state *crtc_state,
+ 	return PIPESRC_WIDTH(width - 1) | PIPESRC_HEIGHT(height - 1);
  }
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.h b/drivers/gpu/drm/i915/display/intel_vdsc.h
-index f4d5b37293cf..b70ac86ca9ab 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.h
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.h
-@@ -44,5 +44,6 @@ unsigned int intel_vdsc_prefill_lines(const struct intel_crtc_state *crtc_state)
- int intel_dsc_get_pixel_rate_with_dsc_bubbles(struct intel_display *display,
- 					      int pixel_rate, int htotal,
- 					      int dsc_horizontal_slices);
-+int intel_dsc_get_vdsc_per_pipe(const struct intel_crtc_state *crtc_state);
  
- #endif /* __INTEL_VDSC_H__ */
++static u32 psr2_dsc_su_parameter_set_0_calc(struct intel_crtc_state *crtc_state,
++					    bool full_update)
++{
++	const struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
++	int slice_row_per_frame, pic_height;
++
++	if (!crtc_state->enable_psr2_su_region_et || full_update ||
++	    !crtc_state->dsc.compression_enable)
++		return 0;
++
++	slice_row_per_frame = drm_rect_height(&crtc_state->psr2_su_area) / vdsc_cfg->slice_height;
++	pic_height = slice_row_per_frame * vdsc_cfg->slice_height;
++
++	return DSC_SU_PARAMETER_SET_0_SU_SLICE_ROW_PER_FRAME(slice_row_per_frame) |
++		DSC_SU_PARAMETER_SET_0_SU_PIC_HEIGHT(pic_height);
++}
++
+ static void clip_area_update(struct drm_rect *overlap_damage_area,
+ 			     struct drm_rect *damage_area,
+ 			     struct drm_rect *pipe_src)
+@@ -3026,6 +3048,8 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
+ 	psr2_man_trk_ctl_calc(crtc_state, full_update);
+ 	crtc_state->pipe_srcsz_early_tpt =
+ 		psr2_pipe_srcsz_early_tpt_calc(crtc_state, full_update);
++	crtc_state->dsc_su_parameter_set_0_calc = psr2_dsc_su_parameter_set_0_calc(crtc_state,
++										   full_update);
+ 	return 0;
+ }
+ 
 -- 
 2.43.0
 
