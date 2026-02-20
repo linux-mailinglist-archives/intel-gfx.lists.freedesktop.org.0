@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sLBJKFSVmGlaJwMAu9opvQ
+	id SEdgBliVmGlaJwMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Feb 2026 18:09:40 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Feb 2026 18:09:44 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74D9C1699A1
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Feb 2026 18:09:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB3231699A9
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Feb 2026 18:09:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06B4210E825;
-	Fri, 20 Feb 2026 17:09:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6198610E828;
+	Fri, 20 Feb 2026 17:09:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UDJT4dD4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="brBCnTGn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDF7A10E824;
- Fri, 20 Feb 2026 17:09:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64DB310E81F;
+ Fri, 20 Feb 2026 17:09:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771607378; x=1803143378;
+ t=1771607380; x=1803143380;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tE83o+0vHZoV1h8NYWmZ1xMd2eWaWZIjQQvimWSKj5g=;
- b=UDJT4dD4Wm42TyKgKSv6tEVWl3Sx3JmBhw+pfA1OtwWk249ww44B3gyN
- A51QtVpzVgRy8ZxTgeAr8TNx9Ni1Zqx9jQHWhM0YLOM/JNhZjL/sr57wi
- 7W0uDLZbh+ObTXQQtuyudeidOtuTUYUYYyevU0L1AY1TU9GZBMbHn4nIC
- GSULrm2tKgFpjmwjUCLDBkPJfFVqCS6i22+zx4gpuvnaRiRqFszaHatlD
- wmslh/dwCMukVmYfaIN3b0rwadXTmtqaAJIatwvyJi3sYtXT4ipkGDh8v
- mKJBJA9FSvaQioTGKhqBUsT+MmqxsWrkX8/gzkDrgvqGePIwjSwPFE22B g==;
-X-CSE-ConnectionGUID: IToimD0GTySAcRl2Ov5qrQ==
-X-CSE-MsgGUID: 9F4iX8LbQSKKs1gZaCV91w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11707"; a="98164384"
-X-IronPort-AV: E=Sophos;i="6.21,302,1763452800"; d="scan'208";a="98164384"
+ bh=Kx9xiWCIFbSWmastKTklfPUTqAImGWKYTPXMYICuQjw=;
+ b=brBCnTGnNK1d40J+pa9nF/+BzDgUL9eIuw5jyhcIZXpoTMATlHAhh/dV
+ ygQNYVQlaop7fS4+YOl+Mj11zpDwiFSVMqY/SG8K1DCKq7AFRE8pXffnc
+ /ULLwM5+r+qZOWMDoGAnNXZcrCd23lsK8+Owvp+xnjmRCK+y781frXb8K
+ 25AjKWx5AtaQpQYdsj3LhYTHXzd4Rd3aJHHP0n9B19dDv8ivK8r5Q2rLl
+ fhYqYCHNfC2Vrb3xT5dMo8rR79vktN+DwEzm5wIjOeK2ZWJZVQcwsBSVg
+ yyljDRKBBtZOiypMAd00syNt/cVE7oLCksumA7VABo60sgs5EOL8kTqrK w==;
+X-CSE-ConnectionGUID: UGXPno1fQ3SAwS24tbWC/w==
+X-CSE-MsgGUID: 5mJGS3oAQDyE4aCYv8cK7A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11707"; a="98164387"
+X-IronPort-AV: E=Sophos;i="6.21,302,1763452800"; d="scan'208";a="98164387"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2026 09:09:38 -0800
-X-CSE-ConnectionGUID: XMtQTLIQQZWl2TliGwTHcw==
-X-CSE-MsgGUID: i6VRwjQHSfun/g0ix2fG9w==
+ 20 Feb 2026 09:09:40 -0800
+X-CSE-ConnectionGUID: TNRw454aQJiZ1HSlSNkl7A==
+X-CSE-MsgGUID: 4lcuomrURbmESYcLELcATA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,302,1763452800"; d="scan'208";a="237864017"
+X-IronPort-AV: E=Sophos;i="6.21,302,1763452800"; d="scan'208";a="237864024"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO
  vgovind2-mobl4.intel.com) ([10.245.245.18])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2026 09:09:36 -0800
+ 20 Feb 2026 09:09:38 -0800
 From: Vinod Govindapillai <vinod.govindapillai@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: vinod.govindapillai@intel.com, ville.syrjala@intel.com,
  uma.shankar@intel.com
-Subject: [PATCH v2 5/6] drm/xe/fbdev: print info about stolen memory
+Subject: [PATCH v2 6/6] drm/i915/fbdev: print info about stolen memory
  preference for fbdev
-Date: Fri, 20 Feb 2026 19:09:07 +0200
-Message-ID: <20260220170908.201422-6-vinod.govindapillai@intel.com>
+Date: Fri, 20 Feb 2026 19:09:08 +0200
+Message-ID: <20260220170908.201422-7-vinod.govindapillai@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260220170908.201422-1-vinod.govindapillai@intel.com>
 References: <20260220170908.201422-1-vinod.govindapillai@intel.com>
@@ -104,50 +104,33 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: 74D9C1699A1
+X-Rspamd-Queue-Id: DB3231699A9
 X-Rspamd-Action: no action
 
-If stolen memory cannot be allocated for the fbdev and initial plane
-bo because of the preference for fbc, have an info about that in
-the log.
+If stolen memory cannot be allocated for the fbdev because of the
+preference for fbc, have an info about that in the log.
 
 v2: log text changed
 
 Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 ---
- drivers/gpu/drm/xe/display/intel_fbdev_fb.c   | 2 ++
- drivers/gpu/drm/xe/display/xe_initial_plane.c | 4 +++-
- 2 files changed, 5 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_fbdev_fb.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
-index 4673614cd224..87af5646c938 100644
---- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
-+++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
-@@ -63,6 +63,8 @@ struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm, int size
- 			drm_info(&xe->drm, "Allocated fbdev into stolen\n");
- 		else
- 			drm_info(&xe->drm, "Allocated fbdev into stolen failed: %li\n", PTR_ERR(obj));
-+	} else {
-+		drm_info(&xe->drm, "Allocating fbdev: Stolen memory not preferred.\n");
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
+index 90993d09a73f..6f84eb6355de 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
+@@ -46,6 +46,9 @@ struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm, int size
+ 	} else {
+ 		if (intel_fbdev_fb_prefer_stolen(drm, size))
+ 			obj = i915_gem_object_create_stolen(i915, size);
++		else
++			drm_info(drm, "Allocating fbdev: Stolen memory not preferred.\n");
++
+ 		if (IS_ERR(obj))
+ 			obj = i915_gem_object_create_shmem(i915, size);
  	}
- 
- 	if (IS_ERR(obj)) {
-diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-index 13fdc51f8f50..c46e9d8115bd 100644
---- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
-+++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-@@ -92,8 +92,10 @@ initial_plane_bo(struct xe_device *xe,
- 		flags |= XE_BO_FLAG_STOLEN;
- 
- 		if (IS_ENABLED(CONFIG_FRAMEBUFFER_CONSOLE) &&
--		    !intel_fbdev_fb_prefer_stolen(&xe->drm, plane_config->size))
-+		    !intel_fbdev_fb_prefer_stolen(&xe->drm, plane_config->size)) {
-+			drm_info(&xe->drm, "Initial FB size exceeds half of stolen, discarding\n");
- 			return NULL;
-+		}
- 	}
- 
- 	size = round_up(plane_config->base + plane_config->size,
 -- 
 2.43.0
 
