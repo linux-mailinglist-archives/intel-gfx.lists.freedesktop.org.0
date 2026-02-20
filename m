@@ -2,69 +2,192 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id f9nKE9jQl2mx8wIAu9opvQ
+	id kLP3KEVlmGmJHgMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Feb 2026 04:11:20 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Feb 2026 14:44:37 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68736164591
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Feb 2026 04:11:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59702167F23
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Feb 2026 14:44:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D8F610E775;
-	Fri, 20 Feb 2026 03:11:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3AB810E7F6;
+	Fri, 20 Feb 2026 13:44:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QQPF5aR5";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="BZUZmVh3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A855010E771;
- Fri, 20 Feb 2026 03:11:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771557075; x=1803093075;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=LtXojTxWUXHRfADAI0q8OrSPhK4G22bem2gV0RNmID4=;
- b=QQPF5aR5d715CrCt0TtYDVlaJuvusD/ntG1AHZdI9WuU3UlI56s1UWp2
- 2LYrpTumkA89V+wWq+xq7+fHpULnYDphq69QlRgIjCAePI+/ZXVOJGzpo
- uKgd10qdTC7WHYmTxfx9OLH+Ru4uUVQgS31mQA9Nu7sv3umo1YXahHaXF
- elZwYxg6d/QW0TkFh/dpNqfwxN1pBWSTBt5LoA8HDN46ZiKulv42MdBwk
- 7ytnqs31sn/9eSUDMPaFeJR/znpXr1/5Cy7gl1ZlPWkNeVIdjV7DlsDjW
- wkm2B2SL7ddl265ba2S+aRjGquXREPDmQmHiK2vxy1ZSue9Mqw96QYlxX A==;
-X-CSE-ConnectionGUID: JSlt1f65RKSE5flgJVzrxQ==
-X-CSE-MsgGUID: aqCGyKocTpaBYH0Exzvkrg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11706"; a="72715579"
-X-IronPort-AV: E=Sophos;i="6.21,301,1763452800"; d="scan'208";a="72715579"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2026 19:11:15 -0800
-X-CSE-ConnectionGUID: 7CWuCvVwSQKaTATw/mikwQ==
-X-CSE-MsgGUID: WST+IfSsSLKJOiFQly4axw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,301,1763452800"; d="scan'208";a="212897530"
-Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.244.247])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2026 19:11:14 -0800
-Date: Fri, 20 Feb 2026 05:11:10 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- imre.deak@intel.com, suraj.kandpal@intel.com
-Subject: Re: [PATCH] drm/i915/dp: On DPCD init/caps wake the DPRx
-Message-ID: <aZfQzqdS0koZQVwg@intel.com>
-References: <20260219094326.34922-1-arun.r.murthy@intel.com>
- <aZcj08k5dG4lxRNE@intel.com>
- <2f2a155d-3b2c-4cf9-b8cd-8116fe84f85a@intel.com>
+Received: from SN4PR0501CU005.outbound.protection.outlook.com
+ (mail-southcentralusazon11011033.outbound.protection.outlook.com
+ [40.93.194.33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2C8810E186;
+ Fri, 20 Feb 2026 03:26:05 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Ha5u77YNaE7wrrzvJYDpkINeMYoe58R7krTvFkbgv01FwODl1O3dX2hIyO8j1WflzpxDkozVd6cj5mCWbdi51+Qy6Xkp45da2H9SdaT7K4tswMD58RH2Tr64FHJGj5LMhvmLv1ReHNEcuiPY833gwLa4EN8Jm2hFNdw3DqF84X2gRSEkOuW68JPIQ9jUaNZ8p1EUrvNOtmiZpIprMBQYgihMYimoaO49whri1GQNk4tZPxAGTeN/7LeIYHr3IkiDpCrRscXlqujxQtF+WwQwB7K6Of6BN5db5asiznvayLt8CFzUBZlcIVVn42RTn9kLMJYclbt9DFUofZFjYQkS5w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cCWc9HamYXViX/dSkAj4lzbMEIYIIMN4TgYf7zbB5T4=;
+ b=HRJn5jAUxM+4gt0KV7nWZeGaE2hNu/yO5JszyyQCfEYYvn3UqxgA178Fmz5IasrHeKYXxLCfF98afx7zrX9rqXhhnDMPv5zqbJmjUubntIyuXRqy+77vhrStVmCi+8Bo2val7ajanGuQ7lxmfbRjftSFAqpdjYPE4F/2UpU3xzOUK6yR+Blz4gTIOx+k3j6gBeAYp7pHVJk6si8LHC4yeWDXrfJa4u1P4Zb6k0IkVQHFJs42QEzRnd6y71mIZ//oGBovE1AV7kKmeVMFWSfplgZPS1SX7Bw6kkF2A/ONhMuerk21TiO89lXtdwSXfmZg9MUMRiBqD13P3Bjs/dQGuA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cCWc9HamYXViX/dSkAj4lzbMEIYIIMN4TgYf7zbB5T4=;
+ b=BZUZmVh3x6P+ABi7BzrjDX2kgCAp9fFU6QDwvZvaqtn4YHZuC0mOKstgwzfI+n75HCl8BmyFmDmaDy3gSqkkqGFE53/hgw/TGpplmSMxDVSmZcOxm1J0VRBFtL5oH48hyqFl/RfnT8amZ/uPuZiQfDDD9RursayK+ZfbfqL4m2Q5aRL2Lsn4DApwPMwC7v+6UJBExM6vvNLr4uZjSdA2Z+tUGSFj30/ujt9zmCzZfQWpUj+GWdhnv0NwT97CHxAKE7X3fRqnmPjk/ZxNIAIw5BfcdS0k7ZEe3m6GKE4LZV2DfbHwPWr9CDtnv1ll/v1gvYDpFPF4gWLdDerWf6OKmQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CH2PR12MB3990.namprd12.prod.outlook.com (2603:10b6:610:28::18)
+ by PH7PR12MB5619.namprd12.prod.outlook.com (2603:10b6:510:136::7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.14; Fri, 20 Feb
+ 2026 03:25:59 +0000
+Received: from CH2PR12MB3990.namprd12.prod.outlook.com
+ ([fe80::7de1:4fe5:8ead:5989]) by CH2PR12MB3990.namprd12.prod.outlook.com
+ ([fe80::7de1:4fe5:8ead:5989%3]) with mapi id 15.20.9632.015; Fri, 20 Feb 2026
+ 03:25:59 +0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 20 Feb 2026 12:25:55 +0900
+Message-Id: <DGJGVTN5H1L7.2IJTSNK4BINNQ@nvidia.com>
+Cc: <linux-kernel@vger.kernel.org>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Simona Vetter" <simona@ffwll.ch>, "Jonathan Corbet" <corbet@lwn.net>,
+ "Alex Deucher" <alexander.deucher@amd.com>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, "Jani Nikula"
+ <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
+ <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
+ "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang Rui" <ray.huang@amd.com>,
+ "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
+ <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ "Helge Deller" <deller@gmx.de>, "Danilo Krummrich" <dakr@kernel.org>,
+ "Alice Ryhl" <aliceryhl@google.com>, "Miguel Ojeda" <ojeda@kernel.org>,
+ "Alex Gaynor" <alex.gaynor@gmail.com>, "Boqun Feng" <boqun.feng@gmail.com>,
+ "Gary Guo" <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, "Benno Lossin" <lossin@kernel.org>, "Andreas
+ Hindborg" <a.hindborg@kernel.org>, "Trevor Gross" <tmgross@umich.edu>,
+ "Alistair Popple" <apopple@nvidia.com>, "Andrea Righi" <arighi@nvidia.com>,
+ "Zhi Wang" <zhiw@nvidia.com>, "Philipp Stanner" <phasta@kernel.org>, "Elle
+ Rhumsaa" <elle@weathered-steel.dev>, "Daniel Almeida"
+ <daniel.almeida@collabora.com>, "Eliot Courtney" <ecourtney@nvidia.com>,
+ <joel@joelfernandes.org>, <nouveau@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <rust-for-linux@vger.kernel.org>,
+ <linux-doc@vger.kernel.org>, <amd-gfx@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <linux-fbdev@vger.kernel.org>
+Subject: Re: [PATCH v7 00/23] nova-core: Add memory management support
+From: "Alexandre Courbot" <acourbot@nvidia.com>
+To: "Joel Fernandes" <joelagnelf@nvidia.com>
+References: <DGJ1G3D32OMK.30HANB1W46XVL@nvidia.com>
+ <20260219194838.GA1013545@joelbox2>
+In-Reply-To: <20260219194838.GA1013545@joelbox2>
+X-ClientProxiedBy: TYWP286CA0032.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:262::16) To CH2PR12MB3990.namprd12.prod.outlook.com
+ (2603:10b6:610:28::18)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2f2a155d-3b2c-4cf9-b8cd-8116fe84f85a@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH2PR12MB3990:EE_|PH7PR12MB5619:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2348485e-395f-457f-a4f7-08de702fc446
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|7416014|376014|366016|1800799024|10070799003; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?dG9YWXg1T1k5N1JiWEQ4eUZPTVZBUkpJdmRNTndLUXhoUGZxdVZ5ZVh2a2VG?=
+ =?utf-8?B?UTEvdEhZRlJEYzlIRmhWRUhySU9PSkVBL0VBcTVNUzVZTkZsVUwwRGR5VGxi?=
+ =?utf-8?B?NmV2b3pOQU90ZjRUNVIyY0xNRVcxQ0JuaUQ3REZ0d2JkWGYrZnlVUjJROFRM?=
+ =?utf-8?B?UElHZGhZSmRQcFExNklob0djbWpLZEE2SUw2NkFhT2xiSU9oR3BpYUpndWFH?=
+ =?utf-8?B?YXRwWDNvNVF4eDFMQ2dieDVBc0kzVHZLaXhieXI1UWdKcDNJTXdxdXNnTWtV?=
+ =?utf-8?B?Z09WRWtWOFdyMFcwcnI0clRxUFNtSEFQSnhYdGlja3NXdEtHK2drbjN3ZnBj?=
+ =?utf-8?B?dnpoYWo3VS9TMG1DMnJDMmY0cTNWK2haTzJITGNLdG5LTmZCTldORkU5anNT?=
+ =?utf-8?B?YmtQTFhMUS9NbE9JYlkreVZIOC9JVHlUemllU2M5UVc3UlF2WGFNN2hnbzNV?=
+ =?utf-8?B?WnlOSllFTCtaSVZRSnpmTTRONUowWTdseVA2YnpLZWt4bnVFbll2K0dMV2RR?=
+ =?utf-8?B?WTFlbUROTFJHTTdzQW8veGlmblFRV2NnVit2RzVSNnpHQnhESllCSjdQQnZ6?=
+ =?utf-8?B?TFpEWWJ3amdqZGpza01zOUYvbTYwVmVHVFQrNlJaTTN0aGxHVkJNZTMzVG9M?=
+ =?utf-8?B?Tk41bTh5ZW5EZ2MrR3hRSVNUN3JiU2pLaC9ITUV5dGRPbU1kYTIxbEhrdjVk?=
+ =?utf-8?B?eHhpRmhaQ1AveXl5RDFQMm9DS0doZmF1TG0rbkZTN1RXVHFoK0RWQkNDRlZB?=
+ =?utf-8?B?RHZxVFgyQ2oyMXNGR05KMmFyeXpEeTRHeE84MjZJcnlaSitsaXRoR1E1c0Mw?=
+ =?utf-8?B?MUNwSnpEZmVwOFRkUXBHT1A0Ky96QjM2U2lPNjRJWHZJdU1XMmVIdnZITmE4?=
+ =?utf-8?B?UkVhVjQxMmVmN1JOUWZMeVdURkZoNXdZV3hsSmhtVll3N2ZpTVJFSWJQclBo?=
+ =?utf-8?B?Zm16VDdLME9RMGt0akY5YzhKSjk3cDFFSmg1NDQzYm4rb09ydGY5YTBXblB6?=
+ =?utf-8?B?cVUyR1IxTVI1aS8vU2xNb2FTYWFVakZFYTczZUlyZkViRmpMNTREcGhjdExl?=
+ =?utf-8?B?OVdreGNuZVF0ekgySlRqSHUxWU9YYW5Yak9weHF6K3UyZU1EU3E1UW90WWdj?=
+ =?utf-8?B?RFg1Wm05L2pLTDRMV2VZZ0Z0MlRxTDAzTmIxazF5dm1kb0lzczQxNlhFaElZ?=
+ =?utf-8?B?eTlCZ21EcUgrdndka1pnOVJXUlJPWkY1bVlPU0RLaHE1YkY2V2tGV0tQV2Ix?=
+ =?utf-8?B?ZFprdWtLSmJNcDdSbVNFYjNaSEtkSXc4VVUwbjhGNVQwb3cyV0h6KzdEeDMw?=
+ =?utf-8?B?MjFpZ1BLQTRzTzZXbkxXRXJjUkFvNHkrcVY5WlNENWNNYVZpd1lDZ1lxZ0dM?=
+ =?utf-8?B?ZjFoSDlkbDB0M3dUM3pHdTlobktQcnArVGNNSUdOZXUwaGNPcmdZQ09WQ2dP?=
+ =?utf-8?B?a2RZcitwVTVQSHkrb1Vja3hOeFFJcDN6NUE3aXRpUEFrbzk5cFBRWEZVZnN3?=
+ =?utf-8?B?THpGS3hBbi94bHJSTHpXQ0JzK0ZEbHZwSGJQdDB6b3VpN3JCb2FaNFFIUGNu?=
+ =?utf-8?B?N2JLYksydHNpbkJnL0t4ZWNPeEY1VmR1ZTFJd0poYUpMek5EVU02aUQwZ0R4?=
+ =?utf-8?B?M2N0UHNzMWltWTVWaHI3akJ3YnVyRmowcFVSM2p1RFB0OUxyc3BpTUJDbFo1?=
+ =?utf-8?B?V2NxUXJuZVJXWHdWNXBPSWpCdVFnQi9NYTJzYk91alFyNU9ZOUdYVGg5VHY5?=
+ =?utf-8?B?azBnVUNGYVhsN1Vyci9uOVQvVjhFL2IzUUhhbVNpWGNSb0t2MWFyZEVJRmdh?=
+ =?utf-8?B?UWhmSlByMjZqZGpJSUhNN3cvcDV3YWhWcEpYZE9vMDhEdzZza0d3dEF4U2d0?=
+ =?utf-8?B?SzZWZmNkRmRza2lGSTRFR1UzanZ6Q3M0RVJlMlMvS0VuZHJBWVRyMlJtUjhk?=
+ =?utf-8?B?R0Jjbi8wcElLbm9BOUIwYWdNVUJ5WFlTWEIxc2dyZ0huSVdkbTlqQ09DMkcy?=
+ =?utf-8?B?elZERGR4UE8xRm4rTHE5QkFvUE1KTUREVVl5YnZOVmJhNlpOVEtrQ3lKL09t?=
+ =?utf-8?B?K0pTZ0ZJMGh2alAvOWhlejg4RzRYZWFWNmJsazZpcko1UWtaMFVSWDJVV1hv?=
+ =?utf-8?Q?MQ3M=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH2PR12MB3990.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(7416014)(376014)(366016)(1800799024)(10070799003); DIR:OUT;
+ SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MkQxMDVxVEU5eGNyc20vZUxWU09scFNUUHFWRkFVc01YRmk4WkwrLzBHcFdP?=
+ =?utf-8?B?VlZpQmVWVWtqYm01Tmx2RVJNL1UyZGdYVWlRN3hUdXB6SjhudmZNRHBMcVFQ?=
+ =?utf-8?B?NCtjT01QZWNPSnlIVVFuRkVoNGo1V01NdnN3NlhKQ0k4ZjV1Uy9kT3NWQ1VE?=
+ =?utf-8?B?ZHh5d2hFaHNQbGw2Skwra1hvL1ZySkFqaE9MMTdLYWJRNnErMjVZUkVrQzFM?=
+ =?utf-8?B?UUR5M2JBSkk5YkErZkIrUWVtNXhOei9lTjJvL2xrRjBreFpUVmZmd2NpVDho?=
+ =?utf-8?B?TXh5NDF0bGdmVFRieWtudWVtR2xOOFJ6VW8zc1hMbmZWMWFuZzlJM3N5V3V3?=
+ =?utf-8?B?bGRpb3R6NHZQbGZXa2FMTldWUGREOVlyWUVJMjFDZUVEcytYKzAybHdOTFRQ?=
+ =?utf-8?B?dHNPRnpuMG5jZVRnTTFWS1VuTDFFcE1YY2lXaEE5UnNzMmV6MTk2THN6eC9Z?=
+ =?utf-8?B?a2p2MEMvRWZEMkd3dmFETkF4dGlWdDNkN1J4MWpqWWdGYk1heE9rS1ZwSzJW?=
+ =?utf-8?B?SmNjMlBNYUtWa0VrLzBvcWU5QzltejFIdUhHazd0bHJoUVFkV3JvcndOVHNx?=
+ =?utf-8?B?YjlVRXM3WW1EREZWb2EwdHl3aS91UlRYMkVUc01FYUJMekFvQXpER0RFaTA4?=
+ =?utf-8?B?cFZmSHBtcmhjRGVUbFBRN2xncG15bEhlNnY5WUVJbTN2MHM1QkhTRHEzSThz?=
+ =?utf-8?B?Z3lWeFhvNGJkM21tUzN3UFlDMzBtQ0p1OXBmMjFCbHpMbHpoRE9LR0l2OXdU?=
+ =?utf-8?B?RThDeHArYXBpSVBlNXhDU2NDL2F0NFQ2elMrU3d6eUQzN2RvQ0xYdjV2NGoy?=
+ =?utf-8?B?Z1dFYVNyQzRHQ29xZlhJMCtEOGZYcGlPVW96Y3J6d3pES2g3dHpZUUJGR2R5?=
+ =?utf-8?B?YmVyeENUelo5WFM0TE1XT3dwL0pGaGlBVE4vU24zbCtzcjNiQW1nd2laSXpM?=
+ =?utf-8?B?emRrVkM4TEUwVWhmUW1DK1hIaFdyYVRHbmJyT2FhMExvVmNuNFQxOVhRRUNB?=
+ =?utf-8?B?QlB0Nnc1NkQ1Tm5Uc1VCR1FpNGhRdVV0aU5ZazlFVEpCVCtObVljMHBNWVpo?=
+ =?utf-8?B?N0ZBalBWdnNhQmVEaHRYNVBRbElhTlNuWlc1N0t1WktQbG1hSmllMlkyeFNh?=
+ =?utf-8?B?YVgzZ3dpRStlYUpvYlk3eTdQek5RR2hpSFp5RXBGNzhPN0RHTnVDWG8ySGxM?=
+ =?utf-8?B?djIwaWYvT0N6ei9pRFpIVms4bTZTV250Mk1aZFhqR0JsNnhrT1RuOStkeC9k?=
+ =?utf-8?B?MlFldXNWUlVteEFzaXRlc1VmdmpPV1p0bkc2NDc4RjhzT0RvbmJDd0tOeEkx?=
+ =?utf-8?B?d2NwS1ZEWTRCeklNekwyUUZMcGg2SXBQMDI2OGF4RmFmQVNQVmRSUzc4dE9s?=
+ =?utf-8?B?WVpyc0c2SXZMRzYvYVV3M29vMmhHai9wVEk4aTE3Q0Z2TTNQcDcvd1BZN01k?=
+ =?utf-8?B?d2pjRlhaVVVGRXFnRGUzSlFPdVBrZEZCZjZVV0ZiQ3VDM1gyeDU0VXdIeGFm?=
+ =?utf-8?B?akVpd0NpRjU1cEVFUWhWRHlDS0hvV2VYVVVFL0poYkRjUmNUZmpnMk5QZWZP?=
+ =?utf-8?B?N3c5SmJVSVZ6WTdBRk53YUJnVWQvOWM4Qy9sWEJ0bEVwMmkySnFsQnpyYnR6?=
+ =?utf-8?B?Z3JzdFVlSEx3eEZ2ak43UXBnNXVFZ0hvY0kxT2VNREVOc3JGejc3UFc5c3JW?=
+ =?utf-8?B?OUUvUEZHQzRCeW5PNDRwOG53L050WXFSNnlBaFJsYlAyQmVZV3RnUXBidDYy?=
+ =?utf-8?B?OE9TQjFyRkFaMDVOTnhwUm5WTmRNZ3lSUDcvRng0RFhJKzVCdGpmdWhRUmt1?=
+ =?utf-8?B?YjV2KzFBRnYyUyt2Mks3RGk5Wi9nM1R2WnRFK2tFMGRBVlBjTEhGUmZ5V3Er?=
+ =?utf-8?B?U09JWlk3LzdOWUQ5Q0xNTzVSYUU2QkNONkczYjVwcGs4RlRKYlhlNVU4aktr?=
+ =?utf-8?B?Y2xScGNyR0F5eGxQTk1VN3paTjl6YnVtWitvRnMrY29EVk1SdFJoWGlSTVRr?=
+ =?utf-8?B?aTdaSkFOZjd4Y0QwTG5wVnY5SjlZZ1BqVkI5cHo3SHhqVlZpUmw2WnFkYmlP?=
+ =?utf-8?B?d2h3cTFVc2w3OHRUZzY1MW9FRDhUcldCRFlHdndINXVWQVNta3dJWktWOW9w?=
+ =?utf-8?B?ZkRmN2l5NTFYTDU5azlXOHBIMFIvdW8ySVh4bk5pMlhlOHRoeVJ6SkZxMkNk?=
+ =?utf-8?B?VGxLMFQ5aTcvQXUyQnJaVGVINDJTaVIwa2FxblpuVzdKQnROck52T1hDQ1FD?=
+ =?utf-8?B?SkNRUy9ITkpIakFHelljZDMxZVNtN0FiN3RhUGowV3FOU05LZDNmL3lCUGJt?=
+ =?utf-8?B?a0hhT3NpNlJnRE1DcU4yNlErcnljMkdVYXI5Ti9sVUVaekpYMklWVVhEejFH?=
+ =?utf-8?Q?Txy1JTQuHr/aQtQoN5TQyH7v6wTsFgQcl8tbA7LP2cbJu?=
+X-MS-Exchange-AntiSpam-MessageData-1: n+0+5mepwY6WBQ==
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2348485e-395f-457f-a4f7-08de702fc446
+X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3990.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2026 03:25:59.3746 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: p1FrK6q49faN6aRQQCTms6pzcomrNymmwev3i/JE14emgq6P0kB8P8V2B53f/xaXc8BgXTYqDlhRQNc0259s2g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5619
+X-Mailman-Approved-At: Fri, 20 Feb 2026 13:44:31 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,188 +203,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.36 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	R_MIXED_CHARSET(0.67)[subject];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[44];
+	FREEMAIL_CC(0.00)[vger.kernel.org,linux.intel.com,kernel.org,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,google.com,gmail.com,garyguo.net,protonmail.com,umich.edu,nvidia.com,weathered-steel.dev,collabora.com,joelfernandes.org,lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[acourbot@nvidia.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: 68736164591
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 59702167F23
 X-Rspamd-Action: no action
 
-On Thu, Feb 19, 2026 at 08:42:49PM +0530, Murthy, Arun R wrote:
-> 
-> On 19-02-2026 20:23, Ville Syrjälä wrote:
-> > On Thu, Feb 19, 2026 at 03:13:26PM +0530, Arun R Murthy wrote:
-> >> Before reading the DPCD caps for eDP wake the sink device and for DP
-> >> after reading the lttpr caps and before reading the dpcd caps wake up
-> >> the sink device.
-> > Why?
-> Just to ensure that sink is awake.
-> On eDP init, as part of reading the DPCD caps during the AUX transaction 
-> its sometimes observed that the AUX tx fails with timeout. In those 
-> scenarios even if the retry is increased to 1000 AUX tx will not 
-> succeed. May be that sink is in sleep or unknown state.
-> Spec DP2.1 sec 2.11.7.1.5.8 says if there is a NO REPLY for AUX tx this 
-> can be due to illegal cmd or sink in low power state.
+On Fri Feb 20, 2026 at 4:48 AM JST, Joel Fernandes wrote:
+> Hi Alex,
+>
+> Thanks for taking the time to go through the series and for the effort
+> of doing the reordering. Just to clarify, do you mean I should be
+> sending each of the phases separately for review instead of in one
+> series?
 
-That section is specifically about i2c-over-aux.
-
-Generally we have retries and appropriate timeouts to deal with AUX
-having to wake up from low power state.
-
-Although, I suppose we might consider switching to D0 for eg. duration
-of the detection to make sure none of the AUX transactions there take
-too long. That *might* make things a bit faster (but we'd need actual
-numbers to show that). And once we're done we should switch back to D3
-to save power. Perhaps we could then also use a larger timeout just for
-the DP_SET_POWER AUX accesses, and all other AUX accesses could assume
-that the thing is awake and use a smaller timeout. Although the LTTPR
-mess probably means we can't actually reduce the timeouts :/
-
-Another slight snag in the current way of doing things is that IIRC
-we never put a device into D3 after the initial detection, unless we
-actually turned the main link on and off again. That's also something
-that could get fixed by always putting the device into D3 after
-detection. But to do that stuff safely we'd need some way to make sure
-nothing else (eg. the main link) requires the D0 at that time. So some
-kind of D0 vs. D3 reference counting scheme might be needed.
-
-I did consider implementing something like that years ago, but dealing
-with the reference counting seemed too messy at the time. And since I
-never implemented it I never measured it either. Perhaps things are a
-bit cleaner these days to make that easier. Dunno.
-
-> 
-> So in this patch we are trying to wake the sink device.
-
-Still the same question remains: Why? What *exactly* is the problem
-you're trying to solve here?
-
-> 
-> Thanks and Regards,
-> Arun R Murthy
-> -------------------
-> 
-> >
-> >> Closes: https://issues.redhat.com/browse/RHEL-120913
-> >> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> >> ---
-> >>   drivers/gpu/drm/i915/display/intel_dp.c       | 41 +++++++++++++++++++
-> >>   drivers/gpu/drm/i915/display/intel_dp.h       |  1 +
-> >>   .../drm/i915/display/intel_dp_link_training.c |  3 ++
-> >>   3 files changed, 45 insertions(+)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> >> index 454e6144ee4e..2fbb947e6cc8 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> >> @@ -4705,6 +4705,45 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
-> >>   	intel_edp_set_data_override_rates(intel_dp);
-> >>   }
-> >>   
-> >> +void intel_dp_wake_sink(struct intel_dp *intel_dp)
-> >> +{
-> >> +	u8 value = 0;
-> >> +	int ret = 0, try = 0;
-> >> +
-> >> +	intel_dp_dpcd_set_probe(intel_dp, false);
-> >> +
-> >> +	/*
-> >> +	 * Wake the sink device
-> >> +	 * Spec DP2.1 section 2.3.1.2 if AUX CH is powered down by writing 0x02
-> >> +	 * to DP_SET_POWER dpcd reg, 1ms time would be required to wake it up
-> >> +	 */
-> >> +	while (try < 10 && ret < 0) {
-> >> +		ret = drm_dp_dpcd_readb(&intel_dp->aux, DP_SET_POWER, &value);
-> >> +		/*
-> >> +		 * If sink is in D3 then it may not respond to the AUX tx so
-> >> +		 * wake it up to D3_AUX_ON state
-> >> +		 */
-> >> +		if (value == DP_SET_POWER_D3) {
-> >> +			/* After setting to D0 need a min of 1ms to wake(Spec DP2.1 sec 2.3.1.2) */
-> >> +			drm_dp_dpcd_writeb(&intel_dp->aux, DP_SET_POWER,
-> >> +					   DP_SET_POWER_D0);
-> >> +			fsleep(1000);
-> >> +			drm_dp_dpcd_writeb(&intel_dp->aux, DP_SET_POWER,
-> >> +					   DP_SET_POWER_D3_AUX_ON);
-> >> +			break;
-> >> +		} else if ((value == DP_SET_POWER_D0) ||
-> >> +			   (value == DP_SET_POWER_D3_AUX_ON)) {
-> >> +			/* if in D0 or D3_AUX_ON exit */
-> >> +			break;
-> >> +		}
-> >> +		/* Sink in D0 or even if read fails a minimum of 1ms is required to wake and respond */
-> >> +		fsleep(1000);
-> >> +		try++;
-> >> +	}
-> >> +
-> >> +	intel_dp_dpcd_set_probe(intel_dp, true);
-> >> +}
-> >> +
-> >>   static bool
-> >>   intel_edp_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector)
-> >>   {
-> >> @@ -4713,6 +4752,8 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector
-> >>   	/* this function is meant to be called only once */
-> >>   	drm_WARN_ON(display->drm, intel_dp->dpcd[DP_DPCD_REV] != 0);
-> >>   
-> >> +	intel_dp_wake_sink(intel_dp);
-> >> +
-> >>   	if (drm_dp_read_dpcd_caps(&intel_dp->aux, intel_dp->dpcd) != 0)
-> >>   		return false;
-> >>   
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-> >> index b0bbd5981f57..3f16077c0cc7 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> >> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> >> @@ -232,6 +232,7 @@ bool intel_dp_dotclk_valid(struct intel_display *display,
-> >>   bool intel_dp_joiner_candidate_valid(struct intel_connector *connector,
-> >>   				     int hdisplay,
-> >>   				     int num_joined_pipes);
-> >> +void intel_dp_wake_sink(struct intel_dp *intel_dp);
-> >>   
-> >>   #define for_each_joiner_candidate(__connector, __mode, __num_joined_pipes) \
-> >>   	for ((__num_joined_pipes) = 1; (__num_joined_pipes) <= (I915_MAX_PIPES); (__num_joined_pipes)++) \
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> >> index 54c585c59b90..cbb712ea9f60 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> >> @@ -270,6 +270,9 @@ int intel_dp_init_lttpr_and_dprx_caps(struct intel_dp *intel_dp)
-> >>   		lttpr_count = intel_dp_init_lttpr(intel_dp, dpcd);
-> >>   	}
-> >>   
-> >> +	/* After reading LTTPR wake up the sink before reading DPRX caps */
-> >> +	intel_dp_wake_sink(intel_dp);
-> >> +
-> >>   	/*
-> >>   	 * The DPTX shall read the DPRX caps after LTTPR detection, so re-read
-> >>   	 * it here.
-> >> -- 
-> >> 2.25.1
-
--- 
-Ville Syrjälä
-Intel
+Sorry, forgot to reply to this. I think one series is fine now that
+CList/buddy have been moved out, as it only spans one component
+(nova-core) and forces us to keep the big picture in mind. The
+reordering is just to enable a more granular review process and identify
+the moving pieces more clearly.
