@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0F2RHU+VmGlaJwMAu9opvQ
+	id qA0ZE1OVmGlaJwMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Feb 2026 18:09:35 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Feb 2026 18:09:39 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24C7C169993
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Feb 2026 18:09:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D720316999A
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Feb 2026 18:09:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F22210E81D;
-	Fri, 20 Feb 2026 17:09:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E08F10E823;
+	Fri, 20 Feb 2026 17:09:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Odxu0UzS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VpDBwIrw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 440BB10E823;
- Fri, 20 Feb 2026 17:09:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C2DF10E823;
+ Fri, 20 Feb 2026 17:09:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771607372; x=1803143372;
+ t=1771607375; x=1803143375;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=mB0EzZjQXxkko5bs5mQ34y1bzyl9gKD9nDUIPpO1FJQ=;
- b=Odxu0UzSeY+jNNKGyIaPA4eXokeP/D/NN80EAmVT45k+K2jVxoWnWkiX
- 3+uQjkkm8ysnPztH8KkcL1pYzNNpXTPWB2CNVK6NEYRWdtxiEbpt19KUT
- pFEpHbmfqP9HEbeAq1YfuARzJq44a6P2lqM9eM/qB+96UEmtQYsgUoYie
- mR3qBZdejg10zJBocJ60FRUNHs5EY+C4P/ETAsptCCViAl88aydnqotd8
- 22l5ETyPnS4KR0fxC6qt3OOScbXSKuhaIijqNv5um6vC3VWX//yrtwcMD
- RM4yCgKDhIShqA6ZWOQnpzc9EAEykZZgs6UjNa/wZScR7Sg80H2pdKxgQ g==;
-X-CSE-ConnectionGUID: cI31PlPKRUCbNkJYsmPjZA==
-X-CSE-MsgGUID: 5fBKPRIsSH6PZQ3EagvxzA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11707"; a="98164381"
-X-IronPort-AV: E=Sophos;i="6.21,302,1763452800"; d="scan'208";a="98164381"
+ bh=YtSjzE0S+xUBzQwPvPr1WP2o9DJh72WrXSFPmNTaVik=;
+ b=VpDBwIrwD1lN8/JXErrAtMuH6mo6gv3qwlcaZb5MpCLEpGVwj7pM/vXj
+ IgnuX5zVOZp1g5OZci8kdX4FPoO6uAJQsr5EUfhQR9gPJopZ1JQTqBoov
+ JhKuGfmaTsQUce275t0fsPsaXVdHkAB3LEoReaXy8q1wD8juNExQK7w5d
+ b/jVdMxNMUuNxvWhSiTnPIMMAWUnfhWM/vRJPht5+lMF8j95QLq9pK2xr
+ kWRX9SiCUcPl/K6FkIuDvupAfXKRwFMvalZGuKSv0lV6Y3KAGysybTt/u
+ oO19NA/yR9L+B4UaXxBWGdMXK931zkd7EWPxgBWb7wgo5sE/9rllk7sZB w==;
+X-CSE-ConnectionGUID: OtaVuI/TTOSnZUiem1y9UA==
+X-CSE-MsgGUID: 5lZNg/sFSLa46cnOdCtmmg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11707"; a="98164383"
+X-IronPort-AV: E=Sophos;i="6.21,302,1763452800"; d="scan'208";a="98164383"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2026 09:09:32 -0800
-X-CSE-ConnectionGUID: dcHsAnlqSI+fCi8c8VPzWQ==
-X-CSE-MsgGUID: ZszPIoTpQri0x4lExRFX6Q==
+ 20 Feb 2026 09:09:35 -0800
+X-CSE-ConnectionGUID: fwEiydQJRdqpcjchC+3Q4Q==
+X-CSE-MsgGUID: a/PyvYlsSm6DEoRVFDmIEg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,302,1763452800"; d="scan'208";a="237863965"
+X-IronPort-AV: E=Sophos;i="6.21,302,1763452800"; d="scan'208";a="237864003"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO
  vgovind2-mobl4.intel.com) ([10.245.245.18])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2026 09:09:30 -0800
+ 20 Feb 2026 09:09:33 -0800
 From: Vinod Govindapillai <vinod.govindapillai@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: vinod.govindapillai@intel.com, ville.syrjala@intel.com,
  uma.shankar@intel.com
-Subject: [PATCH v2 3/6] drm/i915/fbdev: Extract intel_fbdev_fb_prefer_stolen()
-Date: Fri, 20 Feb 2026 19:09:05 +0200
-Message-ID: <20260220170908.201422-4-vinod.govindapillai@intel.com>
+Subject: [PATCH v2 4/6] drm/xe/fbdev: Extract intel_fbdev_fb_prefer_stolen()
+Date: Fri, 20 Feb 2026 19:09:06 +0200
+Message-ID: <20260220170908.201422-5-vinod.govindapillai@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260220170908.201422-1-vinod.govindapillai@intel.com>
 References: <20260220170908.201422-1-vinod.govindapillai@intel.com>
@@ -103,42 +103,49 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: 24C7C169993
+X-Rspamd-Queue-Id: D720316999A
 X-Rspamd-Action: no action
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Consolidate the "should we allocate fbdev fb in stolen?"
-check into a helper function. Makes it easier to change the
-heuristics without having to change so many places.
+Pull the "should we keep the bios fb in stolen?" logic into
+into a helper function, same as was done for i915. Gives us
+a single place where to tweak the heuristics.
 
-v2: rebase related changes and consolidate all the prefer
-    stolen conditions into a single function (Vinod)
+v2: changes related to rebase and consolidated other conditions
+    for the stolen preference into this single function (Vinod)
 
-v3: avoid including intel_display_core.h (Jani)
+v3: avoid including intel_display_core.h (Jani Nikula)
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbdev_fb.c | 25 +++++++++++++------
- drivers/gpu/drm/i915/display/intel_fbdev_fb.h |  1 +
- drivers/gpu/drm/i915/i915_initial_plane.c     |  3 ++-
- 3 files changed, 20 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/display/intel_fbdev_fb.c   | 25 ++++++++++++++++++-
+ drivers/gpu/drm/xe/display/xe_initial_plane.c | 11 ++------
+ 2 files changed, 26 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
-index e5251ed15948..90993d09a73f 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
-@@ -17,6 +17,22 @@ u32 intel_fbdev_fb_pitch_align(u32 stride)
- 	return ALIGN(stride, 64);
+diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+index 7ad76022cb14..4673614cd224 100644
+--- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
++++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+@@ -23,6 +23,29 @@ u32 intel_fbdev_fb_pitch_align(u32 stride)
+ 	return ALIGN(stride, XE_PAGE_SIZE);
  }
  
 +bool intel_fbdev_fb_prefer_stolen(struct drm_device *drm, unsigned int size)
 +{
-+	struct drm_i915_private *i915 = to_i915(drm);
++	struct xe_device *xe = to_xe_device(drm);
++	struct ttm_resource_manager *stolen;
 +
-+	/* Skip stolen on MTL as Wa_22018444074 mitigation. */
-+	if (IS_METEORLAKE(i915))
++	stolen = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
++	if (!stolen)
++		return false;
++
++	if (IS_DGFX(xe))
++		return false;
++
++	if (XE_DEVICE_WA(xe, 22019338487_display))
 +		return false;
 +
 +	/*
@@ -146,60 +153,51 @@ index e5251ed15948..90993d09a73f 100644
 +	 * important and we should probably use that space with FBC or other
 +	 * features.
 +	 */
-+	return i915->dsm.usable_size >= size * 2;
++	return stolen->size >= size * 2;
 +}
 +
  struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm, int size)
  {
- 	struct drm_i915_private *i915 = to_i915(drm);
-@@ -28,14 +44,7 @@ struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm, int size
- 						  I915_BO_ALLOC_CONTIGUOUS |
- 						  I915_BO_ALLOC_USER);
- 	} else {
+ 	struct xe_device *xe = to_xe_device(drm);
+@@ -30,7 +53,7 @@ struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm, int size
+ 
+ 	obj = ERR_PTR(-ENODEV);
+ 
+-	if (!IS_DGFX(xe) && !XE_DEVICE_WA(xe, 22019338487_display)) {
++	if (intel_fbdev_fb_prefer_stolen(drm, size)) {
+ 		obj = xe_bo_create_pin_map_novm(xe, xe_device_get_root_tile(xe),
+ 						size,
+ 						ttm_bo_type_kernel, XE_BO_FLAG_SCANOUT |
+diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
+index 38ecc201ac4e..13fdc51f8f50 100644
+--- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
++++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
+@@ -17,6 +17,7 @@
+ #include "intel_display_regs.h"
+ #include "intel_display_types.h"
+ #include "intel_fb.h"
++#include "intel_fbdev_fb.h"
+ #include "intel_fb_pin.h"
+ #include "xe_bo.h"
+ #include "xe_vram_types.h"
+@@ -90,16 +91,8 @@ initial_plane_bo(struct xe_device *xe,
+ 		phys_base = base;
+ 		flags |= XE_BO_FLAG_STOLEN;
+ 
+-		if (XE_DEVICE_WA(xe, 22019338487_display))
+-			return NULL;
+-
 -		/*
 -		 * If the FB is too big, just don't use it since fbdev is not very
 -		 * important and we should probably use that space with FBC or other
 -		 * features.
--		 *
--		 * Also skip stolen on MTL as Wa_22018444074 mitigation.
 -		 */
--		if (!IS_METEORLAKE(i915) && size * 2 < i915->dsm.usable_size)
-+		if (intel_fbdev_fb_prefer_stolen(drm, size))
- 			obj = i915_gem_object_create_stolen(i915, size);
- 		if (IS_ERR(obj))
- 			obj = i915_gem_object_create_shmem(i915, size);
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
-index fd0b3775dc1f..34ed2b9c2b4f 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
-@@ -19,5 +19,6 @@ struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm, int size
- void intel_fbdev_fb_bo_destroy(struct drm_gem_object *obj);
- int intel_fbdev_fb_fill_info(struct drm_device *drm, struct fb_info *info,
- 			     struct drm_gem_object *obj, struct i915_vma *vma);
-+bool intel_fbdev_fb_prefer_stolen(struct drm_device *drm, unsigned int size);
- 
- #endif
-diff --git a/drivers/gpu/drm/i915/i915_initial_plane.c b/drivers/gpu/drm/i915/i915_initial_plane.c
-index 7fb52d81f7b6..5594548f51d8 100644
---- a/drivers/gpu/drm/i915/i915_initial_plane.c
-+++ b/drivers/gpu/drm/i915/i915_initial_plane.c
-@@ -9,6 +9,7 @@
- #include "display/intel_crtc.h"
- #include "display/intel_display_types.h"
- #include "display/intel_fb.h"
-+#include "display/intel_fbdev_fb.h"
- #include "gem/i915_gem_lmem.h"
- #include "gem/i915_gem_region.h"
- 
-@@ -116,7 +117,7 @@ initial_plane_vma(struct drm_i915_private *i915,
- 	 */
- 	if (IS_ENABLED(CONFIG_FRAMEBUFFER_CONSOLE) &&
- 	    mem == i915->mm.stolen_region &&
--	    size * 2 > i915->dsm.usable_size) {
-+	    !intel_fbdev_fb_prefer_stolen(&i915->drm, size)) {
- 		drm_dbg_kms(&i915->drm, "Initial FB size exceeds half of stolen, discarding\n");
- 		return NULL;
+ 		if (IS_ENABLED(CONFIG_FRAMEBUFFER_CONSOLE) &&
+-		    plane_config->size * 2 > stolen->size)
++		    !intel_fbdev_fb_prefer_stolen(&xe->drm, plane_config->size))
+ 			return NULL;
  	}
+ 
 -- 
 2.43.0
 
