@@ -2,66 +2,85 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4FKtM+u2mWlqWQMAu9opvQ
+	id eB03EYvQmWmgWwMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sat, 21 Feb 2026 14:45:15 +0100
+	for <lists+intel-gfx@lfdr.de>; Sat, 21 Feb 2026 16:34:35 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 200E816CF27
-	for <lists+intel-gfx@lfdr.de>; Sat, 21 Feb 2026 14:45:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96BEF16D2CF
+	for <lists+intel-gfx@lfdr.de>; Sat, 21 Feb 2026 16:34:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D068410E05D;
-	Sat, 21 Feb 2026 13:45:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF4F410E06D;
+	Sat, 21 Feb 2026 15:34:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nI/mSWAh";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="eFeCTwrN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9303410E052;
- Sat, 21 Feb 2026 13:45:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771681510; x=1803217510;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=j9mLpPmmkj5iALmUlbiD4bCPcvEQ/uprDhW79GL1tLA=;
- b=nI/mSWAhux6li3tUH+RO+KkrPy6OQUgTgYKVc2hqa2cfyi1GdTWV794R
- hvUvAVRyZy0Idmoo6Fn3bGkDVEsGe/2o6THwDigi+PaC0VCURLC9J2I7K
- InxFMNEYoPoWVlYLPk/N/2RWAVmdE+DvIZG+aoysZH5cv67iV6byLb8NY
- tWOeJatzxUxbtepyXbPkVb/n6J2sRsezEqn+e5mo3BMPUUSXvGK3i3fcv
- ZPgcuITsdrHUVWa0e05WTWi2AUQ61WSRH5xCtqmTckj1vQq1b+NTxC4h/
- 8ax7rpHdi3RCK8u5gXKnhaWT0aHeZjM1sIuzFJxDNeYA1aZ/1m5zn2VvP Q==;
-X-CSE-ConnectionGUID: xnSBMI/TQKiD4L/GIEghAg==
-X-CSE-MsgGUID: GxkSBNBKQwOMMJmlIk8UOg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11708"; a="72656734"
-X-IronPort-AV: E=Sophos;i="6.21,302,1763452800"; d="scan'208";a="72656734"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2026 05:45:10 -0800
-X-CSE-ConnectionGUID: JMTUy+hlRRiwzLnpuxddVQ==
-X-CSE-MsgGUID: ArSPyctASx2kfyciROyByQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,302,1763452800"; d="scan'208";a="218766921"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
- by fmviesa004.fm.intel.com with ESMTP; 21 Feb 2026 05:45:08 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1vtnIA-000000014x0-1XtK;
- Sat, 21 Feb 2026 13:45:06 +0000
-Date: Sat, 21 Feb 2026 21:44:34 +0800
-From: kernel test robot <lkp@intel.com>
-To: Vinod Govindapillai <vinod.govindapillai@intel.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, vinod.govindapillai@intel.com,
- ville.syrjala@intel.com, uma.shankar@intel.com
-Subject: Re: [PATCH v2 3/6] drm/i915/fbdev: Extract
- intel_fbdev_fb_prefer_stolen()
-Message-ID: <202602212127.uexnS3FE-lkp@intel.com>
-References: <20260220170908.201422-4-vinod.govindapillai@intel.com>
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com
+ [209.85.215.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DAEF110E06D
+ for <intel-gfx@lists.freedesktop.org>; Sat, 21 Feb 2026 15:34:30 +0000 (UTC)
+Received: by mail-pg1-f173.google.com with SMTP id
+ 41be03b00d2f7-c636487ccaeso1145308a12.1
+ for <intel-gfx@lists.freedesktop.org>; Sat, 21 Feb 2026 07:34:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1771688070; x=1772292870; darn=lists.freedesktop.org;
+ h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+ :from:from:to:cc:subject:date:message-id:reply-to;
+ bh=ROVPPK7UnzzE7PxAym5z6MuV/jbpbVYCQdJyYZBwvO4=;
+ b=eFeCTwrNqBAmPaT9iKQh0NKO0D6Gsy8U3SVlaMFwTdt6jyrm1LxSU6it5g6pmsgGuw
+ A4AdT4LsPIORCqWl67HjlwHIFoN2JCZ2G/VbELn6hhy5bhUcMrUcRaN6PgYYkhLqnFyr
+ /aY5OqFNRWNAcXH+Cu5UC+ENdRVOdZV81tLWmebwqbrq1fFlf3sfHz1+mSO4/bunDBLJ
+ hz0ZnkVQdVMCheH2dxHsYVNMXCet7zvtGN1Lh9W/DDqYFhV7VloZrrvSja9pytXBeFuB
+ vmmLgRFrSMYeRL4eQIPyAU6L6or1r3iy6tVZvoBV6ZeUkjbJlkg92WWhuZqiTnOXyeop
+ w2Qg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1771688070; x=1772292870;
+ h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+ :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=ROVPPK7UnzzE7PxAym5z6MuV/jbpbVYCQdJyYZBwvO4=;
+ b=jrKc2wm6HHNWJaJ55U8xe/aojBwJ00i6ZRvCjbQJNvHGvadIHDYxsVve+jTma6R1d4
+ hAeMGhxvbudOmaBgQJ2jLqIkLLVSIu5DUwUxQmk4TZvyaCPhH6d2moEkRqSokQEq7nPA
+ n/EQtzrJkGaomdN1On/ZeftXORBDItFAbDEKBQj09xWOrZA3m5HH7UVfbEilPzpWLpR2
+ ODCq79rQNgd1+eJqtx6RnEoSKjOCA/U7xAOOe06GQ3bJle568jcXmE6HrbY4l8dQsKq4
+ gRE6LYY0/RaG/WDpJB/sycxgb3kHqcQD2uFoXQ46XhSbZfwT5lQmt8Ds8vpULjVzWBap
+ DqBw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWQM6+hWpb2SsNp3DpkPPE7iCAxDDpoKSTSBP0wi1jE7Dz5GxKsHW4V8DnypiV038cVKdPDeZ2jcus=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwTLUZIzS4EOR95zLnTJggUhJu7iLX/MUoyLsdOpu/L62oK2X/Y
+ JZPUiLMe/+5YTLLtl0VdObfRheV7uWGzphSjOkZtceFZI6w6zI0Hl0ZB9ccquA==
+X-Gm-Gg: AZuq6aJ7hqoiHWTnu5EtxIMys9Kvke10W38PvmwfgO5T2F36hHlU0Pbfb2Jkf8Ak2ns
+ C8Q6Kf3xyeBkN47nIiwFKJ59zPAGe/wzFV47Fg7u3RTLh8/1/+PsKORiuIFEVt7/uacTUJKEoaP
+ +Ua6JIg8S7KPd85D2YFTRBnzoXzG55e+XWS32mJvooI9uxbjInL/jQZuarf2feey0bbap0WQ8wE
+ 5ykNy/kFnGq75fj7hnAgTAk9Ohfxa9D4NjzOwPPFPeVIzOJhUv8/0T1m0UNvxovWOm+9VfJtMzx
+ E3wa6BWpicZ3xqPj8Rk5Za99CD9mAgH0+rhZBqE+bSv0DO1MSar+u/UA0rBTEqC636zwhDY8E/d
+ cx8o3rvWlms9kblydTgQzdPioqDhW5b5rkuSQ6B6mkADWGj4a6+8wz02zdopaMwevFB8EP1lcuq
+ lNnTCT8quyNjN1UpWnhU38ZYarF8FlD77KRYbkH0U42IbRPk5H+JE=
+X-Received: by 2002:a17:902:d54c:b0:2a0:e80e:b118 with SMTP id
+ d9443c01a7336-2ad74418adfmr31851405ad.7.1771688070122; 
+ Sat, 21 Feb 2026 07:34:30 -0800 (PST)
+Received: from localhost ([161.33.165.114]) by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-2ad74f637easm26001115ad.37.2026.02.21.07.34.29
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 21 Feb 2026 07:34:29 -0800 (PST)
+From: Zhenyu Wang <zhenyuw.linux@gmail.com>
+To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: "Gupta, Saurabhg" <saurabhg.gupta@intel.com>, "Zuo, Alex"
+ <alex.zuo@intel.com>, "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
+Subject: RE: [PATCH] drm/i915/gvt: Cast u64 array to u32 array
+In-Reply-To: <CH0PR11MB544431641B604EF86BC0CE7BE568A@CH0PR11MB5444.namprd11.prod.outlook.com>
+References: <20260212194131.64708-2-jonathan.cavitt@intel.com>
+ <87o6lsylfd.fsf@dell-wzy>
+ <CH0PR11MB54443A11FDC0B6F6F780456BE561A@CH0PR11MB5444.namprd11.prod.outlook.com>
+ <871pifpjfj.fsf@dell-wzy>
+ <CH0PR11MB544431641B604EF86BC0CE7BE568A@CH0PR11MB5444.namprd11.prod.outlook.com>
+Date: Sat, 21 Feb 2026 23:34:25 +0800
+Message-ID: <87y0km9kla.fsf@dell-wzy>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260220170908.201422-4-vinod.govindapillai@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,61 +97,158 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:jonathan.cavitt@intel.com,m:saurabhg.gupta@intel.com,m:alex.zuo@intel.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[zhenyuwlinux@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[zhenyuwlinux@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
+	TAGGED_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email,gitlab.freedesktop.org:url]
-X-Rspamd-Queue-Id: 200E816CF27
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,lists.freedesktop.org:email]
+X-Rspamd-Queue-Id: 96BEF16D2CF
 X-Rspamd-Action: no action
 
-Hi Vinod,
+"Cavitt, Jonathan" <jonathan.cavitt@intel.com> writes:
 
-kernel test robot noticed the following build errors:
+> -----Original Message-----
+> From: Zhenyu Wang <zhenyuw.linux@gmail.com> 
+> Sent: Friday, February 20, 2026 6:41 AM
+> To: Cavitt, Jonathan <jonathan.cavitt@intel.com>; intel-gfx@lists.freedesktop.org
+> Cc: Gupta, Saurabhg <saurabhg.gupta@intel.com>; Zuo, Alex <alex.zuo@intel.com>; Cavitt, Jonathan <jonathan.cavitt@intel.com>
+> Subject: RE: [PATCH] drm/i915/gvt: Cast u64 array to u32 array
+>> 
+>> "Cavitt, Jonathan" <jonathan.cavitt@intel.com> writes:
+>> 
+>> > -----Original Message-----
+>> > From: Zhenyu Wang <zhenyuw.linux@gmail.com> 
+>> > Sent: Friday, February 13, 2026 2:42 AM
+>> > To: Cavitt, Jonathan <jonathan.cavitt@intel.com>; intel-gfx@lists.freedesktop.org
+>> > Cc: Gupta, Saurabhg <saurabhg.gupta@intel.com>; Zuo, Alex <alex.zuo@intel.com>; Cavitt, Jonathan <jonathan.cavitt@intel.com>
+>> > Subject: Re: [PATCH] drm/i915/gvt: Cast u64 array to u32 array
+>> >> 
+>> >> Jonathan Cavitt <jonathan.cavitt@intel.com> writes:
+>> >> 
+>> >> > Static analysis issue:
+>> >> >
+>> >> > The u64 array workload->shadow_mm->ppgtt_mm.shadow_pdps is cast to a
+>> >> > void pointer and passed as a u32 array to set_context_pdp_root_pointer
+>> >> > as a part of update_shadow_pdps.  This isn't wrong, per se, but we
+>> >> > should properly cast it to an appropriately-sized u32 array before
+>> >> > submission.
+>> >> >
+>> >> > Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+>> >> > ---
+>> >> >  drivers/gpu/drm/i915/gvt/scheduler.c | 6 ++++--
+>> >> >  1 file changed, 4 insertions(+), 2 deletions(-)
+>> >> >
+>> >> > diff --git a/drivers/gpu/drm/i915/gvt/scheduler.c b/drivers/gpu/drm/i915/gvt/scheduler.c
+>> >> > index 15fdd514ca83..1a95c9f76faa 100644
+>> >> > --- a/drivers/gpu/drm/i915/gvt/scheduler.c
+>> >> > +++ b/drivers/gpu/drm/i915/gvt/scheduler.c
+>> >> > @@ -72,6 +72,7 @@ static void update_shadow_pdps(struct intel_vgpu_workload *workload)
+>> >> >  {
+>> >> >  	struct execlist_ring_context *shadow_ring_context;
+>> >> >  	struct intel_context *ctx = workload->req->context;
+>> >> > +	u32 pdp[8];
+>> >> >  
+>> >> >  	if (WARN_ON(!workload->shadow_mm))
+>> >> >  		return;
+>> >> > @@ -79,9 +80,10 @@ static void update_shadow_pdps(struct intel_vgpu_workload *workload)
+>> >> >  	if (WARN_ON(!atomic_read(&workload->shadow_mm->pincount)))
+>> >> >  		return;
+>> >> >  
+>> >> > +	memcpy(pdp, workload->shadow_mm->ppgtt_mm.shadow_pdps,
+>> >> > +	       sizeof(u64) * ARRAY_SIZE(workload->shadow_mm->ppgtt_mm.shadow_pdps));
+>> >> >  	shadow_ring_context = (struct execlist_ring_context *)ctx->lrc_reg_state;
+>> >> > -	set_context_pdp_root_pointer(shadow_ring_context,
+>> >> > -			(void *)workload->shadow_mm->ppgtt_mm.shadow_pdps);
+>> >> > +	set_context_pdp_root_pointer(shadow_ring_context, pdp);
+>> >> >  }
+>> >> >  
+>> >> 
+>> >> I think we'd better just cast the type instead of extra copy.
+>> >
+>> > I'm not certain that would resolve the static analysis issue.
+>> >
+>> > To specify, the static analyzer is complaining that we're taking a pointer to an object
+>> > of type 'unsigned long long' and dereferencing it as an object of type 'unsigned int'.
+>> > The analyzer is getting uppity about this causing unexpected results depending on
+>> > machine endianness (which... it won't, but the static analyzer doesn't know that),
+>> > so I suspect the only way to get it to calm down is to do a direct memory copy, as
+>> > seen here.  Casting the type would just result in the same static analysis issue.
+>> >
+>> > This is the part of the email that I'd throw around terms like "strict aliasing" and
+>> > "type punning" if I thought they were relevant.  They probably aren't, though.
+>> >
+>> 
+>> I really don't want to do extra copy as this is hot path for every exec submission.
+>> How about below change?
+>> Btw, which static analysis you're using? Looks I don't get such warning
+>> with either sparse or smatch...
+>
+> I'm not allowed to go into detail about that.  Sorry.
+>
+>> 
+>> diff --git a/drivers/gpu/drm/i915/gvt/scheduler.c b/drivers/gpu/drm/i915/gvt/scheduler.c
+>> index 63ad1fed525a..3f09d6440827 100644
+>> --- a/drivers/gpu/drm/i915/gvt/scheduler.c
+>> +++ b/drivers/gpu/drm/i915/gvt/scheduler.c
+>> @@ -1,3 +1,4 @@
+>> +
+>>  /*
+>>   * Copyright(c) 2011-2016 Intel Corporation. All rights reserved.
+>>   *
+>> @@ -54,7 +55,7 @@
+>>  
+>>  static void set_context_pdp_root_pointer(
+>>  		struct execlist_ring_context *ring_context,
+>> -		u32 pdp[8])
+>> +		u32 *pdp)
+>>  {
+>>  	int i;
+>>  
+>> @@ -75,7 +76,7 @@ static void update_shadow_pdps(struct intel_vgpu_workload *workload)
+>>  
+>>  	shadow_ring_context = (struct execlist_ring_context *)ctx->lrc_reg_state;
+>>  	set_context_pdp_root_pointer(shadow_ring_context,
+>> -			(void *)workload->shadow_mm->ppgtt_mm.shadow_pdps);
+>> +				     (u32 *)workload->shadow_mm->ppgtt_mm.shadow_pdps);
+>>  }
+>
+> This still results in us casting a u64 pointer to a u32 pointer.
+>
 
-[auto build test ERROR on drm-i915/for-linux-next]
-[also build test ERROR on drm-tip/drm-tip linus/master next-20260220]
-[cannot apply to drm-i915/for-linux-next-fixes drm-xe/drm-xe-next v6.19]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+It's normal in some driver cases we really need to access 32b fields indeed..
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Vinod-Govindapillai/drm-xe-fbdev-Fix-BIOS-FB-vs-s-stolen-size-check/20260221-013114
-base:   https://gitlab.freedesktop.org/drm/i915/kernel.git for-linux-next
-patch link:    https://lore.kernel.org/r/20260220170908.201422-4-vinod.govindapillai%40intel.com
-patch subject: [PATCH v2 3/6] drm/i915/fbdev: Extract intel_fbdev_fb_prefer_stolen()
-config: x86_64-randconfig-011-20260221 (https://download.01.org/0day-ci/archive/20260221/202602212127.uexnS3FE-lkp@intel.com/config)
-compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260221/202602212127.uexnS3FE-lkp@intel.com/reproduce)
+> If this change is undesirable, I can mark it as a false positive on my end.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202602212127.uexnS3FE-lkp@intel.com/
-
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
->> ERROR: modpost: "intel_fbdev_fb_prefer_stolen" [drivers/gpu/drm/i915/i915.ko] undefined!
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Above version should be better but original one doesn't hurt... so in
+case of private tool, please mark it so. Thanks.
