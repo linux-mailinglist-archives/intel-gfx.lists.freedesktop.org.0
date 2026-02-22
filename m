@@ -2,79 +2,104 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8D4GEajdmmktlgMAu9opvQ
+	id CH2/GhdcnGmzEgQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sun, 22 Feb 2026 11:42:48 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 14:54:31 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E30216EDC1
-	for <lists+intel-gfx@lfdr.de>; Sun, 22 Feb 2026 11:42:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1667117770F
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 14:54:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8886610E170;
-	Sun, 22 Feb 2026 10:42:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DFBC10E3B8;
+	Mon, 23 Feb 2026 13:54:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="kcnQaRIh";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ggrorTE3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F8C510E170;
- Sun, 22 Feb 2026 10:42:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1771756960;
- bh=DrCoid4Pafm2Wd5d5/Z36uNtrGzmCQLSkgqHZBWbMWI=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=kcnQaRIhmB0uGgwiB08nORlre5NuxRsoB2FhWkbTA0uYMYf6QSacBs7MCbQdRvNPi
- JeHfk7mQs6ptHQEPHkfOwLlIPtkpiKCsUiq/ngOee4OWEUe1yGzLtMRQW1Ts5UKPJQ
- tEbZJmMJvGuK/9DvFT1UfvlwokAAI5MS4W4yCnlUnAIusVd4I+kyR0WJhDunTD95H0
- 8+dXODsnj4+199XZxBN4G9F3JNclal+PiE6fwmSiFxwAHdj/J7Anv9khultrTWZ0ZP
- YUVii9sUyN07jhIf8Hq+9Y6865ccLndCOa5nJCSwfhuZ+mufH+HZi+vtiVcerihvP/
- /B/uM1nFumzpQ==
-Received: from [192.168.1.90] (unknown [82.79.138.145])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: cristicc)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id B2D3C17E1274;
- Sun, 22 Feb 2026 11:42:39 +0100 (CET)
-Message-ID: <ff7b531a-77c1-4c7d-b09d-47779b640193@collabora.com>
-Date: Sun, 22 Feb 2026 12:42:39 +0200
+Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com
+ [209.85.217.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A713110E119
+ for <intel-gfx@lists.freedesktop.org>; Sun, 22 Feb 2026 21:53:23 +0000 (UTC)
+Received: by mail-vs1-f51.google.com with SMTP id
+ ada2fe7eead31-5fa26e497feso1163352137.3
+ for <intel-gfx@lists.freedesktop.org>; Sun, 22 Feb 2026 13:53:23 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1771797202; cv=none;
+ d=google.com; s=arc-20240605;
+ b=KTGQwo/ZjLm6CUFyD1pbit+OK/ceiPcf4+MI+pQxC+ykyol/HP2fol9fSF4zXnVryx
+ CPSPO0HmhPiLmm8cG029C8+auERP5edinhLMjKUHbhR3DHNfeS53LsXBNRxjT7LxG5+b
+ T4ffHRMtbAxBN7IeZrFQuBR6uJnUUJ69tiU75vCA9DMyHIFZHAhMAfGRlu8OWZF0/S9C
+ XvOWrDz8XTF/72j8Eg7Zj/aK2EgAgDXXrIE6STxz58mo+qpgAn/d+noqBVgya5/ftAmo
+ E2SNtd/hX19l/ZkmyIbuojRN6WjcgfR2ROaCEfIuHWMb4fhQGmbLrJBqP4/k636ssFDj
+ 3x3g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
+ bh=MNeGMhAb3TmH7KVHq/DigEL+n2cB/alR7oOTtMkE/zY=;
+ fh=OgCtvWEbybXH2YohZ+FKmVAWMblpa3gYoU+uw+m2D3c=;
+ b=DwofL58aeheDHa0DSHLcHu4lwoZvVnG4KGn1s8DWzM3ziyp8a3zqT9oRZQ6fdtXiUo
+ cyMFFv8lZrYMRNtR1y8e2jBHdAnHqbzVXV27xUlGQdvxh3UizyEbe/wvdOpwvH2uVCqR
+ 6T2/jCeTuHRE57L91efFkTqHOTJ2qWLdXszi0s5umV2vYwSuMXw5uUfckl2U1czxrWuW
+ KP69ZoSYzDfjZjnGqmr5WEWUSVdKyd3pUMybkEEzq4Z6G0h7Ar6m6jbp/gnGX5tkU6xa
+ kotD1ru2ekC7mBN+FqnjzCu4iN+mFz51eVEsTClPQxS8d4sZHSGfXkbO6OhmmHNNkx7R
+ 8XfA==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1771797202; x=1772402002; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=MNeGMhAb3TmH7KVHq/DigEL+n2cB/alR7oOTtMkE/zY=;
+ b=ggrorTE3FKrRrREnyYykRAxJSIo8zHwzpnrNb7GMKdXLtsA0KYHDtcyYAPN0Vt/quB
+ 3v78DTzfRyU+u9locrMXRZ2iQ1ZqOWgp5f9ksXbKjvcw7VqSkL8akuyk1l0g1Xy3e8lz
+ eqIQ4fzy3yR27vRUbxd8z1yf7AcX3rfpBB3+Ij1Go3EttRFpNjgCVzAADKqTFF1xR45l
+ kvUxLTM6zYgUWW8GkmjS2JvKqZ4lckyUEfDzLMt+Fs1VB7GoM7+oBQKbB7Jg/z4jgkkN
+ wMrkVD+IgThwIvdpqD6LQ/k9zU2qW5euj2xH2tK2GNWs2GFu+qE4BaMF9wMe1L4/Ma4H
+ 8IJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1771797202; x=1772402002;
+ h=cc:to:subject:message-id:date:from:mime-version:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=MNeGMhAb3TmH7KVHq/DigEL+n2cB/alR7oOTtMkE/zY=;
+ b=QOvw4PepJgiWrebXaIO69+waqhEexY8X8H+jD3DhhjR0YHbNffkui/W+aPPmfNfa+I
+ /G/WgaLkKy34Ss2n1DvbWpGk+nAIEFKWuxq1lKPRAoVTrSkS/y/57m1ABD5GMW37ZGXp
+ TwvXCVYaq3GXNaaW6/1Lk9XhccO7SzJPxIApreC/efEMSSNJqG5dAyRkS91aGXdIpL1Z
+ YMREXcvxfv3ZNzD0RUGKtpmV3UEGgEeJ4kW5E9/wiR28aSm2hkd/MgLDTaiSwilEugN8
+ Pt5l4a+jWOrEuCgHacrkFR7U2wAa/HSNvRwUv5OpNatt401xDBn7TzV+eHG+uOIrRyeQ
+ Gh8g==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWpORG88wMGKfp7kel14u8XDy+03ENRahWPgVBIKMJGERzwAygXX5zb8JNUlmzornRZU5Dx6lVG/Bo=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwSj9Wadlb8/Oq/1PV7KmCEckiMs3jT3Yv3g2WWsysF88AXhB6D
+ PJnJiduSC/XWTMW7mvYPN7golAciJmFl0ap4hWohkZ7RCBS7dxQnv+MHlfW1E5+dH4mxXgfHnNY
+ WbtTaGOJ3DQgLxNT+9E/24XQVWQTGfs4=
+X-Gm-Gg: AZuq6aJ/ygMNKS161FsjwbWbQ7g2esIN5NXQtNKtvj4KRfppH8Ta9yeH/h6vJLEGRUJ
+ +eGBOXZDQHtOTg1YKxyRs7v/Nf+IOe8VbX+rkc46icOk4jfS9+gXnNnIIzRkRPrnyi/S8c++R22
+ b86FyP2f446YsHsuIs6ygAILxgI/A2/rsYSW77ztW0ZfW93Y+UJ1j2CXmhMRhFRlzHRDo26MDrG
+ FkM1qFdbCDTKbAprVgbGtPJXK8xbeMybIQPYUZHGsE2Otb1RYklq6JVyGi7isrD3D1yixCKb/dB
+ 7mRH++DF+WxwG3BhuZjwvUBiG/47HHZMHvXcjlzX/qq8bLc0ehXd633ZwjrYMC5aMwC1rqiGIdS
+ HG+JduEzWfU0ZEpLZ7lC9
+X-Received: by 2002:a05:6102:c4e:b0:5ef:b3b7:6e3f with SMTP id
+ ada2fe7eead31-5feb2e88fe4mr2402295137.3.1771797202335; Sun, 22 Feb 2026
+ 13:53:22 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 13/20] drm/bridge: dw-hdmi-qp: Implement
- atomic_get_output_bus_fmts
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
- <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
+From: =?UTF-8?B?QW5kcsOpcyBQw6lyZXo=?= <andres.f.perez@gmail.com>
+Date: Sun, 22 Feb 2026 21:53:02 +0000
+X-Gm-Features: AaiRm50IWhxla8T7yEDMx81GClupXU0m2trQyK_dBcW8HtLqcMb9UhSaFMoA9w8
+Message-ID: <CAD0gVBtsG5Gfpq6hNDnCXMPzKw_o4nXLsY_GqftckfHaVPmC7A@mail.gmail.com>
+Subject: [REGRESSION] Display freeze on VT switch back to X11 since v6.16
+To: stable@vger.kernel.org, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Hans de Goede <hansg@kernel.org>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>, 
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>
-Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-doc@vger.kernel.org
-References: <20260216-color-format-v8-0-5722ce175dd5@collabora.com>
- <20260216-color-format-v8-13-5722ce175dd5@collabora.com>
-Content-Language: en-US
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <20260216-color-format-v8-13-5722ce175dd5@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-media@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: regressions@lists.linux.dev
+Content-Type: multipart/alternative; boundary="000000000000dbfd0b064b70ae9f"
+X-Mailman-Approved-At: Mon, 23 Feb 2026 13:54:29 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,188 +115,268 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+X-Spamd-Result: default: False [-1.60 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	R_MIXED_CHARSET(0.71)[subject];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:stable@vger.kernel.org,m:laurent.pinchart@ideasonboard.com,m:hansg@kernel.org,m:mchehab@kernel.org,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:airlied@gmail.com,m:simona@ffwll.ch,m:intel-xe@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:linux-media@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:regressions@lists.linux.dev,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[3];
-	FREEMAIL_TO(0.00)[collabora.com,amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[37];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[cristian.ciocaltea@collabora.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[andresfperez@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[vger.kernel.org,ideasonboard.com,kernel.org,linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch,lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.999];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andresfperez@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
+	TAGGED_FROM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,collabora.com:mid,collabora.com:dkim,collabora.com:email]
-X-Rspamd-Queue-Id: 1E30216EDC1
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 1667117770F
 X-Rspamd-Action: no action
 
-Hi Nicolas,
+--000000000000dbfd0b064b70ae9f
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 2/16/26 3:01 PM, Nicolas Frattaroli wrote:
-> The atomic_get_output_bus_fmts callback is used by the DRM bridge layer
-> to recursively select a suitable output format in a bridge chain.
-> 
-> As a bridge that outputs to HDMI, dw-hdmi-qp will have its output
-> formats determined by which formats the platform-specific integration of
-> the hardware supports, and the chosen HDMI output bit depth.
-> 
-> Implement this callback. The returned u32* buffer is supposed to be
-> freed by the caller of this callback, as specified by the callback's
-> documentation.
-> 
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> ---
->  drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c | 178 +++++++++++++++++++++++++++
->  1 file changed, 178 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
-> index d649a1cf07f5..4c00218e5fd7 100644
-> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
-> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
-> @@ -11,6 +11,7 @@
->  #include <linux/export.h>
->  #include <linux/i2c.h>
->  #include <linux/irq.h>
-> +#include <linux/media-bus-format.h>
->  #include <linux/minmax.h>
->  #include <linux/module.h>
->  #include <linux/mutex.h>
-> @@ -749,6 +750,182 @@ static struct i2c_adapter *dw_hdmi_qp_i2c_adapter(struct dw_hdmi_qp *hdmi)
->  	return adap;
->  }
->  
-> +static int dw_hdmi_qp_config_avi_infoframe(struct dw_hdmi_qp *hdmi,
-> +					   const u8 *buffer, size_t len)
-> +{
-> +	u32 val, i, j;
-> +
-> +	if (len != HDMI_INFOFRAME_SIZE(AVI)) {
-> +		dev_err(hdmi->dev, "failed to configure avi infoframe\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	/*
-> +	 * DW HDMI QP IP uses a different byte format from standard AVI info
-> +	 * frames, though generally the bits are in the correct bytes.
-> +	 */
-> +	val = buffer[1] << 8 | buffer[2] << 16;
-> +	dw_hdmi_qp_write(hdmi, val, PKT_AVI_CONTENTS0);
-> +
-> +	for (i = 0; i < 4; i++) {
-> +		for (j = 0; j < 4; j++) {
-> +			if (i * 4 + j >= 14)
-> +				break;
-> +			if (!j)
-> +				val = buffer[i * 4 + j + 3];
-> +			val |= buffer[i * 4 + j + 3] << (8 * j);
-> +		}
-> +
-> +		dw_hdmi_qp_write(hdmi, val, PKT_AVI_CONTENTS1 + i * 4);
-> +	}
-> +
-> +	dw_hdmi_qp_mod(hdmi, 0, PKTSCHED_AVI_FIELDRATE, PKTSCHED_PKT_CONFIG1);
-> +
-> +	dw_hdmi_qp_mod(hdmi, PKTSCHED_AVI_TX_EN | PKTSCHED_GCP_TX_EN,
-> +		       PKTSCHED_AVI_TX_EN | PKTSCHED_GCP_TX_EN, PKTSCHED_PKT_EN);
-> +
-> +	return 0;
-> +}
-> +
-> +static int dw_hdmi_qp_config_drm_infoframe(struct dw_hdmi_qp *hdmi,
-> +					   const u8 *buffer, size_t len)
-> +{
-> +	u32 val, i;
-> +
-> +	if (len != HDMI_INFOFRAME_SIZE(DRM)) {
-> +		dev_err(hdmi->dev, "failed to configure drm infoframe\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	dw_hdmi_qp_mod(hdmi, 0, PKTSCHED_DRMI_TX_EN, PKTSCHED_PKT_EN);
-> +
-> +	val = buffer[1] << 8 | buffer[2] << 16;
-> +	dw_hdmi_qp_write(hdmi, val, PKT_DRMI_CONTENTS0);
-> +
-> +	for (i = 0; i <= buffer[2]; i++) {
-> +		if (i % 4 == 0)
-> +			val = buffer[3 + i];
-> +		val |= buffer[3 + i] << ((i % 4) * 8);
-> +
-> +		if ((i % 4 == 3) || i == buffer[2])
-> +			dw_hdmi_qp_write(hdmi, val,
-> +					 PKT_DRMI_CONTENTS1 + ((i / 4) * 4));
-> +	}
-> +
-> +	dw_hdmi_qp_mod(hdmi, 0, PKTSCHED_DRMI_FIELDRATE, PKTSCHED_PKT_CONFIG1);
-> +	dw_hdmi_qp_mod(hdmi, PKTSCHED_DRMI_TX_EN, PKTSCHED_DRMI_TX_EN,
-> +		       PKTSCHED_PKT_EN);
-> +
-> +	return 0;
-> +}
-> +
-> +/*
-> + * Static values documented in the TRM
-> + * Different values are only used for debug purposes
-> + */
-> +#define DW_HDMI_QP_AUDIO_INFOFRAME_HB1	0x1
-> +#define DW_HDMI_QP_AUDIO_INFOFRAME_HB2	0xa
-> +
-> +static int dw_hdmi_qp_config_audio_infoframe(struct dw_hdmi_qp *hdmi,
-> +					     const u8 *buffer, size_t len)
-> +{
-> +	/*
-> +	 * AUDI_CONTENTS0: { RSV, HB2, HB1, RSV }
-> +	 * AUDI_CONTENTS1: { PB3, PB2, PB1, PB0 }
-> +	 * AUDI_CONTENTS2: { PB7, PB6, PB5, PB4 }
-> +	 *
-> +	 * PB0: CheckSum
-> +	 * PB1: | CT3    | CT2  | CT1  | CT0  | F13  | CC2 | CC1 | CC0 |
-> +	 * PB2: | F27    | F26  | F25  | SF2  | SF1  | SF0 | SS1 | SS0 |
-> +	 * PB3: | F37    | F36  | F35  | F34  | F33  | F32 | F31 | F30 |
-> +	 * PB4: | CA7    | CA6  | CA5  | CA4  | CA3  | CA2 | CA1 | CA0 |
-> +	 * PB5: | DM_INH | LSV3 | LSV2 | LSV1 | LSV0 | F52 | F51 | F50 |
-> +	 * PB6~PB10: Reserved
-> +	 *
-> +	 * AUDI_CONTENTS0 default value defined by HDMI specification,
-> +	 * and shall only be changed for debug purposes.
-> +	 */
-> +	u32 header_bytes = (DW_HDMI_QP_AUDIO_INFOFRAME_HB1 << 8) |
-> +			  (DW_HDMI_QP_AUDIO_INFOFRAME_HB2 << 16);
-> +
-> +	regmap_bulk_write(hdmi->regm, PKT_AUDI_CONTENTS0, &header_bytes, 1);
-> +	regmap_bulk_write(hdmi->regm, PKT_AUDI_CONTENTS1, &buffer[3], 1);
-> +	regmap_bulk_write(hdmi->regm, PKT_AUDI_CONTENTS2, &buffer[4], 1);
-> +
-> +	/* Enable ACR, AUDI, AMD */
-> +	dw_hdmi_qp_mod(hdmi,
-> +		       PKTSCHED_ACR_TX_EN | PKTSCHED_AUDI_TX_EN | PKTSCHED_AMD_TX_EN,
-> +		       PKTSCHED_ACR_TX_EN | PKTSCHED_AUDI_TX_EN | PKTSCHED_AMD_TX_EN,
-> +		       PKTSCHED_PKT_EN);
-> +
-> +	/* Enable AUDS */
-> +	dw_hdmi_qp_mod(hdmi, PKTSCHED_AUDS_TX_EN, PKTSCHED_AUDS_TX_EN, PKTSCHED_PKT_EN);
-> +
-> +	return 0;
-> +}
+# OVERVIEW
 
-Something's wrong with this patch as all the functions above have been dropped
-since the HDMI VSI & SPD InfoFrames series [1] got merged.  The previous
-revision was fine though, hence that's likely an unexpected artifact of the
-latest rebase.
+Since kernel v6.16.1, switching from an X11 session to a text VT and back
+freezes the display on a ThinkPad P15 Gen 2. The system remains responsive
+over SSH; only the display is frozen. Bisecting identified commit
+d1b618e7954802fe ("media: uvcvideo: Do not turn on the camera for some
+ioctls") as the trigger. Reverting the logic change in that commit fixes VT
+switching
+on v6.16.1, v6.17.9, and v6.18.9, but that is not an actual solution.
+Wayland
+compositors (e.g., river and sway) are not affected.
 
-[1] https://lore.kernel.org/all/20260129-dw-hdmi-qp-iframe-v2-0-0157ad05232c@collabora.com/
+Last good:  v6.15.9
+First bad:  v6.16.1
+Bisect result: d1b618e7954802fe media: uvcvideo: Do not turn on the camera
+for some ioctls
+
+## Hardware:   Lenovo ThinkPad P15 Gen 2i (20YQ0031US)
+CPU:        Intel Core i7-11800H (Tiger Lake-H)
+iGPU:        Intel UHD Graphics (TGL GT1)
+dGPU:       NVIDIA T1200 (not involved in eDP output; driver: nvidia-open)
+Display:    15.6" 1920x1080 eDP, 10 bpc capable (EDID 1.4)
+Webcam:     Integrated Camera on PCH xHCI (Bus 003 Port 004)
+Firmware:   LENOVO N37ET61W (1.97)
+OS:         Arch Linux, Nix home-manager, X11 + xmonad, no display manager
+
+## Symptoms and reproduction steps:
+1. Boot, start X11 on tty1 (startx).
+2. Switch to tty2 (Ctrl+Alt+F2): works.
+3. Switch back to tty1 (Ctrl+Alt+F1): display freezes.
+   - Frozen on the last frame shown before switching away.
+   - System is fully responsive over SSH.
+   - Other VTs switch normally between each other as long as X11 is not
+active on them.
+   - Killing X does not recover the display. A reboot is required.
+
+# DEBUG ANALYSIS
+
+On v6.16.1, the VT switch back to X triggers a full modeset due to pipe
+configuration mismatches detected by intel_pipe_config_compare:
+
+[drm:intel_pipe_config_compare] fastset requirement not met in pipe_bpp
+  (expected 30, found 24)
+[drm:intel_pipe_config_compare] fastset requirement not met in dp_m_n
+  (expected link 269484/524288, found link 336855/524288)
+[drm:intel_pipe_config_compare] fastset requirement not met in dpll_hw_stat=
+e
+  (expected cfgcr0: 0xe001a5, found cfgcr0: 0x1c2)
+[drm:intel_pipe_config_compare] fastset requirement not met in port_clock
+  (expected 270000, found 216000)
+[drm:intel_atomic_check] forcing full modeset
+
+On v6.15.9, the same VT switch shows no such messages.
+no pipe_config_compare runs, no modeset, no freeze.
+
+# BISECT AND VERIFICATION
+
+The bisect converged on d1b618e7954802fe in the uvcvideo driver. This
+commit adds a switch statement to uvc_v4l2_unlocked_ioctl that allows
+certain V4L2 IOCTLS to call video_ioctl2 directly without first calling
+uvc_pm_get/uvc_pm_put. Prior to this commit, all ioctls called uvc_pm_get
+before video_ioctl2.
+
+## VT switching verification across kernel versions:
+
+  v6.12.74 arch pkg:   WORKS
+  v6.15.9 arch pkg:    WORKS
+  v6.15.9 from source: WORKS
+  v6.16.1 with d1b618e reverted:     WORKS
+  v6.17.9 with PM wrapping restored: WORKS
+  v6.18.9 with PM wrapping restored: WORKS
+
+  v6.16.1 from source:  FREEZES
+  v6.16.1 arch pkg:     FREEZES
+  v6.17.9 arch pkg:     FREEZES
+  v6.18.9 from source:  FREEZES
+  v6.18.9 arch pkg:     FREEZES
+
+## Things that do not eliminate the freeze
+
+  - module_blacklist=3Duvcvideo on boot
+  - CONFIG_USB_VIDEO_CLASS=3Dn (compiled out)
+  - i915.enable_psr=3D0
+  - Bypassing intel_vrr_transcoder_enable/disable (no-op)
+  - xrandr --output eDP-1 --set "max bpc" 10
+  - Xorg config FBDepth 30 (No effect on pipe_bpp)
+
+## Workaround patch
+
+Reverting the optimization from d1b618e to restore the unconditional
+uvc_pm_get/put wrapping for all ioctls. This is not a proper fix.
+
+diff --git a/drivers/media/usb/uvc/uvc_v4l2.c
+b/drivers/media/usb/uvc/uvc_v4l2.c
+index 9e4a251eca88..15057b47ec4f 100644
+--- a/drivers/media/usb/uvc/uvc_v4l2.c
++++ b/drivers/media/usb/uvc/uvc_v4l2.c
+@@ -1199,33 +1199,12 @@ static long uvc_v4l2_unlocked_ioctl(struct file
+*file,
+  unsigned int converted_cmd =3D v4l2_translate_cmd(cmd);
+  int ret;
+
+- /* The following IOCTLs need to turn on the camera. */
+- switch (converted_cmd) {
+- case UVCIOC_CTRL_MAP:
+- case UVCIOC_CTRL_QUERY:
+- case VIDIOC_G_CTRL:
+- case VIDIOC_G_EXT_CTRLS:
+- case VIDIOC_G_INPUT:
+- case VIDIOC_QUERYCTRL:
+- case VIDIOC_QUERYMENU:
+- case VIDIOC_QUERY_EXT_CTRL:
+- case VIDIOC_S_CTRL:
+- case VIDIOC_S_EXT_CTRLS:
+- case VIDIOC_S_FMT:
+- case VIDIOC_S_INPUT:
+- case VIDIOC_S_PARM:
+- case VIDIOC_TRY_EXT_CTRLS:
+- case VIDIOC_TRY_FMT:
+- ret =3D uvc_pm_get(handle->stream->dev);
+- if (ret)
+- return ret;
+- ret =3D video_ioctl2(file, cmd, arg);
+- uvc_pm_put(handle->stream->dev);
++ ret =3D uvc_pm_get(handle->stream->dev);
++ if (ret)
+  return ret;
+- }
+-
+- /* The other IOCTLs can run with the camera off. */
+- return video_ioctl2(file, cmd, arg);
++ ret =3D video_ioctl2(file, cmd, arg);
++ uvc_pm_put(handle->stream->dev);
++ return ret;
+ }
+
+ const struct v4l2_ioctl_ops uvc_ioctl_ops =3D {
+
+Andr=C3=A9s
+
+--000000000000dbfd0b064b70ae9f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div># OVERVIEW<br><br>Since kernel v6.16.1, switching fro=
+m an X11 session to a text VT and back<br>freezes the display on a ThinkPad=
+ P15 Gen 2. The system remains responsive<br>over SSH; only the display is =
+frozen. Bisecting identified commit<br>d1b618e7954802fe (&quot;media: uvcvi=
+deo: Do not turn on the camera for some<br>ioctls&quot;) as the trigger. Re=
+verting the logic change in that commit fixes VT switching<br>on v6.16.1, v=
+6.17.9, and v6.18.9, but that is not an actual solution. Wayland=C2=A0</div=
+><div>compositors (e.g., river and sway) are not affected.<br><br>Last good=
+: =C2=A0v6.15.9<br>First bad: =C2=A0v6.16.1<br>Bisect result: d1b618e795480=
+2fe media: uvcvideo: Do not turn on the camera for some ioctls<br><br>## Ha=
+rdware: =C2=A0 Lenovo ThinkPad P15 Gen 2i (20YQ0031US)<br>CPU: =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0Intel Core i7-11800H (Tiger Lake-H)<br>iGPU: =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0Intel UHD Graphics (TGL GT1)</div><div>dGPU:=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0NVIDIA T1200 (not involved in eDP output; driver: nvidia-open)<br=
+>Display: =C2=A0 =C2=A015.6&quot; 1920x1080 eDP, 10 bpc capable (EDID 1.4)<=
+br>Webcam: =C2=A0 =C2=A0 Integrated Camera on PCH xHCI (Bus 003 Port 004)<b=
+r>Firmware: =C2=A0 LENOVO N37ET61W (1.97)<br>OS: =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 Arch Linux, Nix home-manager, X11 + xmonad, no display manager<br><br>#=
+# Symptoms and reproduction steps:<br>1. Boot, start X11 on tty1 (startx).<=
+br>2. Switch to tty2 (Ctrl+Alt+F2): works.<br>3. Switch back to tty1 (Ctrl+=
+Alt+F1): display freezes.<br>=C2=A0 =C2=A0- Frozen on the last frame shown =
+before switching away.<br>=C2=A0 =C2=A0- System is fully responsive over SS=
+H.<br>=C2=A0 =C2=A0- Other VTs switch normally between each other as long a=
+s X11 is not active on them.<br>=C2=A0 =C2=A0- Killing X does not recover t=
+he display. A reboot is required.<br><br># DEBUG ANALYSIS<br><br>On v6.16.1=
+, the VT switch back to X triggers a full modeset due to pipe<br>configurat=
+ion mismatches detected by intel_pipe_config_compare:<br><br>[drm:intel_pip=
+e_config_compare] fastset requirement not met in pipe_bpp<br>=C2=A0 (expect=
+ed 30, found 24)<br>[drm:intel_pipe_config_compare] fastset requirement not=
+ met in dp_m_n<br>=C2=A0 (expected link 269484/524288, found link 336855/52=
+4288)<br>[drm:intel_pipe_config_compare] fastset requirement not met in dpl=
+l_hw_state<br>=C2=A0 (expected cfgcr0: 0xe001a5, found cfgcr0: 0x1c2)<br>[d=
+rm:intel_pipe_config_compare] fastset requirement not met in port_clock<br>=
+=C2=A0 (expected 270000, found 216000)<br>[drm:intel_atomic_check] forcing =
+full modeset<br><br>On v6.15.9, the same VT switch shows no such messages.<=
+br>no pipe_config_compare runs, no modeset, no freeze.<br><br># BISECT AND =
+VERIFICATION<br><br>The bisect converged on d1b618e7954802fe in the uvcvide=
+o driver. This<br>commit adds a switch statement to uvc_v4l2_unlocked_ioctl=
+ that allows<br>certain V4L2 IOCTLS to call video_ioctl2 directly without f=
+irst calling<br>uvc_pm_get/uvc_pm_put. Prior to this commit, all ioctls cal=
+led uvc_pm_get<br>before video_ioctl2.<br><br>## VT switching verification =
+across kernel versions:<br><br>=C2=A0 v6.12.74 arch pkg: =C2=A0 WORKS<br>=
+=C2=A0 v6.15.9 arch pkg: =C2=A0 =C2=A0WORKS<br>=C2=A0 v6.15.9 from source: =
+WORKS<br>=C2=A0 v6.16.1 with d1b618e reverted: =C2=A0 =C2=A0 WORKS<br>=C2=
+=A0 v6.17.9 with PM wrapping restored: WORKS<br>=C2=A0 v6.18.9 with PM wrap=
+ping restored: WORKS<br><br>=C2=A0 v6.16.1 from source: =C2=A0FREEZES<br>=
+=C2=A0 v6.16.1 arch pkg: =C2=A0 =C2=A0 FREEZES<br>=C2=A0 v6.17.9 arch pkg: =
+=C2=A0 =C2=A0 FREEZES<br>=C2=A0 v6.18.9 from source:=C2=A0 FREEZES</div><di=
+v>=C2=A0 v6.18.9 arch pkg: =C2=A0 =C2=A0 FREEZES<br><br>## Things that do n=
+ot eliminate the freeze<br><br>=C2=A0 - module_blacklist=3Duvcvideo on boot=
+<br>=C2=A0 - CONFIG_USB_VIDEO_CLASS=3Dn (compiled out)<br>=C2=A0 - i915.ena=
+ble_psr=3D0<br>=C2=A0 - Bypassing intel_vrr_transcoder_enable/disable (no-o=
+p)<br>=C2=A0 - xrandr --output eDP-1 --set &quot;max bpc&quot; 10<br>=C2=A0=
+ - Xorg config FBDepth 30 (No effect on pipe_bpp)<br><br>## Workaround patc=
+h<br><br>Reverting the optimization from d1b618e to restore the uncondition=
+al<br>uvc_pm_get/put wrapping for all ioctls. This is not a proper fix.<br>=
+<br>diff --git a/drivers/media/usb/uvc/uvc_v4l2.c b/drivers/media/usb/uvc/u=
+vc_v4l2.c<br>index 9e4a251eca88..15057b47ec4f 100644<br>--- a/drivers/media=
+/usb/uvc/uvc_v4l2.c<br>+++ b/drivers/media/usb/uvc/uvc_v4l2.c<br>@@ -1199,3=
+3 +1199,12 @@ static long uvc_v4l2_unlocked_ioctl(struct file *file,<br>=C2=
+=A0	unsigned int converted_cmd =3D v4l2_translate_cmd(cmd);<br>=C2=A0	int r=
+et;<br>=C2=A0<br>-	/* The following IOCTLs need to turn on the camera. */<b=
+r>-	switch (converted_cmd) {<br>-	case UVCIOC_CTRL_MAP:<br>-	case UVCIOC_CT=
+RL_QUERY:<br>-	case VIDIOC_G_CTRL:<br>-	case VIDIOC_G_EXT_CTRLS:<br>-	case =
+VIDIOC_G_INPUT:<br>-	case VIDIOC_QUERYCTRL:<br>-	case VIDIOC_QUERYMENU:<br>=
+-	case VIDIOC_QUERY_EXT_CTRL:<br>-	case VIDIOC_S_CTRL:<br>-	case VIDIOC_S_E=
+XT_CTRLS:<br>-	case VIDIOC_S_FMT:<br>-	case VIDIOC_S_INPUT:<br>-	case VIDIO=
+C_S_PARM:<br>-	case VIDIOC_TRY_EXT_CTRLS:<br>-	case VIDIOC_TRY_FMT:<br>-		r=
+et =3D uvc_pm_get(handle-&gt;stream-&gt;dev);<br>-		if (ret)<br>-			return =
+ret;<br>-		ret =3D video_ioctl2(file, cmd, arg);<br>-		uvc_pm_put(handle-&g=
+t;stream-&gt;dev);<br>+	ret =3D uvc_pm_get(handle-&gt;stream-&gt;dev);<br>+=
+	if (ret)<br>=C2=A0		return ret;<br>-	}<br>-<br>-	/* The other IOCTLs can r=
+un with the camera off. */<br>-	return video_ioctl2(file, cmd, arg);<br>+	r=
+et =3D video_ioctl2(file, cmd, arg);<br>+	uvc_pm_put(handle-&gt;stream-&gt;=
+dev);<br>+	return ret;<br>=C2=A0}<br>=C2=A0<br>=C2=A0const struct v4l2_ioct=
+l_ops uvc_ioctl_ops =3D {</div><div><div dir=3D"ltr" class=3D"gmail_signatu=
+re" data-smartmail=3D"gmail_signature"><br>Andr=C3=A9s</div></div></div>
+
+--000000000000dbfd0b064b70ae9f--
