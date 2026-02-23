@@ -2,34 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MNllHRmXnGluJgQAu9opvQ
+	id 0N3CNBahnGnqJgQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 19:06:17 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 19:48:54 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F139817B3CF
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 19:06:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4469217BC9B
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 19:48:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EBA210E02B;
-	Mon, 23 Feb 2026 18:06:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EC0E10E409;
+	Mon, 23 Feb 2026 18:48:52 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="qqdCN925";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50DA810E02B;
- Mon, 23 Feb 2026 18:06:14 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5D2E10E409;
+ Mon, 23 Feb 2026 18:48:51 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 9771B416C0;
+ Mon, 23 Feb 2026 18:48:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F2FFC116C6;
+ Mon, 23 Feb 2026 18:48:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1771872531;
+ bh=JtbFDM7WjuI/7Hr+yPjLM2J761mXUzMOmE4fh+JSMxk=;
+ h=Date:From:To:Cc:Subject:From;
+ b=qqdCN925frY92DgtmwmKSKyNFOFVNp08ZR60n6+AKvFcLNL6oINSCitrddwYCaTOi
+ zMgxWEbaom5ENQ4j4weJs/rjrJdDQHzSc8H/qN0v2fSZ2eXjp8frZPNe55wTrwC/c1
+ 9oSfBetVlgasj5fcgu8Sd6gBoiRBkVMcDIq1kEakzKrjRhc9LLV/4TsFyOLnQaHCud
+ hOwVfqtdXYpAZPBBm4QvsXmXYuUjsKAp5sBrr2d+a3jjpPkTJ+csKvkAs2OyKG4quj
+ swarDd5nqIlIUyNq0WwyU8Z2NK52uqXtWUzwU8SJowqvVddkVDfOhEUoxB++pbnGcx
+ OJmdXTHtA6tsA==
+Date: Mon, 23 Feb 2026 18:48:46 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Leon Romanovsky <leonro@nvidia.com>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Yishai Hadas <yishaih@nvidia.com>, Edward Srouji <edwards@nvidia.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Simona Vetter <simona.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>
+Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>
+Subject: linux-next: build failure after merge of the drm-misc tree
+Message-ID: <aZyhDuaF5vi05KBY@sirena.org.uk>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_drm/i915/selftests=3A_Fix?=
- =?utf-8?q?_build_after_dma-fence_locking_rework?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 23 Feb 2026 18:06:14 -0000
-Message-ID: <177186997431.277322.9648806167626304001@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260223172553.1663749-1-matthew.brost@intel.com>
-In-Reply-To: <20260223172553.1663749-1-matthew.brost@intel.com>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="rDEVY5bnA85zyF2e"
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,85 +63,147 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-3.41 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
+	TO_DN_ALL(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.992];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,patchwork.freedesktop.org:url,lists.freedesktop.org:replyto]
-X-Rspamd-Queue-Id: F139817B3CF
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 4469217BC9B
 X-Rspamd-Action: no action
 
-== Series Details ==
 
-Series: drm/i915/selftests: Fix build after dma-fence locking rework
-URL   : https://patchwork.freedesktop.org/series/161998/
-State : failure
+--rDEVY5bnA85zyF2e
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-== Summary ==
+Hi all,
 
-Error: make failed
-  CALL    scripts/checksyscalls.sh
-  DESCEND objtool
-  INSTALL libsubcmd_headers
-  CC [M]  drivers/gpu/drm/i915/i915_active.o
-In file included from drivers/gpu/drm/i915/i915_active.c:1174:
-drivers/gpu/drm/i915/selftests/i915_active.c: In function ‘active_flush’:
-drivers/gpu/drm/i915/selftests/i915_active.c:326:23: error: implicit declaration of function ‘dma_fence_spinlock’; did you mean ‘dma_fence_signal’? [-Werror=implicit-function-declaration]
-  326 |         spin_lock_irq(dma_fence_spinlock(fence));
-      |                       ^~~~~~~~~~~~~~~~~~
-      |                       dma_fence_signal
-drivers/gpu/drm/i915/selftests/i915_active.c:326:23: error: passing argument 1 of ‘spin_lock_irq’ makes pointer from integer without a cast [-Werror=int-conversion]
-  326 |         spin_lock_irq(dma_fence_spinlock(fence));
-      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~
-      |                       |
-      |                       int
-In file included from ./include/linux/debugobjects.h:6,
-                 from drivers/gpu/drm/i915/i915_active.c:7:
-./include/linux/spinlock.h:368:55: note: expected ‘spinlock_t *’ {aka ‘struct spinlock *’} but argument is of type ‘int’
-  368 | static __always_inline void spin_lock_irq(spinlock_t *lock)
-      |                                           ~~~~~~~~~~~~^~~~
-drivers/gpu/drm/i915/selftests/i915_active.c:328:25: error: passing argument 1 of ‘spin_unlock_irq’ makes pointer from integer without a cast [-Werror=int-conversion]
-  328 |         spin_unlock_irq(dma_fence_spinlock(fence)); /* serialise with fence->cb_list */
-      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~
-      |                         |
-      |                         int
-./include/linux/spinlock.h:398:57: note: expected ‘spinlock_t *’ {aka ‘struct spinlock *’} but argument is of type ‘int’
-  398 | static __always_inline void spin_unlock_irq(spinlock_t *lock)
-      |                                             ~~~~~~~~~~~~^~~~
-cc1: all warnings being treated as errors
-make[6]: *** [scripts/Makefile.build:289: drivers/gpu/drm/i915/i915_active.o] Error 1
-make[5]: *** [scripts/Makefile.build:546: drivers/gpu/drm/i915] Error 2
-make[4]: *** [scripts/Makefile.build:546: drivers/gpu/drm] Error 2
-make[3]: *** [scripts/Makefile.build:546: drivers/gpu] Error 2
-make[2]: *** [scripts/Makefile.build:546: drivers] Error 2
-make[1]: *** [/home/kbuild2/kernel/Makefile:2101: .] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
-Build failed, no error log produced
+After merging the drm-misc tree, today's linux-next build (x86_64
+allmodconfig) failed like this:
+
+/tmp/next/build/drivers/infiniband/core/ib_core_uverbs.c: In function 'rdma=
+_user_mmap_entry_remove':
+/tmp/next/build/drivers/infiniband/core/ib_core_uverbs.c:249:17: error: imp=
+licit declaration of function 'dma_buf_move_notify' [-Wimplicit-function-de=
+claration]
+  249 |                 dma_buf_move_notify(uverbs_dmabuf->dmabuf);
+      |                 ^~~~~~~~~~~~~~~~~~~
+make[6]: *** [/tmp/next/build/scripts/Makefile.build:289: drivers/infiniban=
+d/core/ib_core_uverbs.o] Error 1
+make[6]: *** Waiting for unfinished jobs....
+/tmp/next/build/drivers/infiniband/core/uverbs_std_types_dmabuf.c: In funct=
+ion 'uverbs_dmabuf_fd_destroy_uobj':
+/tmp/next/build/drivers/infiniband/core/uverbs_std_types_dmabuf.c:170:17: e=
+rror: implicit declaration of function 'dma_buf_move_notify' [-Wimplicit-fu=
+nction-declaration]
+  170 |                 dma_buf_move_notify(uverbs_dmabuf->dmabuf);
+      |                 ^~~~~~~~~~~~~~~~~~~
+make[6]: *** [/tmp/next/build/scripts/Makefile.build:289: drivers/infiniban=
+d/core/uverbs_std_types_dmabuf.o] Error 1
+
+Caused by commit
+
+  95308225e5bae (dma-buf: Rename dma_buf_move_notify() to dma_buf_invalidat=
+e_mappings())
+
+interacting with
+
+  0ac6f4056c4a2 (RDMA/uverbs: Add DMABUF object type and operations)
+
+=66rom Linus' tree.  I have fixed this up as below and can carry as
+needed.
+
+=46rom 89e7d4987e08a46f2db151cebba258a1bc01d628 Mon Sep 17 00:00:00 2001
+=46rom: Mark Brown <broonie@kernel.org>
+Date: Mon, 23 Feb 2026 18:27:51 +0000
+Subject: [PATCH] RDMA/uverbs: Update for semantic conflict with drm-misc
+
+/tmp/next/build/drivers/infiniband/core/ib_core_uverbs.c: In function 'rdma=
+_user_mmap_entry_remove':
+/tmp/next/build/drivers/infiniband/core/ib_core_uverbs.c:249:17: error: imp=
+licit declaration of function 'dma_buf_move_notify' [-Wimplicit-function-de=
+claration]
+  249 |                 dma_buf_move_notify(uverbs_dmabuf->dmabuf);
+      |                 ^~~~~~~~~~~~~~~~~~~
+
+Signed-off-by: Mark Brown <broonie@kernel.org>
+---
+ drivers/infiniband/core/ib_core_uverbs.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/infiniband/core/ib_core_uverbs.c b/drivers/infiniband/=
+core/ib_core_uverbs.c
+index d3836a62a0049..d6e99c79cf183 100644
+--- a/drivers/infiniband/core/ib_core_uverbs.c
++++ b/drivers/infiniband/core/ib_core_uverbs.c
+@@ -246,7 +246,7 @@ void rdma_user_mmap_entry_remove(struct rdma_user_mmap_=
+entry *entry)
+ 		dma_resv_lock(uverbs_dmabuf->dmabuf->resv, NULL);
+ 		list_del(&uverbs_dmabuf->dmabufs_elm);
+ 		uverbs_dmabuf->revoked =3D true;
+-		dma_buf_move_notify(uverbs_dmabuf->dmabuf);
++		dma_buf_invalidate_mappings(uverbs_dmabuf->dmabuf);
+ 		dma_resv_wait_timeout(uverbs_dmabuf->dmabuf->resv,
+ 				      DMA_RESV_USAGE_BOOKKEEP, false,
+ 				      MAX_SCHEDULE_TIMEOUT);
+diff --git a/drivers/infiniband/core/uverbs_std_types_dmabuf.c b/drivers/in=
+finiband/core/uverbs_std_types_dmabuf.c
+index dfdfcd1d1a446..149220a1599cf 100644
+--- a/drivers/infiniband/core/uverbs_std_types_dmabuf.c
++++ b/drivers/infiniband/core/uverbs_std_types_dmabuf.c
+@@ -167,7 +167,7 @@ static void uverbs_dmabuf_fd_destroy_uobj(struct ib_uob=
+ject *uobj,
+        if (!uverbs_dmabuf->revoked) {
+                uverbs_dmabuf->revoked =3D true;
+                list_del(&uverbs_dmabuf->dmabufs_elm);
+-               dma_buf_move_notify(uverbs_dmabuf->dmabuf);
++               dma_buf_invalidate_mappings(uverbs_dmabuf->dmabuf);
+                dma_resv_wait_timeout(uverbs_dmabuf->dmabuf->resv,
+                                      DMA_RESV_USAGE_BOOKKEEP, false,
+                                      MAX_SCHEDULE_TIMEOUT);
+
+--=20
+2.47.3
 
 
+--rDEVY5bnA85zyF2e
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmmcoQ0ACgkQJNaLcl1U
+h9APZAgAhL9bq8QpFXnRk85LCkfVsVbf+MEC+n+rsCUsOWl0D9OzAP4MB4SKjarG
+mXweGrr+1Gq8jZcK6VnebpVR+n4C9ZHOj9meGGmzTcpClG7uhn9Cs838sBKoWsm2
+lHWWv5EKgCwohLMHG+hXHJh9H2kSN3+5O39N3UmD0ExAhShW+tGxEIm3Rbt0dHxT
+ASBNx1Vl8Hg5mnll67PGg7BXHvl4C5kFIirhtWy+K9+5YuVQGl4nIV4GFcIPyRNZ
++pHi4gUDNRR0qlZ8qIUDtpAZfYA4Mo9ga7uMhYM8kVt6eOTVnspS/zYEBS1Ijxcm
+oyhRSQqKjLVkWg1XikKF78W0yl/HQg==
+=ICkP
+-----END PGP SIGNATURE-----
+
+--rDEVY5bnA85zyF2e--
