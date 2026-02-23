@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KP/4FmpWnGkAEQQAu9opvQ
+	id KJZ9I2pWnGkAEQQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
 	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 14:30:18 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28F61176EC4
+	by mail.lfdr.de (Postfix) with ESMTPS id 635B2176EC5
 	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 14:30:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A44CA10E3A9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E03B110E3A4;
 	Mon, 23 Feb 2026 13:30:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GPSE0gUo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RshaN0Dd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7725010E3A4;
- Mon, 23 Feb 2026 13:30:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DF1910E3B1;
+ Mon, 23 Feb 2026 13:30:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771853414; x=1803389414;
+ t=1771853416; x=1803389416;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=iN10Zuaw+iwCV7z39BBsMssX9DVXGvxQU/QGqe6kZ54=;
- b=GPSE0gUoBPk+H5foj2bMQbhcCm1eiJeOr2nK7JItAEOOW/rxRsJYEIaG
- Ck7fUQ5waJnAOrlYPT/5E73/ZnNrQMWul5wePx8mZIf8EhgXqNrzpPyhD
- LsTHYtD/0X0EFL6AmYOz2FPBo4KCmicllbUehHqPTsLQkT+8teXGCmEfM
- l6JuoLqiu+TaPNaHM2n5nm/+xHZNtEyomVv7fV4+3OkpHDTG+jmcWkPpk
- OHWRz78qK0PDsj3qobx6QRIDLBseOhNxehmU2yVvudEba2F9K6SBRB0fp
- ABQe2KqfVUXgissFCb9XN9rS5nxo/zMr6H7XAY4JkeAa7onG+C0HBkHca Q==;
-X-CSE-ConnectionGUID: Td+i6a/fRF6ZbB3+GFLA4w==
-X-CSE-MsgGUID: 49NyD+alRs2Fas2w0ZivOA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11709"; a="72724177"
-X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="72724177"
+ bh=fG6afppwNIStttpu3zZ1HvIhmenzRZBzLKAsDOHnNIY=;
+ b=RshaN0DdZcFi78AQBLbWmFYo26i+TuhNK9wM9IVr7NN1bLKnN4aAUD1Q
+ zJ/yzngwsno0RF4hzJ3ffAYFQvQe5Htw5/AT5euR/vutpUOpEkSOIPf+0
+ nMABHzdx11lfygFu8J/SDiVKs18kwBRusOVQaNEAD6UZo+TfzPdClMs1i
+ SGLfD7YjF0cX6PD/ZzhfVjWVOpLGMi9ARIj9KMZeDM2o9fM+0JpavRmfz
+ u+S6LoiMAdggdoZsQGSkUIdnZsQTk8aVWMWmrswvFvRXL7Ls2RPZNl0E4
+ MK53h/CW9/KtVCrZjwTltkdZMVSwpkyqgpsMD4dhwX+OXah3NIGIHOwgV w==;
+X-CSE-ConnectionGUID: pW6TC6RCScSqiNMIPFeNwQ==
+X-CSE-MsgGUID: +Bv5os6QQe6SCXaZCfNJqw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11709"; a="72724184"
+X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="72724184"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 05:30:14 -0800
-X-CSE-ConnectionGUID: cvEV6tP3REuD5D7X51KNeA==
-X-CSE-MsgGUID: sofoBDhPRJK2e+YJLgZs2A==
+ 23 Feb 2026 05:30:16 -0800
+X-CSE-ConnectionGUID: w55TMJ86T12MP9Q9Ywxf+Q==
+X-CSE-MsgGUID: qmjRhuSgSm63FTH8wf+wGg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="215580416"
+X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="215580438"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 05:30:11 -0800
+ 23 Feb 2026 05:30:13 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
  animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 07/14] drm/i915/dp: Compute AS SDP after PSR and LOBF
-Date: Mon, 23 Feb 2026 18:44:19 +0530
-Message-ID: <20260223131426.1638946-8-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 08/14] drm/i915/dp: Add AS SDP support for PR with link ON
+Date: Mon, 23 Feb 2026 18:44:20 +0530
+Message-ID: <20260223131426.1638946-9-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260223131426.1638946-1-ankit.k.nautiyal@intel.com>
 References: <20251111093007.3771409-3-ankit.k.nautiyal@intel.com>
@@ -100,35 +100,61 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: 28F61176EC4
+X-Rspamd-Queue-Id: 635B2176EC5
 X-Rspamd-Action: no action
 
-To enable AS SDP support for Panel Replay (PR) with Link ON and
-Auxless-ALPM, we need to compute AS SDP after
-intel_{psr, alpm_lobf}_compute_config().
+Adaptive Sync SDP (AS SDP) is also used for Panel Replay (PR).
+For PR with Link ON, the AS SDP version V1 is used. When using
+AS SDP Version 1, AS SDP payload and parity bytes are all set to zeroes.
 
-Move call for intel_dp_compute_as_sdp() after the above two helpers.
-
+Bspec: 75639
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 17 ++++++++++++++++-
+ 1 file changed, 16 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 5d173553a646..d08db4938638 100644
+index d08db4938638..5952db6197cf 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3608,9 +3608,9 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 		pipe_config->dp_m_n.data_m *= pipe_config->splitter.link_count;
+@@ -3115,7 +3115,8 @@ static bool intel_dp_needs_as_sdp(struct intel_dp *intel_dp,
+ 				  struct intel_crtc_state *crtc_state)
+ {
+ 	return crtc_state->vrr.enable ||
+-	       crtc_state->cmrr.enable;
++	       crtc_state->cmrr.enable ||
++	       crtc_state->has_panel_replay;
+ }
  
- 	intel_vrr_compute_config(pipe_config, conn_state);
--	intel_dp_compute_as_sdp(intel_dp, pipe_config);
- 	intel_psr_compute_config(intel_dp, pipe_config, conn_state);
- 	intel_alpm_lobf_compute_config(intel_dp, pipe_config, conn_state);
-+	intel_dp_compute_as_sdp(intel_dp, pipe_config);
- 	intel_dp_drrs_compute_config(connector, pipe_config, link_bpp_x16);
- 	intel_dp_compute_vsc_sdp(intel_dp, pipe_config, conn_state);
- 	intel_dp_compute_hdr_metadata_infoframe_sdp(intel_dp, pipe_config, conn_state);
+ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
+@@ -3137,6 +3138,16 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
+ 	as_sdp->length = 0x9;
+ 	as_sdp->duration_incr_ms = 0;
+ 	as_sdp->version = 0x2;
++
++	if (crtc_state->vrr.enable)
++		as_sdp->version = 0x2;
++	else
++		as_sdp->version = 0x1;
++
++	/* No payload data bytes for Version 1 */
++	if (as_sdp->version == 0x1)
++		return;
++
+ 	as_sdp->vtotal = intel_vrr_vmin_vtotal(crtc_state);
+ 
+ 	if (crtc_state->cmrr.enable) {
+@@ -5005,6 +5016,10 @@ static ssize_t intel_dp_as_sdp_pack(const struct drm_dp_as_sdp *as_sdp,
+ 	sdp->sdp_header.HB2 = as_sdp->version;
+ 	sdp->sdp_header.HB3 = as_sdp->length;
+ 
++	/* No Payload Data bytes for Version 1 */
++	if (as_sdp->version == 0x1)
++		return length;
++
+ 	/* Fill AS (Adaptive Sync) SDP Payload */
+ 	sdp->db[0] = as_sdp->mode;
+ 	sdp->db[1] = as_sdp->vtotal & 0xFF;
 -- 
 2.45.2
 
