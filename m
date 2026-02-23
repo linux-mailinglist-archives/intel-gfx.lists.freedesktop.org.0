@@ -2,185 +2,88 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QOhoMnF8nGm6IQQAu9opvQ
+	id 4DgPGah9nGm6IQQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 17:12:33 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 17:17:44 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28364179750
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 17:12:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDA3E179913
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 17:17:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4262110E2F8;
-	Mon, 23 Feb 2026 16:12:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 614C810E3D6;
+	Mon, 23 Feb 2026 16:17:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TxboiVeH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ddmyODij";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 124E210E167;
- Mon, 23 Feb 2026 16:12:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 451FE10E167;
+ Mon, 23 Feb 2026 16:17:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771863149; x=1803399149;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=l1pwrCzgXotaXDbY+N6v2GcckLFqLDiUHOvmKkPKXQw=;
- b=TxboiVeH8B9fIAkxhk0Ef46k5sARK3+KKzcUsrqhkidoInYpQkC+8/MP
- STfk7fPidWcCpcVwl+oZU4YeSzW2Hx3PqJVIHKFUhY1L+CSg7kxgHRXtu
- wUlM7p9KHdxpWdV1W+jAjD2WCTf4+eh/DYGGmtJkbKXdE8G7PGj1EJ8aK
- /M3e2tgbX1biK6su+wLusNSUk/1+slkYz2pLF8zpmRlZSwk6aTWdljJQw
- rOQx8cHSdhVcUVHK4pLvB2ghGeg5JOmWqua4uhQJtkEF2eyqhnP7aEo7r
- /qUDT8nmmeKRRa4qeYc+v2sxxnb7XLOATfWyB4lx+dAH2b4vX4nv46EJZ A==;
-X-CSE-ConnectionGUID: Nb9CGvQ/QPSDMk2gcHzsxA==
-X-CSE-MsgGUID: ASl08Q3SRfeifHmzVOQEfw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11710"; a="84222551"
-X-IronPort-AV: E=Sophos;i="6.21,307,1763452800"; d="scan'208";a="84222551"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 08:12:28 -0800
-X-CSE-ConnectionGUID: MOvtycW1RUy6L74U5VbPAw==
-X-CSE-MsgGUID: mc1lkRNNTuqnPdU74/AS1Q==
+ t=1771863460; x=1803399460;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=aOP5WIIIx6jXIgIj8fQMjIWqluDLQWnoK9OZpu0pAUA=;
+ b=ddmyODijzubpkvS8B4GXP3bDhz6+cTMSL5fNHvx5CEfeQ0/sjCgDFMkq
+ 2nBOOGMESzDAOpgKtmIagfsfVJDWMq46PCR0q72bv9iKwv3B3cuBjowXL
+ m3FGuJMlZPbkUPMBfEg0/sdtdszh6wHxSvkCvUAHn+qW1PaKo1DZLmtn+
+ Z8M3vHThwNnOeNiRhDHc7QaxicYrW60tZMi3BAQ1EoQFNN5Uz5slNUDhB
+ s183Rx2pfeegjxPGokCXRALOE1P0vqeOb/XwBluLgGWbtrdIZoUrKNm8v
+ 3GQnhcV3GMr+d8ib1EER31sTDh1va7d7vYnI9Drki9Tmd9+kGlNm3zP4v g==;
+X-CSE-ConnectionGUID: hQ5uza29QWexf1kzbwByQA==
+X-CSE-MsgGUID: at+TU5dpSoercxK29VLdcQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11710"; a="72964232"
+X-IronPort-AV: E=Sophos;i="6.21,307,1763452800"; d="scan'208";a="72964232"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2026 08:17:38 -0800
+X-CSE-ConnectionGUID: s+T+PQQsT0SyyRAKA4P4zw==
+X-CSE-MsgGUID: bqNmgWIJTXepephYLIEsgA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,307,1763452800"; d="scan'208";a="213949177"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 08:12:28 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Mon, 23 Feb 2026 08:12:27 -0800
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Mon, 23 Feb 2026 08:12:27 -0800
-Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.9) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Mon, 23 Feb 2026 08:12:27 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FDV8IzzCuqrcRbaw2UPVxh9F4I8UqV7nfLGNd6seqVjsJkKLzFgbl58RcvC8jAgRcd79FnnNNfv4B2H/u0N6HiUtNs0M/rNUoo0PJpfpm5IOL5Bay/+4c4nn8J5ibLLHLzLKGYYZGUNtjEvFgegBt8t2BfwifBAAKSKsegFzDN/CjpphpvQhjGGVmL+vKvm3e9TiJL+rTykLFHvM/6lKnex1gb2O+brG4elUUN0tp8hbl7qYqZ0FuvNQffwbqDtd4nmSwOj9sk7dk7P+dvrREhD3OfR7bkOMTlBGoW+wNTcCJ2HgxaL7ESedtuu2IqFQP4IYH2aYoJp8sYO7wAaBvQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=A0+YYpE4V3lQoFp5smu76kx1JhBA1Akc5fvRBcEz1N4=;
- b=JK/sbQhM3qWHrT/PutMD2ukcNaKqUsOveiKGNzbUorSEl6x9WjJGqLzRTn25Bie2gHIF0teewutFwVN6KyVWwQBYsILIi/kRJl/3Jizx8uVrMSXMa00wbgvU/q0sPRK5fimR/vwoo3GU6Q2bHHA+cQRdgMB5eSC4wvS27NfR0SLxEI5W+2PfjwIAIXhux2hYjvnOZOgBiqi3kNGZCBPD6XOuJ2SRgNOWp95RtLrXTgKA7OT0fJ0x+70PhDt+jCZoeZGJYp5p1sJQUtZuRgy/6T5ghUyLvYAvB5oPx93VB6wGgUHzfWleUwRsfvsB9E/bDrwRjFcqbU0bwNzxId5GhQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from IA0PR11MB7307.namprd11.prod.outlook.com (2603:10b6:208:437::10)
- by SJ5PPFF8B526086.namprd11.prod.outlook.com
- (2603:10b6:a0f:fc02::862) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.16; Mon, 23 Feb
- 2026 16:12:24 +0000
-Received: from IA0PR11MB7307.namprd11.prod.outlook.com
- ([fe80::9d4a:f89:f548:dbc7]) by IA0PR11MB7307.namprd11.prod.outlook.com
- ([fe80::9d4a:f89:f548:dbc7%6]) with mapi id 15.20.9632.017; Mon, 23 Feb 2026
- 16:12:24 +0000
-From: "Murthy, Arun R" <arun.r.murthy@intel.com>
-To: "Deak, Imre" <imre.deak@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH 4/5] drm/i915/dp_tunnel: Sanitize documentation of
- intel_dp_tunnel_detect()
-Thread-Topic: [PATCH 4/5] drm/i915/dp_tunnel: Sanitize documentation of
- intel_dp_tunnel_detect()
-Thread-Index: AQHcoc27yWJOKQZCm0+OFfnDwILbPbWQejRw
-Date: Mon, 23 Feb 2026 16:12:23 +0000
-Message-ID: <IA0PR11MB7307ED11D322F4B53B76988FBA77A@IA0PR11MB7307.namprd11.prod.outlook.com>
-References: <20260219182823.926702-1-imre.deak@intel.com>
- <20260219182823.926702-5-imre.deak@intel.com>
-In-Reply-To: <20260219182823.926702-5-imre.deak@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA0PR11MB7307:EE_|SJ5PPFF8B526086:EE_
-x-ms-office365-filtering-correlation-id: e31596df-685e-4932-6739-08de72f654cc
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|10070799003|1800799024|366016|38070700021|7053199007; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?LqP1SFf6RjxSkmMzX4V359uYQM4Zb8CAPN136GJrWqoNfT1n8D9migBDIi2b?=
- =?us-ascii?Q?NtCKwZ6QzXuva7cx3WsD2Bf5rIA1fgnNZG9zRyIvMnAyCOhKRBTAczflAq9L?=
- =?us-ascii?Q?nxV4oGPpfq+oWOI/x+7RoAeeM0FhLJiWmBLnYOqYR76MtBTo1TwzNZBi2q+b?=
- =?us-ascii?Q?F+RiXon+33iR0Gjx3zwZU/3czczfqatxd+euw7yDNVpaFNz1vZfVWu7GOhJZ?=
- =?us-ascii?Q?kd71t3zNUGnAVb8Ye4UaC+WN0Nqe80OwLaOM2ZLghR10BX/E8JImDu3PvzaK?=
- =?us-ascii?Q?vhRFGBRXfePDtPYQRW+JDWi7jG2IxvQfGKYZytitR9dpcKU0C9sBnPzUdGgP?=
- =?us-ascii?Q?ekbvx78nJNBu/9h8iXXd1q8d4SNGW9FU70+NZWEEj3/50FDgs4hzvuvDrUvN?=
- =?us-ascii?Q?HC9qFjeHwTRmYdeZIaUK+BBlegWToP/4nlS+uqk+X64EgBqY+GaocdOQshrD?=
- =?us-ascii?Q?Yo4EECMZOvQXx9+FlMRtNgt+R1aS8kcXQCXobNm9eyHo9vWGgeekkIjQVaeD?=
- =?us-ascii?Q?qHerfeJYMNlV47h1XHghVfldszNoKdAT1tF4M3ltCDyu0xQTcY0k3D+MjOYa?=
- =?us-ascii?Q?+miDLmBrSdBIXmea5sTwJmtddjHvbfKCprmvnREJq+rxZPX0Q0vNYqp7ChEk?=
- =?us-ascii?Q?0n9MVDwwrIzraAcpVP+TIhgW1N/nTnZDHy0TcHah6ZZMC5kwRmwnYYYHJGPw?=
- =?us-ascii?Q?XVigHdwb/8TQeIaLFECE8AHC14IHSEN5LIMVC2maA0NqXqIsuVHKVrKGi4j8?=
- =?us-ascii?Q?S4nGDP2BD/QDAjZQsTIMjibZnnbjwtqp7PEAxB/g6+ACw2sTs/u7EuDidNd+?=
- =?us-ascii?Q?d/deXXIxgZLwyt+zMGvacKtQ7nR050U/QkMXUblPhKovJNsxJMKailvO0O3T?=
- =?us-ascii?Q?h0edhn0paMYg9AxlQvD4ANHd9ZlqiTYr2bdnE5jZ8STYm20bXj7KbXqQM3MS?=
- =?us-ascii?Q?fJsnJmqVDnn6teyfeAfzBWvJFOV6jPNQDboGAJNGHSmE0snVtL/5GAmgafIT?=
- =?us-ascii?Q?7fR4rOd7cWFVPlEeIpW8802OceA3cZ0dsXzT+8klR3b5shZikwsPwxcC1ytp?=
- =?us-ascii?Q?D6calupPi5KxDPggZYCHFjiF9ZmPlWJUcAWgpVDr5rt3GjakitQ9CASgEMlh?=
- =?us-ascii?Q?PLQ/eR12GAfRlk2lNg4oYutpW3vr398xVsGnAD/mZje1d3SLPBz2W1HKAZqL?=
- =?us-ascii?Q?nidhk3oYj9QDBzOGL6uepXO2wryQPUdigFHE+cgu6/1huCRPgD2ZtecTiLab?=
- =?us-ascii?Q?sK69Ow6DrGuc+FMkeM0ldts2jLDdZcWMg7hVwHNTuOX5DbFLnqrKwDSr6Uof?=
- =?us-ascii?Q?biz5WR/bobgHxwTmRx7vfqJhNGyPQNcig3Tw+e4tFbGTVA3S3/FEqQS+YhFO?=
- =?us-ascii?Q?5nfpgITXw4tA6buxcGSCJsluPPnt51RjNLM0BUPF79V8rLZjNvqfaGXjkb/Y?=
- =?us-ascii?Q?xFrL3kvyyUIhHyBRtBAXHiv7remuTvkey9JOO27m5ilw5WW1WTB1LRYxPzLF?=
- =?us-ascii?Q?z/VkSKye8g9kAq0OwBAVbWR9cyIVHsE5MpJdNQlL2EG2MMEr+XtlJKkRt/BP?=
- =?us-ascii?Q?h5Z6uxyot6IXg/kVM/t1o+MZJfR52pGIPboXyI30S0UtvdWdxN51v7s01+fI?=
- =?us-ascii?Q?tziMjgof3PyY8igVylsCxCg=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA0PR11MB7307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(10070799003)(1800799024)(366016)(38070700021)(7053199007);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 2
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?KD8uI8wxLHO5Q2KDTmKcYmeP/07s7kq8fm7E4dW93wZQIXEn6QRjz+to8da9?=
- =?us-ascii?Q?UcpSq5Tw4CuptdWi7Z44dhjsxNuiRcULQRHGaqBWY2K8UIPRsee5/dQ+0Tq4?=
- =?us-ascii?Q?zo1z3sV2Hl42QL//ISKmU+NXLSq1VG0n/0FyXAQqvQF+U0TsZU7PW34ZOyIN?=
- =?us-ascii?Q?kewlz/uhbSkHJcCyV8FCb2KYDuqBtICOfPV7AiE0u1XdrvRuOOJBSDPgegC4?=
- =?us-ascii?Q?7WePYitMIcyh0/7Opkc3eS/h0TJLms3rC23Q2bz2kwB+bOfH4L/Y15yBA88C?=
- =?us-ascii?Q?3+Y0UvOloxjcpZOTYoSoIUQdq3+PyxIZNgwVdHaPbZ/3WjKV47FAxH3BDF3k?=
- =?us-ascii?Q?j3btRdLfvXJ1JkCeqz3rB3FZAV7/ibSoF+RrEiLcjHsXkFoUtlJ7mKG9I7xO?=
- =?us-ascii?Q?DOAVqQz9OmG6jMeVKQx8KH5Uo/h5KtJlXxPVWfSS1TxqUtSJdpGUApb6/PXC?=
- =?us-ascii?Q?bmFzik6WcKKxJdHDJ0RriEMmK+6wIUulO6ebTP+EreqBOiWTKYXQYZm6G5u0?=
- =?us-ascii?Q?MCWBBHWpiwpM0G1O8vdf7dzSNNP3VHpQMNWX7gIw++jGGhXNygiPj8qbpUQZ?=
- =?us-ascii?Q?2181ynWpytU+sr+7e1yUy7TkrfYkZB6hRPrXyG112+oQYyjBSzGWrsDGAu93?=
- =?us-ascii?Q?o5mSoseYd+0QpJbeja4jq15q0kGX0VPUHbTWl88wuZ5mMWQldnOHZw+hOkFS?=
- =?us-ascii?Q?8P4b5rlYdOaj03jywPyKhxXNXNM8rtfuiOzLnbybbxbkdHezeEZWcycenPvY?=
- =?us-ascii?Q?NgkZG1+sgla0vVXHZUP/UoWV6KjyL1WBJxRmTrSE6RUTZP2K1KEoLl8v/1aB?=
- =?us-ascii?Q?ebEl8Z2HkzDyugZYKJn4y5jxZjhbVfmq09dm0I7elOcQCk5JU+yCSOuRlfVk?=
- =?us-ascii?Q?5sMndOfXq7ggxUlAYkXdCJ6iCTcKVd7PFgBLlrLGL1iBFSKIeMrQCY4uxGzt?=
- =?us-ascii?Q?fNkoj/EWtA48vsTIZDH94BqoNdfUfTUSs1h4UV/flFsJA4tCWUEFEe/NjQ+X?=
- =?us-ascii?Q?o2iTdO7RAJx3A/OJxE79hTvuys9JK3WGGmEJMXVj8wEdu+lUQwciI8bXzIS9?=
- =?us-ascii?Q?AoGWg1AsveTzb774+uIlHy5adqcNSLMM1XUvcpFis1bRdpOYmqYj+5LnLLvW?=
- =?us-ascii?Q?qyQy7HoG9YCjp+g/oHE2iDkbm/85iCtRS40K18ZrgnkkO50WTMUfPA1YiEmp?=
- =?us-ascii?Q?Hh6Fipw0vc5WqINjPpI1qvB+F/igL5bujnj2zCrTNcNePLgZsafGqIlKz65p?=
- =?us-ascii?Q?M168VkYz3XhxWA7CSwIT2UsChhw8h490p9rbV1RIOg2lPRVl7D4nczapZJxl?=
- =?us-ascii?Q?pZxGKISJvGZuIayNjUIoxgmoalXX60NMw5F3FOtD10NgCPJ5vZTQs1Qc5G2A?=
- =?us-ascii?Q?wuKqgdPkgK0HAssmn4Bx2WwRxorFhlItFQdaLM3IwZGpc3DapA8pDXKqsK+Q?=
- =?us-ascii?Q?b9azBfumVVxjXTSqE6wGUDmHdTBTrIzifTfUHYtNo1zM1mfUgwq7W9zL1dXI?=
- =?us-ascii?Q?ZRYdmNrEO+1PyOVSik4pIbmw9LyX5pGCqtGrZEGak+3eW3Z6sCrdeHtKYlWM?=
- =?us-ascii?Q?7xh6RTc7fXVGnRo7tZKW6dV4YhMR9sqMz8ezpUcYPQb39T2QzBdOP+7RUXHJ?=
- =?us-ascii?Q?aZIHrHDeKS2UnWYR0mNFyq6OV3xEwdrTU31kn6nWlwjMiSoL704C8hreDqN/?=
- =?us-ascii?Q?hIjf0ydEdNn5hJG0sd8TNxvbyWDongFwVKvdbuRgDthCnDBVemTde150ewYf?=
- =?us-ascii?Q?1+Kbyq/ycdcdkj49x5pWCny6oIDE7EfO61Ns7NV9+5CR9TY8GzM/Kbigb0r7?=
-x-ms-exchange-antispam-messagedata-1: GTIThmdlxhnGmQ==
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.21,307,1763452800"; d="scan'208";a="215752862"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.249])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2026 08:17:26 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, Harry Wentland
+ <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira
+ <siqueira@igalia.com>, Alex Deucher <alexander.deucher@amd.com>, Christian
+ =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Andrzej Hajda
+ <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Robert Foss <rfoss@kernel.org>, Laurent Pinchart
+ <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang
+ <hjc@rock-chips.com>, Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan
+ <andy.yan@rock-chips.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Joonas
+ Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, Jonathan Corbet
+ <corbet@lwn.net>
+Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-doc@vger.kernel.org, Nicolas Frattaroli
+ <nicolas.frattaroli@collabora.com>, Andri Yngvason <andri@yngvason.is>,
+ Werner Sembach <wse@tuxedocomputers.com>, Marius Vlad
+ <marius.vlad@collabora.com>
+Subject: Re: [PATCH v8 02/20] drm: Add new general DRM property "color format"
+In-Reply-To: <20260216-color-format-v8-2-5722ce175dd5@collabora.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260216-color-format-v8-0-5722ce175dd5@collabora.com>
+ <20260216-color-format-v8-2-5722ce175dd5@collabora.com>
+Date: Mon, 23 Feb 2026 18:17:23 +0200
+Message-ID: <3b5e5af4219671c5b4ffdcb09bd22679332244ac@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7307.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e31596df-685e-4932-6739-08de72f654cc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Feb 2026 16:12:23.7307 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: DqS2Y2/cxBfZhsYwzIYjKHFeLFcsE0GkrGnXfcLL8nzwtLPLn0qx65sTuPP9NEEWOudNx05AMpIgE90GqWV7Yw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPFF8B526086
-X-OriginatorOrg: intel.com
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -196,85 +99,497 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[9];
-	RCPT_COUNT_THREE(0.00)[3];
-	FROM_NEQ_ENVFROM(0.00)[arun.r.murthy@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 28364179750
+	RCVD_COUNT_THREE(0.00)[4];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[collabora.com,amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[40];
+	ARC_NA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,yngvason.is:email,tuxedocomputers.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: BDA3E179913
 X-Rspamd-Action: no action
 
-
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Im=
-re
-> Deak
-> Sent: Thursday, February 19, 2026 11:58 PM
-> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> Subject: [PATCH 4/5] drm/i915/dp_tunnel: Sanitize documentation of
-> intel_dp_tunnel_detect()
->=20
-> Clarify the documentation of detect_new_tunnel() return values, including=
- the
-> failure case.
->=20
-Can this change be merged with the previous patch as the previous patch mak=
-es this change.
-
-Thanks and Regards,
-Arun R Murthy
--------------------
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
+On Mon, 16 Feb 2026, Nicolas Frattaroli <nicolas.frattaroli@collabora.com> wrote:
+> From: Andri Yngvason <andri@yngvason.is>
+>
+> Add a new general DRM property named "color format" which can be used by
+> userspace to request the display driver to output a particular color
+> format.
+>
+> Possible options are:
+>     - auto (setup by default, driver internally picks the color format)
+>     - rgb
+>     - ycbcr444
+>     - ycbcr422
+>     - ycbcr420
+>
+> Drivers should advertise from this list which formats they support.
+> Together with this list and EDID data from the sink we should be able
+> to relay a list of usable color formats to users to pick from.
+>
+> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
+> Signed-off-by: Andri Yngvason <andri@yngvason.is>
+> Signed-off-by: Marius Vlad <marius.vlad@collabora.com>
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_dp_tunnel.c | 9 ++++++---
->  1 file changed, 6 insertions(+), 3 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_tunnel.c
-> b/drivers/gpu/drm/i915/display/intel_dp_tunnel.c
-> index 5840b92dace19..1c552a7091897 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_tunnel.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_tunnel.c
-> @@ -241,9 +241,12 @@ static int detect_new_tunnel(struct intel_dp
-> *intel_dp, struct drm_modeset_acqui
->   * tunnel. If the tunnel's state change requires this - for instance the
->   * tunnel's group ID has changed - the tunnel will be dropped and recrea=
-ted.
->   *
-> - * Return 0 in case of success - after any tunnel detected and added to
-> - * @intel_dp - 1 in case the BW on an already existing tunnel has change=
-d in a
-> - * way that requires notifying user space.
+>  drivers/gpu/drm/drm_atomic_helper.c |   5 ++
+>  drivers/gpu/drm/drm_atomic_uapi.c   |  11 +++
+>  drivers/gpu/drm/drm_connector.c     | 150 ++++++++++++++++++++++++++++++++++++
+>  include/drm/drm_connector.h         | 116 ++++++++++++++++++++++++++--
+>  4 files changed, 277 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+> index d422f79b96db..d7e902ce5d2d 100644
+> --- a/drivers/gpu/drm/drm_atomic_helper.c
+> +++ b/drivers/gpu/drm/drm_atomic_helper.c
+> @@ -737,6 +737,11 @@ drm_atomic_helper_check_modeset(struct drm_device *dev,
+>  			if (old_connector_state->max_requested_bpc !=
+>  			    new_connector_state->max_requested_bpc)
+>  				new_crtc_state->connectors_changed = true;
+> +
+> +			if (old_connector_state->color_format !=
+> +			    new_connector_state->color_format)
+> +				new_crtc_state->connectors_changed = true;
+> +
+>  		}
+>  
+>  		if (funcs->atomic_check)
+> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
+> index dc013a22bf26..907dd3374533 100644
+> --- a/drivers/gpu/drm/drm_atomic_uapi.c
+> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
+> @@ -931,6 +931,15 @@ static int drm_atomic_connector_set_property(struct drm_connector *connector,
+>  		state->privacy_screen_sw_state = val;
+>  	} else if (property == connector->broadcast_rgb_property) {
+>  		state->hdmi.broadcast_rgb = val;
+> +	} else if (property == connector->color_format_property) {
+> +		if (val >= DRM_COLOR_FORMAT_ENUM_NUM) {
+> +			drm_dbg_atomic(connector->dev,
+> +				       "[CONNECTOR:%d:%s] unknown color format %llu\n",
+> +				       connector->base.id, connector->name, val);
+> +			return -EINVAL;
+> +		}
+> +
+> +		state->color_format = val;
+>  	} else if (connector->funcs->atomic_set_property) {
+>  		return connector->funcs->atomic_set_property(connector,
+>  				state, property, val);
+> @@ -1016,6 +1025,8 @@ drm_atomic_connector_get_property(struct drm_connector *connector,
+>  		*val = state->privacy_screen_sw_state;
+>  	} else if (property == connector->broadcast_rgb_property) {
+>  		*val = state->hdmi.broadcast_rgb;
+> +	} else if (property == connector->color_format_property) {
+> +		*val = state->color_format;
+>  	} else if (connector->funcs->atomic_get_property) {
+>  		return connector->funcs->atomic_get_property(connector,
+>  				state, property, val);
+> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+> index aec05adbc889..4d85add60d92 100644
+> --- a/drivers/gpu/drm/drm_connector.c
+> +++ b/drivers/gpu/drm/drm_connector.c
+> @@ -1359,6 +1359,32 @@ static const char * const colorspace_names[] = {
+>  	[DRM_MODE_COLORIMETRY_BT601_YCC] = "BT601_YCC",
+>  };
+>  
+> +/**
+> + * drm_get_color_format_name - return a string for color format
+> + * @color_fmt: color format to return the name of
+> + *
+> + * Returns a string constant matching the format's name, or NULL if no match
+> + * is found.
+> + */
+> +const char *drm_get_color_format_name(enum drm_color_format_enum color_fmt)
+> +{
+> +	switch (color_fmt) {
+> +	case DRM_COLOR_FORMAT_ENUM_AUTO:
+> +		return "AUTO";
+> +	case DRM_COLOR_FORMAT_ENUM_RGB444:
+> +		return "RGB";
+> +	case DRM_COLOR_FORMAT_ENUM_YCBCR444:
+> +		return "YUV 4:4:4";
+> +	case DRM_COLOR_FORMAT_ENUM_YCBCR422:
+> +		return "YUV 4:2:2";
+> +	case DRM_COLOR_FORMAT_ENUM_YCBCR420:
+> +		return "YUV 4:2:0";
+> +	default:
+> +		return NULL;
+> +	}
+> +}
+> +EXPORT_SYMBOL(drm_get_color_format_name);
+> +
+>  /**
+>   * drm_get_colorspace_name - return a string for color encoding
+>   * @colorspace: color space to compute name of
+> @@ -1388,6 +1414,20 @@ static const u32 hdmi_colorspaces =
+>  	BIT(DRM_MODE_COLORIMETRY_DCI_P3_RGB_D65) |
+>  	BIT(DRM_MODE_COLORIMETRY_DCI_P3_RGB_THEATER);
+>  
+> +/* already bit-shifted */
+> +static const u32 hdmi_colorformats =
+> +	DRM_COLOR_FORMAT_RGB444 |
+> +	DRM_COLOR_FORMAT_YCBCR444 |
+> +	DRM_COLOR_FORMAT_YCBCR422 |
+> +	DRM_COLOR_FORMAT_YCBCR420;
+> +
+> +/* already bit-shifted */
+> +static const u32 dp_colorformats =
+> +	DRM_COLOR_FORMAT_RGB444 |
+> +	DRM_COLOR_FORMAT_YCBCR444 |
+> +	DRM_COLOR_FORMAT_YCBCR422 |
+> +	DRM_COLOR_FORMAT_YCBCR420;
+> +
+>  /*
+>   * As per DP 1.4a spec, 2.2.5.7.5 VSC SDP Payload for Pixel Encoding/Colorimetry
+>   * Format Table 2-120
+> @@ -2649,6 +2689,97 @@ int drm_mode_create_hdmi_colorspace_property(struct drm_connector *connector,
+>  }
+>  EXPORT_SYMBOL(drm_mode_create_hdmi_colorspace_property);
+>  
+> +/**
+> + * drm_mode_create_color_format_property - create color format property
+> + * @connector: connector to create the color format property on
+> + * @supported_color_formats: bitmask of &enum drm_color_format values the
+> + *                           connector supports
+> + *
+> + * Called by a driver to create a color format property. Must be attached to
+> + * the desired connector afterwards.
+> + *
+> + * @supported_color_formats should only include color formats the connector
+> + * type can actually support.
+> + *
 > + * Returns:
-> + * - 0 in case of success - after any tunnel detected and added to
-> + @intel_dp
-> + * - 1 in case the link BW via the new or an already existing tunnel has
-> changed
-> + *   in a way that requires notifying user space
-> + * - Negative error code, if creating a new tunnel or updating the tunne=
-l
-> + *   state failed
->   */
->  int intel_dp_tunnel_detect(struct intel_dp *intel_dp, struct
-> drm_modeset_acquire_ctx *ctx)  {
-> --
-> 2.49.1
+> + * 0 on success, negative errno on error
+> + */
+> +int drm_mode_create_color_format_property(struct drm_connector *connector,
+> +					  u32 supported_color_formats)
+> +{
+> +	struct drm_device *dev = connector->dev;
+> +	struct drm_prop_enum_list enum_list[DRM_COLOR_FORMAT_ENUM_NUM];
+> +	enum drm_color_format_enum fmt_e;
+> +	unsigned int len = 1;
+> +	unsigned int i = 1;
+> +	u32 fmt;
+> +
+> +	if (connector->color_format_property)
+> +		return 0;
+> +
+> +	if (!supported_color_formats) {
+> +		drm_err(dev, "No supported color formats provided on [CONNECTOR:%d:%s]\n",
+> +			connector->base.id, connector->name);
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (supported_color_formats & ~DRM_COLOR_FORMAT_ALL) {
+> +		drm_err(dev, "Unknown color formats provided on [CONNECTOR:%d:%s]\n",
+> +			connector->base.id, connector->name);
+> +		return -EINVAL;
+> +	}
+> +
+> +	switch (connector->connector_type) {
+> +	case DRM_MODE_CONNECTOR_HDMIA:
+> +	case DRM_MODE_CONNECTOR_HDMIB:
+> +		if (supported_color_formats & ~hdmi_colorformats) {
+> +			drm_err(dev, "Color formats not allowed for HDMI on [CONNECTOR:%d:%s]\n",
+> +				connector->base.id, connector->name);
+> +			return -EINVAL;
+> +		}
+> +		break;
+> +	case DRM_MODE_CONNECTOR_DisplayPort:
+> +	case DRM_MODE_CONNECTOR_eDP:
+> +		if (supported_color_formats & ~dp_colorformats) {
+> +			drm_err(dev, "Color formats not allowed for DP on [CONNECTOR:%d:%s]\n",
+> +				connector->base.id, connector->name);
+> +			return -EINVAL;
+> +		}
+> +		break;
+> +	}
+> +
+> +	enum_list[0].name = drm_get_color_format_name(DRM_COLOR_FORMAT_ENUM_AUTO);
+> +	enum_list[0].type = DRM_COLOR_FORMAT_ENUM_AUTO;
+> +
+> +	while (supported_color_formats) {
 
+Please consider making supported_color_formats an unsigned long, and
+using for_each_set_bit(). It makes everything below much easier.
+
+> +		fmt = BIT(i - 1);
+> +		if (supported_color_formats & fmt) {
+> +			supported_color_formats ^= fmt;
+> +			fmt_e = drm_color_format_to_enum(fmt);
+
+This function doesn't exist yet, breaking bisectability. But I think
+this idea of two "domains" for color format is getting out of hand. See
+comments below. IMO drm_color_format_to_enum() should not be added
+anyway.
+
+I think the right option is to only use the enums, and then use those as
+bit numbers where masks are needed.
+
+> +			if (fmt_e != DRM_COLOR_FORMAT_ENUM_INVALID) {
+> +				enum_list[len].name = drm_get_color_format_name(fmt_e);
+> +				enum_list[len].type = fmt_e;
+> +				len++;
+> +			} else {
+> +				drm_warn(dev,
+> +					 "Unknown supported format 0x%x on [CONNECTOR:%d:%s]\n",
+> +					 fmt, connector->base.id, connector->name);
+> +			}
+
+This is just unnecessary complications from the two domains.
+
+> +		}
+> +		i++;
+> +	}
+> +
+> +	connector->color_format_property =
+> +		drm_property_create_enum(dev, DRM_MODE_PROP_ENUM, "color format",
+> +					 enum_list, len);
+> +
+> +	if (!connector->color_format_property)
+> +		return -ENOMEM;
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_mode_create_color_format_property);
+> +
+>  /**
+>   * drm_mode_create_dp_colorspace_property - create dp colorspace property
+>   * @connector: connector to create the Colorspace property on.
+> @@ -2866,6 +2997,25 @@ int drm_connector_attach_max_bpc_property(struct drm_connector *connector,
+>  }
+>  EXPORT_SYMBOL(drm_connector_attach_max_bpc_property);
+>  
+> +/**
+> + * drm_connector_attach_color_format_property - attach "force color format" property
+> + * @connector: connector to attach force color format property on.
+> + *
+> + * This is used to add support for selecting a color format on a connector.
+> + *
+> + * Returns:
+> + * Zero on success, negative errno on failure.
+> + */
+> +int drm_connector_attach_color_format_property(struct drm_connector *connector)
+> +{
+> +	struct drm_property *prop = connector->color_format_property;
+> +
+> +	drm_object_attach_property(&connector->base, prop, DRM_COLOR_FORMAT_ENUM_AUTO);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_connector_attach_color_format_property);
+> +
+>  /**
+>   * drm_connector_attach_hdr_output_metadata_property - attach "HDR_OUTPUT_METADA" property
+>   * @connector: connector to attach the property on.
+> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+> index c18be8c19de0..18bd875b6918 100644
+> --- a/include/drm/drm_connector.h
+> +++ b/include/drm/drm_connector.h
+> @@ -556,6 +556,97 @@ enum drm_colorspace {
+>  	DRM_MODE_COLORIMETRY_COUNT
+>  };
+>  
+> +/**
+> + * enum drm_color_format_enum - color model description
+> + *
+> + * This enum is a high-level description of the component makeup of the image
+> + * data. It says nothing about how the components are ordered or how many bits
+> + * they take up (i.e. is unlike MEDIA_BUS_FMT\_ or DRM_FORMAT\_), but
+> + * describes the type of components (Luminance-Chrominance vs. RGB) and the
+> + * sub-sampling.
+> + *
+> + * &enum drm_color_format_enum makes statements about the same attribute of
+> + * an image as the DRM_COLOR_FORMAT\_ bitfields do. Its purpose is to inform
+> + * choices made by display protocol specific implementations when it comes to
+> + * translating it to e.g. &enum hdmi_colorspace or &enum dp_pixelformat, both
+> + * of which also describe the same attribute of the image at the same level of
+> + * specificity.
+> + *
+> + * In precise terms, this enum describes a color model. It makes no statements
+> + * about the primaries, gamma, or current phase of the moon used in conversion
+> + * from one to the other. Furthermore, it also makes no statements about the
+> + * order of components (e.g. RGB vs. BGR), their depth in bits, or their binary
+> + * packing.
+> + */
+> +enum drm_color_format_enum {
+
+The enum name should not have "enum" in it. That's just not a style
+that's being used.
+
+> +	/**
+> +	 * @DRM_COLOR_FORMAT_ENUM_AUTO: The choice of format is left up to the
+> +	 * display protocol implementation. All implementations of the same
+> +	 * display protocol (e.g. HDMI) are supposed to behave the same way,
+> +	 * though display protocols may choose to behave differently compared to
+> +	 * each other (e.g. HDMI's "AUTO" does not have to match DP's "AUTO").
+> +	 *
+> +	 * Implementations may rely on @DRM_COLOR_FORMAT_ENUM_AUTO to be falsy.
+> +	 */
+> +	DRM_COLOR_FORMAT_ENUM_AUTO = 0,
+
+Ditto for the enumeration names, no ENUM in them please.
+
+> +
+> +	/**
+> +	 * @DRM_COLOR_FORMAT_ENUM_RGB444: Image components are encoded as RGB
+> +	 * values of equal resolution.
+> +	 */
+> +	DRM_COLOR_FORMAT_ENUM_RGB444,
+> +
+> +	/**
+> +	 * @DRM_COLOR_FORMAT_ENUM_YCBCR444: Image components are encoded as
+> +	 * luminance and chrominance of equal resolution.
+> +	 */
+> +	DRM_COLOR_FORMAT_ENUM_YCBCR444,
+> +
+> +	/**
+> +	 * @DRM_COLOR_FORMAT_ENUM_YCBCR422: Image components are encoded as
+> +	 * luminance and chrominance with the chrominance components having half
+> +	 * the horizontal resolution.
+> +	 */
+> +	DRM_COLOR_FORMAT_ENUM_YCBCR422,
+> +
+> +	/**
+> +	 * @DRM_COLOR_FORMAT_ENUM_YCBCR420: Image components are encoded as
+> +	 * luminance and chrominance with the chrominance components having half
+> +	 * the horizontal and vertical resolution.
+> +	 */
+> +	DRM_COLOR_FORMAT_ENUM_YCBCR420,
+> +
+> +	/**
+> +	 * @DRM_COLOR_FORMAT_ENUM_NUM: The number of valid color format values
+> +	 * in this enum. Itself not a valid color format.
+> +	 */
+> +	DRM_COLOR_FORMAT_ENUM_NUM,
+> +
+> +	/**
+> +	 * @DRM_COLOR_FORMAT_ENUM_INVALID: Error return value for conversion
+> +	 * functions encountering unexpected inputs.
+> +	 */
+> +	DRM_COLOR_FORMAT_ENUM_INVALID = -EINVAL,
+
+Please don't hide negative error codes inside enums. If you need to
+return one from a function, please return the negative error code
+directly instead.
+
+> +};
+> +
+> +/*
+> + * Constants for specifying bit masks for e.g. providing a list of supported
+> + * color formats as a single integer.
+> + */
+> +#define DRM_COLOR_FORMAT_RGB444		BIT(0)
+> +#define DRM_COLOR_FORMAT_YCBCR444	BIT(1)
+> +#define DRM_COLOR_FORMAT_YCBCR422	BIT(2)
+> +#define DRM_COLOR_FORMAT_YCBCR420	BIT(3)
+
+I don't think we should define both enum and mask. One or the
+other. Moreover, now you have two independent definitions for the same
+thing, with nothing to ensure they keep matching. It's a bug waiting to
+happen.
+
+I think the problem is that they were originally defined as bits even
+though most places actually use them as single values only. It's
+confusing. It would probably have been better to just use enums and
+BIT(DRM_COLOR_FORMAT_*) where a mask is needed.
+
+Maybe that's what should be done as the first step anyway.
+
+> +
+> +/*
+> + * Mask of all DRM_COLOR_FORMAT\_ constants. When adding new color formats,
+> + * they must be part of this define.
+> + */
+> +#define DRM_COLOR_FORMAT_ALL	(DRM_COLOR_FORMAT_RGB444   | \
+> +				 DRM_COLOR_FORMAT_YCBCR444 | \
+> +				 DRM_COLOR_FORMAT_YCBCR422 | \
+> +				 DRM_COLOR_FORMAT_YCBCR420)
+> +
+>  /**
+>   * enum drm_bus_flags - bus_flags info for &drm_display_info
+>   *
+> @@ -699,11 +790,6 @@ struct drm_display_info {
+>  	 */
+>  	enum subpixel_order subpixel_order;
+>  
+> -#define DRM_COLOR_FORMAT_RGB444		(1<<0)
+> -#define DRM_COLOR_FORMAT_YCBCR444	(1<<1)
+> -#define DRM_COLOR_FORMAT_YCBCR422	(1<<2)
+> -#define DRM_COLOR_FORMAT_YCBCR420	(1<<3)
+> -
+>  	/**
+>  	 * @panel_orientation: Read only connector property for built-in panels,
+>  	 * indicating the orientation of the panel vs the device's casing.
+> @@ -1107,6 +1193,13 @@ struct drm_connector_state {
+>  	 */
+>  	enum drm_colorspace colorspace;
+>  
+> +	/**
+> +	 * @color_format: State variable for Connector property to request
+> +	 * color format change on Sink. This is most commonly used to switch
+> +	 * between RGB to YUV and vice-versa.
+> +	 */
+> +	enum drm_color_format_enum color_format;
+> +
+>  	/**
+>  	 * @writeback_job: Writeback job for writeback connectors
+>  	 *
+> @@ -2105,6 +2198,12 @@ struct drm_connector {
+>  	 */
+>  	struct drm_property *colorspace_property;
+>  
+> +	/**
+> +	 * @color_format_property: Connector property to set the suitable
+> +	 * color format supported by the sink.
+> +	 */
+> +	struct drm_property *color_format_property;
+> +
+>  	/**
+>  	 * @path_blob_ptr:
+>  	 *
+> @@ -2507,6 +2606,9 @@ int drm_mode_create_dp_colorspace_property(struct drm_connector *connector,
+>  int drm_mode_create_content_type_property(struct drm_device *dev);
+>  int drm_mode_create_suggested_offset_properties(struct drm_device *dev);
+>  
+> +int drm_mode_create_color_format_property(struct drm_connector *connector,
+> +					  u32 supported_color_formats);
+> +
+>  int drm_connector_set_path_property(struct drm_connector *connector,
+>  				    const char *path);
+>  int drm_connector_set_tile_property(struct drm_connector *connector);
+> @@ -2588,6 +2690,10 @@ bool drm_connector_has_possible_encoder(struct drm_connector *connector,
+>  					struct drm_encoder *encoder);
+>  const char *drm_get_colorspace_name(enum drm_colorspace colorspace);
+>  
+> +int drm_connector_attach_color_format_property(struct drm_connector *connector);
+> +
+> +const char *drm_get_color_format_name(enum drm_color_format_enum color_fmt);
+> +
+>  /**
+>   * drm_for_each_connector_iter - connector_list iterator macro
+>   * @connector: &struct drm_connector pointer used as cursor
+
+-- 
+Jani Nikula, Intel
