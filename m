@@ -2,103 +2,185 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AEx7Gp8LnGlL/QMAu9opvQ
+	id UComMtELnGlL/QMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 09:11:11 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 09:12:01 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16DC5172F39
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 09:11:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E5AE172F67
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 09:12:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F45E10E26A;
-	Mon, 23 Feb 2026 08:11:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D877B10E278;
+	Mon, 23 Feb 2026 08:11:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="Y6OHRyoM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J0vakA7R";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com
- [209.85.218.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7425810E26F
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Feb 2026 08:11:06 +0000 (UTC)
-Received: by mail-ej1-f43.google.com with SMTP id
- a640c23a62f3a-b8876d1a39bso551499166b.1
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Feb 2026 00:11:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1771834265; x=1772439065;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=fPcLFGqvXQ/TrcZMbc9zEuLscnPpwUEKK1FNGlp3euE=;
- b=Y6OHRyoMiYy6eH6nYMVYAzkzc1eZAVCO23ggtFZWViT/7NuGcD48DHTOLJJJjyBUsT
- evntRoF0pEtV7ZLENZVai25SvjdrQpEkppYxpkeKwsHLA/NFKvz3Qoko/ydmncUgN4a6
- bPaP1uBgBorLRkmt5t09lLPGfvgt4ZuijEHig=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1771834265; x=1772439065;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=fPcLFGqvXQ/TrcZMbc9zEuLscnPpwUEKK1FNGlp3euE=;
- b=Xz+Euikw2HOPo+BWvFIlma5hpqzFYeGombpHni5jQfm7ckHmehmf38K/nzIT7NUX5n
- EwCtg63mCNguT17gm+1xhSTbwzQg9PXgiod/wBz73rRa0ICsGVIuaOVfvIpXwf1BWTq9
- A+5iI7dSXXEngVLv8xjwktMFuUPzjd0GEMYnL6YiZZ2pF2RggyvdacqVjB7JZeNU6i1R
- nwDWWdqtLflOcEeEBokYlNj6MZ2XFEm00hTMF1gka4QBaOyJDX5VOltfhcNe/oO2vsL+
- BBr/OpQB0lvLwp7TV530pS1Zt7jeH+qILmCATIRRQ8+TZN4bGqth2MaGO3Gl9xKDMa8W
- qJ1A==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVzxyawFIjLYSBtlzG8X+ArVln7ZYJoGrcjsnt0UmEXlfYsUJa4CzvrfGuJ+w69www25Bvk+jnwfpo=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzjHrCCFWo0IMBAJRaxMi6s6KvTj9RKj1OMEPN7ZG4u1Wmk523p
- x5z3awQlNINDxSrGw1n9ZwbU2YD9HC9/Oj8WFjIqI3a7ASTvZxiud/Lhvssv+eFLcl9cjLYqyxg
- xEbG0kw==
-X-Gm-Gg: AZuq6aKnk5eHG+EJ0tms/FAym2DlklYIp3i1pomNj6H8BYglO5cPu9t42lepvDnBKQM
- yLaF1gK1f47nH88zPr3G2OkM1f3WcaySh531NBB0xhLdlmpf6SBDDraA29uLxCW+B+H7wL6sICz
- l3qYsy0QTLDCkIopm1eKqlam9DLT6C71sjSNfDcTrtkQEn8kmie0+V1ZRg51Yit+krxNm6uPHPo
- rzFmssRJseeC6HIOqHAVmhz+gVBfgUG6FzwrVf4WI9gib7bdo1nWim5ZP7Y4iPR7pz4JIj3pCdQ
- d0N6EU03THscyzTbouCMKXvrPA9hfP0SHwZK9xzH2DUMHSHquo6XmP/xlP8bqcen5mya47rLiug
- hjHJGrTXFI0HwX3aeXzT7sJYixD9mC+wGkQp0iVkmbMZqfxhgdFxBerFbSq9BRvuC7PhZRjgNwN
- 3/qPbyk+vhSG5O2ahPB7QDCoXW91D0USxsMMXx0oXQbKDSdF/Curkp66J1lXZ/wQQWf2CvdLc=
-X-Received: by 2002:a17:907:3e16:b0:b87:324b:9ae1 with SMTP id
- a640c23a62f3a-b9081b222a2mr415522666b.40.1771834264470; 
- Mon, 23 Feb 2026 00:11:04 -0800 (PST)
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com.
- [209.85.218.42]) by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-65eaba3f967sm2430309a12.31.2026.02.23.00.11.03
- for <intel-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 23 Feb 2026 00:11:03 -0800 (PST)
-Received: by mail-ej1-f42.google.com with SMTP id
- a640c23a62f3a-b9047e72201so581505166b.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Feb 2026 00:11:03 -0800 (PST)
-X-Forwarded-Encrypted: i=1;
- AJvYcCXH1+z4lfQagt2QGjGbwgYnLa0okNl+0X+TUtFfSQktlx3VzAJ76D7GfTsMOExRB1Zegmpa+0HR12o=@lists.freedesktop.org
-X-Received: by 2002:a17:907:94cc:b0:b87:12d2:fa1a with SMTP id
- a640c23a62f3a-b908191f1d6mr445251466b.12.1771834262096; Mon, 23 Feb 2026
- 00:11:02 -0800 (PST)
-MIME-Version: 1.0
-References: <CAD0gVBsyzYNA6ydPwg9mJ9VQzYg4zPAi24JQ13-=0KtdbQ039A@mail.gmail.com>
-In-Reply-To: <CAD0gVBsyzYNA6ydPwg9mJ9VQzYg4zPAi24JQ13-=0KtdbQ039A@mail.gmail.com>
-From: Ricardo Ribalda <ribalda@chromium.org>
-Date: Mon, 23 Feb 2026 09:10:49 +0100
-X-Gmail-Original-Message-ID: <CANiDSCsMVE7qAcjcjbjhYSMoyypkR5Nq-ZA-e=CJVY5CUGAG7Q@mail.gmail.com>
-X-Gm-Features: AaiRm53F0LIMOe6xezXE30KkDM_p2uBY1AB8eOErFcvfTTb2PhOgsWveImx1C0M
-Message-ID: <CANiDSCsMVE7qAcjcjbjhYSMoyypkR5Nq-ZA-e=CJVY5CUGAG7Q@mail.gmail.com>
-Subject: Re: [REGRESSION] Display freeze on VT switch back to X11 since v6.16
-To: =?UTF-8?B?QW5kcsOpcyBQw6lyZXo=?= <andres.f.perez@gmail.com>
-Cc: stable@vger.kernel.org, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Hans de Goede <hansg@kernel.org>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
- regressions@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29A5510E276;
+ Mon, 23 Feb 2026 08:11:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1771834318; x=1803370318;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=aVgGymvV+4xN7Ze69e8zkWTVP2IKMQ4pvpniU445hGg=;
+ b=J0vakA7RIM00VpHYeEJC12uo1Cg7Xf1RpXO+h7s9JXpA07RA+VcfYz0W
+ Ll8nEs1FF3UD/5JrAOIxWrOI6YVTgASgWZOXW+zrZp+XVbdRqZpSs/Ket
+ As5ZQd/uGy8zUfEItHnJfiVTOwjzCy9psvCh7a7/ukv1ieX9Cqfmx0qgC
+ YB/GzGXn8AZ2Uort96o3mWgNYcvOX1gWYDi/UE99KMrQxWB0QOuia+LFJ
+ 9SKQykNb916drr9MwBfXJi/gskz2FPIGL1d7kpAHdabmWI6/SdQ7fgK45
+ sTH+xk9ufFV2GSPSD749JKs8Ko0g73dW72wodIf0/wXIZJsO+qJPE6tG9 g==;
+X-CSE-ConnectionGUID: 7kZxqyVtRbyvBHJ/64Xh/g==
+X-CSE-MsgGUID: 0vpa4p5qT4WqEZDona2M8A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11709"; a="95440836"
+X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="95440836"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2026 00:11:58 -0800
+X-CSE-ConnectionGUID: eaubLhckQwKFu69+Rd+aLA==
+X-CSE-MsgGUID: uHrxAnJSQ/2PlrBOpIzwQA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="215325434"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2026 00:11:58 -0800
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Mon, 23 Feb 2026 00:11:57 -0800
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35 via Frontend Transport; Mon, 23 Feb 2026 00:11:57 -0800
+Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.56) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Mon, 23 Feb 2026 00:11:56 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=RC7hYaolmhec1yQV049bD6SVN8vKn5Jm5pDG3EyVT7MBBPfNmZjYOMKWYSU/LdnyQtwyJzWDGSMkPQlglRefO+uqRADAS7AIIqnQ317F/XLWDVcTJ5DuIBVefxlQ8skJ7iqMIsQMNGbslFsbjwnHznlA9Qm2lbbp3UQwqGXeY1aH6bpQdK90FIFJZmD/4pjHjWIVpd77D+piwVdmToqIzy6j7e2qn0G9DKotecZVC6xALULM+2PRQTutYUKvH8+XJKFQqjtaGtwlgACNQ4WGoJvycJwbAVWuJJBkVBb8hyWEItFglz8qWO2bbXk8+pUhvvnFfPWSl0oqf+l9KpHBeA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=smtne59Buv8ZahQMjyGvIFVC8e2wDeDOOM0RWJb0Xe0=;
+ b=FBKB9AVC4EPQo+zFSVPrO0f9MPTKWWwKT27LMsAUU2rh7JpaHLjbpwjKAFIT8Mevk0y12Boax6df4gnO+eL1fX1nzWCz7N2I0ZSRyv/PB2sTud2jgePrOFcHob94haSw0jko0vEXAjVfAk3KxYWydJHQhV9kzYT3QTde0MG+kfo552CZx/RLE8bhiRkAFDUcoHHqfZOpmyqwfxfc+S2HekdbklOEHqvDFE29IerLzoXsjEOS1DA9klu5/12X1oogSdqvjXgi0H1ooba7Hpp2r96wjbfBtTIO9KuNI5zSA6dt9XFcc9zgGAIVKJr1aXhDz+vD8s22z6PH1bwG6lZ75A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
+ (2603:10b6:f:fc00::f13) by DS4PPF706C623D2.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::2f) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.21; Mon, 23 Feb
+ 2026 08:11:53 +0000
+Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
+ ([fe80::b65a:1e88:89fa:c16]) by DM3PPF208195D8D.namprd11.prod.outlook.com
+ ([fe80::b65a:1e88:89fa:c16%3]) with mapi id 15.20.9632.017; Mon, 23 Feb 2026
+ 08:11:53 +0000
+From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: "Garg, Nemesa" <nemesa.garg@intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+CC: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, "Murthy, Arun R"
+ <arun.r.murthy@intel.com>
+Subject: RE: [PATCH 6/8] drm/i915/backlight: Update debug log during backlight
+ setup
+Thread-Topic: [PATCH 6/8] drm/i915/backlight: Update debug log during
+ backlight setup
+Thread-Index: AQHcoiYnVi5x1VpR0UeMfMu60GHfl7WP4TaAgAARJ/A=
+Date: Mon, 23 Feb 2026 08:11:53 +0000
+Message-ID: <DM3PPF208195D8D2127173B1BD6FCBAB774E377A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+References: <20260220050217.2453681-1-suraj.kandpal@intel.com>
+ <20260220050217.2453681-7-suraj.kandpal@intel.com>
+ <IA1PR11MB64670ABDAC9EC44406BDC577E377A@IA1PR11MB6467.namprd11.prod.outlook.com>
+In-Reply-To: <IA1PR11MB64670ABDAC9EC44406BDC577E377A@IA1PR11MB6467.namprd11.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM3PPF208195D8D:EE_|DS4PPF706C623D2:EE_
+x-ms-office365-filtering-correlation-id: 1ee51e2d-2087-4e5b-70c6-08de72b33430
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|366016|376014|1800799024|38070700021;
+x-microsoft-antispam-message-info: =?us-ascii?Q?PCI2SQT6lu1JhVdbBEGXR7TlLQVxgS42fe87nFgPbGSY3aUOjZVFcHfD1Kpw?=
+ =?us-ascii?Q?WKaqfNysCuQEbLO9A1/bF3LAdfg+pl2q0RDI4xq68/KP7CzDzffk4NgxRL48?=
+ =?us-ascii?Q?rvudbdwR6hLKQ9jGr3+HzbYRBf569SeLe+4zcwJpW5T5WCXMHhM3Kz0MFqtv?=
+ =?us-ascii?Q?OemhtNk6tRzq7LqE+qRJSFUE0A4616E8hI5W9RbW/oi0Ni8p4Uha8kcXHoHr?=
+ =?us-ascii?Q?XEIGpFquE3bHi89XtfaY6b0NxltdXlrnLU7KIraZFr6zKTAy4byKalILfNVi?=
+ =?us-ascii?Q?EqMiE7pKI8sev8o7ABazOcPmix2VqyTZZvf2GBwhogEJVV+5NHxtQU9zw0N1?=
+ =?us-ascii?Q?N1qFJGaxTepDxij+l8gFN1X+YmK5pUcEhMIursggGCP+FlfQRwHehtgfHdhP?=
+ =?us-ascii?Q?dH9gd6mGWSIikxmL97k0OBs7njduxCOX+9QsO9IOoPzeF044NyRKqlpFM9Dd?=
+ =?us-ascii?Q?CVncCoMhQsMozjyZaiIL5DMLAPJaBFoRDpjdEtSMCr9TI4mTZPnbcYBL0/Y7?=
+ =?us-ascii?Q?k+IeAeIuaok4PEG1MErwcl85dM9kOZoi8rlLxQC5fgnGMRav4F0G6u43lIaX?=
+ =?us-ascii?Q?zIk/flFwQmyTxwt6nUtHcpN3SP/s1LBxaw3hS11dFbuyzFQa8idIW+t3LZm5?=
+ =?us-ascii?Q?aNGEgfvss3SC97DgKh1EkRuyu3wWB9OxM1bcBlVc2sXNmBSZGseGtgVcgjU8?=
+ =?us-ascii?Q?5RGnMcZ+dtJVNo0EyWedRPM95kW7jRCoY0JSckkIU13kq9tv34HwFG64bKei?=
+ =?us-ascii?Q?dLbifmUxorBD+smUCUvktzB8JpP6FyqyXItGc4vFtyuWnBEKdXuHqNwnFEmj?=
+ =?us-ascii?Q?OeeL12CxcaL31IMqYbmA1hZLQquxh/rUf9uGZYvs3IMlMMVuolpJqHljU6YH?=
+ =?us-ascii?Q?YgzmsfyWxa9zVLca9uGI2MbH/vzZ63l/bztFcmivkbgFVH4liFgTetSKukaH?=
+ =?us-ascii?Q?B37GG8g4aDPRiyxEfb7Lpaz5puzOrF+niKpdLRfIhDIeETRoquPhLmagYxCg?=
+ =?us-ascii?Q?+qZoY/AHNJaLUkZzhpj/aWYBPEis2F9xFrl8UlOMcEVGx1kpmtDJYdrR0DHy?=
+ =?us-ascii?Q?ZaursMG5VfKl4RAQKjz+GPg2M9JJZqlfAf4Y/sBjXyomcEGlTImLNj856peD?=
+ =?us-ascii?Q?UPBitnjEbuIlvuWNpSSR57fJsEfDU05ZwZyGLjBuWMTvJEirDtN2EDTnXuYk?=
+ =?us-ascii?Q?vyrkIoPIz8dipTAC1JhXzsB1JHyJ9n90t0+LvNhqbzYaRGQXkGzLzW+nmalV?=
+ =?us-ascii?Q?UmOOPhlRXdLjRDpCm5mpBrJVdEOnG83ZDsue0Gj/xboWaOForYjm3dz7A7GE?=
+ =?us-ascii?Q?OMTxviCZuiW2AoQ0PvhQrUIH8lit5WLWoi7f0kUVTVR4gSMPfwCLUxf/ECNV?=
+ =?us-ascii?Q?k3UOrAH71ow5TuX3HCDLKud1Byx5Qvd9e8DO2I29pSEPfakj3MfAehM8674t?=
+ =?us-ascii?Q?0JfSqO5WUPxVPL0ZKsghYH+oI9kH45oEP9+P3pHThZU6gkhC8hy3+IvPnMLs?=
+ =?us-ascii?Q?PQxYFicbosRxj2jvq+RdvtxG39mmhzNMU+SANnlN1flTaRaLju5mwlKF3j54?=
+ =?us-ascii?Q?QWEisuqhSiISwSDLaMSj2btEYuzEH6CwldfDwPPBdclvgnwYZNMLMHRkY65B?=
+ =?us-ascii?Q?GPOGv2Dfda1BQfDIjFGovVg=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM3PPF208195D8D.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(38070700021); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?2N/JhkdDk04BHO79Qn5sl86znUydzVxjs19rbzmXdYplKXERB45KZTd6+nJY?=
+ =?us-ascii?Q?U+Nc6CdY3dbnilxGuFozdooEHIdl/PwsMnwOT3Nd4xoMyew6SU5U7ebDdOyQ?=
+ =?us-ascii?Q?dih65dwokFoxvC7Q3h5JCLGHF4qNIRX4Dq6Z4miZeflddZvx6J9n16hXk49U?=
+ =?us-ascii?Q?o7eF/TeRotcBprn6RGIVeESqA55nrT/KPoj2a/nkRdcF1R03DxerQvmeS4a9?=
+ =?us-ascii?Q?ev+dG+JB0F1LzRiDSurzZN9T6E9WbZTBdBzY/ZuAUT5LTfsuJEFe/nfXGV/Y?=
+ =?us-ascii?Q?sOMd/bHekrcl9c0n0VgC0rvV2Ye4d05HHtEwE6TtuHtOZ53z+eIvl8YmbqLA?=
+ =?us-ascii?Q?YoSxyWqk6gqvkpOatp4fvg1gMCcOK+jkd8/h2AUu6j6PadaG5npYEdAFEfCe?=
+ =?us-ascii?Q?w5ydGs1ZU8pz9SJ9vIASUXFdMOTX0smveELb7D1t2rj5RKbUIURN7KcZX59F?=
+ =?us-ascii?Q?YQIm6+ZQ2EFbLueeadSPKjSZ7DcT+bcHkm5HDTRUxnMt+QYhYz7KBBcUzAvc?=
+ =?us-ascii?Q?MHp55tBAZ8lph9TG+nGVeBxC7Zjm+ad85KSkpTJE32+vfn2YEfU7sFQUjvDw?=
+ =?us-ascii?Q?8HuoimqXLKyk/k9xPHcez4Nqui+Ou6A85sWXKISepW6jteHuqPNSMA9pZoYY?=
+ =?us-ascii?Q?nv7hPOugD0+tMBREIHyUTbaAr1f/PuI9wwy31TR0RWEdV0ETp/JajRHJPZqv?=
+ =?us-ascii?Q?1WqtbgX3CE4RGHQ5wNEEWjL8mMQuCqauMCsL4nZyFkiRTxNFhynebiacQudI?=
+ =?us-ascii?Q?emOinhP/4PmwoosAZ+biQvE5IGtWaLI8WG6o9P8wmfGU4qQm6YkzXXLTyKtQ?=
+ =?us-ascii?Q?BIpJvac+MHBxeZJZbYrvyrXU6OyMDmxcg44O0Wvgi8JWyZA2fl1bkppZTjYM?=
+ =?us-ascii?Q?NI7yBzTc8fiK9sUhHM6NhaUJJJ1Zgd27mbVckyFWuIK35JgPbT33Yg5qK74c?=
+ =?us-ascii?Q?Wk51u/HbiPIoQ1Y0GT3sTB6TsQaNvbNf7iV4nExgs+Fuou/4jNpPSYm9mA99?=
+ =?us-ascii?Q?kgut2XtetdDWUU7CTnlIiSzY81mklSmjI2/osF/rSIW8v1bSRNDMVIddiHm5?=
+ =?us-ascii?Q?gk/edP1YNxWcKM8NxpLQ9Gmz1VEQFlSvNkylNRDPgM+yFRJaTCOeLEjrlf52?=
+ =?us-ascii?Q?gSj4nZHnNTzf+py9G7Ya4/JlOgD625JLbBVqkKqIh7hN22NRJ8KSFnXbqN6D?=
+ =?us-ascii?Q?3ABUN2+7PBelwg2SLX5nnd8BjISaS72be6M3cjusEMlUiov1Y76wqjNQwm/T?=
+ =?us-ascii?Q?t5wbhhbrdjVIb3XXPG07sxasXOPibws8+eQ9JtR6rcG5PiKiUdkqk9ZD4YP/?=
+ =?us-ascii?Q?6ihKgwIpyni4AOJ1qJaBYYv+l86e2eUfRg/bOOWG8MzO251C4R79TPBhxDIU?=
+ =?us-ascii?Q?S0GqA8UDiG9nsidrWxGeDOFiUavGgK0wb8O6jiExFLNX+UAMJC5mQsXNDNqN?=
+ =?us-ascii?Q?IJAZcnEhKtEe7dc6wj5XOP1WxWSBO8SbTOU14ahaWD/LTwBkfYwbzZWTMI2g?=
+ =?us-ascii?Q?6jl8u7+GhG2ZNdJJ4cfJzsepWSE/V2kzJqM9fsQxgaxuZfa+UtfspFa+fpf5?=
+ =?us-ascii?Q?wz3WFEFqUnIbmOID5YTcvmOtN2rEz1wJXQNmUCOR37I4zucwRzV3Yhkj+JtS?=
+ =?us-ascii?Q?qs5iR2EJKrsTLxkJvnL8VobLXguFhL1jPJh9WHPBOJNnFu98XZ0iHgJQVJTJ?=
+ =?us-ascii?Q?SttxYYwMC06AYz3j+vdTouJeC5JMLkFW7oglpc1JFCI4lXKTOpq8Lv01qM5O?=
+ =?us-ascii?Q?XmhQFpIj4Q=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM3PPF208195D8D.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1ee51e2d-2087-4e5b-70c6-08de72b33430
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Feb 2026 08:11:53.3154 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Tc5oKIhKjINPILYCuojEoXwUphCf0Jv9IPuHAxDmmxpnfHY/G9/0IpL+if0MZSZpuYZchC+l9SfzxONxP2OTJg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PPF706C623D2
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,200 +196,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
-	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS(0.00)[m:andres.f.perez@gmail.com,m:stable@vger.kernel.org,m:laurent.pinchart@ideasonboard.com,m:hansg@kernel.org,m:mchehab@kernel.org,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:airlied@gmail.com,m:simona@ffwll.ch,m:intel-xe@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:linux-media@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:regressions@lists.linux.dev,m:andresfperez@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[ribalda@chromium.org,intel-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,ideasonboard.com,kernel.org,linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch,lists.freedesktop.org,lists.linux.dev];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ribalda@chromium.org,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[chromium.org:+];
-	NEURAL_HAM(-0.00)[-0.998];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[suraj.kandpal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[chromium.org:dkim,mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 16DC5172F39
+	TAGGED_RCPT(0.00)[intel-gfx];
+	RCPT_COUNT_FIVE(0.00)[5];
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: 4E5AE172F67
 X-Rspamd-Action: no action
 
-Hi Andr=C3=A9s
-
-Thanks for doing the bisecting
-
-On Sun, 22 Feb 2026 at 22:56, Andr=C3=A9s P=C3=A9rez <andres.f.perez@gmail.=
-com> wrote:
->
-> # OVERVIEW
->
-> Since kernel v6.16.1, switching from an X11 session to a text VT and back
-> freezes the display on a ThinkPad P15 Gen 2. The system remains responsiv=
+> > Subject: [PATCH 6/8] drm/i915/backlight: Update debug log during
+> > backlight setup
+> >
+> > With luminance_set which represents PANEL_LUMINANCE_OVERRIDE, we
+> have
+> > another variable other than aux_enable to decide if we use PWM or
+> > DPCD. Make drm_dbg_kms log represent that.
+> >
+> Hi Suraj,
+> In this patch we have existing parameter aux_enable and you are adding
+> luminance_set as new parameter in the log so I guess commit message can b=
 e
-> over SSH; only the display is frozen. Bisecting identified commit
-> d1b618e7954802fe ("media: uvcvideo: Do not turn on the camera for some
-> ioctls") as the trigger. Reverting the logic change in that commit
-> fixes VT switching
-> on v6.16.1, v6.17.9, and v6.18.9, but that is not an actual solution. Way=
-land
-> compositors (e.g., river and sway) are not affected.
->
-> Last good:  v6.15.9
-> First bad:  v6.16.1
-> Bisect result: d1b618e7954802fe media: uvcvideo: Do not turn on the
-> camera for some ioctls
->
-> ## Hardware:   Lenovo ThinkPad P15 Gen 2i (20YQ0031US)
-> CPU:        Intel Core i7-11800H (Tiger Lake-H)
-> iGPU:        Intel UHD Graphics (TGL GT1)
-> dGPU:       NVIDIA T1200 (not involved in eDP output; driver: nvidia-open=
-)
-> Display:    15.6" 1920x1080 eDP, 10 bpc capable (EDID 1.4)
-> Webcam:     Integrated Camera on PCH xHCI (Bus 003 Port 004)
-> Firmware:   LENOVO N37ET61W (1.97)
-> OS:         Arch Linux, Nix home-manager, X11 + xmonad, no display manage=
-r
->
-> ## Symptoms and reproduction steps:
-> 1. Boot, start X11 on tty1 (startx).
-> 2. Switch to tty2 (Ctrl+Alt+F2): works.
-> 3. Switch back to tty1 (Ctrl+Alt+F1): display freezes.
->    - Frozen on the last frame shown before switching away.
->    - System is fully responsive over SSH.
->    - Other VTs switch normally between each other as long as X11 is
-> not active on them.
->    - Killing X does not recover the display. A reboot is required.
->
-> # DEBUG ANALYSIS
->
-> On v6.16.1, the VT switch back to X triggers a full modeset due to pipe
-> configuration mismatches detected by intel_pipe_config_compare:
->
-> [drm:intel_pipe_config_compare] fastset requirement not met in pipe_bpp
->   (expected 30, found 24)
-> [drm:intel_pipe_config_compare] fastset requirement not met in dp_m_n
->   (expected link 269484/524288, found link 336855/524288)
-> [drm:intel_pipe_config_compare] fastset requirement not met in dpll_hw_st=
-ate
->   (expected cfgcr0: 0xe001a5, found cfgcr0: 0x1c2)
-> [drm:intel_pipe_config_compare] fastset requirement not met in port_clock
->   (expected 270000, found 216000)
-> [drm:intel_atomic_check] forcing full modeset
->
-> On v6.15.9, the same VT switch shows no such messages.
-> no pipe_config_compare runs, no modeset, no freeze.
->
-> # BISECT AND VERIFICATION
->
-> The bisect converged on d1b618e7954802fe in the uvcvideo driver. This
-> commit adds a switch statement to uvc_v4l2_unlocked_ioctl that allows
-> certain V4L2 IOCTLS to call video_ioctl2 directly without first calling
-> uvc_pm_get/uvc_pm_put. Prior to this commit, all ioctls called uvc_pm_get
-> before video_ioctl2.
->
-> ## VT switching verification across kernel versions:
->
->   v6.12.74 arch pkg:   WORKS
->   v6.15.9 arch pkg:    WORKS
->   v6.15.9 from source: WORKS
->   v6.16.1 with d1b618e reverted:     WORKS
->   v6.17.9 with PM wrapping restored: WORKS
->   v6.18.9 with PM wrapping restored: WORKS
->
->   v6.16.1 from source:  FREEZES
->   v6.16.1 arch pkg:     FREEZES
->   v6.17.9 arch pkg:     FREEZES
->   v6.18.9 from source:  FREEZES
->   v6.18.9 arch pkg:     FREEZES
->
-> ## Things that do not eliminate the freeze
->
->   - module_blacklist=3Duvcvideo on boot
->   - CONFIG_USB_VIDEO_CLASS=3Dn (compiled out)
+> something like this:
+>=20
+> Since luminance_set (PANEL_LUMINANCE_OVERRIDE) will also affect the
+> brightness control path, so log this as well along with aux_enable in
+> drm_dbg_kms logs.
 
-This is puzzling me a bit... You are saying that if you do not build
-the uvc driver, the freeze is still happening?
+Currently what you are proposing is just a paraphrased version of my commit=
+ message.
+Can you mention what you feel is wrong with the commit message which would =
+require me
+ To change commit message.
 
-Am I understanding this correctly?
+Regards,
+Suraj Kandpal
 
->   - i915.enable_psr=3D0
->   - Bypassing intel_vrr_transcoder_enable/disable (no-op)
->   - xrandr --output eDP-1 --set "max bpc" 10
->   - Xorg config FBDepth 30 (No effect on pipe_bpp)
->
-> ## Workaround patch
->
-> Reverting the optimization from d1b618e to restore the unconditional
-> uvc_pm_get/put wrapping for all ioctls. This is not a proper fix.
->
-> diff --git a/drivers/media/usb/uvc/uvc_v4l2.c b/drivers/media/usb/uvc/uvc=
-_v4l2.c
-> index 9e4a251eca88..15057b47ec4f 100644
-> --- a/drivers/media/usb/uvc/uvc_v4l2.c
-> +++ b/drivers/media/usb/uvc/uvc_v4l2.c
-> @@ -1199,33 +1199,12 @@ static long uvc_v4l2_unlocked_ioctl(struct file *=
-file,
->   unsigned int converted_cmd =3D v4l2_translate_cmd(cmd);
->   int ret;
->
-> - /* The following IOCTLs need to turn on the camera. */
-> - switch (converted_cmd) {
-> - case UVCIOC_CTRL_MAP:
-> - case UVCIOC_CTRL_QUERY:
-> - case VIDIOC_G_CTRL:
-> - case VIDIOC_G_EXT_CTRLS:
-> - case VIDIOC_G_INPUT:
-> - case VIDIOC_QUERYCTRL:
-> - case VIDIOC_QUERYMENU:
-> - case VIDIOC_QUERY_EXT_CTRL:
-> - case VIDIOC_S_CTRL:
-> - case VIDIOC_S_EXT_CTRLS:
-> - case VIDIOC_S_FMT:
-> - case VIDIOC_S_INPUT:
-> - case VIDIOC_S_PARM:
-> - case VIDIOC_TRY_EXT_CTRLS:
-> - case VIDIOC_TRY_FMT:
-> - ret =3D uvc_pm_get(handle->stream->dev);
-> - if (ret)
-> - return ret;
-> - ret =3D video_ioctl2(file, cmd, arg);
-> - uvc_pm_put(handle->stream->dev);
-> + ret =3D uvc_pm_get(handle->stream->dev);
-> + if (ret)
->   return ret;
-> - }
-> -
-> - /* The other IOCTLs can run with the camera off. */
-> - return video_ioctl2(file, cmd, arg);
-> + ret =3D video_ioctl2(file, cmd, arg);
-> + uvc_pm_put(handle->stream->dev);
-> + return ret;
->  }
->
->  const struct v4l2_ioctl_ops uvc_ioctl_ops =3D {
->
-> Andr=C3=A9s
->
+>=20
+> Thanks and Regards,
+> Nemesa
+>=20
+> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 3 ++-
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> > b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> > index c7143869bafd..043c9aef2ea6 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> > @@ -539,7 +539,8 @@ static int
+> > intel_dp_aux_vesa_setup_backlight(struct
+> > intel_connector *connector,
+> >  	drm_dbg_kms(display->drm,
+> >  		    "[CONNECTOR:%d:%s] AUX VESA backlight enable is
+> controlled
+> > through %s\n",
+> >  		    connector->base.base.id, connector->base.name,
+> > -		    dpcd_vs_pwm_str(panel-
+> > >backlight.edp.vesa.info.aux_enable));
+> > +		    dpcd_vs_pwm_str(panel-
+> > >backlight.edp.vesa.info.aux_enable ||
+> > +				    panel-
+> > >backlight.edp.vesa.info.luminance_set));
+> >  	drm_dbg_kms(display->drm,
+> >  		    "[CONNECTOR:%d:%s] AUX VESA backlight level is controlled
+> > through %s\n",
+> >  		    connector->base.base.id, connector->base.name,
+> > --
+> > 2.34.1
 
-
---=20
-Ricardo Ribalda
