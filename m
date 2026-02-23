@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GPVuBnFdnGmkEwQAu9opvQ
+	id 8AJoLHNdnGmkEwQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 15:00:17 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 15:00:19 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A64CA177977
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 15:00:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 878FD177985
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 15:00:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB68410E3F1;
-	Mon, 23 Feb 2026 14:00:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11A9110E3F4;
+	Mon, 23 Feb 2026 14:00:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d/AqyWDK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cftpISH8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AE7010E3E2;
- Mon, 23 Feb 2026 14:00:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64E5610E3E2;
+ Mon, 23 Feb 2026 14:00:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771855214; x=1803391214;
+ t=1771855216; x=1803391216;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=jN33Y9pcNncyIGU1GIc8V1mdV+9FTsJrJJR5oRkfGVk=;
- b=d/AqyWDKu05R7Q00Is2roc4Nt+3E222M8dx6Fh/ZqaZT99rtMqpeDfaQ
- nhfUEa2+yJpwAj4ZPM+6JtYPFgyHNqzJ2bNN0ZTiWPz2PODgQPsEx23Kl
- bbd5Svx0W9fuChJoBkJxPbXb78eoeH5nMa3iq+iIq/WvnB1NAcdQUn6Ls
- 6dc7cLOJoj1pmu/0Ou09+V1xs2oqmHcaVdJ5xVUGVVwgGWbBB3DqBAXr+
- rX2XcgqRrYjSlcSMCoVUzr366DEgCxEv5ogjzFw/fokmvKfzPwR04Vtqs
- nvftBgO4IfbijtvZw3d4I08DuckMIQLbxkQvdA+DBwe/9X+CbiZD8hOTd Q==;
-X-CSE-ConnectionGUID: ML7Q4Qf8QJGIiYaAeA3aOA==
-X-CSE-MsgGUID: 4WMAzas3RMeg5fOvLa6Scg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11709"; a="72827044"
-X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="72827044"
+ bh=iN10Zuaw+iwCV7z39BBsMssX9DVXGvxQU/QGqe6kZ54=;
+ b=cftpISH8vxr4/D7nDjAaAsfQmTtK2bcSIy8+4fDA4tb8M4VSWf/IrdhX
+ fzms/eh7goXcggPbJqbrijQcAtwSmro6mUNIp+KOelr1g0bywN533PDLF
+ Ho/TFhyn53TWGxAMQ/b5xeVf/yLHMor0m5sY+tKXl8XmlARDBjy2AxoBQ
+ INlyJ91tKYDwV18DkTcsKKOQW7jGTM88X6DenpYIyM83uovfjjamBoJVq
+ lJjhWQe/N/JD2V3bpUfAHjRoFGtFckKj+3PN/tNMEXGNxOgYGfgXsw61+
+ CeNTHuOlBAou+FK2DKL43fMJW8xXTqooFr8n9bjdYoJ9IyU0+PutrWdWq w==;
+X-CSE-ConnectionGUID: /S3oph6eR3yteDAs1424xw==
+X-CSE-MsgGUID: fCKnODGBTdGcKrUhxInnuA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11709"; a="72827049"
+X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="72827049"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 06:00:14 -0800
-X-CSE-ConnectionGUID: 8IizGZRlSYyNDZ8kDmb67Q==
-X-CSE-MsgGUID: F2jpTQsQRkeAi0dJUO/Exw==
+ 23 Feb 2026 06:00:16 -0800
+X-CSE-ConnectionGUID: ZjfFr8RFR+SEsnPxbLvPGA==
+X-CSE-MsgGUID: qUZepNgJQSaUoYjV+5EjSg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="212961187"
+X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="212961196"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 06:00:12 -0800
+ 23 Feb 2026 06:00:14 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
  animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 06/14] drm/i915/dp: Use version field of AS SDP data structure
-Date: Mon, 23 Feb 2026 19:14:23 +0530
-Message-ID: <20260223134431.1639308-7-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 07/14] drm/i915/dp: Compute AS SDP after PSR and LOBF
+Date: Mon, 23 Feb 2026 19:14:24 +0530
+Message-ID: <20260223134431.1639308-8-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260223134431.1639308-1-ankit.k.nautiyal@intel.com>
 References: <20260223134431.1639308-1-ankit.k.nautiyal@intel.com>
@@ -99,68 +99,35 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: A64CA177977
+X-Rspamd-Queue-Id: 878FD177985
 X-Rspamd-Action: no action
 
-Use the newly added version field of struct drm_dp_as_sdp instead of
-current hardcoding.
+To enable AS SDP support for Panel Replay (PR) with Link ON and
+Auxless-ALPM, we need to compute AS SDP after
+intel_{psr, alpm_lobf}_compute_config().
+
+Move call for intel_dp_compute_as_sdp() after the above two helpers.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 3 ++-
- drivers/gpu/drm/i915/display/intel_dp.c      | 7 +++----
- 2 files changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 33821cc2948b..309e28b15198 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4902,7 +4902,8 @@ static bool
- intel_compare_dp_as_sdp(const struct drm_dp_as_sdp *a,
- 			const struct drm_dp_as_sdp *b)
- {
--	return a->vtotal == b->vtotal &&
-+	return a->version == b->version &&
-+		a->vtotal == b->vtotal &&
- 		a->target_rr == b->target_rr &&
- 		a->duration_incr_ms == b->duration_incr_ms &&
- 		a->duration_decr_ms == b->duration_decr_ms &&
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 5abb56fb26f7..5d173553a646 100644
+index 5d173553a646..d08db4938638 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3136,6 +3136,7 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
- 	as_sdp->sdp_type = DP_SDP_ADAPTIVE_SYNC;
- 	as_sdp->length = 0x9;
- 	as_sdp->duration_incr_ms = 0;
-+	as_sdp->version = 0x2;
- 	as_sdp->vtotal = intel_vrr_vmin_vtotal(crtc_state);
+@@ -3608,9 +3608,9 @@ intel_dp_compute_config(struct intel_encoder *encoder,
+ 		pipe_config->dp_m_n.data_m *= pipe_config->splitter.link_count;
  
- 	if (crtc_state->cmrr.enable) {
-@@ -5001,7 +5002,7 @@ static ssize_t intel_dp_as_sdp_pack(const struct drm_dp_as_sdp *as_sdp,
- 	/* Prepare AS (Adaptive Sync) SDP Header */
- 	sdp->sdp_header.HB0 = 0;
- 	sdp->sdp_header.HB1 = as_sdp->sdp_type;
--	sdp->sdp_header.HB2 = 0x02;
-+	sdp->sdp_header.HB2 = as_sdp->version;
- 	sdp->sdp_header.HB3 = as_sdp->length;
- 
- 	/* Fill AS (Adaptive Sync) SDP Payload */
-@@ -5188,13 +5189,11 @@ int intel_dp_as_sdp_unpack(struct drm_dp_as_sdp *as_sdp,
- 	if (sdp->sdp_header.HB1 != DP_SDP_ADAPTIVE_SYNC)
- 		return -EINVAL;
- 
--	if (sdp->sdp_header.HB2 != 0x02)
--		return -EINVAL;
--
- 	if ((sdp->sdp_header.HB3 & 0x3F) != 9)
- 		return -EINVAL;
- 
- 	as_sdp->length = sdp->sdp_header.HB3 & DP_ADAPTIVE_SYNC_SDP_LENGTH;
-+	as_sdp->version = sdp->sdp_header.HB2;
- 	as_sdp->mode = sdp->db[0] & DP_ADAPTIVE_SYNC_SDP_OPERATION_MODE;
- 	as_sdp->vtotal = (sdp->db[2] << 8) | sdp->db[1];
- 	as_sdp->target_rr = ((sdp->db[4] & 0x3) << 8) | sdp->db[3];
+ 	intel_vrr_compute_config(pipe_config, conn_state);
+-	intel_dp_compute_as_sdp(intel_dp, pipe_config);
+ 	intel_psr_compute_config(intel_dp, pipe_config, conn_state);
+ 	intel_alpm_lobf_compute_config(intel_dp, pipe_config, conn_state);
++	intel_dp_compute_as_sdp(intel_dp, pipe_config);
+ 	intel_dp_drrs_compute_config(connector, pipe_config, link_bpp_x16);
+ 	intel_dp_compute_vsc_sdp(intel_dp, pipe_config, conn_state);
+ 	intel_dp_compute_hdr_metadata_infoframe_sdp(intel_dp, pipe_config, conn_state);
 -- 
 2.45.2
 
