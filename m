@@ -2,68 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EPNfKcKEnGm7IwQAu9opvQ
+	id wJ5nL3WHnGm7IwQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 17:48:02 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 17:59:33 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ADDA17A1CB
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 17:48:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1481117A3F2
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 17:59:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A2EF10E400;
-	Mon, 23 Feb 2026 16:47:58 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lmIw2SbI";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD87D10E403;
+	Mon, 23 Feb 2026 16:59:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A709810E412;
- Mon, 23 Feb 2026 16:47:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771865276; x=1803401276;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=fVntof4DMbaT6F/gG+obTaSH0DPmyluL1tF3c0xftWA=;
- b=lmIw2SbIZdoR/yb2RLbaAQAfKLtK+mxOhkNkJY0kdSyTds17wQOXuWVq
- ebOLT1R/4p9ru28uBHOltx5LOY8GwANy4P1fWsqEG+X1ShZ2TDWjAQoFm
- 9uC/KgN1diTxdpqeMXwIUlnkcYE9E9Qjz/hE/9D7cYNfqQtTm82Y1JDDw
- md1UNyI4e5AS2fn3IegKHwBuKhKRY8yCqjK1ZU+Lz3AtczHWKaHjYPsP9
- sfEh4WXNzNCm0mHlnMS+HoP0tJvZtiDwgtVHwEq0RVfxfs3DZzM3BFquZ
- LVeXAP/UQRzz1rWEvpfdtsmzHMjQG9ajfiDyUki8TIwLBzWI7d8FEDogi Q==;
-X-CSE-ConnectionGUID: lc5hx0QbT2uNiMxLLTOH+Q==
-X-CSE-MsgGUID: v7mEKDceQeuFNJFl4C/27w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11710"; a="71890903"
-X-IronPort-AV: E=Sophos;i="6.21,307,1763452800"; d="scan'208";a="71890903"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 08:47:56 -0800
-X-CSE-ConnectionGUID: /p80mIpFRH+rfRUI5PmzSg==
-X-CSE-MsgGUID: uXtCVaS3SYOckeJgSUIQhA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,307,1763452800"; d="scan'208";a="220126637"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO [10.245.244.11])
- ([10.245.244.11])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 08:47:54 -0800
-Message-ID: <a34a04bf-9f4e-4331-8275-93f21f27a19d@intel.com>
-Date: Mon, 23 Feb 2026 16:47:52 +0000
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DACF510E403;
+ Mon, 23 Feb 2026 16:59:29 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6184331683091909698=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] drm/buddy: Improve offset-aligned allocation
- handling
-To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- christian.koenig@amd.com, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Cc: alexander.deucher@amd.com
-References: <20260217113900.10675-1-Arunpravin.PaneerSelvam@amd.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20260217113900.10675-1-Arunpravin.PaneerSelvam@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/selftests=3A_Pre?=
+ =?utf-8?q?vent_userspace_mapping_invalidation_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Krzysztof Karas" <krzysztof.karas@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 23 Feb 2026 16:59:29 -0000
+Message-ID: <177186596987.277322.2740942613345130259@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <dnqbdeooikcsklr2xk2uzh6shqddneuah27oobtyohahhfzp4q@23vsrz5343ny>
+In-Reply-To: <dnqbdeooikcsklr2xk2uzh6shqddneuah27oobtyohahhfzp4q@23vsrz5343ny>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,92 +42,173 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[matthew.auld@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
-	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 3ADDA17A1CB
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	R_DKIM_NA(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	NEURAL_SPAM(0.00)[0.714];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[patchwork.freedesktop.org:url,gitlab.freedesktop.org:url,01.org:url,i915_selftest:email,workarounds:email,live:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 1481117A3F2
 X-Rspamd-Action: no action
 
-On 17/02/2026 11:38, Arunpravin Paneer Selvam wrote:
-> Large alignment requests previously forced the buddy allocator to search by
-> alignment order, which often caused higher-order free blocks to be split even
-> when a suitably aligned smaller region already existed within them. This led
-> to excessive fragmentation, especially for workloads requesting small sizes
-> with large alignment constraints.
-> 
-> This change prioritizes the requested allocation size during the search and
-> uses an augmented RB-tree field (subtree_max_alignment) to efficiently locate
-> free blocks that satisfy both size and offset-alignment requirements. As a
-> result, the allocator can directly select an aligned sub-region without
-> splitting larger blocks unnecessarily.
-> 
-> A practical example is the VKCTS test
-> dEQP-VK.memory.allocation.basic.size_8KiB.reverse.count_4000, which repeatedly
-> allocates 8 KiB buffers with a 256 KiB alignment. Previously, such allocations
-> caused large blocks to be split aggressively, despite smaller aligned regions
-> being sufficient. With this change, those aligned regions are reused directly,
-> significantly reducing fragmentation.
-> 
-> This improvement is visible in the amdgpu VRAM buddy allocator state
-> (/sys/kernel/debug/dri/1/amdgpu_vram_mm). After the change, higher-order blocks
-> are preserved and the number of low-order fragments is substantially reduced.
-> 
-> Before:
->    order- 5 free: 1936 MiB, blocks: 15490
->    order- 4 free:  967 MiB, blocks: 15486
->    order- 3 free:  483 MiB, blocks: 15485
->    order- 2 free:  241 MiB, blocks: 15486
->    order- 1 free:  241 MiB, blocks: 30948
-> 
-> After:
->    order- 5 free:  493 MiB, blocks:  3941
->    order- 4 free:  246 MiB, blocks:  3943
->    order- 3 free:  123 MiB, blocks:  4101
->    order- 2 free:   61 MiB, blocks:  4101
->    order- 1 free:   61 MiB, blocks:  8018
-> 
-> By avoiding unnecessary splits, this change improves allocator efficiency and
-> helps maintain larger contiguous free regions under heavy offset-aligned
-> allocation workloads.
-> 
-> v2:(Matthew)
->    - Update augmented information along the path to the inserted node.
-> 
-> v3:
->    - Move the patch to gpu/buddy.c file.
-> 
-> v4:(Matthew)
->    - Use the helper instead of calling _ffs directly
->    - Remove gpu_buddy_block_order(block) >= order check and drop order
->    - Drop !node check as all callers handle this already
->    - Return larger than any other possible alignment for __ffs64(0)
->    - Replace __ffs with __ffs64
-> 
-> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-> Suggested-by: Christian König <christian.koenig@amd.com>
+--===============6184331683091909698==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+== Series Details ==
+
+Series: drm/i915/selftests: Prevent userspace mapping invalidation (rev4)
+URL   : https://patchwork.freedesktop.org/series/160096/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_18022 -> Patchwork_160096v4
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160096v4/index.html
+
+Participating hosts (43 -> 41)
+------------------------------
+
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_160096v4 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live:
+    - bat-dg2-8:          [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-dg2-8/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160096v4/bat-dg2-8/igt@i915_selftest@live.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-6:         [DMESG-FAIL][3] ([i915#12061]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-arls-6/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160096v4/bat-arls-6/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18022 -> Patchwork_160096v4
+
+  CI-20190529: 20190529
+  CI_DRM_18022: 45a3045fc0dc46a893cb8bbe304afafd4120c904 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8765: 8765
+  Patchwork_160096v4: 45a3045fc0dc46a893cb8bbe304afafd4120c904 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160096v4/index.html
+
+--===============6184331683091909698==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/selftests: Prevent userspace mapping invalidation (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160096/">https://patchwork.freedesktop.org/series/160096/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160096v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160096v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18022 -&gt; Patchwork_160096v4</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160096v4/index.html</p>
+<h2>Participating hosts (43 -&gt; 41)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_160096v4 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live:<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-dg2-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160096v4/bat-dg2-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_160096v4/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18022 -&gt; Patchwork_160096v4</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18022: 45a3045fc0dc46a893cb8bbe304afafd4120c904 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8765: 8765<br />
+  Patchwork_160096v4: 45a3045fc0dc46a893cb8bbe304afafd4120c904 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============6184331683091909698==--
