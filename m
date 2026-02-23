@@ -2,58 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OPykOmtWnGkAEQQAu9opvQ
+	id kMAoHW5WnGkAEQQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 14:30:19 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 14:30:22 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C466F176ED3
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 14:30:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2880B176EDB
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 14:30:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B5F310E3B1;
-	Mon, 23 Feb 2026 13:30:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACDEA10E3B4;
+	Mon, 23 Feb 2026 13:30:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c3FehGa8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SbeBlmZ5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 267C610E3B1;
- Mon, 23 Feb 2026 13:30:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A0D710E3B6;
+ Mon, 23 Feb 2026 13:30:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771853418; x=1803389418;
+ t=1771853420; x=1803389420;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+ZCisIoRDwyhylzqDMrbHHCN9fNBs5sJ7toNcoqtL+w=;
- b=c3FehGa88D7KMqY8X/7UNqsn4XrWghxkMnK2CRFxRmPLAL0W23OXDwXJ
- fOXLYuHTesXYOtJpsW/qK5t+LDoawVXrozV9DHYEhBXWu2Ych8/3YEuHf
- uBOhAXFAxMQwuiDleTUGUu00V/nyF8o4lPODaiRSI5L1KzA+wSipfra4k
- JtknWCXo1jSBaBoQFcu8nQ9AWttdSStzbV1oXbYwcS7QkgFlWWLxeBSDZ
- 1tPRa8iM+5g8mhJTt78Pr0ioctRF8z/LD8Q+ZaYEOCVpWA9BUp6YrMCvb
- R3T6vjIEwnrfq1aX8ZYV99hf6w7PKJc9raQFakeUm5dRNdBql63I77ymw Q==;
-X-CSE-ConnectionGUID: WXRqNkerR9uAbUk3zXRwpQ==
-X-CSE-MsgGUID: 8TzpwfErTdyS257eTIstUg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11709"; a="72724193"
-X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="72724193"
+ bh=GgBe3tvwoUx6+wcI9zTEu7ewY+/wdp4Pmd5sZIvTtQU=;
+ b=SbeBlmZ5xs+mGSCdaZl0SrBqMwlbZwjCkX2HvI1DbUqptlY9WBxA+ylH
+ nDFDpx3F+U51lXi2ZBgUCTPpYVxQEmzlBF5usF99niVOO8QW4eb9eP7R4
+ xvYfcZi9Xzj8+yB2IpWgV3W+lOVfizRV1K0gsGrhAy34nxgvw8EAcdQZA
+ AZxCZWiSEkfINXMIIuwlZIJXLWlK/AdbX8p9Nv/qLwbjzGlQ34+eqeHo5
+ ctx71u+kzE/aDwBcRU+5EEm9znbu+J3tiPr3MoPFGkAvtZ4L77zgNyiTQ
+ 1sh84m43rhwiNNOWSCkYMr79ykmPtqJDWCXDx18TSE7506zEBlLXW85XY w==;
+X-CSE-ConnectionGUID: sLRPKqHUQNeOG9qO3OHdqg==
+X-CSE-MsgGUID: heCeQB0UQHu88S4SD/dv8A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11709"; a="72724199"
+X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="72724199"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 05:30:18 -0800
-X-CSE-ConnectionGUID: Lr5XjWgEQGCxhcvYwET7Aw==
-X-CSE-MsgGUID: nEb+UxcBRM+sRC7wDsy8tA==
+ 23 Feb 2026 05:30:20 -0800
+X-CSE-ConnectionGUID: 5TIpVK3ZSKSprvD3vqBz6w==
+X-CSE-MsgGUID: E60SxSk2SUiPFrm6Banv5g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="215580458"
+X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="215580488"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 05:30:16 -0800
+ 23 Feb 2026 05:30:18 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
  animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 09/14] drm/i915/psr: Add helper to check if PR is with link OFF
-Date: Mon, 23 Feb 2026 18:44:21 +0530
-Message-ID: <20260223131426.1638946-10-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 10/14] drm/i915/dp: Set relevant Downspread Ctrl DPCD bits for
+ PR + Auxless ALPM
+Date: Mon, 23 Feb 2026 18:44:22 +0530
+Message-ID: <20260223131426.1638946-11-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260223131426.1638946-1-ankit.k.nautiyal@intel.com>
 References: <20251111093007.3771409-3-ankit.k.nautiyal@intel.com>
@@ -100,43 +101,88 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: C466F176ED3
+X-Rspamd-Queue-Id: 2880B176EDB
 X-Rspamd-Action: no action
 
-Introduce a helper intel_psr_is_pr_with_link_off() to check if the Panel
-Replay feature needs to be enabled with link off.
+To support Panel Replay with Auxless-ALPM, the source must transmit
+Adaptive-Sync SDPs for video timing synchronization while PR is active.
+As per the DP spec v2.1, this requires setting DPCD 0x0107[6]
+(FIXED_VTOTAL_AS_SDP_EN_IN_PR_ACTIVE). This applies whether VRR is enabled
+(AVT/FAVT) or fixed-timing mode is used.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 6 ++++++
- drivers/gpu/drm/i915/display/intel_psr.h | 1 +
- 2 files changed, 7 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dp_link_training.c | 10 ++++++++--
+ drivers/gpu/drm/i915/display/intel_dp_link_training.h |  3 ++-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c           |  2 +-
+ 3 files changed, 11 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 5bea2eda744b..e0e6ddbfaa2d 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -4575,3 +4575,9 @@ bool intel_psr_use_trans_push(const struct intel_crtc_state *crtc_state)
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+index 54c585c59b90..e494e005cc0f 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+@@ -36,6 +36,7 @@
+ #include "intel_encoder.h"
+ #include "intel_hotplug.h"
+ #include "intel_panel.h"
++#include "intel_psr.h"
  
- 	return HAS_PSR_TRANS_PUSH_FRAME_CHANGE(display) && crtc_state->has_psr;
+ #define LT_MSG_PREFIX			"[CONNECTOR:%d:%s][ENCODER:%d:%s][%s] "
+ #define LT_MSG_ARGS(_intel_dp, _dp_phy)	(_intel_dp)->attached_connector->base.base.id, \
+@@ -710,11 +711,14 @@ static bool intel_dp_link_max_vswing_reached(struct intel_dp *intel_dp,
+ 	return true;
  }
-+
-+bool intel_psr_is_pr_with_link_off(const struct intel_crtc_state *crtc_state)
-+{
-+	return crtc_state->has_panel_replay &&
-+		crtc_state->link_off_after_as_sdp_when_pr_active;
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
-index 394b641840b3..6764bcb13f9b 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr.h
-@@ -86,5 +86,6 @@ void intel_psr_compute_config_late(struct intel_dp *intel_dp,
- 				   struct intel_crtc_state *crtc_state);
- int intel_psr_min_guardband(struct intel_crtc_state *crtc_state);
- bool intel_psr_use_trans_push(const struct intel_crtc_state *crtc_state);
-+bool intel_psr_is_pr_with_link_off(const struct intel_crtc_state *crtc_state);
  
- #endif /* __INTEL_PSR_H__ */
+-void intel_dp_link_training_set_mode(struct intel_dp *intel_dp, int link_rate, bool is_vrr)
++void intel_dp_link_training_set_mode(struct intel_dp *intel_dp, int link_rate,
++				     bool is_vrr,
++				     bool is_pr_with_link_off)
+ {
+ 	u8 link_config[2];
+ 
+ 	link_config[0] = is_vrr ? DP_MSA_TIMING_PAR_IGNORE_EN : 0;
++	link_config[0] |= is_pr_with_link_off ? DP_FIXED_VTOTAL_AS_SDP_EN_IN_PR_ACTIVE : 0;
+ 	link_config[1] = drm_dp_is_uhbr_rate(link_rate) ?
+ 			 DP_SET_ANSI_128B132B : DP_SET_ANSI_8B10B;
+ 	drm_dp_dpcd_write(&intel_dp->aux, DP_DOWNSPREAD_CTRL, link_config, 2);
+@@ -737,7 +741,9 @@ static void intel_dp_update_downspread_ctrl(struct intel_dp *intel_dp,
+ 	  * especially on the first real commit when clearing the inherited flag.
+ 	  */
+ 	intel_dp_link_training_set_mode(intel_dp,
+-					crtc_state->port_clock, crtc_state->vrr.in_range);
++					crtc_state->port_clock,
++					crtc_state->vrr.in_range,
++					intel_psr_is_pr_with_link_off(crtc_state));
+ }
+ 
+ void intel_dp_link_training_set_bw(struct intel_dp *intel_dp,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.h b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
+index 1ba22ed6db08..3591210f8ee6 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.h
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
+@@ -18,7 +18,8 @@ int intel_dp_init_lttpr_and_dprx_caps(struct intel_dp *intel_dp);
+ bool intel_dp_lttpr_transparent_mode_enabled(struct intel_dp *intel_dp);
+ 
+ void intel_dp_link_training_set_mode(struct intel_dp *intel_dp,
+-				     int link_rate, bool is_vrr);
++				     int link_rate, bool is_vrr,
++				     bool is_pr_with_link_off);
+ void intel_dp_link_training_set_bw(struct intel_dp *intel_dp,
+ 				   int link_bw, int rate_select, int lane_count,
+ 				   bool enhanced_framing);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index fb5396a46d1b..3b4256b8e030 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -2139,7 +2139,7 @@ void intel_dp_mst_prepare_probe(struct intel_dp *intel_dp)
+ 
+ 	intel_dp_compute_rate(intel_dp, link_rate, &link_bw, &rate_select);
+ 
+-	intel_dp_link_training_set_mode(intel_dp, link_rate, false);
++	intel_dp_link_training_set_mode(intel_dp, link_rate, false, false);
+ 	intel_dp_link_training_set_bw(intel_dp, link_bw, rate_select, lane_count,
+ 				      drm_dp_enhanced_frame_cap(intel_dp->dpcd));
+ 
 -- 
 2.45.2
 
