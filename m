@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oJeyJHNWnGkAEQQAu9opvQ
+	id qBxPFHdWnGkAEQQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 14:30:27 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 14:30:31 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2261E176EE9
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 14:30:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04328176EF8
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Feb 2026 14:30:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE89110E3B3;
-	Mon, 23 Feb 2026 13:30:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6047C10E3BD;
+	Mon, 23 Feb 2026 13:30:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kkjC4ey3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AebwS09l";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C3C810E3BD;
- Mon, 23 Feb 2026 13:30:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E74D810E3C1;
+ Mon, 23 Feb 2026 13:30:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771853425; x=1803389425;
+ t=1771853427; x=1803389427;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VmqNqNaM5CB/B2Saxy0W/QAruTGRJJqEyVuB177B//s=;
- b=kkjC4ey3+x+rBBM5p4GBDhaqdFeLNAbGaPw4xbfqc3+klw5yOH8MoIAM
- nGq5lC7uxHcW5soyzLxggReArkM6S819FXbDE0DRzj2OL+6GG+kc9HeI+
- ZXWtJ0Bv+v9g25YChm6Gfr3ns4uB4CoseEHNP/d7YqmNpFO49yxm4M97P
- Wvw6fSCuHa0T65Hvy7x40DuGpxBJpWJ1RRyGT+bS/CuV9YJIFG5mhjL6a
- Y8acTX6ztCHvo/6bA6vynWAdQEJZKb5XaEzEG8TZOOWs/x6QVVQT7TiGe
- R7gcelakMHveQj4hquyTYVNg/hQOeFZOSupf0SzzJeGimVoy8K5EGylZb w==;
-X-CSE-ConnectionGUID: MqmLswZiT3S6yCEFVe3bBw==
-X-CSE-MsgGUID: pZoXDW+nTayildKUq652aA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11709"; a="72724212"
-X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="72724212"
+ bh=mMxTP0f1c7E/sIDl3To7m2b4g0RQ1hGivk7FB36W78w=;
+ b=AebwS09lrj0rvd2yl2R+CNCeTJOIFwsL8o4NfCF5L04K6LnATccdmyrN
+ dhf2+eMEtD7FtfIcGggQQ4VSeRtb1hGLmMf+GhORQf6hyvjPIEUf+eVFw
+ 7iWWK9voRQAXEAMlwXD8rB36thHjWnzzSVj26vgLlTtn76fYKjRKlCG/G
+ sCjVUDhs41hCqGq1gALVMY74funvgzxZAyC4+qvF4C9YE8rkri0GAnDkI
+ yWGTCQpQOEvEtwqu2sjjIOurjs9MUamSoeQWERthiwcvVnhTaq3hwl7Ek
+ yaPj9Qz+r9/JGSaL/PjuZKwtxpisvezJ6H28MZIaWvEQGjFjHd5x9Pkgz A==;
+X-CSE-ConnectionGUID: 8xnIIwpNRverKj9jRAeCJg==
+X-CSE-MsgGUID: NCGMKipwQj+f9VyKATxIEA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11709"; a="72724218"
+X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="72724218"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 05:30:24 -0800
-X-CSE-ConnectionGUID: /PKhFLFvR0+pSvKznFiQxQ==
-X-CSE-MsgGUID: ae4dxTGqQIitrGoDpVPtJQ==
+ 23 Feb 2026 05:30:27 -0800
+X-CSE-ConnectionGUID: D8o3ILjIR+6x4ACuyiaPAg==
+X-CSE-MsgGUID: VQaczDFiQna38kA02oj3OA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="215580520"
+X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="215580539"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 05:30:22 -0800
+ 23 Feb 2026 05:30:25 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
  animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 12/14] include/drm/display/dp: Add DPCD registers for
- configuring Panel Replay + VRR
-Date: Mon, 23 Feb 2026 18:44:24 +0530
-Message-ID: <20260223131426.1638946-13-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 13/14] drm/i915/display: Add member to store AS SDP
+ transmission time
+Date: Mon, 23 Feb 2026 18:44:25 +0530
+Message-ID: <20260223131426.1638946-14-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260223131426.1638946-1-ankit.k.nautiyal@intel.com>
 References: <20251111093007.3771409-3-ankit.k.nautiyal@intel.com>
@@ -101,38 +101,113 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: 2261E176EE9
+X-Rspamd-Queue-Id: 04328176EF8
 X-Rspamd-Action: no action
 
-Add additional DPCDs required to be configured to support VRR with Panel
-Replay. These DPCDs are specifically required for configuring Adaptive Sync
-SDP and are introduced in DP v2.1.
+AS SDP can be sent at two different positions T1 and T2.
+These depend on the Panel Replay configuration and Adaptive Sync SDP
+modes as per DP v2.1.
+Currently we have configurations where SDP needs to be sent at T1 only.
+However, to make way for supporting more PR and AS SDP configurations,
+add a new member to store AS SDP transmission time in crtc_state.
+
+This is filled with T1 for now during panel_replay_compute_config() and
+is used to set the MMIO register PR_ALPM and DPCD Panel_Replay_Config3
+DPCD offsets.
+
+readout for this new member needs to be added along with other related
+members.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- include/drm/display/drm_dp.h | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/gpu/drm/i915/display/intel_alpm.c     | 21 ++++++++++++++++++-
+ .../drm/i915/display/intel_display_types.h    |  1 +
+ drivers/gpu/drm/i915/display/intel_psr.c      |  7 +++++++
+ 3 files changed, 28 insertions(+), 1 deletion(-)
 
-diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
-index e4eebabab975..e63705415647 100644
---- a/include/drm/display/drm_dp.h
-+++ b/include/drm/display/drm_dp.h
-@@ -773,6 +773,15 @@
- # define DP_PANEL_REPLAY_SU_Y_GRANULARITY_EXTENDED_VAL_SEL_MASK  (0xf << 3)
- # define DP_PANEL_REPLAY_SU_REGION_SCANLINE_CAPTURE		 (1 << 7)
+diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
+index b3334bc4d0f9..6eecd5ce4fad 100644
+--- a/drivers/gpu/drm/i915/display/intel_alpm.c
++++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+@@ -365,6 +365,25 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
+ 	crtc_state->has_lobf = true;
+ }
  
-+#define PANEL_REPLAY_CONFIG3				0x11a	/* DP 2.1 */
-+# define AS_SDP_SETUP_TIME_MASK				(3 << 6)
-+# define AS_SDP_SETUP_TIME_T1				0
-+# define AS_SDP_SETUP_TIME_DYNAMIC			1	/* uses Table 2-227 */
-+# define AS_SDP_SETUP_TIME_T2				2
++static int get_pr_alpm_as_sdp_transmission_time(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_display *display = to_intel_display(crtc_state);
 +
-+#define AS_SDP_TRANSMISSION_TIMIING_CONFIG	0x11b	/* DP 2.1 */
-+# define AS_SDP_ONE_LINE_EARLIER_ENABLE		BIT(7)
++	switch (crtc_state->pr_as_sdp_transmission) {
++	case AS_SDP_SETUP_TIME_T1:
++		return PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_T1;
++	case AS_SDP_SETUP_TIME_DYNAMIC:
++		return PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_T1_OR_T2;
++	case AS_SDP_SETUP_TIME_T2:
++		return PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_T2;
++	default:
++		drm_dbg_kms(display->drm,
++			    "Missing case %d for AS SDP Position, going with T1 by default\n",
++			    crtc_state->pr_as_sdp_transmission);
++		return AS_SDP_SETUP_TIME_T1;
++	}
++}
 +
- #define DP_PAYLOAD_ALLOCATE_SET		    0x1c0
- #define DP_PAYLOAD_ALLOCATE_START_TIME_SLOT 0x1c1
- #define DP_PAYLOAD_ALLOCATE_TIME_SLOT_COUNT 0x1c2
+ static void lnl_alpm_configure(struct intel_dp *intel_dp,
+ 			       const struct intel_crtc_state *crtc_state)
+ {
+@@ -388,7 +407,7 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
+ 			ALPM_CTL_AUX_LESS_WAKE_TIME(crtc_state->alpm_state.aux_less_wake_lines);
+ 
+ 		if (intel_dp->as_sdp_supported) {
+-			u32 pr_alpm_ctl = PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_T1;
++			u32 pr_alpm_ctl = get_pr_alpm_as_sdp_transmission_time(crtc_state);
+ 
+ 			if (crtc_state->link_off_after_as_sdp_when_pr_active)
+ 				pr_alpm_ctl |= PR_ALPM_CTL_ALLOW_LINK_OFF_BETWEEN_AS_SDP_AND_SU;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index e8e4af03a6a6..9065bf8bd6a5 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1181,6 +1181,7 @@ struct intel_crtc_state {
+ 	bool has_panel_replay;
+ 	bool link_off_after_as_sdp_when_pr_active;
+ 	bool disable_as_sdp_when_pr_active;
++	int pr_as_sdp_transmission;
+ 	bool wm_level_disabled;
+ 	bool pkg_c_latency_used;
+ 	/* Only used for state verification. */
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index e0e6ddbfaa2d..74242c93db87 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -779,6 +779,7 @@ static void _panel_replay_enable_sink(struct intel_dp *intel_dp,
+ 		DP_PANEL_REPLAY_RFB_STORAGE_ERROR_EN |
+ 		DP_PANEL_REPLAY_ACTIVE_FRAME_CRC_ERROR_EN;
+ 	u8 panel_replay_config2 = DP_PANEL_REPLAY_CRC_VERIFICATION;
++	u8 panel_replay_config3 = crtc_state->pr_as_sdp_transmission;
+ 
+ 	if (crtc_state->has_sel_update)
+ 		val |= DP_PANEL_REPLAY_SU_ENABLE;
+@@ -794,6 +795,9 @@ static void _panel_replay_enable_sink(struct intel_dp *intel_dp,
+ 
+ 	drm_dp_dpcd_writeb(&intel_dp->aux, PANEL_REPLAY_CONFIG2,
+ 			   panel_replay_config2);
++
++	drm_dp_dpcd_writeb(&intel_dp->aux, PANEL_REPLAY_CONFIG3,
++			   panel_replay_config3);
+ }
+ 
+ static void _psr_enable_sink(struct intel_dp *intel_dp,
+@@ -1771,6 +1775,9 @@ static bool _panel_replay_compute_config(struct intel_crtc_state *crtc_state,
+ 	crtc_state->link_off_after_as_sdp_when_pr_active = compute_link_off_after_as_sdp_when_pr_active(connector);
+ 	crtc_state->disable_as_sdp_when_pr_active = compute_disable_as_sdp_when_pr_active(connector);
+ 
++	/* For now we use T1 as the transmission time */
++	crtc_state->pr_as_sdp_transmission = AS_SDP_SETUP_TIME_T1;
++
+ 	if (!intel_dp_is_edp(intel_dp))
+ 		return true;
+ 
 -- 
 2.45.2
 
